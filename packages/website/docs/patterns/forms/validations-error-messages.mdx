@@ -1,0 +1,450 @@
+---
+title: Validations & error messages
+sidebar_position: 2
+keywords: [validation, errors, forms, feedback, accessibility]
+---
+
+# Validations & error messages
+
+Form validation provides immediate, clear feedback to users about their input, helping them complete forms successfully and efficiently.
+
+## Problem
+
+Users need clear, immediate feedback when form input is invalid or incomplete. Poor validation can lead to form abandonment, user frustration, and accessibility issues. This pattern addresses how to provide helpful, accessible validation feedback that guides users to successful form completion.
+
+## When to use
+
+- **Form inputs** that require specific formats or validation rules
+- **Multi-step forms** where validation prevents progression
+- **Data entry** that needs immediate feedback
+- **User registration** and profile forms
+- **Settings pages** with validation requirements
+
+## When not to use
+
+- **System errors** or application failures (use error boundaries and toasts)
+- **Debug information** or technical details (use developer tools)
+- **Simple informational messages** (use help text instead)
+- **Critical errors** that require immediate attention (use callouts)
+
+## Anatomy
+
+- **Input field**: The form control being validated
+- **Validation state**: Visual indicator (error, warning, success)
+- **Error message**: Clear, actionable feedback text
+- **Help text**: Additional guidance or context
+- **Validation timing**: When validation occurs (onBlur, onChange, onSubmit)
+
+## Inline validation
+
+Provide immediate feedback as users interact with form fields. Validate on blur or after a brief delay to avoid overwhelming users.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiFormRow,
+  EuiFieldText,
+  EuiFieldPassword,
+  EuiText,
+  EuiIcon,
+  EuiFlexGroup,
+  EuiFlexItem,
+} from '@elastic/eui';
+
+export default () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [emailError, setEmailError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
+
+  const validateEmail = (value) => {
+    if (!value) return '';
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(value) ? '' : 'Please enter a valid email address';
+  };
+
+  const validatePassword = (value) => {
+    if (!value) return '';
+    if (value.length < 8) return 'Password must be at least 8 characters';
+    if (!/[A-Z]/.test(value)) return 'Password must contain at least one uppercase letter';
+    if (!/[a-z]/.test(value)) return 'Password must contain at least one lowercase letter';
+    if (!/\d/.test(value)) return 'Password must contain at least one number';
+    return '';
+  };
+
+  const handleEmailBlur = () => {
+    setEmailError(validateEmail(email));
+  };
+
+  const handlePasswordBlur = () => {
+    setPasswordError(validatePassword(password));
+  };
+
+  return (
+    <div style={{ maxWidth: '400px' }}>
+      <EuiFormRow
+        label="Email address"
+        isInvalid={!!emailError}
+        error={emailError}
+        helpText="We'll use this to send you important updates"
+      >
+        <EuiFieldText
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          onBlur={handleEmailBlur}
+          isInvalid={!!emailError}
+          placeholder="Enter your email"
+        />
+      </EuiFormRow>
+      
+      <EuiSpacer size="m" />
+      
+      <EuiFormRow
+        label="Password"
+        isInvalid={!!passwordError}
+        error={passwordError}
+        helpText="Must be at least 8 characters with uppercase, lowercase, and number"
+      >
+        <EuiFieldPassword
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          onBlur={handlePasswordBlur}
+          isInvalid={!!passwordError}
+          placeholder="Create a password"
+        />
+      </EuiFormRow>
+    </div>
+  );
+};
+```
+
+## Form-level validation
+
+Validate all fields when the form is submitted, showing a summary of all errors at once.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiFormRow,
+  EuiFieldText,
+  EuiFieldNumber,
+  EuiSelect,
+  EuiButton,
+  EuiCallOut,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiSpacer,
+} from '@elastic/eui';
+
+export default () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    age: '',
+    role: '',
+  });
+  const [errors, setErrors] = useState({});
+  const [showErrors, setShowErrors] = useState(false);
+
+  const validateForm = () => {
+    const newErrors = {};
+    
+    if (!formData.name.trim()) {
+      newErrors.name = 'Name is required';
+    } else if (formData.name.length < 2) {
+      newErrors.name = 'Name must be at least 2 characters';
+    }
+    
+    if (!formData.age) {
+      newErrors.age = 'Age is required';
+    } else if (formData.age < 18 || formData.age > 100) {
+      newErrors.age = 'Age must be between 18 and 100';
+    }
+    
+    if (!formData.role) {
+      newErrors.role = 'Please select a role';
+    }
+    
+    setErrors(newErrors);
+    setShowErrors(Object.keys(newErrors).length > 0);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleSubmit = () => {
+    if (validateForm()) {
+      alert('Form submitted successfully!');
+    }
+  };
+
+  const handleChange = (field, value) => {
+    setFormData(prev => ({ ...prev, [field]: value }));
+    // Clear error when user starts typing
+    if (errors[field]) {
+      setErrors(prev => ({ ...prev, [field]: '' }));
+    }
+  };
+
+  return (
+    <>
+      {showErrors && (
+        <>
+          <EuiCallOut
+            title="Please fix the following errors:"
+            color="danger"
+            iconType="alert"
+          >
+            <ul>
+              {Object.values(errors).map((error, index) => (
+                <li key={index}>{error}</li>
+              ))}
+            </ul>
+          </EuiCallOut>
+          <EuiSpacer />
+        </>
+      )}
+      
+      <div style={{ maxWidth: '400px' }}>
+        <EuiFormRow
+          label="Full name"
+          isInvalid={!!errors.name}
+          error={errors.name}
+        >
+          <EuiFieldText
+            value={formData.name}
+            onChange={(e) => handleChange('name', e.target.value)}
+            isInvalid={!!errors.name}
+            placeholder="Enter your full name"
+          />
+        </EuiFormRow>
+        
+        <EuiSpacer size="m" />
+        
+        <EuiFormRow
+          label="Age"
+          isInvalid={!!errors.age}
+          error={errors.age}
+        >
+          <EuiFieldNumber
+            value={formData.age}
+            onChange={(e) => handleChange('age', e.target.value)}
+            isInvalid={!!errors.age}
+            placeholder="Enter your age"
+            min={18}
+            max={100}
+          />
+        </EuiFormRow>
+        
+        <EuiSpacer size="m" />
+        
+        <EuiFormRow
+          label="Role"
+          isInvalid={!!errors.role}
+          error={errors.role}
+        >
+          <EuiSelect
+            value={formData.role}
+            onChange={(e) => handleChange('role', e.target.value)}
+            isInvalid={!!errors.role}
+            options={[
+              { value: '', text: 'Select a role' },
+              { value: 'admin', text: 'Administrator' },
+              { value: 'user', text: 'User' },
+              { value: 'viewer', text: 'Viewer' },
+            ]}
+          />
+        </EuiFormRow>
+        
+        <EuiSpacer />
+        
+        <EuiButton onClick={handleSubmit} fill>
+          Submit form
+        </EuiButton>
+      </div>
+    </>
+  );
+};
+```
+
+## Success states
+
+Provide positive feedback when validation passes or actions complete successfully.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiFormRow,
+  EuiFieldText,
+  EuiButton,
+  EuiCallOut,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiSpacer,
+} from '@elastic/eui';
+
+export default () => {
+  const [username, setUsername] = useState('');
+  const [isValid, setIsValid] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
+
+  const validateUsername = (value) => {
+    if (!value) return false;
+    // Username must be 3-20 characters, alphanumeric and underscores only
+    const usernameRegex = /^[a-zA-Z0-9_]{3,20}$/;
+    return usernameRegex.test(value);
+  };
+
+  const handleUsernameChange = (e) => {
+    const value = e.target.value;
+    setUsername(value);
+    setIsValid(validateUsername(value));
+  };
+
+  const handleSubmit = () => {
+    if (isValid) {
+      setShowSuccess(true);
+      setTimeout(() => setShowSuccess(false), 3000);
+    }
+  };
+
+  return (
+    <>
+      {showSuccess && (
+        <>
+          <EuiCallOut
+            title="Username is available!"
+            color="success"
+            iconType="check"
+          >
+            <p>Your username has been successfully reserved.</p>
+          </EuiCallOut>
+          <EuiSpacer />
+        </>
+      )}
+      
+      <div style={{ maxWidth: '400px' }}>
+        <EuiFormRow
+          label="Username"
+          isInvalid={username && !isValid}
+          error={username && !isValid ? 'Username must be 3-20 characters, letters, numbers, and underscores only' : ''}
+          helpText={isValid ? 'Username is available' : 'Choose a unique username for your account'}
+        >
+          <EuiFieldText
+            value={username}
+            onChange={handleUsernameChange}
+            isInvalid={username && !isValid}
+            placeholder="Enter username"
+          />
+        </EuiFormRow>
+        
+        <EuiSpacer />
+        
+        <EuiButton 
+          onClick={handleSubmit} 
+          fill 
+          disabled={!isValid}
+        >
+          Reserve username
+        </EuiButton>
+      </div>
+    </>
+  );
+};
+```
+
+## Behavior
+
+### Validation timing
+
+- **On blur**: Validate when user leaves a field (most common)
+- **On change**: Validate as user types (for real-time feedback)
+- **On submit**: Validate all fields at once (for form-level validation)
+- **Debounced**: Validate after user stops typing (prevents excessive validation)
+
+### Error message guidelines
+
+- **Be specific**: Explain exactly what's wrong
+- **Be helpful**: Suggest how to fix the issue
+- **Be concise**: Keep messages short and clear
+- **Be consistent**: Use similar language across all validations
+- **Be accessible**: Ensure screen readers can access error messages
+
+### Visual feedback
+
+- **Error state**: Red border and error message
+- **Success state**: Green border or checkmark (when appropriate)
+- **Warning state**: Yellow/orange border for non-blocking issues
+- **Loading state**: Show validation in progress
+
+## Accessibility
+
+- **Error announcements**: Screen readers announce validation errors
+- **Error association**: Use `aria-describedby` to link errors to inputs
+- **Error summaries**: Provide form-level error summaries for complex forms
+- **Focus management**: Move focus to first error when form submission fails
+- **Color contrast**: Ensure error states meet contrast requirements
+- **Keyboard navigation**: All validation states are keyboard accessible
+
+## Design tokens
+
+Use these tokens for consistent validation styling:
+
+- **Error colors**: `euiTheme.colors.danger` for error states
+- **Success colors**: `euiTheme.colors.success` for success states
+- **Warning colors**: `euiTheme.colors.warning` for warning states
+- **Border radius**: `euiBorderRadiusS` for input borders
+- **Spacing**: `euiSizeS` for error message spacing
+- **Typography**: `euiFontSizeS` for error messages
+- **Focus ring**: `euiFocusRing` for focus indicators
+
+## Do's and Don'ts
+
+### ✅ Do
+
+- Validate on blur for most fields to avoid overwhelming users
+- Provide specific, actionable error messages
+- Use consistent validation patterns across your application
+- Show success states when appropriate
+- Group related errors in error summaries
+- Clear errors when users start correcting them
+
+### ❌ Don't
+
+- Validate on every keystroke (use debouncing instead)
+- Use generic error messages like "Invalid input"
+- Show validation errors before users interact with fields
+- Rely solely on color to indicate validation state
+- Make error messages too long or technical
+- Validate fields that users haven't touched yet
+
+## Migration from custom validation
+
+If you're currently using custom validation implementations, consider migrating to this pattern for better consistency and accessibility:
+
+```tsx
+// Before: Custom validation
+<div className="form-group">
+  <input 
+    className={hasError ? 'error' : ''} 
+    onChange={handleChange}
+  />
+  {hasError && <span className="error-text">{errorMessage}</span>}
+</div>
+
+// After: EUI validation pattern
+<EuiFormRow
+  label="Field name"
+  isInvalid={hasError}
+  error={errorMessage}
+>
+  <EuiFieldText
+    onChange={handleChange}
+    isInvalid={hasError}
+  />
+</EuiFormRow>
+```
+
+**Benefits of migration:**
+- **Better accessibility** - Proper ARIA attributes and screen reader support
+- **Consistent styling** - Uses EUI design tokens and themes
+- **Built-in error handling** - Automatic error message association
+- **Responsive design** - Works across all screen sizes
+- **Theme support** - Automatically adapts to light/dark themes

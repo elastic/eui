@@ -29,6 +29,10 @@ import {
 
 Modal dialogs are task-oriented overlays that interrupt the user's workflow to gather input or confirm an action. They provide focused, single-purpose interactions that require immediate attention.
 
+## Problem
+
+Teams need consistent, accessible modal dialogs for critical user interactions that require immediate attention. This requires clear guidance on when to use modals vs alternatives, proper focus management, and accessibility implementation.
+
 ## When to use
 
 - **Confirming actions** that have consequences (save, delete, publish)
@@ -44,6 +48,31 @@ Modal dialogs are task-oriented overlays that interrupt the user's workflow to g
 - **Navigation between sections** (use tabs or breadcrumbs)
 
 ## Anatomy
+
+```
+┌─────────────────────────────────┐
+│ EuiModalHeader                  │
+│ ┌─────────────────────────────┐ │
+│ │ EuiModalHeaderTitle         │ │
+│ │ Clear, action-oriented      │ │
+│ └─────────────────────────────┘ │
+├─────────────────────────────────┤
+│ EuiModalBody                    │
+│ ┌─────────────────────────────┐ │
+│ │ Content (scrollable)        │ │
+│ │ • Message text              │ │
+│ │ • Form inputs (optional)    │ │
+│ │ • Lists, details           │ │
+│ └─────────────────────────────┘ │
+├─────────────────────────────────┤
+│ EuiModalFooter                  │
+│ ┌─────────────────────────────┐ │
+│ │ Actions (Cancel, Confirm)   │ │
+│ │ Right-aligned, primary      │ │
+│ │ action is filled            │ │
+│ └─────────────────────────────┘ │
+└─────────────────────────────────┘
+```
 
 <EuiPanel color="subdued" paddingSize="l" hasShadow={false}>
   <EuiFlexGroup gutterSize="l" alignItems="flexStart">

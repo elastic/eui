@@ -1,0 +1,270 @@
+---
+title: Toasts & notifications
+sidebar_position: 2
+keywords: [toasts, notifications, EuiGlobalToastList, EuiToast]
+---
+
+# Toasts & notifications
+
+Toasts provide non-intrusive feedback for user actions and system events. They appear temporarily and automatically dismiss, making them ideal for status updates that don't require immediate user attention.
+
+## Problem
+
+Teams need consistent, accessible toast notifications that provide timely feedback without interrupting user workflows. This requires clear guidance on when to use toasts vs other feedback mechanisms, proper timing, and accessibility implementation.
+
+## When to use
+
+- **System feedback** for user actions (save, delete, update)
+- **Status updates** that don't require immediate attention
+- **Success/error messages** for background operations
+- **Temporary notifications** that should auto-dismiss
+
+## When not to use
+
+- **Critical errors** (use error boundaries or modals)
+- **User input required** (use modals or forms)
+- **Persistent information** (use callouts or page content)
+- **Complex workflows** (use dedicated pages or wizards)
+
+## Anatomy
+
+Toasts are composed of these elements:
+
+- **Container**: EuiGlobalToastList manages positioning and lifecycle
+- **Toast item**: EuiToast with icon, title, and optional actions
+- **Icon**: Status indicator (success, error, warning, info)
+- **Title**: Brief, descriptive message
+- **Content** (optional): Additional details or context
+- **Actions** (optional): Dismiss button or action buttons
+- **Timer**: Auto-dismiss functionality
+
+## Success toast
+
+Use for confirming successful actions like saves, updates, or completions.
+
+```tsx interactive
+import React, { useState, useCallback } from 'react';
+import {
+  EuiGlobalToastList,
+  EuiToast,
+  EuiButton,
+  EuiIcon,
+  EuiText,
+} from '@elastic/eui';
+
+export default () => {
+  const [toasts, setToasts] = useState([]);
+
+  const addToast = useCallback((type) => {
+    const toast = {
+      id: `toast-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
+      title: type === 'success' ? 'Changes saved' : 'Error occurred',
+      color: type === 'success' ? 'success' : 'danger',
+      iconType: type === 'success' ? 'check' : 'alert',
+      text: type === 'success' 
+        ? 'Your changes have been saved successfully.'
+        : 'There was an error saving your changes.',
+    };
+
+    setToasts(prev => [...prev, toast]);
+  }, []);
+
+  const removeToast = useCallback((id) => {
+    setToasts([]); // Clear all toasts
+  }, []);
+
+  return (
+    <>
+      <EuiButton onClick={() => addToast('success')}>
+        Show success toast
+      </EuiButton>
+      
+      <EuiGlobalToastList
+        toasts={toasts}
+        dismissToast={removeToast}
+        toastLifeTimeMs={6000}
+      />
+    </>
+  );
+};
+```
+
+## Error toast
+
+Use for non-critical errors that don't require immediate user action.
+
+```tsx interactive
+import React, { useState, useCallback } from 'react';
+import {
+  EuiGlobalToastList,
+  EuiToast,
+  EuiButton,
+  EuiIcon,
+  EuiText,
+} from '@elastic/eui';
+
+export default () => {
+  const [toasts, setToasts] = useState([]);
+
+  const addToast = useCallback((type) => {
+    const toast = {
+      id: `toast-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
+      title: type === 'success' ? 'Changes saved' : 'Error occurred',
+      color: type === 'success' ? 'success' : 'danger',
+      iconType: type === 'success' ? 'check' : 'alert',
+      text: type === 'success' 
+        ? 'Your changes have been saved successfully.'
+        : 'There was an error saving your changes.',
+    };
+
+    setToasts(prev => [...prev, toast]);
+  }, []);
+
+  const removeToast = useCallback((id) => {
+    setToasts([]); // Clear all toasts
+  }, []);
+
+  return (
+    <>
+      <EuiButton onClick={() => addToast('error')}>
+        Show error toast
+      </EuiButton>
+      
+      <EuiGlobalToastList
+        toasts={toasts}
+        dismissToast={removeToast}
+        toastLifeTimeMs={6000}
+      />
+    </>
+  );
+};
+```
+
+## Toast with actions
+
+Use when the user needs to take action based on the notification.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiGlobalToastList,
+  EuiToast,
+  EuiButton,
+  EuiButtonEmpty,
+  EuiIcon,
+  EuiText,
+} from '@elastic/eui';
+
+export default () => {
+  const [toasts, setToasts] = useState([]);
+
+  const removeToast = useCallback((id) => {
+    setToasts([]); // Clear all toasts
+  }, []);
+
+  const addToast = useCallback(() => {
+    const toastId = `toast-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+    
+    const toast = {
+      id: toastId,
+      title: 'New message received',
+      color: 'primary',
+      iconType: 'email',
+      text: 'You have a new message from John Doe.',
+      toastLifeTimeMs: 0, // Don't auto-dismiss
+      actions: [
+        {
+          name: 'View message',
+          primary: true,
+          onClick: () => {
+            console.log('View message clicked');
+            removeToast(toastId);
+          },
+        },
+        {
+          name: 'Dismiss',
+          onClick: () => removeToast(toastId),
+        },
+      ],
+    };
+
+    setToasts(prev => [...prev, toast]);
+  }, [removeToast]);
+
+  return (
+    <>
+      <EuiButton onClick={addToast}>
+        Show toast with actions
+      </EuiButton>
+      
+      <EuiGlobalToastList
+        toasts={toasts}
+        dismissToast={removeToast}
+        toastLifeTimeMs={6000}
+      />
+    </>
+  );
+};
+```
+
+## Behavior
+
+### Timing and dismissal
+
+- **Auto-dismiss**: Most toasts dismiss after 6 seconds
+- **Manual dismissal**: Users can dismiss toasts immediately
+- **Action toasts**: Don't auto-dismiss when user action is required
+- **Queue management**: New toasts appear at the top of the stack
+
+### Positioning and stacking
+
+- **Fixed position**: Top-right corner by default
+- **Stacking**: Multiple toasts stack vertically
+- **Responsive**: Adapts to different screen sizes
+- **Z-index**: Appears above page content but below modals
+
+### Content guidelines
+
+- **Keep titles short**: 1-2 words maximum
+- **Be specific**: "Changes saved" not "Success"
+- **Include context**: What was saved, updated, etc.
+- **Use actions sparingly**: Only when user action is needed
+
+## Accessibility
+
+- **Screen reader announcements**: Toasts are announced to assistive technology
+- **Focus management**: Toasts don't steal focus from the page
+- **Keyboard navigation**: Action buttons are keyboard accessible
+- **Color contrast**: Icons and text meet contrast requirements
+- **Dismissible**: All toasts can be dismissed via keyboard
+
+## Design tokens
+
+Use these tokens for consistent toast styling:
+
+- **Background**: `euiTheme.colors.emptyShade` for toast background
+- **Border**: `euiTheme.colors.borderBaseFloating` for toast borders
+- **Shadow**: `euiShadowLarge` for elevation
+- **Spacing**: `euiSizeM` for internal padding
+- **Typography**: `euiFontSizeS` for toast text
+- **Colors**: `euiTheme.colors.success`, `euiTheme.colors.danger`, `euiTheme.colors.warning`, `euiTheme.colors.primary`
+
+## Do's and Don'ts
+
+### ✅ Do
+
+- Keep messages concise and actionable
+- Use appropriate colors for different types (success, error, warning, info)
+- Allow users to dismiss toasts manually
+- Use actions only when user input is required
+- Provide specific, contextual information
+
+### ❌ Don't
+
+- Use toasts for critical errors that require immediate attention
+- Overwhelm users with too many toasts at once
+- Use vague or generic messages
+- Make toasts persistent when they should auto-dismiss
+- Use toasts for complex workflows or multi-step processes
+
+

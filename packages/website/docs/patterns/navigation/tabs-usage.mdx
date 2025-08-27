@@ -1,0 +1,676 @@
+---
+title: Tabs
+sidebar_position: 3
+keywords: [tabs, navigation, EuiTabs, EuiTab]
+---
+
+# Tabs
+
+Tabs allow users to switch between closely related views without changing primary context. This pattern provides guidance on when to use tabs, how to structure them, and best practices for responsive behavior.
+
+## Problem
+
+Teams need consistent, accessible tab navigation that allows users to switch between related views without losing context. This requires clear guidance on when to use tabs vs alternatives, proper responsive behavior, and accessibility implementation.
+
+## When to use
+
+- Switch between peer content surfaces (e.g., Overview / Alerts / Settings)
+- Content fits in a single page container; switching shouldn't reload the entire app context
+- Related content that benefits from being grouped together
+
+## When not to use
+
+- Deep navigation → use Side nav or page navigation
+- Progressive disclosure within a single document → use Accordion
+- Wizard/multi-step flows → use Steps/Wizard (later pattern)
+- Primary navigation between major sections → use Side nav
+
+## Composition
+
+**EuiTabs** + **EuiTab** atoms, with optional:
+- **EuiBadge** for counts/status
+- **EuiIcon** for visual indicators
+- **EuiSpacer** for layout spacing
+- Layout primitives for placing tabs under page title or inside panels
+
+## Standard page tabs
+
+Most common pattern for switching between related views within a page context. Use for switching between peer content surfaces like Overview, Alerts, and Settings.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiTabs,
+  EuiTab,
+  EuiTitle,
+  EuiSpacer,
+  EuiPanel,
+  EuiText,
+  EuiBadge,
+} from '@elastic/eui';
+
+export default () => {
+  const [activeTab, setActiveTab] = useState('overview');
+
+  const tabs = [
+    { id: 'overview', label: 'Overview' },
+    { id: 'alerts', label: 'Alerts', badge: 7 },
+    { id: 'settings', label: 'Settings' },
+  ];
+
+  const renderContent = () => {
+    switch (activeTab) {
+      case 'overview':
+        return (
+          <EuiPanel paddingSize="m">
+            <EuiText>
+              <p>Overview content shows the main dashboard and key metrics.</p>
+            </EuiText>
+          </EuiPanel>
+        );
+      case 'alerts':
+        return (
+          <EuiPanel paddingSize="m">
+            <EuiText>
+              <p>Alerts content shows active alerts and their status.</p>
+            </EuiText>
+          </EuiPanel>
+        );
+      case 'settings':
+        return (
+          <EuiPanel paddingSize="m">
+            <EuiText>
+              <p>Settings content allows configuration of the service.</p>
+            </EuiText>
+          </EuiPanel>
+        );
+      default:
+        return null;
+    }
+  };
+
+  return (
+    <>
+      <EuiTitle size="l">
+        <h1>Service Dashboard</h1>
+      </EuiTitle>
+      <EuiSpacer size="m" />
+      <EuiTabs bottomBorder>
+        {tabs.map((tab) => (
+          <EuiTab
+            key={tab.id}
+            isSelected={activeTab === tab.id}
+            onClick={() => setActiveTab(tab.id)}
+            append={tab.badge && <EuiBadge color="accent">{tab.badge}</EuiBadge>}
+          >
+            {tab.label}
+          </EuiTab>
+        ))}
+      </EuiTabs>
+      <EuiSpacer size="m" />
+      {renderContent()}
+    </>
+  );
+};
+```
+
+## Contained tabs
+
+For switching between different aspects of a specific feature or dataset within a contained area.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiTabs,
+  EuiTab,
+  EuiTitle,
+  EuiSpacer,
+  EuiPanel,
+  EuiText,
+  EuiFlexGroup,
+  EuiFlexItem,
+} from '@elastic/eui';
+
+export default () => {
+  const [activeTab, setActiveTab] = useState('details');
+
+  const tabs = [
+    { id: 'details', label: 'Details' },
+    { id: 'history', label: 'History' },
+    { id: 'permissions', label: 'Permissions' },
+  ];
+
+  const renderContent = () => {
+    switch (activeTab) {
+      case 'details':
+        return (
+          <EuiText size="s">
+            <p>Details content shows the main information about this item.</p>
+          </EuiText>
+        );
+      case 'history':
+        return (
+          <EuiText size="s">
+            <p>History content shows the timeline of changes and events.</p>
+          </EuiText>
+        );
+      case 'permissions':
+        return (
+          <EuiText size="s">
+            <p>Permissions content shows access controls and user rights.</p>
+          </EuiText>
+        );
+      default:
+        return null;
+    }
+  };
+
+  return (
+    <EuiPanel paddingSize="m">
+      <EuiTitle size="m">
+        <h2>Item Information</h2>
+      </EuiTitle>
+      <EuiSpacer size="m" />
+      <EuiTabs size="s">
+        {tabs.map((tab) => (
+          <EuiTab
+            key={tab.id}
+            isSelected={activeTab === tab.id}
+            onClick={() => setActiveTab(tab.id)}
+          >
+            {tab.label}
+          </EuiTab>
+        ))}
+      </EuiTabs>
+      <EuiSpacer size="m" />
+      {renderContent()}
+    </EuiPanel>
+  );
+};
+```
+
+## Overflow handling
+
+For many tabs, prefer horizontal scroll; as fallback, use a "More" menu to group excess tabs.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiTabs,
+  EuiTab,
+  EuiTitle,
+  EuiSpacer,
+  EuiPanel,
+  EuiText,
+  EuiBadge,
+} from '@elastic/eui';
+
+export default () => {
+  const [activeTab, setActiveTab] = useState('overview');
+
+  const tabs = [
+    { id: 'overview', label: 'Overview' },
+    { id: 'alerts', label: 'Alerts', badge: 7 },
+    { id: 'settings', label: 'Settings' },
+    { id: 'analytics', label: 'Analytics' },
+    { id: 'reports', label: 'Reports' },
+    { id: 'integrations', label: 'Integrations' },
+    { id: 'monitoring', label: 'Monitoring' },
+    { id: 'security', label: 'Security' },
+    { id: 'backup', label: 'Backup & Recovery' },
+    { id: 'compliance', label: 'Compliance' },
+  ];
+
+  const renderContent = () => {
+    switch (activeTab) {
+      case 'overview':
+        return (
+          <EuiPanel paddingSize="m">
+            <EuiText>
+              <p>Overview content shows the main dashboard and key metrics.</p>
+            </EuiText>
+          </EuiPanel>
+        );
+      case 'alerts':
+        return (
+          <EuiPanel paddingSize="m">
+            <EuiText>
+              <p>Alerts content shows active alerts and their status.</p>
+            </EuiText>
+          </EuiPanel>
+        );
+      case 'settings':
+        return (
+          <EuiPanel paddingSize="m">
+            <EuiText>
+              <p>Settings content allows configuration of the service.</p>
+            </EuiText>
+          </EuiPanel>
+        );
+      case 'analytics':
+        return (
+          <EuiPanel paddingSize="m">
+            <EuiText>
+              <p>Analytics content shows data analysis and insights.</p>
+            </EuiText>
+          </EuiPanel>
+        );
+      case 'reports':
+        return (
+          <EuiPanel paddingSize="m">
+            <EuiText>
+              <p>Reports content shows generated reports and exports.</p>
+            </EuiText>
+          </EuiPanel>
+        );
+      case 'integrations':
+        return (
+          <EuiPanel paddingSize="m">
+            <EuiText>
+              <p>Integrations content shows connected services and APIs.</p>
+            </EuiText>
+          </EuiPanel>
+        );
+      case 'monitoring':
+        return (
+          <EuiPanel paddingSize="m">
+            <EuiText>
+              <p>Monitoring content shows system health and performance.</p>
+            </EuiText>
+          </EuiPanel>
+        );
+      case 'security':
+        return (
+          <EuiPanel paddingSize="m">
+            <EuiText>
+              <p>Security content shows access controls and threat detection.</p>
+            </EuiText>
+          </EuiPanel>
+        );
+      case 'backup':
+        return (
+          <EuiPanel paddingSize="m">
+            <EuiText>
+              <p>Backup & Recovery content shows data protection and restore options.</p>
+            </EuiText>
+          </EuiPanel>
+        );
+      case 'compliance':
+        return (
+          <EuiPanel paddingSize="m">
+            <EuiText>
+              <p>Compliance content shows regulatory requirements and audit trails.</p>
+            </EuiText>
+          </EuiPanel>
+        );
+      default:
+        return null;
+    }
+  };
+
+  return (
+    <>
+      <EuiTitle size="l">
+        <h1>Service Dashboard</h1>
+      </EuiTitle>
+      <EuiSpacer size="m" />
+      <EuiTabs bottomBorder>
+        {tabs.map((tab) => (
+          <EuiTab
+            key={tab.id}
+            isSelected={activeTab === tab.id}
+            onClick={() => setActiveTab(tab.id)}
+            append={tab.badge && <EuiBadge color="accent">{tab.badge}</EuiBadge>}
+          >
+            {tab.label}
+          </EuiTab>
+        ))}
+      </EuiTabs>
+      <EuiSpacer size="m" />
+      {renderContent()}
+    </>
+  );
+};
+```
+
+## Anatomy
+
+- **Placement** (under page title or within section)
+- **Tab labels** (short, nouns)
+- **Optional adornments** (icon/badge)
+- **Active indicator/underline**
+- **Optional actions region** (right-aligned; see Do/Don't)
+
+## Behavior
+
+- **Keyboard**: Left/Right to move focus, Home/End to jump; Enter/Space to activate
+- **Routing**: Active tab should reflect URL when used for navigation; use `href` or router link wrapper
+- **Overflow**: Prefer horizontal scroll; as fallback, "More" menu groups excess tabs
+- **Counts/status**: Badge updates should not shift layout dramatically; reserve space if possible
+- **Nested tabs**: Avoid; consider page layout or side nav instead
+
+## Accessibility
+
+- `role="tablist"` on container; `role="tab"` on each **EuiTab**
+- Use `aria-selected` on active tab; manage focus correctly when changing tabs
+- If tabs control panels, wire `aria-controls` and id pairs (`tab-[id]` ↔ `panel-[id]`)
+- Ensure contrast for active/hover/focus indicators
+
+## Design tokens
+
+Use these tokens for consistent tab styling:
+
+- **Indicator/underline**: `euiTheme.colors.primary` for active tab indicator
+- **Focus ring**: `euiFocusRing` for keyboard navigation focus
+- **Spacing**: `euiSizeS` for tab padding, `euiSizeM` for gaps between tabs
+- **Typography**: `euiFontSizeS` for condensed tabs, `euiFontSizeM` for standard tabs
+- **Border**: `euiTheme.colors.borderBaseFloating` for bottom border
+- **Background**: `euiTheme.colors.emptyShade` for tab background
+
+## Do / Don't
+
+✅ **Keep labels short** (1–2 words)
+
+✅ **Keep the set small** (ideally ≤5 visible; overflow beyond)
+
+✅ **Reflect active tab in URL** when used for navigation
+
+✅ **Use consistent placement** within your app
+
+❌ **Don't nest tabs within tabs**
+
+❌ **Don't mix primary actions** into the tab row (place actions in page header/right area)
+
+❌ **Don't use tabs for sequential steps** (use a wizard/steps)
+
+❌ **Don't rely on color alone** for active states
+
+## Migration from EuiTabbedContent
+
+If you're currently using `EuiTabbedContent`, consider migrating to this pattern for better flexibility and control:
+
+```tsx
+// Before: EuiTabbedContent
+<EuiTabbedContent
+  tabs={[
+    { id: 'tab1', name: 'Tab 1', content: <div>Content 1</div> },
+    { id: 'tab2', name: 'Tab 2', content: <div>Content 2</div> },
+  ]}
+  initialSelectedTab={{ id: 'tab1' }}
+/>
+
+// After: Tabs pattern
+const [activeTab, setActiveTab] = useState('tab1');
+
+<EuiTabs bottomBorder>
+  <EuiTab isSelected={activeTab === 'tab1'} onClick={() => setActiveTab('tab1')}>
+    Tab 1
+  </EuiTab>
+  <EuiTab isSelected={activeTab === 'tab2'} onClick={() => setActiveTab('tab2')}>
+    Tab 2
+  </EuiTab>
+</EuiTabs>
+
+{activeTab === 'tab1' && <div>Content 1</div>}
+{activeTab === 'tab2' && <div>Content 2</div>}
+```
+
+The pattern approach gives you more control over tab behavior, better accessibility, and consistent styling with your design tokens.
+
+
+
+### Standard page tabs
+
+Use for switching between related views within a page context.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiTabs,
+  EuiTab,
+  EuiTitle,
+  EuiSpacer,
+  EuiPanel,
+  EuiText,
+  EuiBadge,
+} from '@elastic/eui';
+
+export default () => {
+  const [activeTab, setActiveTab] = useState('overview');
+
+  const tabs = [
+    { id: 'overview', label: 'Overview' },
+    { id: 'alerts', label: 'Alerts', badge: 7 },
+    { id: 'settings', label: 'Settings' },
+  ];
+
+  const renderContent = () => {
+    switch (activeTab) {
+      case 'overview':
+        return (
+          <EuiPanel paddingSize="m">
+            <EuiText>
+              <p>Overview content shows the main dashboard and key metrics.</p>
+            </EuiText>
+          </EuiPanel>
+        );
+      case 'alerts':
+        return (
+          <EuiPanel paddingSize="m">
+            <EuiText>
+              <p>Alerts content shows active alerts and their status.</p>
+            </EuiText>
+          </EuiPanel>
+        );
+      case 'settings':
+        return (
+          <EuiPanel paddingSize="m">
+            <EuiText>
+              <p>Settings content allows configuration of the service.</p>
+            </EuiText>
+          </EuiPanel>
+        );
+      default:
+        return null;
+    }
+  };
+
+  return (
+    <>
+      <EuiTitle size="l">
+        <h1>Service Dashboard</h1>
+      </EuiTitle>
+      
+      <EuiTabs bottomBorder>
+        {tabs.map(tab => (
+          <EuiTab
+            key={tab.id}
+            isSelected={activeTab === tab.id}
+            onClick={() => setActiveTab(tab.id)}
+          >
+            {tab.label}
+            {tab.badge && <EuiBadge color="accent">{tab.badge}</EuiBadge>}
+          </EuiTab>
+        ))}
+      </EuiTabs>
+      
+      <EuiSpacer />
+      {renderContent()}
+    </>
+  );
+};
+```
+
+### Contained tabs
+
+Use for switching between different aspects within a specific feature.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiTabs,
+  EuiTab,
+  EuiPanel,
+  EuiText,
+  EuiTitle,
+  EuiSpacer,
+} from '@elastic/eui';
+
+export default () => {
+  const [activeTab, setActiveTab] = useState('details');
+
+  const tabs = [
+    { id: 'details', label: 'Details' },
+    { id: 'history', label: 'History' },
+    { id: 'permissions', label: 'Permissions' },
+  ];
+
+  const renderContent = () => {
+    switch (activeTab) {
+      case 'details':
+        return (
+          <EuiText size="s">
+            <p>Basic information about this resource.</p>
+            <p><strong>Name:</strong> Example Resource</p>
+            <p><strong>Type:</strong> Document</p>
+            <p><strong>Created:</strong> 2024-01-15</p>
+          </EuiText>
+        );
+      case 'history':
+        return (
+          <EuiText size="s">
+            <p>Recent activity and changes.</p>
+            <p>• Modified 2 hours ago</p>
+            <p>• Created 3 days ago</p>
+          </EuiText>
+        );
+      case 'permissions':
+        return (
+          <EuiText size="s">
+            <p>Access control and sharing settings.</p>
+            <p>• Owner: admin@example.com</p>
+            <p>• Shared with: 3 users</p>
+          </EuiText>
+        );
+      default:
+        return null;
+    }
+  };
+
+  return (
+    <EuiPanel paddingSize="m">
+      <EuiTitle size="s">
+        <h3>Resource Information</h3>
+      </EuiTitle>
+      <EuiSpacer size="s" />
+      
+      <EuiTabs size="s">
+        {tabs.map(tab => (
+          <EuiTab
+            key={tab.id}
+            isSelected={activeTab === tab.id}
+            onClick={() => setActiveTab(tab.id)}
+          >
+            {tab.label}
+          </EuiTab>
+        ))}
+      </EuiTabs>
+      
+      <EuiSpacer size="m" />
+      {renderContent()}
+    </EuiPanel>
+  );
+};
+```
+
+### Overflow handling
+
+For many tabs, use horizontal scroll to keep all tabs visible.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiTabs,
+  EuiTab,
+  EuiTitle,
+  EuiSpacer,
+  EuiPanel,
+  EuiText,
+} from '@elastic/eui';
+
+export default () => {
+  const [activeTab, setActiveTab] = useState('tab1');
+
+  const longTabList = [
+    { id: 'tab1', label: 'First Tab' },
+    { id: 'tab2', label: 'Second Tab' },
+    { id: 'tab3', label: 'Third Tab' },
+    { id: 'tab4', label: 'Fourth Tab' },
+    { id: 'tab5', label: 'Fifth Tab' },
+    { id: 'tab6', label: 'Sixth Tab' },
+    { id: 'tab7', label: 'Seventh Tab' },
+    { id: 'tab8', label: 'Eighth Tab' },
+  ];
+
+  return (
+    <>
+      <EuiTitle size="l">
+        <h1>Many Tabs Example</h1>
+      </EuiTitle>
+      
+      <div style={{ overflowX: 'auto' }}>
+        <EuiTabs bottomBorder>
+          {longTabList.map(tab => (
+            <EuiTab
+              key={tab.id}
+              isSelected={activeTab === tab.id}
+              onClick={() => setActiveTab(tab.id)}
+            >
+              {tab.label}
+            </EuiTab>
+          ))}
+        </EuiTabs>
+      </div>
+      
+      <EuiSpacer />
+      <EuiPanel paddingSize="m">
+        <EuiText>
+          <p>Content for {activeTab}. Horizontal scroll keeps all tabs accessible.</p>
+        </EuiText>
+      </EuiPanel>
+    </>
+  );
+};
+```
+
+## Routing integration
+
+When using tabs for navigation, ensure the active tab reflects the current URL:
+
+```tsx
+// Using href for simple navigation
+<EuiTabs>
+  <EuiTab href="/app/overview" isSelected={location.pathname === '/app/overview'}>
+    Overview
+  </EuiTab>
+  <EuiTab href="/app/alerts" isSelected={location.pathname === '/app/alerts'}>
+    Alerts
+  </EuiTab>
+</EuiTabs>
+
+// Using router integration for SPA navigation
+<EuiTabs>
+  <EuiTab 
+    isSelected={activeTab === 'overview'}
+    onClick={() => router.push('/app/overview')}
+  >
+    Overview
+  </EuiTab>
+  <EuiTab 
+    isSelected={activeTab === 'alerts'}
+    onClick={() => router.push('/app/alerts')}
+  >
+    Alerts
+  </EuiTab>
+</EuiTabs>
+```

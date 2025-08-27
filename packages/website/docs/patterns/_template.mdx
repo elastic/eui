@@ -1,0 +1,150 @@
+---
+title: [Pattern Name]
+sidebar_position: [number]
+keywords: [relevant, keywords]
+---
+
+# [Pattern Name]
+
+[Brief description of what this pattern solves and when to use it]
+
+## Problem
+
+[Clear statement of the problem this pattern addresses]
+
+## When to use
+
+- [Use case 1]
+- [Use case 2]
+- [Use case 3]
+
+## When not to use
+
+- [Anti-pattern 1]
+- [Anti-pattern 2]
+- [Anti-pattern 3]
+
+## Anatomy
+
+[Optional: Include for patterns with clear visual structure, especially those with subcomponents like EuiFlyoutHeader/EuiFlyoutBody or EuiModalHeader/EuiModalBody]
+
+```
+[Visual diagram showing the pattern structure using ASCII art]
+```
+
+[Or use bullet list for conceptual patterns like forms, cards, stats]
+
+## [Variant 1 Name]
+
+[Description of when to use this variant]
+
+```tsx interactive
+import React from 'react';
+import {
+  // Import relevant EUI components
+} from '@elastic/eui';
+
+export default () => (
+  // Complete, working example
+);
+```
+
+## [Variant 2 Name]
+
+[Description of when to use this variant]
+
+```tsx interactive
+import React from 'react';
+import {
+  // Import relevant EUI components
+} from '@elastic/eui';
+
+export default () => (
+  // Complete, working example
+);
+```
+
+## [Variant 3 Name]
+
+[Description of when to use this variant]
+
+```tsx interactive
+import React from 'react';
+import {
+  // Import relevant EUI components
+} from '@elastic/eui';
+
+export default () => (
+  // Complete, working example
+);
+```
+
+## Anatomy
+
+- **[Element 1]**: [Description]
+- **[Element 2]**: [Description]
+- **[Element 3]**: [Description]
+
+## Behavior
+
+- **[Behavior 1]**: [Description]
+- **[Behavior 2]**: [Description]
+- **[Behavior 3]**: [Description]
+
+## Accessibility
+
+- [Accessibility requirement 1]
+- [Accessibility requirement 2]
+- [Accessibility requirement 3]
+
+## Tokens
+
+- [Token 1]: [Description]
+- [Token 2]: [Description]
+- [Token 3]: [Description]
+
+## Do's and Don'ts
+
+### ✅ Do
+
+- [Do 1]
+- [Do 2]
+- [Do 3]
+
+### ❌ Don't
+
+- [Don't 1]
+- [Don't 2]
+- [Don't 3]
+
+## Migration from [Legacy Component]
+
+[Optional: Only include this section if there's a real legacy component being replaced, like EuiConfirmModal → Modal dialogs pattern]
+
+If you're currently using `[LegacyComponent]`, consider migrating to this pattern for better flexibility and control:
+
+```tsx
+// Before: [LegacyComponent]
+<[LegacyComponent] 
+  title="[Title]"
+  [other props] 
+/>
+
+// After: Pattern using atoms
+<[AtomComponent] [props]>
+  <[AtomComponent]Header>
+    <[AtomComponent]Title>[Title]</[AtomComponent]Title>
+  </[AtomComponent]Header>
+  <[AtomComponent]Body>
+    [Content]
+  </[AtomComponent]Body>
+  <[AtomComponent]Footer>
+    [Actions]
+  </[AtomComponent]Footer>
+</[AtomComponent]>
+```
+
+**Benefits of migration:**
+- [Benefit 1: e.g., "More flexible layout control"]
+- [Benefit 2: e.g., "Better accessibility customization"]
+- [Benefit 3: e.g., "Consistent with design tokens"]

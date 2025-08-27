@@ -1,0 +1,237 @@
+---
+title: Callouts & alerts
+sidebar_position: 4
+keywords: [callouts, alerts, EuiCallOut, notifications]
+---
+
+# Callouts & alerts
+
+Callouts provide prominent, persistent notifications that require user attention. They appear inline with content and remain visible until dismissed or the condition is resolved.
+
+## Problem
+
+Teams need consistent, accessible callout notifications that draw attention to important information without being intrusive. This requires clear guidance on when to use callouts vs other feedback mechanisms, proper messaging, and accessibility implementation.
+
+## When to use
+
+- **Important information** that needs user attention
+- **Warning messages** about potential issues or consequences
+- **Success confirmations** for completed actions
+- **Error notifications** that require user action
+- **Persistent information** that should remain visible
+
+## When not to use
+
+- **System errors** (use error boundaries)
+- **Temporary feedback** (use toasts)
+- **Loading states** (use loading components)
+- **Minor information** (use inline text or tooltips)
+
+## Anatomy
+
+Callouts are composed of these elements:
+
+- **Container**: EuiCallOut provides the base structure and color theming
+- **Icon**: Status indicator that matches the callout type
+- **Title**: Clear, descriptive heading
+- **Content**: Detailed message or description
+- **Actions** (optional): Buttons for user interaction
+- **Dismiss** (optional): Close button for dismissible callouts
+
+## Info callout
+
+Use for informational messages that provide context or guidance.
+
+```tsx interactive
+import React from 'react';
+import {
+  EuiCallOut,
+  EuiButton,
+  EuiButtonEmpty,
+  EuiIcon,
+  EuiTitle,
+  EuiText,
+} from '@elastic/eui';
+
+export default () => (
+  <EuiCallOut
+    title="New features available"
+    iconType="info"
+    color="primary"
+  >
+    <EuiText size="s">
+      <p>
+        We've added new visualization options to help you better understand your data. 
+        Check out the updated dashboard builder to explore these features.
+      </p>
+    </EuiText>
+    <EuiButton size="s" color="primary">
+      Explore features
+    </EuiButton>
+  </EuiCallOut>
+);
+```
+
+## Success callout
+
+Use for confirming successful actions or positive outcomes.
+
+```tsx interactive
+import React from 'react';
+import {
+  EuiCallOut,
+  EuiButton,
+  EuiButtonEmpty,
+  EuiIcon,
+  EuiTitle,
+  EuiText,
+} from '@elastic/eui';
+
+export default () => (
+  <EuiCallOut
+    title="Configuration saved successfully"
+    iconType="check"
+    color="success"
+  >
+    <EuiText size="s">
+      <p>
+        Your cluster settings have been updated and are now active. 
+        The changes will take effect immediately.
+      </p>
+    </EuiText>
+    <EuiButton size="s" color="success">
+      View settings
+    </EuiButton>
+  </EuiCallOut>
+);
+```
+
+## Warning callout
+
+Use for cautionary messages about potential issues or important considerations.
+
+```tsx interactive
+import React from 'react';
+import {
+  EuiCallOut,
+  EuiButton,
+  EuiButtonEmpty,
+  EuiIcon,
+  EuiTitle,
+  EuiText,
+} from '@elastic/eui';
+
+export default () => (
+  <EuiCallOut
+    title="Storage space running low"
+    iconType="alert"
+    color="warning"
+  >
+    <EuiText size="s">
+      <p>
+        Your cluster is using 85% of available storage. Consider cleaning up 
+        old indices or expanding your storage to prevent issues.
+      </p>
+    </EuiText>
+    <EuiButton size="s" color="warning">
+      Manage storage
+    </EuiButton>
+  </EuiCallOut>
+);
+```
+
+## Error callout
+
+Use for error messages that require user attention or action.
+
+```tsx interactive
+import React from 'react';
+import {
+  EuiCallOut,
+  EuiButton,
+  EuiButtonEmpty,
+  EuiIcon,
+  EuiTitle,
+  EuiText,
+} from '@elastic/eui';
+
+export default () => (
+  <EuiCallOut
+    title="Failed to connect to cluster"
+    iconType="alert"
+    color="danger"
+  >
+    <EuiText size="s">
+      <p>
+        Unable to establish connection to the Elasticsearch cluster. 
+        Please check your network connection and cluster status.
+      </p>
+    </EuiText>
+    <EuiButton size="s" color="danger">
+      Retry connection
+    </EuiButton>
+  </EuiCallOut>
+);
+```
+
+## Behavior
+
+### Content guidelines
+
+- **Be specific**: Explain what happened and why it matters
+- **Provide context**: Help users understand the situation
+- **Suggest actions**: Give clear next steps when possible
+- **Use appropriate tone**: Match the severity of the message
+
+### Visual hierarchy
+
+- **Color coding**: Use consistent colors for different types
+- **Icon placement**: Icons reinforce the message type
+- **Title prominence**: Clear, descriptive headings
+- **Content clarity**: Detailed but concise descriptions
+
+### Dismissal behavior
+
+- **Persistent by default**: Callouts remain visible until resolved
+- **Optional dismissal**: Allow users to dismiss when appropriate
+- **Auto-dismiss**: Consider auto-dismissing for time-sensitive messages
+- **State management**: Track dismissal state in application logic
+
+## Accessibility
+
+- **Screen reader announcements**: Callouts are announced to assistive technology
+- **Color contrast**: All text and icons meet contrast requirements
+- **Keyboard navigation**: Action buttons are keyboard accessible
+- **Semantic structure**: Proper heading hierarchy and landmarks
+- **Focus management**: Clear focus indicators on interactive elements
+
+## Design tokens
+
+Use these tokens for consistent callout styling:
+
+- **Background**: `euiTheme.colors.primary`, `euiTheme.colors.success`, `euiTheme.colors.warning`, `euiTheme.colors.danger`
+- **Border**: `euiTheme.colors.borderBaseFloating` for callout borders
+- **Typography**: `euiFontSizeM` for titles, `euiFontSizeS` for content
+- **Spacing**: `euiSizeM` for internal padding, `euiSizeS` for button spacing
+- **Icon colors**: Match the callout color theme
+- **Shadow**: `euiShadowS` for subtle elevation
+
+## Do's and Don'ts
+
+### ✅ Do
+
+- Use clear, descriptive titles that explain the situation
+- Provide helpful context and actionable next steps
+- Use appropriate colors and icons for different types
+- Keep messages concise but informative
+- Allow dismissal when appropriate
+
+### ❌ Don't
+
+- Use callouts for minor information or temporary feedback
+- Overwhelm users with too many callouts at once
+- Use generic or unhelpful messages
+- Make callouts feel like errors when they're informational
+- Use technical jargon that users won't understand
+
+

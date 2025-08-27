@@ -1,0 +1,865 @@
+---
+title: Filter bar
+sidebar_position: 3
+keywords: [filters, search, data filtering, faceted navigation, filter groups]
+---
+
+# Filter bar
+
+Filter bars provide users with intuitive ways to narrow down data sets, search content, and discover relevant information through faceted navigation and search capabilities.
+
+## Problem
+
+Users need efficient ways to find specific data within large datasets. Without proper filtering, users can become overwhelmed by irrelevant information, leading to poor user experience and decreased productivity. This pattern addresses how to create effective filter interfaces that help users quickly locate and refine data through search, faceted filtering, and clear visual feedback.
+
+## When to use
+
+- **Data tables and lists** that need filtering capabilities
+- **Search interfaces** that require both search and filter options
+- **Content discovery** where users need to explore by categories
+- **E-commerce or catalog** interfaces with multiple filter criteria
+- **Analytics dashboards** with data filtering requirements
+- **User management** or admin interfaces with filtering needs
+
+## When not to use
+
+- **Simple search only** (use `EuiFieldSearch` component)
+- **Complex query builders** (use advanced search interfaces)
+- **Single filter criteria** (use individual filter components)
+- **Mobile-first interfaces** (consider mobile-optimized filter patterns)
+
+## Anatomy
+
+- **Search input**: Primary search field for text-based queries
+- **Filter buttons**: Toggle buttons for categorical filters
+- **Filter panels**: Dropdown panels with filter options
+- **Active filters**: Visual indicators of applied filters
+- **Clear actions**: Buttons to reset or clear filters
+- **Results count**: Optional display of filtered results
+
+## Basic filter bar
+
+Simple filter bar with categorical filters using toggle buttons.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiFilterGroup,
+  EuiFilterButton,
+  EuiPopover,
+  EuiPanel,
+  EuiCheckbox,
+  EuiSpacer,
+  EuiText,
+} from '@elastic/eui';
+
+export default () => {
+  const [isStatusPopoverOpen, setIsStatusPopoverOpen] = useState(false);
+  const [isTypePopoverOpen, setIsTypePopoverOpen] = useState(false);
+  const [statusFilters, setStatusFilters] = useState({
+    active: false,
+    inactive: false,
+    pending: false,
+  });
+  const [typeFilters, setTypeFilters] = useState({
+    user: false,
+    admin: false,
+    guest: false,
+  });
+
+  const onStatusButtonClick = () => {
+    setIsStatusPopoverOpen(!isStatusPopoverOpen);
+  };
+
+  const onTypeButtonClick = () => {
+    setIsTypePopoverOpen(!isTypePopoverOpen);
+  };
+
+  const closeStatusPopover = () => {
+    setIsStatusPopoverOpen(false);
+  };
+
+  const closeTypePopover = () => {
+    setIsTypePopoverOpen(false);
+  };
+
+  const onStatusChange = (optionId) => {
+    setStatusFilters(prev => ({
+      ...prev,
+      [optionId]: !prev[optionId]
+    }));
+  };
+
+  const onTypeChange = (optionId) => {
+    setTypeFilters(prev => ({
+      ...prev,
+      [optionId]: !prev[optionId]
+    }));
+  };
+
+  const hasActiveFilters = Object.values(statusFilters).some(Boolean) || 
+                          Object.values(typeFilters).some(Boolean);
+
+  const getActiveFilterCount = (filters) => {
+    return Object.values(filters).filter(Boolean).length;
+  };
+
+  return (
+    <EuiFilterGroup>
+      <EuiFilterButton
+        hasActiveFilters={getActiveFilterCount(statusFilters) > 0}
+        numActiveFilters={getActiveFilterCount(statusFilters)}
+        numFilters={3}
+        onClick={onStatusButtonClick}
+        isSelected={isStatusPopoverOpen}
+      >
+        Status
+      </EuiFilterButton>
+
+      <EuiPopover
+        button={
+          <EuiFilterButton
+            hasActiveFilters={getActiveFilterCount(typeFilters) > 0}
+            numActiveFilters={getActiveFilterCount(typeFilters)}
+            numFilters={3}
+            onClick={onTypeButtonClick}
+            isSelected={isTypePopoverOpen}
+          >
+            Type
+          </EuiFilterButton>
+        }
+        isOpen={isTypePopoverOpen}
+        closePopover={closeTypePopover}
+        panelPaddingSize="s"
+      >
+        <EuiCheckbox
+          id="user"
+          label="User"
+          checked={typeFilters.user}
+          onChange={() => onTypeChange('user')}
+        />
+        <EuiSpacer size="s" />
+        <EuiCheckbox
+          id="admin"
+          label="Admin"
+          checked={typeFilters.admin}
+          onChange={() => onTypeChange('admin')}
+        />
+        <EuiSpacer size="s" />
+        <EuiCheckbox
+          id="guest"
+          label="Guest"
+          checked={typeFilters.guest}
+          onChange={() => onTypeChange('guest')}
+        />
+      </EuiPopover>
+
+      {hasActiveFilters && (
+        <EuiFilterButton
+          onClick={() => {
+            setStatusFilters({ active: false, inactive: false, pending: false });
+            setTypeFilters({ user: false, admin: false, guest: false });
+          }}
+        >
+          Clear all
+        </EuiFilterButton>
+      )}
+    </EuiFilterGroup>
+  );
+};
+```
+
+## Search with filters
+
+Combine search functionality with filter options for comprehensive data filtering.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiFieldSearch,
+  EuiFilterGroup,
+  EuiFilterButton,
+  EuiPopover,
+  EuiPanel,
+  EuiCheckbox,
+  EuiSpacer,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiText,
+  EuiBadge,
+} from '@elastic/eui';
+
+export default () => {
+  const [searchValue, setSearchValue] = useState('');
+  const [isCategoryPopoverOpen, setIsCategoryPopoverOpen] = useState(false);
+  const [isPriorityPopoverOpen, setIsPriorityPopoverOpen] = useState(false);
+  const [categoryFilters, setCategoryFilters] = useState({
+    bug: false,
+    feature: false,
+    enhancement: false,
+  });
+  const [priorityFilters, setPriorityFilters] = useState({
+    low: false,
+    medium: false,
+    high: false,
+    critical: false,
+  });
+
+  const onCategoryButtonClick = () => {
+    setIsCategoryPopoverOpen(!isCategoryPopoverOpen);
+  };
+
+  const onPriorityButtonClick = () => {
+    setIsPriorityPopoverOpen(!isPriorityPopoverOpen);
+  };
+
+  const closeCategoryPopover = () => {
+    setIsCategoryPopoverOpen(false);
+  };
+
+  const closePriorityPopover = () => {
+    setIsPriorityPopoverOpen(false);
+  };
+
+  const onCategoryChange = (optionId) => {
+    setCategoryFilters(prev => ({
+      ...prev,
+      [optionId]: !prev[optionId]
+    }));
+  };
+
+  const onPriorityChange = (optionId) => {
+    setPriorityFilters(prev => ({
+      ...prev,
+      [optionId]: !prev[optionId]
+    }));
+  };
+
+  const hasActiveFilters = Object.values(categoryFilters).some(Boolean) || 
+                          Object.values(priorityFilters).some(Boolean);
+
+  const getActiveFilterCount = (filters) => {
+    return Object.values(filters).filter(Boolean).length;
+  };
+
+  const getActiveFilters = () => {
+    const active = [];
+    Object.entries(categoryFilters).forEach(([key, value]) => {
+      if (value) active.push(key);
+    });
+    Object.entries(priorityFilters).forEach(([key, value]) => {
+      if (value) active.push(key);
+    });
+    return active;
+  };
+
+  return (
+    <div style={{ maxWidth: '600px' }}>
+      <EuiFlexGroup gutterSize="s">
+        <EuiFlexItem>
+          <EuiFieldSearch
+            placeholder="Search issues..."
+            value={searchValue}
+            onChange={(e) => setSearchValue(e.target.value)}
+            aria-label="Search issues"
+          />
+        </EuiFlexItem>
+        <EuiFlexItem grow={false}>
+          <EuiFilterGroup>
+            <EuiFilterButton
+              hasActiveFilters={getActiveFilterCount(categoryFilters) > 0}
+              numActiveFilters={getActiveFilterCount(categoryFilters)}
+              numFilters={3}
+              onClick={onCategoryButtonClick}
+              isSelected={isCategoryPopoverOpen}
+            >
+              Category
+            </EuiFilterButton>
+
+            <EuiPopover
+              button={
+                <EuiFilterButton
+                  hasActiveFilters={getActiveFilterCount(priorityFilters) > 0}
+                  numActiveFilters={getActiveFilterCount(priorityFilters)}
+                  numFilters={4}
+                  onClick={onPriorityButtonClick}
+                  isSelected={isPriorityPopoverOpen}
+                >
+                  Priority
+                </EuiFilterButton>
+              }
+              isOpen={isPriorityPopoverOpen}
+              closePopover={closePriorityPopover}
+              panelPaddingSize="s"
+          >
+              <EuiCheckbox
+                id="low"
+                label="Low"
+                checked={priorityFilters.low}
+                onChange={() => onPriorityChange('low')}
+              />
+              <EuiSpacer size="s" />
+              <EuiCheckbox
+                id="medium"
+                label="Medium"
+                checked={priorityFilters.medium}
+                onChange={() => onPriorityChange('medium')}
+              />
+              <EuiSpacer size="s" />
+              <EuiCheckbox
+                id="high"
+                label="High"
+                checked={priorityFilters.high}
+                onChange={() => onPriorityChange('high')}
+              />
+              <EuiSpacer size="s" />
+              <EuiCheckbox
+                id="critical"
+                label="Critical"
+                checked={priorityFilters.critical}
+                onChange={() => onPriorityChange('critical')}
+              />
+            </EuiPopover>
+
+            {hasActiveFilters && (
+              <EuiFilterButton
+                onClick={() => {
+                  setCategoryFilters({ bug: false, feature: false, enhancement: false });
+                  setPriorityFilters({ low: false, medium: false, high: false, critical: false });
+                }}
+              >
+                Clear all
+              </EuiFilterButton>
+            )}
+          </EuiFilterGroup>
+        </EuiFlexItem>
+      </EuiFlexGroup>
+
+      {(searchValue || hasActiveFilters) && (
+        <>
+          <EuiSpacer size="s" />
+          <EuiFlexGroup gutterSize="s" wrap>
+            {searchValue && (
+              <EuiFlexItem grow={false}>
+                <EuiBadge
+                  color="primary"
+                  iconOnClick={() => setSearchValue('')}
+                  iconOnClickAriaLabel="Remove search term"
+                >
+                  Search: {searchValue}
+                </EuiBadge>
+              </EuiFlexItem>
+            )}
+            {getActiveFilters().map(filter => (
+              <EuiFlexItem grow={false} key={filter}>
+                <EuiBadge
+                  color="hollow"
+                  iconOnClick={() => {
+                    if (categoryFilters[filter] !== undefined) {
+                      onCategoryChange(filter);
+                    } else {
+                      onPriorityChange(filter);
+                    }
+                  }}
+                  iconOnClickAriaLabel={`Remove ${filter} filter`}
+                >
+                  {filter}
+                </EuiBadge>
+              </EuiFlexItem>
+            ))}
+          </EuiFlexGroup>
+        </>
+      )}
+    </div>
+  );
+};
+```
+
+## Advanced filter bar
+
+Complex filter bar with date ranges, filter presets, individual filter management, and results display.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiFieldSearch,
+  EuiFilterGroup,
+  EuiFilterButton,
+  EuiPopover,
+  EuiPanel,
+  EuiCheckbox,
+  EuiSpacer,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiDatePicker,
+  EuiFormRow,
+  EuiSelect,
+  EuiText,
+  EuiButton,
+  EuiButtonEmpty,
+  EuiBadge,
+  EuiTitle,
+  EuiCallOut,
+  EuiIcon,
+} from '@elastic/eui';
+import moment from 'moment';
+
+export default () => {
+  const [searchValue, setSearchValue] = useState('');
+  const [isDatePopoverOpen, setIsDatePopoverOpen] = useState(false);
+  const [isStatusPopoverOpen, setIsStatusPopoverOpen] = useState(false);
+  const [isAdvancedPopoverOpen, setIsAdvancedPopoverOpen] = useState(false);
+  const [isPresetsPopoverOpen, setIsPresetsPopoverOpen] = useState(false);
+  
+  const [startDate, setStartDate] = useState(moment().subtract(7, 'days'));
+  const [endDate, setEndDate] = useState(moment());
+  const [statusFilters, setStatusFilters] = useState({
+    open: false,
+    closed: false,
+    pending: false,
+  });
+  const [advancedFilters, setAdvancedFilters] = useState({
+    assignee: '',
+    priority: '',
+  });
+  const [selectedPreset, setSelectedPreset] = useState('');
+
+  const onDateButtonClick = () => {
+    setIsDatePopoverOpen(!isDatePopoverOpen);
+  };
+
+  const onStatusButtonClick = () => {
+    setIsStatusPopoverOpen(!isStatusPopoverOpen);
+  };
+
+  const onAdvancedButtonClick = () => {
+    setIsAdvancedPopoverOpen(!isAdvancedPopoverOpen);
+  };
+
+  const onPresetsButtonClick = () => {
+    setIsPresetsPopoverOpen(!isPresetsPopoverOpen);
+  };
+
+  const closeDatePopover = () => {
+    setIsDatePopoverOpen(false);
+  };
+
+  const closeStatusPopover = () => {
+    setIsStatusPopoverOpen(false);
+  };
+
+  const closeAdvancedPopover = () => {
+    setIsAdvancedPopoverOpen(false);
+  };
+
+  const closePresetsPopover = () => {
+    setIsPresetsPopoverOpen(false);
+  };
+
+  const onStatusChange = (optionId) => {
+    setStatusFilters(prev => ({
+      ...prev,
+      [optionId]: !prev[optionId]
+    }));
+  };
+
+  const hasActiveFilters = Object.values(statusFilters).some(Boolean) || 
+                          advancedFilters.assignee || 
+                          advancedFilters.priority ||
+                          startDate || endDate;
+
+  const getActiveFilterCount = (filters) => {
+    return Object.values(filters).filter(Boolean).length;
+  };
+
+  const getActiveFilters = () => {
+    const active = [];
+    Object.entries(statusFilters).forEach(([key, value]) => {
+      if (value) active.push({ type: 'status', value: key, label: key });
+    });
+    if (advancedFilters.assignee) active.push({ type: 'assignee', value: advancedFilters.assignee, label: advancedFilters.assignee });
+    if (advancedFilters.priority) active.push({ type: 'priority', value: advancedFilters.priority, label: advancedFilters.priority });
+    if (startDate || endDate) active.push({ type: 'date', value: 'date-range', label: 'Date range' });
+    return active;
+  };
+
+  const removeFilter = (filterType, filterValue) => {
+    if (filterType === 'status') {
+      setStatusFilters(prev => ({ ...prev, [filterValue]: false }));
+    } else if (filterType === 'assignee') {
+      setAdvancedFilters(prev => ({ ...prev, assignee: '' }));
+    } else if (filterType === 'priority') {
+      setAdvancedFilters(prev => ({ ...prev, priority: '' }));
+    } else if (filterType === 'date') {
+      setStartDate(moment().subtract(7, 'days'));
+      setEndDate(moment());
+    }
+  };
+
+  const applyPreset = (preset) => {
+    setSelectedPreset(preset);
+    if (preset === 'recent') {
+      setStartDate(moment().subtract(1, 'day'));
+      setEndDate(moment());
+      setStatusFilters({ open: true, closed: false, pending: false });
+    } else if (preset === 'critical') {
+      setAdvancedFilters({ assignee: '', priority: 'critical' });
+      setStatusFilters({ open: true, closed: false, pending: false });
+    } else if (preset === 'my-tasks') {
+      setAdvancedFilters({ assignee: 'john', priority: '' });
+      setStatusFilters({ open: true, closed: false, pending: true });
+    }
+    setIsPresetsPopoverOpen(false);
+  };
+
+  const clearAllFilters = () => {
+    setStatusFilters({ open: false, closed: false, pending: false });
+    setAdvancedFilters({ assignee: '', priority: '' });
+    setStartDate(moment().subtract(7, 'days'));
+    setEndDate(moment());
+    setSearchValue('');
+    setSelectedPreset('');
+  };
+
+  return (
+    <div style={{ maxWidth: '800px' }}>
+      <EuiFlexGroup gutterSize="s">
+        <EuiFlexItem>
+          <EuiFieldSearch
+            placeholder="Search documents..."
+            value={searchValue}
+            onChange={(e) => setSearchValue(e.target.value)}
+            aria-label="Search documents"
+          />
+        </EuiFlexItem>
+        <EuiFlexItem grow={false}>
+          <EuiFilterGroup>
+            <EuiPopover
+              button={
+                <EuiFilterButton
+                  hasActiveFilters={startDate || endDate}
+                  onClick={onDateButtonClick}
+                  isSelected={isDatePopoverOpen}
+                >
+                  Date range
+                </EuiFilterButton>
+              }
+              isOpen={isDatePopoverOpen}
+              closePopover={closeDatePopover}
+              panelPaddingSize="s"
+            >
+              <EuiFormRow label="Start date">
+                <EuiDatePicker
+                  selected={startDate}
+                  onChange={setStartDate}
+                  startDate={startDate}
+                  endDate={endDate}
+                />
+              </EuiFormRow>
+              <EuiSpacer size="s" />
+              <EuiFormRow label="End date">
+                <EuiDatePicker
+                  selected={endDate}
+                  onChange={setEndDate}
+                  startDate={startDate}
+                  endDate={endDate}
+                />
+              </EuiFormRow>
+            </EuiPopover>
+
+            <EuiPopover
+              button={
+                <EuiFilterButton
+                  hasActiveFilters={getActiveFilterCount(statusFilters) > 0}
+                  numActiveFilters={getActiveFilterCount(statusFilters)}
+                  numFilters={3}
+                  onClick={onStatusButtonClick}
+                  isSelected={isStatusPopoverOpen}
+                >
+                  Status
+                </EuiFilterButton>
+              }
+              isOpen={isStatusPopoverOpen}
+              closePopover={closeStatusPopover}
+              panelPaddingSize="s"
+            >
+              <EuiCheckbox
+                id="open"
+                label="Open"
+                checked={statusFilters.open}
+                onChange={() => onStatusChange('open')}
+              />
+              <EuiSpacer size="s" />
+              <EuiCheckbox
+                id="closed"
+                label="Closed"
+                checked={statusFilters.closed}
+                onChange={() => onStatusChange('closed')}
+              />
+              <EuiSpacer size="s" />
+              <EuiCheckbox
+                id="pending"
+                label="Pending"
+                checked={statusFilters.pending}
+                onChange={() => onStatusChange('pending')}
+              />
+            </EuiPopover>
+
+            <EuiPopover
+              button={
+                <EuiFilterButton
+                  hasActiveFilters={hasActiveFilters}
+                  onClick={onAdvancedButtonClick}
+                  isSelected={isAdvancedPopoverOpen}
+                >
+                  Advanced
+                </EuiFilterButton>
+              }
+              isOpen={isAdvancedPopoverOpen}
+              closePopover={closeAdvancedPopover}
+              panelPaddingSize="m"
+            >
+              <EuiFormRow label="Assignee">
+                <EuiSelect
+                  options={[
+                    { value: '', text: 'Any assignee' },
+                    { value: 'john', text: 'John Doe' },
+                    { value: 'jane', text: 'Jane Smith' },
+                    { value: 'bob', text: 'Bob Johnson' },
+                  ]}
+                  value={advancedFilters.assignee}
+                  onChange={(e) => setAdvancedFilters(prev => ({ ...prev, assignee: e.target.value }))}
+                />
+              </EuiFormRow>
+              
+              <EuiSpacer size="m" />
+              
+              <EuiFormRow label="Priority">
+                <EuiSelect
+                  options={[
+                    { value: '', text: 'Any priority' },
+                    { value: 'low', text: 'Low' },
+                    { value: 'medium', text: 'Medium' },
+                    { value: 'high', text: 'High' },
+                    { value: 'critical', text: 'Critical' },
+                  ]}
+                  value={advancedFilters.priority}
+                  onChange={(e) => setAdvancedFilters(prev => ({ ...prev, priority: e.target.value }))}
+                />
+              </EuiFormRow>
+              
+              <EuiSpacer size="m" />
+              
+
+              
+              <EuiFlexGroup justifyContent="flexEnd" gutterSize="s">
+                <EuiFlexItem grow={false}>
+                  <EuiButtonEmpty size="s" onClick={closeAdvancedPopover}>
+                    Cancel
+                  </EuiButtonEmpty>
+                </EuiFlexItem>
+                <EuiFlexItem grow={false}>
+                  <EuiButton size="s" fill onClick={closeAdvancedPopover}>
+                    Apply
+                  </EuiButton>
+                </EuiFlexItem>
+              </EuiFlexGroup>
+            </EuiPopover>
+
+            <EuiPopover
+              button={
+                <EuiFilterButton
+                  hasActiveFilters={!!selectedPreset}
+                  onClick={onPresetsButtonClick}
+                  isSelected={isPresetsPopoverOpen}
+                >
+                  Presets
+                </EuiFilterButton>
+              }
+              isOpen={isPresetsPopoverOpen}
+              closePopover={closePresetsPopover}
+              panelPaddingSize="s"
+            >
+              <EuiText size="s" color="subdued">
+                <p>Quick filter combinations</p>
+              </EuiText>
+              <EuiSpacer size="s" />
+              <EuiButtonEmpty
+                size="s"
+                onClick={() => applyPreset('recent')}
+                isSelected={selectedPreset === 'recent'}
+                fullWidth
+              >
+                Recent (Last 24h)
+              </EuiButtonEmpty>
+              <EuiSpacer size="xs" />
+              <EuiButtonEmpty
+                size="s"
+                onClick={() => applyPreset('critical')}
+                isSelected={selectedPreset === 'critical'}
+                fullWidth
+              >
+                Critical Issues
+              </EuiButtonEmpty>
+              <EuiSpacer size="xs" />
+              <EuiButtonEmpty
+                size="s"
+                onClick={() => applyPreset('my-tasks')}
+                isSelected={selectedPreset === 'my-tasks'}
+                fullWidth
+              >
+                My Tasks
+              </EuiButtonEmpty>
+            </EuiPopover>
+
+            {hasActiveFilters && (
+              <EuiFilterButton onClick={clearAllFilters}>
+                Clear all
+              </EuiFilterButton>
+            )}
+          </EuiFilterGroup>
+        </EuiFlexItem>
+      </EuiFlexGroup>
+
+      {/* Active filters display */}
+      {getActiveFilters().length > 0 && (
+        <>
+          <EuiSpacer size="s" />
+          <EuiFlexGroup gutterSize="s" wrap>
+            {getActiveFilters().map(filter => (
+              <EuiFlexItem grow={false} key={`${filter.type}-${filter.value}`}>
+                <EuiBadge
+                  color="hollow"
+                  iconOnClick={() => removeFilter(filter.type, filter.value)}
+                  iconOnClickAriaLabel={`Remove ${filter.label} filter`}
+                >
+                  {filter.label}
+                </EuiBadge>
+              </EuiFlexItem>
+            ))}
+          </EuiFlexGroup>
+        </>
+      )}
+
+      {/* Results summary */}
+      {(searchValue || hasActiveFilters) && (
+        <>
+          <EuiSpacer size="m" />
+          <EuiCallOut
+            size="s"
+            title={`Showing results for "${searchValue || 'all documents'}"`}
+            iconType="search"
+          >
+            <p>
+              {hasActiveFilters ? `${getActiveFilters().length} active filters applied` : 'No filters applied'}
+              {selectedPreset && ` • Preset: ${selectedPreset}`}
+            </p>
+          </EuiCallOut>
+        </>
+      )}
+    </div>
+  );
+};
+```
+
+## Behavior
+
+### Filter interaction patterns
+
+- **Toggle filters**: Click to open/close filter panels
+- **Multi-select**: Allow multiple options within a filter category
+- **Search integration**: Combine text search with categorical filters
+- **Active indicators**: Show which filters are currently applied
+- **Clear actions**: Provide ways to clear individual or all filters
+
+### Responsive behavior
+
+- **Desktop**: Full filter bar with all options visible
+- **Tablet**: Collapse less important filters into "More" menu
+- **Mobile**: Stack filters vertically or use bottom sheet pattern
+- **Adaptive**: Adjust filter complexity based on screen size
+
+### Performance considerations
+
+- **Debounced search**: Delay search execution to avoid excessive API calls
+- **Lazy loading**: Load filter options on demand for large datasets
+- **Caching**: Cache filter results to improve response times
+- **Optimization**: Limit the number of simultaneous active filters
+
+## Accessibility
+
+- **Keyboard navigation**: All filter controls are keyboard accessible
+- **Screen reader support**: Proper ARIA labels and descriptions
+- **Focus management**: Clear focus indicators and logical tab order
+- **Error handling**: Provide clear feedback for invalid filter selections
+- **Alternative text**: Descriptive labels for filter icons and buttons
+
+## Design tokens
+
+Use these tokens for consistent filter bar styling:
+
+- **Background**: `euiTheme.colors.emptyShade` for filter button backgrounds
+- **Border**: `euiTheme.colors.borderBaseFloating` for filter button borders
+- **Text**: `euiTheme.colors.text` for filter button text
+- **Active state**: `euiTheme.colors.primary` for active filter indicators
+- **Spacing**: `euiSizeS` for filter button padding
+- **Border radius**: `euiBorderRadiusS` for filter button corners
+- **Shadow**: `euiShadowS` for filter panel elevation
+
+## Do's and Don'ts
+
+### ✅ Do
+
+- Group related filters logically (status, type, date, etc.)
+- Provide clear visual feedback for active filters
+- Include a "Clear all" option when multiple filters are active
+- Use consistent filter patterns across your application
+- Optimize filter performance for large datasets
+- Provide search functionality alongside filters
+
+### ❌ Don't
+
+- Overwhelm users with too many filter options at once
+- Hide important filters behind multiple clicks
+- Use inconsistent filter patterns across different sections
+- Forget to provide clear ways to clear or reset filters
+- Ignore mobile usability when designing filter interfaces
+- Use filters for simple search-only scenarios
+
+## Migration from custom filter implementations
+
+If you're currently using custom filter implementations, consider migrating to this pattern for better consistency and accessibility:
+
+```tsx
+// Before: Custom filter implementation
+<div className="filter-container">
+  <input 
+    className="filter-input" 
+    placeholder="Search..."
+  />
+  <div className="filter-buttons">
+    <button className="filter-btn">Status</button>
+    <button className="filter-btn">Type</button>
+  </div>
+</div>
+
+// After: EUI filter bar pattern
+<EuiFlexGroup gutterSize="s">
+  <EuiFlexItem>
+    <EuiFieldSearch placeholder="Search..." />
+  </EuiFlexItem>
+  <EuiFlexItem grow={false}>
+    <EuiFilterGroup>
+      <EuiFilterButton>Status</EuiFilterButton>
+      <EuiFilterButton>Type</EuiFilterButton>
+    </EuiFilterGroup>
+  </EuiFlexItem>
+</EuiFlexGroup>
+```
+
+**Benefits of migration:**
+- **Better accessibility** - Built-in keyboard navigation and screen reader support
+- **Consistent styling** - Uses EUI design tokens and themes
+- **Responsive design** - Automatically adapts to different screen sizes
+- **Performance optimized** - Built-in debouncing and optimization
+- **Theme support** - Automatically adapts to light/dark themes

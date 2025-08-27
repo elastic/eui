@@ -1,0 +1,88 @@
+---
+keywords: [EuiFormRow, form, layout, accessibility]
+---
+
+# Form row
+
+**EuiFormRow** is a layout and accessibility atom that provides consistent vertical spacing and accessible wiring between a label, a single input, and optional help/error text.
+
+:::tip Looking for usage guidance?
+
+For multi-field layouts, validation flows, and responsive forms, see the [Form layout pattern](/docs/patterns/forms/form-layout).
+
+:::
+
+## Purpose
+
+Provide consistent vertical spacing and accessible wiring between a label, a single input, and optional help/error text. No opinionated "form behavior" beyond ARIA linkage and spacing.
+
+## Basic usage
+
+```tsx interactive
+import React from 'react';
+import { EuiFormRow, EuiFieldText } from '@elastic/eui';
+
+export default () => (
+  <EuiFormRow label="Name" helpText="Shown to collaborators">
+    <EuiFieldText />
+  </EuiFormRow>
+);
+```
+
+## With error state
+
+```tsx interactive
+import React from 'react';
+import { EuiFormRow, EuiFieldText } from '@elastic/eui';
+
+export default () => (
+  <EuiFormRow label="Email" isInvalid error="Enter a valid address">
+    <EuiFieldText isInvalid />
+  </EuiFormRow>
+);
+```
+
+## Inline label (row layout)
+
+```tsx interactive
+import React from 'react';
+import { EuiFormRow, EuiFieldNumber } from '@elastic/eui';
+
+export default () => (
+  <EuiFormRow label="Limit" display="row">
+    <EuiFieldNumber min={0} />
+  </EuiFormRow>
+);
+```
+
+## Accessibility
+
+- **Label association**: Automatically connects label to input via `htmlFor` and `id`
+- **ARIA describedby**: Sets `aria-describedby` to help/error IDs
+- **Error indication**: Provides visual and programmatic error state
+- **Required fields**: Use `labelAppend` for "(Required)" or "(Optional)" indicators
+
+## Design tokens
+
+- **Spacing**: `euiSizeM/L` for vertical rhythm
+- **Typography**: Label size/weight tokens
+- **Colors**: Help/error colors from theme
+- **Density**: Compressed vs default tokens
+
+## Props
+
+| Prop | Type | Default | Notes |
+|------|------|---------|-------|
+| `label` | ReactNode | — | Visible label. If omitted, input must have aria-label. |
+| `labelAppend` | ReactNode | — | Inline metadata (e.g., "Optional"). |
+| `id` | string | — | Used to connect label → input via htmlFor. |
+| `helpText` | ReactNode | — | Renders under input; wired via aria-describedby. |
+| `error` | ReactNode | — | Error text under input; wired via aria-describedby. |
+| `isInvalid` | boolean | false | Style hook; does not enforce validation rules. |
+| `display` | 'row' \| 'column' | 'column' | Simple layout toggle. |
+| `fullWidth` | boolean | false | Stretch to container width. |
+| `compressed` | boolean | false | Tighter v-spacing; pairs with compressed inputs. |
+
+import docgen from '@elastic/eui-docgen/dist/components/form';
+
+<PropTable definition={docgen.EuiFormRow} />

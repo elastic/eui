@@ -1,0 +1,476 @@
+---
+title: Form layout
+sidebar_position: 1
+keywords: [form, layout, validation, EuiFormRow]
+---
+
+# Form layout
+
+Forms are a fundamental part of user interfaces, requiring consistent patterns for layout, validation, and accessibility. This pattern provides recipes for building accessible, responsive forms using the **EuiFormRow** atom.
+
+## Problem
+
+Teams need consistent, accessible forms with predictable label placement, spacing, validation messaging, grouping, and responsive behavior.
+
+## When to use
+
+- Any page/flyout/modal with multiple inputs
+- Multi-field forms, settings pages, filters
+- Forms requiring validation and error handling
+
+## When not to use
+
+- Single inline inputs → use a lone **EuiFormRow** atom
+- Multi-step wizards → separate pattern (later)
+
+## Composition
+
+**EuiFormRow** (slim) + inputs (**EuiFieldText**, **EuiSelect**, **EuiSwitch**, etc.)
+**EuiFormLabel**, **EuiText**, **EuiCallOut** (for global form errors)
+Layout primitives: **EuiFlexGroup**, **EuiSpacer**, **EuiAccordion** (sections)
+Actions: **EuiButton**, **EuiButtonEmpty**
+
+## Anatomy
+
+Forms are composed of these elements:
+
+- **Label**: Clear, concise text that identifies the input
+- **Input field**: The interactive element (text field, select, checkbox, etc.)
+- **Help text** (optional): Additional guidance or context
+- **Error message** (optional): Validation feedback
+- **Layout container**: EuiFormRow for consistent spacing and accessibility
+- **Form wrapper**: EuiForm for semantic grouping and submission handling
+
+## Variants
+
+### Stacked form (default)
+
+Labels above inputs with consistent vertical spacing.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiForm,
+  EuiFormRow,
+  EuiFieldText,
+  EuiFieldPassword,
+  EuiSelect,
+  EuiSpacer,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiButton,
+  EuiButtonEmpty,
+} from '@elastic/eui';
+
+export default () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    role: '',
+    password: '',
+  });
+  const [errors, setErrors] = useState({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    
+    // Simulate validation
+    const newErrors = {};
+    if (!formData.name) newErrors.name = 'Name is required';
+    if (!formData.email) newErrors.email = 'Email is required';
+    if (!formData.password) newErrors.password = 'Password is required';
+    
+    setErrors(newErrors);
+    
+    if (Object.keys(newErrors).length === 0) {
+      // Form is valid
+      console.log('Form submitted:', formData);
+    }
+    
+    setIsSubmitting(false);
+  };
+
+  const handleChange = (field, value) => {
+    setFormData(prev => ({ ...prev, [field]: value }));
+    // Clear error when user starts typing
+    if (errors[field]) {
+      setErrors(prev => ({ ...prev, [field]: undefined }));
+    }
+  };
+
+  return (
+    <EuiForm component="form" onSubmit={handleSubmit}>
+      <EuiFormRow 
+        label="Full name" 
+        helpText="Shown to collaborators"
+        isInvalid={!!errors.name}
+        error={errors.name}
+      >
+        <EuiFieldText
+          value={formData.name}
+          onChange={(e) => handleChange('name', e.target.value)}
+          isInvalid={!!errors.name}
+        />
+      </EuiFormRow>
+
+      <EuiFormRow 
+        label="Email address"
+        isInvalid={!!errors.email}
+        error={errors.email}
+      >
+        <EuiFieldText
+          type="email"
+          value={formData.email}
+          onChange={(e) => handleChange('email', e.target.value)}
+          isInvalid={!!errors.email}
+        />
+      </EuiFormRow>
+
+      <EuiFormRow label="Role">
+        <EuiSelect
+          options={[
+            { value: '', text: 'Select a role' },
+            { value: 'admin', text: 'Administrator' },
+            { value: 'user', text: 'User' },
+            { value: 'viewer', text: 'Viewer' },
+          ]}
+          value={formData.role}
+          onChange={(e) => handleChange('role', e.target.value)}
+        />
+      </EuiFormRow>
+
+      <EuiFormRow 
+        label="Password"
+        helpText="Must be at least 8 characters"
+        isInvalid={!!errors.password}
+        error={errors.password}
+      >
+        <EuiFieldPassword
+          value={formData.password}
+          onChange={(e) => handleChange('password', e.target.value)}
+          isInvalid={!!errors.password}
+        />
+      </EuiFormRow>
+
+      <EuiSpacer size="l" />
+      
+      <EuiFlexGroup justifyContent="flexEnd" gutterSize="s">
+        <EuiFlexItem grow={false}>
+          <EuiButtonEmpty onClick={() => console.log('Canceled')}>
+            Cancel
+          </EuiButtonEmpty>
+        </EuiFlexItem>
+        <EuiFlexItem grow={false}>
+          <EuiButton 
+            type="submit" 
+            fill 
+            isLoading={isSubmitting}
+          >
+            Create user
+          </EuiButton>
+        </EuiFlexItem>
+      </EuiFlexGroup>
+    </EuiForm>
+  );
+};
+```
+
+### Inline labels (dense)
+
+Short labels to the left for compact forms.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiForm,
+  EuiFormRow,
+  EuiFieldNumber,
+  EuiFieldText,
+  EuiSelect,
+  EuiSpacer,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiButton,
+} from '@elastic/eui';
+
+export default () => {
+  const [filters, setFilters] = useState({
+    limit: 100,
+    search: '',
+    status: 'all',
+  });
+
+  return (
+    <EuiForm>
+      <EuiFlexGroup gutterSize="m" alignItems="flexEnd">
+        <EuiFlexItem grow={false}>
+          <EuiFormRow label="Limit" display="row">
+            <EuiFieldNumber
+              min={1}
+              max={1000}
+              value={filters.limit}
+              onChange={(e) => setFilters(prev => ({ ...prev, limit: parseInt(e.target.value) || 0 }))}
+            />
+          </EuiFormRow>
+        </EuiFlexItem>
+        
+        <EuiFlexItem grow={false}>
+          <EuiFormRow label="Search" display="row">
+            <EuiFieldText
+              placeholder="Filter by name..."
+              value={filters.search}
+              onChange={(e) => setFilters(prev => ({ ...prev, search: e.target.value }))}
+            />
+          </EuiFormRow>
+        </EuiFlexItem>
+        
+        <EuiFlexItem grow={false}>
+          <EuiFormRow label="Status" display="row">
+            <EuiSelect
+              options={[
+                { value: 'all', text: 'All' },
+                { value: 'active', text: 'Active' },
+                { value: 'inactive', text: 'Inactive' },
+              ]}
+              value={filters.status}
+              onChange={(e) => setFilters(prev => ({ ...prev, status: e.target.value }))}
+            />
+          </EuiFormRow>
+        </EuiFlexItem>
+        
+        <EuiFlexItem grow={false}>
+          <EuiButton onClick={() => console.log('Apply filters:', filters)}>
+            Apply
+          </EuiButton>
+        </EuiFlexItem>
+      </EuiFlexGroup>
+    </EuiForm>
+  );
+};
+```
+
+### Two-column responsive
+
+Grid layout on desktop, stacked on mobile.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiForm,
+  EuiFormRow,
+  EuiFieldText,
+  EuiFieldPassword,
+  EuiFieldNumber,
+  EuiSelect,
+  EuiSpacer,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiButton,
+  EuiButtonEmpty,
+} from '@elastic/eui';
+
+export default () => {
+  const [profile, setProfile] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    department: '',
+    salary: '',
+  });
+
+  const handleChange = (field, value) => {
+    setProfile(prev => ({ ...prev, [field]: value }));
+  };
+
+  return (
+    <EuiForm>
+      <EuiFlexGroup gutterSize="m" wrap>
+        <EuiFlexItem style={{ minWidth: 320 }}>
+          <EuiFormRow label="First name">
+            <EuiFieldText
+              value={profile.firstName}
+              onChange={(e) => handleChange('firstName', e.target.value)}
+            />
+          </EuiFormRow>
+        </EuiFlexItem>
+        
+        <EuiFlexItem style={{ minWidth: 320 }}>
+          <EuiFormRow label="Last name">
+            <EuiFieldText
+              value={profile.lastName}
+              onChange={(e) => handleChange('lastName', e.target.value)}
+            />
+          </EuiFormRow>
+        </EuiFlexItem>
+      </EuiFlexGroup>
+
+      <EuiSpacer size="s" />
+
+      <EuiFlexGroup gutterSize="m" wrap>
+        <EuiFlexItem style={{ minWidth: 320 }}>
+          <EuiFormRow label="Email address">
+            <EuiFieldText
+              type="email"
+              value={profile.email}
+              onChange={(e) => handleChange('email', e.target.value)}
+            />
+          </EuiFormRow>
+        </EuiFlexItem>
+        
+        <EuiFlexItem style={{ minWidth: 320 }}>
+          <EuiFormRow label="Phone number">
+            <EuiFieldText
+              value={profile.phone}
+              onChange={(e) => handleChange('phone', e.target.value)}
+            />
+          </EuiFormRow>
+        </EuiFlexItem>
+      </EuiFlexGroup>
+
+      <EuiSpacer size="s" />
+
+      <EuiFlexGroup gutterSize="m" wrap>
+        <EuiFlexItem style={{ minWidth: 320 }}>
+          <EuiFormRow label="Department">
+            <EuiSelect
+              options={[
+                { value: '', text: 'Select department' },
+                { value: 'engineering', text: 'Engineering' },
+                { value: 'design', text: 'Design' },
+                { value: 'product', text: 'Product' },
+                { value: 'marketing', text: 'Marketing' },
+              ]}
+              value={profile.department}
+              onChange={(e) => handleChange('department', e.target.value)}
+            />
+          </EuiFormRow>
+        </EuiFlexItem>
+        
+        <EuiFlexItem style={{ minWidth: 320 }}>
+          <EuiFormRow label="Salary">
+            <EuiFieldNumber
+              min={0}
+              value={profile.salary}
+              onChange={(e) => handleChange('salary', e.target.value)}
+            />
+          </EuiFormRow>
+        </EuiFlexItem>
+      </EuiFlexGroup>
+
+      <EuiSpacer size="l" />
+      
+      <EuiFlexGroup justifyContent="flexEnd" gutterSize="s">
+        <EuiFlexItem grow={false}>
+          <EuiButtonEmpty onClick={() => console.log('Canceled')}>
+            Cancel
+          </EuiButtonEmpty>
+        </EuiFlexItem>
+        <EuiFlexItem grow={false}>
+          <EuiButton 
+            fill 
+            onClick={() => console.log('Profile saved:', profile)}
+          >
+            Save profile
+          </EuiButton>
+        </EuiFlexItem>
+      </EuiFlexGroup>
+    </EuiForm>
+  );
+};
+```
+
+## Behavior
+
+### Validation timing
+
+- **On blur** for most fields
+- **On submit** for the form
+- **Live validation** for obvious constraints (e.g., required fields)
+
+### Error placement
+
+- **Local errors** under each field
+- **Optional summary** at the top for submit failures
+- **Clear errors** when user starts typing
+
+### Responsive behavior
+
+- **Stack to 1 column** on screens &lt;768px
+- **Preserve label association** across breakpoints
+- **Maintain accessibility** in all layouts
+
+## Accessibility
+
+- Every input has an accessible name (label or aria-label)
+- Help/error connected via aria-describedby (handled by **EuiFormRow** atom)
+- Error icons are not the only indicator; include text
+- Keyboard order follows visual order; avoid tabindex hacks
+
+## Design tokens
+
+Use these tokens for consistent form styling:
+
+- **Spacing**: `euiSizeM` for standard row spacing, `euiSizeL` for section breaks
+- **Typography**: `euiFontSizeS` for labels, `euiFontWeightSemiBold` for label weight
+- **Colors**: `euiTheme.colors.danger` for errors, `euiTheme.colors.subdued` for help text
+- **Density**: `euiSizeS` for compressed spacing, `euiSizeM` for default spacing
+- **Border**: `euiTheme.colors.borderBaseFloating` for input borders
+- **Focus**: `euiFocusRing` for input focus states
+
+## Do / Don't
+
+### ✅ Do
+
+- Keep label text concise; prefer sentence case
+- Show one clear error per field; summarize on submit if many
+- Align actions consistently (end-aligned in footers)
+- Use consistent spacing between form sections
+
+### ❌ Don't
+
+- Mix label positions in the same form
+- Rely on color alone for errors/warnings
+- Hide critical help behind tooltips only
+- Overcrowd forms with too many fields per section
+
+## Migration from EuiFormRow Legacy Usage
+
+If you're currently using **EuiFormRow** with complex validation logic or layout rules, consider migrating to this pattern for better flexibility and consistency:
+
+```tsx
+// Before: Complex EuiFormRow usage
+<EuiFormRow
+  label="Email"
+  helpText="We'll never share your email"
+  isInvalid={!!errors.email}
+  error={errors.email}
+  hasChildLabel={false}
+  fullWidth
+>
+  <EuiFieldText
+    placeholder="Enter your email"
+    value={email}
+    onChange={(e) => setEmail(e.target.value)}
+    isInvalid={!!errors.email}
+  />
+</EuiFormRow>
+
+// After: Form layout pattern
+<EuiFormRow 
+  label="Email" 
+  helpText="We'll never share your email"
+  isInvalid={!!errors.email}
+  error={errors.email}
+>
+  <EuiFieldText
+    placeholder="Enter your email"
+    value={email}
+    onChange={(e) => setEmail(e.target.value)}
+  />
+</EuiFormRow>
+```
+
+The pattern approach gives you more consistent validation, better accessibility, and cleaner form structure.

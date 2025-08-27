@@ -1,0 +1,215 @@
+---
+title: Empty states
+sidebar_position: 3
+keywords: [empty states, EuiEmptyPrompt, onboarding]
+---
+
+# Empty states
+
+Empty states provide guidance and context when there's no data to display. They help users understand what's missing and what actions they can take to get started.
+
+## Problem
+
+Teams need consistent, helpful empty states that guide users when there's no content to display. This requires clear guidance on when to use empty states vs other feedback mechanisms, proper messaging, and accessibility implementation.
+
+## When to use
+
+- **No data scenarios** in lists, tables, or dashboards
+- **First-time user experiences** with guidance and onboarding
+- **Error states** when content cannot be loaded
+- **Permission-based empty states** when access is denied
+
+## When not to use
+
+- **Loading states** (use loading components)
+- **Error boundaries** (use error handling patterns)
+- **Temporary data gaps** (use loading or skeleton states)
+
+## Anatomy
+
+Empty states are composed of these elements:
+
+- **Container**: EuiEmptyPrompt provides the base structure
+- **Icon**: Illustrative icon that represents the empty state
+- **Title**: Clear, descriptive heading
+- **Description**: Helpful text explaining the situation
+- **Actions** (optional): Primary and secondary action buttons
+- **Layout**: Centered, prominent placement
+
+## No data empty state
+
+Use when lists, tables, or dashboards have no content to display.
+
+```tsx interactive
+import React from 'react';
+import {
+  EuiEmptyPrompt,
+  EuiButton,
+  EuiButtonEmpty,
+  EuiIcon,
+  EuiTitle,
+  EuiText,
+} from '@elastic/eui';
+
+export default () => (
+  <EuiEmptyPrompt
+    iconType="dataVisualizer"
+    title={<h2>No data available</h2>}
+    body={
+      <EuiText color="subdued">
+        <p>
+          You haven't created any visualizations yet. Create your first visualization to get started.
+        </p>
+      </EuiText>
+    }
+    actions={[
+      <EuiButton color="primary" fill>
+        Create visualization
+      </EuiButton>,
+      <EuiButtonEmpty>
+        Learn more
+      </EuiButtonEmpty>,
+    ]}
+  />
+);
+```
+
+## First-time empty state
+
+Use for onboarding new users with helpful guidance and next steps.
+
+```tsx interactive
+import React from 'react';
+import {
+  EuiEmptyPrompt,
+  EuiButton,
+  EuiButtonEmpty,
+  EuiIcon,
+  EuiTitle,
+  EuiText,
+} from '@elastic/eui';
+
+export default () => (
+  <EuiEmptyPrompt
+    iconType="logoElastic"
+    title={<h2>Welcome to Elasticsearch</h2>}
+    body={
+      <EuiText color="subdued">
+        <p>
+          Get started by adding your first data source. We'll help you set up 
+          your first index and start exploring your data.
+        </p>
+      </EuiText>
+    }
+    actions={[
+      <EuiButton color="primary" fill>
+        Add data source
+      </EuiButton>,
+      <EuiButtonEmpty>
+        View documentation
+      </EuiButtonEmpty>,
+    ]}
+  />
+);
+```
+
+## Error empty state
+
+Use when content cannot be loaded due to errors or network issues.
+
+```tsx interactive
+import React from 'react';
+import {
+  EuiEmptyPrompt,
+  EuiButton,
+  EuiButtonEmpty,
+  EuiIcon,
+  EuiTitle,
+  EuiText,
+} from '@elastic/eui';
+
+export default () => (
+  <EuiEmptyPrompt
+    iconType="alert"
+    iconColor="danger"
+    title={<h2>Unable to load data</h2>}
+    body={
+      <EuiText color="subdued">
+        <p>
+          There was an error loading your data. Please check your connection 
+          and try again.
+        </p>
+      </EuiText>
+    }
+    actions={[
+      <EuiButton color="primary" fill>
+        Try again
+      </EuiButton>,
+      <EuiButtonEmpty>
+        Contact support
+      </EuiButtonEmpty>,
+    ]}
+  />
+);
+```
+
+## Behavior
+
+### Content guidelines
+
+- **Be helpful**: Explain what's missing and why
+- **Provide context**: Help users understand the situation
+- **Suggest actions**: Give clear next steps when possible
+- **Use appropriate tone**: Friendly for onboarding, informative for errors
+
+### Visual hierarchy
+
+- **Icon first**: Illustrative icon sets the context
+- **Title prominent**: Clear, descriptive heading
+- **Description supportive**: Additional context and guidance
+- **Actions clear**: Primary action should be obvious
+
+### Responsive behavior
+
+- **Centered layout**: Empty states are typically centered
+- **Responsive sizing**: Adapts to different screen sizes
+- **Consistent spacing**: Maintains visual hierarchy across breakpoints
+
+## Accessibility
+
+- **Screen reader friendly**: Icons have appropriate alt text
+- **Keyboard navigation**: Action buttons are keyboard accessible
+- **Color contrast**: Text and icons meet contrast requirements
+- **Semantic structure**: Proper heading hierarchy and landmarks
+- **Focus management**: Clear focus indicators on interactive elements
+
+## Design tokens
+
+Use these tokens for consistent empty state styling:
+
+- **Background**: `euiTheme.colors.emptyShade` for container background
+- **Icon colors**: `euiTheme.colors.primary`, `euiTheme.colors.danger`, `euiTheme.colors.subdued`
+- **Typography**: `euiFontSizeL` for titles, `euiFontSizeM` for descriptions
+- **Spacing**: `euiSizeXL` for vertical spacing, `euiSizeM` for button spacing
+- **Border radius**: `euiBorderRadiusM` for container corners
+- **Shadow**: `euiShadowM` for subtle elevation
+
+## Do's and Don'ts
+
+### ✅ Do
+
+- Use clear, descriptive titles that explain the situation
+- Provide helpful context and next steps
+- Use appropriate icons that match the context
+- Include primary actions when users can take action
+- Keep the design clean and uncluttered
+
+### ❌ Don't
+
+- Use generic or unhelpful messages
+- Overwhelm users with too many options
+- Use empty states for loading or error boundaries
+- Make empty states feel like dead ends
+- Use technical jargon that users won't understand
+
+
