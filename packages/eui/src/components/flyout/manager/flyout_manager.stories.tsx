@@ -8,6 +8,7 @@
 
 import { Meta, StoryObj } from '@storybook/react';
 import React, { useState } from 'react';
+import { action } from '@storybook/addon-actions';
 
 import {
   EuiButton,
@@ -176,7 +177,7 @@ const ReviewOrderFlyout = ({
         {!orderConfirmed && (
           <EuiButton
             onClick={() => {
-              console.log('Go back button clicked');
+              action('go back')();
               // goBack();
             }}
             color="danger"

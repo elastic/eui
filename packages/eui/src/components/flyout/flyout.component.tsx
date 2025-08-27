@@ -340,18 +340,6 @@ export const EuiFlyoutComponent = forwardRef(
 
     const classes = classnames('euiFlyout', className);
 
-    /*
-     * Trap focus even when `ownFocus={false}`, otherwise closing
-     * the flyout won't return focus to the originating button.
-     *
-     * Set `clickOutsideDisables={true}` when `ownFocus={false}`
-     * to allow non-keyboard users the ability to interact with
-     * elements outside the flyout.
-     *
-     * Set `onClickOutside={onClose}` when `ownFocus` and `type` are the defaults,
-     * or if `outsideClickCloses={true}` to close on clicks that target
-     * (both mousedown and mouseup) the overlay mask.
-     */
     const flyoutToggle = useRef<Element | null>(document.activeElement);
     const [focusTrapShards, setFocusTrapShards] = useState<HTMLElement[]>([]);
 

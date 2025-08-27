@@ -42,91 +42,78 @@ export interface UseFlyoutActivityStageReturn {
  * Encapsulates all activity-stage transitions and animation-driven updates
  * for managed flyouts.
  */
-export const useFlyoutActivityStage = (
-  params: UseFlyoutActivityStageParams
-): UseFlyoutActivityStageReturn => {
-  const { flyoutId, level } = params;
-
+export const useFlyoutActivityStage = ({
+  flyoutId,
+  level,
+}: UseFlyoutActivityStageParams) => {
   const isActive = useIsFlyoutActive(flyoutId);
   const hasChild = useHasChildFlyout(flyoutId);
   const layoutMode = useFlyoutLayoutMode();
-  const context = useFlyoutManager();
+  const ctx = useFlyoutManager();
 
-  const activityStage: EuiFlyoutActivityStage =
-    context?.state.flyouts.find((f) => f.flyoutId === flyoutId)
-      ?.activityStage || (isActive ? STAGE_ACTIVE : STAGE_OPENING);
+  const stage: EuiFlyoutActivityStage =
+    ctx?.state.flyouts.find((f) => f.flyoutId === flyoutId)?.activityStage ||
+    (isActive ? STAGE_ACTIVE : STAGE_OPENING);
 
-  // Layout mode transitions that affect main flyout behavior
-  const activityStageRef = useRef<EuiFlyoutActivityStage>(activityStage);
+  const stageRef = useRef(stage);
+  stageRef.current = stage;
 
+  /**
+   * 1. ACTIVE -> CLOSING when no longer the active flyout.
+   * 2. INACTIVE -> RETURNING when it becomes active again (e.g., reopened or brought forward).
+   * 3. (Main flyout only) ACTIVE + stacked + has child -> BACKGROUNDING (begin background animation).
+   * 4. (Main only) BACKGROUNDED/BACKGROUNDING + (child gone OR side-by-side) -> RETURNING (bring main to foreground).
+   *
+   * Any stages that depend on animation end (OPENING, RETURNING, CLOSING, BACKGROUNDING) are finalized in `onAnimationEnd`.
+   */
   useEffect(() => {
-    activityStageRef.current =
-      context?.state.flyouts.find((f) => f.flyoutId === flyoutId)
-        ?.activityStage || activityStage;
-  }, [context, flyoutId, activityStage]);
+    const s = stageRef.current;
+    let next: EuiFlyoutActivityStage | null = null;
 
-  const onAnimationEnd = useCallback(() => {
-    const stage = activityStageRef.current;
-
-    switch (stage) {
-      case STAGE_OPENING:
-      case STAGE_RETURNING:
-        context?.dispatch?.(setActivityStage(flyoutId, STAGE_ACTIVE));
-        break;
-      case STAGE_CLOSING:
-        context?.dispatch?.(setActivityStage(flyoutId, STAGE_INACTIVE));
-        break;
-      case STAGE_BACKGROUNDING:
-        context?.dispatch?.(setActivityStage(flyoutId, STAGE_BACKGROUNDED));
-        break;
-    }
-  }, [context, flyoutId]);
-
-  // Open/close transitions based on whether the flyout is part of the active session
-  useEffect(() => {
-    const stage = activityStageRef.current;
-    if (!isActive && stage === STAGE_ACTIVE) {
-      context?.dispatch?.(setActivityStage(flyoutId, STAGE_CLOSING));
-    } else if (isActive && stage === STAGE_INACTIVE) {
-      context?.dispatch?.(setActivityStage(flyoutId, STAGE_RETURNING));
-    }
-  }, [context, flyoutId, isActive]);
-
-  useEffect(() => {
-    if (level !== LEVEL_MAIN || !isActive) {
-      return;
-    }
-
-    const stage = activityStageRef.current;
-
-    if (
-      layoutMode === LAYOUT_MODE_SIDE_BY_SIDE &&
-      (stage === STAGE_BACKGROUNDED || stage === STAGE_BACKGROUNDING)
-    ) {
-      context?.dispatch?.(setActivityStage(flyoutId, STAGE_RETURNING));
-    }
-  }, [context, flyoutId, level, layoutMode, isActive]);
-
-  // When stacked, background the main if a child exists; return when the child closes
-  useEffect(() => {
-    if (level !== LEVEL_MAIN || !isActive) return;
-
-    const currentStage = activityStageRef.current;
-
-    if (
+    if (s === STAGE_ACTIVE && !isActive) next = STAGE_CLOSING;
+    else if (s === STAGE_INACTIVE && isActive) next = STAGE_RETURNING;
+    else if (
+      level === LEVEL_MAIN &&
+      isActive &&
+      s === STAGE_ACTIVE &&
       hasChild &&
-      layoutMode === LAYOUT_MODE_STACKED &&
-      currentStage === STAGE_ACTIVE
-    ) {
-      context?.dispatch?.(setActivityStage(flyoutId, STAGE_BACKGROUNDING));
-    } else if (
-      !hasChild &&
-      (currentStage === STAGE_BACKGROUNDED ||
-        currentStage === STAGE_BACKGROUNDING)
-    ) {
-      context?.dispatch?.(setActivityStage(flyoutId, STAGE_RETURNING));
-    }
-  }, [context, flyoutId, level, isActive, layoutMode, hasChild]);
+      layoutMode === LAYOUT_MODE_STACKED
+    )
+      next = STAGE_BACKGROUNDING;
+    else if (
+      level === LEVEL_MAIN &&
+      (s === STAGE_BACKGROUNDED || s === STAGE_BACKGROUNDING) &&
+      (!hasChild || layoutMode === LAYOUT_MODE_SIDE_BY_SIDE)
+    )
+      next = STAGE_RETURNING;
 
-  return { activityStage, onAnimationEnd };
+    if (next && next !== s) {
+      ctx?.dispatch?.(setActivityStage(flyoutId, next));
+      stageRef.current = next;
+    }
+  }, [isActive, hasChild, layoutMode, level, ctx, flyoutId, stage]);
+
+  /**
+   * OPENING / RETURNING -> ACTIVE
+   * CLOSING -> INACTIVE
+   * BACKGROUNDING -> BACKGROUNDED
+   */
+  const onAnimationEnd = useCallback(() => {
+    const s = stageRef.current;
+    const next: EuiFlyoutActivityStage | null =
+      s === STAGE_OPENING || s === STAGE_RETURNING
+        ? STAGE_ACTIVE
+        : s === STAGE_CLOSING
+        ? STAGE_INACTIVE
+        : s === STAGE_BACKGROUNDING
+        ? STAGE_BACKGROUNDED
+        : null;
+
+    if (next && next !== s) {
+      ctx?.dispatch?.(setActivityStage(flyoutId, next));
+      stageRef.current = next;
+    }
+  }, [ctx, flyoutId]);
+
+  return { activityStage: stage, onAnimationEnd };
 };

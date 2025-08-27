@@ -7,6 +7,9 @@
  */
 
 import { useCallback, useContext, useId, useReducer, useRef } from 'react';
+
+import { warnOnce } from '../../../services';
+
 import { flyoutManagerReducer, initialState } from './reducer';
 import {
   addFlyout as addFlyoutAction,
@@ -21,6 +24,7 @@ import {
 } from './types';
 import { EuiFlyoutManagerContext } from './provider';
 import { LEVEL_MAIN } from './const';
+import { useFlyout } from './selectors';
 
 export {
   useIsFlyoutActive,
@@ -85,8 +89,18 @@ export const useFlyoutManager = () => useContext(EuiFlyoutManagerContext);
  * Stable flyout ID utility. Uses the passed `id` if provided, otherwise
  * generates a deterministic ID for the component's lifetime.
  */
-export const useFlyoutId = (id?: string) => {
+export const useFlyoutId = (flyoutId?: string) => {
   const defaultId = useId();
-  const componentIdRef = useRef<string>(id || `flyout-${defaultId}`);
+  const existingFlyout = useFlyout(flyoutId);
+  const id = flyoutId && !!existingFlyout ? flyoutId : `flyout-${defaultId}`;
+  const componentIdRef = useRef<string>(id);
+
+  if (existingFlyout) {
+    warnOnce(
+      `flyout-id-${flyoutId}`,
+      `Flyout with ID ${flyoutId} already registered; using new ID ${id}`
+    );
+  }
+
   return componentIdRef.current;
 };
