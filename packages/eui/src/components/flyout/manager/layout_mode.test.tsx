@@ -7,7 +7,8 @@
  */
 
 import React from 'react';
-import { render, act, renderHook } from '@testing-library/react';
+import { renderHook } from '../../../test/rtl';
+import { render, act } from '@testing-library/react';
 import { useEuiTheme } from '../../../services';
 import { setLayoutMode } from './actions';
 import {
@@ -53,8 +54,7 @@ const mockWindow = {
   innerWidth: 1200,
   addEventListener: jest.fn(),
   removeEventListener: jest.fn(),
-  requestAnimationFrame: jest.fn((cb) => {
-    cb();
+  requestAnimationFrame: jest.fn(() => {
     return rafId++;
   }),
   cancelAnimationFrame: jest.fn(),
@@ -96,6 +96,12 @@ const mockUseFlyoutWidth = useFlyoutWidth as jest.Mock;
 const mockUseFlyoutManager = useFlyoutManager as jest.Mock;
 
 describe('layout_mode', () => {
+  const getResizeHandler = () => {
+    const call = mockWindow.addEventListener.mock.calls.find(
+      (args) => args[0] === 'resize'
+    );
+    return call ? call[1] : undefined;
+  };
   beforeEach(() => {
     jest.clearAllMocks();
     rafId = 1;
@@ -281,8 +287,10 @@ describe('layout_mode', () => {
       const { unmount } = render(<TestComponent />);
 
       // Simulate a resize event to create an active animation frame
-      const resizeHandler = mockWindow.addEventListener.mock.calls[0][1];
-      resizeHandler();
+      const resizeHandler = getResizeHandler()!;
+      act(() => {
+        resizeHandler();
+      });
 
       unmount();
 
@@ -563,14 +571,18 @@ describe('layout_mode', () => {
       render(<TestComponent />);
 
       // Simulate first resize event
-      const resizeHandler = mockWindow.addEventListener.mock.calls[0][1];
-      resizeHandler();
+      const resizeHandler = getResizeHandler()!;
+      act(() => {
+        resizeHandler();
+      });
 
       // Should call requestAnimationFrame and get ID 1
       expect(mockWindow.requestAnimationFrame).toHaveBeenCalled();
 
       // Simulate second resize event before the first one executes
-      resizeHandler();
+      act(() => {
+        resizeHandler();
+      });
 
       // Should cancel the previous animation frame (ID 1) and create a new one (ID 2)
       expect(mockWindow.cancelAnimationFrame).toHaveBeenCalledWith(1);
@@ -581,7 +593,7 @@ describe('layout_mode', () => {
       render(<TestComponent />);
 
       // Simulate resize event
-      const resizeHandler = mockWindow.addEventListener.mock.calls[0][1];
+      const resizeHandler = getResizeHandler()!;
 
       // Change window width
       Object.defineProperty(window, 'innerWidth', {

@@ -6,14 +6,19 @@
  * Side Public License, v 1.
  */
 
-import { renderHook, act } from '@testing-library/react';
+import { renderHook } from '../../../test/rtl';
+import { act } from '@testing-library/react';
 import { useFlyoutManagerReducer, useFlyoutId } from './hooks';
 import { LEVEL_MAIN, LEVEL_CHILD } from './const';
 
-// Mock the warnOnce service
-jest.mock('../../../services', () => ({
-  warnOnce: jest.fn(),
-}));
+// Mock the warnOnce service but keep other actual exports (e.g., useGeneratedHtmlId)
+jest.mock('../../../services', () => {
+  const actual = jest.requireActual('../../../services');
+  return {
+    ...actual,
+    warnOnce: jest.fn(),
+  };
+});
 
 // Mock the useFlyout selector
 jest.mock('./selectors', () => ({
