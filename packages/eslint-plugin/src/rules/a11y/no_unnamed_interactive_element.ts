@@ -17,7 +17,6 @@
  * under the License.
  */
 
-
 import { ESLintUtils, type TSESTree } from '@typescript-eslint/utils';
 
 const interactiveComponents = [
@@ -36,13 +35,11 @@ const interactiveComponents = [
 const wrappingComponents = ['EuiFormRow'] as const;
 const a11yProps = ['aria-label', 'aria-labelledby', 'label'] as const;
 
-type JSXOpeningElement = TSESTree.JSXOpeningElement;
-
-function hasSpread(attrs: JSXOpeningElement['attributes']): boolean {
+function hasSpread(attrs: TSESTree.JSXOpeningElement['attributes']): boolean {
   return attrs.some((a) => a.type === 'JSXSpreadAttribute');
 }
 
-function hasA11yProp(attrs: JSXOpeningElement['attributes']): boolean {
+function hasA11yProp(attrs: TSESTree.JSXOpeningElement['attributes']): boolean {
   return attrs.some(
     (attr): attr is TSESTree.JSXAttribute =>
       attr.type === 'JSXAttribute' &&
@@ -51,7 +48,7 @@ function hasA11yProp(attrs: JSXOpeningElement['attributes']): boolean {
   );
 }
 
-function getReadableComponentName(name: JSXOpeningElement['name']): string {
+function getReadableComponentName(name: TSESTree.JSXOpeningElement['name']): string {
   return name.type === 'JSXIdentifier' ? name.name : 'this component';
 }
 
@@ -69,9 +66,18 @@ export const NoUnnamedInteractiveElement = ESLintUtils.RuleCreator.withoutDocs({
   create(context) {
     const sourceCode = context.sourceCode; 
 
+    const report = (n: TSESTree.JSXOpeningElement) => {
+      if (n.name.type === 'JSXIdentifier') {
+        context.report({
+          node: n,
+          messageId: 'missingA11y',
+          data: { component: n.name.name },
+        });
+      }
+    };
+
     return {
       JSXOpeningElement(node) {
-       
         if (node.name.type !== 'JSXIdentifier') return;
 
         const isInteractive = interactiveComponents.includes(
@@ -79,10 +85,8 @@ export const NoUnnamedInteractiveElement = ESLintUtils.RuleCreator.withoutDocs({
         );
         if (!isInteractive) return;
 
-        
         if (hasSpread(node.attributes) || hasA11yProp(node.attributes)) return;
 
-      
         const ancestors = sourceCode.getAncestors(node);
         const wrapper = [...ancestors]
           .reverse()
@@ -97,23 +101,12 @@ export const NoUnnamedInteractiveElement = ESLintUtils.RuleCreator.withoutDocs({
 
         if (wrapper) {
           const open = wrapper.openingElement;
-          
           if (!hasSpread(open.attributes) && !hasA11yProp(open.attributes)) {
-            context.report({
-              node: open,
-              messageId: 'missingA11y',
-              data: { component: getReadableComponentName(open.name) },
-            });
+            report(open);
           }
-          return;
+        } else {
+          report(node);
         }
-
-        
-        context.report({
-          node,
-          messageId: 'missingA11y',
-          data: { component: getReadableComponentName(node.name) },
-        });
       },
     };
   },

@@ -69,6 +69,7 @@ ruleTester.run('no-unnamed-interactive-element', NoUnnamedInteractiveElement, {
     },
   ],
   invalid: [
+    // Unwrapped interactive element with no a11y name
     {
       code: dedent`
         const MyComponent = () => (
@@ -79,10 +80,14 @@ ruleTester.run('no-unnamed-interactive-element', NoUnnamedInteractiveElement, {
       errors: [
         {
           messageId: 'missingA11y',
-          data: { component: 'EuiButtonEmpty' },
+          data: {
+            component: 'EuiButtonEmpty',
+            how: '`aria-label` or `aria-labelledby`',
+          },
         },
       ],
     },
+    // Wrapped interactive element; suggest wrapper's label in addition
     {
       code: dedent`
         const MyComponent = () => (
@@ -95,7 +100,10 @@ ruleTester.run('no-unnamed-interactive-element', NoUnnamedInteractiveElement, {
       errors: [
         {
           messageId: 'missingA11y',
-          data: { component: 'EuiFormRow' },
+          data: {
+            component: 'EuiFormRow',
+            how: '`aria-label` or `aria-labelledby` or the wrapper\'s \`label\` (e.g., \`EuiFormRow\`)',
+          },
         },
       ],
     },
