@@ -87,7 +87,7 @@ export function flyoutManagerReducer(
     }
 
     // Unregister a flyout and update sessions accordingly.
-    // - When closing a `main` flyout, drop its entire session.
+    // - When closing a `main` flyout, drop its entire session and all associated flyouts.
     // - When closing a `child` flyout, clear the child pointer on the most
     //   recent session if it matches.
     case ACTION_CLOSE: {
@@ -95,20 +95,39 @@ export function flyoutManagerReducer(
         (f) => f.flyoutId === action.flyoutId
       );
 
-      const newFlyouts = state.flyouts.filter(
-        (f) => f.flyoutId !== action.flyoutId
-      );
-
       if (!removedFlyout) {
         return state;
       }
 
       if (removedFlyout.level === LEVEL_MAIN) {
-        const newSessions = state.sessions.filter(
-          (session) => session.main !== action.flyoutId
+        // Find the session that contains this main flyout
+        const sessionToRemove = state.sessions.find(
+          (session) => session.main === action.flyoutId
         );
-        return { ...state, sessions: newSessions, flyouts: newFlyouts };
+
+        if (sessionToRemove) {
+          // Remove all flyouts associated with this session (main + child)
+          const flyoutsToRemove = new Set([action.flyoutId]);
+          if (sessionToRemove.child) {
+            flyoutsToRemove.add(sessionToRemove.child);
+          }
+
+          const newFlyouts = state.flyouts.filter(
+            (f) => !flyoutsToRemove.has(f.flyoutId)
+          );
+
+          const newSessions = state.sessions.filter(
+            (session) => session.main !== action.flyoutId
+          );
+
+          return { ...state, sessions: newSessions, flyouts: newFlyouts };
+        }
       }
+
+      // Handle child flyout closing (existing logic)
+      const newFlyouts = state.flyouts.filter(
+        (f) => f.flyoutId !== action.flyoutId
+      );
 
       if (state.sessions.length === 0) {
         return { ...state, flyouts: newFlyouts };

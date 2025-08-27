@@ -24,7 +24,7 @@ import {
 } from './types';
 import { EuiFlyoutManagerContext } from './provider';
 import { LEVEL_MAIN } from './const';
-import { useFlyout } from './selectors';
+import { useIsFlyoutRegistered } from './selectors';
 
 export {
   useIsFlyoutActive,
@@ -86,20 +86,33 @@ export function useFlyoutManagerReducer(
 export const useFlyoutManager = () => useContext(EuiFlyoutManagerContext);
 
 /**
- * Stable flyout ID utility. Uses the passed `id` if provided, otherwise
- * generates a deterministic ID for the component's lifetime.
+ * Stable flyout ID utility. Uses the passed `id` if provided and not already registered,
+ * otherwise generates a deterministic ID for the component's lifetime.
+ * The ID remains stable across re-renders to maintain consistency in effects and other hooks.
  */
 export const useFlyoutId = (flyoutId?: string) => {
   const defaultId = useId();
-  const existingFlyout = useFlyout(flyoutId);
-  const id = flyoutId && !!existingFlyout ? flyoutId : `flyout-${defaultId}`;
-  const componentIdRef = useRef<string>(id);
+  const isRegistered = useIsFlyoutRegistered(flyoutId);
 
-  if (existingFlyout) {
-    warnOnce(
-      `flyout-id-${flyoutId}`,
-      `Flyout with ID ${flyoutId} already registered; using new ID ${id}`
-    );
+  // Use ref to maintain ID stability across re-renders
+  const componentIdRef = useRef<string | undefined>(undefined);
+
+  if (!componentIdRef.current) {
+    // Determine the ID to use
+    if (!flyoutId) {
+      // No ID provided, generate a new one
+      componentIdRef.current = `flyout-${defaultId}`;
+    } else if (isRegistered) {
+      // ID is provided but already registered, generate a new one
+      warnOnce(
+        `flyout-id-${flyoutId}`,
+        `Flyout with ID ${flyoutId} already registered; using new ID flyout-${defaultId}`
+      );
+      componentIdRef.current = `flyout-${defaultId}`;
+    } else {
+      // ID is provided and not registered, use it
+      componentIdRef.current = flyoutId;
+    }
   }
 
   return componentIdRef.current;

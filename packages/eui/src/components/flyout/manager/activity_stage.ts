@@ -53,10 +53,12 @@ export const useFlyoutActivityStage = ({
 
   const stage: EuiFlyoutActivityStage =
     ctx?.state.flyouts.find((f) => f.flyoutId === flyoutId)?.activityStage ||
-    (isActive ? STAGE_ACTIVE : STAGE_OPENING);
+    (isActive ? STAGE_ACTIVE : STAGE_INACTIVE);
 
   const stageRef = useRef(stage);
-  stageRef.current = stage;
+  if (stageRef.current !== stage) {
+    stageRef.current = stage;
+  }
 
   /**
    * 1. ACTIVE -> CLOSING when no longer the active flyout.

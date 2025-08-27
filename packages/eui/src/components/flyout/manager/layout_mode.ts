@@ -25,38 +25,8 @@ import { EuiFlyoutLayoutMode } from './types';
  * viewport width and flyout widths/sizes.
  */
 export const useApplyFlyoutLayoutMode = () => {
-  const context = useFlyoutManager();
-  const setMode = React.useCallback(
-    (layoutMode: EuiFlyoutLayoutMode) => {
-      if (context?.dispatch && layoutMode !== context.state.layoutMode) {
-        context.dispatch(setLayoutMode(layoutMode));
-      }
-    },
-    [context]
-  );
-
-  const [windowWidth, setWindowWidth] = useState(
-    typeof window !== 'undefined' ? window.innerWidth : Infinity
-  );
-
-  useEffect(() => {
-    if (typeof window === 'undefined') {
-      return;
-    }
-
-    let rafId = 0;
-    const handleResize = () => {
-      if (rafId) cancelAnimationFrame(rafId);
-      rafId = requestAnimationFrame(() => setWindowWidth(window.innerWidth));
-    };
-    window.addEventListener('resize', handleResize);
-    return () => {
-      if (rafId) cancelAnimationFrame(rafId);
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
-
   const { euiTheme } = useEuiTheme();
+  const context = useFlyoutManager();
 
   const currentSession = useCurrentSession();
   const parentFlyoutId = currentSession?.main;
@@ -67,6 +37,43 @@ export const useApplyFlyoutLayoutMode = () => {
 
   const parentWidth = useFlyoutWidth(parentFlyoutId);
   const childWidth = useFlyoutWidth(childFlyoutId);
+
+  const [windowWidth, setWindowWidth] = useState(
+    typeof window !== 'undefined' ? window.innerWidth : Infinity
+  );
+
+  const setMode = React.useCallback(
+    (layoutMode: EuiFlyoutLayoutMode) => {
+      if (context?.dispatch && layoutMode !== context.state.layoutMode) {
+        context.dispatch(setLayoutMode(layoutMode));
+      }
+    },
+    [context]
+  );
+
+  useEffect(() => {
+    if (typeof window === 'undefined') {
+      return;
+    }
+
+    let rafId = 0;
+
+    const handleResize = () => {
+      if (rafId) {
+        cancelAnimationFrame(rafId);
+      }
+      rafId = requestAnimationFrame(() => setWindowWidth(window.innerWidth));
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      if (rafId) {
+        cancelAnimationFrame(rafId);
+      }
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   useEffect(() => {
     if (!context) {
@@ -177,5 +184,5 @@ export const getWidthFromSize = (size: string | number): number => {
 /** Current layout mode for managed flyouts (`side-by-side` or `stacked`). */
 export const useFlyoutLayoutMode = () => {
   const context = useFlyoutManager();
-  return context?.state.layoutMode || LAYOUT_MODE_SIDE_BY_SIDE;
+  return context?.state?.layoutMode || LAYOUT_MODE_SIDE_BY_SIDE;
 };

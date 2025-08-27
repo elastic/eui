@@ -10,7 +10,11 @@ import { useFlyoutManager } from './provider';
 
 export const useSession = (flyoutId?: string | null) => {
   const context = useFlyoutManager();
-  if (!context) return null;
+
+  if (!context) {
+    return null;
+  }
+
   return (
     context.state.sessions.find(
       (s) => s.main === flyoutId || s.child === flyoutId
@@ -35,6 +39,14 @@ export const useFlyout = (flyoutId?: string | null) => {
     return null;
   }
   return context.state.flyouts.find((f) => f.flyoutId === flyoutId) || null;
+};
+
+export const useIsFlyoutRegistered = (flyoutId?: string | null) => {
+  const context = useFlyoutManager();
+  if (!context || !flyoutId) {
+    return false;
+  }
+  return context.state.flyouts.some((f) => f.flyoutId === flyoutId);
 };
 
 /** The most recent flyout session or `null` if none. */
