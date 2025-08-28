@@ -50,8 +50,25 @@ export function EuiFlyoutChild({
 }: EuiFlyoutChildProps) {
   const { euiTheme } = useEuiTheme();
   const styles = useEuiMemoizedStyles(euiChildFlyoutStyles);
-  const mainWidth = useFlyoutWidth(useCurrentMainFlyout()?.flyoutId);
+  const mainFlyout = useCurrentMainFlyout();
+  const mainWidth = useFlyoutWidth(mainFlyout?.flyoutId);
   const layoutMode = useFlyoutLayoutMode();
+
+  // Runtime validation: prevent orphan child flyouts
+  if (!mainFlyout) {
+    const errorMessage =
+      'EuiFlyoutChild must be used with an EuiFlyoutMain. ' +
+      'This usually means the main flyout was not rendered before the child flyout.';
+
+    // In development, throw an error to catch the issue early
+    if (process.env.NODE_ENV === 'development') {
+      throw new Error(errorMessage);
+    }
+
+    // In production, log a warning and prevent rendering
+    console.error('EuiFlyoutChild validation failed:', errorMessage);
+    return null;
+  }
 
   let style: React.CSSProperties = {};
   if (mainWidth && layoutMode === LAYOUT_MODE_SIDE_BY_SIDE) {
