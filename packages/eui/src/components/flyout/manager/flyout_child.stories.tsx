@@ -15,12 +15,11 @@ import { EuiBreakpointSize } from '../../../services';
 import { EuiButton } from '../../button';
 import { EuiSpacer } from '../../spacer';
 import { EuiText } from '../../text';
-import { FLYOUT_TYPES } from '../flyout';
+import { FLYOUT_TYPES, EuiFlyout } from '../flyout';
 import { EuiFlyoutBody } from '../flyout_body';
 import { EuiFlyoutFooter } from '../flyout_footer';
 import { EuiFlyoutMenu } from '../flyout_menu';
 import { EuiFlyoutChild, EuiFlyoutChildProps } from './flyout_child';
-import { EuiFlyoutMain } from './flyout_main';
 import { useFlyoutLayoutMode } from './hooks';
 
 type EuiFlyoutChildActualProps = Pick<
@@ -163,6 +162,10 @@ const StatefulFlyout: React.FC<FlyoutChildStoryArgs> = ({
   ...args
 }) => {
   const [isMainOpen, setIsMainOpen] = useState(true);
+
+  /* TODO: Allow child to be open automatically on initial render. Currently,
+   * this is not supported due to the child not having a reference to the
+   * session context */
   const [isChildOpen, setIsChildOpen] = useState(false);
 
   const openMain = () => {
@@ -210,7 +213,9 @@ const StatefulFlyout: React.FC<FlyoutChildStoryArgs> = ({
       )}
 
       {isMainOpen && (
-        <EuiFlyoutMain
+        <EuiFlyout
+          session={true}
+          id="flyout-manager-playground-main"
           size={mainSize}
           type={mainFlyoutType}
           pushMinBreakpoint={pushMinBreakpoint}
@@ -237,6 +242,44 @@ const StatefulFlyout: React.FC<FlyoutChildStoryArgs> = ({
             ) : (
               <EuiButton onClick={closeChild}>Close child panel</EuiButton>
             )}
+            {isChildOpen && (
+              <EuiFlyout
+                id="flyout-manager-playground-child"
+                size={childSize}
+                backgroundStyle={childBackgroundStyle}
+                maxWidth={childMaxWidth}
+                ownFocus={false}
+                {...args}
+                onClose={closeChild}
+              >
+                <EuiFlyoutMenu title={`Child Flyout Menu (${childSize})`} />
+                <EuiFlyoutBody>
+                  <EuiText>
+                    <p>This is the child flyout content.</p>
+                    <p>Size restrictions apply:</p>
+                    <ul>
+                      <li>When main panel is 's', child can be 's', or 'm'</li>
+                      <li>When main panel is 'm', child is limited to 's'</li>
+                    </ul>
+                    <EuiSpacer />
+                    <p>
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                      Dolorum neque sequi illo, cum rerum quia ab animi velit
+                      sit incidunt inventore temporibus eaque nam veritatis amet
+                      maxime maiores optio quam?
+                    </p>
+                  </EuiText>
+                </EuiFlyoutBody>
+                {showFooter && (
+                  <EuiFlyoutFooter>
+                    <EuiText>
+                      <p>Child flyout footer</p>
+                    </EuiText>
+                  </EuiFlyoutFooter>
+                )}
+                {/* Footer is optional */}
+              </EuiFlyout>
+            )}
           </EuiFlyoutBody>
           {showFooter && (
             <EuiFlyoutFooter>
@@ -245,44 +288,7 @@ const StatefulFlyout: React.FC<FlyoutChildStoryArgs> = ({
               </EuiText>
             </EuiFlyoutFooter>
           )}
-        </EuiFlyoutMain>
-      )}
-      {isChildOpen && (
-        <EuiFlyoutChild
-          size={childSize}
-          backgroundStyle={childBackgroundStyle}
-          maxWidth={childMaxWidth}
-          ownFocus={false}
-          {...args}
-          onClose={closeChild}
-        >
-          <EuiFlyoutMenu title={`Child Flyout Menu (${childSize})`} />
-          <EuiFlyoutBody>
-            <EuiText>
-              <p>This is the child flyout content.</p>
-              <p>Size restrictions apply:</p>
-              <ul>
-                <li>When main panel is 's', child can be 's', or 'm'</li>
-                <li>When main panel is 'm', child is limited to 's'</li>
-              </ul>
-              <EuiSpacer />
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum
-                neque sequi illo, cum rerum quia ab animi velit sit incidunt
-                inventore temporibus eaque nam veritatis amet maxime maiores
-                optio quam?
-              </p>
-            </EuiText>
-          </EuiFlyoutBody>
-          {showFooter && (
-            <EuiFlyoutFooter>
-              <EuiText>
-                <p>Child flyout footer</p>
-              </EuiText>
-            </EuiFlyoutFooter>
-          )}
-          {/* Footer is optional */}
-        </EuiFlyoutChild>
+        </EuiFlyout>
       )}
     </>
   );
