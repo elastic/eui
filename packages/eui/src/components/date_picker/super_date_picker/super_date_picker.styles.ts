@@ -236,6 +236,10 @@ export const euiSuperDatePickerStyles = (euiThemeContext: UseEuiTheme) => {
       .euiFormControlLayout__prepend {
         ${logicalCSS('max-width', 'none')}
       }
+
+      .euiFormControlLayoutDelimited__delimiter:first-child {
+        ${logicalCSS('padding-horizontal', 0)}
+      }
     `,
 
     euiSuperDatePicker__range: css`
