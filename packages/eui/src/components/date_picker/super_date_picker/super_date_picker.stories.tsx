@@ -193,6 +193,61 @@ export const QuickSelectOnly: Story = {
 /**
  * VRT only
  */
+export const CollapsedQuickSelectOnly: Story = {
+  tags: ['vrt-only'],
+  parameters: {
+    controls: {
+      include: ['isQuickSelectOnly'],
+    },
+    loki: { chromeSelector: LOKI_SELECTORS.portal },
+  },
+  args: {
+    start: '2025-01-01T00:00:00',
+    end: 'now',
+    isQuickSelectOnly: false,
+  },
+  render: function Render(args) {
+    const [isCollapsed, setCollapsed] = useState(
+      args.isQuickSelectOnly ?? false
+    );
+
+    useEffect(() => {
+      if (args.isQuickSelectOnly == null) return;
+
+      setCollapsed(args.isQuickSelectOnly);
+    }, [args.isQuickSelectOnly]);
+
+    return (
+      <EuiFlexGroup>
+        <EuiFieldText
+          onFocus={() => {
+            console.log('FOCUS');
+            setCollapsed(true);
+          }}
+          data-test-subj="superDatePickerInput"
+        />
+        <EuiSuperDatePicker
+          {...args}
+          isQuickSelectOnly={isCollapsed}
+          quickSelectButtonProps={{
+            onClick: () => setCollapsed(false),
+          }}
+        />
+      </EuiFlexGroup>
+    );
+  },
+  play: async ({ canvasElement }: PlayFunctionContext<ReactRenderer>) => {
+    const canvas = within(canvasElement);
+    const input = canvas.getByTestSubject('superDatePickerInput');
+
+    await waitFor(async () => {
+      expect(input).toBeInTheDocument();
+    });
+
+    await input.focus();
+  },
+};
+
 export const OverflowingChildren: Story = {
   tags: ['vrt-only'],
   args: { start: 'Dec 31, 1999' },
