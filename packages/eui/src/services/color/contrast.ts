@@ -11,7 +11,7 @@ import { shade, tint, lightness as getLightness } from './manipulation';
 import { getOn } from '../theme/utils';
 
 export const getColorContrast = (textColor: string, backgroundColor: string) =>
-chroma.contrast(textColor, backgroundColor);
+  chroma.contrast(textColor, backgroundColor);
 
 export const wcagContrastMin = 4.5; // WCAG AA minimum contrast ratio for normal (non-large) text
 
@@ -108,7 +108,7 @@ export const makeDisabledContrastColor =
   ) =>
     makeHighContrastColor(color, ratio)(themeOrBackground);
 
-    export const warnIfContrastBelowMin = (
+export const warnIfContrastBelowMin = (
   textColor: string,
   backgroundColor: string,
   min = wcagContrastMin
