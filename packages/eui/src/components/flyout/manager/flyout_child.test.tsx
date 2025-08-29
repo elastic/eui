@@ -51,13 +51,14 @@ class ErrorBoundary extends React.Component<
   }
 }
 
-const originalConsoleError = console.error;
+let consoleErrorSpy: jest.SpyInstance;
+
 beforeAll(() => {
-  console.error = jest.fn();
+  consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
 });
 
 afterAll(() => {
-  console.error = originalConsoleError;
+  consoleErrorSpy.mockRestore();
 });
 
 describe('EuiFlyoutChild', () => {
@@ -109,7 +110,7 @@ describe('EuiFlyoutChild', () => {
         </EuiProvider>
       );
 
-      expect(console.error).toHaveBeenCalledWith(
+      expect(consoleErrorSpy).toHaveBeenCalledWith(
         'EuiFlyoutChild validation failed:',
         'EuiFlyoutChild must be used with an EuiFlyoutMain. ' +
           'This usually means the main flyout was not rendered before the child flyout.'
