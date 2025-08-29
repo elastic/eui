@@ -98,6 +98,7 @@ exports[`EuiPageTemplate children renders all other types within the main EuiPag
     >
       <div
         class="emotion-euiPageHeaderContent-l"
+        style="max-width: 1200px;"
       >
         <div
           class="css-acb1mh-flex-center"

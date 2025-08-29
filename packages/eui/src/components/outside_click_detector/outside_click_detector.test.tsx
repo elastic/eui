@@ -6,11 +6,11 @@
  * Side Public License, v 1.
  */
 
-import React, { EventHandler, MouseEvent as ReactMouseEvent } from 'react';
-import { mount } from 'enzyme';
+import React from 'react';
+import { fireEvent } from '@testing-library/react';
 import { render } from '../../test/rtl';
 
-import { EuiOutsideClickDetector, EuiEvent } from './outside_click_detector';
+import { EuiOutsideClickDetector } from './outside_click_detector';
 
 jest.mock('./../../services/accessibility', () => {
   return jest.requireActual('./../../services/accessibility');
@@ -33,34 +33,8 @@ describe('EuiOutsideClickDetector', () => {
       const parentDetector = jest.fn();
       const childDetector = jest.fn();
 
-      // enzyme doesn't mount the components into the global jsdom `document`
-      // but that's where the click detector listener is,
-      // pass the top-level mounted component's click event on to document
-      const triggerDocumentMouseDown: EventHandler<any> = (
-        e: ReactMouseEvent
-      ) => {
-        const event = new Event('mousedown') as EuiEvent;
-        event.euiGeneratedBy = (
-          e.nativeEvent as unknown as EuiEvent
-        ).euiGeneratedBy;
-        document.dispatchEvent(event);
-      };
-
-      const triggerDocumentMouseUp: EventHandler<any> = (
-        e: ReactMouseEvent
-      ) => {
-        const event = new Event('mouseup') as EuiEvent;
-        event.euiGeneratedBy = (
-          e.nativeEvent as unknown as EuiEvent
-        ).euiGeneratedBy;
-        document.dispatchEvent(event);
-      };
-
-      const component = mount(
-        <div
-          onMouseDown={triggerDocumentMouseDown}
-          onMouseUp={triggerDocumentMouseUp}
-        >
+      const { getByTestSubject } = render(
+        <div>
           <div>
             <EuiOutsideClickDetector onOutsideClick={parentDetector}>
               <div>
@@ -77,8 +51,8 @@ describe('EuiOutsideClickDetector', () => {
         </div>
       );
 
-      component.find('[data-test-subj="target"]').simulate('mousedown');
-      component.find('[data-test-subj="target"]').simulate('mouseup');
+      fireEvent.mouseDown(getByTestSubject('target'));
+      fireEvent.mouseUp(getByTestSubject('target'));
 
       expect(unrelatedDetector).toHaveBeenCalledTimes(1);
       expect(parentDetector).toHaveBeenCalledTimes(0);

@@ -7,9 +7,9 @@
  */
 
 import React from 'react';
-import { mount } from 'enzyme';
 import { requiredProps } from '../../../test';
 import { render } from '../../../test/rtl';
+import { fireEvent } from '@testing-library/react';
 
 import { EuiRadioGroup } from './radio_group';
 
@@ -106,7 +106,7 @@ describe('EuiRadioGroup', () => {
     test('id is used in callbacks when no value is available', () => {
       const callback = jest.fn();
 
-      const component = mount(
+      const { getByLabelText } = render(
         <EuiRadioGroup
           name="radiogroupname"
           options={[
@@ -117,7 +117,7 @@ describe('EuiRadioGroup', () => {
         />
       );
 
-      component.find('input[id="2"]').simulate('change');
+      fireEvent.click(getByLabelText('Option #2'));
 
       expect(callback).toHaveBeenCalledTimes(1);
       const event = expect.any(Object);
@@ -127,7 +127,7 @@ describe('EuiRadioGroup', () => {
     test('value is used in callbacks when available', () => {
       const callback = jest.fn();
 
-      const component = mount(
+      const { getByLabelText } = render(
         <EuiRadioGroup
           name="radiogroupname"
           options={[
@@ -138,7 +138,7 @@ describe('EuiRadioGroup', () => {
         />
       );
 
-      component.find('input[id="2"]').simulate('change');
+      fireEvent.click(getByLabelText('Option #2'));
 
       expect(callback).toHaveBeenCalledTimes(1);
       const event = expect.any(Object);

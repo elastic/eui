@@ -14,7 +14,7 @@ import { isDOMNode } from '../../utils';
 
 import { EuiButtonIcon } from '../button';
 
-import { EuiFocusTrap } from '../focus_trap';
+import { EuiFocusTrap, EuiFocusTrapProps } from '../focus_trap';
 import { EuiOverlayMask } from '../overlay_mask';
 import { EuiI18n } from '../i18n';
 
@@ -49,6 +49,11 @@ export interface EuiModalProps extends HTMLAttributes<HTMLDivElement> {
    * or need a user's attention should use "alertdialog".
    */
   role?: 'dialog' | 'alertdialog';
+  /**
+   * Object of props passed to EuiFocusTrap.
+   * `returnFocus` defines the return focus behavior and provides the possibility to check the available target element or opt out of the behavior in favor of manually returning focus
+   */
+  focusTrapProps?: Pick<EuiFocusTrapProps, 'returnFocus'>;
 }
 
 export const EuiModal: FunctionComponent<EuiModalProps> = ({
@@ -59,6 +64,7 @@ export const EuiModal: FunctionComponent<EuiModalProps> = ({
   maxWidth = true,
   role = 'dialog',
   style,
+  focusTrapProps,
   ...rest
 }) => {
   const onKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
@@ -93,7 +99,12 @@ export const EuiModal: FunctionComponent<EuiModalProps> = ({
 
   return (
     <EuiOverlayMask>
-      <EuiFocusTrap initialFocus={initialFocus} scrollLock preventScrollOnFocus>
+      <EuiFocusTrap
+        {...focusTrapProps}
+        initialFocus={initialFocus}
+        scrollLock
+        preventScrollOnFocus
+      >
         <div
           css={cssStyles}
           className={classes}

@@ -7,9 +7,9 @@
  */
 
 import React, { FunctionComponent, useState, PropsWithChildren } from 'react';
-import { mount } from 'enzyme';
 import { EuiMutationObserver, useMutationObserver } from './mutation_observer';
 import { sleep } from '../../../test';
+import { render } from '../../../test/rtl';
 
 export async function waitforMutationObserver(period = 30) {
   // `period` defaults to 30 because its the delay used by the MutationObserver polyfill
@@ -36,9 +36,9 @@ describe('EuiMutationObserver', () => {
       );
     };
 
-    const component = mount(<Wrapper value={5} />);
+    const { rerender } = render(<Wrapper value={5} />);
 
-    component.setProps({ value: 6 });
+    rerender(<Wrapper value={6} />);
 
     await waitforMutationObserver();
 
@@ -62,19 +62,21 @@ describe('useMutationObserver', () => {
       }
     );
 
-    const component = mount(<Wrapper children={<div>Hello World</div>} />);
+    const { rerender } = render(<Wrapper children={<div>Hello World</div>} />);
 
     await waitforMutationObserver();
     expect(mutationCallback).toHaveBeenCalledTimes(0);
 
-    component.setProps({
-      children: (
-        <div>
-          <div>Hello World</div>
-          <div>Hello Again</div>
-        </div>
-      ),
-    });
+    rerender(
+      <Wrapper
+        children={
+          <div>
+            <div>Hello World</div>
+            <div>Hello Again</div>
+          </div>
+        }
+      />
+    );
 
     await waitforMutationObserver();
     expect(mutationCallback).toHaveBeenCalledTimes(1);

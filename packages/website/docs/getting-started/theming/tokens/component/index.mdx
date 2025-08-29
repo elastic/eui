@@ -1,0 +1,60 @@
+# Components
+
+Besides the global semantic tokens, EUI also provides a set of component-scoped tokens for customizing the appearance of specific EUI components in more detail.
+These tokens are available via the `euiTheme.components` object and allow you to override or extend the default styles for specific EUI components. 
+See the available component tokens <a href="https://github.com/elastic/eui/blob/main/packages/eui-theme-common/src/global_styling/variables/components.ts" target="_blank">here</a>.
+
+:::warning Token stability
+Not all component tokens are equally stable yet and might be changed or removed in the future. Use with caution.
+:::
+
+import { ButtonsTable } from './buttons_table';
+import { FormsTable } from './forms_table';
+
+### Buttons
+
+import { Example } from '@site/src/components';
+import { ButtonsPreview } from './buttons_preview';
+
+<Example>
+  <Example.Description>
+    #### `euiTheme.components.buttons[token]` <Badge color="hollow">token</Badge>
+  </Example.Description>
+  <Example.Preview>
+    <ButtonsPreview />
+  </Example.Preview>
+  <Example.Snippet>
+    ```tsx
+    css`
+      background: ${euiTheme.components.buttons.backgroundPrimary};
+    `
+    ```
+  </Example.Snippet>
+</Example>
+
+<ButtonsTable />
+
+### Forms
+
+import { FormsPreview } from './forms_preview';
+
+<Example>
+  <Example.Description>
+    #### `euiTheme.components.forms[token]` <Badge color="hollow">token</Badge>
+  </Example.Description>
+  <Example.Preview>
+    <FormsPreview />
+  </Example.Preview>
+  <Example.Snippet>
+    ```tsx
+    css`
+      background: ${euiTheme.components.forms.backgroundDisabled};
+    `
+    ```
+  </Example.Snippet>
+</Example>
+
+<FormsTable />
+
+
+

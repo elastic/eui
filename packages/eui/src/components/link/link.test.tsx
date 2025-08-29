@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import { mount } from 'enzyme';
+import { fireEvent } from '@testing-library/react';
 import { requiredProps } from '../../test';
 import { shouldRenderCustomStyles } from '../../test/internal';
 import { render } from '../../test/rtl';
@@ -85,15 +85,15 @@ describe('EuiLink', () => {
 
   test('onClick fires for buttons', () => {
     const handler = jest.fn();
-    const component = mount(<EuiLink onClick={handler} />);
-    component.find('button').simulate('click');
-    expect(handler.mock.calls.length).toEqual(1);
+    const { getByRole } = render(<EuiLink onClick={handler} />);
+    fireEvent.click(getByRole('button'));
+    expect(handler).toHaveBeenCalledTimes(1);
   });
 
   test('onClick fires for links', () => {
     const handler = jest.fn();
-    const component = mount(<EuiLink href="#" onClick={handler} />);
-    component.find('a').simulate('click');
-    expect(handler.mock.calls.length).toEqual(1);
+    const { getByRole } = render(<EuiLink href="#" onClick={handler} />);
+    fireEvent.click(getByRole('link'));
+    expect(handler).toHaveBeenCalledTimes(1);
   });
 });

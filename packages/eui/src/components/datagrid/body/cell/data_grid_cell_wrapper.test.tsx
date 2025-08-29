@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render } from '../../../../test/rtl';
 
 import { RowHeightUtils } from '../../utils/__mocks__/row_heights';
 import { schemaDetectors } from '../../utils/data_grid_schema';
@@ -33,13 +33,8 @@ describe('Cell', () => {
     visibleColCount: 1,
   };
 
-  it('is a light wrapper around EuiDataGridCell', () => {
-    const component = shallow(<CellWrapper {...requiredProps} />);
-    expect(component.find('EuiDataGridCell').exists()).toBe(true);
-  });
-
   it('renders leading control column cells', () => {
-    const component = shallow(
+    const { container } = render(
       <CellWrapper
         {...requiredProps}
         leadingControlColumns={[
@@ -52,15 +47,13 @@ describe('Cell', () => {
         ]}
       />
     );
-    expect(
-      component
-        .find('.euiDataGridRowCell--controlColumn')
-        .hasClass('euiDataGridRowCell--firstColumn')
-    ).toBeTruthy();
+
+    const cell = container.querySelector('.euiDataGridRowCell--controlColumn');
+    expect(cell).toHaveClass('euiDataGridRowCell--firstColumn');
   });
 
   it('renders trailing control column cells', () => {
-    const component = shallow(
+    const { container } = render(
       <CellWrapper
         {...requiredProps}
         colIndex={1}
@@ -75,15 +68,13 @@ describe('Cell', () => {
         ]}
       />
     );
-    expect(
-      component
-        .find('.euiDataGridRowCell--controlColumn')
-        .hasClass('euiDataGridRowCell--lastColumn')
-    ).toBeTruthy();
+
+    const cell = container.querySelector('.euiDataGridRowCell--controlColumn');
+    expect(cell).toHaveClass('euiDataGridRowCell--lastColumn');
   });
 
   it('renders text transform classes based on schema', () => {
-    const component = shallow(
+    const { getByRole } = render(
       <CellWrapper
         {...requiredProps}
         columns={[{ id: 'b', schema: 'SHOUTING' }]}
@@ -100,17 +91,23 @@ describe('Cell', () => {
         ]}
       />
     );
-    expect(component.find('.euiDataGridRowCell--uppercase')).toHaveLength(1);
+
+    const cell = getByRole('gridcell');
+    expect(cell).toHaveClass('euiDataGridRowCell--uppercase');
   });
 
   it('allows passing optional EuiDataGridCellProps overrides', () => {
-    const component = shallow(
+    const { getByRole } = render(
       <CellWrapper
         {...requiredProps}
         columns={[{ id: 'a', isExpandable: true }]}
-        isExpandable={false}
+        width={123}
       />
     );
-    expect(component.find('EuiDataGridCell').prop('isExpandable')).toBe(false);
+
+    const cell = getByRole('gridcell');
+    expect(cell).toHaveStyle({
+      width: '123px',
+    });
   });
 });

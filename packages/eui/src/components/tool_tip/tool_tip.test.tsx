@@ -7,14 +7,13 @@
  */
 
 import React, { useRef } from 'react';
-import { mount } from 'enzyme';
-import { act, fireEvent } from '@testing-library/react';
+import { fireEvent } from '@testing-library/react';
 import {
   render,
   waitForEuiToolTipVisible,
   waitForEuiToolTipHidden,
 } from '../../test/rtl';
-import { requiredProps, findTestSubject } from '../../test';
+import { requiredProps } from '../../test';
 import { shouldRenderCustomStyles } from '../../test/internal';
 
 import { EuiToolTip } from './tool_tip';
@@ -79,36 +78,6 @@ describe('EuiToolTip', () => {
     );
 
     expect(baseElement).toMatchSnapshot();
-  });
-
-  // This is a legacy unit test to ensure tooltips/portal updates still play well with Enzyme
-  it('[enzyme] shows tooltip on focus', () => {
-    jest.useFakeTimers();
-    const component = mount(
-      <EuiToolTip
-        title="title"
-        id="id"
-        content="content"
-        {...requiredProps}
-        data-test-subj="tooltip"
-      >
-        <button data-test-subj="trigger">Trigger</button>
-      </EuiToolTip>
-    );
-
-    const trigger = findTestSubject(component, 'trigger');
-    act(() => {
-      trigger.simulate('focus');
-      jest.runAllTimers(); // wait for showToolTip setTimeout
-    });
-
-    expect(
-      document.querySelectorAll('[data-test-subj="tooltip"]')[1]
-    ).not.toBeNull();
-
-    jest.useRealTimers();
-
-    component.unmount(); // Enzyme's portals stay in the DOM otherwise
   });
 
   test('display prop renders block', () => {

@@ -9,6 +9,10 @@
 import React, { HTMLAttributes, FunctionComponent, useMemo } from 'react';
 import { CommonProps, ExclusiveUnion } from '../common';
 import classNames from 'classnames';
+import {
+  warnIfContrastBelowMin,
+  wcagContrastMin,
+} from '../../services/color/contrast';
 
 import {
   isColorDark,
@@ -170,6 +174,7 @@ export const EuiAvatar: FunctionComponent<EuiAvatarProps> = ({
       const textColor = isColorDark(...hexToRgb(assignedColor))
         ? '#FFFFFF'
         : '#000000';
+      warnIfContrastBelowMin(textColor, assignedColor, wcagContrastMin);
 
       return {
         backgroundColor: assignedColor,

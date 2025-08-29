@@ -21,14 +21,17 @@ import {
   useEuiTheme,
   useEuiMemoizedStyles,
   getSecureRelForTarget,
-  wcagContrastMin,
 } from '../../services';
 import { validateHref } from '../../services/security/href_validator';
 import { CommonProps, ExclusiveUnion, PropsOf } from '../common';
 import { EuiInnerText } from '../inner_text';
 import { EuiIcon, IconType } from '../icon';
+import { getTextColor, getIsValidColor } from './color_utils';
+import {
+  warnIfContrastBelowMin,
+  wcagContrastMin,
+} from '../../services/color/contrast';
 
-import { getTextColor, getColorContrast, getIsValidColor } from './color_utils';
 import { euiBadgeStyles } from './badge.styles';
 
 export const ICON_SIDES = ['left', 'right'] as const;
@@ -144,15 +147,8 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
       // Set dark or light text color based upon best contrast
       const textColor = getTextColor(euiTheme, color);
 
-      // Check the contrast ratio. If it's low contrast, emit a console awrning
-      const contrastRatio = getColorContrast(textColor, color);
-      if (contrastRatio < wcagContrastMin) {
-        console.warn(
-          `Warning: ${color} badge has a low contrast of ${contrastRatio.toFixed(
-            2
-          )}. Should be above ${wcagContrastMin}.`
-        );
-      }
+      // Emit a warning if contrast is below WCAG threshold (centralized util)
+      warnIfContrastBelowMin(textColor, color, wcagContrastMin);
 
       return {
         '--euiBadgeBackgroundColor': color,
