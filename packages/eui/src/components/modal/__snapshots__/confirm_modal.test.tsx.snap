@@ -19,6 +19,7 @@ exports[`EuiConfirmModal renders EuiConfirmModal without EuiModalBody, if empty 
       data-focus-lock-disabled="false"
     >
       <div
+        aria-describedby="generated-id"
         aria-label="aria-label"
         aria-modal="true"
         class="euiModal euiModal--confirmation testClass1 testClass2 emotion-euiModal-defaultMaxWidth-confirmation-euiTestCss"
@@ -26,18 +27,6 @@ exports[`EuiConfirmModal renders EuiConfirmModal without EuiModalBody, if empty 
         role="alertdialog"
         tabindex="0"
       >
-        <button
-          aria-label="Closes this modal window"
-          class="euiButtonIcon euiModal__closeIcon emotion-euiButtonIcon-xs-empty-text-euiModal__closeIcon"
-          type="button"
-        >
-          <span
-            aria-hidden="true"
-            class="euiButtonIcon__icon"
-            color="inherit"
-            data-euiicon-type="cross"
-          />
-        </button>
         <div
           class="euiModalHeader emotion-euiModalHeader"
         >
@@ -82,6 +71,24 @@ exports[`EuiConfirmModal renders EuiConfirmModal without EuiModalBody, if empty 
             </span>
           </button>
         </div>
+        <p
+          class="emotion-euiScreenReaderOnly"
+          id="generated-id"
+        >
+          You are in a modal dialog. Press Escape or tap/click outside the dialog on the shadowed overlay to close.
+        </p>
+        <button
+          aria-label="Closes this modal window"
+          class="euiButtonIcon euiModal__closeIcon emotion-euiButtonIcon-xs-empty-text-euiModal__closeIcon"
+          type="button"
+        >
+          <span
+            aria-hidden="true"
+            class="euiButtonIcon__icon"
+            color="inherit"
+            data-euiicon-type="cross"
+          />
+        </button>
       </div>
     </div>
     <div

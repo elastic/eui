@@ -152,7 +152,6 @@ describe('EuiModal', () => {
         cy.realPress('Enter');
         cy.focused().contains('Title of modal');
         cy.realPress('Tab');
-        cy.realPress('Tab');
         cy.focused().contains('Close');
         cy.realPress('Escape');
         cy.focused().contains('Show confirm modal');
@@ -185,7 +184,6 @@ describe('EuiModal', () => {
         cy.focused().contains('Show confirm modal');
         cy.realPress('Enter');
         cy.focused().contains('Title of modal');
-        cy.realPress('Tab');
         cy.realPress('Tab');
         cy.focused().contains('Show Popover');
         cy.realPress('Enter');

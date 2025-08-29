@@ -50,7 +50,9 @@ export const Playground: Story = {
     children: (
       <>
         <EuiModalHeader>
-          <EuiModalHeaderTitle>Modal title</EuiModalHeaderTitle>
+          <EuiModalHeaderTitle id="modalTitleId">
+            Modal title
+          </EuiModalHeaderTitle>
         </EuiModalHeader>
 
         <EuiModalBody>Modal body</EuiModalBody>
@@ -60,6 +62,7 @@ export const Playground: Story = {
         </EuiModalFooter>
       </>
     ),
+    'aria-labelledby': 'modalTitleId',
   },
 };
 
@@ -68,7 +71,9 @@ export const ToggleExample: Story = {
     children: (
       <>
         <EuiModalHeader>
-          <EuiModalHeaderTitle>Modal title</EuiModalHeaderTitle>
+          <EuiModalHeaderTitle id="modalTitleId">
+            Modal title
+          </EuiModalHeaderTitle>
         </EuiModalHeader>
 
         <EuiModalBody>Modal body</EuiModalBody>
@@ -80,6 +85,7 @@ export const ToggleExample: Story = {
         </EuiModalFooter>
       </>
     ),
+    'aria-labelledby': 'modalTitleId',
   },
   render: (args) => <StatefulModal {...args} />,
 };
@@ -87,6 +93,7 @@ export const ToggleExample: Story = {
 export const InitialFocus: Story = {
   args: {
     initialFocus: '[name=popfirst]',
+    'aria-labelledby': 'modalTitleId',
   },
   render: (args) => {
     const handleOnSubmit = (e: MouseEvent<HTMLButtonElement>) => {
