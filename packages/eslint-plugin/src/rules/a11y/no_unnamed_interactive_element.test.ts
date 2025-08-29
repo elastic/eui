@@ -21,15 +21,16 @@ import dedent from 'dedent';
 import { RuleTester } from '@typescript-eslint/rule-tester';
 import { NoUnnamedInteractiveElement } from './no_unnamed_interactive_element';
 
-const languageOptions = {
-  parserOptions: {
-    ecmaFeatures: {
-      jsx: true,
+const ruleTester = new RuleTester({
+  languageOptions: {
+    parser: require.resolve('@typescript-eslint/parser'),
+    parserOptions: {
+      ecmaVersion: 2022,
+      sourceType: 'module',
+      ecmaFeatures: { jsx: true },
     },
   },
-};
-
-const ruleTester = new RuleTester();
+});
 
 ruleTester.run('no-unnamed-interactive-element', NoUnnamedInteractiveElement, {
   valid: [
@@ -39,8 +40,8 @@ ruleTester.run('no-unnamed-interactive-element', NoUnnamedInteractiveElement, {
           <EuiButtonEmpty aria-label="Click me" />
         )
       `,
-      languageOptions,
     },
+
     {
       code: dedent`
         const MyComponent = () => (
@@ -49,45 +50,59 @@ ruleTester.run('no-unnamed-interactive-element', NoUnnamedInteractiveElement, {
           </EuiFormRow>
         )
       `,
-      languageOptions,
     },
+
     {
       code: dedent`
         const MyComponent = () => (
           <div>Not an EUI element</div>
         )
       `,
-      languageOptions,
     },
+
     {
       code: dedent`
         const MyComponent = () => (
           <EuiButtonIcon aria-labelledby={dynamicLabelId} />
         )
       `,
-      languageOptions,
+    },
+
+    {
+      code: dedent`
+        const MyComponent = (props) => (
+          <EuiButtonIcon {...props} />
+        )
+      `,
+    },
+
+    {
+      code: dedent`
+        const MyComponent = () => (
+          <EuiBetaBadge label="New" />
+        )
+      `,
     },
   ],
+
   invalid: [
-    // Unwrapped interactive element with no a11y name
     {
       code: dedent`
         const MyComponent = () => (
           <EuiButtonEmpty />
         )
       `,
-      languageOptions,
       errors: [
         {
           messageId: 'missingA11y',
           data: {
             component: 'EuiButtonEmpty',
-            how: '`aria-label` or `aria-labelledby`',
+            a11yProps: 'aria-label, aria-labelledby',
           },
         },
       ],
     },
-    // Wrapped interactive element; suggest wrapper's label in addition
+
     {
       code: dedent`
         const MyComponent = () => (
@@ -96,13 +111,46 @@ ruleTester.run('no-unnamed-interactive-element', NoUnnamedInteractiveElement, {
           </EuiFormRow>
         )
       `,
-      languageOptions,
       errors: [
         {
           messageId: 'missingA11y',
           data: {
             component: 'EuiFormRow',
-            how: '`aria-label` or `aria-labelledby` or the wrapper\'s \`label\` (e.g., \`EuiFormRow\`)',
+            a11yProps: 'aria-label, aria-labelledby, label',
+          },
+        },
+      ],
+    },
+
+    {
+      code: dedent`
+        const MyComponent = () => (
+          <EuiBetaBadge />
+        )
+      `,
+      errors: [
+        {
+          messageId: 'missingA11y',
+          data: {
+            component: 'EuiBetaBadge',
+            a11yProps: 'aria-label, aria-labelledby, label',
+          },
+        },
+      ],
+    },
+
+    {
+      code: dedent`
+        const MyComponent = () => (
+          <EuiButtonEmpty label="Not supported here" />
+        )
+      `,
+      errors: [
+        {
+          messageId: 'missingA11y',
+          data: {
+            component: 'EuiButtonEmpty',
+            a11yProps: 'aria-label, aria-labelledby',
           },
         },
       ],

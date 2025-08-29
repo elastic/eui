@@ -32,79 +32,84 @@ const interactiveComponents = [
   'EuiBreadcrumbs',
 ] as const;
 
-
 const wrappingComponents = ['EuiFormRow'] as const;
-const a11yProps = ['aria-label', 'aria-labelledby', 'label'] as const;
+
+const interactiveComponentsWithLabel = ['EuiBetaBadge'] as const;
+
+const baseA11yProps = ['aria-label', 'aria-labelledby'] as const;
 
 function hasSpread(attrs: TSESTree.JSXOpeningElement['attributes']): boolean {
   return attrs.some((a) => a.type === 'JSXSpreadAttribute');
 }
 
-const interactiveComponentsWithoutLabel = [
-  'EuiBetaBadge',
-  'EuiButtonIcon',
-  'EuiButtonEmpty',
-  'EuiBreadcrumbs',
-];
-
-
-function getAllowedA11yPropNamesForComponent(
-  componentName: string,
-): string[] {
-  if (interactiveComponentsWithoutLabel.includes(componentName)) {
-    return a11yProps.filter((p) => p !== 'label');
+function getAllowedA11yPropNamesForComponent(componentName: string): string[] {
+  const componentsWithLabel = new Set<string>([
+    ...interactiveComponentsWithLabel,
+    ...wrappingComponents,
+  ]);
+  if (componentsWithLabel.has(componentName)) {
+    return [...baseA11yProps, 'label'];
   }
-  return [...a11yProps];
+  return [...baseA11yProps];
 }
 
-function hasA11yProp(attrs: TSESTree.JSXOpeningElement['attributes']): boolean {
+function hasA11yPropForComponent(
+  componentName: string,
+  attrs: TSESTree.JSXOpeningElement['attributes']
+): boolean {
+  const allowed = new Set(getAllowedA11yPropNamesForComponent(componentName));
   return attrs.some(
     (attr): attr is TSESTree.JSXAttribute =>
       attr.type === 'JSXAttribute' &&
       attr.name.type === 'JSXIdentifier' &&
-      a11yProps.includes(attr.name.name as (typeof a11yProps)[number]),
+      allowed.has(attr.name.name)
   );
 }
-
 
 export const NoUnnamedInteractiveElement = ESLintUtils.RuleCreator.withoutDocs({
   meta: {
     type: 'problem',
-    hasSuggestions: false, 
+    hasSuggestions: false,
     schema: [],
     messages: {
       missingA11y:
-        '{{component}} must include an accessible label. Use one of: {{a11yProps}}'
+        '{{component}} must include an accessible label. Use one of: {{a11yProps}}',
     },
   },
   defaultOptions: [],
   create(context) {
-    const sourceCode = context.sourceCode; 
+    const sourceCode = context.sourceCode;
 
-function report(opening: TSESTree.JSXOpeningElement) {
-  if (opening.name.type !== 'JSXIdentifier') return;
-  const component = opening.name.name;
-  const allowed = getAllowedA11yPropNamesForComponent(component).join(', ');
-  context.report({
-    node: opening,
-    messageId: 'missingA11y',
-    data: {
-      component,
-      a11yProps: allowed,
-    },
-  });
-}
+    function report(opening: TSESTree.JSXOpeningElement) {
+      if (opening.name.type !== 'JSXIdentifier') return;
+      const component = opening.name.name;
+      const allowed = getAllowedA11yPropNamesForComponent(component).join(', ');
+      context.report({
+        node: opening,
+        messageId: 'missingA11y',
+        data: {
+          component,
+          a11yProps: allowed,
+        },
+      });
+    }
 
     return {
       JSXOpeningElement(node) {
         if (node.name.type !== 'JSXIdentifier') return;
 
-        const isInteractive = interactiveComponents.includes(
-          node.name.name as (typeof interactiveComponents)[number],
-        );
+        const componentName = node.name.name;
+        const isInteractive = (
+          interactiveComponents as readonly string[]
+        ).includes(componentName);
         if (!isInteractive) return;
 
-        if (hasSpread(node.attributes) || hasA11yProp(node.attributes)) return;
+        if (
+          hasSpread(node.attributes) ||
+          hasA11yPropForComponent(componentName, node.attributes)
+        ) {
+          return;
+        }
 
         const ancestors = sourceCode.getAncestors(node);
         const wrapper = [...ancestors]
@@ -113,14 +118,19 @@ function report(opening: TSESTree.JSXOpeningElement) {
             (a): a is TSESTree.JSXElement =>
               a.type === 'JSXElement' &&
               a.openingElement.name.type === 'JSXIdentifier' &&
-              wrappingComponents.includes(
-                a.openingElement.name.name as (typeof wrappingComponents)[number],
-              ),
+              (wrappingComponents as readonly string[]).includes(
+                a.openingElement.name.name
+              )
           );
 
         if (wrapper) {
           const open = wrapper.openingElement;
-          if (!hasSpread(open.attributes) && !hasA11yProp(open.attributes)) {
+          const wrapperName =
+            open.name.type === 'JSXIdentifier' ? open.name.name : '';
+          if (
+            !hasSpread(open.attributes) &&
+            !hasA11yPropForComponent(wrapperName, open.attributes)
+          ) {
             report(open);
           }
         } else {
