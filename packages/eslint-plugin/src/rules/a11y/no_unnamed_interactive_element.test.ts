@@ -44,7 +44,7 @@ ruleTester.run('no-unnamed-interactive-element', NoUnnamedInteractiveElement, {
     {
       code: dedent`
         const MyComponent = () => (
-          <EuiFormRow aria-label="Form row">
+          <EuiFormRow label="Form row">
             <EuiSelect />
           </EuiFormRow>
         )

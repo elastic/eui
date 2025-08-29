@@ -32,11 +32,29 @@ const interactiveComponents = [
   'EuiBreadcrumbs',
 ] as const;
 
+
 const wrappingComponents = ['EuiFormRow'] as const;
 const a11yProps = ['aria-label', 'aria-labelledby', 'label'] as const;
 
 function hasSpread(attrs: TSESTree.JSXOpeningElement['attributes']): boolean {
   return attrs.some((a) => a.type === 'JSXSpreadAttribute');
+}
+
+const interactiveComponentsWithoutLabel = [
+  'EuiBetaBadge',
+  'EuiButtonIcon',
+  'EuiButtonEmpty',
+  'EuiBreadcrumbs',
+];
+
+
+function getAllowedA11yPropNamesForComponent(
+  componentName: string,
+): string[] {
+  if (interactiveComponentsWithoutLabel.includes(componentName)) {
+    return a11yProps.filter((p) => p !== 'label');
+  }
+  return [...a11yProps];
 }
 
 function hasA11yProp(attrs: TSESTree.JSXOpeningElement['attributes']): boolean {
@@ -48,33 +66,34 @@ function hasA11yProp(attrs: TSESTree.JSXOpeningElement['attributes']): boolean {
   );
 }
 
-function getReadableComponentName(name: TSESTree.JSXOpeningElement['name']): string {
-  return name.type === 'JSXIdentifier' ? name.name : 'this component';
-}
 
 export const NoUnnamedInteractiveElement = ESLintUtils.RuleCreator.withoutDocs({
   meta: {
-    type: 'suggestion',
+    type: 'problem',
     hasSuggestions: false, 
     schema: [],
     messages: {
       missingA11y:
-        '{{component}} should have an accessible name via `aria-label`, `aria-labelledby`, or `label`.',
+        '{{component}} must include an accessible label. Use one of: {{a11yProps}}'
     },
   },
   defaultOptions: [],
   create(context) {
     const sourceCode = context.sourceCode; 
 
-    const report = (n: TSESTree.JSXOpeningElement) => {
-      if (n.name.type === 'JSXIdentifier') {
-        context.report({
-          node: n,
-          messageId: 'missingA11y',
-          data: { component: n.name.name },
-        });
-      }
-    };
+function report(opening: TSESTree.JSXOpeningElement) {
+  if (opening.name.type !== 'JSXIdentifier') return;
+  const component = opening.name.name;
+  const allowed = getAllowedA11yPropNamesForComponent(component).join(', ');
+  context.report({
+    node: opening,
+    messageId: 'missingA11y',
+    data: {
+      component,
+      a11yProps: allowed,
+    },
+  });
+}
 
     return {
       JSXOpeningElement(node) {
