@@ -11,7 +11,7 @@ exports[`EuiButton is rendered 1`] = `
     class="emotion-euiButtonDisplayContent"
   >
     <span
-      class="eui-textTruncate"
+      class="eui-textTruncate css-13ifi6d-m"
     >
       Content
     </span>
@@ -107,7 +107,7 @@ exports[`EuiButton props contentProps is rendered 1`] = `
     data-test-subj="test subject string"
   >
     <span
-      class="eui-textTruncate"
+      class="eui-textTruncate css-13ifi6d-m"
     >
       Content
     </span>
@@ -163,7 +163,7 @@ exports[`EuiButton props iconSide left is rendered 1`] = `
       data-euiicon-type="user"
     />
     <span
-      class="eui-textTruncate"
+      class="eui-textTruncate css-13ifi6d-m"
     >
       Content
     </span>
@@ -180,7 +180,7 @@ exports[`EuiButton props iconSide right is rendered 1`] = `
     class="emotion-euiButtonDisplayContent"
   >
     <span
-      class="eui-textTruncate"
+      class="eui-textTruncate css-13ifi6d-m"
     >
       Content
     </span>
@@ -205,7 +205,7 @@ exports[`EuiButton props iconSize m is rendered 1`] = `
       data-euiicon-type="user"
     />
     <span
-      class="eui-textTruncate"
+      class="eui-textTruncate css-13ifi6d-m"
     >
       Content
     </span>
@@ -226,7 +226,7 @@ exports[`EuiButton props iconSize s is rendered 1`] = `
       data-euiicon-type="user"
     />
     <span
-      class="eui-textTruncate"
+      class="eui-textTruncate css-13ifi6d-m"
     >
       Content
     </span>
@@ -373,7 +373,7 @@ exports[`EuiButton props textProps is rendered 1`] = `
   >
     <span
       aria-label="aria-label"
-      class="eui-textTruncate testClass1 testClass2 emotion-euiTestCss"
+      class="eui-textTruncate testClass1 testClass2 css-1mgkzdg-m-euiTestCss"
       data-test-subj="test subject string"
     >
       Content

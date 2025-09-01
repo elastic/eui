@@ -762,7 +762,7 @@ exports[`EuiInlineEditForm read mode isReadOnly 1`] = `
       class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
     >
       <span
-        class="eui-textTruncate euiButtonEmpty__text"
+        class="eui-textTruncate euiButtonEmpty__text css-13ifi6d-m"
       >
         Hello World!
       </span>
@@ -792,7 +792,7 @@ exports[`EuiInlineEditForm read mode placeholder 1`] = `
       class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
     >
       <span
-        class="eui-textTruncate euiButtonEmpty__text"
+        class="eui-textTruncate euiButtonEmpty__text css-13ifi6d-m"
       >
         This is a placeholder.
       </span>
@@ -832,7 +832,7 @@ exports[`EuiInlineEditForm read mode readModeProps 1`] = `
         data-euiicon-type="pencil"
       />
       <span
-        class="eui-textTruncate euiButtonEmpty__text"
+        class="eui-textTruncate euiButtonEmpty__text css-13ifi6d-m"
       >
         Hello World!
       </span>
@@ -864,7 +864,7 @@ exports[`EuiInlineEditForm read mode renders 1`] = `
       class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
     >
       <span
-        class="eui-textTruncate euiButtonEmpty__text"
+        class="eui-textTruncate euiButtonEmpty__text css-13ifi6d-m"
       >
         Hello World!
       </span>
@@ -900,7 +900,7 @@ exports[`EuiInlineEditForm read mode sizes 1`] = `
       class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
     >
       <span
-        class="eui-textTruncate euiButtonEmpty__text"
+        class="eui-textTruncate euiButtonEmpty__text css-1ryezsz-s"
       >
         Hello World!
       </span>

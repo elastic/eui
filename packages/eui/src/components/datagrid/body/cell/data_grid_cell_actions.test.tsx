@@ -147,7 +147,7 @@ describe('EuiDataGridCellPopoverActions', () => {
             data-euiicon-type="starEmpty"
           />
           <span
-            class="eui-textTruncate euiButtonEmpty__text"
+            class="eui-textTruncate euiButtonEmpty__text css-1ryezsz-s"
           />
         </span>
       </button>
