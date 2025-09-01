@@ -23,7 +23,18 @@ export const euiButtonDisplayContentStyles = (euiThemeContext: UseEuiTheme) => {
       justify-content: center;
       align-items: center;
       vertical-align: middle;
-      gap: ${euiTheme.size.s};
+      gap: ${euiTheme.size.xs};
     `,
+    content: {
+      xs: css`
+        ${logicalCSS('padding-horizontal', euiTheme.size.xxs)}
+      `,
+      s: css`
+        ${logicalCSS('padding-horizontal', euiTheme.size.xs)}
+      `,
+      m: css`
+        ${logicalCSS('padding-horizontal', euiTheme.size.xs)}
+      `,
+    },
   };
 };

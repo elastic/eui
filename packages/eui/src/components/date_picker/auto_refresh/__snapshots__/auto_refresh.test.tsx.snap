@@ -22,7 +22,7 @@ exports[`EuiAutoRefresh is rendered 1`] = `
             data-euiicon-type="timeRefresh"
           />
           <span
-            class="eui-textTruncate euiButtonEmpty__text"
+            class="eui-textTruncate euiButtonEmpty__text css-1ryezsz-s"
           >
             <strong>
               <small>
@@ -71,7 +71,7 @@ exports[`EuiAutoRefresh isPaused is false 1`] = `
             data-euiicon-type="timeRefresh"
           />
           <span
-            class="eui-textTruncate euiButtonEmpty__text"
+            class="eui-textTruncate euiButtonEmpty__text css-1ryezsz-s"
           >
             <strong>
               <small>
@@ -119,7 +119,7 @@ exports[`EuiAutoRefresh refreshInterval is rendered 1`] = `
             data-euiicon-type="timeRefresh"
           />
           <span
-            class="eui-textTruncate euiButtonEmpty__text"
+            class="eui-textTruncate euiButtonEmpty__text css-1ryezsz-s"
           >
             <strong>
               <small>
@@ -164,7 +164,7 @@ exports[`EuiAutoRefreshButton is rendered 1`] = `
         data-euiicon-type="timeRefresh"
       />
       <span
-        class="eui-textTruncate euiButtonEmpty__text"
+        class="eui-textTruncate euiButtonEmpty__text css-1ryezsz-s"
       >
         Off
       </span>
@@ -190,7 +190,7 @@ exports[`EuiAutoRefreshButton isPaused is false 1`] = `
         data-euiicon-type="timeRefresh"
       />
       <span
-        class="eui-textTruncate euiButtonEmpty__text"
+        class="eui-textTruncate euiButtonEmpty__text css-1ryezsz-s"
       >
         1 second
       </span>
@@ -216,7 +216,7 @@ exports[`EuiAutoRefreshButton refreshInterval is rendered 1`] = `
         data-euiicon-type="timeRefresh"
       />
       <span
-        class="eui-textTruncate euiButtonEmpty__text"
+        class="eui-textTruncate euiButtonEmpty__text css-1ryezsz-s"
       >
         2 seconds
       </span>

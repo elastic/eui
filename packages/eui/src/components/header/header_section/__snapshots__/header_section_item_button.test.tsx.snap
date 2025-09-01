@@ -11,7 +11,7 @@ exports[`EuiHeaderSectionItemButton renders 1`] = `
     class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
   >
     <span
-      class="eui-textTruncate euiButtonEmpty__text"
+      class="eui-textTruncate euiButtonEmpty__text css-13ifi6d-m"
     >
       <span
         class="euiHeaderSectionItemButton__content emotion-euiHeaderSectionItemButton__content"
@@ -31,7 +31,7 @@ exports[`EuiHeaderSectionItemButton renders a link 1`] = `
     class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
   >
     <span
-      class="eui-textTruncate euiButtonEmpty__text"
+      class="eui-textTruncate euiButtonEmpty__text css-13ifi6d-m"
     >
       <span
         class="euiHeaderSectionItemButton__content emotion-euiHeaderSectionItemButton__content"
@@ -50,7 +50,7 @@ exports[`EuiHeaderSectionItemButton renders children 1`] = `
     class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
   >
     <span
-      class="eui-textTruncate euiButtonEmpty__text"
+      class="eui-textTruncate euiButtonEmpty__text css-13ifi6d-m"
     >
       <span
         class="euiHeaderSectionItemButton__content emotion-euiHeaderSectionItemButton__content"
@@ -73,7 +73,7 @@ exports[`EuiHeaderSectionItemButton renders notification as a badge 1`] = `
     class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
   >
     <span
-      class="eui-textTruncate euiButtonEmpty__text"
+      class="eui-textTruncate euiButtonEmpty__text css-13ifi6d-m"
     >
       <span
         class="euiHeaderSectionItemButton__content emotion-euiHeaderSectionItemButton__content"
@@ -97,7 +97,7 @@ exports[`EuiHeaderSectionItemButton renders notification as a dot 1`] = `
     class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
   >
     <span
-      class="eui-textTruncate euiButtonEmpty__text"
+      class="eui-textTruncate euiButtonEmpty__text css-13ifi6d-m"
     >
       <span
         class="euiHeaderSectionItemButton__content emotion-euiHeaderSectionItemButton__content"
@@ -121,7 +121,7 @@ exports[`EuiHeaderSectionItemButton renders notification color 1`] = `
     class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
   >
     <span
-      class="eui-textTruncate euiButtonEmpty__text"
+      class="eui-textTruncate euiButtonEmpty__text css-13ifi6d-m"
     >
       <span
         class="euiHeaderSectionItemButton__content emotion-euiHeaderSectionItemButton__content"
