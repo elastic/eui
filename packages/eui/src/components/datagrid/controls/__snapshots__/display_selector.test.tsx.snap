@@ -49,7 +49,7 @@ exports[`useDataGridDisplaySelector displaySelector allows consumers to customiz
               class="emotion-euiButtonDisplayContent-euiButtonGroupButton__content-compressed"
             >
               <span
-                class="eui-textTruncate emotion-euiButtonGroupButton__text"
+                class="eui-textTruncate css-12o88cr-s-euiButtonGroupButton__text"
                 data-text="Compact"
               >
                 Compact
@@ -67,7 +67,7 @@ exports[`useDataGridDisplaySelector displaySelector allows consumers to customiz
               class="emotion-euiButtonDisplayContent-euiButtonGroupButton__content-compressed"
             >
               <span
-                class="eui-textTruncate emotion-euiButtonGroupButton__text"
+                class="eui-textTruncate css-12o88cr-s-euiButtonGroupButton__text"
                 data-text="Normal"
               >
                 Normal
@@ -85,7 +85,7 @@ exports[`useDataGridDisplaySelector displaySelector allows consumers to customiz
               class="emotion-euiButtonDisplayContent-euiButtonGroupButton__content-compressed"
             >
               <span
-                class="eui-textTruncate emotion-euiButtonGroupButton__text"
+                class="eui-textTruncate css-12o88cr-s-euiButtonGroupButton__text"
                 data-text="Expanded"
               >
                 Expanded
@@ -144,7 +144,7 @@ exports[`useDataGridDisplaySelector displaySelector allows consumers to customiz
                 class="emotion-euiButtonDisplayContent-euiButtonGroupButton__content-compressed"
               >
                 <span
-                  class="eui-textTruncate emotion-euiButtonGroupButton__text"
+                  class="eui-textTruncate css-12o88cr-s-euiButtonGroupButton__text"
                   data-text="Auto"
                 >
                   Auto
@@ -162,7 +162,7 @@ exports[`useDataGridDisplaySelector displaySelector allows consumers to customiz
                 class="emotion-euiButtonDisplayContent-euiButtonGroupButton__content-compressed"
               >
                 <span
-                  class="eui-textTruncate emotion-euiButtonGroupButton__text"
+                  class="eui-textTruncate css-12o88cr-s-euiButtonGroupButton__text"
                   data-text="Static"
                 >
                   Static
@@ -293,7 +293,7 @@ exports[`useDataGridDisplaySelector displaySelector renders a toolbar button/pop
                       class="emotion-euiButtonDisplayContent-euiButtonGroupButton__content-compressed"
                     >
                       <span
-                        class="eui-textTruncate emotion-euiButtonGroupButton__text"
+                        class="eui-textTruncate css-12o88cr-s-euiButtonGroupButton__text"
                         data-text="Compact"
                       >
                         Compact
@@ -311,7 +311,7 @@ exports[`useDataGridDisplaySelector displaySelector renders a toolbar button/pop
                       class="emotion-euiButtonDisplayContent-euiButtonGroupButton__content-compressed"
                     >
                       <span
-                        class="eui-textTruncate emotion-euiButtonGroupButton__text"
+                        class="eui-textTruncate css-12o88cr-s-euiButtonGroupButton__text"
                         data-text="Normal"
                       >
                         Normal
@@ -329,7 +329,7 @@ exports[`useDataGridDisplaySelector displaySelector renders a toolbar button/pop
                       class="emotion-euiButtonDisplayContent-euiButtonGroupButton__content-compressed"
                     >
                       <span
-                        class="eui-textTruncate emotion-euiButtonGroupButton__text"
+                        class="eui-textTruncate css-12o88cr-s-euiButtonGroupButton__text"
                         data-text="Expanded"
                       >
                         Expanded
@@ -385,7 +385,7 @@ exports[`useDataGridDisplaySelector displaySelector renders a toolbar button/pop
                         class="emotion-euiButtonDisplayContent-euiButtonGroupButton__content-compressed"
                       >
                         <span
-                          class="eui-textTruncate emotion-euiButtonGroupButton__text"
+                          class="eui-textTruncate css-12o88cr-s-euiButtonGroupButton__text"
                           data-text="Auto"
                         >
                           Auto
@@ -403,7 +403,7 @@ exports[`useDataGridDisplaySelector displaySelector renders a toolbar button/pop
                         class="emotion-euiButtonDisplayContent-euiButtonGroupButton__content-compressed"
                       >
                         <span
-                          class="eui-textTruncate emotion-euiButtonGroupButton__text"
+                          class="eui-textTruncate css-12o88cr-s-euiButtonGroupButton__text"
                           data-text="Static"
                         >
                           Static

@@ -502,7 +502,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
                   class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
                 >
                   <span
-                    class="eui-textTruncate euiButtonEmpty__text"
+                    class="eui-textTruncate euiButtonEmpty__text css-1ryezsz-s"
                   >
                     Edit
                   </span>
@@ -521,7 +521,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
                   class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
                 >
                   <span
-                    class="eui-textTruncate euiButtonEmpty__text"
+                    class="eui-textTruncate euiButtonEmpty__text css-1ryezsz-s"
                   >
                     Delete
                   </span>
@@ -650,7 +650,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
                   class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
                 >
                   <span
-                    class="eui-textTruncate euiButtonEmpty__text"
+                    class="eui-textTruncate euiButtonEmpty__text css-1ryezsz-s"
                   >
                     Edit
                   </span>
@@ -669,7 +669,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
                   class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
                 >
                   <span
-                    class="eui-textTruncate euiButtonEmpty__text"
+                    class="eui-textTruncate euiButtonEmpty__text css-1ryezsz-s"
                   >
                     Delete
                   </span>
@@ -798,7 +798,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
                   class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
                 >
                   <span
-                    class="eui-textTruncate euiButtonEmpty__text"
+                    class="eui-textTruncate euiButtonEmpty__text css-1ryezsz-s"
                   >
                     Edit
                   </span>
@@ -817,7 +817,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
                   class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
                 >
                   <span
-                    class="eui-textTruncate euiButtonEmpty__text"
+                    class="eui-textTruncate euiButtonEmpty__text css-1ryezsz-s"
                   >
                     Delete
                   </span>
@@ -929,7 +929,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
               class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
             >
               <span
-                class="eui-textTruncate euiButtonEmpty__text"
+                class="eui-textTruncate euiButtonEmpty__text css-1shwb46-xs"
               >
                 Rows per page
                 : 
@@ -991,7 +991,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
                   class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
                 >
                   <span
-                    class="eui-textTruncate euiButtonEmpty__text"
+                    class="eui-textTruncate euiButtonEmpty__text css-1ryezsz-s"
                   >
                     1
                   </span>
@@ -1013,7 +1013,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
                   class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
                 >
                   <span
-                    class="eui-textTruncate euiButtonEmpty__text"
+                    class="eui-textTruncate euiButtonEmpty__text css-1ryezsz-s"
                   >
                     2
                   </span>

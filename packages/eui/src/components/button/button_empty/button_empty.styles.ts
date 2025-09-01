@@ -75,6 +75,15 @@ export const euiButtonEmptyStyles = (euiThemeContext: UseEuiTheme) => {
           `,
         })}
       }
+
+      .euiButtonEmpty__content {
+        gap: ${euiTheme.size.s};
+      }
+
+      .euiButtonEmpty__text {
+        /* unset default EuiButtonDisplayContent text padding */
+        padding: 0;
+      }
     `,
     left: css`
       ${logicalCSS('margin-right', euiTheme.size.s)}
