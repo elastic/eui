@@ -7,7 +7,8 @@
  */
 
 import React, { useRef } from 'react';
-import { fireEvent } from '@testing-library/react';
+import { fireEvent, within } from '@testing-library/react';
+import { userEvent } from '@storybook/test';
 import {
   render,
   waitForEuiToolTipVisible,
@@ -63,13 +64,14 @@ describe('EuiToolTip', () => {
 
   it('uses custom offset prop value', async () => {
     const offsetValue = 32;
-    const { baseElement, getByTestSubject } = render(
+    const { baseElement } = render(
       <EuiToolTip content="content" offset={offsetValue} {...requiredProps}>
         <button data-test-subj="trigger">Trigger</button>
       </EuiToolTip>
     );
-    // Simulate mouse over to show tooltip
-    fireEvent.mouseOver(getByTestSubject('trigger'));
+    const trigger = within(baseElement).getByRole('button');
+
+    await userEvent.hover(trigger);
     await waitForEuiToolTipVisible();
     expect(baseElement).toMatchSnapshot();
   });
