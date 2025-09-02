@@ -16,11 +16,10 @@ import { EuiButton } from '../../button';
 import { EuiCode } from '../../code';
 import { EuiSpacer } from '../../spacer';
 import { EuiText } from '../../text';
-import { FLYOUT_TYPES } from '../flyout';
+import { FLYOUT_TYPES, EuiFlyout } from '../flyout';
 import { EuiFlyoutBody } from '../flyout_body';
 import { EuiFlyoutMenu } from '../flyout_menu';
 import { EuiFlyoutChild, EuiFlyoutChildProps } from './flyout_child';
-import { EuiFlyoutMain } from './flyout_main';
 import { useFlyoutLayoutMode } from './hooks';
 
 type EuiFlyoutChildActualProps = Pick<
@@ -147,20 +146,17 @@ const meta: Meta<FlyoutChildStoryArgs> = {
 export default meta;
 type Story = StoryObj<FlyoutChildStoryArgs>;
 
-const FillModeExampleComponent: React.FC<FlyoutChildStoryArgs> = ({
-  mainSize,
-  childSize,
-  childBackgroundStyle,
-  childMaxWidth,
-  mainFlyoutType,
-  mainMaxWidth,
-  outsideClickCloses,
-  ownFocus,
-  paddingSize,
-  pushAnimation,
-  pushMinBreakpoint,
-  ...args
-}) => {
+const Session: React.FC<FlyoutChildStoryArgs> = (args) => {
+  const {
+    mainSize,
+    childSize,
+    childBackgroundStyle,
+    childMaxWidth,
+    mainFlyoutType,
+    mainMaxWidth,
+    ...rest
+  } = args;
+
   const [isMainOpen, setIsMainOpen] = useState(true);
   const [isChildOpen, setIsChildOpen] = useState(false);
 
@@ -182,6 +178,74 @@ const FillModeExampleComponent: React.FC<FlyoutChildStoryArgs> = ({
     playgroundActions.log('Child flyout closed');
   };
 
+  return (
+    <>
+      {isMainOpen ? (
+        <EuiButton onClick={closeMain}>Close Main Flyout</EuiButton>
+      ) : (
+        <EuiButton onClick={openMain}>Open Main Flyout</EuiButton>
+      )}
+
+      {isMainOpen && (
+        <EuiFlyout
+          session={true}
+          size={mainSize}
+          type={mainFlyoutType}
+          maxWidth={mainMaxWidth}
+          ownFocus={false}
+          {...rest}
+          onClose={closeMain}
+        >
+          <EuiFlyoutMenu title={`Main Flyout Menu (${mainSize})`} />
+          <EuiFlyoutBody>
+            <EuiText>
+              <p>This is the main flyout content.</p>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum
+                neque sequi illo, cum rerum quia ab animi velit sit incidunt
+                inventore temporibus eaque nam veritatis amet maxime maiores
+                optio quam?
+              </p>
+            </EuiText>
+            <EuiSpacer />
+
+            {!isChildOpen ? (
+              <EuiButton onClick={openChild}>Open child panel</EuiButton>
+            ) : (
+              <EuiButton onClick={closeChild}>Close child panel</EuiButton>
+            )}
+          </EuiFlyoutBody>
+          {isChildOpen && (
+            <EuiFlyout
+              size={childSize}
+              backgroundStyle={childBackgroundStyle}
+              maxWidth={childMaxWidth}
+              ownFocus={false}
+              {...rest}
+              onClose={closeChild}
+            >
+              <EuiFlyoutMenu title={`Child Flyout Menu (${childSize})`} />
+              <EuiFlyoutBody>
+                <EuiText>
+                  <p>This is the child flyout content.</p>
+                  <EuiSpacer />
+                  <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Dolorum neque sequi illo, cum rerum quia ab animi velit sit
+                    incidunt inventore temporibus eaque nam veritatis amet
+                    maxime maiores optio quam?
+                  </p>
+                </EuiText>
+              </EuiFlyoutBody>
+            </EuiFlyout>
+          )}
+        </EuiFlyout>
+      )}
+    </>
+  );
+};
+
+const FillModeExampleComponent: React.FC<FlyoutChildStoryArgs> = (args) => {
   const layoutMode = useFlyoutLayoutMode();
 
   return (
@@ -206,70 +270,8 @@ const FillModeExampleComponent: React.FC<FlyoutChildStoryArgs> = ({
           </ul>
         </p>
       </EuiText>
-
       <EuiSpacer size="l" />
-
-      {isMainOpen ? (
-        <EuiButton onClick={closeMain}>Close Main Flyout</EuiButton>
-      ) : (
-        <EuiButton onClick={openMain}>Open Main Flyout</EuiButton>
-      )}
-
-      {isMainOpen && (
-        <EuiFlyoutMain
-          size={mainSize}
-          type={mainFlyoutType}
-          pushMinBreakpoint={pushMinBreakpoint}
-          maxWidth={mainMaxWidth}
-          ownFocus={false}
-          {...args}
-          onClose={closeMain}
-        >
-          <EuiFlyoutMenu title={`Main Flyout Menu (${mainSize})`} />
-          <EuiFlyoutBody>
-            <EuiText>
-              <p>This is the main flyout content.</p>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum
-                neque sequi illo, cum rerum quia ab animi velit sit incidunt
-                inventore temporibus eaque nam veritatis amet maxime maiores
-                optio quam?
-              </p>
-            </EuiText>
-            <EuiSpacer />
-
-            {!isChildOpen ? (
-              <EuiButton onClick={openChild}>Open child panel</EuiButton>
-            ) : (
-              <EuiButton onClick={closeChild}>Close child panel</EuiButton>
-            )}
-          </EuiFlyoutBody>
-        </EuiFlyoutMain>
-      )}
-      {isChildOpen && (
-        <EuiFlyoutChild
-          size={childSize}
-          backgroundStyle={childBackgroundStyle}
-          maxWidth={childMaxWidth}
-          ownFocus={false}
-          {...args}
-          onClose={closeChild}
-        >
-          <EuiFlyoutMenu title={`Child Flyout Menu (${childSize})`} />
-          <EuiFlyoutBody>
-            <EuiText>
-              <p>This is the child flyout content.</p>
-              <EuiSpacer />
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum
-                neque sequi illo, cum rerum quia ab animi velit sit incidunt
-                inventore temporibus eaque nam veritatis amet maxime maiores
-                optio quam?
-              </p>
-            </EuiText>
-          </EuiFlyoutBody>
-        </EuiFlyoutChild>
-      )}
+      <Session {...args} />
     </>
   );
 };
