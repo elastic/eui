@@ -12,7 +12,12 @@ import { requiredProps } from '../../test';
 import { shouldRenderCustomStyles } from '../../test/internal';
 
 import { EuiHeader } from '../header';
-import { EuiFlyout, SIZES, PADDING_SIZES, SIDES } from './flyout';
+import {
+  EuiFlyout,
+  FLYOUT_PADDING_SIZES,
+  FLYOUT_SIDES,
+  FLYOUT_SIZES,
+} from './flyout';
 import { EuiProvider } from '../provider';
 
 jest.mock('../overlay_mask', () => ({
@@ -137,7 +142,7 @@ describe('EuiFlyout', () => {
     });
 
     describe('sides', () => {
-      SIDES.forEach((side) => {
+      FLYOUT_SIDES.forEach((side) => {
         it(`${side} is rendered`, () => {
           const { baseElement } = render(
             <EuiFlyout onClose={() => {}} side={side} />
@@ -186,7 +191,7 @@ describe('EuiFlyout', () => {
     });
 
     describe('size', () => {
-      SIZES.forEach((size) => {
+      FLYOUT_SIZES.forEach((size) => {
         it(`${size} is rendered`, () => {
           const { baseElement } = render(
             <EuiFlyout onClose={() => {}} size={size} />
@@ -206,7 +211,7 @@ describe('EuiFlyout', () => {
     });
 
     describe('paddingSize', () => {
-      PADDING_SIZES.forEach((paddingSize) => {
+      FLYOUT_PADDING_SIZES.forEach((paddingSize) => {
         it(`${paddingSize} is rendered`, () => {
           const { baseElement } = render(
             <EuiFlyout onClose={() => {}} paddingSize={paddingSize} />
