@@ -3,7 +3,6 @@
 exports[`useEuiButtonColorCSS base 1`] = `
 {
   "accent": {
-    "map": undefined,
     "name": "t2u6im-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#a11262;background-color:#FDDDE9; 
@@ -37,10 +36,8 @@ exports[`useEuiButtonColorCSS base 1`] = `
   
             false
           ;;label:base-accent;",
-    "toString": [Function],
   },
   "accentSecondary": {
-    "map": undefined,
     "name": "q87o3e-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#046e6b;background-color:#C9F3F0; 
@@ -74,10 +71,8 @@ exports[`useEuiButtonColorCSS base 1`] = `
   
             false
           ;;label:base-accentSecondary;",
-    "toString": [Function],
   },
   "danger": {
-    "map": undefined,
     "name": "1g7pp6a-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#a71627;background-color:#FDDDD8; 
@@ -111,10 +106,8 @@ exports[`useEuiButtonColorCSS base 1`] = `
   
             false
           ;;label:base-danger;",
-    "toString": [Function],
   },
   "disabled": {
-    "map": undefined,
     "name": "up0w9g-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#798EAF;background-color:#ECF1F9; 
@@ -148,10 +141,8 @@ exports[`useEuiButtonColorCSS base 1`] = `
   
             false
           ;;label:base-disabled;",
-    "toString": [Function],
   },
   "neutral": {
-    "map": undefined,
     "name": "1uzxovy-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#0f658a;background-color:#CFEEF7; 
@@ -185,10 +176,8 @@ exports[`useEuiButtonColorCSS base 1`] = `
   
             false
           ;;label:base-neutral;",
-    "toString": [Function],
   },
   "primary": {
-    "map": undefined,
     "name": "yk1sqq-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#1750ba;background-color:#D9E8FF; 
@@ -222,10 +211,8 @@ exports[`useEuiButtonColorCSS base 1`] = `
   
             false
           ;;label:base-primary;",
-    "toString": [Function],
   },
   "risk": {
-    "map": undefined,
     "name": "gia4ur-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#9e3a16;background-color:#FFDEBF; 
@@ -259,10 +246,8 @@ exports[`useEuiButtonColorCSS base 1`] = `
   
             false
           ;;label:base-risk;",
-    "toString": [Function],
   },
   "success": {
-    "map": undefined,
     "name": "1wzbnhz-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#09724d;background-color:#C9F3E3; 
@@ -296,10 +281,8 @@ exports[`useEuiButtonColorCSS base 1`] = `
   
             false
           ;;label:base-success;",
-    "toString": [Function],
   },
   "text": {
-    "map": undefined,
     "name": "4mvtb6-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#1d2a3e;background-color:#FFFFFF; 
@@ -335,10 +318,8 @@ exports[`useEuiButtonColorCSS base 1`] = `
               border: 1px solid #CAD3E2;
             
           ;;label:base-text;",
-    "toString": [Function],
   },
   "warning": {
-    "map": undefined,
     "name": "1h4obw6-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#825803;background-color:#FDE9B5; 
@@ -372,7 +353,6 @@ exports[`useEuiButtonColorCSS base 1`] = `
   
             false
           ;;label:base-warning;",
-    "toString": [Function],
   },
 }
 `;
@@ -380,7 +360,6 @@ exports[`useEuiButtonColorCSS base 1`] = `
 exports[`useEuiButtonColorCSS empty 1`] = `
 {
   "accent": {
-    "map": undefined,
     "name": "acar8m-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#a11262;     
@@ -411,10 +390,8 @@ exports[`useEuiButtonColorCSS empty 1`] = `
           }
         }
   ;;label:empty-accent;",
-    "toString": [Function],
   },
   "accentSecondary": {
-    "map": undefined,
     "name": "ci2qqz-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#046e6b;     
@@ -445,10 +422,8 @@ exports[`useEuiButtonColorCSS empty 1`] = `
           }
         }
   ;;label:empty-accentSecondary;",
-    "toString": [Function],
   },
   "danger": {
-    "map": undefined,
     "name": "ttz2kz-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#a71627;     
@@ -479,10 +454,8 @@ exports[`useEuiButtonColorCSS empty 1`] = `
           }
         }
   ;;label:empty-danger;",
-    "toString": [Function],
   },
   "disabled": {
-    "map": undefined,
     "name": "ioqbxh-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#798EAF;     
@@ -513,10 +486,8 @@ exports[`useEuiButtonColorCSS empty 1`] = `
           }
         }
   ;;label:empty-disabled;",
-    "toString": [Function],
   },
   "neutral": {
-    "map": undefined,
     "name": "1muhyse-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#0f658a;     
@@ -547,10 +518,8 @@ exports[`useEuiButtonColorCSS empty 1`] = `
           }
         }
   ;;label:empty-neutral;",
-    "toString": [Function],
   },
   "primary": {
-    "map": undefined,
     "name": "8pznf8-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#1750ba;     
@@ -581,10 +550,8 @@ exports[`useEuiButtonColorCSS empty 1`] = `
           }
         }
   ;;label:empty-primary;",
-    "toString": [Function],
   },
   "risk": {
-    "map": undefined,
     "name": "19334xv-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#9e3a16;     
@@ -615,10 +582,8 @@ exports[`useEuiButtonColorCSS empty 1`] = `
           }
         }
   ;;label:empty-risk;",
-    "toString": [Function],
   },
   "success": {
-    "map": undefined,
     "name": "1kafuaw-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#09724d;     
@@ -649,10 +614,8 @@ exports[`useEuiButtonColorCSS empty 1`] = `
           }
         }
   ;;label:empty-success;",
-    "toString": [Function],
   },
   "text": {
-    "map": undefined,
     "name": "1j2ow8l-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#1d2a3e;     
@@ -683,10 +646,8 @@ exports[`useEuiButtonColorCSS empty 1`] = `
           }
         }
   ;;label:empty-text;",
-    "toString": [Function],
   },
   "warning": {
-    "map": undefined,
     "name": "1qptzpp-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#825803;     
@@ -717,7 +678,6 @@ exports[`useEuiButtonColorCSS empty 1`] = `
           }
         }
   ;;label:empty-warning;",
-    "toString": [Function],
   },
 }
 `;
@@ -725,7 +685,6 @@ exports[`useEuiButtonColorCSS empty 1`] = `
 exports[`useEuiButtonColorCSS fill 1`] = `
 {
   "accent": {
-    "map": undefined,
     "name": "g1i4pl-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#FFFFFF;background-color:#BC1E70;outline-color:#07101F;    
@@ -737,10 +696,8 @@ exports[`useEuiButtonColorCSS fill 1`] = `
         background-color: #831652;
       }
   ;;label:fill-accent;",
-    "toString": [Function],
   },
   "accentSecondary": {
-    "map": undefined,
     "name": "b8zumr-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#FFFFFF;background-color:#008B87;outline-color:#07101F;    
@@ -752,10 +709,8 @@ exports[`useEuiButtonColorCSS fill 1`] = `
         background-color: #065B58;
       }
   ;;label:fill-accentSecondary;",
-    "toString": [Function],
   },
   "danger": {
-    "map": undefined,
     "name": "azzo4j-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#FFFFFF;background-color:#C61E25;outline-color:#07101F;    
@@ -767,10 +722,8 @@ exports[`useEuiButtonColorCSS fill 1`] = `
         background-color: #7F1F27;
       }
   ;;label:fill-danger;",
-    "toString": [Function],
   },
   "disabled": {
-    "map": undefined,
     "name": "105tcc3-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#798EAF;background-color:#ECF1F9;outline-color:#07101F;    
@@ -782,10 +735,8 @@ exports[`useEuiButtonColorCSS fill 1`] = `
         background-color: undefined;
       }
   ;;label:fill-disabled;",
-    "toString": [Function],
   },
   "neutral": {
-    "map": undefined,
     "name": "dfjdt8-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#FFFFFF;background-color:#1C8CB5;outline-color:#07101F;    
@@ -797,10 +748,8 @@ exports[`useEuiButtonColorCSS fill 1`] = `
         background-color: #055476;
       }
   ;;label:fill-neutral;",
-    "toString": [Function],
   },
   "primary": {
-    "map": undefined,
     "name": "1kc1763-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#FFFFFF;background-color:#0B64DD;outline-color:#07101F;    
@@ -812,10 +761,8 @@ exports[`useEuiButtonColorCSS fill 1`] = `
         background-color: #154399;
       }
   ;;label:fill-primary;",
-    "toString": [Function],
   },
   "risk": {
-    "map": undefined,
     "name": "1c96cw4-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#FFFFFF;background-color:#ED6723;outline-color:#07101F;    
@@ -827,10 +774,8 @@ exports[`useEuiButtonColorCSS fill 1`] = `
         background-color: #C24411;
       }
   ;;label:fill-risk;",
-    "toString": [Function],
   },
   "success": {
-    "map": undefined,
     "name": "kg8lp3-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#FFFFFF;background-color:#008A5E;outline-color:#07101F;    
@@ -842,10 +787,8 @@ exports[`useEuiButtonColorCSS fill 1`] = `
         background-color: #0C5A3F;
       }
   ;;label:fill-success;",
-    "toString": [Function],
   },
   "text": {
-    "map": undefined,
     "name": "9ey25n-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#FFFFFF;background-color:#5A6D8C;outline-color:#07101F;    
@@ -857,10 +800,8 @@ exports[`useEuiButtonColorCSS fill 1`] = `
         background-color: #384861;
       }
   ;;label:fill-text;",
-    "toString": [Function],
   },
   "warning": {
-    "map": undefined,
     "name": "dz0udx-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#6A4906;background-color:#FACB3D;outline-color:#07101F;    
@@ -872,17 +813,14 @@ exports[`useEuiButtonColorCSS fill 1`] = `
         background-color: #EAAE01;
       }
   ;;label:fill-warning;",
-    "toString": [Function],
   },
 }
 `;
 
 exports[`useEuiButtonFocusCSS 1`] = `
 {
-  "map": undefined,
   "name": "1w5psrn-focusCSS",
   "next": undefined,
   "styles": ";",
-  "toString": [Function],
 }
 `;
