@@ -9,7 +9,8 @@
 import { css, keyframes } from '@emotion/react';
 import { euiShadowXLarge } from '@elastic/eui-theme-common';
 
-import { _EuiFlyoutPaddingSize, EuiFlyoutSize } from './flyout';
+import { _EuiFlyoutPaddingSize, EuiFlyoutSize } from './const';
+import { PROPERTY_FLYOUT } from './manager/const';
 import {
   euiCanAnimate,
   euiMaxBreakpoint,
@@ -95,9 +96,14 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
       clip-path: polygon(-50% 0, 100% 0, 100% 100%, -50% 100%);
       ${logicalCSS('right', 0)}
 
-      ${euiCanAnimate} {
-        animation: ${euiFlyoutSlideInRight} ${euiTheme.animation.normal}
-          ${euiTheme.animation.resistance};
+      /* Unmanaged flyouts: always play initial opening animation */
+      &:not([${PROPERTY_FLYOUT}]) {
+        ${euiCanAnimate} {
+          animation: ${euiFlyoutSlideInRight} ${euiTheme.animation.normal}
+            ${euiTheme.animation.resistance} forwards;
+          animation-fill-mode: forwards;
+          animation-iteration-count: 1;
+        }
       }
 
       &.euiFlyout--hasChild {
@@ -109,9 +115,14 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
       ${logicalCSS('left', 0)}
       clip-path: polygon(0 0, 150% 0, 150% 100%, 0 100%);
 
-      ${euiCanAnimate} {
-        animation: ${euiFlyoutSlideInLeft} ${euiTheme.animation.normal}
-          ${euiTheme.animation.resistance};
+      /* Unmanaged flyouts: always play initial opening animation */
+      &:not([${PROPERTY_FLYOUT}]) {
+        ${euiCanAnimate} {
+          animation: ${euiFlyoutSlideInLeft} ${euiTheme.animation.normal}
+            ${euiTheme.animation.resistance} forwards;
+          animation-fill-mode: forwards;
+          animation-iteration-count: 1;
+        }
       }
     `,
 
