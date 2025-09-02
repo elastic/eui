@@ -42,7 +42,7 @@ exports[`EuiLink it is an external link 1`] = `
   rel="noreferrer"
 >
   <span
-    class="emotion-EuiExternalLinkIcon"
+    class="emotion-euiExternalLinkIconStyles"
     data-euiicon-type="popout"
     role="presentation"
   />
@@ -136,7 +136,7 @@ exports[`EuiLink supports target 1`] = `
   target="_blank"
 >
   <span
-    class="emotion-EuiExternalLinkIcon"
+    class="emotion-euiExternalLinkIconStyles"
     data-euiicon-type="popout"
     role="presentation"
   />

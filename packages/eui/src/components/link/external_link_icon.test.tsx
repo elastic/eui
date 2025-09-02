@@ -21,7 +21,7 @@ describe('EuiExternalLinkIcon', () => {
     expect(container).toMatchInlineSnapshot(`
       <div>
         <span
-          class="emotion-EuiExternalLinkIcon"
+          class="emotion-euiExternalLinkIconStyles"
           data-euiicon-type="popout"
           role="presentation"
         />
@@ -40,7 +40,7 @@ describe('EuiExternalLinkIcon', () => {
       expect(container).toMatchInlineSnapshot(`
         <div>
           <span
-            class="emotion-EuiExternalLinkIcon"
+            class="emotion-euiExternalLinkIconStyles"
             data-euiicon-type="popout"
             role="presentation"
           />
