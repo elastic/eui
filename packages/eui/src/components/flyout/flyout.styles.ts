@@ -228,8 +228,8 @@ export const composeFlyoutSizing = (
       max: `${euiTheme.breakpoint.l}px`,
     },
 
-    // NOTE: These styles are for the flyout system when the layout mode is stacked.
-    // Side-by-side flyouts are handled in @flyout.component.tsx using inline styles.
+    // NOTE: These styles are for the flyout system in `stacked` layout mode.
+    // In `side-by-side` mode, @flyout.component.tsx uses inline styles.
     fill: {
       min: '90vw',
       width: '90vw',

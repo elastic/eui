@@ -116,9 +116,8 @@ export const useApplyFlyoutLayoutMode = () => {
     }
 
     if (!parentWidthValue || !childWidthValue) {
-      if (currentLayoutMode !== LAYOUT_MODE_SIDE_BY_SIDE) {
+      if (currentLayoutMode !== LAYOUT_MODE_SIDE_BY_SIDE)
         setMode(LAYOUT_MODE_SIDE_BY_SIDE);
-      }
       return;
     }
 

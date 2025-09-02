@@ -352,7 +352,6 @@ export const EuiFlyoutComponent = forwardRef(
      * Set inline styles
      */
     const inlineStyles = useMemo(() => {
-      // Use the helper function to compose all inline styles
       const composedStyles = composeFlyoutInlineStyles(
         size,
         layoutMode,
