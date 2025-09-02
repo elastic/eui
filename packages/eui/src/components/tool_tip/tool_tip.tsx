@@ -121,6 +121,11 @@ export interface EuiToolTipProps extends CommonProps {
    * hidden.
    */
   onMouseOut?: (event: ReactMouseEvent<HTMLSpanElement, MouseEvent>) => void;
+
+  /**
+   * Offset in pixels from the anchor. Defaults to 16.
+   */
+  offset?: number;
 }
 
 interface State {
@@ -220,6 +225,7 @@ export class EuiToolTip extends Component<EuiToolTipProps, State> {
 
   positionToolTip = () => {
     const requestedPosition = this.props.position;
+    const offset = this.props.offset ?? 16;
 
     if (!this.anchor || !this.popover) {
       return;
@@ -229,7 +235,7 @@ export class EuiToolTip extends Component<EuiToolTipProps, State> {
       anchor: this.anchor,
       popover: this.popover,
       position: requestedPosition,
-      offset: 16, // offset popover 16px from the anchor
+      offset,
       arrowConfig: {
         arrowWidth: 12,
         arrowBuffer: 4,

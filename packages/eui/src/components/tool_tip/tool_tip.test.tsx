@@ -61,6 +61,19 @@ describe('EuiToolTip', () => {
     await waitForEuiToolTipVisible();
   });
 
+  it('uses custom offset prop value', async () => {
+    const offsetValue = 32;
+    const { baseElement, getByTestSubject } = render(
+      <EuiToolTip content="content" offset={offsetValue} {...requiredProps}>
+        <button data-test-subj="trigger">Trigger</button>
+      </EuiToolTip>
+    );
+    // Simulate mouse over to show tooltip
+    fireEvent.mouseOver(getByTestSubject('trigger'));
+    await waitForEuiToolTipVisible();
+    expect(baseElement).toMatchSnapshot();
+  });
+
   test('anchor props are rendered', () => {
     const { baseElement } = render(
       <EuiToolTip
