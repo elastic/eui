@@ -51,7 +51,7 @@ describe('cloneElementWithCss', () => {
 
     expect(container.firstChild).toMatchInlineSnapshot(`
       <div
-        class="css-1x864jj-CloningParent"
+        class="css-dj8qdn"
       >
         hello world
       </div>
@@ -75,7 +75,7 @@ describe('cloneElementWithCss', () => {
 
     expect(container.firstChild).toMatchInlineSnapshot(`
       <div
-        class="css-pie7sa-TestComponent-CloningParent"
+        class="css-j795y4-TestComponent"
       >
         hello world
       </div>
