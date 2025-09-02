@@ -410,7 +410,8 @@ export const composeFlyoutInlineStyles = (
     ...customWidthStyles,
     ...dynamicStyles,
     ...minWidthOverride,
-    ...(finalMaxWidth ? { maxWidth: finalMaxWidth } : maxWidthOverrides),
+    ...(finalMaxWidth ? { maxWidth: finalMaxWidth } : {}),
+    ...maxWidthOverrides,
   };
 
   return logicalStyles(finalStyles);
