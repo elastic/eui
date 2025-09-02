@@ -374,45 +374,59 @@ export const composeFlyoutInlineStyles = (
   // Handle maxWidth prop overrides
   const maxWidthOverrides = composeMaxWidthOverrides(maxWidth, size);
 
-  // Always apply maxWidth when provided, even if we can't do dynamic calculation yet
-  let finalMaxWidth = maxWidthOverrides.maxWidth;
-  if (typeof maxWidth === 'string' || typeof maxWidth === 'number') {
-    finalMaxWidth = maxWidth as string;
-  }
+  // Calculate the final maxWidth based on conditions
+  let finalMaxWidth: string | undefined;
 
-  // Enhance with dynamic calculation when all conditions are met
   if (
-    finalMaxWidth &&
+    maxWidth &&
     size === 'fill' &&
     layoutMode === 'side-by-side' &&
     siblingFlyoutId &&
     siblingFlyoutWidth &&
-    dynamicStyles.width
+    dynamicStyles.inlineSize
   ) {
-    // Apply maxWidth as a min() function with the dynamic calculation
-    // This ensures we respect both the maxWidth constraint and the dynamic width
-    const dynamicWidth = dynamicStyles.width as string;
-
-    // Ensure maxWidth has proper units for the min() function
+    // For fill flyouts with maxWidth and a sibling: min(maxWidth, calc(90vw - siblingWidth))
+    const dynamicWidth = dynamicStyles.inlineSize as string;
     const maxWidthWithUnits =
       typeof maxWidth === 'number' ? `${maxWidth}px` : maxWidth;
     finalMaxWidth = `min(${maxWidthWithUnits}, ${dynamicWidth})`;
+  } else if (maxWidth) {
+    // For all other cases with maxWidth: use the original maxWidth value
+    finalMaxWidth =
+      typeof maxWidth === 'number' ? `${maxWidth}px` : (maxWidth as string);
   }
 
-  // For fill flyouts with maxWidth but no sibling (stacked mode or main flyout),
-  // we need to ensure the minWidth override is applied to override the CSS rule
-  const minWidthOverride =
-    size === 'fill' && maxWidth && !siblingFlyoutId
-      ? { minWidth: maxWidthOverrides.minWidth }
-      : {};
+  // For fill flyouts with maxWidth, we need to ensure the minWidth override is applied
+  // to override the CSS rule that sets min-inline-size: 90vw
+  let minWidthOverride = {};
+  if (size === 'fill' && maxWidth) {
+    if (
+      layoutMode === 'side-by-side' &&
+      siblingFlyoutId &&
+      siblingFlyoutWidth &&
+      dynamicStyles.inlineSize
+    ) {
+      // For fill flyouts with maxWidth and a sibling: min(maxWidth, calc(90vw - siblingWidth))
+      const dynamicWidth = dynamicStyles.inlineSize as string;
+      const maxWidthWithUnits =
+        typeof maxWidth === 'number' ? `${maxWidth}px` : maxWidth;
+      minWidthOverride = {
+        minWidth: `min(${maxWidthWithUnits}, ${dynamicWidth})`,
+      };
+    } else {
+      // For fill flyouts with maxWidth but no sibling: min(maxWidth, 90vw)
+      minWidthOverride = { minWidth: maxWidthOverrides.minInlineSize };
+    }
+  }
 
   const finalStyles = {
     ...customWidthStyles,
     ...dynamicStyles,
     ...minWidthOverride,
     ...(finalMaxWidth ? { maxWidth: finalMaxWidth } : {}),
-    ...maxWidthOverrides,
   };
 
-  return logicalStyles(finalStyles);
+  const logicalFinalStyles = logicalStyles(finalStyles);
+
+  return logicalFinalStyles;
 };
