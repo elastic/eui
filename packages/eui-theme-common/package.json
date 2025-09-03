@@ -32,7 +32,7 @@
     "@babel/preset-env": "^7.21.5",
     "@babel/preset-react": "^7.18.6",
     "@babel/preset-typescript": "^7.21.5",
-    "@emotion/react": "^11.11.0",
+    "@emotion/react": "^11.14.0",
     "@types/chroma-js": "^2.4.0",
     "@types/jest": "^29.5.12",
     "@types/prettier": "2.7.3",
