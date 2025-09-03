@@ -65,6 +65,12 @@ export default () => (
           <EuiIcon tabIndex="0" type="warning" title="Icon with tooltip" />
         </EuiToolTip>
       </p>
+      <p>
+        This tooltip has a{' '}
+        <EuiToolTip position="right" content="Here is some tooltip text" offset={32}>
+          <EuiLink href="#">custom offset</EuiLink>
+        </EuiToolTip>
+      </p>
     </EuiText>
   </div>
 );

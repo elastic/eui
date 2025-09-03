@@ -7,7 +7,7 @@
  */
 
 import React, { useRef } from 'react';
-import { fireEvent, within } from '@testing-library/react';
+import { fireEvent } from '@testing-library/react';
 import { userEvent } from '@storybook/test';
 import {
   render,
@@ -64,12 +64,12 @@ describe('EuiToolTip', () => {
 
   it('uses custom offset prop value', async () => {
     const offsetValue = 32;
-    const { baseElement } = render(
+    const { baseElement, getByRole } = render(
       <EuiToolTip content="content" offset={offsetValue} {...requiredProps}>
         <button data-test-subj="trigger">Trigger</button>
       </EuiToolTip>
     );
-    const trigger = within(baseElement).getByRole('button');
+    const trigger = getByRole('button');
 
     await userEvent.hover(trigger);
     await waitForEuiToolTipVisible();

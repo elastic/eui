@@ -31,6 +31,7 @@ export const POSITIONS = ['top', 'right', 'bottom', 'left'] as const;
 const DISPLAYS = ['inlineBlock', 'block'] as const;
 
 export type ToolTipDelay = 'regular' | 'long';
+export const DEFAULT_TOOLTIP_OFFSET = 16;
 
 const delayToMsMap: { [key in ToolTipDelay]: number } = {
   regular: 250,
@@ -123,7 +124,7 @@ export interface EuiToolTipProps extends CommonProps {
   onMouseOut?: (event: ReactMouseEvent<HTMLSpanElement, MouseEvent>) => void;
 
   /**
-   * Offset in pixels from the anchor. Defaults to 16.
+   * You can adjust the distance between the tooltip and its anchor using the `offset` prop. By default, this value is `16`.
    */
   offset?: number;
 }
@@ -225,7 +226,7 @@ export class EuiToolTip extends Component<EuiToolTipProps, State> {
 
   positionToolTip = () => {
     const requestedPosition = this.props.position;
-    const offset = this.props.offset ?? 16;
+    const offset = this.props.offset ?? DEFAULT_TOOLTIP_OFFSET;
 
     if (!this.anchor || !this.popover) {
       return;
