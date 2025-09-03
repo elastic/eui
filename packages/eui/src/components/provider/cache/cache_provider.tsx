@@ -7,8 +7,7 @@
  */
 
 import React, { PropsWithChildren } from 'react';
-import { EmotionCache } from '@emotion/css';
-import { CacheProvider } from '@emotion/react';
+import { CacheProvider, type EmotionCache } from '@emotion/react';
 
 export interface EuiCacheProviderProps extends PropsWithChildren {
   cache?: false | EmotionCache;
