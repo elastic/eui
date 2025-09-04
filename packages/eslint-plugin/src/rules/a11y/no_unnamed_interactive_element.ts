@@ -18,6 +18,12 @@
  */
 
 import { ESLintUtils, type TSESTree } from '@typescript-eslint/utils';
+import { hasSpread } from '../../utils/has_spread';
+import {
+  getAllowedA11yPropNamesForComponent,
+  type A11yConfig,
+} from '../../utils/get_allowed_a11y_prop_names_for_component';
+import { hasA11yPropForComponent } from '../../utils/has_a11y_prop_for_component';
 
 const interactiveComponents = [
   'EuiBetaBadge',
@@ -33,38 +39,15 @@ const interactiveComponents = [
 ] as const;
 
 const wrappingComponents = ['EuiFormRow'] as const;
-
 const interactiveComponentsWithLabel = ['EuiBetaBadge'] as const;
-
 const baseA11yProps = ['aria-label', 'aria-labelledby'] as const;
 
-function hasSpread(attrs: TSESTree.JSXOpeningElement['attributes']): boolean {
-  return attrs.some((a) => a.type === 'JSXSpreadAttribute');
-}
-
-function getAllowedA11yPropNamesForComponent(componentName: string): string[] {
-  const componentsWithLabel = new Set<string>([
-    ...interactiveComponentsWithLabel,
-    ...wrappingComponents,
-  ]);
-  if (componentsWithLabel.has(componentName)) {
-    return [...baseA11yProps, 'label'];
-  }
-  return [...baseA11yProps];
-}
-
-function hasA11yPropForComponent(
-  componentName: string,
-  attrs: TSESTree.JSXOpeningElement['attributes']
-): boolean {
-  const allowed = new Set(getAllowedA11yPropNamesForComponent(componentName));
-  return attrs.some(
-    (attr): attr is TSESTree.JSXAttribute =>
-      attr.type === 'JSXAttribute' &&
-      attr.name.type === 'JSXIdentifier' &&
-      allowed.has(attr.name.name)
-  );
-}
+// Single source of truth for the utils (keeps them reusable)
+const a11yConfig: A11yConfig = {
+  interactiveComponentsWithLabel: [...interactiveComponentsWithLabel],
+  wrappingComponents: [...wrappingComponents],
+  baseA11yProps: [...baseA11yProps],
+};
 
 export const NoUnnamedInteractiveElement = ESLintUtils.RuleCreator.withoutDocs({
   meta: {
@@ -83,7 +66,7 @@ export const NoUnnamedInteractiveElement = ESLintUtils.RuleCreator.withoutDocs({
     function report(opening: TSESTree.JSXOpeningElement) {
       if (opening.name.type !== 'JSXIdentifier') return;
       const component = opening.name.name;
-      const allowed = getAllowedA11yPropNamesForComponent(component).join(', ');
+      const allowed = getAllowedA11yPropNamesForComponent(component, a11yConfig).join(', ');
       context.report({
         node: opening,
         messageId: 'missingA11y',
@@ -106,7 +89,7 @@ export const NoUnnamedInteractiveElement = ESLintUtils.RuleCreator.withoutDocs({
 
         if (
           hasSpread(node.attributes) ||
-          hasA11yPropForComponent(componentName, node.attributes)
+          hasA11yPropForComponent(componentName, node.attributes, a11yConfig)
         ) {
           return;
         }
@@ -129,7 +112,7 @@ export const NoUnnamedInteractiveElement = ESLintUtils.RuleCreator.withoutDocs({
             open.name.type === 'JSXIdentifier' ? open.name.name : '';
           if (
             !hasSpread(open.attributes) &&
-            !hasA11yPropForComponent(wrapperName, open.attributes)
+            !hasA11yPropForComponent(wrapperName, open.attributes, a11yConfig)
           ) {
             report(open);
           }

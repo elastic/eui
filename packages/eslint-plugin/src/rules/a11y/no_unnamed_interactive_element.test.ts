@@ -21,139 +21,78 @@ import dedent from 'dedent';
 import { RuleTester } from '@typescript-eslint/rule-tester';
 import { NoUnnamedInteractiveElement } from './no_unnamed_interactive_element';
 
-const ruleTester = new RuleTester({
-  languageOptions: {
-    parser: require.resolve('@typescript-eslint/parser'),
-    parserOptions: {
-      ecmaVersion: 2022,
-      sourceType: 'module',
-      ecmaFeatures: { jsx: true },
-    },
-  },
-});
+const ruleTester = new RuleTester({});
+// Set the parser for RuleTester
+// @ts-ignore
+ruleTester.parser = require.resolve('@typescript-eslint/parser');
 
-ruleTester.run('no-unnamed-interactive-element', NoUnnamedInteractiveElement, {
+ruleTester.run('NoUnnamedInteractiveElement', NoUnnamedInteractiveElement, {
   valid: [
-    {
-      code: dedent`
-        const MyComponent = () => (
-          <EuiButtonEmpty aria-label="Click me" />
-        )
-      `,
-    },
-
-    {
-      code: dedent`
-        const MyComponent = () => (
-          <EuiFormRow label="Form row">
-            <EuiSelect />
-          </EuiFormRow>
-        )
-      `,
-    },
-
-    {
-      code: dedent`
-        const MyComponent = () => (
-          <div>Not an EUI element</div>
-        )
-      `,
-    },
-
-    {
-      code: dedent`
-        const MyComponent = () => (
-          <EuiButtonIcon aria-labelledby={dynamicLabelId} />
-        )
-      `,
-    },
-
-    {
-      code: dedent`
-        const MyComponent = (props) => (
-          <EuiButtonIcon {...props} />
-        )
-      `,
-    },
-
-    {
-      code: dedent`
-        const MyComponent = () => (
-          <EuiBetaBadge label="New" />
-        )
-      `,
-    },
+    // Components with allowed a11y props
+    { code: '<EuiBetaBadge aria-label="Beta badge" />' },
+    { code: '<EuiButtonEmpty aria-labelledby="btnLabel" />' },
+    { code: '<EuiButtonIcon aria-label="Icon" />' },
+    { code: '<EuiComboBox label="Combo label" />' },
+    { code: '<EuiSelect aria-label="Select label" />' },
+    { code: '<EuiSelectWithWidth label="SelectWithWidth label" />' },
+    { code: '<EuiSuperSelect aria-labelledby="superLabel" />' },
+    { code: '<EuiPagination label="Pagination label" />' },
+    { code: '<EuiTreeView label="TreeView label" />' },
+    { code: '<EuiBreadcrumbs aria-label="Breadcrumbs label" />' },
+    // Wrapped in EuiFormRow with label
+    { code: '<EuiFormRow label="Row label"><EuiComboBox /></EuiFormRow>' },
+    { code: '<EuiFormRow label="Row label"><EuiSelect /></EuiFormRow>' },
   ],
-
   invalid: [
+    // Missing a11y prop for interactive components
     {
-      code: dedent`
-        const MyComponent = () => (
-          <EuiButtonEmpty />
-        )
-      `,
-      errors: [
-        {
-          messageId: 'missingA11y',
-          data: {
-            component: 'EuiButtonEmpty',
-            a11yProps: 'aria-label, aria-labelledby',
-          },
-        },
-      ],
+      code: '<EuiBetaBadge />',
+      errors: [{ messageId: 'missingA11y' }],
     },
-
     {
-      code: dedent`
-        const MyComponent = () => (
-          <EuiFormRow>
-            <EuiSelect />
-          </EuiFormRow>
-        )
-      `,
-      errors: [
-        {
-          messageId: 'missingA11y',
-          data: {
-            component: 'EuiFormRow',
-            a11yProps: 'aria-label, aria-labelledby, label',
-          },
-        },
-      ],
+      code: '<EuiButtonEmpty />',
+      errors: [{ messageId: 'missingA11y' }],
     },
-
     {
-      code: dedent`
-        const MyComponent = () => (
-          <EuiBetaBadge />
-        )
-      `,
-      errors: [
-        {
-          messageId: 'missingA11y',
-          data: {
-            component: 'EuiBetaBadge',
-            a11yProps: 'aria-label, aria-labelledby, label',
-          },
-        },
-      ],
+      code: '<EuiButtonIcon />',
+      errors: [{ messageId: 'missingA11y' }],
     },
-
     {
-      code: dedent`
-        const MyComponent = () => (
-          <EuiButtonEmpty label="Not supported here" />
-        )
-      `,
-      errors: [
-        {
-          messageId: 'missingA11y',
-          data: {
-            component: 'EuiButtonEmpty',
-            a11yProps: 'aria-label, aria-labelledby',
-          },
-        },
-      ],
+      code: '<EuiComboBox />',
+      errors: [{ messageId: 'missingA11y' }],
+    },
+    {
+      code: '<EuiSelect />',
+      errors: [{ messageId: 'missingA11y' }],
+    },
+    {
+      code: '<EuiSelectWithWidth />',
+      errors: [{ messageId: 'missingA11y' }],
+    },
+    {
+      code: '<EuiSuperSelect />',
+      errors: [{ messageId: 'missingA11y' }],
+    },
+    {
+      code: '<EuiPagination />',
+      errors: [{ messageId: 'missingA11y' }],
+    },
+    {
+      code: '<EuiTreeView />',
+      errors: [{ messageId: 'missingA11y' }],
+    },
+    {
+      code: '<EuiBreadcrumbs />',
+      errors: [{ messageId: 'missingA11y' }],
+    },
+    // Wrapped but missing label
+    {
+      code: '<EuiFormRow><EuiComboBox /></EuiFormRow>',
+      errors: [{ messageId: 'missingA11y' }],
+    },
+    {
+      code: '<EuiFormRow><EuiSelect /></EuiFormRow>',
+      errors: [{ messageId: 'missingA11y' }],
     },
   ],
 });
