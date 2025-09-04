@@ -31,9 +31,11 @@ jest.mock('../flyout.component', () => {
       props: any,
       ref: any
     ) {
+      // Extract flyoutMenuProps to prevent it from being passed to DOM
+      const { flyoutMenuProps, ...domProps } = props;
       return React.createElement('div', {
         ref,
-        ...props,
+        ...domProps,
         'data-test-subj': 'managed-flyout',
         onClick: () => props.onClose && props.onClose({} as any),
       });
@@ -68,6 +70,7 @@ jest.mock('./hooks', () => ({
 jest.mock('./validation', () => ({
   validateManagedFlyoutSize: () => undefined,
   validateSizeCombination: () => undefined,
+  validateFlyoutTitle: () => undefined,
   createValidationErrorMessage: (e: any) => String(e),
   isNamedSize: () => true,
 }));

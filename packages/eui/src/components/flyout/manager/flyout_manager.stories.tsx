@@ -21,7 +21,6 @@ import {
   EuiFlexItem,
   EuiFlyoutBody,
   EuiFlyoutFooter,
-  EuiFlyoutMenu,
   EuiSpacer,
   EuiSwitch,
   EuiText,
@@ -61,13 +60,13 @@ const ShoppingCartFlyout = ({
   return (
     <EuiFlyout
       session={true}
+      aria-label="Shopping cart"
       id="shopping-cart-flyout"
       size="m"
       ownFocus={ownFocus}
       side={side}
       {...{ onClose }}
     >
-      <EuiFlyoutMenu title="Shopping cart" />
       <EuiFlyoutBody>
         <EuiText>
           <p>Item: Flux Capacitor</p>
@@ -145,13 +144,13 @@ const ReviewOrderFlyout = ({
   return (
     <EuiFlyout
       session={true}
+      aria-label="Review order"
       id="review-order-flyout"
       ownFocus={false}
       size="m"
       side={side}
       {...props}
     >
-      <EuiFlyoutMenu title="Review order" />
       <EuiFlyoutBody>
         <EuiText>
           <h3>Review your order</h3>
@@ -209,8 +208,13 @@ const ItemDetailsFlyout = ({
   side = DEFAULT_SIDE,
 }: ItemDetailsProps) => {
   return (
-    <EuiFlyout id={id} onClose={onClose} size="s" side={side}>
-      <EuiFlyoutMenu title="Item details" />
+    <EuiFlyout
+      id={id}
+      aria-label="Item details"
+      onClose={onClose}
+      size="s"
+      side={side}
+    >
       <EuiFlyoutBody>
         <EuiText>
           <p>

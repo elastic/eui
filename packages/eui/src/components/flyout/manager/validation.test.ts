@@ -12,7 +12,7 @@ import {
   validateSizeCombination,
   validateFlyoutSize,
   createValidationErrorMessage,
-  FlyoutSizeValidationError,
+  FlyoutValidationError,
 } from './validation';
 
 describe('Flyout Size Validation', () => {
@@ -133,7 +133,7 @@ describe('Flyout Size Validation', () => {
 
   describe('createValidationErrorMessage', () => {
     it('should create error message for invalid size type', () => {
-      const error: FlyoutSizeValidationError = {
+      const error: FlyoutValidationError = {
         type: 'INVALID_SIZE_TYPE',
         message:
           'Managed flyouts must use named sizes (s, m, l). Received: 100px',
@@ -149,7 +149,7 @@ describe('Flyout Size Validation', () => {
     });
 
     it('should create error message for invalid size combination', () => {
-      const error: FlyoutSizeValidationError = {
+      const error: FlyoutValidationError = {
         type: 'INVALID_SIZE_COMBINATION',
         message: 'Parent and child flyouts cannot both be size "m"',
         size: 'm',
@@ -162,7 +162,7 @@ describe('Flyout Size Validation', () => {
     });
 
     it('should create error message for invalid fill size combination', () => {
-      const error: FlyoutSizeValidationError = {
+      const error: FlyoutValidationError = {
         type: 'INVALID_SIZE_COMBINATION',
         message: 'Parent and child flyouts cannot both be size "fill"',
         size: 'fill',

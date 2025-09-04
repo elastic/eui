@@ -8,19 +8,17 @@
 
 import { EuiFlyoutSize, FLYOUT_SIZES } from '../const';
 import { EuiFlyoutComponentProps } from '../flyout.component';
+import { EuiFlyoutMenuProps } from '../flyout_menu';
 import { LEVEL_CHILD } from './const';
 import { EuiFlyoutLevel } from './types';
 
-/**
- * Business rules for flyout sizes:
- * - Managed flyouts should only accept "named" sizes (s, m, l, fill)
- * - Parent and child can't both be 'm'
- * - Parent and child can't both be 'fill'
- * - Parent can't be 'l' if there is a child
- */
+type FlyoutValidationErrorType =
+  | 'INVALID_SIZE_TYPE'
+  | 'INVALID_SIZE_COMBINATION'
+  | 'INVALID_FLYOUT_MENU_TITLE';
 
-export interface FlyoutSizeValidationError {
-  type: 'INVALID_SIZE_TYPE' | 'INVALID_SIZE_COMBINATION';
+export interface FlyoutValidationError {
+  type: FlyoutValidationErrorType;
   message: string;
   flyoutId?: string;
   level?: EuiFlyoutLevel;
@@ -41,7 +39,7 @@ export function validateManagedFlyoutSize(
   size: EuiFlyoutComponentProps['size'],
   flyoutId: string,
   level: EuiFlyoutLevel
-): FlyoutSizeValidationError | null {
+): FlyoutValidationError | null {
   if (!isNamedSize(size)) {
     const namedSizes = FLYOUT_SIZES.join(', ');
     return {
@@ -56,12 +54,31 @@ export function validateManagedFlyoutSize(
 }
 
 /**
+ * Validates that a title is provided
+ */
+export function validateFlyoutTitle(
+  flyoutMenuTitle: EuiFlyoutMenuProps['title'] | undefined,
+  flyoutId: string,
+  level: EuiFlyoutLevel
+): FlyoutValidationError | null {
+  if (!flyoutMenuTitle) {
+    return {
+      type: 'INVALID_FLYOUT_MENU_TITLE',
+      message: `Managed flyouts require either a 'flyoutMenuProps' a 'title' property, or an 'aria-label' to provide the title.`,
+      flyoutId,
+      level,
+    };
+  }
+  return null;
+}
+
+/**
  * Validates size combinations for parent-child flyouts
  */
 export function validateSizeCombination(
   parentSize: EuiFlyoutSize,
   childSize: EuiFlyoutSize
-): FlyoutSizeValidationError | null {
+): FlyoutValidationError | null {
   // Parent and child can't both be 'm'
   if (parentSize === 'm' && childSize === 'm') {
     return {
@@ -100,7 +117,7 @@ export function validateFlyoutSize(
   flyoutId: string,
   level: EuiFlyoutLevel,
   parentSize?: EuiFlyoutSize
-): FlyoutSizeValidationError | null {
+): FlyoutValidationError | null {
   // First validate that managed flyouts use named sizes
   const sizeTypeError = validateManagedFlyoutSize(size, flyoutId, level);
   if (sizeTypeError) {
@@ -124,7 +141,7 @@ export function validateFlyoutSize(
  * Creates a user-friendly error message for validation errors
  */
 export function createValidationErrorMessage(
-  error: FlyoutSizeValidationError
+  error: FlyoutValidationError
 ): string {
   const prefix = `EuiFlyout validation error: `;
 
@@ -132,6 +149,8 @@ export function createValidationErrorMessage(
     case 'INVALID_SIZE_TYPE':
       return `${prefix}${error.message}`;
     case 'INVALID_SIZE_COMBINATION':
+      return `${prefix}${error.message}`;
+    case 'INVALID_FLYOUT_MENU_TITLE':
       return `${prefix}${error.message}`;
     default:
       return `${prefix}Unknown validation error`;

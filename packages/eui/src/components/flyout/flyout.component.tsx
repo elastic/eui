@@ -67,6 +67,7 @@ import {
   isEuiFlyoutSizeNamed,
 } from './const';
 import { useIsPushed } from './hooks';
+import { EuiFlyoutMenu, EuiFlyoutMenuProps } from './flyout_menu';
 
 interface _EuiFlyoutComponentProps {
   onClose: (event: MouseEvent | TouchEvent | KeyboardEvent) => void;
@@ -166,6 +167,12 @@ interface _EuiFlyoutComponentProps {
    * Specify additional css selectors to include in the focus trap.
    */
   includeSelectorInFocusTrap?: string[] | string;
+
+  /**
+   * Props for the flyout menu to have one rendered in the flyout.
+   * If used, the close button will be automatically hidden, as the flyout menu has its own close button.
+   */
+  flyoutMenuProps?: EuiFlyoutMenuProps;
 }
 
 const defaultElement = 'div';
@@ -194,6 +201,7 @@ export const EuiFlyoutComponent = forwardRef(
       children,
       as,
       hideCloseButton = false,
+      flyoutMenuProps,
       closeButtonProps,
       closeButtonPosition = 'inside',
       onClose,
@@ -526,7 +534,7 @@ export const EuiFlyoutComponent = forwardRef(
             data-autofocus={!isPushed || undefined}
           >
             {!isPushed && screenReaderDescription}
-            {!hideCloseButton && onClose && (
+            {!flyoutMenuProps && !hideCloseButton && onClose && (
               <EuiFlyoutCloseButton
                 {...closeButtonProps}
                 onClose={onClose}
@@ -534,6 +542,7 @@ export const EuiFlyoutComponent = forwardRef(
                 side={side}
               />
             )}
+            {flyoutMenuProps && <EuiFlyoutMenu {...flyoutMenuProps} />}
             {children}
           </Element>
         </EuiFocusTrap>
