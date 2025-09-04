@@ -7,7 +7,6 @@
  */
 
 import React from 'react';
-import { shallow } from 'enzyme';
 import { fireEvent } from '@testing-library/react';
 import { render, waitForEuiToolTipVisible } from '../../test/rtl';
 import { requiredProps } from '../../test';
@@ -187,7 +186,7 @@ describe('EuiKeyPadMenuItem', () => {
   test("onClick isn't called upon instantiation", () => {
     const onClickHandler = jest.fn();
 
-    shallow(
+    render(
       <EuiKeyPadMenuItem label="Label" onClick={onClickHandler}>
         Icon
       </EuiKeyPadMenuItem>
@@ -199,13 +198,13 @@ describe('EuiKeyPadMenuItem', () => {
   test('onClick is called when the button is clicked', () => {
     const onClickHandler = jest.fn();
 
-    const $button = shallow(
+    const { getByRole } = render(
       <EuiKeyPadMenuItem label="Label" onClick={onClickHandler}>
         Icon
       </EuiKeyPadMenuItem>
     );
 
-    $button.simulate('click');
+    fireEvent.click(getByRole('button'));
 
     expect(onClickHandler).toHaveBeenCalledTimes(1);
   });

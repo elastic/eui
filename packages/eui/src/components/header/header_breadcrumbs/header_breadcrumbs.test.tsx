@@ -7,9 +7,9 @@
  */
 
 import React from 'react';
-import { mount } from 'enzyme';
-import { requiredProps } from '../../../test/required_props';
+import { requiredProps } from '../../../test';
 import { shouldRenderCustomStyles } from '../../../test/internal';
+import { render } from '../../../test/rtl';
 
 import { EuiHeaderBreadcrumbs } from './header_breadcrumbs';
 
@@ -46,20 +46,20 @@ describe('EuiHeaderBreadcrumbs', () => {
   );
 
   it('is rendered', () => {
-    const component = mount(
+    const { container } = render(
       <EuiHeaderBreadcrumbs breadcrumbs={breadcrumbs} {...requiredProps} />
     );
 
-    expect(component.render()).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   it('renders only one breadcrumb with all rounded corners', () => {
     const breadcrumbs = [{ text: 'Home' }];
 
-    const component = mount(
+    const { container } = render(
       <EuiHeaderBreadcrumbs breadcrumbs={breadcrumbs} {...requiredProps} />
     );
 
-    expect(component.render()).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 });

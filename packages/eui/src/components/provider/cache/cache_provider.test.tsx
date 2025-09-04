@@ -7,8 +7,9 @@
  */
 
 import React from 'react';
-import { shallow } from 'enzyme';
-import createCache from '@emotion/cache';
+import { render } from '../../../test/rtl';
+import createCache, { type EmotionCache } from '@emotion/cache';
+import { withEmotionCache } from '@emotion/react';
 
 import { EuiCacheProvider } from './cache_provider';
 
@@ -17,14 +18,26 @@ describe('EuiProvider', () => {
     key: 'testing',
   });
 
+  it('renders', () => {
+    const { container } = render(<EuiCacheProvider />);
+
+    expect(container).toBeInTheDocument();
+  });
+
   it('customizes CacheProvider when configured with a cache', () => {
-    const component = shallow(
+    let cacheContext: EmotionCache;
+
+    const SpyComponent = withEmotionCache((_, context) => {
+      cacheContext = context;
+      return <div />;
+    });
+
+    render(
       <EuiCacheProvider cache={cache}>
-        <div />
+        <SpyComponent />
       </EuiCacheProvider>
     );
 
-    expect(component).toMatchSnapshot();
-    expect(component.prop('value').key).toEqual('testing');
+    expect(cacheContext!.key).toEqual('testing');
   });
 });

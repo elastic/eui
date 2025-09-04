@@ -56,7 +56,7 @@ const updateVersions = async () => {
 
     // Add and commit the file
     exec(
-      `git add ${versionsFile} && git commit -m "chore: update versions.json [skip ci]"`,
+      `git add ${versionsFile} && git commit -m "chore: update versions.json"`,
       (err) => {
         if (err) {
           console.error('Error committing the file:', err);

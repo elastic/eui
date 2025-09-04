@@ -225,7 +225,7 @@ export const EuiPageHeaderContent: FunctionComponent<
   // Don't go any further if there's no other content than children
   if (onlyChildren) {
     return (
-      <div css={cssStyles} {...rest}>
+      <div css={cssStyles} style={styles} {...rest}>
         <div css={childrenOnlyStyles}>{children}</div>
       </div>
     );

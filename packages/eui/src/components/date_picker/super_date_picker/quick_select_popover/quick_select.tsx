@@ -130,10 +130,8 @@ export class EuiQuickSelect extends Component<
     const { min, max } = this.getBounds();
     const diff = max.diff(min);
     this.props.applyTime({
-      start: moment(max).add(1, 'ms').toISOString(),
-      end: moment(max)
-        .add(diff + 1, 'ms')
-        .toISOString(),
+      start: moment(max).toISOString(),
+      end: moment(max).add(diff, 'ms').toISOString(),
       keepPopoverOpen: true,
     });
   };
@@ -142,10 +140,8 @@ export class EuiQuickSelect extends Component<
     const { min, max } = this.getBounds();
     const diff = max.diff(min);
     this.props.applyTime({
-      start: moment(min)
-        .subtract(diff + 1, 'ms')
-        .toISOString(),
-      end: moment(min).subtract(1, 'ms').toISOString(),
+      start: moment(min).subtract(diff, 'ms').toISOString(),
+      end: moment(min).toISOString(),
       keepPopoverOpen: true,
     });
   };

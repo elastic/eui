@@ -7,8 +7,8 @@
  */
 
 import React from 'react';
-import { mount } from 'enzyme';
-import { findTestSubject, requiredProps } from '../../test';
+import { fireEvent } from '@testing-library/react';
+import { requiredProps } from '../../test';
 import { render } from '../../test/rtl';
 
 import { COLORS, EuiToast } from './toast';
@@ -56,11 +56,12 @@ describe('EuiToast', () => {
       test('is called when the close button is clicked', () => {
         const onCloseHandler = jest.fn();
 
-        const component = mount(
+        const { getByTestSubject } = render(
           <EuiToast onClose={onCloseHandler} title="test title" />
         );
-        const closeButton = findTestSubject(component, 'toastCloseButton');
-        closeButton.simulate('click');
+
+        const closeButton = getByTestSubject('toastCloseButton');
+        fireEvent.click(closeButton);
 
         expect(onCloseHandler).toHaveBeenCalledTimes(1);
       });

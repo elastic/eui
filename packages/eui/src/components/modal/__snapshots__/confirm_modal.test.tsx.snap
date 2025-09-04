@@ -1,185 +1,101 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EuiConfirmModal renders EuiConfirmModal 1`] = `
-[
-  <div
-    data-focus-guard="true"
-    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-    tabindex="0"
-  />,
-  <div
-    data-focus-lock-disabled="false"
-  >
-    <div
-      aria-label="aria-label"
-      aria-modal="true"
-      class="euiModal euiModal--confirmation testClass1 testClass2 emotion-euiModal-defaultMaxWidth-confirmation-euiTestCss"
-      data-test-subj="test subject string"
-      role="alertdialog"
-      tabindex="0"
-    >
-      <button
-        aria-label="Closes this modal window"
-        class="euiButtonIcon euiModal__closeIcon emotion-euiButtonIcon-xs-empty-text-euiModal__closeIcon"
-        type="button"
-      >
-        <span
-          aria-hidden="true"
-          class="euiButtonIcon__icon"
-          color="inherit"
-          data-euiicon-type="cross"
-        />
-      </button>
-      <div
-        class="euiModalHeader emotion-euiModalHeader"
-      >
-        <h1
-          class="euiTitle euiModalHeader__title emotion-euiTitle-m"
-          data-test-subj="confirmModalTitleText"
-        >
-          A confirmation modal
-        </h1>
-      </div>
-      <div
-        class="euiModalBody emotion-euiModalBody"
-      >
-        <div
-          class="euiModalBody__overflow emotion-euiModalBody__overflow"
-        >
-          <div
-            class="euiText emotion-euiText-m"
-            data-test-subj="confirmModalBodyText"
-          >
-            <p>
-              This is a confirmation modal example
-            </p>
-          </div>
-        </div>
-      </div>
-      <div
-        class="euiModalFooter emotion-euiModalFooter"
-      >
-        <button
-          class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-m-empty-primary"
-          data-test-subj="confirmModalCancelButton"
-          type="button"
-        >
-          <span
-            class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
-          >
-            <span
-              class="eui-textTruncate euiButtonEmpty__text"
-            >
-              Cancel Button Text
-            </span>
-          </span>
-        </button>
-        <button
-          class="euiButton emotion-euiButtonDisplay-m-defaultMinWidth-fill-primary"
-          data-test-subj="confirmModalConfirmButton"
-          type="button"
-        >
-          <span
-            class="emotion-euiButtonDisplayContent"
-          >
-            <span
-              class="eui-textTruncate"
-            >
-              Confirm Button Text
-            </span>
-          </span>
-        </button>
-      </div>
-    </div>
-  </div>,
-  <div
-    data-focus-guard="true"
-    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-    tabindex="0"
-  />,
-]
-`;
+exports[`EuiConfirmModal renders EuiConfirmModal 1`] = `null`;
 
 exports[`EuiConfirmModal renders EuiConfirmModal without EuiModalBody, if empty 1`] = `
-[
+<body>
+  <div />
   <div
-    data-focus-guard="true"
-    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-    tabindex="0"
-  />,
-  <div
-    data-focus-lock-disabled="false"
+    class="euiOverlayMask emotion-euiOverlayMask-aboveHeader"
+    data-euiportal="true"
+    data-relative-to-header="above"
   >
     <div
-      aria-label="aria-label"
-      aria-modal="true"
-      class="euiModal euiModal--confirmation testClass1 testClass2 emotion-euiModal-defaultMaxWidth-confirmation-euiTestCss"
-      data-test-subj="test subject string"
-      role="alertdialog"
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
       tabindex="0"
+    />
+    <div
+      data-focus-lock-disabled="false"
     >
-      <button
-        aria-label="Closes this modal window"
-        class="euiButtonIcon euiModal__closeIcon emotion-euiButtonIcon-xs-empty-text-euiModal__closeIcon"
-        type="button"
-      >
-        <span
-          aria-hidden="true"
-          class="euiButtonIcon__icon"
-          color="inherit"
-          data-euiicon-type="cross"
-        />
-      </button>
       <div
-        class="euiModalHeader emotion-euiModalHeader"
+        aria-describedby="generated-id"
+        aria-label="aria-label"
+        aria-modal="true"
+        class="euiModal euiModal--confirmation testClass1 testClass2 emotion-euiModal-defaultMaxWidth-confirmation-euiTestCss"
+        data-test-subj="test subject string"
+        role="alertdialog"
+        tabindex="0"
       >
-        <h1
-          class="euiTitle euiModalHeader__title emotion-euiTitle-m"
-          data-test-subj="confirmModalTitleText"
+        <div
+          class="euiModalHeader emotion-euiModalHeader"
         >
-          A confirmation modal
-        </h1>
-      </div>
-      <div
-        class="euiModalFooter emotion-euiModalFooter"
-      >
+          <h1
+            class="euiTitle euiModalHeader__title emotion-euiTitle-m"
+            data-test-subj="confirmModalTitleText"
+          >
+            A confirmation modal
+          </h1>
+        </div>
+        <div
+          class="euiModalFooter emotion-euiModalFooter"
+        >
+          <button
+            class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-m-empty-primary"
+            data-test-subj="confirmModalCancelButton"
+            type="button"
+          >
+            <span
+              class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
+            >
+              <span
+                class="eui-textTruncate euiButtonEmpty__text"
+              >
+                Cancel Button Text
+              </span>
+            </span>
+          </button>
+          <button
+            class="euiButton emotion-euiButtonDisplay-m-defaultMinWidth-fill-primary"
+            data-test-subj="confirmModalConfirmButton"
+            type="button"
+          >
+            <span
+              class="emotion-euiButtonDisplayContent"
+            >
+              <span
+                class="eui-textTruncate"
+              >
+                Confirm Button Text
+              </span>
+            </span>
+          </button>
+        </div>
+        <p
+          class="emotion-euiScreenReaderOnly"
+          id="generated-id"
+        >
+          You are in a modal dialog. Press Escape or tap/click outside the dialog on the shadowed overlay to close.
+        </p>
         <button
-          class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-m-empty-primary"
-          data-test-subj="confirmModalCancelButton"
+          aria-label="Closes this modal window"
+          class="euiButtonIcon euiModal__closeIcon emotion-euiButtonIcon-xs-empty-text-euiModal__closeIcon"
           type="button"
         >
           <span
-            class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
-          >
-            <span
-              class="eui-textTruncate euiButtonEmpty__text"
-            >
-              Cancel Button Text
-            </span>
-          </span>
-        </button>
-        <button
-          class="euiButton emotion-euiButtonDisplay-m-defaultMinWidth-fill-primary"
-          data-test-subj="confirmModalConfirmButton"
-          type="button"
-        >
-          <span
-            class="emotion-euiButtonDisplayContent"
-          >
-            <span
-              class="eui-textTruncate"
-            >
-              Confirm Button Text
-            </span>
-          </span>
+            aria-hidden="true"
+            class="euiButtonIcon__icon"
+            color="inherit"
+            data-euiicon-type="cross"
+          />
         </button>
       </div>
     </div>
-  </div>,
-  <div
-    data-focus-guard="true"
-    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-    tabindex="0"
-  />,
-]
+    <div
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="0"
+    />
+  </div>
+</body>
 `;

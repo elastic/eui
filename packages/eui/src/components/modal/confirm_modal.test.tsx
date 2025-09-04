@@ -7,14 +7,10 @@
  */
 
 import React from 'react';
-import { mount } from 'enzyme';
+import { fireEvent, waitFor } from '@testing-library/react';
 import { render } from '../../test/rtl';
 
-import {
-  findTestSubject,
-  requiredProps,
-  takeMountedSnapshot,
-} from '../../test';
+import { requiredProps } from '../../test';
 import { keys } from '../../services';
 import { shouldRenderCustomStyles } from '../../test/internal';
 
@@ -41,7 +37,7 @@ describe('EuiConfirmModal', () => {
   );
 
   test('renders EuiConfirmModal', () => {
-    const component = mount(
+    const { container } = render(
       <EuiConfirmModal
         title="A confirmation modal"
         onCancel={() => {}}
@@ -53,13 +49,11 @@ describe('EuiConfirmModal', () => {
         This is a confirmation modal example
       </EuiConfirmModal>
     );
-    expect(
-      takeMountedSnapshot(component, { hasArrayOutput: true })
-    ).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('renders EuiConfirmModal without EuiModalBody, if empty', () => {
-    const component = mount(
+    const { baseElement } = render(
       <EuiConfirmModal
         title="A confirmation modal"
         onCancel={() => {}}
@@ -69,13 +63,11 @@ describe('EuiConfirmModal', () => {
         {...requiredProps}
       />
     );
-    expect(
-      takeMountedSnapshot(component, { hasArrayOutput: true })
-    ).toMatchSnapshot();
+    expect(baseElement).toMatchSnapshot();
   });
 
   test('onConfirm', () => {
-    const component = mount(
+    const { getByTestSubject } = render(
       <EuiConfirmModal
         onCancel={onCancel}
         onConfirm={onConfirm}
@@ -84,13 +76,13 @@ describe('EuiConfirmModal', () => {
       />
     );
 
-    findTestSubject(component, 'confirmModalConfirmButton').simulate('click');
+    fireEvent.click(getByTestSubject('confirmModalConfirmButton'));
     expect(onConfirm).toHaveBeenCalledTimes(1);
     expect(onCancel).toHaveBeenCalledTimes(0);
   });
 
   test('isLoading', () => {
-    const component = mount(
+    const { getByTestSubject } = render(
       <EuiConfirmModal
         onCancel={onCancel}
         onConfirm={onConfirm}
@@ -100,12 +92,12 @@ describe('EuiConfirmModal', () => {
       />
     );
 
-    findTestSubject(component, 'confirmModalConfirmButton').simulate('click');
+    fireEvent.click(getByTestSubject('confirmModalConfirmButton'));
     expect(onConfirm).toHaveBeenCalledTimes(0);
   });
 
   test('onConfirm can be disabled', () => {
-    const component = mount(
+    const { getByTestSubject } = render(
       <EuiConfirmModal
         onCancel={onCancel}
         onConfirm={onConfirm}
@@ -115,14 +107,14 @@ describe('EuiConfirmModal', () => {
       />
     );
 
-    findTestSubject(component, 'confirmModalConfirmButton').simulate('click');
+    fireEvent.click(getByTestSubject('confirmModalConfirmButton'));
     expect(onConfirm).toHaveBeenCalledTimes(0);
     expect(onCancel).toHaveBeenCalledTimes(0);
   });
 
   describe('onCancel', () => {
     test('triggerd by click', () => {
-      const component = mount(
+      const { getByTestSubject } = render(
         <EuiConfirmModal
           onCancel={onCancel}
           onConfirm={onConfirm}
@@ -131,13 +123,13 @@ describe('EuiConfirmModal', () => {
         />
       );
 
-      findTestSubject(component, 'confirmModalCancelButton').simulate('click');
+      fireEvent.click(getByTestSubject('confirmModalCancelButton'));
       expect(onConfirm).toHaveBeenCalledTimes(0);
       expect(onCancel).toHaveBeenCalledTimes(1);
     });
 
     test('triggered by esc key', () => {
-      const component = mount(
+      const { getByTestSubject } = render(
         <EuiConfirmModal
           onCancel={onCancel}
           onConfirm={onConfirm}
@@ -147,7 +139,7 @@ describe('EuiConfirmModal', () => {
         />
       );
 
-      findTestSubject(component, 'modal').simulate('keydown', {
+      fireEvent.keyDown(getByTestSubject('modal'), {
         key: keys.ESCAPE,
       });
       expect(onConfirm).toHaveBeenCalledTimes(0);
@@ -156,8 +148,8 @@ describe('EuiConfirmModal', () => {
   });
 
   describe('defaultFocusedButton', () => {
-    test('is cancel', (done) => {
-      const component = mount(
+    test('is cancel', async () => {
+      const { getByTestSubject } = render(
         <EuiConfirmModal
           onCancel={onCancel}
           onConfirm={onConfirm}
@@ -167,19 +159,14 @@ describe('EuiConfirmModal', () => {
         />
       );
 
-      // The auto-focus implementation waits a frame before focusing.
-      requestAnimationFrame(() => {
-        const button = findTestSubject(
-          component,
-          'confirmModalCancelButton'
-        ).getDOMNode();
+      await waitFor(() => {
+        const button = getByTestSubject('confirmModalCancelButton');
         expect(document.activeElement).toEqual(button);
-        done();
       });
     });
 
-    test('is confirm', (done) => {
-      const component = mount(
+    test('is confirm', async () => {
+      const { getByTestSubject } = render(
         <EuiConfirmModal
           onCancel={onCancel}
           onConfirm={onConfirm}
@@ -189,14 +176,9 @@ describe('EuiConfirmModal', () => {
         />
       );
 
-      // The auto-focus implementation waits a frame before focusing.
-      requestAnimationFrame(() => {
-        const button = findTestSubject(
-          component,
-          'confirmModalConfirmButton'
-        ).getDOMNode();
+      await waitFor(() => {
+        const button = getByTestSubject('confirmModalConfirmButton');
         expect(document.activeElement).toEqual(button);
-        done();
       });
     });
   });

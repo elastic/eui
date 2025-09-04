@@ -8,9 +8,11 @@
 
 import React, { useEffect, useState } from 'react';
 import moment from 'moment';
+import { css } from '@emotion/react';
 import type { Meta, ReactRenderer, StoryObj } from '@storybook/react';
 import { expect, fireEvent, waitFor } from '@storybook/test';
-import type { PlayFunctionContext } from '@storybook/csf';
+import { StoryContext } from '@storybook/csf';
+
 import { within } from '../../../../.storybook/test';
 import { LOKI_SELECTORS } from '../../../../.storybook/loki';
 import { enableFunctionToggleControls } from '../../../../.storybook/utils';
@@ -21,6 +23,8 @@ import { ApplyTime, REFRESH_UNIT_OPTIONS } from '../types';
 import {
   EuiSuperDatePicker,
   EuiSuperDatePickerProps,
+  OnRefreshProps,
+  OnTimeChangeProps,
 } from './super_date_picker';
 import { EuiFieldText } from '../../form';
 import { EuiFlexGroup } from '../../flex';
@@ -28,6 +32,20 @@ import { EuiFlexGroup } from '../../flex';
 const meta: Meta<EuiSuperDatePickerProps> = {
   title: 'Forms/EuiSuperDatePicker/EuiSuperDatePicker',
   component: EuiSuperDatePicker,
+  decorators: [
+    (Story, { args }) => (
+      <div
+        css={({ euiTheme }) =>
+          css`
+            /* create space for popover to open without overlapping the inputs */
+            padding: ${euiTheme.size.s};
+          `
+        }
+      >
+        <Story {...args} />
+      </div>
+    ),
+  ],
   argTypes: {
     refreshIntervalUnits: {
       control: 'radio',
@@ -61,7 +79,9 @@ enableFunctionToggleControls(meta, ['onTimeChange']);
 export default meta;
 type Story = StoryObj<EuiSuperDatePickerProps>;
 
-export const Playground: Story = {};
+export const Playground: Story = {
+  render: (args) => <StatefulSuperDatePicker {...args} />,
+};
 enableFunctionToggleControls(Playground, [
   'onFocus',
   'onRefresh',
@@ -85,6 +105,7 @@ export const CustomQuickSelectPanel: Story = {
       },
     ],
   },
+  render: (args) => <StatefulSuperDatePicker {...args} />,
   play: async ({ canvasElement, step }) => {
     const canvas = within(canvasElement);
     await step('show popover on click of the quick select button', async () => {
@@ -115,17 +136,8 @@ export const RestrictedRange: Story = {
     minDate: moment('10/01/2024'),
     maxDate: moment('11/01/2028'),
   },
+  render: (args) => <StatefulSuperDatePicker {...args} />,
 };
-
-function CustomPanel({ applyTime }: { applyTime?: ApplyTime }) {
-  function applyMyCustomTime() {
-    applyTime!({ start: 'now-30d', end: 'now+7d' });
-  }
-
-  return (
-    <EuiLink onClick={applyMyCustomTime}>Entire dataset timerange</EuiLink>
-  );
-}
 
 export const QuickSelectOnly: Story = {
   parameters: {
@@ -163,7 +175,7 @@ export const QuickSelectOnly: Story = {
       </EuiFlexGroup>
     );
   },
-  play: async ({ canvasElement }: PlayFunctionContext<ReactRenderer>) => {
+  play: async ({ canvasElement }: StoryContext<ReactRenderer>) => {
     const canvas = within(canvasElement);
 
     await waitFor(async () => {
@@ -181,6 +193,58 @@ export const QuickSelectOnly: Story = {
 /**
  * VRT only
  */
+export const CollapsedQuickSelectOnly: Story = {
+  tags: ['vrt-only'],
+  parameters: {
+    controls: {
+      include: ['isQuickSelectOnly'],
+    },
+    loki: { chromeSelector: LOKI_SELECTORS.portal },
+  },
+  args: {
+    start: '2025-01-01T00:00:00',
+    end: 'now',
+    isQuickSelectOnly: false,
+  },
+  render: function Render(args) {
+    const [isCollapsed, setCollapsed] = useState(
+      args.isQuickSelectOnly ?? false
+    );
+
+    useEffect(() => {
+      if (args.isQuickSelectOnly == null) return;
+
+      setCollapsed(args.isQuickSelectOnly);
+    }, [args.isQuickSelectOnly]);
+
+    return (
+      <EuiFlexGroup>
+        <EuiFieldText
+          onFocus={() => setCollapsed(true)}
+          data-test-subj="superDatePickerInput"
+        />
+        <EuiSuperDatePicker
+          {...args}
+          isQuickSelectOnly={isCollapsed}
+          quickSelectButtonProps={{
+            onClick: () => setCollapsed(false),
+          }}
+        />
+      </EuiFlexGroup>
+    );
+  },
+  play: async ({ canvasElement }: StoryContext<ReactRenderer>) => {
+    const canvas = within(canvasElement);
+    const input = canvas.getByTestSubject('superDatePickerInput');
+
+    await waitFor(async () => {
+      expect(input).toBeInTheDocument();
+    });
+
+    input.focus();
+  },
+};
+
 export const OverflowingChildren: Story = {
   tags: ['vrt-only'],
   args: { start: 'Dec 31, 1999' },
@@ -207,3 +271,76 @@ export const OverflowingChildren: Story = {
     await canvas.waitForEuiPopoverHidden();
   },
 };
+
+/**
+ * Helpers
+ */
+
+const StatefulSuperDatePicker = (props: EuiSuperDatePickerProps) => {
+  const { onTimeChange, isLoading, start, end, ...rest } = props;
+
+  const [_isLoading, setIsLoading] = useState(isLoading);
+  const [_start, setStart] = useState(start);
+  const [_end, setEnd] = useState(end);
+
+  useEffect(() => {
+    setIsLoading(isLoading);
+  }, [isLoading]);
+
+  useEffect(() => {
+    setStart(start);
+  }, [start]);
+
+  useEffect(() => {
+    setEnd(end);
+  }, [end]);
+
+  const handleOnTimeChange = ({ start, end, ...rest }: OnTimeChangeProps) => {
+    setStart(start);
+    setEnd(end);
+    setIsLoading(true);
+    startLoading();
+    onTimeChange?.({ start, end, ...rest });
+  };
+
+  const onRefresh = ({ start, end, refreshInterval }: OnRefreshProps) => {
+    return new Promise((resolve) => {
+      setTimeout(resolve, 100);
+    }).then(() => {
+      onRefresh?.({ start, end, refreshInterval });
+    });
+  };
+
+  const startLoading = () => {
+    setTimeout(stopLoading, 1000);
+  };
+
+  const stopLoading = () => {
+    setIsLoading(false);
+  };
+
+  return (
+    <EuiSuperDatePicker
+      isLoading={_isLoading}
+      start={_start}
+      end={_end}
+      onTimeChange={handleOnTimeChange}
+      onRefresh={onRefresh}
+      css={css`
+        /* ensure the input content is visible without being truncated */
+        inline-size: 700px;
+      `}
+      {...rest}
+    />
+  );
+};
+
+function CustomPanel({ applyTime }: { applyTime?: ApplyTime }) {
+  function applyMyCustomTime() {
+    applyTime!({ start: 'now-30d', end: 'now+7d' });
+  }
+
+  return (
+    <EuiLink onClick={applyMyCustomTime}>Entire dataset timerange</EuiLink>
+  );
+}
