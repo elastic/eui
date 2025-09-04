@@ -13,8 +13,9 @@ import { EuiFlyoutLevel } from './types';
 
 /**
  * Business rules for flyout sizes:
- * - Managed flyouts should only accept "named" sizes (s, m, l)
+ * - Managed flyouts should only accept "named" sizes (s, m, l, fill)
  * - Parent and child can't both be 'm'
+ * - Parent and child can't both be 'fill'
  * - Parent can't be 'l' if there is a child
  */
 
@@ -42,9 +43,10 @@ export function validateManagedFlyoutSize(
   level: EuiFlyoutLevel
 ): FlyoutSizeValidationError | null {
   if (!isNamedSize(size)) {
+    const namedSizes = FLYOUT_SIZES.join(', ');
     return {
       type: 'INVALID_SIZE_TYPE',
-      message: `Managed flyouts must use named sizes (s, m, l). Received: ${size}`,
+      message: `Managed flyouts must use named sizes (${namedSizes}). Received: ${size}`,
       flyoutId,
       level,
       size: `${size}`,
@@ -65,6 +67,15 @@ export function validateSizeCombination(
     return {
       type: 'INVALID_SIZE_COMBINATION',
       message: 'Parent and child flyouts cannot both be size "m"',
+      size: childSize,
+    };
+  }
+
+  // Parent and child can't both be 'fill'
+  if (parentSize === 'fill' && childSize === 'fill') {
+    return {
+      type: 'INVALID_SIZE_COMBINATION',
+      message: 'Parent and child flyouts cannot both be size "fill"',
       size: childSize,
     };
   }

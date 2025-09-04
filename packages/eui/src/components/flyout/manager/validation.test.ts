@@ -44,7 +44,7 @@ describe('Flyout Size Validation', () => {
       expect(error).toEqual({
         type: 'INVALID_SIZE_TYPE',
         message:
-          'Managed flyouts must use named sizes (s, m, l). Received: 100px',
+          'Managed flyouts must use named sizes (s, m, l, fill). Received: 100px',
         flyoutId: 'test-id',
         level: 'main',
         size: '100px',
@@ -58,6 +58,10 @@ describe('Flyout Size Validation', () => {
       expect(validateSizeCombination('s', 'l')).toBeNull();
       expect(validateSizeCombination('m', 's')).toBeNull();
       expect(validateSizeCombination('m', 'l')).toBeNull();
+      expect(validateSizeCombination('s', 'fill')).toBeNull();
+      expect(validateSizeCombination('m', 'fill')).toBeNull();
+      expect(validateSizeCombination('fill', 's')).toBeNull();
+      expect(validateSizeCombination('fill', 'm')).toBeNull();
     });
 
     it('should return error when parent and child are both m', () => {
@@ -66,6 +70,15 @@ describe('Flyout Size Validation', () => {
         type: 'INVALID_SIZE_COMBINATION',
         message: 'Parent and child flyouts cannot both be size "m"',
         size: 'm',
+      });
+    });
+
+    it('should return error when parent and child are both fill', () => {
+      const error = validateSizeCombination('fill', 'fill');
+      expect(error).toEqual({
+        type: 'INVALID_SIZE_COMBINATION',
+        message: 'Parent and child flyouts cannot both be size "fill"',
+        size: 'fill',
       });
     });
 
@@ -94,10 +107,17 @@ describe('Flyout Size Validation', () => {
         'Parent and child flyouts cannot both be size "m"'
       );
 
-      // Parent 'l' with child should fail
-      const error2 = validateFlyoutSize('s', 'child-id', 'child', 'l');
+      // Parent and child both 'fill' should fail
+      const error2 = validateFlyoutSize('fill', 'child-id', 'child', 'fill');
       expect(error2?.type).toBe('INVALID_SIZE_COMBINATION');
       expect(error2?.message).toContain(
+        'Parent and child flyouts cannot both be size "fill"'
+      );
+
+      // Parent 'l' with child should fail
+      const error3 = validateFlyoutSize('s', 'child-id', 'child', 'l');
+      expect(error3?.type).toBe('INVALID_SIZE_COMBINATION');
+      expect(error3?.message).toContain(
         'Parent flyouts cannot be size "l" when there is a child flyout'
       );
     });
@@ -106,6 +126,8 @@ describe('Flyout Size Validation', () => {
       expect(validateFlyoutSize('s', 'child-id', 'child', 'm')).toBeNull();
       expect(validateFlyoutSize('l', 'child-id', 'child', 'm')).toBeNull();
       expect(validateFlyoutSize('s', 'child-id', 'child', 's')).toBeNull();
+      expect(validateFlyoutSize('fill', 'child-id', 'child', 'm')).toBeNull();
+      expect(validateFlyoutSize('s', 'child-id', 'child', 'fill')).toBeNull();
     });
   });
 
@@ -136,6 +158,19 @@ describe('Flyout Size Validation', () => {
       const message = createValidationErrorMessage(error);
       expect(message).toBe(
         'EuiFlyout validation error: Parent and child flyouts cannot both be size "m"'
+      );
+    });
+
+    it('should create error message for invalid fill size combination', () => {
+      const error: FlyoutSizeValidationError = {
+        type: 'INVALID_SIZE_COMBINATION',
+        message: 'Parent and child flyouts cannot both be size "fill"',
+        size: 'fill',
+      };
+
+      const message = createValidationErrorMessage(error);
+      expect(message).toBe(
+        'EuiFlyout validation error: Parent and child flyouts cannot both be size "fill"'
       );
     });
   });

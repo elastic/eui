@@ -125,6 +125,19 @@ export const useApplyFlyoutLayoutMode = () => {
     const combinedWidthPercentage = (combinedWidth / windowWidth) * 100;
     let newLayoutMode: EuiFlyoutLayoutMode;
 
+    // Handle fill size flyouts: keep layout as side-by-side when fill flyout is present
+    // This allows fill flyouts to dynamically calculate their width based on sibling
+    if (parentFlyout?.size === 'fill' || childFlyout?.size === 'fill') {
+      // For fill flyouts, we want to maintain side-by-side layout to enable dynamic width calculation
+      // Only stack if the viewport is too small (below the small breakpoint)
+      if (windowWidth >= Math.round(euiTheme.breakpoint.s * 1.4)) {
+        if (currentLayoutMode !== LAYOUT_MODE_SIDE_BY_SIDE) {
+          setMode(LAYOUT_MODE_SIDE_BY_SIDE);
+        }
+        return;
+      }
+    }
+
     if (currentLayoutMode === LAYOUT_MODE_STACKED) {
       newLayoutMode =
         combinedWidthPercentage <= THRESHOLD_TO_SIDE_BY_SIDE
@@ -174,6 +187,8 @@ export const getWidthFromSize = (size: string | number): number => {
         return Math.round(window.innerWidth * 0.5);
       case 'l':
         return Math.round(window.innerWidth * 0.75);
+      case 'fill':
+        return Math.round(window.innerWidth * 0.9);
       default:
         break;
     }

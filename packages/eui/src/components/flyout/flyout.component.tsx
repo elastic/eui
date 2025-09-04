@@ -34,8 +34,13 @@ import {
   useGeneratedHtmlId,
   useEuiThemeCSSVariables,
 } from '../../services';
-import { useCurrentSession, useIsInManagedFlyout } from './manager';
-import { logicalStyle } from '../../global_styling';
+import {
+  useCurrentSession,
+  useIsInManagedFlyout,
+  useFlyoutLayoutMode,
+  useFlyoutId,
+  useFlyoutWidth,
+} from './manager';
 
 import { CommonProps, PropsOfElement } from '../common';
 import { EuiFocusTrap, EuiFocusTrapProps } from '../focus_trap';
@@ -47,7 +52,7 @@ import { EuiPortal } from '../portal';
 import { EuiScreenReaderOnly } from '../accessibility';
 
 import { EuiFlyoutCloseButton } from './_flyout_close_button';
-import { euiFlyoutStyles } from './flyout.styles';
+import { euiFlyoutStyles, composeFlyoutInlineStyles } from './flyout.styles';
 import { usePropsWithComponentDefaults } from '../provider/component_defaults';
 import {
   _EuiFlyoutPaddingSize,
@@ -273,6 +278,37 @@ export const EuiFlyoutComponent = forwardRef(
 
     const currentSession = useCurrentSession();
     const isInManagedContext = useIsInManagedFlyout();
+
+    // Get flyout manager context for dynamic width calculation
+    const flyoutId = useFlyoutId(id);
+    const layoutMode = useFlyoutLayoutMode();
+
+    // Memoize flyout identification and relationships to prevent race conditions
+    const flyoutIdentity = useMemo(() => {
+      if (!flyoutId || !currentSession) {
+        return {
+          isMainFlyout: false,
+          siblingFlyoutId: null,
+          hasValidSession: false,
+          sessionForWidth: null,
+        };
+      }
+
+      const siblingFlyoutId =
+        currentSession.main === flyoutId
+          ? currentSession.child
+          : currentSession.main;
+
+      return {
+        siblingFlyoutId,
+        hasValidSession: true,
+        sessionForWidth: currentSession,
+      };
+    }, [flyoutId, currentSession]);
+
+    // Destructure for easier use
+    const { siblingFlyoutId } = flyoutIdentity;
+
     const hasChildFlyout = currentSession?.child != null;
     const isChildFlyout =
       isInManagedContext && hasChildFlyout && currentSession?.child === id;
@@ -310,21 +346,29 @@ export const EuiFlyoutComponent = forwardRef(
       [onClose, isPushed, shouldCloseOnEscape]
     );
 
+    const siblingFlyoutWidth = useFlyoutWidth(siblingFlyoutId);
+
     /**
      * Set inline styles
      */
     const inlineStyles = useMemo(() => {
-      const widthStyle =
-        !isEuiFlyoutSizeNamed(size) && logicalStyle('width', size);
-      const maxWidthStyle =
-        typeof maxWidth !== 'boolean' && logicalStyle('max-width', maxWidth);
+      const composedStyles = composeFlyoutInlineStyles(
+        size,
+        layoutMode,
+        siblingFlyoutId,
+        siblingFlyoutWidth || null,
+        maxWidth
+      );
 
-      return {
-        ...style,
-        ...widthStyle,
-        ...maxWidthStyle,
-      };
-    }, [style, maxWidth, size]);
+      return { ...style, ...composedStyles };
+    }, [
+      style,
+      size,
+      layoutMode,
+      siblingFlyoutId,
+      siblingFlyoutWidth,
+      maxWidth,
+    ]);
 
     const styles = useEuiMemoizedStyles(euiFlyoutStyles);
     const cssStyles = [
