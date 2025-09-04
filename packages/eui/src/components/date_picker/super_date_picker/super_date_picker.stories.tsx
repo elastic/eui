@@ -11,7 +11,7 @@ import moment from 'moment';
 import { css } from '@emotion/react';
 import type { Meta, ReactRenderer, StoryObj } from '@storybook/react';
 import { expect, fireEvent, waitFor } from '@storybook/test';
-import type { PlayFunctionContext } from '@storybook/csf';
+import { StoryContext } from '@storybook/csf';
 
 import { within } from '../../../../.storybook/test';
 import { LOKI_SELECTORS } from '../../../../.storybook/loki';
@@ -175,7 +175,7 @@ export const QuickSelectOnly: Story = {
       </EuiFlexGroup>
     );
   },
-  play: async ({ canvasElement }: PlayFunctionContext<ReactRenderer>) => {
+  play: async ({ canvasElement }: StoryContext<ReactRenderer>) => {
     const canvas = within(canvasElement);
 
     await waitFor(async () => {
@@ -220,10 +220,7 @@ export const CollapsedQuickSelectOnly: Story = {
     return (
       <EuiFlexGroup>
         <EuiFieldText
-          onFocus={() => {
-            console.log('FOCUS');
-            setCollapsed(true);
-          }}
+          onFocus={() => setCollapsed(true)}
           data-test-subj="superDatePickerInput"
         />
         <EuiSuperDatePicker
@@ -236,7 +233,7 @@ export const CollapsedQuickSelectOnly: Story = {
       </EuiFlexGroup>
     );
   },
-  play: async ({ canvasElement }: PlayFunctionContext<ReactRenderer>) => {
+  play: async ({ canvasElement }: StoryContext<ReactRenderer>) => {
     const canvas = within(canvasElement);
     const input = canvas.getByTestSubject('superDatePickerInput');
 
@@ -244,7 +241,7 @@ export const CollapsedQuickSelectOnly: Story = {
       expect(input).toBeInTheDocument();
     });
 
-    await input.focus();
+    input.focus();
   },
 };
 
