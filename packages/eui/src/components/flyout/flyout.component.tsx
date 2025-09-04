@@ -272,7 +272,7 @@ export const EuiFlyoutComponent = forwardRef(
       'aria-describedby': _ariaDescribedBy,
       id,
       resizable = false,
-      minWidth,
+      minWidth = 200,
       onResize,
       isOpen = true,
       onClosing,
@@ -471,6 +471,23 @@ export const EuiFlyoutComponent = forwardRef(
       styles[side],
     ];
 
+    const resizableButtonStyles = [
+      styles.resizable.button,
+      isPushed && side === 'left' && styles.resizable.buttonPushLeft,
+      isPushed && side === 'right' && styles.resizable.buttonPushRight,
+      !isPushed && side === 'left' && styles.resizable.buttonOverlayLeft,
+      !isPushed && side === 'right' && styles.resizable.buttonOverlayRight,
+      !isPushed && ownFocus && styles.resizable.buttonNoOverlay,
+      !isPushed &&
+        ownFocus &&
+        side === 'left' &&
+        styles.resizable.buttonNoOverlayLeft,
+      !isPushed &&
+        ownFocus &&
+        side === 'right' &&
+        styles.resizable.buttonNoOverlayRight,
+    ];
+
     const classes = classnames(
       'euiFlyout',
       openStateToClassNameMap[openState],
@@ -646,6 +663,9 @@ export const EuiFlyoutComponent = forwardRef(
             {flyoutMenuProps && <EuiFlyoutMenu {...flyoutMenuProps} />}
             {resizable && (
               <EuiFlyoutResizeButton
+                isHorizontal
+                indicator="border"
+                css={resizableButtonStyles}
                 type={type}
                 side={side}
                 ownFocus={ownFocus}

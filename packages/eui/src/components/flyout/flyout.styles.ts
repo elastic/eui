@@ -244,6 +244,32 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
         ${composeFlyoutPadding(euiThemeContext, 'l')}
       `,
     },
+    resizable: {
+      button: css`
+        position: absolute;
+      `,
+      buttonOverlayLeft: css`
+        ${logicalCSS('right', 0)}
+      `,
+      buttonOverlayRight: css`
+        ${logicalCSS('left', 0)}
+      `,
+      buttonPushLeft: css`
+        ${logicalCSS('right', `-${euiTheme.border.width.thick}`)}
+      `,
+      buttonPushRight: css`
+        ${logicalCSS('left', `-${euiTheme.border.width.thick}`)}
+      `,
+      buttonNoOverlay: css`
+        margin-inline: 0;
+      `,
+      buttonNoOverlayLeft: css`
+        justify-content: flex-end;
+      `,
+      buttonNoOverlayRight: css`
+        justify-content: flex-start;
+      `,
+    },
   };
 };
 
