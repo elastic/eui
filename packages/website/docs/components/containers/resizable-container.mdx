@@ -2,59 +2,46 @@
 keywords: [EuiResizableContainer]
 ---
 
-# Resizable container
-
 import { faker } from '@faker-js/faker';
 
-This component is handy for various resizable containers. **EuiResizableContainer** uses the [React Render Props](https://reactjs.org/docs/render-props.html#using-props-other-than-render) technique to provide **EuiResizablePanel** and **EuiResizableButton** components for layout, and `actions` for custom handling collapse and resize functionality in your app. Wrap parts of your content with the **EuiResizablePanel** component and put the **EuiResizableButton** component between.
+# Resizable container
 
-:::accessibility Accessibility recommendation
-Consider adding a `tabIndex=0` prop to the **EuiResizableContainer** if it is a fixed height or has a lot of content. This ensures keyboard users can set focus on the container and scroll to the bottom using arrow keys.
+:::tip Looking for usage guidance?
+
+For panel sets, collapsible layouts, controlled sizing, and responsive patterns, see the [Resizable panels pattern](../../patterns/layouts/resizable-panels.mdx).
+
 :::
+
+Use **EuiResizableContainer** to create split views where users can adjust panel sizes. It provides render-prop children to compose `EuiResizablePanel` and `EuiResizableButton`.
+
+## Accessibility (atom-level)
+
+- Make scrollable panels focusable with `tabIndex={0}`
+- Resizer supports keyboard resizing (Left/Right or Up/Down)
 
 ## Horizontal resizing
 
-Simple resizable container with two panels and a resizer between. This is the most common case you'll need in your app. Just drag **the resizer** button between two panels to increase/decrease panel size. You could also use arrow keys **←**|**→** on **the focused resizer** button to change panel size.
+```tsx interactive
+import React from 'react';
+import { EuiResizableContainer, EuiText } from '@elastic/eui';
+import { faker } from '@faker-js/faker';
 
-*   add `initialSize` in percents to each panel to specify the initial size of it. Other calculations will be encapsulated, you don't worry about it.
-*   add `scrollable=false` prop to a panel to eliminate overflow scrolling
-
-<Demo scope={{ faker }}>
-  ```tsx
-  import React from 'react';
-  import { EuiText, EuiResizableContainer } from '@elastic/eui';
-  import { faker } from '@faker-js/faker';
-
-  const text = (
-    <>
-      <p>{faker.lorem.paragraphs()}</p>
-      <p>{faker.lorem.paragraphs()}</p>
-      <p>{faker.lorem.paragraphs()}</p>
-    </>
-  );
-
-  export default () => (
-    <EuiResizableContainer style={{ height: '200px' }}>
-      {(EuiResizablePanel, EuiResizableButton) => (
-        <>
-          <EuiResizablePanel initialSize={50} minSize="30%" tabIndex={0}>
-            <EuiText>
-              <div>{text}</div>
-              <a href="">Hello world</a>
-            </EuiText>
-          </EuiResizablePanel>
-
-          <EuiResizableButton accountForScrollbars="before" />
-
-          <EuiResizablePanel initialSize={50} minSize="200px" tabIndex={0}>
-            <EuiText>{text}</EuiText>
-          </EuiResizablePanel>
-        </>
-      )}
-    </EuiResizableContainer>
-  );
-  ```
-</Demo>
+export default () => (
+  <EuiResizableContainer style={{ height: 200 }}>
+    {(EuiResizablePanel, EuiResizableButton) => (
+      <>
+        <EuiResizablePanel initialSize={50} minSize="30%" tabIndex={0}>
+          <EuiText size="s"><p>Left panel</p></EuiText>
+        </EuiResizablePanel>
+        <EuiResizableButton accountForScrollbars="before" />
+        <EuiResizablePanel initialSize={50} minSize="200px" tabIndex={0}>
+          <EuiText size="s"><p>Right panel</p></EuiText>
+        </EuiResizablePanel>
+      </>
+    )}
+  </EuiResizableContainer>
+);
+```
 
 ## Resizable panel options
 
@@ -263,44 +250,27 @@ Either `initialSize` or `size` must be specified. The `size` prop is for cases w
 
 ## Vertical resizing
 
-Set `direction=vertical` on **EuiResizableContainer** to set a vertical orientation of the resizable panels.
+```tsx interactive
+import React from 'react';
+import { EuiResizableContainer, EuiText } from '@elastic/eui';
+import { faker } from '@faker-js/faker';
 
-<Demo scope={{ faker }}>
-  ```tsx
-  import React from 'react';
-  import { EuiText, EuiResizableContainer } from '@elastic/eui';
-  import { faker } from '@faker-js/faker';
-
-  const text = (
-    <>
-      <p>{faker.lorem.paragraphs()}</p>
-      <p>{faker.lorem.paragraphs()}</p>
-      <p>{faker.lorem.paragraphs()}</p>
-    </>
-  );
-  export default () => (
-    <EuiResizableContainer style={{ height: '400px' }} direction="vertical">
-      {(EuiResizablePanel, EuiResizableButton) => (
-        <>
-          <EuiResizablePanel initialSize={60} minSize="40%" tabIndex={0}>
-            <EuiText>
-              <div>{text}</div>
-            </EuiText>
-          </EuiResizablePanel>
-
-          <EuiResizableButton accountForScrollbars="both" />
-
-          <EuiResizablePanel initialSize={40} minSize="10%" tabIndex={0}>
-            <EuiText>
-              <div>{text}</div>
-            </EuiText>
-          </EuiResizablePanel>
-        </>
-      )}
-    </EuiResizableContainer>
-  );
-  ```
-</Demo>
+export default () => (
+  <EuiResizableContainer direction="vertical" style={{ height: 240 }}>
+    {(EuiResizablePanel, EuiResizableButton) => (
+      <>
+        <EuiResizablePanel initialSize={60} minSize="40%" tabIndex={0}>
+          <EuiText size="s"><p>Top</p></EuiText>
+        </EuiResizablePanel>
+        <EuiResizableButton accountForScrollbars="both" />
+        <EuiResizablePanel initialSize={40} minSize="10%" tabIndex={0}>
+          <EuiText size="s"><p>Bottom</p></EuiText>
+        </EuiResizablePanel>
+      </>
+    )}
+  </EuiResizableContainer>
+);
+```
 
 ## Resizable container callbacks
 

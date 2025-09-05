@@ -1,0 +1,128 @@
+---
+keywords: [EuiResizableContainer]
+---
+
+# Resizable panels
+
+:::info
+Use resizable panels to let users adjust space between adjacent content areas without changing pages. For the atom APIs, see the Resizable container component.
+:::
+
+## Problem
+
+Pages often need side-by-side or stacked regions where the ideal space depends on user focus. Fixed splits can feel cramped or wasteful.
+
+## When to use
+
+- Two-pane layouts (navigation + content)
+- Detail views with a contextual side panel
+- Data exploration where users resize visualization vs. filters
+
+## When not to use
+
+- Complex windowing/tiling apps → consider dedicated layout managers
+- Single-column pages without competing content
+
+## Composition (atoms)
+
+- `EuiResizableContainer` (atom)
+- `EuiResizablePanel` (render-prop child)
+- `EuiResizableButton` (resizer)
+- Common companions: `EuiPanel`, `EuiListGroup`, `EuiText`, layout wrappers
+
+## Variants
+
+### Horizontal split
+
+```tsx interactive
+import React from 'react';
+import { EuiResizableContainer, EuiText } from '@elastic/eui';
+
+export default () => (
+  <EuiResizableContainer style={{ height: 200 }}>
+    {(EuiResizablePanel, EuiResizableButton) => (
+      <>
+        <EuiResizablePanel initialSize={30} minSize="20%" tabIndex={0}>
+          <EuiText size="s"><p>Sidebar</p></EuiText>
+        </EuiResizablePanel>
+        <EuiResizableButton accountForScrollbars="before" />
+        <EuiResizablePanel initialSize={70} minSize="40%" tabIndex={0}>
+          <EuiText size="s"><p>Main content</p></EuiText>
+        </EuiResizablePanel>
+      </>
+    )}
+  </EuiResizableContainer>
+);
+```
+
+### Vertical split
+
+```tsx interactive
+import React from 'react';
+import { EuiResizableContainer, EuiText } from '@elastic/eui';
+
+export default () => (
+  <EuiResizableContainer direction="vertical" style={{ height: 260 }}>
+    {(EuiResizablePanel, EuiResizableButton) => (
+      <>
+        <EuiResizablePanel initialSize={65} minSize="30%" tabIndex={0}>
+          <EuiText size="s"><p>Top region</p></EuiText>
+        </EuiResizablePanel>
+        <EuiResizableButton accountForScrollbars="both" />
+        <EuiResizablePanel initialSize={35} minSize="15%" tabIndex={0}>
+          <EuiText size="s"><p>Bottom region</p></EuiText>
+        </EuiResizablePanel>
+      </>
+    )}
+  </EuiResizableContainer>
+);
+```
+
+### Collapsible side panel
+
+```tsx interactive
+import React from 'react';
+import { EuiResizableContainer, EuiListGroup, EuiListGroupItem, EuiPanel, EuiTitle, EuiSpacer, EuiText } from '@elastic/eui';
+
+export default () => {
+  const items = ['First','Second','Third'];
+  return (
+    <EuiResizableContainer style={{ height: 260 }}>
+      {(EuiResizablePanel, EuiResizableButton) => (
+        <>
+          <EuiResizablePanel mode="collapsible" initialSize={20} minSize="10%">
+            <EuiListGroup flush>
+              {items.map((label) => (<EuiListGroupItem key={label} label={label} size="s" />))}
+            </EuiListGroup>
+          </EuiResizablePanel>
+          <EuiResizableButton />
+          <EuiResizablePanel mode="main" initialSize={80} minSize="50px">
+            <EuiPanel paddingSize="l" style={{ minHeight: '100%' }}>
+              <EuiTitle><p>Content</p></EuiTitle>
+              <EuiSpacer />
+              <EuiText size="s"><p>Resizing and collapsing shifts focus here.</p></EuiText>
+            </EuiPanel>
+          </EuiResizablePanel>
+        </>
+      )}
+    </EuiResizableContainer>
+  );
+};
+```
+
+## Behavior
+
+- Resizer supports keyboard: Left/Right (horizontal) or Up/Down (vertical)
+- Panels can be marked `mode="collapsible"` or `mode="main"`
+- Use `onPanelWidthChange` + `size` for controlled layouts (e.g., save to storage)
+
+## Accessibility
+
+- Ensure scrollable panels are focusable (e.g., `tabIndex={0}`)
+- Provide visible focus state on the resizer
+
+## Related
+
+- Atom: [Resizable container](../../components/containers/resizable-container.mdx)
+
+
