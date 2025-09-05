@@ -124,7 +124,7 @@ export interface EuiToolTipProps extends CommonProps {
   onMouseOut?: (event: ReactMouseEvent<HTMLSpanElement, MouseEvent>) => void;
 
   /**
-   * You can adjust the distance between the tooltip and its anchor using the `offset` prop. By default, this value is `16`.
+   * Offset in pixels from the anchor. Defaults to 16.
    */
   offset?: number;
 }
