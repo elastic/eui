@@ -14,7 +14,11 @@ import { LOKI_SELECTORS, lokiPlayDecorator } from '../../../.storybook/loki';
 import { sleep } from '../../test';
 import { EuiFlexGroup } from '../flex';
 import { EuiButton } from '../button';
-import { EuiToolTip, EuiToolTipProps } from './tool_tip';
+import {
+  EuiToolTip,
+  EuiToolTipProps,
+  DEFAULT_TOOLTIP_OFFSET,
+} from './tool_tip';
 
 const meta: Meta<EuiToolTipProps> = {
   title: 'Display/EuiToolTip',
@@ -47,6 +51,7 @@ const meta: Meta<EuiToolTipProps> = {
     repositionOnScroll: false,
     title: '',
     disableScreenReaderOutput: false,
+    offset: DEFAULT_TOOLTIP_OFFSET,
   },
 };
 enableFunctionToggleControls(meta, ['onMouseOut']);

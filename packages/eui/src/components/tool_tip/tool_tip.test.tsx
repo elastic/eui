@@ -8,6 +8,7 @@
 
 import React, { useRef } from 'react';
 import { fireEvent } from '@testing-library/react';
+import { userEvent } from '@storybook/test';
 import {
   render,
   waitForEuiToolTipVisible,
@@ -59,6 +60,20 @@ describe('EuiToolTip', () => {
 
     fireEvent.focus(getByTestSubject('trigger'));
     await waitForEuiToolTipVisible();
+  });
+
+  it('uses custom offset prop value', async () => {
+    const offsetValue = 32;
+    const { baseElement, getByRole } = render(
+      <EuiToolTip content="content" offset={offsetValue} {...requiredProps}>
+        <button data-test-subj="trigger">Trigger</button>
+      </EuiToolTip>
+    );
+    const trigger = getByRole('button');
+
+    await userEvent.hover(trigger);
+    await waitForEuiToolTipVisible();
+    expect(baseElement).toMatchSnapshot();
   });
 
   test('anchor props are rendered', () => {
