@@ -64,82 +64,81 @@ const useFlyoutManager = () => {
  */
 export const EuiManagedFlyout = ({
   id,
-  onClose: onCloseProp,
   level,
   size,
+  css: _css,
   flyoutMenuProps: _flyoutMenuProps,
-  css: customCss,
+  onClose: _onClose,
   ...props
 }: EuiManagedFlyoutProps) => {
   const flyoutId = useFlyoutId(id);
-  const flyoutRef = useRef<HTMLDivElement>(null);
-
   const { addFlyout, closeFlyout, setFlyoutWidth } = useFlyoutManager();
-
-  const isActive = useIsFlyoutActive(flyoutId);
   const parentSize = useParentFlyoutSize(flyoutId);
 
-  // Get layout mode for responsive behavior
-  const layoutMode = useFlyoutLayoutMode();
+  /**
+   * Validate size and title props
+   */
 
-  const styles = useEuiMemoizedStyles(euiManagedFlyoutStyles);
+  const sizeTypeError = validateManagedFlyoutSize(size, flyoutId, level);
+  if (sizeTypeError) {
+    throw new Error(createValidationErrorMessage(sizeTypeError));
+  }
+
+  if (
+    level === LEVEL_CHILD &&
+    parentSize &&
+    isNamedSize(size) &&
+    isNamedSize(parentSize)
+  ) {
+    const combinationError = validateSizeCombination(parentSize, size);
+    if (combinationError) {
+      combinationError.flyoutId = flyoutId;
+      combinationError.level = level;
+      throw new Error(createValidationErrorMessage(combinationError));
+    }
+  }
 
   const title = _flyoutMenuProps?.title || props['aria-label'];
+  const titleError = validateFlyoutTitle(title, flyoutId, level);
+  if (titleError) {
+    throw new Error(createValidationErrorMessage(titleError));
+  }
 
-  // Validate size and add flyout
+  // Register/unregister with flyout manager context
   useEffect(() => {
-    // Validate that managed flyouts use named sizes (s, m, l)
-    const sizeTypeError = validateManagedFlyoutSize(size, flyoutId, level);
-
-    if (sizeTypeError) {
-      throw new Error(createValidationErrorMessage(sizeTypeError));
-    }
-
-    // Validate a title exists
-    const flyoutTitleError = validateFlyoutTitle(title, flyoutId, level);
-    if (flyoutTitleError) {
-      throw new Error(createValidationErrorMessage(flyoutTitleError));
-    }
-
-    // For child flyouts, validate parent-child combinations
-    if (
-      level === LEVEL_CHILD &&
-      parentSize &&
-      isNamedSize(size) &&
-      isNamedSize(parentSize)
-    ) {
-      const combinationError = validateSizeCombination(parentSize, size);
-      if (combinationError) {
-        combinationError.flyoutId = flyoutId;
-        combinationError.level = level;
-        throw new Error(createValidationErrorMessage(combinationError));
-      }
-    }
-
     addFlyout(flyoutId, level, size as string);
     return () => {
       closeFlyout(flyoutId);
     };
   }, [size, flyoutId, level, parentSize, addFlyout, closeFlyout, title]);
 
-  // Track width changes for flyouts
+  /**
+   * Width tracking for responsive layouts
+   */
+
+  const flyoutRef = useRef<HTMLDivElement>(null);
+  const isActive = useIsFlyoutActive(flyoutId);
   const { width } = useResizeObserver(
     isActive ? flyoutRef.current : null,
     'width'
   );
 
-  const onClose = (event: MouseEvent | TouchEvent | KeyboardEvent) => {
-    onCloseProp(event);
-    closeFlyout(flyoutId);
-  };
-
-  // Update width in manager state when it changes
   useEffect(() => {
     if (isActive && width) {
       setFlyoutWidth(flyoutId, width);
     }
   }, [flyoutId, level, isActive, width, setFlyoutWidth]);
 
+  /*
+   * Other props for the internal flyout component
+   */
+
+  const onClose = (event: MouseEvent | TouchEvent | KeyboardEvent) => {
+    _onClose(event);
+    closeFlyout(flyoutId);
+  };
+
+  const styles = useEuiMemoizedStyles(euiManagedFlyoutStyles);
   const { activityStage, onAnimationEnd } = useFlyoutActivityStage({
     flyoutId,
     level,
@@ -150,6 +149,8 @@ export const EuiManagedFlyout = ({
     title,
   };
 
+  const layoutMode = useFlyoutLayoutMode();
+
   return (
     <EuiFlyoutIsManagedProvider isManaged={true}>
       <EuiFlyoutMenuContext.Provider value={{ onClose }}>
@@ -158,7 +159,7 @@ export const EuiManagedFlyout = ({
           ref={flyoutRef}
           css={[
             styles.managedFlyout,
-            customCss,
+            _css,
             styles.stage(activityStage, props.side),
           ]}
           {...{
