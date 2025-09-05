@@ -12,7 +12,7 @@ exports[`EuiHue accepts a hex value 1`] = `
       Select the HSV color mode 'hue' value
     </label>
     <span
-      class="euiToolTipAnchor  emotion-euiToolTipAnchor-inlineBlock-euiHue__tooltip"
+      class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock-euiHue__tooltip"
     >
       <input
         aria-label="aria-label"
@@ -44,7 +44,7 @@ exports[`EuiHue accepts a hue value 1`] = `
       Select the HSV color mode 'hue' value
     </label>
     <span
-      class="euiToolTipAnchor  emotion-euiToolTipAnchor-inlineBlock-euiHue__tooltip"
+      class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock-euiHue__tooltip"
     >
       <input
         aria-label="aria-label"
@@ -76,7 +76,7 @@ exports[`EuiHue is rendered 1`] = `
       Select the HSV color mode 'hue' value
     </label>
     <span
-      class="euiToolTipAnchor  emotion-euiToolTipAnchor-inlineBlock-euiHue__tooltip"
+      class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock-euiHue__tooltip"
     >
       <input
         aria-label="aria-label"

@@ -314,7 +314,7 @@ exports[`EuiColorPicker inline 1`] = `
       />
     </div>
     <span
-      class="euiToolTipAnchor  emotion-euiToolTipAnchor-inlineBlock-euiSaturation__tooltip"
+      class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock-euiSaturation__tooltip"
       style="inset-inline-start: 0; inset-block-start: 0;"
     >
       <button
@@ -342,7 +342,7 @@ exports[`EuiColorPicker inline 1`] = `
       Select the HSV color mode 'hue' value
     </label>
     <span
-      class="euiToolTipAnchor  emotion-euiToolTipAnchor-inlineBlock-euiHue__tooltip"
+      class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock-euiHue__tooltip"
     >
       <input
         aria-roledescription="Hue slider"
@@ -371,7 +371,7 @@ exports[`EuiColorPicker inline 1`] = `
   >
     <li>
       <span
-        class="euiToolTipAnchor  emotion-euiToolTipAnchor-inlineBlock-tooltip"
+        class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock-tooltip"
       >
         <button
           aria-label="Select #16C5C0 as the color"
@@ -383,7 +383,7 @@ exports[`EuiColorPicker inline 1`] = `
     </li>
     <li>
       <span
-        class="euiToolTipAnchor  emotion-euiToolTipAnchor-inlineBlock-tooltip"
+        class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock-tooltip"
       >
         <button
           aria-label="Select #A6EDEA as the color"
@@ -395,7 +395,7 @@ exports[`EuiColorPicker inline 1`] = `
     </li>
     <li>
       <span
-        class="euiToolTipAnchor  emotion-euiToolTipAnchor-inlineBlock-tooltip"
+        class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock-tooltip"
       >
         <button
           aria-label="Select #61A2FF as the color"
@@ -407,7 +407,7 @@ exports[`EuiColorPicker inline 1`] = `
     </li>
     <li>
       <span
-        class="euiToolTipAnchor  emotion-euiToolTipAnchor-inlineBlock-tooltip"
+        class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock-tooltip"
       >
         <button
           aria-label="Select #BFDBFF as the color"
@@ -419,7 +419,7 @@ exports[`EuiColorPicker inline 1`] = `
     </li>
     <li>
       <span
-        class="euiToolTipAnchor  emotion-euiToolTipAnchor-inlineBlock-tooltip"
+        class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock-tooltip"
       >
         <button
           aria-label="Select #EE72A6 as the color"
@@ -431,7 +431,7 @@ exports[`EuiColorPicker inline 1`] = `
     </li>
     <li>
       <span
-        class="euiToolTipAnchor  emotion-euiToolTipAnchor-inlineBlock-tooltip"
+        class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock-tooltip"
       >
         <button
           aria-label="Select #FFC7DB as the color"
@@ -443,7 +443,7 @@ exports[`EuiColorPicker inline 1`] = `
     </li>
     <li>
       <span
-        class="euiToolTipAnchor  emotion-euiToolTipAnchor-inlineBlock-tooltip"
+        class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock-tooltip"
       >
         <button
           aria-label="Select #F6726A as the color"
@@ -455,7 +455,7 @@ exports[`EuiColorPicker inline 1`] = `
     </li>
     <li>
       <span
-        class="euiToolTipAnchor  emotion-euiToolTipAnchor-inlineBlock-tooltip"
+        class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock-tooltip"
       >
         <button
           aria-label="Select #FFC9C2 as the color"
@@ -467,7 +467,7 @@ exports[`EuiColorPicker inline 1`] = `
     </li>
     <li>
       <span
-        class="euiToolTipAnchor  emotion-euiToolTipAnchor-inlineBlock-tooltip"
+        class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock-tooltip"
       >
         <button
           aria-label="Select #EAAE01 as the color"
@@ -479,7 +479,7 @@ exports[`EuiColorPicker inline 1`] = `
     </li>
     <li>
       <span
-        class="euiToolTipAnchor  emotion-euiToolTipAnchor-inlineBlock-tooltip"
+        class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock-tooltip"
       >
         <button
           aria-label="Select #FCD883 as the color"

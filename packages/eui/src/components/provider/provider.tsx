@@ -7,7 +7,7 @@
  */
 
 import React, { PropsWithChildren, JSX } from 'react';
-import type { EmotionCache } from '@emotion/css';
+import type { EmotionCache } from '@emotion/react';
 import { EuiThemeBorealis } from '@elastic/eui-theme-borealis';
 
 import {

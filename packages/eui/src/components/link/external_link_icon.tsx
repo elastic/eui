@@ -7,9 +7,9 @@
  */
 
 import React, { FunctionComponent, AnchorHTMLAttributes } from 'react';
+import { css } from '@emotion/react';
 
 import { useEuiMemoizedStyles, UseEuiTheme } from '../../services';
-import { logicalStyle } from '../../global_styling';
 import { EuiIcon, EuiIconProps } from '../icon';
 import { EuiI18n } from '../i18n';
 import { EuiScreenReaderOnly } from '../accessibility';
@@ -28,13 +28,14 @@ export type EuiExternalLinkIconProps = {
   external?: boolean;
 };
 
-const iconStyle = ({ euiTheme }: UseEuiTheme) =>
-  logicalStyle('margin-left', euiTheme.size.xs);
+const euiExternalLinkIconStyles = ({ euiTheme }: UseEuiTheme) => css`
+  margin-inline-start: ${euiTheme.size.xs};
+`;
 
 export const EuiExternalLinkIcon: FunctionComponent<
   EuiExternalLinkIconProps & Partial<EuiIconProps>
 > = ({ target, external, ...rest }) => {
-  const iconCssStyle = useEuiMemoizedStyles(iconStyle);
+  const iconCssStyle = useEuiMemoizedStyles(euiExternalLinkIconStyles);
 
   const showExternalLinkIcon =
     (target === '_blank' && external !== false) || external === true;

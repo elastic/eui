@@ -12,7 +12,7 @@ import React, {
   MouseEventHandler,
   ReactElement,
 } from 'react';
-import { CSSInterpolation } from '@emotion/css';
+import type { CSSInterpolation } from '@emotion/css/create-instance';
 
 import {
   isEuiThemeRefreshVariant,

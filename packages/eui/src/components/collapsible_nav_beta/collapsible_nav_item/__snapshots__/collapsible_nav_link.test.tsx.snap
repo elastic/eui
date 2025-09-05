@@ -20,7 +20,7 @@ exports[`EuiCollapsibleNavLink renders a link 1`] = `
 >
   Link
   <span
-    class="emotion-EuiExternalLinkIcon"
+    class="emotion-euiExternalLinkIconStyles"
     data-euiicon-type="popout"
     role="presentation"
   />
