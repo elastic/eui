@@ -17,6 +17,7 @@ import { EuiFlyoutMenuContext } from '../flyout_menu_context';
 import { useFlyoutActivityStage } from './activity_stage';
 import {
   LEVEL_CHILD,
+  LEVEL_MAIN,
   PROPERTY_FLYOUT,
   PROPERTY_LAYOUT_MODE,
   PROPERTY_LEVEL,
@@ -76,7 +77,12 @@ export const EuiManagedFlyout = ({
   const flyoutId = useFlyoutId(id);
   const flyoutRef = useRef<HTMLDivElement>(null);
 
-  const { addFlyout, closeFlyout, setFlyoutWidth } = useFlyoutManager();
+  const {
+    addFlyout,
+    closeFlyout,
+    setFlyoutWidth,
+    state: flyoutManagerState,
+  } = useFlyoutManager();
 
   const isActive = useIsFlyoutActive(flyoutId);
   const parentSize = useParentFlyoutSize(flyoutId);
@@ -116,11 +122,11 @@ export const EuiManagedFlyout = ({
 
   // Register/unregister with flyout manager context
   useEffect(() => {
-    addFlyout(flyoutId, level, size as string);
+    addFlyout(flyoutId, title!, level, size as string);
     return () => {
       closeFlyout(flyoutId);
     };
-  }, [size, flyoutId, level, addFlyout, closeFlyout]);
+  }, [size, flyoutId, title, level, addFlyout, closeFlyout]);
 
   // Track width changes for flyouts
   const { width } = useResizeObserver(
@@ -145,23 +151,34 @@ export const EuiManagedFlyout = ({
     level,
   });
 
-  /**
-   * Props for the FlyoutMenu
-   */
-
-  const historyItems = ['a', 'b', 'c'].map((title) => ({
-    title,
-    onClick: () => {
-      console.log(`${title} clicked`);
-    },
-  }));
-
-  const showBackButton = historyItems.length > 0;
+  // History controls are only relevant for main flyouts
+  // Get titles and flyoutIds from the manager's flyouts state
+  // Disregard the flyout in the current session in history and back button logic
+  let showBackButton = false;
+  let backButtonProps: EuiFlyoutMenuProps['backButtonProps'] | undefined;
+  let historyItems: EuiFlyoutMenuProps['historyItems'] | undefined;
+  if (level === LEVEL_MAIN) {
+    historyItems = flyoutManagerState.sessions
+      .filter(({ main: mainFlyoutId }) => mainFlyoutId !== flyoutId)
+      .map(({ title }) => ({
+        title: title,
+        onClick: () => {
+          console.log(`${title} clicked`);
+        },
+      }));
+    showBackButton = historyItems.length > 0;
+    backButtonProps = {
+      onClick: () => {
+        console.log(`Back button clicked`);
+      },
+    };
+  }
 
   const flyoutMenuProps = {
     ..._flyoutMenuProps,
     historyItems,
     showBackButton,
+    backButtonProps,
     title,
   };
 
