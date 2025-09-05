@@ -17,6 +17,7 @@ import {
   ACTION_GO_TO_FLYOUT,
   Action,
 } from './actions';
+import { callUnregisterCallback } from './provider';
 import { LAYOUT_MODE_SIDE_BY_SIDE, LEVEL_MAIN, STAGE_OPENING } from './const';
 import {
   EuiFlyoutManagerState,
@@ -105,6 +106,9 @@ export function flyoutManagerReducer(
       if (!removedFlyout) {
         return state;
       }
+
+      // Call onUnregister callback if it exists (defer to avoid setState during render)
+      callUnregisterCallback(action.flyoutId);
 
       if (removedFlyout.level === LEVEL_MAIN) {
         // Find the session that contains this main flyout
@@ -212,6 +216,11 @@ export function flyoutManagerReducer(
         flyoutsToRemove.add(currentSession.child);
       }
 
+      // Call onUnregister callbacks for removed flyouts (defer to avoid setState during render)
+      flyoutsToRemove.forEach((flyoutId) => {
+        callUnregisterCallback(flyoutId);
+      });
+
       const newFlyouts = state.flyouts.filter(
         (f) => !flyoutsToRemove.has(f.flyoutId)
       );
@@ -243,6 +252,11 @@ export function flyoutManagerReducer(
         if (session.child) {
           flyoutsToRemove.add(session.child);
         }
+      });
+
+      // Call onUnregister callbacks for removed flyouts (defer to avoid setState during render)
+      flyoutsToRemove.forEach((flyoutId) => {
+        callUnregisterCallback(flyoutId);
       });
 
       const newFlyouts = state.flyouts.filter(

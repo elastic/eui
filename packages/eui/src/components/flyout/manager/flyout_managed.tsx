@@ -25,6 +25,10 @@ import {
 import { EuiFlyoutIsManagedProvider } from './context';
 import { euiManagedFlyoutStyles } from './flyout_managed.styles';
 import {
+  registerUnregisterCallback,
+  unregisterUnregisterCallback,
+} from './provider';
+import {
   useFlyoutManager as _useFlyoutManager,
   useFlyoutId,
   useFlyoutLayoutMode,
@@ -116,10 +120,30 @@ export const EuiManagedFlyout = ({
     throw new Error(createValidationErrorMessage(titleError));
   }
 
+  // Stabilize the unregister callback to prevent unnecessary re-registrations
+  const unregisterCallbackRef = useRef<(() => void) | undefined>();
+  unregisterCallbackRef.current = onCloseProp
+    ? () => {
+        // Create a synthetic event for the onClose callback
+        const syntheticEvent = new MouseEvent('click', {
+          bubbles: true,
+          cancelable: true,
+        }) as any;
+        onCloseProp(syntheticEvent);
+      }
+    : undefined;
+
   // Register/unregister with flyout manager context
   useEffect(() => {
+    // Register the unregister callback in the registry
+    if (unregisterCallbackRef.current) {
+      registerUnregisterCallback(flyoutId, unregisterCallbackRef.current);
+    }
+
     addFlyout(flyoutId, title!, level, size as string);
+
     return () => {
+      unregisterUnregisterCallback(flyoutId);
       closeFlyout(flyoutId);
     };
   }, [size, flyoutId, title, level, addFlyout, closeFlyout]);
@@ -130,8 +154,9 @@ export const EuiManagedFlyout = ({
     'width'
   );
 
-  const onClose = (event: MouseEvent | TouchEvent | KeyboardEvent) => {
-    onCloseProp(event);
+  const onClose = (_event: MouseEvent | TouchEvent | KeyboardEvent) => {
+    // For explicit closes, just trigger the unregister process
+    // The onCloseProp will be called as a side effect of unregistering
     closeFlyout(flyoutId);
   };
 
