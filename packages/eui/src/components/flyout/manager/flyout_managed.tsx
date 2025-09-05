@@ -6,28 +6,15 @@
  * Side Public License, v 1.
  */
 import React, { useEffect, useRef } from 'react';
+import { useEuiMemoizedStyles } from '../../../services';
+import { useResizeObserver } from '../../observer/resize_observer';
 import {
   EuiFlyoutComponent,
   EuiFlyoutComponentProps,
 } from '../flyout.component';
-import {
-  useFlyoutManager as _useFlyoutManager,
-  useIsFlyoutActive,
-  useParentFlyoutSize,
-  useFlyoutLayoutMode,
-  useFlyoutId,
-} from './hooks';
-import { useEuiMemoizedStyles } from '../../../services';
-import { useResizeObserver } from '../../observer/resize_observer';
-import { euiManagedFlyoutStyles } from './flyout_managed.styles';
+import { EuiFlyoutMenuProps } from '../flyout_menu';
 import { EuiFlyoutMenuContext } from '../flyout_menu_context';
-import {
-  validateManagedFlyoutSize,
-  validateSizeCombination,
-  createValidationErrorMessage,
-  isNamedSize,
-  validateFlyoutTitle,
-} from './validation';
+import { useFlyoutActivityStage } from './activity_stage';
 import {
   LEVEL_CHILD,
   PROPERTY_FLYOUT,
@@ -35,8 +22,22 @@ import {
   PROPERTY_LEVEL,
 } from './const';
 import { EuiFlyoutIsManagedProvider } from './context';
+import { euiManagedFlyoutStyles } from './flyout_managed.styles';
+import {
+  useFlyoutManager as _useFlyoutManager,
+  useFlyoutId,
+  useFlyoutLayoutMode,
+  useIsFlyoutActive,
+  useParentFlyoutSize,
+} from './hooks';
 import { EuiFlyoutLevel } from './types';
-import { useFlyoutActivityStage } from './activity_stage';
+import {
+  createValidationErrorMessage,
+  isNamedSize,
+  validateFlyoutTitle,
+  validateManagedFlyoutSize,
+  validateSizeCombination,
+} from './validation';
 
 /**
  * Props for `EuiManagedFlyout`, the internal persistent flyout used by
@@ -45,6 +46,7 @@ import { useFlyoutActivityStage } from './activity_stage';
  */
 export interface EuiManagedFlyoutProps extends EuiFlyoutComponentProps {
   level: EuiFlyoutLevel;
+  flyoutMenuProps?: Omit<EuiFlyoutMenuProps, 'historyItems' | 'showBackButton'>;
 }
 
 const useFlyoutManager = () => {
@@ -143,8 +145,23 @@ export const EuiManagedFlyout = ({
     level,
   });
 
+  /**
+   * Props for the FlyoutMenu
+   */
+
+  const historyItems = ['a', 'b', 'c'].map((title) => ({
+    title,
+    onClick: () => {
+      console.log(`${title} clicked`);
+    },
+  }));
+
+  const showBackButton = historyItems.length > 0;
+
   const flyoutMenuProps = {
     ..._flyoutMenuProps,
+    historyItems,
+    showBackButton,
     title,
   };
 
