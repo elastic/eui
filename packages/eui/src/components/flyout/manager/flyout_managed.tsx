@@ -77,12 +77,8 @@ export const EuiManagedFlyout = ({
   const flyoutId = useFlyoutId(id);
   const flyoutRef = useRef<HTMLDivElement>(null);
 
-  const {
-    addFlyout,
-    closeFlyout,
-    setFlyoutWidth,
-    state: flyoutManagerState,
-  } = useFlyoutManager();
+  const { addFlyout, closeFlyout, setFlyoutWidth, goBack, getHistoryItems } =
+    useFlyoutManager();
 
   const isActive = useIsFlyoutActive(flyoutId);
   const parentSize = useParentFlyoutSize(flyoutId);
@@ -158,19 +154,10 @@ export const EuiManagedFlyout = ({
   let backButtonProps: EuiFlyoutMenuProps['backButtonProps'] | undefined;
   let historyItems: EuiFlyoutMenuProps['historyItems'] | undefined;
   if (level === LEVEL_MAIN) {
-    historyItems = flyoutManagerState.sessions
-      .filter(({ main: mainFlyoutId }) => mainFlyoutId !== flyoutId)
-      .map(({ title }) => ({
-        title: title,
-        onClick: () => {
-          console.log(`${title} clicked`);
-        },
-      }));
+    historyItems = getHistoryItems();
     showBackButton = historyItems.length > 0;
     backButtonProps = {
-      onClick: () => {
-        console.log(`Back button clicked`);
-      },
+      onClick: goBack,
     };
   }
 
