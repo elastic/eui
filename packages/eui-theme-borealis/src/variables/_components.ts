@@ -156,25 +156,20 @@ const component_colors: _EuiThemeComponentColors = {
     ([backgroundBasePlain]) => backgroundBasePlain,
     ['colors.backgroundBasePlain']
   ),
-  dataGridRowStripesBackgroundHover: computed(
-    ([backgroundBasePlain]) => backgroundBasePlain,
-    ['colors.backgroundBasePlain']
-  ),
+  dataGridRowStripesBackgroundHover: SEMANTIC_COLORS.shade15,
   dataGridRowStripesBackgroundStriped: computed(
     ([backgroundBaseSubdued]) => backgroundBaseSubdued,
     ['colors.backgroundBaseSubdued']
   ),
-  dataGridRowStripesBackgroundStripedHover: computed(
-    ([backgroundBaseSubdued]) => backgroundBaseSubdued,
-    ['colors.backgroundBaseSubdued']
-  ),
+  dataGridRowStripesBackgroundStripedHover: SEMANTIC_COLORS.shade15,
   dataGridRowStripesBackgroundSelect: computed(
     ([backgroundBaseInteractiveSelect]) => backgroundBaseInteractiveSelect,
     ['colors.backgroundBaseInteractiveSelect']
   ),
   dataGridRowStripesBackgroundSelectHover: computed(
-    ([backgroundBaseInteractiveSelect]) => backgroundBaseInteractiveSelect,
-    ['colors.backgroundBaseInteractiveSelect']
+    ([backgroundBaseInteractiveSelectHover]) =>
+      backgroundBaseInteractiveSelectHover,
+    ['colors.backgroundBaseInteractiveSelectHover']
   ),
 
   dragDropDraggingBackground: computed(
@@ -381,6 +376,8 @@ export const components: _EuiThemeComponents = {
 
     buttonGroupFocusColor: SEMANTIC_COLORS.plainLight,
 
+    dataGridRowStripesBackgroundHover: SEMANTIC_COLORS.shade130,
+    dataGridRowStripesBackgroundStripedHover: SEMANTIC_COLORS.shade130,
     dataGridRowBackgroundMarked: SEMANTIC_COLORS.warning140,
     dataGridRowBackgroundMarkedHover: SEMANTIC_COLORS.warning130,
 
