@@ -1,39 +1,351 @@
 ---
 title: Page layout
 sidebar_position: 3
+keywords: [page layout, application pages, content layout, dashboard layout, responsive design]
 ---
 
 # Page layout
 
-*This pattern page is coming soon. It will document page layout best practices and provide ready-to-copy examples.*
+Page layouts provide the structural foundation for application pages, establishing consistent content organization, navigation patterns, and responsive behavior.
+
+## Problem
+
+Application pages need consistent structure and organization to help users navigate and understand content relationships. Without proper page layouts, users may struggle with navigation, content discovery, and understanding the overall application structure.
 
 ## When to use
 
-- **Application pages** with consistent structure
+- **Application pages** with consistent structure and navigation
 - **Content layouts** with headers, navigation, and content areas
 - **Dashboard layouts** with multiple content sections
+- **Detail pages** with complex content organization
+- **Responsive applications** that need consistent behavior across devices
 
 ## When not to use
 
 - **Simple content** (use individual layout components)
 - **Modal content** (use modal patterns)
+- **Component-level layouts** (use flexbox or grid components)
 
-## Composition
+## Anatomy
 
-Built from atoms:
-- `EuiPage` (container)
-- `EuiPageHeader` (page header)
-- `EuiPageSideBar` (navigation)
-- `EuiPageBody` (content area)
-- `EuiPageContent` (content sections)
+- **Page container**: Main page wrapper with responsive behavior
+- **Header**: Page identification, actions, and navigation
+- **Sidebar**: Optional navigation or secondary content
+- **Body**: Primary content area with sections
+- **Bottom bar**: Optional fixed action bar
+- **Empty state**: Centered content for empty pages
 
-## Variants
+## Standard application page
 
-- **Basic page** - Simple header and content
-- **Dashboard page** - Multiple content sections
-- **Detail page** - Header with actions and content
-- **Wizard page** - Multi-step page layout
+Complete page layout with header, sidebar, and content sections.
 
-## Examples
+```tsx interactive
+import React from 'react';
+import { 
+  EuiPage, 
+  EuiPageBody, 
+  EuiPageHeader, 
+  EuiPageSidebar, 
+  EuiPageContent, 
+  EuiPageContentBody,
+  EuiTitle,
+  EuiText,
+  EuiButton,
+  EuiSideNav,
+  EuiSpacer
+} from '@elastic/eui';
 
-*Examples will be added here with interactive code blocks.*
+export default () => {
+  const sideNav = [
+    {
+      name: 'Dashboard',
+      id: 1,
+      isSelected: true,
+    },
+    {
+      name: 'Analytics',
+      id: 2,
+    },
+    {
+      name: 'Settings',
+      id: 3,
+    },
+  ];
+
+  return (
+    <EuiPage>
+      <EuiPageSidebar>
+        <EuiSideNav items={sideNav} />
+      </EuiPageSidebar>
+      <EuiPageBody>
+        <EuiPageHeader
+          pageTitle="Dashboard"
+          iconType="dashboardApp"
+          description="Monitor your system performance and key metrics."
+          rightSideItems={[
+            <EuiButton fill>Create Report</EuiButton>,
+            <EuiButton>Export Data</EuiButton>,
+          ]}
+        />
+        <EuiPageContent>
+          <EuiPageContentBody>
+            <EuiTitle size="s">
+              <h2>Overview</h2>
+            </EuiTitle>
+            <EuiText size="s">
+              <p>Welcome to your dashboard. Here you can monitor key metrics and system performance.</p>
+            </EuiText>
+            <EuiSpacer size="l" />
+            <EuiTitle size="s">
+              <h2>Recent Activity</h2>
+            </EuiTitle>
+            <EuiText size="s">
+              <p>Your recent system activity and performance metrics will appear here.</p>
+            </EuiText>
+          </EuiPageContentBody>
+        </EuiPageContent>
+      </EuiPageBody>
+    </EuiPage>
+  );
+};
+```
+
+## Simple page layout
+
+Single-column layout without sidebar for focused content.
+
+```tsx interactive
+import React from 'react';
+import { 
+  EuiPage, 
+  EuiPageBody, 
+  EuiPageHeader, 
+  EuiPageContent, 
+  EuiPageContentBody,
+  EuiTitle,
+  EuiText,
+  EuiButton,
+  EuiSpacer
+} from '@elastic/eui';
+
+export default () => (
+  <EuiPage>
+    <EuiPageBody>
+      <EuiPageHeader
+        pageTitle="User Profile"
+        iconType="user"
+        description="View and edit your profile information."
+        rightSideItems={[
+          <EuiButton fill>Edit Profile</EuiButton>,
+        ]}
+      />
+      <EuiPageContent>
+        <EuiPageContentBody>
+          <EuiTitle size="s">
+            <h2>Personal Information</h2>
+          </EuiTitle>
+          <EuiText size="s">
+            <p>Your personal information and account details are displayed here.</p>
+          </EuiText>
+          <EuiSpacer size="l" />
+          <EuiTitle size="s">
+            <h2>Preferences</h2>
+          </EuiTitle>
+          <EuiText size="s">
+            <p>Manage your application preferences and settings.</p>
+          </EuiText>
+        </EuiPageContentBody>
+      </EuiPageContent>
+    </EuiPageBody>
+  </EuiPage>
+);
+```
+
+## Page with tabs and content
+
+Header with tabs that control content sections below.
+
+```tsx interactive
+import React, { useState } from 'react';
+import { 
+  EuiPage, 
+  EuiPageBody, 
+  EuiPageHeader, 
+  EuiPageContent, 
+  EuiPageContentBody,
+  EuiTitle,
+  EuiText,
+  EuiButton,
+  EuiTabs,
+  EuiTab,
+  EuiSpacer
+} from '@elastic/eui';
+
+export default () => {
+  const [selectedTab, setSelectedTab] = useState('overview');
+
+  const tabs = [
+    {
+      id: 'overview',
+      label: 'Overview',
+      isSelected: selectedTab === 'overview',
+      onClick: () => setSelectedTab('overview'),
+    },
+    {
+      id: 'details',
+      label: 'Details',
+      isSelected: selectedTab === 'details',
+      onClick: () => setSelectedTab('details'),
+    },
+    {
+      id: 'settings',
+      label: 'Settings',
+      isSelected: selectedTab === 'settings',
+      onClick: () => setSelectedTab('settings'),
+    },
+  ];
+
+  const renderContent = () => {
+    switch (selectedTab) {
+      case 'overview':
+        return (
+          <>
+            <EuiTitle size="s">
+              <h2>Overview</h2>
+            </EuiTitle>
+            <EuiText size="s">
+              <p>This is the overview content for the current item.</p>
+            </EuiText>
+          </>
+        );
+      case 'details':
+        return (
+          <>
+            <EuiTitle size="s">
+              <h2>Details</h2>
+            </EuiTitle>
+            <EuiText size="s">
+              <p>Detailed information about the current item.</p>
+            </EuiText>
+          </>
+        );
+      case 'settings':
+        return (
+          <>
+            <EuiTitle size="s">
+              <h2>Settings</h2>
+            </EuiTitle>
+            <EuiText size="s">
+              <p>Configuration options for the current item.</p>
+            </EuiText>
+          </>
+        );
+      default:
+        return null;
+    }
+  };
+
+  return (
+    <EuiPage>
+      <EuiPageBody>
+        <EuiPageHeader
+          pageTitle="Item Details"
+          iconType="document"
+          description="View and manage item information."
+          tabs={tabs}
+          rightSideItems={[
+            <EuiButton fill>Save Changes</EuiButton>,
+            <EuiButton>Delete</EuiButton>,
+          ]}
+        />
+        <EuiPageContent>
+          <EuiPageContentBody>
+            {renderContent()}
+          </EuiPageContentBody>
+        </EuiPageContent>
+      </EuiPageBody>
+    </EuiPage>
+  );
+};
+```
+
+## Behavior
+
+- **Responsive stacking**: Sidebar collapses and content stacks on smaller screens
+- **Content flow**: Page content flows naturally from header to body sections
+- **Spacing consistency**: Consistent spacing between page sections and content
+- **Navigation integration**: Sidebar navigation integrates seamlessly with page structure
+- **Action placement**: Page-level actions appear in headers or bottom bars
+
+## Accessibility
+
+- **Landmark roles**: Proper ARIA landmarks for page structure
+- **Navigation flow**: Logical tab order and keyboard navigation
+- **Content hierarchy**: Clear heading structure and content relationships
+- **Screen reader support**: Proper announcement of page structure and content
+- **Focus management**: Logical focus flow through page elements
+
+## Design tokens
+
+- **Spacing**: `euiSizeL` between page sections, `euiSizeM` for content spacing
+- **Padding**: `euiPagePadding` for page content areas
+- **Borders**: `euiBorderColor` for section separators
+- **Backgrounds**: `euiColorEmptyShade` for page backgrounds
+- **Typography**: Consistent heading hierarchy and text sizing
+
+## Do's and Don'ts
+
+### ✅ Do
+- Use consistent page structure across your application
+- Include clear navigation and wayfinding elements
+- Maintain proper content hierarchy and spacing
+- Consider responsive behavior for all screen sizes
+- Use appropriate page components for different content types
+- Keep page layouts simple and focused
+
+### ❌ Don't
+- Nest pages within other pages
+- Over-complicate page structure with too many sections
+- Ignore responsive behavior and mobile layouts
+- Mix inconsistent layout patterns across pages
+- Use page layouts for component-level organization
+- Create overly complex navigation hierarchies
+
+## Migration from custom layouts
+
+If you're currently using custom page layouts, consider migrating to EUI page components for consistent theming and behavior:
+
+```tsx
+// Before: Custom page layout
+<div className="page">
+  <div className="header">
+    <h1>Page Title</h1>
+    <div className="actions">...</div>
+  </div>
+  <div className="content">
+    <div className="sidebar">...</div>
+    <div className="main">...</div>
+  </div>
+</div>
+
+// After: EUI page components
+<EuiPage>
+  <EuiPageBody>
+    <EuiPageHeader pageTitle="Page Title" rightSideItems={[...]} />
+    <EuiPageContent>
+      <EuiPageContentBody>...</EuiPageContentBody>
+    </EuiPageContent>
+  </EuiPageBody>
+</EuiPage>
+```
+
+**Benefits of migration:**
+- Consistent theming and responsive behavior
+- Built-in accessibility features and landmarks
+- Standardized spacing and layout patterns
+- Proper integration with EUI's design system
+- Reduced custom CSS and maintenance overhead
+
+## Related
+
+- Bottom bars: see the [Bottom bars pattern](../layouts/bottom-bars.mdx) for page-level action bars.

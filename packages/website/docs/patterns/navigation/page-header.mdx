@@ -1,0 +1,218 @@
+---
+title: Page header
+sidebar_position: 4
+keywords: [page header, navigation, tabs, breadcrumbs, actions, responsive layout]
+---
+
+# Page header
+
+Page headers establish context, provide navigation, and offer actions for the current page content. They serve as the primary wayfinding element and action hub for users.
+
+## Problem
+
+Users need clear context about their current location and available actions. Without proper page headers, users may feel lost, struggle to understand page purpose, or miss important actions. Headers must balance information density with clarity while providing consistent navigation patterns.
+
+## When to use
+
+- **Page identification**: Clearly identify the current page and its purpose
+- **Primary actions**: Provide the most important actions for the current context
+- **Navigation context**: Show breadcrumbs, tabs, or other navigation elements
+- **Page hierarchy**: Establish visual hierarchy and content relationships
+- **Responsive layouts**: Adapt header content for different screen sizes
+
+## When not to use
+
+- **Section headers**: Use `EuiTitle` for content section headers
+- **Modal headers**: Use modal-specific header patterns
+- **Over-complex navigation**: Don't overload headers with too many navigation elements
+- **Decorative purposes**: Don't use headers purely for visual decoration
+
+## Anatomy
+
+- **Title**: Primary page identifier (required)
+- **Description**: Contextual information about the page
+- **Actions**: Primary and secondary actions (right-aligned)
+- **Navigation**: Tabs, breadcrumbs, or other navigation elements
+- **Icon**: Optional visual identifier for the page
+- **Responsive behavior**: Stacking and collapsing on smaller screens
+
+## Basic page header
+
+Simple header with title, description, and actions.
+
+```tsx interactive
+import React from 'react';
+import { EuiPageHeader, EuiButton, EuiButtonEmpty } from '@elastic/eui';
+
+export default () => (
+  <EuiPageHeader
+    pageTitle="Dashboard Overview"
+    iconType="dashboardApp"
+    description="Monitor your system performance and key metrics in real-time."
+    rightSideItems={[
+      <EuiButton fill>Create Dashboard</EuiButton>,
+      <EuiButtonEmpty>Export Data</EuiButtonEmpty>,
+    ]}
+  />
+);
+```
+
+## Header with tabs
+
+Tabs in the header provide navigation between related content sections.
+
+```tsx interactive
+import React, { useState } from 'react';
+import { EuiPageHeader, EuiButton, EuiTabs, EuiTab } from '@elastic/eui';
+
+export default () => {
+  const [selectedTab, setSelectedTab] = useState('overview');
+
+  const tabs = [
+    {
+      id: 'overview',
+      label: 'Overview',
+      isSelected: selectedTab === 'overview',
+      onClick: () => setSelectedTab('overview'),
+    },
+    {
+      id: 'analytics',
+      label: 'Analytics',
+      isSelected: selectedTab === 'analytics',
+      onClick: () => setSelectedTab('analytics'),
+    },
+    {
+      id: 'settings',
+      label: 'Settings',
+      isSelected: selectedTab === 'settings',
+      onClick: () => setSelectedTab('settings'),
+    },
+  ];
+
+  return (
+    <EuiPageHeader
+      pageTitle="User Management"
+      iconType="usersRolesApp"
+      description="Manage user accounts, permissions, and access controls."
+      tabs={tabs}
+      rightSideItems={[
+        <EuiButton fill>Add User</EuiButton>,
+        <EuiButton>Bulk Actions</EuiButton>,
+      ]}
+    />
+  );
+};
+```
+
+## Header with breadcrumbs
+
+Breadcrumbs provide navigation context and help users understand their location in the application hierarchy.
+
+```tsx interactive
+import React from 'react';
+import { EuiPageHeader, EuiButton, EuiIcon } from '@elastic/eui';
+
+export default () => (
+  <EuiPageHeader
+    pageTitle="User Profile: John Doe"
+    iconType="user"
+    description="View and edit user profile information and preferences."
+    breadcrumbs={[
+      {
+        text: 'Users',
+        href: '#',
+        onClick: (e) => e.preventDefault(),
+      },
+      {
+        text: 'Active Users',
+        href: '#',
+        onClick: (e) => e.preventDefault(),
+      },
+      {
+        text: 'John Doe',
+        href: '#',
+        onClick: (e) => e.preventDefault(),
+      },
+    ]}
+    rightSideItems={[
+      <EuiButton fill>Edit Profile</EuiButton>,
+      <EuiButton>Deactivate</EuiButton>,
+    ]}
+  />
+);
+```
+
+## Behavior
+
+- **Responsive stacking**: Title and actions stack vertically on smaller screens
+- **Action ordering**: Primary actions appear on the far right, secondary actions to the left
+- **Tab placement**: Tabs appear below the title and description, with bottom border for separation
+- **Breadcrumb integration**: Breadcrumbs appear above the title for navigation context
+- **Icon placement**: Icons appear to the left of the title for visual identification
+
+## Accessibility
+
+- **Page title announcement**: Screen readers announce page title changes
+- **Tab navigation**: Proper ARIA roles and keyboard navigation for tabs
+- **Action labeling**: All actions have clear, descriptive labels
+- **Focus management**: Logical tab order and focus indicators
+- **Breadcrumb navigation**: Breadcrumbs are properly announced and navigable
+
+## Design tokens
+
+- **Spacing**: `euiSizeL` between header elements, `euiSizeM` for internal spacing
+- **Typography**: `euiFontSizeL` for title, `euiFontSizeS` for description
+- **Colors**: `euiColorPrimary` for primary actions, `euiColorText` for secondary
+- **Borders**: `euiBorderColor` for tab separators and bottom borders
+- **Icons**: `euiSizeM` for header icons
+
+## Do's and Don'ts
+
+### ✅ Do
+- Keep titles concise and descriptive
+- Place primary actions on the right
+- Use tabs for related content sections
+- Include breadcrumbs for deep navigation
+- Maintain consistent header patterns across pages
+- Consider responsive behavior for mobile devices
+
+### ❌ Don't
+- Overload headers with too many actions
+- Use headers for content section titles
+- Mix different navigation patterns inconsistently
+- Place destructive actions as primary actions
+- Ignore responsive behavior on smaller screens
+- Use headers purely for decorative purposes
+
+## Migration from custom headers
+
+If you're currently using custom header implementations, consider migrating to `EuiPageHeader` for consistent theming and behavior:
+
+```tsx
+// Before: Custom header layout
+<div className="page-header">
+  <h1>Page Title</h1>
+  <p>Description</p>
+  <div className="actions">
+    <button>Primary Action</button>
+    <button>Secondary Action</button>
+  </div>
+</div>
+
+// After: EuiPageHeader
+<EuiPageHeader
+  pageTitle="Page Title"
+  description="Description"
+  rightSideItems={[
+    <EuiButton fill>Primary Action</EuiButton>,
+    <EuiButton>Secondary Action</EuiButton>,
+  ]}
+/>
+```
+
+**Benefits of migration:**
+- Consistent theming and responsive behavior
+- Built-in accessibility features
+- Standardized action placement and ordering
+- Proper integration with EUI's design system
+- Reduced custom CSS and maintenance overhead

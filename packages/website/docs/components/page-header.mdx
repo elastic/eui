@@ -1,0 +1,138 @@
+---
+keywords: [EuiPageHeader]
+---
+
+# Page header
+
+A minimal, accessible page header component that provides structural layout for page titles, descriptions, actions, and navigation elements.
+
+:::tip Looking for usage guidance?
+
+For title/actions/tabs placement and responsive rules, see the [Page header pattern](/docs/patterns/navigation/page-header).
+
+:::
+
+## Purpose
+
+Provide an accessible page header container with consistent layout and responsive behavior. Styling options remain, but no opinionated usage guidance.
+
+## Basic usage
+
+Simple page header with title, description, and actions.
+
+```tsx interactive
+import React from 'react';
+import { EuiPageHeader, EuiButton } from '@elastic/eui';
+
+export default () => (
+  <EuiPageHeader
+    pageTitle="Page title"
+    iconType="logoKibana"
+    description="This description should be describing the current page as depicted by the page title. It will never extend beneath the right side content."
+    rightSideItems={[
+      <EuiButton fill>Add something</EuiButton>,
+      <EuiButton>Do something</EuiButton>,
+    ]}
+  />
+);
+```
+
+## With tabs
+
+Page header with navigation tabs.
+
+```tsx interactive
+import React from 'react';
+import { EuiPageHeader, EuiButton } from '@elastic/eui';
+
+export default () => (
+  <EuiPageHeader
+    pageTitle="Page title"
+    tabs={[
+      {
+        label: 'Tab 1',
+        isSelected: true,
+      },
+      {
+        label: 'Tab 2',
+      },
+    ]}
+    rightSideItems={[
+      <EuiButton fill>Add something</EuiButton>,
+      <EuiButton>Do something</EuiButton>,
+    ]}
+  />
+);
+```
+
+## With breadcrumbs
+
+Page header with navigation breadcrumbs.
+
+```tsx interactive
+import React from 'react';
+import { requiredProps, EuiPageHeader, EuiButton } from '@elastic/eui';
+
+export default () => (
+  <EuiPageHeader
+    pageTitle="Page title"
+    description="Example of a description."
+    breadcrumbs={[
+      {
+        text: 'Breadcrumb 1',
+        href: '#',
+        onClick: (e) => e.preventDefault(),
+      },
+      {
+        text: 'Breadcrumb 2',
+        href: '#',
+        onClick: (e) => e.preventDefault(),
+      },
+      {
+        text: 'Current',
+        href: '#',
+        onClick: (e) => e.preventDefault(),
+      },
+    ]}
+    rightSideItems={[
+      <EuiButton fill>Add something</EuiButton>,
+      <EuiButton>Do something</EuiButton>,
+    ]}
+    breadcrumbProps={{
+      'aria-label': 'aria-label',
+      className: 'testClass1 testClass2',
+      'data-test-subj': 'test subject string',
+    }}
+  />
+);
+```
+
+## Custom layout
+
+Custom page header using section components.
+
+```tsx interactive
+import React from 'react';
+import { EuiPageHeader, EuiPageHeaderSection, EuiTitle } from '@elastic/eui';
+
+export default () => (
+  <EuiPageHeader bottomBorder>
+    <EuiPageHeaderSection>
+      <EuiTitle size="l">
+        <h1>Page title</h1>
+      </EuiTitle>
+    </EuiPageHeaderSection>
+    <EuiPageHeaderSection>Page abilities</EuiPageHeaderSection>
+  </EuiPageHeader>
+);
+```
+
+## Props
+
+import docgen from '@elastic/eui-docgen/dist/components/page';
+
+<PropTable definition={docgen.EuiPageHeader} />
+
+<PropTable definition={docgen.EuiPageHeaderContent} />
+
+<PropTable definition={docgen.EuiPageHeaderSection} />

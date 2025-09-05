@@ -1,0 +1,285 @@
+---
+title: Accordion
+sidebar_position: 1
+keywords: [accordion, disclosure, collapsible, progressive disclosure]
+---
+
+# Accordion
+
+A minimal, accessible disclosure control that shows/hides content with proper semantics and keyboard interaction.
+
+:::tip Looking for usage guidance?
+
+For accordion sets, page placement, density variants, and when to use accordions vs alternatives, see the [Accordions pattern](/docs/patterns/navigation/accordions).
+
+:::
+
+## Purpose
+
+Provide an accessible disclosure control that shows/hides content with proper semantics and keyboard interaction. Styling options remain, but no opinionated layout/IA rules.
+
+## Basic usage
+
+Simple accordion with default settings.
+
+```tsx interactive
+import React from 'react';
+import {
+  EuiAccordion,
+  EuiText,
+} from '@elastic/eui';
+
+export default () => (
+  <div style={{ maxWidth: '400px' }}>
+    <EuiAccordion
+      id="basic-accordion"
+      buttonContent="Click to expand"
+    >
+      <EuiText size="s">
+        <p>This is the content that appears when the accordion is expanded.</p>
+      </EuiText>
+    </EuiAccordion>
+  </div>
+);
+```
+
+## Controlled accordion
+
+Manage the open/closed state programmatically.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiAccordion,
+  EuiText,
+  EuiButton,
+  EuiSpacer,
+} from '@elastic/eui';
+
+export default () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <div style={{ maxWidth: '400px' }}>
+      <EuiAccordion
+        id="controlled-accordion"
+        buttonContent="Controlled accordion"
+        forceState={isOpen ? 'open' : 'closed'}
+        onToggle={setIsOpen}
+      >
+        <EuiText size="s">
+          <p>This accordion's state is controlled by React state.</p>
+        </EuiText>
+      </EuiAccordion>
+      
+      <EuiSpacer size="s" />
+      
+      <EuiButton size="s" onClick={() => setIsOpen(!isOpen)}>
+        {isOpen ? 'Close' : 'Open'} accordion
+      </EuiButton>
+    </div>
+  );
+};
+```
+
+## With extra actions
+
+Add additional controls in the accordion trigger area.
+
+```tsx interactive
+import React from 'react';
+import {
+  EuiAccordion,
+  EuiText,
+  EuiButtonEmpty,
+  EuiIcon,
+} from '@elastic/eui';
+
+export default () => (
+  <div style={{ maxWidth: '400px' }}>
+    <EuiAccordion
+      id="extra-actions-accordion"
+      buttonContent="Advanced settings"
+      extraAction={
+        <EuiButtonEmpty
+          size="xs"
+          onClick={(e) => {
+            e.stopPropagation();
+            alert('Reset clicked');
+          }}
+        >
+          Reset
+        </EuiButtonEmpty>
+      }
+    >
+      <EuiText size="s">
+        <p>This accordion has an extra action button in the trigger area.</p>
+        <p>The extra action doesn't trigger the accordion toggle.</p>
+      </EuiText>
+    </EuiAccordion>
+  </div>
+);
+```
+
+## States and variants
+
+### Arrow position
+
+Control the position of the expand/collapse arrow.
+
+```tsx interactive
+import React from 'react';
+import {
+  EuiAccordion,
+  EuiText,
+  EuiSpacer,
+} from '@elastic/eui';
+
+export default () => (
+  <div style={{ maxWidth: '400px' }}>
+    <EuiAccordion
+      id="left-arrow"
+      buttonContent="Arrow on left (default)"
+      arrowDisplay="left"
+    >
+      <EuiText size="s">
+        <p>Default arrow position on the left.</p>
+      </EuiText>
+    </EuiAccordion>
+    
+    <EuiSpacer size="s" />
+    
+    <EuiAccordion
+      id="right-arrow"
+      buttonContent="Arrow on right"
+      arrowDisplay="right"
+    >
+      <EuiText size="s">
+        <p>Arrow positioned on the right side.</p>
+      </EuiText>
+    </EuiAccordion>
+    
+    <EuiSpacer size="s" />
+    
+    <EuiAccordion
+      id="no-arrow"
+      buttonContent="No arrow"
+      arrowDisplay="none"
+    >
+      <EuiText size="s">
+        <p>Accordion without a visual arrow indicator.</p>
+      </EuiText>
+    </EuiAccordion>
+  </div>
+);
+```
+
+### Padding sizes
+
+Control the padding within the accordion content area.
+
+```tsx interactive
+import React from 'react';
+import {
+  EuiAccordion,
+  EuiText,
+  EuiSpacer,
+} from '@elastic/eui';
+
+export default () => (
+  <div style={{ maxWidth: '400px' }}>
+    <EuiAccordion
+      id="no-padding"
+      buttonContent="No padding"
+      paddingSize="none"
+    >
+      <EuiText size="s">
+        <p>Content with no padding around it.</p>
+      </EuiText>
+    </EuiAccordion>
+    
+    <EuiSpacer size="s" />
+    
+    <EuiAccordion
+      id="small-padding"
+      buttonContent="Small padding"
+      paddingSize="s"
+    >
+      <EuiText size="s">
+        <p>Content with small padding around it.</p>
+      </EuiText>
+    </EuiAccordion>
+    
+    <EuiSpacer size="s" />
+    
+    <EuiAccordion
+      id="medium-padding"
+      buttonContent="Medium padding (default)"
+      paddingSize="m"
+    >
+      <EuiText size="s">
+        <p>Content with medium padding around it (default).</p>
+      </EuiText>
+    </EuiAccordion>
+    
+    <EuiSpacer size="s" />
+    
+    <EuiAccordion
+      id="large-padding"
+      buttonContent="Large padding"
+      paddingSize="l"
+    >
+      <EuiText size="s">
+        <p>Content with large padding around it.</p>
+      </EuiText>
+    </EuiAccordion>
+  </div>
+);
+```
+
+## Accessibility
+
+### Keyboard interaction
+
+- **Space/Enter**: Toggle the accordion open/closed
+- **Tab**: Navigate to the accordion trigger
+- **Focus management**: Focus stays on the trigger when accordion opens/closes
+
+### ARIA attributes
+
+- **`aria-controls`**: Links the trigger to the content region
+- **`aria-expanded`**: Indicates the current open/closed state
+- **`role="button"`**: Proper semantic role for the trigger
+- **`role="region"`**: Semantic role for the content area
+
+### Screen reader support
+
+- State changes are announced to screen readers
+- Content is properly associated with the trigger
+- Clear labels describe the content that will be revealed
+
+## Design tokens
+
+Use these tokens for consistent accordion styling:
+
+- **Spacing**: `euiSizeM` for default content padding
+- **Colors**: `euiTheme.colors.primary` for active states
+- **Typography**: `euiFontSizeM` for button content
+- **Focus ring**: `euiFocusRing` for keyboard focus indicators
+- **Borders**: `euiBorderColor` for visual separation
+
+## Props
+
+| Prop | Type | Default | Notes |
+|------|------|---------|-------|
+| `id` | `string` | — | Must be unique; wires aria-controls |
+| `buttonContent` | `ReactNode` | — | Label/title for the trigger |
+| `initialIsOpen` | `boolean` | `false` | Uncontrolled initial state |
+| `forceState` | `'open' \| 'closed'` | — | Controlled state (optional) |
+| `onToggle` | `(isOpen: boolean) => void` | — | Fired after toggle |
+| `paddingSize` | `'none' \| 's' \| 'm' \| 'l'` | `'m'` | Content padding |
+| `arrowDisplay` | `'left' \| 'right' \| 'none'` | `'left'` | Caret placement |
+| `buttonElement` | `'button' \| 'h1'...'h6'` | `'button'` | Semantic heading as trigger |
+| `extraAction` | `ReactNode` | — | Optional trailing action |
+| `isLoading` | `boolean` | `false` | Shows loading spinner |
+| `buttonProps` | `object` | — | Props passed to the trigger button |

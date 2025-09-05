@@ -1,22 +1,22 @@
 ---
-keywords: [EuiPopover, EuiPopoverTitle, EuiPopoverFooter]
+keywords: [EuiPopover]
 ---
 
 # Popover
 
-Use the **EuiPopover** component to hide controls or options behind a clickable element. A popover is temporary so keep tasks simple and narrowly focused.
+:::tip Looking for usage guidance?
 
-:::note Popovers have three accessibility requirements:
-
-*   Popover triggers **must** be anchored to elements that accept keyboard focus.
-*   Popovers can contain interactive elements. They **must** be controlled by a click handler.
-*   Popovers must not be activated by hover or focus events.
+For placement, behavior, accessibility, and alternatives, see the [Popovers pattern](../../patterns/navigation/popovers.mdx).
 
 :::
 
-While the visibility of the popover is maintained by the consuming application, popovers will automatically close when clicking outside of the popover bounds. Therefore all work done in a popover should automatically be saved.
+Use **EuiPopover** to reveal lightweight, contextual content on demand. Keep tasks short and focused.
 
-Avoid popover inception (popover triggering another popover), and instead use a [EuiContextMenu](../navigation/context-menu.mdx) to swap the popover panel content.
+## Accessibility (atom-level)
+
+- The trigger must be keyboard-focusable
+- Open/close should be controlled by click (not hover/focus)
+- Popovers auto-close on outside click by default
 
 ```tsx interactive
 import React, { useState } from 'react';

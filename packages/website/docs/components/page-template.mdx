@@ -1,0 +1,212 @@
+---
+keywords: [EuiPageTemplate]
+---
+
+# Page template
+
+A namespaced component for creating different types of page layout patterns with opinionated but customizable structure.
+
+:::tip Looking for usage guidance?
+
+For complete page recipes and responsive layouts, see the [Page layout pattern](/docs/patterns/navigation/page-layout).
+
+:::
+
+## Purpose
+
+Provide a structured page layout system with namespaced components that automatically handle positioning, spacing, and responsive behavior while maintaining customization flexibility.
+
+## Basic usage
+
+Simple page template with header and content sections.
+
+```tsx interactive
+import React from 'react';
+import {
+  EuiText,
+  EuiButton,
+  EuiPageTemplate,
+  EuiPageTemplateProps,
+} from '@elastic/eui';
+
+const panelled: EuiPageTemplateProps['panelled'] = undefined;
+const restrictWidth: EuiPageTemplateProps['restrictWidth'] = false;
+const bottomBorder: EuiPageTemplateProps['bottomBorder'] = "extended";
+
+export default () => {
+  return (
+    <EuiPageTemplate
+      panelled={panelled}
+      restrictWidth={restrictWidth}
+      bottomBorder={bottomBorder}
+      offset={0}
+      grow={false}
+    >
+      <EuiPageTemplate.Section grow={false} color="subdued" bottomBorder={bottomBorder}>
+        <EuiText textAlign="center">
+          <strong>
+            Stack EuiPageTemplate sections and headers to create your custom content order.
+          </strong>
+        </EuiText>
+      </EuiPageTemplate.Section>
+      <EuiPageTemplate.Header
+        iconType="logoElastic"
+        pageTitle="Page title"
+        rightSideItems={[<EuiButton>Right side item</EuiButton>]}
+        description="Header description."
+        tabs={[{ label: "Tab 1", isSelected: true }, { label: "Tab 2" }]}
+      />
+      <EuiPageTemplate.Section>
+        <EuiText>
+          <p>Main content section with your page content.</p>
+        </EuiText>
+      </EuiPageTemplate.Section>
+    </EuiPageTemplate>
+  );
+};
+```
+
+## With sidebar
+
+Page template with sidebar navigation.
+
+```tsx interactive
+import React from 'react';
+import {
+  EuiText,
+  EuiButton,
+  EuiPageTemplate,
+  EuiPageTemplateProps,
+  EuiSideNav,
+} from '@elastic/eui';
+
+const panelled: EuiPageTemplateProps['panelled'] = true;
+const restrictWidth: EuiPageTemplateProps['restrictWidth'] = false;
+const bottomBorder: EuiPageTemplateProps['bottomBorder'] = true;
+
+export default () => {
+  const sideNav = [
+    {
+      name: 'Dashboard',
+      id: 1,
+      isSelected: true,
+    },
+    {
+      name: 'Analytics',
+      id: 2,
+    },
+    {
+      name: 'Settings',
+      id: 3,
+    },
+  ];
+
+  return (
+    <EuiPageTemplate
+      panelled={panelled}
+      restrictWidth={restrictWidth}
+      bottomBorder={bottomBorder}
+      offset={0}
+      grow={false}
+    >
+      <EuiPageTemplate.Sidebar>
+        <EuiSideNav items={sideNav} />
+      </EuiPageTemplate.Sidebar>
+      <EuiPageTemplate.Header
+        iconType="logoElastic"
+        pageTitle="Page title"
+        rightSideItems={[<EuiButton>Right side item</EuiButton>]}
+      />
+      <EuiPageTemplate.Section
+        grow={false}
+        bottomBorder={bottomBorder}
+      >
+        <EuiText textAlign="center">
+          <strong>
+            Stack EuiPageTemplate sections and headers to create your custom content order.
+          </strong>
+        </EuiText>
+      </EuiPageTemplate.Section>
+      <EuiPageTemplate.Section>
+        <EuiText>
+          <p>Main content section with your page content.</p>
+        </EuiText>
+      </EuiPageTemplate.Section>
+    </EuiPageTemplate>
+  );
+};
+```
+
+## With bottom bar
+
+Page template with sticky bottom action bar.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiText,
+  EuiButton,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiPageTemplate,
+  EuiPageTemplateProps,
+} from '@elastic/eui';
+
+const panelled: EuiPageTemplateProps['panelled'] = undefined;
+const restrictWidth: EuiPageTemplateProps['restrictWidth'] = false;
+const bottomBorder: EuiPageTemplateProps['bottomBorder'] = "extended";
+
+export default () => {
+  const [showSidebar, setShowSidebar] = useState<boolean>(true);
+
+  return (
+    <EuiPageTemplate
+      panelled={panelled}
+      restrictWidth={restrictWidth}
+      bottomBorder={bottomBorder}
+      offset={0}
+      grow={false}
+    >
+      <EuiPageTemplate.Header
+        iconType="logoElastic"
+        pageTitle="Page title"
+        rightSideItems={[<EuiButton>Right side item</EuiButton>]}
+        description="Header description."
+      />
+      <EuiPageTemplate.Section>
+        <EuiText>
+          <p>Main content section with your page content.</p>
+        </EuiText>
+      </EuiPageTemplate.Section>
+      <EuiPageTemplate.BottomBar paddingSize="s">
+        <EuiFlexGroup
+          alignItems="center"
+          justifyContent="spaceBetween"
+          responsive={false}
+        >
+          <EuiFlexItem grow={false}>
+            <EuiText size="s">
+              <p>Bottom text</p>
+            </EuiText>
+          </EuiFlexItem>
+          <EuiFlexItem grow={false}>
+            <EuiButton
+              color="text"
+              onClick={() => setShowSidebar(x => !x)}
+              isSelected={showSidebar}
+            >
+              Toggle Sidebar
+            </EuiButton>
+          </EuiFlexItem>
+        </EuiFlexGroup>
+      </EuiPageTemplate.BottomBar>
+    </EuiPageTemplate>
+  );
+};
+```
+
+## Props
+
+import docgen from '@elastic/eui-docgen/dist/components/page_template';
+
+<PropTable definition={docgen.EuiPageTemplate} />

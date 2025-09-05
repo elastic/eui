@@ -1,0 +1,380 @@
+---
+title: Accordions
+sidebar_position: 2
+keywords: [accordions, disclosure, progressive disclosure, collapsible, navigation]
+---
+
+# Accordions
+
+Accordions provide progressive disclosure for secondary information within a page section, allowing users to reveal additional content without changing context or navigating away.
+
+## Problem
+
+Users need access to secondary or supplementary information without overwhelming the primary interface. Without proper disclosure patterns, pages become cluttered with too much information, or users lose context when navigating to separate sections. This pattern addresses how to organize content hierarchically while maintaining user focus and providing clear, accessible disclosure controls.
+
+## When to use
+
+- **Secondary or supplementary details** ("Advanced options", "More information")
+- **Collapsible help/hints or FAQs** within a page section
+- **Grouped filters or options** where progressive disclosure helps scanning
+- **Settings or configuration panels** that aren't always needed
+- **Content that's occasionally referenced** but not primary to the task
+
+## When not to use
+
+- **Primary navigation between peer views** → Use Tabs pattern
+- **Major page sections** → Use Page layout sections (always visible)
+- **Long forms with validation across hidden fields** → Consider Form layout (avoid hiding required fields)
+- **Critical information** that users must see immediately
+- **Content that needs side-by-side comparison** → Use Tabs or separate sections
+
+## Anatomy
+
+- **Trigger button**: Accessible button with clear label and optional icon
+- **Content region**: Collapsible area with consistent padding and spacing
+- **Visual indicator**: Arrow or icon showing open/closed state
+- **Optional actions**: Extra buttons or controls in the trigger area
+
+## Single accordion
+
+Basic accordion for revealing inline details or supplementary information.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiAccordion,
+  EuiText,
+  EuiSpacer,
+  EuiCallOut,
+  EuiIcon,
+} from '@elastic/eui';
+
+export default () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <EuiAccordion
+      id="single-accordion"
+      buttonContent="Advanced configuration options"
+      forceState={isOpen ? 'open' : 'closed'}
+      onToggle={setIsOpen}
+      paddingSize="m"
+    >
+      <EuiText size="s">
+        <p>
+          Configure advanced settings for your deployment. These options are recommended 
+          for production environments and may require additional resources.
+        </p>
+        <EuiSpacer size="s" />
+        <EuiCallOut
+          size="s"
+          title="Production recommendation"
+          color="warning"
+          iconType="alert"
+        >
+          <p>
+            Enable these settings only if you have sufficient system resources 
+            and understand the performance implications.
+          </p>
+        </EuiCallOut>
+      </EuiText>
+    </EuiAccordion>
+  );
+};
+```
+
+## Accordion set
+
+Multiple accordions that can be expanded independently, ideal for grouped related information.
+
+```tsx interactive
+import React from 'react';
+import {
+  EuiAccordion,
+  EuiText,
+  EuiSpacer,
+  EuiFormRow,
+  EuiFieldText,
+  EuiSelect,
+  EuiCheckbox,
+  EuiFlexGroup,
+  EuiFlexItem,
+} from '@elastic/eui';
+
+export default () => {
+  const accordionItems = [
+    {
+      id: 'connection',
+      title: 'Connection settings',
+      content: (
+        <EuiFormRow label="Host">
+          <EuiFieldText placeholder="Enter hostname" />
+        </EuiFormRow>
+      ),
+    },
+    {
+      id: 'security',
+      title: 'Security configuration',
+      content: (
+        <>
+          <EuiFormRow label="Authentication method">
+            <EuiSelect
+              options={[
+                { value: 'basic', text: 'Basic authentication' },
+                { value: 'oauth', text: 'OAuth 2.0' },
+                { value: 'api-key', text: 'API key' },
+              ]}
+            />
+          </EuiFormRow>
+          <EuiSpacer size="s" />
+          <EuiCheckbox
+            id="ssl"
+            label="Enable SSL/TLS encryption"
+          />
+        </>
+      ),
+    },
+    {
+      id: 'performance',
+      title: 'Performance options',
+      content: (
+        <EuiText size="s">
+          <p>
+            Configure performance settings for optimal resource usage. 
+            These settings affect memory and CPU consumption.
+          </p>
+          <EuiSpacer size="s" />
+          <EuiFormRow label="Cache size">
+            <EuiSelect
+              options={[
+                { value: 'small', text: 'Small (256MB)' },
+                { value: 'medium', text: 'Medium (512MB)' },
+                { value: 'large', text: 'Large (1GB)' },
+              ]}
+            />
+          </EuiFormRow>
+        </EuiText>
+      ),
+    },
+  ];
+
+  return (
+    <>
+      {accordionItems.map((item, index) => (
+        <React.Fragment key={item.id}>
+          <EuiAccordion
+            id={`accordion-${item.id}`}
+            buttonContent={item.title}
+            paddingSize="m"
+          >
+            {item.content}
+          </EuiAccordion>
+          {index < accordionItems.length - 1 && <EuiSpacer size="s" />}
+        </React.Fragment>
+      ))}
+    </>
+  );
+};
+```
+
+## Single-expand accordion
+
+Controlled accordion set where only one item can be open at a time, useful for mutually exclusive content.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiAccordion,
+  EuiText,
+  EuiSpacer,
+  EuiButton,
+  EuiButtonEmpty,
+  EuiFlexGroup,
+  EuiFlexItem,
+} from '@elastic/eui';
+
+export default () => {
+  const [openId, setOpenId] = useState<string | null>('overview');
+
+  const accordionItems = [
+    {
+      id: 'overview',
+      title: 'Overview',
+      content: (
+        <EuiText size="s">
+          <p>
+            Get a quick overview of your deployment status, recent activity, 
+            and key metrics at a glance.
+          </p>
+          <EuiSpacer size="s" />
+          <EuiButton size="s" fill>
+            View full dashboard
+          </EuiButton>
+        </EuiText>
+      ),
+    },
+    {
+      id: 'monitoring',
+      title: 'Monitoring',
+      content: (
+        <EuiText size="s">
+          <p>
+            Monitor system health, performance metrics, and alert status. 
+            Configure thresholds and notification settings.
+          </p>
+          <EuiSpacer size="s" />
+          <EuiFlexGroup gutterSize="s">
+            <EuiFlexItem grow={false}>
+              <EuiButton size="s" fill>
+                Configure alerts
+              </EuiButton>
+            </EuiFlexItem>
+            <EuiFlexItem grow={false}>
+              <EuiButtonEmpty size="s">
+                View logs
+              </EuiButtonEmpty>
+            </EuiFlexItem>
+          </EuiFlexGroup>
+        </EuiText>
+      ),
+    },
+    {
+      id: 'settings',
+      title: 'Settings',
+      content: (
+        <EuiText size="s">
+          <p>
+            Manage application settings, user preferences, and system configuration. 
+            Changes here affect the entire deployment.
+          </p>
+          <EuiSpacer size="s" />
+          <EuiButton size="s" fill>
+            Save changes
+          </EuiButton>
+        </EuiText>
+      ),
+    },
+  ];
+
+  return (
+    <>
+      {accordionItems.map((item, index) => {
+        const isOpen = openId === item.id;
+        return (
+          <React.Fragment key={item.id}>
+            <EuiAccordion
+              id={`single-expand-${item.id}`}
+              buttonContent={item.title}
+              forceState={isOpen ? 'open' : 'closed'}
+              onToggle={(next) => setOpenId(next ? item.id : null)}
+              paddingSize="m"
+            >
+              {item.content}
+            </EuiAccordion>
+            {index < accordionItems.length - 1 && <EuiSpacer size="s" />}
+          </React.Fragment>
+        );
+      })}
+    </>
+  );
+};
+```
+
+## Behavior
+
+### Expansion model
+
+- **Multi-expand by default**: Allow multiple accordions to be open simultaneously
+- **Single-expand when needed**: Use controlled state for mutually exclusive content
+- **State management**: Use `forceState` and `onToggle` for controlled behavior
+- **Initial state**: Set `initialIsOpen` for uncontrolled accordions
+
+### Content guidelines
+
+- **Keep content concise**: Short content works best; if long, consider tabs or separate sections
+- **Clear labels**: Use action-oriented labels that describe the content
+- **Progressive disclosure**: Reveal information progressively, not hide critical content
+- **Consistent spacing**: Use consistent padding and spacing within accordion content
+
+### Nesting and hierarchy
+
+- **Avoid deep nesting**: Don't nest accordions inside accordions
+- **Prefer alternatives**: Use page sections or tabs for complex hierarchies
+- **Clear structure**: Maintain clear visual and semantic hierarchy
+
+## Accessibility
+
+- **Button semantics**: Triggers use proper button semantics with keyboard support
+- **ARIA attributes**: Proper `aria-controls` and `aria-expanded` attributes
+- **Focus management**: Focus stays on trigger when accordion opens/closes
+- **Screen reader support**: Clear labels and state announcements
+- **Target size**: Maintain 44×44px minimum target size for triggers
+- **Visual indicators**: Don't rely solely on color or icons for state indication
+
+## Design tokens
+
+Use these tokens for consistent accordion styling:
+
+- **Spacing**: `euiSizeM` for content padding, `euiSizeS` for dense variants
+- **Borders**: `euiBorderColor` for dividers between accordion items
+- **Colors**: `euiTheme.colors.primary` for active states, `euiTheme.colors.subdued` for icons
+- **Typography**: `euiFontSizeM` for labels, `euiFontSizeS` for content
+- **Focus ring**: `euiFocusRing` for keyboard focus indicators
+
+## Do's and Don'ts
+
+### ✅ Do
+
+- Use clear, action-oriented labels ("Advanced options", "Connection settings")
+- Keep accordion sets short; prefer 3–5 items maximum
+- Prefer multi-expand unless a true radio-accordion is required
+- Ensure content is truly secondary or supplementary
+- Use consistent padding and spacing within accordion content
+- Provide clear visual feedback for open/closed states
+
+### ❌ Don't
+
+- Hide critical or required fields by default
+- Nest accordions inside accordions
+- Use accordions as primary navigation (use Tabs pattern instead)
+- Make accordions too long or complex
+- Use vague or unhelpful labels
+- Rely solely on visual cues for state indication
+
+## Choose the right pattern
+
+| Use Case | Pattern | When |
+|----------|---------|------|
+| **Secondary information** | Accordions | Content is supplementary or occasionally needed |
+| **Primary navigation** | Tabs | Switching between main views or sections |
+| **Major page sections** | Page layout | Content is always visible and important |
+| **Form validation** | Form layout | Avoid hiding required fields in accordions |
+
+## Migration from basic accordion usage
+
+If you're currently using basic accordion implementations, consider migrating to this pattern for better consistency and accessibility:
+
+```tsx
+// Before: Basic implementation
+<div className="accordion">
+  <button onClick={toggle}>Advanced options</button>
+  {isOpen && <div>Content here</div>}
+</div>
+
+// After: EUI accordion pattern
+<EuiAccordion
+  id="advanced-options"
+  buttonContent="Advanced options"
+  initialIsOpen={false}
+  paddingSize="m"
+>
+  <EuiText size="s">Content here</EuiText>
+</EuiAccordion>
+```
+
+**Benefits of migration:**
+- **Better accessibility** - Built-in ARIA attributes and keyboard support
+- **Consistent styling** - Uses EUI design tokens and themes
+- **Proper semantics** - Correct button and region markup
+- **State management** - Built-in controlled and uncontrolled modes
+- **Theme support** - Automatically adapts to light/dark themes

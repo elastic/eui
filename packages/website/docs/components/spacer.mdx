@@ -1,0 +1,78 @@
+---
+keywords: [EuiSpacer]
+---
+
+# Spacer
+
+A minimal, accessible vertical spacing component that adds consistent space between elements.
+
+:::tip Looking for usage guidance?
+
+For spacing patterns, visual hierarchy, and when to use spacers vs alternatives, see the [Spacing pattern](/docs/patterns/layouts/spacing).
+
+:::
+
+## Purpose
+
+Provide consistent vertical spacing between elements that aligns with EUI's grid system. Styling options remain, but no opinionated layout/IA rules.
+
+## Basic usage
+
+Simple vertical spacing with different size options.
+
+```tsx interactive
+import React from 'react';
+import { EuiSpacer, EuiCode, EuiFlexGroup, EuiFlexItem, EuiText } from '@elastic/eui';
+
+export default () => (
+  <EuiFlexGroup>
+    <EuiFlexItem>
+      <EuiCode>xs</EuiCode>
+      <EuiText size="s">Content above</EuiText>
+      <EuiSpacer size="xs" />
+      <EuiText size="s">Content below</EuiText>
+    </EuiFlexItem>
+
+    <EuiFlexItem>
+      <EuiCode>s</EuiCode>
+      <EuiText size="s">Content above</EuiText>
+      <EuiSpacer size="s" />
+      <EuiText size="s">Content below</EuiText>
+    </EuiFlexItem>
+
+    <EuiFlexItem>
+      <EuiCode>m</EuiCode>
+      <EuiText size="s">Content above</EuiText>
+      <EuiSpacer size="m" />
+      <EuiText size="s">Content below</EuiText>
+    </EuiFlexItem>
+
+    <EuiFlexItem>
+      <EuiCode>l (default)</EuiCode>
+      <EuiText size="s">Content above</EuiText>
+      <EuiSpacer />
+      <EuiText size="s">Content below</EuiText>
+    </EuiFlexItem>
+
+    <EuiFlexItem>
+      <EuiCode>xl</EuiCode>
+      <EuiText size="s">Content above</EuiText>
+      <EuiSpacer size="xl" />
+      <EuiText size="s">Content below</EuiText>
+    </EuiFlexItem>
+
+    <EuiFlexItem>
+      <EuiCode>xxl</EuiCode>
+      <EuiText size="s">Content above</EuiText>
+      <EuiSpacer size="xxl" />
+      <EuiText size="s">Content below</EuiText>
+    </EuiFlexItem>
+  </EuiFlexGroup>
+);
+```
+
+## Props
+
+import docgen from '@elastic/eui-docgen/dist/components/spacer';
+
+<PropTable definition={docgen.EuiSpacer} />

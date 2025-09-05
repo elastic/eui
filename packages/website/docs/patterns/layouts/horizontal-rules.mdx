@@ -1,0 +1,212 @@
+---
+title: Horizontal rules
+sidebar_position: 3
+keywords: [horizontal rules, dividers, separators, layout, visual separation]
+---
+
+# Horizontal rules
+
+Horizontal rules provide visual separation between content sections, helping users understand content hierarchy and relationships.
+
+## Problem
+
+Content needs clear visual separation to improve readability and establish hierarchy. Without proper dividers, related content can appear disconnected, and users may struggle to understand the relationship between different sections.
+
+## When to use
+
+- **Content separation**: Divide distinct sections of content within a page
+- **Visual hierarchy**: Create clear boundaries between different content areas
+- **Form sections**: Separate form fields, groups, or steps
+- **List separation**: Divide long lists or content blocks
+- **Page sections**: Mark transitions between major page areas
+
+## When not to use
+
+- **Navigation separation**: Use spacing or borders instead
+- **Button separation**: Use button groups or spacing
+- **Over-separation**: Don't add rules between every element
+- **Primary content**: Don't use rules to separate the main content from navigation
+
+## Anatomy
+
+- **Rule element**: The visual divider line
+- **Margins**: Spacing above and below the rule
+- **Size**: Length of the rule (quarter, half, full)
+- **Context**: Content on either side of the rule
+
+## Basic horizontal rule
+
+Simple divider with default full width and standard margins.
+
+```tsx interactive
+import React from 'react';
+import { EuiHorizontalRule, EuiText, EuiTitle } from '@elastic/eui';
+
+export default () => (
+  <div style={{ maxWidth: '600px' }}>
+    <EuiTitle size="s">
+      <h3>Section One</h3>
+    </EuiTitle>
+    <EuiText size="s">
+      <p>This is the first section of content. It contains important information that users need to read.</p>
+    </EuiText>
+    
+    <EuiHorizontalRule />
+    
+    <EuiTitle size="s">
+      <h3>Section Two</h3>
+    </EuiTitle>
+    <EuiText size="s">
+      <p>This is the second section, clearly separated from the first. The horizontal rule helps establish visual hierarchy.</p>
+    </EuiText>
+  </div>
+);
+```
+
+## Rule sizing
+
+Choose the appropriate rule length based on your layout and content width.
+
+```tsx interactive
+import React from 'react';
+import { EuiHorizontalRule, EuiText, EuiTitle, EuiFlexGroup, EuiFlexItem } from '@elastic/eui';
+
+export default () => (
+  <div style={{ maxWidth: '800px' }}>
+    <EuiTitle size="s">
+      <h3>Content with Different Rule Sizes</h3>
+    </EuiTitle>
+    <EuiText size="s">
+      <p>Use different rule sizes to match your content layout and visual hierarchy.</p>
+    </EuiText>
+    
+    <EuiHorizontalRule size="quarter" />
+    
+    <EuiText size="s">
+      <p>Quarter-width rule for subtle separation in narrow content areas.</p>
+    </EuiText>
+    
+    <EuiHorizontalRule size="half" />
+    
+    <EuiText size="s">
+      <p>Half-width rule for medium content areas or when you want less visual weight.</p>
+    </EuiText>
+    
+    <EuiHorizontalRule size="full" />
+    
+    <EuiText size="s">
+      <p>Full-width rule (default) for complete section separation and maximum visual impact.</p>
+    </EuiText>
+  </div>
+);
+```
+
+## Margin control
+
+Adjust spacing around rules to match your content rhythm and visual hierarchy.
+
+```tsx interactive
+import React from 'react';
+import { EuiHorizontalRule, EuiText, EuiTitle, EuiCode } from '@elastic/eui';
+
+export default () => (
+  <div style={{ maxWidth: '600px' }}>
+    <EuiTitle size="s">
+      <h3>Margin Examples</h3>
+    </EuiTitle>
+    <EuiText size="s">
+      <p>Different margin sizes create different visual relationships with surrounding content.</p>
+    </EuiText>
+    
+    <EuiCode>margin="xs"</EuiCode>
+    <EuiHorizontalRule margin="xs" />
+    <EuiText size="s">
+      <p>Extra small margin for tight spacing when content is closely related.</p>
+    </EuiText>
+    
+    <EuiCode>margin="s"</EuiCode>
+    <EuiHorizontalRule margin="s" />
+    <EuiText size="s">
+      <p>Small margin for standard content separation.</p>
+    </EuiText>
+    
+    <EuiCode>margin="m"</EuiCode>
+    <EuiHorizontalRule margin="m" />
+    <EuiText size="s">
+      <p>Medium margin for clear section breaks.</p>
+    </EuiText>
+    
+    <EuiCode>margin="l" (default)</EuiCode>
+    <EuiHorizontalRule margin="l" />
+    <EuiText size="s">
+      <p>Large margin (default) for major content divisions.</p>
+    </EuiText>
+    
+    <EuiCode>margin="xl"</EuiCode>
+    <EuiHorizontalRule margin="xl" />
+    <EuiText size="s">
+      <p>Extra large margin for significant page sections.</p>
+    </EuiText>
+  </div>
+);
+```
+
+## Behavior
+
+- **Responsive**: Rules maintain their size proportions across different screen sizes
+- **Margin collapse**: Margins collapse with adjacent elements following CSS margin collapse rules
+- **Accessibility**: Rules are semantic `<hr>` elements that screen readers can identify
+- **Theme integration**: Rules automatically adapt to light/dark themes
+
+## Accessibility
+
+- **Semantic markup**: Uses `<hr>` element for proper screen reader announcement
+- **Theme contrast**: Maintains sufficient contrast in both light and dark themes
+- **Focus indicators**: Rules don't receive focus as they're not interactive
+- **Screen readers**: Announced as "separator" or "horizontal rule" by assistive technology
+
+## Design tokens
+
+- **Color**: `euiColorLightShade` (theme-aware)
+- **Height**: `euiBorderWidthThin`
+- **Margins**: `euiSizeXS` through `euiSizeXXL`
+- **Sizes**: Quarter (25%), half (50%), full (100%)
+- **Border radius**: `euiBorderRadiusSmall` (if applicable)
+
+## Do's and Don'ts
+
+### ✅ Do
+- Use rules to separate distinct content sections
+- Choose appropriate sizes based on content width
+- Maintain consistent spacing patterns
+- Use rules sparingly to avoid visual clutter
+- Consider the content relationship when choosing margins
+
+### ❌ Don't
+- Use rules between every element or paragraph
+- Override rule styling with custom colors or borders
+- Use rules as decorative elements without semantic purpose
+- Place rules too close to text content
+- Use rules to separate navigation elements
+
+## Migration from custom dividers
+
+If you're currently using custom `<hr>` elements or border-based dividers, consider migrating to `EuiHorizontalRule` for consistent theming and spacing:
+
+```tsx
+// Before: Custom styling
+<hr style={{ 
+  border: '1px solid #d3dae6', 
+  margin: '24px 0',
+  width: '100%' 
+}} />
+
+// After: EuiHorizontalRule
+<EuiHorizontalRule margin="l" />
+```
+
+**Benefits of migration:**
+- Consistent theming across light and dark modes
+- Standardized spacing options
+- Better accessibility with semantic markup
+- Responsive sizing options

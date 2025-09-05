@@ -1,0 +1,359 @@
+---
+title: Header
+sidebar_position: 5
+keywords: [header, navigation, global navigation, site navigation, application header]
+---
+
+# Header
+
+Headers provide global navigation and branding for applications, serving as the primary wayfinding element and establishing the application's identity and structure.
+
+## Problem
+
+Users need consistent global navigation and wayfinding across an application. Without proper headers, users may struggle to understand the application structure, navigate between sections, access important actions, or identify their current location within the application hierarchy.
+
+## When to use
+
+- **Global navigation**: Provide consistent navigation across all application pages
+- **Application branding**: Display logo, application name, and visual identity
+- **User context**: Show user information, account controls, and personalization
+- **Global actions**: Provide access to search, notifications, and application-wide features
+- **Breadcrumb navigation**: Show current location within application hierarchy
+- **Space/context switching**: Allow users to switch between different workspaces or contexts
+
+## When not to use
+
+- **Page-specific navigation**: Use page headers for page-level navigation
+- **Content section headers**: Use `EuiTitle` for content section headers
+- **Modal headers**: Use modal-specific header patterns
+- **Component-level navigation**: Use individual navigation components for specific features
+
+## Anatomy
+
+- **Logo/Branding**: Application logo and name (left-aligned)
+- **Primary navigation**: Main application navigation links
+- **Breadcrumbs**: Current location within application hierarchy
+- **Search**: Global search functionality
+- **User controls**: User menu, account settings, logout
+- **Notifications**: Alerts, updates, and system notifications
+- **Context switchers**: Space, environment, or workspace selectors
+- **Theme controls**: Light/dark mode toggle, accessibility options
+
+## Basic application header
+
+Simple header with logo, navigation, and user controls.
+
+```tsx interactive
+import React from 'react';
+import {
+  EuiHeader,
+  EuiHeaderLogo,
+  EuiHeaderLinks,
+  EuiHeaderLink,
+  EuiHeaderSectionItem,
+  EuiHeaderSectionItemButton,
+  EuiAvatar,
+  EuiIcon,
+} from '@elastic/eui';
+
+export default () => (
+  <EuiHeader>
+    <EuiHeaderSectionItem>
+      <EuiHeaderLogo iconType="logoElastic">Elastic</EuiHeaderLogo>
+    </EuiHeaderSectionItem>
+
+    <EuiHeaderSectionItem>
+      <EuiHeaderLinks aria-label="App navigation">
+        <EuiHeaderLink isActive>Dashboard</EuiHeaderLink>
+        <EuiHeaderLink>Analytics</EuiHeaderLink>
+        <EuiHeaderLink>Management</EuiHeaderLink>
+        <EuiHeaderLink iconType="help">Help</EuiHeaderLink>
+      </EuiHeaderLinks>
+    </EuiHeaderSectionItem>
+
+    <EuiHeaderSection side="right">
+      <EuiHeaderSectionItem>
+        <EuiHeaderSectionItemButton aria-label="Account menu">
+          <EuiAvatar name="John Username" size="s" />
+        </EuiHeaderSectionItemButton>
+      </EuiHeaderSectionItem>
+    </EuiHeaderSection>
+  </EuiHeader>
+);
+```
+
+## Header with breadcrumbs and search
+
+Header with navigation context and global search functionality.
+
+```tsx interactive
+import React from 'react';
+import {
+  EuiHeader,
+  EuiHeaderLogo,
+  EuiHeaderBreadcrumbs,
+  EuiHeaderSectionItem,
+  EuiHeaderSectionItemButton,
+  EuiAvatar,
+  EuiIcon,
+  EuiBreadcrumb,
+} from '@elastic/eui';
+
+export default () => {
+  const breadcrumbs: EuiBreadcrumb[] = [
+    {
+      text: 'Management',
+      href: '#',
+      onClick: (e) => e.preventDefault(),
+    },
+    {
+      text: 'Users',
+      href: '#',
+      onClick: (e) => e.preventDefault(),
+    },
+    {
+      text: 'Create',
+    },
+  ];
+
+  return (
+    <EuiHeader>
+      <EuiHeaderSectionItem>
+        <EuiHeaderLogo iconType="logoElastic">Elastic</EuiHeaderLogo>
+      </EuiHeaderSectionItem>
+
+      <EuiHeaderBreadcrumbs
+        aria-label="Header breadcrumbs"
+        breadcrumbs={breadcrumbs}
+      />
+
+      <EuiHeaderSection side="right">
+        <EuiHeaderSectionItem>
+          <EuiHeaderSectionItemButton aria-label="Sitewide search">
+            <EuiIcon type="search" size="m" />
+          </EuiHeaderSectionItemButton>
+        </EuiHeaderSectionItem>
+
+        <EuiHeaderSectionItem>
+          <EuiHeaderSectionItemButton aria-label="Account menu">
+            <EuiAvatar name="John Username" size="s" />
+          </EuiHeaderSectionItemButton>
+        </EuiHeaderSectionItem>
+      </EuiHeaderSection>
+    </EuiHeader>
+  );
+};
+```
+
+## Header with notifications and context
+
+Header with user notifications, space switching, and application menu.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiHeader,
+  EuiHeaderLogo,
+  EuiHeaderSectionItem,
+  EuiHeaderSectionItemButton,
+  EuiAvatar,
+  EuiIcon,
+  EuiPopover,
+  EuiKeyPadMenu,
+  EuiKeyPadMenuItem,
+  EuiBadge,
+  useGeneratedHtmlId,
+} from '@elastic/eui';
+
+export default () => {
+  const [isAppsOpen, setIsAppsOpen] = useState(false);
+  const [isSpacesOpen, setIsSpacesOpen] = useState(false);
+  const appsPopoverId = useGeneratedHtmlId({ prefix: 'appsPopover' });
+  const spacesPopoverId = useGeneratedHtmlId({ prefix: 'spacesPopover' });
+
+  const appsButton = (
+    <EuiHeaderSectionItemButton
+      aria-controls={appsPopoverId}
+      aria-expanded={isAppsOpen}
+      aria-haspopup="true"
+      aria-label="Apps menu with 1 new app"
+      notification="1"
+      onClick={() => setIsAppsOpen(!isAppsOpen)}
+    >
+      <EuiIcon type="apps" size="m" />
+    </EuiHeaderSectionItemButton>
+  );
+
+  const spacesButton = (
+    <EuiHeaderSectionItemButton
+      aria-controls={spacesPopoverId}
+      aria-expanded={isSpacesOpen}
+      aria-haspopup="true"
+      aria-label="Spaces menu"
+      onClick={() => setIsSpacesOpen(!isSpacesOpen)}
+    >
+      <EuiAvatar type="space" name="Sales Team" size="s" />
+    </EuiHeaderSectionItemButton>
+  );
+
+  return (
+    <EuiHeader>
+      <EuiHeaderSectionItem>
+        <EuiHeaderLogo iconType="logoElastic">Elastic</EuiHeaderLogo>
+      </EuiHeaderSectionItem>
+
+      <EuiHeaderSectionItem>
+        {spacesButton}
+      </EuiHeaderSectionItem>
+
+      <EuiHeaderSection side="right">
+        <EuiHeaderSectionItem>
+          <EuiHeaderSectionItemButton
+            aria-label="2 Notifications"
+            notification="2"
+          >
+            <EuiIcon type="bell" size="m" />
+          </EuiHeaderSectionItemButton>
+        </EuiHeaderSectionItem>
+
+        <EuiHeaderSectionItem>
+          {appsButton}
+        </EuiHeaderSectionItem>
+
+        <EuiHeaderSectionItem>
+          <EuiHeaderSectionItemButton aria-label="Account menu">
+            <EuiAvatar name="John Username" size="s" />
+          </EuiHeaderSectionItemButton>
+        </EuiHeaderSectionItem>
+      </EuiHeaderSection>
+
+      <EuiPopover
+        id={appsPopoverId}
+        button={appsButton}
+        isOpen={isAppsOpen}
+        closePopover={() => setIsAppsOpen(false)}
+        anchorPosition="downRight"
+      >
+        <EuiKeyPadMenu style={{ width: 288 }}>
+          <EuiKeyPadMenuItem label="Discover">
+            <EuiIcon type="discoverApp" size="l" />
+          </EuiKeyPadMenuItem>
+          <EuiKeyPadMenuItem label="Dashboard">
+            <EuiIcon type="dashboardApp" size="l" />
+          </EuiKeyPadMenuItem>
+          <EuiKeyPadMenuItem label="Dev Tools">
+            <EuiIcon type="devToolsApp" size="l" />
+          </EuiKeyPadMenuItem>
+          <EuiKeyPadMenuItem label="Machine Learning">
+            <EuiIcon type="machineLearningApp" size="l" />
+          </EuiKeyPadMenuItem>
+        </EuiKeyPadMenu>
+      </EuiPopover>
+
+      <EuiPopover
+        id={spacesPopoverId}
+        button={spacesButton}
+        isOpen={isSpacesOpen}
+        closePopover={() => setIsSpacesOpen(false)}
+        anchorPosition="downLeft"
+      >
+        <div style={{ width: 200, padding: '8px' }}>
+          <EuiBadge color="primary">Sales Team</EuiBadge>
+          <EuiBadge>Engineering</EuiBadge>
+          <EuiBadge>Security</EuiBadge>
+          <EuiBadge>Default</EuiBadge>
+        </div>
+      </EuiPopover>
+    </EuiHeader>
+  );
+};
+```
+
+## Behavior
+
+- **Fixed positioning**: Headers can be fixed to stay visible during scrolling
+- **Responsive navigation**: Navigation links collapse to mobile menu on smaller screens
+- **Stacked headers**: Multiple headers can be stacked for complex navigation hierarchies
+- **Theme support**: Headers support light and dark themes
+- **Notification system**: Built-in notification badges and alerts
+- **Portal integration**: Headers work with portals for overlays and modals
+
+## Accessibility
+
+- **Landmark roles**: Proper ARIA landmarks for header structure
+- **Navigation flow**: Logical tab order and keyboard navigation
+- **Screen reader support**: Proper announcement of header elements and notifications
+- **Focus management**: Logical focus flow through header elements
+- **Notification announcements**: Screen readers announce notification changes
+
+## Design tokens
+
+- **Height**: `euiHeaderHeight` for consistent header sizing
+- **Spacing**: `euiSizeS` for internal header spacing
+- **Colors**: `euiColorPrimary` for branding, `euiColorText` for navigation
+- **Typography**: `euiFontSizeS` for navigation text
+- **Borders**: `euiBorderColor` for header separators
+- **Shadows**: `euiShadowS` for fixed headers
+
+## Do's and Don'ts
+
+### ✅ Do
+- Keep navigation items organized and logical
+- Use consistent header patterns across your application
+- Include clear branding and application identity
+- Provide accessible navigation for all users
+- Consider responsive behavior for mobile devices
+- Use notifications sparingly and meaningfully
+
+### ❌ Don't
+- Overload headers with too many navigation items
+- Mix different navigation patterns inconsistently
+- Use headers for page-specific content
+- Ignore responsive behavior on smaller screens
+- Place critical actions in hard-to-find locations
+- Use headers purely for decorative purposes
+
+## Migration from custom headers
+
+If you're currently using custom header implementations, consider migrating to `EuiHeader` for consistent theming and behavior:
+
+```tsx
+// Before: Custom header layout
+<header className="app-header">
+  <div className="logo">App Name</div>
+  <nav className="navigation">
+    <a href="/dashboard">Dashboard</a>
+    <a href="/analytics">Analytics</a>
+  </nav>
+  <div className="user-menu">
+    <button>User</button>
+  </div>
+</header>
+
+// After: EuiHeader
+<EuiHeader>
+  <EuiHeaderSectionItem>
+    <EuiHeaderLogo>App Name</EuiHeaderLogo>
+  </EuiHeaderSectionItem>
+  <EuiHeaderSectionItem>
+    <EuiHeaderLinks>
+      <EuiHeaderLink isActive>Dashboard</EuiHeaderLink>
+      <EuiHeaderLink>Analytics</EuiHeaderLink>
+    </EuiHeaderLinks>
+  </EuiHeaderSectionItem>
+  <EuiHeaderSection side="right">
+    <EuiHeaderSectionItem>
+      <EuiHeaderSectionItemButton aria-label="Account menu">
+        <EuiAvatar name="User" size="s" />
+      </EuiHeaderSectionItemButton>
+    </EuiHeaderSectionItem>
+  </EuiHeaderSection>
+</EuiHeader>
+```
+
+**Benefits of migration:**
+- Consistent theming and responsive behavior
+- Built-in accessibility features and landmarks
+- Standardized navigation patterns and spacing
+- Proper integration with EUI's design system
+- Reduced custom CSS and maintenance overhead

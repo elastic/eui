@@ -4,7 +4,21 @@ keywords: [EuiHorizontalRule]
 
 # Horizontal rule
 
-**EuiHorizontalRule** is a styled `<hr>` element. It can be one of three provided sizes (lengths), by default it will be `full`.
+A minimal, accessible horizontal divider that provides visual separation between content sections.
+
+:::tip Looking for usage guidance?
+
+For content separation patterns, visual hierarchy, and when to use horizontal rules vs alternatives, see the [Horizontal rules pattern](/docs/patterns/layouts/horizontal-rules).
+
+:::
+
+## Purpose
+
+Provide an accessible horizontal divider that shows/hides content with proper semantics and theme integration. Styling options remain, but no opinionated layout/IA rules.
+
+## Basic usage
+
+Simple horizontal rule with default full width and standard margins.
 
 ```tsx interactive
 import React from 'react';
@@ -22,9 +36,9 @@ export default () => (
 );
 ```
 
-## Margins
+## Controlled margins
 
-The spacing added before and after **EuiHorizontalRule** can be adjusted using the `margin` prop. Don’t forget that margins will collapse against items that proceed and/or follow.
+Adjust the spacing around the rule using the `margin` prop.
 
 ```tsx interactive
 import React from 'react';

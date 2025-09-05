@@ -1,0 +1,225 @@
+---
+keywords: [EuiPopover, EuiInputPopover, EuiWrappingPopover]
+---
+
+# Popovers
+
+:::info
+Use popovers to reveal lightweight, contextual content or actions on demand without changing page context. For API details, see the Popover component page.
+:::
+
+## Problem
+
+Inline UIs can become cluttered when secondary actions or help text are always visible. Popovers reveal related content or actions only when needed, without navigating away.
+
+## When to use
+
+- Short, contextual help or tips
+- Small menus, quick actions, or pickers
+- Inputs with suggestions or additional controls (`EuiInputPopover`)
+- Small inline settings (1–2 fields) — use sparingly
+
+## When not to use
+
+- Large or multi-step interactions → consider a flyout or modal
+- Navigation between pages → use links or menus/side nav
+- Always-visible content → place inline in the layout
+
+## Composition (atoms)
+
+- `EuiPopover` (atom)
+- Specialized: `EuiInputPopover`, `EuiWrappingPopover`
+
+## Variants
+
+### Basic popover
+
+```tsx interactive
+import React, { useState } from 'react';
+import { EuiPopover, EuiButtonEmpty, EuiText } from '@elastic/eui';
+
+export default () => {
+  const [open, setOpen] = useState(false);
+  return (
+    <EuiPopover
+      button={<EuiButtonEmpty onClick={() => setOpen(o => !o)} iconType="question" iconSide="right">Help</EuiButtonEmpty>}
+      isOpen={open}
+      closePopover={() => setOpen(false)}
+      anchorPosition="downCenter"
+    >
+      <EuiText size="s" style={{ width: 260 }}>
+        <p>Contextual information or quick actions go here.</p>
+      </EuiText>
+    </EuiPopover>
+  );
+};
+```
+
+### Anchor positions
+
+```tsx interactive
+import React, { useState } from 'react';
+import { EuiPopover, EuiButtonEmpty, EuiFlexGroup, EuiFlexItem } from '@elastic/eui';
+
+export default () => {
+  const [open, setOpen] = useState<string | null>(null);
+  const make = (id: string, pos: any, label: string) => (
+    <EuiFlexItem grow={false}>
+      <EuiPopover
+        button={<EuiButtonEmpty iconType="question" iconSide="right" onClick={() => setOpen(open === id ? null : id)}>{label}</EuiButtonEmpty>}
+        isOpen={open === id}
+        closePopover={() => setOpen(null)}
+        anchorPosition={pos}
+      >
+        Popover content
+      </EuiPopover>
+    </EuiFlexItem>
+  );
+  return (
+    <EuiFlexGroup>
+      {make('dl', 'downLeft', 'downLeft')}
+      {make('dc', 'downCenter', 'downCenter')}
+      {make('dr', 'downRight', 'downRight')}
+    </EuiFlexGroup>
+  );
+};
+```
+
+### Input popover (attached to input)
+
+```tsx interactive
+import React, { useState } from 'react';
+import { EuiInputPopover, EuiFieldText } from '@elastic/eui';
+
+export default () => {
+  const [open, setOpen] = useState(false);
+  return (
+    <EuiInputPopover
+      isOpen={open}
+      closePopover={() => setOpen(false)}
+      input={<EuiFieldText onFocus={() => setOpen(true)} placeholder="Focus me" aria-label="Input with popover" />}
+    >
+      Suggestions or extra controls
+    </EuiInputPopover>
+  );
+};
+```
+
+### With title and footer action
+
+```tsx interactive
+import React, { useState } from 'react';
+import { EuiPopover, EuiPopoverTitle, EuiPopoverFooter, EuiButtonEmpty, EuiButton, EuiText } from '@elastic/eui';
+
+export default () => {
+  const [open, setOpen] = useState(false);
+  return (
+    <EuiPopover
+      button={<EuiButtonEmpty iconType="question" iconSide="right" onClick={() => setOpen(o => !o)}>Details</EuiButtonEmpty>}
+      isOpen={open}
+      closePopover={() => setOpen(false)}
+      anchorPosition="downCenter"
+    >
+      <EuiPopoverTitle>Popover title</EuiPopoverTitle>
+      <div style={{ width: 300 }}>
+        <EuiText size="s"><p>Short descriptive body content.</p></EuiText>
+      </div>
+      <EuiPopoverFooter>
+        <EuiButton size="s" fullWidth>Primary action</EuiButton>
+      </EuiPopoverFooter>
+    </EuiPopover>
+  );
+};
+```
+
+### Small form in a popover
+
+```tsx interactive
+import React, { useState } from 'react';
+import { EuiPopover, EuiButtonEmpty, EuiForm, EuiFormRow, EuiFieldText, EuiSwitch, EuiButton } from '@elastic/eui';
+
+export default () => {
+  const [open, setOpen] = useState(false);
+  const [enabled, setEnabled] = useState(true);
+  return (
+    <EuiPopover
+      button={<EuiButtonEmpty iconType="gear" iconSide="right" onClick={() => setOpen(o => !o)}>Settings</EuiButtonEmpty>}
+      isOpen={open}
+      closePopover={() => setOpen(false)}
+    >
+      <EuiForm component="form" style={{ width: 280 }}>
+        <EuiFormRow label="Name">
+          <EuiFieldText compressed placeholder="Enter name" />
+        </EuiFormRow>
+        <EuiFormRow label="Enabled" hasChildLabel={false}>
+          <EuiSwitch label="Feature enabled" checked={enabled} onChange={(e) => setEnabled(e.target.checked)} />
+        </EuiFormRow>
+        <EuiButton size="s" fill type="submit">Save</EuiButton>
+      </EuiForm>
+    </EuiPopover>
+  );
+};
+```
+
+### Selectable list menu
+
+```tsx interactive
+import React, { useState } from 'react';
+import { EuiPopover, EuiButtonEmpty, EuiSelectable } from '@elastic/eui';
+
+export default () => {
+  const [open, setOpen] = useState(false);
+  const [options, setOptions] = useState([
+    { label: 'Alpha' },
+    { label: 'Beta', checked: 'on' },
+    { label: 'Gamma' },
+  ]);
+  return (
+    <EuiPopover
+      button={<EuiButtonEmpty iconType="arrowDown" iconSide="right" onClick={() => setOpen(o => !o)}>Choose</EuiButtonEmpty>}
+      isOpen={open}
+      closePopover={() => setOpen(false)}
+      panelPaddingSize="none"
+    >
+      <EuiSelectable
+        singleSelection="always"
+        options={options}
+        onChange={(next) => setOptions(next)}
+        style={{ width: 240 }}
+      >{(list) => list}</EuiSelectable>
+    </EuiPopover>
+  );
+};
+```
+
+## Behavior
+
+- Open/close must be controlled by a focusable trigger; do not open on hover
+- Auto-closes on outside click by default; can be customized
+- Keep content short and scannable; avoid popover inception
+
+## Accessibility
+
+- Ensure the trigger is keyboard focusable and labeled
+- Manage focus within the popover; consider `initialFocus` for primary controls
+- Prefer `ownFocus` to trap focus unless strong reason not to
+
+## Design tokens
+
+- Spacing: panel padding via `panelPaddingSize`
+- Color/elevation: background and shadow tokens matching overlays
+- Focus: `euiFocusRing` on interactive elements
+
+## Do’s and Don’ts
+
+- Do keep popovers brief and task-focused
+- Do use clear, descriptive triggers
+- Don’t nest popovers; use `EuiContextMenu` or separate flows
+- Don’t put large forms or long content inside popovers
+
+## Related
+
+- Atom: [Popover](../../components/containers/popover.mdx)
+- Alternatives: [Flyouts](./flyouts.mdx), [Modal dialogs](../feedback-overlays/modal-dialogs.mdx)
+
+

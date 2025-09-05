@@ -1,0 +1,201 @@
+---
+keywords: [EuiBottomBar]
+---
+
+# Bottom bars
+
+:::info
+Use `EuiBottomBar` for page-level action areas that stay visible near the bottom of the viewport or scroll container. For the atom API, see the `EuiBottomBar` component page.
+:::
+
+## Problem
+
+Pages with long or scannable content can disperse primary actions far from the user’s current focus. Users may scroll away from inline buttons and lose access to key actions. A bottom bar keeps critical actions in a consistent location without changing page context.
+
+## When to use
+
+- Keep primary actions visible while users scroll long content
+- Collect form actions (e.g., Save/Cancel) at a consistent page-level location
+- Provide contextual tools for a page or panel when inline actions would distract
+
+## When not to use
+
+- Primary navigation or switching between peer views → use Tabs or Page header actions
+- Permanent page chrome → use Header, Footer, or Page layout sections
+- Within tiny containers or dense UIs where the bar would obscure content
+
+## Composition (atoms)
+
+- `EuiBottomBar` (atom)
+- Typical contents: `EuiButton`, `EuiButtonEmpty`, optional `EuiPopover` for menus, layout using `EuiFlexGroup`/`EuiFlexItem`
+
+## Variants
+
+### Standard page actions
+
+> Note: The bottom bar renders at the bottom of the viewport. Scroll the page if needed to see it.
+
+```tsx interactive
+import React, { useState } from 'react';
+import { EuiBottomBar, EuiFlexGroup, EuiFlexItem, EuiButton, EuiButtonEmpty } from '@elastic/eui';
+
+export default () => {
+  const [show, setShow] = useState(true);
+
+  return (
+    <div>
+      {!show && (
+        <EuiButton onClick={() => setShow(true)} color="primary">Show bottom bar</EuiButton>
+      )}
+      {show && (
+        <EuiBottomBar>
+          <EuiFlexGroup justifyContent="flexEnd" gutterSize="s">
+            <EuiFlexItem grow={false}>
+              <EuiButtonEmpty color="text" size="s" onClick={() => setShow(false)}>Cancel</EuiButtonEmpty>
+            </EuiFlexItem>
+            <EuiFlexItem grow={false}>
+              <EuiButton color="primary" fill size="s">Save changes</EuiButton>
+            </EuiFlexItem>
+          </EuiFlexGroup>
+        </EuiBottomBar>
+      )}
+    </div>
+  );
+};
+```
+
+### Sticky within a scrollable container
+
+```tsx interactive
+import React from 'react';
+import { EuiBottomBar, EuiText } from '@elastic/eui';
+
+export default () => (
+  <div css={{ overflow: 'auto', blockSize: 220 }}>
+    <EuiText><p>Scroll this panel; the bar sticks to the panel bottom.</p></EuiText>
+    <div css={{ blockSize: 420 }} />
+    <EuiBottomBar position="sticky" bottom={8}>
+      <EuiText textAlign="center"><p>Sticky inside container</p></EuiText>
+    </EuiBottomBar>
+  </div>
+);
+```
+
+### With displacement control
+
+> Tip: Select an option, then scroll within the panel to the bottom to see the difference. "Displace content" adds padding inside the panel so nothing is covered. "Overlap content" lets the bar sit on top of the panel content.
+
+```tsx interactive
+import React, { useState } from 'react';
+import { EuiBottomBar, EuiButtonGroup, EuiButton, EuiText } from '@elastic/eui';
+
+export default () => {
+  const [idSelected, setIdSelected] = useState<'with'|'without'|null>('with');
+  const options = [
+    { id: 'with', label: 'Displace content' },
+    { id: 'without', label: 'Overlap content' },
+  ];
+
+  // Approximate bar height to create container padding when displacing
+  const barBlockSize = 56;
+
+  return (
+    <div>
+      <EuiButtonGroup 
+        legend="Displacement" 
+        options={options} 
+        idSelected={idSelected} 
+        onChange={(id) => setIdSelected(id as 'with'|'without')} 
+      />
+
+      {/* Scrollable panel so the sticky bar is scoped to this example */}
+      <div 
+        css={{ 
+          overflow: 'auto', 
+          blockSize: 280, 
+          paddingBlockEnd: idSelected === 'with' ? barBlockSize + 16 : 0,
+          border: '1px solid var(--euiBorderColor, #d3dae6)',
+          borderRadius: 6,
+          marginTop: 12,
+          padding: 12,
+        }}
+      >
+        <div css={{ blockSize: 420 }} />
+        <EuiText size="s">
+          <p>
+            This bottom text sits at the end of the panel. When <strong>Overlap content</strong> is selected, the bottom bar will cover this text. When <strong>Displace content</strong> is selected, extra padding keeps the text visible above the bar.
+          </p>
+        </EuiText>
+
+        {idSelected && (
+          <EuiBottomBar 
+            position="sticky" 
+            bottom={0}
+            affordForDisplacement={false} // avoid affecting the document body
+          >
+            <EuiButton size="s" color="text" onClick={() => setIdSelected(null)}>Close</EuiButton>
+          </EuiBottomBar>
+        )}
+      </div>
+    </div>
+  );
+};
+```
+
+## Behavior
+
+- Placement: Affixed to the viewport or container bottom depending on `position`
+- Displacement: `affordForDisplacement` reserves page space to avoid overlap
+- Action alignment: Right-align primary/secondary actions; keep labels concise
+- Avoid stacking multiple bottom bars on a single page
+
+## Accessibility
+
+- Ensure focus order reaches bottom bar actions logically at the end of content
+- Maintain sufficient color contrast for the bar background and buttons
+- Preserve a minimum 44×44 px target size for touch
+- When toggling visibility, focus should remain stable; avoid stealing focus
+
+## Design tokens
+
+- Spacing: `euiSize`, `euiSizeM/L` for padding and gaps
+- Color: `euiColorDarkestShade`/contrast tokens for background and text
+- Shadow/elevation: `euiShadow*` to separate from content
+- Border radius: if wrapping content; usually no radius for full-width bars
+- Focus: `euiFocusRing` on interactive elements
+
+## Do’s and Don’ts
+
+- Do keep a single clear primary action; keep secondary actions lightweight
+- Do right-align actions; keep the left area minimal to reduce clutter
+- Don’t cover critical content without displacement, unless intentionally transient
+- Don’t use as navigation; prefer Tabs or Page header for primary navigation
+
+## Related
+
+- Atom: [EuiBottomBar](../../components/containers/bottom-bar.mdx)
+- Page recipes: [Page layout](../navigation/page-layout.mdx)
+
+## Migration from custom fixed bars (optional)
+
+Replace homegrown CSS fixed footers with `EuiBottomBar` to gain consistent theming, spacing, and displacement handling.
+
+Before:
+
+```tsx
+<div style={{ position: 'fixed', bottom: 0, insetInline: 0, padding: 8, background: '#222' }}>
+  <button>Cancel</button>
+  <button>Save</button>
+  </div>
+```
+
+After:
+
+```tsx
+<EuiBottomBar>
+  {/* Right-aligned actions */}
+  ...
+</EuiBottomBar>
+```
+
+

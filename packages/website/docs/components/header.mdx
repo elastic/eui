@@ -1,0 +1,167 @@
+---
+keywords: [EuiHeader, EuiHeaderSection, EuiHeaderSectionItem, EuiHeaderSectionItemButton, EuiHeaderLogo, EuiHeaderBreadcrumbs]
+---
+
+# Header
+
+A minimal, accessible header component that provides structural layout for global navigation, branding, and user controls.
+
+:::tip Looking for usage guidance?
+
+For global navigation patterns, responsive behavior, and header composition, see the [Header pattern](/docs/patterns/navigation/header).
+
+:::
+
+## Purpose
+
+Provide an accessible header container with consistent layout, responsive behavior, and theme support. Styling options remain, but no opinionated usage guidance.
+
+## Basic usage
+
+Simple header with logo and navigation sections.
+
+```tsx interactive
+import React from 'react';
+import {
+  EuiHeader,
+  EuiHeaderLogo,
+  EuiHeaderSectionItem,
+  EuiHeaderSectionItemButton,
+  EuiAvatar,
+} from '@elastic/eui';
+
+export default () => (
+  <EuiHeader>
+    <EuiHeaderSectionItem>
+      <EuiHeaderLogo iconType="logoElastic">Elastic</EuiHeaderLogo>
+    </EuiHeaderSectionItem>
+    <EuiHeaderSection side="right">
+      <EuiHeaderSectionItem>
+        <EuiHeaderSectionItemButton aria-label="Account menu">
+          <EuiAvatar name="John Username" size="s" />
+        </EuiHeaderSectionItemButton>
+      </EuiHeaderSectionItem>
+    </EuiHeaderSection>
+  </EuiHeader>
+);
+```
+
+## With sections
+
+Header using the sections prop for structured layout.
+
+```tsx interactive
+import React from 'react';
+import {
+  EuiHeader,
+  EuiHeaderLogo,
+  EuiHeaderSectionItemButton,
+  EuiHeaderSections,
+  EuiAvatar,
+} from '@elastic/eui';
+
+export default () => {
+  const sections: EuiHeaderSections[] = [
+    {
+      items: [
+        <EuiHeaderLogo iconType="logoElastic">Elastic</EuiHeaderLogo>,
+      ],
+    },
+    {
+      items: [
+        <EuiHeaderSectionItemButton aria-label="Account menu">
+          <EuiAvatar name="John Username" size="s" />
+        </EuiHeaderSectionItemButton>,
+      ],
+    },
+  ];
+
+  return <EuiHeader sections={sections} />;
+};
+```
+
+## With header links
+
+Header with navigation links that collapse responsively.
+
+```tsx interactive
+import React from 'react';
+import {
+  EuiHeader,
+  EuiHeaderSectionItem,
+  EuiHeaderLogo,
+  EuiHeaderLinks,
+  EuiHeaderLink,
+} from '@elastic/eui';
+
+export default () => (
+  <EuiHeader>
+    <EuiHeaderSectionItem>
+      <EuiHeaderLogo>Elastic</EuiHeaderLogo>
+    </EuiHeaderSectionItem>
+
+    <EuiHeaderSectionItem>
+      <EuiHeaderLinks aria-label="App navigation">
+        <EuiHeaderLink isActive>Docs</EuiHeaderLink>
+        <EuiHeaderLink>Code</EuiHeaderLink>
+        <EuiHeaderLink iconType="help">Help</EuiHeaderLink>
+      </EuiHeaderLinks>
+    </EuiHeaderSectionItem>
+  </EuiHeader>
+);
+```
+
+## Fixed positioning
+
+Header with fixed positioning that stays visible during scrolling.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiHeader,
+  EuiHeaderLogo,
+  EuiHeaderProps,
+  EuiHeaderSections,
+  EuiSwitch,
+  EuiSpacer,
+} from '@elastic/eui';
+
+export default () => {
+  const [position, setPosition] =
+    useState<EuiHeaderProps['position']>('static');
+
+  const sections: EuiHeaderSections[] = [
+    {
+      items: [<EuiHeaderLogo>Elastic</EuiHeaderLogo>],
+    },
+  ];
+
+  return (
+    <>
+      <EuiSwitch
+        label={'Make header fixed position'}
+        checked={position === 'fixed'}
+        onChange={(e) => setPosition(e.target.checked ? 'fixed' : 'static')}
+      />
+      <EuiSpacer />
+      <EuiHeader position={position} sections={sections} />
+    </>
+  );
+};
+```
+
+## Props
+
+import docgen from '@elastic/eui-docgen/dist/components/header';
+
+<PropTable definition={docgen.EuiHeader} />
+
+<PropTable definition={docgen.EuiHeaderSection} />
+
+<PropTable definition={docgen.EuiHeaderSectionItem} />
+
+<PropTable definition={docgen.EuiHeaderSectionItemButton} />
+
+<PropTable definition={docgen.EuiHeaderLogo} />
+
+<PropTable definition={docgen.EuiHeaderBreadcrumbs} />

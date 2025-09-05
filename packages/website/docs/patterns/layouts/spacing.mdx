@@ -1,0 +1,217 @@
+---
+title: Spacing
+sidebar_position: 4
+keywords: [spacing, layout, vertical spacing, margins, padding, visual rhythm]
+---
+
+# Spacing
+
+Spacing creates visual rhythm and hierarchy in layouts, helping users understand content relationships and improving readability.
+
+## Problem
+
+Content needs consistent vertical spacing to establish visual hierarchy and improve readability. Without proper spacing, elements appear cramped or disconnected, making it difficult for users to understand content relationships and scan information effectively.
+
+## When to use
+
+- **Content separation**: Add space between related content sections
+- **Visual hierarchy**: Create clear distinctions between different content levels
+- **Form layout**: Space form fields, groups, and sections appropriately
+- **List separation**: Add breathing room between list items or content blocks
+- **Page sections**: Establish rhythm between major page areas
+- **Component spacing**: Maintain consistent spacing within component compositions
+
+## When not to use
+
+- **Inline spacing**: Use margins or padding instead of spacer components
+- **Horizontal spacing**: Use flexbox gap or margins for horizontal spacing
+- **Over-spacing**: Don't add excessive space that breaks content flow
+- **Navigation spacing**: Use dedicated layout components for navigation spacing
+
+## Anatomy
+
+- **Spacer element**: The vertical space component
+- **Size**: The amount of space (xs, s, m, l, xl, xxl)
+- **Context**: Content elements above and below the spacer
+- **Grid alignment**: Spacing that aligns with EUI's vertical grid system
+
+## Basic spacing
+
+Simple vertical spacing between content elements.
+
+```tsx interactive
+import React from 'react';
+import { EuiSpacer, EuiText, EuiTitle, EuiButton } from '@elastic/eui';
+
+export default () => (
+  <div style={{ maxWidth: '500px' }}>
+    <EuiTitle size="s">
+      <h3>Content Section</h3>
+    </EuiTitle>
+    <EuiText size="s">
+      <p>This is the first paragraph of content. It provides important information that users need to read.</p>
+    </EuiText>
+    
+    <EuiSpacer size="m" />
+    
+    <EuiText size="s">
+      <p>This second paragraph is clearly separated from the first, creating better readability and visual hierarchy.</p>
+    </EuiText>
+    
+    <EuiSpacer size="l" />
+    
+    <EuiButton>Action Button</EuiButton>
+  </div>
+);
+```
+
+## Spacing sizes
+
+Choose the appropriate spacing size based on content relationships and visual hierarchy.
+
+```tsx interactive
+import React from 'react';
+import { EuiSpacer, EuiText, EuiTitle, EuiCode } from '@elastic/eui';
+
+export default () => (
+  <div style={{ maxWidth: '600px' }}>
+    <EuiTitle size="s">
+      <h3>Spacing Size Examples</h3>
+    </EuiTitle>
+    <EuiText size="s">
+      <p>Different spacing sizes create different visual relationships between content elements.</p>
+    </EuiText>
+    
+    <EuiCode>size="xs"</EuiCode>
+    <EuiText size="s">
+      <p>Extra small spacing for closely related content elements.</p>
+    </EuiText>
+    <EuiSpacer size="xs" />
+    
+    <EuiCode>size="s"</EuiCode>
+    <EuiText size="s">
+      <p>Small spacing for standard content separation.</p>
+    </EuiText>
+    <EuiSpacer size="s" />
+    
+    <EuiCode>size="m"</EuiCode>
+    <EuiText size="s">
+      <p>Medium spacing for clear content breaks.</p>
+    </EuiText>
+    <EuiSpacer size="m" />
+    
+    <EuiCode>size="l" (default)</EuiCode>
+    <EuiText size="s">
+      <p>Large spacing (default) for major content divisions.</p>
+    </EuiText>
+    <EuiSpacer size="l" />
+    
+    <EuiCode>size="xl"</EuiCode>
+    <EuiText size="s">
+      <p>Extra large spacing for significant page sections.</p>
+    </EuiText>
+    <EuiSpacer size="xl" />
+    
+    <EuiCode>size="xxl"</EuiCode>
+    <EuiText size="s">
+      <p>Extra extra large spacing for major page divisions.</p>
+    </EuiText>
+  </div>
+);
+```
+
+## Form spacing
+
+Consistent spacing in forms improves usability and visual hierarchy.
+
+```tsx interactive
+import React from 'react';
+import { EuiSpacer, EuiFormRow, EuiFieldText, EuiFieldPassword, EuiButton, EuiTitle } from '@elastic/eui';
+
+export default () => (
+  <div style={{ maxWidth: '400px' }}>
+    <EuiTitle size="s">
+      <h3>User Registration</h3>
+    </EuiTitle>
+    <EuiSpacer size="m" />
+    
+    <EuiFormRow label="Full name">
+      <EuiFieldText placeholder="Enter your full name" />
+    </EuiFormRow>
+    
+    <EuiSpacer size="s" />
+    
+    <EuiFormRow label="Email address">
+      <EuiFieldText placeholder="Enter your email" />
+    </EuiFormRow>
+    
+    <EuiSpacer size="s" />
+    
+    <EuiFormRow label="Password">
+      <EuiFieldPassword placeholder="Create a password" />
+    </EuiFormRow>
+    
+    <EuiSpacer size="m" />
+    
+    <EuiButton fill>Create Account</EuiButton>
+  </div>
+);
+```
+
+## Behavior
+
+- **Grid alignment**: Spacing aligns with EUI's vertical grid system for consistency
+- **Responsive**: Spacing maintains proportional relationships across screen sizes
+- **Theme integration**: Spacing automatically adapts to light/dark themes
+- **Accessibility**: Spacing improves content readability and scanning
+
+## Accessibility
+
+- **Visual hierarchy**: Proper spacing helps users understand content relationships
+- **Reading flow**: Adequate spacing improves text readability and scanning
+- **Focus management**: Spacing doesn't interfere with keyboard navigation
+- **Screen readers**: Spacing is purely visual and doesn't affect screen reader flow
+
+## Design tokens
+
+- **Spacing sizes**: `euiSizeXS`, `euiSizeS`, `euiSizeM`, `euiSizeL`, `euiSizeXL`, `euiSizeXXL`
+- **Grid system**: Aligns with EUI's 8px base grid unit
+- **Theme integration**: Spacing values adapt to theme changes
+- **Consistency**: All spacing values follow the established design system
+
+## Do's and Don'ts
+
+### ✅ Do
+- Use consistent spacing patterns throughout your interface
+- Choose spacing based on content relationships and hierarchy
+- Use smaller spacing for closely related content
+- Use larger spacing for major content divisions
+- Maintain spacing consistency within component compositions
+
+### ❌ Don't
+- Use spacer components for horizontal spacing
+- Over-space content to the point of breaking visual flow
+- Mix inconsistent spacing patterns within the same interface
+- Use spacers as a substitute for proper layout components
+- Add spacing between every element without considering relationships
+
+## Migration from custom spacing
+
+If you're currently using custom margins, padding, or `<br />` tags for spacing, consider migrating to `EuiSpacer` for consistent theming and grid alignment:
+
+```tsx
+// Before: Custom margins
+<div style={{ marginBottom: '16px' }}>
+  <p>Content with custom margin</p>
+</div>
+
+// After: EuiSpacer
+<p>Content with consistent spacing</p>
+<EuiSpacer size="m" />
+```
+
+**Benefits of migration:**
+- Consistent spacing that aligns with EUI's grid system
+- Theme-aware spacing that adapts to light/dark modes
+- Standardized spacing options across your application
+- Better maintainability and design consistency
