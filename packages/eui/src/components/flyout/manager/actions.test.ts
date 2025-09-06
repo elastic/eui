@@ -53,21 +53,23 @@ describe('flyout manager actions', () => {
 
   describe('addFlyout', () => {
     it('should create add flyout action with required parameters', () => {
-      const action = addFlyout('flyout-1', LEVEL_MAIN);
+      const action = addFlyout('flyout-1', 'main', LEVEL_MAIN);
 
       expect(action).toEqual({
         type: ACTION_ADD,
         flyoutId: 'flyout-1',
+        title: 'main',
         level: LEVEL_MAIN,
       });
     });
 
     it('should create add flyout action with all parameters', () => {
-      const action = addFlyout('flyout-1', LEVEL_MAIN, 'l');
+      const action = addFlyout('flyout-1', 'main', LEVEL_MAIN, 'l');
 
       expect(action).toEqual({
         type: ACTION_ADD,
         flyoutId: 'flyout-1',
+        title: 'main',
         level: LEVEL_MAIN,
         size: 'l',
       });
@@ -84,22 +86,24 @@ describe('flyout manager actions', () => {
     });
 
     it('should handle child level flyouts', () => {
-      const action = addFlyout('child-1', LEVEL_CHILD, 'm');
+      const action = addFlyout('child-1', 'child', LEVEL_CHILD, 'm');
 
       expect(action).toEqual({
         type: ACTION_ADD,
         flyoutId: 'child-1',
+        title: 'child',
         level: LEVEL_CHILD,
         size: 'm',
       });
     });
 
     it('should handle undefined size parameter', () => {
-      const action = addFlyout('flyout-1', LEVEL_MAIN, undefined);
+      const action = addFlyout('flyout-1', 'main', LEVEL_MAIN, undefined);
 
       expect(action).toEqual({
         type: ACTION_ADD,
         flyoutId: 'flyout-1',
+        title: 'main',
         level: LEVEL_MAIN,
         size: undefined,
       });
@@ -256,7 +260,7 @@ describe('flyout manager actions', () => {
     });
 
     it('should maintain action immutability', () => {
-      const action = addFlyout('test', LEVEL_MAIN, 'm');
+      const action = addFlyout('test', 'main', LEVEL_MAIN, 'm');
       const originalAction = { ...action };
 
       // Modify the action object
@@ -269,7 +273,7 @@ describe('flyout manager actions', () => {
 
   describe('edge cases', () => {
     it('should handle empty string flyout IDs', () => {
-      const action = addFlyout('', LEVEL_MAIN);
+      const action = addFlyout('', 'main', LEVEL_MAIN);
       expect(action.flyoutId).toBe('');
     });
 
@@ -277,7 +281,7 @@ describe('flyout manager actions', () => {
       const specialIds = ['flyout-1', 'flyout_2', 'flyout.3', 'flyout-4'];
 
       specialIds.forEach((id) => {
-        const action = addFlyout(id, LEVEL_MAIN);
+        const action = addFlyout(id, 'main', LEVEL_MAIN);
         expect(action.flyoutId).toBe(id);
       });
     });
