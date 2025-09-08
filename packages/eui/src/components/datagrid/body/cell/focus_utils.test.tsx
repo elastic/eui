@@ -148,6 +148,12 @@ describe('FocusTrappedChildren', () => {
         >
           Press the Enter key to interact with this cell's contents.
         </p>
+        <div
+          aria-atomic="true"
+          aria-live="polite"
+          class="emotion-euiScreenReaderOnly"
+          role="status"
+        />
       </div>
     `);
   });

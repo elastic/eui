@@ -1,5 +1,15 @@
 [
   {
+    "version": "106.2.0",
+    "changes": [
+      {
+        "token": "euiDataGridCell.focusTrapEnteredExitPrompt",
+        "changeType": "added",
+        "value": "Press the Escape key to exit the cell."
+      }
+    ]
+  },
+  {
     "version": "106.1.0",
     "changes": [
       {

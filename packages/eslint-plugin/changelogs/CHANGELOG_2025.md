@@ -1,3 +1,9 @@
+## [`v2.3.0`](https://github.com/elastic/eui/releases/v2.3.0)
+
+- Added `EuiFlyoutResizable` to `require-aria-label-for-modals` check ([#8946](https://github.com/elastic/eui/pull/8946))
+- Added new `no-unnamed-radio-group` rule. ([#8929](https://github.com/elastic/eui/pull/8929))
+- Fixed attributes comparison issue in the `consistent-is-invalid-props` rule. ([#8920](https://github.com/elastic/eui/pull/8920))
+
 ## [`v2.2.1`](https://github.com/elastic/eui/releases/v2.2.1)
 
 **Bug fixes**

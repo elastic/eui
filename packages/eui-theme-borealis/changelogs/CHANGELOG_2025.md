@@ -1,3 +1,15 @@
+## [`v3.3.2`](https://github.com/elastic/eui/releases/v3.3.2)
+
+**Bug fixes**
+
+- Fixed the syntax of the SCSS variable `$euiColorTransparent` to ensure a valid value ([#8966](https://github.com/elastic/eui/pull/8966))
+
+## [`v3.3.1`](https://github.com/elastic/eui/releases/v3.3.1)
+
+**Bug fixes**
+
+- Updated shared theme SCSS imports to ensure expected results for the SCSS function `lineHeightFromBaseline` ([#8922](https://github.com/elastic/eui/pull/8922))
+
 ## [`v3.3.0`](https://github.com/elastic/eui/releases/v3.3.0)
 
 - Added high contrast mode specific color values for `colors.vis` and `colors.severity` tokens in light color mode ([#8800](https://github.com/elastic/eui/pull/8800))

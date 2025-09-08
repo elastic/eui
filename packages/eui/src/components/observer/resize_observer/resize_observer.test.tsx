@@ -7,9 +7,9 @@
  */
 
 import React, { FunctionComponent, PropsWithChildren, useState } from 'react';
-import { mount } from 'enzyme';
 import { EuiResizeObserver, useResizeObserver } from './resize_observer';
 import { sleep } from '../../../test';
+import { render } from '../../../test/rtl';
 import { act } from '@testing-library/react';
 
 export async function waitforResizeObserver(period = 30) {
@@ -59,20 +59,24 @@ describe.skip('testResizeObservers', () => {
         );
       };
 
-      const component = mount(<Wrapper children={<div>Hello World</div>} />);
+      const { rerender } = render(
+        <Wrapper children={<div>Hello World</div>} />
+      );
 
       // Resize observer is expected to fire once on mount
       await waitforResizeObserver();
       expect(onResize).toHaveBeenCalledTimes(1);
 
-      component.setProps({
-        children: (
-          <div>
-            <div>Hello World</div>
-            <div>Hello Again</div>
-          </div>
-        ),
-      });
+      rerender(
+        <Wrapper
+          children={
+            <div>
+              <div>Hello World</div>
+              <div>Hello Again</div>
+            </div>
+          }
+        />
+      );
 
       await waitforResizeObserver();
 
@@ -93,20 +97,24 @@ describe.skip('testResizeObservers', () => {
         }
       );
 
-      const component = mount(<Wrapper children={<div>Hello World</div>} />);
+      const { rerender } = render(
+        <Wrapper children={<div>Hello World</div>} />
+      );
 
       // Expect the initial render, re-render when the ref is created, and a 3rd for the onresize callback
       await act(() => waitforResizeObserver());
       expect(Wrapper).toHaveBeenCalledTimes(3);
 
-      component.setProps({
-        children: (
-          <div>
-            <div>Hello World</div>
-            <div>Hello Again</div>
-          </div>
-        ),
-      });
+      rerender(
+        <Wrapper
+          children={
+            <div>
+              <div>Hello World</div>
+              <div>Hello Again</div>
+            </div>
+          }
+        />
+      );
 
       await waitforResizeObserver();
 

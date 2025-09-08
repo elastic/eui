@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { MouseEvent, useState } from 'react';
+import React, { MouseEvent, useRef, useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
@@ -19,6 +19,7 @@ import { EuiModalBody } from './modal_body';
 import { EuiModalFooter } from './modal_footer';
 import { EuiModal, EuiModalProps } from './modal';
 import { LOKI_SELECTORS } from '../../../.storybook/loki';
+import { EuiFlexGroup } from '../flex';
 
 const meta: Meta<EuiModalProps> = {
   title: 'Layout/EuiModal/EuiModal',
@@ -49,7 +50,9 @@ export const Playground: Story = {
     children: (
       <>
         <EuiModalHeader>
-          <EuiModalHeaderTitle>Modal title</EuiModalHeaderTitle>
+          <EuiModalHeaderTitle id="modalTitleId">
+            Modal title
+          </EuiModalHeaderTitle>
         </EuiModalHeader>
 
         <EuiModalBody>Modal body</EuiModalBody>
@@ -59,6 +62,7 @@ export const Playground: Story = {
         </EuiModalFooter>
       </>
     ),
+    'aria-labelledby': 'modalTitleId',
   },
 };
 
@@ -67,7 +71,9 @@ export const ToggleExample: Story = {
     children: (
       <>
         <EuiModalHeader>
-          <EuiModalHeaderTitle>Modal title</EuiModalHeaderTitle>
+          <EuiModalHeaderTitle id="modalTitleId">
+            Modal title
+          </EuiModalHeaderTitle>
         </EuiModalHeader>
 
         <EuiModalBody>Modal body</EuiModalBody>
@@ -79,6 +85,7 @@ export const ToggleExample: Story = {
         </EuiModalFooter>
       </>
     ),
+    'aria-labelledby': 'modalTitleId',
   },
   render: (args) => <StatefulModal {...args} />,
 };
@@ -86,6 +93,7 @@ export const ToggleExample: Story = {
 export const InitialFocus: Story = {
   args: {
     initialFocus: '[name=popfirst]',
+    'aria-labelledby': 'modalTitleId',
   },
   render: (args) => {
     const handleOnSubmit = (e: MouseEvent<HTMLButtonElement>) => {
@@ -121,6 +129,67 @@ export const InitialFocus: Story = {
           </EuiButton>
         </EuiModalFooter>
       </StatefulModal>
+    );
+  },
+};
+
+export const ManualReturnFocus: Story = {
+  parameters: {
+    codeSnippet: {
+      snippet: `<EuiModal {{...STORY_ARGS}} focusTrapProps={{
+          returnFocus: () => {
+            if (manualTriggerRef.current) {
+              manualTriggerRef.current.focus();
+              return false;
+            }
+
+            return true;
+          }
+        }} />
+      `,
+    },
+    loki: {
+      skip: true, // used for functional testing only
+    },
+  },
+  render: function Render(args) {
+    const manualTriggerRef = useRef<HTMLButtonElement>(null);
+    const [isOpen, setOpen] = useState(false);
+
+    return (
+      <>
+        <EuiFlexGroup>
+          <EuiButton onClick={() => setOpen(true)}>Modal trigger</EuiButton>
+          <EuiButton buttonRef={manualTriggerRef}>Custom trigger</EuiButton>
+        </EuiFlexGroup>
+
+        {isOpen && (
+          <EuiModal
+            aria-labelledby="modalTitleId"
+            {...args}
+            onClose={() => setOpen(false)}
+            focusTrapProps={{
+              returnFocus: () => {
+                if (manualTriggerRef.current) {
+                  manualTriggerRef.current.focus();
+                  return false; // Prevents the default return focus behavior
+                }
+                return true; // Fallback to default behavior
+              },
+            }}
+          >
+            <EuiModalHeader>
+              <EuiModalHeaderTitle>Modal title</EuiModalHeaderTitle>
+            </EuiModalHeader>
+
+            <EuiModalBody>Modal body</EuiModalBody>
+
+            <EuiModalFooter>
+              <EuiButton fill>Modal footer</EuiButton>
+            </EuiModalFooter>
+          </EuiModal>
+        )}
+      </>
     );
   },
 };

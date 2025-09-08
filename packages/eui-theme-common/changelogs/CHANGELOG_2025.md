@@ -1,3 +1,22 @@
+## [`v4.0.0`](https://github.com/elastic/eui/releases/v4.0.0)
+
+**Breaking changes**
+
+- Removed obsolete SCSS typography definitions - use the definitions from the themes directly ([#8922](https://github.com/elastic/eui/pull/8922))
+  - $euiFontFamily
+  - $euiTextScale
+  - $euiFontSize
+  - $euiFontSizeXS
+  - $euiFontSizeS
+  - $euiFontSizeM
+  - $euiFontSizeL
+  - $euiFontSizeXL
+  - $euiFontSizeXXL
+  - $euiBodyLineHeight
+  - $euiTitles
+  - convertToRem()
+  - lineHeightFromBaseline()
+
 ## [`v3.1.0`](https://github.com/elastic/eui/releases/v3.1.0)
 
 **Deprecations**
