@@ -7503,7 +7503,7 @@ __metadata:
     yo: "npm:^4.3.1"
   peerDependencies:
     "@elastic/datemath": ^5.0.2
-    "@elastic/eui-theme-borealis": 3.3.1
+    "@elastic/eui-theme-borealis": 3.3.2
     "@emotion/css": 11.x
     "@emotion/react": 11.x
     "@types/react": ^17.0 || ^18.0

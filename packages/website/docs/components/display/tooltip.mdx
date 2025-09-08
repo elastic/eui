@@ -14,6 +14,7 @@ Generally, tooltips should provide short, **non-essential**, contextual informat
 :::
 
 Wrap **EuiToolTip** around any item that you need a tooltip for and provide the `content` and optionally the `title`. The `position` prop will take a suggested position, but will change it if the tooltip gets too close to the edge of the screen.
+You can adjust the distance between the tooltip and its anchor using the `offset` prop. By default, this value is `16`.
 
 ```tsx interactive
 import React from 'react';
@@ -63,6 +64,12 @@ export default () => (
         This tooltip appears on the bottom of this icon:{' '}
         <EuiToolTip position="bottom" content="Here is some tooltip text">
           <EuiIcon tabIndex="0" type="warning" title="Icon with tooltip" />
+        </EuiToolTip>
+      </p>
+      <p>
+        This tooltip has a{' '}
+        <EuiToolTip position="right" content="Here is some tooltip text" offset={32}>
+          <EuiLink href="#">custom offset</EuiLink>
         </EuiToolTip>
       </p>
     </EuiText>

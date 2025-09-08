@@ -10,7 +10,7 @@
 /// <reference types="cypress-real-events" />
 /// <reference types="../../../cypress/support" />
 
-import React, { ReactNode, useState } from 'react';
+import React, { ReactNode, useRef, useState } from 'react';
 import {
   EuiModal,
   EuiModalHeader,
@@ -22,20 +22,52 @@ import {
 import { EuiButton } from '../button';
 import { EuiPopover } from '../popover';
 
-const Modal = ({ content }: { content?: ReactNode }) => {
+const Modal = ({
+  content,
+  hasManualReturnFocus,
+}: {
+  content?: ReactNode;
+  hasManualReturnFocus?: boolean;
+}) => {
+  const manualTriggerRef = useRef<HTMLButtonElement>(null);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const closeModal = () => setIsModalVisible(false);
   const showModal = () => setIsModalVisible(true);
+
+  const focusTrapProps = hasManualReturnFocus
+    ? {
+        returnFocus: () => {
+          if (manualTriggerRef.current) {
+            manualTriggerRef.current.focus();
+
+            return false;
+          }
+
+          return true;
+        },
+      }
+    : {};
 
   const modalProps: EuiModalProps = {
     title: 'Do this thing',
     onClose: closeModal,
     children: null,
+    focusTrapProps,
   };
 
   return (
     <div>
-      <EuiButton onClick={showModal}>Show confirm modal</EuiButton>
+      <EuiButton data-test-subj="modal-trigger" onClick={showModal}>
+        Show confirm modal
+      </EuiButton>
+      {hasManualReturnFocus && (
+        <EuiButton
+          data-test-subj="modal-manual-trigger"
+          buttonRef={manualTriggerRef}
+        >
+          Button label
+        </EuiButton>
+      )}
       {isModalVisible && (
         <EuiModal {...modalProps}>
           <EuiModalHeader>
@@ -69,18 +101,29 @@ describe('EuiModal', () => {
 
     it('returns focus correctly when X close button is clicked', () => {
       cy.mount(<Modal />);
-      cy.get('button.euiButton').click();
+      cy.get('[data-test-subj="modal-trigger"]').click();
       cy.get('div.euiModal').should('exist');
       cy.get('button.euiButtonIcon').click();
       cy.get('div.euiModal').should('not.exist');
+      cy.get('[data-test-subj="modal-trigger"]').should('have.focus');
     });
 
     it('handles focus correctly when Close button is clicked', () => {
       cy.mount(<Modal />);
-      cy.get('button.euiButton').click();
+      cy.get('[data-test-subj="modal-trigger"]').click();
       cy.get('div.euiModal').should('exist');
       cy.get('div.euiModalFooter > button').click();
       cy.get('div.euiModal').should('not.exist');
+      cy.get('[data-test-subj="modal-trigger"]').should('have.focus');
+    });
+
+    it('correctly returns handles manual focus return', () => {
+      cy.mount(<Modal hasManualReturnFocus />);
+      cy.get('[data-test-subj="modal-trigger"]').click();
+      cy.get('div.euiModal').should('exist');
+      cy.get('button.euiButtonIcon').click();
+      cy.get('div.euiModal').should('not.exist');
+      cy.get('[data-test-subj="modal-manual-trigger"]').should('have.focus');
     });
 
     describe('key navigation', () => {
@@ -108,7 +151,6 @@ describe('EuiModal', () => {
         cy.focused().contains('Show confirm modal');
         cy.realPress('Enter');
         cy.focused().contains('Title of modal');
-        cy.realPress('Tab');
         cy.realPress('Tab');
         cy.focused().contains('Close');
         cy.realPress('Escape');
@@ -142,7 +184,6 @@ describe('EuiModal', () => {
         cy.focused().contains('Show confirm modal');
         cy.realPress('Enter');
         cy.focused().contains('Title of modal');
-        cy.realPress('Tab');
         cy.realPress('Tab');
         cy.focused().contains('Show Popover');
         cy.realPress('Enter');

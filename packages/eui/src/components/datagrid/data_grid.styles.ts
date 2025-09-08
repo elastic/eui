@@ -87,7 +87,7 @@ export const euiDataGridStyles = (euiThemeContext: UseEuiTheme) => {
       /* The euiDataGridRow--selected and euiDataGridRow--marked classes are not used internally,
        * they're there for convenience, to be used by consumers */
 
-      *:where(&:not(.euiDataGrid--stripes) .euiDataGridRow--selected) {
+      *:where(& .euiDataGridRow--selected) {
         background-color: ${euiTheme.components.dataGridRowBackgroundSelect};
       }
 
@@ -103,7 +103,7 @@ export const euiDataGridStyles = (euiThemeContext: UseEuiTheme) => {
         }
       }
 
-      *:where(&:not(.euiDataGrid--stripes) .euiDataGridRow--marked) {
+      *:where(&.euiDataGrid--rowHoverHighlight .euiDataGridRow--marked) {
         &:hover {
           background-color: ${euiTheme.components
             .dataGridRowBackgroundMarkedHover};
