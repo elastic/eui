@@ -225,7 +225,7 @@ export const EuiFlyoutComponent = forwardRef(
       'aria-describedby': _ariaDescribedBy,
       id,
       resizable = false,
-      minWidth = 200,
+      minWidth,
       onResize,
       ...rest
     } = usePropsWithComponentDefaults('EuiFlyout', props);

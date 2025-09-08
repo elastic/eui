@@ -22,7 +22,7 @@ type UseEuiFlyoutResizable = Pick<
   'onResize' | 'side'
 > & {
   enabled: boolean;
-  minWidth: number;
+  minWidth?: number;
   maxWidth: number | undefined;
   size: string | number;
 };
@@ -32,7 +32,7 @@ type UseEuiFlyoutResizable = Pick<
  */
 export const useEuiFlyoutResizable = ({
   enabled,
-  minWidth,
+  minWidth = 0,
   maxWidth,
   onResize,
   side,
