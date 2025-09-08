@@ -14,7 +14,6 @@ import {
   EuiFlyoutSize,
   isEuiFlyoutSizeNamed,
 } from './const';
-import { PROPERTY_FLYOUT } from './manager/const';
 import {
   euiCanAnimate,
   euiMaxBreakpoint,
@@ -36,6 +35,17 @@ export const euiFlyoutSlideInRight = keyframes`
   75% {
     opacity: 1;
     transform: translateX(0%);
+  }
+`;
+
+export const euiFlyoutSlideOutRight = keyframes`
+  0% {
+    opacity: 1;
+    transform: translateX(0%);
+  }
+  75% {
+    opacity: 0;
+    transform: translateX(100%);
   }
 `;
 
@@ -104,13 +114,25 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
       clip-path: polygon(-50% 0, 100% 0, 100% 100%, -50% 100%);
       ${logicalCSS('right', 0)}
 
-      /* Unmanaged flyouts: always play initial opening animation */
-      &:not([${PROPERTY_FLYOUT}]) {
+      &.euiFlyout--opening {
+        // Jump animation states immediately unless
+        // prefers-reduced-motion: reduce is *not* set
+        animation: ${euiFlyoutSlideInRight} 0s ${euiTheme.animation.resistance}
+          forwards;
+
         ${euiCanAnimate} {
-          animation: ${euiFlyoutSlideInRight} ${euiTheme.animation.normal}
-            ${euiTheme.animation.resistance} forwards;
-          animation-fill-mode: forwards;
-          animation-iteration-count: 1;
+          animation-duration: ${euiTheme.animation.normal};
+        }
+      }
+
+      &.euiFlyout--closing {
+        // Jump animation states immediately unless
+        // prefers-reduced-motion: reduce is *not* set
+        animation: ${euiFlyoutSlideOutRight} 0s ${euiTheme.animation.resistance}
+          forwards;
+
+        ${euiCanAnimate} {
+          animation-duration: ${euiTheme.animation.normal};
         }
       }
 
@@ -123,14 +145,9 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
       ${logicalCSS('left', 0)}
       clip-path: polygon(0 0, 150% 0, 150% 100%, 0 100%);
 
-      /* Unmanaged flyouts: always play initial opening animation */
-      &:not([${PROPERTY_FLYOUT}]) {
-        ${euiCanAnimate} {
-          animation: ${euiFlyoutSlideInLeft} ${euiTheme.animation.normal}
-            ${euiTheme.animation.resistance} forwards;
-          animation-fill-mode: forwards;
-          animation-iteration-count: 1;
-        }
+      ${euiCanAnimate} {
+        animation: ${euiFlyoutSlideInLeft} ${euiTheme.animation.normal}
+          ${euiTheme.animation.resistance};
       }
     `,
 
