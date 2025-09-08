@@ -27,7 +27,7 @@ export default function Navbar(): ReactNode {
   };
 
   return (
-    <NavbarLayout>
+    <NavbarLayout versionSwitcherOptions={versionSwitcherOptions}>
       <NavbarContent versionSwitcherOptions={versionSwitcherOptions} />
     </NavbarLayout>
   );
