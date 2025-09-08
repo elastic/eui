@@ -67,8 +67,8 @@ import {
   isEuiFlyoutSizeNamed,
 } from './const';
 import { useIsPushed } from './hooks';
-import { useEuiFlyoutResizable } from './resizable/hooks';
-import { EuiResizableButton } from '../resizable_container';
+import { EuiFlyoutResizeButton } from './_flyout_resize_button';
+import { useEuiFlyoutResizable } from './use_flyout_resizable';
 
 interface _EuiFlyoutComponentProps {
   onClose: (event: MouseEvent | TouchEvent | KeyboardEvent) => void;
@@ -175,6 +175,8 @@ interface _EuiFlyoutComponentProps {
    * @default false
    */
   resizable?: boolean;
+
+  onResize?: (width: number) => void;
 }
 
 const defaultElement = 'div';
@@ -409,23 +411,6 @@ export const EuiFlyoutComponent = forwardRef(
       styles[side],
     ];
 
-    const resizableButtonStyles = [
-      styles.resizable.button,
-      isPushed && side === 'left' && styles.resizable.buttonPushLeft,
-      isPushed && side === 'right' && styles.resizable.buttonPushRight,
-      !isPushed && side === 'left' && styles.resizable.buttonOverlayLeft,
-      !isPushed && side === 'right' && styles.resizable.buttonOverlayRight,
-      !isPushed && ownFocus && styles.resizable.buttonNoOverlay,
-      !isPushed &&
-        ownFocus &&
-        side === 'left' &&
-        styles.resizable.buttonNoOverlayLeft,
-      !isPushed &&
-        ownFocus &&
-        side === 'right' &&
-        styles.resizable.buttonNoOverlayRight,
-    ];
-
     const classes = classnames('euiFlyout', className);
 
     const flyoutToggle = useRef<Element | null>(document.activeElement);
@@ -579,10 +564,11 @@ export const EuiFlyoutComponent = forwardRef(
               />
             )}
             {resizable && (
-              <EuiResizableButton
-                isHorizontal
-                indicator="border"
-                css={resizableButtonStyles}
+              <EuiFlyoutResizeButton
+                type={type}
+                side={side}
+                ownFocus={ownFocus}
+                isPushed={isPushed}
                 onMouseDown={onMouseDownResizableButton}
                 onTouchStart={onMouseDownResizableButton}
                 onKeyDown={onKeyDownResizableButton}
