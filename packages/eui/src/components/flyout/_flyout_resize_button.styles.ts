@@ -7,12 +7,11 @@
  */
 
 import { css } from '@emotion/react';
-
-import { UseEuiTheme } from '../../services';
 import { logicalCSS } from '../../global_styling';
+import { UseEuiTheme } from '../../services';
 
-export const euiFlyoutResizableButtonStyles = ({ euiTheme }: UseEuiTheme) => ({
-  euiFlyoutResizableButton: css`
+export const euiFlyoutResizeButtonStyles = ({ euiTheme }: UseEuiTheme) => ({
+  root: css`
     position: absolute;
   `,
   overlay: {
@@ -32,7 +31,7 @@ export const euiFlyoutResizableButtonStyles = ({ euiTheme }: UseEuiTheme) => ({
     `,
   },
   noOverlay: {
-    noOverlay: css`
+    root: css`
       margin-inline: 0;
     `,
     left: css`

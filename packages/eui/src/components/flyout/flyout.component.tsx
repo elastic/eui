@@ -67,6 +67,8 @@ import {
   isEuiFlyoutSizeNamed,
 } from './const';
 import { useIsPushed } from './hooks';
+import { EuiFlyoutResizeButton } from './_flyout_resize_button';
+import { useEuiFlyoutResizable } from './use_flyout_resizable';
 
 interface _EuiFlyoutComponentProps {
   onClose: (event: MouseEvent | TouchEvent | KeyboardEvent) => void;
@@ -76,6 +78,11 @@ interface _EuiFlyoutComponentProps {
    * @default m
    */
   size?: EuiFlyoutSize | CSSProperties['width'];
+  /**
+   * Sets the minimum width of the panel.
+   * Especially useful when set with `resizable = true`.
+   */
+  minWidth?: number;
   /**
    * Sets the max-width of the panel,
    * set to `true` to use the default size,
@@ -166,6 +173,17 @@ interface _EuiFlyoutComponentProps {
    * Specify additional css selectors to include in the focus trap.
    */
   includeSelectorInFocusTrap?: string[] | string;
+
+  /**
+   * Whether the flyout should be resizable.
+   * @default false
+   */
+  resizable?: boolean;
+
+  /**
+   * Optional callback that fires when the flyout is resized.
+   */
+  onResize?: (width: number) => void;
 }
 
 const defaultElement = 'div';
@@ -199,7 +217,7 @@ export const EuiFlyoutComponent = forwardRef(
       onClose,
       ownFocus = true,
       side = DEFAULT_SIDE,
-      size = DEFAULT_SIZE,
+      size: _size = DEFAULT_SIZE,
       paddingSize = DEFAULT_PADDING_SIZE,
       maxWidth = false,
       style,
@@ -213,6 +231,9 @@ export const EuiFlyoutComponent = forwardRef(
       includeSelectorInFocusTrap,
       'aria-describedby': _ariaDescribedBy,
       id,
+      resizable = false,
+      minWidth,
+      onResize,
       ...rest
     } = usePropsWithComponentDefaults('EuiFlyout', props);
 
@@ -225,6 +246,20 @@ export const EuiFlyoutComponent = forwardRef(
     const internalParentFlyoutRef = useRef<HTMLDivElement>(null);
     const isPushed = useIsPushed({ type, pushMinBreakpoint });
 
+    const {
+      onMouseDown: onMouseDownResizableButton,
+      onKeyDown: onKeyDownResizableButton,
+      size,
+      setFlyoutRef,
+    } = useEuiFlyoutResizable({
+      enabled: resizable,
+      minWidth,
+      maxWidth: typeof maxWidth === 'number' ? maxWidth : 0,
+      onResize,
+      side,
+      size: _size,
+    });
+
     /**
      * Setting up the refs on the actual flyout element in order to
      * accommodate for the `isPushed` state by adding padding to the body equal to the width of the element
@@ -236,6 +271,7 @@ export const EuiFlyoutComponent = forwardRef(
       setResizeRef,
       ref,
       internalParentFlyoutRef,
+      setFlyoutRef,
     ]);
     const { width } = useResizeObserver(isPushed ? resizeRef : null, 'width');
 
@@ -532,6 +568,17 @@ export const EuiFlyoutComponent = forwardRef(
                 onClose={onClose}
                 closeButtonPosition={closeButtonPosition}
                 side={side}
+              />
+            )}
+            {resizable && (
+              <EuiFlyoutResizeButton
+                type={type}
+                side={side}
+                ownFocus={ownFocus}
+                isPushed={isPushed}
+                onMouseDown={onMouseDownResizableButton}
+                onTouchStart={onMouseDownResizableButton}
+                onKeyDown={onKeyDownResizableButton}
               />
             )}
             {children}
