@@ -103,6 +103,10 @@ interface _EuiFlyoutComponentProps {
    * @default m
    */
   size?: EuiFlyoutSize | CSSProperties['width'];
+  /**
+   * Sets the minimum width of the panel.
+   * Especially useful when set with `resizable = true`.
+   */
   minWidth?: number;
   /**
    * Sets the minimum width of the panel.
