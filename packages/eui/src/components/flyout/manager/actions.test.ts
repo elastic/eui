@@ -76,11 +76,12 @@ describe('flyout manager actions', () => {
     });
 
     it('should default to LEVEL_MAIN when level is not provided', () => {
-      const action = addFlyout('flyout-1');
+      const action = addFlyout('flyout-1', 'flyout title');
 
       expect(action).toEqual({
         type: ACTION_ADD,
         flyoutId: 'flyout-1',
+        title: 'flyout title',
         level: LEVEL_MAIN,
       });
     });
@@ -244,7 +245,7 @@ describe('flyout manager actions', () => {
 
   describe('action type safety', () => {
     it('should have correct action type structure', () => {
-      const addAction = addFlyout('test');
+      const addAction = addFlyout('test', 'flyout title');
       const closeAction = closeFlyout('test');
       const setActiveAction = setActiveFlyout('test');
       const setWidthAction = setFlyoutWidth('test', 100);

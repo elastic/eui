@@ -11,28 +11,6 @@ import { useFlyoutManagerReducer } from './hooks';
 import { useApplyFlyoutLayoutMode } from './layout_mode';
 import { FlyoutManagerApi } from './types';
 
-// Callback registry for unregister callbacks - keeps state serializable
-const unregisterCallbacks = new Map<string, () => void>();
-
-// Helper functions to manage the callback registry
-export const registerUnregisterCallback = (
-  flyoutId: string,
-  callback: () => void
-) => {
-  unregisterCallbacks.set(flyoutId, callback);
-};
-
-export const unregisterUnregisterCallback = (flyoutId: string) => {
-  unregisterCallbacks.delete(flyoutId);
-};
-
-export const callUnregisterCallback = (flyoutId: string) => {
-  const callback = unregisterCallbacks.get(flyoutId);
-  if (callback) {
-    queueMicrotask(() => callback());
-  }
-};
-
 /**
  * React context that exposes the Flyout Manager API (state + actions).
  */

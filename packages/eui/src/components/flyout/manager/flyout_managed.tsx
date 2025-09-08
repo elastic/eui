@@ -17,17 +17,12 @@ import { EuiFlyoutMenuContext } from '../flyout_menu_context';
 import { useFlyoutActivityStage } from './activity_stage';
 import {
   LEVEL_CHILD,
-  LEVEL_MAIN,
   PROPERTY_FLYOUT,
   PROPERTY_LAYOUT_MODE,
   PROPERTY_LEVEL,
 } from './const';
 import { EuiFlyoutIsManagedProvider } from './context';
 import { euiManagedFlyoutStyles } from './flyout_managed.styles';
-import {
-  registerUnregisterCallback,
-  unregisterUnregisterCallback,
-} from './provider';
 import {
   useFlyoutManager as _useFlyoutManager,
   useFlyoutId,
@@ -51,7 +46,7 @@ import {
  */
 export interface EuiManagedFlyoutProps extends EuiFlyoutComponentProps {
   level: EuiFlyoutLevel;
-  flyoutMenuProps?: Omit<EuiFlyoutMenuProps, 'historyItems' | 'showBackButton'>;
+  flyoutMenuProps?: EuiFlyoutMenuProps;
 }
 
 const useFlyoutManager = () => {
@@ -81,8 +76,7 @@ export const EuiManagedFlyout = ({
   const flyoutId = useFlyoutId(id);
   const flyoutRef = useRef<HTMLDivElement>(null);
 
-  const { addFlyout, closeFlyout, setFlyoutWidth, goBack, getHistoryItems } =
-    useFlyoutManager();
+  const { addFlyout, closeFlyout, setFlyoutWidth } = useFlyoutManager();
 
   const isActive = useIsFlyoutActive(flyoutId);
   const parentSize = useParentFlyoutSize(flyoutId);
@@ -120,30 +114,11 @@ export const EuiManagedFlyout = ({
     throw new Error(createValidationErrorMessage(titleError));
   }
 
-  // Stabilize the unregister callback to prevent unnecessary re-registrations
-  const unregisterCallbackRef = useRef<(() => void) | undefined>();
-  unregisterCallbackRef.current = onCloseProp
-    ? () => {
-        // Create a synthetic event for the onClose callback
-        const syntheticEvent = new MouseEvent('click', {
-          bubbles: true,
-          cancelable: true,
-        }) as any;
-        onCloseProp(syntheticEvent);
-      }
-    : undefined;
-
   // Register/unregister with flyout manager context
   useEffect(() => {
-    // Register the unregister callback in the registry
-    if (unregisterCallbackRef.current) {
-      registerUnregisterCallback(flyoutId, unregisterCallbackRef.current);
-    }
-
     addFlyout(flyoutId, title!, level, size as string);
 
     return () => {
-      unregisterUnregisterCallback(flyoutId);
       closeFlyout(flyoutId);
     };
   }, [size, flyoutId, title, level, addFlyout, closeFlyout]);
@@ -154,9 +129,8 @@ export const EuiManagedFlyout = ({
     'width'
   );
 
-  const onClose = (_event: MouseEvent | TouchEvent | KeyboardEvent) => {
-    // For explicit closes, just trigger the unregister process
-    // The onCloseProp will be called as a side effect of unregistering
+  const onClose = (event: MouseEvent | TouchEvent | KeyboardEvent) => {
+    onCloseProp(event);
     closeFlyout(flyoutId);
   };
 
@@ -172,25 +146,8 @@ export const EuiManagedFlyout = ({
     level,
   });
 
-  // History controls are only relevant for main flyouts
-  // Get titles and flyoutIds from the manager's flyouts state
-  // Disregard the flyout in the current session in history and back button logic
-  let showBackButton = false;
-  let backButtonProps: EuiFlyoutMenuProps['backButtonProps'] | undefined;
-  let historyItems: EuiFlyoutMenuProps['historyItems'] | undefined;
-  if (level === LEVEL_MAIN) {
-    historyItems = getHistoryItems();
-    showBackButton = historyItems.length > 0;
-    backButtonProps = {
-      onClick: goBack,
-    };
-  }
-
   const flyoutMenuProps = {
     ..._flyoutMenuProps,
-    historyItems,
-    showBackButton,
-    backButtonProps,
     title,
   };
 

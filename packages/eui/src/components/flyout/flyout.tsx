@@ -81,5 +81,4 @@ export const EuiFlyout = forwardRef<
   isUnmanagedFlyout.current = true;
   return <EuiFlyoutComponent {...rest} onClose={onClose} as={as} ref={ref} />;
 });
-
 EuiFlyout.displayName = 'EuiFlyout';

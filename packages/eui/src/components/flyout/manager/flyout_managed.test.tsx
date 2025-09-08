@@ -44,29 +44,20 @@ jest.mock('../flyout.component', () => {
 });
 
 // Mock hooks that would otherwise depend on ResizeObserver or animation timing
-const mockCloseFlyout = jest.fn();
-const mockCallUnregisterCallback = jest.fn();
-
 jest.mock('./hooks', () => ({
   useFlyoutManagerReducer: () => ({
     state: { sessions: [], flyouts: [], layoutMode: 'side-by-side' },
     dispatch: jest.fn(),
     addFlyout: jest.fn(),
-    closeFlyout: mockCloseFlyout,
+    closeFlyout: jest.fn(),
     setActiveFlyout: jest.fn(),
     setFlyoutWidth: jest.fn(),
-    goBack: jest.fn(),
-    goToFlyout: jest.fn(),
-    getHistoryItems: jest.fn(() => []),
   }),
   useFlyoutManager: () => ({
     state: { sessions: [], flyouts: [], layoutMode: 'side-by-side' },
     addFlyout: jest.fn(),
-    closeFlyout: mockCloseFlyout,
+    closeFlyout: jest.fn(),
     setFlyoutWidth: jest.fn(),
-    goBack: jest.fn(),
-    goToFlyout: jest.fn(),
-    getHistoryItems: jest.fn(() => []),
   }),
   useIsFlyoutActive: () => true,
   useHasChildFlyout: () => false,
@@ -82,23 +73,6 @@ jest.mock('./validation', () => ({
   validateFlyoutTitle: () => undefined,
   createValidationErrorMessage: (e: any) => String(e),
   isNamedSize: () => true,
-}));
-
-// Mock unregister callback functions
-jest.mock('./provider', () => ({
-  ...jest.requireActual('./provider'),
-  registerUnregisterCallback: jest.fn(),
-  unregisterUnregisterCallback: jest.fn(),
-  callUnregisterCallback: mockCallUnregisterCallback,
-  useFlyoutManager: () => ({
-    state: { sessions: [], flyouts: [], layoutMode: 'side-by-side' },
-    addFlyout: jest.fn(),
-    closeFlyout: mockCloseFlyout,
-    setFlyoutWidth: jest.fn(),
-    goBack: jest.fn(),
-    goToFlyout: jest.fn(),
-    getHistoryItems: jest.fn(() => []),
-  }),
 }));
 
 // Mock resize observer hook to return a fixed width
@@ -125,13 +99,8 @@ describe('EuiManagedFlyout', () => {
     expect(el).toHaveAttribute(PROPERTY_LEVEL, LEVEL_MAIN);
   });
 
-  it('calls the unregister callback prop when onClose', () => {
+  it('calls onClose prop when onClose is invoked', () => {
     const onClose = jest.fn();
-
-    // Set up the mock to call the unregister callback when closeFlyout is called
-    mockCloseFlyout.mockImplementation((flyoutId) => {
-      mockCallUnregisterCallback(flyoutId);
-    });
 
     const { getByTestSubject } = renderInProvider(
       <EuiManagedFlyout id="close-me" level={LEVEL_MAIN} onClose={onClose} />
@@ -141,9 +110,7 @@ describe('EuiManagedFlyout', () => {
       userEvent.click(getByTestSubject('managed-flyout'));
     });
 
-    // The onClose should be called through the unregister callback mechanism
-    expect(mockCloseFlyout).toHaveBeenCalledWith('close-me');
-    expect(mockCallUnregisterCallback).toHaveBeenCalledWith('close-me');
+    expect(onClose).toHaveBeenCalledTimes(1);
   });
 
   it('registers child flyout and sets data-level child', () => {

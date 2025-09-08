@@ -31,10 +31,6 @@ export const ACTION_SET_WIDTH = `${PREFIX}/setWidth` as const;
 export const ACTION_SET_LAYOUT_MODE = `${PREFIX}/setLayoutMode` as const;
 /** Dispatched to update a flyout's activity stage (e.g., opening -> active). */
 export const ACTION_SET_ACTIVITY_STAGE = `${PREFIX}/setActivityStage` as const;
-/** Dispatched to go back one session (remove current session). */
-export const ACTION_GO_BACK = `${PREFIX}/goBack` as const;
-/** Dispatched to navigate to a specific flyout (remove all sessions after it). */
-export const ACTION_GO_TO_FLYOUT = `${PREFIX}/goToFlyout` as const;
 
 /**
  * Add a flyout to manager state. The manager will create or update
@@ -80,17 +76,6 @@ export interface SetActivityStageAction extends BaseAction {
   activityStage: EuiFlyoutActivityStage;
 }
 
-/** Go back one session (remove current session from stack). */
-export interface GoBackAction extends BaseAction {
-  type: typeof ACTION_GO_BACK;
-}
-
-/** Navigate to a specific flyout (remove all sessions after it). */
-export interface GoToFlyoutAction extends BaseAction {
-  type: typeof ACTION_GO_TO_FLYOUT;
-  flyoutId: string;
-}
-
 /** Union of all flyout manager actions. */
 export type Action =
   | AddFlyoutAction
@@ -98,9 +83,7 @@ export type Action =
   | SetActiveFlyoutAction
   | SetWidthAction
   | SetLayoutModeAction
-  | SetActivityStageAction
-  | GoBackAction
-  | GoToFlyoutAction;
+  | SetActivityStageAction;
 
 /**
  * Register a flyout with the manager.
@@ -161,15 +144,4 @@ export const setActivityStage = (
   type: ACTION_SET_ACTIVITY_STAGE,
   flyoutId,
   activityStage,
-});
-
-/** Go back one session (remove current session from stack). */
-export const goBack = (): GoBackAction => ({
-  type: ACTION_GO_BACK,
-});
-
-/** Navigate to a specific flyout (remove all sessions after it). */
-export const goToFlyout = (flyoutId: string): GoToFlyoutAction => ({
-  type: ACTION_GO_TO_FLYOUT,
-  flyoutId,
 });

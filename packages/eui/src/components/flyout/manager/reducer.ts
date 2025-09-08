@@ -13,11 +13,8 @@ import {
   ACTION_SET_LAYOUT_MODE,
   ACTION_SET_WIDTH,
   ACTION_SET_ACTIVITY_STAGE,
-  ACTION_GO_BACK,
-  ACTION_GO_TO_FLYOUT,
   Action,
 } from './actions';
-import { callUnregisterCallback } from './provider';
 import { LAYOUT_MODE_SIDE_BY_SIDE, LEVEL_MAIN, STAGE_OPENING } from './const';
 import {
   EuiFlyoutManagerState,
@@ -106,9 +103,6 @@ export function flyoutManagerReducer(
       if (!removedFlyout) {
         return state;
       }
-
-      // Call onUnregister callback if it exists (defer to avoid setState during render)
-      callUnregisterCallback(action.flyoutId);
 
       if (removedFlyout.level === LEVEL_MAIN) {
         // Find the session that contains this main flyout
@@ -199,73 +193,6 @@ export function flyoutManagerReducer(
           : flyout
       );
       return { ...state, flyouts: updatedFlyouts };
-    }
-
-    // Go back one session (remove current session from stack)
-    case ACTION_GO_BACK: {
-      if (state.sessions.length === 0) {
-        return state;
-      }
-
-      const currentSessionIndex = state.sessions.length - 1;
-      const currentSession = state.sessions[currentSessionIndex];
-
-      // Close all flyouts in the current session
-      const flyoutsToRemove = new Set([currentSession.main]);
-      if (currentSession.child) {
-        flyoutsToRemove.add(currentSession.child);
-      }
-
-      // Call onUnregister callbacks for removed flyouts (defer to avoid setState during render)
-      flyoutsToRemove.forEach((flyoutId) => {
-        callUnregisterCallback(flyoutId);
-      });
-
-      const newFlyouts = state.flyouts.filter(
-        (f) => !flyoutsToRemove.has(f.flyoutId)
-      );
-
-      const newSessions = state.sessions.slice(0, currentSessionIndex);
-
-      return { ...state, sessions: newSessions, flyouts: newFlyouts };
-    }
-
-    // Navigate to a specific flyout (remove all sessions after it)
-    case ACTION_GO_TO_FLYOUT: {
-      const { flyoutId } = action;
-
-      // Find the session containing the target flyout
-      const targetSessionIndex = state.sessions.findIndex(
-        (session) => session.main === flyoutId
-      );
-
-      if (targetSessionIndex === -1) {
-        return state; // Target flyout not found
-      }
-
-      // Close all sessions after the target session
-      const sessionsToClose = state.sessions.slice(targetSessionIndex + 1);
-      const flyoutsToRemove = new Set<string>();
-
-      sessionsToClose.forEach((session) => {
-        flyoutsToRemove.add(session.main);
-        if (session.child) {
-          flyoutsToRemove.add(session.child);
-        }
-      });
-
-      // Call onUnregister callbacks for removed flyouts (defer to avoid setState during render)
-      flyoutsToRemove.forEach((flyoutId) => {
-        callUnregisterCallback(flyoutId);
-      });
-
-      const newFlyouts = state.flyouts.filter(
-        (f) => !flyoutsToRemove.has(f.flyoutId)
-      );
-
-      const newSessions = state.sessions.slice(0, targetSessionIndex + 1);
-
-      return { ...state, sessions: newSessions, flyouts: newFlyouts };
     }
 
     default:
