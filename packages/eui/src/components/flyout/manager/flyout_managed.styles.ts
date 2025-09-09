@@ -18,7 +18,6 @@ import {
   STAGE_OPENING,
   STAGE_RETURNING,
 } from './const';
-import { euiFlyoutSlideInLeft, euiFlyoutSlideInRight } from '../flyout.styles';
 import { _EuiFlyoutSide, DEFAULT_SIDE } from '../const';
 import { EuiFlyoutActivityStage } from './types';
 
@@ -83,16 +82,6 @@ export const euiManagedFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
         }
       `;
 
-      const openingTransition = css`
-        ${euiCanAnimate} {
-          animation: ${side === 'left'
-              ? euiFlyoutSlideInLeft
-              : euiFlyoutSlideInRight}
-            ${euiTheme.animation.normal} ${euiTheme.animation.resistance}
-            forwards;
-        }
-      `;
-
       const noTransition = css`
         ${euiCanAnimate} {
           animation: none;
@@ -116,7 +105,7 @@ export const euiManagedFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
 
       switch (activeStage) {
         case STAGE_OPENING:
-          return [activeFlyout, openingTransition];
+          return [activeFlyout];
 
         case STAGE_ACTIVE:
           return [activeFlyout, noTransition];
