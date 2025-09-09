@@ -70,6 +70,7 @@ export const EuiManagedFlyout = ({
   level,
   size,
   css: customCss,
+  isOpen = true,
   flyoutMenuProps: _flyoutMenuProps,
   ...props
 }: EuiManagedFlyoutProps) => {
@@ -116,12 +117,12 @@ export const EuiManagedFlyout = ({
 
   // Register/unregister with flyout manager context
   useEffect(() => {
-    addFlyout(flyoutId, title!, level, size as string);
+    if (isOpen) {
+      addFlyout(flyoutId, level, size as string);
 
-    return () => {
-      closeFlyout(flyoutId);
-    };
-  }, [size, flyoutId, title, level, addFlyout, closeFlyout]);
+      return () => closeFlyout(flyoutId);
+    }
+  }, [isOpen, size, level, flyoutId, addFlyout, closeFlyout]);
 
   // Track width changes for flyouts
   const { width } = useResizeObserver(
@@ -168,6 +169,7 @@ export const EuiManagedFlyout = ({
             size,
             flyoutMenuProps,
             onAnimationEnd,
+            isOpen,
             [PROPERTY_FLYOUT]: true,
             [PROPERTY_LAYOUT_MODE]: layoutMode,
             [PROPERTY_LEVEL]: level,
