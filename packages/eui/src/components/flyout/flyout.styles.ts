@@ -39,11 +39,11 @@ export const euiFlyoutSlideInRight = keyframes`
 `;
 
 export const euiFlyoutSlideOutRight = keyframes`
-  0% {
+  from {
     opacity: 1;
     transform: translateX(0%);
   }
-  75% {
+  85%, to {
     opacity: 0;
     transform: translateX(100%);
   }
