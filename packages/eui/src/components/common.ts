@@ -25,6 +25,7 @@ export interface CommonProps {
   'aria-label'?: string;
   'data-test-subj'?: string;
   css?: Interpolation<Theme>;
+  'data-privacy-mask'?: 'mask' | 'unmask' | 'exclude';
 }
 
 export type NoArgCallback<T> = () => T;
