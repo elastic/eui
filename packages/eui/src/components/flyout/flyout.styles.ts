@@ -28,35 +28,46 @@ import { euiFormMaxWidth } from '../form/form.styles';
 export const FLYOUT_BREAKPOINT = 'm' as const;
 
 export const euiFlyoutSlideInRight = keyframes`
-  0% {
+  from {
     opacity: 0;
     transform: translateX(100%);
   }
-  75% {
+  85%, to {
     opacity: 1;
     transform: translateX(0%);
   }
 `;
 
 export const euiFlyoutSlideOutRight = keyframes`
-  0% {
+  from {
     opacity: 1;
     transform: translateX(0%);
   }
-  75% {
+  85%, to {
     opacity: 0;
     transform: translateX(100%);
   }
 `;
 
 export const euiFlyoutSlideInLeft = keyframes`
-  0% {
+  from {
     opacity: 0;
     transform: translateX(-100%);
   }
-  75% {
+  85%, to {
     opacity: 1;
     transform: translateX(0%);
+  }
+`;
+
+export const euiFlyoutSlideOutLeft = keyframes`
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  85%, to {
+    opacity: 0;
+    transform: translateX(-100%);
   }
 `;
 
@@ -145,9 +156,26 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
       ${logicalCSS('left', 0)}
       clip-path: polygon(0 0, 150% 0, 150% 100%, 0 100%);
 
-      ${euiCanAnimate} {
-        animation: ${euiFlyoutSlideInLeft} ${euiTheme.animation.normal}
-          ${euiTheme.animation.resistance};
+      &.euiFlyout--opening {
+        // Jump animation states immediately unless
+        // prefers-reduced-motion: reduce is *not* set
+        animation: ${euiFlyoutSlideInLeft} 0s ${euiTheme.animation.resistance}
+          forwards;
+
+        ${euiCanAnimate} {
+          animation-duration: ${euiTheme.animation.normal};
+        }
+      }
+
+      &.euiFlyout--closing {
+        // Jump animation states immediately unless
+        // prefers-reduced-motion: reduce is *not* set
+        animation: ${euiFlyoutSlideOutLeft} 0s ${euiTheme.animation.resistance}
+          forwards;
+
+        ${euiCanAnimate} {
+          animation-duration: ${euiTheme.animation.normal};
+        }
       }
     `,
 
