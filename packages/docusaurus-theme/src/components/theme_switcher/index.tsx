@@ -31,6 +31,8 @@ const getStyles = (euiThemeContext: UseEuiTheme) => {
   return {
     button: css`
       padding: 0;
+      width: ${euiTheme.size.xl};
+      border-radius: ${euiTheme.size.base};
     `,
     listItem: css`
       .euiListGroupItem__button:focus-visible {
