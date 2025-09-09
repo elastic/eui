@@ -38,6 +38,7 @@ export const getStyles = ({ euiTheme }: UseEuiTheme) => ({
   item: css`
     display: flex;
     align-items: center;
+    flex-shrink: 0;
 
     -webkit-tap-highlight-color: transparent;
     transition: background var(--ifm-transition-fast);
