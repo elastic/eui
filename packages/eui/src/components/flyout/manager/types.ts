@@ -75,4 +75,10 @@ export interface FlyoutManagerApi {
   closeFlyout: (flyoutId: string) => void;
   setActiveFlyout: (flyoutId: string | null) => void;
   setFlyoutWidth: (flyoutId: string, width: number) => void;
+  goBack: () => void;
+  goToFlyout: (flyoutId: string) => void;
+  getHistoryItems: () => Array<{
+    title: string;
+    onClick: () => void;
+  }>;
 }
