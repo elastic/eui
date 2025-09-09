@@ -43,7 +43,7 @@ interface ECommerceContentProps {
 
 interface ShoppingCartProps
   extends ECommerceContentProps,
-    Pick<EuiFlyoutProps, 'onClose' | 'ownFocus' | 'side'> {
+    Pick<EuiFlyoutProps, 'onClose' | 'ownFocus' | 'side' | 'isOpen'> {
   onQuantityChange: (delta: number) => void;
 }
 
@@ -53,6 +53,7 @@ const ShoppingCartFlyout = ({
   onClose,
   ownFocus,
   side,
+  isOpen,
 }: ShoppingCartProps) => {
   const [isItemDetailsOpen, setIsItemDetailsOpen] = useState(false);
   const [isReviewCartOpen, setIsReviewCartOpen] = useState(false);
@@ -65,7 +66,7 @@ const ShoppingCartFlyout = ({
       ownFocus={ownFocus}
       side={side}
       aria-label="Shopping cart"
-      {...{ onClose }}
+      {...{ onClose, isOpen }}
     >
       <EuiFlyoutBody>
         <EuiText>
@@ -99,22 +100,18 @@ const ShoppingCartFlyout = ({
         >
           {isReviewCartOpen ? 'Close review' : 'Proceed to review'}
         </EuiButton>
-        {isItemDetailsOpen && (
-          <ItemDetailsFlyout
-            onClose={() => setIsItemDetailsOpen(false)}
-            itemQuantity={itemQuantity}
-            side={side}
-          />
-        )}
-        {isReviewCartOpen && (
-          <>
-            <ReviewOrderFlyout
-              onClose={() => setIsReviewCartOpen(false)}
-              itemQuantity={itemQuantity}
-              side={side}
-            />
-          </>
-        )}
+        <ItemDetailsFlyout
+          isOpen={isItemDetailsOpen}
+          onClose={() => setIsItemDetailsOpen(false)}
+          itemQuantity={itemQuantity}
+          side={side}
+        />
+        <ReviewOrderFlyout
+          isOpen={isReviewCartOpen}
+          onClose={() => setIsReviewCartOpen(false)}
+          itemQuantity={itemQuantity}
+          side={side}
+        />
       </EuiFlyoutBody>
       <EuiFlyoutFooter>
         <EuiButton
@@ -132,7 +129,7 @@ const ShoppingCartFlyout = ({
 
 interface ReviewOrderProps
   extends ECommerceContentProps,
-    Pick<EuiFlyoutProps, 'onClose' | 'side'> {}
+    Pick<EuiFlyoutProps, 'onClose' | 'side' | 'isOpen'> {}
 
 const ReviewOrderFlyout = ({
   itemQuantity,
@@ -199,18 +196,20 @@ const ReviewOrderFlyout = ({
 
 interface ItemDetailsProps
   extends ECommerceContentProps,
-    Pick<EuiFlyoutProps, 'onClose' | 'id' | 'side'> {}
+    Pick<EuiFlyoutProps, 'onClose' | 'id' | 'side' | 'isOpen'> {}
 
 const ItemDetailsFlyout = ({
   onClose,
   itemQuantity,
   id = 'item-details-flyout',
   side = DEFAULT_SIDE,
+  isOpen,
 }: ItemDetailsProps) => {
   return (
     <EuiFlyout
       id={id}
       onClose={onClose}
+      isOpen={isOpen}
       size="s"
       side={side}
       aria-label="Item details"
@@ -409,21 +408,19 @@ const BasicExampleComponent = ({
           side={side}
         />
       )}
-      {isReviewCartOpen && (
-        <ReviewOrderFlyout
-          onClose={() => setIsReviewCartOpen(false)}
-          itemQuantity={itemQuantity}
-          side={side}
-        />
-      )}
-      {isItemDetailsOpen && (
-        <ItemDetailsFlyout
-          id="shopping-cart-item-details-flyout"
-          onClose={() => setIsItemDetailsOpen(false)}
-          itemQuantity={itemQuantity}
-          side={side}
-        />
-      )}
+      <ReviewOrderFlyout
+        isOpen={isReviewCartOpen}
+        onClose={() => setIsReviewCartOpen(false)}
+        itemQuantity={itemQuantity}
+        side={side}
+      />
+      <ItemDetailsFlyout
+        isOpen={isItemDetailsOpen}
+        id="shopping-cart-item-details-flyout"
+        onClose={() => setIsItemDetailsOpen(false)}
+        itemQuantity={itemQuantity}
+        side={side}
+      />
     </>
   );
 };
