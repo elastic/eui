@@ -120,6 +120,8 @@ export const euiManagedFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
 
         case STAGE_RETURNING:
           return [activeFlyout, returningTransition];
+
+        // TODO(tkajtoch): What to do with STAGE_CLOSING?
       }
     },
     managedFlyout: css`
