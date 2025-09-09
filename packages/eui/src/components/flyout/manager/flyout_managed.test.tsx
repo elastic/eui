@@ -73,6 +73,7 @@ jest.mock('./hooks', () => ({
   useParentFlyoutSize: () => 'm',
   useFlyoutLayoutMode: () => 'side-by-side',
   useFlyoutId: (id?: string) => id ?? 'generated-id',
+  useCurrentSession: () => null,
 }));
 
 // Mock validation helpers to be deterministic

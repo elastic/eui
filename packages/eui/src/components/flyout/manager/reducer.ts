@@ -41,6 +41,7 @@ export function flyoutManagerReducer(
   state: EuiFlyoutManagerState = initialState,
   action: Action
 ): EuiFlyoutManagerState {
+  console.log(`[FLYOUT DEBUG] reducer action: ${action.type}`, action);
   switch (action.type) {
     // Register a flyout.
     // - Ignore duplicates by `flyoutId`.
@@ -72,6 +73,7 @@ export function flyoutManagerReducer(
           title: title,
           child: null,
         };
+
         return {
           ...state,
           sessions: [...state.sessions, newSession],
@@ -107,9 +109,6 @@ export function flyoutManagerReducer(
         return state;
       }
 
-      // Call onUnregister callback if it exists (defer to avoid setState during render)
-      callUnregisterCallback(action.flyoutId);
-
       if (removedFlyout.level === LEVEL_MAIN) {
         // Find the session that contains this main flyout
         const sessionToRemove = state.sessions.find(
@@ -123,6 +122,11 @@ export function flyoutManagerReducer(
             flyoutsToRemove.add(sessionToRemove.child);
           }
 
+          // Call onUnregister callbacks for all flyouts being removed (defer to avoid setState during render)
+          flyoutsToRemove.forEach((flyoutId) => {
+            callUnregisterCallback(flyoutId);
+          });
+
           const newFlyouts = state.flyouts.filter(
             (f) => !flyoutsToRemove.has(f.flyoutId)
           );
@@ -134,6 +138,10 @@ export function flyoutManagerReducer(
           return { ...state, sessions: newSessions, flyouts: newFlyouts };
         }
       }
+
+      // Call onUnregister callback if it exists (defer to avoid setState during render)
+      // Only call this for non-main flyouts or main flyouts without sessions
+      callUnregisterCallback(action.flyoutId);
 
       // Handle child flyout closing (existing logic)
       const newFlyouts = state.flyouts.filter(

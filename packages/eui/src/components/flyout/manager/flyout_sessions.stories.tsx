@@ -56,8 +56,10 @@ const FlyoutSession: React.FC<FlyoutSessionProps> = (props) => {
   const [isFlyoutVisible, setIsFlyoutVisible] = useState(false);
   const [isChildFlyoutVisible, setIsChildFlyoutVisible] = useState(false);
 
-  const handleOpenMainFlyout = () => {
-    setIsFlyoutVisible(true);
+  // Main flyout lifecycle handlers
+
+  const handleActivateMainFlyout = () => {
+    action('activate main flyout')(title);
   };
 
   const handleCloseMainFlyout = () => {
@@ -66,10 +68,37 @@ const FlyoutSession: React.FC<FlyoutSessionProps> = (props) => {
     setIsChildFlyoutVisible(false);
   };
 
+  const handleCloseButtonClick = () => {
+    setIsFlyoutVisible(false);
+    setIsChildFlyoutVisible(false);
+  };
+
+  // Child flyout lifecycle handlers
+
+  const handleActivateChildFlyout = () => {
+    action('activate child flyout')(title);
+  };
+
+  const handleCloseChildFlyout = () => {
+    action('close child flyout')(title);
+    setIsChildFlyoutVisible(false);
+  };
+
+  const handleCloseChildButtonClick = () => {
+    setIsChildFlyoutVisible(false);
+  };
+
+  // Render
+
   return (
     <>
       <EuiText>
-        <EuiButton disabled={isFlyoutVisible} onClick={handleOpenMainFlyout}>
+        <EuiButton
+          disabled={isFlyoutVisible}
+          onClick={() => {
+            setIsFlyoutVisible(true);
+          }}
+        >
           Open {title}
         </EuiButton>
       </EuiText>
@@ -84,6 +113,7 @@ const FlyoutSession: React.FC<FlyoutSessionProps> = (props) => {
           type={flyoutType}
           ownFocus={false}
           pushAnimation={true}
+          onActive={handleActivateMainFlyout}
           onClose={handleCloseMainFlyout}
         >
           <EuiFlyoutBody>
@@ -112,7 +142,7 @@ const FlyoutSession: React.FC<FlyoutSessionProps> = (props) => {
             </EuiText>
           </EuiFlyoutBody>
           <EuiFlyoutFooter>
-            <EuiButton onClick={handleCloseMainFlyout}>Close</EuiButton>
+            <EuiButton onClick={handleCloseButtonClick}>Close</EuiButton>
           </EuiFlyoutFooter>
           {isChildFlyoutVisible && (
             <EuiFlyout
@@ -121,7 +151,8 @@ const FlyoutSession: React.FC<FlyoutSessionProps> = (props) => {
               aria-labelledby="childFlyoutTitle"
               size={childSize}
               maxWidth={childMaxWidth}
-              onClose={() => setIsChildFlyoutVisible(false)}
+              onActive={handleActivateChildFlyout}
+              onClose={handleCloseChildFlyout}
             >
               <EuiFlyoutBody>
                 <EuiText>
@@ -143,7 +174,7 @@ const FlyoutSession: React.FC<FlyoutSessionProps> = (props) => {
                 </EuiText>
               </EuiFlyoutBody>
               <EuiFlyoutFooter>
-                <EuiButton onClick={() => setIsChildFlyoutVisible(false)}>
+                <EuiButton onClick={handleCloseChildButtonClick}>
                   Close
                 </EuiButton>
               </EuiFlyoutFooter>

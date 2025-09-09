@@ -27,6 +27,8 @@ import { euiManagedFlyoutStyles } from './flyout_managed.styles';
 import {
   registerUnregisterCallback,
   unregisterUnregisterCallback,
+  registerOnActiveCallback,
+  unregisterOnActiveCallback,
 } from './provider';
 import {
   useFlyoutManager as _useFlyoutManager,
@@ -34,6 +36,7 @@ import {
   useFlyoutLayoutMode,
   useIsFlyoutActive,
   useParentFlyoutSize,
+  useCurrentSession,
 } from './hooks';
 import { EuiFlyoutLevel } from './types';
 import {
@@ -52,6 +55,7 @@ import {
 export interface EuiManagedFlyoutProps extends EuiFlyoutComponentProps {
   level: EuiFlyoutLevel;
   flyoutMenuProps?: Omit<EuiFlyoutMenuProps, 'historyItems' | 'showBackButton'>;
+  onActive?: () => void;
 }
 
 const useFlyoutManager = () => {
@@ -76,16 +80,23 @@ export const EuiManagedFlyout = ({
   size,
   css: customCss,
   flyoutMenuProps: _flyoutMenuProps,
+  onActive,
   ...props
 }: EuiManagedFlyoutProps) => {
   const flyoutId = useFlyoutId(id);
   const flyoutRef = useRef<HTMLDivElement>(null);
+
+  console.log(
+    `[FLYOUT DEBUG] EuiManagedFlyout render: ${flyoutId} (level: ${level})`,
+    { hasOnActive: !!onActive, hasOnClose: !!onCloseProp }
+  );
 
   const { addFlyout, closeFlyout, setFlyoutWidth, goBack, getHistoryItems } =
     useFlyoutManager();
 
   const isActive = useIsFlyoutActive(flyoutId);
   const parentSize = useParentFlyoutSize(flyoutId);
+  const currentSession = useCurrentSession();
 
   // Get layout mode for responsive behavior
   const layoutMode = useFlyoutLayoutMode();
@@ -120,33 +131,177 @@ export const EuiManagedFlyout = ({
     throw new Error(createValidationErrorMessage(titleError));
   }
 
+  // Track whether the onClose callback has already been called to prevent double-firing
+  const onCloseCalledRef = useRef<boolean>(false);
+
+  // Create a closure variable to track if onClose has been called
+  let onCloseCalled = false;
+
   // Stabilize the unregister callback to prevent unnecessary re-registrations
   const unregisterCallbackRef = useRef<(() => void) | undefined>();
   unregisterCallbackRef.current = onCloseProp
     ? () => {
-        // Create a synthetic event for the onClose callback
-        const syntheticEvent = new MouseEvent('click', {
-          bubbles: true,
-          cancelable: true,
-        }) as any;
-        onCloseProp(syntheticEvent);
+        console.log(
+          `[FLYOUT DEBUG] onClose callback triggered for: ${flyoutId}`,
+          {
+            alreadyCalled: onCloseCalled,
+            onCloseCalledRef: onCloseCalledRef.current,
+          }
+        );
+
+        // Only call the onClose callback if it hasn't been called already
+        if (!onCloseCalled) {
+          onCloseCalled = true;
+          onCloseCalledRef.current = true;
+          console.log(
+            `[FLYOUT DEBUG] executing onClose callback for: ${flyoutId}`
+          );
+          // Create a synthetic event for the onClose callback
+          const syntheticEvent = new MouseEvent('click', {
+            bubbles: true,
+            cancelable: true,
+          }) as any;
+          onCloseProp(syntheticEvent);
+        } else {
+          console.log(
+            `[FLYOUT DEBUG] onClose callback already called for: ${flyoutId}, skipping`
+          );
+        }
       }
     : undefined;
 
+  // Stabilize the onActive callback to prevent unnecessary re-registrations
+  const onActiveCallbackRef = useRef<(() => void) | undefined>();
+  onActiveCallbackRef.current = onActive;
+
+  // Track the previous session to avoid calling onActive multiple times for the same session
+  const previousSessionRef = useRef<typeof currentSession>(null);
+
   // Register/unregister with flyout manager context
   useEffect(() => {
+    console.log(
+      `[FLYOUT DEBUG] useEffect (registration) running for: ${flyoutId}`
+    );
     // Register the unregister callback in the registry
     if (unregisterCallbackRef.current) {
+      console.log(
+        `[FLYOUT DEBUG] registering onClose callback for: ${flyoutId}`
+      );
       registerUnregisterCallback(flyoutId, unregisterCallbackRef.current);
+    } else {
+      console.log(
+        `[FLYOUT DEBUG] no onClose callback to register for: ${flyoutId}`
+      );
     }
 
+    // Register the onActive callback in the registry
+    if (onActiveCallbackRef.current) {
+      console.log(
+        `[FLYOUT DEBUG] registering onActive callback for: ${flyoutId}`
+      );
+      registerOnActiveCallback(flyoutId, onActiveCallbackRef.current);
+    } else {
+      console.log(
+        `[FLYOUT DEBUG] no onActive callback to register for: ${flyoutId}`
+      );
+    }
+
+    console.log(`[FLYOUT DEBUG] calling addFlyout for: ${flyoutId}`);
     addFlyout(flyoutId, title!, level, size as string);
 
     return () => {
-      unregisterUnregisterCallback(flyoutId);
+      console.log(
+        `[FLYOUT DEBUG] useEffect (registration) cleanup for: ${flyoutId}`
+      );
       closeFlyout(flyoutId);
+      // Don't unregister callbacks here - let the reducer handle it
+      // The reducer will call the callbacks and then we can unregister them
     };
   }, [size, flyoutId, title, level, addFlyout, closeFlyout]);
+
+  // Monitor current session changes and fire onActive callback when this flyout becomes active
+  // Only run this effect if we have an onActive callback to avoid unnecessary work
+  useEffect(() => {
+    // Early exit if no callback - no need to monitor sessions
+    if (!onActiveCallbackRef.current) {
+      return;
+    }
+
+    console.log(
+      `[FLYOUT DEBUG] useEffect (session monitoring) running for: ${flyoutId}`,
+      {
+        currentSession,
+        hasOnActiveCallback: !!onActiveCallbackRef.current,
+      }
+    );
+
+    if (!currentSession) {
+      console.log(
+        `[FLYOUT DEBUG] skipping session check for: ${flyoutId} (no session)`
+      );
+      return;
+    }
+
+    // Check if this flyout is part of the current active session
+    const isInCurrentSession =
+      currentSession.main === flyoutId || currentSession.child === flyoutId;
+
+    // Check if the session has actually changed in a way that affects this flyout
+    const previousSession = previousSessionRef.current;
+    const sessionChanged =
+      !previousSession ||
+      previousSession.main !== currentSession.main ||
+      previousSession.child !== currentSession.child;
+
+    // Only fire onActive if this flyout is newly part of the active session
+    const wasInPreviousSession =
+      previousSession &&
+      (previousSession.main === flyoutId || previousSession.child === flyoutId);
+
+    // For main flyouts: only fire onActive if this is a new session (different main flyout)
+    // For child flyouts: fire onActive if this is the first time they're added to a session
+    const isNewlyActive =
+      isInCurrentSession &&
+      (!wasInPreviousSession || // First time this flyout is part of any session
+        (level === 'main' &&
+          previousSession &&
+          previousSession.main !== currentSession.main) || // Main flyout: different session
+        (level === 'child' &&
+          previousSession &&
+          previousSession.child !== currentSession.child)); // Child flyout: different child
+
+    console.log(`[FLYOUT DEBUG] session check for: ${flyoutId}`, {
+      isInCurrentSession,
+      wasInPreviousSession,
+      isNewlyActive,
+      sessionChanged,
+      previousSession,
+      currentSession,
+    });
+
+    if (isNewlyActive) {
+      console.log(`[FLYOUT DEBUG] firing onActive callback for: ${flyoutId}`);
+      // Fire the onActive callback when this flyout becomes part of the active session
+      onActiveCallbackRef.current();
+    }
+
+    // Update the previous session reference
+    previousSessionRef.current = currentSession;
+  }, [currentSession, flyoutId, level]);
+
+  // Clean up callbacks when component unmounts
+  useEffect(() => {
+    return () => {
+      console.log(`[FLYOUT DEBUG] component unmount cleanup for: ${flyoutId}`);
+      // Defer unregistration to allow callUnregisterCallback to execute first
+      // Use setTimeout with 0 delay to ensure it runs after microtasks
+      setTimeout(() => {
+        console.log(`[FLYOUT DEBUG] delayed unregistration for: ${flyoutId}`);
+        unregisterUnregisterCallback(flyoutId);
+        unregisterOnActiveCallback(flyoutId);
+      }, 0);
+    };
+  }, [flyoutId]);
 
   // Track width changes for flyouts
   const { width } = useResizeObserver(
@@ -155,9 +310,17 @@ export const EuiManagedFlyout = ({
   );
 
   const onClose = (_event: MouseEvent | TouchEvent | KeyboardEvent) => {
+    console.log(`[FLYOUT DEBUG] onClose function called for: ${flyoutId}`);
     // For explicit closes, just trigger the unregister process
     // The onCloseProp will be called as a side effect of unregistering
-    closeFlyout(flyoutId);
+    // But only if it hasn't been called already
+    if (!onCloseCalledRef.current) {
+      closeFlyout(flyoutId);
+    } else {
+      console.log(
+        `[FLYOUT DEBUG] onClose already called for: ${flyoutId}, skipping closeFlyout`
+      );
+    }
   };
 
   // Update width in manager state when it changes

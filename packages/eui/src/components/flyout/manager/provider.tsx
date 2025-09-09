@@ -11,27 +11,79 @@ import { useFlyoutManagerReducer } from './hooks';
 import { useApplyFlyoutLayoutMode } from './layout_mode';
 import { FlyoutManagerApi } from './types';
 
-// Callback registry for unregister callbacks - keeps state serializable
-const unregisterCallbacks = new Map<string, () => void>();
+// Callback registry - keeps state serializable
+const callbacksRegistry = new Map<
+  string,
+  {
+    onClose?: () => void;
+    onActive?: () => void;
+  }
+>();
 
 // Helper functions to manage the callback registry
+export const registerCallback = (
+  flyoutId: string,
+  callbackType: 'onClose' | 'onActive',
+  callback: () => void
+) => {
+  console.log(`[FLYOUT DEBUG] registerCallback: ${flyoutId} (${callbackType})`);
+  const existing = callbacksRegistry.get(flyoutId) || {};
+  callbacksRegistry.set(flyoutId, { ...existing, [callbackType]: callback });
+};
+
+export const unregisterCallback = (
+  flyoutId: string,
+  callbackType: 'onClose' | 'onActive'
+) => {
+  console.log(
+    `[FLYOUT DEBUG] unregisterCallback: ${flyoutId} (${callbackType})`
+  );
+  const existing = callbacksRegistry.get(flyoutId);
+  if (existing) {
+    const { [callbackType]: removed, ...rest } = existing;
+    if (Object.keys(rest).length === 0) {
+      callbacksRegistry.delete(flyoutId);
+    } else {
+      callbacksRegistry.set(flyoutId, rest);
+    }
+  }
+};
+
+export const callCallback = (
+  flyoutId: string,
+  callbackType: 'onClose' | 'onActive'
+) => {
+  console.log(`[FLYOUT DEBUG] callCallback: ${flyoutId} (${callbackType})`);
+  const callbacks = callbacksRegistry.get(flyoutId);
+  if (callbacks?.[callbackType]) {
+    console.log(
+      `[FLYOUT DEBUG] executing ${callbackType} callback for: ${flyoutId}`
+    );
+    queueMicrotask(() => callbacks[callbackType]!());
+  } else {
+    console.log(
+      `[FLYOUT DEBUG] no ${callbackType} callback found for: ${flyoutId}`
+    );
+  }
+};
+
+// Legacy function names for backward compatibility
 export const registerUnregisterCallback = (
   flyoutId: string,
   callback: () => void
-) => {
-  unregisterCallbacks.set(flyoutId, callback);
-};
-
-export const unregisterUnregisterCallback = (flyoutId: string) => {
-  unregisterCallbacks.delete(flyoutId);
-};
-
-export const callUnregisterCallback = (flyoutId: string) => {
-  const callback = unregisterCallbacks.get(flyoutId);
-  if (callback) {
-    queueMicrotask(() => callback());
-  }
-};
+) => registerCallback(flyoutId, 'onClose', callback);
+export const unregisterUnregisterCallback = (flyoutId: string) =>
+  unregisterCallback(flyoutId, 'onClose');
+export const callUnregisterCallback = (flyoutId: string) =>
+  callCallback(flyoutId, 'onClose');
+export const registerOnActiveCallback = (
+  flyoutId: string,
+  callback: () => void
+) => registerCallback(flyoutId, 'onActive', callback);
+export const unregisterOnActiveCallback = (flyoutId: string) =>
+  unregisterCallback(flyoutId, 'onActive');
+export const callOnActiveCallback = (flyoutId: string) =>
+  callCallback(flyoutId, 'onActive');
 
 /**
  * React context that exposes the Flyout Manager API (state + actions).
