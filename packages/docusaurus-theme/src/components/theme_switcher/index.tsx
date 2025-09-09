@@ -101,7 +101,7 @@ export const ThemeSwitcher = () => {
                 key={theme.value}
                 css={styles.listItem}
                 label={theme.text}
-                size="xs"
+                size="s"
                 isActive={isCurrentTheme}
                 color={isCurrentTheme ? 'primary' : 'text'}
                 onClick={handleOnClick}
