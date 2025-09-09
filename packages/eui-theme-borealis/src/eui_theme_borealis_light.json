@@ -184,22 +184,22 @@
     "xs": {
       "font-size": "16px",
       "line-height": "1.7143rem",
-      "font-weight": 600
+      "font-weight": 500
     },
     "s": {
       "font-size": "20px",
       "line-height": "1.7143rem",
-      "font-weight": 600
+      "font-weight": 500
     },
     "m": {
       "font-size": "24px",
       "line-height": "2rem",
-      "font-weight": 600
+      "font-weight": 500
     },
     "l": {
       "font-size": "30px",
       "line-height": "2.5714rem",
-      "font-weight": 600
+      "font-weight": 500
     }
   },
   "euiZLevel0": 0,
