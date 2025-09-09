@@ -9,16 +9,17 @@
 import React, { FunctionComponent, ReactNode, HTMLAttributes } from 'react';
 import classnames from 'classnames';
 
-import { keys, useEuiTheme } from '../../services';
+import { keys, useEuiTheme, useGeneratedHtmlId } from '../../services';
 import { isDOMNode } from '../../utils';
 
 import { EuiButtonIcon } from '../button';
 
-import { EuiFocusTrap } from '../focus_trap';
+import { EuiFocusTrap, EuiFocusTrapProps } from '../focus_trap';
 import { EuiOverlayMask } from '../overlay_mask';
 import { EuiI18n } from '../i18n';
 
 import { euiModalStyles } from './modal.styles';
+import { EuiScreenReaderOnly } from '../accessibility';
 
 export interface EuiModalProps extends HTMLAttributes<HTMLDivElement> {
   className?: string;
@@ -49,6 +50,11 @@ export interface EuiModalProps extends HTMLAttributes<HTMLDivElement> {
    * or need a user's attention should use "alertdialog".
    */
   role?: 'dialog' | 'alertdialog';
+  /**
+   * Object of props passed to EuiFocusTrap.
+   * `returnFocus` defines the return focus behavior and provides the possibility to check the available target element or opt out of the behavior in favor of manually returning focus
+   */
+  focusTrapProps?: Pick<EuiFocusTrapProps, 'returnFocus'>;
 }
 
 export const EuiModal: FunctionComponent<EuiModalProps> = ({
@@ -59,6 +65,8 @@ export const EuiModal: FunctionComponent<EuiModalProps> = ({
   maxWidth = true,
   role = 'dialog',
   style,
+  focusTrapProps,
+  'aria-describedby': _ariaDescribedBy,
   ...rest
 }) => {
   const onKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
@@ -91,9 +99,27 @@ export const EuiModal: FunctionComponent<EuiModalProps> = ({
 
   const cssCloseIconStyles = [styles.euiModal__closeIcon];
 
+  const descriptionId = useGeneratedHtmlId();
+  const ariaDescribedBy = classnames(descriptionId, _ariaDescribedBy);
+  const screenReaderDescription = (
+    <EuiScreenReaderOnly>
+      <p id={descriptionId}>
+        <EuiI18n
+          token="euiModal.screenReaderModalDialog"
+          default="You are in a modal dialog. Press Escape or tap/click outside the dialog on the shadowed overlay to close."
+        />
+      </p>
+    </EuiScreenReaderOnly>
+  );
+
   return (
     <EuiOverlayMask>
-      <EuiFocusTrap initialFocus={initialFocus} scrollLock preventScrollOnFocus>
+      <EuiFocusTrap
+        {...focusTrapProps}
+        initialFocus={initialFocus}
+        scrollLock
+        preventScrollOnFocus
+      >
         <div
           css={cssStyles}
           className={classes}
@@ -102,8 +128,11 @@ export const EuiModal: FunctionComponent<EuiModalProps> = ({
           style={newStyle}
           role={role}
           aria-modal={true}
+          aria-describedby={ariaDescribedBy}
           {...rest}
         >
+          {children}
+          {screenReaderDescription}
           <EuiI18n
             token="euiModal.closeModal"
             default="Closes this modal window"
@@ -119,7 +148,6 @@ export const EuiModal: FunctionComponent<EuiModalProps> = ({
               />
             )}
           </EuiI18n>
-          {children}
         </div>
       </EuiFocusTrap>
     </EuiOverlayMask>

@@ -8,12 +8,11 @@
 
 import { type TSESTree, ESLintUtils } from '@typescript-eslint/utils';
 import { getAttrValue } from '../../utils/get_attr_value';
+import { areAttrsEqual } from '../../utils/are_attrs_equal';
 
 const tooltipComponent = 'EuiToolTip';
 const disabledTooltipComponentProp = 'disableScreenReaderOutput';
 const buttonComponents = ['EuiButtonIcon'];
-
-const normalizeAttrString = (str?: string) => str?.trim().replace(/\s+/g, ' ');
 
 export const ScreenReaderOutputDisabledTooltip =
   ESLintUtils.RuleCreator.withoutDocs({
@@ -66,7 +65,7 @@ export const ScreenReaderOutputDisabledTooltip =
           if (
             tooltipContent &&
             ariaLabel &&
-            normalizeAttrString(tooltipContent) === normalizeAttrString(ariaLabel)
+            areAttrsEqual(tooltipContent, ariaLabel)
           ) {
             const buttonElementName = (
               buttonElement.openingElement.name as TSESTree.JSXIdentifier

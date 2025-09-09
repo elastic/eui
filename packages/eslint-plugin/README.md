@@ -129,7 +129,7 @@ It's worth pointing out that although the examples provided are specific to EUI 
 
 ### `@elastic/eui/require-aria-label-for-modals`
 
-Ensures that EUI modal components (`EuiModal`, `EuiFlyout`, `EuiConfirmModal`) have either an `aria-label` or `aria-labelledby` prop for accessibility. This helps screen reader users understand the purpose and content of modal dialogs.
+Ensures that EUI modal components (`EuiModal`, `EuiFlyout`, `EuiFlyoutResizable` ,`EuiConfirmModal`) have either an `aria-label` or `aria-labelledby` prop for accessibility. This helps screen reader users understand the purpose and content of modal dialogs.
 
 ### `@elastic/eui/consistent-is-invalid-props`
 
@@ -142,6 +142,14 @@ Ensures `disableScreenReaderOutput` is set when `EuiToolTip` content matches `Eu
 ### `@elastic/eui/prefer-eui-icon-tip`
 
 Ensure `EuiIconTip` is used rather than `<EuiToolTip><EuiIcon/></EuiToolTip>`, as it provides better accessibility and improved support for assistive technologies.
+
+### `@elastic/eui/no-unnamed-radio-group`
+
+Ensure that all radio input components (`EuiRadio`, `EuiRadioGroup`) have a `name` attribute. The `name` attribute is required for radio inputs to be grouped correctly, allowing users to select only one option from a set. Without a `name`, radios may not behave as expected and can cause accessibility issues for assistive technologies.
+
+### `@elastic/eui/no-unnamed-interactive-element`
+Ensure that appropriate aria-attributes are set for `EuiBetaBadge`, `EuiButtonIcon`, `EuiComboBox`, `EuiSelect`, `EuiSelectWithWidth`,`EuiSuperSelect`,`EuiPagination`, `EuiTreeView`, `EuiBreadcrumbs`. Without this rule, screen reader users lose context, keyboard navigation can be confusing.
+
 
 ## Testing
 

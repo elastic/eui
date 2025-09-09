@@ -420,6 +420,8 @@ export const typeToPathMap = {
   tag: 'tag',
   tear: 'tear',
   temperature: 'temperature',
+  thumbDown: 'thumbDown',
+  thumbUp: 'thumbUp',
   timeline: 'timeline',
   timelineWithArrow: 'timelineWithArrow',
   timelionApp: 'app_timelion',

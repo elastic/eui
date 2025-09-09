@@ -85,7 +85,7 @@ export type EuiComboBoxOptionsListProps<T> = CommonProps & {
     OPTION_CONTENT_CLASSNAME: string
   ) => ReactNode;
   rootId: ReturnType<typeof htmlIdGenerator>;
-  rowHeight: number;
+  rowHeight: number | 'auto';
   scrollToIndex?: number;
   searchValue: string;
   selectedOptions: Array<EuiComboBoxOptionOption<T>>;
@@ -121,7 +121,8 @@ export class EuiComboBoxOptionsList<T> extends Component<
     if (
       this.listRef &&
       typeof this.props.activeOptionIndex !== 'undefined' &&
-      this.props.activeOptionIndex !== prevProps.activeOptionIndex
+      this.props.activeOptionIndex !== prevProps.activeOptionIndex &&
+      this.props.rowHeight !== 'auto'
     ) {
       this.listRef.scrollToItem(this.props.activeOptionIndex, 'auto');
     }
@@ -136,13 +137,7 @@ export class EuiComboBoxOptionsList<T> extends Component<
     ...rest
   }) => {
     return (
-      <div
-        {...rest}
-        aria-label={this.props.listboxAriaLabel}
-        id={this.props.rootId('listbox')}
-        role="listbox"
-        tabIndex="0"
-      >
+      <div {...rest} {...this.getListInnerElementProps()}>
         {children}
       </div>
     );
@@ -170,6 +165,7 @@ export class EuiComboBoxOptionsList<T> extends Component<
       rootId,
       matchingOptions,
       setListOptionRefs,
+      rowHeight,
     } = this.props;
 
     const optionIndex = matchingOptions.indexOf(option);
@@ -218,6 +214,7 @@ export class EuiComboBoxOptionsList<T> extends Component<
         isFocused={optionIsFocused}
         checked={checked}
         showIcons={singleSelection ? true : false}
+        truncateContent={rowHeight !== 'auto'}
         id={rootId(`_option-${index}`)}
         title={label}
         aria-setsize={matchingOptions.length}
@@ -231,13 +228,22 @@ export class EuiComboBoxOptionsList<T> extends Component<
             classNamePrefix="euiComboBoxOption"
             marginSize="s"
           >
-            <span className="euiComboBoxOption__content">
+            {/* Note for possible future refactor: `eui-textTruncate` here
+            is redundant beacuse it's already applied in EuiFilterSelectItem */}
+            <span
+              className={classNames(
+                'euiComboBoxOption__content',
+                rowHeight !== 'auto' && 'eui-textTruncate'
+              )}
+            >
               {renderOption
                 ? renderOption(
                     option,
                     searchValue,
                     'euiComboBoxOption__renderOption'
                   )
+                : rowHeight === 'auto'
+                ? this.renderVariableHeightOption(label)
                 : this.renderTruncatedOption(label, truncationProps)}
             </span>
           </EuiComboBoxOptionAppendPrepend>
@@ -245,6 +251,15 @@ export class EuiComboBoxOptionsList<T> extends Component<
         </span>
       </EuiFilterSelectItem>
     );
+  };
+
+  getListInnerElementProps = () => {
+    return {
+      'aria-label': this.props.listboxAriaLabel,
+      id: this.props.rootId('listbox'),
+      role: 'listbox',
+      tabIndex: 0,
+    };
   };
 
   optionWidth: number | undefined;
@@ -292,23 +307,37 @@ export class EuiComboBoxOptionsList<T> extends Component<
         truncationPosition={searchPositionCenter}
         text={text}
       >
-        {(text) => (
-          <>
-            {text.length >= searchValue.length ? (
-              <EuiHighlight
-                search={searchValue}
-                strict={this.props.isCaseSensitive}
-              >
-                {text}
-              </EuiHighlight>
-            ) : (
-              // If the available truncated text is shorter than the full search string,
-              // just highlight the entire truncated text
-              <EuiMark>{text}</EuiMark>
-            )}
-          </>
-        )}
+        {(text) => this.renderHighlightedOptionText(text, searchValue)}
       </EuiTextTruncate>
+    );
+  };
+
+  renderVariableHeightOption = (text: string) => {
+    const searchValue = this.props.searchValue.trim();
+
+    if (!searchValue) {
+      return text;
+    }
+
+    return this.renderHighlightedOptionText(text, searchValue);
+  };
+
+  renderHighlightedOptionText = (text: string, searchValue: string) => {
+    return (
+      <>
+        {text.length >= searchValue.length ? (
+          <EuiHighlight
+            search={searchValue}
+            strict={this.props.isCaseSensitive}
+          >
+            {text}
+          </EuiHighlight>
+        ) : (
+          // If the available truncated text is shorter than the full search string,
+          // just highlight the entire truncated text
+          <EuiMark>{text}</EuiMark>
+        )}
+      </>
     );
   };
 
@@ -465,12 +494,15 @@ export class EuiComboBoxOptionsList<T> extends Component<
       );
     }
 
-    const numVisibleOptions =
-      matchingOptions.length < 7 ? matchingOptions.length : 7;
-    const height = numVisibleOptions * (rowHeight + 1); // Add one for the border
+    let boundedHeight: number = LIST_MAX_HEIGHT;
 
-    // bounded by max-height of .euiComboBoxOptionsList
-    const boundedHeight = height > LIST_MAX_HEIGHT ? LIST_MAX_HEIGHT : height;
+    if (rowHeight !== 'auto') {
+      const numVisibleOptions =
+        matchingOptions.length < 7 ? matchingOptions.length : 7;
+      const height = numVisibleOptions * (rowHeight + 1); // Add one for the border
+      // bounded by max-height of .euiComboBoxOptionsList
+      boundedHeight = height > LIST_MAX_HEIGHT ? LIST_MAX_HEIGHT : height;
+    }
 
     return (
       <RenderWithEuiStylesMemoizer>
@@ -478,7 +510,10 @@ export class EuiComboBoxOptionsList<T> extends Component<
           const styles = stylesMemoizer(euiComboBoxOptionListStyles);
           return (
             <div
-              css={styles.euiComboBoxOptionList}
+              css={[
+                styles.euiComboBoxOptionList,
+                rowHeight === 'auto' && styles.hasRowHeightAuto,
+              ]}
               className="euiComboBoxOptionsList"
               data-test-subj={classNames('comboBoxOptionsList', dataTestSubj)}
               ref={listRef}
@@ -492,6 +527,17 @@ export class EuiComboBoxOptionsList<T> extends Component<
                 >
                   {emptyStateContent}
                 </EuiText>
+              ) : rowHeight === 'auto' ? (
+                <div {...this.getListInnerElementProps()}>
+                  {matchingOptions.map((_, index) => (
+                    <this.ListRow
+                      data={matchingOptions}
+                      index={index}
+                      key={index} // same as FixedSizeList's default
+                      style={{}}
+                    />
+                  ))}
+                </div>
               ) : (
                 <FixedSizeList
                   css={styles.euiComboBoxOptionList__virtualization}

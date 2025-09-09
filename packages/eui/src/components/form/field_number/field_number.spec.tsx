@@ -10,19 +10,35 @@
 /// <reference types="cypress-real-events" />
 /// <reference types="../../../../cypress/support" />
 
-import React, { useState } from 'react';
+import React, { ChangeEventHandler, useState } from 'react';
 
+import { EuiForm } from '../form';
+import { EuiFormRow } from '../form_row';
 import { EuiFieldNumber } from './field_number';
+import { EuiText } from '../../text';
 
 describe('EuiFieldNumber', () => {
   describe('isNativelyInvalid', () => {
-    const checkIsValid = () => {
-      cy.get('[aria-invalid="true"]').should('not.exist');
-      cy.get('.euiFormControlLayoutIcons').should('not.exist');
+    const checkIsValid = (selector = 'input') => {
+      cy.get(selector)
+        .then(($el) => ($el[0] as HTMLInputElement).checkValidity())
+        .should('be.true');
+      cy.get(selector).should('not.have.attr', 'aria-invalid', 'true');
+      cy.get(selector)
+        .parent()
+        .find('.euiFormControlLayoutIcons')
+        .should('not.exist');
     };
-    const checkIsInvalid = () => {
-      cy.get('[aria-invalid="true"]').should('exist');
-      cy.get('.euiFormControlLayoutIcons').should('exist');
+
+    const checkIsInvalid = (selector = 'input') => {
+      cy.get(selector)
+        .then(($el) => ($el[0] as HTMLInputElement).checkValidity())
+        .should('be.false');
+      cy.get(selector).should('have.attr', 'aria-invalid', 'true');
+      cy.get(selector)
+        .parent()
+        .find('.euiFormControlLayoutIcons')
+        .should('exist');
     };
 
     it('when the value is not a valid number', () => {
@@ -170,6 +186,75 @@ describe('EuiFieldNumber', () => {
         checkIsInvalid();
         cy.get('#setValidStep').click();
         checkIsValid();
+      });
+
+      it('isInvalid', () => {
+        const FieldNumberValidationComponent = () => {
+          const [value1, setValue1] = useState('5');
+          const [value2, setValue2] = useState('4');
+
+          const onChange1: ChangeEventHandler<HTMLInputElement> = (e) => {
+            const newValue = e.target.value;
+            setValue1(newValue);
+          };
+
+          const onChange2: ChangeEventHandler<HTMLInputElement> = (e) => {
+            const newValue = e.target.value;
+            setValue2(newValue);
+          };
+
+          const isValue2GreaterThanValue1 = value2 > value1;
+
+          return (
+            <EuiForm component="form">
+              <EuiFormRow label="Value 1">
+                <EuiFieldNumber
+                  data-test-subj="value1"
+                  placeholder="Placeholder text"
+                  value={value1}
+                  min={1}
+                  onChange={onChange1}
+                />
+              </EuiFormRow>
+
+              <EuiFormRow isInvalid={isValue2GreaterThanValue1} label="Value 2">
+                <>
+                  <EuiFieldNumber
+                    data-test-subj="value2"
+                    isInvalid={isValue2GreaterThanValue1}
+                    placeholder="Placeholder text"
+                    value={value2}
+                    onChange={onChange2}
+                  />
+                  {isValue2GreaterThanValue1 && (
+                    <EuiText color="danger" size="s">
+                      value2 should be smaller than value1
+                    </EuiText>
+                  )}
+                </>
+              </EuiFormRow>
+            </EuiForm>
+          );
+        };
+
+        const value1Selector = '[data-test-subj="value1"]';
+        const value2Selector = '[data-test-subj="value2"]';
+
+        cy.mount(<FieldNumberValidationComponent />);
+        checkIsValid(value1Selector);
+        checkIsValid(value2Selector);
+
+        // Set `value2` to a value greater than `value1` (5 < 6) => invalid
+        cy.get(value2Selector).clear();
+        cy.get(value2Selector).focus().realType('6');
+        checkIsValid(value1Selector);
+        checkIsInvalid(value2Selector);
+
+        // Set `value1` to a value greater than `value2` (6 > 5) => valid
+        cy.get(value1Selector).clear();
+        cy.get(value1Selector).focus().realType('6');
+        checkIsValid(value1Selector);
+        checkIsValid(value2Selector);
       });
     });
   });

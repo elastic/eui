@@ -20,7 +20,13 @@ interface ComboBoxOption {
 }
 type ComboBoxOptions = Array<EuiComboBoxOptionOption<ComboBoxOption>>;
 
-const ComboBox = ({ initialOptions }: { initialOptions?: ComboBoxOptions }) => {
+const ComboBox = ({
+  initialOptions,
+  rowHeight,
+}: {
+  initialOptions?: ComboBoxOptions;
+  rowHeight: any;
+}) => {
   const [options] = useState<ComboBoxOptions>(
     initialOptions ?? [
       {
@@ -77,138 +83,149 @@ const ComboBox = ({ initialOptions }: { initialOptions?: ComboBoxOptions }) => {
       onChange={onChange}
       isClearable={true}
       isCaseSensitive
+      rowHeight={rowHeight}
     />
   );
 };
 
-beforeEach(() => {
-  cy.realMount(<ComboBox />);
+afterEach(() => {
   cy.get('input[data-test-subj="comboBoxSearchInput"]').should('exist');
 });
 
 describe('EuiComboBox', () => {
-  describe('Automated accessibility check', () => {
-    it('has zero violations on render', () => {
-      cy.checkAxe();
+  [undefined, 'auto'].forEach((rowHeight) => {
+    describe(`Automated accessibility check with rowHeight ${
+      rowHeight ?? 'default'
+    }`, () => {
+      it('has zero violations on render', () => {
+        cy.realMount(<ComboBox rowHeight={rowHeight} />);
+        cy.checkAxe();
+      });
+
+      it('has zero violations when the combobox is expanded', () => {
+        cy.realMount(<ComboBox rowHeight={rowHeight} />);
+        cy.get('input[data-test-subj="comboBoxSearchInput"]').realClick();
+        cy.get('button[data-test-subj="titanOption"]').should('exist');
+        cy.checkAxe();
+      });
+
+      it('has zero violations after keyboard interaction', () => {
+        cy.realMount(<ComboBox rowHeight={rowHeight} />);
+        cy.realPress('Tab');
+        cy.get('input[data-test-subj="comboBoxSearchInput"]').should(
+          'have.focus'
+        );
+        cy.get('button[data-test-subj="titanOption"]').should('exist');
+        cy.repeatRealPress('ArrowDown');
+        cy.realPress('Enter');
+        cy.repeatRealPress('ArrowDown');
+        cy.realPress('Enter');
+        cy.repeatRealPress('ArrowDown');
+        cy.realPress('Enter');
+        cy.get('div[data-test-subj="comboBoxInput"]')
+          .find('span.euiBadge')
+          .should('have.length', 3);
+        cy.checkAxe();
+
+        // Close the listbox and interact with the Clear button
+        cy.realPress('Escape');
+        cy.realPress('Tab');
+        cy.get('button[data-test-subj="comboBoxClearButton"]').should(
+          'have.focus'
+        );
+        cy.realPress('Space');
+        cy.get('div[data-test-subj="comboBoxInput"]')
+          .find('span.euiBadge')
+          .should('have.length', 0);
+        cy.checkAxe();
+      });
     });
 
-    it('has zero violations when the combobox is expanded', () => {
-      cy.get('input[data-test-subj="comboBoxSearchInput"]').realClick();
-      cy.get('button[data-test-subj="titanOption"]').should('exist');
-      cy.checkAxe();
-    });
+    describe(`Manual Accessibility check with rowHeight ${
+      rowHeight ?? 'default'
+    }`, () => {
+      it('sets the correct aria-activedescendant id', () => {
+        cy.realMount(<ComboBox rowHeight={rowHeight} />);
+        cy.realPress('Tab');
+        cy.get('input[data-test-subj="comboBoxSearchInput"]').should(
+          'have.focus'
+        );
+        cy.get('button[data-test-subj="titanOption"]').should('exist');
+        cy.realPress('ArrowDown');
+        cy.realPress('ArrowDown');
+        cy.realPress('ArrowDown');
 
-    it('has zero violations after keyboard interaction', () => {
-      cy.realPress('Tab');
-      cy.get('input[data-test-subj="comboBoxSearchInput"]').should(
-        'have.focus'
-      );
-      cy.get('button[data-test-subj="titanOption"]').should('exist');
-      cy.repeatRealPress('ArrowDown');
-      cy.realPress('Enter');
-      cy.repeatRealPress('ArrowDown');
-      cy.realPress('Enter');
-      cy.repeatRealPress('ArrowDown');
-      cy.realPress('Enter');
-      cy.get('div[data-test-subj="comboBoxInput"]')
-        .find('span.euiBadge')
-        .should('have.length', 3);
-      cy.checkAxe();
+        cy.get('input[data-test-subj="comboBoxSearchInput"]')
+          .invoke('attr', 'aria-activedescendant')
+          .should('include', 'option-2');
 
-      // Close the listbox and interact with the Clear button
-      cy.realPress('Escape');
-      cy.realPress('Tab');
-      cy.get('button[data-test-subj="comboBoxClearButton"]').should(
-        'have.focus'
-      );
-      cy.realPress('Space');
-      cy.get('div[data-test-subj="comboBoxInput"]')
-        .find('span.euiBadge')
-        .should('have.length', 0);
-      cy.checkAxe();
-    });
-  });
+        cy.realPress('Enter');
+        cy.realPress('ArrowDown');
 
-  describe('Manual Accessibility check', () => {
-    it('sets the correct aria-activedescendant id', () => {
-      cy.realPress('Tab');
-      cy.get('input[data-test-subj="comboBoxSearchInput"]').should(
-        'have.focus'
-      );
-      cy.get('button[data-test-subj="titanOption"]').should('exist');
-      cy.realPress('ArrowDown');
-      cy.realPress('ArrowDown');
-      cy.realPress('ArrowDown');
+        cy.get('input[data-test-subj="comboBoxSearchInput"]')
+          .invoke('attr', 'aria-activedescendant')
+          .should('include', 'option-3');
+      });
 
-      cy.get('input[data-test-subj="comboBoxSearchInput"]')
-        .invoke('attr', 'aria-activedescendant')
-        .should('include', 'option-2');
+      it('sets the correct aria-activedescendant id with custom option ids', () => {
+        cy.realMount(
+          <ComboBox
+            rowHeight={rowHeight}
+            initialOptions={[
+              {
+                id: 'titan',
+                label: 'Titan',
+                'data-test-subj': 'titanOption',
+              },
+              {
+                id: 'enceladus',
+                label: 'Enceladus',
+                'data-test-subj': 'enceladusOption',
+              },
+              {
+                id: 'mimas',
+                label: 'Mimas',
+                'data-test-subj': 'mimasOption',
+              },
+              {
+                id: 'dione',
+                label: 'Dione',
+                'data-test-subj': 'dioneOption',
+              },
+              {
+                id: 'iapetus',
+                label: 'Iapetus',
+                'data-test-subj': 'iapetusOption',
+              },
+            ]}
+          />
+        );
+        cy.get('input[data-test-subj="comboBoxSearchInput"]').should('exist');
 
-      cy.realPress('Enter');
-      cy.realPress('ArrowDown');
+        cy.realPress('Tab');
+        cy.get('input[data-test-subj="comboBoxSearchInput"]').should(
+          'have.focus'
+        );
+        cy.get('button[data-test-subj="titanOption"]').should('exist');
+        cy.realPress('ArrowDown');
+        cy.realPress('ArrowDown');
+        cy.realPress('ArrowDown');
 
-      cy.get('input[data-test-subj="comboBoxSearchInput"]')
-        .invoke('attr', 'aria-activedescendant')
-        .should('include', 'option-3');
-    });
+        cy.get('input[data-test-subj="comboBoxSearchInput"]').should(
+          'have.attr',
+          'aria-activedescendant',
+          'mimas'
+        );
 
-    it('sets the correct aria-activedescendant id with custom option ids', () => {
-      cy.realMount(
-        <ComboBox
-          initialOptions={[
-            {
-              id: 'titan',
-              label: 'Titan',
-              'data-test-subj': 'titanOption',
-            },
-            {
-              id: 'enceladus',
-              label: 'Enceladus',
-              'data-test-subj': 'enceladusOption',
-            },
-            {
-              id: 'mimas',
-              label: 'Mimas',
-              'data-test-subj': 'mimasOption',
-            },
-            {
-              id: 'dione',
-              label: 'Dione',
-              'data-test-subj': 'dioneOption',
-            },
-            {
-              id: 'iapetus',
-              label: 'Iapetus',
-              'data-test-subj': 'iapetusOption',
-            },
-          ]}
-        />
-      );
-      cy.get('input[data-test-subj="comboBoxSearchInput"]').should('exist');
+        cy.realPress('Enter');
+        cy.realPress('ArrowDown');
 
-      cy.realPress('Tab');
-      cy.get('input[data-test-subj="comboBoxSearchInput"]').should(
-        'have.focus'
-      );
-      cy.get('button[data-test-subj="titanOption"]').should('exist');
-      cy.realPress('ArrowDown');
-      cy.realPress('ArrowDown');
-      cy.realPress('ArrowDown');
-
-      cy.get('input[data-test-subj="comboBoxSearchInput"]').should(
-        'have.attr',
-        'aria-activedescendant',
-        'mimas'
-      );
-
-      cy.realPress('Enter');
-      cy.realPress('ArrowDown');
-
-      cy.get('input[data-test-subj="comboBoxSearchInput"]').should(
-        'have.attr',
-        'aria-activedescendant',
-        'iapetus'
-      );
+        cy.get('input[data-test-subj="comboBoxSearchInput"]').should(
+          'have.attr',
+          'aria-activedescendant',
+          'iapetus'
+        );
+      });
     });
   });
 });

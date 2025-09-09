@@ -190,6 +190,81 @@ This is primarily useful for announcing navigation or page changes, when program
   ```
 </Demo>
 
+import { EuiBetaBadge } from '@elastic/eui';
+
+## Live announcer region <EuiBetaBadge label="Beta" color="accent" />
+
+:::warning `EuiLiveAnnouncer` is a new, experimental alternative to `EuiScreenReaderLive` for screen reader live region announcements. 
+Its API and behavior may change based on feedback and testing.
+:::
+
+Both `EuiLiveAnnouncer` and `EuiScreenReaderLive` are designed for the **same use cases**: to announce dynamic content, such as nodifications or status changes based on user interaction.
+The main drawback for live regions is that they must be present on initial page load before reading content updates. `EuiLiveAnnouncer` addresses this 
+by updating the content after the initial render to ensure an announcement is made when mounting a component.
+
+Same as for `EuiScreenReaderLive`, `EuiLiveAnnouncer` supports configurable `role` and `aria-live` props which default to `status` and `polite` respectively for non-intrusive but timely update announcements. 
+If you're not using the default values, be sure to follow [ARIA guidelines](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Live_Regions) for `role` to `aria-live` mapping.
+
+### Main difference
+
+- **`EuiLiveAnnouncer`** will announce the message **when the component mounts** (e.g., when it first appears in the DOM), as well as when the message changes.
+- **`EuiScreenReaderLive`** will only announce when the message changes, and will not announce the initial message on mount.
+
+This means `EuiLiveAnnouncer` is especially useful for scenarios where you want to ensure an announcement is made immediately when a component is mounted, e.g. showing a notification or alert based on user interaction.
+
+An additional difference is that `EuiLiveAnnouncer` can clear its message after a configurable timeout via `clearAfterMs`, which prevents stale 
+announcements and duplicated DOM content for screen reader users. Screen readers will continue reading the message even if it was already cleared.
+
+<Demo>
+  ```tsx
+  import { useState } from 'react';
+  import { EuiButton, EuiLiveAnnouncer, EuiSpacer } from '@elastic/eui';
+
+  export default () => {
+    const [announcement, setAnnouncement] = useState('No notifications.');
+    const [isShown, setIsShown] = useState(false);
+
+    return (
+      <EuiFlexGroup direction="column" gutterSize="m" css={{ maxWidth: 300 }}>
+        <EuiFlexItem>
+          <EuiButton onClick={() => setIsShown((shown) => !shown)}>
+            Toggle announcement
+          </EuiButton>
+        </EuiFlexItem>
+
+        <EuiFlexItem>
+          {isShown && (
+            <>
+              <EuiButton onClick={() => setAnnouncement(`You have ${Math.floor(Math.random() * 1000)} new notifications.`)}>
+                Update announcement
+              </EuiButton>
+              <EuiSpacer size="m" />
+              <EuiCodeBlock>{announcement}</EuiCodeBlock>
+              <EuiLiveAnnouncer>
+                {announcement}
+              </EuiLiveAnnouncer>
+            </>
+          )}
+        </EuiFlexItem>
+      </EuiFlexGroup>
+    );
+  };
+  ```
+</Demo>
+
+### Key differences between `EuiLiveAnnouncer` and `EuiScreenReaderLive`
+
+| Feature                        | `EuiLiveAnnouncer`       | `EuiScreenReaderLive`           |
+|--------------------------------|:---------------------------------:|:-------------------------------:|
+| **Auto-clear message**         | Yes, after configurable timeout (`clearAfterMs`) | No                    |
+| **Announce on mount**          | Yes                                | No                    |
+| **Announce on message change** | Yes                                | Yes                   |
+| **Focus on message change**    | No                                 | Yes (`focusRegionOnTextChange` prop) |
+| **Handles rapid updates**      | Yes                                | Yes                   |
+| **Output consistency**         | High                               | Medium                   |
+| **API stability**              | Beta/experimental                  | Stable                |
+
+
 ## Skip link
 
 The `EuiSkipLink` component allows users to bypass navigation, or ornamental elements, and quickly reach the main content of the page. It requires a `destinationId` which should match the `id` of your main content. If your ID does not correspond to a valid element, the skip link will fall back to focusing the `<main>` tag on your page, if it exists.
@@ -288,4 +363,5 @@ import docgen from '@elastic/eui-docgen/dist/components';
 
 <PropTable definition={docgen.EuiScreenReaderOnly} />
 <PropTable definition={docgen.EuiScreenReaderLive} />
+<PropTable definition={docgen.EuiLiveAnnouncer} />
 <PropTable definition={docgen.EuiSkipLink} />

@@ -25,6 +25,9 @@ import { RequireAriaLabelForModals } from './rules/a11y/require_aria_label_for_m
 import { ConsistentIsInvalidProps } from './rules/a11y/consistent_is_invalid_props';
 import { ScreenReaderOutputDisabledTooltip } from './rules/a11y/sr_output_disabled_tooltip';
 import { PreferEuiIconTip } from './rules/a11y/prefer_eui_icon_tip';
+import { NoUnnamedRadioGroup } from './rules/a11y/no_unnamed_radio_group';
+import { NoUnnamedInteractiveElement } from './rules/a11y/no_unnamed_interactive_element';
+
 
 const config = {
   rules: {
@@ -35,6 +38,8 @@ const config = {
     'consistent-is-invalid-props': ConsistentIsInvalidProps,
     'sr-output-disabled-tooltip': ScreenReaderOutputDisabledTooltip,
     'prefer-eui-icon-tip': PreferEuiIconTip,
+    'no-unnamed-radio-group' : NoUnnamedRadioGroup,
+    'no-unnamed-interactive-element': NoUnnamedInteractiveElement, 
   },
   configs: {
     recommended: {
@@ -47,6 +52,8 @@ const config = {
         '@elastic/eui/consistent-is-invalid-props': 'warn',
         '@elastic/eui/sr-output-disabled-tooltip': 'warn',
         '@elastic/eui/prefer-eui-icon-tip': 'warn',
+        '@elastic/eui/no-unnamed-radio-group': 'warn',
+        '@elastic/eui/no-unnamed-interactive-element': 'warn',      
       },
     },
   },

@@ -113,9 +113,10 @@ export interface _EuiComboBoxProps<T>
    */
   placeholder?: string;
   /**
-   * Every option must be the same height and must be explicitly set if using a custom render
+   *  The height of each option in pixels. When using a custom render (`renderOption` prop) it's recommended to set it explicitly.
+   * `auto` will disable virtualization, enabling text to wrap onto multiple lines.
    */
-  rowHeight?: number;
+  rowHeight?: number | 'auto';
   /**
    * When `true` only allows the user to select a single option. Set to `{ asPlainText: true }` to not render input selection as pills
    */

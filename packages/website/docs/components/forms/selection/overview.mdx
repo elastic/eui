@@ -16,14 +16,14 @@ Choosing the right selection component may seem tricky at first - with so many s
 
 When choosing a selection component, consider these key factors:
 
-- **Number of options**: small sets (\<7) work well with radio/checkbox groups, medium sets (\<12) with [EuiSelect](./select.mdx), and larger sets need search functionality.
+- **Number of options**: small sets (\<7) work well with radio/checkbox groups, medium sets (\<12) with [EuiSelect](./basic-select.mdx), and larger sets need search functionality.
 - **Selection type**: single vs. multiple selection requirements.
 - **Display needs**: whether you need custom option rendering or simple text options.
 - **User input**: whether users should be able to add custom values.
-- **Accessibility**: native components ([EuiSelect](./select.mdx), radio/checkbox groups) are generally more accessible.
+- **Accessibility**: native components ([EuiSelect](./basic-select.mdx), radio/checkbox groups) are generally more accessible.
 - **Visual layout**: horizontal pills ([EuiComboBox](./combo-box.mdx)) vs. vertical lists ([EuiSelectable](./selectable.mdx)).
 
-For most use cases, start with the simpler native components ([EuiSelect](./select.mdx), [EuiRadioGroup](./checkboxes-and-radios/index.mdx#radio-group), [EuiCheckboxGroup](./checkboxes-and-radios/index.mdx#checkbox-group)) and only move to more complex components when you need their specific features.
+For most use cases, start with the simpler native components ([EuiSelect](./basic-select.mdx), [EuiRadioGroup](./radio-and-radio-group.mdx#radio-group), [EuiCheckboxGroup](./checkbox-and-checkbox-group.mdx#checkbox-group)) and only move to more complex components when you need their specific features.
 
 ## Which selection component should I use?
 
@@ -31,8 +31,8 @@ The following decision tree will help you choose the right component based on yo
 
 ### Single selection
 
-- When you have a small set of options (\<7) and all options are equally important in terms of visibility, use [EuiRadioGroup](./checkboxes-and-radios/index.mdx#radio-group).
-- When you have a small set of options (\<12) and only the current selected option has UI importance, reach for [EuiSelect](./select.mdx) first when possible, over other more complex selection components.
+- When you have a small set of options (\<7) and all options are equally important in terms of visibility, use [EuiRadioGroup](./radio-and-radio-group.mdx#radio-group).
+- When you have a small set of options (\<12) and only the current selected option has UI importance, reach for [EuiSelect](./basic-select.mdx) first when possible, over other more complex selection components.
     - **EuiSelect** renders a basic HTML `<select>` element, providing the best cross-browser and cross-device affordances (particularly for mobile devices).
     - Native form controls are more familiar to end users due to their ubiquity across the internet.
 - When you have a small set of options (\<12) _and_ if you need to customize how the options are rendered and selected, use [EuiSuperSelect](./super-select.mdx).
@@ -42,7 +42,7 @@ The following decision tree will help you choose the right component based on yo
 
 ### Multiple selections
 
-- When you have a small set of options (\<7), and all options are equally important in terms of visibility, use [EuiCheckboxGroup](./checkboxes-and-radios/index.mdx#checkbox-group).
+- When you have a small set of options (\<7), and all options are equally important in terms of visibility, use [EuiCheckboxGroup](./checkbox-and-checkbox-group.mdx#checkbox-group).
 - In general, we recommend using [EuiSelectable](./selectable.mdx) for most multi-selection purposes. It renders a searchable, vertically-oriented list with icons next to the option representing selection state.
     - **EuiSelectable** can optionally be rendered with a search box for filtering through many options, or as just a list for fewer options.
     - **EuiSelectable** is by far our most accessible and flexible selection component (although customization may require extra development). It can be used within popovers and flyouts, or as a standalone list.
@@ -65,7 +65,7 @@ export const tooltipProps = {
 <EuiTable>
   <EuiTableHeader>
     <EuiTableHeaderCell>Feature</EuiTableHeaderCell>
-    <EuiTableHeaderCell align="center">[EuiSelect](./select.mdx)</EuiTableHeaderCell>
+    <EuiTableHeaderCell align="center">[EuiSelect](./basic-select.mdx)</EuiTableHeaderCell>
     <EuiTableHeaderCell align="center">[EuiSuperSelect](./super-select.mdx)</EuiTableHeaderCell>
     <EuiTableHeaderCell align="center">[EuiSelectable](./selectable.mdx)</EuiTableHeaderCell>
     <EuiTableHeaderCell align="center">[EuiComboBox](./combo-box.mdx)</EuiTableHeaderCell>

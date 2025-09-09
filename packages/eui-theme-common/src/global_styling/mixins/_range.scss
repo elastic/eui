@@ -19,8 +19,6 @@ The following files still use the Sass version:
 @mixin euiRangeTrackPerBrowser {
   &::-webkit-slider-runnable-track { @content; }
   &::-moz-range-track { @content; }
-  &::-ms-fill-lower { @content; }
-  &::-ms-fill-upper { @content; }
 }
 
 @mixin euiRangeThumbBorder {
@@ -52,7 +50,6 @@ The following files still use the Sass version:
 @mixin euiRangeThumbPerBrowser {
   &::-webkit-slider-thumb { @content; }
   &::-moz-range-thumb { @content; }
-  &::-ms-thumb { @content; }
 }
 
 @mixin euiRangeThumbFocus {

@@ -268,6 +268,8 @@ export const iconTypes: Array<IconType> = [
   'tag',
   'tear',
   'temperature',
+  'thumbDown',
+  'thumbUp',
   'timeline',
   'timelineWithArrow',
   'timeRefresh',

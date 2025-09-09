@@ -17,6 +17,7 @@ exports[`EuiModal renders 1`] = `
       data-focus-lock-disabled="false"
     >
       <div
+        aria-describedby="generated-id"
         aria-label="aria-label"
         aria-modal="true"
         class="euiModal testClass1 testClass2 emotion-euiModal-defaultMaxWidth-euiTestCss"
@@ -24,6 +25,13 @@ exports[`EuiModal renders 1`] = `
         role="dialog"
         tabindex="0"
       >
+        children
+        <p
+          class="emotion-euiScreenReaderOnly"
+          id="generated-id"
+        >
+          You are in a modal dialog. Press Escape or tap/click outside the dialog on the shadowed overlay to close.
+        </p>
         <button
           aria-label="Closes this modal window"
           class="euiButtonIcon euiModal__closeIcon emotion-euiButtonIcon-xs-empty-text-euiModal__closeIcon"
@@ -36,7 +44,6 @@ exports[`EuiModal renders 1`] = `
             data-euiicon-type="cross"
           />
         </button>
-        children
       </div>
     </div>
     <div

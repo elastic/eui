@@ -39,6 +39,7 @@ export const euiFieldPasswordStyles = (euiThemeContext: UseEuiTheme) => {
       }
     `,
     // Only remove Edge's internal reveal button if we're providing a custom one
+    // This pseudo-element is still supported in Chromium-based Edge.
     withToggle: css`
       &::-ms-reveal {
         display: none;

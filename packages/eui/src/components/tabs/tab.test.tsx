@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import { shallow } from 'enzyme';
+import { fireEvent } from '@testing-library/react';
 import { shouldRenderCustomStyles } from '../../test/internal';
 import { requiredProps } from '../../test/required_props';
 import { render } from '../../test/rtl';
@@ -30,9 +30,10 @@ describe('EuiTab', () => {
 
       test('is called when the button is clicked', () => {
         const onClickHandler = jest.fn();
-        const $button = shallow(<EuiTab onClick={onClickHandler} />);
-
-        $button.simulate('click');
+        const { getByText } = render(
+          <EuiTab onClick={onClickHandler}>children</EuiTab>
+        );
+        fireEvent.click(getByText('children'));
         expect(onClickHandler).toHaveBeenCalled();
       });
     });
@@ -82,7 +83,7 @@ describe('EuiTab', () => {
 
     test('append is rendered', () => {
       const { container } = render(
-        <EuiTab onClick={() => {}} prepend="Append">
+        <EuiTab onClick={() => {}} append="Append">
           children
         </EuiTab>
       );
