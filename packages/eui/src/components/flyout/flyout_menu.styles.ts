@@ -28,5 +28,8 @@ export const euiFlyoutMenuStyles = (euiThemeContext: UseEuiTheme) => {
     euiFlyoutMenu__spacer: css`
       padding-inline: ${euiTheme.size.m};
     `,
+    euiFlyoutMenu__actions: css`
+      block-size: calc(${euiTheme.size.m} * 1.8);
+    `,
   };
 };

@@ -71,7 +71,7 @@ describe('flyout manager hooks', () => {
       const { result } = renderHook(() => useFlyoutManagerReducer());
 
       act(() => {
-        result.current.addFlyout('main-1', LEVEL_MAIN, 'l');
+        result.current.addFlyout('main-1', 'main', LEVEL_MAIN, 'l');
       });
 
       expect(result.current.state.flyouts).toHaveLength(1);
@@ -88,8 +88,8 @@ describe('flyout manager hooks', () => {
       const { result } = renderHook(() => useFlyoutManagerReducer());
 
       act(() => {
-        result.current.addFlyout('main-1', LEVEL_MAIN);
-        result.current.addFlyout('child-1', LEVEL_CHILD);
+        result.current.addFlyout('main-1', 'main', LEVEL_MAIN);
+        result.current.addFlyout('child-1', 'child', LEVEL_CHILD);
         result.current.setActiveFlyout('child-1');
         result.current.setFlyoutWidth('main-1', 600);
         result.current.setFlyoutWidth('child-1', 400);
@@ -119,9 +119,9 @@ describe('flyout manager hooks', () => {
       // Create a complex scenario
       act(() => {
         // Add main flyout
-        result.current.addFlyout('main-1', LEVEL_MAIN, 'l');
+        result.current.addFlyout('main-1', 'main', LEVEL_MAIN, 'l');
         // Add child flyout
-        result.current.addFlyout('child-1', LEVEL_CHILD, 'm');
+        result.current.addFlyout('child-1', 'child', LEVEL_CHILD, 'm');
         // Set child as active
         result.current.setActiveFlyout('child-1');
         // Update widths
@@ -292,7 +292,7 @@ describe('flyout manager hooks', () => {
       const { result: idResult } = renderHook(() => useFlyoutId('test-id'));
 
       act(() => {
-        reducerResult.current.addFlyout(idResult.current, LEVEL_MAIN);
+        reducerResult.current.addFlyout(idResult.current, 'main', LEVEL_MAIN);
       });
 
       expect(reducerResult.current.state.flyouts).toHaveLength(1);
@@ -307,8 +307,12 @@ describe('flyout manager hooks', () => {
       const { result: idResult2 } = renderHook(() => useFlyoutId());
 
       act(() => {
-        reducerResult.current.addFlyout(idResult1.current, LEVEL_MAIN);
-        reducerResult.current.addFlyout(idResult2.current, LEVEL_CHILD);
+        reducerResult.current.addFlyout(idResult1.current, 'main', LEVEL_MAIN);
+        reducerResult.current.addFlyout(
+          idResult2.current,
+          'child',
+          LEVEL_CHILD
+        );
       });
 
       expect(reducerResult.current.state.flyouts).toHaveLength(2);
@@ -326,7 +330,7 @@ describe('flyout manager hooks', () => {
       act(() => {
         // Rapidly add and remove flyouts
         for (let i = 0; i < 10; i++) {
-          result.current.addFlyout(`flyout-${i}`, LEVEL_MAIN);
+          result.current.addFlyout(`flyout-${i}`, 'main', LEVEL_MAIN);
           result.current.closeFlyout(`flyout-${i}`);
         }
       });

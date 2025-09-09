@@ -50,12 +50,13 @@ Renders child flyouts within a session:
 - **Width Integration**: Uses main flyout width for positioning
 
 ### `src/components/flyout/manager/flyout_managed.tsx`
-The managed flyout wrapper that integrates with the flyout manager system, handling registration and lifecycle management. Includes size validation for managed flyouts according to business rules.
+The managed flyout wrapper that integrates with the flyout manager system, handling registration and lifecycle management. Includes validation of props for managed flyouts.
 
 ### `src/components/flyout/manager/flyout_validation.ts`
-Validation utilities for flyout size business rules:
+Validation utilities for managed flyout props:
 - **Named Size Validation**: Managed flyouts must use named sizes (s, m, l)
 - **Size Combination Rules**: Parent and child can't both be 'm', parent can't be 'l' with child
+- **Title**: Must be provided either through `flyoutMenuProps` or `aria-label`
 - **Error Handling**: Comprehensive error messages for invalid configurations
 
 ### `src/components/flyout/manager/index.ts`
