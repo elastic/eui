@@ -22,6 +22,7 @@ import React, {
   MutableRefObject,
   ReactNode,
   JSX,
+  AnimationEventHandler,
 } from 'react';
 import classnames from 'classnames';
 
@@ -258,12 +259,17 @@ export const EuiFlyoutComponent = forwardRef(
       onResize,
       isOpen,
       onClosing,
+      onAnimationEnd: _onAnimationEnd,
       ...rest
     } = usePropsWithComponentDefaults('EuiFlyout', props);
 
     const { setGlobalCSSVariables } = useEuiThemeCSSVariables();
 
-    const { openState, onAnimationEnd, closeFlyout } = useEuiFlyoutOpenState({
+    const {
+      openState,
+      onAnimationEnd: onAnimationEndFlyoutOpenState,
+      closeFlyout,
+    } = useEuiFlyoutOpenState({
       isOpen,
       onClose,
       onClosing,
@@ -566,6 +572,14 @@ export const EuiFlyoutComponent = forwardRef(
     );
 
     const maskCombinedRefs = useCombinedRefs([maskProps?.maskRef, maskRef]);
+
+    const onAnimationEnd = useCallback<AnimationEventHandler>(
+      (event) => {
+        onAnimationEndFlyoutOpenState(event);
+        _onAnimationEnd?.(event);
+      },
+      [_onAnimationEnd, onAnimationEndFlyoutOpenState]
+    );
 
     if (openState === 'closed') {
       // Render null only if the flyout is completely closed
