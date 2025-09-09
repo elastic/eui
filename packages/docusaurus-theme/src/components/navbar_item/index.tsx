@@ -44,7 +44,8 @@ export const getStyles = ({ euiTheme }: UseEuiTheme) => ({
     transition: background var(--ifm-transition-fast);
 
     &:hover {
-      background-color: var(--ifm-color-emphasis-200);
+      background-color: ${euiTheme.components.buttons
+        .backgroundTextHover};
       color: currentColor;
     }
   `,
@@ -67,7 +68,6 @@ export const getStyles = ({ euiTheme }: UseEuiTheme) => ({
   `,
   darkMode: css`
     &:hover {
-      background-color: var(--ifm-color-gray-800);
       color: currentColor;
     }
   `,
