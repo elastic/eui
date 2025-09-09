@@ -161,7 +161,7 @@ export const EuiManagedFlyout = ({
           css={[
             styles.managedFlyout,
             customCss,
-            styles.stage(activityStage, props.side),
+            styles.stage(activityStage, props.side, level),
           ]}
           {...{
             ...props,

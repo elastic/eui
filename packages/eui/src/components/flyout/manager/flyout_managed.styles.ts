@@ -10,15 +10,15 @@ import { css, keyframes } from '@emotion/react';
 import { euiCanAnimate, logicalCSS } from '../../../global_styling';
 import { UseEuiTheme } from '../../../services';
 import {
+  LEVEL_MAIN,
   STAGE_ACTIVE,
   STAGE_BACKGROUNDED,
   STAGE_BACKGROUNDING,
-  STAGE_CLOSING,
   STAGE_OPENING,
   STAGE_RETURNING,
 } from './const';
 import { _EuiFlyoutSide, DEFAULT_SIDE } from '../const';
-import { EuiFlyoutActivityStage } from './types';
+import type { EuiFlyoutActivityStage, EuiFlyoutLevel } from './types';
 
 /**
  * Emotion styles for managed flyouts.
@@ -31,7 +31,8 @@ export const euiManagedFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
   return {
     stage: (
       activeStage: EuiFlyoutActivityStage,
-      side: _EuiFlyoutSide = DEFAULT_SIDE
+      side: _EuiFlyoutSide = DEFAULT_SIDE,
+      level: EuiFlyoutLevel
     ) => {
       // Animation for moving flyout backwards in 3D space (z-axis) when inactive
       const euiFlyoutSlideBack3D = keyframes`
@@ -104,12 +105,13 @@ export const euiManagedFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
 
       switch (activeStage) {
         case STAGE_OPENING:
-          return [activeFlyout];
+          // Apply a higher z-index to opening main flyouts for seamless
+          // transitions from previously active main flyouts
+          return [level === LEVEL_MAIN && activeFlyout];
 
         case STAGE_ACTIVE:
           return [activeFlyout, noTransition];
 
-        case STAGE_CLOSING:
         case STAGE_BACKGROUNDING:
           return [inactiveTransition];
 
