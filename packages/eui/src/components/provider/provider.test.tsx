@@ -57,12 +57,15 @@ describe('EuiProvider', () => {
   describe('providing an @emotion cache config', () => {
     const defaultCache = createCache({
       key: 'default',
+      speedy: false,
     });
     const globalCache = createCache({
       key: 'global',
+      speedy: false,
     });
     const utilityCache = createCache({
       key: 'utility',
+      speedy: false,
     });
 
     const getStyleByCss = (content: string) => {

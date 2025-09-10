@@ -13,7 +13,10 @@ import React, {
   useCallback,
   forwardRef,
 } from 'react';
-import { ArrayCSSInterpolation } from '@emotion/css';
+import type {
+  ArrayCSSInterpolation,
+  CSSInterpolation,
+} from '@emotion/css/create-instance';
 import classNames from 'classnames';
 
 import { useEuiMemoizedStyles } from '../../services';
@@ -54,7 +57,7 @@ export const EuiBreadcrumbContent: FunctionComponent<
   const classes = classNames('euiBreadcrumb__content', className);
 
   const styles = useEuiMemoizedStyles(euiBreadcrumbContentStyles);
-  const cssStyles: ArrayCSSInterpolation = [
+  const cssStyles: CSSInterpolation[] = [
     styles.euiBreadcrumb__content,
     styles[type],
   ];
