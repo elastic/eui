@@ -76,6 +76,14 @@ export type _EuiThemeFontBase = {
    * Establishes the ideal line-height percentage, but it is the `baseline` integer that establishes the final pixel/rem value
    */
   lineHeightMultiplier: number;
+  /**
+   * Sets the default letter-spacing for text elements
+   */
+  letterSpacing?: number;
+  /**
+   * Sets the letter-spacing specifically for title elements
+   */
+  titleLetterSpacing?: number;
 };
 
 /*
@@ -129,6 +137,10 @@ export interface _EuiThemeTitle {
    * A font weight key for setting the base weight for titles and headings
    */
   weight: keyof _EuiThemeFontWeights;
+  /**
+   * Sets the letter-spacing specifically for title elements
+   */
+  letterSpacing?: number;
 }
 
 /*

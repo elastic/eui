@@ -38,6 +38,7 @@ export const fontBase: _EuiThemeFontBase = {
 
   baseline: computed(([base]) => base / 4, ['base']),
   lineHeightMultiplier: 1.5,
+  letterSpacing: -0.2,
 };
 
 export const fontWeight: _EuiThemeFontWeights = {
@@ -57,6 +58,7 @@ export const font: _EuiThemeFont = {
     weight: 'regular',
   },
   title: {
-    weight: 'bold',
+    weight: 'semiBold',
+    letterSpacing: -0.3,
   },
 };

@@ -51,7 +51,6 @@ export const euiCallOutStyles = ({ euiTheme }: UseEuiTheme) => {
 export const euiCallOutHeaderStyles = ({ euiTheme }: UseEuiTheme) => {
   return {
     euiCallOutHeader: css`
-      font-weight: ${euiTheme.font.weight.medium};
       ${logicalCSS(
         'margin-bottom',
         '0 !important'

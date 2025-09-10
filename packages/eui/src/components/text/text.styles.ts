@@ -37,6 +37,9 @@ export const euiText = (
   return {
     color: inheritColor ? 'inherit' : euiTheme.colors.textParagraph,
     fontWeight: euiTheme.font.weight.regular,
+    ...(euiTheme.font.letterSpacing && {
+      letterSpacing: `${euiTheme.font.letterSpacing}px`,
+    }),
   };
 };
 
