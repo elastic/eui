@@ -170,16 +170,6 @@ export const euiBadgeStyles = (euiThemeContext: UseEuiTheme) => {
       euiBadge__iconButton: css`
         font-size: 0; /* Makes the button only as large as the icon so it aligns vertically better */
 
-        &:focus {
-          background-color: ${euiTheme.components
-            .badgeIconButtonBackgroundHover};
-          color: ${euiTheme.colors.ink};
-          border-radius: ${mathWithUnits(
-            euiTheme.border.radius.small,
-            (x) => x / 2
-          )};
-        }
-
         &:disabled {
           cursor: not-allowed;
         }
