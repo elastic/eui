@@ -1,5 +1,3 @@
-# Push flyouts
-
 Another way to allow for continued interactions of the page content while a flyout is visible is to change the `type` from `overlay` to `push`.
 
 :::warning Push flyouts require manual accessibility management
@@ -11,6 +9,22 @@ Please be cautious when using push flyouts, and make sure you are managing your 
 :::
 
 A pushed flyout still positions itself as `fixed`, but adds padding to the document's body element to accommodate for the flyout's width. Because this squishes the page content, the flyout changes back to `overlay` at smaller window widths. You can adjust this minimum breakpoint with `pushMinBreakpoint`.
+
+#### Relative positioning
+
+Push flyouts automatically set global CSS variables that you can use to position other elements in your application relative to the flyout's width:
+
+- `--euiPushFlyoutOffsetInlineStart` (Set when `side="left"`)
+- `--euiPushFlyoutOffsetInlineEnd` (Set when `side="right"`)
+
+These variables are automatically updated when the flyout resizes and are removed when the flyout is closed. 
+
+```css
+.custom-fixed-sidebar {
+  /* Adjust sidebar position when left push flyout is open */
+  inset-inline-start: var(--euiPushFlyoutOffsetInlineStart, 0);
+}
+```
 
 
 ```tsx interactive

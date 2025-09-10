@@ -151,6 +151,10 @@ Ensure that all radio input components (`EuiRadio`, `EuiRadioGroup`) have a `nam
 
 Ensures that `EuiCallOut` components rendered conditionally have the `announceOnMount` prop for better accessibility. When callouts appear dynamically (e.g., after user interactions, form validation errors, or status changes), screen readers may not announce their content to users. The `announceOnMount` prop ensures these messages are properly announced to users with assistive technologies.
 
+### `@elastic/eui/no-unnamed-interactive-element`
+
+Ensure that appropriate aria-attributes are set for `EuiBetaBadge`, `EuiButtonIcon`, `EuiComboBox`, `EuiSelect`, `EuiSelectWithWidth`,`EuiSuperSelect`,`EuiPagination`, `EuiTreeView`, `EuiBreadcrumbs`. Without this rule, screen reader users lose context, keyboard navigation can be confusing.
+
 ## Testing
 
 ### Running unit tests

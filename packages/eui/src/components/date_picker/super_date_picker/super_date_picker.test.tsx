@@ -11,7 +11,7 @@ import moment from 'moment';
 import { fireEvent, act } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import { render, waitForEuiPopoverOpen } from '../../../test/rtl';
+import { render, waitForEuiPopoverOpen, screen } from '../../../test/rtl';
 import { requiredProps } from '../../../test';
 import { shouldRenderCustomStyles } from '../../../test/internal';
 import { EuiFieldText } from '../../form';
@@ -552,6 +552,92 @@ describe('EuiSuperDatePicker', () => {
 
         expect(formWraper.className).toContain('invalid');
       });
+    });
+  });
+
+  describe('Quick Select time window steps', () => {
+    it('steps forward', async () => {
+      // Use fixed absolute start/end with time
+      const start = '2025-01-01T10:00:00.000Z';
+      const end = '2025-01-02T10:00:00.000Z';
+      let lastTimeChange: { start: string; end: string } = { start, end };
+
+      render(
+        <EuiSuperDatePicker
+          start={start}
+          end={end}
+          onTimeChange={({ start, end }) => {
+            lastTimeChange = { start, end };
+          }}
+          showUpdateButton={false}
+        />
+      );
+
+      act(() => {
+        userEvent.click(
+          screen.getByTestSubject('superDatePickerToggleQuickMenuButton')
+        );
+      });
+
+      await waitForEuiPopoverOpen();
+
+      // Find the quick select stepper buttons (previous/next)
+      const prevBtn = screen.getByLabelText(/Previous time window/i);
+      const nextBtn = screen.getByLabelText(/Next time window/i);
+
+      expect(prevBtn).toBeInTheDocument();
+      expect(nextBtn).toBeInTheDocument();
+
+      // Step forward (should move window forward by the same duration)
+      act(() => {
+        userEvent.click(nextBtn);
+      });
+
+      const nextStart = lastTimeChange.start;
+      const nextEnd = lastTimeChange.end;
+
+      expect(nextStart).toBe('2025-01-02T10:00:00.000Z');
+      expect(nextEnd).toBe('2025-01-03T10:00:00.000Z');
+    });
+
+    it('steps backward', async () => {
+      // Use fixed absolute start/end with time
+      const start = '2025-01-01T10:00:00.000Z';
+      const end = '2025-01-02T10:00:00.000Z';
+      let lastTimeChange: { start: string; end: string } = { start, end };
+
+      render(
+        <EuiSuperDatePicker
+          start={start}
+          end={end}
+          onTimeChange={({ start, end }) => {
+            lastTimeChange = { start, end };
+          }}
+          showUpdateButton={false}
+        />
+      );
+
+      act(() => {
+        userEvent.click(
+          screen.getByTestSubject('superDatePickerToggleQuickMenuButton')
+        );
+      });
+
+      await waitForEuiPopoverOpen();
+
+      const prevBtn = screen.getByLabelText(/Previous time window/i);
+
+      expect(prevBtn).toBeInTheDocument();
+
+      act(() => {
+        userEvent.click(prevBtn);
+      });
+
+      const prevStart = lastTimeChange.start;
+      const prevEnd = lastTimeChange.end;
+
+      expect(prevStart).toBe('2024-12-31T10:00:00.000Z');
+      expect(prevEnd).toBe('2025-01-01T10:00:00.000Z');
     });
   });
 });
