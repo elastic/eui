@@ -15,7 +15,8 @@ The provided EUI shadow utilities handle the following additional style adjustme
 import { Example } from '@site/src/components';
 import { EuiSpacer } from '@elastic/eui';
 
-<EuiSpacer />
+## Usage
+
 <Example.Snippet>
   ```ts
   import { euiShadow } from '@elastic/eui';
@@ -27,6 +28,8 @@ import { EuiSpacer } from '@elastic/eui';
   ```
 </Example.Snippet>
 
+
+
 import { ShadowsTable } from './shadows_table';
 
 ### Direction: `down`
@@ -37,10 +40,13 @@ import { ShadowsTable } from './shadows_table';
 
 <ShadowsTable direction="up" />
 
-### Border customization
+### Dark mode floating border customization
 
 By default the shadow utilities add a light, 4-sided `border` style in Dark mode. In some cases where different shadowed elements are being composed together, 
 this might result in duplicate neighboring borders. To adjust this, use the `border` option on the `euiShadow` utility to adjust or remove the border output.
+
+:::info The additional border is only applied and visible in dark mode.
+:::
 
 <Example.Snippet>
   ```ts
@@ -61,13 +67,33 @@ this might result in duplicate neighboring borders. To adjust this, use the `bor
 
 ```tsx interactive
 import React, { useState } from 'react';
-import { useEuiTheme, EuiSelect, EuiSpacer, EuiCodeBlock } from '@elastic/eui';
+import { useEuiTheme, EuiSelect, EuiSpacer, EuiCodeBlock, EuiPanel, EuiThemeProvider } from '@elastic/eui';
 
 type ShadowBorderOption = 'none' | 'all' | 'top' | 'bottom' | 'left' | 'right' | 'horizontal' | 'vertical';
 
-export default () => {
+const Example = ({ selectedBorder }: { selectedBorder: ShadowBorderOption }) => {
   const euiThemeContext = useEuiTheme();
   const { euiTheme } = euiThemeContext;
+
+  console.log(selectedBorder)
+
+  const styles = css`
+    border-radius: ${euiTheme.border.radius.medium};
+    ${euiShadow(euiThemeContext, 'm', { border: selectedBorder })}}
+  `;
+
+  return (
+    <EuiPanel hasShadow={false} color="plain">
+      <EuiCodeBlock css={styles} language="js">
+          {`const styles = css\`
+  \${euiShadow(euiThemeContext, 'm', { border: '${selectedBorder}' })}
+\`}`}
+      </EuiCodeBlock>
+    </EuiPanel>
+  );
+}
+
+export default () => {
   const [selectedBorder, setSelectedBorder] = useState<ShadowBorderOption>('all');
   const options = [
     { value: 'none', text: 'none' },
@@ -80,18 +106,11 @@ export default () => {
     { value: 'vertical', text: 'vertical' },
   ];
 
-  const styles = css`
-    border-radius: ${euiTheme.border.radius.medium};
-    ${euiShadow(euiThemeContext, 'm', { border: selectedBorder })}}
-  `;
-
   return (
     <>
-      <EuiCodeBlock css={styles} language="js">
-        {`const styles = css\`
-  \${euiShadow(euiThemeContext, 'm', { border: '${selectedBorder}' })}
-\`}`}
-      </EuiCodeBlock>
+      <EuiThemeProvider colorMode="dark">
+        <Example selectedBorder={selectedBorder} />
+      </EuiThemeProvider>
       <EuiSpacer />
       <EuiSelect
         aria-label="Shadow Size" 
