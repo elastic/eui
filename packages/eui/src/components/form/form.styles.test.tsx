@@ -123,21 +123,21 @@ describe('euiFormControlStyles', () => {
 
           
         &::-webkit-input-placeholder { 
-            color: #798EAF;
-            opacity: 1;
-           }
+          color: #798EAF;
+          opacity: 1;
+         }
         &::-moz-placeholder { 
-            color: #798EAF;
-            opacity: 1;
-           }
+          color: #798EAF;
+          opacity: 1;
+         }
         &:-moz-placeholder { 
-            color: #798EAF;
-            opacity: 1;
-           }
+          color: #798EAF;
+          opacity: 1;
+         }
         &::placeholder { 
-            color: #798EAF;
-            opacity: 1;
-           }
+          color: #798EAF;
+          opacity: 1;
+         }
 
         ",
         "focus": "
@@ -210,21 +210,21 @@ describe('euiFormControlStyles', () => {
 
           
         &::-webkit-input-placeholder { 
-            color: #798EAF;
-            opacity: 1;
-           }
+          color: #798EAF;
+          opacity: 1;
+         }
         &::-moz-placeholder { 
-            color: #798EAF;
-            opacity: 1;
-           }
+          color: #798EAF;
+          opacity: 1;
+         }
         &:-moz-placeholder { 
-            color: #798EAF;
-            opacity: 1;
-           }
+          color: #798EAF;
+          opacity: 1;
+         }
         &::placeholder { 
-            color: #798EAF;
-            opacity: 1;
-           }
+          color: #798EAF;
+          opacity: 1;
+         }
 
         
             
