@@ -12,7 +12,7 @@ import {
   _EuiThemeShadowHoverSize,
   _EuiThemeShadowSize,
 } from '../variables/shadow';
-import { BorderDirection, euiBorderStyles } from './borders';
+import { BorderSides, euiBorderStyles } from './borders';
 
 export interface EuiShadowOptions {
   /** @deprecated */
@@ -24,7 +24,7 @@ export interface EuiShadowOptions {
    */
   property?: 'box-shadow' | 'filter';
   borderAllInHighContrastMode?: boolean;
-  border?: BorderDirection | 'none';
+  border?: BorderSides | 'none';
 }
 
 /**
@@ -291,7 +291,7 @@ const _shadowStyles = (
   const borderStyle =
     euiThemeContext.colorMode === 'DARK' && border !== 'none'
       ? `${euiBorderStyles(euiThemeContext, {
-          direction: border ?? 'all',
+          side: border ?? 'all',
         })}`
       : '';
   const shadowStyle = type === 'filter' ? shadow : `box-shadow: ${shadow};`;

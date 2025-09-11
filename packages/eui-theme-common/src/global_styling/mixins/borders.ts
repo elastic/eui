@@ -17,10 +17,10 @@ const logicalSide = {
   vertical: 'block',
 };
 
-export const getBorderSide = (direction: BorderDirection) =>
-  direction === 'all' ? 'border' : `border-${logicalSide[direction]}`;
+export const getBorderSide = (side: BorderSides) =>
+  side === 'all' ? 'border' : `border-${logicalSide[side]}`;
 
-export type BorderDirection =
+export type BorderSides =
   | 'left'
   | 'right'
   | 'top'
@@ -32,7 +32,7 @@ export type BorderDirection =
 export const euiBorderStyles = (
   euiThemeContext: UseEuiTheme,
   options: {
-    direction?: BorderDirection;
+    side?: BorderSides;
     borderColor?: string;
     borderWidth?: string;
     borderStyle?: string;
@@ -40,12 +40,12 @@ export const euiBorderStyles = (
 ) => {
   const { euiTheme } = euiThemeContext;
   const {
-    direction = 'all',
+    side = 'all',
     borderColor = euiTheme.border.color,
     borderWidth = euiTheme.border.width.thin,
     borderStyle = 'solid',
   } = options;
-  const borderProperty = getBorderSide(direction);
+  const borderProperty = getBorderSide(side);
 
   return `
     ${borderProperty}: ${borderWidth} ${borderStyle} ${borderColor};
