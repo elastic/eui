@@ -9,7 +9,7 @@
 import React from 'react';
 import { Global, css } from '@emotion/react';
 import { euiFocusRing, euiScrollBarStyles } from '../mixins';
-import { logicalCSS, getBaseValue } from '../functions';
+import { logicalCSS } from '../functions';
 import { transparentize } from '../../services/color';
 import { useEuiTheme } from '../../services/theme';
 import { resetStyles as reset } from './reset';
@@ -35,13 +35,20 @@ export const EuiGlobalStyles = ({}: EuiGlobalStylesProps) => {
    * that are needed to override browser-specific element settings.
    */
   const fontBodyScale = font.scale[font.body.scale];
-  const baseValue = getBaseValue(base);
+  // Use fontBase for typography if available, otherwise fall back to base
+  const fontBaseValue = typeof base === 'object' ? (base.fontBase || base.base) : base;
+  
+  // For global HTML font-size, always use fontBaseValue converted to rem
+  // Since 1rem = 16px by default, we need fontBaseValue/16 to get the correct rem value
+  // Handle both string ("16px") and number (16) cases
+  const fontBaseNumeric = typeof fontBaseValue === 'string' ? 
+    parseFloat((fontBaseValue as string).replace('px', '')) : (fontBaseValue as number);
+  const globalFontSizeRem = fontBaseNumeric / 16;
+  
   const fontReset = {
     fontFamily: font.family,
-    fontSize: `${
-      font.defaultUnits === 'px' ? fontBodyScale * baseValue : fontBodyScale
-    }${font.defaultUnits}`,
-    lineHeight: baseValue / (fontBodyScale * baseValue),
+    fontSize: `${globalFontSizeRem}rem`,
+    lineHeight: fontBaseValue / (fontBodyScale * fontBaseValue),
     fontWeight: font.weight[font.body.weight],
   };
 
@@ -53,7 +60,10 @@ export const EuiGlobalStyles = ({}: EuiGlobalStylesProps) => {
 
     html {
       ${scrollbarStyles}
-      ${fontReset}
+      font-family: ${fontReset.fontFamily};
+      font-size: ${fontReset.fontSize};
+      line-height: ${fontReset.lineHeight};
+      font-weight: ${fontReset.fontWeight};
       text-size-adjust: 100%;
       font-kerning: normal;
       ${logicalCSS('height', '100%')}
