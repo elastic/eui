@@ -32,7 +32,7 @@ export const euiFlyoutSlideInRight = keyframes`
     opacity: 0;
     transform: translateX(100%);
   }
-  85%, to {
+  to {
     opacity: 1;
     transform: translateX(0%);
   }
@@ -43,7 +43,7 @@ export const euiFlyoutSlideOutRight = keyframes`
     opacity: 1;
     transform: translateX(0%);
   }
-  85%, to {
+  to {
     opacity: 0;
     transform: translateX(100%);
   }
@@ -54,7 +54,7 @@ export const euiFlyoutSlideInLeft = keyframes`
     opacity: 0;
     transform: translateX(-100%);
   }
-  85%, to {
+  to {
     opacity: 1;
     transform: translateX(0%);
   }
@@ -65,7 +65,7 @@ export const euiFlyoutSlideOutLeft = keyframes`
     opacity: 1;
     transform: translateX(0);
   }
-  85%, to {
+  to {
     opacity: 0;
     transform: translateX(-100%);
   }
