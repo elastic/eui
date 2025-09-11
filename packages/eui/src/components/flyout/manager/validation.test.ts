@@ -12,7 +12,8 @@ import {
   validateSizeCombination,
   validateFlyoutSize,
   createValidationErrorMessage,
-  FlyoutSizeValidationError,
+  FlyoutValidationError,
+  validateFlyoutTitle,
 } from './validation';
 
 describe('Flyout Size Validation', () => {
@@ -48,6 +49,26 @@ describe('Flyout Size Validation', () => {
         flyoutId: 'test-id',
         level: 'main',
         size: '100px',
+      });
+    });
+  });
+
+  describe('validateFlyoutTitle', () => {
+    it('should return null for child flyouts without title', () => {
+      expect(validateFlyoutTitle(undefined, 'child-id', 'child')).toBeNull();
+    });
+
+    it('should return null for main flyouts with valid title', () => {
+      expect(validateFlyoutTitle('Main Title', 'main-id', 'main')).toBeNull();
+    });
+
+    it('should return error for empty string title', () => {
+      const error = validateFlyoutTitle('', 'test-id', 'main');
+      expect(error).toEqual({
+        type: 'INVALID_FLYOUT_MENU_TITLE',
+        message: `Managed flyouts require either a 'flyoutMenuProps' a 'title' property, or an 'aria-label' to provide the title.`,
+        flyoutId: 'test-id',
+        level: 'main',
       });
     });
   });
@@ -133,7 +154,7 @@ describe('Flyout Size Validation', () => {
 
   describe('createValidationErrorMessage', () => {
     it('should create error message for invalid size type', () => {
-      const error: FlyoutSizeValidationError = {
+      const error: FlyoutValidationError = {
         type: 'INVALID_SIZE_TYPE',
         message:
           'Managed flyouts must use named sizes (s, m, l). Received: 100px',
@@ -149,7 +170,7 @@ describe('Flyout Size Validation', () => {
     });
 
     it('should create error message for invalid size combination', () => {
-      const error: FlyoutSizeValidationError = {
+      const error: FlyoutValidationError = {
         type: 'INVALID_SIZE_COMBINATION',
         message: 'Parent and child flyouts cannot both be size "m"',
         size: 'm',
@@ -162,7 +183,7 @@ describe('Flyout Size Validation', () => {
     });
 
     it('should create error message for invalid fill size combination', () => {
-      const error: FlyoutSizeValidationError = {
+      const error: FlyoutValidationError = {
         type: 'INVALID_SIZE_COMBINATION',
         message: 'Parent and child flyouts cannot both be size "fill"',
         size: 'fill',
@@ -171,6 +192,35 @@ describe('Flyout Size Validation', () => {
       const message = createValidationErrorMessage(error);
       expect(message).toBe(
         'EuiFlyout validation error: Parent and child flyouts cannot both be size "fill"'
+      );
+    });
+
+    it('should create error message for invalid flyout menu title', () => {
+      const error: FlyoutValidationError = {
+        type: 'INVALID_FLYOUT_MENU_TITLE',
+        message:
+          "Managed flyouts require either a 'flyoutMenuProps' a 'title' property, or an 'aria-label' to provide the title.",
+        flyoutId: 'test-id',
+        level: 'main',
+      };
+
+      const message = createValidationErrorMessage(error);
+      expect(message).toBe(
+        "EuiFlyout validation error: Managed flyouts require either a 'flyoutMenuProps' a 'title' property, or an 'aria-label' to provide the title."
+      );
+    });
+
+    it('should handle unknown error types', () => {
+      const error: FlyoutValidationError = {
+        type: 'UNKNOWN_ERROR' as any,
+        message: 'Some unknown error',
+        flyoutId: 'test-id',
+        level: 'main',
+      };
+
+      const message = createValidationErrorMessage(error);
+      expect(message).toBe(
+        'EuiFlyout validation error: Unknown validation error'
       );
     });
   });

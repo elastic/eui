@@ -53,7 +53,7 @@ describe('flyoutManagerReducer', () => {
 
   describe('ACTION_ADD', () => {
     it('should add a main flyout and create a new session', () => {
-      const action = addFlyout('main-1', LEVEL_MAIN, 'm');
+      const action = addFlyout('main-1', 'main', LEVEL_MAIN, 'm');
       const newState = flyoutManagerReducer(initialState, action);
 
       expect(newState.flyouts).toHaveLength(1);
@@ -67,6 +67,7 @@ describe('flyoutManagerReducer', () => {
       expect(newState.sessions).toHaveLength(1);
       expect(newState.sessions[0]).toEqual({
         main: 'main-1',
+        title: 'main',
         child: null,
       });
     });
@@ -75,11 +76,11 @@ describe('flyoutManagerReducer', () => {
       // First add a main flyout
       let state = flyoutManagerReducer(
         initialState,
-        addFlyout('main-1', LEVEL_MAIN)
+        addFlyout('main-1', 'main', LEVEL_MAIN)
       );
 
       // Then add a child flyout
-      const action = addFlyout('child-1', LEVEL_CHILD);
+      const action = addFlyout('child-1', 'child', LEVEL_CHILD);
       state = flyoutManagerReducer(state, action);
 
       expect(state.flyouts).toHaveLength(2);
@@ -88,10 +89,10 @@ describe('flyoutManagerReducer', () => {
     });
 
     it('should ignore duplicate flyout IDs', () => {
-      const action1 = addFlyout('main-1', LEVEL_MAIN);
+      const action1 = addFlyout('main-1', 'main', LEVEL_MAIN);
       let state = flyoutManagerReducer(initialState, action1);
 
-      const action2 = addFlyout('main-1', LEVEL_MAIN);
+      const action2 = addFlyout('main-1', 'main', LEVEL_MAIN);
       state = flyoutManagerReducer(state, action2);
 
       expect(state.flyouts).toHaveLength(1);
@@ -99,7 +100,7 @@ describe('flyoutManagerReducer', () => {
     });
 
     it('should not add child flyout when no session exists', () => {
-      const action = addFlyout('child-1', LEVEL_CHILD);
+      const action = addFlyout('child-1', 'child', LEVEL_CHILD);
       const newState = flyoutManagerReducer(initialState, action);
 
       expect(newState).toEqual(initialState);
@@ -109,18 +110,32 @@ describe('flyoutManagerReducer', () => {
       // Add first main flyout
       let state = flyoutManagerReducer(
         initialState,
-        addFlyout('main-1', LEVEL_MAIN)
+        addFlyout('main-1', 'main', LEVEL_MAIN)
       );
 
       // Add child to first session
-      state = flyoutManagerReducer(state, addFlyout('child-1', LEVEL_CHILD));
+      state = flyoutManagerReducer(
+        state,
+        addFlyout('child-1', 'child', LEVEL_CHILD)
+      );
 
       // Add second main flyout (should create new session)
-      state = flyoutManagerReducer(state, addFlyout('main-2', LEVEL_MAIN));
+      state = flyoutManagerReducer(
+        state,
+        addFlyout('main-2', 'main', LEVEL_MAIN)
+      );
 
       expect(state.sessions).toHaveLength(2);
-      expect(state.sessions[0]).toEqual({ main: 'main-1', child: 'child-1' });
-      expect(state.sessions[1]).toEqual({ main: 'main-2', child: null });
+      expect(state.sessions[0]).toEqual({
+        main: 'main-1',
+        title: 'main',
+        child: 'child-1',
+      });
+      expect(state.sessions[1]).toEqual({
+        main: 'main-2',
+        title: 'main',
+        child: null,
+      });
     });
   });
 
@@ -129,9 +144,12 @@ describe('flyoutManagerReducer', () => {
       // Setup: add main flyout with child
       let state = flyoutManagerReducer(
         initialState,
-        addFlyout('main-1', LEVEL_MAIN)
+        addFlyout('main-1', 'main', LEVEL_MAIN)
       );
-      state = flyoutManagerReducer(state, addFlyout('child-1', LEVEL_CHILD));
+      state = flyoutManagerReducer(
+        state,
+        addFlyout('child-1', 'child', LEVEL_CHILD)
+      );
 
       // Close main flyout
       const action = closeFlyout('main-1');
@@ -146,9 +164,12 @@ describe('flyoutManagerReducer', () => {
       // Setup: add main flyout with child
       let state = flyoutManagerReducer(
         initialState,
-        addFlyout('main-1', LEVEL_MAIN)
+        addFlyout('main-1', 'main', LEVEL_MAIN)
       );
-      state = flyoutManagerReducer(state, addFlyout('child-1', LEVEL_CHILD));
+      state = flyoutManagerReducer(
+        state,
+        addFlyout('child-1', 'child', LEVEL_CHILD)
+      );
 
       // Close child flyout
       const action = closeFlyout('child-1');
@@ -179,7 +200,7 @@ describe('flyoutManagerReducer', () => {
       // Setup: add main flyout
       let state = flyoutManagerReducer(
         initialState,
-        addFlyout('main-1', LEVEL_MAIN)
+        addFlyout('main-1', 'main', LEVEL_MAIN)
       );
 
       const action = setActiveFlyout('child-1');
@@ -192,9 +213,12 @@ describe('flyoutManagerReducer', () => {
       // Setup: add main flyout with child
       let state = flyoutManagerReducer(
         initialState,
-        addFlyout('main-1', LEVEL_MAIN)
+        addFlyout('main-1', 'main', LEVEL_MAIN)
       );
-      state = flyoutManagerReducer(state, addFlyout('child-1', LEVEL_CHILD));
+      state = flyoutManagerReducer(
+        state,
+        addFlyout('child-1', 'child', LEVEL_CHILD)
+      );
 
       const action = setActiveFlyout(null);
       state = flyoutManagerReducer(state, action);
@@ -215,7 +239,7 @@ describe('flyoutManagerReducer', () => {
       // Setup: add flyout
       let state = flyoutManagerReducer(
         initialState,
-        addFlyout('main-1', LEVEL_MAIN)
+        addFlyout('main-1', 'main', LEVEL_MAIN)
       );
 
       const action = setFlyoutWidth('main-1', 400);
@@ -228,9 +252,12 @@ describe('flyoutManagerReducer', () => {
       // Setup: add two flyouts
       let state = flyoutManagerReducer(
         initialState,
-        addFlyout('main-1', LEVEL_MAIN)
+        addFlyout('main-1', 'main', LEVEL_MAIN)
       );
-      state = flyoutManagerReducer(state, addFlyout('main-2', LEVEL_MAIN));
+      state = flyoutManagerReducer(
+        state,
+        addFlyout('main-2', 'main', LEVEL_MAIN)
+      );
 
       const action = setFlyoutWidth('main-1', 400);
       state = flyoutManagerReducer(state, action);
@@ -275,7 +302,7 @@ describe('flyoutManagerReducer', () => {
       // Setup: add flyout
       let state = flyoutManagerReducer(
         initialState,
-        addFlyout('main-1', LEVEL_MAIN)
+        addFlyout('main-1', 'main', LEVEL_MAIN)
       );
 
       const action = setActivityStage('main-1', STAGE_ACTIVE);
@@ -288,7 +315,7 @@ describe('flyoutManagerReducer', () => {
       // Setup: add flyout
       let state = flyoutManagerReducer(
         initialState,
-        addFlyout('main-1', LEVEL_MAIN)
+        addFlyout('main-1', 'main', LEVEL_MAIN)
       );
 
       const stages = [
@@ -312,9 +339,12 @@ describe('flyoutManagerReducer', () => {
       // Setup: add two flyouts
       let state = flyoutManagerReducer(
         initialState,
-        addFlyout('main-1', LEVEL_MAIN)
+        addFlyout('main-1', 'main', LEVEL_MAIN)
       );
-      state = flyoutManagerReducer(state, addFlyout('main-2', LEVEL_MAIN));
+      state = flyoutManagerReducer(
+        state,
+        addFlyout('main-2', 'main', LEVEL_MAIN)
+      );
 
       const action = setActivityStage('main-1', STAGE_ACTIVE);
       state = flyoutManagerReducer(state, action);
@@ -338,14 +368,17 @@ describe('flyoutManagerReducer', () => {
       let state = initialState;
 
       // 1. Add main flyout
-      state = flyoutManagerReducer(state, addFlyout('main-1', LEVEL_MAIN, 'l'));
+      state = flyoutManagerReducer(
+        state,
+        addFlyout('main-1', 'main', LEVEL_MAIN, 'l')
+      );
       expect(state.flyouts).toHaveLength(1);
       expect(state.sessions).toHaveLength(1);
 
       // 2. Add child flyout
       state = flyoutManagerReducer(
         state,
-        addFlyout('child-1', LEVEL_CHILD, 'm')
+        addFlyout('child-1', 'child', LEVEL_CHILD, 'm')
       );
       expect(state.flyouts).toHaveLength(2);
       expect(state.sessions[0].child).toBe('child-1');
@@ -383,15 +416,32 @@ describe('flyoutManagerReducer', () => {
       let state = initialState;
 
       // Session 1: main + child
-      state = flyoutManagerReducer(state, addFlyout('main-1', LEVEL_MAIN));
-      state = flyoutManagerReducer(state, addFlyout('child-1', LEVEL_CHILD));
+      state = flyoutManagerReducer(
+        state,
+        addFlyout('main-1', 'main', LEVEL_MAIN)
+      );
+      state = flyoutManagerReducer(
+        state,
+        addFlyout('child-1', 'child', LEVEL_CHILD)
+      );
 
       // Session 2: main only
-      state = flyoutManagerReducer(state, addFlyout('main-2', LEVEL_MAIN));
+      state = flyoutManagerReducer(
+        state,
+        addFlyout('main-2', 'main', LEVEL_MAIN)
+      );
 
       expect(state.sessions).toHaveLength(2);
-      expect(state.sessions[0]).toEqual({ main: 'main-1', child: 'child-1' });
-      expect(state.sessions[1]).toEqual({ main: 'main-2', child: null });
+      expect(state.sessions[0]).toEqual({
+        main: 'main-1',
+        title: 'main',
+        child: 'child-1',
+      });
+      expect(state.sessions[1]).toEqual({
+        main: 'main-2',
+        title: 'main',
+        child: null,
+      });
 
       // Close first session's main flyout
       state = flyoutManagerReducer(state, closeFlyout('main-1'));

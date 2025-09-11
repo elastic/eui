@@ -16,6 +16,8 @@ import {
   closeFlyout as closeFlyoutAction,
   setActiveFlyout as setActiveFlyoutAction,
   setFlyoutWidth as setFlyoutWidthAction,
+  goBack as goBackAction,
+  goToFlyout as goToFlyoutAction,
 } from './actions';
 import {
   type EuiFlyoutLevel,
@@ -57,8 +59,12 @@ export function useFlyoutManagerReducer(
   const [state, dispatch] = useReducer(flyoutManagerReducer, initial);
 
   const addFlyout = useCallback(
-    (flyoutId: string, level: EuiFlyoutLevel = LEVEL_MAIN, size?: string) =>
-      dispatch(addFlyoutAction(flyoutId, level, size)),
+    (
+      flyoutId: string,
+      title: string,
+      level: EuiFlyoutLevel = LEVEL_MAIN,
+      size?: string
+    ) => dispatch(addFlyoutAction(flyoutId, title, level, size)),
     []
   );
   const closeFlyout = useCallback(
@@ -74,6 +80,20 @@ export function useFlyoutManagerReducer(
       dispatch(setFlyoutWidthAction(flyoutId, width)),
     []
   );
+  const goBack = useCallback(() => dispatch(goBackAction()), []);
+  const goToFlyout = useCallback(
+    (flyoutId: string) => dispatch(goToFlyoutAction(flyoutId)),
+    []
+  );
+  const getHistoryItems = useCallback(() => {
+    const currentSessionIndex = state.sessions.length - 1;
+    const previousSessions = state.sessions.slice(0, currentSessionIndex);
+
+    return previousSessions.reverse().map(({ title, main: mainFlyoutId }) => ({
+      title: title,
+      onClick: () => goToFlyout(mainFlyoutId),
+    }));
+  }, [state.sessions, goToFlyout]);
 
   return {
     state,
@@ -82,6 +102,9 @@ export function useFlyoutManagerReducer(
     closeFlyout,
     setActiveFlyout,
     setFlyoutWidth,
+    goBack,
+    goToFlyout,
+    getHistoryItems,
   };
 }
 

@@ -31,6 +31,10 @@ export const ACTION_SET_WIDTH = `${PREFIX}/setWidth` as const;
 export const ACTION_SET_LAYOUT_MODE = `${PREFIX}/setLayoutMode` as const;
 /** Dispatched to update a flyout's activity stage (e.g., opening -> active). */
 export const ACTION_SET_ACTIVITY_STAGE = `${PREFIX}/setActivityStage` as const;
+/** Dispatched to go back one session (remove current session). */
+export const ACTION_GO_BACK = `${PREFIX}/goBack` as const;
+/** Dispatched to navigate to a specific flyout (remove all sessions after it). */
+export const ACTION_GO_TO_FLYOUT = `${PREFIX}/goToFlyout` as const;
 
 /**
  * Add a flyout to manager state. The manager will create or update
@@ -39,6 +43,7 @@ export const ACTION_SET_ACTIVITY_STAGE = `${PREFIX}/setActivityStage` as const;
 export interface AddFlyoutAction extends BaseAction {
   type: typeof ACTION_ADD;
   flyoutId: string;
+  title: string;
   level: EuiFlyoutLevel;
   size?: string;
 }
@@ -75,6 +80,17 @@ export interface SetActivityStageAction extends BaseAction {
   activityStage: EuiFlyoutActivityStage;
 }
 
+/** Go back one session (remove current session from stack). */
+export interface GoBackAction extends BaseAction {
+  type: typeof ACTION_GO_BACK;
+}
+
+/** Navigate to a specific flyout (remove all sessions after it). */
+export interface GoToFlyoutAction extends BaseAction {
+  type: typeof ACTION_GO_TO_FLYOUT;
+  flyoutId: string;
+}
+
 /** Union of all flyout manager actions. */
 export type Action =
   | AddFlyoutAction
@@ -82,20 +98,25 @@ export type Action =
   | SetActiveFlyoutAction
   | SetWidthAction
   | SetLayoutModeAction
-  | SetActivityStageAction;
+  | SetActivityStageAction
+  | GoBackAction
+  | GoToFlyoutAction;
 
 /**
  * Register a flyout with the manager.
+ * - `title` is used for the flyout menu.
  * - `level` determines whether the flyout is `main` or `child`.
  * - Optional `size` is the named EUI size (e.g. `s`, `m`, `l`).
  */
 export const addFlyout = (
   flyoutId: string,
+  title: string,
   level: EuiFlyoutLevel = LEVEL_MAIN,
   size?: string
 ): AddFlyoutAction => ({
   type: ACTION_ADD,
   flyoutId,
+  title,
   level,
   size,
 });
@@ -140,4 +161,15 @@ export const setActivityStage = (
   type: ACTION_SET_ACTIVITY_STAGE,
   flyoutId,
   activityStage,
+});
+
+/** Go back one session (remove current session from stack). */
+export const goBack = (): GoBackAction => ({
+  type: ACTION_GO_BACK,
+});
+
+/** Navigate to a specific flyout (remove all sessions after it). */
+export const goToFlyout = (flyoutId: string): GoToFlyoutAction => ({
+  type: ACTION_GO_TO_FLYOUT,
+  flyoutId,
 });

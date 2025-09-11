@@ -18,7 +18,6 @@ import { EuiSpacer } from '../../spacer';
 import { EuiText } from '../../text';
 import { FLYOUT_TYPES, EuiFlyout } from '../flyout';
 import { EuiFlyoutBody } from '../flyout_body';
-import { EuiFlyoutMenu } from '../flyout_menu';
 import { EuiFlyoutChild, EuiFlyoutChildProps } from './flyout_child';
 import { useFlyoutLayoutMode } from './hooks';
 
@@ -193,10 +192,10 @@ const Session: React.FC<FlyoutChildStoryArgs> = (args) => {
           type={mainFlyoutType}
           maxWidth={mainMaxWidth}
           ownFocus={false}
+          aria-label={`Main Flyout Menu (${mainSize})`}
           {...rest}
           onClose={closeMain}
         >
-          <EuiFlyoutMenu title={`Main Flyout Menu (${mainSize})`} />
           <EuiFlyoutBody>
             <EuiText>
               <p>This is the main flyout content.</p>
@@ -221,10 +220,10 @@ const Session: React.FC<FlyoutChildStoryArgs> = (args) => {
               backgroundStyle={childBackgroundStyle}
               maxWidth={childMaxWidth}
               ownFocus={false}
+              aria-label={`Child Flyout Menu (${childSize})`}
               {...rest}
               onClose={closeChild}
             >
-              <EuiFlyoutMenu title={`Child Flyout Menu (${childSize})`} />
               <EuiFlyoutBody>
                 <EuiText>
                   <p>This is the child flyout content.</p>

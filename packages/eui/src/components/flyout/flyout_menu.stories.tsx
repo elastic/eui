@@ -10,21 +10,15 @@ import React, { useState } from 'react';
 
 import { action } from '@storybook/addon-actions';
 import { Meta, StoryObj } from '@storybook/react';
-import { EuiButton, EuiButtonEmpty, EuiButtonIcon } from '../button';
+import { EuiButton } from '../button';
 import { EuiSpacer } from '../spacer';
 import { EuiText } from '../text';
 import { EuiFlyout } from './flyout';
 import { EuiFlyoutBody } from './flyout_body';
 import { EuiFlyoutMenu, EuiFlyoutMenuProps } from './flyout_menu';
-import { EuiIcon } from '../icon';
-import { EuiPopover } from '../popover';
-import { EuiListGroup, EuiListGroupItem } from '../list_group';
-import { EuiFlyoutMenuContext } from './flyout_menu_context';
 
 interface Args extends EuiFlyoutMenuProps {
-  showBackButton: boolean;
-  showCustomAction: boolean;
-  showPopover: boolean;
+  showCustomActions: boolean;
 }
 
 const meta: Meta<Args> = {
@@ -32,21 +26,23 @@ const meta: Meta<Args> = {
   component: EuiFlyoutMenu,
   argTypes: {
     showBackButton: { control: 'boolean' },
-    showCustomAction: { control: 'boolean' },
-    showPopover: { control: 'boolean' },
-    backButton: { table: { disable: true } },
+    showCustomActions: { control: 'boolean' },
+    'aria-label': { table: { disable: true } },
+    backButtonProps: { table: { disable: true } },
+    customActions: { table: { disable: true } },
+    historyItems: { table: { disable: true } },
   },
   args: {
+    hideCloseButton: false,
     showBackButton: true,
-    showCustomAction: true,
-    showPopover: true,
+    showCustomActions: true,
   },
 };
 
 export default meta;
 
 const MenuBarFlyout = (args: Args) => {
-  const { showCustomAction, showBackButton, showPopover } = args;
+  const { showCustomActions, hideCloseButton, showBackButton } = args;
 
   const [isFlyoutOpen, setIsFlyoutOpen] = useState(true);
   const openFlyout = () => setIsFlyoutOpen(true);
@@ -54,63 +50,28 @@ const MenuBarFlyout = (args: Args) => {
     setIsFlyoutOpen(false);
   };
 
-  /* Back button */
-
-  const backButton = (
-    <EuiButtonEmpty size="xs" color="text">
-      <EuiIcon type="editorUndo" /> Back
-    </EuiButtonEmpty>
-  );
-
-  /* History popover */
-
-  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
-  const handlePopoverButtonClick = () => {
-    setIsPopoverOpen(!isPopoverOpen);
+  const backButtonProps = {
+    onClick: () => {
+      action('back button')('click');
+    },
   };
 
-  const historyItems = [
-    { config: { mainTitle: 'First item' } },
-    { config: { mainTitle: 'Second item' } },
-    { config: { mainTitle: 'Third item' } },
-  ];
-
-  const historyPopover = (
-    <EuiPopover
-      button={
-        <EuiButtonIcon iconType="arrowDown" color="text" aria-label="History" />
-      }
-      isOpen={isPopoverOpen}
-      onClick={handlePopoverButtonClick}
-      closePopover={() => setIsPopoverOpen(false)}
-      panelPaddingSize="xs"
-      anchorPosition="downLeft"
-    >
-      <EuiListGroup gutterSize="none">
-        {historyItems.map((item, index) => (
-          <EuiListGroupItem
-            key={index}
-            label={item.config.mainTitle}
-            size="s"
-            onClick={() => {
-              action(`Clicked ${item.config.mainTitle}`)();
-              setIsPopoverOpen(false);
-            }}
-          >
-            {item.config.mainTitle}
-          </EuiListGroupItem>
-        ))}
-      </EuiListGroup>
-    </EuiPopover>
+  const historyItems = ['First item', 'Second item', 'Third item'].map(
+    (title) => ({
+      title,
+      onClick: () => {
+        action('history item')(`${title} clicked`);
+      },
+    })
   );
 
-  /* Custom action */
-
-  const handleCustomActionClick = () => {
-    action('custom action clicked')();
-  };
-
-  /* Render */
+  const customActions = ['gear', 'broom'].map((iconType) => ({
+    iconType,
+    onClick: () => {
+      action('custom action')(`${iconType} action clicked`);
+    },
+    'aria-label': `${iconType} action`,
+  }));
 
   return (
     <>
@@ -126,25 +87,15 @@ const MenuBarFlyout = (args: Args) => {
           type="overlay"
           outsideClickCloses={false}
           ownFocus
+          flyoutMenuProps={{
+            title: 'Flyout title',
+            hideCloseButton,
+            showBackButton,
+            backButtonProps,
+            historyItems,
+            customActions: showCustomActions ? customActions : undefined,
+          }}
         >
-          <EuiFlyoutMenuContext.Provider value={{ onClose: closeFlyout }}>
-            <EuiFlyoutMenu
-              title="Title"
-              backButton={showBackButton && backButton}
-              popover={showPopover && historyPopover}
-            >
-              {showCustomAction && (
-                <EuiButtonIcon
-                  iconType="gear"
-                  onClick={handleCustomActionClick}
-                  color="text"
-                  size="s"
-                  style={{ blockSize: '20px' }}
-                  aria-label="Custom action"
-                />
-              )}
-            </EuiFlyoutMenu>
-          </EuiFlyoutMenuContext.Provider>
           <EuiFlyoutBody>
             <EuiText>
               <p>Simple flyout content.</p>

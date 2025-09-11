@@ -40,13 +40,14 @@ export type EuiFlyoutProps<T extends ElementType = 'div' | 'nav'> = Omit<
 > & {
   session?: boolean;
   as?: T;
+  onActive?: () => void;
 };
 
 export const EuiFlyout = forwardRef<
   HTMLDivElement | HTMLElement,
   EuiFlyoutProps<'div' | 'nav'>
 >((props, ref) => {
-  const { session, as, onClose, ...rest } = usePropsWithComponentDefaults(
+  const { session, as, onClose, onActive, ...rest } = usePropsWithComponentDefaults(
     'EuiFlyout',
     props
   );
@@ -68,12 +69,12 @@ export const EuiFlyout = forwardRef<
       onClose?.({} as any);
       return null;
     }
-    return <EuiFlyoutMain {...rest} onClose={onClose} as="div" />;
+    return <EuiFlyoutMain {...rest} onClose={onClose} onActive={onActive} as="div" />;
   }
 
   // Else if this flyout is a child of a session AND within a managed flyout context, render EuiChildFlyout.
   if (hasActiveSession && isInManagedFlyout) {
-    return <EuiFlyoutChild {...rest} onClose={onClose} as="div" />;
+    return <EuiFlyoutChild {...rest} onClose={onClose} onActive={onActive} as="div" />;
   }
 
   // TODO: if resizeable={true}, render EuiResizableFlyout.
