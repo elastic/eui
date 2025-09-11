@@ -10,6 +10,7 @@ import {
   euiFontSizeFromScale,
   euiLineHeightFromBaseline,
   UseEuiTheme,
+  getBaseValue,
 } from '@elastic/eui';
 import { css } from '@emotion/react';
 
@@ -20,10 +21,11 @@ export const getGlobalStyles = (theme: UseEuiTheme) => {
   const { euiTheme } = theme;
   const { font, base, colors, size, components } = euiTheme;
   const fontBodyScale = font.scale[font.body.scale];
+  const baseValue = getBaseValue(base);
   const fontBase = {
     fontFamily: font.family,
     fontSize: `${
-      font.defaultUnits === 'px' ? fontBodyScale * base : fontBodyScale
+      font.defaultUnits === 'px' ? fontBodyScale * baseValue : fontBodyScale
     }${font.defaultUnits}`,
     fontWeight: font.weight[font.body.weight],
   };

@@ -48,9 +48,9 @@ const euiScaleText = (
   euiThemeContext: UseEuiTheme,
   options: _FontScaleOptions
 ) => {
-  const { fontSize, lineHeight } = euiFontSize(euiThemeContext, 'm', options);
   const { euiTheme } = euiThemeContext;
   const { unit, customScale: _customScale } = options;
+  const { fontSize, lineHeight } = euiFontSize(euiThemeContext, _customScale || 'm', { unit: options.unit });
   const lineHeightSize = unit === 'em' ? `${lineHeight}em` : lineHeight;
 
   const headings = {

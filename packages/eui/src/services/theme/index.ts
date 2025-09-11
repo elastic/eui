@@ -42,6 +42,7 @@ export {
   setOn,
   Computed,
 } from './utils';
+export { getBaseValue } from '../../global_styling/functions/size';
 export type {
   ComputedThemeShape,
   EuiThemeColorMode,

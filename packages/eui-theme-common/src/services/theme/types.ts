@@ -61,7 +61,11 @@ export const EUI_THEME_OVERRIDES_KEY = 'overrides' as const;
 
 export type EuiThemeShapeBase = {
   colors: _EuiThemeColors;
-  /** - Default value: 16 */
+  /** 
+   * Base size for spacing and sizing calculations. Can be a number (16) or an object with base and optional fontBase.
+   * - Default value: 16
+   * - fontBase: Optional separate base for typography calculations (falls back to base if not provided)
+   */
   base: _EuiThemeBase;
   /**
    * See {@link https://eui.elastic.co/#/theming/sizing | Reference} for more information

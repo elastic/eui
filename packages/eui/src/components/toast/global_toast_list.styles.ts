@@ -15,11 +15,12 @@ import {
   logicalCSSWithFallback,
   logicalSizeCSS,
 } from '../../global_styling';
-import { UseEuiTheme } from '../../services';
+import { UseEuiTheme, getBaseValue } from '../../services';
 
 export const euiGlobalToastListStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
-  const euiToastWidth = euiTheme.base * 25;
+  const baseValue = getBaseValue(euiTheme.base);
+  const euiToastWidth = baseValue * 25;
   return {
     /**
      * 1. Allow list to expand as items are added, but cap it at the screen height.
@@ -67,7 +68,7 @@ export const euiGlobalToastListStyles = (euiThemeContext: UseEuiTheme) => {
         ${logicalCSS('right', 0)};
 
         ${euiMinBreakpoint(euiThemeContext, 'm')} {
-          ${logicalCSS('padding-left', `${euiTheme.base * 4}px`)}/* 2 */
+          ${logicalCSS('padding-left', `${baseValue * 4}px`)}/* 2 */
         }
       }
     `,
@@ -76,7 +77,7 @@ export const euiGlobalToastListStyles = (euiThemeContext: UseEuiTheme) => {
         ${logicalCSS('left', 0)};
 
         ${euiMinBreakpoint(euiThemeContext, 'm')} {
-          ${logicalCSS('padding-right', `${euiTheme.base * 4}px`)}/* 2 */
+          ${logicalCSS('padding-right', `${baseValue * 4}px`)}/* 2 */
         }
       }
     `,

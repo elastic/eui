@@ -14,7 +14,7 @@ import React, {
   useRef,
 } from 'react';
 
-import { useEuiTheme, useCombinedRefs } from '../../../services';
+import { useEuiTheme, useCombinedRefs, getBaseValue } from '../../../services';
 import { logicalStyles } from '../../../global_styling';
 import { euiFormVariables } from '../form.styles';
 import { EuiFieldNumber, EuiFieldNumberProps } from '../field_number';
@@ -75,8 +75,9 @@ export const EuiRangeInput: FunctionComponent<EuiRangeInputProps> = ({
     const inputPadding = compressed ? controlCompressedPadding : controlPadding;
 
     // Calculate the invalid icon (if being displayed), also based on `compressed` state
+    const baseValue = getBaseValue(euiTheme.euiTheme.base);
     const invalidIconWidth = hasInvalidIcon
-      ? euiTheme.euiTheme.base * (compressed ? 1.125 : 1.375) // TODO: DRY this out once EuiFormControlLayoutIcons is converted to Emotion
+      ? baseValue * (compressed ? 1.125 : 1.375) // TODO: DRY this out once EuiFormControlLayoutIcons is converted to Emotion
       : 0;
 
     // Guesstimate a width for the stepper. Note that it's a little wider in FF than it is in Chrome

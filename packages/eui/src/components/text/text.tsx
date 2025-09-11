@@ -9,7 +9,7 @@
 import React, { FunctionComponent } from 'react';
 import classNames from 'classnames';
 
-import { useEuiMemoizedStyles } from '../../services';
+import { useEuiMemoizedStyles, useEuiTheme } from '../../services';
 
 import type { SharedTextProps, EuiTextColors, EuiTextAlignment } from './types';
 import { EuiTextColor } from './text_color';
@@ -31,7 +31,7 @@ export type EuiTextProps = SharedTextProps &
 
 export const EuiText: FunctionComponent<EuiTextProps> = ({
   component = 'div',
-  size = 'm',
+  size,
   color,
   grow = true,
   textAlign,
@@ -39,11 +39,13 @@ export const EuiText: FunctionComponent<EuiTextProps> = ({
   className,
   ...rest
 }) => {
+  const euiTheme = useEuiTheme();
+  const defaultSize = size ?? euiTheme.euiTheme.font.text.defaultSize ?? 'm';
   const styles = useEuiMemoizedStyles(euiTextStyles);
   const cssStyles = [
     styles.euiText,
     !grow ? styles.constrainedWidth : undefined,
-    styles[size],
+    styles[defaultSize as keyof typeof styles],
   ];
 
   const classes = classNames('euiText', className);

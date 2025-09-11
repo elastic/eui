@@ -56,7 +56,18 @@ export const font: _EuiThemeFont = {
     scale: 's',
     weight: 'regular',
   },
+  text: {
+    defaultSize: 'm',
+  },
   title: {
     weight: 'bold',
+    scaleMapping: {
+      xxxs: 'xs',
+      xxs: 's',
+      xs: 'm',
+      s: 'l',
+      m: 'xl',
+      l: 'xxl',
+    },
   },
 };

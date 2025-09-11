@@ -12,18 +12,19 @@ import {
   type _EuiThemeFontBase,
   type _EuiThemeFontScales,
   type _EuiThemeFontWeights,
+  type _EuiThemeText,
 } from '@elastic/eui-theme-common';
 
 // Typographic scale -- loosely based on Major Third (1.200)
 export const fontScale: _EuiThemeFontScales = {
-  xxxs: 0.5625, // 9px
-  xxs: 0.6875, // 11px
-  xs: 0.75, // 12px
-  s: 0.875, // 14px
-  m: 1, // 16px
-  l: 1.25, // 20px
-  xl: 1.5, // 24px
-  xxl: 1.875, // 30px
+  xxxs: 0.786, // 11px (same as xxs, or remove xxs entirely)
+  xxs: 0.786, // 11px (new min)
+  xs: 0.857, // 12px
+  s: 1, // 14px (new base)
+  m: 1.143, // 16px
+  l: 1.429, // 20px
+  xl: 1.714, // 24px (new max)
+  xxl: 1.714, // 24px  (same as xl, or remove xxs entirely)
 };
 
 // Families & base font settings
@@ -34,9 +35,9 @@ export const fontBase: _EuiThemeFontBase = {
 
   // Careful using ligatures. Code editors like ACE will often error because of width calculations
   featureSettings: "'calt' 1, 'kern' 1, 'liga' 1",
-  defaultUnits: 'rem',
+  defaultUnits: 'rem', 
 
-  baseline: computed(([base]) => base / 4, ['base']),
+  baseline: computed(([base]) => (typeof base === 'object' ? base.base : base) / 4, ['base']),
   lineHeightMultiplier: 1.5,
   letterSpacing: -0.2,
 };
@@ -57,8 +58,24 @@ export const font: _EuiThemeFont = {
     scale: 's',
     weight: 'regular',
   },
+  text: {
+    defaultSize: 's',
+  },
   title: {
     weight: 'semiBold',
-    letterSpacing: -0.3,
+    letterSpacing: -0.25,
+    scaleMapping: {
+      xxxs: 'xs',
+      xxs: 'xs',
+      xs: 's',
+      s: 'm',
+      m: 'l',
+      l: 'xl',
+    },
+    // Borealis-specific overrides for EuiCallout titles
+    calloutScaleMapping: {
+      s: 'xs',  // Callout "s" → EuiTitle "s" → 14px
+      m: 's',  // Callout "m" → EuiTitle "m" → 16px
+    },
   },
 };

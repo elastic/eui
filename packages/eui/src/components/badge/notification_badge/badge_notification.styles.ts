@@ -15,11 +15,12 @@ import {
   mathWithUnits,
 } from '../../../global_styling';
 import { highContrastModeStyles } from '../../../global_styling/functions/high_contrast';
-import { isEuiThemeRefreshVariant, UseEuiTheme } from '../../../services';
+import { isEuiThemeRefreshVariant, UseEuiTheme, getBaseValue } from '../../../services';
 import { euiBadgeColors } from '../color_utils';
 
 export const euiNotificationBadgeStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
+  const baseValue = getBaseValue(euiTheme.base);
   const isRefreshVariant = isEuiThemeRefreshVariant(
     euiThemeContext,
     'buttonVariant'
@@ -64,7 +65,7 @@ export const euiNotificationBadgeStyles = (euiThemeContext: UseEuiTheme) => {
     m: css`
       ${logicalCSS(
         'height',
-        mathWithUnits(euiTheme.size.xs, (x) => x + euiTheme.base)
+        mathWithUnits(euiTheme.size.xs, (x) => x + baseValue)
       )}
       ${logicalCSS('min-width', euiTheme.size.l)}
     `,

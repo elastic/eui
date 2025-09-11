@@ -7,7 +7,7 @@
  */
 
 import { _EuiThemeBorder } from '../../../../global_styling/variables';
-import { sizeToPixel } from '../../../../global_styling/functions';
+import { sizeToPixelFromTheme } from '../../../../global_styling/functions';
 
 import { computed } from '../../../../services/theme/utils';
 
@@ -21,8 +21,8 @@ export const border: _EuiThemeBorder = {
     thick: '2px',
   },
   radius: {
-    medium: computed(sizeToPixel(0.375)),
-    small: computed(sizeToPixel(0.25)),
+    medium: computed(sizeToPixelFromTheme(0.375)),
+    small: computed(sizeToPixelFromTheme(0.25)),
   },
   thin: computed(
     ([width, color]) => `${width.thin} solid ${color}`,

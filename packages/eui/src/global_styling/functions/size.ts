@@ -6,4 +6,4 @@
  * Side Public License, v 1.
  */
 
-export { sizeToPixel } from '@elastic/eui-theme-common';
+export { sizeToPixel, sizeToPixelFromTheme, getBaseValue } from '@elastic/eui-theme-common';

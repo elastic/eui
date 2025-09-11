@@ -9,7 +9,7 @@
 import React from 'react';
 import { Global, css } from '@emotion/react';
 import { euiFocusRing, euiScrollBarStyles } from '../mixins';
-import { logicalCSS } from '../functions';
+import { logicalCSS, getBaseValue } from '../functions';
 import { transparentize } from '../../services/color';
 import { useEuiTheme } from '../../services/theme';
 import { resetStyles as reset } from './reset';
@@ -35,12 +35,13 @@ export const EuiGlobalStyles = ({}: EuiGlobalStylesProps) => {
    * that are needed to override browser-specific element settings.
    */
   const fontBodyScale = font.scale[font.body.scale];
+  const baseValue = getBaseValue(base);
   const fontReset = {
     fontFamily: font.family,
     fontSize: `${
-      font.defaultUnits === 'px' ? fontBodyScale * base : fontBodyScale
+      font.defaultUnits === 'px' ? fontBodyScale * baseValue : fontBodyScale
     }${font.defaultUnits}`,
-    lineHeight: base / (fontBodyScale * base),
+    lineHeight: baseValue / (fontBodyScale * baseValue),
     fontWeight: font.weight[font.body.weight],
   };
 

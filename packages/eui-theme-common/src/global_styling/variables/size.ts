@@ -6,7 +6,10 @@
  * Side Public License, v 1.
  */
 
-export type _EuiThemeBase = number;
+export type _EuiThemeBase = number | {
+  base: number;
+  fontBase?: number;
+};
 
 export const EuiThemeSizes = [
   'xxs',

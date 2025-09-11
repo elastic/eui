@@ -19,6 +19,7 @@ import {
   UseEuiTheme,
   useEuiMemoizedStyles,
   isEuiThemeRefreshVariant,
+  getBaseValue,
 } from '../../services';
 import { highContrastModeStyles, logicalCSS } from '../functions';
 
@@ -389,21 +390,22 @@ export const euiButtonSizeMap = (euiThemeContext: UseEuiTheme) => {
     'buttonVariant'
   );
 
+  const baseValue = getBaseValue(euiTheme.base);
   return {
     xs: {
-      minWidth: euiTheme.base * (isRefreshVariant ? 6 : 7),
+      minWidth: baseValue * (isRefreshVariant ? 6 : 7),
       height: euiTheme.size.l,
       radius: euiTheme.border.radius.small,
       fontScale: 'xs' as const,
     },
     s: {
-      minWidth: euiTheme.base * (isRefreshVariant ? 6 : 7),
+      minWidth: baseValue * (isRefreshVariant ? 6 : 7),
       height: euiTheme.size.xl,
       radius: euiTheme.border.radius.small,
       fontScale: 's' as const,
     },
     m: {
-      minWidth: euiTheme.base * 7,
+      minWidth: baseValue * 7,
       height: euiTheme.size.xxl,
       radius: isRefreshVariant
         ? euiTheme.border.radius.small

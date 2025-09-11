@@ -136,7 +136,10 @@
   },
   "euiBreakpointKeys": "'xs', 's', 'm', 'l', 'xl'",
   "euiShadowColor": "#000000",
-  "euiSize": "16px",
+  "euiSize": {
+    "base": 16,
+    "fontBase": 14
+  },
   "euiSizeXS": "4px",
   "euiSizeS": "8px",
   "euiSizeM": "12px",
@@ -159,48 +162,57 @@
   "euiCodeFontFamily": "'Roboto Mono', 'Consolas', 'Menlo', 'Courier', monospace",
   "euiFontFeatureSettings": "calt 1 kern 1 liga 1",
   "euiLetterSpacing": "-0.2",
-  "euiTitleLetterSpacing": "-0.3",
-  "euiTextScale": "1,875, 1.5, 1.25, 1, .875, .75",
+  "euiTitleLetterSpacing": "-0.25",
+  "euiTextScale": "1.714, 1.429, 1.143, 1, .857, .786",
   "euiFontSize": "14px",
-  "euiFontSizeXS": "12px",
+  "euiFontSizeXS": "11px",
   "euiFontSizeS": "14px",
   "euiFontSizeM": "16px",
   "euiFontSizeL": "20px",
-  "euiFontSizeXL": "24px",
-  "euiFontSizeXXL": "30px",
-  "euiLineHeight": 1.5,
+  "euiFontSizeXL": "20px",
+  "euiFontSizeXXL": "28px",
+  "euiLineHeight": 1.35,
   "euiBodyLineHeight": 1.142857143,
+  "euiTextDefaultSize": "s",
   "euiTitles": {
     "xxxs": {
-      "font-size": "12px",
+      "font-size": "11px",
       "line-height": "1.1429rem",
       "font-weight": 600
     },
     "xxs": {
-      "font-size": "14px",
+      "font-size": "11px",
       "line-height": "1.4286rem",
       "font-weight": 600
     },
     "xs": {
-      "font-size": "16px",
+      "font-size": "12px",
       "line-height": "1.7143rem",
       "font-weight": 500
     },
     "s": {
-      "font-size": "20px",
+      "font-size": "14px",
       "line-height": "1.7143rem",
       "font-weight": 500
     },
     "m": {
-      "font-size": "24px",
+      "font-size": "16px",
       "line-height": "2rem",
       "font-weight": 500
     },
     "l": {
-      "font-size": "30px",
+      "font-size": "20px",
       "line-height": "2.5714rem",
       "font-weight": 500
     }
+  },
+  "euiTitleScaleMapping": {
+    "xxxs": "xs",
+    "xxs": "s",
+    "xs": "m",
+    "s": "l",
+    "m": "xl",
+    "l": "xxl"
   },
   "euiZLevel0": 0,
   "euiZLevel1": 1000,

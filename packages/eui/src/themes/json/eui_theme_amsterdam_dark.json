@@ -168,6 +168,7 @@
   "euiFontSizeXXL": "34px",
   "euiLineHeight": 1.5,
   "euiBodyLineHeight": 1.142857143,
+  "euiTextDefaultSize": "m",
   "euiTitles": {
     "xxxs": {
       "font-size": "12px",
@@ -199,6 +200,14 @@
       "line-height": "2.85714rem",
       "font-weight": 700
     }
+  },
+  "euiTitleScaleMapping": {
+    "xxxs": "xs",
+    "xxs": "s",
+    "xs": "m",
+    "s": "l",
+    "m": "xl",
+    "l": "xxl"
   },
   "euiZLevel0": 0,
   "euiZLevel1": 1000,

@@ -16,11 +16,12 @@ import {
   logicalTextAlignCSS,
   mathWithUnits,
 } from '../../global_styling';
-import { UseEuiTheme } from '../../services';
+import { UseEuiTheme, getBaseValue } from '../../services';
 import { euiBadgeColors } from './color_utils';
 
 export const euiBadgeStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
+  const baseValue = getBaseValue(euiTheme.base);
   const badgeColors = euiBadgeColors(euiThemeContext);
   const setBadgeColorVars = (
     colors: ReturnType<typeof euiBadgeColors>['primary']
@@ -131,7 +132,7 @@ export const euiBadgeStyles = (euiThemeContext: UseEuiTheme) => {
         'min-height',
         `${mathWithUnits(
           euiTheme.border.width.thin,
-          (x) => euiTheme.base + x * 2
+          (x) => baseValue + x * 2
         )}`
       )}
       display: flex;

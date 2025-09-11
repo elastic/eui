@@ -9,7 +9,7 @@
 import {
   computed,
   type _EuiThemeBorder,
-  sizeToPixel,
+  sizeToPixelFromTheme,
 } from '@elastic/eui-theme-common';
 
 export const border: _EuiThemeBorder = {
@@ -22,8 +22,8 @@ export const border: _EuiThemeBorder = {
     thick: '2px',
   },
   radius: {
-    medium: computed(sizeToPixel(0.25)),
-    small: computed(sizeToPixel(0.25)),
+    medium: computed(sizeToPixelFromTheme(0.25)),
+    small: computed(sizeToPixelFromTheme(0.25)),
   },
   thin: computed(
     ([width, color]) => `${width.thin} solid ${color}`,

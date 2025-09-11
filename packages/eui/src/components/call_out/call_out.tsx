@@ -10,7 +10,7 @@ import React, { forwardRef, HTMLAttributes, ReactNode, useMemo } from 'react';
 
 import classNames from 'classnames';
 
-import { useEuiMemoizedStyles } from '../../services';
+import { useEuiMemoizedStyles, useEuiTheme } from '../../services';
 import { CommonProps } from '../common';
 import { IconType, EuiIcon } from '../icon';
 import { EuiButtonIcon } from '../button';
@@ -120,6 +120,7 @@ export const EuiCallOut = forwardRef<HTMLDivElement, EuiCallOutProps>(
       );
     }, [onDismiss, styles, color, size]);
 
+    const { euiTheme } = useEuiTheme();
     const headerStyles = useEuiMemoizedStyles(euiCallOutHeaderStyles);
     const header = useMemo(() => {
       if (!title) return;
@@ -127,8 +128,11 @@ export const EuiCallOut = forwardRef<HTMLDivElement, EuiCallOutProps>(
       const H: Heading = heading;
       const cssStyles = [headerStyles.euiCallOutHeader, headerStyles[color]];
 
+      // Use theme-specific callout title mapping if available, otherwise fall back to default
+      const titleSize = euiTheme.font.title.calloutScaleMapping?.[size] || (size === 's' ? 'xxs' : 'xs');
+      
       return (
-        <EuiTitle size={size === 's' ? 'xxs' : 'xs'} css={cssStyles}>
+        <EuiTitle size={titleSize} css={cssStyles}>
           <H className="euiCallOutHeader__title">
             {iconType && (
               <EuiIcon
@@ -143,7 +147,7 @@ export const EuiCallOut = forwardRef<HTMLDivElement, EuiCallOutProps>(
           </H>
         </EuiTitle>
       );
-    }, [title, heading, iconType, size, color, headerStyles]);
+    }, [title, heading, iconType, size, color, headerStyles, euiTheme]);
 
     const optionalChildren = children && (
       <EuiText size={size === 's' ? 'xs' : 's'} color="default">

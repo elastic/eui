@@ -100,6 +100,7 @@ export {
 export type { Direction, PropertySort } from './sort';
 export { slugify, toInitials, toSentenceCase } from './string';
 export * from './theme';
+export { getBaseValue } from '../global_styling/functions/size';
 export { throttle } from './throttle';
 export {
   getDurationAndPerformOnFrame,

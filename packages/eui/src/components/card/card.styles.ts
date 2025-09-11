@@ -14,7 +14,7 @@ import {
   logicals,
   logicalTextAlignCSS,
 } from '../../global_styling';
-import { UseEuiTheme } from '../../services';
+import { UseEuiTheme, getBaseValue } from '../../services';
 import { euiButtonColor } from '../../global_styling/mixins';
 
 import { EuiCardProps } from './card';
@@ -262,7 +262,7 @@ export const euiCardBetaBadgeStyles = (
       /* Get above absolutely positioned image */
       z-index: 3;
       /* Extend beta badges to at least 30% of the container's width or 112px (whichever is smaller) */
-      ${logicalCSS('min-width', `min(30%, ${euiTheme.base * 7}px)`)}
+      ${logicalCSS('min-width', `min(30%, ${getBaseValue(euiTheme.base) * 7}px)`)}
       ${logicalCSS('max-width', `calc(100% - (${padding} * 2))`)}
     `,
 

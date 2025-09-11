@@ -37,16 +37,21 @@ export interface _FontScaleOptions {
 
 export function euiFontSizeFromScale(
   scale: _EuiThemeFontScale,
-  { base, font }: UseEuiTheme['euiTheme'],
-  { unit = font.defaultUnits, customScale }: _FontScaleOptions = {}
+  euiTheme: UseEuiTheme['euiTheme'],
+  { unit = euiTheme.font.defaultUnits, customScale }: _FontScaleOptions = {}
 ) {
   if (unit === 'em') {
-    return `${font.scale[scale]}em`;
+    return `${euiTheme.font.scale[scale]}em`;
   }
 
-  let numerator = base * font.scale[scale];
-  if (customScale) numerator *= font.scale[customScale];
-  const denominator = base * font.scale[font.body.scale];
+  // Extract fontBase from base (supports both number and object formats)
+  const fontBase = typeof euiTheme.base === 'object' ? (euiTheme.base.fontBase || euiTheme.base.base) : euiTheme.base;
+  
+  let numerator = fontBase * euiTheme.font.scale[scale];
+  if (customScale) numerator *= euiTheme.font.scale[customScale];
+  // Use global base (16px) for rem denominator, not fontBase
+  const globalBase = typeof euiTheme.base === 'object' ? euiTheme.base.base : euiTheme.base;
+  const denominator = globalBase * euiTheme.font.scale[euiTheme.font.body.scale];
 
   return unit === 'px'
     ? `${numerator}px`
@@ -67,16 +72,26 @@ export function euiFontSizeFromScale(
 
 export function euiLineHeightFromBaseline(
   scale: _EuiThemeFontScale,
-  { base, font }: UseEuiTheme['euiTheme'],
-  { unit = font.defaultUnits, customScale }: _FontScaleOptions = {}
+  euiTheme: UseEuiTheme['euiTheme'],
+  { unit = euiTheme.font.defaultUnits, customScale }: _FontScaleOptions = {}
 ) {
-  const { baseline, lineHeightMultiplier } = font;
-  let numerator = base * font.scale[scale];
-  if (customScale) numerator *= font.scale[customScale];
-  const denominator = base * font.scale[font.body.scale];
+  const { baseline, lineHeightMultiplier } = euiTheme.font;
+  
+  // Extract fontBase from base (supports both number and object formats)
+  const fontBase = typeof euiTheme.base === 'object' ? (euiTheme.base.fontBase || euiTheme.base.base) : euiTheme.base;
+  
+  let numerator = fontBase * euiTheme.font.scale[scale];
+  if (customScale) numerator *= euiTheme.font.scale[customScale];
+  // Use global base (16px) for rem denominator, not fontBase
+  const globalBase = typeof euiTheme.base === 'object' ? euiTheme.base.base : euiTheme.base;
+  const denominator = globalBase * euiTheme.font.scale[euiTheme.font.body.scale];
 
+  // For dual base system (Borealis), use a higher threshold to get more sizes with full line-height
+  // For single base system (Amsterdam), use the original fontBase threshold
+  const hasFontBase = typeof euiTheme.base === 'object' && euiTheme.base.fontBase !== undefined;
+  const threshold = hasFontBase ? fontBase * 1.2 : fontBase; // 20% above fontBase for dual base, original for single base
   const _lineHeightMultiplier =
-    numerator <= base ? lineHeightMultiplier : lineHeightMultiplier * 0.833;
+    numerator <= threshold ? lineHeightMultiplier : lineHeightMultiplier * 0.833;
 
   if (unit === 'em') {
     // Even though the line-height via `em` cannot be determined against the pixel baseline grid;

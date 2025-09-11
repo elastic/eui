@@ -12,6 +12,7 @@ import {
   UseEuiTheme,
   isEuiThemeRefreshVariant,
   makeHighContrastColor,
+  getBaseValue,
 } from '../../../services';
 import {
   euiFontSize,
@@ -39,8 +40,9 @@ export const euiSuperDatePickerStyles = (euiThemeContext: UseEuiTheme) => {
 
   const forms = euiFormVariables(euiThemeContext);
 
-  const inputWidth = euiTheme.base * 30;
-  const buttonWidth = euiTheme.base * 7; // @see _button_display.styles.ts
+  const baseValue = getBaseValue(euiTheme.base);
+  const inputWidth = baseValue * 30;
+  const buttonWidth = baseValue * 7; // @see _button_display.styles.ts
   const gap = euiTheme.size.s;
 
   // Default restricted width

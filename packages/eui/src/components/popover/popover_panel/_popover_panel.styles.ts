@@ -13,7 +13,7 @@ import {
   euiShadowMedium,
 } from '@elastic/eui-theme-common';
 
-import { UseEuiTheme } from '../../../services';
+import { UseEuiTheme, getBaseValue } from '../../../services';
 import {
   euiCanAnimate,
   logicalCSS,
@@ -42,12 +42,13 @@ export const euiPopoverPanelStyles = (euiThemeContext: UseEuiTheme) => {
   } ${mathWithUnits(animationSpeed, (x) => x + 100)}`;
 
   const hasShadow = !highContrastMode;
+  const baseValue = getBaseValue(euiTheme.base);
 
   return {
     // Base
     euiPopover__panel: css`
       position: absolute;
-      ${logicalCSS('min-width', `${euiTheme.base * 7}px`)} /* 1 */
+      ${logicalCSS('min-width', `${baseValue * 7}px`)} /* 1 */
       ${logicalCSS('max-width', `calc(100vw - ${euiTheme.size.xl})`)} /* 3 */
       backface-visibility: hidden;
       pointer-events: none;

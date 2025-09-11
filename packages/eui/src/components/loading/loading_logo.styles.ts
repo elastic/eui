@@ -8,7 +8,7 @@
 
 import { css, keyframes } from '@emotion/react';
 import { _EuiThemeSize, euiCanAnimate } from '../../global_styling';
-import { UseEuiTheme } from '../../services';
+import { UseEuiTheme, getBaseValue } from '../../services';
 import { EuiLoadingLogoSize } from './loading_logo';
 
 const loadingPulsateAndFade = keyframes`
@@ -56,6 +56,7 @@ const loadingPadding: {
 };
 
 export const euiLoadingLogoStyles = ({ euiTheme }: UseEuiTheme) => {
+  const baseValue = getBaseValue(euiTheme.base);
   return {
     euiLoadingLogo: css`
       position: relative;
@@ -106,7 +107,7 @@ export const euiLoadingLogoStyles = ({ euiTheme }: UseEuiTheme) => {
 
       &::before,
       &::after {
-        block-size: ${euiTheme.base * 0.25}px; /* 1 */
+        block-size: ${baseValue * 0.25}px; /* 1 */
         inset-block-end: -${euiTheme.size.xs};
       }
     `,
@@ -119,7 +120,7 @@ export const euiLoadingLogoStyles = ({ euiTheme }: UseEuiTheme) => {
 
       &::before,
       &::after {
-        block-size: ${euiTheme.base * 0.375}px; /* 1 */
+        block-size: ${baseValue * 0.375}px; /* 1 */
         inset-block-end: -${euiTheme.size.s};
       }
     `,
@@ -132,7 +133,7 @@ export const euiLoadingLogoStyles = ({ euiTheme }: UseEuiTheme) => {
 
       &::before,
       &::after {
-        block-size: ${euiTheme.base * 0.5}px; /* 1 */
+        block-size: ${baseValue * 0.5}px; /* 1 */
         inset-block-end: -${euiTheme.size.m};
       }
     `,

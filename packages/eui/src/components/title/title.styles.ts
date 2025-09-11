@@ -37,7 +37,7 @@ export const euiTitle = (
   const { euiTheme } = euiThemeContext;
   const titleScaleToFontSizeScaleMap: {
     [size in EuiTitleSize]: _EuiThemeFontScale;
-  } = {
+  } = euiTheme.font.title.scaleMapping || {
     xxxs: 'xs',
     xxs: 's',
     xs: 'm',
@@ -47,7 +47,7 @@ export const euiTitle = (
   };
 
   // Use bold weight for smaller title sizes, semiBold for larger sizes
-  const isSmallTitle = scale === 'xxxs' || scale === 'xxs' || scale === 'xs';
+  const isSmallTitle = scale === 'xxxs' || scale === 'xxs';
   const titleWeight = isSmallTitle ? 'bold' : euiTheme.font.title.weight;
 
   return {

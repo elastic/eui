@@ -129,6 +129,16 @@ export interface _EuiThemeBody {
 }
 
 /**
+ * Text component styles
+ */
+export interface _EuiThemeText {
+  /**
+   * A sizing key from one of the font scales to set as the default size for EuiText
+   */
+  defaultSize: _EuiThemeFontScale;
+}
+
+/**
  * Title styles
  */
 
@@ -141,6 +151,18 @@ export interface _EuiThemeTitle {
    * Sets the letter-spacing specifically for title elements
    */
   letterSpacing?: number;
+  /**
+   * Maps EuiTitle sizes to font scale keys
+   */
+  scaleMapping?: {
+    [size in 'xxxs' | 'xxs' | 'xs' | 's' | 'm' | 'l']: _EuiThemeFontScale;
+  };
+  /**
+   * Maps EuiCallout sizes to EuiTitle sizes (theme-specific override)
+   */
+  calloutScaleMapping?: {
+    [size in 's' | 'm']: 'xxxs' | 'xxs' | 'xs' | 's' | 'm' | 'l';
+  };
 }
 
 /*
@@ -154,5 +176,6 @@ export type _EuiThemeFont = _EuiThemeFontBase & {
    */
   weight: _EuiThemeFontWeights;
   body: _EuiThemeBody;
+  text: _EuiThemeText;
   title: _EuiThemeTitle;
 };

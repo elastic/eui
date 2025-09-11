@@ -8,22 +8,25 @@
 
 import {
   computed,
-  sizeToPixel,
+  sizeToPixelFromTheme,
   type _EuiThemeBase,
   type _EuiThemeSizes,
 } from '@elastic/eui-theme-common';
 
-export const base: _EuiThemeBase = 16;
+export const base: _EuiThemeBase = {
+  base: 16,
+  fontBase: 14,
+};
 
 export const size: _EuiThemeSizes = {
-  xxs: computed(sizeToPixel(0.125)),
-  xs: computed(sizeToPixel(0.25)),
-  s: computed(sizeToPixel(0.5)),
-  m: computed(sizeToPixel(0.75)),
-  base: computed(sizeToPixel()),
-  l: computed(sizeToPixel(1.5)),
-  xl: computed(sizeToPixel(2)),
-  xxl: computed(sizeToPixel(2.5)),
-  xxxl: computed(sizeToPixel(3)),
-  xxxxl: computed(sizeToPixel(4)),
+  xxs: computed(sizeToPixelFromTheme(0.125)),
+  xs: computed(sizeToPixelFromTheme(0.25)),
+  s: computed(sizeToPixelFromTheme(0.5)),
+  m: computed(sizeToPixelFromTheme(0.75)),
+  base: computed(sizeToPixelFromTheme()),
+  l: computed(sizeToPixelFromTheme(1.5)),
+  xl: computed(sizeToPixelFromTheme(2)),
+  xxl: computed(sizeToPixelFromTheme(2.5)),
+  xxxl: computed(sizeToPixelFromTheme(3)),
+  xxxxl: computed(sizeToPixelFromTheme(4)),
 };
