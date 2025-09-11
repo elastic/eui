@@ -57,11 +57,13 @@ export const euiFormControlLayoutStyles = (euiThemeContext: UseEuiTheme) => {
 
   const wrapperGroupStyles = `
       > :first-child {
+        border-radius: inherit;
         ${logicalCSS('border-top-left-radius', '0')}
         ${logicalCSS('border-bottom-left-radius', '0')}
       }
 
       > :last-child {
+        border-radius: inherit;
         ${logicalCSS('border-top-right-radius', '0')}
         ${logicalCSS('border-bottom-right-radius', '0')}
       }
@@ -116,6 +118,11 @@ export const euiFormControlLayoutStyles = (euiThemeContext: UseEuiTheme) => {
         overflow: hidden; /* Keep backgrounds inside border radius */
 
         ${isRefreshVariant && groupStyles}
+
+        .euiFormControlButton {
+          border-radius: inherit;
+          box-shadow: none;
+        }
 
         /* Force the stretch of any children so they expand the full height of the control */
         > * {
