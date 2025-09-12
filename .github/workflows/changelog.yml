@@ -5,12 +5,74 @@ on:
     branches: [main]
 
 jobs:
-  # Enforces the update of a changelog file on every pull request
-  changelog:
-    if: ${{ !contains(github.event.pull_request.labels.*.name, 'skip-changelog') }}
+  # Detect which packages have been modified in the PR
+  detect-changes:
+    runs-on: ubuntu-latest
+    outputs:
+      eui-changed: ${{ steps.changes.outputs.eui }}
+      theme-borealis-changed: ${{ steps.changes.outputs.theme-borealis }}
+      theme-common-changed: ${{ steps.changes.outputs.theme-common }}
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Detect package changes
+        id: changes
+        run: |
+          # Get the list of changed files
+          changed_files=$(git diff --name-only origin/main...HEAD)
+          
+          # Check if each package has changes
+          if echo "$changed_files" | grep -q "^packages/eui/"; then
+            echo "eui=true" >> $GITHUB_OUTPUT
+          else
+            echo "eui=false" >> $GITHUB_OUTPUT
+          fi
+          
+          if echo "$changed_files" | grep -q "^packages/eui-theme-borealis/"; then
+            echo "theme-borealis=true" >> $GITHUB_OUTPUT
+          else
+            echo "theme-borealis=false" >> $GITHUB_OUTPUT
+          fi
+          
+          if echo "$changed_files" | grep -q "^packages/eui-theme-common/"; then
+            echo "theme-common=true" >> $GITHUB_OUTPUT
+          else
+            echo "theme-common=false" >> $GITHUB_OUTPUT
+          fi
+
+  # Check changelog for EUI package
+  changelog-eui:
+    needs: detect-changes
+    if: ${{ needs.detect-changes.outputs.eui-changed == 'true' && !contains(github.event.pull_request.labels.*.name, 'skip-changelog') && !contains(github.event.pull_request.labels.*.name, 'skip-changelog:eui') }}
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - uses: ./.github/actions/check-changelog
-      with:
-        pr-number: ${{ github.event.pull_request.number }}
+      - uses: actions/checkout@v2
+      - uses: ./.github/actions/check-changelog
+        with:
+          pr-number: ${{ github.event.pull_request.number }}
+          package-path: packages/eui
+
+  # Check changelog for Borealis theme package
+  changelog-theme-borealis:
+    needs: detect-changes
+    if: ${{ needs.detect-changes.outputs.theme-borealis-changed == 'true' && !contains(github.event.pull_request.labels.*.name, 'skip-changelog') && !contains(github.event.pull_request.labels.*.name, 'skip-changelog:theme-borealis') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ./.github/actions/check-changelog
+        with:
+          pr-number: ${{ github.event.pull_request.number }}
+          package-path: packages/eui-theme-borealis
+
+  # Check changelog for Common theme package
+  changelog-theme-common:
+    needs: detect-changes
+    if: ${{ needs.detect-changes.outputs.theme-common-changed == 'true' && !contains(github.event.pull_request.labels.*.name, 'skip-changelog') && !contains(github.event.pull_request.labels.*.name, 'skip-changelog:theme-common') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ./.github/actions/check-changelog
+        with:
+          pr-number: ${{ github.event.pull_request.number }}
+          package-path: packages/eui-theme-common
