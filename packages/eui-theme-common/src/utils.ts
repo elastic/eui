@@ -6,6 +6,7 @@
  * Side Public License, v 1.
  */
 
+import chroma from 'chroma-js';
 import {
   EuiThemeColorMode,
   EuiThemeColorModeInverse,
@@ -14,6 +15,7 @@ import {
   EuiThemeSystem,
   EuiThemeShape,
   EuiThemeComputed,
+  _EuiThemeShadowLayer,
   COLOR_MODES_STANDARD,
   COLOR_MODES_INVERSE,
   EuiThemeHighContrastMode,
@@ -466,3 +468,42 @@ export const getTokenName = (
 
   return `${prefix}${getCapitalized(colorName)}${_suffix}`;
 };
+
+/**
+ * Format an array of shadow "objects" into a string for CSS.
+ * The "up" direction is built by making the y offset from layers
+ * two and any subsequent layers, negative.
+ *
+ * It will add `inset` to the first layer when color mode is "DARK"
+ * and `spread` is 1, to ensure the dark mode-only floating border
+ * is rendered inside the container to match the position of the
+ * regular panel border (implemented with a pseudo element).
+ *
+ * @todo add a color space param to replace the hard-coded `hsl`
+ *
+ * @param layers
+ * @param options
+ * @param options.up - Modifies some values in order to get the "up" direction
+ * @returns - A value for the CSS `box-shadow` property
+ */
+export function formatMultipleBoxShadow(
+  layers: _EuiThemeShadowLayer[],
+  options?: {
+    direction?: 'down' | 'up';
+    color: string;
+  }
+) {
+  if (layers.length === 0) {
+    return 'none';
+  }
+
+  const { direction = 'down', color = '#000' } = options ?? {};
+  /* prettier-ignore */
+  const shadowLayers = layers.map((layer, i) => {
+    const y = (direction === 'up' && i > 0) ? -layer.y : layer.y;
+    const shadowColor = chroma(color).alpha(layer.opacity).css('hsl');
+    return `${layer.x}px ${y}px ${layer.blur}px ${layer.spread}px ${shadowColor}`;
+  });
+
+  return shadowLayers.join(', ');
+}

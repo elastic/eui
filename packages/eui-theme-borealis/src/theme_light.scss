@@ -1,8 +1,10 @@
 // color mode specific variables
 @import './variables/colors/colors_vis_light';
 @import './variables/colors/colors_light';
+@import './variables/shadows_light';
 
 
 // Global styling
 @import './variables/index';
+@import 'mixins/index';
 @import 'node_modules/@elastic/eui-theme-common/src/global_styling/index';

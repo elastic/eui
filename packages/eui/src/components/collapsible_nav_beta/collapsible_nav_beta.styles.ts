@@ -39,7 +39,7 @@ export const euiCollapsibleNavBetaStyles = (euiThemeContext: UseEuiTheme) => {
       ${logicalCSS('border-left', euiTheme.border.thin)}
     `,
     isPush: css`
-      ${euiShadowFlat(euiThemeContext)}
+      ${euiShadowFlat(euiThemeContext, { border: 'none' })}
     `,
     isPushCollapsed: css`
       ${hideScrollbars}
