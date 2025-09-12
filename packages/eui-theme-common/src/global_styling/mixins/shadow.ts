@@ -7,181 +7,176 @@
  */
 
 import type { UseEuiTheme } from '../../services/theme/types';
-import { getShadowColor } from '../functions';
-import { _EuiThemeShadowSize } from '../variables/shadow';
+import { boxShadowToFilterDropShadow } from '../functions';
+import {
+  _EuiThemeShadowHoverSize,
+  _EuiThemeShadowSize,
+} from '../variables/shadow';
+import { BorderSides, euiBorderStyles } from './borders';
 
 export interface EuiShadowOptions {
+  /** @deprecated */
   color?: string;
+  /** @default `down` */
+  direction?: 'down' | 'up';
   /**
    * Note: not supported by all shadow utilities.
    */
   property?: 'box-shadow' | 'filter';
   borderAllInHighContrastMode?: boolean;
+  border?: BorderSides | 'none';
 }
 
 /**
- * euiSlightShadow
+ * x-small shadow
  */
 export const euiShadowXSmall = (
-  { euiTheme, colorMode, highContrastMode }: UseEuiTheme,
+  euiThemeContext: UseEuiTheme,
   options?: EuiShadowOptions
 ) => {
+  const { euiTheme, highContrastMode } = euiThemeContext;
+
   if (highContrastMode) {
-    return _highContrastBorder(euiTheme, options);
+    return _highContrastBorder(euiThemeContext, options);
   }
+  const direction = options?.direction ?? 'down';
 
-  const color = options?.color || euiTheme.colors.shadow;
-
-  return `
-box-shadow:
-  0 .8px .8px ${getShadowColor(color, 0.04, colorMode)},
-  0 2.3px 2px ${getShadowColor(color, 0.03, colorMode)};
-`;
+  return _shadowStyles(euiThemeContext, euiTheme.shadows.xs[direction], {
+    border: options?.border,
+  });
 };
 
 /**
- * bottomShadowSmall
+ * small shadow
  */
 export const euiShadowSmall = (
-  { euiTheme, colorMode, highContrastMode }: UseEuiTheme,
+  euiThemeContext: UseEuiTheme,
   options?: EuiShadowOptions
 ) => {
+  const { euiTheme, highContrastMode } = euiThemeContext;
+
   if (highContrastMode) {
-    return _highContrastBorder(euiTheme, options);
+    return _highContrastBorder(euiThemeContext, options);
   }
+  const direction = options?.direction ?? 'down';
 
-  const color = options?.color || euiTheme.colors.shadow;
-
-  return `
-box-shadow:
-  0 .7px 1.4px ${getShadowColor(color, 0.07, colorMode)},
-  0 1.9px 4px ${getShadowColor(color, 0.05, colorMode)},
-  0 4.5px 10px ${getShadowColor(color, 0.05, colorMode)};
-`;
+  return _shadowStyles(euiThemeContext, euiTheme.shadows.s[direction], {
+    border: options?.border,
+  });
 };
 
 /**
- * bottomShadowMedium
+ * medium shadow
  */
 export const euiShadowMedium = (
-  { euiTheme, colorMode, highContrastMode }: UseEuiTheme,
+  euiThemeContext: UseEuiTheme,
   options?: EuiShadowOptions
 ) => {
-  if (highContrastMode) {
-    return _highContrastBorder(euiTheme, options);
-  }
+  const { euiTheme, highContrastMode } = euiThemeContext;
 
-  const color = options?.color || euiTheme.colors.shadow;
+  if (highContrastMode) {
+    return _highContrastBorder(euiThemeContext, options);
+  }
+  const direction = options?.direction ?? 'down';
+  const boxShadow = euiTheme.shadows.m[direction];
 
   if (options?.property === 'filter') {
-    // Using only one drop-shadow filter instead of multiple is more performant & prevents Safari bugs
-    return `filter: drop-shadow(0 5.7px 9px ${getShadowColor(
-      color,
-      0.2,
-      colorMode
-    )});`;
-  } else {
-    return `box-shadow:
-      0 .9px 4px ${getShadowColor(color, 0.08, colorMode)},
-      0 2.6px 8px ${getShadowColor(color, 0.06, colorMode)},
-      0 5.7px 12px ${getShadowColor(color, 0.05, colorMode)},
-      0 15px 15px ${getShadowColor(color, 0.04, colorMode)};`;
+    return boxShadow
+      ? _shadowStyles(euiThemeContext, boxShadowToFilterDropShadow(boxShadow), {
+          border: options?.border,
+          type: 'filter',
+        })
+      : '';
   }
+
+  return _shadowStyles(euiThemeContext, boxShadow, {
+    border: options?.border,
+  });
 };
 
 /**
- * bottomShadow
+ * large shadow
  */
 export const euiShadowLarge = (
-  { euiTheme, colorMode, highContrastMode }: UseEuiTheme,
+  euiThemeContext: UseEuiTheme,
   options?: EuiShadowOptions
 ) => {
+  const { euiTheme, highContrastMode } = euiThemeContext;
+
   if (highContrastMode) {
-    return _highContrastBorder(euiTheme, options);
+    return _highContrastBorder(euiThemeContext, options);
   }
+  const direction = options?.direction ?? 'down';
 
-  const color = options?.color || euiTheme.colors.shadow;
-
-  return `
-box-shadow:
-  0 1px 5px ${getShadowColor(color, 0.1, colorMode)},
-  0 3.6px 13px ${getShadowColor(color, 0.07, colorMode)},
-  0 8.4px 23px ${getShadowColor(color, 0.06, colorMode)},
-  0 23px 35px ${getShadowColor(color, 0.05, colorMode)};
-`;
+  return _shadowStyles(euiThemeContext, euiTheme.shadows.l[direction], {
+    border: options?.border,
+  });
 };
 
 /**
- * bottomShadowLarge
+ * x-large shadow
  */
 export interface EuiShadowXLarge extends EuiShadowOptions {
   reverse?: boolean;
 }
 export const euiShadowXLarge = (
-  { euiTheme, colorMode, highContrastMode }: UseEuiTheme,
+  euiThemeContext: UseEuiTheme,
   options?: EuiShadowXLarge
 ) => {
+  const { euiTheme, highContrastMode } = euiThemeContext;
+
   if (highContrastMode) {
-    return _highContrastBorder(euiTheme, options);
+    return _highContrastBorder(euiThemeContext, options);
   }
+  const direction = options?.direction ?? 'down';
 
-  const color = options?.color || euiTheme.colors.shadow;
-
-  const reverse = options?.reverse ?? false;
-
-  return `
-box-shadow:
-  0 ${reverse ? '-' : ''}2.7px 9px ${getShadowColor(color, 0.13, colorMode)},
-  0 ${reverse ? '-' : ''}9.4px 24px ${getShadowColor(color, 0.09, colorMode)},
-  0 ${reverse ? '-' : ''}21.8px 43px ${getShadowColor(color, 0.08, colorMode)};
-`;
+  return _shadowStyles(euiThemeContext, euiTheme.shadows.xl[direction], {
+    border: options?.border,
+  });
 };
 
 /**
- * slightShadowHover
+ * flat shadow
+ * @deprecated - use euiShadowHover instead
  */
 export const euiSlightShadowHover = (
-  { euiTheme, colorMode, highContrastMode }: UseEuiTheme,
+  euiThemeContext: UseEuiTheme,
   options?: EuiShadowOptions
 ) => {
+  const { euiTheme, highContrastMode } = euiThemeContext;
+
   if (highContrastMode) {
-    return _highContrastBorder(euiTheme, options);
+    return _highContrastBorder(euiThemeContext, options);
   }
+  const direction = options?.direction ?? 'down';
 
-  const color = options?.color || euiTheme.colors.shadow;
-
-  return `
-box-shadow:
-  0 1px 5px ${getShadowColor(color, 0.1, colorMode)},
-  0 3.6px 13px ${getShadowColor(color, 0.07, colorMode)},
-  0 8.4px 23px ${getShadowColor(color, 0.06, colorMode)},
-  0 23px 35px ${getShadowColor(color, 0.05, colorMode)};
-`;
+  return _shadowStyles(euiThemeContext, euiTheme.shadows.s[direction], {
+    border: options?.border,
+  });
 };
 
 /**
- * bottomShadowFlat
+ * @deprecated - use euiShadowXSmall instead
  *
+ * Remains for backwards compatibility for the Amsterdam theme.
  * Similar to shadow medium but without the bottom depth.
  * Useful for popovers that drop UP rather than DOWN.
  */
 export const euiShadowFlat = (
-  { euiTheme, colorMode, highContrastMode }: UseEuiTheme,
+  euiThemeContext: UseEuiTheme,
   options?: EuiShadowOptions
 ) => {
+  const { euiTheme, highContrastMode } = euiThemeContext;
+
   if (highContrastMode) {
-    return _highContrastBorder(euiTheme, options);
+    return _highContrastBorder(euiThemeContext, options);
   }
+  const direction = options?.direction ?? 'down';
+  const value = euiTheme.shadows.flat?.[direction];
 
-  const color = options?.color || euiTheme.colors.shadow;
-
-  return `
-box-shadow:
-  0 0 .8px ${getShadowColor(color, 0.06, colorMode)},
-  0 0 2px ${getShadowColor(color, 0.04, colorMode)},
-  0 0 5px ${getShadowColor(color, 0.04, colorMode)},
-  0 0 17px ${getShadowColor(color, 0.03, colorMode)};
-`;
+  return _shadowStyles(euiThemeContext, value, {
+    border: options?.border,
+  });
 };
 
 export const euiShadow = (
@@ -190,7 +185,7 @@ export const euiShadow = (
   options?: EuiShadowOptions
 ) => {
   if (euiThemeContext.highContrastMode) {
-    return _highContrastBorder(euiThemeContext.euiTheme, options);
+    return _highContrastBorder(euiThemeContext, options);
   }
 
   switch (size) {
@@ -204,11 +199,62 @@ export const euiShadow = (
       return euiShadowLarge(euiThemeContext, options);
     case 'xl':
       return euiShadowXLarge(euiThemeContext, options);
-
     default:
       console.warn('Please provide a valid size option to useEuiShadow');
       return '';
   }
+};
+
+/** Hover shadows */
+export const euiShadowHover = (
+  euiThemeContext: UseEuiTheme,
+  size: _EuiThemeShadowSize | 'base' = 'base',
+  options?: EuiShadowOptions
+) => {
+  if (euiThemeContext.highContrastMode) {
+    return _highContrastBorder(euiThemeContext, options);
+  }
+
+  switch (size) {
+    case 'base':
+      return _euiShadowHover(euiThemeContext, 'base', options);
+    case 'xs':
+      return _euiShadowHover(euiThemeContext, 's', options);
+    case 's':
+      return _euiShadowHover(euiThemeContext, 'm', options);
+    case 'm':
+      return _euiShadowHover(euiThemeContext, 'l', options);
+    case 'l':
+      return _euiShadowHover(euiThemeContext, 'xl', options);
+    case 'xl':
+      return _euiShadowHover(euiThemeContext, 'xxl', options);
+    default:
+      console.warn('Please provide a valid size option to useEuiShadow');
+      return '';
+  }
+};
+
+const _euiShadowHover = (
+  euiThemeContext: UseEuiTheme,
+  size: _EuiThemeShadowHoverSize | 'base' = 'l',
+  options?: EuiShadowOptions
+) => {
+  const { euiTheme, highContrastMode } = euiThemeContext;
+
+  if (highContrastMode) {
+    return _highContrastBorder(euiThemeContext, options);
+  }
+  const direction = options?.direction ?? 'down';
+  const shadow =
+    size === 'base'
+      ? euiTheme.shadows.hover.base[direction]
+      : size === 'xxl'
+      ? euiTheme.shadows.hover.xl[direction]
+      : euiTheme.shadows[size][direction];
+
+  return _shadowStyles(euiThemeContext, shadow, {
+    border: options?.border,
+  });
 };
 
 /**
@@ -218,10 +264,40 @@ export const euiShadow = (
  */
 
 const _highContrastBorder = (
-  { border }: UseEuiTheme['euiTheme'],
-  { borderAllInHighContrastMode }: EuiShadowOptions = {}
+  euiThemeContext: UseEuiTheme,
+  { border = 'all', borderAllInHighContrastMode }: EuiShadowOptions = {}
 ) => {
-  return borderAllInHighContrastMode
-    ? `border: ${border.thin};`
-    : `border-block-end: ${border.thin};`;
+  const { euiTheme } = euiThemeContext;
+
+  const hasFullBorder =
+    borderAllInHighContrastMode || (border && border !== 'none');
+
+  return hasFullBorder
+    ? `border: ${euiTheme.border.thin};`
+    : `border-block-end: ${euiTheme.border.thin};`;
+};
+
+const _shadowStyles = (
+  euiThemeContext: UseEuiTheme,
+  shadow: string | undefined,
+  options: {
+    border?: EuiShadowOptions['border'];
+    type?: 'box-shadow' | 'filter';
+  }
+) => {
+  const { euiTheme } = euiThemeContext;
+  const isRefreshVariant = euiTheme.flags.shadowVariant === 'refresh';
+  const { border = 'all', type = 'box-shadow' } = options;
+  const borderStyle =
+    euiThemeContext.colorMode === 'DARK' && border !== 'none'
+      ? `${euiBorderStyles(euiThemeContext, {
+          side: border ?? 'all',
+        })}`
+      : '';
+  const shadowStyle = type === 'filter' ? shadow : `box-shadow: ${shadow};`;
+
+  return `
+    ${shadowStyle};
+    ${isRefreshVariant && borderStyle};
+  `;
 };
