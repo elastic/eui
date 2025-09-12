@@ -8,12 +8,15 @@
 
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
+import { css } from '@emotion/react';
 
 import {
   disableStorybookControls,
   enableFunctionToggleControls,
 } from '../../../.storybook/utils';
+import { highContrastModeStyles, logicalCSS } from '../../global_styling';
 import { EuiPanel, EuiPanelProps } from './panel';
+import { EuiSpacer } from '../spacer';
 
 const meta: Meta<EuiPanelProps> = {
   title: 'Layout/EuiPanel',
@@ -70,6 +73,117 @@ export const OverlappingPanels: Story = {
             top: `-${euiTheme.size.l}`,
           })}
         />
+      </>
+    );
+  },
+};
+
+export const Kitchensink: Story = {
+  tags: ['vrt-only'],
+  parameters: {
+    controls: {
+      include: ['color', 'paddingSize'],
+    },
+  },
+  args: {
+    children: 'Panel content',
+  },
+  render: function Render(args: EuiPanelProps) {
+    return (
+      <>
+        <EuiPanel {...args} hasBorder onClick={undefined} />
+        <EuiSpacer size="s" />
+        <EuiPanel {...args} hasBorder onClick={() => {}} />
+
+        <EuiSpacer size="m" />
+
+        <EuiPanel {...args} hasShadow onClick={undefined} />
+        <EuiSpacer size="s" />
+        <EuiPanel {...args} hasShadow onClick={() => {}} />
+
+        <EuiSpacer size="m" />
+
+        <EuiPanel {...args} hasShadow onClick={undefined}>
+          <div>Content</div>
+          <EuiPanel
+            color="subdued"
+            css={(euiThemeContext) => {
+              const { euiTheme } = euiThemeContext;
+              return css`
+                margin-inline: -${euiTheme.size.base};
+                margin-block-start: ${euiTheme.size.base};
+                margin-block-end: -${euiTheme.size.base};
+                border-start-start-radius: 0;
+                border-start-end-radius: 0;
+
+                ${highContrastModeStyles(euiThemeContext, {
+                  preferred: `
+                    border: none;
+                    ${logicalCSS('border-top', `${euiTheme.border.thin}`)}
+                  `,
+                })}
+              `;
+            }}
+          >
+            Footer
+          </EuiPanel>
+        </EuiPanel>
+      </>
+    );
+  },
+};
+
+export const KitchensinkDark: Story = {
+  tags: ['vrt-only'],
+  globals: { colorMode: 'DARK' },
+  parameters: {
+    controls: {
+      include: ['color', 'paddingSize'],
+    },
+  },
+  args: {
+    children: 'Panel content',
+  },
+  render: function Render(args: EuiPanelProps) {
+    return (
+      <>
+        <EuiPanel {...args} hasBorder onClick={undefined} />
+        <EuiSpacer size="s" />
+        <EuiPanel {...args} hasBorder onClick={() => {}} />
+
+        <EuiSpacer size="m" />
+
+        <EuiPanel {...args} hasShadow onClick={undefined} />
+        <EuiSpacer size="s" />
+        <EuiPanel {...args} hasShadow onClick={() => {}} />
+
+        <EuiSpacer size="m" />
+
+        <EuiPanel {...args} hasShadow onClick={undefined}>
+          <div>Content</div>
+          <EuiPanel
+            color="subdued"
+            css={(euiThemeContext) => {
+              const { euiTheme } = euiThemeContext;
+              return css`
+                margin-inline: -${euiTheme.size.base};
+                margin-block-start: ${euiTheme.size.base};
+                margin-block-end: -${euiTheme.size.base};
+                border-start-start-radius: 0;
+                border-start-end-radius: 0;
+
+                ${highContrastModeStyles(euiThemeContext, {
+                  preferred: `
+                    border: none;
+                    ${logicalCSS('border-top', `${euiTheme.border.thin}`)}
+                  `,
+                })}
+              `;
+            }}
+          >
+            Footer
+          </EuiPanel>
+        </EuiPanel>
       </>
     );
   },

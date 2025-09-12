@@ -1,0 +1,22 @@
+---
+sidebar_position: 10
+---
+
+# Shadows
+
+EUI provides 5 shadow sizes (`xs`, `s`, `m`, `l`, `xl`) that can be applied in two directions: `down` (default) and `up`.
+
+:::warning It's not recommended to use shadow tokens directly
+Use the [`euiShadow()` utility](../../utilities/shadows/index.mdx) to apply shadows instead. This utility handles theme tokens and automatically adds required adjustments 
+for dark mode and high contrast mode that ensure expected visibility. [Read more about the shadow utils here](../../utilities/shadows/index.mdx). 
+:::
+
+import { ShadowsTable } from './shadows_table';
+
+### Direction: `down`
+
+<ShadowsTable />
+
+### Direction: `up`
+
+<ShadowsTable direction="up" />
