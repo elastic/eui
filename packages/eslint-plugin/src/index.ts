@@ -40,7 +40,7 @@ const config = {
     'sr-output-disabled-tooltip': ScreenReaderOutputDisabledTooltip,
     'prefer-eui-icon-tip': PreferEuiIconTip,
     'no-unnamed-radio-group' : NoUnnamedRadioGroup,
-    'callout-announce-on-mount': CallOutAnnounceOnMount
+    'callout-announce-on-mount': CallOutAnnounceOnMount,
     'no-unnamed-interactive-element': NoUnnamedInteractiveElement, 
   },
   configs: {
