@@ -17,81 +17,116 @@
  * under the License.
  */
 
-import dedent from 'dedent';
 import { RuleTester } from '@typescript-eslint/rule-tester';
 import { NoUnnamedInteractiveElement } from './no_unnamed_interactive_element';
 
-const ruleTester = new RuleTester({});
-// Set the parser for RuleTester
-// @ts-ignore
-ruleTester.parser = require.resolve('@typescript-eslint/parser');
+const ruleTester = new RuleTester();
+
+// Enable JSX for each snippet
+const languageOptions = {
+  parserOptions: {
+    ecmaFeatures: {
+      jsx: true,
+    },
+  },
+};
 
 ruleTester.run('NoUnnamedInteractiveElement', NoUnnamedInteractiveElement, {
   valid: [
     // Components with allowed a11y props
-    { code: '<EuiBetaBadge aria-label="Beta badge" />' },
-    { code: '<EuiButtonEmpty aria-labelledby="btnLabel" />' },
-    { code: '<EuiButtonIcon aria-label="Icon" />' },
-    { code: '<EuiComboBox label="Combo label" />' },
-    { code: '<EuiSelect aria-label="Select label" />' },
-    { code: '<EuiSelectWithWidth label="SelectWithWidth label" />' },
-    { code: '<EuiSuperSelect aria-labelledby="superLabel" />' },
-    { code: '<EuiPagination label="Pagination label" />' },
-    { code: '<EuiTreeView label="TreeView label" />' },
-    { code: '<EuiBreadcrumbs aria-label="Breadcrumbs label" />' },
+    { code: '<EuiBetaBadge aria-label="Beta badge" />', languageOptions },
+    { code: '<EuiButtonEmpty aria-labelledby="btnLabel" />', languageOptions },
+    { code: '<EuiButtonIcon aria-label="Icon" />', languageOptions },
+    { code: '<EuiComboBox aria-label="Combo label" />', languageOptions },
+    { code: '<EuiSelect aria-label="Select label" />', languageOptions },
+    {
+      code: '<EuiSelectWithWidth aria-label="SelectWithWidth label" />',
+      languageOptions,
+    },
+    {
+      code: '<EuiSuperSelect aria-labelledby="superLabel" />',
+      languageOptions,
+    },
+    {
+      code: '<EuiPagination aria-label="Pagination label" />',
+      languageOptions,
+    },
+    { code: '<EuiTreeView aria-label="TreeView label" />', languageOptions },
+    {
+      code: '<EuiBreadcrumbs aria-label="Breadcrumbs label" />',
+      languageOptions,
+    },
     // Wrapped in EuiFormRow with label
-    { code: '<EuiFormRow label="Row label"><EuiComboBox /></EuiFormRow>' },
-    { code: '<EuiFormRow label="Row label"><EuiSelect /></EuiFormRow>' },
+    {
+      code: '<EuiFormRow label="Row label"><EuiComboBox /></EuiFormRow>',
+      languageOptions,
+    },
+    {
+      code: '<EuiFormRow label="Row label"><EuiSelect /></EuiFormRow>',
+      languageOptions,
+    },
   ],
   invalid: [
     // Missing a11y prop for interactive components
     {
       code: '<EuiBetaBadge />',
+      languageOptions,
       errors: [{ messageId: 'missingA11y' }],
     },
     {
       code: '<EuiButtonEmpty />',
+      languageOptions,
       errors: [{ messageId: 'missingA11y' }],
     },
     {
       code: '<EuiButtonIcon />',
+      languageOptions,
       errors: [{ messageId: 'missingA11y' }],
     },
     {
       code: '<EuiComboBox />',
+      languageOptions,
       errors: [{ messageId: 'missingA11y' }],
     },
     {
       code: '<EuiSelect />',
+      languageOptions,
       errors: [{ messageId: 'missingA11y' }],
     },
     {
       code: '<EuiSelectWithWidth />',
+      languageOptions,
       errors: [{ messageId: 'missingA11y' }],
     },
     {
       code: '<EuiSuperSelect />',
+      languageOptions,
       errors: [{ messageId: 'missingA11y' }],
     },
     {
       code: '<EuiPagination />',
+      languageOptions,
       errors: [{ messageId: 'missingA11y' }],
     },
     {
       code: '<EuiTreeView />',
+      languageOptions,
       errors: [{ messageId: 'missingA11y' }],
     },
     {
       code: '<EuiBreadcrumbs />',
+      languageOptions,
       errors: [{ messageId: 'missingA11y' }],
     },
     // Wrapped but missing label
     {
       code: '<EuiFormRow><EuiComboBox /></EuiFormRow>',
+      languageOptions,
       errors: [{ messageId: 'missingA11y' }],
     },
     {
       code: '<EuiFormRow><EuiSelect /></EuiFormRow>',
+      languageOptions,
       errors: [{ messageId: 'missingA11y' }],
     },
   ],
