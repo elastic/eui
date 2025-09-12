@@ -4,7 +4,7 @@ sidebar_position: 6
 ---
 
 ```mdx-code-block
-import { EuiTable, EuiTableBody, EuiTableHeader, EuiTableHeaderCell, EuiTableRow, EuiTableRowCell, EuiButton, EuiButtonIcon, icon, label } from '@elastic/eui';
+import { EuiTable, EuiTableBody, EuiTableHeader, EuiTableHeaderCell, EuiTableRow, EuiTableRowCell, EuiButton, EuiButtonIcon } from '@elastic/eui';
 ```
 
 Health describes the status of an element (eg. node, environment, host) that would be typically associated with positive or negative values, while in severity indicates an increasing level of risk.
@@ -132,37 +132,37 @@ This association between levels and colors has been created to be recognised and
     <EuiTableRow>
       <EuiTableRowCell>0</EuiTableRowCell>
       <EuiTableRowCell>Unknown</EuiTableRowCell>
-      <EuiTableRowCell><EuiButtonIcon display="fill" iconType={icon} aria-label={label} color="text" /> Blue grey</EuiTableRowCell>
+      <EuiTableRowCell><EuiButtonIcon aria-label="Unknown" display="fill" color="text" /> Blue grey</EuiTableRowCell>
     </EuiTableRow>
 
     <EuiTableRow>
       <EuiTableRowCell>1</EuiTableRowCell>
       <EuiTableRowCell>Good / Success</EuiTableRowCell>
-      <EuiTableRowCell><EuiButtonIcon display="fill" iconType={icon} aria-label={label} color="success" /> Green</EuiTableRowCell>
+      <EuiTableRowCell><EuiButtonIcon aria-label="Good / Success" display="fill" color="success" /> Green</EuiTableRowCell>
     </EuiTableRow>
 
     <EuiTableRow>
       <EuiTableRowCell>2</EuiTableRowCell>
       <EuiTableRowCell>Regular / Neutral</EuiTableRowCell>
-      <EuiTableRowCell><EuiButtonIcon display="fill" iconType={icon} aria-label={label} color="neutral" /> Sky blue</EuiTableRowCell>
+      <EuiTableRowCell><EuiButtonIcon aria-label="Regular / Neutral" display="fill" color="neutral" /> Sky blue</EuiTableRowCell>
     </EuiTableRow>
 
     <EuiTableRow>
       <EuiTableRowCell>3</EuiTableRowCell>
       <EuiTableRowCell>Warning</EuiTableRowCell>
-      <EuiTableRowCell><EuiButtonIcon display="fill" iconType={icon} aria-label={label} color="warning" /> Yellow</EuiTableRowCell>
+      <EuiTableRowCell><EuiButtonIcon aria-label="Warning" display="fill" color="warning" /> Yellow</EuiTableRowCell>
     </EuiTableRow>
 
     <EuiTableRow>
       <EuiTableRowCell>4</EuiTableRowCell>
       <EuiTableRowCell>Risk</EuiTableRowCell>
-      <EuiTableRowCell><EuiButtonIcon display="fill" iconType={icon} aria-label={label} color="risk" /> Orange</EuiTableRowCell>
+      <EuiTableRowCell><EuiButtonIcon aria-label="Risk" display="fill" color="risk" /> Orange</EuiTableRowCell>
     </EuiTableRow>
 
     <EuiTableRow>
       <EuiTableRowCell>5</EuiTableRowCell>
       <EuiTableRowCell>Danger</EuiTableRowCell>
-      <EuiTableRowCell><EuiButtonIcon display="fill" iconType={icon} aria-label={label} color="danger" /> Red</EuiTableRowCell>
+      <EuiTableRowCell><EuiButtonIcon aria-label="Danger" display="fill" color="danger" /> Red</EuiTableRowCell>
     </EuiTableRow>
   </EuiTableBody>
 
