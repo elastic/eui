@@ -38,9 +38,12 @@ const _Footer = () => {
 
   return (
     <footer css={styles.root}>
-      <EuiText textAlign="center" size="s" css={styles.text}>
-        {footer?.copyright}
-      </EuiText>
+      <EuiText
+        textAlign="center"
+        size="s"
+        css={styles.text}
+        dangerouslySetInnerHTML={{ __html: footer?.copyright ?? '' }}
+      />
     </footer>
   );
 };

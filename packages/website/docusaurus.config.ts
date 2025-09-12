@@ -166,7 +166,11 @@ const config: Config = {
       ],
     },
     footer: {
-      copyright: `EUI is dual-licensed under <a href="${ELASTIC_LICENSE_URL}">Elastic License 2.0</a> and <a href="${SSPL_LICENSE_URL}">Server Side Public License, v1</a> | Crafted with ❤️ by <a href="https://elastic.co">Elastic</a>`,
+      copyright: `
+        EUI is dual-licensed under <a href="${ELASTIC_LICENSE_URL}" target="_blank" rel="noreferrer">Elastic License 2.0</a>
+        and <a href="${SSPL_LICENSE_URL}" target="_blank" rel="noreferrer">Server Side Public License, v1</a>
+        | Crafted with ❤️ by <a href="https://elastic.co" target="_blank" rel="noreferrer">Elastic</a>
+      `,
     },
     prism: {
       theme: prismThemes.github,
