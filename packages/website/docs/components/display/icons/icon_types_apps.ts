@@ -50,5 +50,6 @@ export const iconTypesApps: Array<IconType> = [
   'visualizeApp',
   'watchesApp',
   'vulnerabilityManagementApp',
+  'workflowsApp',
   'workplaceSearchApp',
 ];
