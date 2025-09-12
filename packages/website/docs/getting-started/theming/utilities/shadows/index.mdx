@@ -75,8 +75,6 @@ const Example = ({ selectedBorder }: { selectedBorder: ShadowBorderOption }) => 
   const euiThemeContext = useEuiTheme();
   const { euiTheme } = euiThemeContext;
 
-  console.log(selectedBorder)
-
   const styles = css`
     border-radius: ${euiTheme.border.radius.medium};
     ${euiShadow(euiThemeContext, 'm', { border: selectedBorder })}}

@@ -13,8 +13,6 @@ export const ShadowsTable = ({ direction = 'down' }) => {
   const { euiTheme } = useEuiTheme();
   const isAmsterdam = euiTheme.themeName === EuiThemeAmsterdam.key;
 
-  console.log(euiTheme.themeName);
-
   const items = shadowTypes.map((type) => ({
     id: type,
     token: `shadows.${type}.${direction}`,
