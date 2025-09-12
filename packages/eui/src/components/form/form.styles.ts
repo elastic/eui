@@ -25,6 +25,19 @@ import { highContrastModeStyles } from '../../global_styling/functions/high_cont
 export const euiFormMaxWidth = ({ euiTheme }: UseEuiTheme) =>
   euiTheme.components.forms.maxWidth;
 
+export const euiFormPlaceholderStyles = (
+  euiThemeContext: UseEuiTheme,
+  color?: string
+) => {
+  const form = euiFormVariables(euiThemeContext);
+  const _color = color ?? form.textColorDisabled;
+
+  return `
+    color: ${_color};
+    opacity: 1;
+  `;
+};
+
 export const euiFormVariables = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme, highContrastMode } = euiThemeContext;
   const isRefreshVariant = isEuiThemeRefreshVariant(
@@ -195,10 +208,9 @@ export const euiFormControlText = (euiThemeContext: UseEuiTheme) => {
     font-size: ${fontSize};
     color: ${form.textColor};
 
-    ${euiPlaceholderPerBrowser(`
-      color: ${form.controlPlaceholderText};
-      opacity: 1;
-    `)}
+    ${euiPlaceholderPerBrowser(
+      euiFormPlaceholderStyles(euiThemeContext, form.controlPlaceholderText)
+    )}
   `;
 };
 
@@ -422,10 +434,7 @@ export const euiFormControlDisabledStyles = (euiThemeContext: UseEuiTheme) => {
 
     ${isRefreshVariant && refreshVariantStyles}
 
-    ${euiPlaceholderPerBrowser(`
-      color: ${form.textColorDisabled};
-      opacity: 1;
-    `)}
+    ${euiPlaceholderPerBrowser(euiFormPlaceholderStyles(euiThemeContext))}
   `;
 };
 
