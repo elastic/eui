@@ -17,26 +17,14 @@
  * under the License.
  */
 
-import { type TSESTree, ESLintUtils } from '@typescript-eslint/utils';
+import {  ESLintUtils } from '@typescript-eslint/utils';
+import { isInConditionalRendering } from '../../utils/is_in_conditional_rendering';
+import { hasSpread } from '../../utils/has_spread';
 
 const CALLOUT_COMPONENT = 'EuiCallOut';
 
 export const CallOutAnnounceOnMount = ESLintUtils.RuleCreator.withoutDocs({
   create(context) {
-    function isInConditionalRendering(node: TSESTree.JSXElement): boolean {
-      let parent: TSESTree.Node | undefined = node.parent;
-      
-      while (parent) {
-        if (parent.type === 'ConditionalExpression' || 
-            parent.type === 'IfStatement' ||
-            (parent.type === 'LogicalExpression' && parent.operator === '&&')) {
-          return true;
-        }
-        parent = parent.parent;
-      }
-      return false;
-    }
-
     return {
       JSXElement(node) {
         const { openingElement } = node;
@@ -52,12 +40,10 @@ export const CallOutAnnounceOnMount = ESLintUtils.RuleCreator.withoutDocs({
           return;
         }
         if (isInConditionalRendering(node)) {
-          const hasSpread = openingElement.attributes.some(a => a.type === 'JSXSpreadAttribute');
-          
           context.report({
             node: openingElement,
             messageId: 'missingAnnounceOnMount',
-            fix: hasSpread ? undefined : (fixer) => {
+            fix: hasSpread(openingElement.attributes) ? undefined : (fixer) => {
               return fixer.insertTextAfterRange(
                 [openingElement.name.range[1], openingElement.name.range[1]], 
                 ' announceOnMount'
@@ -69,24 +55,24 @@ export const CallOutAnnounceOnMount = ESLintUtils.RuleCreator.withoutDocs({
     };
   },
   meta: {
-    type: 'suggestion',
+    type: 'problem',
     docs: {
-      description: 'Ensure EuiCallout components that are conditionally rendered have announceOnMount prop for better accessibility'
+      description: `Ensure ${CALLOUT_COMPONENT} components that are conditionally rendered have announceOnMount prop for better accessibility`
     },
     fixable: 'code',
     schema: [],
     messages: {
       missingAnnounceOnMount: [
-        'EuiCallout should have "announceOnMount" prop when conditionally rendered for better accessibility.',
+        `${CALLOUT_COMPONENT} should have \`announceOnMount\` prop when conditionally rendered for better accessibility.`,
         '\n',
-        'When EuiCallout appears dynamically (e.g., after user interaction, form validation, etc.),',
-        'screen readers may not announce its content. Adding "announceOnMount" ensures the callout',
+        `When ${CALLOUT_COMPONENT} appears dynamically (e.g., after user interaction, form validation, etc.),`,
+        'screen readers may not announce its content. Adding `announceOnMount` ensures the callout',
         'is properly announced to users with assistive technologies.',
         '\n',
         'Example:',
-        '  <EuiCallout announceOnMount title="Error" color="danger">',
+        `  <${CALLOUT_COMPONENT} announceOnMount title="Error" color="danger">`,
         '    This message will be announced when it appears',
-        '  </EuiCallout>',
+        `  </${CALLOUT_COMPONENT}>`,
       ].join('\n'),
     },
   },
