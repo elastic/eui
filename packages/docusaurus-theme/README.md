@@ -64,6 +64,44 @@ const config: Config = {
 }
 ```
 
+## Features
+
+### Right-side nav links
+
+To achieve similar right-side nav links as on the [EUI docs](https://eui.elastic.co/), you have to use the `component` property that has a value of `"changelog" | "github" | "figma"`.
+
+```ts
+themeConfig: {
+    // ...
+    navbar: {
+      // ...
+      items: [
+        // ...
+        // Use component: "changelog" | "github" | "figma"
+        {
+          href: "https://github.com/elastic/eui/tree/main/packages/eui/changelogs",
+          label: "EUI Changelog",
+          position: "right",
+          component: "changelog",
+        },
+        {
+          href: "https://github.com/elastic/eui",
+          label: "GitHub",
+          position: "right",
+          component: "github",
+        },
+        {
+          href: "https://www.figma.com/community/file/964536385682658129",
+          label: "Figma",
+          position: "right",
+          component: "figma",
+        },
+      ],
+    },
+    // ...
+}
+```
+
 ## Local development
 
 ### Prerequisites
