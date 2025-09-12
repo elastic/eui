@@ -49,9 +49,12 @@ export function euiFontSizeFromScale(
   
   let numerator = fontBase * euiTheme.font.scale[scale];
   if (customScale) numerator *= euiTheme.font.scale[customScale];
-  // Use global base (16px) for rem denominator, not fontBase
-  const globalBase = typeof euiTheme.base === 'object' ? euiTheme.base.base : euiTheme.base;
-  const denominator = globalBase * euiTheme.font.scale[euiTheme.font.body.scale];
+  
+  // For dual base system (Borealis), use fontBase for rem denominator since global HTML font-size is fontBase
+  // For single base system (Amsterdam), use globalBase for rem denominator since global HTML font-size is globalBase
+  const hasFontBase = typeof euiTheme.base === 'object' && euiTheme.base.fontBase !== undefined;
+  const remDenominator = hasFontBase ? fontBase : (typeof euiTheme.base === 'object' ? euiTheme.base.base : euiTheme.base);
+  const denominator = remDenominator * euiTheme.font.scale[euiTheme.font.body.scale];
 
   return unit === 'px'
     ? `${numerator}px`
@@ -82,13 +85,15 @@ export function euiLineHeightFromBaseline(
   
   let numerator = fontBase * euiTheme.font.scale[scale];
   if (customScale) numerator *= euiTheme.font.scale[customScale];
-  // Use global base (16px) for rem denominator, not fontBase
-  const globalBase = typeof euiTheme.base === 'object' ? euiTheme.base.base : euiTheme.base;
-  const denominator = globalBase * euiTheme.font.scale[euiTheme.font.body.scale];
+  
+  // For dual base system (Borealis), use fontBase for rem denominator since global HTML font-size is fontBase
+  // For single base system (Amsterdam), use globalBase for rem denominator since global HTML font-size is globalBase
+  const hasFontBase = typeof euiTheme.base === 'object' && euiTheme.base.fontBase !== undefined;
+  const remDenominator = hasFontBase ? fontBase : (typeof euiTheme.base === 'object' ? euiTheme.base.base : euiTheme.base);
+  const denominator = remDenominator * euiTheme.font.scale[euiTheme.font.body.scale];
 
   // For dual base system (Borealis), use a higher threshold to get more sizes with full line-height
   // For single base system (Amsterdam), use the original fontBase threshold
-  const hasFontBase = typeof euiTheme.base === 'object' && euiTheme.base.fontBase !== undefined;
   const threshold = hasFontBase ? fontBase * 1.2 : fontBase; // 20% above fontBase for dual base, original for single base
   const _lineHeightMultiplier =
     numerator <= threshold ? lineHeightMultiplier : lineHeightMultiplier * 0.833;
