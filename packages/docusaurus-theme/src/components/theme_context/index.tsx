@@ -11,6 +11,7 @@ import {
   FunctionComponent,
   PropsWithChildren,
   useContext,
+  useLayoutEffect,
   useState,
 } from 'react';
 import useIsBrowser from '@docusaurus/useIsBrowser';
@@ -26,7 +27,7 @@ import { EuiThemeBorealis } from '@elastic/eui-theme-borealis';
 
 import { EuiThemeOverrides } from './theme_overrides';
 
-export const AVAILABLE_THEMES = [
+export const AVAILABLE_THEMES: EUI_THEME[] = [
   {
     text: 'Borealis',
     value: EuiThemeBorealis.key,
@@ -39,13 +40,39 @@ export const AVAILABLE_THEMES = [
   },
 ];
 
-const EUI_COLOR_MODES = ['light', 'dark'] as EuiThemeColorMode[];
+const EUI_COLOR_MODES: EuiThemeColorMode[] = ['light', 'dark'];
+
+/**
+ * Get the system color scheme preference
+ */
+const getSystemColorMode = (): EuiThemeColorMode => {
+  if (typeof window !== 'undefined' && window.matchMedia) {
+    return window.matchMedia('(prefers-color-scheme: dark)').matches
+      ? 'dark'
+      : 'light';
+  }
+  return 'light'; // fallback for SSR
+};
+
+/**
+ * Get the initial color mode: localStorage > system preference > light
+ */
+const getInitialColorMode = (): EuiThemeColorMode => {
+  if (typeof window !== 'undefined') {
+    const storedColorMode = localStorage.getItem('colorMode');
+    if (storedColorMode === 'light' || storedColorMode === 'dark') {
+      return storedColorMode;
+    }
+    return getSystemColorMode();
+  }
+  return 'light';
+};
 
 export interface AppThemeContextData {
   colorMode: EuiThemeColorMode;
   highContrastMode: boolean | undefined;
   theme: EUI_THEME;
-  changeColorMode: (colorMode: EuiThemeColorMode) => void;
+  changeColorMode: (colorMode?: EuiThemeColorMode) => void;
   changeHighContrastMode: (highContrastMode: boolean) => void;
   changeTheme: (themeValue: string) => void;
 }
@@ -53,15 +80,17 @@ export interface AppThemeContextData {
 const defaultState: AppThemeContextData = {
   colorMode: EUI_COLOR_MODES[0] as EuiThemeColorMode,
   highContrastMode: undefined,
-  theme: AVAILABLE_THEMES[0]!,
-  changeColorMode: (colorMode: EuiThemeColorMode) => {},
-  changeHighContrastMode: (highContrastMode: boolean) => {},
-  changeTheme: (themeValue: string) => {},
+  theme: AVAILABLE_THEMES[0] as EUI_THEME,
+  changeColorMode: () => {},
+  changeHighContrastMode: () => {},
+  changeTheme: () => {},
 };
 
-/* creating a cache and passing it to EuiProvider ensures that injected
-Emotion style tags dev mode are in an expected order (global css before component css)
-This only applies for @emotion/react css styles, @emotion/css styles are separate  */
+/**
+ * Creating a cache and passing it to EuiProvider ensures that injected
+ * Emotion style tags dev mode are in an expected order (global css before component css).
+ * This only applies for @emotion/react css styles, @emotion/css styles are separate.
+ */
 const cssCache = createCache({
   key: 'website-css',
   prepend: false,
@@ -82,12 +111,10 @@ export const AppThemeProvider: FunctionComponent<PropsWithChildren> = ({
   children,
 }) => {
   const isBrowser = useIsBrowser();
+
   const [colorMode, setColorMode] = useState<EuiThemeColorMode>(() => {
     if (isBrowser) {
-      return (
-        (localStorage.getItem('colorMode') as EuiThemeColorMode) ??
-        defaultState.colorMode
-      );
+      return getInitialColorMode();
     }
 
     return defaultState.colorMode;
@@ -107,15 +134,36 @@ export const AppThemeProvider: FunctionComponent<PropsWithChildren> = ({
 
   const [theme, setTheme] = useState(defaultState.theme);
 
-  const handleChangeTheme = (themeValue: string) => {
-    const themeObj = AVAILABLE_THEMES.find((t) => t.value === themeValue);
+  useLayoutEffect(() => {
+    if (isBrowser) {
+      const initialColorMode = getInitialColorMode();
+      if (initialColorMode !== colorMode) {
+        setColorMode(initialColorMode);
+      }
+    }
+  }, [isBrowser]);
 
-    setTheme((currentTheme) => themeObj ?? currentTheme);
+  const handleChangeTheme = (themeValue: string) => {
+    const matchedTheme = AVAILABLE_THEMES.find((t) => t.value === themeValue);
+    setTheme((currentTheme) => matchedTheme ?? currentTheme);
   };
 
   const handleChangeHighContrastMode = (highContrastMode: boolean) => {
     localStorage.setItem('highContrastMode', highContrastMode.toString());
     setHighContrastMode(highContrastMode);
+  };
+
+  const handleColorMode = (targetColorMode?: EuiThemeColorMode) => {
+    // If no parameter provided, toggle (for manual toggle button)
+    // If parameter provided, set to that value (for Docusaurus sync)
+    const newColorMode =
+      targetColorMode ?? (colorMode === 'dark' ? 'light' : 'dark');
+
+    // Only update if the color mode is actually changing
+    if (newColorMode !== colorMode) {
+      localStorage.setItem('colorMode', newColorMode);
+      setColorMode(newColorMode);
+    }
   };
 
   return (
@@ -124,7 +172,7 @@ export const AppThemeProvider: FunctionComponent<PropsWithChildren> = ({
         colorMode,
         highContrastMode,
         theme,
-        changeColorMode: setColorMode,
+        changeColorMode: handleColorMode,
         changeHighContrastMode: handleChangeHighContrastMode,
         changeTheme: handleChangeTheme,
       }}

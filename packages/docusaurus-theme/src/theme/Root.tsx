@@ -13,11 +13,17 @@ import {
   useState,
 } from 'react';
 import Head from '@docusaurus/Head';
-import { Props } from '@theme/Root';
+import chartsDarkThemeUrl from '!file-loader!@elastic/charts/dist/theme_only_dark.css';
+import chartsLightThemeUrl from '!file-loader!@elastic/charts/dist/theme_only_light.css';
 import { CacheProvider, css, Global } from '@emotion/react';
+import { Props } from '@theme/Root';
 import { useEuiTheme } from '@elastic/eui';
 
-import { AppThemeProvider, cssGlobalCache } from '../components/theme_context';
+import {
+  AppThemeProvider,
+  cssGlobalCache,
+  useAppTheme,
+} from '../components/theme_context';
 import { getGlobalStyles } from './Root.styles';
 import { getResetStyles } from './reset.styles';
 import { getInfimaStyles } from './infima.styles';
@@ -31,7 +37,9 @@ const styles = {
 };
 
 const _Root: FunctionComponent<PropsWithChildren> = ({ children }) => {
+  const { colorMode } = useAppTheme();
   const [mounted, setMounted] = useState(false);
+
   const euiTheme = useEuiTheme();
   const globalStyles = getGlobalStyles(euiTheme);
   const resetStyles = getResetStyles(euiTheme);
@@ -48,6 +56,24 @@ const _Root: FunctionComponent<PropsWithChildren> = ({ children }) => {
       setMounted(true);
     }
   }, []);
+
+  // Load chart theme CSS based on color mode
+  useEffect(() => {
+    if (colorMode !== 'light' && colorMode !== 'dark') {
+      return;
+    }
+
+    const element = document.createElement('link');
+    element.rel = 'stylesheet';
+    element.href =
+      colorMode === 'light' ? chartsLightThemeUrl : chartsDarkThemeUrl;
+    element.dataset.elasticChartsTheme = 'true';
+    document.head.appendChild(element);
+
+    return () => {
+      document.head.removeChild(element);
+    };
+  }, [colorMode]);
 
   return (
     <>

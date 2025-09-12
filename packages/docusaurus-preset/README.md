@@ -146,13 +146,13 @@ In your project, install EUI dependencies:
 
 ```shell
 # npm
-npm install @elastic/eui @emotion/react @emotion/css moment
+npm install @elastic/eui @elastic/charts @emotion/react @emotion/css moment
 
 # pnpm
-pnpm add @elastic/eui @emotion/react @emotion/css moment
+pnpm add @elastic/eui @elastic/charts @emotion/react @emotion/css moment
 
 # Yarn
-yarn add @elastic/eui @emotion/react @emotion/css moment
+yarn add @elastic/eui @elastic/charts @emotion/react @emotion/css moment
 ```
 
 and add the locally published packages:
