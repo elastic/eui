@@ -17,6 +17,7 @@
  * under the License.
  */
 
+import { CallOutAnnounceOnMount } from './rules/a11y/callout_announce_on_mount';
 import { HrefOnClick } from './rules/href_or_on_click';
 import { NoRestrictedEuiImports } from './rules/no_restricted_eui_imports';
 import { NoCssColor } from './rules/no_css_color';
@@ -39,6 +40,7 @@ const config = {
     'sr-output-disabled-tooltip': ScreenReaderOutputDisabledTooltip,
     'prefer-eui-icon-tip': PreferEuiIconTip,
     'no-unnamed-radio-group' : NoUnnamedRadioGroup,
+    'callout-announce-on-mount': CallOutAnnounceOnMount,
     'no-unnamed-interactive-element': NoUnnamedInteractiveElement, 
   },
   configs: {
@@ -53,6 +55,7 @@ const config = {
         '@elastic/eui/sr-output-disabled-tooltip': 'warn',
         '@elastic/eui/prefer-eui-icon-tip': 'warn',
         '@elastic/eui/no-unnamed-radio-group': 'warn',
+        '@elastic/eui/callout-announce-on-mount': 'warn',
         '@elastic/eui/no-unnamed-interactive-element': 'warn',      
       },
     },
