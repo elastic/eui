@@ -397,17 +397,16 @@ const BasicExampleComponent = ({
           </EuiFlexGroup>
         </EuiFlexItem>
       </EuiFlexGroup>
-      {isShoppingCartOpen && (
-        <ShoppingCartFlyout
-          onClose={() => setIsShoppingCartOpen(false)}
-          onQuantityChange={(delta: number) =>
-            setItemQuantity(itemQuantity + delta)
-          }
-          itemQuantity={itemQuantity}
-          ownFocus={shoppingCartOwnFocus}
-          side={side}
-        />
-      )}
+      <ShoppingCartFlyout
+        isOpen={isShoppingCartOpen}
+        onClose={() => setIsShoppingCartOpen(false)}
+        onQuantityChange={(delta: number) =>
+          setItemQuantity(itemQuantity + delta)
+        }
+        itemQuantity={itemQuantity}
+        ownFocus={shoppingCartOwnFocus}
+        side={side}
+      />
       <ReviewOrderFlyout
         isOpen={isReviewCartOpen}
         onClose={() => setIsReviewCartOpen(false)}
