@@ -45,7 +45,7 @@ import {
 
 import { CommonProps, PropsOfElement } from '../common';
 import { EuiFocusTrap, EuiFocusTrapProps } from '../focus_trap';
-import { EuiOverlayMaskProps } from '../overlay_mask';
+import type { EuiOverlayMaskProps } from '../overlay_mask';
 import type { EuiButtonIconPropsForButton } from '../button';
 import { EuiI18n } from '../i18n';
 import { useResizeObserver } from '../observer/resize_observer';
@@ -663,11 +663,15 @@ const EuiFlyoutComponentWrapper: FunctionComponent<{
   hasOverlayMask: boolean;
   maskProps: EuiFlyoutComponentProps['maskProps'];
   isPortalled: boolean;
-}> = ({ children, isPortalled }) => {
+}> = ({ children, hasOverlayMask, isPortalled }) => {
   // TODO(tkajtoch): Add EuiOverlayMask again
 
-  if (isPortalled) {
-    return <EuiPortal>{children}</EuiPortal>;
+  if (isPortalled || hasOverlayMask) {
+    return (
+      <EuiPortal>
+        <div>{children}</div>
+      </EuiPortal>
+    );
   } else {
     return <>{children}</>;
   }
