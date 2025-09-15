@@ -79,21 +79,27 @@ export const euiTabStyles = (euiThemeContext: UseEuiTheme) => {
 export const euiTabContentStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
 
+  // Helper function to get mapped title size, with fallback to default behavior
+  const getMappedTitleSize = (size: 's' | 'm' | 'l') => {
+    return euiTheme.font.title.tabsScaleMapping?.[size] || 
+           (size === 's' ? 'xs' : size === 'm' ? 's' : 'm');
+  };
+
   return {
     euiTab__content: css`
       font-weight: ${euiTheme.font.weight[euiTheme.font.title.weight]};
     `,
-    // sizes
+    // sizes - now using theme mapping
     s: css`
-      font-size: ${euiFontSize(euiThemeContext, 'xs').fontSize};
+      font-size: ${euiFontSize(euiThemeContext, getMappedTitleSize('s')).fontSize};
       line-height: ${euiTheme.size.xl};
     `,
     m: css`
-      font-size: ${euiFontSize(euiThemeContext, 's').fontSize};
+      font-size: ${euiFontSize(euiThemeContext, getMappedTitleSize('m')).fontSize};
       line-height: ${euiTheme.size.xxl};
     `,
     l: css`
-      font-size: ${euiFontSize(euiThemeContext, 'm').fontSize};
+      font-size: ${euiFontSize(euiThemeContext, getMappedTitleSize('l')).fontSize};
       line-height: ${mathWithUnits(
         [euiTheme.size.xl, euiTheme.size.s],
         (x, y) => x + y

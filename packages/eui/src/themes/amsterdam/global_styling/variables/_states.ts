@@ -9,12 +9,12 @@
 import { computed } from '../../../../services/theme/utils';
 import { transparentize } from '../../../../services/color/manipulation';
 import { _EuiThemeFocus } from '../../../../global_styling/variables/states';
-import { sizeToPixelFromTheme } from '../../../../global_styling/functions/size';
+import { sizeToPixel } from '../../../../global_styling/functions';
 
 export const focus: _EuiThemeFocus = {
   // Focus ring
   color: 'currentColor',
-  width: computed(sizeToPixelFromTheme(0.125)),
+  width: computed((theme: any) => sizeToPixel(0.125)(theme.base)),
   // Focus background
   transparency: { LIGHT: 0.1, DARK: 0.2 },
   backgroundColor: computed(({ colors, focus }) =>

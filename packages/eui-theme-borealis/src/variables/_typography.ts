@@ -61,6 +61,12 @@ export const font: _EuiThemeFont = {
   text: {
     defaultSize: 's',
   },
+  spacer: {
+    defaultSize: 'm',
+  },
+  horizontalRule: {
+    defaultMargin: 'm',
+  },
   title: {
     weight: 'semiBold',
     letterSpacing: -0.2,
@@ -77,5 +83,10 @@ export const font: _EuiThemeFont = {
       s: 'xs',  // Callout "s" → EuiTitle "s" → 14px
       m: 's',  // Callout "m" → EuiTitle "m" → 16px
     },
+    // tabsScaleMapping: {
+    //   s: 'xs',  // Tab "s" → EuiTitle "xs" → 12px
+    //   m: 's',   // Tab "m" → EuiTitle "s" → 14px
+    //   l: 'm',   // Tab "l" → EuiTitle "m" → 16px
+    // },
   },
 };

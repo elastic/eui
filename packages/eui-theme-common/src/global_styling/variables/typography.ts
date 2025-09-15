@@ -139,6 +139,26 @@ export interface _EuiThemeText {
 }
 
 /**
+ * Spacer component styles
+ */
+export interface _EuiThemeSpacer {
+  /**
+   * A sizing key from one of the size scales to set as the default size for EuiSpacer
+   */
+  defaultSize: 'xs' | 's' | 'm' | 'l' | 'xl' | 'xxl';
+}
+
+/**
+ * HorizontalRule component styles
+ */
+export interface _EuiThemeHorizontalRule {
+  /**
+   * A margin key to set as the default margin for EuiHorizontalRule
+   */
+  defaultMargin: 'none' | 'xs' | 's' | 'm' | 'l' | 'xl' | 'xxl';
+}
+
+/**
  * Title styles
  */
 
@@ -163,6 +183,12 @@ export interface _EuiThemeTitle {
   calloutScaleMapping?: {
     [size in 's' | 'm']: 'xxxs' | 'xxs' | 'xs' | 's' | 'm' | 'l';
   };
+  /**
+   * Maps EuiTabs sizes to EuiTitle sizes (theme-specific override)
+   */
+  tabsScaleMapping?: {
+    [size in 's' | 'm' | 'l']: 'xxxs' | 'xxs' | 'xs' | 's' | 'm' | 'l';
+  };
 }
 
 /*
@@ -177,5 +203,7 @@ export type _EuiThemeFont = _EuiThemeFontBase & {
   weight: _EuiThemeFontWeights;
   body: _EuiThemeBody;
   text: _EuiThemeText;
+  spacer: _EuiThemeSpacer;
+  horizontalRule: _EuiThemeHorizontalRule;
   title: _EuiThemeTitle;
 };

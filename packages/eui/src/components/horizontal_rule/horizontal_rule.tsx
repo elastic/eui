@@ -10,7 +10,7 @@ import React, { FunctionComponent, HTMLAttributes } from 'react';
 import classNames from 'classnames';
 
 import { CommonProps } from '../common';
-import { useEuiMemoizedStyles } from '../../services';
+import { useEuiMemoizedStyles, useEuiTheme } from '../../services';
 import { euiHorizontalRuleStyles } from './horizontal_rule.styles';
 
 export const SIZES = ['full', 'half', 'quarter'] as const;
@@ -32,13 +32,15 @@ export interface EuiHorizontalRuleProps
 export const EuiHorizontalRule: FunctionComponent<EuiHorizontalRuleProps> = ({
   className,
   size = 'full',
-  margin = 'l',
+  margin,
   ...rest
 }) => {
+  const euiTheme = useEuiTheme();
+  const defaultMargin = margin ?? euiTheme.euiTheme.font.horizontalRule.defaultMargin ?? 'l';
   const classes = classNames('euiHorizontalRule', className);
 
   const styles = useEuiMemoizedStyles(euiHorizontalRuleStyles);
-  const cssStyles = [styles.euiHorizontalRule, styles[size], styles[margin]];
+  const cssStyles = [styles.euiHorizontalRule, styles[size], styles[defaultMargin]];
 
   return <hr css={cssStyles} className={classes} {...rest} />;
 };
