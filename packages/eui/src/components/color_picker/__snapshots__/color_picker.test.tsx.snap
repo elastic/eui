@@ -628,11 +628,15 @@ exports[`EuiColorPicker prepend and append 1`] = `
     <div
       class="euiFormControlLayout__prepend emotion-euiFormControlLayout__side-prepend"
     >
-      <label
-        class="euiFormLabel emotion-euiFormLabel"
+      <div
+        class="euiFormPrepend css-1civv6t-side-uncompressed"
       >
-        prepend
-      </label>
+        <label
+          class="euiFormLabel emotion-euiFormLabel"
+        >
+          prepend
+        </label>
+      </div>
     </div>
     <div
       class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup"
@@ -677,11 +681,15 @@ exports[`EuiColorPicker prepend and append 1`] = `
     <div
       class="euiFormControlLayout__append emotion-euiFormControlLayout__side-append"
     >
-      <label
-        class="euiFormLabel emotion-euiFormLabel"
+      <div
+        class="euiFormAppend css-1civv6t-side-uncompressed"
       >
-        append
-      </label>
+        <label
+          class="euiFormLabel emotion-euiFormLabel"
+        >
+          append
+        </label>
+      </div>
     </div>
   </div>
 </div>
