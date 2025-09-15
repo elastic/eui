@@ -29,7 +29,7 @@ interface EuiFormLabelCommonProps {
    * Default type is a `label` but can be changed to a `legend`
    * if using inside a `fieldset`.
    */
-  type?: 'label' | 'legend';
+  type?: 'label' | 'legend' | 'span';
 }
 
 export type _EuiFormLabelProps = {
@@ -44,9 +44,15 @@ export type _EuiFormLegendProps = {
   CommonProps &
   HTMLAttributes<HTMLLegendElement>;
 
+export type _EuiFormLabelSpanProps = {
+  type: 'span';
+} & EuiFormLabelCommonProps &
+  CommonProps &
+  HTMLAttributes<HTMLSpanElement>;
+
 export type EuiFormLabelProps = ExclusiveUnion<
-  _EuiFormLabelProps,
-  _EuiFormLegendProps
+  ExclusiveUnion<_EuiFormLabelProps, _EuiFormLegendProps>,
+  _EuiFormLabelSpanProps
 >;
 
 export const EuiFormLabel: FunctionComponent<EuiFormLabelProps> = ({
@@ -80,6 +86,16 @@ export const EuiFormLabel: FunctionComponent<EuiFormLabelProps> = ({
       >
         {children}
       </legend>
+    );
+  } else if (type === 'span') {
+    return (
+      <span
+        css={cssStyles}
+        className={classes}
+        {...(rest as HTMLAttributes<HTMLSpanElement>)}
+      >
+        {children}
+      </span>
     );
   } else {
     return (
