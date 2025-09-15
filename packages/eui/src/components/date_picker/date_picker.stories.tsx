@@ -151,6 +151,7 @@ export const Playground: Story = {
     // setting a selected date to ensure VRT does not
     // automatically updated based on the current date
     selected: moment('Tue Mar 19 2024 18:54:51 GMT+0100'),
+    id: 'foo',
   },
   render: (args) => <StatefulDatePicker {...args} />,
 };
