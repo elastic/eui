@@ -147,9 +147,13 @@ Ensure `EuiIconTip` is used rather than `<EuiToolTip><EuiIcon/></EuiToolTip>`, a
 
 Ensure that all radio input components (`EuiRadio`, `EuiRadioGroup`) have a `name` attribute. The `name` attribute is required for radio inputs to be grouped correctly, allowing users to select only one option from a set. Without a `name`, radios may not behave as expected and can cause accessibility issues for assistive technologies.
 
-### `@elastic/eui/no-unnamed-interactive-element`
-Ensure that appropriate aria-attributes are set for `EuiBetaBadge`, `EuiButtonIcon`, `EuiComboBox`, `EuiSelect`, `EuiSelectWithWidth`,`EuiSuperSelect`,`EuiPagination`, `EuiTreeView`, `EuiBreadcrumbs`. Without this rule, screen reader users lose context, keyboard navigation can be confusing.
+### `@elastic/eui/callout-announce-on-mount`
 
+Ensures that `EuiCallOut` components rendered conditionally have the `announceOnMount` prop for better accessibility. When callouts appear dynamically (e.g., after user interactions, form validation errors, or status changes), screen readers may not announce their content to users. The `announceOnMount` prop ensures these messages are properly announced to users with assistive technologies.
+
+### `@elastic/eui/no-unnamed-interactive-element`
+
+Ensure that appropriate aria-attributes are set for `EuiBetaBadge`, `EuiButtonIcon`, `EuiComboBox`, `EuiSelect`, `EuiSelectWithWidth`,`EuiSuperSelect`,`EuiPagination`, `EuiTreeView`, `EuiBreadcrumbs`. Without this rule, screen reader users lose context, keyboard navigation can be confusing.
 
 ## Testing
 
