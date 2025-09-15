@@ -1,3 +1,11 @@
+## [`v2.4.0`](https://github.com/elastic/eui/releases/v2.4.0)
+
+- Added new `callout-announce-on-mount` rule. ([#9005](https://github.com/elastic/eui/pull/9005))
+
+**Accessibility**
+
+- Added new `no-unnamed-interactive-element` rule. ([#8973](https://github.com/elastic/eui/pull/8973))
+
 ## [`v2.3.0`](https://github.com/elastic/eui/releases/v2.3.0)
 
 - Added `EuiFlyoutResizable` to `require-aria-label-for-modals` check ([#8946](https://github.com/elastic/eui/pull/8946))

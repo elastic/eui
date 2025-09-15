@@ -1,3 +1,9 @@
+## [`v106.6.0`](https://github.com/elastic/eui/releases/v106.6.0)
+
+**Accessibility**
+
+- Removed focus state styles for `iconOnClick` on `EuiBadge` to improve color contrast in dark mode ([#9004](https://github.com/elastic/eui/pull/9004))
+
 ## [`v106.5.0`](https://github.com/elastic/eui/releases/v106.5.0)
 
 - Added an optional `offset` prop to `EuiToolTip` to allow customizing the distance (in pixels) between the tooltip and its anchor. ([#8988](https://github.com/elastic/eui/pull/8988))
