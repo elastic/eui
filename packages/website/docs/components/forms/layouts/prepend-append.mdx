@@ -1,17 +1,28 @@
 ---
 sidebar_position: 6
+keywords: [EuiFormAppend, EuiFormPrepend]
 ---
 
 # Prepends and appends
 
-Most form controls accept a `prepend` and `append` prop that allows passing a single node/string or an array of nodes/strings. Strings will be converted into form labels and connected to the input via `htmlFor` for accessibility.
+Most form controls accept a `prepend` and `append` prop that allows passing a string or single node. These are great for demarcating the input's metric like "px" or "ms". 
 
-These are great for demarcating the input's metric like "px" or "ms". You can also pass buttons for input settings or additional filters. Just be sure to use `<EuiButtonEmpty size="xs" />`.
+Use the dedicated **EuiFormPrepend** and **EuiFormAppend** components to pass the content and ensure expected styling.
+Where needed, you can wrap also wrap those components with other container components like [**EuiPopover**](../../containers/popover.mdx) or [**EuiToolTip**](../../display/tooltip.mdx).
+Simple string content will automatically be wrapped into **EuiFormPrepend** or **EuiFormAppend**.
+
+You can render the `prepend` and `append` content as interactive button element by setting `element="button"` on **EuiFormPrepend** and **EuiFormAppend** and passing `onClick` as handler.
+
+:::warning `prepend` and `append` only support single interactions.
+:::
+
 
 ```tsx interactive
 import React, { useState } from 'react';
 import {
   EuiFlexGroup,
+  EuiFormAppend,
+  EuiFormPrepend,
   EuiButtonEmpty,
   EuiButtonIcon,
   EuiFieldText,
@@ -22,12 +33,22 @@ import {
   EuiSwitch,
   EuiText,
   EuiToolTip,
+  useEuiTheme,
 } from '@elastic/eui';
 
 export default () => {
   const [isCompressed, setCompressed] = useState(false);
   const [isDisabled, setDisabled] = useState(false);
   const [isReadOnly, setReadOnly] = useState(false);
+
+  const { euiTheme } = useEuiTheme();
+
+  const props = {
+    compressed: isCompressed,
+    disabled: isDisabled,
+    readOnly: isReadOnly,
+    placeholder: 'Text field'
+  }
 
   return (
     <>
@@ -48,150 +69,157 @@ export default () => {
           onChange={(e) => setReadOnly(e.target.checked)}
         />
       </EuiFlexGroup>
+      
       <EuiSpacer />
-      <EuiFieldText
-        placeholder="String & text in a tooltip"
-        prepend="String"
-        append={
-          <EuiToolTip content="content">
-            <EuiText size="s">Tooltip</EuiText>
-          </EuiToolTip>
-        }
-        compressed={isCompressed}
-        disabled={isDisabled}
-        readOnly={isReadOnly}
-        aria-label="Use aria labels when no actual label is in use"
-      />
-      <EuiSpacer />
-      <EuiFieldText
-        placeholder="XS empty button in a popover & tooltip"
-        prepend={
-          <EuiPopover
-            button={
-              <EuiButtonEmpty size="xs" iconType="arrowDown" iconSide="right">
-                Popover
-              </EuiButtonEmpty>
-            }
-            closePopover={() => {}}
-          />
-        }
-        append={
-          <EuiToolTip content="content">
-            <EuiButtonEmpty size="xs">Tooltip</EuiButtonEmpty>
-          </EuiToolTip>
-        }
-        compressed={isCompressed}
-        disabled={isDisabled}
-        readOnly={isReadOnly}
-        aria-label="Use aria labels when no actual label is in use"
-      />
-      <EuiSpacer />
-      <EuiFieldText
-        placeholder="XS empty buttons with icons"
-        prepend={
-          <EuiButtonEmpty
-            role="button"
-            size="xs"
-            iconType="arrowDown"
-            iconSide="right"
-            aria-label="Calendar dropdown"
-          >
-            <EuiIcon type="calendar" />
-          </EuiButtonEmpty>
-        }
-        append={
-          <EuiButtonEmpty size="xs" iconType="gear">
-            Tooltip
-          </EuiButtonEmpty>
-        }
-        compressed={isCompressed}
-        disabled={isDisabled}
-        readOnly={isReadOnly}
-        aria-label="Use aria labels when no actual label is in use"
-      />
-      <EuiSpacer />
-      <EuiFieldText
-        placeholder="Icon & button icon"
-        prepend={<EuiIcon type="vector" />}
-        append={<EuiButtonIcon iconType="gear" aria-label="Gear this" />}
-        compressed={isCompressed}
-        disabled={isDisabled}
-        readOnly={isReadOnly}
-        aria-label="Use aria labels when no actual label is in use"
-      />
-      <EuiSpacer />
-      <EuiFieldText
-        placeholder="Icons in buttons and popovers and tooltips"
-        prepend={[
-          <EuiIcon type="vector" />,
-          <EuiButtonIcon iconType="gear" aria-label="Gear this" />,
-        ]}
-        append={[
-          <EuiPopover
-            button={<EuiButtonIcon iconType="gear" aria-label="Gear this" />}
-            closePopover={() => {}}
-          />,
-          <EuiIconTip content="content" />,
-        ]}
-        compressed={isCompressed}
-        disabled={isDisabled}
-        readOnly={isReadOnly}
-        aria-label="Use aria labels when no actual label is in use"
-      />
-      <EuiSpacer />
-      <EuiFieldText
-        placeholder="Icon button in popover & tooltip"
-        append={
-          <EuiPopover
-            button={<EuiButtonIcon iconType="arrowDown" aria-label="Popover" />}
-            closePopover={() => {}}
-          />
-        }
-        prepend={
-          <EuiToolTip content="content">
-            <EuiButtonIcon iconType="gear" aria-label="Gear this" />
-          </EuiToolTip>
-        }
-        compressed={isCompressed}
-        disabled={isDisabled}
-        readOnly={isReadOnly}
-        aria-label="Use aria labels when no actual label is in use"
-      />
-      <EuiSpacer />
-      <EuiFieldText
-        placeholder="Icon and string & string and icon button"
-        prepend={[<EuiIcon type="vector" />, 'String']}
-        append={[
-          'String',
-          <EuiButtonIcon iconType="gear" aria-label="Gear this" />,
-        ]}
-        compressed={isCompressed}
-        disabled={isDisabled}
-        readOnly={isReadOnly}
-        aria-label="Use aria labels when no actual label is in use"
-      />
-      <EuiSpacer />
-      <EuiFieldText
-        placeholder="String and button icon in tooltip & button icon in popover and string "
-        prepend={[
-          'String',
-          <EuiToolTip content="content">
-            <EuiButtonIcon iconType="gear" aria-label="Gear this" />
-          </EuiToolTip>,
-        ]}
-        append={[
-          <EuiPopover
-            button={<EuiButtonIcon iconType="gear" aria-label="Gear this" />}
-            closePopover={() => {}}
-          />,
-          'String',
-        ]}
-        compressed={isCompressed}
-        disabled={isDisabled}
-        readOnly={isReadOnly}
-        aria-label="Use aria labels when no actual label is in use"
-      />
+
+      <EuiFlexGroup direction="column" gutterSize="m">
+        <EuiFieldText
+          {...props}
+          id="input-0"
+          prepend="String"
+          append={<EuiFormAppend label="String" iconLeft="gear" />}
+          autoFocus
+        />
+
+        <EuiFieldText
+          {...props}
+          id="input-1"
+          prepend={<EuiFormPrepend label="String" iconRight="gear" />}
+          append={
+            <EuiFormAppend
+              element="button"
+              label="String"
+              iconLeft="gear"
+              onClick={() => {}}
+            />
+          }
+        />
+
+        <EuiFieldText
+          {...props}
+          id="input-2"
+          prepend={
+            <EuiFormPrepend label="String" iconLeft="vector" iconRight="gear" />
+          }
+          append={
+            <EuiFormAppend
+              element="button"
+              label="String"
+              iconLeft="gear"
+              iconRight="vector"
+              onClick={() => {}}
+            />
+          }
+        />
+
+        <EuiFieldText
+          {...props}
+          id="input-3"
+          prepend={
+            <EuiFormPrepend label="String" iconLeft="vector" iconRight="gear">
+              <EuiNotificationBadge color="subdued">1</EuiNotificationBadge>
+            </EuiFormPrepend>
+          }
+          append={
+            <EuiFormAppend
+              element="button"
+              label="String"
+              iconLeft="gear"
+              iconRight="vector"
+              onClick={() => {}}
+            >
+              <EuiNotificationBadge>1</EuiNotificationBadge>
+            </EuiFormAppend>
+          }
+        />
+
+        <EuiFieldText
+          {...props}
+          id="input-4"
+          prepend={
+            <EuiToolTip content="content">
+              <EuiFormPrepend label="Tooltip" />
+            </EuiToolTip>
+          }
+          append={
+            <EuiToolTip content="content">
+              <EuiFormAppend
+                element="button"
+                label="Tooltip"
+                onClick={() => {}}
+              />
+            </EuiToolTip>
+          }
+        />
+
+        <EuiFieldText
+          {...props}
+          id="input-5"
+          prepend={
+            <EuiPopover
+              button={
+                 <EuiFormPrepend
+                    element="button"
+                    iconLeft="calendar"
+                    iconRight="arrowDown"
+                    onClick={() => {}}
+                  />
+              }
+              closePopover={() => {}}
+            />
+          }
+          append={
+            <EuiPopover
+              button={
+                <EuiFormAppend
+                  element="button"
+                  iconRight="arrowDown"
+                  label="Popover"
+                  onClick={() => {}}
+                />
+              }
+              closePopover={() => {}}
+            />
+          }
+        />
+
+        <EuiFieldText
+          {...props}
+          id="input-6"
+          prepend={<EuiFormPrepend iconLeft="vector" />}
+          append={
+            <EuiFormAppend
+              element="button"
+              iconLeft="gear"
+              onClick={() => {}}
+            />
+          }
+        />
+      </EuiFlexGroup>
     </>
   );
 };
 ```
+
+## Semantic label relations
+
+:::info For non-interactive `prepend` and `append` the content is rendered as `<label>` element. 
+:::
+
+HTML form elements (e.g. `<input>` or `<textarea>`) require a label for accessibility. If the `prepend` or `append` content is non-interactive, it will be rendered as a `<label>` element. 
+
+To link form components and their labels, pass `id` to **EuiFormControlLayout** or any form component and set the same id as `inputId` on the **EuiFormPrepend** or **EuiFormAppend** component.
+
+:::info
+When passing `id` to **EuiFormControlLayout** or a base, single-control EUI form component like **EuiFieldText** or **EuiFieldNumber** that renders a `EuiFormControlLayout` internally (when `controlOnly={false}`), 
+the `inputId` on **EuiFormPrepend** and **EuiFormAppend** is automatically set to the same value.
+
+If you're using both `prepend` and `append` but don't want both linked as label, use `inputId=""` on either **EuiFormPrepend** or **EuiFormAppend** to unset one of them.
+:::
+
+## Props
+
+import docgen from '@elastic/eui-docgen/dist/components/form';
+
+<PropTable definition={docgen.EuiFormPrepend} />
+<PropTable definition={docgen.EuiFormAppend} />
