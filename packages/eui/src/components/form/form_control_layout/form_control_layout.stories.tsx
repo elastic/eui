@@ -7,6 +7,7 @@
  */
 
 import React, { ChangeEvent, useState } from 'react';
+import { css } from '@emotion/react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
@@ -22,6 +23,15 @@ import { EuiText } from '../../text';
 import { EuiFormRow } from '../form_row';
 import { EuiSelectable, EuiSelectableOption } from '../../selectable';
 import { EuiNotificationBadge } from '../../badge';
+import { EuiCopy } from '../../copy';
+import { EuiFlexGroup } from '../../flex';
+import {
+  EuiDragDropContext,
+  EuiDraggable,
+  EuiDroppable,
+} from '../../drag_and_drop';
+import { EuiFormLabel } from '../form_label';
+import { EuiFilterButton } from '../../filter_group';
 
 import { EuiFieldSearch } from '../field_search';
 import {
@@ -32,6 +42,8 @@ import {
   EuiFormControlLayout,
   EuiFormControlLayoutProps,
 } from './form_control_layout';
+import { EuiFormAppend, EuiFormPrepend } from './append_prepend';
+import { UseEuiTheme } from '@elastic/eui-theme-common';
 
 const meta: Meta<EuiFormControlLayoutProps> = {
   title: 'Forms/EuiForm/EuiFormControlLayout',
@@ -81,7 +93,7 @@ export const Playground: Story = {
     const { readOnly, isDisabled, fullWidth, compressed } = args;
     const childProps = {
       readOnly,
-      isDisabled,
+      disabled: isDisabled,
       fullWidth,
       compressed,
       isInvalid: args.isInvalid,
@@ -167,8 +179,11 @@ export const FormControlButton: Story = {
   },
 };
 
-export const AppendPrepend: Story = {
+export const AppendPrepend_REVIEW_EXAMPLE: Story = {
   tags: ['vrt-only'],
+  parameters: {
+    loki: { skip: true },
+  },
   render: function Render() {
     const isDesktop = useIsWithinMinBreakpoint('xl');
     return (
@@ -325,6 +340,776 @@ export const AppendPrepend: Story = {
           fullWidth={isDesktop}
         />
       </EuiForm>
+    );
+  },
+};
+
+export const AppendPrepend: Story = {
+  tags: ['vrt-only'],
+  render: function Render(args) {
+    const isDesktop = useIsWithinMinBreakpoint('xl');
+
+    const renderContent = (compressed: boolean = false) => {
+      const idBase = `input-${compressed ? 'compressed' : ''}`;
+
+      return (
+        <EuiForm
+          fullWidth={isDesktop}
+          css={{ display: 'flex', flexDirection: 'column', gap: 10 }}
+        >
+          <EuiFieldText
+            {...args}
+            placeholder="Text field"
+            id={`${idBase}-0`}
+            compressed={compressed ?? args.compressed}
+            prepend="String"
+            append={<EuiFormAppend label="String" iconLeft="gear" inputId="" />}
+            autoFocus
+          />
+
+          <EuiFieldText
+            {...args}
+            placeholder="Text field"
+            id={`${idBase}-1`}
+            compressed={compressed ?? args.compressed}
+            prepend={<EuiFormPrepend label="String" iconRight="gear" />}
+            append={
+              <EuiFormAppend
+                element="button"
+                label="String"
+                iconLeft="gear"
+                onClick={action('onClick')}
+              />
+            }
+          />
+
+          <EuiFieldText
+            {...args}
+            placeholder="Text field"
+            id={`${idBase}-2`}
+            compressed={compressed ?? args.compressed}
+            prepend={
+              <EuiFormPrepend
+                label="String"
+                iconLeft="vector"
+                iconRight="gear"
+              />
+            }
+            append={
+              <EuiFormAppend
+                element="button"
+                label="String"
+                iconLeft="gear"
+                iconRight="vector"
+                onClick={action('onClick')}
+              />
+            }
+          />
+
+          <EuiFieldText
+            {...args}
+            placeholder="Text field"
+            id={`${idBase}-3`}
+            compressed={compressed ?? args.compressed}
+            prepend={
+              <EuiFormPrepend label="String" iconLeft="vector" iconRight="gear">
+                <EuiNotificationBadge color="subdued">1</EuiNotificationBadge>
+              </EuiFormPrepend>
+            }
+            append={
+              <EuiFormAppend
+                element="button"
+                label="String"
+                iconLeft="gear"
+                iconRight="vector"
+                onClick={action('onClick')}
+              >
+                <EuiNotificationBadge>1</EuiNotificationBadge>
+              </EuiFormAppend>
+            }
+          />
+
+          <EuiFieldText
+            {...args}
+            placeholder="Text field"
+            id={`${idBase}-4`}
+            compressed={compressed ?? args.compressed}
+            prepend={
+              <EuiToolTip content="Tooltip content">
+                <EuiFormPrepend label="Tooltip" />
+              </EuiToolTip>
+            }
+            append={
+              <EuiToolTip content="content">
+                <EuiFormAppend
+                  element="button"
+                  label="Tooltip"
+                  onClick={action('onClick')}
+                />
+              </EuiToolTip>
+            }
+          />
+
+          <EuiFieldText
+            {...args}
+            placeholder="Text field"
+            id={`${idBase}-5`}
+            compressed={compressed ?? args.compressed}
+            prepend={
+              <EuiFormPrepend
+                element="button"
+                iconLeft="calendar"
+                iconRight="arrowDown"
+                onClick={action('onClick')}
+              />
+            }
+            append={
+              <EuiPopover
+                button={
+                  <EuiFormAppend
+                    element="button"
+                    iconRight="arrowDown"
+                    label="Popover"
+                    onClick={action('onClick')}
+                  />
+                }
+              />
+            }
+          />
+
+          <EuiFieldText
+            {...args}
+            placeholder="Text field"
+            id={`${idBase}-6`}
+            compressed={compressed ?? args.compressed}
+            prepend={<EuiFormPrepend iconLeft="vector" />}
+            append={
+              <EuiFormAppend
+                element="button"
+                iconLeft="gear"
+                onClick={action('onClick')}
+              />
+            }
+          />
+
+          <EuiFieldText
+            {...args}
+            disabled={true}
+            placeholder="Disabled text field"
+            id={`${idBase}-7`}
+            compressed={compressed ?? args.compressed}
+            prepend="String"
+            append={
+              <EuiFormAppend
+                element="button"
+                iconLeft="gear"
+                onClick={action('onClick')}
+              />
+            }
+          />
+          <EuiFieldText
+            {...args}
+            readOnly={true}
+            placeholder="ReadOnly text field"
+            compressed={compressed ?? args.compressed}
+            id={`${idBase}-8`}
+            prepend={
+              <EuiFormPrepend
+                element="button"
+                iconLeft="gear"
+                onClick={action('onClick')}
+              />
+            }
+            append="String"
+          />
+        </EuiForm>
+      );
+    };
+
+    return (
+      <EuiFlexGroup>
+        {renderContent(false)}
+        {renderContent(true)}
+      </EuiFlexGroup>
+    );
+  },
+};
+
+export const Kitchensink: Story = {
+  tags: ['vrt-only'],
+  parameters: {
+    codeSnippet: {
+      skip: true,
+    },
+  },
+  render: function Render(args) {
+    const { readOnly, isDisabled, fullWidth, compressed } = args;
+    const isDesktop = useIsWithinMinBreakpoint('xl');
+
+    const [isPopoverOpenA, setPopoverOpenA] = useState(false);
+    const [isPopoverOpenB, setPopoverOpenB] = useState(false);
+
+    const formStyles = ({ euiTheme }: UseEuiTheme) => css`
+      display: flex;
+      flex-direction: column;
+      gap: ${euiTheme.size.m};
+    `;
+
+    const childProps = {
+      readOnly,
+      disabled: isDisabled,
+      fullWidth,
+      compressed,
+      isInvalid: args.isInvalid,
+    };
+
+    return (
+      <EuiFlexGroup>
+        <EuiForm fullWidth={isDesktop} css={formStyles}>
+          <EuiText size="s">
+            <p>Styled wrapper API</p>
+          </EuiText>
+
+          <EuiFieldText
+            {...childProps}
+            id="textField-0"
+            placeholder="Text field"
+            append="Appended"
+            prepend="Prepended"
+            onClick={action('onClick')}
+          />
+
+          <EuiFieldText
+            {...childProps}
+            id="textField-1"
+            placeholder="Text field"
+            prepend={
+              <EuiFormPrepend
+                inputId="textField-1"
+                label="Prepended"
+                iconLeft="faceHappy"
+                iconRight="faceSad"
+                className="foobar"
+              >
+                <EuiNotificationBadge color="subdued">1</EuiNotificationBadge>
+              </EuiFormPrepend>
+            }
+          />
+
+          <EuiFieldText
+            {...childProps}
+            placeholder="Text field"
+            prepend={<EuiFormPrepend iconLeft="vector" />}
+            append={
+              <EuiToolTip content="content">
+                <EuiFormAppend label="Tooltip" />
+              </EuiToolTip>
+            }
+          />
+
+          <EuiFieldText
+            {...childProps}
+            id="textField-2"
+            placeholder="Text field"
+            append={
+              <EuiFormAppend
+                label="Appended"
+                iconLeft="faceHappy"
+                iconRight="faceSad"
+                element="button"
+                onClick={action('onClick')}
+              >
+                <EuiNotificationBadge color="subdued">1</EuiNotificationBadge>
+              </EuiFormAppend>
+            }
+          />
+
+          <EuiFieldText
+            {...childProps}
+            id="textField-3"
+            placeholder="Text field"
+            append={
+              <EuiCopy textToCopy="meow meow">
+                {(copy) => (
+                  <EuiFormAppend
+                    iconRight="copy"
+                    label="Copy"
+                    element="button"
+                    onClick={copy}
+                  />
+                )}
+              </EuiCopy>
+            }
+          />
+
+          <EuiFieldText
+            {...childProps}
+            id="textField-4"
+            placeholder="Text field"
+            prepend={
+              <EuiPopover
+                isOpen={isPopoverOpenA}
+                closePopover={() => setPopoverOpenA(false)}
+                button={
+                  <EuiFormPrepend
+                    iconLeft="calendar"
+                    iconRight="arrowDown"
+                    element="button"
+                    onClick={() => setPopoverOpenA(!isPopoverOpenA)}
+                  />
+                }
+              >
+                Popover content
+              </EuiPopover>
+            }
+            append={
+              <EuiToolTip content="Tooltip content" display="block">
+                <EuiFormAppend
+                  label="Tooltip"
+                  element="button"
+                  onClick={action('onClick')}
+                />
+              </EuiToolTip>
+            }
+          />
+
+          <EuiFieldText
+            {...childProps}
+            placeholder="Text field"
+            id="textField-5"
+            append={
+              <EuiPopover
+                isOpen={isPopoverOpenA}
+                button={
+                  <EuiFormAppend
+                    element="button"
+                    iconLeft="filter"
+                    onClick={action('onClick')}
+                  >
+                    <EuiNotificationBadge color="subdued">
+                      1
+                    </EuiNotificationBadge>
+                  </EuiFormAppend>
+                }
+                closePopover={() => setPopoverOpenA(false)}
+              />
+            }
+          />
+
+          <EuiFieldText
+            {...childProps}
+            id="textField-6"
+            placeholder="Text field"
+            append={
+              <EuiFormAppend
+                iconLeft="faceHappy"
+                element="button"
+                onClick={action('onClick')}
+              />
+            }
+          />
+
+          <EuiFieldText
+            {...childProps}
+            id="textField-7"
+            placeholder="Text field"
+            prepend={
+              <EuiFormPrepend
+                label="String"
+                inputId="textField-7"
+                iconRight="gear"
+              />
+            }
+            append={
+              <EuiFormAppend
+                label="String"
+                iconLeft="gear"
+                element="button"
+                onClick={action('onClick')}
+              />
+            }
+          />
+
+          {/* Drag examples */}
+
+          <EuiText size="s">
+            <p>Drag examples</p>
+          </EuiText>
+
+          <EuiDragDropContext onDragEnd={() => {}}>
+            <EuiDroppable droppableId="droppableArea">
+              <EuiDraggable
+                index={0}
+                draggableId="draggable-item-1"
+                customDragHandle="custom"
+              >
+                {(provided) => (
+                  <EuiFieldText
+                    {...childProps}
+                    id="textField-8"
+                    placeholder="Text field"
+                    prepend={
+                      <EuiFormPrepend
+                        label="String"
+                        iconLeft="grabHorizontal"
+                        inputId="textField-9"
+                        aria-label="Drag handle"
+                        {...provided.dragHandleProps}
+                      />
+                    }
+                  />
+                )}
+              </EuiDraggable>
+            </EuiDroppable>
+          </EuiDragDropContext>
+
+          <EuiText size="xs">
+            <p>With custom styles (reduce spacing and hover styles)</p>
+          </EuiText>
+
+          <EuiDragDropContext onDragEnd={() => {}}>
+            <EuiDroppable droppableId="droppableArea">
+              <EuiDraggable
+                index={0}
+                draggableId="draggable-item-1"
+                customDragHandle="custom"
+              >
+                {(provided) => (
+                  <div
+                    css={({ euiTheme }) => css`
+                      .euiFormControlLayout__prepend {
+                        &:is(:hover, :active) {
+                          &::before {
+                            content: '';
+                            position: absolute;
+                            inset: 0;
+                            background-color: ${euiTheme.colors
+                              .backgroundBaseInteractiveHover};
+                          }
+
+                          .euiFormAppendPrepend__dragHandle {
+                            color: ${euiTheme.colors.textParagraph};
+                          }
+                        }
+                      }
+                    `}
+                  >
+                    <EuiFieldText
+                      {...childProps}
+                      id="textField-9"
+                      placeholder="Text field"
+                      prepend={
+                        <EuiFlexGroup gutterSize="none" alignItems="center">
+                          <button
+                            className="euiFormAppendPrepend__dragHandle"
+                            {...provided.dragHandleProps}
+                            aria-label="Drag handle"
+                            css={({ euiTheme }) => css`
+                              display: flex;
+                              align-items: center;
+                              justify-content: center;
+                              inline-size: ${euiTheme.size.l};
+                              block-size: ${euiTheme.size.l};
+                              z-index: 1;
+                              /* offsets default content padding */
+                              margin-inline-end: -${euiTheme.size.base};
+                              color: ${euiTheme.colors.textDisabled};
+                            `}
+                          >
+                            <EuiIcon type="grabHorizontal" />
+                          </button>
+
+                          <EuiToolTip
+                            content="String"
+                            anchorProps={{
+                              css: css`
+                                display: flex;
+                              `,
+                            }}
+                          >
+                            <EuiFormPrepend
+                              label="String"
+                              inputId="textField-9"
+                            />
+                          </EuiToolTip>
+                        </EuiFlexGroup>
+                      }
+                    />
+                  </div>
+                )}
+              </EuiDraggable>
+            </EuiDroppable>
+          </EuiDragDropContext>
+        </EuiForm>
+
+        {/* split here */}
+
+        <EuiForm fullWidth={isDesktop} css={formStyles}>
+          <EuiText size="s">
+            <p>Custom content API</p>
+          </EuiText>
+
+          <EuiFieldText
+            {...childProps}
+            id="textField-100"
+            placeholder="Text field"
+            append="Appended"
+            prepend="Prepended"
+          />
+
+          <EuiFieldText
+            {...childProps}
+            id="textField-101"
+            placeholder="Text field"
+            prepend={[
+              <EuiIcon type="faceHappy" />,
+              'Prepended',
+              <EuiIcon type="faceSad" />,
+              <EuiNotificationBadge color="subdued">1</EuiNotificationBadge>,
+            ]}
+          />
+
+          <EuiFieldText
+            {...childProps}
+            id="textField-102"
+            placeholder="Text field"
+            prepend={<EuiIcon type="vector" />}
+            append={
+              <EuiToolTip content="content">
+                <EuiText size="s">Tooltip</EuiText>
+              </EuiToolTip>
+            }
+          />
+
+          <EuiFieldText
+            {...childProps}
+            placeholder="Text field"
+            id="textField-103"
+            append={
+              <EuiButtonEmpty
+                size="xs"
+                iconSide="left"
+                iconType="faceHappy"
+                onClick={action('onClick')}
+              >
+                <EuiFlexGroup gutterSize="s" alignItems="center">
+                  Appended
+                  <EuiIcon type="faceSad" size="s" />
+                  <EuiNotificationBadge color="subdued">1</EuiNotificationBadge>
+                </EuiFlexGroup>
+              </EuiButtonEmpty>
+            }
+          />
+
+          <EuiFieldText
+            {...childProps}
+            placeholder="Text field"
+            id="textField-104"
+            append={
+              <EuiCopy textToCopy="meow meow">
+                {(copy) => (
+                  <EuiButtonEmpty
+                    iconType="copy"
+                    size="xs"
+                    iconSide="right"
+                    onClick={copy}
+                  >
+                    Copy
+                  </EuiButtonEmpty>
+                )}
+              </EuiCopy>
+            }
+          />
+
+          <EuiFieldText
+            {...childProps}
+            placeholder="Text field"
+            id="textField-105"
+            prepend={
+              <EuiPopover
+                isOpen={isPopoverOpenB}
+                button={
+                  <EuiButtonEmpty
+                    size="xs"
+                    iconType="arrowDown"
+                    iconSide="right"
+                    onClick={() => setPopoverOpenB(!isPopoverOpenB)}
+                  >
+                    <EuiIcon type="calendar" />
+                  </EuiButtonEmpty>
+                }
+                closePopover={() => setPopoverOpenB(false)}
+              />
+            }
+            append={
+              <EuiToolTip content="content">
+                <EuiButtonEmpty size="xs">Tooltip</EuiButtonEmpty>
+              </EuiToolTip>
+            }
+          />
+
+          <EuiFieldText
+            {...childProps}
+            placeholder="Text field"
+            id="textField-106"
+            append={
+              <EuiPopover
+                isOpen={isPopoverOpenB}
+                button={
+                  <EuiFilterButton
+                    numActiveFilters={1}
+                    onClick={() => setPopoverOpenB(!isPopoverOpenB)}
+                  >
+                    <EuiIcon type="filter" />
+                  </EuiFilterButton>
+                }
+                closePopover={() => setPopoverOpenB(false)}
+              />
+            }
+          />
+
+          <EuiFieldText
+            {...childProps}
+            id="textField-107"
+            placeholder="Text field"
+            append={<EuiButtonIcon iconType="faceHappy" />}
+          />
+
+          <EuiFieldText
+            {...childProps}
+            id="textField-108"
+            placeholder="Text field"
+            prepend={[
+              'String',
+              <EuiToolTip content="content">
+                <EuiButtonIcon iconType="gear" aria-label="Gear this" />
+              </EuiToolTip>,
+            ]}
+            append={[
+              <EuiPopover
+                button={
+                  <EuiButtonIcon iconType="gear" aria-label="Gear this" />
+                }
+                closePopover={() => {}}
+              />,
+              'String',
+            ]}
+          />
+
+          {/* Drag examples */}
+
+          <EuiText size="s">
+            <p>Drag examples</p>
+          </EuiText>
+
+          <EuiDragDropContext onDragEnd={() => {}}>
+            <EuiDroppable droppableId="droppableArea">
+              <EuiDraggable
+                index={0}
+                draggableId="draggable-item-1"
+                customDragHandle="custom"
+              >
+                {(provided) => (
+                  <EuiFieldText
+                    {...childProps}
+                    id="textField-109"
+                    placeholder="Text field"
+                    prepend={
+                      <EuiFlexGroup gutterSize="none">
+                        <button
+                          {...provided.dragHandleProps}
+                          aria-label="Drag handle"
+                        >
+                          <EuiIcon type="grabHorizontal" />
+                        </button>
+                        <EuiFormLabel htmlFor="textField-109">
+                          String
+                        </EuiFormLabel>
+                      </EuiFlexGroup>
+                    }
+                  />
+                )}
+              </EuiDraggable>
+            </EuiDroppable>
+          </EuiDragDropContext>
+
+          <EuiText size="xs">
+            <p>With custom styles (reduce spacing and hover styles)</p>
+          </EuiText>
+
+          <EuiDragDropContext onDragEnd={() => {}}>
+            <EuiDroppable droppableId="droppableArea">
+              <EuiDraggable
+                index={0}
+                draggableId="draggable-item-1"
+                customDragHandle="custom"
+              >
+                {(provided) => (
+                  <div
+                    css={({ euiTheme }) => css`
+                      .euiFormControlLayout__prepend {
+                        &:is(:hover, :active) {
+                          &::before {
+                            content: '';
+                            position: absolute;
+                            inset: 0;
+                            background-color: ${euiTheme.colors
+                              .backgroundBaseInteractiveHover};
+                          }
+
+                          .euiFormAppendPrepend__dragHandle {
+                            color: ${euiTheme.colors.textParagraph};
+                          }
+                        }
+                      }
+                    `}
+                  >
+                    <EuiFieldText
+                      {...childProps}
+                      id="textField-11"
+                      placeholder="Text field"
+                      prepend={
+                        <EuiFlexGroup gutterSize="none" alignItems="center">
+                          <button
+                            className="euiFormAppendPrepend__dragHandle"
+                            {...provided.dragHandleProps}
+                            aria-label="Drag handle"
+                            css={({ euiTheme }) => css`
+                              display: flex;
+                              align-items: center;
+                              justify-content: center;
+                              inline-size: ${euiTheme.size.l};
+                              block-size: ${euiTheme.size.l};
+                              /* offsets default content padding */
+                              margin-inline-start: -${euiTheme.size.m};
+                              margin-inline-end: -${euiTheme.size.xs};
+                              color: ${euiTheme.colors.textDisabled};
+                            `}
+                          >
+                            <EuiIcon type="grabHorizontal" />
+                          </button>
+                          <EuiToolTip
+                            content="String"
+                            anchorProps={{
+                              css: css`
+                                display: flex;
+                              `,
+                            }}
+                          >
+                            <EuiFormLabel htmlFor="textField-11">
+                              String
+                            </EuiFormLabel>
+                          </EuiToolTip>
+                        </EuiFlexGroup>
+                      }
+                    />
+                  </div>
+                )}
+              </EuiDraggable>
+            </EuiDroppable>
+          </EuiDragDropContext>
+        </EuiForm>
+      </EuiFlexGroup>
     );
   },
 };
