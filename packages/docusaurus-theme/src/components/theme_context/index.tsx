@@ -40,45 +40,32 @@ export const AVAILABLE_THEMES: EUI_THEME[] = [
   },
 ];
 
-const EUI_COLOR_MODES: EuiThemeColorMode[] = ['light', 'dark'];
+const EUI_COLOR_MODES = ['light', 'dark'] as const;
 
 /**
- * Get the system color scheme preference
- */
-const getSystemColorMode = (): EuiThemeColorMode => {
-  if (typeof window !== 'undefined' && window.matchMedia) {
-    return window.matchMedia('(prefers-color-scheme: dark)').matches
-      ? 'dark'
-      : 'light';
-  }
-  return 'light'; // fallback for SSR
-};
-
-/**
- * Get the initial color mode: localStorage > system preference > light
+ * Get the initial color mode: localStorage | light
  */
 const getInitialColorMode = (): EuiThemeColorMode => {
-  if (typeof window !== 'undefined') {
-    const storedColorMode = localStorage.getItem('colorMode');
-    if (storedColorMode === 'light' || storedColorMode === 'dark') {
-      return storedColorMode;
-    }
-    return getSystemColorMode();
+  const storedColorMode = localStorage.getItem('colorMode');
+
+  if (storedColorMode === 'light' || storedColorMode === 'dark') {
+    return storedColorMode;
+  } else {
+    return defaultState.colorMode;
   }
-  return 'light';
 };
 
 export interface AppThemeContextData {
   colorMode: EuiThemeColorMode;
   highContrastMode: boolean | undefined;
   theme: EUI_THEME;
-  changeColorMode: (colorMode?: EuiThemeColorMode) => void;
+  changeColorMode: (colorMode: EuiThemeColorMode) => void;
   changeHighContrastMode: (highContrastMode: boolean) => void;
   changeTheme: (themeValue: string) => void;
 }
 
 const defaultState: AppThemeContextData = {
-  colorMode: EUI_COLOR_MODES[0] as EuiThemeColorMode,
+  colorMode: EUI_COLOR_MODES[0],
   highContrastMode: undefined,
   theme: AVAILABLE_THEMES[0] as EUI_THEME,
   changeColorMode: () => {},
@@ -113,10 +100,7 @@ export const AppThemeProvider: FunctionComponent<PropsWithChildren> = ({
   const isBrowser = useIsBrowser();
 
   const [colorMode, setColorMode] = useState<EuiThemeColorMode>(() => {
-    if (isBrowser) {
-      return getInitialColorMode();
-    }
-
+    if (isBrowser) return getInitialColorMode();
     return defaultState.colorMode;
   });
 
@@ -134,15 +118,6 @@ export const AppThemeProvider: FunctionComponent<PropsWithChildren> = ({
 
   const [theme, setTheme] = useState(defaultState.theme);
 
-  useLayoutEffect(() => {
-    if (isBrowser) {
-      const initialColorMode = getInitialColorMode();
-      if (initialColorMode !== colorMode) {
-        setColorMode(initialColorMode);
-      }
-    }
-  }, [isBrowser]);
-
   const handleChangeTheme = (themeValue: string) => {
     const matchedTheme = AVAILABLE_THEMES.find((t) => t.value === themeValue);
     setTheme((currentTheme) => matchedTheme ?? currentTheme);
@@ -153,17 +128,9 @@ export const AppThemeProvider: FunctionComponent<PropsWithChildren> = ({
     setHighContrastMode(highContrastMode);
   };
 
-  const handleColorMode = (targetColorMode?: EuiThemeColorMode) => {
-    // If no parameter provided, toggle (for manual toggle button)
-    // If parameter provided, set to that value (for Docusaurus sync)
-    const newColorMode =
-      targetColorMode ?? (colorMode === 'dark' ? 'light' : 'dark');
-
-    // Only update if the color mode is actually changing
-    if (newColorMode !== colorMode) {
-      localStorage.setItem('colorMode', newColorMode);
-      setColorMode(newColorMode);
-    }
+  const handleColorMode = (colorMode: EuiThemeColorMode) => {
+    localStorage.setItem('colorMode', colorMode);
+    setColorMode(colorMode);
   };
 
   return (

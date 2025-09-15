@@ -29,10 +29,7 @@ function ColorModeToggle({
   const { colorMode, changeColorMode } = useContext(AppThemeContext);
 
   useEffect(() => {
-    // Only sync if Docusaurus has a valid color mode value and it differs from EUI theme
-    if ((value === 'light' || value === 'dark') && value !== colorMode) {
-      changeColorMode(value);
-    }
+    changeColorMode(value);
   }, [value, colorMode, changeColorMode]);
 
   const handleOnChange = (colorMode: EuiThemeColorMode) => {
