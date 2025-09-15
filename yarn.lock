@@ -7094,6 +7094,7 @@ __metadata:
   resolution: "@elastic/eui-docusaurus-preset@workspace:packages/docusaurus-preset"
   dependencies:
     "@docusaurus/types": "npm:^3.7.0"
+    "@elastic/eui-docusaurus-theme": "workspace:^"
     typescript: "npm:~5.5.4"
   peerDependencies:
     react: ^18.0.0 || ^19.0.0
