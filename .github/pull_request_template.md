@@ -14,7 +14,9 @@ Please explain how you've ensured this change is accessible. What steps did you 
 
 ## Changelog context (Required if changelog included)
 
+<!--
 If this PR is going into a release and has a changelog entry, we need to have the following context to help understand what has changed and why.
+-->
 
 ### Why are we making this change? <a href="#user-content-reason" id="reason">#</a>
 
@@ -40,7 +42,6 @@ What changed in the public API that users should be aware of?
 
 Ex.:
 - EuiModal - added 'focusTrapProps' prop
-- EuiComboBox - 
 - EuiLiveAnnouncer - New component (in beta)
 - EuiFlyout - new global css variables: --euiPushFlyoutOffsetInlineEnd and --euiPushFlyoutOffsetInlineStart
 - Color Tokens - added colors.borderInteractiveFormsHoverPlain
@@ -64,12 +65,11 @@ What has changed visually that users should be aware of?
 Ex.
 - EuiDataGrid - Hover colors now darker yellow when stripes={true}
 - "This PR has no visual changes that users should be aware of"
-
 -->
 
 ### Doc updates ([How to contribute docs](https://github.com/elastic/eui/blob/main/wiki/contributing-to-eui/documenting)) <a href="#user-content-docs" id="docs">#</a>
 <!--
-Most changes to EUI require updates to docs to reflect the changes. Pick and fill out the most relevant option.
+Most changes to EUI require updates to docs to reflect the changes. Pick most relevant option:
 -->
 
 - [ ] Doc updates were made and the production link to them will be here:  `{Provide a link}`
@@ -87,7 +87,6 @@ The EUI Figma library must be kept up to date with the JS library. Pick and fill
 - [ ] This behavior does not need to be reflected in Figma. The most relevant Figma file is here: `{Provide a link}`
 
 (Figma issues can be filed : [here](https://github.com/elastic/platform-ux-team/issues/new/choose) _(This is an internal repo, if you are external to Elastic, ask a maintainer to submit this request)_
-)
 
 ### Screenshots <a href="#user-content-screenshots" id="screenshots">#</a>
 <!--
@@ -116,11 +115,20 @@ Pick one of the following options:
 - [ ] 🔴 This is a breaking change. I've added the `breaking change` label to this issue and the migration instructions are as follows:
   
   (`<provide migration instructions here>`)
+
 - [ ] 🟡 This change is not technically breaking, but could break tests, affect code that applies custom css, or requies extra testing or attention.
 
   (`<Explain what users should be aware of or what to test>`)
 
 - [ ] 🟢 No impact to existing usage
+
+  (`<Explain why there is no impact users should be aware of>`)
+
+#### Scope of impact in Elastic products:
+<!--
+ - There are 344 references to `euiColorVis` colors in Kibana.
+ - There are 35 references to `euiColorVis` colors in Cloud UI.
+-->
 
 ### Rollout / adoption <a href="#user-content-rollout" id="rollout">#</a>
 <!--
