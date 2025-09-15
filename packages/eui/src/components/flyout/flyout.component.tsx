@@ -257,7 +257,7 @@ export const EuiFlyoutComponent = forwardRef(
       resizable = false,
       minWidth,
       onResize,
-      isOpen,
+      isOpen = true,
       onClosing,
       onAnimationEnd: _onAnimationEnd,
       ...rest
