@@ -9,17 +9,12 @@
 import { css } from '@emotion/react';
 import { UseEuiTheme } from '@elastic/eui-theme-common';
 
-import { isEuiThemeRefreshVariant } from '../../../../services';
 import { logicalCSS } from '../../../../global_styling';
 import { buttonSelectors } from '../form_control_layout.styles';
 import { euiFormVariables } from '../../form.styles';
 
 export const euiFormAppendPrependStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
-  const isRefreshVariant = isEuiThemeRefreshVariant(
-    euiThemeContext,
-    'formVariant'
-  );
   const form = euiFormVariables(euiThemeContext);
 
   const buttons = buttonSelectors;
@@ -35,17 +30,11 @@ export const euiFormAppendPrependStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     uncompressed: css`
       &:not(:has(> ${buttons}:first-child, > *:first-child ${buttons})) {
-        ${logicalCSS(
-          'padding-left',
-          isRefreshVariant ? euiTheme.size.m : euiTheme.size.s
-        )}
+        ${logicalCSS('padding-left', euiTheme.size.m)}
       }
 
       &:not(:has(> ${buttons}:last-child, > *:last-child ${buttons})) {
-        ${logicalCSS(
-          'padding-right',
-          isRefreshVariant ? euiTheme.size.m : euiTheme.size.s
-        )}
+        ${logicalCSS('padding-right', euiTheme.size.m)}
       }
     `,
     compressed: css`

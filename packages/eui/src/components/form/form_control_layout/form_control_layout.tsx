@@ -29,6 +29,7 @@ import {
   euiFormControlLayoutStyles,
   euiFormControlLayoutSideNodeStyles,
 } from './form_control_layout.styles';
+import { EuiFormAppend, EuiFormPrepend } from './append_prepend';
 import { EuiFormControlLayoutContextProvider } from './form_control_layout_context';
 
 type StringOrReactElement = string | ReactElement;
@@ -226,7 +227,8 @@ const EuiFormControlLayoutSideNodes: FunctionComponent<{
   nodes?: PrependAppendType; // For some bizarre reason if you make this the `children` prop instead, React doesn't properly override cloned keys :|
   inputId?: string;
   compressed?: boolean;
-}> = ({ side, nodes, inputId, compressed }) => {
+}> = (props) => {
+  const { side, nodes, inputId, compressed } = props;
   const className = `euiFormControlLayout__${side}`;
   const styles = useEuiMemoizedStyles(euiFormControlLayoutSideNodeStyles);
   const cssStyles = [
@@ -237,15 +239,34 @@ const EuiFormControlLayoutSideNodes: FunctionComponent<{
 
   if (!nodes) return null;
 
+  let content;
+
+  const AppendOrPrepend = side === 'append' ? EuiFormAppend : EuiFormPrepend;
+
+  if (Array.isArray(nodes)) {
+    content = React.Children.map(nodes, (node) =>
+      typeof node === 'string' ? (
+        <EuiFormLabel htmlFor={inputId}>{node}</EuiFormLabel>
+      ) : (
+        node
+      )
+    );
+  } else {
+    content =
+      typeof nodes === 'string' ? (
+        <AppendOrPrepend
+          inputId={inputId}
+          compressed={compressed}
+          label={nodes}
+        />
+      ) : (
+        nodes
+      );
+  }
+
   return (
     <div css={cssStyles} className={className}>
-      {React.Children.map(nodes, (node) =>
-        typeof node === 'string' ? (
-          <EuiFormLabel htmlFor={inputId}>{node}</EuiFormLabel>
-        ) : (
-          node
-        )
-      )}
+      {content}
     </div>
   );
 };
