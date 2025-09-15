@@ -602,6 +602,7 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
         isInvalid={isInvalid}
         isDisabled={disabled}
         isDropdown
+        inputId={id}
       >
         <EuiFieldText
           className="euiColorPicker__input"
