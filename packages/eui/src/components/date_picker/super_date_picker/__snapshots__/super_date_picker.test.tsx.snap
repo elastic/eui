@@ -16,26 +16,16 @@ exports[`EuiSuperDatePicker props accepts data-test-subj and passes to EuiFormCo
       >
         <button
           aria-label="Date quick select"
-          class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-primary-euiQuickSelectPopoverButton"
+          class="euiFormPrepend css-1gwsn67-side-uncompressed-isInteractive-prepend"
           data-test-subj="superDatePickerToggleQuickMenuButton"
           title="Date quick select"
-          type="button"
         >
           <span
-            class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiQuickSelectPopoverButton__content"
-          >
-            <span
-              class="eui-textTruncate euiButtonEmpty__text css-1shwb46-xs"
-            >
-              <span
-                data-euiicon-type="calendar"
-              />
-            </span>
-            <span
-              color="inherit"
-              data-euiicon-type="arrowDown"
-            />
-          </span>
+            data-euiicon-type="calendar"
+          />
+          <span
+            data-euiicon-type="arrowDown"
+          />
         </button>
       </div>
     </div>
@@ -103,26 +93,16 @@ exports[`EuiSuperDatePicker props compressed is rendered 1`] = `
       >
         <button
           aria-label="Date quick select"
-          class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-primary-euiQuickSelectPopoverButton"
+          class="euiFormPrepend css-1hrsshf-side-compressed-isInteractive-prepend"
           data-test-subj="superDatePickerToggleQuickMenuButton"
           title="Date quick select"
-          type="button"
         >
           <span
-            class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiQuickSelectPopoverButton__content"
-          >
-            <span
-              class="eui-textTruncate euiButtonEmpty__text css-1shwb46-xs"
-            >
-              <span
-                data-euiicon-type="calendar"
-              />
-            </span>
-            <span
-              color="inherit"
-              data-euiicon-type="arrowDown"
-            />
-          </span>
+            data-euiicon-type="calendar"
+          />
+          <span
+            data-euiicon-type="arrowDown"
+          />
         </button>
       </div>
     </div>
@@ -189,25 +169,17 @@ exports[`EuiSuperDatePicker props isAutoRefreshOnly is rendered 1`] = `
         class="euiFormControlLayout__prepend emotion-euiFormControlLayout__side-prepend"
       >
         <button
-          class="euiButtonEmpty euiFormControlLayout__prepend emotion-euiButtonDisplay-euiButtonEmpty-s-empty-text"
-          type="button"
+          class="euiFormPrepend euiFormControlLayout__prepend css-1gwsn67-side-uncompressed-isInteractive-prepend"
         >
           <span
-            class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
+            data-euiicon-type="timeRefresh"
+          />
+          <span
+            class="euiFormLabel eui-textTruncate emotion-euiFormLabel"
           >
-            <span
-              color="inherit"
-              data-euiicon-type="timeRefresh"
-            />
-            <span
-              class="eui-textTruncate euiButtonEmpty__text css-1ryezsz-s"
-            >
-              <strong>
-                <small>
-                  Auto refresh
-                </small>
-              </strong>
-            </span>
+            <strong>
+              Auto refresh
+            </strong>
           </span>
         </button>
       </div>
@@ -242,26 +214,18 @@ exports[`EuiSuperDatePicker props isAutoRefreshOnly passes required props 1`] = 
         class="euiFormControlLayout__prepend emotion-euiFormControlLayout__side-prepend"
       >
         <button
-          class="euiButtonEmpty euiFormControlLayout__prepend emotion-euiButtonDisplay-euiButtonEmpty-s-empty-disabled-isDisabled"
+          class="euiFormPrepend euiFormControlLayout__prepend css-j2678n-side-uncompressed-disabled-prepend"
           disabled=""
-          type="button"
         >
           <span
-            class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
+            data-euiicon-type="timeRefresh"
+          />
+          <span
+            class="euiFormLabel eui-textTruncate emotion-euiFormLabel"
           >
-            <span
-              color="inherit"
-              data-euiicon-type="timeRefresh"
-            />
-            <span
-              class="eui-textTruncate euiButtonEmpty__text css-1ryezsz-s"
-            >
-              <strong>
-                <small>
-                  Auto refresh
-                </small>
-              </strong>
-            </span>
+            <strong>
+              Auto refresh
+            </strong>
           </span>
         </button>
       </div>
@@ -316,27 +280,17 @@ exports[`EuiSuperDatePicker props isDisabled true 1`] = `
       >
         <button
           aria-label="Date quick select"
-          class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-disabled-isDisabled-euiQuickSelectPopoverButton"
+          class="euiFormPrepend css-j2678n-side-uncompressed-disabled-prepend"
           data-test-subj="superDatePickerToggleQuickMenuButton"
           disabled=""
           title="Date quick select"
-          type="button"
         >
           <span
-            class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiQuickSelectPopoverButton__content"
-          >
-            <span
-              class="eui-textTruncate euiButtonEmpty__text css-1shwb46-xs"
-            >
-              <span
-                data-euiicon-type="calendar"
-              />
-            </span>
-            <span
-              color="inherit"
-              data-euiicon-type="arrowDown"
-            />
-          </span>
+            data-euiicon-type="calendar"
+          />
+          <span
+            data-euiicon-type="arrowDown"
+          />
         </button>
       </div>
     </div>
@@ -406,26 +360,16 @@ exports[`EuiSuperDatePicker props isQuickSelectOnly is rendered 1`] = `
       >
         <button
           aria-label="Date quick select"
-          class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-primary-euiQuickSelectPopoverButton"
+          class="euiFormPrepend css-1gwsn67-side-uncompressed-isInteractive-prepend"
           data-test-subj="superDatePickerToggleQuickMenuButton"
           title="Date quick select"
-          type="button"
         >
           <span
-            class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiQuickSelectPopoverButton__content"
-          >
-            <span
-              class="eui-textTruncate euiButtonEmpty__text css-1shwb46-xs"
-            >
-              <span
-                data-euiicon-type="calendar"
-              />
-            </span>
-            <span
-              color="inherit"
-              data-euiicon-type="arrowDown"
-            />
-          </span>
+            data-euiicon-type="calendar"
+          />
+          <span
+            data-euiicon-type="arrowDown"
+          />
         </button>
       </div>
     </div>
@@ -472,26 +416,16 @@ exports[`EuiSuperDatePicker props showUpdateButton can be false 1`] = `
       >
         <button
           aria-label="Date quick select"
-          class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-primary-euiQuickSelectPopoverButton"
+          class="euiFormPrepend css-1gwsn67-side-uncompressed-isInteractive-prepend"
           data-test-subj="superDatePickerToggleQuickMenuButton"
           title="Date quick select"
-          type="button"
         >
           <span
-            class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiQuickSelectPopoverButton__content"
-          >
-            <span
-              class="eui-textTruncate euiButtonEmpty__text css-1shwb46-xs"
-            >
-              <span
-                data-euiicon-type="calendar"
-              />
-            </span>
-            <span
-              color="inherit"
-              data-euiicon-type="arrowDown"
-            />
-          </span>
+            data-euiicon-type="calendar"
+          />
+          <span
+            data-euiicon-type="arrowDown"
+          />
         </button>
       </div>
     </div>
@@ -538,26 +472,16 @@ exports[`EuiSuperDatePicker props showUpdateButton can be iconOnly 1`] = `
       >
         <button
           aria-label="Date quick select"
-          class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-primary-euiQuickSelectPopoverButton"
+          class="euiFormPrepend css-1gwsn67-side-uncompressed-isInteractive-prepend"
           data-test-subj="superDatePickerToggleQuickMenuButton"
           title="Date quick select"
-          type="button"
         >
           <span
-            class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiQuickSelectPopoverButton__content"
-          >
-            <span
-              class="eui-textTruncate euiButtonEmpty__text css-1shwb46-xs"
-            >
-              <span
-                data-euiicon-type="calendar"
-              />
-            </span>
-            <span
-              color="inherit"
-              data-euiicon-type="arrowDown"
-            />
-          </span>
+            data-euiicon-type="calendar"
+          />
+          <span
+            data-euiicon-type="arrowDown"
+          />
         </button>
       </div>
     </div>
@@ -628,26 +552,16 @@ exports[`EuiSuperDatePicker props width can be auto 1`] = `
       >
         <button
           aria-label="Date quick select"
-          class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-primary-euiQuickSelectPopoverButton"
+          class="euiFormPrepend css-1gwsn67-side-uncompressed-isInteractive-prepend"
           data-test-subj="superDatePickerToggleQuickMenuButton"
           title="Date quick select"
-          type="button"
         >
           <span
-            class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiQuickSelectPopoverButton__content"
-          >
-            <span
-              class="eui-textTruncate euiButtonEmpty__text css-1shwb46-xs"
-            >
-              <span
-                data-euiicon-type="calendar"
-              />
-            </span>
-            <span
-              color="inherit"
-              data-euiicon-type="arrowDown"
-            />
-          </span>
+            data-euiicon-type="calendar"
+          />
+          <span
+            data-euiicon-type="arrowDown"
+          />
         </button>
       </div>
     </div>
@@ -715,26 +629,16 @@ exports[`EuiSuperDatePicker props width can be full 1`] = `
       >
         <button
           aria-label="Date quick select"
-          class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-primary-euiQuickSelectPopoverButton"
+          class="euiFormPrepend css-1gwsn67-side-uncompressed-isInteractive-prepend"
           data-test-subj="superDatePickerToggleQuickMenuButton"
           title="Date quick select"
-          type="button"
         >
           <span
-            class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiQuickSelectPopoverButton__content"
-          >
-            <span
-              class="eui-textTruncate euiButtonEmpty__text css-1shwb46-xs"
-            >
-              <span
-                data-euiicon-type="calendar"
-              />
-            </span>
-            <span
-              color="inherit"
-              data-euiicon-type="arrowDown"
-            />
-          </span>
+            data-euiicon-type="calendar"
+          />
+          <span
+            data-euiicon-type="arrowDown"
+          />
         </button>
       </div>
     </div>
@@ -803,26 +707,16 @@ exports[`EuiSuperDatePicker renders 1`] = `
       >
         <button
           aria-label="Date quick select"
-          class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-primary-euiQuickSelectPopoverButton"
+          class="euiFormPrepend css-1gwsn67-side-uncompressed-isInteractive-prepend"
           data-test-subj="superDatePickerToggleQuickMenuButton"
           title="Date quick select"
-          type="button"
         >
           <span
-            class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiQuickSelectPopoverButton__content"
-          >
-            <span
-              class="eui-textTruncate euiButtonEmpty__text css-1shwb46-xs"
-            >
-              <span
-                data-euiicon-type="calendar"
-              />
-            </span>
-            <span
-              color="inherit"
-              data-euiicon-type="arrowDown"
-            />
-          </span>
+            data-euiicon-type="calendar"
+          />
+          <span
+            data-euiicon-type="arrowDown"
+          />
         </button>
       </div>
     </div>
@@ -894,26 +788,16 @@ exports[`EuiSuperDatePicker renders an EuiDatePickerRange 1`] = `
         >
           <button
             aria-label="Date quick select"
-            class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-primary-euiQuickSelectPopoverButton"
+            class="euiFormPrepend css-1gwsn67-side-uncompressed-isInteractive-prepend"
             data-test-subj="superDatePickerToggleQuickMenuButton"
             title="Date quick select"
-            type="button"
           >
             <span
-              class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiQuickSelectPopoverButton__content"
-            >
-              <span
-                class="eui-textTruncate euiButtonEmpty__text css-1shwb46-xs"
-              >
-                <span
-                  data-euiicon-type="calendar"
-                />
-              </span>
-              <span
-                color="inherit"
-                data-euiicon-type="arrowDown"
-              />
-            </span>
+              data-euiicon-type="calendar"
+            />
+            <span
+              data-euiicon-type="arrowDown"
+            />
           </button>
         </div>
       </div>
