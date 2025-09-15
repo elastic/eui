@@ -39,7 +39,7 @@ export const fontBase: _EuiThemeFontBase = {
 
   baseline: computed(([base]) => (typeof base === 'object' ? base.base : base) / 4, ['base']),
   lineHeightMultiplier: 1.5,
-  letterSpacing: -0.2,
+  letterSpacing: -0.1,
 };
 
 export const fontWeight: _EuiThemeFontWeights = {
@@ -63,7 +63,7 @@ export const font: _EuiThemeFont = {
   },
   title: {
     weight: 'semiBold',
-    letterSpacing: -0.25,
+    letterSpacing: -0.2,
     scaleMapping: {
       xxxs: 'xs',
       xxs: 'xs',

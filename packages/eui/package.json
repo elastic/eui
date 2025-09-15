@@ -21,7 +21,9 @@
     "build:i18ntokens": "node ./scripts/build_i18ntokens.mjs",
     "build:copy-assets": "node ./scripts/build_copy_assets.js",
     "build": "yarn build:clean && yarn build:i18ntokens && node ./scripts/compile-eui.js && yarn build:copy-assets",
+    "build:fast": "yarn build:clean && yarn build:i18ntokens && yarn build:copy-assets",
     "build-pack": "yarn build && yarn pack",
+    "build-pack:fast": "yarn build:fast && yarn pack",
     "compile-icons": "node ./scripts/compile-icons.js && prettier --write --loglevel=warn \"./src/components/icon/assets/**/*.tsx\"",
     "lint": "yarn tsc --noEmit && yarn lint-es && yarn lint-css-in-js && yarn lint-sass",
     "lint-fix": "yarn lint-es --fix && yarn lint-css-in-js --fix",
@@ -53,7 +55,6 @@
     "directory": "packages/eui"
   },
   "dependencies": {
-    "@elastic/eui-theme-common": "file:/Users/ryankeairns/Projects/Elastic/eui/packages/eui/elastic-eui-theme-common-20250911-135412.tgz",
     "@elastic/prismjs-esql": "^1.1.0",
     "@hello-pangea/dnd": "^16.6.0",
     "@types/lodash": "^4.14.202",
@@ -253,7 +254,8 @@
     "webpack-dev-server": "^4.10.0",
     "yargs": "^17.2.1",
     "yeoman-generator": "^4.12.0",
-    "yo": "^4.3.1"
+    "yo": "^4.3.1",
+    "@elastic/eui-theme-common": "workspace:^"
   },
   "peerDependencies": {
     "@elastic/datemath": "^5.0.2",
@@ -265,7 +267,8 @@
     "moment": "^2.13.0",
     "react": "^17.0 || ^18.0",
     "react-dom": "^17.0 || ^18.0",
-    "typescript": "~4.5.3 || ^5"
+    "typescript": "~4.5.3 || ^5",
+    "@elastic/eui-theme-common": "4.0.0"
   },
   "files": [
     "dist",
