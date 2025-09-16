@@ -128,41 +128,25 @@ export const EuiManagedFlyout = ({
   // Track whether the onClose callback has already been called to prevent double-firing
   const onCloseCalledRef = useRef<boolean>(false);
 
-  // Create a closure variable to track if onClose has been called
-  let onCloseCalled = false;
-
   // Stabilize the unregister callback to prevent unnecessary re-registrations
-  const unregisterCallbackRef = useRef<(() => void) | undefined>();
-  unregisterCallbackRef.current = onCloseProp
-    ? () => {
-        console.log(
-          `[FLYOUT DEBUG] onClose callback triggered for: ${flyoutId}`,
-          {
-            alreadyCalled: onCloseCalled,
-            onCloseCalledRef: onCloseCalledRef.current,
-          }
-        );
-
-        // Only call the onClose callback if it hasn't been called already
-        if (!onCloseCalled) {
-          onCloseCalled = true;
-          onCloseCalledRef.current = true;
-          console.log(
-            `[FLYOUT DEBUG] executing onClose callback for: ${flyoutId}`
-          );
-          // Create a synthetic event for the onClose callback
-          const syntheticEvent = new MouseEvent('click', {
-            bubbles: true,
-            cancelable: true,
-          }) as any;
-          onCloseProp(syntheticEvent);
-        } else {
-          console.log(
-            `[FLYOUT DEBUG] onClose callback already called for: ${flyoutId}, skipping`
-          );
-        }
-      }
-    : undefined;
+  const unregisterCallbackRef = useRef<
+    ((event?: MouseEvent | TouchEvent | KeyboardEvent) => void) | undefined
+  >();
+  unregisterCallbackRef.current = (eventArg) => {
+    if (!onCloseCalledRef.current && onCloseProp) {
+      console.log(
+        `[FLYOUT DEBUG] executing onClose callback for: ${flyoutId} (from unregister callback)`
+      );
+      onCloseCalledRef.current = true;
+      const event =
+        eventArg ||
+        new MouseEvent('click', {
+          bubbles: true,
+          cancelable: true,
+        });
+      onCloseProp(event);
+    }
+  };
 
   // Stabilize the onActive callback to prevent unnecessary re-registrations
   const onActiveCallbackRef = useRef<(() => void) | undefined>();
@@ -304,11 +288,7 @@ export const EuiManagedFlyout = ({
   );
 
   const onClose = (event?: MouseEvent | TouchEvent | KeyboardEvent) => {
-    closeFlyout(flyoutId);
-    if (!onCloseCalledRef.current) {
-      onCloseProp(event);
-      closeFlyout(flyoutId);
-    }
+    unregisterCallbackRef.current?.(event);
   };
 
   // Update width in manager state when it changes
