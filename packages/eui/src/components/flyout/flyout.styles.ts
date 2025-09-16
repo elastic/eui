@@ -126,8 +126,10 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
       ${logicalCSS('right', 0)}
 
       &.euiFlyout--opening {
-        // Jump animation states immediately unless
-        // prefers-reduced-motion: reduce is *not* set
+        /*
+          Jump animation states immediately unless
+          prefers-reduced-motion: reduce is *not* set
+        */
         animation: ${euiFlyoutSlideInRight} 0s ${euiTheme.animation.resistance}
           forwards;
 
@@ -137,8 +139,10 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
       }
 
       &.euiFlyout--closing {
-        // Jump animation states immediately unless
-        // prefers-reduced-motion: reduce is *not* set
+        /*
+          Jump animation states immediately unless
+          prefers-reduced-motion: reduce is *not* set
+        */
         animation: ${euiFlyoutSlideOutRight} 0s ${euiTheme.animation.resistance}
           forwards;
 
@@ -157,8 +161,10 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
       clip-path: polygon(0 0, 150% 0, 150% 100%, 0 100%);
 
       &.euiFlyout--opening {
-        // Jump animation states immediately unless
-        // prefers-reduced-motion: reduce is *not* set
+        /*
+          Jump animation states immediately unless
+          prefers-reduced-motion: reduce is *not* set
+        */
         animation: ${euiFlyoutSlideInLeft} 0s ${euiTheme.animation.resistance}
           forwards;
 
@@ -168,8 +174,10 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
       }
 
       &.euiFlyout--closing {
-        // Jump animation states immediately unless
-        // prefers-reduced-motion: reduce is *not* set
+        /*
+          Jump animation states immediately unless
+          prefers-reduced-motion: reduce is *not* set
+        */
         animation: ${euiFlyoutSlideOutLeft} 0s ${euiTheme.animation.resistance}
           forwards;
 
