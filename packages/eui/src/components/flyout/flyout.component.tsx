@@ -83,9 +83,18 @@ interface _EuiFlyoutComponentProps {
    */
   isOpen?: boolean;
   /**
+   * A required callback function fired when the flyout is closed.
+   * It fires after the closing animation is finished.
    *
+   * Use this callback to toggle your internal `isOpen` flyout state.
    */
   onClose: (event?: MouseEvent | TouchEvent | KeyboardEvent) => void;
+  /**
+   * An optional callback function fired when the flyout begins closing.
+   *
+   * Use in case you need to support any extra logic that relies on the flyout
+   * closing state. In most cases this callback doesn't need to be handled.
+   */
   onClosing?: (event?: MouseEvent | TouchEvent | KeyboardEvent) => void;
   /**
    * Defines the width of the panel.
