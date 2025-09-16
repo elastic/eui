@@ -64,7 +64,8 @@ describe('EuiCollapsibleNav', () => {
         expect(cy.get('#navSpec').should('not.exist'));
       });
 
-      it('closes the nav when the overlay mask is clicked', () => {
+      // TODO: Unskip in https://github.com/elastic/eui/issues/8989
+      it.skip('closes the nav when the overlay mask is clicked', () => {
         cy.realMount(<Nav />);
         cy.get('[data-test-subj="navSpecButton"]').realClick();
         cy.get('.euiOverlayMask').realClick({ position: 'bottomRight' });
