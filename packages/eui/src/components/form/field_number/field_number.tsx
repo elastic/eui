@@ -17,7 +17,7 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 
-import { useCombinedRefs, useEuiMemoizedStyles } from '../../../services';
+import { useCombinedRefs, useEuiMemoizedStyles, useEuiTheme } from '../../../services';
 import { CommonProps } from '../../common';
 
 import { EuiValidatableControl } from '../validatable_control';
@@ -87,6 +87,7 @@ export const EuiFieldNumber: FunctionComponent<EuiFieldNumberProps> = (
   props
 ) => {
   const { defaultFullWidth } = useFormContext();
+  const euiTheme = useEuiTheme();
   const {
     className,
     icon,
@@ -100,7 +101,7 @@ export const EuiFieldNumber: FunctionComponent<EuiFieldNumberProps> = (
     isInvalid,
     fullWidth = defaultFullWidth,
     isLoading = false,
-    compressed = false,
+    compressed,
     prepend,
     append,
     inputRef,
@@ -109,6 +110,8 @@ export const EuiFieldNumber: FunctionComponent<EuiFieldNumberProps> = (
     onKeyUp,
     ...rest
   } = props;
+
+  const defaultCompressed = compressed ?? euiTheme.euiTheme.font.formControls.defaultCompressed ?? false;
 
   const _inputRef = useRef<HTMLInputElement | null>(null);
   const combinedRefs = useCombinedRefs([_inputRef, inputRef]);
@@ -141,7 +144,7 @@ export const EuiFieldNumber: FunctionComponent<EuiFieldNumberProps> = (
   const styles = useEuiMemoizedStyles(euiFieldNumberStyles);
   const cssStyles = [
     styles.euiFieldNumber,
-    compressed ? styles.compressed : styles.uncompressed,
+    defaultCompressed ? styles.compressed : styles.uncompressed,
     fullWidth ? styles.fullWidth : styles.formWidth,
     !controlOnly && (prepend || append) && styles.inGroup,
     controlOnly && styles.controlOnly,
@@ -185,7 +188,7 @@ export const EuiFieldNumber: FunctionComponent<EuiFieldNumberProps> = (
       isLoading={isLoading}
       isInvalid={isInvalid || isNativelyInvalid}
       isDisabled={rest.disabled}
-      compressed={compressed}
+      compressed={defaultCompressed}
       readOnly={readOnly}
       prepend={prepend}
       append={append}

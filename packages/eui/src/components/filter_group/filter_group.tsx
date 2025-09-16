@@ -9,7 +9,7 @@
 import React, { HTMLAttributes, ReactNode, FunctionComponent } from 'react';
 import classNames from 'classnames';
 
-import { useEuiMemoizedStyles } from '../../services';
+import { useEuiMemoizedStyles, useEuiTheme } from '../../services';
 import { CommonProps } from '../common';
 
 import { euiFilterGroupStyles } from './filter_group.styles';
@@ -34,11 +34,13 @@ export const EuiFilterGroup: FunctionComponent<EuiFilterGroupProps> = ({
   compressed,
   ...rest
 }) => {
+  const euiTheme = useEuiTheme();
+  const defaultCompressed = compressed ?? euiTheme.euiTheme.font.formControls.defaultCompressed ?? false;
   const styles = useEuiMemoizedStyles(euiFilterGroupStyles);
   const cssStyles = [
     styles.euiFilterGroup,
     fullWidth && styles.fullWidth,
-    compressed ? styles.compressed : styles.uncompressed,
+    defaultCompressed ? styles.compressed : styles.uncompressed,
   ];
 
   const classes = classNames('euiFilterGroup', className);

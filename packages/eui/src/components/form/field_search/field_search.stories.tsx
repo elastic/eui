@@ -42,7 +42,7 @@ const meta: Meta<EuiFieldSearchProps> = {
   args: {
     isLoading: false,
     incremental: false,
-    compressed: false,
+    // compressed: undefined, // Let theme default handle this
     isClearable: true,
     // set up for easier testing/QA
     fullWidth: false,

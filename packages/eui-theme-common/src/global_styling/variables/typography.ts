@@ -159,6 +159,36 @@ export interface _EuiThemeHorizontalRule {
 }
 
 /**
+ * Button component defaults
+ */
+export interface _EuiThemeButtonDefaults {
+  /**
+   * A size key to set as the default size for EuiButton
+   */
+  defaultSize: 's' | 'm';
+}
+
+/**
+ * Form controls component defaults
+ */
+export interface _EuiThemeFormControls {
+  /**
+   * Whether form controls should be compressed by default
+   */
+  defaultCompressed: boolean;
+}
+
+/**
+ * Tabs component defaults
+ */
+export interface _EuiThemeTabs {
+  /**
+   * Default size for tabs
+   */
+  defaultSize: 's' | 'm' | 'l';
+}
+
+/**
  * Title styles
  */
 
@@ -205,5 +235,8 @@ export type _EuiThemeFont = _EuiThemeFontBase & {
   text: _EuiThemeText;
   spacer: _EuiThemeSpacer;
   horizontalRule: _EuiThemeHorizontalRule;
+  button: _EuiThemeButtonDefaults;
+  formControls: _EuiThemeFormControls;
+  tabs: _EuiThemeTabs;
   title: _EuiThemeTitle;
 };

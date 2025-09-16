@@ -16,7 +16,7 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 
-import { useCombinedRefs, useEuiMemoizedStyles } from '../../../services';
+import { useCombinedRefs, useEuiMemoizedStyles, useEuiTheme } from '../../../services';
 import { CommonProps } from '../../common';
 import { useEuiI18n } from '../../i18n';
 import { EuiButtonIcon, EuiButtonIconPropsForButton } from '../../button';
@@ -77,6 +77,7 @@ export const EuiFieldPassword: FunctionComponent<EuiFieldPasswordProps> = (
   props
 ) => {
   const { defaultFullWidth } = useFormContext();
+  const euiTheme = useEuiTheme();
   const {
     className,
     id,
@@ -87,7 +88,7 @@ export const EuiFieldPassword: FunctionComponent<EuiFieldPasswordProps> = (
     isInvalid,
     fullWidth = defaultFullWidth,
     isLoading = false,
-    compressed = false,
+    compressed,
     inputRef: _inputRef,
     prepend,
     append,
@@ -95,6 +96,8 @@ export const EuiFieldPassword: FunctionComponent<EuiFieldPasswordProps> = (
     dualToggleProps,
     ...rest
   } = props;
+
+  const defaultCompressed = compressed ?? euiTheme.euiTheme.font.formControls.defaultCompressed ?? false;
 
   // Set the initial input type to `password` if they want dual
   const [inputType, setInputType] = useState(
@@ -177,7 +180,7 @@ export const EuiFieldPassword: FunctionComponent<EuiFieldPasswordProps> = (
   const styles = useEuiMemoizedStyles(euiFieldPasswordStyles);
   const cssStyles = [
     styles.euiFieldPassword,
-    compressed ? styles.compressed : styles.uncompressed,
+    defaultCompressed ? styles.compressed : styles.uncompressed,
     fullWidth ? styles.fullWidth : styles.formWidth,
     (finalAppend || prepend) && styles.inGroup,
     type === 'dual' && styles.withToggle,
@@ -190,7 +193,7 @@ export const EuiFieldPassword: FunctionComponent<EuiFieldPasswordProps> = (
       isLoading={isLoading}
       isInvalid={isInvalid}
       isDisabled={disabled}
-      compressed={compressed}
+      compressed={defaultCompressed}
       prepend={prepend}
       append={finalAppend}
     >

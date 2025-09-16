@@ -16,7 +16,7 @@ import React, {
 import classNames from 'classnames';
 
 import { CommonProps } from '../../common';
-import { useCombinedRefs, useEuiMemoizedStyles } from '../../../services';
+import { useCombinedRefs, useEuiMemoizedStyles, useEuiTheme } from '../../../services';
 
 import { EuiFormControlLayout } from '../form_control_layout';
 import { EuiValidatableControl } from '../validatable_control';
@@ -55,6 +55,7 @@ export type EuiTextAreaProps = TextareaHTMLAttributes<HTMLTextAreaElement> &
 
 export const EuiTextArea: FunctionComponent<EuiTextAreaProps> = (props) => {
   const { defaultFullWidth } = useFormContext();
+  const euiTheme = useEuiTheme();
   const {
     children,
     className,
@@ -73,13 +74,15 @@ export const EuiTextArea: FunctionComponent<EuiTextAreaProps> = (props) => {
     ...rest
   } = props;
 
+  const defaultCompressed = compressed ?? euiTheme.euiTheme.font.formControls.defaultCompressed ?? false;
+
   const classes = classNames('euiTextArea', className);
 
   const styles = useEuiMemoizedStyles(euiTextAreaStyles);
   const cssStyles = [
     styles.euiTextArea,
     styles.resize[resize],
-    compressed ? styles.compressed : styles.uncompressed,
+    defaultCompressed ? styles.compressed : styles.uncompressed,
     fullWidth ? styles.fullWidth : styles.formWidth,
   ];
 
@@ -130,7 +133,7 @@ export const EuiTextArea: FunctionComponent<EuiTextAreaProps> = (props) => {
           className={classes}
           css={cssStyles}
           {...rest}
-          rows={rows ? rows : compressed ? 3 : 6}
+          rows={rows ? rows : defaultCompressed ? 3 : 6}
           name={name}
           id={id}
           ref={refs}

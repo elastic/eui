@@ -15,7 +15,7 @@ import {
   PropsForAnchor,
   PropsForButton,
 } from '../../common';
-import { useEuiMemoizedStyles, getSecureRelForTarget } from '../../../services';
+import { useEuiMemoizedStyles, getSecureRelForTarget, useEuiTheme } from '../../../services';
 
 import {
   EuiButtonDisplayContent,
@@ -101,7 +101,7 @@ export const EuiButtonEmpty: FunctionComponent<EuiButtonEmptyProps> = ({
   iconSide = 'left',
   iconSize = 'm',
   color = 'primary',
-  size = 'm',
+  size,
   flush,
   isDisabled: _isDisabled,
   disabled,
@@ -116,6 +116,8 @@ export const EuiButtonEmpty: FunctionComponent<EuiButtonEmptyProps> = ({
   isSelected,
   ...rest
 }) => {
+  const euiTheme = useEuiTheme();
+  const defaultSize = size ?? euiTheme.euiTheme.font.button.defaultSize ?? 'm';
   const isDisabled = isButtonDisabled({
     isDisabled: _isDisabled || disabled,
     href,
@@ -129,7 +131,7 @@ export const EuiButtonEmpty: FunctionComponent<EuiButtonEmptyProps> = ({
   const styles = useEuiMemoizedStyles(euiButtonEmptyStyles);
   const cssStyles = [
     styles.euiButtonEmpty,
-    styles[size],
+    styles[defaultSize],
     buttonColorStyles[isDisabled ? 'disabled' : color],
     flush && styles.flush,
     flush && styles[flush],
@@ -154,7 +156,7 @@ export const EuiButtonEmpty: FunctionComponent<EuiButtonEmptyProps> = ({
       isLoading={isLoading}
       iconType={iconType}
       iconSide={iconSide}
-      iconSize={size === 'xs' ? 's' : iconSize}
+      iconSize={defaultSize === 'xs' ? 's' : iconSize}
       textProps={
         textProps === false
           ? false

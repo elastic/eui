@@ -14,7 +14,7 @@ import React, {
   ReactNode,
 } from 'react';
 import classNames from 'classnames';
-import { keys, useEuiMemoizedStyles } from '../../services';
+import { keys, useEuiMemoizedStyles, useEuiTheme } from '../../services';
 import { CommonProps } from '../common';
 import { euiTabsStyles } from './tabs.styles';
 import { EuiTabsContext } from './tabs_context';
@@ -53,17 +53,19 @@ export const EuiTabs = forwardRef<EuiTabRef, EuiTabsProps>(
       className,
       bottomBorder = true,
       expand = false,
-      size = 'm',
+      size,
       ...rest
     }: EuiTabsProps,
     ref
   ) => {
+    const euiTheme = useEuiTheme();
+    const defaultSize = size ?? euiTheme.euiTheme.font.tabs.defaultSize ?? 'm';
     const classes = classNames('euiTabs', className);
 
     const styles = useEuiMemoizedStyles(euiTabsStyles);
     const cssStyles = [
       styles.euiTabs,
-      styles[size],
+      styles[defaultSize],
       bottomBorder && styles.bottomBorder,
     ];
 
@@ -98,7 +100,7 @@ export const EuiTabs = forwardRef<EuiTabRef, EuiTabsProps>(
         {...(children && { role: 'tablist' })}
         {...rest}
       >
-        <EuiTabsContext.Provider value={{ expand, size }}>
+        <EuiTabsContext.Provider value={{ expand, size: defaultSize }}>
           {children}
         </EuiTabsContext.Provider>
       </div>

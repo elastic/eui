@@ -13,6 +13,8 @@ import {
   keys,
   withEuiStylesMemoizer,
   WithEuiStylesMemoizerProps,
+  withEuiTheme,
+  WithEuiThemeProps,
 } from '../../../services';
 import { Browser } from '../../../services/browser';
 import { CommonProps } from '../../common';
@@ -81,14 +83,14 @@ interface EuiFieldSearchState {
 let isSearchSupported: boolean = false;
 
 export class EuiFieldSearchClass extends Component<
-  EuiFieldSearchProps & WithEuiStylesMemoizerProps,
+  EuiFieldSearchProps & WithEuiStylesMemoizerProps & WithEuiThemeProps,
   EuiFieldSearchState
 > {
   static contextType = FormContext;
   static defaultProps = {
     isLoading: false,
     incremental: false,
-    compressed: false,
+    // compressed: undefined, // Let theme default handle this
     isClearable: true,
   };
 
@@ -248,10 +250,11 @@ export class EuiFieldSearchClass extends Component<
       className
     );
 
-    const styles = stylesMemoizer(euiFieldSearchStyles);
+    const defaultCompressed = compressed ?? this.props.theme.euiTheme.font.formControls.defaultCompressed ?? false;
+    const styles = this.props.stylesMemoizer(euiFieldSearchStyles);
     const cssStyles = [
       styles.euiFieldSearch,
-      compressed ? styles.compressed : styles.uncompressed,
+      defaultCompressed ? styles.compressed : styles.uncompressed,
       fullWidth ? styles.fullWidth : styles.formWidth,
       (prepend || append) && styles.inGroup,
     ];
@@ -277,7 +280,7 @@ export class EuiFieldSearchClass extends Component<
                   }
                 : undefined
             }
-            compressed={compressed}
+            compressed={defaultCompressed}
             append={append}
             prepend={prepend}
           >
@@ -302,5 +305,6 @@ export class EuiFieldSearchClass extends Component<
   }
 }
 
-export const EuiFieldSearch =
-  withEuiStylesMemoizer<EuiFieldSearchProps>(EuiFieldSearchClass);
+export const EuiFieldSearch = withEuiTheme<EuiFieldSearchProps>(
+  withEuiStylesMemoizer<EuiFieldSearchProps & WithEuiThemeProps>(EuiFieldSearchClass)
+);

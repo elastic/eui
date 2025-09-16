@@ -15,7 +15,7 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 
-import { useEuiMemoizedStyles } from '../../../services';
+import { useEuiMemoizedStyles, useEuiTheme } from '../../../services';
 import { CommonProps } from '../../common';
 
 import { useFormContext } from '../eui_form_context';
@@ -78,6 +78,7 @@ export type EuiSelectProps = Omit<
 
 export const EuiSelect: FunctionComponent<EuiSelectProps> = (props) => {
   const { defaultFullWidth } = useFormContext();
+  const euiTheme = useEuiTheme();
   const {
     className,
     options = [],
@@ -89,7 +90,7 @@ export const EuiSelect: FunctionComponent<EuiSelectProps> = (props) => {
     isLoading = false,
     hasNoInitialSelection = false,
     defaultValue,
-    compressed = false,
+    compressed,
     value: _value,
     prepend,
     append,
@@ -97,6 +98,8 @@ export const EuiSelect: FunctionComponent<EuiSelectProps> = (props) => {
     disabled,
     ...rest
   } = props;
+
+  const defaultCompressed = compressed ?? euiTheme.euiTheme.font.formControls.defaultCompressed ?? false;
   // if this is injecting an empty option for `hasNoInitialSelection` then
   // value needs to fallback to an empty string to interact properly with `defaultValue`
   const value = hasNoInitialSelection ? _value ?? '' : _value;
@@ -128,15 +131,15 @@ export const EuiSelect: FunctionComponent<EuiSelectProps> = (props) => {
   const styles = useEuiMemoizedStyles(euiSelectStyles);
   const cssStyles = [
     styles.euiSelect,
-    compressed ? styles.compressed : styles.uncompressed,
+    defaultCompressed ? styles.compressed : styles.uncompressed,
     fullWidth ? styles.fullWidth : styles.formWidth,
     inGroup && styles.inGroup,
     styles.lineHeight.removePadding,
     inGroup
-      ? compressed
+      ? defaultCompressed
         ? styles.lineHeight.inGroup.compressed
         : styles.lineHeight.inGroup.uncompressed
-      : compressed
+      : defaultCompressed
       ? styles.lineHeight.compressed
       : styles.lineHeight.uncompressed,
   ];
@@ -148,7 +151,7 @@ export const EuiSelect: FunctionComponent<EuiSelectProps> = (props) => {
       isLoading={isLoading}
       isInvalid={isInvalid}
       isDisabled={disabled}
-      compressed={compressed}
+      compressed={defaultCompressed}
       prepend={prepend}
       append={append}
       inputId={id}

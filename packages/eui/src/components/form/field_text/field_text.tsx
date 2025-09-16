@@ -9,7 +9,7 @@
 import React, { InputHTMLAttributes, Ref, FunctionComponent } from 'react';
 import classNames from 'classnames';
 
-import { useEuiMemoizedStyles } from '../../../services';
+import { useEuiMemoizedStyles, useEuiTheme } from '../../../services';
 import { CommonProps } from '../../common';
 import {
   EuiFormControlLayout,
@@ -65,6 +65,7 @@ export type EuiFieldTextProps = InputHTMLAttributes<HTMLInputElement> &
 
 export const EuiFieldText: FunctionComponent<EuiFieldTextProps> = (props) => {
   const { defaultFullWidth } = useFormContext();
+  const euiTheme = useEuiTheme();
   const {
     id,
     name,
@@ -85,6 +86,8 @@ export const EuiFieldText: FunctionComponent<EuiFieldTextProps> = (props) => {
     ...rest
   } = props;
 
+  const defaultCompressed = compressed ?? euiTheme.euiTheme.font.formControls.defaultCompressed ?? false;
+
   const classes = classNames('euiFieldText', className, {
     'euiFieldText-isLoading': isLoading,
   });
@@ -92,7 +95,7 @@ export const EuiFieldText: FunctionComponent<EuiFieldTextProps> = (props) => {
   const styles = useEuiMemoizedStyles(euiFieldTextStyles);
   const cssStyles = [
     styles.euiFieldText,
-    compressed ? styles.compressed : styles.uncompressed,
+    defaultCompressed ? styles.compressed : styles.uncompressed,
     fullWidth ? styles.fullWidth : styles.formWidth,
     !controlOnly && (prepend || append) && styles.inGroup,
     controlOnly && styles.controlOnly,
@@ -124,7 +127,7 @@ export const EuiFieldText: FunctionComponent<EuiFieldTextProps> = (props) => {
       fullWidth={fullWidth}
       isLoading={isLoading}
       isInvalid={isInvalid}
-      compressed={compressed}
+      compressed={defaultCompressed}
       isDisabled={disabled}
       readOnly={readOnly}
       prepend={prepend}

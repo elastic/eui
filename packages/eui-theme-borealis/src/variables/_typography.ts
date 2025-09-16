@@ -67,6 +67,15 @@ export const font: _EuiThemeFont = {
   horizontalRule: {
     defaultMargin: 'm',
   },
+  button: {
+    defaultSize: 's',
+  },
+  formControls: {
+    defaultCompressed: true,
+  },
+  tabs: {
+    defaultSize: 'm',
+  },
   title: {
     weight: 'semiBold',
     letterSpacing: -0.2,

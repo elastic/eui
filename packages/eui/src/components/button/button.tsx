@@ -22,6 +22,7 @@ import {
   useEuiButtonFocusCSS,
   _EuiExtendedButtonColor,
 } from '../../global_styling/mixins/_button';
+import { useEuiTheme } from '../../services';
 import {
   EuiButtonDisplay,
   EuiButtonDisplayCommonProps,
@@ -94,11 +95,13 @@ export type Props = ExclusiveUnion<
 export const EuiButton: FunctionComponent<Props> = ({
   className,
   buttonRef,
-  size = 'm',
+  size,
   color = 'primary',
   fill,
   ...rest
 }) => {
+  const euiTheme = useEuiTheme();
+  const defaultSize = size ?? euiTheme.euiTheme.font.button.defaultSize ?? 'm';
   const isDisabled = isButtonDisabled({
     href: rest.href,
     isDisabled: rest.isDisabled || rest.disabled,
@@ -119,7 +122,7 @@ export const EuiButton: FunctionComponent<Props> = ({
       className={classes}
       css={cssStyles}
       ref={buttonRef}
-      size={size}
+      size={defaultSize}
       {...rest}
     />
   );
