@@ -54,7 +54,9 @@ export const EuiFlyoutMenu: FunctionComponent<EuiFlyoutMenuProps> = ({
     );
   }
 
-  const handleClose = (event: MouseEvent | TouchEvent | KeyboardEvent) => {
+  const handleClose = (
+    event: MouseEvent | TouchEvent | KeyboardEvent | undefined
+  ) => {
     onClose?.(event);
   };
 

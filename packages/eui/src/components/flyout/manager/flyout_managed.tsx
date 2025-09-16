@@ -129,7 +129,7 @@ export const EuiManagedFlyout = ({
     'width'
   );
 
-  const onClose = (event: MouseEvent | TouchEvent | KeyboardEvent) => {
+  const onClose = (event?: MouseEvent | TouchEvent | KeyboardEvent) => {
     onCloseProp(event);
     closeFlyout(flyoutId);
   };
