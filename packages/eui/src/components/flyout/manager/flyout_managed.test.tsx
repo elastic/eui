@@ -88,9 +88,6 @@ jest.mock('./validation', () => ({
 // Mock unregister callback functions
 jest.mock('./provider', () => ({
   ...jest.requireActual('./provider'),
-  registerUnregisterCallback: jest.fn(),
-  unregisterUnregisterCallback: jest.fn(),
-  callUnregisterCallback: mockCallUnregisterCallback,
   useFlyoutManager: () => ({
     state: { sessions: [], flyouts: [], layoutMode: 'side-by-side' },
     addFlyout: jest.fn(),

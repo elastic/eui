@@ -17,8 +17,8 @@ import {
   ACTION_GO_TO_FLYOUT,
   Action,
 } from './actions';
-import { callUnregisterCallback } from './provider';
 import { LAYOUT_MODE_SIDE_BY_SIDE, LEVEL_MAIN, STAGE_OPENING } from './const';
+import { callCallback } from './provider';
 import {
   EuiFlyoutManagerState,
   FlyoutSession,
@@ -124,7 +124,7 @@ export function flyoutManagerReducer(
 
           // Call onUnregister callbacks for all flyouts being removed (defer to avoid setState during render)
           flyoutsToRemove.forEach((flyoutId) => {
-            callUnregisterCallback(flyoutId);
+            callCallback(flyoutId, 'onClose');
           });
 
           const newFlyouts = state.flyouts.filter(
@@ -141,7 +141,7 @@ export function flyoutManagerReducer(
 
       // Call onUnregister callback if it exists (defer to avoid setState during render)
       // Only call this for non-main flyouts or main flyouts without sessions
-      callUnregisterCallback(action.flyoutId);
+      callCallback(action.flyoutId, 'onClose');
 
       // Handle child flyout closing (existing logic)
       const newFlyouts = state.flyouts.filter(
@@ -226,7 +226,7 @@ export function flyoutManagerReducer(
 
       // Call onUnregister callbacks for removed flyouts (defer to avoid setState during render)
       flyoutsToRemove.forEach((flyoutId) => {
-        callUnregisterCallback(flyoutId);
+        callCallback(flyoutId, 'onClose');
       });
 
       const newFlyouts = state.flyouts.filter(
@@ -264,7 +264,7 @@ export function flyoutManagerReducer(
 
       // Call onUnregister callbacks for removed flyouts (defer to avoid setState during render)
       flyoutsToRemove.forEach((flyoutId) => {
-        callUnregisterCallback(flyoutId);
+        callCallback(flyoutId, 'onClose');
       });
 
       const newFlyouts = state.flyouts.filter(

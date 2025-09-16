@@ -24,12 +24,7 @@ import {
 } from './const';
 import { EuiFlyoutIsManagedProvider } from './context';
 import { euiManagedFlyoutStyles } from './flyout_managed.styles';
-import {
-  registerUnregisterCallback,
-  unregisterUnregisterCallback,
-  registerOnActiveCallback,
-  unregisterOnActiveCallback,
-} from './provider';
+import { registerCallback, unregisterCallback } from './provider';
 import {
   useFlyoutManager as _useFlyoutManager,
   useFlyoutId,
@@ -187,7 +182,7 @@ export const EuiManagedFlyout = ({
       console.log(
         `[FLYOUT DEBUG] registering onClose callback for: ${flyoutId}`
       );
-      registerUnregisterCallback(flyoutId, unregisterCallbackRef.current);
+      registerCallback(flyoutId, 'onClose', unregisterCallbackRef.current);
     } else {
       console.log(
         `[FLYOUT DEBUG] no onClose callback to register for: ${flyoutId}`
@@ -199,7 +194,7 @@ export const EuiManagedFlyout = ({
       console.log(
         `[FLYOUT DEBUG] registering onActive callback for: ${flyoutId}`
       );
-      registerOnActiveCallback(flyoutId, onActiveCallbackRef.current);
+      registerCallback(flyoutId, 'onActive', onActiveCallbackRef.current);
     } else {
       console.log(
         `[FLYOUT DEBUG] no onActive callback to register for: ${flyoutId}`
@@ -297,8 +292,8 @@ export const EuiManagedFlyout = ({
       // Use setTimeout with 0 delay to ensure it runs after microtasks
       setTimeout(() => {
         console.log(`[FLYOUT DEBUG] delayed unregistration for: ${flyoutId}`);
-        unregisterUnregisterCallback(flyoutId);
-        unregisterOnActiveCallback(flyoutId);
+        unregisterCallback(flyoutId, 'onClose');
+        unregisterCallback(flyoutId, 'onActive');
       }, 0);
     };
   }, [flyoutId]);

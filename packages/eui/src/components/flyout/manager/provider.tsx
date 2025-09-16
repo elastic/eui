@@ -67,24 +67,6 @@ export const callCallback = (
   }
 };
 
-// Legacy function names for backward compatibility
-export const registerUnregisterCallback = (
-  flyoutId: string,
-  callback: () => void
-) => registerCallback(flyoutId, 'onClose', callback);
-export const unregisterUnregisterCallback = (flyoutId: string) =>
-  unregisterCallback(flyoutId, 'onClose');
-export const callUnregisterCallback = (flyoutId: string) =>
-  callCallback(flyoutId, 'onClose');
-export const registerOnActiveCallback = (
-  flyoutId: string,
-  callback: () => void
-) => registerCallback(flyoutId, 'onActive', callback);
-export const unregisterOnActiveCallback = (flyoutId: string) =>
-  unregisterCallback(flyoutId, 'onActive');
-export const callOnActiveCallback = (flyoutId: string) =>
-  callCallback(flyoutId, 'onActive');
-
 /**
  * React context that exposes the Flyout Manager API (state + actions).
  */
