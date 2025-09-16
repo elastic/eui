@@ -31,9 +31,11 @@ jest.mock('../flyout.component', () => {
       props: any,
       ref: any
     ) {
+      // Extract flyoutMenuProps to prevent it from being passed to DOM
+      const { flyoutMenuProps, ...domProps } = props;
       return React.createElement('div', {
         ref,
-        ...props,
+        ...domProps,
         'data-test-subj': 'managed-flyout',
         onClick: () => props.onClose && props.onClose({} as any),
       });
@@ -66,10 +68,11 @@ jest.mock('./hooks', () => ({
 
 // Mock validation helpers to be deterministic
 jest.mock('./validation', () => ({
-  validateManagedFlyoutSize: () => undefined,
-  validateSizeCombination: () => undefined,
-  createValidationErrorMessage: (e: any) => String(e),
-  isNamedSize: () => true,
+  validateManagedFlyoutSize: jest.fn(() => undefined),
+  validateSizeCombination: jest.fn(() => undefined),
+  validateFlyoutTitle: jest.fn(() => undefined),
+  createValidationErrorMessage: jest.fn((e: any) => String(e)),
+  isNamedSize: jest.fn(() => true),
 }));
 
 // Mock resize observer hook to return a fixed width
@@ -119,5 +122,114 @@ describe('EuiManagedFlyout', () => {
       PROPERTY_LEVEL,
       LEVEL_CHILD
     );
+  });
+
+  describe('flyoutMenuProps integration', () => {
+    it('passes flyoutMenuProps to the underlying flyout component', () => {
+      const flyoutMenuProps = {
+        title: 'Test Menu',
+        hideCloseButton: true,
+        customActions: [
+          {
+            iconType: 'gear',
+            onClick: jest.fn(),
+            'aria-label': 'Settings',
+          },
+        ],
+      };
+
+      const { getByTestSubject } = renderInProvider(
+        <EuiManagedFlyout
+          id="test-flyout"
+          level={LEVEL_MAIN}
+          onClose={() => {}}
+          flyoutMenuProps={flyoutMenuProps}
+        />
+      );
+
+      const el = getByTestSubject('managed-flyout');
+      expect(el).toHaveAttribute('data-test-subj', 'managed-flyout');
+    });
+
+    it('merges flyoutMenuProps with extracted title from flyoutMenuProps.title', () => {
+      const flyoutMenuProps = {
+        title: 'Original Title',
+        hideCloseButton: false,
+      };
+
+      const { getByTestSubject } = renderInProvider(
+        <EuiManagedFlyout
+          id="test-flyout"
+          level={LEVEL_MAIN}
+          onClose={() => {}}
+          flyoutMenuProps={flyoutMenuProps}
+        />
+      );
+
+      const el = getByTestSubject('managed-flyout');
+      expect(el).toHaveAttribute('data-test-subj', 'managed-flyout');
+    });
+
+    it('merges flyoutMenuProps with extracted title from aria-label', () => {
+      const flyoutMenuProps = {
+        hideCloseButton: true,
+        customActions: [],
+      };
+
+      const { getByTestSubject } = renderInProvider(
+        <EuiManagedFlyout
+          id="test-flyout"
+          level={LEVEL_MAIN}
+          onClose={() => {}}
+          aria-label="Aria Label Title"
+          flyoutMenuProps={flyoutMenuProps}
+        />
+      );
+
+      const el = getByTestSubject('managed-flyout');
+      expect(el).toHaveAttribute('data-test-subj', 'managed-flyout');
+    });
+  });
+
+  describe('title handling', () => {
+    it('renders successfully when title is provided via flyoutMenuProps', () => {
+      const flyoutMenuProps = { title: 'Test Title' };
+
+      const { getByTestSubject } = renderInProvider(
+        <EuiManagedFlyout
+          id="test-flyout"
+          level={LEVEL_MAIN}
+          onClose={() => {}}
+          flyoutMenuProps={flyoutMenuProps}
+        />
+      );
+
+      expect(getByTestSubject('managed-flyout')).toBeInTheDocument();
+    });
+
+    it('renders successfully when title is provided via aria-label', () => {
+      const { getByTestSubject } = renderInProvider(
+        <EuiManagedFlyout
+          id="test-flyout"
+          level={LEVEL_MAIN}
+          onClose={() => {}}
+          aria-label="Aria Label Title"
+        />
+      );
+
+      expect(getByTestSubject('managed-flyout')).toBeInTheDocument();
+    });
+
+    it('renders successfully for child flyouts without title', () => {
+      const { getByTestSubject } = renderInProvider(
+        <EuiManagedFlyout
+          id="child-flyout"
+          level={LEVEL_CHILD}
+          onClose={() => {}}
+        />
+      );
+
+      expect(getByTestSubject('managed-flyout')).toBeInTheDocument();
+    });
   });
 });

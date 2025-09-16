@@ -68,6 +68,7 @@ import {
   isEuiFlyoutSizeNamed,
 } from './const';
 import { useIsPushed } from './hooks';
+import { EuiFlyoutMenu, EuiFlyoutMenuProps } from './flyout_menu';
 import { EuiFlyoutResizeButton } from './_flyout_resize_button';
 import { useEuiFlyoutResizable } from './use_flyout_resizable';
 import {
@@ -199,6 +200,12 @@ interface _EuiFlyoutComponentProps {
   includeSelectorInFocusTrap?: string[] | string;
 
   /**
+   * Props for the flyout menu to have one rendered in the flyout.
+   * If used, the close button will be automatically hidden, as the flyout menu has its own close button.
+   */
+  flyoutMenuProps?: EuiFlyoutMenuProps;
+
+  /**
    * Whether the flyout should be resizable.
    * @default false
    */
@@ -244,6 +251,7 @@ export const EuiFlyoutComponent = forwardRef(
       children,
       as,
       hideCloseButton = false,
+      flyoutMenuProps,
       closeButtonProps,
       closeButtonPosition = 'inside',
       onClose,
@@ -627,7 +635,7 @@ export const EuiFlyoutComponent = forwardRef(
             onAnimationEnd={onAnimationEnd}
           >
             {!isPushed && screenReaderDescription}
-            {!hideCloseButton && (
+            {!flyoutMenuProps && !hideCloseButton && (
               <EuiFlyoutCloseButton
                 {...closeButtonProps}
                 onClose={closeFlyout}
@@ -635,6 +643,7 @@ export const EuiFlyoutComponent = forwardRef(
                 side={side}
               />
             )}
+            {flyoutMenuProps && <EuiFlyoutMenu {...flyoutMenuProps} />}
             {resizable && (
               <EuiFlyoutResizeButton
                 type={type}

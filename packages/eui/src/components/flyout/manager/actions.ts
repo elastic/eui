@@ -39,6 +39,7 @@ export const ACTION_SET_ACTIVITY_STAGE = `${PREFIX}/setActivityStage` as const;
 export interface AddFlyoutAction extends BaseAction {
   type: typeof ACTION_ADD;
   flyoutId: string;
+  title: string;
   level: EuiFlyoutLevel;
   size?: string;
 }
@@ -86,16 +87,19 @@ export type Action =
 
 /**
  * Register a flyout with the manager.
+ * - `title` is used for the flyout menu.
  * - `level` determines whether the flyout is `main` or `child`.
  * - Optional `size` is the named EUI size (e.g. `s`, `m`, `l`).
  */
 export const addFlyout = (
   flyoutId: string,
+  title: string,
   level: EuiFlyoutLevel = LEVEL_MAIN,
   size?: string
 ): AddFlyoutAction => ({
   type: ACTION_ADD,
   flyoutId,
+  title,
   level,
   size,
 });

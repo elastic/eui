@@ -57,8 +57,12 @@ export function useFlyoutManagerReducer(
   const [state, dispatch] = useReducer(flyoutManagerReducer, initial);
 
   const addFlyout = useCallback(
-    (flyoutId: string, level: EuiFlyoutLevel = LEVEL_MAIN, size?: string) =>
-      dispatch(addFlyoutAction(flyoutId, level, size)),
+    (
+      flyoutId: string,
+      title: string,
+      level: EuiFlyoutLevel = LEVEL_MAIN,
+      size?: string
+    ) => dispatch(addFlyoutAction(flyoutId, title, level, size)),
     []
   );
   const closeFlyout = useCallback(
