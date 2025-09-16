@@ -1,5 +1,15 @@
 [
   {
+    "version": "106.4.0",
+    "changes": [
+      {
+        "token": "euiModal.screenReaderModalDialog",
+        "changeType": "added",
+        "value": "You are in a modal dialog. Press Escape or tap/click outside the dialog on the shadowed overlay to close."
+      }
+    ]
+  },
+  {
     "version": "106.2.0",
     "changes": [
       {
