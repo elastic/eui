@@ -29,7 +29,7 @@ exports[`EuiFlyout is rendered 1`] = `
             id="generated-id"
           >
             You are in a modal dialog. Press Escape or tap/click outside the dialog on the shadowed overlay to close.
-
+             
           </p>
           <button
             aria-label="Close this dialog"
@@ -84,7 +84,7 @@ exports[`EuiFlyout props accepts div props 1`] = `
             id="generated-id"
           >
             You are in a modal dialog. Press Escape or tap/click outside the dialog on the shadowed overlay to close.
-
+             
           </p>
           <button
             aria-label="Close this dialog"
@@ -138,7 +138,7 @@ exports[`EuiFlyout props closeButtonPosition can be outside 1`] = `
             id="generated-id"
           >
             You are in a modal dialog. Press Escape or tap/click outside the dialog on the shadowed overlay to close.
-
+             
           </p>
           <button
             aria-label="Close this dialog"
@@ -192,7 +192,7 @@ exports[`EuiFlyout props closeButtonProps 1`] = `
             id="generated-id"
           >
             You are in a modal dialog. Press Escape or tap/click outside the dialog on the shadowed overlay to close.
-
+             
           </p>
           <button
             aria-label="aria-label"
@@ -246,7 +246,7 @@ exports[`EuiFlyout props hideCloseButton 1`] = `
             id="generated-id"
           >
             You are in a modal dialog. Press Escape or tap/click outside the dialog on the shadowed overlay to close.
-
+             
           </p>
         </div>
       </div>
@@ -288,7 +288,7 @@ exports[`EuiFlyout props is rendered as nav 1`] = `
             id="generated-id"
           >
             You are in a modal dialog. Press Escape or tap/click outside the dialog on the shadowed overlay to close.
-
+             
           </p>
           <button
             aria-label="Close this dialog"
@@ -344,7 +344,7 @@ exports[`EuiFlyout props maxWidth can be set to a custom number 1`] = `
             id="generated-id"
           >
             You are in a modal dialog. Press Escape or tap/click outside the dialog on the shadowed overlay to close.
-
+             
           </p>
           <button
             aria-label="Close this dialog"
@@ -400,7 +400,7 @@ exports[`EuiFlyout props maxWidth can be set to a custom value and measurement 1
             id="generated-id"
           >
             You are in a modal dialog. Press Escape or tap/click outside the dialog on the shadowed overlay to close.
-
+             
           </p>
           <button
             aria-label="Close this dialog"
@@ -455,7 +455,7 @@ exports[`EuiFlyout props maxWidth can be set to a default 1`] = `
             id="generated-id"
           >
             You are in a modal dialog. Press Escape or tap/click outside the dialog on the shadowed overlay to close.
-
+             
           </p>
           <button
             aria-label="Close this dialog"
@@ -510,7 +510,7 @@ exports[`EuiFlyout props outsideClickCloses 1`] = `
             id="generated-id"
           >
             You are in a modal dialog. Press Escape or tap/click outside the dialog on the shadowed overlay to close.
-
+             
           </p>
           <button
             aria-label="Close this dialog"
@@ -565,7 +565,7 @@ exports[`EuiFlyout props ownFocus can alter mask props with maskProps without th
             id="generated-id"
           >
             You are in a modal dialog. Press Escape or tap/click outside the dialog on the shadowed overlay to close.
-
+             
           </p>
           <button
             aria-label="Close this dialog"
@@ -620,7 +620,7 @@ exports[`EuiFlyout props ownFocus can be false 1`] = `
             id="generated-id"
           >
             You are in a non-modal dialog. To close the dialog, press Escape.
-
+             
           </p>
           <button
             aria-label="Close this dialog"
@@ -675,7 +675,7 @@ exports[`EuiFlyout props paddingSize l is rendered 1`] = `
             id="generated-id"
           >
             You are in a modal dialog. Press Escape or tap/click outside the dialog on the shadowed overlay to close.
-
+             
           </p>
           <button
             aria-label="Close this dialog"
@@ -730,7 +730,7 @@ exports[`EuiFlyout props paddingSize m is rendered 1`] = `
             id="generated-id"
           >
             You are in a modal dialog. Press Escape or tap/click outside the dialog on the shadowed overlay to close.
-
+             
           </p>
           <button
             aria-label="Close this dialog"
@@ -785,7 +785,7 @@ exports[`EuiFlyout props paddingSize none is rendered 1`] = `
             id="generated-id"
           >
             You are in a modal dialog. Press Escape or tap/click outside the dialog on the shadowed overlay to close.
-
+             
           </p>
           <button
             aria-label="Close this dialog"
@@ -840,7 +840,7 @@ exports[`EuiFlyout props paddingSize s is rendered 1`] = `
             id="generated-id"
           >
             You are in a modal dialog. Press Escape or tap/click outside the dialog on the shadowed overlay to close.
-
+             
           </p>
           <button
             aria-label="Close this dialog"
@@ -915,7 +915,7 @@ exports[`EuiFlyout props sides left is rendered 1`] = `
             id="generated-id"
           >
             You are in a modal dialog. Press Escape or tap/click outside the dialog on the shadowed overlay to close.
-
+             
           </p>
           <button
             aria-label="Close this dialog"
@@ -969,7 +969,7 @@ exports[`EuiFlyout props sides right is rendered 1`] = `
             id="generated-id"
           >
             You are in a modal dialog. Press Escape or tap/click outside the dialog on the shadowed overlay to close.
-
+             
           </p>
           <button
             aria-label="Close this dialog"
@@ -1025,7 +1025,7 @@ exports[`EuiFlyout props size accepts custom number 1`] = `
             id="generated-id"
           >
             You are in a modal dialog. Press Escape or tap/click outside the dialog on the shadowed overlay to close.
-
+             
           </p>
           <button
             aria-label="Close this dialog"
@@ -1080,7 +1080,7 @@ exports[`EuiFlyout props size fill is rendered 1`] = `
             id="generated-id"
           >
             You are in a modal dialog. Press Escape or tap/click outside the dialog on the shadowed overlay to close.
-
+             
           </p>
           <button
             aria-label="Close this dialog"
@@ -1135,7 +1135,7 @@ exports[`EuiFlyout props size l is rendered 1`] = `
             id="generated-id"
           >
             You are in a modal dialog. Press Escape or tap/click outside the dialog on the shadowed overlay to close.
-
+             
           </p>
           <button
             aria-label="Close this dialog"
@@ -1190,7 +1190,7 @@ exports[`EuiFlyout props size m is rendered 1`] = `
             id="generated-id"
           >
             You are in a modal dialog. Press Escape or tap/click outside the dialog on the shadowed overlay to close.
-
+             
           </p>
           <button
             aria-label="Close this dialog"
@@ -1245,7 +1245,7 @@ exports[`EuiFlyout props size s is rendered 1`] = `
             id="generated-id"
           >
             You are in a modal dialog. Press Escape or tap/click outside the dialog on the shadowed overlay to close.
-
+             
           </p>
           <button
             aria-label="Close this dialog"
@@ -1306,7 +1306,7 @@ exports[`EuiFlyout renders extra screen reader instructions when fixed EuiHeader
             id="generated-id"
           >
             You are in a modal dialog. Press Escape or tap/click outside the dialog on the shadowed overlay to close.
-
+             
             You can still continue tabbing through other global page landmarks.
           </p>
           <button
