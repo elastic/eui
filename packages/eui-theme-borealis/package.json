@@ -1,6 +1,6 @@
 {
   "name": "@elastic/eui-theme-borealis",
-  "version": "3.3.2",
+  "version": "3.4.0",
   "description": "A visual theme for EUI",
   "license": "SEE LICENSE IN LICENSE.txt",
   "scripts": {
