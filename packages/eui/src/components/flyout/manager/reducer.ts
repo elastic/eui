@@ -41,7 +41,6 @@ export function flyoutManagerReducer(
   state: EuiFlyoutManagerState = initialState,
   action: Action
 ): EuiFlyoutManagerState {
-  console.log(`[FLYOUT DEBUG] reducer action: ${action.type}`, action);
   switch (action.type) {
     // Register a flyout.
     // - Ignore duplicates by `flyoutId`.

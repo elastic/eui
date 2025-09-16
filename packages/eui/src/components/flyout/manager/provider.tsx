@@ -26,7 +26,6 @@ export const registerCallback = (
   callbackType: 'onClose' | 'onActive',
   callback: () => void
 ) => {
-  console.log(`[FLYOUT DEBUG] registerCallback: ${flyoutId} (${callbackType})`);
   const existing = callbacksRegistry.get(flyoutId) || {};
   callbacksRegistry.set(flyoutId, { ...existing, [callbackType]: callback });
 };
@@ -35,9 +34,6 @@ export const unregisterCallback = (
   flyoutId: string,
   callbackType: 'onClose' | 'onActive'
 ) => {
-  console.log(
-    `[FLYOUT DEBUG] unregisterCallback: ${flyoutId} (${callbackType})`
-  );
   const existing = callbacksRegistry.get(flyoutId);
   if (existing) {
     const { [callbackType]: removed, ...rest } = existing;
@@ -53,17 +49,9 @@ export const callCallback = (
   flyoutId: string,
   callbackType: 'onClose' | 'onActive'
 ) => {
-  console.log(`[FLYOUT DEBUG] callCallback: ${flyoutId} (${callbackType})`);
   const callbacks = callbacksRegistry.get(flyoutId);
   if (callbacks?.[callbackType]) {
-    console.log(
-      `[FLYOUT DEBUG] executing ${callbackType} callback for: ${flyoutId}`
-    );
     queueMicrotask(() => callbacks[callbackType]!());
-  } else {
-    console.log(
-      `[FLYOUT DEBUG] no ${callbackType} callback found for: ${flyoutId}`
-    );
   }
 };
 

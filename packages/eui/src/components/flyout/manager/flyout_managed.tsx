@@ -82,8 +82,7 @@ export const EuiManagedFlyout = ({
   const flyoutRef = useRef<HTMLDivElement>(null);
 
   console.log(
-    `[FLYOUT DEBUG] EuiManagedFlyout render: ${flyoutId} (level: ${level})`,
-    { hasOnActive: !!onActive, hasOnClose: !!onCloseProp }
+    `[FLYOUT DEBUG] EuiManagedFlyout render: ${flyoutId} (level: ${level})`
   );
 
   const { addFlyout, closeFlyout, setFlyoutWidth, goBack, getHistoryItems } =
