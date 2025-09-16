@@ -22,6 +22,7 @@ import React, {
   MutableRefObject,
   ReactNode,
   JSX,
+  AnimationEventHandler,
 } from 'react';
 import classnames from 'classnames';
 
@@ -44,7 +45,7 @@ import {
 
 import { CommonProps, PropsOfElement } from '../common';
 import { EuiFocusTrap, EuiFocusTrapProps } from '../focus_trap';
-import { EuiOverlayMask, EuiOverlayMaskProps } from '../overlay_mask';
+import type { EuiOverlayMaskProps } from '../overlay_mask';
 import type { EuiButtonIconPropsForButton } from '../button';
 import { EuiI18n } from '../i18n';
 import { useResizeObserver } from '../observer/resize_observer';
@@ -68,15 +69,45 @@ import {
 } from './const';
 import { useIsPushed } from './hooks';
 import { EuiFlyoutMenu, EuiFlyoutMenuProps } from './flyout_menu';
+import { EuiFlyoutResizeButton } from './_flyout_resize_button';
+import { useEuiFlyoutResizable } from './use_flyout_resizable';
+import {
+  useEuiFlyoutOpenState,
+  type EuiFlyoutOpenState,
+} from './use_open_state';
 
 interface _EuiFlyoutComponentProps {
-  onClose: (event: MouseEvent | TouchEvent | KeyboardEvent) => void;
+  /**
+   * Whether the flyout is open (visible) or closed (hidden).
+   * It defaults to `true` for backwards compatibility.
+   * @default true
+   */
+  isOpen?: boolean;
+  /**
+   * A required callback function fired when the flyout is closed.
+   * It fires after the closing animation is finished.
+   *
+   * Use this callback to toggle your internal `isOpen` flyout state.
+   */
+  onClose: (event?: MouseEvent | TouchEvent | KeyboardEvent) => void;
+  /**
+   * An optional callback function fired when the flyout begins closing.
+   *
+   * Use in case you need to support any extra logic that relies on the flyout
+   * closing state. In most cases this callback doesn't need to be handled.
+   */
+  onClosing?: (event?: MouseEvent | TouchEvent | KeyboardEvent) => void;
   /**
    * Defines the width of the panel.
    * Pass a predefined size of `s | m | l`, or pass any number/string compatible with the CSS `width` attribute
    * @default m
    */
   size?: EuiFlyoutSize | CSSProperties['width'];
+  /**
+   * Sets the minimum width of the panel.
+   * Especially useful when set with `resizable = true`.
+   */
+  minWidth?: number;
   /**
    * Sets the max-width of the panel,
    * set to `true` to use the default size,
@@ -173,9 +204,28 @@ interface _EuiFlyoutComponentProps {
    * If used, the close button will be automatically hidden, as the flyout menu has its own close button.
    */
   flyoutMenuProps?: EuiFlyoutMenuProps;
+
+  /**
+   * Whether the flyout should be resizable.
+   * @default false
+   */
+  resizable?: boolean;
+
+  /**
+   * Optional callback that fires when the flyout is resized.
+   */
+  onResize?: (width: number) => void;
 }
 
 const defaultElement = 'div';
+
+const openStateToClassNameMap: Record<EuiFlyoutOpenState, string> = {
+  opening: 'euiFlyout--opening',
+  open: 'euiFlyout--open',
+  closing: 'euiFlyout--closing',
+  // No special class needed for the closed state
+  closed: '',
+};
 
 type Props<T extends ElementType> = CommonProps & {
   /**
@@ -207,7 +257,7 @@ export const EuiFlyoutComponent = forwardRef(
       onClose,
       ownFocus = true,
       side = DEFAULT_SIDE,
-      size = DEFAULT_SIZE,
+      size: _size = DEFAULT_SIZE,
       paddingSize = DEFAULT_PADDING_SIZE,
       maxWidth = false,
       style,
@@ -221,10 +271,26 @@ export const EuiFlyoutComponent = forwardRef(
       includeSelectorInFocusTrap,
       'aria-describedby': _ariaDescribedBy,
       id,
+      resizable = false,
+      minWidth,
+      onResize,
+      isOpen = true,
+      onClosing,
+      onAnimationEnd: _onAnimationEnd,
       ...rest
     } = usePropsWithComponentDefaults('EuiFlyout', props);
 
     const { setGlobalCSSVariables } = useEuiThemeCSSVariables();
+
+    const {
+      openState,
+      onAnimationEnd: onAnimationEndFlyoutOpenState,
+      closeFlyout,
+    } = useEuiFlyoutOpenState({
+      isOpen,
+      onClose,
+      onClosing,
+    });
 
     const Element = as || defaultElement;
     const maskRef = useRef<HTMLDivElement>(null);
@@ -232,6 +298,20 @@ export const EuiFlyoutComponent = forwardRef(
     // Ref for the main flyout element to pass to context
     const internalParentFlyoutRef = useRef<HTMLDivElement>(null);
     const isPushed = useIsPushed({ type, pushMinBreakpoint });
+
+    const {
+      onMouseDown: onMouseDownResizableButton,
+      onKeyDown: onKeyDownResizableButton,
+      size,
+      setFlyoutRef,
+    } = useEuiFlyoutResizable({
+      enabled: resizable,
+      minWidth,
+      maxWidth: typeof maxWidth === 'number' ? maxWidth : 0,
+      onResize,
+      side,
+      size: _size,
+    });
 
     /**
      * Setting up the refs on the actual flyout element in order to
@@ -244,6 +324,7 @@ export const EuiFlyoutComponent = forwardRef(
       setResizeRef,
       ref,
       internalParentFlyoutRef,
+      setFlyoutRef,
     ]);
     const { width } = useResizeObserver(isPushed ? resizeRef : null, 'width');
 
@@ -348,10 +429,10 @@ export const EuiFlyoutComponent = forwardRef(
       (event: KeyboardEvent) => {
         if (!isPushed && event.key === keys.ESCAPE && shouldCloseOnEscape) {
           event.preventDefault();
-          onClose(event);
+          closeFlyout(event);
         }
       },
-      [onClose, isPushed, shouldCloseOnEscape]
+      [closeFlyout, isPushed, shouldCloseOnEscape]
     );
 
     const siblingFlyoutWidth = useFlyoutWidth(siblingFlyoutId);
@@ -390,7 +471,11 @@ export const EuiFlyoutComponent = forwardRef(
       styles[side],
     ];
 
-    const classes = classnames('euiFlyout', className);
+    const classes = classnames(
+      'euiFlyout',
+      openStateToClassNameMap[openState],
+      className
+    );
 
     const flyoutToggle = useRef<Element | null>(document.activeElement);
     const [focusTrapShards, setFocusTrapShards] = useState<HTMLElement[]>([]);
@@ -492,23 +577,38 @@ export const EuiFlyoutComponent = forwardRef(
         if (outsideClickCloses === false) return undefined;
         if (hasOverlayMask) {
           // The overlay mask is present, so only clicks on the mask should close the flyout, regardless of outsideClickCloses
-          if (event.target === maskRef.current) return onClose(event);
+          if (event.target === maskRef.current) return closeFlyout(event);
         } else {
           // No overlay mask is present, so any outside clicks should close the flyout
-          if (outsideClickCloses === true) return onClose(event);
+          if (outsideClickCloses === true) return closeFlyout(event);
         }
         // Otherwise if ownFocus is false and outsideClickCloses is undefined, outside clicks should not close the flyout
         return undefined;
       },
-      [onClose, hasOverlayMask, outsideClickCloses]
+      [closeFlyout, hasOverlayMask, outsideClickCloses]
     );
+
+    const maskCombinedRefs = useCombinedRefs([maskProps?.maskRef, maskRef]);
+
+    const onAnimationEnd = useCallback<AnimationEventHandler>(
+      (event) => {
+        onAnimationEndFlyoutOpenState(event);
+        _onAnimationEnd?.(event);
+      },
+      [_onAnimationEnd, onAnimationEndFlyoutOpenState]
+    );
+
+    if (openState === 'closed') {
+      // Render null only if the flyout is completely closed
+      return null;
+    }
 
     return (
       <EuiFlyoutComponentWrapper
         hasOverlayMask={hasOverlayMask}
         maskProps={{
           ...maskProps,
-          maskRef: useCombinedRefs([maskProps?.maskRef, maskRef]),
+          maskRef: maskCombinedRefs,
         }}
         isPortalled={!isPushed}
       >
@@ -532,17 +632,29 @@ export const EuiFlyoutComponent = forwardRef(
             tabIndex={!isPushed ? 0 : rest.tabIndex}
             aria-describedby={!isPushed ? ariaDescribedBy : _ariaDescribedBy}
             data-autofocus={!isPushed || undefined}
+            onAnimationEnd={onAnimationEnd}
           >
             {!isPushed && screenReaderDescription}
-            {!flyoutMenuProps && !hideCloseButton && onClose && (
+            {!flyoutMenuProps && !hideCloseButton && (
               <EuiFlyoutCloseButton
                 {...closeButtonProps}
-                onClose={onClose}
+                onClose={closeFlyout}
                 closeButtonPosition={closeButtonPosition}
                 side={side}
               />
             )}
             {flyoutMenuProps && <EuiFlyoutMenu {...flyoutMenuProps} />}
+            {resizable && (
+              <EuiFlyoutResizeButton
+                type={type}
+                side={side}
+                ownFocus={ownFocus}
+                isPushed={isPushed}
+                onMouseDown={onMouseDownResizableButton}
+                onTouchStart={onMouseDownResizableButton}
+                onKeyDown={onKeyDownResizableButton}
+              />
+            )}
             {children}
           </Element>
         </EuiFocusTrap>
@@ -569,20 +681,15 @@ const EuiFlyoutComponentWrapper: FunctionComponent<{
   hasOverlayMask: boolean;
   maskProps: EuiFlyoutComponentProps['maskProps'];
   isPortalled: boolean;
-}> = ({ children, hasOverlayMask, maskProps, isPortalled }) => {
-  // TODO: @tkajtoch - this is causing all kinds of issues with animations if a
-  // main flyout is opened with ownFocus={true}.  Since the logic is to _change_
-  // ownFocus to false if a child is rendered, the component remounts, spinning all
-  // of the animations into a tailspin.  One option would be to flat-out _hide_ this
-  // mask. :shrug:
-  if (hasOverlayMask) {
+}> = ({ children, hasOverlayMask, isPortalled }) => {
+  // TODO(tkajtoch): Add EuiOverlayMask again
+
+  if (isPortalled || hasOverlayMask) {
     return (
-      <EuiOverlayMask headerZindexLocation="below" {...maskProps}>
-        {children}
-      </EuiOverlayMask>
+      <EuiPortal>
+        <div>{children}</div>
+      </EuiPortal>
     );
-  } else if (isPortalled) {
-    return <EuiPortal>{children}</EuiPortal>;
   } else {
     return <>{children}</>;
   }

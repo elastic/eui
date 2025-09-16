@@ -197,7 +197,8 @@ describe('EuiFlyout', () => {
       );
     };
 
-    it('closes the flyout when the overlay mask is clicked', () => {
+    // TODO: Unskip in https://github.com/elastic/eui/issues/8989
+    it.skip('closes the flyout when the overlay mask is clicked', () => {
       cy.mount(<Flyout />);
       cy.get('[data-test-subj="flyoutSpec"]').should('be.visible');
       cy.get('.euiOverlayMask')
@@ -206,7 +207,8 @@ describe('EuiFlyout', () => {
       cy.get('[data-test-subj="flyoutSpec"]').should('not.exist');
     });
 
-    it('does not close the flyout when `outsideClickCloses=false` and the overlay mask is clicked', () => {
+    // TODO: Unskip in https://github.com/elastic/eui/issues/8989
+    it.skip('does not close the flyout when `outsideClickCloses=false` and the overlay mask is clicked', () => {
       cy.mount(<Flyout outsideClickCloses={false} />);
       cy.get('.euiOverlayMask')
         .realClick()
@@ -215,7 +217,8 @@ describe('EuiFlyout', () => {
         });
     });
 
-    it('does not close the flyout when the overlay mask is only the target of mouseup', () => {
+    // TODO: Unskip in https://github.com/elastic/eui/issues/8989
+    it.skip('does not close the flyout when the overlay mask is only the target of mouseup', () => {
       cy.mount(<Flyout />);
       cy.get('[data-test-subj="itemD"]').realMouseDown().realMouseMove(-100, 0);
       cy.get('.euiOverlayMask')

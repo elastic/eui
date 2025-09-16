@@ -31,9 +31,11 @@ jest.mock('../portal', () => ({
 }));
 
 describe('EuiFlyout', () => {
+  // TODO: Add `maskProps` to `childProps` again when EuiOverlayMask
+  // is added back
   shouldRenderCustomStyles(
     <EuiFlyout {...requiredProps} onClose={() => {}} />,
-    { childProps: ['closeButtonProps', 'maskProps'] }
+    { childProps: ['closeButtonProps'] }
   );
 
   test('is rendered', () => {

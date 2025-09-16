@@ -309,17 +309,11 @@ export const EuiManagedFlyout = ({
     'width'
   );
 
-  const onClose = (_event: MouseEvent | TouchEvent | KeyboardEvent) => {
-    console.log(`[FLYOUT DEBUG] onClose function called for: ${flyoutId}`);
-    // For explicit closes, just trigger the unregister process
-    // The onCloseProp will be called as a side effect of unregistering
-    // But only if it hasn't been called already
+  const onClose = (event?: MouseEvent | TouchEvent | KeyboardEvent) => {
+    closeFlyout(flyoutId);
     if (!onCloseCalledRef.current) {
+      onCloseProp(event);
       closeFlyout(flyoutId);
-    } else {
-      console.log(
-        `[FLYOUT DEBUG] onClose already called for: ${flyoutId}, skipping closeFlyout`
-      );
     }
   };
 

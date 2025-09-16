@@ -53,6 +53,8 @@ interface FlyoutChildStoryArgs extends EuiFlyoutChildActualProps {
   paddingSize?: 'none' | 's' | 'm' | 'l';
   pushMinBreakpoint: EuiBreakpointSize;
   showFooter?: boolean;
+  mainFlyoutResizable?: boolean;
+  childFlyoutResizable?: boolean;
 }
 
 const breakpointSizes: EuiBreakpointSize[] = ['xs', 's', 'm', 'l', 'xl'];
@@ -104,6 +106,14 @@ const meta: Meta<FlyoutChildStoryArgs> = {
       description:
         'Whether to show the flyout footer. If `false`, an `EuiFlyoutFooter` will not be rendered.',
     },
+    mainFlyoutResizable: {
+      control: { type: 'boolean' },
+      description: 'Whether the main flyout should be resizable.',
+    },
+    childFlyoutResizable: {
+      control: { type: 'boolean' },
+      description: 'Whether the child flyout should be resizable.',
+    },
 
     // use "childBackgroundStyle" instead
     backgroundStyle: { table: { disable: true } },
@@ -134,6 +144,8 @@ const meta: Meta<FlyoutChildStoryArgs> = {
     pushAnimation: true,
     pushMinBreakpoint: 'xs',
     showFooter: true,
+    mainFlyoutResizable: false,
+    childFlyoutResizable: false,
   },
   parameters: {
     loki: {
@@ -158,6 +170,8 @@ const StatefulFlyout: React.FC<FlyoutChildStoryArgs> = ({
   mainMaxWidth,
   childMaxWidth,
   showFooter,
+  mainFlyoutResizable,
+  childFlyoutResizable,
   ...args
 }) => {
   const [isMainOpen, setIsMainOpen] = useState(true);
@@ -220,6 +234,7 @@ const StatefulFlyout: React.FC<FlyoutChildStoryArgs> = ({
           pushMinBreakpoint={pushMinBreakpoint}
           maxWidth={mainMaxWidth}
           ownFocus={false}
+          resizable={mainFlyoutResizable}
           {...args}
           aria-label={`Main Flyout Menu (${mainSize})`}
           onClose={closeMain}
@@ -248,6 +263,7 @@ const StatefulFlyout: React.FC<FlyoutChildStoryArgs> = ({
                 backgroundStyle={childBackgroundStyle}
                 maxWidth={childMaxWidth}
                 ownFocus={false}
+                resizable={childFlyoutResizable}
                 {...args}
                 aria-label={`Child Flyout Panel (${childSize})`}
                 onClose={closeChild}
