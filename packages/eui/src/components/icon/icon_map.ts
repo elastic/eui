@@ -472,6 +472,7 @@ export const typeToPathMap = {
   web: 'web',
   wordWrap: 'wordWrap',
   wordWrapDisabled: 'wordWrapDisabled',
+  workflowsApp: 'app_workflows',
   workplaceSearchApp: 'app_workplace_search',
   wrench: 'wrench',
   // Token Icon Imports
