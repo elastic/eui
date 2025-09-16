@@ -121,7 +121,7 @@ export function flyoutManagerReducer(
             flyoutsToRemove.add(sessionToRemove.child);
           }
 
-          // Call onUnregister callbacks for all flyouts being removed (defer to avoid setState during render)
+          // Call onClose callbacks for all flyouts being removed
           flyoutsToRemove.forEach((flyoutId) => {
             callCallback(flyoutId, 'onClose');
           });
@@ -138,8 +138,7 @@ export function flyoutManagerReducer(
         }
       }
 
-      // Call onUnregister callback if it exists (defer to avoid setState during render)
-      // Only call this for non-main flyouts or main flyouts without sessions
+      // Call onClose callback if it exists
       callCallback(action.flyoutId, 'onClose');
 
       // Handle child flyout closing (existing logic)
@@ -223,7 +222,7 @@ export function flyoutManagerReducer(
         flyoutsToRemove.add(currentSession.child);
       }
 
-      // Call onUnregister callbacks for removed flyouts (defer to avoid setState during render)
+      // Call onClose callbacks for removed flyouts
       flyoutsToRemove.forEach((flyoutId) => {
         callCallback(flyoutId, 'onClose');
       });
@@ -261,7 +260,7 @@ export function flyoutManagerReducer(
         }
       });
 
-      // Call onUnregister callbacks for removed flyouts (defer to avoid setState during render)
+      // Call onClose callbacks for removed flyouts
       flyoutsToRemove.forEach((flyoutId) => {
         callCallback(flyoutId, 'onClose');
       });

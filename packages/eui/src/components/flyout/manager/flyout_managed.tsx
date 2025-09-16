@@ -61,6 +61,8 @@ const useFlyoutManager = () => {
   return context;
 };
 
+type CloseEvent = MouseEvent | TouchEvent | KeyboardEvent;
+
 /**
  * Persistent managed flyout rendered inside the provider. Handles:
  * - registration/unregistration with the manager
@@ -81,20 +83,12 @@ export const EuiManagedFlyout = ({
   const flyoutId = useFlyoutId(id);
   const flyoutRef = useRef<HTMLDivElement>(null);
 
-  console.log(
-    `[FLYOUT DEBUG] EuiManagedFlyout render: ${flyoutId} (level: ${level})`
-  );
-
   const { addFlyout, closeFlyout, setFlyoutWidth, goBack, getHistoryItems } =
     useFlyoutManager();
-
   const isActive = useIsFlyoutActive(flyoutId);
   const parentSize = useParentFlyoutSize(flyoutId);
   const currentSession = useCurrentSession();
-
-  // Get layout mode for responsive behavior
   const layoutMode = useFlyoutLayoutMode();
-
   const styles = useEuiMemoizedStyles(euiManagedFlyoutStyles);
 
   // Validate size
@@ -129,21 +123,11 @@ export const EuiManagedFlyout = ({
   const onCloseCalledRef = useRef<boolean>(false);
 
   // Stabilize the unregister callback to prevent unnecessary re-registrations
-  const unregisterCallbackRef = useRef<
-    ((event?: MouseEvent | TouchEvent | KeyboardEvent) => void) | undefined
-  >();
-  unregisterCallbackRef.current = (eventArg) => {
+  const onCloseCallbackRef = useRef<((e?: CloseEvent) => void) | undefined>();
+  onCloseCallbackRef.current = (e) => {
     if (!onCloseCalledRef.current && onCloseProp) {
-      console.log(
-        `[FLYOUT DEBUG] executing onClose callback for: ${flyoutId} (from unregister callback)`
-      );
       onCloseCalledRef.current = true;
-      const event =
-        eventArg ||
-        new MouseEvent('click', {
-          bubbles: true,
-          cancelable: true,
-        });
+      const event = e || new MouseEvent('click');
       onCloseProp(event);
     }
   };
@@ -154,93 +138,45 @@ export const EuiManagedFlyout = ({
 
   // Register/unregister with flyout manager context
   useEffect(() => {
-    console.log(
-      `[FLYOUT DEBUG] useEffect (registration) running for: ${flyoutId}`
-    );
-    // Register the unregister callback in the registry
-    if (unregisterCallbackRef.current) {
-      console.log(
-        `[FLYOUT DEBUG] registering onClose callback for: ${flyoutId}`
-      );
-      registerCallback(flyoutId, 'onClose', unregisterCallbackRef.current);
-    } else {
-      console.log(
-        `[FLYOUT DEBUG] no onClose callback to register for: ${flyoutId}`
-      );
+    if (onCloseCallbackRef.current) {
+      registerCallback(flyoutId, 'onClose', onCloseCallbackRef.current);
     }
 
-    // Register the onActive callback in the registry
     if (onActiveCallbackRef.current) {
-      console.log(
-        `[FLYOUT DEBUG] registering onActive callback for: ${flyoutId}`
-      );
       registerCallback(flyoutId, 'onActive', onActiveCallbackRef.current);
-    } else {
-      console.log(
-        `[FLYOUT DEBUG] no onActive callback to register for: ${flyoutId}`
-      );
     }
 
-    console.log(`[FLYOUT DEBUG] calling addFlyout for: ${flyoutId}`);
     addFlyout(flyoutId, title!, level, size as string);
 
     return () => {
-      console.log(
-        `[FLYOUT DEBUG] useEffect (registration) cleanup for: ${flyoutId}`
-      );
       closeFlyout(flyoutId);
-      // Don't unregister callbacks here - let the reducer handle it
-      // The reducer will call the callbacks and then we can unregister them
     };
   }, [size, flyoutId, title, level, addFlyout, closeFlyout]);
 
   // Monitor current session changes and fire onActive callback when this flyout becomes active
-  // Only run this effect if we have an onActive callback to avoid unnecessary work
   useEffect(() => {
-    // Early exit if no callback - no need to monitor sessions
     if (!onActiveCallbackRef.current) {
+      // no callback, no need to monitor sessions
       return;
     }
-
-    console.log(
-      `[FLYOUT DEBUG] useEffect (session monitoring) running for: ${flyoutId}`,
-      {
-        currentSession,
-        hasOnActiveCallback: !!onActiveCallbackRef.current,
-      }
-    );
 
     if (!currentSession) {
-      console.log(
-        `[FLYOUT DEBUG] skipping session check for: ${flyoutId} (no session)`
-      );
+      // skip session checks if there's no active session
       return;
     }
 
-    // Check if this flyout is part of the current active session
     const isInCurrentSession =
       currentSession.main === flyoutId || currentSession.child === flyoutId;
 
-    console.log(`[FLYOUT DEBUG] session check for: ${flyoutId}`, {
-      isInCurrentSession,
-      currentSession,
-    });
-
     if (isInCurrentSession) {
-      console.log(`[FLYOUT DEBUG] firing onActive callback for: ${flyoutId}`);
-      // Fire the onActive callback when this flyout becomes part of the active session
       onActiveCallbackRef.current();
     }
   }, [currentSession, flyoutId, level]);
 
-  // Clean up callbacks when component unmounts
   useEffect(() => {
     return () => {
-      console.log(`[FLYOUT DEBUG] component unmount cleanup for: ${flyoutId}`);
-      // Defer unregistration to allow callUnregisterCallback to execute first
-      // Use setTimeout with 0 delay to ensure it runs after microtasks
+      // Defer unregistration to allow calling the "onClose" callback to execute first
       setTimeout(() => {
-        console.log(`[FLYOUT DEBUG] delayed unregistration for: ${flyoutId}`);
         unregisterCallback(flyoutId, 'onClose');
         unregisterCallback(flyoutId, 'onActive');
       }, 0);
@@ -253,8 +189,8 @@ export const EuiManagedFlyout = ({
     'width'
   );
 
-  const onClose = (event?: MouseEvent | TouchEvent | KeyboardEvent) => {
-    unregisterCallbackRef.current?.(event);
+  const onClose = (e?: CloseEvent) => {
+    onCloseCallbackRef.current?.(e);
   };
 
   // Update width in manager state when it changes
@@ -269,11 +205,12 @@ export const EuiManagedFlyout = ({
     level,
   });
 
-  // History controls are only relevant for main flyouts
   // Get titles and flyoutIds from the manager's flyouts state
   let showBackButton = false;
   let backButtonProps: EuiFlyoutMenuProps['backButtonProps'] | undefined;
   let historyItems: EuiFlyoutMenuProps['historyItems'] | undefined;
+
+  // History controls are only relevant for main flyouts
   if (level === LEVEL_MAIN) {
     historyItems = getHistoryItems();
     showBackButton = historyItems.length > 0;
