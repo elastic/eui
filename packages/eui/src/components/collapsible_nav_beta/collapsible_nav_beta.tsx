@@ -35,7 +35,7 @@ import { EuiCollapsibleNavButton } from './collapsible_nav_button';
 import { euiCollapsibleNavBetaStyles } from './collapsible_nav_beta.styles';
 
 export type EuiCollapsibleNavBetaProps = CommonProps &
-  HTMLAttributes<HTMLElement> &
+  Omit<HTMLAttributes<HTMLElement>, 'onResize'> &
   Pick<
     EuiFlyoutProps, // Extend only specific flyout props - EuiCollapsibleNav is much less customizable than EuiFlyout
     'side' | 'focusTrapProps' | 'includeFixedHeadersInFocusTrap'
