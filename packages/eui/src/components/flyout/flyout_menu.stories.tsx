@@ -19,11 +19,10 @@ import { EuiFlyoutMenu, EuiFlyoutMenuProps } from './flyout_menu';
 import { EuiIcon } from '../icon';
 import { EuiPopover } from '../popover';
 import { EuiListGroup, EuiListGroupItem } from '../list_group';
-import { EuiFlyoutMenuContext } from './flyout_menu_context';
 
 interface Args extends EuiFlyoutMenuProps {
   showBackButton: boolean;
-  showCustomAction: boolean;
+  showCustomActions: boolean;
   showPopover: boolean;
 }
 
@@ -31,14 +30,16 @@ const meta: Meta<Args> = {
   title: 'Layout/EuiFlyout/EuiFlyoutMenu',
   component: EuiFlyoutMenu,
   argTypes: {
-    showBackButton: { control: 'boolean' },
-    showCustomAction: { control: 'boolean' },
+    showCustomActions: { control: 'boolean' },
+    customActions: { table: { disable: true } },
     showPopover: { control: 'boolean' },
     backButton: { table: { disable: true } },
+    popover: { table: { disable: true } },
   },
   args: {
+    hideCloseButton: false,
     showBackButton: true,
-    showCustomAction: true,
+    showCustomActions: true,
     showPopover: true,
   },
 };
@@ -46,7 +47,8 @@ const meta: Meta<Args> = {
 export default meta;
 
 const MenuBarFlyout = (args: Args) => {
-  const { showCustomAction, showBackButton, showPopover } = args;
+  const { showCustomActions, hideCloseButton, showBackButton, showPopover } =
+    args;
 
   const [isFlyoutOpen, setIsFlyoutOpen] = useState(true);
   const openFlyout = () => setIsFlyoutOpen(true);
@@ -56,6 +58,7 @@ const MenuBarFlyout = (args: Args) => {
 
   /* Back button */
 
+  // TODO: back button should be internalized in EuiFlyoutMenu when historyItems are passed
   const backButton = (
     <EuiButtonEmpty size="xs" color="text">
       <EuiIcon type="editorUndo" /> Back
@@ -75,6 +78,7 @@ const MenuBarFlyout = (args: Args) => {
     { config: { mainTitle: 'Third item' } },
   ];
 
+  // TODO: history popover should be internalized in EuiFlyoutMenu when historyItems are passed
   const historyPopover = (
     <EuiPopover
       button={
@@ -104,13 +108,13 @@ const MenuBarFlyout = (args: Args) => {
     </EuiPopover>
   );
 
-  /* Custom action */
-
-  const handleCustomActionClick = () => {
-    action('custom action clicked')();
-  };
-
-  /* Render */
+  const customActions = ['gear', 'broom'].map((iconType) => ({
+    iconType,
+    onClick: () => {
+      action('custom action')(`${iconType} action clicked`);
+    },
+    'aria-label': `${iconType} action`,
+  }));
 
   return (
     <>
@@ -126,25 +130,14 @@ const MenuBarFlyout = (args: Args) => {
           type="overlay"
           outsideClickCloses={false}
           ownFocus
+          flyoutMenuProps={{
+            title: 'Flyout title',
+            hideCloseButton,
+            backButton: showBackButton ? backButton : undefined,
+            popover: showPopover ? historyPopover : undefined,
+            customActions: showCustomActions ? customActions : undefined,
+          }}
         >
-          <EuiFlyoutMenuContext.Provider value={{ onClose: closeFlyout }}>
-            <EuiFlyoutMenu
-              title="Title"
-              backButton={showBackButton && backButton}
-              popover={showPopover && historyPopover}
-            >
-              {showCustomAction && (
-                <EuiButtonIcon
-                  iconType="gear"
-                  onClick={handleCustomActionClick}
-                  color="text"
-                  size="s"
-                  style={{ blockSize: '20px' }}
-                  aria-label="Custom action"
-                />
-              )}
-            </EuiFlyoutMenu>
-          </EuiFlyoutMenuContext.Provider>
           <EuiFlyoutBody>
             <EuiText>
               <p>Simple flyout content.</p>

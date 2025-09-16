@@ -9,6 +9,7 @@
 import classNames from 'classnames';
 import React, { FunctionComponent, HTMLAttributes, useContext } from 'react';
 import { useEuiMemoizedStyles, useGeneratedHtmlId } from '../../services';
+import { EuiButtonIcon } from '../button';
 import { CommonProps } from '../common';
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
 import { EuiTitle } from '../title';
@@ -22,15 +23,20 @@ export type EuiFlyoutMenuProps = CommonProps &
     popover?: React.ReactNode;
     title?: React.ReactNode;
     hideCloseButton?: boolean;
+    customActions?: Array<{
+      iconType: string;
+      onClick: () => void;
+      'aria-label': string;
+    }>;
   };
 
 export const EuiFlyoutMenu: FunctionComponent<EuiFlyoutMenuProps> = ({
-  children,
   className,
   backButton,
   popover,
   title,
   hideCloseButton,
+  customActions,
   ...rest
 }) => {
   const { onClose } = useContext(EuiFlyoutMenuContext);
@@ -54,16 +60,13 @@ export const EuiFlyoutMenu: FunctionComponent<EuiFlyoutMenuProps> = ({
     onClose?.(event);
   };
 
-  let closeButton;
-  if (!hideCloseButton) {
-    closeButton = (
-      <EuiFlyoutCloseButton
-        onClose={handleClose}
-        side="right"
-        closeButtonPosition="inside"
-      />
-    );
-  }
+  const closeButton = (
+    <EuiFlyoutCloseButton
+      onClose={handleClose}
+      side="right"
+      closeButtonPosition="inside"
+    />
+  );
 
   return (
     <div className={classes} css={styles.euiFlyoutMenu__container} {...rest}>
@@ -76,11 +79,33 @@ export const EuiFlyoutMenu: FunctionComponent<EuiFlyoutMenuProps> = ({
         {backButton && <EuiFlexItem grow={false}>{backButton}</EuiFlexItem>}
         {popover && <EuiFlexItem grow={false}>{popover}</EuiFlexItem>}
         {titleNode && <EuiFlexItem grow={false}>{titleNode}</EuiFlexItem>}
+
         <EuiFlexItem grow={true}></EuiFlexItem>
-        {children && <EuiFlexItem grow={false}>{children}</EuiFlexItem>}
-        <EuiFlexItem grow={false} css={styles.euiFlyoutMenu__spacer} />
+
+        {customActions &&
+          customActions.map((action, actionIndex) => (
+            <EuiFlexItem
+              grow={false}
+              key={`action-index-flex-item-${actionIndex}`}
+              css={styles.euiFlyoutMenu__actions}
+            >
+              <EuiButtonIcon
+                key={`action-index-icon-${actionIndex}`}
+                aria-label={action['aria-label']}
+                iconType={action.iconType}
+                onClick={action.onClick}
+                color="text"
+                size="s"
+              />
+            </EuiFlexItem>
+          ))}
+
+        {/* spacer to give custom actions room around the close button */}
+        {!hideCloseButton && (
+          <EuiFlexItem grow={false} css={styles.euiFlyoutMenu__spacer} />
+        )}
       </EuiFlexGroup>
-      {closeButton}
+      {!hideCloseButton && closeButton}
     </div>
   );
 };

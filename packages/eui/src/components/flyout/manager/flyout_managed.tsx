@@ -6,27 +6,15 @@
  * Side Public License, v 1.
  */
 import React, { useEffect, useRef } from 'react';
+import { useEuiMemoizedStyles } from '../../../services';
+import { useResizeObserver } from '../../observer/resize_observer';
 import {
   EuiFlyoutComponent,
   EuiFlyoutComponentProps,
 } from '../flyout.component';
-import {
-  useFlyoutManager as _useFlyoutManager,
-  useIsFlyoutActive,
-  useParentFlyoutSize,
-  useFlyoutLayoutMode,
-  useFlyoutId,
-} from './hooks';
-import { useEuiMemoizedStyles } from '../../../services';
-import { useResizeObserver } from '../../observer/resize_observer';
-import { euiManagedFlyoutStyles } from './flyout_managed.styles';
+import { EuiFlyoutMenuProps } from '../flyout_menu';
 import { EuiFlyoutMenuContext } from '../flyout_menu_context';
-import {
-  validateManagedFlyoutSize,
-  validateSizeCombination,
-  createValidationErrorMessage,
-  isNamedSize,
-} from './validation';
+import { useFlyoutActivityStage } from './activity_stage';
 import {
   LEVEL_CHILD,
   PROPERTY_FLYOUT,
@@ -34,8 +22,22 @@ import {
   PROPERTY_LEVEL,
 } from './const';
 import { EuiFlyoutIsManagedProvider } from './context';
+import { euiManagedFlyoutStyles } from './flyout_managed.styles';
+import {
+  useFlyoutManager as _useFlyoutManager,
+  useFlyoutId,
+  useFlyoutLayoutMode,
+  useIsFlyoutActive,
+  useParentFlyoutSize,
+} from './hooks';
 import { EuiFlyoutLevel } from './types';
-import { useFlyoutActivityStage } from './activity_stage';
+import {
+  createValidationErrorMessage,
+  isNamedSize,
+  validateFlyoutTitle,
+  validateManagedFlyoutSize,
+  validateSizeCombination,
+} from './validation';
 
 /**
  * Props for `EuiManagedFlyout`, the internal persistent flyout used by
@@ -44,6 +46,7 @@ import { useFlyoutActivityStage } from './activity_stage';
  */
 export interface EuiManagedFlyoutProps extends EuiFlyoutComponentProps {
   level: EuiFlyoutLevel;
+  flyoutMenuProps?: EuiFlyoutMenuProps;
 }
 
 const useFlyoutManager = () => {
@@ -67,6 +70,7 @@ export const EuiManagedFlyout = ({
   level,
   size,
   css: customCss,
+  flyoutMenuProps: _flyoutMenuProps,
   ...props
 }: EuiManagedFlyoutProps) => {
   const flyoutId = useFlyoutId(id);
@@ -82,36 +86,42 @@ export const EuiManagedFlyout = ({
 
   const styles = useEuiMemoizedStyles(euiManagedFlyoutStyles);
 
-  // Validate size and add flyout
+  // Validate size
+  const sizeTypeError = validateManagedFlyoutSize(size, flyoutId, level);
+  if (sizeTypeError) {
+    throw new Error(createValidationErrorMessage(sizeTypeError));
+  }
+
+  // For child flyouts, validate parent-child combinations
+  if (
+    level === LEVEL_CHILD &&
+    parentSize &&
+    isNamedSize(size) &&
+    isNamedSize(parentSize)
+  ) {
+    const combinationError = validateSizeCombination(parentSize, size);
+    if (combinationError) {
+      combinationError.flyoutId = flyoutId;
+      combinationError.level = level;
+      throw new Error(createValidationErrorMessage(combinationError));
+    }
+  }
+
+  // Validate title
+  const title = _flyoutMenuProps?.title || props['aria-label'];
+  const titleError = validateFlyoutTitle(title, flyoutId, level);
+  if (titleError) {
+    throw new Error(createValidationErrorMessage(titleError));
+  }
+
+  // Register/unregister with flyout manager context
   useEffect(() => {
-    // Validate that managed flyouts use named sizes (s, m, l)
-    const sizeTypeError = validateManagedFlyoutSize(size, flyoutId, level);
-
-    if (sizeTypeError) {
-      throw new Error(createValidationErrorMessage(sizeTypeError));
-    }
-
-    // For child flyouts, validate parent-child combinations
-    if (
-      level === LEVEL_CHILD &&
-      parentSize &&
-      isNamedSize(size) &&
-      isNamedSize(parentSize)
-    ) {
-      const combinationError = validateSizeCombination(parentSize, size);
-      if (combinationError) {
-        combinationError.flyoutId = flyoutId;
-        combinationError.level = level;
-        throw new Error(createValidationErrorMessage(combinationError));
-      }
-    }
-
-    addFlyout(flyoutId, level, size as string);
+    addFlyout(flyoutId, title!, level, size as string);
 
     return () => {
       closeFlyout(flyoutId);
     };
-  }, [size, flyoutId, level, parentSize, addFlyout, closeFlyout]);
+  }, [size, flyoutId, title, level, addFlyout, closeFlyout]);
 
   // Track width changes for flyouts
   const { width } = useResizeObserver(
@@ -136,6 +146,11 @@ export const EuiManagedFlyout = ({
     level,
   });
 
+  const flyoutMenuProps = {
+    ..._flyoutMenuProps,
+    title,
+  };
+
   return (
     <EuiFlyoutIsManagedProvider isManaged={true}>
       <EuiFlyoutMenuContext.Provider value={{ onClose }}>
@@ -151,6 +166,7 @@ export const EuiManagedFlyout = ({
             ...props,
             onClose,
             size,
+            flyoutMenuProps,
             onAnimationEnd,
             [PROPERTY_FLYOUT]: true,
             [PROPERTY_LAYOUT_MODE]: layoutMode,

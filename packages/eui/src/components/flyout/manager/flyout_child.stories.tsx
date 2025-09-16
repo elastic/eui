@@ -18,7 +18,6 @@ import { EuiText } from '../../text';
 import { FLYOUT_TYPES, EuiFlyout } from '../flyout';
 import { EuiFlyoutBody } from '../flyout_body';
 import { EuiFlyoutFooter } from '../flyout_footer';
-import { EuiFlyoutMenu } from '../flyout_menu';
 import { EuiFlyoutChild, EuiFlyoutChildProps } from './flyout_child';
 import { useFlyoutLayoutMode } from './hooks';
 
@@ -237,9 +236,9 @@ const StatefulFlyout: React.FC<FlyoutChildStoryArgs> = ({
           ownFocus={false}
           resizable={mainFlyoutResizable}
           {...args}
+          aria-label={`Main Flyout Menu (${mainSize})`}
           onClose={closeMain}
         >
-          <EuiFlyoutMenu title={`Main Flyout Menu (${mainSize})`} />
           <EuiFlyoutBody>
             <EuiText>
               <p>This is the main flyout content.</p>
@@ -266,9 +265,9 @@ const StatefulFlyout: React.FC<FlyoutChildStoryArgs> = ({
                 ownFocus={false}
                 resizable={childFlyoutResizable}
                 {...args}
+                aria-label={`Child Flyout Panel (${childSize})`}
                 onClose={closeChild}
               >
-                <EuiFlyoutMenu title={`Child Flyout Menu (${childSize})`} />
                 <EuiFlyoutBody>
                   <EuiText>
                     <p>This is the child flyout content.</p>

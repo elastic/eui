@@ -129,6 +129,7 @@ describe('EuiFlyoutChild', () => {
               <EuiFlyout
                 id="main-flyout"
                 session={true}
+                aria-label="Main flyout"
                 size="m"
                 onClose={() => {}}
               >
@@ -136,6 +137,7 @@ describe('EuiFlyoutChild', () => {
                 {isChildOpen && (
                   <EuiFlyoutChild
                     id="valid-child"
+                    aria-label="Valid child flyout"
                     size="s"
                     onClose={() => setIsChildOpen(false)}
                   >
