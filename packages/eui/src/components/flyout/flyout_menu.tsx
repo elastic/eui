@@ -29,7 +29,6 @@ import { EuiFlyoutMenuContext } from './flyout_menu_context';
 
 type EuiFlyoutMenuBackButtonProps = {
   onClick?: MouseEventHandler<HTMLButtonElement>;
-  isDisabled?: boolean;
   'aria-label'?: string;
   'data-test-subj'?: string;
 };

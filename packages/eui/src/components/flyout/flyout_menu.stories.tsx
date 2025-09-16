@@ -19,6 +19,7 @@ import { EuiFlyoutMenu, EuiFlyoutMenuProps } from './flyout_menu';
 
 interface Args extends EuiFlyoutMenuProps {
   showCustomActions: boolean;
+  showHistoryItems: boolean;
 }
 
 const meta: Meta<Args> = {
@@ -36,13 +37,19 @@ const meta: Meta<Args> = {
     hideCloseButton: false,
     showBackButton: true,
     showCustomActions: true,
+    showHistoryItems: true,
   },
 };
 
 export default meta;
 
 const MenuBarFlyout = (args: Args) => {
-  const { showCustomActions, hideCloseButton, showBackButton } = args;
+  const {
+    hideCloseButton,
+    showBackButton,
+    showCustomActions,
+    showHistoryItems,
+  } = args;
 
   const [isFlyoutOpen, setIsFlyoutOpen] = useState(true);
   const openFlyout = () => setIsFlyoutOpen(true);
@@ -56,14 +63,14 @@ const MenuBarFlyout = (args: Args) => {
     },
   };
 
-  const historyItems = ['First item', 'Second item', 'Third item'].map(
-    (title) => ({
-      title,
-      onClick: () => {
-        action('history item')(`${title} clicked`);
-      },
-    })
-  );
+  const historyItems = showHistoryItems
+    ? ['First item', 'Second item', 'Third item'].map((title) => ({
+        title,
+        onClick: () => {
+          action('history item')(`${title} clicked`);
+        },
+      }))
+    : undefined;
 
   const customActions = ['gear', 'broom'].map((iconType) => ({
     iconType,

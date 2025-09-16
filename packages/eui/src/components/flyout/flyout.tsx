@@ -38,9 +38,9 @@ export type EuiFlyoutProps<T extends ElementType = 'div' | 'nav'> = Omit<
   EuiFlyoutComponentProps<T>,
   'as'
 > & {
-  session?: boolean;
   as?: T;
   onActive?: () => void;
+  session?: boolean;
 };
 
 export const EuiFlyout = forwardRef<

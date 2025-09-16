@@ -45,7 +45,6 @@ jest.mock('../flyout.component', () => {
 
 // Mock hooks that would otherwise depend on ResizeObserver or animation timing
 const mockCloseFlyout = jest.fn();
-const mockCallUnregisterCallback = jest.fn();
 
 jest.mock('./hooks', () => ({
   useFlyoutManagerReducer: () => ({
@@ -74,6 +73,21 @@ jest.mock('./hooks', () => ({
   useFlyoutLayoutMode: () => 'side-by-side',
   useFlyoutId: (id?: string) => id ?? 'generated-id',
   useCurrentSession: () => null,
+}));
+
+// Mock selectors to ensure useFlyoutId works correctly
+jest.mock('./selectors', () => ({
+  useIsFlyoutRegistered: () => false, // Always return false so provided IDs are used
+  useIsFlyoutActive: () => true,
+  useHasChildFlyout: () => false,
+  useParentFlyoutSize: () => 'm',
+  useCurrentSession: () => null,
+  useSession: () => null,
+  useHasActiveSession: () => false,
+  useFlyout: () => null,
+  useCurrentMainFlyout: () => null,
+  useCurrentChildFlyout: () => null,
+  useFlyoutWidth: () => null,
 }));
 
 // Mock validation helpers to be deterministic
@@ -108,6 +122,11 @@ describe('EuiManagedFlyout', () => {
   const renderInProvider = (ui: React.ReactElement) =>
     render(<EuiFlyoutManager>{ui}</EuiFlyoutManager>);
 
+  beforeEach(() => {
+    // Clear all mocks before each test to prevent interference
+    jest.clearAllMocks();
+  });
+
   it('renders and sets managed data attributes', () => {
     const { getByTestSubject } = renderInProvider(
       <EuiManagedFlyout
@@ -126,12 +145,7 @@ describe('EuiManagedFlyout', () => {
   it('calls the unregister callback prop when onClose', () => {
     const onClose = jest.fn();
 
-    // Set up the mock to call the unregister callback when closeFlyout is called
-    mockCloseFlyout.mockImplementation((flyoutId) => {
-      mockCallUnregisterCallback(flyoutId);
-    });
-
-    const { getByTestSubject } = renderInProvider(
+    const { getByTestSubject, unmount } = renderInProvider(
       <EuiManagedFlyout id="close-me" level={LEVEL_MAIN} onClose={onClose} />
     );
 
@@ -139,9 +153,15 @@ describe('EuiManagedFlyout', () => {
       userEvent.click(getByTestSubject('managed-flyout'));
     });
 
-    // The onClose should be called through the unregister callback mechanism
+    // The onClose should be called when the flyout is clicked
+    expect(onClose).toHaveBeenCalled();
+
+    // The closeFlyout should be called when the component unmounts (cleanup)
+    act(() => {
+      unmount();
+    });
+
     expect(mockCloseFlyout).toHaveBeenCalledWith('close-me');
-    expect(mockCallUnregisterCallback).toHaveBeenCalledWith('close-me');
   });
 
   it('registers child flyout and sets data-level child', () => {
