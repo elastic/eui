@@ -152,9 +152,6 @@ export const EuiManagedFlyout = ({
   const onActiveCallbackRef = useRef<(() => void) | undefined>();
   onActiveCallbackRef.current = onActive;
 
-  // Track the previous session to avoid calling onActive multiple times for the same session
-  const previousSessionRef = useRef<typeof currentSession>(null);
-
   // Register/unregister with flyout manager context
   useEffect(() => {
     console.log(
@@ -224,47 +221,16 @@ export const EuiManagedFlyout = ({
     const isInCurrentSession =
       currentSession.main === flyoutId || currentSession.child === flyoutId;
 
-    // Check if the session has actually changed in a way that affects this flyout
-    const previousSession = previousSessionRef.current;
-    const sessionChanged =
-      !previousSession ||
-      previousSession.main !== currentSession.main ||
-      previousSession.child !== currentSession.child;
-
-    // Only fire onActive if this flyout is newly part of the active session
-    const wasInPreviousSession =
-      previousSession &&
-      (previousSession.main === flyoutId || previousSession.child === flyoutId);
-
-    // For main flyouts: only fire onActive if this is a new session (different main flyout)
-    // For child flyouts: fire onActive if this is the first time they're added to a session
-    const isNewlyActive =
-      isInCurrentSession &&
-      (!wasInPreviousSession || // First time this flyout is part of any session
-        (level === 'main' &&
-          previousSession &&
-          previousSession.main !== currentSession.main) || // Main flyout: different session
-        (level === 'child' &&
-          previousSession &&
-          previousSession.child !== currentSession.child)); // Child flyout: different child
-
     console.log(`[FLYOUT DEBUG] session check for: ${flyoutId}`, {
       isInCurrentSession,
-      wasInPreviousSession,
-      isNewlyActive,
-      sessionChanged,
-      previousSession,
       currentSession,
     });
 
-    if (isNewlyActive) {
+    if (isInCurrentSession) {
       console.log(`[FLYOUT DEBUG] firing onActive callback for: ${flyoutId}`);
       // Fire the onActive callback when this flyout becomes part of the active session
       onActiveCallbackRef.current();
     }
-
-    // Update the previous session reference
-    previousSessionRef.current = currentSession;
   }, [currentSession, flyoutId, level]);
 
   // Clean up callbacks when component unmounts
