@@ -30,6 +30,7 @@ export const typeToPathMap = {
   asterisk: 'asterisk',
   at: 'at',
   auditbeatApp: 'app_auditbeat',
+  backgroundTask: 'background_task',
   beaker: 'flask', // NOTE: To be deprecated in favor of `flask`
   bell: 'bell',
   bellSlash: 'bellSlash',

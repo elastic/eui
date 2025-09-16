@@ -18,6 +18,7 @@ export const iconTypes: Array<IconType> = [
   'article',
   'asterisk',
   'at',
+  'backgroundTask',
   'bell',
   'bellSlash',
   'beta',
