@@ -74,7 +74,6 @@ export const euiFormAppendPrependStyles = (euiThemeContext: UseEuiTheme) => {
         background-color: ${euiTheme.colors.backgroundBaseInteractiveHover};
       }
 
-      &:focus,
       &:focus-visible {
         outline: none;
 
