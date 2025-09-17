@@ -21,7 +21,9 @@ const callbacksRegistry = new Map<
   }
 >();
 
-// Helper functions to manage the callback registry
+/**
+ * Register a callback for a flyout.
+ */
 export const registerCallback = (
   flyoutId: string,
   callbackType: 'onClose' | 'onActive',
@@ -31,6 +33,7 @@ export const registerCallback = (
   callbacksRegistry.set(flyoutId, { ...existing, [callbackType]: callback });
 };
 
+// Helper for `unregisterCallbacks` to remove a single callback
 const unregisterCallback = (
   flyoutId: string,
   callbackType: 'onClose' | 'onActive'
@@ -58,6 +61,9 @@ export const unregisterCallbacks = (flyoutId: string) => {
   });
 };
 
+/**
+ * Call a registered callback for a flyout.
+ */
 export const callCallback = (
   flyoutId: string,
   callbackType: 'onClose' | 'onActive'

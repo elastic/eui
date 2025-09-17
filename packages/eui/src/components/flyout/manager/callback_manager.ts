@@ -57,9 +57,6 @@ class CallbackManager {
     Array.from(this.pendingExecutions.keys())
       .filter((key) => key.startsWith(flyoutId))
       .forEach((key) => this.pendingExecutions.delete(key));
-
-    // Now safe to unregister - this will be handled by the caller
-    // since we don't want to import the unregisterCallback function here
   }
 
   /**
