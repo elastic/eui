@@ -17,6 +17,7 @@
  * under the License.
  */
 
+import { CallOutAnnounceOnMount } from './rules/a11y/callout_announce_on_mount';
 import { HrefOnClick } from './rules/href_or_on_click';
 import { NoRestrictedEuiImports } from './rules/no_restricted_eui_imports';
 import { NoCssColor } from './rules/no_css_color';
@@ -26,6 +27,8 @@ import { ConsistentIsInvalidProps } from './rules/a11y/consistent_is_invalid_pro
 import { ScreenReaderOutputDisabledTooltip } from './rules/a11y/sr_output_disabled_tooltip';
 import { PreferEuiIconTip } from './rules/a11y/prefer_eui_icon_tip';
 import { NoUnnamedRadioGroup } from './rules/a11y/no_unnamed_radio_group';
+import { NoUnnamedInteractiveElement } from './rules/a11y/no_unnamed_interactive_element';
+
 
 const config = {
   rules: {
@@ -37,6 +40,8 @@ const config = {
     'sr-output-disabled-tooltip': ScreenReaderOutputDisabledTooltip,
     'prefer-eui-icon-tip': PreferEuiIconTip,
     'no-unnamed-radio-group' : NoUnnamedRadioGroup,
+    'callout-announce-on-mount': CallOutAnnounceOnMount,
+    'no-unnamed-interactive-element': NoUnnamedInteractiveElement, 
   },
   configs: {
     recommended: {
@@ -50,6 +55,8 @@ const config = {
         '@elastic/eui/sr-output-disabled-tooltip': 'warn',
         '@elastic/eui/prefer-eui-icon-tip': 'warn',
         '@elastic/eui/no-unnamed-radio-group': 'warn',
+        '@elastic/eui/callout-announce-on-mount': 'warn',
+        '@elastic/eui/no-unnamed-interactive-element': 'warn',      
       },
     },
   },

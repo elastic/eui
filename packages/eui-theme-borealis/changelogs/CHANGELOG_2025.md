@@ -1,3 +1,12 @@
+## [`v3.4.0`](https://github.com/elastic/eui/releases/v3.4.0)
+
+- Updated values for component tokens ([#8983](https://github.com/elastic/eui/pull/8983))
+  - `dataGridRowStripesBackgroundHover`
+  - `dataGridRowStripesBackgroundStripedHover`
+  - `dataGridRowStripesBackgroundSelectHover`
+  - `dataGridRowStripesBackgroundHover`
+  - `dataGridRowStripesBackgroundStripedHover`
+
 ## [`v3.3.2`](https://github.com/elastic/eui/releases/v3.3.2)
 
 **Bug fixes**

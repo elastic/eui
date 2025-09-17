@@ -409,6 +409,8 @@ export const typeToPathMap = {
   stopSlash: 'stop_slash',
   storage: 'storage',
   string: 'string',
+  streamsClassic: 'streams_classic',
+  streamsWired: 'streams_wired',
   submodule: 'submodule',
   sun: 'sun',
   swatchInput: 'swatch_input', // Undocumented on purpose. Has an extra stroke for EuiColorPicker
@@ -471,6 +473,7 @@ export const typeToPathMap = {
   web: 'web',
   wordWrap: 'wordWrap',
   wordWrapDisabled: 'wordWrapDisabled',
+  workflowsApp: 'app_workflows',
   workplaceSearchApp: 'app_workplace_search',
   wrench: 'wrench',
   // Token Icon Imports

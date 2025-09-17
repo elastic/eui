@@ -90,3 +90,45 @@ exports[`EuiToolTip shows tooltip on mouseover and focus 1`] = `
   </div>
 </body>
 `;
+
+exports[`EuiToolTip uses custom offset prop value 1`] = `
+<body
+  class="euiBody-hasPortalContent"
+>
+  <div>
+    <span
+      class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+    >
+      <button
+        aria-describedby="generated-id"
+        data-test-subj="trigger"
+      >
+        Trigger
+      </button>
+    </span>
+  </div>
+  <div
+    data-euiportal="true"
+  >
+    <div
+      aria-label="aria-label"
+      class="euiToolTipPopover euiToolTip testClass1 testClass2 emotion-euiToolTip-top-euiTestCss"
+      data-position="top"
+      data-test-subj="test subject string"
+      id="generated-id"
+      offset="32"
+      position="top"
+      role="tooltip"
+      style="top: -32px; left: -10px;"
+    >
+      <div
+        class="euiToolTip__arrow emotion-euiToolTip__arrow-top"
+        style="left: 3px; top: 100%;"
+      />
+      <div>
+        content
+      </div>
+    </div>
+  </div>
+</body>
+`;

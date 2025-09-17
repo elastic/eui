@@ -10196,6 +10196,51 @@ exports[`EuiIcon props type storage is rendered 1`] = `
 </svg>
 `;
 
+exports[`EuiIcon props type streamsClassic is rendered 1`] = `
+<svg
+  aria-hidden="true"
+  class="euiIcon emotion-euiIcon-m-isLoaded"
+  data-icon-type="streamsClassic"
+  data-is-loaded="true"
+  height="16"
+  role="img"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    clip-rule="evenodd"
+    d="M13.5 9a1.5 1.5 0 1 1-1.413 2H3.913a1.5 1.5 0 1 1 0-1h8.174A1.5 1.5 0 0 1 13.5 9Zm-11 1a.5.5 0 1 0 0 1 .5.5 0 0 0 0-1Zm11 0a.5.5 0 1 0 0 1 .5.5 0 0 0 0-1Zm0-6a1.5 1.5 0 1 1-1.413 2H3.913a1.5 1.5 0 1 1 0-1h8.174A1.5 1.5 0 0 1 13.5 4Zm-11 1a.5.5 0 1 0 0 1 .5.5 0 0 0 0-1Zm11 0a.5.5 0 1 0 0 1 .5.5 0 0 0 0-1Z"
+    fill-rule="evenodd"
+  />
+</svg>
+`;
+
+exports[`EuiIcon props type streamsWired is rendered 1`] = `
+<svg
+  aria-hidden="true"
+  class="euiIcon emotion-euiIcon-m-isLoaded"
+  data-icon-type="streamsWired"
+  data-is-loaded="true"
+  height="16"
+  role="img"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    clip-rule="evenodd"
+    d="M13.5 1a1.5 1.5 0 1 1-1.413 2H11.5A1.5 1.5 0 0 0 10 4.5v1c0 .564-.19 1.082-.504 1.5H9.5l-.048.06a2.58 2.58 0 0 1-.352.36c-.01.01-.021.017-.032.025a2.501 2.501 0 0 1-.142.108l-.043.03c-.055.036-.11.07-.168.103l-.047.024c-.057.03-.115.06-.175.085-.018.008-.036.014-.055.021A2.475 2.475 0 0 1 7.5 8h-.504c.315.418.504.936.504 1.5v1A1.5 1.5 0 0 0 9 12h3.087a1.5 1.5 0 1 1 0 1H9a2.5 2.5 0 0 1-2.5-2.5v-1A1.5 1.5 0 0 0 5 8H3.913a1.5 1.5 0 1 1 0-1H7.5A1.5 1.5 0 0 0 9 5.5v-1A2.5 2.5 0 0 1 11.5 2h.587A1.5 1.5 0 0 1 13.5 1Zm0 11a.5.5 0 1 0 0 1 .5.5 0 0 0 0-1Zm-11-5a.5.5 0 1 0 0 1 .5.5 0 0 0 0-1Zm11-5a.5.5 0 1 0 0 1 .5.5 0 0 0 0-1Z"
+    fill-rule="evenodd"
+  />
+  <path
+    clip-rule="evenodd"
+    d="M13.5 6a1.5 1.5 0 1 1-1.413 2H9.948c.293-.287.536-.625.714-1h1.425A1.5 1.5 0 0 1 13.5 6Zm0 1a.5.5 0 1 0 0 1 .5.5 0 0 0 0-1Z"
+    fill-rule="evenodd"
+  />
+</svg>
+`;
+
 exports[`EuiIcon props type string is rendered 1`] = `
 <svg
   aria-hidden="true"
@@ -12590,6 +12635,26 @@ exports[`EuiIcon props type wordWrapDisabled is rendered 1`] = `
 >
   <path
     d="M14 3.5 12 2v1H2v1h10v1l2-1.5zM12 9V8H2V7h10V6l2 1.5L12 9zm0 3v1l2-1.5-2-1.5v1H2v1h10z"
+  />
+</svg>
+`;
+
+exports[`EuiIcon props type workflowsApp is rendered 1`] = `
+<svg
+  aria-hidden="true"
+  class="euiIcon emotion-euiIcon-m-app-isLoaded"
+  data-icon-type="workflowsApp"
+  data-is-loaded="true"
+  height="16"
+  role="img"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    clip-rule="evenodd"
+    d="M6 1a2 2 0 0 1 1.93 1.5H12a3 3 0 0 1 0 6H9.93a2 2 0 0 1-3.86 0H4a2 2 0 0 0 0 4h4.07A2 2 0 0 1 10 11h3a2 2 0 1 1 0 4h-3a2 2 0 0 1-1.93-1.5H4a3 3 0 1 1 0-6h2.07a2 2 0 0 1 3.86 0H12a2 2 0 0 0 0-4H7.93A2 2 0 0 1 6 5H3a2 2 0 1 1 0-4h3Zm4 11a1 1 0 1 0 0 2h3a1 1 0 1 0 0-2h-3ZM8 7a1 1 0 1 0 0 2 1 1 0 0 0 0-2ZM3 2a1 1 0 0 0 0 2h3a1 1 0 1 0 0-2H3Z"
+    fill-rule="evenodd"
   />
 </svg>
 `;
