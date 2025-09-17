@@ -730,6 +730,7 @@ exports[`EuiSelectableListItem props allowExclusions 1`] = `
       >
         <li
           aria-checked="false"
+          aria-describedby="generated-id"
           aria-posinset="1"
           aria-selected="false"
           aria-setsize="6"
@@ -751,17 +752,20 @@ exports[`EuiSelectableListItem props allowExclusions 1`] = `
               class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
             >
               Titan
-              <div
-                class="emotion-euiScreenReaderOnly"
-              >
-                . 
-                To check this option, press Enter.
-              </div>
             </span>
+          </span>
+          <span
+            class="emotion-euiScreenReaderOnly"
+            id="generated-id"
+          >
+            — 
+             
+            To check this option, press Enter.
           </span>
         </li>
         <li
           aria-checked="false"
+          aria-describedby="generated-id"
           aria-posinset="2"
           aria-selected="false"
           aria-setsize="6"
@@ -782,17 +786,20 @@ exports[`EuiSelectableListItem props allowExclusions 1`] = `
               class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
             >
               Enceladus
-              <div
-                class="emotion-euiScreenReaderOnly"
-              >
-                . 
-                To check this option, press Enter.
-              </div>
             </span>
+          </span>
+          <span
+            class="emotion-euiScreenReaderOnly"
+            id="generated-id"
+          >
+            — 
+             
+            To check this option, press Enter.
           </span>
         </li>
         <li
           aria-checked="false"
+          aria-describedby="generated-id"
           aria-posinset="3"
           aria-selected="false"
           aria-setsize="6"
@@ -813,17 +820,20 @@ exports[`EuiSelectableListItem props allowExclusions 1`] = `
               class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
             >
               Mimas
-              <div
-                class="emotion-euiScreenReaderOnly"
-              >
-                . 
-                To check this option, press Enter.
-              </div>
             </span>
+          </span>
+          <span
+            class="emotion-euiScreenReaderOnly"
+            id="generated-id"
+          >
+            — 
+             
+            To check this option, press Enter.
           </span>
         </li>
         <li
           aria-checked="false"
+          aria-describedby="generated-id"
           aria-posinset="4"
           aria-selected="false"
           aria-setsize="6"
@@ -844,17 +854,20 @@ exports[`EuiSelectableListItem props allowExclusions 1`] = `
               class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
             >
               Pandora is one of Saturn's moons, named for a Titaness of Greek mythology
-              <div
-                class="emotion-euiScreenReaderOnly"
-              >
-                . 
-                To check this option, press Enter.
-              </div>
             </span>
+          </span>
+          <span
+            class="emotion-euiScreenReaderOnly"
+            id="generated-id"
+          >
+            — 
+             
+            To check this option, press Enter.
           </span>
         </li>
         <li
           aria-checked="false"
+          aria-describedby="generated-id"
           aria-posinset="5"
           aria-selected="false"
           aria-setsize="6"
@@ -875,17 +888,20 @@ exports[`EuiSelectableListItem props allowExclusions 1`] = `
               class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
             >
               Tethys
-              <div
-                class="emotion-euiScreenReaderOnly"
-              >
-                . 
-                To check this option, press Enter.
-              </div>
             </span>
+          </span>
+          <span
+            class="emotion-euiScreenReaderOnly"
+            id="generated-id"
+          >
+            — 
+             
+            To check this option, press Enter.
           </span>
         </li>
         <li
           aria-checked="false"
+          aria-describedby="generated-id"
           aria-posinset="6"
           aria-selected="false"
           aria-setsize="6"
@@ -906,13 +922,15 @@ exports[`EuiSelectableListItem props allowExclusions 1`] = `
               class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
             >
               Hyperion
-              <div
-                class="emotion-euiScreenReaderOnly"
-              >
-                . 
-                To check this option, press Enter.
-              </div>
             </span>
+          </span>
+          <span
+            class="emotion-euiScreenReaderOnly"
+            id="generated-id"
+          >
+            — 
+             
+            To check this option, press Enter.
           </span>
         </li>
       </ul>
@@ -2372,6 +2390,7 @@ exports[`EuiSelectableListItem props searchable enables correct screen reader in
       >
         <li
           aria-checked="false"
+          aria-describedby="generated-id"
           aria-posinset="1"
           aria-selected="false"
           aria-setsize="6"
@@ -2393,17 +2412,20 @@ exports[`EuiSelectableListItem props searchable enables correct screen reader in
               class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
             >
               Titan
-              <div
-                class="emotion-euiScreenReaderOnly"
-              >
-                . 
-                To check this option, press Enter.
-              </div>
             </span>
+          </span>
+          <span
+            class="emotion-euiScreenReaderOnly"
+            id="generated-id"
+          >
+            — 
+             
+            To check this option, press Enter.
           </span>
         </li>
         <li
           aria-checked="false"
+          aria-describedby="generated-id"
           aria-posinset="2"
           aria-selected="false"
           aria-setsize="6"
@@ -2424,17 +2446,20 @@ exports[`EuiSelectableListItem props searchable enables correct screen reader in
               class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
             >
               Enceladus
-              <div
-                class="emotion-euiScreenReaderOnly"
-              >
-                . 
-                To check this option, press Enter.
-              </div>
             </span>
+          </span>
+          <span
+            class="emotion-euiScreenReaderOnly"
+            id="generated-id"
+          >
+            — 
+             
+            To check this option, press Enter.
           </span>
         </li>
         <li
           aria-checked="false"
+          aria-describedby="generated-id"
           aria-posinset="3"
           aria-selected="false"
           aria-setsize="6"
@@ -2455,17 +2480,20 @@ exports[`EuiSelectableListItem props searchable enables correct screen reader in
               class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
             >
               Mimas
-              <div
-                class="emotion-euiScreenReaderOnly"
-              >
-                . 
-                To check this option, press Enter.
-              </div>
             </span>
+          </span>
+          <span
+            class="emotion-euiScreenReaderOnly"
+            id="generated-id"
+          >
+            — 
+             
+            To check this option, press Enter.
           </span>
         </li>
         <li
           aria-checked="false"
+          aria-describedby="generated-id"
           aria-posinset="4"
           aria-selected="false"
           aria-setsize="6"
@@ -2486,17 +2514,20 @@ exports[`EuiSelectableListItem props searchable enables correct screen reader in
               class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
             >
               Pandora is one of Saturn's moons, named for a Titaness of Greek mythology
-              <div
-                class="emotion-euiScreenReaderOnly"
-              >
-                . 
-                To check this option, press Enter.
-              </div>
             </span>
+          </span>
+          <span
+            class="emotion-euiScreenReaderOnly"
+            id="generated-id"
+          >
+            — 
+             
+            To check this option, press Enter.
           </span>
         </li>
         <li
           aria-checked="false"
+          aria-describedby="generated-id"
           aria-posinset="5"
           aria-selected="false"
           aria-setsize="6"
@@ -2517,17 +2548,20 @@ exports[`EuiSelectableListItem props searchable enables correct screen reader in
               class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
             >
               Tethys
-              <div
-                class="emotion-euiScreenReaderOnly"
-              >
-                . 
-                To check this option, press Enter.
-              </div>
             </span>
+          </span>
+          <span
+            class="emotion-euiScreenReaderOnly"
+            id="generated-id"
+          >
+            — 
+             
+            To check this option, press Enter.
           </span>
         </li>
         <li
           aria-checked="false"
+          aria-describedby="generated-id"
           aria-posinset="6"
           aria-selected="false"
           aria-setsize="6"
@@ -2548,13 +2582,15 @@ exports[`EuiSelectableListItem props searchable enables correct screen reader in
               class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
             >
               Hyperion
-              <div
-                class="emotion-euiScreenReaderOnly"
-              >
-                . 
-                To check this option, press Enter.
-              </div>
             </span>
+          </span>
+          <span
+            class="emotion-euiScreenReaderOnly"
+            id="generated-id"
+          >
+            — 
+             
+            To check this option, press Enter.
           </span>
         </li>
       </ul>

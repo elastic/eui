@@ -51,6 +51,7 @@ exports[`EuiSelectableListItem props append 1`] = `
 exports[`EuiSelectableListItem props checked & allowExclusions mixed 1`] = `
 <li
   aria-checked="mixed"
+  aria-describedby="generated-id"
   class="euiSelectableListItem emotion-euiSelectableListItem-s"
   role="option"
 >
@@ -64,18 +65,18 @@ exports[`EuiSelectableListItem props checked & allowExclusions mixed 1`] = `
     />
     <span
       class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
-    >
-      <div
-        class="emotion-euiScreenReaderOnly"
-      >
-        . 
-        Mixed (indeterminate) option.
-         
-        To check this option for all, press Enter once.
-         
-        To exclude this option for all, press Enter twice.
-      </div>
-    </span>
+    />
+  </span>
+  <span
+    class="emotion-euiScreenReaderOnly"
+    id="generated-id"
+  >
+    — 
+    Mixed (indeterminate) option.
+     
+    To check this option for all, press Enter once.
+     
+    To exclude this option for all, press Enter twice.
   </span>
 </li>
 `;
@@ -83,6 +84,7 @@ exports[`EuiSelectableListItem props checked & allowExclusions mixed 1`] = `
 exports[`EuiSelectableListItem props checked & allowExclusions off 1`] = `
 <li
   aria-checked="true"
+  aria-describedby="generated-id"
   class="euiSelectableListItem emotion-euiSelectableListItem-s"
   role="option"
 >
@@ -96,16 +98,15 @@ exports[`EuiSelectableListItem props checked & allowExclusions off 1`] = `
     />
     <span
       class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
-    >
-      <div
-        class="emotion-euiScreenReaderOnly"
-      >
-        . 
-        Excluded option.
-         
-        To uncheck this option, press Enter.
-      </div>
-    </span>
+    />
+  </span>
+  <span
+    class="emotion-euiScreenReaderOnly"
+    id="generated-id"
+  >
+    — 
+     
+    To uncheck this option, press Enter.
   </span>
 </li>
 `;
@@ -113,6 +114,7 @@ exports[`EuiSelectableListItem props checked & allowExclusions off 1`] = `
 exports[`EuiSelectableListItem props checked & allowExclusions on 1`] = `
 <li
   aria-checked="true"
+  aria-describedby="generated-id"
   class="euiSelectableListItem emotion-euiSelectableListItem-s"
   role="option"
 >
@@ -126,16 +128,15 @@ exports[`EuiSelectableListItem props checked & allowExclusions on 1`] = `
     />
     <span
       class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
-    >
-      <div
-        class="emotion-euiScreenReaderOnly"
-      >
-        . 
-        Checked option.
-         
-        To exclude this option, press Enter.
-      </div>
-    </span>
+    />
+  </span>
+  <span
+    class="emotion-euiScreenReaderOnly"
+    id="generated-id"
+  >
+    — 
+     
+    To exclude this option, press Enter.
   </span>
 </li>
 `;
@@ -143,6 +144,7 @@ exports[`EuiSelectableListItem props checked & allowExclusions on 1`] = `
 exports[`EuiSelectableListItem props checked & allowExclusions undefined 1`] = `
 <li
   aria-checked="false"
+  aria-describedby="generated-id"
   class="euiSelectableListItem emotion-euiSelectableListItem-s"
   role="option"
 >
@@ -155,14 +157,15 @@ exports[`EuiSelectableListItem props checked & allowExclusions undefined 1`] = `
     />
     <span
       class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
-    >
-      <div
-        class="emotion-euiScreenReaderOnly"
-      >
-        . 
-        To check this option, press Enter.
-      </div>
-    </span>
+    />
+  </span>
+  <span
+    class="emotion-euiScreenReaderOnly"
+    id="generated-id"
+  >
+    — 
+     
+    To check this option, press Enter.
   </span>
 </li>
 `;
@@ -170,6 +173,7 @@ exports[`EuiSelectableListItem props checked & allowExclusions undefined 1`] = `
 exports[`EuiSelectableListItem props checked & searchable on 1`] = `
 <li
   aria-checked="true"
+  aria-describedby="generated-id"
   class="euiSelectableListItem emotion-euiSelectableListItem-s"
   role="option"
 >
@@ -183,16 +187,15 @@ exports[`EuiSelectableListItem props checked & searchable on 1`] = `
     />
     <span
       class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
-    >
-      <div
-        class="emotion-euiScreenReaderOnly"
-      >
-        . 
-        Checked option.
-         
-        To uncheck this option, press Enter.
-      </div>
-    </span>
+    />
+  </span>
+  <span
+    class="emotion-euiScreenReaderOnly"
+    id="generated-id"
+  >
+    — 
+     
+    To uncheck this option, press Enter.
   </span>
 </li>
 `;
@@ -200,6 +203,7 @@ exports[`EuiSelectableListItem props checked & searchable on 1`] = `
 exports[`EuiSelectableListItem props checked & searchable undefined 1`] = `
 <li
   aria-checked="false"
+  aria-describedby="generated-id"
   class="euiSelectableListItem emotion-euiSelectableListItem-s"
   role="option"
 >
@@ -212,14 +216,15 @@ exports[`EuiSelectableListItem props checked & searchable undefined 1`] = `
     />
     <span
       class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
-    >
-      <div
-        class="emotion-euiScreenReaderOnly"
-      >
-        . 
-        To check this option, press Enter.
-      </div>
-    </span>
+    />
+  </span>
+  <span
+    class="emotion-euiScreenReaderOnly"
+    id="generated-id"
+  >
+    — 
+     
+    To check this option, press Enter.
   </span>
 </li>
 `;
@@ -227,6 +232,7 @@ exports[`EuiSelectableListItem props checked & searchable undefined 1`] = `
 exports[`EuiSelectableListItem props checked mixed 1`] = `
 <li
   aria-checked="mixed"
+  aria-describedby="generated-id"
   class="euiSelectableListItem emotion-euiSelectableListItem-s"
   role="option"
 >
@@ -240,18 +246,18 @@ exports[`EuiSelectableListItem props checked mixed 1`] = `
     />
     <span
       class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
-    >
-      <div
-        class="emotion-euiScreenReaderOnly"
-      >
-        . 
-        Mixed (indeterminate) option.
-         
-        To check this option for all, press Enter once.
-         
-        To uncheck this option for all, press Enter twice.
-      </div>
-    </span>
+    />
+  </span>
+  <span
+    class="emotion-euiScreenReaderOnly"
+    id="generated-id"
+  >
+    — 
+    Mixed (indeterminate) option.
+     
+    To check this option for all, press Enter once.
+     
+    To uncheck this option for all, press Enter twice.
   </span>
 </li>
 `;
@@ -272,14 +278,7 @@ exports[`EuiSelectableListItem props checked on 1`] = `
     />
     <span
       class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
-    >
-      <div
-        class="emotion-euiScreenReaderOnly"
-      >
-        . 
-        Checked option.
-      </div>
-    </span>
+    />
   </span>
 </li>
 `;

@@ -16,7 +16,7 @@ import React, {
   useMemo,
 } from 'react';
 
-import { useEuiMemoizedStyles } from '../../../services';
+import { useEuiMemoizedStyles, useGeneratedHtmlId } from '../../../services';
 import { CommonProps } from '../../common';
 import { EuiI18n } from '../../i18n';
 import { EuiIcon, IconColor, IconType } from '../../icon';
@@ -168,6 +168,8 @@ export const EuiSelectableListItem: FunctionComponent<
     }
   }, [prepend, styles]);
 
+  const screenReaderTextId = useGeneratedHtmlId();
+
   const onFocusBadgeNode = useMemo(() => {
     const defaultOnFocusBadgeProps: EuiBadgeProps = {
       'aria-hidden': true,
@@ -220,12 +222,6 @@ export const EuiSelectableListItem: FunctionComponent<
 
     const screenReaderStrings = {
       checked: {
-        state: (
-          <EuiI18n
-            token="euiSelectableListItem.checkedOption"
-            default="Checked option."
-          />
-        ),
         instructions: (
           <EuiI18n
             token="euiSelectableListItem.checkOptionInstructions"
@@ -242,12 +238,6 @@ export const EuiSelectableListItem: FunctionComponent<
         ),
       },
       excluded: {
-        state: (
-          <EuiI18n
-            token="euiSelectableListItem.excludedOption"
-            default="Excluded option."
-          />
-        ),
         instructions: (
           <EuiI18n
             token="euiSelectableListItem.excludeOptionInstructions"
@@ -285,7 +275,6 @@ export const EuiSelectableListItem: FunctionComponent<
 
     switch (checked) {
       case 'on':
-        state = screenReaderStrings.checked.state;
         instructions = allowExclusions
           ? screenReaderStrings.excluded.instructions
           : searchable
@@ -293,7 +282,6 @@ export const EuiSelectableListItem: FunctionComponent<
           : undefined;
         break;
       case 'off':
-        state = screenReaderStrings.excluded.state;
         instructions = screenReaderStrings.unchecked.instructions;
         break;
       case 'mixed':
@@ -317,14 +305,9 @@ export const EuiSelectableListItem: FunctionComponent<
     }
 
     return state || instructions ? (
-      <EuiScreenReaderOnly>
-        <div>
-          {state || instructions ? '. ' : null}
-          {state}
-          {state && instructions ? ' ' : null}
-          {instructions}
-        </div>
-      </EuiScreenReaderOnly>
+      <span>
+        — {state || ''} {instructions}
+      </span>
     ) : null;
   }, [checked, searchable, allowExclusions]);
 
@@ -374,11 +357,20 @@ export const EuiSelectableListItem: FunctionComponent<
 
   // Manually set the `aria-describedby` id on the <li> wrapper
   useEffect(() => {
+    const ids: string[] = [];
+
     if (tooltipRef) {
       const tooltipId = tooltipRef.state.id;
-      setAriaDescribedBy(classNames(tooltipId, _ariaDescribedBy));
+
+      ids.push(classNames(tooltipId, _ariaDescribedBy));
     }
-  }, [tooltipRef, _ariaDescribedBy]);
+
+    if (screenReaderText && screenReaderTextId) {
+      ids.push(screenReaderTextId);
+    }
+
+    setAriaDescribedBy(ids.join(' ') || undefined);
+  }, [tooltipRef, _ariaDescribedBy, screenReaderText, screenReaderTextId]);
 
   const content: ReactElement = (
     <span
@@ -389,7 +381,6 @@ export const EuiSelectableListItem: FunctionComponent<
       {prependNode}
       <span css={textStyles} className="euiSelectableListItem__text">
         {children}
-        {screenReaderText}
       </span>
       {appendNode}
     </span>
@@ -418,6 +409,11 @@ export const EuiSelectableListItem: FunctionComponent<
         </EuiToolTip>
       ) : (
         content
+      )}
+      {screenReaderText && (
+        <EuiScreenReaderOnly id={screenReaderTextId}>
+          {screenReaderText}
+        </EuiScreenReaderOnly>
       )}
     </li>
   );

@@ -22,22 +22,34 @@ export interface EuiScreenReaderOnlyProps {
    * For keyboard navigation, force content to display visually upon focus/focus-within.
    */
   showOnFocus?: boolean;
+
+  /**
+   * Optional CSS class(es) to apply to the outermost element of the component.
+   * This allows for custom styling or theming.
+   */
   className?: string;
+
+  /**
+   * Optional HTML id attribute for the outermost element.
+   * Can be used for linking with labels, aria attributes, or targeting the element.
+   */
+  id?: string;
 }
 
 export const EuiScreenReaderOnly: FunctionComponent<
   EuiScreenReaderOnlyProps
-> = ({ children, className, showOnFocus }) => {
+> = ({ children, className, showOnFocus, id }) => {
   const classes = classNames(className, children.props.className);
 
   const props = useMemo(
     () => ({
+      id: id || children.props.id,
       className: classes.length ? classes : undefined,
       css: showOnFocus
         ? styles['euiScreenReaderOnly-showOnFocus']
         : styles.euiScreenReaderOnly,
     }),
-    [classes, showOnFocus]
+    [id, children.props.id, classes, showOnFocus]
   );
 
   return cloneElementWithCss(children, props);
