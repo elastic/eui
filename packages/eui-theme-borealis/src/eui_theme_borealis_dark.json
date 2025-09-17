@@ -437,5 +437,16 @@
   "euiColorBorderStrongWarning": "#FACB3D",
   "euiColorBorderStrongRisk": "#FC8544",
   "euiColorBorderStrongDanger": "#F6726A",
-  "euiColorBorderStrongText": "#8E9FBC"
+  "euiColorBorderStrongText": "#8E9FBC",
+  "euiFontSpacerDefaultSize": "m",
+  "euiFontHorizontalRuleDefaultMargin": "m",
+  "euiFontButtonDefaultSize": "s",
+  "euiFontFormControlsDefaultCompressed": true,
+  "euiFontTabsDefaultSize": "m",
+  "euiFontSearchBarDefaultGutterSize": "s",
+  "euiFontFlexGroupDefaultGutterSize": "s",
+  "euiFontBasicTableDefaultTransparent": true,
+  "euiFontPopoverDefaultHasArrow": false,
+  "euiFontPopoverDefaultAnchorPosition": "downLeft",
+  "euiFontPopoverDefaultOffset": 4
 }

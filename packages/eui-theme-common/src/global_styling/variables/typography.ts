@@ -219,6 +219,24 @@ export interface _EuiThemeBasicTable {
 }
 
 /**
+ * Popover component defaults
+ */
+export interface _EuiThemePopover {
+  /**
+   * Default hasArrow setting for popovers
+   */
+  defaultHasArrow: boolean;
+  /**
+   * Default anchorPosition for popovers
+   */
+  defaultAnchorPosition: 'upCenter' | 'upLeft' | 'upRight' | 'downCenter' | 'downLeft' | 'downRight' | 'leftCenter' | 'leftUp' | 'leftDown' | 'rightCenter' | 'rightUp' | 'rightDown';
+  /**
+   * Default offset distance from anchor for popovers
+   */
+  defaultOffset?: number;
+}
+
+/**
  * Title styles
  */
 
@@ -271,5 +289,6 @@ export type _EuiThemeFont = _EuiThemeFontBase & {
   searchBar: _EuiThemeSearchBar;
   flexGroup: _EuiThemeFlexGroup;
   basicTable: _EuiThemeBasicTable;
+  popover: _EuiThemePopover;
   title: _EuiThemeTitle;
 };

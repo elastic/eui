@@ -28,6 +28,7 @@ import {
   getWaitDuration,
   performOnFrame,
   htmlIdGenerator,
+  RenderWithEuiTheme,
 } from '../../services';
 import { setMultipleRefs } from '../../services/hooks/useCombinedRefs';
 
@@ -288,9 +289,9 @@ export class EuiPopover extends Component<Props, State> {
     isOpen: false,
     ownFocus: true,
     repositionToCrossAxis: true,
-    anchorPosition: 'downCenter',
+    // anchorPosition: 'downCenter', // Let theme default handle this
     panelPaddingSize: 'm',
-    hasArrow: true,
+    // hasArrow: true, // Let theme default handle this
     display: 'inline-block',
   };
 
@@ -326,6 +327,16 @@ export class EuiPopover extends Component<Props, State> {
   private button: HTMLElement | null = null;
   private panel: HTMLElement | null = null;
   private descriptionId: string = htmlIdGenerator()();
+  private themeDefaults: { hasArrow: boolean; anchorPosition: PopoverAnchorPosition; offset: number } | null = null;
+
+  private getEffectiveProps = () => {
+    const { anchorPosition: defaultAnchorPosition, offset: defaultOffset, hasArrow: defaultHasArrow } = this.themeDefaults || {};
+    return {
+      anchorPosition: this.props.anchorPosition ?? defaultAnchorPosition ?? 'downCenter',
+      offset: this.props.offset ?? defaultOffset ?? 0,
+      hasArrow: this.props.hasArrow ?? defaultHasArrow ?? true,
+    };
+  };
 
   constructor(props: Props) {
     super(props);
@@ -503,10 +514,13 @@ export class EuiPopover extends Component<Props, State> {
     performOnFrame(waitDuration, this.positionPopoverFixed);
   };
 
+
   positionPopover = (allowEnforcePosition: boolean) => {
     if (this.button == null || this.panel == null) return;
 
-    const { anchorPosition, offset = 0 } = this.props as PropsWithDefaults;
+    // Get effective props with theme defaults
+    const effectiveProps = this.getEffectiveProps();
+    const { anchorPosition, offset = 0 } = effectiveProps;
 
     let position = getPopoverPositionFromAnchorPosition(anchorPosition);
     let forcePosition = undefined;
@@ -533,10 +547,10 @@ export class EuiPopover extends Component<Props, State> {
       popover: this.panel,
       offset: this.props.attachToAnchor
         ? offset
-        : this.props.hasArrow
+        : effectiveProps.hasArrow
         ? 16 + offset
         : 8 + offset,
-      arrowConfig: this.props.hasArrow
+      arrowConfig: effectiveProps.hasArrow
         ? { arrowWidth: 16, arrowBuffer: 10 }
         : { arrowWidth: 0, arrowBuffer: 0 },
       returnBoundingBox: this.props.attachToAnchor,
@@ -609,41 +623,56 @@ export class EuiPopover extends Component<Props, State> {
   };
 
   render() {
-    const {
-      anchorPosition,
-      button,
-      insert,
-      isOpen,
-      ownFocus,
-      children,
-      className,
-      closePopover,
-      panelClassName,
-      panelPaddingSize,
-      panelProps,
-      panelRef,
-      panelStyle,
-      popoverScreenReaderText,
-      popoverRef,
-      hasArrow,
-      arrowChildren,
-      repositionOnScroll,
-      repositionToCrossAxis,
-      zIndex,
-      attachToAnchor,
-      display,
-      offset,
-      onPositionChange,
-      buffer,
-      'aria-label': ariaLabel,
-      'aria-labelledby': ariaLabelledBy,
-      'aria-live': ariaLiveProp,
-      container,
-      focusTrapProps,
-      initialFocus: initialFocusProp,
-      tabIndex: _tabIndexProp,
-      ...rest
-    } = this.props;
+    return (
+      <RenderWithEuiTheme>
+        {(euiTheme) => {
+          const {
+            anchorPosition,
+            button,
+            insert,
+            isOpen,
+            ownFocus,
+            children,
+            className,
+            closePopover,
+            panelClassName,
+            panelPaddingSize,
+            panelProps,
+            panelRef,
+            panelStyle,
+            popoverScreenReaderText,
+            popoverRef,
+            hasArrow,
+            arrowChildren,
+            repositionOnScroll,
+            repositionToCrossAxis,
+            zIndex,
+            attachToAnchor,
+            display,
+            offset,
+            onPositionChange,
+            buffer,
+            'aria-label': ariaLabel,
+            'aria-labelledby': ariaLabelledBy,
+            'aria-live': ariaLiveProp,
+            container,
+            focusTrapProps,
+            initialFocus: initialFocusProp,
+            tabIndex: _tabIndexProp,
+            ...rest
+          } = this.props;
+
+          // Use theme defaults if props are not explicitly set
+          const defaultHasArrow = hasArrow ?? euiTheme.euiTheme.font.popover.defaultHasArrow ?? true;
+          const defaultAnchorPosition = anchorPosition ?? euiTheme.euiTheme.font.popover.defaultAnchorPosition ?? 'downCenter';
+          const defaultOffset = offset ?? euiTheme.euiTheme.font.popover.defaultOffset ?? 0;
+          
+          // Set theme defaults for positioning methods
+          this.themeDefaults = {
+            hasArrow: defaultHasArrow,
+            anchorPosition: defaultAnchorPosition,
+            offset: defaultOffset,
+          };
     const tabIndexProp = panelProps?.tabIndex ?? _tabIndexProp;
 
     const styles = euiPopoverStyles();
@@ -656,7 +685,7 @@ export class EuiPopover extends Component<Props, State> {
       className
     );
 
-    const showArrow = hasArrow && !attachToAnchor;
+          const showArrow = defaultHasArrow && !attachToAnchor;
 
     let panel;
 
@@ -797,5 +826,8 @@ export class EuiPopover extends Component<Props, State> {
         </EuiOutsideClickDetector>
       );
     }
+        }}
+      </RenderWithEuiTheme>
+    );
   }
 }

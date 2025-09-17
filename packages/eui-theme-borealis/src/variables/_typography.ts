@@ -85,6 +85,11 @@ export const font: _EuiThemeFont = {
   basicTable: {
     defaultTransparent: true, // Transparent background for Borealis
   },
+  popover: {
+    defaultHasArrow: false, // No arrow for Borealis
+    defaultAnchorPosition: 'downLeft', // downLeft positioning for Borealis
+    defaultOffset: 4, // 4px offset from anchor for Borealis
+  },
   title: {
     weight: 'semiBold',
     letterSpacing: -0.2,

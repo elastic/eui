@@ -33,8 +33,8 @@ const meta: Meta<EuiPopoverProps> = {
     ownFocus: true,
     panelPaddingSize: 'm',
     buffer: 16,
-    hasArrow: true,
-    anchorPosition: 'downCenter',
+    // hasArrow: true, // Let theme default handle this
+    // anchorPosition: 'downCenter', // Let theme default handle this
     display: 'inline-block',
     repositionToCrossAxis: true,
     repositionOnScroll: false,

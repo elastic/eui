@@ -83,6 +83,11 @@ export const font: _EuiThemeFont = {
   basicTable: {
     defaultTransparent: false, // Standard white background for Amsterdam
   },
+  popover: {
+    defaultHasArrow: true, // Keep arrow for Amsterdam (current default)
+    defaultAnchorPosition: 'downCenter', // Keep downCenter for Amsterdam (current default)
+    defaultOffset: 0, // No offset for Amsterdam (current default)
+  },
   title: {
     weight: 'bold',
     scaleMapping: {
