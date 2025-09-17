@@ -71,9 +71,8 @@ exports[`EuiSelectableListItem props checked & allowExclusions mixed 1`] = `
     class="emotion-euiScreenReaderOnly"
     id="generated-id"
   >
-    — 
+    - 
     Mixed (indeterminate) option.
-     
     To check this option for all, press Enter once.
      
     To exclude this option for all, press Enter twice.
@@ -104,8 +103,7 @@ exports[`EuiSelectableListItem props checked & allowExclusions off 1`] = `
     class="emotion-euiScreenReaderOnly"
     id="generated-id"
   >
-    — 
-     
+    - 
     To uncheck this option, press Enter.
   </span>
 </li>
@@ -134,8 +132,7 @@ exports[`EuiSelectableListItem props checked & allowExclusions on 1`] = `
     class="emotion-euiScreenReaderOnly"
     id="generated-id"
   >
-    — 
-     
+    - 
     To exclude this option, press Enter.
   </span>
 </li>
@@ -163,8 +160,7 @@ exports[`EuiSelectableListItem props checked & allowExclusions undefined 1`] = `
     class="emotion-euiScreenReaderOnly"
     id="generated-id"
   >
-    — 
-     
+    - 
     To check this option, press Enter.
   </span>
 </li>
@@ -193,8 +189,7 @@ exports[`EuiSelectableListItem props checked & searchable on 1`] = `
     class="emotion-euiScreenReaderOnly"
     id="generated-id"
   >
-    — 
-     
+    - 
     To uncheck this option, press Enter.
   </span>
 </li>
@@ -222,8 +217,7 @@ exports[`EuiSelectableListItem props checked & searchable undefined 1`] = `
     class="emotion-euiScreenReaderOnly"
     id="generated-id"
   >
-    — 
-     
+    - 
     To check this option, press Enter.
   </span>
 </li>
@@ -252,9 +246,8 @@ exports[`EuiSelectableListItem props checked mixed 1`] = `
     class="emotion-euiScreenReaderOnly"
     id="generated-id"
   >
-    — 
+    - 
     Mixed (indeterminate) option.
-     
     To check this option for all, press Enter once.
      
     To uncheck this option for all, press Enter twice.

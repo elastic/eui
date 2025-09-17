@@ -306,7 +306,9 @@ export const EuiSelectableListItem: FunctionComponent<
 
     return state || instructions ? (
       <span>
-        — {state || ''} {instructions}
+        {'- '}
+        {state || null}
+        {instructions || null}
       </span>
     ) : null;
   }, [checked, searchable, allowExclusions]);

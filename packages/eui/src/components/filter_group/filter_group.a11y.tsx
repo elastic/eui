@@ -259,7 +259,7 @@ describe('EuiFilterGroup multiselect example', () => {
         .should('have.text', 'Dmitri Shostakovich');
       cy.get('li[aria-selected="true"]')
         .find('.css-gb1zbv-euiScreenReaderOnly')
-        .should('have.text', '—  To exclude this option, press Enter.');
+        .should('have.text', '- To exclude this option, press Enter.');
 
       cy.realPress('ArrowDown');
       cy.repeatRealPress('Enter');
@@ -269,7 +269,7 @@ describe('EuiFilterGroup multiselect example', () => {
         .should('have.text', 'Felix Mendelssohn-Bartholdy');
       cy.get('li[aria-selected="true"]')
         .find('.css-gb1zbv-euiScreenReaderOnly')
-        .should('have.text', '—  To uncheck this option, press Enter.');
+        .should('have.text', '- To uncheck this option, press Enter.');
 
       cy.checkAxe();
     });

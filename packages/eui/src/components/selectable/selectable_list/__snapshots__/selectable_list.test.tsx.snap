@@ -758,8 +758,7 @@ exports[`EuiSelectableListItem props allowExclusions 1`] = `
             class="emotion-euiScreenReaderOnly"
             id="generated-id"
           >
-            — 
-             
+            - 
             To check this option, press Enter.
           </span>
         </li>
@@ -792,8 +791,7 @@ exports[`EuiSelectableListItem props allowExclusions 1`] = `
             class="emotion-euiScreenReaderOnly"
             id="generated-id"
           >
-            — 
-             
+            - 
             To check this option, press Enter.
           </span>
         </li>
@@ -826,8 +824,7 @@ exports[`EuiSelectableListItem props allowExclusions 1`] = `
             class="emotion-euiScreenReaderOnly"
             id="generated-id"
           >
-            — 
-             
+            - 
             To check this option, press Enter.
           </span>
         </li>
@@ -860,8 +857,7 @@ exports[`EuiSelectableListItem props allowExclusions 1`] = `
             class="emotion-euiScreenReaderOnly"
             id="generated-id"
           >
-            — 
-             
+            - 
             To check this option, press Enter.
           </span>
         </li>
@@ -894,8 +890,7 @@ exports[`EuiSelectableListItem props allowExclusions 1`] = `
             class="emotion-euiScreenReaderOnly"
             id="generated-id"
           >
-            — 
-             
+            - 
             To check this option, press Enter.
           </span>
         </li>
@@ -928,8 +923,7 @@ exports[`EuiSelectableListItem props allowExclusions 1`] = `
             class="emotion-euiScreenReaderOnly"
             id="generated-id"
           >
-            — 
-             
+            - 
             To check this option, press Enter.
           </span>
         </li>
@@ -2418,8 +2412,7 @@ exports[`EuiSelectableListItem props searchable enables correct screen reader in
             class="emotion-euiScreenReaderOnly"
             id="generated-id"
           >
-            — 
-             
+            - 
             To check this option, press Enter.
           </span>
         </li>
@@ -2452,8 +2445,7 @@ exports[`EuiSelectableListItem props searchable enables correct screen reader in
             class="emotion-euiScreenReaderOnly"
             id="generated-id"
           >
-            — 
-             
+            - 
             To check this option, press Enter.
           </span>
         </li>
@@ -2486,8 +2478,7 @@ exports[`EuiSelectableListItem props searchable enables correct screen reader in
             class="emotion-euiScreenReaderOnly"
             id="generated-id"
           >
-            — 
-             
+            - 
             To check this option, press Enter.
           </span>
         </li>
@@ -2520,8 +2511,7 @@ exports[`EuiSelectableListItem props searchable enables correct screen reader in
             class="emotion-euiScreenReaderOnly"
             id="generated-id"
           >
-            — 
-             
+            - 
             To check this option, press Enter.
           </span>
         </li>
@@ -2554,8 +2544,7 @@ exports[`EuiSelectableListItem props searchable enables correct screen reader in
             class="emotion-euiScreenReaderOnly"
             id="generated-id"
           >
-            — 
-             
+            - 
             To check this option, press Enter.
           </span>
         </li>
@@ -2588,8 +2577,7 @@ exports[`EuiSelectableListItem props searchable enables correct screen reader in
             class="emotion-euiScreenReaderOnly"
             id="generated-id"
           >
-            — 
-             
+            - 
             To check this option, press Enter.
           </span>
         </li>
