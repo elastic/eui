@@ -45,13 +45,26 @@ export const unregisterCallback = (
   }
 };
 
+/**
+ * Batch unregister multiple callbacks for a flyout with proper timing.
+ * This is the recommended way to unregister callbacks as it handles timing internally.
+ */
+export const unregisterCallbacks = (flyoutId: string) => {
+  // Use setTimeout to ensure any pending callbacks execute first
+  setTimeout(() => {
+    unregisterCallback(flyoutId, 'onClose');
+    unregisterCallback(flyoutId, 'onActive');
+  }, 0);
+};
+
 export const callCallback = (
   flyoutId: string,
   callbackType: 'onClose' | 'onActive'
 ) => {
   const callbacks = callbacksRegistry.get(flyoutId);
   if (callbacks?.[callbackType]) {
-    queueMicrotask(() => callbacks[callbackType]!());
+    // Use setTimeout to truly defer execution and avoid setState during render
+    setTimeout(() => callbacks[callbackType]!(), 0);
   }
 };
 

@@ -24,7 +24,7 @@ import {
 } from './const';
 import { EuiFlyoutIsManagedProvider } from './context';
 import { euiManagedFlyoutStyles } from './flyout_managed.styles';
-import { registerCallback, unregisterCallback } from './provider';
+import { registerCallback, unregisterCallbacks } from './provider';
 import {
   useFlyoutManager as _useFlyoutManager,
   useFlyoutId,
@@ -175,11 +175,8 @@ export const EuiManagedFlyout = ({
 
   useEffect(() => {
     return () => {
-      // Defer unregistration to allow calling the "onClose" callback to execute first
-      setTimeout(() => {
-        unregisterCallback(flyoutId, 'onClose');
-        unregisterCallback(flyoutId, 'onActive');
-      }, 0);
+      // Unregister all callbacks with proper timing handled internally
+      unregisterCallbacks(flyoutId);
     };
   }, [flyoutId]);
 
