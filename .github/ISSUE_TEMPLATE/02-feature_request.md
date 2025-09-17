@@ -36,7 +36,7 @@ assignees: ''
 
 **Related code or customizations**
 
-<!-- Features Requests often corresond to workarounds or customizations that exist already in Kibana or other products. Please provide links to any known instances below. We can plan to update those use cases with this feature when it is ready. -->
+<!-- Features Requests often correspond to workarounds or customizations that exist already in Kibana or other products. Please provide links to any known instances below. We can plan to update those use cases with this feature when it is ready. -->
 
 **Additional context (Optional)**
 
