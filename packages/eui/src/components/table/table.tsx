@@ -9,7 +9,7 @@
 import React, { FunctionComponent, TableHTMLAttributes } from 'react';
 import classNames from 'classnames';
 
-import { useEuiMemoizedStyles, type EuiBreakpointSize } from '../../services';
+import { useEuiMemoizedStyles, useEuiTheme, type EuiBreakpointSize } from '../../services';
 import { CommonProps } from '../common';
 
 import {
@@ -36,6 +36,10 @@ export interface EuiTableProps
    * Sets the table-layout CSS property
    */
   tableLayout?: 'fixed' | 'auto';
+  /**
+   * When true, removes the background color from the table, making it transparent.
+   */
+  transparent?: boolean;
 }
 
 export const EuiTable: FunctionComponent<EuiTableProps> = ({
@@ -44,13 +48,18 @@ export const EuiTable: FunctionComponent<EuiTableProps> = ({
   compressed,
   tableLayout = 'fixed',
   responsiveBreakpoint, // Default handled by `useIsEuiTableResponsive`
+  transparent,
   ...rest
 }) => {
   const isResponsive = useIsEuiTableResponsive(responsiveBreakpoint);
+  const euiTheme = useEuiTheme();
+  
+  // Use theme default if transparent is not explicitly set
+  const isTransparent = transparent ?? euiTheme.euiTheme.font.basicTable.defaultTransparent ?? false;
 
   const classes = classNames('euiTable', className);
 
-  const styles = useEuiMemoizedStyles(euiTableStyles);
+  const styles = useEuiMemoizedStyles(() => euiTableStyles(euiTheme, isTransparent));
   const cssStyles = [
     styles.euiTable,
     styles.layout[tableLayout],

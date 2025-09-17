@@ -44,7 +44,7 @@ export const euiTableVariables = ({ euiTheme }: UseEuiTheme) => {
   };
 };
 
-export const euiTableStyles = (euiThemeContext: UseEuiTheme) => {
+export const euiTableStyles = (euiThemeContext: UseEuiTheme, transparent?: boolean) => {
   const { euiTheme } = euiThemeContext;
 
   const { cellContentPadding, compressedCellContentPadding } =
@@ -56,7 +56,7 @@ export const euiTableStyles = (euiThemeContext: UseEuiTheme) => {
       ${logicalCSS('width', '100%')}
       border: none;
       border-collapse: collapse;
-      background-color: ${euiTheme.colors.emptyShade};
+      ${transparent ? '' : `background-color: ${euiTheme.colors.emptyShade};`}
     `,
     layout: {
       fixed: css`

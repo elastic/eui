@@ -275,6 +275,10 @@ interface BasicTableProps<T extends object>
    * Sets the table-layout CSS property. Note that auto tableLayout prevents truncateText from working properly.
    */
   tableLayout?: 'fixed' | 'auto';
+  /**
+   * When true, removes the background color from the table, making it transparent.
+   */
+  transparent?: boolean;
 }
 
 type BasicTableWithPaginationProps<T extends object> = Omit<
@@ -520,6 +524,7 @@ export class EuiBasicTable<T extends object = any> extends Component<
       tableCaption,
       rowHeader,
       tableLayout,
+      transparent,
       ...rest
     } = this.props;
 
@@ -529,7 +534,7 @@ export class EuiBasicTable<T extends object = any> extends Component<
       className
     );
 
-    const table = this.renderTable();
+    const table = this.renderTable(transparent);
     const paginationBar = this.renderPaginationBar();
 
     return (
@@ -540,7 +545,7 @@ export class EuiBasicTable<T extends object = any> extends Component<
     );
   }
 
-  renderTable() {
+  renderTable(transparent?: boolean) {
     const { compressed, responsiveBreakpoint, tableLayout, loading } =
       this.props;
 
@@ -556,6 +561,7 @@ export class EuiBasicTable<T extends object = any> extends Component<
             tableLayout={tableLayout}
             responsiveBreakpoint={responsiveBreakpoint}
             compressed={compressed}
+            transparent={transparent}
             css={loading && safariLoadingWorkaround}
           >
             {this.renderTableCaption()}

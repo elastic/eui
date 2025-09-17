@@ -82,6 +82,9 @@ export const font: _EuiThemeFont = {
   flexGroup: {
     defaultGutterSize: 's', // Tighter spacing for flex groups
   },
+  basicTable: {
+    defaultTransparent: true, // Transparent background for Borealis
+  },
   title: {
     weight: 'semiBold',
     letterSpacing: -0.2,

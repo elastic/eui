@@ -80,6 +80,9 @@ export const font: _EuiThemeFont = {
   tabs: {
     defaultSize: 'l',
   },
+  basicTable: {
+    defaultTransparent: false, // Standard white background for Amsterdam
+  },
   title: {
     weight: 'bold',
     scaleMapping: {

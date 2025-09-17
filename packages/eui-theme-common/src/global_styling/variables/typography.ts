@@ -209,6 +209,16 @@ export interface _EuiThemeFlexGroup {
 }
 
 /**
+ * BasicTable component defaults
+ */
+export interface _EuiThemeBasicTable {
+  /**
+   * Default transparent setting for basic tables
+   */
+  defaultTransparent: boolean;
+}
+
+/**
  * Title styles
  */
 
@@ -260,5 +270,6 @@ export type _EuiThemeFont = _EuiThemeFontBase & {
   tabs: _EuiThemeTabs;
   searchBar: _EuiThemeSearchBar;
   flexGroup: _EuiThemeFlexGroup;
+  basicTable: _EuiThemeBasicTable;
   title: _EuiThemeTitle;
 };
