@@ -179,8 +179,8 @@ export const FormControlButton: Story = {
   },
 };
 
+/* TODO: remove testing story */
 export const AppendPrepend_REVIEW_EXAMPLE: Story = {
-  tags: ['vrt-only'],
   parameters: {
     loki: { skip: true },
   },
@@ -535,12 +535,13 @@ export const AppendPrepend: Story = {
   },
 };
 
+/* TODO: remove testing story */
 export const Kitchensink: Story = {
-  tags: ['vrt-only'],
   parameters: {
     codeSnippet: {
       skip: true,
     },
+    loki: { skip: true },
   },
   render: function Render(args) {
     const { readOnly, isDisabled, fullWidth, compressed } = args;
