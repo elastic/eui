@@ -10,7 +10,7 @@
 /// <reference types="cypress-real-events" />
 /// <reference types="../../../cypress/support" />
 
-import React, { ReactNode } from 'react';
+import React, { ReactNode, useState } from 'react';
 import {
   EuiDataGrid,
   EuiDataGridColumn,
@@ -735,6 +735,169 @@ a, footer\tb, footer
 `
         );
       });
+    });
+  });
+
+  describe('column reordering', () => {
+    const props = {
+      ...baseProps,
+      columns: [
+        { id: 'a', display: 'First' },
+        { id: 'b', display: 'Second' },
+        { id: 'c', display: 'Third' },
+        { id: 'd', display: 'Fourth' },
+      ],
+      columnVisibility: {
+        visibleColumns: ['a', 'b', 'd'],
+        setVisibleColumns: () => {},
+        canDragAndDropColumns: true,
+      },
+    } as EuiDataGridProps;
+
+    const StatefulDataGrid = ({
+      columns,
+      columnVisibility,
+      ...rest
+    }: EuiDataGridProps) => {
+      const [visibleColumns, setVisibleColumns] = useState(
+        columnVisibility.visibleColumns
+      );
+
+      return (
+        <EuiDataGrid
+          {...rest}
+          columns={columns ?? []}
+          columnVisibility={{
+            ...columnVisibility,
+            visibleColumns,
+            setVisibleColumns,
+          }}
+          // ExclusiveUnion shenanigans :|
+          aria-label="Testing"
+          aria-labelledby={undefined}
+        />
+      );
+    };
+
+    it('renders columns in the correct order when `columns` and `visibleColumns` have the same order', () => {
+      cy.mount(<StatefulDataGrid {...props} />);
+
+      cy.get(
+        '[data-gridcell-column-index="0"][data-gridcell-visible-row-index="-1"] .euiDataGridHeaderCell__content'
+      ).should('have.text', 'First');
+      cy.get(
+        '[data-gridcell-column-index="1"][data-gridcell-visible-row-index="-1"] .euiDataGridHeaderCell__content'
+      ).should('have.text', 'Second');
+      cy.get(
+        '[data-gridcell-column-index="2"][data-gridcell-visible-row-index="-1"] .euiDataGridHeaderCell__content'
+      ).should('have.text', 'Fourth');
+
+      /* checks column selector popover order */
+      cy.get('[data-test-subj="dataGridColumnSelectorButton"]').click();
+
+      cy.get('.euiDataGridColumnSelector__item').eq(0).should('have.text', 'a');
+      cy.get('.euiDataGridColumnSelector__item').eq(1).should('have.text', 'b');
+      cy.get('.euiDataGridColumnSelector__item').eq(2).should('have.text', 'c');
+      cy.get('.euiDataGridColumnSelector__item').eq(3).should('have.text', 'd');
+
+      cy.get(
+        '.euiDataGridColumnSelector__item [data-test-subj="dataGridColumnSelectorToggleColumnVisibility-c"]'
+      ).should('have.attr', 'aria-checked', 'false');
+    });
+
+    it('renders columns in the corect order when `columns` and `visibleColumns` have different orders', () => {
+      cy.mount(
+        <StatefulDataGrid
+          {...props}
+          columnVisibility={{
+            ...props.columnVisibility,
+            visibleColumns: ['b', 'd', 'a'],
+          }}
+        />
+      );
+
+      cy.get(
+        '[data-gridcell-column-index="0"][data-gridcell-visible-row-index="-1"] .euiDataGridHeaderCell__content'
+      ).should('have.text', 'Second');
+      cy.get(
+        '[data-gridcell-column-index="1"][data-gridcell-visible-row-index="-1"] .euiDataGridHeaderCell__content'
+      ).should('have.text', 'Fourth');
+      cy.get(
+        '[data-gridcell-column-index="2"][data-gridcell-visible-row-index="-1"] .euiDataGridHeaderCell__content'
+      ).should('have.text', 'First');
+
+      /* checks column selector popover order */
+      cy.get('[data-test-subj="dataGridColumnSelectorButton"]').click();
+
+      cy.get('.euiDataGridColumnSelector__item').eq(0).should('have.text', 'b');
+      cy.get('.euiDataGridColumnSelector__item').eq(1).should('have.text', 'd');
+      cy.get('.euiDataGridColumnSelector__item').eq(2).should('have.text', 'c');
+      cy.get('.euiDataGridColumnSelector__item').eq(3).should('have.text', 'a');
+
+      cy.get(
+        '.euiDataGridColumnSelector__item [data-test-subj="dataGridColumnSelectorToggleColumnVisibility-c"]'
+      ).should('have.attr', 'aria-checked', 'false');
+    });
+
+    it('reorders columns from the column selector', () => {
+      cy.mount(<StatefulDataGrid {...props} />);
+
+      cy.get('[data-test-subj="dataGridColumnSelectorButton"]').click();
+
+      /* reorder column selectors */
+      cy.get('.euiDataGridColumnSelector__item')
+        .eq(0)
+        .realHover()
+        .realMouseDown({ position: 'center' })
+        .realMouseMove(0, 0) // start drag
+        .realMouseMove(0, 120) // move (absolute coordinates)
+        .realMouseUp();
+
+      cy.get('.euiDataGridColumnSelector__item').eq(0).should('have.text', 'b');
+      cy.get('.euiDataGridColumnSelector__item').eq(1).should('have.text', 'a');
+      cy.get('.euiDataGridColumnSelector__item').eq(2).should('have.text', 'c');
+      cy.get('.euiDataGridColumnSelector__item').eq(3).should('have.text', 'd');
+
+      cy.get(
+        '[data-gridcell-column-index="0"][data-gridcell-visible-row-index="-1"] .euiDataGridHeaderCell__content'
+      ).should('have.text', 'Second');
+      cy.get(
+        '[data-gridcell-column-index="1"][data-gridcell-visible-row-index="-1"] .euiDataGridHeaderCell__content'
+      ).should('have.text', 'First');
+      cy.get(
+        '[data-gridcell-column-index="2"][data-gridcell-visible-row-index="-1"] .euiDataGridHeaderCell__content'
+      ).should('have.text', 'Fourth');
+    });
+
+    it('reorders columns via drag and drop', () => {
+      cy.mount(<StatefulDataGrid {...props} />);
+
+      /* reorder columns*/
+      cy.get(
+        '[data-gridcell-column-index="0"][data-gridcell-visible-row-index="-1"]'
+      )
+        .realHover()
+        .realMouseDown({ position: 'center' })
+        .realMouseMove(0, 0) // start drag
+        .realMouseMove(250, 50) // move (absolute coordinates)
+        .realMouseUp();
+
+      cy.get(
+        '[data-gridcell-column-index="0"][data-gridcell-visible-row-index="-1"] .euiDataGridHeaderCell__content'
+      ).should('have.text', 'Second');
+      cy.get(
+        '[data-gridcell-column-index="1"][data-gridcell-visible-row-index="-1"] .euiDataGridHeaderCell__content'
+      ).should('have.text', 'Fourth');
+      cy.get(
+        '[data-gridcell-column-index="2"][data-gridcell-visible-row-index="-1"] .euiDataGridHeaderCell__content'
+      ).should('have.text', 'First');
+
+      cy.get('[data-test-subj="dataGridColumnSelectorButton"]').click();
+
+      cy.get('.euiDataGridColumnSelector__item').eq(0).should('have.text', 'b');
+      cy.get('.euiDataGridColumnSelector__item').eq(1).should('have.text', 'c');
+      cy.get('.euiDataGridColumnSelector__item').eq(2).should('have.text', 'd');
+      cy.get('.euiDataGridColumnSelector__item').eq(3).should('have.text', 'a');
     });
   });
 });
