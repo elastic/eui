@@ -11,7 +11,7 @@ exports[`EuiAutoRefresh is rendered 1`] = `
       class="euiFormControlLayout__prepend emotion-euiFormControlLayout__side-prepend"
     >
       <button
-        class="euiFormPrepend euiFormControlLayout__prepend css-1gwsn67-side-uncompressed-isInteractive-prepend"
+        class="euiFormPrepend euiFormControlLayout__prepend css-1q2k5id-side-uncompressed-isInteractive-prepend"
       >
         <span
           data-euiicon-type="timeRefresh"
@@ -52,7 +52,7 @@ exports[`EuiAutoRefresh isPaused is false 1`] = `
       class="euiFormControlLayout__prepend emotion-euiFormControlLayout__side-prepend"
     >
       <button
-        class="euiFormPrepend euiFormControlLayout__prepend css-1gwsn67-side-uncompressed-isInteractive-prepend"
+        class="euiFormPrepend euiFormControlLayout__prepend css-1q2k5id-side-uncompressed-isInteractive-prepend"
       >
         <span
           data-euiicon-type="timeRefresh"
@@ -92,7 +92,7 @@ exports[`EuiAutoRefresh refreshInterval is rendered 1`] = `
       class="euiFormControlLayout__prepend emotion-euiFormControlLayout__side-prepend"
     >
       <button
-        class="euiFormPrepend euiFormControlLayout__prepend css-1gwsn67-side-uncompressed-isInteractive-prepend"
+        class="euiFormPrepend euiFormControlLayout__prepend css-1q2k5id-side-uncompressed-isInteractive-prepend"
       >
         <span
           data-euiicon-type="timeRefresh"

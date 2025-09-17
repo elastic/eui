@@ -16,7 +16,7 @@ exports[`EuiSuperDatePicker props accepts data-test-subj and passes to EuiFormCo
       >
         <button
           aria-label="Date quick select"
-          class="euiFormPrepend css-1gwsn67-side-uncompressed-isInteractive-prepend"
+          class="euiFormPrepend css-1q2k5id-side-uncompressed-isInteractive-prepend"
           data-test-subj="superDatePickerToggleQuickMenuButton"
           title="Date quick select"
         >
@@ -93,7 +93,7 @@ exports[`EuiSuperDatePicker props compressed is rendered 1`] = `
       >
         <button
           aria-label="Date quick select"
-          class="euiFormPrepend css-1hrsshf-side-compressed-isInteractive-prepend"
+          class="euiFormPrepend css-ckovf4-side-compressed-isInteractive-prepend"
           data-test-subj="superDatePickerToggleQuickMenuButton"
           title="Date quick select"
         >
@@ -169,7 +169,7 @@ exports[`EuiSuperDatePicker props isAutoRefreshOnly is rendered 1`] = `
         class="euiFormControlLayout__prepend emotion-euiFormControlLayout__side-prepend"
       >
         <button
-          class="euiFormPrepend euiFormControlLayout__prepend css-1gwsn67-side-uncompressed-isInteractive-prepend"
+          class="euiFormPrepend euiFormControlLayout__prepend css-1q2k5id-side-uncompressed-isInteractive-prepend"
         >
           <span
             data-euiicon-type="timeRefresh"
@@ -360,7 +360,7 @@ exports[`EuiSuperDatePicker props isQuickSelectOnly is rendered 1`] = `
       >
         <button
           aria-label="Date quick select"
-          class="euiFormPrepend css-1gwsn67-side-uncompressed-isInteractive-prepend"
+          class="euiFormPrepend css-1q2k5id-side-uncompressed-isInteractive-prepend"
           data-test-subj="superDatePickerToggleQuickMenuButton"
           title="Date quick select"
         >
@@ -416,7 +416,7 @@ exports[`EuiSuperDatePicker props showUpdateButton can be false 1`] = `
       >
         <button
           aria-label="Date quick select"
-          class="euiFormPrepend css-1gwsn67-side-uncompressed-isInteractive-prepend"
+          class="euiFormPrepend css-1q2k5id-side-uncompressed-isInteractive-prepend"
           data-test-subj="superDatePickerToggleQuickMenuButton"
           title="Date quick select"
         >
@@ -472,7 +472,7 @@ exports[`EuiSuperDatePicker props showUpdateButton can be iconOnly 1`] = `
       >
         <button
           aria-label="Date quick select"
-          class="euiFormPrepend css-1gwsn67-side-uncompressed-isInteractive-prepend"
+          class="euiFormPrepend css-1q2k5id-side-uncompressed-isInteractive-prepend"
           data-test-subj="superDatePickerToggleQuickMenuButton"
           title="Date quick select"
         >
@@ -552,7 +552,7 @@ exports[`EuiSuperDatePicker props width can be auto 1`] = `
       >
         <button
           aria-label="Date quick select"
-          class="euiFormPrepend css-1gwsn67-side-uncompressed-isInteractive-prepend"
+          class="euiFormPrepend css-1q2k5id-side-uncompressed-isInteractive-prepend"
           data-test-subj="superDatePickerToggleQuickMenuButton"
           title="Date quick select"
         >
@@ -629,7 +629,7 @@ exports[`EuiSuperDatePicker props width can be full 1`] = `
       >
         <button
           aria-label="Date quick select"
-          class="euiFormPrepend css-1gwsn67-side-uncompressed-isInteractive-prepend"
+          class="euiFormPrepend css-1q2k5id-side-uncompressed-isInteractive-prepend"
           data-test-subj="superDatePickerToggleQuickMenuButton"
           title="Date quick select"
         >
@@ -707,7 +707,7 @@ exports[`EuiSuperDatePicker renders 1`] = `
       >
         <button
           aria-label="Date quick select"
-          class="euiFormPrepend css-1gwsn67-side-uncompressed-isInteractive-prepend"
+          class="euiFormPrepend css-1q2k5id-side-uncompressed-isInteractive-prepend"
           data-test-subj="superDatePickerToggleQuickMenuButton"
           title="Date quick select"
         >
@@ -788,7 +788,7 @@ exports[`EuiSuperDatePicker renders an EuiDatePickerRange 1`] = `
         >
           <button
             aria-label="Date quick select"
-            class="euiFormPrepend css-1gwsn67-side-uncompressed-isInteractive-prepend"
+            class="euiFormPrepend css-1q2k5id-side-uncompressed-isInteractive-prepend"
             data-test-subj="superDatePickerToggleQuickMenuButton"
             title="Date quick select"
           >

@@ -418,7 +418,7 @@ exports[`EuiQuickSelectPopover is rendered 1`] = `
 >
   <button
     aria-label="Date quick select"
-    class="euiFormPrepend css-1gwsn67-side-uncompressed-isInteractive-prepend"
+    class="euiFormPrepend css-1q2k5id-side-uncompressed-isInteractive-prepend"
     data-test-subj="superDatePickerToggleQuickMenuButton"
     title="Date quick select"
   >
