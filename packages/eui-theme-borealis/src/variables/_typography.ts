@@ -76,6 +76,12 @@ export const font: _EuiThemeFont = {
   tabs: {
     defaultSize: 'm',
   },
+  searchBar: {
+    defaultGutterSize: 's', // Smaller gap between search input and filters
+  },
+  flexGroup: {
+    defaultGutterSize: 's', // Tighter spacing for flex groups
+  },
   title: {
     weight: 'semiBold',
     letterSpacing: -0.2,

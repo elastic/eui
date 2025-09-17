@@ -189,6 +189,26 @@ export interface _EuiThemeTabs {
 }
 
 /**
+ * SearchBar component defaults
+ */
+export interface _EuiThemeSearchBar {
+  /**
+   * Default gutter size for the main flex group in search bar
+   */
+  defaultGutterSize: 'none' | 'xs' | 's' | 'm' | 'l' | 'xl';
+}
+
+/**
+ * FlexGroup component defaults
+ */
+export interface _EuiThemeFlexGroup {
+  /**
+   * Default gutter size for flex groups
+   */
+  defaultGutterSize: 'none' | 'xs' | 's' | 'm' | 'l' | 'xl';
+}
+
+/**
  * Title styles
  */
 
@@ -238,5 +258,7 @@ export type _EuiThemeFont = _EuiThemeFontBase & {
   button: _EuiThemeButtonDefaults;
   formControls: _EuiThemeFormControls;
   tabs: _EuiThemeTabs;
+  searchBar: _EuiThemeSearchBar;
+  flexGroup: _EuiThemeFlexGroup;
   title: _EuiThemeTitle;
 };

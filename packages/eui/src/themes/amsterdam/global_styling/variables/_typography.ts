@@ -62,6 +62,12 @@ export const font: _EuiThemeFont = {
   spacer: {
     defaultSize: 'l',
   },
+  searchBar: {
+    defaultGutterSize: 'm', // Standard gap between search input and filters
+  },
+  flexGroup: {
+    defaultGutterSize: 'l', // Standard spacing for flex groups
+  },
   horizontalRule: {
     defaultMargin: 'l',
   },

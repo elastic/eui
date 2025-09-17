@@ -271,8 +271,10 @@ export class EuiSearchBar extends Component<EuiSearchBarProps, State> {
 
     return (
       <RenderWithEuiTheme>
-        {(euiTheme) => (
-          <EuiFlexGroup gutterSize="m" alignItems="center" wrap>
+        {(euiTheme) => {
+          const defaultGutterSize = euiTheme.euiTheme.font.searchBar.defaultGutterSize ?? 'm';
+          return (
+            <EuiFlexGroup gutterSize={defaultGutterSize} alignItems="center" wrap>
             {toolsLeftEl}
             <EuiFlexItem
               className="euiSearchBar__searchHolder"
@@ -315,7 +317,8 @@ export class EuiSearchBar extends Component<EuiSearchBarProps, State> {
             )}
             {toolsRightEl}
           </EuiFlexGroup>
-        )}
+          );
+        }}
       </RenderWithEuiTheme>
     );
   }

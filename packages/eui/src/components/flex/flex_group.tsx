@@ -19,7 +19,7 @@ import React, {
 import classNames from 'classnames';
 import { CommonProps } from '../common';
 
-import { useEuiMemoizedStyles } from '../../services';
+import { useEuiMemoizedStyles, useEuiTheme } from '../../services';
 import { euiFlexGroupStyles } from './flex_group.styles';
 
 export const GUTTER_SIZES = ['none', 'xs', 's', 'm', 'l', 'xl'] as const;
@@ -81,7 +81,7 @@ const EuiFlexGroupInternal = <TComponent extends ElementType>(
   {
     className,
     component = 'div' as TComponent,
-    gutterSize = 'l',
+    gutterSize,
     alignItems = 'stretch',
     responsive = true,
     justifyContent = 'flexStart',
@@ -91,12 +91,14 @@ const EuiFlexGroupInternal = <TComponent extends ElementType>(
   }: EuiFlexGroupProps<TComponent>,
   ref: ForwardedRef<TComponent>
 ): ReactElement<EuiFlexGroupProps<TComponent>, TComponent> => {
+  const euiTheme = useEuiTheme();
+  const defaultGutterSize = gutterSize ?? euiTheme.euiTheme.font.flexGroup.defaultGutterSize ?? 'l';
   const styles = useEuiMemoizedStyles(euiFlexGroupStyles);
   const cssStyles = [
     styles.euiFlexGroup,
     responsive && !direction.includes('column') && styles.responsive,
     wrap && styles.wrap,
-    styles.gutterSizes[gutterSize],
+    styles.gutterSizes[defaultGutterSize],
     styles.justifyContent[justifyContent],
     styles.alignItems[alignItems],
     styles.direction[direction],
