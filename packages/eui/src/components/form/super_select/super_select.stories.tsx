@@ -13,10 +13,10 @@ import {
   disableStorybookControls,
   enableFunctionToggleControls,
 } from '../../../../.storybook/utils';
-import { EuiIcon } from '../../icon';
 import { EuiText } from '../../text';
 
 import { EuiSuperSelect, EuiSuperSelectProps } from './super_select';
+import { EuiFormAppend, EuiFormPrepend } from '../form_control_layout';
 
 const meta: Meta<EuiSuperSelectProps> = {
   title: 'Forms/EuiSuperSelect',
@@ -26,7 +26,7 @@ const meta: Meta<EuiSuperSelectProps> = {
       control: 'radio',
       options: [undefined, 'icon', 'text'],
       mapping: {
-        icon: <EuiIcon type="faceHappy" />,
+        icon: <EuiFormAppend iconLeft="faceHappy" />,
         text: 'Appended',
         undefined: undefined,
       },
@@ -35,7 +35,7 @@ const meta: Meta<EuiSuperSelectProps> = {
       control: 'radio',
       options: [undefined, 'icon', 'text'],
       mapping: {
-        icon: <EuiIcon type="faceHappy" />,
+        icon: <EuiFormPrepend iconLeft="faceHappy" />,
         text: 'Prepended',
         undefined: undefined,
       },

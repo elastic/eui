@@ -61,7 +61,13 @@ enableFunctionToggleControls(meta, ['onTimeChange']);
 export default meta;
 type Story = StoryObj<EuiSuperDatePickerProps>;
 
-export const Playground: Story = {};
+export const Playground: Story = {
+  args: {
+    quickSelectButtonProps: {
+      color: 'danger',
+    },
+  },
+};
 enableFunctionToggleControls(Playground, [
   'onFocus',
   'onRefresh',

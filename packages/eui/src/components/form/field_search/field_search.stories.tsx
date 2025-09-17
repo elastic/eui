@@ -13,8 +13,8 @@ import {
   disableStorybookControls,
   enableFunctionToggleControls,
 } from '../../../../.storybook/utils';
-import { EuiIcon } from '../../icon';
 import { EuiFieldSearch, EuiFieldSearchProps } from './field_search';
+import { EuiFormAppend, EuiFormPrepend } from '../form_control_layout';
 
 const meta: Meta<EuiFieldSearchProps> = {
   title: 'Forms/EuiFieldSearch',
@@ -24,7 +24,7 @@ const meta: Meta<EuiFieldSearchProps> = {
       control: 'radio',
       options: [undefined, 'icon', 'text'],
       mapping: {
-        icon: <EuiIcon type="faceHappy" />,
+        icon: <EuiFormAppend iconLeft="faceHappy" />,
         text: 'Appended',
         undefined: undefined,
       },
@@ -33,7 +33,7 @@ const meta: Meta<EuiFieldSearchProps> = {
       control: 'radio',
       options: [undefined, 'icon', 'text'],
       mapping: {
-        icon: <EuiIcon type="faceHappy" />,
+        icon: <EuiFormPrepend iconLeft="faceHappy" />,
         text: 'Prepended',
         undefined: undefined,
       },
