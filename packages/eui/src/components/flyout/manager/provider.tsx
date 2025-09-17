@@ -10,6 +10,7 @@ import React, { createContext, useContext } from 'react';
 import { useFlyoutManagerReducer } from './hooks';
 import { useApplyFlyoutLayoutMode } from './layout_mode';
 import { FlyoutManagerApi } from './types';
+import { callbackManager } from './callback_manager';
 
 // Callback registry - keeps state serializable
 const callbacksRegistry = new Map<
@@ -30,7 +31,7 @@ export const registerCallback = (
   callbacksRegistry.set(flyoutId, { ...existing, [callbackType]: callback });
 };
 
-export const unregisterCallback = (
+const unregisterCallback = (
   flyoutId: string,
   callbackType: 'onClose' | 'onActive'
 ) => {
@@ -50,11 +51,11 @@ export const unregisterCallback = (
  * This is the recommended way to unregister callbacks as it handles timing internally.
  */
 export const unregisterCallbacks = (flyoutId: string) => {
-  // Use setTimeout to ensure any pending callbacks execute first
-  setTimeout(() => {
+  // Use callback manager to ensure proper coordination
+  callbackManager.unregisterCallbacks(flyoutId).then(() => {
     unregisterCallback(flyoutId, 'onClose');
     unregisterCallback(flyoutId, 'onActive');
-  }, 0);
+  });
 };
 
 export const callCallback = (
@@ -63,8 +64,11 @@ export const callCallback = (
 ) => {
   const callbacks = callbacksRegistry.get(flyoutId);
   if (callbacks?.[callbackType]) {
-    // Use setTimeout to truly defer execution and avoid setState during render
-    setTimeout(() => callbacks[callbackType]!(), 0);
+    callbackManager.executeCallback(
+      flyoutId,
+      callbackType,
+      callbacks[callbackType]!
+    );
   }
 };
 
