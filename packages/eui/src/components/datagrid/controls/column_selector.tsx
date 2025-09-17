@@ -64,7 +64,12 @@ export const useDataGridColumnSelector = (
 
   const [sortedColumns, setSortedColumns] = useDependentState(() => {
     const availableColumnIds = availableColumns.map(({ id }) => id);
-    const visibleSet = new Set(visibleColumns);
+    const availableSet = new Set(availableColumnIds);
+    // Filter visibleColumns to only include existing columns
+    const validVisibleColumns = visibleColumns.filter((id) =>
+      availableSet.has(id)
+    );
+    const visibleSet = new Set(validVisibleColumns);
 
     const result: string[] = [];
     let visibleIndex = 0;
@@ -72,7 +77,7 @@ export const useDataGridColumnSelector = (
     for (const columnId of availableColumnIds) {
       if (visibleSet.has(columnId)) {
         // Replace with next visible column in order
-        result.push(visibleColumns[visibleIndex++]);
+        result.push(validVisibleColumns[visibleIndex++]);
       } else {
         // Keep hidden column in original position
         result.push(columnId);
