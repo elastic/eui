@@ -253,20 +253,24 @@ describe('EuiFilterGroup multiselect example', () => {
       cy.realPress('Tab');
       cy.repeatRealPress('ArrowDown', 3);
       cy.realPress('Enter');
+
       cy.get('li[aria-selected="true"]')
         .find('span.euiSelectableListItem__text')
-        .should(
-          'have.text',
-          'Dmitri Shostakovich. Checked option. To exclude this option, press Enter.'
-        );
+        .should('have.text', 'Dmitri Shostakovich');
+      cy.get('li[aria-selected="true"]')
+        .find('.css-gb1zbv-euiScreenReaderOnly')
+        .should('have.text', '—  To exclude this option, press Enter.');
+
       cy.realPress('ArrowDown');
       cy.repeatRealPress('Enter');
+
       cy.get('li[aria-selected="true"]')
         .find('span.euiSelectableListItem__text')
-        .should(
-          'have.text',
-          'Felix Mendelssohn-Bartholdy. Excluded option. To uncheck this option, press Enter.'
-        );
+        .should('have.text', 'Felix Mendelssohn-Bartholdy');
+      cy.get('li[aria-selected="true"]')
+        .find('.css-gb1zbv-euiScreenReaderOnly')
+        .should('have.text', '—  To uncheck this option, press Enter.');
+
       cy.checkAxe();
     });
 
