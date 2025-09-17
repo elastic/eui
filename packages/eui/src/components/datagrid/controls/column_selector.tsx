@@ -60,12 +60,29 @@ export const useDataGridColumnSelector = (
     'allowReorder'
   );
 
-  const [sortedColumns, setSortedColumns] = useDependentState(
-    () => availableColumns.map(({ id }) => id),
-    [availableColumns]
-  );
-
   const { visibleColumns, setVisibleColumns } = columnVisibility;
+
+  const [sortedColumns, setSortedColumns] = useDependentState(() => {
+    const availableColumnIds = availableColumns.map(({ id }) => id);
+    const visibleSet = new Set(visibleColumns);
+
+    const result: string[] = [];
+    let visibleIndex = 0;
+
+    for (const columnId of availableColumnIds) {
+      if (visibleSet.has(columnId)) {
+        // Replace with next visible column in order
+        result.push(visibleColumns[visibleIndex++]);
+      } else {
+        // Keep hidden column in original position
+        result.push(columnId);
+      }
+    }
+
+    return result;
+    // doesn't depend on visibleColumns on purpose to keep it an initial state
+  }, [availableColumns]);
+
   const visibleColumnIds = useMemo(
     () => new Set(visibleColumns),
     [visibleColumns]
