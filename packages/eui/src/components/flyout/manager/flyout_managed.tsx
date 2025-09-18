@@ -17,18 +17,21 @@ import { EuiFlyoutMenuContext } from '../flyout_menu_context';
 import { useFlyoutActivityStage } from './activity_stage';
 import {
   LEVEL_CHILD,
+  LEVEL_MAIN,
   PROPERTY_FLYOUT,
   PROPERTY_LAYOUT_MODE,
   PROPERTY_LEVEL,
 } from './const';
 import { EuiFlyoutIsManagedProvider } from './context';
 import { euiManagedFlyoutStyles } from './flyout_managed.styles';
+import { registerCallback, unregisterCallbacks } from './provider';
 import {
   useFlyoutManager as _useFlyoutManager,
   useFlyoutId,
   useFlyoutLayoutMode,
   useIsFlyoutActive,
   useParentFlyoutSize,
+  useCurrentSession,
 } from './hooks';
 import { EuiFlyoutLevel } from './types';
 import {
@@ -46,7 +49,8 @@ import {
  */
 export interface EuiManagedFlyoutProps extends EuiFlyoutComponentProps {
   level: EuiFlyoutLevel;
-  flyoutMenuProps?: EuiFlyoutMenuProps;
+  flyoutMenuProps?: Omit<EuiFlyoutMenuProps, 'historyItems' | 'showBackButton'>;
+  onActive?: () => void;
 }
 
 const useFlyoutManager = () => {
@@ -56,6 +60,8 @@ const useFlyoutManager = () => {
   }
   return context;
 };
+
+type CloseEvent = MouseEvent | TouchEvent | KeyboardEvent;
 
 /**
  * Persistent managed flyout rendered inside the provider. Handles:
@@ -67,6 +73,7 @@ const useFlyoutManager = () => {
 export const EuiManagedFlyout = ({
   id,
   onClose: onCloseProp,
+  onActive: onActiveProp,
   level,
   size,
   css: customCss,
@@ -76,14 +83,12 @@ export const EuiManagedFlyout = ({
   const flyoutId = useFlyoutId(id);
   const flyoutRef = useRef<HTMLDivElement>(null);
 
-  const { addFlyout, closeFlyout, setFlyoutWidth } = useFlyoutManager();
-
+  const { addFlyout, closeFlyout, setFlyoutWidth, goBack, getHistoryItems } =
+    useFlyoutManager();
   const isActive = useIsFlyoutActive(flyoutId);
   const parentSize = useParentFlyoutSize(flyoutId);
-
-  // Get layout mode for responsive behavior
+  const currentSession = useCurrentSession();
   const layoutMode = useFlyoutLayoutMode();
-
   const styles = useEuiMemoizedStyles(euiManagedFlyoutStyles);
 
   // Validate size
@@ -114,14 +119,59 @@ export const EuiManagedFlyout = ({
     throw new Error(createValidationErrorMessage(titleError));
   }
 
-  // Register/unregister with flyout manager context
-  useEffect(() => {
-    addFlyout(flyoutId, title!, level, size as string);
+  // Track whether the onClose callback has already been called to prevent double-firing
+  const onCloseCalledRef = useRef<boolean>(false);
 
+  // Stabilize the onClose callback to prevent unnecessary re-registrations
+  const onCloseCallbackRef = useRef<((e?: CloseEvent) => void) | undefined>();
+  onCloseCallbackRef.current = (e) => {
+    if (!onCloseCalledRef.current && onCloseProp) {
+      onCloseCalledRef.current = true;
+      const event = e || new MouseEvent('click');
+      onCloseProp(event);
+    }
+  };
+
+  // Stabilize the onActive callback to prevent unnecessary re-registrations
+  const onActiveCallbackRef = useRef<(() => void) | undefined>();
+  onActiveCallbackRef.current = onActiveProp;
+
+  // Register/unregister with flyout manager context and then add the flyout to the manager's state
+  useEffect(() => {
+    if (onCloseCallbackRef.current) {
+      registerCallback(flyoutId, 'onClose', onCloseCallbackRef.current);
+    }
+
+    if (onActiveCallbackRef.current) {
+      registerCallback(flyoutId, 'onActive', onActiveCallbackRef.current);
+    }
+
+    addFlyout(flyoutId, title!, level, size as string);
+  }, [size, flyoutId, title, level, addFlyout]);
+
+  // Monitor current session changes and fire onActive callback when this flyout becomes active
+  useEffect(() => {
+    if (!onActiveCallbackRef.current || !currentSession) {
+      return;
+    }
+
+    // Make sure callback is only fired for the flyout that changed
+    const mainChanged =
+      level === LEVEL_MAIN && currentSession.main === flyoutId;
+    const childChanged =
+      level === LEVEL_CHILD && currentSession.child === flyoutId;
+
+    if (mainChanged || childChanged) {
+      onActiveCallbackRef.current();
+    }
+  }, [currentSession, flyoutId, level]);
+
+  useEffect(() => {
     return () => {
       closeFlyout(flyoutId);
+      unregisterCallbacks(flyoutId);
     };
-  }, [size, flyoutId, title, level, addFlyout, closeFlyout]);
+  }, [closeFlyout, flyoutId]);
 
   // Track width changes for flyouts
   const { width } = useResizeObserver(
@@ -129,9 +179,9 @@ export const EuiManagedFlyout = ({
     'width'
   );
 
-  const onClose = (event?: MouseEvent | TouchEvent | KeyboardEvent) => {
-    onCloseProp(event);
-    closeFlyout(flyoutId);
+  // Pass a wrapper of onClose to Flyout to ensure the callback is only fired once
+  const onClose = (e?: CloseEvent) => {
+    onCloseCallbackRef.current?.(e);
   };
 
   // Update width in manager state when it changes
@@ -146,8 +196,25 @@ export const EuiManagedFlyout = ({
     level,
   });
 
+  // Get titles and flyoutIds from the manager's flyouts state
+  let showBackButton = false;
+  let backButtonProps: EuiFlyoutMenuProps['backButtonProps'] | undefined;
+  let historyItems: EuiFlyoutMenuProps['historyItems'] | undefined;
+
+  // History controls are only relevant for main flyouts
+  if (level === LEVEL_MAIN) {
+    historyItems = getHistoryItems();
+    showBackButton = historyItems.length > 0;
+    backButtonProps = {
+      onClick: goBack,
+    };
+  }
+
   const flyoutMenuProps = {
     ..._flyoutMenuProps,
+    historyItems,
+    showBackButton,
+    backButtonProps,
     title,
   };
 
