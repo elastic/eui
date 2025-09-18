@@ -1,17 +1,26 @@
-import React, { useCallback, useContext, useEffect, JSX } from 'react';
-import { translate } from '@docusaurus/Translate';
-import type { Props } from '@theme-original/ColorModeToggle';
+/*
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
+ */
 
+import React, { useCallback, useContext, useEffect, JSX } from 'react';
 import type ColorModeToggleType from '@theme-init/ColorModeToggle';
+import type { Props } from '@theme-original/ColorModeToggle';
 import type { WrapperProps } from '@docusaurus/types';
 import { EuiThemeColorMode } from '@elastic/eui';
+import { translate } from '@docusaurus/Translate';
 
 import { NavbarItem } from '../../components/navbar_item';
 import { AppThemeContext } from '../../components/theme_context';
 
 type WrappedProps = WrapperProps<typeof ColorModeToggleType>;
 
-// Additional wrapper to connect Docusaurus color mode with eui theme
+/**
+ * Additional wrapper to connect Docusaurus color mode with EUI theme
+ */
 function ColorModeToggle({
   value,
   onChange,
@@ -21,7 +30,7 @@ function ColorModeToggle({
 
   useEffect(() => {
     changeColorMode(value);
-  }, []);
+  }, [value, colorMode, changeColorMode]);
 
   const handleOnChange = (colorMode: EuiThemeColorMode) => {
     changeColorMode(colorMode);
