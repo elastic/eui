@@ -21,8 +21,6 @@ class CallbackManager {
     callbackType: 'onClose' | 'onActive',
     callback: () => void
   ): Promise<void> {
-    const key = `${flyoutId}-${callbackType}`;
-
     const execution = new Promise<void>((resolve) => {
       setTimeout(() => {
         try {
@@ -38,6 +36,7 @@ class CallbackManager {
       }, 0);
     });
 
+    const key = `${flyoutId}-${callbackType}`;
     this.pendingExecutions.set(key, execution);
     return execution;
   }
