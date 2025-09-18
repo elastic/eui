@@ -239,7 +239,6 @@ const StatefulFlyout: React.FC<FlyoutChildStoryArgs> = ({
         aria-label={`Main Flyout Menu (${mainSize})`}
         onClose={closeMain}
       >
-        <EuiFlyoutMenu title={`Main Flyout Menu (${mainSize})`} />
         <EuiFlyoutBody>
           <EuiText>
             <p>This is the main flyout content.</p>
@@ -269,7 +268,6 @@ const StatefulFlyout: React.FC<FlyoutChildStoryArgs> = ({
             aria-label={`Child Flyout Panel (${childSize})`}
             onClose={closeChild}
           >
-            <EuiFlyoutMenu title={`Child Flyout Menu (${childSize})`} />
             <EuiFlyoutBody>
               <EuiText>
                 <p>This is the child flyout content.</p>

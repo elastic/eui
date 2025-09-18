@@ -109,11 +109,6 @@ interface _EuiFlyoutComponentProps {
    */
   minWidth?: number;
   /**
-   * Sets the minimum width of the panel.
-   * Especially useful when set with `resizable = true`.
-   */
-  minWidth?: number;
-  /**
    * Sets the max-width of the panel,
    * set to `true` to use the default size,
    * set to `false` to not restrict the width,

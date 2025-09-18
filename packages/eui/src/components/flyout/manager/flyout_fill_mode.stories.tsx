@@ -196,7 +196,6 @@ const Session: React.FC<FlyoutChildStoryArgs> = (args) => {
         {...rest}
         onClose={closeMain}
       >
-        <EuiFlyoutMenu title={`Main Flyout Menu (${mainSize})`} />
         <EuiFlyoutBody>
           <EuiText>
             <p>This is the main flyout content.</p>
