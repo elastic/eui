@@ -73,11 +73,11 @@ type CloseEvent = MouseEvent | TouchEvent | KeyboardEvent;
 export const EuiManagedFlyout = ({
   id,
   onClose: onCloseProp,
+  onActive: onActiveProp,
   level,
   size,
   css: customCss,
   flyoutMenuProps: _flyoutMenuProps,
-  onActive,
   ...props
 }: EuiManagedFlyoutProps) => {
   const flyoutId = useFlyoutId(id);
@@ -122,7 +122,7 @@ export const EuiManagedFlyout = ({
   // Track whether the onClose callback has already been called to prevent double-firing
   const onCloseCalledRef = useRef<boolean>(false);
 
-  // Stabilize the unregister callback to prevent unnecessary re-registrations
+  // Stabilize the onClose callback to prevent unnecessary re-registrations
   const onCloseCallbackRef = useRef<((e?: CloseEvent) => void) | undefined>();
   onCloseCallbackRef.current = (e) => {
     if (!onCloseCalledRef.current && onCloseProp) {
@@ -134,9 +134,9 @@ export const EuiManagedFlyout = ({
 
   // Stabilize the onActive callback to prevent unnecessary re-registrations
   const onActiveCallbackRef = useRef<(() => void) | undefined>();
-  onActiveCallbackRef.current = onActive;
+  onActiveCallbackRef.current = onActiveProp;
 
-  // Register/unregister with flyout manager context
+  // Register/unregister with flyout manager context and then add the flyout to the manager's state
   useEffect(() => {
     if (onCloseCallbackRef.current) {
       registerCallback(flyoutId, 'onClose', onCloseCallbackRef.current);
@@ -147,38 +147,31 @@ export const EuiManagedFlyout = ({
     }
 
     addFlyout(flyoutId, title!, level, size as string);
-
-    return () => {
-      closeFlyout(flyoutId);
-    };
-  }, [size, flyoutId, title, level, addFlyout, closeFlyout]);
+  }, [size, flyoutId, title, level, addFlyout]);
 
   // Monitor current session changes and fire onActive callback when this flyout becomes active
   useEffect(() => {
-    if (!onActiveCallbackRef.current) {
-      // no callback, no need to monitor sessions
+    if (!onActiveCallbackRef.current || !currentSession) {
       return;
     }
 
-    if (!currentSession) {
-      // skip session checks if there's no active session
-      return;
-    }
+    // Make sure callback is only fired for the flyout that changed
+    const mainChanged =
+      level === LEVEL_MAIN && currentSession.main === flyoutId;
+    const childChanged =
+      level === LEVEL_CHILD && currentSession.child === flyoutId;
 
-    const isInCurrentSession =
-      currentSession.main === flyoutId || currentSession.child === flyoutId;
-
-    if (isInCurrentSession) {
+    if (mainChanged || childChanged) {
       onActiveCallbackRef.current();
     }
   }, [currentSession, flyoutId, level]);
 
   useEffect(() => {
     return () => {
-      // Unregister all callbacks with proper timing handled internally
+      closeFlyout(flyoutId);
       unregisterCallbacks(flyoutId);
     };
-  }, [flyoutId]);
+  }, [closeFlyout, flyoutId]);
 
   // Track width changes for flyouts
   const { width } = useResizeObserver(
@@ -186,6 +179,7 @@ export const EuiManagedFlyout = ({
     'width'
   );
 
+  // Pass a wrapper of onClose to Flyout to ensure the callback is only fired once
   const onClose = (e?: CloseEvent) => {
     onCloseCallbackRef.current?.(e);
   };
