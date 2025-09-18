@@ -125,6 +125,21 @@ export default () => {
 };
 ```
 
+## Usage
+
+import { EuiFieldSearch, EuiFlexGroup } from '@elastic/eui';
+
+In a search bar, be specific about what users can enter.
+
+<EuiFlexGroup gutterSize="m">
+  <Guideline type="do" text="Give users a hint at things they might want to search for. State the action the user performs (find, search) instead of the field functionality (jump to).">
+    <EuiFieldSearch placeholder="Find apps and content. Ex: Discover" />
+  </Guideline>
+  <Guideline type="dont" text="Use an ellipsis.">
+    <EuiFieldSearch placeholder="Search..." />
+  </Guideline>
+</EuiFlexGroup>
+
 ## Props
 
 import docgen from '@elastic/eui-docgen/dist/components/form';
