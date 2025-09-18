@@ -48,9 +48,12 @@ export interface EuiManagedFlyoutState {
 }
 
 export interface FlyoutSession {
+  /** ID of the main flyout for this session */
   main: string;
-  title: string;
+  /** ID of the child flyout for this session */
   child: string | null;
+  /** Title of the main flyout in this session */
+  title: string;
 }
 
 export interface EuiFlyoutManagerState {
