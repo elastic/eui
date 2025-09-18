@@ -28,7 +28,7 @@ jest.mock('../flyout.component', () => {
   const React = require('react');
   return {
     EuiFlyoutComponent: React.forwardRef(function MockFlyout(
-      props: any,
+      { isOpen, ...props }: any,
       ref: any
     ) {
       // Extract flyoutMenuProps to prevent it from being passed to DOM
@@ -37,6 +37,7 @@ jest.mock('../flyout.component', () => {
         ref,
         ...domProps,
         'data-test-subj': 'managed-flyout',
+        'data-is-open': isOpen,
         onClick: () => props.onClose && props.onClose({} as any),
       });
     }),
