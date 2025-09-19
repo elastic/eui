@@ -5,12 +5,53 @@ on:
     branches: [main]
 
 jobs:
-  # Enforces the update of a changelog file on every pull request
-  changelog:
-    if: ${{ !contains(github.event.pull_request.labels.*.name, 'skip-changelog') }}
+  # Check for changes in all public packages, needed in the `changelog` job
+  detect-changes:
     runs-on: ubuntu-latest
+    outputs:
+      changed-packages: ${{ steps.changes.outputs.changed-packages }}
     steps:
-    - uses: actions/checkout@v2
-    - uses: ./.github/actions/check-changelog
-      with:
-        pr-number: ${{ github.event.pull_request.number }}
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Detect package changes
+        id: changes
+        run: |
+          # Get the list of changed files
+          changed_files=$(git diff --name-only origin/main...HEAD)
+          
+          # Find all public packages and check for changes
+          public_packages=()
+          for dir in packages/*/; do
+            if [ -f "${dir}package.json" ] && ! grep -q '"private": true' "${dir}package.json"; then
+              package_name=$(basename "$dir")
+              if echo "$changed_files" | grep -q "^packages/$package_name/"; then
+                public_packages+=("\"$package_name\"")
+              fi
+            fi
+          done
+          
+          # Output a JSON array of changed package names
+          if [ ${#public_packages[@]} -gt 0 ]; then
+            changed_list=$(IFS=,; echo "[${public_packages[*]}]")
+            echo "changed-packages=$changed_list" >> $GITHUB_OUTPUT
+          else
+            echo "changed-packages=[]" >> $GITHUB_OUTPUT
+          fi
+
+  # Enforces the update of a changelog file on every pull request for all public packages
+  # unless the PR contains the `skip-changelog` label
+  changelog:
+    needs: detect-changes
+    if: ${{ !contains(github.event.pull_request.labels.*.name, 'skip-changelog') && fromJson(needs.detect-changes.outputs.changed-packages)[0] }}
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        package: ${{ fromJson(needs.detect-changes.outputs.changed-packages) }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Check changelog for ${{ matrix.package }}
+        uses: ./.github/actions/check-changelog
+        with:
+          pr-number: ${{ github.event.pull_request.number }}
+          package-path: packages/${{ matrix.package }}
