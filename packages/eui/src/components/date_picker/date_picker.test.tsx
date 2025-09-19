@@ -72,6 +72,28 @@ describe('EuiDatePicker', () => {
     expect(container.innerHTML).toContain('-compressed');
   });
 
+  test('data-test-subj', () => {
+    const { getByTestSubject } = render(
+      <EuiDatePicker data-test-subj="date-picker-test" />
+    );
+
+    expect(getByTestSubject('date-picker-test')).toBeInTheDocument();
+    expect(getByTestSubject('date-picker-test-input')).toBeInTheDocument();
+  });
+
+  test('data-test-subj with clear button', () => {
+    const selected = moment();
+    const { getByTestSubject } = render(
+      <EuiDatePicker
+        data-test-subj="date-picker-test"
+        selected={selected}
+        onClear={() => {}}
+      />
+    );
+
+    expect(getByTestSubject('date-picker-test-clear')).toBeInTheDocument();
+  });
+
   test('append/prepend', () => {
     const { container, rerender } = render(
       <EuiDatePicker append="hello" prepend="world" />
