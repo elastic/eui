@@ -410,6 +410,8 @@ export const typeToPathMap = {
   stopFilled: 'stop_filled',
   stopSlash: 'stop_slash',
   storage: 'storage',
+  streamsClassic: 'streams_classic',
+  streamsWired: 'streams_wired',
   string: 'string',
   submodule: 'merge', // NOTE: To be deprecated in favor of `merge`
   sun: 'sun',

@@ -245,6 +245,8 @@ export const iconTypes: Array<IconType> = [
   'stopFilled',
   'stopSlash',
   'storage',
+  'streamsClassic',
+  'streamsWired',
   'string',
   'sun',
   'symlink',

@@ -69,6 +69,7 @@ export const CallOutAnnounceOnMount = ESLintUtils.RuleCreator.withoutDocs({
         'screen readers may not announce its content. Adding `announceOnMount` ensures the callout',
         'is properly announced to users with assistive technologies.',
         '\n',
+        `Note: If ${CALLOUT_COMPONENT} is inside a condition and not an action, explicitly set \`announceOnMount={false}\``,
         'Example:',
         `  <${CALLOUT_COMPONENT} announceOnMount title="Error" color="danger">`,
         '    This message will be announced when it appears',
