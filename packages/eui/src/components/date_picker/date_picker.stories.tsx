@@ -120,6 +120,7 @@ const meta: Meta<EuiDatePickerProps> = {
     readOnly: false,
     selected: null,
     utcOffset: undefined,
+    'data-test-subj': 'my-date-picker',
   },
   // Open the datepicker automatically for Loki VRT
   play: async ({ canvasElement, step }) => {

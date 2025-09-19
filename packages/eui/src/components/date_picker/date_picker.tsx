@@ -176,6 +176,7 @@ export const EuiDatePicker: FunctionComponent<EuiDatePickerProps> = ({
   compressed,
   controlOnly,
   customInput,
+  'data-test-subj': dataTestSubj,
   dateFormat = euiDatePickerDefaultDateFormat,
   dayClassName,
   disabled,
@@ -296,6 +297,7 @@ export const EuiDatePicker: FunctionComponent<EuiDatePickerProps> = ({
             yearDropdownItemNumber={7}
             accessibleMode={!(disabled || readOnly)}
             popperPlacement={popoverPlacement}
+            data-test-subj={dataTestSubj}
             {...rest}
           />
         );
@@ -317,11 +319,18 @@ export const EuiDatePicker: FunctionComponent<EuiDatePickerProps> = ({
   }
 
   return (
-    <span css={cssStyles} className={classes}>
+    <span css={cssStyles} className={classes} data-test-subj={dataTestSubj}>
       <EuiFormControlLayout
         icon={optionalIcon}
         clear={
-          selected && !disabled && onClear ? { onClick: onClear } : undefined
+          selected && !disabled && onClear
+            ? {
+                onClick: onClear,
+                'data-test-subj': dataTestSubj
+                  ? `${dataTestSubj}-clear`
+                  : undefined,
+              }
+            : undefined
         }
         isLoading={isLoading}
         isInvalid={isInvalid}
