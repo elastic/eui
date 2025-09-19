@@ -28,12 +28,8 @@ const EuiIconMagnifyWithMinus = ({
     {...props}
   >
     {title ? <title id={titleId}>{title}</title> : null}
-    <path d="M11 6.5H3v1h8v-1Z" />
-    <path
-      fillRule="evenodd"
-      d="M7 14c1.39 0 2.686-.405 3.775-1.104l2.665 2.665a1.5 1.5 0 1 0 2.12-2.122l-2.664-2.664A7 7 0 1 0 7 14Zm0-1A6 6 0 1 0 7 1a6 6 0 0 0 0 12Zm7.147 1.854-2.563-2.563a7.15 7.15 0 0 0 .707-.707l2.563 2.563a.5.5 0 0 1-.707.707Z"
-      clipRule="evenodd"
-    />
+    <path d="M10 7.5H4v-1h6v1Z" />
+    <path d="M7 1a6 6 0 0 1 5.168 9.047l2.393 2.393a1.5 1.5 0 1 1-2.121 2.12l-2.393-2.392A6 6 0 1 1 7 1Zm4.58 9.873a6.038 6.038 0 0 1-.707.707l2.274 2.274a.5.5 0 0 0 .707-.707l-2.274-2.274ZM7 2a5 5 0 1 0 0 10A5 5 0 0 0 7 2Z" />
   </svg>
 );
 export const icon = EuiIconMagnifyWithMinus;

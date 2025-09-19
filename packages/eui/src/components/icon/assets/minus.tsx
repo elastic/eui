@@ -28,7 +28,7 @@ const EuiIconMinus = ({
     {...props}
   >
     {title ? <title id={titleId}>{title}</title> : null}
-    <rect width={10} height={1.5} x={3} y={7.25} rx={0.5} />
+    <path d="M14 8.5H2v-1h12v1Z" />
   </svg>
 );
 export const icon = EuiIconMinus;

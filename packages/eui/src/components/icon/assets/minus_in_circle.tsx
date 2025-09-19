@@ -31,9 +31,8 @@ const EuiIconMinusInCircle = ({
     <path
       fillRule="evenodd"
       d="M8 14A6 6 0 1 0 8 2a6 6 0 0 0 0 12Zm0 1A7 7 0 1 0 8 1a7 7 0 0 0 0 14Z"
-      clipRule="evenodd"
     />
-    <path fillRule="evenodd" d="M12 8.5H4v-1h8v1Z" clipRule="evenodd" />
+    <path d="M12 8.5H4v-1h8v1Z" />
   </svg>
 );
 export const icon = EuiIconMinusInCircle;

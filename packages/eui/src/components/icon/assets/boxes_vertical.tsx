@@ -28,7 +28,7 @@ const EuiIconBoxesVertical = ({
     {...props}
   >
     {title ? <title id={titleId}>{title}</title> : null}
-    <path d="M7 1v2h2V1H7ZM6 0h4v4H6V0Zm0 6h4v4H6V6Zm1 1v2h2V7H7Zm-1 5h4v4H6v-4Zm1 1v2h2v-2H7Z" />
+    <path d="M8 12a2 2 0 1 1 0 4 2 2 0 0 1 0-4Zm0-6a2 2 0 1 1 0 4 2 2 0 0 1 0-4Zm0-6a2 2 0 1 1 0 4 2 2 0 0 1 0-4Z" />
   </svg>
 );
 export const icon = EuiIconBoxesVertical;

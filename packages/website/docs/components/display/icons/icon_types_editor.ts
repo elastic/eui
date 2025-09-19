@@ -16,7 +16,6 @@ export const iconTypesEditor: Array<IconType> = [
   'editorItemAlignMiddle',
   'editorItemAlignRight',
   'editorItemAlignTop',
-  'editorLink',
   'editorOrderedList',
   'editorPositionBottomLeft',
   'editorPositionBottomRight',
@@ -24,8 +23,6 @@ export const iconTypesEditor: Array<IconType> = [
   'editorPositionTopRight',
   'editorRedo',
   'editorStrike',
-  'editorTable',
   'editorUnderline',
   'editorUndo',
-  'editorUnorderedList',
 ];

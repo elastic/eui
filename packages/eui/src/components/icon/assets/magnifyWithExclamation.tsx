@@ -28,12 +28,8 @@ const EuiIconMagnifyWithExclamation = ({
     {...props}
   >
     {title ? <title id={titleId}>{title}</title> : null}
-    <path d="M6.5 8V3h1v5h-1Zm.5 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z" />
-    <path
-      fillRule="evenodd"
-      d="M10.775 12.896a7 7 0 1 1 2.121-2.121l2.665 2.664a1.5 1.5 0 0 1-2.121 2.122l-2.665-2.665ZM13 7A6 6 0 1 1 1 7a6 6 0 0 1 12 0Zm-1.416 5.29 2.563 2.564a.5.5 0 0 0 .707-.707l-2.563-2.563a7.045 7.045 0 0 1-.707.707Z"
-      clipRule="evenodd"
-    />
+    <path d="M7 9a1 1 0 1 1 0 2 1 1 0 0 1 0-2Zm.5-1h-1V3h1v5Z" />
+    <path d="M7 1a6 6 0 0 1 5.168 9.047l2.393 2.393a1.5 1.5 0 1 1-2.121 2.12l-2.393-2.392A6 6 0 1 1 7 1Zm4.58 9.873a6.038 6.038 0 0 1-.707.707l2.274 2.274a.5.5 0 0 0 .707-.707l-2.274-2.274ZM7 2a5 5 0 1 0 0 10A5 5 0 0 0 7 2Z" />
   </svg>
 );
 export const icon = EuiIconMagnifyWithExclamation;
