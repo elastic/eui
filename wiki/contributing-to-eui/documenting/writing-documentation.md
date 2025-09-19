@@ -4,7 +4,7 @@
 - [Partials](#partials)
 - [Collapsible sidebar items](#collapsible-sidebar-items)
 - [Front matter](#front-matter)
-- [Documeting components](#documenting-components)
+- [Documenting components](#documenting-components)
 - [Custom components available](#custom-components-available)
 - [Writing content](#writing-content)
   - [Headings](#headings)
