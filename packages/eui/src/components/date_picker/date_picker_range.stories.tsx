@@ -34,6 +34,7 @@ const meta: Meta<EuiDatePickerRangeProps> = {
     disabled: false,
     append: '',
     prepend: '',
+    'data-test-subj': 'my-date-range-picker',
   },
 };
 
