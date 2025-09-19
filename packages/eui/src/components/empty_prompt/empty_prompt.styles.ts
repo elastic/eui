@@ -88,8 +88,7 @@ export const euiEmptyPromptStyles = (euiThemeContext: UseEuiTheme) => {
       `,
       horizontal: css`
         ${euiMinBreakpoint(euiThemeContext, 'l')} {
-          padding-block: ${euiTheme.size.l};
-          padding-inline: 0;
+          padding: ${euiTheme.size.l};
         }
       `,
     },

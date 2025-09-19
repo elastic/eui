@@ -7,7 +7,7 @@ exports[`EuiEmptyPrompt is rendered 1`] = `
   data-test-subj="test subject string"
 >
   <div
-    class="euiEmptyPrompt__main emotion-euiEmptyPrompt__main-vertical-l"
+    class="euiEmptyPrompt__main emotion-euiEmptyPrompt__main-vertical-m"
   >
     <div
       class="euiEmptyPrompt__icon emotion-euiEmptyPrompt__icon-vertical"
@@ -26,7 +26,7 @@ exports[`EuiEmptyPrompt is rendered 1`] = `
         Title
       </h2>
       <div
-        class="euiSpacer euiSpacer--m emotion-euiSpacer-m"
+        class="euiSpacer euiSpacer--s emotion-euiSpacer-s"
       />
       <div
         class="euiText emotion-euiText-m-euiTextColor-subdued"
@@ -36,7 +36,7 @@ exports[`EuiEmptyPrompt is rendered 1`] = `
         </p>
       </div>
       <div
-        class="euiSpacer euiSpacer--l emotion-euiSpacer-l"
+        class="euiSpacer euiSpacer--m emotion-euiSpacer-m"
       />
       <div>
         Actions
@@ -51,7 +51,7 @@ exports[`EuiEmptyPrompt props actions renders alone 1`] = `
   class="euiPanel euiPanel--transparent euiEmptyPrompt emotion-euiPanel-m-transparent-euiEmptyPrompt-vertical"
 >
   <div
-    class="euiEmptyPrompt__main emotion-euiEmptyPrompt__main-vertical-l"
+    class="euiEmptyPrompt__main emotion-euiEmptyPrompt__main-vertical-m"
   >
     <div
       class="euiEmptyPrompt__content emotion-euiEmptyPrompt__content-vertical"
@@ -67,7 +67,7 @@ exports[`EuiEmptyPrompt props actions renders an array 1`] = `
   class="euiPanel euiPanel--transparent euiEmptyPrompt emotion-euiPanel-m-transparent-euiEmptyPrompt-vertical"
 >
   <div
-    class="euiEmptyPrompt__main emotion-euiEmptyPrompt__main-vertical-l"
+    class="euiEmptyPrompt__main emotion-euiEmptyPrompt__main-vertical-m"
   >
     <div
       class="euiEmptyPrompt__content emotion-euiEmptyPrompt__content-vertical"
@@ -96,7 +96,7 @@ exports[`EuiEmptyPrompt props body renders alone 1`] = `
   class="euiPanel euiPanel--transparent euiEmptyPrompt emotion-euiPanel-m-transparent-euiEmptyPrompt-vertical"
 >
   <div
-    class="euiEmptyPrompt__main emotion-euiEmptyPrompt__main-vertical-l"
+    class="euiEmptyPrompt__main emotion-euiEmptyPrompt__main-vertical-m"
   >
     <div
       class="euiEmptyPrompt__content emotion-euiEmptyPrompt__content-vertical"
@@ -116,7 +116,7 @@ exports[`EuiEmptyPrompt props color accent is rendered 1`] = `
   class="euiPanel euiPanel--accent euiEmptyPrompt emotion-euiPanel-m-accent-euiEmptyPrompt-vertical"
 >
   <div
-    class="euiEmptyPrompt__main emotion-euiEmptyPrompt__main-vertical-l"
+    class="euiEmptyPrompt__main emotion-euiEmptyPrompt__main-vertical-m"
   >
     <div
       class="euiEmptyPrompt__content emotion-euiEmptyPrompt__content-vertical"
@@ -130,7 +130,7 @@ exports[`EuiEmptyPrompt props color accentSecondary is rendered 1`] = `
   class="euiPanel euiPanel--accentSecondary euiEmptyPrompt emotion-euiPanel-m-accentSecondary-euiEmptyPrompt-vertical"
 >
   <div
-    class="euiEmptyPrompt__main emotion-euiEmptyPrompt__main-vertical-l"
+    class="euiEmptyPrompt__main emotion-euiEmptyPrompt__main-vertical-m"
   >
     <div
       class="euiEmptyPrompt__content emotion-euiEmptyPrompt__content-vertical"
@@ -144,7 +144,7 @@ exports[`EuiEmptyPrompt props color danger is rendered 1`] = `
   class="euiPanel euiPanel--danger euiEmptyPrompt emotion-euiPanel-m-danger-euiEmptyPrompt-vertical"
 >
   <div
-    class="euiEmptyPrompt__main emotion-euiEmptyPrompt__main-vertical-l"
+    class="euiEmptyPrompt__main emotion-euiEmptyPrompt__main-vertical-m"
   >
     <div
       class="euiEmptyPrompt__content emotion-euiEmptyPrompt__content-vertical"
@@ -158,7 +158,7 @@ exports[`EuiEmptyPrompt props color highlighted is rendered 1`] = `
   class="euiPanel euiPanel--highlighted euiEmptyPrompt emotion-euiPanel-m-highlighted-euiEmptyPrompt-vertical"
 >
   <div
-    class="euiEmptyPrompt__main emotion-euiEmptyPrompt__main-vertical-l"
+    class="euiEmptyPrompt__main emotion-euiEmptyPrompt__main-vertical-m"
   >
     <div
       class="euiEmptyPrompt__content emotion-euiEmptyPrompt__content-vertical"
@@ -172,7 +172,7 @@ exports[`EuiEmptyPrompt props color neutral is rendered 1`] = `
   class="euiPanel euiPanel--neutral euiEmptyPrompt emotion-euiPanel-m-neutral-euiEmptyPrompt-vertical"
 >
   <div
-    class="euiEmptyPrompt__main emotion-euiEmptyPrompt__main-vertical-l"
+    class="euiEmptyPrompt__main emotion-euiEmptyPrompt__main-vertical-m"
   >
     <div
       class="euiEmptyPrompt__content emotion-euiEmptyPrompt__content-vertical"
@@ -186,7 +186,7 @@ exports[`EuiEmptyPrompt props color plain is rendered 1`] = `
   class="euiPanel euiPanel--plain euiEmptyPrompt emotion-euiPanel-m-plain-hasShadow-euiEmptyPrompt-vertical"
 >
   <div
-    class="euiEmptyPrompt__main emotion-euiEmptyPrompt__main-vertical-l"
+    class="euiEmptyPrompt__main emotion-euiEmptyPrompt__main-vertical-m"
   >
     <div
       class="euiEmptyPrompt__content emotion-euiEmptyPrompt__content-vertical"
@@ -200,7 +200,7 @@ exports[`EuiEmptyPrompt props color primary is rendered 1`] = `
   class="euiPanel euiPanel--primary euiEmptyPrompt emotion-euiPanel-m-primary-euiEmptyPrompt-vertical"
 >
   <div
-    class="euiEmptyPrompt__main emotion-euiEmptyPrompt__main-vertical-l"
+    class="euiEmptyPrompt__main emotion-euiEmptyPrompt__main-vertical-m"
   >
     <div
       class="euiEmptyPrompt__content emotion-euiEmptyPrompt__content-vertical"
@@ -214,7 +214,7 @@ exports[`EuiEmptyPrompt props color risk is rendered 1`] = `
   class="euiPanel euiPanel--risk euiEmptyPrompt emotion-euiPanel-m-risk-euiEmptyPrompt-vertical"
 >
   <div
-    class="euiEmptyPrompt__main emotion-euiEmptyPrompt__main-vertical-l"
+    class="euiEmptyPrompt__main emotion-euiEmptyPrompt__main-vertical-m"
   >
     <div
       class="euiEmptyPrompt__content emotion-euiEmptyPrompt__content-vertical"
@@ -228,7 +228,7 @@ exports[`EuiEmptyPrompt props color subdued is rendered 1`] = `
   class="euiPanel euiPanel--subdued euiEmptyPrompt emotion-euiPanel-m-subdued-euiEmptyPrompt-vertical"
 >
   <div
-    class="euiEmptyPrompt__main emotion-euiEmptyPrompt__main-vertical-l"
+    class="euiEmptyPrompt__main emotion-euiEmptyPrompt__main-vertical-m"
   >
     <div
       class="euiEmptyPrompt__content emotion-euiEmptyPrompt__content-vertical"
@@ -242,7 +242,7 @@ exports[`EuiEmptyPrompt props color success is rendered 1`] = `
   class="euiPanel euiPanel--success euiEmptyPrompt emotion-euiPanel-m-success-euiEmptyPrompt-vertical"
 >
   <div
-    class="euiEmptyPrompt__main emotion-euiEmptyPrompt__main-vertical-l"
+    class="euiEmptyPrompt__main emotion-euiEmptyPrompt__main-vertical-m"
   >
     <div
       class="euiEmptyPrompt__content emotion-euiEmptyPrompt__content-vertical"
@@ -256,7 +256,7 @@ exports[`EuiEmptyPrompt props color transparent is rendered 1`] = `
   class="euiPanel euiPanel--transparent euiEmptyPrompt emotion-euiPanel-m-transparent-euiEmptyPrompt-vertical"
 >
   <div
-    class="euiEmptyPrompt__main emotion-euiEmptyPrompt__main-vertical-l"
+    class="euiEmptyPrompt__main emotion-euiEmptyPrompt__main-vertical-m"
   >
     <div
       class="euiEmptyPrompt__content emotion-euiEmptyPrompt__content-vertical"
@@ -270,7 +270,7 @@ exports[`EuiEmptyPrompt props color warning is rendered 1`] = `
   class="euiPanel euiPanel--warning euiEmptyPrompt emotion-euiPanel-m-warning-euiEmptyPrompt-vertical"
 >
   <div
-    class="euiEmptyPrompt__main emotion-euiEmptyPrompt__main-vertical-l"
+    class="euiEmptyPrompt__main emotion-euiEmptyPrompt__main-vertical-m"
   >
     <div
       class="euiEmptyPrompt__content emotion-euiEmptyPrompt__content-vertical"
@@ -284,14 +284,14 @@ exports[`EuiEmptyPrompt props footer renders alone 1`] = `
   class="euiPanel euiPanel--transparent euiEmptyPrompt emotion-euiPanel-m-transparent-euiEmptyPrompt-vertical"
 >
   <div
-    class="euiEmptyPrompt__main emotion-euiEmptyPrompt__main-vertical-l"
+    class="euiEmptyPrompt__main emotion-euiEmptyPrompt__main-vertical-m"
   >
     <div
       class="euiEmptyPrompt__content emotion-euiEmptyPrompt__content-vertical"
     />
   </div>
   <div
-    class="euiEmptyPrompt__footer emotion-euiEmptyPrompt__footer-l-transparent-roundedBorders"
+    class="euiEmptyPrompt__footer emotion-euiEmptyPrompt__footer-m-transparent-roundedBorders"
   >
     footer
   </div>
@@ -303,7 +303,7 @@ exports[`EuiEmptyPrompt props icon renders alone 1`] = `
   class="euiPanel euiPanel--transparent euiEmptyPrompt emotion-euiPanel-m-transparent-euiEmptyPrompt-vertical"
 >
   <div
-    class="euiEmptyPrompt__main emotion-euiEmptyPrompt__main-vertical-l"
+    class="euiEmptyPrompt__main emotion-euiEmptyPrompt__main-vertical-m"
   >
     <div
       class="euiEmptyPrompt__icon emotion-euiEmptyPrompt__icon-vertical"
@@ -324,7 +324,7 @@ exports[`EuiEmptyPrompt props iconType renders alone 1`] = `
   class="euiPanel euiPanel--transparent euiEmptyPrompt emotion-euiPanel-m-transparent-euiEmptyPrompt-vertical"
 >
   <div
-    class="euiEmptyPrompt__main emotion-euiEmptyPrompt__main-vertical-l"
+    class="euiEmptyPrompt__main emotion-euiEmptyPrompt__main-vertical-m"
   >
     <div
       class="euiEmptyPrompt__icon emotion-euiEmptyPrompt__icon-vertical"
@@ -346,7 +346,7 @@ exports[`EuiEmptyPrompt props iconType renders with iconColor 1`] = `
   class="euiPanel euiPanel--transparent euiEmptyPrompt emotion-euiPanel-m-transparent-euiEmptyPrompt-vertical"
 >
   <div
-    class="euiEmptyPrompt__main emotion-euiEmptyPrompt__main-vertical-l"
+    class="euiEmptyPrompt__main emotion-euiEmptyPrompt__main-vertical-m"
   >
     <div
       class="euiEmptyPrompt__icon emotion-euiEmptyPrompt__icon-vertical"
@@ -368,7 +368,7 @@ exports[`EuiEmptyPrompt props layout renders alone 1`] = `
   class="euiPanel euiPanel--transparent euiEmptyPrompt emotion-euiPanel-m-transparent-euiEmptyPrompt-horizontal"
 >
   <div
-    class="euiEmptyPrompt__main emotion-euiEmptyPrompt__main-horizontal-l-l"
+    class="euiEmptyPrompt__main emotion-euiEmptyPrompt__main-horizontal-m-m"
   >
     <div
       class="euiEmptyPrompt__content emotion-euiEmptyPrompt__content-horizontal"
@@ -439,7 +439,7 @@ exports[`EuiEmptyPrompt props styles are rendered 1`] = `
   style="background: yellow; min-width: 200px; max-width: 600px;"
 >
   <div
-    class="euiEmptyPrompt__main emotion-euiEmptyPrompt__main-vertical-l"
+    class="euiEmptyPrompt__main emotion-euiEmptyPrompt__main-vertical-m"
   >
     <div
       class="euiEmptyPrompt__content emotion-euiEmptyPrompt__content-vertical"
@@ -453,7 +453,7 @@ exports[`EuiEmptyPrompt props title renders alone 1`] = `
   class="euiPanel euiPanel--transparent euiEmptyPrompt emotion-euiPanel-m-transparent-euiEmptyPrompt-vertical"
 >
   <div
-    class="euiEmptyPrompt__main emotion-euiEmptyPrompt__main-vertical-l"
+    class="euiEmptyPrompt__main emotion-euiEmptyPrompt__main-vertical-m"
   >
     <div
       class="euiEmptyPrompt__content emotion-euiEmptyPrompt__content-vertical"
