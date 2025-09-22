@@ -64,7 +64,7 @@ export type EuiThemeShapeBase = {
   /** - Default value: 16 */
   base: _EuiThemeBase;
   /**
-   * See {@link https://eui.elastic.co/#/theming/sizing | Reference} for more information
+   * See {@link https://eui.elastic.co/docs/getting-started/theming/tokens/sizing/ | Reference} for more information
    */
   size: _EuiThemeSizes;
   font: _EuiThemeFont;
