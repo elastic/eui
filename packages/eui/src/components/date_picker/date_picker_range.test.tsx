@@ -48,6 +48,9 @@ describe('EuiDatePickerRange', () => {
 
       expect(getByTestSubject('date-range-test')).toBeInTheDocument();
       expect(
+        getByTestSubject('date-range-test-range-wrapper')
+      ).toBeInTheDocument();
+      expect(
         getByTestSubject('date-range-test-start-date-input')
       ).toBeInTheDocument();
       expect(
