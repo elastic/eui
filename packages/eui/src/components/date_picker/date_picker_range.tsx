@@ -235,6 +235,11 @@ export const EuiDatePickerRange: FunctionComponent<EuiDatePickerRangeProps> = ({
             ? inlineStyles.formLayout.shadow
             : inlineStyles.formLayout.noShadow)
         }
+        wrapperProps={{
+          'data-test-subj': dataTestSubj
+            ? `${dataTestSubj}-range-wrapper`
+            : undefined,
+        }}
       />
     </div>
   );
