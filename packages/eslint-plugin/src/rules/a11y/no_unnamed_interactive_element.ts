@@ -27,7 +27,6 @@ import { hasA11yPropForComponent } from '../../utils/has_a11y_prop_for_component
 
 const interactiveComponents = [
   'EuiBetaBadge',
-  'EuiButtonEmpty',
   'EuiButtonIcon',
   'EuiComboBox',
   'EuiSelect',
