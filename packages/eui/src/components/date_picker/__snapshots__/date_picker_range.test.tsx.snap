@@ -11,6 +11,7 @@ exports[`EuiDatePickerRange is rendered 1`] = `
   >
     <div
       class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup-prependOnly-appendOnly-delimited"
+      data-test-subj="test subject string-range-wrapper"
     >
       <div
         class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-static"
@@ -1553,6 +1554,7 @@ exports[`EuiDatePickerRange uses individual EuiDatePicker props 1`] = `
   >
     <div
       class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup-prependOnly-appendOnly-delimited"
+      data-test-subj="test subject string-range-wrapper"
     >
       <div
         class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-static"
