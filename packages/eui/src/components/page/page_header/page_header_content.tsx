@@ -19,6 +19,7 @@ import { EuiText } from '../../text';
 import {
   useIsWithinBreakpoints,
   useEuiMemoizedStyles,
+  useEuiTheme,
 } from '../../../services';
 import { EuiScreenReaderOnly } from '../../accessibility';
 import { EuiBreadcrumbs, EuiBreadcrumbsProps } from '../../breadcrumbs';
@@ -174,10 +175,16 @@ export const EuiPageHeaderContent: FunctionComponent<
     !!responsive
   );
 
+  const euiTheme = useEuiTheme();
+
   const classes = classNames('euiPageHeaderContent', className);
   const pageHeaderStyles = useEuiMemoizedStyles(euiPageHeaderStyles);
   const contentStyles = useEuiMemoizedStyles(euiPageHeaderContentStyles);
   const styles = setStyleForRestrictedPageWidth(restrictWidth, style);
+
+  // Get tabs size from theme, fallback to 'l' for other themes
+  const themeTabsSize =
+    (euiTheme.euiTheme as any).page?.pageHeader?.tabsSize ?? 'l';
 
   let paddingSides: LogicalSides = 'vertical';
   let paddingSize = _paddingSize;
@@ -300,7 +307,7 @@ export const EuiPageHeaderContent: FunctionComponent<
       <>
         {pageTitleNode && <EuiSpacer />}
         {screenReaderPageTitle}
-        <EuiTabs {...tabsProps} bottomBorder={false} size="l">
+        <EuiTabs {...tabsProps} bottomBorder={false} size={themeTabsSize}>
           {renderTabs()}
         </EuiTabs>
       </>

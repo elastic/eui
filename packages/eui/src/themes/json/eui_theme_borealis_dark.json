@@ -423,5 +423,10 @@
   "euiColorBorderStrongWarning": "#FACB3D",
   "euiColorBorderStrongRisk": "#FC8544",
   "euiColorBorderStrongDanger": "#F6726A",
-  "euiColorBorderStrongText": "#8E9FBC"
+  "euiColorBorderStrongText": "#8E9FBC",
+  "page": {
+    "pageHeader": {
+      "tabsSize": "m"
+    }
+  }
 }

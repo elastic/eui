@@ -34,49 +34,67 @@ export default () => (
 A set of `tabs` can be displayed inside the page header by passing an array of [EuiTab](../containers/tabs/index.mdx) objects using the `label` key for the tab content. When displaying tabs, the `bottomBorder` prop will be enforced to create separation of the header and content. You'll still need to manage the page content and selected tab in your own instance.
 
 ```tsx interactive
-import React from 'react';
+import React, { useState } from 'react';
 import { EuiPageHeader, EuiButton } from '@elastic/eui';
 
-export default () => (
-  <EuiPageHeader
-    pageTitle="Page title"
-    tabs={[
-      {
-        label: 'Tab 1',
-        isSelected: true,
-      },
-      {
-        label: 'Tab 2',
-      },
-    ]}
-    rightSideItems={[
-      <EuiButton fill>Add something</EuiButton>,
-      <EuiButton>Do something</EuiButton>,
-    ]}
-  />
-);
+export default () => {
+  const [selectedTabId, setSelectedTabId] = useState('tab1');
+
+  const tabs = [
+    {
+      label: 'Tab 1',
+      isSelected: selectedTabId === 'tab1',
+      onClick: () => setSelectedTabId('tab1'),
+    },
+    {
+      label: 'Tab 2',
+      isSelected: selectedTabId === 'tab2',
+      onClick: () => setSelectedTabId('tab2'),
+    },
+  ];
+
+  return (
+    <EuiPageHeader
+      pageTitle="Page title"
+      tabs={tabs}
+      rightSideItems={[
+        <EuiButton fill>Add something</EuiButton>,
+        <EuiButton>Do something</EuiButton>,
+      ]}
+    />
+  );
+};
 ```
 
 When supplying `tabs` without a `pageTitle`, **EuiPageHeader** will promote those tabs as if they are the page title. This means that any `description` or `children` will sit **below** the tabs and should used to describe the currently selected tab.
 
 ```tsx interactive
-import React from 'react';
+import React, { useState } from 'react';
 import { EuiPageHeader } from '@elastic/eui';
 
-export default () => (
-  <EuiPageHeader
-    tabs={[
-      {
-        label: 'Tab 1',
-        isSelected: true,
-      },
-      {
-        label: 'Tab 2',
-      },
-    ]}
-    description="This description should be describing the current page as depicted by the current tab. It has grow set to false to ensure a readable line-length."
-  />
-);
+export default () => {
+  const [selectedTabId, setSelectedTabId] = useState('tab1');
+
+  const tabs = [
+    {
+      label: 'Tab 1',
+      isSelected: selectedTabId === 'tab1',
+      onClick: () => setSelectedTabId('tab1'),
+    },
+    {
+      label: 'Tab 2',
+      isSelected: selectedTabId === 'tab2',
+      onClick: () => setSelectedTabId('tab2'),
+    },
+  ];
+
+  return (
+    <EuiPageHeader
+      tabs={tabs}
+      description="This description should be describing the current page as depicted by the current tab. It has grow set to false to ensure a readable line-length."
+    />
+  );
+};
 ```
 
 ## Breadcrumbs in the page header
