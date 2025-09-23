@@ -24,7 +24,6 @@ import {
 } from './const';
 import { EuiFlyoutIsManagedProvider } from './context';
 import { euiManagedFlyoutStyles } from './flyout_managed.styles';
-import { registerCallback, unregisterCallbacks } from './provider';
 import {
   useFlyoutManager as _useFlyoutManager,
   useFlyoutId,
@@ -83,11 +82,15 @@ export const EuiManagedFlyout = ({
   const flyoutId = useFlyoutId(id);
   const flyoutRef = useRef<HTMLDivElement>(null);
 
-  const { addFlyout, closeFlyout, setFlyoutWidth, goBack, getHistoryItems } =
-    useFlyoutManager();
-  const isActive = useIsFlyoutActive(flyoutId);
+  const {
+    addFlyout,
+    closeFlyout,
+    setFlyoutWidth,
+    goBack,
+    getHistoryItems,
+    state,
+  } = useFlyoutManager();
   const parentSize = useParentFlyoutSize(flyoutId);
-  const currentSession = useCurrentSession();
   const layoutMode = useFlyoutLayoutMode();
   const styles = useEuiMemoizedStyles(euiManagedFlyoutStyles);
 
@@ -121,6 +124,29 @@ export const EuiManagedFlyout = ({
 
   // Track whether the onClose callback has already been called to prevent double-firing
   const onCloseCalledRef = useRef<boolean>(false);
+  const isActive = useIsFlyoutActive(flyoutId);
+  const currentSession = useCurrentSession();
+
+  // Force unmount when flyout is removed from state but component still exists
+  const flyoutExistsInState = state.flyouts.some(
+    (f) => f.flyoutId === flyoutId
+  );
+
+  const isRegisteredRef = useRef<boolean>(false);
+  if (flyoutExistsInState) {
+    isRegisteredRef.current = true;
+  }
+
+  useEffect(() => {
+    if (
+      isRegisteredRef.current &&
+      !flyoutExistsInState &&
+      !isActive &&
+      onCloseProp
+    ) {
+      onCloseProp(new MouseEvent('click'));
+    }
+  }, [flyoutExistsInState, isActive, onCloseProp, flyoutId]);
 
   // Stabilize the onClose callback to prevent unnecessary re-registrations
   const onCloseCallbackRef = useRef<((e?: CloseEvent) => void) | undefined>();
@@ -136,16 +162,8 @@ export const EuiManagedFlyout = ({
   const onActiveCallbackRef = useRef<(() => void) | undefined>();
   onActiveCallbackRef.current = onActiveProp;
 
-  // Register/unregister with flyout manager context and then add the flyout to the manager's state
+  // Register with flyout manager context
   useEffect(() => {
-    if (onCloseCallbackRef.current) {
-      registerCallback(flyoutId, 'onClose', onCloseCallbackRef.current);
-    }
-
-    if (onActiveCallbackRef.current) {
-      registerCallback(flyoutId, 'onActive', onActiveCallbackRef.current);
-    }
-
     addFlyout(flyoutId, title!, level, size as string);
   }, [size, flyoutId, title, level, addFlyout]);
 
@@ -168,8 +186,9 @@ export const EuiManagedFlyout = ({
 
   useEffect(() => {
     return () => {
+      // Call onClose callback during cleanup (protected by existing ref logic)
+      onCloseCallbackRef.current?.();
       closeFlyout(flyoutId);
-      unregisterCallbacks(flyoutId);
     };
   }, [closeFlyout, flyoutId]);
 

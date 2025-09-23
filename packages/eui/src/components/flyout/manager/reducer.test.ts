@@ -526,7 +526,10 @@ describe('flyoutManagerReducer', () => {
       expect(state.sessions[0].main).toBe('main-1');
       expect(state.sessions[1].main).toBe('main-2');
       expect(state.flyouts).toHaveLength(2);
-      expect(state.flyouts.map(f => f.flyoutId)).toEqual(['main-1', 'main-2']);
+      expect(state.flyouts.map((f) => f.flyoutId)).toEqual([
+        'main-1',
+        'main-2',
+      ]);
     });
 
     it('should do nothing when target flyout does not exist', () => {

@@ -18,7 +18,6 @@ import {
   Action,
 } from './actions';
 import { LAYOUT_MODE_SIDE_BY_SIDE, LEVEL_MAIN, STAGE_OPENING } from './const';
-import { callCallback } from './provider';
 import {
   EuiFlyoutManagerState,
   FlyoutSession,
@@ -121,11 +120,6 @@ export function flyoutManagerReducer(
             flyoutsToRemove.add(sessionToRemove.child);
           }
 
-          // Call onClose callbacks for all flyouts being removed
-          flyoutsToRemove.forEach((flyoutId) => {
-            callCallback(flyoutId, 'onClose');
-          });
-
           const newFlyouts = state.flyouts.filter(
             (f) => !flyoutsToRemove.has(f.flyoutId)
           );
@@ -137,9 +131,6 @@ export function flyoutManagerReducer(
           return { ...state, sessions: newSessions, flyouts: newFlyouts };
         }
       }
-
-      // Call onClose callback if it exists
-      callCallback(action.flyoutId, 'onClose');
 
       // Handle child flyout closing (existing logic)
       const newFlyouts = state.flyouts.filter(
@@ -222,11 +213,6 @@ export function flyoutManagerReducer(
         flyoutsToRemove.add(currentSession.child);
       }
 
-      // Call onClose callbacks for removed flyouts
-      flyoutsToRemove.forEach((flyoutId) => {
-        callCallback(flyoutId, 'onClose');
-      });
-
       const newFlyouts = state.flyouts.filter(
         (f) => !flyoutsToRemove.has(f.flyoutId)
       );
@@ -258,11 +244,6 @@ export function flyoutManagerReducer(
         if (session.child) {
           flyoutsToRemove.add(session.child);
         }
-      });
-
-      // Call onClose callbacks for removed flyouts
-      flyoutsToRemove.forEach((flyoutId) => {
-        callCallback(flyoutId, 'onClose');
       });
 
       const newFlyouts = state.flyouts.filter(

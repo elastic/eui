@@ -22,6 +22,8 @@ import {
   PROPERTY_FLYOUT,
   PROPERTY_LEVEL,
 } from './const';
+import * as hooks from './hooks';
+import * as selectors from './selectors';
 
 // Mock base flyout to a simple div to avoid complex internals
 jest.mock('../flyout.component', () => {
@@ -75,9 +77,8 @@ jest.mock('./hooks', () => ({
   useCurrentSession: () => null,
 }));
 
-// Mock selectors to ensure useFlyoutId works correctly
 jest.mock('./selectors', () => ({
-  useIsFlyoutRegistered: () => false, // Always return false so provided IDs are used
+  useIsFlyoutRegistered: () => false,
   useIsFlyoutActive: () => true,
   useHasChildFlyout: () => false,
   useParentFlyoutSize: () => 'm',
@@ -99,7 +100,6 @@ jest.mock('./validation', () => ({
   validateSizeCombination: jest.fn(() => undefined),
 }));
 
-// Mock unregister callback functions
 jest.mock('./provider', () => ({
   ...jest.requireActual('./provider'),
   useFlyoutManager: () => ({
@@ -123,7 +123,6 @@ describe('EuiManagedFlyout', () => {
     render(<EuiFlyoutManager>{ui}</EuiFlyoutManager>);
 
   beforeEach(() => {
-    // Clear all mocks before each test to prevent interference
     jest.clearAllMocks();
   });
 
@@ -281,6 +280,249 @@ describe('EuiManagedFlyout', () => {
       );
 
       expect(getByTestSubject('managed-flyout')).toBeInTheDocument();
+    });
+  });
+
+  describe('onClose callback behavior', () => {
+    it('calls onClose callback during component cleanup/unmount', () => {
+      const onClose = jest.fn();
+
+      const { unmount } = renderInProvider(
+        <EuiManagedFlyout
+          id="cleanup-test"
+          level={LEVEL_MAIN}
+          onClose={onClose}
+          flyoutMenuProps={{ title: 'Test Flyout' }}
+        />
+      );
+
+      // Initially onClose should not be called
+      expect(onClose).not.toHaveBeenCalled();
+
+      // Unmount the component to trigger cleanup
+      act(() => {
+        unmount();
+      });
+
+      // onClose should be called during cleanup
+      expect(onClose).toHaveBeenCalledTimes(1);
+      expect(onClose).toHaveBeenCalledWith(expect.any(MouseEvent));
+    });
+
+    it('does not call onClose multiple times (double-firing prevention)', () => {
+      const onClose = jest.fn();
+
+      const { getByTestSubject, unmount } = renderInProvider(
+        <EuiManagedFlyout
+          id="double-fire-test"
+          level={LEVEL_MAIN}
+          onClose={onClose}
+          flyoutMenuProps={{ title: 'Test Flyout' }}
+        />
+      );
+
+      // First call via direct onClick
+      act(() => {
+        userEvent.click(getByTestSubject('managed-flyout'));
+      });
+
+      expect(onClose).toHaveBeenCalledTimes(1);
+
+      // Unmount should not call onClose again due to double-firing prevention
+      act(() => {
+        unmount();
+      });
+
+      // Should still be called only once
+      expect(onClose).toHaveBeenCalledTimes(1);
+    });
+  });
+
+  describe('force unmount mechanism', () => {
+    it('triggers onClose when flyout is removed from state but component still exists', () => {
+      const onClose = jest.fn();
+
+      // Mock that starts with flyout in state, then removes it
+      let flyoutInState = true;
+      let isActive = true;
+
+      const useFlyoutManagerSpy = jest.spyOn(hooks, 'useFlyoutManager');
+      const useIsFlyoutActiveSpy = jest.spyOn(selectors, 'useIsFlyoutActive');
+
+      useFlyoutManagerSpy.mockImplementation(() => ({
+        state: {
+          sessions: [],
+          flyouts: flyoutInState
+            ? [{ flyoutId: 'force-unmount-test', level: LEVEL_MAIN as any }]
+            : [],
+          layoutMode: 'side-by-side',
+        },
+        dispatch: jest.fn(),
+        addFlyout: jest.fn(),
+        closeFlyout: mockCloseFlyout,
+        setActiveFlyout: jest.fn(),
+        setFlyoutWidth: jest.fn(),
+        goBack: jest.fn(),
+        goToFlyout: jest.fn(),
+        getHistoryItems: jest.fn(() => []),
+      }));
+
+      useIsFlyoutActiveSpy.mockImplementation(() => isActive);
+
+      const { rerender } = renderInProvider(
+        <EuiManagedFlyout
+          id="force-unmount-test"
+          level={LEVEL_MAIN}
+          onClose={onClose}
+          flyoutMenuProps={{ title: 'Test Flyout' }}
+        />
+      );
+
+      // Initially onClose should not be called
+      expect(onClose).not.toHaveBeenCalled();
+
+      // Simulate flyout being removed from state (e.g., back button clicked)
+      act(() => {
+        flyoutInState = false;
+        isActive = false;
+        rerender(
+          <EuiManagedFlyout
+            id="force-unmount-test"
+            level={LEVEL_MAIN}
+            onClose={onClose}
+            flyoutMenuProps={{ title: 'Test Flyout' }}
+          />
+        );
+      });
+
+      // Force unmount should trigger onClose
+      expect(onClose).toHaveBeenCalledTimes(1);
+      expect(onClose).toHaveBeenCalledWith(expect.any(MouseEvent));
+
+      // Restore mocks
+      useFlyoutManagerSpy.mockRestore();
+      useIsFlyoutActiveSpy.mockRestore();
+    });
+
+    it('does not trigger force unmount for new flyouts not yet in state', () => {
+      const onClose = jest.fn();
+
+      const useFlyoutManagerSpy = jest.spyOn(hooks, 'useFlyoutManager');
+      const useIsFlyoutActiveSpy = jest.spyOn(selectors, 'useIsFlyoutActive');
+
+      useFlyoutManagerSpy.mockReturnValue({
+        state: {
+          sessions: [],
+          flyouts: [], // Empty - flyout never added to state
+          layoutMode: 'side-by-side',
+        },
+        dispatch: jest.fn(),
+        addFlyout: jest.fn(),
+        closeFlyout: mockCloseFlyout,
+        setActiveFlyout: jest.fn(),
+        setFlyoutWidth: jest.fn(),
+        goBack: jest.fn(),
+        goToFlyout: jest.fn(),
+        getHistoryItems: jest.fn(() => []),
+      });
+
+      useIsFlyoutActiveSpy.mockReturnValue(false);
+
+      renderInProvider(
+        <EuiManagedFlyout
+          id="new-flyout-test"
+          level={LEVEL_MAIN}
+          onClose={onClose}
+          flyoutMenuProps={{ title: 'New Flyout' }}
+        />
+      );
+
+      // onClose should NOT be called for new flyouts that were never in state
+      expect(onClose).not.toHaveBeenCalled();
+
+      // Restore mocks
+      useFlyoutManagerSpy.mockRestore();
+      useIsFlyoutActiveSpy.mockRestore();
+    });
+  });
+
+  describe('back button scenario simulation', () => {
+    it('handles the back button workflow correctly', () => {
+      const onCloseB = jest.fn();
+
+      // Collection of test fixtures for state verification: A first, then A + B, then just A
+      const sessionStates = [
+        // Initial: Session A only
+        {
+          sessions: [{ main: 'session-a', child: null, title: 'Session A' }],
+          flyouts: [{ flyoutId: 'session-a', level: LEVEL_MAIN as any }],
+        },
+        // Session B added
+        {
+          sessions: [
+            { main: 'session-a', child: null, title: 'Session A' },
+            { main: 'session-b', child: null, title: 'Session B' },
+          ],
+          flyouts: [
+            { flyoutId: 'session-a', level: LEVEL_MAIN as any },
+            { flyoutId: 'session-b', level: LEVEL_MAIN as any },
+          ],
+        },
+        // Back button: Session B removed
+        {
+          sessions: [{ main: 'session-a', child: null, title: 'Session A' }],
+          flyouts: [{ flyoutId: 'session-a', level: LEVEL_MAIN as any }],
+        },
+      ];
+
+      let stateIndex = 1; // Start with both sessions
+      const useFlyoutManagerSpy = jest.spyOn(hooks, 'useFlyoutManager');
+
+      useFlyoutManagerSpy.mockImplementation(() => ({
+        state: {
+          ...sessionStates[stateIndex],
+          layoutMode: 'side-by-side',
+        },
+        dispatch: jest.fn(),
+        addFlyout: jest.fn(),
+        closeFlyout: mockCloseFlyout,
+        setActiveFlyout: jest.fn(),
+        setFlyoutWidth: jest.fn(),
+        goBack: jest.fn(),
+        goToFlyout: jest.fn(),
+        getHistoryItems: jest.fn(() => []),
+      }));
+
+      // Render Session B
+      const { rerender } = renderInProvider(
+        <EuiManagedFlyout
+          id="session-b"
+          level={LEVEL_MAIN}
+          onClose={onCloseB}
+          flyoutMenuProps={{ title: 'Session B' }}
+        />
+      );
+
+      expect(onCloseB).not.toHaveBeenCalled();
+
+      // Simulate back button: remove Session B from state
+      act(() => {
+        stateIndex = 2; // State with only Session A
+        rerender(
+          <EuiManagedFlyout
+            id="session-b"
+            level={LEVEL_MAIN}
+            onClose={onCloseB}
+            flyoutMenuProps={{ title: 'Session B' }}
+          />
+        );
+      });
+
+      // Session B's onClose should be called via force unmount
+      expect(onCloseB).toHaveBeenCalledTimes(1);
+
+      // Restore mock
+      useFlyoutManagerSpy.mockRestore();
     });
   });
 });
