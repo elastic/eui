@@ -6,18 +6,16 @@
  * Side Public License, v 1.
  */
 
-import { PopoverAnchorPosition } from '@elastic/eui';
-
 export interface _EuiThemePopover {
   hasArrow: boolean;
-  anchorPosition: PopoverAnchorPosition;
+  anchorPosition: string;
   offset: number;
 }
 
 // Component-specific configurations
 export const popoverConfig = {
   hasArrow: false,    // Reduced from default true
-  anchorPosition: 'downLeft' as PopoverAnchorPosition, // Changed from default 'downCenter'
+  anchorPosition: 'downLeft', // Changed from default 'downCenter'
   offset: 4,         // Changed from default 0
 };
 
