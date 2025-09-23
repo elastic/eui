@@ -159,9 +159,16 @@ export const euiProgressStyles = (
         ${logicalCSS('top', 0)}
         ${logicalCSS('bottom', 0)}
         ${logicalCSS('left', 0)}
-        transform: scaleX(0) translateX(0%);
-        animation: ${euiIndeterminateAnimation} 1s
-          ${euiTheme.animation.resistance} infinite;
+
+        // When prefers-reduced-motion is set, show the full bar with no animation.
+        @media (prefers-reduced-motion: reduce) {
+          transform: scaleX(1) translateX(0%);
+        }
+        @media (prefers-reduced-motion: no-preference) {
+          transform: scaleX(0) translateX(0%);
+          animation: ${euiIndeterminateAnimation} 1s
+            ${euiTheme.animation.resistance} infinite;
+        }
 
         ${euiCantAnimate} {
           animation-duration: 2s;
