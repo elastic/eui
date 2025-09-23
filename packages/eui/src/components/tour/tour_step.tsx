@@ -207,6 +207,7 @@ export const EuiTourStep: FunctionComponent<EuiTourStepProps> = ({
       }}
       offset={hasBeacon ? 10 : 0}
       aria-labelledby={titleId}
+      hasArrow={hasBeacon} // Explicitly set hasArrow when beacon is present
       arrowChildren={
         hasBeacon && <EuiBeacon css={beaconCss} className="euiTour__beacon" />
       }
