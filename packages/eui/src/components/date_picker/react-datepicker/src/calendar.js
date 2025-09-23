@@ -477,6 +477,7 @@ export default class Calendar extends React.Component {
     }
 
     const dataTestSubj = this.props['data-test-subj'];
+
     return (
       <EuiButtonIcon
         iconType="sortRight"
