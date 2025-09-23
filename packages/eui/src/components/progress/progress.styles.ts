@@ -160,7 +160,6 @@ export const euiProgressStyles = (
         ${logicalCSS('bottom', 0)}
         ${logicalCSS('left', 0)}
 
-        // When prefers-reduced-motion is set, show the full bar with no animation.
         @media (prefers-reduced-motion: reduce) {
           transform: scaleX(1) translateX(0%);
         }
