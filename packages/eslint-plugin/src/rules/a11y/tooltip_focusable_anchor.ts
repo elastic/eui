@@ -93,7 +93,7 @@ export const TooltipFocusableAnchor = ESLintUtils.RuleCreator.withoutDocs({
         '  </{{ toolTipComponent }}>',
         'Option 2 (Preferred): Use an interactive component instead:',
         '  <{{ toolTipComponent }} content=\'...\'>',
-        '    <EuiButton>content</EuiButton>',
+        '    <EuiButton>...</EuiButton>',
         '  </{{ toolTipComponent }}>'
       ].join('\n')
     }
