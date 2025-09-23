@@ -28,11 +28,7 @@ const EuiIconSortRight = ({
     {...props}
   >
     {title ? <title id={titleId}>{title}</title> : null}
-    <path
-      fillRule="evenodd"
-      d="m15.707 8-5.353 5.354-.708-.707L13.793 8.5H1v-1h12.793L9.646 3.354l.708-.708L15.707 8Z"
-      clipRule="evenodd"
-    />
+    <path d="M2 7.5h10.793L9.646 4.354l.707-.708L14.707 8l-4.354 4.354-.707-.707L12.793 8.5H2v-1Z" />
   </svg>
 );
 export const icon = EuiIconSortRight;
