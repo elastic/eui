@@ -340,7 +340,7 @@ describe('EuiPopover', () => {
         );
 
         expect(baseElement.querySelector('[data-popover-panel]')).toHaveStyle({
-          top: '26px',
+          top: '18px',
         });
       });
 
