@@ -3,6 +3,7 @@
 exports[`EuiDatePicker localization accepts the locale prop 1`] = `
 <span
   class="euiDatePicker testClass1 testClass2 emotion-euiDatePicker-inline-shadow-euiTestCss"
+  data-test-subj="test subject string"
 >
   <div
     class="euiFormControlLayout emotion-euiFormControlLayout-group"
@@ -19,6 +20,7 @@ exports[`EuiDatePicker localization accepts the locale prop 1`] = `
         <button
           aria-label="Previous Month"
           class="euiButtonIcon react-datepicker__navigation react-datepicker__navigation--previous emotion-euiButtonIcon-s-empty-text"
+          data-test-subj="test subject string-calendar-prev-month"
           title="Previous Month"
           type="button"
         >
@@ -32,6 +34,7 @@ exports[`EuiDatePicker localization accepts the locale prop 1`] = `
         <button
           aria-label="Next month"
           class="euiButtonIcon react-datepicker__navigation react-datepicker__navigation--next emotion-euiButtonIcon-s-empty-text"
+          data-test-subj="test subject string-calendar-next-month"
           title="Next month"
           type="button"
         >
@@ -482,6 +485,7 @@ exports[`EuiDatePicker localization accepts the locale prop 1`] = `
 exports[`EuiDatePicker localization inherits locale from context 1`] = `
 <span
   class="euiDatePicker testClass1 testClass2 emotion-euiDatePicker-inline-shadow-euiTestCss"
+  data-test-subj="test subject string"
 >
   <div
     class="euiFormControlLayout emotion-euiFormControlLayout-group"
@@ -498,6 +502,7 @@ exports[`EuiDatePicker localization inherits locale from context 1`] = `
         <button
           aria-label="Previous Month"
           class="euiButtonIcon react-datepicker__navigation react-datepicker__navigation--previous emotion-euiButtonIcon-s-empty-text"
+          data-test-subj="test subject string-calendar-prev-month"
           title="Previous Month"
           type="button"
         >
@@ -511,6 +516,7 @@ exports[`EuiDatePicker localization inherits locale from context 1`] = `
         <button
           aria-label="Next month"
           class="euiButtonIcon react-datepicker__navigation react-datepicker__navigation--next emotion-euiButtonIcon-s-empty-text"
+          data-test-subj="test subject string-calendar-next-month"
           title="Next month"
           type="button"
         >
@@ -961,6 +967,7 @@ exports[`EuiDatePicker localization inherits locale from context 1`] = `
 exports[`EuiDatePicker renders 1`] = `
 <span
   class="euiDatePicker testClass1 testClass2 emotion-euiDatePicker-euiTestCss"
+  data-test-subj="test subject string"
 >
   <div
     class="euiFormControlLayout emotion-euiFormControlLayout"
@@ -987,10 +994,12 @@ exports[`EuiDatePicker renders 1`] = `
       >
         <div
           class="react-datepicker__input-container"
+          data-test-subj="test subject string-input-container"
         >
           <input
             aria-label="Press the down key to open a popover containing a calendar."
             class="euiFieldText euiDatePicker testClass1 testClass2 emotion-euiFieldText-controlOnly-euiTestCss"
+            data-test-subj="test subject string-input"
             type="text"
             value=""
           />

@@ -367,9 +367,9 @@ export default class Calendar extends React.Component {
             {/* we're using sr-only and aria-hidden here instead of aria-label as aria-label is
             not generally applied/read by screen readers for non-semantic element like div */}
             <span aria-hidden="true">{weekDayName}</span>
-              <EuiScreenReaderOnly>
-                <span>{weekDayNameLong}</span>
-              </EuiScreenReaderOnly>
+            <EuiScreenReaderOnly>
+              <span>{weekDayNameLong}</span>
+            </EuiScreenReaderOnly>
           </div>
         );
       })
@@ -421,6 +421,8 @@ export default class Calendar extends React.Component {
       clickHandler = null;
     }
 
+    const dataTestSubj = this.props['data-test-subj'];
+
     return (
       <EuiButtonIcon
         iconType="sortLeft"
@@ -431,6 +433,7 @@ export default class Calendar extends React.Component {
         disabled={!this.props.accessibleMode}
         aria-label={this.props.previousMonthButtonLabel}
         title={this.props.previousMonthButtonLabel}
+        data-test-subj={dataTestSubj ? `${dataTestSubj}-prev-month` : undefined}
       />
     );
   };
@@ -473,6 +476,8 @@ export default class Calendar extends React.Component {
       clickHandler = null;
     }
 
+    const dataTestSubj = this.props['data-test-subj'];
+
     return (
       <EuiButtonIcon
         iconType="sortRight"
@@ -483,6 +488,7 @@ export default class Calendar extends React.Component {
         disabled={!this.props.accessibleMode}
         aria-label={this.props.nextMonthButtonLabel}
         title={this.props.nextMonthButtonLabel}
+        data-test-subj={dataTestSubj ? `${dataTestSubj}-next-month` : undefined}
       />
     );
   };
@@ -711,6 +717,7 @@ export default class Calendar extends React.Component {
 
   render() {
     const Container = this.props.container || CalendarContainer;
+    const dataTestSubj = this.props['data-test-subj'];
 
     const classes = classnames("react-datepicker", this.props.className, {
       "react-datepicker--time-only": this.props.showTimeSelectOnly,
@@ -724,7 +731,7 @@ export default class Calendar extends React.Component {
 
     if (trapFocus) {
       return (
-        <Container className={classes}>
+        <Container className={classes} data-test-subj={dataTestSubj}>
           <EuiFocusTrap
             disabled={this.state.pauseFocusTrap || !this.props.enableFocusTrap}
             className="react-datepicker__focusTrap"
@@ -742,7 +749,7 @@ export default class Calendar extends React.Component {
       );
     } else {
       return (
-        <Container className={classes}>
+        <Container className={classes} data-test-subj={dataTestSubj}>
           {this.renderPreviousMonthButton()}
           {this.renderNextMonthButton()}
           {this.renderMonths()}

@@ -11,6 +11,7 @@ exports[`EuiDatePickerRange is rendered 1`] = `
   >
     <div
       class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup-prependOnly-appendOnly-delimited"
+      data-test-subj="test subject string-range-wrapper"
     >
       <div
         class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-static"
@@ -30,10 +31,12 @@ exports[`EuiDatePickerRange is rendered 1`] = `
       >
         <div
           class="react-datepicker__input-container"
+          data-test-subj="test subject string-start-date-input-container"
         >
           <input
             aria-label="Press the down key to open a popover containing a calendar."
             class="euiFieldText euiDatePicker euiDatePickerRange__start euiFormControlLayoutDelimited__input emotion-euiFieldText-controlOnly-euiFormControlLayoutDelimited__input"
+            data-test-subj="test subject string-start-date-input"
             type="text"
             value=""
           />
@@ -53,10 +56,12 @@ exports[`EuiDatePickerRange is rendered 1`] = `
       >
         <div
           class="react-datepicker__input-container"
+          data-test-subj="test subject string-end-date-input-container"
         >
           <input
             aria-label="Press the down key to open a popover containing a calendar."
             class="euiFieldText euiDatePicker euiDatePickerRange__end euiFormControlLayoutDelimited__input emotion-euiFieldText-controlOnly-euiFormControlLayoutDelimited__input"
+            data-test-subj="test subject string-end-date-input"
             type="text"
             value=""
           />
@@ -1549,6 +1554,7 @@ exports[`EuiDatePickerRange uses individual EuiDatePicker props 1`] = `
   >
     <div
       class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup-prependOnly-appendOnly-delimited"
+      data-test-subj="test subject string-range-wrapper"
     >
       <div
         class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-static"
@@ -1568,10 +1574,12 @@ exports[`EuiDatePickerRange uses individual EuiDatePicker props 1`] = `
       >
         <div
           class="react-datepicker__input-container"
+          data-test-subj="test subject string-start-date-input-container"
         >
           <input
             aria-label="Press the down key to open a popover containing a calendar."
             class="euiFieldText euiDatePicker euiDatePickerRange__start hello euiFormControlLayoutDelimited__input emotion-euiFieldText-controlOnly-euiFormControlLayoutDelimited__input"
+            data-test-subj="test subject string-start-date-input"
             type="text"
             value=""
           />
@@ -1591,10 +1599,12 @@ exports[`EuiDatePickerRange uses individual EuiDatePicker props 1`] = `
       >
         <div
           class="react-datepicker__input-container"
+          data-test-subj="test subject string-end-date-input-container"
         >
           <input
             aria-label="Press the down key to open a popover containing a calendar."
             class="euiFieldText euiDatePicker euiDatePickerRange__end world euiFormControlLayoutDelimited__input emotion-euiFieldText-controlOnly-euiFormControlLayoutDelimited__input"
+            data-test-subj="test subject string-end-date-input"
             type="text"
             value=""
           />
