@@ -163,6 +163,7 @@ export const euiProgressStyles = (
         @media (prefers-reduced-motion: reduce) {
           transform: scaleX(1) translateX(0%);
         }
+
         @media (prefers-reduced-motion: no-preference) {
           transform: scaleX(0) translateX(0%);
           animation: ${euiIndeterminateAnimation} 1s
