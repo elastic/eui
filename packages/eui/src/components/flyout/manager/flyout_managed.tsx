@@ -5,7 +5,7 @@
  * in compliance with, at your election, the Elastic License 2.0 or the Server
  * Side Public License, v 1.
  */
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useMemo } from 'react';
 import { useEuiMemoizedStyles } from '../../../services';
 import { useResizeObserver } from '../../observer/resize_observer';
 import {
@@ -196,19 +196,16 @@ export const EuiManagedFlyout = ({
     level,
   });
 
-  // Get titles and flyoutIds from the manager's flyouts state
-  let showBackButton = false;
-  let backButtonProps: EuiFlyoutMenuProps['backButtonProps'] | undefined;
-  let historyItems: EuiFlyoutMenuProps['historyItems'] | undefined;
+  // Note: history controls are only relevant for main flyouts
+  const historyItems = useMemo(() => {
+    return level === LEVEL_MAIN ? getHistoryItems() : undefined;
+  }, [level, getHistoryItems]);
 
-  // History controls are only relevant for main flyouts
-  if (level === LEVEL_MAIN) {
-    historyItems = getHistoryItems();
-    showBackButton = historyItems.length > 0;
-    backButtonProps = {
-      onClick: goBack,
-    };
-  }
+  const backButtonProps = useMemo(() => {
+    return level === LEVEL_MAIN ? { onClick: goBack } : undefined;
+  }, [level, goBack]);
+
+  const showBackButton = historyItems ? historyItems.length > 0 : false;
 
   const flyoutMenuProps = {
     ..._flyoutMenuProps,
