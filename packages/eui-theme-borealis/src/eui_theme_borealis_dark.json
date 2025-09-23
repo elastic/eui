@@ -427,6 +427,6 @@
   "popover": {
     "hasArrow": false,
     "anchorPosition": "downLeft",
-    "offset": -4
+    "offset": 4
   }
 }

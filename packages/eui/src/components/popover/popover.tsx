@@ -274,6 +274,11 @@ interface State {
   arrowPosition: EuiPopoverArrowPositions | null;
   openPosition: any; // What should this be?
   isOpenStable: boolean;
+  resolvedThemeValues?: {
+    hasArrow: boolean;
+    anchorPosition: PopoverAnchorPosition;
+    offset: number;
+  };
 }
 
 type PropsWithDefaults = Props & {
@@ -506,7 +511,12 @@ export class EuiPopover extends Component<Props, State> {
   positionPopover = (allowEnforcePosition: boolean) => {
     if (this.button == null || this.panel == null) return;
 
-    const { anchorPosition, offset = 0, hasArrow } = this.props;
+    // Use resolved theme values from state, otherwise fall back to props
+    const { anchorPosition, offset, hasArrow } = this.state.resolvedThemeValues || {
+      hasArrow: this.props.hasArrow ?? true,
+      anchorPosition: this.props.anchorPosition ?? 'downCenter',
+      offset: this.props.offset ?? 0,
+    };
 
     let position = getPopoverPositionFromAnchorPosition(anchorPosition);
     let forcePosition = undefined;
@@ -533,10 +543,10 @@ export class EuiPopover extends Component<Props, State> {
       popover: this.panel,
       offset: this.props.attachToAnchor
         ? offset
-        : this.props.hasArrow
+        : hasArrow
         ? 16 + offset
         : 8 + offset,
-      arrowConfig: this.props.hasArrow
+      arrowConfig: hasArrow
         ? { arrowWidth: 16, arrowBuffer: 10 }
         : { arrowWidth: 0, arrowBuffer: 0 },
       returnBoundingBox: this.props.attachToAnchor,
@@ -560,7 +570,7 @@ export class EuiPopover extends Component<Props, State> {
       zIndex,
     };
 
-    const willRenderArrow = !this.props.attachToAnchor && this.props.hasArrow;
+    const willRenderArrow = !this.props.attachToAnchor && hasArrow;
     const arrowStyles = willRenderArrow ? arrow : undefined;
     const arrowPosition: EuiPopoverPosition = foundPosition;
 
@@ -652,6 +662,18 @@ export class EuiPopover extends Component<Props, State> {
           const defaultHasArrow = hasArrow ?? (euiTheme.euiTheme as any)?.popover?.hasArrow ?? true;
           const defaultAnchorPosition = anchorPosition ?? (euiTheme.euiTheme as any)?.popover?.anchorPosition ?? 'downCenter';
           const defaultOffset = offset ?? (euiTheme.euiTheme as any)?.popover?.offset ?? 0;
+
+          // Store resolved theme values in state for positioning methods
+          const resolvedValues = {
+            hasArrow: defaultHasArrow,
+            anchorPosition: defaultAnchorPosition,
+            offset: defaultOffset,
+          };
+
+          // Update state if values have changed
+          if (JSON.stringify(this.state.resolvedThemeValues) !== JSON.stringify(resolvedValues)) {
+            this.setState({ resolvedThemeValues: resolvedValues });
+          }
 
 
           const tabIndexProp = panelProps?.tabIndex ?? _tabIndexProp;

@@ -18,7 +18,7 @@ export interface _EuiThemePopover {
 export const popoverConfig = {
   hasArrow: false,    // Reduced from default true
   anchorPosition: 'downLeft' as PopoverAnchorPosition, // Changed from default 'downCenter'
-  offset: -4,         // Changed from default 0
+  offset: 4,         // Changed from default 0
 };
 
 // Main export (following the same pattern as other theme categories)
