@@ -425,6 +425,11 @@ declare module '@elastic/eui-theme-borealis/lib/eui_theme_borealis_dark.json' {
     euiColorBorderStrongRisk: string;
     euiColorBorderStrongDanger: string;
     euiColorBorderStrongText: string;
+    popover: {
+      hasArrow: boolean;
+      anchorPosition: string;
+      offset: number;
+    };
   };
   export default sassVariables;
 }

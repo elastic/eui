@@ -28,6 +28,7 @@ import {
   getWaitDuration,
   performOnFrame,
   htmlIdGenerator,
+  RenderWithEuiTheme,
 } from '../../services';
 import { setMultipleRefs } from '../../services/hooks/useCombinedRefs';
 
@@ -288,11 +289,10 @@ export class EuiPopover extends Component<Props, State> {
     isOpen: false,
     ownFocus: true,
     repositionToCrossAxis: true,
-    anchorPosition: 'downCenter',
     panelPaddingSize: 'm',
-    hasArrow: true,
     display: 'inline-block',
   };
+
 
   static getDerivedStateFromProps(
     nextProps: Props,
@@ -506,7 +506,7 @@ export class EuiPopover extends Component<Props, State> {
   positionPopover = (allowEnforcePosition: boolean) => {
     if (this.button == null || this.panel == null) return;
 
-    const { anchorPosition, offset = 0 } = this.props as PropsWithDefaults;
+    const { anchorPosition, offset = 0, hasArrow } = this.props;
 
     let position = getPopoverPositionFromAnchorPosition(anchorPosition);
     let forcePosition = undefined;
@@ -644,34 +644,44 @@ export class EuiPopover extends Component<Props, State> {
       tabIndex: _tabIndexProp,
       ...rest
     } = this.props;
-    const tabIndexProp = panelProps?.tabIndex ?? _tabIndexProp;
 
-    const styles = euiPopoverStyles();
-    const popoverStyles = [styles.euiPopover, { display, label: display }];
-    const classes = classNames(
-      'euiPopover',
-      {
-        'euiPopover-isOpen': this.state.isOpening,
-      },
-      className
-    );
+    return (
+      <RenderWithEuiTheme>
+        {(euiTheme) => {
+          // Use theme values when available, otherwise fall back to defaults
+          const defaultHasArrow = hasArrow ?? (euiTheme.euiTheme as any)?.popover?.hasArrow ?? true;
+          const defaultAnchorPosition = anchorPosition ?? (euiTheme.euiTheme as any)?.popover?.anchorPosition ?? 'downCenter';
+          const defaultOffset = offset ?? (euiTheme.euiTheme as any)?.popover?.offset ?? 0;
 
-    const showArrow = hasArrow && !attachToAnchor;
 
-    let panel;
+          const tabIndexProp = panelProps?.tabIndex ?? _tabIndexProp;
 
-    if (!this.state.suppressingPopover && (isOpen || this.state.isClosing)) {
-      let tabIndex = tabIndexProp;
-      let initialFocus = initialFocusProp;
-      let ariaDescribedby;
-      let ariaLive: HTMLAttributes<any>['aria-live'];
+          const styles = euiPopoverStyles();
+          const popoverStyles = [styles.euiPopover, { display, label: display }];
+          const classes = classNames(
+            'euiPopover',
+            {
+              'euiPopover-isOpen': this.state.isOpening,
+            },
+            className
+          );
 
-      const panelAriaModal = panelProps?.hasOwnProperty('aria-modal')
-        ? panelProps['aria-modal']
-        : 'true';
-      const panelRole = panelProps?.hasOwnProperty('role')
-        ? panelProps.role
-        : 'dialog';
+          const showArrow = defaultHasArrow && !attachToAnchor;
+
+          let panel;
+
+          if (!this.state.suppressingPopover && (isOpen || this.state.isClosing)) {
+            let tabIndex = tabIndexProp;
+            let initialFocus = initialFocusProp;
+            let ariaDescribedby;
+            let ariaLive: HTMLAttributes<any>['aria-live'];
+
+            const panelAriaModal = panelProps?.hasOwnProperty('aria-modal')
+              ? panelProps['aria-modal']
+              : 'true';
+            const panelRole = panelProps?.hasOwnProperty('role')
+              ? panelProps.role
+              : 'dialog';
 
       if (ownFocus || panelAriaModal !== 'true') {
         tabIndex = tabIndexProp ?? 0;
@@ -767,35 +777,38 @@ export class EuiPopover extends Component<Props, State> {
       );
     }
 
-    // react-focus-on and related do not register outside click detection
-    // when disabled, so we still need to conditionally check for that ourselves
-    if (ownFocus) {
-      return (
-        <div
-          css={popoverStyles}
-          className={classes}
-          ref={this.popoverRef}
-          {...rest}
-        >
-          {button instanceof HTMLElement ? null : button}
-          {panel}
-        </div>
-      );
-    } else {
-      return (
-        <EuiOutsideClickDetector onOutsideClick={this.closePopover}>
-          <div
-            css={popoverStyles}
-            className={classes}
-            ref={this.popoverRef}
-            onKeyDown={this.onKeyDown}
-            {...rest}
-          >
-            {button instanceof HTMLElement ? null : button}
-            {panel}
-          </div>
-        </EuiOutsideClickDetector>
-      );
-    }
+          // react-focus-on and related do not register outside click detection
+          // when disabled, so we still need to conditionally check for that ourselves
+          if (ownFocus) {
+            return (
+              <div
+                css={popoverStyles}
+                className={classes}
+                ref={this.popoverRef}
+                {...rest}
+              >
+                {button instanceof HTMLElement ? null : button}
+                {panel}
+              </div>
+            );
+          } else {
+            return (
+              <EuiOutsideClickDetector onOutsideClick={this.closePopover}>
+                <div
+                  css={popoverStyles}
+                  className={classes}
+                  ref={this.popoverRef}
+                  onKeyDown={this.onKeyDown}
+                  {...rest}
+                >
+                  {button instanceof HTMLElement ? null : button}
+                  {panel}
+                </div>
+              </EuiOutsideClickDetector>
+            );
+          }
+        }}
+      </RenderWithEuiTheme>
+    );
   }
 }
