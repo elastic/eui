@@ -19,6 +19,7 @@ export * from './states';
 export * from './typography';
 export * from './buttons';
 export * from './forms';
+export * from './popover';
 export * from './components';
 export * from './flags';
 export * from './overrides';

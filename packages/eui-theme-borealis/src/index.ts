@@ -18,7 +18,6 @@ import { font } from './variables/_typography';
 import { focus } from './variables/_states';
 import { components } from './variables/_components';
 import { overrides } from './variables/_overrides';
-import { popover } from './variables/_popover';
 
 import { colorVisLight } from './variables/colors/_colors_vis_light';
 import { colorVisDark } from './variables/colors/_colors_vis_dark';
@@ -27,7 +26,7 @@ export { colorVisLight as colorVis, colorVisLight, colorVisDark };
 
 export const EUI_THEME_BOREALIS_KEY = 'EUI_THEME_BOREALIS';
 
-export const euiThemeBorealis: EuiThemeShape & { popover: typeof popover } = {
+export const euiThemeBorealis: EuiThemeShape = {
   colors,
   base,
   size,
@@ -45,7 +44,6 @@ export const euiThemeBorealis: EuiThemeShape & { popover: typeof popover } = {
     formVariant: 'refresh',
   },
   overrides,
-  popover,
 };
 
 export const EuiThemeBorealis = buildTheme(

@@ -6,10 +6,8 @@
  * Side Public License, v 1.
  */
 
-import { _EuiThemePopover } from '@elastic/eui-theme-common';
-
-export const popover: _EuiThemePopover = {
-  hasArrow: false,    // Reduced from default true
-  anchorPosition: 'downLeft', // Changed from default 'downCenter'
-  offset: 4,         // Changed from default 0
+export type _EuiThemePopover = {
+  hasArrow: boolean;
+  anchorPosition: string;
+  offset: number;
 };

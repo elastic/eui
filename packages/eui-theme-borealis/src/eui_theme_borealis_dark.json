@@ -423,10 +423,5 @@
   "euiColorBorderStrongWarning": "#FACB3D",
   "euiColorBorderStrongRisk": "#FC8544",
   "euiColorBorderStrongDanger": "#F6726A",
-  "euiColorBorderStrongText": "#8E9FBC",
-  "popover": {
-    "hasArrow": false,
-    "anchorPosition": "downLeft",
-    "offset": 4
-  }
+  "euiColorBorderStrongText": "#8E9FBC"
 }

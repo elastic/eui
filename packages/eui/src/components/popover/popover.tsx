@@ -657,15 +657,14 @@ export class EuiPopover extends Component<Props, State> {
     return (
       <RenderWithEuiTheme>
         {(euiTheme) => {
-          // Use theme values when available, otherwise fall back to defaults
+          // Use component tokens when available, otherwise fall back to defaults
           const defaultHasArrow =
-            hasArrow ?? (euiTheme.euiTheme as any)?.popover?.hasArrow ?? true;
-          const defaultAnchorPosition =
-            anchorPosition ??
-            (euiTheme.euiTheme as any)?.popover?.anchorPosition ??
-            'downCenter';
+            hasArrow ?? euiTheme.euiTheme.components.popover?.hasArrow ?? true;
+          const defaultAnchorPosition = (anchorPosition ??
+            euiTheme.euiTheme.components.popover?.anchorPosition ??
+            'downCenter') as PopoverAnchorPosition;
           const defaultOffset =
-            offset ?? (euiTheme.euiTheme as any)?.popover?.offset ?? 0;
+            offset ?? euiTheme.euiTheme.components.popover?.offset ?? 0;
 
           // Store resolved theme values for positioning methods
           this.resolvedThemeValues = {
