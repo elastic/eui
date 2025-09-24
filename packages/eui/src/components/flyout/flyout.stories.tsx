@@ -25,6 +25,11 @@ const meta: Meta<EuiFlyoutProps> = {
   title: 'Layout/EuiFlyout/EuiFlyout',
   component: EuiFlyout,
   argTypes: {
+    backgroundStyle: {
+      options: ['default', 'shaded'],
+      control: { type: 'radio' },
+      description: 'The background style of the flyout.',
+    },
     as: { control: 'text' },
     // TODO: maxWidth has multiple types
   },
@@ -40,6 +45,7 @@ const meta: Meta<EuiFlyoutProps> = {
     closeButtonPosition: 'inside',
     hideCloseButton: false,
     ownFocus: true,
+    backgroundStyle: 'default',
   },
   parameters: {
     loki: {
