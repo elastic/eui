@@ -7,8 +7,7 @@ keywords: [EuiToolTip]
 Generally, tooltips should provide short, **non-essential**, contextual information, usually naming or describing with more detail. If you need interactive content or anything other than text, we recommend using [EuiPopover](../containers/popover.mdx) instead.
 
 :::accessibility Accessibility requirements
-
-- Tooltips **must** be anchored to elements that accept keyboard focus.
+- Tooltips **must** be anchored to focusable elements — if you’re using a non-interactive tag (like `span` or `EuiText`), add `tabIndex={0}`, or preferably use an interactive one (like `EuiButton`) for built-in accessibility.
 - Put only plain text in tooltips so the content is accessible to keyboard and screen reader users.
 - Do not add links, buttons, or other interactive content inside tooltips.
 :::
