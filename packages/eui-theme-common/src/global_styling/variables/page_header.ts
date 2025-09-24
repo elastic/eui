@@ -6,20 +6,6 @@
  * Side Public License, v 1.
  */
 
-/**
- * Page-related component configurations
- */
-export interface _EuiThemePage {
-  pageHeader: {
-    tabsSize: string;
-  };
-  // Future page-related configurations can go here:
-  // pageSection: { ... };
-  // pageTemplate: { ... };
-}
-
-export const page: _EuiThemePage = {
-  pageHeader: {
-    tabsSize: 'm', // Reduced from default 'l'
-  },
+export type _EuiThemePageHeader = {
+  tabsSize: string;
 };

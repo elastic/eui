@@ -475,10 +475,16 @@ const component_colors: _EuiThemeComponentColors = {
   ),
 };
 
+// Amsterdam theme uses default tab size for pageHeader
+const pageHeader = {
+  tabsSize: 'l',
+};
+
 export const components: _EuiThemeComponents = {
   buttons,
   forms,
   emptyPrompt,
+  pageHeader,
   LIGHT: component_colors,
   DARK: {
     ...component_colors,
