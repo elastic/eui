@@ -220,7 +220,7 @@ const Session: React.FC<FlyoutChildStoryArgs> = (args) => {
           backgroundStyle={childBackgroundStyle}
           maxWidth={childMaxWidth}
           ownFocus={false}
-          aria-label={`Main Flyout Menu (${mainSize})`}
+          aria-label={`Child Flyout Menu (${childSize})`}
           {...rest}
           onClose={closeChild}
         >
