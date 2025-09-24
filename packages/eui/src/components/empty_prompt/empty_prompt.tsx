@@ -18,7 +18,7 @@ import { useEuiMemoizedStyles, useEuiTheme } from '../../services';
 import { CommonProps } from '../common';
 import { EuiTitle, EuiTitleSize } from '../title';
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
-import { EuiSpacer } from '../spacer';
+import { EuiSpacer, SpacerSize } from '../spacer';
 import { EuiIcon, IconColor, IconType } from '../icon';
 import { isNamedColor } from '../icon/named_colors';
 import { EuiText } from '../text';
@@ -101,12 +101,12 @@ export const EuiEmptyPrompt: FunctionComponent<EuiEmptyPromptProps> = ({
   const euiTheme = useEuiTheme();
 
   // Get spacing values from theme, fallback to defaults for Amsterdam theme
-  const titleBodySpacing =
-    (euiTheme.euiTheme as any).spacing?.emptyPrompt?.titleBodySpacing ?? 'm';
-  const bodyActionsSpacing =
-    (euiTheme.euiTheme as any).spacing?.emptyPrompt?.bodyActionsSpacing ?? 'l';
+  const titleBodySpacing = (euiTheme.euiTheme.components.emptyPrompt
+    ?.titleBodySpacing ?? 'm') as SpacerSize;
+  const bodyActionsSpacing = (euiTheme.euiTheme.components.emptyPrompt
+    ?.bodyActionsSpacing ?? 'l') as SpacerSize;
   const themePaddingSize =
-    (euiTheme.euiTheme as any).spacing?.emptyPrompt?.paddingSize ?? 'l';
+    euiTheme.euiTheme.components.emptyPrompt?.paddingSize ?? 'l';
   const cssStyles = [styles.euiEmptyPrompt, styles[layout]];
   const finalPaddingSize = (paddingSize ?? themePaddingSize) as PaddingSize;
   const mainStyles = [

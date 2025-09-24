@@ -12,6 +12,7 @@ import {
 } from '../../services/theme/types';
 import { _EuiThemeButton } from './buttons';
 import { _EuiThemeForm, _EuiThemeFormColors } from './forms';
+import { _EuiThemeEmptyPrompt } from './empty_prompt';
 
 export type _EuiThemeComponentColors = {
   badgeBackground: ColorModeSwitch;
@@ -157,6 +158,7 @@ export type _EuiThemeComponentColors = {
 export type _EuiThemeComponents = {
   buttons: _EuiThemeButton;
   forms: _EuiThemeForm & StrictColorModeSwitch<_EuiThemeFormColors>;
+  emptyPrompt: _EuiThemeEmptyPrompt;
   /**
    * internal-only key that holds temporary tokens used while migrating themes
    */
