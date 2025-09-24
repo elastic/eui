@@ -71,6 +71,7 @@ export const EuiManagedFlyout = ({
   size,
   css: customCss,
   flyoutMenuProps: _flyoutMenuProps,
+  backgroundStyle = 'default',
   ...props
 }: EuiManagedFlyoutProps) => {
   const flyoutId = useFlyoutId(id);
@@ -166,6 +167,7 @@ export const EuiManagedFlyout = ({
             ...props,
             onClose,
             size,
+            backgroundStyle,
             flyoutMenuProps,
             onAnimationEnd,
             [PROPERTY_FLYOUT]: true,

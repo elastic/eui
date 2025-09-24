@@ -69,7 +69,7 @@ const meta: Meta<FlyoutChildStoryArgs> = {
       description:
         'The size of the child flyout. If the main is `s`, the child can be `s`, or `m`. If the main is `m`, the child can only be `s`.',
     },
-    childBackgroundStyle: {
+    backgroundStyle: {
       options: ['default', 'shaded'],
       control: { type: 'radio' },
       description: 'The background style of the child flyout.',
@@ -105,7 +105,7 @@ const meta: Meta<FlyoutChildStoryArgs> = {
      */
 
     // use "childBackgroundStyle" instead
-    backgroundStyle: { table: { disable: true } },
+    // backgroundStyle: { table: { disable: true } },
     // use "mainSize" and "childSize" instead
     size: { table: { disable: true } },
     // use "mainMaxWidth" and "childMaxWidth" instead
@@ -127,7 +127,7 @@ const meta: Meta<FlyoutChildStoryArgs> = {
   args: {
     mainSize: 'fill',
     childSize: 'm',
-    childBackgroundStyle: 'default',
+    backgroundStyle: 'default',
     mainFlyoutType: 'overlay',
     outsideClickCloses: false,
     ownFocus: true, // Depends on `mainFlyoutType=overlay`
@@ -149,7 +149,7 @@ const Session: React.FC<FlyoutChildStoryArgs> = (args) => {
   const {
     mainSize,
     childSize,
-    childBackgroundStyle,
+    backgroundStyle,
     childMaxWidth,
     mainFlyoutType,
     mainMaxWidth,
@@ -195,6 +195,7 @@ const Session: React.FC<FlyoutChildStoryArgs> = (args) => {
           aria-label={`Main Flyout Menu (${mainSize})`}
           {...rest}
           onClose={closeMain}
+          backgroundStyle={backgroundStyle}
         >
           <EuiFlyoutBody>
             <EuiText>
@@ -217,7 +218,7 @@ const Session: React.FC<FlyoutChildStoryArgs> = (args) => {
           {isChildOpen && (
             <EuiFlyout
               size={childSize}
-              backgroundStyle={childBackgroundStyle}
+              backgroundStyle={backgroundStyle}
               maxWidth={childMaxWidth}
               ownFocus={false}
               aria-label={`Child Flyout Menu (${childSize})`}
