@@ -14,6 +14,8 @@ import {
   STAGE_ACTIVE,
   STAGE_BACKGROUNDED,
   STAGE_BACKGROUNDING,
+  STAGE_CLOSING,
+  STAGE_INACTIVE,
   STAGE_OPENING,
   STAGE_RETURNING,
 } from './const';
@@ -121,7 +123,11 @@ export const euiManagedFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
         case STAGE_RETURNING:
           return [activeFlyout, returningTransition];
 
-        // TODO(tkajtoch): What to do with STAGE_CLOSING?
+        case STAGE_INACTIVE:
+          return [inactiveFlyout, noTransition];
+
+        case STAGE_CLOSING:
+          return [inactiveTransition];
       }
     },
     managedFlyout: css`
