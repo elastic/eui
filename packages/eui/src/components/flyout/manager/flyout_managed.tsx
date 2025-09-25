@@ -123,8 +123,6 @@ export const EuiManagedFlyout = ({
     throw new Error(createValidationErrorMessage(titleError));
   }
 
-  // Track whether the onClose callback has already been called to prevent double-firing
-  const onCloseCalledRef = useRef<boolean>(false);
   const isActive = useIsFlyoutActive(flyoutId);
   const currentSession = useCurrentSession();
 
@@ -138,22 +136,13 @@ export const EuiManagedFlyout = ({
     isRegisteredRef.current = true;
   }
 
-  useEffect(() => {
-    if (
-      isRegisteredRef.current &&
-      !flyoutExistsInState &&
-      !isActive &&
-      onCloseProp
-    ) {
-      onCloseProp(new MouseEvent('click'));
-    }
-  }, [flyoutExistsInState, isActive, onCloseProp, flyoutId]);
+  // Remove automatic close effect - let user actions control state
+  // This was causing cascading closes in multi-session scenarios
 
-  // Stabilize the onClose callback to prevent unnecessary re-registrations
+  // Stabilize the onClose callback
   const onCloseCallbackRef = useRef<((e?: CloseEvent) => void) | undefined>();
   onCloseCallbackRef.current = (e) => {
-    if (!onCloseCalledRef.current && onCloseProp) {
-      onCloseCalledRef.current = true;
+    if (onCloseProp) {
       const event = e || new MouseEvent('click');
       onCloseProp(event);
     }
@@ -163,12 +152,14 @@ export const EuiManagedFlyout = ({
   const onActiveCallbackRef = useRef<(() => void) | undefined>();
   onActiveCallbackRef.current = onActiveProp;
 
-  // Register with flyout manager context when open
+  // Register with flyout manager context when open, remove when closed
   useEffect(() => {
     if (isOpen) {
       addFlyout(flyoutId, title!, level, size as string);
+    } else {
+      closeFlyout(flyoutId);
     }
-  }, [isOpen, flyoutId, title, level, size, addFlyout]);
+  }, [isOpen, flyoutId, title, level, size, addFlyout, closeFlyout]);
 
   // Monitor current session changes and fire onActive callback when this flyout becomes active
   useEffect(() => {
@@ -189,8 +180,7 @@ export const EuiManagedFlyout = ({
 
   useEffect(() => {
     return () => {
-      // Call onClose callback during cleanup (protected by existing ref logic)
-      onCloseCallbackRef.current?.();
+      // Only remove from manager on component unmount, don't trigger close callback
       closeFlyout(flyoutId);
     };
   }, [closeFlyout, flyoutId]);
@@ -201,7 +191,7 @@ export const EuiManagedFlyout = ({
     'width'
   );
 
-  // Pass a wrapper of onClose to Flyout to ensure the callback is only fired once
+  // Pass a wrapper of onClose to Flyout with logging
   const onClose = (e?: CloseEvent) => {
     onCloseCallbackRef.current?.(e);
   };
@@ -217,6 +207,8 @@ export const EuiManagedFlyout = ({
     flyoutId,
     level,
   });
+
+  // Log activity stage changes
 
   // Note: history controls are only relevant for main flyouts
   const historyItems = useMemo(() => {

@@ -73,7 +73,9 @@ export const useFlyoutActivityStage = ({
     let next: EuiFlyoutActivityStage | null = null;
 
     if (s === STAGE_ACTIVE && !isActive) next = STAGE_CLOSING;
-    else if (s === STAGE_INACTIVE && isActive) next = STAGE_RETURNING;
+    else if (s === STAGE_INACTIVE && isActive) {
+      next = STAGE_RETURNING;
+    }
     else if (
       level === LEVEL_MAIN &&
       isActive &&
