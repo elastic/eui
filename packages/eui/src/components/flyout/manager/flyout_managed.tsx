@@ -76,6 +76,7 @@ export const EuiManagedFlyout = ({
   level,
   size,
   css: customCss,
+  isOpen = true,
   flyoutMenuProps: _flyoutMenuProps,
   ...props
 }: EuiManagedFlyoutProps) => {
@@ -164,8 +165,12 @@ export const EuiManagedFlyout = ({
 
   // Register with flyout manager context
   useEffect(() => {
-    addFlyout(flyoutId, title!, level, size as string);
-  }, [size, flyoutId, title, level, addFlyout]);
+    if (isOpen) {
+      addFlyout(flyoutId, title!, level, size as string);
+
+      return () => closeFlyout(flyoutId);
+    }
+  }, [isOpen, flyoutId, size, title, level, addFlyout, closeFlyout]);
 
   // Monitor current session changes and fire onActive callback when this flyout becomes active
   useEffect(() => {
@@ -243,7 +248,7 @@ export const EuiManagedFlyout = ({
           css={[
             styles.managedFlyout,
             customCss,
-            styles.stage(activityStage, props.side),
+            styles.stage(activityStage, props.side, level),
           ]}
           {...{
             ...props,
@@ -251,6 +256,7 @@ export const EuiManagedFlyout = ({
             size,
             flyoutMenuProps,
             onAnimationEnd,
+            isOpen,
             [PROPERTY_FLYOUT]: true,
             [PROPERTY_LAYOUT_MODE]: layoutMode,
             [PROPERTY_LEVEL]: level,
