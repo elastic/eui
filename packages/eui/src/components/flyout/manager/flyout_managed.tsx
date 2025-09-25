@@ -163,14 +163,12 @@ export const EuiManagedFlyout = ({
   const onActiveCallbackRef = useRef<(() => void) | undefined>();
   onActiveCallbackRef.current = onActiveProp;
 
-  // Register with flyout manager context
+  // Register with flyout manager context when open
   useEffect(() => {
     if (isOpen) {
       addFlyout(flyoutId, title!, level, size as string);
-
-      return () => closeFlyout(flyoutId);
     }
-  }, [isOpen, flyoutId, size, title, level, addFlyout, closeFlyout]);
+  }, [isOpen, flyoutId, title, level, size, addFlyout]);
 
   // Monitor current session changes and fire onActive callback when this flyout becomes active
   useEffect(() => {
