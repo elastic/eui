@@ -10,6 +10,7 @@ import { css, keyframes } from '@emotion/react';
 import { euiCanAnimate, logicalCSS } from '../../../global_styling';
 import { UseEuiTheme } from '../../../services';
 import {
+  LEVEL_MAIN,
   STAGE_ACTIVE,
   STAGE_BACKGROUNDED,
   STAGE_BACKGROUNDING,
@@ -18,9 +19,8 @@ import {
   STAGE_OPENING,
   STAGE_RETURNING,
 } from './const';
-import { euiFlyoutSlideInLeft, euiFlyoutSlideInRight } from '../flyout.styles';
 import { _EuiFlyoutSide, DEFAULT_SIDE } from '../const';
-import { EuiFlyoutActivityStage } from './types';
+import type { EuiFlyoutActivityStage, EuiFlyoutLevel } from './types';
 
 /**
  * Emotion styles for managed flyouts.
@@ -33,7 +33,8 @@ export const euiManagedFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
   return {
     stage: (
       activeStage: EuiFlyoutActivityStage,
-      side: _EuiFlyoutSide = DEFAULT_SIDE
+      side: _EuiFlyoutSide = DEFAULT_SIDE,
+      level: EuiFlyoutLevel
     ) => {
       // Animation for moving flyout backwards in 3D space (z-axis) when inactive
       const euiFlyoutSlideBack3D = keyframes`
@@ -83,16 +84,6 @@ export const euiManagedFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
         }
       `;
 
-      const openingTransition = css`
-        ${euiCanAnimate} {
-          animation: ${side === 'left'
-              ? euiFlyoutSlideInLeft
-              : euiFlyoutSlideInRight}
-            ${euiTheme.animation.normal} ${euiTheme.animation.resistance}
-            forwards;
-        }
-      `;
-
       const noTransition = css`
         ${euiCanAnimate} {
           animation: none;
@@ -116,21 +107,27 @@ export const euiManagedFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
 
       switch (activeStage) {
         case STAGE_OPENING:
-          return [activeFlyout, openingTransition];
+          // Apply a higher z-index to opening main flyouts for seamless
+          // transitions from previously active main flyouts
+          return [level === LEVEL_MAIN && activeFlyout];
 
         case STAGE_ACTIVE:
           return [activeFlyout, noTransition];
 
-        case STAGE_CLOSING:
         case STAGE_BACKGROUNDING:
           return [inactiveTransition];
 
-        case STAGE_INACTIVE:
         case STAGE_BACKGROUNDED:
           return [inactiveFlyout, noTransition];
 
         case STAGE_RETURNING:
           return [activeFlyout, returningTransition];
+
+        case STAGE_INACTIVE:
+          return [inactiveFlyout, noTransition];
+
+        case STAGE_CLOSING:
+          return [inactiveTransition];
       }
     },
     managedFlyout: css`
