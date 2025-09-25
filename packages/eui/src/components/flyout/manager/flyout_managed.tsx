@@ -126,16 +126,6 @@ export const EuiManagedFlyout = ({
   const isActive = useIsFlyoutActive(flyoutId);
   const currentSession = useCurrentSession();
 
-  // Force unmount when flyout is removed from state but component still exists
-  const flyoutExistsInState = state.flyouts.some(
-    (f) => f.flyoutId === flyoutId
-  );
-
-  const isRegisteredRef = useRef<boolean>(false);
-  if (flyoutExistsInState) {
-    isRegisteredRef.current = true;
-  }
-
   // Remove automatic close effect - let user actions control state
   // This was causing cascading closes in multi-session scenarios
 
@@ -160,6 +150,28 @@ export const EuiManagedFlyout = ({
       closeFlyout(flyoutId);
     }
   }, [isOpen, flyoutId, title, level, size, addFlyout, closeFlyout]);
+
+  // Track if flyout was ever registered to avoid false positives on initial mount
+  const wasRegisteredRef = useRef(false);
+
+  // Detect when flyout has been removed from manager state (e.g., via Back button)
+  // and trigger onClose callback to notify the parent component
+  useEffect(() => {
+    const flyoutExistsInManager = state.flyouts.some(
+      (f) => f.flyoutId === flyoutId
+    );
+
+    if (isOpen && flyoutExistsInManager) {
+      wasRegisteredRef.current = true;
+    }
+
+    // If flyout was previously registered, is marked as open, but no longer exists in manager state,
+    // it was removed via navigation (Back button) - trigger close callback
+    if (wasRegisteredRef.current && isOpen && !flyoutExistsInManager) {
+      onCloseCallbackRef.current?.(new MouseEvent('navigation'));
+      wasRegisteredRef.current = false; // Reset to avoid repeated calls
+    }
+  }, [state.flyouts, isOpen, flyoutId]);
 
   // Monitor current session changes and fire onActive callback when this flyout becomes active
   useEffect(() => {
