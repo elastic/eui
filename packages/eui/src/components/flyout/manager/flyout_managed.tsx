@@ -126,9 +126,6 @@ export const EuiManagedFlyout = ({
   const isActive = useIsFlyoutActive(flyoutId);
   const currentSession = useCurrentSession();
 
-  // Remove automatic close effect - let user actions control state
-  // This was causing cascading closes in multi-session scenarios
-
   // Stabilize the onClose callback
   const onCloseCallbackRef = useRef<((e?: CloseEvent) => void) | undefined>();
   onCloseCallbackRef.current = (e) => {
@@ -138,7 +135,7 @@ export const EuiManagedFlyout = ({
     }
   };
 
-  // Stabilize the onActive callback to prevent unnecessary re-registrations
+  // Stabilize the onActive callback
   const onActiveCallbackRef = useRef<(() => void) | undefined>();
   onActiveCallbackRef.current = onActiveProp;
 
@@ -205,7 +202,7 @@ export const EuiManagedFlyout = ({
     'width'
   );
 
-  // Pass a wrapper of onClose to Flyout with logging
+  // Pass the stabilized onClose callback to the flyout menu context
   const onClose = (e?: CloseEvent) => {
     onCloseCallbackRef.current?.(e);
   };
@@ -221,8 +218,6 @@ export const EuiManagedFlyout = ({
     flyoutId,
     level,
   });
-
-  // Log activity stage changes
 
   // Note: history controls are only relevant for main flyouts
   const historyItems = useMemo(() => {

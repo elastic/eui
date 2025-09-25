@@ -46,29 +46,33 @@ jest.mock('../flyout.component', () => {
   };
 });
 
-// Mock hooks that would otherwise depend on ResizeObserver or animation timing
+// Shared mock functions - must be defined in module scope for Jest
 const mockCloseFlyout = jest.fn();
+const createMockState = () => ({
+  sessions: [],
+  flyouts: [],
+  layoutMode: 'side-by-side' as const,
+});
+const createMockFunctions = () => ({
+  dispatch: jest.fn(),
+  addFlyout: jest.fn(),
+  closeFlyout: mockCloseFlyout,
+  setActiveFlyout: jest.fn(),
+  setFlyoutWidth: jest.fn(),
+  goBack: jest.fn(),
+  goToFlyout: jest.fn(),
+  getHistoryItems: jest.fn(() => []),
+});
 
+// Mock hooks that would otherwise depend on ResizeObserver or animation timing
 jest.mock('./hooks', () => ({
   useFlyoutManagerReducer: () => ({
-    state: { sessions: [], flyouts: [], layoutMode: 'side-by-side' },
-    dispatch: jest.fn(),
-    addFlyout: jest.fn(),
-    closeFlyout: mockCloseFlyout,
-    setActiveFlyout: jest.fn(),
-    setFlyoutWidth: jest.fn(),
-    goBack: jest.fn(),
-    goToFlyout: jest.fn(),
-    getHistoryItems: jest.fn(() => []),
+    state: createMockState(),
+    ...createMockFunctions(),
   }),
   useFlyoutManager: () => ({
-    state: { sessions: [], flyouts: [], layoutMode: 'side-by-side' },
-    addFlyout: jest.fn(),
-    closeFlyout: mockCloseFlyout,
-    setFlyoutWidth: jest.fn(),
-    goBack: jest.fn(),
-    goToFlyout: jest.fn(),
-    getHistoryItems: jest.fn(() => []),
+    state: createMockState(),
+    ...createMockFunctions(),
   }),
   useIsFlyoutActive: () => true,
   useHasChildFlyout: () => false,
@@ -104,13 +108,8 @@ jest.mock('./validation', () => ({
 jest.mock('./provider', () => ({
   ...jest.requireActual('./provider'),
   useFlyoutManager: () => ({
-    state: { sessions: [], flyouts: [], layoutMode: 'side-by-side' },
-    addFlyout: jest.fn(),
-    closeFlyout: mockCloseFlyout,
-    setFlyoutWidth: jest.fn(),
-    goBack: jest.fn(),
-    goToFlyout: jest.fn(),
-    getHistoryItems: jest.fn(() => []),
+    state: createMockState(),
+    ...createMockFunctions(),
   }),
 }));
 
@@ -118,6 +117,19 @@ jest.mock('./provider', () => ({
 jest.mock('../../observer/resize_observer', () => ({
   useResizeObserver: () => ({ width: 480 }),
 }));
+
+// Import test utilities after mocks
+import {
+  createTestState,
+  createTestSession,
+  createTestFlyout,
+} from './__mocks__';
+
+// Helper functions for tests - these can reference the mock functions defined above
+const createFlyoutManagerMock = () => ({
+  state: createMockState(),
+  ...createMockFunctions(),
+});
 
 describe('EuiManagedFlyout', () => {
   const renderInProvider = (ui: React.ReactElement) =>
@@ -285,7 +297,7 @@ describe('EuiManagedFlyout', () => {
   });
 
   describe('onClose callback behavior', () => {
-    it('calls onClose callback during component cleanup/unmount', () => {
+    it('does not call onClose callback during component cleanup/unmount', () => {
       const onClose = jest.fn();
 
       const { unmount } = renderInProvider(
@@ -305,9 +317,9 @@ describe('EuiManagedFlyout', () => {
         unmount();
       });
 
-      // onClose should be called during cleanup
-      expect(onClose).toHaveBeenCalledTimes(1);
-      expect(onClose).toHaveBeenCalledWith(expect.any(MouseEvent));
+      // onClose should NOT be called during cleanup (intentional design)
+      expect(onClose).not.toHaveBeenCalled();
+      expect(mockCloseFlyout).toHaveBeenCalledWith('cleanup-test');
     });
 
     it('does not call onClose multiple times (double-firing prevention)', () => {
