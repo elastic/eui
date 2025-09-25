@@ -183,7 +183,8 @@ export const EuiPageHeaderContent: FunctionComponent<
   const styles = setStyleForRestrictedPageWidth(restrictWidth, style);
 
   // Get tabs size from theme, fallback to 'l' for other themes
-  const themeTabsSize = (euiTheme.components.pageHeader?.tabsSize ?? 'l') as EuiTabsSizes;
+  const themeTabsSize = (euiTheme.components.pageHeader?.tabsSize ??
+    'l') as EuiTabsSizes;
 
   let paddingSides: LogicalSides = 'vertical';
   let paddingSize = _paddingSize;
