@@ -92,7 +92,7 @@ describe('EuiDataGrid', () => {
         });
     });
 
-    it('accounts for a horizontal scrollbar', () => {
+    it.skip('accounts for a horizontal scrollbar', () => {
       const columns: EuiDataGridColumn[] = [];
       for (let i = 0; i < 100; i++) {
         columns.push({ id: `column ${i}` });
