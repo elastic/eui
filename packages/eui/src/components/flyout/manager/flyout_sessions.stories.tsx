@@ -20,6 +20,7 @@ import {
   EuiPageTemplateProps,
   EuiSpacer,
   EuiSwitch,
+  EuiSwitchEvent,
   EuiText,
   EuiTitle,
 } from '../..';
@@ -56,31 +57,21 @@ const FlyoutSession: React.FC<FlyoutSessionProps> = React.memo((props) => {
   const [isFlyoutVisible, setIsFlyoutVisible] = useState(false);
   const [isChildFlyoutVisible, setIsChildFlyoutVisible] = useState(false);
 
-  // Log state changes (only when actually changing, not on every render)
-  console.log(`[STORY ${title}] Render:`, { 
-    isFlyoutVisible, 
-    isChildFlyoutVisible 
-  });
-
-  // Main flyout lifecycle handlers - memoized to prevent unnecessary re-renders
-
+  // Main flyout lifecycle handlers
   const handleActivateMainFlyout = useCallback(() => {
     action('activate main flyout')(title);
   }, [title]);
 
   const handleCloseMainFlyout = useCallback(() => {
-    console.log(`[STORY ${title}] handleCloseMainFlyout called`);
     action('close main flyout')(title);
     setIsFlyoutVisible(false);
     setIsChildFlyoutVisible(false);
-    console.log(`[STORY ${title}] State updated: isFlyoutVisible=false, isChildFlyoutVisible=false`);
   }, [title]);
 
   const handleCloseButtonClick = useCallback(() => {
-    console.log(`[STORY ${title}] handleCloseButtonClick called`);
+    action('close button click')(title);
     setIsFlyoutVisible(false);
     setIsChildFlyoutVisible(false);
-    console.log(`[STORY ${title}] Footer button - State updated: isFlyoutVisible=false, isChildFlyoutVisible=false`);
   }, [title]);
 
   // Child flyout lifecycle handlers - memoized
@@ -90,50 +81,39 @@ const FlyoutSession: React.FC<FlyoutSessionProps> = React.memo((props) => {
   }, [title]);
 
   const handleCloseChildFlyout = useCallback(() => {
-    console.log(`[STORY ${title}] handleCloseChildFlyout called`);
     action('close child flyout')(title);
     setIsChildFlyoutVisible(false);
-    console.log(`[STORY ${title}] Child close - State updated: isChildFlyoutVisible=false`);
   }, [title]);
 
   const handleCloseChildButtonClick = useCallback(() => {
-    console.log(`[STORY ${title}] handleCloseChildButtonClick called`);
+    action('close button click')(title);
     setIsChildFlyoutVisible(false);
-    console.log(`[STORY ${title}] Child footer button - State updated: isChildFlyoutVisible=false`);
   }, [title]);
 
   // Memoized event handlers for inline callbacks
   const handleOpenMainFlyout = useCallback(() => {
-    console.log(`[STORY ${title}] Open button clicked`);
+    action('open main flyout')(title);
     setIsFlyoutVisible(true);
-    console.log(`[STORY ${title}] State updated: isFlyoutVisible=true`);
   }, [title]);
 
-  const handleMainFlyoutClose = useCallback((e) => {
-    console.log(`[STORY ${title}] Main flyout onClose called with event:`, e?.type);
+  const handleMainFlyoutClose = useCallback(() => {
     handleCloseMainFlyout();
-  }, [title, handleCloseMainFlyout]);
+  }, [handleCloseMainFlyout]);
 
   const handleOpenChildFlyout = useCallback(() => {
-    console.log(`[STORY ${title}] Open child button clicked`);
     setIsChildFlyoutVisible(true);
-    console.log(`[STORY ${title}] State updated: isChildFlyoutVisible=true`);
-  }, [title]);
+  }, []);
 
-  const handleChildFlyoutClose = useCallback((e) => {
-    console.log(`[STORY ${title}] Child flyout onClose called with event:`, e?.type);
+  const handleChildFlyoutClose = useCallback(() => {
     handleCloseChildFlyout();
-  }, [title, handleCloseChildFlyout]);
+  }, [handleCloseChildFlyout]);
 
   // Render
 
   return (
     <>
       <EuiText>
-        <EuiButton
-          disabled={isFlyoutVisible}
-          onClick={handleOpenMainFlyout}
-        >
+        <EuiButton disabled={isFlyoutVisible} onClick={handleOpenMainFlyout}>
           Open {title}
         </EuiButton>
       </EuiText>
@@ -217,6 +197,8 @@ const FlyoutSession: React.FC<FlyoutSessionProps> = React.memo((props) => {
   );
 });
 
+FlyoutSession.displayName = 'FlyoutSession';
+
 const ExampleComponent = () => {
   const panelled: EuiPageTemplateProps['panelled'] = undefined;
   const restrictWidth: EuiPageTemplateProps['restrictWidth'] = false;
@@ -225,7 +207,7 @@ const ExampleComponent = () => {
   const [flyoutType, setFlyoutType] = useState<'overlay' | 'push'>('overlay');
 
   // Memoize the toggle handler to prevent unnecessary re-renders
-  const handleFlyoutTypeToggle = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFlyoutTypeToggle = useCallback((e: EuiSwitchEvent) => {
     setFlyoutType(e.target.checked ? 'push' : 'overlay');
   }, []);
 
@@ -234,86 +216,89 @@ const ExampleComponent = () => {
   const currentSession = useCurrentSession();
 
   // Memoize the list items to prevent recreating FlyoutSession components on every render
-  const listItems = useMemo(() => [
-    {
-      title: 'Session A: main size = s, child size = s',
-      description: (
-        <FlyoutSession
-          flyoutType={flyoutType}
-          title="Session A"
-          mainSize="s"
-          childSize="s"
-        />
-      ),
-    },
-    {
-      title: 'Session B: main size = m, child size = s',
-      description: (
-        <FlyoutSession
-          flyoutType={flyoutType}
-          title="Session B"
-          mainSize="m"
-          childSize="s"
-        />
-      ),
-    },
-    {
-      title: 'Session C: main size = s, child size = fill',
-      description: (
-        <FlyoutSession
-          flyoutType={flyoutType}
-          title="Session C"
-          mainSize="s"
-          childSize="fill"
-        />
-      ),
-    },
-    {
-      title: 'Session D: main size = fill, child size = s',
-      description: (
-        <FlyoutSession
-          flyoutType={flyoutType}
-          title="Session D"
-          mainSize="fill"
-          childSize="s"
-        />
-      ),
-    },
-    {
-      title: 'Session E: main size = fill',
-      description: (
-        <FlyoutSession
-          flyoutType={flyoutType}
-          title="Session E"
-          mainSize="fill"
-        />
-      ),
-    },
-    {
-      title: 'Session F: main size = s, child size = fill (maxWidth 1000px)',
-      description: (
-        <FlyoutSession
-          flyoutType={flyoutType}
-          title="Session F"
-          mainSize="s"
-          childSize="fill"
-          childMaxWidth={1000}
-        />
-      ),
-    },
-    {
-      title: 'Session G: main size = fill (maxWidth 1000px), child size = s',
-      description: (
-        <FlyoutSession
-          flyoutType={flyoutType}
-          title="Session G"
-          mainSize="fill"
-          mainMaxWidth={1000}
-          childSize="s"
-        />
-      ),
-    },
-  ], [flyoutType]); // Only recreate when flyoutType changes
+  const listItems = useMemo(
+    () => [
+      {
+        title: 'Session A: main size = s, child size = s',
+        description: (
+          <FlyoutSession
+            flyoutType={flyoutType}
+            title="Session A"
+            mainSize="s"
+            childSize="s"
+          />
+        ),
+      },
+      {
+        title: 'Session B: main size = m, child size = s',
+        description: (
+          <FlyoutSession
+            flyoutType={flyoutType}
+            title="Session B"
+            mainSize="m"
+            childSize="s"
+          />
+        ),
+      },
+      {
+        title: 'Session C: main size = s, child size = fill',
+        description: (
+          <FlyoutSession
+            flyoutType={flyoutType}
+            title="Session C"
+            mainSize="s"
+            childSize="fill"
+          />
+        ),
+      },
+      {
+        title: 'Session D: main size = fill, child size = s',
+        description: (
+          <FlyoutSession
+            flyoutType={flyoutType}
+            title="Session D"
+            mainSize="fill"
+            childSize="s"
+          />
+        ),
+      },
+      {
+        title: 'Session E: main size = fill',
+        description: (
+          <FlyoutSession
+            flyoutType={flyoutType}
+            title="Session E"
+            mainSize="fill"
+          />
+        ),
+      },
+      {
+        title: 'Session F: main size = s, child size = fill (maxWidth 1000px)',
+        description: (
+          <FlyoutSession
+            flyoutType={flyoutType}
+            title="Session F"
+            mainSize="s"
+            childSize="fill"
+            childMaxWidth={1000}
+          />
+        ),
+      },
+      {
+        title: 'Session G: main size = fill (maxWidth 1000px), child size = s',
+        description: (
+          <FlyoutSession
+            flyoutType={flyoutType}
+            title="Session G"
+            mainSize="fill"
+            mainMaxWidth={1000}
+            childSize="s"
+          />
+        ),
+      },
+    ],
+    [flyoutType]
+  ); // Only recreate when flyoutType changes
 
   return (
     <EuiPageTemplate
