@@ -142,17 +142,19 @@ export const EuiManagedFlyout = ({
   const onActiveCallbackRef = useRef<(() => void) | undefined>();
   onActiveCallbackRef.current = onActiveProp;
 
+  // Track if flyout was ever registered to avoid false positives on initial mount
+  const wasRegisteredRef = useRef(false);
+
   // Register with flyout manager context when open, remove when closed
   useEffect(() => {
     if (isOpen) {
       addFlyout(flyoutId, title!, level, size as string);
     } else {
       closeFlyout(flyoutId);
+      // Reset navigation tracking when explicitly closed via isOpen=false
+      wasRegisteredRef.current = false;
     }
   }, [isOpen, flyoutId, title, level, size, addFlyout, closeFlyout]);
-
-  // Track if flyout was ever registered to avoid false positives on initial mount
-  const wasRegisteredRef = useRef(false);
 
   // Detect when flyout has been removed from manager state (e.g., via Back button)
   // and trigger onClose callback to notify the parent component
