@@ -75,8 +75,7 @@ export const useFlyoutActivityStage = ({
     if (s === STAGE_ACTIVE && !isActive) next = STAGE_CLOSING;
     else if (s === STAGE_INACTIVE && isActive) {
       next = STAGE_RETURNING;
-    }
-    else if (
+    } else if (
       level === LEVEL_MAIN &&
       isActive &&
       s === STAGE_ACTIVE &&

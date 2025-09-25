@@ -74,8 +74,7 @@ const FlyoutSession: React.FC<FlyoutSessionProps> = React.memo((props) => {
     setIsChildFlyoutVisible(false);
   }, [title]);
 
-  // Child flyout lifecycle handlers - memoized
-
+  // Child flyout lifecycle handlers
   const handleActivateChildFlyout = useCallback(() => {
     action('activate child flyout')(title);
   }, [title]);
@@ -90,7 +89,7 @@ const FlyoutSession: React.FC<FlyoutSessionProps> = React.memo((props) => {
     setIsChildFlyoutVisible(false);
   }, [title]);
 
-  // Memoized event handlers for inline callbacks
+  // Handlers for inline callbacks
   const handleOpenMainFlyout = useCallback(() => {
     action('open main flyout')(title);
     setIsFlyoutVisible(true);
@@ -206,16 +205,13 @@ const ExampleComponent = () => {
 
   const [flyoutType, setFlyoutType] = useState<'overlay' | 'push'>('overlay');
 
-  // Memoize the toggle handler to prevent unnecessary re-renders
   const handleFlyoutTypeToggle = useCallback((e: EuiSwitchEvent) => {
     setFlyoutType(e.target.checked ? 'push' : 'overlay');
   }, []);
 
-  // Get flyout manager context
   const flyoutManager = useFlyoutManager();
   const currentSession = useCurrentSession();
 
-  // Memoize the list items to prevent recreating FlyoutSession components on every render
   const listItems = useMemo(
     () => [
       {
@@ -298,7 +294,7 @@ const ExampleComponent = () => {
       },
     ],
     [flyoutType]
-  ); // Only recreate when flyoutType changes
+  );
 
   return (
     <EuiPageTemplate

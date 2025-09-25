@@ -10,10 +10,8 @@ import { LEVEL_MAIN } from '../const';
 
 /**
  * Centralized test utilities for flyout manager tests.
- * Eliminates redundant mock setup and provides single source of truth.
  */
 
-// Shared mock functions - reused across all mocks
 export const mockCloseFlyout = jest.fn();
 
 export const createMockFunctions = () => ({
@@ -27,7 +25,6 @@ export const createMockFunctions = () => ({
   getHistoryItems: jest.fn(() => []),
 });
 
-// Shared state object - single source of truth
 export const createMockState = () => ({
   sessions: [],
   flyouts: [],
@@ -36,7 +33,6 @@ export const createMockState = () => ({
 
 /**
  * Factory for creating flyout manager API mock.
- * Used consistently across hooks, selectors, and provider mocks.
  */
 export const createFlyoutManagerMock = () => ({
   state: createMockState(),
@@ -45,7 +41,6 @@ export const createFlyoutManagerMock = () => ({
 
 /**
  * Factory for creating flyout manager reducer mock.
- * Includes additional reducer-specific properties.
  */
 export const createFlyoutManagerReducerMock = () => ({
   state: createMockState(),
@@ -54,7 +49,6 @@ export const createFlyoutManagerReducerMock = () => ({
 
 /**
  * Helper for creating dynamic test state.
- * Useful for tests that need to simulate state changes.
  */
 export const createTestState = (
   overrides: Partial<ReturnType<typeof createMockState>> = {}
@@ -86,10 +80,3 @@ export const createTestFlyout = (
   flyoutId,
   level,
 });
-
-/**
- * Reset all mocks. Call this in beforeEach.
- */
-export const resetFlyoutMocks = () => {
-  jest.clearAllMocks();
-};
