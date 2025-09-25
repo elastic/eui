@@ -543,6 +543,21 @@ export class EuiInMemoryTable<T extends object = object> extends Component<
   onPlainTextSearch = (searchValue: string) => {
     const escapedQueryText = searchValue.replace(/["\\]/g, '\\$&');
     const finalQuery = `"${escapedQueryText}"`;
+    const { search } = this.props;
+
+    if (isEuiSearchBarProps(search)) {
+      if (search.onChange) {
+        const shouldQueryInMemory = search.onChange({
+          query: EuiSearchBar.Query.parse(finalQuery),
+          queryText: escapedQueryText,
+          error: null,
+        });
+        if (!shouldQueryInMemory) {
+          return;
+        }
+      }
+    }
+
     this.setState({
       query: EuiSearchBar.Query.parse(finalQuery),
     });

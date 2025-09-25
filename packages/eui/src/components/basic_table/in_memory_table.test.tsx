@@ -1505,5 +1505,69 @@ describe('EuiInMemoryTable', () => {
       expect(tableContent).toHaveLength(1); // only 1 match
       expect(tableContent[0]).toHaveTextContent(specialCharacterSearch);
     });
+
+    it('fires the onChange callback', () => {
+      const items = [{ title: 'Hello' }, { title: 'Goodbye' }];
+      const columns = [{ field: 'title', name: 'Title' }];
+      const TEXT = 'Hello World!';
+      const mockOnChange = jest.fn();
+
+      const { getByTestSubject, container } = render(
+        <EuiInMemoryTable
+          items={items}
+          searchFormat="text"
+          search={{
+            box: { incremental: true, 'data-test-subj': 'searchbox' },
+            onChange: mockOnChange,
+          }}
+          columns={columns}
+        />
+      );
+
+      fireEvent.keyUp(getByTestSubject('searchbox'), {
+        target: { value: TEXT },
+      });
+
+      const tableContent = container.querySelectorAll(
+        '.euiTableRowCell .euiTableCellContent'
+      );
+      expect(mockOnChange).toHaveBeenCalledTimes(1);
+      expect(mockOnChange).toHaveBeenCalledWith({
+        query: Query.parse(`"${TEXT}"`),
+        queryText: TEXT,
+        error: null,
+      });
+      expect(tableContent).toHaveLength(items.length); // all items
+    });
+
+    it('fires the onChange callback but handles internal state too', () => {
+      const items = [{ title: 'foo' }, { title: 'bar' }, { title: 'baz' }];
+      const columns = [{ field: 'title', name: 'Title' }];
+      const TEXT = 'ba';
+      const mockOnChange = jest.fn();
+      mockOnChange.mockReturnValue(true);
+
+      const { getByTestSubject, container } = render(
+        <EuiInMemoryTable
+          items={items}
+          searchFormat="text"
+          search={{
+            box: { incremental: true, 'data-test-subj': 'searchbox' },
+            onChange: mockOnChange,
+          }}
+          columns={columns}
+        />
+      );
+
+      fireEvent.keyUp(getByTestSubject('searchbox'), {
+        target: { value: TEXT },
+      });
+
+      expect(mockOnChange).toHaveBeenCalledTimes(1);
+      const tableContent = container.querySelectorAll(
+        '.euiTableRowCell .euiTableCellContent'
+      );
+      expect(tableContent).toHaveLength(2); // 2 matches for "ba"
+    });
   });
 });
