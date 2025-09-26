@@ -169,9 +169,9 @@ export const euiProgressStyles = (
           background: repeating-linear-gradient(
             -45deg,
             transparent,
-            transparent 10px,
-            rgb(0, 0, 0, 0.25) 10px,
-            rgb(0, 0, 0, 0.25) 20px
+            transparent ${euiTheme.size.m},
+            rgb(0, 0, 0, 0.25) ${euiTheme.size.m},
+            rgb(0, 0, 0, 0.25) ${euiTheme.size.l}
           );
         }
 
