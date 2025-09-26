@@ -159,20 +159,20 @@ export const euiProgressStyles = (
         ${logicalCSS('top', 0)}
         ${logicalCSS('bottom', 0)}
         ${logicalCSS('left', 0)}
-
-        @media (prefers-reduced-motion: reduce) {
-          transform: scaleX(1) translateX(0%);
-        }
-
-        @media (prefers-reduced-motion: no-preference) {
-          transform: scaleX(0) translateX(0%);
-          animation: ${euiIndeterminateAnimation} 1s
-            ${euiTheme.animation.resistance} infinite;
-        }
+        transform: scaleX(0) translateX(0%);
+        animation: ${euiIndeterminateAnimation} 1s
+          ${euiTheme.animation.resistance} infinite;
 
         ${euiCantAnimate} {
-          animation-duration: 2s;
-          animation-timing-function: linear;
+          animation: none;
+          transform: scaleX(1) translateX(0%);
+          background: repeating-linear-gradient(
+            -45deg,
+            transparent,
+            transparent 10px,
+            rgb(0, 0, 0, 0.25) 10px,
+            rgb(0, 0, 0, 0.25) 20px
+          );
         }
 
         ${highContrastModeStyles(euiThemeContext, {
