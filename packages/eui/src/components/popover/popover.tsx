@@ -28,6 +28,7 @@ import {
   getWaitDuration,
   performOnFrame,
   htmlIdGenerator,
+  RenderWithEuiTheme,
 } from '../../services';
 import { setMultipleRefs } from '../../services/hooks/useCombinedRefs';
 
@@ -288,9 +289,7 @@ export class EuiPopover extends Component<Props, State> {
     isOpen: false,
     ownFocus: true,
     repositionToCrossAxis: true,
-    anchorPosition: 'downCenter',
     panelPaddingSize: 'm',
-    hasArrow: true,
     display: 'inline-block',
   };
 
@@ -326,6 +325,11 @@ export class EuiPopover extends Component<Props, State> {
   private button: HTMLElement | null = null;
   private panel: HTMLElement | null = null;
   private descriptionId: string = htmlIdGenerator()();
+  private resolvedThemeValues?: {
+    hasArrow: boolean;
+    anchorPosition: PopoverAnchorPosition;
+    offset: number;
+  };
 
   constructor(props: Props) {
     super(props);
@@ -506,7 +510,12 @@ export class EuiPopover extends Component<Props, State> {
   positionPopover = (allowEnforcePosition: boolean) => {
     if (this.button == null || this.panel == null) return;
 
-    const { anchorPosition, offset = 0 } = this.props as PropsWithDefaults;
+    // Use resolved theme values, otherwise fall back to props
+    const { anchorPosition, offset, hasArrow } = this.resolvedThemeValues || {
+      hasArrow: this.props.hasArrow ?? true,
+      anchorPosition: this.props.anchorPosition ?? 'downCenter',
+      offset: this.props.offset ?? 0,
+    };
 
     let position = getPopoverPositionFromAnchorPosition(anchorPosition);
     let forcePosition = undefined;
@@ -533,10 +542,10 @@ export class EuiPopover extends Component<Props, State> {
       popover: this.panel,
       offset: this.props.attachToAnchor
         ? offset
-        : this.props.hasArrow
+        : hasArrow
         ? 16 + offset
         : 8 + offset,
-      arrowConfig: this.props.hasArrow
+      arrowConfig: hasArrow
         ? { arrowWidth: 16, arrowBuffer: 10 }
         : { arrowWidth: 0, arrowBuffer: 0 },
       returnBoundingBox: this.props.attachToAnchor,
@@ -560,7 +569,7 @@ export class EuiPopover extends Component<Props, State> {
       zIndex,
     };
 
-    const willRenderArrow = !this.props.attachToAnchor && this.props.hasArrow;
+    const willRenderArrow = !this.props.attachToAnchor && hasArrow;
     const arrowStyles = willRenderArrow ? arrow : undefined;
     const arrowPosition: EuiPopoverPosition = foundPosition;
 
@@ -644,158 +653,194 @@ export class EuiPopover extends Component<Props, State> {
       tabIndex: _tabIndexProp,
       ...rest
     } = this.props;
-    const tabIndexProp = panelProps?.tabIndex ?? _tabIndexProp;
 
-    const styles = euiPopoverStyles();
-    const popoverStyles = [styles.euiPopover, { display, label: display }];
-    const classes = classNames(
-      'euiPopover',
-      {
-        'euiPopover-isOpen': this.state.isOpening,
-      },
-      className
-    );
+    return (
+      <RenderWithEuiTheme>
+        {(euiTheme) => {
+          // Use component tokens when available, otherwise fall back to defaults
+          const defaultHasArrow =
+            hasArrow ?? euiTheme.euiTheme.components.popover?.hasArrow ?? true;
+          const defaultAnchorPosition = (anchorPosition ??
+            euiTheme.euiTheme.components.popover?.anchorPosition ??
+            'downCenter') as PopoverAnchorPosition;
+          const defaultOffset =
+            offset ?? euiTheme.euiTheme.components.popover?.offset ?? 0;
 
-    const showArrow = hasArrow && !attachToAnchor;
+          // Store resolved theme values for positioning methods
+          this.resolvedThemeValues = {
+            hasArrow: defaultHasArrow,
+            anchorPosition: defaultAnchorPosition,
+            offset: defaultOffset,
+          };
 
-    let panel;
+          const tabIndexProp = panelProps?.tabIndex ?? _tabIndexProp;
 
-    if (!this.state.suppressingPopover && (isOpen || this.state.isClosing)) {
-      let tabIndex = tabIndexProp;
-      let initialFocus = initialFocusProp;
-      let ariaDescribedby;
-      let ariaLive: HTMLAttributes<any>['aria-live'];
+          const styles = euiPopoverStyles();
+          const popoverStyles = [
+            styles.euiPopover,
+            { display, label: display },
+          ];
+          const classes = classNames(
+            'euiPopover',
+            {
+              'euiPopover-isOpen': this.state.isOpening,
+            },
+            className
+          );
 
-      const panelAriaModal = panelProps?.hasOwnProperty('aria-modal')
-        ? panelProps['aria-modal']
-        : 'true';
-      const panelRole = panelProps?.hasOwnProperty('role')
-        ? panelProps.role
-        : 'dialog';
+          const showArrow = defaultHasArrow && !attachToAnchor;
 
-      if (ownFocus || panelAriaModal !== 'true') {
-        tabIndex = tabIndexProp ?? 0;
-        ariaLive = 'off';
-        if (!initialFocus) {
-          initialFocus = () => this.panel!;
-        }
-      } else {
-        ariaLive = ariaLiveProp ?? 'assertive';
-      }
+          let panel;
 
-      let focusTrapScreenReaderText;
-      if (ownFocus || popoverScreenReaderText) {
-        ariaDescribedby = this.descriptionId;
+          if (
+            !this.state.suppressingPopover &&
+            (isOpen || this.state.isClosing)
+          ) {
+            let tabIndex = tabIndexProp;
+            let initialFocus = initialFocusProp;
+            let ariaDescribedby;
+            let ariaLive: HTMLAttributes<any>['aria-live'];
 
-        focusTrapScreenReaderText = (
-          <EuiScreenReaderOnly>
-            <p id={this.descriptionId}>
-              {ownFocus && (
-                <EuiI18n
-                  token="euiPopover.screenReaderAnnouncement"
-                  default="You are in a dialog. Press Escape, or tap/click outside the dialog to close."
-                />
-              )}
-              {popoverScreenReaderText}
-            </p>
-          </EuiScreenReaderOnly>
-        );
-      }
+            const panelAriaModal = panelProps?.hasOwnProperty('aria-modal')
+              ? panelProps['aria-modal']
+              : 'true';
+            const panelRole = panelProps?.hasOwnProperty('role')
+              ? panelProps.role
+              : 'dialog';
 
-      const returnFocus = this.state.isOpenStable ? returnFocusConfig : false;
-
-      panel = (
-        <EuiPortal {...(insert && { insert })}>
-          <EuiFocusTrap
-            clickOutsideDisables={true}
-            onClickOutside={this.onClickOutside}
-            returnFocus={returnFocus} // Ignore temporary state of indecisive focus
-            initialFocus={initialFocus}
-            onEscapeKey={this.onEscapeKey}
-            disabled={
-              !ownFocus || !this.state.isOpenStable || this.state.isClosing
+            if (ownFocus || panelAriaModal !== 'true') {
+              tabIndex = tabIndexProp ?? 0;
+              ariaLive = 'off';
+              if (!initialFocus) {
+                initialFocus = () => this.panel!;
+              }
+            } else {
+              ariaLive = ariaLiveProp ?? 'assertive';
             }
-            {...focusTrapProps}
-          >
-            <EuiPopoverPanel
-              {...(panelProps as EuiPopoverPanelProps)}
-              panelRef={this.panelRef}
-              isOpen={this.state.isOpening}
-              position={this.state.arrowPosition}
-              isAttached={attachToAnchor}
-              className={classNames(panelClassName, panelProps?.className)}
-              hasShadow={false}
-              paddingSize={panelPaddingSize}
-              tabIndex={tabIndex}
-              aria-live={ariaLive}
-              role={panelRole}
-              aria-label={ariaLabel}
-              aria-labelledby={ariaLabelledBy}
-              aria-modal={panelAriaModal}
-              aria-describedby={ariaDescribedby}
-              style={{
-                ...this.state.popoverStyles,
-                // Adding `will-change` to reduce risk of a blurry animation in Chrome 86+
-                willChange: !this.state.isOpenStable
-                  ? 'transform, opacity'
-                  : undefined,
-              }}
-            >
-              {showArrow && this.state.arrowPosition && (
-                <EuiPopoverArrow
-                  position={this.state.arrowPosition}
-                  style={this.state.arrowStyles}
-                >
-                  {arrowChildren}
-                </EuiPopoverArrow>
-              )}
-              {focusTrapScreenReaderText}
-              <EuiMutationObserver
-                observerOptions={{
-                  attributes: true, // element attribute changes
-                  childList: true, // added/removed elements
-                  characterData: true, // text changes
-                  subtree: true, // watch all child elements
-                }}
-                onMutation={this.onMutation}
-              >
-                {(mutationRef) => <div ref={mutationRef}>{children}</div>}
-              </EuiMutationObserver>
-            </EuiPopoverPanel>
-          </EuiFocusTrap>
-        </EuiPortal>
-      );
-    }
 
-    // react-focus-on and related do not register outside click detection
-    // when disabled, so we still need to conditionally check for that ourselves
-    if (ownFocus) {
-      return (
-        <div
-          css={popoverStyles}
-          className={classes}
-          ref={this.popoverRef}
-          {...rest}
-        >
-          {button instanceof HTMLElement ? null : button}
-          {panel}
-        </div>
-      );
-    } else {
-      return (
-        <EuiOutsideClickDetector onOutsideClick={this.closePopover}>
-          <div
-            css={popoverStyles}
-            className={classes}
-            ref={this.popoverRef}
-            onKeyDown={this.onKeyDown}
-            {...rest}
-          >
-            {button instanceof HTMLElement ? null : button}
-            {panel}
-          </div>
-        </EuiOutsideClickDetector>
-      );
-    }
+            let focusTrapScreenReaderText;
+            if (ownFocus || popoverScreenReaderText) {
+              ariaDescribedby = this.descriptionId;
+
+              focusTrapScreenReaderText = (
+                <EuiScreenReaderOnly>
+                  <p id={this.descriptionId}>
+                    {ownFocus && (
+                      <EuiI18n
+                        token="euiPopover.screenReaderAnnouncement"
+                        default="You are in a dialog. Press Escape, or tap/click outside the dialog to close."
+                      />
+                    )}
+                    {popoverScreenReaderText}
+                  </p>
+                </EuiScreenReaderOnly>
+              );
+            }
+
+            const returnFocus = this.state.isOpenStable
+              ? returnFocusConfig
+              : false;
+
+            panel = (
+              <EuiPortal {...(insert && { insert })}>
+                <EuiFocusTrap
+                  clickOutsideDisables={true}
+                  onClickOutside={this.onClickOutside}
+                  returnFocus={returnFocus} // Ignore temporary state of indecisive focus
+                  initialFocus={initialFocus}
+                  onEscapeKey={this.onEscapeKey}
+                  disabled={
+                    !ownFocus ||
+                    !this.state.isOpenStable ||
+                    this.state.isClosing
+                  }
+                  {...focusTrapProps}
+                >
+                  <EuiPopoverPanel
+                    {...(panelProps as EuiPopoverPanelProps)}
+                    panelRef={this.panelRef}
+                    isOpen={this.state.isOpening}
+                    position={this.state.arrowPosition}
+                    isAttached={attachToAnchor}
+                    className={classNames(
+                      panelClassName,
+                      panelProps?.className
+                    )}
+                    hasShadow={false}
+                    paddingSize={panelPaddingSize}
+                    tabIndex={tabIndex}
+                    aria-live={ariaLive}
+                    role={panelRole}
+                    aria-label={ariaLabel}
+                    aria-labelledby={ariaLabelledBy}
+                    aria-modal={panelAriaModal}
+                    aria-describedby={ariaDescribedby}
+                    style={{
+                      ...this.state.popoverStyles,
+                      // Adding `will-change` to reduce risk of a blurry animation in Chrome 86+
+                      willChange: !this.state.isOpenStable
+                        ? 'transform, opacity'
+                        : undefined,
+                    }}
+                  >
+                    {showArrow && this.state.arrowPosition && (
+                      <EuiPopoverArrow
+                        position={this.state.arrowPosition}
+                        style={this.state.arrowStyles}
+                      >
+                        {arrowChildren}
+                      </EuiPopoverArrow>
+                    )}
+                    {focusTrapScreenReaderText}
+                    <EuiMutationObserver
+                      observerOptions={{
+                        attributes: true, // element attribute changes
+                        childList: true, // added/removed elements
+                        characterData: true, // text changes
+                        subtree: true, // watch all child elements
+                      }}
+                      onMutation={this.onMutation}
+                    >
+                      {(mutationRef) => <div ref={mutationRef}>{children}</div>}
+                    </EuiMutationObserver>
+                  </EuiPopoverPanel>
+                </EuiFocusTrap>
+              </EuiPortal>
+            );
+          }
+
+          // react-focus-on and related do not register outside click detection
+          // when disabled, so we still need to conditionally check for that ourselves
+          if (ownFocus) {
+            return (
+              <div
+                css={popoverStyles}
+                className={classes}
+                ref={this.popoverRef}
+                {...rest}
+              >
+                {button instanceof HTMLElement ? null : button}
+                {panel}
+              </div>
+            );
+          } else {
+            return (
+              <EuiOutsideClickDetector onOutsideClick={this.closePopover}>
+                <div
+                  css={popoverStyles}
+                  className={classes}
+                  ref={this.popoverRef}
+                  onKeyDown={this.onKeyDown}
+                  {...rest}
+                >
+                  {button instanceof HTMLElement ? null : button}
+                  {panel}
+                </div>
+              </EuiOutsideClickDetector>
+            );
+          }
+        }}
+      </RenderWithEuiTheme>
+    );
   }
 }

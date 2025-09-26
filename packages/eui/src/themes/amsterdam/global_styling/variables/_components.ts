@@ -10,6 +10,7 @@ import {
   _EuiThemeComponentColors,
   _EuiThemeComponents,
   _EuiThemePageHeader,
+  _EuiThemePopover,
 } from '@elastic/eui-theme-common';
 
 import { computed } from '../../../../services/theme/utils';
@@ -23,6 +24,13 @@ import { makeHighContrastColor } from '../../../../services/color/contrast';
 import { buttons } from './_buttons';
 import { forms } from './_forms';
 import { colorVisLight as colorVis } from './_colors_vis_light';
+
+// Amsterdam theme uses default popover values
+const popover: _EuiThemePopover = {
+  hasArrow: true,
+  anchorPosition: 'downCenter',
+  offset: 0,
+};
 
 // Amsterdam theme uses default spacing values for emptyPrompt
 const emptyPrompt = {
@@ -484,6 +492,7 @@ const pageHeader: _EuiThemePageHeader = {
 export const components: _EuiThemeComponents = {
   buttons,
   forms,
+  popover,
   emptyPrompt,
   pageHeader,
   LIGHT: component_colors,

@@ -164,7 +164,7 @@ export const useDataGridColumnSelector = (
         data-test-subj="dataGridColumnSelectorPopover"
         isOpen={isOpen}
         closePopover={() => setIsOpen(false)}
-        anchorPosition="downLeft"
+        anchorPosition="downCenter"
         panelPaddingSize="none"
         button={
           <EuiDataGridToolbarControl

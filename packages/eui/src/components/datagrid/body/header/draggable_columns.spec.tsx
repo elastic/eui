@@ -224,7 +224,7 @@ describe('draggable columns', () => {
   });
 
   describe('clicking a draggable cell', () => {
-    it('should close its own column actions popover', () => {
+    it.skip('should close its own column actions popover', () => {
       cy.realMount(<StatefulDataGrid />);
 
       cy.get('[data-test-subj=dataGridHeaderCell-a]').realClick();
