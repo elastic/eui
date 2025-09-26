@@ -21,6 +21,7 @@ import { border_colors } from './colors/_colors_light';
 import { buttons } from './_buttons';
 import { forms } from './_forms';
 import { emptyPrompt } from './_empty_prompt';
+import { pageHeader } from './_page_header';
 
 const component_colors: _EuiThemeComponentColors = {
   badgeBackground: computed(
@@ -372,6 +373,7 @@ export const components: _EuiThemeComponents = {
   buttons,
   forms,
   emptyPrompt,
+  pageHeader,
   LIGHT: component_colors,
   DARK: {
     ...component_colors,

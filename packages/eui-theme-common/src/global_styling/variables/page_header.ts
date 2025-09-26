@@ -6,12 +6,6 @@
  * Side Public License, v 1.
  */
 
-export type { EuiTabProps } from './tab';
-export { EuiTab } from './tab';
-export type { EuiTabsProps, EuiTabsSizes } from './tabs';
-export { EuiTabs } from './tabs';
-export type {
-  EuiTabbedContentTab,
-  EuiTabbedContentProps,
-} from './tabbed_content';
-export { EuiTabbedContent } from './tabbed_content';
+export type _EuiThemePageHeader = {
+  tabsSize: string;
+};
