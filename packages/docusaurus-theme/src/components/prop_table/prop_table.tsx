@@ -1,3 +1,11 @@
+/*
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
+ */
+
 import {
   EuiBasicTable,
   EuiMarkdownFormat,
@@ -10,23 +18,19 @@ import {
   EuiLink,
   EuiPanel,
 } from '@elastic/eui';
-import {
-  ProcessedComponent,
-  ProcessedComponentProp,
-} from '@elastic/eui-docgen';
 import { useCallback, useMemo } from 'react';
 import { css } from '@emotion/react';
 import Heading from '@theme/Heading';
-import types from '@elastic/eui-docgen/dist/types.json';
-import { JSONOutput } from 'typedoc';
 
 import { PropTableExtendedTypes } from './extended_types';
+import { ProcessedComponent, ProcessedComponentProp } from './definition_types';
 
-export interface PropTableProps {
+export type PropTableProps = {
   definition: ProcessedComponent;
   headingLevel?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
   showTitle?: boolean;
-}
+  parseDescription?: (description: string) => string | undefined;
+};
 
 const getPropId = (prop: ProcessedComponentProp, componentName: string) =>
   `${encodeURIComponent(componentName)}-prop-${prop.name}`;
@@ -95,13 +99,14 @@ export const PropTable = ({
   definition,
   headingLevel = 'h3',
   showTitle = true,
+  parseDescription,
 }: PropTableProps) => {
   const styles = useEuiMemoizedStyles(getPropTableStyles);
 
   const tableItems = useMemo<Array<ProcessedComponentProp>>(
     () =>
       Object.values(definition.props).sort(
-        (a, b) => +b.isRequired - +a.isRequired
+        (a, b) => +(b.isRequired ?? false) - +(a.isRequired ?? false)
       ),
     [definition.props]
   );
@@ -139,21 +144,7 @@ export const PropTable = ({
           value: ProcessedComponentProp['description'],
           prop: ProcessedComponentProp
         ) {
-          const result = value
-            .replace(/{@link (\w+)}/g, (_, componentName) => {
-              const componentSource = (
-                types as unknown as JSONOutput.ProjectReflection
-              ).children?.find((item) => item.name === componentName)
-                ?.sources?.[0];
-
-              if (componentSource) {
-                const { fileName, line } = componentSource;
-                return `[${componentName}](https://github.com/elastic/eui/tree/main/packages/${fileName}#L${line})`;
-              } else {
-                return `\`${componentName}\``;
-              }
-            })
-            .trim();
+          const result = parseDescription ? parseDescription(value) : value;
 
           return (
             <EuiFlexGroup

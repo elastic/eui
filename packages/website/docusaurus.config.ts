@@ -11,6 +11,11 @@ import type { Config } from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 import type { Options as EuiPresetOptions } from '@elastic/eui-docusaurus-preset';
 
+const ELASTIC_LICENSE_URL =
+  'https://github.com/elastic/eui/blob/main/licenses/ELASTIC-LICENSE-2.0.md';
+const SSPL_LICENSE_URL =
+  'https://github.com/elastic/eui/blob/main/licenses/SSPL-LICENSE.md';
+
 const baseUrl = process.env.DOCS_BASE_URL || '/';
 const googleTagManagerId = process.env.DOCS_GOOGLE_TAG_MANAGER_ID || undefined;
 
@@ -161,9 +166,11 @@ const config: Config = {
       ],
     },
     footer: {
-      style: 'light',
-      links: [],
-      copyright: `EUI is dual-licensed under <a href="https://github.com/elastic/eui/blob/main/licenses/ELASTIC-LICENSE-2.0.md">Elastic License 2.0</a> and <a href="https://github.com/elastic/eui/blob/main/licenses/SSPL-LICENSE.md">Server Side Public License, v 1</a> | Crafted with ❤️ by <a href="https://elastic.co">Elastic</a>`,
+      copyright: `
+        EUI is dual-licensed under <a href="${ELASTIC_LICENSE_URL}" target="_blank" rel="noreferrer">Elastic License 2.0</a>
+        and <a href="${SSPL_LICENSE_URL}" target="_blank" rel="noreferrer">Server Side Public License, v1</a>
+        | Crafted with ❤️ by <a href="https://elastic.co" target="_blank" rel="noreferrer">Elastic</a>
+      `,
     },
     prism: {
       theme: prismThemes.github,
