@@ -14,11 +14,11 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 
-import { useEuiMemoizedStyles } from '../../services';
+import { useEuiMemoizedStyles, useEuiTheme } from '../../services';
 import { CommonProps } from '../common';
 import { EuiTitle, EuiTitleSize } from '../title';
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
-import { EuiSpacer } from '../spacer';
+import { EuiSpacer, SpacerSize } from '../spacer';
 import { EuiIcon, IconColor, IconType } from '../icon';
 import { isNamedColor } from '../icon/named_colors';
 import { EuiText } from '../text';
@@ -86,7 +86,7 @@ export const EuiEmptyPrompt: FunctionComponent<EuiEmptyPromptProps> = ({
   iconColor: _iconColor,
   title,
   titleSize = 'm',
-  paddingSize = 'l',
+  paddingSize,
   body,
   actions,
   className,
@@ -98,12 +98,22 @@ export const EuiEmptyPrompt: FunctionComponent<EuiEmptyPromptProps> = ({
 }) => {
   const classes = classNames('euiEmptyPrompt', className);
   const styles = useEuiMemoizedStyles(euiEmptyPromptStyles);
+  const euiTheme = useEuiTheme();
+
+  // Get spacing values from theme, fallback to defaults for Amsterdam theme
+  const titleBodySpacing = (euiTheme.euiTheme.components.emptyPrompt
+    ?.titleBodySpacing ?? 'm') as SpacerSize;
+  const bodyActionsSpacing = (euiTheme.euiTheme.components.emptyPrompt
+    ?.bodyActionsSpacing ?? 'l') as SpacerSize;
+  const themePaddingSize =
+    euiTheme.euiTheme.components.emptyPrompt?.paddingSize ?? 'l';
   const cssStyles = [styles.euiEmptyPrompt, styles[layout]];
+  const finalPaddingSize = (paddingSize ?? themePaddingSize) as PaddingSize;
   const mainStyles = [
     styles.main.euiEmptyPrompt__main,
     styles.main[layout],
-    styles.main[paddingSize],
-    layout === 'horizontal' && styles.main.horizontalPadding[paddingSize],
+    styles.main[finalPaddingSize],
+    layout === 'horizontal' && styles.main.horizontalPadding[finalPaddingSize],
   ];
   const contentStyles = [
     styles.content.euiEmptyPrompt__content,
@@ -161,7 +171,7 @@ export const EuiEmptyPrompt: FunctionComponent<EuiEmptyPromptProps> = ({
     if (!footer) return null;
     const footerStyles = [
       styles.footer.euiEmptyPrompt__footer,
-      styles.footer[paddingSize],
+      styles.footer[finalPaddingSize],
       styles.footer[color],
       color === 'transparent' && !hasBorder && styles.footer.roundedBorders,
     ];
@@ -170,7 +180,7 @@ export const EuiEmptyPrompt: FunctionComponent<EuiEmptyPromptProps> = ({
         {footer}
       </div>
     );
-  }, [footer, paddingSize, color, hasBorder, styles.footer]);
+  }, [footer, finalPaddingSize, color, hasBorder, styles.footer]);
 
   return (
     <EuiPanel
@@ -186,9 +196,11 @@ export const EuiEmptyPrompt: FunctionComponent<EuiEmptyPromptProps> = ({
         {iconNode}
         <div className="euiEmptyPrompt__content" css={contentStyles}>
           {title && <EuiTitle size={titleSize}>{title}</EuiTitle>}
-          {title && body && <EuiSpacer size="m" />}
+          {title && body && <EuiSpacer size={titleBodySpacing} />}
           {body && <EuiText color="subdued">{body}</EuiText>}
-          {actionsNode && (body || title) && <EuiSpacer size="l" />}
+          {actionsNode && (body || title) && (
+            <EuiSpacer size={bodyActionsSpacing} />
+          )}
           {actionsNode}
         </div>
       </div>

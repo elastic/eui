@@ -23,6 +23,13 @@ import { buttons } from './_buttons';
 import { forms } from './_forms';
 import { colorVisLight as colorVis } from './_colors_vis_light';
 
+// Amsterdam theme uses default spacing values for emptyPrompt
+const emptyPrompt = {
+  titleBodySpacing: 'm',
+  bodyActionsSpacing: 'l',
+  paddingSize: 'l',
+};
+
 const component_colors: _EuiThemeComponentColors = {
   badgeBackground: computed(
     ([lightShade]) => lightShade,
@@ -471,6 +478,7 @@ const component_colors: _EuiThemeComponentColors = {
 export const components: _EuiThemeComponents = {
   buttons,
   forms,
+  emptyPrompt,
   LIGHT: component_colors,
   DARK: {
     ...component_colors,
