@@ -20,6 +20,8 @@ export * from './typography';
 export * from './buttons';
 export * from './forms';
 export * from './popover';
+export * from './empty_prompt';
+export * from './page_header';
 export * from './components';
 export * from './flags';
 export * from './overrides';

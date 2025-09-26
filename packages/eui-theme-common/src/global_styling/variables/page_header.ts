@@ -6,5 +6,6 @@
  * Side Public License, v 1.
  */
 
-export type { EuiSpacerProps, SpacerSize } from './spacer';
-export { EuiSpacer } from './spacer';
+export type _EuiThemePageHeader = {
+  tabsSize: string;
+};

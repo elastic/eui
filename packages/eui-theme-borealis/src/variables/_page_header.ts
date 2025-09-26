@@ -6,5 +6,8 @@
  * Side Public License, v 1.
  */
 
-export type { EuiSpacerProps, SpacerSize } from './spacer';
-export { EuiSpacer } from './spacer';
+import { _EuiThemePageHeader } from '@elastic/eui-theme-common';
+
+export const pageHeader: _EuiThemePageHeader = {
+  tabsSize: 'm', // Reduced from default 'l'
+};

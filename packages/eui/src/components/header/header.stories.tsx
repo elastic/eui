@@ -306,7 +306,7 @@ const ElasticNavigationPatternExample = () => {
           <EuiText size="s" color="subdued" style={{ padding: '0 8px 8px' }}>
             <p>
               Please see the component page for{' '}
-              <EuiLink href="https://eui.elastic.co/#/navigation/collapsible-nav">
+              <EuiLink href="https://eui.elastic.co/docs/components/navigation/collapsible-nav/">
                 <strong>EuiCollapsibleNav</strong>
               </EuiLink>{' '}
               on how to configure your navigation.
@@ -358,7 +358,7 @@ const ElasticNavigationPatternExample = () => {
           <EuiText size="s" color="subdued">
             <p>
               Please see the component page for{' '}
-              <EuiLink href="https://eui.elastic.co/#/layout/header#header-notifications">
+              <EuiLink href="https://eui.elastic.co/docs/components/layout/header#header-notifications">
                 <strong>EuiHeaderAlert</strong>
               </EuiLink>{' '}
               on how to configure your alerts.
@@ -396,7 +396,7 @@ const ElasticNavigationPatternExample = () => {
         <EuiText size="s" color="subdued">
           <p>
             Please see the component page for{' '}
-            <EuiLink href="https://eui.elastic.co/#/layout/header">
+            <EuiLink href="https://eui.elastic.co/docs/components/layout/header">
               <strong>EuiHeader</strong>
             </EuiLink>{' '}
             on how to configure your user menu.
@@ -433,7 +433,7 @@ const ElasticNavigationPatternExample = () => {
         <EuiText size="s" color="subdued">
           <p>
             Please see the component page for{' '}
-            <EuiLink href="https://eui.elastic.co/#/layout/header">
+            <EuiLink href="https://eui.elastic.co/docs/components/layout/header">
               <strong>EuiHeader</strong>
             </EuiLink>{' '}
             on how to configure your spaces menu.
@@ -502,7 +502,7 @@ const ElasticNavigationPatternExample = () => {
         <EuiSelectableMessage style={{ minHeight: 300 }}>
           <p>
             Please see the component page for{' '}
-            <EuiLink href="https://eui.elastic.co/#/forms/selectable">
+            <EuiLink href="https://eui.elastic.co/docs/components/forms/selection/selectable/">
               <strong>EuiSelectableTemplateSitewide</strong>
             </EuiLink>{' '}
             on how to configure your sitewide search.
