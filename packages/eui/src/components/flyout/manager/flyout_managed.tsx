@@ -32,6 +32,7 @@ import {
   useParentFlyoutSize,
   useCurrentSession,
 } from './hooks';
+import { useIsFlyoutRegistered } from './selectors';
 import { EuiFlyoutLevel } from './types';
 import {
   createValidationErrorMessage,
@@ -83,14 +84,8 @@ export const EuiManagedFlyout = ({
   const flyoutId = useFlyoutId(id);
   const flyoutRef = useRef<HTMLDivElement>(null);
 
-  const {
-    addFlyout,
-    closeFlyout,
-    setFlyoutWidth,
-    goBack,
-    getHistoryItems,
-    state,
-  } = useFlyoutManager();
+  const { addFlyout, closeFlyout, setFlyoutWidth, goBack, getHistoryItems } =
+    useFlyoutManager();
   const parentSize = useParentFlyoutSize(flyoutId);
   const layoutMode = useFlyoutLayoutMode();
   const styles = useEuiMemoizedStyles(euiManagedFlyoutStyles);
@@ -125,6 +120,7 @@ export const EuiManagedFlyout = ({
 
   const isActive = useIsFlyoutActive(flyoutId);
   const currentSession = useCurrentSession();
+  const flyoutExistsInManager = useIsFlyoutRegistered(flyoutId);
 
   // Stabilize the onClose callback
   const onCloseCallbackRef = useRef<((e?: CloseEvent) => void) | undefined>();
@@ -156,10 +152,6 @@ export const EuiManagedFlyout = ({
   // Detect when flyout has been removed from manager state (e.g., via Back button)
   // and trigger onClose callback to notify the parent component
   useEffect(() => {
-    const flyoutExistsInManager = state.flyouts.some(
-      (f) => f.flyoutId === flyoutId
-    );
-
     if (isOpen && flyoutExistsInManager) {
       wasRegisteredRef.current = true;
     }
@@ -170,7 +162,7 @@ export const EuiManagedFlyout = ({
       onCloseCallbackRef.current?.(new MouseEvent('navigation'));
       wasRegisteredRef.current = false; // Reset to avoid repeated calls
     }
-  }, [state.flyouts, isOpen, flyoutId]);
+  }, [flyoutExistsInManager, isOpen, flyoutId]);
 
   // Monitor current session changes and fire onActive callback when this flyout becomes active
   useEffect(() => {
