@@ -15,7 +15,6 @@ import {
   EuiCodeBlock,
   EuiDescriptionList,
   EuiFlyoutBody,
-  EuiFlyoutFooter,
   EuiPageTemplate,
   EuiPageTemplateProps,
   EuiSpacer,
@@ -57,55 +56,36 @@ const FlyoutSession: React.FC<FlyoutSessionProps> = React.memo((props) => {
   const [isFlyoutVisible, setIsFlyoutVisible] = useState(false);
   const [isChildFlyoutVisible, setIsChildFlyoutVisible] = useState(false);
 
-  // Main flyout lifecycle handlers
-  const handleActivateMainFlyout = useCallback(() => {
+  // Handlers for "Open" buttons
+
+  const handleOpenMainFlyout = () => {
+    setIsFlyoutVisible(true);
+  };
+
+  const handleOpenChildFlyout = () => {
+    setIsChildFlyoutVisible(true);
+  };
+
+  // Callbacks for state synchronization
+
+  const mainFlyoutOnActive = useCallback(() => {
     action('activate main flyout')(title);
   }, [title]);
 
-  const handleCloseMainFlyout = useCallback(() => {
+  const childFlyoutOnActive = useCallback(() => {
+    action('activate child flyout')(title);
+  }, [title]);
+
+  const mainFlyoutOnClose = useCallback(() => {
     action('close main flyout')(title);
     setIsFlyoutVisible(false);
     setIsChildFlyoutVisible(false);
   }, [title]);
 
-  const handleCloseButtonClick = useCallback(() => {
-    action('close button click')(title);
-    setIsFlyoutVisible(false);
-    setIsChildFlyoutVisible(false);
-  }, [title]);
-
-  // Child flyout lifecycle handlers
-  const handleActivateChildFlyout = useCallback(() => {
-    action('activate child flyout')(title);
-  }, [title]);
-
-  const handleCloseChildFlyout = useCallback(() => {
+  const childFlyoutOnClose = useCallback(() => {
     action('close child flyout')(title);
     setIsChildFlyoutVisible(false);
   }, [title]);
-
-  const handleCloseChildButtonClick = useCallback(() => {
-    action('close button click')(title);
-    setIsChildFlyoutVisible(false);
-  }, [title]);
-
-  // Handlers for inline callbacks
-  const handleOpenMainFlyout = useCallback(() => {
-    action('open main flyout')(title);
-    setIsFlyoutVisible(true);
-  }, [title]);
-
-  const handleMainFlyoutClose = useCallback(() => {
-    handleCloseMainFlyout();
-  }, [handleCloseMainFlyout]);
-
-  const handleOpenChildFlyout = useCallback(() => {
-    setIsChildFlyoutVisible(true);
-  }, []);
-
-  const handleChildFlyoutClose = useCallback(() => {
-    handleCloseChildFlyout();
-  }, [handleCloseChildFlyout]);
 
   // Render
 
@@ -127,8 +107,8 @@ const FlyoutSession: React.FC<FlyoutSessionProps> = React.memo((props) => {
         type={flyoutType}
         ownFocus={false}
         pushAnimation={true}
-        onActive={handleActivateMainFlyout}
-        onClose={handleMainFlyoutClose}
+        onActive={mainFlyoutOnActive}
+        onClose={mainFlyoutOnClose}
       >
         <EuiFlyoutBody>
           <EuiText>
@@ -155,9 +135,6 @@ const FlyoutSession: React.FC<FlyoutSessionProps> = React.memo((props) => {
             )}
           </EuiText>
         </EuiFlyoutBody>
-        <EuiFlyoutFooter>
-          <EuiButton onClick={handleCloseButtonClick}>Close</EuiButton>
-        </EuiFlyoutFooter>
         <EuiFlyout
           isOpen={isChildFlyoutVisible}
           id={`childFlyout-${title}`}
@@ -165,8 +142,8 @@ const FlyoutSession: React.FC<FlyoutSessionProps> = React.memo((props) => {
           aria-labelledby="childFlyoutTitle"
           size={childSize}
           maxWidth={childMaxWidth}
-          onActive={handleActivateChildFlyout}
-          onClose={handleChildFlyoutClose}
+          onActive={childFlyoutOnActive}
+          onClose={childFlyoutOnClose}
         >
           <EuiFlyoutBody>
             <EuiText>
@@ -187,9 +164,6 @@ const FlyoutSession: React.FC<FlyoutSessionProps> = React.memo((props) => {
               />
             </EuiText>
           </EuiFlyoutBody>
-          <EuiFlyoutFooter>
-            <EuiButton onClick={handleCloseChildButtonClick}>Close</EuiButton>
-          </EuiFlyoutFooter>
         </EuiFlyout>
       </EuiFlyout>
     </>
