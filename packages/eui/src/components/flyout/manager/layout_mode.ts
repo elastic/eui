@@ -29,8 +29,8 @@ export const useApplyFlyoutLayoutMode = () => {
   const context = useFlyoutManager();
 
   const currentSession = useCurrentSession();
-  const parentFlyoutId = currentSession?.main;
-  const childFlyoutId = currentSession?.child;
+  const parentFlyoutId = currentSession?.mainFlyoutId;
+  const childFlyoutId = currentSession?.childFlyoutId;
 
   const parentFlyout = useCurrentMainFlyout();
   const childFlyout = useCurrentChildFlyout();

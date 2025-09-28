@@ -172,9 +172,9 @@ export const EuiManagedFlyout = ({
 
     // Make sure callback is only fired for the flyout that changed
     const mainChanged =
-      level === LEVEL_MAIN && currentSession.main === flyoutId;
+      level === LEVEL_MAIN && currentSession.mainFlyoutId === flyoutId;
     const childChanged =
-      level === LEVEL_CHILD && currentSession.child === flyoutId;
+      level === LEVEL_CHILD && currentSession.childFlyoutId === flyoutId;
 
     if (mainChanged || childChanged) {
       onActiveCallbackRef.current();

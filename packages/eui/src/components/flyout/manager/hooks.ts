@@ -89,10 +89,12 @@ export function useFlyoutManagerReducer(
     const currentSessionIndex = state.sessions.length - 1;
     const previousSessions = state.sessions.slice(0, currentSessionIndex);
 
-    return previousSessions.reverse().map(({ title, main: mainFlyoutId }) => ({
-      title: title,
-      onClick: () => goToFlyout(mainFlyoutId),
-    }));
+    return previousSessions
+      .reverse()
+      .map(({ title, mainFlyoutId: mainFlyoutId }) => ({
+        title: title,
+        onClick: () => goToFlyout(mainFlyoutId),
+      }));
   }, [state.sessions, goToFlyout]);
 
   return {

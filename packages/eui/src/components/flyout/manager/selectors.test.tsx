@@ -44,8 +44,8 @@ const TestWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 // Mock data
 const mockState = {
   sessions: [
-    { main: 'main-1', child: 'child-1' },
-    { main: 'main-2', child: null },
+    { mainFlyoutId: 'main-1', childFlyoutId: 'child-1' },
+    { mainFlyoutId: 'main-2', childFlyoutId: null },
   ],
   flyouts: [
     { flyoutId: 'main-1', level: LEVEL_MAIN, size: 'l', width: 600 },
@@ -79,7 +79,10 @@ describe('flyout manager selectors', () => {
         wrapper: TestWrapper,
       });
 
-      expect(result.current).toEqual({ main: 'main-1', child: 'child-1' });
+      expect(result.current).toEqual({
+        mainFlyoutId: 'main-1',
+        childFlyoutId: 'child-1',
+      });
     });
 
     it('should return session when flyout ID matches child', () => {
@@ -87,7 +90,10 @@ describe('flyout manager selectors', () => {
         wrapper: TestWrapper,
       });
 
-      expect(result.current).toEqual({ main: 'main-1', child: 'child-1' });
+      expect(result.current).toEqual({
+        mainFlyoutId: 'main-1',
+        childFlyoutId: 'child-1',
+      });
     });
 
     it('should return null when flyout ID does not match any session', () => {
@@ -112,8 +118,11 @@ describe('flyout manager selectors', () => {
       });
 
       // The selector treats null as a literal value to search for
-      // It finds the session where child: null matches flyoutId: null
-      expect(result.current).toEqual({ main: 'main-2', child: null });
+      // It finds the session where childFlyoutId: null matches flyoutId: null
+      expect(result.current).toEqual({
+        mainFlyoutId: 'main-2',
+        childFlyoutId: null,
+      });
     });
   });
 
@@ -226,7 +235,10 @@ describe('flyout manager selectors', () => {
         wrapper: TestWrapper,
       });
 
-      expect(result.current).toEqual({ main: 'main-2', child: null });
+      expect(result.current).toEqual({
+        mainFlyoutId: 'main-2',
+        childFlyoutId: null,
+      });
     });
 
     it('should return null when no sessions exist', () => {
@@ -287,8 +299,8 @@ describe('flyout manager selectors', () => {
       const stateWithChildCurrent = {
         ...mockState,
         sessions: [
-          { main: 'main-2', child: null },
-          { main: 'main-1', child: 'child-1' }, // Make this the current session
+          { mainFlyoutId: 'main-2', childFlyoutId: null },
+          { mainFlyoutId: 'main-1', childFlyoutId: 'child-1' }, // Make this the current session
         ],
       };
       (useFlyoutManagerReducer as jest.Mock).mockReturnValue({
@@ -459,7 +471,7 @@ describe('flyout manager selectors', () => {
       });
 
       // The selector checks if the flyout ID has a session with a child
-      // Since child-1 is in a session with child: 'child-1', it returns true
+      // Since child-1 is in a session with childFlyoutId: 'child-1', it returns true
       expect(result.current).toBe(true);
     });
   });
@@ -516,7 +528,9 @@ describe('flyout manager selectors', () => {
     it('should handle sessions with missing flyout references', () => {
       const invalidState = {
         ...mockState,
-        sessions: [{ main: 'main-1', child: 'non-existent-child' }],
+        sessions: [
+          { mainFlyoutId: 'main-1', childFlyoutId: 'non-existent-child' },
+        ],
         flyouts: [{ flyoutId: 'main-1', level: LEVEL_MAIN }],
       };
       (useFlyoutManagerReducer as jest.Mock).mockReturnValue({
@@ -533,8 +547,8 @@ describe('flyout manager selectors', () => {
       });
 
       expect(result.current).toEqual({
-        main: 'main-1',
-        child: 'non-existent-child',
+        mainFlyoutId: 'main-1',
+        childFlyoutId: 'non-existent-child',
       });
     });
   });

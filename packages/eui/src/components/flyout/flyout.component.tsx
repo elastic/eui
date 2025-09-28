@@ -384,9 +384,9 @@ export const EuiFlyoutComponent = forwardRef(
       }
 
       const siblingFlyoutId =
-        currentSession.main === flyoutId
-          ? currentSession.child
-          : currentSession.main;
+        currentSession.mainFlyoutId === flyoutId
+          ? currentSession.childFlyoutId
+          : currentSession.mainFlyoutId;
 
       return {
         siblingFlyoutId,
@@ -398,9 +398,11 @@ export const EuiFlyoutComponent = forwardRef(
     // Destructure for easier use
     const { siblingFlyoutId } = flyoutIdentity;
 
-    const hasChildFlyout = currentSession?.child != null;
+    const hasChildFlyout = currentSession?.childFlyoutId != null;
     const isChildFlyout =
-      isInManagedContext && hasChildFlyout && currentSession?.child === id;
+      isInManagedContext &&
+      hasChildFlyout &&
+      currentSession?.childFlyoutId === id;
 
     const shouldCloseOnEscape = useMemo(() => {
       // Regular flyout - always close on ESC
