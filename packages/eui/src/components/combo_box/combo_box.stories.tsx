@@ -20,7 +20,6 @@ import { EuiFlexItem } from '../flex';
 
 import { EuiComboBoxOptionMatcher } from './types';
 import { EuiComboBox, EuiComboBoxProps } from './combo_box';
-import { EuiHighlight } from '../highlight';
 
 const options = [
   { label: 'Item 1' },
@@ -163,13 +162,6 @@ export const RowHeightAuto: Story = {
       },
       { label: 'elastic.task_manager_metrics.metrics.task_claim.value.total' },
     ],
-    renderOption: (option, searchValue) => {
-      return (
-        <EuiHighlight search={searchValue} style={{ wordBreak: 'break-word' }}>
-          {option.label}
-        </EuiHighlight>
-      );
-    },
   },
   render: (args) => <StatefulComboBox {...args} />,
 };
