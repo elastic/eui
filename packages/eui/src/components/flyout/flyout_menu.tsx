@@ -18,7 +18,6 @@ import { useEuiMemoizedStyles, useGeneratedHtmlId } from '../../services';
 import { EuiButtonEmpty, EuiButtonIcon, EuiButtonProps } from '../button';
 import { CommonProps, PropsForAnchor } from '../common';
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
-import { EuiIcon } from '../icon';
 import { EuiListGroup, EuiListGroupItem } from '../list_group';
 import { EuiPopover } from '../popover';
 import { EuiTitle } from '../title';
@@ -26,6 +25,7 @@ import { EuiFlyoutCloseButton } from './_flyout_close_button';
 import { euiFlyoutMenuStyles } from './flyout_menu.styles';
 import { EuiFlyoutMenuContext } from './flyout_menu_context';
 import type { EuiFlyoutCloseEvent } from './types';
+import { EuiI18n, useEuiI18n } from '../i18n';
 
 type EuiFlyoutMenuBackButtonProps = Pick<
   PropsForAnchor<EuiButtonProps>,
@@ -53,8 +53,8 @@ export type EuiFlyoutMenuProps = CommonProps &
 
 const BackButton: React.FC<EuiFlyoutMenuBackButtonProps> = (props) => {
   return (
-    <EuiButtonEmpty size="xs" color="text" {...props}>
-      <EuiIcon type="editorUndo" /> Back
+    <EuiButtonEmpty size="xs" color="text" iconType="editorUndo" {...props}>
+      <EuiI18n token="euiFlyoutMenu.back" default="Back" />
     </EuiButtonEmpty>
   );
 };
@@ -70,7 +70,11 @@ const HistoryPopover: React.FC<{
   return (
     <EuiPopover
       button={
-        <EuiButtonIcon iconType="arrowDown" color="text" aria-label="History" />
+        <EuiButtonIcon
+          iconType="arrowDown"
+          color="text"
+          aria-label={useEuiI18n('euiFlyoutMenu.history', 'History')}
+        />
       }
       isOpen={isPopoverOpen}
       onClick={handlePopoverButtonClick}
