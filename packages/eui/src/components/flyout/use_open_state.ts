@@ -7,7 +7,9 @@
  */
 
 import { AnimationEventHandler, useCallback, useEffect, useState } from 'react';
-import { EuiFlyoutProps } from './flyout';
+import type { EuiFlyoutProps } from './flyout';
+import { useIsInManagedFlyout } from './manager';
+import type { EuiFlyoutCloseEvent } from './types';
 
 export type EuiFlyoutOpenState = 'opening' | 'open' | 'closing' | 'closed';
 
@@ -25,6 +27,7 @@ export const useEuiFlyoutOpenState = ({
   const [openState, setOpenState] = useState<EuiFlyoutOpenState>(
     isOpen ? 'open' : 'closed'
   );
+  const isInManagedFlyout = useIsInManagedFlyout();
 
   useEffect(() => {
     // Check for matching state
@@ -46,11 +49,12 @@ export const useEuiFlyoutOpenState = ({
   }, [isOpen]);
 
   useEffect(() => {
-    if (openState === 'closed') {
+    // For managed flyouts, don't auto-call onClose - let the manager handle it
+    if (openState === 'closed' && !isInManagedFlyout) {
       onClose();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [openState]);
+  }, [openState, isInManagedFlyout]);
 
   const onAnimationEnd = useCallback<AnimationEventHandler>(() => {
     if (openState === 'closing') {
@@ -63,7 +67,7 @@ export const useEuiFlyoutOpenState = ({
   }, [openState, setOpenState]);
 
   const closeFlyout = useCallback(
-    (event?: MouseEvent | TouchEvent | KeyboardEvent) => {
+    (event?: EuiFlyoutCloseEvent) => {
       if (openState === 'closed' || openState === 'closing') {
         return;
       }

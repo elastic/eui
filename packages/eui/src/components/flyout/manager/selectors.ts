@@ -17,7 +17,7 @@ export const useSession = (flyoutId?: string | null) => {
 
   return (
     context.state.sessions.find(
-      (s) => s.main === flyoutId || s.child === flyoutId
+      (s) => s.mainFlyoutId === flyoutId || s.childFlyoutId === flyoutId
     ) || null
   );
 };
@@ -29,7 +29,8 @@ export const useHasActiveSession = () => !!useCurrentSession();
 export const useIsFlyoutActive = (flyoutId: string) => {
   const currentSession = useCurrentSession();
   return (
-    currentSession?.main === flyoutId || currentSession?.child === flyoutId
+    currentSession?.mainFlyoutId === flyoutId ||
+    currentSession?.childFlyoutId === flyoutId
   );
 };
 
@@ -59,14 +60,14 @@ export const useCurrentSession = () => {
 /** The registered state of the current session's main flyout, if present. */
 export const useCurrentMainFlyout = () => {
   const currentSession = useCurrentSession();
-  const mainFlyoutId = currentSession?.main;
+  const mainFlyoutId = currentSession?.mainFlyoutId;
   return useFlyout(mainFlyoutId);
 };
 
 /** The registered state of the current session's child flyout, if present. */
 export const useCurrentChildFlyout = () => {
   const currentSession = useCurrentSession();
-  const childFlyoutId = currentSession?.child;
+  const childFlyoutId = currentSession?.childFlyoutId;
   return useFlyout(childFlyoutId);
 };
 
@@ -77,12 +78,12 @@ export const useFlyoutWidth = (flyoutId?: string | null) =>
 /** The configured size of the parent (main) flyout for a given child flyout ID. */
 export const useParentFlyoutSize = (childFlyoutId: string) => {
   const session = useSession(childFlyoutId);
-  const parentFlyout = useFlyout(session?.main);
+  const parentFlyout = useFlyout(session?.mainFlyoutId);
   return parentFlyout?.size;
 };
 
 /** True if the provided `flyoutId` is the main flyout and it currently has a child. */
 export const useHasChildFlyout = (flyoutId: string) => {
   const session = useSession(flyoutId);
-  return !!session?.child;
+  return !!session?.childFlyoutId;
 };

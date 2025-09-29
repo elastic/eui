@@ -48,9 +48,12 @@ export interface EuiManagedFlyoutState {
 }
 
 export interface FlyoutSession {
-  main: string;
+  /** ID of the main flyout for this session */
+  mainFlyoutId: string;
+  /** ID of the child flyout for this session */
+  childFlyoutId: string | null;
+  /** Title of the main flyout in this session */
   title: string;
-  child: string | null;
 }
 
 export interface EuiFlyoutManagerState {
@@ -75,4 +78,10 @@ export interface FlyoutManagerApi {
   closeFlyout: (flyoutId: string) => void;
   setActiveFlyout: (flyoutId: string | null) => void;
   setFlyoutWidth: (flyoutId: string, width: number) => void;
+  goBack: () => void;
+  goToFlyout: (flyoutId: string) => void;
+  getHistoryItems: () => Array<{
+    title: string;
+    onClick: () => void;
+  }>;
 }

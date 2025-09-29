@@ -75,6 +75,7 @@ import {
   useEuiFlyoutOpenState,
   type EuiFlyoutOpenState,
 } from './use_open_state';
+import type { EuiFlyoutCloseEvent } from './types';
 
 interface _EuiFlyoutComponentProps {
   /**
@@ -89,14 +90,14 @@ interface _EuiFlyoutComponentProps {
    *
    * Use this callback to toggle your internal `isOpen` flyout state.
    */
-  onClose: (event?: MouseEvent | TouchEvent | KeyboardEvent) => void;
+  onClose: (event?: EuiFlyoutCloseEvent) => void;
   /**
    * An optional callback function fired when the flyout begins closing.
    *
    * Use in case you need to support any extra logic that relies on the flyout
    * closing state. In most cases this callback doesn't need to be handled.
    */
-  onClosing?: (event?: MouseEvent | TouchEvent | KeyboardEvent) => void;
+  onClosing?: (event?: EuiFlyoutCloseEvent) => void;
   /**
    * Defines the width of the panel.
    * Pass a predefined size of `s | m | l`, or pass any number/string compatible with the CSS `width` attribute
@@ -384,9 +385,9 @@ export const EuiFlyoutComponent = forwardRef(
       }
 
       const siblingFlyoutId =
-        currentSession.main === flyoutId
-          ? currentSession.child
-          : currentSession.main;
+        currentSession.mainFlyoutId === flyoutId
+          ? currentSession.childFlyoutId
+          : currentSession.mainFlyoutId;
 
       return {
         siblingFlyoutId,
@@ -398,9 +399,11 @@ export const EuiFlyoutComponent = forwardRef(
     // Destructure for easier use
     const { siblingFlyoutId } = flyoutIdentity;
 
-    const hasChildFlyout = currentSession?.child != null;
+    const hasChildFlyout = currentSession?.childFlyoutId != null;
     const isChildFlyout =
-      isInManagedContext && hasChildFlyout && currentSession?.child === id;
+      isInManagedContext &&
+      hasChildFlyout &&
+      currentSession?.childFlyoutId === id;
 
     const shouldCloseOnEscape = useMemo(() => {
       // Regular flyout - always close on ESC

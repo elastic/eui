@@ -119,8 +119,8 @@ describe('layout_mode', () => {
     });
 
     mockUseCurrentSession.mockReturnValue({
-      main: 'main-1',
-      child: 'child-1',
+      mainFlyoutId: 'main-1',
+      childFlyoutId: 'child-1',
     });
 
     mockUseCurrentMainFlyout.mockReturnValue({
@@ -354,8 +354,8 @@ describe('layout_mode', () => {
       });
 
       mockUseCurrentSession.mockReturnValue({
-        main: 'main-1',
-        child: null,
+        mainFlyoutId: 'main-1',
+        childFlyoutId: null,
       });
 
       // Reset the mock to return undefined for widths since no child exists
@@ -454,8 +454,8 @@ describe('layout_mode', () => {
 
       // Set up session with both main and child flyouts
       mockUseCurrentSession.mockReturnValue({
-        main: 'main-1',
-        child: 'child-1',
+        mainFlyoutId: 'main-1',
+        childFlyoutId: 'child-1',
       });
 
       // Set up flyout objects
@@ -536,8 +536,8 @@ describe('layout_mode', () => {
 
       // Set up a scenario where the layout mode should remain the same
       mockUseCurrentSession.mockReturnValue({
-        main: 'main-1',
-        child: null, // No child flyout
+        mainFlyoutId: 'main-1',
+        childFlyoutId: null, // No child flyout
       });
 
       const mockDispatch = jest.fn();
@@ -649,8 +649,8 @@ describe('layout_mode', () => {
       });
 
       mockUseCurrentSession.mockReturnValue({
-        main: 'main-1',
-        child: 'child-1',
+        mainFlyoutId: 'main-1',
+        childFlyoutId: 'child-1',
       });
 
       const mockDispatch = jest.fn();
@@ -690,8 +690,8 @@ describe('layout_mode', () => {
       });
 
       mockUseCurrentSession.mockReturnValue({
-        main: 'main-1',
-        child: 'child-1',
+        mainFlyoutId: 'main-1',
+        childFlyoutId: 'child-1',
       });
 
       const mockDispatch = jest.fn();
@@ -731,8 +731,8 @@ describe('layout_mode', () => {
       });
 
       mockUseCurrentSession.mockReturnValue({
-        main: 'main-1',
-        child: 'child-1',
+        mainFlyoutId: 'main-1',
+        childFlyoutId: 'child-1',
       });
 
       const mockDispatch = jest.fn();
@@ -772,8 +772,8 @@ describe('layout_mode', () => {
       });
 
       mockUseCurrentSession.mockReturnValue({
-        main: 'main-1',
-        child: 'child-1',
+        mainFlyoutId: 'main-1',
+        childFlyoutId: 'child-1',
       });
 
       const mockDispatch = jest.fn();
@@ -813,8 +813,8 @@ describe('layout_mode', () => {
       });
 
       mockUseCurrentSession.mockReturnValue({
-        main: 'main-1',
-        child: 'child-1',
+        mainFlyoutId: 'main-1',
+        childFlyoutId: 'child-1',
       });
 
       const mockDispatch = jest.fn();
@@ -848,8 +848,8 @@ describe('layout_mode', () => {
       mockUseCurrentChildFlyout.mockReturnValue(null);
 
       mockUseCurrentSession.mockReturnValue({
-        main: 'main-1',
-        child: null,
+        mainFlyoutId: 'main-1',
+        childFlyoutId: null,
       });
 
       const mockDispatch = jest.fn();

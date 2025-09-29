@@ -96,7 +96,7 @@ describe('flyout manager hooks', () => {
       });
 
       expect(result.current.state.flyouts).toHaveLength(2);
-      expect(result.current.state.sessions[0].child).toBe('child-1');
+      expect(result.current.state.sessions[0].childFlyoutId).toBe('child-1');
       expect(result.current.state.flyouts[0].width).toBe(600);
       expect(result.current.state.flyouts[1].width).toBe(400);
     });
@@ -317,7 +317,7 @@ describe('flyout manager hooks', () => {
 
       expect(reducerResult.current.state.flyouts).toHaveLength(2);
       expect(reducerResult.current.state.sessions).toHaveLength(1);
-      expect(reducerResult.current.state.sessions[0].child).toBe(
+      expect(reducerResult.current.state.sessions[0].childFlyoutId).toBe(
         idResult2.current
       );
     });

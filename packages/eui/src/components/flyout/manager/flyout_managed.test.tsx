@@ -11,9 +11,9 @@
 import React from 'react';
 import { act } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+
 import { render } from '../../../test/rtl';
 import { requiredProps } from '../../../test/required_props';
-
 import { EuiManagedFlyout } from './flyout_managed';
 import { EuiFlyoutManager } from './provider';
 import {
@@ -44,36 +44,71 @@ jest.mock('../flyout.component', () => {
   };
 });
 
+// Shared mock functions - must be defined in module scope for Jest
+const mockCloseFlyout = jest.fn();
+const createMockState = () => ({
+  sessions: [],
+  flyouts: [],
+  layoutMode: 'side-by-side' as const,
+});
+const createMockFunctions = () => ({
+  dispatch: jest.fn(),
+  addFlyout: jest.fn(),
+  closeFlyout: mockCloseFlyout,
+  setActiveFlyout: jest.fn(),
+  setFlyoutWidth: jest.fn(),
+  goBack: jest.fn(),
+  goToFlyout: jest.fn(),
+  getHistoryItems: jest.fn(() => []),
+});
+
 // Mock hooks that would otherwise depend on ResizeObserver or animation timing
 jest.mock('./hooks', () => ({
   useFlyoutManagerReducer: () => ({
-    state: { sessions: [], flyouts: [], layoutMode: 'side-by-side' },
-    dispatch: jest.fn(),
-    addFlyout: jest.fn(),
-    closeFlyout: jest.fn(),
-    setActiveFlyout: jest.fn(),
-    setFlyoutWidth: jest.fn(),
+    state: createMockState(),
+    ...createMockFunctions(),
   }),
   useFlyoutManager: () => ({
-    state: { sessions: [], flyouts: [], layoutMode: 'side-by-side' },
-    addFlyout: jest.fn(),
-    closeFlyout: jest.fn(),
-    setFlyoutWidth: jest.fn(),
+    state: createMockState(),
+    ...createMockFunctions(),
   }),
   useIsFlyoutActive: () => true,
   useHasChildFlyout: () => false,
   useParentFlyoutSize: () => 'm',
   useFlyoutLayoutMode: () => 'side-by-side',
   useFlyoutId: (id?: string) => id ?? 'generated-id',
+  useCurrentSession: () => null,
+}));
+
+jest.mock('./selectors', () => ({
+  useIsFlyoutRegistered: () => false,
+  useIsFlyoutActive: () => true,
+  useHasChildFlyout: () => false,
+  useParentFlyoutSize: () => 'm',
+  useCurrentSession: () => null,
+  useSession: () => null,
+  useHasActiveSession: () => false,
+  useFlyout: () => null,
+  useCurrentMainFlyout: () => null,
+  useCurrentChildFlyout: () => null,
+  useFlyoutWidth: () => null,
 }));
 
 // Mock validation helpers to be deterministic
 jest.mock('./validation', () => ({
-  validateManagedFlyoutSize: jest.fn(() => undefined),
-  validateSizeCombination: jest.fn(() => undefined),
-  validateFlyoutTitle: jest.fn(() => undefined),
   createValidationErrorMessage: jest.fn((e: any) => String(e)),
   isNamedSize: jest.fn(() => true),
+  validateFlyoutTitle: jest.fn(() => undefined),
+  validateManagedFlyoutSize: jest.fn(() => undefined),
+  validateSizeCombination: jest.fn(() => undefined),
+}));
+
+jest.mock('./provider', () => ({
+  ...jest.requireActual('./provider'),
+  useFlyoutManager: () => ({
+    state: createMockState(),
+    ...createMockFunctions(),
+  }),
 }));
 
 // Mock resize observer hook to return a fixed width
@@ -84,6 +119,10 @@ jest.mock('../../observer/resize_observer', () => ({
 describe('EuiManagedFlyout', () => {
   const renderInProvider = (ui: React.ReactElement) =>
     render(<EuiFlyoutManager>{ui}</EuiFlyoutManager>);
+
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
 
   it('renders and sets managed data attributes', () => {
     const { getByTestSubject } = renderInProvider(
@@ -100,10 +139,10 @@ describe('EuiManagedFlyout', () => {
     expect(el).toHaveAttribute(PROPERTY_LEVEL, LEVEL_MAIN);
   });
 
-  it('calls onClose prop when onClose is invoked', () => {
+  it('calls the unregister callback prop when onClose', () => {
     const onClose = jest.fn();
 
-    const { getByTestSubject } = renderInProvider(
+    const { getByTestSubject, unmount } = renderInProvider(
       <EuiManagedFlyout id="close-me" level={LEVEL_MAIN} onClose={onClose} />
     );
 
@@ -111,7 +150,15 @@ describe('EuiManagedFlyout', () => {
       userEvent.click(getByTestSubject('managed-flyout'));
     });
 
-    expect(onClose).toHaveBeenCalledTimes(1);
+    // The onClose should be called when the flyout is clicked
+    expect(onClose).toHaveBeenCalled();
+
+    // The closeFlyout should be called when the component unmounts (cleanup)
+    act(() => {
+      unmount();
+    });
+
+    expect(mockCloseFlyout).toHaveBeenCalledWith('close-me');
   });
 
   it('registers child flyout and sets data-level child', () => {
@@ -231,6 +278,61 @@ describe('EuiManagedFlyout', () => {
       );
 
       expect(getByTestSubject('managed-flyout')).toBeInTheDocument();
+    });
+  });
+
+  describe('onClose callback behavior', () => {
+    it('does not call onClose callback during component cleanup/unmount', () => {
+      const onClose = jest.fn();
+
+      const { unmount } = renderInProvider(
+        <EuiManagedFlyout
+          id="cleanup-test"
+          level={LEVEL_MAIN}
+          onClose={onClose}
+          flyoutMenuProps={{ title: 'Test Flyout' }}
+        />
+      );
+
+      // Initially onClose should not be called
+      expect(onClose).not.toHaveBeenCalled();
+
+      // Unmount the component to trigger cleanup
+      act(() => {
+        unmount();
+      });
+
+      // onClose should NOT be called during cleanup (intentional design)
+      expect(onClose).not.toHaveBeenCalled();
+      expect(mockCloseFlyout).toHaveBeenCalledWith('cleanup-test');
+    });
+
+    it('does not call onClose multiple times (double-firing prevention)', () => {
+      const onClose = jest.fn();
+
+      const { getByTestSubject, unmount } = renderInProvider(
+        <EuiManagedFlyout
+          id="double-fire-test"
+          level={LEVEL_MAIN}
+          onClose={onClose}
+          flyoutMenuProps={{ title: 'Test Flyout' }}
+        />
+      );
+
+      // First call via direct onClick
+      act(() => {
+        userEvent.click(getByTestSubject('managed-flyout'));
+      });
+
+      expect(onClose).toHaveBeenCalledTimes(1);
+
+      // Unmount should not call onClose again due to double-firing prevention
+      act(() => {
+        unmount();
+      });
+
+      // Should still be called only once
+      expect(onClose).toHaveBeenCalledTimes(1);
     });
   });
 });
