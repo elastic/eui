@@ -135,36 +135,38 @@ const FlyoutSession: React.FC<FlyoutSessionProps> = React.memo((props) => {
             )}
           </EuiText>
         </EuiFlyoutBody>
-        <EuiFlyout
-          isOpen={isChildFlyoutVisible}
-          id={`childFlyout-${title}`}
-          flyoutMenuProps={{ title: `${title} - Child` }}
-          aria-labelledby="childFlyoutTitle"
-          size={childSize}
-          maxWidth={childMaxWidth}
-          onActive={childFlyoutOnActive}
-          onClose={childFlyoutOnClose}
-        >
-          <EuiFlyoutBody>
-            <EuiText>
-              <p>This is the content of the child flyout of {title}.</p>
-              <EuiSpacer size="s" />
-              <EuiDescriptionList
-                type="column"
-                listItems={[
-                  {
-                    title: 'Child flyout size',
-                    description: childSize ?? 'N/A',
-                  },
-                  {
-                    title: 'Child flyout maxWidth',
-                    description: childMaxWidth ?? 'N/A',
-                  },
-                ]}
-              />
-            </EuiText>
-          </EuiFlyoutBody>
-        </EuiFlyout>
+        {childSize && (
+          <EuiFlyout
+            isOpen={isChildFlyoutVisible}
+            id={`childFlyout-${title}`}
+            flyoutMenuProps={{ title: `${title} - Child` }}
+            aria-labelledby="childFlyoutTitle"
+            size={childSize}
+            maxWidth={childMaxWidth}
+            onActive={childFlyoutOnActive}
+            onClose={childFlyoutOnClose}
+          >
+            <EuiFlyoutBody>
+              <EuiText>
+                <p>This is the content of the child flyout of {title}.</p>
+                <EuiSpacer size="s" />
+                <EuiDescriptionList
+                  type="column"
+                  listItems={[
+                    {
+                      title: 'Child flyout size',
+                      description: childSize ?? 'N/A',
+                    },
+                    {
+                      title: 'Child flyout maxWidth',
+                      description: childMaxWidth ?? 'N/A',
+                    },
+                  ]}
+                />
+              </EuiText>
+            </EuiFlyoutBody>
+          </EuiFlyout>
+        )}
       </EuiFlyout>
     </>
   );
