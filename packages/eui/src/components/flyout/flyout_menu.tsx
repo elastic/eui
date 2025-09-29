@@ -10,14 +10,13 @@ import classNames from 'classnames';
 import React, {
   FunctionComponent,
   HTMLAttributes,
-  MouseEventHandler,
   useContext,
   useState,
 } from 'react';
 
 import { useEuiMemoizedStyles, useGeneratedHtmlId } from '../../services';
-import { EuiButtonEmpty, EuiButtonIcon } from '../button';
-import { CommonProps } from '../common';
+import { EuiButtonEmpty, EuiButtonIcon, EuiButtonProps } from '../button';
+import { CommonProps, PropsForAnchor } from '../common';
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
 import { EuiIcon } from '../icon';
 import { EuiListGroup, EuiListGroupItem } from '../list_group';
@@ -28,11 +27,10 @@ import { euiFlyoutMenuStyles } from './flyout_menu.styles';
 import { EuiFlyoutMenuContext } from './flyout_menu_context';
 import type { EuiFlyoutCloseEvent } from './types';
 
-type EuiFlyoutMenuBackButtonProps = {
-  onClick?: MouseEventHandler<HTMLButtonElement>;
-  'aria-label'?: string;
-  'data-test-subj'?: string;
-};
+type EuiFlyoutMenuBackButtonProps = Pick<
+  PropsForAnchor<EuiButtonProps>,
+  'aria-label' | 'data-test-subj' | 'onClick'
+>;
 
 type EuiFlyoutHistoryItem = {
   title: string;
