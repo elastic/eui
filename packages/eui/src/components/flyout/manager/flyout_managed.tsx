@@ -5,7 +5,7 @@
  * in compliance with, at your election, the Elastic License 2.0 or the Server
  * Side Public License, v 1.
  */
-import React, { useEffect, useRef, useMemo } from 'react';
+import React, { useEffect, useMemo, useRef } from 'react';
 import { useEuiMemoizedStyles } from '../../../services';
 import { useResizeObserver } from '../../observer/resize_observer';
 import {
@@ -14,6 +14,7 @@ import {
 } from '../flyout.component';
 import { EuiFlyoutMenuProps } from '../flyout_menu';
 import { EuiFlyoutMenuContext } from '../flyout_menu_context';
+import type { EuiFlyoutCloseEvent } from '../types';
 import { useFlyoutActivityStage } from './activity_stage';
 import {
   LEVEL_CHILD,
@@ -26,14 +27,14 @@ import { EuiFlyoutIsManagedProvider } from './context';
 import { euiManagedFlyoutStyles } from './flyout_managed.styles';
 import {
   useFlyoutManager as _useFlyoutManager,
+  useCurrentSession,
   useFlyoutId,
   useFlyoutLayoutMode,
   useIsFlyoutActive,
   useParentFlyoutSize,
-  useCurrentSession,
 } from './hooks';
 import { useIsFlyoutRegistered } from './selectors';
-import { EuiFlyoutLevel } from './types';
+import type { EuiFlyoutLevel } from './types';
 import {
   createValidationErrorMessage,
   isNamedSize,
@@ -60,8 +61,6 @@ const useFlyoutManager = () => {
   }
   return context;
 };
-
-type CloseEvent = MouseEvent | TouchEvent | KeyboardEvent;
 
 /**
  * Persistent managed flyout rendered inside the provider. Handles:
@@ -123,7 +122,9 @@ export const EuiManagedFlyout = ({
   const flyoutExistsInManager = useIsFlyoutRegistered(flyoutId);
 
   // Stabilize the onClose callback
-  const onCloseCallbackRef = useRef<((e?: CloseEvent) => void) | undefined>();
+  const onCloseCallbackRef = useRef<
+    ((e?: EuiFlyoutCloseEvent) => void) | undefined
+  >();
   onCloseCallbackRef.current = (e) => {
     if (onCloseProp) {
       const event = e || new MouseEvent('click');
@@ -195,7 +196,7 @@ export const EuiManagedFlyout = ({
   );
 
   // Pass the stabilized onClose callback to the flyout menu context
-  const onClose = (e?: CloseEvent) => {
+  const onClose = (e?: EuiFlyoutCloseEvent) => {
     onCloseCallbackRef.current?.(e);
   };
 

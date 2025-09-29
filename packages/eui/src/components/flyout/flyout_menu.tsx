@@ -26,6 +26,7 @@ import { EuiTitle } from '../title';
 import { EuiFlyoutCloseButton } from './_flyout_close_button';
 import { euiFlyoutMenuStyles } from './flyout_menu.styles';
 import { EuiFlyoutMenuContext } from './flyout_menu_context';
+import type { EuiFlyoutCloseEvent } from './types';
 
 type EuiFlyoutMenuBackButtonProps = {
   onClick?: MouseEventHandler<HTMLButtonElement>;
@@ -123,9 +124,7 @@ export const EuiFlyoutMenu: FunctionComponent<EuiFlyoutMenuProps> = ({
     );
   }
 
-  const handleClose = (
-    event: MouseEvent | TouchEvent | KeyboardEvent | undefined
-  ) => {
+  const handleClose = (event: EuiFlyoutCloseEvent | undefined) => {
     onClose?.(event);
   };
 

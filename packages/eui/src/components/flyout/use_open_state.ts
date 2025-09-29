@@ -7,8 +7,9 @@
  */
 
 import { AnimationEventHandler, useCallback, useEffect, useState } from 'react';
-import { EuiFlyoutProps } from './flyout';
+import type { EuiFlyoutProps } from './flyout';
 import { useIsInManagedFlyout } from './manager';
+import type { EuiFlyoutCloseEvent } from './types';
 
 export type EuiFlyoutOpenState = 'opening' | 'open' | 'closing' | 'closed';
 
@@ -66,7 +67,7 @@ export const useEuiFlyoutOpenState = ({
   }, [openState, setOpenState]);
 
   const closeFlyout = useCallback(
-    (event?: MouseEvent | TouchEvent | KeyboardEvent) => {
+    (event?: EuiFlyoutCloseEvent) => {
       if (openState === 'closed' || openState === 'closing') {
         return;
       }
