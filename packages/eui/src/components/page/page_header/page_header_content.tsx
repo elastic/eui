@@ -10,7 +10,7 @@ import React, { FunctionComponent, ReactNode, HTMLAttributes } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../../common';
 import { EuiIcon, EuiIconProps, IconType } from '../../icon';
-import { EuiTab, EuiTabs, EuiTabsProps, EuiTabsSizes } from '../../tabs';
+import { EuiTab, EuiTabs, EuiTabsProps } from '../../tabs';
 import { Props as EuiTabProps } from '../../tabs/tab';
 import { EuiFlexGroup, EuiFlexItem, EuiFlexGroupProps } from '../../flex';
 import { EuiSpacer } from '../../spacer';
@@ -19,7 +19,6 @@ import { EuiText } from '../../text';
 import {
   useIsWithinBreakpoints,
   useEuiMemoizedStyles,
-  useEuiTheme,
 } from '../../../services';
 import { EuiScreenReaderOnly } from '../../accessibility';
 import { EuiBreadcrumbs, EuiBreadcrumbsProps } from '../../breadcrumbs';
@@ -175,16 +174,10 @@ export const EuiPageHeaderContent: FunctionComponent<
     !!responsive
   );
 
-  const { euiTheme } = useEuiTheme();
-
   const classes = classNames('euiPageHeaderContent', className);
   const pageHeaderStyles = useEuiMemoizedStyles(euiPageHeaderStyles);
   const contentStyles = useEuiMemoizedStyles(euiPageHeaderContentStyles);
   const styles = setStyleForRestrictedPageWidth(restrictWidth, style);
-
-  // Get tabs size from theme, fallback to 'l' for other themes
-  const themeTabsSize = (euiTheme.components.pageHeader?.tabsSize ??
-    'l') as EuiTabsSizes;
 
   let paddingSides: LogicalSides = 'vertical';
   let paddingSize = _paddingSize;
@@ -307,7 +300,7 @@ export const EuiPageHeaderContent: FunctionComponent<
       <>
         {pageTitleNode && <EuiSpacer />}
         {screenReaderPageTitle}
-        <EuiTabs {...tabsProps} bottomBorder={false} size={themeTabsSize}>
+        <EuiTabs {...tabsProps} bottomBorder={false} size="l">
           {renderTabs()}
         </EuiTabs>
       </>

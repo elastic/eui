@@ -28,7 +28,7 @@ import centerSvg from '!url-loader!./content_center.svg';
 
 <Demo scope={{ contentSvg }}>
   ```tsx
-  import React, { useState } from 'react';
+  import React from 'react';
   import {
     EuiText,
     EuiButton,
@@ -42,21 +42,6 @@ import centerSvg from '!url-loader!./content_center.svg';
   const bottomBorder: EuiPageTemplateProps['bottomBorder'] = "extended";
 
   export default () => {
-    const [selectedTabId, setSelectedTabId] = useState('tab1');
-
-    const tabs = [
-      {
-        label: "Tab 1",
-        isSelected: selectedTabId === 'tab1',
-        onClick: () => setSelectedTabId('tab1'),
-      },
-      {
-        label: "Tab 2",
-        isSelected: selectedTabId === 'tab2',
-        onClick: () => setSelectedTabId('tab2'),
-      }
-    ];
-
     return (
       <EuiPageTemplate
         panelled={panelled}
@@ -77,7 +62,7 @@ import centerSvg from '!url-loader!./content_center.svg';
           pageTitle="Page title"
           rightSideItems={[<EuiButton>Right side item</EuiButton>]}
           description="Header description."
-          tabs={tabs}
+          tabs={[{ label: "Tab 1", isSelected: true }, { label: "Tab 2" }]}
         />
         <EuiPageTemplate.Section>
           <EuiImage size={"fullWidth"} alt="Fake paragraph" url={contentSvg} />
