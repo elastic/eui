@@ -183,7 +183,7 @@ export const euiProviderDecoratorGlobals: Preview['globalTypes'] = {
   },
   theme: {
     description: 'Theme for EuiProvider',
-    defaultValue: EuiThemeBorealis.key,
+    defaultValue: EuiThemeAmsterdam.key,
     toolbar: {
       title: 'Theme',
       items: [

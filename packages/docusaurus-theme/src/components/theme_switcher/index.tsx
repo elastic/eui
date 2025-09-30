@@ -41,7 +41,7 @@ export const ThemeSwitcher = () => {
   const { euiTheme } = euiThemeContext;
 
   const [currentTheme, setCurrentTheme] = useState(
-    AVAILABLE_THEMES[0]?.value ?? ''
+    AVAILABLE_THEMES[1]?.value ?? ''
   );
   const [isPopoverOpen, setPopoverOpen] = useState(false);
   const appContext = useContext(AppThemeContext);

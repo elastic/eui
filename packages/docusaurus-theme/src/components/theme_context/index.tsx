@@ -44,7 +44,7 @@ export interface AppThemeContextData {
 const defaultState: AppThemeContextData = {
   colorMode: EUI_COLOR_MODES[0] as EuiThemeColorMode,
   highContrastMode: undefined,
-  theme: AVAILABLE_THEMES[0]!,
+  theme: AVAILABLE_THEMES[1]!,
   changeColorMode: (colorMode: EuiThemeColorMode) => {},
   changeHighContrastMode: (highContrastMode: boolean) => {},
   changeTheme: (themeValue: string) => {},
