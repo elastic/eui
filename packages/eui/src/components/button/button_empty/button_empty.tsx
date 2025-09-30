@@ -84,7 +84,8 @@ export interface CommonEuiButtonEmptyProps
   contentProps?: CommonProps & EuiButtonDisplayContentType;
 }
 
-type EuiButtonEmptyPropsForAnchor = PropsForAnchor<CommonEuiButtonEmptyProps>;
+export type EuiButtonEmptyPropsForAnchor =
+  PropsForAnchor<CommonEuiButtonEmptyProps>;
 
 export type EuiButtonEmptyPropsForButton =
   PropsForButton<CommonEuiButtonEmptyProps>;

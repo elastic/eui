@@ -13,6 +13,11 @@ import { useEuiMemoizedStyles } from '../../../services';
 import { EuiButtonEmpty, type EuiButtonEmptyProps } from '../../button';
 import { EuiFieldTextProps } from '../field_text';
 import { euiFormControlButtonStyles } from './form_control_button.styles';
+import { useInnerText } from '../../inner_text';
+import {
+  EuiButtonEmptyPropsForAnchor,
+  EuiButtonEmptyPropsForButton,
+} from '../../button/button_empty/button_empty';
 
 export type EuiFormControlButtonInputProps = {
   /**
@@ -50,10 +55,13 @@ export const EuiFormControlButton: FunctionComponent<
   textProps: _textProps,
   compressed,
   isInvalid = false,
+  href,
+  rel, // required by our local href-with-rel eslint rule
   ...rest
 }) => {
-  const styles = useEuiMemoizedStyles(euiFormControlButtonStyles);
+  const [buttonTextRef, innerText] = useInnerText();
 
+  const styles = useEuiMemoizedStyles(euiFormControlButtonStyles);
   const classes = classNames('euiFormControlButton', className);
 
   const cssStyles = [
@@ -83,6 +91,19 @@ export const EuiFormControlButton: FunctionComponent<
   const content = isValidElement(children) ? children : <span>{children}</span>;
   const hasText = value || placeholder;
 
+  const linkProps = {
+    href,
+    rel,
+    ...rest,
+  } as EuiButtonEmptyPropsForAnchor;
+
+  const buttonProps = {
+    value: value ? innerText ?? '' : undefined,
+    ...rest,
+  } as EuiButtonEmptyPropsForButton;
+
+  const restProps = href ? linkProps : buttonProps;
+
   return (
     <EuiButtonEmpty
       css={cssStyles}
@@ -90,9 +111,13 @@ export const EuiFormControlButton: FunctionComponent<
       contentProps={contentProps}
       textProps={false}
       color="text"
-      {...(rest as EuiButtonEmptyProps)}
+      {...restProps}
     >
-      {hasText && <span {...customTextProps}>{value || placeholder}</span>}
+      {hasText && (
+        <span {...customTextProps} ref={buttonTextRef}>
+          {value || placeholder}
+        </span>
+      )}
       {hasText && content && ' '}
       {content}
     </EuiButtonEmpty>

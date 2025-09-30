@@ -6,6 +6,7 @@ exports[`EuiButtonEmpty is rendered 1`] = `
   class="euiButtonEmpty euiFormControlButton testClass1 testClass2 emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text-euiFormControlButton-euiTestCss"
   data-test-subj="test subject string"
   type="button"
+  value="Button value"
 >
   <span
     class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiFormControlButton__content"
