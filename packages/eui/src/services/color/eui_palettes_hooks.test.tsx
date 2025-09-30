@@ -7,10 +7,11 @@
  */
 
 import React, { PropsWithChildren } from 'react';
-import { colorVis } from '@elastic/eui-theme-borealis';
+
+import { EuiThemeColorModeStandard } from '@elastic/eui-theme-common';
 
 import { renderHook } from '../../test/rtl';
-
+import { colorVisLight as colorVis } from '../../themes/amsterdam/global_styling/variables/_colors_vis_light';
 import { EuiProvider } from '../../components/provider';
 import {
   useEuiPaletteColorBlind,
@@ -27,9 +28,13 @@ import {
 import { euiPaletteCool, euiPaletteGray, euiPaletteWarm } from './eui_palettes';
 
 // wrapper container to ensure hooks are rendered in specific test provider context
-const RenderContainer = ({ children }: PropsWithChildren) => (
-  <EuiProvider>{children}</EuiProvider>
-);
+const RenderContainer = ({
+  children,
+  ...rest
+}: PropsWithChildren & {
+  colorMode?: EuiThemeColorModeStandard;
+  highContrastMode?: boolean;
+}) => <EuiProvider {...rest}>{children}</EuiProvider>;
 
 describe('useEuiPaletteColorBlind', () => {
   it('should return default colors', () => {
@@ -50,6 +55,28 @@ describe('useEuiPaletteColorBlind', () => {
       colorVis.euiColorVis9,
     ]);
   });
+
+  it('should return high contrast mode colors in LIGHT mode', () => {
+    const Wrapper = (props: PropsWithChildren) => (
+      <RenderContainer {...props} colorMode="LIGHT" highContrastMode />
+    );
+    const { result } = renderHook(() => useEuiPaletteColorBlind(), {
+      wrapper: Wrapper,
+    });
+
+    expect(result.current).toEqual([
+      '#54B399',
+      '#6092C0',
+      '#D36086',
+      '#9170B8',
+      '#CA8EAE',
+      '#D6BF57',
+      '#B9A888',
+      '#DA8B45',
+      '#AA6556',
+      '#E7664C',
+    ]);
+  });
 });
 
 describe('useEuiPaletteColorBlindBehindText', () => {
@@ -59,16 +86,16 @@ describe('useEuiPaletteColorBlindBehindText', () => {
     });
 
     expect(result.current).toEqual([
-      colorVis.euiColorVisBehindText0,
-      colorVis.euiColorVisBehindText1,
-      colorVis.euiColorVisBehindText2,
-      colorVis.euiColorVisBehindText3,
-      colorVis.euiColorVisBehindText4,
-      colorVis.euiColorVisBehindText5,
-      colorVis.euiColorVisBehindText6,
-      colorVis.euiColorVisBehindText7,
-      colorVis.euiColorVisBehindText8,
-      colorVis.euiColorVisBehindText9,
+      colorVis.euiColorVisBehindText0.toLowerCase(),
+      colorVis.euiColorVisBehindText1.toLowerCase(),
+      colorVis.euiColorVisBehindText2.toLowerCase(),
+      colorVis.euiColorVisBehindText3.toLowerCase(),
+      colorVis.euiColorVisBehindText4.toLowerCase(),
+      colorVis.euiColorVisBehindText5.toLowerCase(),
+      colorVis.euiColorVisBehindText6.toLowerCase(),
+      colorVis.euiColorVisBehindText7.toLowerCase(),
+      colorVis.euiColorVisBehindText8.toLowerCase(),
+      colorVis.euiColorVisBehindText9.toLowerCase(),
     ]);
   });
 });
@@ -94,7 +121,7 @@ describe('useEuiPaletteForTemperature', () => {
     });
 
     // testing static start/end colors only as the rest is generated
-    expect(result.current[0]).toEqual(colorVis.euiColorVisCool2.toLowerCase());
+    expect(result.current[0]).toEqual(colorVis.euiColorVisCool1.toLowerCase());
     expect(result.current[2]).toEqual(colorVis.euiColorVisWarm2.toLowerCase());
   });
 });

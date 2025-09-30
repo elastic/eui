@@ -33,7 +33,7 @@ describe('high contrast mode modification overrides', () => {
 
     expect(getByText('High contrast light mode')).toHaveStyleRule(
       'border',
-      '1px solid #07101F'
+      '1px solid #000000'
     );
     expect(getByText('High contrast dark mode')).toHaveStyleRule(
       'border',
@@ -41,7 +41,7 @@ describe('high contrast mode modification overrides', () => {
     );
     expect(getByText('Not high contrast mode')).toHaveStyleRule(
       'border',
-      '1px solid #E3E8F2'
+      '1px solid #D3DAE6'
     );
   });
 
@@ -62,7 +62,7 @@ describe('high contrast mode modification overrides', () => {
 
     expect(getByText('High contrast mode')).toHaveStyleRule(
       'border-color',
-      '#07101F'
+      '#000000'
     );
   });
 
@@ -83,11 +83,11 @@ describe('high contrast mode modification overrides', () => {
 
     expect(getByText('Thin border')).toHaveStyleRule(
       'border',
-      '5px solid #07101F'
+      '5px solid #000000'
     );
     expect(getByText('Thick border')).toHaveStyleRule(
       'border',
-      '10px solid #07101F'
+      '10px solid #000000'
     );
   });
 });
