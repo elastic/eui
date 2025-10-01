@@ -89,6 +89,11 @@ export const EuiManagedFlyout = ({
   const layoutMode = useFlyoutLayoutMode();
   const styles = useEuiMemoizedStyles(euiManagedFlyoutStyles);
 
+  // Default the size to 'm' if not provided
+  if (!size) {
+    size = 'm';
+  }
+
   // Validate size
   const sizeTypeError = validateManagedFlyoutSize(size, flyoutId, level);
   if (sizeTypeError) {
