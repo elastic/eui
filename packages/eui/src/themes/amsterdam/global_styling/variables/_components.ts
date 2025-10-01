@@ -9,7 +9,6 @@
 import {
   _EuiThemeComponentColors,
   _EuiThemeComponents,
-  _EuiThemePageHeader,
 } from '@elastic/eui-theme-common';
 
 import { computed } from '../../../../services/theme/utils';
@@ -23,13 +22,6 @@ import { makeHighContrastColor } from '../../../../services/color/contrast';
 import { buttons } from './_buttons';
 import { forms } from './_forms';
 import { colorVisLight as colorVis } from './_colors_vis_light';
-
-// Amsterdam theme uses default spacing values for emptyPrompt
-const emptyPrompt = {
-  titleBodySpacing: 'm',
-  bodyActionsSpacing: 'l',
-  paddingSize: 'l',
-};
 
 const component_colors: _EuiThemeComponentColors = {
   badgeBackground: computed(
@@ -476,16 +468,9 @@ const component_colors: _EuiThemeComponentColors = {
   ),
 };
 
-// Amsterdam theme uses default tab size for pageHeader
-const pageHeader: _EuiThemePageHeader = {
-  tabsSize: 'l',
-};
-
 export const components: _EuiThemeComponents = {
   buttons,
   forms,
-  emptyPrompt,
-  pageHeader,
   LIGHT: component_colors,
   DARK: {
     ...component_colors,

@@ -8,7 +8,7 @@
 
 export type { EuiTabProps } from './tab';
 export { EuiTab } from './tab';
-export type { EuiTabsProps, EuiTabsSizes } from './tabs';
+export type { EuiTabsProps } from './tabs';
 export { EuiTabs } from './tabs';
 export type {
   EuiTabbedContentTab,

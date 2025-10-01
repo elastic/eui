@@ -334,7 +334,7 @@ exports[`EuiPageHeader props page content props are passed down is rendered 1`] 
       />
       <div
         aria-label="aria-label"
-        class="euiTabs testClass1 testClass2 emotion-euiTabs-m-euiTestCss"
+        class="euiTabs testClass1 testClass2 emotion-euiTabs-l-euiTestCss"
         data-test-subj="test subject string"
         role="tablist"
       >
@@ -346,7 +346,7 @@ exports[`EuiPageHeader props page content props are passed down is rendered 1`] 
           type="button"
         >
           <span
-            class="euiTab__content eui-textTruncate emotion-euiTab__content-m"
+            class="euiTab__content eui-textTruncate emotion-euiTab__content-l"
           >
             Tab 1
           </span>
@@ -359,7 +359,7 @@ exports[`EuiPageHeader props page content props are passed down is rendered 1`] 
           type="button"
         >
           <span
-            class="euiTab__content eui-textTruncate emotion-euiTab__content-m"
+            class="euiTab__content eui-textTruncate emotion-euiTab__content-l"
           >
             Tab 2
           </span>
