@@ -14,7 +14,7 @@ import React, {
   useState,
 } from 'react';
 
-import { useEuiMemoizedStyles, useGeneratedHtmlId } from '../../services';
+import { useEuiMemoizedStyles } from '../../services';
 import { EuiButtonEmpty, EuiButtonIcon, EuiButtonProps } from '../button';
 import { CommonProps, PropsForAnchor } from '../common';
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
@@ -39,6 +39,8 @@ type EuiFlyoutHistoryItem = {
 
 export type EuiFlyoutMenuProps = CommonProps &
   HTMLAttributes<HTMLDivElement> & {
+    /* An id to use for the title element */
+    titleId?: string;
     title?: React.ReactNode;
     hideCloseButton?: boolean;
     showBackButton?: boolean;
@@ -102,6 +104,7 @@ const HistoryPopover: React.FC<{
 };
 
 export const EuiFlyoutMenu: FunctionComponent<EuiFlyoutMenuProps> = ({
+  titleId,
   className,
   title,
   hideCloseButton,
@@ -115,7 +118,6 @@ export const EuiFlyoutMenu: FunctionComponent<EuiFlyoutMenuProps> = ({
 
   const styles = useEuiMemoizedStyles(euiFlyoutMenuStyles);
   const classes = classNames('euiFlyoutMenu', className);
-  const titleId = useGeneratedHtmlId();
 
   let titleNode;
   if (title) {
