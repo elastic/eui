@@ -1,4 +1,12 @@
-import React, { useContext } from 'react';
+/*
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
+ */
+
+import { useContext } from 'react';
 import { css } from '@emotion/react';
 import useIsBrowser from '@docusaurus/useIsBrowser';
 import {
@@ -11,6 +19,7 @@ import {
   useEuiMemoizedStyles,
   UseEuiTheme,
 } from '@elastic/eui';
+
 import { AppThemeContext } from '../theme_context';
 
 type SharedProps = {
@@ -29,12 +38,14 @@ export const getStyles = ({ euiTheme }: UseEuiTheme) => ({
   item: css`
     display: flex;
     align-items: center;
+    flex-shrink: 0;
 
     -webkit-tap-highlight-color: transparent;
     transition: background var(--ifm-transition-fast);
 
     &:hover {
-      background-color: var(--ifm-color-emphasis-200);
+      background-color: ${euiTheme.components.buttons
+        .backgroundTextHover};
       color: currentColor;
     }
   `,
@@ -57,7 +68,6 @@ export const getStyles = ({ euiTheme }: UseEuiTheme) => ({
   `,
   darkMode: css`
     &:hover {
-      background-color: var(--ifm-color-gray-800);
       color: currentColor;
     }
   `,
