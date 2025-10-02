@@ -3,7 +3,7 @@
 exports[`EuiButtonEmpty is rendered 1`] = `
 <button
   aria-label="aria-label"
-  class="euiButtonEmpty euiFormControlButton testClass1 testClass2 emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text-euiFormControlButton-euiTestCss"
+  class="euiButtonEmpty euiFormControlButton testClass1 testClass2 emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text-euiFormControlButton-fullWidth-euiTestCss"
   data-test-subj="test subject string"
   type="button"
   value="Button value"
@@ -16,8 +16,6 @@ exports[`EuiButtonEmpty is rendered 1`] = `
     >
       Button value
     </span>
-     
-    <span />
   </span>
 </button>
 `;

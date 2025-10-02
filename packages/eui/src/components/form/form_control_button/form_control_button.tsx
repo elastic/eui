@@ -88,7 +88,13 @@ export const EuiFormControlButton: FunctionComponent<
     ],
   };
 
-  const content = isValidElement(children) ? children : <span>{children}</span>;
+  const content = children ? (
+    isValidElement(children) ? (
+      children
+    ) : (
+      <span>{children}</span>
+    )
+  ) : null;
   const hasText = value || placeholder;
 
   const linkProps = {
