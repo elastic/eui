@@ -20,7 +20,6 @@ export const euiFormControlButtonStyles = (euiThemeContext: UseEuiTheme) => {
     euiFormControlButton: css`
       ${formStyles.shared}
       ${formStyles.uncompressed}
-      ${logicalCSS('width', '100%')}
       font-weight: ${euiTheme.font.weight.regular};
       transition: none;
 
@@ -48,6 +47,8 @@ export const euiFormControlButtonStyles = (euiThemeContext: UseEuiTheme) => {
     compressed: css`
       ${formStyles.compressed}
     `,
+    formWidth: formStyles.formWidth,
+    fullWidth: css(formStyles.fullWidth),
     euiFormControlButton__content: css`
       justify-content: flex-start;
       ${logicalCSS('width', '100%')}

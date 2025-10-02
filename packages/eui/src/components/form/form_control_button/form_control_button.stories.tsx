@@ -13,7 +13,7 @@ import {
   enableFunctionToggleControls,
   hideStorybookControls,
 } from '../../../../.storybook/utils';
-import { EuiFlexGrid } from '../../flex';
+import { EuiFlexGroup } from '../../flex';
 import { EuiSpacer } from '../../spacer';
 import {
   EuiFormControlButton,
@@ -38,6 +38,7 @@ const meta: Meta<EuiFormControlButtonProps> = {
     isDisabled: false,
     isInvalid: false,
     compressed: false,
+    fullWidth: true,
   },
 };
 hideStorybookControls(meta, ['aria-label', 'buttonRef']);
@@ -56,7 +57,7 @@ export const Kitchensink: Story = {
   tags: ['vrt-only'],
   render: () => {
     return (
-      <EuiFlexGrid gutterSize="s">
+      <EuiFlexGroup gutterSize="s" direction="column">
         <EuiFormControlButton placeholder="Placeholder" />
         <EuiFormControlButton value="Button value" />
         <EuiFormControlButton autoFocus>Button content</EuiFormControlButton>
@@ -109,7 +110,7 @@ export const Kitchensink: Story = {
         >
           Button content
         </EuiFormControlButton>
-      </EuiFlexGrid>
+      </EuiFlexGroup>
     );
   },
 };

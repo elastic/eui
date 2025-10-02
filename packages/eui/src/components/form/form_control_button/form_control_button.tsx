@@ -32,6 +32,12 @@ export type EuiFormControlButtonInputProps = {
    * Defines invalid state styling
    */
   isInvalid?: EuiFieldTextProps['isInvalid'];
+  /**
+   * Expand to fill 100% of the parent.
+   * Defaults to `fullWidth` prop of `<EuiForm>`.
+   * @default true
+   */
+  fullWidth?: boolean;
 };
 export type EuiFormControlButtonProps = EuiFormControlButtonInputProps &
   Omit<
@@ -55,6 +61,7 @@ export const EuiFormControlButton: FunctionComponent<
   textProps: _textProps,
   compressed,
   isInvalid = false,
+  fullWidth = true,
   href,
   rel, // required by our local href-with-rel eslint rule
   ...rest
@@ -68,6 +75,7 @@ export const EuiFormControlButton: FunctionComponent<
     styles.euiFormControlButton,
     isInvalid && styles.isInvalid,
     compressed && styles.compressed,
+    fullWidth ? styles.fullWidth : styles.formWidth,
   ];
 
   const contentProps = {
