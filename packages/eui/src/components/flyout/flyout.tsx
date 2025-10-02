@@ -20,6 +20,7 @@ import {
   useHasActiveSession,
   useIsInManagedFlyout,
 } from './manager';
+import { EuiFlyoutMenuContext } from './flyout_menu_context';
 
 export type {
   EuiFlyoutSize,
@@ -104,6 +105,10 @@ export const EuiFlyout = forwardRef<
   // TODO: if resizeable={true}, render EuiResizableFlyout.
 
   isUnmanagedFlyout.current = true;
-  return <EuiFlyoutComponent {...rest} onClose={onClose} as={as} ref={ref} />;
+  return (
+    <EuiFlyoutMenuContext.Provider value={{ onClose }}>
+      <EuiFlyoutComponent {...rest} onClose={onClose} as={as} ref={ref} />;
+    </EuiFlyoutMenuContext.Provider>
+  );
 });
 EuiFlyout.displayName = 'EuiFlyout';
