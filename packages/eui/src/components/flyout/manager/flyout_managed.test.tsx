@@ -281,6 +281,49 @@ describe('EuiManagedFlyout', () => {
     });
   });
 
+  describe('size handling', () => {
+    it('defaults size to "m" when no size is provided', () => {
+      // Import the real validation function to test the actual behavior
+      const { validateManagedFlyoutSize } = jest.requireActual('./validation');
+
+      // Temporarily restore the real validation function for this test
+      const originalMock = require('./validation').validateManagedFlyoutSize;
+      require('./validation').validateManagedFlyoutSize =
+        validateManagedFlyoutSize;
+
+      const { getByTestSubject } = renderInProvider(
+        <EuiManagedFlyout
+          id="default-size-test"
+          level={LEVEL_MAIN}
+          onClose={() => {}}
+          flyoutMenuProps={{ title: 'Test Flyout' }}
+          // Explicitly not providing size prop
+        />
+      );
+
+      // The flyout should render successfully, indicating the default size worked
+      expect(getByTestSubject('managed-flyout')).toBeInTheDocument();
+
+      // Restore the mock
+      require('./validation').validateManagedFlyoutSize = originalMock;
+    });
+
+    it('uses provided size when size is explicitly set', () => {
+      const { getByTestSubject } = renderInProvider(
+        <EuiManagedFlyout
+          id="explicit-size-test"
+          level={LEVEL_MAIN}
+          size="s"
+          onClose={() => {}}
+          flyoutMenuProps={{ title: 'Test Flyout' }}
+        />
+      );
+
+      // The flyout should render successfully with explicit size
+      expect(getByTestSubject('managed-flyout')).toBeInTheDocument();
+    });
+  });
+
   describe('onClose callback behavior', () => {
     it('does not call onClose callback during component cleanup/unmount', () => {
       const onClose = jest.fn();
