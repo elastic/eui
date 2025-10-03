@@ -64,7 +64,7 @@ export function validateFlyoutTitle(
   if (level === LEVEL_MAIN && !flyoutMenuTitle) {
     return {
       type: 'INVALID_FLYOUT_MENU_TITLE',
-      message: `Managed flyouts require either a 'flyoutMenuProps' a 'title' property, or an 'aria-label' to provide the title.`,
+      message: `Managed flyouts require either a 'flyoutMenuProps.title' or an 'aria-label' to provide the flyout menu title.`,
       flyoutId,
       level,
     };
