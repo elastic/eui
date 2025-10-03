@@ -101,7 +101,6 @@ const FlyoutSession: React.FC<FlyoutSessionProps> = React.memo((props) => {
         id={`mainFlyout-${title}`}
         session={true}
         flyoutMenuProps={{ title: `${title} - Main` }}
-        aria-labelledby="flyoutTitle"
         size={mainSize}
         maxWidth={mainMaxWidth}
         type={flyoutType}
