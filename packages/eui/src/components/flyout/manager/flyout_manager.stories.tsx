@@ -170,7 +170,7 @@ type Story = StoryObj<FlyoutChildStoryArgs>;
  * A shared helper component used to demo management of internal state. It keeps internal state of
  * the selected flyout type (overlay/push) and the open/closed state of child flyout.
  */
-const StatefulFlyout: React.FC<FlyoutChildStoryArgs> = ({
+const FlyoutWithMenuProps: React.FC<FlyoutChildStoryArgs> = ({
   mainSize,
   childSize,
   childBackgroundStyle,
@@ -183,7 +183,7 @@ const StatefulFlyout: React.FC<FlyoutChildStoryArgs> = ({
   childFlyoutResizable,
   ...args
 }) => {
-  const [isMainOpen, setIsMainOpen] = useState(true);
+  const [isMainOpen, setIsMainOpen] = useState(false);
 
   /* TODO: Allow child to be open automatically on initial render. Currently,
    * this is not supported due to the child not having a reference to the
@@ -212,33 +212,27 @@ const StatefulFlyout: React.FC<FlyoutChildStoryArgs> = ({
 
   return (
     <>
-      <EuiText>
-        <p>
-          This is the main page content. Watch how it behaves when the flyout
-          type changes.
-        </p>
-        <p>
-          <strong>Current layout mode: {layoutMode}</strong>
-        </p>
-      </EuiText>
-      <EuiSpacer size="l" />
       {isMainOpen ? (
-        <EuiButton onClick={closeMain}>Close Main Flyout</EuiButton>
+        <EuiButton onClick={closeMain}>Close with flyoutMenuProps</EuiButton>
       ) : (
-        <EuiButton onClick={openMain}>Open Main Flyout</EuiButton>
+        <EuiButton onClick={openMain}>
+          Open Flyout with flyoutMenuProps
+        </EuiButton>
       )}
 
       <EuiFlyout
         isOpen={isMainOpen}
         session={true}
-        id="flyout-manager-playground-main"
+        id="flyout-with-menu-props-main"
         size={mainSize}
         type={mainFlyoutType}
         pushMinBreakpoint={pushMinBreakpoint}
         maxWidth={mainMaxWidth}
         ownFocus={false}
         resizable={mainFlyoutResizable}
-        aria-label={`Main Flyout Menu (${mainSize})`}
+        flyoutMenuProps={{
+          title: `Main Flyout with flyoutMenuProps (${mainSize})`,
+        }}
         {...args}
         onClose={closeMain}
       >
@@ -250,6 +244,9 @@ const StatefulFlyout: React.FC<FlyoutChildStoryArgs> = ({
               neque sequi illo, cum rerum quia ab animi velit sit incidunt
               inventore temporibus eaque nam veritatis amet maxime maiores optio
               quam?
+            </p>
+            <p>
+              <strong>Current layout mode: {layoutMode}</strong>
             </p>
           </EuiText>
           <EuiSpacer />
@@ -268,7 +265,9 @@ const StatefulFlyout: React.FC<FlyoutChildStoryArgs> = ({
             ownFocus={false}
             resizable={childFlyoutResizable}
             {...args}
-            aria-label={`Child Flyout Panel (${childSize})`}
+            flyoutMenuProps={{
+              title: `Child Flyout with flyoutMenuProps (${childSize})`,
+            }}
             onClose={closeChild}
           >
             <EuiFlyoutBody>
@@ -285,6 +284,159 @@ const StatefulFlyout: React.FC<FlyoutChildStoryArgs> = ({
                   Dolorum neque sequi illo, cum rerum quia ab animi velit sit
                   incidunt inventore temporibus eaque nam veritatis amet maxime
                   maiores optio quam?
+                </p>
+                <p>
+                  <strong>Current layout mode: {layoutMode}</strong>
+                </p>
+              </EuiText>
+            </EuiFlyoutBody>
+            {showFooter && (
+              <EuiFlyoutFooter>
+                <EuiText>
+                  <p>Child flyout footer</p>
+                </EuiText>
+              </EuiFlyoutFooter>
+            )}
+            {/* Footer is optional */}
+          </EuiFlyout>
+        </EuiFlyoutBody>
+        {showFooter && (
+          <EuiFlyoutFooter>
+            <EuiText>
+              <p>Main flyout footer</p>
+            </EuiText>
+          </EuiFlyoutFooter>
+        )}
+      </EuiFlyout>
+    </>
+  );
+};
+
+const FlyoutWithHeader: React.FC<FlyoutChildStoryArgs> = ({
+  mainSize,
+  childSize,
+  childBackgroundStyle,
+  mainFlyoutType,
+  pushMinBreakpoint,
+  mainMaxWidth,
+  childMaxWidth,
+  showFooter,
+  mainFlyoutResizable,
+  childFlyoutResizable,
+  ...args
+}) => {
+  const [isMainOpen, setIsMainOpen] = useState(false);
+
+  /* TODO: Allow child to be open automatically on initial render. Currently,
+   * this is not supported due to the child not having a reference to the
+   * session context */
+  const [isChildOpen, setIsChildOpen] = useState(false);
+
+  const openMain = () => {
+    setIsMainOpen(true);
+    playgroundActions.log('Parent flyout opened');
+  };
+  const closeMain = () => {
+    setIsMainOpen(false);
+    setIsChildOpen(false);
+    playgroundActions.log('Parent flyout closed');
+  };
+  const openChild = () => {
+    setIsChildOpen(true);
+    playgroundActions.log('Child flyout opened');
+  };
+  const closeChild = () => {
+    setIsChildOpen(false);
+    playgroundActions.log('Child flyout closed');
+  };
+
+  const layoutMode = useFlyoutLayoutMode();
+
+  return (
+    <>
+      {isMainOpen ? (
+        <EuiButton onClick={closeMain}>Close with EuiFlyoutHeader</EuiButton>
+      ) : (
+        <EuiButton onClick={openMain}>
+          Open Flyout with EuiFlyoutHeader
+        </EuiButton>
+      )}
+
+      <EuiFlyout
+        isOpen={isMainOpen}
+        session={true}
+        id="flyout-with-header-main"
+        size={mainSize}
+        type={mainFlyoutType}
+        pushMinBreakpoint={pushMinBreakpoint}
+        maxWidth={mainMaxWidth}
+        ownFocus={false}
+        resizable={mainFlyoutResizable}
+        aria-labelledby="flyoutWithHeaderTitle"
+        {...args}
+        onClose={closeMain}
+      >
+        <EuiFlyoutHeader>
+          <EuiTitle size="m">
+            <h2 id="flyoutWithHeaderTitle">
+              Main Flyout with EuiFlyoutHeader ({mainSize})
+            </h2>
+          </EuiTitle>
+        </EuiFlyoutHeader>
+        <EuiFlyoutBody>
+          <EuiText>
+            <p>
+              A flyout that has an <EuiCode>EuiFlyoutHeader</EuiCode> child and{' '}
+              <EuiCode>session=true</EuiCode>
+            </p>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum
+              neque sequi illo, cum rerum quia ab animi velit sit incidunt
+              inventore temporibus eaque nam veritatis amet maxime maiores optio
+              quam?
+            </p>
+            <p>
+              <strong>Current layout mode: {layoutMode}</strong>
+            </p>
+          </EuiText>
+          <EuiSpacer />
+
+          {!isChildOpen ? (
+            <EuiButton onClick={openChild}>Open child panel</EuiButton>
+          ) : (
+            <EuiButton onClick={closeChild}>Close child panel</EuiButton>
+          )}
+          <EuiFlyout
+            isOpen={isChildOpen}
+            id="flyout-manager-playground-child"
+            size={childSize}
+            backgroundStyle={childBackgroundStyle}
+            maxWidth={childMaxWidth}
+            ownFocus={false}
+            resizable={childFlyoutResizable}
+            {...args}
+            flyoutMenuProps={{
+              title: `Child Flyout with flyoutMenuProps (${childSize})`,
+            }}
+            onClose={closeChild}
+          >
+            <EuiFlyoutBody>
+              <EuiText>
+                <p>This is the child flyout content.</p>
+                <p>Size restrictions apply:</p>
+                <ul>
+                  <li>When main panel is 's', child can be 's', or 'm'</li>
+                  <li>When main panel is 'm', child is limited to 's'</li>
+                </ul>
+                <EuiSpacer />
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Dolorum neque sequi illo, cum rerum quia ab animi velit sit
+                  incidunt inventore temporibus eaque nam veritatis amet maxime
+                  maiores optio quam?
+                </p>
+                <p>
+                  <strong>Current layout mode: {layoutMode}</strong>
                 </p>
               </EuiText>
             </EuiFlyoutBody>
@@ -312,7 +464,18 @@ const StatefulFlyout: React.FC<FlyoutChildStoryArgs> = ({
 
 export const FlyoutChildDemo: Story = {
   name: 'Playground',
-  render: (args) => <StatefulFlyout {...args} />,
+  render: (args) => (
+    <>
+      <EuiText>
+        <p>
+          This is the main page content. Watch how it behaves when the flyout
+          type changes.
+        </p>
+      </EuiText>
+      <EuiSpacer size="l" />
+      <FlyoutWithMenuProps {...args} /> <FlyoutWithHeader {...args} />
+    </>
+  ),
 };
 
 const ExternalRootFlyout: React.FC<{ id: string }> = ({ id }) => {
