@@ -203,16 +203,17 @@ export const InScrollablePopover: Story = {
         }}
         panelPaddingSize="none"
         anchorPosition="downLeft"
-        panelProps={{
-          css: css`
+      >
+        <div
+          css={css`
             ${logicalCSS('max-height', '250px')}
             ${useEuiScrollBar()};
             ${/* eslint-disable-next-line local/css-logical-properties */ ''}
             overflow-y: auto;
-          `,
-        }}
-      >
-        <EuiContextMenu {...args} />
+          `}
+        >
+          <EuiContextMenu {...args} />
+        </div>
       </EuiPopover>
     );
   },
