@@ -123,6 +123,101 @@ export default () => {
 }
 ```
 
+## Scroll behavior
+
+:::warning Do not combine shadow utils and scroll behavior styles on the same element
+:::
+
+Combining EUI shadow utils like `euiShadow()` and scroll behavior (e.g. via `overflow: scroll` or `overflow: auto`) on the same element will cause the floating border 
+in DARK mode to be scrolled. If you want to combine both, separate the styles onto different elements by placing the shadow util on the outer wrapper and the scroll 
+behavior on the inner one.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  useEuiTheme,
+  EuiPopover,
+  EuiButton,
+  EuiContextMenu,
+  EuiPanel,
+  EuiThemeProvider,
+  logicalCSS,
+  useEuiScrollBar,
+} from '@elastic/eui';
+import { css } from '@emotion/react';
+
+export default () => {
+  const [isPopoverOpen, setPopoverOpen] = useState(false);
+
+  const Example = () => {
+    return (
+      <EuiPanel hasShadow={false} css={css`
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        block-size: 200px;
+      `}>
+        <EuiPopover
+          button={
+            <EuiButton onClick={() => setPopoverOpen(!isPopoverOpen)}>
+              Toggle context menu
+            </EuiButton>
+          }
+          isOpen={isPopoverOpen}
+          closePopover={() => {
+            setPopoverOpen(false);
+          }}
+          panelPaddingSize="none"
+          anchorPosition="rightCenter"
+        >
+          <div
+            css={css`
+              ${logicalCSS('max-height', '100px')}
+              ${useEuiScrollBar()};
+              overflow-y: auto;
+            `}
+          >
+            <EuiContextMenu
+              initialPanelId={0}
+              panels={[
+                {
+                  id: 0,
+                  title: 'This is a context menu',
+                  items: [
+                    {
+                      name: 'Item 1',
+                      icon: 'search',
+                    },
+                    {
+                      name: 'Item 2',
+                      icon: 'user',
+                    },
+                    {
+                      name: 'Item 3',
+                      icon: 'document',
+                    },
+                    {
+                      name: 'Item 5',
+                      icon: 'cheer',
+                    }
+                  ],
+                },
+              ]}
+            />
+          </div>
+        </EuiPopover>
+      </EuiPanel>
+    )
+  }
+
+  return (
+    <EuiThemeProvider colorMode="dark" wrapperProps={{ cloneElement: true }}>
+      <Example />
+    </EuiThemeProvider>
+  );
+};
+```
+
 ## Hover states
 
 Each shadowed surface, when interactive, follows the same hover effect rule: it moves up one level. 
