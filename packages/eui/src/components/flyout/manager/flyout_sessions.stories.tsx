@@ -35,7 +35,7 @@ export default meta;
 
 interface FlyoutSessionProps {
   title: string;
-  mainSize: 's' | 'm' | 'l' | 'fill';
+  mainSize?: 's' | 'm' | 'l' | 'fill';
   mainMaxWidth?: number;
   childSize?: 's' | 'm' | 'fill';
   childMaxWidth?: number;
@@ -117,7 +117,10 @@ const FlyoutSession: React.FC<FlyoutSessionProps> = React.memo((props) => {
               type="column"
               listItems={[
                 { title: 'Flyout type', description: flyoutType },
-                { title: 'Main flyout size', description: mainSize },
+                {
+                  title: 'Main flyout size',
+                  description: mainSize ?? 'undefined (`m` by default)',
+                },
                 {
                   title: 'Main flyout maxWidth',
                   description: mainMaxWidth ?? 'N/A',
@@ -244,12 +247,13 @@ const ExampleComponent = () => {
         ),
       },
       {
-        title: 'Session F: main size = s, child size = fill (maxWidth 1000px)',
+        title:
+          'Session F: main size = undefined, child size = fill (maxWidth 1000px)',
         description: (
           <FlyoutSession
             flyoutType={flyoutType}
             title="Session F"
-            mainSize="s"
+            mainSize={undefined}
             childSize="fill"
             childMaxWidth={1000}
           />
