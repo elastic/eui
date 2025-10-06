@@ -74,7 +74,7 @@ export const EuiManagedFlyout = ({
   onClose: onCloseProp,
   onActive: onActiveProp,
   level,
-  size,
+  size = 'm',
   css: customCss,
   isOpen = true,
   flyoutMenuProps: _flyoutMenuProps,

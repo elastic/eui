@@ -54,7 +54,7 @@ The managed flyout wrapper that integrates with the flyout manager system, handl
 
 ### `src/components/flyout/manager/flyout_validation.ts`
 Validation utilities for managed flyout props:
-- **Named Size Validation**: Managed flyouts must use named sizes (s, m, l)
+- **Named Size Validation**: Managed flyouts must use named sizes (s, m, l). If not provided, defaults to 'm'.
 - **Size Combination Rules**: Parent and child can't both be 'm', parent can't be 'l' with child
 - **Title**: Must be provided either through `flyoutMenuProps` or `aria-label`
 - **Error Handling**: Comprehensive error messages for invalid configurations
