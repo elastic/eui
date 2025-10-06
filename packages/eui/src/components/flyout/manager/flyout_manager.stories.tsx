@@ -8,18 +8,25 @@
 
 import { actions } from '@storybook/addon-actions';
 import type { Meta, StoryObj } from '@storybook/react';
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import { createRoot } from 'react-dom/client';
+import type { Root } from 'react-dom/client';
 
 import { LOKI_SELECTORS } from '../../../../.storybook/loki';
 import { EuiBreakpointSize } from '../../../services';
 import { EuiButton } from '../../button';
+import { EuiCodeBlock } from '../../code';
+import { EuiFlexGroup, EuiFlexItem } from '../../flex';
+import { EuiPanel } from '../../panel';
+import { EuiProvider } from '../../provider';
 import { EuiSpacer } from '../../spacer';
 import { EuiText } from '../../text';
+import { EuiTitle } from '../../title';
 import { FLYOUT_TYPES, EuiFlyout } from '../flyout';
 import { EuiFlyoutBody } from '../flyout_body';
 import { EuiFlyoutFooter } from '../flyout_footer';
 import { EuiFlyoutChild, EuiFlyoutChildProps } from './flyout_child';
-import { useFlyoutLayoutMode } from './hooks';
+import { useFlyoutLayoutMode, useFlyoutManager } from './hooks';
 
 type EuiFlyoutChildActualProps = Pick<
   EuiFlyoutChildProps,
@@ -306,4 +313,139 @@ const StatefulFlyout: React.FC<FlyoutChildStoryArgs> = ({
 export const FlyoutChildDemo: Story = {
   name: 'Playground',
   render: (args) => <StatefulFlyout {...args} />,
+};
+
+const ExternalRootFlyout: React.FC<{ id: string }> = ({ id }) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <EuiPanel hasBorder paddingSize="m" grow={false}>
+      <EuiTitle size="xs">
+        <h3>{id}</h3>
+      </EuiTitle>
+      <EuiSpacer size="s" />
+      <EuiButton onClick={() => setIsOpen((prev) => !prev)}>
+        {isOpen ? 'Close flyout' : 'Open flyout'}
+      </EuiButton>
+      <EuiFlyout
+        id={`external-root-${id}`}
+        isOpen={isOpen}
+        session
+        size="m"
+        onClose={() => setIsOpen(false)}
+        flyoutMenuProps={{ title: `${id} flyout` }}
+      >
+        <EuiFlyoutBody>
+          <EuiText>
+            <p>
+              This flyout lives in a separate React root but shares the same
+              manager state. Closing it here should update all other flyout
+              menus and history.
+            </p>
+          </EuiText>
+        </EuiFlyoutBody>
+      </EuiFlyout>
+    </EuiPanel>
+  );
+};
+
+const MultiRootFlyoutDemo: React.FC<FlyoutChildStoryArgs> = (args) => {
+  const secondaryRootRef = useRef<HTMLDivElement | null>(null);
+  const tertiaryRootRef = useRef<HTMLDivElement | null>(null);
+  const mountedRootsRef = useRef<Root[]>([]);
+  const flyoutManager = useFlyoutManager();
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (secondaryRootRef.current && tertiaryRootRef.current) {
+        const containers = [
+          { container: secondaryRootRef.current, id: 'Secondary root' },
+          { container: tertiaryRootRef.current, id: 'Tertiary root' },
+        ];
+
+        mountedRootsRef.current = containers.map(({ container, id }) => {
+          const root = createRoot(container);
+          root.render(
+            <EuiProvider>
+              <ExternalRootFlyout id={id} />
+            </EuiProvider>
+          );
+          return root;
+        });
+      }
+    }, 100);
+
+    return () => {
+      clearTimeout(timer);
+      mountedRootsRef.current.forEach((root) => root.unmount());
+      mountedRootsRef.current = [];
+    };
+  }, []);
+
+  return (
+    <>
+      <EuiTitle size="s">
+        <h3>Primary React root</h3>
+      </EuiTitle>
+      <EuiSpacer size="m" />
+      <StatefulFlyout
+        {...args}
+        mainSize="m"
+        childSize="s"
+        mainFlyoutType="overlay"
+        outsideClickCloses={false}
+        ownFocus={true}
+        paddingSize="m"
+        pushAnimation={true}
+        pushMinBreakpoint="xs"
+        showFooter={true}
+        mainFlyoutResizable={false}
+        childFlyoutResizable={false}
+      />
+      <EuiSpacer size="xl" />
+      <EuiTitle size="s">
+        <h3>Additional React roots</h3>
+      </EuiTitle>
+      <EuiSpacer size="s" />
+      <EuiText size="s" color="subdued">
+        <p>
+          These flyouts are rendered in separate React roots but share the same
+          flyout manager state. Open/close any flyout and watch the shared state
+          update below.
+        </p>
+      </EuiText>
+      <EuiSpacer />
+      <EuiFlexGroup gutterSize="m">
+        <EuiFlexItem grow={false}>
+          <div ref={secondaryRootRef} />
+        </EuiFlexItem>
+        <EuiFlexItem grow={false}>
+          <div ref={tertiaryRootRef} />
+        </EuiFlexItem>
+      </EuiFlexGroup>
+      <EuiSpacer size="xl" />
+      <EuiTitle size="s">
+        <h3>Shared manager state</h3>
+      </EuiTitle>
+      <EuiSpacer size="s" />
+      <EuiCodeBlock language="json" isCopyable>
+        {JSON.stringify(
+          {
+            sessions: flyoutManager?.state.sessions,
+            flyouts: flyoutManager?.state.flyouts,
+          },
+          null,
+          2
+        )}
+      </EuiCodeBlock>
+    </>
+  );
+};
+
+export const MultiRootSyncPlayground: Story = {
+  name: 'Multi-root sync',
+  render: (args) => <MultiRootFlyoutDemo {...args} />,
+  parameters: {
+    layout: 'fullscreen',
+  },
 };

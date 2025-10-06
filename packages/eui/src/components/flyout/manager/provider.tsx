@@ -6,10 +6,11 @@
  * Side Public License, v 1.
  */
 
-import React, { createContext, useContext } from 'react';
-import { useFlyoutManagerReducer } from './hooks';
+import React, { createContext, useContext, useMemo } from 'react';
+import { useSyncExternalStore } from 'use-sync-external-store/shim';
 import { useApplyFlyoutLayoutMode } from './layout_mode';
 import { FlyoutManagerApi } from './types';
+import { getFlyoutManagerStore } from './store';
 
 /**
  * React context that exposes the Flyout Manager API (state + actions).
@@ -24,7 +25,26 @@ export const EuiFlyoutManagerContext = createContext<FlyoutManagerApi | null>(
 export const EuiFlyoutManager: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
-  const api = useFlyoutManagerReducer();
+  const { getState, subscribe, goToFlyout, ...rest } = getFlyoutManagerStore();
+
+  const state = useSyncExternalStore(subscribe, getState);
+
+  const api: FlyoutManagerApi = useMemo(
+    () => ({
+      state,
+      ...rest,
+      goToFlyout,
+      getHistoryItems: () => {
+        const currentSessionIndex = state.sessions.length - 1;
+        const previousSessions = state.sessions.slice(0, currentSessionIndex);
+        return previousSessions.reverse().map(({ title, mainFlyoutId }) => ({
+          title,
+          onClick: () => goToFlyout(mainFlyoutId),
+        }));
+      },
+    }),
+    [state, goToFlyout, rest]
+  );
   return (
     <EuiFlyoutManagerContext.Provider value={api}>
       <EuiFlyoutManagerContainer>{children}</EuiFlyoutManagerContainer>
