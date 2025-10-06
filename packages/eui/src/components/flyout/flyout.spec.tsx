@@ -197,18 +197,20 @@ describe('EuiFlyout', () => {
       );
     };
 
-    // TODO: Unskip in https://github.com/elastic/eui/issues/8989
-    it.skip('closes the flyout when the overlay mask is clicked', () => {
+    it('closes the flyout when the overlay mask is clicked', () => {
       cy.mount(<Flyout />);
       cy.get('[data-test-subj="flyoutSpec"]').should('be.visible');
-      cy.get('.euiOverlayMask')
-        .should('be.visible')
-        .realClick({ position: 'left' });
+
+      // wait and exists instead of be.visible are used here because cypress
+      // thinks the overlay is covered due to our position: fixed style.
+      // This is likely fixed in more recent versions of Cypress
+      cy.wait(0);
+      cy.get('.euiOverlayMask').should('exist').realClick({ position: 'left' });
+
       cy.get('[data-test-subj="flyoutSpec"]').should('not.exist');
     });
 
-    // TODO: Unskip in https://github.com/elastic/eui/issues/8989
-    it.skip('does not close the flyout when `outsideClickCloses=false` and the overlay mask is clicked', () => {
+    it('does not close the flyout when `outsideClickCloses=false` and the overlay mask is clicked', () => {
       cy.mount(<Flyout outsideClickCloses={false} />);
       cy.get('.euiOverlayMask')
         .realClick()
@@ -217,8 +219,7 @@ describe('EuiFlyout', () => {
         });
     });
 
-    // TODO: Unskip in https://github.com/elastic/eui/issues/8989
-    it.skip('does not close the flyout when the overlay mask is only the target of mouseup', () => {
+    it('does not close the flyout when the overlay mask is only the target of mouseup', () => {
       cy.mount(<Flyout />);
       cy.get('[data-test-subj="itemD"]').realMouseDown().realMouseMove(-100, 0);
       cy.get('.euiOverlayMask')
