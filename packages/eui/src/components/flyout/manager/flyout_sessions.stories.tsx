@@ -41,6 +41,7 @@ interface FlyoutSessionProps {
   childMaxWidth?: number;
   flyoutType: 'overlay' | 'push';
   childBackgroundShaded?: boolean;
+  ownFocus?: boolean;
 }
 
 const FlyoutSession: React.FC<FlyoutSessionProps> = React.memo((props) => {
@@ -51,6 +52,7 @@ const FlyoutSession: React.FC<FlyoutSessionProps> = React.memo((props) => {
     mainMaxWidth,
     childMaxWidth,
     flyoutType,
+    ownFocus = false,
   } = props;
 
   const [isFlyoutVisible, setIsFlyoutVisible] = useState(false);
@@ -104,7 +106,7 @@ const FlyoutSession: React.FC<FlyoutSessionProps> = React.memo((props) => {
           size={mainSize}
           maxWidth={mainMaxWidth}
           type={flyoutType}
-          ownFocus={false}
+          ownFocus={ownFocus}
           pushAnimation={true}
           onActive={mainFlyoutOnActive}
           onClose={mainFlyoutOnClose}
@@ -268,6 +270,18 @@ const ExampleComponent = () => {
             mainSize="fill"
             mainMaxWidth={1000}
             childSize="s"
+          />
+        ),
+      },
+      {
+        title: 'Session H: main size = s, child size = s, ownFocus = true',
+        description: (
+          <FlyoutSession
+            flyoutType={flyoutType}
+            title="Session H"
+            mainSize="s"
+            childSize="s"
+            ownFocus
           />
         ),
       },
