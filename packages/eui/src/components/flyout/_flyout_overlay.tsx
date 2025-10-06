@@ -7,16 +7,35 @@
  */
 
 import React, { PropsWithChildren } from 'react';
+import { css, cx } from '@emotion/css';
 import type { EuiFlyoutComponentProps } from './flyout.component';
 import { EuiOverlayMask } from '../overlay_mask';
 import { EuiPortal } from '../portal';
-import { useEuiTheme } from '../../services';
+import { useEuiMemoizedStyles, type UseEuiTheme } from '../../services';
 
 export interface EuiFlyoutOverlayProps extends PropsWithChildren {
   hasOverlayMask: boolean;
   maskProps: EuiFlyoutComponentProps['maskProps'];
   isPushed: boolean;
 }
+
+const getEuiFlyoutOverlayStyles = ({ euiTheme }: UseEuiTheme) => {
+  // TODO(tkajtoch): This should likely depend on maskProps.headerZIndexLocation
+  // in cases where the mask has z-index 6000
+  const maskLevel = Number(euiTheme.levels.flyout) - 1;
+
+  return {
+    overlayMask: css`
+      /*
+      This needs to have !important to override the default EuiOverlayMask
+      z-index based on the headerZindexLocation prop. Using the style attribute
+      doesn't work since EuiOverlayMask requires a string style prop that
+      causes React errors in the test environment.
+      */
+      z-index: ${maskLevel} !important;
+    `,
+  };
+};
 
 /**
  * Light wrapper for conditionally rendering portals or overlay masks:
@@ -32,25 +51,19 @@ export const EuiFlyoutOverlay = ({
   maskProps,
   hasOverlayMask,
 }: EuiFlyoutOverlayProps) => {
-  const { euiTheme } = useEuiTheme();
+  const styles = useEuiMemoizedStyles(getEuiFlyoutOverlayStyles);
   let content = children;
 
   if (!isPushed || hasOverlayMask) {
     content = <EuiPortal>{content}</EuiPortal>;
   }
 
-  // TODO(tkajtoch): This should likely depend on maskProps.headerZIndexLocation
-  // in cases where the mask has z-index 6000
-  const maskLevel = Number(euiTheme.levels.flyout) - 1;
-
   return (
     <>
       {hasOverlayMask && (
         <EuiOverlayMask
           {...maskProps}
-          // This needs to be a string due to the logic inside EuiOverlayMask.
-          // It can't be a `css` prop either
-          style={`z-index: ${maskLevel}`}
+          className={cx(maskProps?.className, styles.overlayMask)}
         />
       )}
       {content}
