@@ -29,7 +29,33 @@ export type BorderSides =
   | 'vertical'
   | 'all';
 
-export const euiBorderStyles = (
+/**
+ * Defines styles for floating boarders applied in DARK mode via EUI shadow utils
+ */
+export const euiShadowFloatingBorderStyles = (
+  euiThemeContext: UseEuiTheme,
+  options: {
+    side?: BorderSides;
+    borderColor?: string;
+    borderWidth?: string;
+    borderStyle?: string;
+  }
+) => {
+  return `
+    /* create a containing block without using position to prevent CSS specificity issues and unexpected overrides;
+    transform: translateZ(0) is the least likely to affect other behaviors (overflow, layout) */
+    transform: translateZ(0);
+
+    ${euiFloatingBorderStyles(euiThemeContext, options)}
+  `;
+};
+
+/**
+ * Shared style for floating borders.
+ * Uses a pseudo element with `border` attribute to prevent both dimension changes due to
+ * the border width as well as visible gaps due to the need of a transparent border in LIGHT mode.
+ */
+export const euiFloatingBorderStyles = (
   euiThemeContext: UseEuiTheme,
   options: {
     side?: BorderSides;
@@ -48,6 +74,15 @@ export const euiBorderStyles = (
   const borderProperty = getBorderSide(side);
 
   return `
-    ${borderProperty}: ${borderWidth} ${borderStyle} ${borderColor};
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      /* ensure to keep on top of flush content */
+      z-index: 0;
+      ${borderProperty}: ${borderWidth} ${borderStyle} ${borderColor};
+      border-radius: inherit;
+      pointer-events: none;
+    }
   `;
 };

@@ -7,7 +7,11 @@
  */
 
 import { css } from '@emotion/react';
-import { euiShadow, euiShadowHover } from '@elastic/eui-theme-common';
+import {
+  euiFloatingBorderStyles,
+  euiShadow,
+  euiShadowHover,
+} from '@elastic/eui-theme-common';
 
 import { UseEuiTheme } from '../../services';
 import {
@@ -33,13 +37,15 @@ export const euiPanelBorderStyles = (
 
   return highContrastModeStyles(euiThemeContext, {
     none: `
-      border: ${
-        borderColor ?? hasVisibleBorder
-          ? `${euiTheme.border.width.thin} solid ${euiTheme.border.color}`
-          : colorMode === 'DARK'
-          ? `${euiTheme.border.width.thin} solid ${euiTheme.colors.borderBaseFloating}`
-          : 'none'
-      };  
+      /* Using a pseudo element for the border instead of floating border only
+      because the transparent border might otherwise be visible with arbitrary
+      full-width/height content in light mode. */
+      ${euiFloatingBorderStyles(euiThemeContext, {
+        borderColor:
+          borderColor ?? hasVisibleBorder
+            ? euiTheme.border.color
+            : euiTheme.colors.borderBaseFloating,
+      })}
     `,
     preferred: `
       border: ${euiTheme.border.thin};
@@ -63,14 +69,13 @@ export const euiPanelStyles = (euiThemeContext: UseEuiTheme) => {
 
     hasShadow: css`
       ${euiShadow(euiThemeContext, 'm')}
-
-      ${euiPanelBorderStyles(euiThemeContext, {
-        hasFloatingBorder: false,
-      })}
     `,
 
     hasBorder: css`
-      border: ${euiTheme.border.thin};
+      ${euiPanelBorderStyles(euiThemeContext, {
+        borderColor: euiTheme.border.color,
+        hasFloatingBorder: false,
+      })}
     `,
 
     radius: {
