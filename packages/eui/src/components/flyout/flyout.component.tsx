@@ -22,7 +22,6 @@ import React, {
   MutableRefObject,
   ReactNode,
   JSX,
-  AnimationEventHandler,
 } from 'react';
 import classnames from 'classnames';
 
@@ -71,10 +70,6 @@ import { useIsPushed } from './hooks';
 import { EuiFlyoutMenu, EuiFlyoutMenuProps } from './flyout_menu';
 import { EuiFlyoutResizeButton } from './_flyout_resize_button';
 import { useEuiFlyoutResizable } from './use_flyout_resizable';
-import {
-  useEuiFlyoutOpenState,
-  type EuiFlyoutOpenState,
-} from './use_open_state';
 import type { EuiFlyoutCloseEvent } from './types';
 
 interface _EuiFlyoutComponentProps {
@@ -204,11 +199,6 @@ interface _EuiFlyoutComponentProps {
 
 const defaultElement = 'div';
 
-const openStateToClassNameMap: Record<EuiFlyoutOpenState, string> = {
-  opening: 'euiFlyout--opening',
-  open: 'euiFlyout--open',
-};
-
 type Props<T extends ElementType> = CommonProps & {
   /**
    * Sets the HTML element for `EuiFlyout`
@@ -257,14 +247,11 @@ export const EuiFlyoutComponent = forwardRef(
       resizable = false,
       minWidth,
       onResize,
-      onAnimationEnd: _onAnimationEnd,
+      onAnimationEnd,
       ...rest
     } = usePropsWithComponentDefaults('EuiFlyout', props);
 
     const { setGlobalCSSVariables } = useEuiThemeCSSVariables();
-
-    const { openState, onAnimationEnd: onAnimationEndFlyoutOpenState } =
-      useEuiFlyoutOpenState();
 
     const Element = as || defaultElement;
     const maskRef = useRef<HTMLDivElement>(null);
@@ -447,11 +434,7 @@ export const EuiFlyoutComponent = forwardRef(
       styles[side],
     ];
 
-    const classes = classnames(
-      'euiFlyout',
-      openStateToClassNameMap[openState],
-      className
-    );
+    const classes = classnames('euiFlyout', className);
 
     const flyoutToggle = useRef<Element | null>(document.activeElement);
     const [focusTrapShards, setFocusTrapShards] = useState<HTMLElement[]>([]);
@@ -584,14 +567,6 @@ export const EuiFlyoutComponent = forwardRef(
     );
 
     const maskCombinedRefs = useCombinedRefs([maskProps?.maskRef, maskRef]);
-
-    const onAnimationEnd = useCallback<AnimationEventHandler>(
-      (event) => {
-        onAnimationEndFlyoutOpenState(event);
-        _onAnimationEnd?.(event);
-      },
-      [_onAnimationEnd, onAnimationEndFlyoutOpenState]
-    );
 
     return (
       <EuiFlyoutComponentWrapper
