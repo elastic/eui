@@ -5,7 +5,7 @@
  * in compliance with, at your election, the Elastic License 2.0 or the Server
  * Side Public License, v 1.
  */
-import React, { useEffect, useMemo, useRef } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useEuiMemoizedStyles } from '../../../services';
 import { useResizeObserver } from '../../observer/resize_observer';
 import {
@@ -115,11 +115,37 @@ export const EuiManagedFlyout = ({
     }
   }
 
+  const [title, setTitle] = useState(
+    _flyoutMenuProps?.title || props['aria-label']
+  );
+
+  if (!title) {
+    const labelledBy = props['aria-labelledby'];
+    if (labelledBy) {
+      /*
+       * Notes
+       * - value could be a space-separated list of ids
+       * - element might not be rendered yet
+       * - element might not have any text content
+       * - element might change over time
+       * - element might not be visible
+       * - this is only a fallback, prefer explicit title or aria-label
+       */
+      const domEl = document.getElementById(labelledBy);
+      if (domEl) {
+        // get the visible text from the element
+        setTitle(title);
+
+        // FIXME: call an action to update the title's name in the manager state
+      }
+    }
+  }
+
   // Validate title
-  const title = _flyoutMenuProps?.title || props['aria-label'];
   const titleError = validateFlyoutTitle(title, flyoutId, level);
   if (titleError) {
-    throw new Error(createValidationErrorMessage(titleError));
+    console.warn(titleError.message);
+    setTitle('Untitled flyout'); // FIXME: translate
   }
 
   const isActive = useIsFlyoutActive(flyoutId);
