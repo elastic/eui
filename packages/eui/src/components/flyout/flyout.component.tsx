@@ -20,7 +20,6 @@ import React, {
   ElementType,
   FunctionComponent,
   MutableRefObject,
-  ReactNode,
   JSX,
   AnimationEventHandler,
 } from 'react';
@@ -49,7 +48,6 @@ import type { EuiOverlayMaskProps } from '../overlay_mask';
 import type { EuiButtonIconPropsForButton } from '../button';
 import { EuiI18n } from '../i18n';
 import { useResizeObserver } from '../observer/resize_observer';
-import { EuiPortal } from '../portal';
 import { EuiScreenReaderOnly } from '../accessibility';
 
 import { EuiFlyoutCloseButton } from './_flyout_close_button';
@@ -69,6 +67,7 @@ import {
 } from './const';
 import { useIsPushed } from './hooks';
 import { EuiFlyoutMenu, EuiFlyoutMenuProps } from './flyout_menu';
+import { EuiFlyoutOverlay } from './_flyout_overlay';
 import { EuiFlyoutResizeButton } from './_flyout_resize_button';
 import { useEuiFlyoutResizable } from './use_flyout_resizable';
 import {
@@ -627,13 +626,13 @@ export const EuiFlyoutComponent = forwardRef(
     }
 
     return (
-      <EuiFlyoutComponentWrapper
+      <EuiFlyoutOverlay
         hasOverlayMask={hasOverlayMask}
+        isPushed={isPushed}
         maskProps={{
           ...maskProps,
           maskRef: maskCombinedRefs,
         }}
-        isPortalled={!isPushed}
       >
         <EuiWindowEvent event="keydown" handler={onKeyDown} />
         <EuiFocusTrap
@@ -684,7 +683,7 @@ export const EuiFlyoutComponent = forwardRef(
             {children}
           </Element>
         </EuiFocusTrap>
-      </EuiFlyoutComponentWrapper>
+      </EuiFlyoutOverlay>
     );
   }
   // React.forwardRef interferes with the inferred element type
@@ -695,28 +694,3 @@ export const EuiFlyoutComponent = forwardRef(
 ) => JSX.Element;
 // Recast to allow `displayName`
 (EuiFlyoutComponent as FunctionComponent).displayName = 'EuiFlyoutComponent';
-
-/**
- * Light wrapper for conditionally rendering portals or overlay masks:
- *  - If ownFocus is set, wrap with an overlay and allow the user to click it to close it.
- *  - Otherwise still wrap within an EuiPortal so it appends to the bottom of the window.
- * Push flyouts have no overlay OR portal behavior.
- */
-const EuiFlyoutComponentWrapper: FunctionComponent<{
-  children: ReactNode;
-  hasOverlayMask: boolean;
-  maskProps: EuiFlyoutComponentProps['maskProps'];
-  isPortalled: boolean;
-}> = ({ children, hasOverlayMask, isPortalled }) => {
-  // TODO(tkajtoch): Add EuiOverlayMask again
-
-  if (isPortalled || hasOverlayMask) {
-    return (
-      <EuiPortal>
-        <div>{children}</div>
-      </EuiPortal>
-    );
-  } else {
-    return <>{children}</>;
-  }
-};
