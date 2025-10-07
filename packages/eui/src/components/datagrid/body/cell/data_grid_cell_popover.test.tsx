@@ -111,7 +111,7 @@ describe('useCellPopover', () => {
           data-popover-panel="true"
           data-test-subj="euiDataGridExpansionPopover"
           role="dialog"
-          style="top: 0px; left: 0px; will-change: transform, opacity; max-inline-size: min(75vw, max(0px, 400px)); max-block-size: 50vh; z-index: 1000;"
+          style="top: 4px; left: 0px; will-change: transform, opacity; max-inline-size: min(75vw, max(0px, 400px)); max-block-size: 50vh; z-index: 1000;"
           tabindex="0"
         >
           <p

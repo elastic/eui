@@ -454,7 +454,7 @@ exports[`EuiRange props slider should display in popover 1`] = `
         data-popover-panel="true"
         data-test-subj="test"
         role="dialog"
-        style="top: 0px; left: -18px; will-change: transform, opacity; z-index: 2000; inline-size: 0px;"
+        style="top: 2px; left: 0px; will-change: transform, opacity; z-index: 2000; inline-size: 0px;"
       >
         <p
           class="emotion-euiScreenReaderOnly"

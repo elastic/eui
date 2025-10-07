@@ -46,18 +46,9 @@ exports[`EuiBreadcrumbContent breadcrumbs with popovers renders with \`popoverCo
         data-popover-open="true"
         data-popover-panel="true"
         role="dialog"
-        style="top: 16px; left: -18px; z-index: 2000;"
+        style="top: 12px; left: 0px; z-index: 2000;"
         tabindex="0"
       >
-        <div
-          class="euiPopover__arrowWrapper emotion-euiPopoverArrowWrapper"
-          style="left: 9px; bottom: 100%;"
-        >
-          <div
-            class="euiPopover__arrow emotion-euiPopoverArrow-bottom"
-            data-popover-arrow="bottom"
-          />
-        </div>
         <p
           class="emotion-euiScreenReaderOnly"
           id="generated-id"
