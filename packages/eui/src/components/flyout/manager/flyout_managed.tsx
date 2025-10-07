@@ -89,6 +89,7 @@ export const EuiManagedFlyout = ({
     setFlyoutWidth,
     goBack,
     historyItems: _historyItems,
+    updateFlyoutTitle,
   } = useFlyoutManager();
   const parentSize = useParentFlyoutSize(flyoutId);
   const layoutMode = useFlyoutLayoutMode();
@@ -134,9 +135,10 @@ export const EuiManagedFlyout = ({
       const domEl = document.getElementById(labelledBy);
       if (domEl) {
         // get the visible text from the element
-        setTitle(title);
-
-        // FIXME: call an action to update the title's name in the manager state
+        const discoveredTitle =
+          domEl.textContent || domEl.innerText || 'Untitled';
+        setTitle(discoveredTitle);
+        updateFlyoutTitle(flyoutId, discoveredTitle);
       }
     }
   }
@@ -145,7 +147,7 @@ export const EuiManagedFlyout = ({
   const titleError = validateFlyoutTitle(title, flyoutId, level);
   if (titleError) {
     console.warn(titleError.message);
-    setTitle('Untitled flyout'); // FIXME: translate
+    setTitle('Untitled flyout');
   }
 
   const isActive = useIsFlyoutActive(flyoutId);
