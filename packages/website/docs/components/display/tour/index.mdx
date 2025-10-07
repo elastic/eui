@@ -7,7 +7,7 @@ keywords: [EuiTour, EuiTourStep, useEuiTour]
 The tour components provided by EUI allow for a flexible and customizable way to showcase items on a page in an ordered manner by augmenting existing elements on the page without altering functionality.
 
 :::note
-Examples on this page use localStorage to persist state.
+Examples on this page use `localStorage` to persist state.
 :::
 
 ## Usage
@@ -37,7 +37,7 @@ export default () => {
       <EuiSpacer size="m" />
       <EuiTourStep
         content={
-          <EuiText>
+          <EuiText size="s">
             <p>The tour step content.</p>
           </EuiText>
         }
@@ -88,7 +88,7 @@ export default () => {
       <EuiTourStep
         anchor={() => anchorRef.current}
         content={
-          <EuiText>
+          <EuiText size="s">
             <p>
               Popover is attached to the <EuiCode>anchorRef</EuiCode> button
             </p>
@@ -120,7 +120,7 @@ export default () => {
       <EuiTourStep
         anchor="#anchorTarget"
         content={
-          <EuiText>
+          <EuiText size="s">
             <p>
               Popover is attached to the <EuiCode>#anchorTarget</EuiCode> button
             </p>
@@ -149,7 +149,7 @@ export default () => {
 
 ### Guided tour
 
-Uers proceed through tour steps without needing to complete actions on the underlying page. In this scenario, consider showing both **Close tour** and **Next** buttons.
+Users proceed through tour steps without needing to complete actions on the underlying page. In this scenario, consider showing both **Close tour** and **Next** buttons.
 
 ```tsx interactive
 import React, { useEffect, useState } from 'react';
@@ -162,34 +162,35 @@ import {
   EuiFlexItem,
   EuiPanel,
   EuiButtonIcon,
+  EuiText,
 } from '@elastic/eui';
 
 const demoTourSteps = [
   {
     step: 1,
     title: 'Preview mode',
-    content: <p>See what your project looks like.</p>,
+    content: <EuiText size="s"><p>See what your project looks like.</p></EuiText>,
     anchorRef: 'notActionDrivenStep1',
     iconType: 'eye',
   },
   {
     step: 2,
     title: 'Build Mode',
-    content: <p>Build your project.</p>,
+    content: <EuiText size="s"><p>Build your project.</p></EuiText>,
     anchorRef: 'notActionDrivenStep2',
     iconType: 'code',
   },
   {
     step: 3,
     title: 'Comment mode',
-    content: <p>Collaborate with your colleagues.</p>,
+    content: <EuiText size="s"><p>Collaborate with your colleagues.</p></EuiText>,
     anchorRef: 'notActionDrivenStep3',
     iconType: 'comment',
   },
   {
     step: 2,
     title: 'Share',
-    content: <p>Share your project.</p>,
+    content: <EuiText size="s"><p>Share your project.</p></EuiText>,
     anchorRef: 'notActionDrivenStep4',
     iconType: 'share',
   },
@@ -316,6 +317,7 @@ import {
   EuiSpacer,
   EuiTextArea,
   EuiTourStep,
+  EuiText,
 } from '@elastic/eui';
 
 const demoTourSteps = [
@@ -323,20 +325,19 @@ const demoTourSteps = [
     step: 1,
     title: 'Step 1',
     content: (
-      <span>
+      <EuiText size="s">
         <p>Copy and paste this sample query.</p>
-        <EuiSpacer />
         <EuiCodeBlock language="html" paddingSize="s" isCopyable>
-          {'SELECT email FROM “kibana_sample_data_ecommerce”'}
+          {'SELECT email FROM "kibana_sample_data_ecommerce"'}
         </EuiCodeBlock>
-      </span>
+      </EuiText>
     ),
     anchorRef: 'tourStep2',
   },
   {
     step: 2,
     title: 'Step 2',
-    content: <p>Save your changes.</p>,
+    content: <EuiText size="s"><p>Save your changes.</p></EuiText>,
     anchorRef: 'tourStep1',
   },
 ];
@@ -469,6 +470,7 @@ import {
   EuiTextArea,
   EuiTourStep,
   useEuiTour,
+  EuiText,
 } from '@elastic/eui';
 
 const demoTourSteps = [
@@ -476,20 +478,19 @@ const demoTourSteps = [
     step: 1,
     title: 'Step 1',
     content: (
-      <span>
+      <EuiText size="s">
         <p>Copy and paste this sample query.</p>
-        <EuiSpacer />
         <EuiCodeBlock language="html" paddingSize="s" isCopyable>
-          {'SELECT email FROM “kibana_sample_data_ecommerce”'}
+          {'SELECT email FROM "kibana_sample_data_ecommerce"'}
         </EuiCodeBlock>
-      </span>
+      </EuiText>
     ),
     anchorPosition: 'rightUp',
   },
   {
     step: 2,
     title: 'Step 2',
-    content: <p>Save your changes.</p>,
+    content: <EuiText size="s"><p>Save your changes.</p></EuiText>,
     anchorPosition: 'rightUp',
   },
 ];
@@ -585,6 +586,7 @@ import {
   EuiTextArea,
   EuiTour,
   EuiTourStep,
+  EuiText,
 } from '@elastic/eui';
 
 const demoTourSteps = [
@@ -592,20 +594,19 @@ const demoTourSteps = [
     step: 1,
     title: 'Step 1',
     content: (
-      <span>
+      <EuiText size="s">
         <p>Copy and paste this sample query.</p>
-        <EuiSpacer />
         <EuiCodeBlock language="html" paddingSize="s" isCopyable>
-          {'SELECT email FROM “kibana_sample_data_ecommerce”'}
+          {'SELECT email FROM "kibana_sample_data_ecommerce"'}
         </EuiCodeBlock>
-      </span>
+      </EuiText>
     ),
     anchorPosition: 'rightUp',
   },
   {
     step: 2,
     title: 'Step 2',
-    content: <p>Save your changes.</p>,
+    content: <EuiText size="s"><p>Save your changes.</p></EuiText>,
     anchorPosition: 'rightUp',
   },
 ];
@@ -703,6 +704,7 @@ import {
   EuiTextArea,
   EuiTourStep,
   useEuiTour,
+  EuiText,
 } from '@elastic/eui';
 
 const demoTourSteps = [
@@ -714,12 +716,12 @@ const demoTourSteps = [
     step: 2,
     title: 'Step 2',
     anchorPosition: 'upCenter',
-    content: <p>What is your favorite color?</p>,
+    content: <EuiText size="s"><p>What is your favorite color?</p></EuiText>,
   },
   {
     step: 3,
     title: 'Step 3',
-    content: <p>Click here for more cool things.</p>,
+    content: <EuiText size="s"><p>Click here for more cool things.</p></EuiText>,
     anchorPosition: 'downRight',
     minWidth: 'auto',
   },
@@ -778,13 +780,12 @@ export default () => {
             {...euiTourStepOne}
             zIndex={1}
             content={
-              <div>
+              <EuiText size="s">
                 <p>This is a neat thing. You enter queries here.</p>
-                <EuiSpacer />
                 <EuiButton color="primary" onClick={actions.incrementStep}>
                   Ok, got it.
                 </EuiButton>
-              </div>
+              </EuiText>
             }
           >
             <EuiTextArea
@@ -840,13 +841,12 @@ export default () => {
             {...euiTourStepFour}
             zIndex={1}
             content={
-              <div>
+              <EuiText size="s">
                 <p>That about does it.</p>
-                <EuiSpacer />
                 <EuiButton color="primary" onClick={onReset}>
                   Take me to the start.
                 </EuiButton>
-              </div>
+              </EuiText>
             }
           >
             <div>
