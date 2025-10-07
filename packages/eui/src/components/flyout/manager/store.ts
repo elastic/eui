@@ -58,15 +58,7 @@ function createStore(
   const subscribe = (listener: Listener) => {
     listeners.add(listener);
     return () => {
-      // Use React's scheduler to defer cleanup until after current render
-      if (typeof requestIdleCallback !== 'undefined') {
-        requestIdleCallback(() => listeners.delete(listener));
-      } else if (typeof requestAnimationFrame !== 'undefined') {
-        requestAnimationFrame(() => listeners.delete(listener));
-      } else {
-        // Fallback to setTimeout for older environments
-        setTimeout(() => listeners.delete(listener), 0);
-      }
+      listeners.delete(listener);
     };
   };
 

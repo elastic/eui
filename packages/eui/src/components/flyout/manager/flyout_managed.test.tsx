@@ -59,15 +59,11 @@ const createMockFunctions = () => ({
   setFlyoutWidth: jest.fn(),
   goBack: jest.fn(),
   goToFlyout: jest.fn(),
-  getHistoryItems: jest.fn(() => []),
+  historyItems: [],
 });
 
 // Mock hooks that would otherwise depend on ResizeObserver or animation timing
 jest.mock('./hooks', () => ({
-  useFlyoutManagerReducer: () => ({
-    state: createMockState(),
-    ...createMockFunctions(),
-  }),
   useFlyoutManager: () => ({
     state: createMockState(),
     ...createMockFunctions(),
