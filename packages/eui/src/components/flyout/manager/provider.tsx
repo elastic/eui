@@ -25,26 +25,15 @@ export const EuiFlyoutManagerContext = createContext<FlyoutManagerApi | null>(
 export const EuiFlyoutManager: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
-  const { getState, subscribe, goToFlyout, ...rest } = getFlyoutManagerStore();
-
+  const { getState, subscribe, ...rest } = getFlyoutManagerStore();
   const state = useSyncExternalStore(subscribe, getState);
-
-  const api: FlyoutManagerApi = useMemo(
-    () => ({
+  const api: FlyoutManagerApi = useMemo(() => {
+    const result = {
       state,
       ...rest,
-      goToFlyout,
-      getHistoryItems: () => {
-        const currentSessionIndex = state.sessions.length - 1;
-        const previousSessions = state.sessions.slice(0, currentSessionIndex);
-        return previousSessions.reverse().map(({ title, mainFlyoutId }) => ({
-          title,
-          onClick: () => goToFlyout(mainFlyoutId),
-        }));
-      },
-    }),
-    [state, goToFlyout, rest]
-  );
+    };
+    return result;
+  }, [state, rest]);
   return (
     <EuiFlyoutManagerContext.Provider value={api}>
       <EuiFlyoutManagerContainer>{children}</EuiFlyoutManagerContainer>

@@ -36,6 +36,10 @@ export interface FlyoutManagerStore {
   setFlyoutWidth: (flyoutId: string, width: number) => void;
   goBack: () => void;
   goToFlyout: (flyoutId: string) => void;
+  historyItems: Array<{
+    title: string;
+    onClick: () => void;
+  }>;
 }
 
 function createStore(
@@ -44,12 +48,25 @@ function createStore(
   let currentState: EuiFlyoutManagerState = initial;
   const listeners = new Set<Listener>();
 
+  // Memoization for history items
+  let cachedHistoryItems: Array<{ title: string; onClick: () => void }> | null =
+    null;
+  let lastSessionsLength = -1;
+
   const getState = () => currentState;
 
   const subscribe = (listener: Listener) => {
     listeners.add(listener);
     return () => {
-      listeners.delete(listener);
+      // Use React's scheduler to defer cleanup until after current render
+      if (typeof requestIdleCallback !== 'undefined') {
+        requestIdleCallback(() => listeners.delete(listener));
+      } else if (typeof requestAnimationFrame !== 'undefined') {
+        requestAnimationFrame(() => listeners.delete(listener));
+      } else {
+        // Fallback to setTimeout for older environments
+        setTimeout(() => listeners.delete(listener), 0);
+      }
     };
   };
 
@@ -57,8 +74,40 @@ function createStore(
     const nextState = flyoutManagerReducer(currentState, action);
     if (nextState !== currentState) {
       currentState = nextState;
-      listeners.forEach((l) => l());
+
+      // Invalidate history items cache if sessions changed
+      if (currentState.sessions.length !== lastSessionsLength) {
+        cachedHistoryItems = null;
+        lastSessionsLength = currentState.sessions.length;
+      }
+
+      listeners.forEach((l) => {
+        l();
+      });
     }
+  };
+
+  const getHistoryItems = () => {
+    // Return cached result if available
+    if (cachedHistoryItems !== null) {
+      return cachedHistoryItems;
+    }
+
+    const state = getState();
+    const currentSessionIndex = state.sessions.length - 1;
+    const previousSessions = state.sessions.slice(0, currentSessionIndex);
+    const result = previousSessions
+      .reverse()
+      .map(({ title, mainFlyoutId }) => ({
+        title,
+        onClick: () => {
+          dispatch(goToFlyoutAction(mainFlyoutId));
+        },
+      }));
+
+    // Cache the result
+    cachedHistoryItems = result;
+    return result;
   };
 
   return {
@@ -73,6 +122,11 @@ function createStore(
       dispatch(setFlyoutWidthAction(flyoutId, width)),
     goBack: () => dispatch(goBackAction()),
     goToFlyout: (flyoutId) => dispatch(goToFlyoutAction(flyoutId)),
+
+    // Getter ensures fresh data on each access while maintaining React reactivity
+    get historyItems() {
+      return getHistoryItems();
+    },
   };
 }
 
