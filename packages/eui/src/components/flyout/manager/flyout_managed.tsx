@@ -84,14 +84,8 @@ export const EuiManagedFlyout = ({
   const flyoutId = useFlyoutId(id);
   const flyoutRef = useRef<HTMLDivElement>(null);
 
-  const {
-    addFlyout,
-    closeFlyout,
-    setFlyoutWidth,
-    goBack,
-    historyItems: _historyItems,
-    updateFlyoutTitle,
-  } = useFlyoutManager();
+  const { addFlyout, closeFlyout, setFlyoutWidth, updateFlyoutTitle } =
+    useFlyoutManager();
   const parentSize = useParentFlyoutSize(flyoutId);
   const layoutMode = useFlyoutLayoutMode();
   const styles = useEuiMemoizedStyles(euiManagedFlyoutStyles);
@@ -197,7 +191,6 @@ export const EuiManagedFlyout = ({
     flyoutId,
     updateFlyoutTitle,
     title,
-    manager,
   ]);
 
   // Validate title
@@ -306,25 +299,14 @@ export const EuiManagedFlyout = ({
     level,
   });
 
-  // Note: history controls are only relevant for main flyouts
-  const historyItems = useMemo(() => {
-    const result = level === LEVEL_MAIN ? _historyItems : undefined;
-    return result;
-  }, [level, _historyItems]);
-
-  const backButtonProps = useMemo(() => {
-    return level === LEVEL_MAIN ? { onClick: goBack } : undefined;
-  }, [level, goBack]);
-
-  const showBackButton = historyItems ? historyItems.length > 0 : false;
-
-  const flyoutMenuProps = {
-    ..._flyoutMenuProps,
-    historyItems,
-    showBackButton,
-    backButtonProps,
-    title,
-  };
+  // Pass through the basic flyout menu props - the menu component will handle
+  // history and back button logic internally via context
+  const flyoutMenuProps = _flyoutMenuProps
+    ? {
+        ..._flyoutMenuProps,
+        title,
+      }
+    : undefined;
 
   return (
     <EuiFlyoutIsManagedProvider isManaged={true}>

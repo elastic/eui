@@ -15,7 +15,7 @@ import type { Root } from 'react-dom/client';
 import { LOKI_SELECTORS } from '../../../../.storybook/loki';
 import { EuiBreakpointSize } from '../../../services';
 import { EuiButton } from '../../button';
-import { EuiCodeBlock } from '../../code';
+import { EuiCode, EuiCodeBlock } from '../../code';
 import { EuiFlexGroup, EuiFlexItem } from '../../flex';
 import { EuiPanel } from '../../panel';
 import { EuiProvider } from '../../provider';
@@ -27,6 +27,7 @@ import { EuiFlyoutBody } from '../flyout_body';
 import { EuiFlyoutFooter } from '../flyout_footer';
 import { EuiFlyoutChild, EuiFlyoutChildProps } from './flyout_child';
 import { useFlyoutLayoutMode, useFlyoutManager } from './hooks';
+import { EuiFlyoutHeader } from '../flyout_header';
 
 type EuiFlyoutChildActualProps = Pick<
   EuiFlyoutChildProps,
@@ -553,7 +554,7 @@ const MultiRootFlyoutDemo: React.FC<FlyoutChildStoryArgs> = (args) => {
         <h3>Primary React root</h3>
       </EuiTitle>
       <EuiSpacer size="m" />
-      <StatefulFlyout
+      <FlyoutWithMenuProps
         {...args}
         mainSize="m"
         childSize="s"

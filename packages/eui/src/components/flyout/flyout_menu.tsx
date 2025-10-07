@@ -52,7 +52,7 @@ const useFlyoutMenuProps = () => {
     return undefined;
   }
 
-  const { state, goBack, getHistoryItems } = manager;
+  const { state, goBack, historyItems: managerHistoryItems } = manager;
   const currentSession = state.sessions[state.sessions.length - 1];
 
   if (!currentSession) {
@@ -74,7 +74,7 @@ const useFlyoutMenuProps = () => {
   const title = currentSession.title;
 
   // Calculate menu props based on level
-  const historyItems = level === LEVEL_MAIN ? getHistoryItems() : undefined;
+  const historyItems = level === LEVEL_MAIN ? managerHistoryItems : undefined;
   const backButtonProps =
     level === LEVEL_MAIN ? { onClick: goBack } : undefined;
   const showBackButton = historyItems ? historyItems.length > 0 : false;
