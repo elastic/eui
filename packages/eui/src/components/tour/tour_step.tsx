@@ -197,6 +197,7 @@ export const EuiTourStep: FunctionComponent<EuiTourStepProps> = ({
       button={button as HTMLElement & ReactNode}
       className={anchorClasses}
       anchorPosition={anchorPosition}
+      hasArrow={hasBeacon}
       closePopover={closePopover}
       isOpen={isStepOpen}
       ownFocus={false}
@@ -205,7 +206,7 @@ export const EuiTourStep: FunctionComponent<EuiTourStepProps> = ({
         ...panelProps,
         css: [tourStyles.euiTour, css, panelProps?.css],
       }}
-      offset={hasBeacon ? 10 : 0}
+      offset={hasBeacon ? 10 : undefined}
       aria-labelledby={titleId}
       arrowChildren={
         hasBeacon && <EuiBeacon css={beaconCss} className="euiTour__beacon" />
