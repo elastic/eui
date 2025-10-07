@@ -258,7 +258,7 @@ const FlyoutWithMenuProps: React.FC<FlyoutChildStoryArgs> = ({
           )}
           <EuiFlyout
             isOpen={isChildOpen}
-            id="flyout-manager-playground-child"
+            id="flyout-with-menu-props-child"
             size={childSize}
             backgroundStyle={childBackgroundStyle}
             maxWidth={childMaxWidth}
@@ -408,7 +408,7 @@ const FlyoutWithHeader: React.FC<FlyoutChildStoryArgs> = ({
           )}
           <EuiFlyout
             isOpen={isChildOpen}
-            id="flyout-manager-playground-child"
+            id="flyout-with-header-child"
             size={childSize}
             backgroundStyle={childBackgroundStyle}
             maxWidth={childMaxWidth}

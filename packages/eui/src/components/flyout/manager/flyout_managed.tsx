@@ -8,6 +8,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { useEuiMemoizedStyles } from '../../../services';
 import { useResizeObserver } from '../../observer/resize_observer';
+import { useInnerText } from '../../inner_text/inner_text';
 import {
   EuiFlyoutComponent,
   EuiFlyoutComponentProps,
@@ -120,34 +121,94 @@ export const EuiManagedFlyout = ({
     _flyoutMenuProps?.title || props['aria-label']
   );
 
-  if (!title) {
-    const labelledBy = props['aria-labelledby'];
-    if (labelledBy) {
-      /*
-       * Notes
-       * - value could be a space-separated list of ids
-       * - element might not be rendered yet
-       * - element might not have any text content
-       * - element might change over time
-       * - element might not be visible
-       * - this is only a fallback, prefer explicit title or aria-label
-       */
-      const domEl = document.getElementById(labelledBy);
-      if (domEl) {
-        // get the visible text from the element
-        const discoveredTitle =
-          domEl.textContent || domEl.innerText || 'Untitled';
-        setTitle(discoveredTitle);
-        updateFlyoutTitle(flyoutId, discoveredTitle);
+  // Use useInnerText to observe title changes from aria-labelledby element
+  const [setLabelledByRef, labelledByText] = useInnerText();
+
+  // Set up the ref for the aria-labelledby element when it's available
+  const ariaLabelledBy = props['aria-labelledby'];
+  useEffect(() => {
+    // Only try to find the element when the flyout is open
+    if (ariaLabelledBy && isOpen) {
+      const tryFindElement = () => {
+        const domEl = document.getElementById(ariaLabelledBy);
+        if (domEl) {
+          setLabelledByRef(domEl);
+          return true;
+        }
+        return false;
+      };
+
+      // Try immediately first
+      if (!tryFindElement()) {
+        // Retry after a short delay to allow for DOM rendering
+        retryTimerRef.current = setTimeout(() => {
+          if (!tryFindElement()) {
+            // Element not found after retry - this is expected in some cases
+          }
+        }, 500); // Delay to allow for flyout content rendering
+
+        return () => {
+          if (retryTimerRef.current) {
+            clearTimeout(retryTimerRef.current);
+            retryTimerRef.current = null;
+          }
+        };
       }
     }
-  }
+  }, [ariaLabelledBy, setLabelledByRef, flyoutId, isOpen]);
+
+  // Update title when labelledByText changes
+  // Use aria-labelledby as fallback when no explicit title is provided
+  const ariaLabel = props['aria-label'];
+  const explicitTitle = _flyoutMenuProps?.title;
+
+  // Track the last processed title to prevent infinite loops
+  const lastProcessedTitleRef = useRef<string | null>(null);
+
+  // Track retry timer to clear it when text changes
+  const retryTimerRef = useRef<NodeJS.Timeout | null>(null);
+
+  useEffect(() => {
+    // Clear retry timer if we got text (element was found and is being observed)
+    if (labelledByText && retryTimerRef.current) {
+      clearTimeout(retryTimerRef.current);
+      retryTimerRef.current = null;
+    }
+
+    // Only update if we have new text and haven't processed this exact title before
+    if (
+      labelledByText &&
+      !explicitTitle &&
+      !ariaLabel &&
+      labelledByText !== lastProcessedTitleRef.current
+    ) {
+      const discoveredTitle = labelledByText || 'Untitled';
+
+      // Mark this title as processed to prevent re-processing
+      lastProcessedTitleRef.current = labelledByText;
+
+      setTitle(discoveredTitle);
+      updateFlyoutTitle(flyoutId, discoveredTitle);
+    }
+  }, [
+    labelledByText,
+    explicitTitle,
+    ariaLabel,
+    flyoutId,
+    updateFlyoutTitle,
+    title,
+    manager,
+  ]);
 
   // Validate title
   const titleError = validateFlyoutTitle(title, flyoutId, level);
   if (titleError) {
-    console.warn(titleError.message);
-    setTitle('Untitled flyout');
+    console.warn('⚠️ Title validation error:', {
+      flyoutId,
+      level,
+      title,
+      error: titleError.message,
+    });
   }
 
   const isActive = useIsFlyoutActive(flyoutId);
@@ -175,9 +236,9 @@ export const EuiManagedFlyout = ({
   // Register with flyout manager context when open, remove when closed
   useEffect(() => {
     if (isOpen) {
-      addFlyout(flyoutId, title!, level, size as string);
+      addFlyout?.(flyoutId, title!, level, size as string);
     } else {
-      closeFlyout(flyoutId);
+      closeFlyout?.(flyoutId);
       // Reset navigation tracking when explicitly closed via isOpen=false
       wasRegisteredRef.current = false;
     }
@@ -218,7 +279,7 @@ export const EuiManagedFlyout = ({
   useEffect(() => {
     return () => {
       // Only remove from manager on component unmount, don't trigger close callback
-      closeFlyout(flyoutId);
+      closeFlyout?.(flyoutId);
     };
   }, [closeFlyout, flyoutId]);
 
@@ -236,7 +297,7 @@ export const EuiManagedFlyout = ({
   // Update width in manager state when it changes
   useEffect(() => {
     if (isActive && width) {
-      setFlyoutWidth(flyoutId, width);
+      setFlyoutWidth?.(flyoutId, width);
     }
   }, [flyoutId, level, isActive, width, setFlyoutWidth]);
 
