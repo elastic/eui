@@ -27,13 +27,12 @@ export const EuiFlyoutManager: React.FC<{ children: React.ReactNode }> = ({
 }) => {
   const { getState, subscribe, ...rest } = getFlyoutManagerStore();
   const state = useSyncExternalStore(subscribe, getState);
-  const api: FlyoutManagerApi = useMemo(() => {
-    const result = {
-      state,
-      ...rest,
-    };
-    return result;
-  }, [state, rest]);
+
+  const api: FlyoutManagerApi = useMemo(
+    () => ({ state, ...rest }),
+    [state, rest]
+  );
+
   return (
     <EuiFlyoutManagerContext.Provider value={api}>
       <EuiFlyoutManagerContainer>{children}</EuiFlyoutManagerContainer>
