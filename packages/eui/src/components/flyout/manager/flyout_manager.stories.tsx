@@ -473,7 +473,9 @@ export const FlyoutChildDemo: Story = {
         </p>
       </EuiText>
       <EuiSpacer size="l" />
-      <FlyoutWithMenuProps {...args} /> <FlyoutWithHeader {...args} />
+      <FlyoutWithMenuProps {...args} />
+      <EuiSpacer size="xs" />
+      <FlyoutWithHeader {...args} />
     </>
   ),
 };

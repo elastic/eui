@@ -6,7 +6,6 @@
  * Side Public License, v 1.
  */
 
-import { css } from '@emotion/react';
 import classNames from 'classnames';
 import React, {
   FunctionComponent,
@@ -322,19 +321,7 @@ export const EuiFlyoutMenuWrapper: FunctionComponent<
           </EuiFlexItem>
         )}
 
-        <EuiFlexItem
-          grow={false}
-          css={css`
-            * {
-              /* Emulate "EuiTitle size=xxs" styles */
-              overflow-wrap: break-word !important;
-              word-break: break-word;
-              font-size: 1rem;
-              line-height: 1.4286rem;
-              font-weight: 600;
-            }
-          `}
-        >
+        <EuiFlexItem grow={false} css={styles.euiFlyoutMenu__wrapper_title}>
           <>{children /* title element */}</>
         </EuiFlexItem>
 
