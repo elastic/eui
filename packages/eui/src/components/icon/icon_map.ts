@@ -12,6 +12,7 @@ export const typeToPathMap = {
   advancedSettingsApp: 'app_advanced_settings',
   agentApp: 'app_fleet',
   aggregate: 'aggregate',
+  alert: 'warning', // NOTE: To be deprecated in favor of `warning`
   analyzeEvent: 'analyzeEvent',
   annotation: 'annotation',
   anomalyChart: 'anomaly_chart',
@@ -30,12 +31,13 @@ export const typeToPathMap = {
   asterisk: 'asterisk',
   at: 'at',
   auditbeatApp: 'app_auditbeat',
+  backgroundTask: 'background_task',
   beaker: 'flask', // NOTE: To be deprecated in favor of `flask`
   bell: 'bell',
   bellSlash: 'bellSlash',
   beta: 'beta',
   bolt: 'bolt',
-  boxesHorizontal: 'boxes_horizontal',
+  boxesHorizontal: 'boxes_vertical', // NOTE: To be deprecated in favor of `boxes_vertical`
   boxesVertical: 'boxes_vertical',
   branch: 'branch',
   branchUser: 'branchUser',
@@ -49,7 +51,7 @@ export const typeToPathMap = {
   changePointDetection: 'change_point_detection',
   check: 'check',
   checkCircle: 'checkCircle',
-  checkInCircleFilled: 'checkInCircleFilled',
+  checkInCircleFilled: 'checkCircle', // NOTE: To be deprecated in favor of `checkCircle`
   cheer: 'cheer',
   classificationJob: 'ml_classification_job',
   clickLeft: 'clickLeft',
@@ -78,7 +80,7 @@ export const typeToPathMap = {
   controlsHorizontal: 'controls', // NOTE: To be deprecated in favor of `controls`
   controlsVertical: 'controls', // NOTE: To be deprecated in favor of `controls`
   copy: 'copy',
-  copyClipboard: 'copy_clipboard',
+  copyClipboard: 'copy', // NOTE: To be deprecated in favor of `copy`
   createAdvancedJob: 'ml_create_advanced_job',
   createGenericJob: 'ml_create_generic_job',
   createGeoJob: 'ml_create_geo_job',
@@ -100,7 +102,7 @@ export const typeToPathMap = {
   discoverApp: 'app_discover',
   discuss: 'comment', // NOTE: To be deprecated in favor of `comment`
   document: 'document',
-  documentEdit: 'documentEdit',
+  documentEdit: 'pencil', // NOTE: To be deprecated in favor of `pencil`
   documentation: 'documentation',
   documents: 'documents',
   dot: 'dot',
@@ -125,7 +127,7 @@ export const typeToPathMap = {
   editorItemAlignMiddle: 'editorItemAlignMiddle',
   editorItemAlignRight: 'editorItemAlignRight',
   editorItemAlignTop: 'editorItemAlignTop',
-  editorLink: 'editor_link',
+  editorLink: 'link', // NOTE: To be deprecated in favor of `link`
   editorOrderedList: 'editor_ordered_list',
   editorPositionBottomLeft: 'editorPositionBottomLeft',
   editorPositionBottomRight: 'editorPositionBottomRight',
@@ -133,10 +135,10 @@ export const typeToPathMap = {
   editorPositionTopRight: 'editorPositionTopRight',
   editorRedo: 'editor_redo',
   editorStrike: 'editor_strike',
-  editorTable: 'editor_table',
+  editorTable: 'vis_table', // NOTE: To be deprecated in favor of `vis_table`
   editorUnderline: 'editor_underline',
   editorUndo: 'editor_undo',
-  editorUnorderedList: 'editor_unordered_list',
+  editorUnorderedList: 'list', // NOTE: To be deprecated in favor of `list`
   email: 'email',
   empty: 'empty',
   emsApp: 'app_ems',
@@ -144,11 +146,11 @@ export const typeToPathMap = {
   eql: 'eql',
   eraser: 'eraser',
   error: 'error',
-  errorFilled: 'errorFilled',
+  errorFilled: 'error', // NOTE: To be deprecated in favor of `error`
   esqlVis: 'esqlVis',
   exit: 'exit',
   expand: 'expand',
-  expandMini: 'expandMini',
+  expandMini: 'expand', // NOTE: To be deprecated in favor of `expand`
   export: 'export',
   exportAction: 'export', // NOTE: To be deprecated in favor of `export`
   eye: 'eye',
@@ -162,7 +164,7 @@ export const typeToPathMap = {
   filterExclude: 'filterExclude',
   filterIgnore: 'filterIgnore',
   filterInclude: 'filterInclude',
-  filterInCircle: 'filterInCircle',
+  filterInCircle: 'filter', // NOTE: To be deprecated in favor of `filter`
   flask: 'flask',
   flag: 'flag',
   fleetApp: 'app_agent',
@@ -224,13 +226,13 @@ export const typeToPathMap = {
   launch: 'launch',
   layers: 'layers',
   lensApp: 'app_lens',
-  lettering: 'lettering',
+  lettering: 'vis_text', // NOTE: To be deprecated in favor of `vis_text`
   lineDashed: 'lineDashed',
   lineDotted: 'lineDotted',
   lineSolid: 'lineSolid',
   link: 'link',
   list: 'list',
-  listAdd: 'list_add',
+  listAdd: 'plus_in_circle', // NOTE: To be deprecated in favor of `plus_in_circle`
   lock: 'lock',
   lockOpen: 'lockOpen',
   logPatternAnalysis: 'log_pattern_analysis',
@@ -318,7 +320,7 @@ export const typeToPathMap = {
   minimize: 'minimize',
   minus: 'minus',
   minusInCircle: 'minus_in_circle',
-  minusInCircleFilled: 'minus_in_circle_filled',
+  minusInCircleFilled: 'minus_in_circle', // NOTE: To be deprecated in favor of `minus_in_circle`
   minusInSquare: 'minus_in_square',
   mobile: 'mobile',
   monitoringApp: 'app_monitoring',
@@ -326,7 +328,7 @@ export const typeToPathMap = {
   move: 'move',
   namespace: 'namespace',
   nested: 'nested',
-  newChat: 'new_chat',
+  newChat: 'plus_in_circle', // NOTE: To be deprecated in favor of `plus_in_circle`
   node: 'node',
   notebookApp: 'app_notebook',
   number: 'number',
@@ -351,11 +353,11 @@ export const typeToPathMap = {
   pipeNoBreaks: 'pipeNoBreaks',
   pivot: 'pivot',
   play: 'play',
-  playFilled: 'playFilled',
+  playFilled: 'play', // NOTE: To be deprecated in favor of `play`
   plugs: 'plugs',
   plus: 'plus',
   plusInCircle: 'plus_in_circle',
-  plusInCircleFilled: 'plus_in_circle_filled',
+  plusInCircleFilled: 'plus_in_circle', // NOTE: To be deprecated in favor of `plus_in_circle`
   plusInSquare: 'plus_in_square',
   popout: 'popout',
   push: 'push',
@@ -408,14 +410,16 @@ export const typeToPathMap = {
   stopFilled: 'stop_filled',
   stopSlash: 'stop_slash',
   storage: 'storage',
+  streamsClassic: 'streams_classic',
+  streamsWired: 'streams_wired',
   string: 'string',
-  submodule: 'submodule',
+  submodule: 'merge', // NOTE: To be deprecated in favor of `merge`
   sun: 'sun',
   swatchInput: 'swatch_input', // Undocumented on purpose. Has an extra stroke for EuiColorPicker
   symlink: 'symlink',
   tableDensityCompact: 'table_density_compact',
   tableDensityExpanded: 'table_density_expanded',
-  tableDensityNormal: 'table_density_normal',
+  tableDensityNormal: 'vis_table', // NOTE: To be deprecated in favor of `vis_table`
   tableOfContents: 'tableOfContents',
   tag: 'tag',
   tear: 'tear',
@@ -465,12 +469,12 @@ export const typeToPathMap = {
   visualizeApp: 'app_visualize',
   vulnerabilityManagementApp: 'app_vulnerability_management',
   warning: 'warning',
-  warningFilled: 'warningFilled',
-  alert: 'warning', // NOTE: This is an undocumented alias for `warning`, added for legacy compatability with Elastic Charts
+  warningFilled: 'warning', // NOTE: To be deprecated in favor of `export`
   watchesApp: 'app_watches',
   web: 'web',
   wordWrap: 'wordWrap',
   wordWrapDisabled: 'wordWrapDisabled',
+  workflowsApp: 'app_workflows',
   workplaceSearchApp: 'app_workplace_search',
   wrench: 'wrench',
   // Token Icon Imports

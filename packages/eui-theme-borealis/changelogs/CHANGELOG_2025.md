@@ -1,3 +1,11 @@
+## [`v3.5.0`](https://github.com/elastic/eui/releases/v3.5.0)
+
+- Updated color value of `textSubdued` and legacy `subduedText` in dark mode from `#8E9FBC` to `#98A8C3` ([#9071](https://github.com/elastic/eui/pull/9071))
+
+**Bug fixes**
+
+- Fixed values of `$euiFormBackground` and `$euiFormBackgroundReadOnlyColor` to match JS tokens ([#9067](https://github.com/elastic/eui/pull/9067))
+
 ## [`v3.4.0`](https://github.com/elastic/eui/releases/v3.4.0)
 
 - Updated values for component tokens ([#8983](https://github.com/elastic/eui/pull/8983))
