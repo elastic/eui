@@ -97,7 +97,6 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
 
       ${maxedFlyoutWidth(euiThemeContext)}
     `,
-    
     // Flyout sizes
     // When a child flyout is stacked on top of the parent, the parent flyout size will match the child flyout size
     s: css`
