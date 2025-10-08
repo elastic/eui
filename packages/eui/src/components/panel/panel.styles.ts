@@ -8,7 +8,7 @@
 
 import { css } from '@emotion/react';
 import {
-  euiFloatingBorderStyles,
+  euiBorderStyles,
   euiShadow,
   euiShadowHover,
 } from '@elastic/eui-theme-common';
@@ -40,7 +40,7 @@ export const euiPanelBorderStyles = (
       /* Using a pseudo element for the border instead of floating border only
       because the transparent border might otherwise be visible with arbitrary
       full-width/height content in light mode. */
-      ${euiFloatingBorderStyles(euiThemeContext, {
+      ${euiBorderStyles(euiThemeContext, {
         borderColor:
           borderColor ?? hasVisibleBorder
             ? euiTheme.border.color

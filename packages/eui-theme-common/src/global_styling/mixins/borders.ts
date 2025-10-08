@@ -46,7 +46,7 @@ export const euiShadowFloatingBorderStyles = (
     transform: translateZ(0) is the least likely to affect other behaviors (overflow, layout) */
     transform: translateZ(0);
 
-    ${euiFloatingBorderStyles(euiThemeContext, options)}
+    ${euiBorderStyles(euiThemeContext, options)}
   `;
 };
 
@@ -55,7 +55,7 @@ export const euiShadowFloatingBorderStyles = (
  * Uses a pseudo element with `border` attribute to prevent both dimension changes due to
  * the border width as well as visible gaps due to the need of a transparent border in LIGHT mode.
  */
-export const euiFloatingBorderStyles = (
+export const euiBorderStyles = (
   euiThemeContext: UseEuiTheme,
   options: {
     side?: BorderSides;
