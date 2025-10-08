@@ -15,6 +15,7 @@ import {
 } from '../flyout.component';
 import { EuiFlyoutMenuProps } from '../flyout_menu';
 import { EuiFlyoutMenuContext } from '../flyout_menu_context';
+import { FlyoutCustomMenuContext } from '../flyout_custom_menu_context';
 import type { EuiFlyoutCloseEvent } from '../types';
 import { useFlyoutActivityStage } from './activity_stage';
 import {
@@ -299,9 +300,12 @@ export const EuiManagedFlyout = ({
     level,
   });
 
+  // Check if a custom menu is being provided via context
+  const [hasCustomMenu, setHasCustomMenu] = useState(false);
+
   // Pass through the basic flyout menu props - the menu component will handle
   // history and back button logic internally via context
-  const flyoutMenuProps = _flyoutMenuProps
+  const flyoutMenuProps = !hasCustomMenu
     ? {
         ..._flyoutMenuProps,
         title,
@@ -310,28 +314,32 @@ export const EuiManagedFlyout = ({
 
   return (
     <EuiFlyoutIsManagedProvider isManaged={true}>
-      <EuiFlyoutMenuContext.Provider value={{ onClose }}>
-        <EuiFlyoutComponent
-          id={flyoutId}
-          ref={flyoutRef}
-          css={[
-            styles.managedFlyout,
-            customCss,
-            styles.stage(activityStage, props.side, level),
-          ]}
-          {...{
-            ...props,
-            onClose,
-            size,
-            flyoutMenuProps,
-            onAnimationEnd,
-            isOpen,
-            [PROPERTY_FLYOUT]: true,
-            [PROPERTY_LAYOUT_MODE]: layoutMode,
-            [PROPERTY_LEVEL]: level,
-          }}
-        />
-      </EuiFlyoutMenuContext.Provider>
+      <FlyoutCustomMenuContext.Provider
+        value={{ hasCustomMenu, setHasCustomMenu }}
+      >
+        <EuiFlyoutMenuContext.Provider value={{ onClose }}>
+          <EuiFlyoutComponent
+            id={flyoutId}
+            ref={flyoutRef}
+            css={[
+              styles.managedFlyout,
+              customCss,
+              styles.stage(activityStage, props.side, level),
+            ]}
+            {...{
+              ...props,
+              onClose,
+              size,
+              flyoutMenuProps,
+              onAnimationEnd,
+              isOpen,
+              [PROPERTY_FLYOUT]: true,
+              [PROPERTY_LAYOUT_MODE]: layoutMode,
+              [PROPERTY_LEVEL]: level,
+            }}
+          />
+        </EuiFlyoutMenuContext.Provider>
+      </FlyoutCustomMenuContext.Provider>
     </EuiFlyoutIsManagedProvider>
   );
 };

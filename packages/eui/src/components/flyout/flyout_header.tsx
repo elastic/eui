@@ -6,13 +6,14 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, HTMLAttributes } from 'react';
+import React, { FunctionComponent, HTMLAttributes, useEffect } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../common';
 import { useEuiMemoizedStyles } from '../../services';
 import { euiFlyoutHeaderStyles } from './flyout_header.styles';
 import { useHasActiveSession } from './manager';
 import { EuiFlyoutMenuWrapper } from './flyout_menu';
+import { useFlyoutCustomMenuContext } from './flyout_custom_menu_context';
 
 export type EuiFlyoutHeaderProps = FunctionComponent<
   HTMLAttributes<HTMLDivElement> &
@@ -30,6 +31,16 @@ export const EuiFlyoutHeader: EuiFlyoutHeaderProps = ({
   const styles = useEuiMemoizedStyles(euiFlyoutHeaderStyles);
 
   const isInManagedFlyout = useHasActiveSession();
+  const { setHasCustomMenu } = useFlyoutCustomMenuContext();
+
+  // Signal that we're providing a custom menu
+  useEffect(() => {
+    if (isInManagedFlyout) {
+      setHasCustomMenu(true);
+      return () => setHasCustomMenu(false);
+    }
+  }, [isInManagedFlyout, setHasCustomMenu]);
+
   if (isInManagedFlyout) {
     return <EuiFlyoutMenuWrapper {...rest}>{children}</EuiFlyoutMenuWrapper>;
   }
