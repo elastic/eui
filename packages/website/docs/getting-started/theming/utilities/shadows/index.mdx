@@ -53,14 +53,14 @@ this might result in duplicate neighboring borders. To adjust this, use the `bor
   import { euiShadow } from '@elastic/eui';
 
   const styles = css`
-    ${euiShadow('s', { border: 'none'})}
-    ${euiShadow('s', { border: 'all'})}
-    ${euiShadow('s', { border: 'top'})}
-    ${euiShadow('s', { border: 'bottom'})}
-    ${euiShadow('s', { border: 'left'})}
-    ${euiShadow('s', { border: 'right'})}
-    ${euiShadow('s', { border: 'horizontal'})}
-    ${euiShadow('s', { border: 'vertical'})}
+    ${euiShadow(euiThemeContext, 's', { border: 'none'})}
+    ${euiShadow(euiThemeContext, 's', { border: 'all'})}
+    ${euiShadow(euiThemeContext, 's', { border: 'top'})}
+    ${euiShadow(euiThemeContext, 's', { border: 'bottom'})}
+    ${euiShadow(euiThemeContext, 's', { border: 'left'})}
+    ${euiShadow(euiThemeContext, 's', { border: 'right'})}
+    ${euiShadow(euiThemeContext, 's', { border: 'horizontal'})}
+    ${euiShadow(euiThemeContext, 's', { border: 'vertical'})}
   `;  
   ```
 </Example.Snippet>
@@ -131,6 +131,35 @@ export default () => {
 Combining EUI shadow utils like `euiShadow()` and scroll behavior (e.g. via `overflow: scroll` or `overflow: auto`) on the same element will cause the floating border 
 in DARK mode to be scrolled. If you want to combine both, separate the styles onto different elements by placing the shadow util on the outer wrapper and the scroll 
 behavior on the inner one.
+
+<Example.Snippet>
+  ```ts
+  import { euiShadow } from '@elastic/eui';
+  import { css } from '@emotion/react';
+
+  const Component = () => {
+    const euiThemeContext = useEuiTheme();
+
+    const shadowStyles = css`
+      ${euiShadow(euiThemeContext, 's')};
+    `;
+    const scrollContainerStyles = css`
+      max-height: 100px;
+      overflow-y: auto;
+      /* specific scroll bar styling */
+      ${useEuiScrollBar()};
+    `;
+
+    return (
+      <div css={shadowStyles}>
+        <div css={scrollContainerStyles}>
+          // scrollable content
+        </div>
+      </div>
+    );
+  }
+  ```
+</Example.Snippet>
 
 ```tsx interactive
 import React, { useState } from 'react';
