@@ -260,7 +260,7 @@ const StatefulFlyout: React.FC<FlyoutChildStoryArgs> = ({
               <EuiFlyout
                 id="flyout-manager-playground-child"
                 size={childSize}
-                backgroundStyle={childBackgroundStyle}
+                childBgShaded={childBackgroundStyle === 'shaded'}
                 maxWidth={childMaxWidth}
                 ownFocus={false}
                 resizable={childFlyoutResizable}

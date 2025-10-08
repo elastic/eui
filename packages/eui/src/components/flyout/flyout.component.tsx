@@ -176,6 +176,11 @@ interface _EuiFlyoutComponentProps {
   pushAnimation?: boolean;
   style?: CSSProperties;
   /**
+   * The background style of the child flyout.
+   * @default false
+   */
+  childBgShaded?: boolean;
+  /**
    * Object of props passed to EuiFocusTrap.
    * `shards` specifies an array of elements that will be considered part of the flyout, preventing the flyout from being closed when clicked.
    * `closeOnMouseup` will delay the close callback, allowing time for external toggle buttons to handle close behavior.
@@ -261,6 +266,7 @@ export const EuiFlyoutComponent = forwardRef(
       paddingSize = DEFAULT_PADDING_SIZE,
       maxWidth = false,
       style,
+      childBgShaded = false,
       maskProps,
       type = DEFAULT_TYPE,
       outsideClickCloses,
@@ -474,6 +480,7 @@ export const EuiFlyoutComponent = forwardRef(
     const classes = classnames(
       'euiFlyout',
       openStateToClassNameMap[openState],
+      isChildFlyout && childBgShaded && 'euiFlyout--childShaded',
       className
     );
 
