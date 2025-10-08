@@ -81,6 +81,7 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
       ${logicalCSS('top', 'var(--euiFixedHeadersOffset, 0)')}
       ${logicalCSS('height', 'inherit')}
       z-index: ${euiTheme.levels.flyout};
+      background: ${euiTheme.colors.emptyShade};
       display: flex;
       flex-direction: column;
       align-items: stretch;
@@ -243,13 +244,6 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
         ${composeFlyoutPadding(euiThemeContext, 'l')}
       `,
     },
-    // Background styles
-    backgroundDefault: css`
-      background: ${euiTheme.colors.backgroundBasePlain};
-    `,
-    backgroundShaded: css`
-      background: ${euiTheme.colors.backgroundBaseSubdued};
-    `,
   };
 };
 

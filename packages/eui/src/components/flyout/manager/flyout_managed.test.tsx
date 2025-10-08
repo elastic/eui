@@ -191,35 +191,6 @@ describe('EuiManagedFlyout', () => {
     });
   });
 
-  describe('backgroundStyle prop', () => {
-    it('passes backgroundStyle prop to underlying flyout component', () => {
-      const { getByTestSubject } = renderInProvider(
-        <EuiManagedFlyout
-          id="test-flyout"
-          level={LEVEL_MAIN}
-          onClose={() => {}}
-          backgroundStyle="shaded"
-        />
-      );
-
-      const el = getByTestSubject('managed-flyout');
-      expect(el).toHaveAttribute('backgroundStyle', 'shaded');
-    });
-
-    it('defaults to default backgroundStyle when not provided', () => {
-      const { getByTestSubject } = renderInProvider(
-        <EuiManagedFlyout
-          id="test-flyout"
-          level={LEVEL_MAIN}
-          onClose={() => {}}
-        />
-      );
-
-      const el = getByTestSubject('managed-flyout');
-      expect(el).toHaveAttribute('backgroundStyle', 'default');
-    });
-  });
-
   describe('title handling', () => {
     it('renders successfully when title is provided via flyoutMenuProps', () => {
       const flyoutMenuProps = { title: 'Test Title' };

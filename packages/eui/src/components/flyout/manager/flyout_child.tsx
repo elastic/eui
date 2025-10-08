@@ -49,6 +49,7 @@ export function EuiFlyoutChild({
   ...props
 }: EuiFlyoutChildProps) {
   const { euiTheme } = useEuiTheme();
+  const styles = useEuiMemoizedStyles(euiChildFlyoutStyles);
   const mainFlyout = useCurrentMainFlyout();
   const mainWidth = useFlyoutWidth(mainFlyout?.flyoutId);
   const layoutMode = useFlyoutLayoutMode();
@@ -79,13 +80,17 @@ export function EuiFlyoutChild({
   return (
     <EuiManagedFlyout
       {...props}
-      backgroundStyle={backgroundStyle}
       style={style}
       level={LEVEL_CHILD}
       type="overlay"
       ownFocus={false}
       side={side}
-      css={[customCss]}
+      css={[
+        backgroundStyle === 'shaded'
+          ? styles.backgroundShaded
+          : styles.backgroundDefault,
+        customCss,
+      ]}
     />
   );
 }

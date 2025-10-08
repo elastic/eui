@@ -35,7 +35,6 @@ export function EuiFlyoutMain({
   pushMinBreakpoint = DEFAULT_PUSH_MIN_BREAKPOINT,
   type = DEFAULT_TYPE,
   side = DEFAULT_SIDE,
-  backgroundStyle = 'default',
   ...props
 }: EuiFlyoutMainProps) {
   const flyoutId = useFlyoutId(id);
@@ -51,7 +50,6 @@ export function EuiFlyoutMain({
 
   return (
     <EuiManagedFlyout
-      backgroundStyle={backgroundStyle}
       id={flyoutId}
       level={LEVEL_MAIN}
       style={style}

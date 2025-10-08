@@ -45,7 +45,7 @@ type EuiFlyoutType = (typeof FLYOUT_TYPES)[number];
 interface FlyoutChildStoryArgs extends EuiFlyoutChildActualProps {
   mainSize?: 's' | 'm';
   childSize?: 's' | 'm';
-  backgroundStyle?: 'default' | 'shaded';
+  childBackgroundStyle?: 'default' | 'shaded';
   childMaxWidth?: number;
   mainFlyoutType: EuiFlyoutType;
   mainMaxWidth?: number;
@@ -71,7 +71,7 @@ const meta: Meta<FlyoutChildStoryArgs> = {
       description:
         'The size of the child flyout. If the main is `s`, the child can be `s`, or `m`. If the main is `m`, the child can only be `s`.',
     },
-    backgroundStyle: {
+    childBackgroundStyle: {
       options: ['default', 'shaded'],
       control: { type: 'radio' },
       description: 'The background style of the child flyout.',
@@ -116,7 +116,7 @@ const meta: Meta<FlyoutChildStoryArgs> = {
     },
 
     // use "childBackgroundStyle" instead
-    // backgroundStyle: { table: { disable: true } },
+    backgroundStyle: { table: { disable: true } },
     // use "mainSize" and "childSize" instead
     size: { table: { disable: true } },
     // use "mainMaxWidth" and "childMaxWidth" instead
@@ -136,7 +136,7 @@ const meta: Meta<FlyoutChildStoryArgs> = {
   args: {
     mainSize: 'm',
     childSize: 's',
-    backgroundStyle: 'shaded',
+    childBackgroundStyle: 'default',
     mainFlyoutType: 'push',
     outsideClickCloses: false,
     ownFocus: true, // Depends on `mainFlyoutType=overlay`
@@ -164,7 +164,7 @@ type Story = StoryObj<FlyoutChildStoryArgs>;
 const StatefulFlyout: React.FC<FlyoutChildStoryArgs> = ({
   mainSize,
   childSize,
-  backgroundStyle,
+  childBackgroundStyle,
   mainFlyoutType,
   pushMinBreakpoint,
   mainMaxWidth,
@@ -260,7 +260,7 @@ const StatefulFlyout: React.FC<FlyoutChildStoryArgs> = ({
               <EuiFlyout
                 id="flyout-manager-playground-child"
                 size={childSize}
-                backgroundStyle={backgroundStyle}
+                backgroundStyle={childBackgroundStyle}
                 maxWidth={childMaxWidth}
                 ownFocus={false}
                 resizable={childFlyoutResizable}

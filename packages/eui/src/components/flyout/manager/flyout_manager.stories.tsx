@@ -43,7 +43,7 @@ interface ECommerceContentProps {
 
 interface ShoppingCartProps
   extends ECommerceContentProps,
-    Pick<EuiFlyoutProps, 'onClose' | 'ownFocus' | 'side' | 'backgroundStyle'> {
+    Pick<EuiFlyoutProps, 'onClose' | 'ownFocus' | 'side'> {
   onQuantityChange: (delta: number) => void;
 }
 
@@ -53,7 +53,6 @@ const ShoppingCartFlyout = ({
   onClose,
   ownFocus,
   side,
-  backgroundStyle,
 }: ShoppingCartProps) => {
   const [isItemDetailsOpen, setIsItemDetailsOpen] = useState(false);
   const [isReviewCartOpen, setIsReviewCartOpen] = useState(false);
@@ -66,7 +65,6 @@ const ShoppingCartFlyout = ({
       ownFocus={ownFocus}
       side={side}
       aria-label="Shopping cart"
-      backgroundStyle={backgroundStyle}
       {...{ onClose }}
     >
       <EuiFlyoutBody>
@@ -134,12 +132,11 @@ const ShoppingCartFlyout = ({
 
 interface ReviewOrderProps
   extends ECommerceContentProps,
-    Pick<EuiFlyoutProps, 'onClose' | 'side' | 'backgroundStyle'> {}
+    Pick<EuiFlyoutProps, 'onClose' | 'side'> {}
 
 const ReviewOrderFlyout = ({
   itemQuantity,
   side,
-  backgroundStyle,
   ...props
 }: ReviewOrderProps) => {
   const [orderConfirmed, setOrderConfirmed] = useState(false);
@@ -152,7 +149,6 @@ const ReviewOrderFlyout = ({
       size="m"
       side={side}
       aria-label="Review order"
-      backgroundStyle={backgroundStyle}
       {...props}
     >
       <EuiFlyoutBody>
@@ -203,14 +199,13 @@ const ReviewOrderFlyout = ({
 
 interface ItemDetailsProps
   extends ECommerceContentProps,
-    Pick<EuiFlyoutProps, 'onClose' | 'id' | 'side' | 'backgroundStyle'> {}
+    Pick<EuiFlyoutProps, 'onClose' | 'id' | 'side'> {}
 
 const ItemDetailsFlyout = ({
   onClose,
   itemQuantity,
   id = 'item-details-flyout',
   side = DEFAULT_SIDE,
-  backgroundStyle,
 }: ItemDetailsProps) => {
   return (
     <EuiFlyout
@@ -219,7 +214,6 @@ const ItemDetailsFlyout = ({
       size="s"
       side={side}
       aria-label="Item details"
-      backgroundStyle={backgroundStyle}
     >
       <EuiFlyoutBody>
         <EuiText>
@@ -250,10 +244,8 @@ const ItemDetailsFlyout = ({
 
 const BasicExampleComponent = ({
   side = DEFAULT_SIDE,
-  backgroundStyle = 'default',
 }: {
   side?: _EuiFlyoutSide;
-  backgroundStyle?: 'default' | 'shaded';
 }) => {
   const [shoppingCartOwnFocus, setShoppingCartOwnFocus] = useState(false);
   const [isShoppingCartOpen, setIsShoppingCartOpen] = useState(false);
@@ -408,7 +400,6 @@ const BasicExampleComponent = ({
       </EuiFlexGroup>
       {isShoppingCartOpen && (
         <ShoppingCartFlyout
-          backgroundStyle={backgroundStyle}
           onClose={() => setIsShoppingCartOpen(false)}
           onQuantityChange={(delta: number) =>
             setItemQuantity(itemQuantity + delta)
@@ -420,7 +411,6 @@ const BasicExampleComponent = ({
       )}
       {isReviewCartOpen && (
         <ReviewOrderFlyout
-          backgroundStyle={backgroundStyle}
           onClose={() => setIsReviewCartOpen(false)}
           itemQuantity={itemQuantity}
           side={side}
@@ -428,7 +418,6 @@ const BasicExampleComponent = ({
       )}
       {isItemDetailsOpen && (
         <ItemDetailsFlyout
-          backgroundStyle={backgroundStyle}
           id="shopping-cart-item-details-flyout"
           onClose={() => setIsItemDetailsOpen(false)}
           itemQuantity={itemQuantity}
@@ -443,16 +432,11 @@ export const BasicExample: StoryObj<typeof EuiFlyout> = {
   render: (args) => <BasicExampleComponent {...args} />,
   args: {
     side: 'right',
-    backgroundStyle: 'default',
   },
   argTypes: {
     side: {
       control: 'radio',
       options: FLYOUT_SIDES,
-    },
-    backgroundStyle: {
-      control: 'radio',
-      options: ['default', 'shaded'],
     },
   },
 };

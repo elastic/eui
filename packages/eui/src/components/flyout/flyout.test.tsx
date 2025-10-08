@@ -212,22 +212,6 @@ describe('EuiFlyout', () => {
       });
     });
 
-    describe('backgroundStyle', () => {
-      it('renders with default background', () => {
-        const { baseElement } = render(
-          <EuiFlyout onClose={() => {}} backgroundStyle="default" />
-        );
-        expect(baseElement).toMatchSnapshot();
-      });
-
-      it('renders with shaded background', () => {
-        const { baseElement } = render(
-          <EuiFlyout onClose={() => {}} backgroundStyle="shaded" />
-        );
-        expect(baseElement).toMatchSnapshot();
-      });
-    });
-
     describe('paddingSize', () => {
       FLYOUT_PADDING_SIZES.forEach((paddingSize) => {
         it(`${paddingSize} is rendered`, () => {
