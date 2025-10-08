@@ -101,6 +101,8 @@ export type EuiFlyoutMenuProps = CommonProps &
       onClick: () => void;
       'aria-label': string;
     }>;
+    /* When true, renders children as title content instead of using title prop */
+    asWrapper?: boolean;
   };
 
 const BackButton: React.FC<EuiFlyoutMenuBackButtonProps> = (props) => {
@@ -153,15 +155,34 @@ const HistoryPopover: React.FC<{
   );
 };
 
-export const EuiFlyoutMenu: FunctionComponent<EuiFlyoutMenuProps> = ({
+// Internal unified component with branched logic
+const EuiFlyoutMenuInternal: FunctionComponent<{
+  titleId?: string;
+  className?: string;
+  title?: React.ReactNode;
+  children?: React.ReactNode;
+  hideCloseButton?: boolean;
+  historyItems?: EuiFlyoutHistoryItem[];
+  showBackButton?: boolean;
+  backButtonProps?: EuiFlyoutMenuBackButtonProps;
+  customActions?: Array<{
+    iconType: string;
+    onClick: () => void;
+    'aria-label': string;
+  }>;
+  asWrapper?: boolean;
+  [key: string]: any;
+}> = ({
   titleId,
   className,
   title: titleProp,
+  children,
   hideCloseButton,
   historyItems: historyItemsProp = [],
   showBackButton: showBackButtonProp,
   backButtonProps: backButtonPropsProp,
   customActions,
+  asWrapper = false,
   ...rest
 }) => {
   const { onClose } = useContext(EuiFlyoutMenuContext);
@@ -181,14 +202,28 @@ export const EuiFlyoutMenu: FunctionComponent<EuiFlyoutMenuProps> = ({
     showBackButtonProp ?? contextMenuProps?.showBackButton ?? false;
 
   const styles = useEuiMemoizedStyles(euiFlyoutMenuStyles);
-  const classes = classNames('euiFlyoutMenu', className);
+  const classes = classNames(
+    asWrapper ? 'euiFlyoutMenuWrapper' : 'euiFlyoutMenu',
+    className
+  );
 
+  // Determine title content based on mode
   let titleNode;
-  if (title) {
+  if (asWrapper && children) {
+    // Wrapper mode: render children as title
     titleNode = (
-      <EuiTitle size="xxs" id={titleId}>
-        <h3>{title}</h3>
-      </EuiTitle>
+      <EuiFlexItem grow={false} css={styles.euiFlyoutMenu__wrapper_title}>
+        <>{children}</>
+      </EuiFlexItem>
+    );
+  } else if (title) {
+    // Menu mode: render title in EuiTitle
+    titleNode = (
+      <EuiFlexItem grow={false}>
+        <EuiTitle size="xxs" id={titleId}>
+          <h3>{title}</h3>
+        </EuiTitle>
+      </EuiFlexItem>
     );
   }
 
@@ -224,7 +259,7 @@ export const EuiFlyoutMenu: FunctionComponent<EuiFlyoutMenuProps> = ({
           </EuiFlexItem>
         )}
 
-        {titleNode && <EuiFlexItem grow={false}>{titleNode}</EuiFlexItem>}
+        {titleNode}
 
         <EuiFlexItem grow={true}></EuiFlexItem>
 
@@ -256,101 +291,6 @@ export const EuiFlyoutMenu: FunctionComponent<EuiFlyoutMenuProps> = ({
   );
 };
 
-export type EuiFlyoutMenuWrapperProps = CommonProps &
-  HTMLAttributes<HTMLDivElement> & {
-    children: React.ReactNode;
-    hideCloseButton?: boolean;
-    // Props that can override context values
-    customActions?: Array<{
-      iconType: string;
-      onClick: () => void;
-      'aria-label': string;
-    }>;
-  };
-
-export const EuiFlyoutMenuWrapper: FunctionComponent<
-  EuiFlyoutMenuWrapperProps
-> = ({
-  children,
-  className,
-  hideCloseButton = false,
-  customActions,
-  ...rest
-}) => {
-  const { onClose } = useContext(EuiFlyoutMenuContext);
-  const styles = useEuiMemoizedStyles(euiFlyoutMenuStyles);
-  const classes = classNames('euiFlyoutMenuWrapper', className);
-
-  // Get menu props from context (if in managed flyout)
-  const contextMenuProps = useFlyoutMenuProps();
-
-  // Use context values as defaults, allow props to override
-  const historyItems = contextMenuProps?.historyItems;
-  const backButtonProps = contextMenuProps?.backButtonProps;
-  const showBackButton = contextMenuProps?.showBackButton ?? false;
-
-  const handleClose = (event: EuiFlyoutCloseEvent | undefined) => {
-    onClose?.(event);
-  };
-
-  const closeButton = (
-    <EuiFlyoutCloseButton
-      onClose={handleClose}
-      side="right"
-      closeButtonPosition="inside"
-    />
-  );
-
-  return (
-    <div className={classes} css={styles.euiFlyoutMenu__container} {...rest}>
-      <EuiFlexGroup
-        alignItems="center"
-        justifyContent="spaceBetween"
-        gutterSize="none"
-        responsive={false}
-      >
-        {showBackButton && backButtonProps && (
-          <EuiFlexItem grow={false}>
-            <BackButton {...backButtonProps} />
-          </EuiFlexItem>
-        )}
-
-        {historyItems && historyItems.length > 0 && (
-          <EuiFlexItem grow={false}>
-            <HistoryPopover items={historyItems} />
-          </EuiFlexItem>
-        )}
-
-        <EuiFlexItem grow={false} css={styles.euiFlyoutMenu__wrapper_title}>
-          <>{children /* title element */}</>
-        </EuiFlexItem>
-
-        <EuiFlexItem grow={true}></EuiFlexItem>
-
-        {customActions &&
-          customActions.map((action, actionIndex) => (
-            <EuiFlexItem
-              grow={false}
-              key={`action-index-flex-item-${actionIndex}`}
-              css={styles.euiFlyoutMenu__actions}
-            >
-              <EuiButtonIcon
-                key={`action-index-icon-${actionIndex}`}
-                aria-label={action['aria-label']}
-                iconType={action.iconType}
-                onClick={action.onClick}
-                color="text"
-                size="s"
-              />
-            </EuiFlexItem>
-          ))}
-
-        {/* spacer to give custom actions room around the close button */}
-        {!hideCloseButton && (
-          <EuiFlexItem grow={false} css={styles.euiFlyoutMenu__spacer} />
-        )}
-      </EuiFlexGroup>
-      {!hideCloseButton && closeButton}
-    </div>
-  );
+export const EuiFlyoutMenu: FunctionComponent<EuiFlyoutMenuProps> = (props) => {
+  return <EuiFlyoutMenuInternal {...props} />;
 };

@@ -12,7 +12,7 @@ import { CommonProps } from '../common';
 import { useEuiMemoizedStyles } from '../../services';
 import { euiFlyoutHeaderStyles } from './flyout_header.styles';
 import { useHasActiveSession } from './manager';
-import { EuiFlyoutMenuWrapper } from './flyout_menu';
+import { EuiFlyoutMenu } from './flyout_menu';
 import { useFlyoutCustomMenuContext } from './flyout_custom_menu_context';
 
 export type EuiFlyoutHeaderProps = FunctionComponent<
@@ -42,7 +42,11 @@ export const EuiFlyoutHeader: EuiFlyoutHeaderProps = ({
   }, [isInManagedFlyout, setHasCustomMenu]);
 
   if (isInManagedFlyout) {
-    return <EuiFlyoutMenuWrapper {...rest}>{children}</EuiFlyoutMenuWrapper>;
+    return (
+      <EuiFlyoutMenu asWrapper {...rest}>
+        {children}
+      </EuiFlyoutMenu>
+    );
   }
 
   const classes = classNames('euiFlyoutHeader', className);
