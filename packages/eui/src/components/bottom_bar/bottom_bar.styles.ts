@@ -35,7 +35,7 @@ export const euiBottomBarStyles = (euiThemeContext: UseEuiTheme) => {
       background-color: ${euiTheme.components.bottomBarBackground};
       ${logicalCSS('border-top', euiTheme.border.thin)}
       ${highContrastModeStyles(euiThemeContext, {
-        none: euiShadowFlat(euiThemeContext, { border: 'top' }),
+        none: euiShadowFlat(euiThemeContext, { border: 'none' }),
       })}
       /* prevent shadow from overlapping content in compositions */
       clip-path: polygon(0 -100vh, 100% -100vh, 100% 100%, 0 100%);

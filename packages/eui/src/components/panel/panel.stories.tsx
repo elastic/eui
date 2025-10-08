@@ -14,9 +14,15 @@ import {
   disableStorybookControls,
   enableFunctionToggleControls,
 } from '../../../.storybook/utils';
-import { highContrastModeStyles, logicalCSS } from '../../global_styling';
+import {
+  euiShadow,
+  highContrastModeStyles,
+  logicalCSS,
+} from '../../global_styling';
+import { useEuiTheme } from '../../services';
 import { EuiPanel, EuiPanelProps } from './panel';
 import { EuiSpacer } from '../spacer';
+import { EuiSplitPanel } from './split_panel';
 
 const meta: Meta<EuiPanelProps> = {
   title: 'Layout/EuiPanel',
@@ -89,6 +95,9 @@ export const Kitchensink: Story = {
     children: 'Panel content',
   },
   render: function Render(args: EuiPanelProps) {
+    const euiThemeContext = useEuiTheme();
+    const { euiTheme } = euiThemeContext;
+
     return (
       <>
         <EuiPanel {...args} hasBorder onClick={undefined} />
@@ -128,6 +137,28 @@ export const Kitchensink: Story = {
             Footer
           </EuiPanel>
         </EuiPanel>
+
+        <EuiSpacer size="m" />
+
+        <EuiSplitPanel.Outer>
+          <EuiSplitPanel.Inner>Top or left panel</EuiSplitPanel.Inner>
+          <EuiSplitPanel.Inner color="subdued">
+            Bottom or right panel
+          </EuiSplitPanel.Inner>
+        </EuiSplitPanel.Outer>
+
+        <EuiSpacer size="m" />
+
+        <div
+          css={css`
+            padding: ${euiTheme.size.base};
+            background-color: ${euiTheme.colors.backgroundBasePlain};
+            border-radius: ${euiTheme.border.radius.small};
+            ${euiShadow(euiThemeContext)};
+          `}
+        >
+          Custom panel
+        </div>
       </>
     );
   },

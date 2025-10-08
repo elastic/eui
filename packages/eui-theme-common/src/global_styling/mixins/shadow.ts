@@ -12,7 +12,7 @@ import {
   _EuiThemeShadowHoverSize,
   _EuiThemeShadowSize,
 } from '../variables/shadow';
-import { BorderSides, euiBorderStyles } from './borders';
+import { BorderSides, euiShadowFloatingBorderStyles } from './borders';
 
 export interface EuiShadowOptions {
   /** @deprecated */
@@ -290,7 +290,7 @@ const _shadowStyles = (
   const { border = 'all', type = 'box-shadow' } = options;
   const borderStyle =
     euiThemeContext.colorMode === 'DARK' && border !== 'none'
-      ? `${euiBorderStyles(euiThemeContext, {
+      ? `${euiShadowFloatingBorderStyles(euiThemeContext, {
           side: border ?? 'all',
         })}`
       : '';
