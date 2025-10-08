@@ -335,6 +335,7 @@ describe('EuiPopover', () => {
             button={<button />}
             closePopover={() => {}}
             offset={10}
+            hasArrow={true}
             isOpen
           />
         );

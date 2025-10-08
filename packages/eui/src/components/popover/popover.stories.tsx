@@ -33,8 +33,6 @@ const meta: Meta<EuiPopoverProps> = {
     ownFocus: true,
     panelPaddingSize: 'm',
     buffer: 16,
-    hasArrow: true,
-    anchorPosition: 'downCenter',
     display: 'inline-block',
     repositionToCrossAxis: true,
     repositionOnScroll: false,

@@ -288,9 +288,10 @@ export class EuiPopover extends Component<Props, State> {
     isOpen: false,
     ownFocus: true,
     repositionToCrossAxis: true,
-    anchorPosition: 'downCenter',
+    anchorPosition: 'downLeft',
     panelPaddingSize: 'm',
-    hasArrow: true,
+    hasArrow: false,
+    offset: 4,
     display: 'inline-block',
   };
 
