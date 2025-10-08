@@ -35,6 +35,7 @@ import {
 } from '../..';
 import { EuiFlyout } from '../flyout';
 import { useCurrentSession, useFlyoutManager } from './hooks';
+import { EuiFlyoutIsManagedProvider } from './context';
 
 const meta: Meta<typeof EuiFlyout> = {
   title: 'Layout/EuiFlyout/Flyout Manager',
@@ -327,8 +328,100 @@ export const MultiSessionExample: StoryObj<typeof EuiFlyout> = {
   render: () => <MultiSessionFlyoutDemo />,
 };
 
+const ExternalRootChildFlyout: React.FC<{ parentId: string }> = ({
+  parentId,
+}) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleOpen = () => {
+    setIsOpen(true);
+  };
+
+  const handleClose = () => {
+    setIsOpen(false);
+  };
+
+  return (
+    <EuiPanel hasBorder paddingSize="m" grow={false}>
+      <EuiTitle size="xs">
+        <h4>Root within {parentId}</h4>
+      </EuiTitle>
+      <EuiSpacer size="s" />
+      <EuiButton onClick={handleOpen} size="s">
+        Open Child Flyout
+      </EuiButton>
+      <EuiFlyout
+        id={`child-flyout-${parentId}`}
+        isOpen={isOpen}
+        size="s"
+        onClose={handleClose}
+        flyoutMenuProps={{ title: `Child flyout of ${parentId}` }}
+        data-test-subj="child-flyout-in-new-root"
+      >
+        <EuiFlyoutBody>
+          <EuiText>
+            <p>
+              This is a child flyout rendered in a completely separate React
+              root! It shares the same flyout manager state as the parent.
+            </p>
+            <EuiSpacer size="s" />
+            <p>Parent ID: {parentId}</p>
+          </EuiText>
+        </EuiFlyoutBody>
+      </EuiFlyout>
+    </EuiPanel>
+  );
+};
+
 const ExternalRootFlyout: React.FC<{ id: string }> = ({ id }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [buttonRoot, setButtonRoot] = useState<Root | null>(null);
+  const buttonContainerRef = useRef<HTMLDivElement | null>(null);
+
+  // Create the button to open the child flyout in a separate React root
+  useEffect(() => {
+    if (isOpen) {
+      // Use setTimeout to ensure the DOM element is rendered
+      const timer = setTimeout(() => {
+        if (buttonContainerRef.current) {
+          const newRoot = createRoot(buttonContainerRef.current);
+          newRoot.render(
+            <EuiProvider>
+              {/* 
+                EuiFlyoutIsManagedProvider is required here because the child flyout 
+                needs to be detected as being within a managed flyout context for 
+                proper routing. Without this, the child flyout would route to 
+                EuiFlyoutMain instead of EuiFlyoutChild.
+              */}
+              <EuiFlyoutIsManagedProvider isManaged={true}>
+                <ExternalRootChildFlyout parentId={id} />
+              </EuiFlyoutIsManagedProvider>
+            </EuiProvider>
+          );
+          setButtonRoot(newRoot);
+        }
+      }, 100);
+
+      return () => clearTimeout(timer);
+    }
+  }, [isOpen, id]);
+
+  // Cleanup the button root for opening the child flyout when the main flyout closes
+  useEffect(() => {
+    if (!isOpen && buttonRoot) {
+      buttonRoot.unmount();
+      setButtonRoot(null);
+    }
+  }, [isOpen, buttonRoot]);
+
+  // Cleanup the main flyout's root on unmount
+  useEffect(() => {
+    return () => {
+      if (buttonRoot) {
+        buttonRoot.unmount();
+      }
+    };
+  }, [buttonRoot]);
 
   return (
     <EuiPanel hasBorder paddingSize="m" grow={false}>
@@ -354,6 +447,14 @@ const ExternalRootFlyout: React.FC<{ id: string }> = ({ id }) => {
               manager state. Closing it here should update all other flyout
               menus and history.
             </p>
+            <EuiSpacer size="m" />
+            <p>
+              Below is a button rendered in a separate React root that opens a
+              child flyout:
+            </p>
+            <EuiSpacer size="s" />
+            {/* Container for the button React root - inside the main flyout */}
+            <div ref={buttonContainerRef} />
           </EuiText>
         </EuiFlyoutBody>
       </EuiFlyout>
