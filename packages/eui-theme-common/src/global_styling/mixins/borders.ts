@@ -42,8 +42,8 @@ export const euiShadowFloatingBorderStyles = (
   }
 ) => {
   return `
-    /* create a containing block without using position to prevent CSS specificity issues and unexpected overrides;
-    transform: translateZ(0) is the least likely to affect other behaviors (overflow, layout) */
+    /* create a containing block without using \`position\` to prevent CSS specificity issues and unexpected overrides;
+    \`transform: translateZ(0)\` is the least likely to affect other behaviors (overflow, layout) */
     transform: translateZ(0);
 
     ${euiBorderStyles(euiThemeContext, options)}
