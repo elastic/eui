@@ -5,12 +5,32 @@ on:
     branches: [main]
 
 jobs:
-  # Enforces the update of a changelog file on every pull request
-  changelog:
-    if: ${{ !contains(github.event.pull_request.labels.*.name, 'skip-changelog') }}
+  # Check for changes in all public packages, needed in the `changelog` job
+  detect-changes:
     runs-on: ubuntu-latest
+    outputs:
+      changed-packages: ${{ steps.changes.outputs.changed-packages }}
     steps:
-    - uses: actions/checkout@v2
-    - uses: ./.github/actions/check-changelog
-      with:
-        pr-number: ${{ github.event.pull_request.number }}
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Detect package changes
+        id: changes
+        uses: ./.github/actions/detect-package-changes
+
+  # Enforces the update of a changelog file on every pull request for all public packages
+  # unless the PR contains the `skip-changelog` label
+  changelog:
+    needs: detect-changes
+    if: ${{ !contains(github.event.pull_request.labels.*.name, 'skip-changelog') && fromJson(needs.detect-changes.outputs.changed-packages)[0] }}
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        package: ${{ fromJson(needs.detect-changes.outputs.changed-packages) }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Check changelog for ${{ matrix.package }}
+        uses: ./.github/actions/check-changelog
+        with:
+          pr-number: ${{ github.event.pull_request.number }}
+          package-path: packages/${{ matrix.package }}
