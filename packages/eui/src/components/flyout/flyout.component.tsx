@@ -176,10 +176,10 @@ interface _EuiFlyoutComponentProps {
   pushAnimation?: boolean;
   style?: CSSProperties;
   /**
-   * The background style of the child flyout.
+   * When the flyout is used as a child in a managed flyout session, setting `true` gives the shaded background style.
    * @default false
    */
-  childBgShaded?: boolean;
+  childBackgroundShaded?: boolean;
   /**
    * Object of props passed to EuiFocusTrap.
    * `shards` specifies an array of elements that will be considered part of the flyout, preventing the flyout from being closed when clicked.
