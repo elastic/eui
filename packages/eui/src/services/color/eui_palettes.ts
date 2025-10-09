@@ -38,11 +38,6 @@ export type EuiPaletteCommonProps = {
    * Use this to specify colors when you can't rely on the EuiProvider updates.
    */
   colors?: _EuiThemeVisColors;
-  /**
-   * Specifies if some color asdjustments for vis colors are required.
-   * Has to be passed when `colors` are set
-   */
-  hasVisColorAdjustment?: boolean;
 };
 
 export type EuiPaletteRotationProps = {
@@ -162,19 +157,9 @@ export const euiPaletteColorBlind = ({
 export const euiPaletteColorBlindBehindText = (
   paletteProps: EuiPaletteColorBlindProps = {}
 ) => {
-  const { hasVisColorAdjustment } = paletteProps;
-  const _hasVisColorAdjustment =
-    hasVisColorAdjustment ?? EUI_VIS_COLOR_STORE.hasVisColorAdjustment;
-
   const originalPalette = euiPaletteColorBlind(paletteProps);
 
-  // new theme palette has required contrast, we don't need to adjust them
-  if (!_hasVisColorAdjustment) return originalPalette;
-
-  const newPalette = originalPalette.map((color) =>
-    chroma(color).brighten(0.5).hex()
-  );
-  return newPalette;
+  return originalPalette;
 };
 
 const _getVisColorsAsText = (
@@ -268,11 +253,9 @@ export const euiPaletteForStatus = function (
  */
 export const euiPaletteForTemperature = function (
   steps: any,
-  { colors, hasVisColorAdjustment }: EuiPaletteCommonProps = {}
+  { colors }: EuiPaletteCommonProps = {}
 ): EuiPalette {
   const visColors = colors ?? EUI_VIS_COLOR_STORE.visColors;
-  const _hasVisColorAdjustment =
-    hasVisColorAdjustment ?? EUI_VIS_COLOR_STORE.hasVisColorAdjustment;
 
   if (steps === 1) {
     return [visColors.euiColorVisCool2];
@@ -301,9 +284,7 @@ export const euiPaletteForTemperature = function (
     3
   );
 
-  const paletteColors = _hasVisColorAdjustment
-    ? [...cools, ...warms]
-    : [...cools, visColors.euiColorVisBase0, ...warms];
+  const paletteColors = [...cools, visColors.euiColorVisBase0, ...warms];
 
   return euiPalette(paletteColors, steps, true);
 };
@@ -316,23 +297,19 @@ export const euiPaletteForTemperature = function (
  */
 export const euiPaletteComplementary = function (
   steps: number,
-  { colors, hasVisColorAdjustment }: EuiPaletteCommonProps = {}
+  { colors }: EuiPaletteCommonProps = {}
 ): EuiPalette {
   const visColors = colors ?? EUI_VIS_COLOR_STORE.visColors;
-  const _hasVisColorAdjustment =
-    hasVisColorAdjustment ?? EUI_VIS_COLOR_STORE.hasVisColorAdjustment;
 
   if (steps === 1) {
     return [visColors.euiColorVisComplementary0];
   }
 
-  const paletteColors = _hasVisColorAdjustment
-    ? [visColors.euiColorVisComplementary0, visColors.euiColorVisComplementary1]
-    : [
-        visColors.euiColorVisComplementary0,
-        visColors.euiColorVisBase0,
-        visColors.euiColorVisComplementary1,
-      ];
+  const paletteColors = [
+    visColors.euiColorVisComplementary0,
+    visColors.euiColorVisBase0,
+    visColors.euiColorVisComplementary1,
+  ];
 
   return euiPalette(paletteColors, steps, true);
 };
@@ -455,11 +432,9 @@ export const euiPaletteOrange = function (
  */
 export const euiPaletteCool = function (
   steps: number,
-  { colors, hasVisColorAdjustment }: EuiPaletteCommonProps = {}
+  { colors }: EuiPaletteCommonProps = {}
 ): EuiPalette {
   const visColors = colors ?? EUI_VIS_COLOR_STORE.visColors;
-  const _hasVisColorAdjustment =
-    hasVisColorAdjustment ?? EUI_VIS_COLOR_STORE.hasVisColorAdjustment;
 
   if (steps === 1) {
     return [visColors.euiColorVisCool1];
@@ -467,9 +442,7 @@ export const euiPaletteCool = function (
 
   return euiPalette(
     [
-      _hasVisColorAdjustment
-        ? visColors.euiColorVisBase0
-        : visColors.euiColorVisCool0,
+      visColors.euiColorVisCool0,
       visColors.euiColorVisCool1,
       visColors.euiColorVisCool2,
     ],

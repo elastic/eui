@@ -89,15 +89,14 @@ const _useEuiPaletteFn = (
   args?: EuiPaletteRotationProps
 ) => {
   const { euiTheme } = useEuiTheme();
-  const { colors, flags } = euiTheme;
+  const { colors } = euiTheme;
 
   return useMemo(() => {
     return palleteFn({
       ...args,
       colors: colors.vis,
-      hasVisColorAdjustment: flags.hasVisColorAdjustment,
     });
-  }, [colors, flags, args, palleteFn]);
+  }, [colors, args, palleteFn]);
 };
 
 const _useEuiPaletteWithStepsFn = (
@@ -105,14 +104,13 @@ const _useEuiPaletteWithStepsFn = (
   steps: number
 ) => {
   const { euiTheme } = useEuiTheme();
-  const { colors, flags } = euiTheme;
+  const { colors } = euiTheme;
 
   return useMemo(
     () =>
       palleteFn(steps, {
         colors: colors.vis,
-        hasVisColorAdjustment: flags.hasVisColorAdjustment,
       }),
-    [colors, flags, steps, palleteFn]
+    [colors, steps, palleteFn]
   );
 };

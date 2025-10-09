@@ -7,7 +7,6 @@
  */
 
 import { css } from '@emotion/react';
-import { euiShadow } from '@elastic/eui-theme-common';
 
 import { UseEuiTheme } from '../../services';
 import {
@@ -24,16 +23,6 @@ import { euiKeyPadMenuVariables } from './key_pad_menu.styles';
 export const euiKeyPadMenuItemStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
   const { euiKeyPadMenuSize } = euiKeyPadMenuVariables(euiThemeContext);
-  const hasVisColorAdjustment = euiTheme.flags?.hasVisColorAdjustment;
-  const focusTransformStyles = `
-    ${euiShadow(euiThemeContext, 's')};
-
-    ${euiCanAnimate} {
-      .euiKeyPadMenuItem__icon {
-        transform: translateY(0);
-      }
-    }
-  `;
 
   return {
     euiKeyPadMenuItem: css`
@@ -53,37 +42,27 @@ export const euiKeyPadMenuItemStyles = (euiThemeContext: UseEuiTheme) => {
       &:is(:hover, :focus, :focus-within) {
         cursor: pointer;
         text-decoration: underline;
+        background-color: ${euiTheme.colors.backgroundBaseInteractiveHover};
 
         ${highContrastModeStyles(euiThemeContext, {
           // Use `outline` instead of border to avoid affecting absolutely positioned children
           preferred: `
             outline: ${euiTheme.border.width.thin} solid ${euiTheme.colors.primary};
           `,
-        })}
-
-        ${hasVisColorAdjustment
-          ? focusTransformStyles
-          : `background-color: ${euiTheme.colors.backgroundBaseInteractiveHover}`}
+        })};
       }
 
       &:focus {
         box-shadow: none;
-        background-color: ${hasVisColorAdjustment
-          ? euiTheme.focus.backgroundColor
-          : euiTheme.colors.backgroundBaseInteractiveHover};
+        background-color: ${euiTheme.colors.backgroundBaseInteractiveHover};
       }
     `,
     selected: css`
       color: ${euiTheme.colors.textHeading};
-      background-color: ${hasVisColorAdjustment
-        ? euiTheme.focus.backgroundColor
-        : ''};
 
       &:is(*, :hover, :focus, :focus-within) {
         color: ${euiTheme.colors.textPrimary};
-        background-color: ${!hasVisColorAdjustment
-          ? euiTheme.colors.backgroundBaseInteractiveSelect
-          : ''};
+        background-color: ${euiTheme.colors.backgroundBaseInteractiveSelect};
 
         ${highContrastModeStyles(euiThemeContext, {
           // Skip checkable items (which render a <label> instead of <button>/<a>),
@@ -105,8 +84,6 @@ export const euiKeyPadMenuItemStyles = (euiThemeContext: UseEuiTheme) => {
         ${highContrastModeStyles(euiThemeContext, {
           none: `
             .euiKeyPadMenuItem__icon {
-              filter: ${hasVisColorAdjustment ? 'grayscale(100%)' : ''};
-
               svg * {
                 fill: ${euiTheme.colors.textDisabled};
               }
@@ -116,9 +93,7 @@ export const euiKeyPadMenuItemStyles = (euiThemeContext: UseEuiTheme) => {
         })}
       `,
       selected: css`
-        background-color: ${hasVisColorAdjustment
-          ? euiTheme.components.keyPadMenuItemBackgroundDisabledSelect
-          : euiTheme.colors.backgroundBaseDisabled};
+        background-color: ${euiTheme.colors.backgroundBaseDisabled};
 
         ${highContrastModeStyles(euiThemeContext, {
           preferred: `
