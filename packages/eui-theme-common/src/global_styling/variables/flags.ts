@@ -15,6 +15,5 @@ export type EuiThemeVariantFlags = {
  * Theme specific setting flags
  */
 export type _EuiThemeFlags = {
-  hasGlobalFocusColor: boolean;
   hasVisColorAdjustment: boolean;
 } & EuiThemeVariantFlags;
