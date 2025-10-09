@@ -132,3 +132,9 @@ export interface UseEuiTheme<T extends {} = {}> {
   highContrastMode: EuiThemeHighContrastMode;
   modifications: EuiThemeModifications<T>;
 }
+
+export interface EUI_THEME {
+  text: string;
+  value: string;
+  provider?: EuiThemeSystem;
+}
