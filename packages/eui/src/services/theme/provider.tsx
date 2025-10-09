@@ -145,10 +145,7 @@ export const EuiThemeProvider = <T extends {} = {}>({
   const updateVisColorStore = useCallback(
     (theme: EuiThemeComputed, isGlobalTheme: boolean) => {
       if (isGlobalTheme) {
-        EUI_VIS_COLOR_STORE.setVisColors(
-          theme.colors.vis,
-          theme.flags?.hasVisColorAdjustment ?? true
-        );
+        EUI_VIS_COLOR_STORE.setVisColors(theme.colors.vis);
       }
     },
     []
