@@ -18,12 +18,12 @@ import useIsBrowser from '@docusaurus/useIsBrowser';
 import createCache from '@emotion/cache';
 import { CacheProvider } from '@emotion/react';
 import {
-  EUI_THEME,
   EuiProvider,
   EuiThemeAmsterdam,
   EuiThemeColorMode,
 } from '@elastic/eui';
 import { EuiThemeBorealis } from '@elastic/eui-theme-borealis';
+import { type EUI_THEME } from '@elastic/eui-theme-common';
 
 import { EuiThemeOverrides } from './theme_overrides';
 
