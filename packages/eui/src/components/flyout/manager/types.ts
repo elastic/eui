@@ -80,7 +80,8 @@ export interface FlyoutManagerApi {
   setFlyoutWidth: (flyoutId: string, width: number) => void;
   goBack: () => void;
   goToFlyout: (flyoutId: string) => void;
-  getHistoryItems: () => Array<{
+  updateFlyoutTitle: (flyoutId: string, title: string) => void;
+  historyItems: Array<{
     title: string;
     onClick: () => void;
   }>;

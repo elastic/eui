@@ -29,19 +29,16 @@ jest.mock('./flyout_managed', () => ({
 
 // Keep layout/ID hooks deterministic
 jest.mock('./hooks', () => ({
-  useFlyoutManagerReducer: () => ({
+  useFlyoutManager: () => ({
     state: { sessions: [], flyouts: [], layoutMode: 'side-by-side' },
     dispatch: jest.fn(),
     addFlyout: jest.fn(),
     closeFlyout: jest.fn(),
     setActiveFlyout: jest.fn(),
     setFlyoutWidth: jest.fn(),
-  }),
-  useFlyoutManager: () => ({
-    state: { sessions: [], flyouts: [], layoutMode: 'side-by-side' },
-    addFlyout: jest.fn(),
-    closeFlyout: jest.fn(),
-    setFlyoutWidth: jest.fn(),
+    goBack: jest.fn(),
+    goToFlyout: jest.fn(),
+    historyItems: [],
   }),
   useHasChildFlyout: () => false,
   useFlyoutId: (id?: string) => id ?? 'generated-id',

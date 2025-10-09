@@ -26,6 +26,9 @@ import { euiFlyoutMenuStyles } from './flyout_menu.styles';
 import { EuiFlyoutMenuContext } from './flyout_menu_context';
 import type { EuiFlyoutCloseEvent } from './types';
 import { EuiI18n, useEuiI18n } from '../i18n';
+import { useHasActiveSession } from './manager';
+import { useFlyoutManager } from './manager/hooks';
+import { LEVEL_MAIN } from './manager/const';
 
 type EuiFlyoutMenuBackButtonProps = Pick<
   PropsForAnchor<EuiButtonProps>,
@@ -35,6 +38,53 @@ type EuiFlyoutMenuBackButtonProps = Pick<
 type EuiFlyoutHistoryItem = {
   title: string;
   onClick: () => void;
+};
+
+/**
+ * Hook that provides flyout menu props based on the current managed flyout context.
+ * Returns undefined if not in a managed flyout context.
+ */
+const useFlyoutMenuProps = () => {
+  const hasActiveSession = useHasActiveSession();
+  const manager = useFlyoutManager();
+
+  if (!hasActiveSession || !manager) {
+    return undefined;
+  }
+
+  const { state, goBack, historyItems: managerHistoryItems } = manager;
+  const currentSession = state.sessions[state.sessions.length - 1];
+
+  if (!currentSession) {
+    return undefined;
+  }
+
+  // Get the current flyout's level and title from the manager state
+  const currentFlyout = state.flyouts.find(
+    (f: any) =>
+      f.flyoutId === currentSession.mainFlyoutId ||
+      f.flyoutId === currentSession.childFlyoutId
+  );
+
+  if (!currentFlyout) {
+    return undefined;
+  }
+
+  const level = currentFlyout.level;
+  const title = currentSession.title;
+
+  // Calculate menu props based on level
+  const historyItems = level === LEVEL_MAIN ? managerHistoryItems : undefined;
+  const backButtonProps =
+    level === LEVEL_MAIN ? { onClick: goBack } : undefined;
+  const showBackButton = historyItems ? historyItems.length > 0 : false;
+
+  return {
+    historyItems,
+    backButtonProps,
+    showBackButton,
+    title,
+  };
 };
 
 export type EuiFlyoutMenuProps = CommonProps &
@@ -51,6 +101,8 @@ export type EuiFlyoutMenuProps = CommonProps &
       onClick: () => void;
       'aria-label': string;
     }>;
+    /* When true, renders children as title content instead of using title prop */
+    asWrapper?: boolean;
   };
 
 const BackButton: React.FC<EuiFlyoutMenuBackButtonProps> = (props) => {
@@ -103,28 +155,75 @@ const HistoryPopover: React.FC<{
   );
 };
 
-export const EuiFlyoutMenu: FunctionComponent<EuiFlyoutMenuProps> = ({
+// Internal unified component with branched logic
+const EuiFlyoutMenuInternal: FunctionComponent<{
+  titleId?: string;
+  className?: string;
+  title?: React.ReactNode;
+  children?: React.ReactNode;
+  hideCloseButton?: boolean;
+  historyItems?: EuiFlyoutHistoryItem[];
+  showBackButton?: boolean;
+  backButtonProps?: EuiFlyoutMenuBackButtonProps;
+  customActions?: Array<{
+    iconType: string;
+    onClick: () => void;
+    'aria-label': string;
+  }>;
+  asWrapper?: boolean;
+  [key: string]: any;
+}> = ({
   titleId,
   className,
-  title,
+  title: titleProp,
+  children,
   hideCloseButton,
-  historyItems = [],
-  showBackButton,
-  backButtonProps,
+  historyItems: historyItemsProp = [],
+  showBackButton: showBackButtonProp,
+  backButtonProps: backButtonPropsProp,
   customActions,
+  asWrapper = false,
   ...rest
 }) => {
   const { onClose } = useContext(EuiFlyoutMenuContext);
 
-  const styles = useEuiMemoizedStyles(euiFlyoutMenuStyles);
-  const classes = classNames('euiFlyoutMenu', className);
+  // Get menu props from context (if in managed flyout)
+  const contextMenuProps = useFlyoutMenuProps();
 
+  // Use context values as defaults, allow props to override
+  const title = titleProp ?? contextMenuProps?.title;
+  const historyItems =
+    historyItemsProp.length > 0
+      ? historyItemsProp
+      : contextMenuProps?.historyItems ?? [];
+  const backButtonProps =
+    backButtonPropsProp ?? contextMenuProps?.backButtonProps;
+  const showBackButton =
+    showBackButtonProp ?? contextMenuProps?.showBackButton ?? false;
+
+  const styles = useEuiMemoizedStyles(euiFlyoutMenuStyles);
+  const classes = classNames(
+    asWrapper ? 'euiFlyoutMenuWrapper' : 'euiFlyoutMenu',
+    className
+  );
+
+  // Determine title content based on mode
   let titleNode;
-  if (title) {
+  if (asWrapper && children) {
+    // Wrapper mode: render children as title
     titleNode = (
-      <EuiTitle size="xxs" id={titleId}>
-        <h3>{title}</h3>
-      </EuiTitle>
+      <EuiFlexItem grow={false} css={styles.euiFlyoutMenu__wrapper_title}>
+        <>{children}</>
+      </EuiFlexItem>
+    );
+  } else if (title) {
+    // Menu mode: render title in EuiTitle
+    titleNode = (
+      <EuiFlexItem grow={false}>
+        <EuiTitle size="xxs" id={titleId}>
+          <h3>{title}</h3>
+        </EuiTitle>
+      </EuiFlexItem>
     );
   }
 
@@ -148,7 +247,7 @@ export const EuiFlyoutMenu: FunctionComponent<EuiFlyoutMenuProps> = ({
         gutterSize="none"
         responsive={false}
       >
-        {showBackButton && (
+        {showBackButton && backButtonProps && (
           <EuiFlexItem grow={false}>
             <BackButton {...backButtonProps} />
           </EuiFlexItem>
@@ -160,7 +259,7 @@ export const EuiFlyoutMenu: FunctionComponent<EuiFlyoutMenuProps> = ({
           </EuiFlexItem>
         )}
 
-        {titleNode && <EuiFlexItem grow={false}>{titleNode}</EuiFlexItem>}
+        {titleNode}
 
         <EuiFlexItem grow={true}></EuiFlexItem>
 
@@ -190,4 +289,8 @@ export const EuiFlyoutMenu: FunctionComponent<EuiFlyoutMenuProps> = ({
       {!hideCloseButton && closeButton}
     </div>
   );
+};
+
+export const EuiFlyoutMenu: FunctionComponent<EuiFlyoutMenuProps> = (props) => {
+  return <EuiFlyoutMenuInternal {...props} />;
 };

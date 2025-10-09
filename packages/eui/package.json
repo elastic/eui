@@ -86,6 +86,7 @@
     "unified": "^9.2.2",
     "unist-util-visit": "^2.0.3",
     "url-parse": "^1.5.10",
+    "use-sync-external-store": "^1.6.0",
     "uuid": "^8.3.0",
     "vfile": "^4.2.1"
   },

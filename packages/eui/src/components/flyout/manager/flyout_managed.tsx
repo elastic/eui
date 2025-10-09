@@ -5,15 +5,19 @@
  * in compliance with, at your election, the Elastic License 2.0 or the Server
  * Side Public License, v 1.
  */
-import React, { useEffect, useMemo, useRef } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useEuiMemoizedStyles } from '../../../services';
 import { useResizeObserver } from '../../observer/resize_observer';
+import { useInnerText } from '../../inner_text/inner_text';
 import {
   EuiFlyoutComponent,
   EuiFlyoutComponentProps,
 } from '../flyout.component';
 import { EuiFlyoutMenuProps } from '../flyout_menu';
-import { EuiFlyoutMenuContext } from '../flyout_menu_context';
+import {
+  EuiFlyoutMenuContext,
+  FlyoutManagedMenuContext,
+} from '../flyout_menu_context';
 import type { EuiFlyoutCloseEvent } from '../types';
 import { useFlyoutActivityStage } from './activity_stage';
 import {
@@ -83,7 +87,7 @@ export const EuiManagedFlyout = ({
   const flyoutId = useFlyoutId(id);
   const flyoutRef = useRef<HTMLDivElement>(null);
 
-  const { addFlyout, closeFlyout, setFlyoutWidth, goBack, getHistoryItems } =
+  const { addFlyout, closeFlyout, setFlyoutWidth, updateFlyoutTitle } =
     useFlyoutManager();
   const parentSize = useParentFlyoutSize(flyoutId);
   const layoutMode = useFlyoutLayoutMode();
@@ -110,11 +114,97 @@ export const EuiManagedFlyout = ({
     }
   }
 
+  const [title, setTitle] = useState(
+    _flyoutMenuProps?.title || props['aria-label']
+  );
+
+  // Use useInnerText to observe title changes from aria-labelledby element
+  const [setLabelledByRef, labelledByText] = useInnerText();
+
+  // Set up the ref for the aria-labelledby element when it's available
+  const ariaLabelledBy = props['aria-labelledby'];
+  useEffect(() => {
+    // Only try to find the element when the flyout is open
+    if (ariaLabelledBy && isOpen) {
+      const tryFindElement = () => {
+        const domEl = document.getElementById(ariaLabelledBy);
+        if (domEl) {
+          setLabelledByRef(domEl);
+          return true;
+        }
+        return false;
+      };
+
+      // Try immediately first
+      if (!tryFindElement()) {
+        // Retry after a short delay to allow for DOM rendering
+        retryTimerRef.current = setTimeout(() => {
+          if (!tryFindElement()) {
+            // Element not found after retry - this is expected in some cases
+          }
+        }, 500); // Delay to allow for flyout content rendering
+
+        return () => {
+          if (retryTimerRef.current) {
+            clearTimeout(retryTimerRef.current);
+            retryTimerRef.current = null;
+          }
+        };
+      }
+    }
+  }, [ariaLabelledBy, setLabelledByRef, flyoutId, isOpen]);
+
+  // Update title when labelledByText changes
+  // Use aria-labelledby as fallback when no explicit title is provided
+  const ariaLabel = props['aria-label'];
+  const explicitTitle = _flyoutMenuProps?.title;
+
+  // Track the last processed title to prevent infinite loops
+  const lastProcessedTitleRef = useRef<string | null>(null);
+
+  // Track retry timer to clear it when text changes
+  const retryTimerRef = useRef<NodeJS.Timeout | null>(null);
+
+  useEffect(() => {
+    // Clear retry timer if we got text (element was found and is being observed)
+    if (labelledByText && retryTimerRef.current) {
+      clearTimeout(retryTimerRef.current);
+      retryTimerRef.current = null;
+    }
+
+    // Only update if we have new text and haven't processed this exact title before
+    if (
+      labelledByText &&
+      !explicitTitle &&
+      !ariaLabel &&
+      labelledByText !== lastProcessedTitleRef.current
+    ) {
+      const discoveredTitle = labelledByText || 'Untitled';
+
+      // Mark this title as processed to prevent re-processing
+      lastProcessedTitleRef.current = labelledByText;
+
+      setTitle(discoveredTitle);
+      updateFlyoutTitle(flyoutId, discoveredTitle);
+    }
+  }, [
+    labelledByText,
+    explicitTitle,
+    ariaLabel,
+    flyoutId,
+    updateFlyoutTitle,
+    title,
+  ]);
+
   // Validate title
-  const title = _flyoutMenuProps?.title || props['aria-label'];
   const titleError = validateFlyoutTitle(title, flyoutId, level);
   if (titleError) {
-    throw new Error(createValidationErrorMessage(titleError));
+    console.warn('⚠️ Title validation error:', {
+      flyoutId,
+      level,
+      title,
+      error: titleError.message,
+    });
   }
 
   const isActive = useIsFlyoutActive(flyoutId);
@@ -142,9 +232,9 @@ export const EuiManagedFlyout = ({
   // Register with flyout manager context when open, remove when closed
   useEffect(() => {
     if (isOpen) {
-      addFlyout(flyoutId, title!, level, size as string);
+      addFlyout?.(flyoutId, title!, level, size as string);
     } else {
-      closeFlyout(flyoutId);
+      closeFlyout?.(flyoutId);
       // Reset navigation tracking when explicitly closed via isOpen=false
       wasRegisteredRef.current = false;
     }
@@ -185,7 +275,7 @@ export const EuiManagedFlyout = ({
   useEffect(() => {
     return () => {
       // Only remove from manager on component unmount, don't trigger close callback
-      closeFlyout(flyoutId);
+      closeFlyout?.(flyoutId);
     };
   }, [closeFlyout, flyoutId]);
 
@@ -203,7 +293,7 @@ export const EuiManagedFlyout = ({
   // Update width in manager state when it changes
   useEffect(() => {
     if (isActive && width) {
-      setFlyoutWidth(flyoutId, width);
+      setFlyoutWidth?.(flyoutId, width);
     }
   }, [flyoutId, level, isActive, width, setFlyoutWidth]);
 
@@ -212,49 +302,49 @@ export const EuiManagedFlyout = ({
     level,
   });
 
-  // Note: history controls are only relevant for main flyouts
-  const historyItems = useMemo(() => {
-    return level === LEVEL_MAIN ? getHistoryItems() : undefined;
-  }, [level, getHistoryItems]);
+  // Check if a custom menu is being provided via context
+  const [hasCustomMenu, setHasCustomMenu] = useState(false);
 
-  const backButtonProps = useMemo(() => {
-    return level === LEVEL_MAIN ? { onClick: goBack } : undefined;
-  }, [level, goBack]);
-
-  const showBackButton = historyItems ? historyItems.length > 0 : false;
-
-  const flyoutMenuProps = {
-    ..._flyoutMenuProps,
-    historyItems,
-    showBackButton,
-    backButtonProps,
-    title,
-  };
+  // Pass through the basic flyout menu props - the menu component will handle
+  // history and back button logic internally via context
+  const flyoutMenuProps = !hasCustomMenu
+    ? {
+        ..._flyoutMenuProps,
+        title,
+      }
+    : undefined;
 
   return (
     <EuiFlyoutIsManagedProvider isManaged={true}>
-      <EuiFlyoutMenuContext.Provider value={{ onClose }}>
-        <EuiFlyoutComponent
-          id={flyoutId}
-          ref={flyoutRef}
-          css={[
-            styles.managedFlyout,
-            customCss,
-            styles.stage(activityStage, props.side, level),
-          ]}
-          {...{
-            ...props,
-            onClose,
-            size,
-            flyoutMenuProps,
-            onAnimationEnd,
-            isOpen,
-            [PROPERTY_FLYOUT]: true,
-            [PROPERTY_LAYOUT_MODE]: layoutMode,
-            [PROPERTY_LEVEL]: level,
-          }}
-        />
-      </EuiFlyoutMenuContext.Provider>
+      <FlyoutManagedMenuContext.Provider
+        value={{
+          hasManagedMenu: hasCustomMenu,
+          setHasManagedMenu: setHasCustomMenu,
+        }}
+      >
+        <EuiFlyoutMenuContext.Provider value={{ onClose }}>
+          <EuiFlyoutComponent
+            id={flyoutId}
+            ref={flyoutRef}
+            css={[
+              styles.managedFlyout,
+              customCss,
+              styles.stage(activityStage, props.side, level),
+            ]}
+            {...{
+              ...props,
+              onClose,
+              size,
+              flyoutMenuProps,
+              onAnimationEnd,
+              isOpen,
+              [PROPERTY_FLYOUT]: true,
+              [PROPERTY_LAYOUT_MODE]: layoutMode,
+              [PROPERTY_LEVEL]: level,
+            }}
+          />
+        </EuiFlyoutMenuContext.Provider>
+      </FlyoutManagedMenuContext.Provider>
     </EuiFlyoutIsManagedProvider>
   );
 };

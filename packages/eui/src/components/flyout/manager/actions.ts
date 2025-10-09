@@ -35,6 +35,8 @@ export const ACTION_SET_ACTIVITY_STAGE = `${PREFIX}/setActivityStage` as const;
 export const ACTION_GO_BACK = `${PREFIX}/goBack` as const;
 /** Dispatched to navigate to a specific flyout (remove all sessions after it). */
 export const ACTION_GO_TO_FLYOUT = `${PREFIX}/goToFlyout` as const;
+/** Dispatched to update a flyout's title in the manager state. */
+export const ACTION_UPDATE_TITLE = `${PREFIX}/updateTitle` as const;
 
 /**
  * Add a flyout to manager state. The manager will create or update
@@ -91,6 +93,13 @@ export interface GoToFlyoutAction extends BaseAction {
   flyoutId: string;
 }
 
+/** Update a flyout's title in the manager state. */
+export interface UpdateTitleAction extends BaseAction {
+  type: typeof ACTION_UPDATE_TITLE;
+  flyoutId: string;
+  title: string;
+}
+
 /** Union of all flyout manager actions. */
 export type Action =
   | AddFlyoutAction
@@ -100,7 +109,8 @@ export type Action =
   | SetLayoutModeAction
   | SetActivityStageAction
   | GoBackAction
-  | GoToFlyoutAction;
+  | GoToFlyoutAction
+  | UpdateTitleAction;
 
 /**
  * Register a flyout with the manager.
@@ -172,4 +182,14 @@ export const goBack = (): GoBackAction => ({
 export const goToFlyout = (flyoutId: string): GoToFlyoutAction => ({
   type: ACTION_GO_TO_FLYOUT,
   flyoutId,
+});
+
+/** Update a flyout's title in the manager state. */
+export const updateFlyoutTitle = (
+  flyoutId: string,
+  title: string
+): UpdateTitleAction => ({
+  type: ACTION_UPDATE_TITLE,
+  flyoutId,
+  title,
 });

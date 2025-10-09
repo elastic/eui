@@ -8,18 +8,26 @@
 
 import { actions } from '@storybook/addon-actions';
 import type { Meta, StoryObj } from '@storybook/react';
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import { createRoot } from 'react-dom/client';
+import type { Root } from 'react-dom/client';
 
 import { LOKI_SELECTORS } from '../../../../.storybook/loki';
 import { EuiBreakpointSize } from '../../../services';
 import { EuiButton } from '../../button';
+import { EuiCode, EuiCodeBlock } from '../../code';
+import { EuiFlexGroup, EuiFlexItem } from '../../flex';
+import { EuiPanel } from '../../panel';
+import { EuiProvider } from '../../provider';
 import { EuiSpacer } from '../../spacer';
 import { EuiText } from '../../text';
+import { EuiTitle } from '../../title';
 import { FLYOUT_TYPES, EuiFlyout } from '../flyout';
 import { EuiFlyoutBody } from '../flyout_body';
 import { EuiFlyoutFooter } from '../flyout_footer';
 import { EuiFlyoutChild, EuiFlyoutChildProps } from './flyout_child';
-import { useFlyoutLayoutMode } from './hooks';
+import { useFlyoutLayoutMode, useFlyoutManager } from './hooks';
+import { EuiFlyoutHeader } from '../flyout_header';
 
 type EuiFlyoutChildActualProps = Pick<
   EuiFlyoutChildProps,
@@ -163,7 +171,7 @@ type Story = StoryObj<FlyoutChildStoryArgs>;
  * A shared helper component used to demo management of internal state. It keeps internal state of
  * the selected flyout type (overlay/push) and the open/closed state of child flyout.
  */
-const StatefulFlyout: React.FC<FlyoutChildStoryArgs> = ({
+const FlyoutWithMenuProps: React.FC<FlyoutChildStoryArgs> = ({
   mainSize,
   childSize,
   childBackgroundStyle,
@@ -176,7 +184,7 @@ const StatefulFlyout: React.FC<FlyoutChildStoryArgs> = ({
   childFlyoutResizable,
   ...args
 }) => {
-  const [isMainOpen, setIsMainOpen] = useState(true);
+  const [isMainOpen, setIsMainOpen] = useState(false);
 
   /* TODO: Allow child to be open automatically on initial render. Currently,
    * this is not supported due to the child not having a reference to the
@@ -205,33 +213,27 @@ const StatefulFlyout: React.FC<FlyoutChildStoryArgs> = ({
 
   return (
     <>
-      <EuiText>
-        <p>
-          This is the main page content. Watch how it behaves when the flyout
-          type changes.
-        </p>
-        <p>
-          <strong>Current layout mode: {layoutMode}</strong>
-        </p>
-      </EuiText>
-      <EuiSpacer size="l" />
       {isMainOpen ? (
-        <EuiButton onClick={closeMain}>Close Main Flyout</EuiButton>
+        <EuiButton onClick={closeMain}>Close with flyoutMenuProps</EuiButton>
       ) : (
-        <EuiButton onClick={openMain}>Open Main Flyout</EuiButton>
+        <EuiButton onClick={openMain}>
+          Open Flyout with flyoutMenuProps
+        </EuiButton>
       )}
 
       <EuiFlyout
         isOpen={isMainOpen}
         session={true}
-        id="flyout-manager-playground-main"
+        id="flyout-with-menu-props-main"
         size={mainSize}
         type={mainFlyoutType}
         pushMinBreakpoint={pushMinBreakpoint}
         maxWidth={mainMaxWidth}
         ownFocus={false}
         resizable={mainFlyoutResizable}
-        aria-label={`Main Flyout Menu (${mainSize})`}
+        flyoutMenuProps={{
+          title: `Main Flyout with flyoutMenuProps (${mainSize})`,
+        }}
         {...args}
         onClose={closeMain}
       >
@@ -244,6 +246,9 @@ const StatefulFlyout: React.FC<FlyoutChildStoryArgs> = ({
               inventore temporibus eaque nam veritatis amet maxime maiores optio
               quam?
             </p>
+            <p>
+              <strong>Current layout mode: {layoutMode}</strong>
+            </p>
           </EuiText>
           <EuiSpacer />
 
@@ -254,14 +259,16 @@ const StatefulFlyout: React.FC<FlyoutChildStoryArgs> = ({
           )}
           <EuiFlyout
             isOpen={isChildOpen}
-            id="flyout-manager-playground-child"
+            id="flyout-with-menu-props-child"
             size={childSize}
             backgroundStyle={childBackgroundStyle}
             maxWidth={childMaxWidth}
             ownFocus={false}
             resizable={childFlyoutResizable}
             {...args}
-            aria-label={`Child Flyout Panel (${childSize})`}
+            flyoutMenuProps={{
+              title: `Child Flyout with flyoutMenuProps (${childSize})`,
+            }}
             onClose={closeChild}
           >
             <EuiFlyoutBody>
@@ -278,6 +285,159 @@ const StatefulFlyout: React.FC<FlyoutChildStoryArgs> = ({
                   Dolorum neque sequi illo, cum rerum quia ab animi velit sit
                   incidunt inventore temporibus eaque nam veritatis amet maxime
                   maiores optio quam?
+                </p>
+                <p>
+                  <strong>Current layout mode: {layoutMode}</strong>
+                </p>
+              </EuiText>
+            </EuiFlyoutBody>
+            {showFooter && (
+              <EuiFlyoutFooter>
+                <EuiText>
+                  <p>Child flyout footer</p>
+                </EuiText>
+              </EuiFlyoutFooter>
+            )}
+            {/* Footer is optional */}
+          </EuiFlyout>
+        </EuiFlyoutBody>
+        {showFooter && (
+          <EuiFlyoutFooter>
+            <EuiText>
+              <p>Main flyout footer</p>
+            </EuiText>
+          </EuiFlyoutFooter>
+        )}
+      </EuiFlyout>
+    </>
+  );
+};
+
+const FlyoutWithHeader: React.FC<FlyoutChildStoryArgs> = ({
+  mainSize,
+  childSize,
+  childBackgroundStyle,
+  mainFlyoutType,
+  pushMinBreakpoint,
+  mainMaxWidth,
+  childMaxWidth,
+  showFooter,
+  mainFlyoutResizable,
+  childFlyoutResizable,
+  ...args
+}) => {
+  const [isMainOpen, setIsMainOpen] = useState(false);
+
+  /* TODO: Allow child to be open automatically on initial render. Currently,
+   * this is not supported due to the child not having a reference to the
+   * session context */
+  const [isChildOpen, setIsChildOpen] = useState(false);
+
+  const openMain = () => {
+    setIsMainOpen(true);
+    playgroundActions.log('Parent flyout opened');
+  };
+  const closeMain = () => {
+    setIsMainOpen(false);
+    setIsChildOpen(false);
+    playgroundActions.log('Parent flyout closed');
+  };
+  const openChild = () => {
+    setIsChildOpen(true);
+    playgroundActions.log('Child flyout opened');
+  };
+  const closeChild = () => {
+    setIsChildOpen(false);
+    playgroundActions.log('Child flyout closed');
+  };
+
+  const layoutMode = useFlyoutLayoutMode();
+
+  return (
+    <>
+      {isMainOpen ? (
+        <EuiButton onClick={closeMain}>Close with EuiFlyoutHeader</EuiButton>
+      ) : (
+        <EuiButton onClick={openMain}>
+          Open Flyout with EuiFlyoutHeader
+        </EuiButton>
+      )}
+
+      <EuiFlyout
+        isOpen={isMainOpen}
+        session={true}
+        id="flyout-with-header-main"
+        size={mainSize}
+        type={mainFlyoutType}
+        pushMinBreakpoint={pushMinBreakpoint}
+        maxWidth={mainMaxWidth}
+        ownFocus={false}
+        resizable={mainFlyoutResizable}
+        aria-labelledby="flyoutWithHeaderTitle"
+        {...args}
+        onClose={closeMain}
+      >
+        <EuiFlyoutHeader>
+          <EuiTitle size="m">
+            <h2 id="flyoutWithHeaderTitle">
+              Main Flyout with EuiFlyoutHeader ({mainSize})
+            </h2>
+          </EuiTitle>
+        </EuiFlyoutHeader>
+        <EuiFlyoutBody>
+          <EuiText>
+            <p>
+              A flyout that has an <EuiCode>EuiFlyoutHeader</EuiCode> child and{' '}
+              <EuiCode>session=true</EuiCode>
+            </p>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum
+              neque sequi illo, cum rerum quia ab animi velit sit incidunt
+              inventore temporibus eaque nam veritatis amet maxime maiores optio
+              quam?
+            </p>
+            <p>
+              <strong>Current layout mode: {layoutMode}</strong>
+            </p>
+          </EuiText>
+          <EuiSpacer />
+
+          {!isChildOpen ? (
+            <EuiButton onClick={openChild}>Open child panel</EuiButton>
+          ) : (
+            <EuiButton onClick={closeChild}>Close child panel</EuiButton>
+          )}
+          <EuiFlyout
+            isOpen={isChildOpen}
+            id="flyout-with-header-child"
+            size={childSize}
+            backgroundStyle={childBackgroundStyle}
+            maxWidth={childMaxWidth}
+            ownFocus={false}
+            resizable={childFlyoutResizable}
+            {...args}
+            flyoutMenuProps={{
+              title: `Child Flyout with flyoutMenuProps (${childSize})`,
+            }}
+            onClose={closeChild}
+          >
+            <EuiFlyoutBody>
+              <EuiText>
+                <p>This is the child flyout content.</p>
+                <p>Size restrictions apply:</p>
+                <ul>
+                  <li>When main panel is 's', child can be 's', or 'm'</li>
+                  <li>When main panel is 'm', child is limited to 's'</li>
+                </ul>
+                <EuiSpacer />
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Dolorum neque sequi illo, cum rerum quia ab animi velit sit
+                  incidunt inventore temporibus eaque nam veritatis amet maxime
+                  maiores optio quam?
+                </p>
+                <p>
+                  <strong>Current layout mode: {layoutMode}</strong>
                 </p>
               </EuiText>
             </EuiFlyoutBody>
@@ -305,5 +465,153 @@ const StatefulFlyout: React.FC<FlyoutChildStoryArgs> = ({
 
 export const FlyoutChildDemo: Story = {
   name: 'Playground',
-  render: (args) => <StatefulFlyout {...args} />,
+  render: (args) => (
+    <>
+      <EuiText>
+        <p>
+          This is the main page content. Watch how it behaves when the flyout
+          type changes.
+        </p>
+      </EuiText>
+      <EuiSpacer size="l" />
+      <FlyoutWithMenuProps {...args} />
+      <EuiSpacer size="xs" />
+      <FlyoutWithHeader {...args} />
+    </>
+  ),
+};
+
+const ExternalRootFlyout: React.FC<{ id: string }> = ({ id }) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <EuiPanel hasBorder paddingSize="m" grow={false}>
+      <EuiTitle size="xs">
+        <h3>{id}</h3>
+      </EuiTitle>
+      <EuiSpacer size="s" />
+      <EuiButton onClick={() => setIsOpen((prev) => !prev)}>
+        {isOpen ? 'Close flyout' : 'Open flyout'}
+      </EuiButton>
+      <EuiFlyout
+        id={`external-root-${id}`}
+        isOpen={isOpen}
+        session
+        size="m"
+        onClose={() => setIsOpen(false)}
+        flyoutMenuProps={{ title: `${id} flyout` }}
+      >
+        <EuiFlyoutBody>
+          <EuiText>
+            <p>
+              This flyout lives in a separate React root but shares the same
+              manager state. Closing it here should update all other flyout
+              menus and history.
+            </p>
+          </EuiText>
+        </EuiFlyoutBody>
+      </EuiFlyout>
+    </EuiPanel>
+  );
+};
+
+const MultiRootFlyoutDemo: React.FC<FlyoutChildStoryArgs> = (args) => {
+  const secondaryRootRef = useRef<HTMLDivElement | null>(null);
+  const tertiaryRootRef = useRef<HTMLDivElement | null>(null);
+  const mountedRootsRef = useRef<Root[]>([]);
+  const flyoutManager = useFlyoutManager();
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (secondaryRootRef.current && tertiaryRootRef.current) {
+        const containers = [
+          { container: secondaryRootRef.current, id: 'Secondary root' },
+          { container: tertiaryRootRef.current, id: 'Tertiary root' },
+        ];
+
+        mountedRootsRef.current = containers.map(({ container, id }) => {
+          const root = createRoot(container);
+          root.render(
+            <EuiProvider>
+              <ExternalRootFlyout id={id} />
+            </EuiProvider>
+          );
+          return root;
+        });
+      }
+    }, 100);
+
+    return () => {
+      clearTimeout(timer);
+      mountedRootsRef.current.forEach((root) => root.unmount());
+      mountedRootsRef.current = [];
+    };
+  }, []);
+
+  return (
+    <>
+      <EuiTitle size="s">
+        <h3>Primary React root</h3>
+      </EuiTitle>
+      <EuiSpacer size="m" />
+      <FlyoutWithMenuProps
+        {...args}
+        mainSize="m"
+        childSize="s"
+        mainFlyoutType="overlay"
+        outsideClickCloses={false}
+        ownFocus={true}
+        paddingSize="m"
+        pushAnimation={true}
+        pushMinBreakpoint="xs"
+        showFooter={true}
+        mainFlyoutResizable={false}
+        childFlyoutResizable={false}
+      />
+      <EuiSpacer size="xl" />
+      <EuiTitle size="s">
+        <h3>Additional React roots</h3>
+      </EuiTitle>
+      <EuiSpacer size="s" />
+      <EuiText size="s" color="subdued">
+        <p>
+          These flyouts are rendered in separate React roots but share the same
+          flyout manager state. Open/close any flyout and watch the shared state
+          update below.
+        </p>
+      </EuiText>
+      <EuiSpacer />
+      <EuiFlexGroup gutterSize="m">
+        <EuiFlexItem grow={false}>
+          <div ref={secondaryRootRef} />
+        </EuiFlexItem>
+        <EuiFlexItem grow={false}>
+          <div ref={tertiaryRootRef} />
+        </EuiFlexItem>
+      </EuiFlexGroup>
+      <EuiSpacer size="xl" />
+      <EuiTitle size="s">
+        <h3>Shared manager state</h3>
+      </EuiTitle>
+      <EuiSpacer size="s" />
+      <EuiCodeBlock language="json" isCopyable>
+        {JSON.stringify(
+          {
+            sessions: flyoutManager?.state.sessions,
+            flyouts: flyoutManager?.state.flyouts,
+          },
+          null,
+          2
+        )}
+      </EuiCodeBlock>
+    </>
+  );
+};
+
+export const MultiRootSyncPlayground: Story = {
+  name: 'Multi-root sync',
+  render: (args) => <MultiRootFlyoutDemo {...args} />,
+  parameters: {
+    layout: 'fullscreen',
+  },
 };

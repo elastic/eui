@@ -6,26 +6,11 @@
  * Side Public License, v 1.
  */
 
-import { useCallback, useContext, useReducer, useRef } from 'react';
+import { useContext, useRef } from 'react';
 
 import { warnOnce, useGeneratedHtmlId } from '../../../services';
 
-import { flyoutManagerReducer, initialState } from './reducer';
-import {
-  addFlyout as addFlyoutAction,
-  closeFlyout as closeFlyoutAction,
-  setActiveFlyout as setActiveFlyoutAction,
-  setFlyoutWidth as setFlyoutWidthAction,
-  goBack as goBackAction,
-  goToFlyout as goToFlyoutAction,
-} from './actions';
-import {
-  type EuiFlyoutLevel,
-  type EuiFlyoutManagerState,
-  type FlyoutManagerApi,
-} from './types';
 import { EuiFlyoutManagerContext } from './provider';
-import { LEVEL_MAIN } from './const';
 import { useIsFlyoutRegistered } from './selectors';
 
 // Ensure uniqueness across multiple hook instances, including in test envs
@@ -48,67 +33,6 @@ export { useIsInManagedFlyout } from './context';
 
 // Convenience selector for a flyout's activity stage
 export type { EuiFlyoutActivityStage } from './types';
-
-/**
- * Hook that provides the flyout manager reducer and bound action creators.
- * Accepts an optional initial state (mainly for tests or custom setups).
- */
-export function useFlyoutManagerReducer(
-  initial: EuiFlyoutManagerState = initialState
-): FlyoutManagerApi {
-  const [state, dispatch] = useReducer(flyoutManagerReducer, initial);
-
-  const addFlyout = useCallback(
-    (
-      flyoutId: string,
-      title: string,
-      level: EuiFlyoutLevel = LEVEL_MAIN,
-      size?: string
-    ) => dispatch(addFlyoutAction(flyoutId, title, level, size)),
-    []
-  );
-  const closeFlyout = useCallback(
-    (flyoutId: string) => dispatch(closeFlyoutAction(flyoutId)),
-    []
-  );
-  const setActiveFlyout = useCallback(
-    (flyoutId: string | null) => dispatch(setActiveFlyoutAction(flyoutId)),
-    []
-  );
-  const setFlyoutWidth = useCallback(
-    (flyoutId: string, width: number) =>
-      dispatch(setFlyoutWidthAction(flyoutId, width)),
-    []
-  );
-  const goBack = useCallback(() => dispatch(goBackAction()), []);
-  const goToFlyout = useCallback(
-    (flyoutId: string) => dispatch(goToFlyoutAction(flyoutId)),
-    []
-  );
-  const getHistoryItems = useCallback(() => {
-    const currentSessionIndex = state.sessions.length - 1;
-    const previousSessions = state.sessions.slice(0, currentSessionIndex);
-
-    return previousSessions
-      .reverse()
-      .map(({ title, mainFlyoutId: mainFlyoutId }) => ({
-        title: title,
-        onClick: () => goToFlyout(mainFlyoutId),
-      }));
-  }, [state.sessions, goToFlyout]);
-
-  return {
-    state,
-    dispatch,
-    addFlyout,
-    closeFlyout,
-    setActiveFlyout,
-    setFlyoutWidth,
-    goBack,
-    goToFlyout,
-    getHistoryItems,
-  };
-}
 
 /** Access the flyout manager context (state and actions). */
 export const useFlyoutManager = () => useContext(EuiFlyoutManagerContext);
