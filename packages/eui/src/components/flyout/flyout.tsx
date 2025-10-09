@@ -56,12 +56,15 @@ export const EuiFlyout = forwardRef<
   /*
    * Flyout routing logic
    * 1. Main Flyout: When session={true} OR when there's an active session and this flyout
-   *    is rendered outside of a managed flyout context.
-   * 2. Child Flyout: When there's an active session AND this flyout IS rendered within a
-   *    managed flyout context.
+   *    is rendered outside of a managed flyout context AND explicitly creates a new session.
+   * 2. Child Flyout: When there's an active session AND (this flyout IS rendered within a
+   *    managed flyout context OR it's not explicitly creating a new session).
    * 3. Standard Flyout: Default fallback when neither condition is met.
    */
-  if (session === true || (hasActiveSession && !isInManagedFlyout)) {
+  if (
+    session === true ||
+    (hasActiveSession && !isInManagedFlyout && session !== undefined)
+  ) {
     if (isUnmanagedFlyout.current) {
       // TODO: @tkajtoch - We need to find a better way to handle the missing event.
       onClose?.({} as any);
@@ -72,8 +75,8 @@ export const EuiFlyout = forwardRef<
     );
   }
 
-  // Else if this flyout is a child of a session AND within a managed flyout context, render EuiChildFlyout.
-  if (hasActiveSession && isInManagedFlyout) {
+  // Else if this flyout is a child of a session AND (within a managed flyout context OR not explicitly creating a new session), render EuiChildFlyout.
+  if (hasActiveSession && (isInManagedFlyout || session === undefined)) {
     return (
       <EuiFlyoutChild
         {...rest}
