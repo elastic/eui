@@ -15,11 +15,11 @@ import { EuiIcon, useEuiMemoizedStyles, UseEuiTheme } from '@elastic/eui';
 import { css } from '@emotion/react';
 import useIsBrowser from '@docusaurus/useIsBrowser';
 
-import { ThemeSwitcher } from '../../../../components/theme_switcher';
 import {
   VersionSwitcher,
   VersionSwitcherProps,
 } from '../../../../components/version_switcher';
+import { HighContrastModeToggle } from '../../../../components/high_contrast_mode_toggle';
 
 const getStyles = ({ euiTheme }: UseEuiTheme) => ({
   sidebar: css`
@@ -81,8 +81,8 @@ export default function NavbarMobileSidebarHeader({
       {isBrowser && versionSwitcherOptions && (
         <VersionSwitcher {...versionSwitcherOptions} />
       )}
-      {isBrowser && <ThemeSwitcher />}
       <NavbarColorModeToggle />
+      {isBrowser && <HighContrastModeToggle />}
       <CloseButton />
     </div>
   );
