@@ -15,20 +15,17 @@ import {
   mathWithUnits,
 } from '../../../global_styling';
 import { highContrastModeStyles } from '../../../global_styling/functions/high_contrast';
-import { isEuiThemeRefreshVariant, UseEuiTheme } from '../../../services';
+import { UseEuiTheme } from '../../../services';
 import { euiBadgeColors } from '../color_utils';
 
 export const euiNotificationBadgeStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
-  const isRefreshVariant = isEuiThemeRefreshVariant(
-    euiThemeContext,
-    'buttonVariant'
-  );
 
   const badgeColors = euiBadgeColors(euiThemeContext);
-  const borderRadius = isRefreshVariant
-    ? mathWithUnits(euiTheme.border.radius.small, (x) => x / 2)
-    : euiTheme.border.radius.small;
+  const borderRadius = mathWithUnits(
+    euiTheme.border.radius.small,
+    (x) => x / 2
+  );
 
   return {
     euiNotificationBadge: css`

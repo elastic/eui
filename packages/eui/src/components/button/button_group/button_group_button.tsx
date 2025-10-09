@@ -14,11 +14,7 @@ import React, {
 } from 'react';
 import { CSSInterpolation } from '@emotion/css';
 
-import {
-  isEuiThemeRefreshVariant,
-  useEuiMemoizedStyles,
-  useEuiTheme,
-} from '../../../services';
+import { useEuiMemoizedStyles } from '../../../services';
 import { useEuiButtonColorCSS } from '../../../global_styling/mixins/_button';
 import { useInnerText } from '../../inner_text';
 
@@ -72,15 +68,9 @@ export const EuiButtonGroupButton: FunctionComponent<Props> = ({
   contentProps,
   ...rest
 }) => {
-  const euiThemeContext = useEuiTheme();
-  const isRefreshVariant = isEuiThemeRefreshVariant(
-    euiThemeContext,
-    'buttonVariant'
-  );
-
   const isCompressed = size === 'compressed';
   const color = isDisabled ? 'disabled' : _color;
-  const hasBorder = isRefreshVariant && color !== 'text' && !isCompressed;
+  const hasBorder = color !== 'text' && !isCompressed;
   const display = isSelected
     ? 'fill'
     : isCompressed || hasBorder

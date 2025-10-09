@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 import { css } from '@emotion/react';
-import { isEuiThemeRefreshVariant, UseEuiTheme } from '../../../services';
+import { UseEuiTheme } from '../../../services';
 import {
   euiFontSize,
   logicalCSS,
@@ -32,10 +32,6 @@ export const euiButtonBaseCSS = () => {
 
 export const euiButtonDisplayStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
-  const isRefreshVariant = isEuiThemeRefreshVariant(
-    euiThemeContext,
-    'buttonVariant'
-  );
 
   const sizes = euiButtonSizeMap(euiThemeContext);
 
@@ -49,21 +45,12 @@ export const euiButtonDisplayStyles = (euiThemeContext: UseEuiTheme) => {
     `;
   };
 
-  const classicVariantStyles = `
-      &:hover:not(:disabled),
-      &:focus {
-        text-decoration: underline;
-      }
-  `;
-
   return {
     // Base
     euiButtonDisplay: css`
       ${euiButtonBaseCSS()}
       font-weight: ${euiTheme.font.weight.medium};
       ${logicalShorthandCSS('padding', `0 ${euiTheme.size.m}`)}
-
-      ${!isRefreshVariant && classicVariantStyles}
     `,
     // States
     isDisabled: css`
