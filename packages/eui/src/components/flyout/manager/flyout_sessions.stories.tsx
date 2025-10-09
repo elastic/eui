@@ -35,7 +35,6 @@ import {
 } from '../..';
 import { EuiFlyout } from '../flyout';
 import { useCurrentSession, useFlyoutManager } from './hooks';
-import { EuiFlyoutIsManagedProvider } from './context';
 
 const meta: Meta<typeof EuiFlyout> = {
   title: 'Layout/EuiFlyout/Flyout Manager',
@@ -178,7 +177,6 @@ const FlyoutSession: React.FC<FlyoutSessionProps> = React.memo((props) => {
             isOpen={isChildFlyoutVisible}
             id={`childFlyout-${title}`}
             flyoutMenuProps={{ title: `${title} - Child` }}
-            aria-labelledby="childFlyoutTitle"
             size={childSize}
             maxWidth={childMaxWidth}
             onActive={childFlyoutOnActive}
@@ -387,15 +385,7 @@ const ExternalRootFlyout: React.FC<{ id: string }> = ({ id }) => {
           const newRoot = createRoot(buttonContainerRef.current);
           newRoot.render(
             <EuiProvider>
-              {/* 
-                EuiFlyoutIsManagedProvider is required here because the child flyout 
-                needs to be detected as being within a managed flyout context for 
-                proper routing. Without this, the child flyout would route to 
-                EuiFlyoutMain instead of EuiFlyoutChild.
-              */}
-              <EuiFlyoutIsManagedProvider isManaged={true}>
-                <ExternalRootChildFlyout parentId={id} />
-              </EuiFlyoutIsManagedProvider>
+              <ExternalRootChildFlyout parentId={id} />
             </EuiProvider>
           );
           setButtonRoot(newRoot);
