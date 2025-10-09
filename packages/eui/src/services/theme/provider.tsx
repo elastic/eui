@@ -217,10 +217,7 @@ export const EuiThemeProvider = <T extends {} = {}>({
       /* Enables recomputation of component colors when flags are overridden on the provider
       by adding the respective key to modifications to trigger a recomputation. */
       // TODO: remove once visual refresh is completed and flags are obsolete
-      const flagsToRecompute = [
-        { flag: 'buttonVariant', componentKey: 'buttons' },
-        { flag: 'formVariant', componentKey: 'forms' },
-      ];
+      const flagsToRecompute = [{ flag: 'formVariant', componentKey: 'forms' }];
 
       const keys: { [key: string]: { LIGHT: {}; DARK: {} } } = {};
 
