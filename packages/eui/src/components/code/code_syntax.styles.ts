@@ -91,6 +91,7 @@ export const euiCodeSyntaxVariables = (euiThemeContext: UseEuiTheme) => {
   }
 
   .token.atrule .token.rule,
+  .token.key.atrule,
   .token.keyword {
     color: ${this.keywordColor};
   }
