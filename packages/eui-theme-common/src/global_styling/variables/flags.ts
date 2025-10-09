@@ -15,6 +15,4 @@ export type EuiThemeVariantFlags = {
 /**
  * Theme specific setting flags
  */
-export type _EuiThemeFlags = {
-  hasVisColorAdjustment: boolean;
-} & EuiThemeVariantFlags;
+export type _EuiThemeFlags = {} & EuiThemeVariantFlags;
