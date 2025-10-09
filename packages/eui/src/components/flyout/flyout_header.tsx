@@ -8,12 +8,12 @@
 
 import React, { FunctionComponent, HTMLAttributes, useEffect } from 'react';
 import classNames from 'classnames';
-import { CommonProps } from '../common';
 import { useEuiMemoizedStyles } from '../../services';
+import { CommonProps } from '../common';
 import { euiFlyoutHeaderStyles } from './flyout_header.styles';
-import { useHasActiveSession } from './manager';
 import { EuiFlyoutMenu } from './flyout_menu';
-import { useFlyoutCustomMenuContext } from './flyout_custom_menu_context';
+import { useFlyoutManagedMenuContext } from './flyout_menu_context';
+import { useHasActiveSession } from './manager';
 
 export type EuiFlyoutHeaderProps = FunctionComponent<
   HTMLAttributes<HTMLDivElement> &
@@ -31,7 +31,7 @@ export const EuiFlyoutHeader: EuiFlyoutHeaderProps = ({
   const styles = useEuiMemoizedStyles(euiFlyoutHeaderStyles);
 
   const isInManagedFlyout = useHasActiveSession();
-  const { setHasCustomMenu } = useFlyoutCustomMenuContext();
+  const { setHasManagedMenu: setHasCustomMenu } = useFlyoutManagedMenuContext();
 
   // Signal that we're providing a custom menu
   useEffect(() => {

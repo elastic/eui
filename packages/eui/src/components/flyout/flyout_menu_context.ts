@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import { createContext } from 'react';
+import { createContext, useContext } from 'react';
 import { EuiFlyoutProps } from './flyout';
 
 interface EuiFlyoutMenuContextProps {
@@ -16,3 +16,17 @@ interface EuiFlyoutMenuContextProps {
 export const EuiFlyoutMenuContext = createContext<EuiFlyoutMenuContextProps>(
   {}
 );
+
+interface FlyoutHasManagedMenuContextValue {
+  hasManagedMenu: boolean;
+  setHasManagedMenu: (hasCustomMenu: boolean) => void;
+}
+
+export const FlyoutManagedMenuContext =
+  createContext<FlyoutHasManagedMenuContextValue>({
+    hasManagedMenu: false,
+    setHasManagedMenu: () => {},
+  });
+
+export const useFlyoutManagedMenuContext = () =>
+  useContext(FlyoutManagedMenuContext);

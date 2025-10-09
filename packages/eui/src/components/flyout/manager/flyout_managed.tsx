@@ -14,8 +14,10 @@ import {
   EuiFlyoutComponentProps,
 } from '../flyout.component';
 import { EuiFlyoutMenuProps } from '../flyout_menu';
-import { EuiFlyoutMenuContext } from '../flyout_menu_context';
-import { FlyoutCustomMenuContext } from '../flyout_custom_menu_context';
+import {
+  EuiFlyoutMenuContext,
+  FlyoutManagedMenuContext,
+} from '../flyout_menu_context';
 import type { EuiFlyoutCloseEvent } from '../types';
 import { useFlyoutActivityStage } from './activity_stage';
 import {
@@ -314,8 +316,11 @@ export const EuiManagedFlyout = ({
 
   return (
     <EuiFlyoutIsManagedProvider isManaged={true}>
-      <FlyoutCustomMenuContext.Provider
-        value={{ hasCustomMenu, setHasCustomMenu }}
+      <FlyoutManagedMenuContext.Provider
+        value={{
+          hasManagedMenu: hasCustomMenu,
+          setHasManagedMenu: setHasCustomMenu,
+        }}
       >
         <EuiFlyoutMenuContext.Provider value={{ onClose }}>
           <EuiFlyoutComponent
@@ -339,7 +344,7 @@ export const EuiManagedFlyout = ({
             }}
           />
         </EuiFlyoutMenuContext.Provider>
-      </FlyoutCustomMenuContext.Provider>
+      </FlyoutManagedMenuContext.Provider>
     </EuiFlyoutIsManagedProvider>
   );
 };
