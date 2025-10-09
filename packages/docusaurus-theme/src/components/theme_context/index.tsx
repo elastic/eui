@@ -3,16 +3,13 @@ import {
   FunctionComponent,
   PropsWithChildren,
   useContext,
+  useEffect,
   useState,
 } from 'react';
 import useIsBrowser from '@docusaurus/useIsBrowser';
 import createCache from '@emotion/cache';
 import { CacheProvider } from '@emotion/react';
-import {
-  EuiProvider,
-  EuiThemeAmsterdam,
-  EuiThemeColorMode,
-} from '@elastic/eui';
+import { EuiProvider, EuiThemeColorMode } from '@elastic/eui';
 import { EuiThemeBorealis } from '@elastic/eui-theme-borealis';
 import { type EUI_THEME } from '@elastic/eui-theme-common';
 
@@ -23,11 +20,6 @@ export const AVAILABLE_THEMES = [
     text: 'Borealis',
     value: EuiThemeBorealis.key,
     provider: EuiThemeBorealis,
-  },
-  {
-    text: 'Amsterdam',
-    value: EuiThemeAmsterdam.key,
-    provider: EuiThemeAmsterdam,
   },
 ];
 
@@ -86,16 +78,20 @@ export const AppThemeProvider: FunctionComponent<PropsWithChildren> = ({
   });
 
   const [highContrastMode, setHighContrastMode] = useState<boolean | undefined>(
-    () => {
-      if (isBrowser) {
-        return localStorage.getItem('highContrastMode')
-          ? localStorage.getItem('highContrastMode') === 'true'
-          : defaultState.highContrastMode;
-      }
-
-      return defaultState.highContrastMode;
-    }
+    false
   );
+
+  const getHighContrastModeSetting = () => {
+    return localStorage?.getItem('highContrastMode')
+      ? localStorage?.getItem('highContrastMode') === 'true'
+      : defaultState.highContrastMode;
+  };
+
+  useEffect(() => {
+    if (isBrowser) {
+      setHighContrastMode(getHighContrastModeSetting());
+    }
+  }, [isBrowser]);
 
   const [theme, setTheme] = useState(defaultState.theme);
 

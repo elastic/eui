@@ -6,6 +6,7 @@ import {
   EuiIcon,
   ExclusiveUnion,
   IconType,
+  mathWithUnits,
   PropsForAnchor,
   PropsForButton,
   useEuiMemoizedStyles,
@@ -17,6 +18,7 @@ type SharedProps = {
   icon: IconType;
   showLabel?: boolean;
   isMenuItem?: boolean;
+  isSelected?: boolean;
 } & CommonProps;
 
 type Props = ExclusiveUnion<
@@ -25,51 +27,62 @@ type Props = ExclusiveUnion<
 >;
 
 // converted from css modules to Emotion
-export const getStyles = ({ euiTheme }: UseEuiTheme) => ({
-  item: css`
-    display: flex;
-    align-items: center;
+export const getStyles = ({ euiTheme }: UseEuiTheme) => {
+  const focusedSize = mathWithUnits(
+    [euiTheme.size.xl, euiTheme.focus.width],
+    (x, y) => x - y
+  );
 
-    -webkit-tap-highlight-color: transparent;
-    transition: background var(--ifm-transition-fast);
+  return {
+    item: css`
+      display: flex;
+      align-items: center;
 
-    &:hover {
-      background-color: var(--ifm-color-emphasis-200);
-      color: currentColor;
-    }
-  `,
-  navItem: css`
-    justify-content: center;
-    width: ${euiTheme.size.xl};
-    height: ${euiTheme.size.xl};
-    border-radius: 50%;
-  `,
-  menuItem: css`
-    justify-content: flex-start;
-    gap: ${euiTheme.size.s};
+      -webkit-tap-highlight-color: transparent;
+      transition: background var(--ifm-transition-fast);
 
-    @media (min-width: 997px) {
+      &:hover {
+        background-color: var(--ifm-color-emphasis-200);
+        color: currentColor;
+      }
+    `,
+    navItem: css`
       justify-content: center;
       width: ${euiTheme.size.xl};
       height: ${euiTheme.size.xl};
       border-radius: 50%;
-    }
-  `,
-  darkMode: css`
-    &:hover {
-      background-color: var(--ifm-color-gray-800);
-      color: currentColor;
-    }
-  `,
-  disabled: css`
-    cursor: not-allowed;
-  `,
-  title: css`
-    @media (min-width: 997px) {
-      display: none;
-    }
-  `,
-});
+    `,
+    menuItem: css`
+      justify-content: flex-start;
+      gap: ${euiTheme.size.s};
+
+      @media (min-width: 997px) {
+        justify-content: center;
+        width: ${euiTheme.size.xl};
+        height: ${euiTheme.size.xl};
+        border-radius: 50%;
+      }
+    `,
+    darkMode: css`
+      &:hover {
+        background-color: var(--ifm-color-gray-800);
+        color: currentColor;
+      }
+    `,
+    disabled: css`
+      cursor: not-allowed;
+    `,
+    selected: css`
+      background-color: ${euiTheme.colors.backgroundFilledText};
+      color: ${euiTheme.colors.textInverse};
+    `,
+    title: css`
+      @media (min-width: 997px) {
+        display: none;
+      }
+    `,
+  };
+};
 
 // using a type guard to ensure proper typing from ExclusiveUnion
 const isAnchorClick = (
@@ -87,6 +100,8 @@ export const NavbarItem = (props: Props) => {
     target,
     showLabel,
     isMenuItem = true,
+    isSelected,
+    css,
   } = props;
 
   const isBrowser = useIsBrowser();
@@ -99,6 +114,7 @@ export const NavbarItem = (props: Props) => {
     styles.item,
     isMenuItem ? styles.menuItem : styles.navItem,
     !isBrowser && styles.disabled,
+    isSelected && styles.selected,
     isDarkMode && styles.darkMode,
   ];
 
@@ -138,6 +154,7 @@ export const NavbarItem = (props: Props) => {
       title={title}
       aria-label={title}
       aria-live="polite"
+      aria-pressed={isSelected != null ? isSelected : undefined}
     >
       {content}
     </button>

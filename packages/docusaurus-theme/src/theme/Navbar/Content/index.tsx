@@ -29,7 +29,7 @@ import {
 import euiVersions from '@site/static/versions.json';
 
 import { VersionSwitcher } from '../../../components/version_switcher';
-import { ThemeSwitcher } from '../../../components/theme_switcher';
+import { HighContrastModeToggle } from '../../../components/high_contrast_mode_toggle';
 
 const DOCS_PATH = '/docs';
 
@@ -231,13 +231,12 @@ export default function NavbarContent(): JSX.Element {
               </NavbarSearch>
             )}
             <NavbarColorModeToggle className="colorModeToggle" />
-            <NavbarItems items={rightItems} />
-
             {isBrowser && (
               <div css={styles.themeSwitcher}>
-                <ThemeSwitcher />
+                <HighContrastModeToggle />
               </div>
             )}
+            <NavbarItems items={rightItems} />
           </>
         }
       />
