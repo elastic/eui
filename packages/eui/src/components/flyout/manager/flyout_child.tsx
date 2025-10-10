@@ -30,7 +30,11 @@ import { DEFAULT_SIDE } from '../const';
 export interface EuiFlyoutChildProps
   extends Omit<
     EuiManagedFlyoutProps,
-    'closeButtonPosition' | 'hideCloseButton' | 'type' | 'level'
+    | 'closeButtonPosition'
+    | 'hideCloseButton'
+    | 'type'
+    | 'level'
+    | 'childBackgroundShaded'
   > {}
 
 /**
