@@ -81,7 +81,7 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
       ${logicalCSS('top', 'var(--euiFixedHeadersOffset, 0)')}
       ${logicalCSS('height', 'inherit')}
       z-index: ${euiTheme.levels.flyout};
-      background: ${euiTheme.colors.emptyShade};
+      background: ${euiTheme.colors.backgroundBasePlain};
       display: flex;
       flex-direction: column;
       align-items: stretch;
@@ -91,9 +91,12 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
         outline: none;
       }
 
+      &.euiFlyout--childShaded {
+        background: ${euiTheme.colors.backgroundBaseSubdued};
+      }
+
       ${maxedFlyoutWidth(euiThemeContext)}
     `,
-
     // Flyout sizes
     // When a child flyout is stacked on top of the parent, the parent flyout size will match the child flyout size
     s: css`
