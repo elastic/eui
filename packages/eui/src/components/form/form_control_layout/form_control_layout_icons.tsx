@@ -8,11 +8,7 @@
 
 import React, { Component } from 'react';
 
-import {
-  isEuiThemeRefreshVariant,
-  RenderWithEuiStylesMemoizer,
-  RenderWithEuiTheme,
-} from '../../../services';
+import { RenderWithEuiStylesMemoizer } from '../../../services';
 import { DistributiveOmit } from '../../common';
 import { EuiIcon, IconColor, IconType } from '../../icon';
 import { EuiLoadingSpinner } from '../../loading';
@@ -109,7 +105,7 @@ export class EuiFormControlLayoutIcons extends Component<EuiFormControlLayoutIco
   }
 
   renderCustomIcon() {
-    const { icon, compressed, isDisabled } = this.props;
+    const { icon, isDisabled } = this.props;
 
     if (!icon) {
       return null;
@@ -124,127 +120,63 @@ export class EuiFormControlLayoutIcons extends Component<EuiFormControlLayoutIco
     const { ref: iconRef, side, ...iconRest } = iconProps;
 
     return (
-      <RenderWithEuiTheme>
-        {(euiThemeContext) => {
-          const isRefreshVariant = isEuiThemeRefreshVariant(
-            euiThemeContext,
-            'formVariant'
-          );
-
-          return (
-            <EuiFormControlLayoutCustomIcon
-              size={compressed && !isRefreshVariant ? 's' : 'm'}
-              disabled={isDisabled}
-              iconRef={iconRef}
-              {...iconRest}
-            />
-          );
-        }}
-      </RenderWithEuiTheme>
+      <EuiFormControlLayoutCustomIcon
+        size="m"
+        disabled={isDisabled}
+        iconRef={iconRef}
+        {...iconRest}
+      />
     );
   }
 
   renderDropdownIcon() {
-    const { isDropdown, compressed, isDisabled } = this.props;
+    const { isDropdown, isDisabled } = this.props;
 
     if (!isDropdown) {
       return null;
     }
 
     return (
-      <RenderWithEuiTheme>
-        {(euiThemeContext) => {
-          const isRefreshVariant = isEuiThemeRefreshVariant(
-            euiThemeContext,
-            'formVariant'
-          );
-
-          return (
-            <EuiFormControlLayoutCustomIcon
-              size={compressed && !isRefreshVariant ? 's' : 'm'}
-              disabled={isDisabled}
-              type="arrowDown"
-            />
-          );
-        }}
-      </RenderWithEuiTheme>
+      <EuiFormControlLayoutCustomIcon
+        size="m"
+        disabled={isDisabled}
+        type="arrowDown"
+      />
     );
   }
 
   renderLoadingSpinner() {
-    const { isLoading, compressed } = this.props;
+    const { isLoading } = this.props;
 
     if (!isLoading) {
       return null;
     }
 
-    return (
-      <RenderWithEuiTheme>
-        {(euiThemeContext) => {
-          const isRefreshVariant = isEuiThemeRefreshVariant(
-            euiThemeContext,
-            'formVariant'
-          );
-
-          return (
-            <EuiLoadingSpinner
-              size={compressed && !isRefreshVariant ? 's' : 'm'}
-            />
-          );
-        }}
-      </RenderWithEuiTheme>
-    );
+    return <EuiLoadingSpinner size="m" />;
   }
 
   renderClearButton() {
-    const { clear, compressed, isDisabled } = this.props;
+    const { clear, isDisabled } = this.props;
     if (!clear) {
       return null;
     }
 
     return (
-      <RenderWithEuiTheme>
-        {(euiThemeContext) => {
-          const isRefreshVariant = isEuiThemeRefreshVariant(
-            euiThemeContext,
-            'formVariant'
-          );
-
-          return (
-            <EuiFormControlLayoutClearButton
-              size={compressed && !isRefreshVariant ? 's' : 'm'}
-              disabled={isDisabled}
-              {...clear}
-            />
-          );
-        }}
-      </RenderWithEuiTheme>
+      <EuiFormControlLayoutClearButton
+        size="m"
+        disabled={isDisabled}
+        {...clear}
+      />
     );
   }
 
   renderInvalidIcon() {
-    const { isInvalid, compressed } = this.props;
+    const { isInvalid } = this.props;
+
     if (!isInvalid) {
       return null;
     }
 
-    return (
-      <RenderWithEuiTheme>
-        {(euiThemeContext) => {
-          const isRefreshVariant = isEuiThemeRefreshVariant(
-            euiThemeContext,
-            'formVariant'
-          );
-
-          return (
-            <EuiIcon
-              size={compressed && !isRefreshVariant ? 's' : 'm'}
-              color="danger"
-              type="warning"
-            />
-          );
-        }}
-      </RenderWithEuiTheme>
-    );
+    return <EuiIcon size="m" color="danger" type="warning" />;
   }
 }
