@@ -32,3 +32,5 @@ yarn-error.log*
 !.yarn/sdks
 !.yarn/versions
 yarn-error.log
+.cursorrules
+WARP.md
