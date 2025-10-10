@@ -19,7 +19,6 @@ import {
   UseEuiTheme,
   euiPaletteColorBlind,
   euiPaletteColorBlindBehindText,
-  makeHighContrastColor,
   isColorDark,
   tint,
   shade,
@@ -33,7 +32,6 @@ const getTokenColor = (
   color: number | string
 ) => {
   const { euiTheme, colorMode, highContrastMode } = euiThemeContext;
-  const { hasVisColorAdjustment } = euiTheme.flags;
   // use inside function as they are not returning constants,
   // but internally depend on EUI_VIS_COLOR_STORE to update per theme
   const visColors = euiPaletteColorBlind();
@@ -66,9 +64,7 @@ const getTokenColor = (
     return euiTheme.colors.vis[iconColorToken];
   };
 
-  const lightColor = hasVisColorAdjustment
-    ? makeHighContrastColor(iconColor)(backgroundLightColor)
-    : isVizColor
+  const lightColor = isVizColor
     ? shade(getIconVisColor(euiTheme, color), 0.3)
     : iconColor;
 
