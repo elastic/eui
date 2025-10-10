@@ -28,7 +28,6 @@ import {
   useCurrentEuiBreakpoint,
   useEuiMemoizedStyles,
   useEuiTheme,
-  useEuiThemeRefreshVariant,
 } from '../../../services';
 import { EuiBreakpointSize } from '../../../services/breakpoint';
 import { ENTER } from '../../../services/keys';
@@ -113,7 +112,6 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<
   ...rest
 }) => {
   const { colorMode } = useEuiTheme();
-  const isRefreshVariant = useEuiThemeRefreshVariant('formVariant');
 
   const { hasDifferentColorFromGlobalTheme } = useContext(
     EuiNestedThemeContext
@@ -334,14 +332,13 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<
       searchable
     >
       {(list, search) => {
-        const _search =
-          isRefreshVariant && !popoverTrigger ? (
-            <EuiThemeProvider colorMode={searchColorMode}>
-              {search}
-            </EuiThemeProvider>
-          ) : (
-            search
-          );
+        const _search = !popoverTrigger ? (
+          <EuiThemeProvider colorMode={searchColorMode}>
+            {search}
+          </EuiThemeProvider>
+        ) : (
+          search
+        );
 
         // uses standalone subcomponent to ensure scoped style/theme context
         const popover = (
@@ -359,15 +356,13 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<
           />
         );
 
-        return isRefreshVariant ? (
+        return (
           <EuiThemeProvider
             wrapperProps={{ cloneElement: true }}
             colorMode={popoverColorMode}
           >
             {popover}
           </EuiThemeProvider>
-        ) : (
-          popover
         );
       }}
     </EuiSelectable>

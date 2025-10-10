@@ -9,16 +9,12 @@
 import { css } from '@emotion/react';
 
 import { logicalSizeCSS, mathWithUnits } from '../../../global_styling';
-import { isEuiThemeRefreshVariant, UseEuiTheme } from '../../../services';
+import { UseEuiTheme } from '../../../services';
 
 export const EuiFormControlLayoutClearButtonStyles = (
   euiThemeContext: UseEuiTheme
 ) => {
   const { euiTheme, highContrastMode } = euiThemeContext;
-  const isRefreshVariant = isEuiThemeRefreshVariant(
-    euiThemeContext,
-    'formVariant'
-  );
 
   const backgroundColor = highContrastMode
     ? euiTheme.colors.darkShade
@@ -37,9 +33,7 @@ export const EuiFormControlLayoutClearButtonStyles = (
 
       &:disabled {
         cursor: not-allowed;
-        background-color: ${isRefreshVariant
-          ? euiTheme.colors.backgroundBaseDisabled
-          : euiTheme.colors.disabled};
+        background-color: ${euiTheme.colors.backgroundBaseDisabled};
       }
     `,
 

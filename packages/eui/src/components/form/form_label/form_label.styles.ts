@@ -9,7 +9,7 @@
 import { css } from '@emotion/react';
 import { serializeStyles, type CSSObject } from '@emotion/serialize';
 
-import { isEuiThemeRefreshVariant, UseEuiTheme } from '../../../services';
+import { UseEuiTheme } from '../../../services';
 import { euiCanAnimate, euiTextBreakWord } from '../../../global_styling';
 import { euiTitle } from '../../title/title.styles';
 
@@ -30,10 +30,6 @@ export const euiFormLabel = (euiThemeContext: UseEuiTheme) => {
 
 export const euiFormLabelStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
-  const isRefreshVariant = isEuiThemeRefreshVariant(
-    euiThemeContext,
-    'formVariant'
-  );
 
   return {
     euiFormLabel: css`
@@ -53,13 +49,7 @@ export const euiFormLabelStyles = (euiThemeContext: UseEuiTheme) => {
       }
     `,
     invalid: css`
-      color: ${isRefreshVariant
-        ? euiTheme.colors.textDanger
-        : euiTheme.colors.danger};
-    `,
-    // Focused state should override invalid state
-    focused: css`
-      color: ${isRefreshVariant ? '' : euiTheme.colors.primary};
+      color: ${euiTheme.colors.textDanger};
     `,
   };
 };
