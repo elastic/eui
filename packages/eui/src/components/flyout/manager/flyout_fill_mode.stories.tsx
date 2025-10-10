@@ -25,6 +25,7 @@ type EuiFlyoutChildActualProps = Pick<
   EuiFlyoutChildProps,
   | 'aria-label'
   | 'as'
+  | 'backgroundStyle'
   | 'children'
   | 'closeButtonProps'
   | 'focusTrapProps'
@@ -50,7 +51,7 @@ type EuiFlyoutType = (typeof FLYOUT_TYPES)[number];
 interface FlyoutChildStoryArgs extends EuiFlyoutChildActualProps {
   mainSize?: 's' | 'm' | 'fill';
   childSize?: 's' | 'm' | 'fill';
-  childBackgroundShaded?: boolean;
+  childBackgroundStyle?: 'default' | 'shaded';
   childMaxWidth?: number;
   mainFlyoutType: EuiFlyoutType;
   mainMaxWidth?: number;
@@ -67,6 +68,11 @@ const meta: Meta<FlyoutChildStoryArgs> = {
       control: { type: 'radio' },
       description:
         'The size of the child flyout. If the main is `s`, the child can be `s`, or `m`. If the main is `m`, the child can only be `s`.',
+    },
+    childBackgroundStyle: {
+      options: ['default', 'shaded'],
+      control: { type: 'radio' },
+      description: 'The background style of the child flyout.',
     },
     childMaxWidth: {
       control: { type: 'number' },
@@ -98,6 +104,8 @@ const meta: Meta<FlyoutChildStoryArgs> = {
      * Disabled props that are not relevant to the playground
      */
 
+    // use "childBackgroundStyle" instead
+    backgroundStyle: { table: { disable: true } },
     // use "mainSize" and "childSize" instead
     size: { table: { disable: true } },
     // use "mainMaxWidth" and "childMaxWidth" instead
@@ -119,6 +127,7 @@ const meta: Meta<FlyoutChildStoryArgs> = {
   args: {
     mainSize: 'fill',
     childSize: 'm',
+    childBackgroundStyle: 'default',
     mainFlyoutType: 'overlay',
     outsideClickCloses: false,
     ownFocus: true, // Depends on `mainFlyoutType=overlay`
@@ -140,7 +149,7 @@ const Session: React.FC<FlyoutChildStoryArgs> = (args) => {
   const {
     mainSize,
     childSize,
-    childBackgroundShaded,
+    childBackgroundStyle,
     childMaxWidth,
     mainFlyoutType,
     mainMaxWidth,
@@ -208,7 +217,7 @@ const Session: React.FC<FlyoutChildStoryArgs> = (args) => {
           {isChildOpen && (
             <EuiFlyout
               size={childSize}
-              childBackgroundShaded={childBackgroundShaded}
+              backgroundStyle={childBackgroundStyle}
               maxWidth={childMaxWidth}
               ownFocus={false}
               aria-label={`Child Flyout Menu (${childSize})`}
