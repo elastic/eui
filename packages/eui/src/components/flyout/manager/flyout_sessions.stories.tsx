@@ -51,6 +51,7 @@ const FlyoutSession: React.FC<FlyoutSessionProps> = React.memo((props) => {
     mainMaxWidth,
     childMaxWidth,
     flyoutType,
+    childBackgroundShaded,
   } = props;
 
   const [isFlyoutVisible, setIsFlyoutVisible] = useState(false);
@@ -147,6 +148,7 @@ const FlyoutSession: React.FC<FlyoutSessionProps> = React.memo((props) => {
             maxWidth={childMaxWidth}
             onActive={childFlyoutOnActive}
             onClose={childFlyoutOnClose}
+            childBackgroundShaded={childBackgroundShaded}
           >
             <EuiFlyoutBody>
               <EuiText>
