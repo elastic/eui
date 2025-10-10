@@ -11,8 +11,7 @@ import { css } from '@emotion/react';
 import Translate from '@docusaurus/Translate';
 import type { Props } from '@theme-original/EditThisPage';
 import { EuiButton, useEuiMemoizedStyles, UseEuiTheme } from '@elastic/eui';
-// @ts-ignore - eui only has module declarations for '@elastic/eui/src/themes/amsterdam/global_styling/mixins/button'
-// but importing from /src results in "Module not found" error
+// @ts-ignore - eui doesn't have a module declarations and importing from /src results in "Module not found" error
 import { euiButtonColor } from '@elastic/eui/lib/global_styling/mixins/_button';
 
 const getStyles = (theme: UseEuiTheme) => {
