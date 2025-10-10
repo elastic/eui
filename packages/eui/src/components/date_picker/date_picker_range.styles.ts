@@ -10,27 +10,10 @@ import { css } from '@emotion/react';
 import { euiShadowMedium } from '@elastic/eui-theme-common';
 
 import { logicalCSS } from '../../global_styling';
-import { isEuiThemeRefreshVariant, UseEuiTheme } from '../../services';
+import { UseEuiTheme } from '../../services';
 import { disableFormControlHoverStyles } from '../form/form.styles';
 
-export const euiDatePickerRangeStyles = (euiThemeContext: UseEuiTheme) => {
-  const isRefreshVariant = isEuiThemeRefreshVariant(
-    euiThemeContext,
-    'formVariant'
-  );
-
-  const refreshStyles = `
-      .euiPopover:last-child {
-        ${logicalCSS('border-top-right-radius', 'inherit')}
-        ${logicalCSS('border-bottom-right-radius', 'inherit')}
-
-        * {
-          ${logicalCSS('border-top-right-radius', 'inherit')}
-          ${logicalCSS('border-bottom-right-radius', 'inherit')}
-        }
-      }
-    `;
-
+export const euiDatePickerRangeStyles = () => {
   return {
     euiDatePickerRange: css`
       /* Needed for correct focus/invalid underline/linear-gradient styles */
@@ -45,7 +28,15 @@ export const euiDatePickerRangeStyles = (euiThemeContext: UseEuiTheme) => {
         flex: 1;
       }
 
-      ${isRefreshVariant && refreshStyles}
+      .euiPopover:last-child {
+        ${logicalCSS('border-top-right-radius', 'inherit')}
+        ${logicalCSS('border-bottom-right-radius', 'inherit')}
+
+        * {
+          ${logicalCSS('border-top-right-radius', 'inherit')}
+          ${logicalCSS('border-bottom-right-radius', 'inherit')}
+        }
+      }
     `,
   };
 };
@@ -54,10 +45,6 @@ export const euiDatePickerRangeInlineStyles = (
   euiThemeContext: UseEuiTheme
 ) => {
   const { euiTheme } = euiThemeContext;
-  const isRefreshVariant = isEuiThemeRefreshVariant(
-    euiThemeContext,
-    'formVariant'
-  );
 
   // Use a container query to stack date pickers vertically if the container is
   // not wide enough to fit both. We need a fn for this to render two width queries,
@@ -109,12 +96,9 @@ export const euiDatePickerRangeInlineStyles = (
           ${logicalCSS('padding-bottom', euiTheme.size.s)}
         }
 
-        ${isRefreshVariant &&
-        `
-          &::after {
-            display: none;
-          }
-        `}
+        &::after {
+          display: none;
+        }
       }
 
       /* Make sure the inline date picker sets its absolute positioning based off the correct parent */
@@ -134,16 +118,13 @@ export const euiDatePickerRangeInlineStyles = (
           borderAllInHighContrastMode: true,
         })}
 
-        ${isRefreshVariant &&
-        `
-          /* the form layout is not part of the interactive behavior but rather a container in this variant  */
+        /* the form layout is not part of the interactive behavior but rather a container in this variant  */
           ${disableFormControlHoverStyles()}
 
           .euiFormControlLayout__childrenWrapper {
-            box-shadow: none;
-            ${disableFormControlHoverStyles()}
-          }
-        `}
+          box-shadow: none;
+          ${disableFormControlHoverStyles()}
+        }
       }
     `,
 

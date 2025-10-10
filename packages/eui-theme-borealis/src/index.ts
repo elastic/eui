@@ -40,7 +40,6 @@ export const euiThemeBorealis: EuiThemeShape = {
   focus,
   components,
   flags: {
-    formVariant: 'refresh',
     shadowVariant: 'refresh',
   },
   overrides,

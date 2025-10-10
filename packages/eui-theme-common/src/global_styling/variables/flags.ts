@@ -7,11 +7,10 @@
  */
 
 export type EuiThemeVariantFlags = {
-  formVariant: 'classic' | 'refresh';
   shadowVariant: 'classic' | 'refresh';
 };
 
 /**
  * Theme specific setting flags
  */
-export type _EuiThemeFlags = {} & EuiThemeVariantFlags;
+export type _EuiThemeFlags = EuiThemeVariantFlags;

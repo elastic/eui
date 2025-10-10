@@ -10,11 +10,7 @@ import { css } from '@emotion/react';
 import { euiShadowXSmall } from '@elastic/eui-theme-common';
 
 import { logicalCSS } from '../../global_styling';
-import {
-  UseEuiTheme,
-  isEuiThemeRefreshVariant,
-  makeHighContrastColor,
-} from '../../services';
+import { UseEuiTheme, makeHighContrastColor } from '../../services';
 
 export const euiHeaderVariables = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
@@ -76,82 +72,11 @@ export const euiHeaderStyles = (euiThemeContext: UseEuiTheme) => {
  * It's also possible that the dark header will go away or become unused
  * by Kibana in the near future, at which point we can remove this
  */
-import { euiFormVariables } from '../form/form.styles';
 
 const euiHeaderDarkStyles = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme, highContrastMode } = euiThemeContext;
-  const isRefreshVariant = isEuiThemeRefreshVariant(
-    euiThemeContext,
-    'formVariant'
-  );
-  const { controlPlaceholderText } = euiFormVariables(euiThemeContext);
+  const { euiTheme } = euiThemeContext;
 
   const backgroundColor = euiTheme.components.headerDarkBackground;
-
-  // Specific color overrides for EuiSelectableTemplateSitewide
-  const selectableSitewide = {
-    color: euiTheme.colors.ghost,
-    borderColor: euiTheme.components.headerDarkSearchBorderColor,
-    placeholderColor: makeHighContrastColor(
-      controlPlaceholderText,
-      8
-    )(backgroundColor),
-  };
-
-  const formLayoutStyles = `
-    .euiSelectableTemplateSitewide .euiFormControlLayout {
-      background-color: transparent;
-
-      input {
-        box-shadow: inset 0 0 0 ${euiTheme.border.width.thin} ${
-    selectableSitewide.borderColor
-  };
-      }
-
-      &--group {
-        border-color: ${
-          // the header is in a faux dark mode, we can't rely on color
-          // switch tokens as they'd be in the wrong color mode
-          highContrastMode
-            ? euiTheme.colors.plainLight
-            : euiTheme.components.headerDarkSearchBorderColor
-        };
-
-        input {
-          box-shadow: none;
-        }
-      }
-
-      &__append {
-        border-color: ${highContrastMode ? euiTheme.colors.plainLight : ''}
-      }
-
-      &:not(:focus-within) {
-        /* Increase contrast of filled text to be more than placeholder text */
-        color: ${selectableSitewide.color};
-
-        input {
-          /* Increase contrast of placeholder text */
-          &::placeholder {
-            color: ${selectableSitewide.placeholderColor};
-          }
-
-          /* Inherit color from form control layout */
-          color: inherit;
-          background-color: transparent;
-        }
-
-        .euiFormControlLayout__append,
-        .euiFormControlLayout__prepend {
-          background-color: transparent;
-        }
-
-        .euiFormLabel {
-          color: inherit;
-        }
-      }
-  }
-  `;
 
   return `
     background-color: ${backgroundColor};
@@ -183,7 +108,5 @@ const euiHeaderDarkStyles = (euiThemeContext: UseEuiTheme) => {
     .euiHeaderSectionItemButton__notification--dot {
       stroke: ${backgroundColor};
     }
-
-    ${!isRefreshVariant && formLayoutStyles} 
   `;
 };

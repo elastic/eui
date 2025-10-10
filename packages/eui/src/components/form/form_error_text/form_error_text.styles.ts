@@ -8,23 +8,17 @@
 
 import { css } from '@emotion/react';
 
-import { isEuiThemeRefreshVariant, UseEuiTheme } from '../../../services';
+import { UseEuiTheme } from '../../../services';
 import { euiFontSize, logicalCSS } from '../../../global_styling';
 
 export const euiFormErrorTextStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
-  const isRefreshVariant = isEuiThemeRefreshVariant(
-    euiThemeContext,
-    'formVariant'
-  );
 
   return {
     euiFormErrorText: css`
       ${logicalCSS('padding-top', euiTheme.size.xs)}
       ${euiFontSize(euiThemeContext, 'xs')}
-      color: ${isRefreshVariant
-        ? euiTheme.colors.textDanger
-        : euiTheme.colors.danger};
+      color: ${euiTheme.colors.textDanger};
     `,
   };
 };
