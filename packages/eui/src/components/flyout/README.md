@@ -45,7 +45,6 @@ Renders the primary flyout in a session. Currently a simple wrapper around `EuiM
 ### `src/components/flyout/manager/flyout_child.tsx`
 Renders child flyouts within a session:
 - **Positioning**: Automatically positions relative to main flyout width
-- **Styling**: Supports `backgroundStyle` prop for default/shaded backgrounds
 - **Constraints**: Forces `type="overlay"` and `ownFocus={false}`
 - **Width Integration**: Uses main flyout width for positioning
 

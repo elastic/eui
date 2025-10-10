@@ -7,8 +7,7 @@
  */
 
 import React from 'react';
-import { useEuiMemoizedStyles, useEuiTheme } from '../../../services';
-import { euiChildFlyoutStyles } from './flyout_child.styles';
+import { useEuiTheme } from '../../../services';
 import { EuiManagedFlyout, type EuiManagedFlyoutProps } from './flyout_managed';
 import {
   useCurrentMainFlyout,
@@ -27,15 +26,12 @@ import { DEFAULT_SIDE } from '../const';
  *
  * Notes:
  * - `type`, `side`, and `level` are fixed by the component and thus omitted.
- * - `backgroundStyle` toggles between default and shaded backgrounds.
  */
 export interface EuiFlyoutChildProps
   extends Omit<
     EuiManagedFlyoutProps,
     'closeButtonPosition' | 'hideCloseButton' | 'type' | 'level'
-  > {
-  backgroundStyle?: 'default' | 'shaded';
-}
+  > {}
 
 /**
  * Managed child flyout that renders alongside or stacked over the main flyout,
@@ -44,12 +40,10 @@ export interface EuiFlyoutChildProps
  */
 export function EuiFlyoutChild({
   css: customCss,
-  backgroundStyle,
   side = DEFAULT_SIDE,
   ...props
 }: EuiFlyoutChildProps) {
   const { euiTheme } = useEuiTheme();
-  const styles = useEuiMemoizedStyles(euiChildFlyoutStyles);
   const mainFlyout = useCurrentMainFlyout();
   const mainWidth = useFlyoutWidth(mainFlyout?.flyoutId);
   const layoutMode = useFlyoutLayoutMode();
@@ -85,12 +79,7 @@ export function EuiFlyoutChild({
       type="overlay"
       ownFocus={false}
       side={side}
-      css={[
-        backgroundStyle === 'shaded'
-          ? styles.backgroundShaded
-          : styles.backgroundDefault,
-        customCss,
-      ]}
+      css={customCss}
     />
   );
 }

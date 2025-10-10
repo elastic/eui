@@ -266,7 +266,7 @@ export const EuiFlyoutComponent = forwardRef(
       paddingSize = DEFAULT_PADDING_SIZE,
       maxWidth = false,
       style,
-      childBgShaded = false,
+      childBackgroundShaded = false,
       maskProps,
       type = DEFAULT_TYPE,
       outsideClickCloses,
@@ -480,7 +480,7 @@ export const EuiFlyoutComponent = forwardRef(
     const classes = classnames(
       'euiFlyout',
       openStateToClassNameMap[openState],
-      isChildFlyout && childBgShaded && 'euiFlyout--childShaded',
+      isChildFlyout && childBackgroundShaded && 'euiFlyout--childShaded',
       className
     );
 

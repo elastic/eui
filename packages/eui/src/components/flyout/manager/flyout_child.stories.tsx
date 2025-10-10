@@ -25,7 +25,6 @@ type EuiFlyoutChildActualProps = Pick<
   EuiFlyoutChildProps,
   | 'aria-label'
   | 'as'
-  | 'backgroundStyle'
   | 'children'
   | 'closeButtonProps'
   | 'focusTrapProps'
@@ -45,7 +44,7 @@ type EuiFlyoutType = (typeof FLYOUT_TYPES)[number];
 interface FlyoutChildStoryArgs extends EuiFlyoutChildActualProps {
   mainSize?: 's' | 'm';
   childSize?: 's' | 'm';
-  childBackgroundStyle?: 'default' | 'shaded';
+  childBackgroundShaded?: boolean;
   childMaxWidth?: number;
   mainFlyoutType: EuiFlyoutType;
   mainMaxWidth?: number;
@@ -71,10 +70,10 @@ const meta: Meta<FlyoutChildStoryArgs> = {
       description:
         'The size of the child flyout. If the main is `s`, the child can be `s`, or `m`. If the main is `m`, the child can only be `s`.',
     },
-    childBackgroundStyle: {
-      options: ['default', 'shaded'],
-      control: { type: 'radio' },
-      description: 'The background style of the child flyout.',
+    childBackgroundShaded: {
+      control: { type: 'boolean' },
+      description:
+        "The background style of the child flyout. Defaults to matching the main flyout's background unless explicitly set to shaded.",
     },
     childMaxWidth: {
       control: { type: 'number' },
@@ -115,8 +114,6 @@ const meta: Meta<FlyoutChildStoryArgs> = {
       description: 'Whether the child flyout should be resizable.',
     },
 
-    // use "childBackgroundStyle" instead
-    backgroundStyle: { table: { disable: true } },
     // use "mainSize" and "childSize" instead
     size: { table: { disable: true } },
     // use "mainMaxWidth" and "childMaxWidth" instead
@@ -136,7 +133,7 @@ const meta: Meta<FlyoutChildStoryArgs> = {
   args: {
     mainSize: 'm',
     childSize: 's',
-    childBackgroundStyle: 'default',
+    childBackgroundShaded: false,
     mainFlyoutType: 'push',
     outsideClickCloses: false,
     ownFocus: true, // Depends on `mainFlyoutType=overlay`
@@ -164,7 +161,7 @@ type Story = StoryObj<FlyoutChildStoryArgs>;
 const StatefulFlyout: React.FC<FlyoutChildStoryArgs> = ({
   mainSize,
   childSize,
-  childBackgroundStyle,
+  childBackgroundShaded,
   mainFlyoutType,
   pushMinBreakpoint,
   mainMaxWidth,
@@ -260,7 +257,7 @@ const StatefulFlyout: React.FC<FlyoutChildStoryArgs> = ({
               <EuiFlyout
                 id="flyout-manager-playground-child"
                 size={childSize}
-                childBgShaded={childBackgroundStyle === 'shaded'}
+                childBackgroundShaded={childBackgroundShaded}
                 maxWidth={childMaxWidth}
                 ownFocus={false}
                 resizable={childFlyoutResizable}
