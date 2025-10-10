@@ -33,7 +33,7 @@ import {
   useIsFlyoutActive,
   useParentFlyoutSize,
 } from './hooks';
-import { useIsFlyoutRegistered } from './selectors';
+import { useCurrentMainFlyout, useIsFlyoutRegistered } from './selectors';
 import type { EuiFlyoutLevel } from './types';
 import {
   createValidationErrorMessage,
@@ -86,6 +86,7 @@ export const EuiManagedFlyout = ({
   const { addFlyout, closeFlyout, setFlyoutWidth, goBack, getHistoryItems } =
     useFlyoutManager();
   const parentSize = useParentFlyoutSize(flyoutId);
+  const parentFlyout = useCurrentMainFlyout();
   const layoutMode = useFlyoutLayoutMode();
   const styles = useEuiMemoizedStyles(euiManagedFlyoutStyles);
 
@@ -105,6 +106,7 @@ export const EuiManagedFlyout = ({
     const combinationError = validateSizeCombination(parentSize, size);
     if (combinationError) {
       combinationError.flyoutId = flyoutId;
+      combinationError.parentFlyoutId = parentFlyout?.flyoutId;
       combinationError.level = level;
       throw new Error(createValidationErrorMessage(combinationError));
     }
