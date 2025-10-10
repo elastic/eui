@@ -184,6 +184,7 @@ const ExampleComponent = () => {
   const bottomBorder: EuiPageTemplateProps['bottomBorder'] = 'extended';
 
   const [flyoutType, setFlyoutType] = useState<'overlay' | 'push'>('overlay');
+  const [childBackgroundShaded, setChildBackgroundShaded] = useState(false);
 
   const handleFlyoutTypeToggle = useCallback((e: EuiSwitchEvent) => {
     setFlyoutType(e.target.checked ? 'push' : 'overlay');
@@ -202,6 +203,7 @@ const ExampleComponent = () => {
             title="Session A"
             mainSize="s"
             childSize="s"
+            childBackgroundShaded={childBackgroundShaded}
           />
         ),
       },
@@ -213,6 +215,7 @@ const ExampleComponent = () => {
             title="Session B"
             mainSize="m"
             childSize="s"
+            childBackgroundShaded={childBackgroundShaded}
           />
         ),
       },
@@ -224,6 +227,7 @@ const ExampleComponent = () => {
             title="Session C"
             mainSize="s"
             childSize="fill"
+            childBackgroundShaded={childBackgroundShaded}
           />
         ),
       },
@@ -235,6 +239,7 @@ const ExampleComponent = () => {
             title="Session D"
             mainSize="fill"
             childSize="s"
+            childBackgroundShaded={childBackgroundShaded}
           />
         ),
       },
@@ -245,6 +250,7 @@ const ExampleComponent = () => {
             flyoutType={flyoutType}
             title="Session E"
             mainSize="fill"
+            childBackgroundShaded={childBackgroundShaded}
           />
         ),
       },
@@ -258,6 +264,7 @@ const ExampleComponent = () => {
             mainSize={undefined}
             childSize="fill"
             childMaxWidth={1000}
+            childBackgroundShaded={childBackgroundShaded}
           />
         ),
       },
@@ -270,11 +277,12 @@ const ExampleComponent = () => {
             mainSize="fill"
             mainMaxWidth={1000}
             childSize="s"
+            childBackgroundShaded={childBackgroundShaded}
           />
         ),
       },
     ],
-    [flyoutType]
+    [flyoutType, childBackgroundShaded]
   );
 
   return (
@@ -299,7 +307,12 @@ const ExampleComponent = () => {
           checked={flyoutType === 'push'}
           onChange={handleFlyoutTypeToggle}
         />
-        {/* FIXME add option to set child flyout background style to "shaded" */}
+        <EuiSpacer size="m" />
+        <EuiSwitch
+          label="Child flyout background shaded"
+          checked={childBackgroundShaded}
+          onChange={() => setChildBackgroundShaded((prev) => !prev)}
+        />
       </EuiPageTemplate.Section>
       <EuiPageTemplate.Section grow={false} bottomBorder={bottomBorder}>
         <EuiDescriptionList
