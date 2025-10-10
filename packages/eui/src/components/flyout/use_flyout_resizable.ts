@@ -56,18 +56,20 @@ export const useEuiFlyoutResizable = ({
   const [flyoutRef, setFlyoutRef] = useState<HTMLElement | null>(null);
 
   useEffect(() => {
+    if (!enabled) return; // Don't measure when resizing is disabled
     if (!flyoutWidth && flyoutRef) {
       setCallOnResize(false); // Don't call `onResize` for non-user width changes
       setFlyoutWidth(getFlyoutMinMaxWidth(flyoutRef.offsetWidth));
     }
-  }, [flyoutWidth, flyoutRef, getFlyoutMinMaxWidth]);
+  }, [flyoutWidth, flyoutRef, getFlyoutMinMaxWidth, enabled]);
 
   // Update flyout width when consumers pass in a new `size`
   useEffect(() => {
+    if (!enabled) return; // Don't update width when resizing is disabled
     setCallOnResize(false);
     // For string `size`s, resetting flyoutWidth to 0 will trigger the above useEffect's recalculation
     setFlyoutWidth(typeof _size === 'number' ? getFlyoutMinMaxWidth(_size) : 0);
-  }, [_size, getFlyoutMinMaxWidth]);
+  }, [_size, getFlyoutMinMaxWidth, enabled]);
 
   // Initial numbers to calculate from, on resize drag start
   const initialWidth = useRef(0);
@@ -169,7 +171,10 @@ export const useEuiFlyoutResizable = ({
     }
   }, [onResize, callOnResize, flyoutWidth, enabled]);
 
-  const size = useMemo(() => flyoutWidth || _size, [flyoutWidth, _size]);
+  const size = useMemo(
+    () => (enabled ? flyoutWidth || _size : _size),
+    [enabled, flyoutWidth, _size]
+  );
 
   return {
     onKeyDown,

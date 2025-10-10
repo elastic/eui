@@ -75,6 +75,7 @@ import {
   useEuiFlyoutOpenState,
   type EuiFlyoutOpenState,
 } from './use_open_state';
+import type { EuiFlyoutCloseEvent } from './types';
 
 interface _EuiFlyoutComponentProps {
   /**
@@ -89,14 +90,14 @@ interface _EuiFlyoutComponentProps {
    *
    * Use this callback to toggle your internal `isOpen` flyout state.
    */
-  onClose: (event?: MouseEvent | TouchEvent | KeyboardEvent) => void;
+  onClose: (event?: EuiFlyoutCloseEvent) => void;
   /**
    * An optional callback function fired when the flyout begins closing.
    *
    * Use in case you need to support any extra logic that relies on the flyout
    * closing state. In most cases this callback doesn't need to be handled.
    */
-  onClosing?: (event?: MouseEvent | TouchEvent | KeyboardEvent) => void;
+  onClosing?: (event?: EuiFlyoutCloseEvent) => void;
   /**
    * Defines the width of the panel.
    * Pass a predefined size of `s | m | l`, or pass any number/string compatible with the CSS `width` attribute
@@ -256,7 +257,7 @@ export const EuiFlyoutComponent = forwardRef(
       children,
       as,
       hideCloseButton = false,
-      flyoutMenuProps,
+      flyoutMenuProps: _flyoutMenuProps,
       closeButtonProps,
       closeButtonPosition = 'inside',
       onClose,
@@ -276,6 +277,7 @@ export const EuiFlyoutComponent = forwardRef(
       includeFixedHeadersInFocusTrap = true,
       includeSelectorInFocusTrap,
       'aria-describedby': _ariaDescribedBy,
+      'aria-labelledby': _ariaLabelledBy,
       id,
       resizable = false,
       minWidth,
@@ -390,9 +392,9 @@ export const EuiFlyoutComponent = forwardRef(
       }
 
       const siblingFlyoutId =
-        currentSession.main === flyoutId
-          ? currentSession.child
-          : currentSession.main;
+        currentSession.mainFlyoutId === flyoutId
+          ? currentSession.childFlyoutId
+          : currentSession.mainFlyoutId;
 
       return {
         siblingFlyoutId,
@@ -404,9 +406,11 @@ export const EuiFlyoutComponent = forwardRef(
     // Destructure for easier use
     const { siblingFlyoutId } = flyoutIdentity;
 
-    const hasChildFlyout = currentSession?.child != null;
+    const hasChildFlyout = currentSession?.childFlyoutId != null;
     const isChildFlyout =
-      isInManagedContext && hasChildFlyout && currentSession?.child === id;
+      isInManagedContext &&
+      hasChildFlyout &&
+      currentSession?.childFlyoutId === id;
 
     const shouldCloseOnEscape = useMemo(() => {
       // Regular flyout - always close on ESC
@@ -567,6 +571,25 @@ export const EuiFlyoutComponent = forwardRef(
     );
 
     /*
+     * If the flyout menu is to be rendered, ensure the flyout has aria-labelledby referencing the menu's titleId
+     */
+    const generatedMenuId = useGeneratedHtmlId();
+    const { titleId: _titleId, ...flyoutMenuProps } = _flyoutMenuProps || {};
+    const hasMenu = !!_flyoutMenuProps;
+
+    const flyoutMenuId = useMemo(() => {
+      if (!hasMenu) return undefined;
+      return _titleId || generatedMenuId;
+    }, [hasMenu, _titleId, generatedMenuId]);
+
+    const ariaLabelledBy = useMemo(() => {
+      if (flyoutMenuId) {
+        return classnames(flyoutMenuId, _ariaLabelledBy);
+      }
+      return _ariaLabelledBy;
+    }, [flyoutMenuId, _ariaLabelledBy]);
+
+    /*
      * Trap focus even when `ownFocus={false}`, otherwise closing
      * the flyout won't return focus to the originating button.
      *
@@ -638,11 +661,12 @@ export const EuiFlyoutComponent = forwardRef(
             aria-modal={!isPushed || undefined}
             tabIndex={!isPushed ? 0 : rest.tabIndex}
             aria-describedby={!isPushed ? ariaDescribedBy : _ariaDescribedBy}
+            aria-labelledby={ariaLabelledBy}
             data-autofocus={!isPushed || undefined}
             onAnimationEnd={onAnimationEnd}
           >
             {!isPushed && screenReaderDescription}
-            {!flyoutMenuProps && !hideCloseButton && (
+            {!_flyoutMenuProps && !hideCloseButton && (
               <EuiFlyoutCloseButton
                 {...closeButtonProps}
                 onClose={closeFlyout}
@@ -650,7 +674,9 @@ export const EuiFlyoutComponent = forwardRef(
                 side={side}
               />
             )}
-            {flyoutMenuProps && <EuiFlyoutMenu {...flyoutMenuProps} />}
+            {_flyoutMenuProps && (
+              <EuiFlyoutMenu {...flyoutMenuProps} titleId={flyoutMenuId} />
+            )}
             {resizable && (
               <EuiFlyoutResizeButton
                 type={type}

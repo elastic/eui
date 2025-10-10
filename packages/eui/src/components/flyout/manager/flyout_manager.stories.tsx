@@ -6,437 +6,304 @@
  * Side Public License, v 1.
  */
 
-import { Meta, StoryObj } from '@storybook/react';
+import { actions } from '@storybook/addon-actions';
+import type { Meta, StoryObj } from '@storybook/react';
 import React, { useState } from 'react';
-import { action } from '@storybook/addon-actions';
 
-import {
-  EuiButton,
-  EuiCode,
-  EuiCodeBlock,
-  EuiDescriptionList,
-  EuiDescriptionListDescription,
-  EuiDescriptionListTitle,
-  EuiFlexGroup,
-  EuiFlexItem,
-  EuiFlyoutBody,
-  EuiFlyoutFooter,
-  EuiSpacer,
-  EuiSwitch,
-  EuiText,
-  EuiTitle,
-} from '../..';
-import { EuiFlyout, EuiFlyoutProps } from '../flyout';
-import { useFlyoutManager } from './hooks';
-import { _EuiFlyoutSide, DEFAULT_SIDE, FLYOUT_SIDES } from '../const';
+import { LOKI_SELECTORS } from '../../../../.storybook/loki';
+import { EuiBreakpointSize } from '../../../services';
+import { EuiButton } from '../../button';
+import { EuiSpacer } from '../../spacer';
+import { EuiText } from '../../text';
+import { FLYOUT_TYPES, EuiFlyout } from '../flyout';
+import { EuiFlyoutBody } from '../flyout_body';
+import { EuiFlyoutFooter } from '../flyout_footer';
+import { EuiFlyoutChild, EuiFlyoutChildProps } from './flyout_child';
+import { useFlyoutLayoutMode } from './hooks';
 
-const meta: Meta<typeof EuiFlyout> = {
+type EuiFlyoutChildActualProps = Pick<
+  EuiFlyoutChildProps,
+  | 'aria-label'
+  | 'as'
+  | 'backgroundStyle'
+  | 'children'
+  | 'closeButtonProps'
+  | 'focusTrapProps'
+  | 'includeFixedHeadersInFocusTrap'
+  | 'includeSelectorInFocusTrap'
+  | 'maskProps'
+  | 'maxWidth'
+  | 'onClose'
+  | 'ownFocus'
+  | 'paddingSize'
+  | 'pushAnimation'
+  | 'side'
+  | 'size'
+  | 'style'
+>;
+
+type EuiFlyoutType = (typeof FLYOUT_TYPES)[number];
+
+interface FlyoutChildStoryArgs extends EuiFlyoutChildActualProps {
+  mainSize?: 's' | 'm';
+  childSize?: 's' | 'm';
+  childBackgroundStyle?: 'default' | 'shaded';
+  childMaxWidth?: number;
+  mainFlyoutType: EuiFlyoutType;
+  mainMaxWidth?: number;
+  outsideClickCloses?: boolean;
+  paddingSize?: 'none' | 's' | 'm' | 'l';
+  pushMinBreakpoint: EuiBreakpointSize;
+  showFooter?: boolean;
+  mainFlyoutResizable?: boolean;
+  childFlyoutResizable?: boolean;
+}
+
+const breakpointSizes: EuiBreakpointSize[] = ['xs', 's', 'm', 'l', 'xl'];
+
+const playgroundActions = actions('log');
+
+const meta: Meta<FlyoutChildStoryArgs> = {
   title: 'Layout/EuiFlyout/Flyout Manager',
-  component: EuiFlyout,
+  component: EuiFlyoutChild,
+  argTypes: {
+    childSize: {
+      options: ['s', 'm', 'fill'],
+      control: { type: 'radio' },
+      description:
+        'The size of the child flyout. If the main is `s`, the child can be `s`, or `m`. If the main is `m`, the child can only be `s`.',
+    },
+    childBackgroundStyle: {
+      options: ['default', 'shaded'],
+      control: { type: 'radio' },
+      description: 'The background style of the child flyout.',
+    },
+    childMaxWidth: {
+      control: { type: 'number' },
+      description: 'The maximum width of the child flyout.',
+    },
+    mainSize: {
+      options: ['s', 'm', 'fill'],
+      control: { type: 'radio' },
+      description:
+        'The size of the main (parent) flyout. If `m`, the child must be `s`. If `s`, the child can be `s`, or `m`.',
+    },
+    mainFlyoutType: {
+      options: FLYOUT_TYPES,
+      control: { type: 'radio' },
+      description: 'The type of the main flyout..',
+    },
+    mainMaxWidth: {
+      control: { type: 'number' },
+      description: 'The maximum width of the main flyout.',
+    },
+    pushMinBreakpoint: {
+      options: breakpointSizes,
+      control: { type: 'select' },
+      description:
+        'Breakpoint at which the main flyout (if `type="push"`) will convert to an overlay flyout. Defaults to `xs`.',
+    },
+    showFooter: {
+      control: { type: 'boolean' },
+      description:
+        'Whether to show the flyout footer. If `false`, an `EuiFlyoutFooter` will not be rendered.',
+    },
+    mainFlyoutResizable: {
+      control: { type: 'boolean' },
+      description: 'Whether the main flyout should be resizable.',
+    },
+    childFlyoutResizable: {
+      control: { type: 'boolean' },
+      description: 'Whether the child flyout should be resizable.',
+    },
+
+    // use "childBackgroundStyle" instead
+    backgroundStyle: { table: { disable: true } },
+    // use "mainSize" and "childSize" instead
+    size: { table: { disable: true } },
+    // use "mainMaxWidth" and "childMaxWidth" instead
+    maxWidth: { table: { disable: true } },
+    // props below this line are not configurable in the playground
+    ['aria-label']: { table: { disable: true } },
+    as: { table: { disable: true } },
+    children: { table: { disable: true } },
+    closeButtonProps: { table: { disable: true } },
+    focusTrapProps: { table: { disable: true } },
+    includeFixedHeadersInFocusTrap: { table: { disable: true } },
+    includeSelectorInFocusTrap: { table: { disable: true } },
+    maskProps: { table: { disable: true } },
+    onClose: { table: { disable: true } },
+    style: { table: { disable: true } },
+  },
+  args: {
+    mainSize: 'm',
+    childSize: 's',
+    childBackgroundStyle: 'default',
+    mainFlyoutType: 'overlay',
+    outsideClickCloses: false,
+    ownFocus: true, // Depends on `mainFlyoutType=overlay`
+    paddingSize: 'm',
+    pushAnimation: true,
+    pushMinBreakpoint: 'xs',
+    showFooter: true,
+    mainFlyoutResizable: false,
+    childFlyoutResizable: false,
+  },
+  parameters: {
+    loki: {
+      chromeSelector: LOKI_SELECTORS.portal,
+    },
+  },
 };
 
 export default meta;
+type Story = StoryObj<FlyoutChildStoryArgs>;
 
-interface ECommerceContentProps {
-  itemQuantity: number;
-}
-
-interface ShoppingCartProps
-  extends ECommerceContentProps,
-    Pick<EuiFlyoutProps, 'onClose' | 'ownFocus' | 'side'> {
-  onQuantityChange: (delta: number) => void;
-}
-
-const ShoppingCartFlyout = ({
-  itemQuantity,
-  onQuantityChange,
-  onClose,
-  ownFocus,
-  side,
-}: ShoppingCartProps) => {
-  const [isItemDetailsOpen, setIsItemDetailsOpen] = useState(false);
-  const [isReviewCartOpen, setIsReviewCartOpen] = useState(false);
-
-  return (
-    <EuiFlyout
-      session={true}
-      id="shopping-cart-flyout"
-      size="m"
-      ownFocus={ownFocus}
-      side={side}
-      aria-label="Shopping cart"
-      {...{ onClose }}
-    >
-      <EuiFlyoutBody>
-        <EuiText>
-          <p>Item: Flux Capacitor</p>
-        </EuiText>
-        <EuiButton onClick={() => setIsItemDetailsOpen(!isItemDetailsOpen)}>
-          {isItemDetailsOpen ? 'Close item details' : 'View item details'}
-        </EuiButton>
-        <EuiSpacer />
-        <EuiText>Quantity: {itemQuantity}</EuiText>
-        <EuiButton
-          onClick={() => onQuantityChange(-1)}
-          iconType="minusInCircle"
-          aria-label="Decrease quantity"
-          isDisabled={itemQuantity <= 0}
-        >
-          -1
-        </EuiButton>{' '}
-        <EuiButton
-          onClick={() => onQuantityChange(1)}
-          iconType="plusInCircle"
-          aria-label="Increase quantity"
-        >
-          +1
-        </EuiButton>
-        <EuiSpacer />
-        <EuiButton
-          onClick={() => setIsReviewCartOpen(true)}
-          isDisabled={itemQuantity <= 0}
-          fill
-        >
-          {isReviewCartOpen ? 'Close review' : 'Proceed to review'}
-        </EuiButton>
-        {isItemDetailsOpen && (
-          <ItemDetailsFlyout
-            onClose={() => setIsItemDetailsOpen(false)}
-            itemQuantity={itemQuantity}
-            side={side}
-          />
-        )}
-        {isReviewCartOpen && (
-          <>
-            <ReviewOrderFlyout
-              onClose={() => setIsReviewCartOpen(false)}
-              itemQuantity={itemQuantity}
-              side={side}
-            />
-          </>
-        )}
-      </EuiFlyoutBody>
-      <EuiFlyoutFooter>
-        <EuiButton
-          onClick={(e: React.MouseEvent<HTMLButtonElement>) =>
-            onClose(e.nativeEvent)
-          }
-          color="danger"
-        >
-          Close
-        </EuiButton>
-      </EuiFlyoutFooter>
-    </EuiFlyout>
-  );
-};
-
-interface ReviewOrderProps
-  extends ECommerceContentProps,
-    Pick<EuiFlyoutProps, 'onClose' | 'side'> {}
-
-const ReviewOrderFlyout = ({
-  itemQuantity,
-  side,
-  ...props
-}: ReviewOrderProps) => {
-  const [orderConfirmed, setOrderConfirmed] = useState(false);
-
-  return (
-    <EuiFlyout
-      session={true}
-      id="review-order-flyout"
-      ownFocus={false}
-      size="m"
-      side={side}
-      aria-label="Review order"
-      {...props}
-    >
-      <EuiFlyoutBody>
-        <EuiText>
-          <h3>Review your order</h3>
-          <p>Item: Flux Capacitor</p>
-          <p>Quantity: {itemQuantity}</p>
-        </EuiText>
-        <EuiSpacer />
-        {orderConfirmed ? (
-          <EuiText>
-            <p>Order confirmed!</p>
-          </EuiText>
-        ) : (
-          <EuiButton
-            onClick={() => setOrderConfirmed(true)}
-            fill
-            color="accent"
-          >
-            Confirm purchase
-          </EuiButton>
-        )}
-      </EuiFlyoutBody>
-      <EuiFlyoutFooter>
-        {!orderConfirmed && (
-          <EuiButton
-            onClick={() => {
-              action('go back')();
-              // goBack();
-            }}
-            color="danger"
-          >
-            Go back
-          </EuiButton>
-        )}{' '}
-        <EuiButton
-          onClick={(e: React.MouseEvent<HTMLButtonElement>) =>
-            props.onClose(e.nativeEvent)
-          }
-          color="danger"
-        >
-          Close
-        </EuiButton>
-      </EuiFlyoutFooter>
-    </EuiFlyout>
-  );
-};
-
-interface ItemDetailsProps
-  extends ECommerceContentProps,
-    Pick<EuiFlyoutProps, 'onClose' | 'id' | 'side'> {}
-
-const ItemDetailsFlyout = ({
-  onClose,
-  itemQuantity,
-  id = 'item-details-flyout',
-  side = DEFAULT_SIDE,
-}: ItemDetailsProps) => {
-  return (
-    <EuiFlyout
-      id={id}
-      onClose={onClose}
-      size="s"
-      side={side}
-      aria-label="Item details"
-    >
-      <EuiFlyoutBody>
-        <EuiText>
-          <p>
-            <strong>Item:</strong> Flux Capacitor
-          </p>
-          <p>
-            <strong>Selected quantity:</strong> {itemQuantity}
-          </p>
-          <p>
-            This amazing device makes time travel possible! Handle with care.
-          </p>
-        </EuiText>
-      </EuiFlyoutBody>
-      <EuiFlyoutFooter>
-        <EuiButton
-          onClick={(e: React.MouseEvent<HTMLButtonElement>) =>
-            onClose(e.nativeEvent)
-          }
-          color="danger"
-        >
-          Close details
-        </EuiButton>
-      </EuiFlyoutFooter>
-    </EuiFlyout>
-  );
-};
-
-const BasicExampleComponent = ({
-  side = DEFAULT_SIDE,
-}: {
-  side?: _EuiFlyoutSide;
+/**
+ * A shared helper component used to demo management of internal state. It keeps internal state of
+ * the selected flyout type (overlay/push) and the open/closed state of child flyout.
+ */
+const StatefulFlyout: React.FC<FlyoutChildStoryArgs> = ({
+  mainSize,
+  childSize,
+  childBackgroundStyle,
+  mainFlyoutType,
+  pushMinBreakpoint,
+  mainMaxWidth,
+  childMaxWidth,
+  showFooter,
+  mainFlyoutResizable,
+  childFlyoutResizable,
+  ...args
 }) => {
-  const [shoppingCartOwnFocus, setShoppingCartOwnFocus] = useState(false);
-  const [isShoppingCartOpen, setIsShoppingCartOpen] = useState(false);
-  const [isReviewCartOpen, setIsReviewCartOpen] = useState(false);
-  const [isItemDetailsOpen, setIsItemDetailsOpen] = useState(false);
-  const [itemQuantity, setItemQuantity] = useState(1);
-  const context = useFlyoutManager();
+  const [isMainOpen, setIsMainOpen] = useState(true);
+
+  /* TODO: Allow child to be open automatically on initial render. Currently,
+   * this is not supported due to the child not having a reference to the
+   * session context */
+  const [isChildOpen, setIsChildOpen] = useState(false);
+
+  const openMain = () => {
+    setIsMainOpen(true);
+    playgroundActions.log('Parent flyout opened');
+  };
+  const closeMain = () => {
+    setIsMainOpen(false);
+    setIsChildOpen(false);
+    playgroundActions.log('Parent flyout closed');
+  };
+  const openChild = () => {
+    setIsChildOpen(true);
+    playgroundActions.log('Child flyout opened');
+  };
+  const closeChild = () => {
+    setIsChildOpen(false);
+    playgroundActions.log('Child flyout closed');
+  };
+
+  const layoutMode = useFlyoutLayoutMode();
 
   return (
     <>
-      <EuiFlexGroup direction="column">
-        <EuiFlexItem>
-          <EuiFlexGroup>
-            <EuiButton onClick={() => setIsShoppingCartOpen(true)}>
-              Shopping cart
-            </EuiButton>
-            <EuiButton onClick={() => setIsReviewCartOpen(true)}>
-              Review order
-            </EuiButton>
-            <EuiButton onClick={() => setIsItemDetailsOpen(true)}>
-              Item details
-            </EuiButton>
-          </EuiFlexGroup>
-        </EuiFlexItem>
-        <EuiFlexItem>
-          <EuiFlexGroup>
-            <EuiFlexItem>
-              <EuiFlexGroup direction="column">
-                <EuiFlexItem>
-                  <EuiTitle size="s">
-                    <h2>Flyouts</h2>
-                  </EuiTitle>
-                  <EuiSpacer size="m" />
-                  <EuiDescriptionList>
-                    <EuiDescriptionListTitle>
-                      Shopping cart
-                    </EuiDescriptionListTitle>
-                    <EuiDescriptionListDescription>
-                      This flyout always starts a new session,{' '}
-                      <EuiCode>{`session={true}`}</EuiCode>.
-                    </EuiDescriptionListDescription>
-                    <EuiDescriptionListTitle>
-                      Review order
-                    </EuiDescriptionListTitle>
-                    <EuiDescriptionListDescription>
-                      This flyout always starts a new session,{' '}
-                      <EuiCode>{`session={true}`}</EuiCode>.
-                      <EuiSpacer size="xs" />
-                      It is rendered by the button above, but also from within
-                      the Shopping Cart flyout.
-                    </EuiDescriptionListDescription>
-                    <EuiDescriptionListTitle>
-                      Item details
-                    </EuiDescriptionListTitle>
-                    <EuiDescriptionListDescription>
-                      This flyout is a regular flyout.
-                      <EuiSpacer size="xs" />
-                      It is rendered by the button above, but also from within
-                      the Shopping Cart flyout.
-                      <EuiSpacer size="xs" />
-                      If rendered from <strong>here</strong>, and{' '}
-                      <strong>no</strong> session is active, it is rendered as a{' '}
-                      <strong>regular</strong> flyout.
-                      <EuiSpacer size="xs" />
-                      If rendered from <strong>here</strong>, and a session{' '}
-                      <strong>is</strong> active, it is rendered as a new{' '}
-                      <EuiCode>main</EuiCode> flyout as a new session.
-                      <EuiSpacer size="xs" />
-                      If rendered from <strong>within</strong> the Shopping Cart
-                      flyout, it will be rendered as a <EuiCode>child</EuiCode>{' '}
-                      flyout.
-                    </EuiDescriptionListDescription>
-                  </EuiDescriptionList>
-                </EuiFlexItem>
-                <EuiFlexItem>
-                  <EuiTitle size="s">
-                    <h2>Current State</h2>
-                  </EuiTitle>
-                  <EuiCodeBlock language="json">
-                    {JSON.stringify(context?.state, null, 2)}
-                  </EuiCodeBlock>
-                </EuiFlexItem>
-              </EuiFlexGroup>
-            </EuiFlexItem>
-            <EuiFlexItem>
-              <EuiFlexGroup direction="column">
-                <EuiFlexItem>
-                  <EuiTitle size="s">
-                    <h2>Summary</h2>
-                  </EuiTitle>
-                  <EuiSpacer size="m" />
-                  <EuiText size="s">
-                    <div>
-                      This example demonstrates the different ways a flyout can
-                      be rendered.
-                      <EuiSpacer size="m" />
-                      The <EuiCode>session</EuiCode> prop is used to control
-                      whether a flyout is rendered as a new session.
-                      <EuiSpacer size="m" />
-                      The determination of whether a flyout is rendered as a{' '}
-                      <EuiCode>main</EuiCode> or <EuiCode>child</EuiCode> flyout
-                      is based on the presence of an active session,{' '}
-                      <em>and</em> if the flyout is rendered from within a
-                      managed flyout.
-                      <EuiSpacer size="m" />
-                      This change means the relationship between the main and
-                      child flyout, as well as the history of which main flyouts
-                      have been opened, are <strong>
-                        implicitly derived
-                      </strong>{' '}
-                      from the React structure.
-                      <EuiSpacer size="m" />
-                      So from a DX perspective, no one need wonder if they
-                      should create a <EuiCode>MainFlyout</EuiCode> or
-                      <EuiCode>ChildFlyout</EuiCode>, or check what may already
-                      be open... the way its structured and the{' '}
-                      <EuiCode>session</EuiCode> prop handle it all.
-                    </div>
-                  </EuiText>
-                </EuiFlexItem>
-                <EuiFlexItem>
-                  <EuiTitle size="s">
-                    <h2>Known issues</h2>
-                  </EuiTitle>
-                  <EuiSpacer size="m" />
-                  <EuiDescriptionList>
-                    <EuiDescriptionListTitle>Animation</EuiDescriptionListTitle>
-                    <EuiDescriptionListDescription>
-                      If a main flyout is opened with{' '}
-                      <EuiCode>{`ownFocus={true}`}</EuiCode>, the child flyout
-                      animation is inconsistent: it flies in <em>above</em> the
-                      main flyout.
-                      <EuiSpacer size="s" />
-                      This is due to the <EuiCode>EuiMask</EuiCode> surrounding
-                      the main flyout, preventing the child flyout from being
-                      rendered <em>below</em> it.
-                      <EuiSpacer size="s" />
-                      <EuiSwitch
-                        label="Shopping cart ownFocus"
-                        checked={shoppingCartOwnFocus}
-                        onChange={(e) =>
-                          setShoppingCartOwnFocus(e.target.checked)
-                        }
-                      />
-                    </EuiDescriptionListDescription>
-                  </EuiDescriptionList>
-                </EuiFlexItem>
-              </EuiFlexGroup>
-            </EuiFlexItem>
-          </EuiFlexGroup>
-        </EuiFlexItem>
-      </EuiFlexGroup>
-      {isShoppingCartOpen && (
-        <ShoppingCartFlyout
-          onClose={() => setIsShoppingCartOpen(false)}
-          onQuantityChange={(delta: number) =>
-            setItemQuantity(itemQuantity + delta)
-          }
-          itemQuantity={itemQuantity}
-          ownFocus={shoppingCartOwnFocus}
-          side={side}
-        />
+      <EuiText>
+        <p>
+          This is the main page content. Watch how it behaves when the flyout
+          type changes.
+        </p>
+        <p>
+          <strong>Current layout mode: {layoutMode}</strong>
+        </p>
+      </EuiText>
+      <EuiSpacer size="l" />
+      {isMainOpen ? (
+        <EuiButton onClick={closeMain}>Close Main Flyout</EuiButton>
+      ) : (
+        <EuiButton onClick={openMain}>Open Main Flyout</EuiButton>
       )}
-      {isReviewCartOpen && (
-        <ReviewOrderFlyout
-          onClose={() => setIsReviewCartOpen(false)}
-          itemQuantity={itemQuantity}
-          side={side}
-        />
-      )}
-      {isItemDetailsOpen && (
-        <ItemDetailsFlyout
-          id="shopping-cart-item-details-flyout"
-          onClose={() => setIsItemDetailsOpen(false)}
-          itemQuantity={itemQuantity}
-          side={side}
-        />
-      )}
+
+      <EuiFlyout
+        isOpen={isMainOpen}
+        session={true}
+        id="flyout-manager-playground-main"
+        size={mainSize}
+        type={mainFlyoutType}
+        pushMinBreakpoint={pushMinBreakpoint}
+        maxWidth={mainMaxWidth}
+        ownFocus={false}
+        resizable={mainFlyoutResizable}
+        aria-label={`Main Flyout Menu (${mainSize})`}
+        {...args}
+        onClose={closeMain}
+      >
+        <EuiFlyoutBody>
+          <EuiText>
+            <p>This is the main flyout content.</p>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum
+              neque sequi illo, cum rerum quia ab animi velit sit incidunt
+              inventore temporibus eaque nam veritatis amet maxime maiores optio
+              quam?
+            </p>
+          </EuiText>
+          <EuiSpacer />
+
+          {!isChildOpen ? (
+            <EuiButton onClick={openChild}>Open child panel</EuiButton>
+          ) : (
+            <EuiButton onClick={closeChild}>Close child panel</EuiButton>
+          )}
+          <EuiFlyout
+            isOpen={isChildOpen}
+            id="flyout-manager-playground-child"
+            size={childSize}
+            backgroundStyle={childBackgroundStyle}
+            maxWidth={childMaxWidth}
+            ownFocus={false}
+            resizable={childFlyoutResizable}
+            {...args}
+            aria-label={`Child Flyout Panel (${childSize})`}
+            onClose={closeChild}
+          >
+            <EuiFlyoutBody>
+              <EuiText>
+                <p>This is the child flyout content.</p>
+                <p>Size restrictions apply:</p>
+                <ul>
+                  <li>When main panel is 's', child can be 's', or 'm'</li>
+                  <li>When main panel is 'm', child is limited to 's'</li>
+                </ul>
+                <EuiSpacer />
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Dolorum neque sequi illo, cum rerum quia ab animi velit sit
+                  incidunt inventore temporibus eaque nam veritatis amet maxime
+                  maiores optio quam?
+                </p>
+              </EuiText>
+            </EuiFlyoutBody>
+            {showFooter && (
+              <EuiFlyoutFooter>
+                <EuiText>
+                  <p>Child flyout footer</p>
+                </EuiText>
+              </EuiFlyoutFooter>
+            )}
+            {/* Footer is optional */}
+          </EuiFlyout>
+        </EuiFlyoutBody>
+        {showFooter && (
+          <EuiFlyoutFooter>
+            <EuiText>
+              <p>Main flyout footer</p>
+            </EuiText>
+          </EuiFlyoutFooter>
+        )}
+      </EuiFlyout>
     </>
   );
 };
 
-export const BasicExample: StoryObj<typeof EuiFlyout> = {
-  render: (args) => <BasicExampleComponent {...args} />,
-  args: {
-    side: 'right',
-  },
-  argTypes: {
-    side: {
-      control: 'radio',
-      options: FLYOUT_SIDES,
-    },
-  },
+export const FlyoutChildDemo: Story = {
+  name: 'Playground',
+  render: (args) => <StatefulFlyout {...args} />,
 };

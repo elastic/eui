@@ -7,22 +7,45 @@
  */
 
 import classNames from 'classnames';
-import React, { FunctionComponent, HTMLAttributes, useContext } from 'react';
-import { useEuiMemoizedStyles, useGeneratedHtmlId } from '../../services';
-import { EuiButtonIcon } from '../button';
-import { CommonProps } from '../common';
+import React, {
+  FunctionComponent,
+  HTMLAttributes,
+  useContext,
+  useState,
+} from 'react';
+
+import { useEuiMemoizedStyles } from '../../services';
+import { EuiButtonEmpty, EuiButtonIcon, EuiButtonProps } from '../button';
+import { CommonProps, PropsForAnchor } from '../common';
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
+import { EuiListGroup, EuiListGroupItem } from '../list_group';
+import { EuiPopover } from '../popover';
 import { EuiTitle } from '../title';
 import { EuiFlyoutCloseButton } from './_flyout_close_button';
 import { euiFlyoutMenuStyles } from './flyout_menu.styles';
 import { EuiFlyoutMenuContext } from './flyout_menu_context';
+import type { EuiFlyoutCloseEvent } from './types';
+import { EuiI18n, useEuiI18n } from '../i18n';
+
+type EuiFlyoutMenuBackButtonProps = Pick<
+  PropsForAnchor<EuiButtonProps>,
+  'aria-label' | 'data-test-subj' | 'onClick'
+>;
+
+type EuiFlyoutHistoryItem = {
+  title: string;
+  onClick: () => void;
+};
 
 export type EuiFlyoutMenuProps = CommonProps &
   HTMLAttributes<HTMLDivElement> & {
-    backButton?: React.ReactNode;
-    popover?: React.ReactNode;
+    /* An id to use for the title element */
+    titleId?: string;
     title?: React.ReactNode;
     hideCloseButton?: boolean;
+    showBackButton?: boolean;
+    backButtonProps?: EuiFlyoutMenuBackButtonProps;
+    historyItems?: EuiFlyoutHistoryItem[];
     customActions?: Array<{
       iconType: string;
       onClick: () => void;
@@ -30,12 +53,64 @@ export type EuiFlyoutMenuProps = CommonProps &
     }>;
   };
 
+const BackButton: React.FC<EuiFlyoutMenuBackButtonProps> = (props) => {
+  return (
+    <EuiButtonEmpty size="xs" color="text" iconType="editorUndo" {...props}>
+      <EuiI18n token="euiFlyoutMenu.back" default="Back" />
+    </EuiButtonEmpty>
+  );
+};
+
+const HistoryPopover: React.FC<{
+  items: EuiFlyoutHistoryItem[];
+}> = ({ items }) => {
+  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+  const handlePopoverButtonClick = () => {
+    setIsPopoverOpen(!isPopoverOpen);
+  };
+
+  return (
+    <EuiPopover
+      button={
+        <EuiButtonIcon
+          iconType="arrowDown"
+          color="text"
+          aria-label={useEuiI18n('euiFlyoutMenu.history', 'History')}
+        />
+      }
+      isOpen={isPopoverOpen}
+      onClick={handlePopoverButtonClick}
+      closePopover={() => setIsPopoverOpen(false)}
+      panelPaddingSize="xs"
+      anchorPosition="downLeft"
+    >
+      <EuiListGroup gutterSize="none">
+        {items.map((item, index) => (
+          <EuiListGroupItem
+            key={`history-item-${index}`}
+            label={item.title}
+            size="s"
+            onClick={() => {
+              item.onClick();
+              setIsPopoverOpen(false);
+            }}
+          >
+            {item.title}
+          </EuiListGroupItem>
+        ))}
+      </EuiListGroup>
+    </EuiPopover>
+  );
+};
+
 export const EuiFlyoutMenu: FunctionComponent<EuiFlyoutMenuProps> = ({
+  titleId,
   className,
-  backButton,
-  popover,
   title,
   hideCloseButton,
+  historyItems = [],
+  showBackButton,
+  backButtonProps,
   customActions,
   ...rest
 }) => {
@@ -43,7 +118,6 @@ export const EuiFlyoutMenu: FunctionComponent<EuiFlyoutMenuProps> = ({
 
   const styles = useEuiMemoizedStyles(euiFlyoutMenuStyles);
   const classes = classNames('euiFlyoutMenu', className);
-  const titleId = useGeneratedHtmlId();
 
   let titleNode;
   if (title) {
@@ -54,9 +128,7 @@ export const EuiFlyoutMenu: FunctionComponent<EuiFlyoutMenuProps> = ({
     );
   }
 
-  const handleClose = (
-    event: MouseEvent | TouchEvent | KeyboardEvent | undefined
-  ) => {
+  const handleClose = (event: EuiFlyoutCloseEvent | undefined) => {
     onClose?.(event);
   };
 
@@ -76,8 +148,18 @@ export const EuiFlyoutMenu: FunctionComponent<EuiFlyoutMenuProps> = ({
         gutterSize="none"
         responsive={false}
       >
-        {backButton && <EuiFlexItem grow={false}>{backButton}</EuiFlexItem>}
-        {popover && <EuiFlexItem grow={false}>{popover}</EuiFlexItem>}
+        {showBackButton && (
+          <EuiFlexItem grow={false}>
+            <BackButton {...backButtonProps} />
+          </EuiFlexItem>
+        )}
+
+        {historyItems.length > 0 && (
+          <EuiFlexItem grow={false}>
+            <HistoryPopover items={historyItems} />
+          </EuiFlexItem>
+        )}
+
         {titleNode && <EuiFlexItem grow={false}>{titleNode}</EuiFlexItem>}
 
         <EuiFlexItem grow={true}></EuiFlexItem>

@@ -73,8 +73,9 @@ export const useFlyoutActivityStage = ({
     let next: EuiFlyoutActivityStage | null = null;
 
     if (s === STAGE_ACTIVE && !isActive) next = STAGE_CLOSING;
-    else if (s === STAGE_INACTIVE && isActive) next = STAGE_RETURNING;
-    else if (
+    else if (s === STAGE_INACTIVE && isActive) {
+      next = STAGE_RETURNING;
+    } else if (
       level === LEVEL_MAIN &&
       isActive &&
       s === STAGE_ACTIVE &&
@@ -96,24 +97,44 @@ export const useFlyoutActivityStage = ({
   }, [isActive, hasChild, layoutMode, level, ctx, flyoutId, stage]);
 
   /**
-   * OPENING / RETURNING -> ACTIVE
-   * CLOSING -> INACTIVE
-   * BACKGROUNDING -> BACKGROUNDED
+   * Get the stage to transition to for given current stage.
+   * Returns `null` if stage should remain unchanged.
+   *
+   * Stage transitions:
+   *  - OPENING / RETURNING -> ACTIVE
+   *  - CLOSING -> INACTIVE
+   *  - BACKGROUNDING -> BACKGROUNDED
+   */
+  const getNextStage = (
+    stage: EuiFlyoutActivityStage
+  ): EuiFlyoutActivityStage | null => {
+    switch (stage) {
+      case STAGE_OPENING:
+      case STAGE_RETURNING:
+        return STAGE_ACTIVE;
+
+      case STAGE_CLOSING:
+        return STAGE_INACTIVE;
+
+      case STAGE_BACKGROUNDING:
+        return STAGE_BACKGROUNDED;
+    }
+
+    return null;
+  };
+
+  /**
+   * onAnimationEnd event handler that must be passed to EuiFlyout.
+   * It handles transitions between stages and updates activity stage
+   * in EuiFlyoutManagerContext.
    */
   const onAnimationEnd = useCallback(() => {
-    const s = stageRef.current;
-    const next: EuiFlyoutActivityStage | null =
-      s === STAGE_OPENING || s === STAGE_RETURNING
-        ? STAGE_ACTIVE
-        : s === STAGE_CLOSING
-        ? STAGE_INACTIVE
-        : s === STAGE_BACKGROUNDING
-        ? STAGE_BACKGROUNDED
-        : null;
+    const currentStage = stageRef.current;
+    const nextStage = getNextStage(currentStage);
 
-    if (next && next !== s) {
-      ctx?.dispatch?.(setActivityStage(flyoutId, next));
-      stageRef.current = next;
+    if (nextStage && nextStage !== currentStage) {
+      ctx?.dispatch?.(setActivityStage(flyoutId, nextStage));
+      stageRef.current = nextStage;
     }
   }, [ctx, flyoutId]);
 

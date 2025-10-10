@@ -66,7 +66,7 @@ describe('Flyout Size Validation', () => {
       const error = validateFlyoutTitle('', 'test-id', 'main');
       expect(error).toEqual({
         type: 'INVALID_FLYOUT_MENU_TITLE',
-        message: `Managed flyouts require either a 'flyoutMenuProps' a 'title' property, or an 'aria-label' to provide the title.`,
+        message: `Managed flyouts require either a 'flyoutMenuProps.title' or an 'aria-label' to provide the flyout menu title.`,
         flyoutId: 'test-id',
         level: 'main',
       });
