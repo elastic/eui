@@ -6,85 +6,21 @@
  * Side Public License, v 1.
  */
 
-import { AnimationEventHandler, useCallback, useEffect, useState } from 'react';
-import type { EuiFlyoutProps } from './flyout';
-import { useIsInManagedFlyout } from './manager';
-import type { EuiFlyoutCloseEvent } from './types';
+import { AnimationEventHandler, useCallback, useState } from 'react';
 
-export type EuiFlyoutOpenState = 'opening' | 'open' | 'closing' | 'closed';
+export type EuiFlyoutOpenState = 'opening' | 'open';
 
-interface UseEuiFlyoutOpenStateArgs {
-  isOpen: EuiFlyoutProps['isOpen'];
-  onClose: EuiFlyoutProps['onClose'];
-  onClosing: EuiFlyoutProps['onClosing'];
-}
-
-export const useEuiFlyoutOpenState = ({
-  isOpen,
-  onClose,
-  onClosing,
-}: UseEuiFlyoutOpenStateArgs) => {
-  const [openState, setOpenState] = useState<EuiFlyoutOpenState>(
-    isOpen ? 'open' : 'closed'
-  );
-  const isInManagedFlyout = useIsInManagedFlyout();
-
-  useEffect(() => {
-    // Check for matching state
-    if (
-      (isOpen && openState === 'open') ||
-      (!isOpen && openState === 'closed')
-    ) {
-      return;
-    }
-
-    if (isOpen && (openState === 'closing' || openState === 'closed')) {
-      setOpenState('opening');
-    }
-
-    if (!isOpen && (openState === 'opening' || openState === 'open')) {
-      setOpenState('closing');
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isOpen]);
-
-  useEffect(() => {
-    // For managed flyouts, don't auto-call onClose - let the manager handle it
-    if (openState === 'closed' && !isInManagedFlyout) {
-      onClose();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [openState, isInManagedFlyout]);
+export const useEuiFlyoutOpenState = () => {
+  const [openState, setOpenState] = useState<EuiFlyoutOpenState>('opening');
 
   const onAnimationEnd = useCallback<AnimationEventHandler>(() => {
-    if (openState === 'closing') {
-      setOpenState('closed');
-    }
-
     if (openState === 'opening') {
       setOpenState('open');
     }
   }, [openState, setOpenState]);
 
-  const closeFlyout = useCallback(
-    (event?: EuiFlyoutCloseEvent) => {
-      if (openState === 'closed' || openState === 'closing') {
-        return;
-      }
-
-      onClosing?.(event);
-
-      setOpenState('closing');
-
-      // onClose() will be called by the effect above when openState === 'closed'
-    },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [openState, setOpenState]
-  );
-
   return {
     openState,
     onAnimationEnd,
-    closeFlyout,
   };
 };

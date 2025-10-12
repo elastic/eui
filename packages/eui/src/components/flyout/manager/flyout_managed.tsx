@@ -76,7 +76,6 @@ export const EuiManagedFlyout = ({
   level,
   size = 'm',
   css: customCss,
-  isOpen = true,
   flyoutMenuProps: _flyoutMenuProps,
   ...props
 }: EuiManagedFlyoutProps) => {
@@ -143,29 +142,30 @@ export const EuiManagedFlyout = ({
 
   // Register with flyout manager context when open, remove when closed
   useEffect(() => {
-    if (isOpen) {
-      addFlyout(flyoutId, title!, level, size as string);
-    } else {
+    addFlyout(flyoutId, title!, level, size as string);
+
+    return () => {
       closeFlyout(flyoutId);
+
       // Reset navigation tracking when explicitly closed via isOpen=false
       wasRegisteredRef.current = false;
-    }
-  }, [isOpen, flyoutId, title, level, size, addFlyout, closeFlyout]);
+    };
+  }, [flyoutId, title, level, size, addFlyout, closeFlyout]);
 
   // Detect when flyout has been removed from manager state (e.g., via Back button)
   // and trigger onClose callback to notify the parent component
   useEffect(() => {
-    if (isOpen && flyoutExistsInManager) {
+    if (flyoutExistsInManager) {
       wasRegisteredRef.current = true;
     }
 
     // If flyout was previously registered, is marked as open, but no longer exists in manager state,
     // it was removed via navigation (Back button) - trigger close callback
-    if (wasRegisteredRef.current && isOpen && !flyoutExistsInManager) {
+    if (wasRegisteredRef.current && !flyoutExistsInManager) {
       onCloseCallbackRef.current?.(new MouseEvent('navigation'));
       wasRegisteredRef.current = false; // Reset to avoid repeated calls
     }
-  }, [flyoutExistsInManager, isOpen, flyoutId]);
+  }, [flyoutExistsInManager, flyoutId]);
 
   // Monitor current session changes and fire onActive callback when this flyout becomes active
   useEffect(() => {
@@ -250,7 +250,6 @@ export const EuiManagedFlyout = ({
             size,
             flyoutMenuProps,
             onAnimationEnd,
-            isOpen,
             [PROPERTY_FLYOUT]: true,
             [PROPERTY_LAYOUT_MODE]: layoutMode,
             [PROPERTY_LEVEL]: level,
