@@ -38,8 +38,22 @@ export type EuiFlyoutProps<T extends ElementType = 'div' | 'nav'> = Omit<
   EuiFlyoutComponentProps<T>,
   'as'
 > & {
+  /**
+   * Enable session management to create flyout compositions and journeys
+   * like side-to-side flyout rendering based on parent-child grouping,
+   * simple flyout transitions, history, and more.
+   *
+   * Check out [EuiFlyout session management](https://eui.elastic.co/docs/components/containers/flyout/session_management)
+   * to learn more.
+   */
   session?: boolean;
+  /**
+   * A callback that fires when a flyout in a [session]{@link EuiFlyoutProps.session} becomes active
+   */
   onActive?: () => void;
+  /**
+   * Sets the HTML element for `EuiFlyout`
+   */
   as?: T;
 };
 

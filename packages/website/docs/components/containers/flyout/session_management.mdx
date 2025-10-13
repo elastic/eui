@@ -1,0 +1,138 @@
+---
+sidebar_label: Session management
+---
+
+# Flyout session management
+
+EuiFlyout comes with opt-in flyout session management built in that lets you
+effortlessly create complex flyout compositions and journeys.
+It handles side-by-side flyout rendering based on parent-child grouping,
+simple flyout transitions, state sharing, and more.
+
+```tsx interactive
+return () => {
+  const [isOpenFlyoutA, setIsOpenFlyoutA] = useState(false);
+  const [isOpenFlyoutB, setIsOpenFlyoutB] = useState(false);
+  const [isOpenFlyoutBChild, setIsOpenFlyoutBChild] = useState(false);
+  const [name, setName] = useState('');
+
+  return (
+    <>
+      <EuiButton disabled={isOpenFlyoutA} onClick={() => setIsOpenFlyoutA((val) => !val)}>Open Flyout A</EuiButton>
+      {isOpenFlyoutA && (
+        <EuiFlyout session size="s" aria-label="Flyout A - main" onClose={() => setIsOpenFlyoutA(false)}>
+          <EuiFlyoutHeader>
+            <EuiTitle><h2>Welcome to the flyout session management journey!</h2></EuiTitle>
+          </EuiFlyoutHeader>
+          <EuiFlyoutBody>
+            <EuiText>This flyout is rendered with the <EuiCode>session=&#123;true&#125;</EuiCode> prop set which creates a new flyout session and marks this flyout as main.</EuiText>
+            <EuiSpacer />
+            <EuiFormRow label="What's your name?" fullWidth>
+              <EuiFieldText value={name} onChange={(e) => setName(e.target.value)} />
+            </EuiFormRow>
+            <EuiSpacer />
+            <EuiButton onClick={() => { setIsOpenFlyoutB(true); }}>Next step</EuiButton>
+          </EuiFlyoutBody>
+        </EuiFlyout>
+      )}
+      {isOpenFlyoutB && (
+        <EuiFlyout session size="m" aria-label="Flyout B - main" onClose={() => setIsOpenFlyoutB(false)}>
+          <EuiFlyoutHeader>
+            <EuiTitle><h2>Glad to meet you, {name || 'stranger'}!</h2></EuiTitle>
+          </EuiFlyoutHeader>
+          <EuiFlyoutBody>
+            <EuiText>
+              This flyout is also rendered with the <EuiCode>session=&#123;true&#125;</EuiCode> prop added which creates a <strong>second flyout session</strong> and marks this flyout as main in that session.
+              <br /><br />
+              The first flyout still exists but is currently hidden since this one took precedence. You can jump back to it by clicking the <i>Back</i> button above if you'd like.
+            </EuiText>
+            <EuiSpacer />
+            <EuiButton onClick={() => setIsOpenFlyoutBChild((val) => !val)}>
+              {isOpenFlyoutBChild ? 'Close child flyout' : 'Open child flyout'}
+            </EuiButton>
+          </EuiFlyoutBody>
+          {isOpenFlyoutBChild && (
+            <EuiFlyout size="s" aria-label="Flyout B - child" onClose={() => setIsOpenFlyoutBChild(false)}>
+              <EuiFlyoutBody>
+                <EuiText>
+                  This is a <strong>child flyout</strong> of Flyout B. It belongs to the same session as Flyout B because it's rendered inside of it and doesn't have the <EuiCode>session</EuiCode> prop set.
+                  <br /><br />
+                  If you close <i>Flyout B - main</i>, this flyout will close, too.
+                </EuiText>
+                <EuiSpacer />
+                <EuiText>Try out the Back button to transition back to Flyout A ➡️</EuiText>
+                <EuiSpacer />
+                <EuiButton onClick={() => { setIsOpenFlyoutB(false); setIsOpenFlyoutA(false); }}>Close all</EuiButton>
+              </EuiFlyoutBody>
+            </EuiFlyout>
+          )}
+        </EuiFlyout>
+      )}
+    </>
+  );
+};
+```
+
+## Sessions
+
+The `session` prop is the key ingredient needed to create managed flyouts.
+When set to `true`, it activates the underlying flyout session management logic
+which handles virtually everything you need to create multi-flyout user flows
+including side-by-side flyouts and flyout stacks with history support.
+
+Managed flyouts work seamlessly with other managed and unmanaged (regular)
+flyouts across the application, so you can begin integrating them without worry
+about compatibility issues.
+
+Each time you set `session={true}`, you create a new flyout session and mark
+the rendered flyout as [main](#main-flyouts).
+To create a [child flyout](#child-flyouts) - a flyout that belongs to the same
+session as the main flyout - you simply render it inside the main flyout.
+All bindings and configuration will be handled automatically.
+
+```tsx
+{/* Render a new main flyout and create a flyout session */}
+<EuiFlyout session={true}>
+  <EuiFlyoutBody>
+    I'm the main flyout
+  </EuiFlyoutBody>
+  {/* Render a new child flyout - notice the lack of the `session` prop */}
+  <EuiFlyout>
+    I'm the child flyout that belongs to the same session as the main flyout
+  </EuiFlyout>
+</EuiFlyout>
+```
+
+## Types of managed flyouts
+
+While users of managed flyouts don't need to think about the types
+of managed flyouts or the internals behind them, it's beneficial to understand
+what differentiates the two types - _main_ and _child_.
+
+### Main flyouts
+
+Main flyouts are the backbone of EuiFlyout's session management. Each flyout
+with `session={true}` prop creates a new session and becomes the main flyout
+in that session. They're included in the history and can be jumped back to
+using the history popover.
+
+Main flyouts are meant to display primary level information like the overview
+of an alert.
+
+### Child flyouts
+
+Child flyouts are directly related to a main flyout in their session.
+They're created by rendering a `EuiFlyout` **without the session prop** inside
+a [main flyout](#main-flyouts) - a flyout with `session={true}` prop set.
+
+They're meant to display secondary level information like the alert visualization.
+
+Child flyouts accept an optional `backgroundStyle` prop that lets you change
+the style of the flyout background to shaded ([`colors.backgroundBaseSubdued`](../../../getting-started/theming/tokens/colors/index.mdx#:~:text=colors.backgroundBaseSubdued)).
+
+On smaller screens, child flyouts stack above the parent.
+
+## Accessibility
+
+Both parent and child flyouts use `role="dialog"` and `aria-modal="true"` for accessibility. Focus is managed automatically between them, with the child flyout taking focus when open and returning focus to the parent when closed.
+
