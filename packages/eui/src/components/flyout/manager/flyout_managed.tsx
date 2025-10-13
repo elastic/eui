@@ -74,7 +74,7 @@ export const EuiManagedFlyout = ({
   onClose: onCloseProp,
   onActive: onActiveProp,
   level,
-  size = 'm',
+  size: sizeProp,
   css: customCss,
   flyoutMenuProps: _flyoutMenuProps,
   ...props
@@ -88,6 +88,9 @@ export const EuiManagedFlyout = ({
   const parentFlyout = useCurrentMainFlyout();
   const layoutMode = useFlyoutLayoutMode();
   const styles = useEuiMemoizedStyles(euiManagedFlyoutStyles);
+
+  // Set default size based on level: main defaults to 'm', child defaults to 's'
+  const size = sizeProp ?? (level === LEVEL_CHILD ? 's' : 'm');
 
   // Validate size
   const sizeTypeError = validateManagedFlyoutSize(size, flyoutId, level);
