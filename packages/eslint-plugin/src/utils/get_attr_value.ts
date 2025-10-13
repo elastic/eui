@@ -8,19 +8,29 @@
 
 import { type TSESTree, type TSESLint} from '@typescript-eslint/utils';
 
-export function getAttrValue<
+export function findAttrValue<
   TContext extends TSESLint.RuleContext<string, unknown[]>
 >(
   context: TContext,
   attributes: TSESTree.JSXOpeningElement['attributes'],
   attrName: string
-): string | undefined {
+) {
   const attr = attributes.find(
     (attr): attr is TSESTree.JSXAttribute =>
       attr.type === 'JSXAttribute' &&
       attr.name.type === 'JSXIdentifier' &&
       attr.name.name === attrName
   );
+
+  return extractAttrValue(context, attr);
+}
+
+export function extractAttrValue<
+  TContext extends TSESLint.RuleContext<string, unknown[]>
+>(
+  context: TContext,
+  attr: TSESTree.JSXAttribute | undefined,
+): string | undefined {
 
   if (!attr?.value) {
     return undefined;
