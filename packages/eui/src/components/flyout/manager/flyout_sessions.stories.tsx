@@ -11,6 +11,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import React, {
   useCallback,
   useEffect,
+  useLayoutEffect,
   useMemo,
   useRef,
   useState,
@@ -332,8 +333,8 @@ const ExternalRootChildFlyout: React.FC<{ parentId: string }> = ({
 }) => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const handleOpen = () => {
-    setIsOpen(true);
+  const handleToggle = () => {
+    setIsOpen((prev) => !prev);
   };
 
   const handleClose = () => {
@@ -346,8 +347,8 @@ const ExternalRootChildFlyout: React.FC<{ parentId: string }> = ({
         <h4>Root within {parentId}</h4>
       </EuiTitle>
       <EuiSpacer size="s" />
-      <EuiButton onClick={handleOpen} size="s">
-        Open Child Flyout
+      <EuiButton onClick={handleToggle} size="s" disabled={isOpen}>
+        Open child flyout
       </EuiButton>
       {isOpen && (
         <EuiFlyout
@@ -375,45 +376,48 @@ const ExternalRootChildFlyout: React.FC<{ parentId: string }> = ({
 
 const ExternalRootFlyout: React.FC<{ id: string }> = ({ id }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [buttonRoot, setButtonRoot] = useState<Root | null>(null);
   const buttonContainerRef = useRef<HTMLDivElement | null>(null);
+  const buttonRootRef = useRef<Root | null>(null);
 
-  // Create the button to open the child flyout in a separate React root
+  // Manage the React root lifecycle for the child flyout button
   useEffect(() => {
-    if (isOpen) {
-      // Use setTimeout to ensure the DOM element is rendered
-      const timer = setTimeout(() => {
-        if (buttonContainerRef.current) {
-          const newRoot = createRoot(buttonContainerRef.current);
-          newRoot.render(
-            <EuiProvider>
-              <ExternalRootChildFlyout parentId={id} />
-            </EuiProvider>
-          );
-          setButtonRoot(newRoot);
-        }
-      }, 100);
-
-      return () => clearTimeout(timer);
+    if (!isOpen) {
+      // Clean up when closing
+      if (buttonRootRef.current) {
+        buttonRootRef.current.unmount();
+        buttonRootRef.current = null;
+      }
+      return;
     }
+
+    // When opening, wait for flyout to render before creating nested root
+    const timer = setTimeout(() => {
+      if (buttonContainerRef.current && !buttonRootRef.current) {
+        const newRoot = createRoot(buttonContainerRef.current);
+        newRoot.render(
+          <EuiProvider>
+            <ExternalRootChildFlyout parentId={id} />
+          </EuiProvider>
+        );
+        buttonRootRef.current = newRoot;
+      }
+    }, 0);
+
+    return () => {
+      clearTimeout(timer);
+      // Don't unmount here - let the !isOpen case handle cleanup
+    };
   }, [isOpen, id]);
 
-  // Cleanup the button root for opening the child flyout when the main flyout closes
-  useEffect(() => {
-    if (!isOpen && buttonRoot) {
-      buttonRoot.unmount();
-      setButtonRoot(null);
-    }
-  }, [isOpen, buttonRoot]);
-
-  // Cleanup the main flyout's root on unmount
+  // Cleanup on unmount
   useEffect(() => {
     return () => {
-      if (buttonRoot) {
-        buttonRoot.unmount();
+      if (buttonRootRef.current) {
+        buttonRootRef.current.unmount();
+        buttonRootRef.current = null;
       }
     };
-  }, [buttonRoot]);
+  }, []);
 
   return (
     <EuiPanel hasBorder paddingSize="m" grow={false}>
@@ -460,28 +464,29 @@ const MultiRootFlyoutDemo: React.FC = () => {
   const tertiaryRootRef = useRef<HTMLDivElement | null>(null);
   const mountedRootsRef = useRef<Root[]>([]);
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      if (secondaryRootRef.current && tertiaryRootRef.current) {
-        const containers = [
-          { container: secondaryRootRef.current, id: 'Secondary root' },
-          { container: tertiaryRootRef.current, id: 'Tertiary root' },
-        ];
+  useLayoutEffect(() => {
+    if (
+      secondaryRootRef.current &&
+      tertiaryRootRef.current &&
+      mountedRootsRef.current.length === 0
+    ) {
+      const containers = [
+        { container: secondaryRootRef.current, id: 'Secondary root' },
+        { container: tertiaryRootRef.current, id: 'Tertiary root' },
+      ];
 
-        mountedRootsRef.current = containers.map(({ container, id }) => {
-          const root = createRoot(container);
-          root.render(
-            <EuiProvider>
-              <ExternalRootFlyout id={id} />
-            </EuiProvider>
-          );
-          return root;
-        });
-      }
-    }, 100);
+      mountedRootsRef.current = containers.map(({ container, id }) => {
+        const root = createRoot(container);
+        root.render(
+          <EuiProvider>
+            <ExternalRootFlyout id={id} />
+          </EuiProvider>
+        );
+        return root;
+      });
+    }
 
     return () => {
-      clearTimeout(timer);
       mountedRootsRef.current.forEach((root) => root.unmount());
       mountedRootsRef.current = [];
     };
