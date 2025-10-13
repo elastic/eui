@@ -131,79 +131,80 @@ const FlyoutSession: React.FC<FlyoutSessionProps> = React.memo((props) => {
           Open {title}
         </EuiButton>
       </EuiText>
-      <EuiFlyout
-        isOpen={isFlyoutVisible}
-        id={`mainFlyout-${title}`}
-        session={true}
-        flyoutMenuProps={{ title: `${title} - Main` }}
-        size={mainSize}
-        maxWidth={mainMaxWidth}
-        type={flyoutType}
-        ownFocus={false}
-        pushAnimation={true}
-        onActive={mainFlyoutOnActive}
-        onClose={mainFlyoutOnClose}
-      >
-        <EuiFlyoutBody>
-          <EuiText>
-            <p>This is the content of {title}.</p>
-            <EuiSpacer size="s" />
-            <EuiDescriptionList
-              type="column"
-              listItems={[
-                { title: 'Flyout type', description: flyoutType },
-                {
-                  title: 'Main flyout size',
-                  description: mainSize ?? 'undefined (`m` by default)',
-                },
-                {
-                  title: 'Main flyout maxWidth',
-                  description: mainMaxWidth ?? 'N/A',
-                },
-              ]}
-            />
-            {childSize && (
-              <EuiButton
-                onClick={handleOpenChildFlyout}
-                disabled={isChildFlyoutVisible}
-              >
-                Open child flyout
-              </EuiButton>
-            )}
-          </EuiText>
-        </EuiFlyoutBody>
-        {childSize && (
-          <EuiFlyout
-            isOpen={isChildFlyoutVisible}
-            id={`childFlyout-${title}`}
-            flyoutMenuProps={{ title: `${title} - Child` }}
-            size={childSize}
-            maxWidth={childMaxWidth}
-            onActive={childFlyoutOnActive}
-            onClose={childFlyoutOnClose}
-          >
-            <EuiFlyoutBody>
-              <EuiText>
-                <p>This is the content of the child flyout of {title}.</p>
-                <EuiSpacer size="s" />
-                <EuiDescriptionList
-                  type="column"
-                  listItems={[
-                    {
-                      title: 'Child flyout size',
-                      description: childSize ?? 'N/A',
-                    },
-                    {
-                      title: 'Child flyout maxWidth',
-                      description: childMaxWidth ?? 'N/A',
-                    },
-                  ]}
-                />
-              </EuiText>
-            </EuiFlyoutBody>
-          </EuiFlyout>
-        )}
-      </EuiFlyout>
+      {isFlyoutVisible && (
+        <EuiFlyout
+          id={`mainFlyout-${title}`}
+          session={true}
+          flyoutMenuProps={{ title: `${title} - Main` }}
+          size={mainSize}
+          maxWidth={mainMaxWidth}
+          type={flyoutType}
+          ownFocus={false}
+          pushAnimation={true}
+          onActive={mainFlyoutOnActive}
+          onClose={mainFlyoutOnClose}
+        >
+          <EuiFlyoutBody>
+            <EuiText>
+              <p>This is the content of {title}.</p>
+              <EuiSpacer size="s" />
+              <EuiDescriptionList
+                type="column"
+                listItems={[
+                  { title: 'Flyout type', description: flyoutType },
+                  {
+                    title: 'Main flyout size',
+                    description: mainSize ?? 'undefined (`m` by default)',
+                  },
+                  {
+                    title: 'Main flyout maxWidth',
+                    description: mainMaxWidth ?? 'N/A',
+                  },
+                ]}
+              />
+              {childSize && (
+                <EuiButton
+                  onClick={handleOpenChildFlyout}
+                  disabled={isChildFlyoutVisible}
+                >
+                  Open child flyout
+                </EuiButton>
+              )}
+            </EuiText>
+          </EuiFlyoutBody>
+          {childSize && isChildFlyoutVisible && (
+            <EuiFlyout
+              id={`childFlyout-${title}`}
+              flyoutMenuProps={{ title: `${title} - Child` }}
+              aria-labelledby="childFlyoutTitle"
+              size={childSize}
+              maxWidth={childMaxWidth}
+              onActive={childFlyoutOnActive}
+              onClose={childFlyoutOnClose}
+            >
+              <EuiFlyoutBody>
+                <EuiText>
+                  <p>This is the content of the child flyout of {title}.</p>
+                  <EuiSpacer size="s" />
+                  <EuiDescriptionList
+                    type="column"
+                    listItems={[
+                      {
+                        title: 'Child flyout size',
+                        description: childSize ?? 'N/A',
+                      },
+                      {
+                        title: 'Child flyout maxWidth',
+                        description: childMaxWidth ?? 'N/A',
+                      },
+                    ]}
+                  />
+                </EuiText>
+              </EuiFlyoutBody>
+            </EuiFlyout>
+          )}
+        </EuiFlyout>
+      )}
     </>
   );
 });
@@ -348,25 +349,26 @@ const ExternalRootChildFlyout: React.FC<{ parentId: string }> = ({
       <EuiButton onClick={handleOpen} size="s">
         Open Child Flyout
       </EuiButton>
-      <EuiFlyout
-        id={`child-flyout-${parentId}`}
-        isOpen={isOpen}
-        size="s"
-        onClose={handleClose}
-        flyoutMenuProps={{ title: `Child flyout of ${parentId}` }}
-        data-test-subj="child-flyout-in-new-root"
-      >
-        <EuiFlyoutBody>
-          <EuiText>
-            <p>
-              This is a child flyout rendered in a completely separate React
-              root! It shares the same flyout manager state as the parent.
-            </p>
-            <EuiSpacer size="s" />
-            <p>Parent ID: {parentId}</p>
-          </EuiText>
-        </EuiFlyoutBody>
-      </EuiFlyout>
+      {isOpen && (
+        <EuiFlyout
+          id={`child-flyout-${parentId}`}
+          size="s"
+          onClose={handleClose}
+          flyoutMenuProps={{ title: `Child flyout of ${parentId}` }}
+          data-test-subj="child-flyout-in-new-root"
+        >
+          <EuiFlyoutBody>
+            <EuiText>
+              <p>
+                This is a child flyout rendered in a completely separate React
+                root! It shares the same flyout manager state as the parent.
+              </p>
+              <EuiSpacer size="s" />
+              <p>Parent ID: {parentId}</p>
+            </EuiText>
+          </EuiFlyoutBody>
+        </EuiFlyout>
+      )}
     </EuiPanel>
   );
 };
@@ -422,32 +424,33 @@ const ExternalRootFlyout: React.FC<{ id: string }> = ({ id }) => {
       <EuiButton onClick={() => setIsOpen((prev) => !prev)}>
         {isOpen ? 'Close flyout' : 'Open flyout'}
       </EuiButton>
-      <EuiFlyout
-        id={`external-root-${id}`}
-        isOpen={isOpen}
-        session
-        size="m"
-        onClose={() => setIsOpen(false)}
-        flyoutMenuProps={{ title: `${id} flyout` }}
-      >
-        <EuiFlyoutBody>
-          <EuiText>
-            <p>
-              This flyout lives in a separate React root but shares the same
-              manager state. Closing it here should update all other flyout
-              menus and history.
-            </p>
-            <EuiSpacer size="m" />
-            <p>
-              Below is a button rendered in a separate React root that opens a
-              child flyout:
-            </p>
-            <EuiSpacer size="s" />
-            {/* Container for the button React root - inside the main flyout */}
-            <div ref={buttonContainerRef} />
-          </EuiText>
-        </EuiFlyoutBody>
-      </EuiFlyout>
+      {isOpen && (
+        <EuiFlyout
+          id={`external-root-${id}`}
+          session
+          size="m"
+          onClose={() => setIsOpen(false)}
+          flyoutMenuProps={{ title: `${id} flyout` }}
+        >
+          <EuiFlyoutBody>
+            <EuiText>
+              <p>
+                This flyout lives in a separate React root but shares the same
+                manager state. Closing it here should update all other flyout
+                menus and history.
+              </p>
+              <EuiSpacer size="m" />
+              <p>
+                Below is a button rendered in a separate React root that opens a
+                child flyout:
+              </p>
+              <EuiSpacer size="s" />
+              {/* Container for the button React root - inside the main flyout */}
+              <div ref={buttonContainerRef} />
+            </EuiText>
+          </EuiFlyoutBody>
+        </EuiFlyout>
+      )}
     </EuiPanel>
   );
 };
