@@ -1,9 +1,9 @@
 ---
-sidebar_label: Guidelines
+sidebar_label: Usage
 sidebar_position: 0
 ---
 
-# Form layouts guidelines
+# Form layout usage
 
 import { EuiFormRow, EuiFieldText, EuiFlexGroup, EuiFlexGrid, EuiFlexItem, EuiPanel, EuiButton } from '@elastic/eui';
 
@@ -26,7 +26,7 @@ Our form components try to be as informative and clear as possible for the user 
   </EuiPanel>
   <EuiPanel paddingSize="m">
     <h4>Validate on blur</h4>
-    [Validation](../validation/guidelines.mdx) should occur on blur from an input field. The submit button should be active by default, then show errors after click. Error messages should be specific to the situation.
+    [Validation](../validation.mdx) should occur on blur from an input field. The submit button should be active by default, then show errors after click. Error messages should be specific to the situation.
   </EuiPanel>
 </EuiFlexGrid>
 
@@ -130,152 +130,6 @@ If multiple sub-steps are needed, grouping them together using an **EuiDescribed
 3. **Forms with complex nested options**<br />
 A described group is useful when there are parts of the form that can be hidden and shown by the user. The toggle to hide and show the row should be beneath the description and the following form fields should be in the right column with the other form fields.
 
-## Form copy
+import FormUsage from '../_partials/form-usage.mdx';
 
-### Labels
-
-Avoid long labels, but don't sacrifice clarity. If needed, put additional information in help text and tooltips.
-
-<EuiFlexGrid columns={2}>
-  <Guideline type="do" text="Say what the field is in the label. Use help text for additional information.">
-    <EuiFormRow
-      label="Version"
-      helpText="Use the `major.minor` format. You can use wildcards `*` to span over multiple versions."
-    >
-      <EuiFieldText placeholder="2.*" />
-    </EuiFormRow>
-  </Guideline>
-  <Guideline type="dont" text="Put everything in the label. It's hard to scan.">
-    <EuiFormRow label="Numeric version (e.g. `2.*`)">
-      <EuiFieldText />
-    </EuiFormRow>
-  </Guideline>
-</EuiFlexGrid>
-
-### Hint text
-
-Place hints and instructions outside a text field so it is always visible to the user. Keep the hint text short, maximum two sentences long. Use hint text to:
-
-- Explain **why you are asking a certain question**: "We will only email you if there is a problem with your order."
-- Provide **clarifying details** on what to type: "Enter the full 32-character ID."
-- Tell the user **where to find the information** you're asking for: "Find the Elasticsearch cluster ID on the main administration page of your deployment."
-
-<EuiFlexGrid columns={2}>
-  <Guideline type="do" text="Help users make the right decision by clarifying what goes inside a field.">
-    <EuiFormRow
-      label="Timeout"
-      helpText="Use shorthand notation, such as 30s, 10m, or 1h."
-    >
-      <EuiFieldText />
-    </EuiFormRow>
-  </Guideline>
-  <Guideline type="do" text="Use complete sentences and ending punctuation.">
-    <EuiFormRow
-      label="Name"
-      helpText="This is the name that will be visible to other users."
-    >
-      <EuiFieldText />
-    </EuiFormRow>
-  </Guideline>
-</EuiFlexGrid>
-
-### Placeholder text
-
-Use the placeholder property to describe the expected value of the input or to provide a useful example.
-
-<EuiFlexGrid columns={2}>
-  <Guideline type="do" text="Provide a simple example that highlights the expected syntax or value.">
-    <EuiFormRow
-      label="Phone number"
-      helpText="Include the international call prefix."
-    >
-      <EuiFieldText placeholder="+33600000000" />
-    </EuiFormRow>
-  </Guideline>
-  <Guideline type="dont" text="Start with `for example`, or `e.g.`.">
-    <EuiFormRow label="Endpoint" helpText="Include the port number.">
-      <EuiFieldText placeholder="e.g. https://example.com:9500" />
-    </EuiFormRow>
-  </Guideline>
-</EuiFlexGrid>
-
-Add placeholder text in addition to field labels and help text, not as a replacement. Omit it if it doesn't add value for users. And keep it short.
-
-<EuiFlexGrid columns={2}>
-  <Guideline type="do" text="Place info essential to completing the form outside the field so that it is always visible.">
-    <EuiFormRow label="Source" helpText="Enter a valid IP address.">
-      <EuiFieldText placeholder="192.168.132.6" />
-    </EuiFormRow>
-  </Guideline>
-  <Guideline type="dont" text="Use text that adds no value, such as “Type here”.">
-    <EuiFormRow
-      label="Source"
-      helpText="Enter CIDR or IP address. For example, `192.168.132.6/22`."
-    >
-      <EuiFieldText placeholder="Type here" />
-    </EuiFormRow>
-  </Guideline>
-
-  <Guideline
-    text="When space is limited and the UI is very simple, you can use field labels as placeholder text. This must stay an exception."
-    panelStyle={{ minBlockSize: 94 }}
-  >
-    <EuiFlexGroup>
-      <EuiFlexItem>
-        <EuiFormRow>
-          <EuiFieldText placeholder="Key" />
-        </EuiFormRow>
-      </EuiFlexItem>
-      <EuiFlexItem>
-        <EuiFormRow>
-          <EuiFieldText placeholder="Value" />
-        </EuiFormRow>
-      </EuiFlexItem>
-      <EuiFlexItem grow={false}>
-        <EuiFormRow>
-          <EuiButton>Add</EuiButton>
-        </EuiFormRow>
-      </EuiFlexItem>
-    </EuiFlexGroup>
-  </Guideline>
-  <Guideline type="dont" text="If space allows it, prefer following the rule described earlier with labels outside of the fields.">
-    <EuiFlexGroup>
-      <EuiFlexItem>
-        <EuiFormRow label="Key">
-          <EuiFieldText />
-        </EuiFormRow>
-      </EuiFlexItem>
-      <EuiFlexItem>
-        <EuiFormRow label="Value">
-          <EuiFieldText />
-        </EuiFormRow>
-      </EuiFlexItem>
-      <EuiFlexItem grow={false}>
-        <EuiFormRow hasEmptyLabelSpace>
-          <EuiButton>Add</EuiButton>
-        </EuiFormRow>
-      </EuiFlexItem>
-    </EuiFlexGroup>
-  </Guideline>
-</EuiFlexGrid>
-
-In a search bar, be specific about what users can enter.
-
-import { EuiFieldSearch } from '@elastic/eui';
-
-<EuiFlexGrid columns={2}>
-  <Guideline type="do" text="Give users a hint at things they might want to search for. State the action the user performs (find, search) instead of the field functionality (jump to).">
-    <EuiFieldSearch
-      placeholder="Find apps and content. Ex: Discover"
-      value=""
-      onChange={() => {}}
-    />
-  </Guideline>
-  <Guideline type="dont" text="Use an ellipsis.">
-    <EuiFieldSearch
-      placeholder="Search..."
-      value=""
-      onChange={() => {}}
-    />
-  </Guideline>
-</EuiFlexGrid>
+<FormUsage />
