@@ -28,7 +28,7 @@ export const AccessibleInteractiveElements = ESLintUtils.RuleCreator.withoutDocs
 
         if (tabIndexAttribute && (Number(extractAttrValue(context, tabIndexAttribute)) || 0) === -1) {
           context.report({
-            node: tabIndexAttribute,
+            node:  node,
             messageId: 'disallowTabIndex',
             data: { component: componentName },
             fix: fixer => fixer.remove(tabIndexAttribute),

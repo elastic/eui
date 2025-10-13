@@ -19,7 +19,7 @@ import { NoUnnamedRadioGroup } from './rules/a11y/no_unnamed_radio_group';
 import { NoUnnamedInteractiveElement } from './rules/a11y/no_unnamed_interactive_element';
 import { TooltipFocusableAnchor } from './rules/a11y/tooltip_focusable_anchor';
 import { CallOutAnnounceOnMount } from './rules/a11y/callout_announce_on_mount';
-import { AccessibleInteractiveElements } from './rules/a11y/accessible_interactive_elements';
+import { AccessibleInteractiveElements } from './rules/a11y/accessible_interactive_element';
 
 const config = {
   rules: {
@@ -34,7 +34,7 @@ const config = {
     'callout-announce-on-mount': CallOutAnnounceOnMount,
     'no-unnamed-interactive-element': NoUnnamedInteractiveElement,
     'tooltip-focusable-anchor': TooltipFocusableAnchor,
-    'accessible-interactive-elements': AccessibleInteractiveElements,
+    'accessible-interactive-element': AccessibleInteractiveElements,
   },
   configs: {
     recommended: {

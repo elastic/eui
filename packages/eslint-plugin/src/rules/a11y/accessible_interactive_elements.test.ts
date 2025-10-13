@@ -8,7 +8,7 @@
 
 import dedent from 'dedent';
 import { RuleTester } from '@typescript-eslint/rule-tester';
-import { AccessibleInteractiveElements } from './accessible_interactive_elements';
+import { AccessibleInteractiveElements } from './accessible_interactive_element';
 
 const languageOptions = {
   parserOptions: {
@@ -20,7 +20,7 @@ const languageOptions = {
 
 const ruleTester = new RuleTester();
 
-ruleTester.run('accessible-interactive-elements', AccessibleInteractiveElements, {
+ruleTester.run('accessible-interactive-element', AccessibleInteractiveElements, {
   valid: [
     {
       code: dedent`
