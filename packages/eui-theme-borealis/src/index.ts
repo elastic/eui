@@ -15,6 +15,7 @@ import { base, size } from './variables/_size';
 import { border } from './variables/_borders';
 import { levels } from './variables/_levels';
 import { font } from './variables/_typography';
+import { shadows } from './variables/_shadows';
 import { focus } from './variables/_states';
 import { components } from './variables/_components';
 import { overrides } from './variables/_overrides';
@@ -35,6 +36,7 @@ export const euiThemeBorealis: EuiThemeShape = {
   animation,
   breakpoint,
   levels,
+  shadows,
   focus,
   components,
   flags: {
@@ -42,6 +44,7 @@ export const euiThemeBorealis: EuiThemeShape = {
     hasVisColorAdjustment: false,
     buttonVariant: 'refresh',
     formVariant: 'refresh',
+    shadowVariant: 'refresh',
   },
   overrides,
 };
