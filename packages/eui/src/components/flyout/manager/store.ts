@@ -48,11 +48,6 @@ function createStore(
   let currentState: EuiFlyoutManagerState = initial;
   const listeners = new Set<Listener>();
 
-  // Memoization for history items
-  let cachedHistoryItems: Array<{ title: string; onClick: () => void }> | null =
-    null;
-  let lastSessionsLength = -1;
-
   const getState = () => currentState;
 
   const subscribe = (listener: Listener) => {
@@ -62,15 +57,37 @@ function createStore(
     };
   };
 
+  // The onClick handlers won't execute until after store is fully assigned.
+  // eslint-disable-next-line prefer-const -- Forward declaration requires 'let' not 'const'
+  let store: FlyoutManagerStore;
+
+  const computeHistoryItems = (): Array<{
+    title: string;
+    onClick: () => void;
+  }> => {
+    const currentSessionIndex = currentState.sessions.length - 1;
+    const previousSessions = currentState.sessions.slice(
+      0,
+      currentSessionIndex
+    );
+    return previousSessions.reverse().map(({ title, mainFlyoutId }) => ({
+      title,
+      onClick: () => {
+        store.dispatch(goToFlyoutAction(mainFlyoutId));
+      },
+    }));
+  };
+
   const dispatch = (action: Action) => {
     const nextState = flyoutManagerReducer(currentState, action);
     if (nextState !== currentState) {
+      const previousSessions = currentState.sessions;
       currentState = nextState;
 
-      // Invalidate history items cache if sessions changed
-      if (currentState.sessions.length !== lastSessionsLength) {
-        cachedHistoryItems = null;
-        lastSessionsLength = currentState.sessions.length;
+      // Recompute history items eagerly if sessions changed
+      // This ensures stable references and avoids stale closures
+      if (nextState.sessions !== previousSessions) {
+        store.historyItems = computeHistoryItems();
       }
 
       listeners.forEach((l) => {
@@ -79,30 +96,7 @@ function createStore(
     }
   };
 
-  const getHistoryItems = () => {
-    // Return cached result if available
-    if (cachedHistoryItems !== null) {
-      return cachedHistoryItems;
-    }
-
-    const state = getState();
-    const currentSessionIndex = state.sessions.length - 1;
-    const previousSessions = state.sessions.slice(0, currentSessionIndex);
-    const result = previousSessions
-      .reverse()
-      .map(({ title, mainFlyoutId }) => ({
-        title,
-        onClick: () => {
-          dispatch(goToFlyoutAction(mainFlyoutId));
-        },
-      }));
-
-    // Cache the result
-    cachedHistoryItems = result;
-    return result;
-  };
-
-  return {
+  store = {
     getState,
     subscribe,
     dispatch,
@@ -114,12 +108,10 @@ function createStore(
       dispatch(setFlyoutWidthAction(flyoutId, width)),
     goBack: () => dispatch(goBackAction()),
     goToFlyout: (flyoutId) => dispatch(goToFlyoutAction(flyoutId)),
-
-    // Getter ensures fresh data on each access while maintaining React reactivity
-    get historyItems() {
-      return getHistoryItems();
-    },
+    historyItems: computeHistoryItems(), // Initialize with current state
   };
+
+  return store;
 }
 
 // Module-level singleton.  A necessary trade-off to avoid global namespace pollution or the need for a third-party library.
