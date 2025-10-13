@@ -26,7 +26,7 @@ export const EuiFlyoutManager: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const { getState, subscribe, ...rest } = getFlyoutManagerStore();
-  const state = useSyncExternalStore(subscribe, getState);
+  const state = useSyncExternalStore(subscribe, getState, getState);
 
   const api: FlyoutManagerApi = useMemo(
     () => ({ state, ...rest }),
