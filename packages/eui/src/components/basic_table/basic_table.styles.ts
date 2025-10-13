@@ -46,7 +46,14 @@ export const euiBasicTableBodyLoading = ({ euiTheme }: UseEuiTheme) => css`
     animation: ${tableLoadingLine} 1s linear infinite;
 
     ${euiCantAnimate} {
-      animation-duration: 2s;
+      animation: none;
+      background: repeating-linear-gradient(
+        -45deg,
+        transparent,
+        transparent ${euiTheme.size.xs},
+        ${euiTheme.colors.primary} ${euiTheme.size.xs},
+        ${euiTheme.colors.primary} ${euiTheme.size.s}
+      );
     }
   }
 `;
