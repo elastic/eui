@@ -1,12 +1,14 @@
-Use **EuiFlyoutResizable** to render a flyout that users can drag with their mouse or use arrow keys to resize. This may be useful for scenarios where the available space can be unpredictable due to dynamic content. Resizable flyouts allow users to adjust content to better fit their personal screens and workflows.
+Set the `resizable={true}` prop to render a flyout that users can drag with their mouse or use arrow keys to resize. This may be useful for scenarios where the available space can be unpredictable due to dynamic content. Resizable flyouts allow users to adjust content to better fit their personal screens and workflows.
+
+Alternatively, you can also use the `EuiFlyoutResizable` component which is a thin wrapper around `EuiFlyout` that sets the `resizable` prop for you. When writing new code, we recommend using the regular `EuiFlyout` component with `resizable={true}` added.
 
 We strongly recommend setting reasonable numerical `minWidth` and `maxWidth` props based on the flyout content and page content that you _can_ predict.
 
 ```tsx interactive
 import React, { useState } from 'react';
 import {
-  EuiFlyoutResizable,
-  EuiFlyoutProps,
+  EuiFlyout,
+  type EuiFlyoutProps,
   EuiFlyoutBody,
   EuiFlyoutHeader,
   EuiButton,
@@ -19,8 +21,8 @@ import {
 
 export default () => {
   const [isFlyoutVisible, setIsFlyoutVisible] = useState(false);
-  const [flyoutType, setFlyoutType] = useState('overlay');
-  const [flyoutSide, setFlyoutSide] = useState('right');
+  const [flyoutType, setFlyoutType] = useState<EuiFlyoutProps['type']>('overlay');
+  const [flyoutSide, setFlyoutSide] = useState<EuiFlyoutProps['side']>('right');
 
   const flyoutTitleId = useGeneratedHtmlId({
     prefix: 'simpleFlyoutTitle',
@@ -30,9 +32,10 @@ export default () => {
 
   if (isFlyoutVisible) {
     flyout = (
-      <EuiFlyoutResizable
-        type={flyoutType as EuiFlyoutProps['type']}
-        side={flyoutSide as EuiFlyoutProps['side']}
+      <EuiFlyout
+        resizable
+        type={flyoutType}
+        side={flyoutSide}
         onClose={() => setIsFlyoutVisible(false)}
         aria-labelledby={flyoutTitleId}
       >
@@ -77,7 +80,7 @@ export default () => {
             onChange={(id) => setFlyoutSide(id)}
           />
         </EuiFlyoutBody>
-      </EuiFlyoutResizable>
+      </EuiFlyout>
     );
   }
 
