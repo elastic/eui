@@ -237,9 +237,12 @@ export class EuiIconClass extends PureComponent<
       className,
       tabIndex,
       title,
+      role,
       onIconLoad,
       style,
       stylesMemoizer,
+      'aria-hidden': ariaHidden,
+      titleId,
       ...rest
     } = this.props;
 
@@ -281,34 +284,36 @@ export class EuiIconClass extends PureComponent<
 
     const icon = this.state.icon || empty;
 
+    const isAriaHidden =
+      !(title || this.props['aria-label'] || this.props['aria-labelledby']) ||
+      ['none', 'presentation'].includes(role ?? '') ||
+      [true, 'true'].includes(ariaHidden ?? false);
+
+    const accessibleTitle = isAriaHidden ? undefined : title;
+    const accessibleRole = isAriaHidden ? 'presentation' : 'img';
+
     if (typeof icon === 'string') {
       return (
         <img
-          alt={title ? title : ''}
+          alt={accessibleTitle}
           src={icon}
           className={classes}
           css={cssStyles}
           style={style}
           tabIndex={tabIndex}
+          role={accessibleRole}
           {...(rest as ImgHTMLAttributes<HTMLImageElement>)}
         />
       );
     } else {
       const Svg = icon;
 
-      // If there is no aria-label, aria-labelledby, or title it gets aria-hidden true
-      const isAriaHidden = !(
-        this.props['aria-label'] ||
-        this.props['aria-labelledby'] ||
-        this.props.title
-      );
-
       // If no aria-label or aria-labelledby is provided but there's a title, a titleId is generated
       //  The svg aria-labelledby attribute gets this titleId
       //  The svg title element gets this titleId as an id
-      const titleId =
+      const accessibleTitleId =
         !this.props['aria-label'] && !this.props['aria-labelledby'] && title
-          ? { titleId: generateId() }
+          ? { titleId: titleId || generateId() }
           : undefined;
 
       return (
@@ -317,14 +322,13 @@ export class EuiIconClass extends PureComponent<
           style={optionalCustomStyles}
           css={cssStyles}
           tabIndex={tabIndex}
-          role={isAriaHidden ? undefined : 'img'}
-          title={title}
-          {...titleId}
+          title={accessibleTitle}
+          role={accessibleRole}
+          {...accessibleTitleId}
           data-icon-type={iconTitle}
           data-is-loaded={isLoaded || undefined}
           data-is-loading={isLoading || undefined}
           {...rest}
-          aria-hidden={isAriaHidden || rest['aria-hidden']}
         />
       );
     }
