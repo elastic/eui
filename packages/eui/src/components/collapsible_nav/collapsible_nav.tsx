@@ -116,6 +116,7 @@ export const EuiCollapsibleNav: FunctionComponent<EuiCollapsibleNavProps> = ({
   const flyout = (
     <EuiFlyout
       id={flyoutID}
+      session={false}
       css={cssStyles}
       className={classes}
       // Flyout props we set different defaults for
