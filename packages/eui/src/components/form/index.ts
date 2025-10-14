@@ -14,6 +14,7 @@ export * from './field_search';
 export * from './field_text';
 export * from './file_picker';
 export * from './form';
+export * from './form_control_button';
 export * from './form_control_layout';
 export * from './form_error_text';
 export * from './form_fieldset';

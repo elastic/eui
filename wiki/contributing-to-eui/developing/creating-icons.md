@@ -70,7 +70,7 @@ _2. Display the icon in the docs_
 _3. Compile and test_
 - Go to the `packages/eui` directory
 - Run `yarn compile-icons`
-- Preview your icon locally at `http://localhost:8030/#/display/icons` **
+- Preview your icon locally by running `yarn workspace @elastic/eui-website build:workspaces && yarn workspace @elastic/eui-website start` and opening http://localhost:3000/docs/components/display/icons/
 - Switch the docs to dark mode and verify that the icon is visible (all paths should be filled with the reverse color)
 - Run `yarn run test-unit icon -u` to create/update the jest snapshots
 

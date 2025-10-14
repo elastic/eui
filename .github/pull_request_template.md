@@ -14,7 +14,7 @@ Generally, most PRs should have a related issue from the [public EUI repo](https
 If this change does *not* have an issue associated with, or it is not clear in the issue, please clearly explain *why* we are making this change. This is valuable context for our changelogs.
 -->
 
-## Screenshots
+## Screenshots <a href="#user-content-screenshots" id="screenshots">#</a>
 
 <!--
 If this change includes changes to UI, it is important to include screenshots or gif. This helps our users understand what changed when reviewing our changelogs.

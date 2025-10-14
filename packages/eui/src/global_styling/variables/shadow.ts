@@ -9,6 +9,8 @@
 export {
   EuiThemeShadowSizes,
   _EuiShadowSizesDescriptions,
+  type _EuiThemeShadows,
   type _EuiThemeShadowSize,
+  type _EuiThemeShadowLayer,
   type _EuiThemeShadowCustomColor,
 } from '@elastic/eui-theme-common';

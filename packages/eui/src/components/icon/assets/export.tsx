@@ -28,7 +28,7 @@ const EuiIconExport = ({
     {...props}
   >
     {title ? <title id={titleId}>{title}</title> : null}
-    <path d="M12.354 5.646 8 1.293 3.646 5.646l.708.708L7.5 3.207V11h1V3.207l3.146 3.147.708-.708ZM2 11v2a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-2h-1v2H3v-2H2Z" />
+    <path d="M3 13h10v-2h1v2a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-2h1v2Zm9.354-7.354-.707.708L8.5 3.207V11h-1V3.207L4.354 6.354l-.708-.708L8 1.293l4.354 4.353Z" />
   </svg>
 );
 export const icon = EuiIconExport;

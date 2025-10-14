@@ -37,6 +37,27 @@ describe('EuiDatePickerRange', () => {
   });
 
   describe('props', () => {
+    test('data-test-subj', () => {
+      const { getByTestSubject } = render(
+        <EuiDatePickerRange
+          data-test-subj="date-range-test"
+          startDateControl={<EuiDatePicker />}
+          endDateControl={<EuiDatePicker />}
+        />
+      );
+
+      expect(getByTestSubject('date-range-test')).toBeInTheDocument();
+      expect(
+        getByTestSubject('date-range-test-range-wrapper')
+      ).toBeInTheDocument();
+      expect(
+        getByTestSubject('date-range-test-start-date-input')
+      ).toBeInTheDocument();
+      expect(
+        getByTestSubject('date-range-test-end-date-input')
+      ).toBeInTheDocument();
+    });
+
     test('fullWidth', () => {
       const { container } = render(
         <EuiDatePickerRange

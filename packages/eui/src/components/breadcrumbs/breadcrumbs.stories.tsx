@@ -52,3 +52,46 @@ export const Playground: Story = {
     ],
   },
 };
+
+export const DarkMode: Story = {
+  tags: ['vrt-only'],
+  globals: { colorMode: 'dark' },
+  args: {
+    ...Playground.args,
+  },
+};
+
+export const Application: Story = {
+  tags: ['vrt-only'],
+  args: {
+    ...Playground.args,
+    type: 'application',
+  },
+};
+
+export const ApplicationDarkMode: Story = {
+  tags: ['vrt-only'],
+  globals: { colorMode: 'dark' },
+  args: {
+    ...Playground.args,
+    type: 'application',
+  },
+};
+
+export const ApplicationHighContrast: Story = {
+  tags: ['vrt-only'],
+  globals: { highContrastMode: true },
+  args: {
+    ...Playground.args,
+    type: 'application',
+  },
+};
+
+export const ApplicationHighContrastDark: Story = {
+  tags: ['vrt-only'],
+  globals: { highContrastMode: true, colorMode: 'dark' },
+  args: {
+    ...Playground.args,
+    type: 'application',
+  },
+};

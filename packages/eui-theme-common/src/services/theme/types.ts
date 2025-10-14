@@ -20,6 +20,7 @@ import type {
 } from '../../global_styling/variables/size';
 import type { _EuiThemeFont } from '../../global_styling/variables/typography';
 import type { _EuiThemeFocus } from '../../global_styling/variables/states';
+import type { _EuiThemeShadows } from '../../global_styling/variables/shadow';
 import type { _EuiThemeLevels } from '../../global_styling/variables/levels';
 import type { _EuiThemeComponents } from '../../global_styling/variables/components';
 import type { _EuiThemeFlags } from '../../global_styling/variables';
@@ -64,7 +65,7 @@ export type EuiThemeShapeBase = {
   /** - Default value: 16 */
   base: _EuiThemeBase;
   /**
-   * See {@link https://eui.elastic.co/#/theming/sizing | Reference} for more information
+   * See {@link https://eui.elastic.co/docs/getting-started/theming/tokens/sizing/ | Reference} for more information
    */
   size: _EuiThemeSizes;
   font: _EuiThemeFont;
@@ -73,6 +74,7 @@ export type EuiThemeShapeBase = {
   animation: _EuiThemeAnimation;
   breakpoint: _EuiThemeBreakpoints;
   levels: _EuiThemeLevels;
+  shadows: _EuiThemeShadows;
   components: _EuiThemeComponents;
   flags: _EuiThemeFlags;
 };

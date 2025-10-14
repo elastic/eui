@@ -164,8 +164,15 @@ export const euiProgressStyles = (
           ${euiTheme.animation.resistance} infinite;
 
         ${euiCantAnimate} {
-          animation-duration: 2s;
-          animation-timing-function: linear;
+          animation: none;
+          transform: scaleX(1) translateX(0%);
+          background: repeating-linear-gradient(
+            -45deg,
+            transparent,
+            transparent ${euiTheme.size.m},
+            rgb(0, 0, 0, 0.25) ${euiTheme.size.m},
+            rgb(0, 0, 0, 0.25) ${euiTheme.size.l}
+          );
         }
 
         ${highContrastModeStyles(euiThemeContext, {
