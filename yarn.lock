@@ -7321,7 +7321,7 @@ __metadata:
     "@elastic/datemath": "npm:^5.0.3"
     "@elastic/eui-theme-borealis": "workspace:*"
     "@elastic/eui-theme-common": "workspace:*"
-    "@elastic/prismjs-esql": "npm:^1.1.0"
+    "@elastic/prismjs-esql": "npm:^1.1.2"
     "@emotion/babel-preset-css-prop": "npm:^11.11.0"
     "@emotion/cache": "npm:^11.11.0"
     "@emotion/css": "npm:^11.11.0"
@@ -7515,10 +7515,10 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@elastic/prismjs-esql@npm:^1.1.0":
-  version: 1.1.0
-  resolution: "@elastic/prismjs-esql@npm:1.1.0"
-  checksum: 10c0/11901ca6d2d803fa9201f0fad237001e405bdf49a7dc5df33806a306e4baf7e9232a8708e7d7ccc0fb36eabb664e8cc1fe32abbafd972733c82b21d7412dc374
+"@elastic/prismjs-esql@npm:^1.1.2":
+  version: 1.1.2
+  resolution: "@elastic/prismjs-esql@npm:1.1.2"
+  checksum: 10c0/c6a7804f061a7e3df021e44ecf3f1fe2166d9e0016b16a4c9b0fd79e44cee00079583529a599842d823071c77765f057d6761963d414d6d82c0f0c22eececf35
   languageName: node
   linkType: hard
 
