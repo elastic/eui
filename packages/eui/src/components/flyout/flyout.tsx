@@ -41,7 +41,7 @@ export type EuiFlyoutProps<T extends ElementType = 'div' | 'nav'> = Omit<
    * - `inherit`: (default) Inherits an existing session if one is active, otherwise functions as a standard flyout.
    * - `never`: Opts out of session management and always functions as a standard flyout.
    *
-   * Check out [EuiFlyout session management](https://eui.elastic.co/docs/components/containers/flyout/session_management)
+   * Check out [EuiFlyout session management](https://eui.elastic.co/docs/components/containers/flyout/session-management)
    * documentation to learn more.
    * @default 'inherit'
    */
