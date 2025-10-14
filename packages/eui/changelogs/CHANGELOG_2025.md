@@ -1,3 +1,35 @@
+## [`v107.0.0`](https://github.com/elastic/eui/releases/v107.0.0)
+
+- Added new shadow tokens ([#9088](https://github.com/elastic/eui/pull/9088))
+  - `shadows.colors.base`
+  - `shadows.xs`
+  - `shadows.s`
+  - `shadows.m`
+  - `shadows.l`
+  - `shadows.xl`
+  - `shadows.flat`
+  - `shadows.hover.base`
+  - `shadows.hover.xl`
+- Updated shadow utility functions to return new tokens ([#9088](https://github.com/elastic/eui/pull/9088))
+  - `euiShadow`
+  - `euiShadowXSmall`
+  - `euiShadowSmall`
+  - `euiShadowMedium`
+  - `euiShadowLarge`
+  - `euiShadowXLarge`
+  - `euiShadowFlat`
+  - `euiSlightShadowHover`
+- Added shadow hover utility `euiShadowHover` ([#9088](https://github.com/elastic/eui/pull/9088))
+
+**Deprecations**
+
+- Deprecated `euiShadowFlat` and `useEuiShadowFlat` - use `euiShadow`/ `useEuiShadow` (size `xs`) or `euiShadowXSmall` instead ([#9088](https://github.com/elastic/eui/pull/9088))
+- Deprecated `euiSlightShadowHover` and `useEuiSlightShadowHover` - use `euiShadowHover` / `useEuiShadowHover` instead ([#9088](https://github.com/elastic/eui/pull/9088))
+
+**Breaking changes**
+
+- Updated shadow utility functions (e.g. `euiShadow`) to apply a floating border style in dark mode. This may lead to visual issues with double borders in dark mode when a regular `border` styling is applied. - Use the `options.border` argument on the utils to adjust or remove the floating border as needed. ([#9088](https://github.com/elastic/eui/pull/9088))
+
 ## [`v106.7.0`](https://github.com/elastic/eui/releases/v106.7.0)
 
 - Updated `EuiComboBox` to properly break long strings without spaces when `rowHeight="auto"` ([#9063](https://github.com/elastic/eui/pull/9063))

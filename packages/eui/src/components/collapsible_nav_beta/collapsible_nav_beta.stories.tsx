@@ -326,3 +326,9 @@ export const FlyoutOverlay: Story = {
   },
   parameters: hideAllStorybookControls,
 };
+
+export const DarkMode: Story = {
+  ...Playground,
+  tags: ['vrt-only'],
+  globals: { colorMode: 'dark' },
+};
