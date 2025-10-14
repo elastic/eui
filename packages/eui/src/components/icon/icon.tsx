@@ -317,7 +317,7 @@ export class EuiIconClass extends PureComponent<
           style={optionalCustomStyles}
           css={cssStyles}
           tabIndex={tabIndex}
-          role="img"
+          role={isAriaHidden ? undefined : 'img'}
           title={title}
           {...titleId}
           data-icon-type={iconTitle}
