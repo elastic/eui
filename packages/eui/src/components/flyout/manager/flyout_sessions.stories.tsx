@@ -26,6 +26,7 @@ import {
   EuiFlexGroup,
   EuiFlexItem,
   EuiFlyoutBody,
+  EuiFlyoutHeader,
   EuiPanel,
   EuiProvider,
   EuiSpacer,
@@ -212,7 +213,66 @@ const FlyoutSession: React.FC<FlyoutSessionProps> = React.memo((props) => {
 
 FlyoutSession.displayName = 'FlyoutSession';
 
-const MultiSessionFlyoutDemo = () => {
+const NonSessionFlyout: React.FC<{
+  flyoutType: 'overlay' | 'push';
+}> = React.memo(({ flyoutType }) => {
+  const [isFlyoutVisible, setIsFlyoutVisible] = useState(false);
+
+  const handleOpenFlyout = () => {
+    setIsFlyoutVisible(true);
+  };
+
+  const flyoutOnClose = useCallback(() => {
+    action('close non-session flyout')();
+    setIsFlyoutVisible(false);
+  }, []);
+
+  return (
+    <>
+      <EuiText>
+        <EuiButton disabled={isFlyoutVisible} onClick={handleOpenFlyout}>
+          Open non-session flyout
+        </EuiButton>
+      </EuiText>
+      {isFlyoutVisible && (
+        <EuiFlyout
+          id="nonSessionFlyout"
+          aria-labelledby="nonSessionFlyoutTitle"
+          size="s"
+          type={flyoutType}
+          ownFocus={false}
+          pushAnimation={true}
+          onClose={flyoutOnClose}
+          session={false}
+          side="left"
+        >
+          <EuiFlyoutHeader>
+            <EuiTitle size="m">
+              <h2 id="nonSessionFlyoutTitle">Non-session Flyout</h2>
+            </EuiTitle>
+          </EuiFlyoutHeader>
+          <EuiFlyoutBody>
+            <EuiText>
+              <p>This is the content of a non-session flyout.</p>
+              <EuiSpacer size="s" />
+              <EuiDescriptionList
+                type="column"
+                listItems={[
+                  { title: 'Flyout type', description: flyoutType },
+                  { title: 'Size', description: 'm' },
+                ]}
+              />
+            </EuiText>
+          </EuiFlyoutBody>
+        </EuiFlyout>
+      )}
+    </>
+  );
+});
+
+NonSessionFlyout.displayName = 'NonSessionFlyout';
+
+const MultiSessionFlyoutDemo: React.FC = () => {
   const [flyoutType, setFlyoutType] = useState<'overlay' | 'push'>('overlay');
 
   const handleFlyoutTypeToggle = useCallback((e: EuiSwitchEvent) => {
@@ -299,6 +359,10 @@ const MultiSessionFlyoutDemo = () => {
             childSize="s"
           />
         ),
+      },
+      {
+        title: 'Non-session flyout',
+        description: <NonSessionFlyout flyoutType={flyoutType} />,
       },
     ],
     [flyoutType]

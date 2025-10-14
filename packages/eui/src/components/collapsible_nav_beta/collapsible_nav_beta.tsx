@@ -211,6 +211,7 @@ const _EuiCollapsibleNavBeta: FunctionComponent<EuiCollapsibleNavBetaProps> = ({
       aria-label={defaultAriaLabel}
       {...rest} // EuiCollapsibleNav is significantly less permissive than EuiFlyout
       id={flyoutID}
+      session={false}
       css={cssStyles}
       className={classes}
       size={width}
