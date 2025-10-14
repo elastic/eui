@@ -43,7 +43,7 @@ export type EuiFlyoutProps<T extends ElementType = 'div' | 'nav'> = Omit<
    * like side-to-side flyout rendering based on parent-child grouping,
    * simple flyout transitions, history, and more.
    *
-   * Check out [EuiFlyout session management](https://eui.elastic.co/docs/components/containers/flyout/session_management)
+   * Check out [EuiFlyout session management](https://eui.elastic.co/docs/components/containers/flyout/session-management)
    * to learn more.
    */
   session?: boolean;
