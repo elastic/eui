@@ -282,7 +282,7 @@ describe('EuiManagedFlyout', () => {
   });
 
   describe('size handling', () => {
-    it('defaults size to "m" when no size is provided', () => {
+    it('defaults main flyout size to "m" when no size is provided', () => {
       // Import the real validation function to test the actual behavior
       const { validateManagedFlyoutSize } = jest.requireActual('./validation');
 
@@ -297,6 +297,31 @@ describe('EuiManagedFlyout', () => {
           level={LEVEL_MAIN}
           onClose={() => {}}
           flyoutMenuProps={{ title: 'Test Flyout' }}
+          // Explicitly not providing size prop
+        />
+      );
+
+      // The flyout should render successfully, indicating the default size worked
+      expect(getByTestSubject('managed-flyout')).toBeInTheDocument();
+
+      // Restore the mock
+      require('./validation').validateManagedFlyoutSize = originalMock;
+    });
+
+    it('defaults child flyout size to "s" when no size is provided', () => {
+      // Import the real validation function to test the actual behavior
+      const { validateManagedFlyoutSize } = jest.requireActual('./validation');
+
+      // Temporarily restore the real validation function for this test
+      const originalMock = require('./validation').validateManagedFlyoutSize;
+      require('./validation').validateManagedFlyoutSize =
+        validateManagedFlyoutSize;
+
+      const { getByTestSubject } = renderInProvider(
+        <EuiManagedFlyout
+          id="default-child-size-test"
+          level={LEVEL_CHILD}
+          onClose={() => {}}
           // Explicitly not providing size prop
         />
       );
