@@ -9,7 +9,7 @@
 import { EuiFlyoutSize, FLYOUT_SIZES } from '../const';
 import { EuiFlyoutComponentProps } from '../flyout.component';
 import { EuiFlyoutMenuProps } from '../flyout_menu';
-import { LEVEL_MAIN } from './const';
+import { LEVEL_CHILD, LEVEL_MAIN } from './const';
 import { EuiFlyoutLevel } from './types';
 
 type FlyoutValidationErrorType =
@@ -42,11 +42,11 @@ export function validateManagedFlyoutSize(
   flyoutId: string,
   level: EuiFlyoutLevel
 ): FlyoutValidationError | null {
-  if (!isNamedSize(size)) {
+  if (level === LEVEL_CHILD && !isNamedSize(size)) {
     const namedSizes = FLYOUT_SIZES.join(', ');
     return {
       type: 'INVALID_SIZE_TYPE',
-      message: `Managed flyouts must use named sizes (${namedSizes}). Received: ${size}`,
+      message: `Child flyouts must use named sizes (${namedSizes}). Received: ${size}`,
       flyoutId,
       level,
       size,
@@ -81,8 +81,10 @@ export function validateSizeCombination(
   parentSize: EuiFlyoutSize,
   childSize: EuiFlyoutSize
 ): FlyoutValidationError | null {
+  const sizes = [parentSize, childSize];
+
   // Parent and child can't both be 'm'
-  if (parentSize === 'm' && childSize === 'm') {
+  if (sizes.every((s) => s === 'm')) {
     return {
       type: 'INVALID_SIZE_COMBINATION',
       message: 'Parent and child flyouts cannot both be size "m"',
@@ -90,18 +92,18 @@ export function validateSizeCombination(
   }
 
   // Parent and child can't both be 'fill'
-  if (parentSize === 'fill' && childSize === 'fill') {
+  if (sizes.every((s) => s === 'fill')) {
     return {
       type: 'INVALID_SIZE_COMBINATION',
       message: 'Parent and child flyouts cannot both be size "fill"',
     };
   }
 
-  // Parent can't be 'l' if there is a child
-  if (parentSize === 'l') {
+  // Flyout can't be 'l' if the other in the pair is not "fill"
+  if (sizes.includes('l') && !sizes.includes('fill')) {
     return {
       type: 'INVALID_SIZE_COMBINATION',
-      message: 'Parent flyouts cannot be size "l" when there is a child flyout',
+      message: 'Flyouts cannot be size "l" unless the other flyout is "fill"',
     };
   }
 
