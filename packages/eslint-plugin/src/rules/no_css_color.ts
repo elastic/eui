@@ -51,9 +51,28 @@ const checkPropertySpecifiesInvalidCSSColor = ([property, value]: string[]) => {
   // build the resolved color property to check if the value is a string after parsing the style declaration
   const resolvedColorProperty = anchor === 'color' ? 'color' : anchor + 'Color';
 
-  // in trying to keep this rule simple, it's enough if we get a value back, because if it was an identifier we would have been able to set a value within this invocation
   // @ts-expect-error the types for this packages specifics an index signature of number, alongside other valid CSS properties
-  return Boolean(style[resolvedColorProperty]);
+  const colorValue = style[resolvedColorProperty];
+
+  if (!colorValue) return false;
+
+  // Allow CSS keywords that are valid and should not trigger warnings
+  const allowedCssKeywords = [
+    'currentcolor',
+    'transparent',
+    'inherit',
+    'initial',
+    'unset',
+    'revert',
+    'revert-layer'
+  ];
+
+  const normalizedColorValue = colorValue.toLowerCase().trim();
+  if (allowedCssKeywords.includes(normalizedColorValue)) {
+    return false;
+  }
+
+  return true;
 };
 
 /**

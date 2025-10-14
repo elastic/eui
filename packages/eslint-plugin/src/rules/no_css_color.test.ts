@@ -45,6 +45,150 @@ ruleTester.run('no-css-color', NoCssColor, {
       }`,
       languageOptions,
     },
+    {
+      // Does not raise an error for border: none (CSS keyword)
+      filename:
+        '/x-pack/plugins/observability_solution/observability/public/test_component.tsx',
+      code: dedent`
+      import React from 'react';
+      import { css } from '@emotion/react';
+      function TestComponent() {
+        return (
+          <div css={css\`
+              border: none;
+            \`}>This is a test</div>
+        )
+      }`,
+      languageOptions,
+    },
+    {
+      // Does not raise an error for border: 0 (no color specified)
+      filename:
+        '/x-pack/plugins/observability_solution/observability/public/test_component.tsx',
+      code: dedent`
+      import React from 'react';
+      import { css } from '@emotion/react';
+      function TestComponent() {
+        return (
+          <div css={css\`
+              border: 0;
+            \`}>This is a test</div>
+        )
+      }`,
+      languageOptions,
+    },
+    {
+      // Does not raise an error for color: currentcolor (CSS keyword)
+      filename:
+        '/x-pack/plugins/observability_solution/observability/public/test_component.tsx',
+      code: dedent`
+      import React from 'react';
+      import { css } from '@emotion/react';
+      function TestComponent() {
+        return (
+          <div css={css\`
+              color: currentcolor;
+            \`}>This is a test</div>
+        )
+      }`,
+      languageOptions,
+    },
+    {
+      // Does not raise an error for color: inherit (CSS keyword)
+      filename:
+        '/x-pack/plugins/observability_solution/observability/public/test_component.tsx',
+      code: dedent`
+      import React from 'react';
+      import { css } from '@emotion/react';
+      function TestComponent() {
+        return (
+          <div css={css\`
+              color: inherit;
+            \`}>This is a test</div>
+        )
+      }`,
+      languageOptions,
+    },
+    {
+      // Does not raise an error for background: none (CSS keyword)
+      filename:
+        '/x-pack/plugins/observability_solution/observability/public/test_component.tsx',
+      code: dedent`
+      import React from 'react';
+      import { css } from '@emotion/react';
+      function TestComponent() {
+        return (
+          <div css={css\`
+              background: none;
+            \`}>This is a test</div>
+        )
+      }`,
+      languageOptions,
+    },
+    {
+      // Does not raise an error for background: transparent (CSS keyword)
+      filename:
+        '/x-pack/plugins/observability_solution/observability/public/test_component.tsx',
+      code: dedent`
+      import React from 'react';
+      import { css } from '@emotion/react';
+      function TestComponent() {
+        return (
+          <div css={css\`
+              background: transparent;
+            \`}>This is a test</div>
+        )
+      }`,
+      languageOptions,
+    },
+    {
+      // Does not raise an error for color: initial (CSS keyword)
+      filename:
+        '/x-pack/plugins/observability_solution/observability/public/test_component.tsx',
+      code: dedent`
+      import React from 'react';
+      import { css } from '@emotion/react';
+      function TestComponent() {
+        return (
+          <div css={css\`
+              color: initial;
+            \`}>This is a test</div>
+        )
+      }`,
+      languageOptions,
+    },
+    {
+      // Does not raise an error for color: unset (CSS keyword)
+      filename:
+        '/x-pack/plugins/observability_solution/observability/public/test_component.tsx',
+      code: dedent`
+      import React from 'react';
+      import { css } from '@emotion/react';
+      function TestComponent() {
+        return (
+          <div css={css\`
+              color: unset;
+            \`}>This is a test</div>
+        )
+      }`,
+      languageOptions,
+    },
+    {
+      // Does not raise an error for color: revert (CSS keyword)
+      filename:
+        '/x-pack/plugins/observability_solution/observability/public/test_component.tsx',
+      code: dedent`
+      import React from 'react';
+      import { css } from '@emotion/react';
+      function TestComponent() {
+        return (
+          <div css={css\`
+              color: revert;
+            \`}>This is a test</div>
+        )
+      }`,
+      languageOptions,
+    },
   ],
 
   invalid: [
