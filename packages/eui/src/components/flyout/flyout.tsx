@@ -38,6 +38,12 @@ export type EuiFlyoutProps<T extends ElementType = 'div' | 'nav'> = Omit<
   EuiFlyoutComponentProps<T>,
   'as'
 > & {
+  /**
+   * Controls flyout session management behavior:
+   * - `true`: Explicitly participate in session management
+   * - `false`: Explicitly opt-out (for wrapper components like EuiCollapsibleNav)
+   * - `undefined` (default): Automatically participate if an active session exists
+   */
   session?: boolean;
   onActive?: () => void;
   as?: T;
@@ -53,14 +59,18 @@ export const EuiFlyout = forwardRef<
   const isUnmanagedFlyout = useRef(false);
   const isInManagedFlyout = useIsInManagedFlyout();
 
-  if (session !== false) {
+  if (session === true || session === undefined) {
     /*
-     * Flyout routing logic
+     * Flyout routing logic (when session !== false)
      * 1. Main Flyout: When session={true} OR when there's an active session and this flyout
      *    is rendered outside of a managed flyout context.
      * 2. Child Flyout: When there's an active session AND this flyout IS rendered within a
      *    managed flyout context.
      * 3. Standard Flyout: Default fallback when neither condition is met.
+     *
+     * When session={false}, this entire block is skipped and the flyout renders
+     * as an unmanaged standard flyout (useful for wrapper components like
+     * EuiCollapsibleNav that manage their own lifecycle).
      */
     if (session === true || (hasActiveSession && !isInManagedFlyout)) {
       if (isUnmanagedFlyout.current) {
