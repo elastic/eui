@@ -5,42 +5,48 @@ title: ''
 labels: ''
 type: 'Enhancement'
 assignees: ''
-
 ---
+
+**Request**
+
+<!-- 
+If you would like us to formally treat this as a request requiring prompt consideration and follow-up, please complete the following:
+
+- Add the `request` label
+- Answer:
+  - Who is requesting this? (If it's not you) 
+  - Are you blocked by this request?
+  - When do you need this enhancement by?
+  - By when do we need to let you know whether or not we can prioritize this?
+  - What project, feature, or initiative does this relate to?
+  - What team do you work for?
+  - Who else on your team can we work with to help determine priority and a path forward?
+
+
+Otherwise, delete this section.
+-->
 
 **Problem Statement**
 
-<!-- What problem do we need to solve? Why is this needed? -->
+<!-- What problem do we need to solve? -->
 
 **Proposed Solution**
 
-<!-- Provide a proposed solution, if you have one already. If not, we will work with you determine a path forward. -->
+<!-- Provide a proposed solution, if you have one already.-->
 
-**Use Case**
+**Use Cases**
 
-<!-- Where is this needed? What product, what solution, what feature? -->
+<!-- Who all benefits from this? We prioritize enhnacements that are broadly useful. -->
 
-**Value / Impact**
-
-<!-- Why is this important? What should we consider when prioritizing this? Who benefits and how much value does it add?
-- Value to end-users vs value to library consumers?
-- Is it widely useful or an edge case? -->
- 
 **Urgency**
 
-<!-- How urgent would you consider this? Is it a dependency of a larger initiative? If so, when do you need it by? If we don't do this feature, will you be blocked? -->
+<!-- Generally speaking, how urgent do you consider this enhancement? -->
 
-**Do alternatives or workarounds exist?**
+**Alternative solutions or workarounds**
 
-<!-- Are there any workarounds that exist that can be used instead? -->
-
-**Related code or customizations**
-
-<!-- Features Requests often correspond to workarounds or customizations that exist already in Kibana or other products. Please provide links to any known instances below. We can plan to update those use cases with this feature when it is ready. -->
+<!-- How else can/is this problem solved? (Add links or examples if you have them).  -->
 
 **Additional context (Optional)**
 
-<!-- Add any other context or screenshots about the feature request here. -->
-
-**Designs or Specs (Optional)**
+<!-- Add any other context, conversation, screenshots, designs, code, links, etc. to help us understand. -->
 
