@@ -29,6 +29,13 @@ import { useFlyoutManager, useCurrentSession } from './hooks';
 const meta: Meta<typeof EuiFlyout> = {
   title: 'Layout/EuiFlyout/Flyout Manager',
   component: EuiFlyout,
+  // Skipping Loki as this is a playground for the flyout manager
+  // https://github.com/elastic/eui/pull/9056/files#r2425379403
+  parameters: {
+    loki: {
+      skip: true,
+    },
+  },
 };
 
 export default meta;
@@ -40,7 +47,7 @@ interface FlyoutSessionProps {
   childSize?: 's' | 'm' | 'fill';
   childMaxWidth?: number;
   flyoutType: 'overlay' | 'push';
-  childBackgroundShaded?: boolean;
+  hasChildBackground: boolean;
 }
 
 const FlyoutSession: React.FC<FlyoutSessionProps> = React.memo((props) => {
@@ -51,6 +58,7 @@ const FlyoutSession: React.FC<FlyoutSessionProps> = React.memo((props) => {
     mainMaxWidth,
     childMaxWidth,
     flyoutType,
+    hasChildBackground,
   } = props;
 
   const [isFlyoutVisible, setIsFlyoutVisible] = useState(false);
@@ -146,6 +154,7 @@ const FlyoutSession: React.FC<FlyoutSessionProps> = React.memo((props) => {
               maxWidth={childMaxWidth}
               onActive={childFlyoutOnActive}
               onClose={childFlyoutOnClose}
+              hasChildBackground={hasChildBackground}
             >
               <EuiFlyoutBody>
                 <EuiText>
@@ -182,6 +191,7 @@ const ExampleComponent = () => {
   const bottomBorder: EuiPageTemplateProps['bottomBorder'] = 'extended';
 
   const [flyoutType, setFlyoutType] = useState<'overlay' | 'push'>('overlay');
+  const [hasChildBackground, setChildBackgroundShaded] = useState(false);
 
   const handleFlyoutTypeToggle = useCallback((e: EuiSwitchEvent) => {
     setFlyoutType(e.target.checked ? 'push' : 'overlay');
@@ -200,6 +210,7 @@ const ExampleComponent = () => {
             title="Session A"
             mainSize="s"
             childSize="s"
+            hasChildBackground={hasChildBackground}
           />
         ),
       },
@@ -211,6 +222,7 @@ const ExampleComponent = () => {
             title="Session B"
             mainSize="m"
             childSize="s"
+            hasChildBackground={hasChildBackground}
           />
         ),
       },
@@ -222,6 +234,7 @@ const ExampleComponent = () => {
             title="Session C"
             mainSize="s"
             childSize="fill"
+            hasChildBackground={hasChildBackground}
           />
         ),
       },
@@ -233,6 +246,7 @@ const ExampleComponent = () => {
             title="Session D"
             mainSize="fill"
             childSize="s"
+            hasChildBackground={hasChildBackground}
           />
         ),
       },
@@ -243,6 +257,7 @@ const ExampleComponent = () => {
             flyoutType={flyoutType}
             title="Session E"
             mainSize="fill"
+            hasChildBackground={hasChildBackground}
           />
         ),
       },
@@ -256,6 +271,7 @@ const ExampleComponent = () => {
             mainSize={undefined}
             childSize="fill"
             childMaxWidth={1000}
+            hasChildBackground={hasChildBackground}
           />
         ),
       },
@@ -268,11 +284,12 @@ const ExampleComponent = () => {
             mainSize="fill"
             mainMaxWidth={1000}
             childSize="s"
+            hasChildBackground={hasChildBackground}
           />
         ),
       },
     ],
-    [flyoutType]
+    [flyoutType, hasChildBackground]
   );
 
   return (
@@ -297,7 +314,12 @@ const ExampleComponent = () => {
           checked={flyoutType === 'push'}
           onChange={handleFlyoutTypeToggle}
         />
-        {/* FIXME add option to set child flyout background style to "shaded" */}
+        <EuiSpacer size="m" />
+        <EuiSwitch
+          label="Child flyout background shaded"
+          checked={hasChildBackground}
+          onChange={() => setChildBackgroundShaded((prev) => !prev)}
+        />
       </EuiPageTemplate.Section>
       <EuiPageTemplate.Section grow={false} bottomBorder={bottomBorder}>
         <EuiDescriptionList
