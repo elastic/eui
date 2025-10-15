@@ -158,7 +158,6 @@ export const euiSlightShadowHover = (
 /**
  * @deprecated - use euiShadowXSmall instead
  *
- * Remains for backwards compatibility for the Amsterdam theme.
  * Similar to shadow medium but without the bottom depth.
  * Useful for popovers that drop UP rather than DOWN.
  */
