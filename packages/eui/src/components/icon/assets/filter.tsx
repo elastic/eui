@@ -28,7 +28,7 @@ const EuiIconFilter = ({
     {...props}
   >
     {title ? <title id={titleId}>{title}</title> : null}
-    <path d="M3 5.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5Zm2 3a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5ZM7.5 11a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1h-1Z" />
+    <path d="M9 13H7v-1h2v1Zm2-3H5V9h6v1Zm2-3H3V6h10v1Zm2-3H1V3h14v1Z" />
   </svg>
 );
 export const icon = EuiIconFilter;

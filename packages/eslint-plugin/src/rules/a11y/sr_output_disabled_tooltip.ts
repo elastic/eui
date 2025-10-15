@@ -7,7 +7,7 @@
  */
 
 import { type TSESTree, ESLintUtils } from '@typescript-eslint/utils';
-import { getAttrValue } from '../../utils/get_attr_value';
+import { findAttrValue } from '../../utils/get_attr_value';
 import { areAttrsEqual } from '../../utils/are_attrs_equal';
 
 const tooltipComponent = 'EuiToolTip';
@@ -28,7 +28,7 @@ export const ScreenReaderOutputDisabledTooltip =
             return;
           }
 
-          const tooltipContent = getAttrValue(
+          const tooltipContent = findAttrValue(
             context,
             openingElement.attributes,
             'content'
@@ -56,7 +56,7 @@ export const ScreenReaderOutputDisabledTooltip =
             return;
           }
 
-          const ariaLabel = getAttrValue(
+          const ariaLabel = findAttrValue(
             context,
             buttonElement.openingElement.attributes,
             'aria-label'

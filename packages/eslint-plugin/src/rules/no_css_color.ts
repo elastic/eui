@@ -1,10 +1,9 @@
 /*
  * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
- * or more contributor license agreements. Licensed under the "Elastic License
- * 2.0", the "GNU Affero General Public License v3.0 only", and the "Server Side
- * Public License v 1"; you may not use this file except in compliance with, at
- * your election, the "Elastic License 2.0", the "GNU Affero General Public
- * License v3.0 only", or the "Server Side Public License, v 1".
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
  */
 
 import { CSSStyleDeclaration } from 'cssstyle';
@@ -52,9 +51,28 @@ const checkPropertySpecifiesInvalidCSSColor = ([property, value]: string[]) => {
   // build the resolved color property to check if the value is a string after parsing the style declaration
   const resolvedColorProperty = anchor === 'color' ? 'color' : anchor + 'Color';
 
-  // in trying to keep this rule simple, it's enough if we get a value back, because if it was an identifier we would have been able to set a value within this invocation
   // @ts-expect-error the types for this packages specifics an index signature of number, alongside other valid CSS properties
-  return Boolean(style[resolvedColorProperty]);
+  const colorValue = style[resolvedColorProperty];
+
+  if (!colorValue) return false;
+
+  // Allow CSS keywords that are valid and should not trigger warnings
+  const allowedCssKeywords = [
+    'currentcolor',
+    'transparent',
+    'inherit',
+    'initial',
+    'unset',
+    'revert',
+    'revert-layer'
+  ];
+
+  const normalizedColorValue = colorValue.toLowerCase().trim();
+  if (allowedCssKeywords.includes(normalizedColorValue)) {
+    return false;
+  }
+
+  return true;
 };
 
 /**

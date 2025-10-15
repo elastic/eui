@@ -74,9 +74,9 @@
   "euiSwitchHeightMini": "10px",
   "euiSwitchWidthMini": "22px",
   "euiSwitchThumbSizeMini": "10px",
-  "euiFormBackgroundColor": "#F6F9FC",
+  "euiFormBackgroundColor": "#FFFFFF",
   "euiFormBackgroundDisabledColor": "#ECF1F9",
-  "euiFormBackgroundReadOnlyColor": "#FFFFFF",
+  "euiFormBackgroundReadOnlyColor": "#ECF1F9",
   "euiFormBorderOpaqueColor": "#1c2390",
   "euiFormBorderColor": "#CAD3E2",
   "euiFormBorderDisabledColor": "#CAD3E2",
@@ -135,7 +135,43 @@
     "xl": "1200px"
   },
   "euiBreakpointKeys": "'xs', 's', 'm', 'l', 'xl'",
-  "euiShadowColor": "#000000",
+  "euiShadowColor": "#2B394F",
+  "euiShadows": {
+    "xs": {
+      "down": "0px 0px 2px 0px hsl(216.67deg 29.51% 23.92% / 0.16), 0px 1px 4px 0px hsl(216.67deg 29.51% 23.92% / 0.06), 0px 2px 8px 0px hsl(216.67deg 29.51% 23.92% / 0.04)",
+      "up": "0px 0px 2px 0px hsl(216.67deg 29.51% 23.92% / 0.16), 0px -1px 4px 0px hsl(216.67deg 29.51% 23.92% / 0.06), 0px -2px 8px 0px hsl(216.67deg 29.51% 23.92% / 0.04)"
+    },
+    "s": {
+      "down": "0px 0px 2px 0px hsl(216.67deg 29.51% 23.92% / 0.16), 0px 2px 7px 0px hsl(216.67deg 29.51% 23.92% / 0.08), 0px 4px 11px 0px hsl(216.67deg 29.51% 23.92% / 0.05)",
+      "up": "0px 0px 2px 0px hsl(216.67deg 29.51% 23.92% / 0.16), 0px -2px 7px 0px hsl(216.67deg 29.51% 23.92% / 0.08), 0px -4px 11px 0px hsl(216.67deg 29.51% 23.92% / 0.05)"
+    },
+    "m": {
+      "down": "0px 0px 2px 0px hsl(216.67deg 29.51% 23.92% / 0.16), 0px 3px 10px 0px hsl(216.67deg 29.51% 23.92% / 0.1), 0px 6px 14px 0px hsl(216.67deg 29.51% 23.92% / 0.06)",
+      "up": "0px 0px 2px 0px hsl(216.67deg 29.51% 23.92% / 0.16), 0px -3px 10px 0px hsl(216.67deg 29.51% 23.92% / 0.1), 0px -6px 14px 0px hsl(216.67deg 29.51% 23.92% / 0.06)"
+    },
+    "l": {
+      "down": "0px 0px 2px 0px hsl(216.67deg 29.51% 23.92% / 0.16), 0px 4px 13px 0px hsl(216.67deg 29.51% 23.92% / 0.12), 0px 8px 17px 0px hsl(216.67deg 29.51% 23.92% / 0.07)",
+      "up": "0px 0px 2px 0px hsl(216.67deg 29.51% 23.92% / 0.16), 0px -4px 13px 0px hsl(216.67deg 29.51% 23.92% / 0.12), 0px -8px 17px 0px hsl(216.67deg 29.51% 23.92% / 0.07)"
+    },
+    "xl": {
+      "down": "0px 0px 2px 0px hsl(216.67deg 29.51% 23.92% / 0.16), 0px 5px 16px 0px hsl(216.67deg 29.51% 23.92% / 0.14), 0px 10px 20px 0px hsl(216.67deg 29.51% 23.92% / 0.08)",
+      "up": "0px 0px 2px 0px hsl(216.67deg 29.51% 23.92% / 0.16), 0px -5px 16px 0px hsl(216.67deg 29.51% 23.92% / 0.14), 0px -10px 20px 0px hsl(216.67deg 29.51% 23.92% / 0.08)"
+    },
+    "hover": {
+      "base": {
+        "down": "0px 0px 2px 0px hsla(216.67,29.51%,23.92%,0.16), 0px 2px 7px 0px hsla(216.67,29.51%,23.92%,0.08), 0px 4px 11px 0px hsla(216.67,29.51%,23.92%,0.05)",
+        "up": "0px 0px 2px 0px hsla(216.67,29.51%,23.92%,0.16), 0px -2px 7px 0px hsla(216.67,29.51%,23.92%,0.08), 0px -4px 11px 0px hsla(216.67,29.51%,23.92%,0.05)"
+      },
+      "xl": {
+        "down": "0px 0px 2px 0px hsl(216.67deg 29.51% 23.92% / 0.16), 0px 6px 19px 0px hsl(216.67deg 29.51% 23.92% / 0.16), 0px 12px 23px 0px hsl(216.67deg 29.51% 23.92% / 0.09)",
+        "up": "0px 0px 2px 0px hsl(216.67deg 29.51% 23.92% / 0.16), 0px -6px 19px 0px hsl(216.67deg 29.51% 23.92% / 0.16), 0px -12px 23px 0px hsl(216.67deg 29.51% 23.92% / 0.09)"
+      }
+    },
+    "flat": {
+      "down": "0px 0px 2px 0px hsl(216.67deg 29.51% 23.92% / 0.16), 0px 1px 4px 0px hsl(216.67deg 29.51% 23.92% / 0.06), 0px 2px 8px 0px hsl(216.67deg 29.51% 23.92% / 0.04)",
+      "up": "0px 0px 2px 0px hsl(216.67deg 29.51% 23.92% / 0.16), 0px -1px 4px 0px hsl(216.67deg 29.51% 23.92% / 0.06), 0px -2px 8px 0px hsl(216.67deg 29.51% 23.92% / 0.04)"
+    }
+  },
   "euiSize": "16px",
   "euiSizeXS": "4px",
   "euiSizeS": "8px",

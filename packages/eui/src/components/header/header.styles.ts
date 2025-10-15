@@ -37,7 +37,14 @@ export const euiHeaderStyles = (euiThemeContext: UseEuiTheme) => {
       ${logicalCSS('height', height)}
       ${logicalCSS('padding-horizontal', padding)}
       ${logicalCSS('border-bottom', euiTheme.border.thin)}
-      ${euiShadowXSmall(euiThemeContext)}
+      ${euiShadowXSmall(euiThemeContext, {
+        border: 'none',
+      })}
+
+      /* uses the global class as & might not reference the same due to dynamic classes */
+      & + .euiHeader {
+        clip-path: polygon(0 0, 100% 0, 100% 100vh, 0 100vh);
+      }
     `,
     // Position
     static: css`
