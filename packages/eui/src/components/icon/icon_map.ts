@@ -469,7 +469,7 @@ export const typeToPathMap = {
   visualizeApp: 'app_visualize',
   vulnerabilityManagementApp: 'app_vulnerability_management',
   warning: 'warning',
-  warningFilled: 'warning', // NOTE: To be deprecated in favor of `export`
+  warningFilled: 'warning', // NOTE: To be deprecated in favor of `warning`
   watchesApp: 'app_watches',
   web: 'web',
   wordWrap: 'wordWrap',
