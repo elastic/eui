@@ -27,20 +27,18 @@ import { DEFAULT_SIDE } from '../const';
  * Notes:
  * - `type`, `side`, and `level` are fixed by the component and thus omitted.
  */
-export interface EuiFlyoutChildProps
-  extends Omit<
-    EuiManagedFlyoutProps,
-    | 'closeButtonPosition'
-    | 'hideCloseButton'
-    | 'type'
-    | 'level'
-    | 'childBackgroundShaded'
-  > {}
+export type EuiFlyoutChildProps = Omit<
+  EuiManagedFlyoutProps,
+  | 'closeButtonPosition'
+  | 'hideCloseButton'
+  | 'type'
+  | 'level'
+  | 'hasChildBackground'
+>;
 
 /**
  * Managed child flyout that renders alongside or stacked over the main flyout,
- * depending on the current layout mode. Handles background styling and required
- * managed flyout props.
+ * depending on the current layout mode. Handles required managed flyout props.
  */
 export function EuiFlyoutChild({
   css: customCss,

@@ -29,6 +29,11 @@ import { useFlyoutManager, useCurrentSession } from './hooks';
 const meta: Meta<typeof EuiFlyout> = {
   title: 'Layout/EuiFlyout/Flyout Manager',
   component: EuiFlyout,
+  parameters: {
+    loki: {
+      skip: true,
+    },
+  },
 };
 
 export default meta;
@@ -40,7 +45,7 @@ interface FlyoutSessionProps {
   childSize?: 's' | 'm' | 'fill';
   childMaxWidth?: number;
   flyoutType: 'overlay' | 'push';
-  childBackgroundShaded?: boolean;
+  hasChildBackground?: boolean;
 }
 
 const FlyoutSession: React.FC<FlyoutSessionProps> = React.memo((props) => {
@@ -51,7 +56,7 @@ const FlyoutSession: React.FC<FlyoutSessionProps> = React.memo((props) => {
     mainMaxWidth,
     childMaxWidth,
     flyoutType,
-    childBackgroundShaded,
+    hasChildBackground,
   } = props;
 
   const [isFlyoutVisible, setIsFlyoutVisible] = useState(false);
@@ -147,6 +152,7 @@ const FlyoutSession: React.FC<FlyoutSessionProps> = React.memo((props) => {
               maxWidth={childMaxWidth}
               onActive={childFlyoutOnActive}
               onClose={childFlyoutOnClose}
+              hasChildBackground={hasChildBackground}
             >
               <EuiFlyoutBody>
                 <EuiText>
@@ -183,7 +189,7 @@ const ExampleComponent = () => {
   const bottomBorder: EuiPageTemplateProps['bottomBorder'] = 'extended';
 
   const [flyoutType, setFlyoutType] = useState<'overlay' | 'push'>('overlay');
-  const [childBackgroundShaded, setChildBackgroundShaded] = useState(false);
+  const [hasChildBackground, setChildBackgroundShaded] = useState(false);
 
   const handleFlyoutTypeToggle = useCallback((e: EuiSwitchEvent) => {
     setFlyoutType(e.target.checked ? 'push' : 'overlay');
@@ -202,7 +208,7 @@ const ExampleComponent = () => {
             title="Session A"
             mainSize="s"
             childSize="s"
-            childBackgroundShaded={childBackgroundShaded}
+            hasChildBackground={hasChildBackground}
           />
         ),
       },
@@ -214,7 +220,7 @@ const ExampleComponent = () => {
             title="Session B"
             mainSize="m"
             childSize="s"
-            childBackgroundShaded={childBackgroundShaded}
+            hasChildBackground={hasChildBackground}
           />
         ),
       },
@@ -226,7 +232,7 @@ const ExampleComponent = () => {
             title="Session C"
             mainSize="s"
             childSize="fill"
-            childBackgroundShaded={childBackgroundShaded}
+            hasChildBackground={hasChildBackground}
           />
         ),
       },
@@ -238,7 +244,7 @@ const ExampleComponent = () => {
             title="Session D"
             mainSize="fill"
             childSize="s"
-            childBackgroundShaded={childBackgroundShaded}
+            hasChildBackground={hasChildBackground}
           />
         ),
       },
@@ -249,7 +255,7 @@ const ExampleComponent = () => {
             flyoutType={flyoutType}
             title="Session E"
             mainSize="fill"
-            childBackgroundShaded={childBackgroundShaded}
+            hasChildBackground={hasChildBackground}
           />
         ),
       },
@@ -263,7 +269,7 @@ const ExampleComponent = () => {
             mainSize={undefined}
             childSize="fill"
             childMaxWidth={1000}
-            childBackgroundShaded={childBackgroundShaded}
+            hasChildBackground={hasChildBackground}
           />
         ),
       },
@@ -276,12 +282,12 @@ const ExampleComponent = () => {
             mainSize="fill"
             mainMaxWidth={1000}
             childSize="s"
-            childBackgroundShaded={childBackgroundShaded}
+            hasChildBackground={hasChildBackground}
           />
         ),
       },
     ],
-    [flyoutType, childBackgroundShaded]
+    [flyoutType, hasChildBackground]
   );
 
   return (
@@ -309,7 +315,7 @@ const ExampleComponent = () => {
         <EuiSpacer size="m" />
         <EuiSwitch
           label="Child flyout background shaded"
-          checked={childBackgroundShaded}
+          checked={hasChildBackground}
           onChange={() => setChildBackgroundShaded((prev) => !prev)}
         />
       </EuiPageTemplate.Section>

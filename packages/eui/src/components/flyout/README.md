@@ -95,7 +95,7 @@ Core flyout styling with emotion CSS-in-JS:
 Menu-specific styling for the flyout menu component.
 
 ### `src/components/flyout/manager/flyout.styles.ts`
-Managed flyout styling, including background styles for child flyouts.
+Managed flyout styling for the flyout managment system.
 
 ## Testing and Documentation
 

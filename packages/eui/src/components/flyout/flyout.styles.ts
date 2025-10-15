@@ -91,7 +91,7 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
         outline: none;
       }
 
-      &.euiFlyout--childShaded {
+      &.euiFlyout--hasChildBackground {
         background: ${euiTheme.colors.backgroundBaseSubdued};
       }
 

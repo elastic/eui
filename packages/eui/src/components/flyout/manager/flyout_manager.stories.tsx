@@ -25,7 +25,6 @@ type EuiFlyoutChildActualProps = Pick<
   EuiFlyoutChildProps,
   | 'aria-label'
   | 'as'
-  | 'childBackgroundShaded'
   | 'children'
   | 'closeButtonProps'
   | 'focusTrapProps'
@@ -47,7 +46,7 @@ type EuiFlyoutType = (typeof FLYOUT_TYPES)[number];
 interface FlyoutChildStoryArgs extends EuiFlyoutChildActualProps {
   mainSize?: 's' | 'm';
   childSize?: 's' | 'm';
-  childBackgroundShaded?: boolean;
+  hasChildBackground: boolean;
   childMaxWidth?: number;
   mainFlyoutType: EuiFlyoutType;
   mainMaxWidth?: number;
@@ -73,7 +72,7 @@ const meta: Meta<FlyoutChildStoryArgs> = {
       description:
         'The size of the child flyout. Valid combinations: both cannot be "m", both cannot be "fill", and "l" can only be used if the other flyout is "fill".',
     },
-    childBackgroundShaded: {
+    hasChildBackground: {
       control: { type: 'boolean' },
       description:
         'When the flyout is used as a child in a managed flyout session, setting `true` gives the shaded background style.',
@@ -135,7 +134,7 @@ const meta: Meta<FlyoutChildStoryArgs> = {
   args: {
     mainSize: 'm',
     childSize: 's',
-    childBackgroundShaded: false,
+    hasChildBackground: false,
     mainFlyoutType: 'overlay',
     outsideClickCloses: false,
     ownFocus: true, // Depends on `mainFlyoutType=overlay`
@@ -163,7 +162,7 @@ type Story = StoryObj<FlyoutChildStoryArgs>;
 const StatefulFlyout: React.FC<FlyoutChildStoryArgs> = ({
   mainSize,
   childSize,
-  childBackgroundShaded,
+  hasChildBackground,
   mainFlyoutType,
   pushMinBreakpoint,
   mainMaxWidth,
@@ -253,7 +252,7 @@ const StatefulFlyout: React.FC<FlyoutChildStoryArgs> = ({
               <EuiFlyout
                 id="flyout-manager-playground-child"
                 size={childSize}
-                backgroundStyle={childBackgroundStyle}
+                hasChildBackground={hasChildBackground}
                 maxWidth={childMaxWidth}
                 ownFocus={false}
                 resizable={childFlyoutResizable}
