@@ -97,81 +97,80 @@ const FlyoutSession: React.FC<FlyoutSessionProps> = React.memo((props) => {
           Open {title}
         </EuiButton>
       </EuiText>
-      <EuiFlyout
-        isOpen={isFlyoutVisible}
-        id={`mainFlyout-${title}`}
-        session={true}
-        flyoutMenuProps={{ title: `${title} - Main` }}
-        size={mainSize}
-        maxWidth={mainMaxWidth}
-        type={flyoutType}
-        ownFocus={false}
-        pushAnimation={true}
-        onActive={mainFlyoutOnActive}
-        onClose={mainFlyoutOnClose}
-      >
-        <EuiFlyoutBody>
-          <EuiText>
-            <p>This is the content of {title}.</p>
-            <EuiSpacer size="s" />
-            <EuiDescriptionList
-              type="column"
-              listItems={[
-                { title: 'Flyout type', description: flyoutType },
-                {
-                  title: 'Main flyout size',
-                  description: mainSize ?? 'undefined (`m` by default)',
-                },
-                {
-                  title: 'Main flyout maxWidth',
-                  description: mainMaxWidth ?? 'N/A',
-                },
-              ]}
-            />
-            {childSize && (
-              <EuiButton
-                onClick={handleOpenChildFlyout}
-                disabled={isChildFlyoutVisible}
-              >
-                Open child flyout
-              </EuiButton>
-            )}
-          </EuiText>
-        </EuiFlyoutBody>
-        {childSize && (
-          <EuiFlyout
-            isOpen={isChildFlyoutVisible}
-            id={`childFlyout-${title}`}
-            flyoutMenuProps={{ title: `${title} - Child` }}
-            aria-labelledby="childFlyoutTitle"
-            size={childSize}
-            maxWidth={childMaxWidth}
-            onActive={childFlyoutOnActive}
-            onClose={childFlyoutOnClose}
-            childBackgroundShaded={childBackgroundShaded}
-          >
-            <EuiFlyoutBody>
-              <EuiText>
-                <p>This is the content of the child flyout of {title}.</p>
-                <EuiSpacer size="s" />
-                <EuiDescriptionList
-                  type="column"
-                  listItems={[
-                    {
-                      title: 'Child flyout size',
-                      description: childSize ?? 'N/A',
-                    },
-                    {
-                      title: 'Child flyout maxWidth',
-                      description: childMaxWidth ?? 'N/A',
-                    },
-                  ]}
-                />
-              </EuiText>
-            </EuiFlyoutBody>
-          </EuiFlyout>
-        )}
-      </EuiFlyout>
+      {isFlyoutVisible && (
+        <EuiFlyout
+          id={`mainFlyout-${title}`}
+          session={true}
+          flyoutMenuProps={{ title: `${title} - Main` }}
+          size={mainSize}
+          maxWidth={mainMaxWidth}
+          type={flyoutType}
+          ownFocus={false}
+          pushAnimation={true}
+          onActive={mainFlyoutOnActive}
+          onClose={mainFlyoutOnClose}
+        >
+          <EuiFlyoutBody>
+            <EuiText>
+              <p>This is the content of {title}.</p>
+              <EuiSpacer size="s" />
+              <EuiDescriptionList
+                type="column"
+                listItems={[
+                  { title: 'Flyout type', description: flyoutType },
+                  {
+                    title: 'Main flyout size',
+                    description: mainSize ?? 'undefined (`m` by default)',
+                  },
+                  {
+                    title: 'Main flyout maxWidth',
+                    description: mainMaxWidth ?? 'N/A',
+                  },
+                ]}
+              />
+              {childSize && (
+                <EuiButton
+                  onClick={handleOpenChildFlyout}
+                  disabled={isChildFlyoutVisible}
+                >
+                  Open child flyout
+                </EuiButton>
+              )}
+            </EuiText>
+          </EuiFlyoutBody>
+          {childSize && isChildFlyoutVisible && (
+            <EuiFlyout
+              id={`childFlyout-${title}`}
+              flyoutMenuProps={{ title: `${title} - Child` }}
+              aria-labelledby="childFlyoutTitle"
+              size={childSize}
+              maxWidth={childMaxWidth}
+              onActive={childFlyoutOnActive}
+              onClose={childFlyoutOnClose}
+            >
+              <EuiFlyoutBody>
+                <EuiText>
+                  <p>This is the content of the child flyout of {title}.</p>
+                  <EuiSpacer size="s" />
+                  <EuiDescriptionList
+                    type="column"
+                    listItems={[
+                      {
+                        title: 'Child flyout size',
+                        description: childSize ?? 'N/A',
+                      },
+                      {
+                        title: 'Child flyout maxWidth',
+                        description: childMaxWidth ?? 'N/A',
+                      },
+                    ]}
+                  />
+                </EuiText>
+              </EuiFlyoutBody>
+            </EuiFlyout>
+          )}
+        </EuiFlyout>
+      )}
     </>
   );
 });

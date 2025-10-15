@@ -126,7 +126,7 @@ export const useApplyFlyoutLayoutMode = () => {
     let newLayoutMode: EuiFlyoutLayoutMode;
 
     // Handle fill size flyouts: keep layout as side-by-side when fill flyout is present
-    // This allows fill flyouts to dynamically calculate their width based on sibling
+    // This allows fill flyouts to dynamically calculate their width based on the other in the pair
     if (parentFlyout?.size === 'fill' || childFlyout?.size === 'fill') {
       // For fill flyouts, we want to maintain side-by-side layout to enable dynamic width calculation
       // Only stack if the viewport is too small (below the small breakpoint)

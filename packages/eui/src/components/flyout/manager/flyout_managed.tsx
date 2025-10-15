@@ -33,7 +33,7 @@ import {
   useIsFlyoutActive,
   useParentFlyoutSize,
 } from './hooks';
-import { useIsFlyoutRegistered } from './selectors';
+import { useCurrentMainFlyout, useIsFlyoutRegistered } from './selectors';
 import type { EuiFlyoutLevel } from './types';
 import {
   createValidationErrorMessage,
@@ -74,9 +74,8 @@ export const EuiManagedFlyout = ({
   onClose: onCloseProp,
   onActive: onActiveProp,
   level,
-  size = 'm',
+  size: sizeProp,
   css: customCss,
-  isOpen = true,
   flyoutMenuProps: _flyoutMenuProps,
   ...props
 }: EuiManagedFlyoutProps) => {
@@ -86,8 +85,12 @@ export const EuiManagedFlyout = ({
   const { addFlyout, closeFlyout, setFlyoutWidth, goBack, getHistoryItems } =
     useFlyoutManager();
   const parentSize = useParentFlyoutSize(flyoutId);
+  const parentFlyout = useCurrentMainFlyout();
   const layoutMode = useFlyoutLayoutMode();
   const styles = useEuiMemoizedStyles(euiManagedFlyoutStyles);
+
+  // Set default size based on level: main defaults to 'm', child defaults to 's'
+  const size = sizeProp ?? (level === LEVEL_CHILD ? 's' : 'm');
 
   // Validate size
   const sizeTypeError = validateManagedFlyoutSize(size, flyoutId, level);
@@ -105,6 +108,7 @@ export const EuiManagedFlyout = ({
     const combinationError = validateSizeCombination(parentSize, size);
     if (combinationError) {
       combinationError.flyoutId = flyoutId;
+      combinationError.parentFlyoutId = parentFlyout?.flyoutId;
       combinationError.level = level;
       throw new Error(createValidationErrorMessage(combinationError));
     }
@@ -141,29 +145,30 @@ export const EuiManagedFlyout = ({
 
   // Register with flyout manager context when open, remove when closed
   useEffect(() => {
-    if (isOpen) {
-      addFlyout(flyoutId, title!, level, size as string);
-    } else {
+    addFlyout(flyoutId, title!, level, size as string);
+
+    return () => {
       closeFlyout(flyoutId);
+
       // Reset navigation tracking when explicitly closed via isOpen=false
       wasRegisteredRef.current = false;
-    }
-  }, [isOpen, flyoutId, title, level, size, addFlyout, closeFlyout]);
+    };
+  }, [flyoutId, title, level, size, addFlyout, closeFlyout]);
 
   // Detect when flyout has been removed from manager state (e.g., via Back button)
   // and trigger onClose callback to notify the parent component
   useEffect(() => {
-    if (isOpen && flyoutExistsInManager) {
+    if (flyoutExistsInManager) {
       wasRegisteredRef.current = true;
     }
 
     // If flyout was previously registered, is marked as open, but no longer exists in manager state,
     // it was removed via navigation (Back button) - trigger close callback
-    if (wasRegisteredRef.current && isOpen && !flyoutExistsInManager) {
+    if (wasRegisteredRef.current && !flyoutExistsInManager) {
       onCloseCallbackRef.current?.(new MouseEvent('navigation'));
       wasRegisteredRef.current = false; // Reset to avoid repeated calls
     }
-  }, [flyoutExistsInManager, isOpen, flyoutId]);
+  }, [flyoutExistsInManager, flyoutId]);
 
   // Monitor current session changes and fire onActive callback when this flyout becomes active
   useEffect(() => {
@@ -248,7 +253,6 @@ export const EuiManagedFlyout = ({
             size,
             flyoutMenuProps,
             onAnimationEnd,
-            isOpen,
             [PROPERTY_FLYOUT]: true,
             [PROPERTY_LAYOUT_MODE]: layoutMode,
             [PROPERTY_LEVEL]: level,

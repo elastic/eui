@@ -68,10 +68,10 @@ const meta: Meta<FlyoutChildStoryArgs> = {
   component: EuiFlyoutChild,
   argTypes: {
     childSize: {
-      options: ['s', 'm', 'fill'],
+      options: ['s', 'm', 'l', 'fill'],
       control: { type: 'radio' },
       description:
-        'The size of the child flyout. If the main is `s`, the child can be `s`, or `m`. If the main is `m`, the child can only be `s`.',
+        'The size of the child flyout. Valid combinations: both cannot be "m", both cannot be "fill", and "l" can only be used if the other flyout is "fill".',
     },
     childBackgroundShaded: {
       control: { type: 'boolean' },
@@ -83,10 +83,10 @@ const meta: Meta<FlyoutChildStoryArgs> = {
       description: 'The maximum width of the child flyout.',
     },
     mainSize: {
-      options: ['s', 'm', 'fill'],
+      options: ['s', 'm', 'l', 'fill', '400px'],
       control: { type: 'radio' },
       description:
-        'The size of the main (parent) flyout. If `m`, the child must be `s`. If `s`, the child can be `s`, or `m`.',
+        'The size of the main (parent) flyout. Can use named sizes (s, m, l, fill) or custom values like "400px". Valid combinations: both cannot be "m", both cannot be "fill", and "l" can only be used if the other flyout is "fill".',
     },
     mainFlyoutType: {
       options: FLYOUT_TYPES,
@@ -218,84 +218,90 @@ const StatefulFlyout: React.FC<FlyoutChildStoryArgs> = ({
         <EuiButton onClick={openMain}>Open Main Flyout</EuiButton>
       )}
 
-      <EuiFlyout
-        isOpen={isMainOpen}
-        session={true}
-        id="flyout-manager-playground-main"
-        size={mainSize}
-        type={mainFlyoutType}
-        pushMinBreakpoint={pushMinBreakpoint}
-        maxWidth={mainMaxWidth}
-        ownFocus={false}
-        resizable={mainFlyoutResizable}
-        aria-label={`Main Flyout Menu (${mainSize})`}
-        {...args}
-        onClose={closeMain}
-      >
-        <EuiFlyoutBody>
-          <EuiText>
-            <p>This is the main flyout content.</p>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum
-              neque sequi illo, cum rerum quia ab animi velit sit incidunt
-              inventore temporibus eaque nam veritatis amet maxime maiores optio
-              quam?
-            </p>
-          </EuiText>
-          <EuiSpacer />
-
-          {!isChildOpen ? (
-            <EuiButton onClick={openChild}>Open child panel</EuiButton>
-          ) : (
-            <EuiButton onClick={closeChild}>Close child panel</EuiButton>
-          )}
-          <EuiFlyout
-            isOpen={isChildOpen}
-            id="flyout-manager-playground-child"
-            size={childSize}
-            childBackgroundShaded={childBackgroundShaded}
-            maxWidth={childMaxWidth}
-            ownFocus={false}
-            resizable={childFlyoutResizable}
-            {...args}
-            aria-label={`Child Flyout Panel (${childSize})`}
-            onClose={closeChild}
-          >
-            <EuiFlyoutBody>
-              <EuiText>
-                <p>This is the child flyout content.</p>
-                <p>Size restrictions apply:</p>
-                <ul>
-                  <li>When main panel is 's', child can be 's', or 'm'</li>
-                  <li>When main panel is 'm', child is limited to 's'</li>
-                </ul>
-                <EuiSpacer />
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Dolorum neque sequi illo, cum rerum quia ab animi velit sit
-                  incidunt inventore temporibus eaque nam veritatis amet maxime
-                  maiores optio quam?
-                </p>
-              </EuiText>
-            </EuiFlyoutBody>
-            {showFooter && (
-              <EuiFlyoutFooter>
-                <EuiText>
-                  <p>Child flyout footer</p>
-                </EuiText>
-              </EuiFlyoutFooter>
-            )}
-            {/* Footer is optional */}
-          </EuiFlyout>
-        </EuiFlyoutBody>
-        {showFooter && (
-          <EuiFlyoutFooter>
+      {isMainOpen && (
+        <EuiFlyout
+          session={true}
+          id="flyout-manager-playground-main"
+          size={mainSize}
+          type={mainFlyoutType}
+          pushMinBreakpoint={pushMinBreakpoint}
+          maxWidth={mainMaxWidth}
+          ownFocus={false}
+          resizable={mainFlyoutResizable}
+          aria-label={`Main Flyout Menu (${mainSize})`}
+          {...args}
+          onClose={closeMain}
+        >
+          <EuiFlyoutBody>
             <EuiText>
-              <p>Main flyout footer</p>
+              <p>This is the main flyout content.</p>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum
+                neque sequi illo, cum rerum quia ab animi velit sit incidunt
+                inventore temporibus eaque nam veritatis amet maxime maiores
+                optio quam?
+              </p>
             </EuiText>
-          </EuiFlyoutFooter>
-        )}
-      </EuiFlyout>
+            <EuiSpacer />
+
+            {!isChildOpen ? (
+              <EuiButton onClick={openChild}>Open child panel</EuiButton>
+            ) : (
+              <EuiButton onClick={closeChild}>Close child panel</EuiButton>
+            )}
+            {isChildOpen && (
+              <EuiFlyout
+                id="flyout-manager-playground-child"
+                size={childSize}
+                backgroundStyle={childBackgroundStyle}
+                maxWidth={childMaxWidth}
+                ownFocus={false}
+                resizable={childFlyoutResizable}
+                {...args}
+                aria-label={`Child Flyout Panel (${childSize})`}
+                onClose={closeChild}
+              >
+                <EuiFlyoutBody>
+                  <EuiText>
+                    <p>This is the child flyout content.</p>
+                    <p>Size restrictions apply:</p>
+                    <ul>
+                      <li>Both flyouts cannot be size &quot;m&quot;</li>
+                      <li>Both flyouts cannot be size &quot;fill&quot;</li>
+                      <li>
+                        Size &quot;l&quot; can only be used if the other flyout
+                        is &quot;fill&quot;
+                      </li>
+                    </ul>
+                    <EuiSpacer />
+                    <p>
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                      Dolorum neque sequi illo, cum rerum quia ab animi velit
+                      sit incidunt inventore temporibus eaque nam veritatis amet
+                      maxime maiores optio quam?
+                    </p>
+                  </EuiText>
+                </EuiFlyoutBody>
+                {showFooter && (
+                  <EuiFlyoutFooter>
+                    <EuiText>
+                      <p>Child flyout footer</p>
+                    </EuiText>
+                  </EuiFlyoutFooter>
+                )}
+                {/* Footer is optional */}
+              </EuiFlyout>
+            )}
+          </EuiFlyoutBody>
+          {showFooter && (
+            <EuiFlyoutFooter>
+              <EuiText>
+                <p>Main flyout footer</p>
+              </EuiText>
+            </EuiFlyoutFooter>
+          )}
+        </EuiFlyout>
+      )}
     </>
   );
 };

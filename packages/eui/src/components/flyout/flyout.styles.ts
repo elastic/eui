@@ -128,30 +128,15 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
       clip-path: polygon(-50% 0, 100% 0, 100% 100%, -50% 100%);
       ${logicalCSS('right', 0)}
 
-      &.euiFlyout--opening {
-        /*
-          Jump animation states immediately unless
-          prefers-reduced-motion: reduce is *not* set
-        */
-        animation: ${euiFlyoutSlideInRight} 0s ${euiTheme.animation.resistance}
-          forwards;
+      /*
+        Jump animation states immediately unless
+        prefers-reduced-motion: reduce is *not* set
+      */
+      animation: ${euiFlyoutSlideInRight} 0s ${euiTheme.animation
+        .resistance} forwards;
 
-        ${euiCanAnimate} {
-          animation-duration: ${euiTheme.animation.normal};
-        }
-      }
-
-      &.euiFlyout--closing {
-        /*
-          Jump animation states immediately unless
-          prefers-reduced-motion: reduce is *not* set
-        */
-        animation: ${euiFlyoutSlideOutRight} 0s ${euiTheme.animation.resistance}
-          forwards;
-
-        ${euiCanAnimate} {
-          animation-duration: ${euiTheme.animation.normal};
-        }
+      ${euiCanAnimate} {
+        animation-duration: ${euiTheme.animation.normal};
       }
 
       &.euiFlyout--hasChild {
@@ -163,30 +148,15 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
       ${logicalCSS('left', 0)}
       clip-path: polygon(0 0, 150% 0, 150% 100%, 0 100%);
 
-      &.euiFlyout--opening {
-        /*
-          Jump animation states immediately unless
-          prefers-reduced-motion: reduce is *not* set
-        */
-        animation: ${euiFlyoutSlideInLeft} 0s ${euiTheme.animation.resistance}
-          forwards;
+      /*
+        Jump animation states immediately unless
+        prefers-reduced-motion: reduce is *not* set
+      */
+      animation: ${euiFlyoutSlideInLeft} 0s ${euiTheme.animation.resistance}
+        forwards;
 
-        ${euiCanAnimate} {
-          animation-duration: ${euiTheme.animation.normal};
-        }
-      }
-
-      &.euiFlyout--closing {
-        /*
-          Jump animation states immediately unless
-          prefers-reduced-motion: reduce is *not* set
-        */
-        animation: ${euiFlyoutSlideOutLeft} 0s ${euiTheme.animation.resistance}
-          forwards;
-
-        ${euiCanAnimate} {
-          animation-duration: ${euiTheme.animation.normal};
-        }
+      ${euiCanAnimate} {
+        animation-duration: ${euiTheme.animation.normal};
       }
     `,
 

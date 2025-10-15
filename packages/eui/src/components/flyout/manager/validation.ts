@@ -21,8 +21,10 @@ export interface FlyoutValidationError {
   type: FlyoutValidationErrorType;
   message: string;
   flyoutId?: string;
+  parentFlyoutId?: string;
   level?: EuiFlyoutLevel;
-  size?: string; // Allow any string for error reporting
+  size?: string | number;
+  parentSize?: string | number;
 }
 
 /**
@@ -40,14 +42,14 @@ export function validateManagedFlyoutSize(
   flyoutId: string,
   level: EuiFlyoutLevel
 ): FlyoutValidationError | null {
-  if (!isNamedSize(size)) {
+  if (level === LEVEL_CHILD && !isNamedSize(size)) {
     const namedSizes = FLYOUT_SIZES.join(', ');
     return {
       type: 'INVALID_SIZE_TYPE',
-      message: `Managed flyouts must use named sizes (${namedSizes}). Received: ${size}`,
+      message: `Child flyouts must use named sizes (${namedSizes}). Received: ${size}`,
       flyoutId,
       level,
-      size: `${size}`,
+      size,
     };
   }
   return null;
@@ -79,59 +81,30 @@ export function validateSizeCombination(
   parentSize: EuiFlyoutSize,
   childSize: EuiFlyoutSize
 ): FlyoutValidationError | null {
+  const sizes = [parentSize, childSize];
+
   // Parent and child can't both be 'm'
-  if (parentSize === 'm' && childSize === 'm') {
+  if (sizes.every((s) => s === 'm')) {
     return {
       type: 'INVALID_SIZE_COMBINATION',
       message: 'Parent and child flyouts cannot both be size "m"',
-      size: childSize,
     };
   }
 
   // Parent and child can't both be 'fill'
-  if (parentSize === 'fill' && childSize === 'fill') {
+  if (sizes.every((s) => s === 'fill')) {
     return {
       type: 'INVALID_SIZE_COMBINATION',
       message: 'Parent and child flyouts cannot both be size "fill"',
-      size: childSize,
     };
   }
 
-  // Parent can't be 'l' if there is a child
-  if (parentSize === 'l') {
+  // Flyout can't be 'l' if the other in the pair is not "fill"
+  if (sizes.includes('l') && !sizes.includes('fill')) {
     return {
       type: 'INVALID_SIZE_COMBINATION',
-      message: 'Parent flyouts cannot be size "l" when there is a child flyout',
-      size: parentSize,
+      message: 'Flyouts cannot be size "l" unless the other flyout is "fill"',
     };
-  }
-
-  return null;
-}
-
-/**
- * Comprehensive validation for flyout size rules
- */
-export function validateFlyoutSize(
-  size: EuiFlyoutComponentProps['size'],
-  flyoutId: string,
-  level: EuiFlyoutLevel,
-  parentSize?: EuiFlyoutSize
-): FlyoutValidationError | null {
-  // First validate that managed flyouts use named sizes
-  const sizeTypeError = validateManagedFlyoutSize(size, flyoutId, level);
-  if (sizeTypeError) {
-    return sizeTypeError;
-  }
-
-  // If this is a child flyout and we have parent size, validate combination
-  if (level === LEVEL_CHILD && parentSize && isNamedSize(size)) {
-    const combinationError = validateSizeCombination(parentSize, size);
-    if (combinationError) {
-      combinationError.flyoutId = flyoutId;
-      combinationError.level = level;
-      return combinationError;
-    }
   }
 
   return null;
@@ -143,16 +116,15 @@ export function validateFlyoutSize(
 export function createValidationErrorMessage(
   error: FlyoutValidationError
 ): string {
-  const prefix = `EuiFlyout validation error: `;
+  console.error(error);
+  const prefix = `EuiFlyout validation error`;
 
   switch (error.type) {
     case 'INVALID_SIZE_TYPE':
-      return `${prefix}${error.message}`;
     case 'INVALID_SIZE_COMBINATION':
-      return `${prefix}${error.message}`;
     case 'INVALID_FLYOUT_MENU_TITLE':
-      return `${prefix}${error.message}`;
+      return `${prefix}: ${error.message}`;
     default:
-      return `${prefix}Unknown validation error`;
+      return `${prefix}: Unknown validation error`;
   }
 }
