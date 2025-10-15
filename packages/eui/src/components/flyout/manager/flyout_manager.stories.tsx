@@ -25,7 +25,6 @@ type EuiFlyoutChildActualProps = Pick<
   EuiFlyoutChildProps,
   | 'aria-label'
   | 'as'
-  | 'backgroundStyle'
   | 'children'
   | 'closeButtonProps'
   | 'focusTrapProps'
@@ -47,7 +46,7 @@ type EuiFlyoutType = (typeof FLYOUT_TYPES)[number];
 interface FlyoutChildStoryArgs extends EuiFlyoutChildActualProps {
   mainSize?: 's' | 'm';
   childSize?: 's' | 'm';
-  childBackgroundStyle?: 'default' | 'shaded';
+  hasChildBackground: boolean;
   childMaxWidth?: number;
   mainFlyoutType: EuiFlyoutType;
   mainMaxWidth?: number;
@@ -68,25 +67,25 @@ const meta: Meta<FlyoutChildStoryArgs> = {
   component: EuiFlyoutChild,
   argTypes: {
     childSize: {
-      options: ['s', 'm', 'fill'],
+      options: ['s', 'm', 'l', 'fill'],
       control: { type: 'radio' },
       description:
-        'The size of the child flyout. If the main is `s`, the child can be `s`, or `m`. If the main is `m`, the child can only be `s`.',
+        'The size of the child flyout. Valid combinations: both cannot be "m", both cannot be "fill", and "l" can only be used if the other flyout is "fill".',
     },
-    childBackgroundStyle: {
-      options: ['default', 'shaded'],
-      control: { type: 'radio' },
-      description: 'The background style of the child flyout.',
+    hasChildBackground: {
+      control: { type: 'boolean' },
+      description:
+        'When the flyout is used as a child in a managed flyout session, setting `true` gives the shaded background style.',
     },
     childMaxWidth: {
       control: { type: 'number' },
       description: 'The maximum width of the child flyout.',
     },
     mainSize: {
-      options: ['s', 'm', 'fill'],
+      options: ['s', 'm', 'l', 'fill', '400px'],
       control: { type: 'radio' },
       description:
-        'The size of the main (parent) flyout. If `m`, the child must be `s`. If `s`, the child can be `s`, or `m`.',
+        'The size of the main (parent) flyout. Can use named sizes (s, m, l, fill) or custom values like "400px". Valid combinations: both cannot be "m", both cannot be "fill", and "l" can only be used if the other flyout is "fill".',
     },
     mainFlyoutType: {
       options: FLYOUT_TYPES,
@@ -116,9 +115,6 @@ const meta: Meta<FlyoutChildStoryArgs> = {
       control: { type: 'boolean' },
       description: 'Whether the child flyout should be resizable.',
     },
-
-    // use "childBackgroundStyle" instead
-    backgroundStyle: { table: { disable: true } },
     // use "mainSize" and "childSize" instead
     size: { table: { disable: true } },
     // use "mainMaxWidth" and "childMaxWidth" instead
@@ -138,7 +134,7 @@ const meta: Meta<FlyoutChildStoryArgs> = {
   args: {
     mainSize: 'm',
     childSize: 's',
-    childBackgroundStyle: 'default',
+    hasChildBackground: false,
     mainFlyoutType: 'overlay',
     outsideClickCloses: false,
     ownFocus: true, // Depends on `mainFlyoutType=overlay`
@@ -166,7 +162,7 @@ type Story = StoryObj<FlyoutChildStoryArgs>;
 const StatefulFlyout: React.FC<FlyoutChildStoryArgs> = ({
   mainSize,
   childSize,
-  childBackgroundStyle,
+  hasChildBackground,
   mainFlyoutType,
   pushMinBreakpoint,
   mainMaxWidth,
@@ -256,7 +252,7 @@ const StatefulFlyout: React.FC<FlyoutChildStoryArgs> = ({
               <EuiFlyout
                 id="flyout-manager-playground-child"
                 size={childSize}
-                backgroundStyle={childBackgroundStyle}
+                hasChildBackground={hasChildBackground}
                 maxWidth={childMaxWidth}
                 ownFocus={false}
                 resizable={childFlyoutResizable}
@@ -269,8 +265,12 @@ const StatefulFlyout: React.FC<FlyoutChildStoryArgs> = ({
                     <p>This is the child flyout content.</p>
                     <p>Size restrictions apply:</p>
                     <ul>
-                      <li>When main panel is 's', child can be 's', or 'm'</li>
-                      <li>When main panel is 'm', child is limited to 's'</li>
+                      <li>Both flyouts cannot be size &quot;m&quot;</li>
+                      <li>Both flyouts cannot be size &quot;fill&quot;</li>
+                      <li>
+                        Size &quot;l&quot; can only be used if the other flyout
+                        is &quot;fill&quot;
+                      </li>
                     </ul>
                     <EuiSpacer />
                     <p>

@@ -45,7 +45,6 @@ Renders the primary flyout in a session. Currently a simple wrapper around `EuiM
 ### `src/components/flyout/manager/flyout_child.tsx`
 Renders child flyouts within a session:
 - **Positioning**: Automatically positions relative to main flyout width
-- **Styling**: Supports `backgroundStyle` prop for default/shaded backgrounds
 - **Constraints**: Forces `type="overlay"` and `ownFocus={false}`
 - **Width Integration**: Uses main flyout width for positioning
 
@@ -54,8 +53,8 @@ The managed flyout wrapper that integrates with the flyout manager system, handl
 
 ### `src/components/flyout/manager/flyout_validation.ts`
 Validation utilities for managed flyout props:
-- **Named Size Validation**: Managed flyouts must use named sizes (s, m, l). If not provided, defaults to 'm'.
-- **Size Combination Rules**: Parent and child can't both be 'm', parent can't be 'l' with child
+- **Named Size Validation**: Child flyouts must use named sizes (s, m, l, fill). Main flyouts can use named sizes or custom values (e.g., '400px'). If size is not provided, main flyouts default to 'm' and child flyouts default to 's'.
+- **Size Combination Rules**: Parent and child can't both be 'm', parent and child can't both be 'fill', and 'l' can only be used if the other flyout is 'fill'
 - **Title**: Must be provided either through `flyoutMenuProps` or `aria-label`
 - **Error Handling**: Comprehensive error messages for invalid configurations
 
@@ -96,7 +95,7 @@ Core flyout styling with emotion CSS-in-JS:
 Menu-specific styling for the flyout menu component.
 
 ### `src/components/flyout/manager/flyout.styles.ts`
-Managed flyout styling, including background styles for child flyouts.
+Managed flyout styling for the flyout managment system.
 
 ## Testing and Documentation
 

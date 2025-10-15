@@ -33,20 +33,25 @@ describe('Flyout Size Validation', () => {
   });
 
   describe('validateManagedFlyoutSize', () => {
-    it('should return null for valid named sizes', () => {
-      expect(validateManagedFlyoutSize('s', 'test-id', 'main')).toBeNull();
+    it('should return null for valid named sizes in child flyouts', () => {
+      expect(validateManagedFlyoutSize('s', 'test-id', 'child')).toBeNull();
       expect(validateManagedFlyoutSize('m', 'test-id', 'child')).toBeNull();
-      expect(validateManagedFlyoutSize('l', 'test-id', 'main')).toBeNull();
+      expect(validateManagedFlyoutSize('l', 'test-id', 'child')).toBeNull();
     });
 
-    it('should return error for non-named sizes', () => {
-      const error = validateManagedFlyoutSize('100px', 'test-id', 'main');
+    it('should return null for main flyouts regardless of size', () => {
+      expect(validateManagedFlyoutSize('100px', 'test-id', 'main')).toBeNull();
+      expect(validateManagedFlyoutSize('s', 'test-id', 'main')).toBeNull();
+    });
+
+    it('should return error for non-named sizes in child flyouts', () => {
+      const error = validateManagedFlyoutSize('100px', 'test-id', 'child');
       expect(error).toEqual({
         type: 'INVALID_SIZE_TYPE',
         message:
-          'Managed flyouts must use named sizes (s, m, l, fill). Received: 100px',
+          'Child flyouts must use named sizes (s, m, l, fill). Received: 100px',
         flyoutId: 'test-id',
-        level: 'main',
+        level: 'child',
         size: '100px',
       });
     });
@@ -75,13 +80,13 @@ describe('Flyout Size Validation', () => {
   describe('validateSizeCombination', () => {
     it('should return null for valid combinations', () => {
       expect(validateSizeCombination('s', 'm')).toBeNull();
-      expect(validateSizeCombination('s', 'l')).toBeNull();
       expect(validateSizeCombination('m', 's')).toBeNull();
-      expect(validateSizeCombination('m', 'l')).toBeNull();
       expect(validateSizeCombination('s', 'fill')).toBeNull();
       expect(validateSizeCombination('m', 'fill')).toBeNull();
       expect(validateSizeCombination('fill', 's')).toBeNull();
       expect(validateSizeCombination('fill', 'm')).toBeNull();
+      expect(validateSizeCombination('l', 'fill')).toBeNull();
+      expect(validateSizeCombination('fill', 'l')).toBeNull();
     });
 
     it('should return error when parent and child are both m', () => {
@@ -100,12 +105,23 @@ describe('Flyout Size Validation', () => {
       });
     });
 
-    it('should return error when parent is l and there is a child', () => {
-      const error = validateSizeCombination('l', 's');
-      expect(error).toEqual({
+    it('should return error when a flyout is l without the other being fill', () => {
+      const errorParentL = validateSizeCombination('l', 's');
+      expect(errorParentL).toEqual({
         type: 'INVALID_SIZE_COMBINATION',
-        message:
-          'Parent flyouts cannot be size "l" when there is a child flyout',
+        message: 'Flyouts cannot be size "l" unless the other flyout is "fill"',
+      });
+
+      const errorChildL = validateSizeCombination('s', 'l');
+      expect(errorChildL).toEqual({
+        type: 'INVALID_SIZE_COMBINATION',
+        message: 'Flyouts cannot be size "l" unless the other flyout is "fill"',
+      });
+
+      const errorParentLChildM = validateSizeCombination('l', 'm');
+      expect(errorParentLChildM).toEqual({
+        type: 'INVALID_SIZE_COMBINATION',
+        message: 'Flyouts cannot be size "l" unless the other flyout is "fill"',
       });
     });
   });
@@ -125,15 +141,15 @@ describe('Flyout Size Validation', () => {
       const error: FlyoutValidationError = {
         type: 'INVALID_SIZE_TYPE',
         message:
-          'Managed flyouts must use named sizes (s, m, l, fill). Received: 100px',
+          'Child flyouts must use named sizes (s, m, l, fill). Received: 100px',
         flyoutId: 'test-id',
-        level: 'main',
+        level: 'child',
         size: '100px',
       };
 
       const message = createValidationErrorMessage(error);
       expect(message).toBe(
-        'EuiFlyout validation error: Managed flyouts must use named sizes (s, m, l, fill). Received: 100px'
+        'EuiFlyout validation error: Child flyouts must use named sizes (s, m, l, fill). Received: 100px'
       );
       expect(consoleSpy).toHaveBeenCalledWith(error);
     });
