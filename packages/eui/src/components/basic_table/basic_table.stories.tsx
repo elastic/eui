@@ -349,6 +349,15 @@ export const ExpandedNestedTable: Story = {
   },
 };
 
+export const DarkMode: Story = {
+  tags: ['vrt-only'],
+  globals: { colorMode: 'dark' },
+  args: {
+    ...ExpandedRow.args,
+    responsiveBreakpoint: true,
+  },
+};
+
 export const HighContrastMobile: Story = {
   tags: ['vrt-only'],
   globals: { highContrastMode: true },
