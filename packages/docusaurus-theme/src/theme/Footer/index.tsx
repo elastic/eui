@@ -14,8 +14,11 @@ import {
   useEuiMemoizedStyles,
 } from '@elastic/eui';
 import { useThemeConfig } from '@docusaurus/theme-common';
+import { euiLinkStyles } from '@elastic/eui/es/components/link/link.styles';
 
-const getFooterStyles = ({ euiTheme }: UseEuiTheme) => {
+const getFooterStyles = (euiThemeContext: UseEuiTheme) => {
+  const { euiTheme } = euiThemeContext;
+
   return {
     root: css`
       background: ${euiTheme.colors
@@ -25,6 +28,11 @@ const getFooterStyles = ({ euiTheme }: UseEuiTheme) => {
     `,
     text: css`
       line-height: var(--eui-line-height-s);
+
+      a {
+        ${euiLinkStyles(euiThemeContext).euiLink}
+        ${euiLinkStyles(euiThemeContext).primary}
+      }
     `,
     heart: css`
       color: ${euiTheme.colors.accent};
