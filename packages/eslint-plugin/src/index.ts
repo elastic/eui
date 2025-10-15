@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import { CallOutAnnounceOnMount } from './rules/a11y/callout_announce_on_mount';
+
 import { HrefOnClick } from './rules/href_or_on_click';
 import { NoRestrictedEuiImports } from './rules/no_restricted_eui_imports';
 import { NoCssColor } from './rules/no_css_color';
@@ -18,6 +18,8 @@ import { PreferEuiIconTip } from './rules/a11y/prefer_eui_icon_tip';
 import { NoUnnamedRadioGroup } from './rules/a11y/no_unnamed_radio_group';
 import { NoUnnamedInteractiveElement } from './rules/a11y/no_unnamed_interactive_element';
 import { TooltipFocusableAnchor } from './rules/a11y/tooltip_focusable_anchor';
+import { CallOutAnnounceOnMount } from './rules/a11y/callout_announce_on_mount';
+import { AccessibleInteractiveElements } from './rules/a11y/accessible_interactive_element';
 
 const config = {
   rules: {
@@ -32,6 +34,7 @@ const config = {
     'callout-announce-on-mount': CallOutAnnounceOnMount,
     'no-unnamed-interactive-element': NoUnnamedInteractiveElement,
     'tooltip-focusable-anchor': TooltipFocusableAnchor,
+    'accessible-interactive-element': AccessibleInteractiveElements,
   },
   configs: {
     recommended: {
@@ -48,6 +51,7 @@ const config = {
         '@elastic/eui/callout-announce-on-mount': 'warn',
         '@elastic/eui/no-unnamed-interactive-element': 'warn',
         '@elastic/eui/tooltip-focusable-anchor': 'warn',
+        '@elastic/eui/accessible-interactive-element': 'warn',
       },
     },
   },
