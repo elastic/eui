@@ -8,7 +8,12 @@
 
 import { css, keyframes } from '@emotion/react';
 
-import { logicalCSS, euiCantAnimate } from '../../global_styling';
+import {
+  logicalCSS,
+  euiCantAnimate,
+  highContrastModeStyles,
+  preventForcedColors,
+} from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 
 const tableLoadingLine = keyframes`
@@ -33,23 +38,40 @@ const tableLoadingLine = keyframes`
   }
 `;
 
-export const euiBasicTableBodyLoading = ({ euiTheme }: UseEuiTheme) => css`
-  position: relative;
-  overflow: hidden;
+export const euiBasicTableBodyLoading = (euiThemeContext: UseEuiTheme) => {
+  const { euiTheme } = euiThemeContext;
 
-  &::before {
-    position: absolute;
-    content: '';
-    ${logicalCSS('width', '100%')}
-    ${logicalCSS('height', euiTheme.border.width.thick)}
-    background-color: ${euiTheme.colors.primary};
-    animation: ${tableLoadingLine} 1s linear infinite;
+  return css`
+    position: relative;
+    overflow: hidden;
 
-    ${euiCantAnimate} {
-      animation-duration: 2s;
+    &::before {
+      position: absolute;
+      content: '';
+      ${logicalCSS('width', '100%')}
+      ${logicalCSS('height', euiTheme.border.width.thick)}
+      background-color: ${euiTheme.colors.primary};
+      animation: ${tableLoadingLine} 1s linear infinite;
+
+      ${euiCantAnimate} {
+        animation: none;
+        background: repeating-linear-gradient(
+          -45deg,
+          ${euiTheme.colors.backgroundBasePlain},
+          ${euiTheme.colors.backgroundBasePlain} ${euiTheme.size.xs},
+          ${euiTheme.colors.primary} ${euiTheme.size.xs},
+          ${euiTheme.colors.primary} ${euiTheme.size.s}
+        );
+
+        ${highContrastModeStyles(euiThemeContext, {
+          forced: `
+              ${preventForcedColors(euiThemeContext)}
+            `,
+        })}
+      }
     }
-  }
-`;
+  `;
+};
 
 // Fix to make the loading indicator position correctly in Safari
 // For whatever annoying reason, Safari doesn't respect `position: relative;`
