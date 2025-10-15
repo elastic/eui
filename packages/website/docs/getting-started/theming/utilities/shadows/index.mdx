@@ -6,7 +6,14 @@ sidebar_position: 10
 
 EUI provides 5 shadow sizes (`xs`, `s`, `m`, `l`, `xl`) that can be applied in two directions: `down` (default) and `up`.
 
-The provided EUI shadow utilities handle the following additional style adjustments:
+The provided EUI shadow utilities use the underlying theme shadow tokens and automatically add required adjustments 
+for dark mode and high contrast mode that ensure expected visibility. [Read more about the shadow utils here](../../utilities/shadows/index.mdx). 
+
+:::warning Never use the underlying shadow tokens separately
+Always use the shadow utilities to ensure proper styling.
+:::
+
+These shadow utilities handle the following additional style adjustments:
 
 - adds a light, 4-sided `border` style in Dark mode to increase elevated item visibility
 - replaces the `box-shadow` in High Contrast mode with `border` to ensure visibility in high contrast themes
@@ -23,7 +30,7 @@ import { EuiSpacer } from '@elastic/eui';
 
   const styles = css`
     ${euiShadow(euiThemeContext, 's')};
-    ${euiShadow(euiThemeContext, 's', { direction: 'up' })};
+    ${euiShadow(euiThemeContext, 's', { direction: 'down' })};
   `;  
   ```
 </Example.Snippet>
