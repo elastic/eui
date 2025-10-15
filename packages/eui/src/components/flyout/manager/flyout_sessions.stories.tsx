@@ -6,17 +6,29 @@
  * Side Public License, v 1.
  */
 
-import { Meta, StoryObj } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import React, { useState, useCallback, useMemo } from 'react';
+import { Meta, StoryObj } from '@storybook/react';
+import React, {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
+import type { Root } from 'react-dom/client';
+import { createRoot } from 'react-dom/client';
 
 import {
   EuiButton,
   EuiCodeBlock,
   EuiDescriptionList,
+  EuiFlexGroup,
+  EuiFlexItem,
   EuiFlyoutBody,
-  EuiPageTemplate,
-  EuiPageTemplateProps,
+  EuiFlyoutHeader,
+  EuiPanel,
+  EuiProvider,
   EuiSpacer,
   EuiSwitch,
   EuiSwitchEvent,
@@ -24,7 +36,7 @@ import {
   EuiTitle,
 } from '../..';
 import { EuiFlyout } from '../flyout';
-import { useFlyoutManager, useCurrentSession } from './hooks';
+import { useCurrentSession, useFlyoutManager } from './hooks';
 
 const meta: Meta<typeof EuiFlyout> = {
   title: 'Layout/EuiFlyout/Flyout Manager',
@@ -50,6 +62,31 @@ interface FlyoutSessionProps {
   ownFocus?: boolean;
   hasChildBackground: boolean;
 }
+
+const DisplayContext: React.FC<{ title: string }> = ({ title }) => {
+  const flyoutManager = useFlyoutManager();
+  const currentSession = useCurrentSession();
+  return (
+    <>
+      <EuiTitle size="s">
+        <h3>{title}</h3>
+      </EuiTitle>
+      <EuiSpacer size="s" />
+      <EuiCodeBlock language="json">
+        {JSON.stringify(
+          {
+            flyoutManager: flyoutManager
+              ? { state: flyoutManager.state }
+              : null,
+            currentSession: currentSession ? currentSession : null,
+          },
+          null,
+          2
+        )}
+      </EuiCodeBlock>
+    </>
+  );
+};
 
 const FlyoutSession: React.FC<FlyoutSessionProps> = React.memo((props) => {
   const {
@@ -187,20 +224,72 @@ const FlyoutSession: React.FC<FlyoutSessionProps> = React.memo((props) => {
 
 FlyoutSession.displayName = 'FlyoutSession';
 
-const ExampleComponent = () => {
-  const panelled: EuiPageTemplateProps['panelled'] = undefined;
-  const restrictWidth: EuiPageTemplateProps['restrictWidth'] = false;
-  const bottomBorder: EuiPageTemplateProps['bottomBorder'] = 'extended';
+const NonSessionFlyout: React.FC<{
+  flyoutType: 'overlay' | 'push';
+}> = React.memo(({ flyoutType }) => {
+  const [isFlyoutVisible, setIsFlyoutVisible] = useState(false);
 
+  const handleOpenFlyout = () => {
+    setIsFlyoutVisible(true);
+  };
+
+  const flyoutOnClose = useCallback(() => {
+    action('close non-session flyout')();
+    setIsFlyoutVisible(false);
+  }, []);
+
+  return (
+    <>
+      <EuiText>
+        <EuiButton disabled={isFlyoutVisible} onClick={handleOpenFlyout}>
+          Open non-session flyout
+        </EuiButton>
+      </EuiText>
+      {isFlyoutVisible && (
+        <EuiFlyout
+          id="nonSessionFlyout"
+          aria-labelledby="nonSessionFlyoutTitle"
+          size="s"
+          type={flyoutType}
+          ownFocus={false}
+          pushAnimation={true}
+          onClose={flyoutOnClose}
+          session={false}
+          side="left"
+        >
+          <EuiFlyoutHeader>
+            <EuiTitle size="m">
+              <h2 id="nonSessionFlyoutTitle">Non-session Flyout</h2>
+            </EuiTitle>
+          </EuiFlyoutHeader>
+          <EuiFlyoutBody>
+            <EuiText>
+              <p>This is the content of a non-session flyout.</p>
+              <EuiSpacer size="s" />
+              <EuiDescriptionList
+                type="column"
+                listItems={[
+                  { title: 'Flyout type', description: flyoutType },
+                  { title: 'Size', description: 'm' },
+                ]}
+              />
+            </EuiText>
+          </EuiFlyoutBody>
+        </EuiFlyout>
+      )}
+    </>
+  );
+});
+
+NonSessionFlyout.displayName = 'NonSessionFlyout';
+
+const MultiSessionFlyoutDemo: React.FC = () => {
   const [flyoutType, setFlyoutType] = useState<'overlay' | 'push'>('overlay');
   const [hasChildBackground, setChildBackgroundShaded] = useState(false);
 
   const handleFlyoutTypeToggle = useCallback((e: EuiSwitchEvent) => {
     setFlyoutType(e.target.checked ? 'push' : 'overlay');
   }, []);
-
-  const flyoutManager = useFlyoutManager();
-  const currentSession = useCurrentSession();
 
   const listItems = useMemo(
     () => [
@@ -303,72 +392,237 @@ const ExampleComponent = () => {
           />
         ),
       },
+      {
+        title: 'Non-session flyout',
+        description: <NonSessionFlyout flyoutType={flyoutType} />,
+      },
     ],
     [flyoutType, hasChildBackground]
   );
 
   return (
-    <EuiPageTemplate
-      panelled={panelled}
-      restrictWidth={restrictWidth}
-      bottomBorder={bottomBorder}
-      offset={0}
-      grow={false}
-    >
-      <EuiPageTemplate.Header
-        iconType="logoElastic"
-        pageTitle="Flyout System Example"
+    <>
+      <EuiSwitch
+        label="Flyouts push page content"
+        checked={flyoutType === 'push'}
+        onChange={handleFlyoutTypeToggle}
       />
-      <EuiPageTemplate.Section grow={false} bottomBorder={bottomBorder}>
-        <EuiTitle size="s">
-          <h3 id="settingsHeading">Options</h3>
-        </EuiTitle>
-        <EuiSpacer />
-        <EuiSwitch
-          label="Flyouts push page content"
-          checked={flyoutType === 'push'}
-          onChange={handleFlyoutTypeToggle}
-        />
-        <EuiSpacer size="m" />
-        <EuiSwitch
-          label="Child flyout background shaded"
-          checked={hasChildBackground}
-          onChange={() => setChildBackgroundShaded((prev) => !prev)}
-        />
-      </EuiPageTemplate.Section>
-      <EuiPageTemplate.Section grow={false} bottomBorder={bottomBorder}>
-        <EuiDescriptionList
-          type="column"
-          columnGutterSize="m"
-          listItems={listItems}
-        />
-      </EuiPageTemplate.Section>
-      <EuiPageTemplate.Section>
-        <EuiTitle size="s">
-          <h3 id="contextHeading">Contexts</h3>
-        </EuiTitle>
-        <EuiSpacer />
-        <EuiCodeBlock language="json">
-          {JSON.stringify(
-            {
-              flyoutManager: flyoutManager
-                ? { state: flyoutManager.state }
-                : null,
-              currentSession: currentSession ? currentSession : null,
-            },
-            null,
-            2
-          )}
-        </EuiCodeBlock>
-      </EuiPageTemplate.Section>
-    </EuiPageTemplate>
+      <EuiSpacer />
+      <EuiSwitch
+        label="Child flyout background shaded"
+        checked={hasChildBackground}
+        onChange={() => setChildBackgroundShaded((prev) => !prev)}
+      />
+      <EuiSpacer size="m" />
+      <EuiDescriptionList
+        type="column"
+        columnGutterSize="m"
+        listItems={listItems}
+      />
+      <EuiSpacer size="xl" />
+      <DisplayContext title="Flyout manager context" />
+    </>
   );
 };
 
 export const MultiSessionExample: StoryObj<typeof EuiFlyout> = {
   name: 'Multi-session example',
-  render: () => <ExampleComponent />,
-  parameters: {
-    layout: 'fullscreen',
-  },
+  render: () => <MultiSessionFlyoutDemo />,
+};
+
+const ExternalRootChildFlyout: React.FC<{ parentId: string }> = ({
+  parentId,
+}) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleToggle = () => {
+    setIsOpen((prev) => !prev);
+  };
+
+  const handleClose = () => {
+    setIsOpen(false);
+  };
+
+  return (
+    <EuiPanel hasBorder paddingSize="m" grow={false}>
+      <EuiTitle size="xs">
+        <h4>Root within {parentId}</h4>
+      </EuiTitle>
+      <EuiSpacer size="s" />
+      <EuiButton onClick={handleToggle} size="s" disabled={isOpen}>
+        Open child flyout
+      </EuiButton>
+      {isOpen && (
+        <EuiFlyout
+          id={`child-flyout-${parentId}`}
+          size="s"
+          onClose={handleClose}
+          flyoutMenuProps={{ title: `Child flyout of ${parentId}` }}
+          data-test-subj="child-flyout-in-new-root"
+        >
+          <EuiFlyoutBody>
+            <EuiText>
+              <p>
+                This is a child flyout rendered in a completely separate React
+                root! It shares the same flyout manager state as the parent.
+              </p>
+              <EuiSpacer size="s" />
+              <p>Parent ID: {parentId}</p>
+            </EuiText>
+          </EuiFlyoutBody>
+        </EuiFlyout>
+      )}
+    </EuiPanel>
+  );
+};
+
+const ExternalRootFlyout: React.FC<{ id: string }> = ({ id }) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const buttonContainerRef = useRef<HTMLDivElement | null>(null);
+  const buttonRootRef = useRef<Root | null>(null);
+
+  // Manage the React root lifecycle for the child flyout button
+  useEffect(() => {
+    if (!isOpen) {
+      // Clean up when closing
+      if (buttonRootRef.current) {
+        buttonRootRef.current.unmount();
+        buttonRootRef.current = null;
+      }
+      return;
+    }
+
+    // When opening, wait for flyout to render before creating nested root
+    const timer = setTimeout(() => {
+      if (buttonContainerRef.current && !buttonRootRef.current) {
+        const newRoot = createRoot(buttonContainerRef.current);
+        newRoot.render(
+          <EuiProvider>
+            <ExternalRootChildFlyout parentId={id} />
+          </EuiProvider>
+        );
+        buttonRootRef.current = newRoot;
+      }
+    }, 0);
+
+    return () => {
+      clearTimeout(timer);
+      // Don't unmount here - let the !isOpen case handle cleanup
+    };
+  }, [isOpen, id]);
+
+  // Cleanup on unmount
+  useEffect(() => {
+    return () => {
+      if (buttonRootRef.current) {
+        buttonRootRef.current.unmount();
+        buttonRootRef.current = null;
+      }
+    };
+  }, []);
+
+  return (
+    <EuiPanel hasBorder paddingSize="m" grow={false}>
+      <EuiTitle size="xs">
+        <h3>{id}</h3>
+      </EuiTitle>
+      <EuiSpacer size="s" />
+      <EuiButton onClick={() => setIsOpen((prev) => !prev)}>
+        {isOpen ? 'Close flyout' : 'Open flyout'}
+      </EuiButton>
+      {isOpen && (
+        <EuiFlyout
+          id={`external-root-${id}`}
+          session
+          size="m"
+          onClose={() => setIsOpen(false)}
+          flyoutMenuProps={{ title: `${id} flyout` }}
+        >
+          <EuiFlyoutBody>
+            <EuiText>
+              <p>
+                This flyout lives in a separate React root but shares the same
+                manager state. Closing it here should update all other flyout
+                menus and history.
+              </p>
+              <EuiSpacer size="m" />
+              <p>
+                Below is a button rendered in a separate React root that opens a
+                child flyout:
+              </p>
+              <EuiSpacer size="s" />
+              {/* Container for the button React root - inside the main flyout */}
+              <div ref={buttonContainerRef} />
+            </EuiText>
+          </EuiFlyoutBody>
+        </EuiFlyout>
+      )}
+    </EuiPanel>
+  );
+};
+
+const MultiRootFlyoutDemo: React.FC = () => {
+  const secondaryRootRef = useRef<HTMLDivElement | null>(null);
+  const tertiaryRootRef = useRef<HTMLDivElement | null>(null);
+  const mountedRootsRef = useRef<Root[]>([]);
+
+  useLayoutEffect(() => {
+    if (
+      secondaryRootRef.current &&
+      tertiaryRootRef.current &&
+      mountedRootsRef.current.length === 0
+    ) {
+      const containers = [
+        { container: secondaryRootRef.current, id: 'Secondary root' },
+        { container: tertiaryRootRef.current, id: 'Tertiary root' },
+      ];
+
+      mountedRootsRef.current = containers.map(({ container, id }) => {
+        const root = createRoot(container);
+        root.render(
+          <EuiProvider>
+            <ExternalRootFlyout id={id} />
+          </EuiProvider>
+        );
+        return root;
+      });
+    }
+
+    return () => {
+      mountedRootsRef.current.forEach((root) => root.unmount());
+      mountedRootsRef.current = [];
+    };
+  }, []);
+
+  return (
+    <>
+      <EuiTitle size="s">
+        <h3>Multiple React roots</h3>
+      </EuiTitle>
+      <EuiSpacer size="s" />
+      <EuiText size="s" color="subdued">
+        <p>
+          These flyouts are rendered in separate React roots but share the same
+          flyout manager state. Open/close any flyout and watch the shared state
+          update below.
+        </p>
+      </EuiText>
+      <EuiSpacer />
+      <EuiFlexGroup gutterSize="m">
+        <EuiFlexItem grow={false}>
+          <div ref={secondaryRootRef} />
+        </EuiFlexItem>
+        <EuiFlexItem grow={false}>
+          <div ref={tertiaryRootRef} />
+        </EuiFlexItem>
+      </EuiFlexGroup>
+      <EuiSpacer size="xl" />
+      <DisplayContext title="Shared manager state" />
+    </>
+  );
+};
+
+export const MultiRootSyncExample: StoryObj<typeof EuiFlyout> = {
+  name: 'Multi-root sync',
+  render: () => <MultiRootFlyoutDemo />,
 };

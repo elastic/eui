@@ -14,12 +14,8 @@ import {
   type EuiFlyoutComponentProps,
 } from './flyout.component';
 
-import {
-  EuiFlyoutChild,
-  EuiFlyoutMain,
-  useHasActiveSession,
-  useIsInManagedFlyout,
-} from './manager';
+import { EuiFlyoutChild, EuiFlyoutMain, useHasActiveSession } from './manager';
+import { EuiFlyoutMenuContext } from './flyout_menu_context';
 
 export type {
   EuiFlyoutSize,
@@ -51,42 +47,52 @@ export const EuiFlyout = forwardRef<
     usePropsWithComponentDefaults('EuiFlyout', props);
   const hasActiveSession = useHasActiveSession();
   const isUnmanagedFlyout = useRef(false);
-  const isInManagedFlyout = useIsInManagedFlyout();
 
   /*
-   * Flyout routing logic
-   * 1. Main Flyout: When session={true} OR when there's an active session and this flyout
-   *    is rendered outside of a managed flyout context.
-   * 2. Child Flyout: When there's an active session AND this flyout IS rendered within a
-   *    managed flyout context.
-   * 3. Standard Flyout: Default fallback when neither condition is met.
+   * Flyout routing logic:
+   * - session={true} → Main flyout (creates new session)
+   * - session={undefined} + active session → Child flyout (auto-joins, works across React roots!)
+   * - session={undefined} + no session → Standard flyout
+   * - session={false} → Standard flyout (explicit opt-out)
    */
-  if (session === true || (hasActiveSession && !isInManagedFlyout)) {
-    if (isUnmanagedFlyout.current) {
-      // TODO: @tkajtoch - We need to find a better way to handle the missing event.
-      onClose?.({} as any);
-      return null;
+  if (session !== false) {
+    if (session === true) {
+      if (isUnmanagedFlyout.current) {
+        // TODO: @tkajtoch - We need to find a better way to handle the missing event.
+        onClose?.({} as any);
+        return null;
+      }
+      return (
+        <EuiFlyoutMain
+          {...rest}
+          onClose={onClose}
+          onActive={onActive}
+          as="div"
+        />
+      );
     }
-    return (
-      <EuiFlyoutMain {...rest} onClose={onClose} onActive={onActive} as="div" />
-    );
-  }
 
-  // Else if this flyout is a child of a session AND within a managed flyout context, render EuiChildFlyout.
-  if (hasActiveSession && isInManagedFlyout) {
-    return (
-      <EuiFlyoutChild
-        {...rest}
-        onClose={onClose}
-        onActive={onActive}
-        as="div"
-      />
-    );
+    // Auto-join existing session as child
+    if (hasActiveSession && session === undefined) {
+      return (
+        <EuiFlyoutChild
+          {...rest}
+          onClose={onClose}
+          onActive={onActive}
+          as="div"
+        />
+      );
+    }
   }
 
   // TODO: if resizeable={true}, render EuiResizableFlyout.
 
   isUnmanagedFlyout.current = true;
-  return <EuiFlyoutComponent {...rest} onClose={onClose} as={as} ref={ref} />;
+  return (
+    <EuiFlyoutMenuContext.Provider value={{ onClose }}>
+      <EuiFlyoutComponent {...rest} onClose={onClose} as={as} ref={ref} />
+    </EuiFlyoutMenuContext.Provider>
+  );
 });
+
 EuiFlyout.displayName = 'EuiFlyout';

@@ -437,4 +437,116 @@ describe('EuiFlyout', () => {
       ).not.toBeTruthy();
     });
   });
+
+  describe('flyout routing logic', () => {
+    // Mock the manager hooks to control routing behavior
+    const mockUseHasActiveSession = jest.fn();
+    const mockUseIsInManagedFlyout = jest.fn();
+
+    beforeEach(() => {
+      jest.clearAllMocks();
+      // Mock the manager hooks
+      jest.doMock('./manager', () => ({
+        ...jest.requireActual('./manager'),
+        useHasActiveSession: mockUseHasActiveSession,
+        useIsInManagedFlyout: mockUseIsInManagedFlyout,
+      }));
+    });
+
+    afterEach(() => {
+      jest.dontMock('./manager');
+    });
+
+    it('routes to child flyout when session is undefined and there is an active session', () => {
+      // Setup: There's an active session but flyout is not in managed context
+      mockUseHasActiveSession.mockReturnValue(true);
+      mockUseIsInManagedFlyout.mockReturnValue(false);
+
+      const { getByTestSubject } = render(
+        <EuiFlyout
+          onClose={() => {}}
+          data-test-subj="child-flyout"
+          // session is undefined (not explicitly set)
+        />
+      );
+
+      // Should render as child flyout (EuiFlyoutChild)
+      const flyout = getByTestSubject('child-flyout');
+      expect(flyout).toBeInTheDocument();
+    });
+
+    it('routes to main flyout when session is explicitly true', () => {
+      // Setup: There's an active session and flyout is not in managed context
+      mockUseHasActiveSession.mockReturnValue(true);
+      mockUseIsInManagedFlyout.mockReturnValue(false);
+
+      const { getByTestSubject } = render(
+        <EuiFlyout
+          onClose={() => {}}
+          data-test-subj="main-flyout"
+          session={true} // Explicitly creating a new session
+          flyoutMenuProps={{ title: 'Test Main Flyout' }} // Required for managed flyouts
+        />
+      );
+
+      // Should render as main flyout (EuiFlyoutMain)
+      const flyout = getByTestSubject('main-flyout');
+      expect(flyout).toBeInTheDocument();
+    });
+
+    it('routes to main flyout when session is explicitly false and there is an active session', () => {
+      // Setup: There's an active session and flyout is not in managed context
+      mockUseHasActiveSession.mockReturnValue(true);
+      mockUseIsInManagedFlyout.mockReturnValue(false);
+
+      const { getByTestSubject } = render(
+        <EuiFlyout
+          onClose={() => {}}
+          data-test-subj="main-flyout"
+          session={false} // Explicitly not creating a new session, but still routes to main
+          flyoutMenuProps={{ title: 'Test Main Flyout' }} // Required for managed flyouts
+        />
+      );
+
+      // Should render as main flyout (EuiFlyoutMain)
+      const flyout = getByTestSubject('main-flyout');
+      expect(flyout).toBeInTheDocument();
+    });
+
+    it('routes to child flyout when in managed context and there is an active session', () => {
+      // Setup: There's an active session and flyout is in managed context
+      mockUseHasActiveSession.mockReturnValue(true);
+      mockUseIsInManagedFlyout.mockReturnValue(true);
+
+      const { getByTestSubject } = render(
+        <EuiFlyout
+          onClose={() => {}}
+          data-test-subj="child-flyout"
+          session={undefined} // Not explicitly set
+        />
+      );
+
+      // Should render as child flyout (EuiFlyoutChild)
+      const flyout = getByTestSubject('child-flyout');
+      expect(flyout).toBeInTheDocument();
+    });
+
+    it('routes to standard flyout when there is no active session', () => {
+      // Setup: No active session
+      mockUseHasActiveSession.mockReturnValue(false);
+      mockUseIsInManagedFlyout.mockReturnValue(false);
+
+      const { getByTestSubject } = render(
+        <EuiFlyout
+          onClose={() => {}}
+          data-test-subj="standard-flyout"
+          session={undefined} // Not explicitly set
+        />
+      );
+
+      // Should render as standard flyout (EuiFlyoutComponent)
+      const flyout = getByTestSubject('standard-flyout');
+      expect(flyout).toBeInTheDocument();
+    });
+  });
 });

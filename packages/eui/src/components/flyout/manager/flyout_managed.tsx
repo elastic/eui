@@ -82,8 +82,13 @@ export const EuiManagedFlyout = ({
   const flyoutId = useFlyoutId(id);
   const flyoutRef = useRef<HTMLDivElement>(null);
 
-  const { addFlyout, closeFlyout, setFlyoutWidth, goBack, getHistoryItems } =
-    useFlyoutManager();
+  const {
+    addFlyout,
+    closeFlyout,
+    setFlyoutWidth,
+    goBack,
+    historyItems: _historyItems,
+  } = useFlyoutManager();
   const parentSize = useParentFlyoutSize(flyoutId);
   const parentFlyout = useCurrentMainFlyout();
   const layoutMode = useFlyoutLayoutMode();
@@ -219,8 +224,9 @@ export const EuiManagedFlyout = ({
 
   // Note: history controls are only relevant for main flyouts
   const historyItems = useMemo(() => {
-    return level === LEVEL_MAIN ? getHistoryItems() : undefined;
-  }, [level, getHistoryItems]);
+    const result = level === LEVEL_MAIN ? _historyItems : undefined;
+    return result;
+  }, [level, _historyItems]);
 
   const backButtonProps = useMemo(() => {
     return level === LEVEL_MAIN ? { onClick: goBack } : undefined;

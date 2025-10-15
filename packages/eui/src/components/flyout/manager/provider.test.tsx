@@ -15,8 +15,11 @@ import {
   EuiFlyoutManagerContext,
   useFlyoutManager,
 } from './provider';
+import { _resetFlyoutManagerStore } from './store';
 
 describe('EuiFlyoutManager', () => {
+  afterEach(_resetFlyoutManagerStore);
+
   it('renders', () => {
     const { container } = render(
       <EuiFlyoutManager {...requiredProps}>

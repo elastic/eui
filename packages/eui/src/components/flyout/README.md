@@ -9,6 +9,12 @@ The main flyout component that serves as the entry point for all flyout function
 - **Standard flyouts**: Default behavior renders `EuiFlyoutComponent`
 - **Resizable flyouts**: `EuiFlyoutResizable` component exists but is not integrated into main routing logic
 
+#### `session` Prop Behavior
+The `session` prop controls whether a flyout participates in the session management system:
+- **`session={true}`**: Explicitly opt-in to session management. The flyout will be managed as a main flyout.
+- **`session={false}`**: Explicitly opt-out of session management. The flyout will render as an unmanaged standard flyout, bypassing all session logic. This is useful for wrapper components like `EuiCollapsibleNav` that manage their own lifecycle.
+- **`session={undefined}`** (default): Automatically participate in sessions if one is active. If no session is active, renders as a standard flyout.
+
 ### `src/components/flyout/flyout.component.tsx`
 The core flyout implementation with comprehensive functionality:
 - **Props**: Extensive configuration options including size, padding, positioning, focus management
