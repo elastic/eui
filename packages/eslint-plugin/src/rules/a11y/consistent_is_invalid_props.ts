@@ -7,7 +7,7 @@
  */
 
 import { type TSESTree, ESLintUtils } from '@typescript-eslint/utils';
-import { getAttrValue } from '../../utils/get_attr_value';
+import { findAttrValue } from '../../utils/get_attr_value';
 import { areAttrsEqual } from '../../utils/are_attrs_equal';
 
 const formControlComponent = 'EuiFormRow';
@@ -37,7 +37,7 @@ export const ConsistentIsInvalidProps = ESLintUtils.RuleCreator.withoutDocs({
           return;
         }
 
-        const formRowIsInvalid = getAttrValue(
+        const formRowIsInvalid = findAttrValue(
           context,
           openingElement.attributes,
           'isInvalid'
@@ -58,7 +58,7 @@ export const ConsistentIsInvalidProps = ESLintUtils.RuleCreator.withoutDocs({
           return;
         }
 
-        const childIsInvalid = getAttrValue(
+        const childIsInvalid = findAttrValue(
           context,
           childElement.openingElement.attributes,
           'isInvalid'
