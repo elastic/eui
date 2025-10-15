@@ -45,6 +45,9 @@ export const euiComboBoxOptionListStyles = (euiThemeContext: UseEuiTheme) => {
       .euiComboBoxOption__content {
         flex: 1;
         text-align: start;
+        /* Allow long strings without spaces to break,
+           while keeping regular sentences wrapping as expected */
+        overflow-wrap: anywhere;
       }
 
       .euiComboBoxOption__emptyStateText {

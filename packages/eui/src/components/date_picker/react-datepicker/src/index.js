@@ -785,6 +785,8 @@ export default class DatePicker extends React.Component {
         : typeof this.state.inputValue === "string"
           ? this.state.inputValue
           : safeDateFormat(this.props.selected, this.props);
+    
+    const dataTestSubj = this.props['data-test-subj'];
 
     return React.cloneElement(customInput, {
       [customInputRef]: input => {
@@ -807,7 +809,8 @@ export default class DatePicker extends React.Component {
       readOnly: this.props.readOnly,
       required: this.props.required,
       tabIndex: this.props.tabIndex,
-      "aria-label": this.state.open ? 'Press the down key to enter a popover containing a calendar. Press the escape key to close the popover.' : 'Press the down key to open a popover containing a calendar.'
+      "aria-label": this.state.open ? 'Press the down key to enter a popover containing a calendar. Press the escape key to close the popover.' : 'Press the down key to open a popover containing a calendar.',
+      "data-test-subj": dataTestSubj ? `${dataTestSubj}-input` : undefined,
     });
   };
 
@@ -846,22 +849,52 @@ export default class DatePicker extends React.Component {
   render() {
     const calendar = this.renderCalendar();
 
+    const dataTestSubj = this.props['data-test-subj'];
+
     if (this.props.inline && !this.props.withPortal) {
-      return calendar;
+      return calendar && React.isValidElement(calendar)
+        ? React.cloneElement(calendar, {
+            'data-test-subj': dataTestSubj
+              ? `${dataTestSubj}-calendar`
+              : calendar.props && calendar.props['data-test-subj'],
+          })
+        : calendar;
     }
 
     if (this.props.withPortal) {
       return (
-        <div>
+        <div
+          data-test-subj={
+            dataTestSubj ? `${dataTestSubj}-portal-container` : undefined
+          }
+        >
           {!this.props.inline ? (
-            <div className="react-datepicker__input-container">
+            <div
+              className="react-datepicker__input-container"
+              data-test-subj={
+                dataTestSubj ? `${dataTestSubj}-input-container` : undefined
+              }
+            >
               {this.renderDateInput()}
               {this.renderClearButton()}
               {this.renderAccessibleButton()}
             </div>
           ) : null}
           {this.state.open || this.props.inline ? (
-            <div className="react-datepicker__portal">{calendar}</div>
+            <div
+              className="react-datepicker__portal"
+              data-test-subj={
+                dataTestSubj ? `${dataTestSubj}-portal` : undefined
+              }
+            >
+              {calendar && React.isValidElement(calendar)
+                ? React.cloneElement(calendar, {
+                    'data-test-subj': dataTestSubj
+                      ? `${dataTestSubj}-calendar`
+                      : calendar.props && calendar.props['data-test-subj'],
+                  })
+                : calendar}
+            </div>
           ) : null}
         </div>
       );
@@ -882,9 +915,19 @@ export default class DatePicker extends React.Component {
         panelRef={elem => {
           this.popover = elem;
         }}
+        panelProps={{
+          'data-test-subj': dataTestSubj
+            ? `${dataTestSubj}-popover`
+            : undefined,
+        }}
         {...this.props.popperProps}
         button={
-          <div className="react-datepicker__input-container">
+          <div
+            className="react-datepicker__input-container"
+            data-test-subj={
+              dataTestSubj ? `${dataTestSubj}-input-container` : undefined
+            }
+          >
             {this.renderDateInput()}
             {this.renderClearButton()}
             {this.renderAccessibleButton()}
@@ -892,7 +935,13 @@ export default class DatePicker extends React.Component {
         }
         
       >
-        {calendar}
+        {calendar && React.isValidElement(calendar)
+          ? React.cloneElement(calendar, {
+              'data-test-subj': dataTestSubj
+                ? `${dataTestSubj}-calendar`
+                : calendar.props && calendar.props['data-test-subj'],
+            })
+          : calendar}
       </EuiPopover>
     );
   }

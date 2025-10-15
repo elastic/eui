@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiButtonEmpty is rendered 1`] = `
+<button
+  aria-label="aria-label"
+  class="euiButtonEmpty euiFormControlButton testClass1 testClass2 emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text-euiFormControlButton-fullWidth-euiTestCss"
+  data-test-subj="test subject string"
+  type="button"
+  value="Button value"
+>
+  <span
+    class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiFormControlButton__content"
+  >
+    <span
+      class="eui-textTruncate css-z3gg36-textContent"
+    >
+      Button value
+    </span>
+  </span>
+</button>
+`;

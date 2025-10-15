@@ -1,3 +1,11 @@
+/*
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
+ */
+
 import { type ComponentProps, JSX } from 'react';
 import clsx from 'clsx';
 import { css } from '@emotion/react';
@@ -7,9 +15,11 @@ import {
   useNavbarMobileSidebar,
 } from '@docusaurus/theme-common/internal';
 import { translate } from '@docusaurus/Translate';
-import NavbarMobileSidebar from '@theme-original/Navbar/MobileSidebar';
 import type { Props } from '@theme-original/Navbar/Layout';
 import { useEuiMemoizedStyles, UseEuiTheme } from '@elastic/eui';
+
+import NavbarMobileSidebar from '../MobileSidebar';
+import { VersionSwitcherProps } from '../../../components/version_switcher';
 
 const getStyles = ({ euiTheme }: UseEuiTheme) => {
   return {
@@ -49,7 +59,10 @@ function NavbarBackdrop(props: ComponentProps<'div'>) {
   );
 }
 
-export default function NavbarLayout({ children }: Props): JSX.Element {
+export default function NavbarLayout({
+  children,
+  versionSwitcherOptions,
+}: Props & { versionSwitcherOptions?: VersionSwitcherProps }): JSX.Element {
   const {
     navbar: { hideOnScroll, style },
   } = useThemeConfig();
@@ -81,7 +94,7 @@ export default function NavbarLayout({ children }: Props): JSX.Element {
     >
       {children}
       <NavbarBackdrop onClick={mobileSidebar.toggle} />
-      <NavbarMobileSidebar />
+      <NavbarMobileSidebar versionSwitcherOptions={versionSwitcherOptions} />
     </nav>
   );
 }

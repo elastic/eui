@@ -21,7 +21,11 @@ import { isObject } from '../../../services/predicate';
 import { EuiI18nConsumer } from '../../context';
 import { CommonProps } from '../../common';
 import { EuiDatePickerRange } from '../date_picker_range';
-import { EuiFormControlLayout, EuiFormControlLayoutProps } from '../../form';
+import {
+  EuiFormControlButton,
+  EuiFormControlLayout,
+  EuiFormControlLayoutProps,
+} from '../../form';
 
 import {
   ShortDate,
@@ -604,7 +608,7 @@ export class EuiSuperDatePickerInternal extends Component<
       return (
         <EuiFormControlLayout {...formControlLayoutProps}>
           {!isQuickSelectOnly && (
-            <button
+            <EuiFormControlButton
               type="button"
               css={styles.euiSuperDatePicker__prettyFormat}
               className={classNames('euiSuperDatePicker__prettyFormat', {
@@ -625,7 +629,7 @@ export class EuiSuperDatePickerInternal extends Component<
                   dateFormat={dateFormat}
                 />
               )}
-            </button>
+            </EuiFormControlButton>
           )}
         </EuiFormControlLayout>
       );

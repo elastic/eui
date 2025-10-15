@@ -28,12 +28,7 @@ const EuiIconFilterExclude = ({
     {...props}
   >
     {title ? <title id={titleId}>{title}</title> : null}
-    <path d="M.5 1a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9Z" />
-    <path
-      fillRule="evenodd"
-      d="M16 11.5a4.5 4.5 0 1 1-9 0 4.5 4.5 0 0 1 9 0Zm-8 0a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5Z"
-    />
-    <path d="M2 4.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5ZM4.5 7a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1h-1Z" />
+    <path d="M15.854 10.852 14.207 12.5l1.647 1.647-.706.707-1.648-1.647-1.646 1.648-.707-.707 1.646-1.648-1.645-1.647.707-.707 1.645 1.647 1.646-1.646.707.706ZM8 13H6v-1h2v1Zm2-3H4V9h6v1Zm2-3H2V6h10v1Zm2-3H0V3h14v1Z" />
   </svg>
 );
 export const icon = EuiIconFilterExclude;

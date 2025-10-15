@@ -8,7 +8,10 @@
 
 import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
+import { css } from '@emotion/react';
 
+import { LOKI_SELECTORS } from '../../../.storybook/loki';
+import { logicalCSS, useEuiScrollBar } from '../../global_styling';
 import { EuiPopover } from '../popover';
 import { EuiButton } from '../button';
 import { EuiIcon } from '../icon';
@@ -139,12 +142,17 @@ export const Playground: Story = {
 };
 
 export const InPopover: Story = {
+  parameters: {
+    loki: {
+      chromeSelector: LOKI_SELECTORS.portal,
+    },
+  },
   args: {
     initialPanelId: 0,
     panels,
   },
   render: function Render(args) {
-    const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+    const [isPopoverOpen, setIsPopoverOpen] = useState(true);
 
     return (
       <EuiPopover
@@ -161,6 +169,51 @@ export const InPopover: Story = {
         anchorPosition="downLeft"
       >
         <EuiContextMenu {...args} />
+      </EuiPopover>
+    );
+  },
+};
+
+export const InScrollablePopover: Story = {
+  parameters: {
+    loki: {
+      chromeSelector: LOKI_SELECTORS.portal,
+    },
+  },
+  globals: {
+    colorMode: 'dark',
+  },
+  args: {
+    initialPanelId: 0,
+    panels,
+  },
+  render: function Render(args) {
+    const [isPopoverOpen, setIsPopoverOpen] = useState(true);
+
+    return (
+      <EuiPopover
+        button={
+          <EuiButton onClick={() => setIsPopoverOpen(!isPopoverOpen)}>
+            Toggle context menu in popover
+          </EuiButton>
+        }
+        isOpen={isPopoverOpen}
+        closePopover={() => {
+          setIsPopoverOpen(false);
+        }}
+        panelPaddingSize="none"
+        anchorPosition="downLeft"
+      >
+        <div
+          css={css`
+            ${logicalCSS('max-height', '250px')}
+            ${useEuiScrollBar()};
+            ${/* eslint-disable-next-line local/css-logical-properties */ ''}
+            overflow-y: auto;
+          `}
+        >
+          <EuiContextMenu {...args} />
+        </div>
       </EuiPopover>
     );
   },

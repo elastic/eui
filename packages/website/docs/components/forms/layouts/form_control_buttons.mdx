@@ -1,0 +1,268 @@
+---
+sidebar_label: Form control buttons
+keywords: [EuiFormControlButton, EuiFormFilterButton]
+---
+
+# Form control buttons
+
+Form control buttons provide semantic button elements that look like form inputs. They are designed for scenarios where you need interactive buttons within form layouts while maintaining form control styling consistently.
+
+## EuiFormControlButton
+
+**EuiFormControlButton** renders a button that looks like a form input field. It can be used to trigger actions (e.g. opening popovers) from within a **EuiFormControlLayout** to ensure expected visual output and consistency with input controls.
+
+:::warning **EuiFormControlButton** is meant to only be used inside **EuiFormControlLayout**.
+:::
+
+The component provides a mix of base [**EuiButtonEmpty**](../../navigation/buttons/button.mdx#empty) props and input specific props - e.g. use `value` and `placeholder` to provide content similar to an input element. You can customize the content by passing additional content via the `children` prop.
+
+:::tip Dropdown styling
+Set `isDropdown` on **EuiFormControlLayout** to indicate a dropdown toggle that accounts for other form layout icons.
+:::
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+	EuiFieldSearch,
+	EuiForm,
+	EuiFormControlLayout,
+  EuiFormControlButton,
+	EuiInputPopover,
+  EuiNotificationBadge,
+  EuiFlexGroup,
+	EuiSelectable,
+	EuiSwitch,
+	EuiSpacer,
+	type EuiSelectableOption,
+} from '@elastic/eui';
+
+const _options: EuiSelectableOption[] = [
+  {
+    label: 'Titan',
+  },
+  {
+    label: 'Enceladus',
+  },
+  {
+    label: 'Mimas',
+  },
+  {
+    label: 'Dione',
+  },
+  {
+    label: 'Iapetus',
+  },
+  {
+    label: 'Phoebe',
+  },
+  {
+    label: 'Rhea',
+  },
+];
+
+export default () => {
+  const [isCompressed, setCompressed] = useState(false);
+  const [isDisabled, setDisabled] = useState(false);
+  const [isInvalid, setInvalid] = useState(false);
+  const [isDropdown, setDropdown] = useState(false);
+  const [isClearable, setClearable] = useState(false);
+  
+	const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+	const [searchValue, setSearchValue] = useState('');
+    const [options, setOptions] = useState(_options);
+    const [selectedOptions, setSelectedOptions] = useState<
+      EuiSelectableOption[]
+    >([]);
+    const [buttonLabel, setButtonLabel] = useState('');
+
+	const formLayoutProps = {
+		compressed: isCompressed,
+		isDisabled,
+		isInvalid,
+		isDropdown,
+		clear: isClearable && { onClick: () => {} },
+	}
+
+	const formButtonProps = {
+		compressed: isCompressed,
+		isDisabled,
+		isInvalid,
+	}
+
+	const popoverId = 'popover-id';
+	const panelTitle = 'popover-panel-title';
+
+	const handleOnSearch = (e: ChangeEvent<HTMLInputElement>) => {
+		setSearchValue(e.target.value);
+
+		const filteredOptions = _options.filter((opt) => {
+			return opt.label.toLowerCase().includes(e.target.value);
+		});
+
+		setOptions(filteredOptions);
+	};
+
+	const handleOnChange = (options: EuiSelectableOption[]) => {
+		setOptions(options);
+		const _selectedOptions = getSelectedOptions(options);
+		setSelectedOptions(_selectedOptions);
+		setButtonLabel(_selectedOptions.map((opt) => opt.label).join(', '));
+	};
+
+	const handleOnClear = () => {
+		setOptions(_options);
+		setSelectedOptions([]);
+		setButtonLabel('');
+	};
+
+	const getSelectedOptions = (options: EuiSelectableOption[]) => {
+		return options
+			.map((option) => (option.checked === 'on' ? option : null))
+			.filter((option) => option !== null);
+	};
+
+  return (
+		<>
+			<EuiFlexGroup responsive={false} wrap>
+        <EuiSwitch
+          label="compressed"
+          checked={isCompressed}
+          onChange={(e) => setCompressed(e.target.checked)}
+        />
+        <EuiSwitch
+          label="isDisabled"
+          checked={isDisabled}
+          onChange={(e) => setDisabled(e.target.checked)}
+        />
+        <EuiSwitch
+          label="isInvalid"
+          checked={isInvalid}
+          onChange={(e) => setInvalid(e.target.checked)}
+        />
+				<EuiSwitch
+          label="isDropdown"
+          checked={isDropdown}
+          onChange={(e) => setDropdown(e.target.checked)}
+        />
+				<EuiSwitch
+          label="clear"
+          checked={isClearable}
+          onChange={(e) => setClearable(e.target.checked)}
+        />
+      </EuiFlexGroup>
+
+      <EuiSpacer />
+
+			<EuiForm>
+				<EuiFormRow label="Example: placeholder only">
+					<EuiFormControlLayout
+						{...formLayoutProps}
+					>
+						<EuiFormControlButton
+							placeholder="Placeholder text"
+							{...formButtonProps}
+						/>
+					</EuiFormControlLayout>
+				</EuiFormRow>
+
+				<EuiFormRow label="Example: value only">
+					<EuiFormControlLayout
+						{...formLayoutProps}
+					>
+						<EuiFormControlButton
+							value="Button value"
+							{...formButtonProps}
+						/>
+					</EuiFormControlLayout>
+				</EuiFormRow>
+
+				<EuiFormRow label="Example: value with icon and additional content">
+					<EuiFormControlLayout
+						{...formLayoutProps}
+					>
+						<EuiFormControlButton
+							{...formButtonProps}
+							value="Button value"
+							iconType="gear"
+						>
+							<EuiBadge>Active</EuiBadge>
+						</EuiFormControlButton>
+					</EuiFormControlLayout>
+				</EuiFormRow>
+
+				<EuiFormRow label="Example: Popover with filter selection">
+					<EuiFormControlLayout
+						{...formLayoutProps}
+						clear={isClearable && { onClick: handleOnClear }}
+					>
+						<EuiInputPopover
+							ownFocus
+							input={(
+								<EuiFormControlButton
+									value={buttonLabel ?? ''}
+									placeholder="Placeholder"
+									role="combobox"
+									onClick={() => setIsPopoverOpen(!isPopoverOpen)}
+									aria-expanded={isPopoverOpen}
+									aria-controls={popoverId}
+									{...formButtonProps}
+								>
+									{(selectedOptions.length > 0 || options.length > 0) && (
+										<EuiNotificationBadge
+											color={
+												selectedOptions.length > 0 && !isDisabled ? 'success' : 'subdued'
+											}
+										>
+											{selectedOptions.length > 0
+												? selectedOptions.length
+												: options.length}
+										</EuiNotificationBadge>
+									)}
+								</EuiFormControlButton>
+							)}
+							hasArrow={false}
+							repositionOnScroll
+							isOpen={isPopoverOpen}
+							panelPaddingSize="none"
+							panelMinWidth={200}
+							initialFocus={'[data-test-subj=panel-search-input]'}
+							closePopover={() => setIsPopoverOpen(false)}
+							panelProps={{
+								title: panelTitle,
+								'aria-label': panelTitle,
+							}}
+						>
+							<EuiFieldSearch
+								fullWidth
+								onChange={handleOnSearch}
+								value={searchValue}
+								data-test-subj="panel-search-input"
+								placeholder="search field"
+							/>
+
+							<EuiSelectable
+								options={options}
+								onChange={handleOnChange}
+								id={popoverId}
+							>
+								{(list, search) => (
+									<>
+										{search}
+										{list}
+									</>
+								)}
+							</EuiSelectable>
+						</EuiInputPopover>
+					</EuiFormControlLayout>
+				</EuiFormRow>
+			</EuiForm>
+		</>
+	);
+};
+```
+
+## Props
+
+import docgen from '@elastic/eui-docgen/dist/components/form';
+
+<PropTable definition={docgen.EuiFormControlButton} />
