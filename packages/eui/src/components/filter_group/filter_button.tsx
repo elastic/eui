@@ -120,8 +120,6 @@ export const EuiFilterButton: FunctionComponent<EuiFilterButtonProps> = ({
   // assumption about type of usage based on icon usage
   // requires manual override to apply correct aria attributes for more custom usages
   const isCollapsible = !isToggle && iconType === 'arrowDown';
-  // NOTE: in Amsterdam `hasActiveFilters` applies selected styling while `isSelected` does not.
-  // With Borealis this is more granular as EuiFilterButton now supports proper toggle buttons next to regular buttons
   const isExpanded = isCollapsible && (isSelected ?? hasActiveFilters);
 
   const styles = useEuiMemoizedStyles(euiFilterButtonStyles);
