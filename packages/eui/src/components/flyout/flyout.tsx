@@ -34,12 +34,6 @@ export type EuiFlyoutProps<T extends ElementType = 'div' | 'nav'> = Omit<
   EuiFlyoutComponentProps<T>,
   'as'
 > & {
-  /**
-   * Controls flyout session management behavior:
-   * - `true`: Explicitly participate in session management
-   * - `false`: Explicitly opt-out (for wrapper components like EuiCollapsibleNav)
-   * - `undefined` (default): Automatically participate if an active session exists
-   */
   session?: boolean;
   onActive?: () => void;
   as?: T;
