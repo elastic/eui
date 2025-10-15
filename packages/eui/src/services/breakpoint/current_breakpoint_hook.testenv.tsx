@@ -22,7 +22,7 @@ export const useCurrentEuiBreakpoint = () => {
 
   if (typeof window === 'undefined') return undefined; // SSR catch
 
-  // Use the default Amsterdam breakpoints (which are already ordered by largest first)
+  // Use the default breakpoints (which are already ordered by largest first)
   return keysOf(breakpoints).find(
     (key) => breakpoints[key] <= window.innerWidth
   );
