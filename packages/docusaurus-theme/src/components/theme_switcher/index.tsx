@@ -1,10 +1,17 @@
+/*
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
+ */
+
 import { useContext, useEffect, useState } from 'react';
 import { css } from '@emotion/react';
 import {
   EuiAvatar,
   EuiButtonEmpty,
   euiFocusRing,
-  EuiHorizontalRule,
   EuiListGroup,
   EuiListGroupItem,
   EuiPopover,
@@ -24,6 +31,8 @@ const getStyles = (euiThemeContext: UseEuiTheme) => {
   return {
     button: css`
       padding: 0;
+      width: ${euiTheme.size.xl};
+      border-radius: ${euiTheme.size.base};
     `,
     listItem: css`
       .euiListGroupItem__button:focus-visible {
@@ -94,7 +103,7 @@ export const ThemeSwitcher = () => {
                 key={theme.value}
                 css={styles.listItem}
                 label={theme.text}
-                size="xs"
+                size="s"
                 isActive={isCurrentTheme}
                 color={isCurrentTheme ? 'primary' : 'text'}
                 onClick={handleOnClick}
