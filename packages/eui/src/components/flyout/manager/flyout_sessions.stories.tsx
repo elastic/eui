@@ -29,6 +29,8 @@ import { useFlyoutManager, useCurrentSession } from './hooks';
 const meta: Meta<typeof EuiFlyout> = {
   title: 'Layout/EuiFlyout/Flyout Manager',
   component: EuiFlyout,
+  // Skipping Loki as this is a playground for the flyout manager
+  // https://github.com/elastic/eui/pull/9056/files#r2425379403
   parameters: {
     loki: {
       skip: true,
@@ -45,7 +47,7 @@ interface FlyoutSessionProps {
   childSize?: 's' | 'm' | 'fill';
   childMaxWidth?: number;
   flyoutType: 'overlay' | 'push';
-  hasChildBackground?: boolean;
+  hasChildBackground: boolean;
 }
 
 const FlyoutSession: React.FC<FlyoutSessionProps> = React.memo((props) => {
