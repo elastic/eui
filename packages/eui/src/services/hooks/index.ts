@@ -6,10 +6,10 @@
  * Side Public License, v 1.
  */
 
-export * from './useDependentState';
-export * from './useCombinedRefs';
-export * from './useForceRender';
-export * from './useLatest';
-export * from './useDeepEqual';
-export * from './useMouseMove';
-export * from './useUpdateEffect';
+export { useDependentState } from './useDependentState';
+export { useCombinedRefs, setMultipleRefs } from './useCombinedRefs';
+export { useForceRender } from './useForceRender';
+export { useLatest } from './useLatest';
+export { useDeepEqual } from './useDeepEqual';
+export { isMouseEvent, useMouseMove } from './useMouseMove';
+export { useUpdateEffect } from './useUpdateEffect';

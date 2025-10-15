@@ -6,5 +6,21 @@
  * Side Public License, v 1.
  */
 
-export * from './common_predicates';
-export * from './lodash_predicates';
+export {
+  always,
+  never,
+  isNil,
+  isUndefined,
+  isNull,
+  isDate,
+  isDateLike,
+} from './common_predicates';
+export {
+  isFunction,
+  isArray,
+  isString,
+  isBoolean,
+  isNumber,
+  isNaN,
+  isObject,
+} from './lodash_predicates';

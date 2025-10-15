@@ -6,4 +6,4 @@
  * Side Public License, v 1.
  */
 
-export * from './shadows';
+export { getShadowColor } from './shadows';

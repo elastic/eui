@@ -6,4 +6,8 @@
  * Side Public License, v 1.
  */
 
-export * from './nested_context';
+export {
+  EuiNestedProviderContext,
+  EuiProviderNestedCheck,
+  useIsNestedEuiProvider,
+} from './nested_context';

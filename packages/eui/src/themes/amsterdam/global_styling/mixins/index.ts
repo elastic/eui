@@ -6,5 +6,18 @@
  * Side Public License, v 1.
  */
 
-export * from './button';
+export {
+  type _EuiButtonColor,
+  type _EuiButtonDisplay,
+  type _EuiButtonOptions,
+  BUTTON_COLORS,
+  BUTTON_DISPLAYS,
+  euiButtonColor,
+  euiButtonFillColor,
+  euiButtonEmptyColor,
+  useEuiButtonColorCSS,
+  useEuiButtonFocusCSS,
+  euiButtonSizeMap,
+} from '../../../../global_styling/mixins/_button';
+
 export * from './shadow';

@@ -7,6 +7,13 @@
  */
 
 export type { _EuiThemeBreakpoint as EuiBreakpointSize } from '../../global_styling/variables/breakpoint';
-export * from './current_breakpoint';
-export * from './current_breakpoint_hook';
-export * from './is_within_hooks';
+export {
+  CurrentEuiBreakpointContext,
+  CurrentEuiBreakpointProvider,
+} from './current_breakpoint';
+export { useCurrentEuiBreakpoint } from './current_breakpoint_hook';
+export {
+  useIsWithinBreakpoints,
+  useIsWithinMaxBreakpoint,
+  useIsWithinMinBreakpoint,
+} from './is_within_hooks';

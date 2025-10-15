@@ -6,6 +6,6 @@
  * Side Public License, v 1.
  */
 
-export * from './prop_types';
-export * from './is_jest';
-export * from './type_guards';
+export { EuiPropTypes } from './prop_types';
+export { IS_JEST_ENVIRONMENT } from './is_jest';
+export { isDOMNode } from './type_guards';

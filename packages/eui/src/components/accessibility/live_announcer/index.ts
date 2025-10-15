@@ -6,4 +6,5 @@
  * Side Public License, v 1.
  */
 
-export * from './live_announcer';
+export type { EuiLiveAnnouncerProps } from './live_announcer';
+export { EuiLiveAnnouncer } from './live_announcer';

@@ -8,4 +8,4 @@
 
 export { CheckboxParser as parser } from './parser';
 export { CheckboxMarkdownRenderer as renderer } from './renderer';
-export * from './types';
+export type { CheckboxNodeDetails } from './types';

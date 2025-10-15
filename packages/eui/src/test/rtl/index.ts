@@ -6,7 +6,14 @@
  * Side Public License, v 1.
  */
 
-export * from './component_helpers';
+export {
+  waitForEuiPopoverOpen,
+  waitForEuiPopoverClose,
+  waitForEuiToolTipVisible,
+  waitForEuiToolTipHidden,
+  showEuiComboBoxOptions,
+  waitForEuiContextMenuPanelTransition,
+} from './component_helpers';
 export {
   queryByTestSubject,
   queryAllByTestSubject,
@@ -16,4 +23,4 @@ export {
   findByTestSubject,
 } from './data_test_subj_queries';
 export { render, screen, within } from './custom_render';
-export * from './render_hook';
+export { renderHook, renderHookAct } from './render_hook';

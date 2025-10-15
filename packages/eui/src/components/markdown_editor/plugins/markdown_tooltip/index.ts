@@ -9,4 +9,4 @@
 export { TooltipParser as parser } from './parser';
 export { tooltipPlugin as plugin } from './plugin';
 export { tooltipMarkdownRenderer as renderer } from './renderer';
-export * from './types';
+export type { TooltipNodeDetails } from './types';

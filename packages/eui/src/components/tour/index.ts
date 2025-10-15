@@ -14,4 +14,4 @@ export type { EuiTourStepIndicatorProps } from './tour_step_indicator';
 export { EuiTourStepIndicator } from './tour_step_indicator';
 export type { EuiStatelessTourStep, EuiStatelessTourSteps } from './useEuiTour';
 export { useEuiTour } from './useEuiTour';
-export * from './types';
+export type { EuiTourState, EuiTourAction, EuiTourActions } from './types';

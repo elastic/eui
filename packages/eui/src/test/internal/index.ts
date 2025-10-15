@@ -6,5 +6,13 @@
  * Side Public License, v 1.
  */
 
-export * from './render_custom_styles';
-export * from './react_version';
+export { customStyles, shouldRenderCustomStyles } from './render_custom_styles';
+export type { ReactVersion } from './react_version';
+export {
+  getReactVersion,
+  isReactVersion,
+  invokeOnReactVersion,
+  describeByReactVersion,
+  testByReactVersion,
+  testOnReactVersion,
+} from './react_version';

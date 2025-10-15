@@ -44,8 +44,39 @@ export {
   type EuiPaletteRotationProps,
   type EuiPaletteCommonProps,
 } from './eui_palettes';
-export * from './eui_palettes_hooks';
+export {
+  useEuiPaletteColorBlind,
+  useEuiPaletteColorBlindBehindText,
+  useEuiPaletteForStatus,
+  useEuiPaletteForTemperature,
+  useEuiPaletteComplementary,
+  useEuiPaletteRed,
+  useEuiPaletteGreen,
+  useEuiPaletteSkyBlue,
+  useEuiPaletteYellow,
+  useEuiPaletteOrange,
+  useEuiPaletteCool,
+  useEuiPaletteWarm,
+  useEuiPaletteGray,
+} from './eui_palettes_hooks';
 export type { rgbDef, HSV, RGB } from './color_types';
 export { getSteppedGradient } from './stepped_gradient';
-export * from './manipulation';
-export * from './contrast';
+export {
+  brighten,
+  darken,
+  desaturate,
+  lightness,
+  saturate,
+  shade,
+  shadeOrTint,
+  tint,
+  tintOrShade,
+  transparentize,
+} from './manipulation';
+export {
+  wcagContrastMin,
+  getColorContrast,
+  makeHighContrastColor,
+  makeDisabledContrastColor,
+  warnIfContrastBelowMin,
+} from './contrast';
