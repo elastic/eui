@@ -41,6 +41,13 @@ import { useCurrentSession, useFlyoutManager } from './hooks';
 const meta: Meta<typeof EuiFlyout> = {
   title: 'Layout/EuiFlyout/Flyout Manager',
   component: EuiFlyout,
+  // Skipping Loki as this is a playground for the flyout manager
+  // https://github.com/elastic/eui/pull/9056/files#r2425379403
+  parameters: {
+    loki: {
+      skip: true,
+    },
+  },
 };
 
 export default meta;
@@ -52,7 +59,8 @@ interface FlyoutSessionProps {
   childSize?: 's' | 'm' | 'fill';
   childMaxWidth?: number;
   flyoutType: 'overlay' | 'push';
-  childBackgroundShaded?: boolean;
+  ownFocus?: boolean;
+  hasChildBackground: boolean;
 }
 
 const DisplayContext: React.FC<{ title: string }> = ({ title }) => {
@@ -88,6 +96,8 @@ const FlyoutSession: React.FC<FlyoutSessionProps> = React.memo((props) => {
     mainMaxWidth,
     childMaxWidth,
     flyoutType,
+    ownFocus = false,
+    hasChildBackground,
   } = props;
 
   const [isFlyoutVisible, setIsFlyoutVisible] = useState(false);
@@ -141,7 +151,7 @@ const FlyoutSession: React.FC<FlyoutSessionProps> = React.memo((props) => {
           size={mainSize}
           maxWidth={mainMaxWidth}
           type={flyoutType}
-          ownFocus={false}
+          ownFocus={ownFocus}
           pushAnimation={true}
           onActive={mainFlyoutOnActive}
           onClose={mainFlyoutOnClose}
@@ -183,6 +193,7 @@ const FlyoutSession: React.FC<FlyoutSessionProps> = React.memo((props) => {
               maxWidth={childMaxWidth}
               onActive={childFlyoutOnActive}
               onClose={childFlyoutOnClose}
+              hasChildBackground={hasChildBackground}
             >
               <EuiFlyoutBody>
                 <EuiText>
@@ -274,6 +285,7 @@ NonSessionFlyout.displayName = 'NonSessionFlyout';
 
 const MultiSessionFlyoutDemo: React.FC = () => {
   const [flyoutType, setFlyoutType] = useState<'overlay' | 'push'>('overlay');
+  const [hasChildBackground, setChildBackgroundShaded] = useState(false);
 
   const handleFlyoutTypeToggle = useCallback((e: EuiSwitchEvent) => {
     setFlyoutType(e.target.checked ? 'push' : 'overlay');
@@ -289,6 +301,7 @@ const MultiSessionFlyoutDemo: React.FC = () => {
             title="Session A"
             mainSize="s"
             childSize="s"
+            hasChildBackground={hasChildBackground}
           />
         ),
       },
@@ -300,6 +313,7 @@ const MultiSessionFlyoutDemo: React.FC = () => {
             title="Session B"
             mainSize="m"
             childSize="s"
+            hasChildBackground={hasChildBackground}
           />
         ),
       },
@@ -311,6 +325,7 @@ const MultiSessionFlyoutDemo: React.FC = () => {
             title="Session C"
             mainSize="s"
             childSize="fill"
+            hasChildBackground={hasChildBackground}
           />
         ),
       },
@@ -322,6 +337,7 @@ const MultiSessionFlyoutDemo: React.FC = () => {
             title="Session D"
             mainSize="fill"
             childSize="s"
+            hasChildBackground={hasChildBackground}
           />
         ),
       },
@@ -332,6 +348,7 @@ const MultiSessionFlyoutDemo: React.FC = () => {
             flyoutType={flyoutType}
             title="Session E"
             mainSize="fill"
+            hasChildBackground={hasChildBackground}
           />
         ),
       },
@@ -345,6 +362,7 @@ const MultiSessionFlyoutDemo: React.FC = () => {
             mainSize={undefined}
             childSize="fill"
             childMaxWidth={1000}
+            hasChildBackground={hasChildBackground}
           />
         ),
       },
@@ -357,6 +375,20 @@ const MultiSessionFlyoutDemo: React.FC = () => {
             mainSize="fill"
             mainMaxWidth={1000}
             childSize="s"
+            hasChildBackground={hasChildBackground}
+          />
+        ),
+      },
+      {
+        title: 'Session H: main size = s, child size = s, ownFocus = true',
+        description: (
+          <FlyoutSession
+            flyoutType={flyoutType}
+            title="Session H"
+            mainSize="s"
+            childSize="s"
+            ownFocus
+            hasChildBackground={hasChildBackground}
           />
         ),
       },
@@ -365,7 +397,7 @@ const MultiSessionFlyoutDemo: React.FC = () => {
         description: <NonSessionFlyout flyoutType={flyoutType} />,
       },
     ],
-    [flyoutType]
+    [flyoutType, hasChildBackground]
   );
 
   return (
@@ -376,6 +408,12 @@ const MultiSessionFlyoutDemo: React.FC = () => {
         onChange={handleFlyoutTypeToggle}
       />
       <EuiSpacer />
+      <EuiSwitch
+        label="Child flyout background shaded"
+        checked={hasChildBackground}
+        onChange={() => setChildBackgroundShaded((prev) => !prev)}
+      />
+      <EuiSpacer size="m" />
       <EuiDescriptionList
         type="column"
         columnGutterSize="m"

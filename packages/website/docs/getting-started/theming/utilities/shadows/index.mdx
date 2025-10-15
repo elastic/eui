@@ -1,0 +1,322 @@
+---
+sidebar_position: 10
+---
+
+# Shadows
+
+EUI provides 5 shadow sizes (`xs`, `s`, `m`, `l`, `xl`) that can be applied in two directions: `down` (default) and `up`.
+
+The provided EUI shadow utilities use the underlying theme shadow tokens and automatically add required adjustments 
+for dark mode and high contrast mode that ensure expected visibility.
+
+:::warning Never use the underlying shadow tokens separately
+Always use the shadow utilities to ensure proper styling.
+:::
+
+These shadow utilities handle the following additional style adjustments:
+
+- adds a light, 4-sided `border` style in Dark mode to increase elevated item visibility
+- replaces the `box-shadow` in High Contrast mode with `border` to ensure visibility in high contrast themes
+
+
+import { Example } from '@site/src/components';
+import { EuiSpacer } from '@elastic/eui';
+
+## Usage
+
+<Example.Snippet>
+  ```ts
+  import { euiShadow } from '@elastic/eui';
+
+  const styles = css`
+    ${euiShadow(euiThemeContext, 's')};
+    ${euiShadow(euiThemeContext, 's', { direction: 'down' })};
+  `;  
+  ```
+</Example.Snippet>
+
+
+
+import { ShadowsTable } from './shadows_table';
+
+### Direction: `down`
+
+<ShadowsTable />
+
+### Direction: `up`
+
+<ShadowsTable direction="up" />
+
+### Dark mode floating border customization
+
+By default the shadow utilities add a light, 4-sided `border` style in Dark mode. In some cases where different shadowed elements are being composed together, 
+this might result in duplicate neighboring borders. To adjust this, use the `border` option on the `euiShadow` utility to adjust or remove the border output.
+
+:::info The additional border is only applied and visible in dark mode.
+:::
+
+<Example.Snippet>
+  ```ts
+  import { euiShadow } from '@elastic/eui';
+
+  const styles = css`
+    ${euiShadow(euiThemeContext, 's', { border: 'none'})}
+    ${euiShadow(euiThemeContext, 's', { border: 'all'})}
+    ${euiShadow(euiThemeContext, 's', { border: 'top'})}
+    ${euiShadow(euiThemeContext, 's', { border: 'bottom'})}
+    ${euiShadow(euiThemeContext, 's', { border: 'left'})}
+    ${euiShadow(euiThemeContext, 's', { border: 'right'})}
+    ${euiShadow(euiThemeContext, 's', { border: 'horizontal'})}
+    ${euiShadow(euiThemeContext, 's', { border: 'vertical'})}
+  `;  
+  ```
+</Example.Snippet>
+
+```tsx interactive
+import React, { useState } from 'react';
+import { useEuiTheme, EuiSelect, EuiSpacer, EuiCodeBlock, EuiPanel, EuiThemeProvider } from '@elastic/eui';
+
+type ShadowBorderOption = 'none' | 'all' | 'top' | 'bottom' | 'left' | 'right' | 'horizontal' | 'vertical';
+
+const Example = ({ selectedBorder }: { selectedBorder: ShadowBorderOption }) => {
+  const euiThemeContext = useEuiTheme();
+  const { euiTheme } = euiThemeContext;
+
+  const styles = css`
+    border-radius: ${euiTheme.border.radius.medium};
+    ${euiShadow(euiThemeContext, 'm', { border: selectedBorder })}}
+  `;
+
+  return (
+    <EuiPanel hasShadow={false} color="plain">
+      <EuiCodeBlock css={styles} language="js">
+          {`const styles = css\`
+  \${euiShadow(euiThemeContext, 'm', { border: '${selectedBorder}' })}
+\`}`}
+      </EuiCodeBlock>
+    </EuiPanel>
+  );
+}
+
+export default () => {
+  const [selectedBorder, setSelectedBorder] = useState<ShadowBorderOption>('all');
+  const options = [
+    { value: 'none', text: 'none' },
+    { value: 'all', text: 'all' },
+    { value: 'top' , text: 'top' },
+    { value: 'bottom' , text: 'bottom' },
+    { value: 'left' , text: 'left' },
+    { value: 'right', text: 'right' },
+    { value: 'horizontal', text: 'horizontal' },
+    { value: 'vertical', text: 'vertical' },
+  ];
+
+  return (
+    <>
+      <EuiThemeProvider colorMode="dark">
+        <Example selectedBorder={selectedBorder} />
+      </EuiThemeProvider>
+      <EuiSpacer />
+      <EuiSelect
+        aria-label="Shadow Size" 
+        prepend="Border" 
+        compressed 
+        options={options}
+        value={selectedBorder}
+        onChange={(e) => { setSelectedBorder(e.target.value) }}
+      />
+    </>
+  );
+}
+```
+
+## Scroll behavior
+
+:::warning Do not combine shadow utils and scroll behavior styles on the same element
+:::
+
+Combining EUI shadow utils like `euiShadow()` and scroll behavior (e.g. via `overflow: scroll` or `overflow: auto`) on the same element will cause the floating border 
+in DARK mode to be scrolled. If you want to combine both, separate the styles onto different elements by placing the shadow util on the outer wrapper and the scroll 
+behavior on the inner one.
+
+<Example.Snippet>
+  ```ts
+  import { euiShadow } from '@elastic/eui';
+  import { css } from '@emotion/react';
+
+  const Component = () => {
+    const euiThemeContext = useEuiTheme();
+
+    const shadowStyles = css`
+      ${euiShadow(euiThemeContext, 's')};
+    `;
+    const scrollContainerStyles = css`
+      max-height: 100px;
+      overflow-y: auto;
+      /* specific scroll bar styling */
+      ${useEuiScrollBar()};
+    `;
+
+    return (
+      <div css={shadowStyles}>
+        <div css={scrollContainerStyles}>
+          // scrollable content
+        </div>
+      </div>
+    );
+  }
+  ```
+</Example.Snippet>
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  useEuiTheme,
+  EuiPopover,
+  EuiButton,
+  EuiContextMenu,
+  EuiPanel,
+  EuiThemeProvider,
+  logicalCSS,
+  useEuiScrollBar,
+} from '@elastic/eui';
+import { css } from '@emotion/react';
+
+export default () => {
+  const [isPopoverOpen, setPopoverOpen] = useState(false);
+
+  const Example = () => {
+    return (
+      <EuiPanel hasShadow={false} css={css`
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        block-size: 200px;
+      `}>
+        <EuiPopover
+          button={
+            <EuiButton onClick={() => setPopoverOpen(!isPopoverOpen)}>
+              Toggle context menu
+            </EuiButton>
+          }
+          isOpen={isPopoverOpen}
+          closePopover={() => {
+            setPopoverOpen(false);
+          }}
+          panelPaddingSize="none"
+          anchorPosition="rightCenter"
+        >
+          <div
+            css={css`
+              ${logicalCSS('max-height', '100px')}
+              ${useEuiScrollBar()};
+              overflow-y: auto;
+            `}
+          >
+            <EuiContextMenu
+              initialPanelId={0}
+              panels={[
+                {
+                  id: 0,
+                  title: 'This is a context menu',
+                  items: [
+                    {
+                      name: 'Item 1',
+                      icon: 'search',
+                    },
+                    {
+                      name: 'Item 2',
+                      icon: 'user',
+                    },
+                    {
+                      name: 'Item 3',
+                      icon: 'document',
+                    },
+                    {
+                      name: 'Item 5',
+                      icon: 'cheer',
+                    }
+                  ],
+                },
+              ]}
+            />
+          </div>
+        </EuiPopover>
+      </EuiPanel>
+    )
+  }
+
+  return (
+    <EuiThemeProvider colorMode="dark" wrapperProps={{ cloneElement: true }}>
+      <Example />
+    </EuiThemeProvider>
+  );
+};
+```
+
+## Hover states
+
+Each shadowed surface, when interactive, follows the same hover effect rule: it moves up one level. 
+
+- `xs` hovered → `s`
+- `s` hovered → `m`
+- `m` hovered → `l`
+- `l` hovered → `xl`
+- `xl` hovered → `hover.xl`
+
+You don't need to remember this rule though. You can instead use the available `euiShadowHover` utility which 
+applies the expected hover shadow based on the base size.
+
+```tsx interactive
+import React, { useState } from 'react';
+import { useEuiTheme, EuiSelect, EuiSpacer, EuiCodeBlock } from '@elastic/eui';
+
+type ShadowSize = 'xs' | 's' | 'm' | 'l' | 'xl';
+
+export default () => {
+  const euiThemeContext = useEuiTheme();
+  const { euiTheme } = euiThemeContext;
+  const [selectedSize, setSelectedSize] = useState<ShadowSize>('m');
+  const options = [
+    { value: 'xs', text: 'xs' },
+    { value: 's' , text: 's' },
+    { value: 'm' , text: 'm' },
+    { value: 'l' , text: 'l' },
+    { value: 'xl', text: 'xl' },
+  ];
+
+  const styles = css`
+    ${euiShadow(euiThemeContext, selectedSize)}
+    border-radius: ${euiTheme.border.radius.medium};
+    
+    &:hover {
+      ${euiShadowHover(euiThemeContext, selectedSize)}}
+    }
+  `
+  const stylesText = `
+const styles = css\`
+  \${euiShadow(euiThemeContext, '${selectedSize}')}
+  &:hover {
+    \${euiShadowHover(euiThemeContext, '${selectedSize}')}
+  }
+\`
+  `
+
+  return (
+    <>
+      <EuiCodeBlock css={styles} language="js">
+        {stylesText}
+      </EuiCodeBlock>
+      <EuiSpacer />
+      <EuiSelect
+        aria-label="Shadow Size" 
+        prepend="Size" 
+        compressed 
+        options={options}
+        value={selectedSize}
+        onChange={(e) => { setSelectedSize(e.target.value) }}
+      />
+    </>
+  );
+}
+```

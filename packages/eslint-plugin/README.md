@@ -129,15 +129,15 @@ It's worth pointing out that although the examples provided are specific to EUI 
 
 ### `@elastic/eui/require-aria-label-for-modals`
 
-Ensures that EUI modal components (`EuiModal`, `EuiFlyout`, `EuiFlyoutResizable` ,`EuiConfirmModal`) have either an `aria-label` or `aria-labelledby` prop for accessibility. This helps screen reader users understand the purpose and content of modal dialogs.
+Ensure that EUI modal components (`EuiModal`, `EuiFlyout`, `EuiFlyoutResizable` ,`EuiConfirmModal`) have either an `aria-label` or `aria-labelledby` prop for accessibility. This helps screen reader users understand the purpose and content of modal dialogs.
 
 ### `@elastic/eui/consistent-is-invalid-props`
 
-Ensures that form control components within `EuiFormRow` components have matching `isInvalid` prop values. This maintains consistent validation state between parent form rows and their child form controls, leading to a more predictable and accessible user experience.
+Ensure that form control components within `EuiFormRow` components have matching `isInvalid` prop values. This maintains consistent validation state between parent form rows and their child form controls, leading to a more predictable and accessible user experience.
 
 ### `@elastic/eui/sr-output-disabled-tooltip`
 
-Ensures `disableScreenReaderOutput` is set when `EuiToolTip` content matches `EuiButtonIcon` "aria-label".
+Ensure `disableScreenReaderOutput` is set when `EuiToolTip` content matches `EuiButtonIcon` "aria-label".
 
 ### `@elastic/eui/prefer-eui-icon-tip`
 
@@ -149,11 +149,18 @@ Ensure that all radio input components (`EuiRadio`, `EuiRadioGroup`) have a `nam
 
 ### `@elastic/eui/callout-announce-on-mount`
 
-Ensures that `EuiCallOut` components rendered conditionally have the `announceOnMount` prop for better accessibility. When callouts appear dynamically (e.g., after user interactions, form validation errors, or status changes), screen readers may not announce their content to users. The `announceOnMount` prop ensures these messages are properly announced to users with assistive technologies.
+Ensure that `EuiCallOut` components rendered conditionally have the `announceOnMount` prop for better accessibility. When callouts appear dynamically (e.g., after user interactions, form validation errors, or status changes), screen readers may not announce their content to users. The `announceOnMount` prop ensures these messages are properly announced to users with assistive technologies.
 
 ### `@elastic/eui/no-unnamed-interactive-element`
 
 Ensure that appropriate aria-attributes are set for `EuiBetaBadge`, `EuiButtonIcon`, `EuiComboBox`, `EuiSelect`, `EuiSelectWithWidth`,`EuiSuperSelect`,`EuiPagination`, `EuiTreeView`, `EuiBreadcrumbs`. Without this rule, screen reader users lose context, keyboard navigation can be confusing.
+
+### `@elastic/eui/tooltip-focusable-anchor`
+
+Ensure `EuiTooltip` components are anchored to elements that can receive keyboard focus, making them accessible to all users. When using non-interactive elements (like `span`or `EuiText`) as tooltip anchors, they must include `tabIndex={0}` to be keyboard-focusable. For better accessibility, prefer using semantic interactive components (like `EuiButton` or `EuiLink`) which are focusable by default.
+
+### `@elastic/eui/accessible-interactive-element`
+Ensure interactive EUI components (like e.g. `EuiLink`, `EuiButton`, `EuiRadio`) remain accessible by prohibiting `tabIndex={-1}`, which removes them from keyboard navigation.
 
 ## Testing
 

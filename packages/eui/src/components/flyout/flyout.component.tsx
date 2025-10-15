@@ -20,7 +20,6 @@ import React, {
   ElementType,
   FunctionComponent,
   MutableRefObject,
-  ReactNode,
   JSX,
 } from 'react';
 import classnames from 'classnames';
@@ -48,7 +47,6 @@ import type { EuiOverlayMaskProps } from '../overlay_mask';
 import type { EuiButtonIconPropsForButton } from '../button';
 import { EuiI18n } from '../i18n';
 import { useResizeObserver } from '../observer/resize_observer';
-import { EuiPortal } from '../portal';
 import { EuiScreenReaderOnly } from '../accessibility';
 
 import { EuiFlyoutCloseButton } from './_flyout_close_button';
@@ -68,6 +66,7 @@ import {
 } from './const';
 import { useIsPushed } from './hooks';
 import { EuiFlyoutMenu, EuiFlyoutMenuProps } from './flyout_menu';
+import { EuiFlyoutOverlay } from './_flyout_overlay';
 import { EuiFlyoutResizeButton } from './_flyout_resize_button';
 import { useEuiFlyoutResizable } from './use_flyout_resizable';
 import type { EuiFlyoutCloseEvent } from './types';
@@ -156,6 +155,11 @@ interface _EuiFlyoutComponentProps {
   pushAnimation?: boolean;
   style?: CSSProperties;
   /**
+   * When the flyout is used as a child in a managed flyout session, setting `true` gives the shaded background style.
+   * @default false
+   */
+  hasChildBackground?: boolean;
+  /**
    * Object of props passed to EuiFocusTrap.
    * `shards` specifies an array of elements that will be considered part of the flyout, preventing the flyout from being closed when clicked.
    * `closeOnMouseup` will delay the close callback, allowing time for external toggle buttons to handle close behavior.
@@ -233,6 +237,7 @@ export const EuiFlyoutComponent = forwardRef(
       paddingSize = DEFAULT_PADDING_SIZE,
       maxWidth = false,
       style,
+      hasChildBackground = false,
       maskProps,
       type = DEFAULT_TYPE,
       outsideClickCloses,
@@ -434,7 +439,11 @@ export const EuiFlyoutComponent = forwardRef(
       styles[side],
     ];
 
-    const classes = classnames('euiFlyout', className);
+    const classes = classnames(
+      'euiFlyout',
+      isChildFlyout && hasChildBackground && 'euiFlyout--hasChildBackground',
+      className
+    );
 
     const flyoutToggle = useRef<Element | null>(document.activeElement);
     const [focusTrapShards, setFocusTrapShards] = useState<HTMLElement[]>([]);
@@ -569,13 +578,13 @@ export const EuiFlyoutComponent = forwardRef(
     const maskCombinedRefs = useCombinedRefs([maskProps?.maskRef, maskRef]);
 
     return (
-      <EuiFlyoutComponentWrapper
+      <EuiFlyoutOverlay
         hasOverlayMask={hasOverlayMask}
+        isPushed={isPushed}
         maskProps={{
           ...maskProps,
           maskRef: maskCombinedRefs,
         }}
-        isPortalled={!isPushed}
       >
         <EuiWindowEvent event="keydown" handler={onKeyDown} />
         <EuiFocusTrap
@@ -626,7 +635,7 @@ export const EuiFlyoutComponent = forwardRef(
             {children}
           </Element>
         </EuiFocusTrap>
-      </EuiFlyoutComponentWrapper>
+      </EuiFlyoutOverlay>
     );
   }
   // React.forwardRef interferes with the inferred element type
@@ -637,28 +646,3 @@ export const EuiFlyoutComponent = forwardRef(
 ) => JSX.Element;
 // Recast to allow `displayName`
 (EuiFlyoutComponent as FunctionComponent).displayName = 'EuiFlyoutComponent';
-
-/**
- * Light wrapper for conditionally rendering portals or overlay masks:
- *  - If ownFocus is set, wrap with an overlay and allow the user to click it to close it.
- *  - Otherwise still wrap within an EuiPortal so it appends to the bottom of the window.
- * Push flyouts have no overlay OR portal behavior.
- */
-const EuiFlyoutComponentWrapper: FunctionComponent<{
-  children: ReactNode;
-  hasOverlayMask: boolean;
-  maskProps: EuiFlyoutComponentProps['maskProps'];
-  isPortalled: boolean;
-}> = ({ children, hasOverlayMask, isPortalled }) => {
-  // TODO(tkajtoch): Add EuiOverlayMask again
-
-  if (isPortalled || hasOverlayMask) {
-    return (
-      <EuiPortal>
-        <div>{children}</div>
-      </EuiPortal>
-    );
-  } else {
-    return <>{children}</>;
-  }
-};

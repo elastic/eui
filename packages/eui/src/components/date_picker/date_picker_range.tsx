@@ -101,6 +101,7 @@ export type EuiDatePickerRangeProps = CommonProps &
 export const EuiDatePickerRange: FunctionComponent<EuiDatePickerRangeProps> = ({
   children,
   className,
+  'data-test-subj': dataTestSubj,
   startDateControl,
   endDateControl,
   iconType = true,
@@ -159,6 +160,9 @@ export const EuiDatePickerRange: FunctionComponent<EuiDatePickerRangeProps> = ({
           'euiDatePickerRange__start',
           startDateControl?.props.className
         ),
+        'data-test-subj': dataTestSubj
+          ? `${dataTestSubj}-start-date`
+          : undefined,
         onBlur: (event: FocusEvent<HTMLInputElement>) => {
           startDateControl?.props?.onBlur?.(event);
           onBlur?.(event);
@@ -185,6 +189,7 @@ export const EuiDatePickerRange: FunctionComponent<EuiDatePickerRangeProps> = ({
           'euiDatePickerRange__end',
           endDateControl?.props.className
         ),
+        'data-test-subj': dataTestSubj ? `${dataTestSubj}-end-date` : undefined,
         onBlur: (event: FocusEvent<HTMLInputElement>) => {
           endDateControl?.props?.onBlur?.(event);
           onBlur?.(event);
@@ -204,7 +209,12 @@ export const EuiDatePickerRange: FunctionComponent<EuiDatePickerRangeProps> = ({
   }, [iconType, inline]);
 
   return (
-    <div className={classes} css={cssStyles} {...rest}>
+    <div
+      className={classes}
+      css={cssStyles}
+      data-test-subj={dataTestSubj}
+      {...rest}
+    >
       <EuiFormControlLayoutDelimited
         delimiter={delimiter}
         icon={icon}
@@ -225,6 +235,11 @@ export const EuiDatePickerRange: FunctionComponent<EuiDatePickerRangeProps> = ({
             ? inlineStyles.formLayout.shadow
             : inlineStyles.formLayout.noShadow)
         }
+        wrapperProps={{
+          'data-test-subj': dataTestSubj
+            ? `${dataTestSubj}-range-wrapper`
+            : undefined,
+        }}
       />
     </div>
   );
