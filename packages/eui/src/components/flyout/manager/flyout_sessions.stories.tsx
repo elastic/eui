@@ -41,12 +41,10 @@ import { useCurrentSession, useFlyoutManager } from './hooks';
 const meta: Meta<typeof EuiFlyout> = {
   title: 'Layout/EuiFlyout/Flyout Manager',
   component: EuiFlyout,
-  // Skipping Loki as this is a playground for the flyout manager
-  // https://github.com/elastic/eui/pull/9056/files#r2425379403
   parameters: {
-    loki: {
-      skip: true,
-    },
+    // Skipping visual regression testing with Loki
+    // This is a playground for Flyout Manager and does show anything testable on page load
+    loki: { skip: true },
   },
 };
 
