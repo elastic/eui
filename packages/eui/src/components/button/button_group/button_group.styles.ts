@@ -7,7 +7,7 @@
  */
 
 import { css } from '@emotion/react';
-import { isEuiThemeRefreshVariant, UseEuiTheme } from '../../../services';
+import { UseEuiTheme } from '../../../services';
 import { logicalCSS } from '../../../global_styling';
 import {
   highContrastModeStyles,
@@ -76,15 +76,6 @@ const _highContrastStyles = (
   compressed?: boolean
 ) => {
   const { euiTheme } = euiThemeContext;
-  const isRefreshVariant = isEuiThemeRefreshVariant(
-    euiThemeContext,
-    'buttonVariant'
-  );
-
-  // Account for buttons within tooltip wrappers in selectors
-  const getButtonChildSelectors = (selector: string) => `
-    & > .euiButtonGroupButton${selector},
-    & > .euiButtonGroup__tooltipWrapper${selector} .euiButtonGroupButton`;
 
   return highContrastModeStyles(euiThemeContext, {
     preferred: compressed
@@ -93,40 +84,17 @@ const _highContrastStyles = (
           border: none;
         }
       `
-      : // Conditionally unset the high contrast borders passed by `euiButtonColor` -
-        // faux borders between selected/unselected buttons are rendered by pseudo elements,
-        // and can flip colors depending on selected/unselected siblings
-        `
-        ${
-          !isRefreshVariant &&
-          `
-              ${getButtonChildSelectors(':not(:first-child, :last-child)')} {
-                ${logicalCSS('border-horizontal', 'none')}
-              }
-              ${getButtonChildSelectors(':first-child')} {
-                ${logicalCSS('border-right', 'none')}
-              }
-              ${getButtonChildSelectors(':last-child')} {
-                ${logicalCSS('border-left', 'none')}
-              }
-            `
-        }
-      `,
+      : '',
     forced: `
       .euiButtonGroupButton-isSelected {
         ${preventForcedColors(euiThemeContext)}
         color: ${euiTheme.colors.emptyShade};
         background-color: ${euiTheme.colors.fullShade};
 
-        ${
-          isRefreshVariant &&
-          `
-              &:is(:hover, :focus):not(:disabled) {
-                &::before {
-                  border-color: ${euiTheme.colors.textInverse};
-                }
-              }
-            `
+        &:is(:hover, :focus):not(:disabled) {
+          &::before {
+            border-color: ${euiTheme.colors.textInverse};
+          }
         }
       }
 

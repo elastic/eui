@@ -6,29 +6,8 @@
  * Side Public License, v 1.
  */
 
-import {
-  _EuiThemeButton,
-  EuiThemeVariantFlags,
-  ColorModeSwitch,
-  computed,
-} from '@elastic/eui-theme-common';
+import { _EuiThemeButton, computed } from '@elastic/eui-theme-common';
 import { SEMANTIC_COLORS } from './colors/_semantic_colors';
-
-const getTokenByVariant = (
-  buttonVariant: EuiThemeVariantFlags['buttonVariant'],
-  tokens: {
-    classic: ColorModeSwitch;
-    refresh: ColorModeSwitch;
-  }
-) => {
-  switch (buttonVariant) {
-    case 'refresh':
-      return tokens.refresh;
-    default: {
-      return tokens.classic;
-    }
-  }
-};
 
 const _buttons = {
   backgroundPrimary: computed(
@@ -64,17 +43,8 @@ const _buttons = {
     ['colors.backgroundLightDanger']
   ),
   backgroundText: computed(
-    ([buttonVariant, backgroundBasePlain, backgroundLightText]) => {
-      return getTokenByVariant(buttonVariant, {
-        refresh: backgroundBasePlain,
-        classic: backgroundLightText,
-      });
-    },
-    [
-      'flags.buttonVariant',
-      'colors.backgroundBasePlain',
-      'colors.backgroundLightText',
-    ]
+    ([backgroundBasePlain]) => backgroundBasePlain,
+    ['colors.backgroundBasePlain']
   ),
   backgroundDisabled: computed(
     ([backgroundBaseDisabled]) => backgroundBaseDisabled,

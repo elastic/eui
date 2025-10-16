@@ -25,15 +25,10 @@ export const euiPanelBorderStyles = (
   euiThemeContext: UseEuiTheme,
   options?: {
     borderColor?: string;
-    hasFloatingBorder?: boolean;
   }
 ) => {
-  const { euiTheme, colorMode } = euiThemeContext;
-  const { borderColor, hasFloatingBorder = true } = options ?? {};
-
-  /* TODO: remove `hasFloatingBorder` and `hasVisibleBorder` and once Amsterdam is removed
-   euiTheme.colors.borderBaseFloating is enough then */
-  const hasVisibleBorder = hasFloatingBorder && colorMode === 'DARK';
+  const { euiTheme } = euiThemeContext;
+  const { borderColor } = options ?? {};
 
   return highContrastModeStyles(euiThemeContext, {
     none: `
@@ -41,10 +36,7 @@ export const euiPanelBorderStyles = (
       because the transparent border might otherwise be visible with arbitrary
       full-width/height content in light mode. */
       ${euiBorderStyles(euiThemeContext, {
-        borderColor:
-          borderColor ?? hasVisibleBorder
-            ? euiTheme.border.color
-            : euiTheme.colors.borderBaseFloating,
+        borderColor: borderColor ?? euiTheme.colors.borderBaseFloating,
       })}
     `,
     preferred: `
@@ -74,7 +66,6 @@ export const euiPanelStyles = (euiThemeContext: UseEuiTheme) => {
     hasBorder: css`
       ${euiPanelBorderStyles(euiThemeContext, {
         borderColor: euiTheme.border.color,
-        hasFloatingBorder: false,
       })}
     `,
 
