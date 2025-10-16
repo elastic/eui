@@ -75,6 +75,10 @@ export const getStyles = ({ euiTheme }: UseEuiTheme) => ({
   disabled: css`
     cursor: not-allowed;
   `,
+  selected: css`
+    background-color: ${euiTheme.colors.backgroundFilledText};
+    color: ${euiTheme.colors.textInverse};
+  `,
   title: css`
     @media (min-width: 997px) {
       display: none;
