@@ -137,7 +137,7 @@ const meta: Meta<FlyoutChildStoryArgs> = {
     hasChildBackground: false,
     mainFlyoutType: 'overlay',
     outsideClickCloses: false,
-    ownFocus: true, // Depends on `mainFlyoutType=overlay`
+    ownFocus: false, // Depends on `mainFlyoutType=overlay`
     paddingSize: 'm',
     pushAnimation: true,
     pushMinBreakpoint: 'xs',

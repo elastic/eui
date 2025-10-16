@@ -457,6 +457,7 @@ const ExternalRootChildFlyout: React.FC<{ parentId: string }> = ({
           id={`child-flyout-${parentId}`}
           size="s"
           onClose={handleClose}
+          ownFocus={false}
           flyoutMenuProps={{ title: `Child flyout of ${parentId}` }}
           data-test-subj="child-flyout-in-new-root"
         >
@@ -536,6 +537,7 @@ const ExternalRootFlyout: React.FC<{ id: string }> = ({ id }) => {
           session
           size="m"
           onClose={() => setIsOpen(false)}
+          ownFocus={false}
           flyoutMenuProps={{ title: `${id} flyout` }}
         >
           <EuiFlyoutBody>
