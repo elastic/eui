@@ -327,19 +327,6 @@ export const EuiFlyout = forwardRef(
     }, []);
 
     /**
-     * ESC key closes flyout (always?)
-     */
-    const onKeyDown = useCallback(
-      (event: KeyboardEvent) => {
-        if (!isPushed && event.key === keys.ESCAPE && !isChildFlyoutOpen) {
-          event.preventDefault();
-          onClose(event);
-        }
-      },
-      [onClose, isPushed, isChildFlyoutOpen]
-    );
-
-    /**
      * Set inline styles
      */
     const inlineStyles = useMemo(() => {
@@ -400,26 +387,35 @@ export const EuiFlyout = forwardRef(
       return selectors;
     }, [includeSelectorInFocusTrap, includeFixedHeadersInFocusTrap]);
 
-    useEffect(() => {
-      if (focusTrapSelectors.length > 0) {
-        const shardsEls = focusTrapSelectors.flatMap((selector) =>
-          Array.from(document.querySelectorAll<HTMLElement>(selector))
-        );
+    const updateFocusTrapShards = useCallback(
+      (setInitialFocus: boolean = true) => {
+        if (focusTrapSelectors.length > 0) {
+          const shardsEls = focusTrapSelectors.flatMap((selector) =>
+            Array.from(document.querySelectorAll<HTMLElement>(selector))
+          );
 
-        setFocusTrapShards(Array.from(shardsEls));
+          setFocusTrapShards(Array.from(shardsEls));
 
-        // Flyouts that are toggled from shards do not have working
-        // focus trap autoFocus, so we need to focus the flyout wrapper ourselves
-        shardsEls.forEach((shard) => {
-          if (shard.contains(flyoutToggle.current)) {
-            resizeRef?.focus();
+          // Flyouts that are toggled from shards do not have working
+          // focus trap autoFocus, so we need to focus the flyout wrapper ourselves
+          if (setInitialFocus) {
+            shardsEls.forEach((shard) => {
+              if (shard.contains(flyoutToggle.current)) {
+                resizeRef?.focus();
+              }
+            });
           }
-        });
-      } else {
-        // Clear existing shards if necessary, e.g. switching to `false`
-        setFocusTrapShards((shards) => (shards.length ? [] : shards));
-      }
-    }, [focusTrapSelectors, resizeRef]);
+        } else {
+          // Clear existing shards if necessary, e.g. switching to `false`
+          setFocusTrapShards((shards) => (shards.length ? [] : shards));
+        }
+      },
+      [focusTrapSelectors, resizeRef]
+    );
+
+    useEffect(() => {
+      updateFocusTrapShards();
+    }, [updateFocusTrapShards]);
 
     const focusTrapProps: EuiFlyoutProps['focusTrapProps'] = useMemo(
       () => ({
@@ -427,6 +423,29 @@ export const EuiFlyout = forwardRef(
         shards: [...focusTrapShards, ...(_focusTrapProps?.shards || [])],
       }),
       [_focusTrapProps, focusTrapShards]
+    );
+
+    /**
+     * ESC key closes flyout (always?)
+     *
+     * If the user's focus moves outside the flyout, re-query and update the focus trap shards.
+     * This ensures elements like popovers, which render after the flyout and may need to be included in the trap, are properly handled.
+     */
+    const onKeyDown = useCallback(
+      (event: KeyboardEvent) => {
+        if (!isPushed && event.key === keys.ESCAPE && !isChildFlyoutOpen) {
+          event.preventDefault();
+          onClose(event);
+        }
+
+        const isFocusOutsideOfFlyout =
+          !internalParentFlyoutRef.current?.contains(document.activeElement);
+
+        if (isFocusOutsideOfFlyout) {
+          updateFocusTrapShards(false);
+        }
+      },
+      [isPushed, isChildFlyoutOpen, onClose, updateFocusTrapShards]
     );
 
     /*
