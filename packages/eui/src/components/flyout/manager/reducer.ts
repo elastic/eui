@@ -15,6 +15,7 @@ import {
   ACTION_SET_ACTIVITY_STAGE,
   ACTION_GO_BACK,
   ACTION_GO_TO_FLYOUT,
+  ACTION_UPDATE_TITLE,
   Action,
 } from './actions';
 import { LAYOUT_MODE_SIDE_BY_SIDE, LEVEL_MAIN, STAGE_OPENING } from './const';
@@ -255,6 +256,30 @@ export function flyoutManagerReducer(
       const newSessions = state.sessions.slice(0, targetSessionIndex + 1);
 
       return { ...state, sessions: newSessions, flyouts: newFlyouts };
+    }
+
+    // Update a flyout's title in the current session
+    case ACTION_UPDATE_TITLE: {
+      const { flyoutId, title } = action;
+
+      // Find the session containing this flyout
+      // Note: only main flyouts titles are handled in history navigation
+      const sessionIndex = state.sessions.findIndex(
+        (session) => session.mainFlyoutId === flyoutId
+      );
+
+      if (sessionIndex === -1) {
+        return state; // Flyout not found in any session
+      }
+
+      // Update the session title
+      const updatedSessions = [...state.sessions];
+      updatedSessions[sessionIndex] = {
+        ...updatedSessions[sessionIndex],
+        title,
+      };
+
+      return { ...state, sessions: updatedSessions };
     }
 
     default:

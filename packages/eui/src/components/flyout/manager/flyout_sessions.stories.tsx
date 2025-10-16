@@ -549,6 +549,7 @@ const ExternalRootFlyout: React.FC<{ id: string }> = ({ id }) => {
         <EuiFlyout
           id={`external-root-${id}`}
           session="start"
+          type="overlay"
           size="m"
           onClose={() => setIsOpen(false)}
           ownFocus={false}

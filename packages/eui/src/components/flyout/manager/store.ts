@@ -15,6 +15,7 @@ import {
   setFlyoutWidth as setFlyoutWidthAction,
   goBack as goBackAction,
   goToFlyout as goToFlyoutAction,
+  updateFlyoutTitle as updateFlyoutTitleAction,
 } from './actions';
 import { flyoutManagerReducer, initialState } from './reducer';
 
@@ -36,6 +37,7 @@ export interface FlyoutManagerStore {
   setFlyoutWidth: (flyoutId: string, width: number) => void;
   goBack: () => void;
   goToFlyout: (flyoutId: string) => void;
+  updateFlyoutTitle: (flyoutId: string, title: string) => void;
   historyItems: Array<{
     title: string;
     onClick: () => void;
@@ -108,6 +110,8 @@ function createStore(
       dispatch(setFlyoutWidthAction(flyoutId, width)),
     goBack: () => dispatch(goBackAction()),
     goToFlyout: (flyoutId) => dispatch(goToFlyoutAction(flyoutId)),
+    updateFlyoutTitle: (flyoutId, title) =>
+      dispatch(updateFlyoutTitleAction(flyoutId, title)),
     historyItems: computeHistoryItems(), // Initialize with current state
   };
 
