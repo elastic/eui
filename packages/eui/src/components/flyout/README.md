@@ -4,16 +4,16 @@
 
 ### `src/components/flyout/flyout.tsx`
 The main flyout component that serves as the entry point for all flyout functionality. It intelligently renders different flyout types based on context:
-- **Session flyouts**: When `session={true}` or within an active session, renders `EuiFlyoutMain`
+- **Session flyouts**: When `session="start"` or within an active session, renders `EuiFlyoutMain`
 - **Child flyouts**: When within a managed flyout context, renders `EuiFlyoutChild`
 - **Standard flyouts**: Default behavior renders `EuiFlyoutComponent`
 - **Resizable flyouts**: `EuiFlyoutResizable` component exists but is not integrated into main routing logic
 
 #### `session` Prop Behavior
 The `session` prop controls whether a flyout participates in the session management system:
-- **`session={true}`**: Explicitly opt-in to session management. The flyout will be managed as a main flyout.
-- **`session={false}`**: Explicitly opt-out of session management. The flyout will render as an unmanaged standard flyout, bypassing all session logic. This is useful for wrapper components like `EuiCollapsibleNav` that manage their own lifecycle.
-- **`session={undefined}`** (default): Automatically participate in sessions if one is active. If no session is active, renders as a standard flyout.
+- **`session="start"`**: Explicitly opt-in to session management. The flyout will be managed as a main flyout and create a new session.
+- **`session="never"`**: Explicitly opt-out of session management. The flyout will render as an unmanaged standard flyout, bypassing all session logic. This is useful for wrapper components like `EuiCollapsibleNav` that manage their own lifecycle.
+- **`session="inherit"`** (default): Automatically participate in sessions if one is active. If no session is active, renders as a standard flyout.
 
 ### `src/components/flyout/flyout.component.tsx`
 The core flyout implementation with comprehensive functionality:
@@ -46,7 +46,7 @@ The central state management system for flyout sessions:
 - **Responsive Layout**: `useFlyoutLayoutMode` hook manages responsive behavior for managed flyouts with 90% viewport width rule for switching between `side-by-side` and `stacked` layouts
 
 ### `src/components/flyout/manager/flyout_main.tsx`
-Renders the primary flyout in a session. Currently a simple wrapper around `EuiManagedFlyout` with `session={true}`. TODO items include handling child flyout presence and adjusting focus/shadow behavior.
+Renders the primary flyout in a session. Currently a simple wrapper around `EuiManagedFlyout` with `session="start"`. TODO items include handling child flyout presence and adjusting focus/shadow behavior.
 
 ### `src/components/flyout/manager/flyout_child.tsx`
 Renders child flyouts within a session:

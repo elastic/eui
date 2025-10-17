@@ -21,6 +21,7 @@ import { createRoot } from 'react-dom/client';
 
 import {
   EuiButton,
+  EuiCode,
   EuiCodeBlock,
   EuiDescriptionList,
   EuiFlexGroup,
@@ -146,7 +147,7 @@ const FlyoutSession: React.FC<FlyoutSessionProps> = React.memo((props) => {
       {isFlyoutVisible && (
         <EuiFlyout
           id={`mainFlyout-${title}`}
-          session={true}
+          session="start"
           flyoutMenuProps={{ title: `${title} - Main` }}
           size={mainSize}
           maxWidth={mainMaxWidth}
@@ -171,6 +172,10 @@ const FlyoutSession: React.FC<FlyoutSessionProps> = React.memo((props) => {
                   {
                     title: 'Main flyout maxWidth',
                     description: mainMaxWidth ?? 'N/A',
+                  },
+                  {
+                    title: 'session',
+                    description: 'start',
                   },
                 ]}
               />
@@ -209,6 +214,10 @@ const FlyoutSession: React.FC<FlyoutSessionProps> = React.memo((props) => {
                       {
                         title: 'Child flyout maxWidth',
                         description: childMaxWidth ?? 'N/A',
+                      },
+                      {
+                        title: 'session',
+                        description: 'inherit',
                       },
                     ]}
                   />
@@ -254,7 +263,7 @@ const NonSessionFlyout: React.FC<{
           ownFocus={false}
           pushAnimation={true}
           onClose={flyoutOnClose}
-          session={false}
+          session="never"
           side="left"
         >
           <EuiFlyoutHeader>
@@ -264,13 +273,18 @@ const NonSessionFlyout: React.FC<{
           </EuiFlyoutHeader>
           <EuiFlyoutBody>
             <EuiText>
-              <p>This is the content of a non-session flyout.</p>
+              <p>
+                This is the content of a non-session flyout. We assure it will
+                never become a managed flyout by setting{' '}
+                <EuiCode>{'session={never}'}</EuiCode>.
+              </p>
               <EuiSpacer size="s" />
               <EuiDescriptionList
                 type="column"
                 listItems={[
                   { title: 'Flyout type', description: flyoutType },
                   { title: 'Size', description: 'm' },
+                  { title: 'session', description: 'never' },
                 ]}
               />
             </EuiText>
@@ -533,7 +547,7 @@ const ExternalRootFlyout: React.FC<{ id: string }> = ({ id }) => {
       {isOpen && (
         <EuiFlyout
           id={`external-root-${id}`}
-          session
+          session="start"
           size="m"
           onClose={() => setIsOpen(false)}
           flyoutMenuProps={{ title: `${id} flyout` }}
