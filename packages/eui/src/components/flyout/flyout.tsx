@@ -45,7 +45,7 @@ export const EuiFlyout = forwardRef<
 >((props, ref) => {
   const { session, as, onClose, onActive, ...rest } =
     usePropsWithComponentDefaults('EuiFlyout', props);
-  const hasActiveSession = useHasActiveSession();
+  const hasActiveSession = useRef(useHasActiveSession());
   const isUnmanagedFlyout = useRef(false);
 
   /*
@@ -73,7 +73,7 @@ export const EuiFlyout = forwardRef<
     }
 
     // Auto-join existing session as child
-    if (hasActiveSession && session === undefined) {
+    if (hasActiveSession.current && session === undefined) {
       return (
         <EuiFlyoutChild
           {...rest}
