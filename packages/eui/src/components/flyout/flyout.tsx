@@ -16,6 +16,7 @@ import {
 
 import { EuiFlyoutChild, EuiFlyoutMain, useHasActiveSession } from './manager';
 import { EuiFlyoutMenuContext } from './flyout_menu_context';
+import { SESSION_INHERIT, SESSION_NEVER, SESSION_START } from './manager/const';
 
 export type {
   EuiFlyoutSize,
@@ -41,7 +42,10 @@ export type EuiFlyoutProps<T extends ElementType = 'div' | 'nav'> = Omit<
    * - `never`: Opts out of session management and always functions as a standard flyout.
    * @default 'inherit'
    */
-  session?: 'start' | 'inherit' | 'never';
+  session?:
+    | typeof SESSION_START
+    | typeof SESSION_INHERIT
+    | typeof SESSION_NEVER;
   onActive?: () => void;
   as?: T;
 };
@@ -54,7 +58,7 @@ export const EuiFlyout = forwardRef<
     as,
     onClose,
     onActive,
-    session = 'inherit',
+    session = SESSION_INHERIT,
     ...rest
   } = usePropsWithComponentDefaults('EuiFlyout', props);
   const hasActiveSession = useRef(useHasActiveSession());
@@ -67,8 +71,8 @@ export const EuiFlyout = forwardRef<
    * - session="inherit" + no session → Standard flyout
    * - session="never" → Standard flyout (explicit opt-out)
    */
-  if (session !== 'never') {
-    if (session === 'start') {
+  if (session !== SESSION_NEVER) {
+    if (session === SESSION_START) {
       // session=start: create new session
       if (isUnmanagedFlyout.current) {
         // TODO: @tkajtoch - We need to find a better way to handle the missing event.
@@ -88,7 +92,7 @@ export const EuiFlyout = forwardRef<
     // session=inherit: auto-join existing session as child
     if (
       hasActiveSession.current &&
-      (session === undefined || session === 'inherit')
+      (session === undefined || session === SESSION_INHERIT)
     ) {
       return (
         <EuiFlyoutChild
