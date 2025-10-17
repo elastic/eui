@@ -129,9 +129,11 @@ export const EuiManagedFlyout = ({
     }
   }
 
-  // Title comes from flyoutMenuProps or will be extracted by EuiFlyoutHeader
-  // Use a default fallback to ensure we always have a title for the manager
-  const title = _flyoutMenuProps?.title || 'Unknown flyout';
+  // Title for menu display (only if explicitly provided)
+  const menuTitle = _flyoutMenuProps?.title;
+
+  // Title for manager registration (with fallback for tracking purposes)
+  const managerTitle = _flyoutMenuProps?.title || `Flyout ${flyoutId}`;
 
   // Validate title and warn if not provided
   const titleWarning = validateFlyoutTitle(
@@ -169,7 +171,7 @@ export const EuiManagedFlyout = ({
 
   // Register with flyout manager context ONCE on mount, remove on unmount
   useEffect(() => {
-    addFlyout(flyoutId, title, level, size as string);
+    addFlyout(flyoutId, managerTitle, level, size as string);
 
     return () => {
       closeFlyout(flyoutId);
@@ -181,7 +183,7 @@ export const EuiManagedFlyout = ({
   }, [flyoutId, level, size, addFlyout, closeFlyout]);
 
   // Update title separately when it changes (without re-registering the whole flyout)
-  const prevTitleRef = useRef(title);
+  const prevTitleRef = useRef(managerTitle);
   const hasRegisteredRef = useRef(false);
 
   useEffect(() => {
@@ -189,15 +191,15 @@ export const EuiManagedFlyout = ({
     // This prevents trying to update before the flyout exists in the store
     if (!hasRegisteredRef.current) {
       hasRegisteredRef.current = true;
-      prevTitleRef.current = title;
+      prevTitleRef.current = managerTitle;
       return;
     }
 
-    if (title && title !== prevTitleRef.current) {
-      updateFlyoutTitle(flyoutId, title);
-      prevTitleRef.current = title;
+    if (managerTitle && managerTitle !== prevTitleRef.current) {
+      updateFlyoutTitle(flyoutId, managerTitle);
+      prevTitleRef.current = managerTitle;
     }
-  }, [flyoutId, title, updateFlyoutTitle]);
+  }, [flyoutId, managerTitle, updateFlyoutTitle]);
 
   // Detect when flyout has been removed from manager state (e.g., via Back button)
   // and trigger onClose callback to notify the parent component
@@ -288,16 +290,19 @@ export const EuiManagedFlyout = ({
 
   // Pass through flyout menu props - the menu component will handle
   // history and back button logic internally via context
-  // When hasCustomMenu is true (EuiFlyoutHeader), don't pass flyoutMenuProps
-  const flyoutMenuProps = !hasCustomMenu
-    ? {
-        ..._flyoutMenuProps,
-        historyItems,
-        showBackButton,
-        backButtonProps,
-        title,
-      }
-    : undefined;
+  // Only auto-generate menu if:
+  // 1. No custom menu (EuiFlyoutHeader) is provided, AND
+  // 2. A title was explicitly passed via flyoutMenuProps
+  const flyoutMenuProps =
+    !hasCustomMenu && menuTitle
+      ? {
+          ..._flyoutMenuProps,
+          historyItems,
+          showBackButton,
+          backButtonProps,
+          title: menuTitle,
+        }
+      : undefined;
 
   return (
     <EuiFlyoutIsManagedProvider isManaged={true}>
