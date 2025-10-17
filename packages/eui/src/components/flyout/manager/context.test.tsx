@@ -8,10 +8,17 @@
 
 import React from 'react';
 import { render } from '../../../test/rtl';
+import { act } from '@testing-library/react';
 import { requiredProps } from '../../../test/required_props';
 import { EuiFlyoutIsManagedProvider, useIsInManagedFlyout } from './context';
+import { getFlyoutManagerStore, _resetFlyoutManagerStore } from './store';
 
 describe('EuiFlyoutIsManagedProvider', () => {
+  // Clean up the singleton store before each test
+  beforeEach(() => {
+    _resetFlyoutManagerStore();
+  });
+
   it('renders', () => {
     const { container } = render(
       <EuiFlyoutIsManagedProvider isManaged={true} {...requiredProps}>
@@ -22,50 +29,8 @@ describe('EuiFlyoutIsManagedProvider', () => {
     expect(container.firstChild).toMatchSnapshot();
   });
 
-  describe('context value', () => {
-    it('provides true when isManaged is true', () => {
-      const TestComponent = () => {
-        const isManaged = useIsInManagedFlyout();
-        return (
-          <div data-test-subj="context-value">
-            {isManaged ? 'Managed' : 'Not Managed'}
-          </div>
-        );
-      };
-
-      const { getByTestSubject } = render(
-        <EuiFlyoutIsManagedProvider isManaged={true}>
-          <TestComponent />
-        </EuiFlyoutIsManagedProvider>
-      );
-
-      expect(getByTestSubject('context-value')).toHaveTextContent('Managed');
-    });
-
-    it('provides false when isManaged is false', () => {
-      const TestComponent = () => {
-        const isManaged = useIsInManagedFlyout();
-        return (
-          <div data-test-subj="context-value">
-            {isManaged ? 'Managed' : 'Not Managed'}
-          </div>
-        );
-      };
-
-      const { getByTestSubject } = render(
-        <EuiFlyoutIsManagedProvider isManaged={false}>
-          <TestComponent />
-        </EuiFlyoutIsManagedProvider>
-      );
-
-      expect(getByTestSubject('context-value')).toHaveTextContent(
-        'Not Managed'
-      );
-    });
-  });
-
-  describe('useIsInManagedFlyout hook', () => {
-    it('returns false when used outside of provider', () => {
+  describe('useIsInManagedFlyout hook (store-based)', () => {
+    it('returns false when no managed flyout sessions exist', () => {
       const TestComponent = () => {
         const isManaged = useIsInManagedFlyout();
         return (
@@ -75,6 +40,51 @@ describe('EuiFlyoutIsManagedProvider', () => {
 
       const { getByTestSubject } = render(<TestComponent />);
 
+      expect(getByTestSubject('hook-test')).toHaveTextContent('False');
+    });
+
+    it('returns true when a managed flyout session exists in the store', () => {
+      // Add a session to the singleton store
+      const store = getFlyoutManagerStore();
+      store.addFlyout('test-flyout', 'Test Title', 'main', 'm');
+
+      const TestComponent = () => {
+        const isManaged = useIsInManagedFlyout();
+        return (
+          <div data-test-subj="hook-test">{isManaged ? 'True' : 'False'}</div>
+        );
+      };
+
+      const { getByTestSubject } = render(<TestComponent />);
+
+      expect(getByTestSubject('hook-test')).toHaveTextContent('True');
+    });
+
+    it('reactively updates when store changes', () => {
+      const store = getFlyoutManagerStore();
+
+      const TestComponent = () => {
+        const isManaged = useIsInManagedFlyout();
+        return (
+          <div data-test-subj="hook-test">{isManaged ? 'True' : 'False'}</div>
+        );
+      };
+
+      const { getByTestSubject } = render(<TestComponent />);
+
+      // Initially false
+      expect(getByTestSubject('hook-test')).toHaveTextContent('False');
+
+      // Add a flyout - should become true
+      act(() => {
+        store.addFlyout('test-flyout', 'Test Title', 'main', 'm');
+      });
+      expect(getByTestSubject('hook-test')).toHaveTextContent('True');
+
+      // Close the flyout - should become false again
+      act(() => {
+        store.closeFlyout('test-flyout');
+      });
       expect(getByTestSubject('hook-test')).toHaveTextContent('False');
     });
   });

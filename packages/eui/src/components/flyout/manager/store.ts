@@ -42,6 +42,8 @@ export interface FlyoutManagerStore {
     title: string;
     onClick: () => void;
   }>;
+  // Flag to indicate if any managed flyout session is active
+  isManaged: () => boolean;
 }
 
 function createStore(
@@ -113,6 +115,7 @@ function createStore(
     updateFlyoutTitle: (flyoutId, title) =>
       dispatch(updateFlyoutTitleAction(flyoutId, title)),
     historyItems: computeHistoryItems(), // Initialize with current state
+    isManaged: () => currentState.sessions.length > 0,
   };
 
   return store;

@@ -299,19 +299,6 @@ export const EuiManagedFlyout = ({
       }
     : undefined;
 
-  // DEBUG
-  console.log(
-    //
-    'flyoutId:',
-    flyoutId,
-    'level:',
-    level,
-    'showBackButton:',
-    showBackButton,
-    'historyItems:',
-    historyItems
-  );
-
   return (
     <EuiFlyoutIsManagedProvider isManaged={true}>
       <FlyoutMenuWrapperContext.Provider
