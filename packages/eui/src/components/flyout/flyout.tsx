@@ -46,7 +46,13 @@ export type EuiFlyoutProps<T extends ElementType = 'div' | 'nav'> = Omit<
     | typeof SESSION_START
     | typeof SESSION_INHERIT
     | typeof SESSION_NEVER;
+  /**
+   * Callback fired when the flyout becomes active/visible, which may happen programmatically from history navigation.
+   */
   onActive?: () => void;
+  /**
+   * The HTML element to render as the flyout container.
+   */
   as?: T;
 };
 
