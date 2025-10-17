@@ -46,7 +46,7 @@ exports[`EuiBreadcrumbContent breadcrumbs with popovers renders with \`popoverCo
         data-popover-open="true"
         data-popover-panel="true"
         role="dialog"
-        style="top: 12px; left: 0px; z-index: 2000;"
+        style="top: 3px; left: 16px; z-index: 2000;"
         tabindex="0"
       >
         <p

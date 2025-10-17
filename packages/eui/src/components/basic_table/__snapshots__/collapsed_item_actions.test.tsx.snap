@@ -48,7 +48,7 @@ exports[`CollapsedItemActions custom actions 1`] = `
         data-popover-open="true"
         data-popover-panel="true"
         role="dialog"
-        style="top: 0px; left: -12px; z-index: 2000;"
+        style="top: 16px; left: -3px; z-index: 2000;"
         tabindex="0"
       >
         <p
@@ -153,7 +153,7 @@ exports[`CollapsedItemActions default actions 1`] = `
         data-popover-open="true"
         data-popover-panel="true"
         role="dialog"
-        style="top: 0px; left: -12px; z-index: 2000;"
+        style="top: 16px; left: -3px; z-index: 2000;"
         tabindex="0"
       >
         <p

@@ -91,7 +91,7 @@ exports[`EuiContextMenuItem tooltip behavior 1`] = `
       id="generated-id"
       position="top"
       role="tooltip"
-      style="top: -16px; left: -10px;"
+      style="top: -16px; left: 16px;"
     >
       <div
         class="euiToolTip__title emotion-euiToolTip__title"
@@ -100,7 +100,7 @@ exports[`EuiContextMenuItem tooltip behavior 1`] = `
       </div>
       <div
         class="euiToolTip__arrow emotion-euiToolTip__arrow-top"
-        style="left: 3px; top: 100%;"
+        style="left: -23px; top: 100%;"
       />
       <div>
         tooltip content

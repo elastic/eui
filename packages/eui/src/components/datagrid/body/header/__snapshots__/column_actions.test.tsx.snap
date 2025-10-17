@@ -42,7 +42,7 @@ exports[`ColumnActions renders 1`] = `
         data-popover-open="true"
         data-popover-panel="true"
         role="dialog"
-        style="top: 15px; left: 0px; z-index: 2000;"
+        style="top: 7px; left: 16px; z-index: 2000;"
         tabindex="0"
       >
         <p
