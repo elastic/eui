@@ -31,7 +31,7 @@ describe('EuiPopover', () => {
   it('renders a popover with equal width to the input', () => {
     cy.mount(<EuiInputPopover {...props}>Popover content</EuiInputPopover>);
     cy.get('[data-popover-panel]')
-      .should('have.css', 'left', '0px')
+      .should('have.css', 'left', '16px')
       .invoke('outerWidth')
       .should('equal', 400);
   });
