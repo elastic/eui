@@ -34,7 +34,14 @@ export type EuiFlyoutProps<T extends ElementType = 'div' | 'nav'> = Omit<
   EuiFlyoutComponentProps<T>,
   'as'
 > & {
-  session?: boolean;
+  /**
+   * Controls the way the session is managed for this flyout.
+   * - `start`: Creates a new flyout session. Use this for the main flyout.
+   * - `inherit`: (default) Inherits an existing session if one is active, otherwise functions as a standard flyout.
+   * - `never`: Opts out of session management and always functions as a standard flyout.
+   * @default 'inherit'
+   */
+  session?: 'start' | 'inherit' | 'never';
   onActive?: () => void;
   as?: T;
 };
@@ -43,20 +50,26 @@ export const EuiFlyout = forwardRef<
   HTMLDivElement | HTMLElement,
   EuiFlyoutProps<'div' | 'nav'>
 >((props, ref) => {
-  const { session, as, onClose, onActive, ...rest } =
-    usePropsWithComponentDefaults('EuiFlyout', props);
+  const {
+    as,
+    onClose,
+    onActive,
+    session = 'inherit',
+    ...rest
+  } = usePropsWithComponentDefaults('EuiFlyout', props);
   const hasActiveSession = useRef(useHasActiveSession());
   const isUnmanagedFlyout = useRef(false);
 
   /*
    * Flyout routing logic:
-   * - session={true} → Main flyout (creates new session)
-   * - session={undefined} + active session → Child flyout (auto-joins, works across React roots!)
-   * - session={undefined} + no session → Standard flyout
-   * - session={false} → Standard flyout (explicit opt-out)
+   * - session="start" → Main flyout (creates new session)
+   * - session="inherit" + active session → Child flyout (auto-joins, works across React roots!)
+   * - session="inherit" + no session → Standard flyout
+   * - session="never" → Standard flyout (explicit opt-out)
    */
-  if (session !== false) {
-    if (session === true) {
+  if (session !== 'never') {
+    if (session === 'start') {
+      // session=start: create new session
       if (isUnmanagedFlyout.current) {
         // TODO: @tkajtoch - We need to find a better way to handle the missing event.
         onClose?.({} as any);
@@ -72,8 +85,11 @@ export const EuiFlyout = forwardRef<
       );
     }
 
-    // Auto-join existing session as child
-    if (hasActiveSession.current && session === undefined) {
+    // session=inherit: auto-join existing session as child
+    if (
+      hasActiveSession.current &&
+      (session === undefined || session === 'inherit')
+    ) {
       return (
         <EuiFlyoutChild
           {...rest}

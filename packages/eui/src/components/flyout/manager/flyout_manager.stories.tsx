@@ -219,7 +219,7 @@ const StatefulFlyout: React.FC<FlyoutChildStoryArgs> = ({
 
       {isMainOpen && (
         <EuiFlyout
-          session={true}
+          session="start"
           id="flyout-manager-playground-main"
           size={mainSize}
           type={mainFlyoutType}
