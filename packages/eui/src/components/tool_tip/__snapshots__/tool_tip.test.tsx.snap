@@ -72,7 +72,7 @@ exports[`EuiToolTip shows tooltip on mouseover and focus 1`] = `
       id="id"
       position="top"
       role="tooltip"
-      style="top: -16px; left: -10px;"
+      style="top: -16px; left: 16px;"
     >
       <div
         class="euiToolTip__title emotion-euiToolTip__title"
@@ -81,7 +81,7 @@ exports[`EuiToolTip shows tooltip on mouseover and focus 1`] = `
       </div>
       <div
         class="euiToolTip__arrow emotion-euiToolTip__arrow-top"
-        style="left: 3px; top: 100%;"
+        style="left: -23px; top: 100%;"
       />
       <div>
         content
@@ -119,11 +119,11 @@ exports[`EuiToolTip uses custom offset prop value 1`] = `
       offset="32"
       position="top"
       role="tooltip"
-      style="top: -32px; left: -10px;"
+      style="top: -32px; left: 16px;"
     >
       <div
         class="euiToolTip__arrow emotion-euiToolTip__arrow-top"
-        style="left: 3px; top: 100%;"
+        style="left: -23px; top: 100%;"
       />
       <div>
         content
