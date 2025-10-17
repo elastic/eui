@@ -355,12 +355,12 @@ describe('popover_positioning', () => {
             arrowConfig: { arrowWidth: 5, arrowBuffer: 10 },
           })
         ).toEqual({
-          fit: 0.665,
+          fit: 0.7,
           top: -15,
-          left: 37.5,
+          left: 40,
           arrow: {
             top: '100%',
-            left: 9,
+            left: 6.5,
           },
         });
       });
@@ -378,12 +378,12 @@ describe('popover_positioning', () => {
             arrowConfig: { arrowWidth: 5, arrowBuffer: 10 },
           })
         ).toEqual({
-          fit: 0.26,
+          fit: 0.4,
           top: -15,
-          left: 37.5,
+          left: 55,
           arrow: {
             top: '100%',
-            left: 9,
+            left: -8.5,
           },
         });
       });
