@@ -6,5 +6,5 @@
  * Side Public License, v 1.
  */
 
-export * from './clone_element';
-export * from './prefixer';
+export { cloneElementWithCss } from './clone_element';
+export { euiStylisPrefixer } from './prefixer';
