@@ -32,7 +32,6 @@ export const openAnimationTiming = 'slow';
 
 export const euiPopoverPanelStyles = (
   euiThemeContext: UseEuiTheme,
-  _offset: number = 0,
   hasArrow: boolean = true
 ) => {
   const { euiTheme, highContrastMode } = euiThemeContext;

@@ -52,7 +52,7 @@ export const EuiPopoverPanel: FunctionComponent<
 
   const euiThemeContext = useEuiTheme();
   const cssStyles = useMemo(() => {
-    const styles = euiPopoverPanelStyles(euiThemeContext, offset, hasArrow);
+    const styles = euiPopoverPanelStyles(euiThemeContext, hasArrow);
     const colorMode = euiThemeContext.colorMode.toLowerCase() as Lowercase<
       'LIGHT' | 'DARK'
     >;
@@ -75,7 +75,7 @@ export const EuiPopoverPanel: FunctionComponent<
       styles.hasTransform.hasTransform,
       isOpen && position && styles.hasTransform[position],
     ];
-  }, [euiThemeContext, isOpen, position, isAttached, offset, hasArrow]);
+  }, [euiThemeContext, isOpen, position, isAttached, hasArrow]);
 
   return (
     <EuiPopoverPanelContext.Provider
