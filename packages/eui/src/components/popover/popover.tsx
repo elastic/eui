@@ -291,7 +291,7 @@ export class EuiPopover extends Component<Props, State> {
     anchorPosition: 'downLeft',
     panelPaddingSize: 'm',
     hasArrow: false,
-    offset: 4,
+    offset: 3,
     display: 'inline-block',
   };
 
@@ -508,7 +508,7 @@ export class EuiPopover extends Component<Props, State> {
     if (this.button == null || this.panel == null) return;
 
     const { anchorPosition, offset = 0 } = this.props as PropsWithDefaults;
-
+    
     let position = getPopoverPositionFromAnchorPosition(anchorPosition);
     let forcePosition = undefined;
     if (
@@ -519,6 +519,12 @@ export class EuiPopover extends Component<Props, State> {
       position = this.state.openPosition;
       forcePosition = true;
     }
+
+    const visualOffset = this.props.attachToAnchor
+      ? offset
+      : this.props.hasArrow
+      ? (16 + offset) - 8  // JavaScript offset minus CSS transform
+      : offset;  // No penalty for hasArrow: false - let the algorithm choose naturally
 
     const {
       top,
@@ -532,11 +538,7 @@ export class EuiPopover extends Component<Props, State> {
       align: getPopoverAlignFromAnchorPosition(anchorPosition),
       anchor: this.button,
       popover: this.panel,
-      offset: this.props.attachToAnchor
-        ? offset
-        : this.props.hasArrow
-        ? 16 + offset
-        : 8 + offset,
+      offset: visualOffset,
       arrowConfig: this.props.hasArrow
         ? { arrowWidth: 16, arrowBuffer: 10 }
         : { arrowWidth: 0, arrowBuffer: 0 },
@@ -544,6 +546,7 @@ export class EuiPopover extends Component<Props, State> {
       allowCrossAxis: this.props.repositionToCrossAxis,
       buffer: this.props.buffer,
     });
+    
 
     // the popover's z-index must inherit from the button
     // this keeps a button's popover under a flyout that would cover the button
@@ -724,6 +727,12 @@ export class EuiPopover extends Component<Props, State> {
               isOpen={this.state.isOpening}
               position={this.state.arrowPosition}
               isAttached={attachToAnchor}
+              offset={this.props.attachToAnchor
+                ? offset
+                : this.props.hasArrow
+                ? 16 + (offset || 0)
+                : offset || 0}
+              hasArrow={this.props.hasArrow}
               className={classNames(panelClassName, panelProps?.className)}
               hasShadow={false}
               paddingSize={panelPaddingSize}

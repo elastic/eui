@@ -28,6 +28,8 @@ type EuiPopoverPanelInternalProps = {
   isOpen?: boolean;
   isAttached?: boolean;
   position?: EuiPopoverArrowPositions | null;
+  offset?: number;
+  hasArrow?: boolean;
 };
 
 /**
@@ -36,12 +38,12 @@ type EuiPopoverPanelInternalProps = {
  */
 export const EuiPopoverPanel: FunctionComponent<
   EuiPopoverPanelProps & EuiPopoverPanelInternalProps
-> = ({ children, className, isOpen, isAttached, position, ...rest }) => {
+> = ({ children, className, isOpen, isAttached, position, offset, hasArrow, ...rest }) => {
   const classes = classNames('euiPopover__panel', className);
 
   const euiThemeContext = useEuiTheme();
   const cssStyles = useMemo(() => {
-    const styles = euiPopoverPanelStyles(euiThemeContext);
+    const styles = euiPopoverPanelStyles(euiThemeContext, offset, hasArrow);
     const colorMode = euiThemeContext.colorMode.toLowerCase() as Lowercase<
       'LIGHT' | 'DARK'
     >;
@@ -64,7 +66,7 @@ export const EuiPopoverPanel: FunctionComponent<
       styles.hasTransform.hasTransform,
       isOpen && position && styles.hasTransform[position],
     ];
-  }, [euiThemeContext, isOpen, position, isAttached]);
+  }, [euiThemeContext, isOpen, position, isAttached, offset, hasArrow]);
 
   return (
     <EuiPopoverPanelContext.Provider
