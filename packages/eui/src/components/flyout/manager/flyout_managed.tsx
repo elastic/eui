@@ -271,7 +271,7 @@ export const EuiManagedFlyout = ({
     (value: boolean) => {
       setHasCustomMenu(value);
     },
-    [flyoutId]
+    [] // Empty deps - setHasCustomMenu is stable from useState
   );
 
   // Note: history controls are only relevant for main flyouts
