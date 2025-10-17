@@ -5,7 +5,13 @@
  * in compliance with, at your election, the Elastic License 2.0 or the Server
  * Side Public License, v 1.
  */
-import React, { useEffect, useMemo, useRef } from 'react';
+import React, {
+  useEffect,
+  useMemo,
+  useState,
+  useRef,
+  useCallback,
+} from 'react';
 import { useEuiMemoizedStyles } from '../../../services';
 import { useResizeObserver } from '../../observer/resize_observer';
 import {
@@ -13,7 +19,10 @@ import {
   EuiFlyoutComponentProps,
 } from '../flyout.component';
 import { EuiFlyoutMenuProps } from '../flyout_menu';
-import { EuiFlyoutMenuContext } from '../flyout_menu_context';
+import {
+  EuiFlyoutMenuContext,
+  FlyoutMenuWrapperContext,
+} from '../flyout_menu_context';
 import type { EuiFlyoutCloseEvent } from '../types';
 import { useFlyoutActivityStage } from './activity_stage';
 import {
@@ -86,6 +95,7 @@ export const EuiManagedFlyout = ({
     addFlyout,
     closeFlyout,
     setFlyoutWidth,
+    updateFlyoutTitle,
     goBack,
     historyItems: _historyItems,
   } = useFlyoutManager();
@@ -119,11 +129,22 @@ export const EuiManagedFlyout = ({
     }
   }
 
-  // Validate title
-  const title = _flyoutMenuProps?.title || props['aria-label'];
-  const titleError = validateFlyoutTitle(title, flyoutId, level);
-  if (titleError) {
-    throw new Error(createValidationErrorMessage(titleError));
+  // Title for menu display (only if explicitly provided)
+  const menuTitle = _flyoutMenuProps?.title;
+
+  // Title for manager registration (with fallback for tracking purposes)
+  const managerTitle = _flyoutMenuProps?.title || `Flyout ${flyoutId}`;
+
+  // Validate title and warn if not provided
+  const titleWarning = validateFlyoutTitle(
+    _flyoutMenuProps?.title,
+    flyoutId,
+    level
+  );
+  if (titleWarning) {
+    // Only warn in development - this is not a fatal error
+    // eslint-disable-next-line no-console
+    console.warn(titleWarning.message);
   }
 
   const isActive = useIsFlyoutActive(flyoutId);
@@ -148,9 +169,9 @@ export const EuiManagedFlyout = ({
   // Track if flyout was ever registered to avoid false positives on initial mount
   const wasRegisteredRef = useRef(false);
 
-  // Register with flyout manager context when open, remove when closed
+  // Register with flyout manager context ONCE on mount, remove on unmount
   useEffect(() => {
-    addFlyout(flyoutId, title!, level, size as string);
+    addFlyout(flyoutId, managerTitle, level, size as string);
 
     return () => {
       closeFlyout(flyoutId);
@@ -158,7 +179,27 @@ export const EuiManagedFlyout = ({
       // Reset navigation tracking when explicitly closed via isOpen=false
       wasRegisteredRef.current = false;
     };
-  }, [flyoutId, title, level, size, addFlyout, closeFlyout]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [flyoutId, level, size, addFlyout, closeFlyout]);
+
+  // Update title separately when it changes (without re-registering the whole flyout)
+  const prevTitleRef = useRef(managerTitle);
+  const hasRegisteredRef = useRef(false);
+
+  useEffect(() => {
+    // Only update title after initial registration has completed
+    // This prevents trying to update before the flyout exists in the store
+    if (!hasRegisteredRef.current) {
+      hasRegisteredRef.current = true;
+      prevTitleRef.current = managerTitle;
+      return;
+    }
+
+    if (managerTitle && managerTitle !== prevTitleRef.current) {
+      updateFlyoutTitle(flyoutId, managerTitle);
+      prevTitleRef.current = managerTitle;
+    }
+  }, [flyoutId, managerTitle, updateFlyoutTitle]);
 
   // Detect when flyout has been removed from manager state (e.g., via Back button)
   // and trigger onClose callback to notify the parent component
@@ -222,6 +263,19 @@ export const EuiManagedFlyout = ({
     level,
   });
 
+  // Check if a custom menu is being provided via context
+  const [hasCustomMenu, setHasCustomMenu] = useState(false);
+
+  // Stabilize the setHasManagedMenu callback to prevent unnecessary re-renders
+  // Note: setHasCustomMenu from useState is already stable, so we only need to
+  // memoize the wrapper to maintain referential equality
+  const setHasManagedMenuCallback = useCallback(
+    (value: boolean) => {
+      setHasCustomMenu(value);
+    },
+    [] // Empty deps - setHasCustomMenu is stable from useState
+  );
+
   // Note: history controls are only relevant for main flyouts
   const historyItems = useMemo(() => {
     const result = level === LEVEL_MAIN ? _historyItems : undefined;
@@ -234,37 +288,58 @@ export const EuiManagedFlyout = ({
 
   const showBackButton = historyItems ? historyItems.length > 0 : false;
 
-  const flyoutMenuProps = {
-    ..._flyoutMenuProps,
-    historyItems,
-    showBackButton,
-    backButtonProps,
-    title,
-  };
+  // Pass through flyout menu props - the menu component will handle
+  // history and back button logic internally via context
+  // Only auto-generate menu if:
+  // 1. No custom menu (EuiFlyoutHeader) is provided, AND
+  // 2. A title was explicitly passed via flyoutMenuProps
+  const flyoutMenuProps =
+    !hasCustomMenu && menuTitle
+      ? {
+          ..._flyoutMenuProps,
+          historyItems,
+          showBackButton,
+          backButtonProps,
+          title: menuTitle,
+        }
+      : undefined;
 
   return (
     <EuiFlyoutIsManagedProvider isManaged={true}>
-      <EuiFlyoutMenuContext.Provider value={{ onClose }}>
-        <EuiFlyoutComponent
-          id={flyoutId}
-          ref={flyoutRef}
-          css={[
-            styles.managedFlyout,
-            customCss,
-            styles.stage(activityStage, props.side, level),
-          ]}
-          {...{
-            ...props,
-            onClose,
-            size,
-            flyoutMenuProps,
-            onAnimationEnd,
-            [PROPERTY_FLYOUT]: true,
-            [PROPERTY_LAYOUT_MODE]: layoutMode,
-            [PROPERTY_LEVEL]: level,
-          }}
-        />
-      </EuiFlyoutMenuContext.Provider>
+      <FlyoutMenuWrapperContext.Provider
+        value={{
+          hasMenuWrapper: hasCustomMenu,
+          setHasMenuWrapper: setHasManagedMenuCallback,
+          menuProps: {
+            title: menuTitle,
+            historyItems,
+            showBackButton,
+            backButtonProps,
+          },
+        }}
+      >
+        <EuiFlyoutMenuContext.Provider value={{ onClose }}>
+          <EuiFlyoutComponent
+            id={flyoutId}
+            ref={flyoutRef}
+            css={[
+              styles.managedFlyout,
+              customCss,
+              styles.stage(activityStage, props.side, level),
+            ]}
+            {...{
+              ...props,
+              onClose,
+              size,
+              flyoutMenuProps,
+              onAnimationEnd,
+              [PROPERTY_FLYOUT]: true,
+              [PROPERTY_LAYOUT_MODE]: layoutMode,
+              [PROPERTY_LEVEL]: level,
+            }}
+          />
+        </EuiFlyoutMenuContext.Provider>
+      </FlyoutMenuWrapperContext.Provider>
     </EuiFlyoutIsManagedProvider>
   );
 };

@@ -11,6 +11,8 @@ import React, {
   FunctionComponent,
   HTMLAttributes,
   useContext,
+  useEffect,
+  useRef,
   useState,
 } from 'react';
 
@@ -18,6 +20,7 @@ import { useEuiMemoizedStyles } from '../../services';
 import { EuiButtonEmpty, EuiButtonIcon, EuiButtonProps } from '../button';
 import { CommonProps, PropsForAnchor } from '../common';
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
+import { useInnerText } from '../inner_text/inner_text';
 import { EuiListGroup, EuiListGroupItem } from '../list_group';
 import { EuiPopover } from '../popover';
 import { EuiTitle } from '../title';
@@ -26,6 +29,8 @@ import { euiFlyoutMenuStyles } from './flyout_menu.styles';
 import { EuiFlyoutMenuContext } from './flyout_menu_context';
 import type { EuiFlyoutCloseEvent } from './types';
 import { EuiI18n, useEuiI18n } from '../i18n';
+import { useFlyoutManager } from './manager/hooks';
+import { LEVEL_MAIN } from './manager/const';
 
 type EuiFlyoutMenuBackButtonProps = Pick<
   PropsForAnchor<EuiButtonProps>,
@@ -51,6 +56,8 @@ export type EuiFlyoutMenuProps = CommonProps &
       onClick: () => void;
       'aria-label': string;
     }>;
+    /* When true, renders children as title content instead of using title prop */
+    asWrapper?: boolean;
   };
 
 const BackButton: React.FC<EuiFlyoutMenuBackButtonProps> = (props) => {
@@ -107,24 +114,82 @@ export const EuiFlyoutMenu: FunctionComponent<EuiFlyoutMenuProps> = ({
   titleId,
   className,
   title,
+  children,
   hideCloseButton,
   historyItems = [],
-  showBackButton,
+  showBackButton = false,
   backButtonProps,
   customActions,
+  asWrapper = false,
   ...rest
 }) => {
   const { onClose } = useContext(EuiFlyoutMenuContext);
+  const manager = useFlyoutManager();
 
   const styles = useEuiMemoizedStyles(euiFlyoutMenuStyles);
-  const classes = classNames('euiFlyoutMenu', className);
+  const classes = classNames(
+    asWrapper ? 'euiFlyoutMenuWrapper' : 'euiFlyoutMenu',
+    className
+  );
 
+  // Extract title text from children when in wrapper mode
+  const wrapperRef = useRef<HTMLDivElement>(null);
+  const [setInnerTextRef, innerText] = useInnerText();
+
+  // Set up inner text observation on the wrapper element
+  useEffect(() => {
+    if (asWrapper && wrapperRef.current) {
+      setInnerTextRef(wrapperRef.current);
+    }
+  }, [asWrapper, setInnerTextRef]);
+
+  // Update the manager title when inner text changes in wrapper mode
+  // Only update for main flyouts - child flyout titles are for display only
+  const prevTitleRef = useRef<string | null | undefined>(null);
+  useEffect(() => {
+    if (
+      asWrapper &&
+      innerText &&
+      innerText !== prevTitleRef.current &&
+      manager
+    ) {
+      const currentSession =
+        manager.state.sessions[manager.state.sessions.length - 1];
+      if (currentSession) {
+        // Determine if this is a main flyout by checking the current flyout's level
+        const currentFlyout = manager.state.flyouts.find(
+          (f) => f.flyoutId === currentSession.mainFlyoutId
+        );
+        // Only update title for main flyouts (title updates affect navigation history)
+        if (currentFlyout?.level === LEVEL_MAIN) {
+          manager.updateFlyoutTitle(currentSession.mainFlyoutId, innerText);
+        }
+      }
+    }
+
+    // Always update the ref to prevent repeated attempts
+    if (innerText !== prevTitleRef.current) {
+      prevTitleRef.current = innerText;
+    }
+  }, [asWrapper, innerText, manager]);
+
+  // Determine title content based on mode
   let titleNode;
-  if (title) {
+  if (asWrapper && children) {
+    // Wrapper mode: render children as title
     titleNode = (
-      <EuiTitle size="xxs" id={titleId}>
-        <h3>{title}</h3>
-      </EuiTitle>
+      <EuiFlexItem grow={false} css={styles.euiFlyoutMenu__wrapper_title}>
+        <div ref={wrapperRef}>{children}</div>
+      </EuiFlexItem>
+    );
+  } else if (title) {
+    // Menu mode: render title in EuiTitle
+    titleNode = (
+      <EuiFlexItem grow={false}>
+        <EuiTitle size="xxs" id={titleId}>
+          <h3>{title}</h3>
+        </EuiTitle>
+      </EuiFlexItem>
     );
   }
 
@@ -148,7 +213,7 @@ export const EuiFlyoutMenu: FunctionComponent<EuiFlyoutMenuProps> = ({
         gutterSize="none"
         responsive={false}
       >
-        {showBackButton && (
+        {showBackButton && backButtonProps && (
           <EuiFlexItem grow={false}>
             <BackButton {...backButtonProps} />
           </EuiFlexItem>
@@ -160,7 +225,7 @@ export const EuiFlyoutMenu: FunctionComponent<EuiFlyoutMenuProps> = ({
           </EuiFlexItem>
         )}
 
-        {titleNode && <EuiFlexItem grow={false}>{titleNode}</EuiFlexItem>}
+        {titleNode}
 
         <EuiFlexItem grow={true}></EuiFlexItem>
 

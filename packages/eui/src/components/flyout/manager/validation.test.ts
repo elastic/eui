@@ -58,8 +58,14 @@ describe('Flyout Size Validation', () => {
   });
 
   describe('validateFlyoutTitle', () => {
-    it('should return null for child flyouts without title', () => {
-      expect(validateFlyoutTitle(undefined, 'child-id', 'child')).toBeNull();
+    it('should return error for child flyouts without title', () => {
+      const error = validateFlyoutTitle(undefined, 'child-id', 'child');
+      expect(error).toEqual({
+        type: 'INVALID_FLYOUT_MENU_TITLE',
+        message: `Missing title for 'child-id'. Managed flyouts require 'flyoutMenuProps.title' to be a non-empty string.`,
+        flyoutId: 'child-id',
+        level: 'child',
+      });
     });
 
     it('should return null for main flyouts with valid title', () => {
@@ -70,7 +76,7 @@ describe('Flyout Size Validation', () => {
       const error = validateFlyoutTitle('', 'test-id', 'main');
       expect(error).toEqual({
         type: 'INVALID_FLYOUT_MENU_TITLE',
-        message: `Managed flyouts require either a 'flyoutMenuProps.title' or an 'aria-label' to provide the flyout menu title.`,
+        message: `Missing title for 'test-id'. Managed flyouts require 'flyoutMenuProps.title' to be a non-empty string.`,
         flyoutId: 'test-id',
         level: 'main',
       });

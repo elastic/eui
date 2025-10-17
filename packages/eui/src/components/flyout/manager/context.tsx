@@ -6,7 +6,8 @@
  * Side Public License, v 1.
  */
 
-import React, { createContext, useContext } from 'react';
+import React, { createContext, useSyncExternalStore } from 'react';
+import { getFlyoutManagerStore } from './store';
 
 // Context to track if we're within a managed flyout
 const EuiFlyoutIsManagedContext = createContext<boolean>(false);
@@ -15,6 +16,9 @@ const EuiFlyoutIsManagedContext = createContext<boolean>(false);
  * React provider that marks descendants as being rendered inside
  * an EUI managed flyout. Used by hooks/components to alter behavior
  * (e.g., focus handling) when inside a managed flyout tree.
+ *
+ * @deprecated This provider is no longer necessary as the managed state
+ * is now tracked via the singleton store. Kept for backwards compatibility.
  */
 export const EuiFlyoutIsManagedProvider = ({
   isManaged,
@@ -31,6 +35,15 @@ export const EuiFlyoutIsManagedProvider = ({
 };
 
 /**
- * Hook that returns `true` when called within an EUI managed flyout subtree.
+ * Hook that returns `true` when there is an active managed flyout session.
+ * Uses the singleton store to work across React roots (e.g., in Kibana with multiple mount points).
  */
-export const useIsInManagedFlyout = () => useContext(EuiFlyoutIsManagedContext);
+export const useIsInManagedFlyout = () => {
+  const store = getFlyoutManagerStore();
+
+  return useSyncExternalStore(
+    store.subscribe,
+    () => store.isManaged(),
+    () => false // Server-side rendering snapshot
+  );
+};

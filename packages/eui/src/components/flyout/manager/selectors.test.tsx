@@ -28,27 +28,40 @@ const mockUseFlyoutManager = useFlyoutManager as jest.MockedFunction<
 >;
 
 describe('Flyout Manager Selectors', () => {
+  let baseMock: NonNullable<ReturnType<typeof mockUseFlyoutManager>>;
+
   beforeEach(() => {
     mockUseFlyoutManager.mockClear();
+
+    // Create base mock that all tests can build upon
+    baseMock = {
+      state: {
+        sessions: [],
+        flyouts: [],
+        layoutMode: 'side-by-side',
+      },
+      dispatch: jest.fn(),
+      addFlyout: jest.fn(),
+      closeFlyout: jest.fn(),
+      setActiveFlyout: jest.fn(),
+      setFlyoutWidth: jest.fn(),
+      goBack: jest.fn(),
+      goToFlyout: jest.fn(),
+      updateFlyoutTitle: jest.fn(),
+      historyItems: [],
+    };
+  });
+
+  const createMockWithState = (
+    stateOverrides: Partial<typeof baseMock.state>
+  ) => ({
+    ...baseMock,
+    state: { ...baseMock.state, ...stateOverrides },
   });
 
   describe('useFlyoutWidth', () => {
     it('should return undefined when flyout is not found', () => {
-      mockUseFlyoutManager.mockReturnValue({
-        state: {
-          sessions: [],
-          flyouts: [],
-          layoutMode: 'side-by-side',
-        },
-        dispatch: jest.fn(),
-        addFlyout: jest.fn(),
-        closeFlyout: jest.fn(),
-        setActiveFlyout: jest.fn(),
-        setFlyoutWidth: jest.fn(),
-        goBack: jest.fn(),
-        goToFlyout: jest.fn(),
-        historyItems: [],
-      });
+      mockUseFlyoutManager.mockReturnValue(baseMock);
 
       const { result } = renderHook(() =>
         useFlyoutWidth('non-existent-flyout')
@@ -58,9 +71,8 @@ describe('Flyout Manager Selectors', () => {
     });
 
     it('should return the width when flyout exists', () => {
-      mockUseFlyoutManager.mockReturnValue({
-        state: {
-          sessions: [],
+      mockUseFlyoutManager.mockReturnValue(
+        createMockWithState({
           flyouts: [
             {
               flyoutId: 'test-flyout',
@@ -70,17 +82,8 @@ describe('Flyout Manager Selectors', () => {
               width: 500,
             },
           ],
-          layoutMode: 'side-by-side',
-        },
-        dispatch: jest.fn(),
-        addFlyout: jest.fn(),
-        closeFlyout: jest.fn(),
-        setActiveFlyout: jest.fn(),
-        setFlyoutWidth: jest.fn(),
-        goBack: jest.fn(),
-        goToFlyout: jest.fn(),
-        historyItems: [],
-      });
+        })
+      );
 
       const { result } = renderHook(() => useFlyoutWidth('test-flyout'));
 
@@ -90,21 +93,7 @@ describe('Flyout Manager Selectors', () => {
 
   describe('useParentFlyoutSize', () => {
     it('should return undefined when no parent flyout exists', () => {
-      mockUseFlyoutManager.mockReturnValue({
-        state: {
-          sessions: [],
-          flyouts: [],
-          layoutMode: 'side-by-side',
-        },
-        dispatch: jest.fn(),
-        addFlyout: jest.fn(),
-        closeFlyout: jest.fn(),
-        setActiveFlyout: jest.fn(),
-        setFlyoutWidth: jest.fn(),
-        goBack: jest.fn(),
-        goToFlyout: jest.fn(),
-        historyItems: [],
-      });
+      mockUseFlyoutManager.mockReturnValue(baseMock);
 
       const { result } = renderHook(() => useParentFlyoutSize('child-flyout'));
 
@@ -114,9 +103,8 @@ describe('Flyout Manager Selectors', () => {
 
   describe('useHasChildFlyout', () => {
     it('should return false when no child flyout exists', () => {
-      mockUseFlyoutManager.mockReturnValue({
-        state: {
-          sessions: [],
+      mockUseFlyoutManager.mockReturnValue(
+        createMockWithState({
           flyouts: [
             {
               flyoutId: 'parent-flyout',
@@ -125,17 +113,8 @@ describe('Flyout Manager Selectors', () => {
               activityStage: 'active',
             },
           ],
-          layoutMode: 'side-by-side',
-        },
-        dispatch: jest.fn(),
-        addFlyout: jest.fn(),
-        closeFlyout: jest.fn(),
-        setActiveFlyout: jest.fn(),
-        setFlyoutWidth: jest.fn(),
-        goBack: jest.fn(),
-        goToFlyout: jest.fn(),
-        historyItems: [],
-      });
+        })
+      );
 
       const { result } = renderHook(() => useHasChildFlyout('parent-flyout'));
 
@@ -143,8 +122,8 @@ describe('Flyout Manager Selectors', () => {
     });
 
     it('should return true when child flyout exists', () => {
-      mockUseFlyoutManager.mockReturnValue({
-        state: {
+      mockUseFlyoutManager.mockReturnValue(
+        createMockWithState({
           sessions: [
             {
               mainFlyoutId: 'parent-flyout',
@@ -166,17 +145,8 @@ describe('Flyout Manager Selectors', () => {
               activityStage: 'active',
             },
           ],
-          layoutMode: 'side-by-side',
-        },
-        dispatch: jest.fn(),
-        addFlyout: jest.fn(),
-        closeFlyout: jest.fn(),
-        setActiveFlyout: jest.fn(),
-        setFlyoutWidth: jest.fn(),
-        goBack: jest.fn(),
-        goToFlyout: jest.fn(),
-        historyItems: [],
-      });
+        })
+      );
 
       const { result } = renderHook(() => useHasChildFlyout('parent-flyout'));
 
