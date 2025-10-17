@@ -6,7 +6,11 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, HTMLAttributes, useEffect } from 'react';
+import React, {
+  type FunctionComponent,
+  type HTMLAttributes,
+  useEffect,
+} from 'react';
 import classNames from 'classnames';
 import { useEuiMemoizedStyles } from '../../services';
 import { CommonProps } from '../common';
