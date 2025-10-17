@@ -310,6 +310,12 @@ export const EuiManagedFlyout = ({
         value={{
           hasMenuWrapper: hasCustomMenu,
           setHasMenuWrapper: setHasManagedMenuCallback,
+          menuProps: {
+            title: menuTitle,
+            historyItems,
+            showBackButton,
+            backButtonProps,
+          },
         }}
       >
         <EuiFlyoutMenuContext.Provider value={{ onClose }}>

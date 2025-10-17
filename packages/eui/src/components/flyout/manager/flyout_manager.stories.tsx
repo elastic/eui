@@ -367,7 +367,7 @@ const FlyoutWithHeader: React.FC<FlyoutChildStoryArgs> = ({
 
       {isMainOpen && (
         <EuiFlyout
-          session={true}
+          session="start"
           id="flyout-with-header-main"
           size={mainSize}
           type={mainFlyoutType}

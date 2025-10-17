@@ -8,6 +8,7 @@
 
 import { createContext, useContext } from 'react';
 import { EuiFlyoutProps } from './flyout';
+import { EuiFlyoutMenuProps } from './flyout_menu';
 
 interface EuiFlyoutMenuContextProps {
   onClose?: EuiFlyoutProps['onClose'];
@@ -20,6 +21,11 @@ export const EuiFlyoutMenuContext = createContext<EuiFlyoutMenuContextProps>(
 interface FlyoutHasMenuWrapperContextValue {
   hasMenuWrapper: boolean;
   setHasMenuWrapper: (hasCustomMenu: boolean) => void;
+  // Menu props that should be passed to EuiFlyoutMenu when wrapper renders it
+  menuProps?: Pick<
+    EuiFlyoutMenuProps,
+    'title' | 'historyItems' | 'showBackButton' | 'backButtonProps'
+  >;
 }
 
 export const FlyoutMenuWrapperContext =

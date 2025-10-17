@@ -35,7 +35,7 @@ export const EuiFlyoutHeader: EuiFlyoutHeaderProps = ({
   const styles = useEuiMemoizedStyles(euiFlyoutHeaderStyles);
 
   const isInManagedFlyout = useIsInManagedFlyout();
-  const { setHasMenuWrapper } = useFlyoutHasMenuWrapperContext();
+  const { setHasMenuWrapper, menuProps } = useFlyoutHasMenuWrapperContext();
 
   // Track whether we've registered ourselves to avoid redundant state updates
   const isRegisteredRef = React.useRef(false);
@@ -57,7 +57,7 @@ export const EuiFlyoutHeader: EuiFlyoutHeaderProps = ({
 
   if (isInManagedFlyout) {
     return (
-      <EuiFlyoutMenu asWrapper {...rest}>
+      <EuiFlyoutMenu asWrapper {...menuProps} {...rest}>
         {children}
       </EuiFlyoutMenu>
     );
