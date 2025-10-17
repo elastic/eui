@@ -38,7 +38,16 @@ type EuiPopoverPanelInternalProps = {
  */
 export const EuiPopoverPanel: FunctionComponent<
   EuiPopoverPanelProps & EuiPopoverPanelInternalProps
-> = ({ children, className, isOpen, isAttached, position, offset, hasArrow, ...rest }) => {
+> = ({
+  children,
+  className,
+  isOpen,
+  isAttached,
+  position,
+  offset,
+  hasArrow,
+  ...rest
+}) => {
   const classes = classNames('euiPopover__panel', className);
 
   const euiThemeContext = useEuiTheme();

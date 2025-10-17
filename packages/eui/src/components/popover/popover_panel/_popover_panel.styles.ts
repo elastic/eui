@@ -30,7 +30,11 @@ export const openAnimationTiming = 'slow';
  * 4. Make the popover lighter on dark mode (too hard to distinguish from plain bgs otherwise), and set a CSS var for the arrow to use
  */
 
-export const euiPopoverPanelStyles = (euiThemeContext: UseEuiTheme, offset: number = 0, hasArrow: boolean = true) => {
+export const euiPopoverPanelStyles = (
+  euiThemeContext: UseEuiTheme,
+  _offset: number = 0,
+  hasArrow: boolean = true
+) => {
   const { euiTheme, highContrastMode } = euiThemeContext;
 
   const translateDistance = hasArrow ? euiTheme.size.s : 0;

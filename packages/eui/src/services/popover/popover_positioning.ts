@@ -397,7 +397,6 @@ export function getPopoverScreenCoordinates({
 
   const fit = getVisibleFit(contentBoundingBox, combinedBoundingBox);
 
-
   const arrow = arrowConfig
     ? ({
         [crossAxisFirstSide]:
@@ -473,7 +472,6 @@ function getCrossAxisPosition({
     position
   );
   const minimumSpace = arrowConfig ? arrowConfig.arrowBuffer : 0;
-  
 
   const contentOverflowSize =
     (popoverSizeOnCrossAxis - anchorSizeOnCrossAxis) / 2;
@@ -550,15 +548,24 @@ function getCrossAxisPosition({
 
   // Ensure the popover stays within container bounds after arrow adjustment
   // Get the buffer values to know the actual container bounds
-  const [topBuffer, rightBuffer, bottomBuffer, leftBuffer] = getBufferValues(buffer);
-  const combinedBounds = intersectBoundingBoxes(windowBoundingBox, containerBoundingBox);
-  
+  const [topBuffer, rightBuffer, bottomBuffer, leftBuffer] =
+    getBufferValues(buffer);
+  const combinedBounds = intersectBoundingBoxes(
+    windowBoundingBox,
+    containerBoundingBox
+  );
+
   // Calculate the minimum position (accounting for buffer)
-  const minPosition = combinedBounds[crossAxisFirstSide] + 
-    (crossAxisFirstSide === 'top' ? topBuffer : 
-     crossAxisFirstSide === 'right' ? rightBuffer :
-     crossAxisFirstSide === 'bottom' ? bottomBuffer : leftBuffer);
-  
+  const minPosition =
+    combinedBounds[crossAxisFirstSide] +
+    (crossAxisFirstSide === 'top'
+      ? topBuffer
+      : crossAxisFirstSide === 'right'
+      ? rightBuffer
+      : crossAxisFirstSide === 'bottom'
+      ? bottomBuffer
+      : leftBuffer);
+
   // Clamp the position to not go outside the container bounds
   if (crossAxisPosition < minPosition) {
     crossAxisPosition = minPosition;
@@ -646,7 +653,7 @@ export function getAvailableSpace(
 ): BoundingBox {
   const [topBuffer, rightBuffer, bottomBuffer, leftBuffer] =
     getBufferValues(buffer);
-  
+
   const result = {
     top:
       anchorBoundingBox.top -
@@ -669,9 +676,7 @@ export function getAvailableSpace(
       leftBuffer -
       (offsetSide === 'left' ? offset : 0),
   };
-  
-  
-  
+
   return result;
 }
 
