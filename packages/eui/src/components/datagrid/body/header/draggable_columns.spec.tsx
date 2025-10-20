@@ -232,8 +232,8 @@ describe('draggable columns', () => {
       cy.get('[data-popover-open]').should('have.focus');
 
       cy.get('[data-test-subj=dataGridHeaderCell-a]').realClick();
-      cy.get('[data-test-subj=dataGridHeaderCell-a]').should('have.focus');
       cy.get('[data-popover-open]').should('not.exist');
+      cy.get('[data-test-subj=dataGridHeaderCell-a]').should('have.focus');
 
       // Should not interefere with column actions popover toggle
       cy.wait(250);
@@ -252,8 +252,8 @@ describe('draggable columns', () => {
       cy.get('[data-popover-open]').should('have.focus');
 
       cy.get('[data-test-subj=dataGridHeaderCell-b]').realClick();
-      cy.get('[data-test-subj=dataGridHeaderCell-b]').should('have.focus');
       cy.get('[data-popover-open]').should('not.exist');
+      cy.get('[data-test-subj=dataGridHeaderCell-b]').should('have.focus');
     });
 
     it('should close row cell expansion popovers', () => {
@@ -268,8 +268,8 @@ describe('draggable columns', () => {
       cy.get('[data-test-subj=dataGridHeaderCell-a]').realClick({
         position: 'right',
       });
-      cy.get('[data-test-subj=dataGridHeaderCell-a]').should('have.focus');
       cy.get('[data-popover-open]').should('not.exist');
+      cy.get('[data-test-subj=dataGridHeaderCell-a]').should('have.focus');
     });
 
     it('should close data grid toolbar popovers', () => {
