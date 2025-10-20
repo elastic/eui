@@ -146,7 +146,7 @@ const meta: Meta<FlyoutChildStoryArgs> = {
   },
   parameters: {
     // Skipping visual regression testing with Loki
-    // This is a playground for Flyout Manager and does show anything testable on page load
+    // This is a playground for Flyout Manager and doesn't show anything testable on page load
     loki: { skip: true },
   },
 };
