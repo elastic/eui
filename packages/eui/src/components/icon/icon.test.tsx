@@ -143,18 +143,29 @@ describe('EuiIcon', () => {
 
     describe('aria-hidden', () => {
       it(
-        'enforces aria-hidden if no title or label has been passed',
+        'enforces role=presentation if no title or label has been passed',
         testIcon({ type: 'empty', 'aria-hidden': false }, (icon) => {
-          expect(icon).toHaveAttribute('aria-hidden', 'true');
+          expect(icon).toHaveAttribute('role', 'presentation');
         })
       );
 
       it(
-        'does not set aria-hidden if a title/label is passed',
+        'does not set role=presentation if a title/label is passed',
         testIcon(
           { type: 'empty', title: 'Anything', 'aria-label': 'Anything' },
           (icon) => {
-            expect(icon).not.toHaveAttribute('aria-hidden');
+            expect(icon).toHaveAttribute('role', 'img');
+          }
+        )
+      );
+
+      it(
+        'allows consumers to override aria-hidden and role',
+        testIcon(
+          { type: 'empty', 'aria-hidden': false, role: 'img' },
+          (icon) => {
+            expect(icon).toHaveAttribute('aria-hidden', 'false');
+            expect(icon).toHaveAttribute('role', 'img');
           }
         )
       );
@@ -165,8 +176,16 @@ describe('EuiIcon', () => {
           { type: 'empty', title: 'Anything', 'aria-hidden': true },
           (icon) => {
             expect(icon).toHaveAttribute('aria-hidden', 'true');
+            expect(icon).not.toHaveAttribute('role');
           }
         )
+      );
+
+      it(
+        'allows consumers to override role',
+        testIcon({ type: 'empty', title: 'Anything', role: 'none' }, (icon) => {
+          expect(icon).toHaveAttribute('role', 'none');
+        })
       );
     });
   });
