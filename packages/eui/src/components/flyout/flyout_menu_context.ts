@@ -8,8 +8,10 @@
 
 import { createContext } from 'react';
 import { EuiFlyoutProps } from './flyout';
+import { LEVEL_CHILD, LEVEL_MAIN } from './manager/const';
 
 interface EuiFlyoutMenuContextProps {
+  level?: typeof LEVEL_MAIN | typeof LEVEL_CHILD;
   onClose?: EuiFlyoutProps['onClose'];
 }
 

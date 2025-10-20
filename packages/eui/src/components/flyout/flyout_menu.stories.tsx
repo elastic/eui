@@ -6,112 +6,89 @@
  * Side Public License, v 1.
  */
 
-import React, { useState } from 'react';
+import React from 'react';
 
 import { action } from '@storybook/addon-actions';
 import { Meta, StoryObj } from '@storybook/react';
-import { EuiButton } from '../button';
-import { EuiSpacer } from '../spacer';
-import { EuiText } from '../text';
-import { EuiFlyout } from './flyout';
-import { EuiFlyoutBody } from './flyout_body';
 import { EuiFlyoutMenu, EuiFlyoutMenuProps } from './flyout_menu';
+import { EuiFlyoutMenuContext } from './flyout_menu_context';
+import { EuiFlyoutManagerContext } from './manager/provider';
+import { LEVEL_MAIN } from './manager/const';
+import { EuiPanel } from '../panel';
 
 interface Args extends EuiFlyoutMenuProps {
   showCustomActions: boolean;
-  showHistoryItems: boolean;
 }
 
 const meta: Meta<Args> = {
   title: 'Layout/EuiFlyout/EuiFlyoutMenu',
   component: EuiFlyoutMenu,
   argTypes: {
-    showBackButton: { control: 'boolean' },
-    showCustomActions: { control: 'boolean' },
     'aria-label': { table: { disable: true } },
-    backButtonProps: { table: { disable: true } },
     customActions: { table: { disable: true } },
-    historyItems: { table: { disable: true } },
+    hideBackButton: { control: 'boolean' },
+    hideCloseButton: { control: 'boolean' },
+    showCustomActions: { control: 'boolean' },
   },
   args: {
+    hideBackButton: false,
     hideCloseButton: false,
-    showBackButton: true,
     showCustomActions: true,
-    showHistoryItems: true,
   },
 };
 
 export default meta;
 
 const MenuBarFlyout = (args: Args) => {
-  const {
-    hideCloseButton,
-    showBackButton,
-    showCustomActions,
-    showHistoryItems,
-  } = args;
+  const { hideCloseButton, hideBackButton, showCustomActions } = args;
 
-  const [isFlyoutOpen, setIsFlyoutOpen] = useState(true);
-  const openFlyout = () => setIsFlyoutOpen(true);
-  const closeFlyout = () => {
-    setIsFlyoutOpen(false);
-  };
-
-  const backButtonProps = {
-    onClick: () => {
-      action('back button')('click');
-    },
-  };
-
-  const historyItems = showHistoryItems
-    ? ['First item', 'Second item', 'Third item'].map((title) => ({
-        title,
+  const customActions = showCustomActions
+    ? ['gear', 'broom'].map((iconType) => ({
+        iconType,
         onClick: () => {
-          action('history item')(`${title} clicked`);
+          action('custom action')(`${iconType} action clicked`);
         },
+        'aria-label': `${iconType} action`,
       }))
     : undefined;
 
-  const customActions = ['gear', 'broom'].map((iconType) => ({
-    iconType,
-    onClick: () => {
-      action('custom action')(`${iconType} action clicked`);
+  // Mock history items for demonstration
+  const mockHistoryItems = ['First item', 'Second item', 'Third item'].map(
+    (title) => ({
+      title,
+      onClick: () => {
+        action('history item')(`${title} clicked`);
+      },
+    })
+  );
+
+  // Mock manager context for story demonstration
+  const mockManagerContext = {
+    historyItems: mockHistoryItems,
+    goBack: () => {
+      action('back button')('clicked');
     },
-    'aria-label': `${iconType} action`,
-  }));
+  } as any;
+
+  // Mock menu context with level set to LEVEL_MAIN so back button shows
+  const mockMenuContext = {
+    level: LEVEL_MAIN as typeof LEVEL_MAIN,
+    onClose: () => action('close')('clicked'),
+  };
 
   return (
-    <>
-      <EuiButton onClick={openFlyout} disabled={isFlyoutOpen}>
-        Open flyout
-      </EuiButton>
-
-      {isFlyoutOpen && (
-        <EuiFlyout
-          onClose={closeFlyout}
-          size="l"
-          id="menu-bar-example-main"
-          type="overlay"
-          outsideClickCloses={false}
-          ownFocus
-          flyoutMenuProps={{
-            title: 'Flyout title',
-            hideCloseButton,
-            showBackButton,
-            backButtonProps,
-            historyItems,
-            customActions: showCustomActions ? customActions : undefined,
-          }}
-        >
-          <EuiFlyoutBody>
-            <EuiText>
-              <p>Simple flyout content.</p>
-              <EuiSpacer size="m" />
-            </EuiText>
-          </EuiFlyoutBody>
-        </EuiFlyout>
-      )}
-    </>
+    <EuiFlyoutManagerContext.Provider value={mockManagerContext}>
+      <EuiFlyoutMenuContext.Provider value={mockMenuContext}>
+        <EuiPanel paddingSize="none" hasShadow={false} hasBorder={true}>
+          <EuiFlyoutMenu
+            title="Flyout Menu Example"
+            hideCloseButton={hideCloseButton}
+            hideBackButton={hideBackButton}
+            customActions={customActions}
+          />
+        </EuiPanel>
+      </EuiFlyoutMenuContext.Provider>
+    </EuiFlyoutManagerContext.Provider>
   );
 };
 

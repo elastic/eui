@@ -5,7 +5,7 @@
  * in compliance with, at your election, the Elastic License 2.0 or the Server
  * Side Public License, v 1.
  */
-import React, { useEffect, useMemo, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useEuiMemoizedStyles } from '../../../services';
 import { useResizeObserver } from '../../observer/resize_observer';
 import {
@@ -50,7 +50,7 @@ import {
  */
 export interface EuiManagedFlyoutProps extends EuiFlyoutComponentProps {
   level: EuiFlyoutLevel;
-  flyoutMenuProps?: Omit<EuiFlyoutMenuProps, 'historyItems' | 'showBackButton'>;
+  flyoutMenuProps?: Omit<EuiFlyoutMenuProps, 'historyItems' | 'hideBackButton'>;
   onActive?: () => void;
 }
 
@@ -82,13 +82,7 @@ export const EuiManagedFlyout = ({
   const flyoutId = useFlyoutId(id);
   const flyoutRef = useRef<HTMLDivElement>(null);
 
-  const {
-    addFlyout,
-    closeFlyout,
-    setFlyoutWidth,
-    goBack,
-    historyItems: _historyItems,
-  } = useFlyoutManager();
+  const { addFlyout, closeFlyout, setFlyoutWidth } = useFlyoutManager();
   const parentSize = useParentFlyoutSize(flyoutId);
   const parentFlyout = useCurrentMainFlyout();
   const layoutMode = useFlyoutLayoutMode();
@@ -222,29 +216,14 @@ export const EuiManagedFlyout = ({
     level,
   });
 
-  // Note: history controls are only relevant for main flyouts
-  const historyItems = useMemo(() => {
-    const result = level === LEVEL_MAIN ? _historyItems : undefined;
-    return result;
-  }, [level, _historyItems]);
-
-  const backButtonProps = useMemo(() => {
-    return level === LEVEL_MAIN ? { onClick: goBack } : undefined;
-  }, [level, goBack]);
-
-  const showBackButton = historyItems ? historyItems.length > 0 : false;
-
   const flyoutMenuProps = {
     ..._flyoutMenuProps,
-    historyItems,
-    showBackButton,
-    backButtonProps,
     title,
   };
 
   return (
     <EuiFlyoutIsManagedProvider isManaged={true}>
-      <EuiFlyoutMenuContext.Provider value={{ onClose }}>
+      <EuiFlyoutMenuContext.Provider value={{ level, onClose }}>
         <EuiFlyoutComponent
           id={flyoutId}
           ref={flyoutRef}

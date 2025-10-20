@@ -11,6 +11,7 @@ import React, {
   FunctionComponent,
   HTMLAttributes,
   useContext,
+  useMemo,
   useState,
 } from 'react';
 
@@ -26,6 +27,8 @@ import { euiFlyoutMenuStyles } from './flyout_menu.styles';
 import { EuiFlyoutMenuContext } from './flyout_menu_context';
 import type { EuiFlyoutCloseEvent } from './types';
 import { EuiI18n, useEuiI18n } from '../i18n';
+import { LEVEL_MAIN } from './manager/const';
+import { useFlyoutManager } from './manager';
 
 type EuiFlyoutMenuBackButtonProps = Pick<
   PropsForAnchor<EuiButtonProps>,
@@ -43,9 +46,7 @@ export type EuiFlyoutMenuProps = CommonProps &
     titleId?: string;
     title?: React.ReactNode;
     hideCloseButton?: boolean;
-    showBackButton?: boolean;
-    backButtonProps?: EuiFlyoutMenuBackButtonProps;
-    historyItems?: EuiFlyoutHistoryItem[];
+    hideBackButton?: boolean;
     customActions?: Array<{
       iconType: string;
       onClick: () => void;
@@ -108,18 +109,23 @@ export const EuiFlyoutMenu: FunctionComponent<EuiFlyoutMenuProps> = ({
   className,
   title,
   hideCloseButton,
-  historyItems = [],
-  showBackButton,
-  backButtonProps,
+  hideBackButton,
   customActions,
   ...rest
 }) => {
-  const { onClose } = useContext(EuiFlyoutMenuContext);
+  const { level, onClose } = useContext(EuiFlyoutMenuContext);
+  const manager = useFlyoutManager();
+  const historyItems = manager?.historyItems || [];
+
+  const backButtonProps = useMemo(() => {
+    const goBack = manager?.goBack || (() => {});
+    return level === LEVEL_MAIN ? { onClick: goBack } : undefined;
+  }, [level, manager]);
 
   const styles = useEuiMemoizedStyles(euiFlyoutMenuStyles);
   const classes = classNames('euiFlyoutMenu', className);
 
-  let titleNode;
+  let titleNode: React.JSX.Element | null = null;
   if (title) {
     titleNode = (
       <EuiTitle size="xxs" id={titleId}>
@@ -131,6 +137,21 @@ export const EuiFlyoutMenu: FunctionComponent<EuiFlyoutMenuProps> = ({
   const handleClose = (event: EuiFlyoutCloseEvent | undefined) => {
     onClose?.(event);
   };
+
+  let backButton: React.JSX.Element | null = null;
+  let historyPopover: React.JSX.Element | null = null;
+  if (historyItems.length > 0 && level === LEVEL_MAIN && !hideBackButton) {
+    backButton = (
+      <EuiFlexItem grow={false}>
+        <BackButton {...backButtonProps} />
+      </EuiFlexItem>
+    );
+    historyPopover = (
+      <EuiFlexItem grow={false}>
+        <HistoryPopover items={historyItems} />
+      </EuiFlexItem>
+    );
+  }
 
   const closeButton = (
     <EuiFlyoutCloseButton
@@ -148,18 +169,8 @@ export const EuiFlyoutMenu: FunctionComponent<EuiFlyoutMenuProps> = ({
         gutterSize="none"
         responsive={false}
       >
-        {showBackButton && (
-          <EuiFlexItem grow={false}>
-            <BackButton {...backButtonProps} />
-          </EuiFlexItem>
-        )}
-
-        {historyItems.length > 0 && (
-          <EuiFlexItem grow={false}>
-            <HistoryPopover items={historyItems} />
-          </EuiFlexItem>
-        )}
-
+        {backButton}
+        {historyPopover}
         {titleNode && <EuiFlexItem grow={false}>{titleNode}</EuiFlexItem>}
 
         <EuiFlexItem grow={true}></EuiFlexItem>
