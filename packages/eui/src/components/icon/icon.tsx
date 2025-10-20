@@ -292,10 +292,13 @@ export class EuiIconClass extends PureComponent<
 
     const accessibleTitle = isPresentationOnly ? undefined : title;
 
-    //  Determine the ARIA role for the icon:
-    // - If aria-hidden is true, do not set a role
-    // - If the icon is presentation-only, set role to 'presentation'
-    // - Otherwise, set role to 'img'
+    // implicitly set the ARIA role for the icon only if:
+    // - The user did NOT provide a `role` prop
+    // - `aria-hidden` is NOT true
+    // This ensures user-supplied `role` and `aria-hidden` always take precedence.
+    // If set, role is:
+    // - 'presentation' for decorative icons
+    // - 'img' for meaningful icons
     const accessibleRole = (() => {
       if (isAriaHidden) return undefined;
       if (isPresentationOnly) return 'presentation';
