@@ -1,3 +1,19 @@
+## [`v107.0.1`](https://github.com/elastic/eui/releases/v107.0.1)
+
+**Bug fixes**
+
+- Fixed `prismjs` theme in `EuiCodeBlock` to improve highlighting for the `yaml` language ([#9089](https://github.com/elastic/eui/pull/9089))
+- Fixed a visual bug on `EuiTable` where the border for rows in dark mode wasn't applied correctly ([#9115](https://github.com/elastic/eui/pull/9115))
+
+**Dependency updates**
+
+- Updated `@elastic/prismjs-esql` to v1.1.2 ([#9102](https://github.com/elastic/eui/pull/9102))
+
+**Accessibility**
+
+- Fixed incorrect role attribute on `EuiIcon` and `EuiBetaBadge` ([#9100](https://github.com/elastic/eui/pull/9100))
+- Make `EuiBasicTable` respect user's reduced motion setting by not animating when in loading state. ([#9095](https://github.com/elastic/eui/pull/9095))
+
 ## [`v107.0.0`](https://github.com/elastic/eui/releases/v107.0.0)
 
 - Added new shadow tokens ([#9088](https://github.com/elastic/eui/pull/9088))
