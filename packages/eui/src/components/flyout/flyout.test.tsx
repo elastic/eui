@@ -19,6 +19,7 @@ import {
   FLYOUT_SIZES,
 } from './flyout';
 import { EuiProvider } from '../provider';
+import { EuiFlyoutManager } from './manager';
 
 jest.mock('../overlay_mask', () => ({
   EuiOverlayMask: ({ headerZindexLocation, maskRef, ...props }: any) => (
@@ -439,114 +440,129 @@ describe('EuiFlyout', () => {
   });
 
   describe('flyout routing logic', () => {
-    // Mock the manager hooks to control routing behavior
-    const mockUseHasActiveSession = jest.fn();
-    const mockUseIsInManagedFlyout = jest.fn();
-
-    beforeEach(() => {
-      jest.clearAllMocks();
-      // Mock the manager hooks
-      jest.doMock('./manager', () => ({
-        ...jest.requireActual('./manager'),
-        useHasActiveSession: mockUseHasActiveSession,
-        useIsInManagedFlyout: mockUseIsInManagedFlyout,
-      }));
-    });
-
-    afterEach(() => {
-      jest.dontMock('./manager');
-    });
-
     it('routes to child flyout when session is undefined and there is an active session', () => {
-      // Setup: There's an active session but flyout is not in managed context
-      mockUseHasActiveSession.mockReturnValue(true);
-      mockUseIsInManagedFlyout.mockReturnValue(false);
+      // First render with just the main flyout to establish a session
+      const { rerender, getByTestSubject } = render(
+        <EuiFlyoutManager>
+          <EuiFlyout
+            onClose={() => {}}
+            session="start"
+            flyoutMenuProps={{ title: 'Main Flyout' }}
+            data-test-subj="main-flyout"
+          />
+        </EuiFlyoutManager>
+      );
 
-      const { getByTestSubject } = render(
-        <EuiFlyout
-          onClose={() => {}}
-          data-test-subj="child-flyout"
-          // session is undefined (not explicitly set)
-        />
+      // Now render with the child flyout added - it should detect the active session
+      rerender(
+        <EuiFlyoutManager>
+          <EuiFlyout
+            onClose={() => {}}
+            session="start"
+            flyoutMenuProps={{ title: 'Main Flyout' }}
+            data-test-subj="main-flyout"
+          />
+          <EuiFlyout
+            onClose={() => {}}
+            data-test-subj="child-flyout"
+            // session is undefined (not explicitly set)
+          />
+        </EuiFlyoutManager>
       );
 
       // Should render as child flyout (EuiFlyoutChild)
-      const flyout = getByTestSubject('child-flyout');
-      expect(flyout).toBeInTheDocument();
+      const childFlyout = getByTestSubject('child-flyout');
+      expect(childFlyout).toHaveAttribute('data-managed-flyout-level', 'child');
     });
 
     it('routes to main flyout when session is explicitly true', () => {
-      // Setup: There's an active session and flyout is not in managed context
-      mockUseHasActiveSession.mockReturnValue(true);
-      mockUseIsInManagedFlyout.mockReturnValue(false);
-
       const { getByTestSubject } = render(
-        <EuiFlyout
-          onClose={() => {}}
-          data-test-subj="main-flyout"
-          session={true} // Explicitly creating a new session
-          flyoutMenuProps={{ title: 'Test Main Flyout' }} // Required for managed flyouts
-        />
+        <EuiFlyoutManager>
+          <EuiFlyout
+            onClose={() => {}}
+            data-test-subj="flyout"
+            session="start" // Explicitly creating a new session
+            flyoutMenuProps={{ title: 'Test Main Flyout' }} // Required for managed flyouts
+          />
+        </EuiFlyoutManager>
       );
 
       // Should render as main flyout (EuiFlyoutMain)
-      const flyout = getByTestSubject('main-flyout');
-      expect(flyout).toBeInTheDocument();
+      const flyout = getByTestSubject('flyout');
+      expect(flyout).toHaveAttribute('data-managed-flyout-level', 'main');
     });
 
-    it('routes to main flyout when session is explicitly false and there is an active session', () => {
-      // Setup: There's an active session and flyout is not in managed context
-      mockUseHasActiveSession.mockReturnValue(true);
-      mockUseIsInManagedFlyout.mockReturnValue(false);
-
+    it('routes to standard flyout when session is explicitly "never" and there is an active session', () => {
       const { getByTestSubject } = render(
-        <EuiFlyout
-          onClose={() => {}}
-          data-test-subj="main-flyout"
-          session={false} // Explicitly not creating a new session, but still routes to main
-          flyoutMenuProps={{ title: 'Test Main Flyout' }} // Required for managed flyouts
-        />
-      );
-
-      // Should render as main flyout (EuiFlyoutMain)
-      const flyout = getByTestSubject('main-flyout');
-      expect(flyout).toBeInTheDocument();
-    });
-
-    it('routes to child flyout when in managed context and there is an active session', () => {
-      // Setup: There's an active session and flyout is in managed context
-      mockUseHasActiveSession.mockReturnValue(true);
-      mockUseIsInManagedFlyout.mockReturnValue(true);
-
-      const { getByTestSubject } = render(
-        <EuiFlyout
-          onClose={() => {}}
-          data-test-subj="child-flyout"
-          session={undefined} // Not explicitly set
-        />
-      );
-
-      // Should render as child flyout (EuiFlyoutChild)
-      const flyout = getByTestSubject('child-flyout');
-      expect(flyout).toBeInTheDocument();
-    });
-
-    it('routes to standard flyout when there is no active session', () => {
-      // Setup: No active session
-      mockUseHasActiveSession.mockReturnValue(false);
-      mockUseIsInManagedFlyout.mockReturnValue(false);
-
-      const { getByTestSubject } = render(
-        <EuiFlyout
-          onClose={() => {}}
-          data-test-subj="standard-flyout"
-          session={undefined} // Not explicitly set
-        />
+        <EuiFlyoutManager>
+          {/* Create an active session */}
+          <EuiFlyout
+            onClose={() => {}}
+            session="start"
+            flyoutMenuProps={{ title: 'Main Flyout' }}
+            data-test-subj="main-flyout"
+          />
+          {/* This flyout explicitly opts out of session management */}
+          <EuiFlyout
+            onClose={() => {}}
+            data-test-subj="standard-flyout"
+            session="never" // Explicitly opts out of session management
+          />
+        </EuiFlyoutManager>
       );
 
       // Should render as standard flyout (EuiFlyoutComponent)
       const flyout = getByTestSubject('standard-flyout');
-      expect(flyout).toBeInTheDocument();
+      expect(flyout).not.toHaveAttribute('data-managed-flyout-level');
+    });
+
+    it('routes to child flyout when in managed context and there is an active session', () => {
+      // First render with just the main flyout to establish a session
+      const { rerender, getByTestSubject } = render(
+        <EuiFlyoutManager>
+          <EuiFlyout
+            onClose={() => {}}
+            session="start"
+            flyoutMenuProps={{ title: 'Main Flyout' }}
+            data-test-subj="main-flyout"
+          />
+        </EuiFlyoutManager>
+      );
+
+      // Now render with the child flyout added - it should detect the active session
+      rerender(
+        <EuiFlyoutManager>
+          <EuiFlyout
+            onClose={() => {}}
+            session="start"
+            flyoutMenuProps={{ title: 'Main Flyout' }}
+            data-test-subj="main-flyout"
+          />
+          <EuiFlyout
+            onClose={() => {}}
+            data-test-subj="child-flyout"
+            session={undefined} // Not explicitly set, should inherit
+          />
+        </EuiFlyoutManager>
+      );
+
+      // Should render as child flyout (EuiFlyoutChild)
+      const flyout = getByTestSubject('child-flyout');
+      expect(flyout).toHaveAttribute('data-managed-flyout-level', 'child');
+    });
+
+    it('routes to standard flyout when there is no active session', () => {
+      const { getByTestSubject } = render(
+        <EuiFlyout
+          onClose={() => {}}
+          data-test-subj="flyout"
+          session={undefined} // Not explicitly set
+        />
+      );
+
+      // Should render as standard flyout (EuiFlyoutComponent) - no manager context
+      const flyout = getByTestSubject('flyout');
+      expect(flyout).not.toHaveAttribute('data-managed-flyout-level');
     });
   });
 });

@@ -136,7 +136,7 @@ const meta: Meta<FlyoutChildStoryArgs> = {
     hasChildBackground: false,
     mainFlyoutType: 'overlay',
     outsideClickCloses: false,
-    ownFocus: true, // Depends on `mainFlyoutType=overlay`
+    ownFocus: false, // Depends on `mainFlyoutType=overlay`
     paddingSize: 'm',
     pushAnimation: true,
     pushMinBreakpoint: 'xs',
@@ -214,7 +214,7 @@ const StatefulFlyout: React.FC<FlyoutChildStoryArgs> = ({
 
       {isMainOpen && (
         <EuiFlyout
-          session={true}
+          session="start"
           id="flyout-manager-playground-main"
           size={mainSize}
           type={mainFlyoutType}
