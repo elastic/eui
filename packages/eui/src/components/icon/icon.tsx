@@ -284,13 +284,23 @@ export class EuiIconClass extends PureComponent<
 
     const icon = this.state.icon || empty;
 
-    const isAriaHidden =
+    const isAriaHidden = [true, 'true'].includes(ariaHidden ?? false);
+    const isPresentationOnly =
       !(title || this.props['aria-label'] || this.props['aria-labelledby']) ||
       ['none', 'presentation'].includes(role ?? '') ||
-      [true, 'true'].includes(ariaHidden ?? false);
+      isAriaHidden;
 
-    const accessibleTitle = isAriaHidden ? undefined : title;
-    const accessibleRole = isAriaHidden ? 'presentation' : 'img';
+    const accessibleTitle = isPresentationOnly ? undefined : title;
+
+    //  Determine the ARIA role for the icon:
+    // - If aria-hidden is true, do not set a role
+    // - If the icon is presentation-only, set role to 'presentation'
+    // - Otherwise, set role to 'img'
+    const accessibleRole = (() => {
+      if (isAriaHidden) return undefined;
+      if (isPresentationOnly) return 'presentation';
+      return 'img';
+    })();
 
     if (typeof icon === 'string') {
       return (
@@ -301,7 +311,8 @@ export class EuiIconClass extends PureComponent<
           css={cssStyles}
           style={style}
           tabIndex={tabIndex}
-          role={accessibleRole}
+          role={role ?? accessibleRole}
+          aria-hidden={ariaHidden}
           {...(rest as ImgHTMLAttributes<HTMLImageElement>)}
         />
       );
@@ -323,7 +334,8 @@ export class EuiIconClass extends PureComponent<
           css={cssStyles}
           tabIndex={tabIndex}
           title={accessibleTitle}
-          role={accessibleRole}
+          role={role ?? accessibleRole}
+          aria-hidden={ariaHidden}
           {...accessibleTitleId}
           data-icon-type={iconTitle}
           data-is-loaded={isLoaded || undefined}

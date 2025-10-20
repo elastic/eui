@@ -160,23 +160,32 @@ describe('EuiIcon', () => {
       );
 
       it(
-        'allows consumers to override role by passing aria-hidden=true even if a title/label exists',
+        'allows consumers to override aria-hidden and role',
         testIcon(
-          { type: 'empty', title: 'Anything', 'aria-hidden': true },
+          { type: 'empty', 'aria-hidden': false, role: 'img' },
           (icon) => {
-            expect(icon).toHaveAttribute('role', 'presentation');
+            expect(icon).toHaveAttribute('aria-hidden', 'false');
+            expect(icon).toHaveAttribute('role', 'img');
           }
         )
       );
 
       it(
-        'allows consumers to override role by passing role=presentation even if a title/label exists',
+        'allows consumers to override aria-hidden even if a title/label exists',
         testIcon(
-          { type: 'empty', title: 'Anything', role: 'presentation' },
+          { type: 'empty', title: 'Anything', 'aria-hidden': true },
           (icon) => {
-            expect(icon).toHaveAttribute('role', 'presentation');
+            expect(icon).toHaveAttribute('aria-hidden', 'true');
+            expect(icon).not.toHaveAttribute('role');
           }
         )
+      );
+
+      it(
+        'allows consumers to override role even',
+        testIcon({ type: 'empty', title: 'Anything', role: 'none' }, (icon) => {
+          expect(icon).toHaveAttribute('role', 'none');
+        })
       );
     });
   });
