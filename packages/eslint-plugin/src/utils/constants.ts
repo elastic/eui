@@ -61,3 +61,57 @@ export const NON_INTERACTIVE_HTML_TAGS = [
   'tr',
   'ul'
 ];
+
+/**
+ * A list of Elastic UI (EUI) React components that are considered **interactive**.
+ *
+ * These components are designed to be focusable and respond to user actions
+ * such as clicks, keyboard events, or other interactions. Use this constant
+ * when you need to determine if a given EUI component is inherently interactive,
+ * for example, when enforcing accessibility rules or filtering components
+ * for focus management.
+ *
+ * This list should be kept up to date with EUI's interactive component offerings.
+ */
+export const INTERACTIVE_EUI_COMPONENTS = [
+  'EuiLink',
+  'EuiButton',
+  'EuiButtonEmpty',
+  'EuiButtonIcon',
+  'EuiFacetButton',
+  'EuiHeaderLink',
+  'EuiHeaderSectionItemButton',
+  'EuiHeaderLogo',
+  'EuiListGroupItem',
+  'EuiPinnableListGroup',
+  'EuiSideNav',
+  'EuiBreadcrumbs',
+  'EuiTab',
+  'EuiContextMenuItem',
+  'EuiKeyPadMenuItem',
+  'EuiPagination',
+  'EuiTreeView',
+  'EuiStepHorizontal',
+  'EuiCard',
+  'EuiCheckableCard',
+  'EuiBasicTable',
+  'EuiInMemoryTable',
+  'EuiFilterButton',
+  'EuiFilterSelectItem',
+  'EuiFilterSelectable',
+  'EuiBadge',
+  'EuiBetaBadge',
+  'EuiSelectable',
+  'EuiComboBox',
+  'EuiSuperSelect',
+  'EuiSelect',
+  'EuiCheckbox',
+  'EuiRadio',
+  'EuiSwitch',
+  'EuiButtonGroup',
+  'EuiRange',
+  'EuiDualRange',
+  'EuiColorPicker',
+  'EuiDatePicker',
+  'EuiSuperDatePicker'
+];

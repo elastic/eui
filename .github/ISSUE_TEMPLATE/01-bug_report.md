@@ -8,6 +8,10 @@ assignees: ''
 
 ---
 
+**Reported by**
+
+<!-- Who reported this, if it was not yourself. -->
+
 **Describe the bug**
 <!-- A clear and concise description of what the bug is. -->
 

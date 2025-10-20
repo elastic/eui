@@ -127,7 +127,7 @@ export const euiTableRowStyles = (euiThemeContext: UseEuiTheme) => {
       hasRightColumn: css`
         ${logicalCSS('padding-right', mobileSizes.actions.width)}
 
-        &::after {
+        &::before {
           content: '';
           position: absolute;
           ${logicalCSS('vertical', 0)}
@@ -145,7 +145,7 @@ export const euiTableRowStyles = (euiThemeContext: UseEuiTheme) => {
           'margin-top',
           mathWithUnits(
             [cellContentPadding, euiTheme.border.width.thin],
-            (x, y) => (x + y) * -1
+            (x, y) => (x + y * 2) * -1
           )
         )}
         /* Padding accounting for the checkbox is already applied via the content */
@@ -154,6 +154,14 @@ export const euiTableRowStyles = (euiThemeContext: UseEuiTheme) => {
         ${logicalCSS('border-top', euiTheme.border.thin)}
         ${logicalCSS('border-top-left-radius', 0)}
         ${logicalCSS('border-top-right-radius', 0)}
+
+        &:after {
+          ${logicalCSS('border-top', 'none')}
+        }
+
+        /* prevent the shadow from overlapping;
+        NOTE: we might want to consider refactoring tables to use tbody grouping to apply styles for a row group */
+        clip-path: polygon(-50% 0, 150% 0, 150% 100vh, -50% 100vh);
 
         > .euiTableRowCell {
           ${logicalCSS('width', '100%')}
