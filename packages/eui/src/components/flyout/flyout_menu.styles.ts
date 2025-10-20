@@ -7,6 +7,7 @@
  */
 
 import { css } from '@emotion/react';
+import { euiFontSize } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 
 export const euiFlyoutMenuStyles = (euiThemeContext: UseEuiTheme) => {
@@ -21,6 +22,8 @@ export const euiFlyoutMenuStyles = (euiThemeContext: UseEuiTheme) => {
         ${euiTheme.border.color};
       padding-block-start: calc(${euiTheme.size.m} * 0.8);
 
+      position: relative;
+
       .euiTitle {
         padding-inline: ${euiTheme.size.s};
       }
@@ -30,6 +33,11 @@ export const euiFlyoutMenuStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     euiFlyoutMenu__actions: css`
       block-size: calc(${euiTheme.size.m} * 1.8);
+    `,
+    euiFlyoutMenu__wrapper_title: css`
+      h2 {
+        ${euiFontSize(euiThemeContext, 's', { unit: 'rem' })};
+      }
     `,
   };
 };

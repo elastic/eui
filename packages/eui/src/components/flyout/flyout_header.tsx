@@ -11,6 +11,8 @@ import classNames from 'classnames';
 import { CommonProps } from '../common';
 import { useEuiMemoizedStyles } from '../../services';
 import { euiFlyoutHeaderStyles } from './flyout_header.styles';
+import { useIsInManagedFlyout } from './manager';
+import { EuiFlyoutMenu } from './flyout_menu';
 
 export type EuiFlyoutHeaderProps = FunctionComponent<
   HTMLAttributes<HTMLDivElement> &
@@ -29,6 +31,16 @@ export const EuiFlyoutHeader: EuiFlyoutHeaderProps = ({
 
   const styles = useEuiMemoizedStyles(euiFlyoutHeaderStyles);
   const cssStyles = [styles.euiFlyoutHeader, hasBorder && styles.hasBorder];
+
+  const isInManagedFlyout = useIsInManagedFlyout();
+
+  if (isInManagedFlyout) {
+    return (
+      <EuiFlyoutMenu asWrapper {...rest}>
+        {children}
+      </EuiFlyoutMenu>
+    );
+  }
 
   return (
     <div className={classes} css={cssStyles} {...rest}>

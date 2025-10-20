@@ -148,7 +148,6 @@ const FlyoutSession: React.FC<FlyoutSessionProps> = React.memo((props) => {
         <EuiFlyout
           id={`mainFlyout-${title}`}
           session="start"
-          flyoutMenuProps={{ title: `${title} - Main` }}
           size={mainSize}
           maxWidth={mainMaxWidth}
           type={flyoutType}
@@ -157,6 +156,11 @@ const FlyoutSession: React.FC<FlyoutSessionProps> = React.memo((props) => {
           onActive={mainFlyoutOnActive}
           onClose={mainFlyoutOnClose}
         >
+          <EuiFlyoutHeader>
+            <EuiTitle size="m">
+              <h2 id={`mainFlyoutTitle-${title}`}>{title} Flyout</h2>
+            </EuiTitle>
+          </EuiFlyoutHeader>
           <EuiFlyoutBody>
             <EuiText>
               <p>This is the content of {title}.</p>
@@ -192,7 +196,6 @@ const FlyoutSession: React.FC<FlyoutSessionProps> = React.memo((props) => {
           {childSize && isChildFlyoutVisible && (
             <EuiFlyout
               id={`childFlyout-${title}`}
-              flyoutMenuProps={{ title: `${title} - Child` }}
               aria-labelledby="childFlyoutTitle"
               size={childSize}
               maxWidth={childMaxWidth}
@@ -200,6 +203,11 @@ const FlyoutSession: React.FC<FlyoutSessionProps> = React.memo((props) => {
               onClose={childFlyoutOnClose}
               hasChildBackground={hasChildBackground}
             >
+              <EuiFlyoutHeader>
+                <EuiTitle size="m">
+                  <h2 id="childFlyoutTitle">Child Flyout of {title}</h2>
+                </EuiTitle>
+              </EuiFlyoutHeader>
               <EuiFlyoutBody>
                 <EuiText>
                   <p>This is the content of the child flyout of {title}.</p>
@@ -472,9 +480,13 @@ const ExternalRootChildFlyout: React.FC<{ parentId: string }> = ({
           size="s"
           onClose={handleClose}
           ownFocus={false}
-          flyoutMenuProps={{ title: `Child flyout of ${parentId}` }}
           data-test-subj="child-flyout-in-new-root"
         >
+          <EuiFlyoutHeader>
+            <EuiTitle size="m">
+              <h2 id="childFlyoutTitle">Child Flyout in New Root</h2>
+            </EuiTitle>
+          </EuiFlyoutHeader>
           <EuiFlyoutBody>
             <EuiText>
               <p>
@@ -549,11 +561,18 @@ const ExternalRootFlyout: React.FC<{ id: string }> = ({ id }) => {
         <EuiFlyout
           id={`external-root-${id}`}
           session="start"
+          type="overlay"
           size="m"
           onClose={() => setIsOpen(false)}
           ownFocus={false}
-          flyoutMenuProps={{ title: `${id} flyout` }}
         >
+          <EuiFlyoutHeader>
+            <EuiTitle size="m">
+              <h2 id={`externalRootFlyoutTitle-${id}`}>
+                Flyout in Separate React Root ({id})
+              </h2>
+            </EuiTitle>
+          </EuiFlyoutHeader>
           <EuiFlyoutBody>
             <EuiText>
               <p>

@@ -12,7 +12,6 @@ import {
   validateSizeCombination,
   createValidationErrorMessage,
   FlyoutValidationError,
-  validateFlyoutTitle,
 } from './validation';
 
 describe('Flyout Size Validation', () => {
@@ -53,26 +52,6 @@ describe('Flyout Size Validation', () => {
         flyoutId: 'test-id',
         level: 'child',
         size: '100px',
-      });
-    });
-  });
-
-  describe('validateFlyoutTitle', () => {
-    it('should return null for child flyouts without title', () => {
-      expect(validateFlyoutTitle(undefined, 'child-id', 'child')).toBeNull();
-    });
-
-    it('should return null for main flyouts with valid title', () => {
-      expect(validateFlyoutTitle('Main Title', 'main-id', 'main')).toBeNull();
-    });
-
-    it('should return error for empty string title', () => {
-      const error = validateFlyoutTitle('', 'test-id', 'main');
-      expect(error).toEqual({
-        type: 'INVALID_FLYOUT_MENU_TITLE',
-        message: `Managed flyouts require either a 'flyoutMenuProps.title' or an 'aria-label' to provide the flyout menu title.`,
-        flyoutId: 'test-id',
-        level: 'main',
       });
     });
   });

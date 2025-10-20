@@ -42,9 +42,6 @@ type EuiFlyoutHistoryItem = {
 
 export type EuiFlyoutMenuProps = CommonProps &
   HTMLAttributes<HTMLDivElement> & {
-    /* An id to use for the title element */
-    titleId?: string;
-    title?: React.ReactNode;
     hideCloseButton?: boolean;
     hideBackButton?: boolean;
     customActions?: Array<{
@@ -52,6 +49,18 @@ export type EuiFlyoutMenuProps = CommonProps &
       onClick: () => void;
       'aria-label': string;
     }>;
+    /**
+     * An id to use for the title element, when not used as a wrapper
+     */
+    titleId?: string;
+    /**
+     * A title for the flyout menu header, when not used as a wrapper
+     */
+    title?: React.ReactNode;
+    /**
+     * Allow flyout menu to be routed to as a wrapper around the title content
+     */
+    asWrapper?: boolean;
   };
 
 const BackButton: React.FC<EuiFlyoutMenuBackButtonProps> = (props) => {
@@ -108,9 +117,11 @@ export const EuiFlyoutMenu: FunctionComponent<EuiFlyoutMenuProps> = ({
   titleId,
   className,
   title,
+  children,
   hideCloseButton,
   hideBackButton,
   customActions,
+  asWrapper = false,
   ...rest
 }) => {
   const { level, onClose } = useContext(EuiFlyoutMenuContext);
@@ -126,11 +137,21 @@ export const EuiFlyoutMenu: FunctionComponent<EuiFlyoutMenuProps> = ({
   const classes = classNames('euiFlyoutMenu', className);
 
   let titleNode: React.JSX.Element | null = null;
-  if (title) {
+  if (asWrapper && children) {
+    // Wrapper mode: render children as title
     titleNode = (
-      <EuiTitle size="xxs" id={titleId}>
-        <h3>{title}</h3>
-      </EuiTitle>
+      <EuiFlexItem grow={false} css={styles.euiFlyoutMenu__wrapper_title}>
+        <div>{children}</div>
+      </EuiFlexItem>
+    );
+  } else if (title) {
+    // Menu mode: render title in EuiTitle
+    titleNode = (
+      <EuiFlexItem grow={false}>
+        <EuiTitle size="xxs" id={titleId}>
+          <h3>{title}</h3>
+        </EuiTitle>
+      </EuiFlexItem>
     );
   }
 

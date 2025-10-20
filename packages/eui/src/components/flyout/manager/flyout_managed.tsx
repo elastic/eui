@@ -38,7 +38,6 @@ import type { EuiFlyoutLevel } from './types';
 import {
   createValidationErrorMessage,
   isNamedSize,
-  validateFlyoutTitle,
   validateManagedFlyoutSize,
   validateSizeCombination,
 } from './validation';
@@ -114,10 +113,9 @@ export const EuiManagedFlyout = ({
   }
 
   // Validate title
-  const title = _flyoutMenuProps?.title || props['aria-label'];
-  const titleError = validateFlyoutTitle(title, flyoutId, level);
-  if (titleError) {
-    throw new Error(createValidationErrorMessage(titleError));
+  let title = _flyoutMenuProps?.title || props['aria-label'];
+  if (!title) {
+    title = id;
   }
 
   const isActive = useIsFlyoutActive(flyoutId);
