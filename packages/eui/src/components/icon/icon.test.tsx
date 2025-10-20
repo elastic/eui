@@ -182,7 +182,7 @@ describe('EuiIcon', () => {
       );
 
       it(
-        'allows consumers to override role even',
+        'allows consumers to override role',
         testIcon({ type: 'empty', title: 'Anything', role: 'none' }, (icon) => {
           expect(icon).toHaveAttribute('role', 'none');
         })
