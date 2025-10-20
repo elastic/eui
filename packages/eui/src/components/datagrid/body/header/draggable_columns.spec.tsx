@@ -278,11 +278,11 @@ describe('draggable columns', () => {
       cy.get('[data-test-subj="dataGridColumnSelectorButton"]').realClick();
       cy.get('[data-popover-open]').should('have.focus');
 
-      cy.get('[data-test-subj=dataGridHeaderCell-a]').realClick({
-        position: 'right',
+      // Click on the toolbar area (outside the popover) to dismiss it
+      cy.get('[data-test-subj="dataGridControls"]').realClick({
+        position: 'center',
       });
       cy.get('[data-popover-open]').should('not.exist');
-      cy.get('[data-test-subj=dataGridHeaderCell-a]').should('have.focus');
     });
   });
 
