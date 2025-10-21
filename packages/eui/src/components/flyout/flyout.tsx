@@ -23,6 +23,7 @@ import React, {
   JSX,
 } from 'react';
 import classnames from 'classnames';
+import { debounce } from 'lodash';
 
 import {
   keys,
@@ -400,26 +401,73 @@ export const EuiFlyout = forwardRef(
       return selectors;
     }, [includeSelectorInFocusTrap, includeFixedHeadersInFocusTrap]);
 
-    useEffect(() => {
-      if (focusTrapSelectors.length > 0) {
-        const shardsEls = focusTrapSelectors.flatMap((selector) =>
-          Array.from(document.querySelectorAll<HTMLElement>(selector))
-        );
+    /**
+     * Update the focus trap shards.
+     *
+     * @param setInitialFocus - Whether to set the initial focus to the flyout wrapper.
+     */
+    const updateFocusTrapShards = useCallback(
+      (setInitialFocus: boolean = false) => {
+        if (focusTrapSelectors.length > 0) {
+          const shardsEls = focusTrapSelectors.flatMap((selector) =>
+            Array.from(document.querySelectorAll<HTMLElement>(selector))
+          );
 
-        setFocusTrapShards(Array.from(shardsEls));
+          setFocusTrapShards(Array.from(shardsEls));
 
-        // Flyouts that are toggled from shards do not have working
-        // focus trap autoFocus, so we need to focus the flyout wrapper ourselves
-        shardsEls.forEach((shard) => {
-          if (shard.contains(flyoutToggle.current)) {
-            resizeRef?.focus();
+          // Flyouts that are toggled from shards do not have working
+          // focus trap autoFocus, so we need to focus the flyout wrapper ourselves
+          if (setInitialFocus) {
+            shardsEls.forEach((shard) => {
+              if (shard.contains(flyoutToggle.current)) {
+                resizeRef?.current?.focus();
+              }
+            });
           }
-        });
-      } else {
-        // Clear existing shards if necessary, e.g. switching to `false`
-        setFocusTrapShards((shards) => (shards.length ? [] : shards));
-      }
-    }, [focusTrapSelectors, resizeRef]);
+        } else {
+          // Clear existing shards if necessary, e.g. switching to `false`
+          setFocusTrapShards((shards) => (shards.length ? [] : shards));
+        }
+      },
+      [focusTrapSelectors, resizeRef]
+    );
+
+    useEffect(() => {
+      updateFocusTrapShards(true);
+    }, [updateFocusTrapShards]);
+
+    /**
+     * We want to observe the `body` element for new popovers that get appended to the DOM
+     * so that they are included in the focus trap.
+     */
+    useEffect(() => {
+      if (!focusTrapSelectors.length) return;
+
+      const observer = new MutationObserver(
+        debounce((mutations: MutationRecord[]) => {
+          for (const mutation of mutations) {
+            for (const node of mutation.addedNodes) {
+              if (
+                node.nodeType === Node.ELEMENT_NODE &&
+                (node as HTMLElement).matches?.('[data-popover-panel="true"]')
+              ) {
+                return updateFocusTrapShards();
+              }
+            }
+          }
+        }, 100)
+      );
+
+      // We only want to observe the direct children of the `body` element
+      observer.observe(document.body, {
+        childList: true,
+        subtree: false,
+      });
+
+      return () => {
+        observer.disconnect();
+      };
+    }, [focusTrapSelectors, updateFocusTrapShards, resizeRef]);
 
     const focusTrapProps: EuiFlyoutProps['focusTrapProps'] = useMemo(
       () => ({
