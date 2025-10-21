@@ -87,7 +87,8 @@ about compatibility issues.
 Each time you set `session={true}`, you create a new flyout session and mark
 the rendered flyout as [main](#main-flyouts).
 To create a [child flyout](#child-flyouts) - a flyout that belongs to the same
-session as the main flyout - you simply render it inside the main flyout.
+session as the main flyout - you can set `session="inherit"` or omit the `session` prop entirely,
+as "inherit" is the default behavior.
 All bindings and configuration will be handled automatically.
 
 ```tsx
