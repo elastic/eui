@@ -36,13 +36,18 @@ return () => {
         </EuiFlyout>
       )}
       {isOpenFlyoutB && (
-        <EuiFlyout session size="m" aria-label="Flyout B - main" onClose={() => setIsOpenFlyoutB(false)}>
-          <EuiFlyoutHeader>
-            <EuiTitle><h2>Glad to meet you, {name || 'stranger'}!</h2></EuiTitle>
-          </EuiFlyoutHeader>
+        <EuiFlyout
+          session="start"
+          size="m"
+          aria-label="Flyout B - main"
+          flyoutMenuProps={{
+            title: <>Glad to meet you, {name || 'stranger'}!</>,
+          }}
+          onClose={() => setIsOpenFlyoutB(false)}
+        >
           <EuiFlyoutBody>
             <EuiText>
-              This flyout is also rendered with the <EuiCode>session=&#123;true&#125;</EuiCode> prop added which creates a <strong>second flyout session</strong> and marks this flyout as main in that session.
+              This flyout is also rendered with the <EuiCode>{'session="start"'}</EuiCode> prop added which creates a <strong>second flyout session</strong> and marks this flyout as main in that session.
               <br /><br />
               The first flyout still exists but is currently hidden since this one took precedence. You can jump back to it by clicking the <i>Back</i> button above if you'd like.
             </EuiText>
