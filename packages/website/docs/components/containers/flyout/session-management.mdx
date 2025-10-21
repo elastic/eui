@@ -20,12 +20,17 @@ return () => {
     <>
       <EuiButton disabled={isOpenFlyoutA} onClick={() => setIsOpenFlyoutA((val) => !val)}>Open Flyout A</EuiButton>
       {isOpenFlyoutA && (
-        <EuiFlyout session size="s" aria-label="Flyout A - main" onClose={() => setIsOpenFlyoutA(false)}>
-          <EuiFlyoutHeader>
-            <EuiTitle><h2>Welcome to the flyout session management journey!</h2></EuiTitle>
-          </EuiFlyoutHeader>
+        <EuiFlyout
+          session="start"
+          size="s"
+          aria-label="Flyout A - main"
+          flyoutMenuProps={{
+            title: 'Welcome to the flyout session management journey!',
+          }}
+          onClose={() => setIsOpenFlyoutA(false)}
+        >
           <EuiFlyoutBody>
-            <EuiText>This flyout is rendered with the <EuiCode>session=&#123;true&#125;</EuiCode> prop set which creates a new flyout session and marks this flyout as main.</EuiText>
+            <EuiText>This flyout is rendered with the <EuiCode>{'session="start"'}</EuiCode> prop set which creates a new flyout session and marks this flyout as main.</EuiText>
             <EuiSpacer />
             <EuiFormRow label="What's your name?" fullWidth>
               <EuiFieldText value={name} onChange={(e) => setName(e.target.value)} />
