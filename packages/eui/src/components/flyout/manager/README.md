@@ -13,7 +13,7 @@ in the [main EuiFlyout developer README](../README.md).
 
 ### EuiFlyoutMain
 
-[EuiFlyoutMain](./flyout_main.tsx) is a thin logical component that renders [EuiFlyoutManaged](./flyout_managed.tsx)
+[EuiFlyoutMain](./flyout_main.tsx) is a thin logical component that renders [EuiManagedFlyout](./flyout_managed.tsx)
 with the `level` prop set to `true` and does some minimal styling for when there's a child flyout rendered
 alongside the main flyout.
 
