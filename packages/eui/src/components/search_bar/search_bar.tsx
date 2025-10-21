@@ -272,7 +272,7 @@ export class EuiSearchBar extends Component<EuiSearchBarProps, State> {
     return (
       <RenderWithEuiTheme>
         {(euiTheme) => (
-          <EuiFlexGroup gutterSize="m" alignItems="center" wrap>
+          <EuiFlexGroup gutterSize="s" alignItems="center" wrap>
             {toolsLeftEl}
             <EuiFlexItem
               className="euiSearchBar__searchHolder"

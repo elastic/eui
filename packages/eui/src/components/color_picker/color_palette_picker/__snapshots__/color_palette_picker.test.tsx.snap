@@ -427,7 +427,7 @@ exports[`EuiColorPalettePicker more props are propagated to each option 1`] = `
                     class="euiColorPalettePicker__item"
                   >
                     <div
-                      class="euiFlexGroup emotion-euiFlexGroup-l-flexStart-stretch-row"
+                      class="euiFlexGroup emotion-euiFlexGroup-m-flexStart-stretch-row"
                     >
                       <div
                         class="euiFlexItem emotion-euiFlexItem-grow-1"
@@ -495,7 +495,7 @@ exports[`EuiColorPalettePicker more props are propagated to each option 1`] = `
                     class="euiColorPalettePicker__item"
                   >
                     <div
-                      class="euiFlexGroup emotion-euiFlexGroup-l-flexStart-stretch-row"
+                      class="euiFlexGroup emotion-euiFlexGroup-m-flexStart-stretch-row"
                     >
                       <div
                         class="euiFlexItem emotion-euiFlexItem-grow-1"
@@ -543,7 +543,7 @@ exports[`EuiColorPalettePicker more props are propagated to each option 1`] = `
                     class="euiColorPalettePicker__item"
                   >
                     <div
-                      class="euiFlexGroup emotion-euiFlexGroup-l-flexStart-stretch-row"
+                      class="euiFlexGroup emotion-euiFlexGroup-m-flexStart-stretch-row"
                     >
                       <div
                         class="euiFlexItem emotion-euiFlexItem-grow-1"
