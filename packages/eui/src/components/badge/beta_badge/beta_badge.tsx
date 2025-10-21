@@ -224,6 +224,13 @@ export const EuiBetaBadge: FunctionComponent<EuiBetaBadgeProps> = ({
     }
   } else {
     if (tooltipContent) {
+      // Ensure every ARIA button, has an accessible name
+      const ariaLabel = (() => {
+        if (title) return title;
+        if (typeof label === 'string') return label;
+        return undefined;
+      })();
+
       return (
         <EuiToolTip
           position={tooltipPosition}
@@ -236,6 +243,7 @@ export const EuiBetaBadge: FunctionComponent<EuiBetaBadgeProps> = ({
             role="button"
             css={cssStyles}
             className={classes}
+            aria-label={ariaLabel}
             {...rest}
           >
             {icon || label}
