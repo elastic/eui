@@ -65,6 +65,7 @@ export const EuiInputPopover: FunctionComponent<EuiInputPopoverProps> = ({
   className,
   closePopover,
   anchorPosition = 'downLeft',
+  offset = 2,
   attachToAnchor = true,
   repositionToCrossAxis = false,
   display = 'block',
@@ -233,6 +234,7 @@ export const EuiInputPopover: FunctionComponent<EuiInputPopoverProps> = ({
       ref={popoverClassRef}
       closePopover={closePopover}
       anchorPosition={anchorPosition}
+      offset={offset}
       attachToAnchor={attachToAnchor}
       repositionToCrossAxis={repositionToCrossAxis}
       panelPaddingSize={panelPaddingSize}
