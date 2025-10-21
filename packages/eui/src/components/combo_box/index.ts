@@ -8,8 +8,13 @@
 
 export type { EuiComboBoxProps } from './combo_box';
 export { EuiComboBox } from './combo_box';
-export * from './combo_box_input';
-export * from './combo_box_options_list';
+export type { EuiComboBoxInputProps } from './combo_box_input';
+export { EuiComboBoxInput } from './combo_box_input';
+export type { EuiComboBoxPillProps } from './combo_box_input';
+export { EuiComboBoxPill } from './combo_box_input';
+export type { EuiComboBoxOptionsListProps } from './combo_box_options_list';
+export { EuiComboBoxOptionsList } from './combo_box_options_list';
+export { EuiComboBoxTitle } from './combo_box_options_list';
 export type {
   EuiComboBoxOptionOption,
   EuiComboBoxSingleSelectionShape,

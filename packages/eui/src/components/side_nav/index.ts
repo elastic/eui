@@ -9,4 +9,4 @@
 export type { EuiSideNavProps } from './side_nav';
 export { EuiSideNav } from './side_nav';
 
-export * from './side_nav_types';
+export type { EuiSideNavItemType } from './side_nav_types';

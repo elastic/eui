@@ -6,4 +6,5 @@
  * Side Public License, v 1.
  */
 
-export * from './vis_color_store';
+export { VIS_COLOR_STORE_EVENTS, EuiVisColorStore } from './vis_color_store';
+export type { _EuiVisColorStore } from './vis_color_store';

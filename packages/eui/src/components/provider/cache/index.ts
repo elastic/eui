@@ -6,4 +6,5 @@
  * Side Public License, v 1.
  */
 
-export * from './cache_provider';
+export type { EuiCacheProviderProps } from './cache_provider';
+export { EuiCacheProvider } from './cache_provider';
