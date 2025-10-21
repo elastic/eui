@@ -114,6 +114,24 @@ All bindings and configuration will be handled automatically.
 </EuiFlyout>
 ```
 
+To prevent a flyout from being a part of the session management system, you
+can set `session="never"` which will render it as a regular unmanaged flyout.
+
+```tsx
+<>
+  {/* Render a new main flyout and create a flyout session */}
+  <EuiFlyout session="start">
+    <EuiFlyoutBody>
+      I'm the main flyout in a session
+    </EuiFlyoutBody>
+  </EuiFlyout>
+  {/* Render a non-session flyout */}
+  <EuiFlyout session="never">
+    I'm a flyout that will not be part of any flyout session
+  </EuiFlyout>
+</>
+```
+
 ## Types of managed flyouts
 
 While users of managed flyouts don't need to think about the types
