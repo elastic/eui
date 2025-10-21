@@ -263,7 +263,7 @@ exports[`EuiPageHeaderContent props children is rendered even if content props a
         Page title
       </h1>
       <div
-        class="euiSpacer euiSpacer--l emotion-euiSpacer-l"
+        class="euiSpacer euiSpacer--m emotion-euiSpacer-m"
       />
       Child
     </div>
@@ -290,10 +290,10 @@ exports[`EuiPageHeaderContent props children is rendered even if content props a
     class="euiPageHeaderContent__bottom"
   >
     <div
-      class="euiSpacer euiSpacer--l emotion-euiSpacer-l"
+      class="euiSpacer euiSpacer--m emotion-euiSpacer-m"
     />
     <div
-      class="euiTabs emotion-euiTabs-l"
+      class="euiTabs emotion-euiTabs-m"
       role="tablist"
     >
       <button
@@ -304,7 +304,7 @@ exports[`EuiPageHeaderContent props children is rendered even if content props a
         type="button"
       >
         <span
-          class="euiTab__content eui-textTruncate emotion-euiTab__content-l"
+          class="euiTab__content eui-textTruncate emotion-euiTab__content-m"
         >
           Tab 1
         </span>
@@ -317,7 +317,7 @@ exports[`EuiPageHeaderContent props children is rendered even if content props a
         type="button"
       >
         <span
-          class="euiTab__content eui-textTruncate emotion-euiTab__content-l"
+          class="euiTab__content eui-textTruncate emotion-euiTab__content-m"
         >
           Tab 2
         </span>
@@ -552,7 +552,7 @@ exports[`EuiPageHeaderContent props tabs is rendered 1`] = `
         Tab 1
       </h1>
       <div
-        class="euiTabs emotion-euiTabs-l"
+        class="euiTabs emotion-euiTabs-m"
         role="tablist"
       >
         <button
@@ -563,7 +563,7 @@ exports[`EuiPageHeaderContent props tabs is rendered 1`] = `
           type="button"
         >
           <span
-            class="euiTab__content eui-textTruncate emotion-euiTab__content-l"
+            class="euiTab__content eui-textTruncate emotion-euiTab__content-m"
           >
             Tab 1
           </span>
@@ -576,7 +576,7 @@ exports[`EuiPageHeaderContent props tabs is rendered 1`] = `
           type="button"
         >
           <span
-            class="euiTab__content eui-textTruncate emotion-euiTab__content-l"
+            class="euiTab__content eui-textTruncate emotion-euiTab__content-m"
           >
             Tab 2
           </span>
@@ -604,7 +604,7 @@ exports[`EuiPageHeaderContent props tabs is rendered with tabsProps 1`] = `
       </h1>
       <div
         aria-label="aria-label"
-        class="euiTabs testClass1 testClass2 emotion-euiTabs-l-euiTestCss"
+        class="euiTabs testClass1 testClass2 emotion-euiTabs-m-euiTestCss"
         data-test-subj="test subject string"
         role="tablist"
       >
@@ -616,7 +616,7 @@ exports[`EuiPageHeaderContent props tabs is rendered with tabsProps 1`] = `
           type="button"
         >
           <span
-            class="euiTab__content eui-textTruncate emotion-euiTab__content-l"
+            class="euiTab__content eui-textTruncate emotion-euiTab__content-m"
           >
             Tab 1
           </span>
@@ -629,7 +629,7 @@ exports[`EuiPageHeaderContent props tabs is rendered with tabsProps 1`] = `
           type="button"
         >
           <span
-            class="euiTab__content eui-textTruncate emotion-euiTab__content-l"
+            class="euiTab__content eui-textTruncate emotion-euiTab__content-m"
           >
             Tab 2
           </span>

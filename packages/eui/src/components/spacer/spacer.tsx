@@ -24,7 +24,7 @@ export type EuiSpacerProps = HTMLAttributes<HTMLDivElement> &
 
 export const EuiSpacer: FunctionComponent<EuiSpacerProps> = ({
   className,
-  size = 'l',
+  size = 'm',
   ...rest
 }) => {
   const styles = useEuiMemoizedStyles(euiSpacerStyles);

@@ -289,7 +289,7 @@ exports[`EuiPageHeader props page content props are passed down is rendered 1`] 
           Page title
         </h1>
         <div
-          class="euiSpacer euiSpacer--l emotion-euiSpacer-l"
+          class="euiSpacer euiSpacer--m emotion-euiSpacer-m"
         />
         <div
           class="euiText emotion-euiText-constrainedWidth-m"
@@ -299,7 +299,7 @@ exports[`EuiPageHeader props page content props are passed down is rendered 1`] 
           </p>
         </div>
         <div
-          class="euiSpacer euiSpacer--l emotion-euiSpacer-l"
+          class="euiSpacer euiSpacer--m emotion-euiSpacer-m"
         />
         <p>
           Anything
@@ -330,11 +330,11 @@ exports[`EuiPageHeader props page content props are passed down is rendered 1`] 
       class="euiPageHeaderContent__bottom"
     >
       <div
-        class="euiSpacer euiSpacer--l emotion-euiSpacer-l"
+        class="euiSpacer euiSpacer--m emotion-euiSpacer-m"
       />
       <div
         aria-label="aria-label"
-        class="euiTabs testClass1 testClass2 emotion-euiTabs-l-euiTestCss"
+        class="euiTabs testClass1 testClass2 emotion-euiTabs-m-euiTestCss"
         data-test-subj="test subject string"
         role="tablist"
       >
@@ -346,7 +346,7 @@ exports[`EuiPageHeader props page content props are passed down is rendered 1`] 
           type="button"
         >
           <span
-            class="euiTab__content eui-textTruncate emotion-euiTab__content-l"
+            class="euiTab__content eui-textTruncate emotion-euiTab__content-m"
           >
             Tab 1
           </span>
@@ -359,7 +359,7 @@ exports[`EuiPageHeader props page content props are passed down is rendered 1`] 
           type="button"
         >
           <span
-            class="euiTab__content eui-textTruncate emotion-euiTab__content-l"
+            class="euiTab__content eui-textTruncate emotion-euiTab__content-m"
           >
             Tab 2
           </span>

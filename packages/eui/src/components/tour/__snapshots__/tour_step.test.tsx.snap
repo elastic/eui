@@ -65,7 +65,7 @@ exports[`EuiTourStep renders 1`] = `
                 class="euiPopoverFooter euiTourFooter emotion-euiPopoverFooter-m-m-euiTourFooter"
               >
                 <div
-                  class="euiFlexGroup emotion-euiFlexGroup-l-flexEnd-center-row"
+                  class="euiFlexGroup emotion-euiFlexGroup-m-flexEnd-center-row"
                 >
                   <div
                     class="euiFlexItem emotion-euiFlexItem-growZero"
