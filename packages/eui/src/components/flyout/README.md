@@ -20,7 +20,7 @@ It contains the main logic and UI for rendering flyouts. However, it's not the c
 that EUI consumers interact with directly.
 
 The EuiFlyout export actually comes from [`flyout.tsx`](./flyout.tsx) which is a thin logical
-wrapper that conditionally handles session management when `session={true}`,
+wrapper that conditionally handles session management when `session="start"`,
 or renders the plain [EuiFlyoutComponent](./flyout.component.tsx) otherwise.
 That structure provides a better business logic separation.
 
