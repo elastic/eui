@@ -19,7 +19,7 @@ alongside the main flyout.
 
 ### EuiFlyoutChild
 
-[EuiFlyoutChild](./flyout_child.tsx) renders [EuiFlyoutManaged](./flyout_managed.tsx) and does state validation
+[EuiFlyoutChild](./flyout_child.tsx) renders [EuiManagedFlyout](./flyout_managed.tsx) and does state validation
 to ensure the child flyout is always rendered within a main flyout.
 
 All child flyouts are of type `overlay`, and have `ownFocus` set to false, since that's handled separately.
