@@ -15,7 +15,7 @@ in the [main EuiFlyout developer README](../README.md).
 
 [EuiFlyoutMain](./flyout_main.tsx) is a thin logical component that renders [EuiFlyoutManaged](./flyout_managed.tsx)
 with the `level` prop set to `true` and does some minimal styling for when there's a child flyout rendered
-alongiside the main flyout.
+alongside the main flyout.
 
 ### EuiFlyoutChild
 
