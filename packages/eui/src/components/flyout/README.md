@@ -11,8 +11,8 @@
 ```mermaid
 flowchart
     EuiFlyout --> EuiFlyoutComponent
-    EuiFlyout --> |"session = 'start'"|EuiFlyoutMain --> EuiFlyoutManaged --> EuiFlyoutComponent
-    EuiFlyout --> |"session = 'inherit'"|EuiFlyoutChild --> EuiFlyoutManaged
+    EuiFlyout --> |"session = 'start'"|EuiFlyoutMain --> EuiManagedFlyout --> EuiFlyoutComponent
+    EuiFlyout --> |"session = 'inherit'"|EuiFlyoutChild --> EuiManagedFlyout --> EuiFlyoutComponent
 ```
 
 The core implementation of EuiFlyout lives in the internal [EuiFlyoutComponent](./flyout.component.tsx) file.
