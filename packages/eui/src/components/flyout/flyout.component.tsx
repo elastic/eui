@@ -75,7 +75,7 @@ interface _EuiFlyoutComponentProps {
   /**
    * A required callback function fired when the flyout is closed.
    */
-  onClose: (event?: EuiFlyoutCloseEvent) => void;
+  onClose: (event: EuiFlyoutCloseEvent) => void;
   /**
    * Defines the width of the panel.
    * Pass a predefined size of `s | m | l`, or pass any number/string compatible with the CSS `width` attribute
