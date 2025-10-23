@@ -37,6 +37,8 @@ export interface EuiModalProps extends HTMLAttributes<HTMLDivElement> {
     event?:
       | React.KeyboardEvent<HTMLDivElement>
       | React.MouseEvent<HTMLButtonElement>
+      | MouseEvent
+      | TouchEvent
   ) => void;
   /**
    * Sets the max-width of the modal.
@@ -99,7 +101,7 @@ export const EuiModal: FunctionComponent<EuiModalProps> = ({
     (event: MouseEvent | TouchEvent) => {
       // The overlay mask is always present
       if (outsideClickCloses === true && event.target === maskRef.current) {
-        onClose(event as any);
+        onClose(event);
       }
       return undefined;
     },
