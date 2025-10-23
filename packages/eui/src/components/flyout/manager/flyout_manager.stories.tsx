@@ -10,7 +10,6 @@ import { actions } from '@storybook/addon-actions';
 import type { Meta, StoryObj } from '@storybook/react';
 import React, { useState } from 'react';
 
-import { LOKI_SELECTORS } from '../../../../.storybook/loki';
 import { EuiBreakpointSize } from '../../../services';
 import { EuiButton } from '../../button';
 import { EuiSpacer } from '../../spacer';
@@ -146,9 +145,9 @@ const meta: Meta<FlyoutChildStoryArgs> = {
     childFlyoutResizable: false,
   },
   parameters: {
-    loki: {
-      chromeSelector: LOKI_SELECTORS.portal,
-    },
+    // Skipping visual regression testing with Loki
+    // This is a playground for Flyout Manager and doesn't show anything testable on page load
+    loki: { skip: true },
   },
 };
 
@@ -173,10 +172,6 @@ const StatefulFlyout: React.FC<FlyoutChildStoryArgs> = ({
   ...args
 }) => {
   const [isMainOpen, setIsMainOpen] = useState(true);
-
-  /* TODO: Allow child to be open automatically on initial render. Currently,
-   * this is not supported due to the child not having a reference to the
-   * session context */
   const [isChildOpen, setIsChildOpen] = useState(false);
 
   const openMain = () => {
