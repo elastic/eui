@@ -35,7 +35,7 @@ that serves the same purpose, but is directly integrated into EuiFlyoutComponent
 and the resizability feature is enabled via the `resizable` prop for simplicity and ability
 to dynamically change whether the flyout is resizable or not.
 
-The EuiFlyoutResizable component still exists as a thin wrapper over EuiFlyoutComponent
+The EuiFlyoutResizable component still exists as a thin wrapper over EuiFlyout
 that sets the `resizable` prop to `true`, and is exported as part of the public API
 for backwards compatibility.
 
