@@ -218,8 +218,8 @@ export const EuiFlyoutComponent = forwardRef(
   <T extends ElementType = 'div' | 'nav'>(
     props: EuiFlyoutComponentProps<T>,
     ref:
-      | ((instance: HTMLDivElement | HTMLElement | null) => void)
-      | MutableRefObject<HTMLDivElement | HTMLElement | null>
+      | ((instance: HTMLElement | null) => void)
+      | MutableRefObject<HTMLElement | null>
       | null
   ) => {
     const {
@@ -283,9 +283,7 @@ export const EuiFlyoutComponent = forwardRef(
      * Setting up the refs on the actual flyout element in order to
      * accommodate for the `isPushed` state by adding padding to the body equal to the width of the element
      */
-    const [resizeRef, setResizeRef] = useState<
-      HTMLDivElement | HTMLElement | null
-    >(null);
+    const [resizeRef, setResizeRef] = useState<HTMLElement | null>(null);
     const setRef = useCombinedRefs([
       setResizeRef,
       ref,
