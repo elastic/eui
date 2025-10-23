@@ -2,7 +2,7 @@
 
 [Documentation - production](https://eui.elastic.co/docs/components/containers/flyout/session-management)
 
-[Documentation - local](http://localhost:3000/docs/components/containers/flyout/session-management),
+[Documentation - local](http://localhost:3000/docs/components/containers/flyout/session-management)
 
 [Documentation - sources](../../../../../website/docs/components/containers/flyout/session-management.mdx)
 
