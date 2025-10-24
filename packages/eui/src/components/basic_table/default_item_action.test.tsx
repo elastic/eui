@@ -123,6 +123,59 @@ describe('DefaultItemAction', () => {
     expect(getByText('goodbye tooltip')).toBeInTheDocument();
   });
 
+  it('is described by the tooltip via aria-describedby', async () => {
+    const actionWithDifferentNameAndDescription: EmptyButtonAction<Item> = {
+      name: 'same',
+      description: 'different',
+      'data-test-subj': 'different',
+      type: 'button',
+      onClick: () => {},
+    };
+    const { getByTestSubject, getByRole } = render(
+      <DefaultItemAction
+        action={actionWithDifferentNameAndDescription}
+        enabled={true}
+        item={{ id: 'differentId' }}
+      />
+    );
+
+    const action = getByTestSubject('different');
+    fireEvent.mouseOver(action);
+    await waitForEuiToolTipVisible();
+    const tooltip = getByRole('tooltip');
+    expect(tooltip).toHaveTextContent('different');
+    expect(tooltip).toBeInTheDocument();
+    expect(action).toHaveAttribute('aria-describedby');
+    expect(action.getAttribute('aria-describedby')).toEqual(tooltip.id);
+  });
+
+  // If `name` and `description` are exactly the same
+  // we don't want screen readers announcing the same text twice
+  it('has visual-only tooltip when `name` equals `description`', async () => {
+    const actionWithEqualNameAndDescription: EmptyButtonAction<Item> = {
+      name: 'same',
+      description: 'same',
+      'data-test-subj': 'same',
+      type: 'button',
+      onClick: () => {},
+    };
+    const { getByTestSubject, getByRole } = render(
+      <DefaultItemAction
+        action={actionWithEqualNameAndDescription}
+        enabled={true}
+        item={{ id: 'sameId' }}
+      />
+    );
+
+    const action = getByTestSubject('same');
+    fireEvent.mouseOver(action);
+    await waitForEuiToolTipVisible();
+    const tooltip = getByRole('tooltip');
+    expect(tooltip).toBeInTheDocument();
+    expect(tooltip).toHaveTextContent('same');
+    expect(action).not.toHaveAttribute('aria-describedby');
+  });
+
   it('passes back the original click event as well as the row item to onClick', () => {
     const onClick = jest.fn((item, event) => {
       event.preventDefault();

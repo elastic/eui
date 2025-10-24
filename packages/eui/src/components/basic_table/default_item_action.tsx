@@ -14,7 +14,7 @@ import {
   EuiButtonEmptyProps,
   EuiButtonIconProps,
 } from '../button';
-import { EuiToolTip } from '../tool_tip';
+import { EuiToolTip, EuiToolTipProps } from '../tool_tip';
 import { useGeneratedHtmlId } from '../../services/accessibility';
 import { EuiScreenReaderOnly } from '../accessibility';
 
@@ -58,6 +58,13 @@ export const DefaultItemAction = <T extends object>({
     : undefined;
   const actionContent = callWithItemIfFunction(item)(action.name);
   const tooltipContent = callWithItemIfFunction(item)(action.description);
+  const tooltipProps: Omit<EuiToolTipProps, 'position' | 'children'> = {
+    content: tooltipContent,
+    delay: 'long',
+    // Avoid screen-readers announcing the same text twice
+    disableScreenReaderOutput:
+      typeof actionContent === 'string' && actionContent === tooltipContent,
+  };
   const href = callWithItemIfFunction(item)(action.href);
   const dataTestSubj = callWithItemIfFunction(item)(action['data-test-subj']);
 
@@ -114,9 +121,7 @@ export const DefaultItemAction = <T extends object>({
 
   return enabled ? (
     <>
-      <EuiToolTip content={tooltipContent} delay="long">
-        {button}
-      </EuiToolTip>
+      <EuiToolTip {...tooltipProps}>{button}</EuiToolTip>
       {/* SR text has to be rendered outside the tooltip,
       otherwise EuiToolTip's own aria-labelledby won't properly clone */}
       {ariaLabelledBy}

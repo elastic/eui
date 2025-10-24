@@ -110,7 +110,13 @@ export const CollapsedItemActions = <T extends {}>({
               if (!event.isPropagationStopped()) closePopover();
             }}
             toolTipContent={toolTipContent}
-            toolTipProps={{ delay: 'long' }}
+            toolTipProps={{
+              delay: 'long',
+              // Avoid screen-readers announcing the same text twice
+              disableScreenReaderOutput:
+                typeof buttonContent === 'string' &&
+                buttonContent === toolTipContent,
+            }}
           >
             {buttonContent}
           </EuiContextMenuItem>
