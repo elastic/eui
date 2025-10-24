@@ -584,7 +584,11 @@ export class EuiInMemoryTable<T extends object = object> extends Component<
     let searchBar: ReactNode;
 
     if (searchFormat === 'text') {
-      const { box = {}, query, defaultQuery = '' } = search as EuiSearchBarProps;
+      const {
+        box = {},
+        query,
+        defaultQuery = '',
+      } = search as EuiSearchBarProps;
       const {
         schema, // destructure `schema` so it doesn't get rendered to DOM
         ...searchBoxProps
