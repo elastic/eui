@@ -14,7 +14,19 @@ It handles side-by-side flyout rendering based on parent-child grouping,
 simple flyout transitions, state sharing, and more.
 
 ```tsx interactive
-return () => {
+import React, { useState } from "react";
+import {
+  EuiButton,
+  EuiFlyout,
+  EuiFlyoutBody,
+  EuiSpacer,
+  EuiFormRow,
+  EuiFieldText,
+  EuiText,
+  EuiCode,
+} from "@elastic/eui";
+
+export default () => {
   const [isOpenFlyoutA, setIsOpenFlyoutA] = useState(false);
   const [isOpenFlyoutB, setIsOpenFlyoutB] = useState(false);
   const [isOpenFlyoutBChild, setIsOpenFlyoutBChild] = useState(false);
