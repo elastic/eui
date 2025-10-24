@@ -155,6 +155,11 @@ const FlyoutSession: React.FC<FlyoutSessionProps> = React.memo((props) => {
           onActive={mainFlyoutOnActive}
           onClose={mainFlyoutOnClose}
         >
+          <EuiFlyoutHeader>
+            <EuiTitle size="m">
+              <h2 id={`mainFlyoutTitle-${title}`}>{title} - Main Flyout</h2>
+            </EuiTitle>
+          </EuiFlyoutHeader>
           <EuiFlyoutBody>
             <EuiText>
               <p>This is the content of {title}.</p>
@@ -191,7 +196,6 @@ const FlyoutSession: React.FC<FlyoutSessionProps> = React.memo((props) => {
             <EuiFlyout
               id={`childFlyout-${title}`}
               flyoutMenuProps={{ title: `${title} - Child` }}
-              aria-labelledby="childFlyoutTitle"
               size={childSize}
               maxWidth={childMaxWidth}
               onActive={childFlyoutOnActive}
@@ -552,6 +556,13 @@ const ExternalRootFlyout: React.FC<{ id: string }> = ({ id }) => {
           ownFocus={false}
           flyoutMenuProps={{ title: `${id} flyout` }}
         >
+          <EuiFlyoutHeader>
+            <EuiTitle size="m">
+              <h2 id={`externalRootFlyoutTitle-${id}`}>
+                {id} - External Root Flyout
+              </h2>
+            </EuiTitle>
+          </EuiFlyoutHeader>
           <EuiFlyoutBody>
             <EuiText>
               <p>

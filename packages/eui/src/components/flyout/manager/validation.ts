@@ -46,7 +46,7 @@ export function validateManagedFlyoutSize(
     const namedSizes = FLYOUT_SIZES.join(', ');
     return {
       type: 'INVALID_SIZE_TYPE',
-      message: `Child flyouts must use named sizes (${namedSizes}). Received: ${size}`,
+      message: `Child flyout ${flyoutId} must use a named size (${namedSizes}). Received: ${size}`,
       flyoutId,
       level,
       size,
@@ -61,12 +61,13 @@ export function validateManagedFlyoutSize(
 export function validateFlyoutTitle(
   flyoutMenuTitle: EuiFlyoutMenuProps['title'] | undefined,
   flyoutId: string,
-  level: EuiFlyoutLevel
+  level: EuiFlyoutLevel,
+  defaultTitle: string
 ): FlyoutValidationError | null {
   if (level === LEVEL_MAIN && !flyoutMenuTitle) {
     return {
       type: 'INVALID_FLYOUT_MENU_TITLE',
-      message: `Managed flyouts require either a 'flyoutMenuProps.title' or an 'aria-label' to provide the flyout menu title.`,
+      message: `Managed flyout "${flyoutId}" requires a title, which can be provided through 'aria-label' or 'flyoutMenuProps.title'. Using default title: "${defaultTitle}"`,
       flyoutId,
       level,
     };

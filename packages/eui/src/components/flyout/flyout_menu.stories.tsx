@@ -16,6 +16,7 @@ import { EuiText } from '../text';
 import { EuiFlyout } from './flyout';
 import { EuiFlyoutBody } from './flyout_body';
 import { EuiFlyoutMenu, EuiFlyoutMenuProps } from './flyout_menu';
+import { EuiFlyoutHeader } from './flyout_header';
 
 interface Args extends EuiFlyoutMenuProps {
   showCustomActions: boolean;
@@ -26,6 +27,7 @@ const meta: Meta<Args> = {
   title: 'Layout/EuiFlyout/EuiFlyoutMenu',
   component: EuiFlyoutMenu,
   argTypes: {
+    hideTitle: { control: 'boolean' },
     showBackButton: { control: 'boolean' },
     showCustomActions: { control: 'boolean' },
     'aria-label': { table: { disable: true } },
@@ -38,6 +40,7 @@ const meta: Meta<Args> = {
     showBackButton: true,
     showCustomActions: true,
     showHistoryItems: true,
+    hideTitle: true,
   },
 };
 
@@ -45,6 +48,7 @@ export default meta;
 
 const MenuBarFlyout = (args: Args) => {
   const {
+    hideTitle,
     hideCloseButton,
     showBackButton,
     showCustomActions,
@@ -80,6 +84,8 @@ const MenuBarFlyout = (args: Args) => {
     'aria-label': `${iconType} action`,
   }));
 
+  const titleId = 'menu-bar-example-main-title';
+
   return (
     <>
       <EuiButton onClick={openFlyout} disabled={isFlyoutOpen}>
@@ -94,8 +100,11 @@ const MenuBarFlyout = (args: Args) => {
           type="overlay"
           outsideClickCloses={false}
           ownFocus
+          aria-labelledby={titleId}
           flyoutMenuProps={{
             title: 'Flyout title',
+            titleId,
+            hideTitle,
             hideCloseButton,
             showBackButton,
             backButtonProps,
@@ -103,6 +112,13 @@ const MenuBarFlyout = (args: Args) => {
             customActions: showCustomActions ? customActions : undefined,
           }}
         >
+          {hideTitle && (
+            <EuiFlyoutHeader hasBorder>
+              <EuiText>
+                <h2 id={titleId}>Simple flyout header</h2>
+              </EuiText>
+            </EuiFlyoutHeader>
+          )}
           <EuiFlyoutBody>
             <EuiText>
               <p>Simple flyout content.</p>

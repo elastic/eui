@@ -565,6 +565,15 @@ export const EuiFlyoutComponent = forwardRef(
       return _titleId || generatedMenuId;
     }, [hasMenu, _titleId, generatedMenuId]);
 
+    // If the flyout level is LEVEL_MAIN, the title should be hidden by default
+    const flyoutMenuHideTitle = useMemo(() => {
+      if (!hasMenu) return undefined;
+      if (_flyoutMenuProps?.hideTitle !== undefined) {
+        return _flyoutMenuProps.hideTitle;
+      }
+      return currentSession?.mainFlyoutId === flyoutId;
+    }, [hasMenu, _flyoutMenuProps, currentSession, flyoutId]);
+
     const ariaLabelledBy = useMemo(() => {
       if (flyoutMenuId) {
         return classnames(flyoutMenuId, _ariaLabelledBy);
@@ -646,7 +655,11 @@ export const EuiFlyoutComponent = forwardRef(
               />
             )}
             {_flyoutMenuProps && (
-              <EuiFlyoutMenu {...flyoutMenuProps} titleId={flyoutMenuId} />
+              <EuiFlyoutMenu
+                {...flyoutMenuProps}
+                hideTitle={flyoutMenuHideTitle}
+                titleId={flyoutMenuId}
+              />
             )}
             {resizable && (
               <EuiFlyoutResizeButton

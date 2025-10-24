@@ -31,5 +31,8 @@ export const euiFlyoutMenuStyles = (euiThemeContext: UseEuiTheme) => {
     euiFlyoutMenu__actions: css`
       block-size: calc(${euiTheme.size.m} * 1.8);
     `,
+    euiFlyoutMenu__hiddenTitle: css`
+      display: none;
+    `,
   };
 };
