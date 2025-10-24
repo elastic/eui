@@ -5,8 +5,10 @@
  * in compliance with, at your election, the Elastic License 2.0 or the Server
  * Side Public License, v 1.
  */
+
 import React, { useEffect, useMemo, useRef } from 'react';
 import { useEuiMemoizedStyles } from '../../../services';
+import { useEuiI18n } from '../../i18n';
 import { useResizeObserver } from '../../observer/resize_observer';
 import {
   EuiFlyoutComponent,
@@ -119,11 +121,19 @@ export const EuiManagedFlyout = ({
     }
   }
 
+  const defaultTitle = useEuiI18n(
+    'euiFlyoutManaged.defaultTitle',
+    'Unknown Flyout'
+  );
+
   // Validate title
-  const title = _flyoutMenuProps?.title || props['aria-label'];
-  const titleError = validateFlyoutTitle(title, flyoutId, level);
+  // TODO: allow aria-labelledby references to be used
+  let title = _flyoutMenuProps?.title || props['aria-label'];
+
+  const titleError = validateFlyoutTitle(title, flyoutId, level, defaultTitle);
   if (titleError) {
-    throw new Error(createValidationErrorMessage(titleError));
+    console.warn(titleError.message);
+    title = defaultTitle;
   }
 
   const isActive = useIsFlyoutActive(flyoutId);
