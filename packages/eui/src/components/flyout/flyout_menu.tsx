@@ -32,25 +32,84 @@ type EuiFlyoutMenuBackButtonProps = Pick<
   'aria-label' | 'data-test-subj' | 'onClick'
 >;
 
-type EuiFlyoutHistoryItem = {
+/**
+ * History item for the flyout menu history popover
+ */
+export interface EuiFlyoutHistoryItem {
+  /**
+   * Title for the history item
+   */
   title: string;
+  /**
+   * onClick handler for the history item
+   */
   onClick: () => void;
-};
+}
 
+/**
+ * Custom action item for the flyout menu header
+ */
+export interface EuiFlyoutMenuCustomAction {
+  /**
+   * Icon type for the action button
+   */
+  iconType: string;
+  /**
+   * onClick handler for the action button
+   */
+  onClick: () => void;
+  /**
+   * Aria label for the action button
+   */
+  'aria-label': string;
+}
+
+/**
+ * Props for EuiFlyoutMenu
+ */
 export type EuiFlyoutMenuProps = CommonProps &
   HTMLAttributes<HTMLDivElement> & {
-    /* An id to use for the title element */
+    /**
+     * An id to use for the title element. Useful for setting aria-labelledby on the flyout.
+     * Example:
+     * ```jsx
+     * <EuiFlyout
+     *   aria-labelledby="myMenuTitleId"
+     * >
+     *   <EuiFlyoutMenu
+     *     titleId="myMenuTitleId"
+     *     title="Menu title"
+     *   />
+     * </EuiFlyout>
+     * ```
+     */
     titleId?: string;
+    /**
+     * Title for the menu header
+     */
     title?: React.ReactNode;
+    /**
+     * Hides the close button in the menu header
+     * @default false
+     */
     hideCloseButton?: boolean;
+    /**
+     * Shows a back button in the menu header
+     * @default false
+     */
     showBackButton?: boolean;
+    /**
+     * Props to pass to the back button, such as `onClick` handler
+     */
     backButtonProps?: EuiFlyoutMenuBackButtonProps;
+    /**
+     * List of history items for the history popover
+     */
     historyItems?: EuiFlyoutHistoryItem[];
-    customActions?: Array<{
-      iconType: string;
-      onClick: () => void;
-      'aria-label': string;
-    }>;
+    /**
+     * List of custom action items for the menu header
+     */
+    customActions?: EuiFlyoutMenuCustomAction[];
   };
 
 const BackButton: React.FC<EuiFlyoutMenuBackButtonProps> = (props) => {
