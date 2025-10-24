@@ -49,7 +49,7 @@ describe('Flyout Size Validation', () => {
       expect(error).toEqual({
         type: 'INVALID_SIZE_TYPE',
         message:
-          'Child flyouts must use named sizes (s, m, l, fill). Received: 100px',
+          'Child flyout test-id must use a named size (s, m, l, fill). Received: 100px',
         flyoutId: 'test-id',
         level: 'child',
         size: '100px',
@@ -58,20 +58,41 @@ describe('Flyout Size Validation', () => {
   });
 
   describe('validateFlyoutTitle', () => {
+    const defaultTitle = 'Unknown Flyout';
+
     it('should return null for child flyouts without title', () => {
-      expect(validateFlyoutTitle(undefined, 'child-id', 'child')).toBeNull();
+      expect(
+        validateFlyoutTitle(undefined, 'child-id', 'child', defaultTitle)
+      ).toBeNull();
     });
 
     it('should return null for main flyouts with valid title', () => {
-      expect(validateFlyoutTitle('Main Title', 'main-id', 'main')).toBeNull();
+      expect(
+        validateFlyoutTitle('Main Title', 'main-id', 'main', defaultTitle)
+      ).toBeNull();
     });
 
     it('should return error for empty string title', () => {
-      const error = validateFlyoutTitle('', 'test-id', 'main');
+      const error = validateFlyoutTitle('', 'test-id', 'main', defaultTitle);
       expect(error).toEqual({
         type: 'INVALID_FLYOUT_MENU_TITLE',
-        message: `Managed flyouts require either a 'flyoutMenuProps.title' or an 'aria-label' to provide the flyout menu title.`,
+        message: `Managed flyout "test-id" requires a title, which can be provided through 'aria-label' or 'flyoutMenuProps.title'. Using default title: "${defaultTitle}"`,
         flyoutId: 'test-id',
+        level: 'main',
+      });
+    });
+
+    it('should return error for undefined title on main flyout', () => {
+      const error = validateFlyoutTitle(
+        undefined,
+        'main-flyout-id',
+        'main',
+        defaultTitle
+      );
+      expect(error).toEqual({
+        type: 'INVALID_FLYOUT_MENU_TITLE',
+        message: `Managed flyout "main-flyout-id" requires a title, which can be provided through 'aria-label' or 'flyoutMenuProps.title'. Using default title: "${defaultTitle}"`,
+        flyoutId: 'main-flyout-id',
         level: 'main',
       });
     });
@@ -141,7 +162,7 @@ describe('Flyout Size Validation', () => {
       const error: FlyoutValidationError = {
         type: 'INVALID_SIZE_TYPE',
         message:
-          'Child flyouts must use named sizes (s, m, l, fill). Received: 100px',
+          'Child flyout test-id must use a named size (s, m, l, fill). Received: 100px',
         flyoutId: 'test-id',
         level: 'child',
         size: '100px',
@@ -149,7 +170,7 @@ describe('Flyout Size Validation', () => {
 
       const message = createValidationErrorMessage(error);
       expect(message).toBe(
-        'EuiFlyout validation error: Child flyouts must use named sizes (s, m, l, fill). Received: 100px'
+        'EuiFlyout validation error: Child flyout test-id must use a named size (s, m, l, fill). Received: 100px'
       );
       expect(consoleSpy).toHaveBeenCalledWith(error);
     });
@@ -184,14 +205,14 @@ describe('Flyout Size Validation', () => {
       const error: FlyoutValidationError = {
         type: 'INVALID_FLYOUT_MENU_TITLE',
         message:
-          "Managed flyouts require either a 'flyoutMenuProps.title' or an 'aria-label' to provide the flyout menu title.",
+          'Managed flyout "test-id" requires a title, which can be provided through \'aria-label\' or \'flyoutMenuProps.title\'. Using default title: "Unknown Flyout"',
         flyoutId: 'test-id',
         level: 'main',
       };
 
       const message = createValidationErrorMessage(error);
       expect(message).toBe(
-        "EuiFlyout validation error: Managed flyouts require either a 'flyoutMenuProps.title' or an 'aria-label' to provide the flyout menu title."
+        'EuiFlyout validation error: Managed flyout "test-id" requires a title, which can be provided through \'aria-label\' or \'flyoutMenuProps.title\'. Using default title: "Unknown Flyout"'
       );
       expect(consoleSpy).toHaveBeenCalledWith(error);
     });
