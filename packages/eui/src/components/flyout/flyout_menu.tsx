@@ -89,6 +89,12 @@ export type EuiFlyoutMenuProps = CommonProps &
      */
     title?: React.ReactNode;
     /**
+     * Hides the title in the flyout menu bar.
+     * If the flyout is used in a managed flyout session as a "main" flyout, the default will be true, as main flyouts typically show a title in an EuiFlyoutHeader instead.
+     * @default true for main flyout in managed flyout session; false otherwise
+     */
+    hideTitle?: boolean;
+    /**
      * Hides the close button in the menu header
      * @default false
      */
@@ -172,9 +178,10 @@ const HistoryPopover: React.FC<{
  * @private
  */
 export const EuiFlyoutMenu: FunctionComponent<EuiFlyoutMenuProps> = ({
-  titleId,
   className,
   title,
+  titleId,
+  hideTitle,
   hideCloseButton,
   historyItems = [],
   showBackButton,
@@ -191,7 +198,7 @@ export const EuiFlyoutMenu: FunctionComponent<EuiFlyoutMenuProps> = ({
   if (title) {
     titleNode = (
       <EuiTitle size="xxs" id={titleId}>
-        <h3>{title}</h3>
+        <h3 css={hideTitle && styles.euiFlyoutMenu__hiddenTitle}>{title}</h3>
       </EuiTitle>
     );
   }
