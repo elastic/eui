@@ -1,0 +1,67 @@
+name: Clear Started Date
+
+on:
+  projects_v2_item:
+    types: [edited]
+
+jobs:
+  clear-started-date:
+    runs-on: ubuntu-latest
+    if: github.event.projects_v2_item.project_node_id == 'PVT_kwDOAGc3Zs4AIkji'
+    steps:
+      - name: Check if Status Changed to Backlog
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.PROJECT_TOKEN }}
+          script: |
+            const changes = context.payload.changes;
+            
+            // Check if the status field was changed
+            if (!changes || !changes.field_value) {
+              console.log('No field changes detected');
+              return;
+            }
+            
+            const fieldValue = changes.field_value;
+            const newValue = fieldValue.to;
+            
+            // Check if status changed to "Backlog"
+            const backlogStatus = process.env.BACKLOG_STATUS;
+            
+            if (newValue !== backlogStatus) {
+              console.log(`Status changed to "${newValue}", not "${backlogStatus}"`);
+              return;
+            }
+            
+            console.log(`Status changed to "${backlogStatus}", clearing Started Date...`);
+            
+            const projectId = 'PVT_kwDOAGc3Zs4AIkji';
+            const fieldId = process.env.STARTED_DATE_FIELD_ID;
+            const itemId = context.payload.projects_v2_item.node_id;
+            
+            // Clear the Started Date field
+            const mutation = `
+              mutation($projectId: ID!, $itemId: ID!, $fieldId: ID!) {
+                clearProjectV2ItemFieldValue(input: {
+                  projectId: $projectId
+                  itemId: $itemId
+                  fieldId: $fieldId
+                }) {
+                  projectV2Item {
+                    id
+                  }
+                }
+              }
+            `;
+            
+            await github.graphql(mutation, {
+              projectId,
+              itemId,
+              fieldId
+            });
+            
+            console.log('✓ Started Date cleared');
+        env:
+          STARTED_DATE_FIELD_ID: 'PVTF_lADOAGc3Zs4AIkjizg3CFRk'
+          BACKLOG_STATUS: 'Backlog'
+
