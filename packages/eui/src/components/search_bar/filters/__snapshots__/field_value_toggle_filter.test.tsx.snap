@@ -2,7 +2,7 @@
 
 exports[`FieldValueToggleFilter render - active 1`] = `
 <div
-  class="euiFilterButton__wrapper css-10m1aro-wrapper-hasToggle"
+  class="euiFilterButton__wrapper css-1nn8k4u-wrapper-hasToggle"
 >
   <button
     aria-pressed="true"
@@ -27,7 +27,7 @@ exports[`FieldValueToggleFilter render - active 1`] = `
 
 exports[`FieldValueToggleFilter render - active negated - custom negated name 1`] = `
 <div
-  class="euiFilterButton__wrapper css-10m1aro-wrapper-hasToggle"
+  class="euiFilterButton__wrapper css-1nn8k4u-wrapper-hasToggle"
 >
   <button
     aria-pressed="true"
@@ -52,7 +52,7 @@ exports[`FieldValueToggleFilter render - active negated - custom negated name 1`
 
 exports[`FieldValueToggleFilter render - active negated 1`] = `
 <div
-  class="euiFilterButton__wrapper css-10m1aro-wrapper-hasToggle"
+  class="euiFilterButton__wrapper css-1nn8k4u-wrapper-hasToggle"
 >
   <button
     aria-pressed="true"
@@ -77,7 +77,7 @@ exports[`FieldValueToggleFilter render - active negated 1`] = `
 
 exports[`FieldValueToggleFilter renders 1`] = `
 <div
-  class="euiFilterButton__wrapper css-10m1aro-wrapper-hasToggle"
+  class="euiFilterButton__wrapper css-1nn8k4u-wrapper-hasToggle"
 >
   <button
     aria-pressed="false"

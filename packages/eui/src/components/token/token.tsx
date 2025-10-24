@@ -11,11 +11,7 @@ import classNames from 'classnames';
 import { useEuiTheme, isColorDark, hexToRgb } from '../../services';
 
 import { EuiIcon, IconSize } from '../icon';
-import {
-  EuiTokenMapType,
-  TOKEN_MAP_AMSTERDAM,
-  TOKEN_MAP_BOREALIS,
-} from './token_map';
+import { EuiTokenMapType, TOKEN_MAP } from './token_map';
 import { COLORS } from './token_types';
 import type {
   EuiTokenProps,
@@ -58,11 +54,6 @@ export const EuiToken: FunctionComponent<EuiTokenProps> = ({
   }
 
   const euiTheme = useEuiTheme();
-  const { hasVisColorAdjustment } = euiTheme.euiTheme.flags;
-
-  const TOKEN_MAP = hasVisColorAdjustment
-    ? TOKEN_MAP_AMSTERDAM
-    : TOKEN_MAP_BOREALIS;
 
   // If the iconType passed is one of the prefab token types,
   // grab its properties

@@ -15,7 +15,6 @@ import {
   useEuiMemoizedStyles,
   useEuiTheme,
   useGeneratedHtmlId,
-  useEuiThemeRefreshVariant,
 } from '../../services';
 import { useEuiI18n } from '../i18n';
 import { useInnerText } from '../inner_text';
@@ -118,29 +117,22 @@ export const EuiFilterButton: FunctionComponent<EuiFilterButtonProps> = ({
   const euiThemeContext = useEuiTheme();
   const { colorMode } = euiThemeContext;
 
-  const isRefreshVariant = useEuiThemeRefreshVariant('buttonVariant');
-
   // assumption about type of usage based on icon usage
   // requires manual override to apply correct aria attributes for more custom usages
   const isCollapsible = !isToggle && iconType === 'arrowDown';
-  // NOTE: in Amsterdam `hasActiveFilters` applies selected styling while `isSelected` does not.
-  // With Borealis this is more granular as EuiFilterButton now supports proper toggle buttons next to regular buttons
   const isExpanded = isCollapsible && (isSelected ?? hasActiveFilters);
 
   const styles = useEuiMemoizedStyles(euiFilterButtonStyles);
   const focusColorStyles = useEuiMemoizedStyles(_compressedButtonFocusColors);
 
-  const toggleVariantStyles = isRefreshVariant
-    ? [
-        isToggle && styles.buttonType.toggle,
-        !isToggle && !isDisabled && focusColorStyles[color],
-        !isToggle && styles.buttonType.default,
-      ]
-    : [isToggle && styles.buttonType.toggle];
+  const toggleVariantStyles = [
+    isToggle && styles.buttonType.toggle,
+    !isToggle && !isDisabled && focusColorStyles[color],
+    !isToggle && styles.buttonType.default,
+  ];
 
   const cssStyles = [
     styles.euiFilterButton,
-    !isRefreshVariant && withNext && styles.withNext,
     hasActiveFilters && styles.hasActiveFilters,
     ...toggleVariantStyles,
   ];
@@ -149,7 +141,7 @@ export const EuiFilterButton: FunctionComponent<EuiFilterButtonProps> = ({
 
   const wrapperCssStyles = [
     wrapperStyles.wrapper,
-    isRefreshVariant && withNext && styles.withNext,
+    withNext && styles.withNext,
     numFiltersDefined && styles.hasNotification,
     isToggle && wrapperStyles.hasToggle,
     !grow && styles.noGrow,
@@ -168,7 +160,7 @@ export const EuiFilterButton: FunctionComponent<EuiFilterButtonProps> = ({
       'euiFilterButton-isSelected': isSelected,
       'euiFilterButton-hasActiveFilters': hasActiveFilters,
       'euiFilterButton-hasNotification': numFiltersDefined,
-      'euiFilterButton-isToggle': isRefreshVariant && isToggle,
+      'euiFilterButton-isToggle': isToggle,
     },
     className
   );
@@ -205,17 +197,13 @@ export const EuiFilterButton: FunctionComponent<EuiFilterButtonProps> = ({
     </EuiNotificationBadge>
   );
 
-  const badgeElement =
-    showBadge &&
-    (isRefreshVariant ? (
-      <EuiThemeProvider
-        colorMode={isToggle && isSelected ? 'INVERSE' : colorMode}
-      >
-        {badgeContent}
-      </EuiThemeProvider>
-    ) : (
-      badgeContent
-    ));
+  const badgeElement = showBadge && (
+    <EuiThemeProvider
+      colorMode={isToggle && isSelected ? 'INVERSE' : colorMode}
+    >
+      {badgeContent}
+    </EuiThemeProvider>
+  );
 
   /**
    * Text

@@ -16,7 +16,7 @@ const visColors: _EuiThemeVisColors = {
 } as _EuiThemeVisColors;
 
 describe('EuiVisColorStore', () => {
-  const visColorStore = EuiVisColorStore.getInstance(visColors, false);
+  const visColorStore = EuiVisColorStore.getInstance(visColors);
   let updateFn: jest.Mock;
 
   beforeEach(() => {
@@ -41,12 +41,6 @@ describe('EuiVisColorStore', () => {
       visColorStore.setVisColors(customColors);
 
       expect(visColorStore.visColors).toEqual(customColors);
-    });
-
-    it('updates hasVisColorAdjustment', () => {
-      visColorStore.setVisColors(customColors, true);
-
-      expect(visColorStore.hasVisColorAdjustment).toEqual(true);
     });
   });
 
