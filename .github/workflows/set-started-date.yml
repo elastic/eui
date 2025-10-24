@@ -1,0 +1,71 @@
+name: Set Started Date
+
+on:
+  projects_v2_item:
+    types: [edited]
+
+jobs:
+  set-started-date:
+    runs-on: ubuntu-latest
+    if: github.event.projects_v2_item.project_node_id == 'PVT_kwDOAGc3Zs4AIkji'
+    steps:
+      - name: Check if Status Changed to In Progress
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.PROJECT_TOKEN }}
+          script: |
+            const changes = context.payload.changes;
+            
+            // Check if the status field was changed
+            if (!changes || !changes.field_value) {
+              console.log('No field changes detected');
+              return;
+            }
+            
+            const fieldValue = changes.field_value;
+            const newValue = fieldValue.to;
+            const previousValue = fieldValue.from;
+            
+            // Check if status changed to "In Progress"
+            const inProgressStatus = process.env.IN_PROGRESS_STATUS;
+            
+            if (newValue !== inProgressStatus) {
+              console.log(`Status changed to "${newValue}", not "${inProgressStatus}"`);
+              return;
+            }
+            
+            console.log(`Status changed to "${inProgressStatus}", setting Started Date...`);
+            
+            const projectId = 'PVT_kwDOAGc3Zs4AIkji';
+            const fieldId = process.env.STARTED_DATE_FIELD_ID;
+            const itemId = context.payload.projects_v2_item.node_id;
+            const today = new Date().toISOString().split('T')[0];
+            
+            // Update the Started Date field
+            const mutation = `
+              mutation($projectId: ID!, $itemId: ID!, $fieldId: ID!, $date: Date!) {
+                updateProjectV2ItemFieldValue(input: {
+                  projectId: $projectId
+                  itemId: $itemId
+                  fieldId: $fieldId
+                  value: { date: $date }
+                }) {
+                  projectV2Item {
+                    id
+                  }
+                }
+              }
+            `;
+            
+            await github.graphql(mutation, {
+              projectId,
+              itemId,
+              fieldId,
+              date: today
+            });
+            
+            console.log(`✓ Started Date set to ${today}`);
+        env:
+          STARTED_DATE_FIELD_ID: 'PVTF_lADOAGc3Zs4AIkjizgUW__c'
+          IN_PROGRESS_STATUS: 'In Progress'
+
