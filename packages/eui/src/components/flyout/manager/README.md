@@ -34,9 +34,14 @@ It handles flyout registration, parent and child size validation, width tracking
 
 ## State management
 
-State of flyout sessions is managed with [`useFlyoutManager`](./hooks.ts) hook and its underlying
-[`flyoutManagerReducer`](./reducer.ts) via [`useFlyoutManagerReducer`](./hooks.ts).
-It uses the native React `useReducer` for best compatibility with consumer applications.
+Flyout session state is managed through a singleton store pattern that enables cross-React-root state sharing.
 
-The reducer actions are defined in [actions.ts](./actions.ts) and are exposed directly in the provider.
+The [`getFlyoutManagerStore()`](./store.ts) function returns a module-level singleton store instance. This store:
+- Uses [`flyoutManagerReducer`](./reducer.ts) internally for state updates
+- Implements `subscribe` and `getState` methods compatible with React's `useSyncExternalStore`
+- Enables multiple React roots to share the same flyout state
+
+The [`EuiFlyoutManager`](./provider.tsx) provider component uses `useSyncExternalStore` to sync React components with the singleton store. Components access the manager API (state + actions) through the [`useFlyoutManager`](./hooks.ts) hook.
+
+The reducer actions are defined in [actions.ts](./actions.ts) and are exposed directly in the store.
 You shouldn't call any of these actions outside the flyout source code as they're considered internal.
