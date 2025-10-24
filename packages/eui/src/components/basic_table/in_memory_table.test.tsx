@@ -1533,7 +1533,7 @@ describe('EuiInMemoryTable', () => {
       );
       expect(mockOnChange).toHaveBeenCalledTimes(1);
       expect(mockOnChange).toHaveBeenCalledWith({
-        query: Query.parse(`"${TEXT}"`),
+        query: null,
         queryText: TEXT,
         error: null,
       });
