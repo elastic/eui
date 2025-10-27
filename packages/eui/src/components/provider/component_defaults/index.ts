@@ -6,4 +6,14 @@
  * Side Public License, v 1.
  */
 
-export * from './component_defaults';
+export type {
+  EuiComponentDefaults,
+  EuiComponentDefaultsProviderProps,
+} from './component_defaults';
+export {
+  EuiComponentDefaultsContext,
+  EuiComponentDefaultsProvider,
+  useComponentDefaults,
+  usePropsWithComponentDefaults,
+  EuiProviderComponentDefaultsProps,
+} from './component_defaults';

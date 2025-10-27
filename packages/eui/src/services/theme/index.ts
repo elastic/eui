@@ -54,4 +54,7 @@ export type {
   EuiThemeSystem,
 } from './types';
 export { COLOR_MODES_STANDARD } from './types';
-export * from './theme_variant';
+export {
+  isEuiThemeRefreshVariant,
+  useEuiThemeRefreshVariant,
+} from './theme_variant';

@@ -6,7 +6,27 @@
  * Side Public License, v 1.
  */
 
-export * from './ui_plugins';
-export * from './parsing_plugins';
-export * from './processing_plugins';
-export * from './plugins';
+export type { DefaultEuiMarkdownUiPlugins } from './ui_plugins';
+export { getDefaultEuiMarkdownUiPlugins, defaultUiPlugins } from './ui_plugins';
+
+export type {
+  DefaultEuiMarkdownParsingPlugins,
+  DefaultParsingPluginsConfig,
+} from './parsing_plugins';
+export {
+  getDefaultEuiMarkdownParsingPlugins,
+  defaultParsingPlugins,
+} from './parsing_plugins';
+
+export type {
+  Rehype2ReactOptions,
+  DefaultEuiMarkdownProcessingPlugins,
+  DefaultProcessingPluginsConfig,
+} from './processing_plugins';
+export {
+  getDefaultEuiMarkdownProcessingPlugins,
+  defaultProcessingPlugins,
+} from './processing_plugins';
+
+export type { ExcludableDefaultPlugins, DefaultPluginsConfig } from './plugins';
+export { getDefaultEuiMarkdownPlugins } from './plugins';

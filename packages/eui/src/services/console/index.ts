@@ -6,4 +6,4 @@
  * Side Public License, v 1.
  */
 
-export * from './warn_once';
+export { warnOnce } from './warn_once';
