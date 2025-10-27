@@ -72,7 +72,7 @@ export interface OnRefreshProps extends DurationRange {
 
 export interface TimeWindowToolbarConfig {
   zoomOut?: boolean;
-  timeShift?: boolean;
+  windowShift?: boolean; // TODO revise name
 }
 
 export type EuiSuperDatePickerProps = CommonProps & {
@@ -737,7 +737,7 @@ export class EuiSuperDatePickerInternal extends Component<
     }
   };
 
-  renderTimeShiftToolbar = () => {
+  renderTimeWindowToolbar = () => {
     if (!this.props.showTimeWindowToolbar) {
       return null;
     }
@@ -840,7 +840,7 @@ export class EuiSuperDatePickerInternal extends Component<
         ) : (
           <>
             {this.renderDatePickerRange()}
-            {this.renderTimeShiftToolbar()}
+            {this.renderTimeWindowToolbar()}
             {this.renderUpdateButton()}
           </>
         )}
