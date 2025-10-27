@@ -40,7 +40,6 @@ import type { EuiFlyoutLevel } from './types';
 import {
   createValidationErrorMessage,
   isNamedSize,
-  validateFlyoutTitle,
   validateManagedFlyoutSize,
   validateSizeCombination,
 } from './validation';
@@ -126,13 +125,13 @@ export const EuiManagedFlyout = ({
     'Unknown Flyout'
   );
 
-  // Validate title
+  // Set title from flyoutMenuProps or aria-label
   // TODO: allow aria-labelledby references to be used
   let title = _flyoutMenuProps?.title || props['aria-label'];
-
-  const titleError = validateFlyoutTitle(title, flyoutId, level, defaultTitle);
-  if (titleError) {
-    console.warn(titleError.message);
+  if (level === LEVEL_MAIN && !title) {
+    console.warn(
+      `Managed flyout "${flyoutId}" requires a title, which can be provided through 'flyoutMenuProps.title' or 'aria-label'. Using default title: "${defaultTitle}"`
+    );
     title = defaultTitle;
   }
 
