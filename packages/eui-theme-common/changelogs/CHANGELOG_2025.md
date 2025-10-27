@@ -1,3 +1,20 @@
+## [`v6.0.0`](https://github.com/elastic/eui/releases/v6.0.0)
+
+**Breaking changes**
+
+- Removed `euiTheme.flags.hasGlobalFocusColor` ([#9090](https://github.com/elastic/eui/pull/9090))
+- Removed `euiTheme.flags.hasVisColorAdjustment` ([#9090](https://github.com/elastic/eui/pull/9090))
+- Removed `hasVisColorAdjustment` argument from `EuiVisColorStore` ([#9090](https://github.com/elastic/eui/pull/9090))
+- Removed `euiTheme.flags.buttonVariant` and `euiTheme.flags.formVariant` ([#9090](https://github.com/elastic/eui/pull/9090))
+- Removed type for `euiTheme.components.keyPadMenuItemBackgroundDisabledSelect` ([#9090](https://github.com/elastic/eui/pull/9090))
+- Removed outdated component-specific mixin SCSS files: ([#9090](https://github.com/elastic/eui/pull/9090))
+  - `src/global_styling/mixins/_button.scss`
+  - `src/global_styling/mixins/_form.scss`
+  - `src/global_styling/mixins/_link.scss`
+  - `src/global_styling/mixins/_loading.scss`
+  - `src/global_styling/mixins/_panel.scss`
+  - `src/global_styling/mixins/_range.scss`
+
 ## [`v5.0.0`](https://github.com/elastic/eui/releases/v5.0.0)
 
 - Added `shadowVariant` theme flag ([#9088](https://github.com/elastic/eui/pull/9088))
