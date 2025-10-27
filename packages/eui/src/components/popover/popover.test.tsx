@@ -25,6 +25,7 @@ import {
   getPopoverAlignFromAnchorPosition,
   PopoverAnchorPosition,
 } from './popover';
+import { EuiProvider } from '../provider';
 
 const actAdvanceTimersByTime = (time: number) =>
   act(() => jest.advanceTimersByTime(time));
@@ -397,6 +398,41 @@ describe('EuiPopover', () => {
       });
     });
 
+    test('repositionOnScroll', () => {
+      const addEventSpy = jest.spyOn(window, 'addEventListener');
+      const removeEventSpy = jest.spyOn(window, 'removeEventListener');
+      const repositionFn = expect.any(Function);
+
+      const { rerender, unmount } = render(
+        <EuiPopover
+          button={<button data-test-subj="trigger">Trigger</button>}
+          closePopover={() => {}}
+          isOpen
+          repositionOnScroll={false}
+        >
+          <p>Content</p>
+        </EuiPopover>
+      );
+      expect(addEventSpy).not.toHaveBeenCalledWith('scroll', expect.anything());
+
+      // Should add a scroll event listener on mount and on update
+      rerender(
+        <EuiPopover
+          button={<button data-test-subj="trigger">Trigger</button>}
+          closePopover={() => {}}
+          isOpen
+          repositionOnScroll={true}
+        >
+          <p>Content</p>
+        </EuiPopover>
+      );
+      expect(addEventSpy).toHaveBeenCalledWith('scroll', repositionFn, true);
+
+      // Should remove the scroll event listener on unmount
+      unmount();
+      expect(removeEventSpy).toHaveBeenCalledWith('scroll', repositionFn, true);
+    });
+
     test('buffer', () => {
       const { container } = render(
         <div>
@@ -444,6 +480,56 @@ describe('EuiPopover', () => {
       );
 
       expect(container.firstChild).toMatchSnapshot();
+    });
+
+    describe('configurable defaults', () => {
+      test('repositionOnScroll', () => {
+        const addEventSpy = jest.spyOn(window, 'addEventListener');
+        const removeEventSpy = jest.spyOn(window, 'removeEventListener');
+        const repositionFn = expect.any(Function);
+
+        const { rerender, unmount } = render(
+          <EuiProvider
+            componentDefaults={{ EuiPopover: { repositionOnScroll: false } }}
+          >
+            <EuiPopover
+              button={<button data-test-subj="trigger">Trigger</button>}
+              closePopover={() => {}}
+              isOpen
+            >
+              <p>Content</p>
+            </EuiPopover>
+          </EuiProvider>
+        );
+        expect(addEventSpy).not.toHaveBeenCalledWith(
+          'scroll',
+          expect.anything()
+        );
+
+        // Should add a scroll event listener on mount and on update
+        rerender(
+          <EuiProvider
+            componentDefaults={{ EuiPopover: { repositionOnScroll: true } }}
+          >
+            <EuiPopover
+              button={<button data-test-subj="trigger">Trigger</button>}
+              closePopover={() => {}}
+              isOpen
+            >
+              <p>Content</p>
+            </EuiPopover>
+          </EuiProvider>
+        );
+        expect(addEventSpy).toHaveBeenCalledWith('scroll', repositionFn, true);
+
+        // Should remove the scroll event listener on unmount
+        unmount();
+        expect(removeEventSpy).toHaveBeenCalledWith(
+          'scroll',
+          repositionFn,
+          true
+        );
+      });
     });
   });
 

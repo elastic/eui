@@ -18,6 +18,7 @@ import { requiredProps } from '../../test';
 import { shouldRenderCustomStyles } from '../../test/internal';
 
 import { EuiToolTip } from './tool_tip';
+import { EuiProvider } from '../provider';
 
 describe('EuiToolTip', () => {
   shouldRenderCustomStyles(
@@ -264,6 +265,41 @@ describe('EuiToolTip', () => {
 
       fireEvent.click(getByTestSubject('trigger'));
       await waitForEuiToolTipHidden();
+    });
+  });
+
+  describe('configurable defaults', () => {
+    test('repositionOnScroll', () => {
+      const addEventSpy = jest.spyOn(window, 'addEventListener');
+      const removeEventSpy = jest.spyOn(window, 'removeEventListener');
+      const repositionFn = expect.any(Function);
+
+      const { rerender, unmount } = render(
+        <EuiProvider
+          componentDefaults={{ EuiToolTip: { repositionOnScroll: false } }}
+        >
+          <EuiToolTip content="content">
+            <button data-test-subj="trigger">Trigger</button>
+          </EuiToolTip>
+        </EuiProvider>
+      );
+      expect(addEventSpy).not.toHaveBeenCalledWith('scroll', expect.anything());
+
+      // Should add a scroll event listener on mount and on update
+      rerender(
+        <EuiProvider
+          componentDefaults={{ EuiToolTip: { repositionOnScroll: true } }}
+        >
+          <EuiToolTip content="content">
+            <button data-test-subj="trigger">Trigger</button>
+          </EuiToolTip>
+        </EuiProvider>
+      );
+      expect(addEventSpy).toHaveBeenCalledWith('scroll', repositionFn, true);
+
+      // Should remove the scroll event listener on unmount
+      unmount();
+      expect(removeEventSpy).toHaveBeenCalledWith('scroll', repositionFn, true);
     });
   });
 });

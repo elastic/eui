@@ -8,6 +8,7 @@
 
 import React, {
   Component,
+  ContextType,
   ReactElement,
   ReactNode,
   MouseEvent as ReactMouseEvent,
@@ -26,6 +27,7 @@ import { EuiToolTipPopover, ToolTipPositions } from './tool_tip_popover';
 import { EuiToolTipAnchor } from './tool_tip_anchor';
 import { EuiToolTipArrow } from './tool_tip_arrow';
 import { toolTipManager } from './tool_tip_manager';
+import { EuiComponentDefaultsContext } from '../provider';
 
 export const POSITIONS = ['top', 'right', 'bottom', 'left'] as const;
 const DISPLAYS = ['inlineBlock', 'block'] as const;
@@ -139,6 +141,10 @@ interface State {
 }
 
 export class EuiToolTip extends Component<EuiToolTipProps, State> {
+  static contextType = EuiComponentDefaultsContext;
+  declare context: ContextType<typeof EuiComponentDefaultsContext>;
+  private lastResolvedRepositionOnScroll?: boolean;
+
   _isMounted = false;
   anchor: null | HTMLElement = null;
   popover: null | HTMLElement = null;
@@ -160,6 +166,14 @@ export class EuiToolTip extends Component<EuiToolTipProps, State> {
     disableScreenReaderOutput: false,
   };
 
+  getRepositionOnScroll = () => {
+    return (
+      this.props.repositionOnScroll ??
+      this.context?.EuiToolTip?.repositionOnScroll ??
+      false
+    );
+  };
+
   clearAnimationTimeout = () => {
     if (this.timeoutId) {
       this.timeoutId = clearTimeout(this.timeoutId) as undefined;
@@ -168,7 +182,9 @@ export class EuiToolTip extends Component<EuiToolTipProps, State> {
 
   componentDidMount() {
     this._isMounted = true;
-    if (this.props.repositionOnScroll) {
+    const repositionOnScroll = this.getRepositionOnScroll();
+    this.lastResolvedRepositionOnScroll = repositionOnScroll;
+    if (repositionOnScroll) {
       window.addEventListener('scroll', this.positionToolTip, true);
     }
   }
@@ -185,12 +201,14 @@ export class EuiToolTip extends Component<EuiToolTipProps, State> {
     }
 
     // update scroll listener
-    if (prevProps.repositionOnScroll !== this.props.repositionOnScroll) {
-      if (this.props.repositionOnScroll) {
+    const repositionOnScroll = this.getRepositionOnScroll();
+    if (this.lastResolvedRepositionOnScroll !== repositionOnScroll) {
+      if (repositionOnScroll) {
         window.addEventListener('scroll', this.positionToolTip, true);
       } else {
         window.removeEventListener('scroll', this.positionToolTip, true);
       }
+      this.lastResolvedRepositionOnScroll = repositionOnScroll;
     }
   }
 
