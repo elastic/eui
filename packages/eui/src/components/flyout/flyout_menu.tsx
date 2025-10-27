@@ -162,6 +162,15 @@ const HistoryPopover: React.FC<{
   );
 };
 
+/**
+ * The component for the top menu bar inside a flyout. Since this is a private
+ * component, rendering is controlled using the `flyoutMenuProps` prop on
+ * `EuiFlyout`. In managed session flyouts, the Flyout Manager controls a back
+ * button and history popover for navigating to different flyout sessions
+ * within the managed context.
+ *
+ * @private
+ */
 export const EuiFlyoutMenu: FunctionComponent<EuiFlyoutMenuProps> = ({
   titleId,
   className,

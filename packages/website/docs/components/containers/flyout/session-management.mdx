@@ -117,14 +117,29 @@ session as the main flyout - you can set `session="inherit"` or omit the `sessio
 as "inherit" is the default behavior.
 All bindings and configuration will be handled automatically.
 
+### Session title
+
+Flyout sessions within the managed system require a title that can be
+referenced in the history navigation features. Use the `title`
+field of the `flyoutMenuProps` to set the title of the flyout.
+
 ```tsx
 {/* Render a new main flyout and create a flyout session */}
-<EuiFlyout session="start">
+<EuiFlyout
+  session="start"
+  flyoutMenuProps={{
+    title: 'My main flyout'
+  }}
+>
   <EuiFlyoutBody>
     I'm the main flyout
   </EuiFlyoutBody>
   {/* Render a new child flyout - notice the lack of the `session` prop */}
-  <EuiFlyout>
+  <EuiFlyout
+    flyoutMenuProps={{
+      title: 'My child flyout'
+    }}
+  >
     I'm the child flyout that belongs to the same session as the main flyout
   </EuiFlyout>
 </EuiFlyout>
@@ -136,7 +151,12 @@ can set `session="never"` which will render it as a regular unmanaged flyout.
 ```tsx
 <>
   {/* Render a new main flyout and create a flyout session */}
-  <EuiFlyout session="start">
+  <EuiFlyout
+    session="start"
+    flyoutMenuProps={{
+      title: 'My flyout in a session'
+    }}
+  >
     <EuiFlyoutBody>
       I'm the main flyout in a session
     </EuiFlyoutBody>

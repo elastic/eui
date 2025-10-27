@@ -1023,16 +1023,30 @@ import { EuiBetaBadge } from '@elastic/eui';
 This component is still in beta and may change in the future.
 :::
 
+`EuiFlyoutMenu` is the top menu bar of a flyout. It is a private component, and is controlled by the `flyoutMenuProps` prop of `EuiFlyout`.
+
 ```tsx
-<EuiFlyout>
-  <EuiFlyoutMenu>
-    Hi mom
-  </EuiFlyoutMenu>
-  <EuiFlyoutHeader>Parent header</EuiFlyoutHeader>
-  <EuiFlyoutBody>Parent body</EuiFlyoutBody>
-  <EuiFlyoutFooter>Parent footer</EuiFlyoutFooter>
+<EuiFlyout
+  onClose={() => {}}
+  flyoutMenuProps={{
+    title: 'My flyout',
+    customActions: [
+      {
+        iconType: 'gear',
+        ['aria-label']: 'Settings',
+        onClick: () => {
+          console.log('Settings clicked');
+        },
+      },
+    ],
+  }}
+>
+  <EuiFlyoutBody>Flyout body</EuiFlyoutBody>
+  <EuiFlyoutFooter>Flyout footer</EuiFlyoutFooter>
 </EuiFlyout>
 ```
+
+In [managed session flyouts](./session-management.mdx), the Flyout Manager controls a back button and a history popover control for navigating to different flyout sessions within the managed context.
 
 ## Props
 
