@@ -8,8 +8,7 @@
 
 import { EuiFlyoutSize, FLYOUT_SIZES } from '../const';
 import { EuiFlyoutComponentProps } from '../flyout.component';
-import { EuiFlyoutMenuProps } from '../flyout_menu';
-import { LEVEL_CHILD, LEVEL_MAIN } from './const';
+import { LEVEL_CHILD } from './const';
 import { EuiFlyoutLevel } from './types';
 
 type FlyoutValidationErrorType =
@@ -50,26 +49,6 @@ export function validateManagedFlyoutSize(
       flyoutId,
       level,
       size,
-    };
-  }
-  return null;
-}
-
-/**
- * Validates that a title is provided
- */
-export function validateFlyoutTitle(
-  flyoutMenuTitle: EuiFlyoutMenuProps['title'] | undefined,
-  flyoutId: string,
-  level: EuiFlyoutLevel,
-  defaultTitle: string
-): FlyoutValidationError | null {
-  if (level === LEVEL_MAIN && !flyoutMenuTitle) {
-    return {
-      type: 'INVALID_FLYOUT_MENU_TITLE',
-      message: `Managed flyout "${flyoutId}" requires a title, which can be provided through 'aria-label' or 'flyoutMenuProps.title'. Using default title: "${defaultTitle}"`,
-      flyoutId,
-      level,
     };
   }
   return null;
