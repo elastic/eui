@@ -47,7 +47,7 @@ export interface EuiFlyoutHistoryItem {
 }
 
 /**
- * Custom action item for the flyout menu header
+ * Custom action item for the flyout menu component
  */
 export interface EuiFlyoutMenuCustomAction {
   /**
@@ -75,32 +75,29 @@ export type EuiFlyoutMenuProps = CommonProps &
      * ```jsx
      * <EuiFlyout
      *   aria-labelledby="myMenuTitleId"
+     *   flyoutMenuProps={{ title: 'Menu title', titleId: 'myMenuTitleId' }
      * >
-     *   <EuiFlyoutMenu
-     *     titleId="myMenuTitleId"
-     *     title="Menu title"
-     *   />
+     *  ...
      * </EuiFlyout>
      * ```
      */
     titleId?: string;
     /**
-     * Title for the menu header
+     * Title for the menu component. In a managed flyout context, the title is used to indicate the flyout session for history navigation.
      */
     title?: React.ReactNode;
     /**
-     * Hides the title in the flyout menu bar.
-     * If the flyout is used in a managed flyout session as a "main" flyout, the default will be true, as main flyouts typically show a title in an EuiFlyoutHeader instead.
-     * @default true for main flyout in managed flyout session; false otherwise
+     * Hides the title in the `EuiFlyoutMenu`. This is useful when the title is already shown in an `EuiFlyoutHeader`.
+     * @default true for main flyout in a managed flyout session; false otherwise
      */
     hideTitle?: boolean;
     /**
-     * Hides the close button in the menu header
+     * Hides the close button in the menu component
      * @default false
      */
     hideCloseButton?: boolean;
     /**
-     * Shows a back button in the menu header
+     * Shows a back button in the menu component
      * @default false
      */
     showBackButton?: boolean;
@@ -113,7 +110,7 @@ export type EuiFlyoutMenuProps = CommonProps &
      */
     historyItems?: EuiFlyoutHistoryItem[];
     /**
-     * List of custom action items for the menu header
+     * List of custom action items for the menu component
      */
     customActions?: EuiFlyoutMenuCustomAction[];
   };
