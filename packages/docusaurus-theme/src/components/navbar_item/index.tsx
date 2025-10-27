@@ -14,6 +14,7 @@ import {
   EuiIcon,
   ExclusiveUnion,
   IconType,
+  mathWithUnits,
   PropsForAnchor,
   PropsForButton,
   useEuiMemoizedStyles,
@@ -26,6 +27,7 @@ type SharedProps = {
   icon: IconType;
   showLabel?: boolean;
   isMenuItem?: boolean;
+  isSelected?: boolean;
 } & CommonProps;
 
 type Props = ExclusiveUnion<
@@ -44,8 +46,7 @@ export const getStyles = ({ euiTheme }: UseEuiTheme) => ({
     transition: background var(--ifm-transition-fast);
 
     &:hover {
-      background-color: ${euiTheme.components.buttons
-        .backgroundTextHover};
+      background-color: ${euiTheme.components.buttons.backgroundTextHover};
       color: currentColor;
     }
   `,
@@ -74,6 +75,10 @@ export const getStyles = ({ euiTheme }: UseEuiTheme) => ({
   disabled: css`
     cursor: not-allowed;
   `,
+  selected: css`
+    background-color: ${euiTheme.colors.backgroundFilledText};
+    color: ${euiTheme.colors.textInverse};
+  `,
   title: css`
     @media (min-width: 997px) {
       display: none;
@@ -97,6 +102,8 @@ export const NavbarItem = (props: Props) => {
     target,
     showLabel,
     isMenuItem = true,
+    isSelected,
+    css,
   } = props;
 
   const isBrowser = useIsBrowser();
@@ -109,6 +116,7 @@ export const NavbarItem = (props: Props) => {
     styles.item,
     isMenuItem ? styles.menuItem : styles.navItem,
     !isBrowser && styles.disabled,
+    isSelected && styles.selected,
     isDarkMode && styles.darkMode,
   ];
 
@@ -148,6 +156,7 @@ export const NavbarItem = (props: Props) => {
       title={title}
       aria-label={title}
       aria-live="polite"
+      aria-pressed={isSelected != null ? isSelected : undefined}
     >
       {content}
     </button>

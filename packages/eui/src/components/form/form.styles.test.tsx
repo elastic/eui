@@ -85,7 +85,6 @@ describe('euiFormControlStyles', () => {
             -webkit-text-fill-color: #2B394F;
             -webkit-box-shadow: inset 0 0 0 1px #BFDBFF, inset 0 0 0 100vw #E8F1FF;
 
-            
             &:hover,
             &:focus {
               -webkit-box-shadow: inset 0 0 0 1px #0B64DD, inset 0 0 0 100vw #E8F1FF;
@@ -98,7 +97,6 @@ describe('euiFormControlStyles', () => {
                 -webkit-box-shadow: inset 0 0 0 1px #DA3737, inset 0 0 0 100vw #E8F1FF;
               }
             }
-          
           }
         ",
         "compressed": "
@@ -109,18 +107,16 @@ describe('euiFormControlStyles', () => {
             border-radius: 4px;
           ",
         "disabled": "
+          --euiFormControlStateColor: transparent;
+          --euiFormControlStateHoverColor: transparent;
+          --euiFormControlStateColor: #CAD3E2;
+
           color: #798EAF;
           /* Required for Safari */
           -webkit-text-fill-color: #798EAF;
           background-color: #ECF1F9;
           cursor: not-allowed;
-          --euiFormControlStateColor: transparent;
-
           
-            --euiFormControlStateHoverColor: transparent;
-            --euiFormControlStateColor: #CAD3E2;
-          
-
           
         &::-webkit-input-placeholder { 
           color: #798EAF;
@@ -181,25 +177,24 @@ describe('euiFormControlStyles', () => {
             background-size: 100% 100%;
           ",
         "readOnly": "
+          --euiFormControlStateColor: #CAD3E2;
+          --euiFormControlStateHoverColor: #CAD3E2;
+          --euiFormControlStateWidth: 1px;
+
+          /* keep the input below wrapper borders */
+          position: relative;
+          z-index: 0;
           background-color: #ECF1F9;
           cursor: default;
           color: #1D2A3E;
           -webkit-text-fill-color: #1D2A3E; /* Required for Safari */
+          outline: none;
+          box-shadow: inset 0 0 0 var(--euiFormControlStateWidth) var(--euiFormControlStateColor);
 
-          
-            --euiFormControlStateColor: #CAD3E2;
-            --euiFormControlStateHoverColor: #CAD3E2;
-            --euiFormControlStateWidth: 1px;
-            /* keep the input below wrapper borders */
-            position: relative;
-            z-index: 0;
-            outline: none;
-            box-shadow: inset 0 0 0 var(--euiFormControlStateWidth) var(--euiFormControlStateColor);
+          .euiFormControlLayout__childrenWrapper[class*=inGroup] & {
+            box-shadow: none;
+          }
 
-            .euiFormControlLayout__childrenWrapper[class*=inGroup] & {
-              box-shadow: none;
-            }
-            
           
         ",
         "shared": "
@@ -243,7 +238,6 @@ describe('euiFormControlStyles', () => {
             outline-offset: calc(-1 * var(--borderWidth));
           }
           background-color: #FFFFFF;
-          
           
         
           ",

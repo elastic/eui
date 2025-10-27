@@ -11,7 +11,7 @@ import classNames from 'classnames';
 import { css } from '@emotion/react';
 import { UseEuiTheme } from '@elastic/eui-theme-common';
 
-import { useEuiTheme, useEuiThemeRefreshVariant } from '../../../services';
+import { useEuiTheme } from '../../../services';
 import { EuiButtonEmpty, EuiButtonEmptyProps } from '../../button';
 import { EuiNotificationBadge } from '../../badge';
 import { useEuiI18n } from '../../i18n';
@@ -24,13 +24,9 @@ export const EuiDataGridToolbarControl: FunctionComponent<
   EuiDataGridToolbarControlProps
 > = ({ children, className, badgeContent, textProps, ...rest }) => {
   const euiThemeContext = useEuiTheme();
-  const isRefreshVariant = useEuiThemeRefreshVariant('buttonVariant');
   const classes = classNames('euiDataGridToolbarControl', className);
 
-  const cssStyles = isRefreshVariant
-    ? // passes euiThemeContext here instead via `css` to ensure legacy Enzyme tests work
-      interactiveStyles(euiThemeContext)
-    : underlineStyles;
+  const cssStyles = interactiveStyles(euiThemeContext);
 
   const badgeAriaLabel = useEuiI18n(
     'euiDataGridToolbarControl.badgeAriaLabel',
@@ -82,18 +78,6 @@ export const EuiDataGridToolbarControl: FunctionComponent<
 // are being hidden. We can make this a bit more legible to SRs with this quick util
 const betterScreenReaderSlashes = (badgeContent: string) =>
   badgeContent.replaceAll('/', ' out of ');
-
-// Underline actual text, but not the badge
-const underlineStyles = css`
-  &:focus,
-  &:hover:not(:disabled) {
-    text-decoration: none;
-
-    .euiDataGridToolbarControl__text {
-      text-decoration: underline;
-    }
-  }
-`;
 
 const interactiveStyles = ({ euiTheme }: UseEuiTheme) => css`
   &:focus,

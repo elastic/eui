@@ -39,7 +39,7 @@ import {
   VersionSwitcher,
   VersionSwitcherProps,
 } from '../../../components/version_switcher';
-import { ThemeSwitcher } from '../../../components/theme_switcher';
+import { HighContrastModeToggle } from '../../../components/high_contrast_mode_toggle';
 
 const DOCS_PATH = '/docs';
 
@@ -248,13 +248,12 @@ export default function NavbarContent({
               </NavbarSearch>
             )}
             <NavbarColorModeToggle className="colorModeToggle" />
-            <NavbarItems items={rightItems} />
-
             {isBrowser && (
               <div css={styles.themeSwitcher}>
-                <ThemeSwitcher />
+                <HighContrastModeToggle />
               </div>
             )}
+            <NavbarItems items={rightItems} />
           </>
         }
       />

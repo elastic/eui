@@ -9,10 +9,7 @@
 import React, { FunctionComponent } from 'react';
 import classNames from 'classnames';
 
-import {
-  useEuiMemoizedStyles,
-  useEuiThemeRefreshVariant,
-} from '../../services';
+import { useEuiMemoizedStyles } from '../../services';
 import { EuiButtonIcon, EuiButtonIconPropsForButton } from '../button';
 import { euiScreenReaderOnlyStyles } from '../accessibility/screen_reader_only/screen_reader_only.styles';
 
@@ -56,7 +53,6 @@ export const EuiResizableCollapseButton: FunctionComponent<
   const isHorizontal = direction === 'horizontal';
   const showOnFocus = !isCollapsed && !isVisible;
 
-  const isRefreshVariant = useEuiThemeRefreshVariant('buttonVariant');
   const styles = useEuiMemoizedStyles(euiResizableCollapseButtonStyles);
 
   const collapsedStyles = [
@@ -93,7 +89,7 @@ export const EuiResizableCollapseButton: FunctionComponent<
 
   return (
     <EuiButtonIcon
-      display={isRefreshVariant ? 'empty' : isCollapsed ? 'empty' : 'base'}
+      display="empty"
       color="text"
       className={classes}
       css={cssStyles}
