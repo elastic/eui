@@ -187,7 +187,7 @@ export const EuiFlyoutMenu: FunctionComponent<EuiFlyoutMenuProps> = ({
     );
   }
 
-  const handleClose = (event: EuiFlyoutCloseEvent | undefined) => {
+  const handleClose = (event: EuiFlyoutCloseEvent) => {
     onClose?.(event);
   };
 

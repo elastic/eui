@@ -75,7 +75,7 @@ interface _EuiFlyoutComponentProps {
   /**
    * A required callback function fired when the flyout is closed.
    */
-  onClose: (event?: EuiFlyoutCloseEvent) => void;
+  onClose: (event: EuiFlyoutCloseEvent) => void;
   /**
    * Defines the width of the panel.
    * Pass a predefined size of `s | m | l`, or pass any number/string compatible with the CSS `width` attribute
@@ -218,8 +218,8 @@ export const EuiFlyoutComponent = forwardRef(
   <T extends ElementType = 'div' | 'nav'>(
     props: EuiFlyoutComponentProps<T>,
     ref:
-      | ((instance: ComponentPropsWithRef<T> | null) => void)
-      | MutableRefObject<ComponentPropsWithRef<T> | null>
+      | ((instance: HTMLElement | null) => void)
+      | MutableRefObject<HTMLElement | null>
       | null
   ) => {
     const {
@@ -283,9 +283,7 @@ export const EuiFlyoutComponent = forwardRef(
      * Setting up the refs on the actual flyout element in order to
      * accommodate for the `isPushed` state by adding padding to the body equal to the width of the element
      */
-    const [resizeRef, setResizeRef] = useState<ComponentPropsWithRef<T> | null>(
-      null
-    );
+    const [resizeRef, setResizeRef] = useState<HTMLElement | null>(null);
     const setRef = useCombinedRefs([
       setResizeRef,
       ref,
