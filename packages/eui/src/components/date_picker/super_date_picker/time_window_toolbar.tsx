@@ -23,6 +23,10 @@ interface TimeWindowToolbarProps {
   end: ShortDate;
   compressed?: boolean;
   isDisabled?: boolean;
+  /** @default true */
+  zoomOut?: boolean;
+  /** @default true */
+  navigationArrows?: boolean;
 }
 
 // How much time is added to the interval (or window)
@@ -48,16 +52,20 @@ export const TimeWindowToolbar: React.FC<TimeWindowToolbarProps> = ({
   end,
   compressed,
   isDisabled,
+  zoomOut = true,
+  navigationArrows = true,
 }) => {
   const buttonColor = 'text';
   const buttonSize = compressed ? 'compressed' : 'm';
   const styles = useEuiMemoizedStyles(euiButtonGroupButtonsStyles);
 
-  const { prettyInterval, stepForward, stepBackward, zoomOut } = useTimeWindow(
-    start,
-    end,
-    applyTime
-  );
+  // TODO rename handlers?
+  const {
+    prettyInterval,
+    stepForward,
+    stepBackward,
+    zoomOut: zoom,
+  } = useTimeWindow(start, end, applyTime);
 
   // Previous
   const previousId = useGeneratedHtmlId({ prefix: 'previous' });
@@ -73,48 +81,56 @@ export const TimeWindowToolbar: React.FC<TimeWindowToolbarProps> = ({
   const nextLabel = 'Next'; // TODO translate
   const nextTooltipContent = `Next ~${prettyInterval}`; // TODO translate
 
+  if (!zoomOut && !navigationArrows) return null;
+
   return (
     <div
       role="toolbar"
       className="euiButtonGroup__buttons"
       css={[styles.euiButtonGroup__buttons, styles[buttonSize]]}
     >
-      <EuiButtonGroupButton
-        color={buttonColor}
-        onClick={stepBackward}
-        id={previousId}
-        label={previousLabel}
-        toolTipContent={!isDisabled && previousTooltipContent}
-        iconType="arrowLeft"
-        isIconOnly
-        size={buttonSize}
-        isSelected={false}
-        isDisabled={isDisabled}
-      />
-      <EuiButtonGroupButton
-        color={buttonColor}
-        onClick={zoomOut}
-        id={zoomOutId}
-        label={zoomOutLabel}
-        toolTipContent={!isDisabled && zoomOutLabel}
-        iconType="magnifyWithMinus"
-        isIconOnly
-        size={buttonSize}
-        isSelected={false}
-        isDisabled={isDisabled}
-      />
-      <EuiButtonGroupButton
-        color={buttonColor}
-        onClick={stepForward}
-        id={nextId}
-        label={nextLabel}
-        toolTipContent={!isDisabled && nextTooltipContent}
-        iconType="arrowRight"
-        isIconOnly
-        size={buttonSize}
-        isSelected={false}
-        isDisabled={isDisabled}
-      />
+      {navigationArrows && (
+        <EuiButtonGroupButton
+          color={buttonColor}
+          onClick={stepBackward}
+          id={previousId}
+          label={previousLabel}
+          toolTipContent={!isDisabled && previousTooltipContent}
+          iconType="arrowLeft"
+          isIconOnly
+          size={buttonSize}
+          isSelected={false}
+          isDisabled={isDisabled}
+        />
+      )}
+      {zoomOut && (
+        <EuiButtonGroupButton
+          color={buttonColor}
+          onClick={zoom}
+          id={zoomOutId}
+          label={zoomOutLabel}
+          toolTipContent={!isDisabled && zoomOutLabel}
+          iconType="magnifyWithMinus"
+          isIconOnly
+          size={buttonSize}
+          isSelected={false}
+          isDisabled={isDisabled}
+        />
+      )}
+      {navigationArrows && (
+        <EuiButtonGroupButton
+          color={buttonColor}
+          onClick={stepForward}
+          id={nextId}
+          label={nextLabel}
+          toolTipContent={!isDisabled && nextTooltipContent}
+          iconType="arrowRight"
+          isIconOnly
+          size={buttonSize}
+          isSelected={false}
+          isDisabled={isDisabled}
+        />
+      )}
     </div>
   );
 };

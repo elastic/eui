@@ -71,8 +71,10 @@ export interface OnRefreshProps extends DurationRange {
 }
 
 export interface TimeWindowToolbarConfig {
+  /** Show button for zooming out */
   zoomOut?: boolean;
-  windowShift?: boolean; // TODO revise name
+  /** Show buttons for navigating between time windows */
+  navigationArrows?: boolean;
 }
 
 export type EuiSuperDatePickerProps = CommonProps & {
@@ -741,13 +743,10 @@ export class EuiSuperDatePickerInternal extends Component<
     if (!this.props.showTimeWindowToolbar) {
       return null;
     }
-    const {
-      start,
-      end,
-      // showTimeWindowToolbar: config, // will use later on
-      compressed,
-      isDisabled,
-    } = this.props;
+    const { start, end, showTimeWindowToolbar, compressed, isDisabled } =
+      this.props;
+    const config =
+      typeof showTimeWindowToolbar === 'boolean' ? {} : showTimeWindowToolbar;
 
     return (
       <TimeWindowToolbar
@@ -756,6 +755,7 @@ export class EuiSuperDatePickerInternal extends Component<
         end={end}
         compressed={compressed}
         isDisabled={!!isDisabled || this.state.isInvalid}
+        {...config}
       />
     );
   };
