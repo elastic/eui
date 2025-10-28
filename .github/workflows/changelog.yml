@@ -22,7 +22,7 @@ jobs:
   # unless the PR contains the `skip-changelog` label
   changelog:
     needs: detect-changes
-    if: ${{ !contains(github.event.pull_request.labels.*.name, 'skip-changelog') && fromJson(needs.detect-changes.outputs.changed-packages)[0] }}
+    if: ${{ !contains(github.event.pull_request.labels.*.name, 'skip-changelog') && fromJson(needs.detect-changes.outputs.changed-packages)[0] != null }}
     runs-on: ubuntu-latest
     strategy:
       matrix:
