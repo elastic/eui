@@ -1,5 +1,3 @@
-#!/bin/bash
-
 # Exit on error
 set -e
 
@@ -10,6 +8,7 @@ PACKAGE_PATH="${PACKAGE_PATH}"
 # Search for the changelog file
 if [ -n "$PACKAGE_PATH" ]; then
   # Check specific package
+  echo "Checking package: $PACKAGE_PATH"
   changelog_files=$(find "${PACKAGE_PATH}/changelogs/upcoming/" -type f -name "${PR_NUMBER}.md" 2>/dev/null || true)
   package_name=$(basename "$PACKAGE_PATH")
 
@@ -19,6 +18,7 @@ if [ -n "$PACKAGE_PATH" ]; then
     exit 1
   else
     echo "✅ Changelog file for PR #${PR_NUMBER} found in package '${package_name}': $changelog_files"
+    exit 0
   fi
 else
   # Search for the changelog file across all packages
@@ -30,5 +30,6 @@ else
     exit 1
   else
     echo "✅ Changelog file for PR #${PR_NUMBER} found: $changelog_files"
+    exit 0
   fi
 fi
