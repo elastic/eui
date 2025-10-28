@@ -70,7 +70,7 @@ export const TimeWindowToolbar: React.FC<TimeWindowToolbarProps> = ({
   // Previous
   const previousId = useGeneratedHtmlId({ prefix: 'previous' });
   const previousLabel = 'Previous'; // TODO translate
-  const previousTooltipContent = `Previous ~${prettyInterval}`; // TODO translate
+  const previousTooltipContent = `Previous ${prettyInterval}`; // TODO translate
 
   // Zoom out
   const zoomOutId = useGeneratedHtmlId({ prefix: 'zoom_out' });
@@ -79,7 +79,7 @@ export const TimeWindowToolbar: React.FC<TimeWindowToolbarProps> = ({
   // Next
   const nextId = useGeneratedHtmlId({ prefix: 'next' });
   const nextLabel = 'Next'; // TODO translate
-  const nextTooltipContent = `Next ~${prettyInterval}`; // TODO translate
+  const nextTooltipContent = `Next ${prettyInterval}`; // TODO translate
 
   if (!zoomOut && !navigationArrows) return null;
 
@@ -144,21 +144,23 @@ export const TimeWindowToolbar: React.FC<TimeWindowToolbarProps> = ({
 export function useTimeWindow(
   start: ShortDate,
   end: ShortDate,
-  apply: ApplyTime
+  apply: ApplyTime,
+  options?: { zoomFactor?: number }
 ) {
   const min = dateMath.parse(start) as Moment;
   const max = dateMath.parse(end, { roundUp: true }) as Moment;
   const diff = max.diff(min);
+  const zoomFactor = options?.zoomFactor ?? ZOOM_FACTOR;
   // terrible name, I meant what's added on the edges
   // e.g. 25% substracted to the start, 25% added to the end
-  const edgeDiff = diff * (ZOOM_FACTOR / 2);
+  const edgeDiff = diff * (zoomFactor / 2);
 
-  const prettyInterval = usePrettyInterval(false, diff, {
+  let prettyInterval = usePrettyInterval(false, diff, {
     shortHand: true,
   });
-  // const prettyZoomInterval = usePrettyInterval(false, diff + edgeDiff * 2, {
-  //   shortHand: true,
-  // });
+  if (!isExactMinuteRange(diff)) {
+    prettyInterval = `~${prettyInterval}`;
+  }
 
   return {
     prettyInterval,
@@ -187,4 +189,9 @@ export function useTimeWindow(
       end: moment(max).add(edgeDiff, 'ms').toISOString(),
     });
   }
+}
+
+function isExactMinuteRange(diffMs: number) {
+  // 60 * 1000 = ms per minute
+  return diffMs % (60 * 1000) === 0;
 }
