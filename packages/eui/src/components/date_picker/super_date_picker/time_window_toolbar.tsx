@@ -59,12 +59,8 @@ export const TimeWindowToolbar: React.FC<TimeWindowToolbarProps> = ({
   const buttonSize = compressed ? 'compressed' : 'm';
   const styles = useEuiMemoizedStyles(euiButtonGroupButtonsStyles);
 
-  const {
-    displayInterval,
-    stepForward,
-    stepBackward,
-    expandWindow,
-  } = useTimeWindow(start, end, applyTime);
+  const { displayInterval, stepForward, stepBackward, expandWindow } =
+    useTimeWindow(start, end, applyTime);
 
   // Previous
   const previousId = useGeneratedHtmlId({ prefix: 'previous' });
@@ -153,7 +149,7 @@ export function useTimeWindow(
   let displayInterval = usePrettyInterval(false, windowDuration, {
     shortHand: true,
   });
-  if (!isExactMinuteRange(windowDuration)) {
+  if (!isRelativeToNow(start, end) && !isExactMinuteRange(windowDuration)) {
     displayInterval = `~${displayInterval}`;
   }
 
@@ -184,6 +180,10 @@ export function useTimeWindow(
       end: moment(max).add(zoomAddition, 'ms').toISOString(),
     });
   }
+}
+
+function isRelativeToNow(start: ShortDate, end: ShortDate) {
+  return String(end).includes('now') || String(start).includes('now');
 }
 
 function isExactMinuteRange(diffMs: number) {
