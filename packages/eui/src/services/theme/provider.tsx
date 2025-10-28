@@ -145,10 +145,7 @@ export const EuiThemeProvider = <T extends {} = {}>({
   const updateVisColorStore = useCallback(
     (theme: EuiThemeComputed, isGlobalTheme: boolean) => {
       if (isGlobalTheme) {
-        EUI_VIS_COLOR_STORE.setVisColors(
-          theme.colors.vis,
-          theme.flags?.hasVisColorAdjustment ?? true
-        );
+        EUI_VIS_COLOR_STORE.setVisColors(theme.colors.vis);
       }
     },
     []
@@ -219,15 +216,17 @@ export const EuiThemeProvider = <T extends {} = {}>({
     if (!isParentTheme.current) {
       /* Enables recomputation of component colors when flags are overridden on the provider
       by adding the respective key to modifications to trigger a recomputation. */
+      // NOTE: Keeping this as placeholder for potential future usage during Borealis changes
       // TODO: remove once visual refresh is completed and flags are obsolete
-      const flagsToRecompute = [
-        { flag: 'buttonVariant', componentKey: 'buttons' },
-        { flag: 'formVariant', componentKey: 'forms' },
-      ];
+      const flagsToRecompute:
+        | Array<{ flag: string; componentKey: string }>
+        | [] = [];
 
       const keys: { [key: string]: { LIGHT: {}; DARK: {} } } = {};
 
       const forceRecomputeComponents = flagsToRecompute.some((item) => {
+        if (!item) return false;
+
         if (
           Object.keys(modifications.flags ?? {}).includes(item.flag) &&
           !Object.keys(modifications.components ?? {}).includes(

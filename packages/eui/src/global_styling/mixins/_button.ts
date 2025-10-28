@@ -6,11 +6,10 @@
  * Side Public License, v 1.
  */
 
-import { css, keyframes, type SerializedStyles } from '@emotion/react';
+import { css, type SerializedStyles } from '@emotion/react';
 import {
   _EuiThemeButtonColors,
   getTokenName,
-  euiCanAnimate,
   mathWithUnits,
 } from '@elastic/eui-theme-common';
 
@@ -18,7 +17,6 @@ import {
   makeHighContrastColor,
   UseEuiTheme,
   useEuiMemoizedStyles,
-  isEuiThemeRefreshVariant,
 } from '../../services';
 import { highContrastModeStyles, logicalCSS } from '../functions';
 
@@ -219,10 +217,6 @@ export const useEuiButtonColorCSS = (options: _EuiButtonOptions = {}) => {
 
 const euiButtonDisplaysColors = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
-  const isRefreshVariant = isEuiThemeRefreshVariant(
-    euiThemeContext,
-    'buttonVariant'
-  );
 
   const COLORS = [...EXTENDED_BUTTON_COLORS, 'disabled'] as const;
   type Colors = (typeof COLORS)[number];
@@ -250,16 +244,10 @@ const euiButtonDisplaysColors = (euiThemeContext: UseEuiTheme) => {
               border: ${euiTheme.border.width.thin} solid ${euiTheme.colors.borderBasePlain};
             `;
 
-          const refreshVariantStyles =
-            isRefreshVariant &&
-            `
-            ${_interactionStyles(euiThemeContext, buttonColors, 'overlay')}
-            ${borderStyle}
-          `;
-
           displaysColorsMap[display][color] = css`
             ${euiButtonColor(euiThemeContext, color)}
-            ${refreshVariantStyles}
+            ${_interactionStyles(euiThemeContext, buttonColors, 'overlay')}
+            ${borderStyle}
           `;
           break;
         }
@@ -270,10 +258,6 @@ const euiButtonDisplaysColors = (euiThemeContext: UseEuiTheme) => {
             'filled'
           );
 
-          const refreshVariantStyles =
-            isRefreshVariant &&
-            _interactionStyles(euiThemeContext, buttonColors);
-
           displaysColorsMap[display][color] = css`
             ${euiButtonFillColor(euiThemeContext, color)}
 
@@ -283,7 +267,7 @@ const euiButtonDisplaysColors = (euiThemeContext: UseEuiTheme) => {
               ? 'currentColor'
               : euiThemeContext.euiTheme.colors.fullShade};
 
-            ${refreshVariantStyles}
+            ${_interactionStyles(euiThemeContext, buttonColors)}
           `;
           break;
         }
@@ -294,26 +278,10 @@ const euiButtonDisplaysColors = (euiThemeContext: UseEuiTheme) => {
             'empty'
           );
 
-          const classicVariantStyles =
-            !isRefreshVariant &&
-            `
-              &:focus,
-              &:active {
-                background-color: ${
-                  euiButtonEmptyColor(euiThemeContext, color).backgroundColor
-                };
-              }
-            `;
-
-          const refreshVariantStyles =
-            isRefreshVariant &&
-            _interactionStyles(euiThemeContext, buttonColors, 'overlay');
-
           displaysColorsMap[display][color] = css`
             color: ${euiButtonEmptyColor(euiThemeContext, color).color};
 
-            ${classicVariantStyles}
-            ${refreshVariantStyles}
+            ${_interactionStyles(euiThemeContext, buttonColors, 'overlay')}
           `;
           break;
         }
@@ -338,39 +306,10 @@ const euiButtonDisplaysColors = (euiThemeContext: UseEuiTheme) => {
 export const useEuiButtonFocusCSS = () =>
   useEuiMemoizedStyles(euiButtonFocusCSS);
 
-const euiButtonFocusAnimation = keyframes`
-  50% {
-    transform: translateY(1px);
-  }
-`;
-const euiButtonFocusCSS = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme } = euiThemeContext;
-  const isRefreshVariant = isEuiThemeRefreshVariant(
-    euiThemeContext,
-    'buttonVariant'
-  );
+// NOTE: keeping this as placeholder for now in case we need custom button focus styles for https://github.com/elastic/eui-private/issues/267
+const euiButtonFocusCSS = (_euiThemeContext: UseEuiTheme) => {
+  const focusCSS = css``;
 
-  const focusCSS = isRefreshVariant
-    ? css``
-    : css`
-        ${euiCanAnimate} {
-          transition: transform ${euiTheme.animation.normal} ease-in-out,
-            background-color ${euiTheme.animation.normal} ease-in-out;
-
-          &:hover:not(:disabled) {
-            transform: translateY(-1px);
-          }
-
-          &:focus {
-            animation: ${euiButtonFocusAnimation} ${euiTheme.animation.normal}
-              ${euiTheme.animation.bounce};
-          }
-
-          &:active:not(:disabled) {
-            transform: translateY(1px);
-          }
-        }
-      `;
   // Remove the auto-generated label.
   // We could typically avoid a label by using a plain string `` instead of css``,
   // but we need css`` for keyframes`` to work for the focus animation
@@ -384,20 +323,15 @@ const euiButtonFocusCSS = (euiThemeContext: UseEuiTheme) => {
  */
 export const euiButtonSizeMap = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
-  const isRefreshVariant = isEuiThemeRefreshVariant(
-    euiThemeContext,
-    'buttonVariant'
-  );
-
   return {
     xs: {
-      minWidth: euiTheme.base * (isRefreshVariant ? 6 : 7),
+      minWidth: euiTheme.base * 6,
       height: euiTheme.size.l,
       radius: euiTheme.border.radius.small,
       fontScale: 'xs' as const,
     },
     s: {
-      minWidth: euiTheme.base * (isRefreshVariant ? 6 : 7),
+      minWidth: euiTheme.base * 6,
       height: euiTheme.size.xl,
       radius: euiTheme.border.radius.small,
       fontScale: 's' as const,
@@ -405,9 +339,7 @@ export const euiButtonSizeMap = (euiThemeContext: UseEuiTheme) => {
     m: {
       minWidth: euiTheme.base * 7,
       height: euiTheme.size.xxl,
-      radius: isRefreshVariant
-        ? euiTheme.border.radius.small
-        : euiTheme.border.radius.medium,
+      radius: euiTheme.border.radius.small,
       fontScale: 's' as const,
     },
   };
@@ -421,13 +353,6 @@ const _interactionStyles = (
   buttonColors: ButtonVariantColors,
   type: 'fill' | 'overlay' = 'fill'
 ) => {
-  const isRefreshVariant = isEuiThemeRefreshVariant(
-    euiThemeContext,
-    'buttonVariant'
-  );
-
-  if (!isRefreshVariant) return ``;
-
   const baseStyles = () => {
     // button hover is applied as pseudo element with a transparent background-color
     if (type === 'overlay') {

@@ -1,4 +1,4 @@
-@mixin euiFocusRing($size: 'small', $amsterdamOnlyProp: null) {
+@mixin euiFocusRing($size: 'small') {
   @if $size == 'large' {
     // It's always OK to use the focus animation. This will take precedence over times we turn it off individually like EuiButtonEmpty
     // stylelint-disable-next-line declaration-no-important

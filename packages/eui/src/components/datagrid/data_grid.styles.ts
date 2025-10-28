@@ -234,7 +234,6 @@ export const euiDataGridStyles = (euiThemeContext: UseEuiTheme) => {
         return css(this.fontSize('m'));
       },
       get l() {
-        // On the Amsterdam theme, the l fontSize is the same as m
         return css(this.fontSize('m'));
       },
     },

@@ -8,7 +8,7 @@
 
 import { css } from '@emotion/react';
 
-import { isEuiThemeRefreshVariant, UseEuiTheme } from '../../services';
+import { UseEuiTheme } from '../../services';
 import { logicalCSS } from '../../global_styling';
 import { euiMarkdownEditorVariables } from './markdown_editor.styles';
 import { euiFormControlInvalidStyles } from '../form/form.styles';
@@ -17,10 +17,7 @@ export const euiMarkdownEditorDropZoneStyles = (
   euiThemeContext: UseEuiTheme
 ) => {
   const { euiTheme } = euiThemeContext;
-  const isRefreshVariant = isEuiThemeRefreshVariant(
-    euiThemeContext,
-    'formVariant'
-  );
+
   const { minHeight } = euiMarkdownEditorVariables(euiThemeContext);
 
   return {
@@ -33,19 +30,15 @@ export const euiMarkdownEditorDropZoneStyles = (
     isDragging: css`
       .euiMarkdownEditorFooter,
       .euiMarkdownEditorTextArea {
-        background-color: ${isRefreshVariant
-          ? euiTheme.colors.backgroundBasePrimary
-          : euiTheme.colors
-              .backgroundTransparentPrimary} !important; /* stylelint-disable-line declaration-no-important */
+        background-color: ${euiTheme.colors
+          .backgroundBasePrimary} !important; /* stylelint-disable-line declaration-no-important */
       }
     `,
     isDraggingError: css`
       .euiMarkdownEditorFooter,
       .euiMarkdownEditorTextArea {
-        background-color: ${isRefreshVariant
-          ? euiTheme.colors.backgroundBaseDanger
-          : euiTheme.colors
-              .backgroundTransparentDanger} !important; /* stylelint-disable-line declaration-no-important */
+        background-color: ${euiTheme.colors
+          .backgroundBaseDanger} !important; /* stylelint-disable-line declaration-no-important */
       }
     `,
     hasError: css`
@@ -54,7 +47,7 @@ export const euiMarkdownEditorDropZoneStyles = (
         --euiFormControlStateColor: ${euiTheme.colors.danger};
         background-size: 100% 100%;
 
-        ${isRefreshVariant && euiFormControlInvalidStyles(euiThemeContext)}
+        ${euiFormControlInvalidStyles(euiThemeContext)}
       }
     `,
     euiMarkdownEditorDropZone__input: css`

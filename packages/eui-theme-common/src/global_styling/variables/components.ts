@@ -91,8 +91,6 @@ export type _EuiThemeComponentColors = {
   flyoutFooterBackground: ColorModeSwitch;
   flyoutCloseButtonInsideBackground: ColorModeSwitch;
 
-  keyPadMenuItemBackgroundDisabledSelect: ColorModeSwitch;
-
   listGroupItemBackgroundPrimaryActive: ColorModeSwitch;
   listGroupItemBackgroundSubduedActive: ColorModeSwitch;
   listGroupItemBackgroundHover: ColorModeSwitch;

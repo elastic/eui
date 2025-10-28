@@ -1,0 +1,69 @@
+# Sync Project Fields
+#
+# Syncs Created Date, Closed Date, and Started Date fields for all items in a GitHub Project.
+# Runs daily at 2 AM UTC and can be triggered manually.
+#
+# Required Repository Secret:
+#   PROJECT_TOKEN - Fine-grained Personal Access Token with:
+#     - Repository permissions: Issues (Read), Metadata (Read)
+#     - Organization permissions: Projects (Read & Write)
+#
+# Required Repository Variables:
+#   PROJECT_SYNC_ORG - Organization name (e.g., "elastic")
+#   PROJECT_SYNC_NUMBER - Project number (e.g., 1079)
+#   PROJECT_SYNC_CREATED_DATE_FIELD_ID - Created Date field ID
+#   PROJECT_SYNC_CLOSED_DATE_FIELD_ID - Closed Date field ID
+#   PROJECT_SYNC_STARTED_DATE_FIELD_ID - Started Date field ID
+#
+# Optional Repository Variables (have defaults):
+#   PROJECT_SYNC_IN_PROGRESS_STATUS - defaults to "In Progress"
+#   PROJECT_SYNC_BACKLOG_STATUS - defaults to "Backlog"
+
+name: Sync Project Fields
+
+on:
+  schedule:
+    # Run daily at 2 AM UTC
+    - cron: '0 2 * * *'
+  workflow_dispatch:  # Allow manual triggering
+
+jobs:
+  sync-fields:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Create config.json
+        run: |
+          cat > config.json << 'EOF'
+          {
+            "organization": "${{ vars.PROJECT_SYNC_ORG }}",
+            "projectNumber": ${{ vars.PROJECT_SYNC_NUMBER }},
+            "createdDateFieldId": "${{ vars.PROJECT_SYNC_CREATED_DATE_FIELD_ID }}",
+            "closedDateFieldId": "${{ vars.PROJECT_SYNC_CLOSED_DATE_FIELD_ID }}",
+            "startedDateFieldId": "${{ vars.PROJECT_SYNC_STARTED_DATE_FIELD_ID }}",
+            "inProgressStatus": "${{ vars.PROJECT_SYNC_IN_PROGRESS_STATUS || 'In Progress' }}",
+            "backlogStatus": "${{ vars.PROJECT_SYNC_BACKLOG_STATUS || 'Backlog' }}"
+          }
+          EOF
+
+      - name: Sync all project fields
+        run: node scripts/sync-project-fields.js
+        env:
+          GITHUB_TOKEN: ${{ secrets.PROJECT_TOKEN }}
+
+      - name: Upload logs on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: sync-logs
+          path: |
+            *.log
+          retention-days: 7
+

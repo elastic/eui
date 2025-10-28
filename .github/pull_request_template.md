@@ -49,7 +49,8 @@ Remove or strikethrough items that do not apply to your PR.
     - [ ] Added or updated **[jest](https://github.com/elastic/eui/blob/main/wiki/contributing-to-eui/testing/unit-testing.md) and [cypress](https://github.com/elastic/eui/blob/main/wiki/contributing-to-eui/testing/cypress-testing.md) tests**
     - [ ] Updated **[visual regression tests](https://github.com/elastic/eui/blob/main/wiki/contributing-to-eui/testing/visual-regression-testing.md)**
 - Release checklist
-    - [ ] A **[changelog](https://github.com/elastic/eui/blob/main/wiki/contributing-to-eui/documenting/changelogs.md)** entry exists and is marked appropriately.
+    - [ ] A **[changelog](https://github.com/elastic/eui/blob/main/wiki/contributing-to-eui/documenting/changelogs.md)** entry exists and is marked appropriately
     - [ ] If applicable, added the **breaking change** issue label (and filled out the breaking change checklist)
+    - [ ] If the changes unblock an issue in a different repo, smoke tested carefully (see [Testing EUI features in Kibana ahead of time](https://github.com/elastic/eui/blob/main/wiki/contributing-to-eui/testing/testing-in-kibana.md))
 - Designer checklist
   - [ ] If applicable, [file an issue](https://github.com/elastic/platform-ux-team/issues/new/choose) to update [EUI's Figma library](https://www.figma.com/community/file/964536385682658129) with any corresponding UI changes. _(This is an internal repo, if you are external to Elastic, ask a maintainer to submit this request)_
