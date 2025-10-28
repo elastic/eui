@@ -9,7 +9,10 @@
 export type { EuiProviderProps } from './provider';
 export { EuiProvider } from './provider';
 
-export type { EuiComponentDefaultsProviderProps } from './component_defaults';
+export type {
+  EuiComponentDefaults,
+  EuiComponentDefaultsProviderProps,
+} from './component_defaults';
 export {
   EuiComponentDefaultsProvider,
   EuiComponentDefaultsContext,

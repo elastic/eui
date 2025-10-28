@@ -43,6 +43,7 @@ import {
   getElementZIndex,
   EuiPopoverPosition,
 } from '../../services/popover';
+import { createRepositionOnScroll } from '../../services/popover/reposition_on_scroll';
 
 import { EuiI18n } from '../i18n';
 import { EuiOutsideClickDetector } from '../outside_click_detector';
@@ -288,7 +289,11 @@ type PropsWithDefaults = Props & {
 export class EuiPopover extends Component<Props, State> {
   static contextType = EuiComponentDefaultsContext;
   declare context: ContextType<typeof EuiComponentDefaultsContext>;
-  private lastResolvedRepositionOnScroll?: boolean;
+  private repositionOnScroll: {
+    subscribe: () => void;
+    update: () => void;
+    cleanup: () => void;
+  };
 
   static defaultProps: Partial<PropsWithDefaults> = {
     isOpen: false,
@@ -349,15 +354,14 @@ export class EuiPopover extends Component<Props, State> {
       openPosition: null, // once a stable position has been found, keep the contents on that side
       isOpenStable: false, // wait for any initial opening transitions to finish before marking as stable
     };
-  }
 
-  getRepositionOnScroll = () => {
-    return (
-      this.props.repositionOnScroll ??
-      this.context?.EuiPopover?.repositionOnScroll ??
-      false
-    );
-  };
+    this.repositionOnScroll = createRepositionOnScroll(() => ({
+      prop: this.props.repositionOnScroll,
+      context: this.context,
+      componentName: 'EuiPopover',
+      repositionFn: this.positionPopoverFixed,
+    }));
+  }
 
   closePopover = () => {
     if (this.props.isOpen) {
@@ -459,11 +463,7 @@ export class EuiPopover extends Component<Props, State> {
       });
     }
 
-    const repositionOnScroll = this.getRepositionOnScroll();
-    this.lastResolvedRepositionOnScroll = repositionOnScroll;
-    if (repositionOnScroll) {
-      window.addEventListener('scroll', this.positionPopoverFixed, true);
-    }
+    this.repositionOnScroll.subscribe();
   }
 
   componentDidUpdate(prevProps: Props) {
@@ -484,15 +484,7 @@ export class EuiPopover extends Component<Props, State> {
     }
 
     // update scroll listener
-    const repositionOnScroll = this.getRepositionOnScroll();
-    if (this.lastResolvedRepositionOnScroll !== repositionOnScroll) {
-      if (repositionOnScroll) {
-        window.addEventListener('scroll', this.positionPopoverFixed, true);
-      } else {
-        window.removeEventListener('scroll', this.positionPopoverFixed, true);
-      }
-      this.lastResolvedRepositionOnScroll = repositionOnScroll;
-    }
+    this.repositionOnScroll.update();
 
     // The popover is being closed.
     if (prevProps.isOpen && !this.props.isOpen) {
@@ -507,7 +499,7 @@ export class EuiPopover extends Component<Props, State> {
   }
 
   componentWillUnmount() {
-    window.removeEventListener('scroll', this.positionPopoverFixed, true);
+    this.repositionOnScroll.cleanup();
     clearTimeout(this.repositionTimeout);
     clearTimeout(this.strandedFocusTimeout);
     clearTimeout(this.closingTransitionTimeout);
