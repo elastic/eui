@@ -413,7 +413,7 @@ describe('EuiPopover', () => {
           <p>Content</p>
         </EuiPopover>
       );
-      expect(addEventSpy).not.toHaveBeenCalledWith('scroll', expect.anything());
+      expect(addEventSpy).not.toHaveBeenCalledWith('scroll');
 
       // Should add a scroll event listener on mount and on update
       rerender(
@@ -501,10 +501,7 @@ describe('EuiPopover', () => {
             </EuiPopover>
           </EuiProvider>
         );
-        expect(addEventSpy).not.toHaveBeenCalledWith(
-          'scroll',
-          expect.anything()
-        );
+        expect(addEventSpy).not.toHaveBeenCalledWith('scroll');
 
         // Should add a scroll event listener on mount and on update
         rerender(

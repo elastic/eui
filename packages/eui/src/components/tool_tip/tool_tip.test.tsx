@@ -122,7 +122,7 @@ describe('EuiToolTip', () => {
         <button data-test-subj="trigger">Trigger</button>
       </EuiToolTip>
     );
-    expect(addEventSpy).not.toHaveBeenCalledWith('scroll', expect.anything());
+    expect(addEventSpy).not.toHaveBeenCalledWith('scroll');
 
     // Should add a scroll event listener on mount and on update
     rerender(
@@ -283,7 +283,7 @@ describe('EuiToolTip', () => {
           </EuiToolTip>
         </EuiProvider>
       );
-      expect(addEventSpy).not.toHaveBeenCalledWith('scroll', expect.anything());
+      expect(addEventSpy).not.toHaveBeenCalledWith('scroll');
 
       // Should add a scroll event listener on mount and on update
       rerender(
