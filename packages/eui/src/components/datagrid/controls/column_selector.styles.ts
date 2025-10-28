@@ -7,6 +7,7 @@
  */
 
 import { css } from '@emotion/react';
+import { euiShadowLarge } from '@elastic/eui-theme-common';
 
 import { UseEuiTheme } from '../../../services';
 import {
@@ -14,7 +15,6 @@ import {
   logicalCSS,
   mathWithUnits,
 } from '../../../global_styling';
-import { euiShadowLarge } from '../../../themes';
 
 export const euiDataGridColumnSelectorStyles = (
   euiThemeContext: UseEuiTheme

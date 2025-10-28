@@ -1,7 +1,7 @@
 {
   "name": "@elastic/eui",
   "description": "Elastic UI Component Library",
-  "version": "107.0.0",
+  "version": "108.0.0",
   "license": "SEE LICENSE IN LICENSE.txt",
   "main": "lib",
   "module": "es",
@@ -19,8 +19,7 @@
     "build:workspaces": "yarn workspaces foreach -Rti --from @elastic/eui-theme-common run build && yarn workspaces foreach -Rti --from @elastic/eui --exclude @elastic/eui --exclude @elastic/eui-theme-common run build",
     "build:clean": "rimraf dist lib es optimize test-env eui.d.ts",
     "build:i18ntokens": "node ./scripts/build_i18ntokens.mjs",
-    "build:copy-assets": "node ./scripts/build_copy_assets.js",
-    "build": "yarn build:clean && yarn build:i18ntokens && node ./scripts/compile-eui.js && yarn build:copy-assets",
+    "build": "yarn build:clean && yarn build:i18ntokens && node ./scripts/compile-eui.js",
     "build-pack": "yarn build && yarn pack",
     "compile-icons": "node ./scripts/compile-icons.js && prettier --write --loglevel=warn \"./src/components/icon/assets/**/*.tsx\"",
     "lint": "yarn tsc --noEmit && yarn lint-es && yarn lint-css-in-js && yarn lint-sass",
@@ -258,7 +257,7 @@
   },
   "peerDependencies": {
     "@elastic/datemath": "^5.0.2",
-    "@elastic/eui-theme-borealis": "3.6.0",
+    "@elastic/eui-theme-borealis": "4.0.0",
     "@emotion/css": "11.x",
     "@emotion/react": "11.x",
     "@types/react": "^17.0 || ^18.0",

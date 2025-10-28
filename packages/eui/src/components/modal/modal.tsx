@@ -6,7 +6,13 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, ReactNode, HTMLAttributes } from 'react';
+import React, {
+  FunctionComponent,
+  ReactNode,
+  HTMLAttributes,
+  useRef,
+  useCallback,
+} from 'react';
 import classnames from 'classnames';
 
 import { keys, useEuiTheme, useGeneratedHtmlId } from '../../services';
@@ -31,6 +37,8 @@ export interface EuiModalProps extends HTMLAttributes<HTMLDivElement> {
     event?:
       | React.KeyboardEvent<HTMLDivElement>
       | React.MouseEvent<HTMLButtonElement>
+      | MouseEvent
+      | TouchEvent
   ) => void;
   /**
    * Sets the max-width of the modal.
@@ -55,6 +63,11 @@ export interface EuiModalProps extends HTMLAttributes<HTMLDivElement> {
    * `returnFocus` defines the return focus behavior and provides the possibility to check the available target element or opt out of the behavior in favor of manually returning focus
    */
   focusTrapProps?: Pick<EuiFocusTrapProps, 'returnFocus'>;
+  /**
+   * Whether clicking outside the modal should close it.
+   * @default false
+   */
+  outsideClickCloses?: boolean;
 }
 
 export const EuiModal: FunctionComponent<EuiModalProps> = ({
@@ -66,6 +79,7 @@ export const EuiModal: FunctionComponent<EuiModalProps> = ({
   role = 'dialog',
   style,
   focusTrapProps,
+  outsideClickCloses = false,
   'aria-describedby': _ariaDescribedBy,
   ...rest
 }) => {
@@ -81,6 +95,18 @@ export const EuiModal: FunctionComponent<EuiModalProps> = ({
       }
     }
   };
+
+  const maskRef = useRef<HTMLDivElement>(null);
+  const onClickOutside = useCallback(
+    (event: MouseEvent | TouchEvent) => {
+      // The overlay mask is always present
+      if (outsideClickCloses === true && event.target === maskRef.current) {
+        onClose(event);
+      }
+      return undefined;
+    },
+    [onClose, outsideClickCloses]
+  );
 
   let newStyle = style;
 
@@ -113,12 +139,13 @@ export const EuiModal: FunctionComponent<EuiModalProps> = ({
   );
 
   return (
-    <EuiOverlayMask>
+    <EuiOverlayMask maskRef={maskRef}>
       <EuiFocusTrap
         {...focusTrapProps}
         initialFocus={initialFocus}
         scrollLock
         preventScrollOnFocus
+        onClickOutside={onClickOutside}
       >
         <div
           css={cssStyles}

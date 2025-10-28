@@ -26,11 +26,6 @@ Use `aria-labelledby={modalTitleId}` to ensure the modal is announced to screen 
 
 Modals use an **EuiOverlayMask** to obscure content beneath.
 
-:::warning Modals **can't** be dismissed by clicking outside
-
-Unlike flyouts, modals can't be dismissed by clicking on the mask. This follows our [modal usage guidelines](#guidelines), which require a primary action button, even if it just closes the modal.
-:::
-
 ```tsx interactive
 import React, { useState } from 'react';
 import {

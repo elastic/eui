@@ -1,3 +1,33 @@
+## [`v108.0.0`](https://github.com/elastic/eui/releases/v108.0.0)
+
+- Updated `EuiModal` to support closing on outside click, via the new `outsideClickCloses` prop ([#9137](https://github.com/elastic/eui/pull/9137))
+
+**Breaking changes**
+
+- Removed all "Amsterdam" theme related code in `src/themes/amsterdam` - EUI now only supports the "Borealis" theme in `eui-theme-borealis` ([#9090](https://github.com/elastic/eui/pull/9090))
+- Removed `euiTheme.flags.hasGlobalFocusColor` ([#9090](https://github.com/elastic/eui/pull/9090))
+- Removed `euiTheme.flags.hasVisColorAdjustment` ([#9090](https://github.com/elastic/eui/pull/9090))
+- Removed `hasVisColorAdjustment` argument from color palettes (used in `euiPaletteColorBlindBehindText`, `euiPaletteForTemperature`, `euiPaletteComplementary`, `euiPaletteCool`) ([#9090](https://github.com/elastic/eui/pull/9090))
+- Removed `euiTheme.flags.buttonVariant` and `euiTheme.flags.formVariant` ([#9090](https://github.com/elastic/eui/pull/9090))
+- Removed `euiTheme.components.keyPadMenuItemBackgroundDisabledSelect` ([#9090](https://github.com/elastic/eui/pull/9090))
+- Removed legacy SCSS files from `src/global_styling/variables`, `src/global_styling/mixins` and `src/global_styling/functions` - if needed, use them from `eui-theme-common` instead ([#9090](https://github.com/elastic/eui/pull/9090))
+
+## [`v107.0.1`](https://github.com/elastic/eui/releases/v107.0.1)
+
+**Bug fixes**
+
+- Fixed `prismjs` theme in `EuiCodeBlock` to improve highlighting for the `yaml` language ([#9089](https://github.com/elastic/eui/pull/9089))
+- Fixed a visual bug on `EuiTable` where the border for rows in dark mode wasn't applied correctly ([#9115](https://github.com/elastic/eui/pull/9115))
+
+**Dependency updates**
+
+- Updated `@elastic/prismjs-esql` to v1.1.2 ([#9102](https://github.com/elastic/eui/pull/9102))
+
+**Accessibility**
+
+- Fixed incorrect role attribute on `EuiIcon` and `EuiBetaBadge` ([#9100](https://github.com/elastic/eui/pull/9100))
+- Make `EuiBasicTable` respect user's reduced motion setting by not animating when in loading state. ([#9095](https://github.com/elastic/eui/pull/9095))
+
 ## [`v107.0.0`](https://github.com/elastic/eui/releases/v107.0.0)
 
 - Added new shadow tokens ([#9088](https://github.com/elastic/eui/pull/9088))

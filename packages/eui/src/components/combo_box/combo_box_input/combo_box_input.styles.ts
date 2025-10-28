@@ -8,7 +8,7 @@
 
 import { css } from '@emotion/react';
 
-import { isEuiThemeRefreshVariant, UseEuiTheme } from '../../../services';
+import { UseEuiTheme } from '../../../services';
 import { logicalCSS } from '../../../global_styling';
 import {
   euiFormControlStyles,
@@ -18,10 +18,7 @@ import {
 
 export const euiComboBoxInputStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
-  const isRefreshVariant = isEuiThemeRefreshVariant(
-    euiThemeContext,
-    'formVariant'
-  );
+
   const formStyles = euiFormControlStyles(euiThemeContext);
 
   return {
@@ -30,12 +27,9 @@ export const euiComboBoxInputStyles = (euiThemeContext: UseEuiTheme) => {
       ${euiFormControlDefaultShadow(euiThemeContext)}
       display: flex;
 
-      ${isRefreshVariant &&
-      `
-        &:focus-within {
-          ${formStyles.focus}
-        }
-      `}
+      &:focus-within {
+        ${formStyles.focus}
+      }
     `,
     multiSelect: css`
       flex-wrap: wrap;
@@ -44,10 +38,7 @@ export const euiComboBoxInputStyles = (euiThemeContext: UseEuiTheme) => {
       ${formStyles.uncompressed}
       ${logicalCSS('height', 'auto')}
       ${logicalCSS('padding-vertical', euiTheme.size.s)}
-      ${logicalCSS(
-        'padding-left',
-        isRefreshVariant ? euiTheme.size.m : euiTheme.size.s
-      )}
+      ${logicalCSS('padding-left', euiTheme.size.m)}
       column-gap: ${euiTheme.size.s};
       row-gap: ${euiTheme.size.xs};
     `,

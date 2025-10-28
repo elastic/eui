@@ -14,12 +14,7 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 
-import {
-  getSecureRelForTarget,
-  isEuiThemeRefreshVariant,
-  useEuiMemoizedStyles,
-  useEuiTheme,
-} from '../../../services';
+import { getSecureRelForTarget, useEuiMemoizedStyles } from '../../../services';
 import {
   CommonProps,
   ExclusiveUnion,
@@ -37,7 +32,7 @@ import {
   _EuiExtendedButtonColor,
 } from '../../../global_styling/mixins/_button';
 import { isButtonDisabled } from '../button_display/_button_display';
-import { euiButtonIconStyles, _emptyHoverStyles } from './button_icon.styles';
+import { euiButtonIconStyles } from './button_icon.styles';
 
 export const SIZES = ['xs', 's', 'm'] as const;
 export type EuiButtonIconSizes = (typeof SIZES)[number];
@@ -130,12 +125,6 @@ export const EuiButtonIcon: FunctionComponent<Props> = ({
   isLoading,
   ...rest
 }) => {
-  const euiThemeContext = useEuiTheme();
-  const isRefreshVariant = isEuiThemeRefreshVariant(
-    euiThemeContext,
-    'buttonVariant'
-  );
-
   const isDisabled = isButtonDisabled({
     isDisabled: _isDisabled || disabled,
     href,
@@ -154,7 +143,6 @@ export const EuiButtonIcon: FunctionComponent<Props> = ({
 
   const buttonColorStyles = useEuiButtonColorCSS({ display });
   const buttonFocusStyle = useEuiButtonFocusCSS();
-  const emptyHoverStyles = useEuiMemoizedStyles(_emptyHoverStyles);
 
   const styles = useEuiMemoizedStyles(euiButtonIconStyles);
   const cssStyles = [
@@ -162,10 +150,6 @@ export const EuiButtonIcon: FunctionComponent<Props> = ({
     styles[size],
     buttonColorStyles[isDisabled ? 'disabled' : color],
     buttonFocusStyle,
-    !isRefreshVariant &&
-      display === 'empty' &&
-      !isDisabled &&
-      emptyHoverStyles[color],
     isDisabled && styles.isDisabled,
   ];
 
