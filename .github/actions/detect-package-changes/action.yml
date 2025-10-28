@@ -2,8 +2,11 @@ name: Detect package changes
 description: 'Detects which public packages have changed based on git diff'
 outputs:
   changed-packages:
-    description: 'A JSON array of changed public package names'
+    description: 'A JSON array of public package names with changes'
     value: ${{ steps.changes.outputs.changed-packages }}
+  has-changes:
+    description: 'A boolean indicating if any public packages have changed'
+    value: ${{ steps.changes.outputs.has-changes }}
 runs:
   using: 'composite'
   steps:
