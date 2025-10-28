@@ -59,18 +59,17 @@ export const TimeWindowToolbar: React.FC<TimeWindowToolbarProps> = ({
   const buttonSize = compressed ? 'compressed' : 'm';
   const styles = useEuiMemoizedStyles(euiButtonGroupButtonsStyles);
 
-  // TODO rename handlers?
   const {
-    prettyInterval,
+    displayInterval,
     stepForward,
     stepBackward,
-    zoomOut: zoom,
+    expandWindow,
   } = useTimeWindow(start, end, applyTime);
 
   // Previous
   const previousId = useGeneratedHtmlId({ prefix: 'previous' });
   const previousLabel = 'Previous'; // TODO translate
-  const previousTooltipContent = `Previous ${prettyInterval}`; // TODO translate
+  const previousTooltipContent = `Previous ${displayInterval}`; // TODO translate
 
   // Zoom out
   const zoomOutId = useGeneratedHtmlId({ prefix: 'zoom_out' });
@@ -79,7 +78,7 @@ export const TimeWindowToolbar: React.FC<TimeWindowToolbarProps> = ({
   // Next
   const nextId = useGeneratedHtmlId({ prefix: 'next' });
   const nextLabel = 'Next'; // TODO translate
-  const nextTooltipContent = `Next ${prettyInterval}`; // TODO translate
+  const nextTooltipContent = `Next ${displayInterval}`; // TODO translate
 
   if (!zoomOut && !navigationArrows) return null;
 
@@ -106,7 +105,7 @@ export const TimeWindowToolbar: React.FC<TimeWindowToolbarProps> = ({
       {zoomOut && (
         <EuiButtonGroupButton
           color={buttonColor}
-          onClick={zoom}
+          onClick={expandWindow}
           id={zoomOutId}
           label={zoomOutLabel}
           toolTipContent={!isDisabled && zoomOutLabel}
@@ -136,10 +135,7 @@ export const TimeWindowToolbar: React.FC<TimeWindowToolbarProps> = ({
 };
 
 /**
- *
  * Partly adapted from date_picker/super_date_picker/quick_select_popover/quick_select.tsx
- *
- * @todo check variable names, most of them are terrible
  */
 export function useTimeWindow(
   start: ShortDate,
@@ -149,44 +145,43 @@ export function useTimeWindow(
 ) {
   const min = dateMath.parse(start) as Moment;
   const max = dateMath.parse(end, { roundUp: true }) as Moment;
-  const diff = max.diff(min);
+  const windowDuration = max.diff(min);
   const zoomFactor = options?.zoomFactor ?? ZOOM_FACTOR;
-  // terrible name, I meant what's added on the edges
-  // e.g. 25% substracted to the start, 25% added to the end
-  const edgeDiff = diff * (zoomFactor / 2);
+  // Gets added to each end, that's why it's split in half
+  const zoomAddition = windowDuration * (zoomFactor / 2);
 
-  let prettyInterval = usePrettyInterval(false, diff, {
+  let displayInterval = usePrettyInterval(false, windowDuration, {
     shortHand: true,
   });
-  if (!isExactMinuteRange(diff)) {
-    prettyInterval = `~${prettyInterval}`;
+  if (!isExactMinuteRange(windowDuration)) {
+    displayInterval = `~${displayInterval}`;
   }
 
   return {
-    prettyInterval,
+    displayInterval,
     stepForward,
     stepBackward,
-    zoomOut,
+    expandWindow,
   };
 
   function stepForward() {
     apply({
       start: moment(max).toISOString(),
-      end: moment(max).add(diff, 'ms').toISOString(),
+      end: moment(max).add(windowDuration, 'ms').toISOString(),
     });
   }
 
   function stepBackward() {
     apply({
-      start: moment(min).subtract(diff, 'ms').toISOString(),
+      start: moment(min).subtract(windowDuration, 'ms').toISOString(),
       end: moment(min).toISOString(),
     });
   }
 
-  function zoomOut() {
+  function expandWindow() {
     apply({
-      start: moment(min).subtract(edgeDiff, 'ms').toISOString(),
-      end: moment(max).add(edgeDiff, 'ms').toISOString(),
+      start: moment(min).subtract(zoomAddition, 'ms').toISOString(),
+      end: moment(max).add(zoomAddition, 'ms').toISOString(),
     });
   }
 }
