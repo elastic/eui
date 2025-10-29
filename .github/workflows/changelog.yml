@@ -20,7 +20,7 @@ jobs:
 
   # Enforces the update of a changelog file on every pull request for all public packages
   # unless the PR contains the `skip-changelog` label
-  changelog:
+  changelog-checks:
     needs: detect-changes
     runs-on: ubuntu-latest
     strategy:
@@ -38,7 +38,7 @@ jobs:
   # This job will always run and succeed, ensuring the overall check completes.
   changelog-summary:
     name: "Changelog"
-    needs: changelog
+    needs: changelog-checks
     runs-on: ubuntu-latest
     if: always()
     steps:
