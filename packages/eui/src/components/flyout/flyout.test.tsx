@@ -438,7 +438,7 @@ describe('EuiFlyout', () => {
   });
 
   describe('flyout routing logic', () => {
-    it('routes to child flyout when session is undefined and there is an active session', () => {
+    it('routes to child flyout when session is "inherit" and there is an active session', () => {
       // First render with just the main flyout to establish a session
       const { rerender, getByTestSubject } = render(
         <EuiFlyoutManager>
@@ -463,7 +463,7 @@ describe('EuiFlyout', () => {
           <EuiFlyout
             onClose={() => {}}
             data-test-subj="child-flyout"
-            // session is undefined (not explicitly set)
+            session="inherit"
           />
         </EuiFlyoutManager>
       );
@@ -514,7 +514,27 @@ describe('EuiFlyout', () => {
       expect(flyout).not.toHaveAttribute('data-managed-flyout-level');
     });
 
-    it('routes to child flyout when in managed context and there is an active session', () => {
+    it('routes to standard flyout when session undefined and there is an active session', () => {
+      const { getByTestSubject } = render(
+        <EuiFlyoutManager>
+          {/* Create an active session */}
+          <EuiFlyout
+            onClose={() => {}}
+            session="start"
+            flyoutMenuProps={{ title: 'Main Flyout' }}
+            data-test-subj="main-flyout"
+          />
+          {/* This flyout opted out of session management by default */}
+          <EuiFlyout onClose={() => {}} data-test-subj="standard-flyout" />
+        </EuiFlyoutManager>
+      );
+
+      // Should render as standard flyout (EuiFlyoutComponent)
+      const flyout = getByTestSubject('standard-flyout');
+      expect(flyout).not.toHaveAttribute('data-managed-flyout-level');
+    });
+
+    it('routes to child flyout when session is "inherit" in a managed context and there is an active session', () => {
       // First render with just the main flyout to establish a session
       const { rerender, getByTestSubject } = render(
         <EuiFlyoutManager>
@@ -539,7 +559,7 @@ describe('EuiFlyout', () => {
           <EuiFlyout
             onClose={() => {}}
             data-test-subj="child-flyout"
-            session={undefined} // Not explicitly set, should inherit
+            session="inherit"
           />
         </EuiFlyoutManager>
       );
@@ -559,6 +579,36 @@ describe('EuiFlyout', () => {
       );
 
       // Should render as standard flyout (EuiFlyoutComponent) - no manager context
+      const flyout = getByTestSubject('flyout');
+      expect(flyout).not.toHaveAttribute('data-managed-flyout-level');
+    });
+
+    it('routes to standard flyout when session="inherit" but there is no active session', () => {
+      const { getByTestSubject } = render(
+        <EuiFlyout
+          onClose={() => {}}
+          data-test-subj="flyout"
+          session="inherit" // Explicitly set to inherit, but no session to inherit from
+        />
+      );
+
+      // Should gracefully degrade to standard flyout (EuiFlyoutComponent) when no session exists
+      const flyout = getByTestSubject('flyout');
+      expect(flyout).not.toHaveAttribute('data-managed-flyout-level');
+    });
+
+    it('routes to standard flyout when session="inherit" within Manager but no active session', () => {
+      const { getByTestSubject } = render(
+        <EuiFlyoutManager>
+          <EuiFlyout
+            onClose={() => {}}
+            data-test-subj="flyout"
+            session="inherit" // Manager context exists but no main flyout has been created
+          />
+        </EuiFlyoutManager>
+      );
+
+      // Should gracefully degrade to standard flyout when Manager exists but no session is active
       const flyout = getByTestSubject('flyout');
       expect(flyout).not.toHaveAttribute('data-managed-flyout-level');
     });
