@@ -170,6 +170,23 @@ Actions follow these UI/UX rules:
 - Actions become semi-transparent when you hover over the row. With more than 2 actions, only the ellipsis button stays visible at all times.
 - When one or more rows are selected, all individual actions are disabled. Users should use bulk actions outside the table instead.
 
+:::accessibility Accessibility recommendation
+
+Always try to be intentional about the `action.description`. Setting it to something descriptive and different from the `action.name` will result in a better user experience.
+
+```jsx
+const action = {
+  name: 'User profile',
+  description:
+    ({ firstName, lastName }) => `Visit ${firstName} ${lastName}'s profile`,
+  // ...
+};
+```
+
+If a meaningful description for an action is not possible, setting the exact same value for `action.name` and `action.description` as a `string` will ensure the button's tooltip is visual-only and the text is not announced to screen-readers twice.
+
+:::
+
 ```tsx interactive
 import React, { useState, useMemo } from 'react';
 import {
