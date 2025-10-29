@@ -39,14 +39,10 @@ export default () => {
         <EuiFlyout
           session="start"
           size="s"
-          aria-label="Flyout A - main"
-          flyoutMenuProps={{
-            title: 'Welcome to the flyout session management journey!',
-          }}
           onClose={() => setIsOpenFlyoutA(false)}
         >
           <EuiFlyoutBody>
-            <EuiText>This flyout is rendered with the <EuiCode>{'session="start"'}</EuiCode> prop set which creates a new flyout session and marks this flyout as main.</EuiText>
+            <EuiText>This is <strong>Flyout A</strong>. This flyout is rendered with the <EuiCode>{'session="start"'}</EuiCode> prop set which created a new flyout session and marks this flyout as main.</EuiText>
             <EuiSpacer />
             <EuiFormRow label="What's your name?" fullWidth>
               <EuiFieldText value={name} onChange={(e) => setName(e.target.value)} />
@@ -68,9 +64,9 @@ export default () => {
         >
           <EuiFlyoutBody>
             <EuiText>
-              This flyout is also rendered with the <EuiCode>{'session="start"'}</EuiCode> prop added which creates a <strong>second flyout session</strong> and marks this flyout as main in that session.
+              This is <strong>Flyout B</strong>. This flyout is also rendered with the <EuiCode>{'session="start"'}</EuiCode> prop added which creates a <strong>second flyout session</strong> and marks this flyout as main in that session.
               <br /><br />
-              The first flyout still exists but is currently hidden since this one took precedence. You can jump back to it by clicking the <i>Back</i> button above if you'd like.
+              <strong>Flyout A</strong> exists but is currently hidden since this one took precedence. You can jump back to it by clicking the <i>Back</i> button above if you'd like.
             </EuiText>
             <EuiSpacer />
             <EuiButton onClick={() => setIsOpenFlyoutBChild((val) => !val)}>
@@ -78,7 +74,12 @@ export default () => {
             </EuiButton>
           </EuiFlyoutBody>
           {isOpenFlyoutBChild && (
-            <EuiFlyout size="s" aria-label="Flyout B - child" onClose={() => setIsOpenFlyoutBChild(false)}>
+            <EuiFlyout
+              session="inherit"
+              size="s"
+              aria-label="Flyout B - child"
+              onClose={() => setIsOpenFlyoutBChild(false)}
+            >
               <EuiFlyoutBody>
                 <EuiText>
                   This is a <strong>child flyout</strong> of Flyout B. It belongs to the same session as Flyout B because it's rendered inside of it and doesn't have the <EuiCode>session</EuiCode> prop set.
@@ -187,7 +188,7 @@ of an alert.
 ### Child flyouts
 
 Child flyouts are directly related to a main flyout in their session. They're
-created by rendering a `EuiFlyout` with the `session="inherit" prop set while
+created by rendering a `EuiFlyout` with the `session="inherit"` prop set while
 there is an active [main flyout](#main-flyouts) - a flyout with
 `session="start"` prop set.
 
