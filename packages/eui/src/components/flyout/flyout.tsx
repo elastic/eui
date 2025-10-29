@@ -38,8 +38,8 @@ export type EuiFlyoutProps<T extends ElementType = 'div' | 'nav'> = Omit<
   /**
    * Controls the way the session is managed for this flyout.
    * - `start`: Creates a new flyout session. Use this for the main flyout.
-   * - `inherit`: (default) Inherits an existing session if one is active, otherwise functions as a standard flyout.
-   * - `never`: Opts out of session management and always functions as a standard flyout.
+   * - `inherit`: Inherits an existing session if one is active, otherwise functions as a standard flyout.
+   * - `never`: (default) Disregards session management and always functions as a standard flyout.
    *
    * Check out [EuiFlyout session management](https://eui.elastic.co/docs/components/containers/flyout/session-management)
    * documentation to learn more.
@@ -67,7 +67,7 @@ export const EuiFlyout = forwardRef<
     as,
     onClose,
     onActive,
-    session = SESSION_INHERIT,
+    session = SESSION_NEVER,
     ...rest
   } = usePropsWithComponentDefaults('EuiFlyout', props);
   const hasActiveSession = useRef(useHasActiveSession());
