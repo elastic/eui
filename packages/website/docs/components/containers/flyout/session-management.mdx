@@ -113,8 +113,7 @@ about compatibility issues.
 Each time you set `session="start"`, you create a new flyout session and mark
 the rendered flyout as [main](#main-flyouts).
 To create a [child flyout](#child-flyouts) - a flyout that belongs to the same
-session as the main flyout - you can set `session="inherit"` or omit the `session` prop entirely,
-as "inherit" is the default behavior.
+session as the main flyout - set `session="inherit"`.
 All bindings and configuration will be handled automatically.
 
 ### Session title
@@ -134,8 +133,8 @@ field of the `flyoutMenuProps` to set the title of the flyout.
   <EuiFlyoutBody>
     I'm the main flyout
   </EuiFlyoutBody>
-  {/* Render a new child flyout - notice the lack of the `session` prop */}
   <EuiFlyout
+    session="inherit"
     flyoutMenuProps={{
       title: 'My child flyout'
     }}
@@ -145,8 +144,9 @@ field of the `flyoutMenuProps` to set the title of the flyout.
 </EuiFlyout>
 ```
 
-To prevent a flyout from being a part of the session management system, you
-can set `session="never"` which will render it as a regular unmanaged flyout.
+To prevent a flyout from being a part of the session management system, you can
+set `session="never"`, or you can omit the `session` prop as `never` is the
+default. This will will render it as a regular unmanaged flyout.
 
 ```tsx
 <>
@@ -186,9 +186,10 @@ of an alert.
 
 ### Child flyouts
 
-Child flyouts are directly related to a main flyout in their session.
-They're created by rendering a `EuiFlyout` **without the session prop** inside
-a [main flyout](#main-flyouts) - a flyout with `session="start"` prop set.
+Child flyouts are directly related to a main flyout in their session. They're
+created by rendering a `EuiFlyout` with the `session="inherit" prop set while
+there is an active [main flyout](#main-flyouts) - a flyout with
+`session="start"` prop set.
 
 They're meant to display secondary level information like the alert visualization.
 
