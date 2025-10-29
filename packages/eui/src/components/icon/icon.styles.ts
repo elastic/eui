@@ -28,8 +28,7 @@ export const euiIconStyles = ({ euiTheme }: UseEuiTheme) => ({
     flex-shrink: 0; /* Ensures it never scales down below its intended size */
     display: inline-block;
     vertical-align: middle;
-    /* stylelint-disable color-named */
-    fill: lime;
+    fill: currentColor;
     transform: translate(0, 0); /* Hack to fix Firefox "softness" */
 
     /* Note: This className is hard-coded into our SVGs and cannot be converted to Emotion */
