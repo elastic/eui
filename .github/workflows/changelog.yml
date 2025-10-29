@@ -22,7 +22,6 @@ jobs:
   # unless the PR contains the `skip-changelog` label
   changelog:
     needs: detect-changes
-    if: ${{ !contains(github.event.pull_request.labels.*.name, 'skip-changelog') && fromJson(needs.detect-changes.outputs.changed-packages)[0] != null }}
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -30,7 +29,18 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Check changelog for ${{ matrix.package }}
+        if: ${{ !contains(github.event.pull_request.labels.*.name, 'skip-changelog') }}
         uses: ./.github/actions/check-changelog
         with:
           pr-number: ${{ github.event.pull_request.number }}
           package-path: packages/${{ matrix.package }}
+
+  # This job will always run and succeed, ensuring the overall check completes.
+  changelog-summary:
+    name: "Changelog"
+    needs: changelog
+    runs-on: ubuntu-latest
+    if: always()
+    steps:
+      - name: Report overall changelog status
+        run: echo "Changelog check finished."
