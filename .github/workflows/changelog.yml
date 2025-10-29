@@ -10,7 +10,6 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       changed-packages: ${{ steps.changes.outputs.changed-packages }}
-      has-changes: ${{ steps.changes.outputs.has-changes }}
     steps:
       - uses: actions/checkout@v2
         with:
@@ -23,7 +22,7 @@ jobs:
   # unless the PR contains the `skip-changelog` label
   changelog:
     needs: detect-changes
-    if: ${{ !contains(github.event.pull_request.labels.*.name, 'skip-changelog') && needs.detect-changes.outputs.has-changes == 'true' }}
+    if: ${{ !contains(github.event.pull_request.labels.*.name, 'skip-changelog') && fromJson(needs.detect-changes.outputs.changed-packages)[0] != null }}
     runs-on: ubuntu-latest
     strategy:
       matrix:

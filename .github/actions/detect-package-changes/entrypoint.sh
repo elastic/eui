@@ -21,8 +21,6 @@ done
 if [ ${#public_packages[@]} -gt 0 ]; then
   changed_list=$(IFS=,; echo "[${public_packages[*]}]")
   echo "changed-packages=$changed_list" >> $GITHUB_OUTPUT
-  echo "has-changes=true" >> $GITHUB_OUTPUT
 else
   echo "changed-packages=[]" >> $GITHUB_OUTPUT
-  echo "has-changes=false" >> $GITHUB_OUTPUT
 fi
