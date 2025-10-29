@@ -114,8 +114,6 @@ export const EuiFlyout = forwardRef<
     }
   }
 
-  // TODO: if resizeable={true}, render EuiResizableFlyout.
-
   isUnmanagedFlyout.current = true;
   return (
     <EuiFlyoutMenuContext.Provider value={{ onClose }}>
