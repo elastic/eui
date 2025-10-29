@@ -26,7 +26,6 @@ jobs:
     if: ${{ !contains(github.event.pull_request.labels.*.name, 'skip-changelog') && needs.detect-changes.outputs.has-changes == 'true' }}
     runs-on: ubuntu-latest
     strategy:
-      fail-fast: true
       matrix:
         package: ${{ fromJson(needs.detect-changes.outputs.changed-packages) }}
     steps:
