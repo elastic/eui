@@ -288,9 +288,10 @@ export class EuiPopover extends Component<Props, State> {
     isOpen: false,
     ownFocus: true,
     repositionToCrossAxis: true,
-    anchorPosition: 'downCenter',
+    anchorPosition: 'downLeft',
     panelPaddingSize: 'm',
-    hasArrow: true,
+    hasArrow: false,
+    offset: 3,
     display: 'inline-block',
   };
 
@@ -519,6 +520,12 @@ export class EuiPopover extends Component<Props, State> {
       forcePosition = true;
     }
 
+    const visualOffset = this.props.attachToAnchor
+      ? offset
+      : this.props.hasArrow
+      ? 16 + offset - 8 // JavaScript offset minus CSS transform
+      : offset; // No penalty for hasArrow: false - let the algorithm choose naturally
+
     const {
       top,
       left,
@@ -531,11 +538,7 @@ export class EuiPopover extends Component<Props, State> {
       align: getPopoverAlignFromAnchorPosition(anchorPosition),
       anchor: this.button,
       popover: this.panel,
-      offset: this.props.attachToAnchor
-        ? offset
-        : this.props.hasArrow
-        ? 16 + offset
-        : 8 + offset,
+      offset: visualOffset,
       arrowConfig: this.props.hasArrow
         ? { arrowWidth: 16, arrowBuffer: 10 }
         : { arrowWidth: 0, arrowBuffer: 0 },
@@ -723,6 +726,14 @@ export class EuiPopover extends Component<Props, State> {
               isOpen={this.state.isOpening}
               position={this.state.arrowPosition}
               isAttached={attachToAnchor}
+              offset={
+                this.props.attachToAnchor
+                  ? offset
+                  : this.props.hasArrow
+                  ? 16 + (offset || 0)
+                  : offset || 0
+              }
+              hasArrow={this.props.hasArrow}
               className={classNames(panelClassName, panelProps?.className)}
               hasShadow={false}
               paddingSize={panelPaddingSize}
