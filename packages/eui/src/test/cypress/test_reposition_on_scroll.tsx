@@ -26,7 +26,7 @@ interface RepositionTestConfig {
   }) => React.ReactElement;
 }
 
-export const performRepositionTest = ({
+export const testRepositionOnScroll = ({
   shouldReposition,
   propValue,
   componentDefaultValue,

@@ -20,7 +20,7 @@ import React, {
 
 import { EuiButton, EuiConfirmModal } from '../../components';
 import { EuiPopover, EuiPopoverProps } from './popover';
-import { performRepositionTest } from '../../test/cypress/perform_reposition_test';
+import { testRepositionOnScroll } from '../../test/cypress/test_reposition_on_scroll';
 
 const PopoverToggle: FC<{ onClick: MouseEventHandler<HTMLButtonElement> }> = ({
   onClick,
@@ -230,7 +230,7 @@ describe('EuiPopover', () => {
 
     describe('is repositioned', () => {
       it('when `repositionOnScroll=true`', () => {
-        performRepositionTest({
+        testRepositionOnScroll({
           ...config,
           shouldReposition: true,
           propValue: true,
@@ -238,7 +238,7 @@ describe('EuiPopover', () => {
       });
 
       it('when `componentDefaults` has `repositionOnScroll=true`', () => {
-        performRepositionTest({
+        testRepositionOnScroll({
           ...config,
           shouldReposition: true,
           componentDefaultValue: true,
@@ -246,7 +246,7 @@ describe('EuiPopover', () => {
       });
 
       it('when `repositionOnScroll=true` even if `componentDefaults` has `repositionOnScroll=false`', () => {
-        performRepositionTest({
+        testRepositionOnScroll({
           ...config,
           shouldReposition: true,
           propValue: true,
@@ -257,11 +257,11 @@ describe('EuiPopover', () => {
 
     describe('is not repositioned', () => {
       it('when `repositionOnScroll=false` (default value)', () => {
-        performRepositionTest({ ...config, shouldReposition: false });
+        testRepositionOnScroll({ ...config, shouldReposition: false });
       });
 
       it('when `componentDefaults` has `repositionOnScroll=false`', () => {
-        performRepositionTest({
+        testRepositionOnScroll({
           ...config,
           shouldReposition: false,
           componentDefaultValue: false,
@@ -269,7 +269,7 @@ describe('EuiPopover', () => {
       });
 
       it('when `repositionOnScroll=false` even if `componentDefaults` has `repositionOnScroll=true`', () => {
-        performRepositionTest({
+        testRepositionOnScroll({
           ...config,
           shouldReposition: false,
           propValue: false,

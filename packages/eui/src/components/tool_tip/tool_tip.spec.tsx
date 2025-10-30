@@ -17,7 +17,7 @@ import { EuiFlyout } from '../flyout';
 import { EuiModal } from '../modal';
 import { EuiPopover } from '../popover';
 import { EuiToolTip } from './tool_tip';
-import { performRepositionTest } from '../../test/cypress/perform_reposition_test';
+import { testRepositionOnScroll } from '../../test/cypress/test_reposition_on_scroll';
 
 describe('EuiToolTip', () => {
   it('shows the tooltip on hover and hides it on mouseout', () => {
@@ -234,7 +234,7 @@ describe('EuiToolTip', () => {
 
     describe('is repositioned', () => {
       it('when `repositionOnScroll=true`', () => {
-        performRepositionTest({
+        testRepositionOnScroll({
           ...config,
           shouldReposition: true,
           propValue: true,
@@ -242,7 +242,7 @@ describe('EuiToolTip', () => {
       });
 
       it('when `componentDefaults` has `repositionOnScroll=true`', () => {
-        performRepositionTest({
+        testRepositionOnScroll({
           ...config,
           shouldReposition: true,
           componentDefaultValue: true,
@@ -250,7 +250,7 @@ describe('EuiToolTip', () => {
       });
 
       it('when `repositionOnScroll=true` even if `componentDefaults` has `repositionOnScroll=false`', () => {
-        performRepositionTest({
+        testRepositionOnScroll({
           ...config,
           shouldReposition: true,
           propValue: true,
@@ -261,11 +261,11 @@ describe('EuiToolTip', () => {
 
     describe('is not repositioned', () => {
       it('when `repositionOnScroll=false` (default value)', () => {
-        performRepositionTest({ ...config, shouldReposition: false });
+        testRepositionOnScroll({ ...config, shouldReposition: false });
       });
 
       it('when `componentDefaults` has `repositionOnScroll=false`', () => {
-        performRepositionTest({
+        testRepositionOnScroll({
           ...config,
           shouldReposition: false,
           componentDefaultValue: false,
@@ -273,7 +273,7 @@ describe('EuiToolTip', () => {
       });
 
       it('when `repositionOnScroll=false` even if `componentDefaults` has `repositionOnScroll=true`', () => {
-        performRepositionTest({
+        testRepositionOnScroll({
           ...config,
           shouldReposition: false,
           propValue: false,
