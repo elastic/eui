@@ -3,7 +3,7 @@
 exports[`EuiHorizontalRule is rendered 1`] = `
 <hr
   aria-label="aria-label"
-  class="euiHorizontalRule testClass1 testClass2 emotion-euiHorizontalRule-full-l-euiTestCss"
+  class="euiHorizontalRule testClass1 testClass2 emotion-euiHorizontalRule-full-m-euiTestCss"
   data-test-subj="test subject string"
 />
 `;

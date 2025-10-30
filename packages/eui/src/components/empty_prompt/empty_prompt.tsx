@@ -186,7 +186,7 @@ export const EuiEmptyPrompt: FunctionComponent<EuiEmptyPromptProps> = ({
         {iconNode}
         <div className="euiEmptyPrompt__content" css={contentStyles}>
           {title && <EuiTitle size={titleSize}>{title}</EuiTitle>}
-          {title && body && <EuiSpacer size="m" />}
+          {title && body && <EuiSpacer size="s" />}
           {body && <EuiText color="subdued">{body}</EuiText>}
           {actionsNode && (body || title) && <EuiSpacer size="l" />}
           {actionsNode}

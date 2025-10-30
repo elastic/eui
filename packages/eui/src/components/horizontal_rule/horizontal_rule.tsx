@@ -32,7 +32,7 @@ export interface EuiHorizontalRuleProps
 export const EuiHorizontalRule: FunctionComponent<EuiHorizontalRuleProps> = ({
   className,
   size = 'full',
-  margin = 'l',
+  margin = 'm',
   ...rest
 }) => {
   const classes = classNames('euiHorizontalRule', className);

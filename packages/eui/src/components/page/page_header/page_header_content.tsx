@@ -300,7 +300,7 @@ export const EuiPageHeaderContent: FunctionComponent<
       <>
         {pageTitleNode && <EuiSpacer />}
         {screenReaderPageTitle}
-        <EuiTabs {...tabsProps} bottomBorder={false} size="l">
+        <EuiTabs {...tabsProps} bottomBorder={false} size="m">
           {renderTabs()}
         </EuiTabs>
       </>
