@@ -725,5 +725,41 @@ describe('EuiSuperDatePicker', () => {
         expect(initialTimeEnd).toBeLessThan(updatedTimeEnd);
       });
     });
+
+    it('is disabled when date/time range is invalid', async () => {
+      // reversed range (invalid)
+      const start = '2025-10-30T14:00:00.000Z';
+      const end = '2025-10-31T14:00:00.000Z';
+
+      const { rerender, queryByTestSubject } = render(
+        <EuiSuperDatePicker
+          start={end}
+          end={start}
+          onTimeChange={() => {}}
+          showTimeWindowButtons={true}
+        />
+      );
+
+      expect(queryByTestSubject('timeWindowButtonsPrevious')!).toBeDisabled();
+      expect(queryByTestSubject('timeWindowButtonsZoomOut')!).toBeDisabled();
+      expect(queryByTestSubject('timeWindowButtonsNext')!).toBeDisabled();
+
+      rerender(
+        <EuiSuperDatePicker
+          start={start}
+          end={end}
+          onTimeChange={() => {}}
+          showTimeWindowButtons={true}
+        />
+      );
+
+      expect(
+        queryByTestSubject('timeWindowButtonsPrevious')!
+      ).not.toBeDisabled();
+      expect(
+        queryByTestSubject('timeWindowButtonsZoomOut')!
+      ).not.toBeDisabled();
+      expect(queryByTestSubject('timeWindowButtonsNext')!).not.toBeDisabled();
+    });
   });
 });
