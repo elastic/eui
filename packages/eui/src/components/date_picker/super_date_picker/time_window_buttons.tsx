@@ -17,7 +17,7 @@ import { EuiButtonGroupButton } from '../../button/button_group/button_group_but
 import { euiButtonGroupButtonsStyles } from '../../button/button_group/button_group.styles';
 import { useEuiMemoizedStyles, useGeneratedHtmlId } from '../../../services';
 
-const ZOOM_FACTOR_DEFAULT = 0.42; // no special reason for this number
+const ZOOM_FACTOR_DEFAULT = 0.5;
 
 export interface TimeWindowButtonsConfig {
   /**
@@ -33,7 +33,7 @@ export interface TimeWindowButtonsConfig {
   /**
    * How much the time window is increased when zooming.
    * Can be a number (0.25) or a string representing a percentage (25%)
-   * @default 0.42
+   * @default 0.5
    * */
   zoomFactor?: number | string;
 }
