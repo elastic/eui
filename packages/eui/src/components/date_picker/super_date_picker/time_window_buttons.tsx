@@ -16,6 +16,7 @@ import { usePrettyInterval } from './pretty_interval';
 import { EuiButtonGroupButton } from '../../button/button_group/button_group_button';
 import { euiButtonGroupButtonsStyles } from '../../button/button_group/button_group.styles';
 import { useEuiMemoizedStyles, useGeneratedHtmlId } from '../../../services';
+import { useEuiI18n } from '../../i18n';
 
 export const ZOOM_FACTOR_DEFAULT = 0.5;
 
@@ -47,13 +48,11 @@ export type TimeWindowButtonsProps = TimeWindowButtonsConfig & {
 };
 
 /**
- * Toolbar for managing the time window with controls for shifting the time window
+ * Button group with time window controls for shifting the time window
  * forwards and backwards, and zooming out.
  *
  * @todo
- * - [ ] translate labels, etc.
  * - [ ] is `aria-pressed` being rendered causing any trouble?
- * - [ ] use `euiButtonGroup__buttons` class?
  * - [ ] check if hiding tooltips when isDisabled is the right thing to do
  */
 export const TimeWindowButtons: React.FC<TimeWindowButtonsProps> = ({
@@ -73,25 +72,36 @@ export const TimeWindowButtons: React.FC<TimeWindowButtonsProps> = ({
   const { displayInterval, stepForward, stepBackward, expandWindow } =
     useTimeWindow(start, end, applyTime, { zoomFactor });
 
-  // Previous
   const previousId = useGeneratedHtmlId({ prefix: 'previous' });
-  const previousLabel = 'Previous'; // TODO translate
-  const previousTooltipContent = `Previous ${displayInterval}`; // TODO translate
+  const previousLabel = useEuiI18n(
+    'euiTimeWindowButtons.previousLabel',
+    'Previous'
+  );
+  const previousTooltipContent = useEuiI18n(
+    'euiTimeWindowButtons.previousDescription',
+    'Previous {displayInterval}',
+    { displayInterval }
+  );
 
-  // Zoom out
   const zoomOutId = useGeneratedHtmlId({ prefix: 'zoom_out' });
-  const zoomOutLabel = 'Zoom out'; // TODO translate
+  const zoomOutLabel = useEuiI18n(
+    'euiTimeWindowButtons.zoomOutLabel',
+    'Zoom out'
+  );
 
-  // Next
   const nextId = useGeneratedHtmlId({ prefix: 'next' });
-  const nextLabel = 'Next'; // TODO translate
-  const nextTooltipContent = `Next ${displayInterval}`; // TODO translate
+  const nextLabel = useEuiI18n('euiTimeWindowButtons.nextLabel', 'Next');
+  const nextTooltipContent = useEuiI18n(
+    'euiTimeWindowButtons.nextDescription',
+    'Next {displayInterval}',
+    { displayInterval }
+  );
 
   if (!zoomOut && !shiftArrows) return null;
 
   return (
     <div
-      className="euiButtonGroup__buttons"
+      className="euiSuperDatePicker__timeWindowButtons"
       css={[styles.euiButtonGroup__buttons, styles[buttonSize]]}
       data-test-subj="timeWindowButtons"
     >
@@ -156,7 +166,9 @@ export function useTimeWindow(
   const min = dateMath.parse(start) as Moment;
   const max = dateMath.parse(end, { roundUp: true }) as Moment;
   const windowDuration = max.diff(min);
-  const zoomFactor = getPercentageMultiplier(options?.zoomFactor ?? ZOOM_FACTOR_DEFAULT);
+  const zoomFactor = getPercentageMultiplier(
+    options?.zoomFactor ?? ZOOM_FACTOR_DEFAULT
+  );
   // Gets added to each end, that's why it's split in half
   const zoomAddition = windowDuration * (zoomFactor / 2);
 
@@ -197,9 +209,7 @@ export function useTimeWindow(
 /**
  * Get a number out of either 0.2 or "20%"
  */
-function getPercentageMultiplier(
-  value: number | string
-) {
+function getPercentageMultiplier(value: number | string) {
   if (typeof value === 'number') return value;
   return parseInt(String(value).replace('%', '').trim()) / 100;
 }

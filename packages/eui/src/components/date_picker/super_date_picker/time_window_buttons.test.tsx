@@ -54,7 +54,7 @@ describe('TimeWindowToolbar: useTimeWindow hook', () => {
 
       renderHookAct(() => {
         result.current.stepForward();
-      })
+      });
 
       expect(applyTime).toHaveBeenCalledWith({
         start: '2025-10-30T11:00:00.000Z',
@@ -73,7 +73,7 @@ describe('TimeWindowToolbar: useTimeWindow hook', () => {
 
       renderHookAct(() => {
         result.current.stepBackward();
-      })
+      });
 
       expect(applyTime).toHaveBeenCalledWith({
         start: '2025-10-30T09:00:00.000Z',
@@ -88,14 +88,17 @@ describe('TimeWindowToolbar: useTimeWindow hook', () => {
       const start = '2025-10-30T10:00:00.000Z';
       const end = '2025-10-30T11:00:00.000Z';
 
-      const shiftedStart = moment(start).subtract(ZOOM_FACTOR_DEFAULT / 2, 'hours');
+      const shiftedStart = moment(start).subtract(
+        ZOOM_FACTOR_DEFAULT / 2,
+        'hours'
+      );
       const shiftedEnd = moment(end).add(ZOOM_FACTOR_DEFAULT / 2, 'hours');
 
       const { result } = renderHook(() => useTimeWindow(start, end, applyTime));
 
       renderHookAct(() => {
         result.current.expandWindow();
-      })
+      });
 
       expect(applyTime).toHaveBeenCalledWith({
         start: shiftedStart.toISOString(),
@@ -109,14 +112,19 @@ describe('TimeWindowToolbar: useTimeWindow hook', () => {
       const start = '2025-10-30T10:00:00.000Z';
       const end = '2025-10-30T11:00:00.000Z';
 
-      const shiftedStart = moment(start).subtract(customZoomFactor / 2, 'hours');
+      const shiftedStart = moment(start).subtract(
+        customZoomFactor / 2,
+        'hours'
+      );
       const shiftedEnd = moment(end).add(customZoomFactor / 2, 'hours');
 
-      const { result } = renderHook(() => useTimeWindow(start, end, applyTime, { zoomFactor: customZoomFactor }));
+      const { result } = renderHook(() =>
+        useTimeWindow(start, end, applyTime, { zoomFactor: customZoomFactor })
+      );
 
       renderHookAct(() => {
         result.current.expandWindow();
-      })
+      });
 
       expect(applyTime).toHaveBeenCalledWith({
         start: shiftedStart.toISOString(),

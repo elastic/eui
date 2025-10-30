@@ -658,12 +658,8 @@ describe('EuiSuperDatePicker', () => {
       expect(queryByTestSubject('timeWindowButtons')).toBeInTheDocument();
 
       rerender(
-        <EuiSuperDatePicker
-          start={start}
-          end={end}
-          onTimeChange={() => {}}
-        />
-      )
+        <EuiSuperDatePicker start={start} end={end} onTimeChange={() => {}} />
+      );
 
       expect(queryByTestSubject('timeWindowButtons')).not.toBeInTheDocument();
     });
@@ -687,8 +683,8 @@ describe('EuiSuperDatePicker', () => {
 
       act(() => {
         userEvent.click(queryByTestSubject('timeWindowButtonsPrevious')!);
-      })
-      
+      });
+
       await waitFor(() => {
         const initialTimeStart = new Date(start).getTime();
         const updatedTimeStart = new Date(lastTimeChange.start).getTime();
@@ -718,8 +714,8 @@ describe('EuiSuperDatePicker', () => {
 
       act(() => {
         userEvent.click(queryByTestSubject('timeWindowButtonsZoomOut')!);
-      })
-      
+      });
+
       await waitFor(() => {
         const initialTimeStart = new Date(start).getTime();
         const updatedTimeStart = new Date(lastTimeChange.start).getTime();
