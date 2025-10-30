@@ -156,9 +156,7 @@ export function useTimeWindow(
   // Gets added to each end, that's why it's split in half
   const zoomAddition = windowDuration * (zoomFactor / 2);
 
-  let displayInterval = usePrettyInterval(false, windowDuration, {
-    shortHand: true,
-  });
+  let displayInterval = usePrettyInterval(false, windowDuration);
   if (!isRelativeToNow(start, end) && !isExactMinuteRange(windowDuration)) {
     displayInterval = `~${displayInterval}`;
   }
