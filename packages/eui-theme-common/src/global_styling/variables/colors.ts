@@ -258,6 +258,7 @@ export type _EuiThemeBorderColors = {
 
   borderBasePlain: ColorModeSwitch;
   borderBaseSubdued: ColorModeSwitch;
+  borderBaseProminent: ColorModeSwitch;
   borderBaseDisabled: ColorModeSwitch;
   /**
    * Border used for floating elements on dark mode (e.g. popovers or tooltips)
@@ -269,6 +270,7 @@ export type _EuiThemeBorderColors = {
   borderBaseFormsControl: ColorModeSwitch;
 
   borderInteractiveFormsHoverPlain: ColorModeSwitch;
+  borderInteractiveFormsHoverProminent: ColorModeSwitch;
   borderInteractiveFormsHoverDanger: ColorModeSwitch;
 
   borderStrongPrimary: ColorModeSwitch;
