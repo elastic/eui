@@ -17,7 +17,7 @@ import { EuiButtonGroupButton } from '../../button/button_group/button_group_but
 import { euiButtonGroupButtonsStyles } from '../../button/button_group/button_group.styles';
 import { useEuiMemoizedStyles, useGeneratedHtmlId } from '../../../services';
 
-const ZOOM_FACTOR_DEFAULT = 0.5;
+export const ZOOM_FACTOR_DEFAULT = 0.5;
 
 export interface TimeWindowButtonsConfig {
   /**

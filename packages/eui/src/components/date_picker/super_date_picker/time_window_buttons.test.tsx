@@ -6,12 +6,10 @@
  * Side Public License, v 1.
  */
 
-// import React from 'react';
-// import moment from 'moment';
-// renderHookAct
-import { renderHook } from '../../../test/rtl';
+import moment from 'moment';
+import { renderHook, renderHookAct } from '../../../test/rtl';
 
-import { useTimeWindow } from './time_window_buttons';
+import { useTimeWindow, ZOOM_FACTOR_DEFAULT } from './time_window_buttons';
 
 describe('TimeWindowToolbar: useTimeWindow hook', () => {
   describe('displayInterval', () => {
@@ -22,7 +20,7 @@ describe('TimeWindowToolbar: useTimeWindow hook', () => {
 
       const { result } = renderHook(() => useTimeWindow(start, end, applyTime));
 
-      expect(result.current.displayInterval).toBe('15 m');
+      expect(result.current.displayInterval).toBe('15 minutes');
     });
 
     it('handles absolute times', () => {
@@ -32,7 +30,7 @@ describe('TimeWindowToolbar: useTimeWindow hook', () => {
 
       const { result } = renderHook(() => useTimeWindow(start, end, applyTime));
 
-      expect(result.current.displayInterval).toBe('15 m');
+      expect(result.current.displayInterval).toBe('15 minutes');
     });
 
     it('adds a tilde for approximate ranges', () => {
@@ -42,22 +40,88 @@ describe('TimeWindowToolbar: useTimeWindow hook', () => {
 
       const { result } = renderHook(() => useTimeWindow(start, end, applyTime));
 
-      expect(result.current.displayInterval).toBe('~2 d');
+      expect(result.current.displayInterval).toBe('~2 days');
     });
   });
 
   describe('stepForward callback', () => {
-    it.todo('moves time window forward');
+    it('shifts time window forward', () => {
+      const applyTime = jest.fn();
+      const start = '2025-10-30T10:00:00.000Z';
+      const end = '2025-10-30T11:00:00.000Z';
+
+      const { result } = renderHook(() => useTimeWindow(start, end, applyTime));
+
+      renderHookAct(() => {
+        result.current.stepForward();
+      })
+
+      expect(applyTime).toHaveBeenCalledWith({
+        start: '2025-10-30T11:00:00.000Z',
+        end: '2025-10-30T12:00:00.000Z',
+      });
+    });
   });
 
   describe('stepBackward callback', () => {
-    it.todo('moves time window backward');
+    it('shifts time window backward', () => {
+      const applyTime = jest.fn();
+      const start = '2025-10-30T10:00:00.000Z';
+      const end = '2025-10-30T11:00:00.000Z';
+
+      const { result } = renderHook(() => useTimeWindow(start, end, applyTime));
+
+      renderHookAct(() => {
+        result.current.stepBackward();
+      })
+
+      expect(applyTime).toHaveBeenCalledWith({
+        start: '2025-10-30T09:00:00.000Z',
+        end: '2025-10-30T10:00:00.000Z',
+      });
+    });
   });
 
-  // TODO import ZOOM_FACTOR const
   describe('expandWindow callback', () => {
-    it.todo('expands time window on both ends of the range');
+    it('expands time window on both ends of the range', () => {
+      const applyTime = jest.fn();
+      const start = '2025-10-30T10:00:00.000Z';
+      const end = '2025-10-30T11:00:00.000Z';
 
-    it.todo('handles different zoom factor option');
+      const shiftedStart = moment(start).subtract(ZOOM_FACTOR_DEFAULT / 2, 'hours');
+      const shiftedEnd = moment(end).add(ZOOM_FACTOR_DEFAULT / 2, 'hours');
+
+      const { result } = renderHook(() => useTimeWindow(start, end, applyTime));
+
+      renderHookAct(() => {
+        result.current.expandWindow();
+      })
+
+      expect(applyTime).toHaveBeenCalledWith({
+        start: shiftedStart.toISOString(),
+        end: shiftedEnd.toISOString(),
+      });
+    });
+
+    it('handles different zoom factor option', () => {
+      const customZoomFactor = 0.42;
+      const applyTime = jest.fn();
+      const start = '2025-10-30T10:00:00.000Z';
+      const end = '2025-10-30T11:00:00.000Z';
+
+      const shiftedStart = moment(start).subtract(customZoomFactor / 2, 'hours');
+      const shiftedEnd = moment(end).add(customZoomFactor / 2, 'hours');
+
+      const { result } = renderHook(() => useTimeWindow(start, end, applyTime, { zoomFactor: customZoomFactor }));
+
+      renderHookAct(() => {
+        result.current.expandWindow();
+      })
+
+      expect(applyTime).toHaveBeenCalledWith({
+        start: shiftedStart.toISOString(),
+        end: shiftedEnd.toISOString(),
+      });
+    });
   });
 });
