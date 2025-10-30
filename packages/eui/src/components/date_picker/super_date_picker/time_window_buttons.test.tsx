@@ -11,7 +11,7 @@ import { renderHook, renderHookAct } from '../../../test/rtl';
 
 import { useTimeWindow, ZOOM_FACTOR_DEFAULT } from './time_window_buttons';
 
-describe('TimeWindowToolbar: useTimeWindow hook', () => {
+describe('TimeWindowButtons: useTimeWindow hook', () => {
   describe('displayInterval', () => {
     it('handles relative times', () => {
       const applyTime = jest.fn();

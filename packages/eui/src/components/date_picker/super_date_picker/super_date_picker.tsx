@@ -207,8 +207,8 @@ export type EuiSuperDatePickerProps = CommonProps & {
   showUpdateButton?: boolean | 'iconOnly';
 
   /**
-   * Set to true to display a toolbar next to the top-level control
-   * with buttons for zooming out and time shifting.
+   * Set to true to display buttons for time shifting and zooming out,
+   * next to the top-level control.
    */
   showTimeWindowButtons?: boolean | TimeWindowButtonsConfig;
 
