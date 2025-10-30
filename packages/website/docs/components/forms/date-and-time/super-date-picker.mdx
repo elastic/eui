@@ -569,6 +569,59 @@ export default () => {
 };
 ```
 
+```mdx-code-block
+import { ZOOM_FACTOR_DEFAULT } from '@elastic/eui/es/components/date_picker/super_date_picker/time_window_buttons';
+```
+
+## Time window buttons
+
+A button group with buttons to modify the time window (or range) can be shown next to the main control. To show it, pass the `showTimeWindowButtons` prop to the `EuiSuperDatePicker` component. It allows to zoom out the window, or shift it both forwards or backwards.
+
+Zooming out will expand the window by {ZOOM_FACTOR_DEFAULT * 100}% by default. This is configurable via the `showTimeWindowButtons` prop, by passing a config object with a `zoomFactor` property e.g. `showTimeWindowButtons={{ zoomFactor: 0.42 }}`.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiSuperDatePicker,
+  EuiSuperDatePickerProps,
+  OnTimeChangeProps,
+} from '@elastic/eui';
+
+export default () => {
+  const { euiTheme } = useEuiTheme();
+
+  const [showButtons, setShowButtons] = useState(true);
+  const [start, setStart] = useState('now-45m');
+  const [end, setEnd] = useState('now');
+
+  const onTimeChange = ({ start, end }: OnTimeChangeProps) => {
+    setStart(start);
+    setEnd(end);
+  };
+
+  return (
+    <>
+      <EuiFlexGroup alignItems="center">
+        <EuiSwitch
+          checked={showButtons}
+          onChange={(e) => setShowButtons(e.target.checked)}
+          label="Show time window buttons"
+        />
+      </EuiFlexGroup>
+      <EuiSpacer />
+      <EuiSuperDatePicker
+        start={start}
+        end={end}
+        onTimeChange={onTimeChange}
+        showTimeWindowButtons={showButtons}
+        showUpdateButton={false}
+        width={'auto'}
+      />
+    </>
+  );
+};
+```
+
 ## Elastic pattern with KQL
 
 The following is a demo pattern of how to layout the **EuiSuperDatePicker** alongside Elastic's KQL search bar using [EuiSearchBar](../search-and-filter/search-bar.mdx) and shrinking to fit when the search bar is in focus.
