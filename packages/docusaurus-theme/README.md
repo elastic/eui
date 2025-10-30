@@ -4,11 +4,53 @@ EUI custom [Docusaurus](https://docusaurus.io/) theme made for the EUI [document
 
 ## Usage
 
-### With preset (recommended)
+The EUI theme uses the [Swizzling](https://docusaurus.io/docs/swizzling/) technique to swap the theme component with
+custom implementation that includes EUI components and tokens.
 
-The EUI theme uses the [Swizzling](https://docusaurus.io/docs/swizzling/) technique to swap the theme component with custom implementation that includes EUI components and tokens.
+### Prerequisites
 
-To use it in your Docusaurus project, install the package:
+Before you get started with installing the preset, update your Docusaurus setup to be compatible
+with `@elastic/eui-docusaurus-theme`:
+
+1. Install required packages
+
+    ```shell
+    yarn add @emotion/react @emotion/css @elastic/charts
+    ```
+
+2. Configure TypeScript
+
+    You need to add `jsxImportSource` and `moduleResolution` to your project's `tsconfig.json`:
+
+    ```diff
+    {
+        // This file is not used in compilation. It is here just for a nice editor experience.
+        "extends": "@docusaurus/tsconfig",
+        "compilerOptions": {
+            "baseUrl": ".",
+    +        "jsxImportSource": "@emotion/react",
+    +        "moduleResolution": "nodenext"
+        }
+    }
+    ```
+
+3. Configure Babel
+
+    Add `@babel/preset-react` to allow Emotion to handle `importSource`.
+
+    ```diff
+    module.exports = {
+        presets: [
+            require.resolve('@docusaurus/core/lib/babel/preset'),
+    +       [
+    +            '@babel/preset-react',
+    +            { runtime: 'automatic', importSource: '@emotion/react' },
+    +       ],
+        ],
+    };
+    ```
+
+### Installing the preset (recommended)
 
 ```shell
 # npm
