@@ -356,9 +356,8 @@ export class EuiPopover extends Component<Props, State> {
     };
 
     this.repositionOnScroll = createRepositionOnScroll(() => ({
-      prop: this.props.repositionOnScroll,
-      context: this.context,
-      componentName: 'EuiPopover',
+      repositionOnScroll: this.props.repositionOnScroll,
+      componentDefaults: this.context.EuiPopover,
       repositionFn: this.positionPopoverFixed,
     }));
   }

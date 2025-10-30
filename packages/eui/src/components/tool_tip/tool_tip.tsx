@@ -167,9 +167,8 @@ export class EuiToolTip extends Component<EuiToolTipProps, State> {
     };
 
     this.repositionOnScroll = createRepositionOnScroll(() => ({
-      prop: this.props.repositionOnScroll,
-      context: this.context,
-      componentName: 'EuiToolTip',
+      repositionOnScroll: this.props.repositionOnScroll,
+      componentDefaults: this.context.EuiToolTip,
       repositionFn: this.positionToolTip,
     }));
   }

@@ -6,17 +6,15 @@
  * Side Public License, v 1.
  */
 
-import { EuiComponentDefaults } from '../../components/provider';
+type SupportedComponentDefaults = {
+  repositionOnScroll?: boolean;
+};
 
-type RepositionOnScrollArgs = {
-  /**
-   * The key for the component's defaults in the context.
-   */
-  componentName: keyof EuiComponentDefaults;
+type RepositionOnScrollArgs<T extends SupportedComponentDefaults> = {
   /**
    * The component's `repositionOnScroll` prop.
    */
-  prop: boolean | undefined;
+  repositionOnScroll?: boolean;
   /**
    * The function to be called on scroll to reposition the component.
    */
@@ -24,7 +22,7 @@ type RepositionOnScrollArgs = {
   /**
    * The component's defaults context.
    */
-  context?: EuiComponentDefaults;
+  componentDefaults?: T;
 };
 
 /**
@@ -34,22 +32,24 @@ type RepositionOnScrollArgs = {
  * @param args The arguments for `getRepositionOnScroll`. See {@link RepositionOnScrollArgs}.
  * @returns The value of the `repositionOnScroll`.
  */
-export const getRepositionOnScroll = (
-  args: RepositionOnScrollArgs
+export const getRepositionOnScroll = <T extends SupportedComponentDefaults>(
+  args: RepositionOnScrollArgs<T>
 ): boolean => {
-  const { prop, context, componentName } = args;
+  const { repositionOnScroll, componentDefaults } = args;
+
+  if (repositionOnScroll !== undefined) return repositionOnScroll;
 
   if (
-    context?.[componentName] &&
-    'repositionOnScroll' in context[componentName] &&
-    typeof context[componentName].repositionOnScroll === 'boolean'
+    componentDefaults &&
+    'repositionOnScroll' in componentDefaults &&
+    typeof componentDefaults.repositionOnScroll === 'boolean'
   ) {
-    const contextValue = context?.[componentName]?.repositionOnScroll;
+    const contextValue = componentDefaults.repositionOnScroll;
 
-    return prop ?? contextValue ?? false;
+    return contextValue ?? false;
   }
 
-  return prop ?? false;
+  return false;
 };
 
 /**
@@ -59,8 +59,8 @@ export const getRepositionOnScroll = (
  * @param getArgs A function that returns the arguments for `getRepositionOnScroll`. See {@link RepositionOnScrollArgs}.
  * @returns An object with `subscribe`, `update`, and `cleanup` methods to manage the scroll listener.
  */
-export const createRepositionOnScroll = (
-  getArgs: () => RepositionOnScrollArgs
+export const createRepositionOnScroll = <T extends SupportedComponentDefaults>(
+  getArgs: () => RepositionOnScrollArgs<T>
 ) => {
   let lastResolvedRepositionOnScroll: boolean | undefined;
 
