@@ -39,7 +39,10 @@ import {
 
 import { TimeOptions, RenderI18nTimeOptions } from './time_options';
 import { PrettyDuration, showPrettyDuration } from './pretty_duration';
-import { TimeWindowToolbar } from './time_window_toolbar';
+import {
+  TimeWindowButtons,
+  type TimeWindowButtonsConfig,
+} from './time_window_buttons';
 import { AsyncInterval } from './async_interval';
 
 import {
@@ -68,13 +71,6 @@ export interface OnTimeChangeProps extends DurationRange {
 
 export interface OnRefreshProps extends DurationRange {
   refreshInterval: number;
-}
-
-export interface TimeWindowToolbarConfig {
-  /** Show button for zooming out */
-  zoomOut?: boolean;
-  /** Show buttons for navigating between time windows */
-  navigationArrows?: boolean;
 }
 
 export type EuiSuperDatePickerProps = CommonProps & {
@@ -214,7 +210,7 @@ export type EuiSuperDatePickerProps = CommonProps & {
    * Set to true to display a toolbar next to the top-level control
    * with buttons for zooming out and time shifting.
    */
-  showTimeWindowToolbar?: boolean | TimeWindowToolbarConfig;
+  showTimeWindowButtons?: boolean | TimeWindowButtonsConfig;
 
   /**
    * Hides the actual input reducing to just the quick select button.
@@ -739,17 +735,17 @@ export class EuiSuperDatePickerInternal extends Component<
     }
   };
 
-  renderTimeWindowToolbar = () => {
-    if (!this.props.showTimeWindowToolbar) {
+  renderTimeWindowButtons = () => {
+    if (!this.props.showTimeWindowButtons) {
       return null;
     }
-    const { start, end, showTimeWindowToolbar, compressed, isDisabled } =
+    const { start, end, showTimeWindowButtons, compressed, isDisabled } =
       this.props;
     const config =
-      typeof showTimeWindowToolbar === 'boolean' ? {} : showTimeWindowToolbar;
+      typeof showTimeWindowButtons === 'boolean' ? {} : showTimeWindowButtons;
 
     return (
-      <TimeWindowToolbar
+      <TimeWindowButtons
         applyTime={this.applyQuickTime}
         start={start}
         end={end}
@@ -840,7 +836,7 @@ export class EuiSuperDatePickerInternal extends Component<
         ) : (
           <>
             {this.renderDatePickerRange()}
-            {this.renderTimeWindowToolbar()}
+            {this.renderTimeWindowButtons()}
             {this.renderUpdateButton()}
           </>
         )}

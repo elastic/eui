@@ -17,28 +17,38 @@ import { EuiButtonGroupButton } from '../../button/button_group/button_group_but
 import { euiButtonGroupButtonsStyles } from '../../button/button_group/button_group.styles';
 import { useEuiMemoizedStyles, useGeneratedHtmlId } from '../../../services';
 
-interface TimeWindowToolbarProps {
+const ZOOM_FACTOR_DEFAULT = 0.42; // no special reason for this number
+
+export interface TimeWindowButtonsConfig {
+  /**
+   * Show button for zooming out
+   * @default true
+   */
+  zoomOut?: boolean;
+  /**
+   * Show buttons for shifting the time window forward and backward
+   * @default true
+   */
+  shiftArrows?: boolean;
+  /**
+   * How much the time window is increased when zooming.
+   * Can be a number (0.25) or a string representing a percentage (25%)
+   * @default 0.42
+   * */
+  zoomFactor?: number | string;
+}
+
+export type TimeWindowButtonsProps = TimeWindowButtonsConfig & {
   applyTime: ApplyTime;
   start: ShortDate;
   end: ShortDate;
   compressed?: boolean;
   isDisabled?: boolean;
-  /** @default true */
-  zoomOut?: boolean;
-  /** @default true */
-  navigationArrows?: boolean;
-}
-
-// How much time is added to the interval (or window)
-// e.g. 60 minutes * 0.3 -> 18 minutes will be added (9 on each end)
-const ZOOM_FACTOR = 0.3;
+};
 
 /**
- * Toolbar for managing the time window with controls for moving the time window
+ * Toolbar for managing the time window with controls for shifting the time window
  * forwards and backwards, and zooming out.
- *
- * We're using EuiButtonGroupButton wrapped in role=toolbar,
- * whenever we have something like EuiToolbar, this might get refactored.
  *
  * @todo
  * - [ ] translate labels, etc.
@@ -46,21 +56,22 @@ const ZOOM_FACTOR = 0.3;
  * - [ ] use `euiButtonGroup__buttons` class?
  * - [ ] check if hiding tooltips when isDisabled is the right thing to do
  */
-export const TimeWindowToolbar: React.FC<TimeWindowToolbarProps> = ({
+export const TimeWindowButtons: React.FC<TimeWindowButtonsProps> = ({
   applyTime,
   start,
   end,
   compressed,
   isDisabled,
   zoomOut = true,
-  navigationArrows = true,
+  shiftArrows = true,
+  zoomFactor = ZOOM_FACTOR_DEFAULT,
 }) => {
   const buttonColor = 'text';
   const buttonSize = compressed ? 'compressed' : 'm';
   const styles = useEuiMemoizedStyles(euiButtonGroupButtonsStyles);
 
   const { displayInterval, stepForward, stepBackward, expandWindow } =
-    useTimeWindow(start, end, applyTime);
+    useTimeWindow(start, end, applyTime, { zoomFactor });
 
   // Previous
   const previousId = useGeneratedHtmlId({ prefix: 'previous' });
@@ -76,15 +87,14 @@ export const TimeWindowToolbar: React.FC<TimeWindowToolbarProps> = ({
   const nextLabel = 'Next'; // TODO translate
   const nextTooltipContent = `Next ${displayInterval}`; // TODO translate
 
-  if (!zoomOut && !navigationArrows) return null;
+  if (!zoomOut && !shiftArrows) return null;
 
   return (
     <div
-      role="toolbar"
       className="euiButtonGroup__buttons"
       css={[styles.euiButtonGroup__buttons, styles[buttonSize]]}
     >
-      {navigationArrows && (
+      {shiftArrows && (
         <EuiButtonGroupButton
           color={buttonColor}
           onClick={stepBackward}
@@ -112,7 +122,7 @@ export const TimeWindowToolbar: React.FC<TimeWindowToolbarProps> = ({
           isDisabled={isDisabled}
         />
       )}
-      {navigationArrows && (
+      {shiftArrows && (
         <EuiButtonGroupButton
           color={buttonColor}
           onClick={stepForward}
@@ -137,12 +147,12 @@ export function useTimeWindow(
   start: ShortDate,
   end: ShortDate,
   apply: ApplyTime,
-  options?: { zoomFactor?: number }
+  options?: { zoomFactor?: TimeWindowButtonsConfig['zoomFactor'] }
 ) {
   const min = dateMath.parse(start) as Moment;
   const max = dateMath.parse(end, { roundUp: true }) as Moment;
   const windowDuration = max.diff(min);
-  const zoomFactor = options?.zoomFactor ?? ZOOM_FACTOR;
+  const zoomFactor = getPercentageMultiplier(options?.zoomFactor ?? ZOOM_FACTOR_DEFAULT);
   // Gets added to each end, that's why it's split in half
   const zoomAddition = windowDuration * (zoomFactor / 2);
 
@@ -182,11 +192,24 @@ export function useTimeWindow(
   }
 }
 
-function isRelativeToNow(start: ShortDate, end: ShortDate) {
-  return String(end).includes('now') || String(start).includes('now');
+/**
+ * Get a number out of either 0.2 or "20%"
+ */
+function getPercentageMultiplier(
+  value: number | string
+) {
+  if (typeof value === 'number') return value;
+  return parseInt(String(value).replace('%', '').trim()) / 100;
 }
 
+/**
+ * Useful to determine whether to show the tilde in the display
+ */
 function isExactMinuteRange(diffMs: number) {
   // 60 * 1000 = ms per minute
   return diffMs % (60 * 1000) === 0;
+}
+
+function isRelativeToNow(start: ShortDate, end: ShortDate) {
+  return String(end).includes('now') || String(start).includes('now');
 }

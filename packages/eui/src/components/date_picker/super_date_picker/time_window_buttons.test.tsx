@@ -11,7 +11,7 @@
 // renderHookAct
 import { renderHook } from '../../../test/rtl';
 
-import { useTimeWindow } from './time_window_toolbar';
+import { useTimeWindow } from './time_window_buttons';
 
 describe('TimeWindowToolbar: useTimeWindow hook', () => {
   describe('displayInterval', () => {
