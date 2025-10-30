@@ -43,8 +43,8 @@ export const euiFilePickerStyles = (euiThemeContext: UseEuiTheme) => {
       &:hover {
         --euiFormControlStateColor: ${highContrastMode
           ? euiTheme.border.color
-          : formVariables.borderHovered};
-        --euiFormControlStateStyle: solid;
+          : euiTheme.colors.borderInteractiveFormsHoverProminent};
+        --euiFormControlStateStyle: ${highContrastMode ? 'solid' : 'dashed'};
       }
 
       &:focus-within {
@@ -146,14 +146,18 @@ export const euiFilePickerStyles = (euiThemeContext: UseEuiTheme) => {
       color: ${euiTheme.colors.textParagraph};
       border: ${euiTheme.border.width.thin}
         var(--euiFormControlStateStyle, dashed)
-        var(--euiFormControlStateColor, ${formVariables.borderColor});
+        var(--euiFormControlStateColor, ${euiTheme.colors.borderBaseProminent});
 
       ${euiCanAnimate} {
         transition: border-color ${euiTheme.animation.fast} ease-in,
           background-color ${euiTheme.animation.fast} ease-in;
       }
     `,
-    disabled: css(formStyles.disabled),
+    disabled: css`
+      ${formStyles.disabled}
+      /* Override the default style styles */
+      --euiFormControlStateColor: transparent;
+    `,
 
     // Skip the css() on the default height to avoid generating a className
     uncompressed: formStyles.uncompressed,
