@@ -12,8 +12,14 @@ import { requiredProps } from '../../test';
 import { shouldRenderCustomStyles } from '../../test/internal';
 
 import { EuiHeader } from '../header';
-import { EuiFlyout, SIZES, PADDING_SIZES, SIDES } from './flyout';
+import {
+  EuiFlyout,
+  FLYOUT_PADDING_SIZES,
+  FLYOUT_SIDES,
+  FLYOUT_SIZES,
+} from './flyout';
 import { EuiProvider } from '../provider';
+import { EuiFlyoutManager } from './manager';
 
 jest.mock('../overlay_mask', () => ({
   EuiOverlayMask: ({ headerZindexLocation, maskRef, ...props }: any) => (
@@ -103,6 +109,89 @@ describe('EuiFlyout', () => {
     );
   });
 
+  describe('aria-labelledby and flyout menu integration', () => {
+    it('sets aria-labelledby when flyout has a menu with title', () => {
+      const { getByTestSubject } = render(
+        <EuiFlyout
+          onClose={() => {}}
+          flyoutMenuProps={{ title: 'Test Menu Title' }}
+          data-test-subj="flyout"
+        />
+      );
+
+      const flyout = getByTestSubject('flyout');
+      const ariaLabelledBy = flyout.getAttribute('aria-labelledby');
+
+      // Should have a generated ID for the menu title
+      expect(ariaLabelledBy).toBeTruthy();
+      expect(ariaLabelledBy).toMatch(/^generated-id/);
+    });
+
+    it('uses custom titleId when provided in flyoutMenuProps', () => {
+      const customTitleId = 'my-custom-title-id';
+      const { getByTestSubject } = render(
+        <EuiFlyout
+          onClose={() => {}}
+          flyoutMenuProps={{
+            title: 'Test Menu Title',
+            titleId: customTitleId,
+          }}
+          data-test-subj="flyout"
+        />
+      );
+
+      const flyout = getByTestSubject('flyout');
+      expect(flyout).toHaveAttribute('aria-labelledby', customTitleId);
+    });
+
+    it('combines flyout menu ID with existing aria-labelledby', () => {
+      const customTitleId = 'my-custom-title-id';
+      const existingAriaLabelledBy = 'existing-label-id';
+
+      const { getByTestSubject } = render(
+        <EuiFlyout
+          onClose={() => {}}
+          flyoutMenuProps={{
+            title: 'Test Menu Title',
+            titleId: customTitleId,
+          }}
+          aria-labelledby={existingAriaLabelledBy}
+          data-test-subj="flyout"
+        />
+      );
+
+      const flyout = getByTestSubject('flyout');
+      expect(flyout).toHaveAttribute(
+        'aria-labelledby',
+        `${customTitleId} ${existingAriaLabelledBy}`
+      );
+    });
+
+    it('does not set aria-labelledby when flyout has no menu', () => {
+      const { getByTestSubject } = render(
+        <EuiFlyout onClose={() => {}} data-test-subj="flyout" />
+      );
+
+      const flyout = getByTestSubject('flyout');
+      expect(flyout).not.toHaveAttribute('aria-labelledby');
+    });
+
+    it('only uses existing aria-labelledby when no menu is present', () => {
+      const existingAriaLabelledBy = 'existing-label-id';
+
+      const { getByTestSubject } = render(
+        <EuiFlyout
+          onClose={() => {}}
+          aria-labelledby={existingAriaLabelledBy}
+          data-test-subj="flyout"
+        />
+      );
+
+      const flyout = getByTestSubject('flyout');
+      expect(flyout).toHaveAttribute('aria-labelledby', existingAriaLabelledBy);
+    });
+  });
+
   describe('props', () => {
     test('hideCloseButton', () => {
       const { baseElement } = render(
@@ -137,7 +226,7 @@ describe('EuiFlyout', () => {
     });
 
     describe('sides', () => {
-      SIDES.forEach((side) => {
+      FLYOUT_SIDES.forEach((side) => {
         it(`${side} is rendered`, () => {
           const { baseElement } = render(
             <EuiFlyout onClose={() => {}} side={side} />
@@ -186,7 +275,7 @@ describe('EuiFlyout', () => {
     });
 
     describe('size', () => {
-      SIZES.forEach((size) => {
+      FLYOUT_SIZES.forEach((size) => {
         it(`${size} is rendered`, () => {
           const { baseElement } = render(
             <EuiFlyout onClose={() => {}} size={size} />
@@ -206,7 +295,7 @@ describe('EuiFlyout', () => {
     });
 
     describe('paddingSize', () => {
-      PADDING_SIZES.forEach((paddingSize) => {
+      FLYOUT_PADDING_SIZES.forEach((paddingSize) => {
         it(`${paddingSize} is rendered`, () => {
           const { baseElement } = render(
             <EuiFlyout onClose={() => {}} paddingSize={paddingSize} />
@@ -345,6 +434,133 @@ describe('EuiFlyout', () => {
       expect(
         queryByText('You can still continue tabbing through', { exact: false })
       ).not.toBeTruthy();
+    });
+  });
+
+  describe('flyout routing logic', () => {
+    it('routes to child flyout when session is undefined and there is an active session', () => {
+      // First render with just the main flyout to establish a session
+      const { rerender, getByTestSubject } = render(
+        <EuiFlyoutManager>
+          <EuiFlyout
+            onClose={() => {}}
+            session="start"
+            flyoutMenuProps={{ title: 'Main Flyout' }}
+            data-test-subj="main-flyout"
+          />
+        </EuiFlyoutManager>
+      );
+
+      // Now render with the child flyout added - it should detect the active session
+      rerender(
+        <EuiFlyoutManager>
+          <EuiFlyout
+            onClose={() => {}}
+            session="start"
+            flyoutMenuProps={{ title: 'Main Flyout' }}
+            data-test-subj="main-flyout"
+          />
+          <EuiFlyout
+            onClose={() => {}}
+            data-test-subj="child-flyout"
+            // session is undefined (not explicitly set)
+          />
+        </EuiFlyoutManager>
+      );
+
+      // Should render as child flyout (EuiFlyoutChild)
+      const childFlyout = getByTestSubject('child-flyout');
+      expect(childFlyout).toHaveAttribute('data-managed-flyout-level', 'child');
+    });
+
+    it('routes to main flyout when session is explicitly true', () => {
+      const { getByTestSubject } = render(
+        <EuiFlyoutManager>
+          <EuiFlyout
+            onClose={() => {}}
+            data-test-subj="flyout"
+            session="start" // Explicitly creating a new session
+            flyoutMenuProps={{ title: 'Test Main Flyout' }} // Required for managed flyouts
+          />
+        </EuiFlyoutManager>
+      );
+
+      // Should render as main flyout (EuiFlyoutMain)
+      const flyout = getByTestSubject('flyout');
+      expect(flyout).toHaveAttribute('data-managed-flyout-level', 'main');
+    });
+
+    it('routes to standard flyout when session is explicitly "never" and there is an active session', () => {
+      const { getByTestSubject } = render(
+        <EuiFlyoutManager>
+          {/* Create an active session */}
+          <EuiFlyout
+            onClose={() => {}}
+            session="start"
+            flyoutMenuProps={{ title: 'Main Flyout' }}
+            data-test-subj="main-flyout"
+          />
+          {/* This flyout explicitly opts out of session management */}
+          <EuiFlyout
+            onClose={() => {}}
+            data-test-subj="standard-flyout"
+            session="never" // Explicitly opts out of session management
+          />
+        </EuiFlyoutManager>
+      );
+
+      // Should render as standard flyout (EuiFlyoutComponent)
+      const flyout = getByTestSubject('standard-flyout');
+      expect(flyout).not.toHaveAttribute('data-managed-flyout-level');
+    });
+
+    it('routes to child flyout when in managed context and there is an active session', () => {
+      // First render with just the main flyout to establish a session
+      const { rerender, getByTestSubject } = render(
+        <EuiFlyoutManager>
+          <EuiFlyout
+            onClose={() => {}}
+            session="start"
+            flyoutMenuProps={{ title: 'Main Flyout' }}
+            data-test-subj="main-flyout"
+          />
+        </EuiFlyoutManager>
+      );
+
+      // Now render with the child flyout added - it should detect the active session
+      rerender(
+        <EuiFlyoutManager>
+          <EuiFlyout
+            onClose={() => {}}
+            session="start"
+            flyoutMenuProps={{ title: 'Main Flyout' }}
+            data-test-subj="main-flyout"
+          />
+          <EuiFlyout
+            onClose={() => {}}
+            data-test-subj="child-flyout"
+            session={undefined} // Not explicitly set, should inherit
+          />
+        </EuiFlyoutManager>
+      );
+
+      // Should render as child flyout (EuiFlyoutChild)
+      const flyout = getByTestSubject('child-flyout');
+      expect(flyout).toHaveAttribute('data-managed-flyout-level', 'child');
+    });
+
+    it('routes to standard flyout when there is no active session', () => {
+      const { getByTestSubject } = render(
+        <EuiFlyout
+          onClose={() => {}}
+          data-test-subj="flyout"
+          session={undefined} // Not explicitly set
+        />
+      );
+
+      // Should render as standard flyout (EuiFlyoutComponent) - no manager context
+      const flyout = getByTestSubject('flyout');
+      expect(flyout).not.toHaveAttribute('data-managed-flyout-level');
     });
   });
 });
