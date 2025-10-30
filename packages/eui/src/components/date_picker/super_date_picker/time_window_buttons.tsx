@@ -93,47 +93,51 @@ export const TimeWindowButtons: React.FC<TimeWindowButtonsProps> = ({
     <div
       className="euiButtonGroup__buttons"
       css={[styles.euiButtonGroup__buttons, styles[buttonSize]]}
+      data-test-subj="timeWindowButtons"
     >
       {shiftArrows && (
         <EuiButtonGroupButton
-          color={buttonColor}
-          onClick={stepBackward}
           id={previousId}
+          data-test-subj="timeWindowButtonsPrevious"
           label={previousLabel}
           toolTipContent={!isDisabled && previousTooltipContent}
+          color={buttonColor}
+          size={buttonSize}
           iconType="arrowLeft"
           isIconOnly
-          size={buttonSize}
           isSelected={false}
           isDisabled={isDisabled}
+          onClick={stepBackward}
         />
       )}
       {zoomOut && (
         <EuiButtonGroupButton
-          color={buttonColor}
-          onClick={expandWindow}
           id={zoomOutId}
+          data-test-subj="timeWindowButtonsZoomOut"
           label={zoomOutLabel}
           toolTipContent={!isDisabled && zoomOutLabel}
+          color={buttonColor}
+          size={buttonSize}
           iconType="magnifyWithMinus"
           isIconOnly
-          size={buttonSize}
           isSelected={false}
           isDisabled={isDisabled}
+          onClick={expandWindow}
         />
       )}
       {shiftArrows && (
         <EuiButtonGroupButton
-          color={buttonColor}
-          onClick={stepForward}
           id={nextId}
+          data-test-subj="timeWindowButtonsNext"
           label={nextLabel}
           toolTipContent={!isDisabled && nextTooltipContent}
+          color={buttonColor}
+          size={buttonSize}
           iconType="arrowRight"
           isIconOnly
-          size={buttonSize}
           isSelected={false}
           isDisabled={isDisabled}
+          onClick={stepForward}
         />
       )}
     </div>
