@@ -158,6 +158,7 @@ export const border_colors: _EuiThemeBorderColors = {
 
   borderBasePlain: SEMANTIC_COLORS.shade30,
   borderBaseSubdued: SEMANTIC_COLORS.shade20,
+  borderBaseProminent: SEMANTIC_COLORS.shade50,
   borderBaseDisabled: SEMANTIC_COLORS.shade30,
   borderBaseFloating: PRIMITIVE_COLORS.transparent,
 
@@ -165,6 +166,7 @@ export const border_colors: _EuiThemeBorderColors = {
   borderBaseFormsControl: SEMANTIC_COLORS.shade60,
 
   borderInteractiveFormsHoverPlain: SEMANTIC_COLORS.shade40,
+  borderInteractiveFormsHoverProminent: SEMANTIC_COLORS.shade70,
   borderInteractiveFormsHoverDanger: SEMANTIC_COLORS.danger80,
 
   borderStrongPrimary: SEMANTIC_COLORS.primary90,
