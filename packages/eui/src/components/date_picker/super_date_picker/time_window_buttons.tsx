@@ -50,10 +50,6 @@ export type TimeWindowButtonsProps = TimeWindowButtonsConfig & {
 /**
  * Button group with time window controls for shifting the time window
  * forwards and backwards, and zooming out.
- *
- * @todo
- * - [ ] is `aria-pressed` being rendered causing any trouble?
- * - [ ] check if hiding tooltips when isDisabled is the right thing to do
  */
 export const TimeWindowButtons: React.FC<TimeWindowButtonsProps> = ({
   applyTime,
@@ -110,6 +106,7 @@ export const TimeWindowButtons: React.FC<TimeWindowButtonsProps> = ({
           id={previousId}
           data-test-subj="timeWindowButtonsPrevious"
           label={previousLabel}
+          title=''
           toolTipContent={!isDisabled && previousTooltipContent}
           color={buttonColor}
           size={buttonSize}
@@ -125,7 +122,9 @@ export const TimeWindowButtons: React.FC<TimeWindowButtonsProps> = ({
           id={zoomOutId}
           data-test-subj="timeWindowButtonsZoomOut"
           label={zoomOutLabel}
+          title=''
           toolTipContent={!isDisabled && zoomOutLabel}
+          toolTipProps={{ disableScreenReaderOutput: true }}
           color={buttonColor}
           size={buttonSize}
           iconType="magnifyWithMinus"
@@ -140,6 +139,7 @@ export const TimeWindowButtons: React.FC<TimeWindowButtonsProps> = ({
           id={nextId}
           data-test-subj="timeWindowButtonsNext"
           label={nextLabel}
+          title=''
           toolTipContent={!isDisabled && nextTooltipContent}
           color={buttonColor}
           size={buttonSize}
