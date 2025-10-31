@@ -62,7 +62,8 @@ export const TimeWindowButtons: React.FC<TimeWindowButtonsProps> = ({
   zoomFactor = ZOOM_FACTOR_DEFAULT,
 }) => {
   const buttonColor = 'text';
-  const buttonSize = compressed ? 'compressed' : 'm';
+  const buttonSize = compressed ? 's' : 'm';
+  const iconSize = compressed ? 's' : 'm';
   const styles = useEuiMemoizedStyles(euiButtonGroupButtonsStyles);
 
   const { displayInterval, stepForward, stepBackward, expandWindow } =
@@ -111,6 +112,7 @@ export const TimeWindowButtons: React.FC<TimeWindowButtonsProps> = ({
           color={buttonColor}
           size={buttonSize}
           iconType="arrowLeft"
+          iconSize={iconSize}
           isIconOnly
           isSelected={false}
           isDisabled={isDisabled}
@@ -128,6 +130,7 @@ export const TimeWindowButtons: React.FC<TimeWindowButtonsProps> = ({
           color={buttonColor}
           size={buttonSize}
           iconType="magnifyWithMinus"
+          iconSize={iconSize}
           isIconOnly
           isSelected={false}
           isDisabled={isDisabled}
@@ -144,6 +147,7 @@ export const TimeWindowButtons: React.FC<TimeWindowButtonsProps> = ({
           color={buttonColor}
           size={buttonSize}
           iconType="arrowRight"
+          iconSize={iconSize}
           isIconOnly
           isSelected={false}
           isDisabled={isDisabled}
