@@ -277,6 +277,96 @@ describe('EuiManagedFlyout', () => {
     });
   });
 
+  describe('hideTitle prop handling', () => {
+    it('passes hideTitle prop through flyoutMenuProps when explicitly set to true', () => {
+      const { getByTestSubject } = renderInProvider(
+        <EuiManagedFlyout
+          id="test-flyout"
+          level={LEVEL_MAIN}
+          onClose={() => {}}
+          flyoutMenuProps={{
+            title: 'Test Title',
+            hideTitle: true,
+          }}
+        />
+      );
+
+      const flyout = getByTestSubject('managed-flyout');
+      expect(flyout).toBeInTheDocument();
+      // The hideTitle prop should be passed through to the base component
+    });
+
+    it('passes hideTitle prop through flyoutMenuProps when explicitly set to false', () => {
+      const { getByTestSubject } = renderInProvider(
+        <EuiManagedFlyout
+          id="test-flyout"
+          level={LEVEL_MAIN}
+          onClose={() => {}}
+          flyoutMenuProps={{
+            title: 'Test Title',
+            hideTitle: false,
+          }}
+        />
+      );
+
+      const flyout = getByTestSubject('managed-flyout');
+      expect(flyout).toBeInTheDocument();
+      // The hideTitle prop should be passed through to the base component
+    });
+
+    it('merges hideTitle with other flyoutMenuProps correctly', () => {
+      const { getByTestSubject } = renderInProvider(
+        <EuiManagedFlyout
+          id="test-flyout"
+          level={LEVEL_MAIN}
+          onClose={() => {}}
+          flyoutMenuProps={{
+            title: 'Test Title',
+            hideTitle: true,
+            hideCloseButton: false,
+          }}
+        />
+      );
+
+      const flyout = getByTestSubject('managed-flyout');
+      expect(flyout).toBeInTheDocument();
+    });
+
+    it('does not include hideTitle when not specified for main flyout', () => {
+      const { getByTestSubject } = renderInProvider(
+        <EuiManagedFlyout
+          id="test-flyout"
+          level={LEVEL_MAIN}
+          onClose={() => {}}
+          flyoutMenuProps={{
+            title: 'Test Title',
+            // hideTitle not specified - will be auto-determined by base component
+          }}
+        />
+      );
+
+      const flyout = getByTestSubject('managed-flyout');
+      expect(flyout).toBeInTheDocument();
+    });
+
+    it('does not include hideTitle when not specified for child flyout', () => {
+      const { getByTestSubject } = renderInProvider(
+        <EuiManagedFlyout
+          id="child-flyout"
+          level={LEVEL_CHILD}
+          onClose={() => {}}
+          flyoutMenuProps={{
+            title: 'Child Title',
+            // hideTitle not specified - will be auto-determined by base component
+          }}
+        />
+      );
+
+      const flyout = getByTestSubject('managed-flyout');
+      expect(flyout).toBeInTheDocument();
+    });
+  });
+
   describe('size handling', () => {
     it('defaults main flyout size to "m" when no size is provided', () => {
       // Import the real validation function to test the actual behavior

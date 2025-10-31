@@ -19,6 +19,7 @@ import { EuiFlyoutBody } from '../flyout_body';
 import { EuiFlyoutFooter } from '../flyout_footer';
 import { EuiFlyoutChild, EuiFlyoutChildProps } from './flyout_child';
 import { useFlyoutLayoutMode } from './hooks';
+import { EuiFlyoutHeader } from '../flyout_header';
 
 type EuiFlyoutChildActualProps = Pick<
   EuiFlyoutChildProps,
@@ -226,6 +227,13 @@ const StatefulFlyout: React.FC<FlyoutChildStoryArgs> = ({
           {...args}
           onClose={closeMain}
         >
+          <EuiFlyoutHeader>
+            <EuiText>
+              <h2 id="flyout-manager-playground-main-header">
+                Main Flyout Menu ({mainSize})
+              </h2>
+            </EuiText>
+          </EuiFlyoutHeader>
           <EuiFlyoutBody>
             <EuiText>
               <p>This is the main flyout content.</p>
