@@ -68,8 +68,8 @@ const _forms = {
   ),
   clearButtonBackground: SEMANTIC_COLORS.shade60,
   controlBorder: computed(
-    ([borderBaseFormsControl]) => borderBaseFormsControl,
-    ['colors.borderBaseFormsControl']
+    ([borderBaseProminent]) => borderBaseProminent,
+    ['colors.borderBaseProminent']
   ),
   controlBorderSelected: computed(
     ([borderStrongPrimary]) => borderStrongPrimary,

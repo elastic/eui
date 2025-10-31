@@ -296,7 +296,7 @@ describe('euiFormCustomControlStyles', () => {
             "unselected": "
                 color: transparent;
                 background-color: transparent;
-                border-color: #8E9FBC;
+                border-color: #A2B1C9;
 
                 &:has(input:focus) {
                   border-color: #0B64DD;

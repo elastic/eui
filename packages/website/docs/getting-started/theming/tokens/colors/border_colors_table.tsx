@@ -49,6 +49,10 @@ export const BorderColorsTable = () => {
           token: 'colors.borderBaseSubdued',
         },
         {
+          value: euiTheme.colors.borderBaseProminent,
+          token: 'colors.borderBaseProminent',
+        },
+        {
           value: euiTheme.colors.borderBaseDisabled,
           token: 'colors.borderBaseDisabled',
         },
@@ -61,8 +65,16 @@ export const BorderColorsTable = () => {
           token: 'colors.borderBaseFormsColorSwatch',
         },
         {
-          value: euiTheme.colors.borderBaseFormsControl,
-          token: 'colors.borderBaseFormsControl',
+          value: euiTheme.colors.borderInteractiveFormsHoverPlain,
+          token: 'colors.borderInteractiveFormsHoverPlain',
+        },
+        {
+          value: euiTheme.colors.borderInteractiveFormsHoverProminent,
+          token: 'colors.borderInteractiveFormsHoverProminent',
+        },
+        {
+          value: euiTheme.colors.borderInteractiveFormsHoverDanger,
+          token: 'colors.borderInteractiveFormsHoverDanger',
         },
         {
           value: euiTheme.colors.borderStrongPrimary,
