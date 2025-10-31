@@ -34,6 +34,16 @@ interface ArgsWithQuery {
   error: null;
 }
 
+/**
+ * When `searchFormat` is 'text', `query` is null and the search is performed
+ * on the `queryText` directly without EQL parsing
+ */
+interface ArgsWithPlainText {
+  query: null;
+  queryText: string;
+  error: null;
+}
+
 interface ArgsWithError {
   query: null;
   queryText: string;
@@ -48,7 +58,10 @@ export interface SchemaType {
   recognizedFields?: string[];
 }
 
-export type EuiSearchBarOnChangeArgs = ArgsWithQuery | ArgsWithError;
+export type EuiSearchBarOnChangeArgs =
+  | ArgsWithQuery
+  | ArgsWithPlainText
+  | ArgsWithError;
 
 type HintPopOverProps = Partial<
   Pick<
