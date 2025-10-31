@@ -450,7 +450,6 @@ declare module '@elastic/eui-theme-borealis/lib/eui_theme_borealis_light.json' {
     euiColorBorderBaseDisabled: string;
     euiColorBorderBaseFloating: string;
     euiColorBorderBaseFormsColorSwatch: string;
-    euiColorBorderBaseFormsControl: string;
     euiColorBorderInteractiveFormsHoverPlain: string;
     euiColorBorderInteractiveFormsHoverProminent: string;
     euiColorBorderInteractiveFormsHoverDanger: string;
