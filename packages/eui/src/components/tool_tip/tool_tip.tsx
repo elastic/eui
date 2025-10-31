@@ -26,7 +26,7 @@ import { type EuiPopoverPosition } from '../../services/popover';
 import { enqueueStateChange } from '../../services/react';
 import { EuiResizeObserver } from '../observer/resize_observer';
 import { EuiPortal } from '../portal';
-import { EuiComponentDefaultsContext } from '../provider';
+import { EuiComponentDefaultsContext } from '../provider/component_defaults';
 
 import { EuiToolTipPopover, ToolTipPositions } from './tool_tip_popover';
 import { EuiToolTipAnchor } from './tool_tip_anchor';

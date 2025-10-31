@@ -55,7 +55,7 @@ import { euiPopoverStyles } from './popover.styles';
 import { EuiPopoverPanel } from './popover_panel';
 import { EuiPopoverPanelProps } from './popover_panel/_popover_panel';
 import { EuiPaddingSize } from '../../global_styling';
-import { EuiComponentDefaultsContext } from '../provider';
+import { EuiComponentDefaultsContext } from '../provider/component_defaults';
 
 export const popoverAnchorPosition = [
   'upCenter',
