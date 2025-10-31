@@ -8,9 +8,6 @@
 
 /**
  * Allowed values for `session` prop to control the way the session is managed for a flyout.
- * - `session="start"`: Creates a new flyout session. Use this for the main flyout.
- * - `session="inherit"`: (default) Inherits an existing session if one is active, otherwise functions as a standard flyout.
- * - `session="never"`: Opts out of session management and always functions as a standard flyout.
  */
 export const SESSION_START = 'start';
 export const SESSION_INHERIT = 'inherit';
