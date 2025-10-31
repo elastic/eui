@@ -13,6 +13,7 @@ import {
   waitForEuiPopoverOpen,
   waitForEuiPopoverClose,
   waitForEuiToolTipVisible,
+  waitForEuiToolTipHidden,
 } from '../../test/rtl';
 
 import { CollapsedItemActions } from './collapsed_item_actions';
@@ -155,5 +156,55 @@ describe('CollapsedItemActions', () => {
 
     fireEvent.click(getByTestSubject('customAction'));
     await waitForEuiPopoverClose();
+  });
+
+  // If `name` and `description` are exactly the same
+  // we don't want screen readers announcing the same text twice
+  test('tooltip screen-reader output', async () => {
+    const props = {
+      actions: [
+        {
+          name: 'same',
+          description: 'different',
+          onClick: () => {},
+          'data-test-subj': 'different',
+        },
+        {
+          name: 'same',
+          description: 'same',
+          onClick: () => {},
+          'data-test-subj': 'same',
+        },
+      ],
+      itemId: 'id',
+      item: { id: 'abc' },
+      actionsDisabled: false,
+      displayedRowIndex: 0,
+    };
+
+    const { getByTestSubject, getByRole } = render(
+      <CollapsedItemActions {...props} />
+    );
+    fireEvent.click(getByTestSubject('euiCollapsedItemActionsButton'));
+    await waitForEuiPopoverOpen();
+
+    const actionDifferent = getByTestSubject('different');
+    fireEvent.mouseOver(actionDifferent);
+    await waitForEuiToolTipVisible();
+    const tooltipDifferent = getByRole('tooltip');
+    expect(tooltipDifferent).toHaveTextContent('different');
+    expect(actionDifferent).toHaveAttribute('aria-describedby');
+    expect(actionDifferent.getAttribute('aria-describedby')).toEqual(
+      tooltipDifferent.id
+    );
+    fireEvent.mouseOut(actionDifferent);
+    await waitForEuiToolTipHidden();
+
+    const actionSame = getByTestSubject('same');
+    fireEvent.mouseOver(actionSame);
+    await waitForEuiToolTipVisible();
+    const tooltipSame = getByRole('tooltip');
+    expect(tooltipSame).toHaveTextContent('same');
+    expect(actionSame).not.toHaveAttribute('aria-describedby');
   });
 });
