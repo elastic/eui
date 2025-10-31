@@ -163,23 +163,23 @@ async function compileLib() {
     ...IGNORE_PACKAGES,
   ].join(',');
 
-  await Promise.all([
-    runBabel({
+  const babelConfigs = [
+    {
       outDir: 'es',
       ignore: defaultIgnore,
       env: {
         BABEL_MODULES: false,
         NO_COREJS_POLYFILL: true,
       },
-    }),
-    runBabel({
+    },
+    {
       outDir: 'lib',
       ignore: defaultIgnore,
       env: {
         NO_COREJS_POLYFILL: true,
       },
-    }),
-    runBabel({
+    },
+    {
       outDir: 'optimize/es',
       ignore: defaultIgnore,
       configFile: './.babelrc-optimize.js',
@@ -187,24 +187,36 @@ async function compileLib() {
         BABEL_MODULES: false,
         NO_COREJS_POLYFILL: true,
       },
-    }),
-    runBabel({
+    },
+    {
       outDir: 'optimize/lib',
       ignore: defaultIgnore,
       configFile: './.babelrc-optimize.js',
       env: {
         NO_COREJS_POLYFILL: true,
       },
-    }),
-    runBabel({
+    },
+    {
       outDir: 'test-env',
       ignore: testEnvIgnore,
       configFile: './.babelrc-test-env.js',
       env: {
         NO_COREJS_POLYFILL: true,
       },
-    }),
-  ]);
+    },
+  ];
+
+  if (process.argv.includes('--no-parallel')) {
+    for (const config of babelConfigs) {
+      await runBabel(config);
+    }
+  } else {
+    const results = await Promise.allSettled(babelConfigs.map(runBabel));
+    const failed = results.filter((r) => r.status === 'rejected');
+    if (failed.length) {
+      throw new Error(`${failed.length} Babel builds failed`);
+    }
+  }
 
   await renameTestEnvFiles();
   await copyJsonFiles();
