@@ -11,18 +11,27 @@
 /// <reference types="../../../cypress/support" />
 
 import React, { useRef, useState } from 'react';
+import { css } from '@emotion/react';
 
+import { EuiButton } from '../button';
+import { EuiCollapsibleNav, EuiCollapsibleNavGroup } from '../collapsible_nav';
+import { EuiCollapsibleNavBeta } from '../collapsible_nav_beta';
+import { EuiFlexGroup } from '../flex';
+import { EuiFlyout } from './flyout';
+import { EuiFlyoutBody } from './flyout_body';
+import { EuiFlyoutHeader } from './flyout_header';
 import { EuiGlobalToastList } from '../toast';
 import {
   EuiHeader,
   EuiHeaderSection,
   EuiHeaderSectionItemButton,
 } from '../header';
-import { EuiCollapsibleNavBeta } from '../collapsible_nav_beta';
-import { EuiFlyout } from './flyout';
-import { EuiCollapsibleNav, EuiCollapsibleNavGroup } from '../collapsible_nav';
 import { EuiIcon } from '../icon';
-import { EuiButton } from '../button';
+import { EuiPanel } from '../panel';
+import { EuiPopover } from '../popover';
+import { EuiText } from '../text';
+import { EuiTitle } from '../title';
+import { useEuiTheme } from '../../services';
 
 const childrenDefault = (
   <>
@@ -251,6 +260,7 @@ describe('EuiFlyout', () => {
     }: {
       children?: React.ReactNode;
       collapsibleNavVariant?: 'beta' | 'default';
+      includeFixedHeadersInFocusTrap?: boolean;
     }) => {
       const [isOpen, setIsOpen] = useState(false);
       const [navIsOpen, setNavIsOpen] = useState(false);
@@ -451,6 +461,109 @@ describe('EuiFlyout', () => {
         .cssVar(euiPushFlyoutOffsetInlineStart)
         .should('eq', '100px');
       cy.get(':root').cssVar(euiPushFlyoutOffsetInlineEnd).should('not.exist');
+    });
+  });
+
+  describe('Focus trap shards', () => {
+    const INCLUDE_IN_FLYOUT_TRAP_FOCUS_DATA_ATTRIBUTE =
+      'data-include-in-flyout-trap-focus';
+    const INCLUDE_IN_FLYOUT_TRAP_FOCUS = {
+      prop: {
+        [INCLUDE_IN_FLYOUT_TRAP_FOCUS_DATA_ATTRIBUTE]: 'true',
+      },
+      attribute: INCLUDE_IN_FLYOUT_TRAP_FOCUS_DATA_ATTRIBUTE,
+      selector: `[${INCLUDE_IN_FLYOUT_TRAP_FOCUS_DATA_ATTRIBUTE}="true"]`,
+    };
+
+    const FlyoutWithPopoverShard = () => {
+      const { euiTheme } = useEuiTheme();
+
+      const [isFlyoutOpen, setIsFlyoutOpen] = useState(false);
+      const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+
+      return (
+        <>
+          <EuiPanel
+            borderRadius="none"
+            css={css`
+              position: fixed;
+              block-size: 100%;
+              z-index: ${Number(euiTheme.levels.flyout) + 20};
+            `}
+            {...INCLUDE_IN_FLYOUT_TRAP_FOCUS.prop}
+          >
+            <EuiFlexGroup direction="column" gutterSize="m" wrap>
+              <EuiButton onClick={() => setIsFlyoutOpen(true)}>
+                Toggle flyout
+              </EuiButton>
+              <EuiPopover
+                button={
+                  <EuiButton onClick={() => setIsPopoverOpen(true)}>
+                    Toggle popover
+                  </EuiButton>
+                }
+                isOpen={isPopoverOpen}
+                panelProps={{
+                  ...INCLUDE_IN_FLYOUT_TRAP_FOCUS.prop,
+                  'data-test-subj': 'popover-panel',
+                }}
+              >
+                <EuiButton
+                  data-test-subj="popover-confirm-action"
+                  onClick={() => setIsPopoverOpen(false)}
+                >
+                  Confirm action
+                </EuiButton>
+                <EuiButton
+                  color="danger"
+                  data-test-subj="popover-destructive-action"
+                  onClick={() => setIsPopoverOpen(false)}
+                >
+                  Destructive action
+                </EuiButton>
+              </EuiPopover>
+            </EuiFlexGroup>
+          </EuiPanel>
+          {isFlyoutOpen && (
+            <EuiFlyout
+              data-test-subj="flyoutSpec"
+              onClose={() => setIsFlyoutOpen(false)}
+              includeSelectorInFocusTrap={[
+                INCLUDE_IN_FLYOUT_TRAP_FOCUS.selector,
+              ]}
+            >
+              <EuiFlyoutHeader hasBorder>
+                <EuiTitle size="m">
+                  <h2>Popover composition</h2>
+                </EuiTitle>
+              </EuiFlyoutHeader>
+              <EuiFlyoutBody>
+                <EuiText>
+                  <p>These popovers are portalled outside the flyout DOM.</p>
+                </EuiText>
+              </EuiFlyoutBody>
+            </EuiFlyout>
+          )}
+        </>
+      );
+    };
+
+    it('includes popover panels in the focus trap when opened', () => {
+      cy.mount(<FlyoutWithPopoverShard />);
+
+      // 1. Open the flyout.
+      cy.realPress('Tab');
+      cy.realPress('Enter');
+      cy.get('[data-test-subj="flyoutSpec"]').should('be.focused');
+
+      // 2. Open the popover.
+      cy.repeatRealPress('Tab', 4);
+      cy.realPress('Enter');
+      cy.get('[data-test-subj="popover-panel"]').should('exist');
+
+      // 3. Tab from the popover trigger into the popover content.
+      cy.realPress('Tab');
+      cy.get('[data-test-subj="popover-confirm-action"]').should('be.focused');
     });
   });
 });
