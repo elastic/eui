@@ -43,7 +43,10 @@ import {
   getElementZIndex,
   EuiPopoverPosition,
 } from '../../services/popover';
-import { createRepositionOnScroll } from '../../services/popover/reposition_on_scroll';
+import {
+  createRepositionOnScroll,
+  type CreateRepositionOnScrollReturnType,
+} from '../../services/popover/reposition_on_scroll';
 
 import { EuiI18n } from '../i18n';
 import { EuiOutsideClickDetector } from '../outside_click_detector';
@@ -289,11 +292,7 @@ type PropsWithDefaults = Props & {
 export class EuiPopover extends Component<Props, State> {
   static contextType = EuiComponentDefaultsContext;
   declare context: ContextType<typeof EuiComponentDefaultsContext>;
-  private repositionOnScroll: {
-    subscribe: () => void;
-    update: () => void;
-    cleanup: () => void;
-  };
+  private repositionOnScroll: CreateRepositionOnScrollReturnType;
 
   static defaultProps: Partial<PropsWithDefaults> = {
     isOpen: false,

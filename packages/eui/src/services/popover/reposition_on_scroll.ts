@@ -52,6 +52,12 @@ export const getRepositionOnScroll = <T extends SupportedComponentDefaults>(
   return false;
 };
 
+export type CreateRepositionOnScrollReturnType = {
+  subscribe: () => void;
+  update: () => void;
+  cleanup: () => void;
+};
+
 /**
  * Creates a manager for handling `repositionOnScroll` logic in overlay components.
  * This utility abstracts the adding, updating, and removing of window scroll event listeners.
@@ -61,7 +67,7 @@ export const getRepositionOnScroll = <T extends SupportedComponentDefaults>(
  */
 export const createRepositionOnScroll = <T extends SupportedComponentDefaults>(
   getArgs: () => RepositionOnScrollArgs<T>
-) => {
+): CreateRepositionOnScrollReturnType => {
   let lastResolvedRepositionOnScroll: boolean | undefined;
 
   const subscribe = () => {

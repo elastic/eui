@@ -18,17 +18,20 @@ import classNames from 'classnames';
 
 import { CommonProps } from '../common';
 import { findPopoverPosition, htmlIdGenerator, keys } from '../../services';
-import { createRepositionOnScroll } from '../../services/popover/reposition_on_scroll';
+import {
+  createRepositionOnScroll,
+  type CreateRepositionOnScrollReturnType,
+} from '../../services/popover/reposition_on_scroll';
 import { type EuiPopoverPosition } from '../../services/popover';
 import { enqueueStateChange } from '../../services/react';
 import { EuiResizeObserver } from '../observer/resize_observer';
 import { EuiPortal } from '../portal';
+import { EuiComponentDefaultsContext } from '../provider';
 
 import { EuiToolTipPopover, ToolTipPositions } from './tool_tip_popover';
 import { EuiToolTipAnchor } from './tool_tip_anchor';
 import { EuiToolTipArrow } from './tool_tip_arrow';
 import { toolTipManager } from './tool_tip_manager';
-import { EuiComponentDefaultsContext } from '../provider';
 
 export const POSITIONS = ['top', 'right', 'bottom', 'left'] as const;
 const DISPLAYS = ['inlineBlock', 'block'] as const;
@@ -144,11 +147,7 @@ interface State {
 export class EuiToolTip extends Component<EuiToolTipProps, State> {
   static contextType = EuiComponentDefaultsContext;
   declare context: ContextType<typeof EuiComponentDefaultsContext>;
-  private repositionOnScroll: {
-    subscribe: () => void;
-    update: () => void;
-    cleanup: () => void;
-  };
+  private repositionOnScroll: CreateRepositionOnScrollReturnType;
 
   _isMounted = false;
   anchor: null | HTMLElement = null;
