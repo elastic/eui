@@ -24,6 +24,7 @@ import './copy/select_and_copy';
 import './setup/mount';
 import './setup/realMount';
 import './css/cssVar';
+import './helpers/wait_for_position_to_settle';
 
 // @see https://github.com/quasarframework/quasar/issues/2233#issuecomment-492975745
 // @see also https://github.com/cypress-io/cypress/issues/20341

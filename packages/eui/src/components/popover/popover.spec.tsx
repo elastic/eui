@@ -20,6 +20,7 @@ import React, {
 
 import { EuiButton, EuiConfirmModal } from '../../components';
 import { EuiPopover, EuiPopoverProps } from './popover';
+import { testRepositionOnScroll } from '../../test/cypress/test_reposition_on_scroll';
 
 const PopoverToggle: FC<{ onClick: MouseEventHandler<HTMLButtonElement> }> = ({
   onClick,
@@ -212,6 +213,69 @@ describe('EuiPopover', () => {
       cy.focused().type('{esc}');
 
       cy.get('[data-test-subj="popoverPanel"]').should('not.exist');
+    });
+  });
+
+  describe('repositionOnScroll', () => {
+    const renderPopover = (props: { repositionOnScroll?: boolean }) => (
+      <PopoverComponent {...props}>Test popover</PopoverComponent>
+    );
+
+    const config = {
+      renderComponent: renderPopover,
+      componentName: 'EuiPopover' as const,
+      triggerSelector: '[data-test-subj="togglePopover"]',
+      panelSelector: '[data-test-subj="popoverPanel"]',
+    };
+
+    describe('is repositioned', () => {
+      it('when `repositionOnScroll=true`', () => {
+        testRepositionOnScroll({
+          ...config,
+          shouldReposition: true,
+          propValue: true,
+        });
+      });
+
+      it('when `componentDefaults` has `repositionOnScroll=true`', () => {
+        testRepositionOnScroll({
+          ...config,
+          shouldReposition: true,
+          componentDefaultValue: true,
+        });
+      });
+
+      it('when `repositionOnScroll=true` even if `componentDefaults` has `repositionOnScroll=false`', () => {
+        testRepositionOnScroll({
+          ...config,
+          shouldReposition: true,
+          propValue: true,
+          componentDefaultValue: false,
+        });
+      });
+    });
+
+    describe('is not repositioned', () => {
+      it('when `repositionOnScroll=false` (default value)', () => {
+        testRepositionOnScroll({ ...config, shouldReposition: false });
+      });
+
+      it('when `componentDefaults` has `repositionOnScroll=false`', () => {
+        testRepositionOnScroll({
+          ...config,
+          shouldReposition: false,
+          componentDefaultValue: false,
+        });
+      });
+
+      it('when `repositionOnScroll=false` even if `componentDefaults` has `repositionOnScroll=true`', () => {
+        testRepositionOnScroll({
+          ...config,
+          shouldReposition: false,
+          propValue: false,
+          componentDefaultValue: true,
+        });
+      });
     });
   });
 

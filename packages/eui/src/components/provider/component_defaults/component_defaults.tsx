@@ -18,6 +18,8 @@ import type { EuiPortalProps } from '../../portal';
 import type { EuiFocusTrapProps } from '../../focus_trap';
 import type { EuiTablePaginationProps, EuiTableProps } from '../../table';
 import type { EuiFlyoutProps } from '../../flyout';
+import type { EuiPopoverProps } from '../../popover';
+import type { EuiToolTipProps } from '../../tool_tip';
 
 export type EuiComponentDefaults = {
   /**
@@ -53,6 +55,16 @@ export type EuiComponentDefaults = {
     EuiFlyoutProps,
     'includeSelectorInFocusTrap' | 'includeFixedHeadersInFocusTrap'
   >;
+  /**
+   * Provide a global configuration for `EuiPopover`s.
+   * Defaults will be inherited by every `EuiPopover`.
+   */
+  EuiPopover?: Pick<EuiPopoverProps, 'repositionOnScroll'>;
+  /**
+   * Provide a global configuration for `EuiToolTip`s.
+   * Defaults will be inherited by every `EuiToolTip`.
+   */
+  EuiToolTip?: Pick<EuiToolTipProps, 'repositionOnScroll'>;
 };
 
 // Declaring as a static const for reference integrity/reducing rerenders

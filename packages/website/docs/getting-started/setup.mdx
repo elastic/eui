@@ -321,6 +321,9 @@ While all props can be individually customized via props, some components can ha
     EuiTablePagination: { itemsPerPage: 20, },
     EuiFocusTrap: { crossFrame: true },
     EuiPortal: { insert },
+    EuiFlyout: { includeSelectorInFocusTrap: ['.custom-selector', '[data-custom-selector]'], includeFixedHeadersInFocusTrap: false },
+    EuiPopover: { repositionOnScroll: true },
+    EuiToolTip: { repositionOnScroll: true },
   }}
 >
   <App />
