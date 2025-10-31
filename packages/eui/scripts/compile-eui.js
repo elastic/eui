@@ -1,4 +1,4 @@
-const { execSync } = require('child_process');
+const { execSync, spawn } = require('child_process');
 const chalk = require('chalk');
 const shell = require('shelljs');
 const path = require('path');
@@ -89,7 +89,9 @@ async function copyJsonFiles() {
 
   const count = await copyFilesToDestinationDirs(files, destinationDirs);
 
-  console.log(`Successfully copied ${count} JSON files from src/ to es/, optimize/es, optimize/lib, lib/ and test-env/`);
+  console.log(
+    `Successfully copied ${count} JSON files from src/ to es/, optimize/es, optimize/lib, lib/ and test-env/`
+  );
 }
 
 async function copySvgFiles() {
@@ -98,14 +100,48 @@ async function copySvgFiles() {
     realpath: true,
   });
 
-  const destinationDirs = [
-    'optimize/lib',
-    'lib',
-  ].map((dir) => path.join(packageRootDir, dir));
+  const destinationDirs = ['optimize/lib', 'lib'].map((dir) =>
+    path.join(packageRootDir, dir)
+  );
 
   const count = await copyFilesToDestinationDirs(files, destinationDirs);
 
-  console.log(`Successfully copied ${count} SVG files from src/ to lib/ and optimize/lib/`);
+  console.log(
+    `Successfully copied ${count} SVG files from src/ to lib/ and optimize/lib/`
+  );
+}
+
+function runBabel({ outDir, ignore, configFile, env = {} }) {
+  return new Promise((resolve, reject) => {
+    const args = [
+      '--quiet',
+      `--out-dir=${outDir}`,
+      '--extensions=.js,.ts,.tsx',
+      `--ignore=${ignore}`,
+    ];
+
+    if (configFile) {
+      args.push(`--config-file=${configFile}`);
+    }
+
+    args.push('src');
+
+    const child = spawn('yarn', ['exec', 'babel', ...args], {
+      env: {
+        ...process.env,
+        ...env,
+      },
+      stdio: 'inherit',
+    });
+
+    child.on('close', (code) => {
+      if (code === 0) {
+        resolve();
+      } else {
+        reject(new Error(`babel ${outDir} exited with code ${code}`));
+      }
+    });
+  });
 }
 
 async function compileLib() {
@@ -115,82 +151,72 @@ async function compileLib() {
 
   // Run all code (com|trans)pilation through babel (ESNext JS & TypeScript)
 
-  // Default build
-  execSync(
-    `babel --quiet --out-dir=es --extensions .js,.ts,.tsx --ignore "${[
-      ...IGNORE_BUILD,
-      ...IGNORE_TESTS,
-      ...IGNORE_TESTENV,
-      ...IGNORE_PACKAGES,
-    ].join(',')}" src`,
+  const defaultIgnore = [
+    ...IGNORE_BUILD,
+    ...IGNORE_TESTS,
+    ...IGNORE_TESTENV,
+    ...IGNORE_PACKAGES,
+  ].join(',');
+  const testEnvIgnore = [
+    ...IGNORE_BUILD,
+    ...IGNORE_TESTS,
+    ...IGNORE_PACKAGES,
+  ].join(',');
+
+  const babelConfigs = [
     {
+      outDir: 'es',
+      ignore: defaultIgnore,
       env: {
-        ...process.env,
         BABEL_MODULES: false,
         NO_COREJS_POLYFILL: true,
       },
-    }
-  );
-  execSync(
-    `babel --quiet --out-dir=lib --extensions .js,.ts,.tsx --ignore "${[
-      ...IGNORE_BUILD,
-      ...IGNORE_TESTS,
-      ...IGNORE_TESTENV,
-      ...IGNORE_PACKAGES,
-    ].join(',')}" src`,
+    },
     {
+      outDir: 'lib',
+      ignore: defaultIgnore,
       env: {
-        ...process.env,
         NO_COREJS_POLYFILL: true,
       },
-    }
-  );
-
-  // `optimize` build (Beta)
-  execSync(
-    `babel --quiet --out-dir=optimize/es --extensions .js,.ts,.tsx --config-file="./.babelrc-optimize.js" --ignore "${[
-      ...IGNORE_BUILD,
-      ...IGNORE_TESTS,
-      ...IGNORE_TESTENV,
-      ...IGNORE_PACKAGES,
-    ].join(',')}" src`,
+    },
     {
+      outDir: 'optimize/es',
+      ignore: defaultIgnore,
+      configFile: './.babelrc-optimize.js',
       env: {
-        ...process.env,
         BABEL_MODULES: false,
         NO_COREJS_POLYFILL: true,
       },
-    }
-  );
-  execSync(
-    `babel --quiet --out-dir=optimize/lib --extensions .js,.ts,.tsx --config-file="./.babelrc-optimize.js" --ignore "${[
-      ...IGNORE_BUILD,
-      ...IGNORE_TESTS,
-      ...IGNORE_TESTENV,
-      ...IGNORE_PACKAGES,
-    ].join(',')}" src`,
+    },
     {
+      outDir: 'optimize/lib',
+      ignore: defaultIgnore,
+      configFile: './.babelrc-optimize.js',
       env: {
-        ...process.env,
         NO_COREJS_POLYFILL: true,
       },
-    }
-  );
+    },
+    {
+      outDir: 'test-env',
+      ignore: testEnvIgnore,
+      configFile: './.babelrc-test-env.js',
+      env: {
+        NO_COREJS_POLYFILL: true,
+      },
+    },
+  ];
 
-  // `test-env` build
-  execSync(
-    `babel --quiet --out-dir=test-env --extensions .js,.ts,.tsx --config-file="./.babelrc-test-env.js" --ignore "${[
-      ...IGNORE_BUILD,
-      ...IGNORE_TESTS,
-      ...IGNORE_PACKAGES,
-    ].join(',')}" src`,
-    {
-      env: {
-        ...process.env,
-        NO_COREJS_POLYFILL: true,
-      },
+  if (process.argv.includes('--no-parallel')) {
+    for (const config of babelConfigs) {
+      await runBabel(config);
     }
-  );
+  } else {
+    const results = await Promise.allSettled(babelConfigs.map(runBabel));
+    const failed = results.filter((r) => r.status === 'rejected');
+    if (failed.length) {
+      throw new Error(`${failed.length} Babel builds failed`);
+    }
+  }
 
   await renameTestEnvFiles();
   await copyJsonFiles();
@@ -243,7 +269,10 @@ async function compileBundle() {
       },
       resolveModuleImport({ currentModuleId, importedModuleId }) {
         if (currentModuleId === 'index') {
-          return `@elastic/eui/${relativeDir}/${importedModuleId.replace('./', '')}`;
+          return `@elastic/eui/${relativeDir}/${importedModuleId.replace(
+            './',
+            ''
+          )}`;
         }
         return null;
       },
