@@ -58,7 +58,7 @@ export const EuiButtonGroupButton: FunctionComponent<Props> = ({
   id,
   isDisabled,
   isIconOnly,
-  isSelected = false,
+  isSelected,
   label,
   value, // Prevent prop from being spread
   size,
@@ -158,7 +158,7 @@ const EuiButtonGroupButtonWithToolTip: FunctionComponent<
   Pick<Props, 'toolTipContent' | 'toolTipProps'> & {
     children: ReactElement;
     wrapperCss: CSSInterpolation;
-    isSelected: boolean;
+    isSelected?: boolean;
   }
 > = ({ toolTipContent, toolTipProps, wrapperCss, isSelected, children }) => {
   return toolTipContent ? (
