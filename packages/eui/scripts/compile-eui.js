@@ -126,7 +126,7 @@ function runBabel({ outDir, ignore, configFile, env = {} }) {
 
     args.push('src');
 
-    const child = spawn('babel', args, {
+    const child = spawn('yarn', ['exec', 'babel', ...args], {
       env: {
         ...process.env,
         ...env,
