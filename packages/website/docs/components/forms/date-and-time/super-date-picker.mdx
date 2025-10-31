@@ -583,16 +583,16 @@ Zooming out will expand the window by {ZOOM_FACTOR_DEFAULT * 100}% by default. T
 import React, { useState } from 'react';
 import {
   EuiSuperDatePicker,
-  EuiSuperDatePickerProps,
+  EuiFlexGroup,
+  EuiSwitch,
+  EuiSpacer,
   OnTimeChangeProps,
-} from '@elastic/eui';
+} from "@elastic/eui";
 
 export default () => {
-  const { euiTheme } = useEuiTheme();
-
   const [showButtons, setShowButtons] = useState(true);
-  const [start, setStart] = useState('now-45m');
-  const [end, setEnd] = useState('now');
+  const [start, setStart] = useState("now-15m");
+  const [end, setEnd] = useState("now");
 
   const onTimeChange = ({ start, end }: OnTimeChangeProps) => {
     setStart(start);
@@ -615,7 +615,7 @@ export default () => {
         onTimeChange={onTimeChange}
         showTimeWindowButtons={showButtons}
         showUpdateButton={false}
-        width={'auto'}
+        width={"full"}
       />
     </>
   );
