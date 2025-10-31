@@ -32,6 +32,7 @@ import {
   useEuiMemoizedStyles,
   useGeneratedHtmlId,
   useEuiThemeCSSVariables,
+  focusTrapPubSub,
 } from '../../services';
 import {
   useCurrentSession,
@@ -462,26 +463,38 @@ export const EuiFlyoutComponent = forwardRef(
       return selectors;
     }, [includeSelectorInFocusTrap, includeFixedHeadersInFocusTrap]);
 
-    useEffect(() => {
-      if (focusTrapSelectors.length > 0) {
-        const shardsEls = focusTrapSelectors.flatMap((selector) =>
-          Array.from(document.querySelectorAll<HTMLElement>(selector))
-        );
+    const findShards = useCallback(
+      (shouldAutoFocus: boolean = false) => {
+        if (focusTrapSelectors.length > 0) {
+          const shardsEls = focusTrapSelectors.flatMap((selector) =>
+            Array.from(document.querySelectorAll<HTMLElement>(selector))
+          );
 
-        setFocusTrapShards(Array.from(shardsEls));
+          setFocusTrapShards(Array.from(shardsEls));
 
-        // Flyouts that are toggled from shards do not have working
-        // focus trap autoFocus, so we need to focus the flyout wrapper ourselves
-        shardsEls.forEach((shard) => {
-          if (shard.contains(flyoutToggle.current)) {
-            resizeRef?.focus();
+          // Flyouts that are toggled from shards do not have working
+          // focus trap autoFocus, so we need to focus the flyout wrapper ourselves
+          if (shouldAutoFocus) {
+            shardsEls.forEach((shard) => {
+              if (shard.contains(flyoutToggle.current)) {
+                resizeRef?.focus();
+              }
+            });
           }
-        });
-      } else {
-        // Clear existing shards if necessary, e.g. switching to `false`
-        setFocusTrapShards((shards) => (shards.length ? [] : shards));
-      }
-    }, [focusTrapSelectors, resizeRef]);
+        } else {
+          // Clear existing shards if necessary, e.g. switching to `false`
+          setFocusTrapShards((shards) => (shards.length ? [] : shards));
+        }
+      },
+      [focusTrapSelectors, resizeRef]
+    );
+
+    useEffect(() => {
+      findShards(true);
+
+      const unsubscribe = focusTrapPubSub.subscribe(findShards);
+      return unsubscribe;
+    }, [findShards]);
 
     const focusTrapProps: EuiFlyoutComponentProps['focusTrapProps'] = useMemo(
       () => ({
