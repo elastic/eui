@@ -55,7 +55,6 @@ export const useHighContrastModifications = ({
       borderBaseProminent: borderColor,
       borderBaseDisabled: systemTheme.colors.textDisabled,
       borderBaseFloating: borderColor,
-      borderBaseFormsControl: borderColor,
       borderStrongPrimary: systemTheme.colors.textPrimary,
       borderStrongAccent: systemTheme.colors.textAccent,
       borderStrongAccentSecondary: systemTheme.colors.textAccentSecondary,

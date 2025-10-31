@@ -267,7 +267,6 @@ export type _EuiThemeBorderColors = {
   borderBaseFloating: ColorModeSwitch;
 
   borderBaseFormsColorSwatch: ColorModeSwitch;
-  borderBaseFormsControl: ColorModeSwitch;
 
   borderInteractiveFormsHoverPlain: ColorModeSwitch;
   borderInteractiveFormsHoverProminent: ColorModeSwitch;
