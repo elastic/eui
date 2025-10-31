@@ -8,7 +8,7 @@
 
 import React, { useState } from 'react';
 import moment from 'moment';
-import { fireEvent, act } from '@testing-library/react';
+import { fireEvent, act, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import { render, waitForEuiPopoverOpen, screen } from '../../../test/rtl';
@@ -638,6 +638,128 @@ describe('EuiSuperDatePicker', () => {
 
       expect(prevStart).toBe('2024-12-31T10:00:00.000Z');
       expect(prevEnd).toBe('2025-01-01T10:00:00.000Z');
+    });
+  });
+
+  describe('Time window buttons', () => {
+    it('renders only when showTimeWindowButtons prop is passed', () => {
+      const start = '2025-10-30T12:00:00.000Z';
+      const end = '2025-10-30T13:00:00.000Z';
+
+      const { queryByTestSubject, rerender } = render(
+        <EuiSuperDatePicker
+          start={start}
+          end={end}
+          onTimeChange={() => {}}
+          showTimeWindowButtons
+        />
+      );
+
+      expect(queryByTestSubject('timeWindowButtons')).toBeInTheDocument();
+
+      rerender(
+        <EuiSuperDatePicker start={start} end={end} onTimeChange={() => {}} />
+      );
+
+      expect(queryByTestSubject('timeWindowButtons')).not.toBeInTheDocument();
+    });
+
+    it('updates time when shifting', async () => {
+      const start = '2025-10-30T12:00:00.000Z';
+      const end = '2025-10-30T13:00:00.000Z';
+      let lastTimeChange: { start: string; end: string } = { start, end };
+
+      const { queryByTestSubject } = render(
+        <EuiSuperDatePicker
+          start={start}
+          end={end}
+          onTimeChange={({ start, end }) => {
+            lastTimeChange = { start, end };
+          }}
+          showUpdateButton={false}
+          showTimeWindowButtons={true}
+        />
+      );
+
+      act(() => {
+        userEvent.click(queryByTestSubject('timeWindowButtonsPrevious')!);
+      });
+
+      await waitFor(() => {
+        const initialTimeStart = new Date(start).getTime();
+        const updatedTimeStart = new Date(lastTimeChange.start).getTime();
+        const initialTimeEnd = new Date(end).getTime();
+        const updatedTimeEnd = new Date(lastTimeChange.end).getTime();
+        expect(initialTimeStart).toBeGreaterThan(updatedTimeStart);
+        expect(initialTimeEnd).toBeGreaterThan(updatedTimeEnd);
+      });
+    });
+
+    it('updates time when zooming out', async () => {
+      const start = '2025-10-30T12:00:00.000Z';
+      const end = '2025-10-31T12:00:00.000Z';
+      let lastTimeChange: { start: string; end: string } = { start, end };
+
+      const { queryByTestSubject } = render(
+        <EuiSuperDatePicker
+          start={start}
+          end={end}
+          onTimeChange={({ start, end }) => {
+            lastTimeChange = { start, end };
+          }}
+          showUpdateButton={false}
+          showTimeWindowButtons={true}
+        />
+      );
+
+      act(() => {
+        userEvent.click(queryByTestSubject('timeWindowButtonsZoomOut')!);
+      });
+
+      await waitFor(() => {
+        const initialTimeStart = new Date(start).getTime();
+        const updatedTimeStart = new Date(lastTimeChange.start).getTime();
+        const initialTimeEnd = new Date(end).getTime();
+        const updatedTimeEnd = new Date(lastTimeChange.end).getTime();
+        expect(initialTimeStart).toBeGreaterThan(updatedTimeStart);
+        expect(initialTimeEnd).toBeLessThan(updatedTimeEnd);
+      });
+    });
+
+    it('is disabled when date/time range is invalid', async () => {
+      // reversed range (invalid)
+      const start = '2025-10-30T14:00:00.000Z';
+      const end = '2025-10-31T14:00:00.000Z';
+
+      const { rerender, queryByTestSubject } = render(
+        <EuiSuperDatePicker
+          start={end}
+          end={start}
+          onTimeChange={() => {}}
+          showTimeWindowButtons={true}
+        />
+      );
+
+      expect(queryByTestSubject('timeWindowButtonsPrevious')!).toBeDisabled();
+      expect(queryByTestSubject('timeWindowButtonsZoomOut')!).toBeDisabled();
+      expect(queryByTestSubject('timeWindowButtonsNext')!).toBeDisabled();
+
+      rerender(
+        <EuiSuperDatePicker
+          start={start}
+          end={end}
+          onTimeChange={() => {}}
+          showTimeWindowButtons={true}
+        />
+      );
+
+      expect(
+        queryByTestSubject('timeWindowButtonsPrevious')!
+      ).not.toBeDisabled();
+      expect(
+        queryByTestSubject('timeWindowButtonsZoomOut')!
+      ).not.toBeDisabled();
+      expect(queryByTestSubject('timeWindowButtonsNext')!).not.toBeDisabled();
     });
   });
 });
