@@ -40,23 +40,40 @@ export const euiDataGridHeaderCellStyles = (euiThemeContext: UseEuiTheme) => {
       /* Remove inline struts from EuiButtonIcon */
       line-height: 0;
     `,
-    euiDataGridHeaderCell__actions: css`
-      overflow: hidden;
-      display: flex;
+    euiDataGridHeaderCell__actions: {
+      action: css`
+        overflow: hidden;
+        display: flex;
+        max-inline-size: 24px;
 
-      ${header.hideActions} & {
-        ${logicalCSS('width', 0)}
-        opacity: 0;
-      }
+        ${euiCanAnimate} {
+          transition: transform ${euiTheme.animation.fast} ease-in,
+            opacity ${euiTheme.animation.slow} ease-in,
+            margin-left ${euiTheme.animation.fast} ease-in;
 
-      ${euiCanAnimate} {
-        transition: inline-size ${euiTheme.animation.fast} ease-in,
-          opacity ${euiTheme.animation.slow} ease-in;
-
-        /* Unset EuiButtonIcon animations */
-        transform: none !important; /* stylelint-disable-line declaration-no-important */
-        animation: none !important; /* stylelint-disable-line declaration-no-important */
-      }
-    `,
+          /* Unset EuiButtonIcon animations */
+          animation: none !important; /* stylelint-disable-line declaration-no-important */
+        }
+      `,
+      left: css`
+        ${header.hideActions} & {
+          ${logicalCSS(
+            'margin-left',
+            `-${euiTheme.size.m}`
+          )} /* negative margin to mimic collapsing flex space */
+          transform: translateX(0%) scale(0.01);
+          opacity: 0;
+          pointer-events: none;
+        }
+      `,
+      right: css`
+        ${header.hideActions} & {
+          ${logicalCSS('margin-left', `-${euiTheme.size.l}`)}
+          transform: translateX(50%) scale(0.01);
+          opacity: 0;
+          pointer-events: none;
+        }
+      `,
+    },
   };
 };

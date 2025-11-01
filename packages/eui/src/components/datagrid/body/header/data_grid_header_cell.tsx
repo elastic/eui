@@ -134,7 +134,10 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
                       <EuiIcon
                         type="grabOmnidirectional"
                         size="s"
-                        css={styles.euiDataGridHeaderCell__actions}
+                        css={[
+                          styles.euiDataGridHeaderCell__actions.action,
+                          styles.euiDataGridHeaderCell__actions.left,
+                        ]}
                       />
                     </span>
                   )}

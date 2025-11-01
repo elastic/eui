@@ -200,7 +200,6 @@ export const ColumnActions: FunctionComponent<
             iconType="boxesVertical"
             iconSize="s"
             color="text"
-            css={styles.euiDataGridHeaderCell__actions}
             className="euiDataGridHeaderCell__button"
             onClick={togglePopover}
             buttonRef={actionsButtonRef}
@@ -209,6 +208,10 @@ export const ColumnActions: FunctionComponent<
                 ? actionsButtonAriaLabel
                 : actionsEnterKeyInstructions
             }
+            css={[
+              styles.euiDataGridHeaderCell__actions.action,
+              styles.euiDataGridHeaderCell__actions.right,
+            ]}
             data-test-subj={`dataGridHeaderCellActionButton-${id}`}
           />
         }
