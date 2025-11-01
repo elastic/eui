@@ -113,10 +113,6 @@ export const ColumnActions: FunctionComponent<
       setIsPopoverOpen(false);
     }, []);
 
-    const [isActionsButtonFocused, setIsActionsButtonFocused] = useState(false);
-    const onFocus = useCallback(() => setIsActionsButtonFocused(true), []);
-    const onBlur = useCallback(() => setIsActionsButtonFocused(false), []);
-
     const actionsButtonAriaLabel = useEuiI18n(
       'euiDataGridHeaderCell.actionsButtonAriaLabel',
       '{title}. Click to view column header actions.',
@@ -208,14 +204,6 @@ export const ColumnActions: FunctionComponent<
             className="euiDataGridHeaderCell__button"
             onClick={togglePopover}
             buttonRef={actionsButtonRef}
-            onFocus={onFocus}
-            onBlur={onBlur}
-            tabIndex={0} // Override EuiButtonIcon's conditional tabindex based on aria-hidden
-            aria-hidden={
-              hasFocusTrap && !isActionsButtonFocused
-                ? 'true' // prevent the actions button from being read on cell focus
-                : undefined
-            }
             aria-label={
               hasFocusTrap
                 ? actionsButtonAriaLabel
