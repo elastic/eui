@@ -334,7 +334,9 @@ describe('Cell outline styles', () => {
         });
 
       cy.realMount(<EuiDataGrid {...baseProps} />);
-      getActionsWidth().then((width) => expect(width).to.eq(0));
+      /* uses < 1 instead of 0 as we're only scaling down to 0.01 as we need
+      dimensions to ensure the element is available on the a11y tree */
+      getActionsWidth().then((width) => expect(width).to.be.lessThan(1));
 
       // Hovering over the header cell should slide in the actions from the right
       getHeaderCell().realHover();
