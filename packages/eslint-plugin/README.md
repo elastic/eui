@@ -165,7 +165,6 @@ Ensure interactive EUI components (like e.g. `EuiLink`, `EuiButton`, `EuiRadio`)
 ### `@elastic/eui/require-table-caption`
 Ensure `EuiInMemoryTable`, `EuiBasicTable` have a `tableCaption` property for accessibility.
 
-
 ## Testing
 
 ### Running unit tests
