@@ -162,6 +162,10 @@ Ensure `EuiTooltip` components are anchored to elements that can receive keyboar
 ### `@elastic/eui/accessible-interactive-element`
 Ensure interactive EUI components (like e.g. `EuiLink`, `EuiButton`, `EuiRadio`) remain accessible by prohibiting `tabIndex={-1}`, which removes them from keyboard navigation.
 
+### `@elastic/eui/require-table-caption`
+Ensure `EuiInMemoryTable`, `EuiBasicTable` have a `tableCaption` property for accessibility.
+
+
 ## Testing
 
 ### Running unit tests
