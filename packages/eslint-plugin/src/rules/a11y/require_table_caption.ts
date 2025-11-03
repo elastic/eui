@@ -59,6 +59,3 @@ export const RequireTableCaption = ESLintUtils.RuleCreator.withoutDocs({
     },
   },
 });
-
-
-console.log(`Ensure ${TABLE_COMPONENTS.join(' and ')} have a \`${TABLE_CAPTION_PROP}\` prop for accessibility.`)
