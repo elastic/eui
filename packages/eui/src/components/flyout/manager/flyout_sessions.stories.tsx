@@ -30,6 +30,7 @@ import {
   EuiFlyoutHeader,
   EuiPanel,
   EuiProvider,
+  EuiHorizontalRule,
   EuiSpacer,
   EuiSwitch,
   EuiSwitchEvent,
@@ -306,8 +307,7 @@ const MultiSessionFlyoutDemo: React.FC = () => {
   const listItems = useMemo(
     () => [
       {
-        title: 'Session A: main size = s, child size = s',
-        description: (
+        title: (
           <FlyoutSession
             flyoutType={flyoutType}
             title="Session A"
@@ -316,10 +316,10 @@ const MultiSessionFlyoutDemo: React.FC = () => {
             hasChildBackground={hasChildBackground}
           />
         ),
+        description: 'Session A: main size = s, child size = s',
       },
       {
-        title: 'Session B: main size = m, child size = s',
-        description: (
+        title: (
           <FlyoutSession
             flyoutType={flyoutType}
             title="Session B"
@@ -328,10 +328,10 @@ const MultiSessionFlyoutDemo: React.FC = () => {
             hasChildBackground={hasChildBackground}
           />
         ),
+        description: 'Session B: main size = m, child size = s',
       },
       {
-        title: 'Session C: main size = s, child size = fill',
-        description: (
+        title: (
           <FlyoutSession
             flyoutType={flyoutType}
             title="Session C"
@@ -340,10 +340,10 @@ const MultiSessionFlyoutDemo: React.FC = () => {
             hasChildBackground={hasChildBackground}
           />
         ),
+        description: 'Session C: main size = s, child size = fill',
       },
       {
-        title: 'Session D: main size = fill, child size = s',
-        description: (
+        title: (
           <FlyoutSession
             flyoutType={flyoutType}
             title="Session D"
@@ -352,10 +352,10 @@ const MultiSessionFlyoutDemo: React.FC = () => {
             hasChildBackground={hasChildBackground}
           />
         ),
+        description: 'Session D: main size = fill, child size = s',
       },
       {
-        title: 'Session E: main size = fill',
-        description: (
+        title: (
           <FlyoutSession
             flyoutType={flyoutType}
             title="Session E"
@@ -363,11 +363,10 @@ const MultiSessionFlyoutDemo: React.FC = () => {
             hasChildBackground={hasChildBackground}
           />
         ),
+        description: 'Session E: main size = fill',
       },
       {
-        title:
-          'Session F: main size = undefined, child size = fill (maxWidth 1000px)',
-        description: (
+        title: (
           <FlyoutSession
             flyoutType={flyoutType}
             title="Session F"
@@ -377,10 +376,11 @@ const MultiSessionFlyoutDemo: React.FC = () => {
             hasChildBackground={hasChildBackground}
           />
         ),
+        description:
+          'Session F: main size = undefined, child size = fill (maxWidth 1000px)',
       },
       {
-        title: 'Session G: main size = fill (maxWidth 1000px), child size = s',
-        description: (
+        title: (
           <FlyoutSession
             flyoutType={flyoutType}
             title="Session G"
@@ -390,10 +390,10 @@ const MultiSessionFlyoutDemo: React.FC = () => {
             hasChildBackground={hasChildBackground}
           />
         ),
+        description: 'Session G: main size = fill (maxWidth 1000px), child size = s',
       },
       {
-        title: 'Session H: main size = s, child size = s, ownFocus = true',
-        description: (
+        title: (
           <FlyoutSession
             flyoutType={flyoutType}
             title="Session H"
@@ -403,10 +403,11 @@ const MultiSessionFlyoutDemo: React.FC = () => {
             hasChildBackground={hasChildBackground}
           />
         ),
+        description: 'Session H: main size = s, child size = s, ownFocus = true',
       },
       {
-        title: 'Non-session flyout',
-        description: <NonSessionFlyout flyoutType={flyoutType} />,
+        title: <NonSessionFlyout flyoutType={flyoutType} />,
+        description: 'Non-session flyout',
       },
     ],
     [flyoutType, hasChildBackground]
@@ -414,21 +415,26 @@ const MultiSessionFlyoutDemo: React.FC = () => {
 
   return (
     <>
-      <EuiSwitch
-        label="Flyouts push page content"
-        checked={flyoutType === 'push'}
-        onChange={handleFlyoutTypeToggle}
-      />
-      <EuiSpacer />
-      <EuiSwitch
-        label="Child flyout background shaded"
-        checked={hasChildBackground}
-        onChange={() => setChildBackgroundShaded((prev) => !prev)}
-      />
-      <EuiSpacer size="m" />
+      <EuiFlexGroup gutterSize="m" alignItems="center" direction="row">
+        <EuiFlexItem grow={false}>
+          <EuiSwitch
+            label="Main flyout is push"
+            checked={flyoutType === 'push'}
+            onChange={handleFlyoutTypeToggle}
+          />
+        </EuiFlexItem>
+        <EuiFlexItem grow={false}>
+          <EuiSwitch
+            label="Child flyout background shaded"
+            checked={hasChildBackground}
+            onChange={() => setChildBackgroundShaded((prev) => !prev)}
+          />
+        </EuiFlexItem>
+      </EuiFlexGroup>
+      <EuiHorizontalRule margin="m" />
       <EuiDescriptionList
         type="column"
-        columnGutterSize="m"
+        columnGutterSize="s"
         listItems={listItems}
       />
       <EuiSpacer size="xl" />

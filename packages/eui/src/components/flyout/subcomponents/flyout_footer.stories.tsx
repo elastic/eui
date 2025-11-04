@@ -9,14 +9,14 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { EuiButton } from '../button';
-import { EuiFlyout } from './flyout';
-import { EuiFlyoutBody } from './flyout_body';
-import { EuiFlyoutFooter, EuiFlyoutFooterProps } from './flyout_footer';
-import { LOKI_SELECTORS } from '../../../.storybook/loki';
+import { EuiButton } from '../../button';
+import { EuiFlyout } from '../flyout';
+import { EuiFlyoutBody } from '../flyout_body';
+import { EuiFlyoutFooter, EuiFlyoutFooterProps } from '../flyout_footer';
+import { LOKI_SELECTORS } from '../../../../.storybook/loki';
 
 const meta: Meta<EuiFlyoutFooterProps> = {
-  title: 'Layout/EuiFlyout/EuiFlyoutFooter',
+  title: 'Layout/EuiFlyout/Subcomponents/EuiFlyoutFooter',
   component: EuiFlyoutFooter,
   argTypes: {
     // TODO: editable children
@@ -26,6 +26,7 @@ const meta: Meta<EuiFlyoutFooterProps> = {
       // Flyout content is rendered in a portal
       chromeSelector: LOKI_SELECTORS.portal,
     },
+    docsOnly: true,
   },
 };
 
@@ -43,3 +44,4 @@ export const Playground: Story = {
     </EuiFlyout>
   ),
 };
+

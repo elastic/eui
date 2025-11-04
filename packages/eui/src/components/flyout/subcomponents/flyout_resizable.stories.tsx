@@ -8,20 +8,20 @@
 
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { LOKI_SELECTORS } from '../../../.storybook/loki';
-import { moveStorybookControlsToCategory } from '../../../.storybook/utils';
+import { LOKI_SELECTORS } from '../../../../.storybook/loki';
+import { moveStorybookControlsToCategory } from '../../../../.storybook/utils';
 
-import { EuiText } from '../text';
-import { EuiFlyoutBody } from './flyout_body';
+import { EuiText } from '../../text';
+import { EuiFlyoutBody } from '../flyout_body';
 
-import defaultFlyoutMeta from './flyout.stories';
+import defaultFlyoutMeta from '../flyout.stories';
 import {
   EuiFlyoutResizable,
   EuiFlyoutResizableProps,
-} from './flyout_resizable';
+} from '../flyout_resizable';
 
 const meta: Meta<EuiFlyoutResizableProps> = {
-  title: 'Layout/EuiFlyout/EuiFlyoutResizable',
+  title: 'Layout/EuiFlyout/Subcomponents/EuiFlyoutResizable',
   component: EuiFlyoutResizable as any,
   argTypes: {
     // TODO: `size` control isn't working correctly for whatever reason (appears to be a Storybook bug
@@ -40,6 +40,7 @@ const meta: Meta<EuiFlyoutResizableProps> = {
       // Flyout content is rendered in a portal
       chromeSelector: LOKI_SELECTORS.portal,
     },
+    docsOnly: true,
   },
 };
 // Stateful flyouts are already tested via default EuiFlyout stories, hide non-relevant props
@@ -86,3 +87,4 @@ export const Playground: Story = {
     hideCloseButton: true,
   },
 };
+

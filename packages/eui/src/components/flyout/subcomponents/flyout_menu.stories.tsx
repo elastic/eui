@@ -10,12 +10,12 @@ import React, { useState } from 'react';
 
 import { action } from '@storybook/addon-actions';
 import { Meta, StoryObj } from '@storybook/react';
-import { EuiButton } from '../button';
-import { EuiSpacer } from '../spacer';
-import { EuiText } from '../text';
-import { EuiFlyout } from './flyout';
-import { EuiFlyoutBody } from './flyout_body';
-import { EuiFlyoutMenu, EuiFlyoutMenuProps } from './flyout_menu';
+import { EuiButton } from '../../button';
+import { EuiSpacer } from '../../spacer';
+import { EuiText } from '../../text';
+import { EuiFlyout } from '../flyout';
+import { EuiFlyoutBody } from '../flyout_body';
+import { EuiFlyoutMenu, EuiFlyoutMenuProps } from '../flyout_menu';
 
 interface Args extends EuiFlyoutMenuProps {
   showCustomActions: boolean;
@@ -23,7 +23,7 @@ interface Args extends EuiFlyoutMenuProps {
 }
 
 const meta: Meta<Args> = {
-  title: 'Layout/EuiFlyout/EuiFlyoutMenu',
+  title: 'Layout/EuiFlyout/Subcomponents/EuiFlyoutMenu',
   component: EuiFlyoutMenu,
   argTypes: {
     showBackButton: { control: 'boolean' },
@@ -38,6 +38,9 @@ const meta: Meta<Args> = {
     showBackButton: true,
     showCustomActions: true,
     showHistoryItems: true,
+  },
+  parameters: {
+    docsOnly: true,
   },
 };
 
@@ -119,3 +122,4 @@ export const MenuBarExample: StoryObj<Args> = {
   name: 'Playground',
   render: (args) => <MenuBarFlyout {...args} />,
 };
+

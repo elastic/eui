@@ -26,8 +26,6 @@ import {
   EuiComboBox,
   EuiFlexGroup,
   EuiFlexItem,
-  EuiListGroup,
-  EuiListGroupItem,
   EuiPanel,
 } from '../index';
 
