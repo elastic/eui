@@ -12,9 +12,10 @@
     "build:types": "NODE_ENV=production tsc --project tsconfig.types.json",
     "build-pack": "yarn build && npm pack",
     "copy-files": "node ./scripts/copy-json-files.js",
-    "lint": "yarn tsc --noEmit && yarn lint-es && yarn lint-sass",
-    "lint-es": "eslint --cache src/**/*.ts --max-warnings 0",
-    "lint-sass": "yarn stylelint \"**/*.scss\" --quiet-deprecation-warnings",
+    "lint": "yarn run lint:ts && yarn run lint:es && yarn run lint:sass",
+    "lint:ts": "tsc --noEmit",
+    "lint:es": "eslint --cache \"src/**/*.ts\" --max-warnings 0",
+    "lint:sass": "yarn stylelint \"**/*.scss\" --quiet-deprecation-warnings",
     "test": "jest ./src",
     "pre-push": "yarn build:workspaces && yarn lint && yarn test"
   },
