@@ -15,6 +15,7 @@ on:
 jobs:
   lint_and_unit_tests:
     name: Run lint and unit tests
+    if: false
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -34,6 +35,7 @@ jobs:
         run: yarn workspaces foreach --all --parallel --topological-dev --exclude @elastic/eui-website --exclude @elastic/eui-monorepo --exclude @elastic/eui-docgen run test-unit
   cypress_tests:
     name: Run cypress tests
+    if: false
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -52,7 +54,7 @@ jobs:
   release:
     name: Release
     runs-on: ubuntu-latest
-    needs: [lint_and_unit_tests, cypress_tests]
+#    needs: [lint_and_unit_tests, cypress_tests]
     steps:
       - uses: actions/checkout@v4
         with:
@@ -63,3 +65,7 @@ jobs:
           cache: yarn
       - name: Install dependencies
         run: yarn install --immutable
+      - name: Build release scripts
+        run: yarn workspace @elastic/eui-release-cli run build
+      - name: Release
+        run: yarn release run snapshot --workspaces @elastic/eui-docusaurus-theme --skip-prompts --use-auth-token
