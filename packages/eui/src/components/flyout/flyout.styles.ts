@@ -80,7 +80,6 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
       ${logicalCSS('bottom', 0)}
       ${logicalCSS('top', 'var(--euiFixedHeadersOffset, 0)')}
       ${logicalCSS('height', 'inherit')}
-      z-index: ${euiTheme.levels.flyout};
       background: ${euiTheme.colors.backgroundBasePlain};
       display: flex;
       flex-direction: column;
@@ -361,7 +360,8 @@ export const composeFlyoutInlineStyles = (
   layoutMode: 'side-by-side' | 'stacked',
   siblingFlyoutId: string | null,
   siblingFlyoutWidth: number | null,
-  maxWidth: boolean | number | string | undefined
+  maxWidth: boolean | number | string | undefined,
+  zIndex: number
 ): React.CSSProperties => {
   // Handle custom width values (non-named sizes)
   const customWidthStyles = !isEuiFlyoutSizeNamed(size)
@@ -433,5 +433,6 @@ export const composeFlyoutInlineStyles = (
     ...dynamicStyles,
     ...minWidthOverride,
     ...(finalMaxWidth ? { maxWidth: finalMaxWidth } : {}),
+    zIndex,
   });
 };

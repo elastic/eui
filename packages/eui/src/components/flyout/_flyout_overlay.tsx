@@ -6,35 +6,29 @@
  * Side Public License, v 1.
  */
 
-import React, { PropsWithChildren } from 'react';
+import React, { PropsWithChildren, useMemo } from 'react';
 import { css, cx } from '@emotion/css';
-import type { EuiFlyoutComponentProps } from './flyout.component';
 import { EuiOverlayMask } from '../overlay_mask';
 import { EuiPortal } from '../portal';
-import { useEuiMemoizedStyles, type UseEuiTheme } from '../../services';
+import type { EuiFlyoutComponentProps } from './flyout.component';
 
 export interface EuiFlyoutOverlayProps extends PropsWithChildren {
   hasOverlayMask: boolean;
   maskProps: EuiFlyoutComponentProps['maskProps'];
   isPushed: boolean;
+  maskZIndex: number;
 }
 
-const getEuiFlyoutOverlayStyles = ({ euiTheme }: UseEuiTheme) => {
-  // TODO(tkajtoch): This should likely depend on maskProps.headerZIndexLocation
-  // in cases where the mask has z-index 6000
-  const maskLevel = Number(euiTheme.levels.flyout) - 1;
-
-  return {
-    overlayMask: css`
-      /*
-      This needs to have !important to override the default EuiOverlayMask
-      z-index based on the headerZindexLocation prop. Using the style attribute
-      doesn't work since EuiOverlayMask requires a string style prop that
-      causes React errors in the test environment.
-      */
-      z-index: ${maskLevel} !important;
-    `,
-  };
+const getEuiFlyoutOverlayStyles = (zIndex: number) => {
+  /*
+  This needs to have !important to override the default EuiOverlayMask
+  z-index based on the headerZindexLocation prop. Using the style attribute
+  doesn't work since EuiOverlayMask requires a string style prop that
+  causes React errors in the test environment.
+  */
+  return css`
+    z-index: ${zIndex} !important;
+  `;
 };
 
 /**
@@ -50,13 +44,20 @@ export const EuiFlyoutOverlay = ({
   isPushed,
   maskProps,
   hasOverlayMask,
+  maskZIndex,
 }: EuiFlyoutOverlayProps) => {
-  const styles = useEuiMemoizedStyles(getEuiFlyoutOverlayStyles);
+  const styles = useMemo(
+    () => getEuiFlyoutOverlayStyles(maskZIndex),
+    [maskZIndex]
+  );
+
   let content = children;
 
   if (!isPushed || hasOverlayMask) {
     content = <EuiPortal>{content}</EuiPortal>;
   }
+
+  const classes = cx(maskProps?.className, styles);
 
   return (
     <>
@@ -64,7 +65,7 @@ export const EuiFlyoutOverlay = ({
         <EuiOverlayMask
           headerZindexLocation="below"
           {...maskProps}
-          className={cx(maskProps?.className, styles.overlayMask)}
+          className={classes}
         />
       )}
       {content}
