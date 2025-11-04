@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useEuiTheme } from '../../../services';
 import { setLayoutMode } from './actions';
 import {
@@ -42,17 +42,28 @@ export const useApplyFlyoutLayoutMode = () => {
     typeof window !== 'undefined' ? window.innerWidth : Infinity
   );
 
-  const setMode = React.useCallback(
+  // Only set up resize listener when there's an active flyout
+  const hasFlyouts = Boolean(parentFlyoutId);
+  // Layout mode only matters when there's a child flyout to position
+  const hasChildFlyout = Boolean(childFlyoutId);
+
+  // Extract specific context values to avoid depending on the entire context object
+  // which gets a new reference on every state update
+  const dispatch = context?.dispatch;
+  const currentLayoutMode = context?.state?.layoutMode;
+
+  const setMode = useCallback(
     (layoutMode: EuiFlyoutLayoutMode) => {
-      if (context?.dispatch && layoutMode !== context.state.layoutMode) {
-        context.dispatch(setLayoutMode(layoutMode));
+      if (dispatch) {
+        dispatch(setLayoutMode(layoutMode));
       }
     },
-    [context]
+    [dispatch]
   );
 
   useEffect(() => {
-    if (typeof window === 'undefined') {
+    // Skip if no child flyout - layout mode only matters with multiple flyouts
+    if (typeof window === 'undefined' || !hasChildFlyout) {
       return;
     }
 
@@ -73,14 +84,14 @@ export const useApplyFlyoutLayoutMode = () => {
       }
       window.removeEventListener('resize', handleResize);
     };
-  }, []);
+  }, [hasChildFlyout]);
 
-  useEffect(() => {
-    if (!context) {
-      return;
+  // Calculate the desired layout mode based on current conditions
+  const desiredLayoutMode = useMemo(() => {
+    // Skip calculation if no flyouts open
+    if (!hasFlyouts) {
+      return null;
     }
-
-    const currentLayoutMode = context.state.layoutMode;
 
     // Thresholds to prevent thrashing near the breakpoint.
     const THRESHOLD_TO_SIDE_BY_SIDE = 85;
@@ -92,16 +103,11 @@ export const useApplyFlyoutLayoutMode = () => {
     // `composeFlyoutSizing` in `flyout.styles.ts` multiplied
     // by 2 (open flyouts side-by-side).
     if (windowWidth < Math.round(euiTheme.breakpoint.s * 1.4)) {
-      if (currentLayoutMode !== LAYOUT_MODE_STACKED) {
-        setMode(LAYOUT_MODE_STACKED);
-      }
-      return;
+      return LAYOUT_MODE_STACKED;
     }
 
     if (!childFlyoutId) {
-      if (currentLayoutMode !== LAYOUT_MODE_SIDE_BY_SIDE)
-        setMode(LAYOUT_MODE_SIDE_BY_SIDE);
-      return;
+      return LAYOUT_MODE_SIDE_BY_SIDE;
     }
 
     let parentWidthValue = parentWidth;
@@ -116,14 +122,11 @@ export const useApplyFlyoutLayoutMode = () => {
     }
 
     if (!parentWidthValue || !childWidthValue) {
-      if (currentLayoutMode !== LAYOUT_MODE_SIDE_BY_SIDE)
-        setMode(LAYOUT_MODE_SIDE_BY_SIDE);
-      return;
+      return LAYOUT_MODE_SIDE_BY_SIDE;
     }
 
     const combinedWidth = parentWidthValue + childWidthValue;
     const combinedWidthPercentage = (combinedWidth / windowWidth) * 100;
-    let newLayoutMode: EuiFlyoutLayoutMode;
 
     // Handle fill size flyouts: keep layout as side-by-side when fill flyout is present
     // This allows fill flyouts to dynamically calculate their width based on the other in the pair
@@ -131,39 +134,37 @@ export const useApplyFlyoutLayoutMode = () => {
       // For fill flyouts, we want to maintain side-by-side layout to enable dynamic width calculation
       // Only stack if the viewport is too small (below the small breakpoint)
       if (windowWidth >= Math.round(euiTheme.breakpoint.s * 1.4)) {
-        if (currentLayoutMode !== LAYOUT_MODE_SIDE_BY_SIDE) {
-          setMode(LAYOUT_MODE_SIDE_BY_SIDE);
-        }
-        return;
+        return LAYOUT_MODE_SIDE_BY_SIDE;
       }
     }
 
     if (currentLayoutMode === LAYOUT_MODE_STACKED) {
-      newLayoutMode =
-        combinedWidthPercentage <= THRESHOLD_TO_SIDE_BY_SIDE
-          ? LAYOUT_MODE_SIDE_BY_SIDE
-          : LAYOUT_MODE_STACKED;
+      return combinedWidthPercentage <= THRESHOLD_TO_SIDE_BY_SIDE
+        ? LAYOUT_MODE_SIDE_BY_SIDE
+        : LAYOUT_MODE_STACKED;
     } else {
-      newLayoutMode =
-        combinedWidthPercentage >= THRESHOLD_TO_STACKED
-          ? LAYOUT_MODE_STACKED
-          : LAYOUT_MODE_SIDE_BY_SIDE;
-    }
-
-    if (currentLayoutMode !== newLayoutMode) {
-      setMode(newLayoutMode);
+      return combinedWidthPercentage >= THRESHOLD_TO_STACKED
+        ? LAYOUT_MODE_STACKED
+        : LAYOUT_MODE_SIDE_BY_SIDE;
     }
   }, [
+    hasFlyouts,
     windowWidth,
-    context,
-    parentWidth,
-    setMode,
-    childWidth,
+    euiTheme,
     childFlyoutId,
+    parentWidth,
+    childWidth,
     parentFlyout?.size,
     childFlyout?.size,
-    euiTheme,
+    currentLayoutMode,
   ]);
+
+  // Apply the desired layout mode when it differs from the current mode
+  useEffect(() => {
+    if (desiredLayoutMode && currentLayoutMode !== desiredLayoutMode) {
+      setMode(desiredLayoutMode);
+    }
+  }, [desiredLayoutMode, currentLayoutMode, setMode]);
 };
 
 /** Convert a flyout `size` value to a pixel width using theme breakpoints. */
