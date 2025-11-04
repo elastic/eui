@@ -8,9 +8,9 @@ on:
         required: false
         type: string
 
-#permissions:
-#  id-token: write # Required for OIDC
-#  contents: read
+permissions:
+  id-token: write # Required for OIDC
+  contents: read
 
 jobs:
   lint_and_unit_tests:
