@@ -736,7 +736,7 @@ export class EuiSuperDatePickerInternal extends Component<
   };
 
   renderTimeWindowButtons = () => {
-    if (!this.props.showTimeWindowButtons) {
+    if (!this.props.showTimeWindowButtons || this.props.isAutoRefreshOnly) {
       return null;
     }
     const { start, end, showTimeWindowButtons, compressed, isDisabled } =
