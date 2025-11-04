@@ -57,8 +57,6 @@ jobs:
 #    needs: [lint_and_unit_tests, cypress_tests]
     steps:
       - uses: actions/checkout@v4
-        with:
-          persist-credentials: false
       - uses: actions/setup-node@v6
         with:
           node-version-file: .nvmrc
@@ -70,5 +68,9 @@ jobs:
         run: yarn workspace @elastic/eui-release-cli run build
       - name: Rename git remote to upstream
         run: git remote rename origin upstream
+      - name: Install latest npm (just for publishing the package)
+        run: npm install -g npm@latest
+      - name: whoami
+        run: npm whoami && yarn npm whoami && npm --version
       - name: Release
         run: yarn release run snapshot --workspaces @elastic/eui-docusaurus-theme --skip-prompts --use-auth-token
