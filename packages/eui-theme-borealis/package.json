@@ -24,7 +24,7 @@
     "url": "https://github.com/elastic/eui.git",
     "directory": "packages/eui-theme-borealis"
   },
-  "dependency": {
+  "dependencies": {
     "@elastic/eui-theme-common": "workspace:*",
     "chroma-js": "^2.4.2"
   },
