@@ -70,6 +70,7 @@ import { EuiFlyoutOverlay } from './_flyout_overlay';
 import { EuiFlyoutResizeButton } from './_flyout_resize_button';
 import { useEuiFlyoutResizable } from './use_flyout_resizable';
 import type { EuiFlyoutCloseEvent } from './types';
+import { useEuiFlyoutZIndex } from './use_flyout_z_index';
 
 interface _EuiFlyoutComponentProps {
   /**
@@ -403,6 +404,11 @@ export const EuiFlyoutComponent = forwardRef(
 
     const siblingFlyoutWidth = useFlyoutWidth(siblingFlyoutId);
 
+    const { flyoutZIndex, maskZIndex } = useEuiFlyoutZIndex({
+      maskProps,
+      isPushed,
+    });
+
     /**
      * Set inline styles
      */
@@ -412,7 +418,8 @@ export const EuiFlyoutComponent = forwardRef(
         layoutMode,
         siblingFlyoutId,
         siblingFlyoutWidth || null,
-        maxWidth
+        maxWidth,
+        flyoutZIndex
       );
 
       return { ...style, ...composedStyles };
@@ -423,6 +430,7 @@ export const EuiFlyoutComponent = forwardRef(
       siblingFlyoutId,
       siblingFlyoutWidth,
       maxWidth,
+      flyoutZIndex,
     ]);
 
     const styles = useEuiMemoizedStyles(euiFlyoutStyles);
@@ -579,6 +587,7 @@ export const EuiFlyoutComponent = forwardRef(
       <EuiFlyoutOverlay
         hasOverlayMask={hasOverlayMask}
         isPushed={isPushed}
+        maskZIndex={maskZIndex}
         maskProps={{
           ...maskProps,
           maskRef: maskCombinedRefs,
