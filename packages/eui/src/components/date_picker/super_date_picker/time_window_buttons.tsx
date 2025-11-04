@@ -8,7 +8,7 @@
 
 import React from 'react';
 import dateMath from '@elastic/datemath';
-import moment, { Moment } from 'moment';
+import moment from 'moment';
 
 import { ShortDate, ApplyTime } from '../types';
 import { usePrettyInterval } from './pretty_interval';
@@ -67,8 +67,22 @@ export const TimeWindowButtons: React.FC<TimeWindowButtonsProps> = ({
   const iconSize = compressed ? 's' : 'm';
   const styles = useEuiMemoizedStyles(euiButtonGroupButtonsStyles);
 
-  const { displayInterval, stepForward, stepBackward, expandWindow } =
-    useTimeWindow(start, end, applyTime, { zoomFactor });
+  const {
+    displayInterval,
+    isInvalid,
+    stepForward,
+    stepBackward,
+    expandWindow,
+  } = useTimeWindow(start, end, applyTime, { zoomFactor });
+
+  const invalidShiftDescription = useEuiI18n(
+    'euiTimeWindowButtons.invalidShiftLabel',
+    'Cannot shift invalid time window'
+  );
+  const invalidZoomOutDescription = useEuiI18n(
+    'euiTimeWindowButtons.invalidZoomOutLabel',
+    'Cannot zoom out invalid time window'
+  );
 
   const previousId = useGeneratedHtmlId({ prefix: 'previous' });
   const previousLabel = useEuiI18n(
@@ -86,6 +100,9 @@ export const TimeWindowButtons: React.FC<TimeWindowButtonsProps> = ({
     'euiTimeWindowButtons.zoomOutLabel',
     'Zoom out'
   );
+  const zoomOutTooltipContent = isInvalid
+    ? invalidZoomOutDescription
+    : zoomOutLabel;
 
   const nextId = useGeneratedHtmlId({ prefix: 'next' });
   const nextLabel = useEuiI18n('euiTimeWindowButtons.nextLabel', 'Next');
@@ -109,7 +126,10 @@ export const TimeWindowButtons: React.FC<TimeWindowButtonsProps> = ({
           data-test-subj="timeWindowButtonsPrevious"
           label={previousLabel}
           title=""
-          toolTipContent={!isDisabled && previousTooltipContent}
+          toolTipContent={
+            !isDisabled &&
+            (isInvalid ? invalidShiftDescription : previousTooltipContent)
+          }
           color={buttonColor}
           size={buttonSize}
           iconType="arrowLeft"
@@ -126,8 +146,10 @@ export const TimeWindowButtons: React.FC<TimeWindowButtonsProps> = ({
           data-test-subj="timeWindowButtonsZoomOut"
           label={zoomOutLabel}
           title=""
-          toolTipContent={!isDisabled && zoomOutLabel}
-          toolTipProps={{ disableScreenReaderOutput: true }}
+          toolTipContent={!isDisabled && zoomOutTooltipContent}
+          toolTipProps={{
+            disableScreenReaderOutput: zoomOutLabel === zoomOutTooltipContent,
+          }}
           color={buttonColor}
           size={buttonSize}
           iconType="magnifyWithMinus"
@@ -144,7 +166,10 @@ export const TimeWindowButtons: React.FC<TimeWindowButtonsProps> = ({
           data-test-subj="timeWindowButtonsNext"
           label={nextLabel}
           title=""
-          toolTipContent={!isDisabled && nextTooltipContent}
+          toolTipContent={
+            !isDisabled &&
+            (isInvalid ? invalidShiftDescription : nextTooltipContent)
+          }
           color={buttonColor}
           size={buttonSize}
           iconType="arrowRight"
@@ -168,28 +193,34 @@ export function useTimeWindow(
   apply: ApplyTime,
   options?: { zoomFactor?: TimeWindowButtonsConfig['zoomFactor'] }
 ) {
-  const min = dateMath.parse(start) as Moment;
-  const max = dateMath.parse(end, { roundUp: true }) as Moment;
-  const windowDuration = max.diff(min);
+  const min = dateMath.parse(start);
+  const max = dateMath.parse(end, { roundUp: true });
+  const isInvalid = !min || !min.isValid() || !max || !max.isValid();
+  const windowDuration = isInvalid ? 1 : max.diff(min);
   const zoomFactor = getPercentageMultiplier(
     options?.zoomFactor ?? ZOOM_FACTOR_DEFAULT
   );
-  // Gets added to each end, that's why it's split in half
-  const zoomAddition = windowDuration * (zoomFactor / 2);
-
-  let displayInterval = usePrettyInterval(false, windowDuration);
-  if (!isRelativeToNow(start, end) && !isExactMinuteRange(windowDuration)) {
+  const zoomAddition = windowDuration * (zoomFactor / 2); // Gets added to each end, that's why it's split in half
+  const prettyInterval = usePrettyInterval(false, windowDuration);
+  let displayInterval = isInvalid ? '' : prettyInterval;
+  if (
+    !isInvalid &&
+    !isRelativeToNow(start, end) &&
+    !isExactMinuteRange(windowDuration)
+  ) {
     displayInterval = `~${displayInterval}`;
   }
 
   return {
     displayInterval,
+    isInvalid,
     stepForward,
     stepBackward,
     expandWindow,
   };
 
   function stepForward() {
+    if (isInvalid) return;
     apply({
       start: moment(max).toISOString(),
       end: moment(max).add(windowDuration, 'ms').toISOString(),
@@ -197,6 +228,7 @@ export function useTimeWindow(
   }
 
   function stepBackward() {
+    if (isInvalid) return;
     apply({
       start: moment(min).subtract(windowDuration, 'ms').toISOString(),
       end: moment(min).toISOString(),
@@ -204,6 +236,7 @@ export function useTimeWindow(
   }
 
   function expandWindow() {
+    if (isInvalid) return;
     apply({
       start: moment(min).subtract(zoomAddition, 'ms').toISOString(),
       end: moment(max).add(zoomAddition, 'ms').toISOString(),

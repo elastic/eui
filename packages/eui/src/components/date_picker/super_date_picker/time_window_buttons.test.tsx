@@ -5,11 +5,23 @@
  * in compliance with, at your election, the Elastic License 2.0 or the Server
  * Side Public License, v 1.
  */
-
+import React from 'react';
 import moment from 'moment';
-import { renderHook, renderHookAct } from '../../../test/rtl';
+import { act, fireEvent } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
-import { useTimeWindow, ZOOM_FACTOR_DEFAULT } from './time_window_buttons';
+import {
+  render,
+  renderHook,
+  renderHookAct,
+  waitForEuiToolTipVisible,
+} from '../../../test/rtl';
+
+import {
+  TimeWindowButtons,
+  useTimeWindow,
+  ZOOM_FACTOR_DEFAULT,
+} from './time_window_buttons';
 
 describe('TimeWindowButtons: useTimeWindow hook', () => {
   describe('displayInterval', () => {
@@ -31,6 +43,29 @@ describe('TimeWindowButtons: useTimeWindow hook', () => {
       const { result } = renderHook(() => useTimeWindow(start, end, applyTime));
 
       expect(result.current.displayInterval).toBe('15 minutes');
+    });
+
+    it('handles invalid time (undefined)', () => {
+      const applyTime = jest.fn();
+      const start = undefined;
+      const end = '2025-10-29T16:15:00.000Z';
+
+      // @ts-expect-error - intentionally testing with undefined start value
+      const { result } = renderHook(() => useTimeWindow(start, end, applyTime));
+
+      expect(result.current.displayInterval).toBe('');
+      expect(result.current.isInvalid).toBeTruthy();
+    });
+
+    it('handles invalid time', () => {
+      const applyTime = jest.fn();
+      const start = '2025-10-29T16:00:00.000Z';
+      const end = 'not a date';
+
+      const { result } = renderHook(() => useTimeWindow(start, end, applyTime));
+
+      expect(result.current.displayInterval).toBe('');
+      expect(result.current.isInvalid).toBeTruthy();
     });
 
     it('adds a tilde for approximate ranges', () => {
@@ -131,5 +166,43 @@ describe('TimeWindowButtons: useTimeWindow hook', () => {
         end: shiftedEnd.toISOString(),
       });
     });
+  });
+});
+
+describe('TimeWindowButtons', () => {
+  it('renders', () => {
+    const start = 'now-15m';
+    const end = 'now';
+
+    const { container } = render(
+      <TimeWindowButtons start={start} end={end} applyTime={() => {}} />
+    );
+
+    expect(container.firstChild).toMatchSnapshot();
+  });
+
+  // This will not happen at all, because any invalid time range will toggle the buttons disabled,
+  // but we provide it in case requirements change
+  it('handles invalid times gracefully', async () => {
+    const apply = jest.fn();
+    const start = 'not a date';
+    const end = 'now';
+
+    const { getByTestSubject, getByRole } = render(
+      <TimeWindowButtons start={start} end={end} applyTime={apply} />
+    );
+
+    act(() => {
+      userEvent.click(getByTestSubject('timeWindowButtonsPrevious'));
+      userEvent.click(getByTestSubject('timeWindowButtonsZoomOut'));
+      userEvent.click(getByTestSubject('timeWindowButtonsNext'));
+    });
+
+    expect(apply).not.toHaveBeenCalled();
+
+    fireEvent.mouseEnter(getByTestSubject('timeWindowButtonsZoomOut'));
+    await waitForEuiToolTipVisible();
+
+    expect(getByRole('tooltip')).toHaveTextContent(/Cannot/);
   });
 });
