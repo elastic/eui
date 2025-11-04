@@ -219,22 +219,5 @@ describe('flyout.styles', () => {
         maxInlineSize: '600px',
       });
     });
-
-    it('should handle zIndex when set', () => {
-      // This tests the case where maxWidth is provided but dynamic width calculation
-      // is not applied (e.g., not fill size, not side-by-side, etc.)
-      const result = composeFlyoutInlineStyles(
-        'm',
-        'side-by-side',
-        'sibling-id',
-        300,
-        600,
-        1000
-      );
-      expect(result).toEqual({
-        maxInlineSize: '600px',
-        zIndex: 1000,
-      });
-    });
   });
 });

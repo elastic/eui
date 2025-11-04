@@ -6,7 +6,7 @@ exports[`EuiFlyout is rendered 1`] = `
 >
   <div>
     <div
-      class="css-w7myn3-getEuiFlyoutOverlayStyles"
+      class="css-yux95t-overlayMask"
     />
     <div
       data-focus-guard="true"
@@ -24,7 +24,6 @@ exports[`EuiFlyout is rendered 1`] = `
         data-autofocus="true"
         data-test-subj="test subject string"
         role="dialog"
-        style="z-index: 1000;"
         tabindex="0"
       >
         <p
@@ -64,7 +63,7 @@ exports[`EuiFlyout props accepts div props 1`] = `
 >
   <div>
     <div
-      class="css-w7myn3-getEuiFlyoutOverlayStyles"
+      class="css-yux95t-overlayMask"
     />
     <div
       data-focus-guard="true"
@@ -81,7 +80,6 @@ exports[`EuiFlyout props accepts div props 1`] = `
         data-autofocus="true"
         id="imaflyout"
         role="dialog"
-        style="z-index: 1000;"
         tabindex="0"
       >
         <p
@@ -121,7 +119,7 @@ exports[`EuiFlyout props closeButtonPosition can be outside 1`] = `
 >
   <div>
     <div
-      class="css-w7myn3-getEuiFlyoutOverlayStyles"
+      class="css-yux95t-overlayMask"
     />
     <div
       data-focus-guard="true"
@@ -137,7 +135,6 @@ exports[`EuiFlyout props closeButtonPosition can be outside 1`] = `
         class="euiFlyout emotion-euiFlyout-l-m-noMaxWidth-overlay-right-right"
         data-autofocus="true"
         role="dialog"
-        style="z-index: 1000;"
         tabindex="0"
       >
         <p
@@ -177,7 +174,7 @@ exports[`EuiFlyout props closeButtonProps 1`] = `
 >
   <div>
     <div
-      class="css-w7myn3-getEuiFlyoutOverlayStyles"
+      class="css-yux95t-overlayMask"
     />
     <div
       data-focus-guard="true"
@@ -193,7 +190,6 @@ exports[`EuiFlyout props closeButtonProps 1`] = `
         class="euiFlyout emotion-euiFlyout-l-m-noMaxWidth-overlay-right-right"
         data-autofocus="true"
         role="dialog"
-        style="z-index: 1000;"
         tabindex="0"
       >
         <p
@@ -233,7 +229,7 @@ exports[`EuiFlyout props hideCloseButton 1`] = `
 >
   <div>
     <div
-      class="css-w7myn3-getEuiFlyoutOverlayStyles"
+      class="css-yux95t-overlayMask"
     />
     <div
       data-focus-guard="true"
@@ -249,7 +245,6 @@ exports[`EuiFlyout props hideCloseButton 1`] = `
         class="euiFlyout emotion-euiFlyout-l-m-noMaxWidth-overlay-right-right"
         data-autofocus="true"
         role="dialog"
-        style="z-index: 1000;"
         tabindex="0"
       >
         <p
@@ -277,7 +272,7 @@ exports[`EuiFlyout props is rendered as nav 1`] = `
 >
   <div>
     <div
-      class="css-w7myn3-getEuiFlyoutOverlayStyles"
+      class="css-yux95t-overlayMask"
     />
     <div
       data-focus-guard="true"
@@ -293,7 +288,6 @@ exports[`EuiFlyout props is rendered as nav 1`] = `
         class="euiFlyout emotion-euiFlyout-l-m-noMaxWidth-overlay-right-right"
         data-autofocus="true"
         role="dialog"
-        style="z-index: 1000;"
         tabindex="0"
       >
         <p
@@ -334,7 +328,7 @@ exports[`EuiFlyout props maxWidth can be set to a custom number 1`] = `
 >
   <div>
     <div
-      class="css-w7myn3-getEuiFlyoutOverlayStyles"
+      class="css-yux95t-overlayMask"
     />
     <div
       data-focus-guard="true"
@@ -350,7 +344,7 @@ exports[`EuiFlyout props maxWidth can be set to a custom number 1`] = `
         class="euiFlyout emotion-euiFlyout-l-m-overlay-right-right"
         data-autofocus="true"
         role="dialog"
-        style="max-inline-size: 1024px; z-index: 1000;"
+        style="max-inline-size: 1024px;"
         tabindex="0"
       >
         <p
@@ -391,7 +385,7 @@ exports[`EuiFlyout props maxWidth can be set to a custom value and measurement 1
 >
   <div>
     <div
-      class="css-w7myn3-getEuiFlyoutOverlayStyles"
+      class="css-yux95t-overlayMask"
     />
     <div
       data-focus-guard="true"
@@ -407,7 +401,7 @@ exports[`EuiFlyout props maxWidth can be set to a custom value and measurement 1
         class="euiFlyout emotion-euiFlyout-l-m-overlay-right-right"
         data-autofocus="true"
         role="dialog"
-        style="max-inline-size: 24rem; z-index: 1000;"
+        style="max-inline-size: 24rem;"
         tabindex="0"
       >
         <p
@@ -448,7 +442,7 @@ exports[`EuiFlyout props maxWidth can be set to a default 1`] = `
 >
   <div>
     <div
-      class="css-w7myn3-getEuiFlyoutOverlayStyles"
+      class="css-yux95t-overlayMask"
     />
     <div
       data-focus-guard="true"
@@ -464,7 +458,6 @@ exports[`EuiFlyout props maxWidth can be set to a default 1`] = `
         class="euiFlyout emotion-euiFlyout-l-m-overlay-right-right"
         data-autofocus="true"
         role="dialog"
-        style="z-index: 1000;"
         tabindex="0"
       >
         <p
@@ -505,7 +498,7 @@ exports[`EuiFlyout props outsideClickCloses 1`] = `
 >
   <div>
     <div
-      class="css-w7myn3-getEuiFlyoutOverlayStyles"
+      class="css-yux95t-overlayMask"
     />
     <div
       data-focus-guard="true"
@@ -521,7 +514,6 @@ exports[`EuiFlyout props outsideClickCloses 1`] = `
         class="euiFlyout emotion-euiFlyout-l-m-noMaxWidth-overlay-right-right"
         data-autofocus="true"
         role="dialog"
-        style="z-index: 1000;"
         tabindex="0"
       >
         <p
@@ -562,7 +554,7 @@ exports[`EuiFlyout props ownFocus can alter mask props with maskProps without th
 >
   <div>
     <div
-      class="css-6kvyas-getEuiFlyoutOverlayStyles"
+      class="css-yux95t-overlayMask"
     />
     <div
       data-focus-guard="true"
@@ -578,7 +570,6 @@ exports[`EuiFlyout props ownFocus can alter mask props with maskProps without th
         class="euiFlyout emotion-euiFlyout-l-m-noMaxWidth-overlay-right-right"
         data-autofocus="true"
         role="dialog"
-        style="z-index: 6000;"
         tabindex="0"
       >
         <p
@@ -632,7 +623,6 @@ exports[`EuiFlyout props ownFocus can be false 1`] = `
         class="euiFlyout emotion-euiFlyout-l-m-noMaxWidth-overlay-right-right"
         data-autofocus="true"
         role="dialog"
-        style="z-index: 1000;"
         tabindex="0"
       >
         <p
@@ -673,7 +663,7 @@ exports[`EuiFlyout props paddingSize l is rendered 1`] = `
 >
   <div>
     <div
-      class="css-w7myn3-getEuiFlyoutOverlayStyles"
+      class="css-yux95t-overlayMask"
     />
     <div
       data-focus-guard="true"
@@ -689,7 +679,6 @@ exports[`EuiFlyout props paddingSize l is rendered 1`] = `
         class="euiFlyout emotion-euiFlyout-l-m-noMaxWidth-overlay-right-right"
         data-autofocus="true"
         role="dialog"
-        style="z-index: 1000;"
         tabindex="0"
       >
         <p
@@ -730,7 +719,7 @@ exports[`EuiFlyout props paddingSize m is rendered 1`] = `
 >
   <div>
     <div
-      class="css-w7myn3-getEuiFlyoutOverlayStyles"
+      class="css-yux95t-overlayMask"
     />
     <div
       data-focus-guard="true"
@@ -746,7 +735,6 @@ exports[`EuiFlyout props paddingSize m is rendered 1`] = `
         class="euiFlyout emotion-euiFlyout-m-m-noMaxWidth-overlay-right-right"
         data-autofocus="true"
         role="dialog"
-        style="z-index: 1000;"
         tabindex="0"
       >
         <p
@@ -787,7 +775,7 @@ exports[`EuiFlyout props paddingSize none is rendered 1`] = `
 >
   <div>
     <div
-      class="css-w7myn3-getEuiFlyoutOverlayStyles"
+      class="css-yux95t-overlayMask"
     />
     <div
       data-focus-guard="true"
@@ -803,7 +791,6 @@ exports[`EuiFlyout props paddingSize none is rendered 1`] = `
         class="euiFlyout emotion-euiFlyout-none-m-noMaxWidth-overlay-right-right"
         data-autofocus="true"
         role="dialog"
-        style="z-index: 1000;"
         tabindex="0"
       >
         <p
@@ -844,7 +831,7 @@ exports[`EuiFlyout props paddingSize s is rendered 1`] = `
 >
   <div>
     <div
-      class="css-w7myn3-getEuiFlyoutOverlayStyles"
+      class="css-yux95t-overlayMask"
     />
     <div
       data-focus-guard="true"
@@ -860,7 +847,6 @@ exports[`EuiFlyout props paddingSize s is rendered 1`] = `
         class="euiFlyout emotion-euiFlyout-s-m-noMaxWidth-overlay-right-right"
         data-autofocus="true"
         role="dialog"
-        style="z-index: 1000;"
         tabindex="0"
       >
         <p
@@ -898,7 +884,6 @@ exports[`EuiFlyout props push flyouts renders 1`] = `
 <div
   class="euiFlyout emotion-euiFlyout-l-m-noMaxWidth-push-right-noAnimation-right"
   data-test-subj="flyout"
-  style="z-index: 1000;"
 >
   <button
     aria-label="Close this dialog"
@@ -922,7 +907,7 @@ exports[`EuiFlyout props sides left is rendered 1`] = `
 >
   <div>
     <div
-      class="css-w7myn3-getEuiFlyoutOverlayStyles"
+      class="css-yux95t-overlayMask"
     />
     <div
       data-focus-guard="true"
@@ -938,7 +923,6 @@ exports[`EuiFlyout props sides left is rendered 1`] = `
         class="euiFlyout emotion-euiFlyout-l-m-noMaxWidth-overlay-left-left"
         data-autofocus="true"
         role="dialog"
-        style="z-index: 1000;"
         tabindex="0"
       >
         <p
@@ -978,7 +962,7 @@ exports[`EuiFlyout props sides right is rendered 1`] = `
 >
   <div>
     <div
-      class="css-w7myn3-getEuiFlyoutOverlayStyles"
+      class="css-yux95t-overlayMask"
     />
     <div
       data-focus-guard="true"
@@ -994,7 +978,6 @@ exports[`EuiFlyout props sides right is rendered 1`] = `
         class="euiFlyout emotion-euiFlyout-l-m-noMaxWidth-overlay-right-right"
         data-autofocus="true"
         role="dialog"
-        style="z-index: 1000;"
         tabindex="0"
       >
         <p
@@ -1035,7 +1018,7 @@ exports[`EuiFlyout props size accepts custom number 1`] = `
 >
   <div>
     <div
-      class="css-w7myn3-getEuiFlyoutOverlayStyles"
+      class="css-yux95t-overlayMask"
     />
     <div
       data-focus-guard="true"
@@ -1051,7 +1034,7 @@ exports[`EuiFlyout props size accepts custom number 1`] = `
         class="euiFlyout emotion-euiFlyout-l-noMaxWidth-overlay-right-right"
         data-autofocus="true"
         role="dialog"
-        style="inline-size: 500px; z-index: 1000;"
+        style="inline-size: 500px;"
         tabindex="0"
       >
         <p
@@ -1092,7 +1075,7 @@ exports[`EuiFlyout props size fill is rendered 1`] = `
 >
   <div>
     <div
-      class="css-w7myn3-getEuiFlyoutOverlayStyles"
+      class="css-yux95t-overlayMask"
     />
     <div
       data-focus-guard="true"
@@ -1108,7 +1091,6 @@ exports[`EuiFlyout props size fill is rendered 1`] = `
         class="euiFlyout emotion-euiFlyout-l-fill-noMaxWidth-overlay-right-right"
         data-autofocus="true"
         role="dialog"
-        style="z-index: 1000;"
         tabindex="0"
       >
         <p
@@ -1149,7 +1131,7 @@ exports[`EuiFlyout props size l is rendered 1`] = `
 >
   <div>
     <div
-      class="css-w7myn3-getEuiFlyoutOverlayStyles"
+      class="css-yux95t-overlayMask"
     />
     <div
       data-focus-guard="true"
@@ -1165,7 +1147,6 @@ exports[`EuiFlyout props size l is rendered 1`] = `
         class="euiFlyout emotion-euiFlyout-l-l-noMaxWidth-overlay-right-right"
         data-autofocus="true"
         role="dialog"
-        style="z-index: 1000;"
         tabindex="0"
       >
         <p
@@ -1206,7 +1187,7 @@ exports[`EuiFlyout props size m is rendered 1`] = `
 >
   <div>
     <div
-      class="css-w7myn3-getEuiFlyoutOverlayStyles"
+      class="css-yux95t-overlayMask"
     />
     <div
       data-focus-guard="true"
@@ -1222,7 +1203,6 @@ exports[`EuiFlyout props size m is rendered 1`] = `
         class="euiFlyout emotion-euiFlyout-l-m-noMaxWidth-overlay-right-right"
         data-autofocus="true"
         role="dialog"
-        style="z-index: 1000;"
         tabindex="0"
       >
         <p
@@ -1263,7 +1243,7 @@ exports[`EuiFlyout props size s is rendered 1`] = `
 >
   <div>
     <div
-      class="css-w7myn3-getEuiFlyoutOverlayStyles"
+      class="css-yux95t-overlayMask"
     />
     <div
       data-focus-guard="true"
@@ -1279,7 +1259,6 @@ exports[`EuiFlyout props size s is rendered 1`] = `
         class="euiFlyout emotion-euiFlyout-l-s-noMaxWidth-overlay-right-right"
         data-autofocus="true"
         role="dialog"
-        style="z-index: 1000;"
         tabindex="0"
       >
         <p
@@ -1324,7 +1303,7 @@ exports[`EuiFlyout renders extra screen reader instructions when fixed EuiHeader
       style="inset-block-start: 0px;"
     />
     <div
-      class="css-w7myn3-getEuiFlyoutOverlayStyles"
+      class="css-yux95t-overlayMask"
     />
     <div
       data-focus-guard="true"
@@ -1342,7 +1321,6 @@ exports[`EuiFlyout renders extra screen reader instructions when fixed EuiHeader
         data-autofocus="true"
         data-test-subj="test subject string"
         role="dialog"
-        style="z-index: 1000;"
         tabindex="0"
       >
         <p
