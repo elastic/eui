@@ -34,7 +34,7 @@ export interface TimeWindowButtonsConfig {
   showShiftArrows?: boolean;
   /**
    * How much the time window is increased when zooming.
-   * Can be a number (0.25) or a string representing a percentage (25%)
+   * A number between 0 and 1 e.g. 0.25, or a string representing a percentage e.g. 25%
    * @default 0.5
    * */
   zoomFactor?: number | string;
@@ -248,8 +248,15 @@ export function useTimeWindow(
  * Get a number out of either 0.2 or "20%"
  */
 function getPercentageMultiplier(value: number | string) {
-  if (typeof value === 'number') return value;
-  return parseInt(String(value).replace('%', '').trim()) / 100;
+  const result =
+    typeof value === 'number'
+      ? value
+      : parseFloat(String(value).replace('%', '').trim());
+  if (isNaN(result))
+    throw new TypeError(
+      'Please provide a valid number or percentage string e.g. "25%"'
+    );
+  return result > 1 ? result / 100 : result;
 }
 
 /**
