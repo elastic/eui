@@ -16,6 +16,7 @@ import {
   logicalTextAlignCSS,
 } from '../../../../global_styling';
 import { euiDataGridCellOutlineSelectors } from '../cell/data_grid_cell.styles';
+import { CSSProperties } from '@emotion/serialize';
 
 /**
  * Styles only applied to data header cell content, not control header cells
@@ -23,6 +24,18 @@ import { euiDataGridCellOutlineSelectors } from '../cell/data_grid_cell.styles';
 export const euiDataGridHeaderCellStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
   const { header } = euiDataGridCellOutlineSelectors('.euiDataGridHeaderCell');
+
+  const hideAnimation = (
+    margin: CSSProperties['margin'],
+    translateX: string
+  ) => `
+    ${header.hideActions} & {
+      ${logicalCSS('margin-left', margin)}
+      transform: translateX(${translateX}) scale(0.01);
+      opacity: 0;
+      pointer-events: none;
+    }
+  `;
 
   return {
     euiDataGridHeaderCell__content: css`
@@ -55,24 +68,11 @@ export const euiDataGridHeaderCellStyles = (euiThemeContext: UseEuiTheme) => {
           animation: none !important; /* stylelint-disable-line declaration-no-important */
         }
       `,
-      left: css`
-        ${header.hideActions} & {
-          ${logicalCSS(
-            'margin-left',
-            `-${euiTheme.size.m}`
-          )} /* negative margin to mimic collapsing flex space */
-          transform: translateX(0%) scale(0.01);
-          opacity: 0;
-          pointer-events: none;
-        }
+      start: css`
+        ${hideAnimation(`-${euiTheme.size.m}`, '0%')}
       `,
-      right: css`
-        ${header.hideActions} & {
-          ${logicalCSS('margin-left', `-${euiTheme.size.l}`)}
-          transform: translateX(50%) scale(0.01);
-          opacity: 0;
-          pointer-events: none;
-        }
+      end: css`
+        ${hideAnimation(`-${euiTheme.size.l}`, '50%')}
       `,
     },
   };

@@ -136,7 +136,7 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
                         size="s"
                         css={[
                           styles.euiDataGridHeaderCell__actions.action,
-                          styles.euiDataGridHeaderCell__actions.left,
+                          styles.euiDataGridHeaderCell__actions.start,
                         ]}
                       />
                     </span>

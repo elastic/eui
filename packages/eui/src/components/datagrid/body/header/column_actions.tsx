@@ -210,7 +210,7 @@ export const ColumnActions: FunctionComponent<
             }
             css={[
               styles.euiDataGridHeaderCell__actions.action,
-              styles.euiDataGridHeaderCell__actions.right,
+              styles.euiDataGridHeaderCell__actions.end,
             ]}
             data-test-subj={`dataGridHeaderCellActionButton-${id}`}
           />
