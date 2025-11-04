@@ -25,12 +25,12 @@ export interface TimeWindowButtonsConfig {
    * Show button for zooming out
    * @default true
    */
-  zoomOut?: boolean;
+  showZoomOut?: boolean;
   /**
    * Show buttons for shifting the time window forward and backward
    * @default true
    */
-  shiftArrows?: boolean;
+  showShiftArrows?: boolean;
   /**
    * How much the time window is increased when zooming.
    * Can be a number (0.25) or a string representing a percentage (25%)
@@ -57,8 +57,8 @@ export const TimeWindowButtons: React.FC<TimeWindowButtonsProps> = ({
   end,
   compressed,
   isDisabled,
-  zoomOut = true,
-  shiftArrows = true,
+  showZoomOut = true,
+  showShiftArrows = true,
   zoomFactor = ZOOM_FACTOR_DEFAULT,
 }) => {
   const buttonColor = 'text';
@@ -94,7 +94,7 @@ export const TimeWindowButtons: React.FC<TimeWindowButtonsProps> = ({
     { displayInterval }
   );
 
-  if (!zoomOut && !shiftArrows) return null;
+  if (!showZoomOut && !showShiftArrows) return null;
 
   return (
     <div
@@ -102,7 +102,7 @@ export const TimeWindowButtons: React.FC<TimeWindowButtonsProps> = ({
       css={[styles.euiButtonGroup__buttons, styles[buttonSize]]}
       data-test-subj="timeWindowButtons"
     >
-      {shiftArrows && (
+      {showShiftArrows && (
         <EuiButtonGroupButton
           id={previousId}
           data-test-subj="timeWindowButtonsPrevious"
@@ -119,7 +119,7 @@ export const TimeWindowButtons: React.FC<TimeWindowButtonsProps> = ({
           onClick={stepBackward}
         />
       )}
-      {zoomOut && (
+      {showZoomOut && (
         <EuiButtonGroupButton
           id={zoomOutId}
           data-test-subj="timeWindowButtonsZoomOut"
@@ -137,7 +137,7 @@ export const TimeWindowButtons: React.FC<TimeWindowButtonsProps> = ({
           onClick={expandWindow}
         />
       )}
-      {shiftArrows && (
+      {showShiftArrows && (
         <EuiButtonGroupButton
           id={nextId}
           data-test-subj="timeWindowButtonsNext"
