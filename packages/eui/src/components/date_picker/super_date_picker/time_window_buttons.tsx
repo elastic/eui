@@ -12,6 +12,7 @@ import moment, { Moment } from 'moment';
 
 import { ShortDate, ApplyTime } from '../types';
 import { usePrettyInterval } from './pretty_interval';
+import { isRelativeToNow } from './relative_utils';
 
 import { EuiButtonGroupButton } from '../../button/button_group/button_group_button';
 import { euiButtonGroupButtonsStyles } from '../../button/button_group/button_group.styles';
@@ -224,8 +225,4 @@ function getPercentageMultiplier(value: number | string) {
 function isExactMinuteRange(diffMs: number) {
   // 60 * 1000 = ms per minute
   return diffMs % (60 * 1000) === 0;
-}
-
-function isRelativeToNow(start: ShortDate, end: ShortDate) {
-  return String(end).includes('now') || String(start).includes('now');
 }
