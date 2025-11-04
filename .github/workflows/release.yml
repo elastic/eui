@@ -31,7 +31,7 @@ jobs:
       - name: Lint
         run: yarn workspaces foreach --all --parallel --topological-dev --exclude @elastic/eui-website --exclude @elastic/eui-monorepo --exclude @elastic/eui-docgen run lint
       - name: Unit tests
-        run: yarn workspaces foreach --all --parallel --topological-dev --exclude @elastic/eui-website --exclude @elastic/eui-monorepo --exclude @elastic/eui-docgen run test:unit
+        run: yarn workspaces foreach --all --parallel --topological-dev --exclude @elastic/eui-website --exclude @elastic/eui-monorepo --exclude @elastic/eui-docgen run test-unit
   cypress_tests:
     name: Run cypress tests
     runs-on: ubuntu-latest
@@ -48,7 +48,7 @@ jobs:
       - name: Build local packages
         run: yarn workspaces foreach --all --parallel --topological-dev --exclude @elastic/eui-website --exclude @elastic/eui-monorepo --exclude @elastic/eui-docgen run build
       - name: Cypress tests
-        run: yarn workspaces foreach --all --parallel --topological-dev --exclude @elastic/eui-website --exclude @elastic/eui-monorepo --exclude @elastic/eui-docgen run test:cypress
+        run: yarn workspaces foreach --all --parallel --topological-dev --exclude @elastic/eui-website --exclude @elastic/eui-monorepo --exclude @elastic/eui-docgen run test-cypress
   release:
     name: Release
     runs-on: ubuntu-latest
