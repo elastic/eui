@@ -84,7 +84,8 @@ export const EuiButtonGroupButton: FunctionComponent<Props> = ({
 
   const cssStyles = [
     styles.euiButtonGroupButton,
-    isIconOnly && styles.iconOnly,
+    isIconOnly && styles.iconOnly.iconOnly,
+    isIconOnly && styles.iconOnly[size],
     !isCompressed &&
       (hasToolTip ? styles.uncompressed.hasToolTip : styles.uncompressed[size]),
     isCompressed ? styles.compressed : styles.uncompressed.uncompressed,
