@@ -11,8 +11,11 @@ import type { Meta, StoryObj } from '@storybook/react';
 import React, { useState } from 'react';
 
 import { EuiBreakpointSize } from '../../../services';
-import { EuiButton } from '../../button';
+import { EuiButton, EuiButtonEmpty } from '../../button';
+import { EuiFlexGroup, EuiFlexItem } from '../../flex';
+import { EuiHorizontalRule } from '../../horizontal_rule';
 import { EuiSpacer } from '../../spacer';
+import { EuiTitle } from '../../title';
 import { EuiText } from '../../text';
 import { FLYOUT_TYPES, EuiFlyout } from '../flyout';
 import { EuiFlyoutBody } from '../flyout_body';
@@ -171,8 +174,10 @@ const StatefulFlyout: React.FC<FlyoutChildStoryArgs> = ({
   childFlyoutResizable,
   ...args
 }) => {
-  const [isMainOpen, setIsMainOpen] = useState(true);
+  const [isMainOpen, setIsMainOpen] = useState(false);
   const [isChildOpen, setIsChildOpen] = useState(false);
+  const [isSecondChildOpen, setIsSecondChildOpen] = useState(false);
+  const [isSecondSessionOpen, setIsSecondSessionOpen] = useState(false);
 
   const openMain = () => {
     setIsMainOpen(true);
@@ -181,6 +186,7 @@ const StatefulFlyout: React.FC<FlyoutChildStoryArgs> = ({
   const closeMain = () => {
     setIsMainOpen(false);
     setIsChildOpen(false);
+    setIsSecondChildOpen(false);
     playgroundActions.log('Parent flyout closed');
   };
   const openChild = () => {
@@ -189,31 +195,76 @@ const StatefulFlyout: React.FC<FlyoutChildStoryArgs> = ({
   };
   const closeChild = () => {
     setIsChildOpen(false);
+    setIsSecondChildOpen(false);
     playgroundActions.log('Child flyout closed');
+  };
+  const openSecondChild = () => {
+    setIsSecondChildOpen(true);
+    playgroundActions.log('Second child flyout opened');
+  };
+  const closeSecondChild = () => {
+    setIsSecondChildOpen(false);
+    setIsChildOpen(false);
+    playgroundActions.log('Second child flyout closed');
+  };
+  const openSecondSession = () => {
+    setIsSecondSessionOpen(true);
+    playgroundActions.log('Second session opened');
+  };
+  const closeSecondSession = () => {
+    setIsSecondSessionOpen(false);
+    playgroundActions.log('Second session closed');
   };
 
   const layoutMode = useFlyoutLayoutMode();
 
   return (
     <>
-      <EuiText>
-        <p>
-          This is the main page content. Watch how it behaves when the flyout
-          type changes.
-        </p>
-        <p>
-          <strong>Current layout mode: {layoutMode}</strong>
-        </p>
-      </EuiText>
-      <EuiSpacer size="l" />
-      {isMainOpen ? (
-        <EuiButton onClick={closeMain}>Close Main Flyout</EuiButton>
-      ) : (
-        <EuiButton onClick={openMain}>Open Main Flyout</EuiButton>
-      )}
-
+      <EuiFlexGroup direction="column" gutterSize="m" alignItems="flexStart">
+        <EuiFlexItem grow={false}>
+          <EuiTitle size="xs">
+            <h3>
+              Managed flyout session
+            </h3>
+          </EuiTitle>
+        </EuiFlexItem>
+        <EuiFlexItem grow={false}>
+          <EuiText color="subdued" size="s">
+            <p>
+              This is a managed flyout session. Navigate from one main flyout to another.
+              <br />
+              Note that child flyouts are not stored in the session history, so they will not be accessible via the history popover.
+            </p>
+          </EuiText>
+        </EuiFlexItem>
+        <EuiFlexItem grow={false}>
+          <EuiButton
+            onClick={isMainOpen ? closeMain : openMain}
+            fullWidth={false}
+          >
+            {isMainOpen ? 'Close' : 'Open'} main flyout
+          </EuiButton>
+        </EuiFlexItem>
+        <EuiHorizontalRule margin="xxl" />
+        <EuiFlexItem grow={false}>
+          <EuiTitle size="xxs">
+            <h4>
+              Managed flyouts appear side-by-side or stacked based on the viewport width.
+            </h4>
+          </EuiTitle>
+        </EuiFlexItem>
+        <EuiFlexItem grow={false}>
+          <EuiText color="subdued" size="s">
+            <p>Resize the browser window to see how the layout mode changes.
+              <br />
+              Current layout mode: <strong>{layoutMode}</strong>.
+            </p>
+          </EuiText>
+        </EuiFlexItem>
+      </EuiFlexGroup>
       {isMainOpen && (
         <EuiFlyout
+          {...args}
           session="start"
           id="flyout-manager-playground-main"
           size={mainSize}
@@ -223,40 +274,34 @@ const StatefulFlyout: React.FC<FlyoutChildStoryArgs> = ({
           ownFocus={false}
           resizable={mainFlyoutResizable}
           aria-label={`Main Flyout Menu (${mainSize})`}
-          {...args}
           onClose={closeMain}
         >
           <EuiFlyoutBody>
-            <EuiText>
+            <EuiText size="s">
               <p>This is the main flyout content.</p>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum
-                neque sequi illo, cum rerum quia ab animi velit sit incidunt
-                inventore temporibus eaque nam veritatis amet maxime maiores
-                optio quam?
-              </p>
             </EuiText>
             <EuiSpacer />
 
-            {!isChildOpen ? (
-              <EuiButton onClick={openChild}>Open child panel</EuiButton>
-            ) : (
-              <EuiButton onClick={closeChild}>Close child panel</EuiButton>
-            )}
+            <EuiButtonEmpty
+              onClick={isChildOpen ? closeChild : openChild}
+              flush="left"
+            >
+              {isChildOpen ? 'Close' : 'Open'} child panel
+            </EuiButtonEmpty>
             {isChildOpen && (
               <EuiFlyout
+                {...args}
                 id="flyout-manager-playground-child"
                 size={childSize}
                 hasChildBackground={hasChildBackground}
                 maxWidth={childMaxWidth}
                 ownFocus={false}
                 resizable={childFlyoutResizable}
-                {...args}
                 aria-label={`Child Flyout Panel (${childSize})`}
                 onClose={closeChild}
               >
                 <EuiFlyoutBody>
-                  <EuiText>
+                  <EuiText size="s">
                     <p>This is the child flyout content.</p>
                     <p>Size restrictions apply:</p>
                     <ul>
@@ -267,14 +312,54 @@ const StatefulFlyout: React.FC<FlyoutChildStoryArgs> = ({
                         is &quot;fill&quot;
                       </li>
                     </ul>
-                    <EuiSpacer />
-                    <p>
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      Dolorum neque sequi illo, cum rerum quia ab animi velit
-                      sit incidunt inventore temporibus eaque nam veritatis amet
-                      maxime maiores optio quam?
-                    </p>
                   </EuiText>
+                  <EuiSpacer />
+                  <EuiFlexGroup gutterSize="s">
+                    <EuiFlexItem grow={false}>
+                      <EuiButton
+                        size="s"
+                        onClick={isSecondChildOpen ? closeSecondChild : openSecondChild}
+                        color="success"
+                      >
+                        {isSecondChildOpen ? 'Close' : 'Open'} another child
+                      </EuiButton>
+                    </EuiFlexItem>
+                    <EuiFlexItem grow={false}>
+                      <EuiButton
+                        onClick={openSecondSession}
+                        disabled={isSecondSessionOpen}
+                        size="s"
+                      >
+                        Open another main flyout
+                      </EuiButton>
+                    </EuiFlexItem>
+                  </EuiFlexGroup>
+                  {isSecondChildOpen && (
+                    <EuiFlyout
+                      {...args}
+                      id="flyout-manager-playground-second-child"
+                      size="s"
+                      hasChildBackground={hasChildBackground}
+                      ownFocus={false}
+                      aria-label="Second Child Flyout Panel"
+                      onClose={closeSecondChild}
+                    >
+                      <EuiFlyoutBody>
+                        <EuiText size="s">
+                          <p>This is the second child flyout.</p>
+                          <ul>
+                            <li>
+                              Child flyouts are not stored in the session history, so they will not be accessible via the history popover.
+                            </li>
+                            <li>
+                              Closing any child flyout will close all child flyouts
+                              in the session.
+                            </li>
+                          </ul>
+                        </EuiText>
+                      </EuiFlyoutBody>
+                    </EuiFlyout>
+                  )}
                 </EuiFlyoutBody>
                 {showFooter && (
                   <EuiFlyoutFooter>
@@ -294,6 +379,43 @@ const StatefulFlyout: React.FC<FlyoutChildStoryArgs> = ({
               </EuiText>
             </EuiFlyoutFooter>
           )}
+        </EuiFlyout>
+      )}
+      {isSecondSessionOpen && (
+        <EuiFlyout
+          {...args}
+          session="start"
+          id="flyout-manager-playground-second-session"
+          size="m"
+          type={mainFlyoutType}
+          pushMinBreakpoint={pushMinBreakpoint}
+          maxWidth={mainMaxWidth}
+          ownFocus={false}
+          aria-label="Second Session Flyout"
+          onClose={closeSecondSession}
+        >
+          <EuiFlyoutBody>
+            <EuiText size="s">
+              <p>
+                This is a completely separate flyout session, independent from
+                the main session. In other words, a second main flyout.
+              </p>
+              <ul>
+                <li>
+                  It was opened from a child flyout but starts its own session with{' '}
+                  <code>session=&quot;start&quot;</code>, so it&apos;s a sibling
+                  session rather than a nested child.
+                </li>
+                <li>
+                  Notice how the flyout menu shows this as a separate session that
+                  you can navigate to independently.
+                </li>
+                <li>
+                  Upon closing this flyout, the previous main flyout will be restored.
+                </li>
+              </ul>
+            </EuiText>
+          </EuiFlyoutBody>
         </EuiFlyout>
       )}
     </>
