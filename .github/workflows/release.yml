@@ -1,0 +1,30 @@
+name: Release packages (Work in Progress, a dry run only)
+
+on:
+  workflow_dispatch:
+    inputs:
+      workspaces:
+        description: A comma-separated list of workspaces to release
+        required: false
+        type: string
+
+#permissions:
+#  id-token: write # Required for OIDC
+#  contents: read
+
+jobs:
+  checks:
+    name: Checks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v6
+        with:
+          node-version-file: .nvmrc
+          cache: yarn
+      - name: Install dependencies
+        run: yarn install --immutable
+      - name: Run tests
+        run: yarn workspaces foreach -A run test-ci
