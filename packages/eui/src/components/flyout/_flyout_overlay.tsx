@@ -62,6 +62,7 @@ export const EuiFlyoutOverlay = ({
     <>
       {hasOverlayMask && (
         <EuiOverlayMask
+          headerZindexLocation="below"
           {...maskProps}
           className={cx(maskProps?.className, styles.overlayMask)}
         />
