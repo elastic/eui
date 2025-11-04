@@ -73,15 +73,13 @@ jobs:
     needs: [ lint_and_unit_tests, cypress_tests ]
     steps:
       - uses: actions/checkout@v4
-        with:
-          persist-credentials: false
       - uses: actions/setup-node@v6
         with:
           node-version-file: .nvmrc
           cache: yarn
           registry-url: 'https://registry.npmjs.org'
       - name: Install dependencies
-        run: yarn install --immutable
+        run: npm install -g npm@latest && yarn install --immutable
       - name: Build release scripts
         run: yarn workspace @elastic/eui-release-cli run build
       - name: Rename git remote to upstream
