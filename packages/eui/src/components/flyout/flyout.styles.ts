@@ -361,7 +361,7 @@ export const composeFlyoutInlineStyles = (
   siblingFlyoutId: string | null,
   siblingFlyoutWidth: number | null,
   maxWidth: boolean | number | string | undefined,
-  zIndex: number
+  zIndex?: number
 ): React.CSSProperties => {
   // Handle custom width values (non-named sizes)
   const customWidthStyles = !isEuiFlyoutSizeNamed(size)
