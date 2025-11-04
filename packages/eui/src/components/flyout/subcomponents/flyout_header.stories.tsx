@@ -9,13 +9,13 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { EuiTitle } from '../title';
-import { EuiFlyout } from './flyout';
-import { EuiFlyoutHeader, EuiFlyoutHeaderProps } from './flyout_header';
-import { LOKI_SELECTORS } from '../../../.storybook/loki';
+import { EuiTitle } from '../../title';
+import { EuiFlyout } from '../flyout';
+import { EuiFlyoutHeader, EuiFlyoutHeaderProps } from '../flyout_header';
+import { LOKI_SELECTORS } from '../../../../.storybook/loki';
 
 const meta: Meta<EuiFlyoutHeaderProps> = {
-  title: 'Layout/EuiFlyout/EuiFlyoutHeader',
+  title: 'Layout/EuiFlyout/Subcomponents/EuiFlyoutHeader',
   component: EuiFlyoutHeader,
   argTypes: {
     // TODO: editable children JSX
@@ -29,6 +29,7 @@ const meta: Meta<EuiFlyoutHeaderProps> = {
       // Flyout content is rendered in a portal
       chromeSelector: LOKI_SELECTORS.portal,
     },
+    docsOnly: true,
   },
 };
 
@@ -49,3 +50,4 @@ export const Playground: Story = {
     </EuiFlyout>
   ),
 };
+
