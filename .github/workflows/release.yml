@@ -26,5 +26,7 @@ jobs:
           cache: yarn
       - name: Install dependencies
         run: yarn install --immutable
+      - name: Build local packages
+        run: yarn workspaces foreach --all --parallel --topological-dev --exclude @elastic/eui-website --exclude @elastic/eui-monorepo run build
       - name: Run tests
         run: yarn workspaces foreach -A run test-ci
