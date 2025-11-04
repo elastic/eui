@@ -669,7 +669,7 @@ describe('EuiSuperDatePicker', () => {
       const end = '2025-10-30T13:00:00.000Z';
       let lastTimeChange: { start: string; end: string } = { start, end };
 
-      const { queryByTestSubject } = render(
+      const { getByTestSubject } = render(
         <EuiSuperDatePicker
           start={start}
           end={end}
@@ -682,7 +682,7 @@ describe('EuiSuperDatePicker', () => {
       );
 
       act(() => {
-        userEvent.click(queryByTestSubject('timeWindowButtonsPrevious')!);
+        userEvent.click(getByTestSubject('timeWindowButtonsPrevious'));
       });
 
       await waitFor(() => {
@@ -700,7 +700,7 @@ describe('EuiSuperDatePicker', () => {
       const end = '2025-10-31T12:00:00.000Z';
       let lastTimeChange: { start: string; end: string } = { start, end };
 
-      const { queryByTestSubject } = render(
+      const { getByTestSubject } = render(
         <EuiSuperDatePicker
           start={start}
           end={end}
@@ -713,7 +713,7 @@ describe('EuiSuperDatePicker', () => {
       );
 
       act(() => {
-        userEvent.click(queryByTestSubject('timeWindowButtonsZoomOut')!);
+        userEvent.click(getByTestSubject('timeWindowButtonsZoomOut'));
       });
 
       await waitFor(() => {
@@ -731,7 +731,7 @@ describe('EuiSuperDatePicker', () => {
       const start = '2025-10-30T14:00:00.000Z';
       const end = '2025-10-31T14:00:00.000Z';
 
-      const { rerender, queryByTestSubject } = render(
+      const { rerender, getByTestSubject } = render(
         <EuiSuperDatePicker
           start={end}
           end={start}
@@ -740,9 +740,9 @@ describe('EuiSuperDatePicker', () => {
         />
       );
 
-      expect(queryByTestSubject('timeWindowButtonsPrevious')!).toBeDisabled();
-      expect(queryByTestSubject('timeWindowButtonsZoomOut')!).toBeDisabled();
-      expect(queryByTestSubject('timeWindowButtonsNext')!).toBeDisabled();
+      expect(getByTestSubject('timeWindowButtonsPrevious')).toBeDisabled();
+      expect(getByTestSubject('timeWindowButtonsZoomOut')).toBeDisabled();
+      expect(getByTestSubject('timeWindowButtonsNext')).toBeDisabled();
 
       rerender(
         <EuiSuperDatePicker
@@ -753,13 +753,9 @@ describe('EuiSuperDatePicker', () => {
         />
       );
 
-      expect(
-        queryByTestSubject('timeWindowButtonsPrevious')!
-      ).not.toBeDisabled();
-      expect(
-        queryByTestSubject('timeWindowButtonsZoomOut')!
-      ).not.toBeDisabled();
-      expect(queryByTestSubject('timeWindowButtonsNext')!).not.toBeDisabled();
+      expect(getByTestSubject('timeWindowButtonsPrevious')).not.toBeDisabled();
+      expect(getByTestSubject('timeWindowButtonsZoomOut')).not.toBeDisabled();
+      expect(getByTestSubject('timeWindowButtonsNext')).not.toBeDisabled();
     });
   });
 });
