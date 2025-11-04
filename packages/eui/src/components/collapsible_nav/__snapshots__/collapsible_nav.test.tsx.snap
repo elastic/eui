@@ -3,7 +3,7 @@
 exports[`EuiCollapsibleNav close button can be hidden 1`] = `
 <div>
   <div
-    class="css-yux95t-overlayMask"
+    class="css-w7myn3-getEuiFlyoutOverlayStyles"
   />
   <div
     data-focus-guard="true"
@@ -20,7 +20,7 @@ exports[`EuiCollapsibleNav close button can be hidden 1`] = `
       data-autofocus="true"
       id="id"
       role="dialog"
-      style="inline-size: 320px;"
+      style="inline-size: 320px; z-index: 1000;"
       tabindex="0"
     >
       <p
@@ -58,7 +58,7 @@ exports[`EuiCollapsibleNav does not render if isOpen is false 1`] = `<div />`;
 exports[`EuiCollapsibleNav is rendered 1`] = `
 <div>
   <div
-    class="css-yux95t-overlayMask"
+    class="css-w7myn3-getEuiFlyoutOverlayStyles"
   />
   <div
     data-focus-guard="true"
@@ -77,7 +77,7 @@ exports[`EuiCollapsibleNav is rendered 1`] = `
       data-test-subj="test subject string"
       id="id"
       role="dialog"
-      style="inline-size: 320px;"
+      style="inline-size: 320px; z-index: 1000;"
       tabindex="0"
     >
       <p
@@ -127,7 +127,7 @@ exports[`EuiCollapsibleNav props accepts EuiFlyout props 1`] = `
       data-autofocus="true"
       id="id"
       role="dialog"
-      style="inline-size: 240px;"
+      style="inline-size: 240px; z-index: 6000;"
       tabindex="0"
     >
       <p
@@ -168,7 +168,7 @@ exports[`EuiCollapsibleNav props button 1`] = `
     aria-pressed="true"
   />
   <div
-    class="css-yux95t-overlayMask"
+    class="css-w7myn3-getEuiFlyoutOverlayStyles"
   />
   <div
     data-focus-guard="true"
@@ -185,7 +185,7 @@ exports[`EuiCollapsibleNav props button 1`] = `
       data-autofocus="true"
       id="id"
       role="dialog"
-      style="inline-size: 320px;"
+      style="inline-size: 320px; z-index: 1000;"
       tabindex="0"
     >
       <p
@@ -221,7 +221,7 @@ exports[`EuiCollapsibleNav props button 1`] = `
 exports[`EuiCollapsibleNav props dockedBreakpoint 1`] = `
 <div>
   <div
-    class="css-yux95t-overlayMask"
+    class="css-w7myn3-getEuiFlyoutOverlayStyles"
   />
   <div
     data-focus-guard="true"
@@ -238,7 +238,7 @@ exports[`EuiCollapsibleNav props dockedBreakpoint 1`] = `
       data-autofocus="true"
       id="id"
       role="dialog"
-      style="inline-size: 320px;"
+      style="inline-size: 320px; z-index: 1000;"
       tabindex="0"
     >
       <p
@@ -284,7 +284,7 @@ exports[`EuiCollapsibleNav props isDocked 1`] = `
     <nav
       class="euiFlyout euiCollapsibleNav emotion-euiFlyout-none-noMaxWidth-push-left-noAnimation-left-euiCollapsibleNav-push"
       id="id"
-      style="inline-size: 320px;"
+      style="inline-size: 320px; z-index: 1000;"
     />
   </div>
   <div
@@ -298,7 +298,7 @@ exports[`EuiCollapsibleNav props isDocked 1`] = `
 exports[`EuiCollapsibleNav props onClose 1`] = `
 <div>
   <div
-    class="css-yux95t-overlayMask"
+    class="css-w7myn3-getEuiFlyoutOverlayStyles"
   />
   <div
     data-focus-guard="true"
@@ -315,7 +315,7 @@ exports[`EuiCollapsibleNav props onClose 1`] = `
       data-autofocus="true"
       id="id"
       role="dialog"
-      style="inline-size: 320px;"
+      style="inline-size: 320px; z-index: 1000;"
       tabindex="0"
     >
       <p
@@ -366,7 +366,7 @@ exports[`EuiCollapsibleNav props showButtonIfDocked 1`] = `
     <nav
       class="euiFlyout euiCollapsibleNav emotion-euiFlyout-none-noMaxWidth-push-left-noAnimation-left-euiCollapsibleNav-push"
       id="id"
-      style="inline-size: 320px;"
+      style="inline-size: 320px; z-index: 1000;"
     />
   </div>
   <div
@@ -380,7 +380,7 @@ exports[`EuiCollapsibleNav props showButtonIfDocked 1`] = `
 exports[`EuiCollapsibleNav props size 1`] = `
 <div>
   <div
-    class="css-yux95t-overlayMask"
+    class="css-w7myn3-getEuiFlyoutOverlayStyles"
   />
   <div
     data-focus-guard="true"
@@ -397,7 +397,7 @@ exports[`EuiCollapsibleNav props size 1`] = `
       data-autofocus="true"
       id="id"
       role="dialog"
-      style="inline-size: 240px;"
+      style="inline-size: 240px; z-index: 1000;"
       tabindex="0"
     >
       <p
