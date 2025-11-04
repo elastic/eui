@@ -83,5 +83,7 @@ jobs:
         run: yarn install --immutable
       - name: Build release scripts
         run: yarn workspace @elastic/eui-release-cli run build
+      - name: Rename git remote to upstream
+        run: git remote rename origin upstream
       - name: Release
         run: yarn release run snapshot --workspaces @elastic/eslint-plugin-eui --skip-prompts --use-auth-token
