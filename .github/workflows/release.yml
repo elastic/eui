@@ -13,8 +13,8 @@ on:
 #  contents: read
 
 jobs:
-  checks:
-    name: Checks
+  lint_and_unit_tests:
+    name: Run lint and unit tests
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -27,6 +27,39 @@ jobs:
       - name: Install dependencies
         run: yarn install --immutable
       - name: Build local packages
-        run: yarn workspaces foreach --all --parallel --topological-dev --exclude @elastic/eui-website --exclude @elastic/eui-monorepo run build
-      - name: Run tests
-        run: yarn workspaces foreach -A run test-ci
+        run: yarn workspaces foreach --all --parallel --topological-dev --exclude @elastic/eui-website --exclude @elastic/eui-monorepo --exclude @elastic/eui-docgen run build
+      - name: Lint
+        run: yarn workspaces foreach --all --parallel --topological-dev --exclude @elastic/eui-website --exclude @elastic/eui-monorepo --exclude @elastic/eui-docgen run lint
+      - name: Unit tests
+        run: yarn workspaces foreach --all --parallel --topological-dev --exclude @elastic/eui-website --exclude @elastic/eui-monorepo --exclude @elastic/eui-docgen run test:unit
+  cypress_tests:
+    name: Run cypress tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v6
+        with:
+          node-version-file: .nvmrc
+          cache: yarn
+      - name: Install dependencies
+        run: yarn install --immutable
+      - name: Build local packages
+        run: yarn workspaces foreach --all --parallel --topological-dev --exclude @elastic/eui-website --exclude @elastic/eui-monorepo --exclude @elastic/eui-docgen run build
+      - name: Cypress tests
+        run: yarn workspaces foreach --all --parallel --topological-dev --exclude @elastic/eui-website --exclude @elastic/eui-monorepo --exclude @elastic/eui-docgen run test:cypress
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    needs: [lint_and_unit_tests, cypress_tests]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v6
+        with:
+          node-version-file: .nvmrc
+          cache: yarn
+      - name: Install dependencies
+        run: yarn install --immutable
