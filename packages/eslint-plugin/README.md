@@ -160,7 +160,12 @@ Ensure that appropriate aria-attributes are set for `EuiBetaBadge`, `EuiButtonIc
 Ensure `EuiTooltip` components are anchored to elements that can receive keyboard focus, making them accessible to all users. When using non-interactive elements (like `span`or `EuiText`) as tooltip anchors, they must include `tabIndex={0}` to be keyboard-focusable. For better accessibility, prefer using semantic interactive components (like `EuiButton` or `EuiLink`) which are focusable by default.
 
 ### `@elastic/eui/accessible-interactive-element`
+
 Ensure interactive EUI components (like e.g. `EuiLink`, `EuiButton`, `EuiRadio`) remain accessible by prohibiting `tabIndex={-1}`, which removes them from keyboard navigation.
+
+### `@elastic/eui/require-table-caption`
+
+Ensure `EuiInMemoryTable`, `EuiBasicTable` have a `tableCaption` property for accessibility.
 
 ## Testing
 
