@@ -22,7 +22,7 @@ export const animation_speed: _EuiThemeAnimationSpeeds = {
 
 export const animation_ease: _EuiThemeAnimationEasings = {
   bounce: 'cubic-bezier(.34, 1.61, .7, 1)',
-  resistance: 'cubic-bezier(.32, .72, 0, 1)',
+  resistance: 'cubic-bezier(.694, .0482, .335, 1)',
 };
 
 export const animation: _EuiThemeAnimation = {

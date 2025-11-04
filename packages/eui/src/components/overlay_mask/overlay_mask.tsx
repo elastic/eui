@@ -12,9 +12,7 @@ import React, {
   MutableRefObject,
   ReactNode,
   Ref,
-  useCallback,
   useEffect,
-  useRef,
   useState,
 } from 'react';
 import { cx } from '@emotion/css';
@@ -54,7 +52,6 @@ export const EuiOverlayMask: FunctionComponent<EuiOverlayMaskProps> = ({
   maskRef,
   ...rest
 }) => {
-  const hasRendered = useRef(false);
   const [overlayMaskNode, setOverlayMaskNode] = useState<HTMLDivElement | null>(
     null
   );
@@ -62,16 +59,10 @@ export const EuiOverlayMask: FunctionComponent<EuiOverlayMaskProps> = ({
     setOverlayMaskNode,
     maskRef,
   ]);
-
-  const handleAnimationEnd = useCallback(() => {
-    hasRendered.current = true;
-  }, []);
-
   const styles = useEuiMemoizedStyles(euiOverlayMaskStyles);
   const cssStyles = cx([
     styles.euiOverlayMask,
     styles[`${headerZindexLocation}Header`],
-    hasRendered.current && styles.noAnimation,
   ]);
 
   useEffect(() => {
@@ -86,8 +77,7 @@ export const EuiOverlayMask: FunctionComponent<EuiOverlayMaskProps> = ({
         overlayMaskNode.setAttribute(key, rest[key]!);
       }
     });
-    overlayMaskNode.addEventListener('animationend', handleAnimationEnd);
-  }, [overlayMaskNode, handleAnimationEnd]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [overlayMaskNode]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Note: Use `classList.add/remove` instead of setting the entire `className`
   // so as not to override any existing classes set by `EuiPortal`

@@ -201,7 +201,7 @@ describe('EuiThemeProvider', () => {
           </EuiProvider>
         );
         expect(container.textContent).toEqual('l');
-        expect(resizeListenerCount).toEqual(2);
+        expect(resizeListenerCount).toEqual(1);
       });
     });
 
@@ -239,7 +239,7 @@ describe('EuiThemeProvider', () => {
           </EuiProvider>
         );
         expect(container.textContent).toEqual('xl');
-        expect(resizeListenerCount).toEqual(2);
+        expect(resizeListenerCount).toEqual(1);
       });
     });
   });
