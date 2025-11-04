@@ -79,6 +79,7 @@ jobs:
         with:
           node-version-file: .nvmrc
           cache: yarn
+          registry-url: 'https://registry.npmjs.org'
       - name: Install dependencies
         run: yarn install --immutable
       - name: Build release scripts
