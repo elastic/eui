@@ -19,6 +19,7 @@ import {
   EuiSuperDatePicker,
   EuiSuperDatePickerProps,
 } from './super_date_picker';
+import { ZOOM_FACTOR_DEFAULT } from './time_window_buttons';
 
 const noop = () => {};
 
@@ -667,6 +668,8 @@ describe('EuiSuperDatePicker', () => {
     it('updates time when shifting', async () => {
       const start = '2025-10-30T12:00:00.000Z';
       const end = '2025-10-30T13:00:00.000Z';
+      const stepBackwardStart = '2025-10-30T11:00:00.000Z';
+      const stepBackwardEnd = '2025-10-30T12:00:00.000Z';
       let lastTimeChange: { start: string; end: string } = { start, end };
 
       const { getByTestSubject } = render(
@@ -686,12 +689,20 @@ describe('EuiSuperDatePicker', () => {
       });
 
       await waitFor(() => {
+        expect(lastTimeChange.end).toEqual(stepBackwardEnd);
+        expect(lastTimeChange.start).toEqual(stepBackwardStart);
+
         const initialTimeStart = new Date(start).getTime();
         const updatedTimeStart = new Date(lastTimeChange.start).getTime();
         const initialTimeEnd = new Date(end).getTime();
         const updatedTimeEnd = new Date(lastTimeChange.end).getTime();
+
         expect(initialTimeStart).toBeGreaterThan(updatedTimeStart);
         expect(initialTimeEnd).toBeGreaterThan(updatedTimeEnd);
+        // Also check the diff is the same
+        expect(initialTimeEnd - initialTimeStart).toEqual(
+          updatedTimeEnd - updatedTimeStart
+        );
       });
     });
 
@@ -723,6 +734,10 @@ describe('EuiSuperDatePicker', () => {
         const updatedTimeEnd = new Date(lastTimeChange.end).getTime();
         expect(initialTimeStart).toBeGreaterThan(updatedTimeStart);
         expect(initialTimeEnd).toBeLessThan(updatedTimeEnd);
+        // Check the diff expanded by zoom factor
+        expect(
+          (initialTimeEnd - initialTimeStart) * (1 + ZOOM_FACTOR_DEFAULT)
+        ).toEqual(updatedTimeEnd - updatedTimeStart);
       });
     });
 
