@@ -62,15 +62,13 @@ jobs:
           node-version-file: .nvmrc
           cache: yarn
           registry-url: 'https://registry.npmjs.org'
+      - name: Install latest npm for publishing and signing the package
+        run: npm install -g npm@latest
       - name: Install dependencies
         run: yarn install --immutable
       - name: Build release scripts
         run: yarn workspace @elastic/eui-release-cli run build
       - name: Rename git remote to upstream
         run: git remote rename origin upstream
-      - name: Install latest npm (just for publishing the package)
-        run: npm install -g npm@latest
-      - name: whoami
-        run: npm whoami && yarn npm whoami && npm --version
-      - name: Release
-        run: yarn release run snapshot --workspaces @elastic/eui-docusaurus-theme --skip-prompts --use-auth-token
+      - name: Build packages and release
+        run: yarn release run snapshot --workspaces @elastic/eslint-plugin-eui --skip-prompts --use-auth-token
