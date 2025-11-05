@@ -159,13 +159,14 @@ export const dark_border_colors: _EuiThemeBorderColors = {
 
   borderBasePlain: SEMANTIC_COLORS.shade100,
   borderBaseSubdued: SEMANTIC_COLORS.shade120,
+  borderBaseProminent: SEMANTIC_COLORS.shade80,
   borderBaseDisabled: SEMANTIC_COLORS.shade100,
   borderBaseFloating: SEMANTIC_COLORS.shade120,
 
   borderBaseFormsColorSwatch: SEMANTIC_COLORS.plainLightAlpha32,
-  borderBaseFormsControl: SEMANTIC_COLORS.shade80,
 
   borderInteractiveFormsHoverPlain: SEMANTIC_COLORS.shade90,
+  borderInteractiveFormsHoverProminent: SEMANTIC_COLORS.shade60,
   borderInteractiveFormsHoverDanger: SEMANTIC_COLORS.danger70,
 
   borderStrongPrimary: SEMANTIC_COLORS.primary60,
