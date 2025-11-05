@@ -73,6 +73,7 @@ export const yarnPack = async (workspace: string)=> {
   const rawDetails = JSON.parse(
     `[${result.stdout.replace(/\n/g, ',').slice(0, -1)}]`
   ) as Array<YarnPackRawDetail>;
+  console.log(result.stdout);
   const details: YarnPackDetails = {
     base: '',
     files: [],
