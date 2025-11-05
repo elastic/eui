@@ -11,7 +11,7 @@ import dateMath from '@elastic/datemath';
 import moment, { LocaleSpecifier, RelativeTimeKey } from 'moment'; // eslint-disable-line import/named
 import { useEuiI18n } from '../../i18n';
 import { getDateMode, DATE_MODES } from './date_modes';
-import { parseRelativeParts } from './relative_utils';
+import { parseRelativeParts, isRelativeToNow } from './relative_utils';
 import { useI18nTimeOptions } from './time_options';
 import {
   DurationRange,
@@ -313,16 +313,6 @@ const hasRangeMatch = (
   ranges: DurationRange[]
 ) => {
   return ranges.find(({ start, end }) => timeFrom === start && timeTo === end);
-};
-
-const isRelativeToNow = (timeFrom: ShortDate, timeTo: ShortDate): boolean => {
-  const fromDateMode = getDateMode(timeFrom);
-  const toDateMode = getDateMode(timeTo);
-  const isLast =
-    fromDateMode === DATE_MODES.RELATIVE && toDateMode === DATE_MODES.NOW;
-  const isNext =
-    fromDateMode === DATE_MODES.NOW && toDateMode === DATE_MODES.RELATIVE;
-  return isLast || isNext;
 };
 
 export const showPrettyDuration = (

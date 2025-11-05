@@ -11,7 +11,8 @@ import moment from 'moment';
 
 import { get } from '../../../services/objects';
 import { isString } from '../../../services/predicate';
-import { TimeUnitId, RelativeParts } from '../types';
+import { TimeUnitId, RelativeParts, ShortDate } from '../types';
+import { getDateMode, DATE_MODES } from './date_modes';
 
 const ROUND_DELIMETER = '/';
 
@@ -79,4 +80,17 @@ export const toRelativeStringFromParts = (relativeParts: RelativeParts) => {
   const round = isRounded ? `${ROUND_DELIMETER}${unit}` : '';
 
   return `now${operator}${count}${unit}${round}`;
+};
+
+export const isRelativeToNow = (
+  timeFrom: ShortDate,
+  timeTo: ShortDate
+): boolean => {
+  const fromDateMode = getDateMode(timeFrom);
+  const toDateMode = getDateMode(timeTo);
+  const isLast =
+    fromDateMode === DATE_MODES.RELATIVE && toDateMode === DATE_MODES.NOW;
+  const isNext =
+    fromDateMode === DATE_MODES.NOW && toDateMode === DATE_MODES.RELATIVE;
+  return isLast || isNext;
 };

@@ -39,6 +39,10 @@ import {
 
 import { TimeOptions, RenderI18nTimeOptions } from './time_options';
 import { PrettyDuration, showPrettyDuration } from './pretty_duration';
+import {
+  TimeWindowButtons,
+  type TimeWindowButtonsConfig,
+} from './time_window_buttons';
 import { AsyncInterval } from './async_interval';
 
 import {
@@ -201,6 +205,12 @@ export type EuiSuperDatePickerProps = CommonProps & {
    * @default true
    */
   showUpdateButton?: boolean | 'iconOnly';
+
+  /**
+   * Set to true to display buttons for time shifting and zooming out,
+   * next to the top-level control.
+   */
+  showTimeWindowButtons?: boolean | TimeWindowButtonsConfig;
 
   /**
    * Hides the actual input reducing to just the quick select button.
@@ -725,6 +735,27 @@ export class EuiSuperDatePickerInternal extends Component<
     }
   };
 
+  renderTimeWindowButtons = () => {
+    if (!this.props.showTimeWindowButtons || this.props.isAutoRefreshOnly) {
+      return null;
+    }
+    const { start, end, showTimeWindowButtons, compressed, isDisabled } =
+      this.props;
+    const config =
+      typeof showTimeWindowButtons === 'boolean' ? {} : showTimeWindowButtons;
+
+    return (
+      <TimeWindowButtons
+        applyTime={this.applyQuickTime}
+        start={start}
+        end={end}
+        compressed={compressed}
+        isDisabled={!!isDisabled || this.state.isInvalid}
+        {...config}
+      />
+    );
+  };
+
   renderUpdateButton = () => {
     const {
       isLoading,
@@ -805,6 +836,7 @@ export class EuiSuperDatePickerInternal extends Component<
         ) : (
           <>
             {this.renderDatePickerRange()}
+            {this.renderTimeWindowButtons()}
             {this.renderUpdateButton()}
           </>
         )}

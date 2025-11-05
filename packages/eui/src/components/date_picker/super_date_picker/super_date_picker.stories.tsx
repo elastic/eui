@@ -190,6 +190,14 @@ export const QuickSelectOnly: Story = {
   },
 };
 
+export const TimeWindowButtons: Story = {
+  args: {
+    showTimeWindowButtons: true,
+    showUpdateButton: false,
+  },
+  render: (args) => <StatefulSuperDatePicker {...args} />,
+};
+
 /**
  * VRT only
  */
