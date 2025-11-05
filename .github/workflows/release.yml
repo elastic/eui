@@ -61,6 +61,10 @@ jobs:
           # This is needed for yarn version to work properly, but it increases fetch time.
           # We can change this back to "1" if we replace yarn version with something else
           fetch-depth: 0
+      - name: Configure git
+        run: |
+          git config --global user.name 'EUI Machine'
+          git config --global user.email 'tkajtoch@users.noreply.github.com'
       - uses: actions/setup-node@v6
         with:
           node-version-file: .nvmrc
