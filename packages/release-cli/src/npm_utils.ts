@@ -52,7 +52,7 @@ export const npmExecPublish = ({
   const dryRunStr = dryRun ? '--dry-run' : '';
   // TODO: Un-hardcode the tag and dry-run arguments
   return execSync(
-    `npm publish ${packageArchivePath} --tag snapshot --access public --dry-run ${otpStr}`,
+    `npm publish ${packageArchivePath} --tag snapshot --access public ${otpStr}`,
     { stdio: 'inherit', encoding: 'utf8' }
   );
 };
