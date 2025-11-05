@@ -616,6 +616,150 @@ describe('layout_mode', () => {
       // The hook should re-evaluate with new window width
       expect(mockWindow.requestAnimationFrame).toHaveBeenCalled();
     });
+
+    describe('resize listener optimization', () => {
+      it('should NOT attach resize listener when there is no child flyout', () => {
+        // Set up session with only parent flyout (no child)
+        mockUseCurrentSession.mockReturnValue({
+          mainFlyoutId: 'main-1',
+          childFlyoutId: null,
+        });
+
+        mockUseCurrentChildFlyout.mockReturnValue(null);
+
+        const mockDispatch = jest.fn();
+        mockUseFlyoutManager.mockReturnValue({
+          state: {
+            layoutMode: LAYOUT_MODE_SIDE_BY_SIDE,
+          },
+          dispatch: mockDispatch,
+        });
+
+        render(<TestComponent />);
+
+        // Resize listener should NOT be attached when there's no child flyout
+        expect(mockWindow.addEventListener).not.toHaveBeenCalledWith(
+          'resize',
+          expect.any(Function)
+        );
+      });
+
+      it('should attach resize listener when there is a child flyout', () => {
+        // Set up session with both parent and child flyouts
+        mockUseCurrentSession.mockReturnValue({
+          mainFlyoutId: 'main-1',
+          childFlyoutId: 'child-1',
+        });
+
+        mockUseCurrentChildFlyout.mockReturnValue({
+          flyoutId: 'child-1',
+          level: 'child',
+          size: 's',
+        });
+
+        const mockDispatch = jest.fn();
+        mockUseFlyoutManager.mockReturnValue({
+          state: {
+            layoutMode: LAYOUT_MODE_SIDE_BY_SIDE,
+          },
+          dispatch: mockDispatch,
+        });
+
+        render(<TestComponent />);
+
+        // Resize listener SHOULD be attached when there's a child flyout
+        expect(mockWindow.addEventListener).toHaveBeenCalledWith(
+          'resize',
+          expect.any(Function)
+        );
+      });
+
+      it('should remove and re-add resize listener when child flyout changes', () => {
+        // Start with no child flyout
+        mockUseCurrentSession.mockReturnValue({
+          mainFlyoutId: 'main-1',
+          childFlyoutId: null,
+        });
+
+        mockUseCurrentChildFlyout.mockReturnValue(null);
+
+        const mockDispatch = jest.fn();
+        mockUseFlyoutManager.mockReturnValue({
+          state: {
+            layoutMode: LAYOUT_MODE_SIDE_BY_SIDE,
+          },
+          dispatch: mockDispatch,
+        });
+
+        const { rerender } = render(<TestComponent />);
+
+        // Should not have listener initially
+        expect(mockWindow.addEventListener).not.toHaveBeenCalled();
+
+        // Now add a child flyout
+        mockUseCurrentSession.mockReturnValue({
+          mainFlyoutId: 'main-1',
+          childFlyoutId: 'child-1',
+        });
+
+        mockUseCurrentChildFlyout.mockReturnValue({
+          flyoutId: 'child-1',
+          level: 'child',
+          size: 's',
+        });
+
+        rerender(<TestComponent />);
+
+        // Should now have attached the listener
+        expect(mockWindow.addEventListener).toHaveBeenCalledWith(
+          'resize',
+          expect.any(Function)
+        );
+
+        // Now remove the child flyout
+        mockUseCurrentSession.mockReturnValue({
+          mainFlyoutId: 'main-1',
+          childFlyoutId: null,
+        });
+
+        mockUseCurrentChildFlyout.mockReturnValue(null);
+
+        rerender(<TestComponent />);
+
+        // Should have removed the listener
+        expect(mockWindow.removeEventListener).toHaveBeenCalledWith(
+          'resize',
+          expect.any(Function)
+        );
+      });
+
+      it('should NOT attach resize listener when there is no parent flyout', () => {
+        // Set up session with no flyouts at all
+        mockUseCurrentSession.mockReturnValue({
+          mainFlyoutId: null,
+          childFlyoutId: null,
+        });
+
+        mockUseCurrentMainFlyout.mockReturnValue(null);
+        mockUseCurrentChildFlyout.mockReturnValue(null);
+
+        const mockDispatch = jest.fn();
+        mockUseFlyoutManager.mockReturnValue({
+          state: {
+            layoutMode: LAYOUT_MODE_SIDE_BY_SIDE,
+          },
+          dispatch: mockDispatch,
+        });
+
+        render(<TestComponent />);
+
+        // Resize listener should NOT be attached when there are no flyouts
+        expect(mockWindow.addEventListener).not.toHaveBeenCalledWith(
+          'resize',
+          expect.any(Function)
+        );
+      });
+    });
   });
 
   describe('useApplyFlyoutLayoutMode with fill size', () => {
