@@ -57,6 +57,10 @@ jobs:
 #    needs: [lint_and_unit_tests, cypress_tests]
     steps:
       - uses: actions/checkout@v4
+        with:
+          # This is needed for yarn version to work properly, but it increases fetch time.
+          # We can change this back to "1" if we replace yarn version with something else
+          fetch-depth: 0
       - uses: actions/setup-node@v6
         with:
           node-version-file: .nvmrc
