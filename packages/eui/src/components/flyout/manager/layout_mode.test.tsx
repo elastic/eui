@@ -618,6 +618,10 @@ describe('layout_mode', () => {
     });
 
     describe('resize listener optimization', () => {
+      beforeEach(() => {
+        jest.clearAllMocks();
+      });
+
       it('should attach resize listener when there is a parent flyout', () => {
         // Set up session with only parent flyout (no child)
         mockUseCurrentSession.mockReturnValue({
