@@ -73,7 +73,6 @@ export const yarnPack = async (workspace: string)=> {
   const rawDetails = JSON.parse(
     `[${result.stdout.replace(/\n/g, ',').slice(0, -1)}]`
   ) as Array<YarnPackRawDetail>;
-  console.log(result.stdout);
   const details: YarnPackDetails = {
     base: '',
     files: [],
@@ -92,7 +91,7 @@ export const yarnPack = async (workspace: string)=> {
   }
 
   // Validate the returned data
-  if (!!details.base) {
+  if (!details.base) {
     throw new Error(
       'yarn pack did not return the base path for the workspace. ' +
         'This likely means that the command\'s JSON output changed format. ' +
@@ -100,7 +99,7 @@ export const yarnPack = async (workspace: string)=> {
     );
   }
 
-  if (!!details.output) {
+  if (!details.output) {
     throw new Error(
       'yarn pack did not return the path for the output tgz archive. ' +
         'This likely means that the command\'s JSON output changed format. ' +
