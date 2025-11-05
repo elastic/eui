@@ -14,7 +14,8 @@ const listeners: Set<Listener> = new Set();
  * Subscribes a listener function to be called whenever focus trap updates are published.
  *
  * @param listener The function to be called on updates.
- * @returns A function that, when called, will unsubscribe the listener.
+ * @returns A function that, when called, will unsubscribe the listener. Please remember
+ * to call this function for proper cleanup.
  * @example
  * ```tsx
  * useEffect(() => {
