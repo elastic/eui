@@ -93,7 +93,7 @@ export const euiButtonGroupButtonStyles = (euiThemeContext: UseEuiTheme) => {
       }
     `,
     iconOnly: {
-      // used only as classname only, sizes are already added as classes separately
+      // used only as classname, sizes are added separately
       iconOnly: css``,
       s: `
         ${logicalCSS('width', buttonSizes.s.height)}
