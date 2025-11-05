@@ -437,7 +437,7 @@ export const EuiFlyout = forwardRef(
       // because it snaps focus to the flyout wrapper, which steals it from subsequently focused elements.
       findShards(true);
 
-      const unsubscribe = focusTrapPubSub.subscribe(findShards);
+      const unsubscribe = focusTrapPubSub.subscribe(() => findShards());
       return unsubscribe;
     }, [findShards]);
 
