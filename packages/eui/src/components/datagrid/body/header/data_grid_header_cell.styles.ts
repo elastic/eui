@@ -33,7 +33,6 @@ export const euiDataGridHeaderCellStyles = (euiThemeContext: UseEuiTheme) => {
       ${logicalCSS('margin-left', margin)}
       transform: translateX(${translateX}) scale(0.01);
       opacity: 0;
-      pointer-events: none;
     }
   `;
 
