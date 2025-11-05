@@ -158,8 +158,7 @@ export const WithTooltips: Story = {
 };
 
 export const IconOnly: Story = {
-  name: 'isIconOnly',
-  // tags: ['vrt-only'],
+  tags: ['vrt-only'],
   args: {
     legend: 'EuiButtonGroup - isIconOnly',
     options: [
