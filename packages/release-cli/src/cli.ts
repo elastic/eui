@@ -39,7 +39,8 @@ export const cli = () => {
           })
           .option('allowCustom', {
             type: 'boolean',
-            description: '[UNSAFE!] Allow custom releases from unpushed changes. This should only be used with snapshot or custom releases',
+            description:
+              '[UNSAFE!] Allow custom releases from unpushed changes. This should only be used with snapshot or custom releases',
             default: false,
           })
           .option('verbose', {
@@ -56,7 +57,14 @@ export const cli = () => {
           })
           .option('skipUpdateVersions', {
             type: 'boolean',
-            description: '[UNSAFE!] Skip the update version step. This should only be used for special releases like backports. The --workspaces argument is required when this argument is set.',
+            description:
+              '[UNSAFE!] Skip the update version step. This should only be used for special releases like backports. The --workspaces argument is required when this argument is set.',
+            default: false,
+          })
+          .option('skipAuthCheck', {
+            type: 'boolean',
+            description:
+              '[UNSAFE!] Skip the registry authentication check during init. This should only be used with npm trusted publishing configured.',
             default: false,
           })
           .option('useAuthToken', {
@@ -76,6 +84,7 @@ export const cli = () => {
           skipPrompts,
           skipUpdateVersions,
           useAuthToken,
+          skipAuthCheck,
         } = argv;
         const logger = new Logger(verbose);
 
@@ -88,6 +97,7 @@ export const cli = () => {
             skipPrompts,
             skipUpdateVersions,
             useAuthToken,
+            skipAuthCheck,
             allowCustomReleases: allowCustom,
           });
         } catch (err) {

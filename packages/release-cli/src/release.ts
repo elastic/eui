@@ -30,6 +30,7 @@ export interface ReleaseOptions {
   allowCustomReleases: boolean;
   skipPrompts: boolean;
   skipUpdateVersions: boolean;
+  skipAuthCheck: boolean;
   useAuthToken: boolean;
 }
 
@@ -77,6 +78,10 @@ export const release = async (options: ReleaseOptions) => {
     if (!options.workspaces?.length) {
       throw new ValidationError('--workspaces must be set when --skip-update-version is used');
     }
+  }
+
+  if (options.skipAuthCheck) {
+    logger.warning('--skip-auth-check is set');
   }
 
   const allWorkspaces = await getYarnWorkspaces();
