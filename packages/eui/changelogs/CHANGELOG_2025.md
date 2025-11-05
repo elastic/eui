@@ -1,3 +1,22 @@
+## [`v109.0.0`](https://github.com/elastic/eui/releases/v109.0.0)
+
+- Added color tokens `borderBaseProminent` and `borderInteractiveFormsHoverProminent` ([#9162](https://github.com/elastic/eui/pull/9162))
+- Updated `EuiFilePicker` border styles ([#9162](https://github.com/elastic/eui/pull/9162))
+- Updated 'paperClip' icon glyph ([#9149](https://github.com/elastic/eui/pull/9149))
+
+**Bug fixes**
+
+- Fixed internal `EuiButtonGroupButton` component so that `aria-pressed` can be omitted when necessary ([#9164](https://github.com/elastic/eui/pull/9164))
+
+**Breaking changes**
+
+- Removed `borderBaseFormsControl` token ([#9162](https://github.com/elastic/eui/pull/9162))
+
+**Accessibility**
+
+- Removed `aria-hidden` on `EuiDataGrid`s column header actions button to prevent accessibility warnings ([#9166](https://github.com/elastic/eui/pull/9166))
+- Improved the accessibility experience of `EuiBasicTable` and `EuiInMemoryTable` by ensuring tooltips displayed for action buttons are visual-only whenever the `action.name` and `action.description` are exactly the same ([#9140](https://github.com/elastic/eui/pull/9140))
+
 ## [`v108.0.0`](https://github.com/elastic/eui/releases/v108.0.0)
 
 - Updated `EuiModal` to support closing on outside click, via the new `outsideClickCloses` prop ([#9137](https://github.com/elastic/eui/pull/9137))
