@@ -55,6 +55,7 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
       const width = columnWidths[id] || defaultColumnWidth;
       const columnType = schema[id] ? schema[id].columnType : null;
       const hasColumnActions = useHasColumnActions(actions);
+      const cellContentId = `dataGridHeaderCellContent-${id}`;
 
       const classes = classnames(
         {
@@ -114,7 +115,7 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
               isLastColumn={isLastColumn}
               width={width}
               aria-sort={ariaSort}
-              aria-label={displayAsText && `${displayAsText}, `} // ensure cell text content is read first, if available
+              aria-labelledby={cellContentId}
               aria-describedby={classnames(
                 sortingAriaId,
                 dragProps?.['aria-describedby']
@@ -133,7 +134,10 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
                       <EuiIcon
                         type="grabOmnidirectional"
                         size="s"
-                        css={styles.euiDataGridHeaderCell__actions}
+                        css={[
+                          styles.euiDataGridHeaderCell__actions.action,
+                          styles.euiDataGridHeaderCell__actions.start,
+                        ]}
                       />
                     </span>
                   )}
@@ -142,6 +146,14 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
                     css={contentStyles}
                     className="euiDataGridHeaderCell__content"
                     title={title}
+                    id={cellContentId}
+                    aria-label={
+                      displayAsText
+                        ? displayAsText
+                        : typeof children === 'string'
+                        ? children
+                        : undefined
+                    }
                   >
                     {children}
                   </div>

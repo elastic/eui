@@ -8,9 +8,8 @@ exports[`ColumnActions renders 1`] = `
     >
       <button
         aria-label="Press the Enter key to view this column's actions"
-        class="euiButtonIcon euiDataGridHeaderCell__button emotion-euiButtonIcon-xs-empty-text-euiDataGridHeaderCell__actions"
+        class="euiButtonIcon euiDataGridHeaderCell__button emotion-euiButtonIcon-xs-empty-text-action-end-ColumnActions"
         data-test-subj="dataGridHeaderCellActionButton-someColumn"
-        tabindex="0"
         type="button"
       >
         <span
