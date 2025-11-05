@@ -67,13 +67,7 @@ describe('EuiCollapsibleNav', () => {
       it('closes the nav when the overlay mask is clicked', () => {
         cy.realMount(<Nav />);
         cy.get('[data-test-subj="navSpecButton"]').realClick();
-
-        // wait is used here because cypress
-        // thinks the overlay is covered due to our position: fixed style.
-        // This is likely fixed in more recent versions of Cypress
-        cy.wait(0);
         cy.get('.euiOverlayMask').realClick({ position: 'bottomRight' });
-
         expect(cy.get('#navSpec').should('not.exist'));
       });
 
