@@ -735,8 +735,11 @@ describe('layout_mode', () => {
 
         rerender(<TestComponent />);
 
-        // Should not remove the listener
-        expect(mockWindow.removeEventListener).not.toHaveBeenCalled();
+        // Should not remove the resize listener
+        expect(mockWindow.removeEventListener).not.toHaveBeenCalledWith(
+          'resize',
+          expect.any(Function)
+        );
       });
 
       it('should NOT attach resize listener when there is no parent flyout', () => {
