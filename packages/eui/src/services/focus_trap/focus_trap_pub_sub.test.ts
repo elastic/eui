@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import { focusTrapPubSub } from './focus_trap_pubsub';
+import { focusTrapPubSub } from './focus_trap_pub_sub';
 
 describe('focusTrapPubSub', () => {
   let unsubscribeAll: Array<() => void> = [];

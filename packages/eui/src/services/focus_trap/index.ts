@@ -6,4 +6,4 @@
  * Side Public License, v 1.
  */
 
-export { focusTrapPubSub } from './focus_trap_pubsub';
+export { focusTrapPubSub } from './focus_trap_pub_sub';
