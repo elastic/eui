@@ -25,10 +25,11 @@ import {
   EuiDatePopoverContent,
   EuiDatePopoverContentProps,
 } from './date_popover_content';
+import { type EuiTimeZoneDisplayProps } from './timezone_display';
 
 import { euiDatePopoverButtonStyles } from './date_popover_button.styles';
 
-export interface EuiDatePopoverButtonProps {
+export type EuiDatePopoverButtonProps = {
   className?: string;
   buttonProps?: CommonProps & ButtonHTMLAttributes<HTMLButtonElement>;
   dateFormat: string;
@@ -50,7 +51,7 @@ export interface EuiDatePopoverButtonProps {
   maxDate?: Moment;
   compressed?: boolean;
   timeOptions: TimeOptions;
-}
+} & EuiTimeZoneDisplayProps;
 
 export const EuiDatePopoverButton: FunctionComponent<
   EuiDatePopoverButtonProps
@@ -76,6 +77,8 @@ export const EuiDatePopoverButton: FunctionComponent<
     onPopoverClose,
     compressed,
     timeOptions,
+    timeZoneDisplay,
+    timeZoneCustomDisplayRender,
     ...rest
   } = props;
 
@@ -157,6 +160,8 @@ export const EuiDatePopoverButton: FunctionComponent<
         timeOptions={timeOptions}
         minDate={minDate}
         maxDate={maxDate}
+        timeZoneDisplay={timeZoneDisplay}
+        timeZoneCustomDisplayRender={timeZoneCustomDisplayRender}
       />
     </EuiPopover>
   );

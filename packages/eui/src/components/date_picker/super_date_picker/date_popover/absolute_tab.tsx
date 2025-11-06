@@ -26,6 +26,10 @@ import { EuiCode } from '../../../code';
 
 import { EuiDatePicker, EuiDatePickerProps } from '../../date_picker';
 import { EuiDatePopoverContentProps } from './date_popover_content';
+import {
+  EuiTimeZoneDisplay,
+  type EuiTimeZoneDisplayProps,
+} from './timezone_display';
 import { euiAbsoluteTabDateFormStyles } from './absolute_tab.styles';
 
 // Allow users to paste in and have the datepicker parse multiple common date formats,
@@ -36,7 +40,7 @@ const ALLOWED_USER_DATE_FORMATS = [
   'X', // Unix timestamp in seconds
 ];
 
-export interface EuiAbsoluteTabProps {
+export type EuiAbsoluteTabProps = {
   dateFormat: string;
   timeFormat: string;
   locale?: LocaleSpecifier;
@@ -47,7 +51,7 @@ export interface EuiAbsoluteTabProps {
   utcOffset?: number;
   minDate?: Moment;
   maxDate?: Moment;
-}
+} & EuiTimeZoneDisplayProps;
 
 export const EuiAbsoluteTab: FunctionComponent<EuiAbsoluteTabProps> = ({
   value,
@@ -60,6 +64,8 @@ export const EuiAbsoluteTab: FunctionComponent<EuiAbsoluteTabProps> = ({
   minDate,
   maxDate,
   labelPrefix,
+  timeZoneDisplay,
+  timeZoneCustomDisplayRender,
 }) => {
   const styles = useEuiMemoizedStyles(euiAbsoluteTabDateFormStyles);
 
@@ -176,6 +182,7 @@ export const EuiAbsoluteTab: FunctionComponent<EuiAbsoluteTabProps> = ({
       >
         <EuiFormRow
           css={styles.euiAbsoluteTabDateForm__row}
+          data-test-subj="form form what's up"
           isInvalid={isTextInvalid}
           error={isTextInvalid ? dateFormatError : undefined}
           helpText={
@@ -212,6 +219,10 @@ export const EuiAbsoluteTab: FunctionComponent<EuiAbsoluteTabProps> = ({
           />
         )}
       </EuiFlexGroup>
+      <EuiTimeZoneDisplay
+        timeZoneDisplay={timeZoneDisplay}
+        timeZoneCustomDisplayRender={timeZoneCustomDisplayRender}
+      />
     </>
   );
 };

@@ -55,6 +55,7 @@ import {
   EuiQuickSelectButtonProps,
 } from './quick_select_popover/quick_select_popover';
 import { EuiDatePopoverButton } from './date_popover/date_popover_button';
+import { type EuiTimeZoneDisplayProps } from './date_popover/timezone_display';
 
 import { EuiDatePopoverContentProps } from './date_popover/date_popover_content';
 import {
@@ -73,168 +74,169 @@ export interface OnRefreshProps extends DurationRange {
   refreshInterval: number;
 }
 
-export type EuiSuperDatePickerProps = CommonProps & {
-  commonlyUsedRanges?: DurationRange[];
-  customQuickSelectPanels?: QuickSelectPanel[];
+export type EuiSuperDatePickerProps = CommonProps &
+  EuiTimeZoneDisplayProps & {
+    commonlyUsedRanges?: DurationRange[];
+    customQuickSelectPanels?: QuickSelectPanel[];
 
-  /**
-   * An optional render prop function that allows customizing the display of the Quick Select menu.
-   * This function passes all default quick select panels within an object, allowing you to
-   * re-order panels, omit certain panels entirely, or pass in your own fully custom content.
-   */
-  customQuickSelectRender?: (
-    options: CustomQuickSelectRenderOptions
-  ) => ReactNode;
+    /**
+     * An optional render prop function that allows customizing the display of the Quick Select menu.
+     * This function passes all default quick select panels within an object, allowing you to
+     * re-order panels, omit certain panels entirely, or pass in your own fully custom content.
+     */
+    customQuickSelectRender?: (
+      options: CustomQuickSelectRenderOptions
+    ) => ReactNode;
 
-  /**
-   * Specifies the formatted used when displaying dates and/or datetimes
-   * @default 'MMM D, YYYY @ HH:mm:ss.SSS'
-   */
-  dateFormat?: string;
+    /**
+     * Specifies the formatted used when displaying dates and/or datetimes
+     * @default 'MMM D, YYYY @ HH:mm:ss.SSS'
+     */
+    dateFormat?: string;
 
-  /**
-   * Set isAutoRefreshOnly to true to limit the component to only display auto refresh content.
-   */
-  isAutoRefreshOnly?: boolean;
+    /**
+     * Set isAutoRefreshOnly to true to limit the component to only display auto refresh content.
+     */
+    isAutoRefreshOnly?: boolean;
 
-  /**
-   * Accepts either a true/false boolean or an object configuration.
-   *
-   * The configuration will render the component as disabled, and allow you to
-   * customize the displayed disabled text.
-   */
-  isDisabled?: boolean | { display: ReactNode };
+    /**
+     * Accepts either a true/false boolean or an object configuration.
+     *
+     * The configuration will render the component as disabled, and allow you to
+     * customize the displayed disabled text.
+     */
+    isDisabled?: boolean | { display: ReactNode };
 
-  isLoading?: boolean;
-  /**
-   * @default true
-   */
-  isPaused?: boolean;
+    isLoading?: boolean;
+    /**
+     * @default true
+     */
+    isPaused?: boolean;
 
-  /**
-   * Sets the overall width by adding sensible min and max widths.
-   * - `auto`: fits width to internal content / time string.
-   * - `restricted`: static width that fits the longest possible time string.
-   * - `full`: expands to 100% of the container.
-   * @default 'restricted'
-   */
-  width?: 'restricted' | 'full' | 'auto';
+    /**
+     * Sets the overall width by adding sensible min and max widths.
+     * - `auto`: fits width to internal content / time string.
+     * - `restricted`: static width that fits the longest possible time string.
+     * - `full`: expands to 100% of the container.
+     * @default 'restricted'
+     */
+    width?: 'restricted' | 'full' | 'auto';
 
-  /**
-   * Reduces overall height to compressed form size
-   */
-  compressed?: boolean;
+    /**
+     * Reduces overall height to compressed form size
+     */
+    compressed?: boolean;
 
-  /**
-   * Used to localize e.g. month names, passed to `moment`
-   */
-  locale?: LocaleSpecifier;
+    /**
+     * Used to localize e.g. month names, passed to `moment`
+     */
+    locale?: LocaleSpecifier;
 
-  /**
-   * Triggered whenever the EuiSuperDatePicker's dates are focused
-   */
-  onFocus?: FocusEventHandler;
+    /**
+     * Triggered whenever the EuiSuperDatePicker's dates are focused
+     */
+    onFocus?: FocusEventHandler;
 
-  /**
-   * Callback for when the refresh interval is fired.
-   * EuiSuperDatePicker will only manage a refresh interval timer when onRefresh callback is supplied
-   * If a promise is returned, the next refresh interval will not start until the promise has resolved.
-   * If the promise rejects the refresh interval will stop and the error thrown
-   */
-  onRefresh?: (props: OnRefreshProps) => void;
+    /**
+     * Callback for when the refresh interval is fired.
+     * EuiSuperDatePicker will only manage a refresh interval timer when onRefresh callback is supplied
+     * If a promise is returned, the next refresh interval will not start until the promise has resolved.
+     * If the promise rejects the refresh interval will stop and the error thrown
+     */
+    onRefresh?: (props: OnRefreshProps) => void;
 
-  /**
-   * Callback for when the refresh interval changes.
-   * Supply onRefreshChange to show refresh interval inputs in quick select popover
-   */
-  onRefreshChange?: ApplyRefreshInterval;
+    /**
+     * Callback for when the refresh interval changes.
+     * Supply onRefreshChange to show refresh interval inputs in quick select popover
+     */
+    onRefreshChange?: ApplyRefreshInterval;
 
-  /**
-   * Callback for when the time changes.
-   */
-  onTimeChange: (props: OnTimeChangeProps) => void;
-  recentlyUsedRanges?: DurationRange[];
+    /**
+     * Callback for when the time changes.
+     */
+    onTimeChange: (props: OnTimeChangeProps) => void;
+    recentlyUsedRanges?: DurationRange[];
 
-  /**
-   * Refresh interval in milliseconds
-   * @default 1000
-   */
-  refreshInterval?: Milliseconds;
-  /**
-   * Minimum refresh interval in milliseconds
-   * @default 0
-   */
-  refreshMinInterval?: Milliseconds;
-  /**
-   * By default, refresh interval units will be rounded up to next largest unit of time
-   * (for example, 90 seconds will become 2m).
-   *
-   * If you do not want this behavior, you will need to store the user-set `intervalUnits`
-   * (passed by `onRefreshChange`) and manually control it via this prop.
-   */
-  refreshIntervalUnits?: RefreshUnitsOptions;
+    /**
+     * Refresh interval in milliseconds
+     * @default 1000
+     */
+    refreshInterval?: Milliseconds;
+    /**
+     * Minimum refresh interval in milliseconds
+     * @default 0
+     */
+    refreshMinInterval?: Milliseconds;
+    /**
+     * By default, refresh interval units will be rounded up to next largest unit of time
+     * (for example, 90 seconds will become 2m).
+     *
+     * If you do not want this behavior, you will need to store the user-set `intervalUnits`
+     * (passed by `onRefreshChange`) and manually control it via this prop.
+     */
+    refreshIntervalUnits?: RefreshUnitsOptions;
 
-  /**
-   * @default 'now-15m'
-   */
-  start?: ShortDate;
-  /**
-   * @default 'now'
-   */
-  end?: ShortDate;
+    /**
+     * @default 'now-15m'
+     */
+    start?: ShortDate;
+    /**
+     * @default 'now'
+     */
+    end?: ShortDate;
 
-  /**
-   * Defines min. date accepted as a selection (in moment format)
-   */
-  minDate?: moment.Moment;
+    /**
+     * Defines min. date accepted as a selection (in moment format)
+     */
+    minDate?: moment.Moment;
 
-  /**
-   * Defines max. date accepted as a selection (in moment format)
-   */
-  maxDate?: moment.Moment;
+    /**
+     * Defines max. date accepted as a selection (in moment format)
+     */
+    maxDate?: moment.Moment;
 
-  /**
-   * Specifies the formatted used when displaying times
-   * @default 'HH:mm'
-   */
-  timeFormat?: string;
-  utcOffset?: number;
+    /**
+     * Specifies the formatted used when displaying times
+     * @default 'HH:mm'
+     */
+    timeFormat?: string;
+    utcOffset?: number;
 
-  /**
-   * Set showUpdateButton to false to immediately invoke onTimeChange for all start and end changes.
-   * @default true
-   */
-  showUpdateButton?: boolean | 'iconOnly';
+    /**
+     * Set showUpdateButton to false to immediately invoke onTimeChange for all start and end changes.
+     * @default true
+     */
+    showUpdateButton?: boolean | 'iconOnly';
 
-  /**
-   * Set to true to display buttons for time shifting and zooming out,
-   * next to the top-level control.
-   */
-  showTimeWindowButtons?: boolean | TimeWindowButtonsConfig;
+    /**
+     * Set to true to display buttons for time shifting and zooming out,
+     * next to the top-level control.
+     */
+    showTimeWindowButtons?: boolean | TimeWindowButtonsConfig;
 
-  /**
-   * Hides the actual input reducing to just the quick select button.
-   */
-  isQuickSelectOnly?: boolean;
+    /**
+     * Hides the actual input reducing to just the quick select button.
+     */
+    isQuickSelectOnly?: boolean;
 
-  /**
-   * Props passed to the update button {@link EuiSuperUpdateButtonProps}
-   */
-  updateButtonProps?: EuiSuperUpdateButtonProps;
-  /**
-   * Props passed to the quick select button {@link EuiQuickSelectButtonProps}
-   */
-  quickSelectButtonProps?: EuiQuickSelectButtonProps;
+    /**
+     * Props passed to the update button {@link EuiSuperUpdateButtonProps}
+     */
+    updateButtonProps?: EuiSuperUpdateButtonProps;
+    /**
+     * Props passed to the quick select button {@link EuiQuickSelectButtonProps}
+     */
+    quickSelectButtonProps?: EuiQuickSelectButtonProps;
 
-  /**
-   * By default, relative units will be rounded up to next largest unit of time
-   * (for example, 90 minutes will become ~ 2 hours).
-   *
-   * If you do not want this behavior and instead wish to keep the exact units
-   * input by the user, set this flag to `false`.
-   */
-  canRoundRelativeUnits?: boolean;
-};
+    /**
+     * By default, relative units will be rounded up to next largest unit of time
+     * (for example, 90 minutes will become ~ 2 hours).
+     *
+     * If you do not want this behavior and instead wish to keep the exact units
+     * input by the user, set this flag to `false`.
+     */
+    canRoundRelativeUnits?: boolean;
+  };
 
 type EuiSuperDatePickerInternalProps = EuiSuperDatePickerProps & {
   memoizedStyles: ReturnType<typeof euiSuperDatePickerStyles>;
@@ -575,6 +577,8 @@ export class EuiSuperDatePickerInternal extends Component<
       compressed,
       onFocus,
       memoizedStyles: styles,
+      timeZoneDisplay,
+      timeZoneCustomDisplayRender,
     } = this.props;
 
     const autoRefreshAppend: EuiFormControlLayoutProps['append'] = !isPaused ? (
@@ -690,6 +694,8 @@ export class EuiSuperDatePickerInternal extends Component<
                   onPopoverClose={this.onStartDatePopoverClose}
                   timeOptions={timeOptions}
                   buttonProps={{ onFocus }}
+                  timeZoneDisplay={timeZoneDisplay}
+                  timeZoneCustomDisplayRender={timeZoneCustomDisplayRender}
                 />
               )
             }
@@ -717,6 +723,8 @@ export class EuiSuperDatePickerInternal extends Component<
                   onPopoverClose={this.onEndDatePopoverClose}
                   timeOptions={timeOptions}
                   buttonProps={{ onFocus }}
+                  timeZoneDisplay={timeZoneDisplay}
+                  timeZoneCustomDisplayRender={timeZoneCustomDisplayRender}
                 />
               )
             }

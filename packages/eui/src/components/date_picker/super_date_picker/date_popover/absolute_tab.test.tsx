@@ -150,7 +150,7 @@ describe('EuiAbsoluteTab', () => {
 
     describe('allows several other common date formats, and autoformats them to the `dateFormat` prop', () => {
       const assertOutput = (input: HTMLInputElement) => {
-        // Exclude hours from assertion, because moment uses local machine timezone
+        // Exclude hours from assertion, because moment uses local machine timeZone
         expect(input.value).toContain('Jan 1, 1970');
       };
 
