@@ -96,10 +96,7 @@ export const EuiTimeZoneDisplay: React.FC<EuiTimeZoneDisplayProps> = ({
  * @param timeZoneName IANA time zone name
  * @param [date] Reference date to get offset with Intl.DateTimeFormat
  */
-export function useUTCDisplayFromIANAName(
-  timeZoneName: string,
-  date?: Date
-) {
+export function useUTCDisplayFromIANAName(timeZoneName: string, date?: Date) {
   try {
     if (timeZoneName === 'UTC') {
       return {

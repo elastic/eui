@@ -182,7 +182,6 @@ export const EuiAbsoluteTab: FunctionComponent<EuiAbsoluteTabProps> = ({
       >
         <EuiFormRow
           css={styles.euiAbsoluteTabDateForm__row}
-          data-test-subj="form form what's up"
           isInvalid={isTextInvalid}
           error={isTextInvalid ? dateFormatError : undefined}
           helpText={
