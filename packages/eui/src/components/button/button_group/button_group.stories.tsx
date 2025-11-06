@@ -10,6 +10,7 @@ import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { disableStorybookControls } from '../../../../.storybook/utils';
 
+import { EuiSpacer } from '../../spacer';
 import {
   EuiButtonGroup,
   EuiButtonGroupProps,
@@ -153,6 +154,44 @@ export const WithTooltips: Story = {
     ],
     type: 'multi',
     idToSelectedMap: { button1: true },
+  },
+};
+
+export const IconOnly: Story = {
+  tags: ['vrt-only'],
+  args: {
+    legend: 'EuiButtonGroup - isIconOnly',
+    options: [
+      {
+        id: 'button1',
+        label: 'Option one',
+        iconType: 'faceHappy',
+      },
+      {
+        id: 'button2',
+        label: 'Option two',
+        iconType: 'faceNeutral',
+      },
+      {
+        id: 'button3',
+        label: 'Option three',
+        iconType: 'faceSad',
+      },
+    ],
+    type: 'single',
+    idSelected: 'button1',
+    isIconOnly: true,
+  },
+  render: function Render({ ...args }: EuiButtonGroupProps) {
+    return (
+      <>
+        <EuiButtonGroup {...args} buttonSize="compressed" />
+        <EuiSpacer />
+        <EuiButtonGroup {...args} buttonSize="s" />
+        <EuiSpacer />
+        <EuiButtonGroup {...args} buttonSize="m" />
+      </>
+    );
   },
 };
 
