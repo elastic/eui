@@ -7,6 +7,7 @@
  */
 
 import React, { type ReactNode } from 'react';
+import { Moment } from 'moment';
 
 import { euiTimeZoneDisplayStyles } from './timezone_display.styles';
 
@@ -39,6 +40,12 @@ export type EuiTimeZoneDisplayProps = {
   timeZoneCustomDisplayRender?: (
     options: TimeZoneCustomDisplayRenderOptions
   ) => ReactNode;
+
+  /**
+   * Reference date to be used while resolving the UTC offset.
+   * Only useful for edge cases involving daylight saving time.
+   */
+  date?: Moment;
 };
 
 /**
@@ -49,11 +56,14 @@ export type EuiTimeZoneDisplayProps = {
 export const EuiTimeZoneDisplay: React.FC<EuiTimeZoneDisplayProps> = ({
   timeZoneDisplay,
   timeZoneCustomDisplayRender,
+  date,
 }) => {
   const color = 'subdued';
   const styles = useEuiMemoizedStyles(euiTimeZoneDisplayStyles);
+  const referenceDate = date ? date.toDate() : undefined;
   const { utc, name, isInvalid } = useUTCDisplayFromIANAName(
-    timeZoneDisplay ?? 'Browser'
+    timeZoneDisplay ?? 'Browser',
+    referenceDate
   );
 
   if (!timeZoneDisplay || isInvalid) return null;
@@ -85,12 +95,10 @@ export const EuiTimeZoneDisplay: React.FC<EuiTimeZoneDisplayProps> = ({
  * Get the UTC offset display e.g. UTC+2 from time zone name.
  *
  * @param timeZoneName IANA time zone name
- * @param [locale] Locale to use with Intl.DateTimeFormat
  * @param [date] Reference date to get offset with Intl.DateTimeFormat
  */
 export function useUTCDisplayFromIANAName(
   timeZoneName: string,
-  locale: string = 'en',
   date?: Date
 ) {
   try {
@@ -106,7 +114,7 @@ export function useUTCDisplayFromIANAName(
       timeZoneName === 'Browser'
         ? new Intl.DateTimeFormat().resolvedOptions().timeZone
         : timeZoneName;
-    const formatter = new Intl.DateTimeFormat(locale, {
+    const formatter = new Intl.DateTimeFormat(undefined, {
       timeZone: ianaName,
       timeZoneName: 'shortOffset',
     });

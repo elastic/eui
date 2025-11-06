@@ -222,6 +222,7 @@ export const EuiAbsoluteTab: FunctionComponent<EuiAbsoluteTabProps> = ({
       <EuiTimeZoneDisplay
         timeZoneDisplay={timeZoneDisplay}
         timeZoneCustomDisplayRender={timeZoneCustomDisplayRender}
+        date={minDate}
       />
     </>
   );
