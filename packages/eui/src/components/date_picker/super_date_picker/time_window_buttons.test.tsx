@@ -200,9 +200,11 @@ describe('TimeWindowButtons', () => {
 
     expect(apply).not.toHaveBeenCalled();
 
-    fireEvent.mouseEnter(getByTestSubject('timeWindowButtonsZoomOut'));
+    act(() => {
+      fireEvent.mouseEnter(getByTestSubject('timeWindowButtonsZoomOut'));
+    })
+    
     await waitForEuiToolTipVisible();
-
     expect(getByRole('tooltip')).toHaveTextContent(/Cannot/);
   });
 });
