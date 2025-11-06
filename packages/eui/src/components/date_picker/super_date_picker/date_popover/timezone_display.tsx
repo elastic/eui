@@ -16,9 +16,8 @@ import { EuiFlexGroup } from '../../../flex';
 import { EuiIcon } from '../../../icon';
 import { EuiText } from '../../../text';
 
-// TODO test this!
 type TimeZoneCustomDisplayRenderOptions = {
-  nameDisplay?: ReactNode; // ReactElement<typeof ???>;
+  nameDisplay?: ReactNode;
 };
 
 export type EuiTimeZoneDisplayProps = {

@@ -28,6 +28,7 @@ import {
 } from './super_date_picker';
 import { EuiFieldText } from '../../form';
 import { EuiFlexGroup } from '../../flex';
+import { EuiButtonIcon } from '../../button';
 
 const meta: Meta<EuiSuperDatePickerProps> = {
   title: 'Forms/EuiSuperDatePicker/EuiSuperDatePicker',
@@ -194,6 +195,24 @@ export const TimeWindowButtons: Story = {
   args: {
     showTimeWindowButtons: true,
     showUpdateButton: false,
+  },
+  render: (args) => <StatefulSuperDatePicker {...args} />,
+};
+
+export const CustomTimeZoneDisplay: Story = {
+  args: {
+    timeZoneDisplay: 'America/Los_Angeles',
+    timeZoneCustomDisplayRender: ({ nameDisplay }) => (
+      <>
+        {nameDisplay}
+        <EuiButtonIcon
+          href="https://en.wikipedia.org/wiki/List_of_tz_database_time_zones"
+          target="_blank"
+          rel="noopener noreferrer"
+          iconType="documentation"
+        />
+      </>
+    ),
   },
   render: (args) => <StatefulSuperDatePicker {...args} />,
 };
