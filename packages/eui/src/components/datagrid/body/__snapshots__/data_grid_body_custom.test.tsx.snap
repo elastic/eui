@@ -26,7 +26,9 @@ exports[`EuiDataGridBodyCustomRender treats \`renderCustomGridBody\` as a render
         data-test-subj="dataGridColumnResizer"
       />
       <div
+        aria-label="columnA"
         class="euiDataGridHeaderCell__content emotion-euiDataGridHeaderCell__content"
+        id="dataGridHeaderCellContent-columnA"
         title="columnA"
       >
         columnA
@@ -36,7 +38,7 @@ exports[`EuiDataGridBodyCustomRender treats \`renderCustomGridBody\` as a render
       >
         <button
           aria-label="Press the Enter key to view this column's actions"
-          class="euiButtonIcon euiDataGridHeaderCell__button emotion-euiButtonIcon-xs-empty-text-euiDataGridHeaderCell__actions"
+          class="euiButtonIcon euiDataGridHeaderCell__button emotion-euiButtonIcon-xs-empty-text-action-end-ColumnActions"
           data-euigrid-tab-managed="true"
           data-test-subj="dataGridHeaderCellActionButton-columnA"
           tabindex="-1"
@@ -75,7 +77,9 @@ exports[`EuiDataGridBodyCustomRender treats \`renderCustomGridBody\` as a render
         data-test-subj="dataGridColumnResizer"
       />
       <div
+        aria-label="columnB"
         class="euiDataGridHeaderCell__content emotion-euiDataGridHeaderCell__content"
+        id="dataGridHeaderCellContent-columnB"
         title="columnB"
       >
         columnB
@@ -85,7 +89,7 @@ exports[`EuiDataGridBodyCustomRender treats \`renderCustomGridBody\` as a render
       >
         <button
           aria-label="Press the Enter key to view this column's actions"
-          class="euiButtonIcon euiDataGridHeaderCell__button emotion-euiButtonIcon-xs-empty-text-euiDataGridHeaderCell__actions"
+          class="euiButtonIcon euiDataGridHeaderCell__button emotion-euiButtonIcon-xs-empty-text-action-end-ColumnActions"
           data-euigrid-tab-managed="true"
           data-test-subj="dataGridHeaderCellActionButton-columnB"
           tabindex="-1"

@@ -45,6 +45,8 @@ export interface EuiConfirmModalProps
     event?:
       | React.KeyboardEvent<HTMLDivElement>
       | React.MouseEvent<HTMLButtonElement>
+      | MouseEvent
+      | TouchEvent
   ) => void;
   onConfirm?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   confirmButtonDisabled?: boolean;

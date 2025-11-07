@@ -1,3 +1,52 @@
+## [`v109.0.0`](https://github.com/elastic/eui/releases/v109.0.0)
+
+- Added color tokens `borderBaseProminent` and `borderInteractiveFormsHoverProminent` ([#9162](https://github.com/elastic/eui/pull/9162))
+- Updated `EuiFilePicker` border styles ([#9162](https://github.com/elastic/eui/pull/9162))
+- Updated 'paperClip' icon glyph ([#9149](https://github.com/elastic/eui/pull/9149))
+
+**Bug fixes**
+
+- Fixed internal `EuiButtonGroupButton` component so that `aria-pressed` can be omitted when necessary ([#9164](https://github.com/elastic/eui/pull/9164))
+
+**Breaking changes**
+
+- Removed `borderBaseFormsControl` token ([#9162](https://github.com/elastic/eui/pull/9162))
+
+**Accessibility**
+
+- Removed `aria-hidden` on `EuiDataGrid`s column header actions button to prevent accessibility warnings ([#9166](https://github.com/elastic/eui/pull/9166))
+- Improved the accessibility experience of `EuiBasicTable` and `EuiInMemoryTable` by ensuring tooltips displayed for action buttons are visual-only whenever the `action.name` and `action.description` are exactly the same ([#9140](https://github.com/elastic/eui/pull/9140))
+
+## [`v108.0.0`](https://github.com/elastic/eui/releases/v108.0.0)
+
+- Updated `EuiModal` to support closing on outside click, via the new `outsideClickCloses` prop ([#9137](https://github.com/elastic/eui/pull/9137))
+
+**Breaking changes**
+
+- Removed all "Amsterdam" theme related code in `src/themes/amsterdam` - EUI now only supports the "Borealis" theme in `eui-theme-borealis` ([#9090](https://github.com/elastic/eui/pull/9090))
+- Removed `euiTheme.flags.hasGlobalFocusColor` ([#9090](https://github.com/elastic/eui/pull/9090))
+- Removed `euiTheme.flags.hasVisColorAdjustment` ([#9090](https://github.com/elastic/eui/pull/9090))
+- Removed `hasVisColorAdjustment` argument from color palettes (used in `euiPaletteColorBlindBehindText`, `euiPaletteForTemperature`, `euiPaletteComplementary`, `euiPaletteCool`) ([#9090](https://github.com/elastic/eui/pull/9090))
+- Removed `euiTheme.flags.buttonVariant` and `euiTheme.flags.formVariant` ([#9090](https://github.com/elastic/eui/pull/9090))
+- Removed `euiTheme.components.keyPadMenuItemBackgroundDisabledSelect` ([#9090](https://github.com/elastic/eui/pull/9090))
+- Removed legacy SCSS files from `src/global_styling/variables`, `src/global_styling/mixins` and `src/global_styling/functions` - if needed, use them from `eui-theme-common` instead ([#9090](https://github.com/elastic/eui/pull/9090))
+
+## [`v107.0.1`](https://github.com/elastic/eui/releases/v107.0.1)
+
+**Bug fixes**
+
+- Fixed `prismjs` theme in `EuiCodeBlock` to improve highlighting for the `yaml` language ([#9089](https://github.com/elastic/eui/pull/9089))
+- Fixed a visual bug on `EuiTable` where the border for rows in dark mode wasn't applied correctly ([#9115](https://github.com/elastic/eui/pull/9115))
+
+**Dependency updates**
+
+- Updated `@elastic/prismjs-esql` to v1.1.2 ([#9102](https://github.com/elastic/eui/pull/9102))
+
+**Accessibility**
+
+- Fixed incorrect role attribute on `EuiIcon` and `EuiBetaBadge` ([#9100](https://github.com/elastic/eui/pull/9100))
+- Make `EuiBasicTable` respect user's reduced motion setting by not animating when in loading state. ([#9095](https://github.com/elastic/eui/pull/9095))
+
 ## [`v107.0.0`](https://github.com/elastic/eui/releases/v107.0.0)
 
 - Added new shadow tokens ([#9088](https://github.com/elastic/eui/pull/9088))

@@ -201,7 +201,7 @@ import { SpecialColorsTable } from './special_colors_table';
 Data visualization colors are semantically tied to data visualizations and are not meant for use in other contexts. Do not use these colors in other contexts.
 :::
 
-import { DataVisColorsTable, DataVisColorsBehindTextColorsTable, DataVisBackgroundColor } from './data_vis_colors_table';
+import { DataVisColorsTable, DataVisBackgroundColor } from './data_vis_colors_table';
 import { DataVisColorsPreview } from './data_vis_colors_preview'
 
 
@@ -210,7 +210,7 @@ import { DataVisColorsPreview } from './data_vis_colors_preview'
     ### `euiTheme.colors.vis[token]` <Badge color="hollow">token</Badge>
 
     The following colors are color-blind safe and should be used in categorically seried visualizations and graphics.
-    They are meant to be contrasted against the value of <DataVisBackgroundColor /> for the current theme.
+    They are meant to be contrasted against the value of `colors.backgroundBasePlain` for the current theme.
 
     See the [Data visualization text colors](#dataVisText) section for a note about text colors.
 
@@ -231,7 +231,6 @@ import { DataVisColorsPreview } from './data_vis_colors_preview'
 <EuiSpacer />
 
 <DataVisColorsTable />
-<DataVisColorsBehindTextColorsTable />
 
 ## Severity and Health colors
 
@@ -300,7 +299,6 @@ import { DataVisTextColorsPreview } from './data_vis_colors_preview'
 <EuiSpacer />
 
 <DataVisTextColorsTable />
-<DataVisColorsBehindTextColorsTable />
 
 ## Contrast ratios and color modes {#contrast}
 

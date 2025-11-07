@@ -53,7 +53,6 @@ describe('euiPaletteColorBlindBehindText', () => {
 
     const result = euiPaletteColorBlindBehindText({
       colors,
-      hasVisColorAdjustment: false,
     });
 
     expect(result[0]).toEqual(customColor);

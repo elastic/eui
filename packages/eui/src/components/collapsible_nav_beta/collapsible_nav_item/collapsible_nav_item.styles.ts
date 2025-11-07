@@ -8,13 +8,12 @@
 
 import { css } from '@emotion/react';
 
-import { isEuiThemeRefreshVariant, UseEuiTheme } from '../../../services';
+import { UseEuiTheme } from '../../../services';
 import {
   logicalCSS,
   mathWithUnits,
   euiFontSize,
 } from '../../../global_styling';
-import { euiButtonColor } from '../../../global_styling/mixins/_button';
 
 /**
  * Style variables shared between accordion, link, and sub items
@@ -23,10 +22,6 @@ export const euiCollapsibleNavItemVariables = (
   euiThemeContext: UseEuiTheme
 ) => {
   const { euiTheme } = euiThemeContext;
-  const isRefreshVariant = isEuiThemeRefreshVariant(
-    euiThemeContext,
-    'buttonVariant'
-  );
 
   return {
     height: euiTheme.size.xl,
@@ -35,9 +30,7 @@ export const euiCollapsibleNavItemVariables = (
     animation: `${euiTheme.animation.normal} ease-in-out`, // Matches EuiButton
     borderRadius: euiTheme.border.radius.small,
     backgroundHoverColor: euiTheme.colors.lightestShade,
-    backgroundSelectedColor: isRefreshVariant
-      ? euiTheme.colors.backgroundBaseInteractiveSelect
-      : euiButtonColor(euiThemeContext, 'text').backgroundColor,
+    backgroundSelectedColor: euiTheme.colors.backgroundBaseInteractiveSelect,
     color: euiTheme.colors.textParagraph,
     rightIconColor: euiTheme.colors.textDisabled,
   };

@@ -19,18 +19,12 @@ import { EuiThemeBorealis } from '@elastic/eui-theme-borealis';
 
 import { EuiThemeColorMode } from '../src/services';
 import { EuiProvider, EuiProviderProps } from '../src/components/provider';
-import { EuiThemeAmsterdam } from '../src/themes';
 
 export const AVAILABLE_THEMES = [
   {
     text: 'Borealis',
     value: EuiThemeBorealis.key,
     provider: EuiThemeBorealis,
-  },
-  {
-    text: 'Amsterdam',
-    value: EuiThemeAmsterdam.key,
-    provider: EuiThemeAmsterdam,
   },
 ];
 
@@ -178,18 +172,6 @@ export const euiProviderDecoratorGlobals: Preview['globalTypes'] = {
     toolbar: {
       title: 'Writing mode',
       items: storybookToolbarWritingModes,
-      dynamicTitle: true,
-    },
-  },
-  theme: {
-    description: 'Theme for EuiProvider',
-    defaultValue: EuiThemeBorealis.key,
-    toolbar: {
-      title: 'Theme',
-      items: [
-        { value: EuiThemeBorealis.key, title: 'Borealis', icon: 'box' },
-        { value: EuiThemeAmsterdam.key, title: 'Amsterdam', icon: 'box' },
-      ],
       dynamicTitle: true,
     },
   },

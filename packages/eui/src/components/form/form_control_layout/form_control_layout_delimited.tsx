@@ -9,12 +9,10 @@
 import React, { FunctionComponent, ReactElement, ReactNode } from 'react';
 import classNames from 'classnames';
 
-import { UseEuiTheme } from '@elastic/eui-theme-common';
 import {
   useEuiMemoizedStyles,
   cloneElementWithCss,
   useEuiTheme,
-  useEuiThemeRefreshVariant,
 } from '../../../services';
 import { useEuiI18n } from '../../i18n';
 import { EuiIcon } from '../../icon';
@@ -59,9 +57,6 @@ export const EuiFormControlLayoutDelimited: FunctionComponent<
   fullWidth: _fullWidth,
   ...rest
 }) => {
-  const euiThemeContext = useEuiTheme();
-  const isRefreshVariant = useEuiThemeRefreshVariant('formVariant');
-
   const { defaultFullWidth } = useFormContext();
   const fullWidth = _fullWidth ?? defaultFullWidth;
 
@@ -82,7 +77,7 @@ export const EuiFormControlLayoutDelimited: FunctionComponent<
     styles.childrenWrapper.delimited,
     showInvalidState && styles.childrenWrapper.invalid,
     rest.wrapperProps?.css,
-    isRefreshVariant && rest.readOnly && styles.childrenWrapper.readOnly,
+    rest.readOnly && styles.childrenWrapper.readOnly,
   ];
 
   return (
@@ -96,25 +91,22 @@ export const EuiFormControlLayoutDelimited: FunctionComponent<
       wrapperProps={{ ...rest.wrapperProps, css: wrapperStyles }}
     >
       <FormContext.Provider value={{ defaultFullWidth: fullWidth }}>
-        {startControl && addClassesToControl(euiThemeContext, startControl)}
+        {startControl && addClassesToControl(startControl)}
         <EuiFormControlDelimiter
           delimiter={delimiter}
           isInvalid={showInvalidState}
         />
-        {endControl && addClassesToControl(euiThemeContext, endControl)}
+        {endControl && addClassesToControl(endControl)}
       </FormContext.Provider>
     </EuiFormControlLayout>
   );
 };
 
-const addClassesToControl = (
-  euiThemeContext: UseEuiTheme,
-  control: ReactElement
-) => {
+const addClassesToControl = (control: ReactElement) => {
   return cloneElementWithCss(
     control,
     {
-      css: euiFormControlLayoutDelimited__input(euiThemeContext),
+      css: euiFormControlLayoutDelimited__input,
       className: classNames(
         control.props.className,
         'euiFormControlLayoutDelimited__input'

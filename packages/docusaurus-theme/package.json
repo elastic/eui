@@ -1,8 +1,8 @@
 {
   "name": "@elastic/eui-docusaurus-theme",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "EUI theme for Docusaurus",
-  "private": true,
+  "license": "SEE LICENSE IN LICENSE.txt",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc --build",
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/tkajtoch/eui.git",
+    "url": "https://github.com/elastic/eui.git",
     "directory": "packages/docusaurus-theme"
   },
   "devDependencies": {
@@ -28,6 +28,11 @@
     "./components": "./lib/components/index.js",
     ".": "./lib/index.js"
   },
+  "files": [
+    "lib",
+    "src",
+    "!**/.tsbuildinfo"
+  ],
   "dependencies": {
     "@docusaurus/core": "^3.7.0",
     "@docusaurus/module-type-aliases": "^3.7.0",
@@ -36,7 +41,6 @@
     "@docusaurus/utils-validation": "^3.7.0",
     "@elastic/datemath": "^5.0.3",
     "@elastic/eui": "workspace:^",
-    "@elastic/eui-docgen": "workspace:^",
     "@elastic/eui-theme-borealis": "workspace:^",
     "@emotion/css": "^11.11.2",
     "@emotion/react": "^11.11.4",

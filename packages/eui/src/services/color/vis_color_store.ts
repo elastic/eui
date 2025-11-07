@@ -9,6 +9,6 @@
 import { _EuiVisColorStore, EuiVisColorStore } from '@elastic/eui-theme-common';
 import { colorVis } from '@elastic/eui-theme-borealis';
 
-// initialsetup of Vis color storage with default colors
+// initial setup of vis color storage with default colors
 export const EUI_VIS_COLOR_STORE: _EuiVisColorStore =
-  EuiVisColorStore.getInstance(colorVis, false);
+  EuiVisColorStore.getInstance(colorVis);

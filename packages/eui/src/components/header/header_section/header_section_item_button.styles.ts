@@ -8,7 +8,7 @@
 
 import { css } from '@emotion/react';
 
-import { isEuiThemeRefreshVariant, UseEuiTheme } from '../../../services';
+import { UseEuiTheme } from '../../../services';
 import {
   logicalCSS,
   logicalSizeCSS,
@@ -23,18 +23,10 @@ export const euiHeaderSectionItemButtonStyles = (
 ) => {
   const { childHeight } = euiHeaderVariables(euiThemeContext);
   const { euiTheme } = euiThemeContext;
-  const isRefreshVariant = isEuiThemeRefreshVariant(
-    euiThemeContext,
-    'buttonVariant'
-  );
 
   const dotSize = euiTheme.size.base;
-  const dotOffset = isRefreshVariant
-    ? mathWithUnits(dotSize, (x) => x * -0.5)
-    : 0;
-  const badgeOffset = isRefreshVariant
-    ? mathWithUnits(euiTheme.size.s, (x) => x * -0.5)
-    : '9%';
+  const dotOffset = mathWithUnits(dotSize, (x) => x * -0.5);
+  const badgeOffset = mathWithUnits(euiTheme.size.s, (x) => x * -0.5);
 
   return {
     euiHeaderSectionItemButton: css`

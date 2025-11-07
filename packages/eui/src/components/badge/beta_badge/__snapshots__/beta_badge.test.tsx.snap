@@ -135,6 +135,7 @@ exports[`EuiBetaBadge props tooltip and anchorProps are rendered 1`] = `
 >
   <span
     class="euiBetaBadge emotion-euiBetaBadge-hollow-m-baseline"
+    role="button"
     tabindex="0"
   >
     Beta

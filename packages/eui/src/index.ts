@@ -9,5 +9,4 @@
 export * from './components';
 export * from './services';
 export * from './utils';
-export * from './themes';
 export * from './global_styling';

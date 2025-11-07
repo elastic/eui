@@ -206,11 +206,6 @@ const component_colors: _EuiThemeComponentColors = {
   headerDarkSectionItemBackgroundFocus:
     dark_background_colors.backgroundBasePrimary,
 
-  keyPadMenuItemBackgroundDisabledSelect: computed(
-    ([backgroundBaseDisabled]) => backgroundBaseDisabled,
-    ['colors.backgroundBaseDisabled']
-  ),
-
   listGroupItemBackgroundPrimaryActive: computed(
     ([backgroundBaseInteractiveSelect]) => backgroundBaseInteractiveSelect,
     ['colors.backgroundBaseInteractiveSelect']

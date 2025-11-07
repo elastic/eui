@@ -62,6 +62,12 @@ declare global {
        * Params: variableName - the name of the CSS variable (e.g. '--euiColorPrimary')
        */
       cssVar(variableName: string): Chainable<string | null>;
+
+      /**
+       * Waits for an element's position to remain stable for a few consecutive checks.
+       * This is useful for ensuring that repositioning logic has completed after an event like a scroll.
+       */
+      waitForPositionToSettle(): Chainable<JQuery<HTMLElement>>;
     }
   }
 }

@@ -1,3 +1,13 @@
+## [`v2.5.0`](https://github.com/elastic/eui/releases/v2.5.0)
+
+- Added new `accessible-interactive-element` rule. ([#9093](https://github.com/elastic/eui/pull/9093))
+- Added new `tooltip-focusable-anchor` rule. ([#9051](https://github.com/elastic/eui/pull/9051))
+- exclude `EuiButtonEmpty` from the `no-unnamed-interactive-element` rule. ([#9046](https://github.com/elastic/eui/pull/9046))
+
+**Bug fixes**
+
+- Fixed `no-css-color` rule to allow CSS keywords like `currentcolor`, `transparent`, and `inherit` ([#9092](https://github.com/elastic/eui/pull/9092))
+
 ## [`v2.4.0`](https://www.npmjs.com/package/@elastic/eslint-plugin-eui/v/2.4.0)
 
 - Added new `callout-announce-on-mount` rule. ([#9005](https://github.com/elastic/eui/pull/9005))

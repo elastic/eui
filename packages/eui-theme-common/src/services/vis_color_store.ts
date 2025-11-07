@@ -19,49 +19,29 @@ type EventId = string;
 
 export type _EuiVisColorStore = {
   visColors: _EuiThemeVisColors;
-  hasVisColorAdjustment: boolean;
-  setVisColors: (
-    colors: _EuiThemeVisColors,
-    hasVisColorAdjustment?: boolean
-  ) => void;
+  setVisColors: (colors: _EuiThemeVisColors) => void;
   subscribe: (eventName: VisColorStoreEvents, callback: any) => EventId;
   unsubscribe: (eventName: VisColorStoreEvents, id: EventId) => void;
 };
 
 class EuiVisColorStoreImpl implements _EuiVisColorStore {
   private _visColors: _EuiVisColorStore['visColors'];
-  private _hasVisColorAdjustment: _EuiVisColorStore['hasVisColorAdjustment'];
   private events: Record<VisColorStoreEvents, Map<EventId, any>> = {} as Record<
     VisColorStoreEvents,
     Map<EventId, any>
   >;
 
-  constructor(dependencies: {
-    defaultColors: _EuiThemeVisColors;
-    hasVisColorAdjustment: boolean;
-  }) {
+  constructor(dependencies: { defaultColors: _EuiThemeVisColors }) {
     this._visColors = dependencies.defaultColors;
-    this._hasVisColorAdjustment = dependencies.hasVisColorAdjustment;
   }
 
   get visColors(): _EuiVisColorStore['visColors'] {
     return this._visColors;
   }
 
-  get hasVisColorAdjustment(): _EuiVisColorStore['hasVisColorAdjustment'] {
-    return this._hasVisColorAdjustment;
-  }
-
-  setVisColors = (colors: _EuiThemeVisColors, hasColorAdjustment?: boolean) => {
-    if (
-      !isEqual(this._visColors, colors) ||
-      hasColorAdjustment !== this._hasVisColorAdjustment
-    ) {
+  setVisColors = (colors: _EuiThemeVisColors) => {
+    if (!isEqual(this._visColors, colors)) {
       this._visColors = colors;
-
-      if (hasColorAdjustment != null) {
-        this._hasVisColorAdjustment = hasColorAdjustment;
-      }
 
       this.publishUpdate(VIS_COLOR_STORE_EVENTS.UPDATE, this._visColors);
     }
@@ -101,14 +81,10 @@ class EuiVisColorStoreImpl implements _EuiVisColorStore {
 export class EuiVisColorStore {
   private static instance: EuiVisColorStoreImpl;
 
-  static getInstance(
-    defaultColors: _EuiThemeVisColors,
-    hasVisColorAdjustment: boolean
-  ): EuiVisColorStoreImpl {
+  static getInstance(defaultColors: _EuiThemeVisColors): EuiVisColorStoreImpl {
     if (!this.instance) {
       this.instance = new EuiVisColorStoreImpl({
         defaultColors,
-        hasVisColorAdjustment,
       });
     }
 
