@@ -45,6 +45,7 @@ const meta: Meta<EuiToolTipProps> = {
   args: {
     position: 'top',
     delay: 'regular',
+    transition: 'default',
     display: 'inlineBlock',
     // set up for easier testing/QA
     anchorClassName: '',
@@ -70,6 +71,34 @@ export const Playground: Story = {
     // Reduce VRT flakiness/screenshots before tooltip is fully visible
     await sleep(300);
   }),
+};
+
+export const ShortDelay: Story = {
+  args: {
+    ...Playground.args,
+    delay: 'short',
+  },
+};
+
+export const NoDelay: Story = {
+  args: {
+    ...Playground.args,
+    delay: 'none',
+  },
+};
+
+export const FadeTransition: Story = {
+  args: {
+    ...Playground.args,
+    transition: 'fade',
+  },
+};
+
+export const NoTransition: Story = {
+  args: {
+    ...Playground.args,
+    transition: 'none',
+  },
 };
 
 /**

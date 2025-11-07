@@ -111,6 +111,58 @@ describe('EuiToolTip', () => {
     expect(container).toMatchSnapshot();
   });
 
+  describe('delay prop', () => {
+    test('short delay', async () => {
+      const { baseElement, getByTestSubject } = render(
+        <EuiToolTip content="content" delay="short">
+          <button data-test-subj="trigger">Trigger</button>
+        </EuiToolTip>
+      );
+
+      fireEvent.mouseOver(getByTestSubject('trigger'));
+      await waitForEuiToolTipVisible();
+      expect(baseElement).toMatchSnapshot();
+    });
+
+    test('none delay', async () => {
+      const { baseElement, getByTestSubject } = render(
+        <EuiToolTip content="content" delay="none">
+          <button data-test-subj="trigger">Trigger</button>
+        </EuiToolTip>
+      );
+
+      fireEvent.mouseOver(getByTestSubject('trigger'));
+      await waitForEuiToolTipVisible();
+      expect(baseElement).toMatchSnapshot();
+    });
+  });
+
+  describe('transition prop', () => {
+    test('fade transition', async () => {
+      const { baseElement, getByTestSubject } = render(
+        <EuiToolTip content="content" transition="fade">
+          <button data-test-subj="trigger">Trigger</button>
+        </EuiToolTip>
+      );
+
+      fireEvent.mouseOver(getByTestSubject('trigger'));
+      await waitForEuiToolTipVisible();
+      expect(baseElement).toMatchSnapshot();
+    });
+
+    test('none transition', async () => {
+      const { baseElement, getByTestSubject } = render(
+        <EuiToolTip content="content" transition="none">
+          <button data-test-subj="trigger">Trigger</button>
+        </EuiToolTip>
+      );
+
+      fireEvent.mouseOver(getByTestSubject('trigger'));
+      await waitForEuiToolTipVisible();
+      expect(baseElement).toMatchSnapshot();
+    });
+  });
+
   describe('aria-describedby', () => {
     it('by default, sets an `aria-describedby` on the anchor when the tooltip is visible', async () => {
       const { getByTestSubject } = render(

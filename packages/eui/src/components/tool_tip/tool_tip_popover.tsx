@@ -18,6 +18,7 @@ import classNames from 'classnames';
 import { CommonProps } from '../common';
 import { useEuiTheme } from '../../services';
 import { euiToolTipStyles } from './tool_tip.styles';
+import type { ToolTipTransition } from './tool_tip';
 
 export type ToolTipPositions = 'top' | 'right' | 'bottom' | 'left';
 
@@ -28,6 +29,7 @@ type Props = CommonProps &
     title?: ReactNode;
     popoverRef?: (ref: HTMLDivElement) => void;
     calculatedPosition?: ToolTipPositions;
+    transition?: ToolTipTransition;
   };
 
 export const EuiToolTipPopover: FunctionComponent<Props> = ({
@@ -37,6 +39,7 @@ export const EuiToolTipPopover: FunctionComponent<Props> = ({
   positionToolTip,
   popoverRef,
   calculatedPosition,
+  transition = 'default',
   ...rest
 }) => {
   const popover = useRef<HTMLDivElement>();
@@ -46,6 +49,8 @@ export const EuiToolTipPopover: FunctionComponent<Props> = ({
   const cssStyles = [
     styles.euiToolTip,
     calculatedPosition && styles[calculatedPosition],
+    transition === 'fade' && calculatedPosition && styles[`${calculatedPosition}Fade`],
+    transition === 'none' && styles.noAnimation,
   ];
 
   const updateDimensions = useCallback(() => {
