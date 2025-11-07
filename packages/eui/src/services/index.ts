@@ -77,6 +77,7 @@ export * from './console';
 export * from './copy';
 export * from './emotion';
 export * from './findElement';
+export { focusTrapPubSub } from './focus_trap';
 export {
   dateFormatAliases,
   formatAuto,
