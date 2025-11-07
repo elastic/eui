@@ -29,6 +29,7 @@ import {
   getWaitDuration,
   performOnFrame,
   htmlIdGenerator,
+  focusTrapPubSub,
 } from '../../services';
 import { setMultipleRefs } from '../../services/hooks/useCombinedRefs';
 
@@ -448,6 +449,7 @@ export class EuiPopover extends Component<Props, State> {
     this.repositionTimeout = window.setTimeout(() => {
       this.setState({ isOpenStable: true }, () => {
         this.positionPopoverFixed();
+        focusTrapPubSub.publish();
       });
     }, durationMatch + delayMatch);
   };
@@ -492,6 +494,7 @@ export class EuiPopover extends Component<Props, State> {
         this.setState({
           isClosing: false,
         });
+        focusTrapPubSub.publish();
       }, closingTransitionTime);
     }
   }
@@ -502,6 +505,7 @@ export class EuiPopover extends Component<Props, State> {
     clearTimeout(this.strandedFocusTimeout);
     clearTimeout(this.closingTransitionTimeout);
     cancelAnimationFrame(this.closingTransitionAnimationFrame!);
+    focusTrapPubSub.publish();
   }
 
   onMutation = (records: MutationRecord[]) => {

@@ -33,6 +33,7 @@ import {
   useEuiMemoizedStyles,
   useGeneratedHtmlId,
   useEuiThemeCSSVariables,
+  focusTrapPubSub,
 } from '../../services';
 import { logicalStyle } from '../../global_styling';
 
@@ -400,26 +401,45 @@ export const EuiFlyout = forwardRef(
       return selectors;
     }, [includeSelectorInFocusTrap, includeFixedHeadersInFocusTrap]);
 
-    useEffect(() => {
-      if (focusTrapSelectors.length > 0) {
-        const shardsEls = focusTrapSelectors.flatMap((selector) =>
-          Array.from(document.querySelectorAll<HTMLElement>(selector))
-        );
+    /**
+     * Finds the shards to include in the focus trap by querying by `focusTrapSelectors`.
+     *
+     * @param shouldAutoFocus Whether to auto-focus the flyout wrapper when the focus trap is activated.
+     * This is necessary because when a flyout is toggled from within a shard, the focus trap's `autoFocus`
+     * feature doesn't work. This logic manually focuses the flyout as a workaround.
+     */
+    const findShards = useCallback(
+      (shouldAutoFocus: boolean = false) => {
+        if (focusTrapSelectors.length > 0) {
+          const shardsEls = focusTrapSelectors.flatMap((selector) =>
+            Array.from(document.querySelectorAll<HTMLElement>(selector))
+          );
 
-        setFocusTrapShards(Array.from(shardsEls));
+          setFocusTrapShards(Array.from(shardsEls));
 
-        // Flyouts that are toggled from shards do not have working
-        // focus trap autoFocus, so we need to focus the flyout wrapper ourselves
-        shardsEls.forEach((shard) => {
-          if (shard.contains(flyoutToggle.current)) {
-            resizeRef?.focus();
+          if (shouldAutoFocus) {
+            shardsEls.forEach((shard) => {
+              if (shard.contains(flyoutToggle.current)) {
+                resizeRef?.focus();
+              }
+            });
           }
-        });
-      } else {
-        // Clear existing shards if necessary, e.g. switching to `false`
-        setFocusTrapShards((shards) => (shards.length ? [] : shards));
-      }
-    }, [focusTrapSelectors, resizeRef]);
+        } else {
+          // Clear existing shards if necessary, e.g. switching to `false`
+          setFocusTrapShards((shards) => (shards.length ? [] : shards));
+        }
+      },
+      [focusTrapSelectors, resizeRef]
+    );
+
+    useEffect(() => {
+      // Auto-focus should only happen on initial flyout mount (or when the dependencies change)
+      // because it snaps focus to the flyout wrapper, which steals it from subsequently focused elements.
+      findShards(true);
+
+      const unsubscribe = focusTrapPubSub.subscribe(() => findShards());
+      return unsubscribe;
+    }, [findShards]);
 
     const focusTrapProps: EuiFlyoutProps['focusTrapProps'] = useMemo(
       () => ({
