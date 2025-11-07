@@ -16,6 +16,10 @@ import { EuiFlexGroup } from '../../../flex';
 import { EuiIcon } from '../../../icon';
 import { EuiText } from '../../../text';
 
+/**
+ * Available elements to render passed to the 
+ * `timeZoneCustomDisplayRender` render function.
+ */
 type TimeZoneCustomDisplayRenderOptions = {
   nameDisplay?: ReactNode;
 };
@@ -60,7 +64,7 @@ export const EuiTimeZoneDisplay: React.FC<EuiTimeZoneDisplayProps> = ({
   const color = 'subdued';
   const styles = useEuiMemoizedStyles(euiTimeZoneDisplayStyles);
   const referenceDate = date ? date.toDate() : undefined;
-  const { utc, name, isInvalid } = useUTCDisplayFromIANAName(
+  const { utc, name, isInvalid } = useEuiUTCOffsetDisplay(
     timeZoneDisplay ?? 'Browser',
     referenceDate
   );
@@ -91,12 +95,12 @@ export const EuiTimeZoneDisplay: React.FC<EuiTimeZoneDisplayProps> = ({
 };
 
 /**
- * Get the UTC offset display e.g. UTC+2 from time zone name.
+ * Get the UTC offset display in hours e.g. UTC+2 from time zone name.
  *
  * @param timeZoneName IANA time zone name
  * @param [date] Reference date to get offset with Intl.DateTimeFormat
  */
-export function useUTCDisplayFromIANAName(timeZoneName: string, date?: Date) {
+export function useEuiUTCOffsetDisplay(timeZoneName: string, date?: Date) {
   try {
     if (timeZoneName === 'UTC') {
       return {
