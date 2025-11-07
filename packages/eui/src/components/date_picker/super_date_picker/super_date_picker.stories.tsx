@@ -200,6 +200,17 @@ export const TimeWindowButtons: Story = {
 };
 
 export const CustomTimeZoneDisplay: Story = {
+  parameters: {
+    controls: {
+      include: [
+        'timeZoneDisplay',
+        'timeZoneCustomDisplayRender',
+      ],
+    },
+    loki: {
+      chromeSelector: LOKI_SELECTORS.portal,
+    },
+  },
   args: {
     timeZoneDisplay: 'America/Los_Angeles',
     timeZoneCustomDisplayRender: ({ nameDisplay }) => (
@@ -215,6 +226,14 @@ export const CustomTimeZoneDisplay: Story = {
     ),
   },
   render: (args) => <StatefulSuperDatePicker {...args} />,
+  play: async ({ canvasElement, step }) => {
+    const canvas = within(canvasElement);
+    await step('show popover on click of the date picker button', async () => {
+      canvas.waitForAndClick('superDatePickerShowDatesButton');
+      await canvas.waitForEuiPopoverVisible();
+      expect(canvas.getByText('America/Los_Angeles')).toBeVisible();
+    });
+  },
 };
 
 /**
