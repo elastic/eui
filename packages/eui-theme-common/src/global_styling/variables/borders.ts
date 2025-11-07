@@ -25,7 +25,7 @@ export interface _EuiThemeBorderWidthValues {
 export interface _EuiThemeBorderRadiusValues {
   /**
    * Primary corner radius size
-   * - Default value: 4px (6px in Amsterdam)
+   * - Default value: 4px
    */
   medium: CSSProperties['borderRadius'];
   /**

@@ -23,7 +23,7 @@ exports[`EuiFormLabel props isDisabled is still disabled with for attribute 1`] 
 
 exports[`EuiFormLabel props isFocused is rendered 1`] = `
 <label
-  class="euiFormLabel euiFormLabel-isFocused emotion-euiFormLabel-focused"
+  class="euiFormLabel euiFormLabel-isFocused emotion-euiFormLabel"
 />
 `;
 

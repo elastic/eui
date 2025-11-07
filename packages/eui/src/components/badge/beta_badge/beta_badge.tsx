@@ -231,7 +231,13 @@ export const EuiBetaBadge: FunctionComponent<EuiBetaBadgeProps> = ({
           title={title || label}
           anchorProps={anchorProps}
         >
-          <span tabIndex={0} css={cssStyles} className={classes} {...rest}>
+          <span
+            tabIndex={0}
+            role="button"
+            css={cssStyles}
+            className={classes}
+            {...rest}
+          >
             {icon || label}
           </span>
         </EuiToolTip>

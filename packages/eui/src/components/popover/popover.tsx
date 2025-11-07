@@ -15,6 +15,7 @@ import React, {
   Ref,
   RefCallback,
   PropsWithChildren,
+  ContextType,
 } from 'react';
 import classNames from 'classnames';
 import { focusable } from 'tabbable';
@@ -28,6 +29,7 @@ import {
   getWaitDuration,
   performOnFrame,
   htmlIdGenerator,
+  focusTrapPubSub,
 } from '../../services';
 import { setMultipleRefs } from '../../services/hooks/useCombinedRefs';
 
@@ -42,6 +44,10 @@ import {
   getElementZIndex,
   EuiPopoverPosition,
 } from '../../services/popover';
+import {
+  createRepositionOnScroll,
+  type CreateRepositionOnScrollReturnType,
+} from '../../services/popover/reposition_on_scroll';
 
 import { EuiI18n } from '../i18n';
 import { EuiOutsideClickDetector } from '../outside_click_detector';
@@ -50,6 +56,7 @@ import { euiPopoverStyles } from './popover.styles';
 import { EuiPopoverPanel } from './popover_panel';
 import { EuiPopoverPanelProps } from './popover_panel/_popover_panel';
 import { EuiPaddingSize } from '../../global_styling';
+import { EuiComponentDefaultsContext } from '../provider/component_defaults';
 
 export const popoverAnchorPosition = [
   'upCenter',
@@ -284,6 +291,10 @@ type PropsWithDefaults = Props & {
 };
 
 export class EuiPopover extends Component<Props, State> {
+  static contextType = EuiComponentDefaultsContext;
+  declare context: ContextType<typeof EuiComponentDefaultsContext>;
+  private repositionOnScroll: CreateRepositionOnScrollReturnType;
+
   static defaultProps: Partial<PropsWithDefaults> = {
     isOpen: false,
     ownFocus: true,
@@ -319,7 +330,7 @@ export class EuiPopover extends Component<Props, State> {
     return null;
   }
 
-  private respositionTimeout: number | undefined;
+  private repositionTimeout: number | undefined;
   private strandedFocusTimeout: number | undefined;
   private closingTransitionTimeout: number | undefined;
   private closingTransitionAnimationFrame: number | undefined;
@@ -343,6 +354,12 @@ export class EuiPopover extends Component<Props, State> {
       openPosition: null, // once a stable position has been found, keep the contents on that side
       isOpenStable: false, // wait for any initial opening transitions to finish before marking as stable
     };
+
+    this.repositionOnScroll = createRepositionOnScroll(() => ({
+      repositionOnScroll: this.props.repositionOnScroll,
+      componentDefaults: this.context.EuiPopover,
+      repositionFn: this.positionPopoverFixed,
+    }));
   }
 
   closePopover = () => {
@@ -428,10 +445,11 @@ export class EuiPopover extends Component<Props, State> {
         { durationMatch: 0, delayMatch: 0 }
       );
 
-    clearTimeout(this.respositionTimeout);
-    this.respositionTimeout = window.setTimeout(() => {
+    clearTimeout(this.repositionTimeout);
+    this.repositionTimeout = window.setTimeout(() => {
       this.setState({ isOpenStable: true }, () => {
         this.positionPopoverFixed();
+        focusTrapPubSub.publish();
       });
     }, durationMatch + delayMatch);
   };
@@ -445,9 +463,7 @@ export class EuiPopover extends Component<Props, State> {
       });
     }
 
-    if (this.props.repositionOnScroll) {
-      window.addEventListener('scroll', this.positionPopoverFixed, true);
-    }
+    this.repositionOnScroll.subscribe();
   }
 
   componentDidUpdate(prevProps: Props) {
@@ -468,13 +484,7 @@ export class EuiPopover extends Component<Props, State> {
     }
 
     // update scroll listener
-    if (prevProps.repositionOnScroll !== this.props.repositionOnScroll) {
-      if (this.props.repositionOnScroll) {
-        window.addEventListener('scroll', this.positionPopoverFixed, true);
-      } else {
-        window.removeEventListener('scroll', this.positionPopoverFixed, true);
-      }
-    }
+    this.repositionOnScroll.update();
 
     // The popover is being closed.
     if (prevProps.isOpen && !this.props.isOpen) {
@@ -484,16 +494,18 @@ export class EuiPopover extends Component<Props, State> {
         this.setState({
           isClosing: false,
         });
+        focusTrapPubSub.publish();
       }, closingTransitionTime);
     }
   }
 
   componentWillUnmount() {
-    window.removeEventListener('scroll', this.positionPopoverFixed, true);
-    clearTimeout(this.respositionTimeout);
+    this.repositionOnScroll.cleanup();
+    clearTimeout(this.repositionTimeout);
     clearTimeout(this.strandedFocusTimeout);
     clearTimeout(this.closingTransitionTimeout);
     cancelAnimationFrame(this.closingTransitionAnimationFrame!);
+    focusTrapPubSub.publish();
   }
 
   onMutation = (records: MutationRecord[]) => {

@@ -25,9 +25,11 @@ import { EuiPopover } from '../popover';
 const Modal = ({
   content,
   hasManualReturnFocus,
+  outsideClickCloses,
 }: {
   content?: ReactNode;
   hasManualReturnFocus?: boolean;
+  outsideClickCloses?: boolean;
 }) => {
   const manualTriggerRef = useRef<HTMLButtonElement>(null);
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -53,6 +55,7 @@ const Modal = ({
     onClose: closeModal,
     children: null,
     focusTrapProps,
+    outsideClickCloses,
   };
 
   return (
@@ -192,6 +195,26 @@ describe('EuiModal', () => {
         cy.focused().contains('Show Popover');
         cy.realPress('Escape');
         cy.focused().contains('Show confirm modal');
+      });
+    });
+
+    describe('outside click', () => {
+      it('closes the modal when outsideClickCloses is true', () => {
+        cy.mount(<Modal outsideClickCloses />);
+        cy.get('[data-test-subj="modal-trigger"]').click();
+        cy.get('div.euiModal').should('exist');
+        cy.get('div.euiOverlayMask').should('exist');
+        cy.get('div.euiOverlayMask').click({ force: true });
+        cy.get('div.euiModal').should('not.exist');
+      });
+
+      it('keeps the modal open when outsideClickCloses is false (default)', () => {
+        cy.mount(<Modal outsideClickCloses={false} />);
+        cy.get('[data-test-subj="modal-trigger"]').click();
+        cy.get('div.euiModal').should('exist');
+        cy.get('div.euiOverlayMask').should('exist');
+        cy.get('div.euiOverlayMask').click({ force: true });
+        cy.get('div.euiModal').should('exist');
       });
     });
   });

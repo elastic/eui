@@ -5,11 +5,17 @@ keywords: [EuiFormRow]
 
 # Form rows
 
-Use the **EuiFormRow** component to easily associate form components with labels, help text, and error text. Use the **EuiForm** component to group **EuiFormRows**. By default, **EuiForm** will render as a simple div unless you pass `component="form"`.
+Use the **EuiFormRow** component to easily associate form components with labels, help text, and error text. 
+Use the **EuiForm** component to group **EuiFormRows**. By default, **EuiForm** will render as a simple div unless you pass `component="form"`.
+
+:::warning **EuiFormRow** controls the child `id`
+**EuiFormRow** composes related ids for the associated labels and help texts based on the `id` passed on **EuiFormRow** and passes it down to the child form element.
+:::
 
 :::info Accessibility requirement
 Whenever possible, pass a `label` to **EuiFormRow**. If not using the `label` prop, you must instead apply an `aria-label` directly to the wrapped form control, or an `aria-labelledby` with the text node ID of an external label.
 :::
+
 
 ```tsx interactive
 import React, { useState } from 'react';

@@ -70,7 +70,9 @@ describe('EuiDataGridHeaderRow', () => {
             data-test-subj="dataGridColumnResizer"
           />
           <div
+            aria-label="someColumn"
             class="euiDataGridHeaderCell__content emotion-euiDataGridHeaderCell__content"
+            id="dataGridHeaderCellContent-someColumn"
             title="someColumn"
           >
             someColumn
@@ -80,7 +82,7 @@ describe('EuiDataGridHeaderRow', () => {
           >
             <button
               aria-label="Press the Enter key to view this column's actions"
-              class="euiButtonIcon euiDataGridHeaderCell__button emotion-euiButtonIcon-xs-empty-text-euiDataGridHeaderCell__actions"
+              class="euiButtonIcon euiDataGridHeaderCell__button emotion-euiButtonIcon-xs-empty-text-action-end-ColumnActions"
               data-euigrid-tab-managed="true"
               data-test-subj="dataGridHeaderCellActionButton-someColumn"
               tabindex="-1"

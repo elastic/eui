@@ -1,3 +1,11 @@
+/*
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
+ */
+
 // Docusaurus static asset alias
 declare module '@site/*';
 
@@ -9,7 +17,7 @@ declare module '@site/*';
 
 // original: https://github.com/facebook/docusaurus/blob/8b877d27d4b1bcd5c2ee13dde8332407a1c26447/packages/docusaurus-theme-classic/src/theme-classic.d.ts#L42
 declare module '@theme-original/Admonition' {
-  import type {ReactNode} from 'react';
+  import type { ReactNode } from 'react';
 
   export interface Props {
     readonly children: ReactNode;
@@ -23,8 +31,8 @@ declare module '@theme-original/Admonition' {
 }
 
 declare module '@theme/Admonition/Types' {
-  import type {ComponentType} from 'react';
-  import type {Props} from '@theme-original/Admonition';
+  import type { ComponentType } from 'react';
+  import type { Props } from '@theme-original/Admonition';
 
   const AdmonitionTypes: {
     [admonitionType: string]: ComponentType<Props>;
@@ -165,7 +173,7 @@ declare module '@theme/CodeBlock' {
 
 // original: https://github.com/facebook/docusaurus/blob/8b877d27d4b1bcd5c2ee13dde8332407a1c26447/packages/docusaurus-theme-classic/src/theme-classic.d.ts#L510
 declare module '@theme/MDXComponents/Code' {
-  import type {ComponentProps} from 'react';
+  import type { ComponentProps } from 'react';
 
   export interface Props extends ComponentProps<'code'> {}
 
@@ -558,7 +566,7 @@ declare module '@theme-original/Logo' {
 
 // original: https://github.com/facebook/docusaurus/blob/a6de0f2725c68854bb37acab25705c4a7709f230/packages/docusaurus-theme-classic/src/theme-classic.d.ts#L805C1-L814C3
 declare module '@theme/Heading' {
-  import type {ComponentProps} from 'react';
+  import type { ComponentProps } from 'react';
 
   type HeadingType = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
 

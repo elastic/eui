@@ -14,6 +14,8 @@ import React, { useState } from 'react';
 import { EuiDataGrid, EuiDataGridProps } from '../../index';
 import { EuiModal, EuiModalBody } from '../../../modal';
 
+const WAIT_FOR_TRANSITION = 250;
+
 describe('draggable columns', () => {
   const columns = [
     { id: 'a', display: 'First' },
@@ -236,7 +238,7 @@ describe('draggable columns', () => {
       cy.get('[data-popover-open]').should('not.exist');
 
       // Should not interefere with column actions popover toggle
-      cy.wait(250);
+      cy.wait(WAIT_FOR_TRANSITION);
       cy.get('[data-test-subj=dataGridHeaderCellActionButton-a]').realClick();
       cy.get('[data-popover-open]').should('have.focus');
       cy.get('[data-test-subj=dataGridHeaderCellActionButton-a]').realClick();
@@ -247,7 +249,7 @@ describe('draggable columns', () => {
       cy.realMount(<StatefulDataGrid />);
 
       cy.get('[data-test-subj=dataGridHeaderCell-a]').realHover();
-      cy.wait(50); // wait until actions button transition is progressed enough for the button to be clickable
+      cy.wait(WAIT_FOR_TRANSITION); // wait until actions button transition is progressed enough for the button to be clickable
       cy.get('[data-test-subj=dataGridHeaderCellActionButton-a]').realClick();
       cy.get('[data-popover-open]').should('have.focus');
 
@@ -297,7 +299,7 @@ describe('draggable columns', () => {
       );
 
       cy.get('[data-test-subj=dataGridHeaderCell-a]').realHover();
-      cy.wait(50); // wait until actions button transition is progressed enough for the button to be clickable
+      cy.wait(WAIT_FOR_TRANSITION); // wait until actions button transition is progressed enough for the button to be clickable
       cy.get('[data-test-subj=dataGridHeaderCellActionButton-a]').realClick();
       cy.get('[data-popover-open]').should('have.focus');
 

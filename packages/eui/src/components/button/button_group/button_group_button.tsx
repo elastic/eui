@@ -14,11 +14,7 @@ import React, {
 } from 'react';
 import { CSSInterpolation } from '@emotion/css';
 
-import {
-  isEuiThemeRefreshVariant,
-  useEuiMemoizedStyles,
-  useEuiTheme,
-} from '../../../services';
+import { useEuiMemoizedStyles } from '../../../services';
 import { useEuiButtonColorCSS } from '../../../global_styling/mixins/_button';
 import { useInnerText } from '../../inner_text';
 
@@ -62,7 +58,7 @@ export const EuiButtonGroupButton: FunctionComponent<Props> = ({
   id,
   isDisabled,
   isIconOnly,
-  isSelected = false,
+  isSelected,
   label,
   value, // Prevent prop from being spread
   size,
@@ -72,15 +68,9 @@ export const EuiButtonGroupButton: FunctionComponent<Props> = ({
   contentProps,
   ...rest
 }) => {
-  const euiThemeContext = useEuiTheme();
-  const isRefreshVariant = isEuiThemeRefreshVariant(
-    euiThemeContext,
-    'buttonVariant'
-  );
-
   const isCompressed = size === 'compressed';
   const color = isDisabled ? 'disabled' : _color;
-  const hasBorder = isRefreshVariant && color !== 'text' && !isCompressed;
+  const hasBorder = color !== 'text' && !isCompressed;
   const display = isSelected
     ? 'fill'
     : isCompressed || hasBorder
@@ -94,7 +84,8 @@ export const EuiButtonGroupButton: FunctionComponent<Props> = ({
 
   const cssStyles = [
     styles.euiButtonGroupButton,
-    isIconOnly && styles.iconOnly,
+    isIconOnly && styles.iconOnly.iconOnly,
+    isIconOnly && styles.iconOnly[size],
     !isCompressed &&
       (hasToolTip ? styles.uncompressed.hasToolTip : styles.uncompressed[size]),
     isCompressed ? styles.compressed : styles.uncompressed.uncompressed,
@@ -168,7 +159,7 @@ const EuiButtonGroupButtonWithToolTip: FunctionComponent<
   Pick<Props, 'toolTipContent' | 'toolTipProps'> & {
     children: ReactElement;
     wrapperCss: CSSInterpolation;
-    isSelected: boolean;
+    isSelected?: boolean;
   }
 > = ({ toolTipContent, toolTipProps, wrapperCss, isSelected, children }) => {
   return toolTipContent ? (

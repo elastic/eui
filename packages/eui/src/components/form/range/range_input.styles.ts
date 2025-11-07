@@ -7,18 +7,15 @@
  */
 
 import { css } from '@emotion/react';
-import { isEuiThemeRefreshVariant, UseEuiTheme } from '../../../services';
+import { UseEuiTheme } from '../../../services';
 
 export const euiRangeInputStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
-  const isRefreshVariant = isEuiThemeRefreshVariant(
-    euiThemeContext,
-    'formVariant'
-  );
+
   return {
     euiRangeInput: css`
       inline-size: auto;
-      min-inline-size: ${euiTheme.base * (isRefreshVariant ? 3.5 : 4)}px;
+      min-inline-size: ${euiTheme.base * 3.5}px;
 
       .euiRange__popover &,
       .euiDualRange__popover & {

@@ -1,3 +1,20 @@
+## [`v5.0.0`](https://github.com/elastic/eui/releases/v5.0.0)
+
+- Added color tokens `borderBaseProminent` and `borderInteractiveFormsHoverProminent` ([#9162](https://github.com/elastic/eui/pull/9162))
+
+**Breaking changes**
+
+- Removed `borderBaseFormsControl` token ([#9162](https://github.com/elastic/eui/pull/9162))
+
+## [`v4.0.0`](https://github.com/elastic/eui/releases/v4.0.0)
+
+**Breaking changes**
+
+- Removed `euiTheme.flags.hasGlobalFocusColor` ([#9090](https://github.com/elastic/eui/pull/9090))
+- Removed `euiTheme.flags.hasVisColorAdjustment` ([#9090](https://github.com/elastic/eui/pull/9090))
+- Removed `euiTheme.flags.buttonVariant` and `euiTheme.flags.formVariant` ([#9090](https://github.com/elastic/eui/pull/9090))
+- Removed `euiTheme.components.keyPadMenuItemBackgroundDisabledSelect` ([#9090](https://github.com/elastic/eui/pull/9090))
+
 ## [`v3.6.0`](https://github.com/elastic/eui/releases/v3.6.0)
 
 - Added new shadow tokens ([#9088](https://github.com/elastic/eui/pull/9088))

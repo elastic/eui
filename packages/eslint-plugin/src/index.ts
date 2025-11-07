@@ -20,6 +20,7 @@ import { NoUnnamedInteractiveElement } from './rules/a11y/no_unnamed_interactive
 import { TooltipFocusableAnchor } from './rules/a11y/tooltip_focusable_anchor';
 import { CallOutAnnounceOnMount } from './rules/a11y/callout_announce_on_mount';
 import { AccessibleInteractiveElements } from './rules/a11y/accessible_interactive_element';
+import { RequireTableCaption } from './rules/a11y/require_table_caption';
 
 const config = {
   rules: {
@@ -35,6 +36,7 @@ const config = {
     'no-unnamed-interactive-element': NoUnnamedInteractiveElement,
     'tooltip-focusable-anchor': TooltipFocusableAnchor,
     'accessible-interactive-element': AccessibleInteractiveElements,
+    'require-table-caption': RequireTableCaption,
   },
   configs: {
     recommended: {
@@ -52,6 +54,7 @@ const config = {
         '@elastic/eui/no-unnamed-interactive-element': 'warn',
         '@elastic/eui/tooltip-focusable-anchor': 'warn',
         '@elastic/eui/accessible-interactive-element': 'warn',
+        '@elastic/eui/require-table-caption': 'warn',
       },
     },
   },

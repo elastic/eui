@@ -8,6 +8,7 @@
 
 import React, {
   Component,
+  ContextType,
   ReactElement,
   ReactNode,
   MouseEvent as ReactMouseEvent,
@@ -17,10 +18,15 @@ import classNames from 'classnames';
 
 import { CommonProps } from '../common';
 import { findPopoverPosition, htmlIdGenerator, keys } from '../../services';
+import {
+  createRepositionOnScroll,
+  type CreateRepositionOnScrollReturnType,
+} from '../../services/popover/reposition_on_scroll';
 import { type EuiPopoverPosition } from '../../services/popover';
 import { enqueueStateChange } from '../../services/react';
 import { EuiResizeObserver } from '../observer/resize_observer';
 import { EuiPortal } from '../portal';
+import { EuiComponentDefaultsContext } from '../provider/component_defaults';
 
 import { EuiToolTipPopover, ToolTipPositions } from './tool_tip_popover';
 import { EuiToolTipAnchor } from './tool_tip_anchor';
@@ -139,19 +145,32 @@ interface State {
 }
 
 export class EuiToolTip extends Component<EuiToolTipProps, State> {
+  static contextType = EuiComponentDefaultsContext;
+  declare context: ContextType<typeof EuiComponentDefaultsContext>;
+  private repositionOnScroll: CreateRepositionOnScrollReturnType;
+
   _isMounted = false;
   anchor: null | HTMLElement = null;
   popover: null | HTMLElement = null;
   private timeoutId?: ReturnType<typeof setTimeout>;
 
-  state: State = {
-    visible: false,
-    hasFocus: false,
-    calculatedPosition: this.props.position,
-    toolTipStyles: DEFAULT_TOOLTIP_STYLES,
-    arrowStyles: undefined,
-    id: this.props.id || htmlIdGenerator()(),
-  };
+  constructor(props: EuiToolTipProps) {
+    super(props);
+    this.state = {
+      visible: false,
+      hasFocus: false,
+      calculatedPosition: this.props.position,
+      toolTipStyles: DEFAULT_TOOLTIP_STYLES,
+      arrowStyles: undefined,
+      id: this.props.id || htmlIdGenerator()(),
+    };
+
+    this.repositionOnScroll = createRepositionOnScroll(() => ({
+      repositionOnScroll: this.props.repositionOnScroll,
+      componentDefaults: this.context.EuiToolTip,
+      repositionFn: this.positionToolTip,
+    }));
+  }
 
   static defaultProps: Partial<EuiToolTipProps> = {
     position: 'top',
@@ -168,15 +187,13 @@ export class EuiToolTip extends Component<EuiToolTipProps, State> {
 
   componentDidMount() {
     this._isMounted = true;
-    if (this.props.repositionOnScroll) {
-      window.addEventListener('scroll', this.positionToolTip, true);
-    }
+    this.repositionOnScroll.subscribe();
   }
 
   componentWillUnmount() {
     this.clearAnimationTimeout();
     this._isMounted = false;
-    window.removeEventListener('scroll', this.positionToolTip, true);
+    this.repositionOnScroll.cleanup();
   }
 
   componentDidUpdate(prevProps: EuiToolTipProps, prevState: State) {
@@ -185,13 +202,7 @@ export class EuiToolTip extends Component<EuiToolTipProps, State> {
     }
 
     // update scroll listener
-    if (prevProps.repositionOnScroll !== this.props.repositionOnScroll) {
-      if (this.props.repositionOnScroll) {
-        window.addEventListener('scroll', this.positionToolTip, true);
-      } else {
-        window.removeEventListener('scroll', this.positionToolTip, true);
-      }
-    }
+    this.repositionOnScroll.update();
   }
 
   testAnchor = () => {
