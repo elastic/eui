@@ -49,7 +49,9 @@ export const EuiToolTipPopover: FunctionComponent<Props> = ({
   const cssStyles = [
     styles.euiToolTip,
     calculatedPosition && styles[calculatedPosition],
-    transition === 'fade' && calculatedPosition && styles[`${calculatedPosition}Fade`],
+    transition === 'fade' &&
+      calculatedPosition &&
+      styles[`${calculatedPosition}Fade`],
     transition === 'none' && styles.noAnimation,
   ];
 
