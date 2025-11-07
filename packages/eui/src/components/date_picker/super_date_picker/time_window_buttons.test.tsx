@@ -188,7 +188,7 @@ describe('TimeWindowButtons', () => {
     const start = 'not a date';
     const end = 'now';
 
-    const { getByTestSubject, getByRole } = render(
+    const { getByTestSubject, getByText } = render(
       <TimeWindowButtons start={start} end={end} applyTime={apply} />
     );
 
@@ -205,6 +205,9 @@ describe('TimeWindowButtons', () => {
     });
 
     await waitForEuiToolTipVisible();
-    expect(getByRole('tooltip')).toHaveTextContent(/Cannot/);
+
+    expect(
+      getByText('Cannot zoom out invalid time window')
+    ).toBeInTheDocument();
   });
 });
