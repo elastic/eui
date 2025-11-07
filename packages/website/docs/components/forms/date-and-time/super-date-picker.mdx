@@ -851,6 +851,69 @@ export default () => {
 };
 ```
 
+## Time zone display
+
+Time zone information can be made visible in the date picker popovers. To do that, pass the time zone name in the `timeZoneDisplay` prop e.g. `timeZoneDisplay="America/Los_Angeles"`.
+
+Additionally, custom content can be added to the time zone information by leveraging the `timeZoneCustomDisplayRender` render function prop.
+
+:::note This is informational only, it **will not** affect how dates are handled internally by the component
+
+:::
+
+```tsx interactive
+import React, { useState } from "react";
+import {
+  EuiSuperDatePicker,
+  EuiButtonIcon,
+  OnTimeChangeProps,
+} from "@elastic/eui";
+
+export default () => {
+  const [start, setStart] = useState("now-15m");
+  const [end, setEnd] = useState("now");
+
+  const TIME_ZONE_NAME = "Browser";
+
+  const onTimeChange = ({ start, end }: OnTimeChangeProps) => {
+    setStart(start);
+    setEnd(end);
+  };
+
+  const customButton = (
+    <EuiButtonIcon
+      href="https://en.wikipedia.org/wiki/List_of_tz_database_time_zones"
+      target="_blank"
+      rel="noopener noreferrer"
+      iconType="documentation"
+    />
+  );
+
+  return (
+    <>
+      <EuiSuperDatePicker
+        start={start}
+        end={end}
+        onTimeChange={onTimeChange}
+        showUpdateButton={false}
+        timeZoneDisplay={TIME_ZONE_NAME}
+        timeZoneCustomDisplayRender={({ nameDisplay }) => (
+          <>
+            {nameDisplay}
+            <EuiButtonIcon
+              href="https://en.wikipedia.org/wiki/List_of_tz_database_time_zones"
+              target="_blank"
+              rel="noopener noreferrer"
+              iconType="documentation"
+            />
+          </>
+        )}
+      />
+    </>
+  );
+};
+```
+
 ## Restricted range
 
 To limit the range from which users can choose a date, you can use `minDate` and `maxDate`. By updating the date input values for `start` and `end`, users get immediate feedback on what range values are allowed.
