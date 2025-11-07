@@ -17,7 +17,7 @@ import { EuiIcon } from '../../../icon';
 import { EuiText } from '../../../text';
 
 /**
- * Available elements to render passed to the 
+ * Available elements to render passed to the
  * `timeZoneCustomDisplayRender` render function.
  */
 type TimeZoneCustomDisplayRenderOptions = {

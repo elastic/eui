@@ -202,10 +202,7 @@ export const TimeWindowButtons: Story = {
 export const CustomTimeZoneDisplay: Story = {
   parameters: {
     controls: {
-      include: [
-        'timeZoneDisplay',
-        'timeZoneCustomDisplayRender',
-      ],
+      include: ['timeZoneDisplay', 'timeZoneCustomDisplayRender'],
     },
     loki: {
       chromeSelector: LOKI_SELECTORS.portal,
