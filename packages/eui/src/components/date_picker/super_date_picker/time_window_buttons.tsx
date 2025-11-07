@@ -48,6 +48,7 @@ export type TimeWindowButtonsProps = TimeWindowButtonsConfig & {
   isDisabled?: boolean;
 };
 
+// TODO rename to add eui prefix e.g. EuiTimeWindowButtons
 /**
  * Button group with time window controls for shifting the time window
  * forwards and backwards, and zooming out.
