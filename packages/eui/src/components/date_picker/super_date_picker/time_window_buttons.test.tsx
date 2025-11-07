@@ -10,12 +10,7 @@ import moment from 'moment';
 import { act, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import {
-  render,
-  renderHook,
-  renderHookAct,
-  waitForEuiToolTipVisible,
-} from '../../../test/rtl';
+import { render, renderHook, renderHookAct } from '../../../test/rtl';
 
 import {
   TimeWindowButtons,
@@ -188,7 +183,7 @@ describe('TimeWindowButtons', () => {
     const start = 'not a date';
     const end = 'now';
 
-    const { getByTestSubject, getByText } = render(
+    const { getByTestSubject, findByText } = render(
       <TimeWindowButtons start={start} end={end} applyTime={apply} />
     );
 
@@ -204,10 +199,8 @@ describe('TimeWindowButtons', () => {
       fireEvent.mouseEnter(getByTestSubject('timeWindowButtonsZoomOut'));
     });
 
-    await waitForEuiToolTipVisible();
-
     expect(
-      getByText('Cannot zoom out invalid time window')
+      await findByText('Cannot zoom out invalid time window')
     ).toBeInTheDocument();
   });
 });
