@@ -304,10 +304,12 @@ export const EuiCodeBlock: FunctionComponent<EuiCodeBlockProps> = ({
           codeProps={codeProps}
         />
       ) : (
-        <pre {...preProps} ref={combinedRef} style={overflowHeightStyles}>
+        <>
           {codeBlockLabelElement}
-          <code {...codeProps}>{content}</code>
-        </pre>
+          <pre {...preProps} ref={combinedRef} style={overflowHeightStyles}>
+            <code {...codeProps}>{content}</code>
+          </pre>
+        </>
       )}
       <EuiCodeBlockControls
         controls={[fullScreenButton, copyButton]}
@@ -325,10 +327,12 @@ export const EuiCodeBlock: FunctionComponent<EuiCodeBlockProps> = ({
               codeProps={codeProps}
             />
           ) : (
-            <pre {...preFullscreenProps}>
+            <>
               {codeBlockLabelElement}
-              <code {...codeProps}>{content}</code>
-            </pre>
+              <pre {...preFullscreenProps}>
+                <code {...codeProps}>{content}</code>
+              </pre>
+            </>
           )}
           <EuiCodeBlockControls
             controls={[fullScreenButton, copyButton]}

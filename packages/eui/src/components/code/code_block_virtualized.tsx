@@ -32,15 +32,14 @@ export const EuiCodeBlockVirtualized = ({
   preProps: HTMLAttributes<HTMLPreElement>;
   codeProps: HTMLAttributes<HTMLElement>;
 }) => {
+  // FIX: Don't inject label inside the virtualized container
+  // react-window expects the outer element to be clean for proper scroll calculations
   const VirtualizedOuterElement = useMemo(
     () =>
-      forwardRef<any, any>(({ style, children, ...props }, ref) => (
-        <pre style={logicalStyles(style)} {...props} ref={ref} {...preProps}>
-          {label}
-          {children}
-        </pre>
+      forwardRef<any, any>(({ style, ...props }, ref) => (
+        <pre style={logicalStyles(style)} {...props} ref={ref} {...preProps} />
       )),
-    [preProps, label]
+    [preProps]
   );
 
   const VirtualizedInnerElement = useMemo(
@@ -64,26 +63,36 @@ export const EuiCodeBlockVirtualized = ({
     innerElementType: VirtualizedInnerElement,
   };
 
-  return typeof overflowHeight === 'number' ? (
-    <EuiAutoSizer disableHeight={true}>
-      {({ width }: EuiAutoSizeHorizontal) => (
-        <FixedSizeList
-          height={overflowHeight}
-          width={width}
-          {...virtualizationProps}
-        >
-          {ListRow}
-        </FixedSizeList>
-      )}
-    </EuiAutoSizer>
-  ) : (
-    <EuiAutoSizer>
-      {({ height, width }: EuiAutoSize) => (
-        <FixedSizeList height={height} width={width} {...virtualizationProps}>
-          {ListRow}
-        </FixedSizeList>
-      )}
-    </EuiAutoSizer>
+  const virtualizedList =
+    typeof overflowHeight === 'number' ? (
+      <EuiAutoSizer disableHeight={true}>
+        {({ width }: EuiAutoSizeHorizontal) => (
+          <FixedSizeList
+            height={overflowHeight}
+            width={width}
+            {...virtualizationProps}
+          >
+            {ListRow}
+          </FixedSizeList>
+        )}
+      </EuiAutoSizer>
+    ) : (
+      <EuiAutoSizer>
+        {({ height, width }: EuiAutoSize) => (
+          <FixedSizeList height={height} width={width} {...virtualizationProps}>
+            {ListRow}
+          </FixedSizeList>
+        )}
+      </EuiAutoSizer>
+    );
+
+  // Render the accessibility label outside the virtualized container
+  // This preserves accessibility while fixing virtualization bugs
+  return (
+    <>
+      {label}
+      {virtualizedList}
+    </>
   );
 };
 
