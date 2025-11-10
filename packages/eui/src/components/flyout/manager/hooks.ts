@@ -25,6 +25,8 @@ export {
   useFlyoutWidth,
   useParentFlyoutSize,
   useHasChildFlyout,
+  usePushPaddingOffsets,
+  useHasPushPadding,
 } from './selectors';
 
 export { useFlyoutLayoutMode } from './layout_mode';

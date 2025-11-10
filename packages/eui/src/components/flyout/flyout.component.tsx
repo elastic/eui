@@ -42,6 +42,8 @@ import {
   useFlyoutId,
   useFlyoutWidth,
   useIsFlyoutActive,
+  useFlyoutManager,
+  useHasPushPadding,
 } from './manager';
 
 import { CommonProps, PropsOfElement } from '../common';
@@ -51,7 +53,6 @@ import type { EuiButtonIconPropsForButton } from '../button';
 import { EuiI18n } from '../i18n';
 import { useResizeObserver } from '../observer/resize_observer';
 import { EuiScreenReaderOnly } from '../accessibility';
-import { useMutationObserver } from '../observer/mutation_observer';
 
 import { EuiFlyoutCloseButton } from './_flyout_close_button';
 import { euiFlyoutStyles, composeFlyoutInlineStyles } from './flyout.styles';
@@ -276,6 +277,13 @@ export const EuiFlyoutComponent = forwardRef(
     const flyoutId = useFlyoutId(id);
     const layoutMode = useFlyoutLayoutMode();
     const isActiveManagedFlyout = useIsFlyoutActive(flyoutId);
+    const flyoutManager = useFlyoutManager();
+
+    // Use a ref to access the latest flyoutManager without triggering effect re-runs
+    const flyoutManagerRef = useRef(flyoutManager);
+    useEffect(() => {
+      flyoutManagerRef.current = flyoutManager;
+    }, [flyoutManager]);
 
     const {
       onMouseDown: onMouseDownResizableButton,
@@ -325,18 +333,27 @@ export const EuiFlyoutComponent = forwardRef(
       const cssVarName = `--euiPushFlyoutOffset${
         side === 'left' ? 'InlineStart' : 'InlineEnd'
       }`;
+      const managerSide = side === 'left' ? 'left' : 'right';
 
       if (shouldApplyPadding) {
         document.body.style[paddingSide] = `${width}px`;
         setGlobalCSSVariables({
           [cssVarName]: `${width}px`,
         });
+        // Update manager state if in managed context
+        if (isInManagedContext && flyoutManagerRef.current) {
+          flyoutManagerRef.current.setPushPadding(managerSide, width);
+        }
       } else {
         // Explicitly remove padding when this push flyout becomes inactive
         document.body.style[paddingSide] = '';
         setGlobalCSSVariables({
           [cssVarName]: null,
         });
+        // Clear manager state if in managed context
+        if (isInManagedContext && flyoutManagerRef.current) {
+          flyoutManagerRef.current.setPushPadding(managerSide, 0);
+        }
       }
 
       // Cleanup on unmount
@@ -345,6 +362,10 @@ export const EuiFlyoutComponent = forwardRef(
         setGlobalCSSVariables({
           [cssVarName]: null,
         });
+        // Clear manager state on unmount if in managed context
+        if (isInManagedContext && flyoutManagerRef.current) {
+          flyoutManagerRef.current.setPushPadding(managerSide, 0);
+        }
       };
     }, [
       isPushed,
@@ -632,44 +653,13 @@ export const EuiFlyoutComponent = forwardRef(
     const maskCombinedRefs = useCombinedRefs([maskProps?.maskRef, maskRef]);
 
     /**
-     * Track whether body padding from a push flyout exists to coordinate scroll locking.
-     * Use state to allow updates when padding changes.
+     * For overlay flyouts in managed contexts, coordinate scroll locking with push flyout state.
+     * Only enable scroll lock when there's no active push padding in the manager.
      */
-    const [hasPushFlyoutPadding, setHasPushFlyoutPadding] = useState(() => {
-      if (isPushed || !isInManagedContext) return false;
-      const leftPadding = document.body.style.paddingInlineStart;
-      const rightPadding = document.body.style.paddingInlineEnd;
-      return !!(leftPadding || rightPadding);
-    });
-
-    /**
-     * Monitor body padding and update state when it changes.
-     * This allows overlay flyouts to enable scroll lock once push padding is removed.
-     */
-    const checkPadding = useCallback(() => {
-      const leftPadding = document.body.style.paddingInlineStart;
-      const rightPadding = document.body.style.paddingInlineEnd;
-      const hasPadding = !!(leftPadding || rightPadding);
-      setHasPushFlyoutPadding(hasPadding);
-    }, []);
-
-    // Monitor body style changes for overlay flyouts in managed contexts
-    useMutationObserver(
-      isPushed || !isInManagedContext ? null : document.body,
-      checkPadding,
-      { attributeFilter: ['style'] }
-    );
-
-    // Check padding state immediately after render
-    useLayoutEffect(() => {
-      if (!isPushed && isInManagedContext) {
-        checkPadding();
-      } else {
-        setHasPushFlyoutPadding(false);
-      }
-    }, [isPushed, isInManagedContext, checkPadding]);
-
-    const shouldUseScrollLock = hasOverlayMask && !hasPushFlyoutPadding;
+    const hasPushPaddingInManager = useHasPushPadding();
+    const shouldDeferScrollLock =
+      !isPushed && isInManagedContext && hasPushPaddingInManager;
+    const shouldUseScrollLock = hasOverlayMask && !shouldDeferScrollLock;
 
     return (
       <EuiFlyoutOverlay

@@ -14,6 +14,7 @@ export {
   closeFlyout as closeFlyoutAction,
   setActiveFlyout as setActiveFlyoutAction,
   setFlyoutWidth as setFlyoutWidthAction,
+  setPushPadding as setPushPaddingAction,
   setActivityStage as setActivityStageAction,
 } from './actions';
 
@@ -42,6 +43,8 @@ export {
   useIsInManagedFlyout,
   useHasActiveSession,
   useParentFlyoutSize,
+  usePushPaddingOffsets,
+  useHasPushPadding,
 } from './hooks';
 
 export { EuiFlyoutChild, type EuiFlyoutChildProps } from './flyout_child';
