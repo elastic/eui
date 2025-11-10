@@ -35,6 +35,4 @@ export const EuiFlyoutParentProvider = ({
  * Hook that returns `true` when called within a parent flyout's children.
  * Used to automatically determine if a nested flyout should inherit the session.
  */
-export const useIsInsideParentFlyout = () =>
-  useContext(EuiFlyoutParentContext);
-
+export const useIsInsideParentFlyout = () => useContext(EuiFlyoutParentContext);

@@ -67,13 +67,8 @@ export const EuiFlyout = forwardRef<
   HTMLDivElement | HTMLElement,
   EuiFlyoutProps<'div' | 'nav'>
 >((props, ref) => {
-  const {
-    as,
-    onClose,
-    onActive,
-    session,
-    ...rest
-  } = usePropsWithComponentDefaults('EuiFlyout', props);
+  const { as, onClose, onActive, session, ...rest } =
+    usePropsWithComponentDefaults('EuiFlyout', props);
   const hasActiveSession = useHasActiveSession();
   const isInsideParentFlyout = useIsInsideParentFlyout();
   const isUnmanagedFlyout = useRef(false);
