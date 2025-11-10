@@ -13,6 +13,7 @@ flowchart
     EuiFlyout --> EuiFlyoutComponent
     EuiFlyout --> |"session = 'start'"|EuiFlyoutMain --> EuiManagedFlyout --> EuiFlyoutComponent
     EuiFlyout --> |"session = 'inherit'"|EuiFlyoutChild --> EuiManagedFlyout --> EuiFlyoutComponent
+    EuiFlyout --> |"nested + session undefined"|EuiFlyoutChild
 ```
 
 The core implementation of EuiFlyout lives in the internal [EuiFlyoutComponent](./flyout.component.tsx) file.
@@ -20,9 +21,14 @@ It contains the main logic and UI for rendering flyouts. However, it's not the c
 that EUI consumers interact with directly.
 
 The EuiFlyout export actually comes from [`flyout.tsx`](./flyout.tsx) which is a thin logical
-wrapper that conditionally handles session management when `session="start"`,
-or renders the plain [EuiFlyoutComponent](./flyout.component.tsx) otherwise.
-That structure provides a better business logic separation.
+wrapper that conditionally routes to different implementations:
+- `session="start"` → [EuiFlyoutMain](./manager/flyout_main.tsx) (creates new session)
+- `session="inherit"` → [EuiFlyoutChild](./manager/flyout_child.tsx) (joins existing session)
+- `session="never"` → [EuiFlyoutComponent](./flyout.component.tsx) (standard flyout)
+- `session` undefined + nested inside parent → [EuiFlyoutChild](./manager/flyout_child.tsx) (auto-inherits)
+- `session` undefined + not nested → [EuiFlyoutComponent](./flyout.component.tsx) (standard flyout)
+
+This structure provides better business logic separation and enables intuitive nested flyout behavior.
 
 ## Resizable flyouts
 

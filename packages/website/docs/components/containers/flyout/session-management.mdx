@@ -82,7 +82,7 @@ export default () => {
             >
               <EuiFlyoutBody>
                 <EuiText>
-                  This is a <strong>child flyout</strong> of Flyout B. It belongs to the same session as Flyout B because it's rendered inside of it and doesn't have the <EuiCode>session</EuiCode> prop set.
+                  This is a <strong>child flyout</strong> of Flyout B. It belongs to the same session as Flyout B because it's rendered inside of it (nested in the JSX tree).
                   <br /><br />
                   If you close <i>Flyout B - main</i>, this flyout will close, too.
                 </EuiText>
@@ -113,9 +113,15 @@ about compatibility issues.
 
 Each time you set `session="start"`, you create a new flyout session and mark
 the rendered flyout as [main](#main-flyouts).
+
 To create a [child flyout](#child-flyouts) - a flyout that belongs to the same
-session as the main flyout - set `session="inherit"`.
-All bindings and configuration will be handled automatically.
+session as the main flyout - either:
+- Render it inside a main flyout's children (nested in the JSX tree), OR
+- Set `session="inherit"` explicitly (required for cross-React-root scenarios)
+
+When a flyout is nested inside a parent flyout and doesn't have an explicit
+`session` prop, it will automatically inherit the session. All bindings and
+configuration will be handled automatically.
 
 ### Session title
 
@@ -145,9 +151,12 @@ field of the `flyoutMenuProps` to set the title of the flyout.
 </EuiFlyout>
 ```
 
-To prevent a flyout from being a part of the session management system, you can
-set `session="never"`, or you can omit the `session` prop as `never` is the
-default. This will will render it as a regular unmanaged flyout.
+To prevent a flyout from being a part of the session management system:
+- Set `session="never"` explicitly, OR
+- Don't nest it inside any parent flyout (non-nested flyouts default to standard behavior)
+
+To force a nested flyout to remain a standard flyout even when inside a parent,
+explicitly set `session="never"`. This will render it as a regular unmanaged flyout.
 
 ```tsx
 <>
@@ -188,9 +197,10 @@ of an alert.
 ### Child flyouts
 
 Child flyouts are directly related to a main flyout in their session. They're
-created by rendering a `EuiFlyout` with the `session="inherit"` prop set while
-there is an active [main flyout](#main-flyouts) - a flyout with
-`session="start"` prop set.
+created by rendering an `EuiFlyout` inside a main flyout's children (nested in
+the JSX tree), which causes it to automatically inherit the session. Alternatively,
+you can explicitly set `session="inherit"` when rendering outside the parent's
+JSX tree while an active [main flyout](#main-flyouts) (with `session="start"`) exists.
 
 They're meant to display secondary level information like the alert visualization.
 
