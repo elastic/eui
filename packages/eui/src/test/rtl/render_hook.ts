@@ -11,18 +11,26 @@ import type {
   act as actType,
 } from '@testing-library/react-hooks';
 
-/* eslint-disable @typescript-eslint/no-var-requires */
+let renderHook: typeof renderHookType = () => {
+  throw new Error('renderHook not implemented');
+};
 
-let renderHook: typeof renderHookType;
-let renderHookAct: typeof actType;
-if (process.env.REACT_VERSION === '18') {
-  renderHook = require('@testing-library/react').renderHook;
-  renderHookAct = require('@testing-library/react').act;
-} else {
-  renderHook = require('@testing-library/react-hooks/dom').renderHook;
-  renderHookAct = require('@testing-library/react-hooks/dom').act;
+let renderHookAct: typeof actType = async () => {
+  throw new Error('renderHookAct not implemented');
+};
+
+if (typeof window !== 'undefined') {
+  if (process.env.REACT_VERSION === '18') {
+    import('@testing-library/react').then((rtl) => {
+      renderHook = rtl.renderHook as any;
+      renderHookAct = rtl.act as typeof actType;
+    });
+  } else {
+    import('@testing-library/react-hooks/dom').then((rtl) => {
+      renderHook = rtl.renderHook;
+      renderHookAct = rtl.act;
+    });
+  }
 }
-
-/* eslint-enable @typescript-eslint/no-var-requires */
 
 export { renderHook, renderHookAct };
