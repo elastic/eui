@@ -16,6 +16,7 @@ import {
 
 import { EuiFlyoutChild, EuiFlyoutMain, useHasActiveSession } from './manager';
 import { EuiFlyoutMenuContext } from './flyout_menu_context';
+import { useIsInsideParentFlyout } from './flyout_parent_context';
 import { SESSION_INHERIT, SESSION_NEVER, SESSION_START } from './manager/const';
 
 export type {
@@ -39,11 +40,14 @@ export type EuiFlyoutProps<T extends ElementType = 'div' | 'nav'> = Omit<
    * Controls the way the session is managed for this flyout.
    * - `start`: Creates a new flyout session. Use this for the main flyout.
    * - `inherit`: Inherits an existing session if one is active, otherwise functions as a standard flyout.
-   * - `never`: (default) Disregards session management and always functions as a standard flyout.
+   * - `never`: Disregards session management and always functions as a standard flyout.
+   *
+   * When the `session` prop is undefined (not set), the flyout will automatically inherit from
+   * a parent flyout if it's nested inside one. Otherwise, it defaults to `never`.
    *
    * Check out [EuiFlyout session management](https://eui.elastic.co/docs/components/containers/flyout/session-management)
    * documentation to learn more.
-   * @default 'inherit'
+   * @default undefined (auto-inherit when nested, otherwise 'never')
    */
   session?:
     | typeof SESSION_START
@@ -67,10 +71,11 @@ export const EuiFlyout = forwardRef<
     as,
     onClose,
     onActive,
-    session = SESSION_NEVER,
+    session,
     ...rest
   } = usePropsWithComponentDefaults('EuiFlyout', props);
-  const hasActiveSession = useRef(useHasActiveSession());
+  const hasActiveSession = useHasActiveSession();
+  const isInsideParentFlyout = useIsInsideParentFlyout();
   const isUnmanagedFlyout = useRef(false);
 
   /*
@@ -79,9 +84,18 @@ export const EuiFlyout = forwardRef<
    * - session="inherit" + active session → Child flyout (auto-joins, works across React roots!)
    * - session="inherit" + no session → Standard flyout
    * - session="never" → Standard flyout (explicit opt-out)
+   * - session=undefined + inside parent + active session → Child flyout (auto-inherit)
+   * - session=undefined + not inside parent → Standard flyout (default behavior)
    */
-  if (session !== SESSION_NEVER) {
-    if (session === SESSION_START) {
+
+  // Determine effective session behavior when session is undefined
+  const effectiveSession =
+    session === undefined && isInsideParentFlyout && hasActiveSession
+      ? SESSION_INHERIT
+      : session ?? SESSION_NEVER;
+
+  if (effectiveSession !== SESSION_NEVER) {
+    if (effectiveSession === SESSION_START) {
       // session=start: create new session
       if (isUnmanagedFlyout.current) {
         // TODO: @tkajtoch - We need to find a better way to handle the missing event.
@@ -99,10 +113,7 @@ export const EuiFlyout = forwardRef<
     }
 
     // session=inherit: auto-join existing session as child
-    if (
-      hasActiveSession.current &&
-      (session === undefined || session === SESSION_INHERIT)
-    ) {
+    if (hasActiveSession && effectiveSession === SESSION_INHERIT) {
       return (
         <EuiFlyoutChild
           {...rest}

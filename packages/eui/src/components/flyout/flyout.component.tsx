@@ -72,6 +72,7 @@ import { EuiFlyoutResizeButton } from './_flyout_resize_button';
 import { useEuiFlyoutResizable } from './use_flyout_resizable';
 import type { EuiFlyoutCloseEvent } from './types';
 import { useEuiFlyoutZIndex } from './use_flyout_z_index';
+import { EuiFlyoutParentProvider } from './flyout_parent_context';
 
 interface _EuiFlyoutComponentProps {
   /**
@@ -659,7 +660,7 @@ export const EuiFlyoutComponent = forwardRef(
                 onKeyDown={onKeyDownResizableButton}
               />
             )}
-            {children}
+            <EuiFlyoutParentProvider>{children}</EuiFlyoutParentProvider>
           </Element>
         </EuiFocusTrap>
       </EuiFlyoutOverlay>

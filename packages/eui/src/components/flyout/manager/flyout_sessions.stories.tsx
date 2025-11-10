@@ -190,7 +190,6 @@ const FlyoutSession: React.FC<FlyoutSessionProps> = React.memo((props) => {
           {childSize && isChildFlyoutVisible && (
             <EuiFlyout
               id={`childFlyout-${title}`}
-              session="inherit"
               flyoutMenuProps={{ title: `${title} - Child` }}
               aria-labelledby="childFlyoutTitle"
               size={childSize}
@@ -201,7 +200,11 @@ const FlyoutSession: React.FC<FlyoutSessionProps> = React.memo((props) => {
             >
               <EuiFlyoutBody>
                 <EuiText>
-                  <p>This is the content of the child flyout of {title}.</p>
+                  <p>
+                    This is the content of the child flyout of {title}. It
+                    automatically inherits the session because it&apos;s nested
+                    inside the parent.
+                  </p>
                   <EuiSpacer size="s" />
                   <EuiDescriptionList
                     type="column"
@@ -216,7 +219,11 @@ const FlyoutSession: React.FC<FlyoutSessionProps> = React.memo((props) => {
                       },
                       {
                         title: 'session',
-                        description: <EuiCode>inherit</EuiCode>,
+                        description: (
+                          <>
+                            <EuiCode>inherit</EuiCode> (auto)
+                          </>
+                        ),
                       },
                     ]}
                   />
