@@ -17,7 +17,7 @@ import { EuiButtonIcon } from '../../../button';
 describe('EuiTimeZoneDisplay', () => {
   it('renders', () => {
     const { container } = render(
-      <EuiTimeZoneDisplay timeZoneDisplay="America/Los_Angeles" />
+      <EuiTimeZoneDisplay timeZone="America/Los_Angeles" />
     );
 
     expect(container).toMatchSnapshot();
@@ -25,7 +25,7 @@ describe('EuiTimeZoneDisplay', () => {
 
   it('handles "Browser" time zone name', () => {
     const { getByTestSubject } = render(
-      <EuiTimeZoneDisplay timeZoneDisplay="Browser" />
+      <EuiTimeZoneDisplay timeZone="Browser" />
     );
 
     const browserTimeZone = new Intl.DateTimeFormat().resolvedOptions()
@@ -37,9 +37,7 @@ describe('EuiTimeZoneDisplay', () => {
   });
 
   it('handles "UTC" time zone name', () => {
-    const { getByTestSubject } = render(
-      <EuiTimeZoneDisplay timeZoneDisplay="UTC" />
-    );
+    const { getByTestSubject } = render(<EuiTimeZoneDisplay timeZone="UTC" />);
 
     // No name displayed between parenthesis, only "UTC"
     expect(getByTestSubject('euiTimeZoneDisplay')).toHaveTextContent('UTC');
@@ -47,7 +45,7 @@ describe('EuiTimeZoneDisplay', () => {
 
   it('does not render with invalid time zone', () => {
     const { queryByTestSubject } = render(
-      <EuiTimeZoneDisplay timeZoneDisplay="Foo/Bar" />
+      <EuiTimeZoneDisplay timeZone="Foo/Bar" />
     );
 
     expect(queryByTestSubject('euiTimeZoneDisplay')).not.toBeInTheDocument();
@@ -64,8 +62,8 @@ describe('EuiTimeZoneDisplay', () => {
 
     const { getByTestSubject } = render(
       <EuiTimeZoneDisplay
-        timeZoneDisplay="Europe/Helsinki"
-        timeZoneCustomDisplayRender={({ nameDisplay }) => (
+        timeZone="Europe/Helsinki"
+        customRender={({ nameDisplay }) => (
           <>
             {nameDisplay}
             {customContent}

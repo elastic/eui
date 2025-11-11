@@ -33,16 +33,14 @@ export type EuiTimeZoneDisplayProps = {
    * @example "America/Los_Angeles"
    * @link https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
    */
-  timeZoneDisplay?: string;
+  timeZone?: string;
 
   /**
    * Render prop function to add additional content to the time zone display.
    * Useful for
    * @returns
    */
-  timeZoneCustomDisplayRender?: (
-    options: TimeZoneCustomDisplayRenderOptions
-  ) => ReactNode;
+  customRender?: (options: TimeZoneCustomDisplayRenderOptions) => ReactNode;
 
   /**
    * Reference date to be used while resolving the UTC offset.
@@ -57,19 +55,19 @@ export type EuiTimeZoneDisplayProps = {
  * @todo pass `locale` and possibly a date for the formatter
  */
 export const EuiTimeZoneDisplay: React.FC<EuiTimeZoneDisplayProps> = ({
-  timeZoneDisplay,
-  timeZoneCustomDisplayRender,
+  timeZone,
+  customRender,
   date,
 }) => {
   const color = 'subdued';
   const styles = useEuiMemoizedStyles(euiTimeZoneDisplayStyles);
   const referenceDate = date ? date.toDate() : undefined;
   const { utc, name, isInvalid } = useEuiUTCOffsetDisplay(
-    timeZoneDisplay ?? 'Browser',
+    timeZone ?? 'Browser',
     referenceDate
   );
 
-  if (!timeZoneDisplay || isInvalid) return null;
+  if (!timeZone || isInvalid) return null;
 
   const nameDisplay = (
     <>
@@ -87,8 +85,8 @@ export const EuiTimeZoneDisplay: React.FC<EuiTimeZoneDisplayProps> = ({
       gutterSize="xs"
       data-test-subj="euiTimeZoneDisplay"
     >
-      {typeof timeZoneCustomDisplayRender === 'function'
-        ? timeZoneCustomDisplayRender({ nameDisplay })
+      {typeof customRender === 'function'
+        ? customRender({ nameDisplay })
         : nameDisplay}
     </EuiFlexGroup>
   );

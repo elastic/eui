@@ -209,18 +209,20 @@ export const CustomTimeZoneDisplay: Story = {
     },
   },
   args: {
-    timeZoneDisplay: 'America/Los_Angeles',
-    timeZoneCustomDisplayRender: ({ nameDisplay }) => (
-      <>
-        {nameDisplay}
-        <EuiButtonIcon
-          href="https://en.wikipedia.org/wiki/List_of_tz_database_time_zones"
-          target="_blank"
-          rel="noopener noreferrer"
-          iconType="documentation"
-        />
-      </>
-    ),
+    timeZoneDisplayProps: {
+      timeZone: 'America/Los_Angeles',
+      customRender: ({ nameDisplay }) => (
+        <>
+          {nameDisplay}
+          <EuiButtonIcon
+            href="https://en.wikipedia.org/wiki/List_of_tz_database_time_zones"
+            target="_blank"
+            rel="noopener noreferrer"
+            iconType="documentation"
+          />
+        </>
+      ),
+    },
   },
   render: (args) => <StatefulSuperDatePicker {...args} />,
   play: async ({ canvasElement, step }) => {

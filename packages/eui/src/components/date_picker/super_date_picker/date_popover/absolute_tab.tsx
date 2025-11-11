@@ -51,7 +51,8 @@ export type EuiAbsoluteTabProps = {
   utcOffset?: number;
   minDate?: Moment;
   maxDate?: Moment;
-} & EuiTimeZoneDisplayProps;
+  timeZoneDisplayProps?: EuiTimeZoneDisplayProps;
+};
 
 export const EuiAbsoluteTab: FunctionComponent<EuiAbsoluteTabProps> = ({
   value,
@@ -64,8 +65,7 @@ export const EuiAbsoluteTab: FunctionComponent<EuiAbsoluteTabProps> = ({
   minDate,
   maxDate,
   labelPrefix,
-  timeZoneDisplay,
-  timeZoneCustomDisplayRender,
+  timeZoneDisplayProps = {},
 }) => {
   const styles = useEuiMemoizedStyles(euiAbsoluteTabDateFormStyles);
 
@@ -218,11 +218,7 @@ export const EuiAbsoluteTab: FunctionComponent<EuiAbsoluteTabProps> = ({
           />
         )}
       </EuiFlexGroup>
-      <EuiTimeZoneDisplay
-        timeZoneDisplay={timeZoneDisplay}
-        timeZoneCustomDisplayRender={timeZoneCustomDisplayRender}
-        date={minDate}
-      />
+      <EuiTimeZoneDisplay {...timeZoneDisplayProps} />
     </>
   );
 };

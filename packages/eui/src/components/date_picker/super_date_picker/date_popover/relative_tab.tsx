@@ -56,7 +56,8 @@ export type EuiRelativeTabProps = {
   roundUp?: boolean;
   labelPrefix: string;
   timeOptions: TimeOptions;
-} & EuiTimeZoneDisplayProps;
+  timeZoneDisplayProps?: EuiTimeZoneDisplayProps;
+};
 
 export const EuiRelativeTab: FunctionComponent<EuiRelativeTabProps> = ({
   timeOptions: { relativeOptions, relativeRoundingLabels },
@@ -66,8 +67,7 @@ export const EuiRelativeTab: FunctionComponent<EuiRelativeTabProps> = ({
   onChange,
   roundUp,
   labelPrefix,
-  timeZoneDisplay,
-  timeZoneCustomDisplayRender,
+  timeZoneDisplayProps = {},
 }) => {
   const initialRelativeParts = useRef<RelativeParts>(parseRelativeParts(value));
   const { roundUnit } = initialRelativeParts.current;
@@ -192,10 +192,7 @@ export const EuiRelativeTab: FunctionComponent<EuiRelativeTabProps> = ({
           </p>
         </EuiScreenReaderOnly>
       </EuiForm>
-      <EuiTimeZoneDisplay
-        timeZoneDisplay={timeZoneDisplay}
-        timeZoneCustomDisplayRender={timeZoneCustomDisplayRender}
-      />
+      <EuiTimeZoneDisplay {...timeZoneDisplayProps} />
       <EuiPopoverFooter paddingSize="s">
         <EuiSwitch
           data-test-subj="superDatePickerRelativeDateRoundSwitch"
