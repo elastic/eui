@@ -16,6 +16,7 @@ import {
   PropsForButton,
 } from '../common';
 
+import { EuiDisabledProps } from '../../services/hooks/useEuiDisabledElement';
 import {
   BUTTON_COLORS,
   useEuiButtonColorCSS,
@@ -34,7 +35,7 @@ export type EuiButtonColor = _EuiExtendedButtonColor;
 export const SIZES = ['s', 'm'] as const;
 export type EuiButtonSize = (typeof SIZES)[number];
 
-interface BaseProps {
+interface BaseProps extends EuiDisabledProps {
   children?: ReactNode;
   /**
    * Make button a solid color for prominence
@@ -55,10 +56,6 @@ interface BaseProps {
    * Use size `s` in confined spaces
    */
   size?: EuiButtonSize;
-  /**
-   * `disabled` is also allowed
-   */
-  isDisabled?: boolean;
 }
 
 export interface EuiButtonProps

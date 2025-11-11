@@ -16,22 +16,28 @@ import React, {
 
 // @ts-ignore module doesn't export `createElement`
 import { createElement } from '@emotion/react';
-import { getSecureRelForTarget, useEuiMemoizedStyles } from '../../../services';
-
+import {
+  getSecureRelForTarget,
+  useCombinedRefs,
+  useEuiMemoizedStyles,
+} from '../../../services';
+import { validateHref } from '../../../services/security/href_validator';
+import {
+  EuiDisabledProps,
+  useEuiDisabledElement,
+} from '../../../services/hooks/useEuiDisabledElement';
 import {
   CommonProps,
   ExclusiveUnion,
   PropsForAnchor,
   PropsForButton,
 } from '../../common';
-
 import { euiButtonDisplayStyles } from './_button_display.styles';
 import {
   EuiButtonDisplayContent,
   EuiButtonDisplayContentProps,
   EuiButtonDisplayContentType,
 } from './_button_display_content';
-import { validateHref } from '../../../services/security/href_validator';
 
 const SIZES = ['xs', 's', 'm'] as const;
 export type EuiButtonDisplaySizes = (typeof SIZES)[number];
@@ -41,7 +47,8 @@ export type EuiButtonDisplaySizes = (typeof SIZES)[number];
  * `iconType`, `iconSide`, and `textProps`
  */
 export interface EuiButtonDisplayCommonProps
-  extends EuiButtonDisplayContentProps,
+  extends Omit<EuiButtonDisplayContentProps, 'disabled'>,
+    EuiDisabledProps,
     CommonProps {
   element?: 'a' | 'button' | 'span';
   children?: ReactNode;
@@ -119,6 +126,7 @@ export const EuiButtonDisplay = forwardRef<HTMLElement, EuiButtonDisplayProps>(
       size = 'm',
       isDisabled,
       disabled,
+      hasAriaDisabled = false,
       isLoading,
       isSelected,
       fullWidth,
@@ -138,6 +146,15 @@ export const EuiButtonDisplay = forwardRef<HTMLElement, EuiButtonDisplayProps>(
       isDisabled: isDisabled || disabled,
       isLoading,
     });
+
+    const { ref: disabledRef, ...disabledButtonProps } =
+      useEuiDisabledElement<HTMLButtonElement>({
+        isDisabled: buttonIsDisabled,
+        hasAriaDisabled,
+        onKeyDown: rest.onKeyDown,
+      });
+
+    const setCombinedRef = useCombinedRefs([disabledRef, ref]);
 
     const styles = useEuiMemoizedStyles(euiButtonDisplayStyles);
     const cssStyles = [
@@ -166,13 +183,15 @@ export const EuiButtonDisplay = forwardRef<HTMLElement, EuiButtonDisplayProps>(
     );
 
     const element = buttonIsDisabled ? 'button' : href ? 'a' : _element;
-    let elementProps = {};
-    // Element-specific attributes
+    const elementProps = {
+      ref: setCombinedRef,
+    };
+    let buttonProps = {};
+
     if (element === 'button') {
-      elementProps = {
-        ...elementProps,
-        disabled: buttonIsDisabled,
+      buttonProps = {
         'aria-pressed': isSelected,
+        ...disabledButtonProps,
       };
     }
 
@@ -196,10 +215,10 @@ export const EuiButtonDisplay = forwardRef<HTMLElement, EuiButtonDisplayProps>(
       {
         css: cssStyles,
         style: minWidth ? { ...style, minInlineSize: minWidth } : style,
-        ref,
         ...elementProps,
         ...relObj,
         ...rest,
+        ...buttonProps,
       },
       innerNode
     );
