@@ -1,3 +1,11 @@
+## [`v5.0.0`](https://github.com/elastic/eui/releases/v5.0.0)
+
+- Added color tokens `borderBaseProminent` and `borderInteractiveFormsHoverProminent` ([#9162](https://github.com/elastic/eui/pull/9162))
+
+**Breaking changes**
+
+- Removed `borderBaseFormsControl` token ([#9162](https://github.com/elastic/eui/pull/9162))
+
 ## [`v4.0.0`](https://github.com/elastic/eui/releases/v4.0.0)
 
 **Breaking changes**

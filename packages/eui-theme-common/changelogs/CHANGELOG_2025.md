@@ -1,3 +1,11 @@
+## [`v7.0.0`](https://github.com/elastic/eui/releases/v7.0.0)
+
+- Added types for color tokens `borderBaseProminent` and `borderInteractiveFormsHoverProminent` ([#9162](https://github.com/elastic/eui/pull/9162))
+
+**Breaking changes**
+
+- Removed types for `borderBaseFormsControl` token ([#9162](https://github.com/elastic/eui/pull/9162))
+
 ## [`v6.0.0`](https://github.com/elastic/eui/releases/v6.0.0)
 
 **Breaking changes**

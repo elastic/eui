@@ -16,6 +16,7 @@ import {
   logicalTextAlignCSS,
 } from '../../../../global_styling';
 import { euiDataGridCellOutlineSelectors } from '../cell/data_grid_cell.styles';
+import { CSSProperties } from '@emotion/serialize';
 
 /**
  * Styles only applied to data header cell content, not control header cells
@@ -23,6 +24,17 @@ import { euiDataGridCellOutlineSelectors } from '../cell/data_grid_cell.styles';
 export const euiDataGridHeaderCellStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
   const { header } = euiDataGridCellOutlineSelectors('.euiDataGridHeaderCell');
+
+  const hideAnimation = (
+    margin: CSSProperties['margin'],
+    translateX: string
+  ) => `
+    ${header.hideActions} & {
+      ${logicalCSS('margin-left', margin)}
+      transform: translateX(${translateX}) scale(0.01);
+      opacity: 0;
+    }
+  `;
 
   return {
     euiDataGridHeaderCell__content: css`
@@ -40,23 +52,27 @@ export const euiDataGridHeaderCellStyles = (euiThemeContext: UseEuiTheme) => {
       /* Remove inline struts from EuiButtonIcon */
       line-height: 0;
     `,
-    euiDataGridHeaderCell__actions: css`
-      overflow: hidden;
-      display: flex;
+    euiDataGridHeaderCell__actions: {
+      action: css`
+        overflow: hidden;
+        display: flex;
+        max-inline-size: 24px;
 
-      ${header.hideActions} & {
-        ${logicalCSS('width', 0)}
-        opacity: 0;
-      }
+        ${euiCanAnimate} {
+          transition: transform ${euiTheme.animation.fast} ease-in,
+            opacity ${euiTheme.animation.slow} ease-in,
+            margin-left ${euiTheme.animation.fast} ease-in;
 
-      ${euiCanAnimate} {
-        transition: inline-size ${euiTheme.animation.fast} ease-in,
-          opacity ${euiTheme.animation.slow} ease-in;
-
-        /* Unset EuiButtonIcon animations */
-        transform: none !important; /* stylelint-disable-line declaration-no-important */
-        animation: none !important; /* stylelint-disable-line declaration-no-important */
-      }
-    `,
+          /* Unset EuiButtonIcon animations */
+          animation: none !important; /* stylelint-disable-line declaration-no-important */
+        }
+      `,
+      start: css`
+        ${hideAnimation(`-${euiTheme.size.m}`, '0%')}
+      `,
+      end: css`
+        ${hideAnimation(`-${euiTheme.size.l}`, '50%')}
+      `,
+    },
   };
 };

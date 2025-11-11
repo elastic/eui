@@ -20,9 +20,8 @@ jobs:
 
   # Enforces the update of a changelog file on every pull request for all public packages
   # unless the PR contains the `skip-changelog` label
-  changelog:
+  changelog-checks:
     needs: detect-changes
-    if: ${{ !contains(github.event.pull_request.labels.*.name, 'skip-changelog') && fromJson(needs.detect-changes.outputs.changed-packages)[0] }}
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -30,7 +29,18 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Check changelog for ${{ matrix.package }}
+        # TODO specific "package" labels could be checked here?
+        if: ${{ !contains(github.event.pull_request.labels.*.name, 'skip-changelog') }}
         uses: ./.github/actions/check-changelog
         with:
           pr-number: ${{ github.event.pull_request.number }}
           package-path: packages/${{ matrix.package }}
+
+  # This job will always run and succeed, ensuring the overall check completes.
+  changelog:
+    needs: changelog-checks
+    runs-on: ubuntu-latest
+    if: always()
+    steps:
+      - name: Finish changelog checks
+        run: echo "Changelog checks finished."

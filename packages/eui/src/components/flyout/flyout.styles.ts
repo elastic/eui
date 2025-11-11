@@ -9,17 +9,12 @@
 import { css, keyframes } from '@emotion/react';
 import { euiShadowXLarge } from '@elastic/eui-theme-common';
 
-import {
-  _EuiFlyoutPaddingSize,
-  EuiFlyoutSize,
-  isEuiFlyoutSizeNamed,
-} from './const';
+import { _EuiFlyoutPaddingSize, EuiFlyoutSize } from './flyout';
 import {
   euiCanAnimate,
   euiMaxBreakpoint,
   euiMinBreakpoint,
   logicalCSS,
-  logicalStyles,
   mathWithUnits,
 } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
@@ -28,46 +23,24 @@ import { euiFormMaxWidth } from '../form/form.styles';
 export const FLYOUT_BREAKPOINT = 'm' as const;
 
 export const euiFlyoutSlideInRight = keyframes`
-  from {
+  0% {
     opacity: 0;
     transform: translateX(100%);
   }
-  to {
+  75% {
     opacity: 1;
     transform: translateX(0%);
-  }
-`;
-
-export const euiFlyoutSlideOutRight = keyframes`
-  from {
-    opacity: 1;
-    transform: translateX(0%);
-  }
-  to {
-    opacity: 0;
-    transform: translateX(100%);
   }
 `;
 
 export const euiFlyoutSlideInLeft = keyframes`
-  from {
+  0% {
     opacity: 0;
     transform: translateX(-100%);
   }
-  to {
+  75% {
     opacity: 1;
     transform: translateX(0%);
-  }
-`;
-
-export const euiFlyoutSlideOutLeft = keyframes`
-  from {
-    opacity: 1;
-    transform: translateX(0);
-  }
-  to {
-    opacity: 0;
-    transform: translateX(-100%);
   }
 `;
 
@@ -81,7 +54,7 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
       ${logicalCSS('top', 'var(--euiFixedHeadersOffset, 0)')}
       ${logicalCSS('height', 'inherit')}
       z-index: ${euiTheme.levels.flyout};
-      background: ${euiTheme.colors.backgroundBasePlain};
+      background: ${euiTheme.colors.emptyShade};
       display: flex;
       flex-direction: column;
       align-items: stretch;
@@ -91,12 +64,9 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
         outline: none;
       }
 
-      &.euiFlyout--hasChildBackground {
-        background: ${euiTheme.colors.backgroundBaseSubdued};
-      }
-
       ${maxedFlyoutWidth(euiThemeContext)}
     `,
+
     // Flyout sizes
     // When a child flyout is stacked on top of the parent, the parent flyout size will match the child flyout size
     s: css`
@@ -116,9 +86,6 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
     l: css`
       ${composeFlyoutSizing(euiThemeContext, 'l')}
     `,
-    fill: css`
-      ${composeFlyoutSizing(euiThemeContext, 'fill')}
-    `,
     noMaxWidth: css`
       ${logicalCSS('max-width', 'none')}
     `,
@@ -128,15 +95,9 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
       clip-path: polygon(-50% 0, 100% 0, 100% 100%, -50% 100%);
       ${logicalCSS('right', 0)}
 
-      /*
-        Jump animation states immediately unless
-        prefers-reduced-motion: reduce is *not* set
-      */
-      animation: ${euiFlyoutSlideInRight} 0s ${euiTheme.animation
-        .resistance} forwards;
-
       ${euiCanAnimate} {
-        animation-duration: ${euiTheme.animation.normal};
+        animation: ${euiFlyoutSlideInRight} ${euiTheme.animation.normal}
+          ${euiTheme.animation.resistance};
       }
 
       &.euiFlyout--hasChild {
@@ -148,15 +109,9 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
       ${logicalCSS('left', 0)}
       clip-path: polygon(0 0, 150% 0, 150% 100%, 0 100%);
 
-      /*
-        Jump animation states immediately unless
-        prefers-reduced-motion: reduce is *not* set
-      */
-      animation: ${euiFlyoutSlideInLeft} 0s ${euiTheme.animation.resistance}
-        forwards;
-
       ${euiCanAnimate} {
-        animation-duration: ${euiTheme.animation.normal};
+        animation: ${euiFlyoutSlideInLeft} ${euiTheme.animation.normal}
+          ${euiTheme.animation.resistance};
       }
     `,
 
@@ -249,14 +204,6 @@ export const composeFlyoutSizing = (
       width: '75vw',
       max: `${euiTheme.breakpoint.l}px`,
     },
-
-    // NOTE: These styles are for the flyout system in `stacked` layout mode.
-    // In `side-by-side` mode, @flyout.component.tsx uses inline styles.
-    fill: {
-      min: '90vw',
-      width: '90vw',
-      max: '90vw',
-    },
   };
 
   return `
@@ -318,120 +265,4 @@ const composeFlyoutPadding = (
       padding: ${footerPaddingSizes[paddingSize]};
     }
   `;
-};
-
-/**
- * Helper for `composeFlyoutInlineStyles`
- * Handles maxWidth prop overrides to ensure they take precedence over base CSS
- */
-const composeMaxWidthOverrides = (
-  maxWidth: boolean | number | string | undefined,
-  isFill: boolean | undefined
-): React.CSSProperties => {
-  if (typeof maxWidth === 'boolean') {
-    return {};
-  }
-
-  const overrides: React.CSSProperties = {
-    maxWidth,
-  };
-
-  // For fill size flyouts, we need to override min-width to allow dynamic sizing
-  if (isFill) {
-    overrides.minWidth = '0';
-
-    // When maxWidth is provided for fill flyouts, we need to override the CSS rule
-    // that sets min-inline-size: 90vw. We calculate min(maxWidth, 90vw) to ensure
-    // the flyout respects both constraints and doesn't get stuck at 90vw minimum.
-    if (maxWidth) {
-      const maxWidthWithUnits =
-        typeof maxWidth === 'number' ? `${maxWidth}px` : maxWidth;
-      overrides.minWidth = `min(${maxWidthWithUnits}, 90vw)`;
-    }
-  }
-
-  return logicalStyles(overrides);
-};
-
-/**
- * Composes all inline styles for a flyout based on its configuration
- */
-export const composeFlyoutInlineStyles = (
-  size: EuiFlyoutSize | string | number,
-  layoutMode: 'side-by-side' | 'stacked',
-  siblingFlyoutId: string | null,
-  siblingFlyoutWidth: number | null,
-  maxWidth: boolean | number | string | undefined
-): React.CSSProperties => {
-  // Handle custom width values (non-named sizes)
-  const customWidthStyles = !isEuiFlyoutSizeNamed(size)
-    ? logicalStyles({ width: size })
-    : {};
-
-  const isFill = size === 'fill';
-
-  // Handle dynamic width calculation for fill size in side-by-side mode
-  const dynamicStyles =
-    isFill &&
-    layoutMode === 'side-by-side' &&
-    siblingFlyoutId &&
-    siblingFlyoutWidth
-      ? logicalStyles({
-          width: `calc(90vw - ${siblingFlyoutWidth}px)`,
-          minWidth: '0',
-        })
-      : {};
-
-  // For fill flyouts with maxWidth, we need to ensure the minWidth override is applied
-  // to override the CSS rule that sets min-inline-size: 90vw
-  let minWidthOverride = {};
-  if (isFill && maxWidth) {
-    if (
-      layoutMode === 'side-by-side' &&
-      siblingFlyoutId &&
-      siblingFlyoutWidth &&
-      dynamicStyles.inlineSize
-    ) {
-      // For fill flyouts with maxWidth and a sibling: min(maxWidth, calc(90vw - siblingWidth))
-      const dynamicWidth = dynamicStyles.inlineSize;
-      const maxWidthWithUnits =
-        typeof maxWidth === 'number' ? `${maxWidth}px` : maxWidth;
-      minWidthOverride = {
-        minWidth: `min(${maxWidthWithUnits}, ${dynamicWidth})`,
-      };
-    } else {
-      // For fill flyouts with maxWidth but no sibling: min(maxWidth, 90vw)
-      const maxWidthOverrides = composeMaxWidthOverrides(maxWidth, isFill);
-      minWidthOverride = { minWidth: maxWidthOverrides.minInlineSize };
-    }
-  }
-
-  // Calculate the final maxWidth based on conditions
-  let finalMaxWidth: string | undefined;
-
-  if (
-    maxWidth &&
-    isFill &&
-    layoutMode === 'side-by-side' &&
-    siblingFlyoutId &&
-    siblingFlyoutWidth &&
-    dynamicStyles.inlineSize
-  ) {
-    // For fill flyouts with maxWidth and a sibling: min(maxWidth, calc(90vw - siblingWidth))
-    const dynamicWidth = dynamicStyles.inlineSize;
-    const maxWidthWithUnits =
-      typeof maxWidth === 'number' ? `${maxWidth}px` : maxWidth;
-    finalMaxWidth = `min(${maxWidthWithUnits}, ${dynamicWidth})`;
-  } else if (maxWidth) {
-    // For all other cases with maxWidth: use the original maxWidth value
-    finalMaxWidth =
-      typeof maxWidth === 'number' ? `${maxWidth}px` : (maxWidth as string);
-  }
-
-  return logicalStyles({
-    ...customWidthStyles,
-    ...dynamicStyles,
-    ...minWidthOverride,
-    ...(finalMaxWidth ? { maxWidth: finalMaxWidth } : {}),
-  });
 };

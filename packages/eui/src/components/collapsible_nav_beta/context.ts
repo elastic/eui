@@ -8,7 +8,7 @@
 
 import { createContext, MouseEventHandler } from 'react';
 
-import { _EuiFlyoutSide } from '../flyout/const';
+import { _EuiFlyoutSide } from '../flyout/flyout';
 
 type _EuiCollapsibleNavContext = {
   isCollapsed: boolean;

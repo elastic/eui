@@ -58,7 +58,7 @@ export const EuiButtonGroupButton: FunctionComponent<Props> = ({
   id,
   isDisabled,
   isIconOnly,
-  isSelected = false,
+  isSelected,
   label,
   value, // Prevent prop from being spread
   size,
@@ -84,7 +84,8 @@ export const EuiButtonGroupButton: FunctionComponent<Props> = ({
 
   const cssStyles = [
     styles.euiButtonGroupButton,
-    isIconOnly && styles.iconOnly,
+    isIconOnly && styles.iconOnly.iconOnly,
+    isIconOnly && styles.iconOnly[size],
     !isCompressed &&
       (hasToolTip ? styles.uncompressed.hasToolTip : styles.uncompressed[size]),
     isCompressed ? styles.compressed : styles.uncompressed.uncompressed,
@@ -158,7 +159,7 @@ const EuiButtonGroupButtonWithToolTip: FunctionComponent<
   Pick<Props, 'toolTipContent' | 'toolTipProps'> & {
     children: ReactElement;
     wrapperCss: CSSInterpolation;
-    isSelected: boolean;
+    isSelected?: boolean;
   }
 > = ({ toolTipContent, toolTipProps, wrapperCss, isSelected, children }) => {
   return toolTipContent ? (

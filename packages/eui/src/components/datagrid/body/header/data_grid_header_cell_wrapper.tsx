@@ -45,6 +45,7 @@ export const EuiDataGridHeaderCellWrapper: FunctionComponent<
   isDragging,
   onKeyDown: _onKeyDown,
   'aria-label': ariaLabel,
+  'aria-labelledby': ariaLabelledby,
   ...rest
 }) => {
   const classes = classnames('euiDataGridHeaderCell', className);
@@ -106,6 +107,7 @@ export const EuiDataGridHeaderCellWrapper: FunctionComponent<
       data-gridcell-visible-row-index="-1"
       style={width != null ? { width: `${width}px` } : {}}
       aria-label={renderFocusTrap ? ariaLabel : undefined}
+      aria-labelledby={renderFocusTrap ? ariaLabelledby : undefined}
       {...rest}
     >
       <HandleInteractiveChildren

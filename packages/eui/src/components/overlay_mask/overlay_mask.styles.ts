@@ -24,8 +24,7 @@ export const euiOverlayMaskStyles = ({
     align-items: center;
     justify-content: center;
     ${logicalCSS('padding-bottom', '10vh')}
-    animation: ${euiAnimFadeIn} ${euiTheme.animation.fast} ease-in forwards;
-    animation-iteration-count: 1;
+    animation: ${euiAnimFadeIn} ${euiTheme.animation.fast} ease-in;
     background: ${highContrastMode
       ? euiTheme.components.overlayMaskBackgroundHighContrast
       : euiTheme.components.overlayMaskBackground};
@@ -36,8 +35,5 @@ export const euiOverlayMaskStyles = ({
   belowHeader: css`
     z-index: ${euiTheme.levels.maskBelowHeader};
     ${logicalCSS('top', 'var(--euiFixedHeadersOffset, 0)')}
-  `,
-  noAnimation: css`
-    animation: none;
   `,
 });

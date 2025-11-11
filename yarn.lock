@@ -7494,7 +7494,6 @@ __metadata:
     unified: "npm:^9.2.2"
     unist-util-visit: "npm:^2.0.3"
     url-parse: "npm:^1.5.10"
-    use-sync-external-store: "npm:^1.6.0"
     uuid: "npm:^8.3.0"
     vfile: "npm:^4.2.1"
     webpack: "npm:^5.74.0"
@@ -7505,7 +7504,7 @@ __metadata:
     yo: "npm:^4.3.1"
   peerDependencies:
     "@elastic/datemath": ^5.0.2
-    "@elastic/eui-theme-borealis": 4.0.0
+    "@elastic/eui-theme-borealis": 5.0.0
     "@emotion/css": 11.x
     "@emotion/react": 11.x
     "@types/react": ^17.0 || ^18.0
@@ -40870,15 +40869,6 @@ __metadata:
   peerDependencies:
     react: ^16.8.0 || ^17.0.0 || ^18.0.0
   checksum: 10c0/ac4814e5592524f242921157e791b022efe36e451fe0d4fd4d204322d5433a4fc300d63b0ade5185f8e0735ded044c70bcf6d2352db0f74d097a238cebd2da02
-  languageName: node
-  linkType: hard
-
-"use-sync-external-store@npm:^1.6.0":
-  version: 1.6.0
-  resolution: "use-sync-external-store@npm:1.6.0"
-  peerDependencies:
-    react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
-  checksum: 10c0/35e1179f872a53227bdf8a827f7911da4c37c0f4091c29b76b1e32473d1670ebe7bcd880b808b7549ba9a5605c233350f800ffab963ee4a4ee346ee983b6019b
   languageName: node
   linkType: hard
 

@@ -23,16 +23,16 @@ import {
 import {
   _EuiButtonColor,
   BUTTON_COLORS,
+  euiButtonSizeMap,
 } from '../../../global_styling/mixins/_button';
 import { euiScreenReaderOnly } from '../../accessibility';
-import { euiFormVariables } from '../../form/form.styles';
 
 export const euiButtonGroupButtonStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme, highContrastMode } = euiThemeContext;
 
-  const { controlCompressedHeight } = euiFormVariables(euiThemeContext);
+  const buttonSizes = euiButtonSizeMap(euiThemeContext);
   const compressedButtonHeight = mathWithUnits(
-    [controlCompressedHeight, euiTheme.border.width.thin],
+    [buttonSizes.s.height, euiTheme.border.width.thin],
     (x, y) => x - y * 6
   );
 
@@ -92,9 +92,19 @@ export const euiButtonGroupButtonStyles = (euiThemeContext: UseEuiTheme) => {
         })}
       }
     `,
-    iconOnly: css`
-      padding-inline: ${euiTheme.size.s};
-    `,
+    iconOnly: {
+      // used only as classname, sizes are added separately
+      iconOnly: css``,
+      s: `
+        ${logicalCSS('width', buttonSizes.s.height)}
+      `,
+      m: `
+        ${logicalCSS('width', buttonSizes.m.height)}
+      `,
+      compressed: `
+        ${logicalCSS('width', compressedButtonHeight)}
+      `,
+    },
     // Sizes
     uncompressed: {
       uncompressed: css`
