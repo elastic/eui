@@ -32,9 +32,15 @@ describe('EuiButtonEmpty', () => {
   describe('props', () => {
     describe('isDisabled', () => {
       it('is rendered', () => {
-        const { container } = render(<EuiButtonEmpty isDisabled />);
+        const { container, getByTestSubject } = render(
+          <EuiButtonEmpty isDisabled data-test-subj="button" />
+        );
+
+        const button = getByTestSubject('button');
 
         expect(container.firstChild).toMatchSnapshot();
+        expect(button).toBeEuiDisabled();
+        expect(button).toHaveAttribute('disabled', '');
       });
 
       it('renders a button even when href is defined', () => {
@@ -47,6 +53,19 @@ describe('EuiButtonEmpty', () => {
         const { container } = render(<EuiButtonEmpty disabled />);
 
         expect(container.firstChild).toMatchSnapshot();
+      });
+    });
+
+    describe('hasAriaDisabled', () => {
+      it('renders `aria-disabled` when `isDisabled=true`', () => {
+        const { getByTestSubject } = render(
+          <EuiButtonEmpty hasAriaDisabled isDisabled data-test-subj="button" />
+        );
+
+        const button = getByTestSubject('button');
+
+        expect(button).toBeEuiDisabled();
+        expect(button).toHaveAttribute('aria-disabled', 'true');
       });
     });
 
