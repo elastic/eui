@@ -26,6 +26,7 @@ exports[`EuiQuickSelectPanels customQuickSelectPanels should render custom panel
         >
           <span
             class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+            id="generated-id_euiToolTipAnchor"
           >
             <button
               aria-label="Previous time window"
@@ -46,6 +47,7 @@ exports[`EuiQuickSelectPanels customQuickSelectPanels should render custom panel
         >
           <span
             class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+            id="generated-id_euiToolTipAnchor"
           >
             <button
               aria-label="Next time window"

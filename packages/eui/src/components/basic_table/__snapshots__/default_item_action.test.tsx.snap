@@ -3,6 +3,7 @@
 exports[`DefaultItemAction renders an EuiButtonEmpty when \`type="button" 1`] = `
 <span
   class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+  id="generated-id-wrapper"
 >
   <button
     class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-s-empty-primary-flush-right"
@@ -25,6 +26,7 @@ exports[`DefaultItemAction renders an EuiButtonIcon with screen reader text when
 <div>
   <span
     class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+    id="generated-id-wrapper"
   >
     <button
       aria-labelledby="generated-id"

@@ -254,6 +254,7 @@ exports[`EuiListGroupItem props showToolTip is rendered 1`] = `
 >
   <span
     class="euiToolTipAnchor euiListGroupItem__tooltip emotion-euiToolTipAnchor-inlineBlock-euiListGroupItem__tooltip"
+    id="generated-id-wrapper"
   >
     <span
       class="euiListGroupItem__text emotion-euiListGroupItem__inner-m-text"
