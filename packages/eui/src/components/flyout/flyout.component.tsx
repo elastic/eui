@@ -271,7 +271,6 @@ export const EuiFlyoutComponent = forwardRef(
     const internalParentFlyoutRef = useRef<HTMLDivElement>(null);
     const isPushed = useIsPushed({ type, pushMinBreakpoint });
 
-    // Get managed flyout context early so it's available for effects
     const currentSession = useCurrentSession();
     const isInManagedContext = useIsInManagedFlyout();
     const flyoutId = useFlyoutId(id);
@@ -313,15 +312,12 @@ export const EuiFlyoutComponent = forwardRef(
     const { width } = useResizeObserver(isPushed ? resizeRef : null, 'width');
 
     /**
-     * Use useLayoutEffect (not useEffect) to ensure padding changes happen synchronously
-     * before child components render. This prevents RemoveScrollBar from measuring the body
-     * in an inconsistent state during flyout transitions.
+     * Effect for adding push padding to body. Using useLayoutEffect to ensure
+     * padding changes happen synchronously before child components render -
+     * this is needed to prevent RemoveScrollBar from measuring the body in an
+     * inconsistent state during flyout transitions.
      */
     useLayoutEffect(() => {
-      /**
-       * Accomodate for the `isPushed` state by adding padding to the body equal to the width of the element.
-       * For managed flyouts, only apply padding if this flyout is active.
-       */
       if (!isPushed) {
         return; // Only push-type flyouts manage body padding
       }
@@ -654,7 +650,6 @@ export const EuiFlyoutComponent = forwardRef(
 
     /**
      * For overlay flyouts in managed contexts, coordinate scroll locking with push flyout state.
-     * Only enable scroll lock when there's no active push padding in the manager.
      */
     const hasPushPaddingInManager = useHasPushPadding();
     const shouldDeferScrollLock =
