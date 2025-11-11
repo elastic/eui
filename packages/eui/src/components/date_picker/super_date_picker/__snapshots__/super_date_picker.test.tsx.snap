@@ -42,17 +42,21 @@ exports[`EuiSuperDatePicker props accepts data-test-subj and passes to EuiFormCo
     <div
       class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup-prependOnly"
     >
-      <button
-        class="euiButtonEmpty euiFormControlButton euiSuperDatePicker__prettyFormat emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text-euiFormControlButton-fullWidth-euiSuperDatePicker__prettyFormat"
-        data-test-subj="superDatePickerShowDatesButton"
-        type="button"
+      <span
+        class="euiToolTipAnchor emotion-euiToolTipAnchor-block"
       >
-        <span
-          class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiFormControlButton__content"
+        <button
+          class="euiButtonEmpty euiFormControlButton euiSuperDatePicker__prettyFormat emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text-euiFormControlButton-fullWidth"
+          data-test-subj="superDatePickerShowDatesButton"
+          type="button"
         >
-          Last 15 minutes
-        </span>
-      </button>
+          <span
+            class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiFormControlButton__content"
+          >
+            Last 15 minutes
+          </span>
+        </button>
+      </span>
     </div>
   </div>
   <span
@@ -119,17 +123,21 @@ exports[`EuiSuperDatePicker props compressed is rendered 1`] = `
     <div
       class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup-prependOnly"
     >
-      <button
-        class="euiButtonEmpty euiFormControlButton euiSuperDatePicker__prettyFormat emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text-euiFormControlButton-fullWidth-euiSuperDatePicker__prettyFormat"
-        data-test-subj="superDatePickerShowDatesButton"
-        type="button"
+      <span
+        class="euiToolTipAnchor emotion-euiToolTipAnchor-block"
       >
-        <span
-          class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiFormControlButton__content"
+        <button
+          class="euiButtonEmpty euiFormControlButton euiSuperDatePicker__prettyFormat emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text-euiFormControlButton-compressed-fullWidth"
+          data-test-subj="superDatePickerShowDatesButton"
+          type="button"
         >
-          Last 15 minutes
-        </span>
-      </button>
+          <span
+            class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiFormControlButton__content"
+          >
+            Last 15 minutes
+          </span>
+        </button>
+      </span>
     </div>
   </div>
   <span
@@ -264,7 +272,7 @@ exports[`EuiSuperDatePicker props isAutoRefreshOnly passes required props 1`] = 
 
 exports[`EuiSuperDatePicker props isDisabled config object 1`] = `
 <button
-  class="euiButtonEmpty euiFormControlButton euiSuperDatePicker__prettyFormat euiSuperDatePicker__prettyFormat--disabled emotion-euiButtonDisplay-euiButtonEmpty-m-empty-disabled-isDisabled-euiFormControlButton-fullWidth-euiSuperDatePicker__prettyFormat"
+  class="euiButtonEmpty euiFormControlButton euiSuperDatePicker__prettyFormat euiSuperDatePicker__prettyFormat--disabled emotion-euiButtonDisplay-euiButtonEmpty-m-empty-disabled-isDisabled-euiFormControlButton-fullWidth"
   data-test-subj="superDatePickerShowDatesButton"
   disabled=""
   type="button"
@@ -323,18 +331,22 @@ exports[`EuiSuperDatePicker props isDisabled true 1`] = `
     <div
       class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup-prependOnly"
     >
-      <button
-        class="euiButtonEmpty euiFormControlButton euiSuperDatePicker__prettyFormat euiSuperDatePicker__prettyFormat--disabled emotion-euiButtonDisplay-euiButtonEmpty-m-empty-disabled-isDisabled-euiFormControlButton-fullWidth-euiSuperDatePicker__prettyFormat"
-        data-test-subj="superDatePickerShowDatesButton"
-        disabled=""
-        type="button"
+      <span
+        class="euiToolTipAnchor emotion-euiToolTipAnchor-block"
       >
-        <span
-          class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiFormControlButton__content"
+        <button
+          class="euiButtonEmpty euiFormControlButton euiSuperDatePicker__prettyFormat euiSuperDatePicker__prettyFormat--disabled emotion-euiButtonDisplay-euiButtonEmpty-m-empty-disabled-isDisabled-euiFormControlButton-fullWidth"
+          data-test-subj="superDatePickerShowDatesButton"
+          disabled=""
+          type="button"
         >
-          Last 15 minutes
-        </span>
-      </button>
+          <span
+            class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiFormControlButton__content"
+          >
+            Last 15 minutes
+          </span>
+        </button>
+      </span>
     </div>
   </div>
   <span
@@ -467,17 +479,21 @@ exports[`EuiSuperDatePicker props showUpdateButton can be false 1`] = `
     <div
       class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup-prependOnly"
     >
-      <button
-        class="euiButtonEmpty euiFormControlButton euiSuperDatePicker__prettyFormat emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text-euiFormControlButton-fullWidth-euiSuperDatePicker__prettyFormat"
-        data-test-subj="superDatePickerShowDatesButton"
-        type="button"
+      <span
+        class="euiToolTipAnchor emotion-euiToolTipAnchor-block"
       >
-        <span
-          class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiFormControlButton__content"
+        <button
+          class="euiButtonEmpty euiFormControlButton euiSuperDatePicker__prettyFormat emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text-euiFormControlButton-fullWidth"
+          data-test-subj="superDatePickerShowDatesButton"
+          type="button"
         >
-          Last 15 minutes
-        </span>
-      </button>
+          <span
+            class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiFormControlButton__content"
+          >
+            Last 15 minutes
+          </span>
+        </button>
+      </span>
     </div>
   </div>
 </div>
@@ -524,17 +540,21 @@ exports[`EuiSuperDatePicker props showUpdateButton can be iconOnly 1`] = `
     <div
       class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup-prependOnly"
     >
-      <button
-        class="euiButtonEmpty euiFormControlButton euiSuperDatePicker__prettyFormat emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text-euiFormControlButton-fullWidth-euiSuperDatePicker__prettyFormat"
-        data-test-subj="superDatePickerShowDatesButton"
-        type="button"
+      <span
+        class="euiToolTipAnchor emotion-euiToolTipAnchor-block"
       >
-        <span
-          class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiFormControlButton__content"
+        <button
+          class="euiButtonEmpty euiFormControlButton euiSuperDatePicker__prettyFormat emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text-euiFormControlButton-fullWidth"
+          data-test-subj="superDatePickerShowDatesButton"
+          type="button"
         >
-          Last 15 minutes
-        </span>
-      </button>
+          <span
+            class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiFormControlButton__content"
+          >
+            Last 15 minutes
+          </span>
+        </button>
+      </span>
     </div>
   </div>
   <span
@@ -604,17 +624,21 @@ exports[`EuiSuperDatePicker props width can be auto 1`] = `
     <div
       class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup-prependOnly"
     >
-      <button
-        class="euiButtonEmpty euiFormControlButton euiSuperDatePicker__prettyFormat emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text-euiFormControlButton-fullWidth-euiSuperDatePicker__prettyFormat"
-        data-test-subj="superDatePickerShowDatesButton"
-        type="button"
+      <span
+        class="euiToolTipAnchor emotion-euiToolTipAnchor-block"
       >
-        <span
-          class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiFormControlButton__content"
+        <button
+          class="euiButtonEmpty euiFormControlButton euiSuperDatePicker__prettyFormat emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text-euiFormControlButton-fullWidth"
+          data-test-subj="superDatePickerShowDatesButton"
+          type="button"
         >
-          Last 15 minutes
-        </span>
-      </button>
+          <span
+            class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiFormControlButton__content"
+          >
+            Last 15 minutes
+          </span>
+        </button>
+      </span>
     </div>
   </div>
   <span
@@ -681,17 +705,21 @@ exports[`EuiSuperDatePicker props width can be full 1`] = `
     <div
       class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup-prependOnly"
     >
-      <button
-        class="euiButtonEmpty euiFormControlButton euiSuperDatePicker__prettyFormat emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text-euiFormControlButton-fullWidth-euiSuperDatePicker__prettyFormat"
-        data-test-subj="superDatePickerShowDatesButton"
-        type="button"
+      <span
+        class="euiToolTipAnchor emotion-euiToolTipAnchor-block"
       >
-        <span
-          class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiFormControlButton__content"
+        <button
+          class="euiButtonEmpty euiFormControlButton euiSuperDatePicker__prettyFormat emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text-euiFormControlButton-fullWidth"
+          data-test-subj="superDatePickerShowDatesButton"
+          type="button"
         >
-          Last 15 minutes
-        </span>
-      </button>
+          <span
+            class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiFormControlButton__content"
+          >
+            Last 15 minutes
+          </span>
+        </button>
+      </span>
     </div>
   </div>
   <span
@@ -759,17 +787,21 @@ exports[`EuiSuperDatePicker renders 1`] = `
     <div
       class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup-prependOnly"
     >
-      <button
-        class="euiButtonEmpty euiFormControlButton euiSuperDatePicker__prettyFormat emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text-euiFormControlButton-fullWidth-euiSuperDatePicker__prettyFormat"
-        data-test-subj="superDatePickerShowDatesButton"
-        type="button"
+      <span
+        class="euiToolTipAnchor emotion-euiToolTipAnchor-block"
       >
-        <span
-          class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiFormControlButton__content"
+        <button
+          class="euiButtonEmpty euiFormControlButton euiSuperDatePicker__prettyFormat emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text-euiFormControlButton-fullWidth"
+          data-test-subj="superDatePickerShowDatesButton"
+          type="button"
         >
-          Last 15 minutes
-        </span>
-      </button>
+          <span
+            class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiFormControlButton__content"
+          >
+            Last 15 minutes
+          </span>
+        </button>
+      </span>
     </div>
   </div>
   <span
