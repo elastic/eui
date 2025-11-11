@@ -28,10 +28,7 @@ const EuiIconCheckInCircleFilled = ({
     {...props}
   >
     {title ? <title id={titleId}>{title}</title> : null}
-    <path
-      fillRule="evenodd"
-      d="M8 16A8 8 0 1 1 8 0a8 8 0 0 1 0 16Zm3.65-10.857L6.91 9.8 4.35 7.286a.5.5 0 0 0-.7.714l2.909 2.857a.5.5 0 0 0 .7 0l5.091-5a.5.5 0 1 0-.7-.714Z"
-    />
+    <path d="M8 1a7 7 0 1 1 0 14A7 7 0 0 1 8 1ZM7 9.293 5.354 7.646l-.708.708L7 10.707l4.354-4.353-.707-.708L7 9.293Z" />
   </svg>
 );
 export const icon = EuiIconCheckInCircleFilled;

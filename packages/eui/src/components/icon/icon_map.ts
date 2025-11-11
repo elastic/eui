@@ -51,7 +51,7 @@ export const typeToPathMap = {
   changePointDetection: 'change_point_detection',
   check: 'check',
   checkCircle: 'checkCircle',
-  checkInCircleFilled: 'checkCircle', // NOTE: To be deprecated in favor of `checkCircle`
+  checkInCircleFilled: 'checkInCircleFilled',
   cheer: 'cheer',
   classificationJob: 'ml_classification_job',
   clickLeft: 'clickLeft',
@@ -146,7 +146,7 @@ export const typeToPathMap = {
   eql: 'eql',
   eraser: 'eraser',
   error: 'error',
-  errorFilled: 'error', // NOTE: To be deprecated in favor of `error`
+  errorFilled: 'errorFilled',
   esqlVis: 'esqlVis',
   exit: 'exit',
   expand: 'expand',
@@ -469,7 +469,7 @@ export const typeToPathMap = {
   visualizeApp: 'app_visualize',
   vulnerabilityManagementApp: 'app_vulnerability_management',
   warning: 'warning',
-  warningFilled: 'warning', // NOTE: To be deprecated in favor of `warning`
+  warningFilled: 'warningFilled',
   watchesApp: 'app_watches',
   web: 'web',
   wordWrap: 'wordWrap',
