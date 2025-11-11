@@ -741,9 +741,9 @@ exports[`useEuiButtonColorCSS fill 1`] = `
   },
   "disabled": {
     "map": undefined,
-    "name": "105tcc3-displaysColorsMap-display-color",
+    "name": "1scgva8-displaysColorsMap-display-color",
     "next": undefined,
-    "styles": "color:#798EAF;background-color:#ECF1F9;outline-color:#07101F;    
+    "styles": "color:#798EAF;background-color:#ECF1F9;outline-color:;    
     &:hover:not(:disabled) {
         background-color: undefined;
       }
