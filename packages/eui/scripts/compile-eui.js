@@ -249,7 +249,8 @@ async function compileBundle() {
     'optimize/es/test',
   ].map((dir) => path.join(packageRootDir, dir));
 
-  const testRtlDTSFiles = new glob.Glob('test/rtl/**/*.d.ts', {
+  const testDirectories = ['rtl', 'enzyme'];
+  const testDTSFiles = new glob.Glob('test/**/*.d.ts', {
     cwd: srcDir,
     realpath: true,
   });
@@ -278,12 +279,17 @@ async function compileBundle() {
       },
     });
 
-    await fs.mkdir(path.join(dir, 'rtl'), { recursive: true });
+    for (const testDir of testDirectories) {
+      await fs.mkdir(path.join(dir, testDir), { recursive: true });
+    }
 
-    for await (const filePath of testRtlDTSFiles) {
+    for await (const filePath of testDTSFiles) {
       const fullPath = path.join(srcDir, filePath);
-      const baseName = path.basename(filePath);
-      await fs.copyFile(fullPath, path.join(dir, 'rtl', baseName));
+
+      const relativePath = filePath.replace(/^test\//, '');
+      const destPath = path.join(dir, relativePath);
+
+      await fs.copyFile(fullPath, destPath);
     }
   }
 
