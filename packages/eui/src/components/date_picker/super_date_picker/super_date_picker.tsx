@@ -26,6 +26,7 @@ import {
   EuiFormControlLayout,
   EuiFormControlLayoutProps,
 } from '../../form';
+import { EuiToolTip } from '../../tool_tip';
 
 import {
   ShortDate,
@@ -626,31 +627,51 @@ export class EuiSuperDatePickerInternal extends Component<
       isDisabledDisplay ||
       (showPrettyDuration && !isStartDatePopoverOpen && !isEndDatePopoverOpen)
     ) {
+      // TODO put this logic to define `formattedFullRange` somewhere else?
+      // TODO also: show something if invalid?
+      // TODO check dateMath.parse is using moment-timezone?
+      // TODO use theme value for offset in tooltip
+      const SEPARATOR = ' – ';
+      const startMoment = dateMath.parse(start);
+      const endMoment = dateMath.parse(end, { roundUp: true });
+      const formattedFullRange = isInvalid
+        ? ''
+        : startMoment?.format(dateFormat) +
+          SEPARATOR +
+          endMoment?.format(dateFormat);
+
       return (
         <EuiFormControlLayout {...formControlLayoutProps}>
           {!isQuickSelectOnly && (
-            <EuiFormControlButton
-              type="button"
-              css={styles.euiSuperDatePicker__prettyFormat}
-              className={classNames('euiSuperDatePicker__prettyFormat', {
-                'euiSuperDatePicker__prettyFormat--disabled': isDisabled,
-              })}
-              data-test-subj="superDatePickerShowDatesButton"
-              disabled={!!isDisabled}
-              onClick={this.hidePrettyDuration}
-              onFocus={onFocus}
+            <EuiToolTip
+              css={styles.euiSuperDatePicker__prettyDurationTooltip}
+              content={formattedFullRange}
+              display="block"
+              offset={8}
             >
-              {isDisabledDisplay ? (
-                isDisabled.display
-              ) : (
-                <PrettyDuration
-                  timeFrom={start}
-                  timeTo={end}
-                  quickRanges={commonlyUsedRanges}
-                  dateFormat={dateFormat}
-                />
-              )}
-            </EuiFormControlButton>
+              <EuiFormControlButton
+                type="button"
+                className={classNames('euiSuperDatePicker__prettyFormat', {
+                  'euiSuperDatePicker__prettyFormat--disabled': isDisabled,
+                })}
+                compressed={compressed}
+                data-test-subj="superDatePickerShowDatesButton"
+                disabled={!!isDisabled}
+                onClick={this.hidePrettyDuration}
+                onFocus={onFocus}
+              >
+                {isDisabledDisplay ? (
+                  isDisabled.display
+                ) : (
+                  <PrettyDuration
+                    timeFrom={start}
+                    timeTo={end}
+                    quickRanges={commonlyUsedRanges}
+                    dateFormat={dateFormat}
+                  />
+                )}
+              </EuiFormControlButton>
+            </EuiToolTip>
           )}
         </EuiFormControlLayout>
       );
