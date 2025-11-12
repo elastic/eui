@@ -3,6 +3,7 @@
 exports[`EuiTimeZoneDisplay renders 1`] = `
 <div>
   <div
+    aria-label="UTC-8 (America/Los_Angeles)"
     class="euiFlexGroup emotion-euiFlexGroup-responsive-xs-flexStart-center-row-euiTimeZoneDisplay"
     data-test-subj="euiTimeZoneDisplay"
   >
@@ -13,9 +14,7 @@ exports[`EuiTimeZoneDisplay renders 1`] = `
     <span
       class="euiText emotion-euiText-s-euiTextColor-subdued"
     >
-      UTC-8
-       
-      (America/Los_Angeles)
+      UTC-8 (America/Los_Angeles)
     </span>
   </div>
 </div>
