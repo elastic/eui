@@ -49,6 +49,11 @@ export const cli = () => {
             description: 'Enable verbose logging',
             default: false,
           })
+          .option('dryRun', {
+            type: 'boolean',
+            description: 'Do not publish any packages to the npm registry',
+            default: false,
+          })
           .option('skipPrompts', {
             type: 'boolean',
             description:
@@ -72,7 +77,7 @@ export const cli = () => {
             description:
               'Use npm auth token instead of the regular npm user authentication and one-time passwords (OTP). Use in CI only!',
             default: false,
-          });
+          })
       },
       async (argv) => {
         const {
@@ -81,6 +86,7 @@ export const cli = () => {
           workspaces,
           allowCustom,
           verbose,
+          dryRun,
           skipPrompts,
           skipUpdateVersions,
           useAuthToken,
@@ -94,6 +100,7 @@ export const cli = () => {
             tag,
             workspaces,
             logger,
+            dryRun,
             skipPrompts,
             skipUpdateVersions,
             useAuthToken,
