@@ -8,9 +8,10 @@
 
 import yargs from 'yargs/yargs';
 import { hideBin } from 'yargs/helpers';
-import { release, type ReleaseType } from './release';
-import { Logger } from './logger';
+
 import { ValidationError } from './errors';
+import { createLogger } from './logger';
+import { release, type ReleaseType } from './release';
 
 export const cli = () => {
   yargs(hideBin(process.argv))
@@ -86,7 +87,7 @@ export const cli = () => {
           useAuthToken,
           skipAuthCheck,
         } = argv;
-        const logger = new Logger(verbose);
+        const logger = createLogger(verbose);
 
         try {
           await release({

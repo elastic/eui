@@ -8,13 +8,13 @@
 
 import chalk from 'chalk';
 
-export class Logger {
-  private readonly PREFIX_DEBUG = chalk.gray('[debug]');
-  private readonly PREFIX_INFO = chalk.white('[info]');
-  private readonly PREFIX_WARNING = chalk.yellow('[warning]');
-  private readonly PREFIX_ERROR = chalk.red('[error]');
+class BaseLogger {
+  protected readonly PREFIX_DEBUG = chalk.gray('[debug]');
+  protected readonly PREFIX_INFO = chalk.white('[info]');
+  protected readonly PREFIX_WARNING = chalk.yellow('[warning]');
+  protected readonly PREFIX_ERROR = chalk.red('[error]');
 
-  constructor(private readonly verbose: boolean) {}
+  constructor(protected readonly verbose: boolean) {}
 
   debug(message: any, ...args: any) {
     if (!this.verbose) {
@@ -35,3 +35,21 @@ export class Logger {
     console.error(this.PREFIX_ERROR, message, ...args);
   }
 }
+
+class GHActionsLogger extends BaseLogger {
+  protected readonly PREFIX_DEBUG = '::debug::';
+  protected readonly PREFIX_INFO = '';
+  protected readonly PREFIX_WARNING = '::warning::';
+  protected readonly PREFIX_ERROR = '::error::';
+}
+
+export const createLogger = (verbose: boolean) => {
+  // https://docs.github.com/en/actions/reference/workflows-and-actions/variables
+  if (process.env.GITHUB_ACTIONS === 'true') {
+    return new GHActionsLogger(verbose);
+  }
+
+  return new BaseLogger(verbose);
+};
+
+export type Logger = BaseLogger;
