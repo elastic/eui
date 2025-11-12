@@ -241,7 +241,7 @@ export type EuiSuperDatePickerProps = CommonProps & {
    *
    * Setting `timeZoneDisplayProps.timeZone` with a valid time zone name will make
    * the time zone information be visible below the start and end input fields.
-   * This is informational only, tt will not affect how date/times are handled.
+   * This is informational only, it will not affect how date/times are handled.
    */
   timeZoneDisplayProps?: EuiTimeZoneDisplayProps;
 };
