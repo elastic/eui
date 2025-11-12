@@ -64,22 +64,22 @@ export const useDataGridColumnSelector = (
 
   const [sortedColumns, setSortedColumns] = useDependentState(() => {
     const availableColumnIds = availableColumns.map(({ id }) => id);
-    const availableSet = new Set(availableColumnIds);
-    // Filter visibleColumns to only include existing columns
+    // remove duplicate columns to ensure unique columns
+    const availableColumnIdsSet = new Set(availableColumnIds);
     const validVisibleColumns = visibleColumns.filter((id) =>
-      availableSet.has(id)
+      availableColumnIdsSet.has(id)
     );
     const visibleSet = new Set(validVisibleColumns);
 
     const result: string[] = [];
     let visibleIndex = 0;
 
-    for (const columnId of availableColumnIds) {
+    for (const columnId of [...availableColumnIdsSet]) {
       if (visibleSet.has(columnId)) {
-        // Replace with next visible column in order
-        result.push(validVisibleColumns[visibleIndex++]);
+        if (visibleIndex < validVisibleColumns.length) {
+          result.push(validVisibleColumns[visibleIndex++]);
+        }
       } else {
-        // Keep hidden column in original position
         result.push(columnId);
       }
     }
@@ -170,8 +170,8 @@ export const useDataGridColumnSelector = (
           <EuiDataGridToolbarControl
             badgeContent={
               numberOfHiddenFields > 0
-                ? `${orderedVisibleColumns.length}/${availableColumns.length}`
-                : availableColumns.length
+                ? `${orderedVisibleColumns.length}/${sortedColumns.length}`
+                : sortedColumns.length
             }
             iconType="tableDensityNormal"
             data-test-subj="dataGridColumnSelectorButton"
