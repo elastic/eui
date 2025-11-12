@@ -79,4 +79,4 @@ jobs:
       - name: Rename git remote to upstream
         run: git remote rename origin upstream
       - name: Build packages and release
-        run: yarn release run snapshot --workspaces @elastic/eslint-plugin-eui --skip-prompts --skip-auth-check --use-auth-token
+        run: yarn release run snapshot --workspaces @elastic/eslint-plugin-eui --skip-prompts --skip-auth-check --use-auth-token --dry-run

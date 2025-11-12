@@ -25,7 +25,7 @@ export const stepPublish = async (
   options: ReleaseOptions,
   workspacesToPublish: Array<YarnWorkspace>
 ) => {
-  const { logger } = options;
+  const { logger, dryRun } = options;
   const rootWorkspaceDir = getRootWorkspaceDir();
 
   const publishedWorkspaces: Array<PublishedWorkspace> = [];
@@ -61,9 +61,9 @@ export const stepPublish = async (
 
       npmExecPublish({
         packageArchivePath: packDetails.output,
-        dryRun: true,
         // tag is always defined at this stage. See release.ts
         tag: options.tag!,
+        dryRun,
         otp,
       });
     } catch (err) {
