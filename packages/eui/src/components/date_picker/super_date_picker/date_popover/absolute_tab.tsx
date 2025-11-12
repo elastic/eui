@@ -44,7 +44,7 @@ const ALLOWED_USER_DATE_FORMATS = [
   'X', // Unix timestamp in seconds
 ];
 
-export type EuiAbsoluteTabProps = {
+export interface EuiAbsoluteTabProps {
   dateFormat: string;
   timeFormat: string;
   locale?: LocaleSpecifier;
@@ -56,7 +56,7 @@ export type EuiAbsoluteTabProps = {
   minDate?: Moment;
   maxDate?: Moment;
   timeZoneDisplayProps?: EuiTimeZoneDisplayProps;
-};
+}
 
 export const EuiAbsoluteTab: FunctionComponent<EuiAbsoluteTabProps> = ({
   value,

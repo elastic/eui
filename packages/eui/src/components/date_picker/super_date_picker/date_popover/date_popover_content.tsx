@@ -28,7 +28,7 @@ import { EuiRelativeTab } from './relative_tab';
 import { euiDatePopoverContentStyles } from './date_popover_content.styles';
 import { type EuiTimeZoneDisplayProps } from './timezone_display';
 
-export type EuiDatePopoverContentProps = {
+export interface EuiDatePopoverContentProps {
   value: string;
   onChange: (date: string) => void;
   canRoundRelativeUnits?: boolean;
@@ -42,7 +42,7 @@ export type EuiDatePopoverContentProps = {
   maxDate?: Moment;
   timeOptions: TimeOptions;
   timeZoneDisplayProps?: EuiTimeZoneDisplayProps;
-};
+}
 
 export const EuiDatePopoverContent: FunctionComponent<
   EuiDatePopoverContentProps

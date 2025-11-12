@@ -48,7 +48,7 @@ import {
   type EuiTimeZoneDisplayProps,
 } from './timezone_display';
 
-export type EuiRelativeTabProps = {
+export interface EuiRelativeTabProps {
   dateFormat: string;
   locale?: LocaleSpecifier;
   value: string;
@@ -57,7 +57,7 @@ export type EuiRelativeTabProps = {
   labelPrefix: string;
   timeOptions: TimeOptions;
   timeZoneDisplayProps?: EuiTimeZoneDisplayProps;
-};
+}
 
 export const EuiRelativeTab: FunctionComponent<EuiRelativeTabProps> = ({
   timeOptions: { relativeOptions, relativeRoundingLabels },

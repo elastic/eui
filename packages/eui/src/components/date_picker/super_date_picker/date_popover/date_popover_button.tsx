@@ -29,7 +29,7 @@ import { type EuiTimeZoneDisplayProps } from './timezone_display';
 
 import { euiDatePopoverButtonStyles } from './date_popover_button.styles';
 
-export type EuiDatePopoverButtonProps = {
+export interface EuiDatePopoverButtonProps {
   className?: string;
   buttonProps?: CommonProps & ButtonHTMLAttributes<HTMLButtonElement>;
   dateFormat: string;
@@ -52,7 +52,7 @@ export type EuiDatePopoverButtonProps = {
   compressed?: boolean;
   timeOptions: TimeOptions;
   timeZoneDisplayProps?: EuiTimeZoneDisplayProps;
-};
+}
 
 export const EuiDatePopoverButton: FunctionComponent<
   EuiDatePopoverButtonProps
