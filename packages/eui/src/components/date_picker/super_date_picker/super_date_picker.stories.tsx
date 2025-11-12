@@ -215,6 +215,7 @@ export const CustomTimeZoneDisplay: Story = {
         <>
           {nameDisplay}
           <EuiButtonIcon
+            aria-label="Time zones database"
             href="https://en.wikipedia.org/wiki/List_of_tz_database_time_zones"
             target="_blank"
             rel="noopener noreferrer"
