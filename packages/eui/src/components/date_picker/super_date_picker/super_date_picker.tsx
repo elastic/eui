@@ -237,7 +237,11 @@ export type EuiSuperDatePickerProps = CommonProps & {
   canRoundRelativeUnits?: boolean;
 
   /**
-   * TODO
+   * Props passed to the time zone display in the popovers {@link EuiTimeZoneDisplayProps}
+   *
+   * Setting `timeZoneDisplayProps.timeZone` with a valid time zone name will make
+   * the time zone information be visible below the start and end input fields.
+   * This is informational only, tt will not affect how date/times are handled.
    */
   timeZoneDisplayProps?: EuiTimeZoneDisplayProps;
 };

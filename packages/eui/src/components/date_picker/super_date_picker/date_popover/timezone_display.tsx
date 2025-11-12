@@ -18,7 +18,7 @@ import { EuiText } from '../../../text';
 
 /**
  * Available elements to render passed to the
- * `timeZoneCustomDisplayRender` render function.
+ * `customRender` render function.
  */
 type TimeZoneCustomDisplayRenderOptions = {
   nameDisplay?: ReactNode;
@@ -26,19 +26,15 @@ type TimeZoneCustomDisplayRenderOptions = {
 
 export type EuiTimeZoneDisplayProps = ComponentPropsWithoutRef<'div'> & {
   /**
-   * A name from IANA time zone database.
-   * Setting this will display the time zone information next to date/time input fields.
-   * This does NOT affect how date/times are handled internally.
+   * A valid time zone name, from the IANA database, e.g. "America/Los_Angeles".
    *
-   * @example "America/Los_Angeles"
    * @link https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
    */
   timeZone?: string;
 
   /**
    * Render prop function to add additional content to the time zone display.
-   * Useful for
-   * @returns
+   * Useful for e.g. adding links to documentation or setting pages.
    */
   customRender?: (options: TimeZoneCustomDisplayRenderOptions) => ReactNode;
 
@@ -51,8 +47,6 @@ export type EuiTimeZoneDisplayProps = ComponentPropsWithoutRef<'div'> & {
 
 /**
  * Display time zone information.
- *
- * @todo pass `locale` and possibly a date for the formatter
  */
 export const EuiTimeZoneDisplay: React.FC<EuiTimeZoneDisplayProps> = ({
   timeZone,
@@ -97,7 +91,7 @@ export const EuiTimeZoneDisplay: React.FC<EuiTimeZoneDisplayProps> = ({
 };
 
 /**
- * Get the UTC offset display in hours e.g. UTC+2 from time zone name.
+ * Get the UTC offset display in hours e.g. "UTC+2" from time zone name.
  *
  * @param timeZoneName IANA time zone name
  * @param [date] Reference date to get offset with Intl.DateTimeFormat
