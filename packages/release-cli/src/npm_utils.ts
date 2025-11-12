@@ -50,10 +50,9 @@ export const npmExecPublish = ({
 
   const otpStr = otp ? `--otp ${otp}` : '';
   const dryRunStr = dryRun ? '--dry-run' : '';
-  console.log(dryRunStr);
-  // TODO: Un-hardcode the tag and dry-run arguments
+  // TODO: Un-hardcode the tag argument
   return execSync(
-    `npm publish ${packageArchivePath} --tag snapshot --access public --dry-run ${otpStr}`,
+    `npm publish ${packageArchivePath} --tag snapshot --access public ${dryRunStr} ${otpStr}`,
     { stdio: 'inherit', encoding: 'utf8' }
   );
 };
