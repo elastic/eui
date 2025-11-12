@@ -80,5 +80,3 @@ jobs:
         run: git remote rename origin upstream
       - name: Build packages and release
         run: yarn release run snapshot --workspaces @elastic/eslint-plugin-eui --skip-prompts --skip-auth-check --use-auth-token --dry-run
-      - name: Check created commits
-        run: git log -p -n 3
