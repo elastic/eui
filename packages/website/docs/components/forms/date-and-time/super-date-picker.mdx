@@ -853,9 +853,9 @@ export default () => {
 
 ## Time zone display
 
-Time zone information can be made visible in the date picker popovers. To do that, pass the time zone name in the `timeZoneDisplay` prop e.g. `timeZoneDisplay="America/Los_Angeles"`.
+Time zone information can be made visible in the date picker popovers. To do that, pass the time zone name in `timeZoneDisplayProps` e.g. `timeZoneDisplayProps={{ timeZone: "America/Los_Angeles" }}`.
 
-Additionally, custom content can be added to the time zone information by leveraging the `timeZoneCustomDisplayRender` render function prop.
+Additionally, custom content can be added to the time zone information by leveraging the `customRender` render function in `timeZoneDisplayProps`.
 
 :::note This is informational only, it **will not** affect how dates are handled internally by the component
 
@@ -897,18 +897,20 @@ export default () => {
         end={end}
         onTimeChange={onTimeChange}
         showUpdateButton={false}
-        timeZoneDisplay={TIME_ZONE_NAME}
-        timeZoneCustomDisplayRender={({ nameDisplay }) => (
-          <>
-            {nameDisplay}
-            <EuiButtonIcon
-              href="https://en.wikipedia.org/wiki/List_of_tz_database_time_zones"
-              target="_blank"
-              rel="noopener noreferrer"
-              iconType="documentation"
-            />
-          </>
-        )}
+        timeZoneDisplayProps={{
+          timeZone: TIME_ZONE_NAME,
+          customRender: ({ nameDisplay }) => (
+            <>
+              {nameDisplay}
+              <EuiButtonIcon
+                href="https://en.wikipedia.org/wiki/List_of_tz_database_time_zones"
+                target="_blank"
+                rel="noopener noreferrer"
+                iconType="documentation"
+              />
+            </>
+          ),
+        }}
       />
     </>
   );
