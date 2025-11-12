@@ -73,6 +73,7 @@ const meta: Meta<EuiSuperDatePickerProps> = {
     commonlyUsedRanges: [{ start: 'now/d', end: 'now/d', label: 'Today' }],
     maxDate: undefined,
     minDate: undefined,
+    timeZoneDisplayProps: { timeZone: 'Browser' },
   },
 };
 enableFunctionToggleControls(meta, ['onTimeChange']);
