@@ -121,6 +121,7 @@ export const EuiRelativeTab: FunctionComponent<EuiRelativeTabProps> = ({
   }, [isInvalid, value, roundUp, locale, dateFormat]);
 
   const relativeDateInputNumberDescriptionId = useGeneratedHtmlId();
+  const timeZomeDescriptionId = useGeneratedHtmlId();
   const numberAriaLabel = useEuiI18n(
     'euiRelativeTab.numberInputLabel',
     'Time span amount'
@@ -180,6 +181,7 @@ export const EuiRelativeTab: FunctionComponent<EuiRelativeTabProps> = ({
           compressed
           value={formattedValue}
           readOnly
+          aria-describedby={timeZomeDescriptionId}
           prepend={<EuiFormLabel>{labelPrefix}</EuiFormLabel>}
         />
         <EuiScreenReaderOnly>
@@ -192,7 +194,10 @@ export const EuiRelativeTab: FunctionComponent<EuiRelativeTabProps> = ({
           </p>
         </EuiScreenReaderOnly>
       </EuiForm>
-      <EuiTimeZoneDisplay {...timeZoneDisplayProps} />
+      <EuiTimeZoneDisplay
+        id={timeZomeDescriptionId}
+        {...timeZoneDisplayProps}
+      />
       <EuiPopoverFooter paddingSize="s">
         <EuiSwitch
           data-test-subj="superDatePickerRelativeDateRoundSwitch"

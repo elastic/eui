@@ -17,7 +17,11 @@ import React, {
 import moment, { Moment, LocaleSpecifier } from 'moment';
 import dateMath from '@elastic/datemath';
 
-import { useUpdateEffect, useEuiMemoizedStyles } from '../../../../services';
+import {
+  useUpdateEffect,
+  useEuiMemoizedStyles,
+  useGeneratedHtmlId,
+} from '../../../../services';
 import { useEuiI18n } from '../../../i18n';
 import { EuiFormRow, EuiFieldText, EuiFormLabel } from '../../../form';
 import { EuiFlexGroup } from '../../../flex';
@@ -86,6 +90,7 @@ export const EuiAbsoluteTab: FunctionComponent<EuiAbsoluteTabProps> = ({
     [dateFormat]
   );
 
+  const timeZomeDescriptionId = useGeneratedHtmlId();
   const submitButtonLabel = useEuiI18n(
     'euiAbsoluteTab.dateFormatButtonLabel',
     'Parse date'
@@ -187,6 +192,7 @@ export const EuiAbsoluteTab: FunctionComponent<EuiAbsoluteTabProps> = ({
           helpText={
             hasUnparsedText && !isTextInvalid ? dateFormatError : undefined
           }
+          describedByIds={[timeZomeDescriptionId]}
         >
           <EuiFieldText
             compressed
@@ -218,7 +224,10 @@ export const EuiAbsoluteTab: FunctionComponent<EuiAbsoluteTabProps> = ({
           />
         )}
       </EuiFlexGroup>
-      <EuiTimeZoneDisplay {...timeZoneDisplayProps} />
+      <EuiTimeZoneDisplay
+        id={timeZomeDescriptionId}
+        {...timeZoneDisplayProps}
+      />
     </>
   );
 };

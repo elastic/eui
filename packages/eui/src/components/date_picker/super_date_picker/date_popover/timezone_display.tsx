@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { type ReactNode } from 'react';
+import React, { type ReactNode, type ComponentPropsWithoutRef } from 'react';
 import { Moment } from 'moment';
 
 import { euiTimeZoneDisplayStyles } from './timezone_display.styles';
@@ -24,7 +24,7 @@ type TimeZoneCustomDisplayRenderOptions = {
   nameDisplay?: ReactNode;
 };
 
-export type EuiTimeZoneDisplayProps = {
+export type EuiTimeZoneDisplayProps = ComponentPropsWithoutRef<'div'> & {
   /**
    * A name from IANA time zone database.
    * Setting this will display the time zone information next to date/time input fields.
@@ -58,6 +58,7 @@ export const EuiTimeZoneDisplay: React.FC<EuiTimeZoneDisplayProps> = ({
   timeZone,
   customRender,
   date,
+  ...rest
 }) => {
   const color = 'subdued';
   const styles = useEuiMemoizedStyles(euiTimeZoneDisplayStyles);
@@ -69,11 +70,12 @@ export const EuiTimeZoneDisplay: React.FC<EuiTimeZoneDisplayProps> = ({
 
   if (!timeZone || isInvalid) return null;
 
+  const label = !name ? utc : `${utc} (${name})`;
   const nameDisplay = (
     <>
       <EuiIcon type="globe" color={color} />
       <EuiText component="span" color={color} size="s">
-        {utc} {name && `(${name})`}
+        {label}
       </EuiText>
     </>
   );
@@ -84,6 +86,8 @@ export const EuiTimeZoneDisplay: React.FC<EuiTimeZoneDisplayProps> = ({
       alignItems="center"
       gutterSize="xs"
       data-test-subj="euiTimeZoneDisplay"
+      aria-label={label}
+      {...rest}
     >
       {typeof customRender === 'function'
         ? customRender({ nameDisplay })
