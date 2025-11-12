@@ -57,3 +57,30 @@ export const npmExecPublish = ({
     { stdio: 'inherit', encoding: 'utf8' }
   );
 };
+
+export const getNpmRegistryServer = async () => {
+  const result = await execPromise('npm config get registry');
+  const url = result.stdout.trim();
+
+  return {
+    url,
+    isOfficial: url === 'https://registry.npmjs.org/',
+  };
+}
+
+export const getNpmAuthenticatedUser = async () => {
+  const result = await execPromise('npm whoami --json');
+  const data = JSON.parse(result.stdout);
+
+  if (typeof data === 'string') {
+    return data;
+  }
+
+  return null;
+};
+
+
+export const getNpmVersion = async () => {
+  const result = await execPromise('npm -v');
+  return result.stdout.trim();
+};

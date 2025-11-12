@@ -8,6 +8,7 @@
 
 import chalk from 'chalk';
 import prompts from 'prompts';
+import semver from 'semver';
 
 import { ValidationError } from '../errors';
 import { type ReleaseOptions } from '../release';
@@ -18,7 +19,42 @@ import {
   getRemoteHeadCommitHash,
   isWorkingTreeClean,
 } from '../git_utils';
-import { getAuthenticatedUser, getYarnRegistryServer } from '../yarn_utils';
+import {
+  getNpmAuthenticatedUser,
+  getNpmRegistryServer,
+  getNpmVersion,
+} from '../npm_utils';
+import { getYarnVersion } from '../yarn_utils';
+
+const checkNpmYarnVersions = async (options: ReleaseOptions) => {
+  const { logger } = options;
+
+  let npmVersion, yarnVersion;
+  try {
+    npmVersion = await getNpmVersion();
+  } catch (err) {
+    throw new ValidationError(
+      'Unable to check npm version. Ensure `npm` is installed and available in PATH'
+    );
+  }
+
+  // npm v11.5.1 is required for trusted publishing
+  if (semver.lt(npmVersion, '11.5.1')) {
+    throw new ValidationError(
+      'The version of npm installed on your system is lower than the required version. Please install npm v11.5.1 or newer.'
+    );
+  }
+
+  try {
+    yarnVersion = await getYarnVersion();
+  } catch (err) {
+    throw new ValidationError(
+      'Unable to check yarn version. Ensure `yarn` is installed and available in PATH'
+    );
+  }
+
+  logger.info(`Using npm v${npmVersion} and yarn v${yarnVersion}`);
+};
 
 /**
  * Check current git branch, working tree status and more to ensure
@@ -40,7 +76,7 @@ export const stepInitChecks = async (options: ReleaseOptions) => {
   if (!(await isWorkingTreeClean())) {
     throw new ValidationError(
       'Git working tree is dirty. Please clean up your working tree' +
-      ' from any uncommited changes and try again.',
+        ' from any uncommited changes and try again.',
       `To clean local changes and restore the branch to remote state,` +
         ` please run:\n  ${chalk.yellowBright(
           `git reset --hard upstream/${currentBranch}`
@@ -75,14 +111,16 @@ export const stepInitChecks = async (options: ReleaseOptions) => {
     )}) on branch ${chalk.underline.bold(currentBranch)}`
   );
 
+  await checkNpmYarnVersions(options);
+
   if (!options.skipAuthCheck) {
-    const registryUser = await getAuthenticatedUser();
+    const registryUser = await getNpmAuthenticatedUser();
     if (!registryUser) {
       throw new ValidationError(
         'Authentication to npmjs is required. Please log in before running' +
           ' this command again.',
         `To authenticate run the following command:\n` +
-          `  ${chalk.yellowBright('yarn npm login')}`
+          `  ${chalk.yellowBright('npm login')}`
       );
     }
 
@@ -91,11 +129,11 @@ export const stepInitChecks = async (options: ReleaseOptions) => {
     logger.info('Skipping the registry authentication check');
   }
 
-  const npmRegistry = await getYarnRegistryServer();
-  if (npmRegistry) {
+  const npmRegistry = await getNpmRegistryServer();
+  if (!npmRegistry.isOfficial) {
     logger.warning(
       chalk.yellow(
-        `A custom npm registry server (${npmRegistry}) will be used!`
+        `A custom npm registry server (${npmRegistry.url}) will be used!`
       )
     );
   } else {

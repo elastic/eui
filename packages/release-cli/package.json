@@ -15,6 +15,7 @@
   },
   "devDependencies": {
     "@types/prompts": "^2.4.9",
+    "@types/semver": "^7",
     "typescript": "^5.7.3"
   },
   "dependencies": {
@@ -22,6 +23,7 @@
     "glob": "^11.0.1",
     "prompts": "^2.4.2",
     "rimraf": "^6.0.1",
+    "semver": "^7.7.3",
     "yargs": "^17.7.2"
   }
 }
