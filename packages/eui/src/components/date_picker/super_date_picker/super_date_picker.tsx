@@ -55,6 +55,7 @@ import {
   EuiQuickSelectButtonProps,
 } from './quick_select_popover/quick_select_popover';
 import { EuiDatePopoverButton } from './date_popover/date_popover_button';
+import { type EuiTimeZoneDisplayProps } from './date_popover/timezone_display';
 
 import { EuiDatePopoverContentProps } from './date_popover/date_popover_content';
 import {
@@ -234,6 +235,15 @@ export type EuiSuperDatePickerProps = CommonProps & {
    * input by the user, set this flag to `false`.
    */
   canRoundRelativeUnits?: boolean;
+
+  /**
+   * Props passed to the time zone display in the popovers {@link EuiTimeZoneDisplayProps}
+   *
+   * Setting `timeZoneDisplayProps.timeZone` with a valid time zone name will make
+   * the time zone information be visible below the start and end input fields.
+   * This is informational only, it will not affect how date/times are handled.
+   */
+  timeZoneDisplayProps?: EuiTimeZoneDisplayProps;
 };
 
 type EuiSuperDatePickerInternalProps = EuiSuperDatePickerProps & {
@@ -575,6 +585,7 @@ export class EuiSuperDatePickerInternal extends Component<
       compressed,
       onFocus,
       memoizedStyles: styles,
+      timeZoneDisplayProps = {},
     } = this.props;
 
     const autoRefreshAppend: EuiFormControlLayoutProps['append'] = !isPaused ? (
@@ -690,6 +701,7 @@ export class EuiSuperDatePickerInternal extends Component<
                   onPopoverClose={this.onStartDatePopoverClose}
                   timeOptions={timeOptions}
                   buttonProps={{ onFocus }}
+                  timeZoneDisplayProps={timeZoneDisplayProps}
                 />
               )
             }
@@ -717,6 +729,7 @@ export class EuiSuperDatePickerInternal extends Component<
                   onPopoverClose={this.onEndDatePopoverClose}
                   timeOptions={timeOptions}
                   buttonProps={{ onFocus }}
+                  timeZoneDisplayProps={timeZoneDisplayProps}
                 />
               )
             }
