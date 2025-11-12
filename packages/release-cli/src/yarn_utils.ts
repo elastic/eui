@@ -38,15 +38,6 @@ export const updateWorkspaceVersion = async (workspace: string, version: string)
   return execPromise(`yarn workspace ${workspace} version ${version}`);
 };
 
-export const execPublish = (workspace: string, tag: string, otp?: string) => {
-  if (!tag) {
-    throw new Error('Tag must be defined');
-  }
-
-  const otpStr = otp ? `--otp ${otp}` : '';
-  return execSync(`yarn workspace ${workspace} npm publish --access public --tag ${tag} ${otpStr}`, { stdio: 'inherit', encoding: 'utf8' });
-};
-
 export interface YarnPackRawDetail {
   base?: string;
   location?: string;
