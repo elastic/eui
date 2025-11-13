@@ -87,3 +87,18 @@ export const useHasChildFlyout = (flyoutId: string) => {
   const session = useSession(flyoutId);
   return !!session?.childFlyoutId;
 };
+
+/** Get the current push padding offsets from manager state. */
+export const usePushPaddingOffsets = () => {
+  const context = useFlyoutManager();
+  if (!context) {
+    return { left: 0, right: 0 };
+  }
+  return context.state.pushPadding ?? { left: 0, right: 0 };
+};
+
+/** True if there's any active push padding (left or right side). */
+export const useHasPushPadding = () => {
+  const pushPadding = usePushPaddingOffsets();
+  return pushPadding.left > 0 || pushPadding.right > 0;
+};
