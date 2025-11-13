@@ -12,6 +12,7 @@ import { prepareStepInitChecks } from './step_init_checks';
 import { prepareStepUpdateVersions } from './step_update_versions';
 import { prepareStepRunPreScripts } from './step_run_pre_post_scripts';
 import { prepareStepCreateReleaseBranch } from './step_create_release_branch';
+import { prepareStepSummary } from './step_summary';
 
 export interface PrepareOptions {
   logger: Logger;
@@ -29,4 +30,6 @@ export const prepare = async (options: PrepareOptions) => {
   await prepareStepUpdateVersions(options, workspaces);
 
   await prepareStepRunPreScripts(options);
+
+  await prepareStepSummary(options);
 };
