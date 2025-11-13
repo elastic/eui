@@ -52,9 +52,7 @@ export const prepareStepInitChecks = async (options: PrepareOptions) => {
 
   if (localHash !== remoteHash) {
     throw new ValidationError(
-      'Local HEAD does not match the remote HEAD. Use --allow-custom to' +
-        ' create a custom non-official release if that really is what' +
-        'you were planning to do.'
+      'Local HEAD does not match the remote HEAD. Please fetch the latest changes from upstream'
     );
   }
 
@@ -73,7 +71,7 @@ export const prepareStepInitChecks = async (options: PrepareOptions) => {
         'This script will: \n' +
         `1. Create a local release branch based on ${currentBranch}\n` +
         '2. Build and version packages\n' +
-        '3. Commit all changes, and open a pull request using GitHub CLI\n' +
+        '3. Commit all changes\n' +
         'Do you want to proceed?',
     });
 
