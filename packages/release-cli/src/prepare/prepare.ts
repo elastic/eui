@@ -11,6 +11,7 @@ import { processWorkspacesArgument } from '../utils/workspaces';
 import { prepareStepInitChecks } from './step_init_checks';
 import { prepareStepUpdateVersions } from './step_update_versions';
 import { prepareStepRunPreScripts } from './step_run_pre_post_scripts';
+import { prepareStepCreateReleaseBranch } from './step_create_release_branch';
 
 export interface PrepareOptions {
   logger: Logger;
@@ -19,11 +20,11 @@ export interface PrepareOptions {
 }
 
 export const prepare = async (options: PrepareOptions) => {
-  const { logger } = options;
-
   const workspaces = await processWorkspacesArgument(options.workspaces);
 
   await prepareStepInitChecks(options);
+
+  await prepareStepCreateReleaseBranch(options);
 
   await prepareStepUpdateVersions(options, workspaces);
 

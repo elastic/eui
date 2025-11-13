@@ -63,3 +63,7 @@ export const isFileAddedToGit = async (file: string) => {
   const result = await execPromise(`git ls-files --exclude-standard "${file}"`);
   return result.stdout.length > 0;
 }
+
+export const createBranch = async (branchName: string) => {
+  return execPromise(`git checkout -b ${branchName}`);
+}
