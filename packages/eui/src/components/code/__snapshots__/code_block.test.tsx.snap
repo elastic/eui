@@ -5,26 +5,6 @@ exports[`EuiCodeBlock Virtualization renders a virtualized code block 1`] = `
   class="euiCodeBlock testClass1 testClass2 emotion-euiCodeBlock-s-hasControls-euiTestCss"
   style="block-size: 50%;"
 >
-  <span
-    aria-hidden="true"
-    class="euiScreenReaderOnly"
-    data-tabular-copy-marker="no-copy"
-  >
-    ✄𐘗
-  </span>
-  <div
-    class="emotion-euiScreenReaderOnly"
-  >
-    aria-label, 
-    text code block:
-  </div>
-  <span
-    aria-hidden="true"
-    class="euiScreenReaderOnly"
-    data-tabular-copy-marker="no-copy"
-  >
-    ✄𐘗
-  </span>
   <div
     data-eui="EuiAutoSizer"
   >
@@ -33,6 +13,26 @@ exports[`EuiCodeBlock Virtualization renders a virtualized code block 1`] = `
       style="position: relative; block-size: 600px; inline-size: 600px; overflow: auto; will-change: transform; direction: ltr;"
       tabindex="0"
     >
+      <span
+        aria-hidden="true"
+        class="euiScreenReaderOnly"
+        data-tabular-copy-marker="no-copy"
+      >
+        ✄𐘗
+      </span>
+      <div
+        class="emotion-euiScreenReaderOnly"
+      >
+        aria-label, 
+        text code block:
+      </div>
+      <span
+        aria-hidden="true"
+        class="euiScreenReaderOnly"
+        data-tabular-copy-marker="no-copy"
+      >
+        ✄𐘗
+      </span>
       <code
         class="euiCodeBlock__code emotion-euiCodeBlock__code-isVirtualized"
         data-code-language="text"
@@ -78,30 +78,30 @@ exports[`EuiCodeBlock renders a code block 1`] = `
 <div
   class="euiCodeBlock testClass1 testClass2 emotion-euiCodeBlock-s-euiTestCss"
 >
-  <span
-    aria-hidden="true"
-    class="euiScreenReaderOnly"
-    data-tabular-copy-marker="no-copy"
-  >
-    ✄𐘗
-  </span>
-  <div
-    class="emotion-euiScreenReaderOnly"
-  >
-    aria-label, 
-    text code block:
-  </div>
-  <span
-    aria-hidden="true"
-    class="euiScreenReaderOnly"
-    data-tabular-copy-marker="no-copy"
-  >
-    ✄𐘗
-  </span>
   <pre
     class="euiCodeBlock__pre emotion-euiCodeBlock__pre-preWrap-padding"
     tabindex="-1"
   >
+    <span
+      aria-hidden="true"
+      class="euiScreenReaderOnly"
+      data-tabular-copy-marker="no-copy"
+    >
+      ✄𐘗
+    </span>
+    <div
+      class="emotion-euiScreenReaderOnly"
+    >
+      aria-label, 
+      text code block:
+    </div>
+    <span
+      aria-hidden="true"
+      class="euiScreenReaderOnly"
+      data-tabular-copy-marker="no-copy"
+    >
+      ✄𐘗
+    </span>
     <code
       class="euiCodeBlock__code emotion-euiCodeBlock__code"
       data-code-language="text"

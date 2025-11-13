@@ -32,8 +32,9 @@ export const EuiCodeBlockVirtualized = ({
   preProps: HTMLAttributes<HTMLPreElement>;
   codeProps: HTMLAttributes<HTMLElement>;
 }) => {
-  // FIX: Don't inject label inside the virtualized container
+  // FIX: Don't inject label inside the outer virtualized container (pre element)
   // react-window expects the outer element to be clean for proper scroll calculations
+  // Instead, inject it into the inner element (code element) to preserve accessibility
   const VirtualizedOuterElement = useMemo(
     () =>
       forwardRef<any, any>(({ style, ...props }, ref) => (
@@ -45,14 +46,17 @@ export const EuiCodeBlockVirtualized = ({
   const VirtualizedInnerElement = useMemo(
     () =>
       forwardRef<any, any>(({ style, ...props }, ref) => (
-        <code
-          style={logicalStyles(style)}
-          {...props}
-          ref={ref}
-          {...codeProps}
-        />
+        <>
+          {label}
+          <code
+            style={logicalStyles(style)}
+            {...props}
+            ref={ref}
+            {...codeProps}
+          />
+        </>
       )),
-    [codeProps]
+    [codeProps, label]
   );
 
   const virtualizationProps = {
@@ -86,14 +90,7 @@ export const EuiCodeBlockVirtualized = ({
       </EuiAutoSizer>
     );
 
-  // Render the accessibility label outside the virtualized container
-  // This preserves accessibility while fixing virtualization bugs
-  return (
-    <>
-      {label}
-      {virtualizedList}
-    </>
-  );
+  return virtualizedList;
 };
 
 const ListRow = ({ data, index, style }: ListChildComponentProps) => {
