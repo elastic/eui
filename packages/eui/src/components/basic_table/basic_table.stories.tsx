@@ -7,6 +7,7 @@
  */
 
 import React, { useCallback, useEffect, useState } from 'react';
+import { css } from '@emotion/react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { faker } from '@faker-js/faker';
@@ -364,6 +365,32 @@ export const HighContrastMobile: Story = {
   args: {
     ...ExpandedRow.args,
     responsiveBreakpoint: true,
+  },
+};
+
+export const LargeExpandedRow: Story = {
+  tags: ['vrt-only'],
+  args: {
+    tableCaption: 'EuiBasicTable playground',
+    items: users,
+    itemId: 'id',
+    rowHeader: 'firstName',
+    columns,
+    css: css`
+      margin-block-start: -300px;
+    `,
+    itemIdToExpandedRowMap: {
+      1: (
+        <div
+          css={css`
+            block-size: 100vh;
+          `}
+        >
+          <strong>Expanded row 1</strong>
+          <p>lorem ipsum dolor sit</p>
+        </div>
+      ),
+    },
   },
 };
 

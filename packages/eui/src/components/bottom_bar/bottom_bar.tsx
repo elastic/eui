@@ -18,6 +18,7 @@ import React, {
 import {
   useCombinedRefs,
   useEuiMemoizedStyles,
+  useEuiThemeCSSVariables,
   EuiThemeProvider,
 } from '../../services';
 import { EuiScreenReaderOnly } from '../accessibility';
@@ -120,6 +121,7 @@ const _EuiBottomBar = forwardRef<
     ref
   ) => {
     const styles = useEuiMemoizedStyles(euiBottomBarStyles);
+    const { setGlobalCSSVariables } = useEuiThemeCSSVariables();
 
     // Force some props if `fixed` position, but not if the user has supplied these
     affordForDisplacement =
@@ -134,6 +136,11 @@ const _EuiBottomBar = forwardRef<
     useEffect(() => {
       if (affordForDisplacement && usePortal) {
         document.body.style.paddingBottom = `${dimensions.height}px`;
+
+        // EUI doesn't use this css variable, but it is useful for consumers
+        setGlobalCSSVariables({
+          '--euiBottomBarOffset': `${dimensions.height}px`,
+        });
       }
 
       if (bodyClassName) {
@@ -143,13 +150,22 @@ const _EuiBottomBar = forwardRef<
       return () => {
         if (affordForDisplacement && usePortal) {
           document.body.style.paddingBottom = '';
+          setGlobalCSSVariables({
+            '--euiBottomBarOffset': null,
+          });
         }
 
         if (bodyClassName) {
           document.body.classList.remove(bodyClassName);
         }
       };
-    }, [affordForDisplacement, usePortal, dimensions, bodyClassName]);
+    }, [
+      affordForDisplacement,
+      usePortal,
+      dimensions,
+      bodyClassName,
+      setGlobalCSSVariables,
+    ]);
 
     const classes = classNames(
       'euiBottomBar',

@@ -159,9 +159,9 @@ export const euiTableRowStyles = (euiThemeContext: UseEuiTheme) => {
           ${logicalCSS('border-top', 'none')}
         }
 
-        /* prevent the shadow from overlapping;
+        /* prevent the shadow from overlapping; uses 150% to add buffer for overflowing content
         NOTE: we might want to consider refactoring tables to use tbody grouping to apply styles for a row group */
-        clip-path: polygon(-50% 0, 150% 0, 150% 100vh, -50% 100vh);
+        clip-path: polygon(-50% 0, 150% 0, 150% 150%, -50% 150%);
 
         > .euiTableRowCell {
           ${logicalCSS('width', '100%')}
