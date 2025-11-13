@@ -44,7 +44,8 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "pre-push": "yarn test-staged",
-    "prerelease": "node ./scripts/prerelease.mjs"
+    "prerelease": "node ./scripts/prerelease.mjs",
+    "prereleaseprepare": "yarn build:i18ntokens && node ./scripts/prerelease.mjs"
   },
   "repository": {
     "type": "git",

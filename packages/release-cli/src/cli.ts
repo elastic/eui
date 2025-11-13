@@ -9,12 +9,14 @@
 import yargs from 'yargs/yargs';
 import { hideBin } from 'yargs/helpers';
 
+import { PrepareCommand } from './prepare/command';
 import { ValidationError } from './errors';
 import { createLogger } from './logger';
 import { release, type ReleaseType } from './release';
 
 export const cli = () => {
   yargs(hideBin(process.argv))
+    .command(new PrepareCommand())
     .command(
       'run <type> [--tag] [--workspaces] [--allowCustom] [--verbose | -v]',
       'Run the release process',
