@@ -32,9 +32,9 @@ export const EuiCodeBlockVirtualized = ({
   preProps: HTMLAttributes<HTMLPreElement>;
   codeProps: HTMLAttributes<HTMLElement>;
 }) => {
-  // FIX: Don't inject label inside the outer virtualized container (pre element)
-  // react-window expects the outer element to be clean for proper scroll calculations
-  // Instead, inject it into the inner element (code element) to preserve accessibility
+  // NOTE: Don't inject other content (e.g. a label) inside this outer virtualized
+  // container as react-window requires this to be stable for scroll calculations.
+  // Instead, inject it into the inner virtualized element.
   const VirtualizedOuterElement = useMemo(
     () =>
       forwardRef<any, any>(({ style, ...props }, ref) => (
@@ -67,30 +67,27 @@ export const EuiCodeBlockVirtualized = ({
     innerElementType: VirtualizedInnerElement,
   };
 
-  const virtualizedList =
-    typeof overflowHeight === 'number' ? (
-      <EuiAutoSizer disableHeight={true}>
-        {({ width }: EuiAutoSizeHorizontal) => (
-          <FixedSizeList
-            height={overflowHeight}
-            width={width}
-            {...virtualizationProps}
-          >
-            {ListRow}
-          </FixedSizeList>
-        )}
-      </EuiAutoSizer>
-    ) : (
-      <EuiAutoSizer>
-        {({ height, width }: EuiAutoSize) => (
-          <FixedSizeList height={height} width={width} {...virtualizationProps}>
-            {ListRow}
-          </FixedSizeList>
-        )}
-      </EuiAutoSizer>
-    );
-
-  return virtualizedList;
+  return typeof overflowHeight === 'number' ? (
+    <EuiAutoSizer disableHeight={true}>
+      {({ width }: EuiAutoSizeHorizontal) => (
+        <FixedSizeList
+          height={overflowHeight}
+          width={width}
+          {...virtualizationProps}
+        >
+          {ListRow}
+        </FixedSizeList>
+      )}
+    </EuiAutoSizer>
+  ) : (
+    <EuiAutoSizer>
+      {({ height, width }: EuiAutoSize) => (
+        <FixedSizeList height={height} width={width} {...virtualizationProps}>
+          {ListRow}
+        </FixedSizeList>
+      )}
+    </EuiAutoSizer>
+  );
 };
 
 const ListRow = ({ data, index, style }: ListChildComponentProps) => {
