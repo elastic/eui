@@ -159,7 +159,13 @@ const _EuiBottomBar = forwardRef<
           document.body.classList.remove(bodyClassName);
         }
       };
-    }, [affordForDisplacement, usePortal, dimensions, bodyClassName, setGlobalCSSVariables]);
+    }, [
+      affordForDisplacement,
+      usePortal,
+      dimensions,
+      bodyClassName,
+      setGlobalCSSVariables,
+    ]);
 
     const classes = classNames(
       'euiBottomBar',

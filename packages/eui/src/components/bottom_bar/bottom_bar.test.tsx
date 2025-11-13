@@ -99,31 +99,29 @@ describe('EuiBottomBar', () => {
       );
 
       // The CSS variable should be set on the document root
-      const cssVarValue = getComputedStyle(document.documentElement).getPropertyValue(
-        '--euiBottomBarOffset'
-      );
+      const cssVarValue = getComputedStyle(
+        document.documentElement
+      ).getPropertyValue('--euiBottomBarOffset');
       expect(cssVarValue).toBeTruthy();
       expect(cssVarValue).toMatch(/\d+px/);
 
       unmount();
 
       // After unmounting, the CSS variable should be cleared
-      const clearedValue = getComputedStyle(document.documentElement).getPropertyValue(
-        '--euiBottomBarOffset'
-      );
+      const clearedValue = getComputedStyle(
+        document.documentElement
+      ).getPropertyValue('--euiBottomBarOffset');
       expect(clearedValue.trim()).toBe('');
     });
 
     test('does not set css variable when affordForDisplacement is false', () => {
       render(
-        <EuiBottomBar affordForDisplacement={false}>
-          Content
-        </EuiBottomBar>
+        <EuiBottomBar affordForDisplacement={false}>Content</EuiBottomBar>
       );
 
-      const cssVarValue = getComputedStyle(document.documentElement).getPropertyValue(
-        '--euiBottomBarOffset'
-      );
+      const cssVarValue = getComputedStyle(
+        document.documentElement
+      ).getPropertyValue('--euiBottomBarOffset');
       expect(cssVarValue.trim()).toBe('');
     });
 
@@ -134,30 +132,26 @@ describe('EuiBottomBar', () => {
         </EuiBottomBar>
       );
 
-      const cssVarValue = getComputedStyle(document.documentElement).getPropertyValue(
-        '--euiBottomBarOffset'
-      );
+      const cssVarValue = getComputedStyle(
+        document.documentElement
+      ).getPropertyValue('--euiBottomBarOffset');
       expect(cssVarValue.trim()).toBe('');
     });
 
     test('does not set css variable for non-fixed positions', () => {
       const { unmount: unmountSticky } = render(
-        <EuiBottomBar position="sticky">
-          Content
-        </EuiBottomBar>
+        <EuiBottomBar position="sticky">Content</EuiBottomBar>
       );
 
-      let cssVarValue = getComputedStyle(document.documentElement).getPropertyValue(
-        '--euiBottomBarOffset'
-      );
+      let cssVarValue = getComputedStyle(
+        document.documentElement
+      ).getPropertyValue('--euiBottomBarOffset');
       expect(cssVarValue.trim()).toBe('');
 
       unmountSticky();
 
       const { unmount: unmountStatic } = render(
-        <EuiBottomBar position="static">
-          Content
-        </EuiBottomBar>
+        <EuiBottomBar position="static">Content</EuiBottomBar>
       );
 
       cssVarValue = getComputedStyle(document.documentElement).getPropertyValue(
