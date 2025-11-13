@@ -13,19 +13,21 @@ import userEvent from '@testing-library/user-event';
 import { render, renderHook, renderHookAct } from '../../../test/rtl';
 
 import {
-  TimeWindowButtons,
-  useTimeWindow,
+  EuiTimeWindowButtons,
+  useEuiTimeWindow,
   ZOOM_FACTOR_DEFAULT,
 } from './time_window_buttons';
 
-describe('TimeWindowButtons: useTimeWindow hook', () => {
+describe('EuiTimeWindowButtons: useEuiTimeWindow hook', () => {
   describe('displayInterval', () => {
     it('handles relative times', () => {
       const applyTime = jest.fn();
       const start = 'now-15m';
       const end = 'now';
 
-      const { result } = renderHook(() => useTimeWindow(start, end, applyTime));
+      const { result } = renderHook(() =>
+        useEuiTimeWindow(start, end, applyTime)
+      );
 
       expect(result.current.displayInterval).toBe('15 minutes');
     });
@@ -35,7 +37,9 @@ describe('TimeWindowButtons: useTimeWindow hook', () => {
       const start = '2025-10-29T16:00:00.000Z';
       const end = '2025-10-29T16:15:00.000Z';
 
-      const { result } = renderHook(() => useTimeWindow(start, end, applyTime));
+      const { result } = renderHook(() =>
+        useEuiTimeWindow(start, end, applyTime)
+      );
 
       expect(result.current.displayInterval).toBe('15 minutes');
     });
@@ -45,8 +49,10 @@ describe('TimeWindowButtons: useTimeWindow hook', () => {
       const start = undefined;
       const end = '2025-10-29T16:15:00.000Z';
 
-      // @ts-expect-error - intentionally testing with undefined start value
-      const { result } = renderHook(() => useTimeWindow(start, end, applyTime));
+      const { result } = renderHook(() =>
+        // @ts-expect-error - intentionally testing with undefined start value
+        useEuiTimeWindow(start, end, applyTime)
+      );
 
       expect(result.current.displayInterval).toBe('');
       expect(result.current.isInvalid).toBeTruthy();
@@ -57,7 +63,9 @@ describe('TimeWindowButtons: useTimeWindow hook', () => {
       const start = '2025-10-29T16:00:00.000Z';
       const end = 'not a date';
 
-      const { result } = renderHook(() => useTimeWindow(start, end, applyTime));
+      const { result } = renderHook(() =>
+        useEuiTimeWindow(start, end, applyTime)
+      );
 
       expect(result.current.displayInterval).toBe('');
       expect(result.current.isInvalid).toBeTruthy();
@@ -68,7 +76,9 @@ describe('TimeWindowButtons: useTimeWindow hook', () => {
       const start = '2025-10-27T16:00:01.000Z';
       const end = '2025-10-29T16:12:00.000Z';
 
-      const { result } = renderHook(() => useTimeWindow(start, end, applyTime));
+      const { result } = renderHook(() =>
+        useEuiTimeWindow(start, end, applyTime)
+      );
 
       expect(result.current.displayInterval).toBe('~2 days');
     });
@@ -80,7 +90,9 @@ describe('TimeWindowButtons: useTimeWindow hook', () => {
       const start = '2025-10-30T10:00:00.000Z';
       const end = '2025-10-30T11:00:00.000Z';
 
-      const { result } = renderHook(() => useTimeWindow(start, end, applyTime));
+      const { result } = renderHook(() =>
+        useEuiTimeWindow(start, end, applyTime)
+      );
 
       renderHookAct(() => {
         result.current.stepForward();
@@ -99,7 +111,9 @@ describe('TimeWindowButtons: useTimeWindow hook', () => {
       const start = '2025-10-30T10:00:00.000Z';
       const end = '2025-10-30T11:00:00.000Z';
 
-      const { result } = renderHook(() => useTimeWindow(start, end, applyTime));
+      const { result } = renderHook(() =>
+        useEuiTimeWindow(start, end, applyTime)
+      );
 
       renderHookAct(() => {
         result.current.stepBackward();
@@ -124,7 +138,9 @@ describe('TimeWindowButtons: useTimeWindow hook', () => {
       );
       const shiftedEnd = moment(end).add(ZOOM_FACTOR_DEFAULT / 2, 'hours');
 
-      const { result } = renderHook(() => useTimeWindow(start, end, applyTime));
+      const { result } = renderHook(() =>
+        useEuiTimeWindow(start, end, applyTime)
+      );
 
       renderHookAct(() => {
         result.current.expandWindow();
@@ -149,7 +165,9 @@ describe('TimeWindowButtons: useTimeWindow hook', () => {
       const shiftedEnd = moment(end).add(customZoomFactor / 2, 'hours');
 
       const { result } = renderHook(() =>
-        useTimeWindow(start, end, applyTime, { zoomFactor: customZoomFactor })
+        useEuiTimeWindow(start, end, applyTime, {
+          zoomFactor: customZoomFactor,
+        })
       );
 
       renderHookAct(() => {
@@ -164,13 +182,13 @@ describe('TimeWindowButtons: useTimeWindow hook', () => {
   });
 });
 
-describe('TimeWindowButtons', () => {
+describe('EuiTimeWindowButtons', () => {
   it('renders', () => {
     const start = 'now-15m';
     const end = 'now';
 
     const { container } = render(
-      <TimeWindowButtons start={start} end={end} applyTime={() => {}} />
+      <EuiTimeWindowButtons start={start} end={end} applyTime={() => {}} />
     );
 
     expect(container.firstChild).toMatchSnapshot();
@@ -184,7 +202,7 @@ describe('TimeWindowButtons', () => {
     const end = 'now';
 
     const { getByTestSubject, findByText } = render(
-      <TimeWindowButtons start={start} end={end} applyTime={apply} />
+      <EuiTimeWindowButtons start={start} end={end} applyTime={apply} />
     );
 
     act(() => {

@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`TimeWindowButtons renders 1`] = `
+exports[`EuiTimeWindowButtons renders 1`] = `
 <div
-  class="euiSuperDatePicker__timeWindowButtons emotion-euiButtonGroup__buttons-m-TimeWindowButtons"
+  class="euiSuperDatePicker__timeWindowButtons emotion-euiButtonGroup__buttons-m-EuiTimeWindowButtons"
   data-test-subj="timeWindowButtons"
 >
   <span

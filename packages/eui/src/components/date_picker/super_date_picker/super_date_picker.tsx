@@ -40,8 +40,8 @@ import {
 import { TimeOptions, RenderI18nTimeOptions } from './time_options';
 import { PrettyDuration, showPrettyDuration } from './pretty_duration';
 import {
-  TimeWindowButtons,
-  type TimeWindowButtonsConfig,
+  EuiTimeWindowButtons,
+  type EuiTimeWindowButtonsConfig,
 } from './time_window_buttons';
 import { AsyncInterval } from './async_interval';
 
@@ -211,7 +211,7 @@ export type EuiSuperDatePickerProps = CommonProps & {
    * Set to true to display buttons for time shifting and zooming out,
    * next to the top-level control.
    */
-  showTimeWindowButtons?: boolean | TimeWindowButtonsConfig;
+  showTimeWindowButtons?: boolean | EuiTimeWindowButtonsConfig;
 
   /**
    * Hides the actual input reducing to just the quick select button.
@@ -758,7 +758,7 @@ export class EuiSuperDatePickerInternal extends Component<
       typeof showTimeWindowButtons === 'boolean' ? {} : showTimeWindowButtons;
 
     return (
-      <TimeWindowButtons
+      <EuiTimeWindowButtons
         applyTime={this.applyQuickTime}
         start={start}
         end={end}

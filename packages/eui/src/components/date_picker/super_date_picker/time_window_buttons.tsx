@@ -21,7 +21,7 @@ import { useEuiI18n } from '../../i18n';
 
 export const ZOOM_FACTOR_DEFAULT = 0.5;
 
-export interface TimeWindowButtonsConfig {
+export interface EuiTimeWindowButtonsConfig {
   /**
    * Show button for zooming out
    * @default true
@@ -40,7 +40,7 @@ export interface TimeWindowButtonsConfig {
   zoomFactor?: number | string;
 }
 
-export type TimeWindowButtonsProps = TimeWindowButtonsConfig & {
+export type EuiTimeWindowButtonsProps = EuiTimeWindowButtonsConfig & {
   applyTime: ApplyTime;
   start: ShortDate;
   end: ShortDate;
@@ -48,12 +48,11 @@ export type TimeWindowButtonsProps = TimeWindowButtonsConfig & {
   isDisabled?: boolean;
 };
 
-// TODO rename to add eui prefix e.g. EuiTimeWindowButtons
 /**
  * Button group with time window controls for shifting the time window
  * forwards and backwards, and zooming out.
  */
-export const TimeWindowButtons: React.FC<TimeWindowButtonsProps> = ({
+export const EuiTimeWindowButtons: React.FC<EuiTimeWindowButtonsProps> = ({
   applyTime,
   start,
   end,
@@ -74,7 +73,7 @@ export const TimeWindowButtons: React.FC<TimeWindowButtonsProps> = ({
     stepForward,
     stepBackward,
     expandWindow,
-  } = useTimeWindow(start, end, applyTime, { zoomFactor });
+  } = useEuiTimeWindow(start, end, applyTime, { zoomFactor });
 
   const invalidShiftDescription = useEuiI18n(
     'euiTimeWindowButtons.invalidShiftLabel',
@@ -188,11 +187,11 @@ export const TimeWindowButtons: React.FC<TimeWindowButtonsProps> = ({
 /**
  * Partly adapted from date_picker/super_date_picker/quick_select_popover/quick_select.tsx
  */
-export function useTimeWindow(
+export function useEuiTimeWindow(
   start: ShortDate,
   end: ShortDate,
   apply: ApplyTime,
-  options?: { zoomFactor?: TimeWindowButtonsConfig['zoomFactor'] }
+  options?: { zoomFactor?: EuiTimeWindowButtonsConfig['zoomFactor'] }
 ) {
   const min = dateMath.parse(start);
   const max = dateMath.parse(end, { roundUp: true });
