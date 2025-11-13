@@ -209,6 +209,21 @@ export default () => {
 };
 ```
 
+### Relative positioning
+
+When `affordForDisplacement` is enabled and the bottom bar is positioned as `fixed`, **EuiBottomBar** automatically sets a global CSS variable that you can use to position other fixed elements in your application relative to the bottom bar's height:
+
+- `--euiBottomBarOffset` (Set when `affordForDisplacement={true}` and `position="fixed"`)
+
+This variable is automatically updated when the bottom bar resizes and is removed when the bottom bar is closed.
+
+```css
+.custom-fixed-footer {
+  /* Adjust footer position when bottom bar is visible */
+  padding-bottom: var(--euiBottomBarOffset, 0);
+}
+```
+
 ## Props
 
 import docgen from '@elastic/eui-docgen/dist/components/bottom_bar';
