@@ -9,10 +9,10 @@
 import path from 'node:path';
 import chalk from 'chalk';
 import prompts from 'prompts';
-import { type ReleaseOptions } from '../release';
 import { getRootWorkspaceDir, getWorkspacePackageJson } from '../workspace';
 import { yarnPack, YarnWorkspace } from '../yarn_utils';
 import { npmExecPublish } from '../npm_utils';
+import { type ReleaseOptions } from './release';
 
 interface PublishedWorkspace extends YarnWorkspace {
   version: string;

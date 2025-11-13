@@ -11,7 +11,6 @@ import prompts from 'prompts';
 import semver from 'semver';
 
 import { ValidationError } from '../errors';
-import { type ReleaseOptions } from '../release';
 import {
   getCommitMessage,
   getCurrentBranch,
@@ -25,6 +24,7 @@ import {
   getNpmVersion,
 } from '../npm_utils';
 import { getYarnVersion } from '../yarn_utils';
+import { type ReleaseOptions } from './release';
 
 const checkNpmYarnVersions = async (options: ReleaseOptions) => {
   const { logger } = options;

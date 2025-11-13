@@ -8,7 +8,7 @@
 
 import { execSync } from 'node:child_process';
 
-import { type ReleaseOptions } from '../release';
+import { type ReleaseOptions } from './release';
 
 // A list of very specific packages to exclude when building
 // Should probably become a configuration option at some point

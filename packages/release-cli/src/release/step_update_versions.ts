@@ -7,7 +7,6 @@
  */
 
 import path from 'node:path';
-import { type ReleaseOptions } from '../release';
 import { type YarnWorkspace, updateWorkspaceVersion } from '../yarn_utils';
 import {
   getRootWorkspaceDir,
@@ -26,6 +25,7 @@ import {
   getVersionTypeFromChangelog,
 } from '../version';
 import { commitFiles, isFileAddedToGit, stageFiles } from '../git_utils';
+import { type ReleaseOptions } from './release';
 
 /**
  * Update version numbers and yearly changelogs based on workspace

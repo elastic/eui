@@ -8,16 +8,16 @@
 
 import chalk from 'chalk';
 
-import { ValidationError } from './errors';
-import type { Logger } from './logger';
-import { getYarnWorkspaces, YarnWorkspace } from './yarn_utils';
+import { ValidationError } from '../errors';
+import type { Logger } from '../logger';
+import { getYarnWorkspaces, YarnWorkspace } from '../yarn_utils';
 
-import { stepInitChecks } from './steps/init_checks';
-import { stepBuildPackages } from './steps/build_packages';
-import { stepUpdateVersions } from './steps/update_versions';
-import { stepCheckWorkspaces } from './steps/check_workspaces';
-import { stepPublish } from './steps/publish';
-import { stepRunPreScripts, stepRunPostScripts } from './steps/run_pre_post_scripts';
+import { stepInitChecks } from './step_init_checks';
+import { stepBuildPackages } from './step_build_packages';
+import { stepUpdateVersions } from './step_update_versions';
+import { stepCheckWorkspaces } from './step_check_workspaces';
+import { stepPublish } from './step_publish';
+import { stepRunPreScripts, stepRunPostScripts } from './step_run_pre_post_scripts';
 
 export const ReleaseType = ['official', 'snapshot'] as const;
 export type ReleaseType = (typeof ReleaseType)[number];

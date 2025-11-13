@@ -6,8 +6,8 @@
  * Side Public License, v 1.
  */
 
-import { type ReleaseOptions } from '../release';
 import { runScriptOnAllWorkspaces } from '../yarn_utils';
+import { type ReleaseOptions } from './release';
 
 /**
  * Runs the `prerelease` script in all workspaces that define it in their

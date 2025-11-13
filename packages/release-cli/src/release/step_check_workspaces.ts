@@ -7,7 +7,7 @@
  */
 
 import path from 'node:path';
-import { type ReleaseOptions } from '../release';
+import { type ReleaseOptions } from './release';
 import { type YarnWorkspace } from '../yarn_utils';
 import { getNpmPublishedVersions } from '../npm_utils';
 import { getRootWorkspaceDir, getWorkspacePackageJson } from '../workspace';
