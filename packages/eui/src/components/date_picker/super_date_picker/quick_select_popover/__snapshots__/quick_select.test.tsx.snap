@@ -22,6 +22,7 @@ exports[`EuiQuickSelect is rendered 1`] = `
       >
         <span
           class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+          id="generated-id_euiToolTipAnchor"
         >
           <button
             aria-label="Previous time window"
@@ -42,6 +43,7 @@ exports[`EuiQuickSelect is rendered 1`] = `
       >
         <span
           class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+          id="generated-id_euiToolTipAnchor"
         >
           <button
             aria-label="Next time window"
@@ -239,6 +241,7 @@ exports[`EuiQuickSelect prevQuickSelect 1`] = `
       >
         <span
           class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+          id="generated-id_euiToolTipAnchor"
         >
           <button
             aria-label="Previous time window"
@@ -259,6 +262,7 @@ exports[`EuiQuickSelect prevQuickSelect 1`] = `
       >
         <span
           class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+          id="generated-id_euiToolTipAnchor"
         >
           <button
             aria-label="Next time window"

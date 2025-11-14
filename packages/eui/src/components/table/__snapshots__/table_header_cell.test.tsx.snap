@@ -126,6 +126,7 @@ exports[`EuiTableHeaderCell sorting renders a button with onSort 1`] = `
       >
         <span
           class="euiToolTipAnchor emotion-euiToolTipAnchor-block"
+          id="generated-id-wrapper"
         >
           <button
             class="euiTableHeaderButton euiTableHeaderButton-isSorted emotion-euiTableHeaderCell__button"
@@ -226,6 +227,7 @@ exports[`EuiTableHeaderCell sorting renders with a sortable icon if \`onSort\` i
       >
         <span
           class="euiToolTipAnchor emotion-euiToolTipAnchor-block"
+          id="generated-id-wrapper"
         >
           <button
             class="euiTableHeaderButton emotion-euiTableHeaderCell__button"

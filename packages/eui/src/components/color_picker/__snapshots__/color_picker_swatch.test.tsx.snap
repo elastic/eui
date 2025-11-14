@@ -3,6 +3,7 @@
 exports[`EuiColorPickerSwatch is rendered 1`] = `
 <span
   class="euiToolTipAnchor  emotion-euiToolTipAnchor-inlineBlock-tooltip"
+  id="generated-id_euiToolTipAnchor"
 >
   <button
     aria-label="aria-label"

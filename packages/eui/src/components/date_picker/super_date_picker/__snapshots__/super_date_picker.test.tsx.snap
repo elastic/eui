@@ -57,6 +57,7 @@ exports[`EuiSuperDatePicker props accepts data-test-subj and passes to EuiFormCo
   </div>
   <span
     class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+    id="generated-id-wrapper"
   >
     <button
       class="euiButton euiSuperUpdateButton emotion-euiButtonDisplay-m-fill-primary"
@@ -134,6 +135,7 @@ exports[`EuiSuperDatePicker props compressed is rendered 1`] = `
   </div>
   <span
     class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+    id="generated-id-wrapper"
   >
     <button
       class="euiButton euiSuperUpdateButton emotion-euiButtonDisplay-s-fill-primary"
@@ -339,6 +341,7 @@ exports[`EuiSuperDatePicker props isDisabled true 1`] = `
   </div>
   <span
     class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+    id="generated-id-wrapper"
   >
     <button
       class="euiButton euiSuperUpdateButton emotion-euiButtonDisplay-m-isDisabled-fill-disabled"
@@ -405,6 +408,7 @@ exports[`EuiSuperDatePicker props isQuickSelectOnly is rendered 1`] = `
   </div>
   <span
     class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+    id="generated-id-wrapper"
   >
     <button
       class="euiButton euiSuperUpdateButton emotion-euiButtonDisplay-m-fill-primary"
@@ -539,6 +543,7 @@ exports[`EuiSuperDatePicker props showUpdateButton can be iconOnly 1`] = `
   </div>
   <span
     class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+    id="generated-id-wrapper"
   >
     <button
       class="euiButton euiSuperUpdateButton emotion-euiButtonDisplay-m-fill-primary"
@@ -619,6 +624,7 @@ exports[`EuiSuperDatePicker props width can be auto 1`] = `
   </div>
   <span
     class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+    id="generated-id-wrapper"
   >
     <button
       class="euiButton euiSuperUpdateButton emotion-euiButtonDisplay-m-fill-primary"
@@ -696,6 +702,7 @@ exports[`EuiSuperDatePicker props width can be full 1`] = `
   </div>
   <span
     class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+    id="generated-id-wrapper"
   >
     <button
       class="euiButton euiSuperUpdateButton emotion-euiButtonDisplay-m-fill-primary"
@@ -774,6 +781,7 @@ exports[`EuiSuperDatePicker renders 1`] = `
   </div>
   <span
     class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+    id="generated-id-wrapper"
   >
     <button
       class="euiButton euiSuperUpdateButton emotion-euiButtonDisplay-m-fill-primary"
@@ -878,6 +886,7 @@ exports[`EuiSuperDatePicker renders an EuiDatePickerRange 1`] = `
   </div>
   <span
     class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+    id="generated-id-wrapper"
   >
     <button
       class="euiButton euiSuperUpdateButton emotion-euiButtonDisplay-m-fill-primary"

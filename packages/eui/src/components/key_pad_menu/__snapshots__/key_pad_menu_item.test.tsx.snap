@@ -107,6 +107,7 @@ exports[`EuiKeyPadMenuItem is rendered 1`] = `
 exports[`EuiKeyPadMenuItem props betaBadge renders 1`] = `
 <span
   class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+  id="generated-id-wrapper"
 >
   <button
     class="euiKeyPadMenuItem emotion-euiKeyPadMenuItem-enabled"
@@ -142,6 +143,7 @@ exports[`EuiKeyPadMenuItem props betaBadge renders 1`] = `
 exports[`EuiKeyPadMenuItem props betaBadge renders extra betaBadgeTooltipProps 1`] = `
 <span
   class="euiToolTipAnchor customTooltipClass emotion-euiToolTipAnchor-inlineBlock"
+  id="generated-id-wrapper"
 >
   <button
     class="euiKeyPadMenuItem emotion-euiKeyPadMenuItem-enabled"
@@ -177,6 +179,7 @@ exports[`EuiKeyPadMenuItem props betaBadge renders extra betaBadgeTooltipProps 1
 exports[`EuiKeyPadMenuItem props betaBadge renders with betaBadgeIconType 1`] = `
 <span
   class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+  id="generated-id-wrapper"
 >
   <button
     class="euiKeyPadMenuItem emotion-euiKeyPadMenuItem-enabled"
@@ -217,6 +220,7 @@ exports[`EuiKeyPadMenuItem props betaBadge renders with betaBadgeIconType 1`] = 
 exports[`EuiKeyPadMenuItem props betaBadge renders with betaBadgeTooltipContent 1`] = `
 <span
   class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+  id="generated-id-wrapper"
 >
   <button
     class="euiKeyPadMenuItem emotion-euiKeyPadMenuItem-enabled"

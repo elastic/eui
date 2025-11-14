@@ -268,6 +268,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
         >
           <span
             class="euiToolTipAnchor emotion-euiToolTipAnchor-block"
+            id="generated-id-wrapper"
           >
             <button
               class="euiTableHeaderButton euiTableHeaderButton-isSorted emotion-euiTableHeaderCell__button"
@@ -491,6 +492,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
           >
             <span
               class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+              id="generated-id-wrapper"
             >
               <button
                 class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-s-empty-primary-flush-right"
@@ -509,6 +511,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
             </span>
             <span
               class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+              id="generated-id-wrapper"
             >
               <button
                 class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-s-empty-primary-flush-right"
@@ -637,6 +640,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
           >
             <span
               class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+              id="generated-id-wrapper"
             >
               <button
                 class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-s-empty-primary-flush-right"
@@ -655,6 +659,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
             </span>
             <span
               class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+              id="generated-id-wrapper"
             >
               <button
                 class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-s-empty-primary-flush-right"
@@ -783,6 +788,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
           >
             <span
               class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+              id="generated-id-wrapper"
             >
               <button
                 class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-s-empty-primary-flush-right"
@@ -801,6 +807,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
             </span>
             <span
               class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+              id="generated-id-wrapper"
             >
               <button
                 class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-s-empty-primary-flush-right"

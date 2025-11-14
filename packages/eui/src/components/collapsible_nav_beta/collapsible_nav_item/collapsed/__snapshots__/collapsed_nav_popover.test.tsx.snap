@@ -9,6 +9,7 @@ exports[`EuiCollapsedNavPopover renders 1`] = `
     >
       <span
         class="euiToolTipAnchor emotion-euiToolTipAnchor-block"
+        id="generated-id-wrapper"
       >
         <button
           aria-label="Item, quick navigation menu"

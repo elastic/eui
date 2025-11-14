@@ -514,6 +514,7 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
           >
             <span
               class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+              id="generated-id-wrapper"
             >
               <button
                 aria-label="Keyboard shortcuts"
@@ -536,6 +537,7 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
           >
             <span
               class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+              id="generated-id-wrapper"
             >
               <button
                 aria-label="Display options"
@@ -554,6 +556,7 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
           </div>
           <span
             class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+            id="generated-id-wrapper"
           >
             <button
               aria-label="Enter fullscreen"
@@ -951,6 +954,7 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
           >
             <span
               class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+              id="generated-id-wrapper"
             >
               <button
                 aria-label="Keyboard shortcuts"
@@ -973,6 +977,7 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
           >
             <span
               class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+              id="generated-id-wrapper"
             >
               <button
                 aria-label="Display options"
@@ -991,6 +996,7 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
           </div>
           <span
             class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+            id="generated-id-wrapper"
           >
             <button
               aria-label="Enter fullscreen"
@@ -1585,6 +1591,7 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
           >
             <span
               class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+              id="generated-id-wrapper"
             >
               <button
                 aria-label="Keyboard shortcuts"
@@ -1607,6 +1614,7 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
           >
             <span
               class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+              id="generated-id-wrapper"
             >
               <button
                 aria-label="Display options"
@@ -1625,6 +1633,7 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
           </div>
           <span
             class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+            id="generated-id-wrapper"
           >
             <button
               aria-label="Enter fullscreen"
@@ -2020,6 +2029,7 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
           >
             <span
               class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+              id="generated-id-wrapper"
             >
               <button
                 aria-label="Keyboard shortcuts"
@@ -2042,6 +2052,7 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
           >
             <span
               class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+              id="generated-id-wrapper"
             >
               <button
                 aria-label="Display options"
@@ -2060,6 +2071,7 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
           </div>
           <span
             class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+            id="generated-id-wrapper"
           >
             <button
               aria-label="Enter fullscreen"

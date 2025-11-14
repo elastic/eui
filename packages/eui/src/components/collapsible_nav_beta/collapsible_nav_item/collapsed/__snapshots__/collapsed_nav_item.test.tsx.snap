@@ -7,6 +7,7 @@ exports[`EuiCollapsedNavItem renders a popover if items are passed 1`] = `
 >
   <span
     class="euiToolTipAnchor emotion-euiToolTipAnchor-block"
+    id="generated-id-wrapper"
   >
     <button
       aria-label="Item, quick navigation menu"
@@ -30,6 +31,7 @@ exports[`EuiCollapsedNavItem renders an icon button/link if href is passed 1`] =
   aria-label="aria-label"
   class="euiToolTipAnchor euiCollapsedNavItem testClass1 testClass2 emotion-euiToolTipAnchor-block-euiTestCss"
   data-test-subj="test subject string"
+  id="generated-id-wrapper"
 >
   <a
     aria-label="Item, quick navigation menu"

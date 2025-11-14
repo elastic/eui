@@ -132,6 +132,7 @@ exports[`EuiBetaBadge props tooltip and anchorProps are rendered 1`] = `
 <span
   class="euiToolTipAnchor customAnchorClass emotion-euiToolTipAnchor-inlineBlock"
   data-test-subj="DTS"
+  id="generated-id-wrapper"
 >
   <span
     class="euiBetaBadge emotion-euiBetaBadge-hollow-m-baseline"

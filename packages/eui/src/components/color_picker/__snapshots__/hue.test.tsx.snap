@@ -13,6 +13,7 @@ exports[`EuiHue accepts a hex value 1`] = `
     </label>
     <span
       class="euiToolTipAnchor  emotion-euiToolTipAnchor-inlineBlock-euiHue__tooltip"
+      id="generated-id_euiToolTipAnchor"
     >
       <input
         aria-label="aria-label"
@@ -45,6 +46,7 @@ exports[`EuiHue accepts a hue value 1`] = `
     </label>
     <span
       class="euiToolTipAnchor  emotion-euiToolTipAnchor-inlineBlock-euiHue__tooltip"
+      id="generated-id_euiToolTipAnchor"
     >
       <input
         aria-label="aria-label"
@@ -77,6 +79,7 @@ exports[`EuiHue is rendered 1`] = `
     </label>
     <span
       class="euiToolTipAnchor  emotion-euiToolTipAnchor-inlineBlock-euiHue__tooltip"
+      id="generated-id_euiToolTipAnchor"
     >
       <input
         aria-label="aria-label"
