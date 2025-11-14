@@ -17,6 +17,84 @@ exports[`EuiToolTip anchor props are rendered 1`] = `
 </body>
 `;
 
+exports[`EuiToolTip delay prop none delay 1`] = `
+<body
+  class="euiBody-hasPortalContent"
+>
+  <div>
+    <span
+      class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+    >
+      <button
+        aria-describedby="generated-id"
+        data-test-subj="trigger"
+      >
+        Trigger
+      </button>
+    </span>
+  </div>
+  <div
+    data-euiportal="true"
+  >
+    <div
+      class="euiToolTipPopover euiToolTip emotion-euiToolTip-top"
+      data-position="top"
+      id="generated-id"
+      position="top"
+      role="tooltip"
+      style="top: -16px; left: -10px;"
+    >
+      <div
+        class="euiToolTip__arrow emotion-euiToolTip__arrow-top"
+        style="left: 3px; top: 100%;"
+      />
+      <div>
+        content
+      </div>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`EuiToolTip delay prop short delay 1`] = `
+<body
+  class="euiBody-hasPortalContent"
+>
+  <div>
+    <span
+      class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+    >
+      <button
+        aria-describedby="generated-id"
+        data-test-subj="trigger"
+      >
+        Trigger
+      </button>
+    </span>
+  </div>
+  <div
+    data-euiportal="true"
+  >
+    <div
+      class="euiToolTipPopover euiToolTip emotion-euiToolTip-top"
+      data-position="top"
+      id="generated-id"
+      position="top"
+      role="tooltip"
+      style="top: -16px; left: -10px;"
+    >
+      <div
+        class="euiToolTip__arrow emotion-euiToolTip__arrow-top"
+        style="left: 3px; top: 100%;"
+      />
+      <div>
+        content
+      </div>
+    </div>
+  </div>
+</body>
+`;
+
 exports[`EuiToolTip display prop renders block 1`] = `
 <div>
   <span
@@ -79,6 +157,84 @@ exports[`EuiToolTip shows tooltip on mouseover and focus 1`] = `
       >
         title
       </div>
+      <div
+        class="euiToolTip__arrow emotion-euiToolTip__arrow-top"
+        style="left: 3px; top: 100%;"
+      />
+      <div>
+        content
+      </div>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`EuiToolTip transition prop fade transition 1`] = `
+<body
+  class="euiBody-hasPortalContent"
+>
+  <div>
+    <span
+      class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+    >
+      <button
+        aria-describedby="generated-id"
+        data-test-subj="trigger"
+      >
+        Trigger
+      </button>
+    </span>
+  </div>
+  <div
+    data-euiportal="true"
+  >
+    <div
+      class="euiToolTipPopover euiToolTip emotion-euiToolTip-top-topFade"
+      data-position="top"
+      id="generated-id"
+      position="top"
+      role="tooltip"
+      style="top: -16px; left: -10px;"
+    >
+      <div
+        class="euiToolTip__arrow emotion-euiToolTip__arrow-top"
+        style="left: 3px; top: 100%;"
+      />
+      <div>
+        content
+      </div>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`EuiToolTip transition prop none transition 1`] = `
+<body
+  class="euiBody-hasPortalContent"
+>
+  <div>
+    <span
+      class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+    >
+      <button
+        aria-describedby="generated-id"
+        data-test-subj="trigger"
+      >
+        Trigger
+      </button>
+    </span>
+  </div>
+  <div
+    data-euiportal="true"
+  >
+    <div
+      class="euiToolTipPopover euiToolTip emotion-euiToolTip-top-noAnimation"
+      data-position="top"
+      id="generated-id"
+      position="top"
+      role="tooltip"
+      style="top: -16px; left: -10px;"
+    >
       <div
         class="euiToolTip__arrow emotion-euiToolTip__arrow-top"
         style="left: 3px; top: 100%;"
