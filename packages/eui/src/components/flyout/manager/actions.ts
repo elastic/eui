@@ -35,6 +35,8 @@ export const ACTION_SET_ACTIVITY_STAGE = `${PREFIX}/setActivityStage` as const;
 export const ACTION_GO_BACK = `${PREFIX}/goBack` as const;
 /** Dispatched to navigate to a specific flyout (remove all sessions after it). */
 export const ACTION_GO_TO_FLYOUT = `${PREFIX}/goToFlyout` as const;
+/** Dispatched to set push padding offset for a side. */
+export const ACTION_SET_PUSH_PADDING = `${PREFIX}/setPushPadding` as const;
 
 /**
  * Add a flyout to manager state. The manager will create or update
@@ -91,6 +93,13 @@ export interface GoToFlyoutAction extends BaseAction {
   flyoutId: string;
 }
 
+/** Set push padding offset for a specific side. */
+export interface SetPushPaddingAction extends BaseAction {
+  type: typeof ACTION_SET_PUSH_PADDING;
+  side: 'left' | 'right';
+  width: number;
+}
+
 /** Union of all flyout manager actions. */
 export type Action =
   | AddFlyoutAction
@@ -100,7 +109,8 @@ export type Action =
   | SetLayoutModeAction
   | SetActivityStageAction
   | GoBackAction
-  | GoToFlyoutAction;
+  | GoToFlyoutAction
+  | SetPushPaddingAction;
 
 /**
  * Register a flyout with the manager.
@@ -172,4 +182,14 @@ export const goBack = (): GoBackAction => ({
 export const goToFlyout = (flyoutId: string): GoToFlyoutAction => ({
   type: ACTION_GO_TO_FLYOUT,
   flyoutId,
+});
+
+/** Set push padding offset for a specific side. */
+export const setPushPadding = (
+  side: 'left' | 'right',
+  width: number
+): SetPushPaddingAction => ({
+  type: ACTION_SET_PUSH_PADDING,
+  side,
+  width,
 });
