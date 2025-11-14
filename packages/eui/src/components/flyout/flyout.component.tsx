@@ -10,6 +10,7 @@
 
 import React, {
   useEffect,
+  useLayoutEffect,
   useRef,
   useMemo,
   useCallback,
@@ -40,6 +41,9 @@ import {
   useFlyoutLayoutMode,
   useFlyoutId,
   useFlyoutWidth,
+  useIsFlyoutActive,
+  useFlyoutManager,
+  useHasPushPadding,
 } from './manager';
 
 import { CommonProps, PropsOfElement } from '../common';
@@ -268,6 +272,19 @@ export const EuiFlyoutComponent = forwardRef(
     const internalParentFlyoutRef = useRef<HTMLDivElement>(null);
     const isPushed = useIsPushed({ type, pushMinBreakpoint });
 
+    const currentSession = useCurrentSession();
+    const isInManagedContext = useIsInManagedFlyout();
+    const flyoutId = useFlyoutId(id);
+    const layoutMode = useFlyoutLayoutMode();
+    const isActiveManagedFlyout = useIsFlyoutActive(flyoutId);
+    const flyoutManager = useFlyoutManager();
+
+    // Use a ref to access the latest flyoutManager without triggering effect re-runs
+    const flyoutManagerRef = useRef(flyoutManager);
+    useEffect(() => {
+      flyoutManagerRef.current = flyoutManager;
+    }, [flyoutManager]);
+
     const {
       onMouseDown: onMouseDownResizableButton,
       onKeyDown: onKeyDownResizableButton,
@@ -295,31 +312,66 @@ export const EuiFlyoutComponent = forwardRef(
     ]);
     const { width } = useResizeObserver(isPushed ? resizeRef : null, 'width');
 
-    useEffect(() => {
-      /**
-       * Accomodate for the `isPushed` state by adding padding to the body equal to the width of the element
-       */
-      if (isPushed) {
-        const paddingSide =
-          side === 'left' ? 'paddingInlineStart' : 'paddingInlineEnd';
-        const cssVarName = `--euiPushFlyoutOffset${
-          side === 'left' ? 'InlineStart' : 'InlineEnd'
-        }`;
+    /**
+     * Effect for adding push padding to body. Using useLayoutEffect to ensure
+     * padding changes happen synchronously before child components render -
+     * this is needed to prevent RemoveScrollBar from measuring the body in an
+     * inconsistent state during flyout transitions.
+     */
+    useLayoutEffect(() => {
+      if (!isPushed) {
+        return; // Only push-type flyouts manage body padding
+      }
 
+      const shouldApplyPadding = !isInManagedContext || isActiveManagedFlyout;
+
+      const paddingSide =
+        side === 'left' ? 'paddingInlineStart' : 'paddingInlineEnd';
+      const cssVarName = `--euiPushFlyoutOffset${
+        side === 'left' ? 'InlineStart' : 'InlineEnd'
+      }`;
+      const managerSide = side === 'left' ? 'left' : 'right';
+
+      if (shouldApplyPadding) {
         document.body.style[paddingSide] = `${width}px`;
-
-        // EUI doesn't use this css variable, but it is useful for consumers
         setGlobalCSSVariables({
           [cssVarName]: `${width}px`,
         });
-        return () => {
-          document.body.style[paddingSide] = '';
-          setGlobalCSSVariables({
-            [cssVarName]: null,
-          });
-        };
+        // Update manager state if in managed context
+        if (isInManagedContext && flyoutManagerRef.current) {
+          flyoutManagerRef.current.setPushPadding(managerSide, width);
+        }
+      } else {
+        // Explicitly remove padding when this push flyout becomes inactive
+        document.body.style[paddingSide] = '';
+        setGlobalCSSVariables({
+          [cssVarName]: null,
+        });
+        // Clear manager state if in managed context
+        if (isInManagedContext && flyoutManagerRef.current) {
+          flyoutManagerRef.current.setPushPadding(managerSide, 0);
+        }
       }
-    }, [isPushed, setGlobalCSSVariables, side, width]);
+
+      // Cleanup on unmount
+      return () => {
+        document.body.style[paddingSide] = '';
+        setGlobalCSSVariables({
+          [cssVarName]: null,
+        });
+        // Clear manager state on unmount if in managed context
+        if (isInManagedContext && flyoutManagerRef.current) {
+          flyoutManagerRef.current.setPushPadding(managerSide, 0);
+        }
+      };
+    }, [
+      isPushed,
+      isInManagedContext,
+      isActiveManagedFlyout,
+      setGlobalCSSVariables,
+      side,
+      width,
+    ]);
 
     /**
      * This class doesn't actually do anything by EUI, but is nice to add for consumers (JIC)
@@ -331,13 +383,6 @@ export const EuiFlyoutComponent = forwardRef(
         document.body.classList.remove('euiBody--hasFlyout');
       };
     }, []);
-
-    const currentSession = useCurrentSession();
-    const isInManagedContext = useIsInManagedFlyout();
-
-    // Get flyout manager context for dynamic width calculation
-    const flyoutId = useFlyoutId(id);
-    const layoutMode = useFlyoutLayoutMode();
 
     // Memoize flyout identification and relationships to prevent race conditions
     const flyoutIdentity = useMemo(() => {
@@ -604,6 +649,14 @@ export const EuiFlyoutComponent = forwardRef(
 
     const maskCombinedRefs = useCombinedRefs([maskProps?.maskRef, maskRef]);
 
+    /**
+     * For overlay flyouts in managed contexts, coordinate scroll locking with push flyout state.
+     */
+    const hasPushPaddingInManager = useHasPushPadding();
+    const shouldDeferScrollLock =
+      !isPushed && isInManagedContext && hasPushPaddingInManager;
+    const shouldUseScrollLock = hasOverlayMask && !shouldDeferScrollLock;
+
     return (
       <EuiFlyoutOverlay
         hasOverlayMask={hasOverlayMask}
@@ -617,7 +670,7 @@ export const EuiFlyoutComponent = forwardRef(
         <EuiWindowEvent event="keydown" handler={onKeyDown} />
         <EuiFocusTrap
           disabled={isPushed}
-          scrollLock={hasOverlayMask}
+          scrollLock={shouldUseScrollLock}
           clickOutsideDisables={!ownFocus}
           onClickOutside={onClickOutside}
           {...focusTrapProps}

@@ -437,6 +437,51 @@ describe('EuiFlyout', () => {
     });
   });
 
+  describe('push padding manager state coordination', () => {
+    it('applies body padding for push flyouts', () => {
+      const { container } = render(
+        <EuiFlyout
+          onClose={() => {}}
+          type="push"
+          pushMinBreakpoint="xs"
+          data-test-subj="push-flyout"
+        />
+      );
+
+      const flyout = container.querySelector('[data-test-subj="push-flyout"]');
+      expect(flyout).toBeInTheDocument();
+
+      // Body should have padding applied
+      const bodyPaddingEnd = document.body.style.paddingInlineEnd;
+      expect(bodyPaddingEnd).toBeTruthy();
+    });
+
+    it('removes body padding on unmount', () => {
+      const { unmount } = render(
+        <EuiFlyout
+          onClose={() => {}}
+          type="push"
+          pushMinBreakpoint="xs"
+          data-test-subj="push-flyout"
+        />
+      );
+
+      // Verify padding was applied
+      expect(document.body.style.paddingInlineEnd).toBeTruthy();
+
+      unmount();
+
+      // Verify padding was cleared
+      expect(document.body.style.paddingInlineEnd).toBe('');
+    });
+
+    afterEach(() => {
+      // Clean up body styles after each test
+      document.body.style.paddingInlineStart = '';
+      document.body.style.paddingInlineEnd = '';
+    });
+  });
+
   describe('flyout routing logic', () => {
     it('routes to child flyout automatically when nested inside a parent flyout', () => {
       const { getByTestSubject } = render(

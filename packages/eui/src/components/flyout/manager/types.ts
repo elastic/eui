@@ -56,10 +56,19 @@ export interface FlyoutSession {
   title: string;
 }
 
+export interface PushPaddingOffsets {
+  /** Push padding applied to the left side (in pixels) */
+  left: number;
+  /** Push padding applied to the right side (in pixels) */
+  right: number;
+}
+
 export interface EuiFlyoutManagerState {
   sessions: FlyoutSession[];
   flyouts: EuiManagedFlyoutState[];
   layoutMode: EuiFlyoutLayoutMode;
+  /** Active push padding offsets (updated by active push flyouts) */
+  pushPadding?: PushPaddingOffsets;
 }
 
 /**
@@ -78,6 +87,7 @@ export interface FlyoutManagerApi {
   closeFlyout: (flyoutId: string) => void;
   setActiveFlyout: (flyoutId: string | null) => void;
   setFlyoutWidth: (flyoutId: string, width: number) => void;
+  setPushPadding: (side: 'left' | 'right', width: number) => void;
   goBack: () => void;
   goToFlyout: (flyoutId: string) => void;
   historyItems: Array<{

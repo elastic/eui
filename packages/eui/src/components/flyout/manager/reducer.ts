@@ -15,6 +15,7 @@ import {
   ACTION_SET_ACTIVITY_STAGE,
   ACTION_GO_BACK,
   ACTION_GO_TO_FLYOUT,
+  ACTION_SET_PUSH_PADDING,
   Action,
 } from './actions';
 import { LAYOUT_MODE_SIDE_BY_SIDE, LEVEL_MAIN, STAGE_OPENING } from './const';
@@ -31,6 +32,7 @@ export const initialState: EuiFlyoutManagerState = {
   sessions: [],
   flyouts: [],
   layoutMode: LAYOUT_MODE_SIDE_BY_SIDE,
+  pushPadding: { left: 0, right: 0 },
 };
 
 /**
@@ -255,6 +257,18 @@ export function flyoutManagerReducer(
       const newSessions = state.sessions.slice(0, targetSessionIndex + 1);
 
       return { ...state, sessions: newSessions, flyouts: newFlyouts };
+    }
+
+    // Set push padding offset for a specific side
+    case ACTION_SET_PUSH_PADDING: {
+      const { side, width } = action;
+      return {
+        ...state,
+        pushPadding: {
+          ...(state.pushPadding ?? { left: 0, right: 0 }),
+          [side]: width,
+        },
+      };
     }
 
     default:

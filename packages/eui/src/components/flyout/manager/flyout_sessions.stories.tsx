@@ -12,7 +12,6 @@ import React, {
   useCallback,
   useEffect,
   useLayoutEffect,
-  useMemo,
   useRef,
   useState,
 } from 'react';
@@ -57,9 +56,6 @@ interface FlyoutSessionProps {
   mainMaxWidth?: number;
   childSize?: 's' | 'm' | 'fill';
   childMaxWidth?: number;
-  flyoutType: 'overlay' | 'push';
-  ownFocus?: boolean;
-  hasChildBackground: boolean;
 }
 
 const DisplayContext: React.FC<{ title: string }> = ({ title }) => {
@@ -87,20 +83,14 @@ const DisplayContext: React.FC<{ title: string }> = ({ title }) => {
   );
 };
 
-const FlyoutSession: React.FC<FlyoutSessionProps> = React.memo((props) => {
-  const {
-    title,
-    mainSize,
-    childSize,
-    mainMaxWidth,
-    childMaxWidth,
-    flyoutType,
-    ownFocus = false,
-    hasChildBackground,
-  } = props;
+const FlyoutSession: React.FC<FlyoutSessionProps> = (props) => {
+  const { title, mainSize, childSize, mainMaxWidth, childMaxWidth } = props;
 
   const [isFlyoutVisible, setIsFlyoutVisible] = useState(false);
   const [isChildFlyoutVisible, setIsChildFlyoutVisible] = useState(false);
+
+  const [flyoutType, setFlyoutType] = useState<'overlay' | 'push'>('push');
+  const [flyoutOwnFocus, setFlyoutOwnFocus] = useState(false);
 
   // Handlers for "Open" buttons
 
@@ -137,11 +127,36 @@ const FlyoutSession: React.FC<FlyoutSessionProps> = React.memo((props) => {
 
   return (
     <>
-      <EuiText>
-        <EuiButton disabled={isFlyoutVisible} onClick={handleOpenMainFlyout}>
-          Open {title}
-        </EuiButton>
-      </EuiText>
+      <EuiFlexGroup gutterSize="s" alignItems="center">
+        <EuiFlexItem grow={false}>
+          <EuiFlexGroup>
+            <EuiFlexItem grow={false}>
+              <EuiSwitch
+                label="Overlay"
+                checked={flyoutType === 'overlay'}
+                onChange={(e: EuiSwitchEvent) =>
+                  setFlyoutType(e.target.checked ? 'overlay' : 'push')
+                }
+              />
+            </EuiFlexItem>
+            <EuiFlexItem grow={false}>
+              <EuiSwitch
+                label="ownFocus"
+                checked={flyoutOwnFocus}
+                disabled={flyoutType === 'push'}
+                onChange={(e: EuiSwitchEvent) =>
+                  setFlyoutOwnFocus(e.target.checked)
+                }
+              />
+            </EuiFlexItem>
+          </EuiFlexGroup>
+        </EuiFlexItem>
+        <EuiFlexItem>
+          <EuiButton disabled={isFlyoutVisible} onClick={handleOpenMainFlyout}>
+            Open {title} flyout
+          </EuiButton>
+        </EuiFlexItem>
+      </EuiFlexGroup>
       {isFlyoutVisible && (
         <EuiFlyout
           id={`mainFlyout-${title}`}
@@ -150,7 +165,7 @@ const FlyoutSession: React.FC<FlyoutSessionProps> = React.memo((props) => {
           size={mainSize}
           maxWidth={mainMaxWidth}
           type={flyoutType}
-          ownFocus={ownFocus}
+          ownFocus={flyoutOwnFocus}
           pushAnimation={true}
           onActive={mainFlyoutOnActive}
           onClose={mainFlyoutOnClose}
@@ -196,7 +211,6 @@ const FlyoutSession: React.FC<FlyoutSessionProps> = React.memo((props) => {
               maxWidth={childMaxWidth}
               onActive={childFlyoutOnActive}
               onClose={childFlyoutOnClose}
-              hasChildBackground={hasChildBackground}
             >
               <EuiFlyoutBody>
                 <EuiText>
@@ -235,14 +249,12 @@ const FlyoutSession: React.FC<FlyoutSessionProps> = React.memo((props) => {
       )}
     </>
   );
-});
+};
 
-FlyoutSession.displayName = 'FlyoutSession';
-
-const NonSessionFlyout: React.FC<{
-  flyoutType: 'overlay' | 'push';
-}> = React.memo(({ flyoutType }) => {
+const NonSessionFlyout: React.FC<{ size: string }> = ({ size }) => {
   const [isFlyoutVisible, setIsFlyoutVisible] = useState(false);
+  const [flyoutType, setFlyoutType] = useState<'overlay' | 'push'>('push');
+  const [flyoutOwnFocus, setFlyoutOwnFocus] = useState(false);
 
   const handleOpenFlyout = () => {
     setIsFlyoutVisible(true);
@@ -253,21 +265,48 @@ const NonSessionFlyout: React.FC<{
     setIsFlyoutVisible(false);
   }, []);
 
+  // Render
+
   return (
     <>
-      <EuiText>
-        <EuiButton disabled={isFlyoutVisible} onClick={handleOpenFlyout}>
-          Open non-session flyout
-        </EuiButton>
-      </EuiText>
+      <EuiFlexGroup gutterSize="s" alignItems="center">
+        <EuiFlexItem grow={false}>
+          <EuiFlexGroup>
+            <EuiFlexItem grow={false}>
+              <EuiSwitch
+                label="Overlay"
+                checked={flyoutType === 'overlay'}
+                onChange={(e: EuiSwitchEvent) =>
+                  setFlyoutType(e.target.checked ? 'overlay' : 'push')
+                }
+              />
+            </EuiFlexItem>
+            <EuiFlexItem grow={false}>
+              <EuiSwitch
+                label="ownFocus"
+                checked={flyoutOwnFocus}
+                disabled={flyoutType === 'push'}
+                onChange={(e: EuiSwitchEvent) =>
+                  setFlyoutOwnFocus(e.target.checked)
+                }
+              />
+            </EuiFlexItem>
+          </EuiFlexGroup>
+        </EuiFlexItem>
+        <EuiFlexItem>
+          <EuiButton disabled={isFlyoutVisible} onClick={handleOpenFlyout}>
+            Open non-session flyout
+          </EuiButton>
+        </EuiFlexItem>
+      </EuiFlexGroup>
       {isFlyoutVisible && (
         <EuiFlyout
           // Using default EuiFlyout session behavior of 'never'
           id="nonSessionFlyout"
           aria-labelledby="nonSessionFlyoutTitle"
-          size="s"
+          size={size}
           type={flyoutType}
-          ownFocus={false}
+          ownFocus={flyoutOwnFocus}
           pushAnimation={true}
           onClose={flyoutOnClose}
           side="left"
@@ -306,148 +345,164 @@ const NonSessionFlyout: React.FC<{
       )}
     </>
   );
-});
-
-NonSessionFlyout.displayName = 'NonSessionFlyout';
+};
 
 const MultiSessionFlyoutDemo: React.FC = () => {
-  const [flyoutType, setFlyoutType] = useState<'overlay' | 'push'>('overlay');
-  const [hasChildBackground, setChildBackgroundShaded] = useState(false);
-
-  const handleFlyoutTypeToggle = useCallback((e: EuiSwitchEvent) => {
-    setFlyoutType(e.target.checked ? 'push' : 'overlay');
-  }, []);
-
-  const listItems = useMemo(
-    () => [
-      {
-        title: 'Session A: main size = s, child size = s',
-        description: (
-          <FlyoutSession
-            flyoutType={flyoutType}
-            title="Session A"
-            mainSize="s"
-            childSize="s"
-            hasChildBackground={hasChildBackground}
-          />
-        ),
-      },
-      {
-        title: 'Session B: main size = m, child size = s',
-        description: (
-          <FlyoutSession
-            flyoutType={flyoutType}
-            title="Session B"
-            mainSize="m"
-            childSize="s"
-            hasChildBackground={hasChildBackground}
-          />
-        ),
-      },
-      {
-        title: 'Session C: main size = s, child size = fill',
-        description: (
-          <FlyoutSession
-            flyoutType={flyoutType}
-            title="Session C"
-            mainSize="s"
-            childSize="fill"
-            hasChildBackground={hasChildBackground}
-          />
-        ),
-      },
-      {
-        title: 'Session D: main size = fill, child size = s',
-        description: (
-          <FlyoutSession
-            flyoutType={flyoutType}
-            title="Session D"
-            mainSize="fill"
-            childSize="s"
-            hasChildBackground={hasChildBackground}
-          />
-        ),
-      },
-      {
-        title: 'Session E: main size = fill',
-        description: (
-          <FlyoutSession
-            flyoutType={flyoutType}
-            title="Session E"
-            mainSize="fill"
-            hasChildBackground={hasChildBackground}
-          />
-        ),
-      },
-      {
-        title:
-          'Session F: main size = undefined, child size = fill (maxWidth 1000px)',
-        description: (
-          <FlyoutSession
-            flyoutType={flyoutType}
-            title="Session F"
-            mainSize={undefined}
-            childSize="fill"
-            childMaxWidth={1000}
-            hasChildBackground={hasChildBackground}
-          />
-        ),
-      },
-      {
-        title: 'Session G: main size = fill (maxWidth 1000px), child size = s',
-        description: (
-          <FlyoutSession
-            flyoutType={flyoutType}
-            title="Session G"
-            mainSize="fill"
-            mainMaxWidth={1000}
-            childSize="s"
-            hasChildBackground={hasChildBackground}
-          />
-        ),
-      },
-      {
-        title: 'Session H: main size = s, child size = s, ownFocus = true',
-        description: (
-          <FlyoutSession
-            flyoutType={flyoutType}
-            title="Session H"
-            mainSize="s"
-            childSize="s"
-            ownFocus
-            hasChildBackground={hasChildBackground}
-          />
-        ),
-      },
-      {
-        title: 'Non-session flyout',
-        description: <NonSessionFlyout flyoutType={flyoutType} />,
-      },
-    ],
-    [flyoutType, hasChildBackground]
-  );
+  const listItems = [
+    {
+      title: 'Session A: main size = s, child size = s',
+      description: (
+        <FlyoutSession
+          // Session A
+          title="Session A"
+          mainSize="s"
+          childSize="s"
+        />
+      ),
+    },
+    {
+      title: 'Session B: main size = m, child size = s',
+      description: (
+        <FlyoutSession
+          // Session B
+          title="Session B"
+          mainSize="m"
+          childSize="s"
+        />
+      ),
+    },
+    {
+      title: 'Session C: main size = s, child size = fill',
+      description: (
+        <FlyoutSession
+          // Session C
+          title="Session C"
+          mainSize="s"
+          childSize="fill"
+        />
+      ),
+    },
+    {
+      title: 'Session D: main size = fill, child size = s',
+      description: (
+        <FlyoutSession
+          // Session D
+          title="Session D"
+          mainSize="fill"
+          childSize="s"
+        />
+      ),
+    },
+    {
+      title: 'Session E: main size = fill',
+      description: (
+        <FlyoutSession
+          // Session E
+          title="Session E"
+          mainSize="fill"
+        />
+      ),
+    },
+    {
+      title:
+        'Session F: main size = undefined, child size = fill (maxWidth 1000px)',
+      description: (
+        <FlyoutSession
+          // Session F
+          title="Session F"
+          mainSize={undefined}
+          childSize="fill"
+          childMaxWidth={1000}
+        />
+      ),
+    },
+    {
+      title: 'Session G: main size = fill (maxWidth 1000px), child size = s',
+      description: (
+        <FlyoutSession
+          // Session G
+          title="Session G"
+          mainSize="fill"
+          mainMaxWidth={1000}
+          childSize="s"
+        />
+      ),
+    },
+    {
+      title: 'Session H: main size = s, child size = s',
+      description: (
+        <FlyoutSession
+          // Session H
+          title="Session H"
+          mainSize="s"
+          childSize="s"
+        />
+      ),
+    },
+    {
+      title: 'Non-session flyout',
+      description: <NonSessionFlyout size="s" />,
+    },
+  ];
 
   return (
     <>
-      <EuiSwitch
-        label="Flyouts push page content"
-        checked={flyoutType === 'push'}
-        onChange={handleFlyoutTypeToggle}
-      />
-      <EuiSpacer />
-      <EuiSwitch
-        label="Child flyout background shaded"
-        checked={hasChildBackground}
-        onChange={() => setChildBackgroundShaded((prev) => !prev)}
-      />
-      <EuiSpacer size="m" />
       <EuiDescriptionList
         type="column"
-        columnGutterSize="m"
+        columnGutterSize="s"
+        rowGutterSize="m"
         listItems={listItems}
       />
-      <EuiSpacer size="xl" />
+
+      <EuiSpacer size="l" />
+
       <DisplayContext title="Flyout manager context" />
+
+      <EuiSpacer size="l" />
+
+      <EuiText size="s" color="subdued">
+        <p>
+          The following filler text is used for testing scrolling and push
+          behaviors.
+        </p>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque
+          eleifend ex nec urna efficitur, at convallis erat facilisis. Sed
+          laoreet, nunc id gravida cursus, ligula erat facilisis risus, in
+          dignissim libero odio a justo. Nullam euismod, nisi vel consectetur
+          interdum, nisl nisi aliquam nunc, eget aliquam massa nisl quis nunc.
+          Donec euismod, nisi vel consectetur interdum, nisl nisi aliquam nunc,
+          eget aliquam massa nisl quis nunc. Donec euismod, nisi vel consectetur
+          interdum, nisl nisi aliquam nunc, eget aliquam massa nisl quis nunc.
+          Donec euismod, nisi vel consectetur interdum, nisl nisi aliquam nunc,
+          eget aliquam massa nisl quis nunc.
+        </p>
+        <p>
+          Vivamus luctus urna sed urna ultricies ac tempor dui sagittis. In
+          condimentum facilisis porta. Sed nec diam eu diam mattis viverra.
+          Nulla fringilla, orci ac euismod semper, magna diam porttitor mauris,
+          quis sollicitudin sapien justo in libero. Fusce lacinia arcu et nulla.
+          Nulla vitae mauris non felis mollis faucibus. Phasellus sodales
+          volutpat urna, id fringilla mi consectetur nec.
+        </p>
+        <p>
+          Pellentesque habitant morbi tristique senectus et netus et malesuada
+          fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae,
+          ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam
+          egestas semper. Aenean ultricies mi vitae est. Mauris placerat
+          eleifend leo.
+        </p>
+        <p>
+          Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat
+          wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean
+          fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci,
+          sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar
+          facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus,
+          tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam
+          erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor,
+          facilisis luctus, metus.
+        </p>
+      </EuiText>
     </>
   );
 };
@@ -646,7 +701,9 @@ const MultiRootFlyoutDemo: React.FC = () => {
           <div ref={tertiaryRootRef} />
         </EuiFlexItem>
       </EuiFlexGroup>
-      <EuiSpacer size="xl" />
+
+      <EuiSpacer size="l" />
+
       <DisplayContext title="Shared manager state" />
     </>
   );

@@ -49,6 +49,7 @@ describe('flyoutManagerReducer', () => {
         sessions: [],
         flyouts: [],
         layoutMode: LAYOUT_MODE_SIDE_BY_SIDE,
+        pushPadding: { left: 0, right: 0 },
       });
     });
   });
