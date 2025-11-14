@@ -108,4 +108,4 @@ jobs:
             return `--workspaces ${process.env.WORKSPACES.split(',').join(' ')}`;
           result-encoding: string
       - name: Release
-        run: yarn release run snapshot --skip-prompts --skip-auth-check --use-auth-token --dry-run ${{ steps.prepare_workspaces.outputs.result }}
+        run: yarn release run snapshot --skip-prompts --skip-auth-check --use-auth-token ${{ inputs.dry_run && '--dry-run'}} ${{ steps.prepare_workspaces.outputs.result }}
