@@ -22,6 +22,9 @@ alongside the main flyout.
 [EuiFlyoutChild](./flyout_child.tsx) renders [EuiManagedFlyout](./flyout_managed.tsx) and does state validation
 to ensure the child flyout is always rendered within a main flyout.
 
+Child flyouts are created either by explicitly setting `session="inherit"` or automatically when a flyout
+is nested inside a parent flyout's children (in the JSX tree) without an explicit `session` prop.
+
 All child flyouts are of type `overlay`, and have `ownFocus` set to false, since that's handled separately.
 
 Child flyouts are positioned absolutely and moved to the side by the width of the main flyout, which is stored

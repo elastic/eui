@@ -39,14 +39,10 @@ export default () => {
         <EuiFlyout
           session="start"
           size="s"
-          aria-label="Flyout A - main"
-          flyoutMenuProps={{
-            title: 'Welcome to the flyout session management journey!',
-          }}
           onClose={() => setIsOpenFlyoutA(false)}
         >
           <EuiFlyoutBody>
-            <EuiText>This flyout is rendered with the <EuiCode>{'session="start"'}</EuiCode> prop set which creates a new flyout session and marks this flyout as main.</EuiText>
+            <EuiText>This is <strong>Flyout A</strong>. This flyout is rendered with the <EuiCode>{'session="start"'}</EuiCode> prop set which created a new flyout session and marks this flyout as main.</EuiText>
             <EuiSpacer />
             <EuiFormRow label="What's your name?" fullWidth>
               <EuiFieldText value={name} onChange={(e) => setName(e.target.value)} />
@@ -68,9 +64,9 @@ export default () => {
         >
           <EuiFlyoutBody>
             <EuiText>
-              This flyout is also rendered with the <EuiCode>{'session="start"'}</EuiCode> prop added which creates a <strong>second flyout session</strong> and marks this flyout as main in that session.
+              This is <strong>Flyout B</strong>. This flyout is also rendered with the <EuiCode>{'session="start"'}</EuiCode> prop added which creates a <strong>second flyout session</strong> and marks this flyout as main in that session.
               <br /><br />
-              The first flyout still exists but is currently hidden since this one took precedence. You can jump back to it by clicking the <i>Back</i> button above if you'd like.
+              <strong>Flyout A</strong> exists but is currently hidden since this one took precedence. You can jump back to it by clicking the <i>Back</i> button above if you'd like.
             </EuiText>
             <EuiSpacer />
             <EuiButton onClick={() => setIsOpenFlyoutBChild((val) => !val)}>
@@ -78,10 +74,15 @@ export default () => {
             </EuiButton>
           </EuiFlyoutBody>
           {isOpenFlyoutBChild && (
-            <EuiFlyout size="s" aria-label="Flyout B - child" onClose={() => setIsOpenFlyoutBChild(false)}>
+            <EuiFlyout
+              session="inherit"
+              size="s"
+              aria-label="Flyout B - child"
+              onClose={() => setIsOpenFlyoutBChild(false)}
+            >
               <EuiFlyoutBody>
                 <EuiText>
-                  This is a <strong>child flyout</strong> of Flyout B. It belongs to the same session as Flyout B because it's rendered inside of it and doesn't have the <EuiCode>session</EuiCode> prop set.
+                  This is a <strong>child flyout</strong> of Flyout B. It belongs to the same session as Flyout B because it's rendered inside of it (nested in the JSX tree).
                   <br /><br />
                   If you close <i>Flyout B - main</i>, this flyout will close, too.
                 </EuiText>
@@ -112,10 +113,15 @@ about compatibility issues.
 
 Each time you set `session="start"`, you create a new flyout session and mark
 the rendered flyout as [main](#main-flyouts).
+
 To create a [child flyout](#child-flyouts) - a flyout that belongs to the same
-session as the main flyout - you can set `session="inherit"` or omit the `session` prop entirely,
-as "inherit" is the default behavior.
-All bindings and configuration will be handled automatically.
+session as the main flyout - either:
+- Render it inside a main flyout's children (nested in the JSX tree), OR
+- Set `session="inherit"` explicitly (required for cross-React-root scenarios)
+
+When a flyout is nested inside a parent flyout and doesn't have an explicit
+`session` prop, it will automatically inherit the session. All bindings and
+configuration will be handled automatically.
 
 ### Session title
 
@@ -134,8 +140,8 @@ field of the `flyoutMenuProps` to set the title of the flyout.
   <EuiFlyoutBody>
     I'm the main flyout
   </EuiFlyoutBody>
-  {/* Render a new child flyout - notice the lack of the `session` prop */}
   <EuiFlyout
+    session="inherit"
     flyoutMenuProps={{
       title: 'My child flyout'
     }}
@@ -145,8 +151,12 @@ field of the `flyoutMenuProps` to set the title of the flyout.
 </EuiFlyout>
 ```
 
-To prevent a flyout from being a part of the session management system, you
-can set `session="never"` which will render it as a regular unmanaged flyout.
+To prevent a flyout from being a part of the session management system:
+- Set `session="never"` explicitly, OR
+- Don't nest it inside any parent flyout (non-nested flyouts default to standard behavior)
+
+To force a nested flyout to remain a standard flyout even when inside a parent,
+explicitly set `session="never"`. This will render it as a regular unmanaged flyout.
 
 ```tsx
 <>
@@ -186,9 +196,11 @@ of an alert.
 
 ### Child flyouts
 
-Child flyouts are directly related to a main flyout in their session.
-They're created by rendering a `EuiFlyout` **without the session prop** inside
-a [main flyout](#main-flyouts) - a flyout with `session="start"` prop set.
+Child flyouts are directly related to a main flyout in their session. They're
+created by rendering an `EuiFlyout` inside a main flyout's children (nested in
+the JSX tree), which causes it to automatically inherit the session. Alternatively,
+you can explicitly set `session="inherit"` when rendering outside the parent's
+JSX tree while an active [main flyout](#main-flyouts) (with `session="start"`) exists.
 
 They're meant to display secondary level information like the alert visualization.
 

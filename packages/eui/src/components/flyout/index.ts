@@ -32,3 +32,4 @@ export { EuiFlyoutMenu } from './flyout_menu';
 
 // Hooks for using Manager-based flyouts
 export { useIsInManagedFlyout, useHasActiveSession } from './manager';
+export { useIsInsideParentFlyout } from './flyout_parent_context';
