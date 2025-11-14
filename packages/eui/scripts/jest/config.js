@@ -54,6 +54,7 @@ const config = {
   setupFilesAfterEnv: [
     '<rootDir>/scripts/jest/setup/polyfills.js',
     '<rootDir>/scripts/jest/setup/unmount_enzyme.js',
+    '<rootDir>/scripts/jest/setup/matchers.js',
   ],
   coverageDirectory: '<rootDir>/reports/jest-coverage',
   coverageReporters: ['json', 'html'],

@@ -17,7 +17,11 @@ import React, {
 import moment, { Moment, LocaleSpecifier } from 'moment';
 import dateMath from '@elastic/datemath';
 
-import { useUpdateEffect, useEuiMemoizedStyles } from '../../../../services';
+import {
+  useUpdateEffect,
+  useEuiMemoizedStyles,
+  useGeneratedHtmlId,
+} from '../../../../services';
 import { useEuiI18n } from '../../../i18n';
 import { EuiFormRow, EuiFieldText, EuiFormLabel } from '../../../form';
 import { EuiFlexGroup } from '../../../flex';
@@ -26,6 +30,10 @@ import { EuiCode } from '../../../code';
 
 import { EuiDatePicker, EuiDatePickerProps } from '../../date_picker';
 import { EuiDatePopoverContentProps } from './date_popover_content';
+import {
+  EuiTimeZoneDisplay,
+  type EuiTimeZoneDisplayProps,
+} from './timezone_display';
 import { euiAbsoluteTabDateFormStyles } from './absolute_tab.styles';
 
 // Allow users to paste in and have the datepicker parse multiple common date formats,
@@ -47,6 +55,7 @@ export interface EuiAbsoluteTabProps {
   utcOffset?: number;
   minDate?: Moment;
   maxDate?: Moment;
+  timeZoneDisplayProps?: EuiTimeZoneDisplayProps;
 }
 
 export const EuiAbsoluteTab: FunctionComponent<EuiAbsoluteTabProps> = ({
@@ -60,6 +69,7 @@ export const EuiAbsoluteTab: FunctionComponent<EuiAbsoluteTabProps> = ({
   minDate,
   maxDate,
   labelPrefix,
+  timeZoneDisplayProps = {},
 }) => {
   const styles = useEuiMemoizedStyles(euiAbsoluteTabDateFormStyles);
 
@@ -80,6 +90,7 @@ export const EuiAbsoluteTab: FunctionComponent<EuiAbsoluteTabProps> = ({
     [dateFormat]
   );
 
+  const timeZomeDescriptionId = useGeneratedHtmlId();
   const submitButtonLabel = useEuiI18n(
     'euiAbsoluteTab.dateFormatButtonLabel',
     'Parse date'
@@ -181,6 +192,7 @@ export const EuiAbsoluteTab: FunctionComponent<EuiAbsoluteTabProps> = ({
           helpText={
             hasUnparsedText && !isTextInvalid ? dateFormatError : undefined
           }
+          describedByIds={[timeZomeDescriptionId]}
         >
           <EuiFieldText
             compressed
@@ -212,6 +224,10 @@ export const EuiAbsoluteTab: FunctionComponent<EuiAbsoluteTabProps> = ({
           />
         )}
       </EuiFlexGroup>
+      <EuiTimeZoneDisplay
+        id={timeZomeDescriptionId}
+        {...timeZoneDisplayProps}
+      />
     </>
   );
 };

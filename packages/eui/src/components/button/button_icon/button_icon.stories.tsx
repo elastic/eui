@@ -20,6 +20,7 @@ const meta: Meta<EuiButtonIconProps> = {
     size: 'xs',
     iconSize: 'm',
     isDisabled: false,
+    hasAriaDisabled: false,
     isLoading: false,
     isSelected: false,
   },

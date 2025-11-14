@@ -588,6 +588,169 @@ export default () => {
   );
 };
 ```
+import { EuiBetaBadge } from '@elastic/eui';
+
+### Disabled and focusable <EuiBetaBadge label="Beta" color="accent" />
+
+:::info Natively disabled buttons are not focusable
+By default, when using `isDisabled` or `disabled` on **EuiButton**, the button will render with the native `disabled` attribute, making it unfocusable.
+:::
+
+For accessibility, you may want a button to appear disabled but remain focusable (e.g., to provide context via tooltips). 
+In such cases, you may set `hasAriaDisabled={true}` which will change the native disabled behavior to a custom disabled behavior. This will renders a visually 
+identical disabled button that remains focusable.
+
+:::warning `hasAriaDisabled` is a new, experimental prop.
+
+Its behavior may change based on feedback and testing.
+:::
+
+The key implementation differences of `hasAriaDisabled`:
+
+- Uses `aria-disabled="true"` instead of the native `disabled` attribute as semantic state indicator
+- Manually unsets mouse and (most) keyboard event handlers to replicate the native disabled behavior
+- Preserves focus events (`onFocus`, `onBlur`) and selected key events for navigation (`Tab`, `Escape`)
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiButton,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiSpacer,
+  EuiSwitch,
+} from '@elastic/eui';
+
+export default () => {
+  const [disableButton, setDisableButton] = useState(true);
+
+  return(
+    <>
+      <EuiSwitch
+        compressed
+        label="Disabled"
+        checked={disableButton}
+        onChange={() => setDisableButton(!disableButton)}
+      />
+      <EuiSpacer />
+      
+      <EuiFlexGroup responsive={false} gutterSize="s" alignItems="flexStart">
+        <EuiFlexItem grow={false}>
+          <EuiButton disabled={disableButton} fill>
+            {!disableButton ? 'Button' : 'Natively disabled'}
+          </EuiButton>
+        </EuiFlexItem>
+
+        <EuiFlexItem grow={false}>
+          <EuiButton disabled={disableButton} hasAriaDisabled fill>
+            {!disableButton ? 'Button' : 'Custom disabled'}
+          </EuiButton>
+        </EuiFlexItem>
+      </EuiFlexGroup>
+    </>
+  );
+};
+```
+
+import { Example } from '@site/src/components';
+import { EuiSpacer } from '@elastic/eui';
+
+#### CSS selector
+
+:::danger CSS selector `:disabled` does not apply
+:::
+
+CSS selectors that rely on `:disabled` will not apply when using `hasAriaDisabled={true}`. Use `[aria-disabled="true"]` as selector instead. 
+
+To streamline this, EUI provides a `euiDisabledSelector` variable (for usage in CSS-in-JS) which combines both `:disabled` and `[aria-disabled="true"]` selectors.
+
+<Example.Snippet>
+  ```tsx
+    import { euiDisabledSelector } from '@elastic/eui';
+    import { css } from '@emotion/react';
+
+    const styles = css`
+      ${euiDisabledSelector} {
+        cursor: not-allowed;
+      }
+
+      &:not(${euiDisabledSelector}) {
+        cursor: default;
+      }
+    `
+  ```
+</Example.Snippet>
+
+#### Test matchers
+
+:::danger Default `disabled` test matchers fail
+:::
+
+Test frameworks that rely on the native `disabled` attribute will fail when using `hasAriaDisabled={true}`. You will need to adjust your assertions accordingly.
+To help with this, EUI provides alternative matchers for a few common test frameworks.
+
+##### Jest DOM
+
+Use `.toBeEuiDisabled()` instead of `.toBeDisabled()`.
+
+<EuiSpacer size="xs" />
+<Example.Snippet>
+  ```tsx
+    // setup file
+    import { setupEuiMatchers } from '@elastic/eui/lib/test/rtl/matchers';
+
+    setupEuiMatchers();
+
+    // usage
+    const { getByTestSubject } = render(
+        <EuiButton isDisabled hasAriaDisabled data-test-subj="button">
+          button label
+        </EuiButton>
+      );
+
+    expect(getByTestSubject('button')).toBeEuiDisabled();
+  ```
+</Example.Snippet>
+
+##### Cypress
+
+Use `.should('be.euiDisabled')` instead of `.should('be.disabled')`.
+
+<EuiSpacer size="xs" />
+<Example.Snippet>
+  ```tsx
+    // setup file
+    import { setupEuiCypressMatchers } from '@elastic/eui/lib/test/cypress/matchers';
+
+    setupEuiCypressMatchers();
+
+    // usage
+    cy.mount(<EuiButton isDisabled hasAriaDisabled data-test-subj="button" />);
+    cy.get('[data-test-subj="button"]').should('be.euiDisabled');
+  ```
+</Example.Snippet>
+
+##### Enzyme (Legacy)
+
+Use `.hasEuiDisabledProp()` instead of `.props().disabled`.
+
+<EuiSpacer size="xs" />
+<Example.Snippet>
+  ```tsx
+    // setup file
+    import { setupEuiEnzymeMatchers } from '@elastic/eui/lib/test/enzyme/enzyme_matchers';
+
+    setupEuiEnzymeMatchers();
+
+    // usage
+    import { findTestSubject } from '@elastic/eui/lib/test';
+
+    const component = mount(<EuiButton isDisabled hasAriaDisabled data-test-subj="button" />);
+
+    expect(findTestSubject(component, 'button').props()).toHaveEuiDisabledProp();
+  ```
+</Example.Snippet>
+
 
 ### Loading
 

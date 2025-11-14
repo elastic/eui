@@ -8,8 +8,9 @@
 
 import React, { ReactNode } from 'react';
 import './mount';
+import { MountOptions } from './mount';
 
-const realMountCommand = (children: ReactNode) => {
+const realMountCommand = (children: ReactNode, options: MountOptions = {}) => {
   cy.mount(
     <>
       <div
@@ -17,7 +18,8 @@ const realMountCommand = (children: ReactNode) => {
         style={{ height: '1px', width: '1px' }}
       />
       {children}
-    </>
+    </>,
+    options
   ).then(() => {
     cy.get('[data-test-subj="cypress-real-event-target"]').realClick({
       position: 'topLeft',

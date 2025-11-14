@@ -10,6 +10,7 @@ import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { disableStorybookControls } from '../../../../.storybook/utils';
 
+import { LOKI_SELECTORS } from '../../../../.storybook/loki';
 import { EuiSpacer } from '../../spacer';
 import {
   EuiButtonGroup,
@@ -41,6 +42,7 @@ const meta: Meta<EuiButtonGroupProps> = {
     buttonSize: 's',
     color: 'text',
     isDisabled: false,
+    hasAriaDisabled: false,
     isFullWidth: false,
     isIconOnly: false,
     options: [],
@@ -79,13 +81,13 @@ const StatefulEuiButtonGroupSingle = (props: any) => {
 };
 
 export const SingleSelection: Story = {
-  render: ({ ...args }) => <StatefulEuiButtonGroupSingle {...args} />,
   args: {
     legend: 'EuiButtonGroup - single selection',
     options,
     type: 'single',
     idSelected: 'button1',
   },
+  render: ({ ...args }) => <StatefulEuiButtonGroupSingle {...args} />,
 };
 
 const StatefulEuiButtonGroupMulti = (props: any) => {
@@ -112,17 +114,21 @@ const StatefulEuiButtonGroupMulti = (props: any) => {
 };
 
 export const MultiSelection: Story = {
-  render: ({ ...args }) => <StatefulEuiButtonGroupMulti {...args} />,
   args: {
     legend: 'EuiButtonGroup - multiple selections',
     options,
     type: 'multi',
     idToSelectedMap: { button1: true },
   },
+  render: ({ ...args }) => <StatefulEuiButtonGroupMulti {...args} />,
 };
 
 export const WithTooltips: Story = {
-  render: ({ ...args }) => <StatefulEuiButtonGroupMulti {...args} />,
+  parameters: {
+    loki: {
+      chromeSelector: LOKI_SELECTORS.portal,
+    },
+  },
   args: {
     legend: 'EuiButtonGroup - tooltip UI testing',
     isIconOnly: true, // Start example with icons to demonstrate usefulness of tooltips
@@ -137,7 +143,8 @@ export const WithTooltips: Story = {
         iconType: 'securitySignalResolved',
         label: 'Standard tooltip',
         toolTipContent: 'Hello world',
-      },
+        autoFocus: true, // dev-only usage to showcase tooltip on load
+      } as EuiButtonGroupOptionProps,
       {
         id: 'customToolTipProps',
         iconType: 'securitySignalDetected',
@@ -155,7 +162,25 @@ export const WithTooltips: Story = {
     type: 'multi',
     idToSelectedMap: { button1: true },
   },
+  render: ({ ...args }) => <StatefulEuiButtonGroupMulti {...args} />,
 };
+
+export const DisabledWithTooltips: Story = {
+  ...WithTooltips,
+  parameters: {
+    ...WithTooltips.parameters,
+    controls: {
+      include: ['options', 'isDisabled', 'hasAriaDisabled'],
+    },
+  },
+  args: {
+    ...WithTooltips.args,
+    isDisabled: true,
+    hasAriaDisabled: true,
+  },
+};
+
+/** VRT only */
 
 export const IconOnly: Story = {
   tags: ['vrt-only'],

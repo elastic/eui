@@ -35,10 +35,49 @@ describe('EuiToolTip', () => {
     cy.get('[data-test-subj="tooltip"]').should('not.exist');
   });
 
+  it('shows the tooltip on hover and hides it on mouseout for a custom disabled trigger button', () => {
+    cy.mount(
+      <EuiToolTip
+        content="Tooltip text here"
+        data-test-subj="tooltip"
+        anchorProps={{ 'data-test-subj': 'tooltipAnchor' }}
+      >
+        <EuiButton data-test-subj="toggleToolTip" hasAriaDisabled isDisabled>
+          Show tooltip
+        </EuiButton>
+      </EuiToolTip>
+    );
+    cy.get('[data-test-subj="tooltip"]').should('not.exist');
+
+    // using the anchor wrapper as the mouse events are added there and the disabled button does't support them
+    cy.get('[data-test-subj="tooltipAnchor"]').trigger('mouseover');
+    cy.get('[data-test-subj="tooltip"]').should('exist');
+
+    cy.get('[data-test-subj="tooltipAnchor"]').trigger('mouseout');
+    cy.get('[data-test-subj="tooltip"]').should('not.exist');
+  });
+
   it('shows the tooltip on keyboard focus and hides it on blur', () => {
     cy.mount(
       <EuiToolTip content="Tooltip text here" data-test-subj="tooltip">
         <EuiButton data-test-subj="toggleToolTip">Show tooltip</EuiButton>
+      </EuiToolTip>
+    );
+    cy.get('[data-test-subj="tooltip"]').should('not.exist');
+
+    cy.get('[data-test-subj="toggleToolTip"]').focus();
+    cy.get('[data-test-subj="tooltip"]').should('exist');
+
+    cy.get('[data-test-subj="toggleToolTip"]').blur();
+    cy.get('[data-test-subj="tooltip"]').should('not.exist');
+  });
+
+  it('shows the tooltip on keyboard focus and hides it on blur for a custom disabled trigger button', () => {
+    cy.mount(
+      <EuiToolTip content="Tooltip text here" data-test-subj="tooltip">
+        <EuiButton data-test-subj="toggleToolTip" hasAriaDisabled isDisabled>
+          Show tooltip
+        </EuiButton>
       </EuiToolTip>
     );
     cy.get('[data-test-subj="tooltip"]').should('not.exist');

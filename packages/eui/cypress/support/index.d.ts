@@ -69,5 +69,15 @@ declare global {
        */
       waitForPositionToSettle(): Chainable<JQuery<HTMLElement>>;
     }
+    interface Chainer<Subject> {
+      (chainer: 'be.euiDisabled'): Chainable<Subject>;
+      (chainer: 'be.euiEnabled'): Chainable<Subject>;
+    }
+  }
+  namespace Chai {
+    interface Assertion {
+      euiDisabled: Assertion;
+      euiEnabled: Assertion;
+    }
   }
 }
