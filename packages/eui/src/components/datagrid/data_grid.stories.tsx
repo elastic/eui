@@ -238,8 +238,6 @@ export const ColumnActions: Story = {
   },
 };
 
-/* TESTING */
-
 export const VisibleColumns: Story = {
   tags: ['vrt-only'],
   args: {
