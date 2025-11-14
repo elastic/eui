@@ -79,6 +79,7 @@ export const EuiInputPopover: FunctionComponent<EuiInputPopoverProps> = ({
   onPanelResize,
   inputRef: _inputRef,
   panelRef: _panelRef,
+  offset = 2,
   ...props
 }) => {
   const classes = classnames('euiInputPopover', className);
@@ -234,6 +235,7 @@ export const EuiInputPopover: FunctionComponent<EuiInputPopoverProps> = ({
       closePopover={closePopover}
       anchorPosition={anchorPosition}
       attachToAnchor={attachToAnchor}
+      offset={offset}
       repositionToCrossAxis={repositionToCrossAxis}
       panelPaddingSize={panelPaddingSize}
       ownFocus={ownFocus}
