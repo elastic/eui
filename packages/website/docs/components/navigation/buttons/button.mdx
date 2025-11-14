@@ -657,7 +657,7 @@ import { EuiSpacer } from '@elastic/eui';
 
 #### CSS selector
 
-:::warning CSS selector `:disabled` does not apply
+:::danger CSS selector `:disabled` does not apply
 :::
 
 CSS selectors that rely on `:disabled` will not apply when using `hasAriaDisabled={true}`. Use `[aria-disabled="true"]` as selector instead. 
@@ -683,13 +683,15 @@ To streamline this, EUI provides a `euiDisabledSelector` variable (for usage in 
 
 #### Test matchers
 
-:::warning Default `disabled` test matchers fail
+:::danger Default `disabled` test matchers fail
 :::
 
 Test frameworks that rely on the native `disabled` attribute will fail when using `hasAriaDisabled={true}`. You will need to adjust your assertions accordingly.
-To help with this, EUI provides alternative matchers for a few common test frameworks:
+To help with this, EUI provides alternative matchers for a few common test frameworks.
 
-1. **Jest DOM**: Use the `.toBeEuiDisabled()` instead of `.toBeDisabled()`
+##### Jest DOM
+
+Use `.toBeEuiDisabled()` instead of `.toBeDisabled()`.
 
 <EuiSpacer size="xs" />
 <Example.Snippet>
@@ -710,9 +712,9 @@ To help with this, EUI provides alternative matchers for a few common test frame
   ```
 </Example.Snippet>
 
-<EuiSpacer size="m" />
+##### Cypress
 
-2. **Cypress**: Use the `.should('be.euiDisabled')` instead of `.should('be.disabled')`
+Use `.should('be.euiDisabled')` instead of `.should('be.disabled')`.
 
 <EuiSpacer size="xs" />
 <Example.Snippet>
@@ -728,9 +730,9 @@ To help with this, EUI provides alternative matchers for a few common test frame
   ```
 </Example.Snippet>
 
-<EuiSpacer size="m" />
+##### Enzyme (Legacy)
 
-3. **Enzyme (Legacy)**: Use the `.hasEuiDisabledProp()` instead of `.props().disabled`
+Use `.hasEuiDisabledProp()` instead of `.props().disabled`.
 
 <EuiSpacer size="xs" />
 <Example.Snippet>
