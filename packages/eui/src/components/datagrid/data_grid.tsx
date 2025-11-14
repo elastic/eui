@@ -210,10 +210,17 @@ export const EuiDataGrid = memo(
      */
     const displayValues: { [key: string]: string } = useMemo(() => {
       return columns.reduce(
-        (acc: { [key: string]: string }, column: EuiDataGridColumn) => ({
-          ...acc,
-          [column.id]: column.displayAsText || column.id,
-        }),
+        (acc: { [key: string]: string }, column: EuiDataGridColumn) => {
+          // prevent duplicate values
+          if (!acc[column.id]) {
+            return {
+              ...acc,
+              [column.id]: column.displayAsText || column.id,
+            };
+          }
+
+          return acc;
+        },
         {}
       );
     }, [columns]);

@@ -9,7 +9,7 @@
 import React, { useRef, useEffect } from 'react';
 import { css } from '@emotion/react';
 import type { Meta, StoryObj, ReactRenderer } from '@storybook/react';
-import type { PlayFunctionContext } from '@storybook/csf';
+import { StoryContext } from '@storybook/csf';
 import { expect, fireEvent, waitFor } from '@storybook/test';
 import { action } from '@storybook/addon-actions';
 import { within } from '../../../.storybook/test';
@@ -176,7 +176,7 @@ export const DraggableColumns: Story = {
     ),
   },
   render: (args: EuiDataGridProps) => <StatefulDataGrid {...args} />,
-  play: async ({ canvasElement }: PlayFunctionContext<ReactRenderer>) => {
+  play: async ({ canvasElement }: StoryContext<ReactRenderer>) => {
     const canvas = within(canvasElement);
 
     await waitFor(async () => {
@@ -231,9 +231,37 @@ export const ColumnActions: Story = {
       gridStyle={{ fontSize: 's', cellPadding: 's' }}
     />
   ),
-  play: async ({ canvasElement }: PlayFunctionContext<ReactRenderer>) => {
+  play: async ({ canvasElement }: StoryContext<ReactRenderer>) => {
     const canvas = within(canvasElement);
     await canvas.waitForAndClick('dataGridHeaderCellActionButton-account');
+    await canvas.waitForEuiPopoverVisible();
+  },
+};
+
+export const VisibleColumns: Story = {
+  tags: ['vrt-only'],
+  args: {
+    ...defaultStorybookArgs,
+    columnVisibility: {
+      // `visibleColumns` has a different order than `columns` - `visibleColumns` determines the order
+      visibleColumns: ['date', 'name', 'email', 'location'],
+      setVisibleColumns: action('setVisibleColumns'),
+    },
+    // `columns` contains duplicates - only the first occurrence is used
+    columns: [
+      { id: 'name', displayAsText: 'Name' },
+      { id: 'email', displayAsText: 'Email' },
+      { id: 'location', displayAsText: 'Location' },
+      { id: 'name', displayAsText: 'Name (duplicate)' },
+      { id: 'email', displayAsText: 'Email (duplicate)' },
+      { id: 'account', displayAsText: 'Account' },
+      { id: 'date', displayAsText: 'Date' },
+    ],
+  },
+  render: (args: EuiDataGridProps) => <StatefulDataGrid {...args} />,
+  play: async ({ canvasElement }: StoryContext<ReactRenderer>) => {
+    const canvas = within(canvasElement);
+    await canvas.waitForAndClick('dataGridColumnSelectorButton');
     await canvas.waitForEuiPopoverVisible();
   },
 };
