@@ -158,3 +158,5 @@ jobs:
             }
             return `--workspaces ${process.env.WORKSPACES.split(',').join(' ')}`;
           result-encoding: string
+      - name: Release
+        run: yarn release run official --dry-run --skip-prompts --skip-auth-check --use-auth-token --allow-custom --skip-update-versions ${{ steps.prepare_workspaces_arg.outputs.result }}
