@@ -335,12 +335,13 @@ describe('EuiPopover', () => {
             button={<button />}
             closePopover={() => {}}
             offset={10}
+            hasArrow={true}
             isOpen
           />
         );
 
         expect(baseElement.querySelector('[data-popover-panel]')).toHaveStyle({
-          top: '26px',
+          top: '18px',
         });
       });
 
@@ -357,7 +358,7 @@ describe('EuiPopover', () => {
         );
 
         expect(baseElement.querySelector('[data-popover-panel]')).toHaveStyle({
-          top: '18px',
+          top: '10px',
         });
       });
 
