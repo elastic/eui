@@ -205,9 +205,6 @@ const useCustomDisabledEvents = () => {
  * It applies `aria-disabled` instead of `disabled`  when `hasAriaDisabled=true`
  * to ensure the element is semantically disabled while still focusable.
  *
- * The util uses the `ref` of the element to determine if it semantically can be disabled
- * and to prevent events while its disabled.
- *
  * It mimics the native `disabled` behavior by removing any programmatic mouse, pointer, touch
  * or keyboard event handler but it differs to the native `disabled` behavior in that it preserves
  * the focus, blur and tabIndex behavior.
