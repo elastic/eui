@@ -83,9 +83,9 @@ describe('EuiFlyout', () => {
     it('traps focus and cycles tabbable items', () => {
       cy.mount(<Flyout />);
       cy.get('[data-test-subj="flyoutSpec"]').should('be.focused');
-      cy.repeatRealPress('Tab', 4);
-      cy.get('[data-test-subj="itemC"]').should('be.focused');
       cy.repeatRealPress('Tab', 3);
+      cy.get('[data-test-subj="itemC"]').should('be.focused');
+      cy.repeatRealPress('Tab', 2);
       cy.get('[data-test-subj="euiFlyoutCloseButton"]').should('be.focused');
     });
 

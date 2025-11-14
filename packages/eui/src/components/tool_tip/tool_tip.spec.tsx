@@ -153,7 +153,7 @@ describe('EuiToolTip', () => {
 
       cy.get('[data-test-subj="flyout"]').focus();
 
-      cy.repeatRealPress('Tab', 2);
+      cy.repeatRealPress('Tab', 1);
       cy.get('[data-test-subj="tool_tip"]').should('exist');
 
       cy.realPress('Escape');

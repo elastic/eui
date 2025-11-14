@@ -565,9 +565,9 @@ export const EuiFlyout = forwardRef(
             aria-describedby={!isPushed ? ariaDescribedBy : _ariaDescribedBy}
             data-autofocus={!isPushed || undefined}
           >
+            {contentToRender}
             {!isPushed && screenReaderDescription}
             {closeButton}
-            {contentToRender}
           </Element>
         </EuiFocusTrap>
       </EuiFlyoutWrapper>
