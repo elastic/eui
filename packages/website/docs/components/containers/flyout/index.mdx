@@ -1,5 +1,5 @@
 ---
-keywords: [EuiFlyout, EuiFlyoutBody, EuiFlyoutHeader, EuiFlyoutFooter]
+keywords: [EuiFlyout, EuiFlyoutBody, EuiFlyoutHeader, EuiFlyoutFooter, EuiFlyoutMenu]
 ---
 
 # Flyout
@@ -967,7 +967,7 @@ import { Example } from '@site/src/components';
 
 ### Focus management
 
-`EuiFlyout` used with `type="overlay"` manages focus for keyboard navigation and accessibility. This ensures users can navigate modal content effectively, 
+`EuiFlyout` used with `type="overlay"` manages focus for keyboard navigation and accessibility. This ensures users can navigate modal content effectively,
 especially those using screen readers or keyboard-only navigation.
 
 When a `EuiFlyout` is used, it will automatically:
@@ -981,7 +981,7 @@ When a `EuiFlyout` is used, it will automatically:
 Use `focusTrapProps` to customize the focus behavior:
 
 ```tsx
-<EuiFlyout 
+<EuiFlyout
   focusTrapProps={{
     returnFocus: (triggerElement) => {
       // Return true to use default behavior (focus triggerElement)
@@ -997,7 +997,7 @@ Use `focusTrapProps` to customize the focus behavior:
 ```
 
 :::warning Manually return focus when the trigger element is removed
-If the trigger element is removed from the DOM before the flyout closes, focus will be "lost" to the document body. 
+If the trigger element is removed from the DOM before the flyout closes, focus will be "lost" to the document body.
 In this case, manually return focus to an appropriate element using `focusTrapProps.returnFocus`.
 :::
 
@@ -1013,38 +1013,46 @@ import ResizableFlyout from './_flyout_resizable.mdx';
 
 <ResizableFlyout />
 
-### Child flyout (Beta)
+```mdx-code-block
+import { EuiBetaBadge } from '@elastic/eui';
+```
+
+### Flyout menu <EuiBetaBadge size="s" label="Beta" color="accent" /> {#flyout-menu}
 
 :::info Note
 This component is still in beta and may change in the future.
 :::
 
-Use `EuiFlyoutChild` to create a nested flyout that aligns to the left edge of a parent `EuiFlyout`. On smaller screens, the child flyout stacks above the parent.
+`EuiFlyoutMenu` is the top menu bar of a flyout. It is a private component, and is controlled by the `flyoutMenuProps` prop of `EuiFlyout`.
 
 ```tsx
-<EuiFlyout>
-  <EuiFlyoutHeader>Parent header</EuiFlyoutHeader>
-  <EuiFlyoutBody>Parent body</EuiFlyoutBody>
-  <EuiFlyoutFooter>Parent footer</EuiFlyoutFooter>
-
-  <EuiFlyoutChild>
-    <EuiFlyoutHeader>Child header</EuiFlyoutHeader>
-    <EuiFlyoutBody>Child body</EuiFlyoutBody>
-    <EuiFlyoutFooter>Child footer</EuiFlyoutFooter>
-  </EuiFlyoutChild>
+<EuiFlyout
+  onClose={() => {}}
+  flyoutMenuProps={{
+    title: 'My flyout',
+    customActions: [
+      {
+        iconType: 'gear',
+        ['aria-label']: 'Settings',
+        onClick: () => {
+          console.log('Settings clicked');
+        },
+      },
+    ],
+  }}
+>
+  <EuiFlyoutBody>Flyout body</EuiFlyoutBody>
+  <EuiFlyoutFooter>Flyout footer</EuiFlyoutFooter>
 </EuiFlyout>
 ```
 
-The `EuiFlyoutChild` must include an `EuiFlyoutBody` child and can only be used within a parent `EuiFlyout`. When present, the parent flyout's `side` prop will be forced to `"right"` and the close button to `"inside"`. Size options are also limited - parent flyouts can only be `s` or `m`, and if the parent is `m`, the child must be `s`.
-
-Both parent and child flyouts use `role="dialog"` and `aria-modal="true"` for accessibility. Focus is managed automatically between them, with the child flyout taking focus when open and returning focus to the parent when closed.
+In [managed session flyouts](./session-management.mdx), the Flyout Manager controls a back button and a history popover control for navigating to different flyout sessions within the managed context.
 
 ## Props
 
 import docgen from '@elastic/eui-docgen/dist/components/flyout';
-import flyoutDocgen from '@elastic/eui-docgen/dist/components/flyout/flyout.json';
 
-<PropTable definition={flyoutDocgen.EuiFlyout} />
+<PropTable definition={docgen.EuiFlyout} />
 
 <PropTable definition={docgen.EuiFlyoutBody} />
 
@@ -1052,6 +1060,4 @@ import flyoutDocgen from '@elastic/eui-docgen/dist/components/flyout/flyout.json
 
 <PropTable definition={docgen.EuiFlyoutHeader} />
 
-<PropTable definition={docgen.EuiFlyoutResizable} />
-
-<PropTable definition={docgen.EuiFlyoutChild} />
+<PropTable definition={docgen.EuiFlyoutMenu} />
