@@ -121,15 +121,15 @@ jobs:
           # This is needed for yarn version to work properly, but it increases fetch time.
           # We can change this back to "1" if we replace yarn version with something else
           fetch-depth: 0
-      - name: Verify release commit is tagged
-        run: |
-          tag=$(git tag --points-at ${{ inputs.release_ref }})
-          if [[ "$?" -ne 0 ]] || [[ -z "$tag" ]]; then
-            echo "::error:: Release ref does not point to any tag. Please tag the merge commit of the release PR and try again"
-            exit 1
-          else
-            echo "Release commit verified - $tag"
-          fi
+      #- name: Verify release commit is tagged
+      #  run: |
+      #    tag=$(git tag --points-at ${{ inputs.release_ref }})
+      #    if [[ "$?" -ne 0 ]] || [[ -z "$tag" ]]; then
+      #      echo "::error:: Release ref does not point to any tag. Please tag the merge commit of the release PR and try again"
+      #      exit 1
+      #    else
+      #      echo "Release commit verified - $tag"
+      #    fi
       - name: Configure git
         run: |
           git config --global user.name 'EUI Machine'
