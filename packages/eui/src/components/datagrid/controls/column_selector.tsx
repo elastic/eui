@@ -66,6 +66,29 @@ export const useDataGridColumnSelector = (
     const availableColumnIds = availableColumns.map(({ id }) => id);
     // remove duplicate columns to ensure unique columns
     const availableColumnIdsSet = new Set(availableColumnIds);
+
+    if (process.env.NODE_ENV === 'development') {
+      if (availableColumnIds.length > availableColumnIdsSet.size) {
+        const duplicateIds: string[] = [];
+
+        for (const id of availableColumnIds) {
+          if (
+            !duplicateIds.includes(id) &&
+            availableColumnIds.filter((_id) => _id === id).length > 1
+          ) {
+            duplicateIds.push(id);
+          }
+        }
+
+        console.warn(
+          `⚠️ EuiDataGrid: Duplicate column IDs detected and removed: ${duplicateIds.join(
+            ', '
+          )}.`,
+          '\n Column IDs must be unique. Only the first occurrence of each duplicate will be used.'
+        );
+      }
+    }
+
     const validVisibleColumns = visibleColumns.filter((id) =>
       availableColumnIdsSet.has(id)
     );
