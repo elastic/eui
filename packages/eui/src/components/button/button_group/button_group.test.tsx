@@ -275,7 +275,7 @@ describe('EuiButtonGroup', () => {
     });
 
     it('shows a tooltip on hover and focus when custom disabled via `hasAriaDisabled`', async () => {
-      const { getByTestSubject, getByRole } = render(
+      const { getByTestSubject, findByRole } = render(
         <EuiButtonGroup
           {...requiredMultiProps}
           isIconOnly
@@ -297,7 +297,7 @@ describe('EuiButtonGroup', () => {
       fireEvent.mouseOver(getByTestSubject('buttonWithTooltip').parentElement!);
       await waitForEuiToolTipVisible();
 
-      expect(getByRole('tooltip')).toHaveTextContent('I am a tooltip');
+      expect(await findByRole('tooltip')).toHaveTextContent('I am a tooltip');
 
       fireEvent.mouseOut(getByTestSubject('buttonWithTooltip').parentElement!);
       await waitForEuiToolTipHidden();

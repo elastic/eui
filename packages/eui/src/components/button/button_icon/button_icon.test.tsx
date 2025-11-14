@@ -45,6 +45,7 @@ describe('EuiButtonIcon', () => {
         expect(container.firstChild).toMatchSnapshot();
         expect(button).toBeEuiDisabled();
         expect(button).toHaveAttribute('disabled', '');
+        expect(button).not.toHaveAttribute('aria-disabled');
       });
 
       it('or disabled is rendered', () => {
@@ -85,6 +86,7 @@ describe('EuiButtonIcon', () => {
 
         expect(button).toBeEuiDisabled();
         expect(button).toHaveAttribute('aria-disabled', 'true');
+        expect(button).not.toHaveAttribute('disabled');
       });
     });
 

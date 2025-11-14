@@ -88,6 +88,7 @@ describe('EuiFilterButton', () => {
         expect(container.firstChild).toMatchSnapshot();
         expect(button).toBeEuiDisabled();
         expect(button).toHaveAttribute('disabled', '');
+        expect(button).not.toHaveAttribute('aria-disabled');
       });
     });
 
@@ -101,6 +102,7 @@ describe('EuiFilterButton', () => {
 
         expect(button).toBeEuiDisabled();
         expect(button).toHaveAttribute('aria-disabled', 'true');
+        expect(button).not.toHaveAttribute('disabled');
       });
     });
 

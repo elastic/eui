@@ -52,6 +52,7 @@ describe('EuiButton', () => {
         expect(container.firstChild).toMatchSnapshot();
         expect(button).toBeEuiDisabled();
         expect(button).toHaveAttribute('disabled', '');
+        expect(button).not.toHaveAttribute('aria-disabled');
       });
 
       it('renders a button even when href is defined', () => {
@@ -77,6 +78,7 @@ describe('EuiButton', () => {
 
         expect(button).toBeEuiDisabled();
         expect(button).toHaveAttribute('aria-disabled', 'true');
+        expect(button).not.toHaveAttribute('disabled');
       });
     });
 
