@@ -1,24 +1,41 @@
 name: Release packages (Work in Progress, a dry run only)
+run-name: "Create ${{ inputs.type }} release from ${{ inputs.release_ref }} by ${{ github.actor }}"
 
 on:
   workflow_dispatch:
     inputs:
+      release_ref:
+        description: Upstream git ref to create the release from
+        required: true
+        type: string
+      type:
+        description: Release type
+        required: true
+        type: choice
+        options:
+        - snapshot
+        - official
       workspaces:
         description: A comma-separated list of workspaces to release
         required: false
         type: string
+      dry_run:
+        description: Dry run (do not publish the packages)
+        required: true
+        type: boolean
 
 #permissions:
 #  id-token: write # Required for OIDC
 #  contents: read
 
 jobs:
-  checks:
-    name: Checks
+  lint_and_unit_tests:
+    name: Run lint and unit tests
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
+          ref: ${{ inputs.release_ref }}
           persist-credentials: false
       - uses: actions/setup-node@v6
         with:
@@ -26,5 +43,29 @@ jobs:
           cache: yarn
       - name: Install dependencies
         run: yarn install --immutable
-      - name: Run tests
-        run: yarn workspaces foreach -A run test-ci
+      - name: Build local packages
+        run: yarn workspaces foreach --all --parallel --topological-dev --exclude @elastic/eui-website --exclude @elastic/eui-monorepo --exclude @elastic/eui-docgen run build
+      # TODO: Uncomment when code formatting is fixed in eui-theme-common and eui-theme-borealis
+      # This is prepared in the upstream/build/gh-release-action branch
+      # - name: Lint
+      #   run: yarn workspaces foreach --all --parallel --topological-dev --exclude @elastic/eui-website --exclude @elastic/eui-monorepo --exclude @elastic/eui-docgen run lint
+      - name: Unit tests
+        run: yarn workspaces foreach --all --parallel --topological-dev --exclude @elastic/eui-website --exclude @elastic/eui-monorepo --exclude @elastic/eui-docgen run test-unit
+  cypress_tests:
+    name: Run cypress tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.release_ref }}
+          persist-credentials: false
+      - uses: actions/setup-node@v6
+        with:
+          node-version-file: .nvmrc
+          cache: yarn
+      - name: Install dependencies
+        run: yarn install --immutable
+      - name: Build local packages
+        run: yarn workspaces foreach --all --parallel --topological-dev --exclude @elastic/eui-website --exclude @elastic/eui-monorepo --exclude @elastic/eui-docgen run build
+      - name: Cypress tests
+        run: yarn workspaces foreach --all --parallel --topological-dev --exclude @elastic/eui-website --exclude @elastic/eui-monorepo --exclude @elastic/eui-docgen run test-cypress
