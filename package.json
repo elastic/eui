@@ -10,6 +10,8 @@
   },
   "scripts": {
     "pre-push": "yarn --cwd packages/eui pre-push",
+    "start": "printf $'\\x1b[K\\x1b[37;41mPlease run this script from the \\x1b[1;4mpackages/eui\\x1b[0m\\x1b[37;41m directory instead\\x1b[0m\\n'; exit 1",
+    "build": "printf $'\\x1b[K\\x1b[37;41mPlease run this script from the \\x1b[1;4mpackages/eui\\x1b[0m\\x1b[37;41m directory instead\\x1b[0m\\n'; exit 1",
     "release": "node scripts/release",
     "clean": "node scripts/clean.mjs"
   },
