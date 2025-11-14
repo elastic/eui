@@ -1,5 +1,5 @@
-name: Release packages (Work in Progress, a dry run only)
-run-name: "Create ${{ inputs.type }} release from ${{ inputs.release_ref }} by ${{ github.actor }}"
+name: Release packages
+run-name: "Create ${{ inputs.type }} release from ${{ github.ref_name }} (${{ inputs.release_ref }}) by ${{ github.actor }}"
 
 on:
   workflow_dispatch:
