@@ -269,6 +269,7 @@ exports[`EuiButtonEmpty props iconType is rendered 1`] = `
 exports[`EuiButtonEmpty props isDisabled is rendered 1`] = `
 <button
   class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-m-empty-disabled-isDisabled"
+  data-test-subj="button"
   disabled=""
   type="button"
 >

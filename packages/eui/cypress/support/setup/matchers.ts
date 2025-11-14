@@ -6,14 +6,6 @@
  * Side Public License, v 1.
  */
 
-export * from './useDependentState';
-export * from './useCombinedRefs';
-export * from './useForceRender';
-export * from './useLatest';
-export * from './useDeepEqual';
-export * from './useMouseMove';
-export * from './useUpdateEffect';
-export {
-  type EuiDisabledProps,
-  useEuiDisabledElement,
-} from './useEuiDisabledElement';
+import { setupEuiCypressMatchers } from '../../../src/test/cypress';
+
+setupEuiCypressMatchers();

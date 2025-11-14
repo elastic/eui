@@ -9,3 +9,4 @@
 export * from './prop_types';
 export * from './is_jest';
 export * from './type_guards';
+export { elementCanBeDisabled } from './element_can_be_disabled';

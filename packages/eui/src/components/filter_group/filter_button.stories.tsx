@@ -30,6 +30,7 @@ const meta: Meta<EuiFilterButtonProps> = {
     isToggle: false,
     isSelected: false,
     isDisabled: false,
+    hasAriaDisabled: false,
     withNext: false,
     hasActiveFilters: false,
   },

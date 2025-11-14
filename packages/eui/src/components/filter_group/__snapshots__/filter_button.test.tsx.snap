@@ -88,6 +88,7 @@ exports[`EuiFilterButton props isDisabled renders 1`] = `
 >
   <button
     class="euiButtonEmpty euiFilterButton emotion-euiButtonDisplay-euiButtonEmpty-m-empty-disabled-isDisabled-euiFilterButton-default"
+    data-test-subj="button"
     disabled=""
     type="button"
   >

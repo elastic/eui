@@ -15,6 +15,7 @@ import React, {
 } from 'react';
 
 import { useEuiMemoizedStyles } from '../../../services';
+import { type EuiDisabledProps } from '../../../services/hooks/useEuiDisabledElement';
 import { EuiScreenReaderOnly } from '../../accessibility';
 import { CommonProps } from '../../common';
 
@@ -29,7 +30,8 @@ import {
 
 export interface EuiButtonGroupOptionProps
   extends EuiButtonDisplayContentProps,
-    CommonProps {
+    CommonProps,
+    EuiDisabledProps {
   /**
    * Each option must have a unique `id` for maintaining selection
    */
@@ -38,7 +40,6 @@ export interface EuiButtonGroupOptionProps
    * Each option must have a `label` even for icons which will be applied as the `aria-label`
    */
   label: ReactNode;
-  isDisabled?: boolean;
   /**
    * The value of the radio input.
    */
@@ -63,47 +64,47 @@ export interface EuiButtonGroupOptionProps
   toolTipProps?: Partial<Omit<EuiToolTipProps, 'content' | 'children'>>;
 }
 
-export type EuiButtonGroupProps = CommonProps & {
-  /**
-   * Typical sizing is `s`. Medium `m` size should be reserved for major features.
-   * `compressed` is meant to be used alongside and within compressed forms.
-   */
-  buttonSize?: 's' | 'm' | 'compressed';
-  isDisabled?: boolean;
-  /**
-   * Expands the whole group to the full width of the container.
-   * Each button gets equal widths no matter the content
-   */
-  isFullWidth?: boolean;
-  /**
-   * Hides the label to only show the `iconType` provided by the `option`
-   */
-  isIconOnly?: boolean;
-  /**
-   * A hidden group title (required for accessibility)
-   */
-  legend: string;
-  /**
-   * Any of the named color palette options.
-   *
-   * Do not use the following colors for standalone buttons directly,
-   * they exist to serve other components:
-   *  - accent
-   *  - warning
-   */
-  color?: _EuiButtonColor;
-  /**
-   * Actual type is `'single' | 'multi'`.
-   * Determines how the selection of the group should be handled.
-   * With `'single'` only one option can be selected at a time (similar to radio group).
-   * With `'multi'` multiple options selected (similar to checkbox group).
-   */
-  type?: 'single' | 'multi';
-  /**
-   * An array of {@link EuiButtonGroupOptionProps}
-   */
-  options: EuiButtonGroupOptionProps[];
-} & (
+export type EuiButtonGroupProps = CommonProps &
+  EuiDisabledProps & {
+    /**
+     * Typical sizing is `s`. Medium `m` size should be reserved for major features.
+     * `compressed` is meant to be used alongside and within compressed forms.
+     */
+    buttonSize?: 's' | 'm' | 'compressed';
+    /**
+     * Expands the whole group to the full width of the container.
+     * Each button gets equal widths no matter the content
+     */
+    isFullWidth?: boolean;
+    /**
+     * Hides the label to only show the `iconType` provided by the `option`
+     */
+    isIconOnly?: boolean;
+    /**
+     * A hidden group title (required for accessibility)
+     */
+    legend: string;
+    /**
+     * Any of the named color palette options.
+     *
+     * Do not use the following colors for standalone buttons directly,
+     * they exist to serve other components:
+     *  - accent
+     *  - warning
+     */
+    color?: _EuiButtonColor;
+    /**
+     * Actual type is `'single' | 'multi'`.
+     * Determines how the selection of the group should be handled.
+     * With `'single'` only one option can be selected at a time (similar to radio group).
+     * With `'multi'` multiple options selected (similar to checkbox group).
+     */
+    type?: 'single' | 'multi';
+    /**
+     * An array of {@link EuiButtonGroupOptionProps}
+     */
+    options: EuiButtonGroupOptionProps[];
+  } & (
     | {
         /**
          * Default for `type` is single so it can also be excluded
@@ -153,6 +154,7 @@ export const EuiButtonGroup: FunctionComponent<Props> = ({
   idSelected = '',
   idToSelectedMap = {},
   isDisabled = false,
+  hasAriaDisabled = false,
   isFullWidth = false,
   isIconOnly = false,
   legend,
@@ -182,12 +184,17 @@ export const EuiButtonGroup: FunctionComponent<Props> = ({
 
   const typeIsSingle = type === 'single';
 
+  const groupDisabledProps = {
+    disabled: hasAriaDisabled ? undefined : isDisabled,
+    'aria-disabled': hasAriaDisabled ? isDisabled : undefined,
+  };
+
   return (
     <fieldset
       css={wrapperCssStyles}
       className={classes}
       {...rest}
-      disabled={isDisabled}
+      {...groupDisabledProps}
     >
       <EuiScreenReaderOnly>
         <legend>{legend}</legend>
@@ -199,6 +206,7 @@ export const EuiButtonGroup: FunctionComponent<Props> = ({
             <EuiButtonGroupButton
               key={option.id}
               isDisabled={isDisabled}
+              hasAriaDisabled={hasAriaDisabled}
               {...(option as EuiButtonGroupOptionProps)}
               onClick={
                 typeIsSingle

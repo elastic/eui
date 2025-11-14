@@ -265,7 +265,9 @@ const euiButtonDisplaysColors = (euiThemeContext: UseEuiTheme) => {
               outline-color: ${euiThemeContext.colorMode === 'DARK' &&
             color === 'text'
               ? 'currentColor'
-              : euiThemeContext.euiTheme.colors.fullShade};
+              : color !== 'disabled'
+              ? euiThemeContext.euiTheme.colors.fullShade
+              : ''};
 
             ${_interactionStyles(euiThemeContext, buttonColors)}
           `;

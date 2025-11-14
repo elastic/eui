@@ -55,6 +55,16 @@ export const euiButtonDisplayStyles = (euiThemeContext: UseEuiTheme) => {
     // States
     isDisabled: css`
       cursor: not-allowed;
+
+      /* prevent user (mouse) interactions for custom disabled buttons.
+      Covers user interaction only. Programmatic event handling is done in the \`useEuiDisabledElement\` hook */
+      &[aria-disabled='true'] {
+        pointer-events: none;
+
+        > * {
+          pointer-events: none;
+        }
+      }
     `,
     fullWidth: css`
       display: block;
