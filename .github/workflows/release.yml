@@ -24,9 +24,9 @@ on:
         required: true
         type: boolean
 
-#permissions:
-#  id-token: write # Required for OIDC
-#  contents: read
+permissions:
+  id-token: write # Required for OIDC
+  contents: read
 
 jobs:
   lint_and_unit_tests:
