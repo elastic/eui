@@ -336,6 +336,7 @@ describe('EuiPopover', () => {
             closePopover={() => {}}
             offset={10}
             isOpen
+            hasArrow
           />
         );
 
