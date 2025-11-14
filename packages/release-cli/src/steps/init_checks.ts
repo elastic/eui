@@ -75,17 +75,21 @@ export const stepInitChecks = async (options: ReleaseOptions) => {
     )}) on branch ${chalk.underline.bold(currentBranch)}`
   );
 
-  const registryUser = await getAuthenticatedUser();
-  if (!registryUser) {
-    throw new ValidationError(
-      'Authentication to npmjs is required. Please log in before running' +
-      ' this command again.',
-      `To authenticate run the following command:\n` +
-        `  ${chalk.yellowBright('yarn npm login')}`
-    );
-  }
+  if (!options.skipAuthCheck) {
+    const registryUser = await getAuthenticatedUser();
+    if (!registryUser) {
+      throw new ValidationError(
+        'Authentication to npmjs is required. Please log in before running' +
+          ' this command again.',
+        `To authenticate run the following command:\n` +
+          `  ${chalk.yellowBright('yarn npm login')}`
+      );
+    }
 
-  logger.info(`Logged in to npmjs as ${registryUser}`);
+    logger.info(`Logged in to npmjs as ${registryUser}`);
+  } else {
+    logger.info('Skipping the registry authentication check');
+  }
 
   const npmRegistry = await getYarnRegistryServer();
   if (npmRegistry) {
