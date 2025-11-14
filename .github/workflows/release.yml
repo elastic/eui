@@ -45,10 +45,8 @@ jobs:
         run: yarn install --immutable
       - name: Build local packages
         run: yarn workspaces foreach --all --parallel --topological-dev --exclude @elastic/eui-website --exclude @elastic/eui-monorepo --exclude @elastic/eui-docgen run build
-      # TODO: Uncomment when code formatting is fixed in eui-theme-common and eui-theme-borealis
-      # This is prepared in the upstream/build/gh-release-action branch
-      # - name: Lint
-      #   run: yarn workspaces foreach --all --parallel --topological-dev --exclude @elastic/eui-website --exclude @elastic/eui-monorepo --exclude @elastic/eui-docgen run lint
+      - name: Lint
+        run: yarn workspaces foreach --all --parallel --topological-dev --exclude @elastic/eui-website --exclude @elastic/eui-monorepo --exclude @elastic/eui-docgen run lint
       - name: Unit tests
         run: yarn workspaces foreach --all --parallel --topological-dev --exclude @elastic/eui-website --exclude @elastic/eui-monorepo --exclude @elastic/eui-docgen run test-unit
   cypress_tests:

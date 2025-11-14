@@ -1,7 +1,7 @@
 // Import base theme first, then override
 
-// TODO: untangle border scss definitions by moving them and related usage to the theme 
-// package instead of the common one 
+// TODO: untangle border scss definitions by moving them and related usage to the theme
+// package instead of the common one
 
 @import 'node_modules/@elastic/eui-theme-common/src/global_styling/variables/size';
 @import 'node_modules/@elastic/eui-theme-common/src/global_styling/variables/responsive';
