@@ -30,6 +30,7 @@ export const stepCheckWorkspaces = async (
 ) => {
   const { logger } = options;
   const rootWorkspaceDir = getRootWorkspaceDir();
+  const publishableWorkspaces: Array<YarnWorkspace> = [];
 
   logger.info('Checking latest versions of published packages on npmjs');
 
@@ -38,13 +39,22 @@ export const stepCheckWorkspaces = async (
     const packageJson = await getWorkspacePackageJson(workspaceDir);
 
     if (packageJson.private) {
-      logger.debug(`[${workspace.name}] Package is private and will not be published`);
+      logger.debug(
+        `[${workspace.name}] Package is private and will not be published`
+      );
       continue;
     }
 
     const publishedVersions = await getNpmPublishedVersions(workspace.name);
     if (publishedVersions.includes(packageJson.version)) {
-      throw new ValidationError(`${workspace.name}@${packageJson.version} is already available on npmjs and cannot be republished`);
+      logger.warning(
+        `[${workspace.name}] Version ${packageJson.version} is already available on npmjs and cannot be republished. The package will be skipped from publishing`
+      );
+      continue;
     }
+
+    publishableWorkspaces.push(workspace);
   }
+
+  return publishableWorkspaces;
 };

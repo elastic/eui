@@ -28,6 +28,11 @@ export const stepPublish = async (
   const { logger, dryRun } = options;
   const rootWorkspaceDir = getRootWorkspaceDir();
 
+  if (!workspacesToPublish.length) {
+    logger.warning('No packages to publish');
+    return;
+  }
+
   const publishedWorkspaces: Array<PublishedWorkspace> = [];
 
   for (const workspace of workspacesToPublish) {
