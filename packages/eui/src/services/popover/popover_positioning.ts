@@ -229,8 +229,8 @@ export function findPopoverPosition({
         arrow: screenCoordinates.arrow,
       };
 
-      // If we've already found the ideal fit, use that position.
-      if (bestFit === 1) {
+      // If we've found a perfect fit for the user's preferred position, use it
+      if (bestFit === 1 && iterationPosition === position) {
         break;
       }
     }
@@ -386,17 +386,16 @@ export function getPopoverScreenCoordinates({
   combinedBoundingBox.bottom -= bottomBuffer;
   combinedBoundingBox.left += leftBuffer;
 
-  const fit = getVisibleFit(
-    {
-      top: popoverPlacement.top,
-      right: popoverPlacement.left + popoverBoundingBox.width,
-      bottom: popoverPlacement.top + popoverBoundingBox.height,
-      left: popoverPlacement.left,
-      width: popoverBoundingBox.width,
-      height: popoverBoundingBox.height,
-    },
-    combinedBoundingBox
-  );
+  const contentBoundingBox = {
+    top: popoverPlacement.top,
+    right: popoverPlacement.left + popoverBoundingBox.width,
+    bottom: popoverPlacement.top + popoverBoundingBox.height,
+    left: popoverPlacement.left,
+    width: popoverBoundingBox.width,
+    height: popoverBoundingBox.height,
+  };
+
+  const fit = getVisibleFit(contentBoundingBox, combinedBoundingBox);
 
   const arrow = arrowConfig
     ? ({
@@ -547,6 +546,31 @@ function getCrossAxisPosition({
     }
   }
 
+  // Ensure the popover stays within container bounds after arrow adjustment
+  // Get the buffer values to know the actual container bounds
+  const [topBuffer, rightBuffer, bottomBuffer, leftBuffer] =
+    getBufferValues(buffer);
+  const combinedBounds = intersectBoundingBoxes(
+    windowBoundingBox,
+    containerBoundingBox
+  );
+
+  // Calculate the minimum position (accounting for buffer)
+  const minPosition =
+    combinedBounds[crossAxisFirstSide] +
+    (crossAxisFirstSide === 'top'
+      ? topBuffer
+      : crossAxisFirstSide === 'right'
+      ? rightBuffer
+      : crossAxisFirstSide === 'bottom'
+      ? bottomBuffer
+      : leftBuffer);
+
+  // Clamp the position to not go outside the container bounds
+  if (crossAxisPosition < minPosition) {
+    crossAxisPosition = minPosition;
+  }
+
   return {
     crossAxisPosition,
     crossAxisArrowPosition,
@@ -629,7 +653,8 @@ export function getAvailableSpace(
 ): BoundingBox {
   const [topBuffer, rightBuffer, bottomBuffer, leftBuffer] =
     getBufferValues(buffer);
-  return {
+
+  const result = {
     top:
       anchorBoundingBox.top -
       containerBoundingBox.top -
@@ -651,6 +676,8 @@ export function getAvailableSpace(
       leftBuffer -
       (offsetSide === 'left' ? offset : 0),
   };
+
+  return result;
 }
 
 /**

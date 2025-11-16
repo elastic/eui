@@ -35,11 +35,11 @@ exports[`EuiCollapsedNavButton renders a tooltip around the icon button 1`] = `
       id="generated-id"
       position="left"
       role="tooltip"
-      style="top: -10px; left: -16px;"
+      style="top: 16px; left: -16px;"
     >
       <div
         class="euiToolTip__arrow emotion-euiToolTip__arrow-left"
-        style="top: 3px; left: 100%;"
+        style="top: -23px; left: 100%;"
       />
       <div>
         Nav item
