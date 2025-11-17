@@ -351,6 +351,11 @@ export class EuiSelectable<T = {}> extends Component<
       return;
     }
 
+    if (event && this.props.searchable && event.target === this.inputRef) {
+      this.setState({ activeOptionIndex: undefined, isFocused: true });
+      return;
+    }
+
     if (
       !this.state.visibleOptions.length ||
       this.state.activeOptionIndex != null
@@ -750,7 +755,12 @@ export class EuiSelectable<T = {}> extends Component<
               value={searchValue}
               onChange={this.onSearchChange}
               listId={this.optionsListRef.current ? this.listId : undefined} // Only pass the listId if it exists on the page
-              aria-activedescendant={this.makeOptionId(activeOptionIndex)} // the current faux-focused option
+              {...(activeOptionIndex != null
+                ? {
+                    'aria-activedescendant':
+                      this.makeOptionId(activeOptionIndex),
+                  }
+                : {})}
               placeholder={placeholderName}
               isPreFiltered={!!isPreFiltered}
               optionMatcher={optionMatcher!}
