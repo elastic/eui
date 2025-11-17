@@ -352,7 +352,7 @@ export class EuiSelectable<T = {}> extends Component<
     }
 
     if (event && this.props.searchable && event.target === this.inputRef) {
-      this.setState({ activeOptionIndex: undefined, isFocused: true });
+      this.setState({ isFocused: true });
       return;
     }
 
