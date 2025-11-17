@@ -39,13 +39,19 @@ export const cli = () => {
           })
           .option('allowCustom', {
             type: 'boolean',
-            description: '[UNSAFE!] Allow custom releases from unpushed changes. This should only be used with snapshot or custom releases',
+            description:
+              '[UNSAFE!] Allow custom releases from unpushed changes. This should only be used with snapshot or custom releases',
             default: false,
           })
           .option('verbose', {
             alias: 'v',
             type: 'boolean',
             description: 'Enable verbose logging',
+            default: false,
+          })
+          .option('dryRun', {
+            type: 'boolean',
+            description: 'Do not publish any packages to the npm registry',
             default: false,
           })
           .option('skipPrompts', {
@@ -56,7 +62,14 @@ export const cli = () => {
           })
           .option('skipUpdateVersions', {
             type: 'boolean',
-            description: '[UNSAFE!] Skip the update version step. This should only be used for special releases like backports. The --workspaces argument is required when this argument is set.',
+            description:
+              '[UNSAFE!] Skip the update version step. This should only be used for special releases like backports. The --workspaces argument is required when this argument is set.',
+            default: false,
+          })
+          .option('skipAuthCheck', {
+            type: 'boolean',
+            description:
+              '[UNSAFE!] Skip the registry authentication check during init. This should only be used with npm trusted publishing configured.',
             default: false,
           })
           .option('useAuthToken', {
@@ -64,7 +77,7 @@ export const cli = () => {
             description:
               'Use npm auth token instead of the regular npm user authentication and one-time passwords (OTP). Use in CI only!',
             default: false,
-          });
+          })
       },
       async (argv) => {
         const {
@@ -73,9 +86,11 @@ export const cli = () => {
           workspaces,
           allowCustom,
           verbose,
+          dryRun,
           skipPrompts,
           skipUpdateVersions,
           useAuthToken,
+          skipAuthCheck,
         } = argv;
         const logger = new Logger(verbose);
 
@@ -85,9 +100,11 @@ export const cli = () => {
             tag,
             workspaces,
             logger,
+            dryRun,
             skipPrompts,
             skipUpdateVersions,
             useAuthToken,
+            skipAuthCheck,
             allowCustomReleases: allowCustom,
           });
         } catch (err) {
