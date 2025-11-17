@@ -1,5 +1,45 @@
 [
   {
+    "version": "109.0.0",
+    "changes": [
+      {
+        "token": "euiTimeWindowButtons.invalidShiftLabel",
+        "changeType": "added",
+        "value": "Cannot shift invalid time window"
+      },
+      {
+        "token": "euiTimeWindowButtons.invalidZoomOutLabel",
+        "changeType": "added",
+        "value": "Cannot zoom out invalid time window"
+      },
+      {
+        "token": "euiTimeWindowButtons.previousLabel",
+        "changeType": "added",
+        "value": "Previous"
+      },
+      {
+        "token": "euiTimeWindowButtons.previousDescription",
+        "changeType": "added",
+        "value": "Previous {displayInterval}"
+      },
+      {
+        "token": "euiTimeWindowButtons.zoomOutLabel",
+        "changeType": "added",
+        "value": "Zoom out"
+      },
+      {
+        "token": "euiTimeWindowButtons.nextLabel",
+        "changeType": "added",
+        "value": "Next"
+      },
+      {
+        "token": "euiTimeWindowButtons.nextDescription",
+        "changeType": "added",
+        "value": "Next {displayInterval}"
+      }
+    ]
+  },
+  {
     "version": "106.4.0",
     "changes": [
       {
