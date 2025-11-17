@@ -27,14 +27,20 @@ export interface ReleaseOptions {
   tag?: string;
   workspaces?: string[];
   logger: Logger;
+  dryRun: boolean;
   allowCustomReleases: boolean;
   skipPrompts: boolean;
   skipUpdateVersions: boolean;
+  skipAuthCheck: boolean;
   useAuthToken: boolean;
 }
 
 export const release = async (options: ReleaseOptions) => {
-  const { type, logger } = options;
+  const { dryRun, type, logger } = options;
+
+  if (dryRun) {
+    logger.warning('--dry-run is enabled. No packages will be published to the npm registry');
+  }
 
   // Process tag
   if (type === 'official') {
@@ -77,6 +83,10 @@ export const release = async (options: ReleaseOptions) => {
     if (!options.workspaces?.length) {
       throw new ValidationError('--workspaces must be set when --skip-update-version is used');
     }
+  }
+
+  if (options.skipAuthCheck) {
+    logger.warning('--skip-auth-check is set');
   }
 
   const allWorkspaces = await getYarnWorkspaces();
