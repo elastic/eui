@@ -1,6 +1,6 @@
 [
   {
-    "version": "109.0.0",
+    "version": "109.1.0",
     "changes": [
       {
         "token": "euiTimeWindowButtons.invalidShiftLabel",
