@@ -901,7 +901,7 @@ a, footer\tb, footer
         .realHover()
         .realMouseDown({ position: 'center' })
         .realMouseMove(0, 0) // start drag
-        .realMouseMove(0, 120) // move (absolute coordinates)
+        .realMouseMove(150, 100) // move (absolute coordinates)
         .realMouseUp();
 
       cy.get('.euiDataGridColumnSelector__item').eq(0).should('have.text', 'b');
