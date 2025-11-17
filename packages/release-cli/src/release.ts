@@ -124,9 +124,9 @@ export const release = async (options: ReleaseOptions) => {
 
   await stepRunPreScripts(options);
 
-  await stepCheckWorkspaces(options, changedWorkspaces);
+  const publishableWorkspaces = await stepCheckWorkspaces(options, changedWorkspaces);
 
-  await stepPublish(options, changedWorkspaces);
+  await stepPublish(options, publishableWorkspaces);
 
   await stepRunPostScripts(options);
 };

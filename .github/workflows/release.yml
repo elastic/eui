@@ -1,5 +1,5 @@
-name: Release packages (Work in Progress, a dry run only)
-run-name: "Create ${{ inputs.type }} release from ${{ inputs.release_ref }} by ${{ github.actor }}"
+name: Release packages
+run-name: "Create ${{ inputs.type }} release from ${{ github.ref_name }} (${{ inputs.release_ref }}) by ${{ github.actor }}"
 
 on:
   workflow_dispatch:
@@ -111,3 +111,54 @@ jobs:
           result-encoding: string
       - name: Release
         run: yarn release run snapshot --skip-prompts --skip-auth-check --use-auth-token --allow-custom ${{ inputs.dry_run && '--dry-run' || ''}} ${{ steps.prepare_workspaces_arg.outputs.result }}
+  release_official:
+    name: Create an official release
+    runs-on: ubuntu-latest
+    if: ${{ inputs.type == 'official' }}
+    needs: [ lint_and_unit_tests, cypress_tests ]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.release_ref }}
+          # This is needed for yarn version to work properly, but it increases fetch time.
+          # We can change this back to "1" if we replace yarn version with something else
+          fetch-depth: 0
+      - name: Verify release commit is tagged
+        run: |
+          tag=$(git tag --points-at ${{ inputs.release_ref }})
+          if [[ "$?" -ne 0 ]] || [[ -z "$tag" ]]; then
+            echo "::error:: Release ref does not point to any tag. Please tag the merge commit of the release PR and try again"
+            exit 1
+          else
+            echo "Release commit verified - $tag"
+          fi
+      - name: Configure git
+        run: |
+          git config --global user.name 'EUI Machine'
+          git config --global user.email 'tkajtoch@users.noreply.github.com'
+      - uses: actions/setup-node@v6
+        with:
+          node-version-file: .nvmrc
+          cache: yarn
+          registry-url: 'https://registry.npmjs.org'
+      - name: Install dependencies
+        run: npm install -g npm@11.6.2 && yarn install --immutable
+      - name: Build release scripts
+        run: yarn workspace @elastic/eui-release-cli run build
+      - name: Rename git remote to upstream
+        run: git remote rename origin upstream
+      - name: Prepare list of workspaces
+        id: prepare_workspaces_arg
+        uses: actions/github-script@v8
+        env:
+          WORKSPACES: ${{ inputs.workspaces }}
+        with:
+          # language=javascript
+          script: |
+            if (!process.env.WORKSPACES || typeof process.env.WORKSPACES !== 'string') {
+              return '';
+            }
+            return `--workspaces ${process.env.WORKSPACES.split(',').join(' ')}`;
+          result-encoding: string
+      - name: Release
+        run: yarn release run official --skip-prompts --skip-auth-check --use-auth-token --allow-custom --skip-update-versions ${{ inputs.dry_run && '--dry-run' || ''}} ${{ steps.prepare_workspaces_arg.outputs.result }}
