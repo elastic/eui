@@ -7142,7 +7142,11 @@ __metadata:
   resolution: "@elastic/eui-monorepo@workspace:."
   dependencies:
     "@elastic/eui-release-cli": "link:packages/release-cli"
+    "@swc/core": "npm:^1.15.2"
+    "@swc/plugin-emotion": "npm:^13.0.0"
     esbuild: "npm:^0.25.12"
+    esbuild-plugin-swc: "npm:^1.0.1"
+    pegjs: "npm:^0.10.0"
     pre-push: "npm:^0.1.4"
     rimraf: "npm:^6.0.1"
   languageName: unknown
@@ -7406,6 +7410,7 @@ __metadata:
     dts-generator: "npm:^3.0.0"
     enzyme: "npm:^3.11.0"
     enzyme-to-json: "npm:^3.5.0"
+    esbuild-plugin-svgr: "npm:^3.1.1"
     eslint: "npm:^8.41.0"
     eslint-config-prettier: "npm:^8.8.0"
     eslint-import-resolver-webpack: "npm:^0.13.2"
@@ -7438,6 +7443,7 @@ __metadata:
     moment-timezone: "npm:^0.5.31"
     numeral: "npm:^2.0.6"
     path: "npm:^0.12.7"
+    peggy: "npm:^5.0.6"
     pegjs: "npm:^0.10.0"
     postcss: "npm:^8.4.19"
     postcss-cli: "npm:^7.1.2"
@@ -9484,6 +9490,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@peggyjs/from-mem@npm:3.1.1":
+  version: 3.1.1
+  resolution: "@peggyjs/from-mem@npm:3.1.1"
+  dependencies:
+    semver: "npm:7.7.2"
+  checksum: 10c0/7e4ee0e4d85396fe2d005c42663e1e879bc5cb4e8ca3fbee10af4a115a833b83b3f902aaae60fbc9c3c3a8e99a93f49af07eed9e18eee9eabeae9b34ac3e2dc9
+  languageName: node
+  linkType: hard
+
 "@pkgjs/parseargs@npm:^0.11.0":
   version: 0.11.0
   resolution: "@pkgjs/parseargs@npm:0.11.0"
@@ -10402,7 +10417,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@svgr/core@npm:8.1.0":
+"@svgr/core@npm:8.1.0, @svgr/core@npm:^8.1.0":
   version: 8.1.0
   resolution: "@svgr/core@npm:8.1.0"
   dependencies:
@@ -10425,7 +10440,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@svgr/plugin-jsx@npm:8.1.0":
+"@svgr/plugin-jsx@npm:8.1.0, @svgr/plugin-jsx@npm:^8.1.0":
   version: 8.1.0
   resolution: "@svgr/plugin-jsx@npm:8.1.0"
   dependencies:
@@ -10495,12 +10510,153 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@swc/core-darwin-arm64@npm:1.15.2":
+  version: 1.15.2
+  resolution: "@swc/core-darwin-arm64@npm:1.15.2"
+  conditions: os=darwin & cpu=arm64
+  languageName: node
+  linkType: hard
+
+"@swc/core-darwin-x64@npm:1.15.2":
+  version: 1.15.2
+  resolution: "@swc/core-darwin-x64@npm:1.15.2"
+  conditions: os=darwin & cpu=x64
+  languageName: node
+  linkType: hard
+
+"@swc/core-linux-arm-gnueabihf@npm:1.15.2":
+  version: 1.15.2
+  resolution: "@swc/core-linux-arm-gnueabihf@npm:1.15.2"
+  conditions: os=linux & cpu=arm
+  languageName: node
+  linkType: hard
+
+"@swc/core-linux-arm64-gnu@npm:1.15.2":
+  version: 1.15.2
+  resolution: "@swc/core-linux-arm64-gnu@npm:1.15.2"
+  conditions: os=linux & cpu=arm64 & libc=glibc
+  languageName: node
+  linkType: hard
+
+"@swc/core-linux-arm64-musl@npm:1.15.2":
+  version: 1.15.2
+  resolution: "@swc/core-linux-arm64-musl@npm:1.15.2"
+  conditions: os=linux & cpu=arm64 & libc=musl
+  languageName: node
+  linkType: hard
+
+"@swc/core-linux-x64-gnu@npm:1.15.2":
+  version: 1.15.2
+  resolution: "@swc/core-linux-x64-gnu@npm:1.15.2"
+  conditions: os=linux & cpu=x64 & libc=glibc
+  languageName: node
+  linkType: hard
+
+"@swc/core-linux-x64-musl@npm:1.15.2":
+  version: 1.15.2
+  resolution: "@swc/core-linux-x64-musl@npm:1.15.2"
+  conditions: os=linux & cpu=x64 & libc=musl
+  languageName: node
+  linkType: hard
+
+"@swc/core-win32-arm64-msvc@npm:1.15.2":
+  version: 1.15.2
+  resolution: "@swc/core-win32-arm64-msvc@npm:1.15.2"
+  conditions: os=win32 & cpu=arm64
+  languageName: node
+  linkType: hard
+
+"@swc/core-win32-ia32-msvc@npm:1.15.2":
+  version: 1.15.2
+  resolution: "@swc/core-win32-ia32-msvc@npm:1.15.2"
+  conditions: os=win32 & cpu=ia32
+  languageName: node
+  linkType: hard
+
+"@swc/core-win32-x64-msvc@npm:1.15.2":
+  version: 1.15.2
+  resolution: "@swc/core-win32-x64-msvc@npm:1.15.2"
+  conditions: os=win32 & cpu=x64
+  languageName: node
+  linkType: hard
+
+"@swc/core@npm:^1.15.2, @swc/core@npm:^1.2.108":
+  version: 1.15.2
+  resolution: "@swc/core@npm:1.15.2"
+  dependencies:
+    "@swc/core-darwin-arm64": "npm:1.15.2"
+    "@swc/core-darwin-x64": "npm:1.15.2"
+    "@swc/core-linux-arm-gnueabihf": "npm:1.15.2"
+    "@swc/core-linux-arm64-gnu": "npm:1.15.2"
+    "@swc/core-linux-arm64-musl": "npm:1.15.2"
+    "@swc/core-linux-x64-gnu": "npm:1.15.2"
+    "@swc/core-linux-x64-musl": "npm:1.15.2"
+    "@swc/core-win32-arm64-msvc": "npm:1.15.2"
+    "@swc/core-win32-ia32-msvc": "npm:1.15.2"
+    "@swc/core-win32-x64-msvc": "npm:1.15.2"
+    "@swc/counter": "npm:^0.1.3"
+    "@swc/types": "npm:^0.1.25"
+  peerDependencies:
+    "@swc/helpers": ">=0.5.17"
+  dependenciesMeta:
+    "@swc/core-darwin-arm64":
+      optional: true
+    "@swc/core-darwin-x64":
+      optional: true
+    "@swc/core-linux-arm-gnueabihf":
+      optional: true
+    "@swc/core-linux-arm64-gnu":
+      optional: true
+    "@swc/core-linux-arm64-musl":
+      optional: true
+    "@swc/core-linux-x64-gnu":
+      optional: true
+    "@swc/core-linux-x64-musl":
+      optional: true
+    "@swc/core-win32-arm64-msvc":
+      optional: true
+    "@swc/core-win32-ia32-msvc":
+      optional: true
+    "@swc/core-win32-x64-msvc":
+      optional: true
+  peerDependenciesMeta:
+    "@swc/helpers":
+      optional: true
+  checksum: 10c0/6141ae1800971af903fb4240ce8675ab30d65883c00a9c416c1d83291626dc6044d62dd66d3b6f0534d159b60b7c5f9a7c421c3cc19957bd8a98d134b92109ef
+  languageName: node
+  linkType: hard
+
+"@swc/counter@npm:^0.1.3":
+  version: 0.1.3
+  resolution: "@swc/counter@npm:0.1.3"
+  checksum: 10c0/8424f60f6bf8694cfd2a9bca45845bce29f26105cda8cf19cdb9fd3e78dc6338699e4db77a89ae449260bafa1cc6bec307e81e7fb96dbf7dcfce0eea55151356
+  languageName: node
+  linkType: hard
+
 "@swc/helpers@npm:^0.5.11":
   version: 0.5.15
   resolution: "@swc/helpers@npm:0.5.15"
   dependencies:
     tslib: "npm:^2.8.0"
   checksum: 10c0/33002f74f6f885f04c132960835fdfc474186983ea567606db62e86acd0680ca82f34647e8e610f4e1e422d1c16fce729dde22cd3b797ab1fd9061a825dabca4
+  languageName: node
+  linkType: hard
+
+"@swc/plugin-emotion@npm:^13.0.0":
+  version: 13.0.0
+  resolution: "@swc/plugin-emotion@npm:13.0.0"
+  dependencies:
+    "@swc/counter": "npm:^0.1.3"
+  checksum: 10c0/30210bfed0b49aa382f51c5c7d203f62d33c9969290c6aead7945af2db2b9d79b76e9b9f6fcc3dc34c8619789d10ceb0a238f034690c615dd7111d722f63cfc0
+  languageName: node
+  linkType: hard
+
+"@swc/types@npm:^0.1.25":
+  version: 0.1.25
+  resolution: "@swc/types@npm:0.1.25"
+  dependencies:
+    "@swc/counter": "npm:^0.1.3"
+  checksum: 10c0/847a5b20b131281f89d640a7ed4887fb65724807d53d334b230e84b98c21097aa10cd28a074f9ed287a6ce109e443dd4bafbe7dcfb62333d7806c4ea3e7f8aca
   languageName: node
   linkType: hard
 
@@ -17404,6 +17560,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"commander@npm:^14.0.0":
+  version: 14.0.2
+  resolution: "commander@npm:14.0.2"
+  checksum: 10c0/245abd1349dbad5414cb6517b7b5c584895c02c4f7836ff5395f301192b8566f9796c82d7bd6c92d07eba8775fe4df86602fca5d86d8d10bcc2aded1e21c2aeb
+  languageName: node
+  linkType: hard
+
 "commander@npm:^2.20.0, commander@npm:^2.9.0":
   version: 2.20.3
   resolution: "commander@npm:2.20.3"
@@ -20569,6 +20732,28 @@ __metadata:
   dependencies:
     es6-promise: "npm:^4.0.3"
   checksum: 10c0/23284c6a733cbf7842ec98f41eac742c9f288a78753c4fe46652bae826446ced7615b9e8a5c5f121a08812b1cd478ea58630f3e1c3d70835bd5dcd69c7cd75c9
+  languageName: node
+  linkType: hard
+
+"esbuild-plugin-svgr@npm:^3.1.1":
+  version: 3.1.1
+  resolution: "esbuild-plugin-svgr@npm:3.1.1"
+  dependencies:
+    "@svgr/core": "npm:^8.1.0"
+    "@svgr/plugin-jsx": "npm:^8.1.0"
+  peerDependencies:
+    esbuild: ^0.25.2
+  checksum: 10c0/469127f41efb63ba47f1bc8713a9eaefdff0531742f4235e8c15bebd3b16b17cfbfe8c9a9832420a3a5393434b4e4c7cefbfb8d40c7ee40645dc4f7775fd1ebb
+  languageName: node
+  linkType: hard
+
+"esbuild-plugin-swc@npm:^1.0.1":
+  version: 1.0.1
+  resolution: "esbuild-plugin-swc@npm:1.0.1"
+  dependencies:
+    "@swc/core": "npm:^1.2.108"
+    deepmerge: "npm:^4.2.2"
+  checksum: 10c0/50f00ba641624ce7051ac5d52691665d9e737626efe66fd69e32fb21d6f00a5a42c447e93f3733293dbe4aaee13c1a270dc598c232435f7f81ccdbf0375bc7dc
   languageName: node
   linkType: hard
 
@@ -32339,6 +32524,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"peggy@npm:^5.0.6":
+  version: 5.0.6
+  resolution: "peggy@npm:5.0.6"
+  dependencies:
+    "@peggyjs/from-mem": "npm:3.1.1"
+    commander: "npm:^14.0.0"
+    source-map-generator: "npm:2.0.2"
+  bin:
+    peggy: bin/peggy.js
+  checksum: 10c0/c5c92b9a9c11371542e5608840884e1e27ab0202cbec379730338ca01ee074471c931494e0aaadd70e4fdb332f712567767f838375d38fe622a7695b225e28d5
+  languageName: node
+  linkType: hard
+
 "pegjs@npm:^0.10.0":
   version: 0.10.0
   resolution: "pegjs@npm:0.10.0"
@@ -37057,6 +37255,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"semver@npm:7.7.2":
+  version: 7.7.2
+  resolution: "semver@npm:7.7.2"
+  bin:
+    semver: bin/semver.js
+  checksum: 10c0/aca305edfbf2383c22571cb7714f48cadc7ac95371b4b52362fb8eeffdfbc0de0669368b82b2b15978f8848f01d7114da65697e56cd8c37b0dab8c58e543f9ea
+  languageName: node
+  linkType: hard
+
 "semver@npm:^6.0.0, semver@npm:^6.2.0, semver@npm:^6.3.0":
   version: 6.3.0
   resolution: "semver@npm:6.3.0"
@@ -37693,6 +37900,13 @@ __metadata:
   version: 2.0.0
   resolution: "source-list-map@npm:2.0.0"
   checksum: 10c0/11686b304e025c99118cf6985050761f456cc7a42e4e322c63b246b66ec52fabededc644764d0257d753b8296eba2cf1d515798af4444282312f2075bfc6a7d0
+  languageName: node
+  linkType: hard
+
+"source-map-generator@npm:2.0.2":
+  version: 2.0.2
+  resolution: "source-map-generator@npm:2.0.2"
+  checksum: 10c0/32bc325ea32d5979a21d8d3b076d87193b32b5b7cfdd07f3c04a503b6adda2d931282a4b28e12400755b8396f50c65b0340f5183babcee5f33cc9e0d63ce54e9
   languageName: node
   linkType: hard
 

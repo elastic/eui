@@ -6,6 +6,48 @@ import { glob } from 'glob';
 import fs from 'fs/promises';
 import chalk from 'chalk';
 import chokidar from 'chokidar';
+import peggy from 'peggy';
+import svgr from 'esbuild-plugin-svgr';
+
+// --- Plugins ---
+
+const pegjsPlugin = {
+  name: 'pegjs-inline-precompile',
+  setup(build) {
+    build.onLoad({ filter: /default_syntax\.ts$/ }, async (args) => {
+      try {
+        const contents = await fs.readFile(args.path, 'utf8');
+        const declarationRegex = /const parser = peg`([\s\S]*?)`;/;
+        const match = contents.match(declarationRegex);
+
+        if (!match) {
+          return {
+            errors: [{ text: 'Could not find pegjs grammar in file' }],
+          };
+        }
+
+        const grammar = match[1];
+        const parser = peggy.generate(grammar, { output: 'source' });
+
+        const newContents = contents
+          .replace(
+            /import peg from 'pegjs-inline-precompile'.*(\r\n|\n|\r)?/,
+            ''
+          )
+          .replace(declarationRegex, `const parser = ${parser};`);
+
+        return {
+          contents: newContents,
+          loader: 'ts',
+        };
+      } catch (e) {
+        return {
+          errors: [{ text: e.message, detail: e }],
+        };
+      }
+    });
+  },
+};
 
 // --- Setup & Configuration ---
 
@@ -47,6 +89,7 @@ const BUILD_TARGETS = [
     esbuildOptions: {
       platform: 'browser',
       format: 'esm',
+      loader: { '.svg': 'tsx' },
     },
   },
   {
@@ -61,6 +104,7 @@ const BUILD_TARGETS = [
     esbuildOptions: {
       platform: 'node',
       format: 'cjs',
+      loader: { '.svg': 'tsx' },
     },
   },
   {
@@ -74,6 +118,7 @@ const BUILD_TARGETS = [
     esbuildOptions: {
       platform: 'node',
       format: 'cjs',
+      loader: { '.svg': 'tsx' },
     },
     async postBuild() {
       const builtFiles = await glob('test-env/**/*.testenv.js', {
@@ -132,10 +177,11 @@ async function runBuilds({ isWatchMode = false, onInitialBuildComplete } = {}) {
       outdir: path.join(packageRootDir, target.name),
       bundle: false,
       target: 'es2015',
-      sourcemap: true,
-      loader: { '.js': 'jsx' },
-      ...target.esbuildOptions,
+      sourcemap: false,
+      loader: target.esbuildOptions.loader,
       plugins: [
+        svgr(),
+        pegjsPlugin,
         euiBuildPlugin({
           targetName: target.name,
           postBuild: target.postBuild,

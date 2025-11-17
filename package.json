@@ -24,7 +24,11 @@
     "pre-push"
   ],
   "devDependencies": {
+    "@swc/core": "^1.15.2",
+    "@swc/plugin-emotion": "^13.0.0",
     "esbuild": "^0.25.12",
+    "esbuild-plugin-swc": "^1.0.1",
+    "pegjs": "^0.10.0",
     "pre-push": "^0.1.4",
     "rimraf": "^6.0.1"
   },
