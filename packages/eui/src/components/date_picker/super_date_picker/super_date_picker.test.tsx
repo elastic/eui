@@ -556,6 +556,28 @@ describe('EuiSuperDatePicker', () => {
     });
   });
 
+  test('pretty duration button has full range tooltip', async () => {
+    const dateFormat = 'MMM D, HH:mm';
+    const { getByTestSubject, findByRole } = render(
+      <EuiSuperDatePicker
+        onTimeChange={noop}
+        start="now-15m"
+        end="now"
+        dateFormat={dateFormat}
+      />
+    );
+
+    act(() => {
+      userEvent.hover(getByTestSubject('superDatePickerShowDatesButton'));
+    });
+
+    const tooltip = await findByRole('tooltip');
+    const now = moment().format(dateFormat);
+
+    expect(tooltip).toBeInTheDocument();
+    expect(tooltip.textContent).toContain(now);
+  });
+
   describe('Quick Select time window steps', () => {
     it('steps forward', async () => {
       // Use fixed absolute start/end with time
