@@ -11,11 +11,14 @@ import Link from '@docusaurus/Link';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import { translate } from '@docusaurus/Translate';
 import { EuiIcon, useEuiMemoizedStyles } from '@elastic/eui';
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 
 import { getItemStyles } from '../item.styles';
 
 export default function HomeBreadcrumbItem(): JSX.Element {
   const homeHref = useBaseUrl('/');
+  const { siteConfig } = useDocusaurusContext();
+  const { title } = siteConfig;
 
   const styles = useEuiMemoizedStyles(getItemStyles);
 
@@ -30,7 +33,7 @@ export default function HomeBreadcrumbItem(): JSX.Element {
         className="breadcrumbs__link"
         href={homeHref}
       >
-        EUI
+        {title}
       </Link>
       <EuiIcon type="arrowRight" size="s" css={styles.icon} />
     </li>
