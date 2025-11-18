@@ -627,13 +627,10 @@ export class EuiSuperDatePickerInternal extends Component<
       isDisabledDisplay ||
       (showPrettyDuration && !isStartDatePopoverOpen && !isEndDatePopoverOpen)
     ) {
-      // TODO put this logic to define `formattedFullRange` somewhere else?
-      // TODO also: show something if invalid?
-      // TODO check dateMath.parse is using moment-timezone?
-      // TODO use theme value for offset in tooltip
-      const SEPARATOR = ' – ';
+      // Tooltip content with full range
       const startMoment = dateMath.parse(start);
       const endMoment = dateMath.parse(end, { roundUp: true });
+      const SEPARATOR = ' – ';
       const formattedFullRange = isInvalid
         ? ''
         : startMoment?.format(dateFormat) +
@@ -647,7 +644,7 @@ export class EuiSuperDatePickerInternal extends Component<
               css={styles.euiSuperDatePicker__prettyDurationTooltip}
               content={formattedFullRange}
               display="block"
-              offset={8}
+              offset={styles.prettyDurationToolTipOffset}
             >
               <EuiFormControlButton
                 type="button"

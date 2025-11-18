@@ -33,6 +33,7 @@ export const euiSuperDatePickerStyles = (euiThemeContext: UseEuiTheme) => {
   const inputWidth = euiTheme.base * 30;
   const buttonWidth = euiTheme.base * 7; // @see _button_display.styles.ts
   const gap = euiTheme.size.s;
+  const toolTipOffset = euiTheme.base * 0.5;
 
   // Default restricted width
   const restrictedWidth = mathWithUnits(
@@ -256,6 +257,9 @@ export const euiSuperDatePickerStyles = (euiThemeContext: UseEuiTheme) => {
         }
       `,
     },
+
+    // Exposing as-is because euiTheme is not available in class component
+    prettyDurationToolTipOffset: toolTipOffset,
   };
 };
 
