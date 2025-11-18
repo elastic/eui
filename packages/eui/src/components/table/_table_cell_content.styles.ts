@@ -56,7 +56,6 @@ export const euiTableCellContentStyles = ({ euiTheme }: UseEuiTheme) => ({
     `,
     mobile: css`
       flex-direction: column;
-      padding: 0;
     `,
   },
 });
