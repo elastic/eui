@@ -140,7 +140,7 @@ export const euiTableRowCellStyles = (euiThemeContext: UseEuiTheme) => {
       }).fontSize};
 
       display: block;
-      color: ${euiTheme.colors.darkShade};
+      color: ${euiTheme.colors.textSubdued};
       padding: ${euiTheme.size.s};
       /* Pull up cell content closer */
       padding-block-end: 0;
