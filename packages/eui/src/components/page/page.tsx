@@ -13,7 +13,11 @@ import {
   setStyleForRestrictedPageWidth,
   _EuiPageRestrictWidth,
 } from './_restrict_width';
-import { useEuiPaddingCSS, EuiPaddingSize } from '../../global_styling';
+import {
+  useEuiPaddingCSS,
+  EuiPaddingSize,
+  useEuiBackgroundColorCSS,
+} from '../../global_styling';
 import { euiPageStyles } from './page.styles';
 import { useEuiTheme } from '../../services';
 
@@ -36,6 +40,11 @@ export interface EuiPageProps
    * Flip to `column` when not including a sidebar.
    */
   direction?: 'row' | 'column';
+  /**
+   * Defines the page background color.
+   * @default 'transparent'
+   */
+  color?: 'plain' | 'transparent';
 }
 
 export const EuiPage: FunctionComponent<EuiPageProps> = ({
@@ -45,6 +54,7 @@ export const EuiPage: FunctionComponent<EuiPageProps> = ({
   paddingSize = 'none',
   grow = true,
   direction = 'row',
+  color = 'transparent',
   ...rest
 }) => {
   // Set max-width as a style prop
@@ -56,10 +66,12 @@ export const EuiPage: FunctionComponent<EuiPageProps> = ({
   const euiTheme = useEuiTheme();
   const styles = euiPageStyles(euiTheme);
   const padding = useEuiPaddingCSS()[paddingSize as EuiPaddingSize];
+  const backgroundColor = useEuiBackgroundColorCSS()[color];
 
   const stylesCSS = [
     styles.euiPage,
     styles[direction],
+    backgroundColor,
     grow && styles.grow,
     padding,
     restrictWidth && styles.restrictWidth,

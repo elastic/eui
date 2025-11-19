@@ -28,6 +28,7 @@ const meta: Meta<EuiPageProps> = {
     grow: true,
     direction: 'row',
     restrictWidth: false,
+    color: 'transparent',
   },
 };
 
@@ -38,9 +39,7 @@ export const Playground: Story = {
   render: ({ ...args }) => (
     <EuiFlexGroup
       direction="column"
-      css={({ euiTheme }) => ({
-        // Used for testing the grow prop
-        backgroundColor: euiTheme.colors.emptyShade,
+      css={() => ({
         minBlockSize: '100vh',
       })}
     >
