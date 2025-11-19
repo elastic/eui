@@ -557,7 +557,11 @@ describe('EuiSuperDatePicker', () => {
   });
 
   test('pretty duration button has full range tooltip', async () => {
-    const dateFormat = 'MMM D, HH:mm';
+    const now = moment('1999-12-31');
+    const dateFormat = 'MMM D, HH:mm:ss';
+
+    jest.useFakeTimers().setSystemTime(now.toDate());
+
     const { getByTestSubject, findByRole } = render(
       <EuiSuperDatePicker
         onTimeChange={noop}
@@ -572,10 +576,15 @@ describe('EuiSuperDatePicker', () => {
     });
 
     const tooltip = await findByRole('tooltip');
-    const now = moment().format(dateFormat);
+
+    const end = now.format(dateFormat);
+    const start = now.clone().subtract(15, 'minutes').format(dateFormat);
+    const formattedValue = `${start} – ${end}`;
 
     expect(tooltip).toBeInTheDocument();
-    expect(tooltip.textContent).toContain(now);
+    expect(tooltip).toHaveTextContent(formattedValue);
+
+    jest.useRealTimers();
   });
 
   describe('Quick Select time window steps', () => {
