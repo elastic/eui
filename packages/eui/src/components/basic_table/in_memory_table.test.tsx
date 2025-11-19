@@ -1625,7 +1625,14 @@ describe('EuiInMemoryTable', () => {
       );
 
       const searchbox = getByTestSubject('searchbox') as HTMLInputElement;
+
       expect(searchbox.value).toBe(DEFAULT_QUERY);
+
+      fireEvent.keyUp(searchbox, {
+        target: { value: 'something else' },
+      });
+
+      expect(searchbox.value).toBe('something else');
     });
   });
 });
