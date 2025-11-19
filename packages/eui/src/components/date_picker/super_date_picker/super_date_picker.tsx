@@ -630,11 +630,11 @@ export class EuiSuperDatePickerInternal extends Component<
       // Tooltip content with full range
       const startMoment = dateMath.parse(start);
       const endMoment = dateMath.parse(end, { roundUp: true });
-      const SEPARATOR = ' – ';
+      const separator = ' – ';
       const formattedFullRange = isInvalid
         ? ''
         : startMoment?.format(dateFormat) +
-          SEPARATOR +
+          separator +
           endMoment?.format(dateFormat);
 
       return (
