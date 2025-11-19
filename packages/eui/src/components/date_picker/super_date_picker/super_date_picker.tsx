@@ -16,7 +16,7 @@ import classNames from 'classnames';
 import moment, { LocaleSpecifier, Moment } from 'moment'; // eslint-disable-line import/named
 import dateMath from '@elastic/datemath';
 
-import { useEuiMemoizedStyles } from '../../../services';
+import { useEuiMemoizedStyles, RenderWithEuiTheme } from '../../../services';
 import { isObject } from '../../../services/predicate';
 import { EuiI18nConsumer } from '../../context';
 import { CommonProps } from '../../common';
@@ -638,39 +638,49 @@ export class EuiSuperDatePickerInternal extends Component<
           endMoment?.format(dateFormat);
 
       return (
-        <EuiFormControlLayout {...formControlLayoutProps}>
-          {!isQuickSelectOnly && (
-            <EuiToolTip
-              css={styles.euiSuperDatePicker__prettyDurationTooltip}
-              content={formattedFullRange}
-              display="block"
-              offset={styles.prettyDurationToolTipOffset}
-            >
-              <EuiFormControlButton
-                type="button"
-                className={classNames('euiSuperDatePicker__prettyFormat', {
-                  'euiSuperDatePicker__prettyFormat--disabled': isDisabled,
-                })}
-                compressed={compressed}
-                data-test-subj="superDatePickerShowDatesButton"
-                disabled={!!isDisabled}
-                onClick={this.hidePrettyDuration}
-                onFocus={onFocus}
-              >
-                {isDisabledDisplay ? (
-                  isDisabled.display
-                ) : (
-                  <PrettyDuration
-                    timeFrom={start}
-                    timeTo={end}
-                    quickRanges={commonlyUsedRanges}
-                    dateFormat={dateFormat}
-                  />
+        <RenderWithEuiTheme>
+          {(euiTheme) => {
+            return (
+              <EuiFormControlLayout {...formControlLayoutProps}>
+                {!isQuickSelectOnly && (
+                  <EuiToolTip
+                    css={styles.euiSuperDatePicker__prettyDurationTooltip}
+                    content={formattedFullRange}
+                    display="block"
+                    offset={euiTheme.euiTheme.base * 0.5}
+                  >
+                    <EuiFormControlButton
+                      type="button"
+                      className={classNames(
+                        'euiSuperDatePicker__prettyFormat',
+                        {
+                          'euiSuperDatePicker__prettyFormat--disabled':
+                            isDisabled,
+                        }
+                      )}
+                      compressed={compressed}
+                      data-test-subj="superDatePickerShowDatesButton"
+                      disabled={!!isDisabled}
+                      onClick={this.hidePrettyDuration}
+                      onFocus={onFocus}
+                    >
+                      {isDisabledDisplay ? (
+                        isDisabled.display
+                      ) : (
+                        <PrettyDuration
+                          timeFrom={start}
+                          timeTo={end}
+                          quickRanges={commonlyUsedRanges}
+                          dateFormat={dateFormat}
+                        />
+                      )}
+                    </EuiFormControlButton>
+                  </EuiToolTip>
                 )}
-              </EuiFormControlButton>
-            </EuiToolTip>
-          )}
-        </EuiFormControlLayout>
+              </EuiFormControlLayout>
+            );
+          }}
+        </RenderWithEuiTheme>
       );
     }
 
