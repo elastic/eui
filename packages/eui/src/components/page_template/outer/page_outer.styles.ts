@@ -7,13 +7,11 @@
  */
 
 import { css } from '@emotion/react';
-import { UseEuiTheme } from '../../../services';
 import { logicalCSS } from '../../../global_styling';
 
-export const euiPageOuterStyles = ({ euiTheme }: UseEuiTheme) => ({
+export const euiPageOuterStyles = {
   euiPageOuter: css`
     display: flex;
-    background-color: ${euiTheme.colors.body};
     flex-shrink: 0; /* Ensures Safari doesn't shrink height beyond contents */
     ${logicalCSS(
       'max-width',
@@ -33,4 +31,4 @@ export const euiPageOuterStyles = ({ euiTheme }: UseEuiTheme) => ({
   row: css`
     flex-direction: row;
   `,
-});
+};
