@@ -126,12 +126,22 @@ export const EuiAbsoluteTab: FunctionComponent<EuiAbsoluteTabProps> = ({
         return;
       }
 
+      // We can be forgiving for `dateFormat` if we are certain
+      // we're not expecting any of the other formats allowed;
+      // otherwise we can get valid but inaccurate results e.g.
+      // `1970-01-01` -> `Jan 19, 1970 @ 01:01:00.000`
+      const strictModeForPassedFormat = moment(
+        textInputValue,
+        ALLOWED_USER_DATE_FORMATS,
+        true
+      ).isValid();
+
       // Attempt to parse with passed `dateFormat` and `locale`
       let valueAsMoment = moment(
         textInputValue,
         dateFormat,
         typeof locale === 'string' ? locale : 'en', // Narrow the union type to string
-        true
+        strictModeForPassedFormat
       );
       let dateIsValid = valueAsMoment.isValid();
 
