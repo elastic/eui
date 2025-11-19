@@ -1,3 +1,29 @@
+## [`v109.1.0`](https://github.com/elastic/eui/releases/v109.1.0)
+
+- Added `--euiBottomBarOffset` CSS variable to `EuiBottomBar` for positioning other fixed elements relative to the bottom bar's height ([#9211](https://github.com/elastic/eui/pull/9211))
+- Updated `boxesVertical` icon and restored `checkInCircleFilled`, `errorFilled`, and `warningFilled` icons. ([#9194](https://github.com/elastic/eui/pull/9194))
+- Updated `EuiSuperDatePicker` with new time zone information, opt-in via `timeZoneDisplayProps`. ([#9191](https://github.com/elastic/eui/pull/9191))
+- Updated the position of `EuiModal` by removing bottom padding in `EuiOverlayMask` ([#9190](https://github.com/elastic/eui/pull/9190))
+- Added `EuiPopover` and `EuiToolTip`'s `repositionOnScroll` to `componentDefaults` ([#9152](https://github.com/elastic/eui/pull/9152))
+- Updated `EuiSuperDatePicker` with new time window buttons for time shifting and zoom out, opt-in via `showTimeWindowButtons` boolean prop. ([#9151](https://github.com/elastic/eui/pull/9151))
+- Added beta prop `hasAriaDisabled` to all base button components: `EuiButton`, `EuiButtonEmpty`, `EuiButtonIcon`, `EuibuttonGroup`, `EuiFilterButton` ([#9201](https://github.com/elastic/eui/pull/9201))
+- Added `euiDisabledSelector` variable that combines CSS selectors `:disabled` and `[aria-disabled="true"]` ([#9201](https://github.com/elastic/eui/pull/9201))
+- Added custom test matchers that check for both `disabled` and `aria-disabled` attributes: ([#9201](https://github.com/elastic/eui/pull/9201))
+  - React testing Library: `.toBeEuiDisabled()`
+  - Enzyme: `.toHaveEuiDisabledProp()`
+  - Cypress: `should('be.euiDisabled)`
+
+**Bug fixes**
+
+- Fixed unexpected duplicate columns in `EuiDataGrid` crashing the column sorting by removing duplicate columns entirely ([#9209](https://github.com/elastic/eui/pull/9209))
+- Fixed a visual bug in `EuiTable` where long table row content would be cut off on mobile screens ([#9206](https://github.com/elastic/eui/pull/9206))
+- Fixed virtualized `EuiCodeBlock` rendering blank lines when content updates if scrolled. ([#9196](https://github.com/elastic/eui/pull/9196))
+- Fixed `EuiButtonGroup` button sizing to ensure square buttons when used with `isIconOnly=true` ([#9170](https://github.com/elastic/eui/pull/9170))
+
+**Accessibility**
+
+- Fixed an issue where portalled components like `EuiPopover` were not included in `EuiFlyout`'s focus trap through `includeSelectorInFocusTrap`, making them inaccessible to keyboard users ([#9103](https://github.com/elastic/eui/pull/9103))
+
 ## [`v109.0.0`](https://github.com/elastic/eui/releases/v109.0.0)
 
 - Added color tokens `borderBaseProminent` and `borderInteractiveFormsHoverProminent` ([#9162](https://github.com/elastic/eui/pull/9162))

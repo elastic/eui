@@ -20,4 +20,6 @@ export { EuiSuperDatePicker } from './super_date_picker';
 export type { EuiSuperUpdateButtonProps } from './super_update_button';
 export { EuiSuperUpdateButton } from './super_update_button';
 
+export type { EuiTimeWindowButtonsConfig } from './time_window_buttons';
+
 export { PrettyDuration, usePrettyDuration } from './pretty_duration';

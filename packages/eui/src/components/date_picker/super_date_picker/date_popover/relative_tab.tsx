@@ -43,6 +43,10 @@ import {
   toRelativeStringFromParts,
 } from '../relative_utils';
 import { EuiDatePopoverContentProps } from './date_popover_content';
+import {
+  EuiTimeZoneDisplay,
+  type EuiTimeZoneDisplayProps,
+} from './timezone_display';
 
 export interface EuiRelativeTabProps {
   dateFormat: string;
@@ -52,6 +56,7 @@ export interface EuiRelativeTabProps {
   roundUp?: boolean;
   labelPrefix: string;
   timeOptions: TimeOptions;
+  timeZoneDisplayProps?: EuiTimeZoneDisplayProps;
 }
 
 export const EuiRelativeTab: FunctionComponent<EuiRelativeTabProps> = ({
@@ -62,6 +67,7 @@ export const EuiRelativeTab: FunctionComponent<EuiRelativeTabProps> = ({
   onChange,
   roundUp,
   labelPrefix,
+  timeZoneDisplayProps = {},
 }) => {
   const initialRelativeParts = useRef<RelativeParts>(parseRelativeParts(value));
   const { roundUnit } = initialRelativeParts.current;
@@ -115,6 +121,7 @@ export const EuiRelativeTab: FunctionComponent<EuiRelativeTabProps> = ({
   }, [isInvalid, value, roundUp, locale, dateFormat]);
 
   const relativeDateInputNumberDescriptionId = useGeneratedHtmlId();
+  const timeZomeDescriptionId = useGeneratedHtmlId();
   const numberAriaLabel = useEuiI18n(
     'euiRelativeTab.numberInputLabel',
     'Time span amount'
@@ -174,6 +181,7 @@ export const EuiRelativeTab: FunctionComponent<EuiRelativeTabProps> = ({
           compressed
           value={formattedValue}
           readOnly
+          aria-describedby={timeZomeDescriptionId}
           prepend={<EuiFormLabel>{labelPrefix}</EuiFormLabel>}
         />
         <EuiScreenReaderOnly>
@@ -186,6 +194,10 @@ export const EuiRelativeTab: FunctionComponent<EuiRelativeTabProps> = ({
           </p>
         </EuiScreenReaderOnly>
       </EuiForm>
+      <EuiTimeZoneDisplay
+        id={timeZomeDescriptionId}
+        {...timeZoneDisplayProps}
+      />
       <EuiPopoverFooter paddingSize="s">
         <EuiSwitch
           data-test-subj="superDatePickerRelativeDateRoundSwitch"
