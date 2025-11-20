@@ -185,7 +185,7 @@ export const VirtualizedCodeBlockScrolling: Story = {
         // delay to keep VRT images more stable
         setTimeout(() => {
           setIsLoading(false);
-        });
+        }, 75);
       }
     };
 
