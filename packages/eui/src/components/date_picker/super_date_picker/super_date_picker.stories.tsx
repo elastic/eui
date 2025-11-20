@@ -210,6 +210,7 @@ export const CustomTimeZoneDisplay: Story = {
     },
   },
   args: {
+    start: 'Jan-01-2025',
     timeZoneDisplayProps: {
       timeZone: 'America/Los_Angeles',
       customRender: ({ nameDisplay }) => (
@@ -232,7 +233,7 @@ export const CustomTimeZoneDisplay: Story = {
 
     await step('show popover on click of the date picker button', async () => {
       await fireEvent.click(
-        canvas.getByTestSubject('superDatePickerShowDatesButton')
+        canvas.getByTestSubject('superDatePickerstartDatePopoverButton')
       );
 
       await canvas.waitForEuiPopoverVisible();
