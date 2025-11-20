@@ -6,6 +6,8 @@
  * Side Public License, v 1.
  */
 
+export const MAX_INITIALS = 2;
+
 /**
  * This function calculates the initials/acronym for a given name.
  * It defaults to only 2 characters and will take the first character (of each word).
@@ -17,16 +19,12 @@
  * @param {string} name The full name of the item to turn into initials
  * @param {number} initialsLength (Optional) How many characters to show (max 2 allowed)
  * @param {string} initials (Optional) Custom initials (max 2 characters)
- * @returns {string} True if the color is dark, false otherwise.
  */
-
-export const MAX_INITIALS = 2;
-
 export function toInitials(
   name: string,
   initialsLength?: 1 | 2,
   initials?: string
-): string | null {
+) {
   // If `initials` provided, check if it's a single emoji
   // in order to support complex, "multi-character" ones
   if (initials) {
@@ -71,7 +69,7 @@ export function toInitials(
     }
   }
 
-  return calculatedInitials;
+  return calculatedInitials || '';
 }
 
 function isEmoji(str: string): boolean {
