@@ -18,7 +18,7 @@ import {
 } from '../../test/internal';
 import { render } from '../../test/rtl';
 
-import { EuiFlexItem } from './flex_item';
+import { EuiFlexItem, EuiFlexItemProps } from './flex_item';
 
 beforeAll(startThrowingReactWarnings);
 afterAll(stopThrowingReactWarnings);
@@ -90,6 +90,22 @@ describe('EuiFlexItem', () => {
         test(`${value} generates a flex-grow of ${value}`, () => {
           render(<EuiFlexItem grow={value} />);
           assertClassName(`grow-${value}`);
+        });
+      });
+    });
+
+    describe('invalid values', () => {
+      const INVALID_VALUES = [
+        (3 / 0) as EuiFlexItemProps['grow'],
+        Infinity as EuiFlexItemProps['grow'],
+        -Infinity as EuiFlexItemProps['grow'],
+        11 as EuiFlexItemProps['grow'],
+      ];
+
+      INVALID_VALUES.forEach((value) => {
+        test(`${value} generates a flex-grow of the default value \`true\``, () => {
+          render(<EuiFlexItem grow={value} />);
+          assertClassName('grow-1');
         });
       });
     });
