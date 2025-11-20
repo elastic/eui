@@ -11,7 +11,6 @@ import { css } from '@emotion/react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { faker } from '@faker-js/faker';
-import { isEmpty } from 'lodash';
 import { moveStorybookControlsToCategory } from '../../../.storybook/utils';
 
 import { useEuiTheme } from '../../services';
@@ -363,19 +362,14 @@ export const ExpandedNestedTable: Story = {
   }: EuiBasicTableProps<User>) {
     // story-only logic to inject hasBackground into nested tables
     // do not use in consumer code, set hasBackground directly on the nested table instead
-    const _itemIdToExpandedRowMap =
-      itemIdToExpandedRowMap && !isEmpty(itemIdToExpandedRowMap)
-        ? Object.fromEntries(
-            Object.entries(itemIdToExpandedRowMap).map(([key, value]) => [
-              key,
-              React.isValidElement(value)
-                ? React.cloneElement(value, {
-                    hasBackground,
-                  } as NestedTableProps)
-                : value,
-            ])
-          )
-        : {};
+    const _itemIdToExpandedRowMap = Object.fromEntries(
+      Object.entries(itemIdToExpandedRowMap || {}).map(([key, value]) => [
+        key,
+        React.isValidElement(value)
+          ? React.cloneElement(value, { hasBackground } as NestedTableProps)
+          : value,
+      ])
+    );
 
     return (
       <StatefulPlayground
