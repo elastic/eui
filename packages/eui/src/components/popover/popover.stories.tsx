@@ -83,8 +83,10 @@ const StatefulPopover = ({
 
       setTimeout(() => {
         setOpen(_isOpen);
-      }, 150);
+      }, 25);
     }
+    // we don't want to trigger this on _isOpen change
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [hasArrow]);
 
   const handleOnClose = () => {
