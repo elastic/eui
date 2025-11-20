@@ -27,7 +27,7 @@ export function toInitials(
 ) {
   // If `initials` provided, check if it's a single emoji
   // in order to support complex, "multi-character" ones
-  if (initials) {
+  if (initials && typeof Intl !== 'undefined' && 'Segmenter' in Intl) {
     const segmenter = new Intl.Segmenter('en', { granularity: 'grapheme' });
     const segments = Array.from(segmenter.segment(initials));
 
