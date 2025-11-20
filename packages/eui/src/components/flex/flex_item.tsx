@@ -79,17 +79,17 @@ const EuiFlexItemInternal = <TComponent extends ElementType>(
   const [grow, setGrow] = useState(_grow);
 
   useEffect(() => {
-    if (VALID_GROW_VALUES.indexOf(grow) === -1) {
+    if (VALID_GROW_VALUES.indexOf(_grow) === -1) {
       if (process.env.NODE_ENV === 'development') {
         console.warn(
-          `Prop \`grow\` passed to \`EuiFlexItem\` must be a boolean or an integer between 0 and 10, received \`${grow}\`. Defaulting to \`true\`.`
+          `Prop \`grow\` passed to \`EuiFlexItem\` must be a boolean or an integer between 0 and 10, received \`${_grow}\`. Defaulting to \`true\`.`
         );
       }
 
       // reset `grow` to the default value when the passed value is invalid
       setGrow(true);
     }
-  }, [grow]);
+  }, [_grow]);
 
   const cssStyles = [
     styles.euiFlexItem,
