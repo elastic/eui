@@ -361,6 +361,8 @@ export const ExpandedNestedTable: Story = {
     hasBackground,
     ...rest
   }: EuiBasicTableProps<User>) {
+    // story-only logic to inject hasBackground into nested tables
+    // do not use in consumer code, set hasBackground directly on the nested table instead
     const _itemIdToExpandedRowMap =
       itemIdToExpandedRowMap && !isEmpty(itemIdToExpandedRowMap)
         ? Object.fromEntries(
