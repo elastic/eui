@@ -571,7 +571,8 @@ describe('EuiSuperDatePicker', () => {
       />
     );
 
-    act(() => {
+    // needs to be async to support React 17
+    await act(async () => {
       userEvent.hover(getByTestSubject('superDatePickerShowDatesButton'));
     });
 
