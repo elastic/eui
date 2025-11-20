@@ -88,6 +88,8 @@ const EuiFlexItemInternal = <TComponent extends ElementType>(
 
       // reset `grow` to the default value when the passed value is invalid
       setGrow(true);
+    } else {
+      setGrow(_grow);
     }
   }, [_grow]);
 
