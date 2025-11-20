@@ -27,6 +27,17 @@ export function toInitials(
   initialsLength?: 1 | 2,
   initials?: string
 ): string | null {
+  // If `initials` provided, check if it's a single emoji
+  // in order to support complex, "multi-character" ones
+  if (initials) {
+    const segmenter = new Intl.Segmenter('en', { granularity: 'grapheme' });
+    const segments = Array.from(segmenter.segment(initials));
+
+    if (segments.length === 1 && isEmoji(segments[0].segment)) {
+      return segments[0].segment;
+    }
+  }
+
   // Calculate the number of initials to show, maxing out at MAX_INITIALS
   let calculatedInitialsLength: number = initials
     ? initials.split('').length
@@ -61,4 +72,9 @@ export function toInitials(
   }
 
   return calculatedInitials;
+}
+
+function isEmoji(str: string): boolean {
+  const emojiRegex = /[\p{Emoji_Presentation}\p{Extended_Pictographic}]/u;
+  return emojiRegex.test(str);
 }
