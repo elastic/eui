@@ -375,8 +375,6 @@ export const ExpandedNestedTable: Story = {
           )
         : {};
 
-    console.log('items', rest.items);
-
     return (
       <StatefulPlayground
         // only passed to ensure same base size, casting to prevent showing the pagination controls
