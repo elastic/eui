@@ -82,7 +82,7 @@ const EuiFlexItemInternal = <TComponent extends ElementType>(
     if (VALID_GROW_VALUES.indexOf(grow) === -1) {
       if (process.env.NODE_ENV === 'development') {
         console.warn(
-          `Prop \`grow\` passed to \`EuiFlexItem\` must be a boolean or an integer between 0 and 10, received \`${grow}\``
+          `Prop \`grow\` passed to \`EuiFlexItem\` must be a boolean or an integer between 0 and 10, received \`${grow}\`. Defaulting to \`true\`.`
         );
       }
 
