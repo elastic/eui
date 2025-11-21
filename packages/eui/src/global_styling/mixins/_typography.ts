@@ -7,6 +7,7 @@
  */
 
 import { CSSProperties } from 'react';
+import { css } from '@emotion/react';
 import {
   euiLineHeightFromBaseline,
   euiFontSizeFromScale,
@@ -86,6 +87,16 @@ export const euiTextTruncate = (
   text-overflow: ellipsis !important;
   white-space: nowrap !important;
 `;
+
+/**
+ * Emotion CSS wrapper around `euiTextTruncate` style.
+ */
+export const euiTextTruncateCSS = (
+  maxWidth: CSSProperties['maxWidth'] = '100%'
+) =>
+  css`
+    ${euiTextTruncate(maxWidth)}
+  `;
 
 /**
  * Fixed-width numbers for tabular data
