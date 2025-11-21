@@ -16,7 +16,6 @@ import React, {
   Ref,
   ReactElement,
   FunctionComponent,
-  useState,
 } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../common';
@@ -76,20 +75,17 @@ const EuiFlexItemInternal = <TComponent extends ElementType>(
   }: EuiFlexItemProps<TComponent>,
   ref: ForwardedRef<TComponent>
 ): ReactElement<EuiFlexItemProps<TComponent>, TComponent> => {
-  const [grow, setGrow] = useState(_grow);
+  // resets `grow` to the default value when an invalid value is passed
+  const grow = VALID_GROW_VALUES.indexOf(_grow) === -1 ? true : _grow;
 
   useEffect(() => {
-    if (VALID_GROW_VALUES.indexOf(_grow) === -1) {
-      if (process.env.NODE_ENV === 'development') {
-        console.warn(
-          `Prop \`grow\` passed to \`EuiFlexItem\` must be a boolean or an integer between 0 and 10, received \`${_grow}\`. Defaulting to \`true\`.`
-        );
-      }
-
-      // reset `grow` to the default value when the passed value is invalid
-      setGrow(true);
-    } else {
-      setGrow(_grow);
+    if (
+      process.env.NODE_ENV === 'development' &&
+      VALID_GROW_VALUES.indexOf(_grow) === -1
+    ) {
+      console.warn(
+        `Prop \`grow\` passed to \`EuiFlexItem\` must be a boolean or an integer between 0 and 10, received \`${_grow}\`. Defaulting to \`true\`.`
+      );
     }
   }, [_grow]);
 
