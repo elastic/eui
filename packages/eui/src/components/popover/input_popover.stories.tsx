@@ -26,6 +26,12 @@ const meta: Meta<EuiInputPopoverProps> = {
   parameters: {
     loki: { chromeSelector: LOKI_SELECTORS.portal },
   },
+  argTypes: {
+    offset: {
+      control: 'number',
+      table: { type: { summary: 'number' }, defaultValue: { summary: '2' } },
+    },
+  },
   args: {
     anchorPosition: 'downLeft',
     attachToAnchor: true,

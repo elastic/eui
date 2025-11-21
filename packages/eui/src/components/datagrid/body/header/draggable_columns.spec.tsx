@@ -281,7 +281,7 @@ describe('draggable columns', () => {
       cy.get('[data-popover-open]').should('have.focus');
 
       cy.get('[data-test-subj=dataGridHeaderCell-a]').realClick({
-        position: 'right',
+        position: 'left',
       });
       cy.get('[data-test-subj=dataGridHeaderCell-a]').should('have.focus');
       cy.get('[data-popover-open]').should('not.exist');
