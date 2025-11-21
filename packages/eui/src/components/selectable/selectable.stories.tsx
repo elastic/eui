@@ -118,6 +118,7 @@ export const WithSearch: Story = {
     // setting up for easier testing/QA
     searchProps: {
       'data-test-subj': 'selectableSearchHere',
+      'aria-label': 'Filter options',
     },
   },
   render: ({ ...args }: EuiSelectableProps) => <StatefulSelectable {...args} />,
