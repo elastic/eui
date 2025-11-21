@@ -52,6 +52,7 @@
     "directory": "packages/eui"
   },
   "dependencies": {
+    "@elastic/eui-theme-common": "workspace:*",
     "@elastic/prismjs-esql": "^1.1.2",
     "@hello-pangea/dnd": "^16.6.0",
     "@types/lodash": "^4.14.202",
@@ -106,7 +107,6 @@
     "@elastic/charts": "^64.1.0",
     "@elastic/datemath": "^5.0.3",
     "@elastic/eui-theme-borealis": "workspace:*",
-    "@elastic/eui-theme-common": "workspace:^",
     "@emotion/babel-preset-css-prop": "^11.11.0",
     "@emotion/cache": "^11.11.0",
     "@emotion/css": "^11.11.0",
@@ -257,7 +257,6 @@
   "peerDependencies": {
     "@elastic/datemath": "^5.0.2",
     "@elastic/eui-theme-borealis": "5.0.0",
-    "@elastic/eui-theme-common": "7.0.0",
     "@emotion/css": "11.x",
     "@emotion/react": "11.x",
     "@types/react": "^17.0 || ^18.0",
