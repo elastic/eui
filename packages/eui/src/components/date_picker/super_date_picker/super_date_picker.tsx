@@ -667,12 +667,14 @@ export class EuiSuperDatePickerInternal extends Component<
                       {isDisabledDisplay ? (
                         isDisabled.display
                       ) : (
-                        <PrettyDuration
-                          timeFrom={start}
-                          timeTo={end}
-                          quickRanges={commonlyUsedRanges}
-                          dateFormat={dateFormat}
-                        />
+                        <span className="eui-textTruncate">
+                          <PrettyDuration
+                            timeFrom={start}
+                            timeTo={end}
+                            quickRanges={commonlyUsedRanges}
+                            dateFormat={dateFormat}
+                          />
+                        </span>
                       )}
                     </EuiFormControlButton>
                   </EuiToolTip>
