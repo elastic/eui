@@ -54,7 +54,7 @@ exports[`EuiSuperDatePicker props accepts data-test-subj and passes to EuiFormCo
             class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiFormControlButton__content"
           >
             <span
-              class="eui-textTruncate"
+              class="emotion-euiTextTruncateCSS"
             >
               Last 15 minutes
             </span>
@@ -139,7 +139,7 @@ exports[`EuiSuperDatePicker props compressed is rendered 1`] = `
             class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiFormControlButton__content"
           >
             <span
-              class="eui-textTruncate"
+              class="emotion-euiTextTruncateCSS"
             >
               Last 15 minutes
             </span>
@@ -352,7 +352,7 @@ exports[`EuiSuperDatePicker props isDisabled true 1`] = `
             class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiFormControlButton__content"
           >
             <span
-              class="eui-textTruncate"
+              class="emotion-euiTextTruncateCSS"
             >
               Last 15 minutes
             </span>
@@ -503,7 +503,7 @@ exports[`EuiSuperDatePicker props showUpdateButton can be false 1`] = `
             class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiFormControlButton__content"
           >
             <span
-              class="eui-textTruncate"
+              class="emotion-euiTextTruncateCSS"
             >
               Last 15 minutes
             </span>
@@ -568,7 +568,7 @@ exports[`EuiSuperDatePicker props showUpdateButton can be iconOnly 1`] = `
             class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiFormControlButton__content"
           >
             <span
-              class="eui-textTruncate"
+              class="emotion-euiTextTruncateCSS"
             >
               Last 15 minutes
             </span>
@@ -656,7 +656,7 @@ exports[`EuiSuperDatePicker props width can be auto 1`] = `
             class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiFormControlButton__content"
           >
             <span
-              class="eui-textTruncate"
+              class="emotion-euiTextTruncateCSS"
             >
               Last 15 minutes
             </span>
@@ -741,7 +741,7 @@ exports[`EuiSuperDatePicker props width can be full 1`] = `
             class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiFormControlButton__content"
           >
             <span
-              class="eui-textTruncate"
+              class="emotion-euiTextTruncateCSS"
             >
               Last 15 minutes
             </span>
@@ -827,7 +827,7 @@ exports[`EuiSuperDatePicker renders 1`] = `
             class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiFormControlButton__content"
           >
             <span
-              class="eui-textTruncate"
+              class="emotion-euiTextTruncateCSS"
             >
               Last 15 minutes
             </span>

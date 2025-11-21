@@ -18,6 +18,7 @@ import dateMath from '@elastic/datemath';
 
 import { useEuiMemoizedStyles, RenderWithEuiTheme } from '../../../services';
 import { isObject } from '../../../services/predicate';
+import { euiTextTruncateCSS } from '../../../global_styling';
 import { EuiI18nConsumer } from '../../context';
 import { CommonProps } from '../../common';
 import { EuiDatePickerRange } from '../date_picker_range';
@@ -667,7 +668,7 @@ export class EuiSuperDatePickerInternal extends Component<
                       {isDisabledDisplay ? (
                         isDisabled.display
                       ) : (
-                        <span className="eui-textTruncate">
+                        <span css={euiTextTruncateCSS()}>
                           <PrettyDuration
                             timeFrom={start}
                             timeTo={end}
