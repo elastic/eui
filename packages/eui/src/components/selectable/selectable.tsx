@@ -755,12 +755,11 @@ export class EuiSelectable<T = {}> extends Component<
               value={searchValue}
               onChange={this.onSearchChange}
               listId={this.optionsListRef.current ? this.listId : undefined} // Only pass the listId if it exists on the page
-              {...(activeOptionIndex != null
-                ? {
-                    'aria-activedescendant':
-                      this.makeOptionId(activeOptionIndex),
-                  }
-                : {})}
+              aria-activedescendant={
+                activeOptionIndex != null
+                  ? this.makeOptionId(activeOptionIndex)
+                  : undefined
+              }
               placeholder={placeholderName}
               isPreFiltered={!!isPreFiltered}
               optionMatcher={optionMatcher!}
