@@ -12,6 +12,7 @@ import { disableStorybookControls } from '../../../../.storybook/utils';
 
 import { LOKI_SELECTORS } from '../../../../.storybook/loki';
 import { EuiSpacer } from '../../spacer';
+import { ToolTipDelay } from '../../tool_tip/tool_tip';
 import {
   EuiButtonGroup,
   EuiButtonGroupProps,
@@ -144,6 +145,9 @@ export const WithTooltips: Story = {
         label: 'Standard tooltip',
         toolTipContent: 'Hello world',
         autoFocus: true, // dev-only usage to showcase tooltip on load
+        toolTipProps: {
+          delay: 'none' as ToolTipDelay, // passing a (not-yet) supported value to hackishly force a lower delay for VRT
+        },
       } as EuiButtonGroupOptionProps,
       {
         id: 'customToolTipProps',

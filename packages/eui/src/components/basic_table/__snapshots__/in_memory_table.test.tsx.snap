@@ -168,7 +168,7 @@ exports[`EuiInMemoryTable empty array 1`] = `
     𐘂𐘂
   </span>
   <table
-    class="euiTable emotion-euiTable-fixed-uncompressed-desktop"
+    class="euiTable emotion-euiTable-fixed-uncompressed-hasBackground-desktop"
     id="__table_generated-id"
     tabindex="-1"
   >
@@ -270,7 +270,7 @@ exports[`EuiInMemoryTable with items 1`] = `
     𐘂𐘂
   </span>
   <table
-    class="euiTable emotion-euiTable-fixed-uncompressed-desktop"
+    class="euiTable emotion-euiTable-fixed-uncompressed-hasBackground-desktop"
     id="__table_generated-id"
     tabindex="-1"
   >

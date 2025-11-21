@@ -343,6 +343,7 @@ const component_colors: _EuiThemeComponentColors = {
     ([backgroundFilledText]) => backgroundFilledText,
     ['colors.backgroundFilledText']
   ),
+  tableFooterBackground: SEMANTIC_COLORS.shade15,
 
   tooltipBackground: dark_background_colors.backgroundBaseSubdued,
   tooltipBorder: dark_border_colors.borderBaseSubdued,
@@ -419,5 +420,6 @@ export const components: _EuiThemeComponents = {
     ),
     tableRowBackgroundMarked: SEMANTIC_COLORS.warning140,
     tableRowBackgroundMarkedHover: SEMANTIC_COLORS.warning130,
+    tableFooterBackground: SEMANTIC_COLORS.shade135,
   },
 };

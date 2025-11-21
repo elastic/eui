@@ -16,6 +16,7 @@ import {
   useIsEuiTableResponsive,
   EuiTableIsResponsiveContext,
 } from './mobile/responsive_context';
+import { EuiTableVariantContext } from './table_context';
 import { euiTableStyles } from './table.styles';
 
 export interface EuiTableProps
@@ -34,8 +35,14 @@ export interface EuiTableProps
   responsiveBreakpoint?: EuiBreakpointSize | boolean;
   /**
    * Sets the table-layout CSS property
+   * @default 'fixed'
    */
   tableLayout?: 'fixed' | 'auto';
+  /**
+   * Toggle the table's background
+   * @default true
+   */
+  hasBackground?: boolean;
 }
 
 export const EuiTable: FunctionComponent<EuiTableProps> = ({
@@ -43,6 +50,7 @@ export const EuiTable: FunctionComponent<EuiTableProps> = ({
   className,
   compressed,
   tableLayout = 'fixed',
+  hasBackground = true,
   responsiveBreakpoint, // Default handled by `useIsEuiTableResponsive`
   ...rest
 }) => {
@@ -56,13 +64,16 @@ export const EuiTable: FunctionComponent<EuiTableProps> = ({
     styles.layout[tableLayout],
     (!compressed || isResponsive) && styles.uncompressed,
     compressed && !isResponsive && styles.compressed,
+    hasBackground && styles.hasBackground,
     isResponsive ? styles.mobile : styles.desktop,
   ];
 
   return (
     <table tabIndex={-1} css={cssStyles} className={classes} {...rest}>
       <EuiTableIsResponsiveContext.Provider value={isResponsive}>
-        {children}
+        <EuiTableVariantContext.Provider value={{ hasBackground }}>
+          {children}
+        </EuiTableVariantContext.Provider>
       </EuiTableIsResponsiveContext.Provider>
     </table>
   );

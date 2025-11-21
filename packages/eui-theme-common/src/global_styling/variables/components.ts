@@ -142,6 +142,7 @@ export type _EuiThemeComponentColors = {
   tableRowBackgroundMarked: ColorModeSwitch;
   tableRowBackgroundMarkedHover: ColorModeSwitch;
   tableCellSortableIconColor: ColorModeSwitch;
+  tableFooterBackground: ColorModeSwitch;
 
   tooltipBackground: ColorModeSwitch;
   tooltipBorder: ColorModeSwitch;

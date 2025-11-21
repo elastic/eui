@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, TdHTMLAttributes } from 'react';
+import React, { FunctionComponent, TdHTMLAttributes, useContext } from 'react';
 import classNames from 'classnames';
 
 import {
@@ -19,6 +19,7 @@ import { CommonProps } from '../common';
 import { resolveWidthAsStyle } from './utils';
 import { EuiTableCellContent } from './_table_cell_content';
 import { euiTableHeaderFooterCellStyles } from './table_cells_shared.styles';
+import { EuiTableVariantContext } from './table_context';
 
 export type EuiTableFooterCellProps = CommonProps &
   TdHTMLAttributes<HTMLTableCellElement> & {
@@ -34,17 +35,18 @@ export const EuiTableFooterCell: FunctionComponent<EuiTableFooterCellProps> = ({
   style,
   ...rest
 }) => {
+  const { hasBackground } = useContext(EuiTableVariantContext);
+
   const classes = classNames('euiTableFooterCell', className);
   const inlineStyles = resolveWidthAsStyle(style, width);
   const styles = useEuiMemoizedStyles(euiTableHeaderFooterCellStyles);
+  const cssStyles = [
+    styles.euiTableFooterCell.euiTableFooterCell,
+    hasBackground && styles.euiTableFooterCell.hasBackground,
+  ];
 
   return (
-    <td
-      css={styles.euiTableFooterCell}
-      className={classes}
-      style={inlineStyles}
-      {...rest}
-    >
+    <td css={cssStyles} className={classes} style={inlineStyles} {...rest}>
       <EuiTableCellContent align={align} truncateText={true} textOnly={true}>
         {children}
       </EuiTableCellContent>

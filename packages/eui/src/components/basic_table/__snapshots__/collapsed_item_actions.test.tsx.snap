@@ -48,18 +48,9 @@ exports[`CollapsedItemActions custom actions 1`] = `
         data-popover-open="true"
         data-popover-panel="true"
         role="dialog"
-        style="top: -18px; left: -16px; z-index: 2000;"
+        style="top: 0px; left: -12px; z-index: 2000;"
         tabindex="0"
       >
-        <div
-          class="euiPopover__arrowWrapper emotion-euiPopoverArrowWrapper"
-          style="top: 9px; left: 100%;"
-        >
-          <div
-            class="euiPopover__arrow emotion-euiPopoverArrow-left"
-            data-popover-arrow="left"
-          />
-        </div>
         <p
           class="emotion-euiScreenReaderOnly"
           id="generated-id"
@@ -162,18 +153,9 @@ exports[`CollapsedItemActions default actions 1`] = `
         data-popover-open="true"
         data-popover-panel="true"
         role="dialog"
-        style="top: -18px; left: -16px; z-index: 2000;"
+        style="top: 0px; left: -12px; z-index: 2000;"
         tabindex="0"
       >
-        <div
-          class="euiPopover__arrowWrapper emotion-euiPopoverArrowWrapper"
-          style="top: 9px; left: 100%;"
-        >
-          <div
-            class="euiPopover__arrow emotion-euiPopoverArrow-left"
-            data-popover-arrow="left"
-          />
-        </div>
         <p
           class="emotion-euiScreenReaderOnly"
           id="generated-id"
