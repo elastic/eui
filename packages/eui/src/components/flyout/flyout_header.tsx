@@ -31,7 +31,7 @@ export const EuiFlyoutHeader: EuiFlyoutHeaderProps = ({
   const cssStyles = [styles.euiFlyoutHeader, hasBorder && styles.hasBorder];
 
   return (
-    <div className={classes} css={cssStyles} {...rest}>
+    <div tabIndex={0} className={classes} css={cssStyles} {...rest}>
       {children}
     </div>
   );
