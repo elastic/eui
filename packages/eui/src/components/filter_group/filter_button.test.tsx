@@ -79,9 +79,30 @@ describe('EuiFilterButton', () => {
 
     describe('isDisabled', () => {
       it('renders', () => {
-        const { container } = render(<EuiFilterButton isDisabled />);
+        const { container, getByTestSubject } = render(
+          <EuiFilterButton isDisabled data-test-subj="button" />
+        );
+
+        const button = getByTestSubject('button');
 
         expect(container.firstChild).toMatchSnapshot();
+        expect(button).toBeEuiDisabled();
+        expect(button).toHaveAttribute('disabled', '');
+        expect(button).not.toHaveAttribute('aria-disabled');
+      });
+    });
+
+    describe('hasAriaDisabled', () => {
+      it('renders `aria-disabled` when `isDisabled=true`', () => {
+        const { getByTestSubject } = render(
+          <EuiFilterButton hasAriaDisabled isDisabled data-test-subj="button" />
+        );
+
+        const button = getByTestSubject('button');
+
+        expect(button).toBeEuiDisabled();
+        expect(button).toHaveAttribute('aria-disabled', 'true');
+        expect(button).not.toHaveAttribute('disabled');
       });
     });
 

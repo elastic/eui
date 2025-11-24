@@ -805,7 +805,7 @@ a, footer\tb, footer
       ).should('have.attr', 'aria-checked', 'false');
     });
 
-    it('renders columns in the corect order when `columns` and `visibleColumns` have different orders', () => {
+    it('renders columns in the correct order when `columns` and `visibleColumns` have different orders', () => {
       cy.mount(
         <StatefulDataGrid
           {...props}
@@ -839,6 +839,57 @@ a, footer\tb, footer
       ).should('have.attr', 'aria-checked', 'false');
     });
 
+    it('removes duplicates from `columns` with equal `id`', () => {
+      cy.mount(
+        <StatefulDataGrid
+          {...props}
+          columns={[
+            { id: 'a', display: 'First' },
+            { id: 'b', display: 'Second.A' },
+            { id: 'b', display: 'Second.B' },
+            { id: 'c', display: 'Third' },
+            { id: 'd', display: 'Fourth' },
+          ]}
+          columnVisibility={{
+            ...props.columnVisibility,
+            visibleColumns: ['b', 'd', 'a'],
+          }}
+        />
+      );
+
+      cy.get(
+        '[data-gridcell-column-index="0"][data-gridcell-visible-row-index="-1"] .euiDataGridHeaderCell__content'
+      ).should('have.text', 'Second.A');
+      cy.get(
+        '[data-gridcell-column-index="1"][data-gridcell-visible-row-index="-1"] .euiDataGridHeaderCell__content'
+      ).should('have.text', 'Fourth');
+      cy.get(
+        '[data-gridcell-column-index="2"][data-gridcell-visible-row-index="-1"] .euiDataGridHeaderCell__content'
+      ).should('have.text', 'First');
+
+      cy.get('.euiNotificationBadge').then(($items) => {
+        const textContent = $items.text();
+        expect(textContent).to.equal('3/4');
+      });
+
+      /* checks column selector popover order */
+      cy.get('[data-test-subj="dataGridColumnSelectorButton"]').click();
+
+      cy.get('.euiDataGridColumnSelector__item').then(($items) => {
+        const columnsCount = $items.length;
+        expect(columnsCount).to.equal(4);
+      });
+
+      cy.get('.euiDataGridColumnSelector__item').eq(0).should('have.text', 'b');
+      cy.get('.euiDataGridColumnSelector__item').eq(1).should('have.text', 'd');
+      cy.get('.euiDataGridColumnSelector__item').eq(2).should('have.text', 'c');
+      cy.get('.euiDataGridColumnSelector__item').eq(3).should('have.text', 'a');
+
+      cy.get(
+        '.euiDataGridColumnSelector__item [data-test-subj="dataGridColumnSelectorToggleColumnVisibility-c"]'
+      ).should('have.attr', 'aria-checked', 'false');
+    });
+
     it('reorders columns from the column selector', () => {
       cy.mount(<StatefulDataGrid {...props} />);
 
@@ -850,7 +901,7 @@ a, footer\tb, footer
         .realHover()
         .realMouseDown({ position: 'center' })
         .realMouseMove(0, 0) // start drag
-        .realMouseMove(0, 120) // move (absolute coordinates)
+        .realMouseMove(150, 100) // move (absolute coordinates)
         .realMouseUp();
 
       cy.get('.euiDataGridColumnSelector__item').eq(0).should('have.text', 'b');

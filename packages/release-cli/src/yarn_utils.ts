@@ -7,6 +7,7 @@
  */
 
 import { promisify } from 'node:util';
+import path from 'node:path';
 import { exec, execSync } from 'node:child_process';
 
 const execPromise = promisify(exec);
@@ -37,13 +38,70 @@ export const updateWorkspaceVersion = async (workspace: string, version: string)
   return execPromise(`yarn workspace ${workspace} version ${version}`);
 };
 
-export const execPublish = (workspace: string, tag: string, otp?: string) => {
-  if (!tag) {
-    throw new Error('Tag must be defined');
+export interface YarnPackRawDetail {
+  base?: string;
+  location?: string;
+  output?: string;
+}
+
+export interface YarnPackDetails {
+  /**
+   * An absolute base path to the workspace root directory
+   */
+  base: string;
+  /**
+   * An array of absolute paths to files packed in the tgz archive
+   */
+  files: string[];
+  /**
+   * An absolute path to the output tgz archive
+   */
+  output: string;
+}
+
+export const yarnPack = async (workspace: string)=> {
+  const result = await execPromise(`yarn workspace ${workspace} pack --json`);
+  const rawDetails = JSON.parse(
+    `[${result.stdout.replace(/\n/g, ',').slice(0, -1)}]`
+  ) as Array<YarnPackRawDetail>;
+  const details: YarnPackDetails = {
+    base: '',
+    files: [],
+    output: '',
+  };
+  for (const rawDetail of rawDetails) {
+    if (rawDetail.base) {
+      details.base = rawDetail.base;
+    }
+    if (rawDetail.location) {
+      details.files.push(rawDetail.location);
+    }
+    if (rawDetail.output) {
+      details.output = rawDetail.output;
+    }
   }
 
-  const otpStr = otp ? `--otp ${otp}` : '';
-  return execSync(`yarn workspace ${workspace} npm publish --access public --tag ${tag} ${otpStr}`, { stdio: 'inherit', encoding: 'utf8' });
+  // Validate the returned data
+  if (!details.base) {
+    throw new Error(
+      'yarn pack did not return the base path for the workspace. ' +
+        'This likely means that the command\'s JSON output changed format. ' +
+        'Please check the current yarn pack API and update the code '
+    );
+  }
+
+  if (!details.output) {
+    throw new Error(
+      'yarn pack did not return the path for the output tgz archive. ' +
+        'This likely means that the command\'s JSON output changed format. ' +
+        'Please check the current yarn pack API and update the code '
+    );
+  }
+
+  // By default, the returned location property is a path relative
+  // to the workspace root directory. We want absolute paths instead.
+  details.files = details.files.map((file) => path.join(details.base, file));
+  return details;
 };
 
 export const getAuthenticatedUser = async () => {

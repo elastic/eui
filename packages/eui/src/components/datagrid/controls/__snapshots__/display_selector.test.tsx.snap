@@ -204,6 +204,7 @@ exports[`useDataGridDisplaySelector displaySelector renders a toolbar button/pop
     >
       <span
         class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+        id="generated-id-wrapper"
       >
         <button
           aria-label="Display options"
@@ -240,18 +241,9 @@ exports[`useDataGridDisplaySelector displaySelector renders a toolbar button/pop
         data-autofocus="true"
         data-popover-panel="true"
         role="dialog"
-        style="top: 16px; left: -18px; will-change: transform, opacity; z-index: 2000;"
+        style="top: 12px; left: 0px; will-change: transform, opacity; z-index: 2000;"
         tabindex="0"
       >
-        <div
-          class="euiPopover__arrowWrapper emotion-euiPopoverArrowWrapper"
-          style="left: 9px; bottom: 100%;"
-        >
-          <div
-            class="euiPopover__arrow emotion-euiPopoverArrow-bottom"
-            data-popover-arrow="bottom"
-          />
-        </div>
         <p
           class="emotion-euiScreenReaderOnly"
           id="generated-id"

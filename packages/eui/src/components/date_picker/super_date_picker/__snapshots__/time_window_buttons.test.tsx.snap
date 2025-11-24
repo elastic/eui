@@ -1,0 +1,90 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiTimeWindowButtons renders 1`] = `
+<div
+  class="euiSuperDatePicker__timeWindowButtons emotion-euiButtonGroup__buttons-m-EuiTimeWindowButtons"
+  data-test-subj="timeWindowButtons"
+>
+  <span
+    class="euiToolTipAnchor euiButtonGroup__tooltipWrapper emotion-euiToolTipAnchor-inlineBlock-tooltipWrapper-m"
+    id="generated-id-wrapper"
+  >
+    <button
+      aria-pressed="false"
+      class="euiButtonGroupButton euiButtonGroupButton-isIconOnly emotion-euiButtonDisplay-m-defaultMinWidth-euiButtonGroupButton-iconOnly-hasToolTip-uncompressed-base-text"
+      data-test-subj="timeWindowButtonsPrevious"
+      title=""
+      type="button"
+    >
+      <span
+        class="emotion-euiButtonDisplayContent-euiButtonGroupButton__content"
+      >
+        <span
+          color="inherit"
+          data-euiicon-type="arrowLeft"
+        />
+        <span
+          class="eui-textTruncate emotion-euiButtonGroupButton__iconOnly"
+          data-text="Previous"
+        >
+          Previous
+        </span>
+      </span>
+    </button>
+  </span>
+  <span
+    class="euiToolTipAnchor euiButtonGroup__tooltipWrapper emotion-euiToolTipAnchor-inlineBlock-tooltipWrapper-m"
+    id="generated-id_euiToolTipAnchor"
+  >
+    <button
+      aria-pressed="false"
+      class="euiButtonGroupButton euiButtonGroupButton-isIconOnly emotion-euiButtonDisplay-m-defaultMinWidth-euiButtonGroupButton-iconOnly-hasToolTip-uncompressed-base-text"
+      data-test-subj="timeWindowButtonsZoomOut"
+      title=""
+      type="button"
+    >
+      <span
+        class="emotion-euiButtonDisplayContent-euiButtonGroupButton__content"
+      >
+        <span
+          color="inherit"
+          data-euiicon-type="magnifyWithMinus"
+        />
+        <span
+          class="eui-textTruncate emotion-euiButtonGroupButton__iconOnly"
+          data-text="Zoom out"
+        >
+          Zoom out
+        </span>
+      </span>
+    </button>
+  </span>
+  <span
+    class="euiToolTipAnchor euiButtonGroup__tooltipWrapper emotion-euiToolTipAnchor-inlineBlock-tooltipWrapper-m"
+    id="generated-id-wrapper"
+  >
+    <button
+      aria-pressed="false"
+      class="euiButtonGroupButton euiButtonGroupButton-isIconOnly emotion-euiButtonDisplay-m-defaultMinWidth-euiButtonGroupButton-iconOnly-hasToolTip-uncompressed-base-text"
+      data-test-subj="timeWindowButtonsNext"
+      title=""
+      type="button"
+    >
+      <span
+        class="emotion-euiButtonDisplayContent-euiButtonGroupButton__content"
+      >
+        <span
+          color="inherit"
+          data-euiicon-type="arrowRight"
+        />
+        <span
+          class="eui-textTruncate emotion-euiButtonGroupButton__iconOnly"
+          data-text="Next"
+        >
+          Next
+        </span>
+      </span>
+    </button>
+  </span>
+</div>
+`;

@@ -8,7 +8,7 @@
 
 import React, { useState } from 'react';
 import moment from 'moment';
-import { fireEvent, act } from '@testing-library/react';
+import { fireEvent, act, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import { render, waitForEuiPopoverOpen, screen } from '../../../test/rtl';
@@ -19,6 +19,7 @@ import {
   EuiSuperDatePicker,
   EuiSuperDatePickerProps,
 } from './super_date_picker';
+import { ZOOM_FACTOR_DEFAULT } from './time_window_buttons';
 
 const noop = () => {};
 
@@ -555,6 +556,38 @@ describe('EuiSuperDatePicker', () => {
     });
   });
 
+  test('pretty duration button has full range tooltip', async () => {
+    const now = moment('1999-12-31');
+    const dateFormat = 'MMM D, HH:mm:ss';
+
+    jest.useFakeTimers().setSystemTime(now.toDate());
+
+    const { getByTestSubject, findByRole } = render(
+      <EuiSuperDatePicker
+        onTimeChange={noop}
+        start="now-15m"
+        end="now"
+        dateFormat={dateFormat}
+      />
+    );
+
+    // needs to be async to support React 17
+    await act(async () => {
+      userEvent.hover(getByTestSubject('superDatePickerShowDatesButton'));
+    });
+
+    const tooltip = await findByRole('tooltip');
+
+    const end = now.format(dateFormat);
+    const start = now.clone().subtract(15, 'minutes').format(dateFormat);
+    const formattedValue = `${start} – ${end}`;
+
+    expect(tooltip).toBeInTheDocument();
+    expect(tooltip).toHaveTextContent(formattedValue);
+
+    jest.useRealTimers();
+  });
+
   describe('Quick Select time window steps', () => {
     it('steps forward', async () => {
       // Use fixed absolute start/end with time
@@ -638,6 +671,138 @@ describe('EuiSuperDatePicker', () => {
 
       expect(prevStart).toBe('2024-12-31T10:00:00.000Z');
       expect(prevEnd).toBe('2025-01-01T10:00:00.000Z');
+    });
+  });
+
+  describe('Time window buttons', () => {
+    it('renders only when showTimeWindowButtons prop is passed', () => {
+      const start = '2025-10-30T12:00:00.000Z';
+      const end = '2025-10-30T13:00:00.000Z';
+
+      const { queryByTestSubject, rerender } = render(
+        <EuiSuperDatePicker
+          start={start}
+          end={end}
+          onTimeChange={() => {}}
+          showTimeWindowButtons
+        />
+      );
+
+      expect(queryByTestSubject('timeWindowButtons')).toBeInTheDocument();
+
+      rerender(
+        <EuiSuperDatePicker start={start} end={end} onTimeChange={() => {}} />
+      );
+
+      expect(queryByTestSubject('timeWindowButtons')).not.toBeInTheDocument();
+    });
+
+    it('updates time when shifting', async () => {
+      const start = '2025-10-30T12:00:00.000Z';
+      const end = '2025-10-30T13:00:00.000Z';
+      const stepBackwardStart = '2025-10-30T11:00:00.000Z';
+      const stepBackwardEnd = '2025-10-30T12:00:00.000Z';
+      let lastTimeChange: { start: string; end: string } = { start, end };
+
+      const { getByTestSubject } = render(
+        <EuiSuperDatePicker
+          start={start}
+          end={end}
+          onTimeChange={({ start, end }) => {
+            lastTimeChange = { start, end };
+          }}
+          showUpdateButton={false}
+          showTimeWindowButtons={true}
+        />
+      );
+
+      act(() => {
+        userEvent.click(getByTestSubject('timeWindowButtonsPrevious'));
+      });
+
+      await waitFor(() => {
+        expect(lastTimeChange.end).toEqual(stepBackwardEnd);
+        expect(lastTimeChange.start).toEqual(stepBackwardStart);
+
+        const initialTimeStart = new Date(start).getTime();
+        const updatedTimeStart = new Date(lastTimeChange.start).getTime();
+        const initialTimeEnd = new Date(end).getTime();
+        const updatedTimeEnd = new Date(lastTimeChange.end).getTime();
+
+        expect(initialTimeStart).toBeGreaterThan(updatedTimeStart);
+        expect(initialTimeEnd).toBeGreaterThan(updatedTimeEnd);
+        // Also check the diff is the same
+        expect(initialTimeEnd - initialTimeStart).toEqual(
+          updatedTimeEnd - updatedTimeStart
+        );
+      });
+    });
+
+    it('updates time when zooming out', async () => {
+      const start = '2025-10-30T12:00:00.000Z';
+      const end = '2025-10-31T12:00:00.000Z';
+      let lastTimeChange: { start: string; end: string } = { start, end };
+
+      const { getByTestSubject } = render(
+        <EuiSuperDatePicker
+          start={start}
+          end={end}
+          onTimeChange={({ start, end }) => {
+            lastTimeChange = { start, end };
+          }}
+          showUpdateButton={false}
+          showTimeWindowButtons={true}
+        />
+      );
+
+      act(() => {
+        userEvent.click(getByTestSubject('timeWindowButtonsZoomOut'));
+      });
+
+      await waitFor(() => {
+        const initialTimeStart = new Date(start).getTime();
+        const updatedTimeStart = new Date(lastTimeChange.start).getTime();
+        const initialTimeEnd = new Date(end).getTime();
+        const updatedTimeEnd = new Date(lastTimeChange.end).getTime();
+        expect(initialTimeStart).toBeGreaterThan(updatedTimeStart);
+        expect(initialTimeEnd).toBeLessThan(updatedTimeEnd);
+        // Check the diff expanded by zoom factor
+        expect(
+          (initialTimeEnd - initialTimeStart) * (1 + ZOOM_FACTOR_DEFAULT)
+        ).toEqual(updatedTimeEnd - updatedTimeStart);
+      });
+    });
+
+    it('is disabled when date/time range is invalid', async () => {
+      // reversed range (invalid)
+      const start = '2025-10-30T14:00:00.000Z';
+      const end = '2025-10-31T14:00:00.000Z';
+
+      const { rerender, getByTestSubject } = render(
+        <EuiSuperDatePicker
+          start={end}
+          end={start}
+          onTimeChange={() => {}}
+          showTimeWindowButtons={true}
+        />
+      );
+
+      expect(getByTestSubject('timeWindowButtonsPrevious')).toBeDisabled();
+      expect(getByTestSubject('timeWindowButtonsZoomOut')).toBeDisabled();
+      expect(getByTestSubject('timeWindowButtonsNext')).toBeDisabled();
+
+      rerender(
+        <EuiSuperDatePicker
+          start={start}
+          end={end}
+          onTimeChange={() => {}}
+          showTimeWindowButtons={true}
+        />
+      );
+
+      expect(getByTestSubject('timeWindowButtonsPrevious')).not.toBeDisabled();
+      expect(getByTestSubject('timeWindowButtonsZoomOut')).not.toBeDisabled();
+      expect(getByTestSubject('timeWindowButtonsNext')).not.toBeDisabled();
     });
   });
 });

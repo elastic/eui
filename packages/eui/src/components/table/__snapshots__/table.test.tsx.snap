@@ -3,7 +3,7 @@
 exports[`EuiTable renders 1`] = `
 <table
   aria-label="aria-label"
-  class="euiTable testClass1 testClass2 emotion-euiTable-fixed-uncompressed-desktop-euiTestCss"
+  class="euiTable testClass1 testClass2 emotion-euiTable-fixed-uncompressed-hasBackground-desktop-euiTestCss"
   data-test-subj="test subject string"
   tabindex="-1"
 >

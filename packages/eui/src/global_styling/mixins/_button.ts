@@ -19,6 +19,7 @@ import {
   useEuiMemoizedStyles,
 } from '../../services';
 import { highContrastModeStyles, logicalCSS } from '../functions';
+import { euiDisabledSelector } from '../utility/selectors';
 
 /** Tentative usage; these exist only to be used as button directly when used within other components */
 export const SEVERITY_COLORS = ['neutral', 'risk'] as const;
@@ -265,7 +266,9 @@ const euiButtonDisplaysColors = (euiThemeContext: UseEuiTheme) => {
               outline-color: ${euiThemeContext.colorMode === 'DARK' &&
             color === 'text'
               ? 'currentColor'
-              : euiThemeContext.euiTheme.colors.fullShade};
+              : color !== 'disabled'
+              ? euiThemeContext.euiTheme.colors.fullShade
+              : ''};
 
             ${_interactionStyles(euiThemeContext, buttonColors)}
           `;
@@ -360,7 +363,7 @@ const _interactionStyles = (
         position: relative;
         overflow: hidden;
 
-        &:hover:not(:disabled) {
+        &:hover:not(${euiDisabledSelector}) {
           &::before {
             content: '';
             position: absolute;
@@ -372,7 +375,7 @@ const _interactionStyles = (
           }
         }
 
-        &:active:not(:disabled) {
+        &:active:not(${euiDisabledSelector}) {
           &::before {
             ${logicalCSS('width', '100%')}
             ${logicalCSS('height', '100%')}
@@ -388,11 +391,11 @@ const _interactionStyles = (
 
     // button hover is applied as opaque color
     return `
-      &:hover:not(:disabled) {
+      &:hover:not(${euiDisabledSelector}) {
         background-color: ${buttonColors.backgroundHover};
       }
 
-      &:active:not(:disabled) {
+      &:active:not(${euiDisabledSelector}) {
         background-color: ${buttonColors.backgroundActive};
       }
     `;
@@ -415,7 +418,7 @@ const _interactionStyles = (
  * creates a bottom border on hover/focus to ensure a visible change as forced mode removed background colors
  */
 export const highContrastHoverIndicatorStyles = ({ euiTheme }: UseEuiTheme) => `
-  &:hover:not(:disabled) {
+  &:hover:not(${euiDisabledSelector}) {
     transition: none;
 
     /* using pseudo border to be able to control the color */

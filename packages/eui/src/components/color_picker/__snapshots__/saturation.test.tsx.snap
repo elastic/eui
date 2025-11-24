@@ -17,6 +17,7 @@ exports[`EuiSaturation accepts a color 1`] = `
   </div>
   <span
     class="euiToolTipAnchor  emotion-euiToolTipAnchor-inlineBlock-euiSaturation__tooltip"
+    id="generated-id_euiToolTipAnchor"
     style="inset-inline-start: 0; inset-block-start: 0;"
   >
     <button
@@ -53,6 +54,7 @@ exports[`EuiSaturation is rendered 1`] = `
   </div>
   <span
     class="euiToolTipAnchor  emotion-euiToolTipAnchor-inlineBlock-euiSaturation__tooltip"
+    id="generated-id_euiToolTipAnchor"
     style="inset-inline-start: 0; inset-block-start: 0;"
   >
     <button

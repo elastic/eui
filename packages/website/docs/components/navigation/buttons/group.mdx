@@ -280,6 +280,11 @@ Buttons within a button group will automatically display a default browser toolt
 
 To instead display an **EuiToolTip** around your button(s), pass the `toolTipContent` property. You can also use `toolTipProps` to customize tooltip placement, title, and any other prop that [EuiToolTip](../../display/tooltip.mdx) accepts.
 
+:::note Beta feature: Showing tooltips on disabled **EuiButtonGroup**
+If you need disabled buttons to show tooltips, add the `hasAriaDisabled` prop to switch from native to custom disabled behavior which preserves focusability.
+Read more about [custom disabled behavior](./button.mdx#disabled-and-focusable-).
+:::
+
 ```tsx interactive
 import React, { useState } from 'react';
 
@@ -308,18 +313,42 @@ export default () => {
   ];
 
   const [toggleIdSelected, setToggleIdSelected] = useState('buttonGroup__1');
+  const [disableButton, setDisableButton] = useState(false);
 
   const onChange = (optionId) => {
     setToggleIdSelected(optionId);
   };
 
   return (
-    <EuiButtonGroup
-      legend="This is a group with tooltips"
-      options={toggleButtons}
-      idSelected={toggleIdSelected}
-      onChange={(id) => onChange(id)}
-    />
+    <>
+      <EuiSwitch
+        compressed
+        label="Disabled"
+        checked={disableButton}
+        onChange={() => setDisableButton(!disableButton)}
+      />
+      <EuiSpacer />
+
+      <EuiFormRow label="Default button group with tooltips" fullWidth>
+        <EuiButtonGroup
+          legend="This is a group with tooltips"
+          options={toggleButtons}
+          idSelected={toggleIdSelected}
+          isDisabled={disableButton}
+          onChange={(id) => onChange(id)}
+        />
+      </EuiFormRow>
+      <EuiFormRow label="With custom disabled behavior and tooltips" fullWidth>
+        <EuiButtonGroup
+          legend="This is a group with tooltips"
+          options={toggleButtons}
+          idSelected={toggleIdSelected}
+          isDisabled={disableButton}
+          hasAriaDisabled
+          onChange={(id) => onChange(id)}
+        />
+      </EuiFormRow>
+    </>
   );
 };
 ```

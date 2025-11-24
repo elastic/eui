@@ -99,12 +99,17 @@ export const euiTableRowCellStyles = (euiThemeContext: UseEuiTheme) => {
         return css`
           ${this.rightColumnContent}
           ${logicalCSS('top', mobileSizes.actions.offset)}
+
+          /* Handled here to ensure a stable Emotion style order 
+          See https://github.com/elastic/eui/issues/8231 */
+          .euiTableCellContent {
+            padding: 0;
+          }
         `;
       },
       get expander() {
         return css`
           ${this.rightColumnContent}
-          ${logicalCSS('bottom', mobileSizes.actions.offset)}
         `;
       },
       /**
@@ -140,7 +145,7 @@ export const euiTableRowCellStyles = (euiThemeContext: UseEuiTheme) => {
       }).fontSize};
 
       display: block;
-      color: ${euiTheme.colors.darkShade};
+      color: ${euiTheme.colors.textSubdued};
       padding: ${euiTheme.size.s};
       /* Pull up cell content closer */
       padding-block-end: 0;

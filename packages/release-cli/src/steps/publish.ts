@@ -11,7 +11,8 @@ import chalk from 'chalk';
 import prompts from 'prompts';
 import { type ReleaseOptions } from '../release';
 import { getRootWorkspaceDir, getWorkspacePackageJson } from '../workspace';
-import { execPublish, YarnWorkspace } from '../yarn_utils';
+import { yarnPack, YarnWorkspace } from '../yarn_utils';
+import { npmExecPublish } from '../npm_utils';
 
 interface PublishedWorkspace extends YarnWorkspace {
   version: string;
@@ -24,8 +25,13 @@ export const stepPublish = async (
   options: ReleaseOptions,
   workspacesToPublish: Array<YarnWorkspace>
 ) => {
-  const { logger } = options;
+  const { logger, dryRun } = options;
   const rootWorkspaceDir = getRootWorkspaceDir();
+
+  if (!workspacesToPublish.length) {
+    logger.warning('No packages to publish');
+    return;
+  }
 
   const publishedWorkspaces: Array<PublishedWorkspace> = [];
 
@@ -53,8 +59,18 @@ export const stepPublish = async (
     }
 
     try {
-      // tag is always defined at this stage. See release.ts
-      execPublish(workspace.name, options.tag!, otp);
+      // We pack packages using yarn pack and publish using npm publish
+      // to be able to use npm trusted publishing and more
+      const packDetails = await yarnPack(workspace.name);
+      logger.info(`[${workspace.name}] Package successfully packed to "${packDetails.output}" with ${packDetails.files.length} files included`);
+
+      npmExecPublish({
+        packageArchivePath: packDetails.output,
+        // tag is always defined at this stage. See release.ts
+        tag: options.tag!,
+        dryRun,
+        otp,
+      });
     } catch (err) {
       logger.error(err);
       logger.error(chalk.red(`[${workspace.name}] Failed to publish package`));

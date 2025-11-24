@@ -7,10 +7,15 @@
  */
 
 import { css, keyframes } from '@emotion/react';
-import { euiShadow } from '@elastic/eui-theme-common';
+import { euiBorderStyles, euiShadow } from '@elastic/eui-theme-common';
 
 import { UseEuiTheme } from '../../services';
-import { euiCanAnimate, logicalCSS, mathWithUnits } from '../../global_styling';
+import {
+  euiCanAnimate,
+  highContrastModeStyles,
+  logicalCSS,
+  mathWithUnits,
+} from '../../global_styling';
 import { cssSupportsHasWithNextSibling } from '../../global_styling/functions/supports';
 
 import { euiTableVariables } from './table.styles';
@@ -45,10 +50,15 @@ export const euiTableRowStyles = (euiThemeContext: UseEuiTheme) => {
 
         ${markedStyles}
       `,
-      expanded: css`
-        background-color: ${rowColors.hover};
-        ${expandedAnimationCss}
-      `,
+      expanded: {
+        expanded: css`
+          ${expandedAnimationCss}
+        `,
+        // skipping adding a css class as it's a default style when expanded
+        hasBackground: `
+          background-color: ${rowColors.hover};
+        `,
+      },
       clickable: css`
         &:hover {
           background-color: ${rowColors.clickable.hover};
@@ -89,11 +99,6 @@ export const euiTableRowStyles = (euiThemeContext: UseEuiTheme) => {
         padding: ${cellContentPadding};
         ${logicalCSS('margin-bottom', cellContentPadding)}
 
-        /* EuiPanel styling */
-        ${euiShadow(euiThemeContext, 's', {
-          borderAllInHighContrastMode: true,
-        })}
-        background-color: ${euiTheme.colors.backgroundBasePlain};
         border-radius: ${euiTheme.border.radius.medium};
 
         /* :has(+) is not supported in all environments (mainly not in older jsdom versions)
@@ -106,6 +111,33 @@ export const euiTableRowStyles = (euiThemeContext: UseEuiTheme) => {
             }
           `
         )}
+      `,
+      /* Omitting adding a class via css here as it's a default style on mobile, not a standalone prop-related style.
+      Adding it separate allows better appliance control via props without the need to override the styles. */
+      hasBorder: `
+        ${highContrastModeStyles(euiThemeContext, {
+          // uses pseudo-border to align dimensions with shadows applied by `hasBackground`
+          none: `
+            ${euiBorderStyles(euiThemeContext, { side: 'all' })}
+            transform: translateZ(0);
+          `,
+          preferred: `
+            border: ${euiTheme.border.thin}
+          `,
+        })}
+      `,
+      hasBackground: css`
+        /* EuiPanel styling */
+        ${euiShadow(euiThemeContext, 's', {
+          borderAllInHighContrastMode: true,
+        })}
+        background-color: ${euiTheme.colors.backgroundBasePlain};
+
+        ${highContrastModeStyles(euiThemeContext, {
+          none: `
+            border: none;
+          `,
+        })}
       `,
       selected: css`
         &,
@@ -145,7 +177,7 @@ export const euiTableRowStyles = (euiThemeContext: UseEuiTheme) => {
           'margin-top',
           mathWithUnits(
             [cellContentPadding, euiTheme.border.width.thin],
-            (x, y) => (x + y * 2) * -1
+            (x, y) => (x + y) * -1
           )
         )}
         /* Padding accounting for the checkbox is already applied via the content */

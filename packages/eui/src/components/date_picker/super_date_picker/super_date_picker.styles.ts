@@ -132,22 +132,8 @@ export const euiSuperDatePickerStyles = (euiThemeContext: UseEuiTheme) => {
       ${logicalCSS('width', 'auto')}
       overflow: hidden;
     `,
-    euiSuperDatePicker__prettyFormat: css`
-      ${_buttonStyles(euiThemeContext)}
-      text-align: start;
-
-      --euiFormControlStateHoverColor: ${forms.borderHovered};
-      ${euiFormControlDefaultShadow(euiThemeContext)}
-
-      &:focus {
-        ${euiFormControlFocusStyles(euiThemeContext)}
-      }
-
-      ${highContrastModeStyles(euiThemeContext, {
-        preferred: `
-          border: none;
-        `,
-      })}
+    euiSuperDatePicker__prettyDurationTooltip: css`
+      ${logicalCSS('max-width', 'min(58ch, 90vw)')}
     `,
 
     // Form states

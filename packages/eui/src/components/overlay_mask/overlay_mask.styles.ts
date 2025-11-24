@@ -23,7 +23,6 @@ export const euiOverlayMaskStyles = ({
     display: flex;
     align-items: center;
     justify-content: center;
-    ${logicalCSS('padding-bottom', '10vh')}
     animation: ${euiAnimFadeIn} ${euiTheme.animation.fast} ease-in forwards;
     animation-iteration-count: 1;
     background: ${highContrastMode

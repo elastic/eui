@@ -15,20 +15,26 @@ import {
   PropsForAnchor,
   PropsForButton,
 } from '../../common';
-import { useEuiMemoizedStyles, getSecureRelForTarget } from '../../../services';
-
 import {
-  EuiButtonDisplayContent,
-  EuiButtonDisplayContentProps,
-  EuiButtonDisplayContentType,
-} from '../button_display/_button_display_content';
+  useEuiMemoizedStyles,
+  getSecureRelForTarget,
+  useCombinedRefs,
+} from '../../../services';
+import {
+  EuiDisabledProps,
+  useEuiDisabledElement,
+} from '../../../services/hooks/useEuiDisabledElement';
 
 import {
   useEuiButtonColorCSS,
   _EuiExtendedButtonColor,
 } from '../../../global_styling/mixins/_button';
+import {
+  EuiButtonDisplayContent,
+  EuiButtonDisplayContentProps,
+  EuiButtonDisplayContentType,
+} from '../button_display/_button_display_content';
 import { isButtonDisabled } from '../button_display/_button_display';
-
 import { euiButtonEmptyStyles } from './button_empty.styles';
 
 export const SIZES = ['xs', 's', 'm'] as const;
@@ -43,6 +49,7 @@ export type EuiButtonEmptyFlush = (typeof FLUSH_TYPES)[number];
  */
 export interface CommonEuiButtonEmptyProps
   extends EuiButtonDisplayContentProps,
+    EuiDisabledProps,
     CommonProps {
   /**
    * Any of the named color palette options.
@@ -60,10 +67,6 @@ export interface CommonEuiButtonEmptyProps
    * Ensure the text of the button sits flush to the left, right, or both sides of its container
    */
   flush?: EuiButtonEmptyFlush;
-  /**
-   * `disabled` is also allowed
-   */
-  isDisabled?: boolean;
   /**
    * Force disables the button and changes the icon to a loading spinner
    */
@@ -106,6 +109,7 @@ export const EuiButtonEmpty: FunctionComponent<EuiButtonEmptyProps> = ({
   flush,
   isDisabled: _isDisabled,
   disabled,
+  hasAriaDisabled = false,
   isLoading,
   href,
   target,
@@ -122,6 +126,14 @@ export const EuiButtonEmpty: FunctionComponent<EuiButtonEmptyProps> = ({
     href,
     isLoading,
   });
+  const { ref: disabledRef, ...disabledButtonProps } =
+    useEuiDisabledElement<HTMLButtonElement>({
+      isDisabled: isDisabled,
+      hasAriaDisabled,
+      onKeyDown: rest.onKeyDown,
+    });
+
+  const setCombinedRef = useCombinedRefs([disabledRef, buttonRef]);
 
   const buttonColorStyles = useEuiButtonColorCSS({
     display: 'empty',
@@ -179,7 +191,7 @@ export const EuiButtonEmpty: FunctionComponent<EuiButtonEmptyProps> = ({
         href={href}
         target={target}
         rel={secureRel}
-        ref={buttonRef as Ref<HTMLAnchorElement>}
+        ref={setCombinedRef as Ref<HTMLAnchorElement>}
         {...(rest as EuiButtonEmptyPropsForAnchor)}
       >
         {innerNode}
@@ -193,9 +205,10 @@ export const EuiButtonEmpty: FunctionComponent<EuiButtonEmptyProps> = ({
       className={classes}
       css={cssStyles}
       type={type}
-      ref={buttonRef as Ref<HTMLButtonElement>}
+      ref={setCombinedRef as Ref<HTMLButtonElement>}
       aria-pressed={isSelected}
       {...(rest as EuiButtonEmptyPropsForButton)}
+      {...disabledButtonProps}
     >
       {innerNode}
     </button>

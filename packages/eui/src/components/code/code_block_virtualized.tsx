@@ -32,28 +32,31 @@ export const EuiCodeBlockVirtualized = ({
   preProps: HTMLAttributes<HTMLPreElement>;
   codeProps: HTMLAttributes<HTMLElement>;
 }) => {
+  // NOTE: Don't inject other content (e.g. a label) inside this outer virtualized
+  // container as react-window requires this to be stable for scroll calculations.
+  // Instead, inject it into the inner virtualized element.
   const VirtualizedOuterElement = useMemo(
     () =>
-      forwardRef<any, any>(({ style, children, ...props }, ref) => (
-        <pre style={logicalStyles(style)} {...props} ref={ref} {...preProps}>
-          {label}
-          {children}
-        </pre>
+      forwardRef<any, any>(({ style, ...props }, ref) => (
+        <pre style={logicalStyles(style)} {...props} ref={ref} {...preProps} />
       )),
-    [preProps, label]
+    [preProps]
   );
 
   const VirtualizedInnerElement = useMemo(
     () =>
       forwardRef<any, any>(({ style, ...props }, ref) => (
-        <code
-          style={logicalStyles(style)}
-          {...props}
-          ref={ref}
-          {...codeProps}
-        />
+        <>
+          {label}
+          <code
+            style={logicalStyles(style)}
+            {...props}
+            ref={ref}
+            {...codeProps}
+          />
+        </>
       )),
-    [codeProps]
+    [codeProps, label]
   );
 
   const virtualizationProps = {
