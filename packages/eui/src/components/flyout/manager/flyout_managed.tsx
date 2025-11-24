@@ -128,7 +128,11 @@ export const EuiManagedFlyout = ({
   // Set title from flyoutMenuProps or aria-label
   // TODO: allow aria-labelledby references to be used
   let title = _flyoutMenuProps?.title || props['aria-label'];
-  if (process.env.NODE_ENV === 'development' && level === LEVEL_MAIN && !title) {
+  if (
+    process.env.NODE_ENV === 'development' &&
+    level === LEVEL_MAIN &&
+    !title
+  ) {
     console.warn(
       `Managed flyout "${flyoutId}" requires a title, which can be provided through 'flyoutMenuProps.title' or 'aria-label'. Using default title: "${defaultTitle}"`
     );
