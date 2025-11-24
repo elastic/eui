@@ -77,11 +77,6 @@ type InMemoryTableProps<T extends object> = Omit<
 > & {
   /**
    * Message to display if table is empty
-   * @deprecated Use `noItemsMessage` instead.
-   */
-  message?: ReactNode;
-  /**
-   * Message to display if table is empty
    */
   noItemsMessage?: ReactNode;
   /**
@@ -699,7 +694,6 @@ export class EuiInMemoryTable<T extends object = object> extends Component<
     const {
       columns,
       loading,
-      message,
       noItemsMessage,
       error,
       selection,
@@ -774,7 +768,7 @@ export class EuiInMemoryTable<T extends object = object> extends Component<
         onChange={this.onTableChange}
         error={error}
         loading={loading}
-        noItemsMessage={noItemsMessage || message}
+        noItemsMessage={noItemsMessage}
         tableLayout={tableLayout}
         compressed={compressed}
         itemIdToExpandedRowMap={itemIdToExpandedRowMap}
