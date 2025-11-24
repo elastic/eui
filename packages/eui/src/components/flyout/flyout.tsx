@@ -562,7 +562,6 @@ export const EuiFlyout = forwardRef(
             role={!isPushed ? 'dialog' : rest.role}
             aria-modal={!isPushed || undefined}
             aria-describedby={!isPushed ? ariaDescribedBy : _ariaDescribedBy}
-            data-autofocus={!isPushed || undefined}
           >
             {contentToRender}
             {!isPushed && screenReaderDescription}
