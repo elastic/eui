@@ -44,6 +44,7 @@ exports[`EuiSuperDatePicker props accepts data-test-subj and passes to EuiFormCo
     >
       <span
         class="euiToolTipAnchor emotion-euiToolTipAnchor-block"
+        id="generated-id-wrapper"
       >
         <button
           class="euiButtonEmpty euiFormControlButton euiSuperDatePicker__prettyFormat emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text-euiFormControlButton-fullWidth"
@@ -130,6 +131,7 @@ exports[`EuiSuperDatePicker props compressed is rendered 1`] = `
     >
       <span
         class="euiToolTipAnchor emotion-euiToolTipAnchor-block"
+        id="generated-id-wrapper"
       >
         <button
           class="euiButtonEmpty euiFormControlButton euiSuperDatePicker__prettyFormat emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text-euiFormControlButton-compressed-fullWidth"
@@ -343,6 +345,7 @@ exports[`EuiSuperDatePicker props isDisabled true 1`] = `
     >
       <span
         class="euiToolTipAnchor emotion-euiToolTipAnchor-block"
+        id="generated-id-wrapper"
       >
         <button
           class="euiButtonEmpty euiFormControlButton euiSuperDatePicker__prettyFormat euiSuperDatePicker__prettyFormat--disabled emotion-euiButtonDisplay-euiButtonEmpty-m-empty-disabled-isDisabled-euiFormControlButton-fullWidth"
@@ -497,6 +500,7 @@ exports[`EuiSuperDatePicker props showUpdateButton can be false 1`] = `
     >
       <span
         class="euiToolTipAnchor emotion-euiToolTipAnchor-block"
+        id="generated-id-wrapper"
       >
         <button
           class="euiButtonEmpty euiFormControlButton euiSuperDatePicker__prettyFormat emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text-euiFormControlButton-fullWidth"
@@ -562,6 +566,7 @@ exports[`EuiSuperDatePicker props showUpdateButton can be iconOnly 1`] = `
     >
       <span
         class="euiToolTipAnchor emotion-euiToolTipAnchor-block"
+        id="generated-id-wrapper"
       >
         <button
           class="euiButtonEmpty euiFormControlButton euiSuperDatePicker__prettyFormat emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text-euiFormControlButton-fullWidth"
@@ -651,6 +656,7 @@ exports[`EuiSuperDatePicker props width can be auto 1`] = `
     >
       <span
         class="euiToolTipAnchor emotion-euiToolTipAnchor-block"
+        id="generated-id-wrapper"
       >
         <button
           class="euiButtonEmpty euiFormControlButton euiSuperDatePicker__prettyFormat emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text-euiFormControlButton-fullWidth"
@@ -737,6 +743,7 @@ exports[`EuiSuperDatePicker props width can be full 1`] = `
     >
       <span
         class="euiToolTipAnchor emotion-euiToolTipAnchor-block"
+        id="generated-id-wrapper"
       >
         <button
           class="euiButtonEmpty euiFormControlButton euiSuperDatePicker__prettyFormat emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text-euiFormControlButton-fullWidth"
@@ -824,6 +831,7 @@ exports[`EuiSuperDatePicker renders 1`] = `
     >
       <span
         class="euiToolTipAnchor emotion-euiToolTipAnchor-block"
+        id="generated-id-wrapper"
       >
         <button
           class="euiButtonEmpty euiFormControlButton euiSuperDatePicker__prettyFormat emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text-euiFormControlButton-fullWidth"
