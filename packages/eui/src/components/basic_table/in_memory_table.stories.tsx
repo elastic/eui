@@ -250,3 +250,61 @@ export const KitchenSink: Story = {
     <EuiInMemoryTable {...args} />
   ),
 };
+
+// TODO revert - only for smoke testing
+export const ControlledText: Story = {
+  parameters: {
+    controls: {
+      include: ['searchFormat', 'search'],
+    },
+  },
+  args: {
+    tableCaption: 'Controlled text',
+    items: users,
+    itemId: 'id',
+    rowHeader: 'firstName',
+    columns,
+    pagination: {
+      initialPageSize: 5,
+      pageSizeOptions: [3, 5, 8],
+    },
+    searchFormat: 'text',
+    sorting: {
+      sort: {
+        field: 'lastName',
+        direction: 'asc' as const,
+      },
+    },
+    selection: {
+      selectable: (user) => user.online,
+      selectableMessage: (selectable) =>
+        !selectable ? 'User is currently offline' : '',
+    },
+  },
+  // Don't pass the default Storybook action listener for `onChange`,
+  // or the automatic uncontrolled pagination & sorting won't work
+  render: ({ onChange, ...args }: EuiInMemoryTableProps<User>) => (
+    <StatefulPlayground {...args} />
+  ),
+};
+
+const StatefulPlayground = (props: EuiInMemoryTableProps<User>) => {
+  const { search, ...rest } = props;
+  // `search` could be boolean
+  const _search = typeof search === 'object' ? search : {};
+  const [query, setQuery] = React.useState(() => _search.query ?? '');
+
+  return (
+    <EuiInMemoryTable
+      {...rest}
+      search={{
+        query,
+        ..._search,
+        box: { incremental: true },
+        onChange: ({ queryText }) => {
+          setQuery(queryText);
+        },
+      }}
+    />
+  );
+};
