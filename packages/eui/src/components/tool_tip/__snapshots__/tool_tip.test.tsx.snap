@@ -8,6 +8,7 @@ exports[`EuiToolTip anchor props are rendered 1`] = `
     <span
       class="euiToolTipAnchor customAnchorClass1 emotion-euiToolTipAnchor-inlineBlock"
       data-test-subj="DTS"
+      id="id-wrapper"
     >
       <button>
         Trigger
@@ -21,6 +22,7 @@ exports[`EuiToolTip display prop renders block 1`] = `
 <div>
   <span
     class="euiToolTipAnchor emotion-euiToolTipAnchor-block"
+    id="id-wrapper"
   >
     <button>
       Trigger
@@ -36,6 +38,7 @@ exports[`EuiToolTip is rendered 1`] = `
   <div>
     <span
       class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+      id="id-wrapper"
     >
       <button>
         Trigger
@@ -52,6 +55,7 @@ exports[`EuiToolTip shows tooltip on mouseover and focus 1`] = `
   <div>
     <span
       class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+      id="id-wrapper"
     >
       <button
         aria-describedby="id"
@@ -98,6 +102,7 @@ exports[`EuiToolTip uses custom offset prop value 1`] = `
   <div>
     <span
       class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+      id="generated-id-wrapper"
     >
       <button
         aria-describedby="generated-id"

@@ -11,6 +11,7 @@ exports[`CollapsedItemActions custom actions 1`] = `
     >
       <span
         class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+        id="generated-id-wrapper"
       >
         <button
           aria-label="All actions, row 1"
@@ -116,6 +117,7 @@ exports[`CollapsedItemActions default actions 1`] = `
     >
       <span
         class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+        id="generated-id-wrapper"
       >
         <button
           aria-label="All actions, row 1"
@@ -170,6 +172,7 @@ exports[`CollapsedItemActions default actions 1`] = `
             <div>
               <span
                 class="euiToolTipAnchor eui-displayBlock emotion-euiToolTipAnchor-inlineBlock"
+                id="generated-id-wrapper"
               >
                 <button
                   class="euiContextMenuItem euiBasicTable__collapsedAction emotion-euiContextMenuItem-m-center"
@@ -185,6 +188,7 @@ exports[`CollapsedItemActions default actions 1`] = `
               </span>
               <span
                 class="euiToolTipAnchor eui-displayBlock emotion-euiToolTipAnchor-inlineBlock"
+                id="generated-id-wrapper"
               >
                 <a
                   class="euiContextMenuItem euiBasicTable__collapsedAction emotion-euiContextMenuItem-m-center"
@@ -221,6 +225,7 @@ exports[`CollapsedItemActions renders 1`] = `
 >
   <span
     class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+    id="generated-id-wrapper"
   >
     <button
       aria-label="All actions, row 1"
