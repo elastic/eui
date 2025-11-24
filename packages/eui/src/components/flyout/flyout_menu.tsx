@@ -47,7 +47,7 @@ export interface EuiFlyoutHistoryItem {
 }
 
 /**
- * Custom action item for the flyout menu header
+ * Custom action item for the flyout menu component
  */
 export interface EuiFlyoutMenuCustomAction {
   /**
@@ -75,26 +75,29 @@ export type EuiFlyoutMenuProps = CommonProps &
      * ```jsx
      * <EuiFlyout
      *   aria-labelledby="myMenuTitleId"
+     *   flyoutMenuProps={{ title: 'Menu title', titleId: 'myMenuTitleId' }
      * >
-     *   <EuiFlyoutMenu
-     *     titleId="myMenuTitleId"
-     *     title="Menu title"
-     *   />
+     *  ...
      * </EuiFlyout>
      * ```
      */
     titleId?: string;
     /**
-     * Title for the menu header
+     * Title for the menu component. In a managed flyout context, the title is used to indicate the flyout session for history navigation.
      */
     title?: React.ReactNode;
     /**
-     * Hides the close button in the menu header
+     * Hides the title in the `EuiFlyoutMenu`. This is useful when the title is already shown in an `EuiFlyoutHeader`.
+     * @default true for main flyout in a managed flyout session; false otherwise
+     */
+    hideTitle?: boolean;
+    /**
+     * Hides the close button in the menu component
      * @default false
      */
     hideCloseButton?: boolean;
     /**
-     * Shows a back button in the menu header
+     * Shows a back button in the menu component
      * @default false
      */
     showBackButton?: boolean;
@@ -107,7 +110,7 @@ export type EuiFlyoutMenuProps = CommonProps &
      */
     historyItems?: EuiFlyoutHistoryItem[];
     /**
-     * List of custom action items for the menu header
+     * List of custom action items for the menu component
      */
     customActions?: EuiFlyoutMenuCustomAction[];
   };
@@ -172,9 +175,10 @@ const HistoryPopover: React.FC<{
  * @private
  */
 export const EuiFlyoutMenu: FunctionComponent<EuiFlyoutMenuProps> = ({
-  titleId,
   className,
   title,
+  titleId,
+  hideTitle,
   hideCloseButton,
   historyItems = [],
   showBackButton,
@@ -191,7 +195,7 @@ export const EuiFlyoutMenu: FunctionComponent<EuiFlyoutMenuProps> = ({
   if (title) {
     titleNode = (
       <EuiTitle size="xxs" id={titleId}>
-        <h3>{title}</h3>
+        <h3 css={hideTitle && styles.euiFlyoutMenu__hiddenTitle}>{title}</h3>
       </EuiTitle>
     );
   }

@@ -8,6 +8,7 @@
 
 import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../services';
+import { euiScreenReaderOnly } from '../accessibility';
 
 export const euiFlyoutMenuStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
@@ -30,6 +31,9 @@ export const euiFlyoutMenuStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     euiFlyoutMenu__actions: css`
       block-size: calc(${euiTheme.size.m} * 1.8);
+    `,
+    euiFlyoutMenu__hiddenTitle: css`
+      ${euiScreenReaderOnly()}
     `,
   };
 };

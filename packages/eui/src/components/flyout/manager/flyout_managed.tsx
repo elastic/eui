@@ -5,8 +5,10 @@
  * in compliance with, at your election, the Elastic License 2.0 or the Server
  * Side Public License, v 1.
  */
+
 import React, { useEffect, useMemo, useRef } from 'react';
 import { useEuiMemoizedStyles } from '../../../services';
+import { useEuiI18n } from '../../i18n';
 import { useResizeObserver } from '../../observer/resize_observer';
 import {
   EuiFlyoutComponent,
@@ -38,7 +40,6 @@ import type { EuiFlyoutLevel } from './types';
 import {
   createValidationErrorMessage,
   isNamedSize,
-  validateFlyoutTitle,
   validateManagedFlyoutSize,
   validateSizeCombination,
 } from './validation';
@@ -119,11 +120,23 @@ export const EuiManagedFlyout = ({
     }
   }
 
-  // Validate title
-  const title = _flyoutMenuProps?.title || props['aria-label'];
-  const titleError = validateFlyoutTitle(title, flyoutId, level);
-  if (titleError) {
-    throw new Error(createValidationErrorMessage(titleError));
+  const defaultTitle = useEuiI18n(
+    'euiFlyoutManaged.defaultTitle',
+    'Unknown Flyout'
+  );
+
+  // Set title from flyoutMenuProps or aria-label
+  // TODO: allow aria-labelledby references to be used
+  let title = _flyoutMenuProps?.title || props['aria-label'];
+  if (
+    process.env.NODE_ENV === 'development' &&
+    level === LEVEL_MAIN &&
+    !title
+  ) {
+    console.warn(
+      `Managed flyout "${flyoutId}" requires a title, which can be provided through 'flyoutMenuProps.title' or 'aria-label'. Using default title: "${defaultTitle}"`
+    );
+    title = defaultTitle;
   }
 
   const isActive = useIsFlyoutActive(flyoutId);

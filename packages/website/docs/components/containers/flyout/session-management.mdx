@@ -39,8 +39,17 @@ export default () => {
         <EuiFlyout
           session="start"
           size="s"
+          aria-labelledby="welcomeHeading"
+          flyoutMenuProps={{ title: 'Flyout A' }}
           onClose={() => setIsOpenFlyoutA(false)}
         >
+          <EuiFlyoutHeader>
+            <EuiTitle>
+              <h2 id="welcomeHeading">
+                Welcome to the flyout session management journey!
+              </h2>
+            </EuiTitle>
+          </EuiFlyoutHeader>
           <EuiFlyoutBody>
             <EuiText>This is <strong>Flyout A</strong>. This flyout is rendered with the <EuiCode>{'session="start"'}</EuiCode> prop set which created a new flyout session and marks this flyout as main.</EuiText>
             <EuiSpacer />
@@ -56,12 +65,17 @@ export default () => {
         <EuiFlyout
           session="start"
           size="m"
-          aria-label="Flyout B - main"
-          flyoutMenuProps={{
-            title: <>Glad to meet you, {name || 'stranger'}!</>,
-          }}
+          aria-labelledby="flyoutBHeading"
+          flyoutMenuProps={{ title: 'Flyout B' }}
           onClose={() => setIsOpenFlyoutB(false)}
         >
+          <EuiFlyoutHeader>
+            <EuiTitle>
+              <h2 id="flyoutBHeading">
+                Glad to meet you, {name || 'stranger'}!
+              </h2>
+            </EuiTitle>
+          </EuiFlyoutHeader>
           <EuiFlyoutBody>
             <EuiText>
               This is <strong>Flyout B</strong>. This flyout is also rendered with the <EuiCode>{'session="start"'}</EuiCode> prop added which creates a <strong>second flyout session</strong> and marks this flyout as main in that session.
@@ -75,9 +89,8 @@ export default () => {
           </EuiFlyoutBody>
           {isOpenFlyoutBChild && (
             <EuiFlyout
-              session="inherit"
               size="s"
-              aria-label="Flyout B - child"
+              aria-label="Child of Flyout B"
               onClose={() => setIsOpenFlyoutBChild(false)}
             >
               <EuiFlyoutBody>
@@ -125,9 +138,18 @@ configuration will be handled automatically.
 
 ### Session title
 
-Flyout sessions within the managed system require a title that can be
-referenced in the history navigation features. Use the `title`
-field of the `flyoutMenuProps` to set the title of the flyout.
+Managed flyout sessions require a title that can be referenced in the history
+navigation features. Use the `title` field of the `flyoutMenuProps` to set the
+title of the flyout session. If `flyoutMenuProps` is omitted or a `title` field
+is not given in `flyoutMenuProps`, the manager will use the `aria-label`
+attribute of `EuiFlyout` as the source for the session's title. If no source
+for a title is given, a default title will be provided.
+
+:::info Note
+The `title` from `flyoutMenuProps` is hidden from the menu on main flyouts (which should use
+`EuiFlyoutHeader` for the visible heading) but is displayed in the menu of child flyouts.
+For main flyouts, the title is primarily used for history navigation.
+:::
 
 ```tsx
 {/* Render a new main flyout and create a flyout session */}
@@ -136,9 +158,17 @@ field of the `flyoutMenuProps` to set the title of the flyout.
   flyoutMenuProps={{
     title: 'My main flyout'
   }}
+  aria-labelledby="myFlyoutHeading"
 >
+  <EuiFlyoutHeader>
+    <EuiTitle>
+      <h2 id="myFlyoutHeading">
+        I'm the main flyout heading
+      </h2>
+    </EuiTitle>
+  </EuiFlyoutHeader>
   <EuiFlyoutBody>
-    I'm the main flyout
+    I'm the main flyout body
   </EuiFlyoutBody>
   <EuiFlyout
     session="inherit"
@@ -146,7 +176,10 @@ field of the `flyoutMenuProps` to set the title of the flyout.
       title: 'My child flyout'
     }}
   >
-    I'm the child flyout that belongs to the same session as the main flyout
+    {/* Render a child flyout contents. Notice the lack of the EuiFlyoutHeader component - the child flyout menu shows the title from flyoutMenuProps */}
+    <EuiFlyoutBody>
+      I'm the child flyout that belongs to the same session as the main flyout
+    </EuiFlyoutBody>
   </EuiFlyout>
 </EuiFlyout>
 ```
