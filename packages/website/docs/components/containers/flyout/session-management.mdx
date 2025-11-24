@@ -146,10 +146,9 @@ attribute of `EuiFlyout` as the source for the session's title. If no source
 for a title is given, a default title will be provided.
 
 :::info Note
-The "main" flyout in a session should use `EuiFlyoutHeader` for the actual
-flyout heading. For this reason, the `title` given from `flyoutMenuProps` will
-not be visible to end users. However, a title is still needed for the history
-navigation feature of the flyout session management system.
+The `title` from `flyoutMenuProps` is hidden from the menu on main flyouts (which should use
+`EuiFlyoutHeader` for the visible heading) but is displayed in the menu of child flyouts.
+For main flyouts, the title is primarily used for history navigation.
 :::
 
 ```tsx
