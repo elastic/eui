@@ -72,7 +72,14 @@ export function toInitials(
   return calculatedInitials || '';
 }
 
-function isEmoji(str: string): boolean {
+function isEmoji(str: string) {
+  /**
+   * The \p escape sequence allows matching a character based on its Unicode properties
+   * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Regular_expressions/Unicode_character_class_escape
+   * @see https://www.unicode.org/Public/UCD/latest/ucd/emoji/emoji-data.txt
+   * @see https://www.unicode.org/reports/tr51/#Definitions
+   * @see https://util.unicode.org/UnicodeJsps/character.jsp?a=1F440&B1=Show
+   */
   const emojiRegex = /[\p{Emoji_Presentation}\p{Extended_Pictographic}]/u;
   return emojiRegex.test(str);
 }
