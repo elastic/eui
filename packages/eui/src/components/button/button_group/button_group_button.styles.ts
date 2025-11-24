@@ -224,7 +224,7 @@ export const euiButtonGroupButtonStyles = (euiThemeContext: UseEuiTheme) => {
         ${logicalCSS('margin-left', '0')}
       }
 
-      &:is(${selectedSelectors}):not(:disabled) {
+      &:is(${selectedSelectors}):not(${euiDisabledSelector}) {
         /* prevent layout jumps due to missing border for non-selected buttons */
         border: none;
 
