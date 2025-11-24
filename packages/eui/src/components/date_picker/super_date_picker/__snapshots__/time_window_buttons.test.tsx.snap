@@ -7,6 +7,7 @@ exports[`EuiTimeWindowButtons renders 1`] = `
 >
   <span
     class="euiToolTipAnchor euiButtonGroup__tooltipWrapper emotion-euiToolTipAnchor-inlineBlock-tooltipWrapper-m"
+    id="generated-id-wrapper"
   >
     <button
       aria-pressed="false"
@@ -33,6 +34,7 @@ exports[`EuiTimeWindowButtons renders 1`] = `
   </span>
   <span
     class="euiToolTipAnchor euiButtonGroup__tooltipWrapper emotion-euiToolTipAnchor-inlineBlock-tooltipWrapper-m"
+    id="generated-id_euiToolTipAnchor"
   >
     <button
       aria-pressed="false"
@@ -59,6 +61,7 @@ exports[`EuiTimeWindowButtons renders 1`] = `
   </span>
   <span
     class="euiToolTipAnchor euiButtonGroup__tooltipWrapper emotion-euiToolTipAnchor-inlineBlock-tooltipWrapper-m"
+    id="generated-id-wrapper"
   >
     <button
       aria-pressed="false"
