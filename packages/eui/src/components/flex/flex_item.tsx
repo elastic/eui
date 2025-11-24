@@ -69,19 +69,25 @@ const EuiFlexItemInternal = <TComponent extends ElementType>(
   {
     children,
     className,
-    grow = true,
+    grow: _grow = true,
     component = 'div' as TComponent,
     ...rest
   }: EuiFlexItemProps<TComponent>,
   ref: ForwardedRef<TComponent>
 ): ReactElement<EuiFlexItemProps<TComponent>, TComponent> => {
+  // resets `grow` to the default value when an invalid value is passed
+  const grow = VALID_GROW_VALUES.indexOf(_grow) === -1 ? true : _grow;
+
   useEffect(() => {
-    if (VALID_GROW_VALUES.indexOf(grow) === -1) {
-      throw new Error(
-        `Prop \`grow\` passed to \`EuiFlexItem\` must be a boolean or an integer between 0 and 10, received \`${grow}\``
+    if (
+      process.env.NODE_ENV === 'development' &&
+      VALID_GROW_VALUES.indexOf(_grow) === -1
+    ) {
+      console.warn(
+        `Prop \`grow\` passed to \`EuiFlexItem\` must be a boolean or an integer between 0 and 10, received \`${_grow}\`. Defaulting to \`true\`.`
       );
     }
-  }, [grow]);
+  }, [_grow]);
 
   const cssStyles = [
     styles.euiFlexItem,
