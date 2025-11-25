@@ -16,6 +16,8 @@ import {
   ACTION_GO_BACK,
   ACTION_GO_TO_FLYOUT,
   ACTION_SET_PUSH_PADDING,
+  ACTION_ADD_UNMANAGED_FLYOUT,
+  ACTION_CLOSE_UNMANAGED_FLYOUT,
   Action,
 } from './actions';
 import { LAYOUT_MODE_SIDE_BY_SIDE, LEVEL_MAIN, STAGE_OPENING } from './const';
@@ -33,6 +35,8 @@ export const initialState: EuiFlyoutManagerState = {
   flyouts: [],
   layoutMode: LAYOUT_MODE_SIDE_BY_SIDE,
   pushPadding: { left: 0, right: 0 },
+  currentZIndex: 0,
+  unmanagedFlyouts: [],
 };
 
 /**
@@ -43,6 +47,35 @@ export function flyoutManagerReducer(
   action: Action
 ): EuiFlyoutManagerState {
   switch (action.type) {
+    case ACTION_ADD_UNMANAGED_FLYOUT: {
+      if (state.unmanagedFlyouts.includes(action.flyoutId)) {
+        return state;
+      }
+
+      return {
+        ...state,
+        currentZIndex: state.currentZIndex + 2,
+        unmanagedFlyouts: [...state.unmanagedFlyouts, action.flyoutId],
+      };
+    }
+
+    case ACTION_CLOSE_UNMANAGED_FLYOUT: {
+      const newUnmanagedFlyouts = state.unmanagedFlyouts.filter(
+        (flyoutId) => flyoutId !== action.flyoutId
+      );
+
+      let newCurrentZIndex = state.currentZIndex;
+      if (state.sessions.length === 0 && newUnmanagedFlyouts.length === 0) {
+        newCurrentZIndex = 0;
+      }
+
+      return {
+        ...state,
+        unmanagedFlyouts: newUnmanagedFlyouts,
+        currentZIndex: newCurrentZIndex,
+      };
+    }
+
     // Register a flyout.
     // - Ignore duplicates by `flyoutId`.
     // - For a `main` flyout, start a new session { main, child: null }.
@@ -72,12 +105,16 @@ export function flyoutManagerReducer(
           mainFlyoutId: flyoutId,
           title: title,
           childFlyoutId: null,
+          zIndex: state.currentZIndex,
         };
 
         return {
           ...state,
           sessions: [...state.sessions, newSession],
           flyouts: newFlyouts,
+          // Increment by 2 for each new flyout session leaving a gap
+          // in between for child flyout to slide in from below main flyouts
+          currentZIndex: state.currentZIndex + 2,
         };
       }
 
@@ -130,7 +167,19 @@ export function flyoutManagerReducer(
             (session) => session.mainFlyoutId !== action.flyoutId
           );
 
-          return { ...state, sessions: newSessions, flyouts: newFlyouts };
+          let newCurrentZIndex = state.currentZIndex;
+          if (newSessions.length === 0 && state.unmanagedFlyouts.length === 0) {
+            // Reset to initial value if no flyouts remain open to avoid
+            // the value going too high during the lifecycle of the app
+            newCurrentZIndex = 0;
+          }
+
+          return {
+            ...state,
+            sessions: newSessions,
+            flyouts: newFlyouts,
+            currentZIndex: newCurrentZIndex,
+          };
         }
       }
 

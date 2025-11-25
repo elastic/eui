@@ -54,6 +54,8 @@ export interface FlyoutSession {
   childFlyoutId: string | null;
   /** Title of the main flyout in this session */
   title: string;
+  /** z-index value to be used by the flyout session */
+  zIndex: number;
 }
 
 export interface PushPaddingOffsets {
@@ -69,6 +71,8 @@ export interface EuiFlyoutManagerState {
   layoutMode: EuiFlyoutLayoutMode;
   /** Active push padding offsets (updated by active push flyouts) */
   pushPadding?: PushPaddingOffsets;
+  currentZIndex: number;
+  unmanagedFlyouts: string[];
 }
 
 /**
@@ -90,6 +94,8 @@ export interface FlyoutManagerApi {
   setPushPadding: (side: 'left' | 'right', width: number) => void;
   goBack: () => void;
   goToFlyout: (flyoutId: string) => void;
+  addUnmanagedFlyout: (flyoutId: string) => void;
+  closeUnmanagedFlyout: (flyoutId: string) => void;
   historyItems: Array<{
     title: string;
     onClick: () => void;

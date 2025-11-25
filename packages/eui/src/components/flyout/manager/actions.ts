@@ -37,6 +37,10 @@ export const ACTION_GO_BACK = `${PREFIX}/goBack` as const;
 export const ACTION_GO_TO_FLYOUT = `${PREFIX}/goToFlyout` as const;
 /** Dispatched to set push padding offset for a side. */
 export const ACTION_SET_PUSH_PADDING = `${PREFIX}/setPushPadding` as const;
+export const ACTION_ADD_UNMANAGED_FLYOUT =
+  `${PREFIX}/addUnmanagedFlyout` as const;
+export const ACTION_CLOSE_UNMANAGED_FLYOUT =
+  `${PREFIX}/closeUnmanagedFlyout` as const;
 
 /**
  * Add a flyout to manager state. The manager will create or update
@@ -100,6 +104,16 @@ export interface SetPushPaddingAction extends BaseAction {
   width: number;
 }
 
+export interface AddUnmanagedFlyoutAction extends BaseAction {
+  type: typeof ACTION_ADD_UNMANAGED_FLYOUT;
+  flyoutId: string;
+}
+
+export interface CloseUnmanagedFlyoutAction extends BaseAction {
+  type: typeof ACTION_CLOSE_UNMANAGED_FLYOUT;
+  flyoutId: string;
+}
+
 /** Union of all flyout manager actions. */
 export type Action =
   | AddFlyoutAction
@@ -110,7 +124,9 @@ export type Action =
   | SetActivityStageAction
   | GoBackAction
   | GoToFlyoutAction
-  | SetPushPaddingAction;
+  | SetPushPaddingAction
+  | AddUnmanagedFlyoutAction
+  | CloseUnmanagedFlyoutAction;
 
 /**
  * Register a flyout with the manager.
@@ -192,4 +208,20 @@ export const setPushPadding = (
   type: ACTION_SET_PUSH_PADDING,
   side,
   width,
+});
+
+/** Register an unmanaged flyout for z-index positioning purposes */
+export const addUnmanagedFlyout = (
+  flyoutId: string
+): AddUnmanagedFlyoutAction => ({
+  type: ACTION_ADD_UNMANAGED_FLYOUT,
+  flyoutId,
+});
+
+/** Unregister an unmanaged flyout */
+export const closeUnmanagedFlyout = (
+  flyoutId: string
+): CloseUnmanagedFlyoutAction => ({
+  type: ACTION_CLOSE_UNMANAGED_FLYOUT,
+  flyoutId,
 });

@@ -39,6 +39,8 @@ describe('Flyout Manager Selectors', () => {
           sessions: [],
           flyouts: [],
           layoutMode: 'side-by-side',
+          unmanagedFlyouts: [],
+          currentZIndex: 0,
         },
         dispatch: jest.fn(),
         addFlyout: jest.fn(),
@@ -48,6 +50,8 @@ describe('Flyout Manager Selectors', () => {
         setPushPadding: jest.fn(),
         goBack: jest.fn(),
         goToFlyout: jest.fn(),
+        addUnmanagedFlyout: jest.fn(),
+        closeUnmanagedFlyout: jest.fn(),
         historyItems: [],
       });
 
@@ -72,6 +76,8 @@ describe('Flyout Manager Selectors', () => {
             },
           ],
           layoutMode: 'side-by-side',
+          currentZIndex: 0,
+          unmanagedFlyouts: [],
         },
         dispatch: jest.fn(),
         addFlyout: jest.fn(),
@@ -81,6 +87,8 @@ describe('Flyout Manager Selectors', () => {
         setPushPadding: jest.fn(),
         goBack: jest.fn(),
         goToFlyout: jest.fn(),
+        addUnmanagedFlyout: jest.fn(),
+        closeUnmanagedFlyout: jest.fn(),
         historyItems: [],
       });
 
@@ -97,6 +105,8 @@ describe('Flyout Manager Selectors', () => {
           sessions: [],
           flyouts: [],
           layoutMode: 'side-by-side',
+          currentZIndex: 0,
+          unmanagedFlyouts: [],
         },
         dispatch: jest.fn(),
         addFlyout: jest.fn(),
@@ -106,6 +116,8 @@ describe('Flyout Manager Selectors', () => {
         setPushPadding: jest.fn(),
         goBack: jest.fn(),
         goToFlyout: jest.fn(),
+        addUnmanagedFlyout: jest.fn(),
+        closeUnmanagedFlyout: jest.fn(),
         historyItems: [],
       });
 
@@ -129,6 +141,8 @@ describe('Flyout Manager Selectors', () => {
             },
           ],
           layoutMode: 'side-by-side',
+          currentZIndex: 0,
+          unmanagedFlyouts: [],
         },
         dispatch: jest.fn(),
         addFlyout: jest.fn(),
@@ -138,6 +152,8 @@ describe('Flyout Manager Selectors', () => {
         setPushPadding: jest.fn(),
         goBack: jest.fn(),
         goToFlyout: jest.fn(),
+        addUnmanagedFlyout: jest.fn(),
+        closeUnmanagedFlyout: jest.fn(),
         historyItems: [],
       });
 
@@ -154,6 +170,7 @@ describe('Flyout Manager Selectors', () => {
               mainFlyoutId: 'parent-flyout',
               childFlyoutId: 'child-flyout',
               title: 'Parent Flyout',
+              zIndex: 0,
             },
           ],
           flyouts: [
@@ -171,6 +188,8 @@ describe('Flyout Manager Selectors', () => {
             },
           ],
           layoutMode: 'side-by-side',
+          currentZIndex: 0,
+          unmanagedFlyouts: [],
         },
         dispatch: jest.fn(),
         addFlyout: jest.fn(),
@@ -180,6 +199,8 @@ describe('Flyout Manager Selectors', () => {
         setPushPadding: jest.fn(),
         goBack: jest.fn(),
         goToFlyout: jest.fn(),
+        addUnmanagedFlyout: jest.fn(),
+        closeUnmanagedFlyout: jest.fn(),
         historyItems: [],
       });
 

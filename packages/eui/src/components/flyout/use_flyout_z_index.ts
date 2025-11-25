@@ -16,14 +16,19 @@ import type { EuiOverlayMaskProps } from '../overlay_mask';
 export interface UseEuiFlyoutZIndex {
   maskProps?: EuiOverlayMaskProps;
   isPushed: boolean;
+  managedFlyoutIndex: number;
+  isChildFlyout: boolean;
 }
 
-const calculateZIndex = (initialValue: CSSProperties['zIndex']) => {
-  const valueAsNumber = Number(initialValue);
+const calculateZIndex = (
+  baseLevel: CSSProperties['zIndex'],
+  isChildFlyout: boolean
+) => {
+  const level = Number(baseLevel);
 
   return {
-    flyoutZIndex: valueAsNumber,
-    maskZIndex: valueAsNumber - 1,
+    flyoutZIndex: isChildFlyout ? level - 1 : level,
+    maskZIndex: level - 2,
   };
 };
 
@@ -35,8 +40,12 @@ const calculateZIndex = (initialValue: CSSProperties['zIndex']) => {
 export const useEuiFlyoutZIndex = ({
   maskProps,
   isPushed,
+  managedFlyoutIndex,
+  isChildFlyout,
 }: UseEuiFlyoutZIndex) => {
   const { euiTheme } = useEuiTheme();
+
+  let baseLevel = Number(euiTheme.levels.flyout);
 
   // The default headerZindexLocation for EuiFlyout is "below"
   // which is different from what EuiOverlayMask fallbacks to - see
@@ -44,8 +53,10 @@ export const useEuiFlyoutZIndex = ({
   // We set z-index to mask level only when explicitly overridden
   // via the maskProps prop
   if (!isPushed && maskProps?.headerZindexLocation === 'above') {
-    return calculateZIndex(euiTheme.levels.mask);
+    baseLevel = Number(euiTheme.levels.mask);
   }
 
-  return calculateZIndex(euiTheme.levels.flyout);
+  baseLevel += managedFlyoutIndex;
+
+  return calculateZIndex(baseLevel, isChildFlyout);
 };
