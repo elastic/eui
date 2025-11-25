@@ -142,7 +142,7 @@ describe('flyoutManagerReducer', () => {
         mainFlyoutId: 'main-2',
         childFlyoutId: null,
         title: 'main',
-        zIndex: 2,
+        zIndex: 3,
       });
     });
   });
@@ -669,7 +669,7 @@ describe('flyoutManagerReducer', () => {
         mainFlyoutId: 'main-2',
         childFlyoutId: null,
         title: 'main',
-        zIndex: 2,
+        zIndex: 3,
       });
 
       // Close first session's main flyout

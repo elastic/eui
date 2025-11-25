@@ -54,6 +54,9 @@ export function flyoutManagerReducer(
 
       return {
         ...state,
+        // Increment by 2 for each new unmanaged flyout.
+        // Unmanaged flyouts render on z-index of `n`, and their overlay mask
+        // on `n - 1`.
         currentZIndex: state.currentZIndex + 2,
         unmanagedFlyouts: [...state.unmanagedFlyouts, action.flyoutId],
       };
@@ -112,9 +115,10 @@ export function flyoutManagerReducer(
           ...state,
           sessions: [...state.sessions, newSession],
           flyouts: newFlyouts,
-          // Increment by 2 for each new flyout session leaving a gap
-          // in between for child flyout to slide in from below main flyouts
-          currentZIndex: state.currentZIndex + 2,
+          // Increment by 3 for each new flyout session.
+          // Managed flyouts render main flyouts on z-index of `n`,
+          // child flyouts on `n - 1` and the overlay mask on `n - 2`.
+          currentZIndex: state.currentZIndex + 3,
         };
       }
 
