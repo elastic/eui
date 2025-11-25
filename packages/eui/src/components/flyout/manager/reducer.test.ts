@@ -50,6 +50,8 @@ describe('flyoutManagerReducer', () => {
         flyouts: [],
         layoutMode: LAYOUT_MODE_SIDE_BY_SIDE,
         pushPadding: { left: 0, right: 0 },
+        unmanagedFlyouts: [],
+        currentZIndex: 0,
       });
     });
   });
@@ -72,6 +74,7 @@ describe('flyoutManagerReducer', () => {
         mainFlyoutId: 'main-1',
         childFlyoutId: null,
         title: 'main',
+        zIndex: 0,
       });
     });
 
@@ -133,11 +136,13 @@ describe('flyoutManagerReducer', () => {
         mainFlyoutId: 'main-1',
         childFlyoutId: 'child-1',
         title: 'main',
+        zIndex: 0,
       });
       expect(state.sessions[1]).toEqual({
         mainFlyoutId: 'main-2',
         childFlyoutId: null,
         title: 'main',
+        zIndex: 2,
       });
     });
   });
@@ -658,11 +663,13 @@ describe('flyoutManagerReducer', () => {
         mainFlyoutId: 'main-1',
         childFlyoutId: 'child-1',
         title: 'main',
+        zIndex: 0,
       });
       expect(state.sessions[1]).toEqual({
         mainFlyoutId: 'main-2',
         childFlyoutId: null,
         title: 'main',
+        zIndex: 2,
       });
 
       // Close first session's main flyout
