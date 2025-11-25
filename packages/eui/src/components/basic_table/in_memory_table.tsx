@@ -593,8 +593,10 @@ export class EuiInMemoryTable<T extends object = object> extends Component<
         schema, // destructure `schema` so it doesn't get rendered to DOM
         ...searchBoxProps
       } = box;
+      // ensure `query` is a string, since it could be a Query object
+      const queryString = typeof query === 'string' ? query : undefined;
       // use controlled `query` if provided, otherwise fall back to `defaultQuery`
-      const displayQuery = query ?? defaultQuery;
+      const displayQuery = queryString ?? defaultQuery;
 
       searchBar = (
         <EuiSearchBox
