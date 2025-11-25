@@ -23,6 +23,8 @@ import {
   setActivityStage,
   goBack,
   goToFlyout,
+  addUnmanagedFlyout,
+  closeUnmanagedFlyout,
 } from './actions';
 import {
   LAYOUT_MODE_SIDE_BY_SIDE,
@@ -200,6 +202,26 @@ describe('flyoutManagerReducer', () => {
       const newState = flyoutManagerReducer(initialState, action);
 
       expect(newState).toEqual(initialState);
+    });
+
+    it('should reset currentZIndex value when all unmanaged and managed flyouts are closed', () => {
+      let state = flyoutManagerReducer(
+        initialState,
+        addFlyout('main-1', 'main', LEVEL_MAIN)
+      );
+
+      state = flyoutManagerReducer(
+        state,
+        addFlyout('main-2', 'main 2', LEVEL_MAIN)
+      );
+      state = flyoutManagerReducer(state, addUnmanagedFlyout('unmanaged-1'));
+
+      state = flyoutManagerReducer(state, closeFlyout('main-2'));
+      state = flyoutManagerReducer(state, closeUnmanagedFlyout('unmanaged-1'));
+      expect(state.currentZIndex).toEqual(8);
+
+      state = flyoutManagerReducer(state, closeFlyout('main-1'));
+      expect(state.currentZIndex).toEqual(0);
     });
   });
 
@@ -578,6 +600,129 @@ describe('flyoutManagerReducer', () => {
       const newState = flyoutManagerReducer(initialState, action);
 
       expect(newState).toEqual(initialState);
+    });
+  });
+
+  describe('ACTION_ADD_UNMANAGED', () => {
+    it('should add an unmanaged flyout', () => {
+      let state = flyoutManagerReducer(
+        initialState,
+        addUnmanagedFlyout('unmanaged-1')
+      );
+
+      expect(state.unmanagedFlyouts).toEqual(['unmanaged-1']);
+
+      state = flyoutManagerReducer(state, addUnmanagedFlyout('unmanaged-2'));
+
+      expect(state.unmanagedFlyouts).toEqual(['unmanaged-1', 'unmanaged-2']);
+    });
+
+    it('should ignore duplicated flyouts', () => {
+      let state = flyoutManagerReducer(
+        initialState,
+        addUnmanagedFlyout('unmanaged-1')
+      );
+
+      state = flyoutManagerReducer(state, addUnmanagedFlyout('unmanaged-1'));
+
+      expect(state.unmanagedFlyouts).toEqual(['unmanaged-1']);
+    });
+
+    it('should correctly update currentZIndex value', () => {
+      let state = flyoutManagerReducer(
+        initialState,
+        addUnmanagedFlyout('unmanaged-1')
+      );
+
+      expect(state.currentZIndex).toEqual(2);
+
+      state = flyoutManagerReducer(state, addUnmanagedFlyout('unmanaged-2'));
+      expect(state.currentZIndex).toEqual(4);
+    });
+
+    it('should correctly update currentZIndex value when there are managed flyout sessions registered', () => {
+      let state = flyoutManagerReducer(
+        initialState,
+        addUnmanagedFlyout('unmanaged-1')
+      );
+
+      state = flyoutManagerReducer(
+        state,
+        addFlyout('main-1', 'main', LEVEL_MAIN)
+      );
+
+      state = flyoutManagerReducer(state, addUnmanagedFlyout('unmanaged-2'));
+
+      expect(state.currentZIndex).toEqual(7);
+    });
+  });
+
+  describe('ACTION_CLOSE_UNMANAGED', () => {
+    it('should close an unmanaged flyout', () => {
+      let state = flyoutManagerReducer(
+        initialState,
+        addUnmanagedFlyout('unmanaged-1')
+      );
+
+      state = flyoutManagerReducer(state, addUnmanagedFlyout('unmanaged-2'));
+      expect(state.unmanagedFlyouts).toEqual(['unmanaged-1', 'unmanaged-2']);
+
+      state = flyoutManagerReducer(state, closeUnmanagedFlyout('unmanaged-2'));
+      expect(state.unmanagedFlyouts).toEqual(['unmanaged-1']);
+
+      state = flyoutManagerReducer(state, closeUnmanagedFlyout('unmanaged-1'));
+      expect(state.unmanagedFlyouts).toHaveLength(0);
+    });
+
+    it('should reset currentZIndex value when all unmanaged flyouts are closed', () => {
+      let state = flyoutManagerReducer(
+        initialState,
+        addUnmanagedFlyout('unmanaged-1')
+      );
+
+      state = flyoutManagerReducer(state, addUnmanagedFlyout('unmanaged-2'));
+
+      state = flyoutManagerReducer(state, closeUnmanagedFlyout('unmanaged-2'));
+      expect(state.currentZIndex).toEqual(4);
+
+      state = flyoutManagerReducer(state, closeUnmanagedFlyout('unmanaged-1'));
+      expect(state.currentZIndex).toEqual(0);
+    });
+
+    it('should not update currentZIndex value all unmanaged flyouts are closed but some sessions exist', () => {
+      let state = flyoutManagerReducer(
+        initialState,
+        addUnmanagedFlyout('unmanaged-1')
+      );
+
+      state = flyoutManagerReducer(
+        state,
+        addFlyout('main-1', 'main', LEVEL_MAIN)
+      );
+
+      state = flyoutManagerReducer(state, closeUnmanagedFlyout('unmanaged-1'));
+      expect(state.currentZIndex).toEqual(5);
+    });
+
+    it('should reset currentZIndex value when all unmanaged and managed flyouts are closed', () => {
+      let state = flyoutManagerReducer(
+        initialState,
+        addUnmanagedFlyout('unmanaged-1')
+      );
+
+      state = flyoutManagerReducer(state, addUnmanagedFlyout('unmanaged-2'));
+
+      state = flyoutManagerReducer(
+        state,
+        addFlyout('main-1', 'main', LEVEL_MAIN)
+      );
+
+      state = flyoutManagerReducer(state, closeUnmanagedFlyout('unmanaged-1'));
+      state = flyoutManagerReducer(state, closeFlyout('main-1'));
+      expect(state.currentZIndex).toEqual(7);
+
+      state = flyoutManagerReducer(state, closeUnmanagedFlyout('unmanaged-2'));
+      expect(state.currentZIndex).toEqual(0);
     });
   });
 
