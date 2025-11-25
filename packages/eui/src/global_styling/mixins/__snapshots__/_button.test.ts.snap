@@ -4,13 +4,13 @@ exports[`useEuiButtonColorCSS base 1`] = `
 {
   "accent": {
     "map": undefined,
-    "name": "1cy20me-displaysColorsMap-display-color",
+    "name": "iw9nst-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#a11262;background-color:#FDDDE9;     
     position: relative;
         overflow: hidden;
 
-        &:hover:not(:disabled) {
+        &:hover:not(:disabled, [aria-disabled="true"]) {
           &::before {
             content: '';
             position: absolute;
@@ -22,7 +22,7 @@ exports[`useEuiButtonColorCSS base 1`] = `
           }
         }
 
-        &:active:not(:disabled) {
+        &:active:not(:disabled, [aria-disabled="true"]) {
           &::before {
             inline-size: 100%;
             block-size: 100%;
@@ -38,13 +38,13 @@ exports[`useEuiButtonColorCSS base 1`] = `
   },
   "accentSecondary": {
     "map": undefined,
-    "name": "1eo92ho-displaysColorsMap-display-color",
+    "name": "2bsqr1-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#046e6b;background-color:#C9F3F0;     
     position: relative;
         overflow: hidden;
 
-        &:hover:not(:disabled) {
+        &:hover:not(:disabled, [aria-disabled="true"]) {
           &::before {
             content: '';
             position: absolute;
@@ -56,7 +56,7 @@ exports[`useEuiButtonColorCSS base 1`] = `
           }
         }
 
-        &:active:not(:disabled) {
+        &:active:not(:disabled, [aria-disabled="true"]) {
           &::before {
             inline-size: 100%;
             block-size: 100%;
@@ -72,13 +72,13 @@ exports[`useEuiButtonColorCSS base 1`] = `
   },
   "danger": {
     "map": undefined,
-    "name": "15rywaz-displaysColorsMap-display-color",
+    "name": "hpbqa7-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#a71627;background-color:#FDDDD8;     
     position: relative;
         overflow: hidden;
 
-        &:hover:not(:disabled) {
+        &:hover:not(:disabled, [aria-disabled="true"]) {
           &::before {
             content: '';
             position: absolute;
@@ -90,7 +90,7 @@ exports[`useEuiButtonColorCSS base 1`] = `
           }
         }
 
-        &:active:not(:disabled) {
+        &:active:not(:disabled, [aria-disabled="true"]) {
           &::before {
             inline-size: 100%;
             block-size: 100%;
@@ -106,13 +106,13 @@ exports[`useEuiButtonColorCSS base 1`] = `
   },
   "disabled": {
     "map": undefined,
-    "name": "14m2cmg-displaysColorsMap-display-color",
+    "name": "1a6zqyi-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#798EAF;background-color:#ECF1F9;     
     position: relative;
         overflow: hidden;
 
-        &:hover:not(:disabled) {
+        &:hover:not(:disabled, [aria-disabled="true"]) {
           &::before {
             content: '';
             position: absolute;
@@ -124,7 +124,7 @@ exports[`useEuiButtonColorCSS base 1`] = `
           }
         }
 
-        &:active:not(:disabled) {
+        &:active:not(:disabled, [aria-disabled="true"]) {
           &::before {
             inline-size: 100%;
             block-size: 100%;
@@ -140,13 +140,13 @@ exports[`useEuiButtonColorCSS base 1`] = `
   },
   "neutral": {
     "map": undefined,
-    "name": "1f7t73y-displaysColorsMap-display-color",
+    "name": "1yg34tv-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#0f658a;background-color:#CFEEF7;     
     position: relative;
         overflow: hidden;
 
-        &:hover:not(:disabled) {
+        &:hover:not(:disabled, [aria-disabled="true"]) {
           &::before {
             content: '';
             position: absolute;
@@ -158,7 +158,7 @@ exports[`useEuiButtonColorCSS base 1`] = `
           }
         }
 
-        &:active:not(:disabled) {
+        &:active:not(:disabled, [aria-disabled="true"]) {
           &::before {
             inline-size: 100%;
             block-size: 100%;
@@ -174,13 +174,13 @@ exports[`useEuiButtonColorCSS base 1`] = `
   },
   "primary": {
     "map": undefined,
-    "name": "cfeafn-displaysColorsMap-display-color",
+    "name": "igkusz-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#1750ba;background-color:#D9E8FF;     
     position: relative;
         overflow: hidden;
 
-        &:hover:not(:disabled) {
+        &:hover:not(:disabled, [aria-disabled="true"]) {
           &::before {
             content: '';
             position: absolute;
@@ -192,7 +192,7 @@ exports[`useEuiButtonColorCSS base 1`] = `
           }
         }
 
-        &:active:not(:disabled) {
+        &:active:not(:disabled, [aria-disabled="true"]) {
           &::before {
             inline-size: 100%;
             block-size: 100%;
@@ -208,13 +208,13 @@ exports[`useEuiButtonColorCSS base 1`] = `
   },
   "risk": {
     "map": undefined,
-    "name": "1oj9mzt-displaysColorsMap-display-color",
+    "name": "wow7ut-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#9e3a16;background-color:#FFDEBF;     
     position: relative;
         overflow: hidden;
 
-        &:hover:not(:disabled) {
+        &:hover:not(:disabled, [aria-disabled="true"]) {
           &::before {
             content: '';
             position: absolute;
@@ -226,7 +226,7 @@ exports[`useEuiButtonColorCSS base 1`] = `
           }
         }
 
-        &:active:not(:disabled) {
+        &:active:not(:disabled, [aria-disabled="true"]) {
           &::before {
             inline-size: 100%;
             block-size: 100%;
@@ -242,13 +242,13 @@ exports[`useEuiButtonColorCSS base 1`] = `
   },
   "success": {
     "map": undefined,
-    "name": "nsaw69-displaysColorsMap-display-color",
+    "name": "17r4hv8-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#09724d;background-color:#C9F3E3;     
     position: relative;
         overflow: hidden;
 
-        &:hover:not(:disabled) {
+        &:hover:not(:disabled, [aria-disabled="true"]) {
           &::before {
             content: '';
             position: absolute;
@@ -260,7 +260,7 @@ exports[`useEuiButtonColorCSS base 1`] = `
           }
         }
 
-        &:active:not(:disabled) {
+        &:active:not(:disabled, [aria-disabled="true"]) {
           &::before {
             inline-size: 100%;
             block-size: 100%;
@@ -276,13 +276,13 @@ exports[`useEuiButtonColorCSS base 1`] = `
   },
   "text": {
     "map": undefined,
-    "name": "191u3ya-displaysColorsMap-display-color",
+    "name": "1am2lf7-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#1d2a3e;background-color:#FFFFFF;     
     position: relative;
         overflow: hidden;
 
-        &:hover:not(:disabled) {
+        &:hover:not(:disabled, [aria-disabled="true"]) {
           &::before {
             content: '';
             position: absolute;
@@ -294,7 +294,7 @@ exports[`useEuiButtonColorCSS base 1`] = `
           }
         }
 
-        &:active:not(:disabled) {
+        &:active:not(:disabled, [aria-disabled="true"]) {
           &::before {
             inline-size: 100%;
             block-size: 100%;
@@ -312,13 +312,13 @@ exports[`useEuiButtonColorCSS base 1`] = `
   },
   "warning": {
     "map": undefined,
-    "name": "17vaf7q-displaysColorsMap-display-color",
+    "name": "1v3b4oo-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#825803;background-color:#FDE9B5;     
     position: relative;
         overflow: hidden;
 
-        &:hover:not(:disabled) {
+        &:hover:not(:disabled, [aria-disabled="true"]) {
           &::before {
             content: '';
             position: absolute;
@@ -330,7 +330,7 @@ exports[`useEuiButtonColorCSS base 1`] = `
           }
         }
 
-        &:active:not(:disabled) {
+        &:active:not(:disabled, [aria-disabled="true"]) {
           &::before {
             inline-size: 100%;
             block-size: 100%;
@@ -351,13 +351,13 @@ exports[`useEuiButtonColorCSS empty 1`] = `
 {
   "accent": {
     "map": undefined,
-    "name": "1swdk2b-displaysColorsMap-display-color",
+    "name": "17z5qwe-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#a11262;    
     position: relative;
         overflow: hidden;
 
-        &:hover:not(:disabled) {
+        &:hover:not(:disabled, [aria-disabled="true"]) {
           &::before {
             content: '';
             position: absolute;
@@ -369,7 +369,7 @@ exports[`useEuiButtonColorCSS empty 1`] = `
           }
         }
 
-        &:active:not(:disabled) {
+        &:active:not(:disabled, [aria-disabled="true"]) {
           &::before {
             inline-size: 100%;
             block-size: 100%;
@@ -385,13 +385,13 @@ exports[`useEuiButtonColorCSS empty 1`] = `
   },
   "accentSecondary": {
     "map": undefined,
-    "name": "qsnv99-displaysColorsMap-display-color",
+    "name": "utsfcv-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#046e6b;    
     position: relative;
         overflow: hidden;
 
-        &:hover:not(:disabled) {
+        &:hover:not(:disabled, [aria-disabled="true"]) {
           &::before {
             content: '';
             position: absolute;
@@ -403,7 +403,7 @@ exports[`useEuiButtonColorCSS empty 1`] = `
           }
         }
 
-        &:active:not(:disabled) {
+        &:active:not(:disabled, [aria-disabled="true"]) {
           &::before {
             inline-size: 100%;
             block-size: 100%;
@@ -419,13 +419,13 @@ exports[`useEuiButtonColorCSS empty 1`] = `
   },
   "danger": {
     "map": undefined,
-    "name": "yfmvxe-displaysColorsMap-display-color",
+    "name": "opz89a-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#a71627;    
     position: relative;
         overflow: hidden;
 
-        &:hover:not(:disabled) {
+        &:hover:not(:disabled, [aria-disabled="true"]) {
           &::before {
             content: '';
             position: absolute;
@@ -437,7 +437,7 @@ exports[`useEuiButtonColorCSS empty 1`] = `
           }
         }
 
-        &:active:not(:disabled) {
+        &:active:not(:disabled, [aria-disabled="true"]) {
           &::before {
             inline-size: 100%;
             block-size: 100%;
@@ -453,13 +453,13 @@ exports[`useEuiButtonColorCSS empty 1`] = `
   },
   "disabled": {
     "map": undefined,
-    "name": "rz0wa2-displaysColorsMap-display-color",
+    "name": "1hlgk57-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#798EAF;    
     position: relative;
         overflow: hidden;
 
-        &:hover:not(:disabled) {
+        &:hover:not(:disabled, [aria-disabled="true"]) {
           &::before {
             content: '';
             position: absolute;
@@ -471,7 +471,7 @@ exports[`useEuiButtonColorCSS empty 1`] = `
           }
         }
 
-        &:active:not(:disabled) {
+        &:active:not(:disabled, [aria-disabled="true"]) {
           &::before {
             inline-size: 100%;
             block-size: 100%;
@@ -487,13 +487,13 @@ exports[`useEuiButtonColorCSS empty 1`] = `
   },
   "neutral": {
     "map": undefined,
-    "name": "3o6zbn-displaysColorsMap-display-color",
+    "name": "zxc0ya-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#0f658a;    
     position: relative;
         overflow: hidden;
 
-        &:hover:not(:disabled) {
+        &:hover:not(:disabled, [aria-disabled="true"]) {
           &::before {
             content: '';
             position: absolute;
@@ -505,7 +505,7 @@ exports[`useEuiButtonColorCSS empty 1`] = `
           }
         }
 
-        &:active:not(:disabled) {
+        &:active:not(:disabled, [aria-disabled="true"]) {
           &::before {
             inline-size: 100%;
             block-size: 100%;
@@ -521,13 +521,13 @@ exports[`useEuiButtonColorCSS empty 1`] = `
   },
   "primary": {
     "map": undefined,
-    "name": "ydku63-displaysColorsMap-display-color",
+    "name": "1kjaxh0-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#1750ba;    
     position: relative;
         overflow: hidden;
 
-        &:hover:not(:disabled) {
+        &:hover:not(:disabled, [aria-disabled="true"]) {
           &::before {
             content: '';
             position: absolute;
@@ -539,7 +539,7 @@ exports[`useEuiButtonColorCSS empty 1`] = `
           }
         }
 
-        &:active:not(:disabled) {
+        &:active:not(:disabled, [aria-disabled="true"]) {
           &::before {
             inline-size: 100%;
             block-size: 100%;
@@ -555,13 +555,13 @@ exports[`useEuiButtonColorCSS empty 1`] = `
   },
   "risk": {
     "map": undefined,
-    "name": "mmlnx4-displaysColorsMap-display-color",
+    "name": "d7pn4b-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#9e3a16;    
     position: relative;
         overflow: hidden;
 
-        &:hover:not(:disabled) {
+        &:hover:not(:disabled, [aria-disabled="true"]) {
           &::before {
             content: '';
             position: absolute;
@@ -573,7 +573,7 @@ exports[`useEuiButtonColorCSS empty 1`] = `
           }
         }
 
-        &:active:not(:disabled) {
+        &:active:not(:disabled, [aria-disabled="true"]) {
           &::before {
             inline-size: 100%;
             block-size: 100%;
@@ -589,13 +589,13 @@ exports[`useEuiButtonColorCSS empty 1`] = `
   },
   "success": {
     "map": undefined,
-    "name": "1brg8u3-displaysColorsMap-display-color",
+    "name": "pi9t03-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#09724d;    
     position: relative;
         overflow: hidden;
 
-        &:hover:not(:disabled) {
+        &:hover:not(:disabled, [aria-disabled="true"]) {
           &::before {
             content: '';
             position: absolute;
@@ -607,7 +607,7 @@ exports[`useEuiButtonColorCSS empty 1`] = `
           }
         }
 
-        &:active:not(:disabled) {
+        &:active:not(:disabled, [aria-disabled="true"]) {
           &::before {
             inline-size: 100%;
             block-size: 100%;
@@ -623,13 +623,13 @@ exports[`useEuiButtonColorCSS empty 1`] = `
   },
   "text": {
     "map": undefined,
-    "name": "felx57-displaysColorsMap-display-color",
+    "name": "o4omlr-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#1d2a3e;    
     position: relative;
         overflow: hidden;
 
-        &:hover:not(:disabled) {
+        &:hover:not(:disabled, [aria-disabled="true"]) {
           &::before {
             content: '';
             position: absolute;
@@ -641,7 +641,7 @@ exports[`useEuiButtonColorCSS empty 1`] = `
           }
         }
 
-        &:active:not(:disabled) {
+        &:active:not(:disabled, [aria-disabled="true"]) {
           &::before {
             inline-size: 100%;
             block-size: 100%;
@@ -657,13 +657,13 @@ exports[`useEuiButtonColorCSS empty 1`] = `
   },
   "warning": {
     "map": undefined,
-    "name": "ik90e-displaysColorsMap-display-color",
+    "name": "1s2ubv0-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#825803;    
     position: relative;
         overflow: hidden;
 
-        &:hover:not(:disabled) {
+        &:hover:not(:disabled, [aria-disabled="true"]) {
           &::before {
             content: '';
             position: absolute;
@@ -675,7 +675,7 @@ exports[`useEuiButtonColorCSS empty 1`] = `
           }
         }
 
-        &:active:not(:disabled) {
+        &:active:not(:disabled, [aria-disabled="true"]) {
           &::before {
             inline-size: 100%;
             block-size: 100%;
@@ -696,14 +696,14 @@ exports[`useEuiButtonColorCSS fill 1`] = `
 {
   "accent": {
     "map": undefined,
-    "name": "g1i4pl-displaysColorsMap-display-color",
+    "name": "3mx2qw-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#FFFFFF;background-color:#BC1E70;outline-color:#07101F;    
-    &:hover:not(:disabled) {
+    &:hover:not(:disabled, [aria-disabled="true"]) {
         background-color: #A11262;
       }
 
-      &:active:not(:disabled) {
+      &:active:not(:disabled, [aria-disabled="true"]) {
         background-color: #831652;
       }
   ;;label:fill-accent;",
@@ -711,14 +711,14 @@ exports[`useEuiButtonColorCSS fill 1`] = `
   },
   "accentSecondary": {
     "map": undefined,
-    "name": "b8zumr-displaysColorsMap-display-color",
+    "name": "1xku66d-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#FFFFFF;background-color:#008B87;outline-color:#07101F;    
-    &:hover:not(:disabled) {
+    &:hover:not(:disabled, [aria-disabled="true"]) {
         background-color: #047471;
       }
 
-      &:active:not(:disabled) {
+      &:active:not(:disabled, [aria-disabled="true"]) {
         background-color: #065B58;
       }
   ;;label:fill-accentSecondary;",
@@ -726,14 +726,14 @@ exports[`useEuiButtonColorCSS fill 1`] = `
   },
   "danger": {
     "map": undefined,
-    "name": "azzo4j-displaysColorsMap-display-color",
+    "name": "2oco3v-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#FFFFFF;background-color:#C61E25;outline-color:#07101F;    
-    &:hover:not(:disabled) {
+    &:hover:not(:disabled, [aria-disabled="true"]) {
         background-color: #A71627;
       }
 
-      &:active:not(:disabled) {
+      &:active:not(:disabled, [aria-disabled="true"]) {
         background-color: #7F1F27;
       }
   ;;label:fill-danger;",
@@ -741,14 +741,14 @@ exports[`useEuiButtonColorCSS fill 1`] = `
   },
   "disabled": {
     "map": undefined,
-    "name": "105tcc3-displaysColorsMap-display-color",
+    "name": "fophfq-displaysColorsMap-display-color",
     "next": undefined,
-    "styles": "color:#798EAF;background-color:#ECF1F9;outline-color:#07101F;    
-    &:hover:not(:disabled) {
+    "styles": "color:#798EAF;background-color:#ECF1F9;outline-color:;    
+    &:hover:not(:disabled, [aria-disabled="true"]) {
         background-color: undefined;
       }
 
-      &:active:not(:disabled) {
+      &:active:not(:disabled, [aria-disabled="true"]) {
         background-color: undefined;
       }
   ;;label:fill-disabled;",
@@ -756,14 +756,14 @@ exports[`useEuiButtonColorCSS fill 1`] = `
   },
   "neutral": {
     "map": undefined,
-    "name": "dfjdt8-displaysColorsMap-display-color",
+    "name": "bbkhg6-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#FFFFFF;background-color:#1C8CB5;outline-color:#07101F;    
-    &:hover:not(:disabled) {
+    &:hover:not(:disabled, [aria-disabled="true"]) {
         background-color: #0F658A;
       }
 
-      &:active:not(:disabled) {
+      &:active:not(:disabled, [aria-disabled="true"]) {
         background-color: #055476;
       }
   ;;label:fill-neutral;",
@@ -771,14 +771,14 @@ exports[`useEuiButtonColorCSS fill 1`] = `
   },
   "primary": {
     "map": undefined,
-    "name": "1kc1763-displaysColorsMap-display-color",
+    "name": "e636tq-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#FFFFFF;background-color:#0B64DD;outline-color:#07101F;    
-    &:hover:not(:disabled) {
+    &:hover:not(:disabled, [aria-disabled="true"]) {
         background-color: #1750BA;
       }
 
-      &:active:not(:disabled) {
+      &:active:not(:disabled, [aria-disabled="true"]) {
         background-color: #154399;
       }
   ;;label:fill-primary;",
@@ -786,14 +786,14 @@ exports[`useEuiButtonColorCSS fill 1`] = `
   },
   "risk": {
     "map": undefined,
-    "name": "1c96cw4-displaysColorsMap-display-color",
+    "name": "1ldxfkn-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#FFFFFF;background-color:#ED6723;outline-color:#07101F;    
-    &:hover:not(:disabled) {
+    &:hover:not(:disabled, [aria-disabled="true"]) {
         background-color: #DB541B;
       }
 
-      &:active:not(:disabled) {
+      &:active:not(:disabled, [aria-disabled="true"]) {
         background-color: #C24411;
       }
   ;;label:fill-risk;",
@@ -801,14 +801,14 @@ exports[`useEuiButtonColorCSS fill 1`] = `
   },
   "success": {
     "map": undefined,
-    "name": "kg8lp3-displaysColorsMap-display-color",
+    "name": "9ubir6-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#FFFFFF;background-color:#008A5E;outline-color:#07101F;    
-    &:hover:not(:disabled) {
+    &:hover:not(:disabled, [aria-disabled="true"]) {
         background-color: #09724D;
       }
 
-      &:active:not(:disabled) {
+      &:active:not(:disabled, [aria-disabled="true"]) {
         background-color: #0C5A3F;
       }
   ;;label:fill-success;",
@@ -816,14 +816,14 @@ exports[`useEuiButtonColorCSS fill 1`] = `
   },
   "text": {
     "map": undefined,
-    "name": "9ey25n-displaysColorsMap-display-color",
+    "name": "3cvc1q-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#FFFFFF;background-color:#5A6D8C;outline-color:#07101F;    
-    &:hover:not(:disabled) {
+    &:hover:not(:disabled, [aria-disabled="true"]) {
         background-color: #485975;
       }
 
-      &:active:not(:disabled) {
+      &:active:not(:disabled, [aria-disabled="true"]) {
         background-color: #384861;
       }
   ;;label:fill-text;",
@@ -831,14 +831,14 @@ exports[`useEuiButtonColorCSS fill 1`] = `
   },
   "warning": {
     "map": undefined,
-    "name": "dz0udx-displaysColorsMap-display-color",
+    "name": "fapwex-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#6A4906;background-color:#FACB3D;outline-color:#07101F;    
-    &:hover:not(:disabled) {
+    &:hover:not(:disabled, [aria-disabled="true"]) {
         background-color: #F5BC00;
       }
 
-      &:active:not(:disabled) {
+      &:active:not(:disabled, [aria-disabled="true"]) {
         background-color: #EAAE01;
       }
   ;;label:fill-warning;",

@@ -23,6 +23,7 @@ import './keyboard/repeatRealPress';
 import './copy/select_and_copy';
 import './setup/mount';
 import './setup/realMount';
+import './setup/matchers';
 import './css/cssVar';
 import './helpers/wait_for_position_to_settle';
 

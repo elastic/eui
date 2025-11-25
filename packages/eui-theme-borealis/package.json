@@ -1,6 +1,6 @@
 {
   "name": "@elastic/eui-theme-borealis",
-  "version": "5.0.0",
+  "version": "5.1.0",
   "description": "A visual theme for EUI",
   "license": "SEE LICENSE IN LICENSE.txt",
   "scripts": {
@@ -12,10 +12,12 @@
     "build:types": "NODE_ENV=production tsc --project tsconfig.types.json",
     "build-pack": "yarn build && npm pack",
     "copy-files": "node ./scripts/copy-json-files.js",
-    "lint": "yarn tsc --noEmit && yarn lint-es && yarn lint-sass",
-    "lint-es": "eslint --cache src/**/*.ts --max-warnings 0",
+    "lint": "yarn run lint-ts && yarn run lint-es && yarn run lint-sass",
+    "lint-ts": "tsc --noEmit",
+    "lint-es": "eslint --cache \"src/**/*.ts\" --max-warnings 0",
     "lint-sass": "yarn stylelint \"**/*.scss\" --quiet-deprecation-warnings",
-    "test": "jest ./src",
+    "test": "yarn test-unit",
+    "test-unit": "jest ./src --passWithNoTests",
     "pre-push": "yarn build:workspaces && yarn lint && yarn test"
   },
   "repository": {
@@ -23,7 +25,7 @@
     "url": "https://github.com/elastic/eui.git",
     "directory": "packages/eui-theme-borealis"
   },
-  "dependency": {
+  "dependencies": {
     "@elastic/eui-theme-common": "workspace:*",
     "chroma-js": "^2.4.2"
   },

@@ -14,3 +14,4 @@ export type { EuiDatePopoverContentProps } from './date_popover_content';
 export { EuiDatePopoverContent } from './date_popover_content';
 export type { EuiRelativeTabProps } from './relative_tab';
 export { EuiRelativeTab } from './relative_tab';
+export type { EuiTimeZoneDisplayProps } from './timezone_display';

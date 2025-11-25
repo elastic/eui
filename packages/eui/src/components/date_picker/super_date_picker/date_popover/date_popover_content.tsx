@@ -26,6 +26,7 @@ import {
 import { EuiAbsoluteTab } from './absolute_tab';
 import { EuiRelativeTab } from './relative_tab';
 import { euiDatePopoverContentStyles } from './date_popover_content.styles';
+import { type EuiTimeZoneDisplayProps } from './timezone_display';
 
 export interface EuiDatePopoverContentProps {
   value: string;
@@ -40,6 +41,7 @@ export interface EuiDatePopoverContentProps {
   minDate?: Moment;
   maxDate?: Moment;
   timeOptions: TimeOptions;
+  timeZoneDisplayProps?: EuiTimeZoneDisplayProps;
 }
 
 export const EuiDatePopoverContent: FunctionComponent<
@@ -57,6 +59,7 @@ export const EuiDatePopoverContent: FunctionComponent<
   timeOptions,
   minDate,
   maxDate,
+  timeZoneDisplayProps = {},
 }) => {
   const styles = useEuiMemoizedStyles(euiDatePopoverContentStyles);
 
@@ -107,6 +110,7 @@ export const EuiDatePopoverContent: FunctionComponent<
           utcOffset={utcOffset}
           minDate={minDate}
           maxDate={maxDate}
+          timeZoneDisplayProps={timeZoneDisplayProps}
         />
       ),
       'data-test-subj': 'superDatePickerAbsoluteTab',
@@ -126,6 +130,7 @@ export const EuiDatePopoverContent: FunctionComponent<
           roundUp={roundUp}
           labelPrefix={labelPrefix}
           timeOptions={timeOptions}
+          timeZoneDisplayProps={timeZoneDisplayProps}
         />
       ),
       'data-test-subj': 'superDatePickerRelativeTab',

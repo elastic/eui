@@ -7182,6 +7182,7 @@ __metadata:
     "@types/prettier": "npm:2.7.3"
     "@typescript-eslint/eslint-plugin": "npm:^5.59.7"
     "@typescript-eslint/parser": "npm:^5.59.7"
+    chroma-js: "npm:^2.4.2"
     eslint: "npm:^8.41.0"
     eslint-config-prettier: "npm:^8.8.0"
     eslint-plugin-import: "npm:^2.27.5"
@@ -7505,7 +7506,7 @@ __metadata:
     yo: "npm:^4.3.1"
   peerDependencies:
     "@elastic/datemath": ^5.0.2
-    "@elastic/eui-theme-borealis": 5.0.0
+    "@elastic/eui-theme-borealis": 5.1.0
     "@emotion/css": 11.x
     "@emotion/react": 11.x
     "@types/react": ^17.0 || ^18.0

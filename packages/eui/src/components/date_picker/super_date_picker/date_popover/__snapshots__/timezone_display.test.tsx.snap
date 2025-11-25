@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiTimeZoneDisplay renders 1`] = `
+<div>
+  <div
+    aria-label="UTC-8 (America/Los_Angeles)"
+    class="euiFlexGroup emotion-euiFlexGroup-responsive-xs-flexStart-center-row-euiTimeZoneDisplay"
+    data-test-subj="euiTimeZoneDisplay"
+  >
+    <span
+      color="subdued"
+      data-euiicon-type="globe"
+    />
+    <span
+      class="euiText emotion-euiText-s-euiTextColor-subdued"
+    >
+      UTC-8 (America/Los_Angeles)
+    </span>
+  </div>
+</div>
+`;

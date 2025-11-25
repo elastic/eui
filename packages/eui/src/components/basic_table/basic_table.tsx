@@ -520,6 +520,7 @@ export class EuiBasicTable<T extends object = any> extends Component<
       tableCaption,
       rowHeader,
       tableLayout,
+      hasBackground,
       ...rest
     } = this.props;
 
@@ -541,8 +542,13 @@ export class EuiBasicTable<T extends object = any> extends Component<
   }
 
   renderTable() {
-    const { compressed, responsiveBreakpoint, tableLayout, loading } =
-      this.props;
+    const {
+      compressed,
+      responsiveBreakpoint,
+      tableLayout,
+      hasBackground,
+      loading,
+    } = this.props;
 
     return (
       <>
@@ -556,6 +562,7 @@ export class EuiBasicTable<T extends object = any> extends Component<
             tableLayout={tableLayout}
             responsiveBreakpoint={responsiveBreakpoint}
             compressed={compressed}
+            hasBackground={hasBackground}
             css={loading && safariLoadingWorkaround}
           >
             {this.renderTableCaption()}

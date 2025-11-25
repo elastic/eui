@@ -100,6 +100,7 @@ export const EuiDataGridInMemoryRenderer: FunctionComponent<
       cells.push(
         columns
           .map((column, j) => {
+            const key = `${i}-${j}-${column.id}`;
             const skipThisColumn =
               inMemory.skipColumns &&
               inMemory.skipColumns.indexOf(column.id) !== -1;
@@ -112,11 +113,7 @@ export const EuiDataGridInMemoryRenderer: FunctionComponent<
               column.isExpandable !== undefined ? column.isExpandable : true;
 
             return (
-              <div
-                key={`${i}-${column.id}`}
-                data-dg-row={i}
-                data-dg-column={column.id}
-              >
+              <div key={key} data-dg-row={i} data-dg-column={column.id}>
                 <CellElement
                   rowIndex={i}
                   colIndex={j}

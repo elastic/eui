@@ -29,6 +29,7 @@ const meta: Meta<EuiButtonEmptyProps> = {
     iconSize: 'm',
     iconSide: 'left',
     isDisabled: false,
+    hasAriaDisabled: false,
     isLoading: false,
     isSelected: false,
   },

@@ -1,6 +1,6 @@
 {
   "name": "@elastic/eslint-plugin-eui",
-  "version": "2.5.0",
+  "version": "2.6.0",
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
@@ -43,7 +43,8 @@
     "typescript": "^5.8.3"
   },
   "scripts": {
-    "test": "jest src",
+    "test": "yarn test-unit",
+    "test-unit": "jest src",
     "build": "yarn build:clean && yarn build:compile && yarn build:compile:esm && yarn build:types",
     "build:clean": "rimraf lib/",
     "build:compile:esm": "tsc --project ./tsconfig.esm.json",

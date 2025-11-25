@@ -253,6 +253,7 @@ exports[`EuiButton props iconType is rendered 1`] = `
 exports[`EuiButton props isDisabled is rendered 1`] = `
 <button
   class="euiButton emotion-euiButtonDisplay-m-defaultMinWidth-isDisabled-base-disabled"
+  data-test-subj="button"
   disabled=""
   type="button"
 >

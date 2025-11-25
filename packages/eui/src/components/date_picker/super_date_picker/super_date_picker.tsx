@@ -16,8 +16,9 @@ import classNames from 'classnames';
 import moment, { LocaleSpecifier, Moment } from 'moment'; // eslint-disable-line import/named
 import dateMath from '@elastic/datemath';
 
-import { useEuiMemoizedStyles } from '../../../services';
+import { useEuiMemoizedStyles, RenderWithEuiTheme } from '../../../services';
 import { isObject } from '../../../services/predicate';
+import { euiTextTruncateCSS } from '../../../global_styling';
 import { EuiI18nConsumer } from '../../context';
 import { CommonProps } from '../../common';
 import { EuiDatePickerRange } from '../date_picker_range';
@@ -26,6 +27,7 @@ import {
   EuiFormControlLayout,
   EuiFormControlLayoutProps,
 } from '../../form';
+import { EuiToolTip } from '../../tool_tip';
 
 import {
   ShortDate,
@@ -39,6 +41,10 @@ import {
 
 import { TimeOptions, RenderI18nTimeOptions } from './time_options';
 import { PrettyDuration, showPrettyDuration } from './pretty_duration';
+import {
+  EuiTimeWindowButtons,
+  type EuiTimeWindowButtonsConfig,
+} from './time_window_buttons';
 import { AsyncInterval } from './async_interval';
 
 import {
@@ -51,6 +57,7 @@ import {
   EuiQuickSelectButtonProps,
 } from './quick_select_popover/quick_select_popover';
 import { EuiDatePopoverButton } from './date_popover/date_popover_button';
+import { type EuiTimeZoneDisplayProps } from './date_popover/timezone_display';
 
 import { EuiDatePopoverContentProps } from './date_popover/date_popover_content';
 import {
@@ -203,6 +210,12 @@ export type EuiSuperDatePickerProps = CommonProps & {
   showUpdateButton?: boolean | 'iconOnly';
 
   /**
+   * Set to true to display buttons for time shifting and zooming out,
+   * next to the top-level control.
+   */
+  showTimeWindowButtons?: boolean | EuiTimeWindowButtonsConfig;
+
+  /**
    * Hides the actual input reducing to just the quick select button.
    */
   isQuickSelectOnly?: boolean;
@@ -224,6 +237,15 @@ export type EuiSuperDatePickerProps = CommonProps & {
    * input by the user, set this flag to `false`.
    */
   canRoundRelativeUnits?: boolean;
+
+  /**
+   * Props passed to the time zone display in the popovers {@link EuiTimeZoneDisplayProps}
+   *
+   * Setting `timeZoneDisplayProps.timeZone` with a valid time zone name will make
+   * the time zone information be visible below the start and end input fields.
+   * This is informational only, it will not affect how date/times are handled.
+   */
+  timeZoneDisplayProps?: EuiTimeZoneDisplayProps;
 };
 
 type EuiSuperDatePickerInternalProps = EuiSuperDatePickerProps & {
@@ -565,6 +587,7 @@ export class EuiSuperDatePickerInternal extends Component<
       compressed,
       onFocus,
       memoizedStyles: styles,
+      timeZoneDisplayProps = {},
     } = this.props;
 
     const autoRefreshAppend: EuiFormControlLayoutProps['append'] = !isPaused ? (
@@ -605,33 +628,62 @@ export class EuiSuperDatePickerInternal extends Component<
       isDisabledDisplay ||
       (showPrettyDuration && !isStartDatePopoverOpen && !isEndDatePopoverOpen)
     ) {
+      // Tooltip content with full range
+      const startMoment = dateMath.parse(start);
+      const endMoment = dateMath.parse(end, { roundUp: true });
+      const separator = ' – ';
+      const formattedFullRange = isInvalid
+        ? ''
+        : startMoment?.format(dateFormat) +
+          separator +
+          endMoment?.format(dateFormat);
+
       return (
-        <EuiFormControlLayout {...formControlLayoutProps}>
-          {!isQuickSelectOnly && (
-            <EuiFormControlButton
-              type="button"
-              css={styles.euiSuperDatePicker__prettyFormat}
-              className={classNames('euiSuperDatePicker__prettyFormat', {
-                'euiSuperDatePicker__prettyFormat--disabled': isDisabled,
-              })}
-              data-test-subj="superDatePickerShowDatesButton"
-              disabled={!!isDisabled}
-              onClick={this.hidePrettyDuration}
-              onFocus={onFocus}
-            >
-              {isDisabledDisplay ? (
-                isDisabled.display
-              ) : (
-                <PrettyDuration
-                  timeFrom={start}
-                  timeTo={end}
-                  quickRanges={commonlyUsedRanges}
-                  dateFormat={dateFormat}
-                />
-              )}
-            </EuiFormControlButton>
-          )}
-        </EuiFormControlLayout>
+        <RenderWithEuiTheme>
+          {(euiTheme) => {
+            return (
+              <EuiFormControlLayout {...formControlLayoutProps}>
+                {!isQuickSelectOnly && (
+                  <EuiToolTip
+                    css={styles.euiSuperDatePicker__prettyDurationTooltip}
+                    content={formattedFullRange}
+                    display="block"
+                    offset={euiTheme.euiTheme.base * 0.5}
+                  >
+                    <EuiFormControlButton
+                      type="button"
+                      className={classNames(
+                        'euiSuperDatePicker__prettyFormat',
+                        {
+                          'euiSuperDatePicker__prettyFormat--disabled':
+                            isDisabled,
+                        }
+                      )}
+                      compressed={compressed}
+                      data-test-subj="superDatePickerShowDatesButton"
+                      disabled={!!isDisabled}
+                      onClick={this.hidePrettyDuration}
+                      onFocus={onFocus}
+                    >
+                      {isDisabledDisplay ? (
+                        isDisabled.display
+                      ) : (
+                        <span css={euiTextTruncateCSS()}>
+                          <PrettyDuration
+                            timeFrom={start}
+                            timeTo={end}
+                            quickRanges={commonlyUsedRanges}
+                            dateFormat={dateFormat}
+                          />
+                        </span>
+                      )}
+                    </EuiFormControlButton>
+                  </EuiToolTip>
+                )}
+              </EuiFormControlLayout>
+            );
+          }}
+        </RenderWithEuiTheme>
       );
     }
 
@@ -680,6 +732,7 @@ export class EuiSuperDatePickerInternal extends Component<
                   onPopoverClose={this.onStartDatePopoverClose}
                   timeOptions={timeOptions}
                   buttonProps={{ onFocus }}
+                  timeZoneDisplayProps={timeZoneDisplayProps}
                 />
               )
             }
@@ -707,6 +760,7 @@ export class EuiSuperDatePickerInternal extends Component<
                   onPopoverClose={this.onEndDatePopoverClose}
                   timeOptions={timeOptions}
                   buttonProps={{ onFocus }}
+                  timeZoneDisplayProps={timeZoneDisplayProps}
                 />
               )
             }
@@ -723,6 +777,27 @@ export class EuiSuperDatePickerInternal extends Component<
     } else {
       this.applyTime();
     }
+  };
+
+  renderTimeWindowButtons = () => {
+    if (!this.props.showTimeWindowButtons || this.props.isAutoRefreshOnly) {
+      return null;
+    }
+    const { start, end, showTimeWindowButtons, compressed, isDisabled } =
+      this.props;
+    const config =
+      typeof showTimeWindowButtons === 'boolean' ? {} : showTimeWindowButtons;
+
+    return (
+      <EuiTimeWindowButtons
+        applyTime={this.applyQuickTime}
+        start={start}
+        end={end}
+        compressed={compressed}
+        isDisabled={!!isDisabled || this.state.isInvalid}
+        {...config}
+      />
+    );
   };
 
   renderUpdateButton = () => {
@@ -805,6 +880,7 @@ export class EuiSuperDatePickerInternal extends Component<
         ) : (
           <>
             {this.renderDatePickerRange()}
+            {this.renderTimeWindowButtons()}
             {this.renderUpdateButton()}
           </>
         )}

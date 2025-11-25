@@ -1,6 +1,6 @@
 {
   "name": "@elastic/eui-theme-common",
-  "version": "7.0.0",
+  "version": "7.1.0",
   "description": "EUI theme common",
   "license": "SEE LICENSE IN LICENSE.txt",
   "scripts": {
@@ -13,7 +13,8 @@
     "lint": "yarn tsc --noEmit && yarn lint-es && yarn lint-sass",
     "lint-es": "eslint --cache src/**/*.ts --max-warnings 0",
     "lint-sass": "yarn stylelint \"**/*.scss\" --quiet-deprecation-warnings",
-    "test": "jest ./src",
+    "test": "yarn test-unit",
+    "test-unit": "jest ./src --passWithNoTests",
     "pre-push": "yarn lint && yarn test"
   },
   "repository": {
