@@ -27,14 +27,13 @@ const calculateZIndex = (
   const level = Number(baseLevel);
 
   return {
+    // Child flyouts slide in from below and need to have a lower z-index
     flyoutZIndex: isChildFlyout ? level - 1 : level,
     maskZIndex: level - 2,
   };
 };
 
 /**
- * TODO: Calculate z-index values so that the latest flyout is always on top
- * https://github.com/elastic/eui/issues/9160
  * @internal
  */
 export const useEuiFlyoutZIndex = ({
