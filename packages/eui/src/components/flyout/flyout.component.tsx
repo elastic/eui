@@ -77,6 +77,7 @@ import { useEuiFlyoutResizable } from './use_flyout_resizable';
 import type { EuiFlyoutCloseEvent } from './types';
 import { useEuiFlyoutZIndex } from './use_flyout_z_index';
 import { EuiFlyoutParentProvider } from './flyout_parent_context';
+import { useCurrentFlyoutZIndexRef } from './manager/selectors';
 
 interface _EuiFlyoutComponentProps {
   /**
@@ -278,12 +279,23 @@ export const EuiFlyoutComponent = forwardRef(
     const layoutMode = useFlyoutLayoutMode();
     const isActiveManagedFlyout = useIsFlyoutActive(flyoutId);
     const flyoutManager = useFlyoutManager();
+    const currentZIndexRef = useCurrentFlyoutZIndexRef();
 
     // Use a ref to access the latest flyoutManager without triggering effect re-runs
     const flyoutManagerRef = useRef(flyoutManager);
     useEffect(() => {
       flyoutManagerRef.current = flyoutManager;
     }, [flyoutManager]);
+
+    useEffect(() => {
+      // Keep track of unmanaged flyouts to properly calculate z-index
+      // values for all flyouts
+      if (!isInManagedContext) {
+        flyoutManagerRef.current?.addUnmanagedFlyout(flyoutId);
+
+        return () => flyoutManagerRef.current?.closeUnmanagedFlyout(flyoutId);
+      }
+    }, [isInManagedContext, flyoutId]);
 
     const {
       onMouseDown: onMouseDownResizableButton,
@@ -451,9 +463,16 @@ export const EuiFlyoutComponent = forwardRef(
 
     const siblingFlyoutWidth = useFlyoutWidth(siblingFlyoutId);
 
+    let managedFlyoutIndex = currentZIndexRef.current;
+    if (isInManagedContext && currentSession) {
+      managedFlyoutIndex = currentSession.zIndex;
+    }
+
     const { flyoutZIndex, maskZIndex } = useEuiFlyoutZIndex({
       maskProps,
       isPushed,
+      managedFlyoutIndex,
+      isChildFlyout: isChildFlyout,
     });
 
     /**

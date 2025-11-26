@@ -313,7 +313,6 @@ const NonSessionFlyout: React.FC<{ size: string }> = ({ size }) => {
           ownFocus={flyoutOwnFocus}
           pushAnimation={true}
           onClose={flyoutOnClose}
-          side="left"
         >
           <EuiFlyoutHeader>
             <EuiTitle size="m">

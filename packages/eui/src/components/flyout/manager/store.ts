@@ -16,6 +16,8 @@ import {
   setPushPadding as setPushPaddingAction,
   goBack as goBackAction,
   goToFlyout as goToFlyoutAction,
+  addUnmanagedFlyout as addUnmanagedFlyoutAction,
+  closeUnmanagedFlyout as closeUnmanagedFlyoutAction,
 } from './actions';
 import { flyoutManagerReducer, initialState } from './reducer';
 
@@ -38,6 +40,8 @@ export interface FlyoutManagerStore {
   setPushPadding: (side: 'left' | 'right', width: number) => void;
   goBack: () => void;
   goToFlyout: (flyoutId: string) => void;
+  addUnmanagedFlyout: (flyoutId: string) => void;
+  closeUnmanagedFlyout: (flyoutId: string) => void;
   historyItems: Array<{
     title: string;
     onClick: () => void;
@@ -112,6 +116,10 @@ function createStore(
       dispatch(setPushPaddingAction(side, width)),
     goBack: () => dispatch(goBackAction()),
     goToFlyout: (flyoutId) => dispatch(goToFlyoutAction(flyoutId)),
+    addUnmanagedFlyout: (flyoutId) =>
+      dispatch(addUnmanagedFlyoutAction(flyoutId)),
+    closeUnmanagedFlyout: (flyoutId) =>
+      dispatch(closeUnmanagedFlyoutAction(flyoutId)),
     historyItems: computeHistoryItems(), // Initialize with current state
   };
 

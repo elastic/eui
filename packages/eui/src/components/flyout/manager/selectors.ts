@@ -7,6 +7,7 @@
  */
 
 import { useFlyoutManager } from './provider';
+import { useRef } from 'react';
 
 export const useSession = (flyoutId?: string | null) => {
   const context = useFlyoutManager();
@@ -101,4 +102,11 @@ export const usePushPaddingOffsets = () => {
 export const useHasPushPadding = () => {
   const pushPadding = usePushPaddingOffsets();
   return pushPadding.left > 0 || pushPadding.right > 0;
+};
+
+/** Get the ref for the current flyout z-index to be used */
+export const useCurrentFlyoutZIndexRef = () => {
+  const context = useFlyoutManager();
+
+  return useRef(context?.state.currentZIndex || 0);
 };
