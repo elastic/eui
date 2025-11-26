@@ -163,6 +163,7 @@ describe('EuiSelectable', () => {
       const onChange = cy.stub();
       cy.realMount(<EuiSelectableWithSearchInput onChange={onChange} />);
       cy.realPress('Tab');
+      cy.realPress('ArrowDown');
       cy.realPress('Enter').then(() => {
         expect(onChange).to.have.been.calledWith([
           { ...options[0], checked: 'on' },

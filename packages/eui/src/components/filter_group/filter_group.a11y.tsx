@@ -251,7 +251,7 @@ describe('EuiFilterGroup multiselect example', () => {
       cy.realPress('Enter');
       cy.get('div[data-test-subj="euiSelectableList"]').should('exist');
       cy.realPress('Tab');
-      cy.repeatRealPress('ArrowDown', 3);
+      cy.repeatRealPress('ArrowDown', 4);
       cy.realPress('Enter');
       cy.get('li[aria-selected="true"]')
         .find('span.euiSelectableListItem__text')
