@@ -85,10 +85,10 @@ type InMemoryTableProps<T extends object> = Omit<
    */
   noItemsMessage?: ReactNode;
   /**
-   * Configures the search bar. Can be `true` for defaults, 
+   * Configures the search bar. Can be `true` for defaults,
    * or an {@link EuiSearchBarProps} object.
    *
-   * When `searchFormat="text"`, `query` and `defaultQuery` must be strings 
+   * When `searchFormat="text"`, `query` and `defaultQuery` must be strings
    * ({@link Query} objects are ignored).
    */
   search?: Search;
