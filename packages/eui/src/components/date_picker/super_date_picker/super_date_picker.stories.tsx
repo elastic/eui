@@ -166,7 +166,10 @@ export const QuickSelectOnly: Story = {
 
     return (
       <EuiFlexGroup>
-        <EuiFieldText onFocus={() => setCollapsed(true)} />
+        <EuiFieldText
+          onFocus={() => setCollapsed(true)}
+          onBlur={() => setCollapsed(false)}
+        />
         <EuiSuperDatePicker
           {...args}
           isQuickSelectOnly={isCollapsed}
@@ -379,10 +382,6 @@ const StatefulSuperDatePicker = (props: EuiSuperDatePickerProps) => {
       end={_end}
       onTimeChange={handleOnTimeChange}
       onRefresh={onRefresh}
-      css={css`
-        /* ensure the input content is visible without being truncated */
-        inline-size: 700px;
-      `}
       {...rest}
     />
   );
