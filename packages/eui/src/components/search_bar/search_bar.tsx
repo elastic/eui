@@ -85,17 +85,17 @@ export interface EuiSearchBarProps extends CommonProps {
   onChange?: (args: EuiSearchBarOnChangeArgs) => void | boolean;
 
   /**
-   The initial query the bar will hold when first mounted
+   * The initial query the bar will hold when first mounted
    */
   defaultQuery?: QueryType;
 
   /**
-   If you wish to use the search bar as a controlled component, continuously pass the query via this prop.
+   * If you wish to use the search bar as a controlled component, continuously pass the query via this prop.
    */
   query?: QueryType;
 
   /**
-   Configures the search box. Set `placeholder` to change the placeholder text in the box and `incremental` to support incremental (as you type) search.
+   * Configures the search box. Set `placeholder` to change the placeholder text in the box and `incremental` to support incremental (as you type) search.
    */
   box?: EuiFieldSearchProps & {
     // Boolean values are not meaningful to this EuiSearchBox, but are allowed so that other
@@ -105,7 +105,7 @@ export interface EuiSearchBarProps extends CommonProps {
   };
 
   /**
-   An array of search filters. See {@link SearchFilterConfig}.
+   * An array of search filters. See {@link SearchFilterConfig}.
    */
   filters?: SearchFilterConfig[];
 

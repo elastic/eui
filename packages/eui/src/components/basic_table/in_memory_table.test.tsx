@@ -1638,9 +1638,9 @@ describe('EuiInMemoryTable', () => {
     it('ignores Query objects in the search box', () => {
       const items = [{ title: 'foo' }, { title: 'bar' }, { title: 'baz' }];
       const columns = [{ field: 'title', name: 'Title' }];
-      const query = Query.parse('ba'); // this would be unintentional, but it could happen
+      const query = Query.parse('ba');
 
-      const { getByTestSubject } = render(
+      const { getByTestSubject, rerender } = render(
         <EuiInMemoryTable
           items={items}
           searchFormat="text"
@@ -1653,6 +1653,21 @@ describe('EuiInMemoryTable', () => {
       );
 
       const searchbox = getByTestSubject('searchbox') as HTMLInputElement;
+
+      // not `[object Object]`
+      expect(searchbox.value).toBe('');
+
+      rerender(
+        <EuiInMemoryTable
+          items={items}
+          searchFormat="text"
+          search={{
+            defaultQuery: query,
+            box: { incremental: true, 'data-test-subj': 'searchbox' },
+          }}
+          columns={columns}
+        />
+      );
 
       // not `[object Object]`
       expect(searchbox.value).toBe('');
