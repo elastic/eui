@@ -40,11 +40,43 @@ module.exports = {
     rules: [
       {
         test: /\.(js|tsx?)$/,
-        loader: 'babel-loader',
+        loader: 'swc-loader',
         exclude: /node_modules/,
         sideEffects: true, // tells webpack not to tree shake `import './'` lines
         options: {
-          plugins: ['istanbul'],
+          jsc: {
+            parser: {
+              syntax: 'typescript',
+              tsx: true,
+            },
+            transform: {
+              react: {
+                runtime: 'classic',
+                importSource: '@emotion/react',
+              },
+            },
+            externalHelpers: false,
+            preserveAllComments: true,
+            experimental: {
+              plugins: [
+                [
+                  '@swc/plugin-emotion',
+                  {
+                    autoLabel: 'always',
+                    labelFormat: '[local]',
+                    sourceMap: false,
+                  },
+                ],
+                ['swc-plugin-coverage-instrument', {}],
+              ],
+            },
+          },
+          env: {
+            targets: ['last 2 versions', 'not dead', 'not IE 11'],
+          },
+          module: {
+            type: 'es6',
+          },
         },
       },
     ],

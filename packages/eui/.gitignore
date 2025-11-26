@@ -25,6 +25,7 @@ node_modules
 **/*.out
 .eslintcache
 .yo-rc.json
+.swc
 
 # TypeScript output
 /types

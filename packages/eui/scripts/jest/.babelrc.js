@@ -1,5 +1,4 @@
 module.exports = {
-  extends: '../../.babelrc.js',
   presets: [
     [
       '@babel/env',
@@ -7,5 +6,8 @@ module.exports = {
         targets: { node: 'current' },
       },
     ],
+    ['@babel/react', { runtime: 'classic' }],
+    '@emotion/babel-preset-css-prop',
+    ['@babel/typescript', { isTSX: true, allExtensions: true }],
   ],
 };
