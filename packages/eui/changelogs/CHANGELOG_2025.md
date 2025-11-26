@@ -1,3 +1,30 @@
+## [`v109.2.0`](https://github.com/elastic/eui/releases/v109.2.0)
+
+- Updated `EuiFlexItem` to fall back to `grow={true}` if invalid values for `grow` are passed ([#9228](https://github.com/elastic/eui/pull/9228))
+- Updated shared button styles in `useEuiButtonColorCSS` to use `euiDisabledSelector` ([#9226](https://github.com/elastic/eui/pull/9226))
+- Added `euiTextTruncateCSS` Emotion style utility ([#9231](https://github.com/elastic/eui/pull/9231))
+- Added `hasBackground` prop on `EuiTable`, `EuiBasicTable` and `EuiInMemoryTable` ([#9224](https://github.com/elastic/eui/pull/9224))
+- Added component token `components.tableFooterBackground` ([#9224](https://github.com/elastic/eui/pull/9224))
+- Updated the color of mobile table header cells to use `colors.textSubdued` ([#9224](https://github.com/elastic/eui/pull/9224))
+- Updated `EuiSuperDatePicker` to show a tooltip with the full range details when the button displays a pretty duration e.g. "Last 15 minutes" ([#9221](https://github.com/elastic/eui/pull/9221))
+- Updated `EuiPopover` default prop values of `hasArrow`, `position` and `offset`: ([#9218](https://github.com/elastic/eui/pull/9218))
+  - Changed `hasArrow` to `false`
+  - Changed `position` to `downLeft`
+  - Changed `offset` to `4` when `hasArrow=false`
+- Updated `EuiInputPopover` `offset` default value to `2` ([#9218](https://github.com/elastic/eui/pull/9218))
+- Updated `EuiTourStep` to not apply `hasArrow=true` by default when `decoration="none"` ([#9218](https://github.com/elastic/eui/pull/9218))
+- Updated `EuiSuperDatePicker` to have a more forgiving manual input for absolute dates. ([#9199](https://github.com/elastic/eui/pull/9199))
+
+**Bug fixes**
+
+- Updated EuiButtonGroup disabled style selectors to use `euiDisabledSelector` to ensure high contrast mode styles apply correctly ([#9226](https://github.com/elastic/eui/pull/9226))
+- Updated `EuiSuperDatePicker` to ensure its pretty format button dates are truncated correctly ([#9231](https://github.com/elastic/eui/pull/9231))
+- Fixed a visual bug for mobile table action buttons that causes shifting positions when changing color mode ([#8231](https://github.com/elastic/eui/issues/8231)) ([#9224](https://github.com/elastic/eui/pull/9224))
+
+**Accessibility**
+
+- Improved the navigation of sibling `EuiToolTip` anchor elements in NVDA browse mode by adding an `id` to ensure they are unique ([#9208](https://github.com/elastic/eui/pull/9208))
+
 ## [`v109.1.0`](https://github.com/elastic/eui/releases/v109.1.0)
 
 - Added `--euiBottomBarOffset` CSS variable to `EuiBottomBar` for positioning other fixed elements relative to the bottom bar's height ([#9211](https://github.com/elastic/eui/pull/9211))

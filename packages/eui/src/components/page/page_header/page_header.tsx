@@ -10,7 +10,11 @@ import React, { FunctionComponent, HTMLAttributes } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../../common';
 import { useEuiTheme } from '../../../services';
-import { useEuiPaddingCSS, EuiPaddingSize } from '../../../global_styling';
+import {
+  useEuiPaddingCSS,
+  EuiPaddingSize,
+  useEuiBackgroundColorCSS,
+} from '../../../global_styling';
 
 import {
   EuiPageHeaderContent,
@@ -34,6 +38,11 @@ export interface EuiPageHeaderProps
    * Adjust the overall padding.
    */
   paddingSize?: EuiPaddingSize;
+  /**
+   * Define the header background color
+   * @default 'transparent'
+   */
+  color?: 'plain' | 'transparent';
 }
 
 export const EuiPageHeader: FunctionComponent<EuiPageHeaderProps> = ({
@@ -41,6 +50,7 @@ export const EuiPageHeader: FunctionComponent<EuiPageHeaderProps> = ({
   restrictWidth = false,
   paddingSize = 'none',
   bottomBorder,
+  color = 'transparent',
 
   // Page header content shared props:
   alignItems,
@@ -64,10 +74,12 @@ export const EuiPageHeader: FunctionComponent<EuiPageHeaderProps> = ({
   const useTheme = useEuiTheme();
   const styles = euiPageHeaderStyles(useTheme);
   const inlinePadding = useEuiPaddingCSS('horizontal');
+  const backgroundColor = useEuiBackgroundColorCSS()[color];
   const cssStyles = [
     styles.euiPageHeader,
     inlinePadding[paddingSize],
     bottomBorder === 'extended' && styles.border,
+    backgroundColor,
   ];
 
   const classes = classNames('euiPageHeader', className);

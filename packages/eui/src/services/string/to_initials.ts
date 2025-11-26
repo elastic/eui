@@ -6,6 +6,8 @@
  * Side Public License, v 1.
  */
 
+export const MAX_INITIALS = 2;
+
 /**
  * This function calculates the initials/acronym for a given name.
  * It defaults to only 2 characters and will take the first character (of each word).
@@ -17,16 +19,23 @@
  * @param {string} name The full name of the item to turn into initials
  * @param {number} initialsLength (Optional) How many characters to show (max 2 allowed)
  * @param {string} initials (Optional) Custom initials (max 2 characters)
- * @returns {string} True if the color is dark, false otherwise.
  */
-
-export const MAX_INITIALS = 2;
-
 export function toInitials(
   name: string,
   initialsLength?: 1 | 2,
   initials?: string
-): string | null {
+) {
+  // If `initials` provided, check if it's a single emoji
+  // in order to support complex, "multi-character" ones
+  if (initials && typeof Intl !== 'undefined' && 'Segmenter' in Intl) {
+    const segmenter = new Intl.Segmenter('en', { granularity: 'grapheme' });
+    const segments = Array.from(segmenter.segment(initials));
+
+    if (segments.length === 1 && isEmoji(segments[0].segment)) {
+      return segments[0].segment;
+    }
+  }
+
   // Calculate the number of initials to show, maxing out at MAX_INITIALS
   let calculatedInitialsLength: number = initials
     ? initials.split('').length
@@ -60,5 +69,17 @@ export function toInitials(
     }
   }
 
-  return calculatedInitials;
+  return calculatedInitials || '';
+}
+
+function isEmoji(str: string) {
+  /**
+   * The \p escape sequence allows matching a character based on its Unicode properties
+   * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Regular_expressions/Unicode_character_class_escape
+   * @see https://www.unicode.org/Public/UCD/latest/ucd/emoji/emoji-data.txt
+   * @see https://www.unicode.org/reports/tr51/#Definitions
+   * @see https://util.unicode.org/UnicodeJsps/character.jsp?a=1F440&B1=Show
+   */
+  const emojiRegex = /[\p{Emoji_Presentation}\p{Extended_Pictographic}]/u;
+  return emojiRegex.test(str);
 }

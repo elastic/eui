@@ -9,6 +9,7 @@
 import React, { cloneElement, HTMLAttributes, forwardRef } from 'react';
 import classNames from 'classnames';
 
+import { useGeneratedHtmlId } from '../../services';
 import type { EuiToolTipProps } from './tool_tip';
 import { euiToolTipAnchorStyles } from './tool_tip.styles';
 
@@ -46,11 +47,19 @@ export const EuiToolTipAnchor = forwardRef<
 
     const classes = classNames('euiToolTipAnchor', className);
 
+    const anchorId = useGeneratedHtmlId({
+      suffix: 'euiToolTipAnchor',
+      conditionalId: id ? `${id}-wrapper` : undefined,
+    });
+
     return (
       // eslint-disable-next-line jsx-a11y/mouse-events-have-key-events
       <span
         ref={ref}
         css={cssStyles}
+        /* A11y: NVDA combines elements with identical markup into a single navigational stop. ¯\_(ツ)_/¯
+        The `id` ensures the wrappers are unique and navigated as standalone elements. (data- attributes don't work) */
+        id={anchorId}
         {...rest}
         className={classes}
         onMouseOver={onMouseOver}

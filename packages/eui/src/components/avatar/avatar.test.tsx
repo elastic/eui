@@ -99,6 +99,18 @@ describe('EuiAvatar', () => {
 
         expect(container.firstChild).toMatchSnapshot();
       });
+
+      it('supports emoji', () => {
+        const { container } = render(<EuiAvatar name="name" initials="🙂" />);
+
+        expect(container).toHaveTextContent('🙂');
+      });
+
+      it('supports emoji sequence ("multi-character")', () => {
+        const { container } = render(<EuiAvatar name="name" initials="🕵🏻‍♂️" />);
+
+        expect(container).toHaveTextContent('🕵🏻‍♂️');
+      });
     });
 
     describe('initialsLength', () => {

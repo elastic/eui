@@ -120,6 +120,7 @@ export const EuiRelativeTab: FunctionComponent<EuiRelativeTabProps> = ({
     return parsedValue.locale(locale || 'en').format(dateFormat);
   }, [isInvalid, value, roundUp, locale, dateFormat]);
 
+  const textInputLabelId = useGeneratedHtmlId();
   const relativeDateInputNumberDescriptionId = useGeneratedHtmlId();
   const timeZomeDescriptionId = useGeneratedHtmlId();
   const numberAriaLabel = useEuiI18n(
@@ -178,11 +179,14 @@ export const EuiRelativeTab: FunctionComponent<EuiRelativeTabProps> = ({
         </EuiFlexGroup>
         <EuiSpacer size="s" />
         <EuiFieldText
+          aria-labelledby={textInputLabelId}
           compressed
           value={formattedValue}
           readOnly
           aria-describedby={timeZomeDescriptionId}
-          prepend={<EuiFormLabel>{labelPrefix}</EuiFormLabel>}
+          prepend={
+            <EuiFormLabel id={textInputLabelId}>{labelPrefix}</EuiFormLabel>
+          }
         />
         <EuiScreenReaderOnly>
           <p id={relativeDateInputNumberDescriptionId}>

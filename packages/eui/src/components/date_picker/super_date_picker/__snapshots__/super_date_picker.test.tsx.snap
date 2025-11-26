@@ -44,6 +44,7 @@ exports[`EuiSuperDatePicker props accepts data-test-subj and passes to EuiFormCo
     >
       <span
         class="euiToolTipAnchor emotion-euiToolTipAnchor-block"
+        id="generated-id-wrapper"
       >
         <button
           class="euiButtonEmpty euiFormControlButton euiSuperDatePicker__prettyFormat emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text-euiFormControlButton-fullWidth"
@@ -53,7 +54,11 @@ exports[`EuiSuperDatePicker props accepts data-test-subj and passes to EuiFormCo
           <span
             class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiFormControlButton__content"
           >
-            Last 15 minutes
+            <span
+              class="emotion-euiTextTruncateCSS"
+            >
+              Last 15 minutes
+            </span>
           </span>
         </button>
       </span>
@@ -61,6 +66,7 @@ exports[`EuiSuperDatePicker props accepts data-test-subj and passes to EuiFormCo
   </div>
   <span
     class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+    id="generated-id-wrapper"
   >
     <button
       class="euiButton euiSuperUpdateButton emotion-euiButtonDisplay-m-fill-primary"
@@ -125,6 +131,7 @@ exports[`EuiSuperDatePicker props compressed is rendered 1`] = `
     >
       <span
         class="euiToolTipAnchor emotion-euiToolTipAnchor-block"
+        id="generated-id-wrapper"
       >
         <button
           class="euiButtonEmpty euiFormControlButton euiSuperDatePicker__prettyFormat emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text-euiFormControlButton-compressed-fullWidth"
@@ -134,7 +141,11 @@ exports[`EuiSuperDatePicker props compressed is rendered 1`] = `
           <span
             class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiFormControlButton__content"
           >
-            Last 15 minutes
+            <span
+              class="emotion-euiTextTruncateCSS"
+            >
+              Last 15 minutes
+            </span>
           </span>
         </button>
       </span>
@@ -142,6 +153,7 @@ exports[`EuiSuperDatePicker props compressed is rendered 1`] = `
   </div>
   <span
     class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+    id="generated-id-wrapper"
   >
     <button
       class="euiButton euiSuperUpdateButton emotion-euiButtonDisplay-s-fill-primary"
@@ -333,6 +345,7 @@ exports[`EuiSuperDatePicker props isDisabled true 1`] = `
     >
       <span
         class="euiToolTipAnchor emotion-euiToolTipAnchor-block"
+        id="generated-id-wrapper"
       >
         <button
           class="euiButtonEmpty euiFormControlButton euiSuperDatePicker__prettyFormat euiSuperDatePicker__prettyFormat--disabled emotion-euiButtonDisplay-euiButtonEmpty-m-empty-disabled-isDisabled-euiFormControlButton-fullWidth"
@@ -343,7 +356,11 @@ exports[`EuiSuperDatePicker props isDisabled true 1`] = `
           <span
             class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiFormControlButton__content"
           >
-            Last 15 minutes
+            <span
+              class="emotion-euiTextTruncateCSS"
+            >
+              Last 15 minutes
+            </span>
           </span>
         </button>
       </span>
@@ -351,6 +368,7 @@ exports[`EuiSuperDatePicker props isDisabled true 1`] = `
   </div>
   <span
     class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+    id="generated-id-wrapper"
   >
     <button
       class="euiButton euiSuperUpdateButton emotion-euiButtonDisplay-m-isDisabled-fill-disabled"
@@ -417,6 +435,7 @@ exports[`EuiSuperDatePicker props isQuickSelectOnly is rendered 1`] = `
   </div>
   <span
     class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+    id="generated-id-wrapper"
   >
     <button
       class="euiButton euiSuperUpdateButton emotion-euiButtonDisplay-m-fill-primary"
@@ -481,6 +500,7 @@ exports[`EuiSuperDatePicker props showUpdateButton can be false 1`] = `
     >
       <span
         class="euiToolTipAnchor emotion-euiToolTipAnchor-block"
+        id="generated-id-wrapper"
       >
         <button
           class="euiButtonEmpty euiFormControlButton euiSuperDatePicker__prettyFormat emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text-euiFormControlButton-fullWidth"
@@ -490,7 +510,11 @@ exports[`EuiSuperDatePicker props showUpdateButton can be false 1`] = `
           <span
             class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiFormControlButton__content"
           >
-            Last 15 minutes
+            <span
+              class="emotion-euiTextTruncateCSS"
+            >
+              Last 15 minutes
+            </span>
           </span>
         </button>
       </span>
@@ -542,6 +566,7 @@ exports[`EuiSuperDatePicker props showUpdateButton can be iconOnly 1`] = `
     >
       <span
         class="euiToolTipAnchor emotion-euiToolTipAnchor-block"
+        id="generated-id-wrapper"
       >
         <button
           class="euiButtonEmpty euiFormControlButton euiSuperDatePicker__prettyFormat emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text-euiFormControlButton-fullWidth"
@@ -551,7 +576,11 @@ exports[`EuiSuperDatePicker props showUpdateButton can be iconOnly 1`] = `
           <span
             class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiFormControlButton__content"
           >
-            Last 15 minutes
+            <span
+              class="emotion-euiTextTruncateCSS"
+            >
+              Last 15 minutes
+            </span>
           </span>
         </button>
       </span>
@@ -559,6 +588,7 @@ exports[`EuiSuperDatePicker props showUpdateButton can be iconOnly 1`] = `
   </div>
   <span
     class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+    id="generated-id-wrapper"
   >
     <button
       class="euiButton euiSuperUpdateButton emotion-euiButtonDisplay-m-fill-primary"
@@ -626,6 +656,7 @@ exports[`EuiSuperDatePicker props width can be auto 1`] = `
     >
       <span
         class="euiToolTipAnchor emotion-euiToolTipAnchor-block"
+        id="generated-id-wrapper"
       >
         <button
           class="euiButtonEmpty euiFormControlButton euiSuperDatePicker__prettyFormat emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text-euiFormControlButton-fullWidth"
@@ -635,7 +666,11 @@ exports[`EuiSuperDatePicker props width can be auto 1`] = `
           <span
             class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiFormControlButton__content"
           >
-            Last 15 minutes
+            <span
+              class="emotion-euiTextTruncateCSS"
+            >
+              Last 15 minutes
+            </span>
           </span>
         </button>
       </span>
@@ -643,6 +678,7 @@ exports[`EuiSuperDatePicker props width can be auto 1`] = `
   </div>
   <span
     class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+    id="generated-id-wrapper"
   >
     <button
       class="euiButton euiSuperUpdateButton emotion-euiButtonDisplay-m-fill-primary"
@@ -707,6 +743,7 @@ exports[`EuiSuperDatePicker props width can be full 1`] = `
     >
       <span
         class="euiToolTipAnchor emotion-euiToolTipAnchor-block"
+        id="generated-id-wrapper"
       >
         <button
           class="euiButtonEmpty euiFormControlButton euiSuperDatePicker__prettyFormat emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text-euiFormControlButton-fullWidth"
@@ -716,7 +753,11 @@ exports[`EuiSuperDatePicker props width can be full 1`] = `
           <span
             class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiFormControlButton__content"
           >
-            Last 15 minutes
+            <span
+              class="emotion-euiTextTruncateCSS"
+            >
+              Last 15 minutes
+            </span>
           </span>
         </button>
       </span>
@@ -724,6 +765,7 @@ exports[`EuiSuperDatePicker props width can be full 1`] = `
   </div>
   <span
     class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+    id="generated-id-wrapper"
   >
     <button
       class="euiButton euiSuperUpdateButton emotion-euiButtonDisplay-m-fill-primary"
@@ -789,6 +831,7 @@ exports[`EuiSuperDatePicker renders 1`] = `
     >
       <span
         class="euiToolTipAnchor emotion-euiToolTipAnchor-block"
+        id="generated-id-wrapper"
       >
         <button
           class="euiButtonEmpty euiFormControlButton euiSuperDatePicker__prettyFormat emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text-euiFormControlButton-fullWidth"
@@ -798,7 +841,11 @@ exports[`EuiSuperDatePicker renders 1`] = `
           <span
             class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiFormControlButton__content"
           >
-            Last 15 minutes
+            <span
+              class="emotion-euiTextTruncateCSS"
+            >
+              Last 15 minutes
+            </span>
           </span>
         </button>
       </span>
@@ -806,6 +853,7 @@ exports[`EuiSuperDatePicker renders 1`] = `
   </div>
   <span
     class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+    id="generated-id-wrapper"
   >
     <button
       class="euiButton euiSuperUpdateButton emotion-euiButtonDisplay-m-fill-primary"
@@ -910,6 +958,7 @@ exports[`EuiSuperDatePicker renders an EuiDatePickerRange 1`] = `
   </div>
   <span
     class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+    id="generated-id-wrapper"
   >
     <button
       class="euiButton euiSuperUpdateButton emotion-euiButtonDisplay-m-fill-primary"

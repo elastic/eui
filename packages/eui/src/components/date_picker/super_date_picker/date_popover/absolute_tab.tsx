@@ -90,6 +90,7 @@ export const EuiAbsoluteTab: FunctionComponent<EuiAbsoluteTabProps> = ({
     [dateFormat]
   );
 
+  const textInputLabelId = useGeneratedHtmlId();
   const timeZomeDescriptionId = useGeneratedHtmlId();
   const submitButtonLabel = useEuiI18n(
     'euiAbsoluteTab.dateFormatButtonLabel',
@@ -205,6 +206,7 @@ export const EuiAbsoluteTab: FunctionComponent<EuiAbsoluteTabProps> = ({
           describedByIds={[timeZomeDescriptionId]}
         >
           <EuiFieldText
+            aria-labelledby={textInputLabelId}
             compressed
             isInvalid={isTextInvalid}
             value={textInputValue}
@@ -218,7 +220,9 @@ export const EuiAbsoluteTab: FunctionComponent<EuiAbsoluteTabProps> = ({
               setIsReadyToParse(true);
             }}
             data-test-subj="superDatePickerAbsoluteDateInput"
-            prepend={<EuiFormLabel>{labelPrefix}</EuiFormLabel>}
+            prepend={
+              <EuiFormLabel id={textInputLabelId}>{labelPrefix}</EuiFormLabel>
+            }
           />
         </EuiFormRow>
         {hasUnparsedText && (
