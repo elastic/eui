@@ -3,7 +3,7 @@
 exports[`EuiHeaderLogo renders 1`] = `
 <a
   aria-label="aria-label"
-  class="euiHeaderLogo testClass1 testClass2 emotion-euiHeaderLogo-euiTestCss"
+  class="euiHeaderLogo testClass1 testClass2 emotion-euiHeaderLogo-empty-text-euiTestCss"
   data-test-subj="test subject string"
   rel="noreferrer"
 >
@@ -18,7 +18,7 @@ exports[`EuiHeaderLogo renders 1`] = `
 
 exports[`EuiHeaderLogo renders href 1`] = `
 <a
-  class="euiHeaderLogo emotion-euiHeaderLogo"
+  class="euiHeaderLogo emotion-euiHeaderLogo-empty-text"
   href="#"
   rel="noreferrer"
 >
@@ -33,7 +33,7 @@ exports[`EuiHeaderLogo renders href 1`] = `
 
 exports[`EuiHeaderLogo renders href with rel 1`] = `
 <a
-  class="euiHeaderLogo emotion-euiHeaderLogo"
+  class="euiHeaderLogo emotion-euiHeaderLogo-empty-text"
   href="#"
   rel="noreferrer"
 >
@@ -48,7 +48,7 @@ exports[`EuiHeaderLogo renders href with rel 1`] = `
 
 exports[`EuiHeaderLogo renders optional props 1`] = `
 <a
-  class="euiHeaderLogo emotion-euiHeaderLogo"
+  class="euiHeaderLogo emotion-euiHeaderLogo-empty-text"
   rel="noreferrer"
   style="color: red;"
 >
@@ -63,7 +63,7 @@ exports[`EuiHeaderLogo renders optional props 1`] = `
 
 exports[`EuiHeaderLogo renders text 1`] = `
 <a
-  class="euiHeaderLogo emotion-euiHeaderLogo"
+  class="euiHeaderLogo emotion-euiHeaderLogo-empty-text"
   rel="noreferrer"
 >
   <span

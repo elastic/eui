@@ -15,6 +15,7 @@ import classNames from 'classnames';
 
 import { useEuiMemoizedStyles, getSecureRelForTarget } from '../../../services';
 import { validateHref } from '../../../services/security/href_validator';
+import { useEuiButtonColorCSS } from '../../../global_styling';
 import { EuiIcon, IconType } from '../../icon';
 import { CommonProps } from '../../common';
 
@@ -45,6 +46,8 @@ export const EuiHeaderLogo: FunctionComponent<EuiHeaderLogoProps> = ({
 }) => {
   const classes = classNames('euiHeaderLogo', className);
   const styles = useEuiMemoizedStyles(euiHeaderLogoStyles);
+  const buttonColorStyles = useEuiButtonColorCSS({ display: 'empty' });
+  const cssStyles = [styles.euiHeaderLogo, buttonColorStyles.text];
 
   const secureRel = getSecureRelForTarget({ href, rel, target });
   const isHrefValid = !href || validateHref(href);
@@ -54,7 +57,7 @@ export const EuiHeaderLogo: FunctionComponent<EuiHeaderLogoProps> = ({
       href={isHrefValid ? href : ''}
       rel={secureRel}
       target={target}
-      css={styles.euiHeaderLogo}
+      css={cssStyles}
       className={classes}
       {...rest}
     >
