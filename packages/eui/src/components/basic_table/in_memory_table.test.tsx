@@ -1533,7 +1533,7 @@ describe('EuiInMemoryTable', () => {
       );
       expect(mockOnChange).toHaveBeenCalledTimes(1);
       expect(mockOnChange).toHaveBeenCalledWith({
-        query: Query.parse(`"${TEXT}"`),
+        query: null,
         queryText: TEXT,
         error: null,
       });
@@ -1568,6 +1568,109 @@ describe('EuiInMemoryTable', () => {
         '.euiTableRowCell .euiTableCellContent'
       );
       expect(tableContent).toHaveLength(2); // 2 matches for "ba"
+    });
+
+    it('supports controlled operation, query is reflected in the search box', () => {
+      const items = [{ title: 'foo' }, { title: 'bar' }, { title: 'baz' }];
+      const columns = [{ field: 'title', name: 'Title' }];
+      const CONTROLLED_QUERY = 'controlled search';
+
+      const { getByTestSubject, rerender } = render(
+        <EuiInMemoryTable
+          items={items}
+          searchFormat="text"
+          search={{
+            query: CONTROLLED_QUERY,
+            box: { incremental: true, 'data-test-subj': 'searchbox' },
+          }}
+          columns={columns}
+        />
+      );
+
+      const searchbox = getByTestSubject('searchbox') as HTMLInputElement;
+      expect(searchbox.value).toBe(CONTROLLED_QUERY);
+
+      // Update the controlled query
+      const UPDATED_QUERY = 'updated search';
+      rerender(
+        <EuiInMemoryTable
+          items={items}
+          searchFormat="text"
+          search={{
+            query: UPDATED_QUERY,
+            box: { incremental: true, 'data-test-subj': 'searchbox' },
+          }}
+          columns={columns}
+        />
+      );
+
+      expect(searchbox.value).toBe(UPDATED_QUERY);
+    });
+
+    it('renders defaultQuery in the search box on initial render', () => {
+      const items = [{ title: 'foo' }, { title: 'bar' }, { title: 'baz' }];
+      const columns = [{ field: 'title', name: 'Title' }];
+      const DEFAULT_QUERY = 'default search text';
+
+      const { getByTestSubject } = render(
+        <EuiInMemoryTable
+          items={items}
+          searchFormat="text"
+          search={{
+            defaultQuery: DEFAULT_QUERY,
+            box: { incremental: true, 'data-test-subj': 'searchbox' },
+          }}
+          columns={columns}
+        />
+      );
+
+      const searchbox = getByTestSubject('searchbox') as HTMLInputElement;
+
+      expect(searchbox.value).toBe(DEFAULT_QUERY);
+
+      fireEvent.keyUp(searchbox, {
+        target: { value: 'something else' },
+      });
+
+      expect(searchbox.value).toBe('something else');
+    });
+
+    it('ignores Query objects in the search box', () => {
+      const items = [{ title: 'foo' }, { title: 'bar' }, { title: 'baz' }];
+      const columns = [{ field: 'title', name: 'Title' }];
+      const query = Query.parse('ba');
+
+      const { getByTestSubject, rerender } = render(
+        <EuiInMemoryTable
+          items={items}
+          searchFormat="text"
+          search={{
+            query,
+            box: { incremental: true, 'data-test-subj': 'searchbox' },
+          }}
+          columns={columns}
+        />
+      );
+
+      const searchbox = getByTestSubject('searchbox') as HTMLInputElement;
+
+      // not `[object Object]`
+      expect(searchbox.value).toBe('');
+
+      rerender(
+        <EuiInMemoryTable
+          items={items}
+          searchFormat="text"
+          search={{
+            defaultQuery: query,
+            box: { incremental: true, 'data-test-subj': 'searchbox' },
+          }}
+          columns={columns}
+        />
+      );
+
+      // not `[object Object]`
+      expect(searchbox.value).toBe('');
     });
   });
 });
