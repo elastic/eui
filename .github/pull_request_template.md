@@ -32,6 +32,14 @@ Even if it is not a breaking change, how significant is the visual change? Is it
 
 Remove or strikethrough items that do not apply to your PR.
 
+
+### Release readiness (Required)
+*Must be completed to communicate details of change to EUI users*
+
+- [ ] Documentation has been updated on [eui.elastic.co](https://eui.elastic.co/) as needed and the relevant link(s) are here:
+- [ ] Should this change need to be reflected in the EUI FIgma library? *(Y/N)*
+- [ ] If so, it must be updated before releasing this change. Provide a link to the relveant file / change / or Github issue:
+
 ### General checklist
 
 - Browser QA
