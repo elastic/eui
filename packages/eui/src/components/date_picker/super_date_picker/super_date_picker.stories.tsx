@@ -328,6 +328,16 @@ export const OverflowingChildren: Story = {
   },
 };
 
+export const TimeWindowButtonsCompressed: Story = {
+  tags: ['vrt-only'],
+  args: {
+    showTimeWindowButtons: true,
+    showUpdateButton: false,
+    compressed: true,
+  },
+  render: (args) => <StatefulSuperDatePicker {...args} />,
+};
+
 /**
  * Helpers
  */
