@@ -21,7 +21,12 @@ import { EuiText } from '../../../text';
  * `customRender` render function.
  */
 type TimeZoneCustomDisplayRenderOptions = {
+  /** Name with UTC offset and an icon */
   nameDisplay?: ReactNode;
+  /** UTC offset in hours, in plain text e.g. UTC+1 */
+  utcOffset?: string;
+  /** Time zone name e.g. Europe/Brussels */
+  timeZoneName?: string;
 };
 
 export type EuiTimeZoneDisplayProps = ComponentPropsWithoutRef<'div'> & {
@@ -84,7 +89,7 @@ export const EuiTimeZoneDisplay: React.FC<EuiTimeZoneDisplayProps> = ({
       {...rest}
     >
       {typeof customRender === 'function'
-        ? customRender({ nameDisplay })
+        ? customRender({ nameDisplay, utcOffset: utc, timeZoneName: name })
         : nameDisplay}
     </EuiFlexGroup>
   );
