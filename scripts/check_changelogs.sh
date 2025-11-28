@@ -105,10 +105,6 @@ done
 
 # Report failures
 if [ ${#MISSING_CHANGELOGS[@]} -gt 0 ]; then
-  echo "🚫 The following packages are modified but miss a changelog entry:"
-  for pkg in "${MISSING_CHANGELOGS[@]}"; do
-    echo " - $pkg"
-  done
   echo "Please add an \`.md\` file named \`${PR_NUMBER}.md\` to the \`changelogs/upcoming/\` directory of the respective packages."
   echo "Example: \`packages/${MISSING_CHANGELOGS[0]}/changelogs/upcoming/${PR_NUMBER}.md\`"
   echo "You can read more about changelogs here: https://github.com/elastic/eui/blob/main/wiki/contributing-to-eui/documenting/changelogs.md"
