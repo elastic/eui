@@ -84,7 +84,8 @@ if [ ${#CHANGED_PACKAGES[@]} -eq 0 ]; then
   exit 0
 fi
 
-echo "Impacted packages: ${CHANGED_PACKAGES[*]}"
+# Comma-delimited list of impacted packages
+echo "📦 Impacted packages: $(echo "${CHANGED_PACKAGES[*]}" | sed 's/ /, /g')"
 
 for pkg_name in "${CHANGED_PACKAGES[@]}"; do
   # Check for package-specific skip label
