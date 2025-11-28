@@ -55,12 +55,10 @@ type Story = StoryObj<EuiFlyoutProps>;
 const onClose = action('onClose');
 
 const StatefulFlyout = (
-  props: Partial<
-    EuiFlyoutProps & { isOpen: boolean; onToggle: (open: boolean) => void }
-  >
+  props: Partial<EuiFlyoutProps & { onToggle: (open: boolean) => void }>
 ) => {
-  const { isOpen, onToggle } = props;
-  const [_isOpen, setIsOpen] = useState(isOpen ?? true);
+  const { onToggle } = props;
+  const [_isOpen, setIsOpen] = useState(true);
 
   const handleToggle = (open: boolean) => {
     setIsOpen(open);
@@ -75,9 +73,9 @@ const StatefulFlyout = (
       {_isOpen && (
         <EuiFlyout
           {...props}
-          onClose={(...args) => {
+          onClose={() => {
             handleToggle(false);
-            onClose(...args);
+            onClose();
           }}
         />
       )}

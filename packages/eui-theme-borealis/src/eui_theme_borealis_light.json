@@ -15,7 +15,7 @@
   "euiContrastRatioGraphic": 3,
   "euiContrastRatioDisabled": 2,
   "euiAnimSlightBounce": "cubic-bezier(0.34, 1.61, 0.7, 1)",
-  "euiAnimSlightResistance": "cubic-bezier(0.694, 0.0482, 0.335, 1)",
+  "euiAnimSlightResistance": "cubic-bezier(0.32, 0.72, 0, 1)",
   "euiAnimSpeedExtraFast": "90ms",
   "euiAnimSpeedFast": "150ms",
   "euiAnimSpeedNormal": "250ms",
