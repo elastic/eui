@@ -14,8 +14,12 @@ set -e
 PR_NUMBER="$1"
 # Pipe-separated list of labels applied to the PR
 LABELS="$2"
+# Remote name (defaults to `origin`)
+REMOTE_NAME="origin"
+# Target branch (defaults to `main`)
+TARGET_BRANCH="${GITHUB_BASE_REF:-main}"
 # Base ref to compare against (defaults to `origin/main`)
-BASE_REF="origin/${GITHUB_BASE_REF:-main}"
+BASE_REF="$REMOTE_NAME/$TARGET_BRANCH"
 
 if [ -z "$PR_NUMBER" ]; then
   echo "Error: PR_NUMBER argument is missing."
@@ -41,13 +45,17 @@ fi
 # if shallow clone missed the ref
 if ! git rev-parse --verify "$BASE_REF" >/dev/null 2>&1; then
   echo "⚠️ \`$BASE_REF\` reference not found. Attempting to fetch..."
-  git fetch origin "${GITHUB_BASE_REF:-main}:$BASE_REF" --depth=1 || echo "Warning: Fetch failed, git diff might fail."
+  git fetch "$REMOTE_NAME" "$TARGET_BRANCH:$BASE_REF" --depth=1 || echo "Warning: Fetch failed, git diff might fail."
 fi
 
 echo "🔍 Detecting changed public packages..."
 
-# Get list of changed files
 CHANGED_FILES=$(git diff --name-only "$BASE_REF...HEAD")
+
+if [ -n "$CHANGED_FILES" ]; then
+  echo "Changed files:"
+  echo "$CHANGED_FILES" | sed 's/^/- /'
+fi
 
 CHANGED_PACKAGES=()
 MISSING_CHANGELOGS=()
@@ -73,7 +81,7 @@ for pkg_dir in packages/*/; do
     continue
   fi
 
-  # We look for "packages/<pkg_name>/" prefix in the changed files list
+  # We look for `packages/<pkg_name>/` prefix in the changed files list
   if echo "$CHANGED_FILES" | grep -Fq "packages/$pkg_name/"; then
     CHANGED_PACKAGES+=("$pkg_name")
   fi
@@ -104,7 +112,6 @@ for pkg_name in "${CHANGED_PACKAGES[@]}"; do
   fi
 done
 
-# Report failures
 if [ ${#MISSING_CHANGELOGS[@]} -gt 0 ]; then
   echo "Please add an \`.md\` file named \`${PR_NUMBER}.md\` to the \`changelogs/upcoming/\` directory of the respective packages."
   echo "Example: \`packages/${MISSING_CHANGELOGS[0]}/changelogs/upcoming/${PR_NUMBER}.md\`"
