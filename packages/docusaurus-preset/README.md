@@ -31,17 +31,17 @@ The preset comes with themes and plugins configured.
 
 The EUI preset uses the [preset constructor](https://docusaurus.io/docs/using-plugins#creating-presets) to define the theme (`@elastic/eui-docusaurus-theme`) and plugins.
 
-To use it in your Docusaurus project, install the package:
+To use it in your Docusaurus project, install the preset and the theme:
 
 ```shell
 # npm
-npm install @elastic/eui-docusaurus-preset
+npm install @elastic/eui-docusaurus-preset @elastic/eui-docusaurus-theme
 
 # pnpm
-pnpm add @elastic/eui-docusaurus-preset
+pnpm add @elastic/eui-docusaurus-preset @elastic/eui-docusaurus-theme
 
 # Yarn
-yarn add @elastic/eui-docusaurus-preset
+yarn add @elastic/eui-docusaurus-preset @elastic/eui-docusaurus-theme
 ```
 
 and in your `docusaurus.config.ts` file, add:
@@ -126,20 +126,19 @@ Run the following command to create a Docusaurus project:
 npx create-docusaurus@latest my-website classic --typescript
 ```
 
-Install `yalc` globally if you haven't already:
+In the root, run the following commands to build and pack the preset and theme locally:
 
 ```shell
-npm install -g yalc
-```
-
-In the root of the mono-repository, run the following commands to build and publish the preset locally:
-
-```shell
+# Build packages
+yarn workspace @elastic/eui-docusaurus-theme build
 yarn workspace @elastic/eui-docusaurus-preset build
 
-# Publish the preset locally
-cd packages/docusaurus-preset
-yalc publish
+# Pack packages
+cd packages/docusaurus-theme
+yarn pack --filename docusaurus-theme.tgz
+
+cd ../docusaurus-preset
+yarn pack --filename docusaurus-preset.tgz
 ```
 
 In your project, install EUI dependencies:
@@ -155,36 +154,26 @@ pnpm add @elastic/eui @elastic/charts @emotion/react @emotion/css moment
 yarn add @elastic/eui @elastic/charts @emotion/react @emotion/css moment
 ```
 
-and add the locally published packages:
+and add the locally packed packages:
 
 ```shell
-yalc add @elastic/eui-docusaurus-preset
-
 # npm
-npm install
+npm install /path/to/eui/packages/docusaurus-preset/docusaurus-preset.tgz /path/to/eui/packages/docusaurus-theme/docusaurus-theme.tgz
 
 # pnpm
-pnpm install
+pnpm add /path/to/eui/packages/docusaurus-preset/docusaurus-preset.tgz /path/to/eui/packages/docusaurus-theme/docusaurus-theme.tgz
 
 # Yarn
-yarn
+yarn add /path/to/eui/packages/docusaurus-preset/docusaurus-preset.tgz /path/to/eui/packages/docusaurus-theme/docusaurus-theme.tgz
 ```
 
 Configure Docusaurus to use the locally built preset as outlined in the [Usage section](#usage).
 
 #### Making changes
 
-When you make changes to the preset, rebuild and republish the packages:
+When you make changes to the preset or theme, rebuild and repack the packages.
 
-```shell
-# From the mono-repository root
-yarn workspace @elastic/eui-docusaurus-preset build
-
-cd packages/docusaurus-preset  
-yalc publish --push
-```
-
-The `--push` flag automatically updates all projects using these packages.
+Then reinstall the packages in your project to update the changes.
 
 Restart your Docusaurus development server:
 
@@ -197,20 +186,4 @@ pnpm start
 
 # Yarn
 yarn start
-```
-
-When you're done testing, remove the locally published packages from your project:
-
-```shell
-# In your project
-yalc remove @elastic/eui-docusaurus-preset
-
-# npm
-npm install
-
-# pnpm
-pnpm install
-
-# Yarn
-yarn
 ```
