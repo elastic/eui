@@ -1,3 +1,7 @@
+## [`v5.1.0`](https://github.com/elastic/eui/releases/v5.1.0)
+
+- Added component token `components.tableFooterBackground` ([#9224](https://github.com/elastic/eui/pull/9224))
+
 ## [`v5.0.0`](https://github.com/elastic/eui/releases/v5.0.0)
 
 - Added color tokens `borderBaseProminent` and `borderInteractiveFormsHoverProminent` ([#9162](https://github.com/elastic/eui/pull/9162))

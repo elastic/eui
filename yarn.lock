@@ -7097,6 +7097,7 @@ __metadata:
     "@elastic/eui-docusaurus-theme": "workspace:^"
     typescript: "npm:~5.5.4"
   peerDependencies:
+    "@elastic/eui-docusaurus-theme": ^2.1.0
     react: ^18.0.0 || ^19.0.0
     react-dom: ^18.0.0 || ^19.0.0
   languageName: unknown
@@ -7505,7 +7506,7 @@ __metadata:
     yo: "npm:^4.3.1"
   peerDependencies:
     "@elastic/datemath": ^5.0.2
-    "@elastic/eui-theme-borealis": 5.0.0
+    "@elastic/eui-theme-borealis": 5.1.0
     "@emotion/css": 11.x
     "@emotion/react": 11.x
     "@types/react": ^17.0 || ^18.0

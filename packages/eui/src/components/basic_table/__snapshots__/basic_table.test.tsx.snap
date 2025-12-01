@@ -2,7 +2,7 @@
 
 exports[`EuiBasicTable actions custom item actions 1`] = `
 <tr
-  class="euiTableRow euiTableRow-isSelectable euiTableRow-hasActions emotion-euiTableRow-mobile"
+  class="euiTableRow euiTableRow-isSelectable euiTableRow-hasActions emotion-euiTableRow-mobile-hasBackground"
 >
   <td
     class="euiTableRowCell euiTableRowCell--hasActions emotion-euiTableRowCell-hasActions-middle-mobile-customActions"
@@ -45,7 +45,7 @@ exports[`EuiBasicTable renders (bare-bones) 1`] = `
     𐘂𐘂
   </span>
   <table
-    class="euiTable emotion-euiTable-fixed-uncompressed-desktop"
+    class="euiTable emotion-euiTable-fixed-uncompressed-hasBackground-desktop"
     id="__table_generated-id"
     tabindex="-1"
   >
@@ -199,7 +199,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
     𐘂𐘂
   </span>
   <table
-    class="euiTable emotion-euiTable-fixed-uncompressed-desktop"
+    class="euiTable emotion-euiTable-fixed-uncompressed-hasBackground-desktop"
     id="__table_generated-id"
     tabindex="-1"
   >
@@ -268,6 +268,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
         >
           <span
             class="euiToolTipAnchor emotion-euiToolTipAnchor-block"
+            id="generated-id-wrapper"
           >
             <button
               class="euiTableHeaderButton euiTableHeaderButton-isSorted emotion-euiTableHeaderCell__button"
@@ -491,6 +492,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
           >
             <span
               class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+              id="generated-id-wrapper"
             >
               <button
                 class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-s-empty-primary-flush-right"
@@ -509,6 +511,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
             </span>
             <span
               class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+              id="generated-id-wrapper"
             >
               <button
                 class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-s-empty-primary-flush-right"
@@ -637,6 +640,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
           >
             <span
               class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+              id="generated-id-wrapper"
             >
               <button
                 class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-s-empty-primary-flush-right"
@@ -655,6 +659,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
             </span>
             <span
               class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+              id="generated-id-wrapper"
             >
               <button
                 class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-s-empty-primary-flush-right"
@@ -783,6 +788,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
           >
             <span
               class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+              id="generated-id-wrapper"
             >
               <button
                 class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-s-empty-primary-flush-right"
@@ -801,6 +807,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
             </span>
             <span
               class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+              id="generated-id-wrapper"
             >
               <button
                 class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-s-empty-primary-flush-right"
@@ -831,7 +838,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
     <tfoot>
       <tr>
         <td
-          class="euiTableFooterCell emotion-euiTableFooterCell"
+          class="euiTableFooterCell emotion-euiTableFooterCell-hasBackground"
         >
           <div
             class="euiTableCellContent emotion-euiTableCellContent-truncateText"
@@ -842,7 +849,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
           </div>
         </td>
         <td
-          class="euiTableFooterCell emotion-euiTableFooterCell"
+          class="euiTableFooterCell emotion-euiTableFooterCell-hasBackground"
         >
           <div
             class="euiTableCellContent emotion-euiTableCellContent-truncateText"
@@ -853,7 +860,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
           </div>
         </td>
         <td
-          class="euiTableFooterCell emotion-euiTableFooterCell"
+          class="euiTableFooterCell emotion-euiTableFooterCell-hasBackground"
         >
           <div
             class="euiTableCellContent emotion-euiTableCellContent-truncateText"
@@ -869,7 +876,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
           </div>
         </td>
         <td
-          class="euiTableFooterCell emotion-euiTableFooterCell"
+          class="euiTableFooterCell emotion-euiTableFooterCell-hasBackground"
         >
           <div
             class="euiTableCellContent emotion-euiTableCellContent-truncateText"
@@ -880,7 +887,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
           </div>
         </td>
         <td
-          class="euiTableFooterCell emotion-euiTableFooterCell"
+          class="euiTableFooterCell emotion-euiTableFooterCell-hasBackground"
         >
           <div
             class="euiTableCellContent emotion-euiTableCellContent-truncateText"

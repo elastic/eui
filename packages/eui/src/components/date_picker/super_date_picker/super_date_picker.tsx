@@ -16,8 +16,9 @@ import classNames from 'classnames';
 import moment, { LocaleSpecifier, Moment } from 'moment'; // eslint-disable-line import/named
 import dateMath from '@elastic/datemath';
 
-import { useEuiMemoizedStyles } from '../../../services';
+import { useEuiMemoizedStyles, RenderWithEuiTheme } from '../../../services';
 import { isObject } from '../../../services/predicate';
+import { euiTextTruncateCSS } from '../../../global_styling';
 import { EuiI18nConsumer } from '../../context';
 import { CommonProps } from '../../common';
 import { EuiDatePickerRange } from '../date_picker_range';
@@ -26,6 +27,7 @@ import {
   EuiFormControlLayout,
   EuiFormControlLayoutProps,
 } from '../../form';
+import { EuiToolTip } from '../../tool_tip';
 
 import {
   ShortDate,
@@ -626,33 +628,62 @@ export class EuiSuperDatePickerInternal extends Component<
       isDisabledDisplay ||
       (showPrettyDuration && !isStartDatePopoverOpen && !isEndDatePopoverOpen)
     ) {
+      // Tooltip content with full range
+      const startMoment = dateMath.parse(start);
+      const endMoment = dateMath.parse(end, { roundUp: true });
+      const separator = ' – ';
+      const formattedFullRange = isInvalid
+        ? ''
+        : startMoment?.format(dateFormat) +
+          separator +
+          endMoment?.format(dateFormat);
+
       return (
-        <EuiFormControlLayout {...formControlLayoutProps}>
-          {!isQuickSelectOnly && (
-            <EuiFormControlButton
-              type="button"
-              css={styles.euiSuperDatePicker__prettyFormat}
-              className={classNames('euiSuperDatePicker__prettyFormat', {
-                'euiSuperDatePicker__prettyFormat--disabled': isDisabled,
-              })}
-              data-test-subj="superDatePickerShowDatesButton"
-              disabled={!!isDisabled}
-              onClick={this.hidePrettyDuration}
-              onFocus={onFocus}
-            >
-              {isDisabledDisplay ? (
-                isDisabled.display
-              ) : (
-                <PrettyDuration
-                  timeFrom={start}
-                  timeTo={end}
-                  quickRanges={commonlyUsedRanges}
-                  dateFormat={dateFormat}
-                />
-              )}
-            </EuiFormControlButton>
-          )}
-        </EuiFormControlLayout>
+        <RenderWithEuiTheme>
+          {(euiTheme) => {
+            return (
+              <EuiFormControlLayout {...formControlLayoutProps}>
+                {!isQuickSelectOnly && (
+                  <EuiToolTip
+                    css={styles.euiSuperDatePicker__prettyDurationTooltip}
+                    content={formattedFullRange}
+                    display="block"
+                    offset={euiTheme.euiTheme.base * 0.5}
+                  >
+                    <EuiFormControlButton
+                      type="button"
+                      className={classNames(
+                        'euiSuperDatePicker__prettyFormat',
+                        {
+                          'euiSuperDatePicker__prettyFormat--disabled':
+                            isDisabled,
+                        }
+                      )}
+                      compressed={compressed}
+                      data-test-subj="superDatePickerShowDatesButton"
+                      disabled={!!isDisabled}
+                      onClick={this.hidePrettyDuration}
+                      onFocus={onFocus}
+                    >
+                      {isDisabledDisplay ? (
+                        isDisabled.display
+                      ) : (
+                        <span css={euiTextTruncateCSS()}>
+                          <PrettyDuration
+                            timeFrom={start}
+                            timeTo={end}
+                            quickRanges={commonlyUsedRanges}
+                            dateFormat={dateFormat}
+                          />
+                        </span>
+                      )}
+                    </EuiFormControlButton>
+                  </EuiToolTip>
+                )}
+              </EuiFormControlLayout>
+            );
+          }}
+        </RenderWithEuiTheme>
       );
     }
 

@@ -11,12 +11,9 @@ import { euiMinBreakpoint, logicalCSS } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 
 export const euiPageStyles = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme } = euiThemeContext;
-
   return {
     euiPage: css`
       display: flex;
-      background-color: ${euiTheme.colors.body};
       /* Ensure Safari doesn't shrink height beyond contents */
       flex-shrink: 0;
       /* Ensure Firefox doesn't expand width beyond bounds */

@@ -166,7 +166,10 @@ export const QuickSelectOnly: Story = {
 
     return (
       <EuiFlexGroup>
-        <EuiFieldText onFocus={() => setCollapsed(true)} />
+        <EuiFieldText
+          onFocus={() => setCollapsed(true)}
+          onBlur={() => setCollapsed(false)}
+        />
         <EuiSuperDatePicker
           {...args}
           isQuickSelectOnly={isCollapsed}
@@ -210,6 +213,7 @@ export const CustomTimeZoneDisplay: Story = {
     },
   },
   args: {
+    start: 'Jan-01-2025',
     timeZoneDisplayProps: {
       timeZone: 'America/Los_Angeles',
       customRender: ({ nameDisplay }) => (
@@ -232,7 +236,7 @@ export const CustomTimeZoneDisplay: Story = {
 
     await step('show popover on click of the date picker button', async () => {
       await fireEvent.click(
-        canvas.getByTestSubject('superDatePickerShowDatesButton')
+        canvas.getByTestSubject('superDatePickerstartDatePopoverButton')
       );
 
       await canvas.waitForEuiPopoverVisible();
@@ -324,6 +328,16 @@ export const OverflowingChildren: Story = {
   },
 };
 
+export const TimeWindowButtonsCompressed: Story = {
+  tags: ['vrt-only'],
+  args: {
+    showTimeWindowButtons: true,
+    showUpdateButton: false,
+    compressed: true,
+  },
+  render: (args) => <StatefulSuperDatePicker {...args} />,
+};
+
 /**
  * Helpers
  */
@@ -378,10 +392,6 @@ const StatefulSuperDatePicker = (props: EuiSuperDatePickerProps) => {
       end={_end}
       onTimeChange={handleOnTimeChange}
       onRefresh={onRefresh}
-      css={css`
-        /* ensure the input content is visible without being truncated */
-        inline-size: 700px;
-      `}
       {...rest}
     />
   );

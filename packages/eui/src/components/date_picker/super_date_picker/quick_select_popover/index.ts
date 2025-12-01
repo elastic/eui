@@ -12,5 +12,6 @@ export type { EuiQuickSelectPopoverProps } from './quick_select_popover';
 export { EuiQuickSelectPopover } from './quick_select_popover';
 export type { EuiQuickSelectProps } from './quick_select';
 export { EuiQuickSelect } from './quick_select';
+export { EuiQuickSelectPanel } from './quick_select_panel';
 export type { EuiRecentlyUsedProps } from './recently_used';
 export { EuiRecentlyUsed } from './recently_used';

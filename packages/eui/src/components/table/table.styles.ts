@@ -56,7 +56,6 @@ export const euiTableStyles = (euiThemeContext: UseEuiTheme) => {
       ${logicalCSS('width', '100%')}
       border: none;
       border-collapse: collapse;
-      background-color: ${euiTheme.colors.emptyShade};
     `,
     layout: {
       fixed: css`
@@ -66,6 +65,9 @@ export const euiTableStyles = (euiThemeContext: UseEuiTheme) => {
         table-layout: auto;
       `,
     },
+    hasBackground: css`
+      background-color: ${euiTheme.colors.backgroundBasePlain};
+    `,
     /**
      * 1. The padding on the `.euiTableCellContent` div allows the ellipsis to show if the
      * content is truncated. If the padding was on the cell, the ellipsis would be cropped.

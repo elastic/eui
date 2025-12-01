@@ -219,7 +219,7 @@ describe('EuiDataGridCellPopover', () => {
       openCellPopover('A');
       cy.get('[data-test-subj="euiDataGridExpansionPopover"]')
         .should('have.css', 'left', '1px')
-        .should('have.css', 'top', '72px')
+        .should('have.css', 'top', '76px')
         .should('have.css', 'width', '112px');
     });
 
@@ -229,7 +229,7 @@ describe('EuiDataGridCellPopover', () => {
       openCellPopover('B');
       cy.get('[data-test-subj="euiDataGridExpansionPopover"]')
         .should('have.css', 'left', '109px')
-        .should('have.css', 'top', '72px')
+        .should('have.css', 'top', '76px')
         .should('have.css', 'width', '375px');
     });
 

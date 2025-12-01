@@ -58,10 +58,14 @@ export const euiTableHeaderFooterCellStyles = (
         }
       }
     `,
-    euiTableFooterCell: css`
-      ${sharedStyles}
-      background-color: ${euiTheme.colors.lightestShade};
-    `,
+    euiTableFooterCell: {
+      euiTableFooterCell: css`
+        ${sharedStyles}
+      `,
+      hasBackground: css`
+        background-color: ${euiTheme.components.tableFooterBackground};
+      `,
+    },
   };
 };
 

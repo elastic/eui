@@ -52,6 +52,8 @@ describe('EuiTimeZoneDisplay', () => {
   });
 
   test('timeZoneCustomDisplayRender render function', () => {
+    jest.useFakeTimers().setSystemTime(new Date('2025-06-21T02:42:00Z'));
+
     const customContent = (
       <EuiButtonIcon
         href="https://example.com"
@@ -63,10 +65,12 @@ describe('EuiTimeZoneDisplay', () => {
     const { getByTestSubject } = render(
       <EuiTimeZoneDisplay
         timeZone="Europe/Helsinki"
-        customRender={({ nameDisplay }) => (
+        customRender={({ nameDisplay, utcOffset, timeZoneName }) => (
           <>
             {nameDisplay}
             {customContent}
+            <span data-test-subj="utc">{utcOffset}</span>
+            <span data-test-subj="name">{timeZoneName}</span>
           </>
         )}
       />
@@ -76,5 +80,9 @@ describe('EuiTimeZoneDisplay', () => {
       'Helsinki'
     );
     expect(getByTestSubject('customContent')).toBeInTheDocument();
+    expect(getByTestSubject('utc')).toHaveTextContent('UTC+3');
+    expect(getByTestSubject('name')).toHaveTextContent('Europe/Helsinki');
+
+    jest.useRealTimers();
   });
 });
