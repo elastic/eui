@@ -1,3 +1,29 @@
+## [`v110.0.0`](https://github.com/elastic/eui/releases/v110.0.0)
+
+- Updated `EuiSuperDatePicker` to expose plain text `utcOffset` and `timeZoneName` in `timeZoneDisplayProps.customRender` render function ([#9245](https://github.com/elastic/eui/pull/9245))
+- Updated `EuiHeaderLogo` to add a hover style ([#9240](https://github.com/elastic/eui/pull/9240))
+- Made `EuiQuickSelectPanel` available for importing from the `@elastic/eui` package ([#9239](https://github.com/elastic/eui/pull/9239))
+- Updated `EuiAvatar` to support Emoji Sequence ("advanced") in the `initials` prop ([#9227](https://github.com/elastic/eui/pull/9227))
+- Added `color` prop on `EuiPageHeader` to support `transparent` (default) and `plain` backgrounds. ([#9220](https://github.com/elastic/eui/pull/9220))
+- Added `color` prop on `EuiPage` to support `transparent` (default) and `plain` backgrounds. ([#9220](https://github.com/elastic/eui/pull/9220))
+- Updated `EuiPageTemplate` to ensure `panelled=true` renders a `EuiPageHeader` with a plain background by default ([#9220](https://github.com/elastic/eui/pull/9220))
+- Removed the default background style on `EuiPageTemplate`'s outer wrapper ([#9220](https://github.com/elastic/eui/pull/9220))
+
+**Bug fixes**
+
+- Fixed icon size in `EuiSuperDatePicker`'s time window buttons when `compressed={true}` ([#9245](https://github.com/elastic/eui/pull/9245))
+- Fixed `EuiIcon` visibility issue with `logoElastic` when `color` is set to `text` or `ghost` in light mode ([#9247](https://github.com/elastic/eui/pull/9247))
+- Fixed `EuiInMemoryTable` support for controlled search for plain text (when `searchFormat="text"`) by properly handling `search.query` and `search.defaulQuery` ([#9142](https://github.com/elastic/eui/pull/9142))
+
+**Breaking changes**
+
+- Removed deprecated `message` prop from `EuiInMemoryTable`, use `noItemsMessage` instead ([#9234](https://github.com/elastic/eui/pull/9234))
+
+**Accessibility**
+
+- Improved the accessibility of input fields in the popover of `EuiSuperDatePicker` by properly labeling them ([#9239](https://github.com/elastic/eui/pull/9239))
+- Improved the accessibility of `EuiSelectable` by removing empty `aria-activedescendant` attribute when no option is active to ensure the search input is perceivable by screen readers ([#9223](https://github.com/elastic/eui/pull/9223))
+
 ## [`v109.2.0`](https://github.com/elastic/eui/releases/v109.2.0)
 
 - Updated `EuiFlexItem` to fall back to `grow={true}` if invalid values for `grow` are passed ([#9228](https://github.com/elastic/eui/pull/9228))
