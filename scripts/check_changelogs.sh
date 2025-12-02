@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# This script checks that a changelog entry exists for every changed public package in a PR.
+# Checks that a changelog entry exists for every changed public package in a PR.
 #
 # Skip logic:
 #
@@ -10,16 +10,10 @@
 
 set -e
 
-# The Pull Request ID
+# Pull request ID
 PR_NUMBER="$1"
-# Pipe-separated list of labels applied to the PR
+# Pipe-separated PR labels
 LABELS="$2"
-# Remote name (defaults to `origin`)
-REMOTE_NAME="origin"
-# Target branch (defaults to `main`)
-TARGET_BRANCH="${GITHUB_BASE_REF:-main}"
-# Base ref to compare against (defaults to `origin/main`)
-BASE_REF="$REMOTE_NAME/$TARGET_BRANCH"
 
 if [ -z "$PR_NUMBER" ]; then
   echo "Error: PR_NUMBER argument is missing."
@@ -42,7 +36,7 @@ fi
 
 echo "🔍 Detecting changed public packages..."
 
-CHANGED_FILES=$(git diff --name-only "$BASE_REF...HEAD")
+CHANGED_FILES=$(git diff --name-only HEAD^1 HEAD)
 
 if [ -n "$CHANGED_FILES" ]; then
   echo "Changed files:"
@@ -56,7 +50,7 @@ MISSING_CHANGELOGS=()
 for pkg_path in $(yarn workspaces list --json --no-private | jq -r '.location'); do
   pkg_name=$(basename "$pkg_path")
 
-  # we look for the package path in the changed files list
+  # look for the package path in the changed files list
   if echo "$CHANGED_FILES" | grep -Fq "$pkg_path/"; then
     CHANGED_PACKAGES+=("$pkg_name")
   fi
@@ -67,7 +61,6 @@ if [ ${#CHANGED_PACKAGES[@]} -eq 0 ]; then
   exit 0
 fi
 
-# Comma-delimited list of changed packages
 echo "📦 Changed packages: $(echo "${CHANGED_PACKAGES[*]}" | sed 's/ /, /g')"
 
 # For all public changed workspaces
