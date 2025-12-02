@@ -26,9 +26,11 @@ import './match_container_polyfill.js';
  * @returns `true` if the container matches the condition, `false` otherwise
  *
  * @example
+ * ```ts
  * const ref = useRef<HTMLDivElement>(null);
  * const isWide = useEuiContainerQuery(ref, '(width > 400px)');
  * const isSidebarWide = useEuiContainerQuery(ref, '(min-width: 300px)', 'sidebar');
+ * ```
  *
  * @todo document that a proper container is needed!
  *
