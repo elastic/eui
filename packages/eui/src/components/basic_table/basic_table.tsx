@@ -631,48 +631,55 @@ export class EuiBasicTable<T extends object = any> extends Component<
       ? Math.ceil(pagination.totalItemCount / this.pageSize)
       : 1;
 
-    const baseName = tableCaption || (
-      <EuiI18n
-        token="euiBasicTable.caption.defaultCaption"
-        default="Data table"
-      />
+    const tableName = tableCaption || (
+      <EuiI18n token="euiBasicTable.caption.tableName" default="Data table" />
     );
 
-    let captionElement: React.ReactNode;
-
-    if (pagination) {
-      if (totalItemCount > 0) {
-        captionElement = (
+    const itemCountPart = (() => {
+      if (!itemCount) {
+        return this.props.noItemsMessage;
+      } else if (totalItemCount > 0) {
+        return (
           <EuiI18n
-            token="euiBasicTable.caption.paginatedWithTotal"
-            default="{baseName}; {itemCount} of {totalItemCount} rows. Page {page} of {pageCount}."
-            values={{ baseName, itemCount, totalItemCount, page, pageCount }}
-          />
-        );
-      } else {
-        captionElement = (
-          <EuiI18n
-            token="euiBasicTable.caption.paginated"
-            default="{baseName}; {itemCount} rows. Page {page} of {pageCount}."
-            values={{ baseName, itemCount, page, pageCount }}
+            token="euiBasicTable.caption.itemCountPart.withTotalItemCount"
+            default="{itemCount} of {totalItemCount} rows"
+            values={{ itemCount, totalItemCount }}
           />
         );
       }
-    } else {
-      captionElement = (
+      return (
         <EuiI18n
-          token="euiBasicTable.caption.simple"
-          default="{baseName}; {itemCount} rows."
-          values={{ baseName, itemCount }}
+          token="euiBasicTable.caption.itemCountPart.onlyItemCount"
+          default="{itemCount} rows"
+          values={{ itemCount }}
         />
       );
-    }
+    })();
+
+    const paginationPart = (() => {
+      if (pagination && page && pageCount) {
+        return (
+          <EuiI18n
+            token="euiBasicTable.caption.paginationPart.withPageCount"
+            default="Page {page} of {pageCount}"
+            values={{ page, pageCount }}
+          />
+        );
+      }
+      return '';
+    })();
 
     return (
       <EuiScreenReaderOnly>
         <caption css={euiTableCaptionStyles} className="euiTableCaption">
           {tabularCopyMarkers.hiddenNoCopyBoundary}
-          <EuiDelayRender>{captionElement}</EuiDelayRender>
+          <EuiDelayRender>
+            <EuiI18n
+              token="euiBasicTable.caption.aggregated"
+              default="{tableName}; {itemCountPart}; {paginationPart}"
+              values={{ tableName, itemCountPart, paginationPart }}
+            />
+          </EuiDelayRender>
           {tabularCopyMarkers.hiddenNoCopyBoundary}
         </caption>
       </EuiScreenReaderOnly>
