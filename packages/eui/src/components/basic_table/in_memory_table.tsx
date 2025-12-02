@@ -526,7 +526,11 @@ export class EuiInMemoryTable<T extends object = object> extends Component<
     });
   };
 
-  onQueryChange = ({ query, queryText, error }: EuiInMemoryTableSearchBarOnChangeArgs) => {
+  onQueryChange = ({
+    query,
+    queryText,
+    error,
+  }: EuiInMemoryTableSearchBarOnChangeArgs) => {
     const { search } = this.props;
     if (isEuiSearchBarProps(search)) {
       if (search.onChange) {
