@@ -47,13 +47,19 @@ interface onChangeArgument {
   error: Error | null;
 }
 
+// allows `query: null` in the onChange callback when using `searchFormat="text"`
+interface EuiInMemoryTableSearchBarProps
+  extends Omit<EuiSearchBarProps, 'onChange'> {
+  onChange?: (args: onChangeArgument) => void | boolean;
+}
+
 function isEuiSearchBarProps<T extends object>(
   x: EuiInMemoryTableProps<T>['search']
-): x is EuiSearchBarProps {
+): x is EuiInMemoryTableSearchBarProps {
   return typeof x !== 'boolean';
 }
 
-export type Search = boolean | EuiSearchBarProps;
+export type Search = boolean | EuiInMemoryTableSearchBarProps;
 
 interface PaginationOptions extends EuiTablePaginationProps {
   pageSizeOptions?: number[];
