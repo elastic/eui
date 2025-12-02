@@ -235,7 +235,7 @@ interface BasicTableProps<T extends object>
    */
   error?: string;
   /**
-   * Describes the content of the table. If not specified, the caption will be "This table contains {itemCount} rows."
+   * Provides a description of the table’s content. If no description is provided, the table will default to the name Data Table.
    */
   tableCaption?: string;
   /**
