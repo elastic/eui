@@ -8,9 +8,7 @@ jobs:
   changelog:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
+      - uses: actions/checkout@v5
       - name: Check changelogs
         run: |
           ./scripts/check_changelogs.sh \
