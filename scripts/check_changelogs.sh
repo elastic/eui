@@ -40,14 +40,6 @@ if has_label "skip-changelog"; then
   exit 0
 fi
 
-# Ensure we have `origin/main` for diffing
-# This check prevents "ambiguous argument 'origin/main...HEAD'" errors
-# if shallow clone missed the ref
-if ! git rev-parse --verify "$BASE_REF" >/dev/null 2>&1; then
-  echo "⚠️ \`$BASE_REF\` reference not found. Attempting to fetch..."
-  git fetch "$REMOTE_NAME" "$TARGET_BRANCH:$BASE_REF" --depth=1 || echo "Warning: Fetch failed, git diff might fail."
-fi
-
 echo "🔍 Detecting changed public packages..."
 
 CHANGED_FILES=$(git diff --name-only "$BASE_REF...HEAD")
@@ -60,29 +52,12 @@ fi
 CHANGED_PACKAGES=()
 MISSING_CHANGELOGS=()
 
-# Iterate over all directories in `packages/`
-# Assumption: `packages/<package_name>/`
-for pkg_dir in packages/*/; do
-  [ -d "$pkg_dir" ] || continue
-
-  # Remove trailing slash
-  pkg_path="${pkg_dir%/}"
+# For all public workspaces
+for pkg_path in $(yarn workspaces list --json --no-private | jq -r '.location'); do
   pkg_name=$(basename "$pkg_path")
-  package_json="$pkg_path/package.json"
 
-  # Check if `package.json` exists
-  if [ ! -f "$package_json" ]; then
-    continue
-  fi
-
-  # Skip private packages
-  is_private=$(node -p "try { require('./$package_json').private } catch(e) { false }" 2>/dev/null)
-  if [ "$is_private" == "true" ]; then
-    continue
-  fi
-
-  # We look for `packages/<pkg_name>/` prefix in the changed files list
-  if echo "$CHANGED_FILES" | grep -Fq "packages/$pkg_name/"; then
+  # we look for the package path in the changed files list
+  if echo "$CHANGED_FILES" | grep -Fq "$pkg_path/"; then
     CHANGED_PACKAGES+=("$pkg_name")
   fi
 done
@@ -92,16 +67,18 @@ if [ ${#CHANGED_PACKAGES[@]} -eq 0 ]; then
   exit 0
 fi
 
-# Comma-delimited list of packages detected
+# Comma-delimited list of changed packages
 echo "📦 Changed packages: $(echo "${CHANGED_PACKAGES[*]}" | sed 's/ /, /g')"
 
+# For all public changed workspaces
 for pkg_name in "${CHANGED_PACKAGES[@]}"; do
-  # Check for package-specific skip label
+  # skip if package-specific skip label is present
   if has_label "skip-changelog-$pkg_name"; then
     echo "⏩ Skipping changelog check for \`$pkg_name\` (label \`skip-changelog-$pkg_name\` present)."
     continue
   fi
 
+  # look for the changelog file
   CHANGELOG_FILE="packages/$pkg_name/changelogs/upcoming/$PR_NUMBER.md"
 
   if [ -f "$CHANGELOG_FILE" ]; then
