@@ -94,7 +94,7 @@ exports[`EuiPageTemplate children renders all other types within the main EuiPag
     id="EuiPageTemplateInner_generated-id"
   >
     <header
-      class="euiPageHeader emotion-euiPageHeader-l-border"
+      class="euiPageHeader emotion-euiPageHeader-l-border-plain"
     >
       <div
         class="emotion-euiPageHeaderContent-l"

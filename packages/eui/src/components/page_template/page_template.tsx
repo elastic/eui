@@ -157,6 +157,7 @@ export const _EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
         restrictWidth,
         paddingSize,
         bottomBorder: headerBottomBorder,
+        color: panelled === false ? 'transparent' : 'plain',
       },
       section: {
         restrictWidth,

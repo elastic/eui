@@ -32,7 +32,6 @@ exports[`EuiSelectableTemplateSitewide is rendered 1`] = `
             </span>
           </div>
           <input
-            aria-activedescendant=""
             aria-describedby="generated-id_instructions"
             aria-haspopup="listbox"
             aria-label="aria-label"
@@ -107,7 +106,6 @@ exports[`EuiSelectableTemplateSitewide props popoverFooter is rendered 1`] = `
             </span>
           </div>
           <input
-            aria-activedescendant=""
             aria-describedby="generated-id_instructions"
             aria-haspopup="listbox"
             aria-label="Filter options"
@@ -162,7 +160,6 @@ exports[`EuiSelectableTemplateSitewide props popoverProps is rendered 1`] = `
             </span>
           </div>
           <input
-            aria-activedescendant=""
             aria-describedby="generated-id_instructions"
             aria-haspopup="listbox"
             aria-label="Filter options"
@@ -217,7 +214,6 @@ exports[`EuiSelectableTemplateSitewide props popoverTitle is rendered 1`] = `
             </span>
           </div>
           <input
-            aria-activedescendant=""
             aria-describedby="generated-id_instructions"
             aria-haspopup="listbox"
             aria-label="Filter options"

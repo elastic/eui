@@ -64,7 +64,7 @@ export const EuiTimeWindowButtons: React.FC<EuiTimeWindowButtonsProps> = ({
 }) => {
   const buttonColor = 'text';
   const buttonSize = compressed ? 's' : 'm';
-  const iconSize = compressed ? 's' : 'm';
+  const iconSize = 'm';
   const styles = useEuiMemoizedStyles(euiButtonGroupButtonsStyles);
 
   const {
