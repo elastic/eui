@@ -48,7 +48,7 @@ interface onChangeArgument {
 }
 
 // allows `query: null` in the onChange callback when using `searchFormat="text"`
-interface EuiInMemoryTableSearchBarProps
+export interface EuiInMemoryTableSearchBarProps
   extends Omit<EuiSearchBarProps, 'onChange'> {
   onChange?: (args: onChangeArgument) => void | boolean;
 }
