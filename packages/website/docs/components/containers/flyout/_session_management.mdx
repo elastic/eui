@@ -1,12 +1,8 @@
----
-sidebar_label: Session management
----
-
 ```mdx-code-block
 import { EuiBetaBadge } from '@elastic/eui';
 ```
 
-# Flyout session management <EuiBetaBadge label="Beta" color="accent" /> {#flyout-session-management}
+### Session management <EuiBetaBadge size="s" label="Beta" color="accent" /> {#flyout-session-management}
 
 EuiFlyout comes with opt-in flyout session management built in that lets you
 effortlessly create complex flyout compositions and journeys.
@@ -113,7 +109,7 @@ export default () => {
 };
 ```
 
-## Sessions
+#### Sessions
 
 The `session` prop is the key ingredient needed to create managed flyouts.
 When set to `start`, it activates the underlying flyout session management logic
@@ -136,7 +132,7 @@ When a flyout is nested inside a parent flyout and doesn't have an explicit
 `session` prop, it will automatically inherit the session. All bindings and
 configuration will be handled automatically.
 
-### Session title
+##### Session title
 
 Managed flyout sessions require a title that can be referenced in the history
 navigation features. Use the `title` field of the `flyoutMenuProps` to set the
@@ -211,13 +207,13 @@ explicitly set `session="never"`. This will render it as a regular unmanaged fly
 </>
 ```
 
-## Types of managed flyouts
+#### Types of managed flyouts
 
 While users of managed flyouts don't need to think about the types
 of managed flyouts or the internals behind them, it's beneficial to understand
 what differentiates the two types - _main_ and _child_.
 
-### Main flyouts
+##### Main flyouts
 
 Main flyouts are the backbone of EuiFlyout's session management. Each flyout
 with `session="start"` prop creates a new session and becomes the main flyout
@@ -227,7 +223,7 @@ using the history popover.
 Main flyouts are meant to display primary level information like the overview
 of an alert.
 
-### Child flyouts
+##### Child flyouts
 
 Child flyouts are directly related to a main flyout in their session. They're
 created by rendering an `EuiFlyout` inside a main flyout's children (nested in
@@ -242,7 +238,7 @@ the style of the flyout background to shaded ([`colors.backgroundBaseSubdued`](.
 
 On smaller screens, child flyouts stack above the parent.
 
-## Accessibility
+#### Accessibility
 
 Both parent and child flyouts use `role="dialog"` and `aria-modal="true"` for accessibility. Focus is managed automatically between them, with the child flyout taking focus when open and returning focus to the parent when closed.
 
