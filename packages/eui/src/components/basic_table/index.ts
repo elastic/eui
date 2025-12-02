@@ -13,7 +13,12 @@ export type {
   CriteriaWithPagination,
 } from './basic_table';
 export { EuiBasicTable } from './basic_table';
-export type { EuiInMemoryTableProps, Search } from './in_memory_table';
+export type {
+  EuiInMemoryTableProps,
+  EuiInMemoryTableSearchBarOnChangeArgs,
+  EuiInMemoryTableSearchBarProps,
+  Search,
+} from './in_memory_table';
 export { EuiInMemoryTable } from './in_memory_table';
 export type {
   EuiTableDataType,

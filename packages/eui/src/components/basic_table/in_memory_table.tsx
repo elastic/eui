@@ -41,7 +41,7 @@ import {
   EuiComponentDefaults,
 } from '../provider/component_defaults';
 
-interface onChangeArgument {
+export interface EuiInMemoryTableSearchBarOnChangeArgs {
   query: Query | null;
   queryText: string;
   error: Error | null;
@@ -50,7 +50,7 @@ interface onChangeArgument {
 // allows `query: null` in the onChange callback when using `searchFormat="text"`
 export interface EuiInMemoryTableSearchBarProps
   extends Omit<EuiSearchBarProps, 'onChange'> {
-  onChange?: (args: onChangeArgument) => void | boolean;
+  onChange?: (args: EuiInMemoryTableSearchBarOnChangeArgs) => void | boolean;
 }
 
 function isEuiSearchBarProps<T extends object>(
@@ -526,7 +526,7 @@ export class EuiInMemoryTable<T extends object = object> extends Component<
     });
   };
 
-  onQueryChange = ({ query, queryText, error }: onChangeArgument) => {
+  onQueryChange = ({ query, queryText, error }: EuiInMemoryTableSearchBarOnChangeArgs) => {
     const { search } = this.props;
     if (isEuiSearchBarProps(search)) {
       if (search.onChange) {
