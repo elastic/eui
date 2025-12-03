@@ -8,6 +8,7 @@ const dtsGenerator = require('dts-generator').default;
 
 const packageRootDir = path.resolve(__dirname, '..');
 const srcDir = path.join(packageRootDir, 'src');
+const buildDirs = ['lib', 'es', 'dist', 'optimize', 'test-env'];
 
 const IGNORE_BUILD = ['**/webpack.config.js', '**/*.d.ts'];
 const IGNORE_TESTS = [
@@ -224,13 +225,21 @@ async function compileLib() {
   console.log(chalk.green('✔ Finished compiling src/'));
 
   // Use `tsc` to emit typescript declaration files for .ts files
-  console.log('Generating typescript definitions file');
-  execSync(`node ${path.resolve(__dirname, 'dtsgenerator.js')}`, {
-    stdio: 'inherit',
-  });
-  // validate the generated eui.d.ts doesn't contain errors
-  execSync('tsc --noEmit -p tsconfig-builttypes.json', { stdio: 'inherit' });
-  console.log(chalk.green('✔ Finished generating definitions'));
+  if (process.argv.includes('--no-declarations')) {
+    console.log(
+      chalk.yellow('Skipping TypeScript definitions file generation')
+    );
+  } else {
+    console.log('Generating TypeScript definitions file...');
+
+    execSync(`node ${path.resolve(__dirname, 'dtsgenerator.js')}`, {
+      stdio: 'inherit',
+    });
+
+    // validate the generated eui.d.ts doesn't contain errors
+    execSync('tsc --noEmit -p tsconfig-builttypes.json', { stdio: 'inherit' });
+    console.log(chalk.green('✔ Finished generating definitions'));
+  }
 
   await copySvgFiles();
 }
@@ -240,63 +249,79 @@ async function compileBundle() {
 
   await fs.mkdir(distDir);
 
-  console.log('Building test utils .d.ts files...');
+  if (process.argv.includes('--no-declarations')) {
+    console.log(chalk.yellow('Skipping test utils .d.ts files generation'));
+  } else {
+    console.log('Building test utils .d.ts files...');
 
-  const destinationDirs = [
-    'lib/test',
-    'es/test',
-    'optimize/lib/test',
-    'optimize/es/test',
-  ].map((dir) => path.join(packageRootDir, dir));
+    const destinationDirs = [
+      'lib/test',
+      'es/test',
+      'optimize/lib/test',
+      'optimize/es/test',
+    ].map((dir) => path.join(packageRootDir, dir));
 
-  const testDirectories = ['rtl', 'enzyme'];
-  const testDTSFiles = new glob.Glob('test/**/*.d.ts', {
-    cwd: srcDir,
-    realpath: true,
-  });
-
-  for (const dir of destinationDirs) {
-    const relativeDir = path.relative(packageRootDir, dir);
-
-    dtsGenerator({
-      prefix: '',
-      out: `${dir}/index.d.ts`,
-      baseDir: path.resolve(__dirname, '..', 'src/test/'),
-      files: ['index.ts'],
-      resolveModuleId({ currentModuleId }) {
-        return `@elastic/eui/${relativeDir}${
-          currentModuleId !== 'index' ? `/${currentModuleId}` : ''
-        }`;
-      },
-      resolveModuleImport({ currentModuleId, importedModuleId }) {
-        if (currentModuleId === 'index') {
-          return `@elastic/eui/${relativeDir}/${importedModuleId.replace(
-            './',
-            ''
-          )}`;
-        }
-        return null;
-      },
+    const testDirectories = ['rtl', 'enzyme'];
+    const testDTSFiles = new glob.Glob('test/**/*.d.ts', {
+      cwd: srcDir,
+      realpath: true,
     });
 
-    for (const testDir of testDirectories) {
-      await fs.mkdir(path.join(dir, testDir), { recursive: true });
+    for (const dir of destinationDirs) {
+      const relativeDir = path.relative(packageRootDir, dir);
+
+      dtsGenerator({
+        prefix: '',
+        out: `${dir}/index.d.ts`,
+        baseDir: path.resolve(__dirname, '..', 'src/test/'),
+        files: ['index.ts'],
+        resolveModuleId({ currentModuleId }) {
+          return `@elastic/eui/${relativeDir}${
+            currentModuleId !== 'index' ? `/${currentModuleId}` : ''
+          }`;
+        },
+        resolveModuleImport({ currentModuleId, importedModuleId }) {
+          if (currentModuleId === 'index') {
+            return `@elastic/eui/${relativeDir}/${importedModuleId.replace(
+              './',
+              ''
+            )}`;
+          }
+          return null;
+        },
+      });
+
+      for (const testDir of testDirectories) {
+        await fs.mkdir(path.join(dir, testDir), { recursive: true });
+      }
+
+      for await (const filePath of testDTSFiles) {
+        const fullPath = path.join(srcDir, filePath);
+
+        const relativePath = filePath.replace(/^test\//, '');
+        const destPath = path.join(dir, relativePath);
+
+        await fs.copyFile(fullPath, destPath);
+      }
     }
 
-    for await (const filePath of testDTSFiles) {
-      const fullPath = path.join(srcDir, filePath);
+    console.log(chalk.green('✔ Finished test utils files'));
+  }
+}
 
-      const relativePath = filePath.replace(/^test\//, '');
-      const destPath = path.join(dir, relativePath);
-
-      await fs.copyFile(fullPath, destPath);
-    }
+async function cleanup() {
+  for (const dir of buildDirs) {
+    await fs.rm(path.join(packageRootDir, dir), {
+      recursive: true,
+      force: true,
+    });
   }
 
-  console.log(chalk.green('✔ Finished test utils files'));
+  console.log('Cleaned up old build directories');
 }
 
 async function compile() {
+  await cleanup();
   await compileLib();
   await compileBundle();
 }
