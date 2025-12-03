@@ -631,31 +631,31 @@ export class EuiBasicTable<T extends object = any> extends Component<
       ? Math.ceil(pagination.totalItemCount / this.pageSize)
       : 1;
 
-    const tableName = tableCaption || (
-      <EuiI18n token="euiBasicTable.caption.tableName" default="Data table" />
-    );
-
     let itemCountPart: React.ReactNode = null;
     if (!itemCount) {
       itemCountPart = this.props.noItemsMessage;
     } else if (pagination && totalItemCount > 0) {
       itemCountPart = (
-        <EuiI18n
-          token="euiBasicTable.caption.itemCountPart.withTotalItemCount"
-          default="This table contains {itemCount} rows out of {totalItemCount} rows"
-          values={{ itemCount, totalItemCount }}
-        />
+        <p>
+          <EuiI18n
+            token="euiBasicTable.caption.itemCountPart.withTotalItemCount"
+            default="This table contains {itemCount} rows out of {totalItemCount} rows."
+            values={{ itemCount, totalItemCount }}
+          />
+        </p>
       );
     }
 
     let paginationPart: React.ReactNode = null;
     if (pagination && pageCount > 1) {
       paginationPart = (
-        <EuiI18n
-          token="euiBasicTable.caption.paginationPart.withPageCount"
-          default="Page {page} of {pageCount}"
-          values={{ page, pageCount }}
-        />
+        <p>
+          <EuiI18n
+            token="euiBasicTable.caption.paginationPart.withPageCount"
+            default="Page {page} of {pageCount}."
+            values={{ page, pageCount }}
+          />
+        </p>
       );
     }
 
@@ -664,7 +664,14 @@ export class EuiBasicTable<T extends object = any> extends Component<
         <caption css={euiTableCaptionStyles} className="euiTableCaption">
           {tabularCopyMarkers.hiddenNoCopyBoundary}
           <EuiDelayRender>
-            {tableName}
+            <p>
+              {tableCaption || (
+                <EuiI18n
+                  token="euiBasicTable.caption.tableName"
+                  default="Data table"
+                />
+              )}
+            </p>
             {itemCountPart}
             {paginationPart}
           </EuiDelayRender>
