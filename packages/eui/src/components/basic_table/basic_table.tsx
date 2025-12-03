@@ -642,18 +642,12 @@ export class EuiBasicTable<T extends object = any> extends Component<
         return (
           <EuiI18n
             token="euiBasicTable.caption.itemCountPart.withTotalItemCount"
-            default="{itemCount} of {totalItemCount} rows"
+            default="This table contains {itemCount} rows out of {totalItemCount} rows"
             values={{ itemCount, totalItemCount }}
           />
         );
       }
-      return (
-        <EuiI18n
-          token="euiBasicTable.caption.itemCountPart.onlyItemCount"
-          default="{itemCount} rows"
-          values={{ itemCount }}
-        />
-      );
+      return '';
     })();
 
     const paginationPart = (() => {
