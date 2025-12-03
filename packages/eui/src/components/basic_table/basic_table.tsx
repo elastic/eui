@@ -638,7 +638,7 @@ export class EuiBasicTable<T extends object = any> extends Component<
     let itemCountPart: React.ReactNode = null;
     if (!itemCount) {
       itemCountPart = this.props.noItemsMessage;
-    } else if (totalItemCount > 0) {
+    } else if (pagination && totalItemCount > 0) {
       itemCountPart = (
         <EuiI18n
           token="euiBasicTable.caption.itemCountPart.withTotalItemCount"
