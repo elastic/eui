@@ -32,7 +32,7 @@ buildProgram();
 
 if (isDevelopment && !bypassWatch) {
   chokidar
-    .watch(['./src/**/*.(ts|tsx)'], {
+    .watch(['./src/**/*.{ts,tsx}'], {
       ignoreInitial: true, // don't emit `add` event during file discovery
       ignored: ['__snapshots__', /\.test\./],
     })
