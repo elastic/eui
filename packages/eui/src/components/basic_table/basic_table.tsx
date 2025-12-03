@@ -635,7 +635,7 @@ export class EuiBasicTable<T extends object = any> extends Component<
       <EuiI18n token="euiBasicTable.caption.tableName" default="Data table" />
     );
 
-    let itemCountPart: React.ReactNode = '';
+    let itemCountPart: React.ReactNode = null;
     if (!itemCount) {
       itemCountPart = this.props.noItemsMessage;
     } else if (totalItemCount > 0) {
@@ -648,7 +648,7 @@ export class EuiBasicTable<T extends object = any> extends Component<
       );
     }
 
-    let paginationPart: React.ReactNode = '';
+    let paginationPart: React.ReactNode = null;
     if (pagination && pageCount > 1) {
       paginationPart = (
         <EuiI18n
@@ -664,11 +664,9 @@ export class EuiBasicTable<T extends object = any> extends Component<
         <caption css={euiTableCaptionStyles} className="euiTableCaption">
           {tabularCopyMarkers.hiddenNoCopyBoundary}
           <EuiDelayRender>
-            <EuiI18n
-              token="euiBasicTable.caption.aggregated"
-              default="{tableName}; {itemCountPart}; {paginationPart}"
-              values={{ tableName, itemCountPart, paginationPart }}
-            />
+            {tableName}
+            {itemCountPart}
+            {paginationPart}
           </EuiDelayRender>
           {tabularCopyMarkers.hiddenNoCopyBoundary}
         </caption>
