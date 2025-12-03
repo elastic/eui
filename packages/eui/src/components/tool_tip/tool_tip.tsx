@@ -36,12 +36,15 @@ import { toolTipManager } from './tool_tip_manager';
 export const POSITIONS = ['top', 'right', 'bottom', 'left'] as const;
 const DISPLAYS = ['inlineBlock', 'block'] as const;
 
-export type ToolTipDelay = 'regular' | 'long';
+export type ToolTipDelay = 'regular' | 'long' | 'short' | 'none';
+export type ToolTipTransition = 'default' | 'fade' | 'none';
 export const DEFAULT_TOOLTIP_OFFSET = 16;
 
 const delayToMsMap: { [key in ToolTipDelay]: number } = {
   regular: 250,
   long: 250 * 5,
+  short: 100,
+  none: 0,
 };
 
 interface ToolTipStyles {
@@ -94,6 +97,13 @@ export interface EuiToolTipProps extends CommonProps {
    * Delay before showing tooltip. Good for repeatable items.
    */
   delay: ToolTipDelay;
+  /**
+   * Type of transition for the tooltip appearance.
+   * - 'default': Uses the current behavior with movement
+   * - 'fade': Fades in without movement
+   * - 'none': Appears immediately without animation
+   */
+  transition?: ToolTipTransition;
   /**
    * An optional title for your tooltip.
    */
@@ -175,6 +185,7 @@ export class EuiToolTip extends Component<EuiToolTipProps, State> {
   static defaultProps: Partial<EuiToolTipProps> = {
     position: 'top',
     delay: 'regular',
+    transition: 'default',
     display: 'inlineBlock',
     disableScreenReaderOutput: false,
   };
@@ -346,6 +357,7 @@ export class EuiToolTip extends Component<EuiToolTipProps, State> {
       content,
       title,
       delay,
+      transition,
       display,
       repositionOnScroll,
       disableScreenReaderOutput = false,
@@ -387,6 +399,7 @@ export class EuiToolTip extends Component<EuiToolTipProps, State> {
               id={id}
               role="tooltip"
               calculatedPosition={calculatedPosition}
+              transition={transition}
               {...rest}
             >
               <EuiToolTipArrow
