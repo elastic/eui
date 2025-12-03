@@ -1,46 +1,20 @@
-name: "Changelog required"
+name: 'Changelog required'
 on:
   pull_request:
     types: [opened, synchronize, reopened, ready_for_review, labeled, unlabeled]
     branches: [main]
 
 jobs:
-  # Check for changes in all public packages, needed in the `changelog` job
-  detect-changes:
-    runs-on: ubuntu-latest
-    outputs:
-      changed-packages: ${{ steps.changes.outputs.changed-packages }}
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-      - name: Detect package changes
-        id: changes
-        uses: ./.github/actions/detect-package-changes
-
-  # Enforces the update of a changelog file on every pull request for all public packages
-  # unless the PR contains the `skip-changelog` label
-  changelog-checks:
-    needs: detect-changes
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        package: ${{ fromJson(needs.detect-changes.outputs.changed-packages) }}
-    steps:
-      - uses: actions/checkout@v2
-      - name: Check changelog for ${{ matrix.package }}
-        # TODO specific "package" labels could be checked here?
-        if: ${{ !contains(github.event.pull_request.labels.*.name, 'skip-changelog') }}
-        uses: ./.github/actions/check-changelog
-        with:
-          pr-number: ${{ github.event.pull_request.number }}
-          package-path: packages/${{ matrix.package }}
-
-  # This job will always run and succeed, ensuring the overall check completes.
   changelog:
-    needs: changelog-checks
-    runs-on: ubuntu-latest
-    if: always()
+    runs-on: ubuntu-slim
     steps:
-      - name: Finish changelog checks
-        run: echo "Changelog checks finished."
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 2
+      - name: Check changelogs
+        run: |
+          ./scripts/check_changelogs.sh \
+            "${{ github.event.pull_request.number }}" \
+            "${{ join(github.event.pull_request.labels.*.name, '|') }}"
+        env:
+          GITHUB_BASE_REF: ${{ github.base_ref }}
