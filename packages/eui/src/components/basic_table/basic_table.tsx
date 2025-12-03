@@ -635,33 +635,29 @@ export class EuiBasicTable<T extends object = any> extends Component<
       <EuiI18n token="euiBasicTable.caption.tableName" default="Data table" />
     );
 
-    const itemCountPart = (() => {
-      if (!itemCount) {
-        return this.props.noItemsMessage;
-      } else if (totalItemCount > 0) {
-        return (
-          <EuiI18n
-            token="euiBasicTable.caption.itemCountPart.withTotalItemCount"
-            default="This table contains {itemCount} rows out of {totalItemCount} rows"
-            values={{ itemCount, totalItemCount }}
-          />
-        );
-      }
-      return '';
-    })();
+    let itemCountPart: React.ReactNode = '';
+    if (!itemCount) {
+      itemCountPart = this.props.noItemsMessage;
+    } else if (totalItemCount > 0) {
+      itemCountPart = (
+        <EuiI18n
+          token="euiBasicTable.caption.itemCountPart.withTotalItemCount"
+          default="This table contains {itemCount} rows out of {totalItemCount} rows"
+          values={{ itemCount, totalItemCount }}
+        />
+      );
+    }
 
-    const paginationPart = (() => {
-      if (pagination && page && pageCount) {
-        return (
-          <EuiI18n
-            token="euiBasicTable.caption.paginationPart.withPageCount"
-            default="Page {page} of {pageCount}"
-            values={{ page, pageCount }}
-          />
-        );
-      }
-      return '';
-    })();
+    let paginationPart: React.ReactNode = '';
+    if (pagination && page && pageCount) {
+      paginationPart = (
+        <EuiI18n
+          token="euiBasicTable.caption.paginationPart.withPageCount"
+          default="Page {page} of {pageCount}"
+          values={{ page, pageCount }}
+        />
+      );
+    }
 
     return (
       <EuiScreenReaderOnly>
