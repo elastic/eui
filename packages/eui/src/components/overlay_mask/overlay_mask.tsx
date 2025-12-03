@@ -76,6 +76,7 @@ export const EuiOverlayMask: FunctionComponent<EuiOverlayMaskProps> = ({
 
   useEffect(() => {
     if (!overlayMaskNode) return;
+
     keysOf(rest).forEach((key) => {
       if (typeof rest[key] !== 'string') {
         throw new Error(
@@ -86,7 +87,14 @@ export const EuiOverlayMask: FunctionComponent<EuiOverlayMaskProps> = ({
         overlayMaskNode.setAttribute(key, rest[key]!);
       }
     });
-    overlayMaskNode.addEventListener('animationend', handleAnimationEnd);
+
+    overlayMaskNode.addEventListener('animationend', handleAnimationEnd, {
+      once: true,
+    });
+
+    return () => {
+      overlayMaskNode.removeEventListener('animationend', handleAnimationEnd);
+    };
   }, [overlayMaskNode, handleAnimationEnd]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Note: Use `classList.add/remove` instead of setting the entire `className`
