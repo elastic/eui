@@ -649,7 +649,7 @@ export class EuiBasicTable<T extends object = any> extends Component<
     }
 
     let paginationPart: React.ReactNode = '';
-    if (pagination && page && pageCount) {
+    if (pagination && pageCount > 1) {
       paginationPart = (
         <EuiI18n
           token="euiBasicTable.caption.paginationPart.withPageCount"
