@@ -42,20 +42,16 @@ export function useEuiContainerQuery<T extends Element>(
   useEffect(() => {
     if (!ref.current) return;
 
-    const cql = matchContainer(ref.current, containerQueryString);
-
-    // Set the initial value
-    setMatches(cql.matches);
-
+    const queryList = matchContainer(ref.current, containerQueryString);
     const handleChange = () => {
-      console.log('handleChange!', cql.matches);
-      setMatches(cql.matches);
+      setMatches(queryList.matches);
     };
 
-    cql.addEventListener('change', handleChange);
+    setMatches(queryList.matches);
+    queryList.addEventListener('change', handleChange);
 
     return () => {
-      cql.removeEventListener('change', handleChange);
+      queryList.removeEventListener('change', handleChange);
     };
   }, [ref, containerQueryString]);
 
