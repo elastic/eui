@@ -33,8 +33,9 @@ const TwoColumns: EuiResizableContainerProps['children'] = (
   EuiResizablePanel,
   EuiResizableButton
 ) => {
-  const containerRef = React.useRef<HTMLDivElement>(null);
-  const matches = useEuiContainerQuery(containerRef, '(inline-size > 400px)');
+  const { ref, matches } = useEuiContainerQuery<HTMLDivElement>(
+    '(inline-size > 420px)'
+  );
 
   return (
     <>
@@ -43,13 +44,13 @@ const TwoColumns: EuiResizableContainerProps['children'] = (
         tabIndex={0}
         css={css`
           container-type: inline-size;
-          outline: 1px dashed;
+          outline: 1px dashed orange;
         `}
       >
-        <div ref={containerRef}>
+        <div ref={ref}>
           <EuiText color={matches ? 'success' : 'default'}>
             {matches
-              ? 'Container width is greater than 400px'
+              ? 'Container width is greater than 420px'
               : placeholderText}
           </EuiText>
         </div>
