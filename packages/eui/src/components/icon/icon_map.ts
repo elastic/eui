@@ -11,6 +11,7 @@ export const typeToPathMap = {
   addDataApp: 'app_add_data',
   advancedSettingsApp: 'app_advanced_settings',
   agentApp: 'app_fleet',
+  agentBuilderRobot: 'agentBuilderRobot',
   aggregate: 'aggregate',
   alert: 'warning', // NOTE: To be deprecated in favor of `warning`
   analyzeEvent: 'analyzeEvent',
