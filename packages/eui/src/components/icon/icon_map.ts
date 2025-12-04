@@ -11,7 +11,6 @@ export const typeToPathMap = {
   addDataApp: 'app_add_data',
   advancedSettingsApp: 'app_advanced_settings',
   agentApp: 'app_fleet',
-  agentBuilderRobot: 'agentBuilderRobot',
   aggregate: 'aggregate',
   alert: 'warning', // NOTE: To be deprecated in favor of `warning`
   analyzeEvent: 'analyzeEvent',
@@ -361,13 +360,14 @@ export const typeToPathMap = {
   plusInCircleFilled: 'plus_in_circle', // NOTE: To be deprecated in favor of `plus_in_circle`
   plusInSquare: 'plus_in_square',
   popout: 'popout',
+  productRobot: 'product_robot',
   push: 'push',
   question: 'question',
   quote: 'quote',
   readOnly: 'readOnly',
   recentlyViewedApp: 'app_recently_viewed',
   refresh: 'refresh',
-  regressionJob: 'ml_regression_job',
+  regressionJob: 'ml_regression_job', 
   reporter: 'reporter',
   reportingApp: 'app_reporting',
   returnKey: 'return_key',

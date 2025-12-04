@@ -2,7 +2,6 @@ import { IconType } from '@elastic/eui';
 
 export const iconTypes: Array<IconType> = [
   'accessibility',
-  'agentBuilderRobot',
   'aggregate',
   'analyzeEvent',
   'annotation',
@@ -207,6 +206,7 @@ export const iconTypes: Array<IconType> = [
   'plusInCircle',
   'plusInSquare',
   'popout',
+  'productRobot',
   'push',
   'question',
   'quote',
