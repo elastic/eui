@@ -42,7 +42,10 @@ import { v1 as uuid } from 'uuid';
   - [ ] add tests
 */
 
-export function matchContainer(element: Element, containerQueryString: string) {
+export function matchContainer(
+  element: HTMLElement,
+  containerQueryString: string
+) {
   return new ContainerQueryList(element, containerQueryString);
 }
 
@@ -74,11 +77,11 @@ class ContainerQueryList extends EventTarget {
 
   readonly query: string;
 
-  constructor(element: Element, containerQueryString: string) {
+  constructor(element: HTMLElement, containerQueryString: string) {
     super();
 
     this.query = containerQueryString;
-    this.element = element as HTMLElement;
+    this.element = element;
     // we call this only once to try to avoid any impact on performance
     this.computedStyle = getComputedStyle(this.element);
 
