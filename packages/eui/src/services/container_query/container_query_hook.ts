@@ -16,20 +16,21 @@ import { matchContainer } from './match_container';
  *
  * @param containerCondition - A CSS `<container-condition>` string, e.g. `(width > 400px)` or `(min-width: 600px)`
  * @param name - Optional container name, e.g. `sidebar`
- * @returns `true` if the container matches the condition, `false` otherwise
+ * @returns An object containing:
+ *   - `ref`: A ref to attach to the container element
+ *   - `matches`: `true` if the container matches the condition, `false` otherwise
  *
  * @example
- * ```ts
- * const ref = useRef<HTMLDivElement>(null);
- * const isWide = useEuiContainerQuery(ref, '(width > 400px)');
- * const isSidebarWide = useEuiContainerQuery(ref, '(min-width: 300px)', 'sidebar');
+ * ```tsx
+ * const { ref, matches } = useEuiContainerQuery('(width > 400px)');
+ * return <div ref={ref}>{matches ? 'Wide' : 'Narrow'}</div>;
  * ```
  *
  * @todo document that a proper container is needed and that the actual container cannot be observed!
  *
  * @see {@link https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@container | MDN: @container}
  */
-export function useEuiContainerQuery<T extends Element>(
+export function useEuiContainerQuery<T extends HTMLElement = HTMLElement>(
   containerCondition: string,
   name?: string
 ) {
