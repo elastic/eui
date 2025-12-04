@@ -81,7 +81,7 @@ const EuiFlexGroupInternal = <TComponent extends ElementType>(
   {
     className,
     component = 'div' as TComponent,
-    gutterSize = 'l',
+    gutterSize = 'm',
     alignItems = 'stretch',
     responsive = true,
     justifyContent = 'flexStart',
