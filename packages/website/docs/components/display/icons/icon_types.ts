@@ -206,6 +206,7 @@ export const iconTypes: Array<IconType> = [
   'plusInCircle',
   'plusInSquare',
   'popout',
+  'productRobot',
   'push',
   'question',
   'quote',

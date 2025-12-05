@@ -1,5 +1,25 @@
 [
   {
+    "version": "110.0.0",
+    "changes": [
+      {
+        "token": "euiFlyoutMenu.back",
+        "changeType": "added",
+        "value": "Back"
+      },
+      {
+        "token": "euiFlyoutMenu.history",
+        "changeType": "added",
+        "value": "History"
+      },
+      {
+        "token": "euiFlyoutManaged.defaultTitle",
+        "changeType": "added",
+        "value": "Unknown Flyout"
+      }
+    ]
+  },
+  {
     "version": "109.1.0",
     "changes": [
       {
