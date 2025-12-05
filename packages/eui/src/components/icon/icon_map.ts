@@ -367,7 +367,7 @@ export const typeToPathMap = {
   readOnly: 'readOnly',
   recentlyViewedApp: 'app_recently_viewed',
   refresh: 'refresh',
-  regressionJob: 'ml_regression_job', 
+  regressionJob: 'ml_regression_job',
   reporter: 'reporter',
   reportingApp: 'app_reporting',
   returnKey: 'return_key',
