@@ -639,7 +639,7 @@ export class EuiBasicTable<T extends object = any> extends Component<
         <p>
           <EuiI18n
             token="euiBasicTable.caption.itemCountPart.withTotalItemCount"
-            default="This table contains {itemCount} rows out of {totalItemCount} rows."
+            default="Showing {itemCount} of {totalItemCount} data rows."
             values={{ itemCount, totalItemCount }}
           />
         </p>
