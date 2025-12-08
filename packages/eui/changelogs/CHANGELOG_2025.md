@@ -1,3 +1,19 @@
+## [`v111.0.0`](https://github.com/elastic/eui/releases/v111.0.0)
+
+- Added an opt-in EuiFlyout session management for creating flyout compositions and journeys effortlessly. Session management handles side-by-side flyout rendering based on parent-child grouping, simple flyout transitions with history, state sharing, and more. ([#9202](https://github.com/elastic/eui/pull/9202))
+  - EuiFlyout session management is an optional feature that can be enabled by adding `session="start"` to EuiFlyout. Check out the [documentation](https://eui.elastic.co/docs/components/containers/flyout/session-management) to learn more.
+- Added a new `hasChildBackground` boolean prop (defaults to false) to `EuiFlyout` ([#9056](https://github.com/elastic/eui/pull/9056))
+- Updated `EuiFlyout` with new `onActive` callback and enable stack managed history controls. ([#9003](https://github.com/elastic/eui/pull/9003))
+- Updated `EuiFlyoutMenu` with new prop `historyItems` and refactored props for back button. ([#9003](https://github.com/elastic/eui/pull/9003))
+- Added a new optional `resizable` (boolean) prop to `EuiFlyout`. Resizability can now be controlled dynamically without the need to use `EuiFlyoutResizable`. ([#8999](https://github.com/elastic/eui/pull/8999))
+- Flyout system menu bar: require tile, support custom actions ([#8897](https://github.com/elastic/eui/pull/8897))
+- Added a new `EuiFlyoutMenu` component that provides a standardized top menu bar for flyouts. ([#8851](https://github.com/elastic/eui/pull/8851))
+
+**Breaking changes**
+
+- Changed the way EuiFlyout renders overlay masks to decouple the overlay mask from the flyout itself. Now, the overlay mask is a separate portalled element. ([#9202](https://github.com/elastic/eui/pull/9202))
+  - This change does not modify the functionality or behavior of flyout overlays but might affect some custom usages when your application relies on the specific element nesting within EuiFlyout.
+
 ## [`v110.0.0`](https://github.com/elastic/eui/releases/v110.0.0)
 
 - Updated `EuiSuperDatePicker` to expose plain text `utcOffset` and `timeZoneName` in `timeZoneDisplayProps.customRender` render function ([#9245](https://github.com/elastic/eui/pull/9245))
