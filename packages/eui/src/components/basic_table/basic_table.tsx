@@ -235,7 +235,7 @@ interface BasicTableProps<T extends object>
    */
   error?: string;
   /**
-   * Describes the content of the table. If not specified, the caption will be "This table contains {itemCount} rows."
+   * Provides a description of the table’s content. If no description is provided, the table will default to the name Data Table.
    */
   tableCaption?: string;
   /**
@@ -327,7 +327,7 @@ export class EuiBasicTable<T extends object = any> extends Component<
     prevState: State<T>
   ) {
     if (!nextProps.selection) {
-      // next props doesn't have a selection, reset our state
+      // next props don't have a selection, reset our state
       return { selection: [] };
     }
 
@@ -631,53 +631,50 @@ export class EuiBasicTable<T extends object = any> extends Component<
       ? Math.ceil(pagination.totalItemCount / this.pageSize)
       : 1;
 
-    let captionElement;
-    if (tableCaption) {
-      if (pagination) {
-        captionElement = (
+    let itemCountPart: React.ReactNode = null;
+    if (!itemCount) {
+      itemCountPart = this.props.noItemsMessage;
+    } else if (pagination && totalItemCount > 0) {
+      itemCountPart = (
+        <p>
           <EuiI18n
-            token="euiBasicTable.tableCaptionWithPagination"
-            default="{tableCaption}; Page {page} of {pageCount}."
-            values={{ tableCaption, page, pageCount }}
+            token="euiBasicTable.caption.itemCountPart.withTotalItemCount"
+            default="Showing {itemCount} of {totalItemCount} data rows."
+            values={{ itemCount, totalItemCount }}
           />
-        );
-      } else {
-        captionElement = tableCaption;
-      }
-    } else {
-      if (pagination) {
-        if (pagination.totalItemCount > 0) {
-          captionElement = (
-            <EuiI18n
-              token="euiBasicTable.tableAutoCaptionWithPagination"
-              default="This table contains {itemCount} rows out of {totalItemCount} rows; Page {page} of {pageCount}."
-              values={{ totalItemCount, itemCount, page, pageCount }}
-            />
-          );
-        } else {
-          captionElement = (
-            <EuiI18n
-              token="euiBasicTable.tableSimpleAutoCaptionWithPagination"
-              default="This table contains {itemCount} rows; Page {page} of {pageCount}."
-              values={{ itemCount, page, pageCount }}
-            />
-          );
-        }
-      } else {
-        captionElement = (
-          <EuiI18n
-            token="euiBasicTable.tableAutoCaptionWithoutPagination"
-            default="This table contains {itemCount} rows."
-            values={{ itemCount }}
-          />
-        );
-      }
+        </p>
+      );
     }
+
+    let paginationPart: React.ReactNode = null;
+    if (pagination && pageCount > 1) {
+      paginationPart = (
+        <p>
+          <EuiI18n
+            token="euiBasicTable.caption.paginationPart.withPageCount"
+            default="Page {page} of {pageCount}."
+            values={{ page, pageCount }}
+          />
+        </p>
+      );
+    }
+
     return (
       <EuiScreenReaderOnly>
         <caption css={euiTableCaptionStyles} className="euiTableCaption">
           {tabularCopyMarkers.hiddenNoCopyBoundary}
-          <EuiDelayRender>{captionElement}</EuiDelayRender>
+          <EuiDelayRender>
+            <p>
+              {tableCaption || (
+                <EuiI18n
+                  token="euiBasicTable.caption.tableName"
+                  default="Data table"
+                />
+              )}
+            </p>
+            {itemCountPart}
+            {paginationPart}
+          </EuiDelayRender>
           {tabularCopyMarkers.hiddenNoCopyBoundary}
         </caption>
       </EuiScreenReaderOnly>
