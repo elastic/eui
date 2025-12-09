@@ -67,7 +67,7 @@ Example:
 This PR includes:
 - [ ] 🔴 Breaking changes:
   - {How many usages in Kibana and other products are impacted?}
-  - {What will break and how do users migrate?}
+  - {What will break?}
 - [ ] 💅 Visual changes:
   - These changes may impact existing style overrides and could require visual testing.
   - {Explain}
