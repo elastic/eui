@@ -645,11 +645,11 @@
         "index": 20588
       }
     },
-    "filepath": "src/components/progress/progress.tsx"
+    "filepath": "src/components/selectable/selectable.tsx"
   },
   {
-    "token": "euiPopover.screenReaderAnnouncement",
-    "defString": "You are in a dialog. Press Escape, or tap/click outside the dialog to close.",
+    "token": "euiSelectable.noMatchingOptions",
+    "defString": "{searchValue} doesn't match any options",
     "highlighting": "string",
     "loc": {
       "start": {
@@ -663,11 +663,11 @@
         "index": 21296
       }
     },
-    "filepath": "src/components/popover/popover.tsx"
+    "filepath": "src/components/selectable/selectable.tsx"
   },
   {
-    "token": "euiPaginationButtonArrow.firstPage",
-    "defString": "First page",
+    "token": "euiSelectable.noAvailableOptions",
+    "defString": "No options available",
     "highlighting": "string",
     "loc": {
       "start": {
@@ -681,11 +681,11 @@
         "index": 21836
       }
     },
-    "filepath": "src/components/pagination/pagination_button_arrow.tsx"
+    "filepath": "src/components/selectable/selectable.tsx"
   },
   {
-    "token": "euiPaginationButtonArrow.previousPage",
-    "defString": "Previous page",
+    "token": "euiSelectable.screenReaderInstructions",
+    "defString": "Use the Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.",
     "highlighting": "string",
     "loc": {
       "start": {
@@ -972,6 +972,42 @@
     "filepath": "src/components/pagination/pagination_button_arrow.tsx"
   },
   {
+    "token": "euiPaginationButton.longPageString",
+    "defString": "Page {page} of {totalPages}",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 66,
+        "column": 4,
+        "index": 1920
+      },
+      "end": {
+        "line": 70,
+        "column": 5,
+        "index": 2087
+      }
+    },
+    "filepath": "src/components/pagination/pagination_button.tsx"
+  },
+  {
+    "token": "euiPaginationButton.shortPageString",
+    "defString": "Page {page}",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 72,
+        "column": 8,
+        "index": 2133
+      },
+      "end": {
+        "line": 76,
+        "column": 9,
+        "index": 2277
+      }
+    },
+    "filepath": "src/components/pagination/pagination_button.tsx"
+  },
+  {
     "token": "euiPagination.pageOfTotalCompressed",
     "defString": "{page} of {total}",
     "highlighting": "string",
@@ -1186,42 +1222,6 @@
       }
     },
     "filepath": "src/components/modal/modal.tsx"
-  },
-  {
-    "token": "euiMark.highlightStart",
-    "defString": "highlight start",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 44,
-        "column": 25,
-        "index": 1289
-      },
-      "end": {
-        "line": 47,
-        "column": 3,
-        "index": 1356
-      }
-    },
-    "filepath": "src/components/mark/mark.tsx"
-  },
-  {
-    "token": "euiMark.highlightEnd",
-    "defString": "highlight end",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 48,
-        "column": 23,
-        "index": 1381
-      },
-      "end": {
-        "line": 48,
-        "column": 74,
-        "index": 1432
-      }
-    },
-    "filepath": "src/components/mark/mark.tsx"
   },
   {
     "token": "euiMarkdownEditorToolbar.editor",
@@ -1620,6 +1620,42 @@
     "filepath": "src/components/inline_edit/inline_edit_form.tsx"
   },
   {
+    "token": "euiImageButton.openFullScreen",
+    "defString": "Click to open this image in fullscreen mode",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 57,
+        "column": 37,
+        "index": 1585
+      },
+      "end": {
+        "line": 60,
+        "column": 3,
+        "index": 1687
+      }
+    },
+    "filepath": "src/components/image/image_button.tsx"
+  },
+  {
+    "token": "euiImageButton.closeFullScreen",
+    "defString": "Press Escape or click to close image fullscreen mode",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 61,
+        "column": 38,
+        "index": 1727
+      },
+      "end": {
+        "line": 64,
+        "column": 3,
+        "index": 1839
+      }
+    },
+    "filepath": "src/components/image/image_button.tsx"
+  },
+  {
     "token": "euiForm.addressFormErrors",
     "defString": "Please address the highlighted errors.",
     "highlighting": "string",
@@ -1636,42 +1672,6 @@
       }
     },
     "filepath": "src/components/form/form.tsx"
-  },
-  {
-    "token": "euiFlyoutMenu.back",
-    "defString": "Back",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 121,
-        "column": 6,
-        "index": 3526
-      },
-      "end": {
-        "line": 121,
-        "column": 59,
-        "index": 3579
-      }
-    },
-    "filepath": "src/components/flyout/flyout_menu.tsx"
-  },
-  {
-    "token": "euiFlyoutMenu.history",
-    "defString": "History",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 140,
-        "column": 22,
-        "index": 3988
-      },
-      "end": {
-        "line": 140,
-        "column": 68,
-        "index": 4034
-      }
-    },
-    "filepath": "src/components/flyout/flyout_menu.tsx"
   },
   {
     "token": "euiFlyoutMenu.back",
@@ -1782,24 +1782,6 @@
     "filepath": "src/components/flyout/_flyout_close_button.tsx"
   },
   {
-    "token": "euiErrorBoundary.error",
-    "defString": "Error",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 109,
-        "column": 12,
-        "index": 3041
-      },
-      "end": {
-        "line": 109,
-        "column": 70,
-        "index": 3099
-      }
-    },
-    "filepath": "src/components/error_boundary/error_boundary.tsx"
-  },
-  {
     "token": "euiFilterButton.filterBadgeActiveAriaLabel",
     "defString": "{count} active filters",
     "highlighting": "string",
@@ -1834,6 +1816,24 @@
       }
     },
     "filepath": "src/components/filter_group/filter_button.tsx"
+  },
+  {
+    "token": "euiErrorBoundary.error",
+    "defString": "Error",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 109,
+        "column": 12,
+        "index": 3041
+      },
+      "end": {
+        "line": 109,
+        "column": 70,
+        "index": 3099
+      }
+    },
+    "filepath": "src/components/error_boundary/error_boundary.tsx"
   },
   {
     "token": "euiDataGrid.ariaLabel",
@@ -3024,6 +3024,42 @@
     "filepath": "src/components/list_group/pinnable_list_group/pinnable_list_group.tsx"
   },
   {
+    "token": "euiHeaderLinks.appNavigation",
+    "defString": "App menu",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 116,
+        "column": 4,
+        "index": 3499
+      },
+      "end": {
+        "line": 116,
+        "column": 69,
+        "index": 3564
+      }
+    },
+    "filepath": "src/components/header/header_links/header_links.tsx"
+  },
+  {
+    "token": "euiHeaderLinks.openNavigationMenu",
+    "defString": "Open menu",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 139,
+        "column": 16,
+        "index": 4198
+      },
+      "end": {
+        "line": 142,
+        "column": 17,
+        "index": 4322
+      }
+    },
+    "filepath": "src/components/header/header_links/header_links.tsx"
+  },
+  {
     "token": "euiSuperSelect.screenReaderAnnouncement",
     "defString": "You are in a form selector and must select a single option.\n              Use the Up and Down arrow keys to navigate or Escape to close.",
     "highlighting": "string",
@@ -3094,42 +3130,6 @@
       }
     },
     "filepath": "src/components/form/range/dual_range.tsx"
-  },
-  {
-    "token": "euiFormControlLayoutDelimited.delimiterLabel",
-    "defString": "to",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 127,
-        "column": 27,
-        "index": 3542
-      },
-      "end": {
-        "line": 130,
-        "column": 3,
-        "index": 3618
-      }
-    },
-    "filepath": "src/components/form/form_control_layout/form_control_layout_delimited.tsx"
-  },
-  {
-    "token": "euiFormControlLayoutClearButton.label",
-    "defString": "Clear input",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 35,
-        "column": 20,
-        "index": 1412
-      },
-      "end": {
-        "line": 38,
-        "column": 3,
-        "index": 1490
-      }
-    },
-    "filepath": "src/components/form/form_control_layout/form_control_layout_clear_button.tsx"
   },
   {
     "token": "euiFormControlLayoutDelimited.delimiterLabel",
@@ -5004,42 +5004,6 @@
     "filepath": "src/components/datagrid/pagination/data_grid_pagination.tsx"
   },
   {
-    "token": "euiDataGridPagination.detailedPaginationLabel",
-    "defString": "Pagination for preceding grid: {label}",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 51,
-        "column": 34,
-        "index": 1785
-      },
-      "end": {
-        "line": 55,
-        "column": 3,
-        "index": 1930
-      }
-    },
-    "filepath": "src/components/datagrid/pagination/data_grid_pagination.tsx"
-  },
-  {
-    "token": "euiDataGridPagination.paginationLabel",
-    "defString": "Pagination for preceding grid",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 56,
-        "column": 26,
-        "index": 1958
-      },
-      "end": {
-        "line": 59,
-        "column": 3,
-        "index": 2054
-      }
-    },
-    "filepath": "src/components/datagrid/pagination/data_grid_pagination.tsx"
-  },
-  {
     "token": "euiDataGridSchema.booleanSortTextAsc",
     "defString": "False-True",
     "highlighting": "string",
@@ -6138,96 +6102,6 @@
     "filepath": "src/components/datagrid/controls/column_sorting.tsx"
   },
   {
-    "token": "euiColumnSorting.button",
-    "defString": "Sort fields",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 66,
-        "column": 30,
-        "index": 2120
-      },
-      "end": {
-        "line": 69,
-        "column": 5,
-        "index": 2190
-      }
-    },
-    "filepath": "src/components/datagrid/controls/column_sorting.tsx"
-  },
-  {
-    "token": "euiColumnSorting.sortFieldAriaLabel",
-    "defString": "Sort by: ",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 70,
-        "column": 31,
-        "index": 2223
-      },
-      "end": {
-        "line": 73,
-        "column": 5,
-        "index": 2303
-      }
-    },
-    "filepath": "src/components/datagrid/controls/column_sorting.tsx"
-  },
-  {
-    "token": "euiColumnSorting.emptySorting",
-    "defString": "Currently no fields are sorted",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 220,
-        "column": 14,
-        "index": 6937
-      },
-      "end": {
-        "line": 223,
-        "column": 16,
-        "index": 7073
-      }
-    },
-    "filepath": "src/components/datagrid/controls/column_sorting.tsx"
-  },
-  {
-    "token": "euiColumnSorting.pickFields",
-    "defString": "Pick fields to sort by",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 253,
-        "column": 24,
-        "index": 8296
-      },
-      "end": {
-        "line": 256,
-        "column": 26,
-        "index": 8452
-      }
-    },
-    "filepath": "src/components/datagrid/controls/column_sorting.tsx"
-  },
-  {
-    "token": "euiColumnSorting.clearAll",
-    "defString": "Clear sorting",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 328,
-        "column": 20,
-        "index": 11806
-      },
-      "end": {
-        "line": 331,
-        "column": 22,
-        "index": 11939
-      }
-    },
-    "filepath": "src/components/datagrid/controls/column_sorting.tsx"
-  },
-  {
     "token": "euiColumnSelector.dragHandleAriaLabel",
     "defString": "Drag handle",
     "highlighting": "string",
@@ -6334,24 +6208,6 @@
       }
     },
     "filepath": "src/components/datagrid/controls/column_selector.tsx"
-  },
-  {
-    "token": "euiComboBoxPill.removeSelection",
-    "defString": "Remove {children} from selection in this group",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 67,
-        "column": 6,
-        "index": 2037
-      },
-      "end": {
-        "line": 71,
-        "column": 7,
-        "index": 2196
-      }
-    },
-    "filepath": "src/components/combo_box/combo_box_input/combo_box_pill.tsx"
   },
   {
     "token": "euiComboBoxOptionsList.loadingOptions",
@@ -6480,58 +6336,22 @@
     "filepath": "src/components/combo_box/combo_box_options_list/combo_box_options_list.tsx"
   },
   {
-    "token": "euiCardSelect.selected",
-    "defString": "Selected",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 63,
-        "column": 11,
-        "index": 1522
-      },
-      "end": {
-        "line": 63,
-        "column": 72,
-        "index": 1583
-      }
-    },
-    "filepath": "src/components/card/card_select/card_select.tsx"
-  },
-  {
-    "token": "euiCardSelect.unavailable",
-    "defString": "Unavailable",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 65,
-        "column": 11,
-        "index": 1623
-      },
-      "end": {
-        "line": 65,
-        "column": 78,
-        "index": 1690
-      }
-    },
-    "filepath": "src/components/card/card_select/card_select.tsx"
-  },
-  {
-    "token": "euiCardSelect.select",
-    "defString": "Select",
+    "token": "euiComboBoxPill.removeSelection",
+    "defString": "Remove {children} from selection in this group",
     "highlighting": "string",
     "loc": {
       "start": {
         "line": 67,
-        "column": 11,
-        "index": 1714
+        "column": 6,
+        "index": 2037
       },
       "end": {
-        "line": 67,
-        "column": 68,
-        "index": 1771
+        "line": 71,
+        "column": 7,
+        "index": 2196
       }
     },
-    "filepath": "src/components/card/card_select/card_select.tsx"
+    "filepath": "src/components/combo_box/combo_box_input/combo_box_pill.tsx"
   },
   {
     "token": "euiCollapsibleNavButton.ariaLabelExpand",
