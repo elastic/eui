@@ -23,6 +23,10 @@ on:
         description: Dry run (do not publish the packages)
         required: true
         type: boolean
+      npm_tag:
+        description: "[Custom releases only] npm tag to use"
+        required: false
+        type: string
 
 permissions:
   id-token: write # Required for OIDC
@@ -107,8 +111,26 @@ jobs:
             }
             return `--workspaces ${process.env.WORKSPACES.split(',').join(' ')}`;
           result-encoding: string
+      - name: Prepare npm tag
+        id: prepare_npm_tag_arg
+        uses: actions/github-script@v8
+        env:
+          NPM_TAG: ${{ inputs.npm_tag }}
+        with:
+          # language=javascript
+          script: |
+            if (!process.env.NPM_TAG || typeof process.env.NPM_TAG !== 'string') {
+              return '';
+            }
+
+            if (process.env.NPM_TAG === 'latest') {
+              throw new Error('npm_tag cannot be set to "latest" for snapshot releases!');
+            }
+
+            return `--tag ${process.env.NPM_TAG}`;
+          result-encoding: string
       - name: Release
-        run: yarn release run snapshot --skip-prompts --skip-auth-check --use-auth-token --allow-custom ${{ inputs.dry_run && '--dry-run' || ''}} ${{ steps.prepare_workspaces_arg.outputs.result }}
+        run: yarn release run snapshot --skip-prompts --skip-auth-check --use-auth-token --allow-custom ${{ inputs.dry_run && '--dry-run' || ''}} ${{ steps.prepare_npm_tag_arg.outputs.result }} ${{ steps.prepare_workspaces_arg.outputs.result }}
   release_official:
     name: Create an official release
     runs-on: ubuntu-latest
@@ -158,5 +180,18 @@ jobs:
             }
             return `--workspaces ${process.env.WORKSPACES.split(',').join(' ')}`;
           result-encoding: string
+      - name: Prepare npm tag
+        id: prepare_npm_tag_arg
+        uses: actions/github-script@v8
+        env:
+          NPM_TAG: ${{ inputs.npm_tag }}
+        with:
+          # language=javascript
+          script: |
+            if (!process.env.NPM_TAG || typeof process.env.NPM_TAG !== 'string') {
+              return '';
+            }
+            return `--tag ${process.env.NPM_TAG}`;
+          result-encoding: string
       - name: Release
-        run: yarn release run official --skip-prompts --skip-auth-check --use-auth-token --allow-custom --skip-update-versions ${{ inputs.dry_run && '--dry-run' || ''}} ${{ steps.prepare_workspaces_arg.outputs.result }}
+        run: yarn release run official --skip-prompts --skip-auth-check --use-auth-token --allow-custom --skip-update-versions ${{ inputs.dry_run && '--dry-run' || ''}} ${{ steps.prepare_npm_tag_arg.outputs.result }} ${{ steps.prepare_workspaces_arg.outputs.result }}

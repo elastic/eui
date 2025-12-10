@@ -360,6 +360,7 @@ export const typeToPathMap = {
   plusInCircleFilled: 'plus_in_circle', // NOTE: To be deprecated in favor of `plus_in_circle`
   plusInSquare: 'plus_in_square',
   popout: 'popout',
+  productRobot: 'product_robot',
   push: 'push',
   question: 'question',
   quote: 'quote',
