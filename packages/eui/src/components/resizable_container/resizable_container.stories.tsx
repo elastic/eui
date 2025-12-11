@@ -7,11 +7,13 @@
  */
 
 import React from 'react';
+import { css } from '@emotion/react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { faker } from '@faker-js/faker';
 
 import { enableFunctionToggleControls } from '../../../.storybook/utils';
 import { EuiText } from '../text';
+import { useEuiContainerQuery } from '../../services/container_query';
 import {
   EuiResizableContainer,
   EuiResizableContainerProps,
@@ -30,19 +32,38 @@ const placeholderText = (
 const TwoColumns: EuiResizableContainerProps['children'] = (
   EuiResizablePanel,
   EuiResizableButton
-) => (
-  <>
-    <EuiResizablePanel initialSize={50} tabIndex={0}>
-      <EuiText>{placeholderText}</EuiText>
-    </EuiResizablePanel>
+) => {
+  const { ref, matches } = useEuiContainerQuery<HTMLDivElement>(
+    '(inline-size > 420px)'
+  );
 
-    <EuiResizableButton accountForScrollbars="both" />
+  return (
+    <>
+      <EuiResizablePanel
+        initialSize={50}
+        tabIndex={0}
+        css={css`
+          container-type: inline-size;
+          outline: 1px dashed orange;
+        `}
+      >
+        <div ref={ref}>
+          <EuiText color={matches ? 'success' : 'default'}>
+            {matches
+              ? 'Container width is greater than 420px'
+              : placeholderText}
+          </EuiText>
+        </div>
+      </EuiResizablePanel>
 
-    <EuiResizablePanel initialSize={50} tabIndex={0}>
-      <EuiText>{placeholderText}</EuiText>
-    </EuiResizablePanel>
-  </>
-);
+      <EuiResizableButton accountForScrollbars="both" />
+
+      <EuiResizablePanel initialSize={50} tabIndex={0}>
+        <EuiText>{placeholderText}</EuiText>
+      </EuiResizablePanel>
+    </>
+  );
+};
 
 const ThreeColumns: EuiResizableContainerProps['children'] = (
   EuiResizablePanel,
