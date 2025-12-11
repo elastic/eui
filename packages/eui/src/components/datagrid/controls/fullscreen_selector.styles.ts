@@ -14,7 +14,7 @@ import { logicalCSS } from '../../../global_styling';
 export const euiDataGridFullScreenStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
 
-  const fullScreenZIndex = Number(euiTheme.levels.header) - 1;
+  const fullScreenZIndex = Number(euiTheme.levels.header) - 2;
 
   return {
     'euiDataGrid--fullScreen': css`
