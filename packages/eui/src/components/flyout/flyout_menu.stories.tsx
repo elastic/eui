@@ -10,6 +10,7 @@ import React, { useState } from 'react';
 
 import { action } from '@storybook/addon-actions';
 import { Meta, StoryObj } from '@storybook/react';
+import { LOKI_SELECTORS } from '../../../.storybook/loki';
 import { EuiButton } from '../button';
 import { EuiSpacer } from '../spacer';
 import { EuiText } from '../text';
@@ -133,5 +134,10 @@ const MenuBarFlyout = (args: Args) => {
 
 export const MenuBarExample: StoryObj<Args> = {
   name: 'Playground',
+  parameters: {
+    loki: {
+      chromeSelector: LOKI_SELECTORS.portal,
+    },
+  },
   render: (args) => <MenuBarFlyout {...args} />,
 };
