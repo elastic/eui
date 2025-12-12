@@ -1,0 +1,39 @@
+{
+  "$schema": "https://swc.rs/schema.json",
+  "env": {
+    "targets": [
+      "last 2 versions",
+      "not dead",
+      "not IE 11"
+    ]
+  },
+  "jsc": {
+    "parser": {
+      "syntax": "typescript",
+      "tsx": true
+    },
+    "transform": {
+      "react": {
+        "runtime": "automatic",
+        "importSource": "@emotion/react"
+      }
+    },
+    "externalHelpers": false,
+    "preserveAllComments": true,
+    "experimental": {
+      "plugins": [
+        [
+          "@swc/plugin-emotion",
+          {
+            "autoLabel": "always",
+            "labelFormat": "[local]",
+            "sourceMap": false
+          }
+        ]
+      ]
+    }
+  },
+  "module": {
+    "type": "commonjs"
+  }
+}

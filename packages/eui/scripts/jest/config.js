@@ -62,7 +62,7 @@ const config = {
   testEnvironment: 'jsdom',
   testMatch: ['**/*.test.js', '**/*.test.ts', '**/*.test.tsx'],
   transform: {
-    '^.+\\.(js|tsx?)$': 'babel-jest',
+    '^.+\\.(js|tsx?)$': '@swc/jest',
   },
   snapshotSerializers: [
     '<rootDir>/node_modules/enzyme-to-json/serializer',
