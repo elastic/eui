@@ -44,6 +44,16 @@ const euiToolTipAnimationHorizontal = (size: string) => keyframes`
     }
 `;
 
+const euiToolTipAnimationFade = keyframes`
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+`;
+
 export const euiToolTipStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme, highContrastMode } = euiThemeContext;
 
@@ -102,6 +112,31 @@ export const euiToolTipStyles = (euiThemeContext: UseEuiTheme) => {
         animation: ${euiToolTipAnimationHorizontal(euiTheme.size.base)}
           ${animationTiming};
       }
+    `,
+    // Fade transition positions (no movement, just opacity)
+    topFade: css`
+      ${euiCanAnimate} {
+        animation: ${euiToolTipAnimationFade} ${animationTiming};
+      }
+    `,
+    bottomFade: css`
+      ${euiCanAnimate} {
+        animation: ${euiToolTipAnimationFade} ${animationTiming};
+      }
+    `,
+    leftFade: css`
+      ${euiCanAnimate} {
+        animation: ${euiToolTipAnimationFade} ${animationTiming};
+      }
+    `,
+    rightFade: css`
+      ${euiCanAnimate} {
+        animation: ${euiToolTipAnimationFade} ${animationTiming};
+      }
+    `,
+    // No animation
+    noAnimation: css`
+      /* No animation - tooltip appears immediately */
     `,
     // Arrow
     euiToolTip__arrow: css`
