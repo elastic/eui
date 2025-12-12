@@ -11,7 +11,6 @@ import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../../services';
 import {
   logicalCSS,
-  logicalShorthandCSS,
   euiCanAnimate,
   highContrastModeStyles,
 } from '../../../global_styling';
@@ -28,8 +27,7 @@ export const euiButtonEmptyStyles = (euiThemeContext: UseEuiTheme) => {
   return {
     euiButtonEmpty: css`
       ${displayStyles.euiButtonDisplay}
-      ${logicalShorthandCSS('padding', `0 ${euiTheme.size.s}`)}
-      
+
       /* Change the easing, quickness to not bounce so lighter backgrounds don't flash */
       ${euiCanAnimate} {
         transition-timing-function: ease-in;
@@ -74,6 +72,15 @@ export const euiButtonEmptyStyles = (euiThemeContext: UseEuiTheme) => {
             }
           `,
         })}
+      }
+
+      .euiButtonEmpty__content {
+        gap: ${euiTheme.size.s};
+      }
+
+      .euiButtonEmpty__text {
+        /* unset default EuiButtonDisplayContent text pagging */
+        padding: 0;
       }
     `,
     left: css`

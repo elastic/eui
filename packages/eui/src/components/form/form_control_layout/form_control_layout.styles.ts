@@ -9,10 +9,18 @@
 import { css } from '@emotion/react';
 
 import { UseEuiTheme } from '../../../services';
-import { euiTextTruncate, logicalCSS } from '../../../global_styling';
+import {
+  euiButtonSizeMap,
+  euiTextTruncate,
+  logicalCSS,
+} from '../../../global_styling';
 import { highContrastModeStyles } from '../../../global_styling/functions/high_contrast';
+import { type EuiButtonDisplaySizes } from '../../button/button_display/_button_display';
 
 import { euiFormVariables } from '../form.styles';
+
+export const buttonSelectors =
+  '*:is(.euiButton, .euiButtonEmpty, .euiButtonIcon, .euiFormAppend, .euiFormPrepend)';
 
 export const euiFormControlLayoutStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
@@ -144,12 +152,29 @@ export const euiFormControlLayoutSideNodeStyles = (
   const { euiTheme } = euiThemeContext;
 
   const form = euiFormVariables(euiThemeContext);
+  const buttonSizes = euiButtonSizeMap(euiThemeContext);
 
   const uncompressedHeight = form.controlHeight;
   const compressedHeight = form.controlCompressedHeight;
 
-  const buttons = '*:is(.euiButton, .euiButtonEmpty, .euiButtonIcon)';
+  const appendPrepend = '*:is(.euiFormAppend, .euiFormPrepend)';
+  const buttons = buttonSelectors;
   const text = '*:is(.euiFormLabel, .euiText)';
+
+  const _buttonPadding = (size: EuiButtonDisplaySizes) =>
+    logicalCSS('padding-horizontal', buttonSizes[size].padding);
+
+  const buttonIconStyles = `
+    &:first-child {
+      ${logicalCSS('border-top-right-radius', '0')}
+      ${logicalCSS('border-bottom-right-radius', '0')}
+    }
+
+    &:last-child {
+      ${logicalCSS('border-top-left-radius', '0')}
+      ${logicalCSS('border-bottom-left-radius', '0')}
+    }
+  `;
 
   return {
     euiFormControlLayout__side: css`
@@ -163,7 +188,13 @@ export const euiFormControlLayoutSideNodeStyles = (
 
       /* Overrides */
 
+      :has(${appendPrepend}) > *,
+      ${appendPrepend} > ${buttons} {
+        block-size: 100%;
+      }
+
       ${buttons} {
+        block-size: 100%;
         /* Override button hover/active transform */
         transform: none !important; /* stylelint-disable-line declaration-no-important */
 
@@ -178,17 +209,6 @@ export const euiFormControlLayoutSideNodeStyles = (
         cursor: default;
         overflow: hidden;
         text-overflow: ellipsis;
-      }
-
-      /* Account for button padding when spacing children */
-      /* Second > * selector accounts for buttons inside popover & tooltip wrappers */
-
-      &:not(:has(> ${buttons}:first-child, > *:first-child > ${buttons})) {
-        ${logicalCSS('padding-left', euiTheme.size.s)}
-      }
-
-      &:not(:has(> ${buttons}:last-child, > *:last-child > ${buttons})) {
-        ${logicalCSS('padding-right', euiTheme.size.s)}
       }
     `,
     append: css(
@@ -229,6 +249,14 @@ export const euiFormControlLayoutSideNodeStyles = (
       })
     ),
     uncompressed: `
+      &:not(:has(> ${buttons}:first-child, > *:first-child > ${buttons})) {
+        ${logicalCSS('padding-left', euiTheme.size.m)}
+      }
+
+      &:not(:has(> ${buttons}:last-child, > *:last-child > ${buttons})) {
+        ${logicalCSS('padding-right', euiTheme.size.m)}
+      }
+
       ${text} {
         ${logicalCSS('padding-horizontal', euiTheme.size.xs)}
         line-height: ${uncompressedHeight};
@@ -236,14 +264,30 @@ export const euiFormControlLayoutSideNodeStyles = (
 
       ${buttons} {
         ${logicalCSS('height', uncompressedHeight)}
+        ${_buttonPadding('m')}
       }
 
       .euiButtonIcon {
         flex-shrink: 0;
-        ${logicalCSS('width', euiTheme.size.xl)}
+        ${logicalCSS('width', uncompressedHeight)}
+
+        ${buttonIconStyles}
       }
     `,
     compressed: css`
+      /* Legacy padding styles to handle content without <EuiFormAppend/Prepend> */
+      &:not(:has(${appendPrepend})):not(
+          :has(> ${buttons}:first-child, > *:first-child ${buttons})
+        ) {
+        ${logicalCSS('padding-left', euiTheme.size.s)}
+      }
+
+      &:not(:has(${appendPrepend})):not(
+          :has(> ${buttons}:last-child, > *:last-child ${buttons})
+        ) {
+        ${logicalCSS('padding-right', euiTheme.size.s)}
+      }
+
       ${text} {
         ${logicalCSS('padding-horizontal', euiTheme.size.xxs)}
         line-height: ${compressedHeight};
@@ -251,11 +295,14 @@ export const euiFormControlLayoutSideNodeStyles = (
 
       ${buttons} {
         ${logicalCSS('height', compressedHeight)}
+        ${_buttonPadding('s')}
       }
 
       .euiButtonIcon {
         flex-shrink: 0;
-        ${logicalCSS('width', euiTheme.size.xl)}
+        ${logicalCSS('width', compressedHeight)}
+
+        ${buttonIconStyles}
       }
     `,
   };

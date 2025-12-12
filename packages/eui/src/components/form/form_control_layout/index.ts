@@ -14,3 +14,4 @@ export {
   EuiFormControlLayoutIcons,
   type EuiFormControlLayoutIconsProps,
 } from './form_control_layout_icons';
+export * from './append_prepend';

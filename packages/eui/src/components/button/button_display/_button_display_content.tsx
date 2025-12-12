@@ -15,6 +15,7 @@ import { EuiLoadingSpinner } from '../../loading';
 import { EuiIcon, IconType } from '../../icon';
 
 import { euiButtonDisplayContentStyles } from './_button_display_content.styles';
+import { EuiButtonDisplaySizes } from './_button_display';
 
 export const ICON_SIZES = ['s', 'm'] as const;
 export type ButtonContentIconSize = (typeof ICON_SIZES)[number];
@@ -29,6 +30,7 @@ export type EuiButtonDisplayContentType = HTMLAttributes<HTMLSpanElement>;
  * This component is simply a helper component for reuse within other button components.
  */
 export interface EuiButtonDisplayContentProps extends CommonProps {
+  size?: EuiButtonDisplaySizes;
   /**
    * Any `type` accepted by EuiIcon
    */
@@ -58,6 +60,7 @@ export const EuiButtonDisplayContent: FunctionComponent<
   EuiButtonDisplayContentType & EuiButtonDisplayContentProps
 > = ({
   children,
+  size = 'm',
   textProps,
   isLoading = false,
   isDisabled = false,
@@ -97,12 +100,15 @@ export const EuiButtonDisplayContent: FunctionComponent<
   const doNotRenderTextWrapper = textProps === false;
   const renderTextWrapper = (isText || textProps) && !doNotRenderTextWrapper;
 
+  const textWrapperCss = [styles.content[size], textProps && textProps.css];
+
   return (
     <span css={styles.euiButtonDisplayContent} {...contentProps}>
       {iconSide === 'left' && icon}
       {renderTextWrapper ? (
         <span
           {...textProps}
+          css={textWrapperCss}
           className={classNames('eui-textTruncate', textProps?.className)}
         >
           {children}
