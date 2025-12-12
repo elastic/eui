@@ -3,7 +3,7 @@
 exports[`EuiFlexGroup is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiFlexGroup testClass1 testClass2 emotion-euiFlexGroup-responsive-l-flexStart-stretch-row-euiTestCss"
+  class="euiFlexGroup testClass1 testClass2 emotion-euiFlexGroup-responsive-m-flexStart-stretch-row-euiTestCss"
   data-test-subj="test subject string"
 >
   <h2>
@@ -14,55 +14,55 @@ exports[`EuiFlexGroup is rendered 1`] = `
 
 exports[`EuiFlexGroup props alignItems baseline is rendered 1`] = `
 <div
-  class="euiFlexGroup emotion-euiFlexGroup-responsive-l-flexStart-baseline-row"
+  class="euiFlexGroup emotion-euiFlexGroup-responsive-m-flexStart-baseline-row"
 />
 `;
 
 exports[`EuiFlexGroup props alignItems center is rendered 1`] = `
 <div
-  class="euiFlexGroup emotion-euiFlexGroup-responsive-l-flexStart-center-row"
+  class="euiFlexGroup emotion-euiFlexGroup-responsive-m-flexStart-center-row"
 />
 `;
 
 exports[`EuiFlexGroup props alignItems flexEnd is rendered 1`] = `
 <div
-  class="euiFlexGroup emotion-euiFlexGroup-responsive-l-flexStart-flexEnd-row"
+  class="euiFlexGroup emotion-euiFlexGroup-responsive-m-flexStart-flexEnd-row"
 />
 `;
 
 exports[`EuiFlexGroup props alignItems flexStart is rendered 1`] = `
 <div
-  class="euiFlexGroup emotion-euiFlexGroup-responsive-l-flexStart-flexStart-row"
+  class="euiFlexGroup emotion-euiFlexGroup-responsive-m-flexStart-flexStart-row"
 />
 `;
 
 exports[`EuiFlexGroup props alignItems stretch is rendered 1`] = `
 <div
-  class="euiFlexGroup emotion-euiFlexGroup-responsive-l-flexStart-stretch-row"
+  class="euiFlexGroup emotion-euiFlexGroup-responsive-m-flexStart-stretch-row"
 />
 `;
 
 exports[`EuiFlexGroup props direction column is rendered 1`] = `
 <div
-  class="euiFlexGroup emotion-euiFlexGroup-l-flexStart-stretch-column"
+  class="euiFlexGroup emotion-euiFlexGroup-m-flexStart-stretch-column"
 />
 `;
 
 exports[`EuiFlexGroup props direction columnReverse is rendered 1`] = `
 <div
-  class="euiFlexGroup emotion-euiFlexGroup-l-flexStart-stretch-columnReverse"
+  class="euiFlexGroup emotion-euiFlexGroup-m-flexStart-stretch-columnReverse"
 />
 `;
 
 exports[`EuiFlexGroup props direction row is rendered 1`] = `
 <div
-  class="euiFlexGroup emotion-euiFlexGroup-responsive-l-flexStart-stretch-row"
+  class="euiFlexGroup emotion-euiFlexGroup-responsive-m-flexStart-stretch-row"
 />
 `;
 
 exports[`EuiFlexGroup props direction rowReverse is rendered 1`] = `
 <div
-  class="euiFlexGroup emotion-euiFlexGroup-responsive-l-flexStart-stretch-rowReverse"
+  class="euiFlexGroup emotion-euiFlexGroup-responsive-m-flexStart-stretch-rowReverse"
 />
 `;
 
@@ -104,60 +104,60 @@ exports[`EuiFlexGroup props gutterSize xs is rendered 1`] = `
 
 exports[`EuiFlexGroup props justifyContent center is rendered 1`] = `
 <div
-  class="euiFlexGroup emotion-euiFlexGroup-responsive-l-center-stretch-row"
+  class="euiFlexGroup emotion-euiFlexGroup-responsive-m-center-stretch-row"
 />
 `;
 
 exports[`EuiFlexGroup props justifyContent flexEnd is rendered 1`] = `
 <div
-  class="euiFlexGroup emotion-euiFlexGroup-responsive-l-flexEnd-stretch-row"
+  class="euiFlexGroup emotion-euiFlexGroup-responsive-m-flexEnd-stretch-row"
 />
 `;
 
 exports[`EuiFlexGroup props justifyContent flexStart is rendered 1`] = `
 <div
-  class="euiFlexGroup emotion-euiFlexGroup-responsive-l-flexStart-stretch-row"
+  class="euiFlexGroup emotion-euiFlexGroup-responsive-m-flexStart-stretch-row"
 />
 `;
 
 exports[`EuiFlexGroup props justifyContent spaceAround is rendered 1`] = `
 <div
-  class="euiFlexGroup emotion-euiFlexGroup-responsive-l-spaceAround-stretch-row"
+  class="euiFlexGroup emotion-euiFlexGroup-responsive-m-spaceAround-stretch-row"
 />
 `;
 
 exports[`EuiFlexGroup props justifyContent spaceBetween is rendered 1`] = `
 <div
-  class="euiFlexGroup emotion-euiFlexGroup-responsive-l-spaceBetween-stretch-row"
+  class="euiFlexGroup emotion-euiFlexGroup-responsive-m-spaceBetween-stretch-row"
 />
 `;
 
 exports[`EuiFlexGroup props justifyContent spaceEvenly is rendered 1`] = `
 <div
-  class="euiFlexGroup emotion-euiFlexGroup-responsive-l-spaceEvenly-stretch-row"
+  class="euiFlexGroup emotion-euiFlexGroup-responsive-m-spaceEvenly-stretch-row"
 />
 `;
 
 exports[`EuiFlexGroup props responsive false is rendered 1`] = `
 <div
-  class="euiFlexGroup emotion-euiFlexGroup-l-flexStart-stretch-row"
+  class="euiFlexGroup emotion-euiFlexGroup-m-flexStart-stretch-row"
 />
 `;
 
 exports[`EuiFlexGroup props responsive true is rendered 1`] = `
 <div
-  class="euiFlexGroup emotion-euiFlexGroup-responsive-l-flexStart-stretch-row"
+  class="euiFlexGroup emotion-euiFlexGroup-responsive-m-flexStart-stretch-row"
 />
 `;
 
 exports[`EuiFlexGroup props wrap false is rendered 1`] = `
 <div
-  class="euiFlexGroup emotion-euiFlexGroup-responsive-l-flexStart-stretch-row"
+  class="euiFlexGroup emotion-euiFlexGroup-responsive-m-flexStart-stretch-row"
 />
 `;
 
 exports[`EuiFlexGroup props wrap true is rendered 1`] = `
 <div
-  class="euiFlexGroup emotion-euiFlexGroup-responsive-wrap-l-flexStart-stretch-row"
+  class="euiFlexGroup emotion-euiFlexGroup-responsive-wrap-m-flexStart-stretch-row"
 />
 `;
