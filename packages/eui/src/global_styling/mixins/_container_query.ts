@@ -30,6 +30,7 @@ export type EuiContainerType = (typeof CONTAINER_TYPES)[number];
  * `;
  *
  * @returns A style string to be used inside Emotion's `css` template literal
+ * @beta
  */
 export const euiContainer = (
   name: string,
@@ -66,6 +67,7 @@ export const euiContainer = (
  * );
  * @returns Emotion's `SerializedStyles` object to be passed to the `css` prop
  *   of a React component.
+ * @beta
  */
 export const euiContainerCSS = (
   name: string,
@@ -109,6 +111,7 @@ export const euiContainerCSS = (
  *   ancestor with containment will be queried instead.
  *
  * @see {@link https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@container}
+ * @beta
  */
 export const euiContainerQuery = (
   conditions: string,
