@@ -25,12 +25,13 @@ interface TreeItem {
   id: string;
   title: string;
   children?: TreeItem[];
+  isBlocked?: boolean;
 }
 
 type Tree = TreeItem[];
 
 const initialData: Tree = [
-  { id: 'panel-1', title: 'Panel 1' },
+  { id: 'panel-1', title: 'Panel 1 (blocked)', isBlocked: true },
   {
     id: 'panel-2',
     title: 'Panel 2',
@@ -45,7 +46,11 @@ const initialData: Tree = [
         title: 'Subpanel 3.1',
         children: [
           { id: 'subpanel-3-1-1', title: 'Subpanel 3.1.1' },
-          { id: 'subpanel-3-1-2', title: 'Subpanel 3.1.2' },
+          {
+            id: 'subpanel-3-1-2',
+            title: 'Subpanel 3.1.2 (blocked)',
+            isBlocked: true,
+          },
         ],
       },
       { id: 'subpanel-3-2', title: 'Subpanel 3.2' },
@@ -194,6 +199,7 @@ const DraggablePanel = memo(function DraggablePanel({
   children,
   id,
   index,
+  isBlocked,
   level = 0,
   title,
 }: DraggablePanelProps) {
@@ -230,14 +236,20 @@ const DraggablePanel = memo(function DraggablePanel({
             {
               input,
               element,
-              operations: {
-                combine: 'available',
-                'reorder-before': 'available',
-                'reorder-after':
-                  isExpanded && !!children?.length
-                    ? 'not-available'
-                    : 'available',
-              },
+              operations: isBlocked
+                ? {
+                    combine: 'not-available',
+                    'reorder-before': 'not-available',
+                    'reorder-after': 'not-available',
+                  }
+                : {
+                    combine: 'available',
+                    'reorder-before': 'available',
+                    'reorder-after':
+                      isExpanded && !!children?.length
+                        ? 'not-available'
+                        : 'available',
+                  },
             }
           ),
         onDragEnter: ({ self, location }) => {
@@ -256,7 +268,7 @@ const DraggablePanel = memo(function DraggablePanel({
         onDrop: () => setInstruction(null),
       })
     );
-  }, [id, index, children, level, title, isExpanded]);
+  }, [id, index, children, level, title, isExpanded, isBlocked]);
 
   const wrapperStyles = css`
     position: relative;
@@ -346,7 +358,7 @@ const DraggablePanel = memo(function DraggablePanel({
               <span css={[iconStyles, grabIconStyles]}>
                 <EuiIcon type="grab" />
               </span>
-              {children?.length && (
+              {!!children?.length && (
                 <span css={iconStyles}>
                   <EuiIcon type={isExpanded ? 'arrowDown' : 'arrowRight'} />
                 </span>
