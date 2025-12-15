@@ -39,8 +39,8 @@ export const EuiSplitButtonActionPrimary: FunctionComponent<
   const { fill, isDisabled, isLoading, ...sharedRest } = useContext(
     EuiSplitButtonContext
   );
-  const _isDisabled = isDisabled ?? isButtonDisabled(rest);
-  const _isLoading = isLoading ?? rest.isLoading ?? false;
+  const _isDisabled = !!isDisabled || isButtonDisabled(rest);
+  const _isLoading = !!isLoading || !!rest.isLoading;
   const display = (fill ? 'fill' : 'base') as EuiButtonIconProps['display'];
 
   const classes = classNames('euiSplitButtonActionPrimary', className);
@@ -85,8 +85,8 @@ export const EuiSplitButtonActionSecondary: FunctionComponent<
     EuiSplitButtonContext
   );
 
-  const _isDisabled = isDisabled ?? isButtonDisabled(rest);
-  const _isLoading = isLoading ?? rest.isLoading ?? false;
+  const _isDisabled = !!isDisabled || isButtonDisabled(rest);
+  const _isLoading = !!isLoading || !!rest.isLoading;
   const display = (fill ? 'fill' : 'base') as EuiButtonIconProps['display'];
 
   const classes = classNames('euiSplitButtonActionSecondary', className);

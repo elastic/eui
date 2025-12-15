@@ -182,7 +182,7 @@ describe('EuiSplitButton', () => {
         expect(secondaryAction).toBeDisabled();
       });
 
-      it('overrides child props', () => {
+      it('child props apply correctly', () => {
         const { getByTestSubject } = render(
           <EuiSplitButton isDisabled={false}>
             <EuiSplitButton.ActionPrimary
@@ -199,8 +199,8 @@ describe('EuiSplitButton', () => {
         const primaryAction = getByTestSubject('primary-action');
         const secondaryAction = getByTestSubject('secondary-action');
 
-        expect(primaryAction).not.toBeDisabled();
-        expect(secondaryAction).not.toBeDisabled();
+        expect(primaryAction).toBeDisabled();
+        expect(secondaryAction).toBeDisabled();
       });
     });
 
@@ -225,7 +225,7 @@ describe('EuiSplitButton', () => {
         expect(secondarySpinner).toBeInTheDocument();
       });
 
-      it('overrides child props', () => {
+      it('child props apply correctly', () => {
         const { getByTestSubject } = render(
           <EuiSplitButton isLoading={false}>
             <EuiSplitButton.ActionPrimary
@@ -250,8 +250,8 @@ describe('EuiSplitButton', () => {
         const secondarySpinner =
           secondaryAction.querySelector('.euiLoadingSpinner');
 
-        expect(primarySpinner).not.toBeInTheDocument();
-        expect(secondarySpinner).not.toBeInTheDocument();
+        expect(primarySpinner).toBeInTheDocument();
+        expect(secondarySpinner).toBeInTheDocument();
       });
     });
 
