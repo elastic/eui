@@ -77,6 +77,7 @@ export const DraggablePanel = memo(function DraggablePanel({
           setInstruction(extractInstruction(self.data));
           setIsDraggedOver(true);
         },
+        onDrag: ({ self }) => setInstruction(extractInstruction(self.data)),
         onDragLeave: () => {
           setInstruction(null);
           setIsDraggedOver(false);
@@ -87,7 +88,7 @@ export const DraggablePanel = memo(function DraggablePanel({
         },
       })
     );
-  }, [id, index, children, level, title]);
+  }, [id, index, children, level, title, isExpanded]);
 
   const wrapperStyles = css`
     position: relative;
