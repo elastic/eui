@@ -1,10 +1,9 @@
-/** @jsxImportSource @emotion/react */
-
 import { memo, useEffect, useRef, useState } from 'react';
-import invariant from 'tiny-invariant';
+import { css } from '@emotion/react';
 import {
   draggable,
   dropTargetForElements,
+  monitorForElements,
 } from '@atlaskit/pragmatic-drag-and-drop/element/adapter';
 import { combine } from '@atlaskit/pragmatic-drag-and-drop/combine';
 import {
@@ -14,21 +13,133 @@ import {
 } from '@atlaskit/pragmatic-drag-and-drop-hitbox/list-item';
 import {
   EuiAccordion,
+  EuiCodeBlock,
   EuiIcon,
   EuiPanel,
   EuiText,
   useEuiTheme,
 } from '@elastic/eui';
-import { css } from '@emotion/react';
 
-import { TreeItem } from './data';
+interface TreeItem {
+  id: string;
+  title: string;
+  children?: TreeItem[];
+}
+
+type Tree = TreeItem[];
+
+const initialData: Tree = [
+  { id: 'panel-1', title: 'Panel 1' },
+  {
+    id: 'panel-2',
+    title: 'Panel 2',
+    children: [{ id: 'subpanel-2-1', title: 'Subpanel 2.1' }],
+  },
+  {
+    id: 'panel-3',
+    title: 'Panel 3',
+    children: [
+      {
+        id: 'subpanel-3-1',
+        title: 'Subpanel 3.1',
+        children: [
+          { id: 'subpanel-3-1-1', title: 'Subpanel 3.1.1' },
+          { id: 'subpanel-3-1-2', title: 'Subpanel 3.1.2' },
+        ],
+      },
+      { id: 'subpanel-3-2', title: 'Subpanel 3.2' },
+    ],
+  },
+  { id: 'panel-4', title: 'Panel 4' },
+];
+
+const findItem = (items: Tree, itemId: string): TreeItem | undefined => {
+  for (const item of items) {
+    if (item.id === itemId) return item;
+    if (item.children) {
+      const foundItem = findItem(item.children, itemId);
+      if (foundItem) return foundItem;
+    }
+  }
+};
+
+const removeItem = (items: Tree, itemId: string): Tree => {
+  return items
+    .filter((item) => item.id !== itemId)
+    .map((item) => {
+      if (!!item.children?.length) {
+        const newChildren = removeItem(item.children, itemId);
+        if (newChildren !== item.children) {
+          return { ...item, children: newChildren };
+        }
+      }
+
+      return item;
+    });
+};
+
+const insertChild = (
+  items: Tree,
+  targetId: string,
+  newItem: TreeItem
+): Tree => {
+  return items.map((item) => {
+    if (item.id === targetId) {
+      return {
+        ...item,
+        children: [newItem, ...(item.children || [])],
+      };
+    }
+    if (item.children) {
+      return {
+        ...item,
+        children: insertChild(item.children, targetId, newItem),
+      };
+    }
+    return item;
+  });
+};
+
+const insertBefore = (
+  items: Tree,
+  targetId: string,
+  newItem: TreeItem
+): Tree => {
+  return items.flatMap((item) => {
+    if (item.id === targetId) return [newItem, item];
+    if (item.children) {
+      return [
+        { ...item, children: insertBefore(item.children, targetId, newItem) },
+      ];
+    }
+
+    return [item];
+  });
+};
+
+const insertAfter = (
+  items: Tree,
+  targetId: string,
+  newItem: TreeItem
+): Tree => {
+  return items.flatMap((item) => {
+    if (item.id === targetId) return [item, newItem];
+    if (item.children) {
+      return [
+        { ...item, children: insertAfter(item.children, targetId, newItem) },
+      ];
+    }
+
+    return [item];
+  });
+};
 
 interface DraggablePanelProps extends TreeItem {
   index: number;
   level?: number;
 }
 
-export const DraggablePanel = memo(function DraggablePanel({
+const DraggablePanel = memo(function DraggablePanel({
   children,
   id,
   index,
@@ -51,7 +162,7 @@ export const DraggablePanel = memo(function DraggablePanel({
 
   useEffect(() => {
     const el = ref.current;
-    invariant(el);
+    if (!el) return;
 
     return combine(
       draggable({
@@ -226,3 +337,64 @@ export const DraggablePanel = memo(function DraggablePanel({
     </div>
   );
 });
+
+export default () => {
+  const { euiTheme } = useEuiTheme();
+
+  const [items, setItems] = useState<Tree>(initialData);
+
+  useEffect(() => {
+    return monitorForElements({
+      onDrop({ source, location }) {
+        const target = location.current.dropTargets[0];
+
+        if (!target) return;
+
+        const sourceId = source.data.id as string;
+        const targetId = target.data.id as string;
+
+        if (sourceId === targetId) return;
+
+        const instruction: Instruction | null = extractInstruction(target.data);
+
+        if (!instruction) return;
+        if (instruction.blocked) return;
+
+        const itemToMove = findItem(items, sourceId);
+        if (!itemToMove) return;
+
+        let updatedTree = removeItem(items, sourceId);
+
+        if (instruction.operation === 'combine') {
+          updatedTree = insertChild(updatedTree, targetId, itemToMove);
+        } else if (instruction.operation === 'reorder-before') {
+          updatedTree = insertBefore(updatedTree, targetId, itemToMove);
+        } else if (instruction.operation === 'reorder-after') {
+          updatedTree = insertAfter(updatedTree, targetId, itemToMove);
+        }
+
+        setItems(updatedTree);
+      },
+    });
+  }, [items]);
+
+  const wrapperStyles = css`
+    background-color: ${euiTheme.colors.backgroundBasePlain};
+    display: flex;
+    flex-direction: column;
+    gap: ${euiTheme.size.s};
+    min-height: 100%;
+    padding: ${euiTheme.size.base};
+  `;
+
+  return (
+    <div css={wrapperStyles}>
+      {items.map((item, index) => (
+        <DraggablePanel key={item.id} index={index} {...item} />
+      ))}
+      <EuiCodeBlock language="json">
+        {JSON.stringify(items, null, 2)}
+      </EuiCodeBlock>
+    </div>
+  );
+};
