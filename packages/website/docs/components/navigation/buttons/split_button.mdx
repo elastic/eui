@@ -7,7 +7,7 @@ keywords: [EuiSplitButton]
 # Split button
 
 Split buttons combine a primary and secondary action into a visual button group. The main button performs the most common action, while the secondary button may perform an additional action
-or open a dropdown popover with related secondary actions. This pattern is ideal when you have one primary action that users perform frequently, along with several related alternatives.
+or open a dropdown popover with related secondary actions. This pattern is ideal when you have one primary action that users perform frequently, along with one or several related alternatives.
 
 `EuiSplitButton` is composed of two sub-components:
 - `EuiSplitButton.ActionPrimary`: The main action button
@@ -15,16 +15,6 @@ or open a dropdown popover with related secondary actions. This pattern is ideal
 
 `EuiSplitButton.ActionPrimary` is by default rendered as a standard button with text, but it can be rendered as icon button by setting `isIconOnly={true}` and passing a `iconType`.
 `EuiSplitButton.ActionSecondary` is always rendered as an icon button.
-
-Both sub-components accept the same props as `EuiButton` and `EuiButtonIcon` respectively. 
-Some specific props are however controlled by the parent `EuiSplitButton` component to ensure expected visual output. 
-These common props are: `size`, `color`, and `fill`. Additionally, you can control `isDisabled` and `isLoading` states for both actions combined as well as individually. 
-The parent prop will always override the sub-component prop when both are provided.
-
-:::info Tooltips and popovers
-`EuiSplitButton` only allows `EuiSplitButton.ActionPrimary` and `EuiSplitButton.ActionSecondary` as children.
-Use the dedicated `tooltipProps` and `popoverProps` props to add tooltips and popovers to the respective sub-component as needed.
-:::
 
 ```tsx interactive
 import React, { useState } from 'react';
@@ -52,7 +42,6 @@ export default () => {
   const [isPrimaryIconOnly, setIsPrimaryIconOnly] = useState(false);
 
   const [isFirstPopoverOpen, setIsFirstPopoverOpen] = useState(false);
-  const [isSecondPopoverOpen, setIsSecondPopoverOpen] = useState(false);
 
   // While `accentSecondary` is currently available on the component, it is likely to be removed
   // `neutral` and `risk` are only tentatively added but might be removed
@@ -153,62 +142,108 @@ export default () => {
         <EuiSplitButton.ActionPrimary
           isDisabled={isPrimaryDisabled}
           isIconOnly={isPrimaryIconOnly}
-          iconType={isPrimaryIconOnly ? 'gear' : undefined}
-          aria-label="Primary action"
-          tooltipProps={{
-            content: 'Primary action tooltip',
-            position: 'bottom',
-            delay: 'regular'
-          }}
+          iconType="refresh"
         >
-          Primary Action
+          Refresh
         </EuiSplitButton.ActionPrimary>
         <EuiSplitButton.ActionSecondary
-          iconType="arrowDown"
-          aria-label="Open secondary actions menu"
+          iconType="backgroundTask"
+          aria-label="Send to background"
           isDisabled={isSecondaryDisabled}
-          onClick={() => setIsFirstPopoverOpen(!isFirstPopoverOpen)}
-          popoverProps={{
-            isOpen: isFirstPopoverOpen,
-            closePopover: () => setIsFirstPopoverOpen(false),
-            panelPaddingSize: 's',
-            children: (
-              <EuiContextMenu
-                initialPanelId={0}
-                panels={[
-                  {
-                    id: 0,
-                    items: [
-                      {
-                        name: 'Action 1 (click)',
-                        icon: 'search',
-                        onClick: () => {},
-                      },
-                      {
-                        name: 'Action 2 (link)',
-                        icon: 'user',
-                        href: 'http://elastic.co',
-                        target: '_blank',
-                      },
-                      {
-                        name: 'Action 3 (tooltip)',
-                        icon: 'document',
-                        toolTipContent: 'Optional content for a tooltip',
-                        toolTipProps: {
-                          title: 'Optional tooltip title',
-                          position: 'right',
-                        },
-                        onClick: () => {},
-                      },
-                    ],
-                  },
-                ]}
-              />
-            ),
-          }}
         />
       </EuiSplitButton>
     </>
+  );
+}
+```
+
+Both sub-components accept the same props as `EuiButton` and `EuiButtonIcon` respectively. 
+Some specific props are however controlled by the parent `EuiSplitButton` component to ensure expected visual output. 
+These common props are: `size`, `color`, and `fill`. Additionally, you can control `isDisabled` and `isLoading` states for both actions combined as well as individually. 
+The parent prop will always override the sub-component prop when both are provided.
+
+## Tooltips and popovers
+
+:::info `EuiSplitButton` only allows `EuiSplitButton.ActionPrimary` and `EuiSplitButton.ActionSecondary` as children.
+:::
+
+To apply a tooltip to either action, you can pass `tooltipProps` which will render an `EuiToolTip` wrapping the button.
+For `EuiSplitButton.ActionSecondary` only, you can also pass `popoverProps` to render an `EuiPopover`.
+
+```tsx interactive
+import React, { useState } from 'react';
+import { css } from '@emotion/react';
+import {
+  EuiButton,
+  EuiSplitButton,
+  EuiContextMenu,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiSpacer,
+  EuiSelect,
+  EuiSwitch,
+} from '@elastic/eui';
+import { COLORS } from '@elastic/eui/es/components/button/button';
+
+export default () => {
+  const [isFirstPopoverOpen, setIsFirstPopoverOpen] = useState(false);
+
+  return (
+    <EuiSplitButton>
+      <EuiSplitButton.ActionPrimary
+        iconType="save"
+        tooltipProps={{
+          content: 'Primary action tooltip',
+          position: 'bottom',
+          delay: 'regular'
+        }}
+      >
+        Save
+      </EuiSplitButton.ActionPrimary>
+      <EuiSplitButton.ActionSecondary
+        iconType="arrowDown"
+        aria-label="Open secondary actions menu"
+        onClick={() => setIsFirstPopoverOpen(!isFirstPopoverOpen)}
+        popoverProps={{
+          isOpen: isFirstPopoverOpen,
+          closePopover: () => setIsFirstPopoverOpen(false),
+          panelPaddingSize: 's',
+          children: (
+            <EuiContextMenu
+              initialPanelId={0}
+              panels={[
+                {
+                  id: 0,
+                  items: [
+                    {
+                      name: 'Action 1 (click)',
+                      icon: 'search',
+                      onClick: () => {},
+                    },
+                    {
+                      name: 'Action 2 (link)',
+                      icon: 'user',
+                      href: 'http://elastic.co',
+                      target: '_blank',
+                    },
+                    {
+                      name: 'Action 3 (tooltip)',
+                      icon: 'document',
+                      toolTipContent: 'Optional content for a tooltip',
+                      toolTipProps: {
+                        title: 'Optional tooltip title',
+                        position: 'right',
+                      },
+                      onClick: () => {},
+                    },
+                  ],
+                },
+              ]}
+            />
+          ),
+        }}
+      />
+    </EuiSplitButton>
   );
 }
 ```

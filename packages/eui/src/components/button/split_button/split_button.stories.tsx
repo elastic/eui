@@ -60,6 +60,18 @@ export const Playground: Story = {
   },
 };
 
+export const SingleSecondaryAction: Story = {
+  args: {
+    children: [
+      <EuiSplitButton.ActionPrimary>Button</EuiSplitButton.ActionPrimary>,
+      <EuiSplitButton.ActionSecondary
+        iconType="play"
+        aria-label="Secondary action"
+      />,
+    ],
+  },
+};
+
 export const WithTooltip: Story = {
   parameters: {
     loki: {
