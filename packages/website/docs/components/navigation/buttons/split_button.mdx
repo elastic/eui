@@ -248,6 +248,16 @@ export default () => {
 }
 ```
 
+## Usage
+
+### Single primary and secondary action
+
+When there is only one primary and one secondary action, the `onClick` handler can be passed directly to each action and perform individual actions for each action button.
+
+### Multiple secondary actions
+
+When there are multiple secondary actions use the `popoverProps` prop on `EuiSplitButton.ActionSecondary` to display your custom subset of secondary actions in a `EuiPopover` component.
+
 ## Props
 
 import docgen from '@elastic/eui-docgen/dist/components/button/split_button/';
