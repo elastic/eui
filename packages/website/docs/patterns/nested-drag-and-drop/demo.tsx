@@ -2,7 +2,7 @@
 
 import { EuiCodeBlock, useEuiTheme } from '@elastic/eui';
 import { css } from '@emotion/react';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { monitorForElements } from '@atlaskit/pragmatic-drag-and-drop/element/adapter';
 import {
   extractInstruction,
