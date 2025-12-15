@@ -20,16 +20,26 @@ import { euiSplitButtonActionStyles } from './split_button.styles';
 import { EuiSplitButtonContext } from './split_button_context';
 
 type EuiSplitButtonAction<T> = T & {
+  /**
+   * Enables rendering an `EuiToolTip` with the passed props.
+   */
   tooltipProps?: Partial<Omit<EuiToolTipProps, 'children'>>;
 };
 
 export type EuiSplitButtonActionPrimaryProps = EuiDisabledProps &
   EuiSplitButtonAction<EuiButtonProps | EuiButtonIconProps> & {
+    /**
+     * Toggles the render as `EuiButtonIcon`.
+     */
     isIconOnly?: boolean;
   };
 
 export type EuiSplitButtonActionSecondaryProps = EuiDisabledProps &
   EuiSplitButtonAction<EuiButtonIconProps> & {
+    /**
+     * Enables rendering an `EuiPopover` with the passed props.
+     * When passed the secondary action icon will be fixed to `arrowDown`.
+     */
     popoverProps?: Omit<EuiPopover['props'], 'button'>;
   };
 
