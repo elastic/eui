@@ -44,6 +44,12 @@ export const DraggablePanel = memo(function DraggablePanel({
   const [instruction, setInstruction] = useState<Instruction | null>(null);
 
   useEffect(() => {
+    if (!!children?.length) {
+      setIsExpanded(true);
+    }
+  }, [children?.length]);
+
+  useEffect(() => {
     const el = ref.current;
     invariant(el);
 
