@@ -13,7 +13,6 @@ import {
 } from '@atlaskit/pragmatic-drag-and-drop-hitbox/list-item';
 import {
   EuiAccordion,
-  EuiCodeBlock,
   EuiIcon,
   EuiPanel,
   EuiText,
@@ -392,9 +391,6 @@ export default () => {
       {items.map((item, index) => (
         <DraggablePanel key={item.id} index={index} {...item} />
       ))}
-      <EuiCodeBlock language="json">
-        {JSON.stringify(items, null, 2)}
-      </EuiCodeBlock>
     </div>
   );
 };
