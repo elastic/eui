@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 
-import { memo, useEffect, useRef, useState } from 'react';
+import { memo, useEffect, useRef, useState, type MouseEvent } from 'react';
 import { css } from '@emotion/react';
 import {
   draggable,
@@ -135,6 +135,22 @@ const insertAfter = (
   });
 };
 
+const useHover = () => {
+  const [isHovered, setIsHovered] = useState(false);
+
+  const onMouseOver = (e: MouseEvent) => {
+    e.stopPropagation();
+    setIsHovered(true);
+  };
+
+  const onMouseOut = (e: MouseEvent) => {
+    e.stopPropagation();
+    setIsHovered(false);
+  };
+
+  return { isHovered, onMouseOver, onMouseOut };
+};
+
 interface DraggablePanelProps extends TreeItem {
   index: number;
   level?: number;
@@ -152,8 +168,9 @@ const DraggablePanel = memo(function DraggablePanel({
   const ref = useRef<HTMLDivElement | null>(null);
 
   const [isExpanded, setIsExpanded] = useState(true);
-  const [isDraggedOver, setIsDraggedOver] = useState(false);
   const [instruction, setInstruction] = useState<Instruction | null>(null);
+
+  const { isHovered, onMouseOver, onMouseOut } = useHover();
 
   useEffect(() => {
     if (!!children?.length) {
@@ -169,9 +186,7 @@ const DraggablePanel = memo(function DraggablePanel({
       draggable({
         element: el,
         getInitialData: () => ({ id, index }),
-        onDragStart: () => {
-          setIsExpanded(false);
-        },
+        onDragStart: () => setIsExpanded(false),
       }),
       dropTargetForElements({
         element: el,
@@ -194,26 +209,17 @@ const DraggablePanel = memo(function DraggablePanel({
         onDragEnter: ({ self, location }) => {
           if (location.current.dropTargets[0]?.element === self.element) {
             setInstruction(extractInstruction(self.data));
-            setIsDraggedOver(true);
           }
         },
         onDrag: ({ self, location }) => {
           if (location.current.dropTargets[0]?.element === self.element) {
             setInstruction(extractInstruction(self.data));
-            setIsDraggedOver(true);
           } else {
             setInstruction(null);
-            setIsDraggedOver(false);
           }
         },
-        onDragLeave: () => {
-          setInstruction(null);
-          setIsDraggedOver(false);
-        },
-        onDrop: () => {
-          setInstruction(null);
-          setIsDraggedOver(false);
-        },
+        onDragLeave: () => setInstruction(null),
+        onDrop: () => setInstruction(null),
       })
     );
   }, [id, index, children, level, title, isExpanded]);
@@ -234,10 +240,20 @@ const DraggablePanel = memo(function DraggablePanel({
       : euiTheme.colors.borderBaseSubdued};
   `;
 
-  /**
-   * Leaves need 1px padding override to avoid border clipping.
-   * `EuiPanel` doesn't support `hasBorder` for `color="subdued"`.
-   */
+  const grabIconStyles = css`
+    width: ${isHovered ? euiTheme.size.l : 0};
+    min-width: 0;
+    opacity: ${isHovered ? 1 : 0};
+    margin-inline-end: ${isHovered ? 0 : `calc(${euiTheme.size.xs} * -1)`};
+    overflow: hidden;
+    transform: scale(${isHovered ? 1 : 0});
+    transition:
+      width 0.2s ease-in-out,
+      opacity 0.2s ease-in-out,
+      margin-inline-end 0.2s ease-in-out,
+      transform 0.2s ease-in-out;
+  `;
+
   const leafStyles = css`
     padding: ${euiTheme.size.s} 1px 1px 1px;
   `;
@@ -284,7 +300,7 @@ const DraggablePanel = memo(function DraggablePanel({
   `;
 
   return (
-    <div css={wrapperStyles}>
+    <div css={wrapperStyles} onMouseOver={onMouseOver} onMouseOut={onMouseOut}>
       {instruction?.operation === 'reorder-before' && (
         <div css={topIndicatorStyles} />
       )}
@@ -309,7 +325,10 @@ const DraggablePanel = memo(function DraggablePanel({
           arrowDisplay="none"
           buttonContent={
             <span css={headerStyles}>
-              {!!children?.length && (
+              <span css={[iconStyles, grabIconStyles]}>
+                <EuiIcon type="grab" />
+              </span>
+              {children?.length && (
                 <span css={iconStyles}>
                   <EuiIcon type={isExpanded ? 'arrowDown' : 'arrowRight'} />
                 </span>
