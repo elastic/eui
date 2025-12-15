@@ -137,22 +137,22 @@ export const DraggablePanel = memo(function DraggablePanel({
 
   const indicatorStyles = css`
     position: absolute;
-    z-index: 10;
+    z-index: ${euiTheme.levels.flyout};
     left: 0;
     right: 0;
-    height: 2px;
+    height: 1px;
     background-color: ${euiTheme.colors.borderStrongAccentSecondary};
     pointer-events: none;
   `;
 
   const topIndicatorStyles = css`
     ${indicatorStyles}
-    top: -${euiTheme.size.s};
+    top: -${euiTheme.size.xs};
   `;
 
   const bottomIndicatorStyles = css`
     ${indicatorStyles}
-    bottom: -${euiTheme.size.s};
+    bottom: -${euiTheme.size.xs};
   `;
 
   return (
