@@ -79,11 +79,21 @@ export const DraggablePanel = memo(function DraggablePanel({
               },
             }
           ),
-        onDragEnter: ({ self }) => {
-          setInstruction(extractInstruction(self.data));
-          setIsDraggedOver(true);
+        onDragEnter: ({ self, location }) => {
+          if (location.current.dropTargets[0]?.element === self.element) {
+            setInstruction(extractInstruction(self.data));
+            setIsDraggedOver(true);
+          }
         },
-        onDrag: ({ self }) => setInstruction(extractInstruction(self.data)),
+        onDrag: ({ self, location }) => {
+          if (location.current.dropTargets[0]?.element === self.element) {
+            setInstruction(extractInstruction(self.data));
+            setIsDraggedOver(true);
+          } else {
+            setInstruction(null);
+            setIsDraggedOver(false);
+          }
+        },
         onDragLeave: () => {
           setInstruction(null);
           setIsDraggedOver(false);
