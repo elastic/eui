@@ -151,6 +151,40 @@ const useHover = () => {
   return { isHovered, onMouseOver, onMouseOut };
 };
 
+interface LineIndicatorProps {
+  position: 'top' | 'bottom';
+}
+
+const LineIndicator = ({ position }: LineIndicatorProps) => {
+  const { euiTheme } = useEuiTheme();
+
+  const indicatorStyles = css`
+    position: absolute;
+    z-index: ${euiTheme.levels.flyout};
+    left: 0;
+    right: 0;
+    height: 1px;
+    background-color: ${euiTheme.colors.borderStrongAccentSecondary};
+    pointer-events: none;
+  `;
+
+  const topIndicatorStyles = css`
+    ${indicatorStyles}
+    top: -${euiTheme.size.xs};
+  `;
+
+  const bottomIndicatorStyles = css`
+    ${indicatorStyles}
+    bottom: -${euiTheme.size.xs};
+  `;
+
+  return (
+    <div
+      css={position === 'top' ? topIndicatorStyles : bottomIndicatorStyles}
+    />
+  );
+};
+
 interface DraggablePanelProps extends TreeItem {
   index: number;
   level?: number;
@@ -254,6 +288,10 @@ const DraggablePanel = memo(function DraggablePanel({
       transform 0.2s ease-in-out;
   `;
 
+  /**
+   * Leaves need 1px padding override to avoid border clipping.
+   * `EuiPanel` doesn't support `hasBorder` for `color="subdued"`.
+   */
   const leafStyles = css`
     padding: ${euiTheme.size.s} 1px 1px 1px;
   `;
@@ -279,30 +317,10 @@ const DraggablePanel = memo(function DraggablePanel({
     width: ${euiTheme.size.l};
   `;
 
-  const indicatorStyles = css`
-    position: absolute;
-    z-index: ${euiTheme.levels.flyout};
-    left: 0;
-    right: 0;
-    height: 1px;
-    background-color: ${euiTheme.colors.borderStrongAccentSecondary};
-    pointer-events: none;
-  `;
-
-  const topIndicatorStyles = css`
-    ${indicatorStyles}
-    top: -${euiTheme.size.xs};
-  `;
-
-  const bottomIndicatorStyles = css`
-    ${indicatorStyles}
-    bottom: -${euiTheme.size.xs};
-  `;
-
   return (
     <div css={wrapperStyles} onMouseOver={onMouseOver} onMouseOut={onMouseOut}>
       {instruction?.operation === 'reorder-before' && (
-        <div css={topIndicatorStyles} />
+        <LineIndicator position="top" />
       )}
       <EuiPanel
         css={panelStyles}
@@ -314,6 +332,7 @@ const DraggablePanel = memo(function DraggablePanel({
         paddingSize="s"
       >
         <EuiAccordion
+          arrowDisplay="none"
           id={id}
           forceState={isExpanded ? 'open' : 'closed'}
           onToggle={setIsExpanded}
@@ -322,7 +341,6 @@ const DraggablePanel = memo(function DraggablePanel({
            * and let the underlying button handle the (un)collapse behavior.
            * See: https://eui.elastic.co/docs/components/containers/accordion/#interactive-content-in-the-trigger
            */
-          arrowDisplay="none"
           buttonContent={
             <span css={headerStyles}>
               <span css={[iconStyles, grabIconStyles]}>
@@ -352,7 +370,7 @@ const DraggablePanel = memo(function DraggablePanel({
         </EuiAccordion>
       </EuiPanel>
       {instruction?.operation === 'reorder-after' && (
-        <div css={bottomIndicatorStyles} />
+        <LineIndicator position="bottom" />
       )}
     </div>
   );
