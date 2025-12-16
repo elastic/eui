@@ -325,18 +325,23 @@ const DraggablePanel = memo(function DraggablePanel({
           return !descendantIds.includes(id);
         },
         onDrag: ({ self, location }) => {
+          const newInstruction = extractInstruction(self.data);
+          const isInnerMost =
+            location.current.dropTargets[0]?.element === self.element;
+          const isNesting = newInstruction?.operation === 'combine';
+
           /*
            * When you hover over a deeply nested child, you are technically
            * hovering over its parent and grandparent too. Without this check
            * you would see group and line indicators for the entire tree branch.
            * We only update the `instruction` state if the element is innermost.
            */
-          if (location.current.dropTargets[0]?.element === self.element) {
+          if (isInnerMost) {
             const newInstruction = extractInstruction(self.data);
             setInstruction(newInstruction);
 
             if (
-              newInstruction?.operation === 'combine' &&
+              isNesting &&
               hasChildren &&
               !isExpanded &&
               !expandTimeout.current
@@ -345,7 +350,7 @@ const DraggablePanel = memo(function DraggablePanel({
                 setIsExpanded(true);
                 expandTimeout.current = undefined;
               }, EXPAND_ON_HOVER_TIME);
-            } else if (newInstruction?.operation !== 'combine') {
+            } else if (!isNesting) {
               cancelExpand();
             }
           } else {
