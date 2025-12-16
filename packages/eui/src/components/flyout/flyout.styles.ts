@@ -80,7 +80,7 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
   return {
     euiFlyout: css`
       position: fixed;
-      ${euiContainer(EUI_FLYOUT_CONTAINER_NAME, 'inline-size')}
+      ${euiContainer('inline-size', EUI_FLYOUT_CONTAINER_NAME)}
       ${logicalCSS('bottom', 0)}
       ${logicalCSS('top', 'var(--euiFixedHeadersOffset, 0)')}
       ${logicalCSS('height', 'inherit')}
