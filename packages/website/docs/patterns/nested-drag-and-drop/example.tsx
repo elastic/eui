@@ -275,9 +275,11 @@ const DraggablePanel = memo(function DraggablePanel({
           if (location.current.dropTargets[0]?.element === self.element) {
             setInstruction(extractInstruction(self.data));
           } else {
+            /* This means that mouse left the nested child  */
             setInstruction(null);
           }
         },
+        /* This means that mouse left the component entirely */
         onDragLeave: () => setInstruction(null),
         onDrop: () => setInstruction(null),
       })
