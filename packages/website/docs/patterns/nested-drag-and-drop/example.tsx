@@ -30,6 +30,13 @@ interface TreeItem {
 
 type Tree = TreeItem[];
 
+/**
+ * In order for the nested drag and drop pattern to work flawlessly,
+ * make sure your data has unique and stable `id` that you can use for
+ * the `key` prop when mapping children.
+ *
+ * DO NOT use indices!
+ */
 const initialData: Tree = [
   { id: 'panel-1', title: 'Panel 1 (blocked)', isBlocked: true },
   {
