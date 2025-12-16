@@ -1,6 +1,13 @@
 /** @jsxImportSource @emotion/react */
 
-import { memo, useEffect, useRef, useState, type MouseEvent } from 'react';
+import {
+  memo,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  type MouseEvent,
+} from 'react';
 import { css } from '@emotion/react';
 import {
   draggable,
@@ -200,6 +207,8 @@ const LineIndicator = ({ position }: LineIndicatorProps) => {
   );
 };
 
+const EXPAND_ON_HOVER_TIME = 300;
+
 interface DraggablePanelProps extends TreeItem {
   index: number;
   level?: number;
@@ -216,24 +225,37 @@ const DraggablePanel = memo(function DraggablePanel({
   const { euiTheme } = useEuiTheme();
 
   const ref = useRef<HTMLDivElement | null>(null);
+  const expandTimeout = useRef<ReturnType<typeof setTimeout>>();
 
   const [isExpanded, setIsExpanded] = useState(true);
   const [instruction, setInstruction] = useState<Instruction | null>(null);
 
   const { isHovered, onMouseOver, onMouseOut } = useHover();
 
+  const hasChildren = useMemo(() => {
+    return !!children?.length;
+  }, [children]);
+
   /*
    * Auto-expand accordion on having dropped an element.
    */
   useEffect(() => {
-    if (!!children?.length) {
-      setIsExpanded(true);
-    }
-  }, [children?.length]);
+    if (hasChildren) setIsExpanded(true);
+  }, [hasChildren]);
 
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
+
+    const cancelExpand = () => {
+      clearTimeout(expandTimeout.current);
+      expandTimeout.current = undefined;
+    };
+
+    const reset = () => {
+      setInstruction(null);
+      cancelExpand();
+    };
 
     /*
      * `draggable` enables the dragging of an element.
@@ -245,10 +267,11 @@ const DraggablePanel = memo(function DraggablePanel({
      * `combine` is a utility that enables both behaviors.
      * See: https://atlassian.design/components/pragmatic-drag-and-drop/core-package/utilities#combine
      */
-    return combine(
+    const cleanup = combine(
       draggable({
         element: el,
         getInitialData: () => ({ id, index }),
+        onDragStart: () => setIsExpanded(false),
       }),
       dropTargetForElements({
         element: el,
@@ -273,17 +296,35 @@ const DraggablePanel = memo(function DraggablePanel({
            * We only update the `instruction` state if the element is innermost.
            */
           if (location.current.dropTargets[0]?.element === self.element) {
-            setInstruction(extractInstruction(self.data));
+            const newInstruction = extractInstruction(self.data);
+            setInstruction(newInstruction);
+
+            if (
+              newInstruction?.operation === 'combine' &&
+              hasChildren &&
+              !isExpanded &&
+              !expandTimeout.current
+            ) {
+              expandTimeout.current = setTimeout(() => {
+                setIsExpanded(true);
+                expandTimeout.current = undefined;
+              }, EXPAND_ON_HOVER_TIME);
+            } else if (newInstruction?.operation !== 'combine') {
+              cancelExpand();
+            }
           } else {
-            /* This means that mouse left the nested child  */
-            setInstruction(null);
+            reset();
           }
         },
-        /* This means that mouse left the component entirely */
-        onDragLeave: () => setInstruction(null),
-        onDrop: () => setInstruction(null),
+        onDragLeave: reset,
+        onDrop: reset,
       })
     );
+
+    return () => {
+      cleanup();
+      cancelExpand();
+    };
   }, [id, index, children, level, title, isExpanded, isBlocked]);
 
   /**
@@ -344,7 +385,7 @@ const DraggablePanel = memo(function DraggablePanel({
   `;
 
   const childrenWrapperStyles = css`
-    ${isExpanded && !!children?.length && groupStyles}
+    ${isExpanded && hasChildren && groupStyles}
     display: flex;
     flex-direction: column;
     gap: ${euiTheme.size.s};
@@ -393,7 +434,7 @@ const DraggablePanel = memo(function DraggablePanel({
               <span css={[iconStyles, grabIconStyles]}>
                 <EuiIcon type="grab" />
               </span>
-              {!!children?.length && (
+              {hasChildren && (
                 <span css={iconStyles}>
                   <EuiIcon type={isExpanded ? 'arrowDown' : 'arrowRight'} />
                 </span>
