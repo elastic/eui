@@ -356,6 +356,7 @@ const component_colors: _EuiThemeComponentColors = {
     ([backgroundBaseHighlighted]) => backgroundBaseHighlighted,
     ['colors.backgroundBaseHighlighted']
   ),
+  tourStepIndicatorDotColor: SEMANTIC_COLORS.shade50,
 
   treeViewItemBackgroundHover: computed(
     ([backgroundBaseInteractiveHover]) => backgroundBaseInteractiveHover,
@@ -421,5 +422,7 @@ export const components: _EuiThemeComponents = {
     tableRowBackgroundMarked: SEMANTIC_COLORS.warning140,
     tableRowBackgroundMarkedHover: SEMANTIC_COLORS.warning130,
     tableFooterBackground: SEMANTIC_COLORS.shade135,
+
+    tourStepIndicatorDotColor: SEMANTIC_COLORS.shade100,
   },
 };
