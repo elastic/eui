@@ -258,11 +258,6 @@ const DraggablePanel = memo(function DraggablePanel({
               },
             }
           ),
-        onDragEnter: ({ self, location }) => {
-          if (location.current.dropTargets[0]?.element === self.element) {
-            setInstruction(extractInstruction(self.data));
-          }
-        },
         onDrag: ({ self, location }) => {
           /*
            * When you hover over a deeply nested child, you are technically
