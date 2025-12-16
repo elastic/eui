@@ -245,10 +245,7 @@ const DraggablePanel = memo(function DraggablePanel({
                 : {
                     combine: 'available',
                     'reorder-before': 'available',
-                    'reorder-after':
-                      isExpanded && !!children?.length
-                        ? 'not-available'
-                        : 'available',
+                    'reorder-after': 'available',
                   },
             }
           ),
@@ -305,7 +302,7 @@ const DraggablePanel = memo(function DraggablePanel({
    * `EuiPanel` doesn't support `hasBorder` for `color="subdued"`.
    */
   const leafStyles = css`
-    padding: ${euiTheme.size.s} 1px 1px 1px;
+    padding: ${euiTheme.size.m} 1px 1px 1px;
   `;
 
   const childrenWrapperStyles = css`
@@ -341,7 +338,6 @@ const DraggablePanel = memo(function DraggablePanel({
         hasShadow={false}
         borderRadius="m"
         grow={false}
-        paddingSize="s"
       >
         <EuiAccordion
           arrowDisplay="none"
