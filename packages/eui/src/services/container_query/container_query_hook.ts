@@ -12,7 +12,9 @@ import { matchContainer } from './match_container';
 /**
  * React hook that subscribes to CSS container query changes.
  *
- * (relies on a polyfill of an API proposal in W3C CSS WG {@link https://github.com/w3c/csswg-drafts/issues/6205})
+ * For this to work:
+ * - a proper container (an element with e.g. `container-type: inline-size`) is needed, and
+ * - the container MUST to be a parent of the element being observed
  *
  * @param containerCondition - A CSS `<container-condition>` string, e.g. `(width > 400px)` or `(min-width: 600px)`
  * @param name - Optional container name, e.g. `sidebar`
@@ -25,8 +27,6 @@ import { matchContainer } from './match_container';
  * const { ref, matches } = useEuiContainerQuery('(width > 400px)');
  * return <div ref={ref}>{matches ? 'Wide' : 'Narrow'}</div>;
  * ```
- *
- * @todo document that a proper container is needed and that the actual container cannot be observed!
  *
  * @see {@link https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@container | MDN: @container}
  */

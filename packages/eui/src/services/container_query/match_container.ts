@@ -34,14 +34,22 @@
 
 import { v1 as uuid } from 'uuid';
 
-/*
-  TODO
-  - [ ] document and explain what this is doing
-    - [ ] that is depends on https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/transition-behavior#browser_compatibility
-  - [ ] add JSDoc
-  - [ ] add tests
-*/
-
+/**
+ * Listen for changes on a container query.
+ * Just like `window.matchMedia`.
+ *
+ * @example
+ * ```js
+ * const cql = matchContainer(element, '(width > 42rem)');
+ * cql.addEventListener('change', ({ matches }) {
+ *   // ..
+ * })
+ * ```
+ *
+ * @param element
+ * @param containerQueryString e.g. (width > 42rem)
+ * @returns ContainerQueryList
+ */
 export function matchContainer(
   element: HTMLElement,
   containerQueryString: string
@@ -49,8 +57,14 @@ export function matchContainer(
   return new ContainerQueryList(element, containerQueryString);
 }
 
+/**
+ * `change` event dispatched by instances of {@link ContainerQueryList}
+ * whenever the value of `matches` changes
+ */
 class ContainerQueryListChangeEvent extends Event {
+  /** Whether the container query matches */
   readonly matches: boolean;
+  /** A string representation of the container query list e.g. "(width > 1000px)" */
   readonly container: string;
 
   constructor(matches: boolean, container: string) {
@@ -60,6 +74,20 @@ class ContainerQueryListChangeEvent extends Event {
   }
 }
 
+/**
+ * A hacky implementation of a possible native `ContainerQueryList`
+ * based on the teetotum/match-container polyfill:
+ * - based on a API proposal in W3C CSS WG {@link https://github.com/w3c/csswg-drafts/issues/6205})
+ * - mimicking MediaQueryList {@link https://developer.mozilla.org/en-US/docs/Web/API/MediaQueryList}
+ *
+ * Not meant to be used directly, but rather call `matchContainer`.
+ *
+ * It works by listening on a `transitionrun` event on the element,
+ * that gets triggered by a container query changing a custom property.
+ * Setting `transition-behavior: allow-discrete` is what makes it possible
+ * to have a CSS `transition` for a custom property.
+ * @see {@link https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/transition-behavior}
+ */
 class ContainerQueryList extends EventTarget {
   private element: HTMLElement | null = null;
   private styleSheet: CSSStyleSheet | null = null;
@@ -71,16 +99,22 @@ class ContainerQueryList extends EventTarget {
 
   #matches: boolean = false;
 
+  /** Whether the container query matches */
   get matches() {
     return this.#matches;
   }
 
-  readonly query: string;
+  /**
+   * A string representation of the container query list e.g. "(width > 1000px)"
+   * (the name is weird but it is so for consistency with mediaQueryList.media)
+   * @see {@link https://developer.mozilla.org/en-US/docs/Web/API/MediaQueryList/media}
+   * */
+  readonly container: string;
 
   constructor(element: HTMLElement, containerQueryString: string) {
     super();
 
-    this.query = containerQueryString;
+    this.container = containerQueryString;
     this.element = element;
     // we call this only once to try to avoid any impact on performance
     this.computedStyle = getComputedStyle(this.element);
@@ -89,7 +123,7 @@ class ContainerQueryList extends EventTarget {
     this.markerAttributeName = `data-${uniqueName}`;
     this.sentinelPropertyName = `--${uniqueName}`;
 
-    // order is important
+    // order is important (as in life)
     this.applyMarkerAttribute();
     this.createStyleSheet();
     this.#matches =
@@ -98,10 +132,21 @@ class ContainerQueryList extends EventTarget {
     this.setupTransitionListener();
   }
 
+  /**
+   * The marker attribute is `data-container-query-observer-{UUID}`,
+   * it will be used as a selector in the container query,
+   * in the global CSS that's being added below.
+   */
   private applyMarkerAttribute() {
     this.element!.setAttribute(this.markerAttributeName, '');
   }
 
+  /**
+   * Create a CSS custom property with values either `--true` or `--false`,
+   * and add container query targetting the element.
+   * Whenever the container query matches, the custom property will be `--true`.
+   * This styles are added globaly via `document.adoptedStyleSheets`.
+   */
   private createStyleSheet() {
     const css = `
       @property ${this.sentinelPropertyName} {
@@ -109,7 +154,7 @@ class ContainerQueryList extends EventTarget {
         inherits: false;
         initial-value: --false;
       }
-      @container ${this.query} {
+      @container ${this.container} {
         [${this.markerAttributeName}] {
           ${this.sentinelPropertyName}: --true;
         }
@@ -121,6 +166,15 @@ class ContainerQueryList extends EventTarget {
     this.styleSheet = styleSheet;
   }
 
+  /**
+   * This is the key to the hack:
+   * - a `transition` style is added for the custom property
+   * - the `transitionrun` event will fire whenever the custom property value changes
+   *   because of the container query
+   * - we get the value from computed styles
+   * - the `matches` value is updated and
+   * - a ContainerQueryListChangeEvent event is dispatched
+   */
   private setupTransitionListener() {
     const { element, computedStyle, sentinelPropertyName } = this;
 
@@ -144,13 +198,17 @@ class ContainerQueryList extends EventTarget {
       this.#matches = nextValue === '--true';
 
       this.dispatchEvent(
-        new ContainerQueryListChangeEvent(this.#matches, this.query)
+        new ContainerQueryListChangeEvent(this.#matches, this.container)
       );
     };
 
     element.addEventListener('transitionrun', this.transitionRunListener);
   }
 
+  /**
+   * Override `removeEventListener` to trigger `cleanup` when
+   * the 'change' listener is removed.
+   */
   removeEventListener(
     type: string,
     callback: EventListenerOrEventListenerObject | null,
@@ -158,9 +216,7 @@ class ContainerQueryList extends EventTarget {
   ): void {
     super.removeEventListener(type, callback, options);
 
-    if (type === 'change') {
-      this.cleanup();
-    }
+    if (type === 'change') this.cleanup();
   }
 
   private cleanup() {
