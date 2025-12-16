@@ -286,6 +286,9 @@ const DraggablePanel = memo(function DraggablePanel({
     );
   }, [id, index, children, level, title, isExpanded, isBlocked]);
 
+  /**
+   * Necessary styles for absolutely-positioned line indicators.
+   */
   const wrapperStyles = css`
     position: relative;
   `;
