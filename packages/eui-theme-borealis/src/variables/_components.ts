@@ -358,8 +358,8 @@ const component_colors: _EuiThemeComponentColors = {
   ),
   tourStepIndicatorInactiveColor: SEMANTIC_COLORS.shade50,
   tourStepIndicatorActiveColor: computed(
-    ([backgroundFilledSuccess]) => backgroundFilledSuccess,
-    ['colors.backgroundFilledSuccess']
+    ([textSuccess]) => textSuccess,
+    ['colors.texdSuccess']
   ),
 
   treeViewItemBackgroundHover: computed(
@@ -429,8 +429,8 @@ export const components: _EuiThemeComponents = {
 
     tourStepIndicatorInactiveColor: SEMANTIC_COLORS.shade100,
     tourStepIndicatorActiveColor: computed(
-      ([backgroundFilledSuccess]) => backgroundFilledSuccess,
-      ['colors.backgroundFilledSuccess']
+      ([textSuccess]) => textSuccess,
+      ['colors.textSuccess']
     ),
   },
 };
