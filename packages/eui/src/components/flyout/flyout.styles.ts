@@ -24,7 +24,6 @@ import {
 } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 import { euiFormMaxWidth } from '../form/form.styles';
-import { euiContainer } from '../../global_styling/mixins/_container_query';
 
 export const EUI_FLYOUT_CONTAINER_NAME = 'euiFlyout' as const;
 
@@ -80,7 +79,6 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
   return {
     euiFlyout: css`
       position: fixed;
-      ${euiContainer('inline-size', EUI_FLYOUT_CONTAINER_NAME)}
       ${logicalCSS('bottom', 0)}
       ${logicalCSS('top', 'var(--euiFixedHeadersOffset, 0)')}
       ${logicalCSS('height', 'inherit')}
