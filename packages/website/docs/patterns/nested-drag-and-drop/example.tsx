@@ -154,20 +154,38 @@ const insertAfter = (
   });
 };
 
+/**
+ * A custom hook that defines and returns hover listeners.
+ *
+ * We use `isHovered` state to conditionally render the `grab` icon
+ * as a draggable affordance.
+ *
+ * We rely on `mousemove` instead of `mouseover` to avoid "stuck" hover
+ * states after a drop because `mousemove` only fires on actual movement.
+ * Native drag also suppresses `mousemove`, preventing unwanted hover
+ * effects during drag operations.
+ */
 const useHover = () => {
   const [isHovered, setIsHovered] = useState(false);
 
-  const onMouseOver = (e: MouseEvent) => {
-    e.stopPropagation();
-    setIsHovered(true);
-  };
+  useEffect(() => {
+    return monitorForElements({
+      onDragStart: () => setIsHovered(false),
+      onDrop: () => setIsHovered(false),
+    });
+  }, []);
 
   const onMouseOut = (e: MouseEvent) => {
     e.stopPropagation();
     setIsHovered(false);
   };
 
-  return { isHovered, onMouseOver, onMouseOut };
+  const onMouseMove = (e: MouseEvent) => {
+    e.stopPropagation();
+    if (!isHovered) setIsHovered(true);
+  };
+
+  return { isHovered, onMouseOut, onMouseMove };
 };
 
 interface LineIndicatorProps {
@@ -230,7 +248,7 @@ const DraggablePanel = memo(function DraggablePanel({
   const [isExpanded, setIsExpanded] = useState(true);
   const [instruction, setInstruction] = useState<Instruction | null>(null);
 
-  const { isHovered, onMouseOver, onMouseOut } = useHover();
+  const { isHovered, onMouseOut, onMouseMove } = useHover();
 
   const hasChildren = useMemo(() => {
     return !!children?.length;
@@ -406,7 +424,7 @@ const DraggablePanel = memo(function DraggablePanel({
   `;
 
   return (
-    <div css={wrapperStyles} onMouseOver={onMouseOver} onMouseOut={onMouseOut}>
+    <div css={wrapperStyles} onMouseOut={onMouseOut} onMouseMove={onMouseMove}>
       {instruction?.operation === 'reorder-before' && (
         <LineIndicator position="top" />
       )}
