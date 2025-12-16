@@ -356,7 +356,11 @@ const component_colors: _EuiThemeComponentColors = {
     ([backgroundBaseHighlighted]) => backgroundBaseHighlighted,
     ['colors.backgroundBaseHighlighted']
   ),
-  tourStepIndicatorDotColor: SEMANTIC_COLORS.shade50,
+  tourStepIndicatorInactiveColor: SEMANTIC_COLORS.shade50,
+  tourStepIndicatorActiveColor: computed(
+    ([backgroundFilledSuccess]) => backgroundFilledSuccess,
+    ['colors.backgroundFilledSuccess']
+  ),
 
   treeViewItemBackgroundHover: computed(
     ([backgroundBaseInteractiveHover]) => backgroundBaseInteractiveHover,
@@ -423,6 +427,10 @@ export const components: _EuiThemeComponents = {
     tableRowBackgroundMarkedHover: SEMANTIC_COLORS.warning130,
     tableFooterBackground: SEMANTIC_COLORS.shade135,
 
-    tourStepIndicatorDotColor: SEMANTIC_COLORS.shade100,
+    tourStepIndicatorInactiveColor: SEMANTIC_COLORS.shade100,
+    tourStepIndicatorActiveColor: computed(
+      ([backgroundFilledSuccess]) => backgroundFilledSuccess,
+      ['colors.backgroundFilledSuccess']
+    ),
   },
 };

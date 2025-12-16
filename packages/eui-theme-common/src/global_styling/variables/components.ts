@@ -149,7 +149,8 @@ export type _EuiThemeComponentColors = {
   tooltipBorderFloating: ColorModeSwitch;
 
   tourFooterBackground: ColorModeSwitch;
-  tourStepIndicatorDotColor: ColorModeSwitch;
+  tourStepIndicatorInactiveColor: ColorModeSwitch;
+  tourStepIndicatorActiveColor: ColorModeSwitch;
 
   treeViewItemBackgroundHover: ColorModeSwitch;
 };
