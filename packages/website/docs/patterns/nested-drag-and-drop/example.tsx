@@ -216,6 +216,9 @@ const DraggablePanel = memo(function DraggablePanel({
 
   const { isHovered, onMouseOver, onMouseOut } = useHover();
 
+  /*
+   * Auto-expand accordion on having dropped an element.
+   */
   useEffect(() => {
     if (!!children?.length) {
       setIsExpanded(true);
@@ -226,6 +229,16 @@ const DraggablePanel = memo(function DraggablePanel({
     const el = ref.current;
     if (!el) return;
 
+    /*
+     * `draggable` enables the dragging of an element.
+     * See: https://atlassian.design/components/pragmatic-drag-and-drop/core-package/adapters/element/about#draggable
+     *
+     * `dropTargetForElements` makes an element a drop target.
+     * See: https://atlassian.design/components/pragmatic-drag-and-drop/core-package/adapters/element/about#drop-target-for-elements
+     *
+     * `combine` is a utility that enables both behaviors.
+     * See: https://atlassian.design/components/pragmatic-drag-and-drop/core-package/utilities#combine
+     */
     return combine(
       draggable({
         element: el,
@@ -240,17 +253,11 @@ const DraggablePanel = memo(function DraggablePanel({
             {
               input,
               element,
-              operations: isBlocked
-                ? {
-                    combine: 'not-available',
-                    'reorder-before': 'not-available',
-                    'reorder-after': 'not-available',
-                  }
-                : {
-                    combine: 'available',
-                    'reorder-before': 'available',
-                    'reorder-after': 'available',
-                  },
+              operations: {
+                combine: isBlocked ? 'not-available' : 'available',
+                'reorder-before': isBlocked ? 'not-available' : 'available',
+                'reorder-after': isBlocked ? 'not-available' : 'available',
+              },
             }
           ),
         onDragEnter: ({ self, location }) => {
@@ -300,6 +307,8 @@ const DraggablePanel = memo(function DraggablePanel({
   `;
 
   /**
+   * Grab icon gives affordance to the draggable elements.
+   *
    * TODO: reuse the animation
    */
   const grabIconStyles = css`
@@ -409,8 +418,17 @@ export default () => {
   const [items, setItems] = useState<Tree>(initialData);
 
   useEffect(() => {
+    /*
+     * Monitors listen to all events for a draggable entity.
+     * See: https://atlassian.design/components/pragmatic-drag-and-drop/core-package/monitors
+     */
     return monitorForElements({
       onDrop({ source, location }) {
+        /**
+         * The inner-most drop target. We look from the deepest possible
+         * drop target upwards.
+         * See: https://atlassian.design/components/pragmatic-drag-and-drop/core-package/drop-targets#nested-drop-targets
+         */
         const target = location.current.dropTargets[0];
 
         if (!target) return;
@@ -430,6 +448,17 @@ export default () => {
 
         let updatedTree = removeItem(items, sourceId);
 
+        /*
+         * `@atlaskit/pragmatic-drag-and-drop-hitbox` calculates the user intent.
+         * We can get that user intent using `extractInstruction`.
+         *
+         * The type of operation can be:
+         * - `combine` - it means that the user is hovering over the center of a drop target.
+         * - `reorder-before` - it means that the user is hovering close to the upper edge of a drop target.
+         * - `reorder-after` - it means that the user is hovering close to the lower edge of a drop target.
+         *
+         * See: https://atlassian.design/components/pragmatic-drag-and-drop/optional-packages/hitbox/about
+         */
         if (instruction.operation === 'combine') {
           updatedTree = insertChild(updatedTree, targetId, itemToMove);
         } else if (instruction.operation === 'reorder-before') {
