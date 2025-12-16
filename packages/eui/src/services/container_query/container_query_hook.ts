@@ -29,6 +29,7 @@ import { matchContainer } from './match_container';
  * ```
  *
  * @see {@link https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@container | MDN: @container}
+ * @beta
  */
 export function useEuiContainerQuery<T extends HTMLElement = HTMLElement>(
   containerCondition: string,
