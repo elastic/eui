@@ -429,7 +429,7 @@ export const components: _EuiThemeComponents = {
 
     tourStepIndicatorInactiveColor: SEMANTIC_COLORS.shade100,
     tourStepIndicatorActiveColor: computed(
-      ([textSuccess]) => textSuccess,
+      ([backgroundFilledSuccess]) => backgroundFilledSuccess,
       ['colors.backgroundFilledSuccess']
     ),
   },
