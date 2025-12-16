@@ -1,5 +1,3 @@
-/** @jsxImportSource @emotion/react */
-
 import {
   memo,
   useEffect,
