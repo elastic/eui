@@ -61,7 +61,7 @@ export function matchContainer(
  * `change` event dispatched by instances of {@link ContainerQueryList}
  * whenever the value of `matches` changes
  */
-class ContainerQueryListChangeEvent extends Event {
+export class ContainerQueryListChangeEvent extends Event {
   /** Whether the container query matches */
   readonly matches: boolean;
   /** A string representation of the container query list e.g. "(width > 1000px)" */
@@ -88,7 +88,7 @@ class ContainerQueryListChangeEvent extends Event {
  * to have a CSS `transition` for a custom property.
  * @see {@link https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/transition-behavior}
  */
-class ContainerQueryList extends EventTarget {
+export class ContainerQueryList extends EventTarget {
   private element: HTMLElement | null = null;
   private styleSheet: CSSStyleSheet | null = null;
   private markerAttributeName: string = '';
@@ -205,21 +205,7 @@ class ContainerQueryList extends EventTarget {
     element.addEventListener('transitionrun', this.transitionRunListener);
   }
 
-  /**
-   * Override `removeEventListener` to trigger `cleanup` when
-   * the 'change' listener is removed.
-   */
-  removeEventListener(
-    type: string,
-    callback: EventListenerOrEventListenerObject | null,
-    options?: boolean | EventListenerOptions
-  ): void {
-    super.removeEventListener(type, callback, options);
-
-    if (type === 'change') this.cleanup();
-  }
-
-  private cleanup() {
+  dispose() {
     // remove the stylesheet from adoptedStyleSheets
     if (this.styleSheet) {
       document.adoptedStyleSheets = document.adoptedStyleSheets.filter(

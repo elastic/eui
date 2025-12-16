@@ -53,6 +53,7 @@ export function useEuiContainerQuery<T extends HTMLElement = HTMLElement>(
 
     return () => {
       queryList.removeEventListener('change', handleChange);
+      queryList.dispose();
     };
   }, [ref, containerQueryString]);
 
