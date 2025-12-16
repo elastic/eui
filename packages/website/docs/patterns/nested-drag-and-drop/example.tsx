@@ -152,6 +152,19 @@ const insertAfter = (
   });
 };
 
+const getDescendantIds = (item: TreeItem): string[] => {
+  let ids: string[] = [];
+
+  if (item.children) {
+    for (const child of item.children) {
+      ids.push(child.id);
+      ids = ids.concat(getDescendantIds(child));
+    }
+  }
+
+  return ids;
+};
+
 /**
  * A custom hook that defines and returns hover listeners.
  *
@@ -286,8 +299,11 @@ const DraggablePanel = memo(function DraggablePanel({
     const cleanup = combine(
       draggable({
         element: el,
-        getInitialData: () => ({ id, index }),
-        onDragStart: () => setIsExpanded(false),
+        getInitialData: () => ({
+          id,
+          index,
+          descendantIds: getDescendantIds({ id, children, title }),
+        }),
       }),
       dropTargetForElements({
         element: el,
@@ -304,6 +320,10 @@ const DraggablePanel = memo(function DraggablePanel({
               },
             }
           ),
+        canDrop: ({ source }) => {
+          const descendantIds = source.data.descendantIds as string[];
+          return !descendantIds.includes(id);
+        },
         onDrag: ({ self, location }) => {
           /*
            * When you hover over a deeply nested child, you are technically
