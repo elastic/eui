@@ -301,8 +301,8 @@ const DraggablePanel = memo(function DraggablePanel({
               element,
               operations: {
                 combine: isBlocked ? 'not-available' : 'available',
-                'reorder-before': isBlocked ? 'not-available' : 'available',
-                'reorder-after': isBlocked ? 'not-available' : 'available',
+                'reorder-before': 'available',
+                'reorder-after': 'available',
               },
             }
           ),
