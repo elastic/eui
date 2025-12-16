@@ -11,6 +11,7 @@ import classNames from 'classnames';
 import { css } from '@emotion/react';
 
 import { CommonProps } from '../common';
+import { useEuiTheme } from '../../services';
 
 import { EuiIcon } from '../icon';
 import { EuiI18n } from '../i18n';
@@ -27,7 +28,10 @@ export interface EuiTourStepIndicatorProps
 export const EuiTourStepIndicator: FunctionComponent<
   EuiTourStepIndicatorProps
 > = ({ className, number, status, ...rest }) => {
+  const { euiTheme } = useEuiTheme();
   const classes = classNames('euiTourStepIndicator', className);
+  const inactiveColor = euiTheme.components.tourStepIndicatorInactiveColor;
+  const activeColor = euiTheme.components.tourStepIndicatorActiveColor;
 
   let indicatorIcon: ReactNode;
   if (status === 'active') {
@@ -37,7 +41,7 @@ export const EuiTourStepIndicator: FunctionComponent<
           <EuiIcon
             type="dot"
             aria-label={isActive}
-            color="success"
+            color={activeColor}
             aria-current="step"
           />
         )}
@@ -47,7 +51,7 @@ export const EuiTourStepIndicator: FunctionComponent<
     indicatorIcon = (
       <EuiI18n token="euiTourStepIndicator.isComplete" default="complete">
         {(isComplete: string) => (
-          <EuiIcon type="dot" aria-label={isComplete} color="subdued" />
+          <EuiIcon type="dot" aria-label={isComplete} color={inactiveColor} />
         )}
       </EuiI18n>
     );
@@ -55,7 +59,7 @@ export const EuiTourStepIndicator: FunctionComponent<
     indicatorIcon = (
       <EuiI18n token="euiTourStepIndicator.isIncomplete" default="incomplete">
         {(isIncomplete: string) => (
-          <EuiIcon type="dot" aria-label={isIncomplete} color="subdued" />
+          <EuiIcon type="dot" aria-label={isIncomplete} color={inactiveColor} />
         )}
       </EuiI18n>
     );
