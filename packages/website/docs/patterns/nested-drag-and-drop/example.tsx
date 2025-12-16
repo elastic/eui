@@ -160,6 +160,10 @@ interface LineIndicatorProps {
   position: 'top' | 'bottom';
 }
 
+/**
+ * TODO: make into a reusable style / component
+ * with the current drag and drop components
+ */
 const LineIndicator = ({ position }: LineIndicatorProps) => {
   const { euiTheme } = useEuiTheme();
 
@@ -283,6 +287,21 @@ const DraggablePanel = memo(function DraggablePanel({
       : euiTheme.colors.borderBaseSubdued};
   `;
 
+  /**
+   * We need to override the default `overflow: hidden` behavior of `EuiAccordion` to
+   * allow the `LineIndicator` to be visible when dragging nested panels
+   * and assure leaf nodes' bottom border doesn't gets cut off.
+   * Double-check this doesn't cause any issues with your content type.
+   */
+  const accordionStyles = css`
+    .euiAccordion__childWrapper {
+      overflow: visible;
+    }
+  `;
+
+  /**
+   * TODO: reuse the animation
+   */
   const grabIconStyles = css`
     width: ${isHovered ? euiTheme.size.l : 0};
     min-width: 0;
@@ -298,15 +317,14 @@ const DraggablePanel = memo(function DraggablePanel({
   `;
 
   /**
-   * Leaves need 1px padding override to avoid border clipping.
-   * `EuiPanel` doesn't support `hasBorder` for `color="subdued"`.
+   * Gap between the accordion header and accordion content.
    */
-  const leafStyles = css`
-    padding: ${euiTheme.size.m} 1px 1px 1px;
+  const groupStyles = css`
+    padding-top: ${euiTheme.size.m};
   `;
 
   const childrenWrapperStyles = css`
-    ${isExpanded && !!children?.length && leafStyles}
+    ${isExpanded && !!children?.length && groupStyles}
     display: flex;
     flex-direction: column;
     gap: ${euiTheme.size.s};
@@ -341,6 +359,7 @@ const DraggablePanel = memo(function DraggablePanel({
       >
         <EuiAccordion
           arrowDisplay="none"
+          css={accordionStyles}
           id={id}
           forceState={isExpanded ? 'open' : 'closed'}
           onToggle={setIsExpanded}
