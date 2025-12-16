@@ -21,12 +21,18 @@ export const typeToPathMap = {
   apmTrace: 'apm_trace',
   appSearchApp: 'app_app_search',
   apps: 'apps',
-  arrowDown: 'arrow_down',
-  arrowLeft: 'arrow_left',
-  arrowRight: 'arrow_right',
-  arrowUp: 'arrow_up',
-  arrowStart: 'arrowStart',
-  arrowEnd: 'arrowEnd',
+  arrowDown: 'chevron_single_down', // NOTE: To be deprecated in favor of chevronSingleDown
+  chevronSingleDown: 'chevron_single_down',
+  arrowLeft: 'chevron_single_left', // NOTE: To be deprecated in favor of chevronSingleLeft
+  chevronSingleLeft: 'chevron_single_left',
+  arrowRight: 'chevron_single_right', // NOTE: To be deprecated in favor of chevronSinglRight
+  chevronSingleRight: 'chevron_single_right',
+  arrowUp: 'chevron_single_up', // NOTE: To be deprecated in favor of chevronSingleUp
+  chevronSingleUp: 'chevron_single_up',
+  arrowStart: 'chevron_limit_left', // NOTE: To be deprecated in favor of chevronLimitLeft
+  chevronLimitLeft: 'chevron_limit_left',
+  arrowEnd: 'chevron_limit_right', // NOTE: To be deprecated in favor of chevronLimitRight
+  chevronLimitRight: 'chevron_limit_right',
   article: 'article',
   asterisk: 'asterisk',
   at: 'at',
@@ -51,7 +57,8 @@ export const typeToPathMap = {
   changePointDetection: 'change_point_detection',
   check: 'check',
   checkCircle: 'checkCircle',
-  checkInCircleFilled: 'checkInCircleFilled',
+  checkInCircleFilled: 'checkCircleFill', // NOTE: To be deprecated in favor of checkCircleFill
+  checkCircleFill: 'checkCircleFill',
   cheer: 'cheer',
   classificationJob: 'ml_classification_job',
   clickLeft: 'clickLeft',
@@ -89,7 +96,8 @@ export const typeToPathMap = {
   createSingleMetricJob: 'ml_create_single_metric_job',
   cross: 'cross',
   crossClusterReplicationApp: 'app_cross_cluster_replication',
-  crossInCircle: 'cross_in_circle',
+  crossInCircle: 'cross_circle', // NOTE: To be deprecated in favor of crossCircle
+  crossCircle: 'cross_circle',
   crosshairs: 'crosshairs',
   currency: 'currency',
   cut: 'cut',
@@ -107,8 +115,10 @@ export const typeToPathMap = {
   documents: 'documents',
   dot: 'dot',
   dotInCircle: 'dotInCircle',
-  doubleArrowLeft: 'doubleArrowLeft',
-  doubleArrowRight: 'doubleArrowRight',
+  doubleArrowLeft: 'chevron_double_left', // NOTE: To be deprecated in favor of chevronDoubleLeft
+  chevronDoubleLeft: 'chevron_double_left',
+  doubleArrowRight: 'chevron_double_right', // NOTE: To be deprecated in favor of chevronDoubleRight
+  chevronDoubleRight: 'chevron_double_right',
   download: 'download',
   editorAlignCenter: 'editor_align_center',
   editorAlignLeft: 'editor_align_left',
@@ -146,7 +156,8 @@ export const typeToPathMap = {
   eql: 'eql',
   eraser: 'eraser',
   error: 'error',
-  errorFilled: 'errorFilled',
+  errorFilled: 'errorFill', // NOTE: To be deprecated in favor of errorFill
+  errorFill: 'errorFill',
   esqlVis: 'esqlVis',
   exit: 'exit',
   expand: 'expand',
@@ -232,7 +243,7 @@ export const typeToPathMap = {
   lineSolid: 'lineSolid',
   link: 'link',
   list: 'list',
-  listAdd: 'plus_in_circle', // NOTE: To be deprecated in favor of `plus_in_circle`
+  listAdd: 'plus_circle', // NOTE: To be deprecated in favor of `plus_circle`
   lock: 'lock',
   lockOpen: 'lockOpen',
   logPatternAnalysis: 'log_pattern_analysis',
@@ -319,8 +330,9 @@ export const typeToPathMap = {
   metricsApp: 'app_metrics',
   minimize: 'minimize',
   minus: 'minus',
-  minusInCircle: 'minus_in_circle',
-  minusInCircleFilled: 'minus_in_circle', // NOTE: To be deprecated in favor of `minus_in_circle`
+  minusCircle: 'minus_circle',
+  minusInCircle: 'minus_circle', // NOTE: To be deprecated in favor of minusCircle
+  minusInCircleFilled: 'minus_in_circle', // NOTE: To be deprecated in favor of minusCircle
   minusInSquare: 'minus_in_square',
   mobile: 'mobile',
   monitoringApp: 'app_monitoring',
@@ -328,7 +340,7 @@ export const typeToPathMap = {
   move: 'move',
   namespace: 'namespace',
   nested: 'nested',
-  newChat: 'plus_in_circle', // NOTE: To be deprecated in favor of `plus_in_circle`
+  newChat: 'plus_circle', // NOTE: To be deprecated in favor of plusCircle
   node: 'node',
   notebookApp: 'app_notebook',
   number: 'number',
@@ -356,8 +368,9 @@ export const typeToPathMap = {
   playFilled: 'play', // NOTE: To be deprecated in favor of `play`
   plugs: 'plugs',
   plus: 'plus',
-  plusInCircle: 'plus_in_circle',
-  plusInCircleFilled: 'plus_in_circle', // NOTE: To be deprecated in favor of `plus_in_circle`
+  plusCircle: 'plus_circle',
+  plusInCircle: 'plus_circle', // NOTE: To be deprecated in favor of plusCircle
+  plusInCircleFilled: 'plus_circle', // NOTE: To be deprecated in favor of plusCircle
   plusInSquare: 'plus_in_square',
   popout: 'popout',
   productRobot: 'product_robot',
@@ -430,7 +443,8 @@ export const typeToPathMap = {
   timeline: 'timeline',
   timelineWithArrow: 'timelineWithArrow',
   timelionApp: 'app_timelion',
-  timeRefresh: 'timeRefresh',
+  timeRefresh: 'refreshTime', // NOTE: To be deprecated in favor of refreshTime
+  refreshTime: 'refreshTime',
   timeslider: 'timeslider',
   training: 'training',
   transitionLeftIn: 'transitionLeftIn',
@@ -470,7 +484,8 @@ export const typeToPathMap = {
   visualizeApp: 'app_visualize',
   vulnerabilityManagementApp: 'app_vulnerability_management',
   warning: 'warning',
-  warningFilled: 'warningFilled',
+  warningFilled: 'warningFill', // NOTE: To be deprecated in favor of warningFill
+  warningFill: 'warningFill',
   watchesApp: 'app_watches',
   web: 'web',
   wordWrap: 'wordWrap',
