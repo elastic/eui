@@ -38,7 +38,7 @@ exports[`EuiTourStepIndicator is rendered 1`] = `
 >
   <span
     aria-current="step"
-    color="success"
+    color="#008A5E"
     data-euiicon-type="dot"
   >
     active
