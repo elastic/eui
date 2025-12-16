@@ -16,37 +16,37 @@ import {
 
 describe('euiContainer', () => {
   it('supports naming containers', () => {
-    expect(euiContainer('my-unique-name')).toEqual(
-      'container: my-unique-name;'
+    expect(euiContainer('normal', 'my-unique-name')).toEqual(
+      'container-name: my-unique-name'
     );
   });
 
   it('supports non-scroll state container types', () => {
-    expect(euiContainer('my-unique-name', 'size')).toEqual(
-      'container: my-unique-name / size;'
+    expect(euiContainer('size', 'my-unique-name')).toEqual(
+      'container-name: my-unique-name;container-type: size'
     );
-    expect(euiContainer('my-unique-name', 'inline-size')).toEqual(
-      'container: my-unique-name / inline-size;'
+    expect(euiContainer('inline-size', 'my-unique-name')).toEqual(
+      'container-name: my-unique-name;container-type: inline-size'
     );
   });
 
   it('supports scroll states via the scrollState argument', () => {
-    expect(euiContainer('my-unique-name', 'size', true)).toEqual(
-      'container: my-unique-name / size scroll-state;'
+    expect(euiContainer('size', 'my-unique-name', true)).toEqual(
+      'container-name: my-unique-name;container-type: size scroll-state'
     );
 
-    expect(euiContainer('my-unique-name', 'size', false)).toEqual(
-      'container: my-unique-name / size;'
+    expect(euiContainer('size', 'my-unique-name', false)).toEqual(
+      'container-name: my-unique-name;container-type: size'
     );
   });
 
   it('ignores the default "normal" container type', () => {
-    expect(euiContainer('my-unique-name', 'normal')).toEqual(
-      'container: my-unique-name;'
+    expect(euiContainer('normal', 'my-unique-name')).toEqual(
+      'container-name: my-unique-name'
     );
 
-    expect(euiContainer('my-unique-name', 'normal', true)).toEqual(
-      'container: my-unique-name / scroll-state;'
+    expect(euiContainer('normal', 'my-unique-name', true)).toEqual(
+      'container-name: my-unique-name;container-type: scroll-state'
     );
   });
 });
@@ -54,57 +54,78 @@ describe('euiContainer', () => {
 describe('euiContainerCSS', () => {
   it('supports naming containers', () => {
     const { container } = render(
-      <div css={euiContainerCSS('my-unique-name')} />
+      <div css={euiContainerCSS('normal', 'my-unique-name')} />
     );
 
-    expect(container.firstChild).toHaveStyleRule('container', 'my-unique-name');
+    expect(container.firstChild).toHaveStyleRule(
+      'container-name',
+      'my-unique-name'
+    );
   });
 
   it('supports non-scroll state container types', () => {
     const { container, rerender } = render(
-      <div css={euiContainerCSS('my-unique-name', 'size')} />
+      <div css={euiContainerCSS('size', 'my-unique-name')} />
     );
 
     expect(container.firstChild).toHaveStyleRule(
-      'container',
-      'my-unique-name/size'
+      'container-name',
+      'my-unique-name'
     );
+    expect(container.firstChild).toHaveStyleRule('container-type', 'size');
 
-    rerender(<div css={euiContainerCSS('my-unique-name', 'inline-size')} />);
+    rerender(<div css={euiContainerCSS('inline-size', 'my-unique-name')} />);
     expect(container.firstChild).toHaveStyleRule(
-      'container',
-      'my-unique-name/inline-size'
+      'container-name',
+      'my-unique-name'
+    );
+    expect(container.firstChild).toHaveStyleRule(
+      'container-type',
+      'inline-size'
     );
   });
 
   it('supports scroll states via the scrollState argument', () => {
     const { container, rerender } = render(
-      <div css={euiContainerCSS('my-unique-name', 'size', true)} />
+      <div css={euiContainerCSS('size', 'my-unique-name', true)} />
     );
 
     expect(container.firstChild).toHaveStyleRule(
-      'container',
-      'my-unique-name/size scroll-state'
+      'container-name',
+      'my-unique-name'
+    );
+    expect(container.firstChild).toHaveStyleRule(
+      'container-type',
+      'size scroll-state'
     );
 
-    rerender(<div css={euiContainerCSS('my-unique-name', 'size', false)} />);
+    rerender(<div css={euiContainerCSS('size', 'my-unique-name', false)} />);
     expect(container.firstChild).toHaveStyleRule(
-      'container',
-      'my-unique-name/size'
+      'container-name',
+      'my-unique-name'
     );
+    expect(container.firstChild).toHaveStyleRule('container-type', 'size');
   });
 
   it('ignores the default "normal" container type', () => {
     const { container, rerender } = render(
-      <div css={euiContainerCSS('my-unique-name', 'normal')} />
+      <div css={euiContainerCSS('normal', 'my-unique-name')} />
     );
 
-    expect(container.firstChild).toHaveStyleRule('container', 'my-unique-name');
-
-    rerender(<div css={euiContainerCSS('my-unique-name', 'normal', true)} />);
     expect(container.firstChild).toHaveStyleRule(
-      'container',
-      'my-unique-name/scroll-state'
+      'container-name',
+      'my-unique-name'
+    );
+    expect(container.firstChild).not.toHaveStyleRule('container-type');
+
+    rerender(<div css={euiContainerCSS('normal', 'my-unique-name', true)} />);
+    expect(container.firstChild).toHaveStyleRule(
+      'container-name',
+      'my-unique-name'
+    );
+    expect(container.firstChild).toHaveStyleRule(
+      'container-type',
+      'scroll-state'
     );
   });
 });

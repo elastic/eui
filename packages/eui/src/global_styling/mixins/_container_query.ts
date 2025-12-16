@@ -25,7 +25,7 @@ export type EuiContainerType = (typeof CONTAINER_TYPES)[number];
  * // Export container name to use across the application
  * export const PAGE_CONTENT_CONTAINER_NAME = 'my-app-page-content';
  * const pageContentStyles = css`
- *   ${euiContainer(PAGE_CONTENT_CONTAINER_NAME)}
+ *   ${euiContainer('inline-size', PAGE_CONTENT_CONTAINER_NAME)}
  *   margin: 0 auto;
  * `;
  *
@@ -33,12 +33,12 @@ export type EuiContainerType = (typeof CONTAINER_TYPES)[number];
  * @beta
  */
 export const euiContainer = (
-  name: string,
-  type?: EuiContainerType,
+  type: EuiContainerType,
+  name?: string,
   scrollState?: boolean
 ): string => {
   let finalType = '';
-  if (type && type !== 'normal') {
+  if (type !== 'normal') {
     finalType += type;
   }
   if (scrollState) {
@@ -49,7 +49,12 @@ export const euiContainer = (
     finalType += 'scroll-state';
   }
 
-  return `container: ${name}${finalType ? ' / ' : ''}${finalType};`;
+  return [
+    !!name && `container-name: ${name}`,
+    !!finalType && `container-type: ${finalType}`,
+  ]
+    .filter(Boolean)
+    .join(';');
 };
 
 /**
@@ -61,7 +66,7 @@ export const euiContainer = (
  * // Export container name to use across the application
  * export const PAGE_CONTENT_CONTAINER_NAME = 'my-app-page-content';
  * const PageContent = ({ children }: PropsWithChildren) => (
- *   <main css={euiContainerCSS(PAGE_CONTENT_CONTAINER_NAME)}>
+ *   <main css={euiContainerCSS('inline-size', PAGE_CONTENT_CONTAINER_NAME)}>
  *     {children}
  *   </main>
  * );
@@ -70,11 +75,11 @@ export const euiContainer = (
  * @beta
  */
 export const euiContainerCSS = (
-  name: string,
-  type?: EuiContainerType,
+  type: EuiContainerType,
+  name?: string,
   scrollState?: boolean
 ) => {
-  return css(euiContainer(name, type, scrollState));
+  return css(euiContainer(type, name, scrollState));
 };
 
 /**
