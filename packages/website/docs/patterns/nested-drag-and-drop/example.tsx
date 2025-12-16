@@ -169,7 +169,6 @@ const LineIndicator = ({ position }: LineIndicatorProps) => {
 
   const indicatorStyles = css`
     position: absolute;
-    z-index: ${euiTheme.levels.flyout};
     left: 0;
     right: 0;
     height: 1px;
@@ -243,7 +242,6 @@ const DraggablePanel = memo(function DraggablePanel({
       draggable({
         element: el,
         getInitialData: () => ({ id, index }),
-        onDragStart: () => setIsExpanded(false),
       }),
       dropTargetForElements({
         element: el,
@@ -266,6 +264,12 @@ const DraggablePanel = memo(function DraggablePanel({
           }
         },
         onDrag: ({ self, location }) => {
+          /*
+           * When you hover over a deeply nested child, you are technically
+           * hovering over its parent and grandparent too. Without this check
+           * you would see group and line indicators for the entire tree branch.
+           * We only update the `instruction` state if the element is innermost.
+           */
           if (location.current.dropTargets[0]?.element === self.element) {
             setInstruction(extractInstruction(self.data));
           } else {
