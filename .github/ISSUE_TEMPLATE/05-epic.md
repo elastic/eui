@@ -1,5 +1,5 @@
 ---
-name: "[For maintainers] Epic"
+name: "Epic"
 about: Use epics to organise larger bodies of work that is grouped into smaller, manageable sub-issues. Epics deliver user value and provide high-level visibility of progress.
 title: "[Epic] "
 labels: draft
@@ -29,25 +29,31 @@ A sentence or two and a visual work best. Make it super simple and concise. This
 
 ### Context
 
-<!-- Explain the "why". 
+<!-- 
+Explain the "why". 
 Be succinct; more detail will be included in the PRD.
 What is the problem we are solving? 
-What is the user need or business value? -->
+What is the user need or business value?
+-->
 
 ### Goals
 
-<!-- Define acceptance criteria.
+<!-- 
+Define acceptance criteria.
 Be specific and measurable.
 What are we trying to achieve? 
--->
 
 - [ ] Make XYZ better
 - [ ] Solve XYZ problem
+-->
 
 ### Definition of done
-<!-- List of standard activites that form EUI's definition of done. Items can be added, or ~~crossed out~~ if not needed -->
 
-- [ ] Kibana QA/preview completed (id needed)
+<!--
+List of standard activites that form EUI's definition of done. Items can be added, or ~~crossed out~~ if not needed
+-->
+
+- [ ] Kibana QA/preview completed (if needed)
 - [ ] Figma updated
 - [ ] Documentation updated
 - [ ] Changes merged, published in conjunction with Figma and Documentation
@@ -60,37 +66,35 @@ What are we trying to achieve?
 
 ### Out of scope
 
-<!-- Set expectations for others; make it clear if anything major and obvious is not in scope. -->
-
-The following is out of scope. 
-If needed, they will be tracked in an alternate epic.
+<!-- 
+Set expectations for others; make it clear if anything major and obvious is not in scope. 
 
 - e.g. Will not include public APIs
 - e.g. Error messages coming from elasticsearch will not be localized
+-->
 
-### Milestones (!Internal)
+<!--
+### Milestones
 
-Dates should only be included if this is a private issue. 
+Dates should only be included if this is a private issue.
 For internal planning only; dates are not a public commitment to a feature.
+You probably don't need this section in a public Epic.
+-->
 
-<!-- If applicable, define any high-level milestones or target dates for the Epic's completion. -->
 
-* Kibana QA period:
-* Target completion date (merged in EUI main): `e.g. YYYY-MM-DD or version`
-* Target EUI release date (included in EUI releaser):
+### Useful Links
 
-### Useful Links (!Internal)
-
+<!-- 
 Internal links should only be included if this is a private issue.
 
-<!-- Quick links such as documents, designs, or discussions. -->
+Quick links such as documents, designs, or discussions.
 
-* Original request issue: `[link to related EUI request or bug report]`
-* Design issue:
-* Figma/Design mockups:
-* Product Requirements document (PRD): `[link to PRD]`
+- Original request: (This issue submitted to the EUI repo that sparked this request)
+-->
 
 ### Risks
 
-<!-- Mention anything relevant which might impact delivery,
-such as dependencies, key decisions, risks etc. -->
+<!-- 
+Mention anything relevant which might impact delivery,
+such as dependencies, key decisions, risks etc.
+-->
