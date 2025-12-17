@@ -16,24 +16,16 @@ type: 'Epic'
  Assume this might to be shared externally (unless marked "!Internal"). 
 -->
 
-### Pitch (optional)
+### Summary / Pitch
+
+Target completion date:
+<br/>Target EUI release date(s):
 
 <!-- 
-Explain in a sentence and a visual what we're building. Pretend they only have 10 seconds in an elevator to explain to the CEO what we're building.
+Write this like an "elevator pitch". Pretend you're writing it to the CEO, or a user, and you have 10 seconds to describe it.
 
-Examples:
-https://github.com/elastic/eui/issues/9138
-https://github.com/elastic/kibana-team/issues/2398
-https://github.com/elastic/eui/issues/8822
-
+A sentence or two and a visual work best. Make it super simple and concise. This is not for us, this is for people looking at our Roadmap and want to understand what we're working on.
 -->
-
-### Summary
-
-<!-- A concise, 1-2 paragraph summary of the Epic. 
-What is the intent?
-What is the overall goal? 
-Why is it important? -->
 
 ### Context
 
