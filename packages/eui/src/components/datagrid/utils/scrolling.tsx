@@ -52,10 +52,18 @@ export const useScroll = (args: Dependencies) => {
   const { focusedCell } = useContext(DataGridFocusContext);
   useEffect(() => {
     if (focusedCell) {
-      scrollCellIntoView({
-        rowIndex: focusedCell[1],
-        colIndex: focusedCell[0],
-      });
+      setTimeout(() => {
+        // do not scroll if text is being selected
+        // (120ms feels almost instant when clicking
+        // but seems enough time to catch the text selection)
+        if (window?.getSelection()?.type === 'Range') {
+          return;
+        }
+        scrollCellIntoView({
+          rowIndex: focusedCell[1],
+          colIndex: focusedCell[0],
+        });
+      }, 120);
     }
   }, [focusedCell, scrollCellIntoView]);
 
