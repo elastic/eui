@@ -22,6 +22,7 @@ import { DataGridCellPopoverContext } from '../body/cell';
 import { EuiDataGridStyle } from '../data_grid_types';
 import { DataGridFocusContext } from './focus';
 import { euiDataGridScrollBarStyles } from './scrolling.styles';
+import { useIsMouseDown } from '../../../services';
 
 const ACTIONS_MENU_HEIGHT = 21;
 
@@ -50,22 +51,20 @@ export const useScroll = (args: Dependencies) => {
   const { scrollCellIntoView } = useScrollCellIntoView(args);
 
   const { focusedCell } = useContext(DataGridFocusContext);
+  const isMouseDown = useIsMouseDown();
+
   useEffect(() => {
     if (focusedCell) {
-      setTimeout(() => {
-        // do not scroll if text is being selected
-        // (120ms feels almost instant when clicking
-        // but seems enough time to catch the text selection)
-        if (window?.getSelection()?.type === 'Range') {
-          return;
-        }
-        scrollCellIntoView({
-          rowIndex: focusedCell[1],
-          colIndex: focusedCell[0],
-        });
-      }, 120);
+      // do not scroll if text is being selected
+      if (isMouseDown) return;
+      if (window?.getSelection()?.type === 'Range') return;
+
+      scrollCellIntoView({
+        rowIndex: focusedCell[1],
+        colIndex: focusedCell[0],
+      });
     }
-  }, [focusedCell, scrollCellIntoView]);
+  }, [focusedCell, isMouseDown, scrollCellIntoView]);
 
   const { popoverIsOpen, cellLocation } = useContext(
     DataGridCellPopoverContext

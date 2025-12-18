@@ -12,6 +12,7 @@ export * from './useForceRender';
 export * from './useLatest';
 export * from './useDeepEqual';
 export * from './useMouseMove';
+export * from './useIsMouseDown';
 export * from './useUpdateEffect';
 export {
   type EuiDisabledProps,
