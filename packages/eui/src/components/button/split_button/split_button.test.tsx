@@ -258,7 +258,7 @@ describe('EuiSplitButton', () => {
     describe('children', () => {
       it('logs an error when invalid `children` are passed', () => {
         const consoleErrorSpy = jest
-          .spyOn(console, 'error')
+          .spyOn(console, 'warn')
           .mockImplementation(() => {});
 
         render(
