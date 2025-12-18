@@ -39,6 +39,10 @@ export default () => {
   const [isPrimaryDisabled, setIsPrimaryDisabled] = useState(false);
   const [isSecondaryDisabled, setIsSecondaryDisabled] = useState(false);
 
+  const [isLoading, setIsLoading] = useState(false);
+  const [isPrimaryLoading, setIsPrimaryLoading] = useState(false);
+  const [isSecondaryLoading, setIsSecondaryLoading] = useState(false);
+
   const [isPrimaryIconOnly, setIsPrimaryIconOnly] = useState(false);
 
   const [isFirstPopoverOpen, setIsFirstPopoverOpen] = useState(false);
@@ -92,12 +96,20 @@ export default () => {
             onChange={() => setIsSizeSmall(!isSizeSmall)}
           />
         </EuiFlexItem>
-         <EuiFlexItem grow={false}>
+        <EuiFlexItem grow={false}>
           <EuiSwitch
             compressed
             label="Disabled"
             checked={isDisabled}
             onChange={() => setIsDisabled(!isDisabled)}
+          />
+        </EuiFlexItem>
+        <EuiFlexItem grow={false}>
+          <EuiSwitch
+            compressed
+            label="isLoading"
+            checked={isLoading}
+            onChange={() => setIsLoading(!isLoading)}
           />
         </EuiFlexItem>
       </EuiFlexGroup>
@@ -112,7 +124,7 @@ export default () => {
         <EuiFlexItem grow={false}>
           <EuiSwitch
             compressed
-            label="primary:isIconOnly"
+            label="Primary / isIconOnly"
             checked={isPrimaryIconOnly}
             onChange={() => setIsPrimaryIconOnly(!isPrimaryIconOnly)}
           />
@@ -120,29 +132,60 @@ export default () => {
         <EuiFlexItem grow={false}>
           <EuiSwitch
             compressed
-            label="primary:isDisabled"
+            label="Primary / isDisabled"
             checked={isPrimaryDisabled}
             onChange={() => setIsPrimaryDisabled(!isPrimaryDisabled)}
           />
         </EuiFlexItem>
-        <EuiFlexItem grow={false}>
+         <EuiFlexItem grow={false}>
           <EuiSwitch
             compressed
-            label="secondary:isDisabled"
-            checked={isSecondaryDisabled}
-            onChange={() => setIsSecondaryDisabled(!isSecondaryDisabled)}
+            label="Primary / isLoading"
+            checked={isPrimaryLoading}
+            onChange={() => setIsPrimaryLoading(!isPrimaryLoading)}
           />
         </EuiFlexItem>
       </EuiFlexGroup>
 
+      <EuiSpacer size="m" />
+
+      <EuiFlexGroup
+        gutterSize="m"
+        alignItems="center"
+        wrap={true}
+      >
+        <EuiFlexItem grow={false}>
+          <EuiSwitch
+            compressed
+            label="Secondary / isDisabled"
+            checked={isSecondaryDisabled}
+            onChange={() => setIsSecondaryDisabled(!isSecondaryDisabled)}
+          />
+        </EuiFlexItem>
+         <EuiFlexItem grow={false}>
+          <EuiSwitch
+            compressed
+            label="Secondary / isLoading"
+            checked={isSecondaryLoading}
+            onChange={() => setIsSecondaryLoading(!isSecondaryLoading)}
+          />
+        </EuiFlexItem>
+      </EuiFlexGroup>
 
       <EuiSpacer />
 
-      <EuiSplitButton size={isSizeSmall ? 's' : 'm'} fill={isFilled} color={buttonColor} isDisabled={isDisabled}>
+      <EuiSplitButton
+        size={isSizeSmall ? 's' : 'm'}
+        fill={isFilled}
+        color={buttonColor}
+        isDisabled={isDisabled}
+        isLoading={isLoading}
+      >
         <EuiSplitButton.ActionPrimary
           isDisabled={isPrimaryDisabled}
           isIconOnly={isPrimaryIconOnly}
           iconType="refresh"
+          isLoading={isPrimaryLoading}
         >
           Refresh
         </EuiSplitButton.ActionPrimary>
@@ -150,6 +193,7 @@ export default () => {
           iconType="backgroundTask"
           aria-label="Send to background"
           isDisabled={isSecondaryDisabled}
+          isLoading={isSecondaryLoading}
         />
       </EuiSplitButton>
     </>
