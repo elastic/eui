@@ -296,6 +296,11 @@ export default () => {
 
 ## Usage
 
+:::accessibility Accessibility
+Using `<EuiSplitButton.ActionSecondary>` or `<EuiSplitButton.ActionPrimary isIconOnly>` requires `aria-label` to be set to ensure an accessible label for the icon-only 
+button is available to screen readers.
+:::
+
 ### Single primary and secondary action
 
 When there is only one primary and one secondary action, the `onClick` handler can be passed directly to each action and perform individual actions for each action button.
