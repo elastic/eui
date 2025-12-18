@@ -140,7 +140,7 @@ export const _EuiSplitButton: FunctionComponent<EuiSplitButtonProps> = ({
         console.warn(
           `🚫 EuiSplitButton: Expected <${expectedComponents[0]}> at position ${
             index + 1
-          }, got <${componentName}>. Read more about it on: https://eui.elastic.co/docs/components/navigation/buttons/split_button/`
+          }, got <${componentName}>. Read more about it on: https://eui.elastic.co/docs/components/navigation/buttons/split-button/`
         );
       }
     });
