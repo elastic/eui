@@ -16,13 +16,12 @@ import React, {
 } from 'react';
 import { VariableSizeGrid as Grid } from 'react-window';
 
-import { useEuiMemoizedStyles } from '../../../services';
+import { useEuiMemoizedStyles, useIsMouseDown } from '../../../services';
 import { logicalStyles } from '../../../global_styling';
 import { DataGridCellPopoverContext } from '../body/cell';
 import { EuiDataGridStyle } from '../data_grid_types';
 import { DataGridFocusContext } from './focus';
 import { euiDataGridScrollBarStyles } from './scrolling.styles';
-import { useIsMouseDown } from '../../../services';
 
 const ACTIONS_MENU_HEIGHT = 21;
 
