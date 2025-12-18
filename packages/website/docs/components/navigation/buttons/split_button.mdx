@@ -232,6 +232,40 @@ import { COLORS } from '@elastic/eui/es/components/button/button';
 export default () => {
   const [isFirstPopoverOpen, setIsFirstPopoverOpen] = useState(false);
 
+  const menu = (
+  <EuiContextMenu
+    initialPanelId={0}
+    panels={[
+      {
+        id: 0,
+        items: [
+          {
+            name: 'Action 1 (click)',
+            icon: 'search',
+            onClick: () => {},
+          },
+          {
+            name: 'Action 2 (link)',
+            icon: 'user',
+            href: 'http://elastic.co',
+            target: '_blank',
+          },
+          {
+            name: 'Action 3 (tooltip)',
+            icon: 'document',
+            toolTipContent: 'Optional content for a tooltip',
+            toolTipProps: {
+              title: 'Optional tooltip title',
+              position: 'right',
+            },
+            onClick: () => {},
+          },
+        ],
+      },
+    ]}
+  />
+)
+
   return (
     <EuiSplitButton>
       <EuiSplitButton.ActionPrimary
@@ -252,39 +286,7 @@ export default () => {
           isOpen: isFirstPopoverOpen,
           closePopover: () => setIsFirstPopoverOpen(false),
           panelPaddingSize: 's',
-          children: (
-            <EuiContextMenu
-              initialPanelId={0}
-              panels={[
-                {
-                  id: 0,
-                  items: [
-                    {
-                      name: 'Action 1 (click)',
-                      icon: 'search',
-                      onClick: () => {},
-                    },
-                    {
-                      name: 'Action 2 (link)',
-                      icon: 'user',
-                      href: 'http://elastic.co',
-                      target: '_blank',
-                    },
-                    {
-                      name: 'Action 3 (tooltip)',
-                      icon: 'document',
-                      toolTipContent: 'Optional content for a tooltip',
-                      toolTipProps: {
-                        title: 'Optional tooltip title',
-                        position: 'right',
-                      },
-                      onClick: () => {},
-                    },
-                  ],
-                },
-              ]}
-            />
-          ),
+          children: menu,
         }}
       />
     </EuiSplitButton>
