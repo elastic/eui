@@ -36,12 +36,14 @@ export const useRowManager = ({
         rowElement.style.left = '0';
         rowElement.style.right = '0';
 
-        // In order for the rowElement's left and right position to correctly inherit
-        // from the innerGrid width, we need to make its position relative
-        innerGridRef.current!.style.position = 'relative';
-
-        // add the element to the grid
-        innerGridRef.current!.appendChild(rowElement);
+        if (innerGridRef.current) {
+          // In order for the rowElement's left and right position to correctly inherit
+          // from the innerGrid width, we need to make its position relative
+          innerGridRef.current.style.position = 'relative';
+          innerGridRef.current.appendChild(rowElement);
+        } else {
+          return undefined;
+        }
 
         // add the element to the row map
         rowIdToElements.current.set(rowIndex, rowElement);

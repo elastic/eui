@@ -50,10 +50,11 @@ export const Cell: FunctionComponent<GridChildComponentProps> = memo(
   ({ columnIndex, rowIndex, style, data }) => {
     const memoizedStyles = useDeepEqual(style);
     const cellStyles = useMemo(() => {
-      const { headerRowHeight } = data;
+      const { headerRowHeight, showHeader } = data;
+      const headerOffset = showHeader !== false ? headerRowHeight : 0;
       return {
         ...memoizedStyles,
-        top: `${parseFloat(memoizedStyles.top as string) + headerRowHeight}px`,
+        top: `${parseFloat(memoizedStyles.top as string) + headerOffset}px`,
       };
     }, [memoizedStyles, data]);
 
@@ -143,13 +144,14 @@ export const EuiDataGridBodyVirtualized: FunctionComponent<EuiDataGridBodyProps>
       wrapperRef,
       className,
       canDragAndDropColumns,
+      showHeader = true,
     }) => {
       /**
        * Grid refs & observers
        */
       const wrapperDimensions = useResizeObserver(wrapperRef.current);
       const outerGridRef = useRef<HTMLDivElement | null>(null); // container that becomes scrollable
-      const innerGridRef = useRef<HTMLDivElement | null>(null); // container sized to fit all content
+      const innerGridRef = useRef<HTMLDivElement | null>(null);
 
       /**
        * Scroll bars
@@ -343,6 +345,7 @@ export const EuiDataGridBodyVirtualized: FunctionComponent<EuiDataGridBodyProps>
           pagination,
           headerRowHeight,
           gridStyles,
+          showHeader,
         };
       }, [
         schemaDetectors,
@@ -364,12 +367,16 @@ export const EuiDataGridBodyVirtualized: FunctionComponent<EuiDataGridBodyProps>
         pagination,
         headerRowHeight,
         gridStyles,
+        showHeader,
       ]);
 
       const rowWrapperContextValue = useMemo(() => {
-        return { headerRowHeight, headerRow, footerRow };
-      }, [headerRowHeight, headerRow, footerRow]);
-
+        return {
+          headerRowHeight: showHeader ? headerRowHeight : 0,
+          headerRow: showHeader ? headerRow : null,
+          footerRow,
+        };
+      }, [headerRowHeight, headerRow, footerRow, showHeader]);
       const onScroll = useCallback(
         (args: GridOnScrollProps) => {
           // check only if a callback is passed
@@ -453,7 +460,9 @@ export const EuiDataGridBodyVirtualized: FunctionComponent<EuiDataGridBodyProps>
             rowHeight={getRowHeight}
             itemData={itemData}
             rowCount={
-              IS_JEST_ENVIRONMENT || headerRowHeight > 0 ? visibleRowCount : 0
+              IS_JEST_ENVIRONMENT || headerRowHeight > 0 || showHeader === false
+                ? visibleRowCount
+                : 0
             }
             onScroll={onScroll}
           >
