@@ -3241,7 +3241,7 @@ exports[`EuiIcon props type documentEdit is rendered 1`] = `
   xmlns="http://www.w3.org/2000/svg"
 >
   <path
-    d="M10 2.293a1 1 0 0 1 1.414 0l2.293 2.293a1 1 0 0 1 0 1.414l-7 7H11v1H2v-3.707l8-8Zm-7 8.414V13h2.293l5.5-5.5L8.5 5.207l-5.5 5.5ZM9.207 4.5 11.5 6.793l1.5-1.5L10.707 3l-1.5 1.5ZM14 14h-2v-1h2v1Z"
+    d="m8.505 8.995 6.453-6.44-1.5-1.5-6.453 6.44 1.5 1.5ZM12.968.19c.258-.238.657-.26.91 0l1.928 1.929a.642.642 0 0 1 0 .909l-6.78 6.784A.641.641 0 0 1 8.57 10H6.643A.643.643 0 0 1 6 9.357V7.43c0-.17.067-.335.188-.455L12.968.19ZM4.5 13a.5.5 0 1 1 0-1h7a.5.5 0 1 1 0 1h-7Zm4-12a.5.5 0 0 1 0 1H2v13h12V7.5a.5.5 0 1 1 1 0V15a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h6.5Z"
   />
 </svg>
 `;
@@ -4513,7 +4513,8 @@ exports[`EuiIcon props type filterInCircle is rendered 1`] = `
   xmlns="http://www.w3.org/2000/svg"
 >
   <path
-    d="M9 13H7v-1h2v1Zm2-3H5V9h6v1Zm2-3H3V6h10v1Zm2-3H1V3h14v1Z"
+    d="M7.999 15.999a8 8 0 1 1 0-16 8 8 0 0 1 0 16ZM8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14ZM3.5 5h9a.5.5 0 1 1 0 1h-9a.5.5 0 0 1 0-1Zm2 3h5a.5.5 0 1 1 0 1h-5a.5.5 0 0 1 0-1Zm2 3h1a.5.5 0 1 1 0 1h-1a.5.5 0 1 1 0-1Z"
+    fill-rule="evenodd"
   />
 </svg>
 `;
@@ -10020,6 +10021,7 @@ exports[`EuiIcon props type playFilled is rendered 1`] = `
   class="euiIcon emotion-euiIcon-m-isLoaded"
   data-icon-type="playFilled"
   data-is-loaded="true"
+  fill="none"
   height="16"
   role="presentation"
   viewBox="0 0 16 16"
@@ -10027,9 +10029,7 @@ exports[`EuiIcon props type playFilled is rendered 1`] = `
   xmlns="http://www.w3.org/2000/svg"
 >
   <path
-    clip-rule="evenodd"
-    d="M3 2a1 1 0 0 1 1.514-.858l10 6a1 1 0 0 1 0 1.715l-10 6A1 1 0 0 1 3 14V2Zm1 12 10-6L4 2v12Z"
-    fill-rule="evenodd"
+    d="m12.345 6.801-7.2-4.581C4.21 1.625 3 2.308 3 3.419v9.162c0 1.111 1.21 1.794 2.146 1.199l7.2-4.581a1.425 1.425 0 0 0 0-2.398z"
   />
 </svg>
 `;
