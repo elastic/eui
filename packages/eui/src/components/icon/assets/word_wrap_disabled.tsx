@@ -14,7 +14,7 @@ interface SVGRProps {
   title?: string;
   titleId?: string;
 }
-const EuiIconAnalyzeEvent = ({
+const EuiIconWordWrapDisabled = ({
   title,
   titleId,
   ...props
@@ -23,17 +23,12 @@ const EuiIconAnalyzeEvent = ({
     xmlns="http://www.w3.org/2000/svg"
     width={16}
     height={16}
-    fill="none"
     viewBox="0 0 16 16"
     aria-labelledby={titleId}
     {...props}
   >
     {title ? <title id={titleId}>{title}</title> : null}
-    <path
-      fillRule="evenodd"
-      d="M8 9.169 2 5.25v6.17l6 3.428 6-3.428V5.25L8 9.17ZM15 4v8l-7 4-7-4V4l7-4 7 4Zm-1.428.336L8 1.152 2.428 4.336 8 7.974l5.572-3.638Z"
-      clipRule="evenodd"
-    />
+    <path d="M14 3.5 12 2v1H2v1h10v1l2-1.5zM12 9V8H2V7h10V6l2 1.5L12 9zm0 3v1l2-1.5-2-1.5v1H2v1h10z" />
   </svg>
 );
-export const icon = EuiIconAnalyzeEvent;
+export const icon = EuiIconWordWrapDisabled;

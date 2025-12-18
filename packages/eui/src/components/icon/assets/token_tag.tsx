@@ -14,7 +14,7 @@ interface SVGRProps {
   title?: string;
   titleId?: string;
 }
-const EuiIconAnalyzeEvent = ({
+const EuiIconTokenTag = ({
   title,
   titleId,
   ...props
@@ -23,17 +23,16 @@ const EuiIconAnalyzeEvent = ({
     xmlns="http://www.w3.org/2000/svg"
     width={16}
     height={16}
-    fill="none"
     viewBox="0 0 16 16"
     aria-labelledby={titleId}
     {...props}
   >
     {title ? <title id={titleId}>{title}</title> : null}
+    <path d="M10 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z" />
     <path
       fillRule="evenodd"
-      d="M8 9.169 2 5.25v6.17l6 3.428 6-3.428V5.25L8 9.17ZM15 4v8l-7 4-7-4V4l7-4 7 4Zm-1.428.336L8 1.152 2.428 4.336 8 7.974l5.572-3.638Z"
-      clipRule="evenodd"
+      d="M4 4a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h6.989a1 1 0 0 0 .825-.436l2.05-3a1 1 0 0 0 0-1.128l-2.05-3A1 1 0 0 0 10.99 4H4Zm.75 1.25a.5.5 0 0 0-.5.5v4.5a.5.5 0 0 0 .5.5h5.745a.5.5 0 0 0 .405-.206l1.636-2.25a.5.5 0 0 0 0-.588L10.9 5.456a.5.5 0 0 0-.405-.206H4.75Z"
     />
   </svg>
 );
-export const icon = EuiIconAnalyzeEvent;
+export const icon = EuiIconTokenTag;

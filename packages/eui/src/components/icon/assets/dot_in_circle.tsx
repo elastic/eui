@@ -14,7 +14,7 @@ interface SVGRProps {
   title?: string;
   titleId?: string;
 }
-const EuiIconAnalyzeEvent = ({
+const EuiIconDotInCircle = ({
   title,
   titleId,
   ...props
@@ -31,9 +31,10 @@ const EuiIconAnalyzeEvent = ({
     {title ? <title id={titleId}>{title}</title> : null}
     <path
       fillRule="evenodd"
-      d="M8 9.169 2 5.25v6.17l6 3.428 6-3.428V5.25L8 9.17ZM15 4v8l-7 4-7-4V4l7-4 7 4Zm-1.428.336L8 1.152 2.428 4.336 8 7.974l5.572-3.638Z"
+      d="M8 .5c4.136 0 7.5 3.364 7.5 7.5s-3.364 7.5-7.5 7.5S.5 12.136.5 8 3.864.5 8 .5Zm0 .882a6.618 6.618 0 1 0 0 13.236A6.618 6.618 0 0 0 8 1.382Z"
       clipRule="evenodd"
     />
+    <path d="M9 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z" />
   </svg>
 );
-export const icon = EuiIconAnalyzeEvent;
+export const icon = EuiIconDotInCircle;

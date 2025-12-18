@@ -14,7 +14,7 @@ interface SVGRProps {
   title?: string;
   titleId?: string;
 }
-const EuiIconAnalyzeEvent = ({
+const EuiIconKubernetesPod = ({
   title,
   titleId,
   ...props
@@ -31,9 +31,9 @@ const EuiIconAnalyzeEvent = ({
     {title ? <title id={titleId}>{title}</title> : null}
     <path
       fillRule="evenodd"
-      d="M8 9.169 2 5.25v6.17l6 3.428 6-3.428V5.25L8 9.17ZM15 4v8l-7 4-7-4V4l7-4 7 4Zm-1.428.336L8 1.152 2.428 4.336 8 7.974l5.572-3.638Z"
+      d="M14 5.151v6.269l-5.5 3.142V8.29L14 5.151zm-.508-.861L8 1.152 2.508 4.29 8 7.424l5.492-3.134zM2 5.151l5.5 3.14v6.272L2 11.42V5.15zM15 12l-7 4-7-4V4l7-4 7 4v8z"
       clipRule="evenodd"
     />
   </svg>
 );
-export const icon = EuiIconAnalyzeEvent;
+export const icon = EuiIconKubernetesPod;

@@ -14,7 +14,7 @@ interface SVGRProps {
   title?: string;
   titleId?: string;
 }
-const EuiIconAnalyzeEvent = ({
+const EuiIconBranchUser = ({
   title,
   titleId,
   ...props
@@ -23,7 +23,6 @@ const EuiIconAnalyzeEvent = ({
     xmlns="http://www.w3.org/2000/svg"
     width={16}
     height={16}
-    fill="none"
     viewBox="0 0 16 16"
     aria-labelledby={titleId}
     {...props}
@@ -31,9 +30,10 @@ const EuiIconAnalyzeEvent = ({
     {title ? <title id={titleId}>{title}</title> : null}
     <path
       fillRule="evenodd"
-      d="M8 9.169 2 5.25v6.17l6 3.428 6-3.428V5.25L8 9.17ZM15 4v8l-7 4-7-4V4l7-4 7 4Zm-1.428.336L8 1.152 2.428 4.336 8 7.974l5.572-3.638Z"
+      d="M6 7.987a3.49 3.49 0 0 0-2.5 1.05v-4.1a2 2 0 1 0-1 0v6.126a2 2 0 1 0 1.034.01A2.5 2.5 0 0 1 6 8.986h1a3.5 3.5 0 0 0 3.47-3.043 2 2 0 1 0-1.009-.017A2.5 2.5 0 0 1 7 7.987H6zM4 3a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm0 10a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7-9a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"
       clipRule="evenodd"
     />
+    <path d="M13.5 10.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zM9 15c.284-1.223 1.519-2.143 3-2.143s2.716.92 3 2.143H9z" />
   </svg>
 );
-export const icon = EuiIconAnalyzeEvent;
+export const icon = EuiIconBranchUser;
