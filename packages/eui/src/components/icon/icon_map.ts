@@ -12,13 +12,27 @@ export const typeToPathMap = {
   advancedSettingsApp: 'app_advanced_settings',
   agentApp: 'app_fleet',
   aggregate: 'aggregate',
+  alignBottom: 'align_bottom',
+  alignBottomLeft: 'align_bottom_left',
+  alignBottomRight: 'align_bottom_right',
+  alignCenterHorizontal: 'align_center_horizontal',
+  alignCenterVertical: 'align_center_vertical',
+  alignLeft: 'align_left',
+  alignRight: 'align_right',
+  alignTop: 'align_top',
+  alignTopLeft: 'align_top_left',
+  alignTopRight: 'align_top_right',
   alert: 'warning', // NOTE: To be deprecated in favor of `warning`
   analyzeEvent: 'analyzeEvent',
   annotation: 'annotation',
-  anomalyChart: 'anomaly_chart',
+  anomalyChart: 'chart_anomaly', // NOTE: To be deprecated in favor of chartAnomaly
+  chartAnomaly: 'chart_anomaly',
   anomalySwimLane: 'anomaly_swim_lane',
   apmApp: 'app_apm',
-  apmTrace: 'apm_trace',
+  apmTrace: 'chart_waterfall', // NOTE: To be deprecated in favor of chartWaterfall
+  chartWaterfall: 'chart_waterfall',
+  arrowUpRight: 'arrow_up_right',
+  arrowVertical: 'arrow_vertical',
   appSearchApp: 'app_app_search',
   apps: 'apps',
   arrowDown: 'chevron_single_down', // NOTE: To be deprecated in favor of chevronSingleDown
@@ -54,27 +68,46 @@ export const typeToPathMap = {
   calendar: 'calendar',
   canvasApp: 'app_canvas',
   casesApp: 'app_cases',
-  changePointDetection: 'change_point_detection',
+  changePointDetection: 'chart_change_point', // NOTE: To be deprecated in favor of chartChangePoint
+  chartChangePoint: 'chart_change_point',
+  chartArea: 'chart_area',
+  chartAreaStack: 'chart_area_stack',
+  chartBarHorizontal: 'chart_bar_horizontal',
+  chartBarHorizontalStack: 'chart_bar_horizontal_stack',
+  chartBarVertical: 'chart_bar_vertical',
+  chartBarVerticalStack: 'chart_bar_vertical_stack',
+  chartGauge: 'chart_gauge',
+  chartHeatmap: 'chart_heatmap',
+  chartLine: 'chart_line',
+  chartPie: 'chart_pie',
+  chartTagCloud: 'chart_tag_cloud',
+  chartThreshold: 'chart_threshold',
   check: 'check',
   checkCircle: 'checkCircle',
   checkInCircleFilled: 'checkCircleFill', // NOTE: To be deprecated in favor of checkCircleFill
   checkCircleFill: 'checkCircleFill',
-  cheer: 'cheer',
+  cheer: 'popper', // NOTE: To be deprecated in favor of popper
+  popper: 'popper',
   classificationJob: 'ml_classification_job',
   clickLeft: 'clickLeft',
   clickRight: 'clickRight',
   clock: 'clock',
   clockCounter: 'clockCounter',
+  clockControl: 'clock_control',
   cloudDrizzle: 'cloudDrizzle',
   cloudStormy: 'cloudStormy',
   cloudSunny: 'cloudSunny',
   cluster: 'cluster',
   code: 'code',
   codeApp: 'app_code',
-  color: 'color',
+  color: 'paint_bucket', // NOTE: To be deprecated in favor of paintBucket
+  paintBucket: 'paint_bucket',
+  commandLine: 'command_line',
   comment: 'comment',
-  compute: 'compute',
-  console: 'console',
+  compare: 'compare',
+  compute: 'processor', // NOTE: To be deprecated in favor of processor
+  processor: 'processor',
+  console: 'command_line', // NOTE: To be deprecated in favor of commandLine
   consoleApp: 'app_console',
   container: 'container',
   continuityAbove: 'continuityAbove',
@@ -82,7 +115,8 @@ export const typeToPathMap = {
   continuityBelow: 'continuityBelow',
   continuityWithin: 'continuityWithin',
   contrast: 'contrast',
-  contrastHigh: 'contrastHigh',
+  contrastHigh: 'contrast_fill', // NOTE: To be deprecated in favor of contrastFill
+  contrastFill: 'contrast_fill',
   controls: 'controls',
   controlsHorizontal: 'controls', // NOTE: To be deprecated in favor of `controls`
   controlsVertical: 'controls', // NOTE: To be deprecated in favor of `controls`
@@ -98,16 +132,26 @@ export const typeToPathMap = {
   crossClusterReplicationApp: 'app_cross_cluster_replication',
   crossInCircle: 'cross_circle', // NOTE: To be deprecated in favor of crossCircle
   crossCircle: 'cross_circle',
-  crosshairs: 'crosshairs',
-  currency: 'currency',
-  cut: 'cut',
+  crosshair: 'crosshair',
+  crosshairs: 'crosshair', // NOTE: To be deprecated in favor of crosshair
+  currency: 'money', // NOTE: To be deprecated in favor of money
+  money: 'money',
+  cut: 'scissors', // NOTE: To be deprecated in favor of scissors
+  scissors: 'scissors',
   dashboardApp: 'app_dashboard',
   dataVisualizer: 'ml_data_visualizer',
   database: 'database',
-  desktop: 'desktop',
+  desktop: 'display', // NOTE: To be deprecated in favor of display
+  display: 'display',
   devToolsApp: 'app_devtools',
-  diff: 'diff',
+  diff: 'compare', // NOTE: To be deprecated in favor of compare
   discoverApp: 'app_discover',
+  distributeHorizontal: 'distribute_horizontal',
+  distributeVertical: 'distribute_vertical',
+  download: 'download',
+  drag: 'drag',
+  dragHorizontal: 'drag_horizontal',
+  dragVertical: 'drag_vertical',
   discuss: 'comment', // NOTE: To be deprecated in favor of `comment`
   document: 'document',
   documentEdit: 'pencil', // NOTE: To be deprecated in favor of `pencil`
@@ -119,57 +163,79 @@ export const typeToPathMap = {
   chevronDoubleLeft: 'chevron_double_left',
   doubleArrowRight: 'chevron_double_right', // NOTE: To be deprecated in favor of chevronDoubleRight
   chevronDoubleRight: 'chevron_double_right',
-  download: 'download',
-  editorAlignCenter: 'editor_align_center',
-  editorAlignLeft: 'editor_align_left',
-  editorAlignRight: 'editor_align_right',
-  editorBold: 'editor_bold',
-  editorChecklist: 'editor_checklist',
+  ellipsis: 'ellipsis',
+  editorAlignCenter: 'text_align_center', // NOTE: To be deprecated in favor of textAlignCenter
+  textAlignCenter: 'text_align_center',
+  editorAlignLeft: 'text_align_left', // NOTE: To be deprecated in favor of textAlignLeft
+  textAlignLeft: 'text_align_left',
+  editorAlignRight: 'text_align_right', // NOTE: To be deprecated in favor of textAlignRight
+  textAlignRight: 'text_align_right',
+  editorBold: 'text_bold', // NOTE: To be deprecated in favor of textBold
+  textBold: 'text_bold',
+  editorChecklist: 'list_check', // NOTE: To be deprecated in favor of listCheck
+  listCheck: 'list_check',
   editorCodeBlock: 'code', // NOTE: To be deprecated in favor of `code`
   editorComment: 'comment', // NOTE: To be deprecated in favor of `comment`
-  editorDistributeHorizontal: 'editorDistributeHorizontal',
-  editorDistributeVertical: 'editorDistributeVertical',
-  editorHeading: 'editor_heading',
-  editorItalic: 'editor_italic',
-  editorItemAlignBottom: 'editorItemAlignBottom',
-  editorItemAlignCenter: 'editorItemAlignCenter',
-  editorItemAlignLeft: 'editorItemAlignLeft',
-  editorItemAlignMiddle: 'editorItemAlignMiddle',
-  editorItemAlignRight: 'editorItemAlignRight',
-  editorItemAlignTop: 'editorItemAlignTop',
+  editorDistributeHorizontal: 'distribute_horizontal', // NOTE: To be deprecated in favor of distributeHorizontal
+  editorDistributeVertical: 'distribute_vertical', // NOTE: To be deprecated in favor of distributeVertical
+  editorHeading: 'text_heading', // NOTE: To be deprecated in favor of textHeading
+  textHeading: 'text_heading',
+  editorItalic: 'text_italic', // NOTE: To be deprecated in favor of textItalic
+  textItalic: 'text_italic',
+  editorItemAlignBottom: 'align_bottom', // NOTE: To be deprecated in favor of alignBottom
+  editorItemAlignCenter: 'align_center_horizontal', // NOTE: To be deprecated in favor of alignCenterHorizontal
+  editorItemAlignLeft: 'align_left', // NOTE: To be deprecated in favor of alignLeft
+  editorItemAlignMiddle: 'align_center_vertical', // NOTE: To be deprecated in favor of alignCenterVertical
+  editorItemAlignRight: 'align_right', // NOTE: To be deprecated in favor of alignRight
+  editorItemAlignTop: 'align_top', // NOTE: To be deprecated in favor of alignTop,
   editorLink: 'link', // NOTE: To be deprecated in favor of `link`
-  editorOrderedList: 'editor_ordered_list',
-  editorPositionBottomLeft: 'editorPositionBottomLeft',
-  editorPositionBottomRight: 'editorPositionBottomRight',
-  editorPositionTopLeft: 'editorPositionTopLeft',
-  editorPositionTopRight: 'editorPositionTopRight',
-  editorRedo: 'editor_redo',
-  editorStrike: 'editor_strike',
-  editorTable: 'vis_table', // NOTE: To be deprecated in favor of `vis_table`
-  editorUnderline: 'editor_underline',
-  editorUndo: 'editor_undo',
-  editorUnorderedList: 'list', // NOTE: To be deprecated in favor of `list`
-  email: 'email',
+  editorOrderedList: 'list_number', // NOTE: To be deprecated in favor of listNumber
+  listNumber: 'list_number',
+  editorPositionBottomLeft: 'align_bottom_left', // NOTE: To be deprecated in favor of alignBottomLeft
+  editorPositionBottomRight: 'align_bottom_right', // NOTE: To be deprecated in favor of alignBottomRight
+  editorPositionTopLeft: 'align_top_left', // NOTE: To be deprecated in favor of alignTopLeft
+  editorPositionTopRight: 'align_top_right', // NOTE: To be deprecated in favor of alignTopRight
+  editorRedo: 'redo', // NOTE: To be deprecated in favor of redo
+  redo: 'redo',
+  editorStrike: 'text_strike', // NOTE: To be deprecated in favor of textStrike
+  textStrike: 'text_strike',
+  editorTable: 'table', // NOTE: To be deprecated in favor of table
+  table: 'table',
+  editorUnderline: 'text_underline', // NOTE: To be deprecated in favor of textUnderline
+  textUnderline: 'text_underline',
+  editorUndo: 'undo', // NOTE: To be deprecated in favor of undo
+  undo: 'undo',
+  editorUnorderedList: 'list_bullet', // NOTE: To be deprecated in favor of listBullet
+  listBullet: 'list_bullet',
+  email: 'mail', // NOTE: To be deprecated in favor of mail
+  mail: 'mail',
   empty: 'empty',
   emsApp: 'app_ems',
   endpoint: 'endpoint',
-  eql: 'eql',
+  eql: 'query', // NOTE: To be deprecated in favor of query
+  query: 'query',
   eraser: 'eraser',
   error: 'error',
   errorFilled: 'errorFill', // NOTE: To be deprecated in favor of errorFill
   errorFill: 'errorFill',
   esqlVis: 'esqlVis',
-  exit: 'exit',
-  expand: 'expand',
-  expandMini: 'expand', // NOTE: To be deprecated in favor of `expand`
+  exit: 'log_out', // NOTE: To be deprecated in favor of logOut
+  logOut: 'log_out',
+  expand: 'maximize', // NOTE: To be deprecated in favor of maximize
+  maximize: 'maximize',
+  expandMini: 'maximize', // NOTE: To be deprecated in favor of maximize
   export: 'export',
-  exportAction: 'export', // NOTE: To be deprecated in favor of `export`
+  exportAction: 'upload', // NOTE: To be deprecated in favor of upload
+  upload: 'upload',
+  external: 'external',
   eye: 'eye',
-  eyeClosed: 'eye_closed',
+  eyeClosed: 'eye_slash', // NOTE: To be deprecated in favor of eyeSlash
+  eyeSlash: 'eye_slash',
   faceHappy: 'face_happy',
   faceNeutral: 'face_neutral',
   faceSad: 'face_sad',
-  fieldStatistics: 'field_statistics',
+  fieldStatistics: 'table_info', // NOTE: To be deprecated in favor of tableInfo
+  tableInfo: 'table_info',
   filebeatApp: 'app_filebeat',
   filter: 'filter',
   filterExclude: 'filterExclude',
@@ -180,10 +246,11 @@ export const typeToPathMap = {
   flag: 'flag',
   fleetApp: 'app_agent',
   fold: 'fold',
+  folder: 'folder',
   folderCheck: 'folder_check',
   folderClosed: 'folder_closed',
   folderExclamation: 'folder_exclamation',
-  folderOpen: 'folder_open',
+  folderOpen: 'folder', // NOTE: To be deprecated in favor of folder,
   frameNext: 'frameNext',
   framePrevious: 'framePrevious',
   fullScreen: 'full_screen',
@@ -193,33 +260,36 @@ export const typeToPathMap = {
   gisApp: 'app_gis',
   glasses: 'readOnly', // NOTE: To be deprecated in favor of `readOnly`
   globe: 'globe',
-  grab: 'grab',
-  grabHorizontal: 'grab_horizontal',
-  grabOmnidirectional: 'grabOmnidirectional',
+  grab: 'drag_vertical', // NOTE: To be deprecated in favor of dragVertical
+  grabHorizontal: 'drag_horizontal', // NOTE: To be deprecated in favor of dragHorizontal
+  grabOmnidirectional: 'drag', // NOTE: To be deprecated in favor of drag,
   gradient: 'gradient',
   graphApp: 'app_graph',
   grid: 'grid',
   grokApp: 'app_grok',
   heart: 'heart',
   heartbeatApp: 'app_heartbeat',
-  heatmap: 'heatmap',
+  heatmap: 'chart_heatmap', // NOTE: To be deprecated in favor of chartHeatmap
   help: 'help', // NOTE: Might be deprecated later (not recommended in Kibana)
   home: 'home',
+  if: 'if',
   info: 'info',
   image: 'image',
-  importAction: 'import',
+  importAction: 'download', // NOTE: To be deprecated in favor of download
   index: 'index',
   indexClose: 'index_close',
   indexEdit: 'index_edit',
-  indexFlush: 'index_flush',
+  indexFlush: 'chart_threshold', // NOTE: To be deprecated in favor of chartThreshold
   indexManagementApp: 'app_index_management',
-  indexMapping: 'index_mapping',
+  indexMapping: 'mapping', // NOTE: To be deprecated in favor of mapping
+  mapping: 'mapping',
   indexOpen: 'index_open',
   indexPatternApp: 'app_index_pattern',
   indexRollupApp: 'app_index_rollup',
   indexRuntime: 'index_runtime',
   indexSettings: 'index_settings',
-  indexTemporary: 'indexTemporary',
+  indexTemporary: 'table_time', // NOTE: To be deprecated in favor of tableTime
+  tableTime: 'table_time',
   infinity: 'infinity',
   inputOutput: 'inputOutput',
   inspect: 'inspect',
@@ -227,26 +297,38 @@ export const typeToPathMap = {
   ip: 'ip',
   key: 'key',
   keyboard: 'keyboard',
-  kqlField: 'kql_field',
+  kqlField: 'query_field', // NOTE: To be deprecated in favor of queryField
+  queryField: 'query_field',
   kqlFunction: 'kql_function',
-  kqlOperand: 'kql_operand',
-  kqlSelector: 'kql_selector',
-  kqlValue: 'kql_value',
+  kqlOperand: 'query_operand', // NOTE: To be deprecated in favor of queryOperand
+  queryOperand: 'query_operand',
+  kqlSelector: 'query_selector', // NOTE: To be deprecated in favor of querySelector
+  querySelector: 'query_selector',
+  kqlValue: 'query_value', // NOTE: To be deprecated in favor of queryValue
+  queryValue: 'query_value',
   kubernetesNode: 'kubernetesNode',
   kubernetesPod: 'kubernetesPod',
-  launch: 'launch',
+  launch: 'rocket', // NOTE: To be deprecated in favor of rocket
+  rocket: 'rocket',
   layers: 'layers',
   lensApp: 'app_lens',
-  lettering: 'vis_text', // NOTE: To be deprecated in favor of `vis_text`
-  lineDashed: 'lineDashed',
-  lineDotted: 'lineDotted',
+  lettering: 'text', // NOTE: To be deprecated in favor of text
+  text: 'text',
+  lineBreak: 'line_break',
+  lineBreakSlash: 'line_break_slash',
+  lineDash: 'line_dash',
+  lineDashed: 'line_dash', // NOTE: To be deprecated in favor of lineDash
+  lineDot: 'line_dot',
+  lineDotted: 'line_dot', // NOTE: To be deprecated in favor of lineDot
   lineSolid: 'lineSolid',
   link: 'link',
-  list: 'list',
+  linkSlash: 'link_slash',
+  list: 'list_bullet', // NOTE: To be deprecated in favor of listBullet,
   listAdd: 'plus_circle', // NOTE: To be deprecated in favor of `plus_circle`
   lock: 'lock',
   lockOpen: 'lockOpen',
-  logPatternAnalysis: 'log_pattern_analysis',
+  logPatternAnalysis: 'pattern', // NOTE: To be deprecated in favor of pattern
+  pattern: 'pattern',
   logRateAnalysis: 'log_rate_analysis',
   logoAWS: 'logo_aws',
   logoAWSMono: 'logo_aws_mono',
@@ -308,17 +390,24 @@ export const typeToPathMap = {
   logoWorkplaceSearch: 'logo_workplace_search',
   logsApp: 'app_logs',
   logstashFilter: 'logstash_filter',
-  logstashIf: 'logstash_if',
+  logstashIf: 'if', // NOTE: To be deprecated in favor of if
   logstashInput: 'logstash_input',
   logstashOutput: 'logstash_output',
-  logstashQueue: 'logstash_queue',
+  logstashQueue: 'queue', // NOTE: To be deprecated in favor of queue
+  queue: 'queue',
   machineLearningApp: 'app_ml',
   magnet: 'magnet',
-  magnifyWithExclamation: 'magnifyWithExclamation',
-  magnifyWithMinus: 'magnifyWithMinus',
-  magnifyWithPlus: 'magnifyWithPlus',
+  magnify: 'magnify',
+  magnifyExclamation: 'magnify_exclamation',
+  magnifyMinus: 'magnify_minus',
+  magnifyPlus: 'magnify_plus',
+  magnifyWithExclamation: 'magnify_exclamation', // NOTE: To be deprecated in favor of magnifyExclamation
+  magnifyWithMinus: 'magnify_minus', // NOTE: To be deprecated in favor of magnifyMinus
+  magnifyWithPlus: 'magnify_plus', // NOTE: To be deprecated in favor of magnifyPlus,
   managementApp: 'app_management',
-  mapMarker: 'map_marker',
+  map: 'map',
+  mapMarker: 'waypoint', // NOTE: To be deprecated in favor of waypoint
+  waypoint: 'waypoint',
   memory: 'memory',
   menu: 'menu',
   menuDown: 'menuDown',
@@ -344,8 +433,10 @@ export const typeToPathMap = {
   node: 'node',
   notebookApp: 'app_notebook',
   number: 'number',
-  offline: 'offline',
-  online: 'online',
+  offline: 'wifi_slash', // NOTE: To be deprecated in favor of wifiSlash
+  wifiSlash: 'wifi_slash',
+  online: 'wifi', // NOTE: To be deprecated in favor of wifi
+  wifi: 'wifi',
   outlierDetectionJob: 'ml_outlier_detection_job',
   package: 'package',
   packetbeatApp: 'app_packetbeat',
@@ -360,10 +451,10 @@ export const typeToPathMap = {
   percent: 'percent',
   pin: 'pin',
   pinFilled: 'pin_filled',
-  pipeBreaks: 'pipeBreaks',
+  pipeBreaks: 'line_break', // NOTE: To be deprecated in favor of lineBreak
   pipelineApp: 'app_pipeline',
-  pipeNoBreaks: 'pipeNoBreaks',
-  pivot: 'pivot',
+  pipeNoBreaks: 'line_break_slash', // NOTE: To be deprecated in favor of lineBreakSlash
+  pivot: 'arrow_up_right', // NOTE: To be deprecated in favor of arrowUpRight
   play: 'play',
   playFilled: 'play', // NOTE: To be deprecated in favor of `play`
   plugs: 'plugs',
@@ -372,27 +463,33 @@ export const typeToPathMap = {
   plusInCircle: 'plus_circle', // NOTE: To be deprecated in favor of plusCircle
   plusInCircleFilled: 'plus_circle', // NOTE: To be deprecated in favor of plusCircle
   plusInSquare: 'plus_in_square',
-  popout: 'popout',
+  popout: 'external', // NOTE: To be deprecated in favor of external
+  presentation: 'presentation',
   productRobot: 'product_robot',
-  push: 'push',
+  productStreamsClassic: 'product_streams_classic',
+  productStreamsWired: 'product_streams_wired',
+  push: 'send', // NOTE: To be deprecated in favor of send
+  send: 'send',
   question: 'question',
   quote: 'quote',
+  radar: 'radar',
   readOnly: 'readOnly',
   recentlyViewedApp: 'app_recently_viewed',
   refresh: 'refresh',
   regressionJob: 'ml_regression_job',
   reporter: 'reporter',
   reportingApp: 'app_reporting',
-  returnKey: 'return_key',
+  return: 'return',
+  returnKey: 'return', // NOTE: To be deprecated in favor of return
   save: 'save',
   savedObjectsApp: 'app_saved_objects',
   scale: 'scale',
-  search: 'search',
+  search: 'magnify', // NOTE: To be deprecated in favor of magnify
   searchProfilerApp: 'app_search_profiler',
   section: 'section',
   securityAnalyticsApp: 'app_security_analytics',
   securityApp: 'app_security',
-  securitySignal: 'securitySignal',
+  securitySignal: 'radar', // NOTE: To be deprecated in favor of radar
   securitySignalDetected: 'securitySignalDetected',
   securitySignalResolved: 'securitySignalResolved',
   sessionViewer: 'sessionViewer',
@@ -406,14 +503,16 @@ export const typeToPathMap = {
   sortLeft: 'sortLeft',
   sortRight: 'sortRight',
   sortUp: 'sort_up',
-  sortable: 'sortable',
+  sortable: 'arrow_vertical', // NOTE: To be deprecated in favor of arrowVertical,
   spaces: 'spaces',
   spacesApp: 'app_spaces',
   sparkles: 'sparkles',
   sqlApp: 'app_sql',
-  starEmpty: 'star_empty',
+  star: 'star',
+  starEmpty: 'star', // NOTE: To be deprecated in favor of star
   starEmptySpace: 'star_empty_space',
-  starFilled: 'star_filled',
+  starFill: 'star_fill',
+  starFilled: 'star_fill', // NOTE: To be deprecated in favor of starFill,
   starFilledSpace: 'star_filled_space',
   starMinusEmpty: 'star_minus_empty',
   starMinusFilled: 'star_minus_filled',
@@ -424,20 +523,23 @@ export const typeToPathMap = {
   stopFilled: 'stop_filled',
   stopSlash: 'stop_slash',
   storage: 'storage',
-  streamsClassic: 'streams_classic',
-  streamsWired: 'streams_wired',
+  streamsClassic: 'product_streams_classic', // NOTE: To be deprecated in favor of productStreamsClassic
+  streamsWired: 'product_streams_wired', // NOTE: To be deprecated in favor of productStreamsWired
   string: 'string',
   submodule: 'merge', // NOTE: To be deprecated in favor of `merge`
   sun: 'sun',
   swatchInput: 'swatch_input', // Undocumented on purpose. Has an extra stroke for EuiColorPicker
   symlink: 'symlink',
-  tableDensityCompact: 'table_density_compact',
-  tableDensityExpanded: 'table_density_expanded',
-  tableDensityNormal: 'vis_table', // NOTE: To be deprecated in favor of `vis_table`
+  tableDensityCompact: 'table_density_high', // NOTE: To be deprecated in favor of tableDensityHigh
+  tableDensityHigh: 'table_density_high',
+  tableDensityExpanded: 'table_density_low', // NOTE: To be deprecated in favor of tableDensityLow
+  tableDensityLow: 'table_density_low',
+  tableDensityNormal: 'table', // NOTE: To be deprecated in favor of table
   tableOfContents: 'tableOfContents',
   tag: 'tag',
   tear: 'tear',
-  temperature: 'temperature',
+  temperature: 'thermometer', // NOTE: To be deprecated in favor of thermometer
+  thermometer: 'thermometer',
   thumbDown: 'thumbDown',
   thumbUp: 'thumbUp',
   timeline: 'timeline',
@@ -445,39 +547,40 @@ export const typeToPathMap = {
   timelionApp: 'app_timelion',
   timeRefresh: 'refreshTime', // NOTE: To be deprecated in favor of refreshTime
   refreshTime: 'refreshTime',
-  timeslider: 'timeslider',
-  training: 'training',
+  timeslider: 'clock_control', // NOTE: To be deprecated in favor of clockControl
+  training: 'presentation', // NOTE: To be deprecated in favor of presentation,
   transitionLeftIn: 'transitionLeftIn',
   transitionLeftOut: 'transitionLeftOut',
   transitionTopIn: 'transitionTopIn',
   transitionTopOut: 'transitionTopOut',
   trash: 'trash',
   unfold: 'unfold',
-  unlink: 'unlink',
+  unlink: 'link_slash', // NOTE: To be deprecated in favor of linkSlash
   upgradeAssistantApp: 'app_upgrade_assistant',
   uptimeApp: 'app_uptime',
   user: 'user',
   userAvatar: 'user', // NOTE: To be deprecated in favor of `user`
   users: 'users',
   usersRolesApp: 'app_users_roles',
-  vector: 'vector',
+  vector: 'vector_square', // NOTE: To be deprecated in favor of vectorSquare
+  vectorSquare: 'vector_square',
   videoPlayer: 'videoPlayer',
-  visArea: 'vis_area',
-  visAreaStacked: 'vis_area_stacked',
-  visBarHorizontal: 'vis_bar_horizontal',
-  visBarHorizontalStacked: 'vis_bar_horizontal_stacked',
-  visBarVertical: 'vis_bar_vertical',
-  visBarVerticalStacked: 'vis_bar_vertical_stacked',
-  visGauge: 'vis_gauge',
+  visArea: 'chart_area', // NOTE: To be deprecated in favor of chartArea
+  visAreaStacked: 'chart_area_stack', // NOTE: To be deprecated in favor of chartAreaStack
+  visBarHorizontal: 'chart_bar_horizontal', // NOTE: To be deprecated in favor of chartBarHorizontal
+  visBarHorizontalStacked: 'chart_bar_horizontal_stack', // NOTE: To be deprecated in favor of chartBarHorizontalStack
+  visBarVertical: 'chart_bar_vertical', // NOTE: To be deprecated in favor of chartBarVertical
+  visBarVerticalStacked: 'chart_bar_vertical_stack', // NOTE: To be deprecated in favor of chartBarVerticalStack
+  visGauge: 'chart_gauge', // NOTE: To be deprecated in favor of chartGauge
   visGoal: 'vis_goal',
-  visLine: 'vis_line',
-  visMapCoordinate: 'vis_map_coordinate',
-  visMapRegion: 'vis_map_region',
+  visLine: 'chart_line', // NOTE: To be deprecated in favor of chartLine
+  visMapCoordinate: 'waypoint', // NOTE: To be deprecated in favor of waypoint
+  visMapRegion: 'map', // NOTE: To be deprecated in favor of map
   visMetric: 'vis_metric',
-  visPie: 'vis_pie',
-  visTable: 'vis_table',
-  visTagCloud: 'vis_tag_cloud',
-  visText: 'vis_text',
+  visPie: 'chart_pie', // NOTE: To be deprecated in favor of chartPie
+  visTable: 'table', // NOTE: To be deprecated in favor of table
+  visTagCloud: 'chart_tag_cloud', // NOTE: To be deprecated in favor of chartTagCloud
+  visText: 'text', // NOTE: To be deprecated in favor of text,
   visTimelion: 'vis_timelion',
   visVega: 'code', // NOTE: To be deprecated in favor of `code`
   visVisualBuilder: 'vis_visual_builder',

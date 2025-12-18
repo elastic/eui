@@ -1,0 +1,34 @@
+/*
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
+ */
+
+// THIS IS A GENERATED FILE. DO NOT MODIFY MANUALLY. @see scripts/compile-icons.js
+
+import * as React from 'react';
+import type { SVGProps } from 'react';
+interface SVGRProps {
+  title?: string;
+  titleId?: string;
+}
+const EuiIconLinkSlash = ({
+  title,
+  titleId,
+  ...props
+}: SVGProps<SVGSVGElement> & SVGRProps) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={16}
+    height={16}
+    viewBox="0 0 16 16"
+    aria-labelledby={titleId}
+    {...props}
+  >
+    {title ? <title id={titleId}>{title}</title> : null}
+    <path d="m15.354 1.354-14 14-.708-.707 14-14 .707.707ZM7 15H6v-2.5h1V15Zm7.121-5.121A3 3 0 1 1 9.88 14.12l-2.234-2.23.708-.707 2.232 2.232a2 2 0 1 0 2.828-2.828l-2.232-2.232.707-.708L14.12 9.88ZM3 10H1V9h2v1ZM1.879 1.879a3 3 0 0 1 4.242 0L8.39 4.146l-.707.708-2.268-2.268a2 2 0 1 0-2.828 2.828l2.268 2.268-.708.707L1.88 6.12a3 3 0 0 1 0-4.242ZM15 7h-2V6h2v1Zm-5-4H9V1h1v2Z" />
+  </svg>
+);
+export const icon = EuiIconLinkSlash;
