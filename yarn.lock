@@ -7113,6 +7113,7 @@ __metadata:
     "@docusaurus/utils-validation": "npm:^3.7.0"
     "@elastic/datemath": "npm:^5.0.3"
     "@elastic/eui": "workspace:^"
+    "@elastic/eui-docgen": "workspace:^"
     "@elastic/eui-theme-borealis": "workspace:^"
     "@emotion/css": "npm:^11.11.2"
     "@emotion/react": "npm:^11.11.4"

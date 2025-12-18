@@ -1,11 +1,3 @@
-/*
- * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
- * or more contributor license agreements. Licensed under the Elastic License
- * 2.0 and the Server Side Public License, v 1; you may not use this file except
- * in compliance with, at your election, the Elastic License 2.0 or the Server
- * Side Public License, v 1.
- */
-
 import { type ReactNode, JSX } from 'react';
 import { css, Global } from '@emotion/react';
 import { useThemeConfig, ErrorCauseBoundary } from '@docusaurus/theme-common';
@@ -34,12 +26,10 @@ import {
   euiFormVariables,
   // @ts-ignore - reusing form styles as we don't have access to the plugin component yet
 } from '@elastic/eui/lib/components/form/form.styles';
+import euiVersions from '@site/static/versions.json';
 
-import {
-  VersionSwitcher,
-  VersionSwitcherProps,
-} from '../../../components/version_switcher';
-import { HighContrastModeToggle } from '../../../components/high_contrast_mode_toggle';
+import { VersionSwitcher } from '../../../components/version_switcher';
+import { ThemeSwitcher } from '../../../components/theme_switcher';
 
 const DOCS_PATH = '/docs';
 
@@ -203,13 +193,7 @@ function NavbarContentLayout({
   );
 }
 
-type Props = {
-  versionSwitcherOptions?: VersionSwitcherProps;
-};
-
-export default function NavbarContent({
-  versionSwitcherOptions,
-}: Props): JSX.Element {
+export default function NavbarContent(): JSX.Element {
   const isBrowser = useIsBrowser();
   const mobileSidebar = useNavbarMobileSidebar();
   const location = useLocation();
@@ -219,6 +203,7 @@ export default function NavbarContent({
   const styles = useEuiMemoizedStyles(getStyles);
 
   const searchBarItem = items.find((item) => item.type === 'search');
+  const versions = euiVersions?.euiVersions ?? undefined;
   const isRoot = !location?.pathname.includes(DOCS_PATH);
 
   return (
@@ -233,9 +218,7 @@ export default function NavbarContent({
             {!mobileSidebar.disabled && <NavbarMobileSidebarToggle />}
             <NavbarLogo />
             <div css={styles.versionSwitcher}>
-              {isBrowser && versionSwitcherOptions && (
-                <VersionSwitcher {...versionSwitcherOptions} />
-              )}
+              {isBrowser && versions && <VersionSwitcher versions={versions} />}
             </div>
             <NavbarItems items={leftItems} />
           </>
@@ -248,12 +231,13 @@ export default function NavbarContent({
               </NavbarSearch>
             )}
             <NavbarColorModeToggle className="colorModeToggle" />
+            <NavbarItems items={rightItems} />
+
             {isBrowser && (
               <div css={styles.themeSwitcher}>
-                <HighContrastModeToggle />
+                <ThemeSwitcher />
               </div>
             )}
-            <NavbarItems items={rightItems} />
           </>
         }
       />

@@ -85,11 +85,7 @@ type InMemoryTableProps<T extends object> = Omit<
    */
   noItemsMessage?: ReactNode;
   /**
-   * Configures the search bar. Can be `true` for defaults,
-   * or an {@link EuiSearchBarProps} object.
-   *
-   * When `searchFormat="text"`, `query` and `defaultQuery` must be strings
-   * ({@link Query} objects are ignored).
+   * Configures {@link Search}.
    */
   search?: Search;
   /**
@@ -97,7 +93,6 @@ type InMemoryTableProps<T extends object> = Omit<
    *
    * However, certain special characters (such as quotes, parentheses, and colons)
    * are reserved for EQL syntax and will error if used.
-   *
    * If your table does not require filter search and instead requires searching for certain
    * symbols, use a plain `text` search format instead (note that filters will be ignored
    * in this format).
@@ -164,7 +159,7 @@ interface State<T extends object> {
     search?: Search;
   };
   search?: Search;
-  query: Query | string | null;
+  query: Query | null;
   pageIndex: number;
   pageSize?: number;
   pageSizeOptions?: number[];
@@ -174,34 +169,23 @@ interface State<T extends object> {
   showPerPageOptions: boolean | undefined;
 }
 
-/**
- * Extracts and formats a query from search props based on the search format
- * @param search - The search configuration
- * @param defaultQuery - Whether to use the defaultQuery property as fallback
- * @param searchFormat - The search format: 'eql' for parsed queries, 'text' for plain text
- * @returns Formatted query string or Query object
- */
 const getQueryFromSearch = (
   search: Search | undefined,
-  defaultQuery: boolean,
-  searchFormat: InMemoryTableProps<{}>['searchFormat']
-): Query | string => {
+  defaultQuery: boolean
+) => {
+  let query: Query | string;
   if (!search) {
-    return searchFormat === 'text' ? '""' : '';
+    query = '';
+  } else {
+    query =
+      (defaultQuery
+        ? (search as EuiSearchBarProps).defaultQuery ||
+          (search as EuiSearchBarProps).query ||
+          ''
+        : (search as EuiSearchBarProps).query) || '';
   }
 
-  const searchProps = search as EuiSearchBarProps;
-  const queryString = defaultQuery
-    ? searchProps.defaultQuery ?? searchProps.query ?? ''
-    : searchProps.query ?? '';
-
-  if (searchFormat === 'text') {
-    return `"${queryString}"`;
-  }
-
-  return isString(queryString)
-    ? EuiSearchBar.Query.parse(queryString)
-    : queryString;
+  return isString(query) ? EuiSearchBar.Query.parse(query) : query;
 };
 
 const getInitialPagination = (
@@ -414,11 +398,7 @@ export class EuiInMemoryTable<T extends object = object> extends Component<
           ...updatedPrevState.prevProps,
           search: nextProps.search,
         },
-        query: getQueryFromSearch(
-          nextProps.search,
-          false,
-          nextProps.searchFormat ?? 'eql'
-        ),
+        query: getQueryFromSearch(nextProps.search, false),
       };
     }
     if (updatedPrevState !== prevState) {
@@ -443,7 +423,7 @@ export class EuiInMemoryTable<T extends object = object> extends Component<
         search,
       },
       search: search,
-      query: getQueryFromSearch(search, true, props.searchFormat ?? 'eql'),
+      query: getQueryFromSearch(search, true),
       pageIndex: pageIndex || 0,
       pageSize,
       pageSizeOptions,
@@ -562,12 +542,13 @@ export class EuiInMemoryTable<T extends object = object> extends Component<
   // search bar to ignore EQL syntax and only use the searchbar for plain text
   onPlainTextSearch = (searchValue: string) => {
     const escapedQueryText = searchValue.replace(/["\\]/g, '\\$&');
+    const finalQuery = `"${escapedQueryText}"`;
     const { search } = this.props;
 
     if (isEuiSearchBarProps(search)) {
       if (search.onChange) {
         const shouldQueryInMemory = search.onChange({
-          query: null,
+          query: EuiSearchBar.Query.parse(finalQuery),
           queryText: escapedQueryText,
           error: null,
         });
@@ -578,7 +559,7 @@ export class EuiInMemoryTable<T extends object = object> extends Component<
     }
 
     this.setState({
-      query: `"${escapedQueryText}"`,
+      query: EuiSearchBar.Query.parse(finalQuery),
     });
   };
 
@@ -589,37 +570,13 @@ export class EuiInMemoryTable<T extends object = object> extends Component<
     let searchBar: ReactNode;
 
     if (searchFormat === 'text') {
-      const { box = {}, query, defaultQuery } = search as EuiSearchBarProps;
-      const {
-        schema, // destructure `schema` so it doesn't get rendered to DOM
-        ...searchBoxProps
-      } = box;
-
-      // in the unexpected case a Query object is passed with searchFormat=text
-      if (process.env.NODE_ENV === 'development') {
-        if (query != null && !isString(query)) {
-          console.warn(
-            'EuiInMemoryTable: `query` should be a string when using searchFormat="text". Query objects are only supported with searchFormat="eql".'
-          );
-        }
-        if (defaultQuery != null && !isString(defaultQuery)) {
-          console.warn(
-            'EuiInMemoryTable: `defaultQuery` should be a string when using searchFormat="text". Query objects are only supported with searchFormat="eql".'
-          );
-        }
-      }
-
-      // use only string values, ignore Query objects
-      const displayQuery = isString(query)
-        ? query
-        : isString(defaultQuery)
-        ? defaultQuery
-        : '';
+      const _searchBoxProps = (search as EuiSearchBarProps)?.box || {}; // Work around | boolean type
+      const { schema, ...searchBoxProps } = _searchBoxProps; // Destructure `schema` so it doesn't get rendered to DOM
 
       searchBar = (
         <EuiSearchBox
+          query="" // Unused, passed to satisfy Typescript
           {...searchBoxProps}
-          query={displayQuery}
           onSearch={this.onPlainTextSearch}
         />
       );

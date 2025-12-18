@@ -1,11 +1,3 @@
-/*
- * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
- * or more contributor license agreements. Licensed under the Elastic License
- * 2.0 and the Server Side Public License, v 1; you may not use this file except
- * in compliance with, at your election, the Elastic License 2.0 or the Server
- * Side Public License, v 1.
- */
-
 import { JSX } from 'react';
 import { useNavbarMobileSidebar } from '@docusaurus/theme-common/internal';
 import { translate } from '@docusaurus/Translate';
@@ -14,12 +6,10 @@ import NavbarLogo from '@theme-original/Navbar/Logo';
 import { EuiIcon, useEuiMemoizedStyles, UseEuiTheme } from '@elastic/eui';
 import { css } from '@emotion/react';
 import useIsBrowser from '@docusaurus/useIsBrowser';
+import euiVersions from '@site/static/versions.json';
 
-import {
-  VersionSwitcher,
-  VersionSwitcherProps,
-} from '../../../../components/version_switcher';
-import { HighContrastModeToggle } from '../../../../components/high_contrast_mode_toggle';
+import { VersionSwitcher } from '../../../../components/version_switcher';
+import { ThemeSwitcher } from '../../../../components/theme_switcher';
 
 const getStyles = ({ euiTheme }: UseEuiTheme) => ({
   sidebar: css`
@@ -65,24 +55,18 @@ function CloseButton() {
   );
 }
 
-type Props = {
-  versionSwitcherOptions?: VersionSwitcherProps;
-};
-
-export default function NavbarMobileSidebarHeader({
-  versionSwitcherOptions,
-}: Props): JSX.Element {
+export default function NavbarMobileSidebarHeader(): JSX.Element {
   const isBrowser = useIsBrowser();
   const styles = useEuiMemoizedStyles(getStyles);
+
+  const versions = euiVersions?.euiVersions ?? undefined;
 
   return (
     <div className="navbar-sidebar__brand" css={styles.sidebar}>
       <NavbarLogo />
-      {isBrowser && versionSwitcherOptions && (
-        <VersionSwitcher {...versionSwitcherOptions} />
-      )}
+      {isBrowser && versions && <VersionSwitcher versions={versions} />}
+      {isBrowser && <ThemeSwitcher />}
       <NavbarColorModeToggle />
-      {isBrowser && <HighContrastModeToggle />}
       <CloseButton />
     </div>
   );
