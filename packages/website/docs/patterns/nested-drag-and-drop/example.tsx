@@ -396,7 +396,7 @@ const DraggablePanel = memo(function DraggablePanel({
     }
   `;
 
-  const headerStyles = css`
+  const buttonContentStyles = css`
     display: flex;
     gap: ${euiTheme.size.xs};
     align-items: center;
@@ -439,7 +439,7 @@ const DraggablePanel = memo(function DraggablePanel({
            * See: https://eui.elastic.co/docs/components/containers/accordion/#interactive-content-in-the-trigger
            */
           buttonContent={
-            <span css={headerStyles}>
+            <span css={buttonContentStyles}>
               <span className="grab-icon" css={[iconStyles, grabIconStyles]}>
                 <EuiIcon type="grab" />
               </span>
