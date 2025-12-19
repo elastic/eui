@@ -16,7 +16,7 @@ import React, {
 } from 'react';
 import { VariableSizeGrid as Grid } from 'react-window';
 
-import { useEuiMemoizedStyles, useIsMouseDown } from '../../../services';
+import { useEuiMemoizedStyles, useIsPointerDown } from '../../../services';
 import { logicalStyles } from '../../../global_styling';
 import { DataGridCellPopoverContext } from '../body/cell';
 import { EuiDataGridStyle } from '../data_grid_types';
@@ -50,20 +50,21 @@ export const useScroll = (args: Dependencies) => {
   const { scrollCellIntoView } = useScrollCellIntoView(args);
 
   const { focusedCell } = useContext(DataGridFocusContext);
-  const isMouseDown = useIsMouseDown();
+  const isPointerDown = useIsPointerDown();
 
   useEffect(() => {
     if (focusedCell) {
       // do not scroll if text is being selected
-      if (isMouseDown) return;
-      if (window?.getSelection()?.type === 'Range') return;
+      if (isPointerDown || window?.getSelection()?.type === 'Range') {
+        return;
+      }
 
       scrollCellIntoView({
         rowIndex: focusedCell[1],
         colIndex: focusedCell[0],
       });
     }
-  }, [focusedCell, isMouseDown, scrollCellIntoView]);
+  }, [focusedCell, isPointerDown, scrollCellIntoView]);
 
   const { popoverIsOpen, cellLocation } = useContext(
     DataGridCellPopoverContext
