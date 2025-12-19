@@ -4,7 +4,6 @@ import {
   useMemo,
   useRef,
   useState,
-  type MouseEvent,
   type KeyboardEvent,
 } from 'react';
 import { css } from '@emotion/react';
@@ -166,40 +165,6 @@ const getDescendantIds = (item: TreeItem): string[] => {
   return ids;
 };
 
-/**
- * A custom hook that defines and returns hover listeners.
- *
- * We use `isHovered` state to conditionally render the `grab` icon
- * as a draggable affordance.
- *
- * We rely on `mousemove` instead of `mouseover` to avoid "stuck" hover
- * states after a drop because `mousemove` only fires on actual movement.
- * Native drag also suppresses `mousemove`, preventing unwanted hover
- * effects during drag operations.
- */
-const useHover = () => {
-  const [isHovered, setIsHovered] = useState(false);
-
-  useEffect(() => {
-    return monitorForElements({
-      onDragStart: () => setIsHovered(false),
-      onDrop: () => setIsHovered(false),
-    });
-  }, []);
-
-  const onMouseOut = (e: MouseEvent) => {
-    e.stopPropagation();
-    setIsHovered(false);
-  };
-
-  const onMouseMove = (e: MouseEvent) => {
-    e.stopPropagation();
-    if (!isHovered) setIsHovered(true);
-  };
-
-  return { isHovered, onMouseOut, onMouseMove };
-};
-
 interface LineIndicatorProps {
   position: 'top' | 'bottom';
 }
@@ -258,8 +223,6 @@ const DraggablePanel = memo(function DraggablePanel({
 
   const [isExpanded, setIsExpanded] = useState(true);
   const [instruction, setInstruction] = useState<Instruction | null>(null);
-
-  const { isHovered, onMouseOut, onMouseMove } = useHover();
 
   const hasChildren = useMemo(() => {
     return !!children?.length;
@@ -404,21 +367,11 @@ const DraggablePanel = memo(function DraggablePanel({
 
   /**
    * Grab icon gives affordance to the draggable elements.
-   *
-   * TODO: reuse the animation
    */
   const grabIconStyles = css`
-    width: ${isHovered ? euiTheme.size.l : 0};
-    min-width: 0;
-    opacity: ${isHovered ? 1 : 0};
-    margin-inline-end: ${isHovered ? 0 : `calc(${euiTheme.size.xs} * -1)`};
-    overflow: hidden;
-    transform: scale(${isHovered ? 1 : 0});
-    transition:
-      width 0.2s ease-in-out,
-      opacity 0.2s ease-in-out,
-      margin-inline-end 0.2s ease-in-out,
-      transform 0.2s ease-in-out;
+    svg {
+      fill: ${euiTheme.colors.textDisabled};
+    }
   `;
 
   /**
@@ -433,6 +386,14 @@ const DraggablePanel = memo(function DraggablePanel({
     display: flex;
     flex-direction: column;
     gap: ${euiTheme.size.s};
+  `;
+
+  const buttonStyles = css`
+    &:hover .grab-icon {
+      svg {
+        fill: ${euiTheme.colors.textParagraph};
+      }
+    }
   `;
 
   const headerStyles = css`
@@ -450,7 +411,7 @@ const DraggablePanel = memo(function DraggablePanel({
   `;
 
   return (
-    <li css={wrapperStyles} onMouseOut={onMouseOut} onMouseMove={onMouseMove}>
+    <li css={wrapperStyles}>
       {instruction?.operation === 'reorder-before' && (
         <LineIndicator position="top" />
       )}
@@ -469,6 +430,7 @@ const DraggablePanel = memo(function DraggablePanel({
           forceState={isExpanded ? 'open' : 'closed'}
           onToggle={setIsExpanded}
           buttonProps={{
+            css: buttonStyles,
             role: 'treeitem',
           }}
           /*
@@ -478,7 +440,7 @@ const DraggablePanel = memo(function DraggablePanel({
            */
           buttonContent={
             <span css={headerStyles}>
-              <span css={[iconStyles, grabIconStyles]}>
+              <span className="grab-icon" css={[iconStyles, grabIconStyles]}>
                 <EuiIcon type="grab" />
               </span>
               {hasChildren && (
