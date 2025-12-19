@@ -106,7 +106,7 @@ export type EuiButtonIconPropsForButton = {
   }
 >;
 
-type Props = ExclusiveUnion<
+export type Props = ExclusiveUnion<
   EuiButtonIconPropsForAnchor,
   EuiButtonIconPropsForButton
 >;

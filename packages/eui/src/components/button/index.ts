@@ -23,3 +23,10 @@ export type {
   EuiButtonGroupProps,
 } from './button_group';
 export { EuiButtonGroup } from './button_group';
+
+export type {
+  EuiSplitButtonProps,
+  EuiSplitButtonActionPrimaryProps,
+  EuiSplitButtonActionSecondaryProps,
+} from './split_button';
+export { EuiSplitButton } from './split_button';
