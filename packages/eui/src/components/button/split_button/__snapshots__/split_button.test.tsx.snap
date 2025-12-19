@@ -22,7 +22,7 @@ exports[`EuiSplitButton renders 1`] = `
   </button>
   <div
     aria-hidden="true"
-    class="euiSplitButton__divider css-1h01mlt-divider"
+    class="euiSplitButton__divider css-1p9055z-divider"
   />
   <button
     aria-label="Secondary action"

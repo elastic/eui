@@ -9,6 +9,7 @@
 import classNames from 'classnames';
 import React, {
   Children,
+  ComponentType,
   Fragment,
   FunctionComponent,
   isValidElement,
@@ -152,7 +153,7 @@ export const _EuiSplitButton: FunctionComponent<EuiSplitButtonProps> = ({
         <Fragment key={`${key}-primaryAction`}>{primaryAction}</Fragment>
         <div
           className="euiSplitButton__divider"
-          css={[dividerStyles.divider]}
+          css={dividerStyles.divider}
           aria-hidden="true"
         />
         <Fragment key={`${key}-secondaryAction`}>{secondaryAction}</Fragment>
@@ -168,7 +169,7 @@ export const EuiSplitButton = Object.assign(_EuiSplitButton, {
 
 /* internal utils */
 
-const getComponentName = (type: React.ComponentType<any> | string): string => {
+const getComponentName = (type: ComponentType<any> | string): string => {
   if (typeof type === 'string') return type;
-  return (type as any).displayName || (type as any).name || 'Unknown';
+  return type.displayName || type.name || 'Unknown';
 };
