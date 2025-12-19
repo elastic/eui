@@ -282,12 +282,12 @@ describe('EuiSplitButton', () => {
 
         expect(consoleErrorSpy).toHaveBeenCalledWith(
           expect.stringContaining(
-            '🚫 EuiSplitButton: Expected <EuiSplitButton.ActionPrimary> at position 1, got <EuiToolTip>'
+            '⚠️ EuiSplitButton: Expected <EuiSplitButton.ActionPrimary> at position 1, got <EuiToolTip>'
           )
         );
         expect(consoleErrorSpy).toHaveBeenCalledWith(
           expect.stringContaining(
-            '🚫 EuiSplitButton: Expected <EuiSplitButton.ActionSecondary> at position 2, got <EuiToolTip>'
+            '⚠️ EuiSplitButton: Expected <EuiSplitButton.ActionSecondary> at position 2, got <EuiToolTip>'
           )
         );
 

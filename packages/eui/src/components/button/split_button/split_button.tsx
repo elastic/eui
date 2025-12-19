@@ -139,9 +139,10 @@ export const _EuiSplitButton: FunctionComponent<EuiSplitButtonProps> = ({
 
       if (!expectedComponents.includes(componentName)) {
         console.warn(
-          `🚫 EuiSplitButton: Expected <${expectedComponents[0]}> at position ${
+          `⚠️ EuiSplitButton: Expected <${expectedComponents[0]}> at position ${
             index + 1
-          }, got <${componentName}>. Read more about it on: https://eui.elastic.co/docs/components/navigation/buttons/split-button/`
+          }, got <${componentName}>. You might be using a wrapper. Using e.g. React.memo() or React.lazy() is valid, other component wrappers are not and will break styling.
+          To verify expected usage, please check the documentation: https://eui.elastic.co/docs/components/navigation/buttons/split-button/`
         );
       }
     });
