@@ -9,24 +9,19 @@
 import { useState, useEffect } from 'react';
 
 /**
- * A hook that tracks whether the mouse button is currently pressed.
- * Only responds to mouse pointer events (not touch or pen).
+ * A hook that tracks whether the pointer is currently down/pressed.
  * Useful for detecting text selection in progress.
  */
-export function useIsMouseDown() {
-  const [isMouseDown, setIsMouseDown] = useState(false);
+export function useIsPointerDown() {
+  const [isPointerDown, setIsPointerDown] = useState(false);
 
   useEffect(() => {
-    const handlePointerDown = (event: PointerEvent) => {
-      if (event.pointerType === 'mouse') {
-        setIsMouseDown(true);
-      }
+    const handlePointerDown = () => {
+      setIsPointerDown(true);
     };
 
-    const handlePointerUp = (event: PointerEvent) => {
-      if (event.pointerType === 'mouse') {
-        setIsMouseDown(false);
-      }
+    const handlePointerUp = () => {
+      setIsPointerDown(false);
     };
 
     document.addEventListener('pointerdown', handlePointerDown);
@@ -38,5 +33,5 @@ export function useIsMouseDown() {
     };
   }, []);
 
-  return isMouseDown;
+  return isPointerDown;
 }
