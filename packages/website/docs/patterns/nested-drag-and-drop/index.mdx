@@ -17,7 +17,9 @@ This pattern may work differently depending on which version of **@atlaskit/prag
 
 :::accessibility Accessibility
 
-This pattern was tested against the [Tree view pattern](https://www.w3.org/WAI/ARIA/apg/patterns/treeview/). When making modifications, please make sure there is no accessibility regression.
+This example uses nested **EuiAccordion** components with roving index to improve usability, similarly as in [Tree view pattern](https://www.w3.org/WAI/ARIA/apg/patterns/treeview/).
+
+For complex trees, the recommended accessibility pattern is not to mimic mouse dragging with keys but provide a "Move" action. In this case, we put them in the `extraAction` prop inside the **EuiContextMenu**.
 :::
 
 ```bash
