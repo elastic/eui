@@ -24,6 +24,7 @@ import {
   EuiPanel,
   EuiText,
   useEuiTheme,
+  useGeneratedHtmlId,
 } from '@elastic/eui';
 
 interface TreeItem {
@@ -206,6 +207,8 @@ const EXPAND_ON_HOVER_TIME = 300;
 interface DraggablePanelProps extends TreeItem {
   index: number;
   level?: number;
+  activeId: string;
+  setActiveId: (id: string) => void;
 }
 
 const DraggablePanel = memo(function DraggablePanel({
@@ -215,11 +218,15 @@ const DraggablePanel = memo(function DraggablePanel({
   isBlocked,
   level = 0,
   title,
+  activeId,
+  setActiveId,
 }: DraggablePanelProps) {
   const { euiTheme } = useEuiTheme();
 
   const ref = useRef<HTMLDivElement | null>(null);
   const expandTimeout = useRef<ReturnType<typeof setTimeout>>();
+
+  const buttonId = useGeneratedHtmlId({ prefix: id, suffix: 'button' });
 
   const [isExpanded, setIsExpanded] = useState(true);
   const [instruction, setInstruction] = useState<Instruction | null>(null);
@@ -227,6 +234,103 @@ const DraggablePanel = memo(function DraggablePanel({
   const hasChildren = useMemo(() => {
     return !!children?.length;
   }, [children]);
+
+  /**
+   * Handle the keyboard navigation in accordance with the Tree view a11y pattern.
+   *
+   * See: @{link https://www.w3.org/WAI/ARIA/apg/patterns/treeview/}.
+   */
+  const handleKeyDown = (e: KeyboardEvent<HTMLButtonElement>) => {
+    const target = e.currentTarget;
+
+    const getTreeItems = () => {
+      const tree = target.closest('[data-list]');
+      if (!tree) return [];
+      return Array.from(
+        tree.querySelectorAll<HTMLElement>('[data-item]')
+      ).filter((el) => {
+        if (el.offsetParent === null) return false;
+
+        let current = el;
+        while (true) {
+          const group = current.closest('ul[data-group]');
+          if (!group) break;
+
+          const parentId = group.getAttribute('aria-labelledby');
+          if (parentId) {
+            const parent = document.getElementById(parentId);
+            if (parent && parent.getAttribute('aria-expanded') === 'false') {
+              return false;
+            }
+            if (!parent) break;
+            current = parent as HTMLElement;
+          } else {
+            break;
+          }
+        }
+        return true;
+      });
+    };
+
+    switch (e.key) {
+      case 'ArrowDown': {
+        e.preventDefault();
+        const treeItems = getTreeItems();
+        const currentIndex = treeItems.indexOf(target);
+        const next = treeItems[currentIndex + 1];
+        if (next) next.focus();
+        break;
+      }
+      case 'ArrowUp': {
+        e.preventDefault();
+        const treeItems = getTreeItems();
+        const currentIndex = treeItems.indexOf(target);
+        const prev = treeItems[currentIndex - 1];
+        if (prev) prev.focus();
+        break;
+      }
+      case 'Home': {
+        e.preventDefault();
+        const treeItems = getTreeItems();
+        if (treeItems.length > 0) treeItems[0].focus();
+        break;
+      }
+      case 'End': {
+        e.preventDefault();
+        const treeItems = getTreeItems();
+        if (treeItems.length > 0) treeItems[treeItems.length - 1].focus();
+        break;
+      }
+      case 'ArrowRight': {
+        e.preventDefault();
+        if (hasChildren) {
+          if (!isExpanded) {
+            setIsExpanded(true);
+          } else {
+            const treeItems = getTreeItems();
+            const currentIndex = treeItems.indexOf(target);
+            const next = treeItems[currentIndex + 1];
+            if (next) next.focus();
+          }
+        }
+        break;
+      }
+      case 'ArrowLeft': {
+        e.preventDefault();
+        if (hasChildren && isExpanded) {
+          setIsExpanded(false);
+        } else {
+          const parentList = target.closest('ul[data-group]');
+          const parentId = parentList?.getAttribute('aria-labelledby');
+          if (parentId) {
+            const parentEl = document.getElementById(parentId);
+            parentEl?.focus();
+          }
+        }
+        break;
+      }
+    }
+  };
 
   /*
    * Auto-expand accordion on having dropped an element.
@@ -430,8 +534,12 @@ const DraggablePanel = memo(function DraggablePanel({
           forceState={isExpanded ? 'open' : 'closed'}
           onToggle={setIsExpanded}
           buttonProps={{
+            id: buttonId,
             css: buttonStyles,
-            role: 'treeitem',
+            'data-item': true,
+            onKeyDown: handleKeyDown,
+            tabIndex: activeId === id ? 0 : -1,
+            onFocus: () => setActiveId(id),
           }}
           /*
            * We render plain `EuiIcon`, not interactive `EuiButtonIcon`,
@@ -454,12 +562,14 @@ const DraggablePanel = memo(function DraggablePanel({
             </span>
           }
         >
-          <ul css={childrenWrapperStyles} role="group" aria-labelledby={id}>
+          <ul css={childrenWrapperStyles} data-group aria-labelledby={buttonId}>
             {children?.map((child, index) => (
               <DraggablePanel
                 key={child.id}
                 index={index}
                 level={level + 1}
+                activeId={activeId}
+                setActiveId={setActiveId}
                 {...child}
               />
             ))}
@@ -477,6 +587,7 @@ export default () => {
   const { euiTheme } = useEuiTheme();
 
   const [items, setItems] = useState<Tree>(initialData);
+  const [activeId, setActiveId] = useState<string>(initialData[0].id);
 
   useEffect(() => {
     /*
@@ -543,13 +654,15 @@ export default () => {
   `;
 
   return (
-    <ul
-      css={wrapperStyles}
-      role="tree"
-      aria-label="Nested drag and drop panels"
-    >
+    <ul css={wrapperStyles} aria-label="Nested drag and drop panels" data-list>
       {items.map((item, index) => (
-        <DraggablePanel key={item.id} index={index} {...item} />
+        <DraggablePanel
+          key={item.id}
+          index={index}
+          activeId={activeId}
+          setActiveId={setActiveId}
+          {...item}
+        />
       ))}
     </ul>
   );
