@@ -5,6 +5,7 @@ import {
   useRef,
   useState,
   type MouseEvent,
+  type KeyboardEvent,
 } from 'react';
 import { css } from '@emotion/react';
 import {
@@ -447,7 +448,7 @@ const DraggablePanel = memo(function DraggablePanel({
   `;
 
   return (
-    <div css={wrapperStyles} onMouseOut={onMouseOut} onMouseMove={onMouseMove}>
+    <li css={wrapperStyles} onMouseOut={onMouseOut} onMouseMove={onMouseMove}>
       {instruction?.operation === 'reorder-before' && (
         <LineIndicator position="top" />
       )}
@@ -465,6 +466,9 @@ const DraggablePanel = memo(function DraggablePanel({
           id={id}
           forceState={isExpanded ? 'open' : 'closed'}
           onToggle={setIsExpanded}
+          buttonProps={{
+            role: 'treeitem',
+          }}
           /*
            * We render plain `EuiIcon`, not interactive `EuiButtonIcon`,
            * and let the underlying button handle the (un)collapse behavior.
@@ -486,7 +490,7 @@ const DraggablePanel = memo(function DraggablePanel({
             </span>
           }
         >
-          <div css={childrenWrapperStyles}>
+          <ul css={childrenWrapperStyles} role="group" aria-labelledby={id}>
             {children?.map((child, index) => (
               <DraggablePanel
                 key={child.id}
@@ -495,13 +499,13 @@ const DraggablePanel = memo(function DraggablePanel({
                 {...child}
               />
             ))}
-          </div>
+          </ul>
         </EuiAccordion>
       </EuiPanel>
       {instruction?.operation === 'reorder-after' && (
         <LineIndicator position="bottom" />
       )}
-    </div>
+    </li>
   );
 });
 
@@ -575,10 +579,10 @@ export default () => {
   `;
 
   return (
-    <div css={wrapperStyles}>
+    <ul css={wrapperStyles} role="tree">
       {items.map((item, index) => (
         <DraggablePanel key={item.id} index={index} {...item} />
       ))}
-    </div>
+    </ul>
   );
 };
