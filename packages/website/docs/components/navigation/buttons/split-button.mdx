@@ -16,6 +16,10 @@ or open a dropdown popover with related secondary actions. This pattern is ideal
 `EuiSplitButton.ActionPrimary` is by default rendered as a standard button with text, but it can be rendered as icon button by setting `isIconOnly={true}` and passing a `iconType`.
 `EuiSplitButton.ActionSecondary` is always rendered as an icon button.
 
+:::info `EuiSplitButton` only allows `EuiSplitButton.ActionPrimary` and `EuiSplitButton.ActionSecondary` as children.
+You may use wrappers that don't change the DOM structure (like `React.memo()` or `React.lazy()`) to wrap these components. Other component wrappers are not supported and will break styling.
+:::
+
 ```tsx interactive
 import React, { useState } from 'react';
 import { css } from '@emotion/react';
@@ -207,9 +211,6 @@ These common props are: `size`, `color`, and `fill`. Additionally, you can contr
 The parent prop will always override the sub-component prop when both are provided.
 
 ## Tooltips and popovers
-
-:::info `EuiSplitButton` only allows `EuiSplitButton.ActionPrimary` and `EuiSplitButton.ActionSecondary` as children.
-:::
 
 To apply a tooltip to either action, you can pass `tooltipProps` which will render an `EuiToolTip` wrapping the button.
 For `EuiSplitButton.ActionSecondary` only, you can also pass `popoverProps` to render an `EuiPopover`.
