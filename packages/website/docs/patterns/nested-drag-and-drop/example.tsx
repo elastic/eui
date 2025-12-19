@@ -204,10 +204,6 @@ interface LineIndicatorProps {
   position: 'top' | 'bottom';
 }
 
-/**
- * TODO: make into a reusable style / component
- * with the current drag and drop components
- */
 const LineIndicator = ({ position }: LineIndicatorProps) => {
   const { euiTheme } = useEuiTheme();
 
@@ -215,19 +211,22 @@ const LineIndicator = ({ position }: LineIndicatorProps) => {
     position: absolute;
     left: 0;
     right: 0;
-    height: 1px;
+    height: ${euiTheme.size.xxs};
     background-color: ${euiTheme.colors.borderStrongAccentSecondary};
     pointer-events: none;
+    border-radius: 1px;
   `;
 
   const topIndicatorStyles = css`
     ${indicatorStyles}
     top: -${euiTheme.size.xs};
+    transform: translateY(-50%);
   `;
 
   const bottomIndicatorStyles = css`
     ${indicatorStyles}
     bottom: -${euiTheme.size.xs};
+    transform: translateY(50%);
   `;
 
   return (
@@ -386,6 +385,9 @@ const DraggablePanel = memo(function DraggablePanel({
     border-color: ${instruction?.operation === 'combine'
       ? euiTheme.colors.borderStrongAccentSecondary
       : euiTheme.colors.borderBaseSubdued};
+    box-shadow: ${instruction?.operation === 'combine'
+      ? `inset 0 0 0 1px ${euiTheme.colors.borderStrongAccentSecondary}`
+      : 'none'};
   `;
 
   /**
