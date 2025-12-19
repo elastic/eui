@@ -579,7 +579,11 @@ export default () => {
   `;
 
   return (
-    <ul css={wrapperStyles} role="tree">
+    <ul
+      css={wrapperStyles}
+      role="tree"
+      aria-label="Nested drag and drop panels"
+    >
       {items.map((item, index) => (
         <DraggablePanel key={item.id} index={index} {...item} />
       ))}
