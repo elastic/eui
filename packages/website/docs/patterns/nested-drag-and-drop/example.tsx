@@ -20,8 +20,11 @@ import {
 } from '@atlaskit/pragmatic-drag-and-drop-hitbox/list-item';
 import {
   EuiAccordion,
+  EuiButtonIcon,
+  EuiContextMenu,
   EuiIcon,
   EuiPanel,
+  EuiPopover,
   EuiText,
   useEuiTheme,
   useGeneratedHtmlId,
@@ -78,6 +81,18 @@ const findItem = (items: Tree, itemId: string): TreeItem | undefined => {
     if (item.children) {
       const foundItem = findItem(item.children, itemId);
       if (foundItem) return foundItem;
+    }
+  }
+};
+
+const findParent = (items: Tree, itemId: string): TreeItem | undefined => {
+  for (const item of items) {
+    if (item.children?.some((child) => child.id === itemId)) return item;
+
+    if (item.children) {
+      const parent = findParent(item.children, itemId);
+
+      if (parent) return parent;
     }
   }
 };
@@ -153,6 +168,47 @@ const insertAfter = (
   });
 };
 
+const moveItem = (
+  items: Tree,
+  itemId: string,
+  direction: 'up' | 'down'
+): Tree => {
+  const recursiveMove = (currentItems: Tree): Tree => {
+    const index = currentItems.findIndex((i) => i.id === itemId);
+    if (index !== -1) {
+      if (direction === 'up') {
+        if (index === 0) return currentItems;
+        const newItems = [...currentItems];
+        [newItems[index - 1], newItems[index]] = [
+          newItems[index],
+          newItems[index - 1],
+        ];
+        return newItems;
+      } else {
+        if (index === currentItems.length - 1) return currentItems;
+        const newItems = [...currentItems];
+        [newItems[index], newItems[index + 1]] = [
+          newItems[index + 1],
+          newItems[index],
+        ];
+        return newItems;
+      }
+    }
+
+    return currentItems.map((item) => {
+      if (item.children) {
+        const newChildren = recursiveMove(item.children);
+        if (newChildren !== item.children) {
+          return { ...item, children: newChildren };
+        }
+      }
+      return item;
+    });
+  };
+
+  return recursiveMove(items);
+};
+
 const getDescendantIds = (item: TreeItem): string[] => {
   let ids: string[] = [];
 
@@ -209,6 +265,9 @@ interface DraggablePanelProps extends TreeItem {
   level?: number;
   activeId: string;
   setActiveId: (id: string) => void;
+  onMove: (id: string, direction: 'up' | 'down' | 'indent' | 'outdent') => void;
+  isFirst: boolean;
+  isLast: boolean;
 }
 
 const DraggablePanel = memo(function DraggablePanel({
@@ -220,6 +279,9 @@ const DraggablePanel = memo(function DraggablePanel({
   title,
   activeId,
   setActiveId,
+  onMove,
+  isFirst,
+  isLast,
 }: DraggablePanelProps) {
   const { euiTheme } = useEuiTheme();
 
@@ -229,6 +291,7 @@ const DraggablePanel = memo(function DraggablePanel({
   const buttonId = useGeneratedHtmlId({ prefix: id, suffix: 'button' });
 
   const [isExpanded, setIsExpanded] = useState(true);
+  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const [instruction, setInstruction] = useState<Instruction | null>(null);
 
   const hasChildren = useMemo(() => {
@@ -248,28 +311,7 @@ const DraggablePanel = memo(function DraggablePanel({
       if (!tree) return [];
       return Array.from(
         tree.querySelectorAll<HTMLElement>('[data-item]')
-      ).filter((el) => {
-        if (el.offsetParent === null) return false;
-
-        let current = el;
-        while (true) {
-          const group = current.closest('ul[data-group]');
-          if (!group) break;
-
-          const parentId = group.getAttribute('aria-labelledby');
-          if (parentId) {
-            const parent = document.getElementById(parentId);
-            if (parent && parent.getAttribute('aria-expanded') === 'false') {
-              return false;
-            }
-            if (!parent) break;
-            current = parent as HTMLElement;
-          } else {
-            break;
-          }
-        }
-        return true;
-      });
+      ).filter((el) => !el.closest('[inert]'));
     };
 
     switch (e.key) {
@@ -541,6 +583,67 @@ const DraggablePanel = memo(function DraggablePanel({
             tabIndex: activeId === id ? 0 : -1,
             onFocus: () => setActiveId(id),
           }}
+          extraAction={
+            <EuiPopover
+              panelPaddingSize="none"
+              isOpen={isPopoverOpen}
+              closePopover={() => setIsPopoverOpen(false)}
+              button={
+                <EuiButtonIcon
+                  aria-label="More actions"
+                  iconType="boxesHorizontal"
+                  onClick={(prevState) => setIsPopoverOpen(!prevState)}
+                />
+              }
+            >
+              <EuiContextMenu
+                initialPanelId={0}
+                panels={[
+                  {
+                    id: 0,
+                    items: [
+                      {
+                        name: 'Move up',
+                        icon: 'arrowUp',
+                        onClick: () => {
+                          onMove(id, 'up');
+                          setIsPopoverOpen(false);
+                        },
+                        disabled: isFirst,
+                      },
+                      {
+                        name: 'Move down',
+                        icon: 'arrowDown',
+                        onClick: () => {
+                          onMove(id, 'down');
+                          setIsPopoverOpen(false);
+                        },
+                        disabled: isLast,
+                      },
+                      {
+                        name: 'Indent',
+                        icon: 'arrowRight',
+                        onClick: () => {
+                          onMove(id, 'indent');
+                          setIsPopoverOpen(false);
+                        },
+                        disabled: isFirst,
+                      },
+                      {
+                        name: 'Outdent',
+                        icon: 'arrowLeft',
+                        onClick: () => {
+                          onMove(id, 'outdent');
+                          setIsPopoverOpen(false);
+                        },
+                        disabled: level === 0,
+                      },
+                    ],
+                  },
+                ]}
+              />
+            </EuiPopover>
+          }
           /*
            * We render plain `EuiIcon`, not interactive `EuiButtonIcon`,
            * and let the underlying button handle the (un)collapse behavior.
@@ -562,7 +665,7 @@ const DraggablePanel = memo(function DraggablePanel({
             </span>
           }
         >
-          <ul css={childrenWrapperStyles} data-group aria-labelledby={buttonId}>
+          <ul css={childrenWrapperStyles} aria-labelledby={buttonId} data-group>
             {children?.map((child, index) => (
               <DraggablePanel
                 key={child.id}
@@ -570,6 +673,9 @@ const DraggablePanel = memo(function DraggablePanel({
                 level={level + 1}
                 activeId={activeId}
                 setActiveId={setActiveId}
+                onMove={onMove}
+                isFirst={index === 0}
+                isLast={index === (children || []).length - 1}
                 {...child}
               />
             ))}
@@ -644,6 +750,54 @@ export default () => {
     });
   }, [items]);
 
+  const handleMove = (
+    id: string,
+    direction: 'up' | 'down' | 'indent' | 'outdent'
+  ) => {
+    setItems((items) => {
+      const itemToMove = findItem(items, id);
+
+      if (!itemToMove) return items;
+
+      if (direction === 'up' || direction === 'down')
+        return moveItem(items, id, direction);
+
+      if (direction === 'outdent') {
+        const parent = findParent(items, id);
+        if (!parent) return items;
+
+        const newItems = removeItem(items, id);
+
+        return insertAfter(newItems, parent.id, itemToMove);
+      }
+
+      if (direction === 'indent') {
+        const findPrevSibling = (currentItems: Tree): TreeItem | undefined => {
+          const index = currentItems.findIndex((i) => i.id === id);
+
+          if (index !== -1)
+            return index > 0 ? currentItems[index - 1] : undefined;
+
+          for (const item of currentItems) {
+            if (item.children) {
+              const found = findPrevSibling(item.children);
+
+              if (found) return found;
+            }
+          }
+        };
+
+        const prevSibling = findPrevSibling(items);
+        if (!prevSibling) return items;
+
+        const newItems = removeItem(items, id);
+        return insertChild(newItems, prevSibling.id, itemToMove);
+      }
+
+      return items;
+    });
+  };
+
   const wrapperStyles = css`
     background-color: ${euiTheme.colors.backgroundBasePlain};
     display: flex;
@@ -661,6 +815,9 @@ export default () => {
           index={index}
           activeId={activeId}
           setActiveId={setActiveId}
+          onMove={handleMove}
+          isFirst={index === 0}
+          isLast={index === items.length - 1}
           {...item}
         />
       ))}
