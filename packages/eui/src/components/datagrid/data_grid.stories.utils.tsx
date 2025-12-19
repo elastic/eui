@@ -309,6 +309,7 @@ export const defaultStorybookArgs = {
     showFullScreenSelector: true,
     additionalControls: null,
   } as const,
+  headerVisibility: true,
   minSizeForControls: MINIMUM_WIDTH_FOR_GRID_CONTROLS,
   rowHeightsOptions: {
     defaultHeight: undefined,
