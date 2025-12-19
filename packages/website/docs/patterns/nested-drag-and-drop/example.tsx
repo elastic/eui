@@ -290,11 +290,6 @@ const DraggablePanel = memo(function DraggablePanel({
     return !!children?.length;
   }, [children]);
 
-  /**
-   * Handle the keyboard navigation in accordance with the Tree view a11y pattern.
-   *
-   * See: @{link https://www.w3.org/WAI/ARIA/apg/patterns/treeview/}.
-   */
   const handleKeyDown = (e: KeyboardEvent<HTMLButtonElement>) => {
     const target = e.currentTarget;
 
