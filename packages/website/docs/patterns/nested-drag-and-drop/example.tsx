@@ -75,41 +75,40 @@ const initialData: Tree = [
   { id: 'panel-4', title: 'Panel 4' },
 ];
 
-const findItem = (items: Tree, itemId: string): TreeItem | undefined => {
+const findNodeLocation = (
+  items: Tree,
+  itemId: string,
+  parent?: TreeItem
+): { list: Tree; index: number; parent?: TreeItem } | undefined => {
+  const index = items.findIndex((i) => i.id === itemId);
+
+  if (index !== -1) return { list: items, index, parent };
+
   for (const item of items) {
-    if (item.id === itemId) return item;
     if (item.children) {
-      const foundItem = findItem(item.children, itemId);
-      if (foundItem) return foundItem;
+      const result = findNodeLocation(item.children, itemId, item);
+
+      if (result) return result;
     }
   }
 };
 
-const findParent = (items: Tree, itemId: string): TreeItem | undefined => {
-  for (const item of items) {
-    if (item.children?.some((child) => child.id === itemId)) return item;
+const findItem = (items: Tree, itemId: string): TreeItem | undefined => {
+  const location = findNodeLocation(items, itemId);
 
-    if (item.children) {
-      const parent = findParent(item.children, itemId);
-
-      if (parent) return parent;
-    }
-  }
+  return location ? location.list[location.index] : undefined;
 };
 
 const removeItem = (items: Tree, itemId: string): Tree => {
-  return items
-    .filter((item) => item.id !== itemId)
-    .map((item) => {
-      if (!!item.children?.length) {
-        const newChildren = removeItem(item.children, itemId);
-        if (newChildren !== item.children) {
-          return { ...item, children: newChildren };
-        }
-      }
+  return items.reduce((acc: Tree, item) => {
+    if (item.id === itemId) return acc;
 
-      return item;
-    });
+    if (item.children) {
+      return [...acc, { ...item, children: removeItem(item.children, itemId) }];
+    }
+
+    return [...acc, item];
+  }, []);
 };
 
 const insertChild = (
@@ -124,12 +123,14 @@ const insertChild = (
         children: [newItem, ...(item.children || [])],
       };
     }
+
     if (item.children) {
       return {
         ...item,
         children: insertChild(item.children, targetId, newItem),
       };
     }
+
     return item;
   });
 };
@@ -171,55 +172,46 @@ const insertAfter = (
 const moveItem = (
   items: Tree,
   itemId: string,
-  direction: 'up' | 'down'
+  direction: 'up' | 'down' | 'indent' | 'outdent'
 ): Tree => {
-  const recursiveMove = (currentItems: Tree): Tree => {
-    const index = currentItems.findIndex((i) => i.id === itemId);
-    if (index !== -1) {
-      if (direction === 'up') {
-        if (index === 0) return currentItems;
-        const newItems = [...currentItems];
-        [newItems[index - 1], newItems[index]] = [
-          newItems[index],
-          newItems[index - 1],
-        ];
-        return newItems;
-      } else {
-        if (index === currentItems.length - 1) return currentItems;
-        const newItems = [...currentItems];
-        [newItems[index], newItems[index + 1]] = [
-          newItems[index + 1],
-          newItems[index],
-        ];
-        return newItems;
-      }
+  const location = findNodeLocation(items, itemId);
+  if (!location) return items;
+
+  const { list, index, parent } = location;
+  const itemToMove = list[index];
+
+  const newItems = removeItem(items, itemId);
+
+  if (direction === 'up') {
+    if (index > 0) {
+      const prevSibling = list[index - 1];
+
+      return insertBefore(newItems, prevSibling.id, itemToMove);
     }
+  } else if (direction === 'down') {
+    if (index < list.length - 1) {
+      const nextSibling = list[index + 1];
 
-    return currentItems.map((item) => {
-      if (item.children) {
-        const newChildren = recursiveMove(item.children);
-        if (newChildren !== item.children) {
-          return { ...item, children: newChildren };
-        }
-      }
-      return item;
-    });
-  };
+      return insertAfter(newItems, nextSibling.id, itemToMove);
+    }
+  } else if (direction === 'indent') {
+    if (index > 0) {
+      const prevSibling = list[index - 1];
 
-  return recursiveMove(items);
+      return insertChild(newItems, prevSibling.id, itemToMove);
+    }
+  } else if (direction === 'outdent') {
+    if (parent) return insertAfter(newItems, parent.id, itemToMove);
+  }
+
+  return items;
 };
 
 const getDescendantIds = (item: TreeItem): string[] => {
-  let ids: string[] = [];
-
-  if (item.children) {
-    for (const child of item.children) {
-      ids.push(child.id);
-      ids = ids.concat(getDescendantIds(child));
-    }
-  }
-
-  return ids;
+  return (item.children || []).flatMap((child) => [
+    child.id,
+    ...getDescendantIds(child),
+  ]);
 };
 
 interface LineIndicatorProps {
@@ -754,48 +746,7 @@ export default () => {
     id: string,
     direction: 'up' | 'down' | 'indent' | 'outdent'
   ) => {
-    setItems((items) => {
-      const itemToMove = findItem(items, id);
-
-      if (!itemToMove) return items;
-
-      if (direction === 'up' || direction === 'down')
-        return moveItem(items, id, direction);
-
-      if (direction === 'outdent') {
-        const parent = findParent(items, id);
-        if (!parent) return items;
-
-        const newItems = removeItem(items, id);
-
-        return insertAfter(newItems, parent.id, itemToMove);
-      }
-
-      if (direction === 'indent') {
-        const findPrevSibling = (currentItems: Tree): TreeItem | undefined => {
-          const index = currentItems.findIndex((i) => i.id === id);
-
-          if (index !== -1)
-            return index > 0 ? currentItems[index - 1] : undefined;
-
-          for (const item of currentItems) {
-            if (item.children) {
-              const found = findPrevSibling(item.children);
-
-              if (found) return found;
-            }
-          }
-        };
-
-        const prevSibling = findPrevSibling(items);
-        if (!prevSibling) return items;
-
-        const newItems = removeItem(items, id);
-        return insertChild(newItems, prevSibling.id, itemToMove);
-      }
-
-      return items;
-    });
+    setItems((items) => moveItem(items, id, direction));
   };
 
   const wrapperStyles = css`
