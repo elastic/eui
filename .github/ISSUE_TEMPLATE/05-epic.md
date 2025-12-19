@@ -18,8 +18,8 @@ type: 'Epic'
 
 ### Summary / Pitch
 
-Target completion date:
-<br/>Target EUI release date(s):
+**Target EUI release date(s)**:
+Related request:
 
 <!-- 
 Write this like an "elevator pitch". Pretend you're writing it to the CEO, or a user, and you have 10 seconds to describe it.
@@ -47,23 +47,6 @@ What are we trying to achieve?
 - [ ] Solve XYZ problem
 -->
 
-### Definition of done
-
-<!--
-List of standard activites that form EUI's definition of done. Items can be added, or ~~crossed out~~ if not needed
--->
-
-- [ ] Kibana QA/preview completed (if needed)
-- [ ] Figma updated
-- [ ] Documentation updated
-- [ ] Changes merged, published in conjunction with Figma and Documentation
-- [ ] Requestors / stakeholders informed of release and any linked request issues updated with release details and closed.
-- [ ] Changes in Kibana
-- [ ] Adoption or Rollout plan executed in Kibana
-- [ ] Beta issue created (if applicable)
-- [ ] Deprecation schedule updated (if applicable)
-- [ ] Sub-issues are closed (or moved elsewhere)
-
 ### Out of scope
 
 <!-- 
@@ -81,6 +64,30 @@ For internal planning only; dates are not a public commitment to a feature.
 You probably don't need this section in a public Epic.
 -->
 
+### Definition of Ready for Dev
+- [ ] PRD Ready
+  - Link: {link}
+- [ ] Design Ready
+  - Design issue: {link}
+  - Design file: {link}
+- [ ] Estimated
+- [ ] Tasked
+
+### Definition of done
+- [ ] Kibana QA/preview completed (if needed)
+- [ ] Changes made in EUI
+  - PRs: {link}
+- [ ] EUI, Figma, and Documentation updates published.
+  - Figma: {link}
+  - EUI: {link}
+  - Documentation: {link}
+- [ ] Request issues resolved and stakeholders informed of release.
+  - Links: {link}
+- [ ] Changes applied to Kibana
+  - Links: {link}
+- [ ] EUI Beta issue created (if applicable)
+  - Link: {link}
+- [ ] EUI [Deprecation schedule]([url](https://github.com/elastic/eui/issues/1469)) updated (if applicable)
 
 ### Useful Links
 
