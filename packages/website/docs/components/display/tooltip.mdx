@@ -76,6 +76,92 @@ export default () => (
 );
 ```
 
+## Delay options
+
+The `delay` prop controls how long to wait before showing the tooltip. This is useful for reducing visual noise for tooltips that appear in repeating components.
+
+- **`regular`** (default): 250ms delay
+- **`long`**: 1250ms delay (5x regular)
+- **`short`**: 100ms delay
+- **`none`**: No delay (appears immediately)
+
+```tsx interactive
+import React from 'react';
+import { EuiToolTip, EuiLink, EuiText, EuiSpacer } from '@elastic/eui';
+
+export default () => (
+  <EuiText>
+    <p>
+      This tooltip has{' '}
+      <EuiToolTip delay="none" content="Appears immediately">
+        <EuiLink href="#">no delay</EuiLink>
+      </EuiToolTip>
+      .
+    </p>
+    <p>
+      This tooltip has a{' '}
+      <EuiToolTip delay="short" content="Appears after 100ms">
+        <EuiLink href="#">short delay</EuiLink>
+      </EuiToolTip>
+      .
+    </p>
+    <p>
+      This tooltip has a{' '}
+      <EuiToolTip delay="regular" content="Appears after 250ms">
+        <EuiLink href="#">regular delay</EuiLink>
+      </EuiToolTip>
+      {' '}(default).
+    </p>
+    <p>
+      This tooltip has a{' '}
+      <EuiToolTip delay="long" content="Appears after 1250ms">
+        <EuiLink href="#">long delay</EuiLink>
+      </EuiToolTip>
+      .
+    </p>
+  </EuiText>
+);
+```
+
+## Transition options
+
+The `transition` prop controls how the tooltip animates when it appears.
+
+- **`default`**: Fades in with a subtle slide from the direction it's positioned
+- **`fade`**: Fades in without any movement
+- **`none`**: No animation, appears instantly
+
+```tsx interactive
+import React from 'react';
+import { EuiToolTip, EuiLink, EuiText, EuiSpacer } from '@elastic/eui';
+
+export default () => (
+  <EuiText>
+    <p>
+      This tooltip uses{' '}
+      <EuiToolTip transition="default" content="Fades and slides in">
+        <EuiLink href="#">default transition</EuiLink>
+      </EuiToolTip>
+      .
+    </p>
+    <p>
+      This tooltip uses{' '}
+      <EuiToolTip transition="fade" content="Only fades in, no movement">
+        <EuiLink href="#">fade transition</EuiLink>
+      </EuiToolTip>
+      .
+    </p>
+    <p>
+      This tooltip has{' '}
+      <EuiToolTip transition="none" content="Appears instantly">
+        <EuiLink href="#">no transition</EuiLink>
+      </EuiToolTip>
+      .
+    </p>
+  </EuiText>
+);
+```
+
 ## Wrapping components
 
 **EuiToolTip** wraps its children in a `<span>` element that is `display: inline-block`. If you are wrapping a block-level child (e.g. a `<div>`), you may need to change this by passing `display="block"` but the resulting DOM may be in violation of the HTML5 spec.
