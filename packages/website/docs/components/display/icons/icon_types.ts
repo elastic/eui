@@ -58,6 +58,7 @@ export const iconTypes: Array<IconType> = [
   'contrastHigh',
   'controls',
   'copy',
+  'crossProjectSearch',
   'cross',
   'crossInCircle',
   'crosshairs',

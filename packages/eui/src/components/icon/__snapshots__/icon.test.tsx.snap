@@ -2163,6 +2163,25 @@ exports[`EuiIcon props type crossInCircle is rendered 1`] = `
 </svg>
 `;
 
+exports[`EuiIcon props type crossProjectSearch is rendered 1`] = `
+<svg
+  class="euiIcon emotion-euiIcon-m-isLoaded"
+  data-icon-type="crossProjectSearch"
+  data-is-loaded="true"
+  height="16"
+  role="presentation"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    clip-rule="evenodd"
+    d="M8.5 9h4a1 1 0 0 1 1 1v2.065A1.999 1.999 0 1 1 11 14a2 2 0 0 1 1.5-1.935V10h-4v2.065A1.999 1.999 0 1 1 6 14a2 2 0 0 1 1.5-1.935V10h-4v2.065A1.999 1.999 0 1 1 1 14a2 2 0 0 1 1.5-1.935V10a1 1 0 0 1 1-1h4V7h1v2ZM3 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2Zm5 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2Zm5 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2ZM7 0a3 3 0 0 1 3 3c0 .648-.208 1.246-.557 1.736l1.91 1.91-.707.708-1.91-1.91A3 3 0 1 1 7 0Zm0 1a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z"
+    fill-rule="evenodd"
+  />
+</svg>
+`;
+
 exports[`EuiIcon props type crosshairs is rendered 1`] = `
 <svg
   class="euiIcon emotion-euiIcon-m-isLoaded"
