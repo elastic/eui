@@ -81,6 +81,7 @@ export const typeToPathMap = {
   controlsVertical: 'controls', // NOTE: To be deprecated in favor of `controls`
   copy: 'copy',
   copyClipboard: 'copy', // NOTE: To be deprecated in favor of `copy`
+  crossProjectSearch: 'cross_project_search',
   createAdvancedJob: 'ml_create_advanced_job',
   createGenericJob: 'ml_create_generic_job',
   createGeoJob: 'ml_create_geo_job',
