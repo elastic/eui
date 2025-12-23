@@ -31,7 +31,10 @@ export interface EuiTimeRange {
   start: DateString;
 }
 
-export interface EuiOnTimeChangeProps extends EuiTimeRange {}
+export interface EuiOnTimeChangeProps extends EuiTimeRange {
+  value: string;
+  isValid: boolean;
+}
 
 export interface EuiDateTimePickerProps {
   /** Text representation of the time range */
@@ -42,8 +45,8 @@ export interface EuiDateTimePickerProps {
 }
 
 /*
-  TODO
-  ====
+  TODO PoC (more to plan)
+  =======================
   - [x] parse input
   - [x] render button text
   - [ ] accept rfc2822, check iso
@@ -63,7 +66,7 @@ export interface EuiDateTimePickerProps {
 */
 
 export function EuiDateTimePicker(props: EuiDateTimePickerProps) {
-  const { value } = props;
+  const { value, onTimeChange } = props;
 
   const inputRef = useRef<HTMLInputElement>(null);
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
@@ -99,7 +102,12 @@ export function EuiDateTimePicker(props: EuiDateTimePickerProps) {
     }
     setLabel(getRangeTextValue(range));
     setIsExpanded(false);
-    console.log(range);
+    onTimeChange?.({
+      start: range.start,
+      end: range.end,
+      value: range.value,
+      isValid: range.isValid,
+    });
   };
 
   return (

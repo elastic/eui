@@ -8,6 +8,7 @@
 
 // import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
 
 import {
   EuiDateTimePicker,
@@ -17,8 +18,12 @@ import {
 const meta: Meta<EuiDateTimePickerProps> = {
   title: 'Forms/EuiDateTimePicker',
   component: EuiDateTimePicker,
-  argTypes: {},
-  args: {},
+  argTypes: {
+    onTimeChange: { action: 'onTimeChange' },
+  },
+  args: {
+    onTimeChange: action('onTimeChange'),
+  },
 };
 
 export default meta;
@@ -26,6 +31,6 @@ type Story = StoryObj<EuiDateTimePickerProps>;
 
 export const Playground: Story = {
   args: {
-    value: '-15m',
+    value: 'Last 15 minutes',
   },
 };
