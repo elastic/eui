@@ -61,12 +61,33 @@ describe('EuiCallOut', () => {
       });
     });
 
-    test('onDismiss', () => {
-      const onDismiss = jest.fn();
-      render(<EuiCallOut onDismiss={onDismiss}>Content</EuiCallOut>);
+    describe('onDismiss', () => {
+      it('renders dismiss button and fires callback', () => {
+        const onDismiss = jest.fn();
+        const { getByTestSubject } = render(
+          <EuiCallOut onDismiss={onDismiss}>Content</EuiCallOut>
+        );
 
-      fireEvent.click(screen.getByTestSubject('euiDismissCalloutButton'));
-      expect(onDismiss).toHaveBeenCalledTimes(1);
+        fireEvent.click(getByTestSubject('euiDismissCalloutButton'));
+        expect(onDismiss).toHaveBeenCalledTimes(1);
+      });
+
+      it('takes props for the dismiss button', () => {
+        const onDismiss = () => {};
+        const { getByTestSubject } = render(
+          <EuiCallOut
+            onDismiss={onDismiss}
+            dismissButtonProps={{ 'data-something': 'value' }}
+          >
+            Content
+          </EuiCallOut>
+        );
+
+        expect(getByTestSubject('euiDismissCalloutButton')).toHaveAttribute(
+          'data-something',
+          'value'
+        );
+      });
     });
 
     describe('announceOnMount', () => {
