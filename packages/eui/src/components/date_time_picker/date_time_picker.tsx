@@ -22,6 +22,7 @@ import {
   ParsedRange,
   getDurationText,
   useRandomizedPlaceholder,
+  useSelectTextPartsWithArrowKeys,
 } from './utils';
 import {
   EuiFieldText,
@@ -105,22 +106,24 @@ export function EuiDateTimePicker(props: EuiDateTimePickerProps) {
     getRangeTextValue(range, { dateFormat })
   );
   const placeholder = useRandomizedPlaceholder(isExpanded);
+  useSelectTextPartsWithArrowKeys(inputRef, setTextValue);
 
   useEffect(() => {
     if (isExpanded) {
       inputRef.current?.focus();
-      console.log('range', range);
     }
   }, [isExpanded]);
+
+  useEffect(() => {
+    const range = parseTextRange(textValue);
+    setRange(range);
+  }, [textValue]);
 
   const onButtonClick = () => {
     setIsExpanded(true);
   };
   const onInputChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const text = event.target.value;
-    const range = parseTextRange(text);
-    setTextValue(text);
-    setRange(range);
+    setTextValue(event.target.value);
   };
   const onInputKeyDown = (event: KeyboardEvent) => {
     if (event.key === 'Enter' && isExpanded) return validate();

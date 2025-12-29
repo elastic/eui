@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, type RefObject } from 'react';
 import moment from 'moment';
 import dateMath from '@elastic/datemath';
 
@@ -491,7 +491,7 @@ function formatAbsoluteDate(
   return moment(date).format(dateFormat);
 }
 
-// Duration logic
+// DURATION LOGIC
 
 const UNIT_ABBREV: Record<string, string> = {
   years: 'y',
@@ -551,7 +551,8 @@ export function getDurationText(startDate: Date, endDate: Date): string {
   return `${Math.round(diff)}${UNIT_ABBREV.milliseconds}`;
 }
 
-// Placeholder
+// PLACEHOLDER
+
 // poc-style of what we want: showing a different one each time to educate users
 // would be nice to make it more random, using combinations and not a static list
 
@@ -574,13 +575,16 @@ const PLACEHOLDER_EXAMPLES = [
   '-1M to -1w',
 ];
 
-// TODO better name and type for `reset`
-export function useRandomizedPlaceholder(reset: boolean) {
+/**
+ * Returns a randomized placeholder that changes whenever the dependency changes.
+ * @param dependency
+ */
+export function useRandomizedPlaceholder(dependency: unknown) {
   const [placeholder, setPlaceholder] = useState(() => getRandomPlaceholder());
 
   useEffect(() => {
     setPlaceholder(getRandomPlaceholder());
-  }, [reset]);
+  }, [dependency]);
 
   return placeholder;
 }
@@ -588,4 +592,112 @@ export function useRandomizedPlaceholder(reset: boolean) {
 function getRandomPlaceholder() {
   const index = Math.floor(Math.random() * PLACEHOLDER_EXAMPLES.length);
   return PLACEHOLDER_EXAMPLES[index];
+}
+
+// TEXT SELECTION WITH ARROW KEYS
+
+// Matches text parts separated by spaces, commas, or colons
+// e.g. "Dec 29, 14:30 to now" => ["Dec", "29", "14", "30", "to", "now"]
+const TEXT_PARTS_REGEX = /[^\s,:]+/g;
+
+interface TextPart {
+  text: string;
+  start: number;
+  end: number;
+}
+
+/**
+ * Splits a string into parts and returns each part with its position indices
+ * @param value - The string to split
+ * @returns Array of parts with their text and start/end positions
+ */
+function getTextParts(value: string) {
+  const parts: TextPart[] = [];
+  let match: RegExpExecArray | null;
+  // Reset regex state
+  TEXT_PARTS_REGEX.lastIndex = 0;
+
+  while ((match = TEXT_PARTS_REGEX.exec(value)) !== null) {
+    parts.push({
+      text: match[0],
+      start: match.index,
+      end: match.index + match[0].length,
+    });
+  }
+
+  return parts;
+}
+
+export function useSelectTextPartsWithArrowKeys(
+  input: RefObject<HTMLInputElement>,
+  setText: (text: string) => void
+) {
+  useEffect(() => {
+    let currentIndex = 0;
+    let parts: TextPart[] = [];
+
+    const selectPart = (index: number) => {
+      const inputEl = input.current;
+      if (!inputEl || parts.length === 0) return;
+
+      // Clamp index to valid range
+      currentIndex = Math.max(0, Math.min(index, parts.length - 1));
+      const part = parts[currentIndex];
+
+      inputEl.focus();
+      inputEl.setSelectionRange(part.start, part.end);
+    };
+
+    // only numbers for now
+    // TODO would be nice for shorthands and units
+    const modifyPart = (action: 'increase' | 'decrease') => {
+      const inputEl = input.current!;
+      const part = parts[currentIndex];
+      // VERY ROUGH! regex would be better
+      const value = parseInt(part.text, 10);
+      if (!isNaN(value)) {
+        const nextValue = action === 'increase' ? value + 1 : value - 1;
+        inputEl.setRangeText(String(nextValue), part.start, part.end, 'select');
+        parts = getTextParts(inputEl.value!);
+        setText(inputEl.value!);
+        requestAnimationFrame(() => {
+          selectPart(currentIndex);
+        });
+      }
+    };
+
+    const keydownHandler = (event: KeyboardEvent) => {
+      // Skip if modifier keys are pressed
+      if (event.metaKey || event.ctrlKey || event.altKey) return;
+
+      const inputEl = input.current;
+      if (!inputEl || parts.length === 0) return;
+
+      if (event.key === 'ArrowRight') {
+        event.preventDefault();
+        selectPart(currentIndex + 1);
+      } else if (event.key === 'ArrowLeft') {
+        event.preventDefault();
+        selectPart(currentIndex - 1);
+      } else if (event.key === 'ArrowUp') {
+        event.preventDefault();
+        modifyPart('increase');
+      } else if (event.key === 'ArrowDown') {
+        event.preventDefault();
+        modifyPart('decrease');
+      }
+    };
+
+    input.current?.addEventListener('keydown', keydownHandler);
+
+    if (input.current) {
+      parts = getTextParts(input.current.value);
+      // Select the first part initially
+      if (parts.length > 0) selectPart(0);
+    }
+
+    return () => {
+      input.current?.removeEventListener('keydown', keydownHandler);
+    };
+  }, [input.current]);
 }
