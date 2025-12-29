@@ -21,6 +21,7 @@ import {
   type DateString,
   ParsedRange,
   getDurationText,
+  useRandomizedPlaceholder,
 } from './utils';
 import {
   EuiFieldText,
@@ -59,7 +60,7 @@ export interface EuiDateTimePickerProps {
   - [x] render button text
   - [x] accept rfc2822, check iso
   - [x] duration badge
-  - [ ] placeholders
+  - [x] placeholders
   - [ ] make future +Xu shorthands work
   - [ ] shorten absolutes when possible (dec, 22)
   - [ ] normalize points in input? 'today' -> 'Today' or permissive 2822 into full format?
@@ -68,6 +69,7 @@ export interface EuiDateTimePickerProps {
   - [ ] keyboard edits
   - [ ] invalid states
   - [ ] time window/zoom buttons
+  - [ ] structure code nicely, in one file for now
   - [ ] context?
   - [ ] popover with presets
 
@@ -90,6 +92,7 @@ export function EuiDateTimePicker(props: EuiDateTimePickerProps) {
     parseTextRange(value ?? '')
   );
   const [label, setLabel] = useState<string>(() => getRangeTextValue(range));
+  const placeholder = useRandomizedPlaceholder(isExpanded);
 
   useEffect(() => {
     if (isExpanded) {
@@ -125,10 +128,19 @@ export function EuiDateTimePicker(props: EuiDateTimePickerProps) {
       _dateRange: [range.startDate, range.endDate],
     });
   };
+  const clearInput = () => {
+    setTextValue('');
+    inputRef.current?.focus();
+  };
 
   return (
     <>
-      <EuiFormControlLayout compressed={compressed}>
+      <EuiFormControlLayout
+        compressed={compressed}
+        clear={
+          isExpanded && textValue !== '' ? { onClick: clearInput } : undefined
+        }
+      >
         {isExpanded ? (
           <EuiFieldText
             inputRef={inputRef}
@@ -137,17 +149,21 @@ export function EuiDateTimePicker(props: EuiDateTimePickerProps) {
             onChange={onInputChange}
             onKeyDown={onInputKeyDown}
             compressed={compressed}
+            placeholder={placeholder}
           />
         ) : (
           <EuiFormControlButton
             value={label}
             onClick={onButtonClick}
             compressed={compressed}
-            css={_showBadgeAtEnd && css`
-              .euiButtonEmpty__content {
-                flex-direction: row-reverse;
-              }
-            `}
+            css={
+              _showBadgeAtEnd &&
+              css`
+                .euiButtonEmpty__content {
+                  flex-direction: row-reverse;
+                }
+              `
+            }
           >
             {range.startDate && range.endDate && (
               <EuiBadge

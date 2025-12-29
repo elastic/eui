@@ -6,6 +6,7 @@
  * Side Public License, v 1.
  */
 
+import { useState, useEffect } from 'react';
 import dateMath from '@elastic/datemath';
 
 const ABSOLUTE = 'ABSOLUTE';
@@ -500,4 +501,43 @@ export function getDurationText(startDate: Date, endDate: Date): string {
   }
 
   return `${Math.round(diff)}${UNIT_ABBREV.milliseconds}`;
+}
+
+// Placeholder
+// poc-style of what we want: showing a different one each time to educate users
+// would be nice to make it more random, using combinations and not a static list
+
+const PLACEHOLDER_EXAMPLES = [
+  'Last 15 minutes',
+  'Last 2 hours',
+  'Last 7 days',
+  'Last 2 weeks',
+  'Last 30 days',
+  'Next 24 hours',
+  '-15m',
+  '-2h',
+  '-7d',
+  '-2w',
+  '-30d',
+  'now to +24h',
+  'Today',
+  'Yesterday',
+  '-7d to now',
+  '-1M to -1w',
+];
+
+// TODO better name and type for `reset`
+export function useRandomizedPlaceholder(reset: boolean) {
+  const [placeholder, setPlaceholder] = useState(() => getRandomPlaceholder());
+
+  useEffect(() => {
+    setPlaceholder(getRandomPlaceholder());
+  }, [reset]);
+
+  return placeholder;
+}
+
+function getRandomPlaceholder() {
+  const index = Math.floor(Math.random() * PLACEHOLDER_EXAMPLES.length);
+  return PLACEHOLDER_EXAMPLES[index];
 }
