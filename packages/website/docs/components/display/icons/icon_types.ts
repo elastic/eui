@@ -65,6 +65,7 @@ export const iconTypes: Array<IconType> = [
   'currency',
   'cut',
   'database',
+  'dashedCircle',
   'desktop',
   'diff',
   'document',

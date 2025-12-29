@@ -95,6 +95,7 @@ export const typeToPathMap = {
   currency: 'currency',
   cut: 'cut',
   dashboardApp: 'app_dashboard',
+  dashedCircle: 'dashed_circle',
   dataVisualizer: 'ml_data_visualizer',
   database: 'database',
   desktop: 'desktop',
