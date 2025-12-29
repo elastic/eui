@@ -32,5 +32,6 @@ type Story = StoryObj<EuiDateTimePickerProps>;
 export const Playground: Story = {
   args: {
     value: 'Last 15 minutes',
+    dateFormat: 'MMM D YYYY, HH:mm:ss',
   },
 };

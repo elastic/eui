@@ -7,6 +7,7 @@
  */
 
 import { useState, useEffect } from 'react';
+import moment from 'moment';
 import dateMath from '@elastic/datemath';
 
 const ABSOLUTE = 'ABSOLUTE';
@@ -195,15 +196,24 @@ function isValidRange(
   return startDate.getTime() <= endDate.getTime();
 }
 
+interface ParseTextRangeOptions {
+  presets?: Preset[];
+  delimiter?: string;
+  dateFormat?: string;
+}
+
 /**
  * Main parsing function for text range input
  */
 export function parseTextRange(
   text: string,
-  presets: Preset[] = [],
-  rangeDelimiter = ' to '
+  options?: ParseTextRangeOptions,
 ): ParsedRange {
   const trimmed = text.trim();
+  const {
+    presets = [],
+    delimiter = ' to ',
+  } = options ?? {};
 
   const invalidResult: ParsedRange = {
     value: text,
@@ -245,7 +255,7 @@ export function parseTextRange(
   }
 
   // 2. Check if it's a single value (no separator)
-  if (!trimmed.includes(rangeDelimiter)) {
+  if (!trimmed.includes(delimiter)) {
     // Try natural duration: "last 7 minutes", "today", etc.
     const naturalDuration = parseNaturalDuration(trimmed);
     if (naturalDuration) {
@@ -307,7 +317,7 @@ export function parseTextRange(
   }
 
   // 3. Parse as a range with separator
-  const [startText, endText] = trimmed.split(rangeDelimiter);
+  const [startText, endText] = trimmed.split(delimiter);
 
   if (!startText || !endText) {
     return invalidResult;
@@ -336,11 +346,20 @@ export function parseTextRange(
   };
 }
 
+interface RangeTextDisplayOptions {
+  delimiter?: string;
+  dateFormat?: string;
+}
+
 export function getRangeTextValue(
   parsedRange: ParsedRange,
-  delimiter = ' → ',
-  dateFormat = 'MMM D, YYYY @ HH:mm:ss'
+  options?: RangeTextDisplayOptions,
 ): string {
+  const {
+    delimiter = ' → ',
+    dateFormat = 'MMM D YYYY, HH:mm:ss'
+  } = options ?? {};
+
   if (!parsedRange.isValid) {
     return parsedRange.value;
   }
@@ -436,32 +455,10 @@ function formatRelativeTime(
 
 /**
  * @todo replace with moment or simliar
- *
- * Formats an absolute date for display DIY
  */
-function formatAbsoluteDate(date: Date, _format: string): string {
-  const months = [
-    'Jan',
-    'Feb',
-    'Mar',
-    'Apr',
-    'May',
-    'Jun',
-    'Jul',
-    'Aug',
-    'Sep',
-    'Oct',
-    'Nov',
-    'Dec',
-  ];
-  const month = months[date.getMonth()];
-  const day = date.getDate();
-  const year = date.getFullYear();
-  const hours = date.getHours().toString().padStart(2, '0');
-  const minutes = date.getMinutes().toString().padStart(2, '0');
-  const seconds = date.getSeconds().toString().padStart(2, '0');
-
-  return `${month} ${day}, ${year} @ ${hours}:${minutes}:${seconds}`;
+function formatAbsoluteDate(date: Date, dateFormat: string): string {
+  console.log('formatting to', dateFormat);
+  return moment(date).format(dateFormat);
 }
 
 // Duration logic

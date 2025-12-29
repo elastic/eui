@@ -49,6 +49,9 @@ export interface EuiDateTimePickerProps {
   /** Callback for when the time changes */
   onTimeChange: (props: EuiOnTimeChangeProps) => void;
 
+  /** Custom format for displaying (and parsing?) dates */
+  dateFormat?: string;
+
   /** Show duration badge at the end side of the input, not the start */
   _showBadgeAtEnd: boolean;
 }
@@ -62,8 +65,8 @@ export interface EuiDateTimePickerProps {
   - [x] duration badge
   - [x] placeholders
   - [x] make future +Xu shorthands work
+  - [x] `dateFormat` prop
   - [ ] shorten absolutes when possible (dec, 22)
-  - [ ] `dateFormat` prop
   - [ ] fix "forgiving" abs… "dec 20" -> "dec 20 2025, 00:00"
   - [ ] keyboard edits
   - [ ] invalid states
@@ -80,7 +83,7 @@ export interface EuiDateTimePickerProps {
 */
 
 export function EuiDateTimePicker(props: EuiDateTimePickerProps) {
-  const { value, onTimeChange, _showBadgeAtEnd } = props;
+  const { value, onTimeChange, dateFormat, _showBadgeAtEnd } = props;
 
   const compressed = true; // expose
 
@@ -90,7 +93,9 @@ export function EuiDateTimePicker(props: EuiDateTimePickerProps) {
   const [range, setRange] = useState<ParsedRange>(() =>
     parseTextRange(value ?? '')
   );
-  const [label, setLabel] = useState<string>(() => getRangeTextValue(range));
+  const [label, setLabel] = useState<string>(() =>
+    getRangeTextValue(range, { dateFormat })
+  );
   const placeholder = useRandomizedPlaceholder(isExpanded);
 
   useEffect(() => {
@@ -117,7 +122,7 @@ export function EuiDateTimePicker(props: EuiDateTimePickerProps) {
       console.log('invalid');
       return;
     }
-    setLabel(getRangeTextValue(range));
+    setLabel(getRangeTextValue(range, { dateFormat }));
     setIsExpanded(false);
     onTimeChange?.({
       start: range.start,
