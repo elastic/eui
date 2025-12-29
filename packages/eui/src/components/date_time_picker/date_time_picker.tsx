@@ -85,7 +85,13 @@ export interface EuiDateTimePickerProps {
 */
 
 export function EuiDateTimePicker(props: EuiDateTimePickerProps) {
-  const { value, onTimeChange, dateFormat, isInvalid, _showBadgeAtEnd } = props;
+  const {
+    value,
+    onTimeChange,
+    dateFormat,
+    isInvalid,
+    _showBadgeAtEnd = false,
+  } = props;
 
   const compressed = true; // expose
 
@@ -103,6 +109,7 @@ export function EuiDateTimePicker(props: EuiDateTimePickerProps) {
   useEffect(() => {
     if (isExpanded) {
       inputRef.current?.focus();
+      console.log('range', range);
     }
   }, [isExpanded]);
 
@@ -171,7 +178,7 @@ export function EuiDateTimePicker(props: EuiDateTimePickerProps) {
             isInvalid={isInvalid}
             compressed={compressed}
             css={
-              _showBadgeAtEnd &&
+              !_showBadgeAtEnd &&
               css`
                 .euiButtonEmpty__content {
                   flex-direction: row-reverse;
