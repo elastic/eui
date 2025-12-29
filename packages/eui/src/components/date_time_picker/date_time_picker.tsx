@@ -39,7 +39,7 @@ export interface EuiOnTimeChangeProps extends EuiTimeRange {
   value: string;
   isValid: boolean;
   // for testing only during development
-  _dateRange: [Date | null, Date | null];
+  _dateRange?: [Date | null, Date | null];
 }
 
 export interface EuiDateTimePickerProps {
@@ -51,6 +51,8 @@ export interface EuiDateTimePickerProps {
 
   /** Custom format for displaying (and parsing?) dates */
   dateFormat?: string;
+
+  isInvalid?: boolean;
 
   /** Show duration badge at the end side of the input, not the start */
   _showBadgeAtEnd: boolean;
@@ -66,7 +68,7 @@ export interface EuiDateTimePickerProps {
   - [x] placeholders
   - [x] make future +Xu shorthands work
   - [x] `dateFormat` prop
-  - [ ] shorten absolutes when possible (dec, 22)
+  - [x] shorten absolutes when possible (dec, 22)
   - [ ] fix "forgiving" abs… "dec 20" -> "dec 20 2025, 00:00"
   - [ ] keyboard edits
   - [ ] invalid states
@@ -83,7 +85,7 @@ export interface EuiDateTimePickerProps {
 */
 
 export function EuiDateTimePicker(props: EuiDateTimePickerProps) {
-  const { value, onTimeChange, dateFormat, _showBadgeAtEnd } = props;
+  const { value, onTimeChange, dateFormat, isInvalid, _showBadgeAtEnd } = props;
 
   const compressed = true; // expose
 
@@ -119,7 +121,12 @@ export function EuiDateTimePicker(props: EuiDateTimePickerProps) {
 
   const validate = () => {
     if (!range.isValid) {
-      console.log('invalid');
+      onTimeChange?.({
+        start: range.start,
+        end: range.end,
+        value: range.value,
+        isValid: range.isValid,
+      });
       return;
     }
     setLabel(getRangeTextValue(range, { dateFormat }));
@@ -141,6 +148,7 @@ export function EuiDateTimePicker(props: EuiDateTimePickerProps) {
     <>
       <EuiFormControlLayout
         compressed={compressed}
+        isInvalid={isInvalid}
         clear={
           isExpanded && textValue !== '' ? { onClick: clearInput } : undefined
         }
@@ -150,6 +158,7 @@ export function EuiDateTimePicker(props: EuiDateTimePickerProps) {
             inputRef={inputRef}
             controlOnly
             value={textValue}
+            isInvalid={isInvalid}
             onChange={onInputChange}
             onKeyDown={onInputKeyDown}
             compressed={compressed}
@@ -159,6 +168,7 @@ export function EuiDateTimePicker(props: EuiDateTimePickerProps) {
           <EuiFormControlButton
             value={label}
             onClick={onButtonClick}
+            isInvalid={isInvalid}
             compressed={compressed}
             css={
               _showBadgeAtEnd &&

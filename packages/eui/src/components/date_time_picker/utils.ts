@@ -14,6 +14,10 @@ const ABSOLUTE = 'ABSOLUTE';
 const RELATIVE = 'RELATIVE';
 const NOW = 'NOW';
 
+const DEFAULT_FORMAT = 'MMM D YYYY, HH:mm';
+const FORMAT_NO_YEAR = 'MMM D, HH:mm';
+const FORMAT_TIME_ONLY = 'HH:mm';
+
 // TODO clean up, update comments
 
 // TODO use "standard" terminology, point > instant
@@ -207,13 +211,10 @@ interface ParseTextRangeOptions {
  */
 export function parseTextRange(
   text: string,
-  options?: ParseTextRangeOptions,
+  options?: ParseTextRangeOptions
 ): ParsedRange {
   const trimmed = text.trim();
-  const {
-    presets = [],
-    delimiter = ' to ',
-  } = options ?? {};
+  const { presets = [], delimiter = ' to ' } = options ?? {};
 
   const invalidResult: ParsedRange = {
     value: text,
@@ -353,12 +354,9 @@ interface RangeTextDisplayOptions {
 
 export function getRangeTextValue(
   parsedRange: ParsedRange,
-  options?: RangeTextDisplayOptions,
+  options?: RangeTextDisplayOptions
 ): string {
-  const {
-    delimiter = ' → ',
-    dateFormat = 'MMM D YYYY, HH:mm:ss'
-  } = options ?? {};
+  const { delimiter = ' → ', dateFormat = DEFAULT_FORMAT } = options ?? {};
 
   if (!parsedRange.isValid) {
     return parsedRange.value;
@@ -369,15 +367,45 @@ export function getRangeTextValue(
     return value.charAt(0).toUpperCase() + value.slice(1);
   }
 
+  let startDateFormat = dateFormat;
+  let endDateFormat = dateFormat;
+
+  // Abbreviate absolute dates a little when using default format
+  if (parsedRange.type.includes(ABSOLUTE) && dateFormat === DEFAULT_FORMAT) {
+    const currentYear = new Date().getFullYear();
+    const startYear = parsedRange.startDate?.getFullYear();
+    const endYear = parsedRange.endDate?.getFullYear();
+    const startIsNow = parsedRange.type[0] === NOW;
+    const endIsNow = parsedRange.type[1] === NOW;
+
+    // Hide year if both dates are in the current year, or one part is "now"
+    const startInCurrentYear = startIsNow || startYear === currentYear;
+    const endInCurrentYear = endIsNow || endYear === currentYear;
+    if (startInCurrentYear && endInCurrentYear) {
+      startDateFormat = FORMAT_NO_YEAR;
+      endDateFormat = FORMAT_NO_YEAR;
+    }
+
+    // Show only time for end date if both dates are on the same day
+    if (
+      parsedRange.startDate &&
+      parsedRange.endDate &&
+      parsedRange.startDate.toDateString() ===
+        parsedRange.endDate.toDateString()
+    ) {
+      endDateFormat = FORMAT_TIME_ONLY;
+    }
+  }
+
   const startDisplay = formatDatePoint(
     parsedRange.start,
     parsedRange.startDate,
-    dateFormat
+    startDateFormat
   );
   const endDisplay = formatDatePoint(
     parsedRange.end,
     parsedRange.endDate,
-    dateFormat
+    endDateFormat
   );
 
   return `${startDisplay}${delimiter}${endDisplay}`;
@@ -456,8 +484,10 @@ function formatRelativeTime(
 /**
  * @todo replace with moment or simliar
  */
-function formatAbsoluteDate(date: Date, dateFormat: string): string {
-  console.log('formatting to', dateFormat);
+function formatAbsoluteDate(
+  date: Date,
+  dateFormat: string = DEFAULT_FORMAT
+): string {
   return moment(date).format(dateFormat);
 }
 

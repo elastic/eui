@@ -6,13 +6,14 @@
  * Side Public License, v 1.
  */
 
-// import React, { useState } from 'react';
+import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
 import {
   EuiDateTimePicker,
   type EuiDateTimePickerProps,
+  type EuiOnTimeChangeProps,
 } from './date_time_picker';
 
 const meta: Meta<EuiDateTimePickerProps> = {
@@ -31,7 +32,25 @@ type Story = StoryObj<EuiDateTimePickerProps>;
 
 export const Playground: Story = {
   args: {
-    value: 'Last 15 minutes',
-    dateFormat: 'MMM D YYYY, HH:mm:ss',
+    value: 'last 20 minutes',
   },
+  render: (args) => <StatefulDateTimePicker {...args} />,
+};
+
+const StatefulDateTimePicker = (props: EuiDateTimePickerProps) => {
+  const [invalid, setInvalid] = useState<boolean>(false);
+  const { onTimeChange, ...rest } = props;
+
+  const handleOnChange = (args: EuiOnTimeChangeProps) => {
+    setInvalid(!args.isValid);
+    onTimeChange?.(args);
+  };
+
+  return (
+    <EuiDateTimePicker
+      isInvalid={invalid}
+      {...rest}
+      onTimeChange={handleOnChange}
+    />
+  );
 };
