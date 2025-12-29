@@ -387,6 +387,27 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@atlaskit/pragmatic-drag-and-drop-hitbox@npm:^1.1.0":
+  version: 1.1.0
+  resolution: "@atlaskit/pragmatic-drag-and-drop-hitbox@npm:1.1.0"
+  dependencies:
+    "@atlaskit/pragmatic-drag-and-drop": "npm:^1.6.0"
+    "@babel/runtime": "npm:^7.0.0"
+  checksum: 10c0/65155bc980696abe9600bcf25d7dd9ea520e37f2bb68627a8dc7a3eb1c4f30588c95accbb00dd4720b86c0b15e51cd53d7633de427569a7a67e1cf614e425eee
+  languageName: node
+  linkType: hard
+
+"@atlaskit/pragmatic-drag-and-drop@npm:^1.6.0, @atlaskit/pragmatic-drag-and-drop@npm:^1.7.7":
+  version: 1.7.7
+  resolution: "@atlaskit/pragmatic-drag-and-drop@npm:1.7.7"
+  dependencies:
+    "@babel/runtime": "npm:^7.0.0"
+    bind-event-listener: "npm:^3.0.0"
+    raf-schd: "npm:^4.0.3"
+  checksum: 10c0/cf10ddc3decaa00623ffd06179b27302385ba6bbf047a93009dea1c61569019dd19936efd7270411feccb955e74c706a367829e72b04ee634589b9a9b1435930
+  languageName: node
+  linkType: hard
+
 "@babel/cli@npm:^7.21.5":
   version: 7.24.6
   resolution: "@babel/cli@npm:7.24.6"
@@ -7259,6 +7280,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@elastic/eui-website@workspace:packages/website"
   dependencies:
+    "@atlaskit/pragmatic-drag-and-drop": "npm:^1.7.7"
+    "@atlaskit/pragmatic-drag-and-drop-hitbox": "npm:^1.1.0"
     "@babel/preset-react": "npm:^7.24.7"
     "@docusaurus/core": "npm:^3.7.0"
     "@docusaurus/module-type-aliases": "npm:^3.7.0"
@@ -15158,6 +15181,13 @@ __metadata:
   version: 4.18.0
   resolution: "binaryextensions@npm:4.18.0"
   checksum: 10c0/061dbef4a7d0c11545442563379b991a037c4c3b81683c9f2668dcde0c590e677ebedf923120c0c70c4aac23efb5e8c14a1bf36a23240ca9156260f89c3fdc3e
+  languageName: node
+  linkType: hard
+
+"bind-event-listener@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "bind-event-listener@npm:3.0.0"
+  checksum: 10c0/08eadf1c7d3a58633f25c2bbd8dc066f77ef4e5df1049e81ff2f43a40c00f6581aba37387caa4878782b1f1f7c337b827757f52b637052a465ad74a7e1db8def
   languageName: node
   linkType: hard
 
