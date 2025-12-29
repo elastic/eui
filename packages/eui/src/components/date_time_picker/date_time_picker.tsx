@@ -61,9 +61,8 @@ export interface EuiDateTimePickerProps {
   - [x] accept rfc2822, check iso
   - [x] duration badge
   - [x] placeholders
-  - [ ] make future +Xu shorthands work
+  - [x] make future +Xu shorthands work
   - [ ] shorten absolutes when possible (dec, 22)
-  - [ ] normalize points in input? 'today' -> 'Today' or permissive 2822 into full format?
   - [ ] `dateFormat` prop
   - [ ] fix "forgiving" abs… "dec 20" -> "dec 20 2025, 00:00"
   - [ ] keyboard edits

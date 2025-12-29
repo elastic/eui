@@ -272,6 +272,22 @@ export function parseTextRange(
     // Try as a single point (treat as start, with end = now)
     const singlePoint = parseSinglePoint(trimmed);
     if (singlePoint) {
+      // future shorthand exception (start = now)
+      if (SHORTHAND_REGEX.test(singlePoint) && singlePoint.startsWith('now+')) {
+        const startDate = new Date(); // now
+        const endDate = dateMath.parse(singlePoint)?.toDate() ?? null;
+        const type: [DateType, DateType] = [NOW, getDateType(singlePoint)];
+        return {
+          value: text,
+          start: 'now',
+          end: singlePoint,
+          startDate,
+          endDate,
+          type,
+          isNaturalLanguage: false,
+          isValid: isValidRange(startDate, endDate, type),
+        };
+      }
       const startDate = dateMath.parse(singlePoint)?.toDate() ?? null;
       const endDate = new Date(); // now
       const type: [DateType, DateType] = [getDateType(singlePoint), NOW];
@@ -325,8 +341,13 @@ export function getRangeTextValue(
   delimiter = ' → ',
   dateFormat = 'MMM D, YYYY @ HH:mm:ss'
 ): string {
-  if (parsedRange.isNaturalLanguage || !parsedRange.isValid) {
+  if (!parsedRange.isValid) {
     return parsedRange.value;
+  }
+  if (parsedRange.isNaturalLanguage) {
+    // capitalize
+    const value = parsedRange.value;
+    return value.charAt(0).toUpperCase() + value.slice(1);
   }
 
   const startDisplay = formatDatePoint(
