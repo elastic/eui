@@ -14,6 +14,8 @@ const NOW = 'NOW';
 
 // TODO clean up, update comments
 
+// TODO use "standard" terminology, point > instant
+
 /**
  * Date math string or ISO 8601 yyyy-MM-ddTHH:mm:ss.SSSZ e.g. 2025-12-23T08:15:13Z
  */
@@ -68,6 +70,7 @@ const UNIT_NAMES: Record<string, string> = {
 };
 
 // Natural language named ranges
+// (works because parsing of end is done with `roundUp` true)
 const NAMED_RANGES: Record<string, { start: string; end: string }> = {
   today: { start: 'now/d', end: 'now/d' },
   yesterday: { start: 'now-1d/d', end: 'now-1d/d' },
@@ -437,4 +440,64 @@ function formatAbsoluteDate(date: Date, _format: string): string {
   const seconds = date.getSeconds().toString().padStart(2, '0');
 
   return `${month} ${day}, ${year} @ ${hours}:${minutes}:${seconds}`;
+}
+
+// Duration logic
+
+const UNIT_ABBREV: Record<string, string> = {
+  years: 'y',
+  months: 'mos',
+  weeks: 'w',
+  days: 'd',
+  hours: 'h',
+  minutes: 'min',
+  seconds: 's',
+  milliseconds: 'ms',
+  // nanoseconds: 'ns',
+};
+
+const MS_PER = {
+  second: 1000,
+  minute: 1000 * 60,
+  hour: 1000 * 60 * 60,
+  day: 1000 * 60 * 60 * 24,
+  week: 1000 * 60 * 60 * 24 * 7,
+  month: 1000 * 60 * 60 * 24 * 30,
+  year: 1000 * 60 * 60 * 24 * 365,
+} as const;
+
+// TODO "exactness" could be adjusted and improved
+// e.g. currently 10 days == ~1w and 11 days == ~2w
+export function getDurationText(startDate: Date, endDate: Date): string {
+  const diff = Math.abs(endDate.getTime() - startDate.getTime());
+
+  const format = (value: number, unit: number, abbrev: string): string => {
+    const rounded = Math.round(value / unit);
+    const isExact = value % unit === 0;
+    return `${isExact ? '' : '~'}${rounded}${abbrev}`;
+  };
+
+  if (diff >= MS_PER.year) {
+    return format(diff, MS_PER.year, UNIT_ABBREV.years);
+  }
+  if (diff >= MS_PER.month) {
+    return format(diff, MS_PER.month, UNIT_ABBREV.months);
+  }
+  if (diff >= MS_PER.week) {
+    return format(diff, MS_PER.week, UNIT_ABBREV.weeks);
+  }
+  if (diff >= MS_PER.day) {
+    return format(diff, MS_PER.day, UNIT_ABBREV.days);
+  }
+  if (diff >= MS_PER.hour) {
+    return format(diff, MS_PER.hour, UNIT_ABBREV.hours);
+  }
+  if (diff >= MS_PER.minute) {
+    return format(diff, MS_PER.minute, UNIT_ABBREV.minutes);
+  }
+  if (diff >= MS_PER.second) {
+    return format(diff, MS_PER.second, UNIT_ABBREV.seconds);
+  }
+
+  return `${Math.round(diff)}${UNIT_ABBREV.milliseconds}`;
 }

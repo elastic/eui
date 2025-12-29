@@ -13,18 +13,21 @@ import React, {
   type KeyboardEvent,
   type ChangeEvent,
 } from 'react';
+import { css } from '@emotion/react';
 
 import {
   parseTextRange,
   getRangeTextValue,
   type DateString,
   ParsedRange,
+  getDurationText,
 } from './utils';
 import {
   EuiFieldText,
   EuiFormControlLayout,
   EuiFormControlButton,
 } from '../form';
+import { EuiBadge } from '../badge';
 
 export interface EuiTimeRange {
   end: DateString;
@@ -34,6 +37,8 @@ export interface EuiTimeRange {
 export interface EuiOnTimeChangeProps extends EuiTimeRange {
   value: string;
   isValid: boolean;
+  // for testing only during development
+  _dateRange: [Date | null, Date | null];
 }
 
 export interface EuiDateTimePickerProps {
@@ -42,6 +47,9 @@ export interface EuiDateTimePickerProps {
 
   /** Callback for when the time changes */
   onTimeChange: (props: EuiOnTimeChangeProps) => void;
+
+  /** Show duration badge at the end side of the input, not the start */
+  _showBadgeAtEnd: boolean;
 }
 
 /*
@@ -49,24 +57,31 @@ export interface EuiDateTimePickerProps {
   =======================
   - [x] parse input
   - [x] render button text
-  - [ ] accept rfc2822, check iso
-  - [ ] shorten absolutes when possible (dec, 22)
-  - [ ] input and output `dateFormat` props
-  - [ ] duration badge
-  - [ ] callbacks
-  - [ ] invalid states
-  - [ ] check flow is correct -> test `start` and `end` make sense
-  - [ ] data dog keyboard edits
+  - [x] accept rfc2822, check iso
+  - [x] duration badge
   - [ ] placeholders
-  - [ ] normalize points in input? 'today' -> 'Today' or permissive 2822 into full format?
   - [ ] make future +Xu shorthands work
-  - [ ] context?
+  - [ ] shorten absolutes when possible (dec, 22)
+  - [ ] normalize points in input? 'today' -> 'Today' or permissive 2822 into full format?
+  - [ ] `dateFormat` prop
+  - [ ] fix "forgiving" abs… "dec 20" -> "dec 20 2025, 00:00"
+  - [ ] keyboard edits
+  - [ ] invalid states
   - [ ] time window/zoom buttons
+  - [ ] context?
   - [ ] popover with presets
+
+  terminology (todo)
+  ===========
+  - duration (interval) https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Temporal/Duration
+  - instant (point)
+  - range
 */
 
 export function EuiDateTimePicker(props: EuiDateTimePickerProps) {
-  const { value, onTimeChange } = props;
+  const { value, onTimeChange, _showBadgeAtEnd } = props;
+
+  const compressed = true; // expose
 
   const inputRef = useRef<HTMLInputElement>(null);
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
@@ -107,12 +122,13 @@ export function EuiDateTimePicker(props: EuiDateTimePickerProps) {
       end: range.end,
       value: range.value,
       isValid: range.isValid,
+      _dateRange: [range.startDate, range.endDate],
     });
   };
 
   return (
     <>
-      <EuiFormControlLayout>
+      <EuiFormControlLayout compressed={compressed}>
         {isExpanded ? (
           <EuiFieldText
             inputRef={inputRef}
@@ -120,9 +136,29 @@ export function EuiDateTimePicker(props: EuiDateTimePickerProps) {
             value={textValue}
             onChange={onInputChange}
             onKeyDown={onInputKeyDown}
+            compressed={compressed}
           />
         ) : (
-          <EuiFormControlButton value={label} onClick={onButtonClick} />
+          <EuiFormControlButton
+            value={label}
+            onClick={onButtonClick}
+            compressed={compressed}
+            css={_showBadgeAtEnd && css`
+              .euiButtonEmpty__content {
+                flex-direction: row-reverse;
+              }
+            `}
+          >
+            {range.startDate && range.endDate && (
+              <EuiBadge
+                css={({ euiTheme }) => css`
+                  font-family: ${euiTheme.font.familyCode};
+                `}
+              >
+                {getDurationText(range.startDate, range.endDate)}
+              </EuiBadge>
+            )}
+          </EuiFormControlButton>
         )}
       </EuiFormControlLayout>
     </>
