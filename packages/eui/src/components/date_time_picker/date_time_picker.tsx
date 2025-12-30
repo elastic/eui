@@ -10,27 +10,32 @@ import React, {
   useState,
   useRef,
   useEffect,
+  useCallback,
   type KeyboardEvent,
   type ChangeEvent,
 } from 'react';
 
-import {
-  parseTextRange,
-  getRangeTextValue,
-  type DateString,
-  ParsedRange,
-  getDurationText,
-  useRandomizedPlaceholder,
-  useSelectTextPartsWithArrowKeys,
-} from './utils';
+import { UseEuiTheme } from '@elastic/eui-theme-common';
+
+import { EuiBadge } from '../badge';
+import { EuiButtonIcon } from '../button';
 import {
   EuiFieldText,
   EuiFormControlLayout,
   EuiFormControlButton,
 } from '../form';
-import { EuiBadge } from '../badge';
-import { EuiButtonIcon } from '../button';
-import { UseEuiTheme } from '@elastic/eui-theme-common';
+import { useEuiTimeWindow } from '../date_picker/super_date_picker/time_window_buttons';
+
+import {
+  type DateString,
+  type ParsedRange,
+  parseTextRange,
+  getRangeTextValue,
+  getDurationText,
+  useRandomizedPlaceholder,
+  useSelectTextPartsWithArrowKeys,
+  formatForTextInput,
+} from './utils';
 
 export interface EuiTimeRange {
   end: DateString;
@@ -72,10 +77,10 @@ export interface EuiDateTimePickerProps {
   - [x] `dateFormat` prop
   - [x] shorten absolutes when possible (dec, 22)
   - [x] keyboard edits
+  - [x] time window/zoom buttons
   - [ ] fix "forgiving" abs… "dec 20" -> "dec 20 2025, 00:00"
-  - [ ] time window/zoom buttons
-  - [ ] invalid states
   - [ ] structure code nicely, in one file for now
+  - [ ] invalid states
   - [ ] context?
   - [ ] popover with presets
 
@@ -103,10 +108,27 @@ export function EuiDateTimePicker(props: EuiDateTimePickerProps) {
   const [range, setRange] = useState<ParsedRange>(() =>
     parseTextRange(value ?? '')
   );
-  const [label, setLabel] = useState<string>(() =>
-    getRangeTextValue(range, { dateFormat })
-  );
   const placeholder = useRandomizedPlaceholder(isExpanded);
+
+  // TODO as-is to reuse existing useEuiTimeWindow, could be something else
+  const apply = useCallback(
+    ({ start, end }: { start: string; end: string }) => {
+      const formattedStart = formatForTextInput(start, dateFormat);
+      const formattedEnd = formatForTextInput(end, dateFormat);
+      // TODO delimiter also from variable?
+      setTextValue(`${formattedStart} to ${formattedEnd}`);
+      if (!isExpanded) {
+        validate();
+      }
+    },
+    [setTextValue, isExpanded]
+  );
+  const { stepForward, stepBackward, expandWindow } = useEuiTimeWindow(
+    range.start,
+    range.end,
+    apply
+  );
+
   useSelectTextPartsWithArrowKeys(inputRef, setTextValue);
 
   useEffect(() => {
@@ -116,19 +138,8 @@ export function EuiDateTimePicker(props: EuiDateTimePickerProps) {
   }, [isExpanded]);
 
   useEffect(() => {
-    const range = parseTextRange(textValue);
-    setRange(range);
-  }, [textValue]);
-
-  const onButtonClick = () => {
-    setIsExpanded(true);
-  };
-  const onInputChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setTextValue(event.target.value);
-  };
-  const onInputKeyDown = (event: KeyboardEvent) => {
-    if (event.key === 'Enter' && isExpanded) return validate();
-  };
+    setRange(parseTextRange(textValue));
+  }, [textValue, isExpanded]);
 
   const validate = () => {
     if (!range.isValid) {
@@ -140,8 +151,6 @@ export function EuiDateTimePicker(props: EuiDateTimePickerProps) {
       });
       return;
     }
-    setLabel(getRangeTextValue(range, { dateFormat }));
-    setIsExpanded(false);
     onTimeChange?.({
       start: range.start,
       end: range.end,
@@ -153,6 +162,19 @@ export function EuiDateTimePicker(props: EuiDateTimePickerProps) {
   const clearInput = () => {
     setTextValue('');
     inputRef.current?.focus();
+  };
+
+  const onButtonClick = () => {
+    setIsExpanded(true);
+  };
+  const onInputChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setTextValue(event.target.value);
+  };
+  const onInputKeyDown = (event: KeyboardEvent) => {
+    if (event.key === 'Enter' && isExpanded) {
+      validate();
+      setIsExpanded(false);
+    }
   };
 
   // keeping them here for now
@@ -189,10 +211,20 @@ export function EuiDateTimePicker(props: EuiDateTimePickerProps) {
           isExpanded && textValue !== '' ? { onClick: clearInput } : undefined
         }
         prepend={
-          <EuiButtonIcon iconType="arrowLeft" color="text" display="empty" />
+          <EuiButtonIcon
+            iconType="arrowLeft"
+            color="text"
+            display="empty"
+            onClick={stepBackward}
+          />
         }
         append={
-          <EuiButtonIcon iconType="arrowRight" color="text" display="empty" />
+          <EuiButtonIcon
+            iconType="arrowRight"
+            color="text"
+            display="empty"
+            onClick={stepForward}
+          />
         }
       >
         {isExpanded ? (
@@ -208,7 +240,7 @@ export function EuiDateTimePicker(props: EuiDateTimePickerProps) {
           />
         ) : (
           <EuiFormControlButton
-            value={label}
+            value={getRangeTextValue(range, { dateFormat })}
             onClick={onButtonClick}
             isInvalid={isInvalid}
             compressed={compressed}
@@ -228,6 +260,7 @@ export function EuiDateTimePicker(props: EuiDateTimePickerProps) {
         display="base"
         color="text"
         css={styles.zoomButton}
+        onClick={expandWindow}
       />
     </div>
   );
