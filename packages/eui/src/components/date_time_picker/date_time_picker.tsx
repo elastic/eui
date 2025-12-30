@@ -23,30 +23,20 @@ import {
   EuiFormControlLayout,
   EuiFormControlButton,
 } from '../form';
+
+// this import makes it hard to copy/paste somewhere else while testing/debugging
 import { useEuiTimeWindow } from '../date_picker/super_date_picker/time_window_buttons';
 
 import {
-  type DateString,
-  type ParsedRange,
-  parseTextRange,
+  type EuiTimeRange,
+  type ParsedTimeRange,
+  textToParsedTimeRange,
   getRangeTextValue,
   getDurationText,
   useRandomizedPlaceholder,
   useSelectTextPartsWithArrowKeys,
-  formatForTextInput,
+  dateStringToTextInstant,
 } from './utils';
-
-export interface EuiTimeRange {
-  end: DateString;
-  start: DateString;
-}
-
-export interface EuiOnTimeChangeProps extends EuiTimeRange {
-  value: string;
-  isInvalid: boolean;
-  // for testing only during development
-  _dateRange?: [Date | null, Date | null];
-}
 
 export interface EuiDateTimePickerProps {
   /** Text representation of the time range */
@@ -64,30 +54,21 @@ export interface EuiDateTimePickerProps {
   _showBadgeAtEnd: boolean;
 }
 
+export interface EuiOnTimeChangeProps extends EuiTimeRange {
+  value: string;
+  isInvalid: boolean;
+  // for testing only during development
+  _dateRange?: [Date | null, Date | null];
+}
+
 /*
-  TODO PoC (more to plan)
-  =======================
-  - [x] parse input
-  - [x] render button text
-  - [x] accept rfc2822, check iso
-  - [x] duration badge
-  - [x] placeholders
-  - [x] make future +Xu shorthands work
-  - [x] `dateFormat` prop
-  - [x] shorten absolutes when possible (dec, 22)
-  - [x] keyboard edits
-  - [x] time window/zoom buttons
+  TODO PoC
+  ========
   - [ ] fix "forgiving" abs… "dec 20" -> "dec 20 2025, 00:00"
-  - [ ] structure code nicely, in one file for now
   - [ ] invalid states
+  - [ ] collapse with Esc key
   - [ ] context?
   - [ ] popover with presets
-
-  terminology (todo)
-  ===========
-  - duration (interval) https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Temporal/Duration
-  - instant (point)
-  - range
 */
 
 export function EuiDateTimePicker(props: EuiDateTimePickerProps) {
@@ -104,19 +85,20 @@ export function EuiDateTimePicker(props: EuiDateTimePickerProps) {
   const inputRef = useRef<HTMLInputElement>(null);
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
   const [textValue, setTextValue] = useState<string>(() => value);
-  const [range, setRange] = useState<ParsedRange>(() =>
-    parseTextRange(value ?? '')
+  const [range, setRange] = useState<ParsedTimeRange>(() =>
+    textToParsedTimeRange(value ?? '')
   );
   const placeholder = useRandomizedPlaceholder(isExpanded);
 
-  // TODO as-is to reuse existing useEuiTimeWindow
+  // TODO refactor this?
+  // for now as-is to reuse existing useEuiTimeWindow;
   // could be something else, generic, to pass in context 
   // together with a real "apply" function similar to pressing Enter
   const apply = ({ start, end }: { start: string; end: string }) => {
-    const formattedStart = formatForTextInput(start, dateFormat);
-    const formattedEnd = formatForTextInput(end, dateFormat);
+    const formattedStart = dateStringToTextInstant(start, dateFormat);
+    const formattedEnd = dateStringToTextInstant(end, dateFormat);
     const text = `${formattedStart} to ${formattedEnd}`; // TODO delimiter also from variable?
-    const _range = parseTextRange(text);
+    const _range = textToParsedTimeRange(text);
     setRange(_range);
     setTextValue(text);
     if (!isExpanded) {
@@ -143,17 +125,12 @@ export function EuiDateTimePicker(props: EuiDateTimePickerProps) {
     }
   }, [isExpanded]);
 
-  const clearInput = () => {
-    setTextValue('');
-    inputRef.current?.focus();
-  };
-
   const onButtonClick = () => {
     setIsExpanded(true);
   };
   const onInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     setTextValue(event.target.value);
-    setRange(parseTextRange(event.target.value));
+    setRange(textToParsedTimeRange(event.target.value));
   };
   const onInputKeyDown = (event: KeyboardEvent) => {
     if (event.key === 'Enter' && isExpanded) {
@@ -166,6 +143,11 @@ export function EuiDateTimePicker(props: EuiDateTimePickerProps) {
       });
       setIsExpanded(false);
     }
+  };
+
+  const clearInput = () => {
+    setTextValue('');
+    inputRef.current?.focus();
   };
 
   // keeping them here for now
