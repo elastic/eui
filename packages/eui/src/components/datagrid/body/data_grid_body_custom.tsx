@@ -53,6 +53,7 @@ export const EuiDataGridBodyCustomRender: FunctionComponent<EuiDataGridBodyProps
       gridWidth,
       gridStyles,
       className,
+      showHeader = true,
     }) => {
       /**
        * Columns & widths
@@ -241,7 +242,7 @@ export const EuiDataGridBodyCustomRender: FunctionComponent<EuiDataGridBodyProps
           visibleRowData: visibleRows,
           Cell,
           setCustomGridBodyProps,
-          headerRow,
+          headerRow: showHeader ? headerRow : null,
           footerRow,
         }),
         [
@@ -252,6 +253,7 @@ export const EuiDataGridBodyCustomRender: FunctionComponent<EuiDataGridBodyProps
           setCustomGridBodyProps,
           headerRow,
           footerRow,
+          showHeader,
         ]
       );
 

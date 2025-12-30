@@ -265,3 +265,17 @@ export const VisibleColumns: Story = {
     await canvas.waitForEuiPopoverVisible();
   },
 };
+
+export const HeaderVisibility: Story = {
+  tags: ['vrt-only'],
+  parameters: {
+    controls: { include: ['toolbarVisibility', 'headerVisibility'] },
+  },
+  args: {
+    ...defaultStorybookArgs,
+    rowCount: 5,
+    headerVisibility: false,
+    toolbarVisibility: false,
+  },
+  render: (args: EuiDataGridProps) => <StatefulDataGrid {...args} />,
+};

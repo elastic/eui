@@ -586,20 +586,6 @@ export class EuiDataGridCell extends Component<
       ...setCellProps
     } = this.state.cellProps;
 
-    const cellProps: EuiDataGridSetCellProps = {
-      ...setCellProps,
-      'data-test-subj': classNames('dataGridRowCell', cellPropsDataTestSubj),
-      className: classNames(cellClasses, cellPropsClassName),
-    };
-
-    cellProps.style = {
-      ...style, // set by react-window or the custom renderer
-      top: style?.top ? 0 : undefined, // The cell's row will handle top positioning
-      width, // column width, can be undefined
-      lineHeight: rowHeightsOptions?.lineHeight ?? undefined, // lineHeight configuration
-      ...cellPropsStyle, // apply anything from setCellProps({ style })
-    };
-
     const row =
       rowManager && !IS_JEST_ENVIRONMENT
         ? rowManager.getRow({
@@ -609,6 +595,22 @@ export class EuiDataGridCell extends Component<
             height: style!.height as number, // comes in as an integer from react-window
           })
         : undefined;
+
+    const cellProps: EuiDataGridSetCellProps = {
+      ...setCellProps,
+      'data-test-subj': classNames('dataGridRowCell', cellPropsDataTestSubj),
+      className: classNames(cellClasses, cellPropsClassName, {
+        'euiDataGridRowCell--isMounting': !row && !IS_JEST_ENVIRONMENT,
+      }),
+    };
+
+    cellProps.style = {
+      ...style, // set by react-window or the custom renderer
+      top: style?.top ? 0 : undefined, // The cell's row will handle top positioning
+      width, // column width, can be undefined
+      lineHeight: rowHeightsOptions?.lineHeight ?? undefined, // lineHeight configuration
+      ...cellPropsStyle, // apply anything from setCellProps({ style })
+    };
 
     return (
       <RenderCellInRow row={row}>

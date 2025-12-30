@@ -256,6 +256,12 @@ export const euiDataGridStyles = (euiThemeContext: UseEuiTheme) => {
         .euiDataGridHeader {
           ${logicalCSS('border-top', border)}
         }
+
+        &:is(.euiDataGrid--noHeader)
+          .euiDataGridRow:first-of-type
+          .euiDataGridRowCell {
+          ${logicalCSS('border-top', border)}
+        }
       `,
       all: css`
         label: borders;
@@ -305,6 +311,12 @@ export const euiDataGridStyles = (euiThemeContext: UseEuiTheme) => {
         }
 
         &:is(.euiDataGrid--noControls) .euiDataGridHeader {
+          ${logicalCSS('border-top', border)}
+        }
+
+        &:is(.euiDataGrid--noHeader.euiDataGrid--noControls)
+          .euiDataGridRow:first-of-type
+          .euiDataGridRowCell {
           ${logicalCSS('border-top', border)}
         }
 
