@@ -628,20 +628,46 @@ function getTextParts(value: string) {
   return parts;
 }
 
+// TODO this could be abstracted AND also take callbacks somehow for custom actions or even preventing them
 export function useSelectTextPartsWithArrowKeys(
   input: RefObject<HTMLInputElement>,
   setText: (text: string) => void
 ) {
   useEffect(() => {
-    let currentIndex = 0;
-    let parts: TextPart[] = [];
+    let currentIndex = -1; // -1 means no part is selected (caret mode)
 
-    const selectPart = (index: number) => {
+    const getPartsAndSyncIndex = () => {
       const inputEl = input.current;
-      if (!inputEl || parts.length === 0) return;
+      if (!inputEl) return [];
 
-      // Clamp index to valid range
-      currentIndex = Math.max(0, Math.min(index, parts.length - 1));
+      const parts = getTextParts(inputEl.value);
+      const matchingPartIndex = parts.findIndex(
+        (part) =>
+          part.start === inputEl.selectionStart &&
+          part.end === inputEl.selectionEnd
+      );
+      currentIndex = matchingPartIndex; // -1 if selection doesn't match any part
+
+      return parts;
+    };
+
+    const selectPart = (index: number, parts: TextPart[]) => {
+      const inputEl = input.current;
+      if (!inputEl) return;
+
+      // If navigating past the ends, go to caret mode
+      if (index < 0) {
+        currentIndex = -1;
+        inputEl.setSelectionRange(0, 0);
+        return;
+      }
+      if (index >= parts.length) {
+        currentIndex = -1;
+        inputEl.setSelectionRange(inputEl.value.length, inputEl.value.length);
+        return;
+      }
+
+      currentIndex = index;
       const part = parts[currentIndex];
 
       inputEl.focus();
@@ -652,16 +678,20 @@ export function useSelectTextPartsWithArrowKeys(
     // TODO would be nice for shorthands and units
     const modifyPart = (action: 'increase' | 'decrease') => {
       const inputEl = input.current!;
+      const parts = getPartsAndSyncIndex();
+
+      if (currentIndex < 0 || currentIndex >= parts.length) return;
+
       const part = parts[currentIndex];
       // VERY ROUGH! regex would be better
       const value = parseInt(part.text, 10);
       if (!isNaN(value)) {
         const nextValue = action === 'increase' ? value + 1 : value - 1;
         inputEl.setRangeText(String(nextValue), part.start, part.end, 'select');
-        parts = getTextParts(inputEl.value!);
         setText(inputEl.value!);
         requestAnimationFrame(() => {
-          selectPart(currentIndex);
+          const updatedParts = getTextParts(inputEl.value);
+          selectPart(currentIndex, updatedParts);
         });
       }
     };
@@ -671,29 +701,60 @@ export function useSelectTextPartsWithArrowKeys(
       if (event.metaKey || event.ctrlKey || event.altKey) return;
 
       const inputEl = input.current;
-      if (!inputEl || parts.length === 0) return;
+      if (!inputEl) return;
 
-      if (event.key === 'ArrowRight') {
+      if (event.key.startsWith('Arrow')) {
+        // Always refresh parts and sync index on arrow key press
+        const parts = getPartsAndSyncIndex();
+
+        if (parts.length === 0) return;
+
         event.preventDefault();
-        selectPart(currentIndex + 1);
-      } else if (event.key === 'ArrowLeft') {
-        event.preventDefault();
-        selectPart(currentIndex - 1);
-      } else if (event.key === 'ArrowUp') {
-        event.preventDefault();
-        modifyPart('increase');
-      } else if (event.key === 'ArrowDown') {
-        event.preventDefault();
-        modifyPart('decrease');
+
+        switch (event.key) {
+          case 'ArrowRight':
+            // If in caret mode, select the first part to the right of caret
+            if (currentIndex === -1) {
+              const caretPos = inputEl.selectionStart ?? 0;
+              const nextPartIndex = parts.findIndex(
+                (part) => part.start >= caretPos
+              );
+              selectPart(
+                nextPartIndex !== -1 ? nextPartIndex : parts.length,
+                parts
+              );
+            } else {
+              selectPart(currentIndex + 1, parts);
+            }
+            return;
+          case 'ArrowLeft':
+            // If in caret mode, select the first part to the left of caret
+            if (currentIndex === -1) {
+              const caretPos = inputEl.selectionStart ?? 0;
+              const prevPartIndex = parts.findLastIndex(
+                (part) => part.end <= caretPos
+              );
+              selectPart(prevPartIndex, parts);
+            } else {
+              selectPart(currentIndex - 1, parts);
+            }
+            return;
+          case 'ArrowUp':
+            modifyPart('increase');
+            return;
+          case 'ArrowDown':
+            modifyPart('decrease');
+            return;
+        }
       }
     };
 
     input.current?.addEventListener('keydown', keydownHandler);
 
     if (input.current) {
-      parts = getTextParts(input.current.value);
+      const parts = getTextParts(input.current.value);
       // Select the first part initially
-      if (parts.length > 0) selectPart(0);
+      if (parts.length > 0) selectPart(0, parts);
     }
 
     return () => {

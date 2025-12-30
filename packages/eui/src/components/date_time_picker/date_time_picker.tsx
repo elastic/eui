@@ -70,10 +70,10 @@ export interface EuiDateTimePickerProps {
   - [x] make future +Xu shorthands work
   - [x] `dateFormat` prop
   - [x] shorten absolutes when possible (dec, 22)
+  - [x] keyboard edits
   - [ ] fix "forgiving" abs… "dec 20" -> "dec 20 2025, 00:00"
-  - [ ] keyboard edits
-  - [ ] invalid states
   - [ ] time window/zoom buttons
+  - [ ] invalid states
   - [ ] structure code nicely, in one file for now
   - [ ] context?
   - [ ] popover with presets
