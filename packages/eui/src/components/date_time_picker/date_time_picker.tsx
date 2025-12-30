@@ -10,7 +10,6 @@ import React, {
   useState,
   useRef,
   useEffect,
-  useCallback,
   type KeyboardEvent,
   type ChangeEvent,
 } from 'react';
@@ -44,7 +43,7 @@ export interface EuiTimeRange {
 
 export interface EuiOnTimeChangeProps extends EuiTimeRange {
   value: string;
-  isValid: boolean;
+  isInvalid: boolean;
   // for testing only during development
   _dateRange?: [Date | null, Date | null];
 }
@@ -110,19 +109,26 @@ export function EuiDateTimePicker(props: EuiDateTimePickerProps) {
   );
   const placeholder = useRandomizedPlaceholder(isExpanded);
 
-  // TODO as-is to reuse existing useEuiTimeWindow, could be something else
-  const apply = useCallback(
-    ({ start, end }: { start: string; end: string }) => {
-      const formattedStart = formatForTextInput(start, dateFormat);
-      const formattedEnd = formatForTextInput(end, dateFormat);
-      // TODO delimiter also from variable?
-      setTextValue(`${formattedStart} to ${formattedEnd}`);
-      if (!isExpanded) {
-        validate();
-      }
-    },
-    [setTextValue, isExpanded]
-  );
+  // TODO as-is to reuse existing useEuiTimeWindow
+  // could be something else, generic, to pass in context 
+  // together with a real "apply" function similar to pressing Enter
+  const apply = ({ start, end }: { start: string; end: string }) => {
+    const formattedStart = formatForTextInput(start, dateFormat);
+    const formattedEnd = formatForTextInput(end, dateFormat);
+    const text = `${formattedStart} to ${formattedEnd}`; // TODO delimiter also from variable?
+    const _range = parseTextRange(text);
+    setRange(_range);
+    setTextValue(text);
+    if (!isExpanded) {
+      onTimeChange?.({
+        start: _range.start,
+        end: _range.end,
+        value: _range.value,
+        isInvalid: !_range.isValid,
+        _dateRange: [_range.startDate, _range.endDate],
+      });
+    }
+  };
   const { stepForward, stepBackward, expandWindow } = useEuiTimeWindow(
     range.start,
     range.end,
@@ -137,28 +143,6 @@ export function EuiDateTimePicker(props: EuiDateTimePickerProps) {
     }
   }, [isExpanded]);
 
-  useEffect(() => {
-    setRange(parseTextRange(textValue));
-  }, [textValue, isExpanded]);
-
-  const validate = () => {
-    if (!range.isValid) {
-      onTimeChange?.({
-        start: range.start,
-        end: range.end,
-        value: range.value,
-        isValid: range.isValid,
-      });
-      return;
-    }
-    onTimeChange?.({
-      start: range.start,
-      end: range.end,
-      value: range.value,
-      isValid: range.isValid,
-      _dateRange: [range.startDate, range.endDate],
-    });
-  };
   const clearInput = () => {
     setTextValue('');
     inputRef.current?.focus();
@@ -169,10 +153,17 @@ export function EuiDateTimePicker(props: EuiDateTimePickerProps) {
   };
   const onInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     setTextValue(event.target.value);
+    setRange(parseTextRange(event.target.value));
   };
   const onInputKeyDown = (event: KeyboardEvent) => {
     if (event.key === 'Enter' && isExpanded) {
-      validate();
+      onTimeChange?.({
+        start: range.start,
+        end: range.end,
+        value: range.value,
+        isInvalid: !range.isValid,
+        _dateRange: [range.startDate, range.endDate],
+      });
       setIsExpanded(false);
     }
   };
@@ -212,6 +203,7 @@ export function EuiDateTimePicker(props: EuiDateTimePickerProps) {
         }
         prepend={
           <EuiButtonIcon
+            aria-label="Previous time window"
             iconType="arrowLeft"
             color="text"
             display="empty"
@@ -220,6 +212,7 @@ export function EuiDateTimePicker(props: EuiDateTimePickerProps) {
         }
         append={
           <EuiButtonIcon
+            aria-label="Next time window"
             iconType="arrowRight"
             color="text"
             display="empty"
@@ -255,6 +248,7 @@ export function EuiDateTimePicker(props: EuiDateTimePickerProps) {
         )}
       </EuiFormControlLayout>
       <EuiButtonIcon
+        aria-label="Zoom out"
         iconType="magnifyWithMinus"
         size="s"
         display="base"

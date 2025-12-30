@@ -42,7 +42,7 @@ const StatefulDateTimePicker = (props: EuiDateTimePickerProps) => {
   const { onTimeChange, ...rest } = props;
 
   const handleOnChange = (args: EuiOnTimeChangeProps) => {
-    setInvalid(!args.isValid);
+    setInvalid(args.isInvalid);
     onTimeChange?.(args);
   };
 
