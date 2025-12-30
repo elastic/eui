@@ -40,39 +40,35 @@ export const EuiExternalLinkIcon: FunctionComponent<
     (target === '_blank' && external !== false) || external === true;
 
   return (
-    <>
-      {showExternalLinkIcon && (
-        <>
-          <EuiIcon
-            css={iconCssStyle}
-            size="s"
-            type="popout"
-            role="presentation"
-            {...rest}
-          />
-          {target === '_blank' ? (
-            <EuiScreenReaderOnly>
-              <span>
-                <EuiI18n
-                  token="euiExternalLinkIcon.newTarget.screenReaderOnlyText"
-                  default="(external, opens in a new tab or window)"
-                />
-              </span>
-            </EuiScreenReaderOnly>
-          ) : (
-            <>
-              <EuiScreenReaderOnly>
-                <span>
-                  <EuiI18n
-                    token="euiExternalLinkIcon.externalTarget.screenReaderOnlyText"
-                    default="(external)"
-                  />
-                </span>
-              </EuiScreenReaderOnly>
-            </>
-          )}
-        </>
-      )}
-    </>
+    showExternalLinkIcon && (
+      <>
+        <EuiIcon
+          css={iconCssStyle}
+          size="s"
+          type="popout"
+          role="presentation"
+          {...rest}
+        />
+        {target === '_blank' ? (
+          <EuiScreenReaderOnly>
+            <span>
+              <EuiI18n
+                token="euiExternalLinkIcon.newTarget.screenReaderOnlyText"
+                default="(external, opens in a new tab or window)"
+              />
+            </span>
+          </EuiScreenReaderOnly>
+        ) : (
+          <EuiScreenReaderOnly>
+            <span>
+              <EuiI18n
+                token="euiExternalLinkIcon.externalTarget.screenReaderOnlyText"
+                default="(external)"
+              />
+            </span>
+          </EuiScreenReaderOnly>
+        )}
+      </>
+    )
   );
 };
