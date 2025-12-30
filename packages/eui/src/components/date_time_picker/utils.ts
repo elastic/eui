@@ -18,6 +18,12 @@ const DEFAULT_FORMAT = 'MMM D YYYY, HH:mm';
 const FORMAT_NO_YEAR = 'MMM D, HH:mm';
 const FORMAT_TIME_ONLY = 'HH:mm';
 
+// const ALLOWED_USER_DATE_FORMATS = [
+//   moment.ISO_8601,
+//   moment.RFC_2822,
+//   'X', // Unix timestamp in seconds
+// ];
+
 // TODO clean up, update comments
 
 // TODO use "standard" terminology, point > instant

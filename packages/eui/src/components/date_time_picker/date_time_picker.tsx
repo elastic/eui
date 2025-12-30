@@ -13,7 +13,6 @@ import React, {
   type KeyboardEvent,
   type ChangeEvent,
 } from 'react';
-import { css } from '@emotion/react';
 
 import {
   parseTextRange,
@@ -30,6 +29,8 @@ import {
   EuiFormControlButton,
 } from '../form';
 import { EuiBadge } from '../badge';
+import { EuiButtonIcon } from '../button';
+import { UseEuiTheme } from '@elastic/eui-theme-common';
 
 export interface EuiTimeRange {
   end: DateString;
@@ -94,7 +95,7 @@ export function EuiDateTimePicker(props: EuiDateTimePickerProps) {
     _showBadgeAtEnd = false,
   } = props;
 
-  const compressed = true; // expose
+  const compressed = true; // TODO expose
 
   const inputRef = useRef<HTMLInputElement>(null);
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
@@ -154,13 +155,44 @@ export function EuiDateTimePicker(props: EuiDateTimePickerProps) {
     inputRef.current?.focus();
   };
 
+  // keeping them here for now
+  const styles = {
+    // this could be EuiFlexGroup
+    root: ({ euiTheme }: UseEuiTheme) => ({
+      display: 'flex',
+      alignItems: 'center',
+      gap: euiTheme.size.s,
+    }),
+    formControlButton: {
+      '.euiButtonEmpty__content': {
+        flexDirection: 'row-reverse' as const,
+      },
+    },
+    badge: ({ euiTheme }: UseEuiTheme) => ({
+      fontFamily: euiTheme.font.familyCode,
+      fontWeight: euiTheme.font.weight.light,
+      letterSpacing: '0.075ch',
+    }),
+    // this should be the other way around (prepend/append having no background),
+    // but for now we make it look decent
+    zoomButton: ({ euiTheme }: UseEuiTheme) => ({
+      backgroundColor: euiTheme.components.forms.prependBackground,
+    }),
+  };
+
   return (
-    <>
+    <div css={styles.root}>
       <EuiFormControlLayout
         compressed={compressed}
         isInvalid={isInvalid}
         clear={
           isExpanded && textValue !== '' ? { onClick: clearInput } : undefined
+        }
+        prepend={
+          <EuiButtonIcon iconType="arrowLeft" color="text" display="empty" />
+        }
+        append={
+          <EuiButtonIcon iconType="arrowRight" color="text" display="empty" />
         }
       >
         {isExpanded ? (
@@ -180,27 +212,23 @@ export function EuiDateTimePicker(props: EuiDateTimePickerProps) {
             onClick={onButtonClick}
             isInvalid={isInvalid}
             compressed={compressed}
-            css={
-              !_showBadgeAtEnd &&
-              css`
-                .euiButtonEmpty__content {
-                  flex-direction: row-reverse;
-                }
-              `
-            }
+            css={!_showBadgeAtEnd && styles.formControlButton}
           >
             {range.startDate && range.endDate && (
-              <EuiBadge
-                css={({ euiTheme }) => css`
-                  font-family: ${euiTheme.font.familyCode};
-                `}
-              >
+              <EuiBadge css={styles.badge}>
                 {getDurationText(range.startDate, range.endDate)}
               </EuiBadge>
             )}
           </EuiFormControlButton>
         )}
       </EuiFormControlLayout>
-    </>
+      <EuiButtonIcon
+        iconType="magnifyWithMinus"
+        size="s"
+        display="base"
+        color="text"
+        css={styles.zoomButton}
+      />
+    </div>
   );
 }
