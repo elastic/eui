@@ -143,7 +143,6 @@ interface RangeTextDisplayOptions {
   dateFormat?: string;
 }
 
-
 /**
  * Determines the type of a date string
  */
@@ -180,7 +179,6 @@ export function dateStringToTextInstant(
   const parsed = dateMath.parse(dateString);
   return parsed?.isValid ? parsed.format(dateFormat) : dateString;
 }
-
 
 /**
  * Main parsing function for text range input

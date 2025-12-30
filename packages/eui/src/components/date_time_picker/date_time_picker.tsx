@@ -92,7 +92,7 @@ export function EuiDateTimePicker(props: EuiDateTimePickerProps) {
 
   // TODO refactor this?
   // for now as-is to reuse existing useEuiTimeWindow;
-  // could be something else, generic, to pass in context 
+  // could be something else, generic, to pass in context
   // together with a real "apply" function similar to pressing Enter
   const apply = ({ start, end }: { start: string; end: string }) => {
     const formattedStart = dateStringToTextInstant(start, dateFormat);
