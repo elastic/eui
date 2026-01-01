@@ -131,7 +131,7 @@ describe('useDataGridColumnSelector', () => {
         );
         fireEvent.click(getByTestSubject('dataGridColumnSelectorButton'));
         waitForEuiPopoverOpen();
-        const getDragHandles = () => getAllByLabelText('Drag handle');
+        const getDragHandles = () => getAllByLabelText(/drag handle/);
 
         const columnA = getDragHandles()[0]!;
         expect(columnA).toHaveAttribute(
