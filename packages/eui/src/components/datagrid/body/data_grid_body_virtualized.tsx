@@ -151,7 +151,7 @@ export const EuiDataGridBodyVirtualized: FunctionComponent<EuiDataGridBodyProps>
        */
       const wrapperDimensions = useResizeObserver(wrapperRef.current);
       const outerGridRef = useRef<HTMLDivElement | null>(null); // container that becomes scrollable
-      const innerGridRef = useRef<HTMLDivElement | null>(null);
+      const innerGridRef = useRef<HTMLDivElement | null>(null); // container sized to fit all content
 
       /**
        * Scroll bars
