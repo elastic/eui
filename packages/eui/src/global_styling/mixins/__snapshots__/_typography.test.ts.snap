@@ -3,8 +3,8 @@
 exports[`euiFontSize handles the optional customScale property by multiplying it against the passed scale: l scale with xxs customScale 1`] = `
 {
   "fontSize": "0.9821rem",
-  "lineHeight": "1.2143rem",
   "letterSpacing": "-0.005rem",
+  "lineHeight": "1.4286rem",
 }
 `;
 
@@ -18,16 +18,15 @@ exports[`euiFontSize handles the optional customScale property by multiplying it
 exports[`euiFontSize handles the optional customScale property by multiplying it against the passed scale: s scale with xl customScale 1`] = `
 {
   "fontSize": "1.5000rem",
-  "lineHeight": "2.1429rem",
-  "letterSpacing": "-0.01rem",
+  "lineHeight": "1.8571rem",
 }
 `;
 
 exports[`euiFontSize returns an object of font-size and line-height for each scale em l 1`] = `
 {
   "fontSize": "1.25em",
-  "lineHeight": "1.3000",
   "letterSpacing": "-0.005rem",
+  "lineHeight": "1.3000",
 }
 `;
 
@@ -48,8 +47,8 @@ exports[`euiFontSize returns an object of font-size and line-height for each sca
 exports[`euiFontSize returns an object of font-size and line-height for each scale em xl 1`] = `
 {
   "fontSize": "1.5em",
-  "lineHeight": "1.2500",
   "letterSpacing": "-0.01rem",
+  "lineHeight": "1.2500",
 }
 `;
 
@@ -63,8 +62,8 @@ exports[`euiFontSize returns an object of font-size and line-height for each sca
 exports[`euiFontSize returns an object of font-size and line-height for each scale em xxl 1`] = `
 {
   "fontSize": "1.875em",
-  "lineHeight": "1.2000",
   "letterSpacing": "-0.015rem",
+  "lineHeight": "1.2000",
 }
 `;
 
@@ -85,8 +84,8 @@ exports[`euiFontSize returns an object of font-size and line-height for each sca
 exports[`euiFontSize returns an object of font-size and line-height for each scale px l 1`] = `
 {
   "fontSize": "20px",
-  "lineHeight": "26px",
   "letterSpacing": "-0.005rem",
+  "lineHeight": "26px",
 }
 `;
 
@@ -107,8 +106,8 @@ exports[`euiFontSize returns an object of font-size and line-height for each sca
 exports[`euiFontSize returns an object of font-size and line-height for each scale px xl 1`] = `
 {
   "fontSize": "24px",
-  "lineHeight": "30px",
   "letterSpacing": "-0.01rem",
+  "lineHeight": "30px",
 }
 `;
 
@@ -122,8 +121,8 @@ exports[`euiFontSize returns an object of font-size and line-height for each sca
 exports[`euiFontSize returns an object of font-size and line-height for each scale px xxl 1`] = `
 {
   "fontSize": "30px",
-  "lineHeight": "36px",
   "letterSpacing": "-0.015rem",
+  "lineHeight": "36px",
 }
 `;
 
@@ -144,8 +143,8 @@ exports[`euiFontSize returns an object of font-size and line-height for each sca
 exports[`euiFontSize returns an object of font-size and line-height for each scale rem l 1`] = `
 {
   "fontSize": "1.4286rem",
-  "lineHeight": "1.8571rem",
   "letterSpacing": "-0.005rem",
+  "lineHeight": "1.8571rem",
 }
 `;
 
@@ -166,8 +165,8 @@ exports[`euiFontSize returns an object of font-size and line-height for each sca
 exports[`euiFontSize returns an object of font-size and line-height for each scale rem xl 1`] = `
 {
   "fontSize": "1.7143rem",
-  "lineHeight": "2.1429rem",
   "letterSpacing": "-0.01rem",
+  "lineHeight": "2.1429rem",
 }
 `;
 
@@ -181,8 +180,8 @@ exports[`euiFontSize returns an object of font-size and line-height for each sca
 exports[`euiFontSize returns an object of font-size and line-height for each scale rem xxl 1`] = `
 {
   "fontSize": "2.1429rem",
-  "lineHeight": "2.5714rem",
   "letterSpacing": "-0.015rem",
+  "lineHeight": "2.5714rem",
 }
 `;
 
