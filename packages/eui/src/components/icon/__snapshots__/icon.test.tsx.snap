@@ -9965,6 +9965,23 @@ exports[`EuiIcon props type pin is rendered 1`] = `
 </svg>
 `;
 
+exports[`EuiIcon props type pinFill is rendered 1`] = `
+<svg
+  class="euiIcon emotion-euiIcon-m-isLoaded"
+  data-icon-type="pinFill"
+  data-is-loaded="true"
+  height="16"
+  role="presentation"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M9.618 1.076a1 1 0 0 1 1.09.217l4 4A1 1 0 0 1 14 7h-1.46l-.029.055a59.78 59.78 0 0 1-1.098 1.966c-.783 1.338-1.784 2.912-2.72 3.966l.66.66-.707.707-.996-.996-.005-.004L5.5 11.207 1.708 15H1v-.707L4.792 10.5 2.646 8.354l-.004-.005-.995-.995.707-.707.714.714L9 3.547V2a1 1 0 0 1 .618-.924Z"
+  />
+</svg>
+`;
+
 exports[`EuiIcon props type pinFilled is rendered 1`] = `
 <svg
   class="euiIcon emotion-euiIcon-m-isLoaded"
@@ -11435,6 +11452,24 @@ exports[`EuiIcon props type starFill is rendered 1`] = `
 </svg>
 `;
 
+exports[`EuiIcon props type starFillSpace is rendered 1`] = `
+<svg
+  class="euiIcon emotion-euiIcon-m-isLoaded"
+  data-icon-type="starFillSpace"
+  data-is-loaded="true"
+  height="16"
+  role="presentation"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M6 2a.86.86 0 0 0-.792.511l-1.33 2.924-3.128.446c-.71.102-1.001.976-.496 1.487l2.313 2.336-.563 3.268A.877.877 0 0 0 2.864 14c.142 0 .289-.036.429-.116L6 12.342l2.707 1.542c.14.08.287.116.43.116a.877.877 0 0 0 .859-1.027l-.563-3.269 2.313-2.336c.505-.511.214-1.385-.496-1.487l-3.128-.446-1.33-2.923A.86.86 0 0 0 6 2"
+    fill-rule="evenodd"
+  />
+</svg>
+`;
+
 exports[`EuiIcon props type starFilled is rendered 1`] = `
 <svg
   class="euiIcon emotion-euiIcon-m-isLoaded"
@@ -11489,6 +11524,24 @@ exports[`EuiIcon props type starMinusEmpty is rendered 1`] = `
 </svg>
 `;
 
+exports[`EuiIcon props type starMinusFill is rendered 1`] = `
+<svg
+  class="euiIcon emotion-euiIcon-m-isLoaded"
+  data-icon-type="starMinusFill"
+  data-is-loaded="true"
+  height="16"
+  role="presentation"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M6 2a.86.86 0 0 1 .792.511l1.33 2.924 3.128.446c.71.102 1.001.976.496 1.487L9.433 9.704l.563 3.268A.877.877 0 0 1 9.136 14a.862.862 0 0 1-.429-.116L6 12.342l-2.707 1.542a.862.862 0 0 1-.43.116.877.877 0 0 1-.859-1.027l.563-3.269L.254 7.368C-.25 6.857.04 5.983.75 5.88l3.128-.446 1.33-2.923A.86.86 0 0 1 6 2Zm10 8v1h-5v-1h5Z"
+    fill-rule="evenodd"
+  />
+</svg>
+`;
+
 exports[`EuiIcon props type starMinusFilled is rendered 1`] = `
 <svg
   class="euiIcon emotion-euiIcon-m-isLoaded"
@@ -11520,6 +11573,24 @@ exports[`EuiIcon props type starPlusEmpty is rendered 1`] = `
 >
   <path
     d="M6 2a.86.86 0 0 0-.792.511l-1.33 2.924-3.128.446c-.71.102-1.001.976-.496 1.487l2.313 2.336-.563 3.268A.877.877 0 0 0 2.864 14c.142 0 .289-.036.429-.116L6 12.342l2.707 1.542c.14.08.287.116.43.116a.877.877 0 0 0 .859-1.027l-.563-3.269 2.313-2.336c.505-.511.214-1.385-.496-1.487l-3.128-.446-1.33-2.923A.86.86 0 0 0 6 2m8 8h2v1h-2v2h-1v-2h-2v-1h2V8h1v2ZM6 3c.073 0 .095.049.104.07l1.267 2.783.162.356.387.055 2.978.425c.017.002.071.01.095.08a.116.116 0 0 1-.029.126L8.762 9.121l-.259.261.063.362.535 3.112c.007.04 0 .07-.023.098a.127.127 0 0 1-.091.046.106.106 0 0 1-.055-.016l-2.578-1.469L6 11.314l-.354.201-2.579 1.469a.103.103 0 0 1-.054.016.127.127 0 0 1-.091-.046c-.023-.028-.03-.058-.024-.098l.536-3.112.063-.362-.259-.261-2.202-2.226a.116.116 0 0 1-.029-.126.108.108 0 0 1 .094-.08l2.98-.425.386-.055.162-.356 1.267-2.786C5.905 3.05 5.927 3 6 3Z"
+    fill-rule="evenodd"
+  />
+</svg>
+`;
+
+exports[`EuiIcon props type starPlusFill is rendered 1`] = `
+<svg
+  class="euiIcon emotion-euiIcon-m-isLoaded"
+  data-icon-type="starPlusFill"
+  data-is-loaded="true"
+  height="16"
+  role="presentation"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M14 10h2v1h-2v2h-1v-2h-2v-1h2V8h1v2ZM6 2a.86.86 0 0 0-.792.511l-1.33 2.924-3.128.446c-.71.102-1.001.976-.496 1.487l2.313 2.336-.563 3.268A.877.877 0 0 0 2.864 14c.142 0 .289-.036.429-.116L6 12.342l2.707 1.542c.14.08.287.116.43.116a.877.877 0 0 0 .859-1.027l-.563-3.269 2.313-2.336c.505-.511.214-1.385-.496-1.487l-3.128-.446-1.33-2.923A.86.86 0 0 0 6 2"
     fill-rule="evenodd"
   />
 </svg>
@@ -11575,6 +11646,28 @@ exports[`EuiIcon props type stop is rendered 1`] = `
   <path
     d="M4 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2Zm0 1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H4Z"
     fill-rule="evenodd"
+  />
+</svg>
+`;
+
+exports[`EuiIcon props type stopFill is rendered 1`] = `
+<svg
+  class="euiIcon emotion-euiIcon-m-isLoaded"
+  data-icon-type="stopFill"
+  data-is-loaded="true"
+  height="16"
+  role="presentation"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <rect
+    fill-rule="evenodd"
+    height="12"
+    rx="2"
+    width="12"
+    x="2"
+    y="2"
   />
 </svg>
 `;

@@ -14,7 +14,7 @@ interface SVGRProps {
   title?: string;
   titleId?: string;
 }
-const EuiIconPinFilled = ({
+const EuiIconStopFill = ({
   title,
   titleId,
   ...props
@@ -28,7 +28,7 @@ const EuiIconPinFilled = ({
     {...props}
   >
     {title ? <title id={titleId}>{title}</title> : null}
-    <path d="M9.618 1.076a1 1 0 0 1 1.09.217l4 4A1 1 0 0 1 14 7h-1.46l-.029.055a59.78 59.78 0 0 1-1.098 1.966c-.783 1.338-1.784 2.912-2.72 3.966l.66.66-.707.707-.996-.996-.005-.004L5.5 11.207 1.708 15H1v-.707L4.792 10.5 2.646 8.354l-.004-.005-.995-.995.707-.707.714.714L9 3.547V2a1 1 0 0 1 .618-.924Z" />
+    <rect width={12} height={12} x={2} y={2} fillRule="evenodd" rx={2} />
   </svg>
 );
-export const icon = EuiIconPinFilled;
+export const icon = EuiIconStopFill;

@@ -14,7 +14,7 @@ interface SVGRProps {
   title?: string;
   titleId?: string;
 }
-const EuiIconStarPlusFilled = ({
+const EuiIconStarPlusFill = ({
   title,
   titleId,
   ...props
@@ -34,4 +34,4 @@ const EuiIconStarPlusFilled = ({
     />
   </svg>
 );
-export const icon = EuiIconStarPlusFilled;
+export const icon = EuiIconStarPlusFill;

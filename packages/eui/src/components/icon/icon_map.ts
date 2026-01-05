@@ -453,7 +453,8 @@ export const typeToPathMap = {
   pencil: 'pencil',
   percent: 'percent',
   pin: 'pin',
-  pinFilled: 'pin_filled',
+  pinFill: 'pin_fill',
+  pinFilled: 'pin_fill', // NOTE: To be deprecated in favor of pinFill
   pipeBreaks: 'line_break', // NOTE: To be deprecated in favor of lineBreak
   pipelineApp: 'app_pipeline',
   pipeNoBreaks: 'line_break_slash', // NOTE: To be deprecated in favor of lineBreakSlash
@@ -517,14 +518,18 @@ export const typeToPathMap = {
   starEmptySpace: 'star_empty_space',
   starFill: 'star_fill',
   starFilled: 'star_fill', // NOTE: To be deprecated in favor of starFill,
-  starFilledSpace: 'star_filled_space',
+  starFillSpace: 'star_fill_space',
+  starFilledSpace: 'star_fill_space', // NOTE: To be deprecated in favor of starFillSpace
   starMinusEmpty: 'star_minus_empty',
-  starMinusFilled: 'star_minus_filled',
+  starMinusFill: 'star_minus_fill',
+  starMinusFilled: 'star_minus_fill', // NOTE: To be deprecated in favor of starMinusFill
   starPlusEmpty: 'star_plus_empty',
-  starPlusFilled: 'star_plus_filled',
+  starPlusFill: 'star_plus_fill',
+  starPlusFilled: 'star_plus_fill', // NOTE: To be deprecated in favor of starPlusFill
   stats: 'stats',
   stop: 'stop',
-  stopFilled: 'stop_filled',
+  stopFill: 'stop_fill',
+  stopFilled: 'stop_fill', // NOTE: To be deprecated in favor of stopFill
   stopSlash: 'stop_slash',
   storage: 'storage',
   streamsClassic: 'product_streams_classic', // NOTE: To be deprecated in favor of productStreamsClassic
