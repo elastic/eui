@@ -73,6 +73,25 @@ function getLineHeightForFontSize(fontSizePx: number): number {
 }
 
 /**
+ * Returns letter-spacing for specific font scales
+ * @param scale - The font scale key
+ * @param theme - Requires the `base` and `font` keys
+ * @returns string | undefined - Letter-spacing value in rem, or undefined for scales without letter-spacing
+ */
+export function euiLetterSpacingFromScale(
+  scale: _EuiThemeFontScale,
+  { base, font }: UseEuiTheme['euiTheme']
+): string | undefined {
+  const letterSpacingMap: Record<string, string> = {
+    l: '-0.005rem',
+    xl: '-0.01rem',
+    xxl: '-0.015rem',
+  };
+  
+  return letterSpacingMap[scale];
+}
+
+/**
  * Calculates the font-size value based on the provided scale key
  * @param scale - The font scale key
  * @param theme - Requires the `base` and `font` keys
