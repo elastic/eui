@@ -460,7 +460,9 @@ export const EuiDataGridBodyVirtualized: FunctionComponent<EuiDataGridBodyProps>
             rowHeight={getRowHeight}
             itemData={itemData}
             rowCount={
-              IS_JEST_ENVIRONMENT || headerRowHeight > 0 || showHeader === false
+              IS_JEST_ENVIRONMENT ||
+              headerRowHeight > 0 ||
+              (showHeader === false && innerGridRef.current)
                 ? visibleRowCount
                 : 0
             }

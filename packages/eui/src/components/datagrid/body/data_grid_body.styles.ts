@@ -18,14 +18,6 @@ export const euiDataGridBodyStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     virtualized: css`
       scroll-padding: 0;
-
-      /* hack to prevent visible flickering on the single initial render when rows are created.
-      opacity > 0 ensure the element is anyway present in the DOM */
-      .euiDataGridRowCell--isMounting:where(
-          :not(.euiDataGridHeaderCell, .euiDataGridFooterCell)
-        ) {
-        opacity: 0.01;
-      }
     `,
     customRender: css`
       ${logicalSizeCSS('100%')}

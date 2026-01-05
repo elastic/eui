@@ -141,7 +141,7 @@ describe('row manager', () => {
 
     it('creates rows with the passed gridStyle.rowClasses', () => {
       const { result } = render();
-      expect(getRow(result.current, 0)?.classList.contains('hello')).toBe(true);
+      expect(getRow(result.current, 0).classList.contains('hello')).toBe(true);
     });
 
     it('updates row classes dynamically when gridStyle.rowClasses updates', () => {
@@ -150,14 +150,14 @@ describe('row manager', () => {
 
       const row0 = getRow(result.current, 0);
 
-      expect(row0?.classList.contains('hello')).toBe(false);
-      expect(row0?.classList.contains('world')).toBe(true);
+      expect(row0.classList.contains('hello')).toBe(false);
+      expect(row0.classList.contains('world')).toBe(true);
     });
 
     it('allows passing multiple classes', () => {
       const { result } = render({ rowClasses: { 0: 'hello world' } });
-      expect(getRow(result.current, 0)?.classList.contains('hello')).toBe(true);
-      expect(getRow(result.current, 0)?.classList.contains('world')).toBe(true);
+      expect(getRow(result.current, 0).classList.contains('hello')).toBe(true);
+      expect(getRow(result.current, 0).classList.contains('world')).toBe(true);
     });
 
     it('adds/removes row classes correctly when gridStyle.rowClasses updates', () => {
@@ -167,16 +167,16 @@ describe('row manager', () => {
       const row0 = getRow(result.current, 0);
       const row1 = getRow(result.current, 1);
 
-      expect(row0?.classList.contains('hello')).toBe(false);
-      expect(row0?.classList.contains('world')).toBe(false);
-      expect(row1?.classList.contains('test')).toBe(true);
+      expect(row0.classList.contains('hello')).toBe(false);
+      expect(row0.classList.contains('world')).toBe(false);
+      expect(row1.classList.contains('test')).toBe(true);
     });
 
     it('correctly preserves EUI classes when adding/removing classes dynamically', () => {
       const { result, rerender } = render();
       rerender({ ...mockArgs, rowClasses: undefined });
 
-      expect(getRow(result.current, 0)?.classList.value).toEqual(
+      expect(getRow(result.current, 0).classList.value).toEqual(
         'euiDataGridRow euiDataGridRow--striped'
       );
     });

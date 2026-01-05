@@ -1177,5 +1177,5 @@ export interface EuiDataGridRowManager {
     visibleRowIndex: number;
     top: string;
     height: number;
-  }): HTMLDivElement | undefined;
+  }): HTMLDivElement;
 }

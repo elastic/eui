@@ -599,9 +599,7 @@ export class EuiDataGridCell extends Component<
     const cellProps: EuiDataGridSetCellProps = {
       ...setCellProps,
       'data-test-subj': classNames('dataGridRowCell', cellPropsDataTestSubj),
-      className: classNames(cellClasses, cellPropsClassName, {
-        'euiDataGridRowCell--isMounting': !row && !IS_JEST_ENVIRONMENT,
-      }),
+      className: classNames(cellClasses, cellPropsClassName),
     };
 
     cellProps.style = {
