@@ -693,7 +693,9 @@ export const Kitchensink: Story = {
                   </EuiFormAppend>
                 }
                 closePopover={() => setPopoverOpenA(false)}
-              />
+              >
+                Popover content
+              </EuiPopover>
             }
           />
 
@@ -940,7 +942,9 @@ export const Kitchensink: Story = {
                   </EuiButtonEmpty>
                 }
                 closePopover={() => setPopoverOpenB(false)}
-              />
+              >
+                Popover content
+              </EuiPopover>
             }
             append={
               <EuiToolTip content="content">
@@ -965,7 +969,9 @@ export const Kitchensink: Story = {
                   </EuiFilterButton>
                 }
                 closePopover={() => setPopoverOpenB(false)}
-              />
+              >
+                Popover content
+              </EuiPopover>
             }
           />
 
@@ -992,7 +998,9 @@ export const Kitchensink: Story = {
                   <EuiButtonIcon iconType="gear" aria-label="Gear this" />
                 }
                 closePopover={() => {}}
-              />,
+              >
+                Popover content
+              </EuiPopover>,
               'String',
             ]}
           />
