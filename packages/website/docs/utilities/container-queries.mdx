@@ -101,3 +101,17 @@ const styles = css`
 * `containerName?: string`: When provided, it will be used to target
   the containment context and run queries against it. Otherwise, the nearest
   ancestor with containment will be queried instead.
+
+## Querying containers using JS
+
+For performance reasons, using container queries in JS is not recommended.
+All layout transforms related to container query changes should be handled
+directly in CSS (or CSS-in-JS) whenever possible.
+This ensures good performance and omits React tree rerenders caused
+by viewport or container resizes, which are the major cause of the application
+feeling sluggish and sub 60fps while elements being resized.
+
+That being said, we're aware that sometimes it is necessary to access
+container queries from JS land, and we provide a (relatively) performant
+way to do so - the `useEuiContainerQuery()` hook.
+
