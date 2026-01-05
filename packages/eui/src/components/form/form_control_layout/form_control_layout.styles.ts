@@ -249,11 +249,11 @@ export const euiFormControlLayoutSideNodeStyles = (
       })
     ),
     uncompressed: `
-      &:not(:has(> ${buttons}:first-child, > *:first-child > ${buttons})) {
+      &:not(:has(> ${buttons}:first-child, > *:first-child ${buttons})) {
         ${logicalCSS('padding-left', euiTheme.size.m)}
       }
 
-      &:not(:has(> ${buttons}:last-child, > *:last-child > ${buttons})) {
+      &:not(:has(> ${buttons}:last-child, > *:last-child ${buttons})) {
         ${logicalCSS('padding-right', euiTheme.size.m)}
       }
 
