@@ -14,7 +14,7 @@ interface SVGRProps {
   title?: string;
   titleId?: string;
 }
-const EuiIconMenuRight = ({
+const EuiIconMinusSquare = ({
   title,
   titleId,
   ...props
@@ -28,7 +28,11 @@ const EuiIconMenuRight = ({
     {...props}
   >
     {title ? <title id={titleId}>{title}</title> : null}
-    <path d="M14.986 7.382a.501.501 0 0 1 .013.152c.014.4-.133.806-.439 1.112l-2.12 2.122a.5.5 0 1 1-.708-.708L13.792 8H1.5a.5.5 0 0 1 0-1h12.121l-1.889-1.89a.5.5 0 0 1 .707-.706l2.121 2.12c.241.242.383.544.426.858ZM1.5 3h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1 0-1Zm0 8h7a.5.5 0 1 1 0 1h-7a.5.5 0 1 1 0-1Z" />
+    <path d="M10.611 7H4.39c-.216 0-.39.224-.39.5s.174.5.389.5h6.222c.215 0 .389-.224.389-.5s-.174-.5-.389-.5Z" />
+    <path
+      fillRule="evenodd"
+      d="M1 3a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V3Zm2-1h9a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1Z"
+    />
   </svg>
 );
-export const icon = EuiIconMenuRight;
+export const icon = EuiIconMinusSquare;

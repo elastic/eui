@@ -258,7 +258,7 @@ export const typeToPathMap = {
   function: 'function',
   gear: 'gear',
   gisApp: 'app_gis',
-  glasses: 'readOnly', // NOTE: To be deprecated in favor of `readOnly`
+  glasses: 'read_only', // NOTE: To be deprecated in favor of `readOnly`
   globe: 'globe',
   grab: 'drag_vertical', // NOTE: To be deprecated in favor of dragVertical
   grabHorizontal: 'drag_horizontal', // NOTE: To be deprecated in favor of dragHorizontal
@@ -421,8 +421,9 @@ export const typeToPathMap = {
   minus: 'minus',
   minusCircle: 'minus_circle',
   minusInCircle: 'minus_circle', // NOTE: To be deprecated in favor of minusCircle
-  minusInCircleFilled: 'minus_in_circle', // NOTE: To be deprecated in favor of minusCircle
-  minusInSquare: 'minus_in_square',
+  minusInCircleFilled: 'minus_circle', // NOTE: To be deprecated in favor of minusCircle
+  minusInSquare: 'minus_square', // NOTE: To be deprecated in favor of minusSquare
+  minusSquare: 'minus_square',
   mobile: 'mobile',
   monitoringApp: 'app_monitoring',
   moon: 'moon',
@@ -462,7 +463,8 @@ export const typeToPathMap = {
   plusCircle: 'plus_circle',
   plusInCircle: 'plus_circle', // NOTE: To be deprecated in favor of plusCircle
   plusInCircleFilled: 'plus_circle', // NOTE: To be deprecated in favor of plusCircle
-  plusInSquare: 'plus_in_square',
+  plusInSquare: 'plus_square', // NOTE: To be deprecated in favor of plusSquare
+  plusSquare: 'plus_square',
   popout: 'external', // NOTE: To be deprecated in favor of external
   presentation: 'presentation',
   productRobot: 'product_robot',
@@ -545,8 +547,8 @@ export const typeToPathMap = {
   timeline: 'timeline',
   timelineWithArrow: 'timeline_with_arrow',
   timelionApp: 'app_timelion',
-  timeRefresh: 'refreshTime', // NOTE: To be deprecated in favor of refreshTime
-  refreshTime: 'refreshTime',
+  timeRefresh: 'refresh_time', // NOTE: To be deprecated in favor of refreshTime
+  refreshTime: 'refresh_time',
   timeslider: 'clock_control', // NOTE: To be deprecated in favor of clockControl
   training: 'presentation', // NOTE: To be deprecated in favor of presentation,
   transitionLeftIn: 'transition_left_in',
