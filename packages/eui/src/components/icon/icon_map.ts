@@ -122,6 +122,7 @@ export const typeToPathMap = {
   controlsVertical: 'controls', // NOTE: To be deprecated in favor of `controls`
   copy: 'copy',
   copyClipboard: 'copy', // NOTE: To be deprecated in favor of `copy`
+  crossProjectSearch: 'cross_project_search',
   createAdvancedJob: 'ml_create_advanced_job',
   createGenericJob: 'ml_create_generic_job',
   createGeoJob: 'ml_create_geo_job',
@@ -139,6 +140,7 @@ export const typeToPathMap = {
   cut: 'scissors', // NOTE: To be deprecated in favor of scissors
   scissors: 'scissors',
   dashboardApp: 'app_dashboard',
+  dashedCircle: 'dashed_circle',
   dataVisualizer: 'ml_data_visualizer',
   database: 'database',
   desktop: 'display', // NOTE: To be deprecated in favor of display

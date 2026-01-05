@@ -25,6 +25,8 @@ import {
 import { UseEuiTheme } from '../../services';
 import { euiFormMaxWidth } from '../form/form.styles';
 
+export const EUI_FLYOUT_CONTAINER_NAME = 'euiFlyout' as const;
+
 export const FLYOUT_BREAKPOINT = 'm' as const;
 
 export const euiFlyoutSlideInRight = keyframes`

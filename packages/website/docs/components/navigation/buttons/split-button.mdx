@@ -1,0 +1,320 @@
+---
+sidebar_position: 2
+sidebar_label: Split button
+keywords: [EuiSplitButton]
+---
+
+# Split button
+
+Split buttons combine a primary and secondary action into a visual button group. The main button performs the most common action, while the secondary button may perform an additional action
+or open a dropdown popover with related secondary actions. This pattern is ideal when you have one primary action that users perform frequently, along with one or several related alternatives.
+
+`EuiSplitButton` is composed of two sub-components:
+- `EuiSplitButton.ActionPrimary`: The main action button
+- `EuiSplitButton.ActionSecondary`: The secondary action button
+
+`EuiSplitButton.ActionPrimary` is by default rendered as a standard button with text, but it can be rendered as icon button by setting `isIconOnly={true}` and passing a `iconType`.
+`EuiSplitButton.ActionSecondary` is always rendered as an icon button.
+
+:::info `EuiSplitButton` only allows `EuiSplitButton.ActionPrimary` and `EuiSplitButton.ActionSecondary` as children.
+You may use wrappers that don't change the DOM structure (like `React.memo()` or `React.lazy()`) to wrap these components. Other component wrappers are not supported and will break styling.
+:::
+
+```tsx interactive
+import React, { useState } from 'react';
+import { css } from '@emotion/react';
+import {
+  EuiButton,
+  EuiSplitButton,
+  EuiContextMenu,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiSpacer,
+  EuiSelect,
+  EuiSwitch,
+} from '@elastic/eui';
+import { COLORS } from '@elastic/eui/es/components/button/button';
+
+export default () => {
+  const [isFilled, setIsFilled] = useState(false);
+  const [isSizeSmall, setIsSizeSmall] = useState(false);
+
+  const [isDisabled, setIsDisabled] = useState(false);
+  const [isPrimaryDisabled, setIsPrimaryDisabled] = useState(false);
+  const [isSecondaryDisabled, setIsSecondaryDisabled] = useState(false);
+
+  const [isLoading, setIsLoading] = useState(false);
+  const [isPrimaryLoading, setIsPrimaryLoading] = useState(false);
+  const [isSecondaryLoading, setIsSecondaryLoading] = useState(false);
+
+  const [isPrimaryIconOnly, setIsPrimaryIconOnly] = useState(false);
+
+  const [isFirstPopoverOpen, setIsFirstPopoverOpen] = useState(false);
+
+  // While `accentSecondary` is currently available on the component, it is likely to be removed
+  // `neutral` and `risk` are only tentatively added but might be removed
+  const filteredColors = COLORS.filter((name) => !['accentSecondary', 'neutral', 'risk'].includes(name));
+  const buttonColorsOptions = filteredColors.map((name) => {
+    return {
+      value: name,
+      text: name,
+    };
+  });
+
+  const [buttonColor, setButtonColor] = useState(buttonColorsOptions[2].value);
+
+  const onChangeButtonColor = (e) => {
+    setButtonColor(e.target.value);
+  };
+
+  return (
+    <>
+      <EuiFlexGroup
+        gutterSize="m"
+        alignItems="center"
+        wrap={true}
+      >
+        <EuiFlexItem grow={false}>
+          <EuiSelect
+            prepend="Color"
+            options={buttonColorsOptions}
+            value={buttonColor}
+            onChange={(e) => onChangeButtonColor(e)}
+            compressed
+            aria-label="Button colors"
+          />
+        </EuiFlexItem>
+        <EuiFlexItem grow={false}>
+          <EuiSwitch
+            compressed
+            label="Fill"
+            checked={isFilled}
+            onChange={() => setIsFilled(!isFilled)}
+          />
+        </EuiFlexItem>
+        <EuiFlexItem grow={false}>
+          <EuiSwitch
+            compressed
+            label="Small"
+            checked={isSizeSmall}
+            onChange={() => setIsSizeSmall(!isSizeSmall)}
+          />
+        </EuiFlexItem>
+        <EuiFlexItem grow={false}>
+          <EuiSwitch
+            compressed
+            label="Disabled"
+            checked={isDisabled}
+            onChange={() => setIsDisabled(!isDisabled)}
+          />
+        </EuiFlexItem>
+        <EuiFlexItem grow={false}>
+          <EuiSwitch
+            compressed
+            label="isLoading"
+            checked={isLoading}
+            onChange={() => setIsLoading(!isLoading)}
+          />
+        </EuiFlexItem>
+      </EuiFlexGroup>
+
+      <EuiSpacer size="m" />
+
+      <EuiFlexGroup
+        gutterSize="m"
+        alignItems="center"
+        wrap={true}
+      >
+        <EuiFlexItem grow={false}>
+          <EuiSwitch
+            compressed
+            label="Primary / isIconOnly"
+            checked={isPrimaryIconOnly}
+            onChange={() => setIsPrimaryIconOnly(!isPrimaryIconOnly)}
+          />
+        </EuiFlexItem>
+        <EuiFlexItem grow={false}>
+          <EuiSwitch
+            compressed
+            label="Primary / isDisabled"
+            checked={isPrimaryDisabled}
+            onChange={() => setIsPrimaryDisabled(!isPrimaryDisabled)}
+          />
+        </EuiFlexItem>
+         <EuiFlexItem grow={false}>
+          <EuiSwitch
+            compressed
+            label="Primary / isLoading"
+            checked={isPrimaryLoading}
+            onChange={() => setIsPrimaryLoading(!isPrimaryLoading)}
+          />
+        </EuiFlexItem>
+      </EuiFlexGroup>
+
+      <EuiSpacer size="m" />
+
+      <EuiFlexGroup
+        gutterSize="m"
+        alignItems="center"
+        wrap={true}
+      >
+        <EuiFlexItem grow={false}>
+          <EuiSwitch
+            compressed
+            label="Secondary / isDisabled"
+            checked={isSecondaryDisabled}
+            onChange={() => setIsSecondaryDisabled(!isSecondaryDisabled)}
+          />
+        </EuiFlexItem>
+         <EuiFlexItem grow={false}>
+          <EuiSwitch
+            compressed
+            label="Secondary / isLoading"
+            checked={isSecondaryLoading}
+            onChange={() => setIsSecondaryLoading(!isSecondaryLoading)}
+          />
+        </EuiFlexItem>
+      </EuiFlexGroup>
+
+      <EuiSpacer />
+
+      <EuiSplitButton
+        size={isSizeSmall ? 's' : 'm'}
+        fill={isFilled}
+        color={buttonColor}
+        isDisabled={isDisabled}
+        isLoading={isLoading}
+      >
+        <EuiSplitButton.ActionPrimary
+          isDisabled={isPrimaryDisabled}
+          isIconOnly={isPrimaryIconOnly}
+          iconType="refresh"
+          isLoading={isPrimaryLoading}
+        >
+          Refresh
+        </EuiSplitButton.ActionPrimary>
+        <EuiSplitButton.ActionSecondary
+          iconType="backgroundTask"
+          aria-label="Send to background"
+          isDisabled={isSecondaryDisabled}
+          isLoading={isSecondaryLoading}
+        />
+      </EuiSplitButton>
+    </>
+  );
+}
+```
+
+Both sub-components accept the same props as `EuiButton` and `EuiButtonIcon` respectively. 
+Some specific props are however controlled by the parent `EuiSplitButton` component to ensure expected visual output. 
+These common props are: `size`, `color`, and `fill`. Additionally, you can control `isDisabled` and `isLoading` states for both actions combined as well as individually. 
+The parent prop will always override the sub-component prop when both are provided.
+
+## Tooltips and popovers
+
+To apply a tooltip to either action, you can pass `tooltipProps` which will render an `EuiToolTip` wrapping the button.
+For `EuiSplitButton.ActionSecondary` only, you can also pass `popoverProps` to render an `EuiPopover`.
+
+```tsx interactive
+import React, { useState } from 'react';
+import { css } from '@emotion/react';
+import {
+  EuiButton,
+  EuiSplitButton,
+  EuiContextMenu,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiSpacer,
+  EuiSelect,
+  EuiSwitch,
+} from '@elastic/eui';
+import { COLORS } from '@elastic/eui/es/components/button/button';
+
+export default () => {
+  const [isFirstPopoverOpen, setIsFirstPopoverOpen] = useState(false);
+
+  const menu = (
+    <EuiContextMenu
+      initialPanelId={0}
+      panels={[
+        {
+          id: 0,
+          items: [
+            {
+              name: 'Action 1 (click)',
+              icon: 'search',
+              onClick: () => {},
+            },
+            {
+              name: 'Action 2 (link)',
+              icon: 'user',
+              href: 'http://elastic.co',
+              target: '_blank',
+            },
+            {
+              name: 'Action 3 (tooltip)',
+              icon: 'document',
+              toolTipContent: 'Optional content for a tooltip',
+              toolTipProps: {
+                title: 'Optional tooltip title',
+                position: 'right',
+              },
+              onClick: () => {},
+            },
+          ],
+        },
+      ]}
+    />
+  );
+
+  return (
+    <EuiSplitButton>
+      <EuiSplitButton.ActionPrimary
+        iconType="save"
+        tooltipProps={{
+          content: 'Primary action tooltip',
+          position: 'bottom',
+          delay: 'regular'
+        }}
+      >
+        Save
+      </EuiSplitButton.ActionPrimary>
+      <EuiSplitButton.ActionSecondary
+        iconType="arrowDown"
+        aria-label="Open secondary actions menu"
+        onClick={() => setIsFirstPopoverOpen(!isFirstPopoverOpen)}
+        popoverProps={{
+          isOpen: isFirstPopoverOpen,
+          closePopover: () => setIsFirstPopoverOpen(false),
+          panelPaddingSize: 's',
+          children: menu,
+        }}
+      />
+    </EuiSplitButton>
+  );
+}
+```
+
+## Usage
+
+:::accessibility Accessibility
+Using `<EuiSplitButton.ActionSecondary>` or `<EuiSplitButton.ActionPrimary isIconOnly>` requires `aria-label` to be set to ensure an accessible label for the icon-only 
+button is available to screen readers.
+:::
+
+### Single primary and secondary action
+
+When there is only one primary and one secondary action, the `onClick` handler can be passed directly to each action and perform individual actions for each action button.
+
+### Multiple secondary actions
+
+When there are multiple secondary actions use the `popoverProps` prop on `EuiSplitButton.ActionSecondary` to display your custom subset of secondary actions in a `EuiPopover` component.
+
+## Props
+
+import docgen from '@elastic/eui-docgen/dist/components/button/split_button/';
+import docgenActions from '@elastic/eui-docgen/dist/components/button/split_button/';
+
+<PropTable definition={docgen.EuiSplitButton} />
+<PropTable definition={docgenActions['EuiSplitButtonActionPrimary']} />
+<PropTable definition={docgenActions['EuiSplitButtonActionSecondary']} />

@@ -52,6 +52,7 @@ type ButtonVariantColors = {
   background: string;
   backgroundHover: string;
   backgroundActive: string;
+  borderColor: string;
 };
 
 const getButtonVariantTokenValues = (
@@ -105,16 +106,15 @@ const getButtonVariantTokenValues = (
     background: euiTheme.components.buttons[backgroundTokenName],
     backgroundHover: euiTheme.components.buttons[backgroundHoverTokenName],
     backgroundActive: euiTheme.components.buttons[backgroundActiveTokenName],
+    borderColor: highContrastMode
+      ? foreground
+      : color === 'text'
+      ? euiTheme.colors.borderBasePlain
+      : 'transparent',
   };
 };
 
-/**
- * Creates the `base` version of button styles with proper text contrast.
- * @param euiThemeContext
- * @param color One of the named button colors or 'disabled'
- * @returns Style object `{ backgroundColor, color }`
- */
-export const euiButtonColor = (
+export const getEuiButtonColors = (
   euiThemeContext: UseEuiTheme,
   color: _EuiExtendedButtonColor | 'disabled'
 ) => {
@@ -133,17 +133,30 @@ export const euiButtonColor = (
         ? foreground
         : makeHighContrastColor(foreground)(background),
     backgroundColor: background,
-    ..._highContrastBorder(euiThemeContext, foreground),
+    borderColor: buttonColors.borderColor,
   };
 };
 
 /**
- * Creates the `fill` version of buttons styles with proper text contrast.
+ * Creates the `base` version of button styles with proper text contrast.
  * @param euiThemeContext
  * @param color One of the named button colors or 'disabled'
  * @returns Style object `{ backgroundColor, color }`
  */
-export const euiButtonFillColor = (
+export const euiButtonColor = (
+  euiThemeContext: UseEuiTheme,
+  color: _EuiExtendedButtonColor | 'disabled'
+) => {
+  const buttonColors = getEuiButtonColors(euiThemeContext, color);
+
+  return {
+    color: buttonColors.color,
+    backgroundColor: buttonColors.backgroundColor,
+    ..._highContrastBorder(euiThemeContext, buttonColors.borderColor),
+  };
+};
+
+export const getEuiFilledButtonColors = (
   euiThemeContext: UseEuiTheme,
   color: _EuiExtendedButtonColor | 'disabled'
 ) => {
@@ -159,9 +172,31 @@ export const euiButtonFillColor = (
   return {
     color: foreground,
     backgroundColor: background,
+    borderColor: color === 'disabled' ? foreground : background,
+  };
+};
+
+/**
+ * Creates the `fill` version of buttons styles with proper text contrast.
+ * @param euiThemeContext
+ * @param color One of the named button colors or 'disabled'
+ * @returns Style object `{ backgroundColor, color }`
+ */
+export const euiButtonFillColor = (
+  euiThemeContext: UseEuiTheme,
+  color: _EuiExtendedButtonColor | 'disabled'
+) => {
+  const buttonColors = getEuiFilledButtonColors(euiThemeContext, color);
+
+  const foreground = buttonColors.color;
+  const background = buttonColors.backgroundColor;
+
+  return {
+    color: foreground,
+    backgroundColor: background,
     ..._highContrastBorder(
       euiThemeContext,
-      color === 'disabled' ? foreground : background // The border is necessary for Windows high contrast themes, which ignore background-color
+      buttonColors.borderColor // The border is necessary for Windows high contrast themes, which ignore background-color
     ),
   };
 };

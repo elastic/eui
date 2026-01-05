@@ -383,6 +383,14 @@ export const ExpandedNestedTable: Story = {
   },
 };
 
+export const EmptyTable: Story = {
+  args: {
+    ...Playground.args,
+    items: [],
+    noItemsMessage: 'No users found',
+  },
+};
+
 export const DarkMode: Story = {
   tags: ['vrt-only'],
   globals: { colorMode: 'dark' },
