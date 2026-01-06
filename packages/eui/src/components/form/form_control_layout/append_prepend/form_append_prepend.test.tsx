@@ -43,7 +43,7 @@ describe('EuiFormAppend', () => {
     );
 
     expect(container.firstChild).toMatchSnapshot();
-    expect(classes[0]).toBe('euiFormAppend');
+    expect(classes).toContain('euiFormAppend');
   });
 });
 
@@ -60,7 +60,7 @@ describe('EuiFormPrepend', () => {
     );
 
     expect(container.firstChild).toMatchSnapshot();
-    expect(classes[0]).toBe('euiFormPrepend');
+    expect(classes).toContain('euiFormPrepend');
   });
 });
 
