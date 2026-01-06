@@ -313,11 +313,11 @@ exports[`EuiQuickSelectPanels customQuickSelectPanels should render custom panel
             class="euiSwitch__label emotion-euiSwitch__label-compressed"
             id="generated-id"
           >
-            <label
+            <span
               class="euiFormLabel emotion-euiFormLabel"
             >
               Refresh every
-            </label>
+            </span>
           </span>
         </div>
       </div>

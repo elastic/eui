@@ -6,11 +6,11 @@ exports[`EuiFormAppend is rendered 1`] = `
   class="euiFormAppend testClass1 testClass2 css-14xvn4g-side-uncompressed-euiTestCss"
   data-test-subj="test subject string"
 >
-  <label
+  <span
     class="euiFormLabel emotion-euiFormLabel"
   >
     Label
-  </label>
+  </span>
 </div>
 `;
 
@@ -20,11 +20,11 @@ exports[`EuiFormAppendPrepend is rendered 1`] = `
   class="euiFormAppend testClass1 testClass2 css-14xvn4g-side-uncompressed-euiTestCss"
   data-test-subj="test subject string"
 >
-  <label
+  <span
     class="euiFormLabel emotion-euiFormLabel"
   >
     Label
-  </label>
+  </span>
 </div>
 `;
 
@@ -34,10 +34,10 @@ exports[`EuiFormPrepend is rendered 1`] = `
   class="euiFormPrepend testClass1 testClass2 css-14xvn4g-side-uncompressed-euiTestCss"
   data-test-subj="test subject string"
 >
-  <label
+  <span
     class="euiFormLabel emotion-euiFormLabel"
   >
     Label
-  </label>
+  </span>
 </div>
 `;

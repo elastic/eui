@@ -100,6 +100,7 @@ export const EuiFormAppendPrepend: FunctionComponent<
   EuiFormAppendPrependProps
 > = ({
   element = 'div',
+  id,
   side,
   children,
   className,
@@ -137,10 +138,12 @@ export const EuiFormAppendPrepend: FunctionComponent<
   const labelProps = isButton
     ? ({
         type: 'span',
+        id,
         className: 'eui-textTruncate',
       } as _EuiFormLabelSpanProps)
     : ({
         type: 'label',
+        id,
         htmlFor: inputId || undefined,
       } as _EuiFormLabelProps);
 

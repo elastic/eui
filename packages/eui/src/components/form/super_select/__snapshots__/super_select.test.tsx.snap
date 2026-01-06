@@ -93,11 +93,11 @@ exports[`EuiSuperSelect props prepend and append 1`] = `
       <div
         class="euiFormPrepend css-1civv6t-side-uncompressed"
       >
-        <label
+        <span
           class="euiFormLabel emotion-euiFormLabel"
         >
           prepend
-        </label>
+        </span>
       </div>
     </div>
     <div
@@ -129,11 +129,11 @@ exports[`EuiSuperSelect props prepend and append 1`] = `
       <div
         class="euiFormAppend css-1civv6t-side-uncompressed"
       >
-        <label
+        <span
           class="euiFormLabel emotion-euiFormLabel"
         >
           append
-        </label>
+        </span>
       </div>
     </div>
   </div>

@@ -62,6 +62,7 @@ export const EuiFormLabel: FunctionComponent<EuiFormLabelProps> = ({
   isDisabled,
   children,
   className,
+  htmlFor,
   ...rest
 }: EuiFormLabelProps) => {
   const styles = useEuiMemoizedStyles(euiFormLabelStyles);
@@ -87,7 +88,7 @@ export const EuiFormLabel: FunctionComponent<EuiFormLabelProps> = ({
         {children}
       </legend>
     );
-  } else if (type === 'span') {
+  } else if (type === 'span' || !htmlFor) {
     return (
       <span
         css={cssStyles}
@@ -102,6 +103,7 @@ export const EuiFormLabel: FunctionComponent<EuiFormLabelProps> = ({
       <label
         css={cssStyles}
         className={classes}
+        htmlFor={htmlFor}
         {...(rest as LabelHTMLAttributes<HTMLLabelElement>)}
       >
         {children}

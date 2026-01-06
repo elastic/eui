@@ -101,7 +101,18 @@ describe('EuiFormAppendPrepend', () => {
     });
 
     describe('label', () => {
-      it('renders a label element', () => {
+      it('renders a label element when an `id` is provided', () => {
+        const { getByText } = render(
+          <EuiFormAppendPrepend {...defaultProps} inputId="input-id" />
+        );
+
+        const element = getByText(defaultProps.label);
+
+        expect(element).toBeInTheDocument();
+        expect(element.tagName).toBe('LABEL');
+      });
+
+      it('renders a span element when no `id` is provided', () => {
         const { getByText } = render(
           <EuiFormAppendPrepend {...defaultProps} />
         );
@@ -109,7 +120,7 @@ describe('EuiFormAppendPrepend', () => {
         const element = getByText(defaultProps.label);
 
         expect(element).toBeInTheDocument();
-        expect(element.tagName).toBe('LABEL');
+        expect(element.tagName).toBe('SPAN');
       });
 
       it('renders a span element for buttons', () => {
