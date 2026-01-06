@@ -203,19 +203,89 @@ export default () => {
 
 ## Semantic label relations
 
-:::info For non-interactive `prepend` and `append` the content is rendered as `<label>` element. 
+:::accessibility HTML form elements (e.g. `<input>` or `<textarea>`) require a label for accessibility.
+If you're wrapping your component in a **EuiFormRow** with `label` prop, the label is automatically linked to the wrapped form control. 
+If your using a standalone form component (without wrapping** EuiFormRow)** you'll need to manually ensure the form control has an accessible label.
 :::
 
-HTML form elements (e.g. `<input>` or `<textarea>`) require a label for accessibility. If the `prepend` or `append` content is non-interactive, it will be rendered as a `<label>` element. 
+To ensure the form control has an accessible label, you can pass `id` on **EuiFormControlLayout** (or a form control like **EuiFieldText** or **EuiFieldNumber** that renders a `EuiFormControlLayout` 
+internally when using it with `controlOnly={false}`). This renders non-interactive `prepend` or `append` content automatically as semantically linked `<label>` element. You can also use `inputId` 
+on **EuiFormPrepend** or **EuiFormAppend** to link the content as label to a specific form control. 
 
-To link form components and their labels, pass `id` to **EuiFormControlLayout** or any form component and set the same id as `inputId` on the **EuiFormPrepend** or **EuiFormAppend** component.
+If you're using both `prepend` and `append` but don't want both automatically linked as label when passing `id`, use `inputId=""` on either **EuiFormPrepend** or **EuiFormAppend** to unset one of them.
 
-:::info
-When passing `id` to **EuiFormControlLayout** or a base, single-control EUI form component like **EuiFieldText** or **EuiFieldNumber** that renders a `EuiFormControlLayout` internally (when `controlOnly={false}`), 
-the `inputId` on **EuiFormPrepend** and **EuiFormAppend** is automatically set to the same value.
+import { Example } from '@site/src/components';
+import { EuiFieldText, EuiFormAppend, EuiFormPrepend, EuiSpacer, EuiFormRow } from '@elastic/eui';
 
-If you're using both `prepend` and `append` but don't want both linked as label, use `inputId=""` on either **EuiFormPrepend** or **EuiFormAppend** to unset one of them.
-:::
+<Example>
+  <Example.Preview>
+    <EuiFieldText
+      id="input-id"
+      placeholder="Text field"
+      prepend={<EuiFormPrepend label="Linked label" />}
+      append={
+        <EuiFormAppend
+          label="Additional text"
+          inputId=""
+        />
+      }
+    />
+  </Example.Preview>
+  <Example.Snippet>
+    ```ts
+      <EuiFieldText
+        id="input-id"
+        placeholder="Text field"
+        prepend={<EuiFormPrepend label="Linked label" />}
+        append={
+          <EuiFormAppend
+            label="Additional text"
+            inputId=""
+          />
+        }
+      />
+    ```
+  </Example.Snippet>
+</Example>
+
+
+If you don't pass an `id`, the non-interactive `prepend` and `append` content will then be rendered as a simple, non-linked `<span>` element.
+To ensure your form control has an accessible label anyway, pass an `aria-label` or `aria-labelledby` to the form control (e.g. **EuiFieldText** or **EuiFieldNumber**).
+
+<Example>
+ <Example.Preview>
+    <EuiFieldText
+      placeholder="Text field"
+      prepend={<EuiFormPrepend label="Custom linked label" id="prepend-id" />}
+      aria-labelledby="prepend-id"
+    />
+
+    <EuiSpacer size="m" />
+
+    <EuiFieldText
+      placeholder="Text field"
+      prepend={<EuiFormPrepend label="Non-linked text" />}
+      aria-label="Input label"
+    />
+  </Example.Preview>
+  <Example.Snippet>
+    ```ts
+      <EuiFieldText
+        placeholder="Text field"
+        prepend={<EuiFormPrepend label="Custom linked label" id="prepend-id" />}
+        aria-labelledby="prepend-id"
+      />
+
+      <EuiFieldText
+        placeholder="Text field"
+        prepend={<EuiFormPrepend label="Non-linked text" />}
+        aria-label="Input label"
+      />
+    ```
+  </Example.Snippet>
+</Example>
+
+
 
 ## Props
 
