@@ -1,4 +1,10 @@
-# Container queries
+---
+title: Container queries
+---
+
+import { EuiBetaBadge } from '@elastic/eui';
+
+# Container queries <EuiBetaBadge label="Beta" color="accent" />
 
 Container queries allow you to create styles that adapt based on the available
 space within element's parent container, rather than the entire browser
@@ -115,3 +121,37 @@ That being said, we're aware that sometimes it is necessary to access
 container queries from JS land, and we provide a (relatively) performant
 way to do so - the `useEuiContainerQuery()` hook.
 
+What's important to point out is that using the hook requires passing
+a special `ref` prop provided by it to the element you want to query,
+so that the calculation can be done on the right element.
+
+<Demo isSourceOpen>
+  ```tsx
+  import React from 'react';
+  import { useEuiContainerQuery, euiContainerCSS, EuiCodeBlock } from '@elastic/eui';
+
+  export default () => {
+    const { ref, matches } = useEuiContainerQuery('(width > 300px)');
+
+    return (
+      <EuiResizableContainer>
+        {(EuiResizablePanel, EuiResizableButton) => (
+          <>
+            <EuiResizablePanel initialSize="50" css={euiContainerCSS('inline-size')}>
+              <div ref={ref}>
+                <EuiCodeBlock language="jsx" fontSize="m" paddingSize="m" whiteSpace="pre">
+                  {`/* true when width > 300px */\nmatches = ${matches ? 'true' : 'false'}`}
+                </EuiCodeBlock>
+              </div>
+            </EuiResizablePanel>
+            <EuiResizableButton accountForScrollbars="before" />
+            <EuiResizablePanel initialSize="50">
+              Resize the resizable panel to see the left side content changing.
+            </EuiResizablePanel>
+          </>
+        )}
+      </EuiResizableContainer>
+    );
+  };
+```
+</Demo>
