@@ -251,17 +251,16 @@ const EuiFormControlLayoutSideNodes: FunctionComponent<{
         node
       )
     );
+  } else if (typeof nodes === 'string') {
+    content = (
+      <AppendOrPrepend
+        inputId={inputId}
+        compressed={compressed}
+        label={nodes}
+      />
+    );
   } else {
-    content =
-      typeof nodes === 'string' ? (
-        <AppendOrPrepend
-          inputId={inputId}
-          compressed={compressed}
-          label={nodes}
-        />
-      ) : (
-        nodes
-      );
+    content = nodes;
   }
 
   return (
