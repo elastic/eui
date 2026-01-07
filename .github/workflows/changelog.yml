@@ -6,7 +6,7 @@ on:
 
 jobs:
   changelog:
-    runs-on: ubuntu-slim
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
         with:
