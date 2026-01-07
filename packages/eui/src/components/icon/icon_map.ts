@@ -507,7 +507,7 @@ export const typeToPathMap = {
   sortLeft: 'sort_left',
   sortRight: 'sort_right',
   sortUp: 'sort_up',
-  sortable: 'sortable', 
+  sortable: 'sortable',
   spaces: 'spaces',
   spacesApp: 'app_spaces',
   sparkles: 'sparkles',
