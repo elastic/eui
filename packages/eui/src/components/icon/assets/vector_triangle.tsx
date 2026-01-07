@@ -14,7 +14,7 @@ interface SVGRProps {
   title?: string;
   titleId?: string;
 }
-const EuiIconArrowVertical = ({
+const EuiIconVectorTriangle = ({
   title,
   titleId,
   ...props
@@ -28,7 +28,7 @@ const EuiIconArrowVertical = ({
     {...props}
   >
     {title ? <title id={titleId}>{title}</title> : null}
-    <path d="m12.354 5.646-.707.708L8.5 3.207v9.586l3.146-3.147.707.707L8 14.707l-4.354-4.354.708-.707L7.5 12.793V3.207L4.354 6.354l-.708-.708L8 1.293l4.354 4.353Z" />
+    <path d="M8.5 1.443a1 1 0 0 0-1 0L2.572 4.29a1 1 0 0 0-.5.866v5.69a1 1 0 0 0 .5.866L7.5 14.557a1 1 0 0 0 1 0l4.928-2.846a1 1 0 0 0 .5-.866v-5.69a1 1 0 0 0-.5-.866L8.5 1.443ZM9 .577l4.928 2.846a2 2 0 0 1 1 1.732v5.69a2 2 0 0 1-1 1.732L9 15.423a2 2 0 0 1-2 0l-4.928-2.846a2 2 0 0 1-1-1.732v-5.69a2 2 0 0 1 1-1.732L7 .577a2 2 0 0 1 2 0Z" />
   </svg>
 );
-export const icon = EuiIconArrowVertical;
+export const icon = EuiIconVectorTriangle;

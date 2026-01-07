@@ -31,8 +31,6 @@ export const typeToPathMap = {
   apmApp: 'app_apm',
   apmTrace: 'chart_waterfall', // NOTE: To be deprecated in favor of chartWaterfall
   chartWaterfall: 'chart_waterfall',
-  arrowUpRight: 'arrow_up_right',
-  arrowVertical: 'arrow_vertical',
   appSearchApp: 'app_app_search',
   apps: 'apps',
   arrowDown: 'chevron_single_down', // NOTE: To be deprecated in favor of chevronSingleDown
@@ -433,7 +431,8 @@ export const typeToPathMap = {
   namespace: 'namespace',
   nested: 'nested',
   newChat: 'plus_circle', // NOTE: To be deprecated in favor of plusCircle
-  node: 'node',
+  node: 'vector_triangle', // NOTE: To be deprecated in favor of vectorTriangle
+  vectorTriangle: 'vector_triangle',
   notebookApp: 'app_notebook',
   number: 'number',
   offline: 'wifi_slash', // NOTE: To be deprecated in favor of wifiSlash
@@ -458,7 +457,7 @@ export const typeToPathMap = {
   pipeBreaks: 'line_break', // NOTE: To be deprecated in favor of lineBreak
   pipelineApp: 'app_pipeline',
   pipeNoBreaks: 'line_break_slash', // NOTE: To be deprecated in favor of lineBreakSlash
-  pivot: 'arrow_up_right', // NOTE: To be deprecated in favor of arrowUpRight
+  pivot: 'pivot',
   play: 'play',
   playFilled: 'play_filled', // NOTE: To be deprecated in favor of play
   plugs: 'plugs',
@@ -508,7 +507,7 @@ export const typeToPathMap = {
   sortLeft: 'sort_left',
   sortRight: 'sort_right',
   sortUp: 'sort_up',
-  sortable: 'arrow_vertical', // NOTE: To be deprecated in favor of arrowVertical,
+  sortable: 'sortable', 
   spaces: 'spaces',
   spacesApp: 'app_spaces',
   sparkles: 'sparkles',

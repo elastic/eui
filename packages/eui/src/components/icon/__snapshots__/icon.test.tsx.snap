@@ -1097,43 +1097,6 @@ exports[`EuiIcon props type arrowUp is rendered 1`] = `
 </svg>
 `;
 
-exports[`EuiIcon props type arrowUpRight is rendered 1`] = `
-<svg
-  class="euiIcon emotion-euiIcon-m-isLoaded"
-  data-icon-type="arrowUpRight"
-  data-is-loaded="true"
-  fill="none"
-  height="16"
-  role="presentation"
-  viewBox="0 0 16 16"
-  width="16"
-  xmlns="http://www.w3.org/2000/svg"
->
-  <path
-    clip-rule="evenodd"
-    d="M2.89 13.847 11.239 5.5a.522.522 0 0 0-.737-.737L2.154 13.11a.522.522 0 0 0 .738.738ZM14 6.696a.522.522 0 1 1-1.043 0v-3.13a.522.522 0 0 0-.522-.523h-3.13a.522.522 0 1 1 0-1.043h3.13C13.299 2 14 2.7 14 3.565v3.13Z"
-    fill-rule="evenodd"
-  />
-</svg>
-`;
-
-exports[`EuiIcon props type arrowVertical is rendered 1`] = `
-<svg
-  class="euiIcon emotion-euiIcon-m-isLoaded"
-  data-icon-type="arrowVertical"
-  data-is-loaded="true"
-  height="16"
-  role="presentation"
-  viewBox="0 0 16 16"
-  width="16"
-  xmlns="http://www.w3.org/2000/svg"
->
-  <path
-    d="m12.354 5.646-.707.708L8.5 3.207v9.586l3.146-3.147.707.707L8 14.707l-4.354-4.354.708-.707L7.5 12.793V3.207L4.354 6.354l-.708-.708L8 1.293l4.354 4.353Z"
-  />
-</svg>
-`;
-
 exports[`EuiIcon props type article is rendered 1`] = `
 <svg
   class="euiIcon emotion-euiIcon-m-isLoaded"
@@ -13871,6 +13834,23 @@ exports[`EuiIcon props type vectorSquare is rendered 1`] = `
 >
   <path
     d="M12.5 11V5H11V3.5H5V5H3.5v6H5v1.5h6V11h1.5Zm1 0H15v4h-4v-1.5H5V15H1v-4h1.5V5H1V1h4v1.5h6V1h4v4h-1.5v6ZM4 4V2H2v2h2Zm8 0h2V2h-2v2ZM2 14h2v-2H2v2Zm10 0h2v-2h-2v2Z"
+  />
+</svg>
+`;
+
+exports[`EuiIcon props type vectorTriangle is rendered 1`] = `
+<svg
+  class="euiIcon emotion-euiIcon-m-isLoaded"
+  data-icon-type="vectorTriangle"
+  data-is-loaded="true"
+  height="16"
+  role="presentation"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M8.5 1.443a1 1 0 0 0-1 0L2.572 4.29a1 1 0 0 0-.5.866v5.69a1 1 0 0 0 .5.866L7.5 14.557a1 1 0 0 0 1 0l4.928-2.846a1 1 0 0 0 .5-.866v-5.69a1 1 0 0 0-.5-.866L8.5 1.443ZM9 .577l4.928 2.846a2 2 0 0 1 1 1.732v5.69a2 2 0 0 1-1 1.732L9 15.423a2 2 0 0 1-2 0l-4.928-2.846a2 2 0 0 1-1-1.732v-5.69a2 2 0 0 1 1-1.732L7 .577a2 2 0 0 1 2 0Z"
   />
 </svg>
 `;
