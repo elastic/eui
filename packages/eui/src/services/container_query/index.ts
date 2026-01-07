@@ -6,4 +6,4 @@
  * Side Public License, v 1.
  */
 
-export * from './container_query_hook';
+export { useEuiContainerQuery } from './container_query_hook';
