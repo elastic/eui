@@ -368,11 +368,15 @@ exports[`EuiFormControlLayout props one append string is rendered 1`] = `
   <div
     class="euiFormControlLayout__append emotion-euiFormControlLayout__side-append"
   >
-    <label
-      class="euiFormLabel emotion-euiFormLabel"
+    <div
+      class="euiFormAppend css-1civv6t-side-uncompressed"
     >
-      1
-    </label>
+      <span
+        class="euiFormLabel emotion-euiFormLabel"
+      >
+        1
+      </span>
+    </div>
   </div>
 </div>
 `;
@@ -420,11 +424,15 @@ exports[`EuiFormControlLayout props one prepend string is rendered 1`] = `
   <div
     class="euiFormControlLayout__prepend emotion-euiFormControlLayout__side-prepend"
   >
-    <label
-      class="euiFormLabel emotion-euiFormLabel"
+    <div
+      class="euiFormPrepend css-1civv6t-side-uncompressed"
     >
-      1
-    </label>
+      <span
+        class="euiFormLabel emotion-euiFormLabel"
+      >
+        1
+      </span>
+    </div>
   </div>
   <div
     class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup-prependOnly"

@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiFormAppend is rendered 1`] = `
+<div
+  aria-label="aria-label"
+  class="euiFormAppend testClass1 testClass2 css-14xvn4g-side-uncompressed-euiTestCss"
+  data-test-subj="test subject string"
+>
+  <span
+    class="euiFormLabel emotion-euiFormLabel"
+  >
+    Label
+  </span>
+</div>
+`;
+
+exports[`EuiFormAppendPrepend is rendered 1`] = `
+<div
+  aria-label="aria-label"
+  class="euiFormAppend testClass1 testClass2 css-14xvn4g-side-uncompressed-euiTestCss"
+  data-test-subj="test subject string"
+>
+  <span
+    class="euiFormLabel emotion-euiFormLabel"
+  >
+    Label
+  </span>
+</div>
+`;
+
+exports[`EuiFormPrepend is rendered 1`] = `
+<div
+  aria-label="aria-label"
+  class="euiFormPrepend testClass1 testClass2 css-14xvn4g-side-uncompressed-euiTestCss"
+  data-test-subj="test subject string"
+>
+  <span
+    class="euiFormLabel emotion-euiFormLabel"
+  >
+    Label
+  </span>
+</div>
+`;

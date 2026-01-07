@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EuiFormLabel is rendered 1`] = `
-<label
+<span
   aria-label="aria-label"
   class="euiFormLabel testClass1 testClass2 emotion-euiFormLabel-euiTestCss"
   data-test-subj="test subject string"
@@ -9,26 +9,25 @@ exports[`EuiFormLabel is rendered 1`] = `
 `;
 
 exports[`EuiFormLabel props isDisabled is rendered 1`] = `
-<label
+<span
   class="euiFormLabel euiFormLabel-isDisabled emotion-euiFormLabel"
 />
 `;
 
 exports[`EuiFormLabel props isDisabled is still disabled with for attribute 1`] = `
-<label
+<span
   class="euiFormLabel euiFormLabel-isDisabled emotion-euiFormLabel"
-  for=""
 />
 `;
 
 exports[`EuiFormLabel props isFocused is rendered 1`] = `
-<label
+<span
   class="euiFormLabel euiFormLabel-isFocused emotion-euiFormLabel"
 />
 `;
 
 exports[`EuiFormLabel props isInvalid is rendered 1`] = `
-<label
+<span
   class="euiFormLabel euiFormLabel-isInvalid emotion-euiFormLabel-invalid"
 />
 `;
