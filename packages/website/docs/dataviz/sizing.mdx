@@ -61,8 +61,6 @@ import { useChartBaseTheme } from './use_chart_base_theme';
     EuiIcon,
     EuiSpacer,
     EuiText,
-    euiPaletteForDarkBackground,
-    euiPaletteForLightBackground,
     useEuiTheme,
   } from '@elastic/eui';
   import {
@@ -116,8 +114,7 @@ import { useChartBaseTheme } from './use_chart_base_theme';
 
   export default () => {
     const chartBaseTheme = useChartBaseTheme();
-    const { colorMode } = useEuiTheme();
-    const isDarkTheme = colorMode === 'DARK';
+    const { euiTheme } = useEuiTheme();
 
     return (
       <>
@@ -138,11 +135,7 @@ import { useChartBaseTheme } from './use_chart_base_theme';
                     data={TIME_DATA_SMALL}
                     xAccessor={0}
                     yAccessors={[1]}
-                    color={[
-                      isDarkTheme
-                        ? euiPaletteForDarkBackground()[1]
-                        : euiPaletteForLightBackground()[1],
-                    ]}
+                    color={[euiTheme.colors.vis.euiColorVisText1]}
                   />
                 </Chart>
               </EuiStat>
@@ -169,11 +162,7 @@ import { useChartBaseTheme } from './use_chart_base_theme';
                     data={TIME_DATA_SMALL}
                     xAccessor={0}
                     yAccessors={[1]}
-                    color={[
-                      isDarkTheme
-                        ? euiPaletteForDarkBackground()[1]
-                        : euiPaletteForLightBackground()[1],
-                    ]}
+                    color={[euiTheme.colors.vis.euiColorVisText1]}
                   />
                 </Chart>
                 <EuiSpacer size="s" />
@@ -208,11 +197,7 @@ import { useChartBaseTheme } from './use_chart_base_theme';
                     data={TIME_DATA_MAJOR}
                     xAccessor={0}
                     yAccessors={[1]}
-                    color={[
-                      isDarkTheme
-                        ? euiPaletteForDarkBackground()[3]
-                        : euiPaletteForLightBackground()[3],
-                    ]}
+                    color={[euiTheme.colors.vis.euiColorVisText3]}
                   />
                 </Chart>
               </EuiStat>
@@ -239,11 +224,7 @@ import { useChartBaseTheme } from './use_chart_base_theme';
                     data={TIME_DATA_SMALL_REVERSE}
                     xAccessor={0}
                     yAccessors={[1]}
-                    color={[
-                      isDarkTheme
-                        ? euiPaletteForDarkBackground()[3]
-                        : euiPaletteForLightBackground()[3],
-                    ]}
+                    color={[euiTheme.colors.vis.euiColorVisText3]}
                   />
                 </Chart>
                 <EuiSpacer size="s" />
