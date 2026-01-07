@@ -12,7 +12,7 @@ exports[`EuiSkipLink is rendered 1`] = `
     class="emotion-euiButtonDisplayContent"
   >
     <span
-      class="eui-textTruncate"
+      class="eui-textTruncate css-1ryezsz-s"
     >
       Skip
     </span>

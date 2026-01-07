@@ -14,7 +14,7 @@ exports[`ExpandedItemActions renders 1`] = `
         class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
       >
         <span
-          class="eui-textTruncate euiButtonEmpty__text"
+          class="eui-textTruncate euiButtonEmpty__text css-1ryezsz-s"
         >
           default1
         </span>
@@ -37,7 +37,7 @@ exports[`ExpandedItemActions renders 1`] = `
         class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
       >
         <span
-          class="eui-textTruncate euiButtonEmpty__text"
+          class="eui-textTruncate euiButtonEmpty__text css-1ryezsz-s"
         >
           showOnHover
         </span>

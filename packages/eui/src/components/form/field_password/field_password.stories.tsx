@@ -13,8 +13,8 @@ import {
   disableStorybookControls,
   enableFunctionToggleControls,
 } from '../../../../.storybook/utils';
-import { EuiIcon } from '../../icon';
 import { EuiFieldPassword, EuiFieldPasswordProps } from './field_password';
+import { EuiFormAppend, EuiFormPrepend } from '../form_control_layout';
 
 const meta: Meta<EuiFieldPasswordProps> = {
   title: 'Forms/EuiFieldPassword',
@@ -24,7 +24,7 @@ const meta: Meta<EuiFieldPasswordProps> = {
       control: 'radio',
       options: [undefined, 'icon', 'text'],
       mapping: {
-        icon: <EuiIcon type="faceHappy" />,
+        icon: <EuiFormAppend iconLeft="faceHappy" />,
         text: 'Appended',
         undefined: undefined,
       },
@@ -33,7 +33,7 @@ const meta: Meta<EuiFieldPasswordProps> = {
       control: 'radio',
       options: [undefined, 'icon', 'text'],
       mapping: {
-        icon: <EuiIcon type="faceHappy" />,
+        icon: <EuiFormPrepend iconLeft="faceHappy" />,
         text: 'Prepended',
         undefined: undefined,
       },
