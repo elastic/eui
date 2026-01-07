@@ -110,7 +110,9 @@ const styles = css`
 
 ## Querying containers using JS
 
+:::warning
 For performance reasons, using container queries in JS is not recommended.
+:::
 All layout transforms related to container query changes should be handled
 directly in CSS (or CSS-in-JS) whenever possible.
 This ensures good performance and omits React tree rerenders caused
