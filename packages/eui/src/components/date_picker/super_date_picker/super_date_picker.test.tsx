@@ -158,7 +158,7 @@ describe('EuiSuperDatePicker', () => {
       const quickSelectButtonProps: EuiSuperDatePickerProps['quickSelectButtonProps'] =
         {
           onMouseDown,
-          color: 'danger',
+          'aria-label': 'Quick Select',
         };
 
       const { getByTestSubject } = render(
@@ -170,7 +170,10 @@ describe('EuiSuperDatePicker', () => {
       const quickSelectButton = getByTestSubject(
         'superDatePickerToggleQuickMenuButton'
       )!;
-      expect(quickSelectButton.className).toContain('danger');
+      expect(quickSelectButton).toHaveAttribute(
+        'aria-label',
+        quickSelectButtonProps['aria-label']
+      );
       fireEvent.mouseDown(quickSelectButton);
 
       expect(onMouseDown).toHaveBeenCalledTimes(1);

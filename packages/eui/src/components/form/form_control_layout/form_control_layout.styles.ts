@@ -19,6 +19,9 @@ import { type EuiButtonDisplaySizes } from '../../button/button_display/_button_
 
 import { euiFormVariables } from '../form.styles';
 
+export const buttonSelectors =
+  '*:is(.euiButton, .euiButtonEmpty, .euiButtonIcon, .euiFormAppend, .euiFormPrepend)';
+
 export const euiFormControlLayoutStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
   const form = euiFormVariables(euiThemeContext);
@@ -154,7 +157,8 @@ export const euiFormControlLayoutSideNodeStyles = (
   const uncompressedHeight = form.controlHeight;
   const compressedHeight = form.controlCompressedHeight;
 
-  const buttons = '*:is(.euiButton, .euiButtonEmpty, .euiButtonIcon)';
+  const appendPrepend = '*:is(.euiFormAppend, .euiFormPrepend)';
+  const buttons = buttonSelectors;
   const text = '*:is(.euiFormLabel, .euiText)';
 
   const _buttonPadding = (size: EuiButtonDisplaySizes) =>
@@ -184,7 +188,13 @@ export const euiFormControlLayoutSideNodeStyles = (
 
       /* Overrides */
 
+      :has(${appendPrepend}) > *,
+      ${appendPrepend} > ${buttons} {
+        block-size: 100%;
+      }
+
       ${buttons} {
+        block-size: 100%;
         /* Override button hover/active transform */
         transform: none !important; /* stylelint-disable-line declaration-no-important */
 
@@ -199,16 +209,6 @@ export const euiFormControlLayoutSideNodeStyles = (
         cursor: default;
         overflow: hidden;
         text-overflow: ellipsis;
-      }
-
-      /* Account for button padding when spacing children */
-      /* Second > * selector accounts for buttons inside popover & tooltip wrappers */
-      &:not(:has(> ${buttons}:first-child, > *:first-child > ${buttons})) {
-        ${logicalCSS('padding-left', euiTheme.size.s)}
-      }
-
-      &:not(:has(> ${buttons}:last-child, > *:last-child > ${buttons})) {
-        ${logicalCSS('padding-right', euiTheme.size.s)}
       }
     `,
     append: css(
@@ -249,16 +249,16 @@ export const euiFormControlLayoutSideNodeStyles = (
       })
     ),
     uncompressed: `
-      &:not(:has(> ${buttons}:first-child, > *:first-child > ${buttons})) {
+      &:not(:has(> ${buttons}:first-child, > *:first-child ${buttons})) {
         ${logicalCSS('padding-left', euiTheme.size.m)}
       }
 
-      &:not(:has(> ${buttons}:last-child, > *:last-child > ${buttons})) {
+      &:not(:has(> ${buttons}:last-child, > *:last-child ${buttons})) {
         ${logicalCSS('padding-right', euiTheme.size.m)}
       }
 
       ${text} {
-       ${logicalCSS('padding-horizontal', euiTheme.size.xs)}
+        ${logicalCSS('padding-horizontal', euiTheme.size.xs)}
         line-height: ${uncompressedHeight};
       }
 
@@ -275,6 +275,19 @@ export const euiFormControlLayoutSideNodeStyles = (
       }
     `,
     compressed: css`
+      /* Legacy padding styles to handle content without <EuiFormAppend/Prepend> */
+      &:not(:has(${appendPrepend})):not(
+          :has(> ${buttons}:first-child, > *:first-child ${buttons})
+        ) {
+        ${logicalCSS('padding-left', euiTheme.size.s)}
+      }
+
+      &:not(:has(${appendPrepend})):not(
+          :has(> ${buttons}:last-child, > *:last-child ${buttons})
+        ) {
+        ${logicalCSS('padding-right', euiTheme.size.s)}
+      }
+
       ${text} {
         ${logicalCSS('padding-horizontal', euiTheme.size.xxs)}
         line-height: ${compressedHeight};
