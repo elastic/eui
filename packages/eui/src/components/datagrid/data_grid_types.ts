@@ -74,7 +74,7 @@ export interface EuiDataGridInMemoryRendererProps {
 
 export interface DataGridWrapperRowsContentsShape {
   headerRowHeight: number;
-  headerRow: ReactElement;
+  headerRow: ReactElement | null;
   footerRow: ReactElement | null;
 }
 export interface EuiDataGridSchema {
@@ -335,6 +335,11 @@ export type CommonGridProps = CommonProps &
      */
     toolbarVisibility?: boolean | EuiDataGridToolBarVisibilityOptions;
     /**
+     * Allows you to configure if the header row is rendered.
+     * @default true
+     */
+    headerVisibility?: boolean;
+    /**
      * A {@link EuiDataGridInMemory} object to define the level of high order schema-detection and sorting logic to use on your data.
      * **Try to set when possible**.
      * If omitted, disables all enhancements and assumes content is flat strings.
@@ -504,6 +509,7 @@ export interface EuiDataGridBodyProps {
   wrapperRef: MutableRefObject<HTMLDivElement | null>;
   className?: string;
   canDragAndDropColumns?: boolean;
+  showHeader?: boolean;
 }
 
 export interface EuiDataGridCustomBodyProps {
@@ -550,7 +556,7 @@ export interface EuiDataGridCustomBodyProps {
   /**
    * Header row component to render by custom renderer
    * */
-  headerRow: JSX.Element;
+  headerRow: JSX.Element | null;
   /**
    * Footer row component to render by custom renderer
    * */
