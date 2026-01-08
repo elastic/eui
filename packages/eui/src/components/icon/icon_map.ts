@@ -477,7 +477,6 @@ export const typeToPathMap = {
   push: 'push',
   productStreamsClassic: 'product_streams_classic',
   productStreamsWired: 'product_streams_wired',
-  push: 'send', // NOTE: To be deprecated in favor of send
   send: 'send',
   question: 'question',
   quote: 'quote',
