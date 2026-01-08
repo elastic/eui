@@ -9,9 +9,11 @@
 import React from 'react';
 import { shouldRenderCustomStyles } from '../../test/internal';
 import { requiredProps } from '../../test/required_props';
-import { render } from '../../test/rtl';
+import { render, renderHook } from '../../test/rtl';
+import { useEuiTheme } from '../../services';
 
 import { EuiBadge, COLORS, ICON_SIDES } from './badge';
+import { mathWithUnits, UseEuiTheme } from '@elastic/eui-theme-common';
 
 describe('EuiBadge', () => {
   shouldRenderCustomStyles(
@@ -213,6 +215,37 @@ describe('EuiBadge', () => {
 
         expect(container.firstChild).toMatchSnapshot();
       });
+    });
+  });
+
+  describe('styles', () => {
+    let theme: UseEuiTheme;
+
+    beforeAll(() => {
+      theme = renderHook(useEuiTheme).result.current;
+    });
+
+    it('applies correct sizing styles to the main element', () => {
+      const { container } = render(<EuiBadge>Badge</EuiBadge>);
+
+      expect(container.firstChild).toHaveStyleRule('padding-block', '0');
+      expect(container.firstChild).toHaveStyleRule(
+        'padding-inline',
+        theme.euiTheme.size.s
+      );
+    });
+
+    it('applies custom sizing styles to the main element when rendering an icon-only variant', () => {
+      const { container } = render(<EuiBadge iconType="gear" />);
+
+      expect(container.firstChild).toHaveStyleRule('padding-block', '0');
+      expect(container.firstChild).toHaveStyleRule(
+        'padding-inline',
+        mathWithUnits(
+          [theme.euiTheme.size.xs, theme.euiTheme.border.width.thin],
+          (size, borderWidth) => size - borderWidth
+        )
+      );
     });
   });
 });
