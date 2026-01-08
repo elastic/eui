@@ -130,6 +130,7 @@ export const EuiDataGrid = memo(
       className,
       gridStyle,
       toolbarVisibility = true,
+      headerVisibility = true,
       pagination: _pagination,
       sorting,
       inMemory,
@@ -374,6 +375,7 @@ export const EuiDataGrid = memo(
       },
       {
         'euiDataGrid--noControls': !toolbarVisibility,
+        'euiDataGrid--noHeader': !headerVisibility,
       },
       className
     );
@@ -540,6 +542,7 @@ export const EuiDataGrid = memo(
                       canDragAndDropColumns={
                         columnVisibility.canDragAndDropColumns
                       }
+                      showHeader={!!headerVisibility}
                     />
                   </OverrideCopiedTabularContent>
                 </div>

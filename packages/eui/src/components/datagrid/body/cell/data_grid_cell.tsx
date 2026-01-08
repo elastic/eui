@@ -586,6 +586,16 @@ export class EuiDataGridCell extends Component<
       ...setCellProps
     } = this.state.cellProps;
 
+    const row =
+      rowManager && !IS_JEST_ENVIRONMENT
+        ? rowManager.getRow({
+            rowIndex,
+            visibleRowIndex,
+            top: style!.top as string, // comes in as a `{float}px` string from react-window
+            height: style!.height as number, // comes in as an integer from react-window
+          })
+        : undefined;
+
     const cellProps: EuiDataGridSetCellProps = {
       ...setCellProps,
       'data-test-subj': classNames('dataGridRowCell', cellPropsDataTestSubj),
@@ -599,16 +609,6 @@ export class EuiDataGridCell extends Component<
       lineHeight: rowHeightsOptions?.lineHeight ?? undefined, // lineHeight configuration
       ...cellPropsStyle, // apply anything from setCellProps({ style })
     };
-
-    const row =
-      rowManager && !IS_JEST_ENVIRONMENT
-        ? rowManager.getRow({
-            rowIndex,
-            visibleRowIndex,
-            top: style!.top as string, // comes in as a `{float}px` string from react-window
-            height: style!.height as number, // comes in as an integer from react-window
-          })
-        : undefined;
 
     return (
       <RenderCellInRow row={row}>

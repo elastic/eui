@@ -28,11 +28,7 @@ const EuiIconArrowUp = ({
     {...props}
   >
     {title ? <title id={titleId}>{title}</title> : null}
-    <path
-      fillRule="evenodd"
-      d="m8 5.707 5.646 5.647.708-.707L8 4.292l-6.354 6.353.708.708L8 5.707Z"
-      clipRule="evenodd"
-    />
+    <path d="M8.5 14V3.207l3.146 3.147.707-.708L8 1.293 3.646 5.646l.708.708L7.5 3.207V14h1Z" />
   </svg>
 );
 export const icon = EuiIconArrowUp;
