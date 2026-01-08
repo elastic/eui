@@ -25,8 +25,6 @@ export {
 export { EUI_VIS_COLOR_STORE } from './vis_color_store';
 export { colorPalette } from './color_palette';
 export {
-  euiPaletteForLightBackground,
-  euiPaletteForDarkBackground,
   euiPaletteColorBlind,
   euiPaletteColorBlindBehindText,
   euiPaletteForStatus,
