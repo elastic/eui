@@ -1715,6 +1715,23 @@ exports[`EuiIcon props type chartLine is rendered 1`] = `
 </svg>
 `;
 
+exports[`EuiIcon props type chartMetric is rendered 1`] = `
+<svg
+  class="euiIcon emotion-euiIcon-m-isLoaded"
+  data-icon-type="chartMetric"
+  data-is-loaded="true"
+  height="16"
+  role="presentation"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M6.532 7.34a2.161 2.161 0 1 1 2.936 0 2.746 2.746 0 1 1-2.936 0ZM2 0h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2Zm0 1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H2Zm6 5.915a1.161 1.161 0 1 0 0-2.322 1.161 1.161 0 0 0 0 2.322Zm0 4.492a1.746 1.746 0 1 0 0-3.492 1.746 1.746 0 0 0 0 3.492Z"
+  />
+</svg>
+`;
+
 exports[`EuiIcon props type chartPie is rendered 1`] = `
 <svg
   class="euiIcon emotion-euiIcon-m-isLoaded"
@@ -5506,10 +5523,9 @@ exports[`EuiIcon props type invert is rendered 1`] = `
   xmlns="http://www.w3.org/2000/svg"
 >
   <path
-    d="M8 13.25a5.25 5.25 0 1 0 0-10.5 5.25 5.25 0 0 0 0 10.5ZM8 14A6 6 0 1 1 8 2a6 6 0 0 1 0 12Z"
-  />
-  <path
-    d="M8 2a6 6 0 1 0 0 12V2Z"
+    clip-rule="evenodd"
+    d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14Zm.5-1.5h1.902a6.004 6.004 0 0 0 1.567-1H8.5v1Zm0-2h4.374c.225-.312.42-.647.582-1H8.5v1Zm0-2h5.311a6 6 0 0 0 .168-1H8.5v1Zm0-2h5.48a5.988 5.988 0 0 0-.169-1H8.5v1Zm0-2h4.956a5.996 5.996 0 0 0-.582-1H8.5v1Zm0-2h3.469a6.004 6.004 0 0 0-1.567-1H8.5v1ZM2 8a6 6 0 0 1 5.5-5.98v11.96A6 6 0 0 1 2 8Z"
+    fill-rule="evenodd"
   />
 </svg>
 `;

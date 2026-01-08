@@ -224,7 +224,7 @@ export const typeToPathMap = {
   expand: 'maximize', // NOTE: To be deprecated in favor of maximize
   maximize: 'maximize',
   expandMini: 'maximize', // NOTE: To be deprecated in favor of maximize
-  export: 'export',
+  export: 'upload',
   exportAction: 'upload', // NOTE: To be deprecated in favor of upload
   upload: 'upload',
   external: 'external',
@@ -293,7 +293,7 @@ export const typeToPathMap = {
   infinity: 'infinity',
   inputOutput: 'input_output',
   inspect: 'inspect',
-  invert: 'invert',
+  invert: 'contrast', // NOTE: To be deprecated in favor of contrast
   ip: 'ip',
   key: 'key',
   keyboard: 'keyboard',
@@ -584,7 +584,8 @@ export const typeToPathMap = {
   visLine: 'chart_line', // NOTE: To be deprecated in favor of chartLine
   visMapCoordinate: 'waypoint', // NOTE: To be deprecated in favor of waypoint
   visMapRegion: 'map', // NOTE: To be deprecated in favor of map
-  visMetric: 'vis_metric',
+  visMetric: 'chart_metric', // NOTE: To be deprecated in favor of chartMetric
+  chartMetric: 'chart_metric',
   visPie: 'chart_pie', // NOTE: To be deprecated in favor of chartPie
   visTable: 'table', // NOTE: To be deprecated in favor of table
   visTagCloud: 'chart_tag_cloud', // NOTE: To be deprecated in favor of chartTagCloud

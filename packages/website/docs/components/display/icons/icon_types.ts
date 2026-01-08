@@ -13,11 +13,11 @@ export const iconTypes: Array<IconType> = [
   'alignTop',
   'alignTopLeft',
   'alignTopRight',
-  'analyzeEvent',
-  'anomalySwimLane',
-  'annotation',
-  'apps',
-  'article',
+  'analyzeEvent', // To be deprecated
+  'anomalySwimLane', // To be deprecated
+  'annotation', // To be deprecated
+  'apps', // To be deprecated
+  'article', // To be deprecated NO USAGE
   'asterisk',
   'at',
   'backgroundTask',
@@ -26,7 +26,7 @@ export const iconTypes: Array<IconType> = [
   'beta',
   'bolt',
   'branch',
-  'branchUser',
+  'branchUser', // To be deprecated NO USAGE
   'broom',
   'brush',
   'bug',
@@ -43,6 +43,7 @@ export const iconTypes: Array<IconType> = [
   'chartGauge',
   'chartHeatmap',
   'chartLine',
+  'chartMetric',
   'chartPie',
   'chartTagCloud',
   'chartThreshold',
@@ -63,19 +64,19 @@ export const iconTypes: Array<IconType> = [
   'clock',
   'clockControl',
   'clockCounter',
-  'cloudDrizzle',
-  'cloudStormy',
-  'cloudSunny',
+  'cloudDrizzle', // To be deprecated
+  'cloudStormy', // To be deprecated
+  'cloudSunny', // To be deprecated
   'cluster',
   'code',
   'commandLine',
   'comment',
   'compare',
-  'container',
-  'continuityAbove',
-  'continuityAboveBelow',
-  'continuityBelow',
-  'continuityWithin',
+  'container',  // To be deprecated
+  'continuityAbove', // To be deprecated
+  'continuityAboveBelow', // To be deprecated NO USAGE
+  'continuityBelow', // To be deprecated NO USAGE
+  'continuityWithin', // To be deprecated
   'contrast',
   'contrastFill',
   'controls',
@@ -90,10 +91,10 @@ export const iconTypes: Array<IconType> = [
   'distributeHorizontal',
   'distributeVertical',
   'document',
-  'documents',
+  'documents', // To be deprecated
   'documentation',
   'dot',
-  'dotInCircle',
+  'dotInCircle', // To be deprecated NO USAGE
   'download',
   'drag',
   'dragHorizontal',
@@ -104,8 +105,7 @@ export const iconTypes: Array<IconType> = [
   'eraser',
   'error',
   'errorFill',
-  'esqlVis',
-  'export',
+  'esqlVis', // To be deprecated
   'external',
   'eye',
   'eyeSlash',
@@ -118,41 +118,40 @@ export const iconTypes: Array<IconType> = [
   'filterInclude',
   'flag',
   'flask',
-  'fold',
+  'fold', // To be deprecated
   'folder',
-  'folderClosed',
-  'folderExclamation',
-  'frameNext',
-  'framePrevious',
+  'folderClosed', // To be deprecated
+  'folderExclamation', // To be deprecated
+  'frameNext', // To be deprecated
+  'framePrevious', // To be deprecated
   'fullScreen',
   'fullScreenExit',
-  'function',
+  'function', // To be deprecated NO USAGE
   'gear',
   'globe',
   'gradient',
   'grid',
   'heart',
-  'help',
+  'help', // To be deprecated
   'home',
   'if',
   'image',
-  'index',
-  'indexClose',
-  'indexEdit',
-  'indexOpen',
-  'indexRuntime',
-  'indexSettings',
+  'index', // To be deprecated
+  'indexClose', // To be deprecated
+  'indexEdit', // To be deprecated
+  'indexOpen', // To be deprecated
+  'indexRuntime', // To be deprecated
+  'indexSettings', // To be deprecated
   'infinity',
   'info',
   'inputOutput',
   'inspect',
-  'invert',
-  'ip',
+  'ip', // To be deprecated
   'key',
   'keyboard',
-  'kqlFunction',
-  'kubernetesNode',
-  'kubernetesPod',
+  'kqlFunction', // To be deprecated
+  'kubernetesNode', // To be deprecated NO USAGE
+  'kubernetesPod', // To be deprecated
   'layers',
   'lineBreak',
   'lineBreakSlash',
@@ -168,24 +167,24 @@ export const iconTypes: Array<IconType> = [
   'lockOpen',
   'logOut',
   'logRateAnalysis',
-  'logstashFilter',
-  'logstashInput',
-  'logstashOutput',
+  'logstashFilter', // To be deprecated
+  'logstashInput', // To be deprecated
+  'logstashOutput', // To be deprecated
   'magnify',
   'magnifyExclamation',
   'magnifyMinus',
   'magnifyPlus',
-  'magnet',
+  'magnet', // To be deprecated NO USAGE
   'mail',
   'map',
   'mapping',
   'maximize',
-  'memory',
+  'memory', // To be deprecated
   'menu',
-  'menuDown',
+  'menuDown', // To be deprecated NO USAGE
   'menuLeft',
   'menuRight',
-  'menuUp',
+  'menuUp', // To be deprecated NO USAGE
   'merge',
   'minimize',
   'minus',
@@ -195,19 +194,19 @@ export const iconTypes: Array<IconType> = [
   'money',
   'moon',
   'move',
-  'namespace',
+  'namespace', // To be deprecated
   'nested',
   'number',
   'package',
-  'pageSelect',
-  'pagesSelect',
+  'pageSelect', // To be deprecated NO USAGE
+  'pagesSelect', // To be deprecated
   'paintBucket',
   'palette',
   'paperClip',
   'partial',
   'pattern',
   'pause',
-  'payment',
+  'payment', // To be deprecated
   'pencil',
   'percent',
   'pin',
@@ -241,16 +240,16 @@ export const iconTypes: Array<IconType> = [
   'return',
   'rocket',
   'save',
-  'scale',
+  'scale', // To be deprecated NO USAGE
   'scissors',
   'section',
-  'securitySignalDetected',
-  'securitySignalResolved',
+  'securitySignalDetected', // To be deprecated NO USAGE
+  'securitySignalResolved', // To be deprecated NO USAGE
   'send',
-  'sessionViewer',
+  'sessionViewer', // To be deprecated
   'shard',
   'share',
-  'singleMetricViewer',
+  'singleMetricViewer', // To be deprecated
   'snowflake',
   'sortable',
   'sortAscending',
@@ -259,32 +258,32 @@ export const iconTypes: Array<IconType> = [
   'sortLeft',
   'sortRight',
   'sortUp',
-  'spaces',
+  'spaces', // To be deprecated
   'sparkles',
   'star',
-  'starEmptySpace',
+  'starEmptySpace', // To be deprecated
   'starFill',
-  'starFillSpace',
-  'starMinusEmpty',
-  'starMinusFill',
-  'starPlusEmpty',
-  'starPlusFill',
-  'stats',
+  'starFillSpace', // To be deprecated
+  'starMinusEmpty', // To be deprecated
+  'starMinusFill', // To be deprecated
+  'starPlusEmpty', // To be deprecated
+  'starPlusFill', // To be deprecated
+  'stats', // To be deprecated
   'stop',
-  'stopFill',
-  'stopSlash',
+  'stopFill', // To be deprecated
+  'stopSlash', // To be deprecated
   'storage',
-  'string',
+  'string', // To be deprecated
   'sun',
   'symlink',
   'table',
   'tableDensityHigh',
   'tableDensityLow',
   'tableInfo',
-  'tableOfContents',
+  'tableOfContents', // To be deprecated
   'tableTime',
   'tag',
-  'tear',
+  'tear', // To be deprecated NO USAGE
   'text',
   'textAlignCenter',
   'textAlignLeft',
@@ -298,30 +297,30 @@ export const iconTypes: Array<IconType> = [
   'thumbDown',
   'thumbUp',
   'timeline',
-  'timelineWithArrow',
+  'timelineWithArrow', // To be deprecated
   'transitionLeftIn',
   'transitionLeftOut',
   'transitionTopIn',
   'transitionTopOut',
   'trash',
-  'unfold',
+  'unfold', // To be deprecated
+  'undo',
   'upload',
   'user',
   'users',
   'vectorSquare',
   'vectorTriangle',
   'videoPlayer',
-  'visGoal',
-  'visMetric',
-  'visTimelion',
-  'visVisualBuilder',
+  'visGoal', // To be deprecated
+  'visTimelion', // To be deprecated
+  'visVisualBuilder', // To be deprecated NO USAGE
   'warning',
   'warningFill',
   'waypoint',
   'web',
   'wifi',
   'wifiSlash',
-  'wordWrap',
-  'wordWrapDisabled',
+  'wordWrap', // To be deprecated
+  'wordWrapDisabled', // To be deprecated
   'wrench',
 ];
