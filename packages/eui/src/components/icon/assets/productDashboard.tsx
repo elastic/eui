@@ -14,7 +14,7 @@ interface SVGRProps {
   title?: string;
   titleId?: string;
 }
-const EuiIconBolt = ({
+const EuiIconProductDashboard = ({
   title,
   titleId,
   ...props
@@ -28,7 +28,11 @@ const EuiIconBolt = ({
     {...props}
   >
     {title ? <title id={titleId}>{title}</title> : null}
-    <path d="m13 1-3 4h3a1 1 0 0 1 .664 1.747l-9 8a1 1 0 0 1-1.559-1.194L5.382 9H3a1 1 0 0 1-.832-1.555L6.465 1H13ZM3 8h4l-3 6 9-8H8l3-4H7L3 8Z" />
+    <path
+      fillRule="evenodd"
+      d="M6 11a1 1 0 0 1 1 1v1l-.005.102A1 1 0 0 1 6 14H2a1 1 0 0 1-1-1v-1a1 1 0 0 1 1-1h4Zm-4 2h4v-1H2v1ZM14 7a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5Zm-5 6h5V8H9v5ZM6 7a1 1 0 0 1 1 1v1l-.005.103A1 1 0 0 1 6 10H2a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h4ZM2 9h4V8H2v1ZM14 2a1 1 0 0 1 .995.897L15 3v2a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1h12ZM2 5h12V3H2v2Z"
+      clipRule="evenodd"
+    />
   </svg>
 );
-export const icon = EuiIconBolt;
+export const icon = EuiIconProductDashboard;
