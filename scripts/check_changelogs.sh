@@ -10,6 +10,9 @@
 
 set -e
 
+# Enable corepack to expose the correct yarn cli command
+corepack enable
+
 # Pull request ID
 PR_NUMBER="$1"
 # Pipe-separated PR labels
