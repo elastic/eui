@@ -82,48 +82,82 @@ const raiseReportIfPropertyHasInvalidZIndex = (
     return didReport;
   }
 
-  // Handle Literal values: zIndex: 10, 'z-index': '10'
-  if (propertyNode.value.type === 'Literal') {
-    if (
-      (didReport = checkPropertySpecifiesInvalidZIndex(
-        propertyName,
-        propertyNode.value.value
-      ))
-    ) {
-      context.report(messageToReport);
+  const visitNode = (node: TSESTree.Node) => {
+    // Handle Literal values: zIndex: 10, 'z-index': '10'
+    if (node.type === 'Literal') {
+      if (checkPropertySpecifiesInvalidZIndex(propertyName, node.value)) {
+        didReport = true;
+        context.report({
+          ...messageToReport,
+          loc: node.loc,
+        });
+      }
     }
-  }
-  // Handle Identifier values: zIndex: someVar
-  else if (propertyNode.value.type === 'Identifier') {
-    const identifierName = propertyNode.value.name;
-    const identifierDeclaration = context.sourceCode
-      .getScope(propertyNode)
-      .variables.find((variable) => variable.name === identifierName);
+    // Handle Identifier values: zIndex: someVar
+    else if (node.type === 'Identifier') {
+      const identifierName = node.name;
+      const identifierDeclaration = context.sourceCode
+        .getScope(node)
+        .variables.find((variable) => variable.name === identifierName);
 
-    const identifierDeclarationInit =
-      identifierDeclaration?.defs[0]?.node.type === 'VariableDeclarator'
-        ? identifierDeclaration.defs[0].node.init
-        : undefined;
+      const identifierDeclarationInit =
+        identifierDeclaration?.defs[0]?.node.type === 'VariableDeclarator'
+          ? identifierDeclaration.defs[0].node.init
+          : undefined;
 
-    if (
-      identifierDeclarationInit?.type === 'Literal' &&
-      checkPropertySpecifiesInvalidZIndex(
-        propertyName,
-        identifierDeclarationInit.value
-      )
-    ) {
-      context.report({
-        loc: propertyNode.value.loc,
-        messageId: 'noStaticZIndexSpecificDeclaredVariable',
-        data: {
-          property: propertyName,
-          line: String(propertyNode.value.loc.start.line),
-          variableName: propertyNode.value.name,
-        },
-      });
-
-      didReport = true;
+      if (
+        identifierDeclarationInit?.type === 'Literal' &&
+        checkPropertySpecifiesInvalidZIndex(
+          propertyName,
+          identifierDeclarationInit.value
+        )
+      ) {
+        didReport = true;
+        context.report({
+          loc: node.loc,
+          messageId: 'noStaticZIndexSpecificDeclaredVariable',
+          data: {
+            property: propertyName,
+            line: String(node.loc.start.line),
+            variableName: node.name,
+          },
+        });
+      }
+    } else if (node.type === 'ConditionalExpression') {
+      visitNode(node.consequent);
+      visitNode(node.alternate);
+    } else if (node.type === 'LogicalExpression') {
+      visitNode(node.left);
+      visitNode(node.right);
+    } else if (node.type === 'TSAsExpression') {
+      visitNode(node.expression);
+    } else if (node.type === 'UnaryExpression') {
+      if (node.operator === '-') {
+        if (
+          node.argument.type === 'Literal' &&
+          typeof node.argument.value === 'number'
+        ) {
+          if (
+            checkPropertySpecifiesInvalidZIndex(
+              propertyName,
+              -node.argument.value
+            )
+          ) {
+            didReport = true;
+            context.report({
+              ...messageToReport,
+              loc: node.loc,
+            });
+          }
+        } else {
+          visitNode(node.argument);
+        }
+      }
     }
+  };
+
+  if (propertyNode.value) {
+    visitNode(propertyNode.value);
   }
 
   return didReport;
@@ -136,7 +170,36 @@ const handleObjectProperties = (
   reportMessage: ReportDescriptor<MessageIds>
 ) => {
   if (property.type === 'Property') {
-    raiseReportIfPropertyHasInvalidZIndex(context, property, reportMessage);
+    if (property.value.type === 'ObjectExpression') {
+      property.value.properties.forEach((nestedProperty) => {
+        const nestedReportMessage = {
+          ...reportMessage,
+          loc: nestedProperty.loc,
+        };
+
+        if (nestedReportMessage.data) {
+          const newData: Record<string, unknown> = {
+            ...nestedReportMessage.data,
+            property: getPropertyName(nestedProperty) || 'unknown',
+          };
+
+          if ('line' in newData) {
+            newData.line = String(nestedProperty.loc.start.line);
+          }
+
+          nestedReportMessage.data = newData;
+        }
+
+        handleObjectProperties(
+          context,
+          propertyParentNode,
+          nestedProperty,
+          nestedReportMessage
+        );
+      });
+    } else {
+      raiseReportIfPropertyHasInvalidZIndex(context, property, reportMessage);
+    }
   } else if (property.type === 'SpreadElement') {
     if (property.argument.type !== 'Identifier') {
       return;
@@ -334,6 +397,43 @@ export const NoStaticZIndex = ESLintUtils.RuleCreator.withoutDocs({
             }
           });
           return;
+        }
+
+        // Handle inline ArrayExpression: css={[...]}
+        if (expression.type === 'ArrayExpression') {
+          expression.elements.forEach((element) => {
+            if (!element) return;
+
+            if (element.type === 'ObjectExpression') {
+              element.properties.forEach((property) => {
+                handleObjectProperties(context, node, property, {
+                  loc: property.loc,
+                  messageId: 'noStaticZIndexSpecific',
+                  data: {
+                    property: getPropertyName(property) || 'unknown',
+                  },
+                });
+              });
+            } else if (
+              element.type === 'CallExpression' &&
+              element.callee.type === 'Identifier' &&
+              element.callee.name === 'css'
+            ) {
+              element.arguments.forEach((argument) => {
+                if (argument.type === 'ObjectExpression') {
+                  argument.properties.forEach((property) => {
+                    handleObjectProperties(context, node, property, {
+                      loc: property.loc,
+                      messageId: 'noStaticZIndexSpecific',
+                      data: {
+                        property: getPropertyName(property) || 'unknown',
+                      },
+                    });
+                  });
+                }
+              });
+            }
+          });
         }
 
         // Handle css prop with template literal or function

@@ -238,5 +238,94 @@ ruleTester.run('no-static-z-index', NoStaticZIndex, {
       languageOptions,
       errors: [{ messageId: 'noStaticZIndexSpecific' }],
     },
+    {
+      // Invalid: Variable with static value used in css prop (object style, nested)
+      filename: 'test.tsx',
+      code: dedent`
+        import React from 'react';
+        import { css } from '@emotion/react';
+
+        const myCss = css({ container: { zIndex: 100 } });
+
+        function TestComponent() {
+          return <div css={myCss}>test</div>
+        }`,
+      languageOptions,
+      errors: [{ messageId: 'noStaticZIndexSpecificDeclaredVariable' }],
+    },
+    {
+      // Invalid: css array, one with static z-index
+      filename: 'test.tsx',
+      code: dedent`
+            import { css } from '@emotion/react';
+
+            function TestComponent() {
+                return <div css={[someStyle, css({ zIndex: 9 })]}>test</div>
+            }
+        `,
+      languageOptions,
+      errors: [{ messageId: 'noStaticZIndexSpecific' }],
+    },
+    {
+      // Invalid: Conditional expression with static z-index
+      filename: 'test.tsx',
+      code: dedent`
+        import React from 'react';
+
+        function TestComponent() {
+          const isTrue = true;
+          return (
+            <div style={{ zIndex: isTrue ? 10 : 20 }}>test</div>
+          )
+        }`,
+      languageOptions,
+      errors: [
+        { messageId: 'noStaticZIndexSpecific' },
+        { messageId: 'noStaticZIndexSpecific' },
+      ],
+    },
+    {
+      // Invalid: Logical expression with static z-index
+      filename: 'test.tsx',
+      code: dedent`
+        import React from 'react';
+
+        function TestComponent() {
+          const isTrue = true;
+          return (
+            <div style={{ zIndex: isTrue || 10 }}>test</div>
+          )
+        }`,
+      languageOptions,
+      errors: [{ messageId: 'noStaticZIndexSpecific' }],
+    },
+    {
+      // Invalid: TSAsExpression with static z-index
+      filename: 'test.tsx',
+      code: dedent`
+        import React from 'react';
+
+        function TestComponent() {
+          return (
+            <div style={{ zIndex: 10 as number }}>test</div>
+          )
+        }`,
+      languageOptions,
+      errors: [{ messageId: 'noStaticZIndexSpecific' }],
+    },
+    {
+      // Invalid: UnaryExpression with static z-index
+      filename: 'test.tsx',
+      code: dedent`
+        import React from 'react';
+
+        function TestComponent() {
+          return (
+            <div style={{ zIndex: -1 }}>test</div>
+          )
+        }`,
+      languageOptions,
+      errors: [{ messageId: 'noStaticZIndexSpecific' }],
+    },
   ],
 });
