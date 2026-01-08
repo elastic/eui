@@ -122,33 +122,6 @@ import { iconTypes } from './icon_types';
   ```
 </Demo>
 
-### Editor controls
-
-Editor icons relate to the visual styling of elements and are commonly used within **EuiButtonGroup** components.
-
-import { iconTypesEditor } from './icon_types_editor';
-
-<Demo scope={{ iconTypes: iconTypesEditor }}>
-  ```tsx
-  <>
-    <EuiFlexGrid direction="row" columns={3}>
-      {iconTypes.map((iconType) => (
-        <EuiFlexItem key={iconType}>
-          <EuiCopy textToCopy={iconType} afterMessage={`${iconType} copied`} tooltipProps={{ display: 'block' }}>
-            {(copy) => (
-              <EuiPanel hasShadow={false} hasBorder={false} onClick={copy} paddingSize="s">
-                <EuiIcon className="eui-alignMiddle" type={iconType} /> &emsp;{' '}
-                <small>{iconType}</small>
-              </EuiPanel>
-            )}
-          </EuiCopy>
-        </EuiFlexItem>
-      ))}
-    </EuiFlexGrid>
-  </>
-  ```
-</Demo>
-
 ### Elastic logos
 
 These logos are restricted in use to Elastic products or when referencing Elastic products. They are multi-color with some internal paths having a class of `.euiIcon__fillNegative` to handle flipping colors for dark mode. The only other colors most of them support are ghost and text which turn them into a solid shape.
