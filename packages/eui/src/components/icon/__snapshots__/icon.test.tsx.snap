@@ -10886,6 +10886,33 @@ exports[`EuiIcon props type processor is rendered 1`] = `
 </svg>
 `;
 
+exports[`EuiIcon props type productAgent is rendered 1`] = `
+<svg
+  class="euiIcon emotion-euiIcon-m-isLoaded"
+  data-icon-type="productAgent"
+  data-is-loaded="true"
+  height="16"
+  role="presentation"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M10.447 11.523C9.826 12.767 8.59 13 8 13c-.59 0-1.826-.233-2.447-1.477l.894-.447C6.826 11.833 7.59 12 8 12c.41 0 1.174-.167 1.553-.924l.894.447Z"
+  />
+  <path
+    clip-rule="evenodd"
+    d="M5.5 7a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm0 1a.5.5 0 1 0 0 1 .5.5 0 0 0 0-1Zm5-1a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm0 1a.5.5 0 1 0 0 1 .5.5 0 0 0 0-1Z"
+    fill-rule="evenodd"
+  />
+  <path
+    clip-rule="evenodd"
+    d="M8 0a1.5 1.5 0 0 1 .5 2.912V4H11a3 3 0 0 1 3 3h1l.102.005A1 1 0 0 1 16 8v3a1 1 0 0 1-1 1h-1v2a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-2H1a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h1a3 3 0 0 1 3-3h2.5V2.912A1.498 1.498 0 0 1 8 0ZM5 5a2 2 0 0 0-2 2v7h10V7a2 2 0 0 0-2-2H5Zm-4 6h1V8H1v3Zm13 0h1V8h-1v3ZM8 1a.5.5 0 1 0 0 1 .5.5 0 0 0 0-1Z"
+    fill-rule="evenodd"
+  />
+</svg>
+`;
+
 exports[`EuiIcon props type productRobot is rendered 1`] = `
 <svg
   class="euiIcon emotion-euiIcon-m-isLoaded"
