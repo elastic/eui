@@ -65,6 +65,11 @@ export type EuiDatePickerRangeProps = CommonProps &
     iconType?: boolean | IconType;
 
     /**
+     * Define the side the icon should be displayed on. Applies only if `iconType` is defined as `IconType`.
+     */
+    iconSide?: 'left' | 'right';
+
+    /**
      * Won't apply any additional props to start and end date components
      */
     isCustom?: boolean;
@@ -105,6 +110,7 @@ export const EuiDatePickerRange: FunctionComponent<EuiDatePickerRangeProps> = ({
   startDateControl,
   endDateControl,
   iconType = true,
+  iconSide = 'left',
   inline,
   shadow = true,
   fullWidth: _fullWidth,
@@ -205,8 +211,14 @@ export const EuiDatePickerRange: FunctionComponent<EuiDatePickerRangeProps> = ({
     if (inline) return undefined;
     if (iconType === false) return undefined;
     if (iconType === true) return 'calendar';
+    if (iconType && iconSide)
+      return {
+        side: iconSide,
+        type: iconType,
+      };
+
     return iconType;
-  }, [iconType, inline]);
+  }, [iconType, iconSide, inline]);
 
   return (
     <div
