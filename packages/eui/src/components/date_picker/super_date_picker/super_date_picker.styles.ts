@@ -8,9 +8,8 @@
 
 import { css } from '@emotion/react';
 
-import { UseEuiTheme, makeHighContrastColor } from '../../../services';
+import { UseEuiTheme } from '../../../services';
 import {
-  euiFontSize,
   euiMaxBreakpoint,
   logicalCSS,
   mathWithUnits,
@@ -48,11 +47,7 @@ export const euiSuperDatePickerStyles = (euiThemeContext: UseEuiTheme) => {
   );
 
   // Needs updating colors
-  const needsUpdatingBackgroundColor =
-    euiTheme.components.superDatePickerBackgroundSuccees;
-  const needsUpdatingTextColor = makeHighContrastColor(euiTheme.colors.success)(
-    needsUpdatingBackgroundColor
-  );
+  const needsUpdatingTextColor = euiTheme.colors.textSuccess;
 
   return {
     euiSuperDatePicker: css`
@@ -247,25 +242,4 @@ export const euiSuperDatePickerStyles = (euiThemeContext: UseEuiTheme) => {
       `,
     },
   };
-};
-
-export const _buttonStyles = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme } = euiThemeContext;
-
-  return css`
-    ${logicalCSS('height', '100%')}
-    ${logicalCSS('width', '100%')}
-    ${logicalCSS('padding-horizontal', euiTheme.size.s)}
-
-    font-size: ${euiFontSize(euiThemeContext, 's').fontSize};
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    color: inherit;
-    background-color: inherit;
-
-    &:disabled {
-      cursor: not-allowed;
-    }
-  `;
 };
