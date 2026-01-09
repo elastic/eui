@@ -28,7 +28,13 @@ const EuiIconBullseye = ({
     {...props}
   >
     {title ? <title id={titleId}>{title}</title> : null}
-    <path d="M8 14A6 6 0 1 0 8 2a6 6 0 0 0 0 12Zm0 1A7 7 0 1 1 8 1a7 7 0 0 1 0 14Zm0-3a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm0-1a3 3 0 1 1 0-6 3 3 0 0 1 0 6Zm0-2a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z" />
+    <path d="M8 1c.858 0 1.68.155 2.44.438l-.793.792A6.002 6.002 0 0 0 2 8a6 6 0 1 0 11.769-1.648l.793-.793A7 7 0 1 1 8 1Z" />
+    <path d="M8 4c.345 0 .68.044 1 .126v.753l-.226.225a3 3 0 1 0 2.121 2.121L11.122 7h.753A4.006 4.006 0 0 1 8 12a4 4 0 0 1 0-8Z" />
+    <path
+      fillRule="evenodd"
+      d="M13 3h2.707l-3 3h-2L8.965 7.741a1 1 0 1 1-.707-.707l1.478-1.478.264-.263v-2l3-3V3Zm-2 .707V5h1.293l.546-.547.454-.453H12V2.707l-1 1Z"
+      clipRule="evenodd"
+    />
   </svg>
 );
 export const icon = EuiIconBullseye;
