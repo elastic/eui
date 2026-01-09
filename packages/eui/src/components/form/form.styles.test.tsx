@@ -50,9 +50,11 @@ describe('euiFormVariables', () => {
           "xl": "32px",
           "xxl": "40px",
         },
+        "controlLayoutBorderRadius": "4px",
         "controlLayoutGroupInputCompressedBorderRadius": "4px",
         "controlLayoutGroupInputCompressedHeight": "30px",
         "controlLayoutGroupInputHeight": "38px",
+        "controlLayoutInnerBorderRadius": "2px",
         "controlPadding": "12px",
         "controlPlaceholderText": "#798EAF",
         "iconAffordance": "24px",
@@ -160,7 +162,6 @@ describe('euiFormControlStyles', () => {
         "inGroup": "
             block-size: 100%;
             box-shadow: none;
-            border-radius: inherit;
           ",
         "invalid": "
             --euiFormControlStateColor: #C61E25;
@@ -233,7 +234,6 @@ describe('euiFormControlStyles', () => {
             --borderWidth: var(--borderWidthBase);
             --borderColor: var(--euiFormControlStateHoverColor, #B4C1D5);
             position: relative;
-            z-index: 1;
             outline: var(--borderWidth) solid var(--borderColor);
             outline-offset: calc(-1 * var(--borderWidth));
           }
