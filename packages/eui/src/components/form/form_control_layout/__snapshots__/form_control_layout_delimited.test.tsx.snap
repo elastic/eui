@@ -7,7 +7,7 @@ exports[`EuiFormControlLayoutDelimited is rendered 1`] = `
   data-test-subj="test subject string"
 >
   <div
-    class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup-prependOnly-appendOnly-delimited"
+    class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup-delimited"
   >
     <span
       class="euiFormControlLayoutDelimited__input emotion-euiFormControlLayoutDelimited__input"
@@ -37,7 +37,7 @@ exports[`EuiFormControlLayoutDelimited props delimiter is rendered as a node 1`]
   class="euiFormControlLayout euiFormControlLayoutDelimited emotion-euiFormControlLayout-group-delimited"
 >
   <div
-    class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup-prependOnly-appendOnly-delimited"
+    class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup-delimited"
   >
     <span
       class="euiFormControlLayoutDelimited__input emotion-euiFormControlLayoutDelimited__input"
@@ -65,7 +65,7 @@ exports[`EuiFormControlLayoutDelimited props delimiter is rendered as a string 1
   class="euiFormControlLayout euiFormControlLayoutDelimited emotion-euiFormControlLayout-group-delimited"
 >
   <div
-    class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup-prependOnly-appendOnly-delimited"
+    class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup-delimited"
   >
     <span
       class="euiFormControlLayoutDelimited__input emotion-euiFormControlLayoutDelimited__input"

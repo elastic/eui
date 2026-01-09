@@ -306,10 +306,10 @@ exports[`EuiFormControlLayout props multiple appends are rendered 1`] = `
   class="euiFormControlLayout euiFormControlLayout--group emotion-euiFormControlLayout-group"
 >
   <div
-    class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup-appendOnly"
+    class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup"
   />
   <div
-    class="euiFormControlLayout__append emotion-euiFormControlLayout__side-append"
+    class="euiFormControlLayout__append css-1y5z65c-empty-primary-isInteractive-euiFormControlLayout__side"
   >
     <span>
       1
@@ -326,7 +326,7 @@ exports[`EuiFormControlLayout props multiple prepends are rendered 1`] = `
   class="euiFormControlLayout euiFormControlLayout--group emotion-euiFormControlLayout-group"
 >
   <div
-    class="euiFormControlLayout__prepend emotion-euiFormControlLayout__side-prepend"
+    class="euiFormControlLayout__prepend css-1iuehkd-empty-primary-isInteractive-euiFormControlLayout__side"
   >
     <span>
       1
@@ -336,7 +336,7 @@ exports[`EuiFormControlLayout props multiple prepends are rendered 1`] = `
     </span>
   </div>
   <div
-    class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup-prependOnly"
+    class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup"
   />
 </div>
 `;
@@ -346,10 +346,10 @@ exports[`EuiFormControlLayout props one append node is rendered 1`] = `
   class="euiFormControlLayout euiFormControlLayout--group emotion-euiFormControlLayout-group"
 >
   <div
-    class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup-appendOnly"
+    class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup"
   />
   <div
-    class="euiFormControlLayout__append emotion-euiFormControlLayout__side-append"
+    class="euiFormControlLayout__append css-1y5z65c-empty-primary-isInteractive-euiFormControlLayout__side"
   >
     <span>
       1
@@ -363,19 +363,23 @@ exports[`EuiFormControlLayout props one append string is rendered 1`] = `
   class="euiFormControlLayout euiFormControlLayout--group emotion-euiFormControlLayout-group"
 >
   <div
-    class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup-appendOnly"
+    class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup"
   />
   <div
-    class="euiFormControlLayout__append emotion-euiFormControlLayout__side-append"
+    class="euiFormControlLayout__append css-1y5z65c-empty-primary-isInteractive-euiFormControlLayout__side"
   >
     <div
-      class="euiFormAppend css-1civv6t-side-uncompressed"
+      class="css-yp07d4-wrapper"
     >
-      <span
-        class="euiFormLabel emotion-euiFormLabel"
+      <div
+        class="euiFormAppend css-1wec0gg-side-uncompressed"
       >
-        1
-      </span>
+        <span
+          class="euiFormLabel emotion-euiFormLabel"
+        >
+          1
+        </span>
+      </div>
     </div>
   </div>
 </div>
@@ -386,14 +390,14 @@ exports[`EuiFormControlLayout props one prepend node is rendered 1`] = `
   class="euiFormControlLayout euiFormControlLayout--group emotion-euiFormControlLayout-group"
 >
   <div
-    class="euiFormControlLayout__prepend emotion-euiFormControlLayout__side-prepend"
+    class="euiFormControlLayout__prepend css-1iuehkd-empty-primary-isInteractive-euiFormControlLayout__side"
   >
     <span>
       1
     </span>
   </div>
   <div
-    class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup-prependOnly"
+    class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup"
   />
 </div>
 `;
@@ -403,7 +407,7 @@ exports[`EuiFormControlLayout props one prepend node is rendered with className 
   class="euiFormControlLayout euiFormControlLayout--group emotion-euiFormControlLayout-group"
 >
   <div
-    class="euiFormControlLayout__prepend emotion-euiFormControlLayout__side-prepend"
+    class="euiFormControlLayout__prepend css-1iuehkd-empty-primary-isInteractive-euiFormControlLayout__side"
   >
     <span
       class="myClass"
@@ -412,7 +416,7 @@ exports[`EuiFormControlLayout props one prepend node is rendered with className 
     </span>
   </div>
   <div
-    class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup-prependOnly"
+    class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup"
   />
 </div>
 `;
@@ -422,20 +426,24 @@ exports[`EuiFormControlLayout props one prepend string is rendered 1`] = `
   class="euiFormControlLayout euiFormControlLayout--group emotion-euiFormControlLayout-group"
 >
   <div
-    class="euiFormControlLayout__prepend emotion-euiFormControlLayout__side-prepend"
+    class="euiFormControlLayout__prepend css-1iuehkd-empty-primary-isInteractive-euiFormControlLayout__side"
   >
     <div
-      class="euiFormPrepend css-1civv6t-side-uncompressed"
+      class="css-yp07d4-wrapper"
     >
-      <span
-        class="euiFormLabel emotion-euiFormLabel"
+      <div
+        class="euiFormPrepend css-1wec0gg-side-uncompressed"
       >
-        1
-      </span>
+        <span
+          class="euiFormLabel emotion-euiFormLabel"
+        >
+          1
+        </span>
+      </div>
     </div>
   </div>
   <div
-    class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup-prependOnly"
+    class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup"
   />
 </div>
 `;
