@@ -140,11 +140,8 @@ export const euiSuperDatePickerStyles = (euiThemeContext: UseEuiTheme) => {
     states: {
       euiSuperDatePicker__formControlLayout: css`
         .euiFormControlLayout__childrenWrapper {
-          --euiFormControlStateHoverColor: ${forms.borderHovered};
-
           ${highContrastModeStyles(euiThemeContext, {
             none: `
-              ${euiFormControlDefaultShadow(euiThemeContext)}
               box-shadow: none;
             `,
             preferred: 'border: none;',
@@ -158,16 +155,6 @@ export const euiSuperDatePickerStyles = (euiThemeContext: UseEuiTheme) => {
           .euiPopover {
             /* mimic input border-radius */
             border-radius: ${forms.controlBorderRadius};
-
-            &:first-child {
-              ${logicalCSS('border-top-left-radius', 'inherit')}
-              ${logicalCSS('border-bottom-left-radius', 'inherit')}
-            }
-
-            &:last-child {
-              ${logicalCSS('border-top-right-radius', 'inherit')}
-              ${logicalCSS('border-bottom-right-radius', 'inherit')}
-            }
           }
 
           .euiDatePopoverButton {
@@ -201,11 +188,10 @@ export const euiSuperDatePickerStyles = (euiThemeContext: UseEuiTheme) => {
       invalid: css`
         .euiFormControlLayout__childrenWrapper {
           color: ${euiTheme.colors.textDanger};
-          background-color: ${forms.backgroundColor};
 
           &:has(.euiPopover-isOpen, .euiDatePopoverButton:focus) {
-            --euiFormControlStateColor: ${forms.borderColor};
-            --euiFormControlStateHoverColor: ${forms.borderHovered};
+            --euiFormControlStateColor: transparent;
+            --euiFormControlStateHoverColor: transparent;
           }
 
           &:not(:has(.euiPopover-isOpen, .euiDatePopoverButton:focus)) {
@@ -225,9 +211,13 @@ export const euiSuperDatePickerStyles = (euiThemeContext: UseEuiTheme) => {
           --euiFormControlStateWidth: ${euiTheme.border.width.thin};
 
           color: ${needsUpdatingTextColor};
-          background-color: ${needsUpdatingBackgroundColor};
 
           ${euiFormControlHighlightBorderStyles}
+
+          &:has(.euiPopover-isOpen, .euiDatePopoverButton:focus) {
+            --euiFormControlStateColor: transparent;
+            --euiFormControlStateHoverColor: transparent;
+          }
 
           &:has(.euiPopover-isOpen),
           &:focus-within {

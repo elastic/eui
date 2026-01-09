@@ -132,7 +132,6 @@ export const EuiFormAppendPrepend: FunctionComponent<
     compressed ? styles.compressed : styles.uncompressed,
     isButton && !isDisabled && styles.isInteractive,
     isDisabled && styles.disabled,
-    isButton && styles[side],
   ];
 
   const labelProps = isButton
@@ -158,8 +157,18 @@ export const EuiFormAppendPrepend: FunctionComponent<
     </>
   );
 
+  let component = (
+    <div
+      className={className}
+      css={cssStyles}
+      {...(rest as React.HTMLAttributes<HTMLDivElement>)}
+    >
+      {content}
+    </div>
+  );
+
   if (isButton) {
-    return (
+    component = (
       <button
         className={className}
         css={cssStyles}
@@ -171,13 +180,5 @@ export const EuiFormAppendPrepend: FunctionComponent<
     );
   }
 
-  return (
-    <div
-      className={className}
-      css={cssStyles}
-      {...(rest as React.HTMLAttributes<HTMLDivElement>)}
-    >
-      {content}
-    </div>
-  );
+  return <div css={styles.wrapper}>{component}</div>;
 };

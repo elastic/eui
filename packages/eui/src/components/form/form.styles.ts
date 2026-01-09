@@ -89,6 +89,11 @@ export const euiFormVariables = (euiThemeContext: UseEuiTheme) => {
       (x) => x - 2
     ),
     controlLayoutGroupInputCompressedBorderRadius: euiTheme.border.radius.small,
+    controlLayoutBorderRadius: euiTheme.border.radius.small,
+    controlLayoutInnerBorderRadius: mathWithUnits(
+      euiTheme.border.radius.small,
+      (x) => x / 2
+    ),
   };
 
   const iconSizes = {
@@ -157,7 +162,6 @@ export const euiFormControlStyles = (euiThemeContext: UseEuiTheme) => {
         none: 'box-shadow: none;',
         preferred: 'border: none;',
       })}
-      border-radius: inherit;
     `,
 
     // Widths
@@ -277,7 +281,6 @@ export const euiFormControlHoverStyles = (euiThemeContext: UseEuiTheme) => {
         highContrastMode ? euiTheme.border.color : form.borderHovered
       });
       position: relative;
-      z-index: 1;
       outline: var(--borderWidth) solid var(--borderColor);
       outline-offset: calc(-1 * var(--borderWidth));
     }

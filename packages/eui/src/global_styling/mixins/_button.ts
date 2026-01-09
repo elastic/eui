@@ -251,7 +251,7 @@ export const useEuiButtonColorCSS = (options: _EuiButtonOptions = {}) => {
   return colorsDisplaysMap[display];
 };
 
-const euiButtonDisplaysColors = (euiThemeContext: UseEuiTheme) => {
+export const euiButtonDisplaysColors = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
 
   const COLORS = [...EXTENDED_BUTTON_COLORS, 'disabled'] as const;
