@@ -28,7 +28,11 @@ const EuiIconCheckCircleFill = ({
     {...props}
   >
     {title ? <title id={titleId}>{title}</title> : null}
-    <path d="M8 1a7 7 0 1 1 0 14A7 7 0 0 1 8 1ZM7 9.293 5.354 7.646l-.708.708L7 10.707l4.354-4.353-.707-.708L7 9.293Z" />
+    <path
+      fillRule="evenodd"
+      d="M8 1a7 7 0 1 1 0 14A7 7 0 0 1 8 1ZM7 9.293 5.354 7.646l-.708.708L7 10.707l4.354-4.353-.707-.708L7 9.293Z"
+      clipRule="evenodd"
+    />
   </svg>
 );
 export const icon = EuiIconCheckCircleFill;

@@ -28,7 +28,11 @@ const EuiIconPlus = ({
     {...props}
   >
     {title ? <title id={titleId}>{title}</title> : null}
-    <path d="M7.5 7.5V2h1v5.5H14v1H8.5V14h-1V8.5H2v-1h5.5Z" />
+    <path
+      fillRule="evenodd"
+      d="M7.5 7.5V2h1v5.5H14v1H8.5V14h-1V8.5H2v-1h5.5Z"
+      clipRule="evenodd"
+    />
   </svg>
 );
 export const icon = EuiIconPlus;

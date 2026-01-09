@@ -28,7 +28,11 @@ const EuiIconVectorSquare = ({
     {...props}
   >
     {title ? <title id={titleId}>{title}</title> : null}
-    <path d="M12.5 11V5H11V3.5H5V5H3.5v6H5v1.5h6V11h1.5Zm1 0H15v4h-4v-1.5H5V15H1v-4h1.5V5H1V1h4v1.5h6V1h4v4h-1.5v6ZM4 4V2H2v2h2Zm8 0h2V2h-2v2ZM2 14h2v-2H2v2Zm10 0h2v-2h-2v2Z" />
+    <path
+      fillRule="evenodd"
+      d="M4.103 1.005A1 1 0 0 1 5 2v.5h6V2a1 1 0 0 1 1-1h2l.102.005A1 1 0 0 1 15 2v2a1 1 0 0 1-1 1h-.5v6h.5l.102.005A1 1 0 0 1 15 12v2a1 1 0 0 1-1 1h-2a1 1 0 0 1-.995-.898L11 14v-.5H5v.5a1 1 0 0 1-1 1H2a1 1 0 0 1-.995-.898L1 14v-2a1 1 0 0 1 1-1h.5V5H2a1 1 0 0 1-.995-.897L1 4V2a1 1 0 0 1 1-1h2l.103.005ZM2 14h2v-2H2v2Zm10 0h2v-2h-2v2ZM5 3.5V4a1 1 0 0 1-1 1h-.5v6H4l.103.005A1 1 0 0 1 5 12v.5h6V12a1 1 0 0 1 1-1h.5V5H12a1 1 0 0 1-.995-.897L11 4v-.5H5ZM2 4h2V2H2v2Zm10 0h2V2h-2v2Z"
+      clipRule="evenodd"
+    />
   </svg>
 );
 export const icon = EuiIconVectorSquare;

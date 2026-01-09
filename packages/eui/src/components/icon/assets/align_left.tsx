@@ -28,7 +28,7 @@ const EuiIconAlignLeft = ({
     {...props}
   >
     {title ? <title id={titleId}>{title}</title> : null}
-    <path d="M5 5h8a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2ZM1.5 1a.5.5 0 0 1 .5.5v13a.5.5 0 1 1-1 0v-13a.5.5 0 0 1 .5-.5Z" />
+    <path d="M2 1v14H1V1h1Zm2 5v4h8V6H4Zm9 4a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v4Z" />
   </svg>
 );
 export const icon = EuiIconAlignLeft;

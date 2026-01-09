@@ -23,13 +23,12 @@ const EuiIconMenu = ({
     xmlns="http://www.w3.org/2000/svg"
     width={16}
     height={16}
-    fill="none"
     viewBox="0 0 16 16"
     aria-labelledby={titleId}
     {...props}
   >
     {title ? <title id={titleId}>{title}</title> : null}
-    <path d="M0 2h16v2H0V2Zm0 5h16v2H0V7Zm16 5H0v2h16v-2Z" />
+    <path d="M14 11v1H2v-1h12Zm0-3.5v1H2v-1h12ZM14 4v1H2V4h12Z" />
   </svg>
 );
 export const icon = EuiIconMenu;

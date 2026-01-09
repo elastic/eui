@@ -30,12 +30,12 @@ const EuiIconChevronDoubleLeft = ({
     {title ? <title id={titleId}>{title}</title> : null}
     <path
       fillRule="evenodd"
-      d="m2.707 8 5.647-5.646-.708-.708L1.293 8l6.353 6.354.708-.707L2.707 8Z"
+      d="m2.707 8 5.647-5.646-.707-.708L1.293 8l6.354 6.354.707-.707L2.707 8Z"
       clipRule="evenodd"
     />
     <path
       fillRule="evenodd"
-      d="m7.707 8 5.647-5.646-.708-.708L6.293 8l6.353 6.354.707-.707L7.708 8Z"
+      d="m7.707 8 5.647-5.646-.707-.708L6.292 8l6.353 6.354.708-.707L7.707 8Z"
       clipRule="evenodd"
     />
   </svg>

@@ -28,7 +28,13 @@ const EuiIconChartTagCloud = ({
     {...props}
   >
     {title ? <title id={titleId}>{title}</title> : null}
-    <path d="M1.5 9.047a.5.5 0 1 0 0 1h13a.5.5 0 0 0 0-1h-13Zm0-1h13a1.5 1.5 0 0 1 0 3h-13a1.5 1.5 0 0 1 0-3ZM10 13a.5.5 0 1 1 0 1H4a.5.5 0 1 1 0-1h6ZM8.001 2.015a.5.5 0 1 1-.002 1l-5-.015a.5.5 0 1 1 .003-1l5 .015ZM14 5a.5.5 0 1 1 0 1H6a.5.5 0 0 1 0-1h8Z" />
+    <path d="M7 14H5v-1h2v1Zm4 0H8v-1h3v1Zm-3-2H3v-1h5v1Zm5 0H9v-1h4v1Z" />
+    <path
+      fillRule="evenodd"
+      d="M14 6a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H2a1 1 0 0 1-.995-.897L1 9V7a1 1 0 0 1 1-1h12ZM2 9h12V7H2v2Z"
+      clipRule="evenodd"
+    />
+    <path d="M6 5H3V4h3v1Zm7 0H7V4h6v1Zm-3-2H6V2h4v1Z" />
   </svg>
 );
 export const icon = EuiIconChartTagCloud;

@@ -28,7 +28,16 @@ const EuiIconChartMetric = ({
     {...props}
   >
     {title ? <title id={titleId}>{title}</title> : null}
-    <path d="M6.532 7.34a2.161 2.161 0 1 1 2.936 0 2.746 2.746 0 1 1-2.936 0ZM2 0h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2Zm0 1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H2Zm6 5.915a1.161 1.161 0 1 0 0-2.322 1.161 1.161 0 0 0 0 2.322Zm0 4.492a1.746 1.746 0 1 0 0-3.492 1.746 1.746 0 0 0 0 3.492Z" />
+    <path
+      fillRule="evenodd"
+      d="M8 4a2 2 0 0 1 1.398 3.428 2.5 2.5 0 1 1-2.798 0A2 2 0 0 1 8 4Zm0 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3Zm0-3a1 1 0 1 0 0 2 1 1 0 0 0 0-2Z"
+      clipRule="evenodd"
+    />
+    <path
+      fillRule="evenodd"
+      d="M13 2a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1h10ZM3 13h10V3H3v10Z"
+      clipRule="evenodd"
+    />
   </svg>
 );
 export const icon = EuiIconChartMetric;

@@ -28,7 +28,7 @@ const EuiIconSortDescending = ({
     {...props}
   >
     {title ? <title id={titleId}>{title}</title> : null}
-    <path d="M4 10.293V3.5a.5.5 0 0 0-1 0v6.793L1.854 9.146a.5.5 0 1 0-.708.708l2 2a.5.5 0 0 0 .708 0l2-2a.5.5 0 1 0-.708-.708L4 10.293ZM8 4.5a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5ZM8.5 7a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1h-4ZM8 10.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5Z" />
+    <path d="m4 11.293 1.646-1.647.708.707L3.5 13.207.646 10.353l.708-.707L3 11.293V3h1v8.293ZM9 13H8v-1h1v1Zm2-3H8V9h3v1Zm2-3H8V6h5v1Zm2-3H8V3h7v1Z" />
   </svg>
 );
 export const icon = EuiIconSortDescending;

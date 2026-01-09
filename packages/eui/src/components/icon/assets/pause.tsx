@@ -28,7 +28,11 @@ const EuiIconPause = ({
     {...props}
   >
     {title ? <title id={titleId}>{title}</title> : null}
-    <path d="M5 2a1 1 0 0 0-1 1v10a1 1 0 1 0 2 0V3a1 1 0 0 0-1-1zm6 0a1 1 0 0 0-1 1v10a1 1 0 1 0 2 0V3a1 1 0 0 0-1-1z" />
+    <path
+      fillRule="evenodd"
+      d="M6.103 1.005A1 1 0 0 1 7 2v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h2l.103.005ZM4 14h2V2H4v12Zm8.102-12.995A1 1 0 0 1 13 2v12a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h2l.102.005ZM10 14h2V2h-2v12Z"
+      clipRule="evenodd"
+    />
   </svg>
 );
 export const icon = EuiIconPause;

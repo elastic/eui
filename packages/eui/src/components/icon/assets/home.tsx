@@ -28,7 +28,12 @@ const EuiIconHome = ({
     {...props}
   >
     {title ? <title id={titleId}>{title}</title> : null}
-    <path d="m8.13 1.229 5.5 4.47a1 1 0 0 1 .37.777V14a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V6.476a1 1 0 0 1 .37-.776l5.5-4.471a1 1 0 0 1 1.26 0ZM13 6.476 7.5 2.005 2 6.475V14h11V6.476Z" />
+    <path
+      fillRule="evenodd"
+      d="M13 9.414V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V9.414l1-1V13h2v-3a1 1 0 0 1 1-1h2l.103.005A1 1 0 0 1 10 10v3h2V8.414l1 1ZM7 13h2v-3H7v3Z"
+      clipRule="evenodd"
+    />
+    <path d="M8.048 2.002a1.002 1.002 0 0 1 .659.291l6 6L14 9 8 3 2 9l-.707-.707 6-6 .076-.068a.994.994 0 0 1 .679-.223ZM13 5.172l-1-1V2h1v3.172Z" />
   </svg>
 );
 export const icon = EuiIconHome;

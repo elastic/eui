@@ -28,7 +28,12 @@ const EuiIconPencil = ({
     {...props}
   >
     {title ? <title id={titleId}>{title}</title> : null}
-    <path d="M10 2.293a1 1 0 0 1 1.414 0l2.293 2.293a1 1 0 0 1 0 1.414l-7 7H11v1H2v-3.707l8-8Zm-7 8.414V13h2.293l5.5-5.5L8.5 5.207l-5.5 5.5ZM9.207 4.5 11.5 6.793l1.5-1.5L10.707 3l-1.5 1.5ZM14 14h-2v-1h2v1Z" />
+    <path
+      fillRule="evenodd"
+      d="M10 2.293a1 1 0 0 1 1.414 0l2.293 2.293a1 1 0 0 1 0 1.414l-7 7H11v1H2v-3.707l8-8Zm-7 8.414V13h2.293l5.5-5.5L8.5 5.207l-5.5 5.5ZM9.207 4.5 11.5 6.793l1.5-1.5L10.707 3l-1.5 1.5Z"
+      clipRule="evenodd"
+    />
+    <path d="M14 14h-2v-1h2v1Z" />
   </svg>
 );
 export const icon = EuiIconPencil;
