@@ -134,6 +134,7 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
   const isHrefValid = !href || validateHref(href);
   const isDisabled = _isDisabled || !isHrefValid;
   const isNamedColor = COLORS.includes(color as BadgeColor);
+  const isIconOnly = !children && !!iconType;
 
   const euiTheme = useEuiTheme();
   const customColorStyles = useMemo(() => {
@@ -169,6 +170,7 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
   const styles = useEuiMemoizedStyles(euiBadgeStyles);
   const cssStyles = [
     styles.euiBadge,
+    isIconOnly && styles.iconOnly,
     ...(isDisabled
       ? [styles.disabled]
       : [
@@ -244,7 +246,7 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
       optionalIcon = (
         <EuiIcon
           type={iconType}
-          size={children ? 's' : 'm'}
+          size="s"
           className="euiBadge__icon"
           css={iconCssStyles}
           color="inherit" // forces the icon to inherit its parent color

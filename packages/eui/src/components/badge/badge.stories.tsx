@@ -6,9 +6,13 @@
  * Side Public License, v 1.
  */
 
+import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
 
 import { EuiBadge, EuiBadgeProps, COLORS } from './badge';
+import { EuiBadgeGroup } from './badge_group';
+import { EuiFlexGroup } from '../flex';
 
 const meta: Meta<EuiBadgeProps> = {
   title: 'Display/EuiBadge/EuiBadge',
@@ -48,5 +52,44 @@ export const CustomColors: Story = {
   args: {
     children: 'Badge text',
     color: '#0000FF',
+  },
+};
+
+const KitchenSinkVariantRow = (props: Pick<EuiBadgeProps, 'color'>) => (
+  <EuiBadgeGroup>
+    <EuiBadge {...props}>Badge</EuiBadge>
+    <EuiBadge {...props} iconType="check">
+      Badge
+    </EuiBadge>
+    <EuiBadge
+      {...props}
+      iconType="cross"
+      iconSide="right"
+      iconOnClick={action('iconOnClick')}
+      iconOnClickAriaLabel="A dummy action icon"
+    >
+      Badge with iconOnClick
+    </EuiBadge>
+    <EuiBadge {...props} href="#">
+      Badge with href
+    </EuiBadge>
+    <EuiBadge {...props} iconType="check" children={undefined} />
+  </EuiBadgeGroup>
+);
+
+export const KitchenSink: Story = {
+  parameters: {
+    controls: {
+      disable: true,
+    },
+  },
+  render() {
+    return (
+      <EuiFlexGroup gutterSize="m" direction="column">
+        {COLORS.map((color, index) => (
+          <KitchenSinkVariantRow color={color} key={index} />
+        ))}
+      </EuiFlexGroup>
+    );
   },
 };
