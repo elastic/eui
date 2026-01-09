@@ -10,6 +10,7 @@ import { CSSStyleDeclaration } from 'cssstyle';
 import { TSESTree, ESLintUtils } from '@typescript-eslint/utils';
 
 import { resolveMemberExpressionRoot } from '../utils/resolve_member_expression_root';
+import { getPropertyName } from '../utils/get_property_name';
 import {
   ReportDescriptor,
   RuleContext,
@@ -64,7 +65,7 @@ const checkPropertySpecifiesInvalidCSSColor = ([property, value]: string[]) => {
     'initial',
     'unset',
     'revert',
-    'revert-layer'
+    'revert-layer',
   ];
 
   const normalizedColorValue = colorValue.toLowerCase().trim();
@@ -85,18 +86,17 @@ const raiseReportIfPropertyHasInvalidCssColor = (
 ) => {
   let didReport = false;
 
-  if (
-    propertyNode.key.type === 'Identifier' &&
-    !htmlElementColorDeclarationRegex.test(propertyNode.key.name)
-  ) {
+  const propertyName = getPropertyName(propertyNode);
+
+  if (!propertyName || !htmlElementColorDeclarationRegex.test(propertyName)) {
     return didReport;
   }
 
   if (propertyNode.value.type === 'Literal') {
     if (
       (didReport = checkPropertySpecifiesInvalidCSSColor([
-        // @ts-expect-error the key name is present in this scenario
-        propertyNode.key.name,
+        propertyName,
+        // @ts-expect-error the value is present in this scenario
         propertyNode.value.value,
       ]))
     ) {
@@ -201,7 +201,10 @@ const handleObjectProperties = (
     ).name;
 
     const spreadElementDeclaration = context.sourceCode
-      .getScope((propertyParentNode!.value as TSESTree.JSXExpressionContainer).expression!)
+      .getScope(
+        (propertyParentNode!.value as TSESTree.JSXExpressionContainer)
+          .expression!
+      )
       .references.find(
         (ref: { identifier: { name: string } }) =>
           ref.identifier.name === spreadElementIdentifierName
@@ -461,7 +464,8 @@ export const NoCssColor = ESLintUtils.RuleCreator.withoutDocs({
             let declarationPropertiesNode: TSESTree.Property[] = [];
 
             if (node.value.expression.body.type === 'ObjectExpression') {
-              declarationPropertiesNode = node.value.expression.body.properties as TSESTree.Property[];
+              declarationPropertiesNode = node.value.expression.body
+                .properties as TSESTree.Property[];
             }
 
             if (node.value.expression.body.type === 'BlockStatement') {
