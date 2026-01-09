@@ -43,7 +43,7 @@ import {
   EuiFormControlLayoutProps,
 } from './form_control_layout';
 import { EuiFormAppend, EuiFormPrepend } from './append_prepend';
-import { UseEuiTheme } from '@elastic/eui-theme-common';
+import { mathWithUnits, UseEuiTheme } from '@elastic/eui-theme-common';
 
 const meta: Meta<EuiFormControlLayoutProps> = {
   title: 'Forms/EuiForm/EuiFormControlLayout',
@@ -79,7 +79,6 @@ const meta: Meta<EuiFormControlLayoutProps> = {
     isLoading: false,
     readOnly: false,
     icon: '',
-    inputId: '',
   },
 };
 hideStorybookControls(meta, ['aria-label']);
@@ -98,6 +97,7 @@ export const Playground: Story = {
       compressed,
       isInvalid: args.isInvalid,
     };
+
     return (
       <EuiFormControlLayout {...args}>
         <EuiFieldText
@@ -148,8 +148,6 @@ export const FormControlButton: Story = {
     },
   },
   render: function Render(args) {
-    const { isInvalid, isDisabled, compressed } = args;
-
     return (
       <EuiForm>
         <EuiFormRow label="With EuiFormControlButton">
@@ -158,9 +156,6 @@ export const FormControlButton: Story = {
             clear={{ onClick: action('onClear') }}
           >
             <EuiFormControlButton
-              compressed={compressed}
-              isDisabled={isDisabled}
-              isInvalid={isInvalid}
               value={_options.map((opt) => opt.label).join(', ')}
               onClick={action('onClick')}
             >
@@ -172,9 +167,90 @@ export const FormControlButton: Story = {
         </EuiFormRow>
 
         <EuiFormRow label="With EuiFormControlButton and EuiPopover">
-          <FormControlButtonWithPopover />
+          <FormControlButtonWithPopover
+            {...(args as FormControlButtonWithPopoverProps)}
+          />
         </EuiFormRow>
       </EuiForm>
+    );
+  },
+};
+
+export const FormControlButtonKitchensink: Story = {
+  tags: ['vrt-only'],
+  parameters: {
+    controls: {
+      exclude: ['fullWidth', 'isDelimited', 'readOnly', 'wrapperProps'],
+    },
+  },
+  render: function Render(args) {
+    const isDesktop = useIsWithinMinBreakpoint('xl');
+
+    const renderContent = (compressed: boolean) => {
+      const commonProps = {
+        ...args,
+        compressed,
+      };
+
+      return (
+        <EuiForm
+          fullWidth={isDesktop}
+          css={{ display: 'flex', flexDirection: 'column', gap: 10 }}
+        >
+          <EuiFormControlLayout
+            {...commonProps}
+            append="String"
+            prepend="String"
+          >
+            <EuiFormControlButton placeholder="EuiFormControlButton" />
+          </EuiFormControlLayout>
+
+          <EuiFormControlLayout
+            {...commonProps}
+            append="String"
+            prepend="String"
+          >
+            <EuiFormControlButton
+              placeholder="EuiFormControlButton"
+              autoFocus // forcing focus styles for VRT
+            />
+          </EuiFormControlLayout>
+
+          <EuiFormControlLayout
+            {...commonProps}
+            append="String"
+            prepend="String"
+            isDisabled
+          >
+            <EuiFormControlButton placeholder="EuiFormControlButton" />
+          </EuiFormControlLayout>
+
+          <EuiFormControlLayout
+            {...commonProps}
+            append="String"
+            prepend="String"
+            readOnly
+          >
+            <EuiFormControlButton placeholder="EuiFormControlButton" />
+          </EuiFormControlLayout>
+
+          <EuiFormControlLayout
+            {...commonProps}
+            append="String"
+            prepend="String"
+            isInvalid
+          >
+            <EuiFormControlButton placeholder="EuiFormControlButton" />
+          </EuiFormControlLayout>
+        </EuiForm>
+      );
+    };
+
+    return (
+      <EuiFlexGroup>
+        {renderContent(false)}
+        {renderContent(true)}
+      </EuiFlexGroup>
     );
   },
 };
@@ -184,7 +260,7 @@ export const AppendPrepend_REVIEW_EXAMPLE: Story = {
   parameters: {
     loki: { skip: true },
   },
-  render: function Render() {
+  render: function Render(args) {
     const isDesktop = useIsWithinMinBreakpoint('xl');
     return (
       <EuiForm
@@ -192,6 +268,7 @@ export const AppendPrepend_REVIEW_EXAMPLE: Story = {
         css={{ display: 'flex', flexDirection: 'column', gap: 10 }}
       >
         <EuiFieldText
+          {...args}
           placeholder="String & text in a tooltip"
           prepend="String"
           append={
@@ -202,6 +279,7 @@ export const AppendPrepend_REVIEW_EXAMPLE: Story = {
           autoFocus
         />
         <EuiFieldText
+          {...args}
           placeholder="XS empty button in a popover & tooltip"
           prepend={
             <EuiPopover
@@ -220,6 +298,7 @@ export const AppendPrepend_REVIEW_EXAMPLE: Story = {
           }
         />
         <EuiFieldText
+          {...args}
           placeholder="XS empty buttons with icons"
           prepend={
             <EuiButtonEmpty
@@ -239,11 +318,13 @@ export const AppendPrepend_REVIEW_EXAMPLE: Story = {
           }
         />
         <EuiFieldText
+          {...args}
           placeholder="Icon & button icon"
           prepend={<EuiIcon type="vector" />}
           append={<EuiButtonIcon iconType="gear" aria-label="Gear this" />}
         />
         <EuiFieldText
+          {...args}
           placeholder="Icons in buttons and popovers and tooltips"
           prepend={[
             <EuiIcon type="vector" />,
@@ -258,6 +339,7 @@ export const AppendPrepend_REVIEW_EXAMPLE: Story = {
           ]}
         />
         <EuiFieldText
+          {...args}
           placeholder="Icon button in popover & tooltip"
           append={
             <EuiPopover
@@ -274,6 +356,7 @@ export const AppendPrepend_REVIEW_EXAMPLE: Story = {
           }
         />
         <EuiFieldText
+          {...args}
           placeholder="Icon and string & string and icon button"
           prepend={[<EuiIcon type="vector" />, 'String']}
           append={[
@@ -282,6 +365,7 @@ export const AppendPrepend_REVIEW_EXAMPLE: Story = {
           ]}
         />
         <EuiFieldText
+          {...args}
           placeholder="String and button icon in tooltip & button icon in popover and string"
           prepend={[
             'String',
@@ -298,6 +382,7 @@ export const AppendPrepend_REVIEW_EXAMPLE: Story = {
           ]}
         />
         <EuiFieldText
+          {...args}
           compressed={true}
           placeholder="Compressed"
           prepend="String"
@@ -307,6 +392,7 @@ export const AppendPrepend_REVIEW_EXAMPLE: Story = {
           ]}
         />
         <EuiFieldText
+          {...args}
           disabled={true}
           placeholder="Disabled"
           prepend="String"
@@ -318,6 +404,7 @@ export const AppendPrepend_REVIEW_EXAMPLE: Story = {
           ]}
         />
         <EuiFieldText
+          {...args}
           readOnly={true}
           placeholder="Readonly"
           prepend={
@@ -352,26 +439,29 @@ export const AppendPrepend: Story = {
     const renderContent = (compressed: boolean = false) => {
       const idBase = `input-${compressed ? 'compressed' : ''}`;
 
+      const commonProps = {
+        ...args,
+        compressed: compressed ?? args.compressed,
+      };
+
       return (
         <EuiForm
           fullWidth={isDesktop}
           css={{ display: 'flex', flexDirection: 'column', gap: 10 }}
         >
           <EuiFieldText
-            {...args}
+            {...commonProps}
             placeholder="Text field"
             id={`${idBase}-0`}
-            compressed={compressed ?? args.compressed}
             prepend="String"
             append={<EuiFormAppend label="String" iconLeft="gear" inputId="" />}
             autoFocus
           />
 
           <EuiFieldText
-            {...args}
+            {...commonProps}
             placeholder="Text field"
             id={`${idBase}-1`}
-            compressed={compressed ?? args.compressed}
             prepend={<EuiFormPrepend label="String" iconRight="gear" />}
             append={
               <EuiFormAppend
@@ -384,10 +474,9 @@ export const AppendPrepend: Story = {
           />
 
           <EuiFieldText
-            {...args}
+            {...commonProps}
             placeholder="Text field"
             id={`${idBase}-2`}
-            compressed={compressed ?? args.compressed}
             prepend={
               <EuiFormPrepend
                 label="String"
@@ -407,10 +496,9 @@ export const AppendPrepend: Story = {
           />
 
           <EuiFieldText
-            {...args}
             placeholder="Text field"
             id={`${idBase}-3`}
-            compressed={compressed ?? args.compressed}
+            {...commonProps}
             prepend={
               <EuiFormPrepend label="String" iconLeft="vector" iconRight="gear">
                 <EuiNotificationBadge color="subdued">1</EuiNotificationBadge>
@@ -430,10 +518,9 @@ export const AppendPrepend: Story = {
           />
 
           <EuiFieldText
-            {...args}
+            {...commonProps}
             placeholder="Text field"
             id={`${idBase}-4`}
-            compressed={compressed ?? args.compressed}
             prepend={
               <EuiToolTip content="Tooltip content">
                 <EuiFormPrepend label="Tooltip" />
@@ -451,10 +538,9 @@ export const AppendPrepend: Story = {
           />
 
           <EuiFieldText
-            {...args}
+            {...commonProps}
             placeholder="Text field"
             id={`${idBase}-5`}
-            compressed={compressed ?? args.compressed}
             prepend={
               <EuiFormPrepend
                 element="button"
@@ -478,10 +564,9 @@ export const AppendPrepend: Story = {
           />
 
           <EuiFieldText
-            {...args}
+            {...commonProps}
             placeholder="Text field"
             id={`${idBase}-6`}
-            compressed={compressed ?? args.compressed}
             prepend={<EuiFormPrepend iconLeft="vector" />}
             append={
               <EuiFormAppend
@@ -493,11 +578,10 @@ export const AppendPrepend: Story = {
           />
 
           <EuiFieldText
-            {...args}
+            {...commonProps}
             disabled={true}
             placeholder="Disabled text field"
             id={`${idBase}-7`}
-            compressed={compressed ?? args.compressed}
             prepend="String"
             append={
               <EuiFormAppend
@@ -508,10 +592,9 @@ export const AppendPrepend: Story = {
             }
           />
           <EuiFieldText
-            {...args}
+            {...commonProps}
             readOnly={true}
             placeholder="ReadOnly text field"
-            compressed={compressed ?? args.compressed}
             id={`${idBase}-8`}
             prepend={
               <EuiFormPrepend
@@ -535,13 +618,12 @@ export const AppendPrepend: Story = {
   },
 };
 
-/* TODO: remove testing story */
-export const Kitchensink: Story = {
+export const AppendPrependAPIKitchensink: Story = {
+  tags: ['vrt-only'],
   parameters: {
     codeSnippet: {
       skip: true,
     },
-    loki: { skip: true },
   },
   render: function Render(args) {
     const { readOnly, isDisabled, fullWidth, compressed } = args;
@@ -562,6 +644,7 @@ export const Kitchensink: Story = {
       fullWidth,
       compressed,
       isInvalid: args.isInvalid,
+      ...args,
     };
 
     return (
@@ -637,6 +720,25 @@ export const Kitchensink: Story = {
                     label="Copy"
                     element="button"
                     onClick={copy}
+                  />
+                )}
+              </EuiCopy>
+            }
+          />
+
+          <EuiFieldText
+            {...childProps}
+            id="textField-3"
+            placeholder="Text field"
+            append={
+              <EuiCopy textToCopy="meow meow">
+                {(copy) => (
+                  <EuiFormAppend
+                    iconRight="copy"
+                    label="Copy"
+                    element="button"
+                    onClick={copy}
+                    isDisabled
                   />
                 )}
               </EuiCopy>
@@ -754,8 +856,8 @@ export const Kitchensink: Story = {
                     prepend={
                       <EuiFormPrepend
                         label="String"
+                        element="button"
                         iconLeft="grabHorizontal"
-                        inputId="textField-9"
                         aria-label="Drag handle"
                         {...provided.dragHandleProps}
                       />
@@ -778,67 +880,61 @@ export const Kitchensink: Story = {
                 customDragHandle="custom"
               >
                 {(provided) => (
-                  <div
-                    css={({ euiTheme }) => css`
-                      .euiFormControlLayout__prepend {
-                        &:is(:hover, :active) {
-                          &::before {
-                            content: '';
-                            position: absolute;
-                            inset: 0;
-                            background-color: ${euiTheme.colors
-                              .backgroundBaseInteractiveHover};
-                          }
+                  <EuiFieldText
+                    {...childProps}
+                    placeholder="Text field"
+                    prepend={
+                      <EuiFlexGroup
+                        gutterSize="none"
+                        alignItems="center"
+                        css={({ euiTheme }) => css`
+                          position: relative;
+                          margin-inline-start: -${euiTheme.size.xs};
+                          border-radius: ${mathWithUnits(
+                            euiTheme.border.radius.small,
+                            (x) => x / 2
+                          )};
+                          overflow: hidden;
 
-                          .euiFormAppendPrepend__dragHandle {
-                            color: ${euiTheme.colors.textParagraph};
+                          &:is(:hover, :active) {
+                            .euiFormAppendPrepend__dragHandle {
+                              color: ${euiTheme.colors.textParagraph};
+                            }
                           }
-                        }
-                      }
-                    `}
-                  >
-                    <EuiFieldText
-                      {...childProps}
-                      id="textField-9"
-                      placeholder="Text field"
-                      prepend={
-                        <EuiFlexGroup gutterSize="none" alignItems="center">
-                          <button
-                            className="euiFormAppendPrepend__dragHandle"
-                            {...provided.dragHandleProps}
-                            aria-label="Drag handle"
-                            css={({ euiTheme }) => css`
+                        `}
+                      >
+                        <button
+                          className="euiFormAppendPrepend__dragHandle"
+                          {...provided.dragHandleProps}
+                          aria-label="Drag handle"
+                          css={({ euiTheme }) => css`
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            inline-size: ${euiTheme.size.l};
+                            block-size: ${euiTheme.size.l};
+                            z-index: 1;
+                            /* offsets default content padding */
+                            margin-inline-end: -${euiTheme.size.s};
+                            color: ${euiTheme.colors.textDisabled};
+                          `}
+                        >
+                          <EuiIcon type="grabHorizontal" />
+                        </button>
+
+                        <EuiToolTip
+                          content="String"
+                          anchorProps={{
+                            css: css`
                               display: flex;
-                              align-items: center;
-                              justify-content: center;
-                              inline-size: ${euiTheme.size.l};
-                              block-size: ${euiTheme.size.l};
-                              z-index: 1;
-                              /* offsets default content padding */
-                              margin-inline-end: -${euiTheme.size.base};
-                              color: ${euiTheme.colors.textDisabled};
-                            `}
-                          >
-                            <EuiIcon type="grabHorizontal" />
-                          </button>
-
-                          <EuiToolTip
-                            content="String"
-                            anchorProps={{
-                              css: css`
-                                display: flex;
-                              `,
-                            }}
-                          >
-                            <EuiFormPrepend
-                              label="String"
-                              inputId="textField-9"
-                            />
-                          </EuiToolTip>
-                        </EuiFlexGroup>
-                      }
-                    />
-                  </div>
+                            `,
+                          }}
+                        >
+                          <EuiFormPrepend label="String" />
+                        </EuiToolTip>
+                      </EuiFlexGroup>
+                    }
+                  />
                 )}
               </EuiDraggable>
             </EuiDroppable>
@@ -916,6 +1012,27 @@ export const Kitchensink: Story = {
                     size="xs"
                     iconSide="right"
                     onClick={copy}
+                  >
+                    Copy
+                  </EuiButtonEmpty>
+                )}
+              </EuiCopy>
+            }
+          />
+
+          <EuiFieldText
+            {...childProps}
+            placeholder="Text field"
+            id="textField-104"
+            append={
+              <EuiCopy textToCopy="meow meow">
+                {(copy) => (
+                  <EuiButtonEmpty
+                    iconType="copy"
+                    size="xs"
+                    iconSide="right"
+                    onClick={copy}
+                    isDisabled
                   >
                     Copy
                   </EuiButtonEmpty>
@@ -1054,65 +1171,62 @@ export const Kitchensink: Story = {
                 customDragHandle="custom"
               >
                 {(provided) => (
-                  <div
-                    css={({ euiTheme }) => css`
-                      .euiFormControlLayout__prepend {
-                        &:is(:hover, :active) {
-                          &::before {
-                            content: '';
-                            position: absolute;
-                            inset: 0;
-                            background-color: ${euiTheme.colors
-                              .backgroundBaseInteractiveHover};
-                          }
+                  <EuiFieldText
+                    {...childProps}
+                    id="textField-11"
+                    placeholder="Text field"
+                    prepend={
+                      <EuiFlexGroup
+                        gutterSize="none"
+                        alignItems="center"
+                        css={({ euiTheme }) => css`
+                          position: relative;
+                          margin-inline-start: -${euiTheme.size.xs};
+                          border-radius: ${mathWithUnits(
+                            euiTheme.border.radius.small,
+                            (x) => x / 2
+                          )};
+                          overflow: hidden;
 
-                          .euiFormAppendPrepend__dragHandle {
-                            color: ${euiTheme.colors.textParagraph};
+                          &:is(:hover, :active) {
+                            .euiFormAppendPrepend__dragHandle {
+                              color: ${euiTheme.colors.textParagraph};
+                            }
                           }
-                        }
-                      }
-                    `}
-                  >
-                    <EuiFieldText
-                      {...childProps}
-                      id="textField-11"
-                      placeholder="Text field"
-                      prepend={
-                        <EuiFlexGroup gutterSize="none" alignItems="center">
-                          <button
-                            className="euiFormAppendPrepend__dragHandle"
-                            {...provided.dragHandleProps}
-                            aria-label="Drag handle"
-                            css={({ euiTheme }) => css`
+                        `}
+                      >
+                        <button
+                          className="euiFormAppendPrepend__dragHandle"
+                          {...provided.dragHandleProps}
+                          aria-label="Drag handle"
+                          css={({ euiTheme }) => css`
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            inline-size: ${euiTheme.size.l};
+                            block-size: ${euiTheme.size.l};
+                            z-index: 1;
+                            /* offsets default content padding */
+                            margin-inline-end: -${euiTheme.size.s};
+                            color: ${euiTheme.colors.textDisabled};
+                          `}
+                        >
+                          <EuiIcon type="grabHorizontal" />
+                        </button>
+
+                        <EuiToolTip
+                          content="String"
+                          anchorProps={{
+                            css: css`
                               display: flex;
-                              align-items: center;
-                              justify-content: center;
-                              inline-size: ${euiTheme.size.l};
-                              block-size: ${euiTheme.size.l};
-                              /* offsets default content padding */
-                              margin-inline-start: -${euiTheme.size.m};
-                              margin-inline-end: -${euiTheme.size.xs};
-                              color: ${euiTheme.colors.textDisabled};
-                            `}
-                          >
-                            <EuiIcon type="grabHorizontal" />
-                          </button>
-                          <EuiToolTip
-                            content="String"
-                            anchorProps={{
-                              css: css`
-                                display: flex;
-                              `,
-                            }}
-                          >
-                            <EuiFormLabel htmlFor="textField-11">
-                              String
-                            </EuiFormLabel>
-                          </EuiToolTip>
-                        </EuiFlexGroup>
-                      }
-                    />
-                  </div>
+                            `,
+                          }}
+                        >
+                          <EuiFormPrepend label="String" />
+                        </EuiToolTip>
+                      </EuiFlexGroup>
+                    }
+                  />
                 )}
               </EuiDraggable>
             </EuiDroppable>
@@ -1161,8 +1275,11 @@ const _options: EuiSelectableOption[] = [
   },
 ];
 
+type FormControlButtonWithPopoverProps = EuiFormControlLayoutProps &
+  EuiFormControlButtonProps;
+
 const FormControlButtonWithPopover = (
-  args: EuiFormControlLayoutProps & EuiFormControlButtonProps
+  args: FormControlButtonWithPopoverProps
 ) => {
   const { isInvalid, isDisabled, compressed, placeholder, fullWidth } = args;
 
