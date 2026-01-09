@@ -34,3 +34,6 @@ yarn-error.log*
 yarn-error.log
 .cursorrules
 WARP.md
+
+# Build artifacts
+package.tgz
