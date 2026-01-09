@@ -14,6 +14,7 @@ import { useEuiMemoizedStyles } from '../../services';
 import { CommonProps } from '../common';
 import { IconType, EuiIcon } from '../icon';
 import { EuiButtonIcon } from '../button';
+import { Props as EuiButtonIconProps } from '../button/button_icon/button_icon';
 import { EuiText } from '../text';
 import { EuiPanel } from '../panel';
 import { EuiSpacer } from '../spacer';
@@ -53,6 +54,14 @@ export type EuiCallOutProps = CommonProps &
      * removing the callout or other actions.
      */
     onDismiss?: () => void;
+
+    /**
+     * Useful for passing additional props to the dismiss button e.g. data attributes
+     */
+    dismissButtonProps?: Partial<
+      Omit<EuiButtonIconProps, 'iconType' | 'onClick'>
+    >;
+
     /**
      * Enables the content to be read by screen readers on mount.
      * Use this for callouts that are shown based on a user action.
@@ -73,6 +82,7 @@ export const EuiCallOut = forwardRef<HTMLDivElement, EuiCallOutProps>(
       className,
       heading = 'p',
       onDismiss,
+      dismissButtonProps,
       announceOnMount = false,
       ...rest
     },
@@ -108,12 +118,15 @@ export const EuiCallOut = forwardRef<HTMLDivElement, EuiCallOutProps>(
         >
           {(dismissAriaLabel: string) => (
             <EuiButtonIcon
-              iconType="cross"
-              onClick={onDismiss}
-              aria-label={dismissAriaLabel}
-              css={cssStyles}
-              color={color}
               data-test-subj="euiDismissCalloutButton"
+              aria-label={
+                dismissButtonProps?.['aria-label'] ?? dismissAriaLabel
+              }
+              css={cssStyles}
+              {...dismissButtonProps}
+              iconType="cross"
+              color={color}
+              onClick={onDismiss}
             />
           )}
         </EuiI18n>
