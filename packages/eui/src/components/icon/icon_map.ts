@@ -474,9 +474,9 @@ export const typeToPathMap = {
   productCloudInfra: 'product_cloud_infra',
   productDashboard: 'product_dashboard',
   productML: 'product_ml',
-  push: 'push',
   productStreamsClassic: 'product_streams_classic',
   productStreamsWired: 'product_streams_wired',
+  push: 'send', // NOTE: To be deprecated in favor of send
   send: 'send',
   question: 'question',
   quote: 'quote',
