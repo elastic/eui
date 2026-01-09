@@ -1,0 +1,69 @@
+# Nested drag and drop
+
+```mdx-code-block
+import { EuiLink } from '@elastic/eui';
+```
+
+EUI exposes `EuiDraggable` and `EuiDroppable` components (see [documentation](../../components/display/drag-and-drop.mdx)), which are wrappers around <EuiLink href="https://github.com/hello-pangea/dnd" target="_blank">@hello-pangea/dnd</EuiLink>. While excellent for simple lists, `@hello-pangea/dnd` is heavy and has limitations such as not being able to move items between different levels of nesting.
+
+For complex use cases like this, we recommend <EuiLink href="https://atlassian.design/components/pragmatic-drag-and-drop/about" target="_blank">Pragmatic drag and drop</EuiLink> by Atlassian. It is a performance-focused, flexible library that handles these scenarios efficiently.
+
+The example below demonstrates a simplified version of Pragmatic's <EuiLink href="https://atlassian.design/components/pragmatic-drag-and-drop/examples/#tree" target="_blank">Tree pattern</EuiLink>, adapted to use EUI components and design tokens with enhanced keyboard navigation.
+
+:::accessibility Accessibility
+
+This example uses nested **EuiAccordion** components with roving tabindex to improve usability, similarly as in [Tree view pattern](https://www.w3.org/WAI/ARIA/apg/patterns/treeview/).
+
+For complex trees, the recommended accessibility pattern is not to mimic mouse dragging with keys but provide a "Move" action. In this case, we use **EuiPopover** and **EuiContextMenu** composition inside the `extraAction` prop.
+:::
+
+:::warning Package versions
+
+This pattern may work differently depending on which version of **@atlaskit/pragmatic-drag-and-drop** you use. Please check the versions used in our <EuiLink href="https://github.com/elastic/eui/blob/main/packages/website/package.json" target="_blank">package.json</EuiLink>.
+:::
+
+```bash
+yarn add @atlaskit/pragmatic-drag-and-drop @atlaskit/pragmatic-drag-and-drop-hitbox
+```
+
+```mdx-code-block
+import { css } from '@emotion/react';
+import {
+  EuiAccordion,
+  EuiIcon,
+  EuiPanel,
+  EuiText,
+  useEuiTheme,
+} from '@elastic/eui';
+import {
+  draggable,
+  dropTargetForElements,
+  monitorForElements,
+} from '@atlaskit/pragmatic-drag-and-drop/element/adapter';
+import { combine } from '@atlaskit/pragmatic-drag-and-drop/combine';
+import {
+  attachInstruction,
+  extractInstruction,
+} from '@atlaskit/pragmatic-drag-and-drop-hitbox/list-item';
+
+import ExampleCode from '!!raw-loader!./example';
+```
+
+<Demo
+  scope={{
+    css,
+    EuiAccordion,
+    EuiIcon,
+    EuiPanel,
+    EuiText,
+    useEuiTheme,
+    draggable,
+    dropTargetForElements,
+    monitorForElements,
+    combine,
+    attachInstruction,
+    extractInstruction,
+  }}
+>
+  {ExampleCode}
+</Demo>
