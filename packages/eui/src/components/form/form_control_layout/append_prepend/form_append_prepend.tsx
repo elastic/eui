@@ -115,14 +115,18 @@ export const EuiFormAppendPrepend: FunctionComponent<
 }) => {
   const styles = useEuiMemoizedStyles(euiFormAppendPrependStyles);
 
-  const { compressed: formLayoutCompressed, inputId: formLayoutInputId } =
-    useContext(EuiFormControlLayoutContext);
+  const {
+    compressed: formLayoutCompressed,
+    inputId: formLayoutInputId,
+    isDisabled: formLayoutIsDisabled,
+  } = useContext(EuiFormControlLayoutContext);
   const compressed = _compressed ?? formLayoutCompressed;
   const inputId = _inputId ?? formLayoutInputId;
 
   // Adding automatic check on onClick for DevX convinience, this doesn't replace defining `element`
   const isButton = element === 'button' || typeof rest.onClick === 'function';
-  const isDisabled = _isDisabled || disabled;
+  const isDisabled =
+    _isDisabled || disabled || (!isButton && formLayoutIsDisabled);
 
   const iconLeft = _iconLeft && <EuiIcon type={_iconLeft} />;
   const iconRight = _iconRight && <EuiIcon type={_iconRight} />;

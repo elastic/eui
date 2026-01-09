@@ -170,7 +170,13 @@ export const EuiFormControlLayout: FunctionComponent<
   return (
     <div css={cssStyles} className={classes} {...rest}>
       <EuiFormControlLayoutContextProvider
-        value={{ compressed: !!compressed, inputId }}
+        value={{
+          compressed: !!compressed,
+          inputId,
+          isDisabled: isDisabled,
+          isInvalid: isInvalid,
+          readOnly: readOnly,
+        }}
       >
         <EuiFormControlLayoutSideNodes
           side="prepend"
