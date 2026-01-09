@@ -47,7 +47,8 @@ export const euiBadgeStyles = (euiThemeContext: UseEuiTheme) => {
       cursor: inherit;
       border: ${euiTheme.border.width.thin} solid transparent;
 
-      /* border radius is intentionally larger than half of the badge height */
+      /* border radius is intentionally larger to protect against external
+         customizations that might affect badge height */
       border-radius: ${euiTheme.size.l};
 
       /* The badge will only ever be as wide as its content
