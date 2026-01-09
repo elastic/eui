@@ -28,7 +28,12 @@ const EuiIconChartBarHorizontal = ({
     {...props}
   >
     {title ? <title id={titleId}>{title}</title> : null}
-    <path d="M8.5 10h-6a.5.5 0 0 1 0-1H8V6H2.5a.5.5 0 0 1 0-1H13V2H2.5a.5.5 0 0 1 0-1h11a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5H9v3h2.5a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5h-9a.5.5 0 1 1 0-1H11v-3H8.5ZM0 .5a.5.5 0 1 1 1 0v14a.5.5 0 1 1-1 0V.5Z" />
+    <path d="M2 14h13v1H2a1 1 0 0 1-1-1V1h1v13Z" />
+    <path
+      fillRule="evenodd"
+      d="M7 10a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-1a1 1 0 0 1 1-1h3Zm-3 2h3v-1H4v1Zm5-6a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5ZM4 8h5V7H4v1Zm7-6a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1h7ZM4 3v1h7V3H4Z"
+      clipRule="evenodd"
+    />
   </svg>
 );
 export const icon = EuiIconChartBarHorizontal;

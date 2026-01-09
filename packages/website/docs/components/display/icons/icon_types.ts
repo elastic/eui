@@ -18,8 +18,12 @@ export const iconTypes: Array<IconType> = [
   'annotation', // To be deprecated
   'apps', // To be deprecated
   'article', // To be deprecated NO USAGE
+  'archive',
   'asterisk',
   'at',
+  'axisX',
+  'axisYLeft',
+  'axisYRight',
   'backgroundTask',
   'bell',
   'bellSlash',
@@ -30,6 +34,7 @@ export const iconTypes: Array<IconType> = [
   'broom',
   'brush',
   'bug',
+  'bulb',
   'bullseye',
   'calendar',
   'chartAnomaly',
@@ -64,6 +69,7 @@ export const iconTypes: Array<IconType> = [
   'clock',
   'clockControl',
   'clockCounter',
+  'cloud',
   'cloudDrizzle', // To be deprecated
   'cloudStormy', // To be deprecated
   'cloudSunny', // To be deprecated
@@ -133,6 +139,7 @@ export const iconTypes: Array<IconType> = [
   'grid',
   'heart',
   'help', // To be deprecated
+  'hourglass',
   'home',
   'if',
   'image',
@@ -179,6 +186,7 @@ export const iconTypes: Array<IconType> = [
   'map',
   'mapping',
   'maximize',
+  'megaphone',
   'memory', // To be deprecated
   'menu',
   'menuDown', // To be deprecated NO USAGE
@@ -220,7 +228,7 @@ export const iconTypes: Array<IconType> = [
   'popper',
   'presentation',
   'processor',
-  'productRobot',
+  'productAgent',
   'productStreamsClassic',
   'productStreamsWired',
   'query',
@@ -305,6 +313,7 @@ export const iconTypes: Array<IconType> = [
   'trash',
   'unfold', // To be deprecated
   'undo',
+  'unarchive',
   'upload',
   'user',
   'users',
@@ -322,5 +331,6 @@ export const iconTypes: Array<IconType> = [
   'wifiSlash',
   'wordWrap', // To be deprecated
   'wordWrapDisabled', // To be deprecated
+  'workflow',
   'wrench',
 ];

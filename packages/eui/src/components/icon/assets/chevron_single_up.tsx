@@ -30,7 +30,7 @@ const EuiIconChevronSingleUp = ({
     {title ? <title id={titleId}>{title}</title> : null}
     <path
       fillRule="evenodd"
-      d="m8 5.707 5.646 5.647.708-.707L8 4.292l-6.354 6.353.708.708L8 5.707Z"
+      d="m8 5.707 5.646 5.647.708-.708L8 4.293l-6.354 6.353.708.707L8 5.708Z"
       clipRule="evenodd"
     />
   </svg>

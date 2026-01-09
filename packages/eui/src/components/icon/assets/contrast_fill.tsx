@@ -30,7 +30,7 @@ const EuiIconContrastFill = ({
     {title ? <title id={titleId}>{title}</title> : null}
     <path
       fillRule="evenodd"
-      d="M15 8A7 7 0 1 1 1 8a7 7 0 0 1 14 0Zm-7 6V2a6 6 0 1 0 0 12Z"
+      d="M8 1a7 7 0 1 1 0 14A7 7 0 0 1 8 1Zm0 1a6 6 0 1 0 0 12V2Z"
       clipRule="evenodd"
     />
   </svg>

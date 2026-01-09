@@ -28,7 +28,7 @@ const EuiIconTextHeading = ({
     {...props}
   >
     {title ? <title id={titleId}>{title}</title> : null}
-    <path d="M6 11a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2V5a1 1 0 1 1 0-2h2a1 1 0 1 1 0 2v2h4V5a1 1 0 1 1 0-2h2a1 1 0 0 1 0 2v6a1 1 0 0 1 0 2h-2a1 1 0 0 1 0-2V9H6v2Z" />
+    <path d="M7 3v2H6v2h4V5H9V3h4v2h-1v6h1v2H9v-2h1V9H6v2h1v2H3v-2h1V5H3V3h4Z" />
   </svg>
 );
 export const icon = EuiIconTextHeading;

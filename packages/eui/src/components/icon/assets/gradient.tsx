@@ -28,9 +28,11 @@ const EuiIconGradient = ({
     {...props}
   >
     {title ? <title id={titleId}>{title}</title> : null}
+    <path d="M5 12H4v-1h1v1Zm2 0H6v-1h1v1Zm-1-1H5v-1h1v1Zm2 0H7v-1h1v1Zm-3-1H4V9h1v1Zm2 0H6V9h1v1ZM6 9H5V8h1v1Zm2 0H7V8h1v1ZM5 8H4V7h1v1Zm2 0H6V7h1v1ZM6 7H5V6h1v1Zm2 0H7V6h1v1ZM5 6H4V5h1v1Zm2 0H6V5h1v1ZM6 5H5V4h1v1Zm2 0H7V4h1v1Z" />
     <path
       fillRule="evenodd"
-      d="M1 2a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2Zm4 0h1v12H5V2Zm3 12V2h2v12H8Zm3 0h3V2h-3v12Z"
+      d="M13 2a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H3a1 1 0 0 1-.995-.898L2 13V3a1 1 0 0 1 1-1h10ZM3 4h1v1H3v1h1v1H3v1h1v1H3v1h1v1H3v1h1v1h1v-1h1v1h1v-1h1v1h5V3H7v1H6V3H5v1H4V3H3v1Z"
+      clipRule="evenodd"
     />
   </svg>
 );

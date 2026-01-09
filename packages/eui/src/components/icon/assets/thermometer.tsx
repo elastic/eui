@@ -28,8 +28,16 @@ const EuiIconThermometer = ({
     {...props}
   >
     {title ? <title id={titleId}>{title}</title> : null}
-    <path d="M8.5 15a3.5 3.5 0 0 1-1.75-6.532L7 8.324V2.5A1.496 1.496 0 0 1 9.908 2H8.5v1H10v1H8.5v1H10v1H8.5v1H10v1.324l.25.144A3.5 3.5 0 0 1 8.5 15M11 7.758V2.5a2.5 2.5 0 1 0-5 0v5.258a4.5 4.5 0 1 0 5 0" />
-    <path d="M8.5 9a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5" />
+    <path
+      fillRule="evenodd"
+      d="M8 9a2 2 0 1 1 0 4 2 2 0 0 1 0-4Zm0 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2Z"
+      clipRule="evenodd"
+    />
+    <path
+      fillRule="evenodd"
+      d="M8 1a2 2 0 0 1 2 2v4.537a4 4 0 1 1-4 0V3a2 2 0 0 1 2-2Zm0 1a1 1 0 0 0-1 1v5.174A2.999 2.999 0 0 0 8 14a3 3 0 0 0 1-5.826V8H8V7h1V6H8V5h1V4H8V3h1a1 1 0 0 0-1-1Z"
+      clipRule="evenodd"
+    />
   </svg>
 );
 export const icon = EuiIconThermometer;

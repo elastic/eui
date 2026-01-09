@@ -28,7 +28,11 @@ const EuiIconWarningFill = ({
     {...props}
   >
     {title ? <title id={titleId}>{title}</title> : null}
-    <path d="M8 1a1 1 0 0 1 .863.496l7 12A1 1 0 0 1 15 15H1a1 1 0 0 1-.864-1.504l7-12A1 1 0 0 1 8 1Zm0 10a1 1 0 1 0 0 2 1 1 0 0 0 0-2Zm-.5-6v5h1V5h-1Z" />
+    <path
+      fillRule="evenodd"
+      d="M8 1a1 1 0 0 1 .863.496l7 12A1 1 0 0 1 15 15H1a1 1 0 0 1-.864-1.504l7-12A1 1 0 0 1 8 1Zm0 10a1 1 0 1 0 0 2 1 1 0 0 0 0-2Zm-.5-6v5h1V5h-1Z"
+      clipRule="evenodd"
+    />
   </svg>
 );
 export const icon = EuiIconWarningFill;

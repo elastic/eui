@@ -28,10 +28,7 @@ const EuiIconStop = ({
     {...props}
   >
     {title ? <title id={titleId}>{title}</title> : null}
-    <path
-      fillRule="evenodd"
-      d="M4 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2Zm0 1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H4Z"
-    />
+    <path d="M3 3v10h10V3H3Zm11 10a1 1 0 0 1-1 1H3a1 1 0 0 1-.995-.898L2 13V3a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v10Z" />
   </svg>
 );
 export const icon = EuiIconStop;

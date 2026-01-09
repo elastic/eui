@@ -28,7 +28,7 @@ const EuiIconShard = ({
     {...props}
   >
     {title ? <title id={titleId}>{title}</title> : null}
-    <path d="M5.134 7.031 8 12.764l2.866-5.733L8 2.016 5.134 7.03ZM8 0l4 7-4 8-4-8 4-7Z" />
+    <path d="M8 1a1 1 0 0 1 .832.445l4 6a1 1 0 0 1 0 1.11l-4 6a1 1 0 0 1-1.664 0l-4-6a1 1 0 0 1 0-1.11l4-6 .075-.098A1 1 0 0 1 8 1ZM4 8l4 6 4-6-4-6-4 6Z" />
   </svg>
 );
 export const icon = EuiIconShard;

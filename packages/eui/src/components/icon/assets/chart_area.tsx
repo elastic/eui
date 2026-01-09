@@ -28,7 +28,12 @@ const EuiIconChartArea = ({
     {...props}
   >
     {title ? <title id={titleId}>{title}</title> : null}
-    <path d="M3 13h10V9.913l-2.571-2.826L8.56 8.753a.5.5 0 0 1-.728-.067L4.448 4.317 3 6.191V13Zm5.295-5.35 1.837-1.64a.5.5 0 0 1 .703.037l3.035 3.336a.5.5 0 0 1 .13.337v3.78a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5V6.02a.5.5 0 0 1 .104-.305l1.947-2.52a.5.5 0 0 1 .791-.001L8.295 7.65ZM1 15h13.5a.5.5 0 1 1 0 1H.5a.5.5 0 0 1-.5-.5v-14a.5.5 0 0 1 1 0V15Z" />
+    <path d="M2 14h13v1H2a1 1 0 0 1-1-1V1h1v13Z" />
+    <path
+      fillRule="evenodd"
+      d="M14 13H3v-2.707l4.5-4.5 2 2 4.5-4.5V13ZM9.5 9.207l-2-2-3.5 3.5V12h9V5.707l-3.5 3.5Z"
+      clipRule="evenodd"
+    />
   </svg>
 );
 export const icon = EuiIconChartArea;

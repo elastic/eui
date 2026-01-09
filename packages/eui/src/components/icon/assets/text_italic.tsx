@@ -28,7 +28,7 @@ const EuiIconTextItalic = ({
     {...props}
   >
     {title ? <title id={titleId}>{title}</title> : null}
-    <path d="M8.16 12H9.5a.5.5 0 1 1 0 1h-4a.5.5 0 1 1 0-1h1.639l1.7-8H7.5a.5.5 0 0 1 0-1h4a.5.5 0 1 1 0 1H9.861l-1.7 8Z" />
+    <path d="M11.5 3v1H9.401l-1.778 8H9.5v1h-5v-1h2.099l1.778-8H6.5V3h5Z" />
   </svg>
 );
 export const icon = EuiIconTextItalic;

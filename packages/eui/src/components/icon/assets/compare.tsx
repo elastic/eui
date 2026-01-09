@@ -28,7 +28,13 @@ const EuiIconCompare = ({
     {...props}
   >
     {title ? <title id={titleId}>{title}</title> : null}
-    <path d="M5 1.5a.5.5 0 0 0-1 0V4H1.5a.5.5 0 0 0 0 1H4v2.5a.5.5 0 0 0 1 0V5h2.5a.5.5 0 0 0 0-1H5V1.5Zm3 10a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5Zm4.854-7.646a.5.5 0 0 0-.708-.708l-9 9a.5.5 0 0 0 .708.708l9-9Z" />
+    <path d="M6 5H1v9h7v-1h1v1a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h5v1Zm6 1h2v1h-2v2h-1V7H9V6h2V4h1v2Z" />
+    <path
+      fillRule="evenodd"
+      d="M15 1a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h7ZM8 11h7V2H8v9Z"
+      clipRule="evenodd"
+    />
+    <path d="M6 10H2V9h4v1Z" />
   </svg>
 );
 export const icon = EuiIconCompare;
