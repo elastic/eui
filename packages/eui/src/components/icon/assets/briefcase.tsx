@@ -14,7 +14,7 @@ interface SVGRProps {
   title?: string;
   titleId?: string;
 }
-const EuiIconBolt = ({
+const EuiIconBriefcase = ({
   title,
   titleId,
   ...props
@@ -28,7 +28,12 @@ const EuiIconBolt = ({
     {...props}
   >
     {title ? <title id={titleId}>{title}</title> : null}
-    <path d="m13 1-3 4h3a1 1 0 0 1 .664 1.747l-9 8a1 1 0 0 1-1.559-1.194L5.382 9H3a1 1 0 0 1-.832-1.555L6.465 1H13ZM3 8h4l-3 6 9-8H8l3-4H7L3 8Z" />
+    <path d="M8 10a1 1 0 1 1 0 2 1 1 0 0 1 0-2Z" />
+    <path
+      fillRule="evenodd"
+      d="M10 1a1 1 0 0 1 1 1v2h3a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h3V2a1 1 0 0 1 1-1h4ZM2 14h12V9H2v5Zm0-6h12V5H2v3Zm4-4h4V2H6v2Z"
+      clipRule="evenodd"
+    />
   </svg>
 );
-export const icon = EuiIconBolt;
+export const icon = EuiIconBriefcase;

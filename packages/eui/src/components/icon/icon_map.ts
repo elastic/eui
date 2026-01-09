@@ -58,6 +58,7 @@ export const typeToPathMap = {
   boxesHorizontal: 'boxes_vertical', // NOTE: To be deprecated in favor of `boxes_vertical`
   boxesVertical: 'boxes_vertical',
   branch: 'branch',
+  briefcase: 'briefcase',
   branchUser: 'branch_user',
   broom: 'broom',
   brush: 'brush',
@@ -470,6 +471,9 @@ export const typeToPathMap = {
   popout: 'external', // NOTE: To be deprecated in favor of external
   presentation: 'presentation',
   productRobot: 'product_robot',
+  productCloudInfra: 'product_cloud_infra',
+  productDashboard: 'product_dashboard',
+  productML: 'product_ml',
   productStreamsClassic: 'product_streams_classic',
   productStreamsWired: 'product_streams_wired',
   push: 'send', // NOTE: To be deprecated in favor of send
