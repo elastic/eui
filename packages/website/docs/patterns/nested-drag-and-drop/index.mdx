@@ -10,16 +10,16 @@ For complex use cases like this, we recommend <EuiLink href="https://atlassian.d
 
 The example below demonstrates a simplified version of Pragmatic's <EuiLink href="https://atlassian.design/components/pragmatic-drag-and-drop/examples/#tree" target="_blank">Tree pattern</EuiLink>, adapted to use EUI components and design tokens with enhanced keyboard navigation.
 
-:::warning Package versions
-
-This pattern may work differently depending on which version of **@atlaskit/pragmatic-drag-and-drop** you use. Please check the versions used in our <EuiLink href="https://github.com/elastic/eui/blob/main/packages/website/package.json" target="_blank">package.json</EuiLink>.
-:::
-
 :::accessibility Accessibility
 
 This example uses nested **EuiAccordion** components with roving tabindex to improve usability, similarly as in [Tree view pattern](https://www.w3.org/WAI/ARIA/apg/patterns/treeview/).
 
 For complex trees, the recommended accessibility pattern is not to mimic mouse dragging with keys but provide a "Move" action. In this case, we use **EuiPopover** and **EuiContextMenu** composition inside the `extraAction` prop.
+:::
+
+:::warning Package versions
+
+This pattern may work differently depending on which version of **@atlaskit/pragmatic-drag-and-drop** you use. Please check the versions used in our <EuiLink href="https://github.com/elastic/eui/blob/main/packages/website/package.json" target="_blank">package.json</EuiLink>.
 :::
 
 ```bash
