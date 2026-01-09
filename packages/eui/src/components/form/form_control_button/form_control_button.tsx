@@ -6,7 +6,12 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, isValidElement, ReactNode } from 'react';
+import React, {
+  FunctionComponent,
+  isValidElement,
+  ReactNode,
+  useContext,
+} from 'react';
 
 import classNames from 'classnames';
 import { useEuiMemoizedStyles } from '../../../services';
@@ -18,6 +23,7 @@ import {
   EuiButtonEmptyPropsForAnchor,
   EuiButtonEmptyPropsForButton,
 } from '../../button/button_empty/button_empty';
+import { EuiFormControlLayoutContext } from '../form_control_layout/form_control_layout_context';
 
 export type EuiFormControlButtonInputProps = {
   /**
@@ -59,8 +65,9 @@ export const EuiFormControlButton: FunctionComponent<
   className,
   contentProps: _contentProps,
   textProps: _textProps,
-  compressed,
-  isInvalid = false,
+  compressed: _compressed,
+  isDisabled: _isDisabled,
+  isInvalid: _isInvalid,
   fullWidth = true,
   href,
   rel, // required by our local href-with-rel eslint rule
@@ -68,12 +75,24 @@ export const EuiFormControlButton: FunctionComponent<
 }) => {
   const [buttonTextRef, innerText] = useInnerText();
 
+  const {
+    isDisabled: formLayoutIsDisabled,
+    isInvalid: formLayoutIsInvalid,
+    readOnly: formLayoutReadOnly,
+    compressed: formLayoutCompressed,
+  } = useContext(EuiFormControlLayoutContext);
+
+  const isDisabled = _isDisabled ?? formLayoutIsDisabled;
+  const isInvalid = _isInvalid ?? formLayoutIsInvalid;
+  const compressed = _compressed ?? formLayoutCompressed;
+
   const styles = useEuiMemoizedStyles(euiFormControlButtonStyles);
   const classes = classNames('euiFormControlButton', className);
 
   const cssStyles = [
     styles.euiFormControlButton,
     isInvalid && styles.isInvalid,
+    formLayoutReadOnly && styles.readOnly,
     compressed && styles.compressed,
     fullWidth ? styles.fullWidth : styles.formWidth,
   ];
@@ -125,6 +144,7 @@ export const EuiFormControlButton: FunctionComponent<
       contentProps={contentProps}
       textProps={false}
       color="text"
+      isDisabled={isDisabled}
       {...restProps}
     >
       {hasText && (

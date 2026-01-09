@@ -699,6 +699,8 @@ export class EuiSuperDatePickerInternal extends Component<
       disabled: formControlLayoutProps.isDisabled,
     };
 
+    const hasChangedIcon = hasChanged && !isInvalid;
+
     return (
       <EuiI18nConsumer>
         {({ locale: contextLocale }) => (
@@ -706,7 +708,8 @@ export class EuiSuperDatePickerInternal extends Component<
             {...rangeProps}
             css={rangeCssStyles}
             isCustom={true}
-            iconType={false}
+            iconType={hasChangedIcon ? 'checkCircle' : false}
+            iconSide={hasChangedIcon ? 'right' : undefined}
             delimiter={isQuickSelectOnly ? '' : undefined}
             startDateControl={
               isQuickSelectOnly ? undefined : (

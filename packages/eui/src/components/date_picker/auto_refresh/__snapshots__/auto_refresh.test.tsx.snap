@@ -8,25 +8,29 @@ exports[`EuiAutoRefresh is rendered 1`] = `
     class="euiFormControlLayout euiFormControlLayout--group euiFormControlLayout-readOnly emotion-euiFormControlLayout-group"
   >
     <div
-      class="euiFormControlLayout__prepend emotion-euiFormControlLayout__side-prepend"
+      class="euiFormControlLayout__prepend css-137k04w-empty-primary-isInteractive-euiFormControlLayout__side-readOnly"
     >
-      <button
-        class="euiFormPrepend euiFormControlLayout__prepend css-1q2k5id-side-uncompressed-isInteractive-prepend"
+      <div
+        class="css-yp07d4-wrapper"
       >
-        <span
-          data-euiicon-type="timeRefresh"
-        />
-        <span
-          class="euiFormLabel eui-textTruncate emotion-euiFormLabel"
+        <button
+          class="euiFormPrepend euiFormControlLayout__prepend css-19jzie4-side-uncompressed-empty-primary-isInteractive"
         >
-          <strong>
-            Auto refresh
-          </strong>
-        </span>
-      </button>
+          <span
+            data-euiicon-type="timeRefresh"
+          />
+          <span
+            class="euiFormLabel eui-textTruncate emotion-euiFormLabel"
+          >
+            <strong>
+              Auto refresh
+            </strong>
+          </span>
+        </button>
+      </div>
     </div>
     <div
-      class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup-prependOnly"
+      class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup"
     >
       <input
         aria-label="aria-label"
@@ -49,25 +53,29 @@ exports[`EuiAutoRefresh isPaused is false 1`] = `
     class="euiFormControlLayout euiFormControlLayout--group euiFormControlLayout-readOnly emotion-euiFormControlLayout-group"
   >
     <div
-      class="euiFormControlLayout__prepend emotion-euiFormControlLayout__side-prepend"
+      class="euiFormControlLayout__prepend css-137k04w-empty-primary-isInteractive-euiFormControlLayout__side-readOnly"
     >
-      <button
-        class="euiFormPrepend euiFormControlLayout__prepend css-1q2k5id-side-uncompressed-isInteractive-prepend"
+      <div
+        class="css-yp07d4-wrapper"
       >
-        <span
-          data-euiicon-type="timeRefresh"
-        />
-        <span
-          class="euiFormLabel eui-textTruncate emotion-euiFormLabel"
+        <button
+          class="euiFormPrepend euiFormControlLayout__prepend css-19jzie4-side-uncompressed-empty-primary-isInteractive"
         >
-          <strong>
-            Auto refresh
-          </strong>
-        </span>
-      </button>
+          <span
+            data-euiicon-type="timeRefresh"
+          />
+          <span
+            class="euiFormLabel eui-textTruncate emotion-euiFormLabel"
+          >
+            <strong>
+              Auto refresh
+            </strong>
+          </span>
+        </button>
+      </div>
     </div>
     <div
-      class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup-prependOnly"
+      class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup"
     >
       <input
         aria-label="Auto refresh"
@@ -89,25 +97,29 @@ exports[`EuiAutoRefresh refreshInterval is rendered 1`] = `
     class="euiFormControlLayout euiFormControlLayout--group euiFormControlLayout-readOnly emotion-euiFormControlLayout-group"
   >
     <div
-      class="euiFormControlLayout__prepend emotion-euiFormControlLayout__side-prepend"
+      class="euiFormControlLayout__prepend css-137k04w-empty-primary-isInteractive-euiFormControlLayout__side-readOnly"
     >
-      <button
-        class="euiFormPrepend euiFormControlLayout__prepend css-1q2k5id-side-uncompressed-isInteractive-prepend"
+      <div
+        class="css-yp07d4-wrapper"
       >
-        <span
-          data-euiicon-type="timeRefresh"
-        />
-        <span
-          class="euiFormLabel eui-textTruncate emotion-euiFormLabel"
+        <button
+          class="euiFormPrepend euiFormControlLayout__prepend css-19jzie4-side-uncompressed-empty-primary-isInteractive"
         >
-          <strong>
-            Auto refresh
-          </strong>
-        </span>
-      </button>
+          <span
+            data-euiicon-type="timeRefresh"
+          />
+          <span
+            class="euiFormLabel eui-textTruncate emotion-euiFormLabel"
+          >
+            <strong>
+              Auto refresh
+            </strong>
+          </span>
+        </button>
+      </div>
     </div>
     <div
-      class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup-prependOnly"
+      class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup"
     >
       <input
         aria-label="Auto refresh"

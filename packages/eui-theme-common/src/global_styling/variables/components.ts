@@ -122,8 +122,6 @@ export type _EuiThemeComponentColors = {
 
   skeletonBackgroundSkeletonMiddleHighContrast: ColorModeSwitch;
 
-  superDatePickerBackgroundSuccees: ColorModeSwitch;
-
   switchBackgroundOn: ColorModeSwitch;
   switchBackgroundOff: ColorModeSwitch;
   switchUncompressedBackgroundDisabled: ColorModeSwitch;

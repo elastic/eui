@@ -10,7 +10,7 @@ exports[`EuiDatePickerRange is rendered 1`] = `
     class="euiFormControlLayout euiFormControlLayoutDelimited emotion-euiFormControlLayout-group-delimited"
   >
     <div
-      class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup-prependOnly-appendOnly-delimited"
+      class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup-delimited"
       data-test-subj="test subject string-range-wrapper"
     >
       <div
@@ -80,7 +80,7 @@ exports[`EuiDatePickerRange props compressed 1`] = `
     class="euiFormControlLayout euiFormControlLayoutDelimited emotion-euiFormControlLayout-compressed-group-delimited"
   >
     <div
-      class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup-prependOnly-appendOnly-delimited"
+      class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup-delimited"
     >
       <div
         class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-compressed-static"
@@ -145,7 +145,7 @@ exports[`EuiDatePickerRange props disabled 1`] = `
     class="euiFormControlLayout euiFormControlLayout-isDisabled euiFormControlLayoutDelimited emotion-euiFormControlLayout-group-delimited-disabled"
   >
     <div
-      class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup-prependOnly-appendOnly-delimited"
+      class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup-delimited"
     >
       <div
         class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-static-disabled"
@@ -212,7 +212,7 @@ exports[`EuiDatePickerRange props fullWidth 1`] = `
     class="euiFormControlLayout euiFormControlLayoutDelimited emotion-euiFormControlLayout-fullWidth-group-delimited"
   >
     <div
-      class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup-prependOnly-appendOnly-delimited"
+      class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup-delimited"
     >
       <div
         class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-static"
@@ -277,7 +277,7 @@ exports[`EuiDatePickerRange props inline renders 1`] = `
     class="euiFormControlLayout euiFormControlLayoutDelimited emotion-euiFormControlLayout-group-delimited-shadow"
   >
     <div
-      class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup-prependOnly-appendOnly-delimited"
+      class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup-delimited"
     >
       <div
         class="react-datepicker emotion-euiReactDatePicker"
@@ -1335,7 +1335,7 @@ exports[`EuiDatePickerRange props isInvalid 1`] = `
     class="euiFormControlLayout euiFormControlLayoutDelimited euiFormControlLayoutDelimited--isInvalid emotion-euiFormControlLayout-group-delimited"
   >
     <div
-      class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup-prependOnly-appendOnly-delimited-invalid"
+      class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup-delimited-invalid"
     >
       <div
         class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-static"
@@ -1410,7 +1410,7 @@ exports[`EuiDatePickerRange props isLoading 1`] = `
     class="euiFormControlLayout euiFormControlLayoutDelimited emotion-euiFormControlLayout-group-delimited"
   >
     <div
-      class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup-prependOnly-appendOnly-delimited"
+      class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup-delimited"
     >
       <div
         class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-static"
@@ -1484,7 +1484,7 @@ exports[`EuiDatePickerRange props readOnly 1`] = `
     class="euiFormControlLayout euiFormControlLayout-readOnly euiFormControlLayoutDelimited emotion-euiFormControlLayout-group-delimited-readOnly"
   >
     <div
-      class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup-prependOnly-appendOnly-delimited-readOnly"
+      class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup-delimited-readOnly"
     >
       <div
         class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-static"
@@ -1553,7 +1553,7 @@ exports[`EuiDatePickerRange uses individual EuiDatePicker props 1`] = `
     class="euiFormControlLayout euiFormControlLayoutDelimited emotion-euiFormControlLayout-group-delimited"
   >
     <div
-      class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup-prependOnly-appendOnly-delimited"
+      class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup-delimited"
       data-test-subj="test subject string-range-wrapper"
     >
       <div

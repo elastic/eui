@@ -27,16 +27,6 @@ export const euiDatePickerRangeStyles = () => {
       .euiPopover {
         flex: 1;
       }
-
-      .euiPopover:last-child {
-        ${logicalCSS('border-top-right-radius', 'inherit')}
-        ${logicalCSS('border-bottom-right-radius', 'inherit')}
-
-        * {
-          ${logicalCSS('border-top-right-radius', 'inherit')}
-          ${logicalCSS('border-bottom-right-radius', 'inherit')}
-        }
-      }
     `,
   };
 };
