@@ -9,15 +9,25 @@
 import { css } from '@emotion/react';
 import { UseEuiTheme } from '@elastic/eui-theme-common';
 
-import { logicalCSS } from '../../../../global_styling';
-import { buttonSelectors } from '../form_control_layout.styles';
-import { euiFormVariables } from '../../form.styles';
+import {
+  euiButtonDisplaysColors,
+  logicalCSS,
+} from '../../../../global_styling';
+import {
+  appendPrependSelectors,
+  buttonSelectors,
+  textSelectors,
+} from '../form_control_layout.styles';
+import { euiFormControlFocusStyles, euiFormVariables } from '../../form.styles';
 
 export const euiFormAppendPrependStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
   const form = euiFormVariables(euiThemeContext);
 
+  const appendPrepend = appendPrependSelectors;
   const buttons = buttonSelectors;
+  const text = textSelectors;
+  const buttonStyles = euiButtonDisplaysColors(euiThemeContext);
 
   return {
     side: css`
@@ -27,17 +37,14 @@ export const euiFormAppendPrependStyles = (euiThemeContext: UseEuiTheme) => {
       gap: ${euiTheme.size.xs};
       block-size: 100%;
       max-inline-size: 100%;
+      border-radius: ${form.controlLayoutInnerBorderRadius};
+
+      /* Focus is handled by the wrapper. This ensures correct positioning and border radius */
+      &:focus-visible {
+        outline: none;
+      }
     `,
     uncompressed: css`
-      &:not(:has(> ${buttons}:first-child, > *:first-child ${buttons})) {
-        ${logicalCSS('padding-left', euiTheme.size.m)}
-      }
-
-      &:not(:has(> ${buttons}:last-child, > *:last-child ${buttons})) {
-        ${logicalCSS('padding-right', euiTheme.size.m)}
-      }
-    `,
-    compressed: css`
       &:not(:has(> ${buttons}:first-child, > *:first-child ${buttons})) {
         ${logicalCSS('padding-left', euiTheme.size.s)}
       }
@@ -46,53 +53,47 @@ export const euiFormAppendPrependStyles = (euiThemeContext: UseEuiTheme) => {
         ${logicalCSS('padding-right', euiTheme.size.s)}
       }
     `,
-    append: css`
-      border-radius: 0;
-      border-start-end-radius: ${euiTheme.border.radius.small};
-      border-end-end-radius: ${euiTheme.border.radius.small};
-    `,
-    prepend: css`
-      border-radius: 0;
-      border-start-start-radius: ${euiTheme.border.radius.small};
-      border-end-start-radius: ${euiTheme.border.radius.small};
-    `,
-    isInteractive: css`
-      color: ${euiTheme.colors.textPrimary};
-
-      &:hover {
-        background-color: ${euiTheme.colors.backgroundBaseInteractiveHover};
+    compressed: css`
+      &:not(:has(> ${buttons}:first-child, > *:first-child ${buttons})) {
+        ${logicalCSS('padding-left', euiTheme.size.xs)}
       }
 
-      &:focus-visible {
-        outline: none;
+      &:not(:has(> ${buttons}:last-child, > *:last-child ${buttons})) {
+        ${logicalCSS('padding-right', euiTheme.size.xs)}
+      }
+    `,
+    wrapper: css`
+      position: relative;
 
-        /* apply a focus style that matches input focus more closely */
+      &:has(${appendPrepend}:focus-visible) {
         &::after {
+          ${euiFormControlFocusStyles(euiThemeContext)}
           content: '';
           position: absolute;
-          inset: 0;
-          border: ${euiTheme.border.width.thick} solid
-            ${euiTheme.components.forms.borderFocused};
-          /* ensure it stays on top of hovered borders */
-          z-index: 2;
+          inset: -${euiTheme.size.xs};
+          border-radius: ${form.controlLayoutBorderRadius};
           pointer-events: none;
-          border-radius: inherit;
         }
       }
+    `,
+    isInteractive: css`
+      ${buttonStyles.empty.primary};
+      background-color: ${form.backgroundColor};
 
-      .euiFormLabel {
-        color: currentColor;
+      * {
         cursor: pointer;
       }
 
-      * {
+      ${text} {
+        color: currentColor;
         cursor: pointer;
       }
     `,
     disabled: css`
       color: ${form.textColorDisabled};
 
-      .euiFormLabel {
+      .euiFormLabel,
+      .euiNotificationBadge {
         color: ${form.textColorDisabled};
       }
     `,
