@@ -231,7 +231,10 @@ describe('EuiBadge', () => {
       expect(container.firstChild).toHaveStyleRule('padding-block', '0');
       expect(container.firstChild).toHaveStyleRule(
         'padding-inline',
-        theme.euiTheme.size.s
+        mathWithUnits(
+          [theme.euiTheme.size.s, theme.euiTheme.border.width.thin],
+          (size, borderWidth) => size - borderWidth
+        )
       );
     });
 
