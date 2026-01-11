@@ -93,12 +93,12 @@ export const KitchenSink: Story = {
       <EuiFlexGroup gutterSize="m" direction="column">
         <EuiCode transparentBackground>fill = true</EuiCode>
         {COLORS.map((color, index) => (
-          <KitchenSinkVariantRow color={color} key={index} />
+          <KitchenSinkVariantRow fill color={color} key={index} />
         ))}
         <EuiSpacer size="l" />
         <EuiCode transparentBackground>fill = false</EuiCode>
         {COLORS.map((color, index) => (
-          <KitchenSinkVariantRow fill={false} color={color} key={index} />
+          <KitchenSinkVariantRow color={color} key={index} />
         ))}
       </EuiFlexGroup>
     );
