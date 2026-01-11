@@ -122,10 +122,6 @@ export const getTextColor = ({ euiTheme }: UseEuiTheme, bgColor: string) => {
   return textColor;
 };
 
-export const getColorContrast = (textColor: string, color: string) => {
-  return chroma.contrast(textColor, color);
-};
-
 export const getIsValidColor = (color?: string) => {
   return chromaValid(parseColor(color || '') || '');
 };
