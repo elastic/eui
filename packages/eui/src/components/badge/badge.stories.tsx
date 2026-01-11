@@ -10,9 +10,12 @@ import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
+import { EuiCode } from '../code';
+import { EuiFlexGroup } from '../flex';
+import { EuiSpacer } from '../spacer';
+
 import { EuiBadge, EuiBadgeProps, COLORS } from './badge';
 import { EuiBadgeGroup } from './badge_group';
-import { EuiFlexGroup } from '../flex';
 
 const meta: Meta<EuiBadgeProps> = {
   title: 'Display/EuiBadge/EuiBadge',
@@ -55,7 +58,9 @@ export const CustomColors: Story = {
   },
 };
 
-const KitchenSinkVariantRow = (props: Pick<EuiBadgeProps, 'color'>) => (
+const KitchenSinkVariantRow = (
+  props: Pick<EuiBadgeProps, 'color' | 'fill'>
+) => (
   <EuiBadgeGroup>
     <EuiBadge {...props}>Badge</EuiBadge>
     <EuiBadge {...props} iconType="check">
@@ -86,8 +91,14 @@ export const KitchenSink: Story = {
   render() {
     return (
       <EuiFlexGroup gutterSize="m" direction="column">
+        <EuiCode transparentBackground>fill = true</EuiCode>
         {COLORS.map((color, index) => (
           <KitchenSinkVariantRow color={color} key={index} />
+        ))}
+        <EuiSpacer size="l" />
+        <EuiCode transparentBackground>fill = false</EuiCode>
+        {COLORS.map((color, index) => (
+          <KitchenSinkVariantRow fill={false} color={color} key={index} />
         ))}
       </EuiFlexGroup>
     );

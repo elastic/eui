@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import { css } from '@emotion/react';
+import { css, SerializedStyles } from '@emotion/react';
 import {
   euiFontSize,
   euiFocusRing,
@@ -18,12 +18,15 @@ import {
 } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 import { euiBadgeColors } from './color_utils';
+import { type BadgeColor } from './badge';
 
 export const euiBadgeStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
   const badgeColors = euiBadgeColors(euiThemeContext);
+  const defaultBadgeColors = badgeColors.fill.default;
+
   const setBadgeColorVars = (
-    colors: ReturnType<typeof euiBadgeColors>['primary']
+    colors: ReturnType<typeof euiBadgeColors>['fill']['primary']
   ) => `
     --euiBadgeTextColor: ${colors.color};
     --euiBadgeBackgroundColor: ${colors.backgroundColor};
@@ -63,22 +66,19 @@ export const euiBadgeStyles = (euiThemeContext: UseEuiTheme) => {
       ${logicalTextAlignCSS('left')}
 
       /* Colors - inherit from CSS variables, which can be set via inline style */
-      color: var(--euiBadgeTextColor, ${badgeColors.default.color});
+      color: var(--euiBadgeTextColor, ${defaultBadgeColors.color});
       background-color: var(
         --euiBadgeBackgroundColor,
-        ${badgeColors.default.backgroundColor}
+        ${defaultBadgeColors.backgroundColor}
       );
 
       /* Ensure that selected text is always visible by inverting badge and text colors */
       *::selection {
         color: var(
           --euiBadgeBackgroundColor,
-          ${badgeColors.default.backgroundColor}
+          ${defaultBadgeColors.backgroundColor}
         );
-        background-color: var(
-          --euiBadgeTextColor,
-          ${badgeColors.default.color}
-        );
+        background-color: var(--euiBadgeTextColor, ${defaultBadgeColors.color});
       }
 
       &:focus-within {
@@ -113,22 +113,43 @@ export const euiBadgeStyles = (euiThemeContext: UseEuiTheme) => {
       }
     `,
 
-    // Colors
-    default: css`
-      ${setBadgeColorVars(badgeColors.default)}
-      border-color: ${badgeColors.default.borderColor};
-    `,
-    hollow: css`
-      ${setBadgeColorVars(badgeColors.hollow)}
-      border-color: ${badgeColors.hollow.borderColor};
-    `,
-    primary: css(setBadgeColorVars(badgeColors.primary)),
-    accent: css(setBadgeColorVars(badgeColors.accent)),
-    neutral: css(setBadgeColorVars(badgeColors.neutral)),
-    success: css(setBadgeColorVars(badgeColors.success)),
-    warning: css(setBadgeColorVars(badgeColors.warning)),
-    risk: css(setBadgeColorVars(badgeColors.risk)),
-    danger: css(setBadgeColorVars(badgeColors.danger)),
+    colors: {
+      fill: {
+        default: css`
+          ${setBadgeColorVars(badgeColors.fill.default)}
+          border-color: ${badgeColors.fill.default.borderColor};
+        `,
+        hollow: css`
+          ${setBadgeColorVars(badgeColors.hollow)}
+          border-color: ${badgeColors.hollow.borderColor};
+        `,
+        primary: css(setBadgeColorVars(badgeColors.fill.primary)),
+        accent: css(setBadgeColorVars(badgeColors.fill.accent)),
+        neutral: css(setBadgeColorVars(badgeColors.fill.neutral)),
+        success: css(setBadgeColorVars(badgeColors.fill.success)),
+        warning: css(setBadgeColorVars(badgeColors.fill.warning)),
+        risk: css(setBadgeColorVars(badgeColors.fill.risk)),
+        danger: css(setBadgeColorVars(badgeColors.fill.danger)),
+      },
+      base: {
+        default: css`
+          ${setBadgeColorVars(badgeColors.base.default)}
+          border-color: ${badgeColors.base.default.borderColor};
+        `,
+        hollow: css`
+          ${setBadgeColorVars(badgeColors.hollow)}
+          border-color: ${badgeColors.hollow.borderColor};
+        `,
+        primary: css(setBadgeColorVars(badgeColors.base.primary)),
+        accent: css(setBadgeColorVars(badgeColors.base.accent)),
+        neutral: css(setBadgeColorVars(badgeColors.base.neutral)),
+        success: css(setBadgeColorVars(badgeColors.base.success)),
+        warning: css(setBadgeColorVars(badgeColors.base.warning)),
+        risk: css(setBadgeColorVars(badgeColors.base.risk)),
+        danger: css(setBadgeColorVars(badgeColors.base.danger)),
+      },
+    } satisfies Record<string, Record<BadgeColor, SerializedStyles>>,
+
     disabled: css`
       ${setBadgeColorVars(badgeColors.disabled)}
       border-color: ${badgeColors.disabled.borderColor};
