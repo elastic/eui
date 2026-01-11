@@ -23,7 +23,7 @@ export const euiBadgeColors = (euiThemeContext: UseEuiTheme) => {
     euiTheme.colors.textAccent
   );
 
-  return {
+  const fill = {
     // Colors shared between buttons and badges
     primary: euiButtonFillColor(euiThemeContext, 'primary'),
     neutral: euiButtonFillColor(euiThemeContext, 'neutral'),
@@ -32,14 +32,51 @@ export const euiBadgeColors = (euiThemeContext: UseEuiTheme) => {
     risk: euiButtonFillColor(euiThemeContext, 'risk'),
     danger: euiButtonFillColor(euiThemeContext, 'danger'),
     accent: euiButtonFillColor(euiThemeContext, 'accent'),
-    disabled: {
-      ...euiButtonColor(euiThemeContext, 'disabled'),
-      borderColor: highContrastMode ? euiTheme.colors.textDisabled : '',
-    },
     // Colors unique to badges
     default: {
       ...getBadgeColors(euiThemeContext, euiTheme.components.badgeBackground),
       borderColor: highContrastMode ? euiTheme.border.color : '',
+    },
+  };
+
+  const base = {
+    primary: getBadgeColors(
+      euiThemeContext,
+      euiTheme.colors.backgroundLightPrimary
+    ),
+    neutral: getBadgeColors(
+      euiThemeContext,
+      euiTheme.colors.backgroundLightNeutral
+    ),
+    success: getBadgeColors(
+      euiThemeContext,
+      euiTheme.colors.backgroundLightSuccess
+    ),
+    warning: getBadgeColors(
+      euiThemeContext,
+      euiTheme.colors.backgroundLightWarning
+    ),
+    risk: getBadgeColors(euiThemeContext, euiTheme.colors.backgroundLightRisk),
+    danger: getBadgeColors(
+      euiThemeContext,
+      euiTheme.colors.backgroundLightDanger
+    ),
+    accent: getBadgeColors(
+      euiThemeContext,
+      euiTheme.colors.backgroundLightAccent
+    ),
+    default: {
+      ...getBadgeColors(euiThemeContext, euiTheme.colors.backgroundLightText),
+      borderColor: highContrastMode ? euiTheme.border.color : '',
+    },
+  };
+
+  return {
+    fill,
+    base,
+    disabled: {
+      ...euiButtonColor(euiThemeContext, 'disabled'),
+      borderColor: highContrastMode ? euiTheme.colors.textDisabled : '',
     },
     // Hollow has a border and is used for autocompleters and beta badges
     hollow: {
