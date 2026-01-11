@@ -101,7 +101,7 @@ export type EuiBadgeProps = {
   /**
    * Whether the badge should use filled (more intense) colors.
    * It has no effect when a non-named color is passed to the `color` prop.
-   * @default true
+   * @default false
    */
   fill?: boolean;
 
