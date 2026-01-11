@@ -24,7 +24,7 @@ import { forms } from './_forms';
 const component_colors: _EuiThemeComponentColors = {
   badgeBackground: computed(
     ([backgroundLightText]) => backgroundLightText,
-    ['colors.backgroundLightText']
+    ['colors.backgroundFilledText']
   ),
   badgeBackgroundSubdued: computed(
     ([backgroundLightText]) => backgroundLightText,
