@@ -29,11 +29,18 @@ export const euiBadgeStyles = (euiThemeContext: UseEuiTheme) => {
     --euiBadgeBackgroundColor: ${colors.backgroundColor};
   `;
 
+  const inlinePadding = mathWithUnits(
+    // Account for the (usually transparent) border so that the visual
+    // padding is of size s
+    [euiTheme.size.s, euiTheme.border.width.thin],
+    (size, borderWidth) => size - borderWidth
+  );
+
   return {
     euiBadge: css`
       display: inline-block;
       vertical-align: middle;
-      ${logicalShorthandCSS('padding', `0 ${euiTheme.size.s}`)}
+      ${logicalShorthandCSS('padding', `0 ${inlinePadding}`)}
       ${logicalCSS('max-width', '100%')}
       font-size: ${euiFontSize(euiThemeContext, 'xs').fontSize};
       line-height: ${mathWithUnits(
