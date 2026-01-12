@@ -478,6 +478,7 @@ export const typeToPathMap = {
   plusSquare: 'plus_square',
   popout: 'external', // NOTE: To be deprecated in favor of external
   presentation: 'presentation',
+  productDiscover: 'product_discover',
   productRobot: 'product_agent', // NOTE: To be deprecated in favor of productAgent
   productAgent: 'product_agent',
   productCloudInfra: 'product_cloud_infra',

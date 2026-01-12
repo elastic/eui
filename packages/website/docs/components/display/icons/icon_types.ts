@@ -230,6 +230,7 @@ export const iconTypes: Array<IconType> = [
   'presentation',
   'processor',
   'productAgent',
+  'productDiscover',
   'productCloudInfra',
   'productDashboard',
   'productML',
