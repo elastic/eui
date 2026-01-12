@@ -6,6 +6,8 @@
  * Side Public License, v 1.
  */
 
+/// <reference types="jest" />
+
 declare module '*.png' {
   const value: any;
   export = value;
