@@ -98,6 +98,12 @@ export type EuiBadgeProps = {
    */
   color?: BadgeColor | string;
   /**
+   * Whether the badge should use the filled color variant (true) or the
+   * light/outlined variant (false). Defaults to true for backwards
+   * compatibility.
+   */
+  fill?: boolean;
+  /**
    * Will override any color passed through the `color` prop.
    */
   isDisabled?: boolean;
@@ -116,6 +122,7 @@ export type EuiBadgeProps = {
 export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
   children,
   color = 'default',
+  fill = true,
   iconType,
   iconSide = 'left',
   className,
@@ -172,7 +179,9 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
     ...(isDisabled
       ? [styles.disabled]
       : [
-          isNamedColor && styles[color as BadgeColor],
+          isNamedColor &&
+            // Use light variant styles when `fill` is false (e.g. `primaryLight`)
+            styles[(fill ? color : `${color}Light`) as any],
           !iconOnClick && (onClick || href) && styles.clickable,
         ]),
   ];

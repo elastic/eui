@@ -23,6 +23,20 @@ export const euiBadgeColors = (euiThemeContext: UseEuiTheme) => {
     euiTheme.colors.textAccent
   );
 
+  // Light (filled = false) color map as defined in the design tokens / Figma.
+  // These are used when the `fill` prop is false.
+  const lightMap = {
+    default: '#E3E8F2',
+    primary: '#D9E8FF',
+    accent: '#FDDDE9',
+    success: '#C9F3E3',
+    warning: '#FDE9B5',
+    danger: '#FDDDD8',
+    risk: '#FFDEBF',
+    neutral: '#CFEEF7',
+    hollow: '#FFFFFF',
+  } as const;
+
   return {
     // Colors shared between buttons and badges
     primary: euiButtonFillColor(euiThemeContext, 'primary'),
@@ -61,6 +75,45 @@ export const euiBadgeColors = (euiThemeContext: UseEuiTheme) => {
       borderColor: highContrastMode
         ? badgeColorsAccentText.backgroundColor
         : '',
+    },
+    // Light variants (fill = false)
+    defaultLight: {
+      ...getBadgeColors(euiThemeContext, lightMap.default),
+      borderColor: highContrastMode ? euiTheme.border.color : '',
+    },
+    primaryLight: {
+      ...getBadgeColors(euiThemeContext, lightMap.primary),
+      borderColor: highContrastMode ? euiTheme.border.color : '',
+    },
+    accentLight: {
+      ...getBadgeColors(euiThemeContext, lightMap.accent),
+      borderColor: highContrastMode ? euiTheme.border.color : '',
+    },
+    neutralLight: {
+      ...getBadgeColors(euiThemeContext, lightMap.neutral),
+      borderColor: highContrastMode ? euiTheme.border.color : '',
+    },
+    successLight: {
+      ...getBadgeColors(euiThemeContext, lightMap.success),
+      borderColor: highContrastMode ? euiTheme.border.color : '',
+    },
+    warningLight: {
+      ...getBadgeColors(euiThemeContext, lightMap.warning),
+      borderColor: highContrastMode ? euiTheme.border.color : '',
+    },
+    dangerLight: {
+      ...getBadgeColors(euiThemeContext, lightMap.danger),
+      borderColor: highContrastMode ? euiTheme.border.color : '',
+    },
+    riskLight: {
+      ...getBadgeColors(euiThemeContext, lightMap.risk),
+      borderColor: highContrastMode ? euiTheme.border.color : '',
+    },
+    hollowLight: {
+      ...getBadgeColors(euiThemeContext, lightMap.hollow),
+      borderColor: highContrastMode
+        ? euiTheme.border.color
+        : euiTheme.components.badgeBorderColorHollow,
     },
   };
 };

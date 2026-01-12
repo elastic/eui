@@ -148,6 +148,19 @@ describe('EuiBadge', () => {
         });
       });
 
+      // Light variants (fill = false)
+      COLORS.forEach((color) => {
+        it(`${color} light variant is rendered`, () => {
+          const { container } = render(
+            <EuiBadge color={color} fill={false}>
+              Content
+            </EuiBadge>
+          );
+
+          expect(container.firstChild).toMatchSnapshot();
+        });
+      });
+
       it('accepts rgba', () => {
         const { container } = render(
           <EuiBadge color="rgba(255,255,255,1)">Content</EuiBadge>

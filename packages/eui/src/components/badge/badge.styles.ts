@@ -124,6 +124,44 @@ export const euiBadgeStyles = (euiThemeContext: UseEuiTheme) => {
       }
     `,
 
+    // Light (fill = false) variants
+    defaultLight: css`
+      ${setBadgeColorVars(badgeColors.defaultLight)}
+      border-color: ${badgeColors.defaultLight.borderColor || ''};
+    `,
+    hollowLight: css`
+      ${setBadgeColorVars(badgeColors.hollowLight)}
+      border-color: ${badgeColors.hollowLight.borderColor};
+    `,
+    primaryLight: css`
+      ${setBadgeColorVars(badgeColors.primaryLight)}
+      border-color: ${badgeColors.primaryLight.borderColor || ''};
+    `,
+    accentLight: css`
+      ${setBadgeColorVars(badgeColors.accentLight)}
+      border-color: ${badgeColors.accentLight.borderColor || ''};
+    `,
+    neutralLight: css`
+      ${setBadgeColorVars(badgeColors.neutralLight)}
+      border-color: ${badgeColors.neutralLight.borderColor || ''};
+    `,
+    successLight: css`
+      ${setBadgeColorVars(badgeColors.successLight)}
+      border-color: ${badgeColors.successLight.borderColor || ''};
+    `,
+    warningLight: css`
+      ${setBadgeColorVars(badgeColors.warningLight)}
+      border-color: ${badgeColors.warningLight.borderColor || ''};
+    `,
+    riskLight: css`
+      ${setBadgeColorVars(badgeColors.riskLight)}
+      border-color: ${badgeColors.riskLight.borderColor || ''};
+    `,
+    dangerLight: css`
+      ${setBadgeColorVars(badgeColors.dangerLight)}
+      border-color: ${badgeColors.dangerLight.borderColor || ''};
+    `,
+
     // Content wrapper
     euiBadge__content: css`
       ${logicalCSS(
