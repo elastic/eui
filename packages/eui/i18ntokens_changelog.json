@@ -1,5 +1,46 @@
 [
   {
+    "version": "111.0.0",
+    "changes": [
+      {
+        "token": "euiBasicTable.tableCaptionWithPagination",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiBasicTable.tableAutoCaptionWithPagination",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiBasicTable.tableSimpleAutoCaptionWithPagination",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiBasicTable.tableAutoCaptionWithoutPagination",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiBasicTable.caption.itemCountPart.withTotalItemCount",
+        "changeType": "added",
+        "value": "Showing {itemCount} of {totalItemCount} data rows."
+      },
+      {
+        "token": "euiBasicTable.caption.paginationPart.withPageCount",
+        "changeType": "added",
+        "value": "Page {page} of {pageCount}."
+      },
+      {
+        "token": "euiBasicTable.caption.tableName",
+        "changeType": "added",
+        "value": "Data table"
+      },
+      {
+        "token": "euiBasicTable.caption.emptyState",
+        "changeType": "added",
+        "value": "(empty)"
+      }
+    ]
+  },
+  {
     "version": "110.0.0",
     "changes": [
       {
