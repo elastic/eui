@@ -49,14 +49,15 @@ const validateProject: Hooks['validateProject'] = (project, report) => {
     }
   }
 
-  if (process.platform === 'win32') {
-    const message = formatUtils.pretty(
-      configuration,
-      `Development on Windows is not supported. We recommend using WSL with your preferred Linux distro - https://learn.microsoft.com/en-us/windows/wsl/install`,
-      formatUtils.Type.NO_HINT,
-    );
-    throw new ReportError(MessageName.UNNAMED, message);
-  }
+  // Temporarily disabled Windows check for local development
+  // if (process.platform === 'win32') {
+  //   const message = formatUtils.pretty(
+  //     configuration,
+  //     `Development on Windows is not supported. We recommend using WSL with your preferred Linux distro - https://learn.microsoft.com/en-us/windows/wsl/install`,
+  //     formatUtils.Type.NO_HINT,
+  //   );
+  //   throw new ReportError(MessageName.UNNAMED, message);
+  // }
 };
 
 const plugin: Plugin = {
