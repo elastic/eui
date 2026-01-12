@@ -29,11 +29,18 @@ export const euiBadgeStyles = (euiThemeContext: UseEuiTheme) => {
     --euiBadgeBackgroundColor: ${colors.backgroundColor};
   `;
 
+  const inlinePadding = mathWithUnits(
+    // Account for the (usually transparent) border so that the visual
+    // padding is of size s
+    [euiTheme.size.s, euiTheme.border.width.thin],
+    (size, borderWidth) => size - borderWidth
+  );
+
   return {
     euiBadge: css`
       display: inline-block;
       vertical-align: middle;
-      ${logicalShorthandCSS('padding', `0 ${euiTheme.size.s}`)}
+      ${logicalShorthandCSS('padding', `0 ${inlinePadding}`)}
       ${logicalCSS('max-width', '100%')}
       font-size: ${euiFontSize(euiThemeContext, 'xs').fontSize};
       line-height: ${mathWithUnits(
@@ -46,10 +53,11 @@ export const euiBadgeStyles = (euiThemeContext: UseEuiTheme) => {
       text-decoration: none;
       cursor: inherit;
       border: ${euiTheme.border.width.thin} solid transparent;
-      border-radius: ${mathWithUnits(
-        euiTheme.border.radius.medium,
-        (x) => x / 2
-      )};
+
+      /* border radius is intentionally larger to protect against external
+         customizations that might affect badge height */
+      border-radius: ${euiTheme.size.l};
+
       /* The badge will only ever be as wide as its content
          So, make the text left aligned to ensure all badges line up the same */
       ${logicalTextAlignCSS('left')}
@@ -80,6 +88,13 @@ export const euiBadgeStyles = (euiThemeContext: UseEuiTheme) => {
       & + .euiBadge {
         ${logicalCSS('margin-left', euiTheme.size.xs)}
       }
+    `,
+    iconOnly: css`
+      padding-inline: ${mathWithUnits(
+        // Account for the border
+        [euiTheme.size.xs, euiTheme.border.width.thin],
+        (size, borderWidth) => size - borderWidth
+      )};
     `,
     clickable: css`
       &:not(:disabled) {
@@ -143,6 +158,7 @@ export const euiBadgeStyles = (euiThemeContext: UseEuiTheme) => {
     text: {
       euiBadge__text: css`
         ${euiTextTruncate()}
+        padding-inline: ${euiTheme.size.xxs};
         cursor: inherit;
       `,
       clickable: css`
@@ -155,12 +171,12 @@ export const euiBadgeStyles = (euiThemeContext: UseEuiTheme) => {
       euiBadge__icon: css``,
       right: css`
         &:not(:only-child) {
-          ${logicalCSS('margin-left', euiTheme.size.xs)}
+          ${logicalCSS('margin-left', euiTheme.size.xxs)}
         }
       `,
       left: css`
         &:not(:only-child) {
-          ${logicalCSS('margin-right', euiTheme.size.xs)}
+          ${logicalCSS('margin-right', euiTheme.size.xxs)}
         }
       `,
     },
@@ -180,10 +196,10 @@ export const euiBadgeStyles = (euiThemeContext: UseEuiTheme) => {
         }
       `,
       right: css`
-        ${logicalCSS('margin-left', euiTheme.size.xs)}
+        ${logicalCSS('margin-left', euiTheme.size.xxs)}
       `,
       left: css`
-        ${logicalCSS('margin-right', euiTheme.size.xs)}
+        ${logicalCSS('margin-right', euiTheme.size.xxs)}
       `,
     },
 
