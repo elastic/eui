@@ -14,7 +14,7 @@ import { useEuiMemoizedStyles } from '../../services';
 import { CommonProps, DataAttributeProps } from '../common';
 import { IconType, EuiIcon } from '../icon';
 import { EuiButtonIcon } from '../button';
-import { Props as EuiButtonIconProps } from '../button/button_icon/button_icon';
+import { type EuiButtonIconPropsForButton } from '../button/button_icon/button_icon';
 import { EuiText } from '../text';
 import { EuiPanel } from '../panel';
 import { EuiSpacer } from '../spacer';
@@ -58,7 +58,8 @@ export type EuiCallOutProps = CommonProps &
     /**
      * Useful for passing additional props to the dismiss button e.g. data attributes
      */
-    dismissButtonProps?: Partial<EuiButtonIconProps> & DataAttributeProps;
+    dismissButtonProps?: Partial<EuiButtonIconPropsForButton> &
+      DataAttributeProps;
 
     /**
      * Enables the content to be read by screen readers on mount.
