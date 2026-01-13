@@ -13,8 +13,6 @@ import {
   euiPaletteColorBlindBehindText,
   euiPaletteComplementary,
   euiPaletteCool,
-  euiPaletteForDarkBackground,
-  euiPaletteForLightBackground,
   euiPaletteForStatus,
   euiPaletteForTemperature,
   euiPaletteGray,
@@ -52,38 +50,6 @@ describe('euiPaletteColorBlindBehindText', () => {
     };
 
     const result = euiPaletteColorBlindBehindText({
-      colors,
-    });
-
-    expect(result[0]).toEqual(customColor);
-  });
-});
-
-describe('euiPaletteForLightBackground', () => {
-  it('should return custom colors', () => {
-    const customColor = '#00ff00';
-    const colors = {
-      ...colorVis,
-      euiColorVisText0: customColor,
-    };
-
-    const result = euiPaletteForLightBackground({
-      colors,
-    });
-
-    expect(result[0]).toEqual(customColor);
-  });
-});
-
-describe('euiPaletteForDarkBackground', () => {
-  it('should return custom colors', () => {
-    const customColor = '#00ff00';
-    const colors = {
-      ...colorVis,
-      euiColorVisText0: customColor,
-    };
-
-    const result = euiPaletteForDarkBackground({
       colors,
     });
 
