@@ -503,6 +503,7 @@ const DraggablePanel = memo(function DraggablePanel({
    */
   const grabIconStyles = css`
     svg {
+      /* `textSubdued` is more correct semantically but too dark */
       fill: ${euiTheme.colors.textDisabled};
     }
   `;
