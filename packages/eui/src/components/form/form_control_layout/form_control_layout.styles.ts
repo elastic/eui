@@ -13,6 +13,7 @@ import {
   euiButtonSizeMap,
   euiDisabledSelector,
   euiTextTruncate,
+  highContrastModeStyles,
   logicalCSS,
   mathWithUnits,
 } from '../../../global_styling';
@@ -150,6 +151,11 @@ export const euiFormControlLayoutStyles = (euiThemeContext: UseEuiTheme) => {
 
         .euiFormControlButton {
           box-shadow: none;
+
+          ${highContrastModeStyles(euiThemeContext, {
+            none: 'box-shadow: none;',
+            preferred: 'border: none;',
+          })}
         }
       `,
     },
