@@ -884,26 +884,10 @@ export const AppendPrependAPIKitchensink: Story = {
                     {...childProps}
                     placeholder="Text field"
                     prepend={
-                      <EuiFlexGroup
-                        gutterSize="none"
-                        alignItems="center"
-                        css={({ euiTheme }) => css`
-                          position: relative;
-                          margin-inline-start: -${euiTheme.size.xs};
-                          border-radius: ${mathWithUnits(
-                            euiTheme.border.radius.small,
-                            (x) => x / 2
-                          )};
-                          overflow: hidden;
-
-                          &:is(:hover, :active) {
-                            .euiFormAppendPrepend__dragHandle {
-                              color: ${euiTheme.colors.textParagraph};
-                            }
-                          }
-                        `}
-                      >
-                        <button
+                      <>
+                        {/* NOTE: only works properly for nested text content with div element, 
+                        the dragHandleProps apply correct attributes to create a custom button */}
+                        <div
                           className="euiFormAppendPrepend__dragHandle"
                           {...provided.dragHandleProps}
                           aria-label="Drag handle"
@@ -911,28 +895,43 @@ export const AppendPrependAPIKitchensink: Story = {
                             display: flex;
                             align-items: center;
                             justify-content: center;
-                            inline-size: ${euiTheme.size.l};
-                            block-size: ${euiTheme.size.l};
                             z-index: 1;
-                            /* offsets default content padding */
-                            margin-inline-end: -${euiTheme.size.s};
                             color: ${euiTheme.colors.textDisabled};
+
+                            &:is(:hover, :active) {
+                              .euiIcon {
+                                color: ${euiTheme.colors.textParagraph};
+                              }
+                            }
+
+                            .euiFormPrepend {
+                              gap: 0;
+                            }
+
+                            .euiIcon {
+                              margin-inline: -${euiTheme.size.xs};
+                            }
+
+                            .euiFormLabel {
+                              color: ${euiTheme.colors.textParagraph};
+                              cursor: grab;
+                            }
                           `}
                         >
-                          <EuiIcon type="grabHorizontal" />
-                        </button>
-
-                        <EuiToolTip
-                          content="String"
-                          anchorProps={{
-                            css: css`
-                              display: flex;
-                            `,
-                          }}
-                        >
-                          <EuiFormPrepend label="String" />
-                        </EuiToolTip>
-                      </EuiFlexGroup>
+                          <EuiFormPrepend iconLeft="grabHorizontal">
+                            <EuiToolTip
+                              content="String"
+                              anchorProps={{
+                                css: css`
+                                  display: flex;
+                                `,
+                              }}
+                            >
+                              <EuiFormLabel>String</EuiFormLabel>
+                            </EuiToolTip>
+                          </EuiFormPrepend>
+                        </div>
+                      </>
                     }
                   />
                 )}
@@ -1181,7 +1180,6 @@ export const AppendPrependAPIKitchensink: Story = {
                         alignItems="center"
                         css={({ euiTheme }) => css`
                           position: relative;
-                          margin-inline-start: -${euiTheme.size.xs};
                           border-radius: ${mathWithUnits(
                             euiTheme.border.radius.small,
                             (x) => x / 2
@@ -1193,9 +1191,19 @@ export const AppendPrependAPIKitchensink: Story = {
                               color: ${euiTheme.colors.textParagraph};
                             }
                           }
+
+                          .euiFormLabel {
+                            margin-inline-start: -${euiTheme.size.xs};
+                            cursor: grab;
+
+                            /* increased specificity to override form layout overrides */
+                            & {
+                              color: ${euiTheme.colors.textParagraph};
+                            }
+                          }
                         `}
                       >
-                        <button
+                        <div
                           className="euiFormAppendPrepend__dragHandle"
                           {...provided.dragHandleProps}
                           aria-label="Drag handle"
@@ -1203,27 +1211,23 @@ export const AppendPrependAPIKitchensink: Story = {
                             display: flex;
                             align-items: center;
                             justify-content: center;
-                            inline-size: ${euiTheme.size.l};
-                            block-size: ${euiTheme.size.l};
                             z-index: 1;
-                            /* offsets default content padding */
-                            margin-inline-end: -${euiTheme.size.s};
                             color: ${euiTheme.colors.textDisabled};
                           `}
                         >
                           <EuiIcon type="grabHorizontal" />
-                        </button>
 
-                        <EuiToolTip
-                          content="String"
-                          anchorProps={{
-                            css: css`
-                              display: flex;
-                            `,
-                          }}
-                        >
-                          <EuiFormPrepend label="String" />
-                        </EuiToolTip>
+                          <EuiToolTip
+                            content="String"
+                            anchorProps={{
+                              css: css`
+                                display: flex;
+                              `,
+                            }}
+                          >
+                            <EuiFormLabel>String</EuiFormLabel>
+                          </EuiToolTip>
+                        </div>
                       </EuiFlexGroup>
                     }
                   />
