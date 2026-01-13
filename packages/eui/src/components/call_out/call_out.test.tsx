@@ -77,15 +77,22 @@ describe('EuiCallOut', () => {
         const { getByTestSubject } = render(
           <EuiCallOut
             onDismiss={onDismiss}
-            dismissButtonProps={{ 'data-something': 'value' }}
+            dismissButtonProps={{
+              'aria-label': 'Custom label',
+              'data-example': 'value',
+            }}
           >
             Content
           </EuiCallOut>
         );
 
         expect(getByTestSubject('euiDismissCalloutButton')).toHaveAttribute(
-          'data-something',
+          'data-example',
           'value'
+        );
+        expect(getByTestSubject('euiDismissCalloutButton')).toHaveAttribute(
+          'aria-label',
+          'Custom label'
         );
       });
     });

@@ -11,7 +11,7 @@ import React, { forwardRef, HTMLAttributes, ReactNode, useMemo } from 'react';
 import classNames from 'classnames';
 
 import { useEuiMemoizedStyles } from '../../services';
-import { CommonProps } from '../common';
+import { CommonProps, DataAttributeProps } from '../common';
 import { IconType, EuiIcon } from '../icon';
 import { EuiButtonIcon } from '../button';
 import { Props as EuiButtonIconProps } from '../button/button_icon/button_icon';
@@ -58,9 +58,7 @@ export type EuiCallOutProps = CommonProps &
     /**
      * Useful for passing additional props to the dismiss button e.g. data attributes
      */
-    dismissButtonProps?: Partial<
-      Omit<EuiButtonIconProps, 'iconType' | 'onClick'>
-    >;
+    dismissButtonProps?: Partial<EuiButtonIconProps> & DataAttributeProps;
 
     /**
      * Enables the content to be read by screen readers on mount.
