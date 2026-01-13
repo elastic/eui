@@ -838,38 +838,10 @@ export const AppendPrependAPIKitchensink: Story = {
           {/* Drag examples */}
 
           <EuiText size="s">
-            <p>Drag examples</p>
-          </EuiText>
-
-          <EuiDragDropContext onDragEnd={() => {}}>
-            <EuiDroppable droppableId="droppableArea">
-              <EuiDraggable
-                index={0}
-                draggableId="draggable-item-1"
-                customDragHandle="custom"
-              >
-                {(provided) => (
-                  <EuiFieldText
-                    {...childProps}
-                    id="textField-8"
-                    placeholder="Text field"
-                    prepend={
-                      <EuiFormPrepend
-                        label="String"
-                        element="button"
-                        iconLeft="grabHorizontal"
-                        aria-label="Drag handle"
-                        {...provided.dragHandleProps}
-                      />
-                    }
-                  />
-                )}
-              </EuiDraggable>
-            </EuiDroppable>
-          </EuiDragDropContext>
-
-          <EuiText size="xs">
-            <p>With custom styles (reduce spacing and hover styles)</p>
+            <p>
+              Drag example - With custom styles (reduce spacing and hover
+              styles)
+            </p>
           </EuiText>
 
           <EuiDragDropContext onDragEnd={() => {}}>
@@ -1124,42 +1096,10 @@ export const AppendPrependAPIKitchensink: Story = {
           {/* Drag examples */}
 
           <EuiText size="s">
-            <p>Drag examples</p>
-          </EuiText>
-
-          <EuiDragDropContext onDragEnd={() => {}}>
-            <EuiDroppable droppableId="droppableArea">
-              <EuiDraggable
-                index={0}
-                draggableId="draggable-item-1"
-                customDragHandle="custom"
-              >
-                {(provided) => (
-                  <EuiFieldText
-                    {...childProps}
-                    id="textField-109"
-                    placeholder="Text field"
-                    prepend={
-                      <EuiFlexGroup gutterSize="none">
-                        <button
-                          {...provided.dragHandleProps}
-                          aria-label="Drag handle"
-                        >
-                          <EuiIcon type="grabHorizontal" />
-                        </button>
-                        <EuiFormLabel htmlFor="textField-109">
-                          String
-                        </EuiFormLabel>
-                      </EuiFlexGroup>
-                    }
-                  />
-                )}
-              </EuiDraggable>
-            </EuiDroppable>
-          </EuiDragDropContext>
-
-          <EuiText size="xs">
-            <p>With custom styles (reduce spacing and hover styles)</p>
+            <p>
+              Drag example - With custom styles (reduce spacing and hover
+              styles)
+            </p>
           </EuiText>
 
           <EuiDragDropContext onDragEnd={() => {}}>
