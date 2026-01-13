@@ -50,7 +50,7 @@ export const useScroll = (args: Dependencies) => {
   const { scrollCellIntoView } = useScrollCellIntoView(args);
 
   const { focusedCell } = useContext(DataGridFocusContext);
-  const isPointerDown = useIsPointerDown();
+  const isPointerDown = useIsPointerDown(args.outerGridRef);
 
   useEffect(() => {
     if (focusedCell) {
