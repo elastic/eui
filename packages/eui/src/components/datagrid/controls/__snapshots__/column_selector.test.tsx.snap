@@ -147,7 +147,7 @@ exports[`useDataGridColumnSelector columnSelector renders a toolbar button/popov
                   </div>
                   <div
                     aria-describedby="rfd-hidden-text-:r0:-hidden-text-:r1:"
-                    aria-label="Drag handle"
+                    aria-label="columnA drag handle"
                     class="euiFlexItem emotion-euiFlexItem-growZero"
                     data-rfd-drag-handle-context-id=":r0:"
                     data-rfd-drag-handle-draggable-id="columnA"
@@ -220,7 +220,7 @@ exports[`useDataGridColumnSelector columnSelector renders a toolbar button/popov
                   </div>
                   <div
                     aria-describedby="rfd-hidden-text-:r0:-hidden-text-:r1:"
-                    aria-label="Drag handle"
+                    aria-label="columnB drag handle"
                     class="euiFlexItem emotion-euiFlexItem-growZero"
                     data-rfd-drag-handle-context-id=":r0:"
                     data-rfd-drag-handle-draggable-id="columnB"

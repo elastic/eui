@@ -482,6 +482,7 @@ export const typeToPathMap = {
   productAgent: 'product_agent',
   productCloudInfra: 'product_cloud_infra',
   productDashboard: 'product_dashboard',
+  productDiscover: 'product_discover',
   productML: 'product_ml',
   productStreamsClassic: 'product_streams_classic',
   productStreamsWired: 'product_streams_wired',

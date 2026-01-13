@@ -232,6 +232,7 @@ export const iconTypes: Array<IconType> = [
   'productAgent',
   'productCloudInfra',
   'productDashboard',
+  'productDiscover',
   'productML',
   'productStreamsClassic',
   'productStreamsWired',
