@@ -83,6 +83,28 @@ export const euiFormControlLayoutStyles = (euiThemeContext: UseEuiTheme) => {
           }
         }
 
+        /* Autofill overrides */
+        &:has(:autofill) {
+          background: ${form.backgroundAutoFilled};
+
+          &:not(:hover)::after {
+            border-color: ${form.borderAutofilled};
+          }
+
+          *:-webkit-autofill,
+          *:autofill {
+            --euiFormControlStateAutofillColor: ${form.backgroundAutoFilled};
+
+            /* cut off the outside of the control as the webkit-box-shadow can create noticable border artifacts especially in DARK mode */
+            background-clip: content-box;
+
+            &:hover,
+            &:focus {
+              --euiFormControlStateAutofillColor: ${form.backgroundAutoFilled};
+            }
+          }
+        }
+
         /* the filter group will use the form layout border instead */
         .euiFilterGroup {
           border-radius: 0;

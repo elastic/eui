@@ -28,9 +28,12 @@ describe('euiFormVariables', () => {
       {
         "animationTiming": "150ms ease-in",
         "appendPrependBackground": "#ECF1F9",
+        "backgroundAutoFilled": "#E8F1FF",
         "backgroundColor": "#FFFFFF",
         "backgroundDisabledColor": "#ECF1F9",
         "backgroundReadOnlyColor": "#ECF1F9",
+        "borderAutofilled": "#BFDBFF",
+        "borderAutofilledHovered": "#0B64DD",
         "borderColor": "#CAD3E2",
         "borderFocused": "#0B64DD",
         "borderHovered": "#B4C1D5",
@@ -83,20 +86,27 @@ describe('euiFormControlStyles', () => {
     expect(result.current).toMatchInlineSnapshot(`
       {
         "autoFill": "
-          &:-webkit-autofill {
+          &:where(:-webkit-autofill) {
+            --euiFormControlStateAutofillWidth: 1px;
+            --euiFormControlStateAutofillColor: #BFDBFF;
+            
             -webkit-text-fill-color: #2B394F;
-            -webkit-box-shadow: inset 0 0 0 1px #BFDBFF, inset 0 0 0 100vw #E8F1FF;
+            -webkit-box-shadow: inset 0 0 0 var(--euiFormControlStateAutofillWidth) var(--euiFormControlStateAutofillColor), inset 0 0 0 100vw #E8F1FF;
+           
 
-            &:hover,
+            &:hover {
+              --euiFormControlStateAutofillColor: #0B64DD;
+            }
+
             &:focus {
-              -webkit-box-shadow: inset 0 0 0 1px #0B64DD, inset 0 0 0 100vw #E8F1FF;
+              --euiFormControlStateAutofillWidth: 2px;
             }
 
             &:invalid {
-              -webkit-box-shadow: inset 0 0 0 1px #C61E25, inset 0 0 0 100vw #E8F1FF;
+              --euiFormControlStateAutofillColor: #C61E25;
 
               &:hover {
-                -webkit-box-shadow: inset 0 0 0 1px #DA3737, inset 0 0 0 100vw #E8F1FF;
+                --euiFormControlStateAutofillColor: #DA3737;
               }
             }
           }
