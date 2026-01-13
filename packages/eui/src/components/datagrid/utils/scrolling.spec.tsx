@@ -94,3 +94,37 @@ describe('useScroll', () => {
     });
   });
 });
+
+describe('pointer interactions', () => {
+  // so that selecting text without scrolling getting in the way is possible
+  it('scrolls cell into view only on pointerup, not on pointerdown', () => {
+    // we want a cell to be partially visible, near the bottom edge of the visible area:
+    // row 6 should be cut off given this arbitrary 320px height
+    const props = { ...baseProps, height: 320 };
+    cy.realMount(<EuiDataGrid {...props} />);
+
+    // verify initial scroll position is 0
+    cy.get('.euiDataGrid__virtualized').should(($body) => {
+      expect($body[0].scrollTop).to.equal(0);
+    });
+
+    // target the partially visible cell at the bottom, at row 6
+    const cellSelector =
+      '[data-gridcell-column-index="0"][data-gridcell-row-index="6"]';
+
+    // pointerdown (for real)
+    cy.get(cellSelector).realMouseDown({ scrollBehavior: false });
+
+    // scroll should NOT have happened yet
+    cy.get('.euiDataGrid__virtualized').should(($body) => {
+      expect($body[0].scrollTop).to.equal(0);
+    });
+
+    cy.get(cellSelector).realMouseUp();
+
+    // scroll should have happened after pointerup
+    cy.get('.euiDataGrid__virtualized').should(($body) => {
+      expect($body[0].scrollTop).to.be.greaterThan(200);
+    });
+  });
+});
