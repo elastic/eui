@@ -2,7 +2,7 @@
 
 EUI provides an ever-growing set of [icons][icons], but our set can be incomplete. If you find you need an icon that does not exist, create a new issue and tag it with the *icons* label. A designer from the EUI team will respond to discuss your needs.
 
-If you are willing and able to design the icon yourself, this document describes the guidelines for designing a new icon, cleaning up the SVG, and getting it added to EUI. While designers on the EUI team are available to assist, we greatly appreciate your contributions and pull requests.
+If you are willing and able to design the icon yourself, this document describes the [design guidelines](design-guidelines), cleaning up the SVG, and getting it added to EUI. While designers on the EUI team are available to assist, we greatly appreciate your contributions and pull requests.
 
 If you read through these guidelines or begin designing your icon and realize you're in too deep, then create an issue in this repo and request assistance. An EUI team member will reply and discuss options.
 
@@ -10,17 +10,15 @@ _**Note on 3rd-party / custom SVGs**_
 - The `EuiIcon` component accepts external references to custom SVG files, so you can maintain the icon in your consuming application.
 - This practice should also be used for any **3rd-party logos**. For a number of reasons, the EUI team as moved away from maintaining a set of 3rd party logos. Please use the custom SVG option going forward.
 
-## Design the icon
-
-From a content perspective, we've taken an approach of being open to many types of icons so long as they don't duplicate an icon that already exists. Stylistically, we have more stringent requirements outlined below.
-
-### Content
+## Content
 
 While we're pretty much open to all requests, we ask that you first try to use an existing icon as this helps us avoid having multiple versions of the same glyph.  Likewise, if there is a universally known icon that represents an action, we recommend leveraging those existing patterns (e.g. a scissors for cut).
 
 Finding and sharing reference icons is a great way to get moving if you're uncertain of the general shape. Post these examples to your issue and we'll provide feedback.
 
 Lastly, we reserve the right to reject any icons that do not fit the EUI style or may be deemed inappropriate.
+
+## Design guidelines
 
 ### Linear icon scaling
 
@@ -103,7 +101,7 @@ Lastly, we reserve the right to reject any icons that do not fit the EUI style o
 - Apply synonyms for the icon in the Figma component description to ensure designers are able to easily find icons, even if not searching for the exact name.
 
 #### _For Figma users_
-_As a reference, you can view and duplicate our [Figma Icon Template](https://www.figma.com/file/Alv38VIPHGd2cNZYKgtVEe/EUI-Utilities-Icon-Template?node-id=1%3A165). The "template" page within this project contains frames with helper grids, margins, and an example._
+_As a reference, you can view and duplicate our [Figma Icon Template Component](https://www.figma.com/design/FHys7gLzyvD1gc9DrJM6D8/Elastic-UI--Borealis-?node-id=14007-378&t=hP0dvrW2tEiYGxA0-4)._
 
 #### _For non-Figma users_
 _While we use Figma to maintain our internal design library, you can use any design tool to produce the SVG file._
