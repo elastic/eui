@@ -155,6 +155,6 @@ _\** Run `yarn workspace @elastic/eui-website start` to view the EUI docs site l
 
 
 [icons]: https://eui.elastic.co/docs/components/display/icons/#glyphs
-[icon-request-issue]: https://github.com/elastic/eui/issues/new?template=name-of-your-template.md
+[icon-request-issue]: https://github.com/elastic/eui/issues/new?template=06-icon-request.md
 [docs]: https://elastic.github.io/eui/
 [svg-plugin]: https://www.figma.com/community/plugin/814345141907543603/SVG-Export
