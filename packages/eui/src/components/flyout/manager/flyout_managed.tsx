@@ -86,7 +86,9 @@ export const EuiManagedFlyout = forwardRef<HTMLElement, EuiManagedFlyoutProps>(
   ) => {
     const flyoutId = useFlyoutId(id);
     const [flyoutRef, setFlyoutRef] = useState<HTMLElement | null>(null);
-    const combinedRef = useCombinedRefs([setFlyoutRef, ref]);
+
+    const refs = useMemo(() => [setFlyoutRef, ref], [ref]);
+    const combinedRef = useCombinedRefs(refs);
 
     const {
       addFlyout,
