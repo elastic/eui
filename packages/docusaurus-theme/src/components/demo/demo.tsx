@@ -38,6 +38,8 @@ export interface DemoSourceMeta {
   filename?: string;
 }
 
+export type DemoFiles = Record<string, unknown>;
+
 export interface DemoProps extends PropsWithChildren {
   /**
    * Whether the source code editor is open by default
@@ -50,8 +52,18 @@ export interface DemoProps extends PropsWithChildren {
   scope?: Record<string, unknown>;
   /**
    * Allows to pass extra files that will be added to the Codesandbox instance.
+   * The key is the filename and the value is the serialized file content.
+   *
+   * @example
+   * ````mdx
+   * ```mdx-code-block
+   * import iconSvgSource from '!raw-loader!./icon.svg';
+   * ```
+   *
+   * <Demo demoFiles={{ 'icon.svg': iconSvgSource }} />
+   * ````
    */
-  demoFiles?: Record<string, unknown>;
+  demoFiles?: DemoFiles;
   previewPadding?: DemoPreviewProps['padding'];
   previewWrapper?: DemoPreviewProps['wrapperComponent'];
 }

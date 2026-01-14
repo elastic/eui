@@ -17,12 +17,12 @@ import {
 } from '@elastic/eui';
 import { css } from '@emotion/react';
 import { extraActions } from '@theme/Demo/actions';
-import { DemoSourceMeta } from '../demo';
+import { DemoSourceMeta, DemoFiles } from '../demo';
 
 export interface DemoActionsBarProps {
   activeSource: DemoSourceMeta | null;
   sources: DemoSourceMeta[];
-  demoFiles?: Record<string, unknown>;
+  demoFiles?: DemoFiles;
   isSourceOpen: boolean;
   setSourceOpen(isOpen: boolean): void;
   onClickReloadExample(): void;
