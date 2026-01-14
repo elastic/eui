@@ -2,7 +2,7 @@
 name: Icon request
 about: Request a new icon or modify an existing one
 title: ''
-labels: ⚠️ needs validation
+labels: "⚠️ needs validation,icons"
 type: 'Enhancement'
 assignees: ''
 
