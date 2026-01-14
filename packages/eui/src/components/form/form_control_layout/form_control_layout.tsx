@@ -259,6 +259,8 @@ const EuiFormControlLayoutSideNodes: FunctionComponent<{
   const AppendOrPrepend = side === 'append' ? EuiFormAppend : EuiFormPrepend;
 
   if (Array.isArray(nodes)) {
+    if (nodes.length === 0) return null;
+
     content = React.Children.map(nodes, (node) =>
       typeof node === 'string' ? (
         <EuiFormLabel htmlFor={inputId}>{node}</EuiFormLabel>
