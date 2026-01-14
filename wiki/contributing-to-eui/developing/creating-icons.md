@@ -1,8 +1,8 @@
 # Creating icons
 
-EUI provides an ever-growing set of [icons][icons], but our set can be incomplete. If you find you need an icon that does not exist, create a new issue and tag it with the *icons* label. A designer from the EUI team will respond to discuss your needs.
+EUI provides an ever-growing set of [icons][icons], but our set can be incomplete. If you find you need an icon that does not exist, create a new [icon request](icon-request-issue) issue. A designer from the EUI team will respond to discuss your needs.
 
-If you are willing and able to design the icon yourself, this document describes the [design guidelines](design-guidelines), cleaning up the SVG, and getting it added to EUI. While designers on the EUI team are available to assist, we greatly appreciate your contributions and pull requests.
+If you are willing and able to design the icon yourself, this document describes the [design guidelines](#design-guidelines), cleaning up the SVG, and getting it added to EUI. While designers on the EUI team are available to assist, we greatly appreciate your contributions and pull requests.
 
 If you read through these guidelines or begin designing your icon and realize you're in too deep, then create an issue in this repo and request assistance. An EUI team member will reply and discuss options.
 
@@ -154,6 +154,7 @@ _\* The Icons page actually contains several sections. In most cases, you will b
 _\** Run `yarn workspace @elastic/eui-website start` to view the EUI docs site locally._
 
 
-[icons]: https://elastic.github.io/eui/#/display/icons
+[icons]: https://eui.elastic.co/docs/components/display/icons/#glyphs
+[icon-request-issue]: https://github.com/elastic/eui/issues/new?template=name-of-your-template.md
 [docs]: https://elastic.github.io/eui/
 [svg-plugin]: https://www.figma.com/community/plugin/814345141907543603/SVG-Export
