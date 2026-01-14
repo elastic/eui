@@ -590,6 +590,7 @@ declare module '@theme/Demo/actions' {
   export type ActionComponentProps = {
     activeSource: DemoSourceMeta;
     sources: DemoSourceMeta[];
+    demoFiles?: Record<string, unknown>;
   };
 
   export type ActionComponent = ComponentType<ActionComponentProps>;

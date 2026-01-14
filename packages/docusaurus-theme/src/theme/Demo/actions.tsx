@@ -13,6 +13,7 @@ import { DemoSourceMeta } from '../../components/demo/demo';
 export type ActionComponentProps = {
   activeSource: DemoSourceMeta | null;
   sources: DemoSourceMeta[];
+  demoFiles?: Record<string, unknown>;
 };
 
 export type ActionComponent = ComponentType<ActionComponentProps>;
