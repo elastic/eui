@@ -20,7 +20,6 @@ import {
 import { type EuiButtonDisplaySizes } from '../../button/button_display/_button_display';
 
 import { euiFormControlFocusStyles, euiFormVariables } from '../form.styles';
-import { euiFormAppendPrependStyles } from './append_prepend/form_append_prepend.styles';
 
 export const buttonSelectors =
   '*:is(.euiButton, .euiButtonEmpty, .euiButtonIcon, .euiFormAppend, .euiFormPrepend)';
@@ -183,8 +182,6 @@ export const euiFormControlLayoutSideNodeStyles = (
   const text = textSelectors;
   const appendPrepend = appendPrependSelectors;
 
-  const appendPrependStyles = euiFormAppendPrependStyles(euiThemeContext);
-
   const _buttonPadding = (size: EuiButtonDisplaySizes) =>
     logicalCSS('padding-horizontal', buttonSizes[size].padding);
 
@@ -227,6 +224,7 @@ export const euiFormControlLayoutSideNodeStyles = (
 
         /* Account for border around focusable children */
         &:focus-visible {
+          z-index: 1;
           outline-offset: ${euiTheme.focus.width};
         }
       }
@@ -236,14 +234,6 @@ export const euiFormControlLayoutSideNodeStyles = (
         cursor: default;
         overflow: hidden;
         text-overflow: ellipsis;
-      }
-
-      /* Manual override for custom content to match expected styles.
-        TODO: Remove once all append/prepend legacy API usages in Kibana are updated */
-      &:where(:not(:has(${appendPrepend}))) {
-        ${buttons}:not(${euiDisabledSelector}) {
-          ${appendPrependStyles.isInteractive}
-        }
       }
 
       /* remove default focus outline in favor of custom focus styles.
@@ -343,6 +333,12 @@ export const euiFormControlLayoutSideNodeStyles = (
       &:where(:not(:has(${appendPrepend}, ${buttonSelectors}))) > *,
       &:where(:not(:has(${appendPrepend}))) .euiFormLabel {
         color: ${form.textColorDisabled};
+      }
+
+      *:is(.euiButtonEmpty, .euiButtonIcon:not([class*='fill'])):not(
+          ${euiDisabledSelector}
+        ) {
+        background-color: ${form.backgroundColor};
       }
     `,
     readOnly: css`

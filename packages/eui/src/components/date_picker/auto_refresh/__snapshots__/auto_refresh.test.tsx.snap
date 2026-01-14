@@ -8,7 +8,7 @@ exports[`EuiAutoRefresh is rendered 1`] = `
     class="euiFormControlLayout euiFormControlLayout--group euiFormControlLayout-readOnly emotion-euiFormControlLayout-group"
   >
     <div
-      class="euiFormControlLayout__prepend css-137k04w-empty-primary-isInteractive-euiFormControlLayout__side-readOnly"
+      class="euiFormControlLayout__prepend emotion-euiFormControlLayout__side-readOnly"
     >
       <div
         class="css-yp07d4-wrapper"
@@ -53,7 +53,7 @@ exports[`EuiAutoRefresh isPaused is false 1`] = `
     class="euiFormControlLayout euiFormControlLayout--group euiFormControlLayout-readOnly emotion-euiFormControlLayout-group"
   >
     <div
-      class="euiFormControlLayout__prepend css-137k04w-empty-primary-isInteractive-euiFormControlLayout__side-readOnly"
+      class="euiFormControlLayout__prepend emotion-euiFormControlLayout__side-readOnly"
     >
       <div
         class="css-yp07d4-wrapper"
@@ -97,7 +97,7 @@ exports[`EuiAutoRefresh refreshInterval is rendered 1`] = `
     class="euiFormControlLayout euiFormControlLayout--group euiFormControlLayout-readOnly emotion-euiFormControlLayout-group"
   >
     <div
-      class="euiFormControlLayout__prepend css-137k04w-empty-primary-isInteractive-euiFormControlLayout__side-readOnly"
+      class="euiFormControlLayout__prepend emotion-euiFormControlLayout__side-readOnly"
     >
       <div
         class="css-yp07d4-wrapper"

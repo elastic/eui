@@ -9,7 +9,7 @@ exports[`EuiSuperDatePicker props accepts data-test-subj and passes to EuiFormCo
     class="euiFormControlLayout euiFormControlLayout--group emotion-euiFormControlLayout-fullWidth-group-euiSuperDatePicker__formControlLayout-default"
   >
     <div
-      class="euiFormControlLayout__prepend css-1iuehkd-empty-primary-isInteractive-euiFormControlLayout__side"
+      class="euiFormControlLayout__prepend emotion-euiFormControlLayout__side"
     >
       <div
         class="euiPopover emotion-euiPopover-inline-block"
@@ -90,7 +90,7 @@ exports[`EuiSuperDatePicker props compressed is rendered 1`] = `
     class="euiFormControlLayout euiFormControlLayout--group emotion-euiFormControlLayout-compressed-fullWidth-group-euiSuperDatePicker__formControlLayout-default"
   >
     <div
-      class="euiFormControlLayout__prepend css-103rfxh-empty-primary-isInteractive-euiFormControlLayout__side-compressed"
+      class="euiFormControlLayout__prepend emotion-euiFormControlLayout__side-compressed"
     >
       <div
         class="euiPopover emotion-euiPopover-inline-block"
@@ -174,7 +174,7 @@ exports[`EuiSuperDatePicker props isAutoRefreshOnly is rendered 1`] = `
       class="euiFormControlLayout euiFormControlLayout--group euiFormControlLayout-readOnly emotion-euiFormControlLayout-group"
     >
       <div
-        class="euiFormControlLayout__prepend css-137k04w-empty-primary-isInteractive-euiFormControlLayout__side-readOnly"
+        class="euiFormControlLayout__prepend emotion-euiFormControlLayout__side-readOnly"
       >
         <div
           class="css-yp07d4-wrapper"
@@ -223,7 +223,7 @@ exports[`EuiSuperDatePicker props isAutoRefreshOnly passes required props 1`] = 
       class="euiFormControlLayout euiFormControlLayout--group euiFormControlLayout-isDisabled euiFormControlLayout-readOnly emotion-euiFormControlLayout-group"
     >
       <div
-        class="euiFormControlLayout__prepend css-9a96ie-empty-primary-isInteractive-euiFormControlLayout__side-disabled-readOnly"
+        class="euiFormControlLayout__prepend emotion-euiFormControlLayout__side-disabled-readOnly"
       >
         <div
           class="css-yp07d4-wrapper"
@@ -289,7 +289,7 @@ exports[`EuiSuperDatePicker props isDisabled true 1`] = `
     class="euiFormControlLayout euiFormControlLayout--group euiFormControlLayout-isDisabled emotion-euiFormControlLayout-fullWidth-group-euiSuperDatePicker__formControlLayout-disabled"
   >
     <div
-      class="euiFormControlLayout__prepend css-1gpcbpt-empty-primary-isInteractive-euiFormControlLayout__side-disabled"
+      class="euiFormControlLayout__prepend emotion-euiFormControlLayout__side-disabled"
     >
       <div
         class="euiPopover emotion-euiPopover-inline-block"
@@ -373,7 +373,7 @@ exports[`EuiSuperDatePicker props isQuickSelectOnly is rendered 1`] = `
     class="euiFormControlLayout euiFormControlLayout--group emotion-euiFormControlLayout-fullWidth-group-euiSuperDatePicker__formControlLayout-default"
   >
     <div
-      class="euiFormControlLayout__prepend css-1iuehkd-empty-primary-isInteractive-euiFormControlLayout__side"
+      class="euiFormControlLayout__prepend emotion-euiFormControlLayout__side"
     >
       <div
         class="euiPopover emotion-euiPopover-inline-block"
@@ -433,7 +433,7 @@ exports[`EuiSuperDatePicker props showUpdateButton can be false 1`] = `
     class="euiFormControlLayout euiFormControlLayout--group emotion-euiFormControlLayout-fullWidth-group-euiSuperDatePicker__formControlLayout-default"
   >
     <div
-      class="euiFormControlLayout__prepend css-1iuehkd-empty-primary-isInteractive-euiFormControlLayout__side"
+      class="euiFormControlLayout__prepend emotion-euiFormControlLayout__side"
     >
       <div
         class="euiPopover emotion-euiPopover-inline-block"
@@ -493,7 +493,7 @@ exports[`EuiSuperDatePicker props showUpdateButton can be iconOnly 1`] = `
     class="euiFormControlLayout euiFormControlLayout--group emotion-euiFormControlLayout-fullWidth-group-euiSuperDatePicker__formControlLayout-default"
   >
     <div
-      class="euiFormControlLayout__prepend css-1iuehkd-empty-primary-isInteractive-euiFormControlLayout__side"
+      class="euiFormControlLayout__prepend emotion-euiFormControlLayout__side"
     >
       <div
         class="euiPopover emotion-euiPopover-inline-block"
@@ -577,7 +577,7 @@ exports[`EuiSuperDatePicker props width can be auto 1`] = `
     class="euiFormControlLayout euiFormControlLayout--group emotion-euiFormControlLayout-fullWidth-group-euiSuperDatePicker__formControlLayout-default"
   >
     <div
-      class="euiFormControlLayout__prepend css-1iuehkd-empty-primary-isInteractive-euiFormControlLayout__side"
+      class="euiFormControlLayout__prepend emotion-euiFormControlLayout__side"
     >
       <div
         class="euiPopover emotion-euiPopover-inline-block"
@@ -658,7 +658,7 @@ exports[`EuiSuperDatePicker props width can be full 1`] = `
     class="euiFormControlLayout euiFormControlLayout--group emotion-euiFormControlLayout-fullWidth-group-euiSuperDatePicker__formControlLayout-default"
   >
     <div
-      class="euiFormControlLayout__prepend css-1iuehkd-empty-primary-isInteractive-euiFormControlLayout__side"
+      class="euiFormControlLayout__prepend emotion-euiFormControlLayout__side"
     >
       <div
         class="euiPopover emotion-euiPopover-inline-block"
@@ -740,7 +740,7 @@ exports[`EuiSuperDatePicker renders 1`] = `
     class="euiFormControlLayout euiFormControlLayout--group emotion-euiFormControlLayout-fullWidth-group-euiSuperDatePicker__formControlLayout-default"
   >
     <div
-      class="euiFormControlLayout__prepend css-1iuehkd-empty-primary-isInteractive-euiFormControlLayout__side"
+      class="euiFormControlLayout__prepend emotion-euiFormControlLayout__side"
     >
       <div
         class="euiPopover emotion-euiPopover-inline-block"
@@ -825,7 +825,7 @@ exports[`EuiSuperDatePicker renders an EuiDatePickerRange 1`] = `
       class="euiFormControlLayout euiFormControlLayoutDelimited emotion-euiFormControlLayout-fullWidth-group-delimited"
     >
       <div
-        class="euiFormControlLayout__prepend css-1iuehkd-empty-primary-isInteractive-euiFormControlLayout__side"
+        class="euiFormControlLayout__prepend emotion-euiFormControlLayout__side"
       >
         <div
           class="euiPopover emotion-euiPopover-inline-block"

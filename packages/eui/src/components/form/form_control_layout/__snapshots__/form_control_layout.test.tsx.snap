@@ -309,7 +309,7 @@ exports[`EuiFormControlLayout props multiple appends are rendered 1`] = `
     class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup"
   />
   <div
-    class="euiFormControlLayout__append css-1y5z65c-empty-primary-isInteractive-euiFormControlLayout__side"
+    class="euiFormControlLayout__append emotion-euiFormControlLayout__side"
   >
     <span>
       1
@@ -326,7 +326,7 @@ exports[`EuiFormControlLayout props multiple prepends are rendered 1`] = `
   class="euiFormControlLayout euiFormControlLayout--group emotion-euiFormControlLayout-group"
 >
   <div
-    class="euiFormControlLayout__prepend css-1iuehkd-empty-primary-isInteractive-euiFormControlLayout__side"
+    class="euiFormControlLayout__prepend emotion-euiFormControlLayout__side"
   >
     <span>
       1
@@ -349,7 +349,7 @@ exports[`EuiFormControlLayout props one append node is rendered 1`] = `
     class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup"
   />
   <div
-    class="euiFormControlLayout__append css-1y5z65c-empty-primary-isInteractive-euiFormControlLayout__side"
+    class="euiFormControlLayout__append emotion-euiFormControlLayout__side"
   >
     <span>
       1
@@ -366,7 +366,7 @@ exports[`EuiFormControlLayout props one append string is rendered 1`] = `
     class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup"
   />
   <div
-    class="euiFormControlLayout__append css-1y5z65c-empty-primary-isInteractive-euiFormControlLayout__side"
+    class="euiFormControlLayout__append emotion-euiFormControlLayout__side"
   >
     <div
       class="css-yp07d4-wrapper"
@@ -390,7 +390,7 @@ exports[`EuiFormControlLayout props one prepend node is rendered 1`] = `
   class="euiFormControlLayout euiFormControlLayout--group emotion-euiFormControlLayout-group"
 >
   <div
-    class="euiFormControlLayout__prepend css-1iuehkd-empty-primary-isInteractive-euiFormControlLayout__side"
+    class="euiFormControlLayout__prepend emotion-euiFormControlLayout__side"
   >
     <span>
       1
@@ -407,7 +407,7 @@ exports[`EuiFormControlLayout props one prepend node is rendered with className 
   class="euiFormControlLayout euiFormControlLayout--group emotion-euiFormControlLayout-group"
 >
   <div
-    class="euiFormControlLayout__prepend css-1iuehkd-empty-primary-isInteractive-euiFormControlLayout__side"
+    class="euiFormControlLayout__prepend emotion-euiFormControlLayout__side"
   >
     <span
       class="myClass"
@@ -426,7 +426,7 @@ exports[`EuiFormControlLayout props one prepend string is rendered 1`] = `
   class="euiFormControlLayout euiFormControlLayout--group emotion-euiFormControlLayout-group"
 >
   <div
-    class="euiFormControlLayout__prepend css-1iuehkd-empty-primary-isInteractive-euiFormControlLayout__side"
+    class="euiFormControlLayout__prepend emotion-euiFormControlLayout__side"
   >
     <div
       class="css-yp07d4-wrapper"

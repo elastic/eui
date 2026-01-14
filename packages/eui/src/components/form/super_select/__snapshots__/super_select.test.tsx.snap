@@ -88,7 +88,7 @@ exports[`EuiSuperSelect props prepend and append 1`] = `
     class="euiFormControlLayout euiFormControlLayout--group emotion-euiFormControlLayout-group"
   >
     <div
-      class="euiFormControlLayout__prepend css-1iuehkd-empty-primary-isInteractive-euiFormControlLayout__side"
+      class="euiFormControlLayout__prepend emotion-euiFormControlLayout__side"
     >
       <div
         class="css-yp07d4-wrapper"
@@ -128,7 +128,7 @@ exports[`EuiSuperSelect props prepend and append 1`] = `
       </div>
     </div>
     <div
-      class="euiFormControlLayout__append css-1y5z65c-empty-primary-isInteractive-euiFormControlLayout__side"
+      class="euiFormControlLayout__append emotion-euiFormControlLayout__side"
     >
       <div
         class="css-yp07d4-wrapper"

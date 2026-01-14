@@ -199,7 +199,7 @@ exports[`EuiInlineEditForm edit mode editModeProps.inputProps 1`] = `
             class="euiFormControlLayout euiFormControlLayout--group emotion-euiFormControlLayout-fullWidth-group"
           >
             <div
-              class="euiFormControlLayout__prepend css-1iuehkd-empty-primary-isInteractive-euiFormControlLayout__side"
+              class="euiFormControlLayout__prepend emotion-euiFormControlLayout__side"
             >
               <div
                 class="css-yp07d4-wrapper"
