@@ -811,7 +811,7 @@ export function useSelectTextPartsWithArrowKeys(
 // I have no idea of the performance implications of appending/removing an element like this
 function getInputScrollPositionFromStart(
   input: HTMLInputElement,
-  start: number,
+  start: number
 ) {
   const mirror = document.createElement('div');
   const inputStyle = window.getComputedStyle(input);
