@@ -56,7 +56,7 @@ const NOW = 'NOW';
 const DEFAULT_FORMAT = 'MMM D YYYY, HH:mm';
 const FORMAT_TIME_ONLY = 'HH:mm';
 const FORMAT_NO_YEAR = 'MMM D, HH:mm';
-const FORMAT_WITH_TZ = 'MMM D YYYY, HH:mm ZZ';
+// const FORMAT_WITH_TZ = 'MMM D YYYY, HH:mm ZZ';
 
 // const ALLOWED_USER_DATE_FORMATS = [
 //   moment.ISO_8601,
@@ -170,11 +170,11 @@ function isValidTimeRange(range: ParsedTimeRange): boolean {
 }
 
 /**
- * Format a date string into something readable e.g. RFC 2822
+ * Format a date string into something readable e.g. RFC 2822-ish
  */
 export function dateStringToTextInstant(
   dateString: string,
-  dateFormat: string = FORMAT_WITH_TZ
+  dateFormat: string = DEFAULT_FORMAT
 ) {
   const parsed = dateMath.parse(dateString);
   return parsed?.isValid ? parsed.format(dateFormat) : dateString;
