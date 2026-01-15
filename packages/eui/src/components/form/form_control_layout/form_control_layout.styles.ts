@@ -23,6 +23,8 @@ import { euiFormControlFocusStyles, euiFormVariables } from '../form.styles';
 
 export const buttonSelectors =
   '*:is(.euiButton, .euiButtonEmpty, .euiButtonIcon, .euiFormAppend, .euiFormPrepend)';
+const emptyButtonSelectors =
+  '*:is(.euiButtonEmpty, .euiButtonIcon:not([class*="fill"]))';
 export const textSelectors = '*:is(.euiFormLabel, .euiText)';
 export const appendPrependSelectors = '*:is(.euiFormAppend, .euiFormPrepend)';
 
@@ -335,7 +337,7 @@ export const euiFormControlLayoutSideNodeStyles = (
         color: ${form.textColorDisabled};
       }
 
-      *:is(.euiButtonEmpty, .euiButtonIcon:not([class*='fill'])):not(
+      ${emptyButtonSelectors}:not(
           ${euiDisabledSelector}
         ) {
         background-color: ${form.backgroundColor};
@@ -343,6 +345,12 @@ export const euiFormControlLayoutSideNodeStyles = (
     `,
     readOnly: css`
       background-color: ${form.backgroundDisabledColor};
+
+      ${emptyButtonSelectors}:not(
+          ${euiDisabledSelector}
+        ) {
+        background-color: ${form.backgroundColor};
+      }
     `,
   };
 };
