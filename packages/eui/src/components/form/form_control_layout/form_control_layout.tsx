@@ -139,8 +139,6 @@ export const EuiFormControlLayout: FunctionComponent<
   const childrenWrapperStyles = [
     styles.children.euiFormControlLayout__childrenWrapper,
     isGroup && styles.children.inGroup,
-    isGroup && !append && styles.children.prependOnly,
-    isGroup && !prepend && styles.children.appendOnly,
     wrapperProps?.css,
   ];
 
@@ -162,16 +160,28 @@ export const EuiFormControlLayout: FunctionComponent<
     });
   }, [iconsPosition, icon, clear, isInvalid, isLoading, hasDropdownIcon]);
 
+  const sideNodeCommonProps = {
+    inputId: inputId,
+    compressed: compressed,
+    isDisabled: isDisabled,
+    readOnly: readOnly,
+  };
+
   return (
     <div css={cssStyles} className={classes} {...rest}>
       <EuiFormControlLayoutContextProvider
-        value={{ compressed: !!compressed, inputId }}
+        value={{
+          compressed: !!compressed,
+          inputId,
+          isDisabled: isDisabled,
+          isInvalid: isInvalid,
+          readOnly: readOnly,
+        }}
       >
         <EuiFormControlLayoutSideNodes
           side="prepend"
           nodes={prepend}
-          inputId={inputId}
-          compressed={compressed}
+          {...sideNodeCommonProps}
         />
         <div
           {...wrapperProps}
@@ -211,8 +221,7 @@ export const EuiFormControlLayout: FunctionComponent<
         <EuiFormControlLayoutSideNodes
           side="append"
           nodes={append}
-          inputId={inputId}
-          compressed={compressed}
+          {...sideNodeCommonProps}
         />
       </EuiFormControlLayoutContextProvider>
     </div>
@@ -227,14 +236,20 @@ const EuiFormControlLayoutSideNodes: FunctionComponent<{
   nodes?: PrependAppendType; // For some bizarre reason if you make this the `children` prop instead, React doesn't properly override cloned keys :|
   inputId?: string;
   compressed?: boolean;
+  isDisabled?: boolean;
+  readOnly?: boolean;
 }> = (props) => {
-  const { side, nodes, inputId, compressed } = props;
+  const { side, nodes, inputId, compressed, isDisabled, readOnly } = props;
+
   const className = `euiFormControlLayout__${side}`;
   const styles = useEuiMemoizedStyles(euiFormControlLayoutSideNodeStyles);
   const cssStyles = [
     styles.euiFormControlLayout__side,
-    styles[side],
-    compressed ? styles.compressed : styles.uncompressed,
+    compressed
+      ? [styles.compressed.compressed, styles.compressed[side]]
+      : [styles.uncompressed.uncompressed, styles.uncompressed[side]],
+    isDisabled && styles.disabled,
+    readOnly && styles.readOnly,
   ];
 
   if (!nodes) return null;
@@ -244,6 +259,8 @@ const EuiFormControlLayoutSideNodes: FunctionComponent<{
   const AppendOrPrepend = side === 'append' ? EuiFormAppend : EuiFormPrepend;
 
   if (Array.isArray(nodes)) {
+    if (nodes.length === 0) return null;
+
     content = React.Children.map(nodes, (node) =>
       typeof node === 'string' ? (
         <EuiFormLabel htmlFor={inputId}>{node}</EuiFormLabel>

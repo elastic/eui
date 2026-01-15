@@ -9,7 +9,7 @@ exports[`EuiDatePicker localization accepts the locale prop 1`] = `
     class="euiFormControlLayout emotion-euiFormControlLayout-group"
   >
     <div
-      class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup-prependOnly-appendOnly"
+      class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup"
     >
       <div
         class="react-datepicker emotion-euiReactDatePicker"
@@ -491,7 +491,7 @@ exports[`EuiDatePicker localization inherits locale from context 1`] = `
     class="euiFormControlLayout emotion-euiFormControlLayout-group"
   >
     <div
-      class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup-prependOnly-appendOnly"
+      class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup"
     >
       <div
         class="react-datepicker emotion-euiReactDatePicker"

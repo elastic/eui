@@ -44,6 +44,9 @@ export const euiFormControlButtonStyles = (euiThemeContext: UseEuiTheme) => {
         ${formStyles.invalid}
       }
     `,
+    readOnly: css`
+      ${formStyles.readOnly}
+    `,
     compressed: css`
       ${formStyles.compressed}
     `,
