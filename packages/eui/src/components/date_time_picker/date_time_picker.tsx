@@ -24,6 +24,7 @@ import {
   EuiFormControlLayout,
   EuiFormControlButton,
 } from '../form';
+import { EuiOutsideClickDetector } from '../outside_click_detector';
 
 // this import makes it hard to copy/paste somewhere else while testing/debugging
 import { useEuiTimeWindow } from '../date_picker/super_date_picker/time_window_buttons';
@@ -167,8 +168,8 @@ export function EuiDateTimePicker(props: EuiDateTimePickerProps) {
     setTextValue('');
     inputRef.current?.focus();
   };
-  const onInputBlur = () => {
-    setIsEditing(false);
+  const onOutsideClick = () => {
+    if (isEditing) setIsEditing(false);
   };
 
   // keeping them here for now
@@ -197,70 +198,73 @@ export function EuiDateTimePicker(props: EuiDateTimePickerProps) {
   };
 
   return (
-    <div css={styles.root}>
-      <EuiFormControlLayout
-        compressed={compressed}
-        isInvalid={isInvalid}
-        clear={
-          isEditing && textValue !== '' ? { onClick: onInputClear } : undefined
-        }
-        prepend={
-          <EuiButtonIcon
-            aria-label="Previous time window"
-            iconType="arrowLeft"
-            color="text"
-            display="empty"
-            onClick={stepBackward}
-          />
-        }
-        append={
-          <EuiButtonIcon
-            aria-label="Next time window"
-            iconType="arrowRight"
-            color="text"
-            display="empty"
-            onClick={stepForward}
-          />
-        }
-      >
-        {isEditing ? (
-          <EuiFieldText
-            autoFocus
-            inputRef={inputRef}
-            controlOnly
-            value={textValue}
-            isInvalid={isInvalid}
-            onChange={onInputChange}
-            onKeyDown={onInputKeyDown}
-            onBlur={onInputBlur}
-            compressed={compressed}
-            placeholder={placeholder}
-          />
-        ) : (
-          <EuiFormControlButton
-            value={label}
-            onClick={onButtonClick}
-            isInvalid={isInvalid}
-            compressed={compressed}
-            css={!_showBadgeAtEnd && styles.formControlButton}
-          >
-            {range.startDate && range.endDate && (
-              <EuiBadge css={styles.badge}>
-                {getDurationText(range.startDate, range.endDate)}
-              </EuiBadge>
-            )}
-          </EuiFormControlButton>
-        )}
-      </EuiFormControlLayout>
-      <EuiButtonIcon
-        aria-label="Zoom out"
-        iconType="magnifyWithMinus"
-        size="s"
-        display="base"
-        color="text"
-        css={styles.zoomButton}
-        onClick={expandWindow}
-      />
-    </div>
+    <EuiOutsideClickDetector onOutsideClick={onOutsideClick}>
+      <div css={styles.root}>
+        <EuiFormControlLayout
+          compressed={compressed}
+          isInvalid={isInvalid}
+          clear={
+            isEditing && textValue !== ''
+              ? { onClick: onInputClear }
+              : undefined
+          }
+          prepend={
+            <EuiButtonIcon
+              aria-label="Previous time window"
+              iconType="arrowLeft"
+              color="text"
+              display="empty"
+              onClick={stepBackward}
+            />
+          }
+          append={
+            <EuiButtonIcon
+              aria-label="Next time window"
+              iconType="arrowRight"
+              color="text"
+              display="empty"
+              onClick={stepForward}
+            />
+          }
+        >
+          {isEditing ? (
+            <EuiFieldText
+              autoFocus
+              inputRef={inputRef}
+              controlOnly
+              value={textValue}
+              isInvalid={isInvalid}
+              onChange={onInputChange}
+              onKeyDown={onInputKeyDown}
+              compressed={compressed}
+              placeholder={placeholder}
+            />
+          ) : (
+            <EuiFormControlButton
+              value={label}
+              onClick={onButtonClick}
+              isInvalid={isInvalid}
+              compressed={compressed}
+              css={!_showBadgeAtEnd && styles.formControlButton}
+            >
+              {range.startDate && range.endDate && (
+                <EuiBadge css={styles.badge}>
+                  {getDurationText(range.startDate, range.endDate)}
+                </EuiBadge>
+              )}
+            </EuiFormControlButton>
+          )}
+        </EuiFormControlLayout>
+        <EuiButtonIcon
+          aria-label="Zoom out"
+          iconType="magnifyWithMinus"
+          size="s"
+          display="base"
+          color="text"
+          css={styles.zoomButton}
+          onClick={expandWindow}
+        />
+      </div>
+    </EuiOutsideClickDetector>
   );
 }
