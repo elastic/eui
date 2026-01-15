@@ -41,4 +41,4 @@ assignees: ''
 
 **Design proposal (Optional)**
 
-<!-- Add your design proposal if it was created following this guidelines. -->
+<!-- Add your design proposal if it was created following the design guidelines: https://github.com/elastic/eui/blob/main/wiki/contributing-to-eui/developing/creating-icons.md -->
