@@ -10,6 +10,7 @@ import React, {
   useState,
   useRef,
   useEffect,
+  useMemo,
   type KeyboardEvent,
   type ChangeEvent,
 } from 'react';
@@ -40,7 +41,7 @@ import {
 
 export interface EuiDateTimePickerProps {
   /** Text representation of the time range */
-  value: string;
+  value?: string;
 
   /** Callback for when the time changes */
   onTimeChange: (props: EuiOnTimeChangeProps) => void;
@@ -51,7 +52,7 @@ export interface EuiDateTimePickerProps {
   isInvalid?: boolean;
 
   /** Show duration badge at the end side of the input, not the start */
-  _showBadgeAtEnd: boolean;
+  _showBadgeAtEnd?: boolean;
 }
 
 export interface EuiOnTimeChangeProps extends EuiTimeRange {
@@ -66,7 +67,6 @@ export interface EuiOnTimeChangeProps extends EuiTimeRange {
   ========
   - [ ] fix "forgiving" abs… "dec 20" -> "dec 20 2025, 00:00"
   - [ ] invalid states
-  - [ ] collapse with Esc key
   - [ ] context?
   - [ ] popover with presets
 */
@@ -83,57 +83,73 @@ export function EuiDateTimePicker(props: EuiDateTimePickerProps) {
   const compressed = true; // TODO expose
 
   const inputRef = useRef<HTMLInputElement>(null);
-  const [isExpanded, setIsExpanded] = useState<boolean>(false);
-  const [textValue, setTextValue] = useState<string>(() => value);
-  const [range, setRange] = useState<ParsedTimeRange>(() =>
-    textToParsedTimeRange(value ?? '')
+  const lastValidTextValue = useRef('');
+  const [isEditing, setIsEditing] = useState<boolean>(false);
+  const [textValue, setTextValue] = useState<string>(() => value ?? '');
+  const placeholder = useRandomizedPlaceholder(isEditing);
+
+  const range: ParsedTimeRange = useMemo(
+    () => textToParsedTimeRange(textValue),
+    [textValue]
   );
-  const placeholder = useRandomizedPlaceholder(isExpanded);
+  const label = useMemo(
+    () => getRangeTextValue(range, { dateFormat }),
+    [range]
+  );
 
   // TODO refactor this?
   // for now as-is to reuse existing useEuiTimeWindow;
   // could be something else, generic, to pass in context
   // together with a real "apply" function similar to pressing Enter
-  const apply = ({ start, end }: { start: string; end: string }) => {
+  const updateAndApplyRange = ({
+    start,
+    end,
+  }: {
+    start: string;
+    end: string;
+  }) => {
     const formattedStart = dateStringToTextInstant(start, dateFormat);
     const formattedEnd = dateStringToTextInstant(end, dateFormat);
     const text = `${formattedStart} to ${formattedEnd}`; // TODO delimiter also from variable?
-    const _range = textToParsedTimeRange(text);
-    setRange(_range);
+    const nextRange = textToParsedTimeRange(text);
     setTextValue(text);
-    if (!isExpanded) {
+    if (!isEditing) {
       onTimeChange?.({
-        start: _range.start,
-        end: _range.end,
-        value: _range.value,
-        isInvalid: !_range.isValid,
-        _dateRange: [_range.startDate, _range.endDate],
+        start: nextRange.start,
+        end: nextRange.end,
+        value: nextRange.value,
+        isInvalid: !nextRange.isValid,
+        _dateRange: [nextRange.startDate, nextRange.endDate],
       });
     }
   };
+
   const { stepForward, stepBackward, expandWindow } = useEuiTimeWindow(
     range.start,
     range.end,
-    apply
+    updateAndApplyRange
   );
 
   useSelectTextPartsWithArrowKeys(inputRef, setTextValue);
 
   useEffect(() => {
-    if (isExpanded) {
-      inputRef.current?.focus();
+    if (!isEditing && textValue.trim() === '' && lastValidTextValue.current) {
+      setTextValue(lastValidTextValue.current);
+      lastValidTextValue.current = '';
     }
-  }, [isExpanded]);
+  }, [isEditing]);
 
   const onButtonClick = () => {
-    setIsExpanded(true);
+    setIsEditing(true);
+    if (textValue) {
+      lastValidTextValue.current = textValue;
+    }
   };
   const onInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     setTextValue(event.target.value);
-    setRange(textToParsedTimeRange(event.target.value));
   };
   const onInputKeyDown = (event: KeyboardEvent) => {
-    if (event.key === 'Enter' && isExpanded) {
+    if (event.key === 'Enter' && isEditing && textValue) {
       onTimeChange?.({
         start: range.start,
         end: range.end,
@@ -141,13 +157,18 @@ export function EuiDateTimePicker(props: EuiDateTimePickerProps) {
         isInvalid: !range.isValid,
         _dateRange: [range.startDate, range.endDate],
       });
-      setIsExpanded(false);
+      setIsEditing(false);
+    }
+    if (event.key === 'Escape' && isEditing) {
+      setIsEditing(false);
     }
   };
-
-  const clearInput = () => {
+  const onInputClear = () => {
     setTextValue('');
     inputRef.current?.focus();
+  };
+  const onInputBlur = () => {
+    setIsEditing(false);
   };
 
   // keeping them here for now
@@ -181,7 +202,7 @@ export function EuiDateTimePicker(props: EuiDateTimePickerProps) {
         compressed={compressed}
         isInvalid={isInvalid}
         clear={
-          isExpanded && textValue !== '' ? { onClick: clearInput } : undefined
+          isEditing && textValue !== '' ? { onClick: onInputClear } : undefined
         }
         prepend={
           <EuiButtonIcon
@@ -202,20 +223,22 @@ export function EuiDateTimePicker(props: EuiDateTimePickerProps) {
           />
         }
       >
-        {isExpanded ? (
+        {isEditing ? (
           <EuiFieldText
+            autoFocus
             inputRef={inputRef}
             controlOnly
             value={textValue}
             isInvalid={isInvalid}
             onChange={onInputChange}
             onKeyDown={onInputKeyDown}
+            onBlur={onInputBlur}
             compressed={compressed}
             placeholder={placeholder}
           />
         ) : (
           <EuiFormControlButton
-            value={getRangeTextValue(range, { dateFormat })}
+            value={label}
             onClick={onButtonClick}
             isInvalid={isInvalid}
             compressed={compressed}
