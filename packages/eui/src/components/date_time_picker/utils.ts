@@ -700,11 +700,13 @@ export function useSelectTextPartsWithArrowKeys(
       if (index < 0) {
         currentIndex = -1;
         inputEl.setSelectionRange(0, 0);
+        inputEl.scrollLeft = 0;
         return;
       }
       if (index >= parts.length) {
         currentIndex = -1;
         inputEl.setSelectionRange(inputEl.value.length, inputEl.value.length);
+        inputEl.scrollLeft = inputEl.scrollWidth - inputEl.clientWidth;
         return;
       }
 
@@ -713,6 +715,7 @@ export function useSelectTextPartsWithArrowKeys(
 
       inputEl.focus();
       inputEl.setSelectionRange(part.start, part.end);
+      inputEl.scrollLeft = getInputScrollPositionFromStart(inputEl, part.start);
     };
 
     // only numbers for now
@@ -802,4 +805,42 @@ export function useSelectTextPartsWithArrowKeys(
       input.current?.removeEventListener('keydown', keydownHandler);
     };
   }, [input.current]);
+}
+
+// TODO this is a hack that should be heavily optimized
+// I have no idea of the performance implications of appending/removing an element like this
+function getInputScrollPositionFromStart(
+  input: HTMLInputElement,
+  start: number,
+) {
+  const mirror = document.createElement('div');
+  const inputStyle = window.getComputedStyle(input);
+
+  const styleProps: string[] = [
+    'font-family',
+    'font-size',
+    'font-weight',
+    'font-style',
+    'letter-spacing',
+    'text-transform',
+    'padding-left',
+    'border-left-width',
+  ];
+  styleProps.forEach((prop) => {
+    mirror.style.setProperty(prop, inputStyle.getPropertyValue(prop));
+  });
+
+  mirror.style.position = 'absolute';
+  mirror.style.visibility = 'hidden';
+  mirror.style.whiteSpace = 'pre'; // input-like
+
+  const textBeforeCaret = input.value.substring(0, start);
+  mirror.textContent = textBeforeCaret;
+
+  // append to body, measure, and remove (isn't this terrible?)
+  document.body.appendChild(mirror);
+  const textWidth = mirror.offsetWidth;
+  document.body.removeChild(mirror);
+
+  return textWidth - input.clientWidth / 2;
 }
