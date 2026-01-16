@@ -118,9 +118,7 @@ export const EuiCallOut = forwardRef<HTMLDivElement, EuiCallOutProps>(
           {(dismissAriaLabel: string) => (
             <EuiButtonIcon
               data-test-subj="euiDismissCalloutButton"
-              aria-label={
-                dismissButtonProps?.['aria-label'] ?? dismissAriaLabel
-              }
+              aria-label={dismissAriaLabel}
               css={cssStyles}
               {...dismissButtonProps}
               iconType="cross"

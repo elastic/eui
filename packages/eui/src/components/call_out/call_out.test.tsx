@@ -72,7 +72,19 @@ describe('EuiCallOut', () => {
         expect(onDismiss).toHaveBeenCalledTimes(1);
       });
 
-      it('takes props for the dismiss button', () => {
+      it('dismiss button has aria-label', () => {
+        const onDismiss = jest.fn();
+        const { getByTestSubject } = render(
+          <EuiCallOut onDismiss={onDismiss}>Content</EuiCallOut>
+        );
+
+        expect(getByTestSubject('euiDismissCalloutButton')).toHaveAttribute(
+          'aria-label',
+          'Dismiss this callout'
+        );
+      });
+
+      it('takes props in dismissButtonProps', () => {
         const onDismiss = () => {};
         const { getByTestSubject } = render(
           <EuiCallOut
