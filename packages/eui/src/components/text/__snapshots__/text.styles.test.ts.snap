@@ -3,7 +3,7 @@
 exports[`euiTextStyles sizes m 1`] = `
 "
     font-size: 1.1429rem;
-    line-height: 1.7143rem;
+    line-height: 1.5714rem;
 
     h1 {
       font-size: 2.1429rem;
@@ -15,7 +15,7 @@ exports[`euiTextStyles sizes m 1`] = `
 
     h2 {
       font-size: 1.7143rem;
-      line-height: 2.0000rem;
+      line-height: 2.1429rem;
 
       &:not(:first-child) {
         margin-block-start: 24px;
@@ -28,7 +28,7 @@ exports[`euiTextStyles sizes m 1`] = `
 
     h3 {
       font-size: 1.4286rem;
-      line-height: 1.7143rem;
+      line-height: 1.8571rem;
 
       &:not(:first-child) {
         margin-block-start: 24px;
@@ -41,7 +41,7 @@ exports[`euiTextStyles sizes m 1`] = `
 
     h4 {
       font-size: 1.1429rem;
-      line-height: 1.7143rem;
+      line-height: 1.5714rem;
 
       &:not(:first-child) {
         margin-block-start: 24px;
@@ -67,7 +67,7 @@ exports[`euiTextStyles sizes m 1`] = `
 
     h6 {
       font-size: 0.8571rem;
-      line-height: 1.1429rem;
+      line-height: 1.2857rem;
 
       &:not(:first-child) {
         margin-block-start: 24px;
@@ -84,12 +84,12 @@ exports[`euiTextStyles sizes m 1`] = `
     pre,
     > ul,
     > ol {
-      margin-block-end: 1.7143rem;
+      margin-block-end: 1.5714rem;
     }
 
     ul,
     ol {
-      margin-inline-start: 1.7143rem;
+      margin-inline-start: 1.5714rem;
     }
 
     /* The styles of the nested ordered lists follow the style of GitHub
@@ -123,7 +123,7 @@ exports[`euiTextStyles sizes m 1`] = `
     dt,
     .eui-definitionListReverse dd {
       font-size: 1.1429rem;
-      line-height: 1.7143rem;
+      line-height: 1.5714rem;
     }
 
     .eui-definitionListReverse dt {
@@ -136,7 +136,7 @@ exports[`euiTextStyles sizes m 1`] = `
     }
 
     pre:not(.euiCodeBlock__pre) {
-      padding: 1.7143rem;
+      padding: 1.5714rem;
     }
 
     code:not(.euiCode):not(.euiCodeBlock__code)  {
@@ -165,11 +165,11 @@ exports[`euiTextStyles sizes m 1`] = `
 exports[`euiTextStyles sizes relative 1`] = `
 "
     font-size: 1em;
-    line-height: 1.5000;
+    line-height: 1.3750;
 
     h1 {
       font-size: 1.875em;
-      line-height: 1.2495;
+      line-height: 1.2000;
     }
     h1:not(:last-child) {
       margin-block-end: 12px;
@@ -177,7 +177,7 @@ exports[`euiTextStyles sizes relative 1`] = `
 
     h2 {
       font-size: 1.5em;
-      line-height: 1.2495;
+      line-height: 1.2500;
 
       &:not(:first-child) {
         margin-block-start: 24px;
@@ -190,7 +190,7 @@ exports[`euiTextStyles sizes relative 1`] = `
 
     h3 {
       font-size: 1.25em;
-      line-height: 1.2495;
+      line-height: 1.3000;
 
       &:not(:first-child) {
         margin-block-start: 24px;
@@ -203,7 +203,7 @@ exports[`euiTextStyles sizes relative 1`] = `
 
     h4 {
       font-size: 1em;
-      line-height: 1.5000;
+      line-height: 1.3750;
 
       &:not(:first-child) {
         margin-block-start: 24px;
@@ -216,7 +216,7 @@ exports[`euiTextStyles sizes relative 1`] = `
 
     h5 {
       font-size: 0.875em;
-      line-height: 1.5000;
+      line-height: 1.4286;
 
       &:not(:first-child) {
         margin-block-start: 24px;
@@ -246,12 +246,12 @@ exports[`euiTextStyles sizes relative 1`] = `
     pre,
     > ul,
     > ol {
-      margin-block-end: 1.5000em;
+      margin-block-end: 1.3750em;
     }
 
     ul,
     ol {
-      margin-inline-start: 1.5000em;
+      margin-inline-start: 1.3750em;
     }
 
     /* The styles of the nested ordered lists follow the style of GitHub
@@ -285,7 +285,7 @@ exports[`euiTextStyles sizes relative 1`] = `
     dt,
     .eui-definitionListReverse dd {
       font-size: 1em;
-      line-height: 1.5000;
+      line-height: 1.3750;
     }
 
     .eui-definitionListReverse dt {
@@ -298,7 +298,7 @@ exports[`euiTextStyles sizes relative 1`] = `
     }
 
     pre:not(.euiCodeBlock__pre) {
-      padding: 1.5000em;
+      padding: 1.3750em;
     }
 
     code:not(.euiCode):not(.euiCodeBlock__code)  {
@@ -316,7 +316,7 @@ exports[`euiTextStyles sizes s 1`] = `
 
     h1 {
       font-size: 1.8750rem;
-      line-height: 2.2857rem;
+      line-height: 2.1429rem;
     }
     h1:not(:last-child) {
       margin-block-end: 8px;
@@ -324,7 +324,7 @@ exports[`euiTextStyles sizes s 1`] = `
 
     h2 {
       font-size: 1.5000rem;
-      line-height: 1.7143rem;
+      line-height: 1.8571rem;
 
       &:not(:first-child) {
         margin-block-start: 16px;
@@ -337,7 +337,7 @@ exports[`euiTextStyles sizes s 1`] = `
 
     h3 {
       font-size: 1.2500rem;
-      line-height: 1.4286rem;
+      line-height: 1.5714rem;
 
       &:not(:first-child) {
         margin-block-start: 16px;
@@ -363,7 +363,7 @@ exports[`euiTextStyles sizes s 1`] = `
 
     h5 {
       font-size: 0.8750rem;
-      line-height: 1.1429rem;
+      line-height: 1.2857rem;
 
       &:not(:first-child) {
         margin-block-start: 16px;
@@ -376,7 +376,7 @@ exports[`euiTextStyles sizes s 1`] = `
 
     h6 {
       font-size: 0.7500rem;
-      line-height: 1.1429rem;
+      line-height: 1.2143rem;
 
       &:not(:first-child) {
         margin-block-start: 16px;
@@ -459,11 +459,11 @@ exports[`euiTextStyles sizes s 1`] = `
 exports[`euiTextStyles sizes xs 1`] = `
 "
     font-size: 0.8571rem;
-    line-height: 1.1429rem;
+    line-height: 1.2857rem;
 
     h1 {
       font-size: 1.6071rem;
-      line-height: 2.0000rem;
+      line-height: 2.1429rem;
     }
     h1:not(:last-child) {
       margin-block-end: 4px;
@@ -471,7 +471,7 @@ exports[`euiTextStyles sizes xs 1`] = `
 
     h2 {
       font-size: 1.2857rem;
-      line-height: 1.4286rem;
+      line-height: 1.5714rem;
 
       &:not(:first-child) {
         margin-block-start: 8px;
@@ -497,7 +497,7 @@ exports[`euiTextStyles sizes xs 1`] = `
 
     h4 {
       font-size: 0.8571rem;
-      line-height: 1.1429rem;
+      line-height: 1.2857rem;
 
       &:not(:first-child) {
         margin-block-start: 8px;
@@ -510,7 +510,7 @@ exports[`euiTextStyles sizes xs 1`] = `
 
     h5 {
       font-size: 0.7500rem;
-      line-height: 1.1429rem;
+      line-height: 1.2143rem;
 
       &:not(:first-child) {
         margin-block-start: 8px;
@@ -523,7 +523,7 @@ exports[`euiTextStyles sizes xs 1`] = `
 
     h6 {
       font-size: 0.6429rem;
-      line-height: 0.8571rem;
+      line-height: 1.0000rem;
 
       &:not(:first-child) {
         margin-block-start: 8px;
@@ -540,12 +540,12 @@ exports[`euiTextStyles sizes xs 1`] = `
     pre,
     > ul,
     > ol {
-      margin-block-end: 1.1429rem;
+      margin-block-end: 1.2857rem;
     }
 
     ul,
     ol {
-      margin-inline-start: 1.1429rem;
+      margin-inline-start: 1.2857rem;
     }
 
     /* The styles of the nested ordered lists follow the style of GitHub
@@ -579,7 +579,7 @@ exports[`euiTextStyles sizes xs 1`] = `
     dt,
     .eui-definitionListReverse dd {
       font-size: 0.8571rem;
-      line-height: 1.1429rem;
+      line-height: 1.2857rem;
     }
 
     .eui-definitionListReverse dt {
@@ -592,7 +592,7 @@ exports[`euiTextStyles sizes xs 1`] = `
     }
 
     pre:not(.euiCodeBlock__pre) {
-      padding: 1.1429rem;
+      padding: 1.2857rem;
     }
 
     code:not(.euiCode):not(.euiCodeBlock__code)  {

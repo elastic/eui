@@ -76,7 +76,7 @@ export const FontScaleTable = () => {
             legend="Value unit to show in table"
             options={unitButtons}
             idSelected={unitSelected}
-            onChange={(id) => setUnitSelected(id as _EuiThemeFontUnit)}
+            onChange={(id) => setUnitSelected(id as typeof EuiThemeFontUnits[number])}
             color="accent"
             isFullWidth
           />
