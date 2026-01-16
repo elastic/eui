@@ -21,12 +21,12 @@ import { type EuiButtonDisplaySizes } from '../../button/button_display/_button_
 
 import { euiFormControlFocusStyles, euiFormVariables } from '../form.styles';
 
-export const buttonSelectors =
+export const buttonSelector =
   '*:is(.euiButton, .euiButtonEmpty, .euiButtonIcon, .euiFormAppend, .euiFormPrepend)';
-const emptyButtonSelectors =
+const emptyButtonSelector =
   '*:is(.euiButtonEmpty, .euiButtonIcon:not([class*="fill"]))';
-export const textSelectors = '*:is(.euiFormLabel, .euiText)';
-export const appendPrependSelectors = '*:is(.euiFormAppend, .euiFormPrepend)';
+export const textSelector = '*:is(.euiFormLabel, .euiText)';
+export const appendPrependSelector = '*:is(.euiFormAppend, .euiFormPrepend)';
 
 export const euiFormControlLayoutStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme, highContrastMode } = euiThemeContext;
@@ -180,9 +180,9 @@ export const euiFormControlLayoutSideNodeStyles = (
     (x, y) => x - y
   );
 
-  const buttons = buttonSelectors;
-  const text = textSelectors;
-  const appendPrepend = appendPrependSelectors;
+  const buttons = buttonSelector;
+  const text = textSelector;
+  const appendPrepend = appendPrependSelector;
 
   const _buttonPadding = (size: EuiButtonDisplaySizes) =>
     logicalCSS('padding-horizontal', buttonSizes[size].padding);
@@ -332,12 +332,12 @@ export const euiFormControlLayoutSideNodeStyles = (
 
       /* Manual override for custom content to match expected styles. 
         TODO: Remove once all append/prepend legacy API usages in Kibana are updated */
-      &:where(:not(:has(${appendPrepend}, ${buttonSelectors}))) > *,
+      &:where(:not(:has(${appendPrepend}, ${buttonSelector}))) > *,
       &:where(:not(:has(${appendPrepend}))) .euiFormLabel {
         color: ${form.textColorDisabled};
       }
 
-      ${emptyButtonSelectors}:not(
+      ${emptyButtonSelector}:not(
           ${euiDisabledSelector}
         ) {
         background-color: ${form.backgroundColor};
@@ -346,7 +346,7 @@ export const euiFormControlLayoutSideNodeStyles = (
     readOnly: css`
       background-color: ${form.backgroundDisabledColor};
 
-      ${emptyButtonSelectors}:not(
+      ${emptyButtonSelector}:not(
           ${euiDisabledSelector}
         ) {
         background-color: ${form.backgroundColor};

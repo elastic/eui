@@ -14,9 +14,9 @@ import {
   logicalCSS,
 } from '../../../../global_styling';
 import {
-  appendPrependSelectors,
-  buttonSelectors,
-  textSelectors,
+  appendPrependSelector,
+  buttonSelector,
+  textSelector,
 } from '../form_control_layout.styles';
 import { euiFormControlFocusStyles, euiFormVariables } from '../../form.styles';
 
@@ -24,9 +24,9 @@ export const euiFormAppendPrependStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
   const form = euiFormVariables(euiThemeContext);
 
-  const appendPrepend = appendPrependSelectors;
-  const buttons = buttonSelectors;
-  const text = textSelectors;
+  const appendPrepend = appendPrependSelector;
+  const buttons = buttonSelector;
+  const text = textSelector;
   const buttonStyles = euiButtonDisplaysColors(euiThemeContext);
 
   return {
