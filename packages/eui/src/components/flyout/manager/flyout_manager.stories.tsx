@@ -52,7 +52,7 @@ interface FlyoutChildStoryArgs extends EuiFlyoutChildActualProps {
   mainMaxWidth?: number;
   outsideClickCloses?: boolean;
   paddingSize?: 'none' | 's' | 'm' | 'l';
-  pushMinBreakpoint: EuiBreakpointSize;
+  pushMinBreakpoint?: EuiBreakpointSize;
   showFooter?: boolean;
   mainFlyoutResizable?: boolean;
   childFlyoutResizable?: boolean;
