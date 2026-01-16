@@ -8,6 +8,7 @@
 
 import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
 
 import { EuiButton } from '../button';
 import { EuiCallOut, EuiCallOutProps } from './call_out';
@@ -63,5 +64,24 @@ export const AnnounceOnMount: Story = {
         )}
       </>
     );
+  },
+};
+
+export const OnDismiss: Story = {
+  parameters: {
+    controls: {
+      include: ['children', 'onDismiss', 'dismissButtonProps'],
+    },
+    loki: {
+      skip: true,
+    },
+  },
+  args: {
+    title: 'Callout title',
+    children: 'Callout text',
+    onDismiss: action('onDismiss'),
+    dismissButtonProps: {
+      'aria-label': 'Custom aria-label',
+    },
   },
 };
