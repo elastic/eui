@@ -108,3 +108,4 @@ export const EuiDescriptionList: FunctionComponent<
     </EuiDescriptionListContext.Provider>
   );
 };
+EuiDescriptionList.displayName = 'EuiDescriptionList';

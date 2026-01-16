@@ -114,3 +114,4 @@ export const EuiFlexGrid: FunctionComponent<
     </Component>
   );
 };
+EuiFlexGrid.displayName = 'EuiFlexGrid';

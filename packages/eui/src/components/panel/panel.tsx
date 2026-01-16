@@ -165,6 +165,7 @@ export const EuiPanel: FunctionComponent<EuiPanelProps> = ({
     </div>
   );
 };
+EuiPanel.displayName = 'EuiPanel';
 
 // Do not render a high contrast border if the panel is transparent
 // and does not have a default contrast border

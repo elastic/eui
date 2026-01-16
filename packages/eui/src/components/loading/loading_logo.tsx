@@ -56,3 +56,4 @@ export const EuiLoadingLogo: FunctionComponent<EuiLoadingLogoProps> = ({
     </span>
   );
 };
+EuiLoadingLogo.displayName = 'EuiLoadingLogo';

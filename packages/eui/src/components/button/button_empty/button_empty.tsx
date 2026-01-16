@@ -214,3 +214,4 @@ export const EuiButtonEmpty: FunctionComponent<EuiButtonEmptyProps> = ({
     </button>
   );
 };
+EuiButtonEmpty.displayName = 'EuiButtonEmpty';

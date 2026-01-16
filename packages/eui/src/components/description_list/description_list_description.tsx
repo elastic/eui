@@ -60,3 +60,4 @@ export const EuiDescriptionListDescription: FunctionComponent<
     </dd>
   );
 };
+EuiDescriptionListDescription.displayName = 'EuiDescriptionListDescription';

@@ -114,3 +114,4 @@ export const EuiPageSidebar: FunctionComponent<EuiPageSidebarProps> = ({
     </div>
   );
 };
+EuiPageSidebar.displayName = 'EuiPageSidebar';

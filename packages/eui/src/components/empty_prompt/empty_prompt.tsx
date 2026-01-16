@@ -196,3 +196,4 @@ export const EuiEmptyPrompt: FunctionComponent<EuiEmptyPromptProps> = ({
     </EuiPanel>
   );
 };
+EuiEmptyPrompt.displayName = 'EuiEmptyPrompt';

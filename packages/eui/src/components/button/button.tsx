@@ -121,3 +121,4 @@ export const EuiButton: FunctionComponent<Props> = ({
     />
   );
 };
+EuiButton.displayName = 'EuiButton';

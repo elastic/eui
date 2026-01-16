@@ -351,3 +351,4 @@ export class EuiIconClass extends PureComponent<
 }
 
 export const EuiIcon = withEuiStylesMemoizer<EuiIconProps>(EuiIconClass);
+EuiIcon.displayName = 'EuiIcon';
