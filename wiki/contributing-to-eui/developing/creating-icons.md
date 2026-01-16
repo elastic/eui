@@ -1,6 +1,6 @@
 # Creating icons
 
-EUI provides an ever-growing set of [icons][icons], but our set can be incomplete. If you find you need an icon that does not exist, create a new [icon request](icon-request-issue) issue. A designer from the EUI team will respond to discuss your needs.
+EUI provides an ever-growing set of [icons][icons], but our set can be incomplete. If you find you need an icon that does not exist, create a new [icon request](https://github.com/elastic/eui/issues/new?template=06-icon-request.md) issue. A designer from the EUI team will respond to discuss your needs.
 
 If you are willing and able to design the icon yourself, this document describes the [design guidelines](#design-guidelines), cleaning up the SVG, and getting it added to EUI. While designers on the EUI team are available to assist, we greatly appreciate your contributions and pull requests.
 
