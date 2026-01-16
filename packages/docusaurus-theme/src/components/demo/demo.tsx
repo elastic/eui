@@ -38,6 +38,8 @@ export interface DemoSourceMeta {
   filename?: string;
 }
 
+export type DemoFiles = Record<string, unknown>;
+
 export interface DemoProps extends PropsWithChildren {
   /**
    * Whether the source code editor is open by default
@@ -46,10 +48,22 @@ export interface DemoProps extends PropsWithChildren {
   /**
    * Allows to extend the default scope of the rendered demo and pass additional
    * properties available within the demo.
-   *
-   * The default scope exposes all React and EUI exports.
    */
   scope?: Record<string, unknown>;
+  /**
+   * Allows to pass extra files that will be added to the Codesandbox instance.
+   * The key is the filename and the value is the serialized file content.
+   *
+   * @example
+   * ````mdx
+   * ```mdx-code-block
+   * import iconSvgSource from '!raw-loader!./icon.svg';
+   * ```
+   *
+   * <Demo demoFiles={{ 'icon.svg': iconSvgSource }} />
+   * ````
+   */
+  demoFiles?: DemoFiles;
   previewPadding?: DemoPreviewProps['padding'];
   previewWrapper?: DemoPreviewProps['wrapperComponent'];
 }
@@ -69,6 +83,7 @@ const getDemoStyles = (euiTheme: UseEuiTheme) => ({
 export const Demo = ({
   children,
   scope,
+  demoFiles,
   isSourceOpen: _isSourceOpen = false,
   previewPadding,
   previewWrapper,
@@ -123,6 +138,7 @@ export const Demo = ({
             isSourceOpen={isSourceOpen}
             setSourceOpen={setIsSourceOpen}
             activeSource={activeSource}
+            demoFiles={demoFiles}
             sources={sources}
             onClickCopyToClipboard={onClickCopyToClipboard}
             onClickReloadExample={onClickReloadExample}
