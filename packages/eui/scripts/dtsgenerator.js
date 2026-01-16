@@ -40,6 +40,8 @@ const generator = dtsGenerator({
     'src/test/**/*', // Separate d.ts files are generated for test utils
     '**/*.docgen.tsx', // Don't include "components" generated just for react-docgen
     '**/*.mdx', // Don't include storybook mdx files
+    'cypress/**/*',
+    '.storybook/**/*',
   ],
   resolveModuleId(params) {
     if (
