@@ -62,9 +62,9 @@ Lastly, we reserve the right to reject any icons that do not fit the EUI style o
 
 - All stroke corners should be round on the outside and square on the inside.
 - Outer rounded corner radius should be 1px. How this is put into effect in Figma depends on how your stroke is aligned (ex. inside, center, outside).
-- If stroke is inside, set corner radius to 1px. 
-- If stroke is center, set corner radius to 0.5px.
-- If stroke is outside, set stroke join to be round.
+  - If stroke is inside, set corner radius to 1px. 
+  - If stroke is center, set corner radius to 0.5px.
+  - If stroke is outside, set stroke join to be round.
 - The only exception to this rule is when the application of rounded outer corners comes at the detriment to the icon being conveyed. In such situations, having both inner and outer corners square is acceptable.
 
 <img width="622" height="320" alt="round_outer_corners" src="https://github.com/user-attachments/assets/010adae6-4b93-438e-9361-9438497ae2bf" />
