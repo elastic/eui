@@ -579,6 +579,8 @@ A button group with buttons to modify the time window (or range) can be shown ne
 
 Zooming out will expand the window by {ZOOM_FACTOR_DEFAULT * 100}% by default. This is configurable via the `showTimeWindowButtons` prop, by passing a config object with a `zoomFactor` property e.g. `showTimeWindowButtons={{ zoomFactor: 0.42 }}`.
 
+A zoom in button is also available, but hidden by default. To enable it, pass `showZoomIn: true` in the `showTimeWindowButtons` prop e.g. `showTimeWindowButtons={{ showZoomIn: true }}`.
+
 ```tsx interactive
 import React, { useState } from 'react';
 import {
