@@ -82,6 +82,18 @@ describe('EuiTimeWindowButtons: useEuiTimeWindow hook', () => {
 
       expect(result.current.displayInterval).toBe('~2 days');
     });
+
+    it('handles time window being 0', () => {
+      const applyTime = () => {};
+      const start = '2026-01-19T11:11:11.000Z';
+      const end = '2026-01-19T11:11:11.000Z';
+
+      const { result } = renderHook(() =>
+        useEuiTimeWindow(start, end, applyTime)
+      );
+
+      expect(result.current.displayInterval).toBe('Off');
+    });
   });
 
   describe('stepForward callback', () => {
@@ -103,6 +115,22 @@ describe('EuiTimeWindowButtons: useEuiTimeWindow hook', () => {
         end: '2025-10-30T12:00:00.000Z',
       });
     });
+
+    it('does not fire when time window is 0', () => {
+      const applyTime = jest.fn();
+      const start = '2026-01-19T11:11:11.000Z';
+      const end = '2026-01-19T11:11:11.000Z';
+
+      const { result } = renderHook(() =>
+        useEuiTimeWindow(start, end, applyTime)
+      );
+
+      renderHookAct(() => {
+        result.current.stepForward();
+      });
+
+      expect(applyTime).not.toHaveBeenCalled();
+    });
   });
 
   describe('stepBackward callback', () => {
@@ -123,6 +151,22 @@ describe('EuiTimeWindowButtons: useEuiTimeWindow hook', () => {
         start: '2025-10-30T09:00:00.000Z',
         end: '2025-10-30T10:00:00.000Z',
       });
+    });
+
+    it('does not fire when time window is 0', () => {
+      const applyTime = jest.fn();
+      const start = '2026-01-19T11:11:11.000Z';
+      const end = '2026-01-19T11:11:11.000Z';
+
+      const { result } = renderHook(() =>
+        useEuiTimeWindow(start, end, applyTime)
+      );
+
+      renderHookAct(() => {
+        result.current.stepBackward();
+      });
+
+      expect(applyTime).not.toHaveBeenCalled();
     });
   });
 
@@ -179,6 +223,28 @@ describe('EuiTimeWindowButtons: useEuiTimeWindow hook', () => {
         end: shiftedEnd.toISOString(),
       });
     });
+
+    it('expands by 1000ms when time window is 0', () => {
+      const applyTime = jest.fn();
+      const start = '2026-01-19T11:11:11.000Z';
+      const end = '2026-01-19T11:11:11.000Z';
+
+      const shiftedStart = moment(start).subtract(500, 'ms');
+      const shiftedEnd = moment(end).add(500, 'ms');
+
+      const { result } = renderHook(() =>
+        useEuiTimeWindow(start, end, applyTime)
+      );
+
+      renderHookAct(() => {
+        result.current.expandWindow();
+      });
+
+      expect(applyTime).toHaveBeenCalledWith({
+        start: shiftedStart.toISOString(),
+        end: shiftedEnd.toISOString(),
+      });
+    });
   });
 });
 
@@ -220,5 +286,47 @@ describe('EuiTimeWindowButtons', () => {
     expect(
       await findByText('Cannot zoom out invalid time window')
     ).toBeInTheDocument();
+  });
+
+  it('hides zoom in button by default', () => {
+    const start = 'now-15m';
+    const end = 'now';
+
+    const { queryByTestSubject } = render(
+      <EuiTimeWindowButtons
+        start={start}
+        end={end}
+        applyTime={() => {}}
+      />
+    );
+
+    expect(queryByTestSubject('timeWindowButtonsZoomIn')).toBeNull();
+  });
+
+  it('disables all buttons but "expand" when time window is 0', async () => {
+    const start = '2026-01-19T11:11:11.000Z';
+    const end = '2026-01-19T11:11:11.000Z';
+
+    const { getByTestSubject, findByText } = render(
+      <EuiTimeWindowButtons
+        start={start}
+        end={end}
+        showZoomIn
+        applyTime={() => {}}
+      />
+    );
+
+    act(() => {
+      expect(getByTestSubject('timeWindowButtonsPrevious')).toBeDisabled();
+      expect(getByTestSubject('timeWindowButtonsZoomOut')).not.toBeDisabled();
+      expect(getByTestSubject('timeWindowButtonsZoomIn')).toBeDisabled();
+      expect(getByTestSubject('timeWindowButtonsNext')).toBeDisabled();
+    });
+
+    act(() => {
+      fireEvent.mouseEnter(getByTestSubject('timeWindowButtonsZoomIn'));
+    });
+
+    expect(await findByText('Cannot zoom in any further')).toBeInTheDocument();
   });
 });

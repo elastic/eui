@@ -28,6 +28,12 @@ export interface EuiTimeWindowButtonsConfig {
    */
   showZoomOut?: boolean;
   /**
+   * Show button for zooming in.
+   * Defaults to false because it's a less common use case
+   * @default false
+   */
+  showZoomIn?: boolean;
+  /**
    * Show buttons for shifting the time window forward and backward
    * @default true
    */
@@ -59,6 +65,7 @@ export const EuiTimeWindowButtons: React.FC<EuiTimeWindowButtonsProps> = ({
   compressed,
   isDisabled,
   showZoomOut = true,
+  showZoomIn = false,
   showShiftArrows = true,
   zoomFactor = ZOOM_FACTOR_DEFAULT,
 }) => {
@@ -73,11 +80,21 @@ export const EuiTimeWindowButtons: React.FC<EuiTimeWindowButtonsProps> = ({
     stepForward,
     stepBackward,
     expandWindow,
+    shrinkWindow,
+    isWindowDurationZero,
   } = useEuiTimeWindow(start, end, applyTime, { zoomFactor });
 
   const invalidShiftDescription = useEuiI18n(
     'euiTimeWindowButtons.invalidShiftLabel',
     'Cannot shift invalid time window'
+  );
+  const invalidZoomInDescription = useEuiI18n(
+    'euiTimeWindowButtons.invalidZoomInLabel',
+    'Cannot zoom in invalid time window'
+  );
+  const cannotZoomInDescription = useEuiI18n(
+    'euiTimeWindowButtons.cannotZoomInLabel',
+    'Cannot zoom in any further'
   );
   const invalidZoomOutDescription = useEuiI18n(
     'euiTimeWindowButtons.invalidZoomOutLabel',
@@ -94,6 +111,14 @@ export const EuiTimeWindowButtons: React.FC<EuiTimeWindowButtonsProps> = ({
     'Previous {displayInterval}',
     { displayInterval }
   );
+
+  const zoomInId = useGeneratedHtmlId({ prefix: 'zoom_in' });
+  const zoomInLabel = useEuiI18n('euiTimeWindowButtons.zoomInLabel', 'Zoom in');
+  const zoomInTooltipContent = isInvalid
+    ? invalidZoomInDescription
+    : isWindowDurationZero
+    ? cannotZoomInDescription
+    : zoomInLabel;
 
   const zoomOutId = useGeneratedHtmlId({ prefix: 'zoom_out' });
   const zoomOutLabel = useEuiI18n(
@@ -136,8 +161,33 @@ export const EuiTimeWindowButtons: React.FC<EuiTimeWindowButtonsProps> = ({
           iconSize={iconSize}
           isIconOnly
           isSelected={false}
-          isDisabled={isDisabled}
+          isDisabled={isWindowDurationZero || isDisabled}
           onClick={stepBackward}
+        />
+      )}
+      {showZoomIn && (
+        <EuiButtonGroupButton
+          id={zoomInId}
+          data-test-subj="timeWindowButtonsZoomIn"
+          label={zoomInLabel}
+          title=""
+          toolTipContent={
+            !isDisabled &&
+            (isWindowDurationZero
+              ? cannotZoomInDescription
+              : zoomInTooltipContent)
+          }
+          toolTipProps={{
+            disableScreenReaderOutput: zoomInLabel === zoomInTooltipContent,
+          }}
+          color={buttonColor}
+          size={buttonSize}
+          iconType="magnifyWithPlus"
+          iconSize={iconSize}
+          isIconOnly
+          isSelected={false}
+          isDisabled={isWindowDurationZero || isDisabled}
+          onClick={shrinkWindow}
         />
       )}
       {showZoomOut && (
@@ -176,7 +226,7 @@ export const EuiTimeWindowButtons: React.FC<EuiTimeWindowButtonsProps> = ({
           iconSize={iconSize}
           isIconOnly
           isSelected={false}
-          isDisabled={isDisabled}
+          isDisabled={isWindowDurationZero || isDisabled}
           onClick={stepForward}
         />
       )}
@@ -196,7 +246,8 @@ export function useEuiTimeWindow(
   const min = dateMath.parse(start);
   const max = dateMath.parse(end, { roundUp: true });
   const isInvalid = !min || !min.isValid() || !max || !max.isValid();
-  const windowDuration = isInvalid ? 1 : max.diff(min);
+  const windowDuration = isInvalid ? -1 : max.diff(min);
+  const isWindowDurationZero = windowDuration === 0;
   const zoomFactor = getPercentageMultiplier(
     options?.zoomFactor ?? ZOOM_FACTOR_DEFAULT
   );
@@ -217,10 +268,12 @@ export function useEuiTimeWindow(
     stepForward,
     stepBackward,
     expandWindow,
+    shrinkWindow,
+    isWindowDurationZero,
   };
 
   function stepForward() {
-    if (isInvalid) return;
+    if (isInvalid || isWindowDurationZero) return;
     apply({
       start: moment(max).toISOString(),
       end: moment(max).add(windowDuration, 'ms').toISOString(),
@@ -228,7 +281,7 @@ export function useEuiTimeWindow(
   }
 
   function stepBackward() {
-    if (isInvalid) return;
+    if (isInvalid || isWindowDurationZero) return;
     apply({
       start: moment(min).subtract(windowDuration, 'ms').toISOString(),
       end: moment(min).toISOString(),
@@ -237,9 +290,19 @@ export function useEuiTimeWindow(
 
   function expandWindow() {
     if (isInvalid) return;
+    // when the window is 0 it'll remain 0 unless we help it a little
+    const addition = zoomAddition === 0 ? 500 : zoomAddition;
     apply({
-      start: moment(min).subtract(zoomAddition, 'ms').toISOString(),
-      end: moment(max).add(zoomAddition, 'ms').toISOString(),
+      start: moment(min).subtract(addition, 'ms').toISOString(),
+      end: moment(max).add(addition, 'ms').toISOString(),
+    });
+  }
+
+  function shrinkWindow() {
+    if (isInvalid || isWindowDurationZero) return;
+    apply({
+      start: moment(min).add(zoomAddition, 'ms').toISOString(),
+      end: moment(max).subtract(zoomAddition, 'ms').toISOString(),
     });
   }
 }
