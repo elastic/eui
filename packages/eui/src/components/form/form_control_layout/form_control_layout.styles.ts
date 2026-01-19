@@ -254,8 +254,7 @@ export const euiFormControlLayoutSideNodeStyles = (
         }
       }
 
-      /* Override to ensure that nested controls (e.g. EuiCheckbox) have a proper color. 
-      TODO: Remove once use cases in Kibana have been migrated */
+      /* Override to ensure that nested controls (e.g. EuiCheckbox) have a proper color */
       :where(:not(:has(:disabled))) label {
         color: ${form.labelColor};
       }
