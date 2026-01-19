@@ -83,6 +83,7 @@ export const euiFormVariables = (euiThemeContext: UseEuiTheme) => {
         )
       : euiTheme.components.forms.colorDisabled,
     appendPrependBackground: euiTheme.components.forms.prependBackground,
+    labelColor: euiTheme.colors.textHeading,
   };
 
   const controlLayout = {

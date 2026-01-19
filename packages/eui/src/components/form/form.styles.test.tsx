@@ -62,6 +62,7 @@ describe('euiFormVariables', () => {
         "controlPlaceholderText": "#798EAF",
         "iconAffordance": "24px",
         "iconCompressedAffordance": "24px",
+        "labelColor": "#111C2C",
         "maxWidth": "400px",
         "stateUnderlineHeight": "2px",
         "textColor": "#1D2A3E",
