@@ -416,18 +416,22 @@ exports[`EuiQuickSelectPopover is rendered 1`] = `
 <div
   class="euiPopover emotion-euiPopover-inline-block"
 >
-  <button
-    aria-label="Date quick select"
-    class="euiFormPrepend css-1q2k5id-side-uncompressed-isInteractive-prepend"
-    data-test-subj="superDatePickerToggleQuickMenuButton"
-    title="Date quick select"
+  <div
+    class="css-yp07d4-wrapper"
   >
-    <span
-      data-euiicon-type="calendar"
-    />
-    <span
-      data-euiicon-type="arrowDown"
-    />
-  </button>
+    <button
+      aria-label="Date quick select"
+      class="euiFormPrepend css-a31npo-side-uncompressed-empty-primary-isInteractive"
+      data-test-subj="superDatePickerToggleQuickMenuButton"
+      title="Date quick select"
+    >
+      <span
+        data-euiicon-type="calendar"
+      />
+      <span
+        data-euiicon-type="arrowDown"
+      />
+    </button>
+  </div>
 </div>
 `;

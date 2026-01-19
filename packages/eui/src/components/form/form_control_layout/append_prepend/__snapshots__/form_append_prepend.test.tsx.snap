@@ -2,42 +2,54 @@
 
 exports[`EuiFormAppend is rendered 1`] = `
 <div
-  aria-label="aria-label"
-  class="euiFormAppend testClass1 testClass2 css-14xvn4g-side-uncompressed-euiTestCss"
-  data-test-subj="test subject string"
+  class="css-yp07d4-wrapper"
 >
-  <span
-    class="euiFormLabel emotion-euiFormLabel"
+  <div
+    aria-label="aria-label"
+    class="euiFormAppend testClass1 testClass2 css-1839owg-side-uncompressed-euiTestCss"
+    data-test-subj="test subject string"
   >
-    Label
-  </span>
+    <span
+      class="euiFormLabel emotion-euiFormLabel"
+    >
+      Label
+    </span>
+  </div>
 </div>
 `;
 
 exports[`EuiFormAppendPrepend is rendered 1`] = `
 <div
-  aria-label="aria-label"
-  class="euiFormAppend testClass1 testClass2 css-14xvn4g-side-uncompressed-euiTestCss"
-  data-test-subj="test subject string"
+  class="css-yp07d4-wrapper"
 >
-  <span
-    class="euiFormLabel emotion-euiFormLabel"
+  <div
+    aria-label="aria-label"
+    class="euiFormAppend testClass1 testClass2 css-1839owg-side-uncompressed-euiTestCss"
+    data-test-subj="test subject string"
   >
-    Label
-  </span>
+    <span
+      class="euiFormLabel emotion-euiFormLabel"
+    >
+      Label
+    </span>
+  </div>
 </div>
 `;
 
 exports[`EuiFormPrepend is rendered 1`] = `
 <div
-  aria-label="aria-label"
-  class="euiFormPrepend testClass1 testClass2 css-14xvn4g-side-uncompressed-euiTestCss"
-  data-test-subj="test subject string"
+  class="css-yp07d4-wrapper"
 >
-  <span
-    class="euiFormLabel emotion-euiFormLabel"
+  <div
+    aria-label="aria-label"
+    class="euiFormPrepend testClass1 testClass2 css-1839owg-side-uncompressed-euiTestCss"
+    data-test-subj="test subject string"
   >
-    Label
-  </span>
+    <span
+      class="euiFormLabel emotion-euiFormLabel"
+    >
+      Label
+    </span>
+  </div>
 </div>
 `;
