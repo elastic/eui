@@ -9,11 +9,16 @@
 import { css } from '@emotion/react';
 import { UseEuiTheme } from '@elastic/eui-theme-common';
 
-import { logicalCSS } from '../../../global_styling';
-import { euiFormControlStyles, euiFormPlaceholderStyles } from '../form.styles';
+import { euiDisabledSelector, logicalCSS } from '../../../global_styling';
+import {
+  euiFormControlStyles,
+  euiFormPlaceholderStyles,
+  euiFormVariables,
+} from '../form.styles';
 
 export const euiFormControlButtonStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
+  const form = euiFormVariables(euiThemeContext);
   const formStyles = euiFormControlStyles(euiThemeContext);
 
   return {
@@ -49,6 +54,15 @@ export const euiFormControlButtonStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     compressed: css`
       ${formStyles.compressed}
+    `,
+    isLoading: css`
+      &:is(${euiDisabledSelector}) {
+        background-color: ${form.backgroundColor};
+      }
+
+      .euiLoadingSpinner {
+        color: ${euiTheme.colors.borderBasePlain};
+      }
     `,
     formWidth: formStyles.formWidth,
     fullWidth: css(formStyles.fullWidth),
