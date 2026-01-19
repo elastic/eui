@@ -274,11 +274,6 @@ const component_colors: _EuiThemeComponentColors = {
 
   skeletonBackgroundSkeletonMiddleHighContrast: `rgba(${SEMANTIC_COLORS.shade100RGB}, 0.04)`,
 
-  superDatePickerBackgroundSuccees: computed(
-    ([backgroundBaseSuccess]) => backgroundBaseSuccess,
-    ['colors.backgroundBaseSuccess']
-  ),
-
   switchBackgroundOn: computed(
     ([backgroundFilledPrimary]) => backgroundFilledPrimary,
     ['colors.backgroundFilledPrimary']

@@ -199,21 +199,25 @@ exports[`EuiInlineEditForm edit mode editModeProps.inputProps 1`] = `
             class="euiFormControlLayout euiFormControlLayout--group emotion-euiFormControlLayout-fullWidth-group"
           >
             <div
-              class="euiFormControlLayout__prepend emotion-euiFormControlLayout__side-prepend"
+              class="euiFormControlLayout__prepend emotion-euiFormControlLayout__side"
             >
               <div
-                class="euiFormPrepend css-1civv6t-side-uncompressed"
+                class="css-yp07d4-wrapper"
               >
-                <label
-                  class="euiFormLabel emotion-euiFormLabel"
-                  for="generated-id"
+                <div
+                  class="euiFormPrepend css-7iwqdv-side-uncompressed"
                 >
-                  Prepend Example
-                </label>
+                  <label
+                    class="euiFormLabel emotion-euiFormLabel"
+                    for="generated-id"
+                  >
+                    Prepend Example
+                  </label>
+                </div>
               </div>
             </div>
             <div
-              class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup-prependOnly"
+              class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup"
             >
               <input
                 aria-label="Edit inline"

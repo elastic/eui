@@ -69,7 +69,7 @@ export const Playground: Story = {
     return (
       <EuiFieldText
         {...textFieldProps}
-        prepend={<EuiFormAppend compressed={compressed} {...args} />}
+        append={<EuiFormAppend compressed={compressed} {...args} />}
       />
     );
   },
