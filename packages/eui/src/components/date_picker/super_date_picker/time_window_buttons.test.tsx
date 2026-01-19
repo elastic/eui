@@ -293,11 +293,7 @@ describe('EuiTimeWindowButtons', () => {
     const end = 'now';
 
     const { queryByTestSubject } = render(
-      <EuiTimeWindowButtons
-        start={start}
-        end={end}
-        applyTime={() => {}}
-      />
+      <EuiTimeWindowButtons start={start} end={end} applyTime={() => {}} />
     );
 
     expect(queryByTestSubject('timeWindowButtonsZoomIn')).toBeNull();
