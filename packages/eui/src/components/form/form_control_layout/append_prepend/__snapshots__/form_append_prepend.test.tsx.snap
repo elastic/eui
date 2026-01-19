@@ -10,7 +10,7 @@ exports[`EuiFormAppend is rendered 1`] = `
     data-test-subj="test subject string"
   >
     <span
-      class="euiFormLabel emotion-euiFormLabel-label"
+      class="euiFormLabel emotion-euiFormLabel"
     >
       Label
     </span>
@@ -28,7 +28,7 @@ exports[`EuiFormAppendPrepend is rendered 1`] = `
     data-test-subj="test subject string"
   >
     <span
-      class="euiFormLabel emotion-euiFormLabel-label"
+      class="euiFormLabel emotion-euiFormLabel"
     >
       Label
     </span>
@@ -46,7 +46,7 @@ exports[`EuiFormPrepend is rendered 1`] = `
     data-test-subj="test subject string"
   >
     <span
-      class="euiFormLabel emotion-euiFormLabel-label"
+      class="euiFormLabel emotion-euiFormLabel"
     >
       Label
     </span>

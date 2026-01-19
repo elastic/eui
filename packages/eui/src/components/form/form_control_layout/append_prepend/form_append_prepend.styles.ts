@@ -97,15 +97,5 @@ export const euiFormAppendPrependStyles = (euiThemeContext: UseEuiTheme) => {
         color: ${form.textColorDisabled};
       }
     `,
-    label: css`
-      &:where(:has(+ *)) {
-        margin-inline-end: -${euiTheme.size.xs};
-      }
-    `,
-    icon: css`
-      &:where(:has(+ .euiFormLabel)) {
-        margin-inline-end: -${euiTheme.size.xs};
-      }
-    `,
   };
 };

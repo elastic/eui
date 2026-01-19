@@ -426,11 +426,9 @@ exports[`EuiQuickSelectPopover is rendered 1`] = `
       title="Date quick select"
     >
       <span
-        class="css-i8v0ou-icon"
         data-euiicon-type="calendar"
       />
       <span
-        class="css-i8v0ou-icon"
         data-euiicon-type="arrowDown"
       />
     </button>

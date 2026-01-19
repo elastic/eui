@@ -619,7 +619,7 @@ export const AppendPrepend: Story = {
 };
 
 export const AppendPrependAPIKitchensink: Story = {
-  tags: ['vrt-only'],
+  // tags: ['vrt-only'],
   parameters: {
     codeSnippet: {
       skip: true,

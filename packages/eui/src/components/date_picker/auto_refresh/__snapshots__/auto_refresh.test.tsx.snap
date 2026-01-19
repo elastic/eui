@@ -17,11 +17,10 @@ exports[`EuiAutoRefresh is rendered 1`] = `
           class="euiFormPrepend euiFormControlLayout__prepend css-a31npo-side-uncompressed-empty-primary-isInteractive"
         >
           <span
-            class="css-i8v0ou-icon"
             data-euiicon-type="timeRefresh"
           />
           <span
-            class="euiFormLabel eui-textTruncate emotion-euiFormLabel-label"
+            class="euiFormLabel eui-textTruncate emotion-euiFormLabel"
           >
             <strong>
               Auto refresh
@@ -63,11 +62,10 @@ exports[`EuiAutoRefresh isPaused is false 1`] = `
           class="euiFormPrepend euiFormControlLayout__prepend css-a31npo-side-uncompressed-empty-primary-isInteractive"
         >
           <span
-            class="css-i8v0ou-icon"
             data-euiicon-type="timeRefresh"
           />
           <span
-            class="euiFormLabel eui-textTruncate emotion-euiFormLabel-label"
+            class="euiFormLabel eui-textTruncate emotion-euiFormLabel"
           >
             <strong>
               Auto refresh
@@ -108,11 +106,10 @@ exports[`EuiAutoRefresh refreshInterval is rendered 1`] = `
           class="euiFormPrepend euiFormControlLayout__prepend css-a31npo-side-uncompressed-empty-primary-isInteractive"
         >
           <span
-            class="css-i8v0ou-icon"
             data-euiicon-type="timeRefresh"
           />
           <span
-            class="euiFormLabel eui-textTruncate emotion-euiFormLabel-label"
+            class="euiFormLabel eui-textTruncate emotion-euiFormLabel"
           >
             <strong>
               Auto refresh

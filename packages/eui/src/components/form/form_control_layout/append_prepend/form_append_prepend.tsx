@@ -128,10 +128,8 @@ export const EuiFormAppendPrepend: FunctionComponent<
   const isDisabled =
     _isDisabled || disabled || (!isButton && formLayoutIsDisabled);
 
-  const iconLeft = _iconLeft && <EuiIcon type={_iconLeft} css={styles.icon} />;
-  const iconRight = _iconRight && (
-    <EuiIcon type={_iconRight} css={styles.icon} />
-  );
+  const iconLeft = _iconLeft && <EuiIcon type={_iconLeft} />;
+  const iconRight = _iconRight && <EuiIcon type={_iconRight} />;
 
   const cssStyles = [
     styles.side,
@@ -152,11 +150,7 @@ export const EuiFormAppendPrepend: FunctionComponent<
         htmlFor: inputId || undefined,
       } as _EuiFormLabelProps);
 
-  const label = _label && (
-    <EuiFormLabel {...labelProps} css={styles.label}>
-      {_label}
-    </EuiFormLabel>
-  );
+  const label = _label && <EuiFormLabel {...labelProps}>{_label}</EuiFormLabel>;
 
   const content = (
     <>

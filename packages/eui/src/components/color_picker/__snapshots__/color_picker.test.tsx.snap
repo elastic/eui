@@ -635,7 +635,7 @@ exports[`EuiColorPicker prepend and append 1`] = `
           class="euiFormPrepend css-7iwqdv-side-uncompressed"
         >
           <span
-            class="euiFormLabel emotion-euiFormLabel-label"
+            class="euiFormLabel emotion-euiFormLabel"
           >
             prepend
           </span>
@@ -692,7 +692,7 @@ exports[`EuiColorPicker prepend and append 1`] = `
           class="euiFormAppend css-7iwqdv-side-uncompressed"
         >
           <span
-            class="euiFormLabel emotion-euiFormLabel-label"
+            class="euiFormLabel emotion-euiFormLabel"
           >
             append
           </span>

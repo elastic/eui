@@ -238,19 +238,6 @@ export const euiFormControlLayoutSideNodeStyles = (
         text-overflow: ellipsis;
       }
 
-      /* Adjust form label spacing as the label already as it's own additional padding */
-      &:where(:not(:has(${appendPrepend}))) {
-        .euiFormLabel {
-          &:where(:has(+ *)) {
-            margin-inline-end: -${euiTheme.size.xs};
-          }
-        }
-
-        * + .euiFormLabel {
-          margin-inline-start: -${euiTheme.size.xs};
-        }
-      }
-
       /* Remove default focus outline in favor of custom focus styles */
       &:where(:has(${buttons}:focus-visible):has(> *:only-child)) {
         *:not(${appendPrepend}) {
@@ -284,8 +271,15 @@ export const euiFormControlLayoutSideNodeStyles = (
         }
 
         ${text} {
-          ${logicalCSS('padding-horizontal', euiTheme.size.xs)}
           line-height: ${uncompressedHeight};
+
+          &:first-child {
+            ${logicalCSS('padding-left', euiTheme.size.xs)}
+          }
+
+          &:last-child {
+            ${logicalCSS('padding-right', euiTheme.size.xs)}
+          }
         }
 
         ${buttons} {
@@ -321,8 +315,15 @@ export const euiFormControlLayoutSideNodeStyles = (
         }
 
         ${text} {
-          ${logicalCSS('padding-horizontal', euiTheme.size.xxs)}
           line-height: ${compressedHeight};
+
+          &:first-child {
+            ${logicalCSS('padding-left', euiTheme.size.xxs)}
+          }
+
+          &:last-child {
+            ${logicalCSS('padding-right', euiTheme.size.xxs)}
+          }
         }
 
         ${buttons} {

@@ -375,7 +375,7 @@ exports[`EuiFormControlLayout props one append string is rendered 1`] = `
         class="euiFormAppend css-7iwqdv-side-uncompressed"
       >
         <span
-          class="euiFormLabel emotion-euiFormLabel-label"
+          class="euiFormLabel emotion-euiFormLabel"
         >
           1
         </span>
@@ -435,7 +435,7 @@ exports[`EuiFormControlLayout props one prepend string is rendered 1`] = `
         class="euiFormPrepend css-7iwqdv-side-uncompressed"
       >
         <span
-          class="euiFormLabel emotion-euiFormLabel-label"
+          class="euiFormLabel emotion-euiFormLabel"
         >
           1
         </span>

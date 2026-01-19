@@ -24,11 +24,9 @@ exports[`EuiSuperDatePicker props accepts data-test-subj and passes to EuiFormCo
             title="Date quick select"
           >
             <span
-              class="css-i8v0ou-icon"
               data-euiicon-type="calendar"
             />
             <span
-              class="css-i8v0ou-icon"
               data-euiicon-type="arrowDown"
             />
           </button>
@@ -107,11 +105,9 @@ exports[`EuiSuperDatePicker props compressed is rendered 1`] = `
             title="Date quick select"
           >
             <span
-              class="css-i8v0ou-icon"
               data-euiicon-type="calendar"
             />
             <span
-              class="css-i8v0ou-icon"
               data-euiicon-type="arrowDown"
             />
           </button>
@@ -187,11 +183,10 @@ exports[`EuiSuperDatePicker props isAutoRefreshOnly is rendered 1`] = `
             class="euiFormPrepend euiFormControlLayout__prepend css-a31npo-side-uncompressed-empty-primary-isInteractive"
           >
             <span
-              class="css-i8v0ou-icon"
               data-euiicon-type="timeRefresh"
             />
             <span
-              class="euiFormLabel eui-textTruncate emotion-euiFormLabel-label"
+              class="euiFormLabel eui-textTruncate emotion-euiFormLabel"
             >
               <strong>
                 Auto refresh
@@ -238,11 +233,10 @@ exports[`EuiSuperDatePicker props isAutoRefreshOnly passes required props 1`] = 
             disabled=""
           >
             <span
-              class="css-i8v0ou-icon"
               data-euiicon-type="timeRefresh"
             />
             <span
-              class="euiFormLabel eui-textTruncate emotion-euiFormLabel-label"
+              class="euiFormLabel eui-textTruncate emotion-euiFormLabel"
             >
               <strong>
                 Auto refresh
@@ -311,11 +305,9 @@ exports[`EuiSuperDatePicker props isDisabled true 1`] = `
             title="Date quick select"
           >
             <span
-              class="css-i8v0ou-icon"
               data-euiicon-type="calendar"
             />
             <span
-              class="css-i8v0ou-icon"
               data-euiicon-type="arrowDown"
             />
           </button>
@@ -396,11 +388,9 @@ exports[`EuiSuperDatePicker props isQuickSelectOnly is rendered 1`] = `
             title="Date quick select"
           >
             <span
-              class="css-i8v0ou-icon"
               data-euiicon-type="calendar"
             />
             <span
-              class="css-i8v0ou-icon"
               data-euiicon-type="arrowDown"
             />
           </button>
@@ -458,11 +448,9 @@ exports[`EuiSuperDatePicker props showUpdateButton can be false 1`] = `
             title="Date quick select"
           >
             <span
-              class="css-i8v0ou-icon"
               data-euiicon-type="calendar"
             />
             <span
-              class="css-i8v0ou-icon"
               data-euiicon-type="arrowDown"
             />
           </button>
@@ -520,11 +508,9 @@ exports[`EuiSuperDatePicker props showUpdateButton can be iconOnly 1`] = `
             title="Date quick select"
           >
             <span
-              class="css-i8v0ou-icon"
               data-euiicon-type="calendar"
             />
             <span
-              class="css-i8v0ou-icon"
               data-euiicon-type="arrowDown"
             />
           </button>
@@ -606,11 +592,9 @@ exports[`EuiSuperDatePicker props width can be auto 1`] = `
             title="Date quick select"
           >
             <span
-              class="css-i8v0ou-icon"
               data-euiicon-type="calendar"
             />
             <span
-              class="css-i8v0ou-icon"
               data-euiicon-type="arrowDown"
             />
           </button>
@@ -689,11 +673,9 @@ exports[`EuiSuperDatePicker props width can be full 1`] = `
             title="Date quick select"
           >
             <span
-              class="css-i8v0ou-icon"
               data-euiicon-type="calendar"
             />
             <span
-              class="css-i8v0ou-icon"
               data-euiicon-type="arrowDown"
             />
           </button>
@@ -773,11 +755,9 @@ exports[`EuiSuperDatePicker renders 1`] = `
             title="Date quick select"
           >
             <span
-              class="css-i8v0ou-icon"
               data-euiicon-type="calendar"
             />
             <span
-              class="css-i8v0ou-icon"
               data-euiicon-type="arrowDown"
             />
           </button>
@@ -860,11 +840,9 @@ exports[`EuiSuperDatePicker renders an EuiDatePickerRange 1`] = `
               title="Date quick select"
             >
               <span
-                class="css-i8v0ou-icon"
                 data-euiicon-type="calendar"
               />
               <span
-                class="css-i8v0ou-icon"
                 data-euiicon-type="arrowDown"
               />
             </button>
