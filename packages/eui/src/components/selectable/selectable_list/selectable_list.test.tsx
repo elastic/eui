@@ -47,6 +47,16 @@ const selectableListRequiredProps = {
 };
 
 describe('EuiSelectableListItem', () => {
+  const scrollIntoViewMock = jest.fn();
+
+  beforeAll(() => {
+    global.HTMLElement.prototype.scrollIntoView = scrollIntoViewMock;
+  });
+
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
   shouldRenderCustomStyles(
     <EuiSelectableList options={options} {...selectableListRequiredProps} />
   );
@@ -266,6 +276,37 @@ describe('EuiSelectableListItem', () => {
         expect(container.querySelector('.euiSelectableList__list')).toHaveStyle(
           'block-size: 300px'
         );
+      });
+
+      it('scrolls to active option with a colon in the id', () => {
+        const makeOptionId = (index?: number) => `:r${index}:`;
+
+        const { container, rerender } = render(
+          <EuiSelectableList
+            activeOptionIndex={0}
+            options={options}
+            {...selectableListRequiredProps}
+            makeOptionId={makeOptionId}
+            isVirtualized={false}
+          />
+        );
+
+        expect(container.querySelector(`[id="${makeOptionId(0)}"]`));
+        expect(container.querySelector(`[id="${makeOptionId(5)}"]`));
+
+        rerender(
+          <EuiSelectableList
+            activeOptionIndex={5}
+            options={options}
+            {...selectableListRequiredProps}
+            makeOptionId={makeOptionId}
+            isVirtualized={false}
+          />
+        );
+
+        expect(container.querySelector(`[id="${makeOptionId(0)}"]`));
+        expect(container.querySelector(`[id="${makeOptionId(5)}"]`));
+        expect(scrollIntoViewMock).toHaveBeenCalled();
       });
     });
 
