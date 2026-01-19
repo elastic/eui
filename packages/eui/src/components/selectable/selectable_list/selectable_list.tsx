@@ -325,8 +325,10 @@ export class EuiSelectableList<T> extends Component<
         if (isVirtualized) {
           this.listRef?.scrollToItem(activeOptionIndex, 'auto');
         } else {
-          const activeOptionId = `#${makeOptionId(activeOptionIndex)}`;
-          const activeOptionEl = this.listBoxRef?.querySelector(activeOptionId);
+          const activeOptionId = makeOptionId(activeOptionIndex);
+          const activeOptionEl = this.listBoxRef?.querySelector(
+            `[id="${activeOptionId}"]`
+          );
           if (activeOptionEl) {
             // TODO: we can remove scrollIntoView's conditional chaining once jsdom stubs it
             // @see https://github.com/jsdom/jsdom/issues/1695
