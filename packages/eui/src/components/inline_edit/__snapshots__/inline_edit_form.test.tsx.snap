@@ -205,10 +205,10 @@ exports[`EuiInlineEditForm edit mode editModeProps.inputProps 1`] = `
                 class="css-yp07d4-wrapper"
               >
                 <div
-                  class="euiFormPrepend css-1wec0gg-side-uncompressed"
+                  class="euiFormPrepend css-7iwqdv-side-uncompressed"
                 >
                   <label
-                    class="euiFormLabel emotion-euiFormLabel"
+                    class="euiFormLabel emotion-euiFormLabel-label"
                     for="generated-id"
                   >
                     Prepend Example

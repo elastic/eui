@@ -14,13 +14,14 @@ exports[`EuiAutoRefresh is rendered 1`] = `
         class="css-yp07d4-wrapper"
       >
         <button
-          class="euiFormPrepend euiFormControlLayout__prepend css-19jzie4-side-uncompressed-empty-primary-isInteractive"
+          class="euiFormPrepend euiFormControlLayout__prepend css-a31npo-side-uncompressed-empty-primary-isInteractive"
         >
           <span
+            class="css-i8v0ou-icon"
             data-euiicon-type="timeRefresh"
           />
           <span
-            class="euiFormLabel eui-textTruncate emotion-euiFormLabel"
+            class="euiFormLabel eui-textTruncate emotion-euiFormLabel-label"
           >
             <strong>
               Auto refresh
@@ -59,13 +60,14 @@ exports[`EuiAutoRefresh isPaused is false 1`] = `
         class="css-yp07d4-wrapper"
       >
         <button
-          class="euiFormPrepend euiFormControlLayout__prepend css-19jzie4-side-uncompressed-empty-primary-isInteractive"
+          class="euiFormPrepend euiFormControlLayout__prepend css-a31npo-side-uncompressed-empty-primary-isInteractive"
         >
           <span
+            class="css-i8v0ou-icon"
             data-euiicon-type="timeRefresh"
           />
           <span
-            class="euiFormLabel eui-textTruncate emotion-euiFormLabel"
+            class="euiFormLabel eui-textTruncate emotion-euiFormLabel-label"
           >
             <strong>
               Auto refresh
@@ -103,13 +105,14 @@ exports[`EuiAutoRefresh refreshInterval is rendered 1`] = `
         class="css-yp07d4-wrapper"
       >
         <button
-          class="euiFormPrepend euiFormControlLayout__prepend css-19jzie4-side-uncompressed-empty-primary-isInteractive"
+          class="euiFormPrepend euiFormControlLayout__prepend css-a31npo-side-uncompressed-empty-primary-isInteractive"
         >
           <span
+            class="css-i8v0ou-icon"
             data-euiicon-type="timeRefresh"
           />
           <span
-            class="euiFormLabel eui-textTruncate emotion-euiFormLabel"
+            class="euiFormLabel eui-textTruncate emotion-euiFormLabel-label"
           >
             <strong>
               Auto refresh

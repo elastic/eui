@@ -6,11 +6,11 @@ exports[`EuiFormAppend is rendered 1`] = `
 >
   <div
     aria-label="aria-label"
-    class="euiFormAppend testClass1 testClass2 css-fp5whi-side-uncompressed-euiTestCss"
+    class="euiFormAppend testClass1 testClass2 css-1839owg-side-uncompressed-euiTestCss"
     data-test-subj="test subject string"
   >
     <span
-      class="euiFormLabel emotion-euiFormLabel"
+      class="euiFormLabel emotion-euiFormLabel-label"
     >
       Label
     </span>
@@ -24,11 +24,11 @@ exports[`EuiFormAppendPrepend is rendered 1`] = `
 >
   <div
     aria-label="aria-label"
-    class="euiFormAppend testClass1 testClass2 css-fp5whi-side-uncompressed-euiTestCss"
+    class="euiFormAppend testClass1 testClass2 css-1839owg-side-uncompressed-euiTestCss"
     data-test-subj="test subject string"
   >
     <span
-      class="euiFormLabel emotion-euiFormLabel"
+      class="euiFormLabel emotion-euiFormLabel-label"
     >
       Label
     </span>
@@ -42,11 +42,11 @@ exports[`EuiFormPrepend is rendered 1`] = `
 >
   <div
     aria-label="aria-label"
-    class="euiFormPrepend testClass1 testClass2 css-fp5whi-side-uncompressed-euiTestCss"
+    class="euiFormPrepend testClass1 testClass2 css-1839owg-side-uncompressed-euiTestCss"
     data-test-subj="test subject string"
   >
     <span
-      class="euiFormLabel emotion-euiFormLabel"
+      class="euiFormLabel emotion-euiFormLabel-label"
     >
       Label
     </span>

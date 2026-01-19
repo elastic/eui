@@ -34,7 +34,7 @@ export const euiFormAppendPrependStyles = (euiThemeContext: UseEuiTheme) => {
       position: relative;
       display: flex;
       align-items: center;
-      gap: ${euiTheme.size.xs};
+      gap: ${euiTheme.size.s};
       block-size: 100%;
       max-inline-size: 100%;
       border-radius: ${form.controlLayoutInnerBorderRadius};
@@ -95,6 +95,16 @@ export const euiFormAppendPrependStyles = (euiThemeContext: UseEuiTheme) => {
       .euiFormLabel,
       .euiNotificationBadge {
         color: ${form.textColorDisabled};
+      }
+    `,
+    label: css`
+      &:where(:has(+ *)) {
+        margin-inline-end: -${euiTheme.size.xs};
+      }
+    `,
+    icon: css`
+      &:where(:has(+ .euiFormLabel)) {
+        margin-inline-end: -${euiTheme.size.xs};
       }
     `,
   };

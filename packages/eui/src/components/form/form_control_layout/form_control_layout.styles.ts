@@ -213,7 +213,7 @@ export const euiFormControlLayoutSideNodeStyles = (
       flex-shrink: 0;
       display: flex;
       align-items: center;
-      gap: ${euiTheme.size.xs};
+      gap: ${euiTheme.size.s};
       padding: ${euiTheme.size.xs};
 
       /* Overrides */
@@ -238,8 +238,20 @@ export const euiFormControlLayoutSideNodeStyles = (
         text-overflow: ellipsis;
       }
 
-      /* remove default focus outline in favor of custom focus styles.
-        TODO: Remove once all append/prepend legacy API usages in Kibana are updated */
+      /* Adjust form label spacing as the label already as it's own additional padding */
+      &:where(:not(:has(${appendPrepend}))) {
+        .euiFormLabel {
+          &:where(:has(+ *)) {
+            margin-inline-end: -${euiTheme.size.xs};
+          }
+        }
+
+        * + .euiFormLabel {
+          margin-inline-start: -${euiTheme.size.xs};
+        }
+      }
+
+      /* Remove default focus outline in favor of custom focus styles */
       &:where(:has(${buttons}:focus-visible):has(> *:only-child)) {
         *:not(${appendPrepend}) {
           outline: none;
@@ -330,8 +342,7 @@ export const euiFormControlLayoutSideNodeStyles = (
     disabled: css`
       background-color: ${form.backgroundDisabledColor};
 
-      /* Manual override for custom content to match expected styles. 
-        TODO: Remove once all append/prepend legacy API usages in Kibana are updated */
+      /* Manual override for custom content to match expected styles. */
       &:where(:not(:has(${appendPrepend}, ${buttonSelector}))) > *,
       &:where(:not(:has(${appendPrepend}))) .euiFormLabel {
         color: ${form.textColorDisabled};

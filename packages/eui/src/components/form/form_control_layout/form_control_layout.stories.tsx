@@ -673,7 +673,6 @@ export const AppendPrependAPIKitchensink: Story = {
                 label="Prepended"
                 iconLeft="faceHappy"
                 iconRight="faceSad"
-                className="foobar"
               >
                 <EuiNotificationBadge color="subdued">1</EuiNotificationBadge>
               </EuiFormPrepend>
