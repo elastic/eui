@@ -176,6 +176,7 @@ export const EuiFormControlLayout: FunctionComponent<
           isDisabled: isDisabled,
           isInvalid: isInvalid,
           readOnly: readOnly,
+          isLoading: isLoading,
         }}
       >
         <EuiFormControlLayoutSideNodes

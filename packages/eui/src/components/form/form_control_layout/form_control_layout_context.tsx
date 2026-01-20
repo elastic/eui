@@ -11,7 +11,12 @@ import { EuiFormControlLayoutProps } from './form_control_layout';
 
 type FormControlLayoutContext = Pick<
   EuiFormControlLayoutProps,
-  'compressed' | 'inputId' | 'isDisabled' | 'isInvalid' | 'readOnly'
+  | 'compressed'
+  | 'inputId'
+  | 'isDisabled'
+  | 'isInvalid'
+  | 'readOnly'
+  | 'isLoading'
 >;
 
 /**
@@ -23,6 +28,7 @@ export const EuiFormControlLayoutContext =
     inputId: '',
     isDisabled: false,
     isInvalid: false,
+    isLoading: false,
     readOnly: false,
   });
 
