@@ -16,7 +16,7 @@ import { useIsWithinMinBreakpoint } from '../../../services';
 import { EuiForm } from '../form';
 import { EuiFieldText } from '../field_text';
 import { EuiIcon } from '../../icon';
-import { EuiIconTip, EuiToolTip } from '../../tool_tip';
+import { EuiToolTip } from '../../tool_tip';
 import { EuiInputPopover, EuiPopover } from '../../popover';
 import { EuiButtonEmpty, EuiButtonIcon } from '../../button';
 import { EuiText } from '../../text';
@@ -255,182 +255,6 @@ export const FormControlButtonKitchensink: Story = {
   },
 };
 
-/* TODO: remove testing story */
-export const AppendPrepend_REVIEW_EXAMPLE: Story = {
-  parameters: {
-    loki: { skip: true },
-  },
-  render: function Render(args) {
-    const isDesktop = useIsWithinMinBreakpoint('xl');
-    return (
-      <EuiForm
-        fullWidth={isDesktop}
-        css={{ display: 'flex', flexDirection: 'column', gap: 10 }}
-      >
-        <EuiFieldText
-          {...args}
-          placeholder="String & text in a tooltip"
-          prepend="String"
-          append={
-            <EuiToolTip content="content">
-              <EuiText size="s">Tooltip</EuiText>
-            </EuiToolTip>
-          }
-          autoFocus
-        />
-        <EuiFieldText
-          {...args}
-          placeholder="XS empty button in a popover & tooltip"
-          prepend={
-            <EuiPopover
-              button={
-                <EuiButtonEmpty size="xs" iconType="arrowDown" iconSide="right">
-                  Popover
-                </EuiButtonEmpty>
-              }
-              closePopover={() => {}}
-            />
-          }
-          append={
-            <EuiToolTip content="content">
-              <EuiButtonEmpty size="xs">Tooltip</EuiButtonEmpty>
-            </EuiToolTip>
-          }
-        />
-        <EuiFieldText
-          {...args}
-          placeholder="XS empty buttons with icons"
-          prepend={
-            <EuiButtonEmpty
-              role="button"
-              size="xs"
-              iconType="arrowDown"
-              iconSide="right"
-              aria-label="Calendar dropdown"
-            >
-              <EuiIcon type="calendar" />
-            </EuiButtonEmpty>
-          }
-          append={
-            <EuiButtonEmpty size="xs" iconType="gear">
-              Tooltip
-            </EuiButtonEmpty>
-          }
-        />
-        <EuiFieldText
-          {...args}
-          placeholder="Icon & button icon"
-          prepend={<EuiIcon type="vector" />}
-          append={<EuiButtonIcon iconType="gear" aria-label="Gear this" />}
-        />
-        <EuiFieldText
-          {...args}
-          placeholder="Icons in buttons and popovers and tooltips"
-          prepend={[
-            <EuiIcon type="vector" />,
-            <EuiButtonIcon iconType="gear" aria-label="Gear this" />,
-          ]}
-          append={[
-            <EuiPopover
-              button={<EuiButtonIcon iconType="gear" aria-label="Gear this" />}
-              closePopover={() => {}}
-            />,
-            <EuiIconTip content="content" />,
-          ]}
-        />
-        <EuiFieldText
-          {...args}
-          placeholder="Icon button in popover & tooltip"
-          append={
-            <EuiPopover
-              button={
-                <EuiButtonIcon iconType="arrowDown" aria-label="Popover" />
-              }
-              closePopover={() => {}}
-            />
-          }
-          prepend={
-            <EuiToolTip content="content">
-              <EuiButtonIcon iconType="gear" aria-label="Gear this" />
-            </EuiToolTip>
-          }
-        />
-        <EuiFieldText
-          {...args}
-          placeholder="Icon and string & string and icon button"
-          prepend={[<EuiIcon type="vector" />, 'String']}
-          append={[
-            'String',
-            <EuiButtonIcon iconType="gear" aria-label="Gear this" />,
-          ]}
-        />
-        <EuiFieldText
-          {...args}
-          placeholder="String and button icon in tooltip & button icon in popover and string"
-          prepend={[
-            'String',
-            <EuiToolTip content="content">
-              <EuiButtonIcon iconType="gear" aria-label="Gear this" />
-            </EuiToolTip>,
-          ]}
-          append={[
-            <EuiPopover
-              button={<EuiButtonIcon iconType="gear" aria-label="Gear this" />}
-              closePopover={() => {}}
-            />,
-            'String',
-          ]}
-        />
-        <EuiFieldText
-          {...args}
-          compressed={true}
-          placeholder="Compressed"
-          prepend="String"
-          append={[
-            'String',
-            <EuiButtonIcon iconType="gear" aria-label="Gear this" />,
-          ]}
-        />
-        <EuiFieldText
-          {...args}
-          disabled={true}
-          placeholder="Disabled"
-          prepend="String"
-          append={[
-            <EuiPopover
-              button={<EuiButtonIcon iconType="gear" aria-label="Gear this" />}
-              closePopover={() => {}}
-            />,
-          ]}
-        />
-        <EuiFieldText
-          {...args}
-          readOnly={true}
-          placeholder="Readonly"
-          prepend={
-            <EuiPopover
-              button={<EuiButtonIcon iconType="gear" aria-label="Gear this" />}
-              closePopover={() => {}}
-            />
-          }
-          append="String"
-        />
-
-        <EuiFormControlLayout append="String" prepend="String">
-          <EuiFormControlButton placeholder="EuiFormControlButton" />
-        </EuiFormControlLayout>
-
-        <FormControlButtonWithPopover
-          placeholder="EuiFormControlButton with EuiPopover"
-          append="String"
-          prepend="String"
-          fullWidth={isDesktop}
-        />
-      </EuiForm>
-    );
-  },
-};
-
 export const AppendPrepend: Story = {
   tags: ['vrt-only'],
   render: function Render(args) {
@@ -619,7 +443,7 @@ export const AppendPrepend: Story = {
 };
 
 export const AppendPrependAPIKitchensink: Story = {
-  // tags: ['vrt-only'],
+  tags: ['vrt-only'],
   parameters: {
     codeSnippet: {
       skip: true,
@@ -1296,7 +1120,11 @@ const FormControlButtonWithPopover = (
   );
 
   return (
-    <EuiFormControlLayout {...args} clear={{ onClick: handleOnClear }}>
+    <EuiFormControlLayout
+      {...args}
+      fullWidth={fullWidth}
+      clear={{ onClick: handleOnClear }}
+    >
       <EuiInputPopover
         ownFocus
         input={formControlButton}
