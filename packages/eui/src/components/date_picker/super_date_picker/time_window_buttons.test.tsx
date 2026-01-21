@@ -247,6 +247,71 @@ describe('EuiTimeWindowButtons: useEuiTimeWindow hook', () => {
       });
     });
   });
+
+  describe('shrinkWindow callback', () => {
+    it('shrinks time window on both ends of the range', () => {
+      const applyTime = jest.fn();
+      const start = '2026-01-21T10:00:00.000Z';
+      const end = '2026-01-21T11:00:00.000Z';
+
+      const shiftedStart = moment(start).add(ZOOM_FACTOR_DEFAULT / 2, 'hours');
+      const shiftedEnd = moment(end).subtract(ZOOM_FACTOR_DEFAULT / 2, 'hours');
+
+      const { result } = renderHook(() =>
+        useEuiTimeWindow(start, end, applyTime)
+      );
+
+      renderHookAct(() => {
+        result.current.shrinkWindow();
+      });
+
+      expect(applyTime).toHaveBeenCalledWith({
+        start: shiftedStart.toISOString(),
+        end: shiftedEnd.toISOString(),
+      });
+    });
+
+    it('handles different zoom factor option', () => {
+      const customZoomFactor = 0.42;
+      const applyTime = jest.fn();
+      const start = '2026-01-21T10:00:00.000Z';
+      const end = '2026-01-21T11:00:00.000Z';
+
+      const shiftedStart = moment(start).add(customZoomFactor / 2, 'hours');
+      const shiftedEnd = moment(end).subtract(customZoomFactor / 2, 'hours');
+
+      const { result } = renderHook(() =>
+        useEuiTimeWindow(start, end, applyTime, {
+          zoomFactor: customZoomFactor,
+        })
+      );
+
+      renderHookAct(() => {
+        result.current.shrinkWindow();
+      });
+
+      expect(applyTime).toHaveBeenCalledWith({
+        start: shiftedStart.toISOString(),
+        end: shiftedEnd.toISOString(),
+      });
+    });
+
+    it('does nothing when time window is 0', () => {
+      const applyTime = jest.fn();
+      const start = '2026-01-19T12:00:00.000Z';
+      const end = '2026-01-19T12:00:00.000Z';
+
+      const { result } = renderHook(() =>
+        useEuiTimeWindow(start, end, applyTime)
+      );
+
+      renderHookAct(() => {
+        result.current.shrinkWindow();
+      });
+
+      expect(applyTime).not.toHaveBeenCalled();
+    });
+  });
 });
 
 describe('EuiTimeWindowButtons', () => {
