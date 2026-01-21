@@ -300,18 +300,27 @@ export function useEuiTimeWindow(
 }
 
 /**
- * Get a number out of either 0.2 or "20%"
+ * Convert strings with % to a multiplier e.g. "50%" = 0.5
+ * Strings without % are returned as-is as number
  */
 function getPercentageMultiplier(value: number | string) {
-  const result =
-    typeof value === 'number'
-      ? value
-      : parseFloat(String(value).replace('%', '').trim());
-  if (isNaN(result))
+  if (typeof value === 'string' && value.includes('%')) {
+    const parsed = parseFloat(value.replace('%', '').trim());
+    if (isNaN(parsed)) {
+      throw new TypeError('Invalid percentage string');
+    }
+    return parsed / 100;
+  }
+
+  const result = typeof value === 'number' ? value : parseFloat(String(value));
+
+  if (isNaN(result)) {
     throw new TypeError(
       'Please provide a valid number or percentage string e.g. "25%"'
     );
-  return result > 1 ? result / 100 : result;
+  }
+
+  return result;
 }
 
 /**
