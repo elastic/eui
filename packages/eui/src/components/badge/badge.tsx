@@ -48,7 +48,7 @@ export const COLORS = [
   'risk',
   'danger',
 ] as const;
-type BadgeColor = (typeof COLORS)[number];
+export type BadgeColor = (typeof COLORS)[number];
 
 type WithButtonProps = {
   /**
@@ -97,6 +97,14 @@ export type EuiBadgeProps = {
    * Accepts either our palette colors (primary, success ..etc) or a hex value `#FFFFFF`, `#000`.
    */
   color?: BadgeColor | string;
+
+  /**
+   * Whether the badge should use filled (more intense) colors.
+   * It has no effect when a non-named color is passed to the `color` prop.
+   * @default false
+   */
+  fill?: boolean;
+
   /**
    * Will override any color passed through the `color` prop.
    */
@@ -116,6 +124,7 @@ export type EuiBadgeProps = {
 export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
   children,
   color = 'default',
+  fill = false,
   iconType,
   iconSide = 'left',
   className,
@@ -174,7 +183,8 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
     ...(isDisabled
       ? [styles.disabled]
       : [
-          isNamedColor && styles[color as BadgeColor],
+          isNamedColor && fill && styles.colors.fill[color as BadgeColor],
+          isNamedColor && !fill && styles.colors.base[color as BadgeColor],
           !iconOnClick && (onClick || href) && styles.clickable,
         ]),
   ];

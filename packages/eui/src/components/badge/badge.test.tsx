@@ -12,8 +12,17 @@ import { requiredProps } from '../../test/required_props';
 import { render, renderHook } from '../../test/rtl';
 import { useEuiTheme } from '../../services';
 
-import { EuiBadge, COLORS, ICON_SIDES } from './badge';
+import { EuiBadge, COLORS, ICON_SIDES, BadgeColor } from './badge';
 import { mathWithUnits, UseEuiTheme } from '@elastic/eui-theme-common';
+import { RenderResult } from '@testing-library/react';
+
+interface Colors {
+  backgroundColor: string;
+  textColor: string;
+  borderColor?: string;
+}
+
+type ColorsMap = Record<BadgeColor, Colors>;
 
 describe('EuiBadge', () => {
   shouldRenderCustomStyles(
@@ -249,6 +258,118 @@ describe('EuiBadge', () => {
           (size, borderWidth) => size - borderWidth
         )
       );
+    });
+  });
+
+  describe('fill', () => {
+    // These are purposefully hardcoded to ensure no color values get updates
+    // accidentally.
+    const baseColorsMap: ColorsMap = {
+      default: {
+        backgroundColor: '#E3E8F2',
+        textColor: '#07101F',
+      },
+      hollow: {
+        backgroundColor: '#FFFFFF',
+        textColor: '#07101F',
+        borderColor: '#CAD3E2',
+      },
+      primary: { backgroundColor: '#D9E8FF', textColor: '#1750ba' },
+      accent: { backgroundColor: '#FDDDE9', textColor: '#a11262' },
+      neutral: { backgroundColor: '#CFEEF7', textColor: '#0f658a' },
+      success: { backgroundColor: '#C9F3E3', textColor: '#09724d' },
+      warning: { backgroundColor: '#FDE9B5', textColor: '#825803' },
+      risk: { backgroundColor: '#FFDEBF', textColor: '#9e3a16' },
+      danger: { backgroundColor: '#FDDDD8', textColor: '#a71627' },
+    };
+
+    const fillColorsMap: ColorsMap = {
+      default: {
+        backgroundColor: '#5A6D8C',
+        textColor: '#FFFFFF',
+      },
+      hollow: {
+        backgroundColor: '#FFFFFF',
+        textColor: '#07101F',
+        borderColor: '#CAD3E2',
+      },
+      primary: { backgroundColor: '#0B64DD', textColor: '#FFFFFF' },
+      accent: { backgroundColor: '#BC1E70', textColor: '#FFFFFF' },
+      neutral: { backgroundColor: '#1C8CB5', textColor: '#FFFFFF' },
+      success: { backgroundColor: '#008A5E', textColor: '#FFFFFF' },
+      warning: { backgroundColor: '#FACB3D', textColor: '#6A4906' },
+      risk: { backgroundColor: '#ED6723', textColor: '#FFFFFF' },
+      danger: { backgroundColor: '#C61E25', textColor: '#FFFFFF' },
+    };
+
+    const assertColor = (
+      color: BadgeColor,
+      result: RenderResult,
+      colorsMap: ColorsMap,
+      fill?: boolean
+    ) => {
+      result.rerender(
+        <EuiBadge color={color} fill={fill}>
+          Badge
+        </EuiBadge>
+      );
+
+      const colors = colorsMap[color];
+
+      expect(result.container.firstChild).toHaveStyleRule(
+        '--euiBadgeBackgroundColor',
+        colors.backgroundColor
+      );
+
+      expect(result.container.firstChild).toHaveStyleRule(
+        '--euiBadgeTextColor',
+        colors.textColor
+      );
+
+      if (Object.hasOwn(colors, 'borderColor')) {
+        expect(result.container.firstChild).toHaveStyleRule(
+          'border-color',
+          colors.borderColor
+        );
+      } else {
+        expect(result.container.firstChild).not.toHaveStyleRule('border-color');
+      }
+    };
+
+    describe('non fill colors', () => {
+      let result: RenderResult;
+
+      beforeEach(() => {
+        result = render(<EuiBadge>Badge</EuiBadge>);
+      });
+
+      COLORS.forEach((color) => {
+        it(`applies correct values for color "${color}"`, () => {
+          assertColor(color, result, baseColorsMap, false);
+        });
+      });
+    });
+
+    describe('fill colors', () => {
+      let result: RenderResult;
+
+      beforeEach(() => {
+        result = render(<EuiBadge fill>Badge</EuiBadge>);
+      });
+
+      COLORS.forEach((color) => {
+        it(`applies correct values for color "${color}"`, () => {
+          assertColor(color, result, fillColorsMap, true);
+        });
+      });
+    });
+
+    it('defaults to fill = false', () => {
+      const result = render(<EuiBadge fill>Badge</EuiBadge>);
+
+      COLORS.forEach((color) => {
+        assertColor(color, result, baseColorsMap);
+      });
     });
   });
 });
