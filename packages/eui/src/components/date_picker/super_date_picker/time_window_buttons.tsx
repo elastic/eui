@@ -160,7 +160,6 @@ export const EuiTimeWindowButtons: React.FC<EuiTimeWindowButtonsProps> = ({
           iconType="arrowLeft"
           iconSize={iconSize}
           isIconOnly
-          isSelected={false}
           isDisabled={isWindowDurationZero || isDisabled}
           onClick={stepBackward}
         />
@@ -185,7 +184,6 @@ export const EuiTimeWindowButtons: React.FC<EuiTimeWindowButtonsProps> = ({
           iconType="magnifyWithPlus"
           iconSize={iconSize}
           isIconOnly
-          isSelected={false}
           isDisabled={isWindowDurationZero || isDisabled}
           onClick={shrinkWindow}
         />
@@ -205,7 +203,6 @@ export const EuiTimeWindowButtons: React.FC<EuiTimeWindowButtonsProps> = ({
           iconType="magnifyWithMinus"
           iconSize={iconSize}
           isIconOnly
-          isSelected={false}
           isDisabled={isDisabled}
           onClick={expandWindow}
         />
@@ -225,7 +222,6 @@ export const EuiTimeWindowButtons: React.FC<EuiTimeWindowButtonsProps> = ({
           iconType="arrowRight"
           iconSize={iconSize}
           isIconOnly
-          isSelected={false}
           isDisabled={isWindowDurationZero || isDisabled}
           onClick={stepForward}
         />
