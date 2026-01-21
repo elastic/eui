@@ -242,7 +242,7 @@ export function useEuiTimeWindow(
   const zoomFactor = getPercentageMultiplier(
     options?.zoomFactor ?? ZOOM_FACTOR_DEFAULT
   );
-  const zoomAddition = windowDuration * (zoomFactor / 2); // Gets added to each end, that's why it's split in half
+  const zoomDelta = windowDuration * (zoomFactor / 2); // Gets added to each end, that's why it's split in half
   const prettyInterval = usePrettyInterval(false, windowDuration);
   let displayInterval = isInvalid ? '' : prettyInterval;
   if (
@@ -282,7 +282,7 @@ export function useEuiTimeWindow(
   function expandWindow() {
     if (isInvalid) return;
     // when the window is 0 it'll remain 0 unless we help it a little
-    const addition = zoomAddition === 0 ? 500 : zoomAddition;
+    const addition = zoomDelta === 0 ? 500 : zoomDelta;
     apply({
       start: moment(min).subtract(addition, 'ms').toISOString(),
       end: moment(max).add(addition, 'ms').toISOString(),
@@ -292,8 +292,8 @@ export function useEuiTimeWindow(
   function shrinkWindow() {
     if (isInvalid || isWindowDurationZero) return;
     apply({
-      start: moment(min).add(zoomAddition, 'ms').toISOString(),
-      end: moment(max).subtract(zoomAddition, 'ms').toISOString(),
+      start: moment(min).add(zoomDelta, 'ms').toISOString(),
+      end: moment(max).subtract(zoomDelta, 'ms').toISOString(),
     });
   }
 }
