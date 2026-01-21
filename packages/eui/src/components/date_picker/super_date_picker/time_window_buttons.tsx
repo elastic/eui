@@ -137,7 +137,7 @@ export const EuiTimeWindowButtons: React.FC<EuiTimeWindowButtonsProps> = ({
     { displayInterval }
   );
 
-  if (!showZoomOut && !showShiftArrows) return null;
+  if (!showZoomIn && !showZoomOut && !showShiftArrows) return null;
 
   return (
     <div

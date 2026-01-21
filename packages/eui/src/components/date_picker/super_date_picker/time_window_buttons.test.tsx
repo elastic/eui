@@ -260,6 +260,24 @@ describe('EuiTimeWindowButtons', () => {
     expect(container.firstChild).toMatchSnapshot();
   });
 
+  it('does not render when all buttons are disabled', () => {
+    const start = 'now-15m';
+    const end = 'now';
+
+    const { queryByTestSubject } = render(
+      <EuiTimeWindowButtons
+        start={start}
+        end={end}
+        applyTime={() => {}}
+        showShiftArrows={false}
+        showZoomOut={false}
+        showZoomIn={false}
+      />
+    );
+
+    expect(queryByTestSubject('timeWindowButtons')).not.toBeInTheDocument();
+  });
+
   // This will not happen at all, because any invalid time range will toggle the buttons disabled,
   // but we provide it in case requirements change
   it('handles invalid times gracefully', async () => {
