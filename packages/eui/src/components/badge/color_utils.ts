@@ -40,31 +40,13 @@ export const euiBadgeColors = (euiThemeContext: UseEuiTheme) => {
   };
 
   const base = {
-    primary: getBadgeColors(
-      euiThemeContext,
-      euiTheme.colors.backgroundLightPrimary
-    ),
-    neutral: getBadgeColors(
-      euiThemeContext,
-      euiTheme.colors.backgroundLightNeutral
-    ),
-    success: getBadgeColors(
-      euiThemeContext,
-      euiTheme.colors.backgroundLightSuccess
-    ),
-    warning: getBadgeColors(
-      euiThemeContext,
-      euiTheme.colors.backgroundLightWarning
-    ),
-    risk: getBadgeColors(euiThemeContext, euiTheme.colors.backgroundLightRisk),
-    danger: getBadgeColors(
-      euiThemeContext,
-      euiTheme.colors.backgroundLightDanger
-    ),
-    accent: getBadgeColors(
-      euiThemeContext,
-      euiTheme.colors.backgroundLightAccent
-    ),
+    primary: euiButtonColor(euiThemeContext, 'primary'),
+    neutral: euiButtonColor(euiThemeContext, 'neutral'),
+    success: euiButtonColor(euiThemeContext, 'success'),
+    warning: euiButtonColor(euiThemeContext, 'warning'),
+    risk: euiButtonColor(euiThemeContext, 'risk'),
+    danger: euiButtonColor(euiThemeContext, 'danger'),
+    accent: euiButtonColor(euiThemeContext, 'accent'),
     default: {
       ...getBadgeColors(euiThemeContext, euiTheme.colors.backgroundLightText),
       borderColor: highContrastMode ? euiTheme.border.color : '',
