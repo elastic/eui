@@ -315,7 +315,9 @@ describe('EuiTimeWindowButtons', () => {
       <EuiTimeWindowButtons start={start} end={end} applyTime={() => {}} />
     );
 
-    expect(queryByTestSubject('timeWindowButtonsZoomIn')).toBeNull();
+    expect(
+      queryByTestSubject('timeWindowButtonsZoomIn')
+    ).not.toBeInTheDocument();
   });
 
   it('disables all buttons but "expand" when time window is 0', async () => {
