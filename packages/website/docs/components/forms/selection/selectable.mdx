@@ -915,11 +915,30 @@ When virtualization is on, **every row must be the same height** in order for th
 
 If `listProps.isVirtualized` is set to `false`, each row will fit its content. You can also remove truncation by setting `textWrap="wrap"` when virtualization is off. Note that while this is useful for dynamic options, it can also be computationally expensive as _all_ off-screen options will be rendered to the DOM. We do not recommend turning off virtualization for high numbers of options, but if you absolutely must do so, we suggest using methods such as async loading more options.
 
-:::warning Virtualization in testing environment
+#### Testing environment
 
-In a testing environment, it might be necessary to set `listProps.isVirtualized` to `false` to ensure that all options are rendered.
+In a testing environment, virtualization will prevent all options from being rendered to the DOM, which can cause test selectors to fail. You can disable it with  `listProps.isVirtualized` set to `false`.
 
-:::
+When testing `EuiSelectable` directly, you can pass `listProps={{ isVirtualized: false }}`.
+
+Alternatively, you can mock the `EuiSelectable` globally:
+
+```js
+jest.mock("@elastic/eui", () => {
+  const { EuiSelectable } = jest.requireActual("@elastic/eui");
+  return {
+    ...jest.requireActual("@elastic/eui"),
+    EuiSelectable: (props: EuiSelectableProps) => {
+      return (
+        <EuiSelectable
+          {...props}
+          listProps={{ ...props.listProps, isVirtualized: false }}
+        />
+      );
+    },
+  };
+});
+```
 
 ### Custom content
 
