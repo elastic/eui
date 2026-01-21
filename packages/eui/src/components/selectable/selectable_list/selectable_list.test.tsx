@@ -279,6 +279,7 @@ describe('EuiSelectableListItem', () => {
       });
 
       it('scrolls to active option with a colon in the id', () => {
+        // React's `useId` can add `:` symbols to the generated id
         const makeOptionId = (index?: number) => `:r${index}:`;
 
         const { container, rerender } = render(
@@ -291,8 +292,12 @@ describe('EuiSelectableListItem', () => {
           />
         );
 
-        expect(container.querySelector(`[id="${makeOptionId(0)}"]`));
-        expect(container.querySelector(`[id="${makeOptionId(5)}"]`));
+        expect(
+          container.querySelector(`[id="${makeOptionId(0)}"]`)
+        ).toBeInTheDocument();
+        expect(
+          container.querySelector(`[id="${makeOptionId(5)}"]`)
+        ).toBeInTheDocument();
 
         rerender(
           <EuiSelectableList
@@ -304,8 +309,12 @@ describe('EuiSelectableListItem', () => {
           />
         );
 
-        expect(container.querySelector(`[id="${makeOptionId(0)}"]`));
-        expect(container.querySelector(`[id="${makeOptionId(5)}"]`));
+        expect(
+          container.querySelector(`[id="${makeOptionId(0)}"]`)
+        ).toBeInTheDocument();
+        expect(
+          container.querySelector(`[id="${makeOptionId(5)}"]`)
+        ).toBeInTheDocument();
         expect(scrollIntoViewMock).toHaveBeenCalled();
       });
     });
