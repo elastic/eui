@@ -206,6 +206,17 @@ export const TimeWindowButtons: Story = {
   render: (args) => <StatefulSuperDatePicker {...args} />,
 };
 
+export const TimeWindowButtonsWithZoomIn: Story = {
+  tags: ['vrt-only'],
+  args: {
+    showTimeWindowButtons: {
+      showZoomIn: true,
+    },
+    showUpdateButton: false,
+  },
+  render: (args) => <StatefulSuperDatePicker {...args} />,
+};
+
 export const CustomTimeZoneDisplay: Story = {
   parameters: {
     controls: {
