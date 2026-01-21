@@ -274,19 +274,19 @@ describe('EuiBadge', () => {
         textColor: '#07101F',
         borderColor: '#CAD3E2',
       },
-      primary: { backgroundColor: '#D9E8FF', textColor: '#07101F' },
-      accent: { backgroundColor: '#FDDDE9', textColor: '#07101F' },
-      neutral: { backgroundColor: '#CFEEF7', textColor: '#07101F' },
-      success: { backgroundColor: '#C9F3E3', textColor: '#07101F' },
-      warning: { backgroundColor: '#FDE9B5', textColor: '#07101F' },
-      risk: { backgroundColor: '#FFDEBF', textColor: '#07101F' },
-      danger: { backgroundColor: '#FDDDD8', textColor: '#07101F' },
+      primary: { backgroundColor: '#D9E8FF', textColor: '#1750ba' },
+      accent: { backgroundColor: '#FDDDE9', textColor: '#a11262' },
+      neutral: { backgroundColor: '#CFEEF7', textColor: '#0f658a' },
+      success: { backgroundColor: '#C9F3E3', textColor: '#09724d' },
+      warning: { backgroundColor: '#FDE9B5', textColor: '#825803' },
+      risk: { backgroundColor: '#FFDEBF', textColor: '#9e3a16' },
+      danger: { backgroundColor: '#FDDDD8', textColor: '#a71627' },
     };
 
     const fillColorsMap: ColorsMap = {
       default: {
-        backgroundColor: '#E3E8F2',
-        textColor: '#07101F',
+        backgroundColor: '#5A6D8C',
+        textColor: '#FFFFFF',
       },
       hollow: {
         backgroundColor: '#FFFFFF',
