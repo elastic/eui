@@ -84,6 +84,16 @@ export const EuiTimeWindowButtons: React.FC<EuiTimeWindowButtonsProps> = ({
     isWindowDurationZero,
   } = useEuiTimeWindow(start, end, applyTime, { zoomFactor });
 
+  const previousDescription = useEuiI18n(
+    'euiTimeWindowButtons.previousDescription',
+    'Previous {displayInterval}',
+    { displayInterval }
+  );
+  const nextDescription = useEuiI18n(
+    'euiTimeWindowButtons.nextDescription',
+    'Next {displayInterval}',
+    { displayInterval }
+  );
   const invalidShiftDescription = useEuiI18n(
     'euiTimeWindowButtons.invalidShiftLabel',
     'Cannot shift invalid time window'
@@ -106,11 +116,9 @@ export const EuiTimeWindowButtons: React.FC<EuiTimeWindowButtonsProps> = ({
     'euiTimeWindowButtons.previousLabel',
     'Previous'
   );
-  const previousTooltipContent = useEuiI18n(
-    'euiTimeWindowButtons.previousDescription',
-    'Previous {displayInterval}',
-    { displayInterval }
-  );
+  const previousTooltipContent = isInvalid
+    ? invalidShiftDescription
+    : previousDescription;
 
   const zoomInId = useGeneratedHtmlId({ prefix: 'zoom_in' });
   const zoomInLabel = useEuiI18n('euiTimeWindowButtons.zoomInLabel', 'Zoom in');
@@ -131,11 +139,9 @@ export const EuiTimeWindowButtons: React.FC<EuiTimeWindowButtonsProps> = ({
 
   const nextId = useGeneratedHtmlId({ prefix: 'next' });
   const nextLabel = useEuiI18n('euiTimeWindowButtons.nextLabel', 'Next');
-  const nextTooltipContent = useEuiI18n(
-    'euiTimeWindowButtons.nextDescription',
-    'Next {displayInterval}',
-    { displayInterval }
-  );
+  const nextTooltipContent = isInvalid
+    ? invalidShiftDescription
+    : nextDescription;
 
   if (!showZoomIn && !showZoomOut && !showShiftArrows) return null;
 
@@ -151,10 +157,7 @@ export const EuiTimeWindowButtons: React.FC<EuiTimeWindowButtonsProps> = ({
           data-test-subj="timeWindowButtonsPrevious"
           label={previousLabel}
           title=""
-          toolTipContent={
-            !isDisabled &&
-            (isInvalid ? invalidShiftDescription : previousTooltipContent)
-          }
+          toolTipContent={!isDisabled && previousTooltipContent}
           color={buttonColor}
           size={buttonSize}
           iconType="arrowLeft"
@@ -170,12 +173,7 @@ export const EuiTimeWindowButtons: React.FC<EuiTimeWindowButtonsProps> = ({
           data-test-subj="timeWindowButtonsZoomIn"
           label={zoomInLabel}
           title=""
-          toolTipContent={
-            !isDisabled &&
-            (isWindowDurationZero
-              ? cannotZoomInDescription
-              : zoomInTooltipContent)
-          }
+          toolTipContent={!isDisabled && zoomInTooltipContent}
           toolTipProps={{
             disableScreenReaderOutput: zoomInLabel === zoomInTooltipContent,
           }}
@@ -213,10 +211,7 @@ export const EuiTimeWindowButtons: React.FC<EuiTimeWindowButtonsProps> = ({
           data-test-subj="timeWindowButtonsNext"
           label={nextLabel}
           title=""
-          toolTipContent={
-            !isDisabled &&
-            (isInvalid ? invalidShiftDescription : nextTooltipContent)
-          }
+          toolTipContent={!isDisabled && nextTooltipContent}
           color={buttonColor}
           size={buttonSize}
           iconType="arrowRight"
