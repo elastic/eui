@@ -16,6 +16,7 @@ import {
   EuiTimeWindowButtons,
   useEuiTimeWindow,
   ZOOM_FACTOR_DEFAULT,
+  ZOOM_DELTA_FALLBACK_MS,
 } from './time_window_buttons';
 
 describe('EuiTimeWindowButtons: useEuiTimeWindow hook', () => {
@@ -229,8 +230,8 @@ describe('EuiTimeWindowButtons: useEuiTimeWindow hook', () => {
       const start = '2026-01-19T11:11:11.000Z';
       const end = '2026-01-19T11:11:11.000Z';
 
-      const shiftedStart = moment(start).subtract(500, 'ms');
-      const shiftedEnd = moment(end).add(500, 'ms');
+      const shiftedStart = moment(start).subtract(ZOOM_DELTA_FALLBACK_MS, 'ms');
+      const shiftedEnd = moment(end).add(ZOOM_DELTA_FALLBACK_MS, 'ms');
 
       const { result } = renderHook(() =>
         useEuiTimeWindow(start, end, applyTime)

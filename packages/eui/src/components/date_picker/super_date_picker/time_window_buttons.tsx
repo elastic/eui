@@ -20,6 +20,7 @@ import { useEuiMemoizedStyles, useGeneratedHtmlId } from '../../../services';
 import { useEuiI18n } from '../../i18n';
 
 export const ZOOM_FACTOR_DEFAULT = 0.5;
+export const ZOOM_DELTA_FALLBACK_MS = 500;
 
 export interface EuiTimeWindowButtonsConfig {
   /**
@@ -282,7 +283,7 @@ export function useEuiTimeWindow(
   function expandWindow() {
     if (isInvalid) return;
     // when the window is 0 it'll remain 0 unless we help it a little
-    const addition = zoomDelta === 0 ? 500 : zoomDelta;
+    const addition = zoomDelta === 0 ? ZOOM_DELTA_FALLBACK_MS : zoomDelta;
     apply({
       start: moment(min).subtract(addition, 'ms').toISOString(),
       end: moment(max).add(addition, 'ms').toISOString(),
