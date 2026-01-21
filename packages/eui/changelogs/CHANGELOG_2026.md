@@ -1,3 +1,29 @@
+## [`v112.0.0`](https://github.com/elastic/eui/releases/v112.0.0)
+
+- Added `productDiscover` icon ([#9311](https://github.com/elastic/eui/pull/9311))
+- Updated `chartGauge` icon glyph ([#9311](https://github.com/elastic/eui/pull/9311))
+- Updated icon glyphs `endpoint` `eraser` `errorFill` `error` `eyeSlash` `faceHappy` `faceNeutral` `faceSad` `folder` `fullScreenExit` `fullScreen` `gradient` `grid` `heart` `home` `if` `image` `infinity` `inputOutput` `key` `keyboard` `lineBreakSlash` `lineBreak` `lineDash` `lineDot` `lineSolid` `logOut` `magnifyMinus` `magnifyPlus` `magnify` `mail` `map` `mapping` `menuLeft` `menuRight` `menu` `merge` `minusCircle` `minusSquare` `minus` `money` `moon` `move` `nested` `number` `package` `paintBucket` `palette` `paperClip` `partial` `pattern` `pause` `pencil` `percent` `pinFill` `pin` `pivot` `plusCircle` `plusSquare` `plus` `popper` `presentation` `processor` `productStreamsWired` `queryField` `queryOperand` `querySelector` `queryValue` `query` `question` `quote` `radar` `readOnly` `redo` `reporter` `return` `rocket` `scissors` `send` `shard` `share` `snowflake` `sortAscending` `sortDescending` `starFill` `star` `stop` `sun` `tableInfo` `tableTime` `textAlignCenter` `textAlignLeft` `textAlignRight` `textBold` `textHeading` `textItalic` `textStrike` `textUnderline` `thermometer` `thumbDown` `thumbUp` `timeline` `transitionLeftIn` `transitionLeftOut` `transitionTopIn` `transitionTopOut` `undo` `vectorSquare` `vectorTriangle` `videoPlayer` `warningFill` `waypoint` `wifiSlash` `wifi` ([#9303](https://github.com/elastic/eui/pull/9303))
+ ([#9303](https://github.com/elastic/eui/pull/9303))
+- Added icons - `archive` `unarchive` `axisX` `axisYLeft` `axisYRight` `bulb` `cloud` `hourglass` `megaphone` `workflow` ([#9303](https://github.com/elastic/eui/pull/9303))
+- Added `headerVisibility` prop on `EuiDataGrid` to support rendering the datagrid header element optionally ([#9281](https://github.com/elastic/eui/pull/9281))
+- Updated 244 icon definitions to a more consistent naming convention. All 100 renamed icons include a backward-compatible alias in the icon map to support legacy references. ([#9279](https://github.com/elastic/eui/pull/9279))
+- Added icons `briefcase`, `productCloudInfra`, `productDashboard`, `productML` ([#9301](https://github.com/elastic/eui/pull/9301))
+- Updated glyphs `bullseye`, `bolt` ([#9301](https://github.com/elastic/eui/pull/9301))
+- Added `dismissButtonProps` prop to `EuiCallOut` ([#9285](https://github.com/elastic/eui/pull/9285))
+
+**Bug fixes**
+
+- Fixed `EuiFlyout` to properly forward refs when `session` prop is used. ([#9318](https://github.com/elastic/eui/pull/9318))
+- Fixed `EuiDataGrid` cells scrolling into view while trying to select text ([#9276](https://github.com/elastic/eui/pull/9276))
+
+**Breaking changes**
+
+- Removed `euiPaletteForLightBackground` and `euiPaletteForDarkBackground` deprecated palette functions. Use `euiTheme.colors.vis.euiColorVisText{NUMBER}` tokens instead. ([#9296](https://github.com/elastic/eui/pull/9296))
+
+**Accessibility**
+
+- Improved the accessibility of `EuiDataGrid`s column selector drag handle buttons by ensuring distinctive labels ([#9282](https://github.com/elastic/eui/pull/9282))
+
 ## [`v111.1.0`](https://github.com/elastic/eui/releases/v111.1.0)
 
 - Added `dashedCircle` icon ([#9278](https://github.com/elastic/eui/pull/9278))
