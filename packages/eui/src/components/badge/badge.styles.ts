@@ -11,6 +11,7 @@ import {
   euiFontSize,
   euiFocusRing,
   euiTextTruncate,
+  highContrastModeStyles,
   logicalCSS,
   logicalShorthandCSS,
   logicalTextAlignCSS,
@@ -30,6 +31,7 @@ export const euiBadgeStyles = (euiThemeContext: UseEuiTheme) => {
   ) => `
     --euiBadgeTextColor: ${colors.color};
     --euiBadgeBackgroundColor: ${colors.backgroundColor};
+    ${colors.border ? `--euiBadgeBorder: ${colors.border};` : ''}
   `;
 
   const inlinePadding = mathWithUnits(
@@ -71,6 +73,10 @@ export const euiBadgeStyles = (euiThemeContext: UseEuiTheme) => {
         --euiBadgeBackgroundColor,
         ${defaultBadgeColors.backgroundColor}
       );
+
+      ${highContrastModeStyles(euiThemeContext, {
+        preferred: `border: var(--euiBadgeBorder, ${euiTheme.border.thin});`,
+      })}
 
       /* Ensure that selected text is always visible by inverting badge and text colors */
       *::selection {
