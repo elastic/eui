@@ -20,7 +20,7 @@ import {
   withEuiStylesMemoizer,
   WithEuiStylesMemoizerProps,
 } from '../../services';
-import { CommonProps, ExclusiveUnion, DataAttributeProps } from '../common';
+import { CommonProps, ExclusiveUnion } from '../common';
 import { EuiHorizontalRule, EuiHorizontalRuleProps } from '../horizontal_rule';
 
 import {
@@ -68,7 +68,7 @@ export type EuiContextMenuPanelItemDescriptor = ExclusiveUnion<
   EuiContextMenuPanelItemRenderCustom
 >;
 
-export interface EuiContextMenuPanelDescriptor extends DataAttributeProps {
+export interface EuiContextMenuPanelDescriptor extends CommonProps {
   id: EuiContextMenuPanelId;
   title?: ReactNode;
   items?: EuiContextMenuPanelItemDescriptor[];
