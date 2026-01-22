@@ -10,7 +10,6 @@ exports[`EuiTimeWindowButtons renders 1`] = `
     id="generated-id-wrapper"
   >
     <button
-      aria-pressed="false"
       class="euiButtonGroupButton euiButtonGroupButton-isIconOnly emotion-euiButtonDisplay-m-defaultMinWidth-euiButtonGroupButton-iconOnly-hasToolTip-uncompressed-base-text"
       data-test-subj="timeWindowButtonsPrevious"
       title=""
@@ -37,7 +36,6 @@ exports[`EuiTimeWindowButtons renders 1`] = `
     id="generated-id_euiToolTipAnchor"
   >
     <button
-      aria-pressed="false"
       class="euiButtonGroupButton euiButtonGroupButton-isIconOnly emotion-euiButtonDisplay-m-defaultMinWidth-euiButtonGroupButton-iconOnly-hasToolTip-uncompressed-base-text"
       data-test-subj="timeWindowButtonsZoomOut"
       title=""
@@ -64,7 +62,6 @@ exports[`EuiTimeWindowButtons renders 1`] = `
     id="generated-id-wrapper"
   >
     <button
-      aria-pressed="false"
       class="euiButtonGroupButton euiButtonGroupButton-isIconOnly emotion-euiButtonDisplay-m-defaultMinWidth-euiButtonGroupButton-iconOnly-hasToolTip-uncompressed-base-text"
       data-test-subj="timeWindowButtonsNext"
       title=""
