@@ -587,13 +587,13 @@ declare module '@theme/Demo/actions' {
   import type { ComponentType } from 'react';
   import type {
     DemoSourceMeta,
-    DemoFiles,
+    ExtraFiles,
   } from '@elastic/eui-docusaurus-theme/components/demo/demo';
 
   export type ActionComponentProps = {
     activeSource: DemoSourceMeta;
     sources: DemoSourceMeta[];
-    demoFiles?: DemoFiles;
+    extraFiles?: ExtraFiles;
   };
 
   export type ActionComponent = ComponentType<ActionComponentProps>;

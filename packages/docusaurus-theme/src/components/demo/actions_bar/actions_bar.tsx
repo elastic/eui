@@ -17,12 +17,12 @@ import {
 } from '@elastic/eui';
 import { css } from '@emotion/react';
 import { extraActions } from '@theme/Demo/actions';
-import { DemoSourceMeta, DemoFiles } from '../demo';
+import { DemoSourceMeta, ExtraFiles } from '../demo';
 
 export interface DemoActionsBarProps {
   activeSource: DemoSourceMeta | null;
   sources: DemoSourceMeta[];
-  demoFiles?: DemoFiles;
+  extraFiles?: ExtraFiles;
   isSourceOpen: boolean;
   setSourceOpen(isOpen: boolean): void;
   onClickReloadExample(): void;
@@ -54,7 +54,7 @@ export const DemoActionsBar = ({
   setSourceOpen,
   activeSource,
   sources,
-  demoFiles,
+  extraFiles,
   onClickReloadExample,
   onClickCopyToClipboard,
 }: DemoActionsBarProps) => {
@@ -74,7 +74,7 @@ export const DemoActionsBar = ({
       {extraActions.map((ActionComponent) => (
         <ActionComponent
           sources={sources}
-          demoFiles={demoFiles}
+          extraFiles={extraFiles}
           activeSource={activeSource}
         />
       ))}

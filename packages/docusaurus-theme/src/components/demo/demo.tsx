@@ -38,7 +38,7 @@ export interface DemoSourceMeta {
   filename?: string;
 }
 
-export type DemoFiles = Record<string, unknown>;
+export type ExtraFiles = Record<string, unknown>;
 
 export interface DemoProps extends PropsWithChildren {
   /**
@@ -60,10 +60,10 @@ export interface DemoProps extends PropsWithChildren {
    * import iconSvgSource from '!raw-loader!./icon.svg';
    * ```
    *
-   * <Demo demoFiles={{ 'icon.svg': iconSvgSource }} />
+   * <Demo extraFiles={{ 'icon.svg': iconSvgSource }} />
    * ````
    */
-  demoFiles?: DemoFiles;
+  extraFiles?: ExtraFiles;
   previewPadding?: DemoPreviewProps['padding'];
   previewWrapper?: DemoPreviewProps['wrapperComponent'];
 }
@@ -83,7 +83,7 @@ const getDemoStyles = (euiTheme: UseEuiTheme) => ({
 export const Demo = ({
   children,
   scope,
-  demoFiles,
+  extraFiles,
   isSourceOpen: _isSourceOpen = false,
   previewPadding,
   previewWrapper,
@@ -138,7 +138,7 @@ export const Demo = ({
             isSourceOpen={isSourceOpen}
             setSourceOpen={setIsSourceOpen}
             activeSource={activeSource}
-            demoFiles={demoFiles}
+            extraFiles={extraFiles}
             sources={sources}
             onClickCopyToClipboard={onClickCopyToClipboard}
             onClickReloadExample={onClickReloadExample}

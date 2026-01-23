@@ -8,12 +8,12 @@
 
 import { ComponentType } from 'react';
 
-import { DemoSourceMeta, DemoFiles } from '../../components/demo/demo';
+import { DemoSourceMeta, ExtraFiles } from '../../components/demo/demo';
 
 export type ActionComponentProps = {
   activeSource: DemoSourceMeta | null;
   sources: DemoSourceMeta[];
-  demoFiles?: DemoFiles;
+  extraFiles?: ExtraFiles;
 };
 
 export type ActionComponent = ComponentType<ActionComponentProps>;
