@@ -32,7 +32,7 @@ import sideNavSvgSource from '!raw-loader!./content_side_nav.svg';
 import centerSvgSource from '!raw-loader!./content_center.svg';
 ```
 
-<Demo scope={{ contentSvg }} demoFiles={{ 'content_paragraph.svg': contentSvgSource }}>
+<Demo scope={{ contentSvg }} extraFiles={{ 'content_paragraph.svg': contentSvgSource }}>
   ```tsx
   import React from 'react';
   import {
@@ -95,7 +95,7 @@ In order for the template configurations to properly account for the existence o
 
 <Demo
   scope={{ contentSvg, sideNavSvg }}
-  demoFiles={{
+  extraFiles={{
     'content_paragraph.svg': contentSvgSource,
     'content_side_nav.svg': sideNavSvgSource
   }}
@@ -169,7 +169,7 @@ For proper alignment in case of short content, at least one **EuiPageTemplate.Se
 
 <Demo
   scope={{ contentSvg, sideNavSvg }}
-  demoFiles={{
+  extraFiles={{
     'content_paragraph.svg': contentSvgSource,
     'content_side_nav.svg': sideNavSvgSource
   }}
@@ -253,7 +253,7 @@ The prompt's panel color depends on the other configurations but can be manually
 
 <Demo
   scope={{ centerSvg, sideNavSvg }}
-  demoFiles={{
+  extraFiles={{
     'content_center.svg': centerSvgSource,
     'content_side_nav.svg': sideNavSvgSource
   }}
