@@ -185,8 +185,8 @@ When plain code blocks are not enough, the `Demo` component can be used. It's av
 > They're called "live" demos because the source code can be edited right there on the page and the preview will update
 
 The benefits of the `Demo` component over plain code blocks are mainly:
-- that the scope of the demo can be extended with imports from the document, and already exposes all React and EUI exports, and
-- it's possible to add a wrapper component for the preview and adjust the padding
+- that the scope of the demo can be extended with imports from the document, and
+- it's possible to add a wrapper component for the preview and adjust the padding.
 
 #### `Demo` props
 
@@ -224,6 +224,38 @@ Check the [source code here](https://github.com/elastic/eui/tree/main/packages/d
     }
     ```
     </Demo>
+
+#### CodeSandbox
+
+The `<Demo />` component includes built-in **CodeSandbox integration**. It displays a button that, when clicked, opens a new CodeSandbox instance containing your snippet.
+
+To ensure CodeSandbox functions properly, verify that all references are resolvable:
+
+- all necessary React and EUI components are imported directly,
+- all relative imports in the snippet are direct siblings (e.g. `import { Component } from './component';`),
+- all local files used (such as components or SVGs) are passed to the  `demoFiles` prop as stringified content:
+
+````mdx
+```mdx-code-block
+import iconSource from '!raw-loader!./icon.svg';
+```
+
+<Demo demoFiles={{
+  'icon.svg': iconSource,
+}}>
+  ```tsx
+  import { EuiImage } from '@elastic/eui';
+  
+  import icon from './icon.svg';
+
+  export default () => {
+    return (
+      <EuiImage url={icon} />
+    )
+  }
+  ```
+</Demo>
+````
 
 ### Full-screen example
 
@@ -366,4 +398,3 @@ import error403 from './images/error-page-404.webp';
   style={{ maxWidth: '480px' }}
 />
 ```
-
