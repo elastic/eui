@@ -38,7 +38,7 @@ export interface DemoSourceMeta {
   filename?: string;
 }
 
-export type ExtraFiles = Record<string, unknown>;
+export type ExtraFiles = Record<string, string>;
 
 export interface DemoProps extends PropsWithChildren {
   /**
