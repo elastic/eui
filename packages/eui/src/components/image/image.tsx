@@ -104,3 +104,4 @@ export const EuiImage: FunctionComponent<EuiImageProps> = ({
     </>
   );
 };
+EuiImage.displayName = 'EuiImage';
