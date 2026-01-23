@@ -233,14 +233,14 @@ To ensure CodeSandbox functions properly, verify that all references are resolva
 
 - all necessary React and EUI components are imported directly,
 - all relative imports in the snippet are direct siblings (e.g. `import { Component } from './component';`),
-- all local files used (such as components or SVGs) are passed to the  `demoFiles` prop as stringified content:
+- all local files used (such as components or SVGs) are passed to the  `extraFiles` prop as stringified content:
 
 ````mdx
 ```mdx-code-block
 import iconSource from '!raw-loader!./icon.svg';
 ```
 
-<Demo demoFiles={{
+<Demo extraFiles={{
   'icon.svg': iconSource,
 }}>
   ```tsx
