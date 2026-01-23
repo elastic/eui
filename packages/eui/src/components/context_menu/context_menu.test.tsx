@@ -220,5 +220,30 @@ describe('EuiContextMenu', () => {
         });
       });
     });
+
+    describe('data attributes', () => {
+      it('allows setting data-test-subj on panels', () => {
+        const { getByTestSubject } = render(
+          <EuiContextMenu
+            panels={[
+              {
+                id: 0,
+                title: 'Panel 0',
+                'data-test-subj': 'panel0',
+                items: [
+                  {
+                    name: 'Item 1',
+                    key: 'item1',
+                  },
+                ],
+              },
+            ]}
+            initialPanelId={0}
+          />
+        );
+
+        expect(getByTestSubject('panel0')).toBeInTheDocument();
+      });
+    });
   });
 });

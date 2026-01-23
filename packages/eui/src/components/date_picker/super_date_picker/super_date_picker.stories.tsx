@@ -197,7 +197,21 @@ export const QuickSelectOnly: Story = {
 
 export const TimeWindowButtons: Story = {
   args: {
-    showTimeWindowButtons: true,
+    showTimeWindowButtons: {
+      // make it easy to toggle in the UI
+      showZoomIn: false,
+    },
+    showUpdateButton: false,
+  },
+  render: (args) => <StatefulSuperDatePicker {...args} />,
+};
+
+export const TimeWindowButtonsWithZoomIn: Story = {
+  tags: ['vrt-only'],
+  args: {
+    showTimeWindowButtons: {
+      showZoomIn: true,
+    },
     showUpdateButton: false,
   },
   render: (args) => <StatefulSuperDatePicker {...args} />,

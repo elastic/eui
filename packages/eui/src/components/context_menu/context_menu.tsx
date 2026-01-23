@@ -68,7 +68,7 @@ export type EuiContextMenuPanelItemDescriptor = ExclusiveUnion<
   EuiContextMenuPanelItemRenderCustom
 >;
 
-export interface EuiContextMenuPanelDescriptor {
+export interface EuiContextMenuPanelDescriptor extends CommonProps {
   id: EuiContextMenuPanelId;
   title?: ReactNode;
   items?: EuiContextMenuPanelItemDescriptor[];
@@ -380,6 +380,17 @@ export class EuiContextMenuClass extends Component<
       return;
     }
 
+    const {
+      id: _id,
+      title,
+      items: _items,
+      content,
+      width: _width,
+      initialFocusedItemIndex,
+      size: _size,
+      ...rest
+    } = panel;
+
     // As above, we need to wait for EuiOutsideClickDetector to complete its logic before
     // re-rendering via showPanel.
     let onClose;
@@ -405,7 +416,7 @@ export class EuiContextMenuClass extends Component<
             ? this.onOutGoingPanelTransitionComplete
             : undefined
         }
-        title={panel.title}
+        title={title}
         onClose={onClose}
         transitionType={
           this.state.isOutgoingPanelVisible ? transitionType : undefined
@@ -419,13 +430,14 @@ export class EuiContextMenuClass extends Component<
         initialFocusedItemIndex={
           this.state.isUsingKeyboardToNavigate
             ? this.state.focusedItemIndex
-            : panel.initialFocusedItemIndex
+            : initialFocusedItemIndex
         }
         onUseKeyboardToNavigate={this.onUseKeyboardToNavigate}
         showNextPanel={this.showNextPanel}
         showPreviousPanel={this.showPreviousPanel}
+        {...rest}
       >
-        {panel.content}
+        {content}
       </EuiContextMenuPanel>
     );
   }

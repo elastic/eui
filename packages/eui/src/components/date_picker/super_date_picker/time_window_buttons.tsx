@@ -20,6 +20,7 @@ import { useEuiMemoizedStyles, useGeneratedHtmlId } from '../../../services';
 import { useEuiI18n } from '../../i18n';
 
 export const ZOOM_FACTOR_DEFAULT = 0.5;
+export const ZOOM_DELTA_FALLBACK_MS = 500;
 
 export interface EuiTimeWindowButtonsConfig {
   /**
@@ -27,6 +28,12 @@ export interface EuiTimeWindowButtonsConfig {
    * @default true
    */
   showZoomOut?: boolean;
+  /**
+   * Show button for zooming in.
+   * Defaults to false because it's a less common use case
+   * @default false
+   */
+  showZoomIn?: boolean;
   /**
    * Show buttons for shifting the time window forward and backward
    * @default true
@@ -59,6 +66,7 @@ export const EuiTimeWindowButtons: React.FC<EuiTimeWindowButtonsProps> = ({
   compressed,
   isDisabled,
   showZoomOut = true,
+  showZoomIn = false,
   showShiftArrows = true,
   zoomFactor = ZOOM_FACTOR_DEFAULT,
 }) => {
@@ -73,11 +81,31 @@ export const EuiTimeWindowButtons: React.FC<EuiTimeWindowButtonsProps> = ({
     stepForward,
     stepBackward,
     expandWindow,
+    shrinkWindow,
+    isWindowDurationZero,
   } = useEuiTimeWindow(start, end, applyTime, { zoomFactor });
 
+  const previousDescription = useEuiI18n(
+    'euiTimeWindowButtons.previousDescription',
+    'Previous {displayInterval}',
+    { displayInterval }
+  );
+  const nextDescription = useEuiI18n(
+    'euiTimeWindowButtons.nextDescription',
+    'Next {displayInterval}',
+    { displayInterval }
+  );
   const invalidShiftDescription = useEuiI18n(
     'euiTimeWindowButtons.invalidShiftLabel',
     'Cannot shift invalid time window'
+  );
+  const invalidZoomInDescription = useEuiI18n(
+    'euiTimeWindowButtons.invalidZoomInLabel',
+    'Cannot zoom in invalid time window'
+  );
+  const cannotZoomInDescription = useEuiI18n(
+    'euiTimeWindowButtons.cannotZoomInLabel',
+    'Cannot zoom in any further'
   );
   const invalidZoomOutDescription = useEuiI18n(
     'euiTimeWindowButtons.invalidZoomOutLabel',
@@ -89,11 +117,17 @@ export const EuiTimeWindowButtons: React.FC<EuiTimeWindowButtonsProps> = ({
     'euiTimeWindowButtons.previousLabel',
     'Previous'
   );
-  const previousTooltipContent = useEuiI18n(
-    'euiTimeWindowButtons.previousDescription',
-    'Previous {displayInterval}',
-    { displayInterval }
-  );
+  const previousTooltipContent = isInvalid
+    ? invalidShiftDescription
+    : previousDescription;
+
+  const zoomInId = useGeneratedHtmlId({ prefix: 'zoom_in' });
+  const zoomInLabel = useEuiI18n('euiTimeWindowButtons.zoomInLabel', 'Zoom in');
+  const zoomInTooltipContent = isInvalid
+    ? invalidZoomInDescription
+    : isWindowDurationZero
+    ? cannotZoomInDescription
+    : zoomInLabel;
 
   const zoomOutId = useGeneratedHtmlId({ prefix: 'zoom_out' });
   const zoomOutLabel = useEuiI18n(
@@ -106,13 +140,11 @@ export const EuiTimeWindowButtons: React.FC<EuiTimeWindowButtonsProps> = ({
 
   const nextId = useGeneratedHtmlId({ prefix: 'next' });
   const nextLabel = useEuiI18n('euiTimeWindowButtons.nextLabel', 'Next');
-  const nextTooltipContent = useEuiI18n(
-    'euiTimeWindowButtons.nextDescription',
-    'Next {displayInterval}',
-    { displayInterval }
-  );
+  const nextTooltipContent = isInvalid
+    ? invalidShiftDescription
+    : nextDescription;
 
-  if (!showZoomOut && !showShiftArrows) return null;
+  if (!showZoomIn && !showZoomOut && !showShiftArrows) return null;
 
   return (
     <div
@@ -126,18 +158,33 @@ export const EuiTimeWindowButtons: React.FC<EuiTimeWindowButtonsProps> = ({
           data-test-subj="timeWindowButtonsPrevious"
           label={previousLabel}
           title=""
-          toolTipContent={
-            !isDisabled &&
-            (isInvalid ? invalidShiftDescription : previousTooltipContent)
-          }
+          toolTipContent={!isDisabled && previousTooltipContent}
           color={buttonColor}
           size={buttonSize}
           iconType="arrowLeft"
           iconSize={iconSize}
           isIconOnly
-          isSelected={false}
-          isDisabled={isDisabled}
+          isDisabled={isWindowDurationZero || isDisabled}
           onClick={stepBackward}
+        />
+      )}
+      {showZoomIn && (
+        <EuiButtonGroupButton
+          id={zoomInId}
+          data-test-subj="timeWindowButtonsZoomIn"
+          label={zoomInLabel}
+          title=""
+          toolTipContent={!isDisabled && zoomInTooltipContent}
+          toolTipProps={{
+            disableScreenReaderOutput: zoomInLabel === zoomInTooltipContent,
+          }}
+          color={buttonColor}
+          size={buttonSize}
+          iconType="magnifyWithPlus"
+          iconSize={iconSize}
+          isIconOnly
+          isDisabled={isWindowDurationZero || isDisabled}
+          onClick={shrinkWindow}
         />
       )}
       {showZoomOut && (
@@ -155,7 +202,6 @@ export const EuiTimeWindowButtons: React.FC<EuiTimeWindowButtonsProps> = ({
           iconType="magnifyWithMinus"
           iconSize={iconSize}
           isIconOnly
-          isSelected={false}
           isDisabled={isDisabled}
           onClick={expandWindow}
         />
@@ -166,17 +212,13 @@ export const EuiTimeWindowButtons: React.FC<EuiTimeWindowButtonsProps> = ({
           data-test-subj="timeWindowButtonsNext"
           label={nextLabel}
           title=""
-          toolTipContent={
-            !isDisabled &&
-            (isInvalid ? invalidShiftDescription : nextTooltipContent)
-          }
+          toolTipContent={!isDisabled && nextTooltipContent}
           color={buttonColor}
           size={buttonSize}
           iconType="arrowRight"
           iconSize={iconSize}
           isIconOnly
-          isSelected={false}
-          isDisabled={isDisabled}
+          isDisabled={isWindowDurationZero || isDisabled}
           onClick={stepForward}
         />
       )}
@@ -196,11 +238,12 @@ export function useEuiTimeWindow(
   const min = dateMath.parse(start);
   const max = dateMath.parse(end, { roundUp: true });
   const isInvalid = !min || !min.isValid() || !max || !max.isValid();
-  const windowDuration = isInvalid ? 1 : max.diff(min);
+  const windowDuration = isInvalid ? -1 : max.diff(min);
+  const isWindowDurationZero = windowDuration === 0;
   const zoomFactor = getPercentageMultiplier(
     options?.zoomFactor ?? ZOOM_FACTOR_DEFAULT
   );
-  const zoomAddition = windowDuration * (zoomFactor / 2); // Gets added to each end, that's why it's split in half
+  const zoomDelta = windowDuration * (zoomFactor / 2); // Gets added to each end, that's why it's split in half
   const prettyInterval = usePrettyInterval(false, windowDuration);
   let displayInterval = isInvalid ? '' : prettyInterval;
   if (
@@ -217,10 +260,12 @@ export function useEuiTimeWindow(
     stepForward,
     stepBackward,
     expandWindow,
+    shrinkWindow,
+    isWindowDurationZero,
   };
 
   function stepForward() {
-    if (isInvalid) return;
+    if (isInvalid || isWindowDurationZero) return;
     apply({
       start: moment(max).toISOString(),
       end: moment(max).add(windowDuration, 'ms').toISOString(),
@@ -228,7 +273,7 @@ export function useEuiTimeWindow(
   }
 
   function stepBackward() {
-    if (isInvalid) return;
+    if (isInvalid || isWindowDurationZero) return;
     apply({
       start: moment(min).subtract(windowDuration, 'ms').toISOString(),
       end: moment(min).toISOString(),
@@ -237,26 +282,45 @@ export function useEuiTimeWindow(
 
   function expandWindow() {
     if (isInvalid) return;
+    // when the window is 0 it'll remain 0 unless we help it a little
+    const addition = zoomDelta === 0 ? ZOOM_DELTA_FALLBACK_MS : zoomDelta;
     apply({
-      start: moment(min).subtract(zoomAddition, 'ms').toISOString(),
-      end: moment(max).add(zoomAddition, 'ms').toISOString(),
+      start: moment(min).subtract(addition, 'ms').toISOString(),
+      end: moment(max).add(addition, 'ms').toISOString(),
+    });
+  }
+
+  function shrinkWindow() {
+    if (isInvalid || isWindowDurationZero) return;
+    apply({
+      start: moment(min).add(zoomDelta, 'ms').toISOString(),
+      end: moment(max).subtract(zoomDelta, 'ms').toISOString(),
     });
   }
 }
 
 /**
- * Get a number out of either 0.2 or "20%"
+ * Convert strings with % to a multiplier e.g. "50%" = 0.5
+ * Strings without % are returned as-is as number
  */
 function getPercentageMultiplier(value: number | string) {
-  const result =
-    typeof value === 'number'
-      ? value
-      : parseFloat(String(value).replace('%', '').trim());
-  if (isNaN(result))
+  if (typeof value === 'string' && value.includes('%')) {
+    const parsed = parseFloat(value.replace('%', '').trim());
+    if (isNaN(parsed)) {
+      throw new TypeError('Invalid percentage string');
+    }
+    return parsed / 100;
+  }
+
+  const result = typeof value === 'number' ? value : parseFloat(String(value));
+
+  if (isNaN(result)) {
     throw new TypeError(
       'Please provide a valid number or percentage string e.g. "25%"'
     );
-  return result > 1 ? result / 100 : result;
+  }
+
+  return result;
 }
 
 /**

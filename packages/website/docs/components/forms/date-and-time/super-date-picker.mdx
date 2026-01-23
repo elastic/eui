@@ -575,9 +575,11 @@ import { ZOOM_FACTOR_DEFAULT } from '@elastic/eui/es/components/date_picker/supe
 
 ## Time window buttons
 
-A button group with buttons to modify the time window (or range) can be shown next to the main control. To show it, pass the `showTimeWindowButtons` prop to the `EuiSuperDatePicker` component. It allows to zoom out the window, or shift it both forwards or backwards.
+A button group for modifying the time range can be displayed next to the main control using the `showTimeWindowButtons` prop. The buttons allow the time window to be shifted forward or backward and zoomed in or out.
 
-Zooming out will expand the window by {ZOOM_FACTOR_DEFAULT * 100}% by default. This is configurable via the `showTimeWindowButtons` prop, by passing a config object with a `zoomFactor` property e.g. `showTimeWindowButtons={{ zoomFactor: 0.42 }}`.
+Zooming expands or shrinks the time window by {ZOOM_FACTOR_DEFAULT * 100}% by default. This can be customized by passing a configuration object with a `zoomFactor` property, e.g. `showTimeWindowButtons={{ zoomFactor: 0.25 }}`.
+
+The "Zoom in" button is hidden by default. To enable it, set `showZoomIn` to `true` in the configuration object, e.g. `showTimeWindowButtons={{ showZoomIn: true }}`.
 
 ```tsx interactive
 import React, { useState } from 'react';

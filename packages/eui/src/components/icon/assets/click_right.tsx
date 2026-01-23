@@ -28,12 +28,11 @@ const EuiIconClickRight = ({
     {...props}
   >
     {title ? <title id={titleId}>{title}</title> : null}
-    <path d="M11 .5a.5.5 0 0 1 1 0v1a.5.5 0 0 1-1 0v-1Zm3.146.646a.5.5 0 0 1 .708.708l-1 1a.5.5 0 0 1-.708-.708l1-1Z" />
     <path
       fillRule="evenodd"
-      d="M3 7a5 5 0 0 1 10 0v4a5 5 0 0 1-10 0V7Zm1 0a4 4 0 0 1 4-4v5a1 1 0 0 0 1 1h3v2a4 4 0 0 1-8 0V7Z"
+      d="M8 1a5 5 0 0 1 5 5v4a5 5 0 0 1-10 0V6a5 5 0 0 1 5-5Zm0 1a4 4 0 0 0-4 4v4a4 4 0 0 0 8 0V8H8V2Zm1 5h3V6a4.002 4.002 0 0 0-3-3.874V7Z"
+      clipRule="evenodd"
     />
-    <path d="M16 4.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0 0 1h1a.5.5 0 0 0 .5-.5Z" />
   </svg>
 );
 export const icon = EuiIconClickRight;

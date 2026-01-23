@@ -723,4 +723,67 @@ describe('EuiFlyout', () => {
       expect(childFlyout).not.toHaveAttribute('data-managed-flyout-level');
     });
   });
+
+  describe('ref forwarding', () => {
+    it('forwards ref when session="start"', () => {
+      const ref = React.createRef<HTMLDivElement>();
+      render(
+        <EuiFlyoutManager>
+          <EuiFlyout
+            session="start"
+            onClose={() => {}}
+            ref={ref}
+            aria-label="Test flyout"
+          >
+            Content
+          </EuiFlyout>
+        </EuiFlyoutManager>
+      );
+
+      expect(ref.current).toBeInstanceOf(HTMLElement);
+      // Verify it points to the flyout container (which has role="dialog")
+      expect(ref.current).toHaveAttribute('role', 'dialog');
+    });
+
+    it('forwards ref when session="inherit" (child flyout)', () => {
+      const childRef = React.createRef<HTMLDivElement>();
+
+      const TestComponent = () => (
+        <EuiFlyoutManager>
+          <EuiFlyout
+            session="start"
+            onClose={() => {}}
+            aria-label="Parent flyout"
+          >
+            <EuiFlyout
+              session="inherit"
+              onClose={() => {}}
+              ref={childRef}
+              aria-label="Child flyout"
+            >
+              Child Content
+            </EuiFlyout>
+          </EuiFlyout>
+        </EuiFlyoutManager>
+      );
+
+      render(<TestComponent />);
+
+      expect(childRef.current).toBeInstanceOf(HTMLElement);
+      expect(childRef.current).toHaveAttribute('role', 'dialog');
+      expect(childRef.current).toHaveAttribute('aria-label', 'Child flyout');
+    });
+
+    it('forwards ref when session is undefined (standard flyout)', () => {
+      const ref = React.createRef<HTMLDivElement>();
+      render(
+        <EuiFlyout onClose={() => {}} ref={ref} aria-label="Standard flyout">
+          Content
+        </EuiFlyout>
+      );
+
+      expect(ref.current).toBeInstanceOf(HTMLElement);
+      expect(ref.current).toHaveAttribute('role', 'dialog');
+    });
+  });
 });

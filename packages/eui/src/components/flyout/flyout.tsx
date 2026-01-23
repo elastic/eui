@@ -103,6 +103,7 @@ export const EuiFlyout = forwardRef<
           onClose={onClose}
           onActive={onActive}
           as="div"
+          ref={ref}
         />
       );
     }
@@ -115,6 +116,7 @@ export const EuiFlyout = forwardRef<
           onClose={onClose}
           onActive={onActive}
           as="div"
+          ref={ref}
         />
       );
     }

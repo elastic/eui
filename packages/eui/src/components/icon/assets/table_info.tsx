@@ -28,12 +28,18 @@ const EuiIconTableInfo = ({
     {...props}
   >
     {title ? <title id={titleId}>{title}</title> : null}
-    <path d="M3 1h10a2 2 0 0 1 2 2v4.337a5.533 5.533 0 0 0-1-1.08V3a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3.257c.314.38.677.716 1.08 1H3a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2Z" />
-    <path d="M3.5 6h3.837a5.54 5.54 0 0 0-1.08 1H3.5a.5.5 0 0 1 0-1Zm0 6h1.707c.098.345.228.677.388.991A.505.505 0 0 1 5.5 13h-2a.5.5 0 0 1 0-1Zm0-8a.5.5 0 0 1 0-1h9a.5.5 0 0 1 0 1h-9ZM3 9.5a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0-.5.5Z" />
+    <path d="M12 13h1v1h-3v-1h1v-1h-.5v-1H12v2Zm-.5-4a.5.5 0 1 1 0 1 .5.5 0 0 1 0-1Z" />
     <path
       fillRule="evenodd"
-      d="M15 10.5a4.5 4.5 0 1 1-9 0 4.5 4.5 0 0 1 9 0Zm-2.146-2.354a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708l4-4a.5.5 0 0 1 .708 0ZM9 10a1 1 0 1 0 0-2 1 1 0 0 0 0 2Zm4 2a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"
+      d="M11.5 7a4.5 4.5 0 1 1 0 9 4.5 4.5 0 0 1 0-9Zm0 1a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7Z"
+      clipRule="evenodd"
     />
+    <path
+      fillRule="evenodd"
+      d="M14 1a1 1 0 0 1 1 1v5.257a5.507 5.507 0 0 0-1-.656V5H2v9h4.602c.182.358.402.693.656 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12ZM2 4h12V2H2v2Z"
+      clipRule="evenodd"
+    />
+    <path d="M5 13H3v-1h2v1Zm0-3H3V9h2v1Zm0-3H3V6h2v1Zm3 0H6V6h2v1Z" />
   </svg>
 );
 export const icon = EuiIconTableInfo;

@@ -1,5 +1,15 @@
 [
   {
+    "version": "111.1.0",
+    "changes": [
+      {
+        "token": "euiColumnSelector.dragHandleAriaLabel",
+        "changeType": "modified",
+        "value": "drag handle"
+      }
+    ]
+  },
+  {
     "version": "111.0.0",
     "changes": [
       {

@@ -28,7 +28,12 @@ const EuiIconChartBarVerticalStack = ({
     {...props}
   >
     {title ? <title id={titleId}>{title}</title> : null}
-    <path d="M14.5 15a.5.5 0 1 1 0 1H.5a.5.5 0 1 1 0-1h14Zm-9-13a.5.5 0 0 1 .5.5L5.999 7H9V4.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v9a.5.5 0 1 1-1 0V7h-3v6.5a.5.5 0 0 1-.41.492L9.5 14a.5.5 0 0 1-.5-.5V10H6v3.5a.5.5 0 0 1-.992.09L5 13.5V6H2v7.5a.5.5 0 1 1-1 0v-11a.5.5 0 0 1 .5-.5h4Z" />
+    <path d="M2 14h13v1H2a1 1 0 0 1-1-1V1h1v13Z" />
+    <path
+      fillRule="evenodd"
+      d="M5 7a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h1Zm-1 5h1v-1H4v1Zm0-2h1V8H4v2Zm5-5a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h1Zm-1 7h1V9H8v3Zm0-4h1V6H8v2Zm5-5a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1h-1a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h1Zm-1 9h1V7h-1v5Zm0-6h1V4h-1v2Z"
+      clipRule="evenodd"
+    />
   </svg>
 );
 export const icon = EuiIconChartBarVerticalStack;

@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React from 'react';
+import React, { forwardRef } from 'react';
 
 import { EuiManagedFlyout, type EuiManagedFlyoutProps } from './flyout_managed';
 import { useHasChildFlyout, useFlyoutId } from './hooks';
@@ -30,31 +30,39 @@ export type EuiFlyoutMainProps = Omit<EuiManagedFlyoutProps, 'level'>;
  * Managed main flyout. Handles ID management, child-flyout styling,
  * and push/overlay behavior based on provided props.
  */
-export function EuiFlyoutMain({
-  id,
-  pushMinBreakpoint = DEFAULT_PUSH_MIN_BREAKPOINT,
-  type = DEFAULT_TYPE,
-  side = DEFAULT_SIDE,
-  ...props
-}: EuiFlyoutMainProps) {
-  const flyoutId = useFlyoutId(id);
-  const hasChildFlyout = useHasChildFlyout(flyoutId);
-  const styles = useEuiMemoizedStyles(euiMainFlyoutStyles);
-  const isPushed = useIsPushed({ type, pushMinBreakpoint });
+export const EuiFlyoutMain = forwardRef<HTMLElement, EuiFlyoutMainProps>(
+  (
+    {
+      id,
+      pushMinBreakpoint = DEFAULT_PUSH_MIN_BREAKPOINT,
+      type = DEFAULT_TYPE,
+      side = DEFAULT_SIDE,
+      ...props
+    },
+    ref
+  ) => {
+    const flyoutId = useFlyoutId(id);
+    const hasChildFlyout = useHasChildFlyout(flyoutId);
+    const styles = useEuiMemoizedStyles(euiMainFlyoutStyles);
+    const isPushed = useIsPushed({ type, pushMinBreakpoint });
 
-  const cssStyles = [
-    hasChildFlyout && !isPushed && styles.hasChildFlyout[side],
-  ];
+    const cssStyles = [
+      hasChildFlyout && !isPushed && styles.hasChildFlyout[side],
+    ];
 
-  const style: React.CSSProperties = {};
+    const style: React.CSSProperties = {};
 
-  return (
-    <EuiManagedFlyout
-      id={flyoutId}
-      level={LEVEL_MAIN}
-      style={style}
-      css={cssStyles}
-      {...{ ...props, pushMinBreakpoint, type, side }}
-    />
-  );
-}
+    return (
+      <EuiManagedFlyout
+        ref={ref}
+        id={flyoutId}
+        level={LEVEL_MAIN}
+        style={style}
+        css={cssStyles}
+        {...{ ...props, pushMinBreakpoint, type, side }}
+      />
+    );
+  }
+);
+
+EuiFlyoutMain.displayName = 'EuiFlyoutMain';

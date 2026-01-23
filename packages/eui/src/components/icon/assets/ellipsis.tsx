@@ -28,7 +28,11 @@ const EuiIconEllipsis = ({
     {...props}
   >
     {title ? <title id={titleId}>{title}</title> : null}
-    <path d="M6 3a2 2 0 1 1 4 0 2 2 0 0 1-4 0Zm2-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2ZM6 8a2 2 0 1 1 4 0 2 2 0 0 1-4 0Zm2-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2Zm0 4a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm-1 2a1 1 0 1 1 2 0 1 1 0 0 1-2 0Z" />
+    <path
+      fillRule="evenodd"
+      d="M6 3a2 2 0 1 1 4 0 2 2 0 0 1-4 0Zm2-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2ZM6 8a2 2 0 1 1 4 0 2 2 0 0 1-4 0Zm2-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2Zm0 4a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm-1 2a1 1 0 1 1 2 0 1 1 0 0 1-2 0Z"
+      clipRule="evenodd"
+    />
   </svg>
 );
 export const icon = EuiIconEllipsis;

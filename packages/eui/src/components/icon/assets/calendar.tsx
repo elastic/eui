@@ -28,9 +28,11 @@ const EuiIconCalendar = ({
     {...props}
   >
     {title ? <title id={titleId}>{title}</title> : null}
+    <path d="M4 12H3v-1h1v1Zm3 0H6v-1h1v1Zm3 0H9v-1h1v1Zm3 0h-1v-1h1v1Zm-9-2H3V9h1v1Zm3 0H6V9h1v1Zm3 0H9V9h1v1Zm3 0h-1V9h1v1ZM4 8H3V7h1v1Zm3 0H6V7h1v1Zm3 0H9V7h1v1Zm3 0h-1V7h1v1Z" />
     <path
       fillRule="evenodd"
-      d="M14 4v-.994C14 2.45 13.55 2 12.994 2H11v1h-1V2H6v1H5V2H3.006C2.45 2 2 2.45 2 3.006v9.988C2 13.55 2.45 14 3.006 14h9.988C13.55 14 14 13.55 14 12.994V5H2V4h12zm-3-3h1.994C14.102 1 15 1.897 15 3.006v9.988A2.005 2.005 0 0 1 12.994 15H3.006A2.005 2.005 0 0 1 1 12.994V3.006C1 1.898 1.897 1 3.006 1H5V0h1v1h4V0h1v1zM4 7h2v1H4V7zm3 0h2v1H7V7zm3 0h2v1h-2V7zM4 9h2v1H4V9zm3 0h2v1H7V9zm3 0h2v1h-2V9zm-6 2h2v1H4v-1zm3 0h2v1H7v-1zm3 0h2v1h-2v-1z"
+      d="M5 2h6V1h1v1h2a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1h2V1h1v1ZM2 13h12V6H2v7Zm0-8h12V3h-2v1h-1V3H5v1H4V3H2v2Z"
+      clipRule="evenodd"
     />
   </svg>
 );

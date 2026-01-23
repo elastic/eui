@@ -28,10 +28,11 @@ const EuiIconMinusSquare = ({
     {...props}
   >
     {title ? <title id={titleId}>{title}</title> : null}
-    <path d="M10.611 7H4.39c-.216 0-.39.224-.39.5s.174.5.389.5h6.222c.215 0 .389-.224.389-.5s-.174-.5-.389-.5Z" />
+    <path d="M12 8.5H4v-1h8v1Z" />
     <path
       fillRule="evenodd"
-      d="M1 3a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V3Zm2-1h9a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1Z"
+      d="M13 2a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H3a1 1 0 0 1-.995-.898L2 13V3a1 1 0 0 1 1-1h10ZM3 13h10V3H3v10Z"
+      clipRule="evenodd"
     />
   </svg>
 );

@@ -32,6 +32,7 @@ const EuiIconPlusCircle = ({
     <path
       fillRule="evenodd"
       d="M15 8A7 7 0 1 1 1 8a7 7 0 0 1 14 0Zm-1 0A6 6 0 1 1 2 8a6 6 0 0 1 12 0Z"
+      clipRule="evenodd"
     />
   </svg>
 );

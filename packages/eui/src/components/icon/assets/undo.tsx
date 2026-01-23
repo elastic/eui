@@ -28,7 +28,7 @@ const EuiIconUndo = ({
     {...props}
   >
     {title ? <title id={titleId}>{title}</title> : null}
-    <path d="M5.5 6h5c1.943 0 3 1.057 3 3s-1.057 3-3 3H9v-1h1.5c1.39 0 2-.61 2-2 0-1.39-.61-2-2-2h-5v3L2 6.5 5.5 3v3Z" />
+    <path d="M11.5 6a2.5 2.5 0 0 1 0 5H6v1h5.5a3.5 3.5 0 1 0 0-7H2.707l2.647-2.646-.708-.708L.793 5.5l3.853 3.854.708-.708L2.707 6H11.5Z" />
   </svg>
 );
 export const icon = EuiIconUndo;

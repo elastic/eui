@@ -28,12 +28,11 @@ const EuiIconClickLeft = ({
     {...props}
   >
     {title ? <title id={titleId}>{title}</title> : null}
-    <path d="M5 .5a.5.5 0 0 0-1 0v1a.5.5 0 0 0 1 0v-1Zm-3.146.646a.5.5 0 1 0-.708.708l1 1a.5.5 0 1 0 .708-.708l-1-1Z" />
     <path
       fillRule="evenodd"
-      d="M13 7A5 5 0 0 0 3 7v4a5 5 0 0 0 10 0V7Zm-1 0a4 4 0 0 0-4-4v5a1 1 0 0 1-1 1H4v2a4 4 0 0 0 8 0V7Z"
+      d="M8 1a5 5 0 0 1 5 5v4a5 5 0 0 1-10 0V6a5 5 0 0 1 5-5Zm0 7H4v2a4 4 0 0 0 8 0V6a4 4 0 0 0-4-4v6ZM7 2.126C5.275 2.57 4 4.136 4 6v1h3V2.126Z"
+      clipRule="evenodd"
     />
-    <path d="M0 4.5A.5.5 0 0 1 .5 4h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5Z" />
   </svg>
 );
 export const icon = EuiIconClickLeft;

@@ -48,6 +48,10 @@ export const typeToPathMap = {
   article: 'article',
   asterisk: 'asterisk',
   at: 'at',
+  archive: 'archive',
+  axisX: 'axis_x',
+  axisYLeft: 'axis_y_left',
+  axisYRight: 'axis_y_right',
   auditbeatApp: 'app_auditbeat',
   backgroundTask: 'background_task',
   beaker: 'flask', // NOTE: To be deprecated in favor of `flask`
@@ -58,10 +62,12 @@ export const typeToPathMap = {
   boxesHorizontal: 'boxes_vertical', // NOTE: To be deprecated in favor of `boxes_vertical`
   boxesVertical: 'boxes_vertical',
   branch: 'branch',
+  briefcase: 'briefcase',
   branchUser: 'branch_user',
   broom: 'broom',
   brush: 'brush',
   bug: 'bug',
+  bulb: 'bulb',
   bullseye: 'bullseye',
   calendar: 'calendar',
   canvasApp: 'app_canvas',
@@ -92,6 +98,7 @@ export const typeToPathMap = {
   clock: 'clock',
   clockCounter: 'clock_counter',
   clockControl: 'clock_control',
+  cloud: 'cloud',
   cloudDrizzle: 'cloud_drizzle',
   cloudStormy: 'cloud_stormy',
   cloudSunny: 'cloud_sunny',
@@ -272,6 +279,7 @@ export const typeToPathMap = {
   heatmap: 'chart_heatmap', // NOTE: To be deprecated in favor of chartHeatmap
   help: 'help', // NOTE: Might be deprecated later (not recommended in Kibana)
   home: 'home',
+  hourglass: 'hourglass',
   if: 'if',
   info: 'info',
   image: 'image',
@@ -408,6 +416,7 @@ export const typeToPathMap = {
   map: 'map',
   mapMarker: 'waypoint', // NOTE: To be deprecated in favor of waypoint
   waypoint: 'waypoint',
+  megaphone: 'megaphone',
   memory: 'memory',
   menu: 'menu',
   menuDown: 'menu_down',
@@ -469,7 +478,12 @@ export const typeToPathMap = {
   plusSquare: 'plus_square',
   popout: 'external', // NOTE: To be deprecated in favor of external
   presentation: 'presentation',
-  productRobot: 'product_robot',
+  productRobot: 'product_agent', // NOTE: To be deprecated in favor of productAgent
+  productAgent: 'product_agent',
+  productCloudInfra: 'product_cloud_infra',
+  productDashboard: 'product_dashboard',
+  productDiscover: 'product_discover',
+  productML: 'product_ml',
   productStreamsClassic: 'product_streams_classic',
   productStreamsWired: 'product_streams_wired',
   push: 'send', // NOTE: To be deprecated in favor of send
@@ -570,6 +584,7 @@ export const typeToPathMap = {
   userAvatar: 'user', // NOTE: To be deprecated in favor of `user`
   users: 'users',
   usersRolesApp: 'app_users_roles',
+  unarchive: 'unarchive',
   vector: 'vector_square', // NOTE: To be deprecated in favor of vectorSquare
   vectorSquare: 'vector_square',
   videoPlayer: 'video_player',
@@ -603,6 +618,7 @@ export const typeToPathMap = {
   wordWrap: 'word_wrap',
   wordWrapDisabled: 'word_wrap_disabled',
   workflowsApp: 'app_workflows',
+  workflow: 'workflow',
   workplaceSearchApp: 'app_workplace_search',
   wrench: 'wrench',
   // Token Icon Imports

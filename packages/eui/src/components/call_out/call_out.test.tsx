@@ -61,12 +61,52 @@ describe('EuiCallOut', () => {
       });
     });
 
-    test('onDismiss', () => {
-      const onDismiss = jest.fn();
-      render(<EuiCallOut onDismiss={onDismiss}>Content</EuiCallOut>);
+    describe('onDismiss', () => {
+      it('renders dismiss button and fires callback', () => {
+        const onDismiss = jest.fn();
+        const { getByTestSubject } = render(
+          <EuiCallOut onDismiss={onDismiss}>Content</EuiCallOut>
+        );
 
-      fireEvent.click(screen.getByTestSubject('euiDismissCalloutButton'));
-      expect(onDismiss).toHaveBeenCalledTimes(1);
+        fireEvent.click(getByTestSubject('euiDismissCalloutButton'));
+        expect(onDismiss).toHaveBeenCalledTimes(1);
+      });
+
+      it('dismiss button has aria-label', () => {
+        const onDismiss = jest.fn();
+        const { getByTestSubject } = render(
+          <EuiCallOut onDismiss={onDismiss}>Content</EuiCallOut>
+        );
+
+        expect(getByTestSubject('euiDismissCalloutButton')).toHaveAttribute(
+          'aria-label',
+          'Dismiss this callout'
+        );
+      });
+
+      it('takes props in dismissButtonProps', () => {
+        const onDismiss = () => {};
+        const { getByTestSubject } = render(
+          <EuiCallOut
+            onDismiss={onDismiss}
+            dismissButtonProps={{
+              'aria-label': 'Custom label',
+              'data-example': 'value',
+            }}
+          >
+            Content
+          </EuiCallOut>
+        );
+
+        expect(getByTestSubject('euiDismissCalloutButton')).toHaveAttribute(
+          'data-example',
+          'value'
+        );
+        expect(getByTestSubject('euiDismissCalloutButton')).toHaveAttribute(
+          'aria-label',
+          'Custom label'
+        );
+      });
     });
 
     describe('announceOnMount', () => {

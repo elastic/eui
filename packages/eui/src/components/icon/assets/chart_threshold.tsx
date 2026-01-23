@@ -28,10 +28,13 @@ const EuiIconChartThreshold = ({
     {...props}
   >
     {title ? <title id={titleId}>{title}</title> : null}
+    <path d="M2 14h13v1H2a1 1 0 0 1-1-1V1h1v13Z" />
     <path
       fillRule="evenodd"
-      d="M14.516 9H10.5a.5.5 0 0 1 0-1h4.016L13.11 5.948c-.171-.252-.137-.62.079-.821.217-.2.531-.159.703.092l2 2.916a.648.648 0 0 1 .108.397.643.643 0 0 1-.108.332l-2 2.918A.478.478 0 0 1 13.5 12a.457.457 0 0 1-.312-.127c-.216-.202-.25-.57-.079-.82L14.516 9ZM3 15H1a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h7.8c.274 0 .537.113.726.312l2.2 2.428c.176.186.274.433.274.689V7h-1V5H8.5a.5.5 0 0 1-.5-.5V2H3v12h8v-4h1v4a1 1 0 0 1-1 1H3Zm-1-1V2H1v12h1Z"
+      d="M5 10a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-1a1 1 0 0 1 1-1h1Zm-1 2h1v-1H4v1Zm5-9a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h1Zm-1 9h1V4H8v8Zm5-3a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-1a1 1 0 0 1-1-1v-2a1 1 0 0 1 1-1h1Zm-1 3h1v-2h-1v2Z"
+      clipRule="evenodd"
     />
+    <path d="M4 7H3V6h1v1Zm2 0H5V6h1v1Zm6 0h-1V6h1v1Zm2 0h-1V6h1v1Z" />
   </svg>
 );
 export const icon = EuiIconChartThreshold;

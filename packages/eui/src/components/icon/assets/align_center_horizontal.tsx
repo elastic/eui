@@ -28,7 +28,7 @@ const EuiIconAlignCenterHorizontal = ({
     {...props}
   >
     {title ? <title id={titleId}>{title}</title> : null}
-    <path d="M8 4H7V1.5a.5.5 0 0 1 1 0V4Zm0 8v2.5a.5.5 0 1 1-1 0V12h1ZM3 5h9a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Z" />
+    <path d="M8.5 12v3h-1v-3h1ZM4 6v4h8V6H4Zm4.5-5v3h-1V1h1Zm4.5 9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v4Z" />
   </svg>
 );
 export const icon = EuiIconAlignCenterHorizontal;

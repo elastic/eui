@@ -14,12 +14,16 @@ export const iconTypes: Array<IconType> = [
   'alignTopLeft',
   'alignTopRight',
   'analyzeEvent', // To be deprecated
-  'anomalySwimLane', // To be deprecated
   'annotation', // To be deprecated
+  'anomalySwimLane', // To be deprecated
   'apps', // To be deprecated
+  'archive',
   'article', // To be deprecated NO USAGE
   'asterisk',
   'at',
+  'axisX',
+  'axisYLeft',
+  'axisYRight',
   'backgroundTask',
   'bell',
   'bellSlash',
@@ -27,9 +31,11 @@ export const iconTypes: Array<IconType> = [
   'bolt',
   'branch',
   'branchUser', // To be deprecated NO USAGE
+  'briefcase',
   'broom',
   'brush',
   'bug',
+  'bulb',
   'bullseye',
   'calendar',
   'chartAnomaly',
@@ -64,6 +70,7 @@ export const iconTypes: Array<IconType> = [
   'clock',
   'clockControl',
   'clockCounter',
+  'cloud',
   'cloudDrizzle', // To be deprecated
   'cloudStormy', // To be deprecated
   'cloudSunny', // To be deprecated
@@ -81,9 +88,9 @@ export const iconTypes: Array<IconType> = [
   'contrastFill',
   'controls',
   'copy',
-  'crossProjectSearch',
   'cross',
   'crossCircle',
+  'crossProjectSearch',
   'crosshair',
   'dashedCircle',
   'database',
@@ -91,8 +98,8 @@ export const iconTypes: Array<IconType> = [
   'distributeHorizontal',
   'distributeVertical',
   'document',
-  'documents', // To be deprecated
   'documentation',
+  'documents', // To be deprecated
   'dot',
   'dotInCircle', // To be deprecated NO USAGE
   'download',
@@ -134,6 +141,7 @@ export const iconTypes: Array<IconType> = [
   'heart',
   'help', // To be deprecated
   'home',
+  'hourglass',
   'if',
   'image',
   'index', // To be deprecated
@@ -170,15 +178,16 @@ export const iconTypes: Array<IconType> = [
   'logstashFilter', // To be deprecated
   'logstashInput', // To be deprecated
   'logstashOutput', // To be deprecated
+  'magnet', // To be deprecated NO USAGE
   'magnify',
   'magnifyExclamation',
   'magnifyMinus',
   'magnifyPlus',
-  'magnet', // To be deprecated NO USAGE
   'mail',
   'map',
   'mapping',
   'maximize',
+  'megaphone',
   'memory', // To be deprecated
   'menu',
   'menuDown', // To be deprecated NO USAGE
@@ -210,8 +219,8 @@ export const iconTypes: Array<IconType> = [
   'pencil',
   'percent',
   'pin',
-  'pivot',
   'pinFill',
+  'pivot',
   'play',
   'plugs',
   'plus',
@@ -220,9 +229,14 @@ export const iconTypes: Array<IconType> = [
   'popper',
   'presentation',
   'processor',
-  'productRobot',
+  'productAgent',
+  'productCloudInfra',
+  'productDashboard',
+  'productDiscover',
+  'productML',
   'productStreamsClassic',
   'productStreamsWired',
+  'push',
   'query',
   'queryField',
   'queryOperand',
@@ -251,13 +265,13 @@ export const iconTypes: Array<IconType> = [
   'share',
   'singleMetricViewer', // To be deprecated
   'snowflake',
-  'sortable',
   'sortAscending',
   'sortDescending',
   'sortDown',
   'sortLeft',
   'sortRight',
   'sortUp',
+  'sortable',
   'spaces', // To be deprecated
   'sparkles',
   'star',
@@ -303,8 +317,9 @@ export const iconTypes: Array<IconType> = [
   'transitionTopIn',
   'transitionTopOut',
   'trash',
-  'unfold', // To be deprecated
   'undo',
+  'unarchive',
+  'unfold', // To be deprecated
   'upload',
   'user',
   'users',
@@ -322,5 +337,6 @@ export const iconTypes: Array<IconType> = [
   'wifiSlash',
   'wordWrap', // To be deprecated
   'wordWrapDisabled', // To be deprecated
+  'workflow',
   'wrench',
 ];

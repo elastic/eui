@@ -28,7 +28,7 @@ const EuiIconRedo = ({
     {...props}
   >
     {title ? <title id={titleId}>{title}</title> : null}
-    <path d="M10 6H5C3.057 6 2 7.057 2 9s1.057 3 3 3h1.5v-1H5c-1.39 0-2-.61-2-2 0-1.39.61-2 2-2h5v3l3.5-3.5L10 3v3Z" />
+    <path d="M4.5 6a2.5 2.5 0 0 0 0 5H10v1H4.5a3.5 3.5 0 1 1 0-7h8.793l-2.646-2.646.707-.708L15.207 5.5l-3.854 3.854-.707-.708L13.293 6H4.5Z" />
   </svg>
 );
 export const icon = EuiIconRedo;

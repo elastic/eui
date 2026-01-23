@@ -28,7 +28,7 @@ const EuiIconLineDot = ({
     {...props}
   >
     {title ? <title id={titleId}>{title}</title> : null}
-    <path d="M13.5 3a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zM11 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zM5.5 11a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zm-4 4a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z" />
+    <path d="M2 13a1 1 0 1 1 0 2 1 1 0 0 1 0-2Zm3-3a1 1 0 1 1 0 2 1 1 0 0 1 0-2Zm3-3a1 1 0 1 1 0 2 1 1 0 0 1 0-2Zm3-3a1 1 0 1 1 0 2 1 1 0 0 1 0-2Zm3-3a1 1 0 1 1 0 2 1 1 0 0 1 0-2Z" />
   </svg>
 );
 export const icon = EuiIconLineDot;

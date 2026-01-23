@@ -28,7 +28,12 @@ const EuiIconCommandLine = ({
     {...props}
   >
     {title ? <title id={titleId}>{title}</title> : null}
-    <path d="M1.157 12.224 5.768 8.32a.404.404 0 0 0 0-.64l-4.61-3.904a.407.407 0 0 1 0-.643.608.608 0 0 1 .759 0l4.61 3.904c.631.534.63 1.393 0 1.926l-4.61 3.904a.608.608 0 0 1-.76 0 .407.407 0 0 1 0-.643ZM9 12h6v1H9v-1Z" />
+    <path d="m6.707 9-2.853 2.854-.708-.707L5.293 9 3.146 6.854l.708-.708L6.707 9ZM13 11H8v-1h5v1Z" />
+    <path
+      fillRule="evenodd"
+      d="M14 2a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1h12ZM2 13h12V5H2v8Zm0-9h12V3H2v1Z"
+      clipRule="evenodd"
+    />
   </svg>
 );
 export const icon = EuiIconCommandLine;

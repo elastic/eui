@@ -30,10 +30,9 @@ const EuiIconDisplay = ({
     {title ? <title id={titleId}>{title}</title> : null}
     <path
       fillRule="evenodd"
-      d="M2 2a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h4l-1 3H3.5a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1H11l-1-3h4a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1H2zm0 8V3h12v7H2zm5 1h2l1 3H6l1-3z"
+      d="M14 2a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1h-4v2h2v1H4v-1h2v-2H2a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1h12Zm-7 9v2h2v-2H7Zm-5-1h12V9H2v1Zm0-2h12V3H2v5Z"
       clipRule="evenodd"
     />
-    <path d="M4.5 6a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1h-1zm3 0a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1h-1zm2.5.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5z" />
   </svg>
 );
 export const icon = EuiIconDisplay;

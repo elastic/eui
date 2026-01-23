@@ -28,8 +28,16 @@ const EuiIconProcessor = ({
     {...props}
   >
     {title ? <title id={titleId}>{title}</title> : null}
-    <path d="M4 3a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H4Zm10 8v1a2 2 0 0 1-2 2h-1v2h-1v-2H8.5v2h-1v-2H6v2H5v-2H4a2 2 0 0 1-2-2v-1H0v-1h2V8.5H0v-1h2V6H0V5h2V4a2 2 0 0 1 2-2h1V0h1v2h1.5V0h1v2H10V0h1v2h1a2 2 0 0 1 2 2v1h2v1h-2v1.5h2v1h-2V10h2v1h-2Z" />
-    <rect width={6} height={6} x={5} y={5} rx={1} />
+    <path
+      fillRule="evenodd"
+      d="M11 11H5V5h6v6Zm-5-1h4V6H6v4Z"
+      clipRule="evenodd"
+    />
+    <path
+      fillRule="evenodd"
+      d="M6 3h1.5V1h1v2H10V1h1v2h1a1 1 0 0 1 1 1v1h2v1h-2v1.5h2v1h-2V10h2v1h-2v1a1 1 0 0 1-1 1h-1v2h-1v-2H8.5v2h-1v-2H6v2H5v-2H4a1 1 0 0 1-1-1v-1H1v-1h2V8.5H1v-1h2V6H1V5h2V4a1 1 0 0 1 1-1h1V1h1v2Zm-2 9h8V4H4v8Z"
+      clipRule="evenodd"
+    />
   </svg>
 );
 export const icon = EuiIconProcessor;

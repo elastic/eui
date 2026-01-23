@@ -33,8 +33,6 @@ export {
   euiPaletteColorBlindBehindText,
   euiPaletteComplementary,
   euiPaletteCool,
-  euiPaletteForDarkBackground,
-  euiPaletteForLightBackground,
   euiPaletteForStatus,
   euiPaletteForTemperature,
   euiPaletteGray,

@@ -116,3 +116,4 @@ export const EuiPageSection: FunctionComponent<EuiPageSectionProps> = ({
     </Component>
   );
 };
+EuiPageSection.displayName = 'EuiPageSection';
