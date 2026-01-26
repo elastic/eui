@@ -237,12 +237,11 @@ To ensure CodeSandbox functions properly, verify that all references are resolva
 
 ````mdx
 ```mdx-code-block
+import icon from './icon.svg';
 import iconSource from '!raw-loader!./icon.svg';
 ```
 
-<Demo extraFiles={{
-  'icon.svg': iconSource,
-}}>
+<Demo scope={{ icon }} extraFiles={{ 'icon.svg': iconSource }}>
   ```tsx
   import { EuiImage } from '@elastic/eui';
   
@@ -256,6 +255,8 @@ import iconSource from '!raw-loader!./icon.svg';
   ```
 </Demo>
 ````
+
+`scope` and `extraFiles` serve different purposes. `scope` is used to inject variables into the snippet execution context while `extraFiles` is used to pass additional files to the CodeSandbox instance.
 
 ### Full-screen example
 
