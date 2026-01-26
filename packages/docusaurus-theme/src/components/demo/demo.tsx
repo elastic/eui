@@ -46,8 +46,21 @@ export interface DemoProps extends PropsWithChildren {
    */
   isSourceOpen?: boolean;
   /**
-   * Allows to extend the default scope of the rendered demo and pass additional
-   * properties available within the demo.
+   * Allows to pass additional variables available within the demo.
+   * The key is the variable name and the value is the variable itself (component, function, object, etc).
+   *
+   * @example
+   * ````mdx
+   * ```mdx-code-block
+   * import { MyComponent } from './my_component';
+   * ```
+   *
+   * <Demo scope={{ MyComponent }}>
+   *   ```tsx
+   *   export default () => <MyComponent />
+   *   ```
+   * </Demo>
+   * ````
    */
   scope?: Record<string, unknown>;
   /**
