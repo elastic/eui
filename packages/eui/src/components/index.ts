@@ -51,6 +51,8 @@ export * from './datagrid';
 
 export * from './date_picker';
 
+export * from './date_time_picker';
+
 export * from './delay_hide';
 export * from './delay_render';
 
