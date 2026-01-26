@@ -13,6 +13,7 @@ import {
   logicalShorthandCSS,
   logicalTextAlignCSS,
   euiFontSize,
+  euiLineHeightFromBaseline,
   _FontScaleOptions,
   mathWithUnits,
 } from '../../global_styling';
@@ -202,6 +203,8 @@ const euiScaleText = (
 
     code:not(.euiCode):not(.euiCodeBlock__code)  {
       font-size: .9em; /* 90% of parent font size */
+      /* Match text line heights - since code is 0.9em relative to parent 'm' scale, use 's' scale line-height */
+      line-height: ${euiLineHeightFromBaseline('s', euiTheme, options)};
     }
     ${highContrastModeStyles(euiThemeContext, {
       // For EuiCodeBlocks, set the margin on the wrapper instead of on the <pre>

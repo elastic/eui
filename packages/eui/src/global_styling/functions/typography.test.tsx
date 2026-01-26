@@ -70,9 +70,11 @@ describe('euiLineHeightFromBaseline', () => {
 
   describe('custom scale', () => {
     it('allows passing a custom modifier to the existing scale', () => {
+      // xxxs (0.5625) * s (0.875) = 0.4921875 → 16 * 0.4921875 = 7.875px ≈ 8px
+      // Closest match is 9px → 14px line height → 14/14 = 1.0000rem
       expect(
         euiLineHeightFromBaseline('xxxs', euiTheme, { customScale: 's' })
-      ).toEqual('0.8571rem');
+      ).toEqual('1.0000rem');
     });
   });
 
@@ -101,7 +103,7 @@ describe('euiLineHeightFromBaseline', () => {
         wrapper,
       }).result.current;
 
-      expect(euiLineHeightFromBaseline('m', modifiedEuiTheme)).toEqual('24px');
+      expect(euiLineHeightFromBaseline('m', modifiedEuiTheme)).toEqual('22px');
     });
   });
 });

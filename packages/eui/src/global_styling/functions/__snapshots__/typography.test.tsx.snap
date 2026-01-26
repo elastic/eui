@@ -22,24 +22,24 @@ exports[`euiFontSizeFromScale unit px 1`] = `"16px"`;
 
 exports[`euiFontSizeFromScale unit rem 1`] = `"1.1429rem"`;
 
-exports[`euiLineHeightFromBaseline scale l 1`] = `"1.7143rem"`;
+exports[`euiLineHeightFromBaseline scale l 1`] = `"1.8571rem"`;
 
-exports[`euiLineHeightFromBaseline scale m 1`] = `"1.7143rem"`;
+exports[`euiLineHeightFromBaseline scale m 1`] = `"1.5714rem"`;
 
 exports[`euiLineHeightFromBaseline scale s 1`] = `"1.4286rem"`;
 
-exports[`euiLineHeightFromBaseline scale xl 1`] = `"2.0000rem"`;
+exports[`euiLineHeightFromBaseline scale xl 1`] = `"2.1429rem"`;
 
-exports[`euiLineHeightFromBaseline scale xs 1`] = `"1.1429rem"`;
+exports[`euiLineHeightFromBaseline scale xs 1`] = `"1.2857rem"`;
 
 exports[`euiLineHeightFromBaseline scale xxl 1`] = `"2.5714rem"`;
 
-exports[`euiLineHeightFromBaseline scale xxs 1`] = `"1.1429rem"`;
+exports[`euiLineHeightFromBaseline scale xxs 1`] = `"1.2143rem"`;
 
-exports[`euiLineHeightFromBaseline scale xxxs 1`] = `"0.8571rem"`;
+exports[`euiLineHeightFromBaseline scale xxxs 1`] = `"1.0000rem"`;
 
-exports[`euiLineHeightFromBaseline unit em 1`] = `"1.5000"`;
+exports[`euiLineHeightFromBaseline unit em 1`] = `"1.3750"`;
 
-exports[`euiLineHeightFromBaseline unit px 1`] = `"24px"`;
+exports[`euiLineHeightFromBaseline unit px 1`] = `"22px"`;
 
-exports[`euiLineHeightFromBaseline unit rem 1`] = `"1.7143rem"`;
+exports[`euiLineHeightFromBaseline unit rem 1`] = `"1.5714rem"`;

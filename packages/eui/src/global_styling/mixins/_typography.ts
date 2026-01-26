@@ -11,6 +11,7 @@ import { css } from '@emotion/react';
 import {
   euiLineHeightFromBaseline,
   euiFontSizeFromScale,
+  euiLetterSpacingFromScale,
   _FontScaleOptions,
 } from '../functions/typography';
 import {
@@ -27,19 +28,22 @@ import { logicalCSS } from '../functions';
 export type EuiThemeFontSize = {
   fontSize: CSSProperties['fontSize'];
   lineHeight: CSSProperties['lineHeight'];
+  letterSpacing?: CSSProperties['letterSpacing'];
 };
 
 /**
- * Returns font-size and line-height
+ * Returns font-size, line-height, and letter-spacing (for larger scales)
  */
 export const euiFontSize = (
   { euiTheme }: UseEuiTheme,
   scale: _EuiThemeFontScale,
   options?: _FontScaleOptions
 ): EuiThemeFontSize => {
+  const letterSpacing = euiLetterSpacingFromScale(scale, euiTheme);
   return {
     fontSize: euiFontSizeFromScale(scale, euiTheme, options),
     lineHeight: euiLineHeightFromBaseline(scale, euiTheme, options),
+    ...(letterSpacing && { letterSpacing }),
   };
 };
 export const useEuiFontSize = (
