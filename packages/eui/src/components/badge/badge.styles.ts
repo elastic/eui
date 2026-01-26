@@ -6,11 +6,12 @@
  * Side Public License, v 1.
  */
 
-import { css } from '@emotion/react';
+import { css, SerializedStyles } from '@emotion/react';
 import {
   euiFontSize,
   euiFocusRing,
   euiTextTruncate,
+  highContrastModeStyles,
   logicalCSS,
   logicalShorthandCSS,
   logicalTextAlignCSS,
@@ -18,22 +19,33 @@ import {
 } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 import { euiBadgeColors } from './color_utils';
+import { type BadgeColor } from './badge';
 
 export const euiBadgeStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
   const badgeColors = euiBadgeColors(euiThemeContext);
+  const defaultBadgeColors = badgeColors.fill.default;
+
   const setBadgeColorVars = (
-    colors: ReturnType<typeof euiBadgeColors>['primary']
+    colors: ReturnType<typeof euiBadgeColors>['fill']['primary']
   ) => `
     --euiBadgeTextColor: ${colors.color};
     --euiBadgeBackgroundColor: ${colors.backgroundColor};
+    ${colors.border ? `--euiBadgeBorder: ${colors.border};` : ''}
   `;
+
+  const inlinePadding = mathWithUnits(
+    // Account for the (usually transparent) border so that the visual
+    // padding is of size s
+    [euiTheme.size.s, euiTheme.border.width.thin],
+    (size, borderWidth) => size - borderWidth
+  );
 
   return {
     euiBadge: css`
       display: inline-block;
       vertical-align: middle;
-      ${logicalShorthandCSS('padding', `0 ${euiTheme.size.s}`)}
+      ${logicalShorthandCSS('padding', `0 ${inlinePadding}`)}
       ${logicalCSS('max-width', '100%')}
       font-size: ${euiFontSize(euiThemeContext, 'xs').fontSize};
       line-height: ${mathWithUnits(
@@ -46,31 +58,33 @@ export const euiBadgeStyles = (euiThemeContext: UseEuiTheme) => {
       text-decoration: none;
       cursor: inherit;
       border: ${euiTheme.border.width.thin} solid transparent;
-      border-radius: ${mathWithUnits(
-        euiTheme.border.radius.medium,
-        (x) => x / 2
-      )};
+
+      /* border radius is intentionally larger to protect against external
+         customizations that might affect badge height */
+      border-radius: ${euiTheme.size.l};
+
       /* The badge will only ever be as wide as its content
          So, make the text left aligned to ensure all badges line up the same */
       ${logicalTextAlignCSS('left')}
 
       /* Colors - inherit from CSS variables, which can be set via inline style */
-      color: var(--euiBadgeTextColor, ${badgeColors.default.color});
+      color: var(--euiBadgeTextColor, ${defaultBadgeColors.color});
       background-color: var(
         --euiBadgeBackgroundColor,
-        ${badgeColors.default.backgroundColor}
+        ${defaultBadgeColors.backgroundColor}
       );
+
+      ${highContrastModeStyles(euiThemeContext, {
+        preferred: `border: var(--euiBadgeBorder, ${euiTheme.border.thin});`,
+      })}
 
       /* Ensure that selected text is always visible by inverting badge and text colors */
       *::selection {
         color: var(
           --euiBadgeBackgroundColor,
-          ${badgeColors.default.backgroundColor}
+          ${defaultBadgeColors.backgroundColor}
         );
-        background-color: var(
-          --euiBadgeTextColor,
-          ${badgeColors.default.color}
-        );
+        background-color: var(--euiBadgeTextColor, ${defaultBadgeColors.color});
       }
 
       &:focus-within {
@@ -80,6 +94,13 @@ export const euiBadgeStyles = (euiThemeContext: UseEuiTheme) => {
       & + .euiBadge {
         ${logicalCSS('margin-left', euiTheme.size.xs)}
       }
+    `,
+    iconOnly: css`
+      padding-inline: ${mathWithUnits(
+        // Account for the border
+        [euiTheme.size.xs, euiTheme.border.width.thin],
+        (size, borderWidth) => size - borderWidth
+      )};
     `,
     clickable: css`
       &:not(:disabled) {
@@ -98,22 +119,43 @@ export const euiBadgeStyles = (euiThemeContext: UseEuiTheme) => {
       }
     `,
 
-    // Colors
-    default: css`
-      ${setBadgeColorVars(badgeColors.default)}
-      border-color: ${badgeColors.default.borderColor};
-    `,
-    hollow: css`
-      ${setBadgeColorVars(badgeColors.hollow)}
-      border-color: ${badgeColors.hollow.borderColor};
-    `,
-    primary: css(setBadgeColorVars(badgeColors.primary)),
-    accent: css(setBadgeColorVars(badgeColors.accent)),
-    neutral: css(setBadgeColorVars(badgeColors.neutral)),
-    success: css(setBadgeColorVars(badgeColors.success)),
-    warning: css(setBadgeColorVars(badgeColors.warning)),
-    risk: css(setBadgeColorVars(badgeColors.risk)),
-    danger: css(setBadgeColorVars(badgeColors.danger)),
+    colors: {
+      fill: {
+        default: css`
+          ${setBadgeColorVars(badgeColors.fill.default)}
+          border-color: ${badgeColors.fill.default.borderColor};
+        `,
+        hollow: css`
+          ${setBadgeColorVars(badgeColors.hollow)}
+          border-color: ${badgeColors.hollow.borderColor};
+        `,
+        primary: css(setBadgeColorVars(badgeColors.fill.primary)),
+        accent: css(setBadgeColorVars(badgeColors.fill.accent)),
+        neutral: css(setBadgeColorVars(badgeColors.fill.neutral)),
+        success: css(setBadgeColorVars(badgeColors.fill.success)),
+        warning: css(setBadgeColorVars(badgeColors.fill.warning)),
+        risk: css(setBadgeColorVars(badgeColors.fill.risk)),
+        danger: css(setBadgeColorVars(badgeColors.fill.danger)),
+      },
+      base: {
+        default: css`
+          ${setBadgeColorVars(badgeColors.base.default)}
+          border-color: ${badgeColors.base.default.borderColor};
+        `,
+        hollow: css`
+          ${setBadgeColorVars(badgeColors.hollow)}
+          border-color: ${badgeColors.hollow.borderColor};
+        `,
+        primary: css(setBadgeColorVars(badgeColors.base.primary)),
+        accent: css(setBadgeColorVars(badgeColors.base.accent)),
+        neutral: css(setBadgeColorVars(badgeColors.base.neutral)),
+        success: css(setBadgeColorVars(badgeColors.base.success)),
+        warning: css(setBadgeColorVars(badgeColors.base.warning)),
+        risk: css(setBadgeColorVars(badgeColors.base.risk)),
+        danger: css(setBadgeColorVars(badgeColors.base.danger)),
+      },
+    } satisfies Record<string, Record<BadgeColor, SerializedStyles>>,
+
     disabled: css`
       ${setBadgeColorVars(badgeColors.disabled)}
       border-color: ${badgeColors.disabled.borderColor};
@@ -143,6 +185,7 @@ export const euiBadgeStyles = (euiThemeContext: UseEuiTheme) => {
     text: {
       euiBadge__text: css`
         ${euiTextTruncate()}
+        padding-inline: ${euiTheme.size.xxs};
         cursor: inherit;
       `,
       clickable: css`
@@ -155,12 +198,12 @@ export const euiBadgeStyles = (euiThemeContext: UseEuiTheme) => {
       euiBadge__icon: css``,
       right: css`
         &:not(:only-child) {
-          ${logicalCSS('margin-left', euiTheme.size.xs)}
+          ${logicalCSS('margin-left', euiTheme.size.xxs)}
         }
       `,
       left: css`
         &:not(:only-child) {
-          ${logicalCSS('margin-right', euiTheme.size.xs)}
+          ${logicalCSS('margin-right', euiTheme.size.xxs)}
         }
       `,
     },
@@ -180,10 +223,10 @@ export const euiBadgeStyles = (euiThemeContext: UseEuiTheme) => {
         }
       `,
       right: css`
-        ${logicalCSS('margin-left', euiTheme.size.xs)}
+        ${logicalCSS('margin-left', euiTheme.size.xxs)}
       `,
       left: css`
-        ${logicalCSS('margin-right', euiTheme.size.xs)}
+        ${logicalCSS('margin-right', euiTheme.size.xxs)}
       `,
     },
 
