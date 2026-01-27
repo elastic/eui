@@ -14,7 +14,7 @@ interface SVGRProps {
   title?: string;
   titleId?: string;
 }
-const EuiIconFolder = ({
+const EuiIconFolderClose = ({
   title,
   titleId,
   ...props
@@ -28,11 +28,7 @@ const EuiIconFolder = ({
     {...props}
   >
     {title ? <title id={titleId}>{title}</title> : null}
-    <path
-      fillRule="evenodd"
-      d="M1 3a1 1 0 0 1 1-1h4.191a1 1 0 0 1 .894.553L7.81 4H14a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V3Zm5.191 0H2v10h12V5H7.191l-1-2Z"
-      clipRule="evenodd"
-    />
+    <path d="M1 13V3a1 1 0 0 1 1-1h4.191a1 1 0 0 1 .894.553L7.809 4H14a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1Zm1 0h12V5H7.191l-.138-.276L6.19 3H2v10Z" />
   </svg>
 );
-export const icon = EuiIconFolder;
+export const icon = EuiIconFolderClose;

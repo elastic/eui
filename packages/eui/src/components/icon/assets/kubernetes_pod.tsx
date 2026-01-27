@@ -23,17 +23,12 @@ const EuiIconKubernetesPod = ({
     xmlns="http://www.w3.org/2000/svg"
     width={16}
     height={16}
-    fill="none"
     viewBox="0 0 16 16"
     aria-labelledby={titleId}
     {...props}
   >
     {title ? <title id={titleId}>{title}</title> : null}
-    <path
-      fillRule="evenodd"
-      d="M14 5.151v6.269l-5.5 3.142V8.29L14 5.151zm-.508-.861L8 1.152 2.508 4.29 8 7.424l5.492-3.134zM2 5.151l5.5 3.14v6.272L2 11.42V5.15zM15 12l-7 4-7-4V4l7-4 7 4v8z"
-      clipRule="evenodd"
-    />
+    <path d="m2.5 11.213 5 2.916V8.286l-5-2.916v5.843Zm6-2.927v5.843l5-2.916V5.37l-5 2.916ZM2.991 4.5 8 7.42l5.008-2.92L8 1.578 2.991 4.5Zm11.509 7a.5.5 0 0 1-.248.432L8.5 15.286v.214h-1v-.214l-5.752-3.354A.5.5 0 0 1 1.5 11.5v-7a.5.5 0 0 1 .248-.432l6-3.5a.5.5 0 0 1 .504 0l6 3.5a.5.5 0 0 1 .248.432v7Z" />
   </svg>
 );
 export const icon = EuiIconKubernetesPod;

@@ -28,8 +28,13 @@ const EuiIconIndexRuntime = ({
     {...props}
   >
     {title ? <title id={titleId}>{title}</title> : null}
-    <path d="M12 2H2v11h6v1H1V1h12v6.839l-1-.707V2z" />
-    <path d="M8 11v-1H5v1h3zm0-3.055c0-.342.082-.664.23-.945H5v1h3v-.055zM5 5h5.999V4H5v1zM3 4v1h1V4H3zm0 3v1h1V7H3zm0 3v1h1v-1H3zm11.607.2-4.32-3.055C9.727 6.75 9 7.204 9 7.945v6.108c0 .74.726 1.196 1.287.8l4.32-3.055c.524-.37.524-1.228 0-1.598z" />
+    <path d="M3 6h2v1H3V6Zm3 0h2v1H6V6Zm3 0h4v1H9V6ZM3 9h2v1H3V9Zm3 0h2v1H6V9Zm-3 3h2v1H3v-1Zm3 0h2v1H6v-1Z" />
+    <path
+      fillRule="evenodd"
+      d="M14 1a1 1 0 0 1 1 1v7.264l-1-.5V5H2v9h6v1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12ZM2 4h12V2H2v2Z"
+      clipRule="evenodd"
+    />
+    <path d="M9.475 8.15a1 1 0 0 1 .972-.045l5 2.5a1 1 0 0 1 .126 1.714l-5 3.5A1 1 0 0 1 9 15V9a1 1 0 0 1 .475-.85ZM10 15l5-3.5L10 9v6Z" />
   </svg>
 );
 export const icon = EuiIconIndexRuntime;

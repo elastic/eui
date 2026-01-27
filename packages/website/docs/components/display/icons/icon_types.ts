@@ -126,8 +126,8 @@ export const iconTypes: Array<IconType> = [
   'flag',
   'flask',
   'fold', // To be deprecated
-  'folder',
-  'folderClosed', // To be deprecated
+  'folderOpen',
+  'folderClose', 
   'folderExclamation', // To be deprecated
   'frameNext', // To be deprecated
   'framePrevious', // To be deprecated
