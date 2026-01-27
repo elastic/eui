@@ -5110,6 +5110,23 @@ exports[`EuiIcon props type folderCheck is rendered 1`] = `
 </svg>
 `;
 
+exports[`EuiIcon props type folderClose is rendered 1`] = `
+<svg
+  class="euiIcon emotion-euiIcon-m-isLoaded"
+  data-icon-type="folderClose"
+  data-is-loaded="true"
+  height="16"
+  role="presentation"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M1 13V3a1 1 0 0 1 1-1h4.191a1 1 0 0 1 .894.553L7.809 4H14a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1Zm1 0h12V5H7.191l-.138-.276L6.19 3H2v10Z"
+  />
+</svg>
+`;
+
 exports[`EuiIcon props type folderClosed is rendered 1`] = `
 <svg
   class="euiIcon emotion-euiIcon-m-isLoaded"
@@ -5122,7 +5139,7 @@ exports[`EuiIcon props type folderClosed is rendered 1`] = `
   xmlns="http://www.w3.org/2000/svg"
 >
   <path
-    d="M7 2H2v11h12V4H8.125A1.125 1.125 0 0 1 7 2.875V2zm.25-1a.75.75 0 0 1 .75.75v1.125c0 .069.056.125.125.125H14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.25z"
+    d="M1 13V3a1 1 0 0 1 1-1h4.191a1 1 0 0 1 .894.553L7.809 4H14a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1Zm1 0h12V5H7.191l-.138-.276L6.19 3H2v10Z"
   />
 </svg>
 `;
@@ -5157,7 +5174,30 @@ exports[`EuiIcon props type folderOpen is rendered 1`] = `
   xmlns="http://www.w3.org/2000/svg"
 >
   <path
-    d="M1 13V3a1 1 0 0 1 1-1h4.191a1 1 0 0 1 .894.553L7.809 4H14a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1Zm1 0h12V5H7.191l-.138-.276L6.19 3H2v10Z"
+    d="M5.191 2a1 1 0 0 1 .894.553L6.809 4H13a1 1 0 0 1 1 1v1.5h-1V5H6.191l-.138-.276L5.19 3H1v8.751l-.317 1.111a.5.5 0 0 0 .48.638h11.96a.5.5 0 0 0 .48-.362L14 11.75V13a1 1 0 0 1-1 1H1a1 1 0 0 1-.995-.898L0 13V3a1 1 0 0 1 1-1h4.191Z"
+  />
+  <path
+    d="M14.837 6a1 1 0 0 1 .962 1.274l-1.715 6a1 1 0 0 1-.961.726H1.163a1 1 0 0 1-.962-1.274l1.715-6A1 1 0 0 1 2.877 6h11.96ZM1.163 13h11.96l1.714-6H2.877l-1.714 6Z"
+  />
+</svg>
+`;
+
+exports[`EuiIcon props type folderOpened is rendered 1`] = `
+<svg
+  class="euiIcon emotion-euiIcon-m-isLoaded"
+  data-icon-type="folderOpened"
+  data-is-loaded="true"
+  height="16"
+  role="presentation"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M5.191 2a1 1 0 0 1 .894.553L6.809 4H13a1 1 0 0 1 1 1v1.5h-1V5H6.191l-.138-.276L5.19 3H1v8.751l-.317 1.111a.5.5 0 0 0 .48.638h11.96a.5.5 0 0 0 .48-.362L14 11.75V13a1 1 0 0 1-1 1H1a1 1 0 0 1-.995-.898L0 13V3a1 1 0 0 1 1-1h4.191Z"
+  />
+  <path
+    d="M14.837 6a1 1 0 0 1 .962 1.274l-1.715 6a1 1 0 0 1-.961.726H1.163a1 1 0 0 1-.962-1.274l1.715-6A1 1 0 0 1 2.877 6h11.96ZM1.163 13h11.96l1.714-6H2.877l-1.714 6Z"
   />
 </svg>
 `;
