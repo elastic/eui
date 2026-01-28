@@ -127,7 +127,12 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
     // Side
     right: css`
       clip-path: polygon(-50% 0, 100% 0, 100% 100%, -50% 100%);
-      ${logicalCSS('right', 0)}
+      /**
+       * Use CSS variable --eui-flyout-offset to allow consumers to declare
+       * viewport constraints (e.g., sidebar width) that affect flyout positioning.
+       * Defaults to 0 when not set, positioning flyout at the viewport edge.
+       */
+      ${logicalCSS('right', 'var(--eui-flyout-offset, 0)')}
 
       /*
         Jump animation states immediately unless
