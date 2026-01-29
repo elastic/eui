@@ -122,7 +122,7 @@ const meta: Meta<FlyoutChildStoryArgs> = {
     flyoutOffset: {
       control: { type: 'number' },
       description:
-        'Simulates a sidebar offset by setting the --eui-flyout-offset CSS variable. Use 300 to test with a 300px sidebar.',
+        'Simulates a sidebar offset by setting the --euiFlyoutOffsetInlineEnd CSS variable. Use 300 to test with a 300px sidebar.',
     },
     // use "mainSize" and "childSize" instead
     size: { table: { disable: true } },
@@ -211,9 +211,9 @@ const StatefulFlyout: React.FC<FlyoutChildStoryArgs> = ({
     flyoutOffset && flyoutOffset > 0 ? `${flyoutOffset}px` : null;
 
   useEffect(() => {
-    setGlobalCSSVariables({ '--eui-flyout-offset': offsetValue });
+    setGlobalCSSVariables({ '--euiFlyoutOffsetInlineEnd': offsetValue });
     return () => {
-      setGlobalCSSVariables({ '--eui-flyout-offset': null });
+      setGlobalCSSVariables({ '--euiFlyoutOffsetInlineEnd': null });
     };
   }, [offsetValue, setGlobalCSSVariables]);
 

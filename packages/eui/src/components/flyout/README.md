@@ -57,12 +57,12 @@ The developer README for the managed flyouts lives in the [`manager` subdirector
 
 ## CSS API
 
-### `--eui-flyout-offset`
+### `--euiFlyoutOffsetInlineEnd`
 
-EUI exposes the `--eui-flyout-offset` CSS variable as a public API to allow consumers to declare viewport constraints (e.g., sidebar width) that affect flyout positioning.
+EUI exposes the `--euiFlyoutOffsetInlineEnd` CSS variable as a public API to allow consumers to declare viewport constraints (e.g., sidebar width) that affect flyout positioning.
 
 **How it works:**
-- Consumers set the variable at `:root` level: `--eui-flyout-offset: 300px`
+- Consumers set the variable at `:root` level: `--euiFlyoutOffsetInlineEnd: 300px`
 - Layout mode logic accounts for the offset when calculating effective viewport width
 
 This provides a declarative, natural API for positioning both parent and child flyouts consistently when viewport constraints exist.

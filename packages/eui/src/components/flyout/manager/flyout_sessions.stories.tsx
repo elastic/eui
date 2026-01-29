@@ -50,7 +50,7 @@ const meta: Meta<FlyoutSessionStoryArgs> = {
     flyoutOffset: {
       control: { type: 'number' },
       description:
-        'Simulates a sidebar offset by setting the --eui-flyout-offset CSS variable. Use 300 to test with a 300px sidebar.',
+        'Simulates a sidebar offset by setting the --euiFlyoutOffsetInlineEnd CSS variable. Use 300 to test with a 300px sidebar.',
     },
   },
   args: {
@@ -374,9 +374,9 @@ const MultiSessionFlyoutDemo: React.FC<{ flyoutOffset?: number }> = ({
     flyoutOffset && flyoutOffset > 0 ? `${flyoutOffset}px` : null;
 
   useEffect(() => {
-    setGlobalCSSVariables({ '--eui-flyout-offset': offsetValue });
+    setGlobalCSSVariables({ '--euiFlyoutOffsetInlineEnd': offsetValue });
     return () => {
-      setGlobalCSSVariables({ '--eui-flyout-offset': null });
+      setGlobalCSSVariables({ '--euiFlyoutOffsetInlineEnd': null });
     };
   }, [offsetValue, setGlobalCSSVariables]);
 
@@ -694,9 +694,9 @@ const MultiRootFlyoutDemo: React.FC<{ flyoutOffset?: number }> = ({
     flyoutOffset && flyoutOffset > 0 ? `${flyoutOffset}px` : null;
 
   useEffect(() => {
-    setGlobalCSSVariables({ '--eui-flyout-offset': offsetValue });
+    setGlobalCSSVariables({ '--euiFlyoutOffsetInlineEnd': offsetValue });
     return () => {
-      setGlobalCSSVariables({ '--eui-flyout-offset': null });
+      setGlobalCSSVariables({ '--euiFlyoutOffsetInlineEnd': null });
     };
   }, [offsetValue, setGlobalCSSVariables]);
 

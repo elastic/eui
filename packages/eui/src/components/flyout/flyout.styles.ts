@@ -128,11 +128,11 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
     right: css`
       clip-path: polygon(-50% 0, 100% 0, 100% 100%, -50% 100%);
       /**
-       * Use CSS variable --eui-flyout-offset to allow consumers to declare
+       * Use CSS variable --euiFlyoutOffsetInlineEnd to allow consumers to declare
        * viewport constraints (e.g., sidebar width) that affect flyout positioning.
        * Defaults to 0 when not set, positioning flyout at the viewport edge.
        */
-      ${logicalCSS('right', 'var(--eui-flyout-offset, 0)')}
+      ${logicalCSS('right', 'var(--euiFlyoutOffsetInlineEnd, 0)')}
 
       /*
         Jump animation states immediately unless
@@ -226,7 +226,7 @@ export const maxedFlyoutWidth = (euiThemeContext: UseEuiTheme) => `
   ${euiMaxBreakpoint(euiThemeContext, FLYOUT_BREAKPOINT)} {
     ${logicalCSS(
       'max-width',
-      'calc(90vw - 0.9 * var(--eui-flyout-offset, 0px)) !important'
+      'calc(90vw - 0.9 * var(--euiFlyoutOffsetInlineEnd, 0px)) !important'
     )}
   }
 `;
@@ -242,29 +242,29 @@ export const composeFlyoutSizing = (
   const flyoutSizes = {
     s: {
       min: `${Math.round(euiTheme.breakpoint.m * 0.5)}px`, // 1.
-      width: 'calc(25vw - 0.25 * var(--eui-flyout-offset, 0px))',
+      width: 'calc(25vw - 0.25 * var(--euiFlyoutOffsetInlineEnd, 0px))',
       max: `${Math.round(euiTheme.breakpoint.s * 0.7)}px`,
     },
 
     m: {
       // Calculated for forms plus padding
       min: `${mathWithUnits(formMaxWidth, (x) => x + 24)}`,
-      width: 'calc(50vw - 0.5 * var(--eui-flyout-offset, 0px))',
+      width: 'calc(50vw - 0.5 * var(--euiFlyoutOffsetInlineEnd, 0px))',
       max: `${euiTheme.breakpoint.m}px`,
     },
 
     l: {
       min: `${Math.round(euiTheme.breakpoint.m * 0.9)}px`, // 1.
-      width: 'calc(75vw - 0.75 * var(--eui-flyout-offset, 0px))',
+      width: 'calc(75vw - 0.75 * var(--euiFlyoutOffsetInlineEnd, 0px))',
       max: `${euiTheme.breakpoint.l}px`,
     },
 
     // NOTE: These styles are for the flyout system in `stacked` layout mode.
     // In `side-by-side` mode, @flyout.component.tsx uses inline styles.
     fill: {
-      min: 'calc(90vw - 0.9 * var(--eui-flyout-offset, 0px))',
-      width: 'calc(90vw - 0.9 * var(--eui-flyout-offset, 0px))',
-      max: 'calc(90vw - 0.9 * var(--eui-flyout-offset, 0px))',
+      min: 'calc(90vw - 0.9 * var(--euiFlyoutOffsetInlineEnd, 0px))',
+      width: 'calc(90vw - 0.9 * var(--euiFlyoutOffsetInlineEnd, 0px))',
+      max: 'calc(90vw - 0.9 * var(--euiFlyoutOffsetInlineEnd, 0px))',
     },
   };
 
@@ -355,7 +355,7 @@ const composeMaxWidthOverrides = (
     if (maxWidth) {
       const maxWidthWithUnits =
         typeof maxWidth === 'number' ? `${maxWidth}px` : maxWidth;
-      overrides.minWidth = `min(${maxWidthWithUnits}, calc(90vw - 0.9 * var(--eui-flyout-offset, 0px)))`;
+      overrides.minWidth = `min(${maxWidthWithUnits}, calc(90vw - 0.9 * var(--euiFlyoutOffsetInlineEnd, 0px)))`;
     }
   }
 
@@ -387,7 +387,7 @@ export const composeFlyoutInlineStyles = (
     siblingFlyoutId &&
     siblingFlyoutWidth
       ? logicalStyles({
-          width: `calc((90vw - 0.9 * var(--eui-flyout-offset, 0px)) - ${siblingFlyoutWidth}px)`,
+          width: `calc((90vw - 0.9 * var(--euiFlyoutOffsetInlineEnd, 0px)) - ${siblingFlyoutWidth}px)`,
           minWidth: '0',
         })
       : {};

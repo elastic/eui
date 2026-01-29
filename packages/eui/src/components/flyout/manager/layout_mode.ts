@@ -46,7 +46,7 @@ export const useApplyFlyoutLayoutMode = () => {
 
   // Get the flyout offset from CSS variable to account for viewport constraints (e.g., sidebar)
   const flyoutOffset = useMemo(() => {
-    const offsetValue = globalCSSVariables?.['--eui-flyout-offset'];
+    const offsetValue = globalCSSVariables?.['--euiFlyoutOffsetInlineEnd'];
     if (!offsetValue) return 0;
     const offset = parseInt(String(offsetValue), 10);
     return isNaN(offset) ? 0 : offset;
