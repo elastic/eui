@@ -12,22 +12,6 @@ import React from 'react';
 import type { Preview } from '@storybook/react';
 import { MINIMAL_VIEWPORTS } from '@storybook/addon-viewport';
 
-/*
- * Preload all EuiIcons - Storybook does not support dynamic icon loading
- * TODO: https://github.com/elastic/eui/issues/5463
- */
-import { typeToPathMap } from '../src/components/icon/icon_map';
-import { appendIconComponentCache } from '../src/components/icon/icon';
-
-const iconCache: Record<string, React.FC> = {};
-
-Object.entries(typeToPathMap).forEach(async ([iconType, iconFileName]) => {
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
-  const iconExport = require(`../src/components/icon/assets/${iconFileName}`);
-  iconCache[iconType] = iconExport.icon;
-});
-appendIconComponentCache(iconCache);
-
 /**
  * Ensure that any provider errors throw & warn us early
  */
