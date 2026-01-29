@@ -67,7 +67,9 @@ export const EuiFlyoutChild = forwardRef<HTMLElement, EuiFlyoutChildProps>(
     if (mainWidth && layoutMode === LAYOUT_MODE_SIDE_BY_SIDE) {
       // Include --euiFlyoutOffsetInlineEnd CSS variable to account for viewport constraints (e.g., sidebar)
       // This positions the child flyout at: mainWidth + offsetVariable
-      style = { [side]: `calc(${mainWidth}px + var(--euiFlyoutOffsetInlineEnd, 0px))` };
+      style = {
+        [side]: `calc(${mainWidth}px + var(--euiFlyoutOffsetInlineEnd, 0px))`,
+      };
     } else if (layoutMode === LAYOUT_MODE_STACKED) {
       style = { zIndex: Number(euiTheme.levels.flyout) + 2 };
     }

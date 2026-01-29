@@ -10,10 +10,7 @@ import { actions } from '@storybook/addon-actions';
 import type { Meta, StoryObj } from '@storybook/react';
 import React, { useEffect, useState } from 'react';
 
-import {
-  EuiBreakpointSize,
-  useEuiThemeCSSVariables,
-} from '../../../services';
+import { EuiBreakpointSize, useEuiThemeCSSVariables } from '../../../services';
 import { EuiButton } from '../../button';
 import { EuiSpacer } from '../../spacer';
 import { EuiText } from '../../text';
