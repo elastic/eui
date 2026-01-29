@@ -17,8 +17,8 @@ import React, {
 } from 'react';
 import type { Root } from 'react-dom/client';
 import { createRoot } from 'react-dom/client';
-import { Global, css } from '@emotion/react';
 
+import { useEuiThemeCSSVariables } from '../../../services';
 import {
   EuiButton,
   EuiCode,
@@ -368,8 +368,17 @@ const NonSessionFlyout: React.FC<{ size: string }> = ({ size }) => {
 const MultiSessionFlyoutDemo: React.FC<{ flyoutOffset?: number }> = ({
   flyoutOffset,
 }) => {
+  const { setGlobalCSSVariables } = useEuiThemeCSSVariables();
+
   const offsetValue =
-    flyoutOffset && flyoutOffset > 0 ? `${flyoutOffset}px` : '0px';
+    flyoutOffset && flyoutOffset > 0 ? `${flyoutOffset}px` : null;
+
+  useEffect(() => {
+    setGlobalCSSVariables({ '--eui-flyout-offset': offsetValue });
+    return () => {
+      setGlobalCSSVariables({ '--eui-flyout-offset': null });
+    };
+  }, [offsetValue, setGlobalCSSVariables]);
 
   const listItems = [
     {
@@ -470,13 +479,6 @@ const MultiSessionFlyoutDemo: React.FC<{ flyoutOffset?: number }> = ({
 
   return (
     <>
-      <Global
-        styles={css`
-          :root {
-            --eui-flyout-offset: ${offsetValue};
-          }
-        `}
-      />
       <EuiDescriptionList
         type="column"
         columnGutterSize="s"
@@ -686,8 +688,17 @@ const ExternalRootFlyout: React.FC<{ id: string }> = ({ id }) => {
 const MultiRootFlyoutDemo: React.FC<{ flyoutOffset?: number }> = ({
   flyoutOffset,
 }) => {
+  const { setGlobalCSSVariables } = useEuiThemeCSSVariables();
+
   const offsetValue =
-    flyoutOffset && flyoutOffset > 0 ? `${flyoutOffset}px` : '0px';
+    flyoutOffset && flyoutOffset > 0 ? `${flyoutOffset}px` : null;
+
+  useEffect(() => {
+    setGlobalCSSVariables({ '--eui-flyout-offset': offsetValue });
+    return () => {
+      setGlobalCSSVariables({ '--eui-flyout-offset': null });
+    };
+  }, [offsetValue, setGlobalCSSVariables]);
 
   const secondaryRootRef = useRef<HTMLDivElement | null>(null);
   const tertiaryRootRef = useRef<HTMLDivElement | null>(null);
@@ -723,13 +734,6 @@ const MultiRootFlyoutDemo: React.FC<{ flyoutOffset?: number }> = ({
 
   return (
     <>
-      <Global
-        styles={css`
-          :root {
-            --eui-flyout-offset: ${offsetValue};
-          }
-        `}
-      />
       <EuiTitle size="s">
         <h3>Multiple React roots</h3>
       </EuiTitle>

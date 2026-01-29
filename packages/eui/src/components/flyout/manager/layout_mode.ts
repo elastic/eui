@@ -7,7 +7,7 @@
  */
 
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { useEuiTheme } from '../../../services';
+import { useEuiTheme, useEuiThemeCSSVariables } from '../../../services';
 import { setLayoutMode } from './actions';
 import {
   useCurrentChildFlyout,
@@ -26,6 +26,7 @@ import { EuiFlyoutLayoutMode } from './types';
  */
 export const useApplyFlyoutLayoutMode = () => {
   const { euiTheme } = useEuiTheme();
+  const { globalCSSVariables } = useEuiThemeCSSVariables();
   const context = useFlyoutManager();
 
   const currentSession = useCurrentSession();
@@ -44,16 +45,12 @@ export const useApplyFlyoutLayoutMode = () => {
   );
 
   // Get the flyout offset from CSS variable to account for viewport constraints (e.g., sidebar)
-  const flyoutOffset =
-    typeof window !== 'undefined'
-      ? (() => {
-          const offsetValue = getComputedStyle(document.documentElement)
-            .getPropertyValue('--eui-flyout-offset')
-            .trim();
-          const offset = offsetValue ? parseInt(offsetValue, 10) : 0;
-          return isNaN(offset) ? 0 : offset;
-        })()
-      : 0;
+  const flyoutOffset = useMemo(() => {
+    const offsetValue = globalCSSVariables?.['--eui-flyout-offset'];
+    if (!offsetValue) return 0;
+    const offset = parseInt(String(offsetValue), 10);
+    return isNaN(offset) ? 0 : offset;
+  }, [globalCSSVariables]);
 
   // Calculate effective viewport width (accounting for sidebar offset)
   const effectiveViewportWidth = windowWidth - flyoutOffset;

@@ -8,10 +8,12 @@
 
 import { actions } from '@storybook/addon-actions';
 import type { Meta, StoryObj } from '@storybook/react';
-import React, { useState } from 'react';
-import { Global, css } from '@emotion/react';
+import React, { useEffect, useState } from 'react';
 
-import { EuiBreakpointSize } from '../../../services';
+import {
+  EuiBreakpointSize,
+  useEuiThemeCSSVariables,
+} from '../../../services';
 import { EuiButton } from '../../button';
 import { EuiSpacer } from '../../spacer';
 import { EuiText } from '../../text';
@@ -203,19 +205,20 @@ const StatefulFlyout: React.FC<FlyoutChildStoryArgs> = ({
   };
 
   const layoutMode = useFlyoutLayoutMode();
+  const { setGlobalCSSVariables } = useEuiThemeCSSVariables();
 
   const offsetValue =
-    flyoutOffset && flyoutOffset > 0 ? `${flyoutOffset}px` : '0px';
+    flyoutOffset && flyoutOffset > 0 ? `${flyoutOffset}px` : null;
+
+  useEffect(() => {
+    setGlobalCSSVariables({ '--eui-flyout-offset': offsetValue });
+    return () => {
+      setGlobalCSSVariables({ '--eui-flyout-offset': null });
+    };
+  }, [offsetValue, setGlobalCSSVariables]);
 
   return (
     <>
-      <Global
-        styles={css`
-          :root {
-            --eui-flyout-offset: ${offsetValue};
-          }
-        `}
-      />
       <EuiText>
         <p>
           This is the main page content. Watch how it behaves when the flyout
