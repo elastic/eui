@@ -43,6 +43,40 @@ export const useApplyFlyoutLayoutMode = () => {
     typeof window !== 'undefined' ? window.innerWidth : Infinity
   );
 
+  // Get the flyout offset from CSS variable to account for viewport constraints (e.g., sidebar)
+  const [flyoutOffset, setFlyoutOffset] = useState(0);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') {
+      return;
+    }
+
+    const updateFlyoutOffset = () => {
+      const offsetValue = getComputedStyle(document.documentElement)
+        .getPropertyValue('--eui-flyout-offset')
+        .trim();
+      const offset = offsetValue ? parseInt(offsetValue, 10) : 0;
+      setFlyoutOffset(isNaN(offset) ? 0 : offset);
+    };
+
+    // Initial read
+    updateFlyoutOffset();
+
+    // Watch for changes to the CSS variable
+    const observer = new MutationObserver(updateFlyoutOffset);
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['style'],
+    });
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
+  // Calculate effective viewport width (accounting for sidebar offset)
+  const effectiveViewportWidth = windowWidth - flyoutOffset;
+
   // Extract specific context values
   const dispatch = context?.dispatch;
   const currentLayoutMode = context?.state?.layoutMode;
@@ -91,12 +125,12 @@ export const useApplyFlyoutLayoutMode = () => {
     const THRESHOLD_TO_SIDE_BY_SIDE = 85;
     const THRESHOLD_TO_STACKED = 95;
 
-    // If the window is too small, set the mode to stacked.
-    //
+    // If the effective viewport is too small, set the mode to stacked.
     // The value is based on the maximum width of a flyout in
     // `composeFlyoutSizing` in `flyout.styles.ts` multiplied
     // by 2 (open flyouts side-by-side).
-    if (windowWidth < Math.round(euiTheme.breakpoint.s * 1.4)) {
+    // Use effectiveViewportWidth to account for sidebar offset.
+    if (effectiveViewportWidth < Math.round(euiTheme.breakpoint.s * 1.4)) {
       return LAYOUT_MODE_STACKED;
     }
 
@@ -104,15 +138,35 @@ export const useApplyFlyoutLayoutMode = () => {
       return LAYOUT_MODE_SIDE_BY_SIDE;
     }
 
-    let parentWidthValue = parentWidth;
-    let childWidthValue = childWidth;
+    // IMPORTANT: Calculate widths based on size configuration rather than measured widths.
+    // This avoids a circular dependency where:
+    // - Measured widths depend on current layout mode (flyouts may be wider in stacked mode)
+    // - Layout mode decisions depend on width calculations
+    // - Result: Can get stuck in stacked mode even when viewport increases
+    //
+    // By calculating from size first, we get deterministic widths independent of layout mode.
+    // Note: Use full windowWidth for size calculation (matches CSS vw units),
+    // but use effectiveViewportWidth for fit percentage calculation.
+    let parentWidthValue = 0;
+    let childWidthValue = 0;
 
-    if (!parentWidthValue && parentFlyout?.size) {
-      parentWidthValue = getWidthFromSize(parentFlyout.size);
+    if (parentFlyout?.size) {
+      // Use windowWidth to match CSS vw-based sizing
+      parentWidthValue = getWidthFromSize(parentFlyout.size, windowWidth);
     }
 
-    if (!childWidthValue && childFlyout?.size) {
-      childWidthValue = getWidthFromSize(childFlyout.size);
+    if (childFlyout?.size) {
+      // Use windowWidth to match CSS vw-based sizing
+      childWidthValue = getWidthFromSize(childFlyout.size, windowWidth);
+    }
+
+    // Fall back to measured widths only if size is not available (rare edge case)
+    if (!parentWidthValue && parentWidth) {
+      parentWidthValue = parentWidth;
+    }
+
+    if (!childWidthValue && childWidth) {
+      childWidthValue = childWidth;
     }
 
     if (!parentWidthValue || !childWidthValue) {
@@ -120,14 +174,14 @@ export const useApplyFlyoutLayoutMode = () => {
     }
 
     const combinedWidth = parentWidthValue + childWidthValue;
-    const combinedWidthPercentage = (combinedWidth / windowWidth) * 100;
+    const combinedWidthPercentage = (combinedWidth / effectiveViewportWidth) * 100;
 
     // Handle fill size flyouts: keep layout as side-by-side when fill flyout is present
     // This allows fill flyouts to dynamically calculate their width based on the other in the pair
     if (parentFlyout?.size === 'fill' || childFlyout?.size === 'fill') {
       // For fill flyouts, we want to maintain side-by-side layout to enable dynamic width calculation
-      // Only stack if the viewport is too small (below the small breakpoint)
-      if (windowWidth >= Math.round(euiTheme.breakpoint.s * 1.4)) {
+      // Only stack if the effective viewport is too small (below the small breakpoint)
+      if (effectiveViewportWidth >= Math.round(euiTheme.breakpoint.s * 1.4)) {
         return LAYOUT_MODE_SIDE_BY_SIDE;
       }
     }
@@ -144,6 +198,8 @@ export const useApplyFlyoutLayoutMode = () => {
   }, [
     hasFlyouts,
     windowWidth,
+    flyoutOffset,
+    effectiveViewportWidth,
     euiTheme,
     childFlyoutId,
     parentWidth,
@@ -161,8 +217,15 @@ export const useApplyFlyoutLayoutMode = () => {
   }, [desiredLayoutMode, currentLayoutMode, setMode]);
 };
 
-/** Convert a flyout `size` value to a pixel width using theme breakpoints. */
-export const getWidthFromSize = (size: string | number): number => {
+/**
+ * Convert a flyout `size` value to a pixel width using theme breakpoints.
+ * @param size - The size value (s, m, l, fill, or a number/string pixel value)
+ * @param effectiveWidth - The effective viewport width (accounting for sidebar offset). Defaults to window.innerWidth.
+ */
+export const getWidthFromSize = (
+  size: string | number,
+  effectiveWidth?: number
+): number => {
   if (typeof size === 'number') {
     return size;
   }
@@ -174,16 +237,20 @@ export const getWidthFromSize = (size: string | number): number => {
       return parsed;
     }
 
-    // Size is a function of a percentage of `vw`, defined in `composeFlyoutSizing` in `flyout.styles.ts`
+    // Use effective width if provided, otherwise fall back to window.innerWidth
+    const baseWidth = effectiveWidth ?? (typeof window !== 'undefined' ? window.innerWidth : 0);
+
+    // Size is a function of a percentage of viewport width,
+    // defined in `composeFlyoutSizing` in `flyout.styles.ts`
     switch (size) {
       case 's':
-        return Math.round(window.innerWidth * 0.25);
+        return Math.round(baseWidth * 0.25);
       case 'm':
-        return Math.round(window.innerWidth * 0.5);
+        return Math.round(baseWidth * 0.5);
       case 'l':
-        return Math.round(window.innerWidth * 0.75);
+        return Math.round(baseWidth * 0.75);
       case 'fill':
-        return Math.round(window.innerWidth * 0.9);
+        return Math.round(baseWidth * 0.9);
       default:
         break;
     }
