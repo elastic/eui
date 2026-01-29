@@ -8,7 +8,8 @@
 
 import { actions } from '@storybook/addon-actions';
 import type { Meta, StoryObj } from '@storybook/react';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
+import { Global, css } from '@emotion/react';
 
 import { EuiBreakpointSize } from '../../../services';
 import { EuiButton } from '../../button';
@@ -183,19 +184,6 @@ const StatefulFlyout: React.FC<FlyoutChildStoryArgs> = ({
   const [isMainOpen, setIsMainOpen] = useState(true);
   const [isChildOpen, setIsChildOpen] = useState(false);
 
-  // Set the CSS variable for flyout offset
-  useEffect(() => {
-    const offsetValue =
-      flyoutOffset && flyoutOffset > 0 ? `${flyoutOffset}px` : '0px';
-    document.documentElement.style.setProperty(
-      '--eui-flyout-offset',
-      offsetValue
-    );
-    return () => {
-      document.documentElement.style.removeProperty('--eui-flyout-offset');
-    };
-  }, [flyoutOffset]);
-
   const openMain = () => {
     setIsMainOpen(true);
     playgroundActions.log('Parent flyout opened');
@@ -216,8 +204,18 @@ const StatefulFlyout: React.FC<FlyoutChildStoryArgs> = ({
 
   const layoutMode = useFlyoutLayoutMode();
 
+  const offsetValue =
+    flyoutOffset && flyoutOffset > 0 ? `${flyoutOffset}px` : '0px';
+
   return (
     <>
+      <Global
+        styles={css`
+          :root {
+            --eui-flyout-offset: ${offsetValue};
+          }
+        `}
+      />
       <EuiText>
         <p>
           This is the main page content. Watch how it behaves when the flyout
