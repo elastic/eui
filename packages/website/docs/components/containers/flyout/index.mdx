@@ -1023,6 +1023,28 @@ import FlyoutMenu from './_flyout_menu.mdx';
 
 <FlyoutMenu />
 
+## CSS Variables
+
+### Flyout offset
+
+EUI provides the `--eui-flyout-offset` CSS variable to allow consumers to declare viewport constraints that affect flyout positioning. This is useful when your application has fixed UI elements (like sidebars or navigation panels) that reduce the effective viewport width.
+
+#### Usage
+
+Set the CSS variable at the `:root` level to apply the offset to all flyouts:
+
+```css
+:root {
+  --eui-flyout-offset: 300px;
+}
+```
+
+Or apply it dynamically via JavaScript:
+
+```javascript
+document.documentElement.style.setProperty('--eui-flyout-offset', '300px');
+```
+
 ## Guidelines
 
 import SessionManagement from './_session_management.mdx';
