@@ -121,9 +121,8 @@ export const useApplyFlyoutLayoutMode = () => {
       return null;
     }
 
-    // Thresholds to prevent thrashing near the breakpoint.
-    const THRESHOLD_TO_SIDE_BY_SIDE = 85;
-    const THRESHOLD_TO_STACKED = 95;
+    // Single threshold for layout mode switching
+    const LAYOUT_MODE_THRESHOLD = 90;
 
     // If the effective viewport is too small, set the mode to stacked.
     // The value is based on the maximum width of a flyout in
@@ -186,15 +185,10 @@ export const useApplyFlyoutLayoutMode = () => {
       }
     }
 
-    if (currentLayoutMode === LAYOUT_MODE_STACKED) {
-      return combinedWidthPercentage <= THRESHOLD_TO_SIDE_BY_SIDE
-        ? LAYOUT_MODE_SIDE_BY_SIDE
-        : LAYOUT_MODE_STACKED;
-    } else {
-      return combinedWidthPercentage >= THRESHOLD_TO_STACKED
-        ? LAYOUT_MODE_STACKED
-        : LAYOUT_MODE_SIDE_BY_SIDE;
-    }
+    // Switch to stacked mode if combined width exceeds threshold
+    return combinedWidthPercentage > LAYOUT_MODE_THRESHOLD
+      ? LAYOUT_MODE_STACKED
+      : LAYOUT_MODE_SIDE_BY_SIDE;
   }, [
     hasFlyouts,
     windowWidth,
@@ -206,7 +200,6 @@ export const useApplyFlyoutLayoutMode = () => {
     childWidth,
     parentFlyout?.size,
     childFlyout?.size,
-    currentLayoutMode,
   ]);
 
   // Apply the desired layout mode
