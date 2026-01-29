@@ -125,19 +125,25 @@ export const useApplyFlyoutLayoutMode = () => {
     // - Result: Can get stuck in stacked mode even when viewport increases
     //
     // By calculating from size first, we get deterministic widths independent of layout mode.
-    // Note: Use full windowWidth for size calculation (matches CSS vw units),
-    // but use effectiveViewportWidth for fit percentage calculation.
+    // Note: Use effectiveViewportWidth for size calculation to account for sidebar offset,
+    // matching the CSS calc() expressions that adjust vw units by the offset.
     let parentWidthValue = 0;
     let childWidthValue = 0;
 
     if (parentFlyout?.size) {
-      // Use windowWidth to match CSS vw-based sizing
-      parentWidthValue = getWidthFromSize(parentFlyout.size, windowWidth);
+      // Use effectiveViewportWidth to match CSS calculations with offset
+      parentWidthValue = getWidthFromSize(
+        parentFlyout.size,
+        effectiveViewportWidth
+      );
     }
 
     if (childFlyout?.size) {
-      // Use windowWidth to match CSS vw-based sizing
-      childWidthValue = getWidthFromSize(childFlyout.size, windowWidth);
+      // Use effectiveViewportWidth to match CSS calculations with offset
+      childWidthValue = getWidthFromSize(
+        childFlyout.size,
+        effectiveViewportWidth
+      );
     }
 
     // Fall back to measured widths only if size is not available (rare edge case)
@@ -173,7 +179,6 @@ export const useApplyFlyoutLayoutMode = () => {
       : LAYOUT_MODE_SIDE_BY_SIDE;
   }, [
     hasFlyouts,
-    windowWidth,
     effectiveViewportWidth,
     euiTheme,
     childFlyoutId,
@@ -192,9 +197,11 @@ export const useApplyFlyoutLayoutMode = () => {
 };
 
 /**
- * Convert a flyout `size` value to a pixel width using theme breakpoints.
+ * Convert a flyout `size` value to a pixel width.
  * @param size - The size value (s, m, l, fill, or a number/string pixel value)
- * @param effectiveWidth - The effective viewport width (accounting for sidebar offset). Defaults to window.innerWidth.
+ * @param effectiveWidth - The effective viewport width (viewport minus sidebar offset).
+ *                         Used for percentage-based sizes (s=25%, m=50%, l=75%, fill=90%).
+ *                         Defaults to window.innerWidth when not provided.
  */
 export const getWidthFromSize = (
   size: string | number,
