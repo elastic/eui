@@ -41,6 +41,16 @@ import { useCurrentSession, useFlyoutManager } from './hooks';
 const meta: Meta<typeof EuiFlyout> = {
   title: 'Layout/EuiFlyout/Flyout Manager',
   component: EuiFlyout,
+  argTypes: {
+    flyoutOffset: {
+      control: { type: 'number' },
+      description:
+        'Simulates a sidebar offset by setting the --eui-flyout-offset CSS variable. Use 300 to test with a 300px sidebar.',
+    },
+  },
+  args: {
+    flyoutOffset: 0,
+  },
   parameters: {
     // Skipping visual regression testing with Loki
     // This is a playground for Flyout Manager and doesn't show anything testable on page load
@@ -350,7 +360,22 @@ const NonSessionFlyout: React.FC<{ size: string }> = ({ size }) => {
   );
 };
 
-const MultiSessionFlyoutDemo: React.FC = () => {
+const MultiSessionFlyoutDemo: React.FC<{ flyoutOffset?: number }> = ({
+  flyoutOffset,
+}) => {
+  // Set the CSS variable for flyout offset
+  useEffect(() => {
+    const offsetValue =
+      flyoutOffset && flyoutOffset > 0 ? `${flyoutOffset}px` : '0px';
+    document.documentElement.style.setProperty(
+      '--eui-flyout-offset',
+      offsetValue
+    );
+    return () => {
+      document.documentElement.style.removeProperty('--eui-flyout-offset');
+    };
+  }, [flyoutOffset]);
+
   const listItems = [
     {
       title: 'Session A: main size = s, child size = s',
@@ -512,7 +537,7 @@ const MultiSessionFlyoutDemo: React.FC = () => {
 
 export const MultiSessionExample: StoryObj<typeof EuiFlyout> = {
   name: 'Multi-session example',
-  render: () => <MultiSessionFlyoutDemo />,
+  render: (args) => <MultiSessionFlyoutDemo {...args} />,
 };
 
 const ExternalRootChildFlyout: React.FC<{ parentId: string }> = ({
@@ -656,7 +681,22 @@ const ExternalRootFlyout: React.FC<{ id: string }> = ({ id }) => {
   );
 };
 
-const MultiRootFlyoutDemo: React.FC = () => {
+const MultiRootFlyoutDemo: React.FC<{ flyoutOffset?: number }> = ({
+  flyoutOffset,
+}) => {
+  // Set the CSS variable for flyout offset
+  useEffect(() => {
+    const offsetValue =
+      flyoutOffset && flyoutOffset > 0 ? `${flyoutOffset}px` : '0px';
+    document.documentElement.style.setProperty(
+      '--eui-flyout-offset',
+      offsetValue
+    );
+    return () => {
+      document.documentElement.style.removeProperty('--eui-flyout-offset');
+    };
+  }, [flyoutOffset]);
+
   const secondaryRootRef = useRef<HTMLDivElement | null>(null);
   const tertiaryRootRef = useRef<HTMLDivElement | null>(null);
   const mountedRootsRef = useRef<Root[]>([]);
@@ -721,5 +761,5 @@ const MultiRootFlyoutDemo: React.FC = () => {
 
 export const MultiRootSyncExample: StoryObj<typeof EuiFlyout> = {
   name: 'Multi-root sync',
-  render: () => <MultiRootFlyoutDemo />,
+  render: (args) => <MultiRootFlyoutDemo {...args} />,
 };

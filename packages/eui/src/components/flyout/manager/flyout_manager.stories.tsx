@@ -8,7 +8,7 @@
 
 import { actions } from '@storybook/addon-actions';
 import type { Meta, StoryObj } from '@storybook/react';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { EuiBreakpointSize } from '../../../services';
 import { EuiButton } from '../../button';
@@ -56,6 +56,7 @@ interface FlyoutChildStoryArgs extends EuiFlyoutChildActualProps {
   showFooter?: boolean;
   mainFlyoutResizable?: boolean;
   childFlyoutResizable?: boolean;
+  flyoutOffset?: number;
 }
 
 const breakpointSizes: EuiBreakpointSize[] = ['xs', 's', 'm', 'l', 'xl'];
@@ -115,6 +116,11 @@ const meta: Meta<FlyoutChildStoryArgs> = {
       control: { type: 'boolean' },
       description: 'Whether the child flyout should be resizable.',
     },
+    flyoutOffset: {
+      control: { type: 'number' },
+      description:
+        'Simulates a sidebar offset by setting the --eui-flyout-offset CSS variable. Use 300 to test with a 300px sidebar.',
+    },
     // use "mainSize" and "childSize" instead
     size: { table: { disable: true } },
     // use "mainMaxWidth" and "childMaxWidth" instead
@@ -144,6 +150,7 @@ const meta: Meta<FlyoutChildStoryArgs> = {
     showFooter: true,
     mainFlyoutResizable: false,
     childFlyoutResizable: false,
+    flyoutOffset: 0,
   },
   parameters: {
     // Skipping visual regression testing with Loki
@@ -170,10 +177,24 @@ const StatefulFlyout: React.FC<FlyoutChildStoryArgs> = ({
   showFooter,
   mainFlyoutResizable,
   childFlyoutResizable,
+  flyoutOffset,
   ...args
 }) => {
   const [isMainOpen, setIsMainOpen] = useState(true);
   const [isChildOpen, setIsChildOpen] = useState(false);
+
+  // Set the CSS variable for flyout offset
+  useEffect(() => {
+    const offsetValue =
+      flyoutOffset && flyoutOffset > 0 ? `${flyoutOffset}px` : '0px';
+    document.documentElement.style.setProperty(
+      '--eui-flyout-offset',
+      offsetValue
+    );
+    return () => {
+      document.documentElement.style.removeProperty('--eui-flyout-offset');
+    };
+  }, [flyoutOffset]);
 
   const openMain = () => {
     setIsMainOpen(true);
