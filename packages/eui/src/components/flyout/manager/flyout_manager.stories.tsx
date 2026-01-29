@@ -242,14 +242,14 @@ const StatefulFlyout: React.FC<FlyoutChildStoryArgs> = ({
           maxWidth={mainMaxWidth}
           ownFocus={false}
           resizable={mainFlyoutResizable}
-          aria-label={`Main Flyout Menu (${mainSize})`}
+          aria-label={`Main Flyout (${mainSize})`}
           {...args}
           onClose={closeMain}
         >
           <EuiFlyoutHeader>
             <EuiText>
               <h2 id="flyout-manager-playground-main-header">
-                Main Flyout Menu ({mainSize})
+                Main Flyout ({mainSize})
               </h2>
             </EuiText>
           </EuiFlyoutHeader>
@@ -279,7 +279,7 @@ const StatefulFlyout: React.FC<FlyoutChildStoryArgs> = ({
                 ownFocus={false}
                 resizable={childFlyoutResizable}
                 {...args}
-                aria-label={`Child Flyout Panel (${childSize})`}
+                aria-label={`Child Flyout (${childSize})`}
                 onClose={closeChild}
               >
                 <EuiFlyoutBody>
