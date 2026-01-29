@@ -35,10 +35,14 @@ import {
   EuiText,
   EuiTitle,
 } from '../..';
-import { EuiFlyout } from '../flyout';
+import { EuiFlyout, EuiFlyoutProps } from '../flyout';
 import { useCurrentSession, useFlyoutManager } from './hooks';
 
-const meta: Meta<typeof EuiFlyout> = {
+interface FlyoutSessionStoryArgs extends EuiFlyoutProps {
+  flyoutOffset?: number;
+}
+
+const meta: Meta<FlyoutSessionStoryArgs> = {
   title: 'Layout/EuiFlyout/Flyout Manager',
   component: EuiFlyout,
   argTypes: {
@@ -535,7 +539,7 @@ const MultiSessionFlyoutDemo: React.FC<{ flyoutOffset?: number }> = ({
   );
 };
 
-export const MultiSessionExample: StoryObj<typeof EuiFlyout> = {
+export const MultiSessionExample: StoryObj<FlyoutSessionStoryArgs> = {
   name: 'Multi-session example',
   render: (args) => <MultiSessionFlyoutDemo {...args} />,
 };
@@ -759,7 +763,7 @@ const MultiRootFlyoutDemo: React.FC<{ flyoutOffset?: number }> = ({
   );
 };
 
-export const MultiRootSyncExample: StoryObj<typeof EuiFlyout> = {
+export const MultiRootSyncExample: StoryObj<FlyoutSessionStoryArgs> = {
   name: 'Multi-root sync',
   render: (args) => <MultiRootFlyoutDemo {...args} />,
 };
