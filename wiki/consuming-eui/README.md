@@ -98,41 +98,6 @@ export default () => {
 
 If you get an error when importing a React component, you might need to configure Webpack's `resolve.mainFields` to `['webpack', 'browser', 'main']` to import the components from `lib` instead of `src`. See the [Webpack docs](https://webpack.js.org/configuration/resolve/#resolve-mainfields) for more info.
 
-### Failing icon imports
-
-To reduce EUI's impact to application bundle sizes, the icons are dynamically imported on-demand. This is problematic for some bundlers and/or deployments, so a method exists to preload specific icons an application needs.
-
-```js
-import { appendIconComponentCache } from '@elastic/eui/es/components/icon/icon';
-
-import { icon as EuiIconArrowDown } from '@elastic/eui/es/components/icon/assets/arrow_down';
-import { icon as EuiIconArrowLeft } from '@elastic/eui/es/components/icon/assets/arrow_left';
-
-// One or more icons are passed in as an object of iconKey (string): IconComponent
-appendIconComponentCache({
-  arrowDown: EuiIconArrowDown,
-  arrowLeft: EuiIconArrowLeft,
-});
-```
-
-#### Usage with TypeScript
-
-To ensure the icons are correctly typed, you need to declare a module for the icon assets. This declaration will allow TypeScript to understand the expected type of the icon components.
-
-```ts
-// .d.ts
-declare module "@elastic/eui/es/components/icon/assets/*" {
-    import * as React from 'react';
-	import type { SVGProps } from 'react';
-	interface SVGRProps {
-	    title?: string;
-	    titleId?: string;
-	}
-	export const icon: ({ title, titleId, ...props }: SVGProps<SVGSVGElement> & SVGRProps) => React.JSX.Element;
-	export {};
-}
-```
-
 ## Using the `test-env` build
 
 EUI provides a separate babel-transformed and partially mocked commonjs build for testing environments in consuming projects. The output is identical to that of `lib/`, but has transformed async functions and dynamic import statements, and also applies some useful mocks. This build mainly targets Kibana's Jest environment, but may be helpful for testing environments in other projects.
