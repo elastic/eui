@@ -33,3 +33,11 @@ export { EuiFlyoutMenu } from './flyout_menu';
 // Hooks for using Manager-based flyouts
 export { useIsInManagedFlyout, useHasActiveSession } from './manager';
 export { useIsInsideParentFlyout } from './flyout_parent_context';
+
+// Flyout manager store (for cross-root state synchronization)
+export {
+  getFlyoutManagerStore,
+  type FlyoutManagerStore,
+  type EuiFlyoutManagerState,
+  type FlyoutSession,
+} from './manager';
