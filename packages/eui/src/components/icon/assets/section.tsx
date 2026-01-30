@@ -28,8 +28,12 @@ const EuiIconSection = ({
     {...props}
   >
     {title ? <title id={titleId}>{title}</title> : null}
-    <path d="M2 2v12h12V2H2Zm13 12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v12Z" />
-    <path d="M9 6v6h3V6H9Zm4 6a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v6Zm0-9v1H5V3h8ZM4 6v1h2V6H4Zm3 1a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h2l.103.005A1 1 0 0 1 7 6v1Zm-3 3v2h2v-2H4Zm3 2a1 1 0 0 1-1 1H4a1 1 0 0 1-.995-.898L3 12v-2a1 1 0 0 1 1-1h2l.103.005A1 1 0 0 1 7 10v2ZM4 3.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0Z" />
+    <path d="M6.354 7.354 4.5 9.207 2.646 7.354l.708-.708L4.5 7.793l1.146-1.147.708.708Z" />
+    <path
+      fillRule="evenodd"
+      d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12ZM2 14h12V6H2v8Zm0-9h12V4H2v1Zm0-2h12V2H2v1Z"
+      clipRule="evenodd"
+    />
   </svg>
 );
 export const icon = EuiIconSection;
