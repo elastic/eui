@@ -623,7 +623,7 @@ export class EuiBasicTable<T extends object = any> extends Component<
   }
 
   renderTableCaption() {
-    const { items, pagination, tableCaption } = this.props;
+    const { items, pagination, tableCaption, noItemsMessage } = this.props;
     const itemCount = items.length;
     const totalItemCount = pagination ? pagination.totalItemCount : itemCount;
     const page = pagination ? pagination.pageIndex + 1 : 1;
@@ -633,7 +633,12 @@ export class EuiBasicTable<T extends object = any> extends Component<
 
     let itemCountPart: React.ReactNode = null;
     if (!itemCount) {
-      itemCountPart = `${this.props.noItemsMessage},`;
+      itemCountPart = (
+        <>
+          {noItemsMessage}
+          {!!noItemsMessage && ','}
+        </>
+      );
     } else if (pagination && totalItemCount > 0) {
       itemCountPart = (
         <p>
