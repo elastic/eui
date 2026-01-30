@@ -244,3 +244,65 @@ On smaller screens, child flyouts stack above the parent.
 
 Both parent and child flyouts use `role="dialog"` and `aria-modal="true"` for accessibility. Focus is managed automatically between them, with the child flyout taking focus when open and returning focus to the parent when closed.
 
+#### Closing behavior
+
+EUI handles all session management, cascade closing, and cleanup automatically. You only need to manage your local React state (e.g., `setIsOpen(false)` in `onClose`).
+
+##### 1. ✅ DO: use simple state management
+
+```typescript
+// Simple boolean state with direct setState in onClose
+const [isOpen, setIsOpen] = useState(false);
+
+<EuiFlyout onClose={() => setIsOpen(false)}>
+  {/* content */}
+</EuiFlyout>
+```
+
+**Why this pattern is safe:** EUI internally handles manager state updates before your `onClose` callback runs.
+
+### 2. ✅ DO: let EUI handle cascade closing
+
+```typescript
+// Parent flyout
+<EuiFlyout session="start" onClose={() => setParentOpen(false)}>
+  {/* Parent content */}
+
+  <EuiFlyout session="inherit" onClose={() => setChildOpen(false)}>
+    {/* Child content */}
+  </EuiFlyout>
+</EuiFlyout>
+```
+
+**Why this is safe:** EUI's internal state reducer will cascade close children when parent closes. No need for manual cascade logic.
+
+### 1. ❌ DON'T: manually implement cascade close logic
+
+```typescript
+// ❌ BAD: Manual cascade close (unnecessary after fix)
+const onCloseParent = () => {
+  setChildOpen(false);   // ← Don't do this manually
+  setParentOpen(false);
+};
+```
+
+**Why this is bad:** EUI's internal state reducer already handles cascade closes. Manual logic can conflict with the internal manager state.
+
+**Do this instead:**
+```typescript
+// ✅ GOOD: Let EUI handle it
+const onCloseParent = () => {
+  setParentOpen(false);  // ← EUI will close children automatically
+};
+```
+
+### 2. ❌ DON'T: bypass React state with direct DOM manipulation
+
+```typescript
+// ❌ VERY BAD: Direct DOM manipulation
+const onClose = () => {
+  document.querySelector('.euiFlyout').remove();  // ← NO!
+};
+```
+
+**Why it's bad:** Bypasses React's lifecycle and manager state updates entirely.
