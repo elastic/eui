@@ -585,11 +585,15 @@ declare module '@theme/Demo/default_scope' {
 
 declare module '@theme/Demo/actions' {
   import type { ComponentType } from 'react';
-  import type { DemoSourceMeta } from '@elastic/eui-docusaurus-theme/components/demo/demo';
+  import type {
+    DemoSourceMeta,
+    ExtraFiles,
+  } from '@elastic/eui-docusaurus-theme/components/demo/demo';
 
   export type ActionComponentProps = {
     activeSource: DemoSourceMeta;
     sources: DemoSourceMeta[];
+    extraFiles?: ExtraFiles;
   };
 
   export type ActionComponent = ComponentType<ActionComponentProps>;
