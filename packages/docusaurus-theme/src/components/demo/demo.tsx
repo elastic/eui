@@ -38,18 +38,45 @@ export interface DemoSourceMeta {
   filename?: string;
 }
 
+export type ExtraFiles = Record<string, string>;
+
 export interface DemoProps extends PropsWithChildren {
   /**
    * Whether the source code editor is open by default
    */
   isSourceOpen?: boolean;
   /**
-   * Allows to extend the default scope of the rendered demo and pass additional
-   * properties available within the demo.
+   * Allows to pass additional variables available within the demo.
+   * The key is the variable name and the value is the variable itself (component, function, object, etc).
    *
-   * The default scope exposes all React and EUI exports.
+   * @example
+   * ````mdx
+   * ```mdx-code-block
+   * import { MyComponent } from './my_component';
+   * ```
+   *
+   * <Demo scope={{ MyComponent }}>
+   *   ```tsx
+   *   export default () => <MyComponent />
+   *   ```
+   * </Demo>
+   * ````
    */
   scope?: Record<string, unknown>;
+  /**
+   * Allows to pass extra files that will be added to the Codesandbox instance.
+   * The key is the filename and the value is the serialized file content.
+   *
+   * @example
+   * ````mdx
+   * ```mdx-code-block
+   * import iconSvgSource from '!raw-loader!./icon.svg';
+   * ```
+   *
+   * <Demo extraFiles={{ 'icon.svg': iconSvgSource }} />
+   * ````
+   */
+  extraFiles?: ExtraFiles;
   previewPadding?: DemoPreviewProps['padding'];
   previewWrapper?: DemoPreviewProps['wrapperComponent'];
 }
@@ -69,6 +96,7 @@ const getDemoStyles = (euiTheme: UseEuiTheme) => ({
 export const Demo = ({
   children,
   scope,
+  extraFiles,
   isSourceOpen: _isSourceOpen = false,
   previewPadding,
   previewWrapper,
@@ -123,6 +151,7 @@ export const Demo = ({
             isSourceOpen={isSourceOpen}
             setSourceOpen={setIsSourceOpen}
             activeSource={activeSource}
+            extraFiles={extraFiles}
             sources={sources}
             onClickCopyToClipboard={onClickCopyToClipboard}
             onClickReloadExample={onClickReloadExample}

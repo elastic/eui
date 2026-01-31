@@ -1,5 +1,25 @@
 [
   {
+    "version": "112.0.0",
+    "changes": [
+      {
+        "token": "euiTimeWindowButtons.invalidZoomInLabel",
+        "changeType": "added",
+        "value": "Cannot zoom in invalid time window"
+      },
+      {
+        "token": "euiTimeWindowButtons.cannotZoomInLabel",
+        "changeType": "added",
+        "value": "Cannot zoom in any further"
+      },
+      {
+        "token": "euiTimeWindowButtons.zoomInLabel",
+        "changeType": "added",
+        "value": "Zoom in"
+      }
+    ]
+  },
+  {
     "version": "111.1.0",
     "changes": [
       {
