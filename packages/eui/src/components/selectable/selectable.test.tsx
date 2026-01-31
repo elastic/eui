@@ -153,6 +153,21 @@ describe('EuiSelectable', () => {
 
       expect(container.firstChild).toMatchSnapshot();
     });
+
+    test('compressed', () => {
+      const { container } = render(
+        <EuiSelectable options={options} searchable compressed>
+          {(list, search) => (
+            <>
+              {search}
+              {list}
+            </>
+          )}
+        </EuiSelectable>
+      );
+
+      expect(container.firstChild).toMatchSnapshot();
+    });
   });
 
   describe('search value', () => {

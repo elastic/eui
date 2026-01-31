@@ -85,6 +85,7 @@ const meta: Meta<EuiSelectableProps> = {
     searchable: false,
     singleSelection: false,
     isPreFiltered: false,
+    compressed: false,
   },
 };
 hideStorybookControls(meta, ['aria-label']);
@@ -137,6 +138,18 @@ export const WithTooltip: Story = {
       value: idx,
     })),
     searchable: false,
+  },
+  render: ({ ...args }: EuiSelectableProps) => <StatefulSelectable {...args} />,
+};
+
+export const Compressed: Story = {
+  args: {
+    options,
+    compressed: true,
+    searchable: true,
+    listProps: {
+      bordered: true,
+    },
   },
   render: ({ ...args }: EuiSelectableProps) => <StatefulSelectable {...args} />,
 };

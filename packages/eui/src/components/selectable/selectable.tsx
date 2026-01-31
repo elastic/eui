@@ -197,6 +197,10 @@ export type EuiSelectableProps<T = {}> = CommonProps &
      */
     isPreFiltered?: boolean | { highlightSearch?: boolean };
     /**
+     * When `true` creates a shorter height input and smaller list items
+     */
+    compressed?: boolean;
+    /**
      * Optional screen reader instructions to announce upon focus/interaction. This text is read out
      * after the `EuiSelectable` label and a brief pause, but before the default keyboard instructions for
      * interacting with a selectable are read out.
@@ -569,6 +573,7 @@ export class EuiSelectable<T = {}> extends Component<
       selectableScreenReaderText,
       isPreFiltered,
       optionMatcher,
+      compressed,
       ...rest
     } = this.props;
 
@@ -601,6 +606,9 @@ export class EuiSelectable<T = {}> extends Component<
 
     let virtualizedProps: EuiSelectableOptionsListVirtualizedProps;
 
+    // Default row height is 32px, compressed row height is 24px
+    const compressedRowHeight = 24;
+
     if (isVirtualized === false) {
       virtualizedProps = {
         isVirtualized,
@@ -608,6 +616,10 @@ export class EuiSelectable<T = {}> extends Component<
     } else if (rowHeight != null) {
       virtualizedProps = {
         rowHeight,
+      };
+    } else if (compressed) {
+      virtualizedProps = {
+        rowHeight: compressedRowHeight,
       };
     }
 
@@ -767,6 +779,7 @@ export class EuiSelectable<T = {}> extends Component<
                 this.inputRef = node;
                 searchProps?.inputRef?.(node);
               }}
+              compressed={compressed}
               {...(searchHasAccessibleName
                 ? searchAccessibleName
                 : { 'aria-label': placeholderName })}

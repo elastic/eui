@@ -155,6 +155,72 @@ export default () => {
 };
 ```
 
+## Compressed
+
+Use the `compressed` prop to create a shorter height search input and smaller list items. This is useful when the selectable is used in a space-constrained context, such as a popover, or alongside other compressed form controls for visual consistency.
+
+```tsx interactive
+import React, { useState } from 'react';
+import { EuiSelectable, EuiSelectableOption } from '@elastic/eui';
+
+export default () => {
+  const [options, setOptions] = useState<EuiSelectableOption[]>([
+    {
+      label: 'Titan',
+      'data-test-subj': 'titanOption',
+    },
+    {
+      label: 'Enceladus is disabled',
+      disabled: true,
+    },
+    {
+      label: 'Mimas',
+      checked: 'on',
+    },
+    {
+      label: 'Dione',
+    },
+    {
+      label: 'Iapetus',
+      checked: 'on',
+    },
+    {
+      label: 'Phoebe',
+    },
+    {
+      label: 'Rhea',
+    },
+    {
+      label:
+        "Pandora is one of Saturn's moons, named for a Titaness of Greek mythology",
+    },
+    {
+      label: 'Tethys',
+    },
+    {
+      label: 'Hyperion',
+    },
+  ]);
+
+  return (
+    <EuiSelectable
+      aria-label="Compressed example"
+      searchable
+      compressed
+      options={options}
+      onChange={(newOptions) => setOptions(newOptions)}
+    >
+      {(list, search) => (
+        <>
+          {search}
+          {list}
+        </>
+      )}
+    </EuiSelectable>
+  );
+};
+```
+
 ## Single selection
 
 Selection can be restricted to a single option at a time with the `singleSelection` prop. Passing `true` allows for 0 or 1 option to be selected, while `"always"` requires 1 option to be selected at all times. The default value is `false`.
@@ -520,9 +586,9 @@ const SelectablePopover = (
       <EuiSelectable
         aria-label="Selectable + popover example"
         searchable
+        compressed
         searchProps={{
           placeholder: 'Filter list',
-          compressed: true,
         }}
         options={options}
         onChange={onChange}
