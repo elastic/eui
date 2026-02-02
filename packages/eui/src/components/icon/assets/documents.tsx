@@ -28,7 +28,12 @@ const EuiIconDocuments = ({
     {...props}
   >
     {title ? <title id={titleId}>{title}</title> : null}
-    <path d="M8.8 0c.274 0 .537.113.726.312l3.2 3.428c.176.186.274.433.274.689V13a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V1a1 1 0 0 1 1-1h6.8ZM12 5H8.5a.5.5 0 0 1-.5-.5V1H2v12h10V5Zm-7.5 6a.5.5 0 1 1 0-1h5a.5.5 0 1 1 0 1h-5Zm0-3a.5.5 0 0 1 0-1h5a.5.5 0 1 1 0 1h-5Zm1 8a.5.5 0 1 1 0-1H14V6.5a.5.5 0 1 1 1 0V15a1 1 0 0 1-1 1H5.5Z" />
+    <path
+      fillRule="evenodd"
+      d="M4 1a1 1 0 0 1 1-1h4.707L14 4.293V13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V1Zm5 0H5v12h8V5h-3a1 1 0 0 1-1-1V1Zm1 .707L12.293 4H10V1.707Z"
+      clipRule="evenodd"
+    />
+    <path d="M3 15V2H2v13a1 1 0 0 0 1 1h9v-1H3Z" />
   </svg>
 );
 export const icon = EuiIconDocuments;

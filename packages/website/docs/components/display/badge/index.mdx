@@ -35,6 +35,12 @@ import BetaBadge from './_beta_badge.mdx';
 
 ### Color options
 
+Badge colors can be configured with the [`color` prop](#EuiBadge-prop-color)
+and the related [`fill` prop](#EuiBadge-prop-fill).
+When a named color like `primary` is passed to the `color` prop, the `fill` prop
+determines whether the badge will use filled (more intense) or non-filled
+(less intense) colors. By default, all badges use non-filled colors.
+
 ```tsx interactive
 import React, { useState } from 'react';
 import {

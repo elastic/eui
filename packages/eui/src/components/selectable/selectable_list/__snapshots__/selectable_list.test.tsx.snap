@@ -611,7 +611,7 @@ exports[`EuiSelectableListItem props activeOptionIndex 1`] = `
                
               <span
                 aria-hidden="true"
-                class="euiBadge euiSelectableListItem__onFocusBadge emotion-euiBadge-hollow"
+                class="euiBadge euiSelectableListItem__onFocusBadge emotion-euiBadge-iconOnly-hollow"
               >
                 <span
                   class="euiBadge__content emotion-euiBadge__content"

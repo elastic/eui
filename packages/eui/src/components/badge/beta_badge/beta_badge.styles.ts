@@ -47,14 +47,14 @@ export const euiBetaBadgeStyles = (euiThemeContext: UseEuiTheme) => {
       }
     `,
     // Colors
-    accent: css(badgeColors.accent),
+    accent: css(badgeColors.fill.accent),
     subdued: css(badgeColors.subdued),
     hollow: css`
       color: ${badgeColors.hollow.color};
       background-color: ${badgeColors.hollow.backgroundColor};
       border-color: ${badgeColors.hollow.borderColor};
     `,
-    warning: css(badgeColors.warning),
+    warning: css(badgeColors.fill.warning),
     // Font sizes
     m: css`
       font-size: ${euiFontSizeFromScale('xs', euiTheme)};

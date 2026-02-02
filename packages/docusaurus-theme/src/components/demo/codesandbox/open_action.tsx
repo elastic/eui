@@ -74,17 +74,20 @@ const processTsxSource = (source: string) => {
 
 export const createOpenInCodeSandboxAction =
   ({ files = {}, dependencies }: Options): ActionComponent =>
-  ({ activeSource }) => {
+  ({ extraFiles, activeSource }) => {
     const parameters: string = useMemo(() => {
       const source = activeSource?.code || '';
 
       // Compute list of extra files that may be passed
-      const extraFiles = Object.entries(files).reduce(
+      const codeSandboxFiles = Object.entries({
+        ...files,
+        ...extraFiles,
+      }).reduce(
         (acc, [file, content]) => {
           acc[file] = { content };
           return acc;
         },
-        {} as Record<string, { content: string }>
+        {} as Record<string, { content: unknown }>
       );
 
       return getParameters({
@@ -101,10 +104,10 @@ export const createOpenInCodeSandboxAction =
               },
             },
           },
-          ...extraFiles,
+          ...codeSandboxFiles,
         },
       } as any);
-    }, [activeSource]);
+    }, [activeSource, extraFiles]);
 
     return (
       <form
