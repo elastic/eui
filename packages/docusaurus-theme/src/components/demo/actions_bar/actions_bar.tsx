@@ -17,11 +17,12 @@ import {
 } from '@elastic/eui';
 import { css } from '@emotion/react';
 import { extraActions } from '@theme/Demo/actions';
-import { DemoSourceMeta } from '../demo';
+import { DemoSourceMeta, ExtraFiles } from '../demo';
 
 export interface DemoActionsBarProps {
   activeSource: DemoSourceMeta | null;
   sources: DemoSourceMeta[];
+  extraFiles?: ExtraFiles;
   isSourceOpen: boolean;
   setSourceOpen(isOpen: boolean): void;
   onClickReloadExample(): void;
@@ -53,6 +54,7 @@ export const DemoActionsBar = ({
   setSourceOpen,
   activeSource,
   sources,
+  extraFiles,
   onClickReloadExample,
   onClickCopyToClipboard,
 }: DemoActionsBarProps) => {
@@ -70,7 +72,11 @@ export const DemoActionsBar = ({
         {isSourceOpen ? 'Hide source' : 'Show source'}
       </EuiButton>
       {extraActions.map((ActionComponent) => (
-        <ActionComponent sources={sources} activeSource={activeSource} />
+        <ActionComponent
+          sources={sources}
+          extraFiles={extraFiles}
+          activeSource={activeSource}
+        />
       ))}
       <EuiToolTip content="Copy to clipboard">
         <EuiButtonIcon

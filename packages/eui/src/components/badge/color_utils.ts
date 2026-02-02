@@ -23,7 +23,7 @@ export const euiBadgeColors = (euiThemeContext: UseEuiTheme) => {
     euiTheme.colors.textAccent
   );
 
-  return {
+  const fill = {
     // Colors shared between buttons and badges
     primary: euiButtonFillColor(euiThemeContext, 'primary'),
     neutral: euiButtonFillColor(euiThemeContext, 'neutral'),
@@ -32,14 +32,33 @@ export const euiBadgeColors = (euiThemeContext: UseEuiTheme) => {
     risk: euiButtonFillColor(euiThemeContext, 'risk'),
     danger: euiButtonFillColor(euiThemeContext, 'danger'),
     accent: euiButtonFillColor(euiThemeContext, 'accent'),
-    disabled: {
-      ...euiButtonColor(euiThemeContext, 'disabled'),
-      borderColor: highContrastMode ? euiTheme.colors.textDisabled : '',
-    },
     // Colors unique to badges
     default: {
       ...getBadgeColors(euiThemeContext, euiTheme.components.badgeBackground),
       borderColor: highContrastMode ? euiTheme.border.color : '',
+    },
+  };
+
+  const base = {
+    primary: euiButtonColor(euiThemeContext, 'primary'),
+    neutral: euiButtonColor(euiThemeContext, 'neutral'),
+    success: euiButtonColor(euiThemeContext, 'success'),
+    warning: euiButtonColor(euiThemeContext, 'warning'),
+    risk: euiButtonColor(euiThemeContext, 'risk'),
+    danger: euiButtonColor(euiThemeContext, 'danger'),
+    accent: euiButtonColor(euiThemeContext, 'accent'),
+    default: {
+      ...getBadgeColors(euiThemeContext, euiTheme.colors.backgroundLightText),
+      borderColor: highContrastMode ? euiTheme.border.color : '',
+    },
+  };
+
+  return {
+    fill,
+    base,
+    disabled: {
+      ...euiButtonColor(euiThemeContext, 'disabled'),
+      borderColor: highContrastMode ? euiTheme.colors.textDisabled : '',
     },
     // Hollow has a border and is used for autocompleters and beta badges
     hollow: {
@@ -83,10 +102,6 @@ export const getTextColor = ({ euiTheme }: UseEuiTheme, bgColor: string) => {
     : euiTheme.colors.ink;
 
   return textColor;
-};
-
-export const getColorContrast = (textColor: string, color: string) => {
-  return chroma.contrast(textColor, color);
 };
 
 export const getIsValidColor = (color?: string) => {

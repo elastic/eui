@@ -45,6 +45,7 @@ import {
   useFlyoutManager,
   useHasPushPadding,
 } from './manager';
+import { LAYOUT_MODE_STACKED } from './manager/const';
 
 import { CommonProps, PropsOfElement } from '../common';
 import { EuiFocusTrap, EuiFocusTrapProps } from '../focus_trap';
@@ -324,6 +325,37 @@ export const EuiFlyoutComponent = forwardRef(
     ]);
     const { width } = useResizeObserver(isPushed ? resizeRef : null, 'width');
 
+    // Memoize flyout identification and relationships to prevent race conditions
+    const flyoutIdentity = useMemo(() => {
+      if (!flyoutId || !currentSession) {
+        return {
+          isMainFlyout: false,
+          siblingFlyoutId: null,
+          hasValidSession: false,
+          sessionForWidth: null,
+        };
+      }
+
+      const siblingFlyoutId =
+        currentSession.mainFlyoutId === flyoutId
+          ? currentSession.childFlyoutId
+          : currentSession.mainFlyoutId;
+
+      return {
+        isMainFlyout: currentSession.mainFlyoutId === flyoutId,
+        siblingFlyoutId,
+        hasValidSession: true,
+        sessionForWidth: currentSession,
+      };
+    }, [flyoutId, currentSession]);
+
+    // Destructure for easier use
+    const { siblingFlyoutId, isMainFlyout } = flyoutIdentity;
+
+    const _siblingFlyoutWidth = useFlyoutWidth(siblingFlyoutId);
+    const siblingFlyoutWidth =
+      layoutMode === LAYOUT_MODE_STACKED ? 0 : _siblingFlyoutWidth;
+
     /**
      * Effect for adding push padding to body. Using useLayoutEffect to ensure
      * padding changes happen synchronously before child components render -
@@ -344,14 +376,21 @@ export const EuiFlyoutComponent = forwardRef(
       }`;
       const managerSide = side === 'left' ? 'left' : 'right';
 
+      const paddingWidth =
+        layoutMode === LAYOUT_MODE_STACKED &&
+        isMainFlyout &&
+        _siblingFlyoutWidth
+          ? _siblingFlyoutWidth
+          : width;
+
       if (shouldApplyPadding) {
-        document.body.style[paddingSide] = `${width}px`;
+        document.body.style[paddingSide] = `${paddingWidth}px`;
         setGlobalCSSVariables({
-          [cssVarName]: `${width}px`,
+          [cssVarName]: `${paddingWidth}px`,
         });
         // Update manager state if in managed context
         if (isInManagedContext && flyoutManagerRef.current) {
-          flyoutManagerRef.current.setPushPadding(managerSide, width);
+          flyoutManagerRef.current.setPushPadding(managerSide, paddingWidth);
         }
       } else {
         // Explicitly remove padding when this push flyout becomes inactive
@@ -383,6 +422,9 @@ export const EuiFlyoutComponent = forwardRef(
       setGlobalCSSVariables,
       side,
       width,
+      layoutMode,
+      isMainFlyout,
+      _siblingFlyoutWidth,
     ]);
 
     /**
@@ -395,32 +437,6 @@ export const EuiFlyoutComponent = forwardRef(
         document.body.classList.remove('euiBody--hasFlyout');
       };
     }, []);
-
-    // Memoize flyout identification and relationships to prevent race conditions
-    const flyoutIdentity = useMemo(() => {
-      if (!flyoutId || !currentSession) {
-        return {
-          isMainFlyout: false,
-          siblingFlyoutId: null,
-          hasValidSession: false,
-          sessionForWidth: null,
-        };
-      }
-
-      const siblingFlyoutId =
-        currentSession.mainFlyoutId === flyoutId
-          ? currentSession.childFlyoutId
-          : currentSession.mainFlyoutId;
-
-      return {
-        siblingFlyoutId,
-        hasValidSession: true,
-        sessionForWidth: currentSession,
-      };
-    }, [flyoutId, currentSession]);
-
-    // Destructure for easier use
-    const { siblingFlyoutId } = flyoutIdentity;
 
     const hasChildFlyout = currentSession?.childFlyoutId != null;
     const isChildFlyout =
@@ -460,8 +476,6 @@ export const EuiFlyoutComponent = forwardRef(
       },
       [onClose, isPushed, shouldCloseOnEscape]
     );
-
-    const siblingFlyoutWidth = useFlyoutWidth(siblingFlyoutId);
 
     let managedFlyoutIndex = currentZIndexRef.current;
     if (isInManagedContext && currentSession) {
