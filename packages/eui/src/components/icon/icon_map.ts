@@ -517,6 +517,7 @@ export const typeToPathMap = {
   securitySignal: () => import('./assets/security_signal'), // NOTE: To be deprecated in favor of radar
   securitySignalDetected: () => import('./assets/security_signal_detected'),
   securitySignalResolved: () => import('./assets/security_signal_resolved'),
+  server: () => import('./assets/server'),
   sessionViewer: () => import('./assets/session_viewer'),
   shard: () => import('./assets/shard'),
   share: () => import('./assets/share'),
