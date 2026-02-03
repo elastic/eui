@@ -24,7 +24,7 @@ import { forms } from './_forms';
 const component_colors: _EuiThemeComponentColors = {
   badgeBackground: computed(
     ([backgroundLightText]) => backgroundLightText,
-    ['colors.backgroundLightText']
+    ['colors.backgroundFilledText']
   ),
   badgeBackgroundSubdued: computed(
     ([backgroundLightText]) => backgroundLightText,
@@ -343,6 +343,7 @@ const component_colors: _EuiThemeComponentColors = {
     ([backgroundFilledText]) => backgroundFilledText,
     ['colors.backgroundFilledText']
   ),
+  tableFooterBackground: SEMANTIC_COLORS.shade15,
 
   tooltipBackground: dark_background_colors.backgroundBaseSubdued,
   tooltipBorder: dark_border_colors.borderBaseSubdued,
@@ -354,6 +355,11 @@ const component_colors: _EuiThemeComponentColors = {
   tourFooterBackground: computed(
     ([backgroundBaseHighlighted]) => backgroundBaseHighlighted,
     ['colors.backgroundBaseHighlighted']
+  ),
+  tourStepIndicatorInactiveColor: SEMANTIC_COLORS.shade50,
+  tourStepIndicatorActiveColor: computed(
+    ([backgroundFilledSuccess]) => backgroundFilledSuccess,
+    ['colors.backgroundFilledSuccess']
   ),
 
   treeViewItemBackgroundHover: computed(
@@ -419,5 +425,12 @@ export const components: _EuiThemeComponents = {
     ),
     tableRowBackgroundMarked: SEMANTIC_COLORS.warning140,
     tableRowBackgroundMarkedHover: SEMANTIC_COLORS.warning130,
+    tableFooterBackground: SEMANTIC_COLORS.shade135,
+
+    tourStepIndicatorInactiveColor: SEMANTIC_COLORS.shade100,
+    tourStepIndicatorActiveColor: computed(
+      ([backgroundFilledSuccess]) => backgroundFilledSuccess,
+      ['colors.backgroundFilledSuccess']
+    ),
   },
 };

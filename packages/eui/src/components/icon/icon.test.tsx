@@ -22,7 +22,7 @@ import {
   clearIconComponentCache,
   appendIconComponentCache,
 } from './icon';
-import { icon as EuiIconVideoPlayer } from './assets/videoPlayer';
+import { icon as EuiIconVideoPlayer } from './assets/video_player';
 
 jest.mock('./icon', () => {
   return jest.requireActual('./icon');

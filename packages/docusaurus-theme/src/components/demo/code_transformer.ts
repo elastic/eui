@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-const IMPORT_REGEX = /^import [^'"]* from ['"]([^.'"\n ][^'"\n ]*)['"];?/gm;
+const IMPORT_REGEX = /^import [^'"]* from ['"]([^'"\n ]*)['"];?/gm;
 const DEFAULT_EXPORT_REGEX = /export default /;
 const COMPONENT_ONLY_REGEX = /^\(?</;
 

@@ -370,7 +370,6 @@ exports[`EuiSelectable search value supports inheriting initialSearchValue from 
         </span>
       </div>
       <input
-        aria-activedescendant=""
         aria-describedby="generated-id_instructions"
         aria-haspopup="listbox"
         aria-label="Filter options"

@@ -7,6 +7,7 @@
  */
 
 import React, { useCallback, useEffect, useState } from 'react';
+import { css } from '@emotion/react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { faker } from '@faker-js/faker';
@@ -22,6 +23,7 @@ import type {
 } from './basic_table';
 import { EuiBasicTable, EuiBasicTableProps } from './basic_table';
 import { EuiIcon } from '../icon';
+import { Pagination } from './pagination_bar';
 
 // Set static seed so that the generated faker data is consistent between page loads
 faker.seed(8_02_2010);
@@ -39,6 +41,7 @@ const meta: Meta<EuiBasicTableProps<User>> = {
     // Inherited from EuiTable
     responsiveBreakpoint: 'm',
     tableLayout: 'fixed',
+    hasBackground: true,
     // set up for easier testing/QA
     cellProps: {
       'data-test-subj': `basic-table-cell`,
@@ -51,7 +54,7 @@ const meta: Meta<EuiBasicTableProps<User>> = {
 };
 moveStorybookControlsToCategory(
   meta,
-  ['responsiveBreakpoint', 'tableLayout'],
+  ['responsiveBreakpoint', 'tableLayout', 'hasBackground'],
   'EuiTable props'
 );
 
@@ -258,7 +261,7 @@ export const MarkedRow: Story = {
       })}  />`,
     },
     controls: {
-      include: ['rowProps', 'columns', 'items'],
+      include: ['rowProps', 'columns', 'items', 'hasBackground'],
     },
   },
   args: {
@@ -274,7 +277,7 @@ export const MarkedRow: Story = {
 export const ExpandedRow: Story = {
   parameters: {
     controls: {
-      include: ['columns', 'items', 'itemIdToExpandedRowMap'],
+      include: ['columns', 'items', 'itemIdToExpandedRowMap', 'hasBackground'],
     },
   },
   args: {
@@ -294,11 +297,15 @@ export const ExpandedRow: Story = {
   },
 };
 
+type NestedTableProps = {
+  hasLeadingIcon?: boolean;
+  hasBackground?: boolean;
+};
+
 const NestedTable = ({
   hasLeadingIcon = false,
-}: {
-  hasLeadingIcon?: boolean;
-}) => {
+  hasBackground = true,
+}: NestedTableProps) => {
   const { euiTheme } = useEuiTheme();
 
   const _items = users.slice(0, 3);
@@ -320,6 +327,7 @@ const NestedTable = ({
       itemId="id"
       rowHeader="firstName"
       columns={_columns}
+      hasBackground={hasBackground}
     />
   );
 };
@@ -327,7 +335,7 @@ const NestedTable = ({
 export const ExpandedNestedTable: Story = {
   parameters: {
     controls: {
-      include: ['columns', 'items', 'itemIdToExpandedRowMap'],
+      include: ['columns', 'items', 'itemIdToExpandedRowMap', 'hasBackground'],
     },
   },
   args: {
@@ -347,6 +355,40 @@ export const ExpandedNestedTable: Story = {
       onSelectionChange: action('onSelectionChange'),
     },
   },
+  render: function Render({
+    itemIdToExpandedRowMap,
+    hasBackground,
+    ...rest
+  }: EuiBasicTableProps<User>) {
+    // story-only logic to inject hasBackground into nested tables
+    // do not use in consumer code, set hasBackground directly on the nested table instead
+    const _itemIdToExpandedRowMap = Object.fromEntries(
+      Object.entries(itemIdToExpandedRowMap || {}).map(([key, value]) => [
+        key,
+        React.isValidElement(value)
+          ? React.cloneElement(value, { hasBackground } as NestedTableProps)
+          : value,
+      ])
+    );
+
+    return (
+      <StatefulPlayground
+        // only passed to ensure same base size, casting to prevent showing the pagination controls
+        pagination={{ pageSize: 5 } as Pagination}
+        hasBackground={hasBackground}
+        itemIdToExpandedRowMap={_itemIdToExpandedRowMap}
+        {...rest}
+      />
+    );
+  },
+};
+
+export const EmptyTable: Story = {
+  args: {
+    ...Playground.args,
+    items: [],
+    noItemsMessage: 'No users found',
+  },
 };
 
 export const DarkMode: Story = {
@@ -364,6 +406,44 @@ export const HighContrastMobile: Story = {
   args: {
     ...ExpandedRow.args,
     responsiveBreakpoint: true,
+  },
+};
+
+export const LargeExpandedRow: Story = {
+  tags: ['vrt-only'],
+  args: {
+    tableCaption: 'EuiBasicTable playground',
+    items: users,
+    itemId: 'id',
+    rowHeader: 'firstName',
+    columns,
+    css: css`
+      margin-block-start: -300px;
+    `,
+    itemIdToExpandedRowMap: {
+      1: (
+        <div
+          css={css`
+            block-size: 100vh;
+          `}
+        >
+          <strong>Expanded row 1</strong>
+          <p>lorem ipsum dolor sit</p>
+        </div>
+      ),
+    },
+  },
+};
+
+export const ExpandedNestedTableWithoutBackground: Story = {
+  tags: ['vrt-only'],
+  args: {
+    ...ExpandedNestedTable.args,
+    hasBackground: false,
+    itemIdToExpandedRowMap: {
+      1: <NestedTable hasBackground={false} />,
+      3: <NestedTable hasBackground={false} hasLeadingIcon />,
+    },
   },
 };
 

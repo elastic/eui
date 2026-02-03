@@ -12,12 +12,14 @@ import React, {
   KeyboardEvent,
   KeyboardEventHandler,
   MouseEventHandler,
+  useContext,
 } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../common';
 import { keys, useEuiMemoizedStyles } from '../../services';
 
 import { useEuiTableIsResponsive } from './mobile/responsive_context';
+import { EuiTableVariantContext } from './table_context';
 import { euiTableRowStyles } from './table_row.styles';
 
 export interface EuiTableRowProps {
@@ -68,11 +70,14 @@ export const EuiTableRow: FunctionComponent<Props> = ({
   ...rest
 }) => {
   const isResponsive = useEuiTableIsResponsive();
+  const { hasBackground } = useContext(EuiTableVariantContext);
   const styles = useEuiMemoizedStyles(euiTableRowStyles);
   const cssStyles = isResponsive
     ? [
         styles.euiTableRow,
         styles.mobile.mobile,
+        !hasBackground && styles.mobile.hasBorder,
+        hasBackground && styles.mobile.hasBackground,
         isSelected && styles.mobile.selected,
         isExpandedRow && styles.mobile.expanded,
         (hasActions === true || isExpandable || isExpandedRow) &&
@@ -84,7 +89,8 @@ export const EuiTableRow: FunctionComponent<Props> = ({
         styles.desktop.desktop,
         onClick && styles.desktop.clickable,
         isSelected && styles.desktop.selected,
-        isExpandedRow && styles.desktop.expanded,
+        isExpandedRow && styles.desktop.expanded.expanded,
+        isExpandedRow && hasBackground && styles.desktop.expanded.hasBackground,
         isExpandedRow && hasSelection && styles.desktop.checkboxOffset,
       ];
 

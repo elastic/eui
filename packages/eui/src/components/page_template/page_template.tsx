@@ -157,6 +157,7 @@ export const _EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
         restrictWidth,
         paddingSize,
         bottomBorder: headerBottomBorder,
+        color: panelled === false ? 'transparent' : 'plain',
       },
       section: {
         restrictWidth,
@@ -209,24 +210,28 @@ export const _EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
     </TemplateContext.Provider>
   );
 };
+_EuiPageTemplate.displayName = 'EuiPageTemplate';
 
 const _EuiPageSidebar: FunctionComponent<EuiPageSidebarProps> = (props) => {
   const { sidebar } = useContext(TemplateContext);
 
   return <EuiPageSidebar {...sidebar} {...props} />;
 };
+_EuiPageSidebar.displayName = 'EuiPageTemplate.Sidebar';
 
 const _EuiPageSection: FunctionComponent<EuiPageSectionProps> = (props) => {
   const { section } = useContext(TemplateContext);
 
   return <EuiPageSection {...section} {...props} />;
 };
+_EuiPageSection.displayName = 'EuiPageTemplate.Section';
 
 const _EuiPageHeader: FunctionComponent<EuiPageHeaderProps> = (props) => {
   const { header } = useContext(TemplateContext);
 
   return <EuiPageHeader {...header} {...props} />;
 };
+_EuiPageHeader.displayName = 'EuiPageTemplate.Header';
 
 const _EuiPageEmptyPrompt: FunctionComponent<_EuiPageEmptyPromptProps> = (
   props
@@ -235,6 +240,7 @@ const _EuiPageEmptyPrompt: FunctionComponent<_EuiPageEmptyPromptProps> = (
 
   return <EuiPageEmptyPrompt {...emptyPrompt} {...props} />;
 };
+_EuiPageEmptyPrompt.displayName = 'EuiPageTemplate.EmptyPrompt';
 
 const _EuiPageBottomBar: FunctionComponent<_EuiPageBottomBarProps> = (
   props
@@ -243,6 +249,7 @@ const _EuiPageBottomBar: FunctionComponent<_EuiPageBottomBarProps> = (
 
   return <EuiPageBottomBar {...bottomBar} {...props} />;
 };
+_EuiPageBottomBar.displayName = 'EuiPageTemplate.BottomBar';
 
 export const EuiPageTemplate = Object.assign(_EuiPageTemplate, {
   Sidebar: _EuiPageSidebar,

@@ -130,6 +130,7 @@ export const EuiDataGrid = memo(
       className,
       gridStyle,
       toolbarVisibility = true,
+      headerVisibility = true,
       pagination: _pagination,
       sorting,
       inMemory,
@@ -210,10 +211,17 @@ export const EuiDataGrid = memo(
      */
     const displayValues: { [key: string]: string } = useMemo(() => {
       return columns.reduce(
-        (acc: { [key: string]: string }, column: EuiDataGridColumn) => ({
-          ...acc,
-          [column.id]: column.displayAsText || column.id,
-        }),
+        (acc: { [key: string]: string }, column: EuiDataGridColumn) => {
+          // prevent duplicate values
+          if (!acc[column.id]) {
+            return {
+              ...acc,
+              [column.id]: column.displayAsText || column.id,
+            };
+          }
+
+          return acc;
+        },
         {}
       );
     }, [columns]);
@@ -367,6 +375,7 @@ export const EuiDataGrid = memo(
       },
       {
         'euiDataGrid--noControls': !toolbarVisibility,
+        'euiDataGrid--noHeader': !headerVisibility,
       },
       className
     );
@@ -533,6 +542,7 @@ export const EuiDataGrid = memo(
                       canDragAndDropColumns={
                         columnVisibility.canDragAndDropColumns
                       }
+                      showHeader={!!headerVisibility}
                     />
                   </OverrideCopiedTabularContent>
                 </div>

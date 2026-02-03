@@ -27,6 +27,10 @@ export interface CommonProps {
   css?: Interpolation<Theme>;
 }
 
+export interface DataAttributeProps {
+  [key: `data-${string}`]: string | undefined;
+}
+
 export type NoArgCallback<T> = () => T;
 
 export const assertNever = (x: never): never => {

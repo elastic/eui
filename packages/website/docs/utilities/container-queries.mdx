@@ -1,0 +1,159 @@
+---
+title: Container queries
+---
+
+import { EuiBetaBadge } from '@elastic/eui';
+
+# Container queries <EuiBetaBadge label="Beta" color="accent" />
+
+Container queries allow you to create styles that adapt based on the available
+space within element's parent container, rather than the entire browser
+viewport. This unlocks a new level of modularity, enabling designs that are
+intrinsically responsive regardless of where they are placed in a layout,
+and reactive to important layout changes, like expanding the page sidebar.
+
+```tsx interactive
+import React from 'react';
+import { EuiText, EuiResizableContainer } from '@elastic/eui';
+import { faker } from '@faker-js/faker';
+
+const text = faker.lorem.paragraphs();
+
+export default () => (
+  <EuiResizableContainer style={{ height: '200px' }}>
+    {(EuiResizablePanel, EuiResizableButton) => (
+      <>
+        <EuiResizablePanel initialSize={50} minSize="30%" tabIndex={0} css={euiContainerCSS('inline-size')}>
+          <EuiText>{text}</EuiText>
+        </EuiResizablePanel>
+
+        <EuiResizableButton accountForScrollbars="before" />
+
+        <EuiResizablePanel initialSize={50} minSize="200px" tabIndex={0} css={euiContainerCSS('inline-size')}>
+          <EuiText css={css`${euiContainerQuery('(width < 300px)')} { ${useEuiFontSize('xs')} }`}>
+            <strong>This text will become small when the panel width is lower than 300px</strong>
+            <br />
+            {text}
+          </EuiText>
+        </EuiResizablePanel>
+      </>
+    )}
+  </EuiResizableContainer>
+);
+```
+
+## Overview
+
+For years, responsive web design relied heavily on media queries.
+These allow us to adjust styles based on the global viewport size
+(e.g., "if the screen is wider than 768px, do this").
+While effective for page-level layouts, media queries often fall short
+when building reusable components, or building component organisms.
+An `EuiCard` or `EuiBasicTable`, for example, might need to look different
+when placed in a narrow flyout versus a wide main content area,
+even if the viewport size remains the same.
+
+Container queries solve this by moving the context from the screen
+to the element:
+
+* **Media Queries**: "How wide is the user's screen?"
+* **Container Queries**: "How much space do I have in this specific container?"
+
+By querying the container, you can build self-contained components that "own"
+their responsiveness. This reduces the need for complex grid classes
+or layout-specific overrides.
+
+## Usage
+
+EUI ships with container query utilities that make the process of defining
+containers and creating container queries seamless.
+
+### 1. Define the container
+
+To use container queries, you must first establish a **containment context**
+on a parent element to tell the browser which element should act
+as the reference point for size calculations.
+
+We provide two utility functions to help with that:
+
+* `euiContainer(type: ContainerType, name?: string, scrollState?: boolean)` - to be used within Emotion template tags
+* `euiContainerCSS(type: ContainerType, name?: string, scrollState?: boolean)` - to be passed directly to the `css` prop
+
+### 2. Query the container
+
+Once a container is established, you can use the `euiContainerQuery` utility
+to define container queries and apply styles to its children.
+The approach is very similar to media queries and the breakpoint EUI utilities
+like `euiMinBreakpoint()`:
+
+```tsx
+const styles = css`
+  ${useEuiFontSize('s')}
+  ${euiContainerQuery('(width > 400px)')} {
+    useEuiFontSize('m')
+  }
+`;
+```
+
+`euiContainerQuery` accepts two arguments:
+
+* `conditions: string`: one or many conditions to query the container with.
+  Similarly to media queries, you can use size queries (e.g., `(width > 300px)`),
+  scroll state queries (e.g., `(scroll-state(scrollable: top))`)
+  or even style queries.
+  You can use the `and`, `or` and `not` logical keywords to define container conditions.
+  Note that all conditions must be wrapped in parentheses.
+
+* `containerName?: string`: When provided, it will be used to target
+  the containment context and run queries against it. Otherwise, the nearest
+  ancestor with containment will be queried instead.
+
+## Querying containers using JS
+
+:::warning
+For performance reasons, using container queries in JS is not recommended.
+:::
+All layout transforms related to container query changes should be handled
+directly in CSS (or CSS-in-JS) whenever possible.
+This ensures good performance and omits React tree rerenders caused
+by viewport or container resizes, which are the major cause of the application
+feeling sluggish.
+
+That being said, we're aware that sometimes it is necessary to access
+container queries from JS land, and we provide a (relatively) performant
+way to do so - the `useEuiContainerQuery()` hook.
+
+What's important to point out is that using the hook requires passing
+a special `ref` prop provided by it to the element you want to query,
+so that the calculation can be done on the right element.
+
+<Demo isSourceOpen>
+  ```tsx
+  import React from 'react';
+  import { useEuiContainerQuery, euiContainerCSS, EuiCodeBlock } from '@elastic/eui';
+
+  export default () => {
+    const { ref, matches } = useEuiContainerQuery('(width > 300px)');
+
+    return (
+      <EuiResizableContainer>
+        {(EuiResizablePanel, EuiResizableButton) => (
+          <>
+            <EuiResizablePanel initialSize="50" css={euiContainerCSS('inline-size')}>
+              <div ref={ref}>
+                <EuiCodeBlock language="jsx" fontSize="m" paddingSize="m" whiteSpace="pre">
+                  {`/* true when width > 300px */\nmatches = ${matches ? 'true' : 'false'}`}
+                </EuiCodeBlock>
+              </div>
+            </EuiResizablePanel>
+            <EuiResizableButton accountForScrollbars="before" />
+            <EuiResizablePanel initialSize="50">
+              Resize the resizable panel to see the left side content changing.
+            </EuiResizablePanel>
+          </>
+        )}
+      </EuiResizableContainer>
+    );
+  };
+```
+</Demo>

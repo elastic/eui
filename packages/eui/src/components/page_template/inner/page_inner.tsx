@@ -32,7 +32,7 @@ export type _EuiPageInnerProps<T extends ComponentTypes = 'main'> =
        */
       component?: T;
       /**
-       * Adds a white background and shadow to define the area.
+       * Adds a background and shadow to define the area.
        */
       panelled?: boolean;
       /**

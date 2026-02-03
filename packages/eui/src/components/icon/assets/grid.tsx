@@ -28,7 +28,11 @@ const EuiIconGrid = ({
     {...props}
   >
     {title ? <title id={titleId}>{title}</title> : null}
-    <path d="M1 5V1h4v4H1Zm3-1V2H2v2h2Zm2 1V1h4v4H6Zm3-1V2H7v2h2Zm2 1V1h4v4h-4Zm1-1h2V2h-2v2ZM1 10V6h4v4H1Zm3-1V7H2v2h2Zm2 1V6h4v4H6Zm3-1V7H7v2h2Zm2 1V6h4v4h-4Zm3-1V7h-2v2h2ZM1 15v-4h4v4H1Zm1-1h2v-2H2v2Zm4 1v-4h4v4H6Zm1-1h2v-2H7v2Zm4 1v-4h4v4h-4Zm1-1h2v-2h-2v2Z" />
+    <path
+      fillRule="evenodd"
+      d="M6 9a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-4a1 1 0 0 1 1-1h4Zm-4 5h4v-4H2v4Zm12-5a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1v-4a1 1 0 0 1 1-1h4Zm-4 5h4v-4h-4v4ZM6 1a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h4ZM2 6h4V2H2v4Zm12-5a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h4Zm-4 5h4V2h-4v4Z"
+      clipRule="evenodd"
+    />
   </svg>
 );
 export const icon = EuiIconGrid;

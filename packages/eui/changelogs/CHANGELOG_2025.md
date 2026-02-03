@@ -1,3 +1,98 @@
+## [`v111.0.0`](https://github.com/elastic/eui/releases/v111.0.0)
+
+- Added an opt-in EuiFlyout session management for creating flyout compositions and journeys effortlessly. Session management handles side-by-side flyout rendering based on parent-child grouping, simple flyout transitions with history, state sharing, and more. ([#9202](https://github.com/elastic/eui/pull/9202))
+  - EuiFlyout session management is an optional feature that can be enabled by adding `session="start"` to EuiFlyout. Check out the [documentation](https://eui.elastic.co/docs/components/containers/flyout/session-management) to learn more.
+- Added a new `hasChildBackground` boolean prop (defaults to false) to `EuiFlyout` ([#9056](https://github.com/elastic/eui/pull/9056))
+- Updated `EuiFlyout` with new `onActive` callback and enable stack managed history controls. ([#9003](https://github.com/elastic/eui/pull/9003))
+- Updated `EuiFlyoutMenu` with new prop `historyItems` and refactored props for back button. ([#9003](https://github.com/elastic/eui/pull/9003))
+- Added a new optional `resizable` (boolean) prop to `EuiFlyout`. Resizability can now be controlled dynamically without the need to use `EuiFlyoutResizable`. ([#8999](https://github.com/elastic/eui/pull/8999))
+- Flyout system menu bar: require tile, support custom actions ([#8897](https://github.com/elastic/eui/pull/8897))
+- Added a new `EuiFlyoutMenu` component that provides a standardized top menu bar for flyouts. ([#8851](https://github.com/elastic/eui/pull/8851))
+
+**Breaking changes**
+
+- Changed the way EuiFlyout renders overlay masks to decouple the overlay mask from the flyout itself. Now, the overlay mask is a separate portalled element. ([#9202](https://github.com/elastic/eui/pull/9202))
+  - This change does not modify the functionality or behavior of flyout overlays but might affect some custom usages when your application relies on the specific element nesting within EuiFlyout.
+
+## [`v110.0.0`](https://github.com/elastic/eui/releases/v110.0.0)
+
+- Updated `EuiSuperDatePicker` to expose plain text `utcOffset` and `timeZoneName` in `timeZoneDisplayProps.customRender` render function ([#9245](https://github.com/elastic/eui/pull/9245))
+- Updated `EuiHeaderLogo` to add a hover style ([#9240](https://github.com/elastic/eui/pull/9240))
+- Made `EuiQuickSelectPanel` available for importing from the `@elastic/eui` package ([#9239](https://github.com/elastic/eui/pull/9239))
+- Updated `EuiAvatar` to support Emoji Sequence ("advanced") in the `initials` prop ([#9227](https://github.com/elastic/eui/pull/9227))
+- Added `color` prop on `EuiPageHeader` to support `transparent` (default) and `plain` backgrounds. ([#9220](https://github.com/elastic/eui/pull/9220))
+- Added `color` prop on `EuiPage` to support `transparent` (default) and `plain` backgrounds. ([#9220](https://github.com/elastic/eui/pull/9220))
+- Updated `EuiPageTemplate` to ensure `panelled=true` renders a `EuiPageHeader` with a plain background by default ([#9220](https://github.com/elastic/eui/pull/9220))
+- Removed the default background style on `EuiPageTemplate`'s outer wrapper ([#9220](https://github.com/elastic/eui/pull/9220))
+
+**Bug fixes**
+
+- Fixed icon size in `EuiSuperDatePicker`'s time window buttons when `compressed={true}` ([#9245](https://github.com/elastic/eui/pull/9245))
+- Fixed `EuiIcon` visibility issue with `logoElastic` when `color` is set to `text` or `ghost` in light mode ([#9247](https://github.com/elastic/eui/pull/9247))
+- Fixed `EuiInMemoryTable` support for controlled search for plain text (when `searchFormat="text"`) by properly handling `search.query` and `search.defaulQuery` ([#9142](https://github.com/elastic/eui/pull/9142))
+
+**Breaking changes**
+
+- Removed deprecated `message` prop from `EuiInMemoryTable`, use `noItemsMessage` instead ([#9234](https://github.com/elastic/eui/pull/9234))
+
+**Accessibility**
+
+- Improved the accessibility of input fields in the popover of `EuiSuperDatePicker` by properly labeling them ([#9239](https://github.com/elastic/eui/pull/9239))
+- Improved the accessibility of `EuiSelectable` by removing empty `aria-activedescendant` attribute when no option is active to ensure the search input is perceivable by screen readers ([#9223](https://github.com/elastic/eui/pull/9223))
+
+## [`v109.2.0`](https://github.com/elastic/eui/releases/v109.2.0)
+
+- Updated `EuiFlexItem` to fall back to `grow={true}` if invalid values for `grow` are passed ([#9228](https://github.com/elastic/eui/pull/9228))
+- Updated shared button styles in `useEuiButtonColorCSS` to use `euiDisabledSelector` ([#9226](https://github.com/elastic/eui/pull/9226))
+- Added `euiTextTruncateCSS` Emotion style utility ([#9231](https://github.com/elastic/eui/pull/9231))
+- Added `hasBackground` prop on `EuiTable`, `EuiBasicTable` and `EuiInMemoryTable` ([#9224](https://github.com/elastic/eui/pull/9224))
+- Added component token `components.tableFooterBackground` ([#9224](https://github.com/elastic/eui/pull/9224))
+- Updated the color of mobile table header cells to use `colors.textSubdued` ([#9224](https://github.com/elastic/eui/pull/9224))
+- Updated `EuiSuperDatePicker` to show a tooltip with the full range details when the button displays a pretty duration e.g. "Last 15 minutes" ([#9221](https://github.com/elastic/eui/pull/9221))
+- Updated `EuiPopover` default prop values of `hasArrow`, `position` and `offset`: ([#9218](https://github.com/elastic/eui/pull/9218))
+  - Changed `hasArrow` to `false`
+  - Changed `position` to `downLeft`
+  - Changed `offset` to `4` when `hasArrow=false`
+- Updated `EuiInputPopover` `offset` default value to `2` ([#9218](https://github.com/elastic/eui/pull/9218))
+- Updated `EuiTourStep` to not apply `hasArrow=true` by default when `decoration="none"` ([#9218](https://github.com/elastic/eui/pull/9218))
+- Updated `EuiSuperDatePicker` to have a more forgiving manual input for absolute dates. ([#9199](https://github.com/elastic/eui/pull/9199))
+
+**Bug fixes**
+
+- Updated EuiButtonGroup disabled style selectors to use `euiDisabledSelector` to ensure high contrast mode styles apply correctly ([#9226](https://github.com/elastic/eui/pull/9226))
+- Updated `EuiSuperDatePicker` to ensure its pretty format button dates are truncated correctly ([#9231](https://github.com/elastic/eui/pull/9231))
+- Fixed a visual bug for mobile table action buttons that causes shifting positions when changing color mode ([#8231](https://github.com/elastic/eui/issues/8231)) ([#9224](https://github.com/elastic/eui/pull/9224))
+
+**Accessibility**
+
+- Improved the navigation of sibling `EuiToolTip` anchor elements in NVDA browse mode by adding an `id` to ensure they are unique ([#9208](https://github.com/elastic/eui/pull/9208))
+
+## [`v109.1.0`](https://github.com/elastic/eui/releases/v109.1.0)
+
+- Added `--euiBottomBarOffset` CSS variable to `EuiBottomBar` for positioning other fixed elements relative to the bottom bar's height ([#9211](https://github.com/elastic/eui/pull/9211))
+- Updated `boxesVertical` icon and restored `checkInCircleFilled`, `errorFilled`, and `warningFilled` icons. ([#9194](https://github.com/elastic/eui/pull/9194))
+- Updated `EuiSuperDatePicker` with new time zone information, opt-in via `timeZoneDisplayProps`. ([#9191](https://github.com/elastic/eui/pull/9191))
+- Updated the position of `EuiModal` by removing bottom padding in `EuiOverlayMask` ([#9190](https://github.com/elastic/eui/pull/9190))
+- Added `EuiPopover` and `EuiToolTip`'s `repositionOnScroll` to `componentDefaults` ([#9152](https://github.com/elastic/eui/pull/9152))
+- Updated `EuiSuperDatePicker` with new time window buttons for time shifting and zoom out, opt-in via `showTimeWindowButtons` boolean prop. ([#9151](https://github.com/elastic/eui/pull/9151))
+- Added beta prop `hasAriaDisabled` to all base button components: `EuiButton`, `EuiButtonEmpty`, `EuiButtonIcon`, `EuibuttonGroup`, `EuiFilterButton` ([#9201](https://github.com/elastic/eui/pull/9201))
+- Added `euiDisabledSelector` variable that combines CSS selectors `:disabled` and `[aria-disabled="true"]` ([#9201](https://github.com/elastic/eui/pull/9201))
+- Added custom test matchers that check for both `disabled` and `aria-disabled` attributes: ([#9201](https://github.com/elastic/eui/pull/9201))
+  - React testing Library: `.toBeEuiDisabled()`
+  - Enzyme: `.toHaveEuiDisabledProp()`
+  - Cypress: `should('be.euiDisabled)`
+
+**Bug fixes**
+
+- Fixed unexpected duplicate columns in `EuiDataGrid` crashing the column sorting by removing duplicate columns entirely ([#9209](https://github.com/elastic/eui/pull/9209))
+- Fixed a visual bug in `EuiTable` where long table row content would be cut off on mobile screens ([#9206](https://github.com/elastic/eui/pull/9206))
+- Fixed virtualized `EuiCodeBlock` rendering blank lines when content updates if scrolled. ([#9196](https://github.com/elastic/eui/pull/9196))
+- Fixed `EuiButtonGroup` button sizing to ensure square buttons when used with `isIconOnly=true` ([#9170](https://github.com/elastic/eui/pull/9170))
+
+**Accessibility**
+
+- Fixed an issue where portalled components like `EuiPopover` were not included in `EuiFlyout`'s focus trap through `includeSelectorInFocusTrap`, making them inaccessible to keyboard users ([#9103](https://github.com/elastic/eui/pull/9103))
+
 ## [`v109.0.0`](https://github.com/elastic/eui/releases/v109.0.0)
 
 - Added color tokens `borderBaseProminent` and `borderInteractiveFormsHoverProminent` ([#9162](https://github.com/elastic/eui/pull/9162))

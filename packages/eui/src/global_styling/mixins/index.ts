@@ -7,6 +7,7 @@
  */
 
 export * from './_color';
+export * from './_container_query';
 export * from './_helpers';
 export * from './_padding';
 export * from './_states';

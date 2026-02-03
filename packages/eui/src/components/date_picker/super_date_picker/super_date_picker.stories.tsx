@@ -28,6 +28,7 @@ import {
 } from './super_date_picker';
 import { EuiFieldText } from '../../form';
 import { EuiFlexGroup } from '../../flex';
+import { EuiButtonIcon } from '../../button';
 
 const meta: Meta<EuiSuperDatePickerProps> = {
   title: 'Forms/EuiSuperDatePicker/EuiSuperDatePicker',
@@ -72,6 +73,7 @@ const meta: Meta<EuiSuperDatePickerProps> = {
     commonlyUsedRanges: [{ start: 'now/d', end: 'now/d', label: 'Today' }],
     maxDate: undefined,
     minDate: undefined,
+    timeZoneDisplayProps: { timeZone: 'Browser' },
   },
 };
 enableFunctionToggleControls(meta, ['onTimeChange']);
@@ -164,7 +166,10 @@ export const QuickSelectOnly: Story = {
 
     return (
       <EuiFlexGroup>
-        <EuiFieldText onFocus={() => setCollapsed(true)} />
+        <EuiFieldText
+          onFocus={() => setCollapsed(true)}
+          onBlur={() => setCollapsed(false)}
+        />
         <EuiSuperDatePicker
           {...args}
           isQuickSelectOnly={isCollapsed}
@@ -187,6 +192,71 @@ export const QuickSelectOnly: Story = {
     await fireEvent.click(
       canvas.getByTestSubject('superDatePickerToggleQuickMenuButton')
     );
+  },
+};
+
+export const TimeWindowButtons: Story = {
+  args: {
+    showTimeWindowButtons: {
+      // make it easy to toggle in the UI
+      showZoomIn: false,
+    },
+    showUpdateButton: false,
+  },
+  render: (args) => <StatefulSuperDatePicker {...args} />,
+};
+
+export const TimeWindowButtonsWithZoomIn: Story = {
+  tags: ['vrt-only'],
+  args: {
+    showTimeWindowButtons: {
+      showZoomIn: true,
+    },
+    showUpdateButton: false,
+  },
+  render: (args) => <StatefulSuperDatePicker {...args} />,
+};
+
+export const CustomTimeZoneDisplay: Story = {
+  parameters: {
+    controls: {
+      include: ['timeZoneDisplayProps'],
+    },
+    loki: {
+      chromeSelector: LOKI_SELECTORS.portal,
+    },
+  },
+  args: {
+    start: 'Jan-01-2025',
+    timeZoneDisplayProps: {
+      timeZone: 'America/Los_Angeles',
+      customRender: ({ nameDisplay }) => (
+        <>
+          {nameDisplay}
+          <EuiButtonIcon
+            aria-label="Time zones database"
+            href="https://en.wikipedia.org/wiki/List_of_tz_database_time_zones"
+            target="_blank"
+            rel="noopener noreferrer"
+            iconType="documentation"
+          />
+        </>
+      ),
+    },
+  },
+  render: (args) => <StatefulSuperDatePicker {...args} />,
+  play: async ({ canvasElement, step }) => {
+    const canvas = within(canvasElement);
+
+    await step('show popover on click of the date picker button', async () => {
+      await fireEvent.click(
+        canvas.getByTestSubject('superDatePickerstartDatePopoverButton')
+      );
+
+      await canvas.waitForEuiPopoverVisible();
+
+      expect(await canvas.findByText(/Los_Angeles/)).toBeVisible();
+    });
   },
 };
 
@@ -272,6 +342,16 @@ export const OverflowingChildren: Story = {
   },
 };
 
+export const TimeWindowButtonsCompressed: Story = {
+  tags: ['vrt-only'],
+  args: {
+    showTimeWindowButtons: true,
+    showUpdateButton: false,
+    compressed: true,
+  },
+  render: (args) => <StatefulSuperDatePicker {...args} />,
+};
+
 /**
  * Helpers
  */
@@ -326,10 +406,6 @@ const StatefulSuperDatePicker = (props: EuiSuperDatePickerProps) => {
       end={_end}
       onTimeChange={handleOnTimeChange}
       onRefresh={onRefresh}
-      css={css`
-        /* ensure the input content is visible without being truncated */
-        inline-size: 700px;
-      `}
       {...rest}
     />
   );

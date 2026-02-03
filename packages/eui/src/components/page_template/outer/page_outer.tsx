@@ -8,7 +8,7 @@
 
 import React, { FunctionComponent, HTMLAttributes } from 'react';
 import { CommonProps } from '../../common';
-import { useEuiTheme, useIsWithinBreakpoints } from '../../../services';
+import { useIsWithinBreakpoints } from '../../../services';
 import { _EuiThemeBreakpoint } from '../../../global_styling';
 import { euiPageOuterStyles } from './page_outer.styles';
 
@@ -41,8 +41,7 @@ export const _EuiPageOuter: FunctionComponent<_EuiPageOuterProps> = ({
   responsive = ['xs', 's'],
   ...rest
 }) => {
-  const themeContext = useEuiTheme();
-  const styles = euiPageOuterStyles(themeContext);
+  const styles = euiPageOuterStyles;
   const isResponding = useIsWithinBreakpoints(responsive);
 
   const cssStyles = [

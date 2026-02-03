@@ -33,8 +33,6 @@ export {
   euiPaletteColorBlindBehindText,
   euiPaletteComplementary,
   euiPaletteCool,
-  euiPaletteForDarkBackground,
-  euiPaletteForLightBackground,
   euiPaletteForStatus,
   euiPaletteForTemperature,
   euiPaletteGray,
@@ -74,6 +72,7 @@ export * from './color/eui_palettes_hooks';
 export { useColorPickerState, useColorStopsState } from './color_picker';
 export type { EuiSetColorMethod } from './color_picker';
 export * from './console';
+export { useEuiContainerQuery } from './container_query/container_query_hook';
 export * from './copy';
 export * from './emotion';
 export * from './findElement';

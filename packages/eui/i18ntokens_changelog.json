@@ -1,5 +1,136 @@
 [
   {
+    "version": "112.0.0",
+    "changes": [
+      {
+        "token": "euiTimeWindowButtons.invalidZoomInLabel",
+        "changeType": "added",
+        "value": "Cannot zoom in invalid time window"
+      },
+      {
+        "token": "euiTimeWindowButtons.cannotZoomInLabel",
+        "changeType": "added",
+        "value": "Cannot zoom in any further"
+      },
+      {
+        "token": "euiTimeWindowButtons.zoomInLabel",
+        "changeType": "added",
+        "value": "Zoom in"
+      }
+    ]
+  },
+  {
+    "version": "111.1.0",
+    "changes": [
+      {
+        "token": "euiColumnSelector.dragHandleAriaLabel",
+        "changeType": "modified",
+        "value": "drag handle"
+      }
+    ]
+  },
+  {
+    "version": "111.0.0",
+    "changes": [
+      {
+        "token": "euiBasicTable.tableCaptionWithPagination",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiBasicTable.tableAutoCaptionWithPagination",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiBasicTable.tableSimpleAutoCaptionWithPagination",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiBasicTable.tableAutoCaptionWithoutPagination",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiBasicTable.caption.itemCountPart.withTotalItemCount",
+        "changeType": "added",
+        "value": "Showing {itemCount} of {totalItemCount} data rows."
+      },
+      {
+        "token": "euiBasicTable.caption.paginationPart.withPageCount",
+        "changeType": "added",
+        "value": "Page {page} of {pageCount}."
+      },
+      {
+        "token": "euiBasicTable.caption.tableName",
+        "changeType": "added",
+        "value": "Data table"
+      },
+      {
+        "token": "euiBasicTable.caption.emptyState",
+        "changeType": "added",
+        "value": "(empty)"
+      }
+    ]
+  },
+  {
+    "version": "110.0.0",
+    "changes": [
+      {
+        "token": "euiFlyoutMenu.back",
+        "changeType": "added",
+        "value": "Back"
+      },
+      {
+        "token": "euiFlyoutMenu.history",
+        "changeType": "added",
+        "value": "History"
+      },
+      {
+        "token": "euiFlyoutManaged.defaultTitle",
+        "changeType": "added",
+        "value": "Unknown Flyout"
+      }
+    ]
+  },
+  {
+    "version": "109.1.0",
+    "changes": [
+      {
+        "token": "euiTimeWindowButtons.invalidShiftLabel",
+        "changeType": "added",
+        "value": "Cannot shift invalid time window"
+      },
+      {
+        "token": "euiTimeWindowButtons.invalidZoomOutLabel",
+        "changeType": "added",
+        "value": "Cannot zoom out invalid time window"
+      },
+      {
+        "token": "euiTimeWindowButtons.previousLabel",
+        "changeType": "added",
+        "value": "Previous"
+      },
+      {
+        "token": "euiTimeWindowButtons.previousDescription",
+        "changeType": "added",
+        "value": "Previous {displayInterval}"
+      },
+      {
+        "token": "euiTimeWindowButtons.zoomOutLabel",
+        "changeType": "added",
+        "value": "Zoom out"
+      },
+      {
+        "token": "euiTimeWindowButtons.nextLabel",
+        "changeType": "added",
+        "value": "Next"
+      },
+      {
+        "token": "euiTimeWindowButtons.nextDescription",
+        "changeType": "added",
+        "value": "Next {displayInterval}"
+      }
+    ]
+  },
+  {
     "version": "106.4.0",
     "changes": [
       {

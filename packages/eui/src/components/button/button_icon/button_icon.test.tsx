@@ -31,11 +31,21 @@ describe('EuiButtonIcon', () => {
   describe('props', () => {
     describe('isDisabled', () => {
       it('is rendered', () => {
-        const { container } = render(
-          <EuiButtonIcon iconType="user" aria-label="button" isDisabled />
+        const { container, getByTestSubject } = render(
+          <EuiButtonIcon
+            iconType="user"
+            aria-label="button"
+            isDisabled
+            data-test-subj="button"
+          />
         );
 
+        const button = getByTestSubject('button');
+
         expect(container.firstChild).toMatchSnapshot();
+        expect(button).toBeEuiDisabled();
+        expect(button).toHaveAttribute('disabled', '');
+        expect(button).not.toHaveAttribute('aria-disabled');
       });
 
       it('or disabled is rendered', () => {
@@ -57,6 +67,26 @@ describe('EuiButtonIcon', () => {
         );
 
         expect(container.firstChild).toMatchSnapshot();
+      });
+    });
+
+    describe('hasAriaDisabled', () => {
+      it('renders `aria-disabled` when `isDisabled=true`', () => {
+        const { getByTestSubject } = render(
+          <EuiButtonIcon
+            iconType="user"
+            aria-label="button"
+            isDisabled
+            hasAriaDisabled
+            data-test-subj="button"
+          />
+        );
+
+        const button = getByTestSubject('button');
+
+        expect(button).toBeEuiDisabled();
+        expect(button).toHaveAttribute('aria-disabled', 'true');
+        expect(button).not.toHaveAttribute('disabled');
       });
     });
 

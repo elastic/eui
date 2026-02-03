@@ -17,7 +17,11 @@ import React, {
 import moment, { Moment, LocaleSpecifier } from 'moment';
 import dateMath from '@elastic/datemath';
 
-import { useUpdateEffect, useEuiMemoizedStyles } from '../../../../services';
+import {
+  useUpdateEffect,
+  useEuiMemoizedStyles,
+  useGeneratedHtmlId,
+} from '../../../../services';
 import { useEuiI18n } from '../../../i18n';
 import { EuiFormRow, EuiFieldText, EuiFormLabel } from '../../../form';
 import { EuiFlexGroup } from '../../../flex';
@@ -26,6 +30,10 @@ import { EuiCode } from '../../../code';
 
 import { EuiDatePicker, EuiDatePickerProps } from '../../date_picker';
 import { EuiDatePopoverContentProps } from './date_popover_content';
+import {
+  EuiTimeZoneDisplay,
+  type EuiTimeZoneDisplayProps,
+} from './timezone_display';
 import { euiAbsoluteTabDateFormStyles } from './absolute_tab.styles';
 
 // Allow users to paste in and have the datepicker parse multiple common date formats,
@@ -47,6 +55,7 @@ export interface EuiAbsoluteTabProps {
   utcOffset?: number;
   minDate?: Moment;
   maxDate?: Moment;
+  timeZoneDisplayProps?: EuiTimeZoneDisplayProps;
 }
 
 export const EuiAbsoluteTab: FunctionComponent<EuiAbsoluteTabProps> = ({
@@ -60,6 +69,7 @@ export const EuiAbsoluteTab: FunctionComponent<EuiAbsoluteTabProps> = ({
   minDate,
   maxDate,
   labelPrefix,
+  timeZoneDisplayProps = {},
 }) => {
   const styles = useEuiMemoizedStyles(euiAbsoluteTabDateFormStyles);
 
@@ -80,6 +90,8 @@ export const EuiAbsoluteTab: FunctionComponent<EuiAbsoluteTabProps> = ({
     [dateFormat]
   );
 
+  const textInputLabelId = useGeneratedHtmlId();
+  const timeZomeDescriptionId = useGeneratedHtmlId();
   const submitButtonLabel = useEuiI18n(
     'euiAbsoluteTab.dateFormatButtonLabel',
     'Parse date'
@@ -115,12 +127,22 @@ export const EuiAbsoluteTab: FunctionComponent<EuiAbsoluteTabProps> = ({
         return;
       }
 
+      // We can be forgiving for `dateFormat` if we are certain
+      // we're not expecting any of the other formats allowed;
+      // otherwise we can get valid but inaccurate results e.g.
+      // `1970-01-01` -> `Jan 19, 1970 @ 01:01:00.000`
+      const strictModeForPassedFormat = moment(
+        textInputValue,
+        ALLOWED_USER_DATE_FORMATS,
+        true
+      ).isValid();
+
       // Attempt to parse with passed `dateFormat` and `locale`
       let valueAsMoment = moment(
         textInputValue,
         dateFormat,
         typeof locale === 'string' ? locale : 'en', // Narrow the union type to string
-        true
+        strictModeForPassedFormat
       );
       let dateIsValid = valueAsMoment.isValid();
 
@@ -181,8 +203,10 @@ export const EuiAbsoluteTab: FunctionComponent<EuiAbsoluteTabProps> = ({
           helpText={
             hasUnparsedText && !isTextInvalid ? dateFormatError : undefined
           }
+          describedByIds={[timeZomeDescriptionId]}
         >
           <EuiFieldText
+            aria-labelledby={textInputLabelId}
             compressed
             isInvalid={isTextInvalid}
             value={textInputValue}
@@ -196,7 +220,9 @@ export const EuiAbsoluteTab: FunctionComponent<EuiAbsoluteTabProps> = ({
               setIsReadyToParse(true);
             }}
             data-test-subj="superDatePickerAbsoluteDateInput"
-            prepend={<EuiFormLabel>{labelPrefix}</EuiFormLabel>}
+            prepend={
+              <EuiFormLabel id={textInputLabelId}>{labelPrefix}</EuiFormLabel>
+            }
           />
         </EuiFormRow>
         {hasUnparsedText && (
@@ -212,6 +238,10 @@ export const EuiAbsoluteTab: FunctionComponent<EuiAbsoluteTabProps> = ({
           />
         )}
       </EuiFlexGroup>
+      <EuiTimeZoneDisplay
+        id={timeZomeDescriptionId}
+        {...timeZoneDisplayProps}
+      />
     </>
   );
 };

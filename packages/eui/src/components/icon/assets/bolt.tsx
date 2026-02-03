@@ -28,7 +28,7 @@ const EuiIconBolt = ({
     {...props}
   >
     {title ? <title id={titleId}>{title}</title> : null}
-    <path d="M7.04 13.274a.5.5 0 1 0 .892.453l3.014-5.931a.5.5 0 0 0-.445-.727H5.316L8.03 1.727a.5.5 0 1 0-.892-.453L4.055 7.343a.5.5 0 0 0 .446.726h5.185L7.04 13.274Z" />
+    <path d="m13 1-3 4h3a1 1 0 0 1 .664 1.747l-9 8a1 1 0 0 1-1.559-1.194L5.382 9H3a1 1 0 0 1-.832-1.555L6.465 1H13ZM3 8h4l-3 6 9-8H8l3-4H7L3 8Z" />
   </svg>
 );
 export const icon = EuiIconBolt;

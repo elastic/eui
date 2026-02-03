@@ -79,6 +79,7 @@ type AnchorPosition = 'up' | 'right' | 'down' | 'left';
 export interface EuiPopoverProps extends PropsWithChildren, CommonProps {
   /**
    * Alignment of the popover and arrow relative to the button
+   * @default downLeft
    */
   anchorPosition?: PopoverAnchorPosition;
   /**
@@ -108,6 +109,7 @@ export interface EuiPopoverProps extends PropsWithChildren, CommonProps {
   focusTrapProps?: Partial<EuiFocusTrapProps>;
   /**
    * Show arrow indicating to originating button
+   * @default false
    */
   hasArrow?: boolean;
   /**
@@ -188,6 +190,7 @@ export interface EuiPopoverProps extends PropsWithChildren, CommonProps {
   zIndex?: number;
   /**
    * Distance away from the anchor that the popover will render
+   * @default 4 (0 when `hasArrow=true`)
    */
   offset?: number;
   /**
@@ -299,9 +302,9 @@ export class EuiPopover extends Component<Props, State> {
     isOpen: false,
     ownFocus: true,
     repositionToCrossAxis: true,
-    anchorPosition: 'downCenter',
+    anchorPosition: 'downLeft',
     panelPaddingSize: 'm',
-    hasArrow: true,
+    hasArrow: false,
     display: 'inline-block',
   };
 
@@ -518,7 +521,8 @@ export class EuiPopover extends Component<Props, State> {
   positionPopover = (allowEnforcePosition: boolean) => {
     if (this.button == null || this.panel == null) return;
 
-    const { anchorPosition, offset = 0 } = this.props as PropsWithDefaults;
+    const { anchorPosition, offset: _offset } = this.props as PropsWithDefaults;
+    const offset = _offset != null ? _offset : this.props.hasArrow ? 0 : 4;
 
     let position = getPopoverPositionFromAnchorPosition(anchorPosition);
     let forcePosition = undefined;

@@ -123,6 +123,31 @@ describe('EuiAbsoluteTab', () => {
       expect(input).toHaveValue('Jan 31st 01');
     });
 
+    it('can be forgiving with `dateFormat`', () => {
+      const { getByTestSubject } = render(
+        <EuiAbsoluteTab
+          {...props}
+          dateFormat="MMM D, YYYY HH:mm:ss"
+          locale="en"
+        />
+      );
+      const input = getByTestSubject(
+        'superDatePickerAbsoluteDateInput'
+      ) as HTMLInputElement;
+
+      changeInput(input, 'Jan 31, 1993');
+      expect(input).not.toBeInvalid();
+      expect(input).toHaveValue('Jan 31, 1993 00:00:00');
+
+      changeInput(input, 'Jan 31');
+      expect(input).not.toBeInvalid();
+      expect(input.value).toContain('Jan 31, ');
+
+      changeInput(input, 'Jan');
+      expect(input).not.toBeInvalid();
+      expect(input.value).toContain('Jan 1, ');
+    });
+
     describe('parses date string in locale', () => {
       test.each<{
         locale: LocaleSpecifier;
@@ -150,7 +175,7 @@ describe('EuiAbsoluteTab', () => {
 
     describe('allows several other common date formats, and autoformats them to the `dateFormat` prop', () => {
       const assertOutput = (input: HTMLInputElement) => {
-        // Exclude hours from assertion, because moment uses local machine timezone
+        // Exclude hours from assertion, because moment uses local machine time zone
         expect(input.value).toContain('Jan 1, 1970');
       };
 

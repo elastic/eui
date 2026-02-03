@@ -142,12 +142,15 @@ export type _EuiThemeComponentColors = {
   tableRowBackgroundMarked: ColorModeSwitch;
   tableRowBackgroundMarkedHover: ColorModeSwitch;
   tableCellSortableIconColor: ColorModeSwitch;
+  tableFooterBackground: ColorModeSwitch;
 
   tooltipBackground: ColorModeSwitch;
   tooltipBorder: ColorModeSwitch;
   tooltipBorderFloating: ColorModeSwitch;
 
   tourFooterBackground: ColorModeSwitch;
+  tourStepIndicatorInactiveColor: ColorModeSwitch;
+  tourStepIndicatorActiveColor: ColorModeSwitch;
 
   treeViewItemBackgroundHover: ColorModeSwitch;
 };

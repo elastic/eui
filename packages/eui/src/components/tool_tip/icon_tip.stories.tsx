@@ -15,6 +15,7 @@ import {
 } from '../../../.storybook/utils';
 import { LOKI_SELECTORS } from '../../../.storybook/loki';
 import { EuiFlexGroup } from '../flex';
+import { ToolTipDelay } from './tool_tip';
 import { EuiIconTip, EuiIconTipProps } from './icon_tip';
 
 const meta: Meta<EuiIconTipProps> = {
@@ -78,5 +79,6 @@ export const Playground: Story = {
       // @ts-ignore - temp. solution for storybook VRT testing
       autofocus: 'true',
     },
+    delay: 'none' as ToolTipDelay, // passing a (not-yet) supported value to hackishly force a lower delay for VRT
   },
 };

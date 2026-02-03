@@ -2,77 +2,77 @@
 
 exports[`EuiPage direction can be row 1`] = `
 <div
-  class="euiPage emotion-euiPage-row-grow"
+  class="euiPage emotion-euiPage-row-transparent-grow"
 />
 `;
 
 exports[`EuiPage grow can be false 1`] = `
 <div
-  class="euiPage emotion-euiPage-row"
+  class="euiPage emotion-euiPage-row-transparent"
 />
 `;
 
 exports[`EuiPage is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiPage testClass1 testClass2 emotion-euiPage-row-grow-euiTestCss"
+  class="euiPage testClass1 testClass2 emotion-euiPage-row-transparent-grow-euiTestCss"
   data-test-subj="test subject string"
 />
 `;
 
 exports[`EuiPage paddingSize l is rendered 1`] = `
 <div
-  class="euiPage emotion-euiPage-row-grow-l"
+  class="euiPage emotion-euiPage-row-transparent-grow-l"
 />
 `;
 
 exports[`EuiPage paddingSize m is rendered 1`] = `
 <div
-  class="euiPage emotion-euiPage-row-grow-m"
+  class="euiPage emotion-euiPage-row-transparent-grow-m"
 />
 `;
 
 exports[`EuiPage paddingSize none is rendered 1`] = `
 <div
-  class="euiPage emotion-euiPage-row-grow"
+  class="euiPage emotion-euiPage-row-transparent-grow"
 />
 `;
 
 exports[`EuiPage paddingSize s is rendered 1`] = `
 <div
-  class="euiPage emotion-euiPage-row-grow-s"
+  class="euiPage emotion-euiPage-row-transparent-grow-s"
 />
 `;
 
 exports[`EuiPage paddingSize xl is rendered 1`] = `
 <div
-  class="euiPage emotion-euiPage-row-grow-xl"
+  class="euiPage emotion-euiPage-row-transparent-grow-xl"
 />
 `;
 
 exports[`EuiPage paddingSize xs is rendered 1`] = `
 <div
-  class="euiPage emotion-euiPage-row-grow-xs"
+  class="euiPage emotion-euiPage-row-transparent-grow-xs"
 />
 `;
 
 exports[`EuiPage restrict width can be set to a custom number 1`] = `
 <div
-  class="euiPage emotion-euiPage-row-grow-restrictWidth"
+  class="euiPage emotion-euiPage-row-transparent-grow-restrictWidth"
   style="max-width: 1024px;"
 />
 `;
 
 exports[`EuiPage restrict width can be set to a custom value and does not override custom style 1`] = `
 <div
-  class="euiPage emotion-euiPage-row-grow-restrictWidth"
+  class="euiPage emotion-euiPage-row-transparent-grow-restrictWidth"
   style="color: red; max-width: 24rem;"
 />
 `;
 
 exports[`EuiPage restrict width can be set to a default 1`] = `
 <div
-  class="euiPage emotion-euiPage-row-grow-restrictWidth"
+  class="euiPage emotion-euiPage-row-transparent-grow-restrictWidth"
   style="max-width: 1200px;"
 />
 `;

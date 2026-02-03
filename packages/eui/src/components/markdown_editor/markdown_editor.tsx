@@ -143,6 +143,7 @@ type CommonMarkdownEditorProps = Omit<
      * Props to customize the toolbar. `right` replaces the default preview/editor toggle with custom content.
      */
     toolbarProps?: {
+      className?: EuiMarkdownEditorToolbarProps['className'];
       right?: EuiMarkdownEditorToolbarProps['right'];
     };
     /** Controls whether the footer is shown */

@@ -106,7 +106,7 @@ export const euiBeaconStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     subdued: css(_colorCSS(euiTheme.colors.textSubdued)),
     primary: css(_colorCSS(euiTheme.colors.primary)),
-    success: css(_colorCSS(euiTheme.colors.accentSecondary)),
+    success: css(_colorCSS(euiTheme.colors.success)),
     warning: css(_colorCSS(euiTheme.colors.warning)),
     danger: css(_colorCSS(euiTheme.colors.danger)),
     accent: css(_colorCSS(euiTheme.colors.accent)),

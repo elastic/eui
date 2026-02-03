@@ -28,6 +28,7 @@ const meta: Meta<EuiTableProps> = {
     responsiveBreakpoint: 'm',
     tableLayout: 'fixed',
     compressed: false, // TODO: Where is this prop even used, and why isn't this documented?
+    hasBackground: true,
   },
 };
 
@@ -76,4 +77,13 @@ export const Playground: Story = {
       </EuiTableFooter>
     </EuiTable>
   ),
+};
+
+export const WithoutBackground: Story = {
+  ...Playground,
+  tags: ['vrt-only'],
+  args: {
+    ...Playground.args,
+    hasBackground: false,
+  },
 };

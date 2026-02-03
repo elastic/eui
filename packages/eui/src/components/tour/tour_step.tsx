@@ -108,7 +108,8 @@ export type EuiTourStepProps = CommonProps &
     title: ReactNode;
 
     /**
-     * Extra visual indication of step location
+     * Extra visual indication of step location.
+     * It does not apply when `hasArrow=false`
      */
     decoration?: 'none' | 'beacon';
 
@@ -136,6 +137,7 @@ export const EuiTourStep: FunctionComponent<EuiTourStepProps> = ({
   subtitle,
   title,
   decoration = 'beacon',
+  hasArrow,
   footerAction,
   panelProps,
   panelClassName,
@@ -205,8 +207,9 @@ export const EuiTourStep: FunctionComponent<EuiTourStepProps> = ({
         ...panelProps,
         css: [tourStyles.euiTour, css, panelProps?.css],
       }}
-      offset={hasBeacon ? 10 : 0}
+      offset={hasBeacon && hasArrow !== false ? 10 : undefined}
       aria-labelledby={titleId}
+      hasArrow={hasArrow ?? hasBeacon}
       arrowChildren={
         hasBeacon && <EuiBeacon css={beaconCss} className="euiTour__beacon" />
       }

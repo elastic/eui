@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiSplitButton renders 1`] = `
+<div
+  class="euiSplitButton emotion-euiSplitButton"
+  role="group"
+>
+  <button
+    class="euiButton euiSplitButtonActionPrimary emotion-euiButtonDisplay-m-defaultMinWidth-base-primary-euiSplitButtonActionPrimary"
+    data-test-subj="primary-action"
+    type="button"
+  >
+    <span
+      class="emotion-euiButtonDisplayContent"
+    >
+      <span
+        class="eui-textTruncate"
+      >
+        Primary Action
+      </span>
+    </span>
+  </button>
+  <div
+    aria-hidden="true"
+    class="euiSplitButton__divider css-1p9055z-divider"
+  />
+  <button
+    aria-label="Secondary action"
+    class="euiButtonIcon euiSplitButtonActionSecondary emotion-euiButtonIcon-m-base-primary-euiSplitButtonActionSecondary"
+    data-test-subj="secondary-action"
+    type="button"
+  >
+    <span
+      aria-hidden="true"
+      class="euiButtonIcon__icon"
+      color="inherit"
+      data-euiicon-type="arrowDown"
+    />
+  </button>
+</div>
+`;

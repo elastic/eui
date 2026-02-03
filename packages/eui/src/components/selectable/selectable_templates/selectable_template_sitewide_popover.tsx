@@ -49,6 +49,7 @@ export const EuiSelectableTemplateSitewidePopover: FunctionComponent<
   return (
     <EuiPopover
       panelPaddingSize="none"
+      anchorPosition="downCenter"
       isOpen={isOpen}
       ownFocus={!!trigger}
       display={trigger ? 'inline-block' : 'block'}

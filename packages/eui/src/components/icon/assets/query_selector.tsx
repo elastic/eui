@@ -1,0 +1,35 @@
+/*
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
+ */
+
+// THIS IS A GENERATED FILE. DO NOT MODIFY MANUALLY. @see scripts/compile-icons.js
+
+import * as React from 'react';
+import type { SVGProps } from 'react';
+interface SVGRProps {
+  title?: string;
+  titleId?: string;
+}
+const EuiIconQuerySelector = ({
+  title,
+  titleId,
+  ...props
+}: SVGProps<SVGSVGElement> & SVGRProps) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={16}
+    height={16}
+    viewBox="0 0 16 16"
+    aria-labelledby={titleId}
+    {...props}
+  >
+    {title ? <title id={titleId}>{title}</title> : null}
+    <path d="M5 3c.744 0 1.45.164 2.084.455a6.036 6.036 0 0 0-.752.775 4 4 0 1 0-1.052 7.76l.058-.005c.19-.015.376-.045.558-.086l.024-.006c.184-.044.363-.1.536-.167l.035-.015a4.009 4.009 0 0 0 2.287-2.4l.023-.064a3.983 3.983 0 0 0 .055-.184l.028-.109.021-.09.019-.089.017-.098.017-.102A3.986 3.986 0 0 0 9 8c0-.638-.15-1.24-.415-1.775.206-.28.458-.525.747-.72a4.97 4.97 0 0 1 .644 2.984 4.98 4.98 0 0 1-1.227 2.817A4.977 4.977 0 0 1 5 13 5 5 0 0 1 5 3Z" />
+    <path d="M11 3a5 5 0 1 1-2.085 9.544 6.11 6.11 0 0 0 .751-.775 4 4 0 1 0 .442-7.668l-.037.007a4.02 4.02 0 0 0-.516.162l-.058.023a3.984 3.984 0 0 0-.488.237l-.024.014a3.995 3.995 0 0 0-.23.144l-.006.005a4.015 4.015 0 0 0-1.38 1.63l-.042.09-.033.08a3.968 3.968 0 0 0-.042.109l-.01.027a3.93 3.93 0 0 0-.125.408l-.026.11-.01.047-.013.064-.012.074-.014.088-.009.07a3.976 3.976 0 0 0 .382 2.284 3.03 3.03 0 0 1-.748.72A4.972 4.972 0 0 1 6 8c0-.063.003-.127.005-.19a4.98 4.98 0 0 1 1.212-3.08c.234-.27.496-.515.783-.73.836-.628 1.874-1 3-1Z" />
+  </svg>
+);
+export const icon = EuiIconQuerySelector;

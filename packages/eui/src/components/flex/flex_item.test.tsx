@@ -12,13 +12,10 @@ import {
   startThrowingReactWarnings,
   stopThrowingReactWarnings,
 } from '../../test';
-import {
-  shouldRenderCustomStyles,
-  testOnReactVersion,
-} from '../../test/internal';
+import { shouldRenderCustomStyles } from '../../test/internal';
 import { render } from '../../test/rtl';
 
-import { EuiFlexItem } from './flex_item';
+import { EuiFlexItem, EuiFlexItemProps } from './flex_item';
 
 beforeAll(startThrowingReactWarnings);
 afterAll(stopThrowingReactWarnings);
@@ -94,13 +91,20 @@ describe('EuiFlexItem', () => {
       });
     });
 
-    // React 18 throws a false error on test unmount for components w/ ref callbacks
-    // that throw in a `useEffect`. Note: This only affects the test env, not prod
-    // @see https://github.com/facebook/react/issues/25675#issuecomment-1363957941
-    // TODO: Remove `testOnReactVersion` once the above bug is fixed
-    testOnReactVersion('17')(`invalid component types throw an error`, () => {
-      // @ts-expect-error intentionally passing an invalid value
-      expect(() => render(<EuiFlexItem grow={11} />)).toThrow();
+    describe('invalid values', () => {
+      const INVALID_VALUES = [
+        (3 / 0) as EuiFlexItemProps['grow'],
+        Infinity as EuiFlexItemProps['grow'],
+        -Infinity as EuiFlexItemProps['grow'],
+        11 as EuiFlexItemProps['grow'],
+      ];
+
+      INVALID_VALUES.forEach((value) => {
+        test(`${value} generates a flex-grow of the default value \`true\``, () => {
+          render(<EuiFlexItem grow={value} />);
+          assertClassName('grow-1');
+        });
+      });
     });
   });
 });

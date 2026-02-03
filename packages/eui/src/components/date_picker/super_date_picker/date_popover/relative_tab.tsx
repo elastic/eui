@@ -43,6 +43,10 @@ import {
   toRelativeStringFromParts,
 } from '../relative_utils';
 import { EuiDatePopoverContentProps } from './date_popover_content';
+import {
+  EuiTimeZoneDisplay,
+  type EuiTimeZoneDisplayProps,
+} from './timezone_display';
 
 export interface EuiRelativeTabProps {
   dateFormat: string;
@@ -52,6 +56,7 @@ export interface EuiRelativeTabProps {
   roundUp?: boolean;
   labelPrefix: string;
   timeOptions: TimeOptions;
+  timeZoneDisplayProps?: EuiTimeZoneDisplayProps;
 }
 
 export const EuiRelativeTab: FunctionComponent<EuiRelativeTabProps> = ({
@@ -62,6 +67,7 @@ export const EuiRelativeTab: FunctionComponent<EuiRelativeTabProps> = ({
   onChange,
   roundUp,
   labelPrefix,
+  timeZoneDisplayProps = {},
 }) => {
   const initialRelativeParts = useRef<RelativeParts>(parseRelativeParts(value));
   const { roundUnit } = initialRelativeParts.current;
@@ -114,7 +120,9 @@ export const EuiRelativeTab: FunctionComponent<EuiRelativeTabProps> = ({
     return parsedValue.locale(locale || 'en').format(dateFormat);
   }, [isInvalid, value, roundUp, locale, dateFormat]);
 
+  const textInputLabelId = useGeneratedHtmlId();
   const relativeDateInputNumberDescriptionId = useGeneratedHtmlId();
+  const timeZomeDescriptionId = useGeneratedHtmlId();
   const numberAriaLabel = useEuiI18n(
     'euiRelativeTab.numberInputLabel',
     'Time span amount'
@@ -171,10 +179,14 @@ export const EuiRelativeTab: FunctionComponent<EuiRelativeTabProps> = ({
         </EuiFlexGroup>
         <EuiSpacer size="s" />
         <EuiFieldText
+          aria-labelledby={textInputLabelId}
           compressed
           value={formattedValue}
           readOnly
-          prepend={<EuiFormLabel>{labelPrefix}</EuiFormLabel>}
+          aria-describedby={timeZomeDescriptionId}
+          prepend={
+            <EuiFormLabel id={textInputLabelId}>{labelPrefix}</EuiFormLabel>
+          }
         />
         <EuiScreenReaderOnly>
           <p id={relativeDateInputNumberDescriptionId}>
@@ -186,6 +198,10 @@ export const EuiRelativeTab: FunctionComponent<EuiRelativeTabProps> = ({
           </p>
         </EuiScreenReaderOnly>
       </EuiForm>
+      <EuiTimeZoneDisplay
+        id={timeZomeDescriptionId}
+        {...timeZoneDisplayProps}
+      />
       <EuiPopoverFooter paddingSize="s">
         <EuiSwitch
           data-test-subj="superDatePickerRelativeDateRoundSwitch"

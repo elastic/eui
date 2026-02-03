@@ -1,0 +1,39 @@
+/*
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
+ */
+
+// THIS IS A GENERATED FILE. DO NOT MODIFY MANUALLY. @see scripts/compile-icons.js
+
+import * as React from 'react';
+import type { SVGProps } from 'react';
+interface SVGRProps {
+  title?: string;
+  titleId?: string;
+}
+const EuiIconDashedCircle = ({
+  title,
+  titleId,
+  ...props
+}: SVGProps<SVGSVGElement> & SVGRProps) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={16}
+    height={16}
+    viewBox="0 0 16 16"
+    aria-labelledby={titleId}
+    {...props}
+  >
+    {title ? <title id={titleId}>{title}</title> : null}
+    <path
+      fillRule="evenodd"
+      d="M1 8c0-.373.03-.739.086-1.096l.987.156a6.057 6.057 0 0 0 0 1.88l-.987.155A7.05 7.05 0 0 1 1 8Zm14 0c0 .373-.03.738-.087 1.095l-.986-.155a6.062 6.062 0 0 0 0-1.88l.986-.156C14.97 7.261 15 7.627 15 8ZM3.886 2.337l.588.808c-.51.37-.959.82-1.33 1.329l-.807-.588a7.04 7.04 0 0 1 1.549-1.55Zm8.227 0a7.039 7.039 0 0 1 1.55 1.549l-.808.588c-.37-.51-.82-.959-1.329-1.33l.587-.807ZM8 1c.372 0 .738.03 1.095.086l-.155.987a6.057 6.057 0 0 0-1.88 0l-.156-.987A7.05 7.05 0 0 1 8 1ZM3.145 11.526c.37.51.82.959 1.329 1.33l-.588.806a7.039 7.039 0 0 1-1.55-1.549l.809-.587Z"
+      clipRule="evenodd"
+    />
+    <path d="M8 14c.32 0 .635-.025.94-.073l.155.986A7.054 7.054 0 0 1 8 15c-.373 0-.739-.03-1.096-.087l.156-.986c.305.048.62.073.94.073Zm5.662-1.887a7.036 7.036 0 0 1-1.549 1.55l-.587-.808c.51-.37.959-.82 1.33-1.329l.806.587Z" />
+  </svg>
+);
+export const icon = EuiIconDashedCircle;

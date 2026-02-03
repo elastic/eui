@@ -8,7 +8,7 @@
 
 import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../../services';
-import { logicalCSS } from '../../../global_styling';
+import { euiDisabledSelector, logicalCSS } from '../../../global_styling';
 import {
   highContrastModeStyles,
   preventForcedColors,
@@ -91,14 +91,14 @@ const _highContrastStyles = (
         color: ${euiTheme.colors.emptyShade};
         background-color: ${euiTheme.colors.fullShade};
 
-        &:is(:hover, :focus):not(:disabled) {
+        &:is(:hover, :focus):not(${euiDisabledSelector}) {
           &::before {
             border-color: ${euiTheme.colors.textInverse};
           }
         }
       }
 
-      .euiButtonGroupButton[disabled] {
+      .euiButtonGroupButton:is(${euiDisabledSelector}) {
         opacity: 0.5;
       }
     `,

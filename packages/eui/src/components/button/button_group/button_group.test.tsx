@@ -146,6 +146,28 @@ describe('EuiButtonGroup', () => {
       });
     });
 
+    describe('hasAriaDisabled', () => {
+      it('renders buttons with `aria-disabled` when `isDisabled=true`', () => {
+        const { getByTestSubject } = render(
+          <EuiButtonGroup
+            {...requiredSingleProps}
+            isDisabled
+            hasAriaDisabled
+            data-test-subj="button-group"
+          />
+        );
+
+        const button = getByTestSubject('button01');
+        const fieldset = getByTestSubject('button-group');
+
+        expect(button).toBeEuiDisabled();
+        expect(fieldset).toBeEuiDisabled();
+
+        expect(button).toHaveAttribute('aria-disabled', 'true');
+        expect(fieldset).toHaveAttribute('aria-disabled', 'true');
+      });
+    });
+
     describe('isFullWidth', () => {
       it('is rendered for single', () => {
         const { container } = render(
@@ -244,6 +266,40 @@ describe('EuiButtonGroup', () => {
       expect(getByRole('tooltip')).toHaveTextContent('I am a tooltip');
 
       fireEvent.mouseOut(getByTestSubject('buttonWithTooltip'));
+      await waitForEuiToolTipHidden();
+
+      fireEvent.focus(getByTestSubject('buttonWithTooltip'));
+      await waitForEuiToolTipVisible();
+      fireEvent.blur(getByTestSubject('buttonWithTooltip'));
+      await waitForEuiToolTipHidden();
+    });
+
+    it('shows a tooltip on hover and focus when custom disabled via `hasAriaDisabled`', async () => {
+      const { getByTestSubject, findByRole } = render(
+        <EuiButtonGroup
+          {...requiredMultiProps}
+          isIconOnly
+          isDisabled
+          hasAriaDisabled
+          options={[
+            ...options,
+            {
+              id: 'buttonWithTooltip',
+              label: 'Option 4',
+              toolTipContent: 'I am a tooltip',
+            },
+          ]}
+        />
+      );
+
+      // NOTE: uses `parentElement` as the hover event is triggered on the tooltip wrapper.
+      // The button itself doesn't allow mouse events when disabled.
+      fireEvent.mouseOver(getByTestSubject('buttonWithTooltip').parentElement!);
+      await waitForEuiToolTipVisible();
+
+      expect(await findByRole('tooltip')).toHaveTextContent('I am a tooltip');
+
+      fireEvent.mouseOut(getByTestSubject('buttonWithTooltip').parentElement!);
       await waitForEuiToolTipHidden();
 
       fireEvent.focus(getByTestSubject('buttonWithTooltip'));

@@ -569,6 +569,61 @@ export default () => {
 };
 ```
 
+```mdx-code-block
+import { ZOOM_FACTOR_DEFAULT } from '@elastic/eui/es/components/date_picker/super_date_picker/time_window_buttons';
+```
+
+## Time window buttons
+
+A button group for modifying the time range can be displayed next to the main control using the `showTimeWindowButtons` prop. The buttons allow the time window to be shifted forward or backward and zoomed in or out.
+
+Zooming expands or shrinks the time window by {ZOOM_FACTOR_DEFAULT * 100}% by default. This can be customized by passing a configuration object with a `zoomFactor` property, e.g. `showTimeWindowButtons={{ zoomFactor: 0.25 }}`.
+
+The "Zoom in" button is hidden by default. To enable it, set `showZoomIn` to `true` in the configuration object, e.g. `showTimeWindowButtons={{ showZoomIn: true }}`.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiSuperDatePicker,
+  EuiFlexGroup,
+  EuiSwitch,
+  EuiSpacer,
+  OnTimeChangeProps,
+} from "@elastic/eui";
+
+export default () => {
+  const [showButtons, setShowButtons] = useState(true);
+  const [start, setStart] = useState("now-15m");
+  const [end, setEnd] = useState("now");
+
+  const onTimeChange = ({ start, end }: OnTimeChangeProps) => {
+    setStart(start);
+    setEnd(end);
+  };
+
+  return (
+    <>
+      <EuiFlexGroup alignItems="center">
+        <EuiSwitch
+          checked={showButtons}
+          onChange={(e) => setShowButtons(e.target.checked)}
+          label="Show time window buttons"
+        />
+      </EuiFlexGroup>
+      <EuiSpacer />
+      <EuiSuperDatePicker
+        start={start}
+        end={end}
+        onTimeChange={onTimeChange}
+        showTimeWindowButtons={showButtons}
+        showUpdateButton={false}
+        width={"auto"}
+      />
+    </>
+  );
+};
+```
+
 ## Elastic pattern with KQL
 
 The following is a demo pattern of how to layout the **EuiSuperDatePicker** alongside Elastic's KQL search bar using [EuiSearchBar](../search-and-filter/search-bar.mdx) and shrinking to fit when the search bar is in focus.
@@ -792,6 +847,67 @@ export default () => {
         locale={locale}
         dateFormat={dateFormat}
         onTimeChange={onTimeChange}
+      />
+    </>
+  );
+};
+```
+
+## Time zone display
+
+Time zone information can be made visible in the date picker popovers. To do that, pass the time zone name in `timeZoneDisplayProps` e.g. `timeZoneDisplayProps={{ timeZone: "America/Los_Angeles" }}`.
+
+Additionally, custom content can be added to the time zone information by leveraging the `customRender` render function in `timeZoneDisplayProps`.
+
+:::note This is informational only, it **will not** affect how dates are handled internally by the component
+
+:::
+
+```tsx interactive
+import React, { useState } from "react";
+import {
+  EuiSuperDatePicker,
+  EuiButtonIcon,
+  OnTimeChangeProps,
+} from "@elastic/eui";
+
+export default () => {
+  const [start, setStart] = useState("now-15m");
+  const [end, setEnd] = useState("now");
+
+  const TIME_ZONE_NAME = "Browser";
+
+  const onTimeChange = ({ start, end }: OnTimeChangeProps) => {
+    setStart(start);
+    setEnd(end);
+  };
+
+  const customButton = (
+    <EuiButtonIcon
+      aria-label="Time zones database"
+      href="https://en.wikipedia.org/wiki/List_of_tz_database_time_zones"
+      target="_blank"
+      rel="noopener noreferrer"
+      iconType="documentation"
+    />
+  );
+
+  return (
+    <>
+      <EuiSuperDatePicker
+        start={start}
+        end={end}
+        onTimeChange={onTimeChange}
+        showUpdateButton={false}
+        timeZoneDisplayProps={{
+          timeZone: TIME_ZONE_NAME,
+          customRender: ({ nameDisplay }) => (
+            <>
+              {nameDisplay}
+              {customButton}
+            </>
+          ),
+        }}
       />
     </>
   );

@@ -19,6 +19,7 @@ import {
   euiCanAnimate,
   preventForcedColors,
   highContrastModeStyles,
+  euiDisabledSelector,
 } from '../../../global_styling';
 import {
   _EuiButtonColor,
@@ -116,7 +117,7 @@ export const euiButtonGroupButtonStyles = (euiThemeContext: UseEuiTheme) => {
           )}
         }
 
-        &:is(${selectedSelectors}):not(:disabled) {
+        &:is(${selectedSelectors}):not(${euiDisabledSelector}) {
           z-index: 1;
           /* prevent layout jumps due to missing border for selected/filled buttons */
           border: ${euiTheme.border.width.thin} solid transparent;
@@ -223,7 +224,7 @@ export const euiButtonGroupButtonStyles = (euiThemeContext: UseEuiTheme) => {
         ${logicalCSS('margin-left', '0')}
       }
 
-      &:is(${selectedSelectors}):not(:disabled) {
+      &:is(${selectedSelectors}):not(${euiDisabledSelector}) {
         /* prevent layout jumps due to missing border for non-selected buttons */
         border: none;
 

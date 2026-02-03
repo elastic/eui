@@ -64,22 +64,45 @@ export const useDataGridColumnSelector = (
 
   const [sortedColumns, setSortedColumns] = useDependentState(() => {
     const availableColumnIds = availableColumns.map(({ id }) => id);
-    const availableSet = new Set(availableColumnIds);
-    // Filter visibleColumns to only include existing columns
+    // remove duplicate columns to ensure unique columns
+    const availableColumnIdsSet = new Set(availableColumnIds);
+
+    if (process.env.NODE_ENV === 'development') {
+      if (availableColumnIds.length > availableColumnIdsSet.size) {
+        const duplicateIds: string[] = [];
+
+        for (const id of availableColumnIds) {
+          if (
+            !duplicateIds.includes(id) &&
+            availableColumnIds.filter((_id) => _id === id).length > 1
+          ) {
+            duplicateIds.push(id);
+          }
+        }
+
+        console.warn(
+          `⚠️ EuiDataGrid: Duplicate column IDs detected and removed: ${duplicateIds.join(
+            ', '
+          )}.`,
+          '\n Column IDs must be unique. Only the first occurrence of each duplicate will be used.'
+        );
+      }
+    }
+
     const validVisibleColumns = visibleColumns.filter((id) =>
-      availableSet.has(id)
+      availableColumnIdsSet.has(id)
     );
     const visibleSet = new Set(validVisibleColumns);
 
     const result: string[] = [];
     let visibleIndex = 0;
 
-    for (const columnId of availableColumnIds) {
+    for (const columnId of [...availableColumnIdsSet]) {
       if (visibleSet.has(columnId)) {
-        // Replace with next visible column in order
-        result.push(validVisibleColumns[visibleIndex++]);
+        if (visibleIndex < validVisibleColumns.length) {
+          result.push(validVisibleColumns[visibleIndex++]);
+        }
       } else {
-        // Keep hidden column in original position
         result.push(columnId);
       }
     }
@@ -140,7 +163,7 @@ export const useDataGridColumnSelector = (
   const isDragEnabled = allowColumnReorder && columnSearchText.length === 0; // only allow drag-and-drop when not filtering columns
   const dragHandleAriaLabel = useEuiI18n(
     'euiColumnSelector.dragHandleAriaLabel',
-    'Drag handle'
+    'drag handle'
   );
 
   const orderedVisibleColumns = useMemo(
@@ -170,8 +193,8 @@ export const useDataGridColumnSelector = (
           <EuiDataGridToolbarControl
             badgeContent={
               numberOfHiddenFields > 0
-                ? `${orderedVisibleColumns.length}/${availableColumns.length}`
-                : availableColumns.length
+                ? `${orderedVisibleColumns.length}/${sortedColumns.length}`
+                : sortedColumns.length
             }
             iconType="tableDensityNormal"
             data-test-subj="dataGridColumnSelectorButton"
@@ -212,84 +235,91 @@ export const useDataGridColumnSelector = (
             css={styles.euiDataGridColumnSelector}
           >
             <>
-              {filteredColumns.map((id, index) => (
-                <EuiDraggable
-                  key={id}
-                  draggableId={id}
-                  index={index}
-                  isDragDisabled={!isDragEnabled}
-                  hasInteractiveChildren
-                  customDragHandle
-                  usePortal
-                >
-                  {(provided, state) => (
-                    <div
-                      css={styles.euiDataGridColumnSelector__item}
-                      className={classNames('euiDataGridColumnSelector__item', {
-                        'euiDataGridColumnSelector__item-isDragging':
-                          state.isDragging,
-                      })}
-                      data-test-subj={`dataGridColumnSelectorColumnItem-${id}`}
-                    >
-                      <EuiFlexGroup
-                        responsive={false}
-                        gutterSize="s"
-                        alignItems="center"
+              {filteredColumns.map((id, index) => {
+                const label = displayValues[id] || id;
+
+                return (
+                  <EuiDraggable
+                    key={id}
+                    draggableId={id}
+                    index={index}
+                    isDragDisabled={!isDragEnabled}
+                    hasInteractiveChildren
+                    customDragHandle
+                    usePortal
+                  >
+                    {(provided, state) => (
+                      <div
+                        css={styles.euiDataGridColumnSelector__item}
+                        className={classNames(
+                          'euiDataGridColumnSelector__item',
+                          {
+                            'euiDataGridColumnSelector__item-isDragging':
+                              state.isDragging,
+                          }
+                        )}
+                        data-test-subj={`dataGridColumnSelectorColumnItem-${id}`}
                       >
-                        {allowColumnHiding && (
-                          <EuiFlexItem grow={false}>
-                            <EuiSwitch
-                              name={id}
-                              label={displayValues[id] || id}
-                              showLabel={false}
-                              checked={visibleColumnIds.has(id)}
-                              mini
-                              onChange={(event) => {
-                                const {
-                                  target: { checked },
-                                } = event;
-                                const nextVisibleColumns = sortedColumns.filter(
-                                  (columnId) =>
-                                    checked
-                                      ? visibleColumnIds.has(columnId) ||
-                                        id === columnId
-                                      : visibleColumnIds.has(columnId) &&
-                                        id !== columnId
-                                );
-                                setVisibleColumns(nextVisibleColumns);
-                              }}
-                              data-test-subj={`dataGridColumnSelectorToggleColumnVisibility-${id}`}
-                            />
-                          </EuiFlexItem>
-                        )}
-                        <EuiFlexItem
-                          // This extra column name flex item affords the column more grabbable real estate
-                          // for mouse users, while hiding repetition for keyboard/screen reader users
-                          {...provided.dragHandleProps}
-                          aria-hidden
-                          tabIndex={-1}
+                        <EuiFlexGroup
+                          responsive={false}
+                          gutterSize="s"
+                          alignItems="center"
                         >
-                          <EuiText
-                            size="xs"
-                            className="euiDataGridColumnSelector__itemLabel"
-                          >
-                            {displayValues[id] || id}
-                          </EuiText>
-                        </EuiFlexItem>
-                        {isDragEnabled && (
+                          {allowColumnHiding && (
+                            <EuiFlexItem grow={false}>
+                              <EuiSwitch
+                                name={id}
+                                label={label}
+                                showLabel={false}
+                                checked={visibleColumnIds.has(id)}
+                                mini
+                                onChange={(event) => {
+                                  const {
+                                    target: { checked },
+                                  } = event;
+                                  const nextVisibleColumns =
+                                    sortedColumns.filter((columnId) =>
+                                      checked
+                                        ? visibleColumnIds.has(columnId) ||
+                                          id === columnId
+                                        : visibleColumnIds.has(columnId) &&
+                                          id !== columnId
+                                    );
+                                  setVisibleColumns(nextVisibleColumns);
+                                }}
+                                data-test-subj={`dataGridColumnSelectorToggleColumnVisibility-${id}`}
+                              />
+                            </EuiFlexItem>
+                          )}
                           <EuiFlexItem
-                            grow={false}
+                            // This extra column name flex item affords the column more grabbable real estate
+                            // for mouse users, while hiding repetition for keyboard/screen reader users
                             {...provided.dragHandleProps}
-                            aria-label={dragHandleAriaLabel}
+                            aria-hidden
+                            tabIndex={-1}
                           >
-                            <EuiIcon type="grab" color="subdued" />
+                            <EuiText
+                              size="xs"
+                              className="euiDataGridColumnSelector__itemLabel"
+                            >
+                              {label}
+                            </EuiText>
                           </EuiFlexItem>
-                        )}
-                      </EuiFlexGroup>
-                    </div>
-                  )}
-                </EuiDraggable>
-              ))}
+                          {isDragEnabled && (
+                            <EuiFlexItem
+                              grow={false}
+                              {...provided.dragHandleProps}
+                              aria-label={`${label} ${dragHandleAriaLabel}`}
+                            >
+                              <EuiIcon type="grab" color="subdued" />
+                            </EuiFlexItem>
+                          )}
+                        </EuiFlexGroup>
+                      </div>
+                    )}
+                  </EuiDraggable>
+                );
+              })}
             </>
           </EuiDroppable>
         </EuiDragDropContext>

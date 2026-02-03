@@ -1,24 +1,45 @@
-name: Release packages (Work in Progress, a dry run only)
+name: Release packages
+run-name: "Create ${{ inputs.type }} release from ${{ github.ref_name }} (${{ inputs.release_ref }}) by ${{ github.actor }}"
 
 on:
   workflow_dispatch:
     inputs:
+      release_ref:
+        description: Upstream git ref to create the release from
+        required: true
+        type: string
+      type:
+        description: Release type
+        required: true
+        type: choice
+        options:
+        - snapshot
+        - official
       workspaces:
         description: A comma-separated list of workspaces to release
         required: false
         type: string
+      dry_run:
+        description: Dry run (do not publish the packages)
+        required: true
+        type: boolean
+      npm_tag:
+        description: "[Custom releases only] npm tag to use"
+        required: false
+        type: string
 
-#permissions:
-#  id-token: write # Required for OIDC
-#  contents: read
+permissions:
+  id-token: write # Required for OIDC
+  contents: read
 
 jobs:
-  checks:
-    name: Checks
+  lint_and_unit_tests:
+    name: Run lint and unit tests
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
+          ref: ${{ inputs.release_ref }}
           persist-credentials: false
       - uses: actions/setup-node@v6
         with:
@@ -26,5 +47,151 @@ jobs:
           cache: yarn
       - name: Install dependencies
         run: yarn install --immutable
-      - name: Run tests
-        run: yarn workspaces foreach -A run test-ci
+      - name: Build local packages
+        run: yarn workspaces foreach --all --parallel --topological-dev --exclude @elastic/eui-website --exclude @elastic/eui-monorepo --exclude @elastic/eui-docgen run build
+      - name: Lint
+        run: yarn workspaces foreach --all --parallel --topological-dev --exclude @elastic/eui-website --exclude @elastic/eui-monorepo --exclude @elastic/eui-docgen run lint
+      - name: Unit tests
+        run: yarn workspaces foreach --all --parallel --topological-dev --exclude @elastic/eui-website --exclude @elastic/eui-monorepo --exclude @elastic/eui-docgen run test-unit
+  cypress_tests:
+    name: Run cypress tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.release_ref }}
+          persist-credentials: false
+      - uses: actions/setup-node@v6
+        with:
+          node-version-file: .nvmrc
+          cache: yarn
+      - name: Install dependencies
+        run: yarn install --immutable
+      - name: Build local packages
+        run: yarn workspaces foreach --all --parallel --topological-dev --exclude @elastic/eui-website --exclude @elastic/eui-monorepo --exclude @elastic/eui-docgen run build
+      - name: Cypress tests
+        run: yarn workspaces foreach --all --parallel --topological-dev --exclude @elastic/eui-website --exclude @elastic/eui-monorepo --exclude @elastic/eui-docgen run test-cypress
+  release_snapshot:
+    name: Create a snapshot release
+    runs-on: ubuntu-latest
+    if: ${{ inputs.type == 'snapshot' }}
+    needs: [ lint_and_unit_tests, cypress_tests ]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.release_ref }}
+          # This is needed for yarn version to work properly, but it increases fetch time.
+          # We can change this back to "1" if we replace yarn version with something else
+          fetch-depth: 0
+      - name: Configure git
+        run: |
+          git config --global user.name 'EUI Machine'
+          git config --global user.email 'tkajtoch@users.noreply.github.com'
+      - uses: actions/setup-node@v6
+        with:
+          node-version-file: .nvmrc
+          cache: yarn
+          registry-url: 'https://registry.npmjs.org'
+      - name: Install dependencies
+        run: npm install -g npm@11.6.2 && yarn install --immutable
+      - name: Build release scripts
+        run: yarn workspace @elastic/eui-release-cli run build
+      - name: Rename git remote to upstream
+        run: git remote rename origin upstream
+      - name: Prepare list of workspaces
+        id: prepare_workspaces_arg
+        uses: actions/github-script@v8
+        env:
+          WORKSPACES: ${{ inputs.workspaces }}
+        with:
+          # language=javascript
+          script: |
+            if (!process.env.WORKSPACES || typeof process.env.WORKSPACES !== 'string') {
+              return '';
+            }
+            return `--workspaces ${process.env.WORKSPACES.split(',').join(' ')}`;
+          result-encoding: string
+      - name: Prepare npm tag
+        id: prepare_npm_tag_arg
+        uses: actions/github-script@v8
+        env:
+          NPM_TAG: ${{ inputs.npm_tag }}
+        with:
+          # language=javascript
+          script: |
+            if (!process.env.NPM_TAG || typeof process.env.NPM_TAG !== 'string') {
+              return '';
+            }
+
+            if (process.env.NPM_TAG === 'latest') {
+              throw new Error('npm_tag cannot be set to "latest" for snapshot releases!');
+            }
+
+            return `--tag ${process.env.NPM_TAG}`;
+          result-encoding: string
+      - name: Release
+        run: yarn release run snapshot --skip-prompts --skip-auth-check --use-auth-token --allow-custom ${{ inputs.dry_run && '--dry-run' || ''}} ${{ steps.prepare_npm_tag_arg.outputs.result }} ${{ steps.prepare_workspaces_arg.outputs.result }}
+  release_official:
+    name: Create an official release
+    runs-on: ubuntu-latest
+    if: ${{ inputs.type == 'official' }}
+    needs: [ lint_and_unit_tests, cypress_tests ]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.release_ref }}
+          # This is needed for yarn version to work properly, but it increases fetch time.
+          # We can change this back to "1" if we replace yarn version with something else
+          fetch-depth: 0
+      - name: Verify release commit is tagged
+        run: |
+          tag=$(git tag --points-at ${{ inputs.release_ref }})
+          if [[ "$?" -ne 0 ]] || [[ -z "$tag" ]]; then
+            echo "::error:: Release ref does not point to any tag. Please tag the merge commit of the release PR and try again"
+            exit 1
+          else
+            echo "Release commit verified - $tag"
+          fi
+      - name: Configure git
+        run: |
+          git config --global user.name 'EUI Machine'
+          git config --global user.email 'tkajtoch@users.noreply.github.com'
+      - uses: actions/setup-node@v6
+        with:
+          node-version-file: .nvmrc
+          cache: yarn
+          registry-url: 'https://registry.npmjs.org'
+      - name: Install dependencies
+        run: npm install -g npm@11.6.2 && yarn install --immutable
+      - name: Build release scripts
+        run: yarn workspace @elastic/eui-release-cli run build
+      - name: Rename git remote to upstream
+        run: git remote rename origin upstream
+      - name: Prepare list of workspaces
+        id: prepare_workspaces_arg
+        uses: actions/github-script@v8
+        env:
+          WORKSPACES: ${{ inputs.workspaces }}
+        with:
+          # language=javascript
+          script: |
+            if (!process.env.WORKSPACES || typeof process.env.WORKSPACES !== 'string') {
+              return '';
+            }
+            return `--workspaces ${process.env.WORKSPACES.split(',').join(' ')}`;
+          result-encoding: string
+      - name: Prepare npm tag
+        id: prepare_npm_tag_arg
+        uses: actions/github-script@v8
+        env:
+          NPM_TAG: ${{ inputs.npm_tag }}
+        with:
+          # language=javascript
+          script: |
+            if (!process.env.NPM_TAG || typeof process.env.NPM_TAG !== 'string') {
+              return '';
+            }
+            return `--tag ${process.env.NPM_TAG}`;
+          result-encoding: string
+      - name: Release
+        run: yarn release run official --skip-prompts --skip-auth-check --use-auth-token --allow-custom --skip-update-versions ${{ inputs.dry_run && '--dry-run' || ''}} ${{ steps.prepare_npm_tag_arg.outputs.result }} ${{ steps.prepare_workspaces_arg.outputs.result }}

@@ -407,6 +407,20 @@ describe('EuiMarkdownEditor', () => {
         screen.getByRole('button', { name: 'Editor' })
       ).toBeInTheDocument();
     });
+
+    it('applies custom className to toolbar when passed', () => {
+      render(
+        <EuiMarkdownEditor
+          onChange={() => null}
+          value="markdown test"
+          {...requiredProps}
+          toolbarProps={{ className: 'customToolbarClass' }}
+        />
+      );
+      const toolbar = screen.getByTestSubject('euiMarkdownEditorToolbar');
+      expect(toolbar).toHaveClass('euiMarkdownEditorToolbar');
+      expect(toolbar).toHaveClass('customToolbarClass');
+    });
   });
   it('should show footer by default and hide when showFooter is false', () => {
     render(

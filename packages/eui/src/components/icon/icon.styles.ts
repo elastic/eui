@@ -94,10 +94,7 @@ export const euiIconStyles = ({ euiTheme }: UseEuiTheme) => ({
     /* Elastic logo specific colors */
     *[fill] {
       fill: none !important; /* stylelint-disable-line declaration-no-important */
-    }
-
-    .outline {
-      fill: currentColor !important; /* stylelint-disable-line declaration-no-important */
+      stroke: currentColor !important; /* stylelint-disable-line declaration-no-important */
     }
   `,
   // Sizes

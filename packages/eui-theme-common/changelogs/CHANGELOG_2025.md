@@ -1,3 +1,11 @@
+## [`v7.2.0`](https://github.com/elastic/eui/releases/v7.2.0)
+
+- Updated parameters used for `euiAnimSlightResistance` for a smoother animation ([#9202](https://github.com/elastic/eui/pull/9202))
+
+## [`v7.1.0`](https://github.com/elastic/eui/releases/v7.1.0)
+
+- Added type for component token `components.tableFooterBackground` ([#9224](https://github.com/elastic/eui/pull/9224))
+
 ## [`v7.0.0`](https://github.com/elastic/eui/releases/v7.0.0)
 
 - Added types for color tokens `borderBaseProminent` and `borderInteractiveFormsHoverProminent` ([#9162](https://github.com/elastic/eui/pull/9162))

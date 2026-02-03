@@ -3,7 +3,7 @@
 exports[`EuiSpacer is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiSpacer euiSpacer--l testClass1 testClass2 emotion-euiSpacer-l-euiTestCss"
+  class="euiSpacer euiSpacer--m testClass1 testClass2 emotion-euiSpacer-m-euiTestCss"
   data-test-subj="test subject string"
 />
 `;

@@ -1,0 +1,34 @@
+/*
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
+ */
+
+// THIS IS A GENERATED FILE. DO NOT MODIFY MANUALLY. @see scripts/compile-icons.js
+
+import * as React from 'react';
+import type { SVGProps } from 'react';
+interface SVGRProps {
+  title?: string;
+  titleId?: string;
+}
+const EuiIconWifiSlash = ({
+  title,
+  titleId,
+  ...props
+}: SVGProps<SVGSVGElement> & SVGRProps) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={16}
+    height={16}
+    viewBox="0 0 16 16"
+    aria-labelledby={titleId}
+    {...props}
+  >
+    {title ? <title id={titleId}>{title}</title> : null}
+    <path d="m15.354 1.354-14 14-.707-.707 14-14 .707.707ZM8.001 12c.658 0 1.24.319 1.604.809l-.897.898a1 1 0 0 1-1.414 0l-.898-.897c.365-.49.947-.81 1.605-.81Zm1.016-2.896a4.995 4.995 0 0 1 2.72 1.574l-.71.709a3.989 3.989 0 0 0-2.909-1.384l.899-.899ZM6.77 7.11a6.987 6.987 0 0 0-3.921 2.152l-.707-.707a7.975 7.975 0 0 1 5.734-2.552L6.77 7.109Zm4.604-.363a8.03 8.03 0 0 1 2.485 1.808l-.707.707a7.016 7.016 0 0 0-2.537-1.756l.759-.759ZM8.001 3c.886 0 1.747.108 2.572.306l-.845.845a9.97 9.97 0 0 0-9 2.99L.02 6.433A10.968 10.968 0 0 1 8 3Zm5.589 1.53a11.058 11.058 0 0 1 2.391 1.903l-.708.708a10.055 10.055 0 0 0-2.414-1.88l.732-.73Z" />
+  </svg>
+);
+export const icon = EuiIconWifiSlash;

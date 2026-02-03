@@ -9,6 +9,7 @@ exports[`KibanaCollapsibleNavSolution renders docked icons 1`] = `
   >
     <span
       class="euiToolTipAnchor emotion-euiToolTipAnchor-block"
+      id="generated-id-wrapper"
     >
       <button
         aria-label="Some solution, quick navigation menu"
@@ -31,6 +32,7 @@ exports[`KibanaCollapsibleNavSolution renders docked icons 1`] = `
   >
     <span
       class="euiToolTipAnchor emotion-euiToolTipAnchor-block"
+      id="generated-id-wrapper"
     >
       <button
         aria-label="Solution view, quick navigation menu"
@@ -61,18 +63,9 @@ exports[`KibanaCollapsibleNavSolution renders docked icons: popover 1`] = `
   data-popover-open="true"
   data-popover-panel="true"
   role="dialog"
-  style="top: -18px; left: 16px; z-index: 2000;"
+  style="top: 0px; left: 12px; z-index: 2000;"
   tabindex="0"
 >
-  <div
-    class="euiPopover__arrowWrapper emotion-euiPopoverArrowWrapper"
-    style="top: 9px; right: 100%;"
-  >
-    <div
-      class="euiPopover__arrow emotion-euiPopoverArrow-right"
-      data-popover-arrow="right"
-    />
-  </div>
   <p
     class="emotion-euiScreenReaderOnly"
     id="generated-id"
@@ -192,7 +185,7 @@ exports[`KibanaCollapsibleNavSolution renders with a solution switcher: popover 
   data-popover-open="true"
   data-popover-panel="true"
   role="dialog"
-  style="top: 0px; left: -18px; z-index: 2000; inline-size: 0px;"
+  style="top: 2px; left: 0px; z-index: 2000; inline-size: 0px;"
   tabindex="0"
 >
   <p

@@ -5,6 +5,7 @@ exports[`EuiCollapsibleNavItem renders a collapsed button icon when in a collaps
   aria-label="aria-label"
   class="euiToolTipAnchor euiCollapsedNavItem euiCollapsibleNavItem testClass1 testClass2 emotion-euiToolTipAnchor-block-euiTestCss"
   data-test-subj="test subject string"
+  id="generated-id-wrapper"
 >
   <button
     aria-label="Item, quick navigation menu"

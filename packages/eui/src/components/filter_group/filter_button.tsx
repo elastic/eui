@@ -16,6 +16,7 @@ import {
   useEuiTheme,
   useGeneratedHtmlId,
 } from '../../services';
+import { type EuiDisabledProps } from '../../services/hooks/useEuiDisabledElement';
 import { useEuiI18n } from '../i18n';
 import { useInnerText } from '../inner_text';
 import { DistributiveOmit } from '../common';
@@ -88,7 +89,8 @@ export type EuiFilterButtonProps = {
 } & DistributiveOmit<
   EuiButtonEmptyProps,
   'flush' | 'size' | 'color' | 'isSelected'
->;
+> &
+  EuiDisabledProps;
 
 export const EuiFilterButton: FunctionComponent<EuiFilterButtonProps> = ({
   children,
