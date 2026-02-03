@@ -7,678 +7,684 @@
  */
 
 export const typeToPathMap = {
-  accessibility: 'accessibility',
-  addDataApp: 'app_add_data',
-  advancedSettingsApp: 'app_advanced_settings',
-  agentApp: 'app_fleet',
-  aggregate: 'aggregate',
-  alignBottom: 'align_bottom',
-  alignBottomLeft: 'align_bottom_left',
-  alignBottomRight: 'align_bottom_right',
-  alignCenterHorizontal: 'align_center_horizontal',
-  alignCenterVertical: 'align_center_vertical',
-  alignLeft: 'align_left',
-  alignRight: 'align_right',
-  alignTop: 'align_top',
-  alignTopLeft: 'align_top_left',
-  alignTopRight: 'align_top_right',
-  alert: 'warning', // NOTE: To be deprecated in favor of `warning`
-  analyzeEvent: 'analyze_event',
-  annotation: 'annotation',
-  anomalyChart: 'chart_anomaly', // NOTE: To be deprecated in favor of chartAnomaly
-  chartAnomaly: 'chart_anomaly',
-  anomalySwimLane: 'anomaly_swim_lane',
-  apmApp: 'app_apm',
-  apmTrace: 'chart_waterfall', // NOTE: To be deprecated in favor of chartWaterfall
-  chartWaterfall: 'chart_waterfall',
-  appSearchApp: 'app_app_search',
-  apps: 'apps',
-  arrowDown: 'chevron_single_down', // NOTE: To be deprecated in favor of chevronSingleDown
-  chevronSingleDown: 'chevron_single_down',
-  arrowLeft: 'chevron_single_left', // NOTE: To be deprecated in favor of chevronSingleLeft
-  chevronSingleLeft: 'chevron_single_left',
-  arrowRight: 'chevron_single_right', // NOTE: To be deprecated in favor of chevronSinglRight
-  chevronSingleRight: 'chevron_single_right',
-  arrowUp: 'chevron_single_up', // NOTE: To be deprecated in favor of chevronSingleUp
-  chevronSingleUp: 'chevron_single_up',
-  arrowStart: 'chevron_limit_left', // NOTE: To be deprecated in favor of chevronLimitLeft
-  chevronLimitLeft: 'chevron_limit_left',
-  arrowEnd: 'chevron_limit_right', // NOTE: To be deprecated in favor of chevronLimitRight
-  chevronLimitRight: 'chevron_limit_right',
-  article: 'article',
-  asterisk: 'asterisk',
-  at: 'at',
-  archive: 'archive',
-  axisX: 'axis_x',
-  axisYLeft: 'axis_y_left',
-  axisYRight: 'axis_y_right',
-  auditbeatApp: 'app_auditbeat',
-  backgroundTask: 'background_task',
-  beaker: 'flask', // NOTE: To be deprecated in favor of `flask`
-  bell: 'bell',
-  bellSlash: 'bell_slash',
-  beta: 'beta',
-  bolt: 'bolt',
-  boxesHorizontal: 'boxes_vertical', // NOTE: To be deprecated in favor of `boxes_vertical`
-  boxesVertical: 'boxes_vertical',
-  branch: 'branch',
-  briefcase: 'briefcase',
-  branchUser: 'branch_user',
-  broom: 'broom',
-  brush: 'brush',
-  bug: 'bug',
-  bulb: 'bulb',
-  bullseye: 'bullseye',
-  calendar: 'calendar',
-  canvasApp: 'app_canvas',
-  casesApp: 'app_cases',
-  changePointDetection: 'chart_change_point', // NOTE: To be deprecated in favor of chartChangePoint
-  chartChangePoint: 'chart_change_point',
-  chartArea: 'chart_area',
-  chartAreaStack: 'chart_area_stack',
-  chartBarHorizontal: 'chart_bar_horizontal',
-  chartBarHorizontalStack: 'chart_bar_horizontal_stack',
-  chartBarVertical: 'chart_bar_vertical',
-  chartBarVerticalStack: 'chart_bar_vertical_stack',
-  chartGauge: 'chart_gauge',
-  chartHeatmap: 'chart_heatmap',
-  chartLine: 'chart_line',
-  chartPie: 'chart_pie',
-  chartTagCloud: 'chart_tag_cloud',
-  chartThreshold: 'chart_threshold',
-  check: 'check',
-  checkCircle: 'check_circle',
-  checkInCircleFilled: 'check_circle_fill', // NOTE: To be deprecated in favor of checkCircleFill
-  checkCircleFill: 'check_circle_fill',
-  cheer: 'popper', // NOTE: To be deprecated in favor of popper
-  popper: 'popper',
-  classificationJob: 'ml_classification_job',
-  clickLeft: 'click_left',
-  clickRight: 'click_right',
-  clock: 'clock',
-  clockCounter: 'clock_counter',
-  clockControl: 'clock_control',
-  cloud: 'cloud',
-  cloudDrizzle: 'cloud_drizzle',
-  cloudStormy: 'cloud_stormy',
-  cloudSunny: 'cloud_sunny',
-  cluster: 'cluster',
-  code: 'code',
-  codeApp: 'app_code',
-  color: 'paint_bucket', // NOTE: To be deprecated in favor of paintBucket
-  paintBucket: 'paint_bucket',
-  commandLine: 'command_line',
-  comment: 'comment',
-  compare: 'compare',
-  compute: 'processor', // NOTE: To be deprecated in favor of processor
-  processor: 'processor',
-  console: 'command_line', // NOTE: To be deprecated in favor of commandLine
-  consoleApp: 'app_console',
-  container: 'container',
-  continuityAbove: 'continuity_above',
-  continuityAboveBelow: 'continuity_above_below',
-  continuityBelow: 'continuity_below',
-  continuityWithin: 'continuity_within',
-  contrast: 'contrast',
-  contrastHigh: 'contrast_fill', // NOTE: To be deprecated in favor of contrastFill
-  contrastFill: 'contrast_fill',
-  controls: 'controls',
-  controlsHorizontal: 'controls', // NOTE: To be deprecated in favor of `controls`
-  controlsVertical: 'controls', // NOTE: To be deprecated in favor of `controls`
-  copy: 'copy',
-  copyClipboard: 'copy', // NOTE: To be deprecated in favor of `copy`
-  crossProjectSearch: 'cross_project_search',
-  createAdvancedJob: 'ml_create_advanced_job',
-  createGenericJob: 'ml_create_generic_job',
-  createGeoJob: 'ml_create_geo_job',
-  createMultiMetricJob: 'ml_create_multi_metric_job',
-  createPopulationJob: 'ml_create_population_job',
-  createSingleMetricJob: 'ml_create_single_metric_job',
-  cross: 'cross',
-  crossClusterReplicationApp: 'app_cross_cluster_replication',
-  crossInCircle: 'cross_circle', // NOTE: To be deprecated in favor of crossCircle
-  crossCircle: 'cross_circle',
-  crosshair: 'crosshair',
-  crosshairs: 'crosshair', // NOTE: To be deprecated in favor of crosshair
-  currency: 'money', // NOTE: To be deprecated in favor of money
-  money: 'money',
-  cut: 'scissors', // NOTE: To be deprecated in favor of scissors
-  scissors: 'scissors',
-  dashboardApp: 'app_dashboard',
-  dashedCircle: 'dashed_circle',
-  dataVisualizer: 'ml_data_visualizer',
-  database: 'database',
-  desktop: 'display', // NOTE: To be deprecated in favor of display
-  display: 'display',
-  devToolsApp: 'app_devtools',
-  diff: 'compare', // NOTE: To be deprecated in favor of compare
-  discoverApp: 'app_discover',
-  distributeHorizontal: 'distribute_horizontal',
-  distributeVertical: 'distribute_vertical',
-  download: 'download',
-  drag: 'drag',
-  dragHorizontal: 'drag_horizontal',
-  dragVertical: 'drag_vertical',
-  discuss: 'comment', // NOTE: To be deprecated in favor of `comment`
-  document: 'document',
-  documentEdit: 'document_edit', // NOTE: To be deprecated in favor of pencil
-  documentation: 'documentation',
-  documents: 'documents',
-  dot: 'dot',
-  dotInCircle: 'dot_in_circle',
-  doubleArrowLeft: 'chevron_double_left', // NOTE: To be deprecated in favor of chevronDoubleLeft
-  chevronDoubleLeft: 'chevron_double_left',
-  doubleArrowRight: 'chevron_double_right', // NOTE: To be deprecated in favor of chevronDoubleRight
-  chevronDoubleRight: 'chevron_double_right',
-  ellipsis: 'ellipsis',
-  editorAlignCenter: 'text_align_center', // NOTE: To be deprecated in favor of textAlignCenter
-  textAlignCenter: 'text_align_center',
-  editorAlignLeft: 'text_align_left', // NOTE: To be deprecated in favor of textAlignLeft
-  textAlignLeft: 'text_align_left',
-  editorAlignRight: 'text_align_right', // NOTE: To be deprecated in favor of textAlignRight
-  textAlignRight: 'text_align_right',
-  editorBold: 'text_bold', // NOTE: To be deprecated in favor of textBold
-  textBold: 'text_bold',
-  editorChecklist: 'list_check', // NOTE: To be deprecated in favor of listCheck
-  listCheck: 'list_check',
-  editorCodeBlock: 'code', // NOTE: To be deprecated in favor of `code`
-  editorComment: 'comment', // NOTE: To be deprecated in favor of `comment`
-  editorDistributeHorizontal: 'editor_distribute_horizontal', // NOTE: To be deprecated in favor of distributeHorizontal
-  editorDistributeVertical: 'editor_distribute_vertical', // NOTE: To be deprecated in favor of distributeVertical
-  editorHeading: 'text_heading', // NOTE: To be deprecated in favor of textHeading
-  textHeading: 'text_heading',
-  editorItalic: 'text_italic', // NOTE: To be deprecated in favor of textItalic
-  textItalic: 'text_italic',
-  editorItemAlignBottom: 'editor_item_align_bottom', // NOTE: To be deprecated in favor of alignBottom
-  editorItemAlignCenter: 'editor_item_align_center', // NOTE: To be deprecated in favor of alignCenterHorizontal
-  editorItemAlignLeft: 'editor_item_align_left', // NOTE: To be deprecated in favor of alignLeft
-  editorItemAlignMiddle: 'editor_item_align_middle', // NOTE: To be deprecated in favor of alignCenterVertical
-  editorItemAlignRight: 'editor_item_align_right', // NOTE: To be deprecated in favor of alignRight
-  editorItemAlignTop: 'editor_item_align_top', // NOTE: To be deprecated in favor of alignTop,
-  editorLink: 'link', // NOTE: To be deprecated in favor of `link`
-  editorOrderedList: 'list_number', // NOTE: To be deprecated in favor of listNumber
-  listNumber: 'list_number',
-  editorPositionBottomLeft: 'editor_position_bottom_left', // NOTE: To be deprecated in favor of alignBottomLeft
-  editorPositionBottomRight: 'editor_position_bottom_right', // NOTE: To be deprecated in favor of alignBottomRight
-  editorPositionTopLeft: 'editor_position_top_left', // NOTE: To be deprecated in favor of alignTopLeft
-  editorPositionTopRight: 'editor_position_top_right', // NOTE: To be deprecated in favor of alignTopRight
-  editorRedo: 'redo', // NOTE: To be deprecated in favor of redo
-  redo: 'redo',
-  editorStrike: 'text_strike', // NOTE: To be deprecated in favor of textStrike
-  textStrike: 'text_strike',
-  editorTable: 'table', // NOTE: To be deprecated in favor of table
-  table: 'table',
-  editorUnderline: 'text_underline', // NOTE: To be deprecated in favor of textUnderline
-  textUnderline: 'text_underline',
-  editorUndo: 'undo', // NOTE: To be deprecated in favor of undo
-  undo: 'undo',
-  editorUnorderedList: 'list_bullet', // NOTE: To be deprecated in favor of listBullet
-  listBullet: 'list_bullet',
-  email: 'mail', // NOTE: To be deprecated in favor of mail
-  mail: 'mail',
-  empty: 'empty',
-  emsApp: 'app_ems',
-  endpoint: 'endpoint',
-  eql: 'query', // NOTE: To be deprecated in favor of query
-  query: 'query',
-  eraser: 'eraser',
-  error: 'error',
-  errorFilled: 'error_fill', // NOTE: To be deprecated in favor of errorFill
-  errorFill: 'error_fill',
-  esqlVis: 'esql_vis',
-  exit: 'log_out', // NOTE: To be deprecated in favor of logOut
-  logOut: 'log_out',
-  expand: 'maximize', // NOTE: To be deprecated in favor of maximize
-  maximize: 'maximize',
-  expandMini: 'maximize', // NOTE: To be deprecated in favor of maximize
-  export: 'upload',
-  exportAction: 'upload', // NOTE: To be deprecated in favor of upload
-  upload: 'upload',
-  external: 'external',
-  eye: 'eye',
-  eyeClosed: 'eye_slash', // NOTE: To be deprecated in favor of eyeSlash
-  eyeSlash: 'eye_slash',
-  faceHappy: 'face_happy',
-  faceNeutral: 'face_neutral',
-  faceSad: 'face_sad',
-  fieldStatistics: 'table_info', // NOTE: To be deprecated in favor of tableInfo
-  tableInfo: 'table_info',
-  filebeatApp: 'app_filebeat',
-  filter: 'filter',
-  filterExclude: 'filter_exclude',
-  filterIgnore: 'filter_ignore',
-  filterInclude: 'filter_include',
-  filterInCircle: 'filter_in_circle', // NOTE: To be deprecated in favor of filter
-  flask: 'flask',
-  flag: 'flag',
-  fleetApp: 'app_agent',
-  fold: 'fold',
-  folder: 'folder_close',
-  folderClosed: 'folder_close',
-  folderClose: 'folder_close',
-  folderCheck: 'folder_check',
-  folderExclamation: 'folder_exclamation',
-  folderOpen: 'folder_open',
-  folderOpened: 'folder_open',
-  frameNext: 'frame_next',
-  framePrevious: 'frame_previous',
-  fullScreen: 'full_screen',
-  fullScreenExit: 'full_screen_exit',
-  function: 'function',
-  gear: 'gear',
-  gisApp: 'app_gis',
-  glasses: 'read_only', // NOTE: To be deprecated in favor of `readOnly`
-  globe: 'globe',
-  grab: 'drag_vertical', // NOTE: To be deprecated in favor of dragVertical
-  grabHorizontal: 'drag_horizontal', // NOTE: To be deprecated in favor of dragHorizontal
-  grabOmnidirectional: 'grab_omnidirectional', // NOTE: To be deprecated in favor of drag,
-  gradient: 'gradient',
-  graphApp: 'app_graph',
-  grid: 'grid',
-  grokApp: 'app_grok',
-  heart: 'heart',
-  heartbeatApp: 'app_heartbeat',
-  heatmap: 'chart_heatmap', // NOTE: To be deprecated in favor of chartHeatmap
-  help: 'help', // NOTE: Might be deprecated later (not recommended in Kibana)
-  home: 'home',
-  hourglass: 'hourglass',
-  if: 'if',
-  info: 'info',
-  image: 'image',
-  importAction: 'download', // NOTE: To be deprecated in favor of download
-  index: 'index',
-  indexClose: 'index_close',
-  indexEdit: 'index_edit',
-  indexFlush: 'chart_threshold', // NOTE: To be deprecated in favor of chartThreshold
-  indexManagementApp: 'app_index_management',
-  indexMapping: 'mapping', // NOTE: To be deprecated in favor of mapping
-  mapping: 'mapping',
-  indexOpen: 'index_open',
-  indexPatternApp: 'app_index_pattern',
-  indexRollupApp: 'app_index_rollup',
-  indexRuntime: 'index_runtime',
-  indexSettings: 'index_settings',
-  indexTemporary: 'table_time', // NOTE: To be deprecated in favor of tableTime
-  tableTime: 'table_time',
-  infinity: 'infinity',
-  inputOutput: 'input_output',
-  inspect: 'inspect',
-  invert: 'contrast', // NOTE: To be deprecated in favor of contrast
-  ip: 'ip',
-  key: 'key',
-  keyboard: 'keyboard',
-  kqlField: 'query_field', // NOTE: To be deprecated in favor of queryField
-  queryField: 'query_field',
-  kqlFunction: 'kql_function',
-  kqlOperand: 'query_operand', // NOTE: To be deprecated in favor of queryOperand
-  queryOperand: 'query_operand',
-  kqlSelector: 'query_selector', // NOTE: To be deprecated in favor of querySelector
-  querySelector: 'query_selector',
-  kqlValue: 'query_value', // NOTE: To be deprecated in favor of queryValue
-  queryValue: 'query_value',
-  kubernetesNode: 'kubernetes_node',
-  kubernetesPod: 'kubernetes_pod',
-  launch: 'rocket', // NOTE: To be deprecated in favor of rocket
-  rocket: 'rocket',
-  layers: 'layers',
-  lensApp: 'app_lens',
-  lettering: 'text', // NOTE: To be deprecated in favor of text
-  text: 'text',
-  lineBreak: 'line_break',
-  lineBreakSlash: 'line_break_slash',
-  lineDash: 'line_dash',
-  lineDashed: 'line_dash', // NOTE: To be deprecated in favor of lineDash
-  lineDot: 'line_dot',
-  lineDotted: 'line_dot', // NOTE: To be deprecated in favor of lineDot
-  lineSolid: 'line_solid',
-  link: 'link',
-  linkSlash: 'link_slash',
-  list: 'list_bullet', // NOTE: To be deprecated in favor of listBullet,
-  listAdd: 'plus_circle', // NOTE: To be deprecated in favor of `plus_circle`
-  lock: 'lock',
-  lockOpen: 'lock_open',
-  logPatternAnalysis: 'pattern', // NOTE: To be deprecated in favor of pattern
-  pattern: 'pattern',
-  logRateAnalysis: 'log_rate_analysis',
-  logoAWS: 'logo_aws',
-  logoAWSMono: 'logo_aws_mono',
-  logoAerospike: 'logo_aerospike',
-  logoApache: 'logo_apache',
-  logoAppSearch: 'logo_app_search',
-  logoAzure: 'logo_azure',
-  logoAzureMono: 'logo_azure_mono',
-  logoBeats: 'logo_beats',
-  logoBusinessAnalytics: 'logo_business_analytics',
-  logoCeph: 'logo_ceph',
-  logoCloud: 'logo_cloud',
-  logoCloudEnterprise: 'logo_cloud_ece',
-  logoCode: 'logo_code',
-  logoCodesandbox: 'logo_codesandbox',
-  logoCouchbase: 'logo_couchbase',
-  logoDocker: 'logo_docker',
-  logoDropwizard: 'logo_dropwizard',
-  logoElastic: 'logo_elastic',
-  logoElasticStack: 'logo_elastic_stack',
-  logoElasticsearch: 'logo_elasticsearch',
-  logoEnterpriseSearch: 'logo_enterprise_search',
-  logoEtcd: 'logo_etcd',
-  logoGCP: 'logo_gcp',
-  logoGCPMono: 'logo_gcp_mono',
-  logoGithub: 'logo_github',
-  logoGmail: 'logo_gmail',
-  logoGolang: 'logo_golang',
-  logoGoogleG: 'logo_google_g',
-  logoHAproxy: 'logo_haproxy',
-  logoIBM: 'logo_ibm',
-  logoIBMMono: 'logo_ibm_mono',
-  logoKafka: 'logo_kafka',
-  logoKibana: 'logo_kibana',
-  logoKubernetes: 'logo_kubernetes',
-  logoLogging: 'logo_logging',
-  logoLogstash: 'logo_logstash',
-  logoMaps: 'logo_maps',
-  logoMemcached: 'logo_memcached',
-  logoMetrics: 'logo_metrics',
-  logoMongodb: 'logo_mongodb',
-  logoMySQL: 'logo_mysql',
-  logoNginx: 'logo_nginx',
-  logoObservability: 'logo_observability',
-  logoOsquery: 'logo_osquery',
-  logoPhp: 'logo_php',
-  logoPostgres: 'logo_postgres',
-  logoPrometheus: 'logo_prometheus',
-  logoRabbitmq: 'logo_rabbitmq',
-  logoRedis: 'logo_redis',
-  logoSecurity: 'logo_security',
-  logoSiteSearch: 'logo_site_search',
-  logoSketch: 'logo_sketch',
-  logoSlack: 'logo_slack',
-  logoUptime: 'logo_uptime',
-  logoVulnerabilityManagement: 'logo_vulnerability_management',
-  logoWebhook: 'logo_webhook',
-  logoWindows: 'logo_windows',
-  logoWorkplaceSearch: 'logo_workplace_search',
-  logsApp: 'app_logs',
-  logstashFilter: 'logstash_filter',
-  logstashIf: 'if', // NOTE: To be deprecated in favor of if
-  logstashInput: 'logstash_input',
-  logstashOutput: 'logstash_output',
-  logstashQueue: 'queue', // NOTE: To be deprecated in favor of queue
-  queue: 'queue',
-  machineLearningApp: 'app_ml',
-  magnet: 'magnet',
-  magnify: 'magnify',
-  magnifyExclamation: 'magnify_exclamation',
-  magnifyMinus: 'magnify_minus',
-  magnifyPlus: 'magnify_plus',
-  magnifyWithExclamation: 'magnify_with_exclamation', // NOTE: To be deprecated in favor of magnifyExclamation
-  magnifyWithMinus: 'magnify_with_minus', // NOTE: To be deprecated in favor of magnifyMinus
-  magnifyWithPlus: 'magnify_with_plus', // NOTE: To be deprecated in favor of magnifyPlus,
-  managementApp: 'app_management',
-  map: 'map',
-  mapMarker: 'waypoint', // NOTE: To be deprecated in favor of waypoint
-  waypoint: 'waypoint',
-  megaphone: 'megaphone',
-  memory: 'memory',
-  menu: 'menu',
-  menuDown: 'menu_down',
-  menuLeft: 'menu_left',
-  menuRight: 'menu_right',
-  menuUp: 'menu_up',
-  merge: 'merge',
-  metricbeatApp: 'app_metricbeat',
-  metricsApp: 'app_metrics',
-  minimize: 'minimize',
-  minus: 'minus',
-  minusCircle: 'minus_circle',
-  minusInCircle: 'minus_circle', // NOTE: To be deprecated in favor of minusCircle
-  minusInCircleFilled: 'minus_circle', // NOTE: To be deprecated in favor of minusCircle
-  minusInSquare: 'minus_square', // NOTE: To be deprecated in favor of minusSquare
-  minusSquare: 'minus_square',
-  mobile: 'mobile',
-  monitoringApp: 'app_monitoring',
-  moon: 'moon',
-  move: 'move',
-  namespace: 'namespace',
-  nested: 'nested',
-  newChat: 'plus_circle', // NOTE: To be deprecated in favor of plusCircle
-  node: 'vector_triangle', // NOTE: To be deprecated in favor of vectorTriangle
-  vectorTriangle: 'vector_triangle',
-  notebookApp: 'app_notebook',
-  number: 'number',
-  offline: 'wifi_slash', // NOTE: To be deprecated in favor of wifiSlash
-  wifiSlash: 'wifi_slash',
-  online: 'wifi', // NOTE: To be deprecated in favor of wifi
-  wifi: 'wifi',
-  outlierDetectionJob: 'ml_outlier_detection_job',
-  package: 'package',
-  packetbeatApp: 'app_packetbeat',
-  pageSelect: 'page_select',
-  pagesSelect: 'pages_select',
-  palette: 'palette',
-  paperClip: 'paper_clip',
-  partial: 'partial',
-  pause: 'pause',
-  payment: 'payment',
-  pencil: 'pencil',
-  percent: 'percent',
-  pin: 'pin',
-  pinFill: 'pin_fill',
-  pinFilled: 'pin_fill', // NOTE: To be deprecated in favor of pinFill
-  pipeBreaks: 'line_break', // NOTE: To be deprecated in favor of lineBreak
-  pipelineApp: 'app_pipeline',
-  pipeNoBreaks: 'line_break_slash', // NOTE: To be deprecated in favor of lineBreakSlash
-  pivot: 'pivot',
-  play: 'play',
-  playFilled: 'play_filled', // NOTE: To be deprecated in favor of play
-  plugs: 'plugs',
-  plus: 'plus',
-  plusCircle: 'plus_circle',
-  plusInCircle: 'plus_circle', // NOTE: To be deprecated in favor of plusCircle
-  plusInCircleFilled: 'plus_circle', // NOTE: To be deprecated in favor of plusCircle
-  plusInSquare: 'plus_square', // NOTE: To be deprecated in favor of plusSquare
-  plusSquare: 'plus_square',
-  popout: 'external', // NOTE: To be deprecated in favor of external
-  presentation: 'presentation',
-  productRobot: 'product_agent', // NOTE: To be deprecated in favor of productAgent
-  productAgent: 'product_agent',
-  productCloudInfra: 'product_cloud_infra',
-  productDashboard: 'product_dashboard',
-  productDiscover: 'product_discover',
-  productML: 'product_ml',
-  productStreamsClassic: 'product_streams_classic',
-  productStreamsWired: 'product_streams_wired',
-  push: 'send', // NOTE: To be deprecated in favor of send
-  send: 'send',
-  question: 'question',
-  quote: 'quote',
-  radar: 'radar',
-  readOnly: 'read_only',
-  recentlyViewedApp: 'app_recently_viewed',
-  refresh: 'refresh',
-  regressionJob: 'ml_regression_job',
-  reporter: 'reporter',
-  reportingApp: 'app_reporting',
-  return: 'return',
-  returnKey: 'return', // NOTE: To be deprecated in favor of return
-  save: 'save',
-  savedObjectsApp: 'app_saved_objects',
-  scale: 'scale',
-  search: 'magnify', // NOTE: To be deprecated in favor of magnify
-  searchProfilerApp: 'app_search_profiler',
-  section: 'section',
-  securityAnalyticsApp: 'app_security_analytics',
-  securityApp: 'app_security',
-  securitySignal: 'security_signal', // NOTE: To be deprecated in favor of radar
-  securitySignalDetected: 'security_signal_detected',
-  securitySignalResolved: 'security_signal_resolved',
-  sessionViewer: 'session_viewer',
-  shard: 'shard',
-  share: 'share',
-  singleMetricViewer: 'single_metric_viewer',
-  snowflake: 'snowflake',
-  sortAscending: 'sort_ascending',
-  sortDescending: 'sort_descending',
-  sortDown: 'sort_down',
-  sortLeft: 'sort_left',
-  sortRight: 'sort_right',
-  sortUp: 'sort_up',
-  sortable: 'sortable',
-  spaces: 'spaces',
-  spacesApp: 'app_spaces',
-  sparkles: 'sparkles',
-  sqlApp: 'app_sql',
-  star: 'star',
-  starEmpty: 'star', // NOTE: To be deprecated in favor of star
-  starEmptySpace: 'star_empty_space',
-  starFill: 'star_fill',
-  starFilled: 'star_fill', // NOTE: To be deprecated in favor of starFill,
-  starFillSpace: 'star_fill_space',
-  starFilledSpace: 'star_fill_space', // NOTE: To be deprecated in favor of starFillSpace
-  starMinusEmpty: 'star_minus_empty',
-  starMinusFill: 'star_minus_fill',
-  starMinusFilled: 'star_minus_fill', // NOTE: To be deprecated in favor of starMinusFill
-  starPlusEmpty: 'star_plus_empty',
-  starPlusFill: 'star_plus_fill',
-  starPlusFilled: 'star_plus_fill', // NOTE: To be deprecated in favor of starPlusFill
-  stats: 'stats',
-  stop: 'stop',
-  stopFill: 'stop_fill',
-  stopFilled: 'stop_fill', // NOTE: To be deprecated in favor of stopFill
-  stopSlash: 'stop_slash',
-  storage: 'storage',
-  streamsClassic: 'product_streams_classic', // NOTE: To be deprecated in favor of productStreamsClassic
-  streamsWired: 'product_streams_wired', // NOTE: To be deprecated in favor of productStreamsWired
-  string: 'string',
-  submodule: 'merge', // NOTE: To be deprecated in favor of `merge`
-  sun: 'sun',
-  swatchInput: 'swatch_input', // Undocumented on purpose. Has an extra stroke for EuiColorPicker
-  symlink: 'symlink',
-  tableDensityCompact: 'table_density_high', // NOTE: To be deprecated in favor of tableDensityHigh
-  tableDensityHigh: 'table_density_high',
-  tableDensityExpanded: 'table_density_low', // NOTE: To be deprecated in favor of tableDensityLow
-  tableDensityLow: 'table_density_low',
-  tableDensityNormal: 'table', // NOTE: To be deprecated in favor of table
-  tableOfContents: 'table_of_contents',
-  tag: 'tag',
-  tear: 'tear',
-  temperature: 'thermometer', // NOTE: To be deprecated in favor of thermometer
-  thermometer: 'thermometer',
-  thumbDown: 'thumb_down',
-  thumbUp: 'thumb_up',
-  timeline: 'timeline',
-  timelineWithArrow: 'timeline_with_arrow',
-  timelionApp: 'app_timelion',
-  timeRefresh: 'refresh_time', // NOTE: To be deprecated in favor of refreshTime
-  refreshTime: 'refresh_time',
-  timeslider: 'clock_control', // NOTE: To be deprecated in favor of clockControl
-  training: 'presentation', // NOTE: To be deprecated in favor of presentation,
-  transitionLeftIn: 'transition_left_in',
-  transitionLeftOut: 'transition_left_out',
-  transitionTopIn: 'transition_top_in',
-  transitionTopOut: 'transition_top_out',
-  trash: 'trash',
-  unfold: 'unfold',
-  unlink: 'link_slash', // NOTE: To be deprecated in favor of linkSlash
-  upgradeAssistantApp: 'app_upgrade_assistant',
-  uptimeApp: 'app_uptime',
-  user: 'user',
-  userAvatar: 'user', // NOTE: To be deprecated in favor of `user`
-  users: 'users',
-  usersRolesApp: 'app_users_roles',
-  unarchive: 'unarchive',
-  vector: 'vector_square', // NOTE: To be deprecated in favor of vectorSquare
-  vectorSquare: 'vector_square',
-  videoPlayer: 'video_player',
-  visArea: 'chart_area', // NOTE: To be deprecated in favor of chartArea
-  visAreaStacked: 'chart_area_stack', // NOTE: To be deprecated in favor of chartAreaStack
-  visBarHorizontal: 'chart_bar_horizontal', // NOTE: To be deprecated in favor of chartBarHorizontal
-  visBarHorizontalStacked: 'chart_bar_horizontal_stack', // NOTE: To be deprecated in favor of chartBarHorizontalStack
-  visBarVertical: 'chart_bar_vertical', // NOTE: To be deprecated in favor of chartBarVertical
-  visBarVerticalStacked: 'chart_bar_vertical_stack', // NOTE: To be deprecated in favor of chartBarVerticalStack
-  visGauge: 'chart_gauge', // NOTE: To be deprecated in favor of chartGauge
-  visGoal: 'vis_goal',
-  visLine: 'chart_line', // NOTE: To be deprecated in favor of chartLine
-  visMapCoordinate: 'waypoint', // NOTE: To be deprecated in favor of waypoint
-  visMapRegion: 'map', // NOTE: To be deprecated in favor of map
-  visMetric: 'chart_metric', // NOTE: To be deprecated in favor of chartMetric
-  chartMetric: 'chart_metric',
-  visPie: 'chart_pie', // NOTE: To be deprecated in favor of chartPie
-  visTable: 'table', // NOTE: To be deprecated in favor of table
-  visTagCloud: 'chart_tag_cloud', // NOTE: To be deprecated in favor of chartTagCloud
-  visText: 'text', // NOTE: To be deprecated in favor of text,
-  visTimelion: 'vis_timelion',
-  visVega: 'code', // NOTE: To be deprecated in favor of `code`
-  visVisualBuilder: 'vis_visual_builder',
-  visualizeApp: 'app_visualize',
-  vulnerabilityManagementApp: 'app_vulnerability_management',
-  warning: 'warning',
-  warningFilled: 'warning_fill', // NOTE: To be deprecated in favor of warningFill
-  warningFill: 'warning_fill',
-  watchesApp: 'app_watches',
-  web: 'web',
-  wordWrap: 'word_wrap',
-  wordWrapDisabled: 'word_wrap_disabled',
-  workflowsApp: 'app_workflows',
-  workflow: 'workflow',
-  workplaceSearchApp: 'app_workplace_search',
-  wrench: 'wrench',
+  accessibility: () => import('./assets/accessibility'),
+  addDataApp: () => import('./assets/app_add_data'),
+  advancedSettingsApp: () => import('./assets/app_advanced_settings'),
+  agentApp: () => import('./assets/app_fleet'),
+  aggregate: () => import('./assets/aggregate'),
+  alignBottom: () => import('./assets/align_bottom'),
+  alignBottomLeft: () => import('./assets/align_bottom_left'),
+  alignBottomRight: () => import('./assets/align_bottom_right'),
+  alignCenterHorizontal: () => import('./assets/align_center_horizontal'),
+  alignCenterVertical: () => import('./assets/align_center_vertical'),
+  alignLeft: () => import('./assets/align_left'),
+  alignRight: () => import('./assets/align_right'),
+  alignTop: () => import('./assets/align_top'),
+  alignTopLeft: () => import('./assets/align_top_left'),
+  alignTopRight: () => import('./assets/align_top_right'),
+  alert: () => import('./assets/warning'), // NOTE: To be deprecated in favor of `warning`
+  analyzeEvent: () => import('./assets/analyze_event'),
+  annotation: () => import('./assets/annotation'),
+  anomalyChart: () => import('./assets/chart_anomaly'), // NOTE: To be deprecated in favor of chartAnomaly
+  chartAnomaly: () => import('./assets/chart_anomaly'),
+  anomalySwimLane: () => import('./assets/anomaly_swim_lane'),
+  apmApp: () => import('./assets/app_apm'),
+  apmTrace: () => import('./assets/chart_waterfall'), // NOTE: To be deprecated in favor of chartWaterfall
+  chartWaterfall: () => import('./assets/chart_waterfall'),
+  appSearchApp: () => import('./assets/app_app_search'),
+  apps: () => import('./assets/apps'),
+  arrowDown: () => import('./assets/chevron_single_down'), // NOTE: To be deprecated in favor of chevronSingleDown
+  chevronSingleDown: () => import('./assets/chevron_single_down'),
+  arrowLeft: () => import('./assets/chevron_single_left'), // NOTE: To be deprecated in favor of chevronSingleLeft
+  chevronSingleLeft: () => import('./assets/chevron_single_left'),
+  arrowRight: () => import('./assets/chevron_single_right'), // NOTE: To be deprecated in favor of chevronSinglRight
+  chevronSingleRight: () => import('./assets/chevron_single_right'),
+  arrowUp: () => import('./assets/chevron_single_up'), // NOTE: To be deprecated in favor of chevronSingleUp
+  chevronSingleUp: () => import('./assets/chevron_single_up'),
+  arrowStart: () => import('./assets/chevron_limit_left'), // NOTE: To be deprecated in favor of chevronLimitLeft
+  chevronLimitLeft: () => import('./assets/chevron_limit_left'),
+  arrowEnd: () => import('./assets/chevron_limit_right'), // NOTE: To be deprecated in favor of chevronLimitRight
+  chevronLimitRight: () => import('./assets/chevron_limit_right'),
+  article: () => import('./assets/article'),
+  asterisk: () => import('./assets/asterisk'),
+  at: () => import('./assets/at'),
+  archive: () => import('./assets/archive'),
+  axisX: () => import('./assets/axis_x'),
+  axisYLeft: () => import('./assets/axis_y_left'),
+  axisYRight: () => import('./assets/axis_y_right'),
+  auditbeatApp: () => import('./assets/app_auditbeat'),
+  backgroundTask: () => import('./assets/background_task'),
+  beaker: () => import('./assets/flask'), // NOTE: To be deprecated in favor of `flask`
+  bell: () => import('./assets/bell'),
+  bellSlash: () => import('./assets/bell_slash'),
+  beta: () => import('./assets/beta'),
+  bolt: () => import('./assets/bolt'),
+  boxesHorizontal: () => import('./assets/boxes_vertical'), // NOTE: To be deprecated in favor of `boxes_vertical`
+  boxesVertical: () => import('./assets/boxes_vertical'),
+  branch: () => import('./assets/branch'),
+  briefcase: () => import('./assets/briefcase'),
+  branchUser: () => import('./assets/branch_user'),
+  broom: () => import('./assets/broom'),
+  brush: () => import('./assets/brush'),
+  bug: () => import('./assets/bug'),
+  bulb: () => import('./assets/bulb'),
+  bullseye: () => import('./assets/bullseye'),
+  calendar: () => import('./assets/calendar'),
+  canvasApp: () => import('./assets/app_canvas'),
+  casesApp: () => import('./assets/app_cases'),
+  changePointDetection: () => import('./assets/chart_change_point'), // NOTE: To be deprecated in favor of chartChangePoint
+  chartChangePoint: () => import('./assets/chart_change_point'),
+  chartArea: () => import('./assets/chart_area'),
+  chartAreaStack: () => import('./assets/chart_area_stack'),
+  chartBarHorizontal: () => import('./assets/chart_bar_horizontal'),
+  chartBarHorizontalStack: () => import('./assets/chart_bar_horizontal_stack'),
+  chartBarVertical: () => import('./assets/chart_bar_vertical'),
+  chartBarVerticalStack: () => import('./assets/chart_bar_vertical_stack'),
+  chartGauge: () => import('./assets/chart_gauge'),
+  chartHeatmap: () => import('./assets/chart_heatmap'),
+  chartLine: () => import('./assets/chart_line'),
+  chartPie: () => import('./assets/chart_pie'),
+  chartTagCloud: () => import('./assets/chart_tag_cloud'),
+  chartThreshold: () => import('./assets/chart_threshold'),
+  check: () => import('./assets/check'),
+  checkCircle: () => import('./assets/check_circle'),
+  checkInCircleFilled: () => import('./assets/check_circle_fill'), // NOTE: To be deprecated in favor of checkCircleFill
+  checkCircleFill: () => import('./assets/check_circle_fill'),
+  cheer: () => import('./assets/popper'), // NOTE: To be deprecated in favor of popper
+  popper: () => import('./assets/popper'),
+  classificationJob: () => import('./assets/ml_classification_job'),
+  clickLeft: () => import('./assets/click_left'),
+  clickRight: () => import('./assets/click_right'),
+  clock: () => import('./assets/clock'),
+  clockCounter: () => import('./assets/clock_counter'),
+  clockControl: () => import('./assets/clock_control'),
+  cloud: () => import('./assets/cloud'),
+  cloudDrizzle: () => import('./assets/cloud_drizzle'),
+  cloudStormy: () => import('./assets/cloud_stormy'),
+  cloudSunny: () => import('./assets/cloud_sunny'),
+  cluster: () => import('./assets/cluster'),
+  code: () => import('./assets/code'),
+  codeApp: () => import('./assets/app_code'),
+  color: () => import('./assets/paint_bucket'), // NOTE: To be deprecated in favor of paintBucket
+  paintBucket: () => import('./assets/paint_bucket'),
+  commandLine: () => import('./assets/command_line'),
+  comment: () => import('./assets/comment'),
+  compare: () => import('./assets/compare'),
+  compute: () => import('./assets/processor'), // NOTE: To be deprecated in favor of processor
+  processor: () => import('./assets/processor'),
+  console: () => import('./assets/command_line'), // NOTE: To be deprecated in favor of commandLine
+  consoleApp: () => import('./assets/app_console'),
+  container: () => import('./assets/container'),
+  continuityAbove: () => import('./assets/continuity_above'),
+  continuityAboveBelow: () => import('./assets/continuity_above_below'),
+  continuityBelow: () => import('./assets/continuity_below'),
+  continuityWithin: () => import('./assets/continuity_within'),
+  contrast: () => import('./assets/contrast'),
+  contrastHigh: () => import('./assets/contrast_fill'), // NOTE: To be deprecated in favor of contrastFill
+  contrastFill: () => import('./assets/contrast_fill'),
+  controls: () => import('./assets/controls'),
+  controlsHorizontal: () => import('./assets/controls'), // NOTE: To be deprecated in favor of `controls`
+  controlsVertical: () => import('./assets/controls'), // NOTE: To be deprecated in favor of `controls`
+  copy: () => import('./assets/copy'),
+  copyClipboard: () => import('./assets/copy'), // NOTE: To be deprecated in favor of `copy`
+  crossProjectSearch: () => import('./assets/cross_project_search'),
+  createAdvancedJob: () => import('./assets/ml_create_advanced_job'),
+  createGenericJob: () => import('./assets/ml_create_generic_job'),
+  createGeoJob: () => import('./assets/ml_create_geo_job'),
+  createMultiMetricJob: () => import('./assets/ml_create_multi_metric_job'),
+  createPopulationJob: () => import('./assets/ml_create_population_job'),
+  createSingleMetricJob: () => import('./assets/ml_create_single_metric_job'),
+  cross: () => import('./assets/cross'),
+  crossClusterReplicationApp: () =>
+    import('./assets/app_cross_cluster_replication'),
+  crossInCircle: () => import('./assets/cross_circle'), // NOTE: To be deprecated in favor of crossCircle
+  crossCircle: () => import('./assets/cross_circle'),
+  crosshair: () => import('./assets/crosshair'),
+  crosshairs: () => import('./assets/crosshair'), // NOTE: To be deprecated in favor of crosshair
+  currency: () => import('./assets/money'), // NOTE: To be deprecated in favor of money
+  money: () => import('./assets/money'),
+  cut: () => import('./assets/scissors'), // NOTE: To be deprecated in favor of scissors
+  scissors: () => import('./assets/scissors'),
+  dashboardApp: () => import('./assets/app_dashboard'),
+  dashedCircle: () => import('./assets/dashed_circle'),
+  dataVisualizer: () => import('./assets/ml_data_visualizer'),
+  database: () => import('./assets/database'),
+  desktop: () => import('./assets/display'), // NOTE: To be deprecated in favor of display
+  display: () => import('./assets/display'),
+  devToolsApp: () => import('./assets/app_devtools'),
+  diff: () => import('./assets/compare'), // NOTE: To be deprecated in favor of compare
+  discoverApp: () => import('./assets/app_discover'),
+  distributeHorizontal: () => import('./assets/distribute_horizontal'),
+  distributeVertical: () => import('./assets/distribute_vertical'),
+  download: () => import('./assets/download'),
+  drag: () => import('./assets/drag'),
+  dragHorizontal: () => import('./assets/drag_horizontal'),
+  dragVertical: () => import('./assets/drag_vertical'),
+  discuss: () => import('./assets/comment'), // NOTE: To be deprecated in favor of `comment`
+  document: () => import('./assets/document'),
+  documentEdit: () => import('./assets/document_edit'), // NOTE: To be deprecated in favor of pencil
+  documentation: () => import('./assets/documentation'),
+  documents: () => import('./assets/documents'),
+  dot: () => import('./assets/dot'),
+  dotInCircle: () => import('./assets/dot_in_circle'),
+  doubleArrowLeft: () => import('./assets/chevron_double_left'), // NOTE: To be deprecated in favor of chevronDoubleLeft
+  chevronDoubleLeft: () => import('./assets/chevron_double_left'),
+  doubleArrowRight: () => import('./assets/chevron_double_right'), // NOTE: To be deprecated in favor of chevronDoubleRight
+  chevronDoubleRight: () => import('./assets/chevron_double_right'),
+  ellipsis: () => import('./assets/ellipsis'),
+  editorAlignCenter: () => import('./assets/text_align_center'), // NOTE: To be deprecated in favor of textAlignCenter
+  textAlignCenter: () => import('./assets/text_align_center'),
+  editorAlignLeft: () => import('./assets/text_align_left'), // NOTE: To be deprecated in favor of textAlignLeft
+  textAlignLeft: () => import('./assets/text_align_left'),
+  editorAlignRight: () => import('./assets/text_align_right'), // NOTE: To be deprecated in favor of textAlignRight
+  textAlignRight: () => import('./assets/text_align_right'),
+  editorBold: () => import('./assets/text_bold'), // NOTE: To be deprecated in favor of textBold
+  textBold: () => import('./assets/text_bold'),
+  editorChecklist: () => import('./assets/list_check'), // NOTE: To be deprecated in favor of listCheck
+  listCheck: () => import('./assets/list_check'),
+  editorCodeBlock: () => import('./assets/code'), // NOTE: To be deprecated in favor of `code`
+  editorComment: () => import('./assets/comment'), // NOTE: To be deprecated in favor of `comment`
+  editorDistributeHorizontal: () =>
+    import('./assets/editor_distribute_horizontal'), // NOTE: To be deprecated in favor of distributeHorizontal
+  editorDistributeVertical: () => import('./assets/editor_distribute_vertical'), // NOTE: To be deprecated in favor of distributeVertical
+  editorHeading: () => import('./assets/text_heading'), // NOTE: To be deprecated in favor of textHeading
+  textHeading: () => import('./assets/text_heading'),
+  editorItalic: () => import('./assets/text_italic'), // NOTE: To be deprecated in favor of textItalic
+  textItalic: () => import('./assets/text_italic'),
+  editorItemAlignBottom: () => import('./assets/editor_item_align_bottom'), // NOTE: To be deprecated in favor of alignBottom
+  editorItemAlignCenter: () => import('./assets/editor_item_align_center'), // NOTE: To be deprecated in favor of alignCenterHorizontal
+  editorItemAlignLeft: () => import('./assets/editor_item_align_left'), // NOTE: To be deprecated in favor of alignLeft
+  editorItemAlignMiddle: () => import('./assets/editor_item_align_middle'), // NOTE: To be deprecated in favor of alignCenterVertical
+  editorItemAlignRight: () => import('./assets/editor_item_align_right'), // NOTE: To be deprecated in favor of alignRight
+  editorItemAlignTop: () => import('./assets/editor_item_align_top'), // NOTE: To be deprecated in favor of alignTop,
+  editorLink: () => import('./assets/link'), // NOTE: To be deprecated in favor of `link`
+  editorOrderedList: () => import('./assets/list_number'), // NOTE: To be deprecated in favor of listNumber
+  listNumber: () => import('./assets/list_number'),
+  editorPositionBottomLeft: () =>
+    import('./assets/editor_position_bottom_left'), // NOTE: To be deprecated in favor of alignBottomLeft
+  editorPositionBottomRight: () =>
+    import('./assets/editor_position_bottom_right'), // NOTE: To be deprecated in favor of alignBottomRight
+  editorPositionTopLeft: () => import('./assets/editor_position_top_left'), // NOTE: To be deprecated in favor of alignTopLeft
+  editorPositionTopRight: () => import('./assets/editor_position_top_right'), // NOTE: To be deprecated in favor of alignTopRight
+  editorRedo: () => import('./assets/redo'), // NOTE: To be deprecated in favor of redo
+  redo: () => import('./assets/redo'),
+  editorStrike: () => import('./assets/text_strike'), // NOTE: To be deprecated in favor of textStrike
+  textStrike: () => import('./assets/text_strike'),
+  editorTable: () => import('./assets/table'), // NOTE: To be deprecated in favor of table
+  table: () => import('./assets/table'),
+  editorUnderline: () => import('./assets/text_underline'), // NOTE: To be deprecated in favor of textUnderline
+  textUnderline: () => import('./assets/text_underline'),
+  editorUndo: () => import('./assets/undo'), // NOTE: To be deprecated in favor of undo
+  undo: () => import('./assets/undo'),
+  editorUnorderedList: () => import('./assets/list_bullet'), // NOTE: To be deprecated in favor of listBullet
+  listBullet: () => import('./assets/list_bullet'),
+  email: () => import('./assets/mail'), // NOTE: To be deprecated in favor of mail
+  mail: () => import('./assets/mail'),
+  empty: () => import('./assets/empty'),
+  emsApp: () => import('./assets/app_ems'),
+  endpoint: () => import('./assets/endpoint'),
+  eql: () => import('./assets/query'), // NOTE: To be deprecated in favor of query
+  query: () => import('./assets/query'),
+  eraser: () => import('./assets/eraser'),
+  error: () => import('./assets/error'),
+  errorFilled: () => import('./assets/error_fill'), // NOTE: To be deprecated in favor of errorFill
+  errorFill: () => import('./assets/error_fill'),
+  esqlVis: () => import('./assets/esql_vis'),
+  exit: () => import('./assets/log_out'), // NOTE: To be deprecated in favor of logOut
+  logOut: () => import('./assets/log_out'),
+  expand: () => import('./assets/maximize'), // NOTE: To be deprecated in favor of maximize
+  maximize: () => import('./assets/maximize'),
+  expandMini: () => import('./assets/maximize'), // NOTE: To be deprecated in favor of maximize
+  export: () => import('./assets/upload'),
+  exportAction: () => import('./assets/upload'), // NOTE: To be deprecated in favor of upload
+  upload: () => import('./assets/upload'),
+  external: () => import('./assets/external'),
+  eye: () => import('./assets/eye'),
+  eyeClosed: () => import('./assets/eye_slash'), // NOTE: To be deprecated in favor of eyeSlash
+  eyeSlash: () => import('./assets/eye_slash'),
+  faceHappy: () => import('./assets/face_happy'),
+  faceNeutral: () => import('./assets/face_neutral'),
+  faceSad: () => import('./assets/face_sad'),
+  fieldStatistics: () => import('./assets/table_info'), // NOTE: To be deprecated in favor of tableInfo
+  tableInfo: () => import('./assets/table_info'),
+  filebeatApp: () => import('./assets/app_filebeat'),
+  filter: () => import('./assets/filter'),
+  filterExclude: () => import('./assets/filter_exclude'),
+  filterIgnore: () => import('./assets/filter_ignore'),
+  filterInclude: () => import('./assets/filter_include'),
+  filterInCircle: () => import('./assets/filter_in_circle'), // NOTE: To be deprecated in favor of filter
+  flask: () => import('./assets/flask'),
+  flag: () => import('./assets/flag'),
+  fleetApp: () => import('./assets/app_agent'),
+  fold: () => import('./assets/fold'),
+  folder: () => import('./assets/folder_close'),
+  folderClosed: () => import('./assets/folder_close'),
+  folderClose: () => import('./assets/folder_close'),
+  folderCheck: () => import('./assets/folder_check'),
+  folderExclamation: () => import('./assets/folder_exclamation'),
+  folderOpen: () => import('./assets/folder_open'),
+  folderOpened: () => import('./assets/folder_open'),
+  frameNext: () => import('./assets/frame_next'),
+  framePrevious: () => import('./assets/frame_previous'),
+  fullScreen: () => import('./assets/full_screen'),
+  fullScreenExit: () => import('./assets/full_screen_exit'),
+  function: () => import('./assets/function'),
+  gear: () => import('./assets/gear'),
+  gisApp: () => import('./assets/app_gis'),
+  glasses: () => import('./assets/read_only'), // NOTE: To be deprecated in favor of `readOnly`
+  globe: () => import('./assets/globe'),
+  grab: () => import('./assets/drag_vertical'), // NOTE: To be deprecated in favor of dragVertical
+  grabHorizontal: () => import('./assets/drag_horizontal'), // NOTE: To be deprecated in favor of dragHorizontal
+  grabOmnidirectional: () => import('./assets/grab_omnidirectional'), // NOTE: To be deprecated in favor of drag,
+  gradient: () => import('./assets/gradient'),
+  graphApp: () => import('./assets/app_graph'),
+  grid: () => import('./assets/grid'),
+  grokApp: () => import('./assets/app_grok'),
+  heart: () => import('./assets/heart'),
+  heartbeatApp: () => import('./assets/app_heartbeat'),
+  heatmap: () => import('./assets/chart_heatmap'), // NOTE: To be deprecated in favor of chartHeatmap
+  help: () => import('./assets/help'), // NOTE: Might be deprecated later (not recommended in Kibana)
+  home: () => import('./assets/home'),
+  hourglass: () => import('./assets/hourglass'),
+  if: () => import('./assets/if'),
+  info: () => import('./assets/info'),
+  image: () => import('./assets/image'),
+  importAction: () => import('./assets/download'), // NOTE: To be deprecated in favor of download
+  index: () => import('./assets/index'),
+  indexClose: () => import('./assets/index_close'),
+  indexEdit: () => import('./assets/index_edit'),
+  indexFlush: () => import('./assets/chart_threshold'), // NOTE: To be deprecated in favor of chartThreshold
+  indexManagementApp: () => import('./assets/app_index_management'),
+  indexMapping: () => import('./assets/mapping'), // NOTE: To be deprecated in favor of mapping
+  mapping: () => import('./assets/mapping'),
+  indexOpen: () => import('./assets/index_open'),
+  indexPatternApp: () => import('./assets/app_index_pattern'),
+  indexRollupApp: () => import('./assets/app_index_rollup'),
+  indexRuntime: () => import('./assets/index_runtime'),
+  indexSettings: () => import('./assets/index_settings'),
+  indexTemporary: () => import('./assets/table_time'), // NOTE: To be deprecated in favor of tableTime
+  tableTime: () => import('./assets/table_time'),
+  infinity: () => import('./assets/infinity'),
+  inputOutput: () => import('./assets/input_output'),
+  inspect: () => import('./assets/inspect'),
+  invert: () => import('./assets/contrast'), // NOTE: To be deprecated in favor of contrast
+  ip: () => import('./assets/ip'),
+  key: () => import('./assets/key'),
+  keyboard: () => import('./assets/keyboard'),
+  kqlField: () => import('./assets/query_field'), // NOTE: To be deprecated in favor of queryField
+  queryField: () => import('./assets/query_field'),
+  kqlFunction: () => import('./assets/kql_function'),
+  kqlOperand: () => import('./assets/query_operand'), // NOTE: To be deprecated in favor of queryOperand
+  queryOperand: () => import('./assets/query_operand'),
+  kqlSelector: () => import('./assets/query_selector'), // NOTE: To be deprecated in favor of querySelector
+  querySelector: () => import('./assets/query_selector'),
+  kqlValue: () => import('./assets/query_value'), // NOTE: To be deprecated in favor of queryValue
+  queryValue: () => import('./assets/query_value'),
+  kubernetesNode: () => import('./assets/kubernetes_node'),
+  kubernetesPod: () => import('./assets/kubernetes_pod'),
+  launch: () => import('./assets/rocket'), // NOTE: To be deprecated in favor of rocket
+  rocket: () => import('./assets/rocket'),
+  layers: () => import('./assets/layers'),
+  lensApp: () => import('./assets/app_lens'),
+  lettering: () => import('./assets/text'), // NOTE: To be deprecated in favor of text
+  text: () => import('./assets/text'),
+  lineBreak: () => import('./assets/line_break'),
+  lineBreakSlash: () => import('./assets/line_break_slash'),
+  lineDash: () => import('./assets/line_dash'),
+  lineDashed: () => import('./assets/line_dash'), // NOTE: To be deprecated in favor of lineDash
+  lineDot: () => import('./assets/line_dot'),
+  lineDotted: () => import('./assets/line_dot'), // NOTE: To be deprecated in favor of lineDot
+  lineSolid: () => import('./assets/line_solid'),
+  link: () => import('./assets/link'),
+  linkSlash: () => import('./assets/link_slash'),
+  list: () => import('./assets/list_bullet'), // NOTE: To be deprecated in favor of listBullet,
+  listAdd: () => import('./assets/plus_circle'), // NOTE: To be deprecated in favor of `plus_circle`
+  lock: () => import('./assets/lock'),
+  lockOpen: () => import('./assets/lock_open'),
+  logPatternAnalysis: () => import('./assets/pattern'), // NOTE: To be deprecated in favor of pattern
+  pattern: () => import('./assets/pattern'),
+  logRateAnalysis: () => import('./assets/log_rate_analysis'),
+  logoAWS: () => import('./assets/logo_aws'),
+  logoAWSMono: () => import('./assets/logo_aws_mono'),
+  logoAerospike: () => import('./assets/logo_aerospike'),
+  logoApache: () => import('./assets/logo_apache'),
+  logoAppSearch: () => import('./assets/logo_app_search'),
+  logoAzure: () => import('./assets/logo_azure'),
+  logoAzureMono: () => import('./assets/logo_azure_mono'),
+  logoBeats: () => import('./assets/logo_beats'),
+  logoBusinessAnalytics: () => import('./assets/logo_business_analytics'),
+  logoCeph: () => import('./assets/logo_ceph'),
+  logoCloud: () => import('./assets/logo_cloud'),
+  logoCloudEnterprise: () => import('./assets/logo_cloud_ece'),
+  logoCode: () => import('./assets/logo_code'),
+  logoCodesandbox: () => import('./assets/logo_codesandbox'),
+  logoCouchbase: () => import('./assets/logo_couchbase'),
+  logoDocker: () => import('./assets/logo_docker'),
+  logoDropwizard: () => import('./assets/logo_dropwizard'),
+  logoElastic: () => import('./assets/logo_elastic'),
+  logoElasticStack: () => import('./assets/logo_elastic_stack'),
+  logoElasticsearch: () => import('./assets/logo_elasticsearch'),
+  logoEnterpriseSearch: () => import('./assets/logo_enterprise_search'),
+  logoEtcd: () => import('./assets/logo_etcd'),
+  logoGCP: () => import('./assets/logo_gcp'),
+  logoGCPMono: () => import('./assets/logo_gcp_mono'),
+  logoGithub: () => import('./assets/logo_github'),
+  logoGmail: () => import('./assets/logo_gmail'),
+  logoGolang: () => import('./assets/logo_golang'),
+  logoGoogleG: () => import('./assets/logo_google_g'),
+  logoHAproxy: () => import('./assets/logo_haproxy'),
+  logoIBM: () => import('./assets/logo_ibm'),
+  logoIBMMono: () => import('./assets/logo_ibm_mono'),
+  logoKafka: () => import('./assets/logo_kafka'),
+  logoKibana: () => import('./assets/logo_kibana'),
+  logoKubernetes: () => import('./assets/logo_kubernetes'),
+  logoLogging: () => import('./assets/logo_logging'),
+  logoLogstash: () => import('./assets/logo_logstash'),
+  logoMaps: () => import('./assets/logo_maps'),
+  logoMemcached: () => import('./assets/logo_memcached'),
+  logoMetrics: () => import('./assets/logo_metrics'),
+  logoMongodb: () => import('./assets/logo_mongodb'),
+  logoMySQL: () => import('./assets/logo_mysql'),
+  logoNginx: () => import('./assets/logo_nginx'),
+  logoObservability: () => import('./assets/logo_observability'),
+  logoOsquery: () => import('./assets/logo_osquery'),
+  logoPhp: () => import('./assets/logo_php'),
+  logoPostgres: () => import('./assets/logo_postgres'),
+  logoPrometheus: () => import('./assets/logo_prometheus'),
+  logoRabbitmq: () => import('./assets/logo_rabbitmq'),
+  logoRedis: () => import('./assets/logo_redis'),
+  logoSecurity: () => import('./assets/logo_security'),
+  logoSiteSearch: () => import('./assets/logo_site_search'),
+  logoSketch: () => import('./assets/logo_sketch'),
+  logoSlack: () => import('./assets/logo_slack'),
+  logoUptime: () => import('./assets/logo_uptime'),
+  logoVulnerabilityManagement: () =>
+    import('./assets/logo_vulnerability_management'),
+  logoWebhook: () => import('./assets/logo_webhook'),
+  logoWindows: () => import('./assets/logo_windows'),
+  logoWorkplaceSearch: () => import('./assets/logo_workplace_search'),
+  logsApp: () => import('./assets/app_logs'),
+  logstashFilter: () => import('./assets/logstash_filter'),
+  logstashIf: () => import('./assets/if'), // NOTE: To be deprecated in favor of if
+  logstashInput: () => import('./assets/logstash_input'),
+  logstashOutput: () => import('./assets/logstash_output'),
+  logstashQueue: () => import('./assets/queue'), // NOTE: To be deprecated in favor of queue
+  queue: () => import('./assets/queue'),
+  machineLearningApp: () => import('./assets/app_ml'),
+  magnet: () => import('./assets/magnet'),
+  magnify: () => import('./assets/magnify'),
+  magnifyExclamation: () => import('./assets/magnify_exclamation'),
+  magnifyMinus: () => import('./assets/magnify_minus'),
+  magnifyPlus: () => import('./assets/magnify_plus'),
+  magnifyWithExclamation: () => import('./assets/magnify_with_exclamation'), // NOTE: To be deprecated in favor of magnifyExclamation
+  magnifyWithMinus: () => import('./assets/magnify_with_minus'), // NOTE: To be deprecated in favor of magnifyMinus
+  magnifyWithPlus: () => import('./assets/magnify_with_plus'), // NOTE: To be deprecated in favor of magnifyPlus,
+  managementApp: () => import('./assets/app_management'),
+  map: () => import('./assets/map'),
+  mapMarker: () => import('./assets/waypoint'), // NOTE: To be deprecated in favor of waypoint
+  waypoint: () => import('./assets/waypoint'),
+  megaphone: () => import('./assets/megaphone'),
+  memory: () => import('./assets/memory'),
+  menu: () => import('./assets/menu'),
+  menuDown: () => import('./assets/menu_down'),
+  menuLeft: () => import('./assets/menu_left'),
+  menuRight: () => import('./assets/menu_right'),
+  menuUp: () => import('./assets/menu_up'),
+  merge: () => import('./assets/merge'),
+  metricbeatApp: () => import('./assets/app_metricbeat'),
+  metricsApp: () => import('./assets/app_metrics'),
+  minimize: () => import('./assets/minimize'),
+  minus: () => import('./assets/minus'),
+  minusCircle: () => import('./assets/minus_circle'),
+  minusInCircle: () => import('./assets/minus_circle'), // NOTE: To be deprecated in favor of minusCircle
+  minusInCircleFilled: () => import('./assets/minus_circle'), // NOTE: To be deprecated in favor of minusCircle
+  minusInSquare: () => import('./assets/minus_square'), // NOTE: To be deprecated in favor of minusSquare
+  minusSquare: () => import('./assets/minus_square'),
+  mobile: () => import('./assets/mobile'),
+  monitoringApp: () => import('./assets/app_monitoring'),
+  moon: () => import('./assets/moon'),
+  move: () => import('./assets/move'),
+  namespace: () => import('./assets/namespace'),
+  nested: () => import('./assets/nested'),
+  newChat: () => import('./assets/plus_circle'), // NOTE: To be deprecated in favor of plusCircle
+  node: () => import('./assets/vector_triangle'), // NOTE: To be deprecated in favor of vectorTriangle
+  vectorTriangle: () => import('./assets/vector_triangle'),
+  notebookApp: () => import('./assets/app_notebook'),
+  number: () => import('./assets/number'),
+  offline: () => import('./assets/wifi_slash'), // NOTE: To be deprecated in favor of wifiSlash
+  wifiSlash: () => import('./assets/wifi_slash'),
+  online: () => import('./assets/wifi'), // NOTE: To be deprecated in favor of wifi
+  wifi: () => import('./assets/wifi'),
+  outlierDetectionJob: () => import('./assets/ml_outlier_detection_job'),
+  package: () => import('./assets/package'),
+  packetbeatApp: () => import('./assets/app_packetbeat'),
+  pageSelect: () => import('./assets/page_select'),
+  pagesSelect: () => import('./assets/pages_select'),
+  palette: () => import('./assets/palette'),
+  paperClip: () => import('./assets/paper_clip'),
+  partial: () => import('./assets/partial'),
+  pause: () => import('./assets/pause'),
+  payment: () => import('./assets/payment'),
+  pencil: () => import('./assets/pencil'),
+  percent: () => import('./assets/percent'),
+  pin: () => import('./assets/pin'),
+  pinFill: () => import('./assets/pin_fill'),
+  pinFilled: () => import('./assets/pin_fill'), // NOTE: To be deprecated in favor of pinFill
+  pipeBreaks: () => import('./assets/line_break'), // NOTE: To be deprecated in favor of lineBreak
+  pipelineApp: () => import('./assets/app_pipeline'),
+  pipeNoBreaks: () => import('./assets/line_break_slash'), // NOTE: To be deprecated in favor of lineBreakSlash
+  pivot: () => import('./assets/pivot'),
+  play: () => import('./assets/play'),
+  playFilled: () => import('./assets/play_filled'), // NOTE: To be deprecated in favor of play
+  plugs: () => import('./assets/plugs'),
+  plus: () => import('./assets/plus'),
+  plusCircle: () => import('./assets/plus_circle'),
+  plusInCircle: () => import('./assets/plus_circle'), // NOTE: To be deprecated in favor of plusCircle
+  plusInCircleFilled: () => import('./assets/plus_circle'), // NOTE: To be deprecated in favor of plusCircle
+  plusInSquare: () => import('./assets/plus_square'), // NOTE: To be deprecated in favor of plusSquare
+  plusSquare: () => import('./assets/plus_square'),
+  popout: () => import('./assets/external'), // NOTE: To be deprecated in favor of external
+  presentation: () => import('./assets/presentation'),
+  productRobot: () => import('./assets/product_agent'), // NOTE: To be deprecated in favor of productAgent
+  productAgent: () => import('./assets/product_agent'),
+  productCloudInfra: () => import('./assets/product_cloud_infra'),
+  productDashboard: () => import('./assets/product_dashboard'),
+  productDiscover: () => import('./assets/product_discover'),
+  productML: () => import('./assets/product_ml'),
+  productStreamsClassic: () => import('./assets/product_streams_classic'),
+  productStreamsWired: () => import('./assets/product_streams_wired'),
+  push: () => import('./assets/send'), // NOTE: To be deprecated in favor of send
+  send: () => import('./assets/send'),
+  question: () => import('./assets/question'),
+  quote: () => import('./assets/quote'),
+  radar: () => import('./assets/radar'),
+  readOnly: () => import('./assets/read_only'),
+  recentlyViewedApp: () => import('./assets/app_recently_viewed'),
+  refresh: () => import('./assets/refresh'),
+  regressionJob: () => import('./assets/ml_regression_job'),
+  reporter: () => import('./assets/reporter'),
+  reportingApp: () => import('./assets/app_reporting'),
+  return: () => import('./assets/return'),
+  returnKey: () => import('./assets/return'), // NOTE: To be deprecated in favor of return
+  save: () => import('./assets/save'),
+  savedObjectsApp: () => import('./assets/app_saved_objects'),
+  scale: () => import('./assets/scale'),
+  search: () => import('./assets/magnify'), // NOTE: To be deprecated in favor of magnify
+  searchProfilerApp: () => import('./assets/app_search_profiler'),
+  section: () => import('./assets/section'),
+  securityAnalyticsApp: () => import('./assets/app_security_analytics'),
+  securityApp: () => import('./assets/app_security'),
+  securitySignal: () => import('./assets/security_signal'), // NOTE: To be deprecated in favor of radar
+  securitySignalDetected: () => import('./assets/security_signal_detected'),
+  securitySignalResolved: () => import('./assets/security_signal_resolved'),
+  sessionViewer: () => import('./assets/session_viewer'),
+  shard: () => import('./assets/shard'),
+  share: () => import('./assets/share'),
+  singleMetricViewer: () => import('./assets/single_metric_viewer'),
+  snowflake: () => import('./assets/snowflake'),
+  sortAscending: () => import('./assets/sort_ascending'),
+  sortDescending: () => import('./assets/sort_descending'),
+  sortDown: () => import('./assets/sort_down'),
+  sortLeft: () => import('./assets/sort_left'),
+  sortRight: () => import('./assets/sort_right'),
+  sortUp: () => import('./assets/sort_up'),
+  sortable: () => import('./assets/sortable'),
+  spaces: () => import('./assets/spaces'),
+  spacesApp: () => import('./assets/app_spaces'),
+  sparkles: () => import('./assets/sparkles'),
+  sqlApp: () => import('./assets/app_sql'),
+  star: () => import('./assets/star'),
+  starEmpty: () => import('./assets/star'), // NOTE: To be deprecated in favor of star
+  starEmptySpace: () => import('./assets/star_empty_space'),
+  starFill: () => import('./assets/star_fill'),
+  starFilled: () => import('./assets/star_fill'), // NOTE: To be deprecated in favor of starFill,
+  starFillSpace: () => import('./assets/star_fill_space'),
+  starFilledSpace: () => import('./assets/star_fill_space'), // NOTE: To be deprecated in favor of starFillSpace
+  starMinusEmpty: () => import('./assets/star_minus_empty'),
+  starMinusFill: () => import('./assets/star_minus_fill'),
+  starMinusFilled: () => import('./assets/star_minus_fill'), // NOTE: To be deprecated in favor of starMinusFill
+  starPlusEmpty: () => import('./assets/star_plus_empty'),
+  starPlusFill: () => import('./assets/star_plus_fill'),
+  starPlusFilled: () => import('./assets/star_plus_fill'), // NOTE: To be deprecated in favor of starPlusFill
+  stats: () => import('./assets/stats'),
+  stop: () => import('./assets/stop'),
+  stopFill: () => import('./assets/stop_fill'),
+  stopFilled: () => import('./assets/stop_fill'), // NOTE: To be deprecated in favor of stopFill
+  stopSlash: () => import('./assets/stop_slash'),
+  storage: () => import('./assets/storage'),
+  streamsClassic: () => import('./assets/product_streams_classic'), // NOTE: To be deprecated in favor of productStreamsClassic
+  streamsWired: () => import('./assets/product_streams_wired'), // NOTE: To be deprecated in favor of productStreamsWired
+  string: () => import('./assets/string'),
+  submodule: () => import('./assets/merge'), // NOTE: To be deprecated in favor of `merge`
+  sun: () => import('./assets/sun'),
+  swatchInput: () => import('./assets/swatch_input'), // Undocumented on purpose. Has an extra stroke for EuiColorPicker
+  symlink: () => import('./assets/symlink'),
+  tableDensityCompact: () => import('./assets/table_density_high'), // NOTE: To be deprecated in favor of tableDensityHigh
+  tableDensityHigh: () => import('./assets/table_density_high'),
+  tableDensityExpanded: () => import('./assets/table_density_low'), // NOTE: To be deprecated in favor of tableDensityLow
+  tableDensityLow: () => import('./assets/table_density_low'),
+  tableDensityNormal: () => import('./assets/table'), // NOTE: To be deprecated in favor of table
+  tableOfContents: () => import('./assets/table_of_contents'),
+  tag: () => import('./assets/tag'),
+  tear: () => import('./assets/tear'),
+  temperature: () => import('./assets/thermometer'), // NOTE: To be deprecated in favor of thermometer
+  thermometer: () => import('./assets/thermometer'),
+  thumbDown: () => import('./assets/thumb_down'),
+  thumbUp: () => import('./assets/thumb_up'),
+  timeline: () => import('./assets/timeline'),
+  timelineWithArrow: () => import('./assets/timeline_with_arrow'),
+  timelionApp: () => import('./assets/app_timelion'),
+  timeRefresh: () => import('./assets/refresh_time'), // NOTE: To be deprecated in favor of refreshTime
+  refreshTime: () => import('./assets/refresh_time'),
+  timeslider: () => import('./assets/clock_control'), // NOTE: To be deprecated in favor of clockControl
+  training: () => import('./assets/presentation'), // NOTE: To be deprecated in favor of presentation,
+  transitionLeftIn: () => import('./assets/transition_left_in'),
+  transitionLeftOut: () => import('./assets/transition_left_out'),
+  transitionTopIn: () => import('./assets/transition_top_in'),
+  transitionTopOut: () => import('./assets/transition_top_out'),
+  trash: () => import('./assets/trash'),
+  unfold: () => import('./assets/unfold'),
+  unlink: () => import('./assets/link_slash'), // NOTE: To be deprecated in favor of linkSlash
+  upgradeAssistantApp: () => import('./assets/app_upgrade_assistant'),
+  uptimeApp: () => import('./assets/app_uptime'),
+  user: () => import('./assets/user'),
+  userAvatar: () => import('./assets/user'), // NOTE: To be deprecated in favor of `user`
+  users: () => import('./assets/users'),
+  usersRolesApp: () => import('./assets/app_users_roles'),
+  unarchive: () => import('./assets/unarchive'),
+  vector: () => import('./assets/vector_square'), // NOTE: To be deprecated in favor of vectorSquare
+  vectorSquare: () => import('./assets/vector_square'),
+  videoPlayer: () => import('./assets/video_player'),
+  visArea: () => import('./assets/chart_area'), // NOTE: To be deprecated in favor of chartArea
+  visAreaStacked: () => import('./assets/chart_area_stack'), // NOTE: To be deprecated in favor of chartAreaStack
+  visBarHorizontal: () => import('./assets/chart_bar_horizontal'), // NOTE: To be deprecated in favor of chartBarHorizontal
+  visBarHorizontalStacked: () => import('./assets/chart_bar_horizontal_stack'), // NOTE: To be deprecated in favor of chartBarHorizontalStack
+  visBarVertical: () => import('./assets/chart_bar_vertical'), // NOTE: To be deprecated in favor of chartBarVertical
+  visBarVerticalStacked: () => import('./assets/chart_bar_vertical_stack'), // NOTE: To be deprecated in favor of chartBarVerticalStack
+  visGauge: () => import('./assets/chart_gauge'), // NOTE: To be deprecated in favor of chartGauge
+  visGoal: () => import('./assets/vis_goal'),
+  visLine: () => import('./assets/chart_line'), // NOTE: To be deprecated in favor of chartLine
+  visMapCoordinate: () => import('./assets/waypoint'), // NOTE: To be deprecated in favor of waypoint
+  visMapRegion: () => import('./assets/map'), // NOTE: To be deprecated in favor of map
+  visMetric: () => import('./assets/chart_metric'), // NOTE: To be deprecated in favor of chartMetric
+  chartMetric: () => import('./assets/chart_metric'),
+  visPie: () => import('./assets/chart_pie'), // NOTE: To be deprecated in favor of chartPie
+  visTable: () => import('./assets/table'), // NOTE: To be deprecated in favor of table
+  visTagCloud: () => import('./assets/chart_tag_cloud'), // NOTE: To be deprecated in favor of chartTagCloud
+  visText: () => import('./assets/text'), // NOTE: To be deprecated in favor of text,
+  visTimelion: () => import('./assets/vis_timelion'),
+  visVega: () => import('./assets/code'), // NOTE: To be deprecated in favor of `code`
+  visVisualBuilder: () => import('./assets/vis_visual_builder'),
+  visualizeApp: () => import('./assets/app_visualize'),
+  vulnerabilityManagementApp: () =>
+    import('./assets/app_vulnerability_management'),
+  warning: () => import('./assets/warning'),
+  warningFilled: () => import('./assets/warning_fill'), // NOTE: To be deprecated in favor of warningFill
+  warningFill: () => import('./assets/warning_fill'),
+  watchesApp: () => import('./assets/app_watches'),
+  web: () => import('./assets/web'),
+  wordWrap: () => import('./assets/word_wrap'),
+  wordWrapDisabled: () => import('./assets/word_wrap_disabled'),
+  workflowsApp: () => import('./assets/app_workflows'),
+  workflow: () => import('./assets/workflow'),
+  workplaceSearchApp: () => import('./assets/app_workplace_search'),
+  wrench: () => import('./assets/wrench'),
   // Token Icon Imports
-  tokenAlias: 'token_alias',
-  tokenAnnotation: 'token_annotation',
-  tokenArray: 'token_array',
-  tokenBinary: 'token_binary',
-  tokenBoolean: 'token_boolean',
-  tokenClass: 'token_class',
-  tokenCompletionSuggester: 'token_completion_suggester',
-  tokenConstant: 'token_constant',
-  tokenDate: 'token_date',
-  tokenDimension: 'token_dimension',
-  tokenElement: 'token_element',
-  tokenEnum: 'token_enum',
-  tokenEnumMember: 'token_enum_member',
-  tokenEvent: 'token_event',
-  tokenException: 'token_exception',
-  tokenField: 'token_field',
-  tokenFile: 'token_file',
-  tokenFlattened: 'token_flattened',
-  tokenFunction: 'token_function',
-  tokenGeo: 'token_geo',
-  tokenHistogram: 'token_histogram',
-  tokenInterface: 'token_interface',
-  tokenIP: 'token_ip',
-  tokenJoin: 'token_join',
-  tokenKey: 'token_key',
-  tokenKeyword: 'token_keyword',
-  tokenMethod: 'token_method',
-  tokenMetricCounter: 'token_metric_counter',
-  tokenMetricGauge: 'token_metric_gauge',
-  tokenModule: 'token_module',
-  tokenNamespace: 'token_namespace',
-  tokenNested: 'token_nested',
-  tokenNull: 'token_null',
-  tokenNumber: 'token_number',
-  tokenObject: 'token_object',
-  tokenOperator: 'token_operator',
-  tokenPackage: 'token_package',
-  tokenParameter: 'token_parameter',
-  tokenPercolator: 'token_percolator',
-  tokenProperty: 'token_property',
-  tokenRange: 'token_range',
-  tokenRankFeature: 'token_rank_feature',
-  tokenRankFeatures: 'token_rank_features',
-  tokenRepo: 'token_repo',
-  tokenSearchType: 'token_search_type',
-  tokenSemanticText: 'token_semantic_text',
-  tokenShape: 'token_shape',
-  tokenString: 'token_string',
-  tokenStruct: 'token_struct',
-  tokenSymbol: 'token_symbol',
-  tokenTag: 'token_tag',
-  tokenText: 'token_text',
-  tokenTokenCount: 'token_token_count',
-  tokenVariable: 'token_variable',
-  tokenVectorDense: 'token_vector_dense',
-  tokenDenseVector: 'token_vector_dense', // NOTE: This is an undocumented alias for `tokenVectorDense`, added for legacy compatability
-  tokenVectorSparse: 'token_vector_sparse',
+  tokenAlias: () => import('./assets/token_alias'),
+  tokenAnnotation: () => import('./assets/token_annotation'),
+  tokenArray: () => import('./assets/token_array'),
+  tokenBinary: () => import('./assets/token_binary'),
+  tokenBoolean: () => import('./assets/token_boolean'),
+  tokenClass: () => import('./assets/token_class'),
+  tokenCompletionSuggester: () => import('./assets/token_completion_suggester'),
+  tokenConstant: () => import('./assets/token_constant'),
+  tokenDate: () => import('./assets/token_date'),
+  tokenDimension: () => import('./assets/token_dimension'),
+  tokenElement: () => import('./assets/token_element'),
+  tokenEnum: () => import('./assets/token_enum'),
+  tokenEnumMember: () => import('./assets/token_enum_member'),
+  tokenEvent: () => import('./assets/token_event'),
+  tokenException: () => import('./assets/token_exception'),
+  tokenField: () => import('./assets/token_field'),
+  tokenFile: () => import('./assets/token_file'),
+  tokenFlattened: () => import('./assets/token_flattened'),
+  tokenFunction: () => import('./assets/token_function'),
+  tokenGeo: () => import('./assets/token_geo'),
+  tokenHistogram: () => import('./assets/token_histogram'),
+  tokenInterface: () => import('./assets/token_interface'),
+  tokenIP: () => import('./assets/token_ip'),
+  tokenJoin: () => import('./assets/token_join'),
+  tokenKey: () => import('./assets/token_key'),
+  tokenKeyword: () => import('./assets/token_keyword'),
+  tokenMethod: () => import('./assets/token_method'),
+  tokenMetricCounter: () => import('./assets/token_metric_counter'),
+  tokenMetricGauge: () => import('./assets/token_metric_gauge'),
+  tokenModule: () => import('./assets/token_module'),
+  tokenNamespace: () => import('./assets/token_namespace'),
+  tokenNested: () => import('./assets/token_nested'),
+  tokenNull: () => import('./assets/token_null'),
+  tokenNumber: () => import('./assets/token_number'),
+  tokenObject: () => import('./assets/token_object'),
+  tokenOperator: () => import('./assets/token_operator'),
+  tokenPackage: () => import('./assets/token_package'),
+  tokenParameter: () => import('./assets/token_parameter'),
+  tokenPercolator: () => import('./assets/token_percolator'),
+  tokenProperty: () => import('./assets/token_property'),
+  tokenRange: () => import('./assets/token_range'),
+  tokenRankFeature: () => import('./assets/token_rank_feature'),
+  tokenRankFeatures: () => import('./assets/token_rank_features'),
+  tokenRepo: () => import('./assets/token_repo'),
+  tokenSearchType: () => import('./assets/token_search_type'),
+  tokenSemanticText: () => import('./assets/token_semantic_text'),
+  tokenShape: () => import('./assets/token_shape'),
+  tokenString: () => import('./assets/token_string'),
+  tokenStruct: () => import('./assets/token_struct'),
+  tokenSymbol: () => import('./assets/token_symbol'),
+  tokenTag: () => import('./assets/token_tag'),
+  tokenText: () => import('./assets/token_text'),
+  tokenTokenCount: () => import('./assets/token_token_count'),
+  tokenVariable: () => import('./assets/token_variable'),
+  tokenVectorDense: () => import('./assets/token_vector_dense'),
+  tokenDenseVector: () => import('./assets/token_vector_dense'), // NOTE: This is an undocumented alias for `tokenVectorDense`, added for legacy compatability
+  tokenVectorSparse: () => import('./assets/token_vector_sparse'),
 };
