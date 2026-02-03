@@ -59,7 +59,8 @@ export function textToTimeRange(
   options?: TimeRangeTransformOptions
 ): TimeRange {
   const trimmed = text.trim();
-  const { presets = [], delimiter = DATE_RANGE_INPUT_DELIMITER } = options ?? {};
+  const { presets = [], delimiter = DATE_RANGE_INPUT_DELIMITER } =
+    options ?? {};
   const delimiterPattern = getDelimiterPattern(delimiter);
 
   const invalidResult: TimeRange = {
@@ -106,7 +107,9 @@ export function textToTimeRange(
 
   // (2) Check if it's a single value (no delimiter)
 
-  const delimiterMatch = delimiterPattern ? trimmed.match(delimiterPattern) : null;
+  const delimiterMatch = delimiterPattern
+    ? trimmed.match(delimiterPattern)
+    : null;
   if (!delimiterMatch) {
     // Try natural duration: "last 7 minutes", "today", etc.
     const naturalDuration = getTimeRangeBoundsFromNaturalDuration(trimmed);

@@ -25,8 +25,10 @@ export function timeRangeToDisplayText(
   timeRange: TimeRange,
   options?: TimeRangeTransformOptions
 ): string {
-  const { delimiter = DATE_RANGE_DISPLAY_DELIMITER, dateFormat = DEFAULT_DATE_FORMAT } =
-    options ?? {};
+  const {
+    delimiter = DATE_RANGE_DISPLAY_DELIMITER,
+    dateFormat = DEFAULT_DATE_FORMAT,
+  } = options ?? {};
 
   if (!timeRange.isValid) {
     return timeRange.value;
