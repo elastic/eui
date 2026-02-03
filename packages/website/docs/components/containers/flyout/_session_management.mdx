@@ -261,7 +261,7 @@ const [isOpen, setIsOpen] = useState(false);
 
 **Why this pattern is safe:** EUI internally handles manager state updates before your `onClose` callback runs.
 
-### 2. ✅ DO: let EUI handle cascade closing
+##### 2. ✅ DO: let EUI handle cascade closing
 
 ```typescript
 // Parent flyout
@@ -276,7 +276,7 @@ const [isOpen, setIsOpen] = useState(false);
 
 **Why this is safe:** EUI's internal state reducer will cascade close children when parent closes. No need for manual cascade logic.
 
-### 1. ❌ DON'T: manually implement cascade close logic
+##### 1. ❌ DON'T: manually implement cascade close logic
 
 ```typescript
 // ❌ BAD: Manual cascade close (unnecessary after fix)
@@ -296,7 +296,7 @@ const onCloseParent = () => {
 };
 ```
 
-### 2. ❌ DON'T: bypass React state with direct DOM manipulation
+##### 2. ❌ DON'T: bypass React state with direct DOM manipulation
 
 ```typescript
 // ❌ VERY BAD: Direct DOM manipulation
