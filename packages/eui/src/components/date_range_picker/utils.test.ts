@@ -27,9 +27,7 @@ describe('isValidTimeRange', () => {
   });
 
   it('returns false when a date is missing', () => {
-    expect(
-      isValidTimeRange({ ...baseRange(), startDate: null })
-    ).toBeFalsy();
+    expect(isValidTimeRange({ ...baseRange(), startDate: null })).toBeFalsy();
     expect(isValidTimeRange({ ...baseRange(), endDate: null })).toBeFalsy();
   });
 
