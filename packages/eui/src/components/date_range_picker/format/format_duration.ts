@@ -21,7 +21,7 @@ const UNIT_ABBREV: Record<string, string> = {
   // nanoseconds: 'ns',
 };
 
-const MS_PER = {
+export const MS_PER = {
   second: 1000,
   minute: 1000 * 60,
   hour: 1000 * 60 * 60,
@@ -36,7 +36,9 @@ export function durationToDisplayText(startDate: Date, endDate: Date): string {
 
   const format = (value: number, unit: number, abbrev: string): string => {
     const rounded = Math.round(value / unit);
-    const isExact = value % unit === 0;
+    const remainder = value % unit;
+    const isExact =
+      unit <= MS_PER.second ? remainder === 0 : remainder < MS_PER.second;
     return `${isExact ? '' : '~'}${rounded}${abbrev}`;
   };
 
