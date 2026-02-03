@@ -14,6 +14,9 @@ export const DEFAULT_DATE_FORMAT = 'MMM D YYYY, HH:mm';
 export const FORMAT_TIME_ONLY = 'HH:mm';
 export const FORMAT_NO_YEAR = 'MMM D, HH:mm';
 
+export const DATE_RANGE_INPUT_DELIMITER = 'to';
+export const DATE_RANGE_DISPLAY_DELIMITER = '→';
+
 export const UNIT_SHORT_TO_FULL_MAP: Record<string, string> = {
   s: 'second',
   m: 'minute',
@@ -26,11 +29,8 @@ export const UNIT_SHORT_TO_FULL_MAP: Record<string, string> = {
 
 export const UNIT_FULL_TO_SHORT_MAP: Record<string, string> = Object.entries(
   UNIT_SHORT_TO_FULL_MAP
-).reduce(
-  (acc, [short, full]) => {
-    acc[full] = short;
-    acc[`${full}s`] = short;
-    return acc;
-  },
-  {} as Record<string, string>
-);
+).reduce((acc, [short, full]) => {
+  acc[full] = short;
+  acc[`${full}s`] = short;
+  return acc;
+}, {} as Record<string, string>);

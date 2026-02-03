@@ -9,6 +9,7 @@
 import moment from 'moment';
 
 import {
+  DATE_RANGE_DISPLAY_DELIMITER,
   DEFAULT_DATE_FORMAT,
   FORMAT_NO_YEAR,
   FORMAT_TIME_ONLY,
@@ -24,7 +25,8 @@ export function timeRangeToDisplayText(
   timeRange: TimeRange,
   options?: TimeRangeTransformOptions
 ): string {
-  const { delimiter = ' → ', dateFormat = DEFAULT_DATE_FORMAT } = options ?? {};
+  const { delimiter = DATE_RANGE_DISPLAY_DELIMITER, dateFormat = DEFAULT_DATE_FORMAT } =
+    options ?? {};
 
   if (!timeRange.isValid) {
     return timeRange.value;
@@ -78,7 +80,7 @@ export function timeRangeToDisplayText(
     endDateFormat
   );
 
-  return `${startDisplay}${delimiter}${endDisplay}`;
+  return `${startDisplay} ${delimiter.trim()} ${endDisplay}`;
 }
 
 /**

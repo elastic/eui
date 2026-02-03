@@ -12,6 +12,7 @@ import {
   DATE_TYPE_ABSOLUTE,
   DATE_TYPE_NOW,
   DATE_TYPE_RELATIVE,
+  DATE_RANGE_INPUT_DELIMITER,
   UNIT_FULL_TO_SHORT_MAP,
 } from '../constants';
 import {
@@ -38,6 +39,18 @@ const NATURAL_DURATION_REGEX = /^(last|next)\s+(\d+)\s+(\w+)$/i;
 // "7 minutes ago" or "7 minutes from now"
 const NATURAL_INSTANT_REGEX = /^(\d+)\s+(\w+)\s+(ago|from now)$/i;
 
+const escapeRegExp = (value: string) =>
+  value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
+const getDelimiterPattern = (delimiter: string) => {
+  const normalized = delimiter.trim();
+  if (!normalized) {
+    return null;
+  }
+
+  return new RegExp(`^(.+?)\\s+${escapeRegExp(normalized)}\\s+(.+)$`);
+};
+
 /**
  * Main parsing function to transform text into a time range
  */
@@ -46,7 +59,8 @@ export function textToTimeRange(
   options?: TimeRangeTransformOptions
 ): TimeRange {
   const trimmed = text.trim();
-  const { presets = [], delimiter = ' to ' } = options ?? {};
+  const { presets = [], delimiter = DATE_RANGE_INPUT_DELIMITER } = options ?? {};
+  const delimiterPattern = getDelimiterPattern(delimiter);
 
   const invalidResult: TimeRange = {
     value: text,
@@ -92,7 +106,8 @@ export function textToTimeRange(
 
   // (2) Check if it's a single value (no delimiter)
 
-  if (!trimmed.includes(delimiter)) {
+  const delimiterMatch = delimiterPattern ? trimmed.match(delimiterPattern) : null;
+  if (!delimiterMatch) {
     // Try natural duration: "last 7 minutes", "today", etc.
     const naturalDuration = getTimeRangeBoundsFromNaturalDuration(trimmed);
     if (naturalDuration) {
@@ -170,7 +185,8 @@ export function textToTimeRange(
 
   // (3) Parse as a range with delimiter
 
-  const [startText, endText] = trimmed.split(delimiter);
+  const startText = delimiterMatch[1].trim();
+  const endText = delimiterMatch[2].trim();
 
   if (!startText || !endText) {
     return invalidResult;
