@@ -6,7 +6,14 @@
  * Side Public License, v 1.
  */
 
-import React, { useEffect, useMemo, useRef, useState, forwardRef } from 'react';
+import React, {
+  useEffect,
+  useLayoutEffect,
+  useMemo,
+  useRef,
+  useState,
+  forwardRef,
+} from 'react';
 import { flushSync } from 'react-dom';
 import { useCombinedRefs, useEuiMemoizedStyles } from '../../../services';
 import { useEuiI18n } from '../../i18n';
@@ -169,8 +176,14 @@ export const EuiManagedFlyout = forwardRef<HTMLElement, EuiManagedFlyoutProps>(
     // Track if flyout was ever registered to avoid false positives on initial mount
     const wasRegisteredRef = useRef(false);
 
+    // Track flyoutExistsInManager in a ref to avoid dependency loop
+    // The cleanup function needs the current value but shouldn't cause re-runs
+    const flyoutExistsInManagerRef = useRef(flyoutExistsInManager);
+    flyoutExistsInManagerRef.current = flyoutExistsInManager;
+
     // Register with flyout manager context when open, remove when closed
-    useEffect(() => {
+    // Using useLayoutEffect to run synchronously before DOM updates
+    useLayoutEffect(() => {
       console.log('[EUI MANAGED FLYOUT] Primary effect: Registering flyout:', {
         flyoutId,
         level,
@@ -181,13 +194,13 @@ export const EuiManagedFlyout = forwardRef<HTMLElement, EuiManagedFlyoutProps>(
       return () => {
         console.log('[EUI MANAGED FLYOUT] Primary cleanup effect triggered:', {
           flyoutId,
-          flyoutExistsInManager,
+          flyoutExistsInManager: flyoutExistsInManagerRef.current,
           level,
           timestamp: Date.now(),
         });
         // Only call closeFlyout if it wasn't already called via onClose
         // This prevents duplicate removal when using Escape/X button
-        if (flyoutExistsInManager) {
+        if (flyoutExistsInManagerRef.current) {
           console.log(
             '[EUI MANAGED FLYOUT] Primary cleanup: Calling closeFlyout'
           );
@@ -208,15 +221,9 @@ export const EuiManagedFlyout = forwardRef<HTMLElement, EuiManagedFlyoutProps>(
         // Reset navigation tracking when explicitly closed via isOpen=false
         wasRegisteredRef.current = false;
       };
-    }, [
-      flyoutId,
-      title,
-      level,
-      size,
-      addFlyout,
-      closeFlyout,
-      flyoutExistsInManager,
-    ]);
+      // CRITICAL: flyoutExistsInManager removed from dependencies
+      // to prevent re-registration loops during unmount
+    }, [flyoutId, title, level, size, addFlyout, closeFlyout]);
 
     // Detect when flyout has been removed from manager state (e.g., via Back button)
     // and trigger onClose callback to notify the parent component
@@ -272,21 +279,29 @@ export const EuiManagedFlyout = forwardRef<HTMLElement, EuiManagedFlyoutProps>(
       // This prevents race conditions during portal → inline DOM transitions
       // and ensures cascade close logic runs before DOM cleanup begins
       // Using flushSync to force synchronous state update completion
-      console.log('[EUI MANAGED FLYOUT] onClose: About to call closeFlyout with flushSync');
+      console.log(
+        '[EUI MANAGED FLYOUT] onClose: About to call closeFlyout with flushSync'
+      );
       flushSync(() => {
         closeFlyout(flyoutId);
       });
-      console.log('[EUI MANAGED FLYOUT] onClose: closeFlyout completed (flushSync):', {
-        flyoutId,
-        timestamp: Date.now(),
-      });
+      console.log(
+        '[EUI MANAGED FLYOUT] onClose: closeFlyout completed (flushSync):',
+        {
+          flyoutId,
+          timestamp: Date.now(),
+        }
+      );
 
       // trigger parent callback, unmounts the component
-      console.log('[EUI MANAGED FLYOUT] onClose: About to call parent callback:', {
-        flyoutId,
-        hasCallback: !!onCloseCallbackRef.current,
-        timestamp: Date.now(),
-      });
+      console.log(
+        '[EUI MANAGED FLYOUT] onClose: About to call parent callback:',
+        {
+          flyoutId,
+          hasCallback: !!onCloseCallbackRef.current,
+          timestamp: Date.now(),
+        }
+      );
       if (onCloseCallbackRef.current) {
         const event = e || new MouseEvent('click');
         onCloseCallbackRef.current(event);
