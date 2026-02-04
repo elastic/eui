@@ -18,9 +18,9 @@ describe('durationToDisplayShortText', () => {
 
     expect(durationToDisplayShortText(start, new Date(100))).toBe('100ms');
     expect(durationToDisplayShortText(start, new Date(5 * 1000))).toBe('5s');
-    expect(durationToDisplayShortText(start, new Date(15 * MS_PER.minute))).toBe(
-      '15min'
-    );
+    expect(
+      durationToDisplayShortText(start, new Date(15 * MS_PER.minute))
+    ).toBe('15min');
     expect(durationToDisplayShortText(start, new Date(12 * MS_PER.hour))).toBe(
       '12h'
     );
