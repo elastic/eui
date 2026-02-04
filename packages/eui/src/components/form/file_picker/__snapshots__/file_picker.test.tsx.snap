@@ -19,7 +19,7 @@ exports[`EuiFilePicker is rendered 1`] = `
       aria-hidden="true"
       class="euiFilePicker__icon emotion-euiFilePicker__icon-large"
       color="text"
-      data-euiicon-type="export"
+      data-euiicon-type="upload"
     />
     <span
       class="euiFilePicker__promptText"
