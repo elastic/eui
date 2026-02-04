@@ -167,6 +167,14 @@ Ensure interactive EUI components (like e.g. `EuiLink`, `EuiButton`, `EuiRadio`)
 
 Ensure `EuiInMemoryTable`, `EuiBasicTable` have a `tableCaption` property for accessibility.
 
+### `@elastic/eui/badge-accessibility-rules`
+
+Ensure the EuiBadge includes appropriate accessibility attributes.
+
+- `iconOnClick` and `onClick` must not reference the same callback. The rule autofixes by removing `iconOnClick`.
+- `iconOnClickAriaLabel` is only valid when `iconOnClick` is present. The rule autofixes by removing `iconOnClickAriaLabel`.
+- `onClickAriaLabel` is only valid when `onClick` is present. The rule autofixes by removing `onClickAriaLabel`.
+
 ## Testing
 
 ### Running unit tests
