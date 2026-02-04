@@ -142,13 +142,31 @@ export function flyoutManagerReducer(
     // - When closing a `child` flyout, clear the child pointer on the most
     //   recent session if it matches.
     case ACTION_CLOSE: {
+      console.log('[EUI REDUCER] ACTION_CLOSE START:', {
+        flyoutId: action.flyoutId,
+        currentSessionsCount: state.sessions.length,
+        currentFlyoutsCount: state.flyouts.length,
+        sessions: state.sessions.map((s) => ({
+          mainId: s.mainFlyoutId,
+          childId: s.childFlyoutId,
+          title: s.title,
+        })),
+        timestamp: Date.now(),
+      });
+
       const removedFlyout = state.flyouts.find(
         (f) => f.flyoutId === action.flyoutId
       );
 
       if (!removedFlyout) {
+        console.log('[EUI REDUCER] ACTION_CLOSE: Flyout not found, returning state unchanged');
         return state;
       }
+
+      console.log('[EUI REDUCER] ACTION_CLOSE: Found flyout to remove:', {
+        flyoutId: action.flyoutId,
+        level: removedFlyout.level,
+      });
 
       if (removedFlyout.level === LEVEL_MAIN) {
         // Find the session that contains this main flyout
@@ -157,6 +175,12 @@ export function flyoutManagerReducer(
         );
 
         if (sessionToRemove) {
+          console.log('[EUI REDUCER] ACTION_CLOSE: Removing main flyout session:', {
+            flyoutId: action.flyoutId,
+            sessionToRemove,
+            timestamp: Date.now(),
+          });
+
           // Remove all flyouts associated with this session (main + child)
           const flyoutsToRemove = new Set([action.flyoutId]);
           if (sessionToRemove.childFlyoutId) {
@@ -178,6 +202,18 @@ export function flyoutManagerReducer(
             newCurrentZIndex = 0;
           }
 
+          console.log('[EUI REDUCER] ACTION_CLOSE: Returning new state after main flyout removal:', {
+            flyoutId: action.flyoutId,
+            newSessionsCount: newSessions.length,
+            newFlyoutsCount: newFlyouts.length,
+            remainingSessions: newSessions.map((s) => ({
+              mainId: s.mainFlyoutId,
+              childId: s.childFlyoutId,
+              title: s.title,
+            })),
+            timestamp: Date.now(),
+          });
+
           return {
             ...state,
             sessions: newSessions,
@@ -188,11 +224,13 @@ export function flyoutManagerReducer(
       }
 
       // Handle child flyout closing (existing logic)
+      console.log('[EUI REDUCER] ACTION_CLOSE: Handling child flyout closure');
       const newFlyouts = state.flyouts.filter(
         (f) => f.flyoutId !== action.flyoutId
       );
 
       if (state.sessions.length === 0) {
+        console.log('[EUI REDUCER] ACTION_CLOSE: No sessions, returning state with updated flyouts');
         return { ...state, flyouts: newFlyouts };
       }
 
@@ -207,6 +245,13 @@ export function flyoutManagerReducer(
           childFlyoutId: null,
         };
       }
+
+      console.log('[EUI REDUCER] ACTION_CLOSE: Returning new state after child flyout removal:', {
+        flyoutId: action.flyoutId,
+        sessionsCount: updatedSessions.length,
+        flyoutsCount: newFlyouts.length,
+        timestamp: Date.now(),
+      });
 
       return { ...state, sessions: updatedSessions, flyouts: newFlyouts };
     }

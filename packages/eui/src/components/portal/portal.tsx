@@ -81,6 +81,13 @@ export class EuiPortalClass extends Component<EuiPortalProps, EuiPortalState> {
       sibling.insertAdjacentElement(insertPositions[position], portalNode);
     }
 
+    console.log('[EUI PORTAL] componentDidMount:', {
+      hasPortalNode: !!portalNode,
+      hasParent: !!portalNode.parentNode,
+      inDocument: document.body.contains(portalNode),
+      timestamp: Date.now(),
+    });
+
     this.setThemeColor(portalNode);
     this.updatePortalRef(portalNode);
 
@@ -93,8 +100,25 @@ export class EuiPortalClass extends Component<EuiPortalProps, EuiPortalState> {
 
   componentWillUnmount() {
     const { portalNode } = this.state;
+    console.log('[EUI PORTAL] componentWillUnmount START:', {
+      hasPortalNode: !!portalNode,
+      hasParent: !!(portalNode?.parentNode),
+      inDocument: portalNode ? document.body.contains(portalNode) : false,
+      timestamp: Date.now(),
+    });
+
     if (portalNode?.parentNode) {
+      console.log('[EUI PORTAL] About to removeChild:', {
+        parentNode: portalNode.parentNode,
+        inDocument: document.body.contains(portalNode),
+        timestamp: Date.now(),
+      });
       portalNode.parentNode.removeChild(portalNode);
+      console.log('[EUI PORTAL] removeChild completed:', {
+        timestamp: Date.now(),
+      });
+    } else {
+      console.log('[EUI PORTAL] Skipping removeChild (no parent node)');
     }
     this.updatePortalRef(null);
   }

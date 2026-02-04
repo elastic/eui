@@ -7,6 +7,7 @@
  */
 
 import React, { useEffect, useMemo, useRef, useState, forwardRef } from 'react';
+import { flushSync } from 'react-dom';
 import { useCombinedRefs, useEuiMemoizedStyles } from '../../../services';
 import { useEuiI18n } from '../../i18n';
 import { useResizeObserver } from '../../observer/resize_observer';
@@ -170,13 +171,38 @@ export const EuiManagedFlyout = forwardRef<HTMLElement, EuiManagedFlyoutProps>(
 
     // Register with flyout manager context when open, remove when closed
     useEffect(() => {
+      console.log('[EUI MANAGED FLYOUT] Primary effect: Registering flyout:', {
+        flyoutId,
+        level,
+        timestamp: Date.now(),
+      });
       addFlyout(flyoutId, title!, level, size as string);
 
       return () => {
+        console.log('[EUI MANAGED FLYOUT] Primary cleanup effect triggered:', {
+          flyoutId,
+          flyoutExistsInManager,
+          level,
+          timestamp: Date.now(),
+        });
         // Only call closeFlyout if it wasn't already called via onClose
         // This prevents duplicate removal when using Escape/X button
         if (flyoutExistsInManager) {
+          console.log(
+            '[EUI MANAGED FLYOUT] Primary cleanup: Calling closeFlyout'
+          );
           closeFlyout(flyoutId);
+          console.log(
+            '[EUI MANAGED FLYOUT] Primary cleanup: closeFlyout completed:',
+            {
+              flyoutId,
+              timestamp: Date.now(),
+            }
+          );
+        } else {
+          console.log(
+            '[EUI MANAGED FLYOUT] Primary cleanup: Skipping closeFlyout (already removed)'
+          );
         }
 
         // Reset navigation tracking when explicitly closed via isOpen=false
@@ -224,31 +250,51 @@ export const EuiManagedFlyout = forwardRef<HTMLElement, EuiManagedFlyoutProps>(
       }
     }, [currentSession, flyoutId, level]);
 
-    useEffect(() => {
-      return () => {
-        // Only remove from manager on component unmount if still registered
-        // This cleanup serves as a final safety net for edge cases
-        if (flyoutExistsInManager) {
-          closeFlyout(flyoutId);
-        }
-      };
-    }, [closeFlyout, flyoutId, flyoutExistsInManager]);
+    // REMOVED: Secondary cleanup effect was causing duplicate closeFlyout calls
+    // which contributed to race conditions during portal cleanup.
+    // The primary cleanup effect (lines 172-211) is sufficient.
+    // See: FLYOUT_BUG_ANALYSIS.md for details on the race condition fix.
 
     // Track width changes for flyouts
     const { width } = useResizeObserver(isActive ? flyoutRef : null, 'width');
 
     // Pass the stabilized onClose callback to the flyout menu context
     const onClose = (e?: EuiFlyoutCloseEvent) => {
+      console.log('[EUI MANAGED FLYOUT] onClose START:', {
+        flyoutId,
+        level,
+        eventType: e?.type || 'no-event',
+        flyoutExistsInManager,
+        timestamp: Date.now(),
+      });
+
       // CRITICAL: Update manager state FIRST before allowing React to unmount
       // This prevents race conditions during portal → inline DOM transitions
       // and ensures cascade close logic runs before DOM cleanup begins
-      closeFlyout(flyoutId);
+      // Using flushSync to force synchronous state update completion
+      console.log('[EUI MANAGED FLYOUT] onClose: About to call closeFlyout with flushSync');
+      flushSync(() => {
+        closeFlyout(flyoutId);
+      });
+      console.log('[EUI MANAGED FLYOUT] onClose: closeFlyout completed (flushSync):', {
+        flyoutId,
+        timestamp: Date.now(),
+      });
 
       // trigger parent callback, unmounts the component
+      console.log('[EUI MANAGED FLYOUT] onClose: About to call parent callback:', {
+        flyoutId,
+        hasCallback: !!onCloseCallbackRef.current,
+        timestamp: Date.now(),
+      });
       if (onCloseCallbackRef.current) {
         const event = e || new MouseEvent('click');
         onCloseCallbackRef.current(event);
       }
+      console.log('[EUI MANAGED FLYOUT] onClose END:', {
+        flyoutId,
+        timestamp: Date.now(),
+      });
     };
 
     // Update width in manager state when it changes
