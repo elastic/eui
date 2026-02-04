@@ -173,12 +173,24 @@ export const EuiManagedFlyout = forwardRef<HTMLElement, EuiManagedFlyoutProps>(
       addFlyout(flyoutId, title!, level, size as string);
 
       return () => {
-        closeFlyout(flyoutId);
+        // Only call closeFlyout if it wasn't already called via onClose
+        // This prevents duplicate removal when using Escape/X button
+        if (flyoutExistsInManager) {
+          closeFlyout(flyoutId);
+        }
 
         // Reset navigation tracking when explicitly closed via isOpen=false
         wasRegisteredRef.current = false;
       };
-    }, [flyoutId, title, level, size, addFlyout, closeFlyout]);
+    }, [
+      flyoutId,
+      title,
+      level,
+      size,
+      addFlyout,
+      closeFlyout,
+      flyoutExistsInManager,
+    ]);
 
     // Detect when flyout has been removed from manager state (e.g., via Back button)
     // and trigger onClose callback to notify the parent component
@@ -214,17 +226,29 @@ export const EuiManagedFlyout = forwardRef<HTMLElement, EuiManagedFlyoutProps>(
 
     useEffect(() => {
       return () => {
-        // Only remove from manager on component unmount, don't trigger close callback
-        closeFlyout(flyoutId);
+        // Only remove from manager on component unmount if still registered
+        // This cleanup serves as a final safety net for edge cases
+        if (flyoutExistsInManager) {
+          closeFlyout(flyoutId);
+        }
       };
-    }, [closeFlyout, flyoutId]);
+    }, [closeFlyout, flyoutId, flyoutExistsInManager]);
 
     // Track width changes for flyouts
     const { width } = useResizeObserver(isActive ? flyoutRef : null, 'width');
 
     // Pass the stabilized onClose callback to the flyout menu context
     const onClose = (e?: EuiFlyoutCloseEvent) => {
-      onCloseCallbackRef.current?.(e);
+      // CRITICAL: Update manager state FIRST before allowing React to unmount
+      // This prevents race conditions during portal → inline DOM transitions
+      // and ensures cascade close logic runs before DOM cleanup begins
+      closeFlyout(flyoutId);
+
+      // trigger parent callback, unmounts the component
+      if (onCloseCallbackRef.current) {
+        const event = e || new MouseEvent('click');
+        onCloseCallbackRef.current(event);
+      }
     };
 
     // Update width in manager state when it changes

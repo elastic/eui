@@ -115,7 +115,6 @@ const FlyoutSession: React.FC<FlyoutSessionProps> = (props) => {
   const mainFlyoutOnClose = useCallback(() => {
     action('close main flyout')(title);
     setIsFlyoutVisible(false);
-    setIsChildFlyoutVisible(false);
   }, [title]);
 
   const childFlyoutOnClose = useCallback(() => {

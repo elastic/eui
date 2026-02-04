@@ -451,6 +451,9 @@ describe('EuiManagedFlyout', () => {
       // Initially onClose should not be called
       expect(onClose).not.toHaveBeenCalled();
 
+      // Clear any calls from mount
+      mockCloseFlyout.mockClear();
+
       // Unmount the component to trigger cleanup
       act(() => {
         unmount();
@@ -458,7 +461,6 @@ describe('EuiManagedFlyout', () => {
 
       // onClose should NOT be called during cleanup (intentional design)
       expect(onClose).not.toHaveBeenCalled();
-      expect(mockCloseFlyout).toHaveBeenCalledWith('cleanup-test');
     });
 
     it('does not call onClose multiple times (double-firing prevention)', () => {
@@ -487,6 +489,111 @@ describe('EuiManagedFlyout', () => {
 
       // Should still be called only once
       expect(onClose).toHaveBeenCalledTimes(1);
+    });
+  });
+
+  describe('manager state update ordering', () => {
+    it('calls closeFlyout before parent onClose callback', () => {
+      const onClose = jest.fn();
+      const callOrder: string[] = [];
+
+      // Track call order
+      mockCloseFlyout.mockImplementation(() => {
+        callOrder.push('closeFlyout');
+      });
+      onClose.mockImplementation(() => {
+        callOrder.push('onClose');
+      });
+
+      const { getByTestSubject } = renderInProvider(
+        <EuiManagedFlyout
+          id="ordering-test"
+          level={LEVEL_MAIN}
+          onClose={onClose}
+          flyoutMenuProps={{ title: 'Test Flyout' }}
+        />
+      );
+
+      // Trigger close via user interaction (simulates X button)
+      act(() => {
+        userEvent.click(getByTestSubject('managed-flyout'));
+      });
+
+      // Verify closeFlyout was called BEFORE onClose
+      expect(callOrder).toEqual(['closeFlyout', 'onClose']);
+      expect(mockCloseFlyout).toHaveBeenCalledWith('ordering-test');
+      expect(onClose).toHaveBeenCalled();
+    });
+
+    it('prevents duplicate closeFlyout calls when closing via user interaction', () => {
+      const onClose = jest.fn();
+
+      const { getByTestSubject, unmount } = renderInProvider(
+        <EuiManagedFlyout
+          id="duplicate-prevention-test"
+          level={LEVEL_MAIN}
+          onClose={onClose}
+          flyoutMenuProps={{ title: 'Test Flyout' }}
+        />
+      );
+
+      // Clear any setup calls
+      mockCloseFlyout.mockClear();
+
+      // User closes the flyout
+      act(() => {
+        userEvent.click(getByTestSubject('managed-flyout'));
+      });
+
+      // closeFlyout should be called once from the onClose handler
+      expect(mockCloseFlyout).toHaveBeenCalledTimes(1);
+
+      // Manual, duplicate cleanup call
+      act(() => {
+        unmount();
+      });
+
+      // Should still be called only once total
+      expect(mockCloseFlyout).toHaveBeenCalledTimes(1);
+    });
+
+    it('handles cascade close correctly when main flyout closes', () => {
+      const onCloseMain = jest.fn();
+      const onCloseChild = jest.fn();
+
+      // Simulate a main flyout with child
+      const { container } = renderInProvider(
+        <>
+          <EuiManagedFlyout
+            id="main-flyout"
+            level={LEVEL_MAIN}
+            onClose={onCloseMain}
+            flyoutMenuProps={{ title: 'Main Flyout' }}
+            data-test-subj="main-flyout-element"
+          />
+          <EuiManagedFlyout
+            id="child-flyout"
+            level={LEVEL_CHILD}
+            onClose={onCloseChild}
+            data-test-subj="child-flyout-element"
+          />
+        </>
+      );
+
+      // Find the main flyout specifically
+      const mainFlyout = container.querySelector('[id="main-flyout"]');
+      expect(mainFlyout).toBeInTheDocument();
+
+      // Close the main flyout
+      act(() => {
+        if (mainFlyout) {
+          userEvent.click(mainFlyout);
+        }
+      });
+
+      // Manager should be notified to handle cascade close
+      expect(mockCloseFlyout).toHaveBeenCalledWith('main-flyout');
+      expect(onCloseMain).toHaveBeenCalled();
     });
   });
 });
