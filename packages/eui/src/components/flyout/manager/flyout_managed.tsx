@@ -179,7 +179,18 @@ export const EuiManagedFlyout = forwardRef<HTMLElement, EuiManagedFlyoutProps>(
     // Track flyoutExistsInManager in a ref to avoid dependency loop
     // The cleanup function needs the current value but shouldn't cause re-runs
     const flyoutExistsInManagerRef = useRef(flyoutExistsInManager);
-    flyoutExistsInManagerRef.current = flyoutExistsInManager;
+    
+    // Log when flyoutExistsInManager changes to track state transitions
+    useEffect(() => {
+      console.log('[EUI MANAGED FLYOUT] flyoutExistsInManager changed:', {
+        flyoutId,
+        level,
+        previousValue: flyoutExistsInManagerRef.current,
+        newValue: flyoutExistsInManager,
+        timestamp: Date.now(),
+      });
+      flyoutExistsInManagerRef.current = flyoutExistsInManager;
+    }, [flyoutExistsInManager, flyoutId, level]);
 
     // Register with flyout manager context when open, remove when closed
     // Using useLayoutEffect to run synchronously before DOM updates
@@ -187,6 +198,10 @@ export const EuiManagedFlyout = forwardRef<HTMLElement, EuiManagedFlyoutProps>(
       console.log('[EUI MANAGED FLYOUT] Primary effect: Registering flyout:', {
         flyoutId,
         level,
+        flyoutExistsInManagerRef: flyoutExistsInManagerRef.current,
+        flyoutExistsInManager,
+        title,
+        size,
         timestamp: Date.now(),
       });
       addFlyout(flyoutId, title!, level, size as string);
@@ -194,15 +209,21 @@ export const EuiManagedFlyout = forwardRef<HTMLElement, EuiManagedFlyoutProps>(
       return () => {
         console.log('[EUI MANAGED FLYOUT] Primary cleanup effect triggered:', {
           flyoutId,
-          flyoutExistsInManager: flyoutExistsInManagerRef.current,
+          flyoutExistsInManagerRef: flyoutExistsInManagerRef.current,
           level,
+          wasRegistered: wasRegisteredRef.current,
           timestamp: Date.now(),
+          stackTrace: new Error().stack?.split('\n').slice(1, 4).join(' | '),
         });
         // Only call closeFlyout if it wasn't already called via onClose
         // This prevents duplicate removal when using Escape/X button
         if (flyoutExistsInManagerRef.current) {
           console.log(
-            '[EUI MANAGED FLYOUT] Primary cleanup: Calling closeFlyout'
+            '[EUI MANAGED FLYOUT] Primary cleanup: Calling closeFlyout',
+            {
+              flyoutId,
+              timestamp: Date.now(),
+            }
           );
           closeFlyout(flyoutId);
           console.log(
@@ -214,12 +235,20 @@ export const EuiManagedFlyout = forwardRef<HTMLElement, EuiManagedFlyoutProps>(
           );
         } else {
           console.log(
-            '[EUI MANAGED FLYOUT] Primary cleanup: Skipping closeFlyout (already removed)'
+            '[EUI MANAGED FLYOUT] Primary cleanup: Skipping closeFlyout (already removed)',
+            {
+              flyoutId,
+              timestamp: Date.now(),
+            }
           );
         }
 
         // Reset navigation tracking when explicitly closed via isOpen=false
         wasRegisteredRef.current = false;
+        console.log('[EUI MANAGED FLYOUT] Primary cleanup complete:', {
+          flyoutId,
+          timestamp: Date.now(),
+        });
       };
       // CRITICAL: flyoutExistsInManager removed from dependencies
       // to prevent re-registration loops during unmount
@@ -298,16 +327,20 @@ export const EuiManagedFlyout = forwardRef<HTMLElement, EuiManagedFlyoutProps>(
         '[EUI MANAGED FLYOUT] onClose: About to call parent callback:',
         {
           flyoutId,
+          level,
           hasCallback: !!onCloseCallbackRef.current,
           timestamp: Date.now(),
         }
       );
       if (onCloseCallbackRef.current) {
         const event = e || new MouseEvent('click');
+        console.log('[EUI MANAGED FLYOUT] onClose: Executing parent callback (triggers unmount)');
         onCloseCallbackRef.current(event);
+        console.log('[EUI MANAGED FLYOUT] onClose: Parent callback returned');
       }
-      console.log('[EUI MANAGED FLYOUT] onClose END:', {
+      console.log('[EUI MANAGED FLYOUT] onClose END (returning to React):', {
         flyoutId,
+        level,
         timestamp: Date.now(),
       });
     };

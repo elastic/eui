@@ -87,8 +87,21 @@ export function flyoutManagerReducer(
     case ACTION_ADD: {
       const { flyoutId, title, level, size } = action;
 
+      console.log('[EUI REDUCER] ACTION_ADD:', {
+        flyoutId,
+        level,
+        title,
+        currentSessionsCount: state.sessions.length,
+        currentFlyoutsCount: state.flyouts.length,
+        allFlyoutIds: state.flyouts.map((f) => f.flyoutId),
+        timestamp: Date.now(),
+      });
+
       // Ignore duplicate registrations
       if (state.flyouts.some((f) => f.flyoutId === flyoutId)) {
+        console.log('[EUI REDUCER] ACTION_ADD: Duplicate registration ignored:', {
+          flyoutId,
+        });
         return state;
       }
 
@@ -111,7 +124,7 @@ export function flyoutManagerReducer(
           zIndex: state.currentZIndex,
         };
 
-        return {
+        const newState = {
           ...state,
           sessions: [...state.sessions, newSession],
           flyouts: newFlyouts,
@@ -120,6 +133,16 @@ export function flyoutManagerReducer(
           // child flyouts on `n - 1` and the overlay mask on `n - 2`.
           currentZIndex: state.currentZIndex + 3,
         };
+
+        console.log('[EUI REDUCER] ACTION_ADD: Created new session for main flyout:', {
+          flyoutId,
+          newSessionsCount: newState.sessions.length,
+          newFlyoutsCount: newState.flyouts.length,
+          newSession,
+          timestamp: Date.now(),
+        });
+
+        return newState;
       }
 
       if (state.sessions.length === 0) {
@@ -150,7 +173,9 @@ export function flyoutManagerReducer(
           mainId: s.mainFlyoutId,
           childId: s.childFlyoutId,
           title: s.title,
+          zIndex: s.zIndex,
         })),
+        allFlyoutIds: state.flyouts.map((f) => f.flyoutId),
         timestamp: Date.now(),
       });
 
