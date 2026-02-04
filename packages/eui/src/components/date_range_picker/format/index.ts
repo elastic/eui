@@ -6,6 +6,6 @@
  * Side Public License, v 1.
  */
 
-export { durationToDisplayText } from './format_duration';
+export { durationToDisplayShortText } from './format_duration';
 export { timeRangeToDisplayText } from './format_time_range';
 export type { TimeRangeTransformOptions } from '../utils';

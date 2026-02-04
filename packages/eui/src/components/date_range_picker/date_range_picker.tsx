@@ -25,7 +25,7 @@ import { EuiOutsideClickDetector } from '../outside_click_detector';
 
 import { type EuiTimeRange, type TimeRange } from './utils';
 import { textToTimeRange } from './parse';
-import { durationToDisplayText, timeRangeToDisplayText } from './format';
+import { durationToDisplayShortText, timeRangeToDisplayText } from './format';
 import { euiDateRangePickerStyles } from './date_range_picker.styles';
 
 export interface EuiDateRangePickerProps {
@@ -78,7 +78,7 @@ export function EuiDateRangePicker(props: EuiDateRangePickerProps) {
       ? { startDate: timeRange.startDate, endDate: timeRange.endDate }
       : null;
   const displayDuration = duration
-    ? durationToDisplayText(duration.startDate, duration.endDate)
+    ? durationToDisplayShortText(duration.startDate, duration.endDate)
     : null;
 
   useEffect(() => {

@@ -31,7 +31,10 @@ export const MS_PER = {
   year: 1000 * 60 * 60 * 24 * 365,
 } as const;
 
-export function durationToDisplayText(startDate: Date, endDate: Date): string {
+export function durationToDisplayShortText(
+  startDate: Date,
+  endDate: Date
+): string {
   const diff = Math.abs(endDate.getTime() - startDate.getTime());
 
   const format = (value: number, unit: number, abbrev: string): string => {
