@@ -8,9 +8,20 @@
 
 /* eslint-disable @typescript-eslint/no-var-requires */
 
+jest.mock('react-dom', () => {
+  const actual = jest.requireActual('react-dom');
+  const mockFlushSync = jest.fn((callback: () => void) => callback());
+  return {
+    ...actual,
+    flushSync: mockFlushSync,
+    __mockFlushSync: mockFlushSync, // Export for test access
+  };
+});
+
 import React from 'react';
 import { act } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import * as ReactDOM from 'react-dom';
 
 import { render } from '../../../test/rtl';
 import { requiredProps } from '../../../test/required_props';
@@ -22,6 +33,8 @@ import {
   PROPERTY_FLYOUT,
   PROPERTY_LEVEL,
 } from './const';
+
+const mockFlushSync = (ReactDOM as any).__mockFlushSync;
 
 // Mock base flyout to a simple div to avoid complex internals
 jest.mock('../flyout.component', () => {
@@ -594,6 +607,83 @@ describe('EuiManagedFlyout', () => {
       // Manager should be notified to handle cascade close
       expect(mockCloseFlyout).toHaveBeenCalledWith('main-flyout');
       expect(onCloseMain).toHaveBeenCalled();
+    });
+
+    it('uses flushSync to ensure synchronous state update before DOM cleanup', () => {
+      const onClose = jest.fn();
+
+      const { getByTestSubject } = renderInProvider(
+        <EuiManagedFlyout
+          id="flush-sync-test"
+          level={LEVEL_MAIN}
+          onClose={onClose}
+          flyoutMenuProps={{ title: 'Test Flyout' }}
+        />
+      );
+
+      // Clear any setup calls
+      mockFlushSync.mockClear();
+      mockCloseFlyout.mockClear();
+
+      // Trigger close via user interaction
+      act(() => {
+        userEvent.click(getByTestSubject('managed-flyout'));
+      });
+
+      // Verify flushSync was called
+      expect(mockFlushSync).toHaveBeenCalledTimes(1);
+      expect(mockFlushSync).toHaveBeenCalledWith(expect.any(Function));
+
+      // Verify closeFlyout was called (inside flushSync)
+      expect(mockCloseFlyout).toHaveBeenCalledWith('flush-sync-test');
+
+      // Verify onClose was called after the synchronous state update
+      expect(onClose).toHaveBeenCalled();
+    });
+
+    it('calls closeFlyout inside flushSync callback', () => {
+      const onClose = jest.fn();
+      const callOrder: string[] = [];
+
+      // Track execution order
+      mockFlushSync.mockImplementation((callback: () => void) => {
+        callOrder.push('flushSync-start');
+        callback();
+        callOrder.push('flushSync-end');
+      });
+
+      mockCloseFlyout.mockImplementation(() => {
+        callOrder.push('closeFlyout');
+      });
+
+      onClose.mockImplementation(() => {
+        callOrder.push('onClose');
+      });
+
+      const { getByTestSubject } = renderInProvider(
+        <EuiManagedFlyout
+          id="flush-sync-order-test"
+          level={LEVEL_MAIN}
+          onClose={onClose}
+          flyoutMenuProps={{ title: 'Test Flyout' }}
+        />
+      );
+
+      // Clear setup
+      callOrder.length = 0;
+
+      // Trigger close
+      act(() => {
+        userEvent.click(getByTestSubject('managed-flyout'));
+      });
+
+      // Verify closeFlyout is called INSIDE flushSync, and onClose is called AFTER
+      expect(callOrder).toEqual([
+        'flushSync-start',
+        'closeFlyout',
+        'flushSync-end',
+        'onClose',
+      ]);
     });
   });
 });
