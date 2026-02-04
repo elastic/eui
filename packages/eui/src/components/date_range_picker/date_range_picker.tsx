@@ -132,6 +132,7 @@ export function EuiDateRangePicker(props: EuiDateRangePickerProps) {
         >
           {isEditing ? (
             <EuiFieldText
+              data-test-subj="euiDateRangePickerInput"
               autoFocus
               inputRef={inputRef}
               controlOnly
@@ -143,6 +144,7 @@ export function EuiDateRangePicker(props: EuiDateRangePickerProps) {
             />
           ) : (
             <EuiFormControlButton
+              data-test-subj="euiDateRangePickerControlButton"
               value={displayText}
               onClick={onButtonClick}
               isInvalid={isInvalid}

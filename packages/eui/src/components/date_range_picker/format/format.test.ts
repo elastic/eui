@@ -10,6 +10,8 @@ import { textToTimeRange } from '../parse';
 import { durationToDisplayText, MS_PER } from './format_duration';
 import { timeRangeToDisplayText } from './format_time_range';
 
+// TODO use constant for delimiter in `timeRangeToDisplayText`
+
 describe('durationToDisplayText', () => {
   it('formats basic durations', () => {
     const start = new Date(0);

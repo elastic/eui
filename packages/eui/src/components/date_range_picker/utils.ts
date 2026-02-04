@@ -49,7 +49,7 @@ export interface TimeRange {
   endDate: Date | null;
   type: [DateType | null, DateType | null];
   isNaturalLanguage: boolean;
-  isValid: boolean;
+  isValid: boolean; // TODO change to isInvalid to match public-facing API
 }
 
 /**

@@ -13,10 +13,9 @@ import {
   DATE_TYPE_RELATIVE,
 } from '../utils';
 
-/**
- * :warning: This is not exhaustive and it's not aiming at 100% coverage, it's a start!
- * @todo We should add more to it and ensure the parsing spec is covered.
- */
+// :warning: This is not exhaustive and it's not aiming at 100% coverage, it's a start!
+
+// TODO we should add more to it and ensure the parsing spec is covered
 
 describe('textToTimeRange', () => {
   it('returns invalid results for empty input', () => {
