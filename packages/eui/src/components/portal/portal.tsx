@@ -93,7 +93,6 @@ export class EuiPortalClass extends Component<EuiPortalProps, EuiPortalState> {
 
   componentWillUnmount() {
     const { portalNode } = this.state;
-
     if (portalNode?.parentNode) {
       portalNode.parentNode.removeChild(portalNode);
     }

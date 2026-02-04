@@ -179,7 +179,7 @@ export const EuiManagedFlyout = forwardRef<HTMLElement, EuiManagedFlyoutProps>(
     // Track flyoutExistsInManager in a ref to avoid dependency loop
     // The cleanup function needs the current value but shouldn't cause re-runs
     const flyoutExistsInManagerRef = useRef(flyoutExistsInManager);
-    
+
     // Update ref when flyoutExistsInManager changes
     useEffect(() => {
       flyoutExistsInManagerRef.current = flyoutExistsInManager;
@@ -200,8 +200,6 @@ export const EuiManagedFlyout = forwardRef<HTMLElement, EuiManagedFlyoutProps>(
         // Reset navigation tracking when explicitly closed via isOpen=false
         wasRegisteredRef.current = false;
       };
-      // CRITICAL: flyoutExistsInManager removed from dependencies
-      // to prevent re-registration loops during unmount
     }, [flyoutId, title, level, size, addFlyout, closeFlyout]);
 
     // Detect when flyout has been removed from manager state (e.g., via Back button)
@@ -235,11 +233,6 @@ export const EuiManagedFlyout = forwardRef<HTMLElement, EuiManagedFlyoutProps>(
         onActiveCallbackRef.current();
       }
     }, [currentSession, flyoutId, level]);
-
-    // REMOVED: Secondary cleanup effect was causing duplicate closeFlyout calls
-    // which contributed to race conditions during portal cleanup.
-    // The primary cleanup effect (lines 172-211) is sufficient.
-    // See: FLYOUT_BUG_ANALYSIS.md for details on the race condition fix.
 
     // Track width changes for flyouts
     const { width } = useResizeObserver(isActive ? flyoutRef : null, 'width');
