@@ -6,9 +6,9 @@
  * Side Public License, v 1.
  */
 
-export const DATE_TYPE_ABSOLUTE = 'ABSOLUTE';
-export const DATE_TYPE_RELATIVE = 'RELATIVE';
-export const DATE_TYPE_NOW = 'NOW';
+export const DATE_TYPE_ABSOLUTE = 'ABSOLUTE' as const;
+export const DATE_TYPE_RELATIVE = 'RELATIVE' as const;
+export const DATE_TYPE_NOW = 'NOW' as const;
 
 export const DEFAULT_DATE_FORMAT = 'MMM D YYYY, HH:mm';
 export const FORMAT_TIME_ONLY = 'HH:mm';
