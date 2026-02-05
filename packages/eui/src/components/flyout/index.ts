@@ -38,6 +38,7 @@ export { useIsInsideParentFlyout } from './flyout_parent_context';
 export {
   getFlyoutManagerStore,
   type FlyoutManagerStore,
+  type FlyoutManagerEvent,
   type EuiFlyoutManagerState,
   type FlyoutSession,
 } from './manager';

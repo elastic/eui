@@ -168,4 +168,119 @@ describe('Flyout Manager Store', () => {
       expect(listener2).toHaveBeenCalledTimes(1);
     });
   });
+
+  describe('event subscription', () => {
+    it('should emit CLOSE_SESSION event when a session is removed by going back', () => {
+      const store = getFlyoutManagerStore();
+      const eventListener = jest.fn();
+
+      // Create two sessions
+      store.addFlyout('flyout-1', 'First Flyout', LEVEL_MAIN);
+      store.addFlyout('flyout-2', 'Second Flyout', LEVEL_MAIN);
+
+      const sessions = store.getState().sessions;
+      expect(sessions).toHaveLength(2);
+
+      // Subscribe to events
+      const unsubscribe = store.subscribeToEvents(eventListener);
+
+      // Go back one session
+      store.goBack();
+
+      // Should have emitted CLOSE_SESSION for the second session
+      expect(eventListener).toHaveBeenCalledTimes(1);
+      expect(eventListener).toHaveBeenCalledWith({
+        type: 'CLOSE_SESSION',
+        session: sessions[1],
+      });
+
+      unsubscribe();
+    });
+
+    it('should emit CLOSE_SESSION event when navigating to a previous flyout', () => {
+      const store = getFlyoutManagerStore();
+      const eventListener = jest.fn();
+
+      // Create three sessions
+      store.addFlyout('flyout-1', 'First Flyout', LEVEL_MAIN);
+      store.addFlyout('flyout-2', 'Second Flyout', LEVEL_MAIN);
+      store.addFlyout('flyout-3', 'Third Flyout', LEVEL_MAIN);
+
+      const sessions = store.getState().sessions;
+      expect(sessions).toHaveLength(3);
+
+      // Subscribe to events
+      const unsubscribe = store.subscribeToEvents(eventListener);
+
+      // Navigate to first flyout (should remove sessions 2 and 3)
+      store.goToFlyout('flyout-1');
+
+      // Should have emitted CLOSE_SESSION for sessions 2 and 3
+      expect(eventListener).toHaveBeenCalledTimes(2);
+      expect(eventListener).toHaveBeenNthCalledWith(1, {
+        type: 'CLOSE_SESSION',
+        session: sessions[1],
+      });
+      expect(eventListener).toHaveBeenNthCalledWith(2, {
+        type: 'CLOSE_SESSION',
+        session: sessions[2],
+      });
+
+      unsubscribe();
+    });
+
+    it('should notify all event subscribers', () => {
+      const store = getFlyoutManagerStore();
+      const eventListener1 = jest.fn();
+      const eventListener2 = jest.fn();
+
+      store.addFlyout('flyout-1', 'First Flyout', LEVEL_MAIN);
+      store.addFlyout('flyout-2', 'Second Flyout', LEVEL_MAIN);
+
+      const sessions = store.getState().sessions;
+
+      store.subscribeToEvents(eventListener1);
+      store.subscribeToEvents(eventListener2);
+
+      // Go back one session
+      store.goBack();
+
+      // Both listeners should have been called
+      expect(eventListener1).toHaveBeenCalledTimes(1);
+      expect(eventListener1).toHaveBeenCalledWith({
+        type: 'CLOSE_SESSION',
+        session: sessions[1],
+      });
+      expect(eventListener2).toHaveBeenCalledTimes(1);
+      expect(eventListener2).toHaveBeenCalledWith({
+        type: 'CLOSE_SESSION',
+        session: sessions[1],
+      });
+    });
+
+    it('should emit CLOSE_SESSION when closing a main flyout removes its session', () => {
+      const store = getFlyoutManagerStore();
+      const eventListener = jest.fn();
+
+      // Create a session
+      store.addFlyout('flyout-1', 'Test Flyout', LEVEL_MAIN);
+
+      const sessions = store.getState().sessions;
+      expect(sessions).toHaveLength(1);
+
+      const unsubscribe = store.subscribeToEvents(eventListener);
+
+      // Close the main flyout
+      store.closeFlyout('flyout-1');
+
+      // Should have emitted CLOSE_SESSION
+      expect(eventListener).toHaveBeenCalledTimes(1);
+      expect(eventListener).toHaveBeenCalledWith({
+        type: 'CLOSE_SESSION',
+        session: sessions[0],
+      });
+
+      unsubscribe();
+    });
+  });
 });
