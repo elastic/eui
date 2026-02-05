@@ -199,13 +199,7 @@ export class EuiIconClass extends PureComponent<
       return;
     }
 
-    import(
-      /* webpackChunkName: "icon.[request]" */
-      // It's important that we don't use a template string here, it
-      // stops webpack from building a dynamic require context.
-      // eslint-disable-next-line prefer-template
-      './assets/' + typeToPathMap[iconType]
-    ).then(({ icon }) => {
+    typeToPathMap[iconType]().then(({ icon }) => {
       iconComponentCache[iconType] = icon;
       enqueueStateChange(() => {
         if (this.isMounted && this.props.type === iconType) {

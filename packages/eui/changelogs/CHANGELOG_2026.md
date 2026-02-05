@@ -1,3 +1,11 @@
+## [`v112.2.0`](https://github.com/elastic/eui/releases/v112.2.0)
+
+- Updated `documents` `timelineWithArrow` `indexOpen` `indexClose` `indexEdit` `indexRuntime` `indexSettings` `folderOpen` `folderClose` `kubernetesPod` `pagesSelect` `section` `workflow` glyph icons ([#9339](https://github.com/elastic/eui/pull/9339))
+
+**Accessibility**
+
+- Fixed `EuiBasicTable` and `EuiInMemoryTable` empty table announcements to include the expected `noItemsMessage` content ([#9341](https://github.com/elastic/eui/pull/9341))
+
 ## [`v112.1.0`](https://github.com/elastic/eui/releases/v112.1.0)
 
 - Updated `timeline` icon glyph ([#9331](https://github.com/elastic/eui/pull/9331))

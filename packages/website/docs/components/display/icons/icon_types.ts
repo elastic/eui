@@ -260,6 +260,7 @@ export const iconTypes: Array<IconType> = [
   'securitySignalDetected', // To be deprecated NO USAGE
   'securitySignalResolved', // To be deprecated NO USAGE
   'send',
+  'server',
   'sessionViewer', // To be deprecated
   'shard',
   'share',

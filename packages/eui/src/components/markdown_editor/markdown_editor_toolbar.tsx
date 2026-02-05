@@ -13,6 +13,7 @@ import React, {
   forwardRef,
   Ref,
 } from 'react';
+import classNames from 'classnames';
 
 import { useEuiMemoizedStyles } from '../../services';
 import { CommonProps } from '../common';
@@ -140,6 +141,7 @@ export const EuiMarkdownEditorToolbar = forwardRef<
 >(
   (
     {
+      className,
       markdownActions,
       viewMode,
       onClickPreview,
@@ -150,6 +152,8 @@ export const EuiMarkdownEditorToolbar = forwardRef<
     ref: Ref<HTMLDivElement>
   ) => {
     const { openPluginEditor, readOnly } = useContext(EuiMarkdownContext);
+
+    const classes = classNames('euiMarkdownEditorToolbar', className);
 
     const handleMdButtonClick = (mdButtonId: string) => {
       const actionResult = markdownActions.do(mdButtonId);
@@ -166,7 +170,7 @@ export const EuiMarkdownEditorToolbar = forwardRef<
       <div
         ref={ref}
         css={styles.euiMarkdownEditorToolbar}
-        className="euiMarkdownEditorToolbar"
+        className={classes}
         data-test-subj="euiMarkdownEditorToolbar"
       >
         <div
