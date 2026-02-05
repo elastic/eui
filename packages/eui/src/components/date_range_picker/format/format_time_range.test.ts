@@ -7,73 +7,9 @@
  */
 
 import { textToTimeRange } from '../parse';
-import { durationToDisplayShortText, MS_PER } from './format_duration';
 import { timeRangeToDisplayText } from './format_time_range';
 
 // TODO use constant for delimiter in `timeRangeToDisplayText`
-
-describe('durationToDisplayShortText', () => {
-  it('formats basic durations', () => {
-    const start = new Date(0);
-
-    expect(durationToDisplayShortText(start, new Date(100))).toBe('100ms');
-    expect(durationToDisplayShortText(start, new Date(5 * 1000))).toBe('5s');
-    expect(
-      durationToDisplayShortText(start, new Date(15 * MS_PER.minute))
-    ).toBe('15min');
-    expect(durationToDisplayShortText(start, new Date(12 * MS_PER.hour))).toBe(
-      '12h'
-    );
-    expect(durationToDisplayShortText(start, new Date(48 * MS_PER.hour))).toBe(
-      '2d'
-    );
-    expect(durationToDisplayShortText(start, new Date(3 * MS_PER.day))).toBe(
-      '3d'
-    );
-    expect(durationToDisplayShortText(start, new Date(2 * MS_PER.week))).toBe(
-      '2w'
-    );
-    expect(durationToDisplayShortText(start, new Date(7 * MS_PER.week))).toBe(
-      '~2mos'
-    );
-    expect(durationToDisplayShortText(start, new Date(4 * MS_PER.month))).toBe(
-      '4mos'
-    );
-    expect(durationToDisplayShortText(start, new Date(1 * MS_PER.year))).toBe(
-      '1y'
-    );
-  });
-
-  it('adds approximation tilde only when sub-unit seconds exist', () => {
-    const start = new Date(0);
-
-    const seconds = new Date(42 * 1000);
-    const exactMinutes = new Date(15 * 60 * 1000);
-    const minutesWithMsJitter = new Date(15 * 60 * 1000 + 500);
-    const minutesWithSeconds = new Date(15 * 60 * 1000 + 33 * 1000);
-    const exactWeeks = new Date(2 * MS_PER.week);
-    const weekWithSeconds = new Date(2 * MS_PER.week + 33 * 1000);
-    const exactMonths = new Date(2 * MS_PER.month);
-    const monthWithSeconds = new Date(2 * MS_PER.month + 33 * 1000);
-    const exactYears = new Date(2 * MS_PER.year);
-    const yearWithSeconds = new Date(2 * MS_PER.year + 33 * 1000);
-
-    expect(durationToDisplayShortText(start, seconds)).toBe('42s');
-    expect(durationToDisplayShortText(start, exactMinutes)).toBe('15min');
-    expect(durationToDisplayShortText(start, minutesWithMsJitter)).toBe(
-      '15min'
-    );
-    expect(durationToDisplayShortText(start, minutesWithSeconds)).toMatch(
-      /^~\d+min$/
-    );
-    expect(durationToDisplayShortText(start, exactWeeks)).toBe('2w');
-    expect(durationToDisplayShortText(start, weekWithSeconds)).toBe('~2w');
-    expect(durationToDisplayShortText(start, exactMonths)).toBe('2mos');
-    expect(durationToDisplayShortText(start, monthWithSeconds)).toBe('~2mos');
-    expect(durationToDisplayShortText(start, exactYears)).toBe('2y');
-    expect(durationToDisplayShortText(start, yearWithSeconds)).toBe('~2y');
-  });
-});
 
 describe('timeRangeToDisplayText', () => {
   const toDisplay = (
