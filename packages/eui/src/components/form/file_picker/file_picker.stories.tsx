@@ -75,7 +75,10 @@ export const ControlledWithFilesProp: Story = {
         )}
         {storedFiles && storedFiles.length > 0 && (
           <p style={{ marginTop: 16 }}>
-            Stored files: {Array.from(storedFiles).map((f) => f.name).join(', ')}
+            Stored files:{' '}
+            {Array.from(storedFiles)
+              .map((f) => f.name)
+              .join(', ')}
           </p>
         )}
       </div>

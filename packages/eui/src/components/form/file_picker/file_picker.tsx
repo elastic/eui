@@ -97,7 +97,9 @@ export class EuiFilePickerClass extends Component<
 
   generatedId: string = htmlIdGenerator()();
 
-  getPromptTextFromFileList = (files: FileList | null): React.ReactNode | null => {
+  getPromptTextFromFileList = (
+    files: FileList | null
+  ): React.ReactNode | null => {
     if (!files || files.length === 0) {
       return null;
     }
@@ -117,11 +119,15 @@ export class EuiFilePickerClass extends Component<
     promptText: React.ReactNode | null;
     isHoveringDrop: boolean;
   } = {
-    promptText: this.props.files ? this.getPromptTextFromFileList(this.props.files) : null,
+    promptText: this.props.files
+      ? this.getPromptTextFromFileList(this.props.files)
+      : null,
     isHoveringDrop: false,
   };
 
-  componentDidUpdate(prevProps: EuiFilePickerProps & WithEuiStylesMemoizerProps) {
+  componentDidUpdate(
+    prevProps: EuiFilePickerProps & WithEuiStylesMemoizerProps
+  ) {
     // Update prompt text when files prop changes
     if (this.props.files !== prevProps.files) {
       this.setState({
