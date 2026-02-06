@@ -8,9 +8,19 @@
 
 /* eslint-disable @typescript-eslint/no-var-requires */
 
+jest.mock('react-dom', () => {
+  const actual = jest.requireActual('react-dom');
+  const mockFlushSync = jest.fn((callback: () => void) => callback());
+  return {
+    ...actual,
+    flushSync: mockFlushSync,
+  };
+});
+
 import React from 'react';
 import { act } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import * as ReactDOM from 'react-dom';
 
 import { render } from '../../../test/rtl';
 import { requiredProps } from '../../../test/required_props';
@@ -22,6 +32,8 @@ import {
   PROPERTY_FLYOUT,
   PROPERTY_LEVEL,
 } from './const';
+
+const mockFlushSync: jest.Mock = jest.mocked(ReactDOM.flushSync);
 
 // Mock base flyout to a simple div to avoid complex internals
 jest.mock('../flyout.component', () => {
@@ -46,12 +58,15 @@ jest.mock('../flyout.component', () => {
 
 // Shared mock functions - must be defined in module scope for Jest
 const mockCloseFlyout = jest.fn();
-const createMockState = () => ({
+
+// Create mock state and functions once at module scope to avoid redundant object creation
+const mockState = {
   sessions: [],
   flyouts: [],
   layoutMode: 'side-by-side' as const,
-});
-const createMockFunctions = () => ({
+};
+
+const mockFunctions = {
   dispatch: jest.fn(),
   addFlyout: jest.fn(),
   closeFlyout: mockCloseFlyout,
@@ -60,14 +75,16 @@ const createMockFunctions = () => ({
   goBack: jest.fn(),
   goToFlyout: jest.fn(),
   historyItems: [],
-});
+};
+
+const mockFlyoutManager = {
+  state: mockState,
+  ...mockFunctions,
+};
 
 // Mock hooks that would otherwise depend on ResizeObserver or animation timing
 jest.mock('./hooks', () => ({
-  useFlyoutManager: () => ({
-    state: createMockState(),
-    ...createMockFunctions(),
-  }),
+  useFlyoutManager: () => mockFlyoutManager,
   useIsFlyoutActive: () => true,
   useHasChildFlyout: () => false,
   useParentFlyoutSize: () => 'm',
@@ -101,16 +118,16 @@ jest.mock('./validation', () => ({
 
 jest.mock('./provider', () => ({
   ...jest.requireActual('./provider'),
-  useFlyoutManager: () => ({
-    state: createMockState(),
-    ...createMockFunctions(),
-  }),
+  useFlyoutManager: () => mockFlyoutManager,
 }));
 
 // Mock resize observer hook to return a fixed width
 jest.mock('../../observer/resize_observer', () => ({
   useResizeObserver: () => ({ width: 480 }),
 }));
+
+// Cache the actual validation module for tests that need to temporarily restore it
+const actualValidation = jest.requireActual('./validation');
 
 describe('EuiManagedFlyout', () => {
   const renderInProvider = (ui: React.ReactElement) =>
@@ -369,13 +386,10 @@ describe('EuiManagedFlyout', () => {
 
   describe('size handling', () => {
     it('defaults main flyout size to "m" when no size is provided', () => {
-      // Import the real validation function to test the actual behavior
-      const { validateManagedFlyoutSize } = jest.requireActual('./validation');
-
       // Temporarily restore the real validation function for this test
       const originalMock = require('./validation').validateManagedFlyoutSize;
       require('./validation').validateManagedFlyoutSize =
-        validateManagedFlyoutSize;
+        actualValidation.validateManagedFlyoutSize;
 
       const { getByTestSubject } = renderInProvider(
         <EuiManagedFlyout
@@ -395,13 +409,10 @@ describe('EuiManagedFlyout', () => {
     });
 
     it('defaults child flyout size to "s" when no size is provided', () => {
-      // Import the real validation function to test the actual behavior
-      const { validateManagedFlyoutSize } = jest.requireActual('./validation');
-
       // Temporarily restore the real validation function for this test
       const originalMock = require('./validation').validateManagedFlyoutSize;
       require('./validation').validateManagedFlyoutSize =
-        validateManagedFlyoutSize;
+        actualValidation.validateManagedFlyoutSize;
 
       const { getByTestSubject } = renderInProvider(
         <EuiManagedFlyout
@@ -594,6 +605,83 @@ describe('EuiManagedFlyout', () => {
       // Manager should be notified to handle cascade close
       expect(mockCloseFlyout).toHaveBeenCalledWith('main-flyout');
       expect(onCloseMain).toHaveBeenCalled();
+    });
+
+    it('uses flushSync to ensure synchronous state update before DOM cleanup', () => {
+      const onClose = jest.fn();
+
+      const { getByTestSubject } = renderInProvider(
+        <EuiManagedFlyout
+          id="flush-sync-test"
+          level={LEVEL_MAIN}
+          onClose={onClose}
+          flyoutMenuProps={{ title: 'Test Flyout' }}
+        />
+      );
+
+      // Clear any setup calls
+      mockFlushSync.mockClear();
+      mockCloseFlyout.mockClear();
+
+      // Trigger close via user interaction
+      act(() => {
+        userEvent.click(getByTestSubject('managed-flyout'));
+      });
+
+      // Verify flushSync was called
+      expect(mockFlushSync).toHaveBeenCalledTimes(1);
+      expect(mockFlushSync).toHaveBeenCalledWith(expect.any(Function));
+
+      // Verify closeFlyout was called (inside flushSync)
+      expect(mockCloseFlyout).toHaveBeenCalledWith('flush-sync-test');
+
+      // Verify onClose was called after the synchronous state update
+      expect(onClose).toHaveBeenCalled();
+    });
+
+    it('calls closeFlyout inside flushSync callback', () => {
+      const onClose = jest.fn();
+      const callOrder: string[] = [];
+
+      // Track execution order
+      mockFlushSync.mockImplementation((callback: () => void) => {
+        callOrder.push('flushSync-start');
+        callback();
+        callOrder.push('flushSync-end');
+      });
+
+      mockCloseFlyout.mockImplementation(() => {
+        callOrder.push('closeFlyout');
+      });
+
+      onClose.mockImplementation(() => {
+        callOrder.push('onClose');
+      });
+
+      const { getByTestSubject } = renderInProvider(
+        <EuiManagedFlyout
+          id="flush-sync-order-test"
+          level={LEVEL_MAIN}
+          onClose={onClose}
+          flyoutMenuProps={{ title: 'Test Flyout' }}
+        />
+      );
+
+      // Clear setup
+      callOrder.length = 0;
+
+      // Trigger close
+      act(() => {
+        userEvent.click(getByTestSubject('managed-flyout'));
+      });
+
+      // Verify closeFlyout is called INSIDE flushSync, and onClose is called AFTER
+      expect(callOrder).toEqual([
+        'flushSync-start',
+        'closeFlyout',
+        'flushSync-end',
+        'onClose',
+      ]);
     });
   });
 });
