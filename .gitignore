@@ -7,6 +7,7 @@ npm-debug.log
 # IDE-specific files
 .idea
 .vscode
+.cursor
 
 # OS-specific files
 Thumbs.db
