@@ -126,8 +126,8 @@ export const iconTypes: Array<IconType> = [
   'flag',
   'flask',
   'fold', // To be deprecated
-  'folder',
-  'folderClosed', // To be deprecated
+  'folderOpen',
+  'folderClose', 
   'folderExclamation', // To be deprecated
   'frameNext', // To be deprecated
   'framePrevious', // To be deprecated
@@ -260,6 +260,7 @@ export const iconTypes: Array<IconType> = [
   'securitySignalDetected', // To be deprecated NO USAGE
   'securitySignalResolved', // To be deprecated NO USAGE
   'send',
+  'server',
   'sessionViewer', // To be deprecated
   'shard',
   'share',

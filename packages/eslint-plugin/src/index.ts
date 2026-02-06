@@ -21,6 +21,8 @@ import { RequireAriaLabelForModals } from './rules/a11y/require_aria_label_for_m
 import { RequireTableCaption } from './rules/a11y/require_table_caption';
 import { ScreenReaderOutputDisabledTooltip } from './rules/a11y/sr_output_disabled_tooltip';
 import { TooltipFocusableAnchor } from './rules/a11y/tooltip_focusable_anchor';
+import { EuiBadgeAccessibilityRules } from './rules/a11y/badge_accessibility_rules';
+import { EuiIconAccessibilityRules } from './rules/a11y/icon_accessibility_rules';
 
 const config = {
   rules: {
@@ -38,6 +40,8 @@ const config = {
     'require-table-caption': RequireTableCaption,
     'sr-output-disabled-tooltip': ScreenReaderOutputDisabledTooltip,
     'tooltip-focusable-anchor': TooltipFocusableAnchor,
+    'badge-accessibility-rules': EuiBadgeAccessibilityRules,
+    'icon-accessibility-rules': EuiIconAccessibilityRules
   },
   configs: {
     recommended: {
@@ -57,6 +61,8 @@ const config = {
         '@elastic/eui/require-table-caption': 'warn',
         '@elastic/eui/sr-output-disabled-tooltip': 'warn',
         '@elastic/eui/tooltip-focusable-anchor': 'warn',
+        '@elastic/eui/badge-accessibility-rules': 'warn',
+        '@elastic/eui/icon-accessibility-rules': 'warn',
       },
     },
   },

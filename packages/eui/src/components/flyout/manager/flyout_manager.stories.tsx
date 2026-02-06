@@ -181,7 +181,6 @@ const StatefulFlyout: React.FC<FlyoutChildStoryArgs> = ({
   };
   const closeMain = () => {
     setIsMainOpen(false);
-    setIsChildOpen(false);
     playgroundActions.log('Parent flyout closed');
   };
   const openChild = () => {

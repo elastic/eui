@@ -1,3 +1,25 @@
+## [`v112.2.0`](https://github.com/elastic/eui/releases/v112.2.0)
+
+- Updated `documents` `timelineWithArrow` `indexOpen` `indexClose` `indexEdit` `indexRuntime` `indexSettings` `folderOpen` `folderClose` `kubernetesPod` `pagesSelect` `section` `workflow` glyph icons ([#9339](https://github.com/elastic/eui/pull/9339))
+
+**Accessibility**
+
+- Fixed `EuiBasicTable` and `EuiInMemoryTable` empty table announcements to include the expected `noItemsMessage` content ([#9341](https://github.com/elastic/eui/pull/9341))
+
+## [`v112.1.0`](https://github.com/elastic/eui/releases/v112.1.0)
+
+- Updated `timeline` icon glyph ([#9331](https://github.com/elastic/eui/pull/9331))
+- Updated `EuiContextMenu` panels to allow passing `data-test-subj`, `aria-label`, `className` and `css` props ([#9323](https://github.com/elastic/eui/pull/9323))
+- Added "zoom in" functionality to time window buttons in `EuiSuperDatePicker` ([#9325](https://github.com/elastic/eui/pull/9325))
+- Added `displayName` to `EuiButton`, `EuiButtonEmpty`, `EuiDescriptionList` and its sub-components, `EuiEmptyPrompt`, `EuiFlexGrid`, `EuiFlexItem`, `EuiIcon`, `EuiImage`, `EuiLoadingLogo`, `EuiPageSection`, `EuiPageSidebar`, `EuiPageTemplate` and its sub-components and `EuiPanel` ([#9324](https://github.com/elastic/eui/pull/9324))
+- Added `fill` prop (defaults to `false`) to `EuiBadge` component that controls whether the badge should use filled or non-filled (less intense) colors. By default, badges will now render as the non-filled variant. ([#9306](https://github.com/elastic/eui/pull/9306))
+- Updated EuiBadge design to have rounded corners and improved paddings ([#9302](https://github.com/elastic/eui/pull/9302))
+
+**Bug fixes**
+
+- Fixed non-virtualized `EuiSelectable` throwing SyntaxError when selecting an option ([#9326](https://github.com/elastic/eui/pull/9326))
+- Fixed an issue where `push` flyouts in a stacked layout calculated the content offset based on the hidden main flyout's width instead of the visible child flyout's width ([#9322](https://github.com/elastic/eui/pull/9322))
+
 ## [`v112.0.0`](https://github.com/elastic/eui/releases/v112.0.0)
 
 - Added `productDiscover` icon ([#9311](https://github.com/elastic/eui/pull/9311))

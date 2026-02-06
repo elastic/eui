@@ -22,11 +22,17 @@ With the exception of `.Sidebar` and `.BottomBar`, the stacking order of the pag
 If you have a fixed position [headers](../../layout/header.mdx#fixed-header), the template will automatically account for the padding `offset` based on the total number of page headers. If you do not want the template to calculate this, you can pass `0` in as the manual `offset`.
 :::
 
+```mdx-code-block
 import contentSvg from '!url-loader!./content_paragraph.svg';
 import sideNavSvg from '!url-loader!./content_side_nav.svg';
 import centerSvg from '!url-loader!./content_center.svg';
 
-<Demo scope={{ contentSvg }}>
+import contentSvgSource from '!raw-loader!./content_paragraph.svg';
+import sideNavSvgSource from '!raw-loader!./content_side_nav.svg';
+import centerSvgSource from '!raw-loader!./content_center.svg';
+```
+
+<Demo scope={{ contentSvg }} extraFiles={{ 'content_paragraph.svg': contentSvgSource }}>
   ```tsx
   import React from 'react';
   import {
@@ -36,6 +42,8 @@ import centerSvg from '!url-loader!./content_center.svg';
     EuiPageTemplate,
     EuiPageTemplateProps,
   } from '@elastic/eui';
+
+  import contentSvg from './content_paragraph.svg';
 
   const panelled: EuiPageTemplateProps['panelled'] = undefined;
   const restrictWidth: EuiPageTemplateProps['restrictWidth'] = false;
@@ -85,7 +93,13 @@ Typically when a sidebar is included and `restrictedWidth` is defined, we recomm
 In order for the template configurations to properly account for the existence of a sidebar, it needs to clone the element which can only be performed on direct children.
 :::
 
-<Demo scope={{ contentSvg, sideNavSvg }}>
+<Demo
+  scope={{ contentSvg, sideNavSvg }}
+  extraFiles={{
+    'content_paragraph.svg': contentSvgSource,
+    'content_side_nav.svg': sideNavSvgSource
+  }}
+>
 ```tsx
 import React from 'react';
 import {
@@ -95,6 +109,9 @@ import {
   EuiPageTemplate,
   EuiPageTemplateProps,
 } from '@elastic/eui';
+
+import contentSvg from './content_paragraph.svg';
+import sideNavSvg from './content_side_nav.svg';
 
 const panelled: EuiPageTemplateProps['panelled'] = true;
 const restrictWidth: EuiPageTemplateProps['restrictWidth'] = false;
@@ -150,7 +167,13 @@ It will also keep its content constrained to the `restrictedWidth` value so the 
 For proper alignment in case of short content, at least one **EuiPageTemplate.Section** must have `grow={true}`.
 :::
 
-<Demo scope={{ contentSvg, sideNavSvg }}>
+<Demo
+  scope={{ contentSvg, sideNavSvg }}
+  extraFiles={{
+    'content_paragraph.svg': contentSvgSource,
+    'content_side_nav.svg': sideNavSvgSource
+  }}
+>
   ```tsx
   import React, { useState } from 'react';
   import {
@@ -162,6 +185,9 @@ For proper alignment in case of short content, at least one **EuiPageTemplate.Se
     EuiPageTemplate,
     EuiPageTemplateProps,
   } from '@elastic/eui';
+
+  import contentSvg from './content_paragraph.svg';
+  import sideNavSvg from './content_side_nav.svg';
 
 const panelled: EuiPageTemplateProps['panelled'] = undefined;
 const restrictWidth: EuiPageTemplateProps['restrictWidth'] = false;
@@ -225,7 +251,13 @@ When the content is in an empty/pre-setup state, we recommend then using an [**E
 
 The prompt's panel color depends on the other configurations but can be manually passed in via the `color` prop.
 
-<Demo scope={{ centerSvg, sideNavSvg }}>
+<Demo
+  scope={{ centerSvg, sideNavSvg }}
+  extraFiles={{
+    'content_center.svg': centerSvgSource,
+    'content_side_nav.svg': sideNavSvgSource
+  }}
+>
 ```tsx
 import React from 'react';
 import {
@@ -235,6 +267,9 @@ import {
   EuiPageTemplate,
   EuiPageTemplateProps,
 } from '@elastic/eui';
+
+import centerSvg from './content_center.svg';
+import sideNavSvg from './content_side_nav.svg';
 
 const panelled: EuiPageTemplateProps['panelled'] = true;
 const restrictWidth: EuiPageTemplateProps['restrictWidth'] = false;

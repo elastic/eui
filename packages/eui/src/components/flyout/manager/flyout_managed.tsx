@@ -6,7 +6,15 @@
  * Side Public License, v 1.
  */
 
-import React, { useEffect, useMemo, useRef, useState, forwardRef } from 'react';
+import React, {
+  useEffect,
+  useLayoutEffect,
+  useMemo,
+  useRef,
+  useState,
+  forwardRef,
+} from 'react';
+import { flushSync } from 'react-dom';
 import { useCombinedRefs, useEuiMemoizedStyles } from '../../../services';
 import { useEuiI18n } from '../../i18n';
 import { useResizeObserver } from '../../observer/resize_observer';
@@ -168,12 +176,26 @@ export const EuiManagedFlyout = forwardRef<HTMLElement, EuiManagedFlyoutProps>(
     // Track if flyout was ever registered to avoid false positives on initial mount
     const wasRegisteredRef = useRef(false);
 
-    // Register with flyout manager context when open, remove when closed
+    // Track flyoutExistsInManager in a ref to avoid dependency loop
+    // The cleanup function needs the current value but shouldn't cause re-runs
+    const flyoutExistsInManagerRef = useRef(flyoutExistsInManager);
+
+    // Update ref when flyoutExistsInManager changes
     useEffect(() => {
+      flyoutExistsInManagerRef.current = flyoutExistsInManager;
+    }, [flyoutExistsInManager]);
+
+    // Register with flyout manager context when open, remove when closed
+    // Using useLayoutEffect to run synchronously before DOM updates
+    useLayoutEffect(() => {
       addFlyout(flyoutId, title!, level, size as string);
 
       return () => {
-        closeFlyout(flyoutId);
+        // Only call closeFlyout if it wasn't already called via onClose
+        // This prevents duplicate removal when using Escape/X button
+        if (flyoutExistsInManagerRef.current) {
+          closeFlyout(flyoutId);
+        }
 
         // Reset navigation tracking when explicitly closed via isOpen=false
         wasRegisteredRef.current = false;
@@ -212,19 +234,24 @@ export const EuiManagedFlyout = forwardRef<HTMLElement, EuiManagedFlyoutProps>(
       }
     }, [currentSession, flyoutId, level]);
 
-    useEffect(() => {
-      return () => {
-        // Only remove from manager on component unmount, don't trigger close callback
-        closeFlyout(flyoutId);
-      };
-    }, [closeFlyout, flyoutId]);
-
     // Track width changes for flyouts
     const { width } = useResizeObserver(isActive ? flyoutRef : null, 'width');
 
     // Pass the stabilized onClose callback to the flyout menu context
     const onClose = (e?: EuiFlyoutCloseEvent) => {
-      onCloseCallbackRef.current?.(e);
+      // CRITICAL: Update manager state FIRST before allowing React to unmount
+      // This prevents race conditions during portal → inline DOM transitions
+      // and ensures cascade close logic runs before DOM cleanup begins
+      // Using flushSync to force synchronous state update completion
+      flushSync(() => {
+        closeFlyout(flyoutId);
+      });
+
+      // trigger parent callback, unmounts the component
+      if (onCloseCallbackRef.current) {
+        const event = e || new MouseEvent('click');
+        onCloseCallbackRef.current(event);
+      }
     };
 
     // Update width in manager state when it changes
