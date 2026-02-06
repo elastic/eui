@@ -44,6 +44,17 @@ export interface EuiFilePickerProps
    */
   onChange?: (files: FileList | null) => void;
   /**
+   * Optionally pass a `FileList` to maintain the file picker's state
+   * between re-renders. Useful for multi-step forms where the component
+   * may unmount and remount while the file data is still stored in context.
+   *
+   * Note: Due to browser security restrictions, the actual file input
+   * cannot be programmatically set with files. This prop only controls
+   * the displayed state (file names in the prompt). The actual file data
+   * should be stored and managed separately in your application state.
+   */
+  files?: FileList | null;
+  /**
    * Reduces the size to a typical (compressed) input
    * @default false
    */
@@ -82,14 +93,42 @@ export class EuiFilePickerClass extends Component<
     display: 'large',
   };
 
-  state = {
-    promptText: null,
-    isHoveringDrop: false,
-  };
-
   fileInput: HTMLInputElement | null = null;
 
   generatedId: string = htmlIdGenerator()();
+
+  getPromptTextFromFileList = (files: FileList | null): React.ReactNode | null => {
+    if (!files || files.length === 0) {
+      return null;
+    }
+    if (files.length > 1) {
+      return (
+        <EuiI18n
+          token="euiFilePicker.filesSelected"
+          default="{fileCount} files selected"
+          values={{ fileCount: files.length }}
+        />
+      );
+    }
+    return files[0].name;
+  };
+
+  state: {
+    promptText: React.ReactNode | null;
+    isHoveringDrop: boolean;
+  } = {
+    promptText: this.props.files ? this.getPromptTextFromFileList(this.props.files) : null,
+    isHoveringDrop: false,
+  };
+
+  componentDidUpdate(prevProps: EuiFilePickerProps & WithEuiStylesMemoizerProps) {
+    // Update prompt text when files prop changes
+    if (this.props.files !== prevProps.files) {
+      this.setState({
+        promptText: this.getPromptTextFromFileList(this.props.files ?? null),
+      });
+    }
+  }
 
   handleChange = () => {
     if (!this.fileInput) return;
@@ -161,6 +200,7 @@ export class EuiFilePickerClass extends Component<
             fullWidth = defaultFullWidth,
             isLoading,
             display,
+            files, // Extracted to prevent passing to input element
             ...rest
           } = this.props;
 
