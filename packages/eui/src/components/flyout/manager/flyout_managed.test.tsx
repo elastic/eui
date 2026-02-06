@@ -58,12 +58,15 @@ jest.mock('../flyout.component', () => {
 
 // Shared mock functions - must be defined in module scope for Jest
 const mockCloseFlyout = jest.fn();
-const createMockState = () => ({
+
+// Create mock state and functions once at module scope to avoid redundant object creation
+const mockState = {
   sessions: [],
   flyouts: [],
   layoutMode: 'side-by-side' as const,
-});
-const createMockFunctions = () => ({
+};
+
+const mockFunctions = {
   dispatch: jest.fn(),
   addFlyout: jest.fn(),
   closeFlyout: mockCloseFlyout,
@@ -72,14 +75,16 @@ const createMockFunctions = () => ({
   goBack: jest.fn(),
   goToFlyout: jest.fn(),
   historyItems: [],
-});
+};
+
+const mockFlyoutManager = {
+  state: mockState,
+  ...mockFunctions,
+};
 
 // Mock hooks that would otherwise depend on ResizeObserver or animation timing
 jest.mock('./hooks', () => ({
-  useFlyoutManager: () => ({
-    state: createMockState(),
-    ...createMockFunctions(),
-  }),
+  useFlyoutManager: () => mockFlyoutManager,
   useIsFlyoutActive: () => true,
   useHasChildFlyout: () => false,
   useParentFlyoutSize: () => 'm',
@@ -113,16 +118,16 @@ jest.mock('./validation', () => ({
 
 jest.mock('./provider', () => ({
   ...jest.requireActual('./provider'),
-  useFlyoutManager: () => ({
-    state: createMockState(),
-    ...createMockFunctions(),
-  }),
+  useFlyoutManager: () => mockFlyoutManager,
 }));
 
 // Mock resize observer hook to return a fixed width
 jest.mock('../../observer/resize_observer', () => ({
   useResizeObserver: () => ({ width: 480 }),
 }));
+
+// Cache the actual validation module for tests that need to temporarily restore it
+const actualValidation = jest.requireActual('./validation');
 
 describe('EuiManagedFlyout', () => {
   const renderInProvider = (ui: React.ReactElement) =>
@@ -381,13 +386,10 @@ describe('EuiManagedFlyout', () => {
 
   describe('size handling', () => {
     it('defaults main flyout size to "m" when no size is provided', () => {
-      // Import the real validation function to test the actual behavior
-      const { validateManagedFlyoutSize } = jest.requireActual('./validation');
-
       // Temporarily restore the real validation function for this test
       const originalMock = require('./validation').validateManagedFlyoutSize;
       require('./validation').validateManagedFlyoutSize =
-        validateManagedFlyoutSize;
+        actualValidation.validateManagedFlyoutSize;
 
       const { getByTestSubject } = renderInProvider(
         <EuiManagedFlyout
@@ -407,13 +409,10 @@ describe('EuiManagedFlyout', () => {
     });
 
     it('defaults child flyout size to "s" when no size is provided', () => {
-      // Import the real validation function to test the actual behavior
-      const { validateManagedFlyoutSize } = jest.requireActual('./validation');
-
       // Temporarily restore the real validation function for this test
       const originalMock = require('./validation').validateManagedFlyoutSize;
       require('./validation').validateManagedFlyoutSize =
-        validateManagedFlyoutSize;
+        actualValidation.validateManagedFlyoutSize;
 
       const { getByTestSubject } = renderInProvider(
         <EuiManagedFlyout
