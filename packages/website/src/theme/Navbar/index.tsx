@@ -24,6 +24,7 @@ export default function Navbar(): ReactNode {
     }),
     previousVersionUrl: 'https://eui.elastic.co',
     versions,
+    versionsUrl: 'https://eui.elastic.co/versions.json',
   };
 
   return (
