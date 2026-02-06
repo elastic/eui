@@ -14,7 +14,6 @@ jest.mock('react-dom', () => {
   return {
     ...actual,
     flushSync: mockFlushSync,
-    __mockFlushSync: mockFlushSync, // Export for test access
   };
 });
 
@@ -34,7 +33,7 @@ import {
   PROPERTY_LEVEL,
 } from './const';
 
-const mockFlushSync = (ReactDOM as any).__mockFlushSync;
+const mockFlushSync: jest.Mock = jest.mocked(ReactDOM.flushSync);
 
 // Mock base flyout to a simple div to avoid complex internals
 jest.mock('../flyout.component', () => {
