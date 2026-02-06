@@ -7,12 +7,15 @@
  */
 
 import dateMath from '@elastic/datemath';
+import moment from 'moment';
 
 import {
   DATE_TYPE_ABSOLUTE,
   DATE_TYPE_NOW,
   DATE_TYPE_RELATIVE,
   DATE_RANGE_INPUT_DELIMITER,
+  DEFAULT_DATE_FORMAT,
+  FORMAT_NO_YEAR,
   UNIT_FULL_TO_SHORT_MAP,
 } from '../constants';
 import {
@@ -38,6 +41,19 @@ const NATURAL_DURATION_REGEX = /^(last|next)\s+(\d+)\s+(\w+)$/i;
 
 // "7 minutes ago" or "7 minutes from now"
 const NATURAL_INSTANT_REGEX = /^(\d+)\s+(\w+)\s+(ago|from now)$/i;
+
+// TODO this will change when we improve "forgivingness"
+// see https://github.com/elastic/eui/pull/9199
+const SUPPORTED_DATE_FORMATS = [
+  DEFAULT_DATE_FORMAT, // 'MMM D YYYY, HH:mm'
+  FORMAT_NO_YEAR, // 'MMM D, HH:mm'
+  'MMM D YYYY', // e.g. "Feb 3 2016"
+  'MMM D, YYYY', // e.g. "feb 3, 2016"
+  'YYYY-MM-DD',
+  'YYYY-MM-DDTHH:mm:ss.SSSZ',
+  'YYYY-MM-DDTHH:mm:ssZ',
+  'YYYY-MM-DDTHH:mm',
+];
 
 const escapeRegExp = (value: string) =>
   value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
@@ -84,9 +100,10 @@ export function textToTimeRange(
     (preset) => preset.label.toLowerCase() === trimmed.toLowerCase()
   );
   if (matchedPreset) {
-    const startDate = dateMath.parse(matchedPreset.start)?.toDate() ?? null;
-    const endDate =
-      dateMath.parse(matchedPreset.end, { roundUp: true })?.toDate() ?? null;
+    const startDate = parseDateStringToDate(matchedPreset.start);
+    const endDate = parseDateStringToDate(matchedPreset.end, {
+      roundUp: true,
+    });
     const type: [DateType, DateType] = [
       dateStringToDateType(matchedPreset.start),
       dateStringToDateType(matchedPreset.end),
@@ -114,10 +131,10 @@ export function textToTimeRange(
     // Try natural duration: "last 7 minutes", "today", etc.
     const naturalDuration = getTimeRangeBoundsFromNaturalDuration(trimmed);
     if (naturalDuration) {
-      const startDate = dateMath.parse(naturalDuration.start)?.toDate() ?? null;
-      const endDate =
-        dateMath.parse(naturalDuration.end, { roundUp: true })?.toDate() ??
-        null;
+      const startDate = parseDateStringToDate(naturalDuration.start);
+      const endDate = parseDateStringToDate(naturalDuration.end, {
+        roundUp: true,
+      });
       const type: [DateType, DateType] = [
         dateStringToDateType(naturalDuration.start),
         dateStringToDateType(naturalDuration.end),
@@ -145,7 +162,7 @@ export function textToTimeRange(
         singleInstant.startsWith('now+')
       ) {
         const startDate = new Date(); // now
-        const endDate = dateMath.parse(singleInstant)?.toDate() ?? null;
+        const endDate = parseDateStringToDate(singleInstant);
         const type: [DateType, DateType] = [
           DATE_TYPE_NOW,
           dateStringToDateType(singleInstant),
@@ -163,7 +180,7 @@ export function textToTimeRange(
         range.isValid = isValidTimeRange(range);
         return range;
       }
-      const startDate = dateMath.parse(singleInstant)?.toDate() ?? null;
+      const startDate = parseDateStringToDate(singleInstant);
       const endDate = new Date(); // now
       const type: [DateType, DateType] = [
         dateStringToDateType(singleInstant),
@@ -202,8 +219,8 @@ export function textToTimeRange(
     return invalidResult;
   }
 
-  const startDate = dateMath.parse(start)?.toDate() ?? null;
-  const endDate = dateMath.parse(end, { roundUp: true })?.toDate() ?? null;
+  const startDate = parseDateStringToDate(start);
+  const endDate = parseDateStringToDate(end, { roundUp: true });
   const type: [DateType, DateType] = [
     dateStringToDateType(start),
     dateStringToDateType(end),
@@ -276,13 +293,39 @@ function textInstantToDateString(text: string): DateString | null {
     }
   }
 
-  // Try parsing as absolute date (ISO, RFC 2822, etc.)
+  // Try parsing as absolute date with explicit display formats first
+  const parsedWithFormat = moment(trimmed, SUPPORTED_DATE_FORMATS, true);
+  if (parsedWithFormat.isValid()) {
+    return trimmed; // Return original, it's valid
+  }
+
+  // Only try dateMath for strings that could be datemath or ISO
+  if (!/^(now|[+-]|\d)/.test(trimmed)) {
+    return null;
+  }
+
+  // Try parsing as absolute date via dateMath (ISO, RFC 2822, datemath, etc.)
   const parsed = dateMath.parse(trimmed);
   if (parsed?.isValid()) {
     return trimmed; // Return original, it's valid
   }
 
   return null;
+}
+
+/**
+ * Parses a DateString to a Date. Uses explicit formats for absolute display
+ * strings to avoid moment's deprecated fallback for non-ISO input.
+ */
+function parseDateStringToDate(
+  dateString: DateString,
+  options?: { roundUp?: boolean }
+): Date | null {
+  const parsedWithFormat = moment(dateString, SUPPORTED_DATE_FORMATS, true);
+  if (parsedWithFormat.isValid()) {
+    return parsedWithFormat.toDate();
+  }
+  return dateMath.parse(dateString, options)?.toDate() ?? null;
 }
 
 /**
