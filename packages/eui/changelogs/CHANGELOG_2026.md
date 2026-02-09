@@ -1,3 +1,15 @@
+## [`v112.3.0`](https://github.com/elastic/eui/releases/v112.3.0)
+
+- Added new `server` icon. ([#9355](https://github.com/elastic/eui/pull/9355))
+- Added `className` support to `EuiMarkdownEditor`'s `toolbarProps` for custom toolbar styling ([#9349](https://github.com/elastic/eui/pull/9349))
+- Updated `EuiFilePicker` to use the `upload` icon to better indicate uploads. ([#9351](https://github.com/elastic/eui/pull/9351))
+- Exported the flyout system store singleton and added an event observer for emitting close session events ([#9347](https://github.com/elastic/eui/pull/9347))
+- Updated `EuiIcon` to use standard dynamic imports for icon assets, enabling native support for modern bundlers (Rollup, Parcel) and improving initial load performance ([#9342](https://github.com/elastic/eui/pull/9342))
+
+**Bug fixes**
+
+- Fixed a potential crash in the flyout system: due to asynchronous state updates and React's batching behavior, it was possible to experience a crash when closing a managed flyout. ([#9356](https://github.com/elastic/eui/pull/9356))
+
 ## [`v112.2.0`](https://github.com/elastic/eui/releases/v112.2.0)
 
 - Updated `documents` `timelineWithArrow` `indexOpen` `indexClose` `indexEdit` `indexRuntime` `indexSettings` `folderOpen` `folderClose` `kubernetesPod` `pagesSelect` `section` `workflow` glyph icons ([#9339](https://github.com/elastic/eui/pull/9339))
