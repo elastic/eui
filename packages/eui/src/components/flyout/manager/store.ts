@@ -6,7 +6,11 @@
  * Side Public License, v 1.
  */
 
-import type { EuiFlyoutLevel, EuiFlyoutManagerState } from './types';
+import type {
+  EuiFlyoutLevel,
+  EuiFlyoutManagerState,
+  FlyoutSession,
+} from './types';
 import type { Action } from './actions';
 import {
   addFlyout as addFlyoutAction,
@@ -23,9 +27,20 @@ import { flyoutManagerReducer, initialState } from './reducer';
 
 type Listener = () => void;
 
+/**
+ * Events emitted by the flyout manager store for external consumers.
+ */
+export type FlyoutManagerEvent = {
+  type: 'CLOSE_SESSION';
+  session: FlyoutSession;
+};
+
+type EventListener = (event: FlyoutManagerEvent) => void;
+
 export interface FlyoutManagerStore {
   getState: () => EuiFlyoutManagerState;
   subscribe: (listener: Listener) => () => void;
+  subscribeToEvents: (listener: EventListener) => () => void;
   dispatch: (action: Action) => void;
   // Convenience bound action creators
   addFlyout: (
@@ -53,6 +68,7 @@ function createStore(
 ): FlyoutManagerStore {
   let currentState: EuiFlyoutManagerState = initial;
   const listeners = new Set<Listener>();
+  const eventListeners = new Set<EventListener>();
 
   const getState = () => currentState;
 
@@ -61,6 +77,19 @@ function createStore(
     return () => {
       listeners.delete(listener);
     };
+  };
+
+  const subscribeToEvents = (listener: EventListener) => {
+    eventListeners.add(listener);
+    return () => {
+      eventListeners.delete(listener);
+    };
+  };
+
+  const emitEvent = (event: FlyoutManagerEvent) => {
+    eventListeners.forEach((listener) => {
+      listener(event);
+    });
   };
 
   // The onClick handlers won't execute until after store is fully assigned.
@@ -94,6 +123,19 @@ function createStore(
       // This ensures stable references and avoids stale closures
       if (nextState.sessions !== previousSessions) {
         store.historyItems = computeHistoryItems();
+
+        // Detect removed sessions and emit CLOSE_SESSION events
+        const nextSessionIds = new Set(
+          nextState.sessions.map((s) => s.mainFlyoutId)
+        );
+        previousSessions.forEach((session) => {
+          if (!nextSessionIds.has(session.mainFlyoutId)) {
+            emitEvent({
+              type: 'CLOSE_SESSION',
+              session,
+            });
+          }
+        });
       }
 
       listeners.forEach((l) => {
@@ -105,6 +147,7 @@ function createStore(
   store = {
     getState,
     subscribe,
+    subscribeToEvents,
     dispatch,
     addFlyout: (flyoutId, title, level, size) =>
       dispatch(addFlyoutAction(flyoutId, title, level, size)),

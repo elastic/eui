@@ -49,11 +49,28 @@ ruleTester.run('EuiIconAccessibilityRules', EuiIconAccessibilityRules, {
     {
       code: dedent`
         const MyComponent = () => (
+          <EuiIcon type="logoElastic" aria-hidden />
+        )
+      `,
+      languageOptions,
+    },
+    {
+      code: dedent`
+        const MyComponent = () => (
           <EuiIcon tabIndex={0} aria-label="Focusable icon" type="user" />
         )
       `,
       languageOptions,
     },
+    {
+      code: dedent`
+        const extraProps = {title: 'Search'};
+        const MyComponent = () => (
+          <EuiIcon type="search" {...extraProps} />
+        )
+      `,
+      languageOptions,
+    }
   ],
   invalid: [
     // Missing accessible name -> autofix adds aria-hidden={true}
