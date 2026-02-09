@@ -1,5 +1,6 @@
 import { ESLintUtils, TSESTree } from '@typescript-eslint/utils';
 import { removeAttribute } from '../../utils/remove_attr';
+import { hasSpread } from '../../utils/has_spread';
 
 const COMPONENT = 'EuiIcon';
 
@@ -13,6 +14,12 @@ export const EuiIconAccessibilityRules = ESLintUtils.RuleCreator.withoutDocs({
           openingElement.name.type !== 'JSXIdentifier' ||
           openingElement.name.name !== COMPONENT
         ) {
+          return;
+        }
+
+        // Skip fixing when spread props are present (e.g., <EuiIcon {...props} />)
+        // because we cannot safely determine or modify aria-related attributes.
+        if (hasSpread(openingElement.attributes)) {
           return;
         }
 
