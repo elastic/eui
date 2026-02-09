@@ -21,6 +21,14 @@ export {
 /** Reducer and default state for the flyout manager. */
 export { flyoutManagerReducer, initialState } from './reducer';
 
+/** Flyout manager store singleton and types. */
+export {
+  getFlyoutManagerStore,
+  type FlyoutManagerStore,
+  type FlyoutManagerEvent,
+} from './store';
+export type { EuiFlyoutManagerState, FlyoutSession } from './types';
+
 /** Provider component exposing the Flyout Manager API via context. */
 export { EuiFlyoutManager } from './provider';
 
