@@ -49,6 +49,14 @@ ruleTester.run('EuiIconAccessibilityRules', EuiIconAccessibilityRules, {
     {
       code: dedent`
         const MyComponent = () => (
+          <EuiIcon type="logoElastic" aria-hidden />
+        )
+      `,
+      languageOptions,
+    },
+    {
+      code: dedent`
+        const MyComponent = () => (
           <EuiIcon tabIndex={0} aria-label="Focusable icon" type="user" />
         )
       `,

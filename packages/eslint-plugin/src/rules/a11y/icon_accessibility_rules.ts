@@ -1,3 +1,4 @@
+// TypeScript
 import { ESLintUtils, TSESTree } from '@typescript-eslint/utils';
 import { removeAttribute } from '../../utils/remove_attr';
 
@@ -30,36 +31,22 @@ export const EuiIconAccessibilityRules = ESLintUtils.RuleCreator.withoutDocs({
           }
         }
 
-        const hasAriaHiddenTrue =
-          !!ariaHiddenAttr &&
-          ariaHiddenAttr.value &&
-          (
-            // aria-hidden={true}
-            (ariaHiddenAttr.value.type === 'JSXExpressionContainer' &&
-              ariaHiddenAttr.value.expression.type === 'Literal' &&
-              ariaHiddenAttr.value.expression.value === true) ||
-            // aria-hidden='true'
-            (ariaHiddenAttr.value.type === 'Literal' &&
-              ariaHiddenAttr.value.value === 'true')
-          );
-
         // Case: `tabIndex` and `aria-hidden` cannot be used together
-        if (tabIndexAttr && hasAriaHiddenTrue) {
+        if (tabIndexAttr && ariaHiddenAttr) {
           context.report({
             node: openingElement,
             messageId: 'tabIndexWithAriaHidden',
             fix: fixer => {
               if (!ariaHiddenAttr?.range) return null;
               const [start, end] = removeAttribute(context, ariaHiddenAttr);
-
               return [fixer.removeRange([start, end])];
             }
           });
           return;
         }
 
-        // Require accessible name or `aria-hidden={true}`;
-        if (!isIconNamed && !hasAriaHiddenTrue) {
+        // Require accessible name or `aria-hidden`; if `aria-hidden` exists, do not insert a value
+        if (!isIconNamed && !ariaHiddenAttr) {
           context.report({
             node: openingElement,
             messageId: 'missingTitleOrAriaHidden',
