@@ -1,4 +1,3 @@
-// TypeScript
 import { ESLintUtils, TSESTree } from '@typescript-eslint/utils';
 import { removeAttribute } from '../../utils/remove_attr';
 
