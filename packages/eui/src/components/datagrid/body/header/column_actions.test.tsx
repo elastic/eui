@@ -326,7 +326,7 @@ describe('getColumnActions', () => {
         expect(hideColumn).toMatchInlineSnapshot(`
           {
             "color": "text",
-            "iconType": "eyeClosed",
+            "iconType": "eyeSlash",
             "label": <EuiI18n
               default="Hide column"
               token="euiColumnActions.hideColumn"

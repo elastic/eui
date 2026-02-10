@@ -48,7 +48,7 @@ export const Playground: Story = {
   args: {
     hasActiveFilters: true,
     numFilters: 5,
-    iconType: 'arrowDown',
+    iconType: 'chevronSingleDown',
   },
 };
 
@@ -62,7 +62,7 @@ export const MultipleButtons: Story = {
   ),
   args: {
     numFilters: 5,
-    iconType: 'arrowDown',
+    iconType: 'chevronSingleDown',
   },
 };
 
@@ -83,7 +83,7 @@ export const FullWidthAndGrow: Story = {
       </EuiFilterButton>
       <EuiFilterButton
         {...args}
-        iconType="arrowDown"
+        iconType="chevronSingleDown"
         numFilters={12}
         hasActiveFilters={true}
         numActiveFilters={2}

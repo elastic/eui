@@ -16,7 +16,7 @@ import {
 } from './data_grid_cell_actions';
 
 const MockAction: EuiDataGridColumnCellAction = ({ Component }) => (
-  <Component iconType="starEmpty" data-test-subj="mockCellAction" />
+  <Component iconType="star" data-test-subj="mockCellAction" />
 );
 
 describe('EuiDataGridCellActions', () => {
@@ -47,7 +47,7 @@ describe('EuiDataGridCellActions', () => {
           aria-hidden="true"
           class="euiButtonIcon__icon"
           color="inherit"
-          data-euiicon-type="expand"
+          data-euiicon-type="maximize"
         />
       </button>
     `);
@@ -73,7 +73,7 @@ describe('EuiDataGridCellActions', () => {
           aria-hidden="true"
           class="euiButtonIcon__icon"
           color="inherit"
-          data-euiicon-type="starEmpty"
+          data-euiicon-type="star"
         />
       </button>
     `);
@@ -144,7 +144,7 @@ describe('EuiDataGridCellPopoverActions', () => {
         >
           <span
             color="inherit"
-            data-euiicon-type="starEmpty"
+            data-euiicon-type="star"
           />
           <span
             class="eui-textTruncate euiButtonEmpty__text css-1ryezsz-s"

@@ -309,7 +309,7 @@ export const AppendPrepend: Story = {
             prepend={
               <EuiFormPrepend
                 label="String"
-                iconLeft="vector"
+                iconLeft="vectorSquare"
                 iconRight="gear"
               />
             }
@@ -318,7 +318,7 @@ export const AppendPrepend: Story = {
                 element="button"
                 label="String"
                 iconLeft="gear"
-                iconRight="vector"
+                iconRight="vectorSquare"
                 onClick={action('onClick')}
               />
             }
@@ -329,7 +329,11 @@ export const AppendPrepend: Story = {
             id={`${idBase}-3`}
             {...commonProps}
             prepend={
-              <EuiFormPrepend label="String" iconLeft="vector" iconRight="gear">
+              <EuiFormPrepend
+                label="String"
+                iconLeft="vectorSquare"
+                iconRight="gear"
+              >
                 <EuiNotificationBadge color="subdued">1</EuiNotificationBadge>
               </EuiFormPrepend>
             }
@@ -338,7 +342,7 @@ export const AppendPrepend: Story = {
                 element="button"
                 label="String"
                 iconLeft="gear"
-                iconRight="vector"
+                iconRight="vectorSquare"
                 onClick={action('onClick')}
               >
                 <EuiNotificationBadge>1</EuiNotificationBadge>
@@ -374,7 +378,7 @@ export const AppendPrepend: Story = {
               <EuiFormPrepend
                 element="button"
                 iconLeft="calendar"
-                iconRight="arrowDown"
+                iconRight="chevronSingleDown"
                 onClick={action('onClick')}
               />
             }
@@ -383,7 +387,7 @@ export const AppendPrepend: Story = {
                 button={
                   <EuiFormAppend
                     element="button"
-                    iconRight="arrowDown"
+                    iconRight="chevronSingleDown"
                     label="Popover"
                     onClick={action('onClick')}
                   />
@@ -396,7 +400,7 @@ export const AppendPrepend: Story = {
             {...commonProps}
             placeholder="Text field"
             id={`${idBase}-6`}
-            prepend={<EuiFormPrepend iconLeft="vector" />}
+            prepend={<EuiFormPrepend iconLeft="vectorSquare" />}
             append={
               <EuiFormAppend
                 element="button"
@@ -511,7 +515,7 @@ export const AppendPrependAPIKitchenSink: Story = {
           <EuiFieldText
             {...childProps}
             placeholder="Text field"
-            prepend={<EuiFormPrepend iconLeft="vector" />}
+            prepend={<EuiFormPrepend iconLeft="vectorSquare" />}
             append={
               <EuiToolTip content="content">
                 <EuiFormAppend label="Tooltip" />
@@ -584,7 +588,7 @@ export const AppendPrependAPIKitchenSink: Story = {
                 button={
                   <EuiFormPrepend
                     iconLeft="calendar"
-                    iconRight="arrowDown"
+                    iconRight="chevronSingleDown"
                     element="button"
                     onClick={() => setPopoverOpenA(!isPopoverOpenA)}
                   />
@@ -685,7 +689,7 @@ export const AppendPrependAPIKitchenSink: Story = {
                     placeholder="Text field"
                     prepend={
                       <>
-                        {/* NOTE: only works properly for nested text content with div element, 
+                        {/* NOTE: only works properly for nested text content with div element,
                         the dragHandleProps apply correct attributes to create a custom button */}
                         <div
                           className="euiFormAppendPrepend__dragHandle"
@@ -771,7 +775,7 @@ export const AppendPrependAPIKitchenSink: Story = {
             {...childProps}
             id="textField-102"
             placeholder="Text field"
-            prepend={<EuiIcon type="vector" />}
+            prepend={<EuiIcon type="vectorSquare" />}
             append={
               <EuiToolTip content="content">
                 <EuiText size="s">Tooltip</EuiText>
@@ -850,7 +854,7 @@ export const AppendPrependAPIKitchenSink: Story = {
                 button={
                   <EuiButtonEmpty
                     size="xs"
-                    iconType="arrowDown"
+                    iconType="chevronSingleDown"
                     iconSide="right"
                     onClick={() => setPopoverOpenB(!isPopoverOpenB)}
                   >

@@ -144,7 +144,7 @@ const DataGrid = () => {
           },
           sortTextAsc: 'Alma to Debian',
           sortTextDesc: 'Debian to Alma',
-          icon: 'starFilled',
+          icon: 'starFill',
           color: '#800080',
         },
       ]}

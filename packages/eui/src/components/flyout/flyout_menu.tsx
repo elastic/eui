@@ -120,7 +120,7 @@ const BackButton: React.FC<EuiFlyoutMenuBackButtonProps> = (props) => {
     <EuiButtonEmpty
       size="xs"
       color="text"
-      iconType="editorUndo"
+      iconType="undo"
       data-test-subj="euiFlyoutMenuBackButton"
       {...props}
     >
@@ -141,7 +141,7 @@ const HistoryPopover: React.FC<{
     <EuiPopover
       button={
         <EuiButtonIcon
-          iconType="arrowDown"
+          iconType="chevronSingleDown"
           color="text"
           aria-label={useEuiI18n('euiFlyoutMenu.history', 'History')}
           data-test-subj="euiFlyoutMenuHistoryButton"

@@ -30,7 +30,7 @@ export const Playground: Story = {
   render: ({ ...args }) => (
     <EuiFilterGroup {...args}>
       <EuiFilterButton isToggle>Toggle Filter</EuiFilterButton>
-      <EuiFilterButton numFilters={5} hasActiveFilters iconType="arrowDown">
+      <EuiFilterButton numFilters={5} hasActiveFilters iconType="chevronSingleDown">
         Selection Filter
       </EuiFilterButton>
     </EuiFilterGroup>
@@ -46,7 +46,7 @@ const FilterButtonPopover = () => {
       closePopover={() => setIsPopoverOpen(false)}
       button={
         <EuiFilterButton
-          iconType="arrowDown"
+          iconType="chevronSingleDown"
           onClick={() => setIsPopoverOpen(!isPopoverOpen)}
           isSelected={isPopoverOpen}
           numFilters={12}
