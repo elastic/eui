@@ -13,6 +13,7 @@ import { EuiCallOut } from '../call_out';
 import { EuiFlyout } from './flyout';
 import { EuiFlyoutBody, EuiFlyoutBodyProps } from './flyout_body';
 import { LOKI_SELECTORS } from '../../../.storybook/loki';
+import { disableStorybookControls } from '../../../.storybook/utils';
 
 const meta: Meta<EuiFlyoutBodyProps> = {
   title: 'Layout/EuiFlyout/EuiFlyoutBody',
@@ -31,6 +32,8 @@ const meta: Meta<EuiFlyoutBodyProps> = {
     },
   },
 };
+
+disableStorybookControls(meta, ['scrollRef']);
 
 export default meta;
 type Story = StoryObj<EuiFlyoutBodyProps>;
