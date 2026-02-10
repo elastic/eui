@@ -144,7 +144,7 @@ export const CustomHeaderContent: Story = {
             return (
               <Component
                 onClick={() => alert(value)}
-                iconType="email"
+                iconType="mail"
                 aria-label={`Send email to ${value}`}
               >
                 Send email

@@ -133,7 +133,7 @@ const columns: Array<EuiBasicTableColumn<User>> = [
         name: 'User profile',
         description: ({ firstName, lastName }) =>
           `Visit ${firstName} ${lastName}'s profile`,
-        icon: 'editorLink',
+        icon: 'link',
         color: 'primary',
         type: 'icon',
         enabled: ({ online }) => !!online,

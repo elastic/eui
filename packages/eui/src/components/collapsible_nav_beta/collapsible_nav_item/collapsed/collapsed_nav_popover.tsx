@@ -78,7 +78,7 @@ export const EuiCollapsedNavPopover: FunctionComponent<
       button={
         <EuiCollapsedNavButton
           title={title}
-          icon={icon || 'boxesHorizontal'}
+          icon={icon || 'boxesVertical'}
           iconProps={iconProps}
           isSelected={isSelected}
           onClick={togglePopover}

@@ -96,7 +96,7 @@ export const EuiCheckbox: FunctionComponent<EuiCheckboxProps> = ({
       <div css={inputStyles} className="euiCheckbox__square">
         <EuiIcon
           css={iconStyles}
-          type={indeterminate ? 'stopFilled' : checked ? 'check' : 'empty'}
+          type={indeterminate ? 'stopFill' : checked ? 'check' : 'empty'}
         />
         <input
           css={styles.input.euiCheckbox__input}

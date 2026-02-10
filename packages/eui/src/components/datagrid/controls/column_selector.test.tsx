@@ -121,7 +121,7 @@ describe('useDataGridColumnSelector', () => {
         openPopover();
 
         expect(
-          document.querySelectorAll('[data-euiicon-type="grab"]')
+          document.querySelectorAll('[data-euiicon-type="dragVertical"]')
         ).toHaveLength(2);
       });
 

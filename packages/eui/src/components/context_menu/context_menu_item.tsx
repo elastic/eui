@@ -131,7 +131,7 @@ export const EuiContextMenuItem: FunctionComponent<Props> = ({
 
   const arrow = hasPanel && (
     <EuiIcon
-      type="arrowRight"
+      type="chevronSingleRight"
       size="m"
       className="euiContextMenu__arrow"
       css={styles.euiContextMenuItem__arrow}

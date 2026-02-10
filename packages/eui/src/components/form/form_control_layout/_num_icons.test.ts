@@ -57,7 +57,7 @@ describe('getIconAffordanceStyles', () => {
 
   test('left icon', () => {
     const styles = getIconAffordanceStyles({
-      icon: 'search',
+      icon: 'magnify',
     });
     expect(styles).toMatchInlineSnapshot(`
       {

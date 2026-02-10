@@ -123,7 +123,7 @@ const columns = [
         return (
           <Component
             onClick={() => alert(value)}
-            iconType="email"
+            iconType="mail"
             aria-label={`Send email to ${value}`}
           >
             Send email
@@ -143,7 +143,7 @@ const columns = [
         {
           label: 'Custom action',
           onClick: () => {},
-          iconType: 'cheer',
+          iconType: 'popper',
           size: 'xs' as const,
           color: 'text' as const,
         },
@@ -238,7 +238,7 @@ export const defaultStorybookArgs = {
         <>
           <EuiButtonIcon iconType="indexEdit" aria-label="Edit row" />
           <EuiButtonIcon
-            iconType="boxesHorizontal"
+            iconType="boxesVertical"
             aria-label="Open actions popover"
           />
         </>

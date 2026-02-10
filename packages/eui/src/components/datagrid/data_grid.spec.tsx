@@ -546,12 +546,12 @@ describe('EuiDataGrid', () => {
     // Props
     const cellActions: EuiDataGridColumnCellAction[] = [
       ({ Component }) => (
-        <Component iconType="plusInCircle" aria-label="Filter in">
+        <Component iconType="plusCircle" aria-label="Filter in">
           Filter in
         </Component>
       ),
       ({ Component }) => (
-        <Component iconType="minusInCircle" aria-label="Filter out">
+        <Component iconType="minusCircle" aria-label="Filter out">
           Filter out
         </Component>
       ),

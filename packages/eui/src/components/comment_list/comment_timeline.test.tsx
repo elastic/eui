@@ -34,7 +34,7 @@ describe('EuiCommentTimeline', () => {
             timelineAvatar={
               <EuiAvatar
                 name="username"
-                iconType="userAvatar"
+                iconType="user"
                 color="subdued"
               />
             }

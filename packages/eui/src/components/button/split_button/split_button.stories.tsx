@@ -53,7 +53,7 @@ export const Playground: Story = {
     children: [
       <EuiSplitButton.ActionPrimary>Button</EuiSplitButton.ActionPrimary>,
       <EuiSplitButton.ActionSecondary
-        iconType="arrowDown"
+        iconType="chevronSingleDown"
         aria-label="Secondary action"
       />,
     ],
@@ -86,7 +86,7 @@ export const WithTooltip: Story = {
         Button
       </EuiSplitButton.ActionPrimary>,
       <EuiSplitButton.ActionSecondary
-        iconType="arrowDown"
+        iconType="chevronSingleDown"
         aria-label="Secondary action"
         tooltipProps={{
           content: 'Tooltip content',
@@ -109,7 +109,7 @@ export const WithPopover: Story = {
     children: [
       <EuiSplitButton.ActionPrimary>Button</EuiSplitButton.ActionPrimary>,
       <EuiSplitButton.ActionSecondary
-        iconType="arrowDown"
+        iconType="chevronSingleDown"
         aria-label="Secondary action"
         popoverProps={{
           isOpen: true,
@@ -123,7 +123,7 @@ export const WithPopover: Story = {
                   items: [
                     {
                       name: 'Action 1 (click)',
-                      icon: 'search',
+                      icon: 'magnify',
                       onClick: () => {},
                     },
                     {
@@ -190,7 +190,7 @@ export const WithWrappingPopover: Story = {
   args: {
     children: [
       <EuiSplitButton.ActionPrimary>Button</EuiSplitButton.ActionPrimary>,
-      <EuiSplitButton.ActionSecondary iconType="arrowDown" />,
+      <EuiSplitButton.ActionSecondary iconType="chevronSingleDown" />,
     ],
   },
   render: function Render({ children, ...rest }) {
@@ -243,7 +243,7 @@ export const KitchenSink: Story = {
     const label = 'Button';
     const secondaryLabel = 'Secondary Button';
     const primaryIconType = 'faceHappy';
-    const secondaryIconType = 'arrowDown';
+    const secondaryIconType = 'chevronSingleDown';
 
     const variants = BUTTON_COLORS;
 

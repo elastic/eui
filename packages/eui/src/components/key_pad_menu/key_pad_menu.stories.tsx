@@ -239,7 +239,7 @@ export const HighContrast: Story = {
         label="Badge"
         betaBadgeLabel="External"
         betaBadgeTooltipContent="This module is an external app."
-        betaBadgeIconType="popout"
+        betaBadgeIconType="external"
       >
         <EuiIcon type="beta" size="l" />
       </EuiKeyPadMenuItem>,

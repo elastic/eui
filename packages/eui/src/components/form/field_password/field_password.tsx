@@ -133,7 +133,7 @@ export const EuiFieldPassword: FunctionComponent<EuiFieldPasswordProps> = (
 
       return (
         <EuiButtonIcon
-          iconType={isVisible ? 'eyeClosed' : 'eye'}
+          iconType={isVisible ? 'eyeSlash' : 'eye'}
           aria-label={isVisible ? maskPasswordLabel : showPasswordLabel}
           title={isVisible ? maskPasswordLabel : showPasswordLabel}
           disabled={disabled}

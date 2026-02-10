@@ -62,7 +62,7 @@ export type EuiFilterButtonProps = {
    * Applies a visual state to the button.
    * Automatically applies `aria-pressed` when used with `isToggle={true}`.
    * Otherwise applies `aria-expanded` when used with `isToggle={false}` and
-   * `iconType="arrowDown"` as trigger button for e.g. a popover.
+   * `iconType="chevronSingleDown"` as trigger button for e.g. a popover.
    */
   isSelected?: boolean;
   /**
@@ -121,7 +121,7 @@ export const EuiFilterButton: FunctionComponent<EuiFilterButtonProps> = ({
 
   // assumption about type of usage based on icon usage
   // requires manual override to apply correct aria attributes for more custom usages
-  const isCollapsible = !isToggle && iconType === 'arrowDown';
+  const isCollapsible = !isToggle && iconType === 'chevronSingleDown';
   const isExpanded = isCollapsible && (isSelected ?? hasActiveFilters);
 
   const styles = useEuiMemoizedStyles(euiFilterButtonStyles);

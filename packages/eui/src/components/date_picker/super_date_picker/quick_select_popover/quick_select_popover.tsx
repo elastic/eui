@@ -109,7 +109,7 @@ export const EuiQuickSelectPopover: FunctionComponent<
     <EuiFormPrepend
       element="button"
       iconLeft="calendar"
-      iconRight="arrowDown"
+      iconRight="chevronSingleDown"
       isDisabled={props.isDisabled}
       onClick={quickSelectButtonOnClick}
       aria-label={buttonlabel}
