@@ -28,13 +28,13 @@ describe('EuiFlyoutBody', () => {
     );
   });
 
-  test('scrollRef', () => {
-    const scrollRef = React.createRef<HTMLDivElement>();
+  test('scrollContainerRef', () => {
+    const scrollContainerRef = React.createRef<HTMLDivElement>();
 
-    render(<EuiFlyoutBody scrollRef={scrollRef} />);
+    render(<EuiFlyoutBody scrollContainerRef={scrollContainerRef} />);
 
-    expect(scrollRef.current).toBeInstanceOf(HTMLDivElement);
-    expect(scrollRef.current).toHaveAttribute(
+    expect(scrollContainerRef.current).toBeInstanceOf(HTMLDivElement);
+    expect(scrollContainerRef.current).toHaveAttribute(
       'data-test-subj',
       'euiFlyoutBodyOverflow'
     );

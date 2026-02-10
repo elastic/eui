@@ -37,7 +37,7 @@ export type EuiFlyoutBodyProps = FunctionComponent<
       /**
        * Use to access the flyout's internal scrollable container.
        */
-      scrollRef?: Ref<HTMLDivElement>;
+      scrollContainerRef?: Ref<HTMLDivElement>;
     }
 >;
 
@@ -46,7 +46,7 @@ export const EuiFlyoutBody: EuiFlyoutBodyProps = ({
   className,
   banner,
   scrollableTabIndex = 0,
-  scrollRef,
+  scrollContainerRef,
   ...rest
 }) => {
   const classes = classNames('euiFlyoutBody', className);
@@ -63,7 +63,7 @@ export const EuiFlyoutBody: EuiFlyoutBodyProps = ({
         tabIndex={scrollableTabIndex}
         className="euiFlyoutBody__overflow"
         css={overflowCssStyles}
-        ref={scrollRef}
+        ref={scrollContainerRef}
         data-test-subj="euiFlyoutBodyOverflow"
       >
         {banner && (

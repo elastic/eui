@@ -33,7 +33,7 @@ const meta: Meta<EuiFlyoutBodyProps> = {
   },
 };
 
-disableStorybookControls(meta, ['scrollRef']);
+disableStorybookControls(meta, ['scrollContainerRef']);
 
 export default meta;
 type Story = StoryObj<EuiFlyoutBodyProps>;
