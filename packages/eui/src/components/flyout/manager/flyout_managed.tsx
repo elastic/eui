@@ -101,6 +101,7 @@ export const EuiManagedFlyout = forwardRef<HTMLElement, EuiManagedFlyoutProps>(
     const {
       addFlyout,
       closeFlyout,
+      closeAllFlyouts,
       setFlyoutWidth,
       goBack,
       historyItems: _historyItems,
@@ -244,7 +245,7 @@ export const EuiManagedFlyout = forwardRef<HTMLElement, EuiManagedFlyoutProps>(
       // and ensures cascade close logic runs before DOM cleanup begins
       // Using flushSync to force synchronous state update completion
       flushSync(() => {
-        closeFlyout(flyoutId);
+        level === LEVEL_MAIN ? closeAllFlyouts() : closeFlyout(flyoutId);
       });
 
       // trigger parent callback, unmounts the component

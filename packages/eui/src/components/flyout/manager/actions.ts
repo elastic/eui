@@ -23,6 +23,8 @@ interface BaseAction {
 export const ACTION_ADD = `${PREFIX}/add` as const;
 /** Dispatched to remove a flyout from the manager (usually on close/unmount). */
 export const ACTION_CLOSE = `${PREFIX}/close` as const;
+/** Dispatched to remove all flyouts from the manager. */
+export const ACTION_CLOSE_ALL = `${PREFIX}/closeAll` as const;
 /** Dispatched to set which flyout is currently active within the session. */
 export const ACTION_SET_ACTIVE = `${PREFIX}/setActive` as const;
 /** Dispatched when an active flyout's pixel width changes (for responsive layout). */
@@ -58,6 +60,11 @@ export interface AddFlyoutAction extends BaseAction {
 export interface CloseFlyoutAction extends BaseAction {
   type: typeof ACTION_CLOSE;
   flyoutId: string;
+}
+
+/** Remove all flyouts from manager state. */
+export interface CloseAllFlyoutsAction extends BaseAction {
+  type: typeof ACTION_CLOSE_ALL;
 }
 
 /** Set the active flyout within the current session (or clear with `null`). */
@@ -118,6 +125,7 @@ export interface CloseUnmanagedFlyoutAction extends BaseAction {
 export type Action =
   | AddFlyoutAction
   | CloseFlyoutAction
+  | CloseAllFlyoutsAction
   | SetActiveFlyoutAction
   | SetWidthAction
   | SetLayoutModeAction
@@ -151,6 +159,11 @@ export const addFlyout = (
 export const closeFlyout = (flyoutId: string): CloseFlyoutAction => ({
   type: ACTION_CLOSE,
   flyoutId,
+});
+
+/** Unregister all flyouts. */
+export const closeAllFlyouts = (): CloseAllFlyoutsAction => ({
+  type: ACTION_CLOSE_ALL,
 });
 
 /** Set or clear the active flyout for the current session. */
