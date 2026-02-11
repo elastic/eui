@@ -8,6 +8,7 @@ exports[`EuiCollapsibleNavBody renders 1`] = `
 >
   <div
     class="euiFlyoutBody__overflow emotion-euiFlyoutBody__overflow-noBanner"
+    data-test-subj="euiFlyoutBodyOverflow"
     tabindex="-1"
   >
     <div

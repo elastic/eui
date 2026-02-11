@@ -6,7 +6,12 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, HTMLAttributes, ReactNode } from 'react';
+import React, {
+  FunctionComponent,
+  HTMLAttributes,
+  ReactNode,
+  Ref,
+} from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../common';
 import { useEuiMemoizedStyles } from '../../services';
@@ -29,6 +34,10 @@ export type EuiFlyoutBodyProps = FunctionComponent<
        * to override this default.
        */
       scrollableTabIndex?: number;
+      /**
+       * Use to access the flyout's internal scrollable container.
+       */
+      scrollContainerRef?: Ref<HTMLDivElement>;
     }
 >;
 
@@ -37,6 +46,7 @@ export const EuiFlyoutBody: EuiFlyoutBodyProps = ({
   className,
   banner,
   scrollableTabIndex = 0,
+  scrollContainerRef,
   ...rest
 }) => {
   const classes = classNames('euiFlyoutBody', className);
@@ -53,6 +63,8 @@ export const EuiFlyoutBody: EuiFlyoutBodyProps = ({
         tabIndex={scrollableTabIndex}
         className="euiFlyoutBody__overflow"
         css={overflowCssStyles}
+        ref={scrollContainerRef}
+        data-test-subj="euiFlyoutBodyOverflow"
       >
         {banner && (
           <div

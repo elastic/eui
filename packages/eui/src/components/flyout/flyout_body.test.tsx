@@ -27,4 +27,16 @@ describe('EuiFlyoutBody', () => {
       '-1'
     );
   });
+
+  test('scrollContainerRef', () => {
+    const scrollContainerRef = React.createRef<HTMLDivElement>();
+
+    render(<EuiFlyoutBody scrollContainerRef={scrollContainerRef} />);
+
+    expect(scrollContainerRef.current).toBeInstanceOf(HTMLDivElement);
+    expect(scrollContainerRef.current).toHaveAttribute(
+      'data-test-subj',
+      'euiFlyoutBodyOverflow'
+    );
+  });
 });
