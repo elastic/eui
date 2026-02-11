@@ -57,7 +57,7 @@ jest.mock('../flyout.component', () => {
 });
 
 // Shared mock functions - must be defined in module scope for Jest
-const mockCloseFlyout = jest.fn();
+const mockCloseAllFlyouts = jest.fn();
 
 // Create mock state and functions once at module scope to avoid redundant object creation
 const mockState = {
@@ -69,7 +69,8 @@ const mockState = {
 const mockFunctions = {
   dispatch: jest.fn(),
   addFlyout: jest.fn(),
-  closeFlyout: mockCloseFlyout,
+  closeFlyout: jest.fn(),
+  closeAllFlyouts: mockCloseAllFlyouts,
   setActiveFlyout: jest.fn(),
   setFlyoutWidth: jest.fn(),
   goBack: jest.fn(),
@@ -166,12 +167,12 @@ describe('EuiManagedFlyout', () => {
     // The onClose should be called when the flyout is clicked
     expect(onClose).toHaveBeenCalled();
 
-    // The closeFlyout should be called when the component unmounts (cleanup)
+    // The closeAllFlyouts should be called when the component unmounts (cleanup)
     act(() => {
       unmount();
     });
 
-    expect(mockCloseFlyout).toHaveBeenCalledWith('close-me');
+    expect(mockCloseAllFlyouts).toHaveBeenCalled();
   });
 
   it('registers child flyout and sets data-level child', () => {
@@ -463,7 +464,7 @@ describe('EuiManagedFlyout', () => {
       expect(onClose).not.toHaveBeenCalled();
 
       // Clear any calls from mount
-      mockCloseFlyout.mockClear();
+      mockCloseAllFlyouts.mockClear();
 
       // Unmount the component to trigger cleanup
       act(() => {
@@ -504,13 +505,13 @@ describe('EuiManagedFlyout', () => {
   });
 
   describe('manager state update ordering', () => {
-    it('calls closeFlyout before parent onClose callback', () => {
+    it('calls closeAllFlyouts before parent onClose callback', () => {
       const onClose = jest.fn();
       const callOrder: string[] = [];
 
       // Track call order
-      mockCloseFlyout.mockImplementation(() => {
-        callOrder.push('closeFlyout');
+      mockCloseAllFlyouts.mockImplementation(() => {
+        callOrder.push('closeAllFlyouts');
       });
       onClose.mockImplementation(() => {
         callOrder.push('onClose');
@@ -530,13 +531,13 @@ describe('EuiManagedFlyout', () => {
         userEvent.click(getByTestSubject('managed-flyout'));
       });
 
-      // Verify closeFlyout was called BEFORE onClose
-      expect(callOrder).toEqual(['closeFlyout', 'onClose']);
-      expect(mockCloseFlyout).toHaveBeenCalledWith('ordering-test');
+      // Verify closeAllFlyouts was called BEFORE onClose
+      expect(callOrder).toEqual(['closeAllFlyouts', 'onClose']);
+      expect(mockCloseAllFlyouts).toHaveBeenCalled();
       expect(onClose).toHaveBeenCalled();
     });
 
-    it('prevents duplicate closeFlyout calls when closing via user interaction', () => {
+    it('prevents duplicate closeAllFlyouts calls when closing via user interaction', () => {
       const onClose = jest.fn();
 
       const { getByTestSubject, unmount } = renderInProvider(
@@ -549,15 +550,15 @@ describe('EuiManagedFlyout', () => {
       );
 
       // Clear any setup calls
-      mockCloseFlyout.mockClear();
+      mockCloseAllFlyouts.mockClear();
 
       // User closes the flyout
       act(() => {
         userEvent.click(getByTestSubject('managed-flyout'));
       });
 
-      // closeFlyout should be called once from the onClose handler
-      expect(mockCloseFlyout).toHaveBeenCalledTimes(1);
+      // closeAllFlyouts should be called once from the onClose handler
+      expect(mockCloseAllFlyouts).toHaveBeenCalledTimes(1);
 
       // Manual, duplicate cleanup call
       act(() => {
@@ -565,7 +566,7 @@ describe('EuiManagedFlyout', () => {
       });
 
       // Should still be called only once total
-      expect(mockCloseFlyout).toHaveBeenCalledTimes(1);
+      expect(mockCloseAllFlyouts).toHaveBeenCalledTimes(1);
     });
 
     it('handles cascade close correctly when main flyout closes', () => {
@@ -603,7 +604,7 @@ describe('EuiManagedFlyout', () => {
       });
 
       // Manager should be notified to handle cascade close
-      expect(mockCloseFlyout).toHaveBeenCalledWith('main-flyout');
+      expect(mockCloseAllFlyouts).toHaveBeenCalled();
       expect(onCloseMain).toHaveBeenCalled();
     });
 
@@ -621,7 +622,7 @@ describe('EuiManagedFlyout', () => {
 
       // Clear any setup calls
       mockFlushSync.mockClear();
-      mockCloseFlyout.mockClear();
+      mockCloseAllFlyouts.mockClear();
 
       // Trigger close via user interaction
       act(() => {
@@ -632,14 +633,14 @@ describe('EuiManagedFlyout', () => {
       expect(mockFlushSync).toHaveBeenCalledTimes(1);
       expect(mockFlushSync).toHaveBeenCalledWith(expect.any(Function));
 
-      // Verify closeFlyout was called (inside flushSync)
-      expect(mockCloseFlyout).toHaveBeenCalledWith('flush-sync-test');
+      // Verify closeAllFlyouts was called (inside flushSync)
+      expect(mockCloseAllFlyouts).toHaveBeenCalled();
 
       // Verify onClose was called after the synchronous state update
       expect(onClose).toHaveBeenCalled();
     });
 
-    it('calls closeFlyout inside flushSync callback', () => {
+    it('calls closeAllFlyouts inside flushSync callback', () => {
       const onClose = jest.fn();
       const callOrder: string[] = [];
 
@@ -650,8 +651,8 @@ describe('EuiManagedFlyout', () => {
         callOrder.push('flushSync-end');
       });
 
-      mockCloseFlyout.mockImplementation(() => {
-        callOrder.push('closeFlyout');
+      mockCloseAllFlyouts.mockImplementation(() => {
+        callOrder.push('closeAllFlyouts');
       });
 
       onClose.mockImplementation(() => {
@@ -675,10 +676,10 @@ describe('EuiManagedFlyout', () => {
         userEvent.click(getByTestSubject('managed-flyout'));
       });
 
-      // Verify closeFlyout is called INSIDE flushSync, and onClose is called AFTER
+      // Verify closeAllFlyouts is called INSIDE flushSync, and onClose is called AFTER
       expect(callOrder).toEqual([
         'flushSync-start',
-        'closeFlyout',
+        'closeAllFlyouts',
         'flushSync-end',
         'onClose',
       ]);
