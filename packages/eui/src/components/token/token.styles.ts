@@ -75,8 +75,8 @@ const getTokenColor = (
     : tint(iconColor, 0.2);
 
   const darkColor = isColorDark(...chroma(backgroundDarkColor).rgb())
-    ? euiTheme.colors.ghost
-    : euiTheme.colors.ink;
+    ? euiTheme.colors.textGhost
+    : euiTheme.colors.textInk;
 
   switch (fill) {
     case 'none':

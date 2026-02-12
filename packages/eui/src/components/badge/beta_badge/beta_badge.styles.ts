@@ -42,7 +42,9 @@ export const euiBetaBadgeStyles = (euiThemeContext: UseEuiTheme) => {
       &:focus {
         ${euiFocusRing(euiThemeContext, 'outset', {
           color:
-            colorMode === 'DARK' ? euiTheme.colors.ghost : euiTheme.colors.ink,
+            colorMode === 'DARK'
+              ? euiTheme.colors.plainLight
+              : euiTheme.colors.plainDark,
         })}
       }
     `,

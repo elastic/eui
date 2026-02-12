@@ -140,7 +140,7 @@ export const euiListGroupItemInnerStyles = (euiThemeContext: UseEuiTheme) => {
       color: ${euiTheme.colors.subduedText};
     `,
     ghost: css`
-      color: ${euiTheme.colors.ghost};
+      color: ${euiTheme.colors.textGhost};
     `,
     // Variants
     isDisabled: css`
