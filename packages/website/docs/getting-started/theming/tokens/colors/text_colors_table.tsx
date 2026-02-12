@@ -1,3 +1,4 @@
+import React from 'react';
 import { useEuiTheme } from '@elastic/eui';
 import { ColorsTable } from './colors_table';
 
@@ -19,6 +20,14 @@ export const TextColorsTable = () => {
         {
           value: euiTheme.colors.textSubdued,
           token: 'colors.textSubdued',
+        },
+        {
+          value: euiTheme.colors.textGhost,
+          token: 'colors.textGhost',
+        },
+        {
+          value: euiTheme.colors.textInk,
+          token: 'colors.textInk',
         },
         {
           value: euiTheme.colors.link,

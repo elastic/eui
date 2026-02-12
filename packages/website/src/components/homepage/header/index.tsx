@@ -48,7 +48,7 @@ const getStyles = (euiThemeContext: UseEuiTheme) => {
       --ifm-hero-background-color: transparent;
       --banner-title-font-size: 3.43rem;
 
-      --hero-decor-fill-white: ${euiTheme.colors.ghost};
+      --hero-decor-fill-white: ${euiTheme.colors.plainLight};
       --hero-decor-fill-background: ${euiTheme.colors.body};
       --hero-decor-fill-lightShade: ${euiTheme.colors.lightShade};
       --hero-decor-fill-brand-primary: ${euiTheme.colors.primary};
@@ -154,7 +154,7 @@ const getStyles = (euiThemeContext: UseEuiTheme) => {
       padding-inline: ${euiTheme.size.l};
 
       &:hover {
-        color: ${euiTheme.colors.ghost};
+        color: ${euiTheme.colors.textGhost};
       }
     `,
     icon: css`

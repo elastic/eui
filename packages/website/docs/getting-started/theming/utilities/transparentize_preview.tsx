@@ -12,7 +12,9 @@ export const TransparentizePreview = () => {
         color={transparentize('#006837', 0.25)}
         style={{
           color:
-            colorMode === 'DARK' ? euiTheme.colors.ghost : euiTheme.colors.ink,
+            colorMode === 'DARK'
+              ? euiTheme.colors.textGhost
+              : euiTheme.colors.textInk,
         }}
       >
         {transparentize('#006837', 0.25)}
