@@ -11,7 +11,7 @@ $euiButtonTypes: (
   warning: $euiColorBackgroundFilledWarning,
   risk: $euiColorBackgroundFilledRisk,
   danger: $euiColorBackgroundFilledDanger,
-  ghost: $euiColorPlainLight, // Ghost is color mode-invariant
+  ghost: $euiColorPlainLight, // Ghost is color-mode-invariant
   text: $euiColorBackgroundFilledText, // Reserved for special use cases
 ) !default;
 
