@@ -16,8 +16,6 @@ import { colorVisDark } from './_colors_vis_dark';
 import { severityColors } from './_colors_severity';
 
 export const colors: _EuiThemeColors = {
-  ghost: SEMANTIC_COLORS.plainLight,
-  ink: SEMANTIC_COLORS.plainDark,
   plainLight: SEMANTIC_COLORS.plainLight,
   plainDark: SEMANTIC_COLORS.plainDark,
 
