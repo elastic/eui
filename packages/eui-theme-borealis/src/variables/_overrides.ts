@@ -8,13 +8,22 @@
 
 import { _EuiThemeOverrides } from '@elastic/eui-theme-common';
 
+import { PRIMITIVE_COLORS } from './colors/_primitive_colors';
 import { visColorsLightHighContrast } from './colors/_colors_vis_hcm';
 import { severityColorsLightHighContrast } from './colors/_colors_severity_hcm';
 
 export const overrides: _EuiThemeOverrides = {
   HCM: {
     colors: {
+      plainDark: PRIMITIVE_COLORS.black,
+      plainLight: PRIMITIVE_COLORS.white,
+      DARK: {
+        textInk: PRIMITIVE_COLORS.black,
+        textGhost: PRIMITIVE_COLORS.white,
+      },
       LIGHT: {
+        textInk: PRIMITIVE_COLORS.black,
+        textGhost: PRIMITIVE_COLORS.white,
         vis: visColorsLightHighContrast,
         severity: severityColorsLightHighContrast,
       },
