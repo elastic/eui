@@ -195,13 +195,13 @@ export const EuiManagedFlyout = forwardRef<HTMLElement, EuiManagedFlyoutProps>(
         // Only call closeFlyout if it wasn't already called via onClose
         // This prevents duplicate removal when using Escape/X button
         if (flyoutExistsInManagerRef.current) {
-          closeFlyout(flyoutId);
+          level === LEVEL_MAIN ? closeAllFlyouts() : closeFlyout(flyoutId);
         }
 
         // Reset navigation tracking when explicitly closed via isOpen=false
         wasRegisteredRef.current = false;
       };
-    }, [flyoutId, title, level, size, addFlyout, closeFlyout]);
+    }, [flyoutId, title, level, size, addFlyout, closeFlyout, closeAllFlyouts]);
 
     // Detect when flyout has been removed from manager state (e.g., via Back button)
     // and trigger onClose callback to notify the parent component

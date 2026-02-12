@@ -154,7 +154,7 @@ describe('EuiManagedFlyout', () => {
     expect(el).toHaveAttribute(PROPERTY_LEVEL, LEVEL_MAIN);
   });
 
-  it('calls the unregister callback prop when onClose', () => {
+  it('calls closeAllFlyouts during cleanup when main flyout unmounts', () => {
     const onClose = jest.fn();
 
     const { getByTestSubject, unmount } = renderInProvider(
@@ -174,6 +174,30 @@ describe('EuiManagedFlyout', () => {
     });
 
     expect(mockCloseAllFlyouts).toHaveBeenCalled();
+    expect(mockCloseFlyout).not.toHaveBeenCalled();
+  });
+
+  it('calls closeFlyout during cleanup when child flyout unmounts', () => {
+    const onClose = jest.fn();
+
+    const { getByTestSubject, unmount } = renderInProvider(
+      <EuiManagedFlyout id="close-me" level={LEVEL_CHILD} onClose={onClose} />
+    );
+
+    act(() => {
+      userEvent.click(getByTestSubject('managed-flyout'));
+    });
+
+    // The onClose should be called when the flyout is clicked
+    expect(onClose).toHaveBeenCalled();
+
+    // The closeFlyout should be called when the component unmounts (cleanup)
+    act(() => {
+      unmount();
+    });
+
+    expect(mockCloseFlyout).toHaveBeenCalledWith('close-me');
+    expect(mockCloseAllFlyouts).not.toHaveBeenCalled();
   });
 
   it('registers child flyout and sets data-level child', () => {
