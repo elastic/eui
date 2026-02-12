@@ -16,12 +16,14 @@
 import {
   addFlyout,
   closeFlyout,
+  closeAllFlyouts,
   setActiveFlyout,
   setFlyoutWidth,
   setLayoutMode,
   setActivityStage,
   ACTION_ADD,
   ACTION_CLOSE,
+  ACTION_CLOSE_ALL,
   ACTION_SET_ACTIVE,
   ACTION_SET_WIDTH,
   ACTION_SET_LAYOUT_MODE,
@@ -127,6 +129,16 @@ describe('flyout manager actions', () => {
 
       expect(action1.flyoutId).toBe('main-1');
       expect(action2.flyoutId).toBe('child-1');
+    });
+  });
+
+  describe('closeAllFlyouts', () => {
+    it('should create close all flyouts action', () => {
+      const action = closeAllFlyouts();
+
+      expect(action).toEqual({
+        type: ACTION_CLOSE_ALL,
+      });
     });
   });
 

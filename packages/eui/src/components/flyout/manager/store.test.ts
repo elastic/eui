@@ -258,7 +258,7 @@ describe('Flyout Manager Store', () => {
       });
     });
 
-    it('should emit CLOSE_SESSION when closing a main flyout removes its session', () => {
+    it('should emit CLOSE_SESSION event when a session is removed by closeFlyout', () => {
       const store = getFlyoutManagerStore();
       const eventListener = jest.fn();
 
@@ -279,6 +279,39 @@ describe('Flyout Manager Store', () => {
         type: 'CLOSE_SESSION',
         session: sessions[0],
       });
+
+      unsubscribe();
+    });
+
+    it('should emit CLOSE_SESSION events when all sessions are removed by closeAllFlyouts', () => {
+      const store = getFlyoutManagerStore();
+      const eventListener = jest.fn();
+
+      // Create sessions
+      store.addFlyout('flyout-1', 'Test Flyout', LEVEL_MAIN);
+      store.addFlyout('flyout-2', 'Second Flyout', LEVEL_MAIN);
+
+      const sessions = store.getState().sessions;
+      expect(sessions).toHaveLength(2);
+
+      const unsubscribe = store.subscribeToEvents(eventListener);
+
+      // Closing flyout will close all sessions
+      store.closeAllFlyouts();
+
+      // Should have emitted CLOSE_SESSION
+      expect(eventListener).toHaveBeenCalledTimes(2);
+      expect(eventListener).toHaveBeenNthCalledWith(1, {
+        type: 'CLOSE_SESSION',
+        session: sessions[0],
+      });
+      expect(eventListener).toHaveBeenNthCalledWith(2, {
+        type: 'CLOSE_SESSION',
+        session: sessions[1],
+      });
+
+      // Should have no sessions left
+      expect(store.getState().sessions).toHaveLength(0);
 
       unsubscribe();
     });
