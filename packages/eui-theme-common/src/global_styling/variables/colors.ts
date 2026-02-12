@@ -369,9 +369,6 @@ export type _EuiThemeSeverityColors = {
 };
 
 export type _EuiThemeConstantColors = {
-  ghost: string;
-  ink: string;
-
   plainLight: string;
   plainDark: string;
 };
