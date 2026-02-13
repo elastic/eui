@@ -28,34 +28,57 @@ export const useApplyFlyoutLayoutMode = () => {
   // Read the container from manager state (set by flyout components when they
   // receive a container prop), falling back to componentDefaults (used when
   // the container is configured globally, e.g. by Kibana). Resolve getter
-  // so defaults can supply () => HTMLElement | null to avoid race when the
-  // element is not yet in the DOM.
+  // and selector string so defaults can supply () => HTMLElement | null or
+  // a CSS selector to avoid race when the element is not yet in the DOM.
   const stateContainerElement = state?.containerElement;
   const { container: defaultContainerRaw } = usePropsWithComponentDefaults(
     'EuiFlyout',
     {} as {
-      container?: HTMLElement | null | (() => HTMLElement | null);
+      container?:
+        | HTMLElement
+        | null
+        | (() => HTMLElement | null)
+        | string;
     }
   );
   const defaultContainer =
-    typeof defaultContainerRaw === 'function'
-      ? defaultContainerRaw()
-      : defaultContainerRaw;
+    defaultContainerRaw == null
+      ? null
+      : typeof defaultContainerRaw === 'function'
+        ? defaultContainerRaw()
+        : typeof defaultContainerRaw === 'string'
+          ? (() => {
+              const el = document.querySelector(defaultContainerRaw);
+              return el instanceof HTMLElement ? el : null;
+            })()
+          : defaultContainerRaw instanceof HTMLElement
+            ? defaultContainerRaw
+            : null;
   const container = stateContainerElement ?? defaultContainer ?? null;
 
   if (process.env.NODE_ENV === 'development') {
+    const defaultRawType =
+      defaultContainerRaw == null
+        ? null
+        : typeof defaultContainerRaw === 'function'
+          ? 'function'
+          : typeof defaultContainerRaw === 'string'
+            ? 'string'
+            : 'element';
+    const containerSource = stateContainerElement
+      ? 'managerState'
+      : defaultContainerRaw != null
+        ? 'componentDefaults'
+        : null;
     // eslint-disable-next-line no-console
-    console.log('[EuiFlyout resize debug] layout_mode container', {
-      defaultContainerRawType:
-        defaultContainerRaw == null
-          ? null
-          : typeof defaultContainerRaw === 'function'
-            ? 'function'
-            : 'element',
-      defaultContainerNull: defaultContainer == null,
-      stateContainerElementNull: stateContainerElement == null,
-      containerNull: container == null,
+    console.log('[EuiFlyout] layout_mode container', {
+      containerSource,
+      defaultContainerRawType: defaultRawType,
+      defaultContainerSelector:
+        typeof defaultContainerRaw === 'string' ? defaultContainerRaw : undefined,
+      defaultResolved: defaultContainer != null,
       containerId: container?.id ?? undefined,
+      containerWidth: container ? container.clientWidth : null,
     });
   }
 

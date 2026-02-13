@@ -234,9 +234,29 @@ interface _EuiFlyoutComponentProps {
    * A getter function `() => HTMLElement | null` can be passed (e.g. from
    * component defaults) to avoid race conditions when the container element
    * is not yet in the DOM when the default is read.
+   *
+   * A CSS selector string (e.g. `'#app-main-scroll'`) can be passed; the
+   * flyout will look up the element with `document.querySelector(selector)`
+   * when it mounts.
    */
-  container?: HTMLElement | null | (() => HTMLElement | null);
+  container?: HTMLElement | null | (() => HTMLElement | null) | string;
 }
+
+/**
+ * Resolves the container prop (element, getter, or selector string) to an
+ * HTMLElement, or null if not found / invalid.
+ */
+const resolveContainer = (
+  raw: HTMLElement | string | (() => HTMLElement | null) | null | undefined
+): HTMLElement | null => {
+  if (raw == null) return null;
+  if (typeof raw === 'string') {
+    const el = document.querySelector(raw);
+    return el instanceof HTMLElement ? el : null;
+  }
+  if (typeof raw === 'function') return raw();
+  return raw instanceof HTMLElement ? raw : null;
+};
 
 const defaultElement = 'div';
 
@@ -302,13 +322,43 @@ export const EuiFlyoutComponent = forwardRef(
     // `undefined` means "not provided" — inherit from the parent context.
     // `null` means "explicitly no container" — use viewport mode, even if
     // a parent context provides a container.
-    // A getter function is resolved each render so the container is read when
-    // needed (avoids race when the element is not yet in the DOM).
+    // Strings (selectors) and getter functions are resolved each render.
     const parentContainer = useParentFlyoutContainer();
     const containerRaw =
       containerProp !== undefined ? containerProp : parentContainer;
-    const container =
-      typeof containerRaw === 'function' ? containerRaw() : containerRaw;
+    const container = resolveContainer(containerRaw);
+
+    if (process.env.NODE_ENV === 'development') {
+      const source =
+        containerProp !== undefined
+          ? 'prop'
+          : parentContainer != null
+            ? 'parent'
+            : 'default';
+      const rawType =
+        containerRaw == null
+          ? null
+          : typeof containerRaw === 'string'
+            ? 'string'
+            : typeof containerRaw === 'function'
+              ? 'function'
+              : 'element';
+      // eslint-disable-next-line no-console
+      console.log('[EuiFlyout] container resolution', {
+        source,
+        rawType,
+        selector: typeof containerRaw === 'string' ? containerRaw : undefined,
+        resolvedId: container?.id ?? null,
+        resolved: container != null,
+      });
+    }
+
+    // Value to pass to child context: selector string so children re-resolve,
+    // or resolved element when prop was element/getter.
+    const containerForContext =
+      typeof containerRaw === 'string'
+        ? containerRaw
+        : (container ?? undefined);
 
     // If this flyout inherited its container from the parent context (rather
     // than setting it explicitly), the parent flyout already configured
@@ -1062,7 +1112,7 @@ export const EuiFlyoutComponent = forwardRef(
                 onKeyDown={onKeyDownResizableButton}
               />
             )}
-            <EuiFlyoutParentProvider container={container ?? undefined}>
+            <EuiFlyoutParentProvider container={containerForContext}>
               {children}
             </EuiFlyoutParentProvider>
           </Element>
