@@ -671,7 +671,14 @@ export default () => {
           max={100}
           defaultValue={10}
           compressed
-          prepend={<EuiFormPrepend element="button" iconLeft="magnet" label="kibana_sample_ecommerce_data" aria-label="Dynamic toggle" />}
+          prepend={
+            <EuiFormPrepend
+              element="button"
+              iconLeft="magnet"
+              label="kibana_sample_ecommerce_data"
+              aria-label="Dynamic toggle"
+            />
+          }
           append="px"
         />
       </EuiFormRow>

@@ -148,7 +148,7 @@ describe('EuiFormAppendPrepend', () => {
     });
 
     describe('iconRight', () => {
-      it('renders an icon on the left side', () => {
+      it('renders an icon on the right side', () => {
         const { getByTestSubject } = render(
           <EuiFormAppendPrepend {...defaultProps} iconRight="faceHappy" />
         );

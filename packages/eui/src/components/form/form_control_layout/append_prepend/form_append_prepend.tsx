@@ -123,7 +123,7 @@ export const EuiFormAppendPrepend: FunctionComponent<
   const compressed = _compressed ?? formLayoutCompressed;
   const inputId = _inputId ?? formLayoutInputId;
 
-  // Adding automatic check on onClick for DevX convinience, this doesn't replace defining `element`
+  // Adding automatic check on onClick for DevX convenience, this doesn't replace defining `element`
   const isButton = element === 'button' || typeof rest.onClick === 'function';
   const isDisabled =
     _isDisabled || disabled || (!isButton && formLayoutIsDisabled);
