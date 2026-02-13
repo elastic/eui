@@ -7,7 +7,8 @@
  */
 
 import React from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryFn, StoryObj } from '@storybook/react';
+import { css } from '@emotion/react';
 
 import {
   hideStorybookControls,
@@ -61,6 +62,39 @@ export const Playground: Story = {
     label: 'Prepend',
     // @ts-expect-error - onClick is optional but the toggle is enabled
     onClick: false,
+  },
+  render: ({ compressed, inputId, ...args }: EuiFormPrependProps) => {
+    const textFieldProps = {
+      compressed,
+      id: inputId,
+    };
+
+    return (
+      <EuiFieldText
+        {...textFieldProps}
+        prepend={<EuiFormPrepend compressed={compressed} {...args} />}
+      />
+    );
+  },
+};
+
+export const ForcedTruncation: Story = {
+  tags: ['vrt-only'],
+  decorators: [
+    (Story: StoryFn) => (
+      <div
+        css={css`
+          max-inline-size: 175px;
+        `}
+      >
+        <Story />
+      </div>
+    ),
+  ],
+  args: {
+    label: 'Long Prepend label',
+    // @ts-expect-error - onClick is optional but the toggle is enabled
+    onClick: true,
   },
   render: ({ compressed, inputId, ...args }: EuiFormPrependProps) => {
     const textFieldProps = {
