@@ -339,7 +339,9 @@ export class EuiPopover extends Component<Props, State> {
   private closingTransitionAnimationFrame: number | undefined;
   private button: HTMLElement | null = null;
   private panel: HTMLElement | null = null;
-  private descriptionId: string = htmlIdGenerator()();
+  private idGenerator = htmlIdGenerator('euiPopover');
+  private panelId: string = this.idGenerator('panelId');
+  private descriptionId: string = this.idGenerator('descriptionId');
 
   constructor(props: Props) {
     super(props);
@@ -380,6 +382,18 @@ export class EuiPopover extends Component<Props, State> {
     }
   };
 
+  getFocusableToggleButton = () => {
+    if (this.button) {
+      const focusableItems = focusable(this.button);
+
+      if (focusableItems.length) {
+        return focusableItems[0];
+      }
+    }
+
+    return null;
+  };
+
   handleStrandedFocus = () => {
     this.strandedFocusTimeout = window.setTimeout(() => {
       // If `returnFocus` failed and focus was stranded,
@@ -390,13 +404,11 @@ export class EuiPopover extends Component<Props, State> {
         document.activeElement === document.body ||
         this.panel?.contains(document.activeElement) // if focus is on OR within this.panel
       ) {
-        if (!this.button) return;
+        const toggleButton = this.getFocusableToggleButton();
 
-        const focusableItems = focusable(this.button);
-        if (!focusableItems.length) return;
-
-        const toggleButton = focusableItems[0];
-        toggleButton.focus(returnFocusConfig);
+        if (toggleButton) {
+          toggleButton.focus(returnFocusConfig);
+        }
       }
     }, closingTransitionTime);
   };
@@ -473,6 +485,18 @@ export class EuiPopover extends Component<Props, State> {
     // The popover is being opened.
     if (!prevProps.isOpen && this.props.isOpen) {
       this.onOpenPopover();
+    }
+
+    if (this.button && prevProps.isOpen !== this.props.isOpen) {
+      const toggleButton = this.getFocusableToggleButton();
+
+      if (toggleButton) {
+        toggleButton.setAttribute(
+          'aria-expanded',
+          this.props.isOpen ? 'true' : 'false'
+        );
+        toggleButton.setAttribute('aria-controls', this.panelId);
+      }
     }
 
     // ensure recalculation of panel position on prop updates
@@ -734,6 +758,7 @@ export class EuiPopover extends Component<Props, State> {
             {...focusTrapProps}
           >
             <EuiPopoverPanel
+              id={this.panelId}
               {...(panelProps as EuiPopoverPanelProps)}
               panelRef={this.panelRef}
               isOpen={this.state.isOpening}

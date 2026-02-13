@@ -62,20 +62,21 @@ exports[`EuiPopover props arrowChildren is rendered 1`] = `
       data-focus-lock-disabled="disabled"
     >
       <div
-        aria-describedby="generated-id"
+        aria-describedby="euiPopover_generated-id_descriptionId"
         aria-live="off"
         aria-modal="true"
         class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel emotion-euiPanel-grow-m-m-plain-euiPopover__panel-light-isOpen-hasTransform-bottom"
         data-autofocus="true"
         data-popover-open="true"
         data-popover-panel="true"
+        id="euiPopover_generated-id_panelId"
         role="dialog"
         style="top: 12px; left: 0px; will-change: transform, opacity; z-index: 2000;"
         tabindex="0"
       >
         <p
           class="emotion-euiScreenReaderOnly"
-          id="generated-id"
+          id="euiPopover_generated-id_descriptionId"
         >
           You are in a dialog. Press Escape, or tap/click outside the dialog to close.
         </p>
@@ -107,20 +108,21 @@ exports[`EuiPopover props buffer 1`] = `
       data-focus-lock-disabled="disabled"
     >
       <div
-        aria-describedby="generated-id"
+        aria-describedby="euiPopover_generated-id_descriptionId"
         aria-live="off"
         aria-modal="true"
         class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel emotion-euiPanel-grow-m-m-plain-euiPopover__panel-light-isOpen-hasTransform-bottom"
         data-autofocus="true"
         data-popover-open="true"
         data-popover-panel="true"
+        id="euiPopover_generated-id_panelId"
         role="dialog"
         style="top: 12px; left: 0px; will-change: transform, opacity; z-index: 2000;"
         tabindex="0"
       >
         <p
           class="emotion-euiScreenReaderOnly"
-          id="generated-id"
+          id="euiPopover_generated-id_descriptionId"
         >
           You are in a dialog. Press Escape, or tap/click outside the dialog to close.
         </p>
@@ -152,20 +154,21 @@ exports[`EuiPopover props buffer for all sides 1`] = `
       data-focus-lock-disabled="disabled"
     >
       <div
-        aria-describedby="generated-id"
+        aria-describedby="euiPopover_generated-id_descriptionId"
         aria-live="off"
         aria-modal="true"
         class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel emotion-euiPanel-grow-m-m-plain-euiPopover__panel-light-isOpen-hasTransform-bottom"
         data-autofocus="true"
         data-popover-open="true"
         data-popover-panel="true"
+        id="euiPopover_generated-id_panelId"
         role="dialog"
         style="top: 12px; left: 0px; will-change: transform, opacity; z-index: 2000;"
         tabindex="0"
       >
         <p
           class="emotion-euiScreenReaderOnly"
-          id="generated-id"
+          id="euiPopover_generated-id_descriptionId"
         >
           You are in a dialog. Press Escape, or tap/click outside the dialog to close.
         </p>
@@ -206,20 +209,21 @@ exports[`EuiPopover props focusTrapProps is rendered 1`] = `
       data-focus-lock-disabled="disabled"
     >
       <div
-        aria-describedby="generated-id"
+        aria-describedby="euiPopover_generated-id_descriptionId"
         aria-live="off"
         aria-modal="true"
         class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel emotion-euiPanel-grow-m-m-plain-euiPopover__panel-light-isOpen-hasTransform-bottom"
         data-autofocus="true"
         data-popover-open="true"
         data-popover-panel="true"
+        id="euiPopover_generated-id_panelId"
         role="dialog"
         style="top: 12px; left: 0px; will-change: transform, opacity; z-index: 2000;"
         tabindex="0"
       >
         <p
           class="emotion-euiScreenReaderOnly"
-          id="generated-id"
+          id="euiPopover_generated-id_descriptionId"
         >
           You are in a dialog. Press Escape, or tap/click outside the dialog to close.
         </p>
@@ -260,20 +264,21 @@ exports[`EuiPopover props isOpen renders true 1`] = `
       data-focus-lock-disabled="disabled"
     >
       <div
-        aria-describedby="generated-id"
+        aria-describedby="euiPopover_generated-id_descriptionId"
         aria-live="off"
         aria-modal="true"
         class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel emotion-euiPanel-grow-m-m-plain-euiPopover__panel-light-isOpen-hasTransform-bottom"
         data-autofocus="true"
         data-popover-open="true"
         data-popover-panel="true"
+        id="euiPopover_generated-id_panelId"
         role="dialog"
         style="top: 12px; left: 0px; will-change: transform, opacity; z-index: 2000;"
         tabindex="0"
       >
         <p
           class="emotion-euiScreenReaderOnly"
-          id="generated-id"
+          id="euiPopover_generated-id_descriptionId"
         >
           You are in a dialog. Press Escape, or tap/click outside the dialog to close.
         </p>
@@ -305,20 +310,21 @@ exports[`EuiPopover props ownFocus defaults to true 1`] = `
       data-focus-lock-disabled="disabled"
     >
       <div
-        aria-describedby="generated-id"
+        aria-describedby="euiPopover_generated-id_descriptionId"
         aria-live="off"
         aria-modal="true"
         class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel emotion-euiPanel-grow-m-m-plain-euiPopover__panel-light-isOpen-hasTransform-bottom"
         data-autofocus="true"
         data-popover-open="true"
         data-popover-panel="true"
+        id="euiPopover_generated-id_panelId"
         role="dialog"
         style="top: 12px; left: 0px; will-change: transform, opacity; z-index: 2000;"
         tabindex="0"
       >
         <p
           class="emotion-euiScreenReaderOnly"
-          id="generated-id"
+          id="euiPopover_generated-id_descriptionId"
         >
           You are in a dialog. Press Escape, or tap/click outside the dialog to close.
         </p>
@@ -355,6 +361,7 @@ exports[`EuiPopover props ownFocus renders false 1`] = `
         class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel emotion-euiPanel-grow-m-m-plain-euiPopover__panel-light-isOpen-hasTransform-bottom"
         data-popover-open="true"
         data-popover-panel="true"
+        id="euiPopover_generated-id_panelId"
         role="dialog"
         style="top: 12px; left: 0px; will-change: transform, opacity; z-index: 2000;"
       >
@@ -386,20 +393,21 @@ exports[`EuiPopover props panelClassName is rendered 1`] = `
       data-focus-lock-disabled="disabled"
     >
       <div
-        aria-describedby="generated-id"
+        aria-describedby="euiPopover_generated-id_descriptionId"
         aria-live="off"
         aria-modal="true"
         class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel test emotion-euiPanel-grow-m-m-plain-euiPopover__panel-light-isOpen-hasTransform-bottom"
         data-autofocus="true"
         data-popover-open="true"
         data-popover-panel="true"
+        id="euiPopover_generated-id_panelId"
         role="dialog"
         style="top: 12px; left: 0px; will-change: transform, opacity; z-index: 2000;"
         tabindex="0"
       >
         <p
           class="emotion-euiScreenReaderOnly"
-          id="generated-id"
+          id="euiPopover_generated-id_descriptionId"
         >
           You are in a dialog. Press Escape, or tap/click outside the dialog to close.
         </p>
@@ -431,20 +439,21 @@ exports[`EuiPopover props panelPaddingSize is rendered 1`] = `
       data-focus-lock-disabled="disabled"
     >
       <div
-        aria-describedby="generated-id"
+        aria-describedby="euiPopover_generated-id_descriptionId"
         aria-live="off"
         aria-modal="true"
         class="euiPanel euiPanel--plain euiPanel--paddingSmall euiPopover__panel emotion-euiPanel-grow-m-s-plain-euiPopover__panel-light-isOpen-hasTransform-bottom"
         data-autofocus="true"
         data-popover-open="true"
         data-popover-panel="true"
+        id="euiPopover_generated-id_panelId"
         role="dialog"
         style="top: 12px; left: 0px; will-change: transform, opacity; z-index: 2000;"
         tabindex="0"
       >
         <p
           class="emotion-euiScreenReaderOnly"
-          id="generated-id"
+          id="euiPopover_generated-id_descriptionId"
         >
           You are in a dialog. Press Escape, or tap/click outside the dialog to close.
         </p>
@@ -476,7 +485,7 @@ exports[`EuiPopover props panelProps is rendered 1`] = `
       data-focus-lock-disabled="disabled"
     >
       <div
-        aria-describedby="generated-id"
+        aria-describedby="euiPopover_generated-id_descriptionId"
         aria-live="off"
         aria-modal="true"
         class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel testClass1 testClass2 emotion-euiPanel-grow-m-m-plain-euiPopover__panel-light-isOpen-hasTransform-bottom-euiTestCss"
@@ -484,13 +493,14 @@ exports[`EuiPopover props panelProps is rendered 1`] = `
         data-popover-open="true"
         data-popover-panel="true"
         data-test-subj="test subject string"
+        id="euiPopover_generated-id_panelId"
         role="dialog"
         style="top: 12px; left: 0px; will-change: transform, opacity; z-index: 2000;"
         tabindex="0"
       >
         <p
           class="emotion-euiScreenReaderOnly"
-          id="generated-id"
+          id="euiPopover_generated-id_descriptionId"
         >
           You are in a dialog. Press Escape, or tap/click outside the dialog to close.
         </p>
@@ -522,18 +532,19 @@ exports[`EuiPopover props popoverScreenReaderText 1`] = `
       data-focus-lock-disabled="disabled"
     >
       <div
-        aria-describedby="generated-id"
+        aria-describedby="euiPopover_generated-id_descriptionId"
         aria-live="assertive"
         aria-modal="true"
         class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel emotion-euiPanel-grow-m-m-plain-euiPopover__panel-light-isOpen-hasTransform-bottom"
         data-popover-open="true"
         data-popover-panel="true"
+        id="euiPopover_generated-id_panelId"
         role="dialog"
         style="top: 12px; left: 0px; will-change: transform, opacity; z-index: 2000;"
       >
         <p
           class="emotion-euiScreenReaderOnly"
-          id="generated-id"
+          id="euiPopover_generated-id_descriptionId"
         >
           Press the up/down arrow keys to navigate
         </p>
