@@ -18,6 +18,11 @@ export interface EuiFlyoutOverlayProps extends PropsWithChildren {
   isPushed: boolean;
   maskZIndex: number;
   /**
+   * Where the mask sits relative to fixed headers. In viewport mode (no container)
+   * this defaults to 'above' so the flyout covers the full UI; in container mode, 'below'.
+   */
+  headerZindexLocation?: 'above' | 'below';
+  /**
    * Optional container element for the portal to mount into.
    * When provided, the flyout is portaled into this element instead of `document.body`.
    */
@@ -50,6 +55,7 @@ export const EuiFlyoutOverlay = ({
   maskProps,
   hasOverlayMask,
   maskZIndex,
+  headerZindexLocation = 'below',
   container,
 }: EuiFlyoutOverlayProps) => {
   const styles = useMemo(
@@ -69,7 +75,7 @@ export const EuiFlyoutOverlay = ({
     <>
       {hasOverlayMask && (
         <EuiOverlayMask
-          headerZindexLocation="below"
+          headerZindexLocation={maskProps?.headerZindexLocation ?? headerZindexLocation}
           {...maskProps}
           className={classes}
         />

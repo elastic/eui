@@ -336,6 +336,11 @@ export const EuiFlyoutComponent = forwardRef(
     }
     // In container mode, replace deprecated props with safe defaults
     const _maskProps = hasExplicitContainer ? undefined : maskProps;
+    // Viewport mode (no container): default mask above header so container={null} gives a true global flyout.
+    // Container mode: mask sits below header (maskProps ignored).
+    const effectiveHeaderZindexLocation = hasExplicitContainer
+      ? 'below'
+      : (_maskProps?.headerZindexLocation ?? 'above');
     const _includeFixedHeadersInFocusTrap = hasExplicitContainer
       ? undefined
       : includeFixedHeadersInFocusTrap;
@@ -683,7 +688,7 @@ export const EuiFlyoutComponent = forwardRef(
     }
 
     const { flyoutZIndex, maskZIndex } = useEuiFlyoutZIndex({
-      maskProps: _maskProps,
+      headerZindexLocation: effectiveHeaderZindexLocation,
       isPushed,
       managedFlyoutIndex,
       isChildFlyout: isChildFlyout,
@@ -911,6 +916,7 @@ export const EuiFlyoutComponent = forwardRef(
         hasOverlayMask={hasOverlayMask}
         isPushed={isPushed}
         maskZIndex={maskZIndex}
+        headerZindexLocation={effectiveHeaderZindexLocation}
         maskProps={{
           ..._maskProps,
           maskRef: maskCombinedRefs,
