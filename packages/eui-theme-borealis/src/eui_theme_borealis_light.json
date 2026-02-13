@@ -395,6 +395,8 @@
   "euiColorTextSubdued": "#516381",
   "euiColorTextDisabled": "#798EAF",
   "euiColorTextInverse": "#FFFFFF",
+  "euiColorTextGhost": "#FFFFFF",
+  "euiColorTextInk": "#07101F",
   "euiColorBackgroundBasePrimary": "#E8F1FF",
   "euiColorBackgroundBaseAccent": "#FFEBF5",
   "euiColorBackgroundBaseAccentSecondary": "#E2F9F7",
