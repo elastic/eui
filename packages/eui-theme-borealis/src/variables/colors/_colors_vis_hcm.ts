@@ -60,7 +60,10 @@ export const visColorsLightHighContrast: _EuiThemeVisColors = {
   euiColorVisDanger0: SEMANTIC_COLORS.danger100,
   euiColorVisDanger1: SEMANTIC_COLORS.danger80,
 
-  euiColorVisBase0: PRIMITIVE_COLORS.mutedGrey10,
+  // We removed the `mutedGrey` palette in favor of the `blueGrey` palette from the theme
+  // but we need to keep this specific value for visualizations backwards compatibility.
+  // We want to limit its usage to visualizations only, so we're keeping it hardcoded here.
+  euiColorVisBase0: '#F6F9FC',
 
   euiColorVisGrey0: PRIMITIVE_COLORS.blueGrey30,
   euiColorVisGrey1: PRIMITIVE_COLORS.blueGrey60,
