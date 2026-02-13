@@ -14,7 +14,7 @@ export const SpecialColorsPreview = () => {
       `}
     >
       <strong>
-        This text is always white and the background always black.
+        This is disabled text on disabled background.
       </strong>
     </div>
   );
