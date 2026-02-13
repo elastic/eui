@@ -43,6 +43,22 @@ export const useApplyFlyoutLayoutMode = () => {
       : defaultContainerRaw;
   const container = stateContainerElement ?? defaultContainer ?? null;
 
+  if (process.env.NODE_ENV === 'development') {
+    // eslint-disable-next-line no-console
+    console.log('[EuiFlyout resize debug] layout_mode container', {
+      defaultContainerRawType:
+        defaultContainerRaw == null
+          ? null
+          : typeof defaultContainerRaw === 'function'
+            ? 'function'
+            : 'element',
+      defaultContainerNull: defaultContainer == null,
+      stateContainerElementNull: stateContainerElement == null,
+      containerNull: container == null,
+      containerId: container?.id ?? undefined,
+    });
+  }
+
   // Derive all session/flyout data from the single context read above
   const sessions = state?.sessions;
   const currentSession = sessions
@@ -74,6 +90,17 @@ export const useApplyFlyoutLayoutMode = () => {
     ? containerDimensions.width || container.clientWidth
     : 0;
   const referenceWidth = containerWidth || windowWidth;
+
+  if (process.env.NODE_ENV === 'development' && hasFlyouts) {
+    // eslint-disable-next-line no-console
+    console.log('[EuiFlyout resize debug] layout_mode referenceWidth', {
+      containerWidth,
+      windowWidth,
+      referenceWidth,
+      containerDimensionsWidth: containerDimensions.width,
+      containerClientWidth: container?.clientWidth ?? null,
+    });
+  }
 
   // Extract specific context values
   const dispatch = context?.dispatch;
