@@ -5,11 +5,6 @@
 
 @import 'semantic_colors';
 
-// These colors stay the same no matter the theme
-// @deprecated
-$euiColorGhost: $euiColorWhite !default;
-$euiColorInk: $euiColorBlack !default;
-
 // Brand
 $euiColorPrimary: $euiColorPrimary90 !default;
 $euiColorAccent: $euiColorAccent90 !default;

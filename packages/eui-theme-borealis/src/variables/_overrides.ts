@@ -15,9 +15,15 @@ import { severityColorsLightHighContrast } from './colors/_colors_severity_hcm';
 export const overrides: _EuiThemeOverrides = {
   HCM: {
     colors: {
-      ink: PRIMITIVE_COLORS.black,
-      ghost: PRIMITIVE_COLORS.white,
+      plainDark: PRIMITIVE_COLORS.black,
+      plainLight: PRIMITIVE_COLORS.white,
+      DARK: {
+        textInk: PRIMITIVE_COLORS.black,
+        textGhost: PRIMITIVE_COLORS.white,
+      },
       LIGHT: {
+        textInk: PRIMITIVE_COLORS.black,
+        textGhost: PRIMITIVE_COLORS.white,
         vis: visColorsLightHighContrast,
         severity: severityColorsLightHighContrast,
       },
