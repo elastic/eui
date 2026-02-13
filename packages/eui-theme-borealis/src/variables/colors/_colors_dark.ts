@@ -90,6 +90,7 @@ export const dark_background_colors: _EuiThemeBackgroundColors = {
   backgroundBaseWarning: SEMANTIC_COLORS.warning140,
   backgroundBaseRisk: SEMANTIC_COLORS.risk140,
   backgroundBaseDanger: SEMANTIC_COLORS.danger140,
+  backgroundBaseAssistance: SEMANTIC_COLORS.assistance140,
   backgroundBaseSubdued: SEMANTIC_COLORS.plainDark,
   backgroundBasePlain: SEMANTIC_COLORS.shade145,
   backgroundBaseDisabled: SEMANTIC_COLORS.shade130,
@@ -114,6 +115,7 @@ export const dark_background_colors: _EuiThemeBackgroundColors = {
   backgroundLightWarning: SEMANTIC_COLORS.warning130,
   backgroundLightRisk: SEMANTIC_COLORS.risk130,
   backgroundLightDanger: SEMANTIC_COLORS.danger130,
+  backgroundLightAssistance: SEMANTIC_COLORS.assistance120,
   backgroundLightText: SEMANTIC_COLORS.shade120,
 
   backgroundFilledPrimary: SEMANTIC_COLORS.primary60,
@@ -124,6 +126,7 @@ export const dark_background_colors: _EuiThemeBackgroundColors = {
   backgroundFilledWarning: SEMANTIC_COLORS.warning40,
   backgroundFilledRisk: SEMANTIC_COLORS.risk50,
   backgroundFilledDanger: SEMANTIC_COLORS.danger60,
+  backgroundFilledAssistance: SEMANTIC_COLORS.assistance50,
   backgroundFilledText: SEMANTIC_COLORS.shade60,
 };
 

@@ -187,6 +187,7 @@ export type _EuiThemeBackgroundColors = {
   backgroundBaseWarning: ColorModeSwitch;
   backgroundBaseRisk: ColorModeSwitch;
   backgroundBaseDanger: ColorModeSwitch;
+  backgroundBaseAssistance: ColorModeSwitch;
   backgroundBaseSubdued: ColorModeSwitch;
   backgroundBasePlain: ColorModeSwitch;
   backgroundBaseDisabled: ColorModeSwitch;
@@ -208,6 +209,7 @@ export type _EuiThemeBackgroundColors = {
   backgroundLightWarning: ColorModeSwitch;
   backgroundLightRisk: ColorModeSwitch;
   backgroundLightDanger: ColorModeSwitch;
+  backgroundLightAssistance: ColorModeSwitch;
   backgroundLightText: ColorModeSwitch;
 
   backgroundFilledPrimary: ColorModeSwitch;
@@ -218,6 +220,7 @@ export type _EuiThemeBackgroundColors = {
   backgroundFilledWarning: ColorModeSwitch;
   backgroundFilledRisk: ColorModeSwitch;
   backgroundFilledDanger: ColorModeSwitch;
+  backgroundFilledAssistance: ColorModeSwitch;
   backgroundFilledText: ColorModeSwitch;
 };
 

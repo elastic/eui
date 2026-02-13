@@ -412,6 +412,7 @@ declare module '@elastic/eui-theme-borealis/lib/eui_theme_borealis_light.json' {
     euiColorBackgroundBaseWarning: string;
     euiColorBackgroundBaseRisk: string;
     euiColorBackgroundBaseDanger: string;
+    euiColorBackgroundBaseAssistance: string;
     euiColorBackgroundBaseSubdued: string;
     euiColorBackgroundBasePlain: string;
     euiColorBackgroundBaseDisabled: string;
@@ -432,6 +433,7 @@ declare module '@elastic/eui-theme-borealis/lib/eui_theme_borealis_light.json' {
     euiColorBackgroundLightWarning: string;
     euiColorBackgroundLightRisk: string;
     euiColorBackgroundLightDanger: string;
+    euiColorBackgroundLightAssistance: string;
     euiColorBackgroundLightText: string;
     euiColorBackgroundFilledPrimary: string;
     euiColorBackgroundFilledAccent: string;
@@ -441,6 +443,7 @@ declare module '@elastic/eui-theme-borealis/lib/eui_theme_borealis_light.json' {
     euiColorBackgroundFilledWarning: string;
     euiColorBackgroundFilledRisk: string;
     euiColorBackgroundFilledDanger: string;
+    euiColorBackgroundFilledAssistance: string;
     euiColorBackgroundFilledText: string;
     euiColorBorderBasePrimary: string;
     euiColorBorderBaseAccent: string;
