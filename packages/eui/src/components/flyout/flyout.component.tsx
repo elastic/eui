@@ -35,17 +35,8 @@ import {
   useEuiThemeCSSVariables,
   focusTrapPubSub,
 } from '../../services';
-import {
-  useCurrentSession,
-  useIsInManagedFlyout,
-  useFlyoutLayoutMode,
-  useFlyoutId,
-  useFlyoutWidth,
-  useIsFlyoutActive,
-  useFlyoutManager,
-  useHasPushPadding,
-} from './manager';
-import { LAYOUT_MODE_STACKED } from './manager/const';
+import { useIsInManagedFlyout, useFlyoutId, useFlyoutManager } from './manager';
+import { LAYOUT_MODE_SIDE_BY_SIDE, LAYOUT_MODE_STACKED } from './manager/const';
 
 import { CommonProps, PropsOfElement } from '../common';
 import { EuiFocusTrap, EuiFocusTrapProps } from '../focus_trap';
@@ -77,8 +68,10 @@ import { EuiFlyoutResizeButton } from './_flyout_resize_button';
 import { useEuiFlyoutResizable } from './use_flyout_resizable';
 import type { EuiFlyoutCloseEvent } from './types';
 import { useEuiFlyoutZIndex } from './use_flyout_z_index';
-import { EuiFlyoutParentProvider } from './flyout_parent_context';
-import { useCurrentFlyoutZIndexRef } from './manager/selectors';
+import {
+  EuiFlyoutParentProvider,
+  useParentFlyoutContainer,
+} from './flyout_parent_context';
 
 interface _EuiFlyoutComponentProps {
   /**
@@ -132,7 +125,10 @@ interface _EuiFlyoutComponentProps {
    */
   closeButtonPosition?: 'inside' | 'outside';
   /**
-   * Adjustments to the EuiOverlayMask that is added when `ownFocus = true`
+   * Adjustments to the EuiOverlayMask that is added when `ownFocus = true`.
+   *
+   * @deprecated Use the `container` prop to scope flyouts to the document or to an application area.
+   * When `container` is provided, `maskProps` is ignored.
    */
   maskProps?: EuiOverlayMaskProps;
   /**
@@ -184,6 +180,9 @@ interface _EuiFlyoutComponentProps {
    * within fixed headers.
    *
    * Set this to `false` if you need to disable this behavior for a specific reason.
+   *
+   * @deprecated Use the `container` prop to scope flyouts to the document or to an application area.
+   * is ignored.
    */
   includeFixedHeadersInFocusTrap?: boolean;
 
@@ -208,6 +207,31 @@ interface _EuiFlyoutComponentProps {
    * Optional callback that fires when the flyout is resized.
    */
   onResize?: (width: number) => void;
+
+  /**
+   * Optional container element that the flyout will be portaled into and
+   * positioned relative to. When provided, the flyout uses `position: absolute`
+   * and container-relative sizing instead of the default viewport-based
+   * `position: fixed` behavior.
+   *
+   * The container element **must** have `position: relative` (or `absolute`/`fixed`)
+   * set for the flyout to be positioned correctly.
+   *
+   * **Important:** When a `container` is provided, `container-type: inline-size`
+   * is automatically applied to the container element for CSS container query
+   * support. This establishes layout containment, which changes the containing
+   * block for any `position: fixed` descendants inside the container — they
+   * will be positioned relative to the container instead of the viewport.
+   * Ensure that the container does not contain elements that rely on
+   * `position: fixed` viewport-level positioning. (Elements portaled to
+   * `document.body`, such as tooltips and popovers, are unaffected.)
+   *
+   * Child flyouts automatically inherit the `container` from the parent
+   * flyout's context — there is no need to pass it explicitly. To force a
+   * child flyout into viewport mode (overriding the inherited container),
+   * pass `container={null}`.
+   */
+  container?: HTMLElement | null;
 }
 
 const defaultElement = 'div';
@@ -262,8 +286,28 @@ export const EuiFlyoutComponent = forwardRef(
       minWidth,
       onResize,
       onAnimationEnd,
+      container: containerProp,
       ...rest
     } = usePropsWithComponentDefaults('EuiFlyout', props);
+
+    // Child flyouts inherit the container from the parent flyout's context.
+    // This allows the main flyout to set `container` once, and all child
+    // flyouts automatically use the same container without needing an
+    // explicit prop.
+    //
+    // `undefined` means "not provided" — inherit from the parent context.
+    // `null` means "explicitly no container" — use viewport mode, even if
+    // a parent context provides a container.
+    const parentContainer = useParentFlyoutContainer();
+    const container =
+      containerProp !== undefined ? containerProp : parentContainer;
+
+    // If this flyout inherited its container from the parent context (rather
+    // than setting it explicitly), the parent flyout already configured
+    // container-type, scroll reset, and reported the container to the
+    // manager.  Skip those effects to avoid redundant dispatches & effects.
+    const isContainerInherited =
+      containerProp === undefined && parentContainer != null;
 
     const { setGlobalCSSVariables } = useEuiThemeCSSVariables();
 
@@ -273,14 +317,99 @@ export const EuiFlyoutComponent = forwardRef(
     // Ref for the main flyout element to pass to context
     const internalParentFlyoutRef = useRef<HTMLDivElement>(null);
     const isPushed = useIsPushed({ type, pushMinBreakpoint });
+    const hasExplicitContainer = container != null;
 
-    const currentSession = useCurrentSession();
+    // Deprecation handling: when container is provided, ignore viewport-centric
+    // props and warn in development mode. Check raw `props` (before component
+    // defaults) to only warn when the consumer explicitly passed the prop.
+    if (hasExplicitContainer && process.env.NODE_ENV === 'development') {
+      if ('maskProps' in props) {
+        console.warn(
+          'EuiFlyout: `maskProps` is deprecated and ignored when `container` is provided.'
+        );
+      }
+      if ('includeFixedHeadersInFocusTrap' in props) {
+        console.warn(
+          'EuiFlyout: `includeFixedHeadersInFocusTrap` is deprecated and ignored when `container` is provided.'
+        );
+      }
+    }
+    // In container mode, replace deprecated props with safe defaults
+    const _maskProps = hasExplicitContainer ? undefined : maskProps;
+    const _includeFixedHeadersInFocusTrap = hasExplicitContainer
+      ? undefined
+      : includeFixedHeadersInFocusTrap;
+
+    // Set container-type: inline-size on the container element so that
+    // CSS container queries work for responsive breakpoints.
+    // Skip when the container was inherited — the parent flyout already set it.
+    useLayoutEffect(() => {
+      if (!container || isContainerInherited) return;
+
+      const prevContainerType = container.style.containerType;
+      container.style.containerType = 'inline-size';
+
+      return () => {
+        container.style.containerType = prevContainerType;
+      };
+    }, [container, isContainerInherited]);
+
+    // Prevent unwanted horizontal scrolling on the container during the
+    // flyout's slide-in animation. When a non-push (overlay) flyout mounts
+    // with a container, the focus trap auto-focuses the dialog element.
+    // Because the dialog's initial animation state is translateX(100%)
+    // (off-screen), the browser auto-scrolls the overflow:hidden container
+    // to reveal the focused element, causing visible content displacement.
+    // This effect immediately resets any scroll caused by focus events.
+    // Skip when the container was inherited — the parent flyout already set it.
+    useLayoutEffect(() => {
+      if (!container || isContainerInherited) return;
+
+      const resetScroll = () => {
+        if (container.scrollLeft !== 0) {
+          container.scrollLeft = 0;
+        }
+      };
+
+      container.addEventListener('scroll', resetScroll);
+      return () => {
+        container.removeEventListener('scroll', resetScroll);
+      };
+    }, [container, isContainerInherited]);
+
+    // Report the container element to the flyout manager so that the
+    // layout mode hook can use it for responsive calculations.
+    // This is necessary because the container may be passed as a direct
+    // prop (e.g. in Storybook) rather than via componentDefaults.
+    // Skip when the container was inherited — the parent flyout already reported it.
+    useEffect(() => {
+      if (!container || isContainerInherited) return;
+
+      flyoutManagerRef.current?.setContainerElement(container);
+
+      return () => {
+        // Only clear if this flyout's container is still the active one
+        if (flyoutManagerRef.current?.state?.containerElement === container) {
+          flyoutManagerRef.current.setContainerElement(null);
+        }
+      };
+    }, [container, isContainerInherited]); // eslint-disable-line react-hooks/exhaustive-deps
+
+    // Performance: read context once and derive all manager-dependent values inline.
     const isInManagedContext = useIsInManagedFlyout();
     const flyoutId = useFlyoutId(id);
-    const layoutMode = useFlyoutLayoutMode();
-    const isActiveManagedFlyout = useIsFlyoutActive(flyoutId);
     const flyoutManager = useFlyoutManager();
-    const currentZIndexRef = useCurrentFlyoutZIndexRef();
+    const managerState = flyoutManager?.state;
+
+    const managerSessions = managerState?.sessions;
+    const currentSession = managerSessions
+      ? managerSessions[managerSessions.length - 1] ?? null
+      : null;
+    const layoutMode = managerState?.layoutMode ?? LAYOUT_MODE_SIDE_BY_SIDE;
+    const isActiveManagedFlyout =
+      currentSession?.mainFlyoutId === flyoutId ||
+      currentSession?.childFlyoutId === flyoutId;
+    const currentZIndexRef = useRef(managerState?.currentZIndex ?? 0);
 
     // Use a ref to access the latest flyoutManager without triggering effect re-runs
     const flyoutManagerRef = useRef(flyoutManager);
@@ -298,6 +427,51 @@ export const EuiFlyoutComponent = forwardRef(
       }
     }, [isInManagedContext, flyoutId]);
 
+    // Derive flyout identity and sibling info from the single context read
+    const flyoutIdentity = useMemo(() => {
+      if (!flyoutId || !currentSession) {
+        return {
+          isMainFlyout: false,
+          siblingFlyoutId: null as string | null,
+          hasValidSession: false,
+        };
+      }
+
+      const siblingFlyoutId =
+        currentSession.mainFlyoutId === flyoutId
+          ? currentSession.childFlyoutId
+          : currentSession.mainFlyoutId;
+
+      return {
+        isMainFlyout: currentSession.mainFlyoutId === flyoutId,
+        siblingFlyoutId,
+        hasValidSession: true,
+      };
+    }, [flyoutId, currentSession]);
+
+    // Destructure for easier use
+    const { siblingFlyoutId, isMainFlyout } = flyoutIdentity;
+
+    // Derive sibling flyout data from manager state (single read, no extra hooks)
+    const siblingFlyout = siblingFlyoutId
+      ? managerState?.flyouts.find((f) => f.flyoutId === siblingFlyoutId) ??
+        null
+      : null;
+    const _siblingFlyoutWidth = siblingFlyout?.width;
+    const isSiblingFill = siblingFlyout?.size === 'fill';
+    const siblingFlyoutMinWidth = siblingFlyout?.minWidth;
+    const siblingFlyoutWidth =
+      layoutMode === LAYOUT_MODE_STACKED ? 0 : _siblingFlyoutWidth;
+
+    // Observe the container's width reactively so that the resize hook
+    // receives an up-to-date `referenceWidth` whenever the container
+    // resizes (e.g. viewport change). Without this, `container.clientWidth`
+    // is only read at render time and becomes stale.
+    const containerDimensions = useResizeObserver(container ?? null, 'width');
+    const containerReferenceWidth = container
+      ? containerDimensions.width || container.clientWidth
+      : undefined;
+
     const {
       onMouseDown: onMouseDownResizableButton,
       onKeyDown: onKeyDownResizableButton,
@@ -307,10 +481,38 @@ export const EuiFlyoutComponent = forwardRef(
       enabled: resizable,
       minWidth,
       maxWidth: typeof maxWidth === 'number' ? maxWidth : 0,
+      // For fill siblings, clamp based on their minWidth rather than their
+      // current measured width. Fill siblings dynamically adjust via CSS
+      // (`calc(90% - mainWidth)`), so subtracting their current width from
+      // the max creates a circular dependency where the main flyout can
+      // never grow (max = 90% - (90% - main) = main). Using minWidth
+      // breaks this cycle while ensuring the fill sibling never collapses
+      // below its configured minimum.
+      siblingFlyoutWidth: isSiblingFill
+        ? siblingFlyoutMinWidth
+        : siblingFlyoutWidth ?? undefined,
+      referenceWidth: containerReferenceWidth,
       onResize,
       side,
       size: _size,
     });
+
+    // Publish the main flyout's resolved width as a CSS custom property on
+    // the container so that the child (fill) flyout can track it
+    // synchronously during drag resize, avoiding the 1-frame lag that
+    // results from the async ResizeObserver → manager-state pipeline.
+    useLayoutEffect(() => {
+      if (!container || !isMainFlyout) return;
+
+      // Only set when we have a computed percentage (during active resize)
+      if (typeof size === 'string' && size.endsWith('%')) {
+        container.style.setProperty('--euiFlyoutMainWidth', size);
+      }
+
+      return () => {
+        container.style.removeProperty('--euiFlyoutMainWidth');
+      };
+    }, [container, isMainFlyout, size]);
 
     /**
      * Setting up the refs on the actual flyout element in order to
@@ -325,47 +527,35 @@ export const EuiFlyoutComponent = forwardRef(
     ]);
     const { width } = useResizeObserver(isPushed ? resizeRef : null, 'width');
 
-    // Memoize flyout identification and relationships to prevent race conditions
-    const flyoutIdentity = useMemo(() => {
-      if (!flyoutId || !currentSession) {
-        return {
-          isMainFlyout: false,
-          siblingFlyoutId: null,
-          hasValidSession: false,
-          sessionForWidth: null,
-        };
-      }
-
-      const siblingFlyoutId =
-        currentSession.mainFlyoutId === flyoutId
-          ? currentSession.childFlyoutId
-          : currentSession.mainFlyoutId;
-
-      return {
-        isMainFlyout: currentSession.mainFlyoutId === flyoutId,
-        siblingFlyoutId,
-        hasValidSession: true,
-        sessionForWidth: currentSession,
-      };
-    }, [flyoutId, currentSession]);
-
-    // Destructure for easier use
-    const { siblingFlyoutId, isMainFlyout } = flyoutIdentity;
-
-    const _siblingFlyoutWidth = useFlyoutWidth(siblingFlyoutId);
-    const siblingFlyoutWidth =
-      layoutMode === LAYOUT_MODE_STACKED ? 0 : _siblingFlyoutWidth;
-
     /**
-     * Effect for adding push padding to body. Using useLayoutEffect to ensure
+     * Effect for adding push padding. Uses useLayoutEffect to ensure
      * padding changes happen synchronously before child components render -
      * this is needed to prevent RemoveScrollBar from measuring the body in an
      * inconsistent state during flyout transitions.
+     *
+     * When a `container` is provided, padding is applied to the container
+     * element instead of `document.body`. Although the container has
+     * `container-type: inline-size` for container queries, the padding
+     * does NOT cause a feedback loop because:
+     *
+     * - CSS container queries (`@container`) check the **content-box**
+     *   width, which does shrink when padding is added.
+     * - However, the flyout uses `position: absolute`, and CSS percentage
+     *   values for absolutely positioned elements resolve against the
+     *   **padding-box** of the containing block — which is unaffected
+     *   by padding changes.
+     * - So while a container query breakpoint may fire at a different
+     *   threshold, the resulting percentage-based rules (e.g. `90%`)
+     *   still resolve to the same pixel value. No oscillation occurs.
      */
     useLayoutEffect(() => {
       if (!isPushed) {
-        return; // Only push-type flyouts manage body padding
+        return;
       }
+
+      // In container mode, apply padding to the container element;
+      // otherwise, apply it to document.body (the traditional behavior).
+      const paddingTarget = container ?? document.body;
 
       const shouldApplyPadding = !isInManagedContext || isActiveManagedFlyout;
 
@@ -384,20 +574,27 @@ export const EuiFlyoutComponent = forwardRef(
           : width;
 
       if (shouldApplyPadding) {
-        document.body.style[paddingSide] = `${paddingWidth}px`;
-        setGlobalCSSVariables({
-          [cssVarName]: `${paddingWidth}px`,
-        });
+        paddingTarget.style[paddingSide] = `${paddingWidth}px`;
+
+        // Global CSS variables and manager state are only relevant for
+        // non-container flyouts (document.body push).
+        if (!container) {
+          setGlobalCSSVariables({
+            [cssVarName]: `${paddingWidth}px`,
+          });
+        }
         // Update manager state if in managed context
         if (isInManagedContext && flyoutManagerRef.current) {
           flyoutManagerRef.current.setPushPadding(managerSide, paddingWidth);
         }
       } else {
         // Explicitly remove padding when this push flyout becomes inactive
-        document.body.style[paddingSide] = '';
-        setGlobalCSSVariables({
-          [cssVarName]: null,
-        });
+        paddingTarget.style[paddingSide] = '';
+        if (!container) {
+          setGlobalCSSVariables({
+            [cssVarName]: null,
+          });
+        }
         // Clear manager state if in managed context
         if (isInManagedContext && flyoutManagerRef.current) {
           flyoutManagerRef.current.setPushPadding(managerSide, 0);
@@ -406,10 +603,12 @@ export const EuiFlyoutComponent = forwardRef(
 
       // Cleanup on unmount
       return () => {
-        document.body.style[paddingSide] = '';
-        setGlobalCSSVariables({
-          [cssVarName]: null,
-        });
+        paddingTarget.style[paddingSide] = '';
+        if (!container) {
+          setGlobalCSSVariables({
+            [cssVarName]: null,
+          });
+        }
         // Clear manager state on unmount if in managed context
         if (isInManagedContext && flyoutManagerRef.current) {
           flyoutManagerRef.current.setPushPadding(managerSide, 0);
@@ -425,6 +624,7 @@ export const EuiFlyoutComponent = forwardRef(
       layoutMode,
       isMainFlyout,
       _siblingFlyoutWidth,
+      container,
     ]);
 
     /**
@@ -483,7 +683,7 @@ export const EuiFlyoutComponent = forwardRef(
     }
 
     const { flyoutZIndex, maskZIndex } = useEuiFlyoutZIndex({
-      maskProps,
+      maskProps: _maskProps,
       isPushed,
       managedFlyoutIndex,
       isChildFlyout: isChildFlyout,
@@ -514,10 +714,15 @@ export const EuiFlyoutComponent = forwardRef(
     ]);
 
     const styles = useEuiMemoizedStyles(euiFlyoutStyles);
+    const sizeVariant = hasExplicitContainer
+      ? styles.container
+      : styles.viewport;
+
     const cssStyles = [
       styles.euiFlyout,
+      hasExplicitContainer ? styles.position.absolute : styles.position.fixed,
       styles.paddingSizes[paddingSize],
-      isEuiFlyoutSizeNamed(size) && styles[size],
+      isEuiFlyoutSizeNamed(size) && sizeVariant[size],
       maxWidth === false && styles.noMaxWidth,
       isPushed ? styles.push.push : styles.overlay.overlay,
       isPushed ? styles.push[side] : styles.overlay[side],
@@ -543,12 +748,12 @@ export const EuiFlyoutComponent = forwardRef(
           : [includeSelectorInFocusTrap];
       }
 
-      if (includeFixedHeadersInFocusTrap) {
+      if (_includeFixedHeadersInFocusTrap) {
         selectors.push('.euiHeader[data-fixed-header]');
       }
 
       return selectors;
-    }, [includeSelectorInFocusTrap, includeFixedHeadersInFocusTrap]);
+    }, [includeSelectorInFocusTrap, _includeFixedHeadersInFocusTrap]);
 
     /**
      * Finds the shards to include in the focus trap by querying by `focusTrapSelectors`.
@@ -689,12 +894,14 @@ export const EuiFlyoutComponent = forwardRef(
       [onClose, hasOverlayMask, outsideClickCloses]
     );
 
-    const maskCombinedRefs = useCombinedRefs([maskProps?.maskRef, maskRef]);
+    const maskCombinedRefs = useCombinedRefs([_maskProps?.maskRef, maskRef]);
 
     /**
      * For overlay flyouts in managed contexts, coordinate scroll locking with push flyout state.
      */
-    const hasPushPaddingInManager = useHasPushPadding();
+    const pushPadding = managerState?.pushPadding ?? { left: 0, right: 0 };
+    const hasPushPaddingInManager =
+      pushPadding.left > 0 || pushPadding.right > 0;
     const shouldDeferScrollLock =
       !isPushed && isInManagedContext && hasPushPaddingInManager;
     const shouldUseScrollLock = hasOverlayMask && !shouldDeferScrollLock;
@@ -705,9 +912,10 @@ export const EuiFlyoutComponent = forwardRef(
         isPushed={isPushed}
         maskZIndex={maskZIndex}
         maskProps={{
-          ...maskProps,
+          ..._maskProps,
           maskRef: maskCombinedRefs,
         }}
+        container={container ?? undefined}
       >
         <EuiWindowEvent event="keydown" handler={onKeyDown} />
         <EuiFocusTrap
@@ -759,7 +967,9 @@ export const EuiFlyoutComponent = forwardRef(
                 onKeyDown={onKeyDownResizableButton}
               />
             )}
-            <EuiFlyoutParentProvider>{children}</EuiFlyoutParentProvider>
+            <EuiFlyoutParentProvider container={container ?? undefined}>
+              {children}
+            </EuiFlyoutParentProvider>
           </Element>
         </EuiFocusTrap>
       </EuiFlyoutOverlay>

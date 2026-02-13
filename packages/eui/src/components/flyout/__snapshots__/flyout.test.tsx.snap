@@ -20,7 +20,7 @@ exports[`EuiFlyout is rendered 1`] = `
         aria-describedby="generated-id"
         aria-label="aria-label"
         aria-modal="true"
-        class="euiFlyout testClass1 testClass2 emotion-euiFlyout-l-m-noMaxWidth-overlay-right-right-euiTestCss"
+        class="euiFlyout testClass1 testClass2 emotion-euiFlyout-fixed-l-m-noMaxWidth-overlay-right-right-euiTestCss"
         data-autofocus="true"
         data-test-subj="test subject string"
         role="dialog"
@@ -77,7 +77,7 @@ exports[`EuiFlyout props accepts div props 1`] = `
       <div
         aria-describedby="generated-id"
         aria-modal="true"
-        class="euiFlyout emotion-euiFlyout-l-m-noMaxWidth-overlay-right-right"
+        class="euiFlyout emotion-euiFlyout-fixed-l-m-noMaxWidth-overlay-right-right"
         data-autofocus="true"
         id="imaflyout"
         role="dialog"
@@ -134,7 +134,7 @@ exports[`EuiFlyout props closeButtonPosition can be outside 1`] = `
       <div
         aria-describedby="generated-id"
         aria-modal="true"
-        class="euiFlyout emotion-euiFlyout-l-m-noMaxWidth-overlay-right-right"
+        class="euiFlyout emotion-euiFlyout-fixed-l-m-noMaxWidth-overlay-right-right"
         data-autofocus="true"
         role="dialog"
         style="z-index: 1000;"
@@ -190,7 +190,7 @@ exports[`EuiFlyout props closeButtonProps 1`] = `
       <div
         aria-describedby="generated-id"
         aria-modal="true"
-        class="euiFlyout emotion-euiFlyout-l-m-noMaxWidth-overlay-right-right"
+        class="euiFlyout emotion-euiFlyout-fixed-l-m-noMaxWidth-overlay-right-right"
         data-autofocus="true"
         role="dialog"
         style="z-index: 1000;"
@@ -246,7 +246,7 @@ exports[`EuiFlyout props hideCloseButton 1`] = `
       <div
         aria-describedby="generated-id"
         aria-modal="true"
-        class="euiFlyout emotion-euiFlyout-l-m-noMaxWidth-overlay-right-right"
+        class="euiFlyout emotion-euiFlyout-fixed-l-m-noMaxWidth-overlay-right-right"
         data-autofocus="true"
         role="dialog"
         style="z-index: 1000;"
@@ -290,7 +290,7 @@ exports[`EuiFlyout props is rendered as nav 1`] = `
       <nav
         aria-describedby="generated-id"
         aria-modal="true"
-        class="euiFlyout emotion-euiFlyout-l-m-noMaxWidth-overlay-right-right"
+        class="euiFlyout emotion-euiFlyout-fixed-l-m-noMaxWidth-overlay-right-right"
         data-autofocus="true"
         role="dialog"
         style="z-index: 1000;"
@@ -347,7 +347,7 @@ exports[`EuiFlyout props maxWidth can be set to a custom number 1`] = `
       <div
         aria-describedby="generated-id"
         aria-modal="true"
-        class="euiFlyout emotion-euiFlyout-l-m-overlay-right-right"
+        class="euiFlyout emotion-euiFlyout-fixed-l-m-overlay-right-right"
         data-autofocus="true"
         role="dialog"
         style="max-inline-size: 1024px; z-index: 1000;"
@@ -404,7 +404,7 @@ exports[`EuiFlyout props maxWidth can be set to a custom value and measurement 1
       <div
         aria-describedby="generated-id"
         aria-modal="true"
-        class="euiFlyout emotion-euiFlyout-l-m-overlay-right-right"
+        class="euiFlyout emotion-euiFlyout-fixed-l-m-overlay-right-right"
         data-autofocus="true"
         role="dialog"
         style="max-inline-size: 24rem; z-index: 1000;"
@@ -461,7 +461,7 @@ exports[`EuiFlyout props maxWidth can be set to a default 1`] = `
       <div
         aria-describedby="generated-id"
         aria-modal="true"
-        class="euiFlyout emotion-euiFlyout-l-m-overlay-right-right"
+        class="euiFlyout emotion-euiFlyout-fixed-l-m-overlay-right-right"
         data-autofocus="true"
         role="dialog"
         style="z-index: 1000;"
@@ -518,7 +518,7 @@ exports[`EuiFlyout props outsideClickCloses 1`] = `
       <div
         aria-describedby="generated-id"
         aria-modal="true"
-        class="euiFlyout emotion-euiFlyout-l-m-noMaxWidth-overlay-right-right"
+        class="euiFlyout emotion-euiFlyout-fixed-l-m-noMaxWidth-overlay-right-right"
         data-autofocus="true"
         role="dialog"
         style="z-index: 1000;"
@@ -575,7 +575,7 @@ exports[`EuiFlyout props ownFocus can alter mask props with maskProps without th
       <div
         aria-describedby="generated-id"
         aria-modal="true"
-        class="euiFlyout emotion-euiFlyout-l-m-noMaxWidth-overlay-right-right"
+        class="euiFlyout emotion-euiFlyout-fixed-l-m-noMaxWidth-overlay-right-right"
         data-autofocus="true"
         role="dialog"
         style="z-index: 6000;"
@@ -629,7 +629,7 @@ exports[`EuiFlyout props ownFocus can be false 1`] = `
       <div
         aria-describedby="generated-id"
         aria-modal="true"
-        class="euiFlyout emotion-euiFlyout-l-m-noMaxWidth-overlay-right-right"
+        class="euiFlyout emotion-euiFlyout-fixed-l-m-noMaxWidth-overlay-right-right"
         data-autofocus="true"
         role="dialog"
         style="z-index: 1000;"
@@ -686,7 +686,7 @@ exports[`EuiFlyout props paddingSize l is rendered 1`] = `
       <div
         aria-describedby="generated-id"
         aria-modal="true"
-        class="euiFlyout emotion-euiFlyout-l-m-noMaxWidth-overlay-right-right"
+        class="euiFlyout emotion-euiFlyout-fixed-l-m-noMaxWidth-overlay-right-right"
         data-autofocus="true"
         role="dialog"
         style="z-index: 1000;"
@@ -743,7 +743,7 @@ exports[`EuiFlyout props paddingSize m is rendered 1`] = `
       <div
         aria-describedby="generated-id"
         aria-modal="true"
-        class="euiFlyout emotion-euiFlyout-m-m-noMaxWidth-overlay-right-right"
+        class="euiFlyout emotion-euiFlyout-fixed-m-m-noMaxWidth-overlay-right-right"
         data-autofocus="true"
         role="dialog"
         style="z-index: 1000;"
@@ -800,7 +800,7 @@ exports[`EuiFlyout props paddingSize none is rendered 1`] = `
       <div
         aria-describedby="generated-id"
         aria-modal="true"
-        class="euiFlyout emotion-euiFlyout-none-m-noMaxWidth-overlay-right-right"
+        class="euiFlyout emotion-euiFlyout-fixed-none-m-noMaxWidth-overlay-right-right"
         data-autofocus="true"
         role="dialog"
         style="z-index: 1000;"
@@ -857,7 +857,7 @@ exports[`EuiFlyout props paddingSize s is rendered 1`] = `
       <div
         aria-describedby="generated-id"
         aria-modal="true"
-        class="euiFlyout emotion-euiFlyout-s-m-noMaxWidth-overlay-right-right"
+        class="euiFlyout emotion-euiFlyout-fixed-s-m-noMaxWidth-overlay-right-right"
         data-autofocus="true"
         role="dialog"
         style="z-index: 1000;"
@@ -896,7 +896,7 @@ exports[`EuiFlyout props paddingSize s is rendered 1`] = `
 
 exports[`EuiFlyout props push flyouts renders 1`] = `
 <div
-  class="euiFlyout emotion-euiFlyout-l-m-noMaxWidth-push-right-noAnimation-right"
+  class="euiFlyout emotion-euiFlyout-fixed-l-m-noMaxWidth-push-right-noAnimation-right"
   data-test-subj="flyout"
   style="z-index: 1000;"
 >
@@ -935,7 +935,7 @@ exports[`EuiFlyout props sides left is rendered 1`] = `
       <div
         aria-describedby="generated-id"
         aria-modal="true"
-        class="euiFlyout emotion-euiFlyout-l-m-noMaxWidth-overlay-left-left"
+        class="euiFlyout emotion-euiFlyout-fixed-l-m-noMaxWidth-overlay-left-left"
         data-autofocus="true"
         role="dialog"
         style="z-index: 1000;"
@@ -991,7 +991,7 @@ exports[`EuiFlyout props sides right is rendered 1`] = `
       <div
         aria-describedby="generated-id"
         aria-modal="true"
-        class="euiFlyout emotion-euiFlyout-l-m-noMaxWidth-overlay-right-right"
+        class="euiFlyout emotion-euiFlyout-fixed-l-m-noMaxWidth-overlay-right-right"
         data-autofocus="true"
         role="dialog"
         style="z-index: 1000;"
@@ -1048,7 +1048,7 @@ exports[`EuiFlyout props size accepts custom number 1`] = `
       <div
         aria-describedby="generated-id"
         aria-modal="true"
-        class="euiFlyout emotion-euiFlyout-l-noMaxWidth-overlay-right-right"
+        class="euiFlyout emotion-euiFlyout-fixed-l-noMaxWidth-overlay-right-right"
         data-autofocus="true"
         role="dialog"
         style="inline-size: 500px; z-index: 1000;"
@@ -1105,7 +1105,7 @@ exports[`EuiFlyout props size fill is rendered 1`] = `
       <div
         aria-describedby="generated-id"
         aria-modal="true"
-        class="euiFlyout emotion-euiFlyout-l-fill-noMaxWidth-overlay-right-right"
+        class="euiFlyout emotion-euiFlyout-fixed-l-fill-noMaxWidth-overlay-right-right"
         data-autofocus="true"
         role="dialog"
         style="z-index: 1000;"
@@ -1162,7 +1162,7 @@ exports[`EuiFlyout props size l is rendered 1`] = `
       <div
         aria-describedby="generated-id"
         aria-modal="true"
-        class="euiFlyout emotion-euiFlyout-l-l-noMaxWidth-overlay-right-right"
+        class="euiFlyout emotion-euiFlyout-fixed-l-l-noMaxWidth-overlay-right-right"
         data-autofocus="true"
         role="dialog"
         style="z-index: 1000;"
@@ -1219,7 +1219,7 @@ exports[`EuiFlyout props size m is rendered 1`] = `
       <div
         aria-describedby="generated-id"
         aria-modal="true"
-        class="euiFlyout emotion-euiFlyout-l-m-noMaxWidth-overlay-right-right"
+        class="euiFlyout emotion-euiFlyout-fixed-l-m-noMaxWidth-overlay-right-right"
         data-autofocus="true"
         role="dialog"
         style="z-index: 1000;"
@@ -1276,7 +1276,7 @@ exports[`EuiFlyout props size s is rendered 1`] = `
       <div
         aria-describedby="generated-id"
         aria-modal="true"
-        class="euiFlyout emotion-euiFlyout-l-s-noMaxWidth-overlay-right-right"
+        class="euiFlyout emotion-euiFlyout-fixed-l-s-noMaxWidth-overlay-right-right"
         data-autofocus="true"
         role="dialog"
         style="z-index: 1000;"
@@ -1338,7 +1338,7 @@ exports[`EuiFlyout renders extra screen reader instructions when fixed EuiHeader
         aria-describedby="generated-id"
         aria-label="aria-label"
         aria-modal="true"
-        class="euiFlyout testClass1 testClass2 emotion-euiFlyout-l-m-noMaxWidth-overlay-right-right-euiTestCss"
+        class="euiFlyout testClass1 testClass2 emotion-euiFlyout-fixed-l-m-noMaxWidth-overlay-right-right-euiTestCss"
         data-autofocus="true"
         data-test-subj="test subject string"
         role="dialog"

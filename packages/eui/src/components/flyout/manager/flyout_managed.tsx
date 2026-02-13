@@ -27,6 +27,7 @@ import { EuiFlyoutMenuContext } from '../flyout_menu_context';
 import type { EuiFlyoutCloseEvent } from '../types';
 import { useFlyoutActivityStage } from './activity_stage';
 import {
+  LAYOUT_MODE_SIDE_BY_SIDE,
   LEVEL_CHILD,
   LEVEL_MAIN,
   PROPERTY_FLYOUT,
@@ -35,15 +36,8 @@ import {
 } from './const';
 import { EuiFlyoutIsManagedProvider } from './context';
 import { euiManagedFlyoutStyles } from './flyout_managed.styles';
-import {
-  useFlyoutManager as _useFlyoutManager,
-  useCurrentSession,
-  useFlyoutId,
-  useFlyoutLayoutMode,
-  useIsFlyoutActive,
-  useParentFlyoutSize,
-} from './hooks';
-import { useCurrentMainFlyout, useIsFlyoutRegistered } from './selectors';
+import { useFlyoutManager as _useFlyoutManager, useFlyoutId } from './hooks';
+import { useIsFlyoutRegistered } from './selectors';
 import type { EuiFlyoutLevel } from './types';
 import {
   createValidationErrorMessage,
@@ -86,6 +80,7 @@ export const EuiManagedFlyout = forwardRef<HTMLElement, EuiManagedFlyoutProps>(
       onActive: onActiveProp,
       level,
       size: sizeProp,
+      minWidth,
       css: customCss,
       flyoutMenuProps: _flyoutMenuProps,
       ...props
@@ -98,16 +93,41 @@ export const EuiManagedFlyout = forwardRef<HTMLElement, EuiManagedFlyoutProps>(
     const refs = useMemo(() => [setFlyoutRef, ref], [ref]);
     const combinedRef = useCombinedRefs(refs);
 
+    // Performance: read context once and derive session/flyout values inline
     const {
       addFlyout,
       closeFlyout,
       setFlyoutWidth,
       goBack,
       historyItems: _historyItems,
+      state: managerState,
     } = useFlyoutManager();
-    const parentSize = useParentFlyoutSize(flyoutId);
-    const parentFlyout = useCurrentMainFlyout();
-    const layoutMode = useFlyoutLayoutMode();
+
+    const managerSessions = managerState?.sessions;
+    const currentSession = managerSessions
+      ? managerSessions[managerSessions.length - 1] ?? null
+      : null;
+    const layoutMode = managerState?.layoutMode ?? LAYOUT_MODE_SIDE_BY_SIDE;
+    const isActive =
+      currentSession?.mainFlyoutId === flyoutId ||
+      currentSession?.childFlyoutId === flyoutId;
+
+    // Derive parentFlyout and parentSize from single state read
+    const parentFlyoutId = currentSession?.mainFlyoutId;
+    const parentFlyout = parentFlyoutId
+      ? managerState?.flyouts.find((f) => f.flyoutId === parentFlyoutId) ?? null
+      : null;
+
+    // parentSize: the size of the parent (main) flyout for a child flyout
+    const session =
+      managerState?.sessions.find(
+        (s) => s.mainFlyoutId === flyoutId || s.childFlyoutId === flyoutId
+      ) ?? null;
+    const parentSize = session?.mainFlyoutId
+      ? managerState?.flyouts.find((f) => f.flyoutId === session.mainFlyoutId)
+          ?.size
+      : undefined;
+
     const styles = useEuiMemoizedStyles(euiManagedFlyoutStyles);
 
     // Set default size based on level: main defaults to 'm', child defaults to 's'
@@ -154,8 +174,6 @@ export const EuiManagedFlyout = forwardRef<HTMLElement, EuiManagedFlyoutProps>(
       title = defaultTitle;
     }
 
-    const isActive = useIsFlyoutActive(flyoutId);
-    const currentSession = useCurrentSession();
     const flyoutExistsInManager = useIsFlyoutRegistered(flyoutId);
 
     // Stabilize the onClose callback
@@ -188,7 +206,13 @@ export const EuiManagedFlyout = forwardRef<HTMLElement, EuiManagedFlyoutProps>(
     // Register with flyout manager context when open, remove when closed
     // Using useLayoutEffect to run synchronously before DOM updates
     useLayoutEffect(() => {
-      addFlyout(flyoutId, title!, level, size as string);
+      addFlyout(
+        flyoutId,
+        title!,
+        level,
+        size as string,
+        typeof minWidth === 'number' ? minWidth : undefined
+      );
 
       return () => {
         // Only call closeFlyout if it wasn't already called via onClose
@@ -200,7 +224,7 @@ export const EuiManagedFlyout = forwardRef<HTMLElement, EuiManagedFlyoutProps>(
         // Reset navigation tracking when explicitly closed via isOpen=false
         wasRegisteredRef.current = false;
       };
-    }, [flyoutId, title, level, size, addFlyout, closeFlyout]);
+    }, [flyoutId, title, level, size, minWidth, addFlyout, closeFlyout]);
 
     // Detect when flyout has been removed from manager state (e.g., via Back button)
     // and trigger onClose callback to notify the parent component
@@ -301,6 +325,7 @@ export const EuiManagedFlyout = forwardRef<HTMLElement, EuiManagedFlyoutProps>(
               ...props,
               onClose,
               size,
+              minWidth,
               flyoutMenuProps,
               onAnimationEnd,
               [PROPERTY_FLYOUT]: true,

@@ -16,7 +16,7 @@ exports[`EuiCollapsibleNav close button can be hidden 1`] = `
     <nav
       aria-describedby="generated-id"
       aria-modal="true"
-      class="euiFlyout euiCollapsibleNav emotion-euiFlyout-none-noMaxWidth-overlay-left-left-euiCollapsibleNav-overlay"
+      class="euiFlyout euiCollapsibleNav emotion-euiFlyout-fixed-none-noMaxWidth-overlay-left-left-euiCollapsibleNav-overlay"
       data-autofocus="true"
       id="id"
       role="dialog"
@@ -72,7 +72,7 @@ exports[`EuiCollapsibleNav is rendered 1`] = `
       aria-describedby="generated-id"
       aria-label="aria-label"
       aria-modal="true"
-      class="euiFlyout euiCollapsibleNav testClass1 testClass2 emotion-euiFlyout-none-noMaxWidth-overlay-left-left-euiCollapsibleNav-overlay-euiTestCss"
+      class="euiFlyout euiCollapsibleNav testClass1 testClass2 emotion-euiFlyout-fixed-none-noMaxWidth-overlay-left-left-euiCollapsibleNav-overlay-euiTestCss"
       data-autofocus="true"
       data-test-subj="test subject string"
       id="id"
@@ -123,7 +123,7 @@ exports[`EuiCollapsibleNav props accepts EuiFlyout props 1`] = `
     <nav
       aria-describedby="generated-id"
       aria-modal="true"
-      class="euiFlyout euiCollapsibleNav emotion-euiFlyout-none-noMaxWidth-overlay-left-left-euiCollapsibleNav-overlay"
+      class="euiFlyout euiCollapsibleNav emotion-euiFlyout-fixed-none-noMaxWidth-overlay-left-left-euiCollapsibleNav-overlay"
       data-autofocus="true"
       id="id"
       role="dialog"
@@ -181,7 +181,7 @@ exports[`EuiCollapsibleNav props button 1`] = `
     <nav
       aria-describedby="generated-id"
       aria-modal="true"
-      class="euiFlyout euiCollapsibleNav emotion-euiFlyout-none-noMaxWidth-overlay-left-left-euiCollapsibleNav-overlay"
+      class="euiFlyout euiCollapsibleNav emotion-euiFlyout-fixed-none-noMaxWidth-overlay-left-left-euiCollapsibleNav-overlay"
       data-autofocus="true"
       id="id"
       role="dialog"
@@ -234,7 +234,7 @@ exports[`EuiCollapsibleNav props dockedBreakpoint 1`] = `
     <nav
       aria-describedby="generated-id"
       aria-modal="true"
-      class="euiFlyout euiCollapsibleNav emotion-euiFlyout-none-noMaxWidth-overlay-left-left-euiCollapsibleNav-overlay"
+      class="euiFlyout euiCollapsibleNav emotion-euiFlyout-fixed-none-noMaxWidth-overlay-left-left-euiCollapsibleNav-overlay"
       data-autofocus="true"
       id="id"
       role="dialog"
@@ -282,7 +282,7 @@ exports[`EuiCollapsibleNav props isDocked 1`] = `
     data-focus-lock-disabled="disabled"
   >
     <nav
-      class="euiFlyout euiCollapsibleNav emotion-euiFlyout-none-noMaxWidth-push-left-noAnimation-left-euiCollapsibleNav-push"
+      class="euiFlyout euiCollapsibleNav emotion-euiFlyout-fixed-none-noMaxWidth-push-left-noAnimation-left-euiCollapsibleNav-push"
       id="id"
       style="inline-size: 320px; z-index: 1000;"
     />
@@ -311,7 +311,7 @@ exports[`EuiCollapsibleNav props onClose 1`] = `
     <nav
       aria-describedby="generated-id"
       aria-modal="true"
-      class="euiFlyout euiCollapsibleNav emotion-euiFlyout-none-noMaxWidth-overlay-left-left-euiCollapsibleNav-overlay"
+      class="euiFlyout euiCollapsibleNav emotion-euiFlyout-fixed-none-noMaxWidth-overlay-left-left-euiCollapsibleNav-overlay"
       data-autofocus="true"
       id="id"
       role="dialog"
@@ -364,7 +364,7 @@ exports[`EuiCollapsibleNav props showButtonIfDocked 1`] = `
     data-focus-lock-disabled="disabled"
   >
     <nav
-      class="euiFlyout euiCollapsibleNav emotion-euiFlyout-none-noMaxWidth-push-left-noAnimation-left-euiCollapsibleNav-push"
+      class="euiFlyout euiCollapsibleNav emotion-euiFlyout-fixed-none-noMaxWidth-push-left-noAnimation-left-euiCollapsibleNav-push"
       id="id"
       style="inline-size: 320px; z-index: 1000;"
     />
@@ -393,7 +393,7 @@ exports[`EuiCollapsibleNav props size 1`] = `
     <nav
       aria-describedby="generated-id"
       aria-modal="true"
-      class="euiFlyout euiCollapsibleNav emotion-euiFlyout-none-noMaxWidth-overlay-left-left-euiCollapsibleNav-overlay"
+      class="euiFlyout euiCollapsibleNav emotion-euiFlyout-fixed-none-noMaxWidth-overlay-left-left-euiCollapsibleNav-overlay"
       data-autofocus="true"
       id="id"
       role="dialog"
