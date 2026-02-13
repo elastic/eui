@@ -27,14 +27,20 @@ export const useApplyFlyoutLayoutMode = () => {
 
   // Read the container from manager state (set by flyout components when they
   // receive a container prop), falling back to componentDefaults (used when
-  // the container is configured globally, e.g. by Kibana).
+  // the container is configured globally, e.g. by Kibana). Resolve getter
+  // so defaults can supply () => HTMLElement | null to avoid race when the
+  // element is not yet in the DOM.
   const stateContainerElement = state?.containerElement;
-  const { container: defaultContainer } = usePropsWithComponentDefaults(
+  const { container: defaultContainerRaw } = usePropsWithComponentDefaults(
     'EuiFlyout',
     {} as {
-      container?: HTMLElement;
+      container?: HTMLElement | null | (() => HTMLElement | null);
     }
   );
+  const defaultContainer =
+    typeof defaultContainerRaw === 'function'
+      ? defaultContainerRaw()
+      : defaultContainerRaw;
   const container = stateContainerElement ?? defaultContainer ?? null;
 
   // Derive all session/flyout data from the single context read above

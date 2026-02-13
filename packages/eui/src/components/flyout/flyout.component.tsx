@@ -230,8 +230,12 @@ interface _EuiFlyoutComponentProps {
    * flyout's context — there is no need to pass it explicitly. To force a
    * child flyout into viewport mode (overriding the inherited container),
    * pass `container={null}`.
+   *
+   * A getter function `() => HTMLElement | null` can be passed (e.g. from
+   * component defaults) to avoid race conditions when the container element
+   * is not yet in the DOM when the default is read.
    */
-  container?: HTMLElement | null;
+  container?: HTMLElement | null | (() => HTMLElement | null);
 }
 
 const defaultElement = 'div';
@@ -298,9 +302,13 @@ export const EuiFlyoutComponent = forwardRef(
     // `undefined` means "not provided" — inherit from the parent context.
     // `null` means "explicitly no container" — use viewport mode, even if
     // a parent context provides a container.
+    // A getter function is resolved each render so the container is read when
+    // needed (avoids race when the element is not yet in the DOM).
     const parentContainer = useParentFlyoutContainer();
-    const container =
+    const containerRaw =
       containerProp !== undefined ? containerProp : parentContainer;
+    const container =
+      typeof containerRaw === 'function' ? containerRaw() : containerRaw;
 
     // If this flyout inherited its container from the parent context (rather
     // than setting it explicitly), the parent flyout already configured
@@ -358,6 +366,34 @@ export const EuiFlyoutComponent = forwardRef(
         container.style.containerType = prevContainerType;
       };
     }, [container, isContainerInherited]);
+
+    // Establish the container as the containing block for position: absolute flyouts
+    // so that main and child flyouts are positioned correctly within the app area
+    // (e.g. to the right of a sidebar). Skip when inherited — the parent already set it.
+    useLayoutEffect(() => {
+      if (!container || isContainerInherited) return;
+
+      const prevPosition = container.style.position;
+      container.style.position = 'relative';
+
+      return () => {
+        container.style.position = prevPosition;
+      };
+    }, [container, isContainerInherited]);
+
+    // Clip the container so the flyout's slide-in animation (translateX(100%))
+    // does not visibly overlap content to the right of the container (e.g. a sidebar).
+    // Only for overlay flyouts; push flyouts shift content and don't need this.
+    useLayoutEffect(() => {
+      if (!container || isContainerInherited || isPushed) return;
+
+      const prevOverflowX = container.style.overflowX;
+      container.style.overflowX = 'hidden';
+
+      return () => {
+        container.style.overflowX = prevOverflowX;
+      };
+    }, [container, isContainerInherited, isPushed]);
 
     // Prevent unwanted horizontal scrolling on the container during the
     // flyout's slide-in animation. When a non-push (overlay) flyout mounts
