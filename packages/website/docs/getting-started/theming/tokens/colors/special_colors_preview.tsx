@@ -9,13 +9,11 @@ export const SpecialColorsPreview = () => {
     <div
       css={css`
         padding: ${euiTheme.size.s};
-        background: ${euiTheme.colors.plainDark};
-        color: ${euiTheme.colors.textGhost};
+        color: ${euiTheme.colors.textDisabled};
+        background-color: ${euiTheme.colors.disabled};
       `}
     >
-      <strong>
-        This is disabled text on disabled background.
-      </strong>
+      <strong>This is disabled text on disabled background.</strong>
     </div>
   );
 };
