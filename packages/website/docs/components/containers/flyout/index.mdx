@@ -1013,6 +1013,40 @@ import ResizableFlyout from './_flyout_resizable.mdx';
 
 <ResizableFlyout />
 
+### Container-relative positioning
+
+By default, flyouts use `position: fixed` and are positioned relative to the viewport. The optional `container` prop allows you to scope a flyout to a specific region of the page instead. When a `container` element is provided, the flyout uses `position: absolute` and is portaled into and positioned within that container.
+
+This is useful when flyouts should not overlap application chrome such as side navigation or toolbars. For example, in Kibana the default container is the application content area so that flyouts stay within the app region.
+
+```tsx
+const [containerEl, setContainerEl] = useState<HTMLElement | null>(null);
+
+<main ref={setContainerEl} style={{ position: 'relative' }}>
+  {isFlyoutVisible && (
+    <EuiFlyout container={containerEl} onClose={closeFlyout}>
+      {/* ... */}
+    </EuiFlyout>
+  )}
+</main>
+```
+
+The container element **must** have `position: relative` (or `absolute` / `fixed`) for the flyout to be positioned correctly.
+
+#### Container queries and layout containment
+
+When `container` is provided, `EuiFlyout` automatically sets `container-type: inline-size` on the container element. This enables CSS container queries for responsive breakpoints scoped to the container's width rather than the viewport.
+
+:::warning `container-type` establishes layout containment
+Setting `container-type: inline-size` changes the containing block for any `position: fixed` descendants inside the container — they will be positioned relative to the container instead of the viewport. Ensure the container does not contain elements that rely on `position: fixed` viewport-level positioning.
+
+Elements portaled to `document.body` (such as tooltips, popovers, and toasts) are **not** affected, since they live outside the container.
+:::
+
+#### Child flyout inheritance
+
+Child flyouts automatically inherit the `container` from the parent flyout's context. There is no need to pass the prop explicitly to child flyouts. To force a child flyout into viewport mode (overriding an inherited container), pass `container={null}`.
+
 ```mdx-code-block
 import { EuiBetaBadge } from '@elastic/eui';
 ```
