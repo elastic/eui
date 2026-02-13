@@ -104,12 +104,13 @@ describe('EuiFlyoutResizable', () => {
       cy.get('.euiFlyout').should('have.css', 'inline-size', '750px');
     });
 
-    it('does not allow the flyout to be resized past the window width', () => {
+    it('does not allow the flyout to be resized past 90% of the reference width', () => {
       cy.mount(<EuiFlyoutResizable onClose={onClose} size={800} />);
       cy.get('[data-test-subj="euiResizableButton"]')
         .trigger('mousedown', { clientX: 400 })
         .trigger('mousemove', { clientX: -100 });
-      cy.get('.euiFlyout').should('have.css', 'inline-size', '1180px');
+      // Viewport is 1200px; max resize = 90% = 1080px
+      cy.get('.euiFlyout').should('have.css', 'inline-size', '1080px');
     });
 
     it('does not allow the flyout to be resized past the max width', () => {

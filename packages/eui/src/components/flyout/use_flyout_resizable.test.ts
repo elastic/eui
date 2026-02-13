@@ -17,6 +17,7 @@ describe('useEuiFlyoutResizable', () => {
     onResize: jest.fn(),
     side: 'right' as const,
     size: '50vw',
+    referenceWidth: 1200,
   };
 
   // Mock DOM element with offsetWidth
@@ -79,8 +80,9 @@ describe('useEuiFlyoutResizable', () => {
     });
 
     // Wait for the useEffect to run and measure the width
+    // 600px / 1200px referenceWidth = 50%
     await waitFor(() => {
-      expect(result.current.size).toBe(600);
+      expect(result.current.size).toBe('50%');
     });
 
     // Now disable resizing with a different size
@@ -125,7 +127,7 @@ describe('useEuiFlyoutResizable', () => {
     expect(result.current.size).toBe(500);
   });
 
-  it('should return original size when enabled but not measured yet', () => {
+  it('should return percentage size when enabled with a numeric size', () => {
     const { result } = renderHook(() =>
       useEuiFlyoutResizable({
         ...mockProps,
@@ -134,7 +136,108 @@ describe('useEuiFlyoutResizable', () => {
       })
     );
 
-    // When enabled but no flyout width measured yet, should return original size
-    expect(result.current.size).toBe(400);
+    // When enabled with a numeric size, the hook clamps and converts to %
+    // 400 / 1200 (referenceWidth) * 100 = 33.33...%
+    expect(result.current.size).toBe(`${(400 / 1200) * 100}%`);
+  });
+
+  describe('resize clamping', () => {
+    it('should clamp solo flyout at 90% of referenceWidth', async () => {
+      // referenceWidth = 1200, 90% = 1080
+      const { result } = renderHook(() =>
+        useEuiFlyoutResizable({
+          ...mockProps,
+          enabled: true,
+          minWidth: 0,
+          maxWidth: undefined,
+          referenceWidth: 1200,
+          size: '50vw',
+        })
+      );
+
+      // Set a flyout ref that reports a very large offsetWidth (beyond 90%)
+      const mockElement = createMockElement(1100);
+      act(() => {
+        result.current.setFlyoutRef(mockElement);
+      });
+
+      // Should clamp to 90% of 1200 = 1080px, output as 1080/1200*100 = 90%
+      await waitFor(() => {
+        expect(result.current.size).toBe('90%');
+      });
+    });
+
+    it('should clamp flyout with sibling at 90% of referenceWidth minus siblingWidth', async () => {
+      // referenceWidth = 1200, siblingWidth = 300, max = 1200*0.9 - 300 = 780
+      const { result } = renderHook(() =>
+        useEuiFlyoutResizable({
+          ...mockProps,
+          enabled: true,
+          minWidth: 0,
+          maxWidth: undefined,
+          referenceWidth: 1200,
+          siblingFlyoutWidth: 300,
+          size: '50vw',
+        })
+      );
+
+      // Set a flyout ref that reports width beyond the limit
+      const mockElement = createMockElement(900);
+      act(() => {
+        result.current.setFlyoutRef(mockElement);
+      });
+
+      // Should clamp to 780px, output as 780/1200*100 = 65%
+      await waitFor(() => {
+        expect(result.current.size).toBe('65%');
+      });
+    });
+
+    it('should output size as percentage of referenceWidth', async () => {
+      const { result } = renderHook(() =>
+        useEuiFlyoutResizable({
+          ...mockProps,
+          enabled: true,
+          minWidth: 0,
+          maxWidth: undefined,
+          referenceWidth: 1000,
+          size: '50vw',
+        })
+      );
+
+      const mockElement = createMockElement(400);
+      act(() => {
+        result.current.setFlyoutRef(mockElement);
+      });
+
+      // 400 / 1000 * 100 = 40%
+      await waitFor(() => {
+        expect(result.current.size).toBe('40%');
+      });
+    });
+
+    it('should use window.innerWidth when referenceWidth is not provided', async () => {
+      // window.innerWidth is mocked to 1200 in beforeEach
+      const { result } = renderHook(() =>
+        useEuiFlyoutResizable({
+          ...mockProps,
+          enabled: true,
+          minWidth: 0,
+          maxWidth: undefined,
+          referenceWidth: undefined,
+          size: '50vw',
+        })
+      );
+
+      const mockElement = createMockElement(600);
+      act(() => {
+        result.current.setFlyoutRef(mockElement);
+      });
+
+      // 600 / 1200 (window.innerWidth) * 100 = 50%
+      await waitFor(() => {
+        expect(result.current.size).toBe('50%');
+      });
+    });
   });
 });
