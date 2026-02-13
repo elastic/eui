@@ -396,6 +396,8 @@ declare module '@elastic/eui-theme-borealis/lib/eui_theme_borealis_dark.json' {
     euiColorTextSubdued: string;
     euiColorTextDisabled: string;
     euiColorTextInverse: string;
+    euiColorTextGhost: string;
+    euiColorTextInk: string;
     euiColorBackgroundBasePrimary: string;
     euiColorBackgroundBaseAccent: string;
     euiColorBackgroundBaseAccentSecondary: string;
