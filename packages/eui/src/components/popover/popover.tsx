@@ -487,15 +487,25 @@ export class EuiPopover extends Component<Props, State> {
       this.onOpenPopover();
     }
 
+    // Update ARIA attrs on the toggle when open state changes
     if (this.button && prevProps.isOpen !== this.props.isOpen) {
       const toggleButton = this.getFocusableToggleButton();
-
       if (toggleButton) {
-        toggleButton.setAttribute(
-          'aria-expanded',
-          this.props.isOpen ? 'true' : 'false'
-        );
-        toggleButton.setAttribute('aria-controls', this.panelId);
+        const isButtonLike = () => {
+          const tag = toggleButton.tagName.toLowerCase();
+          const role = toggleButton.getAttribute('role')?.toLowerCase();
+          // Only apply ARIA when the trigger is a button (semantic or role="button").
+          // This avoids incorrectly adding expanded/controls on inputs or other non-button elements.
+          return tag === 'button' || role === 'button';
+        };
+
+        if (isButtonLike()) {
+          toggleButton.setAttribute(
+            'aria-expanded',
+            this.props.isOpen ? 'true' : 'false'
+          );
+          toggleButton.setAttribute('aria-controls', this.panelId);
+        }
       }
     }
 

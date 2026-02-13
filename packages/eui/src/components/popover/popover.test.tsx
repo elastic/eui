@@ -660,7 +660,7 @@ describe('EuiPopover', () => {
     beforeAll(() => jest.useFakeTimers());
     afterAll(() => jest.useRealTimers());
 
-    it('sets aria-expanded=true and aria-controls to the panel id when opening', async () => {
+    it('sets aria-expanded=true and aria-controls attrs for button trigger', async () => {
       const toggleButton = <button data-test-subj="toggleButton" />;
 
       const { rerender, getByTestSubject } = render(
@@ -728,6 +728,37 @@ describe('EuiPopover', () => {
       expect(btn.getAttribute('aria-controls')).toBe(
         'euiPopover_generated-id_panelId'
       );
+    });
+
+    it('sets NOT set aria-expanded=true and aria-controls attrs for input trigger', async () => {
+      const toggleButton = <input data-test-subj="triggerInput" />;
+
+      const { rerender, getByTestSubject } = render(
+        <EuiPopover
+          id={getId()}
+          isOpen={false}
+          button={toggleButton}
+          closePopover={() => {}}
+        />
+      );
+
+      // Open the popover
+      rerender(
+        <EuiPopover
+          id={getId()}
+          isOpen={true}
+          button={toggleButton}
+          closePopover={() => {}}
+        />
+      );
+
+      actAdvanceTimersByTime(openingTransitionTime);
+      await waitForEuiPopoverOpen();
+
+      const btn = getByTestSubject('triggerInput');
+
+      expect(btn).not.toHaveAttribute('aria-expanded');
+      expect(btn).not.toHaveAttribute('aria-controls');
     });
   });
 });
