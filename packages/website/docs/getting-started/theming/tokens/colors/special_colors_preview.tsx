@@ -9,7 +9,7 @@ export const SpecialColorsPreview = () => {
     <div
       css={css`
         padding: ${euiTheme.size.s};
-        color: ${euiTheme.colors.textDisabled};
+        color: ${euiTheme.colors.disabledText};
         background-color: ${euiTheme.colors.disabled};
       `}
     >
