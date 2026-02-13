@@ -29,7 +29,7 @@ export const euiCollapsibleNavGroupStyles = ({ euiTheme }: UseEuiTheme) => {
       .euiCollapsibleNavGroup__title,
       .euiCollapsibleNavGroup__heading,
       .euiAccordion__arrow {
-        color: ${euiTheme.colors.ghost};
+        color: ${euiTheme.colors.textGhost};
       }
     `,
     // Header padding

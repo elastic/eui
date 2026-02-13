@@ -111,7 +111,7 @@ const CONTENT_DATA = [
 
 const getStyles = ({ euiTheme, colorMode }: UseEuiTheme) => ({
   section: css`
-    --svg-fill-white: ${euiTheme.colors.ghost};
+    --svg-fill-white: ${euiTheme.colors.plainLight};
     --svg-fill-background: ${euiTheme.colors.body};
     --svg-fill-lightestShade: ${euiTheme.colors.lightestShade};
     --svg-fill-lightShade: ${euiTheme.colors.lightShade};

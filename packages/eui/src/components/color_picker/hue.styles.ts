@@ -96,8 +96,8 @@ export const euiHueStyles = (euiThemeContext: UseEuiTheme) => {
             box-shadow: ${thumbBoxShadow};
           `,
           preferred: `
-            background-color: ${euiTheme.colors.ghost};
-            border: ${thumbBorder} solid ${euiTheme.colors.ink};
+            background-color: ${euiTheme.colors.plainLight};
+            border: ${thumbBorder} solid ${euiTheme.colors.plainDark};
             box-shadow: none;
           `,
         })}
@@ -119,7 +119,7 @@ export const euiHueStyles = (euiThemeContext: UseEuiTheme) => {
         preferred: `
           &:focus {
             ${euiRangeThumbPerBrowser(`
-              outline: ${euiTheme.border.width.thin} solid ${euiTheme.colors.ink};
+              outline: ${euiTheme.border.width.thin} solid ${euiTheme.colors.plainDark};
               outline-offset: 0;
             `)}
           }

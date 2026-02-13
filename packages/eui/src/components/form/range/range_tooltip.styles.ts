@@ -55,7 +55,7 @@ export const euiRangeTooltipValueStyles = (euiThemeContext: UseEuiTheme) => {
       transform: translateY(-50%);
 
       ${euiFontSize(euiThemeContext, 's')}
-      color: ${euiTheme.colors.ghost};
+      color: ${euiTheme.colors.textGhost};
       background-color: ${toolTipBackgroundColor};
       border: ${euiTheme.border.width.thin} solid ${borderColor};
       border-radius: ${euiTheme.border.radius.small};
