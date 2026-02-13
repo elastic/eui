@@ -636,12 +636,20 @@ export const EuiFlyoutComponent = forwardRef(
      * This class doesn't actually do anything by EUI, but is nice to add for consumers (JIC)
      */
     useEffect(() => {
+      if (process.env.NODE_ENV === 'development') {
+        // eslint-disable-next-line no-console
+        console.log('[EuiFlyout] mount', { id });
+      }
       document.body.classList.add('euiBody--hasFlyout');
       return () => {
+        if (process.env.NODE_ENV === 'development') {
+          // eslint-disable-next-line no-console
+          console.log('[EuiFlyout] unmount', { id });
+        }
         // Remove the hasFlyout class when the flyout is unmounted
         document.body.classList.remove('euiBody--hasFlyout');
       };
-    }, []);
+    }, [id]);
 
     const hasChildFlyout = currentSession?.childFlyoutId != null;
     const isChildFlyout =
@@ -669,6 +677,17 @@ export const EuiFlyoutComponent = forwardRef(
       return false;
     }, [isInManagedContext, hasChildFlyout, isChildFlyout]);
 
+    const handleClose = useCallback(
+      (event: EuiFlyoutCloseEvent) => {
+        if (process.env.NODE_ENV === 'development') {
+          // eslint-disable-next-line no-console
+          console.log('[EuiFlyout] close', { id, reason: event?.type || 'unknown' });
+        }
+        onClose(event);
+      },
+      [onClose, id]
+    );
+
     /**
      * ESC key closes flyout based on flyout hierarchy rules
      */
@@ -676,10 +695,10 @@ export const EuiFlyoutComponent = forwardRef(
       (event: KeyboardEvent) => {
         if (!isPushed && event.key === keys.ESCAPE && shouldCloseOnEscape) {
           event.preventDefault();
-          onClose(event);
+          handleClose(event);
         }
       },
-      [onClose, isPushed, shouldCloseOnEscape]
+      [handleClose, isPushed, shouldCloseOnEscape]
     );
 
     let managedFlyoutIndex = currentZIndexRef.current;
@@ -888,15 +907,15 @@ export const EuiFlyoutComponent = forwardRef(
         if (outsideClickCloses === false) return undefined;
         if (hasOverlayMask) {
           // The overlay mask is present, so only clicks on the mask should close the flyout, regardless of outsideClickCloses
-          if (event.target === maskRef.current) return onClose(event);
+          if (event.target === maskRef.current) return handleClose(event);
         } else {
           // No overlay mask is present, so any outside clicks should close the flyout
-          if (outsideClickCloses === true) return onClose(event);
+          if (outsideClickCloses === true) return handleClose(event);
         }
         // Otherwise if ownFocus is false and outsideClickCloses is undefined, outside clicks should not close the flyout
         return undefined;
       },
-      [onClose, hasOverlayMask, outsideClickCloses]
+      [handleClose, hasOverlayMask, outsideClickCloses]
     );
 
     const maskCombinedRefs = useCombinedRefs([_maskProps?.maskRef, maskRef]);
@@ -944,13 +963,19 @@ export const EuiFlyoutComponent = forwardRef(
             aria-describedby={!isPushed ? ariaDescribedBy : _ariaDescribedBy}
             aria-labelledby={ariaLabelledBy}
             data-autofocus={!isPushed || undefined}
-            onAnimationEnd={onAnimationEnd}
+            onAnimationEnd={(e) => {
+              if (process.env.NODE_ENV === 'development') {
+                // eslint-disable-next-line no-console
+                console.log('[EuiFlyout] animationEnd', { id });
+              }
+              onAnimationEnd?.(e);
+            }}
           >
             {!isPushed && screenReaderDescription}
             {!_flyoutMenuProps && !hideCloseButton && (
               <EuiFlyoutCloseButton
                 {...closeButtonProps}
-                onClose={onClose}
+                onClose={handleClose}
                 closeButtonPosition={closeButtonPosition}
                 side={side}
               />
