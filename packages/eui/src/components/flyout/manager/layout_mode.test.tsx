@@ -10,7 +10,7 @@ import React from 'react';
 import { renderHook } from '../../../test/rtl';
 import { render, act } from '@testing-library/react';
 import { useEuiTheme } from '../../../services';
-import { setLayoutMode } from './actions';
+import { setLayoutMode, setReferenceWidth } from './actions';
 import { useFlyoutManager } from './hooks';
 import { LAYOUT_MODE_SIDE_BY_SIDE, LAYOUT_MODE_STACKED } from './const';
 import {
@@ -26,6 +26,7 @@ jest.mock('../../../services', () => ({
 
 jest.mock('./actions', () => ({
   setLayoutMode: jest.fn(),
+  setReferenceWidth: jest.fn(),
 }));
 
 jest.mock('./hooks', () => ({
@@ -76,6 +77,7 @@ Object.defineProperty(window, 'cancelAnimationFrame', {
 
 const mockUseEuiTheme = useEuiTheme as jest.Mock;
 const mockSetLayoutMode = setLayoutMode as jest.Mock;
+const mockSetReferenceWidth = setReferenceWidth as jest.Mock;
 const mockUseFlyoutManager = useFlyoutManager as jest.Mock;
 
 const buildMockManagerState = ({
@@ -124,6 +126,11 @@ describe('layout_mode', () => {
       type: 'ACTION_SET_LAYOUT_MODE',
       layoutMode: LAYOUT_MODE_SIDE_BY_SIDE,
     });
+
+    mockSetReferenceWidth.mockImplementation((width: number) => ({
+      type: 'ACTION_SET_REFERENCE_WIDTH',
+      width,
+    }));
 
     mockUseFlyoutManager.mockReturnValue({
       state: buildMockManagerState(),
@@ -321,7 +328,8 @@ describe('layout_mode', () => {
 
       render(<TestComponent />);
 
-      expect(mockDispatch).not.toHaveBeenCalled();
+      // Layout mode should not change (already STACKED); setReferenceWidth may still be dispatched
+      expect(mockSetLayoutMode).not.toHaveBeenCalled();
     });
 
     it('switches to SIDE_BY_SIDE when no child flyout exists and currently in STACKED mode', () => {
@@ -519,8 +527,8 @@ describe('layout_mode', () => {
 
       render(<TestComponent />);
 
-      // Already in SIDE_BY_SIDE and no child exists - no action should dispatch
-      expect(mockDispatch).not.toHaveBeenCalled();
+      // Layout mode should not change; setReferenceWidth may still be dispatched
+      expect(mockSetLayoutMode).not.toHaveBeenCalled();
     });
 
     it('handles null context gracefully', () => {
@@ -878,8 +886,8 @@ describe('layout_mode', () => {
 
       render(<TestComponent />);
 
-      // Should not dispatch when already in correct layout mode
-      expect(mockDispatch).not.toHaveBeenCalled();
+      // Layout mode should not change; setReferenceWidth may still be dispatched
+      expect(mockSetLayoutMode).not.toHaveBeenCalled();
     });
 
     it('should handle fill flyout with no child', () => {

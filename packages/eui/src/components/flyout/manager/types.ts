@@ -76,6 +76,11 @@ export interface EuiFlyoutManagerState {
   unmanagedFlyouts: string[];
   /** The container element that flyouts are positioned relative to (if any). */
   containerElement?: HTMLElement | null;
+  /**
+   * Reference width used for layout and resize clamping (container or viewport).
+   * Set by the layout mode hook so flyouts use the same value for consistent clamping.
+   */
+  referenceWidth?: number;
 }
 
 /**

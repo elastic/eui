@@ -19,6 +19,7 @@ import {
   ACTION_ADD_UNMANAGED_FLYOUT,
   ACTION_CLOSE_UNMANAGED_FLYOUT,
   ACTION_SET_CONTAINER_ELEMENT,
+  ACTION_SET_REFERENCE_WIDTH,
   Action,
 } from './actions';
 import { LAYOUT_MODE_SIDE_BY_SIDE, LEVEL_MAIN, STAGE_OPENING } from './const';
@@ -332,6 +333,13 @@ export function flyoutManagerReducer(
         return state; // No-op if same element
       }
       return { ...state, containerElement: action.element };
+    }
+
+    case ACTION_SET_REFERENCE_WIDTH: {
+      if (state.referenceWidth === action.width) {
+        return state;
+      }
+      return { ...state, referenceWidth: action.width };
     }
 
     default:

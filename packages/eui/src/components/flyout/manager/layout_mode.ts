@@ -10,7 +10,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useEuiTheme } from '../../../services';
 import { usePropsWithComponentDefaults } from '../../provider/component_defaults';
 import { useResizeObserver } from '../../observer/resize_observer';
-import { setLayoutMode } from './actions';
+import { setLayoutMode, setReferenceWidth } from './actions';
 import { useFlyoutManager } from './hooks';
 import { LAYOUT_MODE_SIDE_BY_SIDE, LAYOUT_MODE_STACKED } from './const';
 import { EuiFlyoutLayoutMode } from './types';
@@ -217,6 +217,14 @@ export const useApplyFlyoutLayoutMode = () => {
       setMode(desiredLayoutMode);
     }
   }, [desiredLayoutMode, currentLayoutMode, setMode]);
+
+  // Store reference width in manager state when flyouts are open so the resize
+  // clamp uses the same value as layout mode, avoiding resize past the container.
+  useEffect(() => {
+    if (dispatch && hasFlyouts && Number.isFinite(referenceWidth)) {
+      dispatch(setReferenceWidth(referenceWidth));
+    }
+  }, [dispatch, hasFlyouts, referenceWidth]);
 };
 
 /**

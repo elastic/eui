@@ -40,6 +40,9 @@ export const ACTION_SET_PUSH_PADDING = `${PREFIX}/setPushPadding` as const;
 /** Dispatched to set the container element for container-relative flyouts. */
 export const ACTION_SET_CONTAINER_ELEMENT =
   `${PREFIX}/setContainerElement` as const;
+/** Dispatched to set the reference width used for layout and resize clamping. */
+export const ACTION_SET_REFERENCE_WIDTH =
+  `${PREFIX}/setReferenceWidth` as const;
 export const ACTION_ADD_UNMANAGED_FLYOUT =
   `${PREFIX}/addUnmanagedFlyout` as const;
 export const ACTION_CLOSE_UNMANAGED_FLYOUT =
@@ -124,6 +127,12 @@ export interface SetContainerElementAction extends BaseAction {
   element: HTMLElement | null;
 }
 
+/** Set the reference width for layout and resize clamping. */
+export interface SetReferenceWidthAction extends BaseAction {
+  type: typeof ACTION_SET_REFERENCE_WIDTH;
+  width: number;
+}
+
 /** Union of all flyout manager actions. */
 export type Action =
   | AddFlyoutAction
@@ -137,7 +146,8 @@ export type Action =
   | SetPushPaddingAction
   | AddUnmanagedFlyoutAction
   | CloseUnmanagedFlyoutAction
-  | SetContainerElementAction;
+  | SetContainerElementAction
+  | SetReferenceWidthAction;
 
 /**
  * Register a flyout with the manager.
@@ -245,4 +255,12 @@ export const setContainerElement = (
 ): SetContainerElementAction => ({
   type: ACTION_SET_CONTAINER_ELEMENT,
   element,
+});
+
+/** Set the reference width for layout and resize clamping. */
+export const setReferenceWidth = (
+  width: number
+): SetReferenceWidthAction => ({
+  type: ACTION_SET_REFERENCE_WIDTH,
+  width,
 });

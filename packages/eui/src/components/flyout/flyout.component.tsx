@@ -476,6 +476,22 @@ export const EuiFlyoutComponent = forwardRef(
     const containerReferenceWidth = container
       ? containerDimensions.width || container.clientWidth
       : undefined;
+    // Prefer the manager's reference width when available so resize clamp
+    // uses the same value as layout mode. When we have a container, cap by
+    // its measured width so we never allow resize past the container (e.g. if
+    // manager had viewport fallback or timing mismatch).
+    const managerRefWidth =
+      isInManagedContext &&
+      typeof managerState?.referenceWidth === 'number' &&
+      managerState.referenceWidth > 0
+        ? managerState.referenceWidth
+        : undefined;
+    const effectiveReferenceWidth =
+      containerReferenceWidth != null && containerReferenceWidth > 0
+        ? managerRefWidth != null
+          ? Math.min(managerRefWidth, containerReferenceWidth)
+          : containerReferenceWidth
+        : managerRefWidth ?? containerReferenceWidth;
 
     const {
       onMouseDown: onMouseDownResizableButton,
@@ -496,7 +512,7 @@ export const EuiFlyoutComponent = forwardRef(
       siblingFlyoutWidth: isSiblingFill
         ? siblingFlyoutMinWidth
         : siblingFlyoutWidth ?? undefined,
-      referenceWidth: containerReferenceWidth,
+      referenceWidth: effectiveReferenceWidth,
       onResize,
       side,
       size: _size,

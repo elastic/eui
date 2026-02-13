@@ -42,9 +42,16 @@ export const useEuiFlyoutResizable = ({
   side,
   size: _size,
 }: UseEuiFlyoutResizable) => {
+  // Use container width when provided. When referenceWidth is 0 (e.g. container
+  // not yet measured by ResizeObserver), do not fall back to viewport — that
+  // would allow resizing beyond the container (e.g. over a sidebar). Use 0 so
+  // the clamp keeps the flyout at minWidth until the real width is available.
   const _referenceWidth =
-    referenceWidth ||
-    (typeof window !== 'undefined' ? window.innerWidth : Infinity);
+    referenceWidth !== undefined
+      ? referenceWidth
+      : typeof window !== 'undefined'
+        ? window.innerWidth
+        : Infinity;
 
   const getFlyoutMinMaxWidth = useCallback(
     (width: number) => {
@@ -105,13 +112,20 @@ export const useEuiFlyoutResizable = ({
       // scale the pixel width proportionally to the reference width change
       // and then clamp. This preserves the flyout's percentage position in
       // both directions (viewport shrink AND grow).
-      const prevRefWidth = prevReferenceWidthRef.current || _referenceWidth;
+      const prevRefWidth = prevReferenceWidthRef.current ?? _referenceWidth;
       prevReferenceWidthRef.current = _referenceWidth;
 
       setFlyoutWidth((currentWidth) => {
-        if (currentWidth) {
+        if (currentWidth && prevRefWidth > 0 && _referenceWidth > 0) {
           const scaleFactor = _referenceWidth / prevRefWidth;
           return getFlyoutMinMaxWidth(currentWidth * scaleFactor);
+        }
+        // When reference width was 0 (e.g. container not yet measured), now
+        // that we have a real width, reset from the size prop instead of scaling.
+        if (_referenceWidth > 0) {
+          return typeof _size === 'number'
+            ? getFlyoutMinMaxWidth(_size)
+            : 0;
         }
         return currentWidth;
       });
@@ -219,7 +233,7 @@ export const useEuiFlyoutResizable = ({
   }, [onResize, callOnResize, flyoutWidth, enabled]);
 
   const size = useMemo(() => {
-    if (enabled && flyoutWidth) {
+    if (enabled && flyoutWidth && _referenceWidth > 0) {
       const pctValue = (flyoutWidth / _referenceWidth) * 100;
       return `${pctValue}%`;
     }
