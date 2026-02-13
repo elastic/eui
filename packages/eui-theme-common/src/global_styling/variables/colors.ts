@@ -79,6 +79,7 @@ export type _EuiThemeBrandTextColors = {
   textWarning: ColorModeSwitch;
   textRisk: ColorModeSwitch;
   textDanger: ColorModeSwitch;
+  textAssistance: ColorModeSwitch;
 };
 
 export type _EuiThemeShadeColors = {

@@ -396,6 +396,7 @@ declare module '@elastic/eui-theme-borealis/lib/eui_theme_borealis_light.json' {
     euiColorTextWarning: string;
     euiColorTextRisk: string;
     euiColorTextDanger: string;
+    euiColorTextAssistance: string;
     euiColorTextParagraph: string;
     euiColorTextHeading: string;
     euiColorTextSubdued: string;

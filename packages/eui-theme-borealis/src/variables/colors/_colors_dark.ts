@@ -51,6 +51,7 @@ export const dark_brand_text_colors: _EuiThemeBrandTextColors = {
   textWarning: SEMANTIC_COLORS.warning30,
   textRisk: SEMANTIC_COLORS.risk50,
   textDanger: SEMANTIC_COLORS.danger60,
+  textAssistance: SEMANTIC_COLORS.assistance50,
 };
 
 export const dark_text_colors: _EuiThemeTextColors = {
