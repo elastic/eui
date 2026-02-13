@@ -54,7 +54,7 @@ exports[`KibanaCollapsibleNavSolution renders docked icons 1`] = `
 
 exports[`KibanaCollapsibleNavSolution renders docked icons: popover 1`] = `
 <div
-  aria-describedby="generated-id"
+  aria-describedby="euiPopover_generated-id_descriptionId"
   aria-label="Solution view"
   aria-live="off"
   aria-modal="true"
@@ -62,13 +62,14 @@ exports[`KibanaCollapsibleNavSolution renders docked icons: popover 1`] = `
   data-autofocus="true"
   data-popover-open="true"
   data-popover-panel="true"
+  id="euiPopover_generated-id_panelId"
   role="dialog"
   style="top: 0px; left: 12px; z-index: 2000;"
   tabindex="0"
 >
   <p
     class="emotion-euiScreenReaderOnly"
-    id="generated-id"
+    id="euiPopover_generated-id_descriptionId"
   >
     You are in a dialog. Press Escape, or tap/click outside the dialog to close.
   </p>
@@ -176,7 +177,7 @@ exports[`KibanaCollapsibleNavSolution renders with a solution switcher 1`] = `
 
 exports[`KibanaCollapsibleNavSolution renders with a solution switcher: popover 1`] = `
 <div
-  aria-describedby="generated-id"
+  aria-describedby="euiPopover_generated-id_descriptionId"
   aria-label="Solution view"
   aria-live="off"
   aria-modal="true"
@@ -184,13 +185,14 @@ exports[`KibanaCollapsibleNavSolution renders with a solution switcher: popover 
   data-autofocus="true"
   data-popover-open="true"
   data-popover-panel="true"
+  id="euiPopover_generated-id_panelId"
   role="dialog"
   style="top: 2px; left: 0px; z-index: 2000; inline-size: 0px;"
   tabindex="0"
 >
   <p
     class="emotion-euiScreenReaderOnly"
-    id="generated-id"
+    id="euiPopover_generated-id_descriptionId"
   >
     You are in a dialog. Press Escape, or tap/click outside the dialog to close.
   </p>

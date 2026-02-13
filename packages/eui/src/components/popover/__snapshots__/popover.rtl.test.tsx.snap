@@ -35,7 +35,7 @@ exports[`EuiPopover snapshot testing renders with popover contents 1`] = `
       data-focus-lock-disabled="disabled"
     >
       <div
-        aria-describedby="generated-id"
+        aria-describedby="euiPopover_generated-id_descriptionId"
         aria-label="aria-label"
         aria-live="off"
         aria-modal="true"
@@ -43,13 +43,14 @@ exports[`EuiPopover snapshot testing renders with popover contents 1`] = `
         data-autofocus="true"
         data-popover-open="true"
         data-popover-panel="true"
+        id="euiPopover_generated-id_panelId"
         role="dialog"
         style="top: 12px; left: 0px; will-change: transform, opacity; z-index: 2000;"
         tabindex="0"
       >
         <p
           class="emotion-euiScreenReaderOnly"
-          id="generated-id"
+          id="euiPopover_generated-id_descriptionId"
         >
           You are in a dialog. Press Escape, or tap/click outside the dialog to close.
         </p>

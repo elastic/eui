@@ -312,6 +312,8 @@ exports[`EuiColorPalettePicker more props are propagated to each option 1`] = `
           style="--euiFormControlRightIconsCount: 1;"
         >
           <button
+            aria-controls="euiPopover_generated-id_panelId"
+            aria-expanded="true"
             aria-haspopup="listbox"
             class="euiSuperSelectControl emotion-euiSuperSelect__control-open"
             data-test-subj="colorPalettePicker"
@@ -380,6 +382,7 @@ exports[`EuiColorPalettePicker more props are propagated to each option 1`] = `
         aria-modal="true"
         class="euiPanel euiPanel--plain euiPopover__panel emotion-euiPanel-grow-m-plain-euiPopover__panel-light-isAttached-bottom"
         data-popover-panel="true"
+        id="euiPopover_generated-id_panelId"
         role="dialog"
         style="top: 2px; left: 0px; will-change: transform, opacity; z-index: 2000; inline-size: 0px;"
       >
