@@ -17,6 +17,11 @@ export interface EuiFlyoutOverlayProps extends PropsWithChildren {
   maskProps: EuiFlyoutComponentProps['maskProps'];
   isPushed: boolean;
   maskZIndex: number;
+  /**
+   * Optional container element for the portal to mount into.
+   * When provided, the flyout is portaled into this element instead of `document.body`.
+   */
+  container?: HTMLElement;
 }
 
 const getEuiFlyoutOverlayStyles = (zIndex: number) => {
@@ -45,6 +50,7 @@ export const EuiFlyoutOverlay = ({
   maskProps,
   hasOverlayMask,
   maskZIndex,
+  container,
 }: EuiFlyoutOverlayProps) => {
   const styles = useMemo(
     () => getEuiFlyoutOverlayStyles(maskZIndex),
@@ -54,7 +60,7 @@ export const EuiFlyoutOverlay = ({
   let content = children;
 
   if (!isPushed || hasOverlayMask) {
-    content = <EuiPortal>{content}</EuiPortal>;
+    content = <EuiPortal container={container}>{content}</EuiPortal>;
   }
 
   const classes = cx(maskProps?.className, styles);

@@ -22,6 +22,7 @@ import {
   goToFlyout as goToFlyoutAction,
   addUnmanagedFlyout as addUnmanagedFlyoutAction,
   closeUnmanagedFlyout as closeUnmanagedFlyoutAction,
+  setContainerElement as setContainerElementAction,
 } from './actions';
 import { flyoutManagerReducer, initialState } from './reducer';
 
@@ -47,12 +48,14 @@ export interface FlyoutManagerStore {
     flyoutId: string,
     title: string,
     level?: EuiFlyoutLevel,
-    size?: string
+    size?: string,
+    minWidth?: number
   ) => void;
   closeFlyout: (flyoutId: string) => void;
   setActiveFlyout: (flyoutId: string | null) => void;
   setFlyoutWidth: (flyoutId: string, width: number) => void;
   setPushPadding: (side: 'left' | 'right', width: number) => void;
+  setContainerElement: (element: HTMLElement | null) => void;
   goBack: () => void;
   goToFlyout: (flyoutId: string) => void;
   addUnmanagedFlyout: (flyoutId: string) => void;
@@ -149,14 +152,16 @@ function createStore(
     subscribe,
     subscribeToEvents,
     dispatch,
-    addFlyout: (flyoutId, title, level, size) =>
-      dispatch(addFlyoutAction(flyoutId, title, level, size)),
+    addFlyout: (flyoutId, title, level, size, minWidth) =>
+      dispatch(addFlyoutAction(flyoutId, title, level, size, minWidth)),
     closeFlyout: (flyoutId) => dispatch(closeFlyoutAction(flyoutId)),
     setActiveFlyout: (flyoutId) => dispatch(setActiveFlyoutAction(flyoutId)),
     setFlyoutWidth: (flyoutId, width) =>
       dispatch(setFlyoutWidthAction(flyoutId, width)),
     setPushPadding: (side, width) =>
       dispatch(setPushPaddingAction(side, width)),
+    setContainerElement: (element) =>
+      dispatch(setContainerElementAction(element)),
     goBack: () => dispatch(goBackAction()),
     goToFlyout: (flyoutId) => dispatch(goToFlyoutAction(flyoutId)),
     addUnmanagedFlyout: (flyoutId) =>

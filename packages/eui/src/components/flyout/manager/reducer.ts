@@ -18,6 +18,7 @@ import {
   ACTION_SET_PUSH_PADDING,
   ACTION_ADD_UNMANAGED_FLYOUT,
   ACTION_CLOSE_UNMANAGED_FLYOUT,
+  ACTION_SET_CONTAINER_ELEMENT,
   Action,
 } from './actions';
 import { LAYOUT_MODE_SIDE_BY_SIDE, LEVEL_MAIN, STAGE_OPENING } from './const';
@@ -85,7 +86,7 @@ export function flyoutManagerReducer(
     // - For a `child` flyout, attach it to the most recent session; if no
     //   session exists, do nothing (invalid child without a parent).
     case ACTION_ADD: {
-      const { flyoutId, title, level, size } = action;
+      const { flyoutId, title, level, size, minWidth } = action;
 
       // Ignore duplicate registrations
       if (state.flyouts.some((f) => f.flyoutId === flyoutId)) {
@@ -96,6 +97,7 @@ export function flyoutManagerReducer(
         level,
         flyoutId,
         size,
+        minWidth,
         activityStage: STAGE_OPENING,
       };
       const newFlyouts: EuiManagedFlyoutState[] = [
@@ -322,6 +324,14 @@ export function flyoutManagerReducer(
           [side]: width,
         },
       };
+    }
+
+    // Store the container element for container-relative layout calculations.
+    case ACTION_SET_CONTAINER_ELEMENT: {
+      if (state.containerElement === action.element) {
+        return state; // No-op if same element
+      }
+      return { ...state, containerElement: action.element };
     }
 
     default:

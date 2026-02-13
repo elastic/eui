@@ -37,6 +37,9 @@ export const ACTION_GO_BACK = `${PREFIX}/goBack` as const;
 export const ACTION_GO_TO_FLYOUT = `${PREFIX}/goToFlyout` as const;
 /** Dispatched to set push padding offset for a side. */
 export const ACTION_SET_PUSH_PADDING = `${PREFIX}/setPushPadding` as const;
+/** Dispatched to set the container element for container-relative flyouts. */
+export const ACTION_SET_CONTAINER_ELEMENT =
+  `${PREFIX}/setContainerElement` as const;
 export const ACTION_ADD_UNMANAGED_FLYOUT =
   `${PREFIX}/addUnmanagedFlyout` as const;
 export const ACTION_CLOSE_UNMANAGED_FLYOUT =
@@ -52,6 +55,7 @@ export interface AddFlyoutAction extends BaseAction {
   title: string;
   level: EuiFlyoutLevel;
   size?: string;
+  minWidth?: number;
 }
 
 /** Remove a flyout from manager state. Also updates the active session. */
@@ -114,6 +118,12 @@ export interface CloseUnmanagedFlyoutAction extends BaseAction {
   flyoutId: string;
 }
 
+/** Set the container element for container-relative positioning. */
+export interface SetContainerElementAction extends BaseAction {
+  type: typeof ACTION_SET_CONTAINER_ELEMENT;
+  element: HTMLElement | null;
+}
+
 /** Union of all flyout manager actions. */
 export type Action =
   | AddFlyoutAction
@@ -126,7 +136,8 @@ export type Action =
   | GoToFlyoutAction
   | SetPushPaddingAction
   | AddUnmanagedFlyoutAction
-  | CloseUnmanagedFlyoutAction;
+  | CloseUnmanagedFlyoutAction
+  | SetContainerElementAction;
 
 /**
  * Register a flyout with the manager.
@@ -138,13 +149,15 @@ export const addFlyout = (
   flyoutId: string,
   title: string,
   level: EuiFlyoutLevel = LEVEL_MAIN,
-  size?: string
+  size?: string,
+  minWidth?: number
 ): AddFlyoutAction => ({
   type: ACTION_ADD,
   flyoutId,
   title,
   level,
   size,
+  minWidth,
 });
 
 /** Unregister a flyout and update the session accordingly. */
@@ -224,4 +237,12 @@ export const closeUnmanagedFlyout = (
 ): CloseUnmanagedFlyoutAction => ({
   type: ACTION_CLOSE_UNMANAGED_FLYOUT,
   flyoutId,
+});
+
+/** Set the container element for container-relative flyout positioning. */
+export const setContainerElement = (
+  element: HTMLElement | null
+): SetContainerElementAction => ({
+  type: ACTION_SET_CONTAINER_ELEMENT,
+  element,
 });
