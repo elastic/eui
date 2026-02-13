@@ -296,6 +296,8 @@ export type _EuiThemeVisColors = {
   euiColorVis7: string;
   euiColorVis8: string;
   euiColorVis9: string;
+  euiColorVis10: string;
+  euiColorVis11: string;
 
   /** @deprecated - temp token; used only during theme migration */
   euiColorVisBehindText0: string;
@@ -317,6 +319,10 @@ export type _EuiThemeVisColors = {
   euiColorVisBehindText8: string;
   /** @deprecated - temp token; used only during theme migration */
   euiColorVisBehindText9: string;
+  /** @deprecated - temp token; used only during theme migration */
+  euiColorVisBehindText10: string;
+  /** @deprecated - temp token; used only during theme migration */
+  euiColorVisBehindText11: string;
 
   euiColorVisText0: string;
   euiColorVisText1: string;
@@ -339,6 +345,7 @@ export type _EuiThemeVisColors = {
   euiColorVisRisk1: string;
   euiColorVisDanger0: string;
   euiColorVisDanger1: string;
+  euiColorVisAssistance: string;
 
   euiColorVisBase0: string;
 

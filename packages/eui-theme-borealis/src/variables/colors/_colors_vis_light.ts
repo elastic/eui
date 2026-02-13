@@ -45,6 +45,12 @@ const euiPaletteColorBlind = {
   euiColorVis9: {
     graphic: SEMANTIC_COLORS.warning30,
   },
+  euiColorVis10: {
+    graphic: PRIMITIVE_COLORS.purple60,
+  },
+  euiColorVis11: {
+    graphic: PRIMITIVE_COLORS.purple30,
+  },
 };
 
 export const colorVisLight: _EuiThemeVisColors = {
@@ -58,6 +64,8 @@ export const colorVisLight: _EuiThemeVisColors = {
   euiColorVis7: euiPaletteColorBlind.euiColorVis7.graphic,
   euiColorVis8: euiPaletteColorBlind.euiColorVis8.graphic,
   euiColorVis9: euiPaletteColorBlind.euiColorVis9.graphic,
+  euiColorVis10: euiPaletteColorBlind.euiColorVis10.graphic,
+  euiColorVis11: euiPaletteColorBlind.euiColorVis11.graphic,
 
   euiColorVisBehindText0: euiPaletteColorBlind.euiColorVis0.graphic,
   euiColorVisBehindText1: euiPaletteColorBlind.euiColorVis1.graphic,
@@ -69,6 +77,8 @@ export const colorVisLight: _EuiThemeVisColors = {
   euiColorVisBehindText7: euiPaletteColorBlind.euiColorVis7.graphic,
   euiColorVisBehindText8: euiPaletteColorBlind.euiColorVis8.graphic,
   euiColorVisBehindText9: euiPaletteColorBlind.euiColorVis9.graphic,
+  euiColorVisBehindText10: euiPaletteColorBlind.euiColorVis10.graphic,
+  euiColorVisBehindText11: euiPaletteColorBlind.euiColorVis11.graphic,
 
   euiColorVisText0: SEMANTIC_COLORS.accentSecondary110,
   euiColorVisText1: SEMANTIC_COLORS.accentSecondary100,
@@ -91,6 +101,7 @@ export const colorVisLight: _EuiThemeVisColors = {
   euiColorVisRisk1: SEMANTIC_COLORS.risk30,
   euiColorVisDanger0: SEMANTIC_COLORS.danger60,
   euiColorVisDanger1: SEMANTIC_COLORS.danger30,
+  euiColorVisAssistance: SEMANTIC_COLORS.assistance60,
 
   euiColorVisBase0: PRIMITIVE_COLORS.mutedGrey10,
 
