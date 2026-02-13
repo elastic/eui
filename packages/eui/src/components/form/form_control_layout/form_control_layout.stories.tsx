@@ -256,7 +256,11 @@ export const FormControlButtonKitchensink: Story = {
 };
 
 export const AppendPrepend: Story = {
-  tags: ['vrt-only'],
+  parameters: {
+    controls: {
+      include: ['isDisabled', 'isInvalid', 'isLoading', 'readOnly'],
+    },
+  },
   render: function Render(args) {
     const isDesktop = useIsWithinMinBreakpoint('xl');
 
@@ -265,6 +269,7 @@ export const AppendPrepend: Story = {
 
       const commonProps = {
         ...args,
+        disabled: args.isDisabled ?? false,
         compressed: compressed ?? args.compressed,
       };
 
@@ -442,7 +447,7 @@ export const AppendPrepend: Story = {
   },
 };
 
-export const AppendPrependAPIKitchensink: Story = {
+export const AppendPrependAPIKitchenSink: Story = {
   tags: ['vrt-only'],
   parameters: {
     codeSnippet: {
