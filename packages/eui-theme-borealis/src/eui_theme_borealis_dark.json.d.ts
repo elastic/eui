@@ -450,6 +450,7 @@ declare module '@elastic/eui-theme-borealis/lib/eui_theme_borealis_dark.json' {
     euiColorBorderBaseWarning: string;
     euiColorBorderBaseRisk: string;
     euiColorBorderBaseDanger: string;
+    euiColorBorderBaseAssistance: string;
     euiColorBorderBasePlain: string;
     euiColorBorderBaseSubdued: string;
     euiColorBorderBaseProminent: string;
@@ -467,6 +468,7 @@ declare module '@elastic/eui-theme-borealis/lib/eui_theme_borealis_dark.json' {
     euiColorBorderStrongWarning: string;
     euiColorBorderStrongRisk: string;
     euiColorBorderStrongDanger: string;
+    euiColorBorderStrongAssistance: string;
     euiColorBorderStrongText: string;
   };
   export default sassVariables;

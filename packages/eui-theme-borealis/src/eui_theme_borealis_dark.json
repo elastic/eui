@@ -449,6 +449,7 @@
   "euiColorBorderBaseWarning": "#513910",
   "euiColorBorderBaseRisk": "#5E281A",
   "euiColorBorderBaseDanger": "#5E2129",
+  "euiColorBorderBaseAssistance": "#3E2C63",
   "euiColorBorderBasePlain": "#485975",
   "euiColorBorderBaseSubdued": "#2B394F",
   "euiColorBorderBaseProminent": "#6A7FA0",
@@ -466,5 +467,6 @@
   "euiColorBorderStrongWarning": "#FACB3D",
   "euiColorBorderStrongRisk": "#FC8544",
   "euiColorBorderStrongDanger": "#F6726A",
+  "euiColorBorderStrongAssistance": "#B386F9",
   "euiColorBorderStrongText": "#8E9FBC"
 }

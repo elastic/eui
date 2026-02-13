@@ -258,6 +258,7 @@ export type _EuiThemeBorderColors = {
   borderBaseWarning: ColorModeSwitch;
   borderBaseRisk: ColorModeSwitch;
   borderBaseDanger: ColorModeSwitch;
+  borderBaseAssistance: ColorModeSwitch;
 
   borderBasePlain: ColorModeSwitch;
   borderBaseSubdued: ColorModeSwitch;
@@ -283,6 +284,7 @@ export type _EuiThemeBorderColors = {
   borderStrongWarning: ColorModeSwitch;
   borderStrongRisk: ColorModeSwitch;
   borderStrongDanger: ColorModeSwitch;
+  borderStrongAssistance: ColorModeSwitch;
   borderStrongText: ColorModeSwitch;
 };
 

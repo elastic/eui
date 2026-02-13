@@ -159,6 +159,7 @@ export const dark_border_colors: _EuiThemeBorderColors = {
   borderBaseWarning: SEMANTIC_COLORS.warning120,
   borderBaseRisk: SEMANTIC_COLORS.risk120,
   borderBaseDanger: SEMANTIC_COLORS.danger120,
+  borderBaseAssistance: SEMANTIC_COLORS.assistance120,
 
   borderBasePlain: SEMANTIC_COLORS.shade100,
   borderBaseSubdued: SEMANTIC_COLORS.shade120,
@@ -180,6 +181,7 @@ export const dark_border_colors: _EuiThemeBorderColors = {
   borderStrongWarning: SEMANTIC_COLORS.warning40,
   borderStrongRisk: SEMANTIC_COLORS.risk50,
   borderStrongDanger: SEMANTIC_COLORS.danger60,
+  borderStrongAssistance: SEMANTIC_COLORS.assistance60,
   borderStrongText: SEMANTIC_COLORS.shade60,
 };
 
