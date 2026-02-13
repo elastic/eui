@@ -88,9 +88,11 @@ export const euiFlyoutSlideOutLeft = keyframes`
  *   visible during page scroll. Media queries drive responsive breakpoints.
  *
  * - **Container mode** (`position: absolute`): Used when a `container` element
- *   is provided. The flyout is positioned within the container, which must have
- *   `position: relative` and `container-type: inline-size`. Container queries
- *   drive responsive breakpoints scoped to the container's width.
+ *   is provided. The flyout is portaled into the container and uses it for both
+ *   width and position: right-side flyouts align to the container's right edge,
+ *   not the viewport. The container receives `position: relative` and
+ *   `container-type: inline-size`. Container queries drive responsive breakpoints
+ *   scoped to the container's width.
  *
  * Both modes use `%` for width values. For `position: fixed` elements, `%`
  * resolves against the viewport (identical to `vw`). For `position: absolute`

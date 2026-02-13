@@ -310,24 +310,6 @@ export const EuiFlyoutComponent = forwardRef(
     const container =
       typeof containerRaw === 'function' ? containerRaw() : containerRaw;
 
-    if (process.env.NODE_ENV === 'development' && id) {
-      const containerSource =
-        containerProp === undefined
-          ? 'inherited'
-          : typeof containerRaw === 'function'
-            ? 'getter'
-            : 'prop';
-      // eslint-disable-next-line no-console
-      console.log('[EuiFlyout resize debug] container resolution', {
-        id,
-        containerSource,
-        containerNull: container == null,
-        containerTag: container?.tagName,
-        containerId: container?.id ?? undefined,
-        hasExplicitContainer: container != null,
-      });
-    }
-
     // If this flyout inherited its container from the parent context (rather
     // than setting it explicitly), the parent flyout already configured
     // container-type, scroll reset, and reported the container to the

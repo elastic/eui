@@ -24,7 +24,9 @@ export interface EuiFlyoutOverlayProps extends PropsWithChildren {
   headerZindexLocation?: 'above' | 'below';
   /**
    * Optional container element for the portal to mount into.
-   * When provided, the flyout is portaled into this element instead of `document.body`.
+   * When provided, the flyout is portaled into this element instead of `document.body`,
+   * so it uses the container for both width and position (e.g. right-side flyouts
+   * align to the container's right edge).
    */
   container?: HTMLElement;
 }
