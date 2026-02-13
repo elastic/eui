@@ -2,7 +2,7 @@
 
 exports[`EuiFormAppend is rendered 1`] = `
 <div
-  class="css-yp07d4-wrapper"
+  class="css-vmqubl-wrapper"
 >
   <div
     aria-label="aria-label"
@@ -20,7 +20,7 @@ exports[`EuiFormAppend is rendered 1`] = `
 
 exports[`EuiFormAppendPrepend is rendered 1`] = `
 <div
-  class="css-yp07d4-wrapper"
+  class="css-vmqubl-wrapper"
 >
   <div
     aria-label="aria-label"
@@ -38,7 +38,7 @@ exports[`EuiFormAppendPrepend is rendered 1`] = `
 
 exports[`EuiFormPrepend is rendered 1`] = `
 <div
-  class="css-yp07d4-wrapper"
+  class="css-vmqubl-wrapper"
 >
   <div
     aria-label="aria-label"

@@ -64,6 +64,7 @@ export const euiFormAppendPrependStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     wrapper: css`
       position: relative;
+      max-inline-size: 100%;
 
       &:has(${appendPrepend}:focus-visible) {
         &::after {

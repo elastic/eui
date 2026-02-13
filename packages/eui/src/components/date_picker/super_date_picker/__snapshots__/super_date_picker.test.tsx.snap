@@ -15,7 +15,7 @@ exports[`EuiSuperDatePicker props accepts data-test-subj and passes to EuiFormCo
         class="euiPopover emotion-euiPopover-inline-block"
       >
         <div
-          class="css-yp07d4-wrapper"
+          class="css-vmqubl-wrapper"
         >
           <button
             aria-label="Date quick select"
@@ -96,7 +96,7 @@ exports[`EuiSuperDatePicker props compressed is rendered 1`] = `
         class="euiPopover emotion-euiPopover-inline-block"
       >
         <div
-          class="css-yp07d4-wrapper"
+          class="css-vmqubl-wrapper"
         >
           <button
             aria-label="Date quick select"
@@ -177,7 +177,7 @@ exports[`EuiSuperDatePicker props isAutoRefreshOnly is rendered 1`] = `
         class="euiFormControlLayout__prepend emotion-euiFormControlLayout__side-readOnly"
       >
         <div
-          class="css-yp07d4-wrapper"
+          class="css-vmqubl-wrapper"
         >
           <button
             class="euiFormPrepend euiFormControlLayout__prepend css-a31npo-side-uncompressed-empty-primary-isInteractive"
@@ -226,7 +226,7 @@ exports[`EuiSuperDatePicker props isAutoRefreshOnly passes required props 1`] = 
         class="euiFormControlLayout__prepend emotion-euiFormControlLayout__side-disabled-readOnly"
       >
         <div
-          class="css-yp07d4-wrapper"
+          class="css-vmqubl-wrapper"
         >
           <button
             class="euiFormPrepend euiFormControlLayout__prepend css-rq5qm0-side-uncompressed-disabled"
@@ -295,7 +295,7 @@ exports[`EuiSuperDatePicker props isDisabled true 1`] = `
         class="euiPopover emotion-euiPopover-inline-block"
       >
         <div
-          class="css-yp07d4-wrapper"
+          class="css-vmqubl-wrapper"
         >
           <button
             aria-label="Date quick select"
@@ -379,7 +379,7 @@ exports[`EuiSuperDatePicker props isQuickSelectOnly is rendered 1`] = `
         class="euiPopover emotion-euiPopover-inline-block"
       >
         <div
-          class="css-yp07d4-wrapper"
+          class="css-vmqubl-wrapper"
         >
           <button
             aria-label="Date quick select"
@@ -439,7 +439,7 @@ exports[`EuiSuperDatePicker props showUpdateButton can be false 1`] = `
         class="euiPopover emotion-euiPopover-inline-block"
       >
         <div
-          class="css-yp07d4-wrapper"
+          class="css-vmqubl-wrapper"
         >
           <button
             aria-label="Date quick select"
@@ -499,7 +499,7 @@ exports[`EuiSuperDatePicker props showUpdateButton can be iconOnly 1`] = `
         class="euiPopover emotion-euiPopover-inline-block"
       >
         <div
-          class="css-yp07d4-wrapper"
+          class="css-vmqubl-wrapper"
         >
           <button
             aria-label="Date quick select"
@@ -583,7 +583,7 @@ exports[`EuiSuperDatePicker props width can be auto 1`] = `
         class="euiPopover emotion-euiPopover-inline-block"
       >
         <div
-          class="css-yp07d4-wrapper"
+          class="css-vmqubl-wrapper"
         >
           <button
             aria-label="Date quick select"
@@ -664,7 +664,7 @@ exports[`EuiSuperDatePicker props width can be full 1`] = `
         class="euiPopover emotion-euiPopover-inline-block"
       >
         <div
-          class="css-yp07d4-wrapper"
+          class="css-vmqubl-wrapper"
         >
           <button
             aria-label="Date quick select"
@@ -746,7 +746,7 @@ exports[`EuiSuperDatePicker renders 1`] = `
         class="euiPopover emotion-euiPopover-inline-block"
       >
         <div
-          class="css-yp07d4-wrapper"
+          class="css-vmqubl-wrapper"
         >
           <button
             aria-label="Date quick select"
@@ -831,7 +831,7 @@ exports[`EuiSuperDatePicker renders an EuiDatePickerRange 1`] = `
           class="euiPopover emotion-euiPopover-inline-block"
         >
           <div
-            class="css-yp07d4-wrapper"
+            class="css-vmqubl-wrapper"
           >
             <button
               aria-label="Date quick select"

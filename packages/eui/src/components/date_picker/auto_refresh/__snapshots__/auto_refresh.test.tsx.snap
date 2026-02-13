@@ -11,7 +11,7 @@ exports[`EuiAutoRefresh is rendered 1`] = `
       class="euiFormControlLayout__prepend emotion-euiFormControlLayout__side-readOnly"
     >
       <div
-        class="css-yp07d4-wrapper"
+        class="css-vmqubl-wrapper"
       >
         <button
           class="euiFormPrepend euiFormControlLayout__prepend css-a31npo-side-uncompressed-empty-primary-isInteractive"
@@ -56,7 +56,7 @@ exports[`EuiAutoRefresh isPaused is false 1`] = `
       class="euiFormControlLayout__prepend emotion-euiFormControlLayout__side-readOnly"
     >
       <div
-        class="css-yp07d4-wrapper"
+        class="css-vmqubl-wrapper"
       >
         <button
           class="euiFormPrepend euiFormControlLayout__prepend css-a31npo-side-uncompressed-empty-primary-isInteractive"
@@ -100,7 +100,7 @@ exports[`EuiAutoRefresh refreshInterval is rendered 1`] = `
       class="euiFormControlLayout__prepend emotion-euiFormControlLayout__side-readOnly"
     >
       <div
-        class="css-yp07d4-wrapper"
+        class="css-vmqubl-wrapper"
       >
         <button
           class="euiFormPrepend euiFormControlLayout__prepend css-a31npo-side-uncompressed-empty-primary-isInteractive"
