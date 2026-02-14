@@ -93,6 +93,15 @@ export type EuiComponentDefaultsProviderProps = PropsWithChildren & {
 export const EuiComponentDefaultsProvider: FunctionComponent<
   EuiComponentDefaultsProviderProps
 > = ({ componentDefaults = emptyDefaults, children }) => {
+  if (process.env.NODE_ENV === 'development') {
+    const flyoutDefaults = (componentDefaults as EuiComponentDefaults).EuiFlyout;
+    // eslint-disable-next-line no-console
+    console.log('[EuiComponentDefaultsProvider] value being set to context', {
+      hasEuiFlyout: Boolean(flyoutDefaults),
+      EuiFlyoutKeys: flyoutDefaults ? Object.keys(flyoutDefaults) : [],
+      EuiFlyoutContainer: flyoutDefaults?.container,
+    });
+  }
   return (
     <EuiComponentDefaultsContext.Provider value={componentDefaults}>
       {children}
@@ -124,6 +133,10 @@ export const usePropsWithComponentDefaults = <
     if (process.env.NODE_ENV === 'development') {
       // eslint-disable-next-line no-console
       console.log('[EUI] usePropsWithComponentDefaults', componentName, componentDefaults);
+      if (componentName === 'EuiFlyout') {
+        // eslint-disable-next-line no-console
+        console.log('[EUI] usePropsWithComponentDefaults EuiFlyout: raw context.EuiFlyout', (context as EuiComponentDefaults).EuiFlyout);
+      }
     }
     const merged = { ...componentDefaults, ...props };
     // Restore defaults for keys where the prop was explicitly undefined (don't let undefined overwrite)
