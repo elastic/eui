@@ -72,6 +72,12 @@ export type EuiComponentDefaults = {
 // Declaring as a static const for reference integrity/reducing rerenders
 const emptyDefaults = {};
 
+// Signal for Kibana's kbn-ui-shared-deps: when this module is loaded, the latest EUI sync is in use.
+if (typeof console !== 'undefined' && process.env.NODE_ENV === 'development') {
+  // eslint-disable-next-line no-console
+  console.log('[EUI] kbn-ui-shared-deps: latest EUI code loaded (component-defaults)');
+}
+
 /*
  * Context
  */
@@ -101,7 +107,8 @@ export const useComponentDefaults = () => {
   return useContext(EuiComponentDefaultsContext);
 };
 
-// Merge individual component props with component defaults
+// Merge individual component props with component defaults.
+// Props with value `undefined` do not overwrite defaults (so "not passed" keeps the default).
 export const usePropsWithComponentDefaults = <
   TComponentName extends keyof EuiComponentDefaults,
   TComponentProps
@@ -113,13 +120,21 @@ export const usePropsWithComponentDefaults = <
 
   const componentDefaults = context[componentName] ?? emptyDefaults;
 
-  return useMemo(
-    () => ({
-      ...componentDefaults,
-      ...props,
-    }),
-    [componentDefaults, props]
-  );
+  return useMemo(() => {
+    if (process.env.NODE_ENV === 'development') {
+      // eslint-disable-next-line no-console
+      console.log('[EUI] usePropsWithComponentDefaults', componentName, componentDefaults);
+    }
+    const merged = { ...componentDefaults, ...props };
+    // Restore defaults for keys where the prop was explicitly undefined (don't let undefined overwrite)
+    const defaultsKeys = Object.keys(componentDefaults) as (keyof TComponentProps)[];
+    for (const key of defaultsKeys) {
+      if (props[key as keyof TComponentProps] === undefined && componentDefaults[key as keyof typeof componentDefaults] !== undefined) {
+        (merged as Record<string, unknown>)[key as string] = componentDefaults[key as keyof typeof componentDefaults];
+      }
+    }
+    return merged as TComponentProps;
+  }, [componentDefaults, props]);
 };
 
 /*
