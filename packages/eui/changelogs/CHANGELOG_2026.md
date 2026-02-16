@@ -1,3 +1,34 @@
+## [`v113.0.0`](https://github.com/elastic/eui/releases/v113.0.0)
+
+- Updated `EuiFlyout` manager to close all flyouts when a parent flyout is closed. ([#9378](https://github.com/elastic/eui/pull/9378))
+- Added `textInk` and `textGhost` color tokens for text and icon colors that should always remain dark or light regardless of color mode. ([#9379](https://github.com/elastic/eui/pull/9379))
+- Added `EuiFormAppend` and `EuiFormPrepend` components ([#9014](https://github.com/elastic/eui/pull/9014))
+- Added support for `type="span"` on `EuiFormLabel` for visual-only form labels ([#9014](https://github.com/elastic/eui/pull/9014))
+- Updated `EuiFormLabel` to render a `span` if no `htmlFor` is passed ([#9014](https://github.com/elastic/eui/pull/9014))
+- Updated `EuiFormControlLayout` to use `EuiFormAppend` and `EuiFormPrepend` ([#9014](https://github.com/elastic/eui/pull/9014))
+- Updated `EuiAutoRefresh` and `EuiColorPicker` to use `EuiFormPrepend` ([#9014](https://github.com/elastic/eui/pull/9014))
+- Updated `EuiFormAppend`/`EuiFormPrepend` styling ([#9305](https://github.com/elastic/eui/pull/9305))
+- Updated `EuiFormAppend`/`EuiFormPrepend` to inherit `isDisabled` state from `EuiFormControlLayout` ([#9305](https://github.com/elastic/eui/pull/9305))
+- Updated `EuiFormControlLayout` hover, disabled and readonly styling ([#9305](https://github.com/elastic/eui/pull/9305))
+- Updated `EuiFormControlButton` to inherit `isDisabled`, `readOnly` and `isInvalid` states from `EuiFormControlLayout` ([#9305](https://github.com/elastic/eui/pull/9305))
+- Added `iconSide` prop on `EuiDatePickerRange` ([#9305](https://github.com/elastic/eui/pull/9305))
+- Updated `EuiSuperDatePicker` valid state styling ([#9305](https://github.com/elastic/eui/pull/9305))
+- Removed background color transition on `EuiButtonEmpty` (other button variants don't have a transition anymore either) ([#9305](https://github.com/elastic/eui/pull/9305))
+- Added `isLoading` prop on `EuiFormControlButton` ([#9328](https://github.com/elastic/eui/pull/9328))
+- Updated paddings for `EuiButton`, `EuiButtonEmpty`, `EuiFilterButton` ([#8948](https://github.com/elastic/eui/pull/8948))
+- Updated paddings for `append`/`prepend` on `EuiFormControlLayout` ([#8948](https://github.com/elastic/eui/pull/8948))
+- Added optional `scrollContainerRef` prop to `EuiFlyoutBody` for accessing the flyout's internal scroll container. ([#9373](https://github.com/elastic/eui/pull/9373))
+
+**Bug fixes**
+
+- Updated `EuiColorPicker` to ensure `id` is correctly passed onto the internal `EuiFormControlLayout` ([#9014](https://github.com/elastic/eui/pull/9014))
+
+**Breaking changes**
+
+- Removed `ink` and `ghost` theme tokens. Use `textInk` / `textGhost` for text and icon colors or `plainDark` /`plainLight` for non-text use cases. ([#9379](https://github.com/elastic/eui/pull/9379))
+- Updated `EuiQuickSelectPopover` in `EuiSuperDatePicker` to use `EuiFormPrepend`. This results in more restricted `buttonProps` as they reflect `EuiFormPrepend` instead of generic `EuiButtonEmpty` props. ([#9014](https://github.com/elastic/eui/pull/9014))
+- Removed `components.superDatePickerBackgroundSuccees` token ([#9305](https://github.com/elastic/eui/pull/9305))
+
 ## [`v112.3.0`](https://github.com/elastic/eui/releases/v112.3.0)
 
 - Added new `server` icon. ([#9355](https://github.com/elastic/eui/pull/9355))
