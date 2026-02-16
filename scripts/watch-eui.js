@@ -27,7 +27,7 @@ const KIBANA_ROOT = args['kibana-dir']
   : // fallback to a sibling directory
     path.resolve(EUI_ROOT, '../kibana');
 const DEBOUNCE_TIME = 300;
-const RESTART_DELAY = 100;
+const RESTART_DELAY = 500;
 const SHUTDOWN_TIMEOUT = 1000;
 
 let workspaceMap;
