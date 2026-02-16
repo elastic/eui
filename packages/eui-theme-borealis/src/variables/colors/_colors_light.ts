@@ -100,6 +100,7 @@ export const background_colors: _EuiThemeBackgroundColors = {
   backgroundBaseFormsControlDisabled: SEMANTIC_COLORS.shade30,
 
   backgroundBaseInteractiveHover: SEMANTIC_COLORS.primary100Alpha4,
+  backgroundBaseInteractiveHoverAssistance: SEMANTIC_COLORS.assistance20,
   backgroundBaseInteractiveSelect: SEMANTIC_COLORS.primary10,
   backgroundBaseInteractiveSelectHover: SEMANTIC_COLORS.primary20,
   backgroundBaseInteractiveOverlay: SEMANTIC_COLORS.shade100Alpha70,

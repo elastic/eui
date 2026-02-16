@@ -31,6 +31,7 @@ export type _EuiThemeButtonColors = {
   backgroundWarningHover: ColorModeSwitch;
   backgroundRiskHover: ColorModeSwitch;
   backgroundDangerHover: ColorModeSwitch;
+  backgroundAssistanceHover: ColorModeSwitch;
   backgroundTextHover: ColorModeSwitch;
 
   backgroundPrimaryActive: ColorModeSwitch;
@@ -62,6 +63,7 @@ export type _EuiThemeButtonColors = {
   backgroundFilledWarningHover: ColorModeSwitch;
   backgroundFilledRiskHover: ColorModeSwitch;
   backgroundFilledDangerHover: ColorModeSwitch;
+  backgroundFilledAssistanceHover: ColorModeSwitch;
   backgroundFilledTextHover: ColorModeSwitch;
 
   backgroundFilledPrimaryActive: ColorModeSwitch;

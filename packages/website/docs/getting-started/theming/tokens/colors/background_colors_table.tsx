@@ -73,6 +73,10 @@ export const BackgroundColorsTable = () => {
           token: 'colors.backgroundBaseInteractiveHover',
         },
         {
+          value: euiTheme.colors.backgroundBaseInteractiveHoverAssistance,
+          token: 'colors.backgroundBaseInteractiveHoverAssistance',
+        },
+        {
           value: euiTheme.colors.backgroundBaseInteractiveSelect,
           token: 'colors.backgroundBaseInteractiveSelect',
         },

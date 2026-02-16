@@ -195,6 +195,7 @@ export type _EuiThemeBackgroundColors = {
   backgroundBaseFormsPrepend: ColorModeSwitch;
   backgroundBaseFormsControlDisabled: ColorModeSwitch;
   backgroundBaseInteractiveHover: ColorModeSwitch;
+  backgroundBaseInteractiveHoverAssistance: ColorModeSwitch;
   backgroundBaseInteractiveSelect: ColorModeSwitch;
   backgroundBaseInteractiveSelectHover: ColorModeSwitch;
   backgroundBaseInteractiveOverlay: ColorModeSwitch;
