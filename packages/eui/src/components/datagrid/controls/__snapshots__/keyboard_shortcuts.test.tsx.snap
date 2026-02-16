@@ -15,6 +15,8 @@ exports[`useDataGridKeyboardShortcuts [React 17] returns a popover containing a 
           id="generated-id-wrapper"
         >
           <button
+            aria-controls="euiPopover_generated-id_panelId"
+            aria-expanded="true"
             aria-label="Keyboard shortcuts"
             class="euiButtonIcon emotion-euiButtonIcon-xs-empty-text"
             data-test-subj="dataGridKeyboardShortcutsButton"
