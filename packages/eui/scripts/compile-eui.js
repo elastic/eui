@@ -254,6 +254,8 @@ async function compileBundle() {
     });
 
     for (const dir of destinationDirs) {
+      await fs.mkdir(dir, { recursive: true });
+
       const relativeDir = path.relative(packageRootDir, dir);
 
       dtsGenerator({
