@@ -30,7 +30,11 @@ export const Playground: Story = {
   render: ({ ...args }) => (
     <EuiFilterGroup {...args}>
       <EuiFilterButton isToggle>Toggle Filter</EuiFilterButton>
-      <EuiFilterButton numFilters={5} hasActiveFilters iconType="chevronSingleDown">
+      <EuiFilterButton
+        numFilters={5}
+        hasActiveFilters
+        iconType="chevronSingleDown"
+      >
         Selection Filter
       </EuiFilterButton>
     </EuiFilterGroup>

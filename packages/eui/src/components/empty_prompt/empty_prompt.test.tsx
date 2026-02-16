@@ -34,7 +34,9 @@ describe('EuiEmptyPrompt', () => {
   describe('props', () => {
     describe('iconType', () => {
       test('renders alone', () => {
-        const { container } = render(<EuiEmptyPrompt iconType="chevronSingleUp" />);
+        const { container } = render(
+          <EuiEmptyPrompt iconType="chevronSingleUp" />
+        );
         expect(container.firstChild).toMatchSnapshot();
       });
 
