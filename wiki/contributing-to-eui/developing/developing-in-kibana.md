@@ -54,36 +54,36 @@ In the **EUI** repository root, run:
 
 ```bash
 # Watch all packages and sync to Kibana
-yarn serve --kibana
+yarn watch --kibana
 # Shortcut:
-yarn serve -k
+yarn watch -k
 ```
 
 or if you want to watch a specific EUI package run:
 
 ```bash
 # Watch only @elastic/eui
-yarn serve --kibana --package @elastic/eui
+yarn watch --kibana --package @elastic/eui
 # Shortcuts:
-yarn serve -k -p @elastic/eui
+yarn watch -k -p @elastic/eui
 
 # Watch only @elastic/eui-theme-borealis
-yarn serve --kibana --package @elastic/eui-theme-borealis
+yarn watch --kibana --package @elastic/eui-theme-borealis
 # Shortcuts:
-yarn serve -k -p @elastic/eui-theme-borealis
+yarn watch -k -p @elastic/eui-theme-borealis
 
 # Watch only @elastic/eui-theme-common
-yarn serve --kibana --package @elastic/eui-theme-common
+yarn watch --kibana --package @elastic/eui-theme-common
 # Shortcuts:
-yarn serve -k -p @elastic/eui-theme-common
+yarn watch -k -p @elastic/eui-theme-common
 ```
 
 If your Kibana directory is located elsewhere, you can configure the directory path:
 
 ```bash
-yarn serve --kibana-dir=/path/to/kibana
+yarn watch --kibana-dir=/path/to/kibana
 # Shortcut:
-yarn serve -d /path/to/kibana
+yarn watch -d /path/to/kibana
 ```
 
 These commands will:
@@ -112,7 +112,7 @@ The integration relies on a chain of file watchers and build triggers to propaga
 flowchart TD
     %% EUI
     subgraph EUI [EUI repository]
-        Change([Source change]) --> |Watch| Script(serve-eui.js)
+        Change([Source change]) --> |Watch| Script(watch-eui.js)
         Script --> |Build| Artifacts(Artifacts)
     end
 
@@ -142,5 +142,5 @@ The process involves two builds (EUI build + Kibana DLL build) and an Optimizer 
 To make the EUI build process faster, you can omit generating type declaration file:
 
 ```bash
-yarn serve --no-declarations
+yarn watch --no-declarations
 ```
