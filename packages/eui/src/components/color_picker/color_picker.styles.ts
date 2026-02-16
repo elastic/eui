@@ -46,8 +46,8 @@ export const euiColorPickerStyles = (euiThemeContext: UseEuiTheme) => {
         padding-inline: ${euiTheme.size.xs};
       }
 
-      .euiFormControlLayout__append {
-        padding-inline: ${euiTheme.size.xxs} !important;
+      .euiFormAppend {
+        padding-inline: 0 !important;
       }
 
       & > .euiFormControlLayout {

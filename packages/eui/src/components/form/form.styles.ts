@@ -65,6 +65,7 @@ export const euiFormVariables = (euiThemeContext: UseEuiTheme) => {
     backgroundColor: backgroundColor,
     backgroundDisabledColor: euiTheme.components.forms.backgroundDisabled,
     backgroundReadOnlyColor: euiTheme.components.forms.backgroundReadOnly,
+    backgroundAutoFilled: euiTheme.components.forms.backgroundAutofilled,
     borderColor: highContrastMode
       ? euiTheme.border.color
       : euiTheme.components.forms.border,
@@ -72,6 +73,8 @@ export const euiFormVariables = (euiThemeContext: UseEuiTheme) => {
     borderFocused: euiTheme.components.forms.borderFocused,
     borderInvalid: euiTheme.components.forms.borderInvalid,
     borderInvalidHovered: euiTheme.components.forms.borderInvalidHovered,
+    borderAutofilled: euiTheme.components.forms.borderAutofilled,
+    borderAutofilledHovered: euiTheme.components.forms.borderAutofilledHovered,
     controlDisabledColor: euiTheme.components.forms.controlBackgroundDisabled,
     controlBoxShadow: '0 0 transparent',
     controlPlaceholderText: highContrastMode
@@ -80,6 +83,7 @@ export const euiFormVariables = (euiThemeContext: UseEuiTheme) => {
         )
       : euiTheme.components.forms.colorDisabled,
     appendPrependBackground: euiTheme.components.forms.prependBackground,
+    labelColor: euiTheme.colors.textHeading,
   };
 
   const controlLayout = {
@@ -89,6 +93,11 @@ export const euiFormVariables = (euiThemeContext: UseEuiTheme) => {
       (x) => x - 2
     ),
     controlLayoutGroupInputCompressedBorderRadius: euiTheme.border.radius.small,
+    controlLayoutBorderRadius: euiTheme.border.radius.small,
+    controlLayoutInnerBorderRadius: mathWithUnits(
+      euiTheme.border.radius.small,
+      (x) => x / 2
+    ),
   };
 
   const iconSizes = {
@@ -157,7 +166,6 @@ export const euiFormControlStyles = (euiThemeContext: UseEuiTheme) => {
         none: 'box-shadow: none;',
         preferred: 'border: none;',
       })}
-      border-radius: inherit;
     `,
 
     // Widths
@@ -277,7 +285,6 @@ export const euiFormControlHoverStyles = (euiThemeContext: UseEuiTheme) => {
         highContrastMode ? euiTheme.border.color : form.borderHovered
       });
       position: relative;
-      z-index: 1;
       outline: var(--borderWidth) solid var(--borderColor);
       outline-offset: calc(-1 * var(--borderWidth));
     }
@@ -386,43 +393,51 @@ export const euiFormControlAutoFillStyles = (euiThemeContext: UseEuiTheme) => {
   // Make the text color slightly less prominent than the default colors.text
   const textColor = euiTheme.colors.darkestShade;
 
-  const tintedBackgroundColor = euiTheme.components.forms.backgroundAutofilled;
+  const tintedBackgroundColor = form.backgroundAutoFilled;
   // Hacky workaround to background-color, since Chrome doesn't normally allow overriding its styles
   // @see https://developer.mozilla.org/en-US/docs/Web/CSS/:autofill#sect1
   const backgroundShadow = `inset 0 0 0 100vw ${tintedBackgroundColor}`;
 
   // Re-create the border, since the above webkit box shadow overrides the default border box-shadow
   // + change the border color to match states, since the underline background gradient no longer works
-  const borderColor = euiTheme.components.forms.borderAutofilled;
-  const borderHovered = euiTheme.components.forms.borderAutofilledHovered;
+  const borderColor = form.borderAutofilled;
+  const borderHovered = form.borderAutofilledHovered;
   const borderInvalid = form.borderInvalid;
   const borderInvalidHovered = form.borderInvalidHovered;
-  const borderShadow = (color: string) =>
-    `inset 0 0 0 ${euiTheme.border.width.thin} ${color}`;
+  const borderShadow = `inset 0 0 0 var(--euiFormControlStateAutofillWidth) var(--euiFormControlStateAutofillColor), ${backgroundShadow}`;
 
   // These styles only apply/override Chrome/webkit browsers - Firefox does not set autofill styles
   return `
-    &:-webkit-autofill {
+    &:where(:-webkit-autofill) {
+      --euiFormControlStateAutofillWidth: ${euiTheme.border.width.thin};
+      --euiFormControlStateAutofillColor: ${borderColor};
+      
       -webkit-text-fill-color: ${textColor};
-      -webkit-box-shadow: ${borderShadow(borderColor)}, ${backgroundShadow};
+      -webkit-box-shadow: ${borderShadow};
+     
 
-      &:hover,
+      &:hover {
+        --euiFormControlStateAutofillColor: ${borderHovered};
+      }
+
       &:focus {
-        -webkit-box-shadow: ${borderShadow(borderHovered)}, ${backgroundShadow};
+        --euiFormControlStateAutofillWidth: ${euiTheme.border.width.thick};
       }
 
       &:invalid {
-        -webkit-box-shadow: ${borderShadow(borderInvalid)}, ${backgroundShadow};
+        --euiFormControlStateAutofillColor: ${borderInvalid};
 
         &:hover {
-          -webkit-box-shadow: ${borderShadow(
-            borderInvalidHovered
-          )}, ${backgroundShadow};
+          --euiFormControlStateAutofillColor: ${borderInvalidHovered};
         }
       }
     }
   `;
 };
+
+export const euiFormControlAutofillUnsetStyles = `
+
+`;
 
 export const euiFormControlShowBackgroundLine = (
   euiThemeContext: UseEuiTheme,

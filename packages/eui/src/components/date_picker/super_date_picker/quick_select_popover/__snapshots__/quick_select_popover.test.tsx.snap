@@ -313,11 +313,11 @@ exports[`EuiQuickSelectPanels customQuickSelectPanels should render custom panel
             class="euiSwitch__label emotion-euiSwitch__label-compressed"
             id="generated-id"
           >
-            <label
+            <span
               class="euiFormLabel emotion-euiFormLabel"
             >
               Refresh every
-            </label>
+            </span>
           </span>
         </div>
       </div>
@@ -416,28 +416,22 @@ exports[`EuiQuickSelectPopover is rendered 1`] = `
 <div
   class="euiPopover emotion-euiPopover-inline-block"
 >
-  <button
-    aria-label="Date quick select"
-    class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-primary-euiQuickSelectPopoverButton"
-    data-test-subj="superDatePickerToggleQuickMenuButton"
-    title="Date quick select"
-    type="button"
+  <div
+    class="css-vmqubl-wrapper"
   >
-    <span
-      class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiQuickSelectPopoverButton__content"
+    <button
+      aria-label="Date quick select"
+      class="euiFormPrepend css-a31npo-side-uncompressed-empty-primary-isInteractive"
+      data-test-subj="superDatePickerToggleQuickMenuButton"
+      title="Date quick select"
     >
       <span
-        class="eui-textTruncate euiButtonEmpty__text"
-      >
-        <span
-          data-euiicon-type="calendar"
-        />
-      </span>
+        data-euiicon-type="calendar"
+      />
       <span
-        color="inherit"
         data-euiicon-type="arrowDown"
       />
-    </span>
-  </button>
+    </button>
+  </div>
 </div>
 `;

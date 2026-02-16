@@ -49,7 +49,7 @@ exports[`EuiConfirmModal renders EuiConfirmModal without EuiModalBody, if empty 
               class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
             >
               <span
-                class="eui-textTruncate euiButtonEmpty__text"
+                class="eui-textTruncate euiButtonEmpty__text css-13ifi6d-m"
               >
                 Cancel Button Text
               </span>
@@ -64,7 +64,7 @@ exports[`EuiConfirmModal renders EuiConfirmModal without EuiModalBody, if empty 
               class="emotion-euiButtonDisplayContent"
             >
               <span
-                class="eui-textTruncate"
+                class="eui-textTruncate css-13ifi6d-m"
               >
                 Confirm Button Text
               </span>

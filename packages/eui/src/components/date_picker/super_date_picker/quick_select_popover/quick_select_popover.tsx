@@ -18,11 +18,8 @@ import React, {
 
 import { useEuiMemoizedStyles } from '../../../../services';
 import { useEuiI18n } from '../../../i18n';
-import { EuiButtonEmpty } from '../../../button';
-import { EuiButtonEmptyPropsForButton } from '../../../button/button_empty/button_empty';
-import { EuiIcon } from '../../../icon';
 import { EuiPopover } from '../../../popover';
-
+import { EuiFormAppendPrependButtonProps, EuiFormPrepend } from '../../../form';
 import { euiQuickSelectPopoverStyles } from './quick_select_popover.styles';
 import { EuiQuickSelectPanel } from './quick_select_panel';
 import { EuiQuickSelect } from './quick_select';
@@ -41,7 +38,7 @@ import {
 } from '../../types';
 
 export type EuiQuickSelectButtonProps = Partial<
-  Omit<EuiButtonEmptyPropsForButton, 'children' | 'isDisabled' | 'isLoading'>
+  Omit<EuiFormAppendPrependButtonProps, 'children' | 'isDisabled'>
 >;
 
 export type CustomQuickSelectRenderOptions = {
@@ -76,11 +73,7 @@ export interface EuiQuickSelectPopoverProps {
 export const EuiQuickSelectPopover: FunctionComponent<
   EuiQuickSelectPopoverProps
 > = ({ applyTime: _applyTime, buttonProps = {}, ...props }) => {
-  const {
-    contentProps: buttonContentProps,
-    onClick: buttonOnClick,
-    ...quickSelectButtonProps
-  } = buttonProps;
+  const { onClick: buttonOnClick, ...quickSelectButtonProps } = buttonProps;
 
   const [prevQuickSelect, setQuickSelect] = useState<QuickSelect>();
   const [isOpen, setIsOpen] = useState(false);
@@ -105,8 +98,6 @@ export const EuiQuickSelectPopover: FunctionComponent<
     'Date quick select'
   );
 
-  const styles = useEuiMemoizedStyles(euiQuickSelectPopoverStyles);
-
   const quickSelectButtonOnClick = (
     e: MouseEvent<HTMLButtonElement> & MouseEvent<HTMLAnchorElement>
   ) => {
@@ -115,24 +106,17 @@ export const EuiQuickSelectPopover: FunctionComponent<
   };
 
   const quickSelectButton = (
-    <EuiButtonEmpty
-      css={styles.euiQuickSelectPopoverButton}
-      contentProps={{
-        css: styles.euiQuickSelectPopoverButton__content,
-        ...buttonContentProps,
-      }}
+    <EuiFormPrepend
+      element="button"
+      iconLeft="calendar"
+      iconRight="arrowDown"
+      isDisabled={props.isDisabled}
       onClick={quickSelectButtonOnClick}
       aria-label={buttonlabel}
       title={buttonlabel}
-      size="xs"
-      iconType="arrowDown"
-      iconSide="right"
-      isDisabled={props.isDisabled}
       data-test-subj="superDatePickerToggleQuickMenuButton"
       {...quickSelectButtonProps}
-    >
-      <EuiIcon type="calendar" />
-    </EuiButtonEmpty>
+    />
   );
 
   return (
