@@ -4,6 +4,7 @@ const fs = require('fs/promises');
 const { parseArgs } = require('util');
 const chokidar = require('chokidar');
 const chalk = require('chalk');
+const minimatch = require('minimatch');
 const {
   IGNORE_BUILD,
   IGNORE_TESTS,
@@ -26,6 +27,8 @@ const KIBANA_ROOT = args['kibana-dir']
   : // fallback to a sibling directory
     path.resolve(EUI_ROOT, '../kibana');
 const DEBOUNCE_TIME = 300;
+const RESTART_DELAY = 100;
+const SHUTDOWN_TIMEOUT = 1000;
 
 let workspaceMap;
 
@@ -114,7 +117,11 @@ async function syncToKibana(pkg) {
       .utimes(path.join(destDir, 'package.json'), new Date(), new Date())
       .catch(() => {});
 
-    console.log(chalk.green(`✔ Propagated ${pkgJson.name} to ${destDir}. Check Kibana output.`));
+    console.log(
+      chalk.green(
+        `✔ Propagated ${pkgJson.name} to ${destDir}. Check Kibana output.`
+      )
+    );
   } catch (err) {
     console.error(chalk.red(`Sync failed: ${err.message}`));
   }
@@ -149,7 +156,8 @@ function runBuild(pkg) {
       console.log(
         chalk.yellow(`⚡ Build for ${pkg.name} cancelled. Restarting...`)
       );
-      runBuild(pkg);
+
+      setTimeout(() => runBuild(pkg), RESTART_DELAY);
       return;
     }
 
@@ -175,12 +183,12 @@ process.on('SIGINT', () => {
     }
   });
 
-  setTimeout(() => process.exit(0), 1000);
+  setTimeout(() => process.exit(0), SHUTDOWN_TIMEOUT);
 });
 
-const DOTFILES = /(^|[\/\\])\../;
+const IGNORE_DOTFILES = ['**/.*', '**/.*/**'];
 const IGNORED_FILES = [
-  DOTFILES,
+  ...IGNORE_DOTFILES,
   ...IGNORE_BUILD,
   ...IGNORE_TESTS,
   ...IGNORE_TESTENV,
@@ -192,7 +200,14 @@ const IGNORED_FILES = [
 
   for (const pkg of activePackages) {
     chokidar
-      .watch(pkg.src, { ignoreInitial: true, ignored: IGNORED_FILES })
+      .watch(pkg.src, {
+        ignoreInitial: true,
+        ignored: (filePath) => {
+          return IGNORED_FILES.some((pattern) =>
+            minimatch(filePath, pattern, { matchBase: true })
+          );
+        },
+      })
       .on('all', () => {
         clearTimeout(pkg.timer);
         pkg.timer = setTimeout(() => runBuild(pkg), DEBOUNCE_TIME);
