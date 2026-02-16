@@ -101,6 +101,7 @@ export const EuiManagedFlyout = forwardRef<HTMLElement, EuiManagedFlyoutProps>(
     const {
       addFlyout,
       closeFlyout,
+      closeAllFlyouts,
       setFlyoutWidth,
       goBack,
       historyItems: _historyItems,
@@ -194,13 +195,13 @@ export const EuiManagedFlyout = forwardRef<HTMLElement, EuiManagedFlyoutProps>(
         // Only call closeFlyout if it wasn't already called via onClose
         // This prevents duplicate removal when using Escape/X button
         if (flyoutExistsInManagerRef.current) {
-          closeFlyout(flyoutId);
+          level === LEVEL_MAIN ? closeAllFlyouts() : closeFlyout(flyoutId);
         }
 
         // Reset navigation tracking when explicitly closed via isOpen=false
         wasRegisteredRef.current = false;
       };
-    }, [flyoutId, title, level, size, addFlyout, closeFlyout]);
+    }, [flyoutId, title, level, size, addFlyout, closeFlyout, closeAllFlyouts]);
 
     // Detect when flyout has been removed from manager state (e.g., via Back button)
     // and trigger onClose callback to notify the parent component
@@ -244,7 +245,7 @@ export const EuiManagedFlyout = forwardRef<HTMLElement, EuiManagedFlyoutProps>(
       // and ensures cascade close logic runs before DOM cleanup begins
       // Using flushSync to force synchronous state update completion
       flushSync(() => {
-        closeFlyout(flyoutId);
+        level === LEVEL_MAIN ? closeAllFlyouts() : closeFlyout(flyoutId);
       });
 
       // trigger parent callback, unmounts the component
