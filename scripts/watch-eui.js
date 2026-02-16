@@ -4,6 +4,12 @@ const fs = require('fs/promises');
 const { parseArgs } = require('util');
 const chokidar = require('chokidar');
 const chalk = require('chalk');
+const {
+  IGNORE_BUILD,
+  IGNORE_TESTS,
+  IGNORE_TESTENV,
+  IGNORE_PACKAGES,
+} = require('./constants');
 
 const { values: args } = parseArgs({
   options: {
@@ -88,7 +94,9 @@ async function syncToKibana(pkg) {
     const syncItems = [
       ...new Set([
         'package.json',
-        ...(pkgJson.files || []).filter((f) => !f.includes('*') && !f.startsWith('!')),
+        ...(pkgJson.files || []).filter(
+          (f) => !f.includes('*') && !f.startsWith('!')
+        ),
       ]),
     ];
 
@@ -170,7 +178,14 @@ process.on('SIGINT', () => {
   setTimeout(() => process.exit(0), 1000);
 });
 
-const IGNORED_FILES = /(^|[\/\\])\../;
+const DOTFILES = /(^|[\/\\])\../;
+const IGNORED_FILES = [
+  DOTFILES,
+  ...IGNORE_BUILD,
+  ...IGNORE_TESTS,
+  ...IGNORE_TESTENV,
+  ...IGNORE_PACKAGES,
+];
 
 (async () => {
   console.log(chalk.bold.cyan('Starting EUI watcher...'));

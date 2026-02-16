@@ -5,6 +5,12 @@ const path = require('path');
 const glob = require('glob');
 const fs = require('fs/promises');
 const dtsGenerator = require('dts-generator').default;
+const {
+  IGNORE_BUILD,
+  IGNORE_TESTS,
+  IGNORE_TESTENV,
+  IGNORE_PACKAGES,
+} = require('../../../scripts/constants');
 
 const packageRootDir = path.resolve(__dirname, '..');
 const srcDir = path.join(packageRootDir, 'src');
@@ -12,29 +18,6 @@ const buildDirs = ['lib', 'es', 'dist', 'optimize', 'test-env'];
 
 const CLEANUP_RETRY_DELAY_MS = 150;
 const CLEANUP_MAX_RETRIES = 10;
-
-const IGNORE_BUILD = ['**/webpack.config.js', '**/*.d.ts'];
-const IGNORE_TESTS = [
-  '**/*.test.js',
-  '**/*.test.ts',
-  '**/*.test.tsx',
-  '**/*.spec.tsx',
-  '**/*.stories.ts',
-  '**/*.stories.tsx',
-  '**/*.docgen.tsx',
-  '**/**.stories.utils.ts',
-  '**/**.stories.utils.tsx',
-  '**/*.mdx',
-  '**/test/internal/**/*.ts',
-  '**/test/internal/**/*.tsx',
-  '**/__mocks__/**',
-];
-const IGNORE_TESTENV = [
-  '**/*.testenv.js',
-  '**/*.testenv.tsx',
-  '**/*.testenv.ts',
-];
-const IGNORE_PACKAGES = ['**/react-datepicker/test/**/*.js'];
 
 async function renameTestEnvFiles() {
   const files = glob.globIterate('test-env/**/*.testenv.js', {
