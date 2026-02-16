@@ -273,7 +273,7 @@ exports[`EuiDataGridColumnSortingDraggable [React 18] renders an EuiDraggable co
     >
       <span
         color="subdued"
-        data-euiicon-type="grab"
+        data-euiicon-type="dragVertical"
       />
     </div>
   </div>
