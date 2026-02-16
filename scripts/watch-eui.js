@@ -114,7 +114,7 @@ async function syncToKibana(pkg) {
       .utimes(path.join(destDir, 'package.json'), new Date(), new Date())
       .catch(() => {});
 
-    console.log(chalk.green(`✔ Synced ${pkgJson.name}`));
+    console.log(chalk.green(`✔ Propagated ${pkgJson.name} to ${destDir}. Check Kibana output.`));
   } catch (err) {
     console.error(chalk.red(`Sync failed: ${err.message}`));
   }
