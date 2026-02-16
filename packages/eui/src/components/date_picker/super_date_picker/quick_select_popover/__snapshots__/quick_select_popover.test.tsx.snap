@@ -37,7 +37,7 @@ exports[`EuiQuickSelectPanels customQuickSelectPanels should render custom panel
                 aria-hidden="true"
                 class="euiButtonIcon__icon"
                 color="inherit"
-                data-euiicon-type="arrowLeft"
+                data-euiicon-type="chevronSingleLeft"
               />
             </button>
           </span>
@@ -58,7 +58,7 @@ exports[`EuiQuickSelectPanels customQuickSelectPanels should render custom panel
                 aria-hidden="true"
                 class="euiButtonIcon__icon"
                 color="inherit"
-                data-euiicon-type="arrowRight"
+                data-euiicon-type="chevronSingleRight"
               />
             </button>
           </span>
@@ -102,7 +102,7 @@ exports[`EuiQuickSelectPanels customQuickSelectPanels should render custom panel
                   <span
                     aria-hidden="true"
                     class="euiFormControlLayoutCustomIcon__icon"
-                    data-euiicon-type="arrowDown"
+                    data-euiicon-type="chevronSingleDown"
                   />
                 </span>
               </div>
@@ -189,7 +189,7 @@ exports[`EuiQuickSelectPanels customQuickSelectPanels should render custom panel
                   <span
                     aria-hidden="true"
                     class="euiFormControlLayoutCustomIcon__icon"
-                    data-euiicon-type="arrowDown"
+                    data-euiicon-type="chevronSingleDown"
                   />
                 </span>
               </div>
@@ -429,7 +429,7 @@ exports[`EuiQuickSelectPopover is rendered 1`] = `
         data-euiicon-type="calendar"
       />
       <span
-        data-euiicon-type="arrowDown"
+        data-euiicon-type="chevronSingleDown"
       />
     </button>
   </div>

@@ -29,7 +29,7 @@ exports[`EuiSuperSelect props compressed 1`] = `
           <span
             aria-hidden="true"
             class="euiFormControlLayoutCustomIcon__icon"
-            data-euiicon-type="arrowDown"
+            data-euiicon-type="chevronSingleDown"
           />
         </span>
       </div>
@@ -67,7 +67,7 @@ exports[`EuiSuperSelect props fullWidth 1`] = `
           <span
             aria-hidden="true"
             class="euiFormControlLayoutCustomIcon__icon"
-            data-euiicon-type="arrowDown"
+            data-euiicon-type="chevronSingleDown"
           />
         </span>
       </div>
@@ -122,7 +122,7 @@ exports[`EuiSuperSelect props prepend and append 1`] = `
           <span
             aria-hidden="true"
             class="euiFormControlLayoutCustomIcon__icon"
-            data-euiicon-type="arrowDown"
+            data-euiicon-type="chevronSingleDown"
           />
         </span>
       </div>
@@ -181,7 +181,7 @@ exports[`EuiSuperSelect renders 1`] = `
               <span
                 aria-hidden="true"
                 class="euiFormControlLayoutCustomIcon__icon"
-                data-euiicon-type="arrowDown"
+                data-euiicon-type="chevronSingleDown"
               />
             </span>
           </div>

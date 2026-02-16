@@ -19,7 +19,7 @@ exports[`EuiCollapsedNavItem renders a popover if items are passed 1`] = `
         aria-hidden="true"
         class="euiButtonIcon__icon"
         color="inherit"
-        data-euiicon-type="boxesHorizontal"
+        data-euiicon-type="boxesVertical"
       />
     </button>
   </span>

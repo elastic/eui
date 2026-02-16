@@ -20,7 +20,7 @@ exports[`EuiTimeWindowButtons renders 1`] = `
       >
         <span
           color="inherit"
-          data-euiicon-type="arrowLeft"
+          data-euiicon-type="chevronSingleLeft"
         />
         <span
           class="eui-textTruncate css-qv1h57-m-euiButtonGroupButton__iconOnly"
@@ -46,7 +46,7 @@ exports[`EuiTimeWindowButtons renders 1`] = `
       >
         <span
           color="inherit"
-          data-euiicon-type="magnifyWithMinus"
+          data-euiicon-type="magnifyMinus"
         />
         <span
           class="eui-textTruncate css-qv1h57-m-euiButtonGroupButton__iconOnly"
@@ -72,7 +72,7 @@ exports[`EuiTimeWindowButtons renders 1`] = `
       >
         <span
           color="inherit"
-          data-euiicon-type="arrowRight"
+          data-euiicon-type="chevronSingleRight"
         />
         <span
           class="eui-textTruncate css-qv1h57-m-euiButtonGroupButton__iconOnly"

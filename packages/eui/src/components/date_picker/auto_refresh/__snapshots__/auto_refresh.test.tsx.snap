@@ -17,7 +17,7 @@ exports[`EuiAutoRefresh is rendered 1`] = `
           class="euiFormPrepend euiFormControlLayout__prepend css-a31npo-side-uncompressed-empty-primary-isInteractive"
         >
           <span
-            data-euiicon-type="timeRefresh"
+            data-euiicon-type="refreshTime"
           />
           <span
             class="euiFormLabel eui-textTruncate emotion-euiFormLabel"
@@ -62,7 +62,7 @@ exports[`EuiAutoRefresh isPaused is false 1`] = `
           class="euiFormPrepend euiFormControlLayout__prepend css-a31npo-side-uncompressed-empty-primary-isInteractive"
         >
           <span
-            data-euiicon-type="timeRefresh"
+            data-euiicon-type="refreshTime"
           />
           <span
             class="euiFormLabel eui-textTruncate emotion-euiFormLabel"
@@ -106,7 +106,7 @@ exports[`EuiAutoRefresh refreshInterval is rendered 1`] = `
           class="euiFormPrepend euiFormControlLayout__prepend css-a31npo-side-uncompressed-empty-primary-isInteractive"
         >
           <span
-            data-euiicon-type="timeRefresh"
+            data-euiicon-type="refreshTime"
           />
           <span
             class="euiFormLabel eui-textTruncate emotion-euiFormLabel"
@@ -149,7 +149,7 @@ exports[`EuiAutoRefreshButton is rendered 1`] = `
     >
       <span
         color="inherit"
-        data-euiicon-type="timeRefresh"
+        data-euiicon-type="refreshTime"
       />
       <span
         class="eui-textTruncate euiButtonEmpty__text css-1ryezsz-s"
@@ -175,7 +175,7 @@ exports[`EuiAutoRefreshButton isPaused is false 1`] = `
     >
       <span
         color="inherit"
-        data-euiicon-type="timeRefresh"
+        data-euiicon-type="refreshTime"
       />
       <span
         class="eui-textTruncate euiButtonEmpty__text css-1ryezsz-s"
@@ -201,7 +201,7 @@ exports[`EuiAutoRefreshButton refreshInterval is rendered 1`] = `
     >
       <span
         color="inherit"
-        data-euiicon-type="timeRefresh"
+        data-euiicon-type="refreshTime"
       />
       <span
         class="eui-textTruncate euiButtonEmpty__text css-1ryezsz-s"

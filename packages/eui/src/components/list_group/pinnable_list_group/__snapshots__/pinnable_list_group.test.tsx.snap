@@ -34,7 +34,7 @@ exports[`EuiPinnableListGroup can have custom pin icon titles 1`] = `
         aria-hidden="true"
         class="euiButtonIcon__icon"
         color="inherit"
-        data-euiicon-type="pinFilled"
+        data-euiicon-type="pinFill"
       />
     </button>
   </li>
@@ -89,7 +89,7 @@ exports[`EuiPinnableListGroup can have custom pin icon titles 1`] = `
         aria-hidden="true"
         class="euiButtonIcon__icon"
         color="inherit"
-        data-euiicon-type="pinFilled"
+        data-euiicon-type="pinFill"
       />
     </button>
   </li>
@@ -117,7 +117,7 @@ exports[`EuiPinnableListGroup can have custom pin icon titles 1`] = `
         aria-hidden="true"
         class="euiButtonIcon__icon"
         color="inherit"
-        data-euiicon-type="pinFilled"
+        data-euiicon-type="pinFill"
       />
     </button>
   </li>
@@ -146,7 +146,7 @@ exports[`EuiPinnableListGroup can have custom pin icon titles 1`] = `
         aria-hidden="true"
         class="euiButtonIcon__icon"
         color="inherit"
-        data-euiicon-type="pinFilled"
+        data-euiicon-type="pinFill"
       />
     </button>
   </li>
@@ -203,7 +203,7 @@ exports[`EuiPinnableListGroup is rendered 1`] = `
         aria-hidden="true"
         class="euiButtonIcon__icon"
         color="inherit"
-        data-euiicon-type="pinFilled"
+        data-euiicon-type="pinFill"
       />
     </button>
   </li>
@@ -258,7 +258,7 @@ exports[`EuiPinnableListGroup is rendered 1`] = `
         aria-hidden="true"
         class="euiButtonIcon__icon"
         color="inherit"
-        data-euiicon-type="pinFilled"
+        data-euiicon-type="pinFill"
       />
     </button>
   </li>
@@ -286,7 +286,7 @@ exports[`EuiPinnableListGroup is rendered 1`] = `
         aria-hidden="true"
         class="euiButtonIcon__icon"
         color="inherit"
-        data-euiicon-type="pinFilled"
+        data-euiicon-type="pinFill"
       />
     </button>
   </li>
@@ -315,7 +315,7 @@ exports[`EuiPinnableListGroup is rendered 1`] = `
         aria-hidden="true"
         class="euiButtonIcon__icon"
         color="inherit"
-        data-euiicon-type="pinFilled"
+        data-euiicon-type="pinFill"
       />
     </button>
   </li>

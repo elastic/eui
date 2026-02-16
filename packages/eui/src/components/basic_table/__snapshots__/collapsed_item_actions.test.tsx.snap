@@ -23,7 +23,7 @@ exports[`CollapsedItemActions custom actions 1`] = `
             aria-hidden="true"
             class="euiButtonIcon__icon"
             color="inherit"
-            data-euiicon-type="boxesHorizontal"
+            data-euiicon-type="boxesVertical"
           />
         </button>
       </span>
@@ -129,7 +129,7 @@ exports[`CollapsedItemActions default actions 1`] = `
             aria-hidden="true"
             class="euiButtonIcon__icon"
             color="inherit"
-            data-euiicon-type="boxesHorizontal"
+            data-euiicon-type="boxesVertical"
           />
         </button>
       </span>
@@ -237,7 +237,7 @@ exports[`CollapsedItemActions renders 1`] = `
         aria-hidden="true"
         class="euiButtonIcon__icon"
         color="inherit"
-        data-euiicon-type="boxesHorizontal"
+        data-euiicon-type="boxesVertical"
       />
     </button>
   </span>

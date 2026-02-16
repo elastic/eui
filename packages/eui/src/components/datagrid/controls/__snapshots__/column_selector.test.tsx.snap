@@ -17,7 +17,7 @@ exports[`useDataGridColumnSelector columnSelector renders a toolbar button/popov
         >
           <span
             color="inherit"
-            data-euiicon-type="tableDensityNormal"
+            data-euiicon-type="table"
           />
           <span
             class="euiDataGridToolbarControl__text eui-textTruncate"
@@ -157,7 +157,7 @@ exports[`useDataGridColumnSelector columnSelector renders a toolbar button/popov
                   >
                     <span
                       color="subdued"
-                      data-euiicon-type="grab"
+                      data-euiicon-type="dragVertical"
                     />
                   </div>
                 </div>
@@ -230,7 +230,7 @@ exports[`useDataGridColumnSelector columnSelector renders a toolbar button/popov
                   >
                     <span
                       color="subdued"
-                      data-euiicon-type="grab"
+                      data-euiicon-type="dragVertical"
                     />
                   </div>
                 </div>

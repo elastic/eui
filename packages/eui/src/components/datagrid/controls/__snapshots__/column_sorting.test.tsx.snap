@@ -202,7 +202,7 @@ exports[`DataGridSortingControl renders a toolbar button/popover allowing users 
                 >
                   <span
                     color="subdued"
-                    data-euiicon-type="grab"
+                    data-euiicon-type="dragVertical"
                   />
                 </div>
               </div>
@@ -239,7 +239,7 @@ exports[`DataGridSortingControl renders a toolbar button/popover allowing users 
                       </span>
                       <span
                         color="inherit"
-                        data-euiicon-type="arrowDown"
+                        data-euiicon-type="chevronSingleDown"
                       />
                     </span>
                   </button>

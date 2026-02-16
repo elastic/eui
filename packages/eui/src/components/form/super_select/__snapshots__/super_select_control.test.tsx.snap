@@ -29,7 +29,7 @@ exports[`EuiSuperSelectControl is rendered 1`] = `
           <span
             aria-hidden="true"
             class="euiFormControlLayoutCustomIcon__icon"
-            data-euiicon-type="arrowDown"
+            data-euiicon-type="chevronSingleDown"
           />
         </span>
       </div>
@@ -65,7 +65,7 @@ exports[`EuiSuperSelectControl props compressed is rendered 1`] = `
           <span
             aria-hidden="true"
             class="euiFormControlLayoutCustomIcon__icon"
-            data-euiicon-type="arrowDown"
+            data-euiicon-type="chevronSingleDown"
           />
         </span>
       </div>
@@ -101,7 +101,7 @@ exports[`EuiSuperSelectControl props disabled options are rendered 1`] = `
           <span
             aria-hidden="true"
             class="euiFormControlLayoutCustomIcon__icon"
-            data-euiicon-type="arrowDown"
+            data-euiicon-type="chevronSingleDown"
           />
         </span>
       </div>
@@ -137,7 +137,7 @@ exports[`EuiSuperSelectControl props empty value option is rendered 1`] = `
           <span
             aria-hidden="true"
             class="euiFormControlLayoutCustomIcon__icon"
-            data-euiicon-type="arrowDown"
+            data-euiicon-type="chevronSingleDown"
           />
         </span>
       </div>
@@ -173,7 +173,7 @@ exports[`EuiSuperSelectControl props fullWidth is rendered 1`] = `
           <span
             aria-hidden="true"
             class="euiFormControlLayoutCustomIcon__icon"
-            data-euiicon-type="arrowDown"
+            data-euiicon-type="chevronSingleDown"
           />
         </span>
       </div>
@@ -213,7 +213,7 @@ exports[`EuiSuperSelectControl props isInvalid is rendered 1`] = `
           <span
             aria-hidden="true"
             class="euiFormControlLayoutCustomIcon__icon"
-            data-euiicon-type="arrowDown"
+            data-euiicon-type="chevronSingleDown"
           />
         </span>
       </div>
@@ -254,7 +254,7 @@ exports[`EuiSuperSelectControl props isLoading is rendered 1`] = `
           <span
             aria-hidden="true"
             class="euiFormControlLayoutCustomIcon__icon"
-            data-euiicon-type="arrowDown"
+            data-euiicon-type="chevronSingleDown"
           />
         </span>
       </div>
@@ -296,7 +296,7 @@ exports[`EuiSuperSelectControl props placeholder is rendered 1`] = `
           <span
             aria-hidden="true"
             class="euiFormControlLayoutCustomIcon__icon"
-            data-euiicon-type="arrowDown"
+            data-euiicon-type="chevronSingleDown"
           />
         </span>
       </div>
@@ -334,7 +334,7 @@ exports[`EuiSuperSelectControl props value option is rendered 1`] = `
           <span
             aria-hidden="true"
             class="euiFormControlLayoutCustomIcon__icon"
-            data-euiicon-type="arrowDown"
+            data-euiicon-type="chevronSingleDown"
           />
         </span>
       </div>

@@ -56,7 +56,7 @@ exports[`EuiBreadcrumbs is rendered 1`] = `
             </span>
           </span>
           <span
-            data-euiicon-type="arrowDown"
+            data-euiicon-type="chevronSingleDown"
           >
              - Clicking this button will toggle a popover dialog.
           </span>
@@ -160,7 +160,7 @@ exports[`EuiBreadcrumbs is rendered with final item as link 1`] = `
             </span>
           </span>
           <span
-            data-euiicon-type="arrowDown"
+            data-euiicon-type="chevronSingleDown"
           >
              - Clicking this button will toggle a popover dialog.
           </span>
@@ -346,7 +346,7 @@ exports[`EuiBreadcrumbs props max renders 1 item 1`] = `
             </span>
           </span>
           <span
-            data-euiicon-type="arrowDown"
+            data-euiicon-type="chevronSingleDown"
           >
              - Clicking this button will toggle a popover dialog.
           </span>
@@ -531,7 +531,7 @@ exports[`EuiBreadcrumbs props responsive is rendered 1`] = `
             </span>
           </span>
           <span
-            data-euiicon-type="arrowDown"
+            data-euiicon-type="chevronSingleDown"
           >
              - Clicking this button will toggle a popover dialog.
           </span>
@@ -634,7 +634,7 @@ exports[`EuiBreadcrumbs props responsive is rendered as false 1`] = `
             </span>
           </span>
           <span
-            data-euiicon-type="arrowDown"
+            data-euiicon-type="chevronSingleDown"
           >
              - Clicking this button will toggle a popover dialog.
           </span>
@@ -712,7 +712,7 @@ exports[`EuiBreadcrumbs props responsive is rendered with custom breakpoints 1`]
             </span>
           </span>
           <span
-            data-euiicon-type="arrowDown"
+            data-euiicon-type="chevronSingleDown"
           >
              - Clicking this button will toggle a popover dialog.
           </span>

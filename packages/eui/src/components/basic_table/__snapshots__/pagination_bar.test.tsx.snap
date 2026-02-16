@@ -31,7 +31,7 @@ exports[`PaginationBar renders 1`] = `
             </span>
             <span
               color="inherit"
-              data-euiicon-type="arrowDown"
+              data-euiicon-type="chevronSingleDown"
             />
           </span>
         </button>
@@ -63,7 +63,7 @@ exports[`PaginationBar renders 1`] = `
             aria-hidden="true"
             class="euiButtonIcon__icon"
             color="inherit"
-            data-euiicon-type="arrowStart"
+            data-euiicon-type="chevronLimitLeft"
           />
         </button>
         <button
@@ -77,7 +77,7 @@ exports[`PaginationBar renders 1`] = `
             aria-hidden="true"
             class="euiButtonIcon__icon"
             color="inherit"
-            data-euiicon-type="arrowLeft"
+            data-euiicon-type="chevronSingleLeft"
           />
         </button>
         <button
@@ -91,7 +91,7 @@ exports[`PaginationBar renders 1`] = `
             aria-hidden="true"
             class="euiButtonIcon__icon"
             color="inherit"
-            data-euiicon-type="arrowRight"
+            data-euiicon-type="chevronSingleRight"
           />
         </button>
         <button
@@ -105,7 +105,7 @@ exports[`PaginationBar renders 1`] = `
             aria-hidden="true"
             class="euiButtonIcon__icon"
             color="inherit"
-            data-euiicon-type="arrowEnd"
+            data-euiicon-type="chevronLimitRight"
           />
         </button>
       </nav>

@@ -25,7 +25,7 @@ exports[`EuiDataGrid pagination renders 1`] = `
           </span>
           <span
             color="inherit"
-            data-euiicon-type="arrowDown"
+            data-euiicon-type="chevronSingleDown"
           />
         </span>
       </button>
@@ -59,7 +59,7 @@ exports[`EuiDataGrid pagination renders 1`] = `
           aria-hidden="true"
           class="euiButtonIcon__icon"
           color="inherit"
-          data-euiicon-type="arrowLeft"
+          data-euiicon-type="chevronSingleLeft"
         />
       </a>
       <ul
@@ -122,7 +122,7 @@ exports[`EuiDataGrid pagination renders 1`] = `
           aria-hidden="true"
           class="euiButtonIcon__icon"
           color="inherit"
-          data-euiicon-type="arrowRight"
+          data-euiicon-type="chevronSingleRight"
         />
       </button>
     </nav>
@@ -145,7 +145,7 @@ exports[`EuiDataGrid render column actions renders various column actions config
       <span
         class="euiListGroupItem__icon emotion-euiListGroupItem__icon"
         color="inherit"
-        data-euiicon-type="eyeClosed"
+        data-euiicon-type="eyeSlash"
       />
       <span
         class="euiListGroupItem__label emotion-euiListGroupItem__label-truncate"
@@ -339,7 +339,7 @@ exports[`EuiDataGrid render column actions renders various column actions config
       <span
         class="euiListGroupItem__icon emotion-euiListGroupItem__icon"
         color="inherit"
-        data-euiicon-type="eyeClosed"
+        data-euiicon-type="eyeSlash"
       />
       <span
         class="euiListGroupItem__label emotion-euiListGroupItem__label-truncate"
@@ -484,7 +484,7 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
               >
                 <span
                   color="inherit"
-                  data-euiicon-type="tableDensityNormal"
+                  data-euiicon-type="table"
                 />
                 <span
                   class="euiDataGridToolbarControl__text eui-textTruncate"
@@ -924,7 +924,7 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
               >
                 <span
                   color="inherit"
-                  data-euiicon-type="tableDensityNormal"
+                  data-euiicon-type="table"
                 />
                 <span
                   class="euiDataGridToolbarControl__text eui-textTruncate"
@@ -1564,7 +1564,7 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
               >
                 <span
                   color="inherit"
-                  data-euiicon-type="tableDensityNormal"
+                  data-euiicon-type="table"
                 />
                 <span
                   class="euiDataGridToolbarControl__text eui-textTruncate"
@@ -2002,7 +2002,7 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
               >
                 <span
                   color="inherit"
-                  data-euiicon-type="tableDensityNormal"
+                  data-euiicon-type="table"
                 />
                 <span
                   class="euiDataGridToolbarControl__text eui-textTruncate"

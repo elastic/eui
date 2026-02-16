@@ -252,7 +252,7 @@ exports[`EuiFormControlLayout props isDropdown is rendered 1`] = `
         <span
           aria-hidden="true"
           class="euiFormControlLayoutCustomIcon__icon"
-          data-euiicon-type="arrowDown"
+          data-euiicon-type="chevronSingleDown"
         />
       </span>
     </div>
