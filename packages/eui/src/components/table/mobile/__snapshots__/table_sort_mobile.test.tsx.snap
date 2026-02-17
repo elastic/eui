@@ -9,6 +9,7 @@ exports[`EuiTableSortMobile is rendered 1`] = `
     data-test-subj="test subject string"
   >
     <button
+      aria-expanded="false"
       class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-primary-flush-right"
       type="button"
     >

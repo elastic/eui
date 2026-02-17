@@ -11,6 +11,7 @@ exports[`EuiAutoRefresh is rendered 1`] = `
       class="euiFormControlLayout__prepend emotion-euiFormControlLayout__side-prepend"
     >
       <button
+        aria-expanded="false"
         class="euiButtonEmpty euiFormControlLayout__prepend emotion-euiButtonDisplay-euiButtonEmpty-s-empty-text"
         type="button"
       >
@@ -60,6 +61,7 @@ exports[`EuiAutoRefresh isPaused is false 1`] = `
       class="euiFormControlLayout__prepend emotion-euiFormControlLayout__side-prepend"
     >
       <button
+        aria-expanded="false"
         class="euiButtonEmpty euiFormControlLayout__prepend emotion-euiButtonDisplay-euiButtonEmpty-s-empty-text"
         type="button"
       >
@@ -108,6 +110,7 @@ exports[`EuiAutoRefresh refreshInterval is rendered 1`] = `
       class="euiFormControlLayout__prepend emotion-euiFormControlLayout__side-prepend"
     >
       <button
+        aria-expanded="false"
         class="euiButtonEmpty euiFormControlLayout__prepend emotion-euiButtonDisplay-euiButtonEmpty-s-empty-text"
         type="button"
       >
@@ -150,6 +153,7 @@ exports[`EuiAutoRefreshButton is rendered 1`] = `
   class="euiPopover emotion-euiPopover-inline-block"
 >
   <button
+    aria-expanded="false"
     aria-label="aria-label"
     class="euiButtonEmpty euiAutoRefreshButton testClass1 testClass2 emotion-euiButtonDisplay-euiButtonEmpty-s-empty-text-euiTestCss"
     data-test-subj="test subject string"
@@ -178,6 +182,7 @@ exports[`EuiAutoRefreshButton isPaused is false 1`] = `
   class="euiPopover emotion-euiPopover-inline-block"
 >
   <button
+    aria-expanded="false"
     class="euiButtonEmpty euiAutoRefreshButton emotion-euiButtonDisplay-euiButtonEmpty-s-empty-text"
     title="Auto refresh is on and set to 1 second"
     type="button"
@@ -204,6 +209,7 @@ exports[`EuiAutoRefreshButton refreshInterval is rendered 1`] = `
   class="euiPopover emotion-euiPopover-inline-block"
 >
   <button
+    aria-expanded="false"
     class="euiButtonEmpty euiAutoRefreshButton emotion-euiButtonDisplay-euiButtonEmpty-s-empty-text"
     title="Auto refresh is on and set to 2 seconds"
     type="button"

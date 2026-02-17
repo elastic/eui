@@ -16,6 +16,7 @@ exports[`EuiSuperSelect props compressed 1`] = `
       style="--euiFormControlRightIconsCount: 1;"
     >
       <button
+        aria-expanded="false"
         aria-haspopup="listbox"
         class="euiSuperSelectControl emotion-euiSuperSelect__control-compressed"
         type="button"
@@ -54,6 +55,7 @@ exports[`EuiSuperSelect props fullWidth 1`] = `
       style="--euiFormControlRightIconsCount: 1;"
     >
       <button
+        aria-expanded="false"
         aria-haspopup="listbox"
         class="euiSuperSelectControl emotion-euiSuperSelect__control-fullWidth"
         type="button"
@@ -101,6 +103,7 @@ exports[`EuiSuperSelect props prepend and append 1`] = `
       style="--euiFormControlRightIconsCount: 1;"
     >
       <button
+        aria-expanded="false"
         aria-haspopup="listbox"
         class="euiSuperSelectControl emotion-euiSuperSelect__control-inGroup"
         type="button"

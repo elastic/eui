@@ -234,6 +234,7 @@ exports[`CollapsedItemActions renders 1`] = `
     id="generated-id-wrapper"
   >
     <button
+      aria-expanded="false"
       aria-label="All actions, row 1"
       class="euiButtonIcon emotion-euiButtonIcon-xs-empty-text"
       data-test-subj="euiCollapsedItemActionsButton"

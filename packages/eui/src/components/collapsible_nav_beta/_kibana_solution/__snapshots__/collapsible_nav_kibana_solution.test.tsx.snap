@@ -12,6 +12,7 @@ exports[`KibanaCollapsibleNavSolution renders docked icons 1`] = `
       id="generated-id-wrapper"
     >
       <button
+        aria-expanded="false"
         aria-label="Some solution, quick navigation menu"
         class="euiButtonIcon euiCollapsedNavButton emotion-euiButtonIcon-s-empty-text-euiCollapsedNavButton"
         data-test-subj="euiCollapsedNavButton"
@@ -35,6 +36,7 @@ exports[`KibanaCollapsibleNavSolution renders docked icons 1`] = `
       id="generated-id-wrapper"
     >
       <button
+        aria-expanded="false"
         aria-label="Solution view, quick navigation menu"
         class="euiButtonIcon euiCollapsedNavButton emotion-euiButtonIcon-s-empty-text-euiCollapsedNavButton"
         data-test-subj="euiCollapsedNavButton"
@@ -140,6 +142,7 @@ exports[`KibanaCollapsibleNavSolution renders with a solution switcher 1`] = `
     class="euiPopover euiInputPopover emotion-euiPopover-block-EuiInputPopover"
   >
     <button
+      aria-expanded="false"
       class="euiLink euiCollapsibleNavLink emotion-euiLink-primary-euiCollapsibleNavLink-isTopItem-isInteractive-euiCollapsibleNavKibanaSolution__title"
       data-test-subj="kibanaSolutionSwitcher"
       type="button"

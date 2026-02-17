@@ -417,6 +417,7 @@ exports[`EuiQuickSelectPopover is rendered 1`] = `
   class="euiPopover emotion-euiPopover-inline-block"
 >
   <button
+    aria-expanded="false"
     aria-label="Date quick select"
     class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-primary-euiQuickSelectPopoverButton"
     data-test-subj="superDatePickerToggleQuickMenuButton"

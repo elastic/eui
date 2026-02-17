@@ -16,6 +16,7 @@ exports[`EuiColorPalettePicker is rendered 1`] = `
       style="--euiFormControlRightIconsCount: 1;"
     >
       <button
+        aria-expanded="false"
         aria-haspopup="listbox"
         aria-label="aria-label"
         class="euiSuperSelectControl testClass1 testClass2 emotion-euiSuperSelect__control-euiTestCss"
@@ -56,6 +57,7 @@ exports[`EuiColorPalettePicker is rendered with a selected custom text 1`] = `
       style="--euiFormControlRightIconsCount: 1;"
     >
       <button
+        aria-expanded="false"
         aria-haspopup="listbox"
         aria-label="aria-label"
         class="euiSuperSelectControl testClass1 testClass2 emotion-euiSuperSelect__control-euiTestCss"
@@ -98,6 +100,7 @@ exports[`EuiColorPalettePicker is rendered with a selected fixed palette 1`] = `
       style="--euiFormControlRightIconsCount: 1;"
     >
       <button
+        aria-expanded="false"
         aria-haspopup="listbox"
         aria-label="aria-label"
         class="euiSuperSelectControl testClass1 testClass2 emotion-euiSuperSelect__control-euiTestCss"
@@ -168,6 +171,7 @@ exports[`EuiColorPalettePicker is rendered with a selected gradient palette 1`] 
       style="--euiFormControlRightIconsCount: 1;"
     >
       <button
+        aria-expanded="false"
         aria-haspopup="listbox"
         aria-label="aria-label"
         class="euiSuperSelectControl testClass1 testClass2 emotion-euiSuperSelect__control-euiTestCss"
@@ -218,6 +222,7 @@ exports[`EuiColorPalettePicker is rendered with a selected gradient palette with
       style="--euiFormControlRightIconsCount: 1;"
     >
       <button
+        aria-expanded="false"
         aria-haspopup="listbox"
         aria-label="aria-label"
         class="euiSuperSelectControl testClass1 testClass2 emotion-euiSuperSelect__control-euiTestCss"
@@ -268,6 +273,7 @@ exports[`EuiColorPalettePicker is rendered with the prop selectionDisplay set as
       style="--euiFormControlRightIconsCount: 1;"
     >
       <button
+        aria-expanded="false"
         aria-haspopup="listbox"
         aria-label="aria-label"
         class="euiSuperSelectControl testClass1 testClass2 emotion-euiSuperSelect__control-euiTestCss"
