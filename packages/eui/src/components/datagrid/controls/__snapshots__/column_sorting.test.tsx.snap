@@ -228,6 +228,7 @@ exports[`DataGridSortingControl renders a toolbar button/popover allowing users 
                   data-test-subj="dataGridColumnSortingPopoverColumnSelection"
                 >
                   <button
+                    aria-expanded="false"
                     class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-primary-flush-left"
                     data-test-subj="dataGridColumnSortingSelectionButton"
                     type="button"
