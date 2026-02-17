@@ -37,6 +37,7 @@ exports[`EuiInMemoryTable behavior mobile header 1`] = `
       class="euiPopover emotion-euiPopover-inline-block"
     >
       <button
+        aria-expanded="false"
         class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-primary-flush-right"
         type="button"
       >

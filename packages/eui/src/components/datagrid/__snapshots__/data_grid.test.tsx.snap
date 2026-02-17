@@ -11,6 +11,7 @@ exports[`EuiDataGrid pagination renders 1`] = `
       class="euiPopover emotion-euiPopover-inline-block"
     >
       <button
+        aria-expanded="false"
         class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-text"
         data-test-subj="tablePaginationPopoverButton"
         type="button"
@@ -475,6 +476,7 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
             data-test-subj="dataGridColumnSelectorPopover"
           >
             <button
+              aria-expanded="false"
               class="euiButtonEmpty euiDataGridToolbarControl emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-text-interactiveStyles"
               data-test-subj="dataGridColumnSelectorButton"
               type="button"
@@ -517,6 +519,7 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
               id="generated-id-wrapper"
             >
               <button
+                aria-expanded="false"
                 aria-label="Keyboard shortcuts"
                 class="euiButtonIcon emotion-euiButtonIcon-xs-empty-text"
                 data-test-subj="dataGridKeyboardShortcutsButton"
@@ -540,6 +543,7 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
               id="generated-id-wrapper"
             >
               <button
+                aria-expanded="false"
                 aria-label="Display options"
                 class="euiButtonIcon emotion-euiButtonIcon-xs-empty-text"
                 data-test-subj="dataGridDisplaySelectorButton"
@@ -631,6 +635,7 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
                   class="euiPopover emotion-euiPopover-block-euiDataGridHeaderCell__popover"
                 >
                   <button
+                    aria-expanded="false"
                     aria-label="Press the Enter key to view this column's actions"
                     class="euiButtonIcon euiDataGridHeaderCell__button emotion-euiButtonIcon-xs-empty-text-action-end-ColumnActions"
                     data-euigrid-tab-managed="true"
@@ -682,6 +687,7 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
                   class="euiPopover emotion-euiPopover-block-euiDataGridHeaderCell__popover"
                 >
                   <button
+                    aria-expanded="false"
                     aria-label="Press the Enter key to view this column's actions"
                     class="euiButtonIcon euiDataGridHeaderCell__button emotion-euiButtonIcon-xs-empty-text-action-end-ColumnActions"
                     data-euigrid-tab-managed="true"
@@ -915,6 +921,7 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
             data-test-subj="dataGridColumnSelectorPopover"
           >
             <button
+              aria-expanded="false"
               class="euiButtonEmpty euiDataGridToolbarControl emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-text-interactiveStyles"
               data-test-subj="dataGridColumnSelectorButton"
               type="button"
@@ -957,6 +964,7 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
               id="generated-id-wrapper"
             >
               <button
+                aria-expanded="false"
                 aria-label="Keyboard shortcuts"
                 class="euiButtonIcon emotion-euiButtonIcon-xs-empty-text"
                 data-test-subj="dataGridKeyboardShortcutsButton"
@@ -980,6 +988,7 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
               id="generated-id-wrapper"
             >
               <button
+                aria-expanded="false"
                 aria-label="Display options"
                 class="euiButtonIcon emotion-euiButtonIcon-xs-empty-text"
                 data-test-subj="dataGridDisplaySelectorButton"
@@ -1093,6 +1102,7 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
                   class="euiPopover emotion-euiPopover-block-euiDataGridHeaderCell__popover"
                 >
                   <button
+                    aria-expanded="false"
                     aria-label="Press the Enter key to view this column's actions"
                     class="euiButtonIcon euiDataGridHeaderCell__button emotion-euiButtonIcon-xs-empty-text-action-end-ColumnActions"
                     data-euigrid-tab-managed="true"
@@ -1144,6 +1154,7 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
                   class="euiPopover emotion-euiPopover-block-euiDataGridHeaderCell__popover"
                 >
                   <button
+                    aria-expanded="false"
                     aria-label="Press the Enter key to view this column's actions"
                     class="euiButtonIcon euiDataGridHeaderCell__button emotion-euiButtonIcon-xs-empty-text-action-end-ColumnActions"
                     data-euigrid-tab-managed="true"
@@ -1555,6 +1566,7 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
             data-test-subj="dataGridColumnSelectorPopover"
           >
             <button
+              aria-expanded="false"
               class="euiButtonEmpty euiDataGridToolbarControl emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-text-interactiveStyles"
               data-test-subj="dataGridColumnSelectorButton"
               type="button"
@@ -1594,6 +1606,7 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
               id="generated-id-wrapper"
             >
               <button
+                aria-expanded="false"
                 aria-label="Keyboard shortcuts"
                 class="euiButtonIcon emotion-euiButtonIcon-xs-empty-text"
                 data-test-subj="dataGridKeyboardShortcutsButton"
@@ -1617,6 +1630,7 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
               id="generated-id-wrapper"
             >
               <button
+                aria-expanded="false"
                 aria-label="Display options"
                 class="euiButtonIcon emotion-euiButtonIcon-xs-empty-text"
                 data-test-subj="dataGridDisplaySelectorButton"
@@ -1708,6 +1722,7 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
                   class="euiPopover emotion-euiPopover-block-euiDataGridHeaderCell__popover"
                 >
                   <button
+                    aria-expanded="false"
                     aria-label="Press the Enter key to view this column's actions"
                     class="euiButtonIcon euiDataGridHeaderCell__button emotion-euiButtonIcon-xs-empty-text-action-end-ColumnActions"
                     data-euigrid-tab-managed="true"
@@ -1760,6 +1775,7 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
                   class="euiPopover emotion-euiPopover-block-euiDataGridHeaderCell__popover"
                 >
                   <button
+                    aria-expanded="false"
                     aria-label="Press the Enter key to view this column's actions"
                     class="euiButtonIcon euiDataGridHeaderCell__button emotion-euiButtonIcon-xs-empty-text-action-end-ColumnActions"
                     data-euigrid-tab-managed="true"
@@ -1993,6 +2009,7 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
             data-test-subj="dataGridColumnSelectorPopover"
           >
             <button
+              aria-expanded="false"
               class="euiButtonEmpty euiDataGridToolbarControl emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-text-interactiveStyles"
               data-test-subj="dataGridColumnSelectorButton"
               type="button"
@@ -2032,6 +2049,7 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
               id="generated-id-wrapper"
             >
               <button
+                aria-expanded="false"
                 aria-label="Keyboard shortcuts"
                 class="euiButtonIcon emotion-euiButtonIcon-xs-empty-text"
                 data-test-subj="dataGridKeyboardShortcutsButton"
@@ -2055,6 +2073,7 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
               id="generated-id-wrapper"
             >
               <button
+                aria-expanded="false"
                 aria-label="Display options"
                 class="euiButtonIcon emotion-euiButtonIcon-xs-empty-text"
                 data-test-subj="dataGridDisplaySelectorButton"
@@ -2146,6 +2165,7 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
                   class="euiPopover emotion-euiPopover-block-euiDataGridHeaderCell__popover"
                 >
                   <button
+                    aria-expanded="false"
                     aria-label="Press the Enter key to view this column's actions"
                     class="euiButtonIcon euiDataGridHeaderCell__button emotion-euiButtonIcon-xs-empty-text-action-end-ColumnActions"
                     data-euigrid-tab-managed="true"
@@ -2197,6 +2217,7 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
                   class="euiPopover emotion-euiPopover-block-euiDataGridHeaderCell__popover"
                 >
                   <button
+                    aria-expanded="false"
                     aria-label="Press the Enter key to view this column's actions"
                     class="euiButtonIcon euiDataGridHeaderCell__button emotion-euiButtonIcon-xs-empty-text-action-end-ColumnActions"
                     data-euigrid-tab-managed="true"

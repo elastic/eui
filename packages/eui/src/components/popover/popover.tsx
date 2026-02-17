@@ -384,14 +384,16 @@ export class EuiPopover extends Component<Props, State> {
 
   getFocusableToggleButton = () => {
     if (this.button) {
-      const focusableItems = focusable(this.button);
-
-      if (focusableItems.length) {
-        return focusableItems[0];
+      try {
+        const focusableItems = focusable(this.button);
+        if (focusableItems.length) {
+          return focusableItems[0];
+        }
+      } catch {
+        // tabbable's focusable() can throw in environments that don't
+        // fully support CSS selector parsing (e.g. jsdom with :has())
       }
     }
-
-    return null;
   };
 
   handleStrandedFocus = () => {
