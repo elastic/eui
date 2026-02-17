@@ -9,12 +9,12 @@
 import { actions } from '@storybook/addon-actions';
 import type { Meta, StoryObj } from '@storybook/react';
 import React, { useMemo, useState } from 'react';
-import { css, Global } from '@emotion/react';
 
 import { EuiBreakpointSize } from '../../../services';
 import { EuiButton } from '../../button';
 import { EuiDescriptionList } from '../../description_list';
 import { EuiComponentDefaultsProvider } from '../../provider';
+import { EuiFlexGroup, EuiFlexItem } from '../../flex';
 import { EuiSpacer } from '../../spacer';
 import { EuiText } from '../../text';
 import { EuiFlyout, FLYOUT_TYPES } from '../flyout';
@@ -453,11 +453,11 @@ const ContainerDemoComponent: React.FC<FlyoutChildStoryArgs> = ({
           overflow: 'hidden',
           display: 'grid',
           gridTemplateAreas: `
-          'banner banner banner'
-          'header header header'
-          'navigation application sidebar'
-          'footer footer footer'
-        `,
+        'banner banner banner'
+        'header header header'
+        'navigation application sidebar'
+        'footer footer footer'
+      `,
           gridTemplateColumns: `${navigationWidth}px 1fr ${sidebarWidth}px`,
           // minmax(0, 1fr) lets the main row shrink so only the application cell scrolls
           gridTemplateRows: `${bannerHeight}px ${headerHeight}px minmax(0, 1fr) ${footerHeight}px`,
@@ -482,9 +482,34 @@ const ContainerDemoComponent: React.FC<FlyoutChildStoryArgs> = ({
             alignItems: 'center',
           }}
         >
-          <EuiText size="s">
-            <strong>Header</strong>
-          </EuiText>
+          <EuiFlexGroup>
+            <EuiFlexItem grow={true}>
+              <EuiText size="s">
+                <strong>Header</strong>
+              </EuiText>
+            </EuiFlexItem>
+            <EuiFlexItem alignItems="right" grow={false}>
+              <span>
+                {isGlobalFlyoutOpen ? (
+                  <EuiButton
+                    size="s"
+                    onClick={closeGlobalFlyout}
+                    color="warning"
+                  >
+                    Close Global Flyout
+                  </EuiButton>
+                ) : (
+                  <EuiButton
+                    size="s"
+                    onClick={openGlobalFlyout}
+                    color="warning"
+                  >
+                    Open Global Flyout
+                  </EuiButton>
+                )}
+              </span>
+            </EuiFlexItem>
+          </EuiFlexGroup>
         </header>
 
         <nav
@@ -690,16 +715,6 @@ const ContainerDemoComponent: React.FC<FlyoutChildStoryArgs> = ({
                 <li>Tool item 3</li>
               </ul>
             </EuiText>
-            <EuiSpacer size="m" />
-            {isGlobalFlyoutOpen ? (
-              <EuiButton size="s" onClick={closeGlobalFlyout} color="warning">
-                Close Global Flyout
-              </EuiButton>
-            ) : (
-              <EuiButton size="s" onClick={openGlobalFlyout} color="warning">
-                Open Global Flyout
-              </EuiButton>
-            )}
           </div>
         </aside>
 
@@ -707,14 +722,6 @@ const ContainerDemoComponent: React.FC<FlyoutChildStoryArgs> = ({
 
         {/* Global flyout: body-scoped, overlay type, ownFocus, no child */}
         {isGlobalFlyoutOpen && renderGlobalFlyout()}
-
-        <Global
-          styles={css`
-            body {
-              padding: 0px;
-            }
-          `}
-        />
       </div>
     </EuiComponentDefaultsProvider>
   );
