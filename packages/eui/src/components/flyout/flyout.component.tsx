@@ -751,14 +751,50 @@ export const EuiFlyoutComponent = forwardRef(
         const containerRightOffset =
           window.innerWidth - containerRect.right;
 
+        // Compute the container-relative width for this flyout.
+        //
+        // For `position: fixed` elements CSS resolves `%` values against
+        // the viewport, not the container. The resize hook outputs
+        // percentage strings relative to `_referenceWidth` (the container),
+        // so we must convert them to pixel values here.
+        //
+        // Named sizes use their standard proportions (matching
+        // `composeFlyoutSizing`). Percentage strings from the resize hook
+        // are parsed and resolved against the container width. Numeric
+        // values are used directly.
+        const sizePercentMap: Record<string, number> = {
+          s: 0.25,
+          m: 0.5,
+          l: 0.75,
+          fill: 0.9,
+        };
+
+        let containerRelativeWidth: number | undefined;
+        if (typeof size === 'string') {
+          const namedPct = sizePercentMap[size];
+          if (namedPct !== undefined) {
+            containerRelativeWidth = containerRect.width * namedPct;
+          } else if (size.endsWith('%')) {
+            // Percentage string from the resize hook — the value is
+            // relative to `_referenceWidth` (container width). Parse it
+            // and resolve against the container to get the correct pixels.
+            const pct = parseFloat(size);
+            if (!isNaN(pct)) {
+              containerRelativeWidth = containerRect.width * (pct / 100);
+            }
+          }
+        } else if (typeof size === 'number') {
+          containerRelativeWidth = size;
+        }
+
         // All container-scoped flyouts get top/height from the container rect.
-        // Reset minWidth to 0 so that the CSS `min-inline-size` (which resolves
-        // against the viewport for `position: fixed`) does not prevent the
-        // container-relative width constraints from taking effect.
+        // Reset minInlineSize to 0 so that the CSS `min-inline-size` (which
+        // resolves against the viewport for `position: fixed`) does not
+        // prevent the container-relative width constraints from taking effect.
         containerPositionStyles = {
           top: containerRect.top,
           height: containerRect.height,
-          minWidth: 0,
+          minInlineSize: 0,
         };
 
         if (isChildFlyout) {
@@ -771,19 +807,37 @@ export const EuiFlyoutComponent = forwardRef(
           } else {
             containerPositionStyles.right = containerRightOffset + siblingPx;
           }
-          // Constrain the child's width to the remaining space within 90%
-          // of the container (minus the sibling flyout). This overrides the
-          // CSS width which uses `calc(90% - ...)` against the viewport.
-          const childWidth = Math.max(0, containerMaxWidth - siblingPx);
-          containerPositionStyles.width = childWidth;
-          containerPositionStyles.maxWidth = childWidth;
+
+          const availableWidth = Math.max(0, containerMaxWidth - siblingPx);
+
+          if (containerRelativeWidth !== undefined) {
+            // Set `inlineSize` (logical property) so it properly overrides
+            // `inlineSize` from composedStyles. We intentionally do NOT set
+            // maxInlineSize — the CSS `max-inline-size` from the size class
+            // provides the size-specific cap on initial render, and the
+            // resize hook's clamp handles it after resize interactions.
+            containerPositionStyles.inlineSize = Math.min(
+              containerRelativeWidth,
+              availableWidth
+            );
+          } else {
+            containerPositionStyles.maxInlineSize = availableWidth;
+          }
         } else {
           // Main/standalone flyouts align to the container's edge.
-          containerPositionStyles.maxWidth = containerMaxWidth;
           if (side === 'left') {
             containerPositionStyles.left = containerRect.left;
           } else {
             containerPositionStyles.right = containerRightOffset;
+          }
+
+          if (containerRelativeWidth !== undefined) {
+            containerPositionStyles.inlineSize = Math.min(
+              containerRelativeWidth,
+              containerMaxWidth
+            );
+          } else {
+            containerPositionStyles.maxInlineSize = containerMaxWidth;
           }
         }
       }

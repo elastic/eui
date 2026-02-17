@@ -149,9 +149,9 @@ const meta: Meta<FlyoutChildStoryArgs> = {
     showFooter: true,
     mainResizable: true,
     childResizable: false,
-    mainMinWidth: 300,
-    childMinWidth: 300,
-    mainMaxWidth: 800,
+    mainMinWidth: 200,
+    childMinWidth: 200,
+    mainMaxWidth: undefined,
     childMaxWidth: undefined,
   },
   parameters: {
@@ -302,9 +302,9 @@ const ContainerDemoComponent: React.FC<FlyoutChildStoryArgs> = ({
       size={childSize}
       hasChildBackground={hasChildBackground}
       maxWidth={childMaxWidth}
+      minWidth={childMinWidth}
       ownFocus={false}
       resizable={childResizable}
-      minWidth={childMinWidth}
       {...args}
       aria-label={`Child Flyout (${childSize})`}
       onClose={closeChild}
@@ -366,9 +366,9 @@ const ContainerDemoComponent: React.FC<FlyoutChildStoryArgs> = ({
       type={mainFlyoutType}
       pushMinBreakpoint={pushMinBreakpoint}
       maxWidth={mainMaxWidth}
+      minWidth={mainMinWidth}
       ownFocus={false}
       resizable={mainResizable}
-      minWidth={mainMinWidth}
       aria-label={`App Flyout (${mainSize})`}
       {...args}
       onClose={closeAppFlyout}
