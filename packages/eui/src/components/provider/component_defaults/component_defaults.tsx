@@ -72,12 +72,6 @@ export type EuiComponentDefaults = {
 // Declaring as a static const for reference integrity/reducing rerenders
 const emptyDefaults = {};
 
-// Signal for Kibana's kbn-ui-shared-deps: when this module is loaded, the latest EUI sync is in use.
-if (typeof console !== 'undefined' && process.env.NODE_ENV === 'development') {
-  // eslint-disable-next-line no-console
-  console.log('[EUI] kbn-ui-shared-deps: latest EUI code loaded (component-defaults)');
-}
-
 /*
  * Context
  */
@@ -93,15 +87,6 @@ export type EuiComponentDefaultsProviderProps = PropsWithChildren & {
 export const EuiComponentDefaultsProvider: FunctionComponent<
   EuiComponentDefaultsProviderProps
 > = ({ componentDefaults = emptyDefaults, children }) => {
-  if (process.env.NODE_ENV === 'development') {
-    const flyoutDefaults = (componentDefaults as EuiComponentDefaults).EuiFlyout;
-    // eslint-disable-next-line no-console
-    console.log('[EuiComponentDefaultsProvider] value being set to context', {
-      hasEuiFlyout: Boolean(flyoutDefaults),
-      EuiFlyoutKeys: flyoutDefaults ? Object.keys(flyoutDefaults) : [],
-      EuiFlyoutContainer: flyoutDefaults?.container,
-    });
-  }
   return (
     <EuiComponentDefaultsContext.Provider value={componentDefaults}>
       {children}
@@ -116,8 +101,7 @@ export const useComponentDefaults = () => {
   return useContext(EuiComponentDefaultsContext);
 };
 
-// Merge individual component props with component defaults.
-// Props with value `undefined` do not overwrite defaults (so "not passed" keeps the default).
+// Merge individual component props with component defaults
 export const usePropsWithComponentDefaults = <
   TComponentName extends keyof EuiComponentDefaults,
   TComponentProps
@@ -129,25 +113,13 @@ export const usePropsWithComponentDefaults = <
 
   const componentDefaults = context[componentName] ?? emptyDefaults;
 
-  return useMemo(() => {
-    if (process.env.NODE_ENV === 'development') {
-      // eslint-disable-next-line no-console
-      console.log('[EUI] usePropsWithComponentDefaults', componentName, componentDefaults);
-      if (componentName === 'EuiFlyout') {
-        // eslint-disable-next-line no-console
-        console.log('[EUI] usePropsWithComponentDefaults EuiFlyout: raw context.EuiFlyout', (context as EuiComponentDefaults).EuiFlyout);
-      }
-    }
-    const merged = { ...componentDefaults, ...props };
-    // Restore defaults for keys where the prop was explicitly undefined (don't let undefined overwrite)
-    const defaultsKeys = Object.keys(componentDefaults) as (keyof TComponentProps)[];
-    for (const key of defaultsKeys) {
-      if (props[key as keyof TComponentProps] === undefined && componentDefaults[key as keyof typeof componentDefaults] !== undefined) {
-        (merged as Record<string, unknown>)[key as string] = componentDefaults[key as keyof typeof componentDefaults];
-      }
-    }
-    return merged as TComponentProps;
-  }, [componentDefaults, props]);
+  return useMemo(
+    () => ({
+      ...componentDefaults,
+      ...props,
+    }),
+    [componentDefaults, props]
+  );
 };
 
 /*

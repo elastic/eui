@@ -119,17 +119,6 @@ export const EuiProvider = <T extends {} = {}>({
     return children as any;
   }
 
-  if (process.env.NODE_ENV === 'development' && componentDefaults != null) {
-    // eslint-disable-next-line no-console
-    console.log('[EuiProvider] received componentDefaults', {
-      hasEuiFlyout: Boolean(componentDefaults?.EuiFlyout),
-      EuiFlyoutKeys: componentDefaults?.EuiFlyout
-        ? Object.keys(componentDefaults.EuiFlyout)
-        : [],
-      EuiFlyoutContainer: componentDefaults?.EuiFlyout?.container,
-    });
-  }
-
   let defaultCache: EmotionCache | undefined;
   let globalCache: EmotionCache | undefined;
   let utilityCache: EmotionCache | undefined;
