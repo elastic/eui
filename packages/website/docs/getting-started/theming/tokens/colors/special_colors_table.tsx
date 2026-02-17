@@ -1,3 +1,4 @@
+import React from 'react';
 import { useEuiTheme } from '@elastic/eui';
 import { ColorsTable } from './colors_table';
 
@@ -64,24 +65,6 @@ export const SpecialColorsTable = () => {
             <>
               The base color for shadows that gets <code>transparentized</code>{' '}
               at a base value on the <code>colorMode</code> and then layered.
-            </>
-          ),
-        },
-        {
-          value: euiTheme.colors.ghost,
-          token: 'colors.ghost',
-          description: (
-            <>
-              @deprecated - use <code>plainLight</code> instead
-            </>
-          ),
-        },
-        {
-          value: euiTheme.colors.ink,
-          token: 'colors.ink',
-          description: (
-            <>
-              @deprecated - use <code>plainDark</code> instead
             </>
           ),
         },

@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import { ComponentProps, useState } from 'react';
+import { ComponentProps, useEffect, useState } from 'react';
 import { css } from '@emotion/react';
 import { FixedSizeList } from 'react-window';
 import {
@@ -68,6 +68,13 @@ export type VersionSwitcherProps = {
    * List of available versions to switch to
    */
   versions: string[];
+  /**
+   * URL to fetch the latest list of versions from.
+   * When provided, versions are fetched client-side from this URL,
+   * falling back to the static `versions` prop if the fetch fails.
+   * This ensures all deployed versions are always visible in the switcher.
+   */
+  versionsUrl?: string;
 };
 
 export const VersionSwitcher = ({
@@ -76,11 +83,41 @@ export const VersionSwitcher = ({
   extraAction,
   previousVersionUrl,
   versions,
+  versionsUrl,
 }: VersionSwitcherProps) => {
   const [isPopoverOpen, setPopoverOpen] = useState(false);
+  const [allVersions, setAllVersions] = useState(versions);
   const styles = useEuiMemoizedStyles(getStyles);
 
-  if (!versions) return null;
+  // Fetch the latest versions list from the main deployment
+  // to ensure the switcher always shows all available versions,
+  // even on older documentation deployments
+  useEffect(() => {
+    if (!versionsUrl) return;
+
+    fetch(versionsUrl)
+      .then((response) => {
+        if (!response.ok) throw new Error('Failed to fetch versions');
+        return response.json();
+      })
+      .then((data) => {
+        if (data?.euiVersions?.length) {
+          // Ensure the current version is always included
+          const fetchedVersions: string[] = data.euiVersions;
+          if (!fetchedVersions.includes(currentVersion)) {
+            fetchedVersions.push(currentVersion);
+          }
+          setAllVersions(fetchedVersions);
+        }
+      })
+      .catch(() => {
+        // Silently fall back to statically bundled versions
+      });
+  }, [versionsUrl, currentVersion]);
+
+  if (!allVersions?.length) return null;
+
+  const latestVersion = allVersions[0];
 
   const button = (
     <EuiButtonEmpty
@@ -109,19 +146,19 @@ export const VersionSwitcher = ({
     >
       <FixedSizeList
         className="eui-yScroll"
-        itemCount={versions.length}
+        itemCount={allVersions.length}
         itemSize={24}
         height={200}
         width={120}
         innerElementType="ul"
       >
         {({ index, style }) => {
-          const version = versions[index];
+          const version = allVersions[index];
           const isCurrentVersion = version === currentVersion;
           const screenReaderVersion = pronounceVersion(version!);
 
-          const url = isCurrentVersion
-            ? '/'
+          const url = version === latestVersion
+            ? `${previousVersionUrl}/`
             : `${previousVersionUrl}/v${version}/`;
 
           return (

@@ -127,6 +127,21 @@ describe('EuiButtonEmpty', () => {
       });
     });
 
+    describe('isLoading', () => {
+      it('is rendered', () => {
+        const { getByTestSubject } = render(
+          <EuiFormControlButton {...defaultProps} isLoading />
+        );
+
+        const classes = Object.values(
+          getByTestSubject('euiFormControlButton').classList
+        );
+
+        expect(getByTestSubject('euiFormControlButton')).toBeDisabled();
+        expect(classes.some((clx) => clx.includes('isLoading'))).toBe(true);
+      });
+    });
+
     describe('isInvalid', () => {
       it('is rendered', () => {
         const { getByTestSubject } = render(

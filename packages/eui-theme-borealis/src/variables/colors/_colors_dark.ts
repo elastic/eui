@@ -66,6 +66,8 @@ export const dark_text_colors: _EuiThemeTextColors = {
   textSubdued: SEMANTIC_COLORS.shade55,
   textDisabled: SEMANTIC_COLORS.shade80,
   textInverse: SEMANTIC_COLORS.plainDark,
+  textInk: SEMANTIC_COLORS.plainDark,
+  textGhost: SEMANTIC_COLORS.plainLight,
 };
 
 export const dark_shades: _EuiThemeShadeColors = {

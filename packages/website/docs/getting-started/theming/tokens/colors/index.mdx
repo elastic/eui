@@ -49,6 +49,8 @@ import { BrandColorsTable } from './brand_colors_table';
 
 Each brand color also has a corresponding text variant that should be used specifically when coloring text. As is used in [EuiTextColor](../../../../components/display/text.mdx#coloring-text).
 
+Use `textGhost` for text and icons on dark backgrounds and `textInk` on light backgrounds. 
+
 import { TextColorPreview } from './text_color_preview';
 import { TextColorsTable } from './text_colors_table';
 
@@ -183,8 +185,8 @@ import { SpecialColorsTable } from './special_colors_table';
   <Example.Snippet>
     ```
     css`
-      color: ${euiTheme.colors.ghost};
-      background-color: ${euiTheme.colors.ink};
+      color: ${euiTheme.colors.disabledText};
+      background-color: ${euiTheme.colors.disabled};
     `
     ```
   </Example.Snippet>

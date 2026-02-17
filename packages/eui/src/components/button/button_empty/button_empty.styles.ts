@@ -12,7 +12,6 @@ import { UseEuiTheme } from '../../../services';
 import {
   logicalCSS,
   logicalShorthandCSS,
-  euiCanAnimate,
   highContrastModeStyles,
 } from '../../../global_styling';
 import { euiButtonDisplayStyles } from '../button_display/_button_display.styles';
@@ -29,12 +28,6 @@ export const euiButtonEmptyStyles = (euiThemeContext: UseEuiTheme) => {
     euiButtonEmpty: css`
       ${displayStyles.euiButtonDisplay}
       ${logicalShorthandCSS('padding', `0 ${euiTheme.size.s}`)}
-      
-      /* Change the easing, quickness to not bounce so lighter backgrounds don't flash */
-      ${euiCanAnimate} {
-        transition-timing-function: ease-in;
-        transition-duration: ${euiTheme.animation.fast};
-      }
     `,
     isDisabled: displayStyles.isDisabled,
     // Sizes
@@ -74,6 +67,15 @@ export const euiButtonEmptyStyles = (euiThemeContext: UseEuiTheme) => {
             }
           `,
         })}
+      }
+
+      .euiButtonEmpty__content {
+        gap: ${euiTheme.size.s};
+      }
+
+      .euiButtonEmpty__text {
+        /* unset default EuiButtonDisplayContent text padding */
+        padding: 0;
       }
     `,
     left: css`

@@ -152,7 +152,10 @@ export const euiMarkdownFormatStyles = (euiThemeContext: UseEuiTheme) => {
         euiMarkdownAdjustBorderColors(euiThemeContext, euiTheme.colors.danger)
       ),
       ghost: css(
-        euiMarkdownAdjustBorderColors(euiThemeContext, euiTheme.colors.ghost)
+        euiMarkdownAdjustBorderColors(
+          euiThemeContext,
+          euiTheme.colors.plainLight
+        )
       ),
       inherit: css(
         euiMarkdownAdjustBorderColors(euiThemeContext, 'currentColor')

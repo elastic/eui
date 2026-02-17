@@ -14,9 +14,9 @@ import {
   enableFunctionToggleControls,
   moveStorybookControlsToCategory,
 } from '../../../../.storybook/utils';
-import { EuiIcon } from '../../icon';
 import { _DualRangeChangeEvent, EuiDualRangeProps } from './types';
 import { EuiDualRange } from './dual_range';
+import { EuiFormAppend, EuiFormPrepend } from '../form_control_layout';
 
 const meta: Meta<EuiDualRangeProps> = {
   title: 'Forms/EuiDualRange',
@@ -26,7 +26,7 @@ const meta: Meta<EuiDualRangeProps> = {
       control: 'radio',
       options: [undefined, 'icon', 'text'],
       mapping: {
-        icon: <EuiIcon type="faceHappy" />,
+        icon: <EuiFormAppend iconLeft="faceHappy" />,
         text: 'Appended',
         undefined: undefined,
       },
@@ -36,12 +36,13 @@ const meta: Meta<EuiDualRangeProps> = {
       control: 'radio',
       options: [undefined, 'icon', 'text'],
       mapping: {
-        icon: <EuiIcon type="faceHappy" />,
+        icon: <EuiFormPrepend iconLeft="faceHappy" />,
         text: 'Prepended',
         undefined: undefined,
       },
       if: { arg: 'showInput', eq: 'inputWithPopover' },
     },
+
     showInput: {
       control: 'radio',
       options: [false, true, 'inputWithPopover'],
