@@ -672,7 +672,7 @@ describe('EuiPopover', () => {
       expect(button).not.toHaveAttribute('aria-controls');
     });
 
-    it('not set ARIA attributes for non-button triggers', async () => {
+    it('does not set ARIA attributes for non-button triggers', async () => {
       const inputTrigger = <input data-test-subj="inputTrigger" />;
 
       const { getByTestSubject } = render(
