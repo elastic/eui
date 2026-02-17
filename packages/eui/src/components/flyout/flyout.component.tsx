@@ -808,20 +808,29 @@ export const EuiFlyoutComponent = forwardRef(
             containerPositionStyles.right = containerRightOffset + siblingPx;
           }
 
-          const availableWidth = Math.max(0, containerMaxWidth - siblingPx);
-
           if (containerRelativeWidth !== undefined) {
             // Set `inlineSize` (logical property) so it properly overrides
             // `inlineSize` from composedStyles. We intentionally do NOT set
             // maxInlineSize — the CSS `max-inline-size` from the size class
             // provides the size-specific cap on initial render, and the
             // resize hook's clamp handles it after resize interactions.
+            //
+            // For fill-size children in side-by-side mode, subtract the
+            // main flyout's width so the child takes only the remaining
+            // available space. For non-fill children, do NOT subtract —
+            // a fill-size main will shrink dynamically to accommodate.
+            const fillDeduction =
+              size === 'fill' &&
+              layoutMode === LAYOUT_MODE_SIDE_BY_SIDE &&
+              siblingFlyoutWidth
+                ? siblingFlyoutWidth
+                : 0;
             containerPositionStyles.inlineSize = Math.min(
-              containerRelativeWidth,
-              availableWidth
+              Math.max(0, containerRelativeWidth - fillDeduction),
+              containerMaxWidth
             );
           } else {
-            containerPositionStyles.maxInlineSize = availableWidth;
+            containerPositionStyles.maxInlineSize = containerMaxWidth;
           }
         } else {
           // Main/standalone flyouts align to the container's edge.
@@ -832,8 +841,18 @@ export const EuiFlyoutComponent = forwardRef(
           }
 
           if (containerRelativeWidth !== undefined) {
+            // For fill-size flyouts in side-by-side mode, subtract the
+            // sibling's width so the main shrinks to accommodate the child
+            // (mirroring the CSS `calc(90% - siblingWidth)` in non-container
+            // mode). For non-fill sizes the sibling has no effect.
+            const siblingPx =
+              size === 'fill' &&
+              layoutMode === LAYOUT_MODE_SIDE_BY_SIDE &&
+              siblingFlyoutWidth
+                ? siblingFlyoutWidth
+                : 0;
             containerPositionStyles.inlineSize = Math.min(
-              containerRelativeWidth,
+              Math.max(0, containerRelativeWidth - siblingPx),
               containerMaxWidth
             );
           } else {
