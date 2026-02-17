@@ -199,17 +199,25 @@ exports[`EuiInlineEditForm edit mode editModeProps.inputProps 1`] = `
             class="euiFormControlLayout euiFormControlLayout--group emotion-euiFormControlLayout-fullWidth-group"
           >
             <div
-              class="euiFormControlLayout__prepend emotion-euiFormControlLayout__side-prepend"
+              class="euiFormControlLayout__prepend emotion-euiFormControlLayout__side"
             >
-              <label
-                class="euiFormLabel emotion-euiFormLabel"
-                for="generated-id"
+              <div
+                class="css-vmqubl-wrapper"
               >
-                Prepend Example
-              </label>
+                <div
+                  class="euiFormPrepend css-7iwqdv-side-uncompressed"
+                >
+                  <label
+                    class="euiFormLabel emotion-euiFormLabel"
+                    for="generated-id"
+                  >
+                    Prepend Example
+                  </label>
+                </div>
+              </div>
             </div>
             <div
-              class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup-prependOnly"
+              class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup"
             >
               <input
                 aria-label="Edit inline"
@@ -762,7 +770,7 @@ exports[`EuiInlineEditForm read mode isReadOnly 1`] = `
       class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
     >
       <span
-        class="eui-textTruncate euiButtonEmpty__text"
+        class="eui-textTruncate euiButtonEmpty__text css-13ifi6d-m"
       >
         Hello World!
       </span>
@@ -792,7 +800,7 @@ exports[`EuiInlineEditForm read mode placeholder 1`] = `
       class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
     >
       <span
-        class="eui-textTruncate euiButtonEmpty__text"
+        class="eui-textTruncate euiButtonEmpty__text css-13ifi6d-m"
       >
         This is a placeholder.
       </span>
@@ -832,7 +840,7 @@ exports[`EuiInlineEditForm read mode readModeProps 1`] = `
         data-euiicon-type="pencil"
       />
       <span
-        class="eui-textTruncate euiButtonEmpty__text"
+        class="eui-textTruncate euiButtonEmpty__text css-13ifi6d-m"
       >
         Hello World!
       </span>
@@ -864,7 +872,7 @@ exports[`EuiInlineEditForm read mode renders 1`] = `
       class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
     >
       <span
-        class="eui-textTruncate euiButtonEmpty__text"
+        class="eui-textTruncate euiButtonEmpty__text css-13ifi6d-m"
       >
         Hello World!
       </span>
@@ -900,7 +908,7 @@ exports[`EuiInlineEditForm read mode sizes 1`] = `
       class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
     >
       <span
-        class="eui-textTruncate euiButtonEmpty__text"
+        class="eui-textTruncate euiButtonEmpty__text css-1ryezsz-s"
       >
         Hello World!
       </span>

@@ -88,7 +88,7 @@ exports[`EuiSideNav props isOpenOnMobile defaults to false 1`] = `
         class="euiButtonEmpty__content euiSideNav__mobileToggleContent emotion-euiButtonDisplayContent-euiSideNav__mobileToggleContent"
       >
         <span
-          class="eui-textTruncate euiButtonEmpty__text"
+          class="eui-textTruncate euiButtonEmpty__text css-13ifi6d-m"
         />
         <span
           color="inherit"
@@ -124,7 +124,7 @@ exports[`EuiSideNav props isOpenOnMobile is rendered when specified as true 1`] 
         class="euiButtonEmpty__content euiSideNav__mobileToggleContent emotion-euiButtonDisplayContent-euiSideNav__mobileToggleContent"
       >
         <span
-          class="eui-textTruncate euiButtonEmpty__text"
+          class="eui-textTruncate euiButtonEmpty__text css-13ifi6d-m"
         />
         <span
           color="inherit"
@@ -601,7 +601,7 @@ exports[`EuiSideNav props mobileBreakpoints can be adjusted is rendered 1`] = `
         class="euiButtonEmpty__content euiSideNav__mobileToggleContent emotion-euiButtonDisplayContent-euiSideNav__mobileToggleContent"
       >
         <span
-          class="eui-textTruncate euiButtonEmpty__text"
+          class="eui-textTruncate euiButtonEmpty__text css-13ifi6d-m"
         />
         <span
           color="inherit"

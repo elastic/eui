@@ -98,6 +98,7 @@ export interface FlyoutManagerApi {
     minWidth?: number
   ) => void;
   closeFlyout: (flyoutId: string) => void;
+  closeAllFlyouts: () => void;
   setActiveFlyout: (flyoutId: string | null) => void;
   setFlyoutWidth: (flyoutId: string, width: number) => void;
   setPushPadding: (side: 'left' | 'right', width: number) => void;

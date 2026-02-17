@@ -9,6 +9,7 @@
 import {
   ACTION_ADD,
   ACTION_CLOSE,
+  ACTION_CLOSE_ALL,
   ACTION_SET_ACTIVE,
   ACTION_SET_LAYOUT_MODE,
   ACTION_SET_WIDTH,
@@ -212,6 +213,25 @@ export function flyoutManagerReducer(
       }
 
       return { ...state, sessions: updatedSessions, flyouts: newFlyouts };
+    }
+
+    // Unregister all flyouts.
+    case ACTION_CLOSE_ALL: {
+      if (state.sessions.length === 0) {
+        return state;
+      }
+
+      // Reset current z-index to 0 only if no unmanaged flyouts remain.
+      let newCurrentZIndex = state.currentZIndex;
+      if (state.unmanagedFlyouts.length === 0) {
+        newCurrentZIndex = 0;
+      }
+
+      return {
+        ...initialState,
+        currentZIndex: newCurrentZIndex,
+        unmanagedFlyouts: state.unmanagedFlyouts,
+      };
     }
 
     // Mark the provided flyout ID as the active child for the latest session.

@@ -16,6 +16,11 @@ export const euiPaginationButtonStyles = (euiThemeContext: UseEuiTheme) => {
     // Base
     euiPaginationButton: css`
       outline-offset: -${euiTheme.focus.width};
+
+      /* manually remove additional label padding to reduce empty space */
+      .euiButtonEmpty__text {
+        padding: 0;
+      }
     `,
     // States
     isActive: css`

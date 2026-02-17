@@ -27,31 +27,6 @@ const mockUseFlyoutManager = useFlyoutManager as jest.MockedFunction<
   typeof useFlyoutManager
 >;
 
-const createMockManager = (
-  overrides: Record<string, unknown> = {}
-): ReturnType<typeof useFlyoutManager> => ({
-  state: {
-    sessions: [],
-    flyouts: [],
-    layoutMode: 'side-by-side',
-    currentZIndex: 0,
-    unmanagedFlyouts: [],
-  },
-  dispatch: jest.fn(),
-  addFlyout: jest.fn(),
-  closeFlyout: jest.fn(),
-  setActiveFlyout: jest.fn(),
-  setFlyoutWidth: jest.fn(),
-  setPushPadding: jest.fn(),
-  setContainerElement: jest.fn(),
-  goBack: jest.fn(),
-  goToFlyout: jest.fn(),
-  addUnmanagedFlyout: jest.fn(),
-  closeUnmanagedFlyout: jest.fn(),
-  historyItems: [],
-  ...overrides,
-});
-
 describe('Flyout Manager Selectors', () => {
   beforeEach(() => {
     mockUseFlyoutManager.mockClear();
@@ -59,7 +34,27 @@ describe('Flyout Manager Selectors', () => {
 
   describe('useFlyoutWidth', () => {
     it('should return undefined when flyout is not found', () => {
-      mockUseFlyoutManager.mockReturnValue(createMockManager());
+      mockUseFlyoutManager.mockReturnValue({
+        state: {
+          sessions: [],
+          flyouts: [],
+          layoutMode: 'side-by-side',
+          unmanagedFlyouts: [],
+          currentZIndex: 0,
+        },
+        dispatch: jest.fn(),
+        addFlyout: jest.fn(),
+        closeFlyout: jest.fn(),
+        closeAllFlyouts: jest.fn(),
+        setActiveFlyout: jest.fn(),
+        setFlyoutWidth: jest.fn(),
+        setPushPadding: jest.fn(),
+        goBack: jest.fn(),
+        goToFlyout: jest.fn(),
+        addUnmanagedFlyout: jest.fn(),
+        closeUnmanagedFlyout: jest.fn(),
+        historyItems: [],
+      });
 
       const { result } = renderHook(() =>
         useFlyoutWidth('non-existent-flyout')
@@ -69,25 +64,35 @@ describe('Flyout Manager Selectors', () => {
     });
 
     it('should return the width when flyout exists', () => {
-      mockUseFlyoutManager.mockReturnValue(
-        createMockManager({
-          state: {
-            sessions: [],
-            flyouts: [
-              {
-                flyoutId: 'test-flyout',
-                level: LEVEL_MAIN,
-                size: 'm',
-                activityStage: 'active',
-                width: 500,
-              },
-            ],
-            layoutMode: 'side-by-side',
-            currentZIndex: 0,
-            unmanagedFlyouts: [],
-          },
-        })
-      );
+      mockUseFlyoutManager.mockReturnValue({
+        state: {
+          sessions: [],
+          flyouts: [
+            {
+              flyoutId: 'test-flyout',
+              level: LEVEL_MAIN,
+              size: 'm',
+              activityStage: 'active',
+              width: 500,
+            },
+          ],
+          layoutMode: 'side-by-side',
+          currentZIndex: 0,
+          unmanagedFlyouts: [],
+        },
+        dispatch: jest.fn(),
+        addFlyout: jest.fn(),
+        closeFlyout: jest.fn(),
+        closeAllFlyouts: jest.fn(),
+        setActiveFlyout: jest.fn(),
+        setFlyoutWidth: jest.fn(),
+        setPushPadding: jest.fn(),
+        goBack: jest.fn(),
+        goToFlyout: jest.fn(),
+        addUnmanagedFlyout: jest.fn(),
+        closeUnmanagedFlyout: jest.fn(),
+        historyItems: [],
+      });
 
       const { result } = renderHook(() => useFlyoutWidth('test-flyout'));
 
@@ -97,7 +102,27 @@ describe('Flyout Manager Selectors', () => {
 
   describe('useParentFlyoutSize', () => {
     it('should return undefined when no parent flyout exists', () => {
-      mockUseFlyoutManager.mockReturnValue(createMockManager());
+      mockUseFlyoutManager.mockReturnValue({
+        state: {
+          sessions: [],
+          flyouts: [],
+          layoutMode: 'side-by-side',
+          currentZIndex: 0,
+          unmanagedFlyouts: [],
+        },
+        dispatch: jest.fn(),
+        addFlyout: jest.fn(),
+        closeFlyout: jest.fn(),
+        closeAllFlyouts: jest.fn(),
+        setActiveFlyout: jest.fn(),
+        setFlyoutWidth: jest.fn(),
+        setPushPadding: jest.fn(),
+        goBack: jest.fn(),
+        goToFlyout: jest.fn(),
+        addUnmanagedFlyout: jest.fn(),
+        closeUnmanagedFlyout: jest.fn(),
+        historyItems: [],
+      });
 
       const { result } = renderHook(() => useParentFlyoutSize('child-flyout'));
 
@@ -107,24 +132,34 @@ describe('Flyout Manager Selectors', () => {
 
   describe('useHasChildFlyout', () => {
     it('should return false when no child flyout exists', () => {
-      mockUseFlyoutManager.mockReturnValue(
-        createMockManager({
-          state: {
-            sessions: [],
-            flyouts: [
-              {
-                flyoutId: 'parent-flyout',
-                level: LEVEL_MAIN,
-                size: 'm',
-                activityStage: 'active',
-              },
-            ],
-            layoutMode: 'side-by-side',
-            currentZIndex: 0,
-            unmanagedFlyouts: [],
-          },
-        })
-      );
+      mockUseFlyoutManager.mockReturnValue({
+        state: {
+          sessions: [],
+          flyouts: [
+            {
+              flyoutId: 'parent-flyout',
+              level: LEVEL_MAIN,
+              size: 'm',
+              activityStage: 'active',
+            },
+          ],
+          layoutMode: 'side-by-side',
+          currentZIndex: 0,
+          unmanagedFlyouts: [],
+        },
+        dispatch: jest.fn(),
+        addFlyout: jest.fn(),
+        closeFlyout: jest.fn(),
+        closeAllFlyouts: jest.fn(),
+        setActiveFlyout: jest.fn(),
+        setFlyoutWidth: jest.fn(),
+        setPushPadding: jest.fn(),
+        goBack: jest.fn(),
+        goToFlyout: jest.fn(),
+        addUnmanagedFlyout: jest.fn(),
+        closeUnmanagedFlyout: jest.fn(),
+        historyItems: [],
+      });
 
       const { result } = renderHook(() => useHasChildFlyout('parent-flyout'));
 
@@ -132,37 +167,47 @@ describe('Flyout Manager Selectors', () => {
     });
 
     it('should return true when child flyout exists', () => {
-      mockUseFlyoutManager.mockReturnValue(
-        createMockManager({
-          state: {
-            sessions: [
-              {
-                mainFlyoutId: 'parent-flyout',
-                childFlyoutId: 'child-flyout',
-                title: 'Parent Flyout',
-                zIndex: 0,
-              },
-            ],
-            flyouts: [
-              {
-                flyoutId: 'parent-flyout',
-                level: LEVEL_MAIN,
-                size: 'm',
-                activityStage: 'active',
-              },
-              {
-                flyoutId: 'child-flyout',
-                level: LEVEL_CHILD,
-                size: 'm',
-                activityStage: 'active',
-              },
-            ],
-            layoutMode: 'side-by-side',
-            currentZIndex: 0,
-            unmanagedFlyouts: [],
-          },
-        })
-      );
+      mockUseFlyoutManager.mockReturnValue({
+        state: {
+          sessions: [
+            {
+              mainFlyoutId: 'parent-flyout',
+              childFlyoutId: 'child-flyout',
+              title: 'Parent Flyout',
+              zIndex: 0,
+            },
+          ],
+          flyouts: [
+            {
+              flyoutId: 'parent-flyout',
+              level: LEVEL_MAIN,
+              size: 'm',
+              activityStage: 'active',
+            },
+            {
+              flyoutId: 'child-flyout',
+              level: LEVEL_CHILD,
+              size: 'm',
+              activityStage: 'active',
+            },
+          ],
+          layoutMode: 'side-by-side',
+          currentZIndex: 0,
+          unmanagedFlyouts: [],
+        },
+        dispatch: jest.fn(),
+        addFlyout: jest.fn(),
+        closeFlyout: jest.fn(),
+        closeAllFlyouts: jest.fn(),
+        setActiveFlyout: jest.fn(),
+        setFlyoutWidth: jest.fn(),
+        setPushPadding: jest.fn(),
+        goBack: jest.fn(),
+        goToFlyout: jest.fn(),
+        addUnmanagedFlyout: jest.fn(),
+        closeUnmanagedFlyout: jest.fn(),
+        historyItems: [],
+      });
 
       const { result } = renderHook(() => useHasChildFlyout('parent-flyout'));
 

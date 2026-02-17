@@ -12,6 +12,7 @@
 export {
   addFlyout as addFlyoutAction,
   closeFlyout as closeFlyoutAction,
+  closeAllFlyouts as closeAllFlyoutsAction,
   setActiveFlyout as setActiveFlyoutAction,
   setFlyoutWidth as setFlyoutWidthAction,
   setPushPadding as setPushPaddingAction,

@@ -1,5 +1,5 @@
 // Shadows
-$euiShadowColor: $euiColorInk !default;
+$euiShadowColor: $euiColorPlainDark !default;
 
 $euiShadowDownXS: 0 1px 4px 0 hsla(from $euiShadowColor h s l / 0.4), 0 2px 8px 0 hsla(from $euiShadowColor h s l / 0.24);
 $euiShadowDownS: 0 2px 7px 0 hsla(from $euiShadowColor h s l / 0.46), 0 4px 11px 0 hsla(from $euiShadowColor h s l / 0.26);

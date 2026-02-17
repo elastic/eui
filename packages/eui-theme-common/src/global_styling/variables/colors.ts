@@ -145,6 +145,8 @@ export type _EuiThemeTextColors = {
   textSubdued: ColorModeSwitch;
   textDisabled: ColorModeSwitch;
   textInverse: ColorModeSwitch;
+  textInk: ColorModeSwitch;
+  textGhost: ColorModeSwitch;
 };
 
 export type _EuiThemeSpecialColors = {
@@ -367,9 +369,6 @@ export type _EuiThemeSeverityColors = {
 };
 
 export type _EuiThemeConstantColors = {
-  ghost: string;
-  ink: string;
-
   plainLight: string;
   plainDark: string;
 };

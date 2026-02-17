@@ -333,16 +333,16 @@ export const EuiFlyoutComponent = forwardRef(
         containerProp !== undefined
           ? 'prop'
           : parentContainer != null
-            ? 'parent'
-            : 'default';
+          ? 'parent'
+          : 'default';
       const rawType =
         containerRaw == null
           ? null
           : typeof containerRaw === 'string'
-            ? 'string'
-            : typeof containerRaw === 'function'
-              ? 'function'
-              : 'element';
+          ? 'string'
+          : typeof containerRaw === 'function'
+          ? 'function'
+          : 'element';
       // eslint-disable-next-line no-console
       console.log('[EuiFlyout] container resolution', {
         source,
@@ -356,9 +356,7 @@ export const EuiFlyoutComponent = forwardRef(
     // Value to pass to child context: selector string so children re-resolve,
     // or resolved element when prop was element/getter.
     const containerForContext =
-      typeof containerRaw === 'string'
-        ? containerRaw
-        : (container ?? undefined);
+      typeof containerRaw === 'string' ? containerRaw : container ?? undefined;
 
     // If this flyout inherited its container from the parent context (rather
     // than setting it explicitly), the parent flyout already configured
@@ -398,7 +396,7 @@ export const EuiFlyoutComponent = forwardRef(
     // Container mode: mask sits below header (maskProps ignored).
     const effectiveHeaderZindexLocation = hasExplicitContainer
       ? 'below'
-      : (_maskProps?.headerZindexLocation ?? 'above');
+      : _maskProps?.headerZindexLocation ?? 'above';
     const _includeFixedHeadersInFocusTrap = hasExplicitContainer
       ? undefined
       : includeFixedHeadersInFocusTrap;
@@ -795,7 +793,10 @@ export const EuiFlyoutComponent = forwardRef(
       (event: EuiFlyoutCloseEvent) => {
         if (process.env.NODE_ENV === 'development') {
           // eslint-disable-next-line no-console
-          console.log('[EuiFlyout] close', { id, reason: event?.type || 'unknown' });
+          console.log('[EuiFlyout] close', {
+            id,
+            reason: event?.type || 'unknown',
+          });
         }
         onClose(event);
       },
