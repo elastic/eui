@@ -3,10 +3,10 @@
   "compilerOptions": {
     "rootDir": "src",
     "outDir": "lib/cjs",
-    "target": "es6",
+    "target": "ES2018",
     "module": "CommonJS",
     "lib": [
-      "es6",
+      "ES2018",
       "DOM"
     ],
     "moduleResolution": "Node",
@@ -17,7 +17,7 @@
     "strict": true,
     "skipLibCheck": true,
     "tsBuildInfoFile": "lib/cjs/.tsbuildinfo",
-    "importHelpers": false,
+    "importHelpers": false
   },
   "include": [
     "src"

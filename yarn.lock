@@ -7218,7 +7218,7 @@ __metadata:
     stylelint-config-prettier-scss: "npm:^1.0.0"
     stylelint-config-standard: "npm:^33.0.0"
     stylelint-config-standard-scss: "npm:^9.0.0"
-    typescript: "npm:^5.6.2"
+    typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
 
@@ -7234,7 +7234,7 @@ __metadata:
     "@emotion/react": "npm:^11.11.0"
     "@types/chroma-js": "npm:^2.4.0"
     "@types/jest": "npm:^29.5.12"
-    "@types/lodash": "npm:^4.14.202"
+    "@types/lodash": "npm:^4.17.23"
     "@types/prettier": "npm:2.7.3"
     "@types/react": "npm:^16.9 || ^17.0 || ^18.0"
     "@types/react-dom": "npm:^16.9 || ^17.0 || ^18.0"
@@ -7248,7 +7248,7 @@ __metadata:
     eslint-plugin-local: "npm:^1.0.0"
     eslint-plugin-prettier: "npm:^4.2.1"
     jest: "npm:^29.7.0"
-    lodash: "npm:^4.17.21"
+    lodash: "npm:^4.17.23"
     prettier: "npm:^2.8.8"
     react: "npm:^18.2.0"
     react-dom: "npm:^18.2.0"
@@ -7257,7 +7257,7 @@ __metadata:
     stylelint-config-prettier-scss: "npm:^1.0.0"
     stylelint-config-standard: "npm:^33.0.0"
     stylelint-config-standard-scss: "npm:^9.0.0"
-    typescript: "npm:4.5.3"
+    typescript: "npm:^5.8.3"
   peerDependencies:
     "@emotion/react": 11.x
     react: ^17.0 || ^18.0
@@ -7383,7 +7383,7 @@ __metadata:
     "@types/classnames": "npm:^2.3.1"
     "@types/enzyme": "npm:^3.10.5"
     "@types/jest": "npm:^29.5.12"
-    "@types/lodash": "npm:^4.14.202"
+    "@types/lodash": "npm:^4.17.23"
     "@types/numeral": "npm:^2.0.5"
     "@types/prettier": "npm:2.7.3"
     "@types/react": "npm:^18.2.14"
@@ -7455,7 +7455,7 @@ __metadata:
     jest: "npm:^29.7.0"
     jest-cli: "npm:^29.7.0"
     jest-environment-jsdom: "npm:^29.7.0"
-    lodash: "npm:^4.17.21"
+    lodash: "npm:^4.17.23"
     loki: "npm:^0.35.0"
     mdast-util-to-hast: "npm:^10.2.0"
     moment: "npm:^2.27.0"
@@ -11182,10 +11182,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/lodash@npm:^4.14.202":
-  version: 4.17.0
-  resolution: "@types/lodash@npm:4.17.0"
-  checksum: 10c0/4c5b41c9a6c41e2c05d08499e96f7940bcf194dcfa84356235b630da920c2a5e05f193618cea76006719bec61c76617dff02defa9d29934f9f6a76a49291bd8f
+"@types/lodash@npm:^4.14.202, @types/lodash@npm:^4.17.23":
+  version: 4.17.23
+  resolution: "@types/lodash@npm:4.17.23"
+  checksum: 10c0/9d9cbfb684e064a2b78aab9e220d398c9c2a7d36bc51a07b184ff382fa043a99b3d00c16c7f109b4eb8614118f4869678dbae7d5c6700ed16fb9340e26cc0bf6
   languageName: node
   linkType: hard
 
@@ -27820,6 +27820,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"lodash@npm:^4.17.23":
+  version: 4.17.23
+  resolution: "lodash@npm:4.17.23"
+  checksum: 10c0/1264a90469f5bb95d4739c43eb6277d15b6d9e186df4ac68c3620443160fc669e2f14c11e7d8b2ccf078b81d06147c01a8ccced9aab9f9f63d50dcf8cace6bf6
+  languageName: node
+  linkType: hard
+
 "log-symbols@npm:^2.1.0, log-symbols@npm:^2.2.0":
   version: 2.2.0
   resolution: "log-symbols@npm:2.2.0"
@@ -39942,17 +39949,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:4.5.3":
-  version: 4.5.3
-  resolution: "typescript@npm:4.5.3"
-  bin:
-    tsc: bin/tsc
-    tsserver: bin/tsserver
-  checksum: 10c0/1efbf9c206232a8c3fb2fb62ef308b769bec064142a3b746bb0d4ca545dffd783fef1eaa81e04771b0cb4451bc5db6b82c6b6e26ad091a1ca15f6c7493f6d8c6
-  languageName: node
-  linkType: hard
-
-"typescript@npm:5.6.2, typescript@npm:^5.6.2":
+"typescript@npm:5.6.2":
   version: 5.6.2
   resolution: "typescript@npm:5.6.2"
   bin:
@@ -39992,17 +39989,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@npm%3A4.5.3#optional!builtin<compat/typescript>":
-  version: 4.5.3
-  resolution: "typescript@patch:typescript@npm%3A4.5.3#optional!builtin<compat/typescript>::version=4.5.3&hash=f1b8ea"
-  bin:
-    tsc: bin/tsc
-    tsserver: bin/tsserver
-  checksum: 10c0/b1912ff8dcae3c5a8739dc5a3f12422d3bf5f8a6a5642b1d537ee18873de0bb7346e83c7de3b146291e93f6493ac9843c7bbbbb12ec6393b8e07a0a2dc88550f
-  languageName: node
-  linkType: hard
-
-"typescript@patch:typescript@npm%3A5.6.2#optional!builtin<compat/typescript>, typescript@patch:typescript@npm%3A^5.6.2#optional!builtin<compat/typescript>":
+"typescript@patch:typescript@npm%3A5.6.2#optional!builtin<compat/typescript>":
   version: 5.6.2
   resolution: "typescript@patch:typescript@npm%3A5.6.2#optional!builtin<compat/typescript>::version=5.6.2&hash=8c6c40"
   bin:
