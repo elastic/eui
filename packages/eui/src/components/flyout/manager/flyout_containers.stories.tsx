@@ -9,6 +9,7 @@
 import { actions } from '@storybook/addon-actions';
 import type { Meta, StoryObj } from '@storybook/react';
 import React, { useState } from 'react';
+import { css, Global } from '@emotion/react';
 
 import { EuiBreakpointSize } from '../../../services';
 import { EuiButton } from '../../button';
@@ -163,13 +164,6 @@ export default meta;
 type Story = StoryObj<FlyoutChildStoryArgs>;
 
 /**
- * Demonstrates two kinds of flyout in a Kibana-like application layout.
- *
- * The page uses a CSS grid that mirrors Kibana's chrome layout (e.g. flyout system
- * examples at `/app/flyoutSystemExamples`): grid areas for banner, header,
- * navigation, application, and sidebar. The application cell has
- * `id="app-main-scroll"` (same as Kibana) and is the container for the app flyout.
- *
  * 1. **App flyout** — scoped to the main content area via the `container` prop.
  *    Uses `type="push"` and supports a child flyout. Does not overlap the sidebars.
  *
@@ -428,20 +422,17 @@ const ContainerDemoComponent: React.FC<FlyoutChildStoryArgs> = ({
     </EuiFlyout>
   );
 
-  // Kibana-like grid layout dimensions (matches flyoutSystemExamples / project chrome)
+  // Grid layout dimensions
   const bannerHeight = 32;
   const headerHeight = 48;
   const applicationTopBarHeight = 48;
   const navigationWidth = 248;
   const sidebarWidth = 200;
   const footerHeight = 0;
-  const applicationMarginRight = 8;
-  const applicationMarginBottom = 8;
 
   return (
     <div
       style={{
-        // Fill story canvas; avoid viewport scroll (Kibana uses overflow: hidden on root)
         height: '100vh',
         width: '100%',
         maxWidth: '100vw',
@@ -460,7 +451,6 @@ const ContainerDemoComponent: React.FC<FlyoutChildStoryArgs> = ({
         fontFamily: 'inherit',
       }}
     >
-      {/* Banner — matches Kibana grid area */}
       <div
         style={{
           gridArea: 'banner',
@@ -469,7 +459,6 @@ const ContainerDemoComponent: React.FC<FlyoutChildStoryArgs> = ({
         }}
       />
 
-      {/* Header — matches Kibana grid area */}
       <header
         style={{
           gridArea: 'header',
@@ -481,11 +470,10 @@ const ContainerDemoComponent: React.FC<FlyoutChildStoryArgs> = ({
         }}
       >
         <EuiText size="s">
-          <strong>Kibana-like header</strong>
+          <strong>Header</strong>
         </EuiText>
       </header>
 
-      {/* Left navigation — grid cell (matches Kibana "navigation" slot) */}
       <nav
         style={{
           gridArea: 'navigation',
@@ -509,14 +497,15 @@ const ContainerDemoComponent: React.FC<FlyoutChildStoryArgs> = ({
         >
           <EuiText size="s">
             <h3>Navigation</h3>
-            <p>
-              <em>App flyout does not overlap this area</em>
-            </p>
+            <ul>
+              <li>Nav item 1</li>
+              <li>Nav item 2</li>
+              <li>Nav item 3</li>
+            </ul>
           </EuiText>
         </div>
       </nav>
 
-      {/* Application area — grid cell, same id as Kibana app-main-scroll; only this cell scrolls */}
       <main
         ref={setContainerEl}
         id="app-main-scroll"
@@ -528,16 +517,11 @@ const ContainerDemoComponent: React.FC<FlyoutChildStoryArgs> = ({
           overflow: 'auto',
           padding: 0,
           background: '#ffffff',
-          marginRight: applicationMarginRight,
-          marginBottom: applicationMarginBottom,
-          height: `calc(100% - ${applicationMarginBottom}px)`,
-          width: `calc(100% - ${applicationMarginRight}px)`,
           minHeight: 0,
           borderRadius: 6,
           boxShadow: '0 1px 2px rgba(0,0,0,0.06)',
         }}
       >
-        {/* Application top bar — sticky like Kibana (position: sticky; top: 0) */}
         <div
           style={{
             position: 'sticky',
@@ -558,15 +542,12 @@ const ContainerDemoComponent: React.FC<FlyoutChildStoryArgs> = ({
           <EuiText>
             <h2>Main content area</h2>
             <p>
-              This layout mirrors Kibana: CSS grid with <code>banner</code>,{' '}
-              <code>header</code>, <code>navigation</code>, <code>application</code>, and{' '}
-              <code>sidebar</code> cells. The application cell has{' '}
-              <code>id="app-main-scroll"</code> (same as Kibana) and is the container for
-              the <strong>app flyout</strong>.
+              Application container cell is the container for the{' '}
+              <strong>app flyout</strong>.
             </p>
             <p>
-              The <strong>global flyout</strong> is positioned relative to the document
-              body and overlaps the entire viewport, including sidebars.
+              The <strong>global flyout</strong> is positioned relative to the
+              document body and overlaps the entire viewport.
             </p>
           </EuiText>
           <EuiSpacer size="l" />
@@ -579,10 +560,95 @@ const ContainerDemoComponent: React.FC<FlyoutChildStoryArgs> = ({
 
           {/* App flyout: container-scoped, push type, with child */}
           {isAppFlyoutOpen && containerEl && renderAppFlyoutMain()}
+
+          <EuiSpacer size="l" />
+          <EuiText>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus
+              lacinia odio vitae vestibulum vestibulum. Cras vehicula, mi eget
+              laoreet venenatis, purus lectus tincidunt arcu, a ultrices nisi
+              eros sed pede.
+            </p>
+            <p>
+              Nulla facilisi. Aenean nec eros vestibulum, tempor neque at,
+              volutpat erat. Phasellus auctor nulla vel magna tincidunt, quis
+              cursus arcu sollicitudin. Integer posuere lacinia dapibus.
+            </p>
+            <p>
+              Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum
+              nibh, ut fermentum massa justo sit amet risus. Praesent commodo
+              cursus magna, vel scelerisque nisl consectetur et.
+            </p>
+            <p>
+              Etiam porta sem malesuada magna mollis euismod. Maecenas faucibus
+              mollis interdum. Vestibulum id ligula porta felis euismod semper.
+              Aenean eu leo quam. Pellentesque ornare sem lacinia quam
+              venenatis.
+            </p>
+            <p>
+              Curabitur blandit tempus porttitor. Nullam quis risus eget urna
+              mollis ornare vel eu leo. Donec sed odio dui. Morbi leo risus,
+              porta ac consectetur ac, vestibulum at eros.
+            </p>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
+              suscipit auctor dui, at convallis nisl. Donec a semper odio.
+              Curabitur ac nunc eget metus efficitur commodo. In in ligula a
+              enim efficitur efficitur. Proin sed felis eget nunc efficitur
+              tincidunt. Sed id ligula quis enim commodo efficitur. Donec ut sem
+              sed enim sollicitudin varius.
+            </p>
+            <p>
+              Duis mollis est non commodo luctus, nisi erat porttitor ligula,
+              eget lacinia odio sem nec elit. Cum sociis natoque penatibus et
+              magnis dis parturient montes, nascetur ridiculus mus.
+            </p>
+            <p>
+              Sed id ligula quis enim commodo efficitur. Donec ut sem sed enim
+              sollicitudin varius. Mauris at nisi sed metus efficitur fermentum.
+              Donec eget ligula eget nunc efficitur efficitur. Sed id ligula
+              quis enim commodo efficitur. Donec ut sem sed enim sollicitudin
+              varius.
+            </p>
+            <p>
+              Mauris at nisi sed metus efficitur fermentum. Donec eget ligula
+              eget nunc efficitur efficitur. Sed id ligula quis enim commodo
+              efficitur. Donec ut sem sed enim sollicitudin varius. Mauris at
+              nisi sed metus efficitur fermentum. Donec eget ligula eget nunc
+              efficitur efficitur.
+            </p>
+            <p>
+              Sed id ligula quis enim commodo efficitur. Donec ut sem sed enim
+              sollicitudin varius. Mauris at nisi sed metus efficitur fermentum.
+              Donec eget ligula eget nunc efficitur efficitur. Sed id ligula
+              quis enim commodo efficitur. Donec ut sem sed enim sollicitudin
+              varius.
+            </p>
+            <p>
+              Sed id ligula quis enim commodo efficitur. Donec ut sem sed enim
+              sollicitudin varius. Mauris at nisi sed metus efficitur fermentum.
+              Donec eget ligula eget nunc efficitur efficitur. Sed id ligula
+              quis enim commodo efficitur. Donec ut sem sed enim sollicitudin
+              varius.
+            </p>
+            <p>
+              Sed id ligula quis enim commodo efficitur. Donec ut sem sed enim
+              sollicitudin varius. Mauris at nisi sed metus efficitur fermentum.
+              Donec eget ligula eget nunc efficitur efficitur. Sed id ligula
+              quis enim commodo efficitur. Donec ut sem sed enim sollicitudin
+              varius.
+            </p>
+            <p>
+              Sed id ligula quis enim commodo efficitur. Donec ut sem sed enim
+              sollicitudin varius. Mauris at nisi sed metus efficitur fermentum.
+              Donec eget ligula eget nunc efficitur efficitur. Sed id ligula
+              quis enim commodo efficitur. Donec ut sem sed enim sollicitudin
+              varius.
+            </p>
+          </EuiText>
         </div>
       </main>
 
-      {/* Right sidebar — grid cell (matches Kibana "sidebar" slot) */}
       <aside
         style={{
           gridArea: 'sidebar',
@@ -599,16 +665,17 @@ const ContainerDemoComponent: React.FC<FlyoutChildStoryArgs> = ({
             padding: 16,
             display: 'flex',
             flexDirection: 'column',
-            gap: 8,
             overflow: 'auto',
             minHeight: 0,
           }}
         >
           <EuiText size="s">
             <h3>Tools</h3>
-            <p>
-              <em>App flyout does not overlap this area either</em>
-            </p>
+            <ul>
+              <li>Tool item 1</li>
+              <li>Tool item 2</li>
+              <li>Tool item 3</li>
+            </ul>
           </EuiText>
           <EuiSpacer size="m" />
           {isGlobalFlyoutOpen ? (
@@ -623,11 +690,18 @@ const ContainerDemoComponent: React.FC<FlyoutChildStoryArgs> = ({
         </div>
       </aside>
 
-      {/* Footer row (Kibana grid area, 0 height) */}
       <div style={{ gridArea: 'footer' }} />
 
       {/* Global flyout: body-scoped, overlay type, ownFocus, no child */}
       {isGlobalFlyoutOpen && renderGlobalFlyout()}
+
+      <Global
+        styles={css`
+          body {
+            padding: 0px;
+          }
+        `}
+      />
     </div>
   );
 };
