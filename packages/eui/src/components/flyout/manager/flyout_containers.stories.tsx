@@ -163,7 +163,12 @@ export default meta;
 type Story = StoryObj<FlyoutChildStoryArgs>;
 
 /**
- * Demonstrates two kinds of flyout in a Kibana-like application layout:
+ * Demonstrates two kinds of flyout in a Kibana-like application layout.
+ *
+ * The page uses a CSS grid that mirrors Kibana's chrome layout (e.g. flyout system
+ * examples at `/app/flyoutSystemExamples`): grid areas for banner, header,
+ * navigation, application, and sidebar. The application cell has
+ * `id="app-main-scroll"` (same as Kibana) and is the container for the app flyout.
  *
  * 1. **App flyout** — scoped to the main content area via the `container` prop.
  *    Uses `type="push"` and supports a child flyout. Does not overlap the sidebars.
@@ -423,100 +428,203 @@ const ContainerDemoComponent: React.FC<FlyoutChildStoryArgs> = ({
     </EuiFlyout>
   );
 
+  // Kibana-like grid layout dimensions (matches flyoutSystemExamples / project chrome)
+  const bannerHeight = 32;
+  const headerHeight = 48;
+  const applicationTopBarHeight = 48;
+  const navigationWidth = 248;
+  const sidebarWidth = 200;
+  const footerHeight = 0;
+  const applicationMarginRight = 8;
+  const applicationMarginBottom = 8;
+
   return (
     <div
       style={{
-        display: 'flex',
+        // Fill story canvas; avoid viewport scroll (Kibana uses overflow: hidden on root)
         height: '100vh',
+        width: '100%',
+        maxWidth: '100vw',
+        minHeight: 0,
+        overflow: 'hidden',
+        display: 'grid',
+        gridTemplateAreas: `
+          'banner banner banner'
+          'header header header'
+          'navigation application sidebar'
+          'footer footer footer'
+        `,
+        gridTemplateColumns: `${navigationWidth}px 1fr ${sidebarWidth}px`,
+        // minmax(0, 1fr) lets the main row shrink so only the application cell scrolls
+        gridTemplateRows: `${bannerHeight}px ${headerHeight}px minmax(0, 1fr) ${footerHeight}px`,
         fontFamily: 'inherit',
       }}
     >
-      {/* Left sidebar — navigation */}
+      {/* Banner — matches Kibana grid area */}
+      <div
+        style={{
+          gridArea: 'banner',
+          background: '#f5f7fa',
+          borderBottom: '1px solid #d3dae6',
+        }}
+      />
+
+      {/* Header — matches Kibana grid area */}
+      <header
+        style={{
+          gridArea: 'header',
+          background: '#fff',
+          borderBottom: '1px solid #d3dae6',
+          padding: '0 16px',
+          display: 'flex',
+          alignItems: 'center',
+        }}
+      >
+        <EuiText size="s">
+          <strong>Kibana-like header</strong>
+        </EuiText>
+      </header>
+
+      {/* Left navigation — grid cell (matches Kibana "navigation" slot) */}
       <nav
         style={{
-          width: 240,
-          minWidth: 240,
-          background: '#f5f7fa',
+          gridArea: 'navigation',
           borderRight: '1px solid #d3dae6',
-          padding: 16,
           display: 'flex',
           flexDirection: 'column',
-          gap: 12,
+          minHeight: 0,
         }}
       >
-        <EuiText size="s">
-          <h3>Navigation</h3>
-          <p>
-            <em>App flyout does not overlap this area</em>
-          </p>
-        </EuiText>
+        <div
+          style={{
+            flex: 1,
+            background: '#f5f7fa',
+            padding: 16,
+            display: 'flex',
+            flexDirection: 'column',
+            gap: 12,
+            overflow: 'auto',
+            minHeight: 0,
+          }}
+        >
+          <EuiText size="s">
+            <h3>Navigation</h3>
+            <p>
+              <em>App flyout does not overlap this area</em>
+            </p>
+          </EuiText>
+        </div>
       </nav>
 
-      {/* Main content area — serves as the app flyout container */}
+      {/* Application area — grid cell, same id as Kibana app-main-scroll; only this cell scrolls */}
       <main
         ref={setContainerEl}
+        id="app-main-scroll"
         style={{
-          flex: 1,
+          gridArea: 'application',
           position: 'relative',
-          overflow: 'hidden',
-          padding: 24,
-          background: '#ffffff',
-        }}
-      >
-        <EuiText>
-          <h2>Main content area</h2>
-          <p>
-            This area has <code>position: relative</code> and serves as the
-            container for the <strong>app flyout</strong>. The app flyout is
-            portaled into this element and positioned absolutely within it.
-          </p>
-          <p>
-            The <strong>global flyout</strong> is positioned relative to the
-            document body and overlaps the entire viewport, including sidebars.
-          </p>
-        </EuiText>
-        <EuiSpacer size="l" />
-
-        {isAppFlyoutOpen ? (
-          <EuiButton onClick={closeAppFlyout}>Close App Flyout</EuiButton>
-        ) : (
-          <EuiButton onClick={openAppFlyout}>Open App Flyout</EuiButton>
-        )}
-
-        {/* App flyout: container-scoped, push type, with child */}
-        {isAppFlyoutOpen && containerEl && renderAppFlyoutMain()}
-      </main>
-
-      {/* Right sidebar — tools / chat */}
-      <aside
-        style={{
-          width: 200,
-          minWidth: 200,
-          background: '#f5f7fa',
-          borderLeft: '1px solid #d3dae6',
-          padding: 16,
           display: 'flex',
           flexDirection: 'column',
-          gap: 8,
+          overflow: 'auto',
+          padding: 0,
+          background: '#ffffff',
+          marginRight: applicationMarginRight,
+          marginBottom: applicationMarginBottom,
+          height: `calc(100% - ${applicationMarginBottom}px)`,
+          width: `calc(100% - ${applicationMarginRight}px)`,
+          minHeight: 0,
+          borderRadius: 6,
+          boxShadow: '0 1px 2px rgba(0,0,0,0.06)',
         }}
       >
-        <EuiText size="s">
-          <h3>Tools</h3>
-          <p>
-            <em>App flyout does not overlap this area either</em>
-          </p>
-        </EuiText>
-        <EuiSpacer size="m" />
-        {isGlobalFlyoutOpen ? (
-          <EuiButton size="s" onClick={closeGlobalFlyout} color="warning">
-            Close Global Flyout
-          </EuiButton>
-        ) : (
-          <EuiButton size="s" onClick={openGlobalFlyout} color="warning">
-            Open Global Flyout
-          </EuiButton>
-        )}
+        {/* Application top bar — sticky like Kibana (position: sticky; top: 0) */}
+        <div
+          style={{
+            position: 'sticky',
+            top: 0,
+            zIndex: 1,
+            flexShrink: 0,
+            height: applicationTopBarHeight,
+            borderBottom: '1px solid #d3dae6',
+            padding: '0 16px',
+            display: 'flex',
+            alignItems: 'center',
+            background: '#ffffff',
+          }}
+        >
+          <EuiText size="s">Application top bar</EuiText>
+        </div>
+        <div style={{ padding: 24, flex: 1, minHeight: 0 }}>
+          <EuiText>
+            <h2>Main content area</h2>
+            <p>
+              This layout mirrors Kibana: CSS grid with <code>banner</code>,{' '}
+              <code>header</code>, <code>navigation</code>, <code>application</code>, and{' '}
+              <code>sidebar</code> cells. The application cell has{' '}
+              <code>id="app-main-scroll"</code> (same as Kibana) and is the container for
+              the <strong>app flyout</strong>.
+            </p>
+            <p>
+              The <strong>global flyout</strong> is positioned relative to the document
+              body and overlaps the entire viewport, including sidebars.
+            </p>
+          </EuiText>
+          <EuiSpacer size="l" />
+
+          {isAppFlyoutOpen ? (
+            <EuiButton onClick={closeAppFlyout}>Close App Flyout</EuiButton>
+          ) : (
+            <EuiButton onClick={openAppFlyout}>Open App Flyout</EuiButton>
+          )}
+
+          {/* App flyout: container-scoped, push type, with child */}
+          {isAppFlyoutOpen && containerEl && renderAppFlyoutMain()}
+        </div>
+      </main>
+
+      {/* Right sidebar — grid cell (matches Kibana "sidebar" slot) */}
+      <aside
+        style={{
+          gridArea: 'sidebar',
+          borderLeft: '1px solid #d3dae6',
+          display: 'flex',
+          flexDirection: 'column',
+          minHeight: 0,
+        }}
+      >
+        <div
+          style={{
+            flex: 1,
+            background: '#f5f7fa',
+            padding: 16,
+            display: 'flex',
+            flexDirection: 'column',
+            gap: 8,
+            overflow: 'auto',
+            minHeight: 0,
+          }}
+        >
+          <EuiText size="s">
+            <h3>Tools</h3>
+            <p>
+              <em>App flyout does not overlap this area either</em>
+            </p>
+          </EuiText>
+          <EuiSpacer size="m" />
+          {isGlobalFlyoutOpen ? (
+            <EuiButton size="s" onClick={closeGlobalFlyout} color="warning">
+              Close Global Flyout
+            </EuiButton>
+          ) : (
+            <EuiButton size="s" onClick={openGlobalFlyout} color="warning">
+              Open Global Flyout
+            </EuiButton>
+          )}
+        </div>
       </aside>
+
+      {/* Footer row (Kibana grid area, 0 height) */}
+      <div style={{ gridArea: 'footer' }} />
 
       {/* Global flyout: body-scoped, overlay type, ownFocus, no child */}
       {isGlobalFlyoutOpen && renderGlobalFlyout()}
