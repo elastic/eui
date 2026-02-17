@@ -177,7 +177,7 @@ export interface EuiPopoverProps extends PropsWithChildren, CommonProps {
    * however, the popover will attempt to reposition itself along the secondary
    * cross axis if there is room there instead.
    *
-   * If you do not not want this repositioning to occur (and it is acceptable for
+   * If you do not want this repositioning to occur (and it is acceptable for
    * the popover to appear offscreen), set this to false to disable this behavior.
    *
    * @default true
@@ -477,7 +477,7 @@ export class EuiPopover extends Component<Props, State> {
    * Avoids adding incorrect ARIA on inputs or other non-button elements.
    */
   private updateTriggerButtonAriaAttributes = (
-    toggleButton: FocusableElement | null,
+    toggleButton: FocusableElement | undefined,
     isOpen: boolean
   ) => {
     if (!toggleButton) return;
