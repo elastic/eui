@@ -688,7 +688,7 @@ describe('EuiPopover', () => {
       expect(input).not.toHaveAttribute('aria-controls');
     });
 
-    it('updates ARIA attributes to reflect the open state.', async () => {
+    it('updates ARIA attributes to reflect the open state', async () => {
       const buttonTrigger = <button data-test-subj="buttonTrigger" />;
 
       const { rerender, getByTestSubject } = render(
