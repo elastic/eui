@@ -11,7 +11,7 @@ exports[`EuiButtonEmpty is rendered 1`] = `
     class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
   >
     <span
-      class="eui-textTruncate euiButtonEmpty__text"
+      class="eui-textTruncate euiButtonEmpty__text css-13ifi6d-m"
     >
       Content
     </span>
@@ -28,7 +28,7 @@ exports[`EuiButtonEmpty props color accent is rendered 1`] = `
     class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
   >
     <span
-      class="eui-textTruncate euiButtonEmpty__text"
+      class="eui-textTruncate euiButtonEmpty__text css-13ifi6d-m"
     />
   </span>
 </button>
@@ -43,7 +43,7 @@ exports[`EuiButtonEmpty props color accentSecondary is rendered 1`] = `
     class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
   >
     <span
-      class="eui-textTruncate euiButtonEmpty__text"
+      class="eui-textTruncate euiButtonEmpty__text css-13ifi6d-m"
     />
   </span>
 </button>
@@ -58,7 +58,7 @@ exports[`EuiButtonEmpty props color danger is rendered 1`] = `
     class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
   >
     <span
-      class="eui-textTruncate euiButtonEmpty__text"
+      class="eui-textTruncate euiButtonEmpty__text css-13ifi6d-m"
     />
   </span>
 </button>
@@ -73,7 +73,7 @@ exports[`EuiButtonEmpty props color primary is rendered 1`] = `
     class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
   >
     <span
-      class="eui-textTruncate euiButtonEmpty__text"
+      class="eui-textTruncate euiButtonEmpty__text css-13ifi6d-m"
     />
   </span>
 </button>
@@ -88,7 +88,7 @@ exports[`EuiButtonEmpty props color success is rendered 1`] = `
     class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
   >
     <span
-      class="eui-textTruncate euiButtonEmpty__text"
+      class="eui-textTruncate euiButtonEmpty__text css-13ifi6d-m"
     />
   </span>
 </button>
@@ -103,7 +103,7 @@ exports[`EuiButtonEmpty props color text is rendered 1`] = `
     class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
   >
     <span
-      class="eui-textTruncate euiButtonEmpty__text"
+      class="eui-textTruncate euiButtonEmpty__text css-13ifi6d-m"
     />
   </span>
 </button>
@@ -118,7 +118,7 @@ exports[`EuiButtonEmpty props color warning is rendered 1`] = `
     class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
   >
     <span
-      class="eui-textTruncate euiButtonEmpty__text"
+      class="eui-textTruncate euiButtonEmpty__text css-13ifi6d-m"
     />
   </span>
 </button>
@@ -135,7 +135,7 @@ exports[`EuiButtonEmpty props contentProps is rendered 1`] = `
     data-test-subj="test subject string"
   >
     <span
-      class="eui-textTruncate euiButtonEmpty__text"
+      class="eui-textTruncate euiButtonEmpty__text css-13ifi6d-m"
     >
       Content
     </span>
@@ -152,7 +152,7 @@ exports[`EuiButtonEmpty props flush both is rendered 1`] = `
     class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
   >
     <span
-      class="eui-textTruncate euiButtonEmpty__text"
+      class="eui-textTruncate euiButtonEmpty__text css-13ifi6d-m"
     />
   </span>
 </button>
@@ -167,7 +167,7 @@ exports[`EuiButtonEmpty props flush left is rendered 1`] = `
     class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
   >
     <span
-      class="eui-textTruncate euiButtonEmpty__text"
+      class="eui-textTruncate euiButtonEmpty__text css-13ifi6d-m"
     />
   </span>
 </button>
@@ -182,7 +182,7 @@ exports[`EuiButtonEmpty props flush right is rendered 1`] = `
     class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
   >
     <span
-      class="eui-textTruncate euiButtonEmpty__text"
+      class="eui-textTruncate euiButtonEmpty__text css-13ifi6d-m"
     />
   </span>
 </button>
@@ -199,7 +199,7 @@ exports[`EuiButtonEmpty props href secures the rel attribute when the target is 
     class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
   >
     <span
-      class="eui-textTruncate euiButtonEmpty__text"
+      class="eui-textTruncate euiButtonEmpty__text css-13ifi6d-m"
     />
   </span>
 </a>
@@ -218,7 +218,7 @@ exports[`EuiButtonEmpty props iconSide left is rendered 1`] = `
       data-euiicon-type="user"
     />
     <span
-      class="eui-textTruncate euiButtonEmpty__text"
+      class="eui-textTruncate euiButtonEmpty__text css-13ifi6d-m"
     >
       Content
     </span>
@@ -235,7 +235,7 @@ exports[`EuiButtonEmpty props iconSide right is rendered 1`] = `
     class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
   >
     <span
-      class="eui-textTruncate euiButtonEmpty__text"
+      class="eui-textTruncate euiButtonEmpty__text css-13ifi6d-m"
     >
       Content
     </span>
@@ -260,7 +260,7 @@ exports[`EuiButtonEmpty props iconType is rendered 1`] = `
       data-euiicon-type="user"
     />
     <span
-      class="eui-textTruncate euiButtonEmpty__text"
+      class="eui-textTruncate euiButtonEmpty__text css-13ifi6d-m"
     />
   </span>
 </button>
@@ -277,7 +277,7 @@ exports[`EuiButtonEmpty props isDisabled is rendered 1`] = `
     class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
   >
     <span
-      class="eui-textTruncate euiButtonEmpty__text"
+      class="eui-textTruncate euiButtonEmpty__text css-13ifi6d-m"
     />
   </span>
 </button>
@@ -293,7 +293,7 @@ exports[`EuiButtonEmpty props isDisabled renders a button even when href is defi
     class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
   >
     <span
-      class="eui-textTruncate euiButtonEmpty__text"
+      class="eui-textTruncate euiButtonEmpty__text css-13ifi6d-m"
     />
   </span>
 </button>
@@ -309,7 +309,7 @@ exports[`EuiButtonEmpty props isDisabled renders if passed simply as disabled 1`
     class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
   >
     <span
-      class="eui-textTruncate euiButtonEmpty__text"
+      class="eui-textTruncate euiButtonEmpty__text css-13ifi6d-m"
     />
   </span>
 </button>
@@ -331,7 +331,7 @@ exports[`EuiButtonEmpty props isLoading is rendered 1`] = `
       style="border-color: #0b64dd currentcolor currentcolor currentcolor;"
     />
     <span
-      class="eui-textTruncate euiButtonEmpty__text"
+      class="eui-textTruncate euiButtonEmpty__text css-13ifi6d-m"
     />
   </span>
 </button>
@@ -347,7 +347,7 @@ exports[`EuiButtonEmpty props isSelected is rendered as false 1`] = `
     class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
   >
     <span
-      class="eui-textTruncate euiButtonEmpty__text"
+      class="eui-textTruncate euiButtonEmpty__text css-13ifi6d-m"
     />
   </span>
 </button>
@@ -363,7 +363,7 @@ exports[`EuiButtonEmpty props isSelected is rendered as true 1`] = `
     class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
   >
     <span
-      class="eui-textTruncate euiButtonEmpty__text"
+      class="eui-textTruncate euiButtonEmpty__text css-13ifi6d-m"
     />
   </span>
 </button>
@@ -378,7 +378,7 @@ exports[`EuiButtonEmpty props size m is rendered 1`] = `
     class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
   >
     <span
-      class="eui-textTruncate euiButtonEmpty__text"
+      class="eui-textTruncate euiButtonEmpty__text css-13ifi6d-m"
     />
   </span>
 </button>
@@ -393,7 +393,7 @@ exports[`EuiButtonEmpty props size s is rendered 1`] = `
     class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
   >
     <span
-      class="eui-textTruncate euiButtonEmpty__text"
+      class="eui-textTruncate euiButtonEmpty__text css-1ryezsz-s"
     />
   </span>
 </button>
@@ -408,7 +408,7 @@ exports[`EuiButtonEmpty props size xs is rendered 1`] = `
     class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
   >
     <span
-      class="eui-textTruncate euiButtonEmpty__text"
+      class="eui-textTruncate euiButtonEmpty__text css-1shwb46-xs"
     />
   </span>
 </button>
@@ -424,7 +424,7 @@ exports[`EuiButtonEmpty props textProps is rendered 1`] = `
   >
     <span
       aria-label="aria-label"
-      class="eui-textTruncate euiButtonEmpty__text testClass1 testClass2 emotion-euiTestCss"
+      class="eui-textTruncate euiButtonEmpty__text testClass1 testClass2 css-1mgkzdg-m-euiTestCss"
       data-test-subj="test subject string"
     >
       Content

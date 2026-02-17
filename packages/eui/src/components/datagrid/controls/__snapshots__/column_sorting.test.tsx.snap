@@ -165,7 +165,7 @@ exports[`DataGridSortingControl renders a toolbar button/popover allowing users 
                           class="emotion-euiButtonDisplayContent-euiButtonGroupButton__content-compressed"
                         >
                           <span
-                            class="eui-textTruncate emotion-euiButtonGroupButton__text"
+                            class="eui-textTruncate css-12o88cr-s-euiButtonGroupButton__text"
                             data-text="Low-High"
                           >
                             Low-High
@@ -183,7 +183,7 @@ exports[`DataGridSortingControl renders a toolbar button/popover allowing users 
                           class="emotion-euiButtonDisplayContent-euiButtonGroupButton__content-compressed"
                         >
                           <span
-                            class="eui-textTruncate emotion-euiButtonGroupButton__text"
+                            class="eui-textTruncate css-12o88cr-s-euiButtonGroupButton__text"
                             data-text="High-Low"
                           >
                             High-Low
@@ -236,7 +236,7 @@ exports[`DataGridSortingControl renders a toolbar button/popover allowing users 
                       class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
                     >
                       <span
-                        class="eui-textTruncate euiButtonEmpty__text"
+                        class="eui-textTruncate euiButtonEmpty__text css-1shwb46-xs"
                       >
                         Pick fields to sort by
                       </span>
@@ -260,7 +260,7 @@ exports[`DataGridSortingControl renders a toolbar button/popover allowing users 
                     class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
                   >
                     <span
-                      class="eui-textTruncate euiButtonEmpty__text"
+                      class="eui-textTruncate euiButtonEmpty__text css-1shwb46-xs"
                     >
                       Clear sorting
                     </span>

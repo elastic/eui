@@ -261,7 +261,7 @@ exports[`useDataGridColumnSelector columnSelector renders a toolbar button/popov
                     class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
                   >
                     <span
-                      class="eui-textTruncate euiButtonEmpty__text"
+                      class="eui-textTruncate euiButtonEmpty__text css-1shwb46-xs"
                     >
                       Show all
                     </span>
@@ -280,7 +280,7 @@ exports[`useDataGridColumnSelector columnSelector renders a toolbar button/popov
                     class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
                   >
                     <span
-                      class="eui-textTruncate euiButtonEmpty__text"
+                      class="eui-textTruncate euiButtonEmpty__text css-1shwb46-xs"
                     >
                       Hide all
                     </span>

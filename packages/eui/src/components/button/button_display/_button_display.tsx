@@ -170,6 +170,7 @@ export const EuiButtonDisplay = forwardRef<HTMLElement, EuiButtonDisplayProps>(
 
     const innerNode = (
       <EuiButtonDisplayContent
+        size={size}
         isLoading={isLoading}
         isDisabled={buttonIsDisabled}
         iconType={iconType}

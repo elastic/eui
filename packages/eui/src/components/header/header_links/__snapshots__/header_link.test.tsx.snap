@@ -9,7 +9,7 @@ exports[`EuiHeaderLink can render as specific color 1`] = `
     class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
   >
     <span
-      class="eui-textTruncate euiButtonEmpty__text"
+      class="eui-textTruncate euiButtonEmpty__text css-1ryezsz-s"
     />
   </span>
 </button>
@@ -26,7 +26,7 @@ exports[`EuiHeaderLink is rendered 1`] = `
     class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
   >
     <span
-      class="eui-textTruncate euiButtonEmpty__text"
+      class="eui-textTruncate euiButtonEmpty__text css-1ryezsz-s"
     />
   </span>
 </button>
@@ -41,7 +41,7 @@ exports[`EuiHeaderLink is rendered as active 1`] = `
     class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
   >
     <span
-      class="eui-textTruncate euiButtonEmpty__text"
+      class="eui-textTruncate euiButtonEmpty__text css-1ryezsz-s"
     />
   </span>
 </button>

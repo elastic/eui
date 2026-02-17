@@ -16,22 +16,15 @@ import {
   euiFormControlDefaultShadow,
   euiFormControlInvalidStyles,
   euiFormControlHoverStyles,
-  euiFormVariables,
 } from '../form.styles';
 
 export const euiFormControlLayoutDelimitedStyles = (
   euiThemeContext: UseEuiTheme
 ) => {
-  const { highContrastMode } = euiThemeContext;
-
-  const form = euiFormVariables(euiThemeContext);
+  const { euiTheme } = euiThemeContext;
 
   const delimitedStyles = `
-      /* Transition smoothly between disabled/readOnly background color changes */
-      ${euiFormControlDefaultShadow(euiThemeContext, {
-        withBorder: !highContrastMode ? true : false,
-        withBackground: false,
-      })}
+      border-radius: ${euiTheme.border.radius.small};
     `.trim();
 
   return {
@@ -54,11 +47,6 @@ export const euiFormControlLayoutDelimitedStyles = (
       delimited: css`
         display: flex;
 
-        ${euiFormControlDefaultShadow(euiThemeContext, {
-          withBorder: !highContrastMode,
-          withBackground: false,
-        })}
-
         &:hover {
           ${euiFormControlHoverStyles(euiThemeContext)}
           box-shadow: none;
@@ -68,17 +56,6 @@ export const euiFormControlLayoutDelimitedStyles = (
             outline: none;
             background-color: transparent;
           }
-        }
-
-        /* adjust for delimited behavior differing from default form layout */
-        > :first-child {
-          ${logicalCSS('border-top-left-radius', 'inherit')}
-          ${logicalCSS('border-bottom-left-radius', 'inherit')}
-        }
-
-        > :last-child {
-          ${logicalCSS('border-top-right-radius', 'inherit')}
-          ${logicalCSS('border-bottom-right-radius', 'inherit')}
         }
       `,
       invalid: css(
@@ -91,9 +68,9 @@ export const euiFormControlLayoutDelimitedStyles = (
             ${euiFormControlInvalidStyles(euiThemeContext)}
           }
 
-          &:focus-within {
-            --euiFormControlStateColor: ${form.borderColor};
-            --euiFormControlStateHoverColor: ${form.borderHovered};
+         &:focus-within {
+            --euiFormControlStateColor: transparent;
+            --euiFormControlStateHoverColor: transparent;
           }
 
           .euiFormControlLayoutDelimited__input {

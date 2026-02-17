@@ -15,6 +15,7 @@ import type { Action } from './actions';
 import {
   addFlyout as addFlyoutAction,
   closeFlyout as closeFlyoutAction,
+  closeAllFlyouts as closeAllFlyoutsAction,
   setActiveFlyout as setActiveFlyoutAction,
   setFlyoutWidth as setFlyoutWidthAction,
   setPushPadding as setPushPaddingAction,
@@ -50,6 +51,7 @@ export interface FlyoutManagerStore {
     size?: string
   ) => void;
   closeFlyout: (flyoutId: string) => void;
+  closeAllFlyouts: () => void;
   setActiveFlyout: (flyoutId: string | null) => void;
   setFlyoutWidth: (flyoutId: string, width: number) => void;
   setPushPadding: (side: 'left' | 'right', width: number) => void;
@@ -152,6 +154,7 @@ function createStore(
     addFlyout: (flyoutId, title, level, size) =>
       dispatch(addFlyoutAction(flyoutId, title, level, size)),
     closeFlyout: (flyoutId) => dispatch(closeFlyoutAction(flyoutId)),
+    closeAllFlyouts: () => dispatch(closeAllFlyoutsAction()),
     setActiveFlyout: (flyoutId) => dispatch(setActiveFlyoutAction(flyoutId)),
     setFlyoutWidth: (flyoutId, width) =>
       dispatch(setFlyoutWidthAction(flyoutId, width)),

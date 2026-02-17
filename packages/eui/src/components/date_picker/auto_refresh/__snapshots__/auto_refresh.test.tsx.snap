@@ -8,34 +8,30 @@ exports[`EuiAutoRefresh is rendered 1`] = `
     class="euiFormControlLayout euiFormControlLayout--group euiFormControlLayout-readOnly emotion-euiFormControlLayout-group"
   >
     <div
-      class="euiFormControlLayout__prepend emotion-euiFormControlLayout__side-prepend"
+      class="euiFormControlLayout__prepend emotion-euiFormControlLayout__side-readOnly"
     >
-      <button
-        aria-expanded="false"
-        class="euiButtonEmpty euiFormControlLayout__prepend emotion-euiButtonDisplay-euiButtonEmpty-s-empty-text"
-        type="button"
+      <div
+        class="css-vmqubl-wrapper"
       >
-        <span
-          class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
+        <button
+          aria-expanded="false"
+          class="euiFormPrepend euiFormControlLayout__prepend css-a31npo-side-uncompressed-empty-primary-isInteractive"
         >
           <span
-            color="inherit"
             data-euiicon-type="timeRefresh"
           />
           <span
-            class="eui-textTruncate euiButtonEmpty__text"
+            class="euiFormLabel eui-textTruncate emotion-euiFormLabel"
           >
             <strong>
-              <small>
-                Auto refresh
-              </small>
+              Auto refresh
             </strong>
           </span>
-        </span>
-      </button>
+        </button>
+      </div>
     </div>
     <div
-      class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup-prependOnly"
+      class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup"
     >
       <input
         aria-label="aria-label"
@@ -58,34 +54,30 @@ exports[`EuiAutoRefresh isPaused is false 1`] = `
     class="euiFormControlLayout euiFormControlLayout--group euiFormControlLayout-readOnly emotion-euiFormControlLayout-group"
   >
     <div
-      class="euiFormControlLayout__prepend emotion-euiFormControlLayout__side-prepend"
+      class="euiFormControlLayout__prepend emotion-euiFormControlLayout__side-readOnly"
     >
-      <button
-        aria-expanded="false"
-        class="euiButtonEmpty euiFormControlLayout__prepend emotion-euiButtonDisplay-euiButtonEmpty-s-empty-text"
-        type="button"
+      <div
+        class="css-vmqubl-wrapper"
       >
-        <span
-          class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
+        <button
+          aria-expanded="false"
+          class="euiFormPrepend euiFormControlLayout__prepend css-a31npo-side-uncompressed-empty-primary-isInteractive"
         >
           <span
-            color="inherit"
             data-euiicon-type="timeRefresh"
           />
           <span
-            class="eui-textTruncate euiButtonEmpty__text"
+            class="euiFormLabel eui-textTruncate emotion-euiFormLabel"
           >
             <strong>
-              <small>
-                Auto refresh
-              </small>
+              Auto refresh
             </strong>
           </span>
-        </span>
-      </button>
+        </button>
+      </div>
     </div>
     <div
-      class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup-prependOnly"
+      class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup"
     >
       <input
         aria-label="Auto refresh"
@@ -107,34 +99,30 @@ exports[`EuiAutoRefresh refreshInterval is rendered 1`] = `
     class="euiFormControlLayout euiFormControlLayout--group euiFormControlLayout-readOnly emotion-euiFormControlLayout-group"
   >
     <div
-      class="euiFormControlLayout__prepend emotion-euiFormControlLayout__side-prepend"
+      class="euiFormControlLayout__prepend emotion-euiFormControlLayout__side-readOnly"
     >
-      <button
-        aria-expanded="false"
-        class="euiButtonEmpty euiFormControlLayout__prepend emotion-euiButtonDisplay-euiButtonEmpty-s-empty-text"
-        type="button"
+      <div
+        class="css-vmqubl-wrapper"
       >
-        <span
-          class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
+        <button
+          aria-expanded="false"
+          class="euiFormPrepend euiFormControlLayout__prepend css-a31npo-side-uncompressed-empty-primary-isInteractive"
         >
           <span
-            color="inherit"
             data-euiicon-type="timeRefresh"
           />
           <span
-            class="eui-textTruncate euiButtonEmpty__text"
+            class="euiFormLabel eui-textTruncate emotion-euiFormLabel"
           >
             <strong>
-              <small>
-                Auto refresh
-              </small>
+              Auto refresh
             </strong>
           </span>
-        </span>
-      </button>
+        </button>
+      </div>
     </div>
     <div
-      class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup-prependOnly"
+      class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup"
     >
       <input
         aria-label="Auto refresh"
@@ -168,7 +156,7 @@ exports[`EuiAutoRefreshButton is rendered 1`] = `
         data-euiicon-type="timeRefresh"
       />
       <span
-        class="eui-textTruncate euiButtonEmpty__text"
+        class="eui-textTruncate euiButtonEmpty__text css-1ryezsz-s"
       >
         Off
       </span>
@@ -195,7 +183,7 @@ exports[`EuiAutoRefreshButton isPaused is false 1`] = `
         data-euiicon-type="timeRefresh"
       />
       <span
-        class="eui-textTruncate euiButtonEmpty__text"
+        class="eui-textTruncate euiButtonEmpty__text css-1ryezsz-s"
       >
         1 second
       </span>
@@ -222,7 +210,7 @@ exports[`EuiAutoRefreshButton refreshInterval is rendered 1`] = `
         data-euiicon-type="timeRefresh"
       />
       <span
-        class="eui-textTruncate euiButtonEmpty__text"
+        class="eui-textTruncate euiButtonEmpty__text css-1ryezsz-s"
       >
         2 seconds
       </span>

@@ -90,13 +90,21 @@ exports[`EuiSuperSelect props prepend and append 1`] = `
     class="euiFormControlLayout euiFormControlLayout--group emotion-euiFormControlLayout-group"
   >
     <div
-      class="euiFormControlLayout__prepend emotion-euiFormControlLayout__side-prepend"
+      class="euiFormControlLayout__prepend emotion-euiFormControlLayout__side"
     >
-      <label
-        class="euiFormLabel emotion-euiFormLabel"
+      <div
+        class="css-vmqubl-wrapper"
       >
-        prepend
-      </label>
+        <div
+          class="euiFormPrepend css-7iwqdv-side-uncompressed"
+        >
+          <span
+            class="euiFormLabel emotion-euiFormLabel"
+          >
+            prepend
+          </span>
+        </div>
+      </div>
     </div>
     <div
       class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup"
@@ -123,13 +131,21 @@ exports[`EuiSuperSelect props prepend and append 1`] = `
       </div>
     </div>
     <div
-      class="euiFormControlLayout__append emotion-euiFormControlLayout__side-append"
+      class="euiFormControlLayout__append emotion-euiFormControlLayout__side"
     >
-      <label
-        class="euiFormLabel emotion-euiFormLabel"
+      <div
+        class="css-vmqubl-wrapper"
       >
-        append
-      </label>
+        <div
+          class="euiFormAppend css-7iwqdv-side-uncompressed"
+        >
+          <span
+            class="euiFormLabel emotion-euiFormLabel"
+          >
+            append
+          </span>
+        </div>
+      </div>
     </div>
   </div>
 </div>

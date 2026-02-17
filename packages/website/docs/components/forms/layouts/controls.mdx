@@ -17,6 +17,8 @@ import React from 'react';
 import {
   EuiFormControlLayout,
   EuiFormLabel,
+  EuiFormAppend,
+  EuiFormPrepend,
   EuiButtonEmpty,
   EuiText,
   useGeneratedHtmlId,
@@ -112,7 +114,7 @@ export default () => {
       </EuiFormControlLayout>
 
       <EuiFormControlLayout
-        prepend={<EuiFormLabel htmlFor={labelInputId}>Label</EuiFormLabel>}
+        prepend={<EuiFormPrepend inputId={labelInputId} label="Label" />}
       >
         <EuiFieldText type="text" controlOnly id={labelInputId} />
       </EuiFormControlLayout>
@@ -120,18 +122,16 @@ export default () => {
       <EuiFormControlLayout
         readOnly
         prepend={
-          <EuiFormLabel htmlFor={readOnlyInputId}>Read only</EuiFormLabel>
+          <EuiFormPrepend inputId={readOnlyInputId} label="Read only" />
         }
-        append={<EuiButtonEmpty size="xs">Button</EuiButtonEmpty>}
+        append={<EuiFormAppend element="button" label="Button" />}
       >
         <EuiFieldText type="text" id={readOnlyInputId} controlOnly readOnly />
       </EuiFormControlLayout>
 
       <EuiFormControlLayout
         append={
-          <EuiText size="xs">
-            <strong>%</strong>
-          </EuiText>
+          <EuiFormAppend label={<strong>%</strong>} />
         }
       >
         <EuiFieldText
@@ -145,9 +145,7 @@ export default () => {
         isLoading
         clear={{ onClick: () => {} }}
         prepend={
-          <EuiButtonEmpty size="xs" iconType="arrowDown" iconSide="right">
-            Button
-          </EuiButtonEmpty>
+          <EuiFormPrepend element="button" iconRight="arrowDown" label="Button" />
         }
       >
         <EuiFieldText
@@ -170,6 +168,8 @@ It takes all of the same props as **EuiFormControlLayout** except for `children`
 ```tsx interactive
 import React from 'react';
 import {
+  EuiFormAppend,
+  EuiFormPrepend,
   EuiFormControlLayoutDelimited,
   EuiFormLabel,
   EuiFieldNumber,
@@ -220,7 +220,7 @@ export default () => (
     />
 
     <EuiFormControlLayoutDelimited
-      append={<EuiFormLabel>px</EuiFormLabel>}
+      append={<EuiFormAppend label="px" />}
       startControl={
         <EuiFieldNumber
           controlOnly
@@ -311,7 +311,7 @@ export default () => (
     />
 
     <EuiFormControlLayoutDelimited
-      prepend={<EuiFormLabel>Add</EuiFormLabel>}
+      prepend={<EuiFormPrepend label="Add" />}
       startControl={
         <EuiFieldNumber
           controlOnly
@@ -330,7 +330,7 @@ export default () => (
     />
 
     <EuiFormControlLayoutDelimited
-      prepend={<EuiFormLabel>Merge</EuiFormLabel>}
+      prepend={<EuiFormPrepend label="Merge" />}
       startControl={
         <EuiFieldNumber
           controlOnly
@@ -350,7 +350,7 @@ export default () => (
 
     <EuiFormControlLayoutDelimited
       readOnly
-      prepend={<EuiFormLabel>Read only</EuiFormLabel>}
+      prepend={<EuiFormPrepend label="Read Only" />}
       startControl={
         <EuiFieldNumber
           controlOnly
@@ -371,7 +371,7 @@ export default () => (
 
     <EuiFormControlLayoutDelimited
       isDisabled
-      prepend={<EuiFormLabel>Disabled</EuiFormLabel>}
+      prepend={<EuiFormPrepend label="Disabled" />}
       startControl={
         <EuiFieldNumber
           controlOnly
@@ -392,7 +392,7 @@ export default () => (
 
     <EuiFormControlLayoutDelimited
       isInvalid
-      prepend={<EuiFormLabel>Invalid</EuiFormLabel>}
+      prepend={<EuiFormPrepend label="Invalid" />}
       startControl={
         <EuiFieldNumber
           isInvalid

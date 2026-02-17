@@ -29,7 +29,7 @@ import {
 } from './button_group.styles';
 
 export interface EuiButtonGroupOptionProps
-  extends EuiButtonDisplayContentProps,
+  extends Omit<EuiButtonDisplayContentProps, 'size'>,
     CommonProps,
     EuiDisabledProps {
   /**
