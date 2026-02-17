@@ -656,7 +656,7 @@ describe('EuiPopover', () => {
     });
   });
 
-  describe('a11y - check aria attributes on toggle button', () => {
+  describe('aria attributes on toggle button', () => {
     beforeAll(() => jest.useFakeTimers());
     afterAll(() => jest.useRealTimers());
 
