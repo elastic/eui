@@ -524,7 +524,6 @@ const ContainerDemoComponent: React.FC<FlyoutChildStoryArgs> = ({
           id="app-main-scroll"
           style={{
             gridArea: 'application',
-            position: 'relative',
             display: 'flex',
             flexDirection: 'column',
             overflow: 'auto',

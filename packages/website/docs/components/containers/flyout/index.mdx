@@ -1015,14 +1015,14 @@ import ResizableFlyout from './_flyout_resizable.mdx';
 
 ### Container-relative positioning
 
-By default, flyouts use `position: fixed` and are positioned relative to the viewport. The optional `container` prop allows you to scope a flyout to a specific region of the page instead. When a `container` element is provided, the flyout uses `position: absolute` and is portaled into and positioned within that container.
+By default, flyouts use `position: fixed` and are positioned relative to the viewport. The optional `container` prop allows you to scope a flyout to a specific region of the page instead. When a `container` element is provided, the flyout's bounding rect is used to compute inline positioning styles that visually constrain the flyout within the container's bounds. The flyout remains in `document.body` with `position: fixed` — no DOM mutations are applied to the container (except push-mode padding).
 
 This is useful when flyouts should not overlap application chrome such as side navigation or toolbars. For example, in Kibana the default container is the application content area so that flyouts stay within the app region.
 
 ```tsx
 const [containerEl, setContainerEl] = useState<HTMLElement | null>(null);
 
-<main ref={setContainerEl} style={{ position: 'relative' }}>
+<main ref={setContainerEl}>
   {isFlyoutVisible && (
     <EuiFlyout container={containerEl} onClose={closeFlyout}>
       {/* ... */}
@@ -1031,17 +1031,7 @@ const [containerEl, setContainerEl] = useState<HTMLElement | null>(null);
 </main>
 ```
 
-The container element **must** have `position: relative` (or `absolute` / `fixed`) for the flyout to be positioned correctly.
-
-#### Container queries and layout containment
-
-When `container` is provided, `EuiFlyout` automatically sets `container-type: inline-size` on the container element. This enables CSS container queries for responsive breakpoints scoped to the container's width rather than the viewport.
-
-:::warning `container-type` establishes layout containment
-Setting `container-type: inline-size` changes the containing block for any `position: fixed` descendants inside the container — they will be positioned relative to the container instead of the viewport. Ensure the container does not contain elements that rely on `position: fixed` viewport-level positioning.
-
-Elements portaled to `document.body` (such as tooltips, popovers, and toasts) are **not** affected, since they live outside the container.
-:::
+Resize clamping and responsive breakpoints use the container's width as the reference instead of the viewport width. The container element is treated as read-only — it is not modified by the flyout except for push-mode padding (`paddingInlineEnd` or `paddingInlineStart`) when a push flyout is open.
 
 #### Child flyout inheritance
 

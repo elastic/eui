@@ -53,15 +53,6 @@ export const useEuiFlyoutResizable = ({
       ? window.innerWidth
       : Infinity;
 
-  if (process.env.NODE_ENV === 'development' && enabled) {
-    // eslint-disable-next-line no-console
-    console.log('[EuiFlyout resize debug] useEuiFlyoutResizable', {
-      referenceWidthIn: referenceWidth,
-      _referenceWidth,
-      usedViewportFallback: referenceWidth === undefined,
-    });
-  }
-
   const getFlyoutMinMaxWidth = useCallback(
     (width: number) => {
       const maxResizeWidth = siblingFlyoutWidth

@@ -40,12 +40,6 @@ export interface EuiPortalProps {
    */
   insert?: { sibling: HTMLElement; position: EuiPortalInsertPosition };
   /**
-   * Optional container element to mount the portal into.
-   * When provided, the portal node is appended as a child of this element
-   * instead of `document.body`. Takes precedence over `insert`.
-   */
-  container?: HTMLElement;
-  /**
    * Optional ref callback
    */
   portalRef?: (ref: HTMLDivElement | null) => void;
@@ -73,15 +67,12 @@ export class EuiPortalClass extends Component<EuiPortalProps, EuiPortalState> {
   }
 
   componentDidMount() {
-    const { insert, container } = this.props;
+    const { insert } = this.props;
 
     const portalNode = document.createElement('div');
     portalNode.dataset.euiportal = 'true';
 
-    if (container != null) {
-      // Mount into the specified container element
-      container.appendChild(portalNode);
-    } else if (insert == null) {
+    if (insert == null) {
       // no insertion defined, append to body
       document.body.appendChild(portalNode);
     } else {

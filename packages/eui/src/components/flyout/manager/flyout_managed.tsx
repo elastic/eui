@@ -207,10 +207,6 @@ export const EuiManagedFlyout = forwardRef<HTMLElement, EuiManagedFlyoutProps>(
     // Register with flyout manager context when open, remove when closed
     // Using useLayoutEffect to run synchronously before DOM updates
     useLayoutEffect(() => {
-      if (process.env.NODE_ENV === 'development') {
-        // eslint-disable-next-line no-console
-        console.log('[EuiManagedFlyout] register', { flyoutId, level });
-      }
       addFlyout(
         flyoutId,
         title!,
@@ -220,10 +216,6 @@ export const EuiManagedFlyout = forwardRef<HTMLElement, EuiManagedFlyoutProps>(
       );
 
       return () => {
-        if (process.env.NODE_ENV === 'development') {
-          // eslint-disable-next-line no-console
-          console.log('[EuiManagedFlyout] unregister', { flyoutId, level });
-        }
         // Only call closeFlyout if it wasn't already called via onClose
         // This prevents duplicate removal when using Escape/X button
         if (flyoutExistsInManagerRef.current) {
@@ -272,10 +264,6 @@ export const EuiManagedFlyout = forwardRef<HTMLElement, EuiManagedFlyoutProps>(
         level === LEVEL_CHILD && currentSession.childFlyoutId === flyoutId;
 
       if (mainChanged || childChanged) {
-        if (process.env.NODE_ENV === 'development') {
-          // eslint-disable-next-line no-console
-          console.log('[EuiFlyout] active', { flyoutId, level });
-        }
         onActiveCallbackRef.current();
       }
     }, [currentSession, flyoutId, level]);
@@ -285,14 +273,6 @@ export const EuiManagedFlyout = forwardRef<HTMLElement, EuiManagedFlyoutProps>(
 
     // Pass the stabilized onClose callback to the flyout menu context
     const onClose = (e?: EuiFlyoutCloseEvent) => {
-      if (process.env.NODE_ENV === 'development') {
-        // eslint-disable-next-line no-console
-        console.log('[EuiManagedFlyout] close', {
-          flyoutId,
-          level,
-          reason: e?.type ?? 'unknown',
-        });
-      }
       // CRITICAL: Update manager state FIRST before allowing React to unmount
       // This prevents race conditions during portal → inline DOM transitions
       // and ensures cascade close logic runs before DOM cleanup begins

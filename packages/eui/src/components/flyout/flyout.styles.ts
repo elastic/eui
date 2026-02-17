@@ -22,11 +22,8 @@ import {
   logicalStyles,
   mathWithUnits,
 } from '../../global_styling';
-import { euiContainerQuery } from '../../global_styling/mixins/_container_query';
 import { UseEuiTheme } from '../../services';
 import { euiFormMaxWidth } from '../form/form.styles';
-
-export const EUI_FLYOUT_CONTAINER_NAME = 'euiFlyout' as const;
 
 export const FLYOUT_BREAKPOINT = 'm' as const;
 
@@ -75,40 +72,22 @@ export const euiFlyoutSlideOutLeft = keyframes`
 `;
 
 /**
- * Flyout styles are split into shared base styles and two positioning variants.
+ * Flyout styles use `position: fixed` and `%` units for widths (identical
+ * to `vw` when the containing block is the viewport).
  *
- * The base `euiFlyout` styles cover layout, background, and focus behavior that
- * are identical regardless of how the flyout is positioned.
- *
- * Two positioning modes exist because of a fundamental CSS constraint:
- *
- * - **Viewport mode** (`position: fixed`): Used when no `container` is
- *   provided, or when `container={null}` is passed to explicitly opt out of
- *   an inherited container. The flyout is pinned to the viewport and stays
- *   visible during page scroll. Media queries drive responsive breakpoints.
- *
- * - **Container mode** (`position: absolute`): Used when a `container` element
- *   is provided. The flyout is portaled into the container and uses it for both
- *   width and position: right-side flyouts align to the container's right edge,
- *   not the viewport. The container receives `position: relative` and
- *   `container-type: inline-size`. Container queries drive responsive breakpoints
- *   scoped to the container's width.
- *
- * Both modes use `%` for width values. For `position: fixed` elements, `%`
- * resolves against the viewport (identical to `vw`). For `position: absolute`
- * elements, `%` resolves against the containing block.
- *
- * Setting `container-type: inline-size` on `document.body` is not viable
- * because it establishes layout containment, which would change the containing
- * block for every `position: fixed` element on the page.
+ * When a `container` reference element is provided, the flyout's position
+ * and dimensions are constrained to the container's bounding rect via
+ * inline styles computed in JS. The CSS here remains a single branch —
+ * no container queries or positioning variants.
  */
 export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
 
   return {
-    // Shared base styles for all flyouts (viewport and container mode)
     euiFlyout: css`
+      position: fixed;
       ${logicalCSS('bottom', 0)}
+      ${logicalCSS('top', 'var(--euiFixedHeadersOffset, 0)')}
       ${logicalCSS('height', 'inherit')}
       background: ${euiTheme.colors.backgroundBasePlain};
       display: flex;
@@ -123,29 +102,12 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
       &.euiFlyout--hasChildBackground {
         background: ${euiTheme.colors.backgroundBaseSubdued};
       }
+
+      ${maxedFlyoutWidth(euiThemeContext)}
     `,
 
-    // Position variants — the only CSS that differs between viewport and container mode
-    position: {
-      fixed: css`
-        position: fixed;
-        ${logicalCSS('top', 'var(--euiFixedHeadersOffset, 0)')}
-        ${maxedFlyoutWidth(euiThemeContext)}
-      `,
-      absolute: css`
-        position: absolute;
-        ${logicalCSS('top', 0)}
-        ${maxedFlyoutWidth(euiThemeContext, true)}
-      `,
-    },
-
-    // Viewport-mode sizes (media queries + % sizing)
-    viewport: composeFlyoutSizing(euiThemeContext),
-
-    // Container-mode sizes (container queries + % sizing)
-    container: composeFlyoutSizing(euiThemeContext, {
-      useContainerQuery: true,
-    }),
+    // Flyout sizes (media queries + % sizing)
+    ...composeFlyoutSizing(euiThemeContext),
 
     noMaxWidth: css`
       ${logicalCSS('max-width', 'none')}
@@ -246,48 +208,26 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
 
 /**
  * Applies a max-width constraint at the flyout breakpoint.
- * When `useContainerQuery` is true, uses a named container query;
- * otherwise uses a viewport media query. Both use `%` units — for
- * `position: fixed` elements, `%` resolves identically to `vw`.
+ * Uses `%` units — for `position: fixed` elements, `%` resolves
+ * identically to `vw`.
  */
-export const maxedFlyoutWidth = (
-  euiThemeContext: UseEuiTheme,
-  useContainerQuery: boolean = false
-) => {
-  if (useContainerQuery) {
-    const breakpointPx = euiThemeContext.euiTheme.breakpoint[FLYOUT_BREAKPOINT];
-    return `
-      ${euiContainerQuery(`(width < ${breakpointPx}px)`)} {
-        ${logicalCSS('max-width', '90% !important')}
-      }
-    `;
+export const maxedFlyoutWidth = (euiThemeContext: UseEuiTheme) => `
+  ${euiMaxBreakpoint(euiThemeContext, FLYOUT_BREAKPOINT)} {
+    ${logicalCSS('max-width', '90% !important')}
   }
-  return `
-    ${euiMaxBreakpoint(euiThemeContext, FLYOUT_BREAKPOINT)} {
-      ${logicalCSS('max-width', '90% !important')}
-    }
-  `;
-};
+`;
 
 /**
- * Composes the full set of named size styles (`s`, `m`, `l`, `fill`) for a
- * flyout positioning mode.
+ * Composes the full set of named size styles (`s`, `m`, `l`, `fill`).
  *
- * Uses `%` units for widths (identical to `vw` for `position: fixed` elements,
- * and container-relative for `position: absolute` elements).
+ * Uses `%` units for widths (identical to `vw` for `position: fixed`
+ * elements). Media queries drive responsive breakpoints.
  *
- * When `useContainerQuery` is true, uses container queries for breakpoints;
- * otherwise uses viewport media queries.
- *
- * When a child flyout is stacked on top of the parent, the parent flyout size
- * will match the child flyout size. The `s` and `m` sizes include overrides
- * for this stacked-child behavior.
+ * When a child flyout is stacked on top of the parent, the parent flyout
+ * size will match the child flyout size. The `s` and `m` sizes include
+ * overrides for this stacked-child behavior.
  */
-export const composeFlyoutSizing = (
-  euiThemeContext: UseEuiTheme,
-  options: { useContainerQuery: boolean } = { useContainerQuery: false }
-) => {
-  const { useContainerQuery } = options;
+export const composeFlyoutSizing = (euiThemeContext: UseEuiTheme) => {
   const euiTheme = euiThemeContext.euiTheme;
   const formMaxWidth = euiFormMaxWidth(euiThemeContext);
 
@@ -318,36 +258,18 @@ export const composeFlyoutSizing = (
     },
   };
 
-  const sizingRules = (size: EuiFlyoutSize): string => {
-    if (useContainerQuery) {
-      const breakpointPx = euiTheme.breakpoint[FLYOUT_BREAKPOINT];
-      return `
-        ${logicalCSS('max-width', flyoutSizes[size].max)}
+  const sizingRules = (size: EuiFlyoutSize): string => `
+    ${logicalCSS('max-width', flyoutSizes[size].max)}
 
-        ${euiContainerQuery(`(width < ${breakpointPx}px)`)} {
-          ${logicalCSS('min-width', 0)}
-          ${logicalCSS('width', flyoutSizes[size].min)}
-        }
-        ${euiContainerQuery(`(width >= ${breakpointPx}px)`)} {
-          ${logicalCSS('min-width', flyoutSizes[size].min)}
-          ${logicalCSS('width', flyoutSizes[size].width)}
-        }
-      `;
+    ${euiMaxBreakpoint(euiThemeContext, FLYOUT_BREAKPOINT)} {
+      ${logicalCSS('min-width', 0)}
+      ${logicalCSS('width', flyoutSizes[size].min)}
     }
-
-    return `
-      ${logicalCSS('max-width', flyoutSizes[size].max)}
-
-      ${euiMaxBreakpoint(euiThemeContext, FLYOUT_BREAKPOINT)} {
-        ${logicalCSS('min-width', 0)}
-        ${logicalCSS('width', flyoutSizes[size].min)}
-      }
-      ${euiMinBreakpoint(euiThemeContext, FLYOUT_BREAKPOINT)} {
-        ${logicalCSS('min-width', flyoutSizes[size].min)}
-        ${logicalCSS('width', flyoutSizes[size].width)}
-      }
-    `;
-  };
+    ${euiMinBreakpoint(euiThemeContext, FLYOUT_BREAKPOINT)} {
+      ${logicalCSS('min-width', flyoutSizes[size].min)}
+      ${logicalCSS('width', flyoutSizes[size].width)}
+    }
+  `;
 
   return {
     s: css`
@@ -459,7 +381,7 @@ const composeMaxWidthOverrides = (
 /**
  * Composes all inline styles for a flyout based on its configuration.
  * Always uses `%` for fill-size calculations — identical to `vw` for
- * `position: fixed` elements, and container-relative for `position: absolute`.
+ * `position: fixed` elements.
  * Uses a CSS custom property (`--euiFlyoutMainWidth`) for synchronous
  * tracking of the main flyout width during resize drag, falling back to
  * the pixel value from manager state when the variable is not set.
