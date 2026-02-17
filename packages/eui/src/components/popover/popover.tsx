@@ -18,7 +18,7 @@ import React, {
   ContextType,
 } from 'react';
 import classNames from 'classnames';
-import { focusable } from 'tabbable';
+import { focusable, type FocusableElement } from 'tabbable';
 
 import { CommonProps, NoArgCallback } from '../common';
 import { FocusTarget, EuiFocusTrap, EuiFocusTrapProps } from '../focus_trap';
@@ -469,6 +469,31 @@ export class EuiPopover extends Component<Props, State> {
     }, durationMatch + delayMatch);
   };
 
+  /**
+   * Updates ARIA attributes on the popover trigger button
+   * Only applies ARIA when the trigger is button-like (semantic <button> or role="button").
+   * Avoids adding incorrect ARIA on inputs or other non-button elements.
+   */
+  private updateTriggerButtonAriaAttributes = (
+    toggleButton: FocusableElement | null,
+    isOpen: boolean
+  ) => {
+    if (!toggleButton) return;
+
+    const tag = toggleButton.tagName?.toLowerCase();
+    const role = toggleButton.getAttribute('role')?.toLowerCase();
+    const isButtonLike = tag === 'button' || role === 'button';
+    if (!isButtonLike) return;
+
+    toggleButton.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+
+    if (isOpen) {
+      toggleButton.setAttribute('aria-controls', this.panelId);
+    } else {
+      toggleButton.removeAttribute('aria-controls');
+    }
+  };
+
   componentDidMount() {
     if (this.state.suppressingPopover) {
       // component was created with isOpen=true; now that it's mounted
@@ -477,6 +502,11 @@ export class EuiPopover extends Component<Props, State> {
         this.onOpenPopover();
       });
     }
+
+    this.updateTriggerButtonAriaAttributes(
+      this.getFocusableToggleButton(),
+      this.props.isOpen ?? false
+    );
 
     this.repositionOnScroll.subscribe();
   }
@@ -487,26 +517,12 @@ export class EuiPopover extends Component<Props, State> {
       this.onOpenPopover();
     }
 
-    // Update ARIA attrs on the toggle when open state changes
-    if (this.button && prevProps.isOpen !== this.props.isOpen) {
-      const toggleButton = this.getFocusableToggleButton();
-      if (toggleButton) {
-        const isButtonLike = () => {
-          const tag = toggleButton.tagName.toLowerCase();
-          const role = toggleButton.getAttribute('role')?.toLowerCase();
-          // Only apply ARIA when the trigger is a button (semantic or role="button").
-          // This avoids incorrectly adding expanded/controls on inputs or other non-button elements.
-          return tag === 'button' || role === 'button';
-        };
-
-        if (isButtonLike()) {
-          toggleButton.setAttribute(
-            'aria-expanded',
-            this.props.isOpen ? 'true' : 'false'
-          );
-          toggleButton.setAttribute('aria-controls', this.panelId);
-        }
-      }
+    // Update ARIA attributes on the toggle when open state changes
+    if (prevProps.isOpen !== this.props.isOpen) {
+      this.updateTriggerButtonAriaAttributes(
+        this.getFocusableToggleButton(),
+        this.props.isOpen ?? false
+      );
     }
 
     // ensure recalculation of panel position on prop updates

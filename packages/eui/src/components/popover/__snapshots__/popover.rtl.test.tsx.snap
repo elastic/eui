@@ -7,7 +7,9 @@ exports[`EuiPopover snapshot testing renders 1`] = `
       class="euiPopover testClass1 testClass2 emotion-euiPopover-inline-block-euiTestCss"
       data-test-subj="test subject string"
     >
-      <button />
+      <button
+        aria-expanded="false"
+      />
     </div>
   </div>
 </body>
@@ -20,7 +22,10 @@ exports[`EuiPopover snapshot testing renders with popover contents 1`] = `
       class="euiPopover euiPopover-isOpen testClass1 testClass2 emotion-euiPopover-inline-block-euiTestCss"
       data-test-subj="test subject string"
     >
-      <button />
+      <button
+        aria-controls="euiPopover_generated-id_panelId"
+        aria-expanded="true"
+      />
     </div>
   </div>
   <div

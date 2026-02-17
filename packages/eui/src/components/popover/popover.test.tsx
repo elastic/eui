@@ -656,109 +656,71 @@ describe('EuiPopover', () => {
     });
   });
 
-  describe('aria attributes on toggle button', () => {
+  describe('ARIA attributes on toggle button', () => {
     beforeAll(() => jest.useFakeTimers());
     afterAll(() => jest.useRealTimers());
 
-    it('sets aria-expanded=true and aria-controls attrs for button trigger', async () => {
-      const toggleButton = <button data-test-subj="toggleButton" />;
+    it('sets aria-expanded="false" and no aria-controls on initial render', async () => {
+      const buttonTrigger = <button data-test-subj="buttonTrigger" />;
 
-      const { rerender, getByTestSubject } = render(
-        <EuiPopover
-          id={getId()}
-          isOpen={false}
-          button={toggleButton}
-          closePopover={() => {}}
-        />
+      const { getByTestSubject } = render(
+        <EuiPopover button={buttonTrigger} closePopover={() => {}} />
       );
 
-      // Open the popover
-      rerender(
-        <EuiPopover
-          id={getId()}
-          isOpen={true}
-          button={toggleButton}
-          closePopover={() => {}}
-        />
-      );
-
-      actAdvanceTimersByTime(openingTransitionTime);
-      await waitForEuiPopoverOpen();
-
-      const btn = getByTestSubject('toggleButton');
-      expect(btn).toHaveAttribute('aria-expanded', 'true');
-      // Should set aria-controls to the popover panel id
-      expect(btn.getAttribute('aria-controls')).toBe(
-        'euiPopover_generated-id_panelId'
-      );
+      const button = getByTestSubject('buttonTrigger');
+      expect(button).toHaveAttribute('aria-expanded', 'false');
+      expect(button).not.toHaveAttribute('aria-controls');
     });
 
-    it('sets aria-expanded=false when closing', async () => {
-      const toggleButton = <button data-test-subj="toggleButton" />;
+    it('not set ARIA attributes for non-button triggers', async () => {
+      const inputTrigger = <input data-test-subj="inputTrigger" />;
 
-      const id = getId();
-      const { rerender, getByTestSubject } = render(
+      const { getByTestSubject } = render(
         <EuiPopover
-          id={id}
-          isOpen={true}
-          button={toggleButton}
+          button={inputTrigger}
+          isOpen={false}
           closePopover={() => {}}
         />
       );
 
-      actAdvanceTimersByTime(openingTransitionTime);
-      await waitForEuiPopoverOpen();
+      const input = getByTestSubject('inputTrigger');
+      expect(input).not.toHaveAttribute('aria-expanded');
+      expect(input).not.toHaveAttribute('aria-controls');
+    });
+
+    it('updates ARIA attributes to reflect the open state.', async () => {
+      const buttonTrigger = <button data-test-subj="buttonTrigger" />;
+
+      const { rerender, getByTestSubject } = render(
+        <EuiPopover
+          isOpen={true}
+          button={buttonTrigger}
+          closePopover={() => {}}
+        />
+      );
+
+      const button = getByTestSubject('buttonTrigger');
+
+      expect(button).toHaveAttribute('aria-expanded', 'true');
+      expect(button).toHaveAttribute(
+        'aria-controls',
+        'euiPopover_generated-id_panelId'
+      );
 
       // Close the popover
       rerender(
         <EuiPopover
-          id={id}
           isOpen={false}
-          button={toggleButton}
-          closePopover={() => {}}
-        />
-      );
-
-      await waitForEuiPopoverClose();
-      actAdvanceTimersByTime(closingTransitionTime);
-
-      const btn = getByTestSubject('toggleButton');
-      expect(btn).toHaveAttribute('aria-expanded', 'false');
-      // aria-controls should remain set to a panel id string if previously set
-      expect(btn.getAttribute('aria-controls')).toBe(
-        'euiPopover_generated-id_panelId'
-      );
-    });
-
-    it('sets NOT set aria-expanded=true and aria-controls attrs for input trigger', async () => {
-      const toggleButton = <input data-test-subj="triggerInput" />;
-
-      const { rerender, getByTestSubject } = render(
-        <EuiPopover
-          id={getId()}
-          isOpen={false}
-          button={toggleButton}
-          closePopover={() => {}}
-        />
-      );
-
-      // Open the popover
-      rerender(
-        <EuiPopover
-          id={getId()}
-          isOpen={true}
-          button={toggleButton}
+          button={buttonTrigger}
           closePopover={() => {}}
         />
       );
 
       actAdvanceTimersByTime(openingTransitionTime);
-      await waitForEuiPopoverOpen();
+      await waitForEuiPopoverClose();
 
-      const btn = getByTestSubject('triggerInput');
-
-      expect(btn).not.toHaveAttribute('aria-expanded');
-      expect(btn).not.toHaveAttribute('aria-controls');
+      expect(button).toHaveAttribute('aria-expanded', 'false');
+      expect(button).not.toHaveAttribute('aria-controls');
     });
   });
 });
