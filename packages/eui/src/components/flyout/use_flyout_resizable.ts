@@ -50,8 +50,8 @@ export const useEuiFlyoutResizable = ({
     referenceWidth !== undefined
       ? referenceWidth
       : typeof window !== 'undefined'
-        ? window.innerWidth
-        : Infinity;
+      ? window.innerWidth
+      : Infinity;
 
   if (process.env.NODE_ENV === 'development' && enabled) {
     // eslint-disable-next-line no-console
@@ -132,9 +132,7 @@ export const useEuiFlyoutResizable = ({
         // When reference width was 0 (e.g. container not yet measured), now
         // that we have a real width, reset from the size prop instead of scaling.
         if (_referenceWidth > 0) {
-          return typeof _size === 'number'
-            ? getFlyoutMinMaxWidth(_size)
-            : 0;
+          return typeof _size === 'number' ? getFlyoutMinMaxWidth(_size) : 0;
         }
         return currentWidth;
       });
