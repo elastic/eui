@@ -45,7 +45,11 @@ import {
   useFlyoutManager,
   useHasPushPadding,
 } from './manager';
-import { LAYOUT_MODE_STACKED } from './manager/const';
+import {
+  LAYOUT_MODE_STACKED,
+  LEVEL_MAIN,
+  PROPERTY_LEVEL,
+} from './manager/const';
 
 import { CommonProps, PropsOfElement } from '../common';
 import { EuiFocusTrap, EuiFocusTrapProps } from '../focus_trap';
@@ -547,8 +551,17 @@ export const EuiFlyoutComponent = forwardRef(
         selectors.push('.euiHeader[data-fixed-header]');
       }
 
+      // Includes parent flyout in child focus trap shards
+      if (isChildFlyout) {
+        selectors.push(`[${PROPERTY_LEVEL}="${LEVEL_MAIN}"]`);
+      }
+
       return selectors;
-    }, [includeSelectorInFocusTrap, includeFixedHeadersInFocusTrap]);
+    }, [
+      includeSelectorInFocusTrap,
+      includeFixedHeadersInFocusTrap,
+      isChildFlyout,
+    ]);
 
     /**
      * Finds the shards to include in the focus trap by querying by `focusTrapSelectors`.

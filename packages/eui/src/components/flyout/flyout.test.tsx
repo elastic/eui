@@ -90,6 +90,32 @@ describe('EuiFlyout', () => {
     ).toBeTruthy();
   });
 
+  it('renders extra screen reader instructions for child flyouts', () => {
+    const { queryByText } = render(
+      <EuiFlyoutManager>
+        <EuiFlyout
+          onClose={() => {}}
+          session="start"
+          flyoutMenuProps={{ title: 'Main Flyout' }}
+          data-test-subj="main-flyout"
+          includeSelectorInFocusTrap={[]}
+          includeFixedHeadersInFocusTrap={false}
+        >
+          <EuiFlyout
+            onClose={() => {}}
+            data-test-subj="child-flyout"
+            includeSelectorInFocusTrap={[]}
+            includeFixedHeadersInFocusTrap={false}
+          />
+        </EuiFlyout>
+      </EuiFlyoutManager>
+    );
+
+    expect(
+      queryByText('You can still continue tabbing through', { exact: false })
+    ).toBeTruthy();
+  });
+
   it('allows setting custom aria-describedby attributes', () => {
     const { getByTestSubject } = render(
       <>
