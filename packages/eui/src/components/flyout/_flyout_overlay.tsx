@@ -18,8 +18,8 @@ export interface EuiFlyoutOverlayProps extends PropsWithChildren {
   isPushed: boolean;
   maskZIndex: number;
   /**
-   * Where the mask sits relative to fixed headers. In viewport mode (no container)
-   * this defaults to 'above' so the flyout covers the full UI; in container mode, 'below'.
+   * Use 'above' to stack the flyout and mask above fixed headers (mask-level
+   * z-index); 'below' to keep them in the flyout stacking level.
    */
   headerZindexLocation?: 'above' | 'below';
 }

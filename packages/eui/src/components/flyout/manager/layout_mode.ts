@@ -18,7 +18,8 @@ import { EuiFlyoutLayoutMode } from './types';
 /**
  * Hook to handle responsive layout mode for managed flyouts.
  * Decides whether to place flyouts side-by-side or stacked based on
- * the reference width (container width or viewport width) and flyout widths/sizes.
+ * the reference width (the reference container's width, defaulting to
+ * document.body when not set) and flyout widths/sizes.
  */
 export const useApplyFlyoutLayoutMode = () => {
   const { euiTheme } = useEuiTheme();

@@ -1035,7 +1035,7 @@ Resize clamping and responsive breakpoints use the container's width as the refe
 
 #### Child flyout inheritance
 
-Child flyouts automatically inherit the `container` from the parent flyout's context. There is no need to pass the prop explicitly to child flyouts. To force a child flyout into viewport mode (overriding an inherited container), pass `container={null}`.
+Child flyouts automatically inherit the `container` from the parent flyout's context. There is no need to pass the prop explicitly to child flyouts. To use the document body as the reference container for a child (overriding an inherited container), pass `container={null}`.
 
 ```mdx-code-block
 import { EuiBetaBadge } from '@elastic/eui';

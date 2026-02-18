@@ -13,7 +13,7 @@ import { useEuiTheme } from '../../services';
  * @internal
  */
 export interface UseEuiFlyoutZIndex {
-  /** Resolved mask position relative to header; in viewport mode defaults to 'above'. */
+  /** Use 'above' to stack the flyout above fixed headers (mask-level z-index); 'below' otherwise. */
   headerZindexLocation?: 'above' | 'below';
   isPushed: boolean;
   managedFlyoutIndex: number;
@@ -46,8 +46,9 @@ export const useEuiFlyoutZIndex = ({
 
   let baseLevel = Number(euiTheme.levels.flyout);
 
-  // In viewport mode we default to 'above' so container={null} gives a global flyout;
-  // use mask level z-index so the flyout and mask cover fixed headers.
+  // headerZindexLocation 'above' uses mask-level z-index so the flyout stacks
+  // above fixed headers (which typically use a high z-index; DOM order alone
+  // does not control stacking).
   if (!isPushed && headerZindexLocation === 'above') {
     baseLevel = Number(euiTheme.levels.mask);
   }
