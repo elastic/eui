@@ -39,7 +39,7 @@ exports[`EuiCollapsibleNavBeta renders 1`] = `
         class="euiFlyout euiCollapsibleNav euiCollapsibleNavBeta testClass1 testClass2 emotion-euiFlyout-none-noMaxWidth-push-left-noAnimation-left-euiCollapsibleNavBeta-isPush-left-euiTestCss"
         data-test-subj="nav"
         id="generated-id_euiCollapsibleNav"
-        style="inline-size: 248px; z-index: 1000;"
+        style="inline-size: 248px; z-index: 1000; top: 0px; height: 768px; min-inline-size: 0; left: 0px; max-inline-size: 921.6px;"
       >
         Nav content
       </nav>
@@ -92,7 +92,7 @@ exports[`EuiCollapsibleNavBeta renders initialIsCollapsed 1`] = `
         class="euiFlyout euiCollapsibleNav euiCollapsibleNavBeta emotion-euiFlyout-none-noMaxWidth-push-left-noAnimation-left-euiCollapsibleNavBeta-isPush-left-isPushCollapsed"
         data-test-subj="nav"
         id="generated-id_euiCollapsibleNav"
-        style="inline-size: 48px; z-index: 1000;"
+        style="inline-size: 48px; z-index: 1000; top: 0px; height: 768px; min-inline-size: 0; left: 0px; max-inline-size: 921.6px;"
       >
         Nav content
       </nav>
