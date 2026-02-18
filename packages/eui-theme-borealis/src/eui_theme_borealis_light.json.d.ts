@@ -339,7 +339,6 @@ declare module '@elastic/eui-theme-borealis/lib/eui_theme_borealis_light.json' {
     euiColorVisDanger0: string;
     euiColorVisDanger1: string;
     euiColorVisNeutral0: string;
-    euiColorVisAssistance: string;
     euiColorVisGrey0: string;
     euiColorVisGrey1: string;
     euiColorVisGrey2: string;
@@ -358,6 +357,7 @@ declare module '@elastic/eui-theme-borealis/lib/eui_theme_borealis_light.json' {
     euiColorSeverityWarning: string;
     euiColorSeverityRisk: string;
     euiColorSeverityDanger: string;
+    euiColorSeverityAssistance: string;
     euiColorChartLines: string;
     euiColorChartBand: string;
     euiColorPrimary: string;

@@ -15,4 +15,5 @@ export const severityColors = {
   warning: SEMANTIC_COLORS.warning30,
   risk: SEMANTIC_COLORS.risk50,
   danger: SEMANTIC_COLORS.danger70,
+  assistance: SEMANTIC_COLORS.assistance60,
 };

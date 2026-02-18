@@ -23,7 +23,7 @@ const baseColorVis = {
   euiColorVis8: SEMANTIC_COLORS.warning110,
   euiColorVis9: SEMANTIC_COLORS.warning80,
   euiColorVis10: PRIMITIVE_COLORS.purple60,
-  euiColorVis11:  PRIMITIVE_COLORS.purple30,
+  euiColorVis11: PRIMITIVE_COLORS.purple30,
 };
 
 export const visColorsLightHighContrast: _EuiThemeVisColors = {
@@ -63,7 +63,6 @@ export const visColorsLightHighContrast: _EuiThemeVisColors = {
   euiColorVisRisk1: SEMANTIC_COLORS.risk80,
   euiColorVisDanger0: SEMANTIC_COLORS.danger100,
   euiColorVisDanger1: SEMANTIC_COLORS.danger80,
-  euiColorVisAssistance: SEMANTIC_COLORS.assistance60,
 
   euiColorVisBase0: PRIMITIVE_COLORS.mutedGrey10,
 
