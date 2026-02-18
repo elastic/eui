@@ -16,6 +16,7 @@ import classNames from 'classnames';
 import { CommonProps } from '../common';
 import { useEuiMemoizedStyles } from '../../services';
 import { euiFlyoutBodyStyles } from './flyout_body.styles';
+import { useEuiI18n } from '../i18n';
 
 export type EuiFlyoutBodyProps = FunctionComponent<
   HTMLAttributes<HTMLDivElement> &
@@ -57,14 +58,21 @@ export const EuiFlyoutBody: EuiFlyoutBodyProps = ({
     banner ? styles.overflow.hasBanner : styles.overflow.noBanner,
   ];
 
+  const scrollableRegionAriaLabel = useEuiI18n(
+    'euiFlyoutBody.scrollableRegionAriaLabel',
+    'Flyout body'
+  );
+
   return (
     <div className={classes} css={styles.euiFlyoutBody} {...rest}>
       <div
         tabIndex={scrollableTabIndex}
+        role="region"
         className="euiFlyoutBody__overflow"
         css={overflowCssStyles}
         ref={scrollContainerRef}
         data-test-subj="euiFlyoutBodyOverflow"
+        aria-label={scrollableRegionAriaLabel}
       >
         {banner && (
           <div
