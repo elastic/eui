@@ -14,6 +14,7 @@ exports[`EuiAutoRefresh is rendered 1`] = `
         class="css-vmqubl-wrapper"
       >
         <button
+          aria-expanded="false"
           class="euiFormPrepend euiFormControlLayout__prepend css-a31npo-side-uncompressed-empty-primary-isInteractive"
         >
           <span
@@ -59,6 +60,7 @@ exports[`EuiAutoRefresh isPaused is false 1`] = `
         class="css-vmqubl-wrapper"
       >
         <button
+          aria-expanded="false"
           class="euiFormPrepend euiFormControlLayout__prepend css-a31npo-side-uncompressed-empty-primary-isInteractive"
         >
           <span
@@ -103,6 +105,7 @@ exports[`EuiAutoRefresh refreshInterval is rendered 1`] = `
         class="css-vmqubl-wrapper"
       >
         <button
+          aria-expanded="false"
           class="euiFormPrepend euiFormControlLayout__prepend css-a31npo-side-uncompressed-empty-primary-isInteractive"
         >
           <span
@@ -138,6 +141,7 @@ exports[`EuiAutoRefreshButton is rendered 1`] = `
   class="euiPopover emotion-euiPopover-inline-block"
 >
   <button
+    aria-expanded="false"
     aria-label="aria-label"
     class="euiButtonEmpty euiAutoRefreshButton testClass1 testClass2 emotion-euiButtonDisplay-euiButtonEmpty-s-empty-text-euiTestCss"
     data-test-subj="test subject string"
@@ -166,6 +170,7 @@ exports[`EuiAutoRefreshButton isPaused is false 1`] = `
   class="euiPopover emotion-euiPopover-inline-block"
 >
   <button
+    aria-expanded="false"
     class="euiButtonEmpty euiAutoRefreshButton emotion-euiButtonDisplay-euiButtonEmpty-s-empty-text"
     title="Auto refresh is on and set to 1 second"
     type="button"
@@ -192,6 +197,7 @@ exports[`EuiAutoRefreshButton refreshInterval is rendered 1`] = `
   class="euiPopover emotion-euiPopover-inline-block"
 >
   <button
+    aria-expanded="false"
     class="euiButtonEmpty euiAutoRefreshButton emotion-euiButtonDisplay-euiButtonEmpty-s-empty-text"
     title="Auto refresh is on and set to 2 seconds"
     type="button"

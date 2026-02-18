@@ -77,6 +77,7 @@ exports[`EuiHeaderLinks mobile menu/popover renders various popover props 1`] = 
     data-test-subj="hello-world"
   >
     <button
+      aria-expanded="false"
       aria-label="Open menu"
       class="euiButtonEmpty euiHeaderSectionItemButton customButtonClass emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text-euiHeaderSectionItemButton"
       type="button"
