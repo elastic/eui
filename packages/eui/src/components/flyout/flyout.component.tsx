@@ -320,8 +320,7 @@ export const EuiFlyoutComponent = forwardRef(
     const container = resolveContainer(containerRaw);
     // Single reference container: default to document.body when not specified.
     const referenceContainer =
-      container ??
-      (typeof document !== 'undefined' ? document.body : null);
+      container ?? (typeof document !== 'undefined' ? document.body : null);
 
     // Value to pass to child context: selector string so children re-resolve,
     // or resolved element when prop was element/getter.
@@ -347,11 +346,11 @@ export const EuiFlyoutComponent = forwardRef(
     // and default mask to 'below'. We always honor maskProps and
     // includeFixedHeadersInFocusTrap when passed (deprecation is migration-only).
     const isBodyContainer =
-      typeof document !== 'undefined' &&
-      referenceContainer === document.body;
+      typeof document !== 'undefined' && referenceContainer === document.body;
 
     if (
-      (container != null && ('maskProps' in props || 'includeFixedHeadersInFocusTrap' in props)) &&
+      container != null &&
+      ('maskProps' in props || 'includeFixedHeadersInFocusTrap' in props) &&
       process.env.NODE_ENV === 'development'
     ) {
       if ('maskProps' in props) {
@@ -491,7 +490,11 @@ export const EuiFlyoutComponent = forwardRef(
         return;
       }
       setContainerRect(getEffectiveContainerRect());
-    }, [referenceContainer, containerDimensions.width, getEffectiveContainerRect]);
+    }, [
+      referenceContainer,
+      containerDimensions.width,
+      getEffectiveContainerRect,
+    ]);
 
     useEffect(() => {
       if (!referenceContainer) return;
@@ -746,8 +749,7 @@ export const EuiFlyoutComponent = forwardRef(
       let containerPositionStyles: React.CSSProperties = {};
       if (containerRect) {
         const containerMaxWidth = containerRect.width * 0.9;
-        const containerRightOffset =
-          window.innerWidth - containerRect.right;
+        const containerRightOffset = window.innerWidth - containerRect.right;
 
         // Compute the container-relative width for this flyout.
         //

@@ -271,9 +271,7 @@ export const setContainerElement = (
 });
 
 /** Set the reference width for layout and resize clamping. */
-export const setReferenceWidth = (
-  width: number
-): SetReferenceWidthAction => ({
+export const setReferenceWidth = (width: number): SetReferenceWidthAction => ({
   type: ACTION_SET_REFERENCE_WIDTH,
   width,
 });

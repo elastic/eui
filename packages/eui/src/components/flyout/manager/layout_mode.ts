@@ -35,26 +35,22 @@ export const useApplyFlyoutLayoutMode = () => {
   const { container: defaultContainerRaw } = usePropsWithComponentDefaults(
     'EuiFlyout',
     {} as {
-      container?:
-        | HTMLElement
-        | null
-        | (() => HTMLElement | null)
-        | string;
+      container?: HTMLElement | null | (() => HTMLElement | null) | string;
     }
   );
   const defaultContainer =
     defaultContainerRaw == null
       ? null
       : typeof defaultContainerRaw === 'function'
-        ? defaultContainerRaw()
-        : typeof defaultContainerRaw === 'string'
-          ? (() => {
-              const el = document.querySelector(defaultContainerRaw);
-              return el instanceof HTMLElement ? el : null;
-            })()
-          : defaultContainerRaw instanceof HTMLElement
-            ? defaultContainerRaw
-            : null;
+      ? defaultContainerRaw()
+      : typeof defaultContainerRaw === 'string'
+      ? (() => {
+          const el = document.querySelector(defaultContainerRaw);
+          return el instanceof HTMLElement ? el : null;
+        })()
+      : defaultContainerRaw instanceof HTMLElement
+      ? defaultContainerRaw
+      : null;
   const container = stateContainerElement ?? defaultContainer ?? null;
 
   // Derive all session/flyout data from the single context read above

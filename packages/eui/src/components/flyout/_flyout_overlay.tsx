@@ -69,7 +69,9 @@ export const EuiFlyoutOverlay = ({
     <>
       {hasOverlayMask && (
         <EuiOverlayMask
-          headerZindexLocation={maskProps?.headerZindexLocation ?? headerZindexLocation}
+          headerZindexLocation={
+            maskProps?.headerZindexLocation ?? headerZindexLocation
+          }
           {...maskProps}
           className={classes}
         />
