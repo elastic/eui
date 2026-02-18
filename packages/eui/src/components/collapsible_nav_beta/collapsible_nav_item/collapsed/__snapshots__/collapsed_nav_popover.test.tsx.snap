@@ -12,6 +12,8 @@ exports[`EuiCollapsedNavPopover renders 1`] = `
         id="generated-id-wrapper"
       >
         <button
+          aria-controls="euiPopover_generated-id_panelId"
+          aria-expanded="true"
           aria-label="Item, quick navigation menu"
           class="euiButtonIcon euiCollapsedNavButton emotion-euiButtonIcon-s-empty-text-euiCollapsedNavButton"
           data-test-subj="euiCollapsedNavButton"
@@ -39,7 +41,7 @@ exports[`EuiCollapsedNavPopover renders 1`] = `
       data-focus-lock-disabled="false"
     >
       <div
-        aria-describedby="generated-id"
+        aria-describedby="euiPopover_generated-id_descriptionId"
         aria-label="aria-label"
         aria-live="off"
         aria-modal="true"
@@ -47,13 +49,14 @@ exports[`EuiCollapsedNavPopover renders 1`] = `
         data-autofocus="true"
         data-popover-open="true"
         data-popover-panel="true"
+        id="euiPopover_generated-id_panelId"
         role="dialog"
         style="top: 0px; left: 12px; z-index: 2000;"
         tabindex="0"
       >
         <p
           class="emotion-euiScreenReaderOnly"
-          id="generated-id"
+          id="euiPopover_generated-id_descriptionId"
         >
           You are in a dialog. Press Escape, or tap/click outside the dialog to close.
         </p>

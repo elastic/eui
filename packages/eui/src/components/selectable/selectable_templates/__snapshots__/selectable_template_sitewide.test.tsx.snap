@@ -66,6 +66,7 @@ exports[`EuiSelectableTemplateSitewide props popoverButton is rendered 1`] = `
       class="euiSelectableTemplateSitewide__popoverTrigger"
     >
       <button
+        aria-expanded="false"
         data-test-subj="mobilePopoverButton"
       >
         Button

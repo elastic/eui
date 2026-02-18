@@ -10,6 +10,7 @@ exports[`EuiCollapsedNavItem renders a popover if items are passed 1`] = `
     id="generated-id-wrapper"
   >
     <button
+      aria-expanded="false"
       aria-label="Item, quick navigation menu"
       class="euiButtonIcon euiCollapsedNavButton emotion-euiButtonIcon-s-empty-text-euiCollapsedNavButton"
       data-test-subj="euiCollapsedNavButton"

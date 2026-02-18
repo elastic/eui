@@ -26,6 +26,7 @@ exports[`EuiTourStep renders 1`] = `
           class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel euiTour emotion-euiPanel-grow-m-m-plain-euiPopover__panel-light-isOpen-hasTransform-left-euiTour"
           data-popover-open="true"
           data-popover-panel="true"
+          id="euiPopover_generated-id_panelId"
           role="dialog"
           style="top: -18px; left: -26px; will-change: transform, opacity; z-index: 2000;"
         >

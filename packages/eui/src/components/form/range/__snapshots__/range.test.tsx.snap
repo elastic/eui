@@ -447,18 +447,19 @@ exports[`EuiRange props slider should display in popover 1`] = `
       data-focus-lock-disabled="disabled"
     >
       <div
-        aria-describedby="generated-id"
+        aria-describedby="euiPopover_generated-id_descriptionId"
         aria-live="assertive"
         aria-modal="true"
         class="euiPanel euiPanel--plain euiPanel--paddingSmall euiPopover__panel emotion-euiPanel-grow-m-s-plain-euiPopover__panel-light-isAttached-bottom"
         data-popover-panel="true"
         data-test-subj="test"
+        id="euiPopover_generated-id_panelId"
         role="dialog"
         style="top: 2px; left: 0px; will-change: transform, opacity; z-index: 2000; inline-size: 0px;"
       >
         <p
           class="emotion-euiScreenReaderOnly"
-          id="generated-id"
+          id="euiPopover_generated-id_descriptionId"
         >
           You are in a custom range slider. Use the Up and Down arrow keys to change the value.
         </p>

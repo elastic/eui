@@ -8,6 +8,8 @@ exports[`EuiCodeBlockAnnotation renders 1`] = `
       data-test-subj="test subject string"
     >
       <button
+        aria-controls="euiPopover_generated-id_panelId"
+        aria-expanded="true"
         aria-label="Click to view a code annotation for line 10"
         class="emotion-euiCodeBlockAnnotation__buttonIcon"
         data-test-subj="euiCodeBlockAnnotationIcon"
@@ -31,7 +33,7 @@ exports[`EuiCodeBlockAnnotation renders 1`] = `
       data-focus-lock-disabled="false"
     >
       <div
-        aria-describedby="generated-id"
+        aria-describedby="euiPopover_generated-id_descriptionId"
         aria-label="aria-label"
         aria-live="off"
         aria-modal="true"
@@ -40,13 +42,14 @@ exports[`EuiCodeBlockAnnotation renders 1`] = `
         data-popover-open="true"
         data-popover-panel="true"
         data-test-subj="euiCodeBlockAnnotationPopover"
+        id="euiPopover_generated-id_panelId"
         role="dialog"
         style="top: 12px; left: 0px; z-index: 6001;"
         tabindex="0"
       >
         <p
           class="emotion-euiScreenReaderOnly"
-          id="generated-id"
+          id="euiPopover_generated-id_descriptionId"
         >
           You are in a dialog. Press Escape, or tap/click outside the dialog to close.
         </p>

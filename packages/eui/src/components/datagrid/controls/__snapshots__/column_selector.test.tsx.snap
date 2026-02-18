@@ -8,6 +8,8 @@ exports[`useDataGridColumnSelector columnSelector renders a toolbar button/popov
       data-test-subj="dataGridColumnSelectorPopover"
     >
       <button
+        aria-controls="euiPopover_generated-id_panelId"
+        aria-expanded="true"
         class="euiButtonEmpty euiDataGridToolbarControl emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-text-interactiveStyles"
         data-test-subj="dataGridColumnSelectorButton"
         type="button"
@@ -47,19 +49,20 @@ exports[`useDataGridColumnSelector columnSelector renders a toolbar button/popov
       data-focus-lock-disabled="disabled"
     >
       <div
-        aria-describedby="generated-id"
+        aria-describedby="euiPopover_generated-id_descriptionId"
         aria-live="off"
         aria-modal="true"
         class="euiPanel euiPanel--plain euiPopover__panel emotion-euiPanel-grow-m-plain-euiPopover__panel-light-hasTransform"
         data-autofocus="true"
         data-popover-panel="true"
+        id="euiPopover_generated-id_panelId"
         role="dialog"
         style="top: 12px; left: 0px; will-change: transform, opacity; z-index: 2000;"
         tabindex="0"
       >
         <p
           class="emotion-euiScreenReaderOnly"
-          id="generated-id"
+          id="euiPopover_generated-id_descriptionId"
         >
           You are in a dialog. Press Escape, or tap/click outside the dialog to close.
         </p>
