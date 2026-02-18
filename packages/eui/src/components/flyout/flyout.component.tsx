@@ -464,21 +464,40 @@ export const EuiFlyoutComponent = forwardRef(
       : undefined;
 
     // Track the reference container's bounding rect for positioning.
+    // When the reference container is document.body, use the viewport rect so
+    // the flyout fills the viewport; body.getBoundingClientRect() can be
+    // shorter than the viewport (e.g. minimal content, iframes).
     const [containerRect, setContainerRect] = useState<DOMRect | null>(null);
+
+    const getEffectiveContainerRect = useCallback(() => {
+      if (!referenceContainer) return null;
+      if (
+        typeof document !== 'undefined' &&
+        referenceContainer === document.body
+      ) {
+        return new DOMRect(
+          0,
+          0,
+          typeof window !== 'undefined' ? window.innerWidth : 0,
+          typeof window !== 'undefined' ? window.innerHeight : 0
+        );
+      }
+      return referenceContainer.getBoundingClientRect();
+    }, [referenceContainer]);
 
     useLayoutEffect(() => {
       if (!referenceContainer) {
         setContainerRect(null);
         return;
       }
-      setContainerRect(referenceContainer.getBoundingClientRect());
-    }, [referenceContainer, containerDimensions.width]);
+      setContainerRect(getEffectiveContainerRect());
+    }, [referenceContainer, containerDimensions.width, getEffectiveContainerRect]);
 
     useEffect(() => {
       if (!referenceContainer) return;
 
       const updateRect = () => {
-        setContainerRect(referenceContainer.getBoundingClientRect());
+        setContainerRect(getEffectiveContainerRect());
       };
 
       window.addEventListener('scroll', updateRect, { passive: true });
@@ -487,7 +506,7 @@ export const EuiFlyoutComponent = forwardRef(
         window.removeEventListener('scroll', updateRect);
         window.removeEventListener('resize', updateRect);
       };
-    }, [referenceContainer]);
+    }, [referenceContainer, getEffectiveContainerRect]);
     // Prefer the manager's reference width when available so resize clamp
     // uses the same value as layout mode. When we have a container, cap by
     // its measured width so we never allow resize past the container (e.g. if
