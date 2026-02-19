@@ -101,6 +101,7 @@ export const colorVisLight: _EuiThemeVisColors = {
   euiColorVisRisk1: SEMANTIC_COLORS.risk30,
   euiColorVisDanger0: SEMANTIC_COLORS.danger60,
   euiColorVisDanger1: SEMANTIC_COLORS.danger30,
+  euiColorVisAssistance: SEMANTIC_COLORS.assistance60,
 
   euiColorVisBase0: PRIMITIVE_COLORS.mutedGrey10,
 

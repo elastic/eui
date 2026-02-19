@@ -352,6 +352,7 @@ export type _EuiThemeVisColors = {
   euiColorVisRisk1: string;
   euiColorVisDanger0: string;
   euiColorVisDanger1: string;
+  euiColorVisAssistance: string;
 
   euiColorVisBase0: string;
 

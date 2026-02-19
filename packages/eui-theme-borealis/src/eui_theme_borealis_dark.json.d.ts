@@ -338,6 +338,7 @@ declare module '@elastic/eui-theme-borealis/lib/eui_theme_borealis_dark.json' {
     euiColorVisWarning0: string;
     euiColorVisDanger0: string;
     euiColorVisDanger1: string;
+    euiColorVisAssistance: string;
     euiColorVisNeutral0: string;
     euiColorVisGrey0: string;
     euiColorVisGrey1: string;
