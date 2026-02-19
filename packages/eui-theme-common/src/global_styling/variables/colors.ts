@@ -380,6 +380,7 @@ export type _EuiThemeSeverityColors = {
   warning: string;
   risk: string;
   danger: string;
+  assistance: string;
 };
 
 export type _EuiThemeConstantColors = {
