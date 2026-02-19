@@ -308,19 +308,16 @@ export const EuiFlyoutComponent = forwardRef(
 
     // Child flyouts inherit the container from the parent flyout's context.
     // This allows the main flyout to set `container` once, and all child
-    // flyouts automatically use the same reference container without needing
-    // an explicit prop.
+    // flyouts automatically use the same container without needing an
+    // explicit prop.
     //
-    // `undefined` = not provided, inherit from parent. `null` = explicitly use
-    // document.body (e.g. override an inherited container). Strings and
-    // getter functions are resolved each render.
+    // `undefined` = not provided, inherit from parent. `null` = explicitly
+    // no container (viewport mode). Strings and getter functions are
+    // resolved each render.
     const parentContainer = useParentFlyoutContainer();
     const containerRaw =
       containerProp !== undefined ? containerProp : parentContainer;
     const container = resolveContainer(containerRaw);
-    // Single reference container: default to document.body when not specified.
-    const referenceContainer =
-      container ?? (typeof document !== 'undefined' ? document.body : null);
 
     // Value to pass to child context: selector string so children re-resolve,
     // or resolved element when prop was element/getter.
@@ -341,12 +338,10 @@ export const EuiFlyoutComponent = forwardRef(
     // Ref for the main flyout element to pass to context
     const internalParentFlyoutRef = useRef<HTMLDivElement>(null);
     const isPushed = useIsPushed({ type, pushMinBreakpoint });
-    // When the reference container is document.body we set global push-offset
-    // CSS vars and default mask to 'above'; otherwise we don't set those vars
-    // and default mask to 'below'. We always honor maskProps and
-    // includeFixedHeadersInFocusTrap when passed (deprecation is migration-only).
-    const isBodyContainer =
-      typeof document !== 'undefined' && referenceContainer === document.body;
+    // When no explicit container is provided, push padding targets
+    // document.body and global push-offset CSS vars are set. When a
+    // container is provided, only that element receives padding.
+    const shouldSetGlobalPushVars = container == null;
 
     if (
       container != null &&
@@ -365,24 +360,23 @@ export const EuiFlyoutComponent = forwardRef(
       }
     }
     const effectiveHeaderZindexLocation =
-      maskProps?.headerZindexLocation ?? (isBodyContainer ? 'above' : 'below');
+      maskProps?.headerZindexLocation ?? 'below';
 
-    // Report the reference container to the flyout manager for layout calculations.
+    // Report the container element to the flyout manager for layout calculations.
     // Skip when the container was inherited — the parent flyout already reported it.
     useEffect(() => {
-      if (!referenceContainer || isContainerInherited) return;
+      if (!container || isContainerInherited) return;
 
-      flyoutManagerRef.current?.setContainerElement(referenceContainer);
+      flyoutManagerRef.current?.setContainerElement(container);
 
       return () => {
         if (
-          flyoutManagerRef.current?.state?.containerElement ===
-          referenceContainer
+          flyoutManagerRef.current?.state?.containerElement === container
         ) {
           flyoutManagerRef.current.setContainerElement(null);
         }
       };
-    }, [referenceContainer, isContainerInherited]); // eslint-disable-line react-hooks/exhaustive-deps
+    }, [container, isContainerInherited]); // eslint-disable-line react-hooks/exhaustive-deps
 
     // Performance: read context once and derive all manager-dependent values inline.
     const isInManagedContext = useIsInManagedFlyout();
@@ -452,55 +446,30 @@ export const EuiFlyoutComponent = forwardRef(
     const siblingFlyoutWidth =
       layoutMode === LAYOUT_MODE_STACKED ? 0 : _siblingFlyoutWidth;
 
-    // Observe the reference container's dimensions so the resize hook and
+    // Observe the container's dimensions so the resize hook and
     // positioning styles stay aligned with its bounding rect.
-    const containerDimensions = useResizeObserver(
-      referenceContainer ?? null,
-      'width'
-    );
-    const containerReferenceWidth = referenceContainer
-      ? containerDimensions.width || referenceContainer.clientWidth
+    // When no container is provided, these remain inert (null/undefined).
+    const containerDimensions = useResizeObserver(container ?? null, 'width');
+    const containerReferenceWidth = container
+      ? containerDimensions.width || container.clientWidth
       : undefined;
 
-    // Track the reference container's bounding rect for positioning.
-    // When the reference container is document.body, use the viewport rect so
-    // the flyout fills the viewport; body.getBoundingClientRect() can be
-    // shorter than the viewport (e.g. minimal content, iframes).
+    // Track the container's bounding rect for positioning the flyout.
     const [containerRect, setContainerRect] = useState<DOMRect | null>(null);
 
-    const getEffectiveContainerRect = useCallback(() => {
-      if (!referenceContainer) return null;
-      if (
-        typeof document !== 'undefined' &&
-        referenceContainer === document.body
-      ) {
-        return new DOMRect(
-          0,
-          0,
-          typeof window !== 'undefined' ? window.innerWidth : 0,
-          typeof window !== 'undefined' ? window.innerHeight : 0
-        );
-      }
-      return referenceContainer.getBoundingClientRect();
-    }, [referenceContainer]);
-
     useLayoutEffect(() => {
-      if (!referenceContainer) {
+      if (!container) {
         setContainerRect(null);
         return;
       }
-      setContainerRect(getEffectiveContainerRect());
-    }, [
-      referenceContainer,
-      containerDimensions.width,
-      getEffectiveContainerRect,
-    ]);
+      setContainerRect(container.getBoundingClientRect());
+    }, [container, containerDimensions.width]);
 
     useEffect(() => {
-      if (!referenceContainer) return;
+      if (!container) return;
 
       const updateRect = () => {
-        setContainerRect(getEffectiveContainerRect());
+        setContainerRect(container.getBoundingClientRect());
       };
 
       window.addEventListener('scroll', updateRect, { passive: true });
@@ -509,7 +478,7 @@ export const EuiFlyoutComponent = forwardRef(
         window.removeEventListener('scroll', updateRect);
         window.removeEventListener('resize', updateRect);
       };
-    }, [referenceContainer, getEffectiveContainerRect]);
+    }, [container]);
     // Prefer the manager's reference width when available so resize clamp
     // uses the same value as layout mode. When we have a container, cap by
     // its measured width so we never allow resize past the container (e.g. if
@@ -586,15 +555,16 @@ export const EuiFlyoutComponent = forwardRef(
     const { width } = useResizeObserver(isPushed ? resizeRef : null, 'width');
 
     /**
-     * Effect for adding push padding to the reference container so the flyout
-     * has room. Uses useLayoutEffect so padding is applied before child render.
+     * Effect for adding push padding so the flyout has room. Targets the
+     * container element when one is provided, otherwise document.body.
+     * Uses useLayoutEffect so padding is applied before child render.
      */
     useLayoutEffect(() => {
       if (!isPushed) {
         return;
       }
 
-      const paddingTarget = referenceContainer;
+      const paddingTarget = container ?? document.body;
 
       const shouldApplyPadding = !isInManagedContext || isActiveManagedFlyout;
 
@@ -612,22 +582,20 @@ export const EuiFlyoutComponent = forwardRef(
           ? _siblingFlyoutWidth
           : width;
 
-      if (shouldApplyPadding && paddingTarget) {
+      if (shouldApplyPadding) {
         paddingTarget.style[paddingSide] = `${paddingWidth}px`;
 
-        // Document-level push offset is only relevant when padding the body.
-        if (isBodyContainer) {
+        if (shouldSetGlobalPushVars) {
           setGlobalCSSVariables({
             [cssVarName]: `${paddingWidth}px`,
           });
         }
-        // Update manager state if in managed context
         if (isInManagedContext && flyoutManagerRef.current) {
           flyoutManagerRef.current.setPushPadding(managerSide, paddingWidth);
         }
       } else {
-        if (paddingTarget) paddingTarget.style[paddingSide] = '';
-        if (isBodyContainer) {
+        paddingTarget.style[paddingSide] = '';
+        if (shouldSetGlobalPushVars) {
           setGlobalCSSVariables({
             [cssVarName]: null,
           });
@@ -638,8 +606,8 @@ export const EuiFlyoutComponent = forwardRef(
       }
 
       return () => {
-        if (paddingTarget) paddingTarget.style[paddingSide] = '';
-        if (isBodyContainer) {
+        paddingTarget.style[paddingSide] = '';
+        if (shouldSetGlobalPushVars) {
           setGlobalCSSVariables({
             [cssVarName]: null,
           });
@@ -658,8 +626,8 @@ export const EuiFlyoutComponent = forwardRef(
       layoutMode,
       isMainFlyout,
       _siblingFlyoutWidth,
-      isBodyContainer,
-      referenceContainer,
+      shouldSetGlobalPushVars,
+      container,
     ]);
 
     /**
