@@ -717,7 +717,10 @@ export const EuiFlyoutComponent = forwardRef(
       let containerPositionStyles: React.CSSProperties = {};
       if (containerRect) {
         const containerMaxWidth = containerRect.width * 0.9;
-        const containerRightOffset = window.innerWidth - containerRect.right;
+        // Use clientWidth (excludes scrollbar) to match the coordinate
+        // system of getBoundingClientRect() and CSS position: fixed.
+        const viewportWidth = document.documentElement.clientWidth;
+        const containerRightOffset = viewportWidth - containerRect.right;
 
         // Compute the container-relative width for this flyout.
         //
