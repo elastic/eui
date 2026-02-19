@@ -93,7 +93,6 @@ export const EuiManagedFlyout = forwardRef<HTMLElement, EuiManagedFlyoutProps>(
     const refs = useMemo(() => [setFlyoutRef, ref], [ref]);
     const combinedRef = useCombinedRefs(refs);
 
-    // Performance: read context once and derive session/flyout values inline
     const {
       addFlyout,
       closeFlyout,

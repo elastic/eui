@@ -209,24 +209,24 @@ interface _EuiFlyoutComponentProps {
   onResize?: (width: number) => void;
 
   /**
-   * Optional reference container element. When not specified (or set to
-   * `null`), the reference container defaults to `document.body`. The flyout
-   * is positioned and sized relative to this single reference container.
+   * Optional reference container element. When not specified or set to
+   * `null`, the flyout uses standard viewport-relative `position: fixed`
+   * behavior with no additional positioning styles.
    *
    * When a specific element is provided, the flyout is visually constrained
-   * to that container's bounds (e.g. does not overlap side navigation, toolbars).
-   * The flyout remains in `document.body` with `position: fixed`; the
-   * container's bounding rect is read (via `ResizeObserver` and window
-   * scroll/resize listeners) to compute inline positioning styles that pin
-   * the flyout inside the container. No DOM mutations are applied to the
-   * container except push-mode padding.
+   * to that element's bounds (e.g. does not overlap side navigation,
+   * toolbars). The flyout remains mounted in `document.body` with
+   * `position: fixed`; the container's bounding rect is read (via
+   * `ResizeObserver` and window scroll/resize listeners) to compute inline
+   * positioning styles that pin the flyout inside the container. No DOM
+   * mutations are applied to the container except push-mode padding.
    *
-   * Resize clamping and responsive breakpoints use the reference container's
-   * width (body or the provided element).
+   * Resize clamping and responsive breakpoints use the container's width
+   * when provided, or the viewport width otherwise.
    *
-   * Child flyouts automatically inherit the `container` from the parent
-   * flyout's context. To use the document body as the reference container
-   * for a child (overriding an inherited container), pass `container={null}`.
+   * Child flyouts automatically inherit `container` from the parent
+   * flyout's context. To force viewport mode for a child (overriding an
+   * inherited container), pass `container={null}`.
    *
    * A getter function `() => HTMLElement | null` or a CSS selector string
    * (e.g. `'#app-main'`) can also be passed.
@@ -361,7 +361,7 @@ export const EuiFlyoutComponent = forwardRef(
     }
     // Explicit viewport flyouts (container={null}) default to 'above' so
     // they render above fixed headers. Container-scoped and legacy flyouts
-    // (no container prop) default to 'below' to match main-branch behavior.
+    // (no container prop) default to 'below'.
     const effectiveHeaderZindexLocation =
       maskProps?.headerZindexLocation ??
       (containerProp === null ? 'above' : 'below');
@@ -374,9 +374,7 @@ export const EuiFlyoutComponent = forwardRef(
       flyoutManagerRef.current?.setContainerElement(container);
 
       return () => {
-        if (
-          flyoutManagerRef.current?.state?.containerElement === container
-        ) {
+        if (flyoutManagerRef.current?.state?.containerElement === container) {
           flyoutManagerRef.current.setContainerElement(null);
         }
       };

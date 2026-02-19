@@ -72,13 +72,9 @@ export const euiFlyoutSlideOutLeft = keyframes`
 `;
 
 /**
- * Flyout styles use `position: fixed` and `%` units for widths (identical
- * to `vw` when the containing block is the viewport).
- *
  * When a `container` reference element is provided, the flyout's position
  * and dimensions are constrained to the container's bounding rect via
- * inline styles computed in JS. The CSS here remains a single branch —
- * no container queries or positioning variants.
+ * inline styles computed in JS.
  */
 export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
@@ -208,8 +204,6 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
 
 /**
  * Applies a max-width constraint at the flyout breakpoint.
- * Uses `%` units — for `position: fixed` elements, `%` resolves
- * identically to `vw`.
  */
 export const maxedFlyoutWidth = (euiThemeContext: UseEuiTheme) => `
   ${euiMaxBreakpoint(euiThemeContext, FLYOUT_BREAKPOINT)} {
@@ -220,8 +214,7 @@ export const maxedFlyoutWidth = (euiThemeContext: UseEuiTheme) => `
 /**
  * Composes the full set of named size styles (`s`, `m`, `l`, `fill`).
  *
- * Uses `%` units for widths (identical to `vw` for `position: fixed`
- * elements). Media queries drive responsive breakpoints.
+ * Uses `%` units for widths. Media queries drive responsive breakpoints.
  *
  * When a child flyout is stacked on top of the parent, the parent flyout
  * size will match the child flyout size. The `s` and `m` sizes include
@@ -238,17 +231,20 @@ export const composeFlyoutSizing = (euiThemeContext: UseEuiTheme) => {
       width: '25%',
       max: `${Math.round(euiTheme.breakpoint.s * 0.7)}px`,
     },
+
     m: {
       // Calculated for forms plus padding
       min: `${mathWithUnits(formMaxWidth, (x) => x + 24)}`,
       width: '50%',
       max: `${euiTheme.breakpoint.m}px`,
     },
+
     l: {
       min: `${Math.round(euiTheme.breakpoint.m * 0.9)}px`,
       width: '75%',
       max: `${euiTheme.breakpoint.l}px`,
     },
+
     // NOTE: These styles are for the flyout system in `stacked` layout mode.
     // In `side-by-side` mode, @flyout.component.tsx uses inline styles.
     fill: {
@@ -344,8 +340,7 @@ const composeFlyoutPadding = (
 
 /**
  * Helper for `composeFlyoutInlineStyles`
- * Handles maxWidth prop overrides to ensure they take precedence over base CSS.
- * Always uses `90%` as the fill unit — identical to `90vw` for `position: fixed`.
+ * Handles maxWidth prop overrides to ensure they take precedence over base CSS
  */
 const composeMaxWidthOverrides = (
   maxWidth: boolean | number | string | undefined,
@@ -380,8 +375,6 @@ const composeMaxWidthOverrides = (
 
 /**
  * Composes all inline styles for a flyout based on its configuration.
- * Always uses `%` for fill-size calculations — identical to `vw` for
- * `position: fixed` elements.
  * Uses a CSS custom property (`--euiFlyoutMainWidth`) for synchronous
  * tracking of the main flyout width during resize drag, falling back to
  * the pixel value from manager state when the variable is not set.
@@ -403,7 +396,7 @@ export const composeFlyoutInlineStyles = (
 
   const isFill = size === 'fill';
 
-  // Handle dynamic width calculation for fill size in side-by-side mode.
+  // Handle dynamic width calculation for fill size in side-by-side mode
   const dynamicStyles =
     isFill &&
     layoutMode === 'side-by-side' &&

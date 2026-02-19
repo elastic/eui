@@ -47,8 +47,7 @@ export const useEuiFlyoutZIndex = ({
   let baseLevel = Number(euiTheme.levels.flyout);
 
   // headerZindexLocation 'above' uses mask-level z-index so the flyout stacks
-  // above fixed headers (which typically use a high z-index; DOM order alone
-  // does not control stacking).
+  // above fixed headers (which typically use a high z-index.
   if (!isPushed && headerZindexLocation === 'above') {
     baseLevel = Number(euiTheme.levels.mask);
   }
