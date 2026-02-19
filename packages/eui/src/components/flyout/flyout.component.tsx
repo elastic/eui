@@ -359,8 +359,12 @@ export const EuiFlyoutComponent = forwardRef(
         );
       }
     }
+    // Explicit viewport flyouts (container={null}) default to 'above' so
+    // they render above fixed headers. Container-scoped and legacy flyouts
+    // (no container prop) default to 'below' to match main-branch behavior.
     const effectiveHeaderZindexLocation =
-      maskProps?.headerZindexLocation ?? 'below';
+      maskProps?.headerZindexLocation ??
+      (containerProp === null ? 'above' : 'below');
 
     // Report the container element to the flyout manager for layout calculations.
     // Skip when the container was inherited — the parent flyout already reported it.
