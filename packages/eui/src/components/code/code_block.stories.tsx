@@ -7,16 +7,15 @@
  */
 
 import React, { useEffect, useState } from 'react';
-import type { Meta, StoryObj, ReactRenderer } from '@storybook/react';
-import type { PlayFunctionContext } from '@storybook/csf';
+import type { Meta, StoryObj } from '@storybook/react';
 import { css } from '@emotion/react';
 
 import { within } from '../../../.storybook/test';
-import { LOKI_SELECTORS } from '../../../.storybook/loki';
+import { LOKI_SELECTORS, lokiPlayDecorator } from '../../../.storybook/loki';
 import { mathWithUnits } from '../../global_styling';
 
 import { EuiCodeBlock, EuiCodeBlockProps } from './code_block';
-import { expect, userEvent } from '@storybook/test';
+import { expect, userEvent, waitFor } from '@storybook/test';
 import { EuiButton } from '../button';
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
 
@@ -94,7 +93,7 @@ export const Annotations: Story = {
   parameters: {
     loki: { chromeSelector: LOKI_SELECTORS.portal },
   },
-  play: async ({ canvasElement }: PlayFunctionContext<ReactRenderer>) => {
+  play: async ({ canvasElement }: { canvasElement: HTMLElement }) => {
     const canvas = within(canvasElement);
     const annotationButton = await canvas.findByRole('button', {
       name: 'Click to view a code annotation for line 2',
@@ -245,4 +244,23 @@ export const VirtualizedCodeBlockScrolling: Story = {
       </EuiFlexGroup>
     );
   },
+  play: lokiPlayDecorator(async (context) => {
+    const { canvasElement, step } = context;
+    const canvas = within(canvasElement);
+
+    await step('wait for button to finish loading', async () => {
+      await waitFor(
+        async () => {
+          const button = await canvas.findByRole('button', { name: /Submit/i });
+          const isLoading = button
+            .getAttribute('aria-label')
+            ?.includes('Loading');
+          if (isLoading) {
+            throw new Error('Button still loading');
+          }
+        },
+        { timeout: 5000 }
+      );
+    });
+  }),
 };
