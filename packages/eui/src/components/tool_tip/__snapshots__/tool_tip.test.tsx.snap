@@ -76,7 +76,7 @@ exports[`EuiToolTip shows tooltip on mouseover and focus 1`] = `
       id="id"
       position="top"
       role="tooltip"
-      style="top: -16px; left: -10px;"
+      style="top: -16px; left: -10px; --euiToolTipAnimationDelay: 250ms;"
     >
       <div
         class="euiToolTip__title emotion-euiToolTip__title"
