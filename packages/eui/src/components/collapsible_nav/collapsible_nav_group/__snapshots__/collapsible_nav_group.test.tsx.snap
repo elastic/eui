@@ -246,7 +246,7 @@ exports[`EuiCollapsibleNavGroup when isCollapsible is true accepts accordion pro
         aria-hidden="true"
         class="euiButtonIcon__icon"
         color="inherit"
-        data-euiicon-type="arrowRight"
+        data-euiicon-type="chevronSingleRight"
       />
     </button>
   </div>
@@ -311,7 +311,7 @@ exports[`EuiCollapsibleNavGroup when isCollapsible is true will render an accord
         aria-hidden="true"
         class="euiButtonIcon__icon"
         color="inherit"
-        data-euiicon-type="arrowRight"
+        data-euiicon-type="chevronSingleRight"
       />
     </button>
   </div>

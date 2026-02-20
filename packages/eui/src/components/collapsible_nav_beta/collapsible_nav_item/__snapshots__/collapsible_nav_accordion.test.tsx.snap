@@ -37,7 +37,7 @@ exports[`EuiCollapsibleNavAccordion renders as a sub item 1`] = `
         aria-hidden="true"
         class="euiButtonIcon__icon"
         color="inherit"
-        data-euiicon-type="arrowRight"
+        data-euiicon-type="chevronSingleRight"
       />
     </button>
   </div>
@@ -109,7 +109,7 @@ exports[`EuiCollapsibleNavAccordion renders as a top level item 1`] = `
         aria-hidden="true"
         class="euiButtonIcon__icon"
         color="inherit"
-        data-euiicon-type="arrowRight"
+        data-euiicon-type="chevronSingleRight"
       />
     </button>
   </div>

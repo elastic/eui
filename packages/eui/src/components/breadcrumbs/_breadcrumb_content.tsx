@@ -213,7 +213,7 @@ const EuiBreadcrumbPopover = forwardRef<
           >
             <span css={truncationStyles}>{children}</span>
             <EuiIcon
-              type="arrowDown"
+              type="chevronSingleDown"
               size="s"
               aria-label={` - ${popoverAriaLabel}`}
             />

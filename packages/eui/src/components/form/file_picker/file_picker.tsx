@@ -312,7 +312,7 @@ export class EuiFilePickerClass extends Component<
                   className="euiFilePicker__icon"
                   color={iconColor}
                   type={
-                    isInvalid ? 'alert' : disabled ? 'minusInCircle' : 'upload'
+                    isInvalid ? 'warning' : disabled ? 'minusCircle' : 'upload'
                   }
                   size={normalFormControl ? 'm' : 'l'}
                   aria-hidden="true"

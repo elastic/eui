@@ -75,7 +75,11 @@ export const Layers: Story = {
           bottom: euiTheme.size.s,
         })}
       >
-        <EuiButtonIcon iconType="arrowRight" color="primary" display="base" />
+        <EuiButtonIcon
+          iconType="chevronSingleRight"
+          color="primary"
+          display="base"
+        />
       </div>
     </div>
   ),

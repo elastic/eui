@@ -111,7 +111,7 @@ export const Playground: Story = {
           icon="logoElasticsearch"
           isCollapsible={false}
           items={[
-            { title: 'Get started', href: '#', icon: 'launch' },
+            { title: 'Get started', href: '#', icon: 'rocket' },
             ...renderGroup('Explore', [
               {
                 title: 'Discover',
@@ -169,9 +169,9 @@ export const Playground: Story = {
               title: 'Recent',
               icon: 'clock',
               items: [
-                { title: 'Lorem ipsum', icon: 'visMapRegion', href: '#' },
-                { title: 'Consectetur cursus', icon: 'visPie', href: '#' },
-                { title: 'Ultricies tellus', icon: 'visMetric', href: '#' },
+                { title: 'Lorem ipsum', icon: 'map', href: '#' },
+                { title: 'Consectetur cursus', icon: 'chartPie', href: '#' },
+                { title: 'Ultricies tellus', icon: 'chartMetric', href: '#' },
               ],
             },
             { title: 'Developer tools', icon: 'code', href: '#' },

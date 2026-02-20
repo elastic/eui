@@ -171,7 +171,7 @@ export const EuiSelectableListItem: FunctionComponent<
   const onFocusBadgeNode = useMemo(() => {
     const defaultOnFocusBadgeProps: EuiBadgeProps = {
       'aria-hidden': true,
-      iconType: 'returnKey',
+      iconType: 'return',
       iconSide: 'left',
       color: 'hollow',
     };

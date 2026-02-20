@@ -354,7 +354,7 @@ const FullHeaderPatternExample = () => {
             </a>
           }
           buttonElement="div"
-          iconType="training"
+          iconType="presentation"
           isCollapsible={true}
           initialIsOpen={openGroups.includes('Learn')}
           onToggle={(isOpen: boolean) => toggleAccordion(isOpen, 'Learn')}
@@ -376,7 +376,7 @@ const FullHeaderPatternExample = () => {
         {/* Span fakes the nav group into not being the first item and therefore adding a top border */}
         <span />
         <EuiCollapsibleNavGroup>
-          <EuiButton fill fullWidth iconType="plusInCircleFilled">
+          <EuiButton fill fullWidth iconType="plusCircle">
             Add data
           </EuiButton>
         </EuiCollapsibleNavGroup>

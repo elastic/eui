@@ -938,7 +938,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
               </span>
               <span
                 color="inherit"
-                data-euiicon-type="arrowDown"
+                data-euiicon-type="chevronSingleDown"
               />
             </span>
           </button>
@@ -970,7 +970,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
               aria-hidden="true"
               class="euiButtonIcon__icon"
               color="inherit"
-              data-euiicon-type="arrowLeft"
+              data-euiicon-type="chevronSingleLeft"
             />
           </button>
           <ul
@@ -1035,7 +1035,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
               aria-hidden="true"
               class="euiButtonIcon__icon"
               color="inherit"
-              data-euiicon-type="arrowRight"
+              data-euiicon-type="chevronSingleRight"
             />
           </a>
         </nav>

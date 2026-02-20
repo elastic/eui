@@ -87,7 +87,7 @@ export const Expander: Story = {
     isExpander: true,
     width: '32px',
     align: 'center',
-    children: <EuiButtonIcon iconType="arrowDown" />,
+    children: <EuiButtonIcon iconType="chevronSingleDown" />,
   },
 };
 

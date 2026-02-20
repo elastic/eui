@@ -136,7 +136,7 @@ export const WithTooltips: Story = {
     options: [
       {
         id: 'button1',
-        iconType: 'securitySignal',
+        iconType: 'radar',
         label: 'No tooltip',
       },
       {

@@ -196,7 +196,7 @@ export const useDataGridColumnSelector = (
                 ? `${orderedVisibleColumns.length}/${sortedColumns.length}`
                 : sortedColumns.length
             }
-            iconType="tableDensityNormal"
+            iconType="table"
             data-test-subj="dataGridColumnSelectorButton"
             onClick={() => setIsOpen(!isOpen)}
           >
@@ -311,7 +311,7 @@ export const useDataGridColumnSelector = (
                               {...provided.dragHandleProps}
                               aria-label={`${label} ${dragHandleAriaLabel}`}
                             >
-                              <EuiIcon type="grab" color="subdued" />
+                              <EuiIcon type="dragVertical" color="subdued" />
                             </EuiFlexItem>
                           )}
                         </EuiFlexGroup>

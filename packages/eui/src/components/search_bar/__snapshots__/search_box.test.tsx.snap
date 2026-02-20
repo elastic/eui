@@ -17,7 +17,7 @@ exports[`EuiSearchBox render - custom placeholder and incremental 1`] = `
         <span
           aria-hidden="true"
           class="euiFormControlLayoutCustomIcon__icon"
-          data-euiicon-type="search"
+          data-euiicon-type="magnify"
         />
       </span>
     </div>
@@ -50,7 +50,7 @@ exports[`EuiSearchBox render - no config 1`] = `
         <span
           aria-hidden="true"
           class="euiFormControlLayoutCustomIcon__icon"
-          data-euiicon-type="search"
+          data-euiicon-type="magnify"
         />
       </span>
     </div>

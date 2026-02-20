@@ -115,7 +115,7 @@ const meta: Meta<KibanaCollapsibleNavSolutionProps> = {
                 />
                 <EuiCollapsibleNavBeta.Item
                   title="Get started"
-                  icon="launch"
+                  icon="rocket"
                   href="#"
                 />
                 <EuiCollapsibleNavBeta.Item

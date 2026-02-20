@@ -22,7 +22,7 @@ exports[`EuiAccordion is rendered 1`] = `
         aria-hidden="true"
         class="euiButtonIcon__icon"
         color="inherit"
-        data-euiicon-type="arrowRight"
+        data-euiicon-type="chevronSingleRight"
       />
     </button>
     <button
@@ -73,7 +73,7 @@ exports[`EuiAccordion isDisabled is rendered 1`] = `
         aria-hidden="true"
         class="euiButtonIcon__icon"
         color="inherit"
-        data-euiicon-type="arrowRight"
+        data-euiicon-type="chevronSingleRight"
       />
     </button>
     <button
@@ -169,7 +169,7 @@ exports[`EuiAccordion props arrowDisplay right is rendered 1`] = `
         aria-hidden="true"
         class="euiButtonIcon__icon"
         color="inherit"
-        data-euiicon-type="arrowRight"
+        data-euiicon-type="chevronSingleRight"
       />
     </button>
   </div>
@@ -210,7 +210,7 @@ exports[`EuiAccordion props arrowProps is rendered 1`] = `
         aria-hidden="true"
         class="euiButtonIcon__icon"
         color="inherit"
-        data-euiicon-type="arrowRight"
+        data-euiicon-type="chevronSingleRight"
       />
     </button>
     <button
@@ -260,7 +260,7 @@ exports[`EuiAccordion props buttonContent is rendered 1`] = `
         aria-hidden="true"
         class="euiButtonIcon__icon"
         color="inherit"
-        data-euiicon-type="arrowRight"
+        data-euiicon-type="chevronSingleRight"
       />
     </button>
     <button
@@ -314,7 +314,7 @@ exports[`EuiAccordion props buttonContentClassName is rendered 1`] = `
         aria-hidden="true"
         class="euiButtonIcon__icon"
         color="inherit"
-        data-euiicon-type="arrowRight"
+        data-euiicon-type="chevronSingleRight"
       />
     </button>
     <button
@@ -364,7 +364,7 @@ exports[`EuiAccordion props buttonElement is rendered 1`] = `
         aria-hidden="true"
         class="euiButtonIcon__icon"
         color="inherit"
-        data-euiicon-type="arrowRight"
+        data-euiicon-type="chevronSingleRight"
       />
     </button>
     <div
@@ -412,7 +412,7 @@ exports[`EuiAccordion props buttonProps is rendered 1`] = `
         aria-hidden="true"
         class="euiButtonIcon__icon"
         color="inherit"
-        data-euiicon-type="arrowRight"
+        data-euiicon-type="chevronSingleRight"
       />
     </button>
     <button
@@ -464,7 +464,7 @@ exports[`EuiAccordion props buttonProps paddingSize l 1`] = `
         aria-hidden="true"
         class="euiButtonIcon__icon"
         color="inherit"
-        data-euiicon-type="arrowRight"
+        data-euiicon-type="chevronSingleRight"
       />
     </button>
     <button
@@ -515,7 +515,7 @@ exports[`EuiAccordion props buttonProps paddingSize m 1`] = `
         aria-hidden="true"
         class="euiButtonIcon__icon"
         color="inherit"
-        data-euiicon-type="arrowRight"
+        data-euiicon-type="chevronSingleRight"
       />
     </button>
     <button
@@ -566,7 +566,7 @@ exports[`EuiAccordion props buttonProps paddingSize s 1`] = `
         aria-hidden="true"
         class="euiButtonIcon__icon"
         color="inherit"
-        data-euiicon-type="arrowRight"
+        data-euiicon-type="chevronSingleRight"
       />
     </button>
     <button
@@ -617,7 +617,7 @@ exports[`EuiAccordion props element is rendered 1`] = `
         aria-hidden="true"
         class="euiButtonIcon__icon"
         color="inherit"
-        data-euiicon-type="arrowRight"
+        data-euiicon-type="chevronSingleRight"
       />
     </button>
     <legend
@@ -665,7 +665,7 @@ exports[`EuiAccordion props extraAction is rendered 1`] = `
         aria-hidden="true"
         class="euiButtonIcon__icon"
         color="inherit"
-        data-euiicon-type="arrowRight"
+        data-euiicon-type="chevronSingleRight"
       />
     </button>
     <button
@@ -722,7 +722,7 @@ exports[`EuiAccordion props forceState closed is rendered 1`] = `
         aria-hidden="true"
         class="euiButtonIcon__icon"
         color="inherit"
-        data-euiicon-type="arrowRight"
+        data-euiicon-type="chevronSingleRight"
       />
     </button>
     <button
@@ -776,7 +776,7 @@ exports[`EuiAccordion props forceState open is rendered 1`] = `
         aria-hidden="true"
         class="euiButtonIcon__icon"
         color="inherit"
-        data-euiicon-type="arrowRight"
+        data-euiicon-type="chevronSingleRight"
       />
     </button>
     <button
@@ -829,7 +829,7 @@ exports[`EuiAccordion props initialIsOpen is rendered 1`] = `
         aria-hidden="true"
         class="euiButtonIcon__icon"
         color="inherit"
-        data-euiicon-type="arrowRight"
+        data-euiicon-type="chevronSingleRight"
       />
     </button>
     <button
@@ -882,7 +882,7 @@ exports[`EuiAccordion props isLoading is rendered 1`] = `
         aria-hidden="true"
         class="euiButtonIcon__icon"
         color="inherit"
-        data-euiicon-type="arrowRight"
+        data-euiicon-type="chevronSingleRight"
       />
     </button>
     <button
@@ -941,7 +941,7 @@ exports[`EuiAccordion props isLoadingMessage is rendered 1`] = `
         aria-hidden="true"
         class="euiButtonIcon__icon"
         color="inherit"
-        data-euiicon-type="arrowRight"
+        data-euiicon-type="chevronSingleRight"
       />
     </button>
     <button

@@ -28,7 +28,7 @@ exports[`EuiSuperDatePicker props accepts data-test-subj and passes to EuiFormCo
               data-euiicon-type="calendar"
             />
             <span
-              data-euiicon-type="arrowDown"
+              data-euiicon-type="chevronSingleDown"
             />
           </button>
         </div>
@@ -110,7 +110,7 @@ exports[`EuiSuperDatePicker props compressed is rendered 1`] = `
               data-euiicon-type="calendar"
             />
             <span
-              data-euiicon-type="arrowDown"
+              data-euiicon-type="chevronSingleDown"
             />
           </button>
         </div>
@@ -186,7 +186,7 @@ exports[`EuiSuperDatePicker props isAutoRefreshOnly is rendered 1`] = `
             class="euiFormPrepend euiFormControlLayout__prepend css-a31npo-side-uncompressed-empty-primary-isInteractive"
           >
             <span
-              data-euiicon-type="timeRefresh"
+              data-euiicon-type="refreshTime"
             />
             <span
               class="euiFormLabel eui-textTruncate emotion-euiFormLabel"
@@ -236,7 +236,7 @@ exports[`EuiSuperDatePicker props isAutoRefreshOnly passes required props 1`] = 
             disabled=""
           >
             <span
-              data-euiicon-type="timeRefresh"
+              data-euiicon-type="refreshTime"
             />
             <span
               class="euiFormLabel eui-textTruncate emotion-euiFormLabel"
@@ -311,7 +311,7 @@ exports[`EuiSuperDatePicker props isDisabled true 1`] = `
               data-euiicon-type="calendar"
             />
             <span
-              data-euiicon-type="arrowDown"
+              data-euiicon-type="chevronSingleDown"
             />
           </button>
         </div>
@@ -395,7 +395,7 @@ exports[`EuiSuperDatePicker props isQuickSelectOnly is rendered 1`] = `
               data-euiicon-type="calendar"
             />
             <span
-              data-euiicon-type="arrowDown"
+              data-euiicon-type="chevronSingleDown"
             />
           </button>
         </div>
@@ -456,7 +456,7 @@ exports[`EuiSuperDatePicker props showUpdateButton can be false 1`] = `
               data-euiicon-type="calendar"
             />
             <span
-              data-euiicon-type="arrowDown"
+              data-euiicon-type="chevronSingleDown"
             />
           </button>
         </div>
@@ -517,7 +517,7 @@ exports[`EuiSuperDatePicker props showUpdateButton can be iconOnly 1`] = `
               data-euiicon-type="calendar"
             />
             <span
-              data-euiicon-type="arrowDown"
+              data-euiicon-type="chevronSingleDown"
             />
           </button>
         </div>
@@ -602,7 +602,7 @@ exports[`EuiSuperDatePicker props width can be auto 1`] = `
               data-euiicon-type="calendar"
             />
             <span
-              data-euiicon-type="arrowDown"
+              data-euiicon-type="chevronSingleDown"
             />
           </button>
         </div>
@@ -684,7 +684,7 @@ exports[`EuiSuperDatePicker props width can be full 1`] = `
               data-euiicon-type="calendar"
             />
             <span
-              data-euiicon-type="arrowDown"
+              data-euiicon-type="chevronSingleDown"
             />
           </button>
         </div>
@@ -767,7 +767,7 @@ exports[`EuiSuperDatePicker renders 1`] = `
               data-euiicon-type="calendar"
             />
             <span
-              data-euiicon-type="arrowDown"
+              data-euiicon-type="chevronSingleDown"
             />
           </button>
         </div>
@@ -853,7 +853,7 @@ exports[`EuiSuperDatePicker renders an EuiDatePickerRange 1`] = `
                 data-euiicon-type="calendar"
               />
               <span
-                data-euiicon-type="arrowDown"
+                data-euiicon-type="chevronSingleDown"
               />
             </button>
           </div>

@@ -101,7 +101,7 @@ const Header = () => {
       }}
       popoverButton={
         <EuiHeaderSectionItemButton aria-label="Sitewide search">
-          <EuiIcon type="search" size="m" />
+          <EuiIcon type="magnify" size="m" />
         </EuiHeaderSectionItemButton>
       }
       emptyMessage={

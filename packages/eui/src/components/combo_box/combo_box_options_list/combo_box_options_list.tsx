@@ -98,7 +98,7 @@ const hitEnterBadge = (
   <EuiBadge
     className="euiComboBoxOption__enterBadge"
     color="hollow"
-    iconType="returnKey"
+    iconType="return"
     aria-hidden="true"
   />
 );

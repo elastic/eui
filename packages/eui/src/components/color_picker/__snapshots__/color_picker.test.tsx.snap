@@ -43,7 +43,7 @@ exports[`EuiColorPicker color empty string 1`] = `
           <span
             aria-hidden="true"
             class="euiFormControlLayoutCustomIcon__icon"
-            data-euiicon-type="arrowDown"
+            data-euiicon-type="chevronSingleDown"
           />
         </span>
       </div>
@@ -95,7 +95,7 @@ exports[`EuiColorPicker color null 1`] = `
           <span
             aria-hidden="true"
             class="euiFormControlLayoutCustomIcon__icon"
-            data-euiicon-type="arrowDown"
+            data-euiicon-type="chevronSingleDown"
           />
         </span>
       </div>
@@ -146,7 +146,7 @@ exports[`EuiColorPicker color valid string 1`] = `
           <span
             aria-hidden="true"
             class="euiFormControlLayoutCustomIcon__icon"
-            data-euiicon-type="arrowDown"
+            data-euiicon-type="chevronSingleDown"
           />
         </span>
       </div>
@@ -197,7 +197,7 @@ exports[`EuiColorPicker compressed 1`] = `
           <span
             aria-hidden="true"
             class="euiFormControlLayoutCustomIcon__icon"
-            data-euiicon-type="arrowDown"
+            data-euiicon-type="chevronSingleDown"
           />
         </span>
       </div>
@@ -287,7 +287,7 @@ exports[`EuiColorPicker fullWidth 1`] = `
           <span
             aria-hidden="true"
             class="euiFormControlLayoutCustomIcon__icon"
-            data-euiicon-type="arrowDown"
+            data-euiicon-type="chevronSingleDown"
           />
         </span>
       </div>
@@ -557,7 +557,7 @@ exports[`EuiColorPicker isClearable 1`] = `
           <span
             aria-hidden="true"
             class="euiFormControlLayoutCustomIcon__icon"
-            data-euiicon-type="arrowDown"
+            data-euiicon-type="chevronSingleDown"
           />
         </span>
       </div>
@@ -609,7 +609,7 @@ exports[`EuiColorPicker placeholder 1`] = `
           <span
             aria-hidden="true"
             class="euiFormControlLayoutCustomIcon__icon"
-            data-euiicon-type="arrowDown"
+            data-euiicon-type="chevronSingleDown"
           />
         </span>
       </div>
@@ -677,7 +677,7 @@ exports[`EuiColorPicker prepend and append 1`] = `
           <span
             aria-hidden="true"
             class="euiFormControlLayoutCustomIcon__icon"
-            data-euiicon-type="arrowDown"
+            data-euiicon-type="chevronSingleDown"
           />
         </span>
       </div>
@@ -784,7 +784,7 @@ exports[`EuiColorPicker renders 1`] = `
           <span
             aria-hidden="true"
             class="euiFormControlLayoutCustomIcon__icon"
-            data-euiicon-type="arrowDown"
+            data-euiicon-type="chevronSingleDown"
           />
         </span>
       </div>
@@ -835,7 +835,7 @@ exports[`EuiColorPicker showAlpha 1`] = `
           <span
             aria-hidden="true"
             class="euiFormControlLayoutCustomIcon__icon"
-            data-euiicon-type="arrowDown"
+            data-euiicon-type="chevronSingleDown"
           />
         </span>
       </div>

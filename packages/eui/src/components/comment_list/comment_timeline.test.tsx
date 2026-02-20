@@ -32,11 +32,7 @@ describe('EuiCommentTimeline', () => {
         const { container } = render(
           <EuiCommentTimeline
             timelineAvatar={
-              <EuiAvatar
-                name="username"
-                iconType="userAvatar"
-                color="subdued"
-              />
+              <EuiAvatar name="username" iconType="user" color="subdued" />
             }
           />
         );

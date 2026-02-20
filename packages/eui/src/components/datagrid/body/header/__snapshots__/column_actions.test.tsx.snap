@@ -69,7 +69,7 @@ exports[`ColumnActions renders 1`] = `
                 <span
                   class="euiListGroupItem__icon emotion-euiListGroupItem__icon"
                   color="inherit"
-                  data-euiicon-type="eyeClosed"
+                  data-euiicon-type="eyeSlash"
                 />
                 <span
                   class="euiListGroupItem__label emotion-euiListGroupItem__label-truncate"
