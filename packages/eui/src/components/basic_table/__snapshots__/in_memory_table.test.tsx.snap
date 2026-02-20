@@ -8,12 +8,17 @@ exports[`EuiInMemoryTable behavior mobile header 1`] = `
     class="euiCheckbox emotion-euiCheckbox"
   >
     <div
-      class="euiCheckbox__square emotion-euiCheckbox__square-unselected"
+      class="euiCheckbox__square emotion-euiCheckbox__square"
     >
       <span
-        class="emotion-euiCheckbox__icon-check"
-        data-euiicon-type="empty"
-      />
+        class="euiCheckboxDisplay emotion-euiCheckboxDisplay-unselected"
+      >
+        <span
+          class="emotion-euiCheckbox__icon-check"
+          data-euiicon-type="empty"
+          role="presentation"
+        />
+      </span>
       <input
         aria-label="Select all rows"
         class="euiCheckbox__input emotion-euiCheckbox__input"

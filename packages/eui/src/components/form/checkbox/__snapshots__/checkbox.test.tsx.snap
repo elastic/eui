@@ -5,12 +5,17 @@ exports[`EuiCheckbox renders 1`] = `
   class="euiCheckbox testClass1 testClass2 emotion-euiCheckbox-euiTestCss"
 >
   <div
-    class="euiCheckbox__square emotion-euiCheckbox__square-unselected"
+    class="euiCheckbox__square emotion-euiCheckbox__square"
   >
     <span
-      class="emotion-euiCheckbox__icon-check"
-      data-euiicon-type="empty"
-    />
+      class="euiCheckboxDisplay emotion-euiCheckboxDisplay-unselected"
+    >
+      <span
+        class="emotion-euiCheckbox__icon-check"
+        data-euiicon-type="empty"
+        role="presentation"
+      />
+    </span>
     <input
       aria-label="aria-label"
       class="euiCheckbox__input emotion-euiCheckbox__input"
@@ -27,12 +32,17 @@ exports[`EuiCheckbox renders props: checked 1`] = `
   class="euiCheckbox emotion-euiCheckbox"
 >
   <div
-    class="euiCheckbox__square emotion-euiCheckbox__square-selected"
+    class="euiCheckbox__square emotion-euiCheckbox__square"
   >
     <span
-      class="emotion-euiCheckbox__icon-check"
-      data-euiicon-type="check"
-    />
+      class="euiCheckboxDisplay emotion-euiCheckboxDisplay-selected"
+    >
+      <span
+        class="emotion-euiCheckbox__icon-check"
+        data-euiicon-type="check"
+        role="presentation"
+      />
+    </span>
     <input
       checked=""
       class="euiCheckbox__input emotion-euiCheckbox__input"
@@ -48,12 +58,17 @@ exports[`EuiCheckbox renders props: disabled 1`] = `
   class="euiCheckbox emotion-euiCheckbox"
 >
   <div
-    class="euiCheckbox__square emotion-euiCheckbox__square-disabled-unselected"
+    class="euiCheckbox__square emotion-euiCheckbox__square"
   >
     <span
-      class="emotion-euiCheckbox__icon-check"
-      data-euiicon-type="empty"
-    />
+      class="euiCheckboxDisplay emotion-euiCheckboxDisplay-disabled-unselected"
+    >
+      <span
+        class="emotion-euiCheckbox__icon-check"
+        data-euiicon-type="empty"
+        role="presentation"
+      />
+    </span>
     <input
       class="euiCheckbox__input emotion-euiCheckbox__input"
       disabled=""
@@ -69,12 +84,17 @@ exports[`EuiCheckbox renders props: label 1`] = `
   class="euiCheckbox emotion-euiCheckbox"
 >
   <div
-    class="euiCheckbox__square emotion-euiCheckbox__square-unselected"
+    class="euiCheckbox__square emotion-euiCheckbox__square"
   >
     <span
-      class="emotion-euiCheckbox__icon-check"
-      data-euiicon-type="empty"
-    />
+      class="euiCheckboxDisplay emotion-euiCheckboxDisplay-unselected"
+    >
+      <span
+        class="emotion-euiCheckbox__icon-check"
+        data-euiicon-type="empty"
+        role="presentation"
+      />
+    </span>
     <input
       class="euiCheckbox__input emotion-euiCheckbox__input"
       id="id"
@@ -97,12 +117,17 @@ exports[`EuiCheckbox renders props: labelProps 1`] = `
   class="euiCheckbox emotion-euiCheckbox"
 >
   <div
-    class="euiCheckbox__square emotion-euiCheckbox__square-unselected"
+    class="euiCheckbox__square emotion-euiCheckbox__square"
   >
     <span
-      class="emotion-euiCheckbox__icon-check"
-      data-euiicon-type="empty"
-    />
+      class="euiCheckboxDisplay emotion-euiCheckboxDisplay-unselected"
+    >
+      <span
+        class="emotion-euiCheckbox__icon-check"
+        data-euiicon-type="empty"
+        role="presentation"
+      />
+    </span>
     <input
       class="euiCheckbox__input emotion-euiCheckbox__input"
       id="id"
@@ -125,12 +150,17 @@ exports[`EuiCheckbox renders props: readOnly 1`] = `
   class="euiCheckbox emotion-euiCheckbox"
 >
   <div
-    class="euiCheckbox__square emotion-euiCheckbox__square-unselected-readOnly"
+    class="euiCheckbox__square emotion-euiCheckbox__square-readOnly"
   >
     <span
-      class="emotion-euiCheckbox__icon-check"
-      data-euiicon-type="empty"
-    />
+      class="euiCheckboxDisplay emotion-euiCheckboxDisplay-unselected"
+    >
+      <span
+        class="emotion-euiCheckbox__icon-check"
+        data-euiicon-type="empty"
+        role="presentation"
+      />
+    </span>
     <input
       class="euiCheckbox__input emotion-euiCheckbox__input"
       id="id"

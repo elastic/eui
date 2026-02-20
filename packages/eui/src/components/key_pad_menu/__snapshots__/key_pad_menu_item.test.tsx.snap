@@ -12,12 +12,17 @@ exports[`EuiKeyPadMenuItem checkable renders as checkbox 1`] = `
       class="euiCheckbox euiKeyPadMenuItem__checkableInput emotion-euiCheckbox-euiKeyPadMenuItem__checkableInput-showCheckableInputOnInteraction"
     >
       <div
-        class="euiCheckbox__square emotion-euiCheckbox__square-unselected"
+        class="euiCheckbox__square emotion-euiCheckbox__square"
       >
         <span
-          class="emotion-euiCheckbox__icon-check"
-          data-euiicon-type="empty"
-        />
+          class="euiCheckboxDisplay emotion-euiCheckboxDisplay-unselected"
+        >
+          <span
+            class="emotion-euiCheckbox__icon-check"
+            data-euiicon-type="empty"
+            role="presentation"
+          />
+        </span>
         <input
           class="euiCheckbox__input emotion-euiCheckbox__input"
           id="generated-id"

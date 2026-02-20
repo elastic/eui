@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiCheckboxDisplay renders 1`] = `
+<span
+  aria-label="aria-label"
+  class="euiCheckboxDisplay testClass1 testClass2 emotion-euiCheckboxDisplay-unselected-euiTestCss"
+  data-test-subj="test subject string"
+>
+  <span
+    class="emotion-euiCheckbox__icon-check"
+    data-euiicon-type="empty"
+    role="presentation"
+  />
+</span>
+`;

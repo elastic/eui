@@ -234,12 +234,17 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
               class="euiCheckbox emotion-euiCheckbox"
             >
               <div
-                class="euiCheckbox__square emotion-euiCheckbox__square-unselected"
+                class="euiCheckbox__square emotion-euiCheckbox__square"
               >
                 <span
-                  class="emotion-euiCheckbox__icon-check"
-                  data-euiicon-type="empty"
-                />
+                  class="euiCheckboxDisplay emotion-euiCheckboxDisplay-unselected"
+                >
+                  <span
+                    class="emotion-euiCheckbox__icon-check"
+                    data-euiicon-type="empty"
+                    role="presentation"
+                  />
+                </span>
                 <input
                   aria-label="Select all rows"
                   class="euiCheckbox__input emotion-euiCheckbox__input"
@@ -403,12 +408,17 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
               class="euiCheckbox emotion-euiCheckbox"
             >
               <div
-                class="euiCheckbox__square emotion-euiCheckbox__square-unselected"
+                class="euiCheckbox__square emotion-euiCheckbox__square"
               >
                 <span
-                  class="emotion-euiCheckbox__icon-check"
-                  data-euiicon-type="empty"
-                />
+                  class="euiCheckboxDisplay emotion-euiCheckboxDisplay-unselected"
+                >
+                  <span
+                    class="emotion-euiCheckbox__icon-check"
+                    data-euiicon-type="empty"
+                    role="presentation"
+                  />
+                </span>
                 <input
                   aria-label="Select row 1"
                   class="euiCheckbox__input emotion-euiCheckbox__input"
@@ -551,12 +561,17 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
               class="euiCheckbox emotion-euiCheckbox"
             >
               <div
-                class="euiCheckbox__square emotion-euiCheckbox__square-unselected"
+                class="euiCheckbox__square emotion-euiCheckbox__square"
               >
                 <span
-                  class="emotion-euiCheckbox__icon-check"
-                  data-euiicon-type="empty"
-                />
+                  class="euiCheckboxDisplay emotion-euiCheckboxDisplay-unselected"
+                >
+                  <span
+                    class="emotion-euiCheckbox__icon-check"
+                    data-euiicon-type="empty"
+                    role="presentation"
+                  />
+                </span>
                 <input
                   aria-label="Select row 2"
                   class="euiCheckbox__input emotion-euiCheckbox__input"
@@ -699,12 +714,17 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
               class="euiCheckbox emotion-euiCheckbox"
             >
               <div
-                class="euiCheckbox__square emotion-euiCheckbox__square-unselected"
+                class="euiCheckbox__square emotion-euiCheckbox__square"
               >
                 <span
-                  class="emotion-euiCheckbox__icon-check"
-                  data-euiicon-type="empty"
-                />
+                  class="euiCheckboxDisplay emotion-euiCheckboxDisplay-unselected"
+                >
+                  <span
+                    class="emotion-euiCheckbox__icon-check"
+                    data-euiicon-type="empty"
+                    role="presentation"
+                  />
+                </span>
                 <input
                   aria-label="Select row 3"
                   class="euiCheckbox__input emotion-euiCheckbox__input"
