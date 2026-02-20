@@ -106,6 +106,14 @@ export const DataVisTextColorsTable = () => {
           value: euiTheme.colors.vis.euiColorVisText9,
           token: 'colors.vis.euiColorVisText9',
         },
+        {
+          value: euiTheme.colors.vis.euiColorVisText10,
+          token: 'colors.vis.euiColorVisText10',
+        },
+        {
+          value: euiTheme.colors.vis.euiColorVisText11,
+          token: 'colors.vis.euiColorVisText11',
+        }
       ]}
     />
   );

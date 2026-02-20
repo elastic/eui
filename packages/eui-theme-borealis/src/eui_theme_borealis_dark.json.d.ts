@@ -333,6 +333,8 @@ declare module '@elastic/eui-theme-borealis/lib/eui_theme_borealis_dark.json' {
     euiColorVisText7: string;
     euiColorVisText8: string;
     euiColorVisText9: string;
+    euiColorVisText10: string;
+    euiColorVisText11: string;
     euiColorVisSuccess0: string;
     euiColorVisSuccess1: string;
     euiColorVisWarning0: string;

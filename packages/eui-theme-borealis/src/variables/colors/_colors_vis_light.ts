@@ -90,6 +90,8 @@ export const colorVisLight: _EuiThemeVisColors = {
   euiColorVisText7: SEMANTIC_COLORS.danger80,
   euiColorVisText8: SEMANTIC_COLORS.warning110,
   euiColorVisText9: SEMANTIC_COLORS.warning90,
+  euiColorVisText10: SEMANTIC_COLORS.assistance110,
+  euiColorVisText11: SEMANTIC_COLORS.assistance90,
 
   euiColorVisNeutral0: SEMANTIC_COLORS.neutral60,
   euiColorVisNeutral1: SEMANTIC_COLORS.neutral30,
