@@ -39,7 +39,8 @@ fi
 
 echo "🔍 Detecting changed public packages..."
 
-CHANGED_FILES=$(git diff --name-only HEAD^1 HEAD)
+BASE_REF="${GITHUB_BASE_REF:-main}"
+CHANGED_FILES=$(git diff --name-only origin/${BASE_REF}...HEAD 2>/dev/null || git diff --name-only ${BASE_REF}...HEAD)
 
 if [ -n "$CHANGED_FILES" ]; then
   echo "Changed files:"
