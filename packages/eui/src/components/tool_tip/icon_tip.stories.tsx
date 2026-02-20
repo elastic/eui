@@ -8,15 +8,16 @@
 
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
+import { userEvent, waitFor } from '@storybook/test';
 
 import {
   enableFunctionToggleControls,
   moveStorybookControlsToCategory,
 } from '../../../.storybook/utils';
-import { LOKI_SELECTORS } from '../../../.storybook/loki';
+import { LOKI_SELECTORS, lokiPlayDecorator } from '../../../.storybook/loki';
 import { EuiFlexGroup } from '../flex';
-import { ToolTipDelay } from './tool_tip';
 import { EuiIconTip, EuiIconTipProps } from './icon_tip';
+import { ToolTipDelay } from './tool_tip';
 
 const meta: Meta<EuiIconTipProps> = {
   title: 'Display/EuiIconTip',
@@ -73,12 +74,23 @@ type Story = StoryObj<EuiIconTipProps>;
 export const Playground: Story = {
   args: {
     content: 'tooltip content',
-    iconProps: {
-      // using autoFocus here as small trick to ensure showing the tooltip on load (e.g. for VRT)
-      // TODO: exchange for loki play() interactions once #7735 is merged
-      // @ts-ignore - temp. solution for storybook VRT testing
-      autofocus: 'true',
-    },
-    delay: 'none' as ToolTipDelay, // passing a (not-yet) supported value to hackishly force a lower delay for VRT
+    // set delay to none to ensure tooltip appears immediately for the screenshot
+    delay: 'none' as ToolTipDelay,
   },
+  play: lokiPlayDecorator(async (context) => {
+    const { step } = context;
+
+    await step('focus icon to show tooltip with focus outline', async () => {
+      // we need to focus the body first and then transition to the icon
+      // to ensure the focus outline is visible
+      document.body.focus();
+      await new Promise((resolve) => setTimeout(resolve, 100));
+      await userEvent.tab();
+
+      await waitFor(() => {
+        const tooltip = document.querySelector('[data-test-subj="tooltip"]');
+        return tooltip !== null;
+      });
+    });
+  }),
 };
