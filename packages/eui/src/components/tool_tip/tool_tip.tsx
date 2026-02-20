@@ -349,10 +349,10 @@ export class EuiToolTip extends Component<EuiToolTipProps, State> {
 
     const classes = classNames('euiToolTip', className);
     const anchorClasses = classNames(anchorClassName, anchorProps?.className);
-    const popoverStyles: CSSProperties = {
+    const popoverStyles = {
       ...toolTipStyles,
       '--euiToolTipAnimationDelay': `${delayToMsMap[delay]}ms`,
-    };
+    } as CSSProperties;
 
     return (
       <>
