@@ -2,13 +2,14 @@
 
 exports[`EuiCollapsibleNavBody renders 1`] = `
 <div
-  aria-label="aria-label"
   class="euiFlyoutBody euiCollapsibleNav__body testClass1 testClass2 emotion-euiFlyoutBody-euiCollapsibleNav__body-euiTestCss"
   data-test-subj="test subject string"
 >
   <div
+    aria-label="aria-label"
     class="euiFlyoutBody__overflow emotion-euiFlyoutBody__overflow-noBanner"
     data-test-subj="euiFlyoutBodyOverflow"
+    role="region"
     tabindex="-1"
   >
     <div

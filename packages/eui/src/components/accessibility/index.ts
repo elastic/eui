@@ -13,3 +13,4 @@ export type { EuiScreenReaderOnlyProps } from './screen_reader_only';
 export { EuiSkipLink } from './skip_link';
 export type { EuiSkipLinkProps } from './skip_link';
 export { type EuiLiveAnnouncerProps, EuiLiveAnnouncer } from './live_announcer';
+export { useAriaLabelAttributes } from './accessibility_hooks';
