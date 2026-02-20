@@ -10,7 +10,7 @@ import { actions } from '@storybook/addon-actions';
 import type { Meta, StoryObj } from '@storybook/react';
 import React, { useMemo, useState } from 'react';
 
-import { EuiBreakpointSize } from '../../../services';
+import { EuiBreakpointSize, useEuiTheme } from '../../../services';
 import { EuiButton } from '../../button';
 import { EuiDescriptionList } from '../../description_list';
 import { EuiComponentDefaultsProvider } from '../../provider';
@@ -155,8 +155,7 @@ const meta: Meta<FlyoutChildStoryArgs> = {
     childMaxWidth: undefined,
   },
   parameters: {
-    // Skipping visual regression testing with Loki
-    // This is a playground for Flyout Manager and doesn't show anything testable on page load
+    layout: 'fullscreen',
     loki: { skip: true },
   },
 };
@@ -187,6 +186,7 @@ const ContainerDemoComponent: React.FC<FlyoutChildStoryArgs> = ({
   childMinWidth,
   ...args
 }) => {
+  const { euiTheme } = useEuiTheme();
   const [containerEl, setContainerEl] = useState<HTMLElement | null>(null);
 
   // Mirrors how Kibana configures EuiProvider: all EuiFlyout instances default
@@ -437,7 +437,7 @@ const ContainerDemoComponent: React.FC<FlyoutChildStoryArgs> = ({
   // Grid layout dimensions
   const bannerHeight = 32;
   const headerHeight = 48;
-  const applicationTopBarHeight = 48;
+
   const navigationWidth = 248;
   const sidebarWidth = 200;
   const footerHeight = 0;
@@ -467,16 +467,16 @@ const ContainerDemoComponent: React.FC<FlyoutChildStoryArgs> = ({
         <div
           style={{
             gridArea: 'banner',
-            background: '#f5f7fa',
-            borderBottom: '1px solid #d3dae6',
+            background: euiTheme.colors.backgroundBaseSubdued,
+            borderBottom: euiTheme.border.thin,
           }}
         />
 
         <header
           style={{
             gridArea: 'header',
-            background: '#fff',
-            borderBottom: '1px solid #d3dae6',
+            background: euiTheme.colors.backgroundBasePlain,
+            borderBottom: euiTheme.border.thin,
             padding: '0 16px',
             display: 'flex',
             alignItems: 'center',
@@ -515,7 +515,7 @@ const ContainerDemoComponent: React.FC<FlyoutChildStoryArgs> = ({
         <nav
           style={{
             gridArea: 'navigation',
-            borderRight: '1px solid #d3dae6',
+            borderRight: euiTheme.border.thin,
             display: 'flex',
             flexDirection: 'column',
             minHeight: 0,
@@ -524,7 +524,7 @@ const ContainerDemoComponent: React.FC<FlyoutChildStoryArgs> = ({
           <div
             style={{
               flex: 1,
-              background: '#f5f7fa',
+              background: euiTheme.colors.backgroundBaseSubdued,
               padding: 16,
               display: 'flex',
               flexDirection: 'column',
@@ -553,28 +553,10 @@ const ContainerDemoComponent: React.FC<FlyoutChildStoryArgs> = ({
             flexDirection: 'column',
             overflow: 'auto',
             padding: 0,
-            background: '#ffffff',
+            background: euiTheme.colors.backgroundBasePlain,
             minHeight: 0,
-            borderRadius: 6,
-            boxShadow: '0 1px 2px rgba(0,0,0,0.06)',
           }}
         >
-          <div
-            style={{
-              position: 'sticky',
-              top: 0,
-              zIndex: 1,
-              flexShrink: 0,
-              height: applicationTopBarHeight,
-              borderBottom: '1px solid #d3dae6',
-              padding: '0 16px',
-              display: 'flex',
-              alignItems: 'center',
-              background: '#ffffff',
-            }}
-          >
-            <EuiText size="s">Application top bar</EuiText>
-          </div>
           <div style={{ padding: 24, flex: 1, minHeight: 0 }}>
             <EuiText>
               <h2>Main content area</h2>
@@ -690,7 +672,7 @@ const ContainerDemoComponent: React.FC<FlyoutChildStoryArgs> = ({
         <aside
           style={{
             gridArea: 'sidebar',
-            borderLeft: '1px solid #d3dae6',
+            borderLeft: euiTheme.border.thin,
             display: 'flex',
             flexDirection: 'column',
             minHeight: 0,
@@ -699,7 +681,7 @@ const ContainerDemoComponent: React.FC<FlyoutChildStoryArgs> = ({
           <div
             style={{
               flex: 1,
-              background: '#f5f7fa',
+              background: euiTheme.colors.backgroundBaseSubdued,
               padding: 16,
               display: 'flex',
               flexDirection: 'column',
