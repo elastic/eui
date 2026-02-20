@@ -19,8 +19,8 @@ import classNames from 'classnames';
 
 import { useCombinedRefs, useEuiMemoizedStyles } from '../../../services';
 import { CommonProps } from '../../common';
-import { EuiIcon } from '../../icon';
 
+import { EuiCheckboxDisplay } from './checkbox_display';
 import { euiCheckboxStyles } from './checkbox.styles';
 
 export interface EuiCheckboxProps
@@ -59,13 +59,6 @@ export const EuiCheckbox: FunctionComponent<EuiCheckboxProps> = ({
   const inputStyles = [
     styles.input.euiCheckbox__square,
     !!label && styles.input.hasLabel,
-    disabled
-      ? checked || indeterminate
-        ? styles.input.disabled.selected
-        : styles.input.disabled.unselected
-      : checked || indeterminate
-      ? styles.input.enabled.selected
-      : styles.input.enabled.unselected,
     readOnly && styles.input.readOnly,
   ];
 
@@ -75,11 +68,6 @@ export const EuiCheckbox: FunctionComponent<EuiCheckboxProps> = ({
     disabled ? styles.label.disabled : styles.label.enabled,
     readOnly && styles.label.readOnly,
     labelProps?.css,
-  ];
-
-  const iconStyles = [
-    styles.input.icon.euiCheckbox__icon,
-    indeterminate ? styles.input.icon.indeterminate : styles.input.icon.check,
   ];
 
   // @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#indeterminate_state_checkboxes
@@ -94,9 +82,10 @@ export const EuiCheckbox: FunctionComponent<EuiCheckboxProps> = ({
   return (
     <div css={styles.euiCheckbox} className={classes}>
       <div css={inputStyles} className="euiCheckbox__square">
-        <EuiIcon
-          css={iconStyles}
-          type={indeterminate ? 'stopFilled' : checked ? 'check' : 'empty'}
+        <EuiCheckboxDisplay
+          checked={checked}
+          indeterminate={indeterminate}
+          disabled={disabled}
         />
         <input
           css={styles.input.euiCheckbox__input}
