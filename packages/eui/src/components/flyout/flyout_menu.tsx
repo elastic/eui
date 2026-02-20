@@ -117,7 +117,13 @@ export type EuiFlyoutMenuProps = CommonProps &
 
 const BackButton: React.FC<EuiFlyoutMenuBackButtonProps> = (props) => {
   return (
-    <EuiButtonEmpty size="xs" color="text" iconType="editorUndo" {...props}>
+    <EuiButtonEmpty
+      size="xs"
+      color="text"
+      iconType="editorUndo"
+      data-test-subj="euiFlyoutMenuBackButton"
+      {...props}
+    >
       <EuiI18n token="euiFlyoutMenu.back" default="Back" />
     </EuiButtonEmpty>
   );
@@ -138,6 +144,7 @@ const HistoryPopover: React.FC<{
           iconType="arrowDown"
           color="text"
           aria-label={useEuiI18n('euiFlyoutMenu.history', 'History')}
+          data-test-subj="euiFlyoutMenuHistoryButton"
         />
       }
       isOpen={isPopoverOpen}
@@ -156,6 +163,7 @@ const HistoryPopover: React.FC<{
               item.onClick();
               setIsPopoverOpen(false);
             }}
+            data-test-subj={`euiFlyoutMenuHistoryItem-${index}`}
           >
             {item.title}
           </EuiListGroupItem>
