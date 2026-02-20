@@ -68,10 +68,7 @@ import { EuiFlyoutResizeButton } from './_flyout_resize_button';
 import { useEuiFlyoutResizable } from './use_flyout_resizable';
 import type { EuiFlyoutCloseEvent } from './types';
 import { useEuiFlyoutZIndex } from './use_flyout_z_index';
-import {
-  EuiFlyoutParentProvider,
-  useParentFlyoutContainer,
-} from './flyout_parent_context';
+import { EuiFlyoutParentProvider } from './flyout_parent_context';
 
 interface _EuiFlyoutComponentProps {
   /**
@@ -224,9 +221,9 @@ interface _EuiFlyoutComponentProps {
    * Resize clamping and responsive breakpoints use the container's width
    * when provided, or the viewport width otherwise.
    *
-   * Child flyouts automatically inherit `container` from the parent
-   * flyout's context. To force viewport mode for a child (overriding an
-   * inherited container), pass `container={null}`.
+   * Can be set globally via `EuiProvider` component defaults so all
+   * flyouts are scoped to the application container by default. Individual
+   * flyouts can override with `container={null}` to force viewport mode.
    *
    * A getter function `() => HTMLElement | null` or a CSS selector string
    * (e.g. `'#app-main'`) can also be passed.
@@ -306,29 +303,7 @@ export const EuiFlyoutComponent = forwardRef(
       ...rest
     } = usePropsWithComponentDefaults('EuiFlyout', props);
 
-    // Child flyouts inherit the container from the parent flyout's context.
-    // This allows the main flyout to set `container` once, and all child
-    // flyouts automatically use the same container without needing an
-    // explicit prop.
-    //
-    // `undefined` = not provided, inherit from parent. `null` = explicitly
-    // no container (viewport mode). Strings and getter functions are
-    // resolved each render.
-    const parentContainer = useParentFlyoutContainer();
-    const containerRaw =
-      containerProp !== undefined ? containerProp : parentContainer;
-    const container = resolveContainer(containerRaw);
-
-    // Value to pass to child context: selector string so children re-resolve,
-    // or resolved element when prop was element/getter.
-    const containerForContext =
-      typeof containerRaw === 'string' ? containerRaw : container ?? undefined;
-
-    // If this flyout inherited its container from the parent context (rather
-    // than setting it explicitly), the parent flyout already reported the
-    // container to the manager. Skip that effect to avoid redundant dispatch.
-    const isContainerInherited =
-      containerProp === undefined && parentContainer != null;
+    const container = resolveContainer(containerProp);
 
     const { setGlobalCSSVariables } = useEuiThemeCSSVariables();
 
@@ -367,9 +342,8 @@ export const EuiFlyoutComponent = forwardRef(
       (containerProp === null ? 'above' : 'below');
 
     // Report the container element to the flyout manager for layout calculations.
-    // Skip when the container was inherited — the parent flyout already reported it.
     useEffect(() => {
-      if (!container || isContainerInherited) return;
+      if (!container) return;
 
       flyoutManagerRef.current?.setContainerElement(container);
 
@@ -378,7 +352,7 @@ export const EuiFlyoutComponent = forwardRef(
           flyoutManagerRef.current.setContainerElement(null);
         }
       };
-    }, [container, isContainerInherited]); // eslint-disable-line react-hooks/exhaustive-deps
+    }, [container]); // eslint-disable-line react-hooks/exhaustive-deps
 
     // Performance: read context once and derive all manager-dependent values inline.
     const isInManagedContext = useIsInManagedFlyout();
@@ -1096,7 +1070,7 @@ export const EuiFlyoutComponent = forwardRef(
                 onKeyDown={onKeyDownResizableButton}
               />
             )}
-            <EuiFlyoutParentProvider container={containerForContext}>
+            <EuiFlyoutParentProvider>
               {children}
             </EuiFlyoutParentProvider>
           </Element>

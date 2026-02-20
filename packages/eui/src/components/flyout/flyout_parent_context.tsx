@@ -6,40 +6,26 @@
  * Side Public License, v 1.
  */
 
-import React, { createContext, useContext, useMemo } from 'react';
+import React, { createContext, useContext } from 'react';
 
 /**
- * Context shared from a parent flyout to its children.
- * Carries the parent's `container` (element or selector string) so child
- * flyouts can inherit it without needing an explicit prop, and a flag
- * indicating we're inside a parent flyout (used for automatic session inheritance).
+ * Context to track if we're inside a parent flyout's children.
+ * This allows nested flyouts to automatically inherit the session
+ * without requiring explicit `session="inherit"` prop.
  */
-interface EuiFlyoutParentContextValue {
-  isInsideParent: boolean;
-  container?: HTMLElement | string;
-}
-
-const EuiFlyoutParentContext = createContext<EuiFlyoutParentContextValue>({
-  isInsideParent: false,
-});
+const EuiFlyoutParentContext = createContext<boolean>(false);
 
 /**
- * Provider that wraps a flyout's children to share parent flyout state.
- * Child flyouts inherit the `container` (element or selector) automatically.
+ * Provider that wraps a flyout's children to indicate they're inside a parent flyout.
+ * Nested flyouts can use this to automatically default to session inheritance.
  */
 export const EuiFlyoutParentProvider = ({
   children,
-  container,
 }: {
   children: React.ReactNode;
-  container?: HTMLElement | string;
 }) => {
-  const value = useMemo(
-    () => ({ isInsideParent: true, container }),
-    [container]
-  );
   return (
-    <EuiFlyoutParentContext.Provider value={value}>
+    <EuiFlyoutParentContext.Provider value={true}>
       {children}
     </EuiFlyoutParentContext.Provider>
   );
@@ -49,12 +35,4 @@ export const EuiFlyoutParentProvider = ({
  * Hook that returns `true` when called within a parent flyout's children.
  * Used to automatically determine if a nested flyout should inherit the session.
  */
-export const useIsInsideParentFlyout = () =>
-  useContext(EuiFlyoutParentContext).isInsideParent;
-
-/**
- * Hook that returns the parent flyout's `container` (element or selector), if any.
- * Child flyouts use this to inherit the container without an explicit prop.
- */
-export const useParentFlyoutContainer = (): HTMLElement | string | undefined =>
-  useContext(EuiFlyoutParentContext).container;
+export const useIsInsideParentFlyout = () => useContext(EuiFlyoutParentContext);
