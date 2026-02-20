@@ -41,6 +41,10 @@ export const BackgroundColorsTable = () => {
           token: 'colors.backgroundBaseDanger',
         },
         {
+          value: euiTheme.colors.backgroundBaseAssistance,
+          token: 'colors.backgroundBaseAssistance',
+        },
+        {
           value: euiTheme.colors.backgroundBaseSubdued,
           token: 'colors.backgroundBaseSubdued',
         },
@@ -67,6 +71,10 @@ export const BackgroundColorsTable = () => {
         {
           value: euiTheme.colors.backgroundBaseInteractiveHover,
           token: 'colors.backgroundBaseInteractiveHover',
+        },
+        {
+          value: euiTheme.colors.backgroundBaseInteractiveHoverAssistance,
+          token: 'colors.backgroundBaseInteractiveHoverAssistance',
         },
         {
           value: euiTheme.colors.backgroundBaseInteractiveSelect,
@@ -117,6 +125,10 @@ export const BackgroundColorsTable = () => {
           token: 'colors.backgroundLightDanger',
         },
         {
+          value: euiTheme.colors.backgroundLightAssistance,
+          token: 'colors.backgroundLightAssistance',
+        },
+        {
           value: euiTheme.colors.backgroundLightText,
           token: 'colors.backgroundLightText',
         },
@@ -151,6 +163,10 @@ export const BackgroundColorsTable = () => {
         {
           value: euiTheme.colors.backgroundFilledDanger,
           token: 'colors.backgroundFilledDanger',
+        },
+        {
+          value: euiTheme.colors.backgroundFilledAssistance,
+          token: 'colors.backgroundFilledAssistance',
         },
         {
           value: euiTheme.colors.backgroundFilledText,

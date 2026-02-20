@@ -59,6 +59,7 @@ const _buttons = {
   backgroundWarningHover: SEMANTIC_COLORS.warning60Alpha16,
   backgroundRiskHover: SEMANTIC_COLORS.risk60Alpha16,
   backgroundDangerHover: SEMANTIC_COLORS.danger70Alpha12,
+  backgroundAssistanceHover: SEMANTIC_COLORS.assistance70Alpha12,
   backgroundTextHover: SEMANTIC_COLORS.primary100Alpha8,
 
   backgroundPrimaryActive: SEMANTIC_COLORS.primary70Alpha16,
@@ -121,6 +122,7 @@ const _buttons = {
   backgroundFilledRiskHover: SEMANTIC_COLORS.risk80,
   backgroundFilledDangerHover: SEMANTIC_COLORS.danger100,
   backgroundFilledTextHover: SEMANTIC_COLORS.shade100,
+  backgroundFilledAssistanceHover: SEMANTIC_COLORS.assistance100,
 
   backgroundFilledPrimaryActive: SEMANTIC_COLORS.primary110,
   backgroundFilledAccentActive: SEMANTIC_COLORS.accent110,
@@ -262,6 +264,7 @@ const _dark_buttons = {
   backgroundFilledRiskHover: SEMANTIC_COLORS.risk60,
   backgroundFilledDangerHover: SEMANTIC_COLORS.danger70,
   backgroundFilledTextHover: SEMANTIC_COLORS.shade70,
+  backgroundFilledAssistanceHover: SEMANTIC_COLORS.assistance70,
 
   backgroundFilledPrimaryActive: SEMANTIC_COLORS.primary80,
   backgroundFilledAccentActive: SEMANTIC_COLORS.accent80,

@@ -44,7 +44,15 @@ $euiPaletteColorBlind: (
   euiColorVis9: (
     graphic: #FCD883,
     behindText: #FCD883,
-  )
+  ),
+  euiColorVis10: (
+    graphic: #B386F9,
+    behindText: #B386F9,
+  ),
+  euiColorVis11: (
+    graphic: #E2D3FE,
+    behindText: #E2D3FE,
+  ),
 ) !default;
 
 $euiPaletteColorBlindKeys: map-keys($euiPaletteColorBlind);
@@ -59,6 +67,8 @@ $euiColorVis6: map-get(map-get($euiPaletteColorBlind, 'euiColorVis6'), 'graphic'
 $euiColorVis7: map-get(map-get($euiPaletteColorBlind, 'euiColorVis7'), 'graphic') !default;
 $euiColorVis8: map-get(map-get($euiPaletteColorBlind, 'euiColorVis8'), 'graphic') !default;
 $euiColorVis9: map-get(map-get($euiPaletteColorBlind, 'euiColorVis9'), 'graphic') !default;
+$euiColorVis10: map-get(map-get($euiPaletteColorBlind, 'euiColorVis10'), 'graphic') !default;
+$euiColorVis11: map-get(map-get($euiPaletteColorBlind, 'euiColorVis11'), 'graphic') !default;
 
 $euiColorVis0_behindText: map-get(map-get($euiPaletteColorBlind, 'euiColorVis0'), 'behindText') !default;
 $euiColorVis1_behindText: map-get(map-get($euiPaletteColorBlind, 'euiColorVis1'), 'behindText') !default;
@@ -70,3 +80,5 @@ $euiColorVis6_behindText: map-get(map-get($euiPaletteColorBlind, 'euiColorVis6')
 $euiColorVis7_behindText: map-get(map-get($euiPaletteColorBlind, 'euiColorVis7'), 'behindText') !default;
 $euiColorVis8_behindText: map-get(map-get($euiPaletteColorBlind, 'euiColorVis8'), 'behindText') !default;
 $euiColorVis9_behindText: map-get(map-get($euiPaletteColorBlind, 'euiColorVis9'), 'behindText') !default;
+$euiColorVis10_behindText: map-get(map-get($euiPaletteColorBlind, 'euiColorVis10'), 'behindText') !default;
+$euiColorVis11_behindText: map-get(map-get($euiPaletteColorBlind, 'euiColorVis11'), 'behindText') !default;

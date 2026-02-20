@@ -22,6 +22,8 @@ const baseColorVis = {
   euiColorVis7: SEMANTIC_COLORS.danger80,
   euiColorVis8: SEMANTIC_COLORS.warning110,
   euiColorVis9: SEMANTIC_COLORS.warning80,
+  euiColorVis10: PRIMITIVE_COLORS.purple60,
+  euiColorVis11: PRIMITIVE_COLORS.purple30,
 };
 
 export const visColorsLightHighContrast: _EuiThemeVisColors = {
@@ -37,6 +39,8 @@ export const visColorsLightHighContrast: _EuiThemeVisColors = {
   euiColorVisBehindText7: baseColorVis.euiColorVis7,
   euiColorVisBehindText8: baseColorVis.euiColorVis8,
   euiColorVisBehindText9: baseColorVis.euiColorVis9,
+  euiColorVisBehindText10: baseColorVis.euiColorVis10,
+  euiColorVisBehindText11: baseColorVis.euiColorVis11,
 
   euiColorVisText0: SEMANTIC_COLORS.accentSecondary110,
   euiColorVisText1: SEMANTIC_COLORS.accentSecondary100,
@@ -48,6 +52,8 @@ export const visColorsLightHighContrast: _EuiThemeVisColors = {
   euiColorVisText7: SEMANTIC_COLORS.danger80,
   euiColorVisText8: SEMANTIC_COLORS.warning110,
   euiColorVisText9: SEMANTIC_COLORS.warning90,
+  euiColorVisText10: SEMANTIC_COLORS.assistance110,
+  euiColorVisText11: SEMANTIC_COLORS.assistance90,
 
   euiColorVisNeutral0: SEMANTIC_COLORS.neutral100,
   euiColorVisNeutral1: SEMANTIC_COLORS.neutral80,
@@ -59,6 +65,7 @@ export const visColorsLightHighContrast: _EuiThemeVisColors = {
   euiColorVisRisk1: SEMANTIC_COLORS.risk80,
   euiColorVisDanger0: SEMANTIC_COLORS.danger100,
   euiColorVisDanger1: SEMANTIC_COLORS.danger80,
+  euiColorVisAssistance: SEMANTIC_COLORS.assistance60,
 
   // We removed the `mutedGrey` palette in favor of the `blueGrey` palette from the theme
   // but we need to keep this specific value for visualizations backwards compatibility.
