@@ -13,6 +13,7 @@ import React, {
   ReactNode,
   MouseEvent as ReactMouseEvent,
   HTMLAttributes,
+  CSSProperties,
 } from 'react';
 import classNames from 'classnames';
 
@@ -152,7 +153,6 @@ export class EuiToolTip extends Component<EuiToolTipProps, State> {
   _isMounted = false;
   anchor: null | HTMLElement = null;
   popover: null | HTMLElement = null;
-  private timeoutId?: ReturnType<typeof setTimeout>;
 
   constructor(props: EuiToolTipProps) {
     super(props);
@@ -179,19 +179,12 @@ export class EuiToolTip extends Component<EuiToolTipProps, State> {
     disableScreenReaderOutput: false,
   };
 
-  clearAnimationTimeout = () => {
-    if (this.timeoutId) {
-      this.timeoutId = clearTimeout(this.timeoutId) as undefined;
-    }
-  };
-
   componentDidMount() {
     this._isMounted = true;
     this.repositionOnScroll.subscribe();
   }
 
   componentWillUnmount() {
-    this.clearAnimationTimeout();
     this._isMounted = false;
     this.repositionOnScroll.cleanup();
   }
@@ -225,14 +218,14 @@ export class EuiToolTip extends Component<EuiToolTipProps, State> {
   setPopoverRef = (ref: HTMLElement) => (this.popover = ref);
 
   showToolTip = () => {
-    if (!this.timeoutId) {
-      this.timeoutId = setTimeout(() => {
-        enqueueStateChange(() => {
-          this.setState({ visible: true });
-          toolTipManager.registerTooltip(this.hideToolTip);
-        });
-      }, delayToMsMap[this.props.delay]);
+    if (this.state.visible) {
+      return;
     }
+
+    enqueueStateChange(() => {
+      this.setState({ visible: true });
+      toolTipManager.registerTooltip(this.hideToolTip);
+    });
   };
 
   positionToolTip = () => {
@@ -281,7 +274,6 @@ export class EuiToolTip extends Component<EuiToolTipProps, State> {
   };
 
   hideToolTip = () => {
-    this.clearAnimationTimeout();
     enqueueStateChange(() => {
       if (this._isMounted) {
         this.setState({
@@ -357,6 +349,10 @@ export class EuiToolTip extends Component<EuiToolTipProps, State> {
 
     const classes = classNames('euiToolTip', className);
     const anchorClasses = classNames(anchorClassName, anchorProps?.className);
+    const popoverStyles = {
+      ...toolTipStyles,
+      '--euiToolTipAnimationDelay': `${delayToMsMap[delay]}ms`,
+    } as CSSProperties;
 
     return (
       <>
@@ -380,7 +376,7 @@ export class EuiToolTip extends Component<EuiToolTipProps, State> {
           <EuiPortal>
             <EuiToolTipPopover
               className={classes}
-              style={toolTipStyles}
+              style={popoverStyles}
               positionToolTip={this.positionToolTip}
               popoverRef={this.setPopoverRef}
               title={title}

@@ -48,7 +48,7 @@ export const euiToolTipStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme, highContrastMode } = euiThemeContext;
 
   const hasShadow = !highContrastMode;
-  const animationTiming = `${euiTheme.animation.slow} ease-out 0s forwards`;
+  const animationTiming = `${euiTheme.animation.slow} ease-out var(--euiToolTipAnimationDelay, 0s) both`;
 
   const arrowSize = euiTheme.size.m;
   const arrowStyles = _popoverArrowStyles(euiThemeContext, arrowSize);
