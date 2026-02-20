@@ -5,32 +5,19 @@ const path = require('path');
 const glob = require('glob');
 const fs = require('fs/promises');
 const dtsGenerator = require('dts-generator').default;
+const {
+  IGNORE_BUILD,
+  IGNORE_TESTS,
+  IGNORE_TESTENV,
+  IGNORE_PACKAGES,
+} = require('../../../scripts/constants');
 
 const packageRootDir = path.resolve(__dirname, '..');
 const srcDir = path.join(packageRootDir, 'src');
+const buildDirs = ['lib', 'es', 'dist', 'optimize', 'test-env'];
 
-const IGNORE_BUILD = ['**/webpack.config.js', '**/*.d.ts'];
-const IGNORE_TESTS = [
-  '**/*.test.js',
-  '**/*.test.ts',
-  '**/*.test.tsx',
-  '**/*.spec.tsx',
-  '**/*.stories.ts',
-  '**/*.stories.tsx',
-  '**/*.docgen.tsx',
-  '**/**.stories.utils.ts',
-  '**/**.stories.utils.tsx',
-  '**/*.mdx',
-  '**/test/internal/**/*.ts',
-  '**/test/internal/**/*.tsx',
-  '**/__mocks__/**',
-];
-const IGNORE_TESTENV = [
-  '**/*.testenv.js',
-  '**/*.testenv.tsx',
-  '**/*.testenv.ts',
-];
-const IGNORE_PACKAGES = ['**/react-datepicker/test/**/*.js'];
+const CLEANUP_RETRY_DELAY_MS = 150;
+const CLEANUP_MAX_RETRIES = 10;
 
 async function renameTestEnvFiles() {
   const files = glob.globIterate('test-env/**/*.testenv.js', {
@@ -224,13 +211,21 @@ async function compileLib() {
   console.log(chalk.green('✔ Finished compiling src/'));
 
   // Use `tsc` to emit typescript declaration files for .ts files
-  console.log('Generating typescript definitions file');
-  execSync(`node ${path.resolve(__dirname, 'dtsgenerator.js')}`, {
-    stdio: 'inherit',
-  });
-  // validate the generated eui.d.ts doesn't contain errors
-  execSync('tsc --noEmit -p tsconfig-builttypes.json', { stdio: 'inherit' });
-  console.log(chalk.green('✔ Finished generating definitions'));
+  if (process.argv.includes('--no-declarations')) {
+    console.log(
+      chalk.yellow('Skipping TypeScript definitions file generation')
+    );
+  } else {
+    console.log('Generating TypeScript definitions file...');
+
+    execSync(`node ${path.resolve(__dirname, 'dtsgenerator.js')}`, {
+      stdio: 'inherit',
+    });
+
+    // validate the generated eui.d.ts doesn't contain errors
+    execSync('tsc --noEmit -p tsconfig-builttypes.json', { stdio: 'inherit' });
+    console.log(chalk.green('✔ Finished generating definitions'));
+  }
 
   await copySvgFiles();
 }
@@ -238,65 +233,100 @@ async function compileLib() {
 async function compileBundle() {
   const distDir = path.join(packageRootDir, 'dist');
 
-  await fs.mkdir(distDir);
+  await fs.mkdir(distDir, { recursive: true });
 
-  console.log('Building test utils .d.ts files...');
+  if (process.argv.includes('--no-declarations')) {
+    console.log(chalk.yellow('Skipping test utils .d.ts files generation'));
+  } else {
+    console.log('Building test utils .d.ts files...');
 
-  const destinationDirs = [
-    'lib/test',
-    'es/test',
-    'optimize/lib/test',
-    'optimize/es/test',
-  ].map((dir) => path.join(packageRootDir, dir));
+    const destinationDirs = [
+      'lib/test',
+      'es/test',
+      'optimize/lib/test',
+      'optimize/es/test',
+    ].map((dir) => path.join(packageRootDir, dir));
 
-  const testDirectories = ['rtl', 'enzyme'];
-  const testDTSFiles = new glob.Glob('test/**/*.d.ts', {
-    cwd: srcDir,
-    realpath: true,
-  });
-
-  for (const dir of destinationDirs) {
-    const relativeDir = path.relative(packageRootDir, dir);
-
-    dtsGenerator({
-      prefix: '',
-      out: `${dir}/index.d.ts`,
-      baseDir: path.resolve(__dirname, '..', 'src/test/'),
-      files: ['index.ts'],
-      resolveModuleId({ currentModuleId }) {
-        return `@elastic/eui/${relativeDir}${
-          currentModuleId !== 'index' ? `/${currentModuleId}` : ''
-        }`;
-      },
-      resolveModuleImport({ currentModuleId, importedModuleId }) {
-        if (currentModuleId === 'index') {
-          return `@elastic/eui/${relativeDir}/${importedModuleId.replace(
-            './',
-            ''
-          )}`;
-        }
-        return null;
-      },
+    const testDirectories = ['rtl', 'enzyme'];
+    const testDTSFiles = new glob.Glob('test/**/*.d.ts', {
+      cwd: srcDir,
+      realpath: true,
     });
 
-    for (const testDir of testDirectories) {
-      await fs.mkdir(path.join(dir, testDir), { recursive: true });
+    for (const dir of destinationDirs) {
+      await fs.mkdir(dir, { recursive: true });
+
+      const relativeDir = path.relative(packageRootDir, dir);
+
+      dtsGenerator({
+        prefix: '',
+        out: `${dir}/index.d.ts`,
+        baseDir: path.resolve(__dirname, '..', 'src/test/'),
+        files: ['index.ts'],
+        resolveModuleId({ currentModuleId }) {
+          return `@elastic/eui/${relativeDir}${
+            currentModuleId !== 'index' ? `/${currentModuleId}` : ''
+          }`;
+        },
+        resolveModuleImport({ currentModuleId, importedModuleId }) {
+          if (currentModuleId === 'index') {
+            return `@elastic/eui/${relativeDir}/${importedModuleId.replace(
+              './',
+              ''
+            )}`;
+          }
+          return null;
+        },
+      });
+
+      for (const testDir of testDirectories) {
+        await fs.mkdir(path.join(dir, testDir), { recursive: true });
+      }
+
+      for await (const filePath of testDTSFiles) {
+        const fullPath = path.join(srcDir, filePath);
+
+        const relativePath = filePath.replace(/^test\//, '');
+        const destPath = path.join(dir, relativePath);
+
+        await fs.copyFile(fullPath, destPath);
+      }
     }
 
-    for await (const filePath of testDTSFiles) {
-      const fullPath = path.join(srcDir, filePath);
+    console.log(chalk.green('✔ Finished test utils files'));
+  }
+}
 
-      const relativePath = filePath.replace(/^test\//, '');
-      const destPath = path.join(dir, relativePath);
+async function cleanup() {
+  const removeWithRetry = async (targetPath) => {
+    for (let attempt = 0; attempt <= CLEANUP_MAX_RETRIES; attempt++) {
+      try {
+        await fs.rm(targetPath, {
+          recursive: true,
+          force: true,
+        });
+        return;
+      } catch (error) {
+        const shouldRetry =
+          (error?.code === 'ENOTEMPTY' || error?.code === 'EBUSY') &&
+          attempt < CLEANUP_MAX_RETRIES;
 
-      await fs.copyFile(fullPath, destPath);
+        if (!shouldRetry) throw error;
+
+        await new Promise((resolve) => setTimeout(resolve, CLEANUP_RETRY_DELAY_MS));
+      }
     }
+  };
+
+  for (const dir of buildDirs) {
+    await removeWithRetry(path.join(packageRootDir, dir));
   }
 
-  console.log(chalk.green('✔ Finished test utils files'));
+  console.log('Cleaned up old build directories');
 }
 
 async function compile() {
+  await cleanup();
   await compileLib();
   await compileBundle();
 }
