@@ -127,7 +127,7 @@ describe('useEuiFlyoutResizable', () => {
     expect(result.current.size).toBe(500);
   });
 
-  it('should return percentage size when enabled with a numeric size', () => {
+  it('should return percentage size when enabled with a numeric size', async () => {
     const { result } = renderHook(() =>
       useEuiFlyoutResizable({
         ...mockProps,
@@ -136,9 +136,12 @@ describe('useEuiFlyoutResizable', () => {
       })
     );
 
-    // When enabled with a numeric size, the hook clamps and converts to %
+    // The hook converts numeric sizes to percentages in a useEffect,
+    // so wait for the state update to apply.
     // 400 / 1200 (referenceWidth) * 100 = 33.33...%
-    expect(result.current.size).toBe(`${(400 / 1200) * 100}%`);
+    await waitFor(() => {
+      expect(result.current.size).toBe(`${(400 / 1200) * 100}%`);
+    });
   });
 
   describe('resize clamping', () => {
