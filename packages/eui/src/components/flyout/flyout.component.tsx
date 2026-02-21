@@ -329,12 +329,12 @@ export const EuiFlyoutComponent = forwardRef(
     ) {
       if ('maskProps' in props) {
         console.warn(
-          'EuiFlyout: `maskProps` is deprecated. Use the `container` prop to scope flyouts.'
+          'EuiFlyout: `maskProps` is deprecated. Prefer using the `container` prop to scope flyouts.'
         );
       }
       if ('includeFixedHeadersInFocusTrap' in props) {
         console.warn(
-          'EuiFlyout: `includeFixedHeadersInFocusTrap` is deprecated. Use `includeSelectorInFocusTrap` when using `container`.'
+          'EuiFlyout: `includeFixedHeadersInFocusTrap` is deprecated. Prefer `includeSelectorInFocusTrap` when using `container`.'
         );
       }
     }
