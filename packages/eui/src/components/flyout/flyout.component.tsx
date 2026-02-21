@@ -484,7 +484,7 @@ export const EuiFlyoutComponent = forwardRef(
     } = useEuiFlyoutResizable({
       enabled: resizable,
       minWidth,
-      maxWidth: typeof maxWidth === 'number' ? maxWidth : 0,
+      maxWidth: typeof maxWidth === 'number' ? maxWidth : undefined,
       // For fill siblings, clamp based on their minWidth rather than their
       // current measured width. Fill siblings dynamically adjust via CSS
       // (`calc(90% - mainWidth)`), so subtracting their current width from
