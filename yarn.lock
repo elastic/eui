@@ -7062,7 +7062,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@elastic/eslint-plugin-eui@workspace:packages/eslint-plugin":
+"@elastic/eslint-plugin-eui@workspace:*, @elastic/eslint-plugin-eui@workspace:packages/eslint-plugin":
   version: 0.0.0-use.local
   resolution: "@elastic/eslint-plugin-eui@workspace:packages/eslint-plugin"
   dependencies:
@@ -7345,6 +7345,7 @@ __metadata:
     "@cypress/webpack-dev-server": "npm:^1.7.0"
     "@elastic/charts": "npm:^64.1.0"
     "@elastic/datemath": "npm:^5.0.3"
+    "@elastic/eslint-plugin-eui": "workspace:*"
     "@elastic/eui-theme-borealis": "workspace:*"
     "@elastic/eui-theme-common": "workspace:*"
     "@elastic/prismjs-esql": "npm:^1.1.2"
