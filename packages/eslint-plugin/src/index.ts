@@ -16,6 +16,7 @@ import { NoRestrictedEuiImports } from './rules/no_restricted_eui_imports';
 import { NoStaticZIndex } from './rules/no_static_z_index';
 import { NoUnnamedInteractiveElement } from './rules/a11y/no_unnamed_interactive_element';
 import { NoUnnamedRadioGroup } from './rules/a11y/no_unnamed_radio_group';
+import { PreferBackgroundColor } from './rules/prefer_background_color';
 import { PreferEuiIconTip } from './rules/a11y/prefer_eui_icon_tip';
 import { RequireAriaLabelForModals } from './rules/a11y/require_aria_label_for_modals';
 import { RequireTableCaption } from './rules/a11y/require_table_caption';
@@ -35,6 +36,7 @@ const config = {
     'no-static-z-index': NoStaticZIndex,
     'no-unnamed-interactive-element': NoUnnamedInteractiveElement,
     'no-unnamed-radio-group' : NoUnnamedRadioGroup,
+    'prefer-background-color': PreferBackgroundColor,
     'prefer-eui-icon-tip': PreferEuiIconTip,
     'require-aria-label-for-modals': RequireAriaLabelForModals,
     'require-table-caption': RequireTableCaption,
@@ -56,6 +58,7 @@ const config = {
         '@elastic/eui/no-static-z-index': 'warn',
         '@elastic/eui/no-unnamed-interactive-element': 'warn',
         '@elastic/eui/no-unnamed-radio-group': 'warn',
+        '@elastic/eui/prefer-background-color': 'warn',
         '@elastic/eui/prefer-eui-icon-tip': 'warn',
         '@elastic/eui/require-aria-label-for-modals': 'warn',
         '@elastic/eui/require-table-caption': 'warn',
