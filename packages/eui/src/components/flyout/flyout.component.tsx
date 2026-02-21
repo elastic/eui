@@ -240,10 +240,12 @@ const resolveContainer = (
 ): HTMLElement | null => {
   if (raw == null) return null;
   if (typeof raw === 'string') {
+    if (typeof document === 'undefined') return null;
     const el = document.querySelector(raw);
     return el instanceof HTMLElement ? el : null;
   }
   if (typeof raw === 'function') return raw();
+  if (typeof HTMLElement === 'undefined') return null;
   return raw instanceof HTMLElement ? raw : null;
 };
 

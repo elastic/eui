@@ -45,6 +45,7 @@ export const useApplyFlyoutLayoutMode = () => {
       ? defaultContainerRaw()
       : typeof defaultContainerRaw === 'string'
       ? (() => {
+          if (typeof document === 'undefined') return null;
           const el = document.querySelector(defaultContainerRaw);
           return el instanceof HTMLElement ? el : null;
         })()
