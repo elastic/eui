@@ -124,8 +124,9 @@ interface _EuiFlyoutComponentProps {
   /**
    * Adjustments to the EuiOverlayMask that is added when `ownFocus = true`.
    *
-   * @deprecated Use the `container` prop to scope flyouts to the document or to an application area.
-   * When `container` is provided, `maskProps` is ignored.
+   * @deprecated Prefer the `container` prop to scope flyouts to an
+   * application area. `maskProps` is still honored but may be removed
+   * in a future major version.
    */
   maskProps?: EuiOverlayMaskProps;
   /**
@@ -178,8 +179,9 @@ interface _EuiFlyoutComponentProps {
    *
    * Set this to `false` if you need to disable this behavior for a specific reason.
    *
-   * @deprecated Use the `container` prop to scope flyouts to the document or to an application area.
-   * When `container` is provided, `includeFixedHeadersInFocusTrap` is ignored.
+   * @deprecated Prefer `includeSelectorInFocusTrap` when using the
+   * `container` prop. `includeFixedHeadersInFocusTrap` is still honored
+   * but may be removed in a future major version.
    */
   includeFixedHeadersInFocusTrap?: boolean;
 
