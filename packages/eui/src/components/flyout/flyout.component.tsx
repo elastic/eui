@@ -555,6 +555,9 @@ export const EuiFlyoutComponent = forwardRef(
       }`;
       const managerSide = side === 'left' ? 'left' : 'right';
 
+      // Capture pre-existing inline padding so it can be restored on cleanup
+      const previousPadding = paddingTarget.style[paddingSide];
+
       const paddingWidth =
         layoutMode === LAYOUT_MODE_STACKED &&
         isMainFlyout &&
@@ -574,7 +577,7 @@ export const EuiFlyoutComponent = forwardRef(
           flyoutManagerRef.current.setPushPadding(managerSide, paddingWidth);
         }
       } else {
-        paddingTarget.style[paddingSide] = '';
+        paddingTarget.style[paddingSide] = previousPadding;
         if (shouldSetGlobalPushVars) {
           setGlobalCSSVariables({
             [cssVarName]: null,
@@ -586,7 +589,7 @@ export const EuiFlyoutComponent = forwardRef(
       }
 
       return () => {
-        paddingTarget.style[paddingSide] = '';
+        paddingTarget.style[paddingSide] = previousPadding;
         if (shouldSetGlobalPushVars) {
           setGlobalCSSVariables({
             [cssVarName]: null,
