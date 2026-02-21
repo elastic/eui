@@ -20,11 +20,6 @@ import {
   STAGE_RETURNING,
 } from './const';
 import type { EuiFlyoutActivityStage, EuiFlyoutLevel } from './types';
-import {
-  useFlyoutLayoutMode,
-  useHasChildFlyout,
-  useIsFlyoutActive,
-} from './hooks';
 import { setActivityStage } from './actions';
 import { useFlyoutManager } from './provider';
 
@@ -41,18 +36,37 @@ export interface UseFlyoutActivityStageReturn {
 /**
  * Encapsulates all activity-stage transitions and animation-driven updates
  * for managed flyouts.
+ *
+ * Performance: reads `useFlyoutManager()` once and derives isActive,
+ * hasChild, and layoutMode inline (replaces useIsFlyoutActive,
+ * useHasChildFlyout, useFlyoutLayoutMode hooks).
  */
 export const useFlyoutActivityStage = ({
   flyoutId,
   level,
 }: UseFlyoutActivityStageParams) => {
-  const isActive = useIsFlyoutActive(flyoutId);
-  const hasChild = useHasChildFlyout(flyoutId);
-  const layoutMode = useFlyoutLayoutMode();
   const ctx = useFlyoutManager();
+  const state = ctx?.state;
+
+  // Derive all needed values from single context read
+  const sessions = state?.sessions;
+  const currentSession = sessions
+    ? sessions[sessions.length - 1] ?? null
+    : null;
+  const isActive =
+    currentSession?.mainFlyoutId === flyoutId ||
+    currentSession?.childFlyoutId === flyoutId;
+
+  const session =
+    state?.sessions.find(
+      (s) => s.mainFlyoutId === flyoutId || s.childFlyoutId === flyoutId
+    ) ?? null;
+  const hasChild = !!session?.childFlyoutId;
+
+  const layoutMode = state?.layoutMode ?? LAYOUT_MODE_SIDE_BY_SIDE;
 
   const stage: EuiFlyoutActivityStage =
-    ctx?.state.flyouts.find((f) => f.flyoutId === flyoutId)?.activityStage ||
+    state?.flyouts.find((f) => f.flyoutId === flyoutId)?.activityStage ||
     (isActive ? STAGE_ACTIVE : STAGE_INACTIVE);
 
   const stageRef = useRef(stage);

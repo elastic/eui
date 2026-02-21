@@ -44,6 +44,7 @@ export interface EuiManagedFlyoutState {
   level: EuiFlyoutLevel;
   width?: number;
   size?: string;
+  minWidth?: number;
   activityStage?: EuiFlyoutActivityStage;
 }
 
@@ -73,6 +74,13 @@ export interface EuiFlyoutManagerState {
   pushPadding?: PushPaddingOffsets;
   currentZIndex: number;
   unmanagedFlyouts: string[];
+  /** The container element that flyouts are positioned relative to (if any). */
+  containerElement?: HTMLElement | null;
+  /**
+   * Reference width used for layout and resize clamping (container or viewport).
+   * Set by the layout mode hook so flyouts use the same value for consistent clamping.
+   */
+  referenceWidth?: number;
 }
 
 /**
@@ -86,13 +94,15 @@ export interface FlyoutManagerApi {
     flyoutId: string,
     title: string,
     level?: EuiFlyoutLevel,
-    size?: string
+    size?: string,
+    minWidth?: number
   ) => void;
   closeFlyout: (flyoutId: string) => void;
   closeAllFlyouts: () => void;
   setActiveFlyout: (flyoutId: string | null) => void;
   setFlyoutWidth: (flyoutId: string, width: number) => void;
   setPushPadding: (side: 'left' | 'right', width: number) => void;
+  setContainerElement: (element: HTMLElement | null) => void;
   goBack: () => void;
   goToFlyout: (flyoutId: string) => void;
   addUnmanagedFlyout: (flyoutId: string) => void;

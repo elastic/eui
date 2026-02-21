@@ -17,6 +17,11 @@ export interface EuiFlyoutOverlayProps extends PropsWithChildren {
   maskProps: EuiFlyoutComponentProps['maskProps'];
   isPushed: boolean;
   maskZIndex: number;
+  /**
+   * Use 'above' to stack the flyout and mask above fixed headers (mask-level
+   * z-index); 'below' to keep them in the flyout stacking level.
+   */
+  headerZindexLocation?: 'above' | 'below';
 }
 
 const getEuiFlyoutOverlayStyles = (zIndex: number) => {
@@ -45,6 +50,7 @@ export const EuiFlyoutOverlay = ({
   maskProps,
   hasOverlayMask,
   maskZIndex,
+  headerZindexLocation = 'below',
 }: EuiFlyoutOverlayProps) => {
   const styles = useMemo(
     () => getEuiFlyoutOverlayStyles(maskZIndex),
@@ -63,7 +69,9 @@ export const EuiFlyoutOverlay = ({
     <>
       {hasOverlayMask && (
         <EuiOverlayMask
-          headerZindexLocation="below"
+          headerZindexLocation={
+            maskProps?.headerZindexLocation ?? headerZindexLocation
+          }
           {...maskProps}
           className={classes}
         />

@@ -31,6 +31,7 @@ export const createMockFunctions = (): Omit<
   addUnmanagedFlyout: jest.fn(),
   closeUnmanagedFlyout: jest.fn(),
   setPushPadding: jest.fn(),
+  setContainerElement: jest.fn(),
 });
 
 export const createMockState = () => ({
