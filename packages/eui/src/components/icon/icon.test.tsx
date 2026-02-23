@@ -70,7 +70,7 @@ describe('EuiIcon', () => {
     test('onIconLoad', async () => {
       const onIconLoad = jest.fn();
 
-      render(<EuiIcon type="search" onIconLoad={onIconLoad} />);
+      render(<EuiIcon type="magnify" onIconLoad={onIconLoad} />);
       expect(onIconLoad).toHaveBeenCalledTimes(0);
 
       await waitFor(() => {

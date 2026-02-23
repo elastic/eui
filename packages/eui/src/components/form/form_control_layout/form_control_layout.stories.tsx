@@ -722,7 +722,7 @@ export const AppendPrependAPIKitchenSink: Story = {
                             }
                           `}
                         >
-                          <EuiFormPrepend iconLeft="grabHorizontal">
+                          <EuiFormPrepend iconLeft="dragHorizontal">
                             <EuiToolTip
                               content="String"
                               anchorProps={{
@@ -987,7 +987,7 @@ export const AppendPrependAPIKitchenSink: Story = {
                             color: ${euiTheme.colors.textDisabled};
                           `}
                         >
-                          <EuiIcon type="grabHorizontal" />
+                          <EuiIcon type="dragHorizontal" />
 
                           <EuiToolTip
                             content="String"
