@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EuiCommentTimeline props timelineAvatar defaults to an avatar with a \`userAvatar\` icon 1`] = `
+exports[`EuiCommentTimeline props timelineAvatar defaults to an avatar with a \`user\` icon 1`] = `
 <div
   aria-label=""
   class="euiAvatar euiAvatar--m euiAvatar--user euiCommentAvatar emotion-euiAvatar-user-m-uppercase-subdued"
