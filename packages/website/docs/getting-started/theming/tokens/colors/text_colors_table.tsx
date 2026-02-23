@@ -65,6 +65,10 @@ export const TextColorsTable = () => {
           value: euiTheme.colors.textDanger,
           token: 'colors.textDanger',
         },
+        {
+          value: euiTheme.colors.textAssistance,
+          token: 'colors.textAssistance',
+        },
       ]}
     />
   );

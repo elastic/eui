@@ -12,12 +12,12 @@ export const SeverityColorsTable = () => {
           token: 'colors.severity.unknown',
         },
         {
-          value: euiTheme.colors.severity.neutral,
-          token: 'colors.severity.neutral',
-        },
-        {
           value: euiTheme.colors.severity.success,
           token: 'colors.severity.success',
+        },
+        {
+          value: euiTheme.colors.severity.neutral,
+          token: 'colors.severity.neutral',
         },
         {
           value: euiTheme.colors.severity.warning,
@@ -30,6 +30,10 @@ export const SeverityColorsTable = () => {
         {
           value: euiTheme.colors.severity.danger,
           token: 'colors.severity.danger',
+        },
+        {
+          value: euiTheme.colors.severity.assistance,
+          token: 'colors.severity.assistance',
         },
       ]}
     />

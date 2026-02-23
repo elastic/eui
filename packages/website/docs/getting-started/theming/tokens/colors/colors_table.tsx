@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import React, { ReactNode } from 'react';
 import {
   EuiBasicTable,
   EuiCode,
@@ -6,7 +6,6 @@ import {
   EuiFlexGroup,
   EuiText,
 } from '@elastic/eui';
-import { css } from '@emotion/react';
 
 interface Color {
   value: string;
