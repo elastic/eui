@@ -237,7 +237,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
                 class="euiCheckbox__square emotion-euiCheckbox__square"
               >
                 <span
-                  class="euiCheckboxDisplay emotion-euiCheckboxDisplay-unselected"
+                  class="EuiCheckboxControl emotion-EuiCheckboxControl-unselected"
                 >
                   <span
                     class="emotion-euiCheckbox__icon-check"
@@ -411,7 +411,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
                 class="euiCheckbox__square emotion-euiCheckbox__square"
               >
                 <span
-                  class="euiCheckboxDisplay emotion-euiCheckboxDisplay-unselected"
+                  class="EuiCheckboxControl emotion-EuiCheckboxControl-unselected"
                 >
                   <span
                     class="emotion-euiCheckbox__icon-check"
@@ -564,7 +564,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
                 class="euiCheckbox__square emotion-euiCheckbox__square"
               >
                 <span
-                  class="euiCheckboxDisplay emotion-euiCheckboxDisplay-unselected"
+                  class="EuiCheckboxControl emotion-EuiCheckboxControl-unselected"
                 >
                   <span
                     class="emotion-euiCheckbox__icon-check"
@@ -717,7 +717,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
                 class="euiCheckbox__square emotion-euiCheckbox__square"
               >
                 <span
-                  class="euiCheckboxDisplay emotion-euiCheckboxDisplay-unselected"
+                  class="EuiCheckboxControl emotion-EuiCheckboxControl-unselected"
                 >
                   <span
                     class="emotion-euiCheckbox__icon-check"

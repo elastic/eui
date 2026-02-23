@@ -8,7 +8,7 @@ exports[`EuiCheckbox renders 1`] = `
     class="euiCheckbox__square emotion-euiCheckbox__square"
   >
     <span
-      class="euiCheckboxDisplay emotion-euiCheckboxDisplay-unselected"
+      class="EuiCheckboxControl emotion-EuiCheckboxControl-unselected"
     >
       <span
         class="emotion-euiCheckbox__icon-check"
@@ -35,7 +35,7 @@ exports[`EuiCheckbox renders props: checked 1`] = `
     class="euiCheckbox__square emotion-euiCheckbox__square"
   >
     <span
-      class="euiCheckboxDisplay emotion-euiCheckboxDisplay-selected"
+      class="EuiCheckboxControl emotion-EuiCheckboxControl-selected"
     >
       <span
         class="emotion-euiCheckbox__icon-check"
@@ -61,7 +61,7 @@ exports[`EuiCheckbox renders props: disabled 1`] = `
     class="euiCheckbox__square emotion-euiCheckbox__square"
   >
     <span
-      class="euiCheckboxDisplay emotion-euiCheckboxDisplay-disabled-unselected"
+      class="EuiCheckboxControl emotion-EuiCheckboxControl-disabled-unselected"
     >
       <span
         class="emotion-euiCheckbox__icon-check"
@@ -87,7 +87,7 @@ exports[`EuiCheckbox renders props: label 1`] = `
     class="euiCheckbox__square emotion-euiCheckbox__square"
   >
     <span
-      class="euiCheckboxDisplay emotion-euiCheckboxDisplay-unselected"
+      class="EuiCheckboxControl emotion-EuiCheckboxControl-unselected"
     >
       <span
         class="emotion-euiCheckbox__icon-check"
@@ -120,7 +120,7 @@ exports[`EuiCheckbox renders props: labelProps 1`] = `
     class="euiCheckbox__square emotion-euiCheckbox__square"
   >
     <span
-      class="euiCheckboxDisplay emotion-euiCheckboxDisplay-unselected"
+      class="EuiCheckboxControl emotion-EuiCheckboxControl-unselected"
     >
       <span
         class="emotion-euiCheckbox__icon-check"
@@ -153,7 +153,7 @@ exports[`EuiCheckbox renders props: readOnly 1`] = `
     class="euiCheckbox__square emotion-euiCheckbox__square-readOnly"
   >
     <span
-      class="euiCheckboxDisplay emotion-euiCheckboxDisplay-unselected"
+      class="EuiCheckboxControl emotion-EuiCheckboxControl-unselected"
     >
       <span
         class="emotion-euiCheckbox__icon-check"
