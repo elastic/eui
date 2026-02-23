@@ -188,19 +188,8 @@ export const useApplyFlyoutLayoutMode = () => {
     const combinedWidth = parentWidthValue + childWidthValue;
     const combinedWidthPercentage = (combinedWidth / referenceWidth) * 100;
 
-    // Fill-size flyouts dynamically size to (90% − sibling), making the
-    // combined width exactly ~90% in side-by-side mode by CSS construction.
-    // This value falls between the hysteresis thresholds (85% return /
-    // 95% stack), which makes the standard threshold logic unsuitable:
-    //
-    // - From side-by-side: 90% < 95%, so it correctly never stacks.
-    // - From stacked: measured widths are inflated (fill = 90% without
-    //   sibling subtraction), so combined > 85% and it would never
-    //   return — an incorrect deadlock.
-    //
-    // Instead, base the layout decision solely on the reference width
-    // threshold. The minimum breakpoint check (line 123) already handles
-    // the stacked direction for very small containers.
+    // Fill flyouts defeat the hysteresis thresholds, so use the
+    // reference-width breakpoint alone to decide the layout mode.
     if (hasFill) {
       return referenceWidth >= Math.round(euiTheme.breakpoint.s * 1.4)
         ? LAYOUT_MODE_SIDE_BY_SIDE
