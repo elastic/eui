@@ -1,3 +1,28 @@
+## [`v113.1.0`](https://github.com/elastic/eui/releases/v113.1.0)
+
+- Added `data-test-subj` attributes to `EuiFlyoutMenu` elements: back button, history dropdown, and history items. ([#9400](https://github.com/elastic/eui/pull/9400))
+- Added new assistance tokens: ([#9383](https://github.com/elastic/eui/pull/9383))
+    - `euiTheme.colors.backgroundFilledAssistance`
+    - `euiTheme.colors.backgroundLightAssistance`
+    - `euiTheme.colors.backgroundBaseAssistance`
+    - `euiTheme.components.buttons.backgroundAssistanceHover`,
+    - `euiTheme.components.buttons.backgroundFilledAssistanceHover`
+    - `euiTheme.colors.backgroundBaseInteractiveHoverAssistance`
+    - `euiTheme.colors.borderStrongAssistance`
+    - `euiTheme.colors.borderBaseAssistance`
+    - `euiTheme.colors.textAssistance`
+    - `euiTheme.colors.vis.euiColorVisAssistance`
+    - `euiTheme.colors.severity.assistance`
+    - `euiTheme.colors.vis.euiColorVis10`
+    - `euiTheme.colors.vis.euiColorVis11`
+    - `euiTheme.colors.vis.euiColorVisText10`
+    - `euiTheme.colors.vis.euiColorVisText11`
+- Updated purple color palette shades 30-60 to slightly lighter values ([#9383](https://github.com/elastic/eui/pull/9383))
+
+**Accessibility**
+
+- Adds `aria-expanded` and `aria-controls` to the `EuiPopover` trigger button to improve screen reader context ([#9381](https://github.com/elastic/eui/pull/9381))
+
 ## [`v113.0.0`](https://github.com/elastic/eui/releases/v113.0.0)
 
 - Updated `EuiFlyout` manager to close all flyouts when a parent flyout is closed. ([#9378](https://github.com/elastic/eui/pull/9378))
