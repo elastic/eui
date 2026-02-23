@@ -356,7 +356,7 @@ export const EuiFlyoutComponent = forwardRef(
           flyoutManagerRef.current.setContainerElement(null);
         }
       };
-    }, [container]); // eslint-disable-line react-hooks/exhaustive-deps
+    }, [container]);
 
     // Performance: read context once and derive all manager-dependent values inline.
     const isInManagedContext = useIsInManagedFlyout();
