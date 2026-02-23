@@ -323,7 +323,7 @@ export const EuiFlyoutComponent = forwardRef(
     const shouldSetGlobalPushVars = container == null;
 
     if (
-      container != null &&
+      'container' in props &&
       ('maskProps' in props || 'includeFixedHeadersInFocusTrap' in props) &&
       process.env.NODE_ENV === 'development'
     ) {
