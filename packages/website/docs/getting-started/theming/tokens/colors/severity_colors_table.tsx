@@ -12,12 +12,12 @@ export const SeverityColorsTable = () => {
           token: 'colors.severity.unknown',
         },
         {
-          value: euiTheme.colors.severity.neutral,
-          token: 'colors.severity.neutral',
-        },
-        {
           value: euiTheme.colors.severity.success,
           token: 'colors.severity.success',
+        },
+        {
+          value: euiTheme.colors.severity.neutral,
+          token: 'colors.severity.neutral',
         },
         {
           value: euiTheme.colors.severity.warning,
