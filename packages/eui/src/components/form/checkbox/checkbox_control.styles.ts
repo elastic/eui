@@ -11,13 +11,13 @@ import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../../services';
 import { euiFormCustomControlStyles } from '../form.styles';
 
-export const euiCheckboxDisplayStyles = (euiThemeContext: UseEuiTheme) => {
+export const EuiCheckboxControlStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
 
   const controlStyles = euiFormCustomControlStyles(euiThemeContext);
 
   return {
-    euiCheckboxDisplay: css`
+    EuiCheckboxControl: css`
       ${controlStyles.input.fauxInput}
       border-radius: ${euiTheme.border.radius.small};
     `,

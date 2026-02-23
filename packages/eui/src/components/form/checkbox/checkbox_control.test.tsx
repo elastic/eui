@@ -15,16 +15,16 @@ import {
 import { shouldRenderCustomStyles } from '../../../test/internal';
 import { render } from '../../../test/rtl';
 
-import { EuiCheckboxDisplay } from './checkbox_display';
+import { EuiCheckboxControl } from './checkbox_control';
 
 beforeAll(startThrowingReactWarnings);
 afterAll(stopThrowingReactWarnings);
 
-describe('EuiCheckboxDisplay', () => {
-  shouldRenderCustomStyles(<EuiCheckboxDisplay {...requiredProps} />);
+describe('EuiCheckboxControl', () => {
+  shouldRenderCustomStyles(<EuiCheckboxControl {...requiredProps} />);
 
   it('renders', () => {
-    const { container } = render(<EuiCheckboxDisplay {...requiredProps} />);
+    const { container } = render(<EuiCheckboxControl {...requiredProps} />);
 
     expect(container.firstChild).toMatchSnapshot();
   });
@@ -32,10 +32,10 @@ describe('EuiCheckboxDisplay', () => {
   describe('props', () => {
     test('checked', () => {
       const { container } = render(
-        <EuiCheckboxDisplay {...requiredProps} checked />
+        <EuiCheckboxControl {...requiredProps} checked />
       );
 
-      const wrapper = container.querySelector('.euiCheckboxDisplay')!;
+      const wrapper = container.querySelector('.EuiCheckboxControl')!;
       const classes = Array.from(wrapper.classList) as string[];
       expect(classes.some((clx) => clx.includes('selected'))).toBe(true);
 
@@ -47,10 +47,10 @@ describe('EuiCheckboxDisplay', () => {
     describe('indeterminate', () => {
       it('renders correctly', () => {
         const { container } = render(
-          <EuiCheckboxDisplay {...requiredProps} indeterminate />
+          <EuiCheckboxControl {...requiredProps} indeterminate />
         );
 
-        const wrapper = container.querySelector('.euiCheckboxDisplay')!;
+        const wrapper = container.querySelector('.EuiCheckboxControl')!;
         const classes = Array.from(wrapper.classList) as string[];
         expect(classes.some((clx) => clx.includes('selected'))).toBe(true);
 
@@ -61,7 +61,7 @@ describe('EuiCheckboxDisplay', () => {
 
       it('renders when checked is set', () => {
         const { container } = render(
-          <EuiCheckboxDisplay {...requiredProps} indeterminate checked />
+          <EuiCheckboxControl {...requiredProps} indeterminate checked />
         );
 
         expect(
@@ -71,7 +71,7 @@ describe('EuiCheckboxDisplay', () => {
 
       test('renders when excluded is set', () => {
         const { container } = render(
-          <EuiCheckboxDisplay {...requiredProps} indeterminate excluded />
+          <EuiCheckboxControl {...requiredProps} indeterminate excluded />
         );
 
         expect(
@@ -82,10 +82,10 @@ describe('EuiCheckboxDisplay', () => {
 
     test('excluded', () => {
       const { container } = render(
-        <EuiCheckboxDisplay {...requiredProps} excluded />
+        <EuiCheckboxControl {...requiredProps} excluded />
       );
 
-      const wrapper = container.querySelector('.euiCheckboxDisplay')!;
+      const wrapper = container.querySelector('.EuiCheckboxControl')!;
       const classes = Array.from(wrapper.classList) as string[];
       expect(classes.some((clx) => clx.includes('excluded'))).toBe(true);
 
@@ -96,10 +96,10 @@ describe('EuiCheckboxDisplay', () => {
 
     test('disabled', () => {
       const { container } = render(
-        <EuiCheckboxDisplay {...requiredProps} disabled />
+        <EuiCheckboxControl {...requiredProps} disabled />
       );
 
-      const wrapper = container.querySelector('.euiCheckboxDisplay')!;
+      const wrapper = container.querySelector('.EuiCheckboxControl')!;
 
       const classes = Array.from(wrapper.classList) as string[];
       expect(classes.some((clx) => clx.includes('disabled'))).toBe(true);
@@ -112,10 +112,10 @@ describe('EuiCheckboxDisplay', () => {
 
     test('disabled when checked', () => {
       const { container } = render(
-        <EuiCheckboxDisplay {...requiredProps} disabled checked />
+        <EuiCheckboxControl {...requiredProps} disabled checked />
       );
 
-      const wrapper = container.querySelector('.euiCheckboxDisplay')!;
+      const wrapper = container.querySelector('.EuiCheckboxControl')!;
       const classes = Array.from(wrapper.classList) as string[];
       expect(classes.some((clx) => clx.includes('disabled'))).toBe(true);
       expect(classes.some((clx) => clx.includes('selected'))).toBe(true);

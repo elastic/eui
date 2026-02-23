@@ -13,9 +13,9 @@ import { useEuiMemoizedStyles } from '../../../services';
 import { CommonProps } from '../../common';
 import { EuiIcon } from '../../icon';
 
-import { euiCheckboxDisplayStyles } from './checkbox_display.styles';
+import { EuiCheckboxControlStyles } from './checkbox_control.styles';
 
-export interface EuiCheckboxDisplayProps extends CommonProps {
+export interface EuiCheckboxControlProps extends CommonProps {
   /**
    * Renders a checked variant.
    * @default false
@@ -41,9 +41,9 @@ export interface EuiCheckboxDisplayProps extends CommonProps {
 }
 
 /**
- * Presentation-only checkbox indicator. Renders a checkbox square and state icon only wihtout functionality.
+ * Presentation-only checkbox control element. Renders a checkbox square and state icon only without functionality.
  */
-export const EuiCheckboxDisplay: FunctionComponent<EuiCheckboxDisplayProps> = ({
+export const EuiCheckboxControl: FunctionComponent<EuiCheckboxControlProps> = ({
   className,
   checked = false,
   indeterminate = false,
@@ -54,11 +54,11 @@ export const EuiCheckboxDisplay: FunctionComponent<EuiCheckboxDisplayProps> = ({
   const isSelected = checked || indeterminate || excluded;
   const isExcluded = excluded && !indeterminate;
 
-  const classes = classNames('euiCheckboxDisplay', className);
-  const styles = useEuiMemoizedStyles(euiCheckboxDisplayStyles);
+  const classes = classNames('EuiCheckboxControl', className);
+  const styles = useEuiMemoizedStyles(EuiCheckboxControlStyles);
 
   const cssStyles = [
-    styles.euiCheckboxDisplay,
+    styles.EuiCheckboxControl,
     disabled
       ? isSelected
         ? styles.disabled.selected

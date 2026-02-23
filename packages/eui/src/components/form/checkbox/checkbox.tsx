@@ -20,7 +20,7 @@ import classNames from 'classnames';
 import { useCombinedRefs, useEuiMemoizedStyles } from '../../../services';
 import { CommonProps } from '../../common';
 
-import { EuiCheckboxDisplay } from './checkbox_display';
+import { EuiCheckboxControl } from './checkbox_control';
 import { euiCheckboxStyles } from './checkbox.styles';
 
 export interface EuiCheckboxProps
@@ -82,7 +82,7 @@ export const EuiCheckbox: FunctionComponent<EuiCheckboxProps> = ({
   return (
     <div css={styles.euiCheckbox} className={classes}>
       <div css={inputStyles} className="euiCheckbox__square">
-        <EuiCheckboxDisplay
+        <EuiCheckboxControl
           checked={checked}
           indeterminate={indeterminate}
           disabled={disabled}

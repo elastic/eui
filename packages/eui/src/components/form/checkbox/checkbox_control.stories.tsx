@@ -14,14 +14,14 @@ import {
   hideStorybookControls,
 } from '../../../../.storybook/utils';
 import {
-  EuiCheckboxDisplay,
-  EuiCheckboxDisplayProps,
-} from './checkbox_display';
+  EuiCheckboxControl,
+  EuiCheckboxControlProps,
+} from './checkbox_control';
 import { EuiFlexGroup } from '../../flex';
 
-const meta: Meta<EuiCheckboxDisplayProps> = {
-  title: 'Forms/EuiCheckbox/Subcomponents/EuiCheckboxDisplay',
-  component: EuiCheckboxDisplay,
+const meta: Meta<EuiCheckboxControlProps> = {
+  title: 'Forms/EuiCheckbox/Subcomponents/EuiCheckboxControl',
+  component: EuiCheckboxControl,
   args: {
     checked: false,
     indeterminate: false,
@@ -32,7 +32,7 @@ const meta: Meta<EuiCheckboxDisplayProps> = {
 hideStorybookControls(meta, ['aria-label']);
 
 export default meta;
-type Story = StoryObj<EuiCheckboxDisplayProps>;
+type Story = StoryObj<EuiCheckboxControlProps>;
 
 export const Playground: Story = {
   args: {},
@@ -47,18 +47,18 @@ export const KitchenSink: Story = {
   render: (_args) => (
     <EuiFlexGroup direction="column">
       <EuiFlexGroup>
-        <EuiCheckboxDisplay />
+        <EuiCheckboxControl />
 
-        <EuiCheckboxDisplay checked />
-        <EuiCheckboxDisplay indeterminate />
-        <EuiCheckboxDisplay excluded />
+        <EuiCheckboxControl checked />
+        <EuiCheckboxControl indeterminate />
+        <EuiCheckboxControl excluded />
       </EuiFlexGroup>
 
       <EuiFlexGroup>
-        <EuiCheckboxDisplay disabled />
-        <EuiCheckboxDisplay disabled checked />
-        <EuiCheckboxDisplay disabled indeterminate />
-        <EuiCheckboxDisplay disabled excluded />
+        <EuiCheckboxControl disabled />
+        <EuiCheckboxControl disabled checked />
+        <EuiCheckboxControl disabled indeterminate />
+        <EuiCheckboxControl disabled excluded />
       </EuiFlexGroup>
     </EuiFlexGroup>
   ),
