@@ -363,10 +363,10 @@ export default () => (
 
 <EuiFlexGroup gutterSize="m">
   <Guideline type="do" text="Use icon buttons for universal actions that are easy to understand.">
-    <EuiButtonIcon size="m" iconType="pencil" aria-label="Edit" />&nbsp;&nbsp;<EuiButtonIcon size="m" iconType="expand" aria-label="Expand" />
+    <EuiButtonIcon size="m" iconType="pencil" aria-label="Edit" />&nbsp;&nbsp;<EuiButtonIcon size="m" iconType="maximize" aria-label="Expand" />
   </Guideline>
   <Guideline type="dont" text="Icons alone in a standard button look awkward and take too much space.">
-    <EuiButton><EuiIcon type="pencil" aria-label="Edit" /></EuiButton>&nbsp;&nbsp;<EuiButton><EuiIcon type="expand" aria-label="Expand" /></EuiButton>
+    <EuiButton><EuiIcon type="pencil" aria-label="Edit" /></EuiButton>&nbsp;&nbsp;<EuiButton><EuiIcon type="maximize" aria-label="Expand" /></EuiButton>
   </Guideline>
 </EuiFlexGroup>
 
@@ -811,7 +811,7 @@ Icons can serve as an **addition to the text label** to emphasize actions, but s
 
 <EuiFlexGroup gutterSize="m">
   <Guideline type="do" text={` The arrow shows that there are more items to fill out, and the check icon indicates the final action.`}>
-    <EuiButton iconType="arrowRight" iconSide="right" fill>Continue</EuiButton>&nbsp;&nbsp;<EuiButton iconType="check" color="success" fill>Save and complete</EuiButton>
+    <EuiButton iconType="chevronSingleRight" iconSide="right" fill>Continue</EuiButton>&nbsp;&nbsp;<EuiButton iconType="check" color="success" fill>Save and complete</EuiButton>
   </Guideline>
   <Guideline type="dont" text="Unnecessary icon just distracts the user, especially it is on the right and is hard to interpret.">
     <EuiButton iconType="indexOpen" iconSide="right" fill>Create index pattern</EuiButton>

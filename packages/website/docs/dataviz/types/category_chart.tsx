@@ -276,7 +276,7 @@ ${removeEmptyLines(chartConfigurationToCopy)}`
       <div className="eui-textCenter">
         <EuiCopy textToCopy={textToCopy}>
           {(copy) => (
-            <EuiButton fill onClick={copy} iconType="copyClipboard">
+            <EuiButton fill onClick={copy} iconType="copy">
               Copy code of current configuration
             </EuiButton>
           )}
