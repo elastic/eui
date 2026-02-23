@@ -449,7 +449,19 @@ export const EuiFlyoutComponent = forwardRef(
       if (!container) return;
 
       const updateRect = () => {
-        setContainerRect(container.getBoundingClientRect());
+        const next = container.getBoundingClientRect();
+        setContainerRect((prev) => {
+          if (
+            prev &&
+            prev.top === next.top &&
+            prev.left === next.left &&
+            prev.width === next.width &&
+            prev.height === next.height
+          ) {
+            return prev;
+          }
+          return next;
+        });
       };
 
       window.addEventListener('scroll', updateRect, { passive: true });
