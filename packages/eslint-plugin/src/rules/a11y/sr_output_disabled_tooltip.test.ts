@@ -32,7 +32,7 @@ ruleTester.run(
             content="Add filter"
             disableScreenReaderOutput>
             <EuiButtonIcon
-              iconType="plusInCircleFilled"
+              iconType="plusCircle"
               aria-label="Add filter"
             />
           </EuiToolTip>
@@ -45,7 +45,7 @@ ruleTester.run(
         const MyComponent = () => (
           <EuiToolTip content="Different tooltip text">
             <EuiButtonIcon
-              iconType="plusInCircleFilled"
+              iconType="plusCircle"
               aria-label="Add filter"
             />
           </EuiToolTip>
@@ -67,7 +67,7 @@ ruleTester.run(
         code: dedent`
         const MyComponent = () => (
           <EuiButtonIcon
-            iconType="plusInCircleFilled"
+            iconType="plusCircle"
             aria-label="Add filter"
           />
         )
@@ -81,7 +81,7 @@ ruleTester.run(
         const MyComponent = () => (
           <EuiToolTip content="Add filter">
             <EuiButtonIcon
-              iconType="plusInCircleFilled"
+              iconType="plusCircle"
               aria-label="Add filter"
             />
           </EuiToolTip>
@@ -91,7 +91,7 @@ ruleTester.run(
         const MyComponent = () => (
           <EuiToolTip content="Add filter" disableScreenReaderOutput>
             <EuiButtonIcon
-              iconType="plusInCircleFilled"
+              iconType="plusCircle"
               aria-label="Add filter"
             />
           </EuiToolTip>
@@ -107,7 +107,7 @@ ruleTester.run(
           return (
             <EuiToolTip content={label}>
               <EuiButtonIcon
-                iconType="plusInCircleFilled"
+                iconType="plusCircle"
                 aria-label={label}
               />
             </EuiToolTip>
@@ -120,7 +120,7 @@ ruleTester.run(
           return (
             <EuiToolTip content={label} disableScreenReaderOutput>
               <EuiButtonIcon
-                iconType="plusInCircleFilled"
+                iconType="plusCircle"
                 aria-label={label}
               />
             </EuiToolTip>
