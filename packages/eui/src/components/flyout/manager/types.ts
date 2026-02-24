@@ -49,6 +49,13 @@ export interface EuiManagedFlyoutState {
   activityStage?: EuiFlyoutActivityStage;
 }
 
+/** Entry for a child flyout in session history (navigated away from, still in flyouts). */
+export interface ChildHistoryEntry {
+  flyoutId: string;
+  title: string;
+  iconType?: IconType;
+}
+
 export interface FlyoutSession {
   /** ID of the main flyout for this session */
   mainFlyoutId: string;
@@ -60,6 +67,12 @@ export interface FlyoutSession {
   iconType?: IconType;
   /** z-index value to be used by the flyout session */
   zIndex: number;
+  /** Title of the current child flyout (for pushing to history when replacing). */
+  childTitle?: string;
+  /** Icon of the current child flyout (for pushing to history when replacing). */
+  childIconType?: IconType;
+  /** Stack of child flyouts we navigated away from (most recent at end). */
+  childHistory: ChildHistoryEntry[];
 }
 
 export interface PushPaddingOffsets {
@@ -108,7 +121,7 @@ export interface FlyoutManagerApi {
   setPushPadding: (side: 'left' | 'right', width: number) => void;
   setContainerElement: (element: HTMLElement | null) => void;
   goBack: () => void;
-  goToFlyout: (flyoutId: string) => void;
+  goToFlyout: (flyoutId: string, level?: 'main' | 'child') => void;
   addUnmanagedFlyout: (flyoutId: string) => void;
   closeUnmanagedFlyout: (flyoutId: string) => void;
   historyItems: Array<{

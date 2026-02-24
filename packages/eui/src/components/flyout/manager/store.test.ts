@@ -7,7 +7,7 @@
  */
 
 import { getFlyoutManagerStore, _resetFlyoutManagerStore } from './store';
-import { LEVEL_MAIN } from './const';
+import { LEVEL_MAIN, LEVEL_CHILD } from './const';
 
 describe('Flyout Manager Store', () => {
   beforeEach(() => {
@@ -145,6 +145,39 @@ describe('Flyout Manager Store', () => {
       expect(store.historyItems).toHaveLength(0);
       expect(store.getState().sessions).toHaveLength(1);
       expect(store.getState().sessions[0].mainFlyoutId).toBe('flyout-1');
+    });
+
+    it('should include current session child history first, then previous main sessions (child items most recent first)', () => {
+      const store = getFlyoutManagerStore();
+
+      store.addFlyout('main-1', 'Main', LEVEL_MAIN);
+      store.addFlyout('child-1', 'Child 1', LEVEL_CHILD);
+      store.addFlyout('child-2', 'Child 2', LEVEL_CHILD);
+
+      const historyItems = store.historyItems;
+
+      expect(historyItems).toHaveLength(1); // one child in history (Child 1), no previous mains
+      expect(historyItems[0].title).toBe('Child 1');
+      expect(historyItems[0].onClick).toBeDefined();
+
+      // Add a second main: current session becomes main-2 (no child), so history = previous mains only
+      store.addFlyout('main-2', 'Main 2', LEVEL_MAIN);
+      const historyItems2 = store.historyItems;
+      expect(historyItems2).toHaveLength(1);
+      expect(historyItems2[0].title).toBe('Main');
+    });
+
+    it('should have empty historyItems (zero depth) when only one main', () => {
+      const store = getFlyoutManagerStore();
+      store.addFlyout('main-1', 'Main', LEVEL_MAIN);
+      expect(store.historyItems).toHaveLength(0);
+    });
+
+    it('should have empty historyItems (zero depth) when one main and one child (no child-to-child)', () => {
+      const store = getFlyoutManagerStore();
+      store.addFlyout('main-1', 'Main', LEVEL_MAIN);
+      store.addFlyout('child-1', 'Child', LEVEL_CHILD);
+      expect(store.historyItems).toHaveLength(0);
     });
   });
 

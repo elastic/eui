@@ -61,7 +61,7 @@ export interface FlyoutManagerStore {
   setPushPadding: (side: 'left' | 'right', width: number) => void;
   setContainerElement: (element: HTMLElement | null) => void;
   goBack: () => void;
-  goToFlyout: (flyoutId: string) => void;
+  goToFlyout: (flyoutId: string, level?: 'main' | 'child') => void;
   addUnmanagedFlyout: (flyoutId: string) => void;
   closeUnmanagedFlyout: (flyoutId: string) => void;
   historyItems: Array<{
@@ -110,19 +110,71 @@ function createStore(
     onClick: () => void;
   }> => {
     const currentSessionIndex = currentState.sessions.length - 1;
+    const currentSession =
+      currentSessionIndex >= 0
+        ? currentState.sessions[currentSessionIndex]
+        : null;
     const previousSessions = currentState.sessions.slice(
       0,
       currentSessionIndex
     );
-    return previousSessions
-      .reverse()
-      .map(({ title, iconType, mainFlyoutId }) => ({
-        title,
-        iconType,
-        onClick: () => {
-          store.dispatch(goToFlyoutAction(mainFlyoutId));
-        },
-      }));
+
+    const childHistory = currentSession?.childHistory ?? [];
+    const childItems = [...childHistory].reverse().map((entry) => ({
+      title: entry.title,
+      iconType: entry.iconType,
+      onClick: () => {
+        store.dispatch(goToFlyoutAction(entry.flyoutId, 'child'));
+      },
+    }));
+
+    // Previous sessions: list each session's current child then its child history (so all travelled entries appear)
+    const previousSessionItems: Array<{
+      title: string;
+      iconType?: IconType;
+      onClick: () => void;
+    }> = [];
+    for (let i = previousSessions.length - 1; i >= 0; i--) {
+      const session = previousSessions[i];
+      const mainTitle = session.title;
+      const mainFlyoutId = session.mainFlyoutId;
+      const history = session.childHistory ?? [];
+      const hasChildren =
+        (session.childFlyoutId != null && session.childTitle != null) ||
+        history.length > 0;
+
+      if (session.childFlyoutId && session.childTitle) {
+        previousSessionItems.push({
+          title: session.childTitle,
+          iconType: session.childIconType,
+          onClick: () => {
+            store.dispatch(goToFlyoutAction(mainFlyoutId, 'main'));
+          },
+        });
+      }
+      for (let h = history.length - 1; h >= 0; h--) {
+        const entry = history[h];
+        previousSessionItems.push({
+          title: entry.title,
+          iconType: entry.iconType,
+          onClick: () => {
+            store.dispatch(goToFlyoutAction(mainFlyoutId, 'main'));
+            store.dispatch(goToFlyoutAction(entry.flyoutId, 'child'));
+          },
+        });
+      }
+      if (!hasChildren) {
+        previousSessionItems.push({
+          title: mainTitle,
+          iconType: session.iconType,
+          onClick: () => {
+            store.dispatch(goToFlyoutAction(mainFlyoutId, 'main'));
+          },
+        });
+      }
+    }
+
+    return [...childItems, ...previousSessionItems];
   };
 
   const dispatch = (action: Action) => {
@@ -175,7 +227,8 @@ function createStore(
     setContainerElement: (element) =>
       dispatch(setContainerElementAction(element)),
     goBack: () => dispatch(goBackAction()),
-    goToFlyout: (flyoutId) => dispatch(goToFlyoutAction(flyoutId)),
+    goToFlyout: (flyoutId, level) =>
+      dispatch(goToFlyoutAction(flyoutId, level)),
     addUnmanagedFlyout: (flyoutId) =>
       dispatch(addUnmanagedFlyoutAction(flyoutId)),
     closeUnmanagedFlyout: (flyoutId) =>
