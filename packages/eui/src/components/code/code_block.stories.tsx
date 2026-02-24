@@ -168,11 +168,8 @@ export const VirtualizedCodeBlockScrolling: Story = {
   globals: { colorMode: 'dark' },
   render: function Render() {
     const [response, setResponse] = useState('{}');
-    const [isLoading, setIsLoading] = useState(false);
 
     const handleSubmit = async () => {
-      setIsLoading(true);
-
       try {
         const res = await fetch('https://jsonplaceholder.typicode.com/posts');
         const data = await res.json();
@@ -180,11 +177,6 @@ export const VirtualizedCodeBlockScrolling: Story = {
         setResponse(JSON.stringify(data, null, 2));
       } catch (error) {
         console.error(error);
-      } finally {
-        // delay to keep VRT images more stable
-        setTimeout(() => {
-          setIsLoading(false);
-        }, 75);
       }
     };
 
