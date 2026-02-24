@@ -14,6 +14,8 @@
     "build": "printf $'\\x1b[K\\x1b[37;41mPlease run this script from the \\x1b[1;4mpackages/eui\\x1b[0m\\x1b[37;41m directory instead\\x1b[0m\\n'; exit 1",
     "watch": "node scripts/watch-eui.js",
     "release": "node scripts/release",
+    "release:prep": "bash scripts/release-prep.sh",
+    "release:publish": "bash scripts/release-publish.sh",
     "clean": "node scripts/clean.mjs"
   },
   "repository": {
