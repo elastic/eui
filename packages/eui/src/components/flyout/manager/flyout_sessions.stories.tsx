@@ -83,47 +83,74 @@ const DisplayContext: React.FC<{ title: string }> = ({ title }) => {
   );
 };
 
+const childId1 = (t: string) => `childFlyout1-${t}`;
+const childId2 = (t: string) => `childFlyout2-${t}`;
+
 const FlyoutSession: React.FC<FlyoutSessionProps> = (props) => {
   const { title, mainSize, childSize, mainMaxWidth, childMaxWidth } = props;
 
   const [isFlyoutVisible, setIsFlyoutVisible] = useState(false);
-  const [isChildFlyoutVisible, setIsChildFlyoutVisible] = useState(false);
+  const [isChild1FlyoutVisible, setIsChild1FlyoutVisible] = useState(false);
+  const [isChild2FlyoutVisible, setIsChild2FlyoutVisible] = useState(false);
+
+  const currentSession = useCurrentSession();
 
   const [flyoutType, setFlyoutType] = useState<'overlay' | 'push'>('push');
   const [flyoutOwnFocus, setFlyoutOwnFocus] = useState(false);
 
-  // Handlers for "Open" buttons
+  const childIdsInSession = new Set<string>([
+    ...(currentSession?.childFlyoutId ? [currentSession.childFlyoutId] : []),
+    ...(currentSession?.childHistory ?? []).map((e) => e.flyoutId),
+  ]);
 
   const handleOpenMainFlyout = () => {
     setIsFlyoutVisible(true);
   };
 
-  const handleOpenChildFlyout = () => {
-    setIsChildFlyoutVisible(true);
+  const handleOpenChild1 = () => {
+    setIsChild1FlyoutVisible(true);
   };
 
-  // Callbacks for state synchronization
+  const handleOpenChild2 = () => {
+    setIsChild2FlyoutVisible(true);
+  };
 
   const mainFlyoutOnActive = useCallback(() => {
     action('activate main flyout')(title);
   }, [title]);
 
-  const childFlyoutOnActive = useCallback(() => {
-    action('activate child flyout')(title);
-  }, [title]);
+  const childFlyoutOnActive = useCallback(
+    (which: 'child1' | 'child2') => () => {
+      action('activate child flyout')(`${title} - ${which}`);
+    },
+    [title]
+  );
 
   const mainFlyoutOnClose = useCallback(() => {
     action('close main flyout')(title);
     setIsFlyoutVisible(false);
-    setIsChildFlyoutVisible(false);
   }, [title]);
 
-  const childFlyoutOnClose = useCallback(() => {
-    action('close child flyout')(title);
-    setIsChildFlyoutVisible(false);
+  const child1FlyoutOnClose = useCallback(() => {
+    action('close child flyout')(`${title} - Child 1`);
+    setIsChild1FlyoutVisible(false);
   }, [title]);
 
-  // Render
+  const child2FlyoutOnClose = useCallback(() => {
+    action('close child flyout')(`${title} - Child 2`);
+    setIsChild2FlyoutVisible(false);
+  }, [title]);
+
+  if (!childSize) {
+    return (
+      <EuiText size="s" color="subdued">
+        <p>
+          Child-to-child session requires childSize (e.g.
+          childSize=&quot;s&quot;).
+        </p>
+      </EuiText>
+    );
+  }
 
   return (
     <>
@@ -172,6 +199,7 @@ const FlyoutSession: React.FC<FlyoutSessionProps> = (props) => {
           pushAnimation={true}
           onActive={mainFlyoutOnActive}
           onClose={mainFlyoutOnClose}
+          resizable={true}
         >
           <EuiFlyoutHeader>
             <EuiTitle size="m">
@@ -180,77 +208,113 @@ const FlyoutSession: React.FC<FlyoutSessionProps> = (props) => {
           </EuiFlyoutHeader>
           <EuiFlyoutBody>
             <EuiText>
-              <p>This is the content of {title}.</p>
+              <p>Child-to-child navigation: open one child, then the other.</p>
               <EuiSpacer size="s" />
               <EuiDescriptionList
                 type="column"
                 listItems={[
                   { title: 'Flyout type', description: flyoutType },
                   {
-                    title: 'Main flyout size',
-                    description: mainSize ?? 'undefined (`m` by default)',
-                  },
-                  {
-                    title: 'Main flyout maxWidth',
-                    description: mainMaxWidth ?? 'N/A',
-                  },
-                  {
                     title: 'session',
                     description: <EuiCode>start</EuiCode>,
                   },
                 ]}
               />
-              {childSize && (
-                <EuiButton
-                  onClick={handleOpenChildFlyout}
-                  disabled={isChildFlyoutVisible}
-                >
-                  Open child flyout
-                </EuiButton>
-              )}
+              <EuiSpacer size="m" />
+              <EuiFlexGroup gutterSize="s">
+                <EuiFlexItem grow={false}>
+                  <EuiButton
+                    onClick={handleOpenChild1}
+                    disabled={childIdsInSession.has(childId1(title))}
+                  >
+                    Open Child 1
+                  </EuiButton>
+                </EuiFlexItem>
+                <EuiFlexItem grow={false}>
+                  <EuiButton
+                    onClick={handleOpenChild2}
+                    disabled={childIdsInSession.has(childId2(title))}
+                  >
+                    Open Child 2
+                  </EuiButton>
+                </EuiFlexItem>
+              </EuiFlexGroup>
             </EuiText>
           </EuiFlyoutBody>
-          {childSize && isChildFlyoutVisible && (
+          {isChild1FlyoutVisible && (
             <EuiFlyout
-              id={`childFlyout-${title}`}
+              id={childId1(title)}
               flyoutMenuProps={{
-                title: `${title} - Child`,
+                title: `${title} - Child 1`,
                 iconType: 'faceNeutral',
               }}
               size={childSize}
               maxWidth={childMaxWidth}
-              onActive={childFlyoutOnActive}
-              onClose={childFlyoutOnClose}
+              onActive={childFlyoutOnActive('child1')}
+              onClose={child1FlyoutOnClose}
+              resizable={true}
+              hasChildBackground={true}
             >
               <EuiFlyoutBody>
                 <EuiText>
                   <p>
-                    This is the content of the child flyout of {title}. It
-                    automatically inherits the session because it&apos;s nested
-                    inside the parent.
+                    Child 1. Open &quot;Child 2&quot; to test child→child
+                    navigation.
                   </p>
                   <EuiSpacer size="s" />
                   <EuiDescriptionList
                     type="column"
                     listItems={[
-                      {
-                        title: 'Child flyout size',
-                        description: childSize ?? 'N/A',
-                      },
-                      {
-                        title: 'Child flyout maxWidth',
-                        description: childMaxWidth ?? 'N/A',
-                      },
+                      { title: 'Child', description: '1' },
                       {
                         title: 'session',
-                        description: (
-                          <>
-                            <EuiCode>inherit</EuiCode> (auto)
-                          </>
-                        ),
+                        description: <EuiCode>inherit</EuiCode>,
                       },
                     ]}
                   />
+                  <EuiSpacer size="m" />
+                  <EuiButton onClick={handleOpenChild2}>
+                    Open next (Child 2)
+                  </EuiButton>
+                </EuiText>
+              </EuiFlyoutBody>
+            </EuiFlyout>
+          )}
+          {isChild2FlyoutVisible && (
+            <EuiFlyout
+              id={childId2(title)}
+              flyoutMenuProps={{
+                title: `${title} - Child 2`,
+                iconType: 'faceNeutral',
+              }}
+              size={childSize}
+              maxWidth={childMaxWidth}
+              onActive={childFlyoutOnActive('child2')}
+              onClose={child2FlyoutOnClose}
+              resizable={true}
+              hasChildBackground={true}
+            >
+              <EuiFlyoutBody>
+                <EuiText>
+                  <p>
+                    Child 2. You navigated from Child 1. Check manager state
+                    below.
+                  </p>
+                  <EuiSpacer size="s" />
+                  <EuiDescriptionList
+                    type="column"
+                    listItems={[
+                      { title: 'Child', description: '2' },
+                      {
+                        title: 'session',
+                        description: <EuiCode>inherit</EuiCode>,
+                      },
+                    ]}
+                  />
+                  <EuiSpacer size="m" />
+                  <EuiButton onClick={handleOpenChild1}>
+                    Open previous (Child 1)
+                  </EuiButton>
                 </EuiText>
               </EuiFlyoutBody>
             </EuiFlyout>
@@ -263,8 +327,6 @@ const FlyoutSession: React.FC<FlyoutSessionProps> = (props) => {
 
 const NonSessionFlyout: React.FC<{ size: string }> = ({ size }) => {
   const [isFlyoutVisible, setIsFlyoutVisible] = useState(false);
-  const [flyoutType, setFlyoutType] = useState<'overlay' | 'push'>('push');
-  const [flyoutOwnFocus, setFlyoutOwnFocus] = useState(false);
 
   const handleOpenFlyout = () => {
     setIsFlyoutVisible(true);
@@ -280,33 +342,12 @@ const NonSessionFlyout: React.FC<{ size: string }> = ({ size }) => {
   return (
     <>
       <EuiFlexGroup gutterSize="s" alignItems="center">
-        <EuiFlexItem grow={false}>
-          <EuiFlexGroup>
-            <EuiFlexItem grow={false}>
-              <EuiSwitch
-                label="Overlay"
-                checked={flyoutType === 'overlay'}
-                onChange={(e: EuiSwitchEvent) =>
-                  setFlyoutType(e.target.checked ? 'overlay' : 'push')
-                }
-              />
-            </EuiFlexItem>
-            <EuiFlexItem grow={false}>
-              <EuiSwitch
-                label="ownFocus"
-                checked={flyoutOwnFocus}
-                disabled={flyoutType === 'push'}
-                onChange={(e: EuiSwitchEvent) =>
-                  setFlyoutOwnFocus(e.target.checked)
-                }
-              />
-            </EuiFlexItem>
-          </EuiFlexGroup>
-        </EuiFlexItem>
         <EuiFlexItem>
-          <EuiButton disabled={isFlyoutVisible} onClick={handleOpenFlyout}>
-            Open non-session flyout
-          </EuiButton>
+          <span>
+            <EuiButton disabled={isFlyoutVisible} onClick={handleOpenFlyout}>
+              Open non-session flyout
+            </EuiButton>
+          </span>
         </EuiFlexItem>
       </EuiFlexGroup>
       {isFlyoutVisible && (
@@ -315,8 +356,8 @@ const NonSessionFlyout: React.FC<{ size: string }> = ({ size }) => {
           id="nonSessionFlyout"
           aria-labelledby="nonSessionFlyoutTitle"
           size={size}
-          type={flyoutType}
-          ownFocus={flyoutOwnFocus}
+          type="overlay"
+          ownFocus={true}
           pushAnimation={true}
           onClose={flyoutOnClose}
         >
@@ -332,22 +373,6 @@ const NonSessionFlyout: React.FC<{ size: string }> = ({ size }) => {
                 not be a managed flyout using the{' '}
                 <EuiCode>{'session={never}'}</EuiCode> behavior.
               </p>
-              <EuiSpacer size="s" />
-              <EuiDescriptionList
-                type="column"
-                listItems={[
-                  { title: 'Flyout type', description: flyoutType },
-                  { title: 'Size', description: 'm' },
-                  {
-                    title: 'session',
-                    description: (
-                      <>
-                        <EuiCode>never</EuiCode> (using default)
-                      </>
-                    ),
-                  },
-                ]}
-              />
             </EuiText>
           </EuiFlyoutBody>
         </EuiFlyout>
@@ -392,59 +417,24 @@ const MultiSessionFlyoutDemo: React.FC = () => {
       ),
     },
     {
-      title: 'Session D: main size = fill, child size = s',
+      title: 'Session D: main size = m, child size = fill',
       description: (
         <FlyoutSession
           // Session D
           title="Session D"
-          mainSize="fill"
-          childSize="s"
+          mainSize="m"
+          childSize="fill"
         />
       ),
     },
     {
-      title: 'Session E: main size = fill',
+      title: 'Session E: main size = s, child size = fill, resizable',
       description: (
         <FlyoutSession
           // Session E
           title="Session E"
-          mainSize="fill"
-        />
-      ),
-    },
-    {
-      title:
-        'Session F: main size = undefined, child size = fill (maxWidth 1000px)',
-      description: (
-        <FlyoutSession
-          // Session F
-          title="Session F"
-          mainSize={undefined}
-          childSize="fill"
-          childMaxWidth={1000}
-        />
-      ),
-    },
-    {
-      title: 'Session G: main size = fill (maxWidth 1000px), child size = s',
-      description: (
-        <FlyoutSession
-          // Session G
-          title="Session G"
-          mainSize="fill"
-          mainMaxWidth={1000}
-          childSize="s"
-        />
-      ),
-    },
-    {
-      title: 'Session H: main size = s, child size = s',
-      description: (
-        <FlyoutSession
-          // Session H
-          title="Session H"
           mainSize="s"
-          childSize="s"
+          childSize="fill"
         />
       ),
     },

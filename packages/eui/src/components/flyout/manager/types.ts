@@ -49,7 +49,7 @@ export interface EuiManagedFlyoutState {
   activityStage?: EuiFlyoutActivityStage;
 }
 
-/** Entry for a child flyout in session history (navigated away from, still in flyouts). */
+/** Entry for a child flyout in session history. */
 export interface ChildHistoryEntry {
   flyoutId: string;
   title: string;
@@ -67,11 +67,11 @@ export interface FlyoutSession {
   iconType?: IconType;
   /** z-index value to be used by the flyout session */
   zIndex: number;
-  /** Title of the current child flyout (for pushing to history when replacing). */
+  /** Title of the current child flyout. */
   childTitle?: string;
-  /** Icon of the current child flyout (for pushing to history when replacing). */
+  /** Icon of the current child flyout. */
   childIconType?: IconType;
-  /** Stack of child flyouts we navigated away from (most recent at end). */
+  /** Stack of child flyouts we navigated away from. */
   childHistory: ChildHistoryEntry[];
 }
 
