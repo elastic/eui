@@ -579,7 +579,7 @@ const DraggablePanel = memo(function DraggablePanel({
               button={
                 <EuiButtonIcon
                   aria-label="More actions"
-                  iconType="boxes_vertical"
+                  iconType="boxesVertical"
                   onClick={() => setIsPopoverOpen((isOpen) => !isOpen)}
                 />
               }
