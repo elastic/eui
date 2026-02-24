@@ -219,12 +219,7 @@ export const VirtualizedCodeBlockScrolling: Story = {
         `}
       >
         <EuiFlexItem grow={false}>
-          <EuiButton
-            type="submit"
-            iconType="sortRight"
-            isLoading={isLoading}
-            onClick={handleSubmit}
-          >
+          <EuiButton type="submit" iconType="sortRight" onClick={handleSubmit}>
             Submit
           </EuiButton>
         </EuiFlexItem>
