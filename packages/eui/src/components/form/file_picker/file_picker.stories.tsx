@@ -88,10 +88,7 @@ export const ControlledWithFiles: Story = {
           <>
             <EuiSpacer size="s" />
             <EuiText>
-              <p>
-                Stored files:{' '}
-                {storedFiles.map((f) => f.name).join(', ')}
-              </p>
+              <p>Stored files: {storedFiles.map((f) => f.name).join(', ')}</p>
             </EuiText>
           </>
         )}
