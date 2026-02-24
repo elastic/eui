@@ -44,8 +44,8 @@ export interface EuiFilePickerProps
    */
   onChange?: (files: FileList | null) => void;
   /**
-   * Optionally pass a `FileList` to maintain the file picker's state
-   * between re-renders. Useful for multi-step forms where the component
+   * Optionally pass a `File[]` array to maintain the file picker's displayed
+   * state between re-renders. Useful for multi-step forms where the component
    * may unmount and remount while the file data is still stored in context.
    *
    * Note: Due to browser security restrictions, the actual file input
@@ -53,7 +53,7 @@ export interface EuiFilePickerProps
    * the displayed state (file names in the prompt). The actual file data
    * should be stored and managed separately in your application state.
    */
-  files?: FileList | null;
+  files?: File[] | null;
   /**
    * Reduces the size to a typical (compressed) input
    * @default false
@@ -98,7 +98,7 @@ export class EuiFilePickerClass extends Component<
   generatedId: string = htmlIdGenerator()();
 
   getPromptTextFromFileList = (
-    files: FileList | null
+    files: File[] | null
   ): React.ReactNode | null => {
     if (!files || files.length === 0) {
       return null;
@@ -139,26 +139,24 @@ export class EuiFilePickerClass extends Component<
   handleChange = () => {
     if (!this.fileInput) return;
 
-    if (this.fileInput.files && this.fileInput.files.length > 1) {
+    if (this.fileInput.files && this.fileInput.files.length === 1) {
+      this.setState({ promptText: this.fileInput.value.split('\\').pop() });
+    } else {
       this.setState({
-        promptText: (
-          <EuiI18n
-            token="euiFilePicker.filesSelected"
-            default="{fileCount} files selected"
-            values={{ fileCount: this.fileInput.files.length }}
-          />
+        promptText: this.getPromptTextFromFileList(
+          this.fileInput.files ? Array.from(this.fileInput.files) : null
         ),
       });
-    } else if (this.fileInput.files && this.fileInput.files.length === 0) {
-      this.setState({ promptText: null });
-    } else {
-      this.setState({ promptText: this.fileInput.value.split('\\').pop() });
     }
 
     const { onChange } = this.props;
 
     if (onChange) {
-      onChange(this.fileInput.files);
+      onChange(
+        this.fileInput.files && this.fileInput.files.length > 0
+          ? this.fileInput.files
+          : null
+      );
     }
   };
 
