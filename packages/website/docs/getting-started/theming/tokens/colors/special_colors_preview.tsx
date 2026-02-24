@@ -1,3 +1,4 @@
+import React from 'react';
 import { useEuiTheme } from '@elastic/eui';
 import { css } from '@emotion/react';
 
@@ -8,11 +9,11 @@ export const SpecialColorsPreview = () => {
     <div
       css={css`
         padding: ${euiTheme.size.s};
-        background: ${euiTheme.colors.ink};
-        color: ${euiTheme.colors.ghost};
+        color: ${euiTheme.colors.disabledText};
+        background-color: ${euiTheme.colors.disabled};
       `}
     >
-      <strong>This text is always white and the background always black.</strong>
+      <strong>This is disabled text on disabled background.</strong>
     </div>
-  )
-}
+  );
+};

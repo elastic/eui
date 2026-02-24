@@ -93,6 +93,7 @@ export const EuiFieldPassword: FunctionComponent<EuiFieldPasswordProps> = (
     append,
     type = 'password',
     dualToggleProps,
+    readOnly,
     ...rest
   } = props;
 
@@ -193,6 +194,7 @@ export const EuiFieldPassword: FunctionComponent<EuiFieldPasswordProps> = (
       compressed={compressed}
       prepend={prepend}
       append={finalAppend}
+      readOnly={readOnly}
     >
       <EuiValidatableControl isInvalid={isInvalid}>
         <input
@@ -205,6 +207,7 @@ export const EuiFieldPassword: FunctionComponent<EuiFieldPasswordProps> = (
           value={value}
           disabled={disabled}
           ref={setInputRef}
+          readOnly={readOnly}
           {...rest}
         />
       </EuiValidatableControl>

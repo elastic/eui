@@ -197,7 +197,7 @@ exports[`EuiMarkdownEditor is rendered 1`] = `
           data-euiicon-type="eye"
         />
         <span
-          class="eui-textTruncate euiButtonEmpty__text"
+          class="eui-textTruncate euiButtonEmpty__text css-1ryezsz-s"
         >
           Preview
         </span>
@@ -455,7 +455,7 @@ exports[`EuiMarkdownEditor props autoExpandPreview is rendered with false 1`] = 
           data-euiicon-type="eye"
         />
         <span
-          class="eui-textTruncate euiButtonEmpty__text"
+          class="eui-textTruncate euiButtonEmpty__text css-1ryezsz-s"
         >
           Preview
         </span>
@@ -712,7 +712,7 @@ exports[`EuiMarkdownEditor props height is rendered in full mode 1`] = `
           data-euiicon-type="eye"
         />
         <span
-          class="eui-textTruncate euiButtonEmpty__text"
+          class="eui-textTruncate euiButtonEmpty__text css-1ryezsz-s"
         >
           Preview
         </span>
@@ -969,7 +969,7 @@ exports[`EuiMarkdownEditor props height is rendered with a custom size 1`] = `
           data-euiicon-type="eye"
         />
         <span
-          class="eui-textTruncate euiButtonEmpty__text"
+          class="eui-textTruncate euiButtonEmpty__text css-1ryezsz-s"
         >
           Preview
         </span>
@@ -1226,7 +1226,7 @@ exports[`EuiMarkdownEditor props maxHeight is rendered with a custom size 1`] = 
           data-euiicon-type="eye"
         />
         <span
-          class="eui-textTruncate euiButtonEmpty__text"
+          class="eui-textTruncate euiButtonEmpty__text css-1ryezsz-s"
         >
           Preview
         </span>
@@ -1493,7 +1493,7 @@ exports[`EuiMarkdownEditor props readOnly is set to true 1`] = `
           data-euiicon-type="eye"
         />
         <span
-          class="eui-textTruncate euiButtonEmpty__text"
+          class="eui-textTruncate euiButtonEmpty__text css-1ryezsz-s"
         >
           Preview
         </span>

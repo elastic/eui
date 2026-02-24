@@ -98,8 +98,8 @@ export const getBadgeColors = (
 
 export const getTextColor = ({ euiTheme }: UseEuiTheme, bgColor: string) => {
   const textColor = isColorDark(...chroma(bgColor).rgb())
-    ? euiTheme.colors.ghost
-    : euiTheme.colors.ink;
+    ? euiTheme.colors.textGhost
+    : euiTheme.colors.textInk;
 
   return textColor;
 };

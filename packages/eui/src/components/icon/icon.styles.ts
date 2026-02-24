@@ -50,7 +50,7 @@ export const euiIconStyles = ({ euiTheme }: UseEuiTheme) => ({
     color: ${euiTheme.colors.textAccentSecondary};
   `,
   ghost: css`
-    color: ${euiTheme.colors.ghost};
+    color: ${euiTheme.colors.textGhost};
 
     /* Really force all paths to inherit (specifically for logos) */
     *[fill],

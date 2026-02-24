@@ -102,7 +102,7 @@ describe('useCellPopover', () => {
       expect(baseElement.querySelector('.euiDataGridRowCell__popover'))
         .toMatchInlineSnapshot(`
         <div
-          aria-describedby="generated-id"
+          aria-describedby="euiPopover_generated-id_descriptionId"
           aria-live="off"
           aria-modal="true"
           class="euiPanel euiPanel--plain euiPanel--paddingSmall euiPopover__panel euiDataGridRowCell__popover emotion-euiPanel-grow-m-s-plain-euiPopover__panel-light-isOpen-isAttached-bottom-euiDataGridRowCell__popover"
@@ -110,13 +110,14 @@ describe('useCellPopover', () => {
           data-popover-open="true"
           data-popover-panel="true"
           data-test-subj="euiDataGridExpansionPopover"
+          id="euiPopover_generated-id_panelId"
           role="dialog"
           style="top: 4px; left: 0px; will-change: transform, opacity; max-inline-size: min(75vw, max(0px, 400px)); max-block-size: 50vh; z-index: 1000;"
           tabindex="0"
         >
           <p
             class="emotion-euiScreenReaderOnly"
-            id="generated-id"
+            id="euiPopover_generated-id_descriptionId"
           >
             You are in a dialog. Press Escape, or tap/click outside the dialog to close.
           </p>

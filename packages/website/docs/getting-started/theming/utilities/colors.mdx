@@ -110,7 +110,7 @@ import { IsColorDarkPreview } from './is_color_dark_preview';
 
     Use this function to determine whether or not to use light or dark text against the given background color. It requires the values to be passed in as rgb integers and will return a `boolean` if the color is dark based on luminance.
 
-    If the function returns `true`, use `euiTheme.colors.ghost` otherwise use `euiTheme.colors.ink` as the text color.
+    If the function returns `true`, use `euiTheme.colors.textGhost` otherwise use `euiTheme.colors.textInk` as the text color.
 
     ```
     red: 0-255;
@@ -125,8 +125,8 @@ import { IsColorDarkPreview } from './is_color_dark_preview';
     ```tsx
     css`
       color: ${isColorDark(color)
-        ? euiTheme.colors.ghost
-        : euiTheme.colors.ink;}
+        ? euiTheme.colors.textGhost
+        : euiTheme.colors.textInk;}
     `
     ```
   </Example.Snippet>

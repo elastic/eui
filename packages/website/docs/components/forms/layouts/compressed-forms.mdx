@@ -422,6 +422,7 @@ import {
   EuiFlexItem,
   EuiFormLabel,
   EuiFormRow,
+  EuiFormPrepend,
   EuiHorizontalRule,
   EuiIcon,
   EuiPanel,
@@ -670,14 +671,14 @@ export default () => {
           max={100}
           defaultValue={10}
           compressed
-          prepend={[
-            <EuiButtonIcon
-              iconType="magnet"
+          prepend={
+            <EuiFormPrepend
+              element="button"
+              iconLeft="magnet"
+              label="kibana_sample_ecommerce_data"
               aria-label="Dynamic toggle"
-              title="Make dynamic"
-            />,
-            'kibana_sample_ecommerce_data',
-          ]}
+            />
+          }
           append="px"
         />
       </EuiFormRow>

@@ -1458,6 +1458,7 @@ exports[`shared utils nodeToHtml handles rendering custom annotation types 1`] =
     class="euiPopover euiCodeBlock__lineAnnotation emotion-euiPopover-inline-block-euiCodeBlockAnnotation"
   >
     <button
+      aria-expanded="false"
       aria-label="Click to view a code annotation for line 3"
       class="emotion-euiCodeBlockAnnotation__buttonIcon"
       data-test-subj="euiCodeBlockAnnotationIcon"

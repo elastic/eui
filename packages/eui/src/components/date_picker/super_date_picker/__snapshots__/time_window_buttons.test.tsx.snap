@@ -23,7 +23,7 @@ exports[`EuiTimeWindowButtons renders 1`] = `
           data-euiicon-type="arrowLeft"
         />
         <span
-          class="eui-textTruncate emotion-euiButtonGroupButton__iconOnly"
+          class="eui-textTruncate css-qv1h57-m-euiButtonGroupButton__iconOnly"
           data-text="Previous"
         >
           Previous
@@ -49,7 +49,7 @@ exports[`EuiTimeWindowButtons renders 1`] = `
           data-euiicon-type="magnifyWithMinus"
         />
         <span
-          class="eui-textTruncate emotion-euiButtonGroupButton__iconOnly"
+          class="eui-textTruncate css-qv1h57-m-euiButtonGroupButton__iconOnly"
           data-text="Zoom out"
         >
           Zoom out
@@ -75,7 +75,7 @@ exports[`EuiTimeWindowButtons renders 1`] = `
           data-euiicon-type="arrowRight"
         />
         <span
-          class="eui-textTruncate emotion-euiButtonGroupButton__iconOnly"
+          class="eui-textTruncate css-qv1h57-m-euiButtonGroupButton__iconOnly"
           data-text="Next"
         >
           Next

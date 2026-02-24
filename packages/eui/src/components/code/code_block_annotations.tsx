@@ -49,7 +49,7 @@ export const EuiCodeBlockAnnotation: FunctionComponent<
 
   const { euiTheme, colorMode } = useEuiTheme();
   const isDarkMode = colorMode === 'DARK';
-  const iconColor = isDarkMode ? euiTheme.colors.ink : 'ghost';
+  const iconColor = isDarkMode ? euiTheme.colors.textInk : 'ghost';
 
   return (
     <EuiPopover

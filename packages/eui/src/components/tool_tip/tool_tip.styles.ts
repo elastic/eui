@@ -59,7 +59,7 @@ export const euiToolTipStyles = (euiThemeContext: UseEuiTheme) => {
       ${hasShadow ? euiShadow(euiThemeContext) : ''}
       border-radius: ${euiTheme.border.radius.medium};
       background-color: ${euiToolTipBackgroundColor(euiTheme)};
-      color: ${euiTheme.colors.ghost};
+      color: ${euiTheme.colors.textGhost};
       z-index: ${euiTheme.levels.toast};
       ${logicalCSS('max-width', '256px')}
       overflow-wrap: break-word;

@@ -15,4 +15,5 @@ export const severityColorsLightHighContrast = {
   warning: SEMANTIC_COLORS.warning80,
   risk: SEMANTIC_COLORS.risk70,
   danger: SEMANTIC_COLORS.danger70,
+  assistance: SEMANTIC_COLORS.assistance70,
 };
