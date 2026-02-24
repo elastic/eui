@@ -12,6 +12,7 @@
     "pre-push": "yarn --cwd packages/eui pre-push",
     "start": "printf $'\\x1b[K\\x1b[37;41mPlease run this script from the \\x1b[1;4mpackages/eui\\x1b[0m\\x1b[37;41m directory instead\\x1b[0m\\n'; exit 1",
     "build": "printf $'\\x1b[K\\x1b[37;41mPlease run this script from the \\x1b[1;4mpackages/eui\\x1b[0m\\x1b[37;41m directory instead\\x1b[0m\\n'; exit 1",
+    "watch": "node scripts/watch-eui.js",
     "release": "node scripts/release",
     "clean": "node scripts/clean.mjs"
   },
@@ -23,6 +24,8 @@
     "pre-push"
   ],
   "devDependencies": {
+    "chalk": "^4.1.0",
+    "chokidar": "^4.0.3",
     "pre-push": "^0.1.4",
     "rimraf": "^6.0.1"
   },
