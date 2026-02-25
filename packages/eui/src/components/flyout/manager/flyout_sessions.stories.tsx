@@ -94,6 +94,7 @@ const FlyoutSession: React.FC<FlyoutSessionProps> = (props) => {
   const [isChild2FlyoutVisible, setIsChild2FlyoutVisible] = useState(false);
 
   const currentSession = useCurrentSession();
+  const flyoutManager = useFlyoutManager();
 
   const [flyoutType, setFlyoutType] = useState<'overlay' | 'push'>('push');
   const [flyoutOwnFocus, setFlyoutOwnFocus] = useState(false);
@@ -114,6 +115,11 @@ const FlyoutSession: React.FC<FlyoutSessionProps> = (props) => {
   const handleOpenChild2 = () => {
     setIsChild2FlyoutVisible(true);
   };
+
+  /** Switch to Child 1 when it's already in the session (e.g. from Child 2's "Open previous" button). */
+  const handleGoToChild1 = useCallback(() => {
+    flyoutManager?.goToFlyout(childId1(title), 'child');
+  }, [flyoutManager, title]);
 
   const mainFlyoutOnActive = useCallback(() => {
     action('activate main flyout')(title);
@@ -312,7 +318,7 @@ const FlyoutSession: React.FC<FlyoutSessionProps> = (props) => {
                     ]}
                   />
                   <EuiSpacer size="m" />
-                  <EuiButton onClick={handleOpenChild1}>
+                  <EuiButton onClick={handleGoToChild1}>
                     Open previous (Child 1)
                   </EuiButton>
                 </EuiText>
