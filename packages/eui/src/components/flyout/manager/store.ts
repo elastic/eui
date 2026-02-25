@@ -51,6 +51,7 @@ export interface FlyoutManagerStore {
     title: string,
     level?: EuiFlyoutLevel,
     size?: string,
+    historyKey?: symbol,
     iconType?: IconType,
     minWidth?: number
   ) => void;
@@ -116,12 +117,21 @@ function createStore(
       currentSessionIndex >= 0
         ? currentState.sessions[currentSessionIndex]
         : null;
+
+    if (!currentSession) {
+      return [];
+    }
+
     const previousSessions = currentState.sessions.slice(
       0,
       currentSessionIndex
     );
+    // Only include sessions in the same history group (same historyKey reference)
+    const previousSessionsInGroup = previousSessions.filter(
+      (session) => session.historyKey === currentSession.historyKey
+    );
 
-    const childHistory = currentSession?.childHistory ?? [];
+    const childHistory = currentSession.childHistory ?? [];
     const childItems = [...childHistory].reverse().map((entry) => ({
       title: entry.title,
       iconType: entry.iconType,
@@ -130,14 +140,14 @@ function createStore(
       },
     }));
 
-    // Previous sessions: list each session's current child then its child history (so all travelled entries appear)
+    // Previous sessions (same group): list each session's current child then its child history
     const previousSessionItems: Array<{
       title: string;
       iconType?: IconType;
       onClick: () => void;
     }> = [];
-    for (let i = previousSessions.length - 1; i >= 0; i--) {
-      const session = previousSessions[i];
+    for (let i = previousSessionsInGroup.length - 1; i >= 0; i--) {
+      const session = previousSessionsInGroup[i];
       const mainTitle = session.title;
       const mainFlyoutId = session.mainFlyoutId;
       const history = session.childHistory ?? [];
@@ -215,9 +225,9 @@ function createStore(
     subscribe,
     dispatch,
     subscribeToEvents,
-    addFlyout: (flyoutId, title, level, size, iconType, minWidth) =>
+    addFlyout: (flyoutId, title, level, size, historyKey, iconType, minWidth) =>
       dispatch(
-        addFlyoutAction(flyoutId, title, level, size, iconType, minWidth)
+        addFlyoutAction(flyoutId, title, level, size, historyKey, iconType, minWidth)
       ),
     closeFlyout: (flyoutId) => dispatch(closeFlyoutAction(flyoutId)),
     closeAllFlyouts: () => dispatch(closeAllFlyoutsAction()),

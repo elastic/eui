@@ -722,6 +722,24 @@ describe('EuiFlyout', () => {
       const childFlyout = getByTestSubject('child-flyout');
       expect(childFlyout).not.toHaveAttribute('data-managed-flyout-level');
     });
+
+    it('accepts historyKey prop with session="start" and renders without error', () => {
+      const sharedKey = Symbol();
+      const { getByRole } = render(
+        <EuiFlyoutManager>
+          <EuiFlyout
+            session="start"
+            historyKey={sharedKey}
+            onClose={() => {}}
+            flyoutMenuProps={{ title: 'Main Flyout' }}
+            aria-label="Test flyout"
+          >
+            Content
+          </EuiFlyout>
+        </EuiFlyoutManager>
+      );
+      expect(getByRole('dialog', { name: 'Test flyout' })).toBeInTheDocument();
+    });
   });
 
   describe('ref forwarding', () => {
