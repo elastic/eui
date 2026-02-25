@@ -21,6 +21,7 @@ const meta: Meta<EuiCheckboxProps> = {
     checked: false,
     disabled: false,
     indeterminate: false,
+    readOnly: false,
     // set up for easier testing/QA
     id: '',
   },
