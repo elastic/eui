@@ -539,15 +539,16 @@ export const euiFormCustomControlStyles = (euiThemeContext: UseEuiTheme) => {
         /* For Windows high contrast themes, a border must always be rendered, not just a background */
         border: ${euiTheme.border.width.thin} solid transparent;
 
-        &:has(input:focus-visible) {
-          outline: ${euiTheme.focus.width} solid ${controlVars.colors.selected};
-          outline-offset: ${euiTheme.focus.width};
-        }
-
         ${euiCanAnimate} {
           transition-property: background-color, color;
           transition-duration: ${controlVars.animation.speed};
           transition-timing-function: ${controlVars.animation.easing};
+        }
+      `,
+      focusVisible: `
+        &:has(input:focus-visible) {
+          outline: ${euiTheme.focus.width} solid ${controlVars.colors.selected};
+          outline-offset: ${euiTheme.focus.width};
         }
       `,
       // TODO: Revert https://github.com/elastic/eui/pull/7981
