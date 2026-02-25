@@ -53,6 +53,7 @@ import {
  */
 export interface EuiManagedFlyoutProps extends EuiFlyoutComponentProps {
   level: EuiFlyoutLevel;
+  historyKey?: symbol;
   flyoutMenuProps?: Omit<EuiFlyoutMenuProps, 'historyItems' | 'showBackButton'>;
   onActive?: () => void;
 }
@@ -81,6 +82,7 @@ export const EuiManagedFlyout = forwardRef<HTMLElement, EuiManagedFlyoutProps>(
       level,
       size: sizeProp,
       minWidth,
+      historyKey,
       css: customCss,
       flyoutMenuProps: _flyoutMenuProps,
       ...props
@@ -211,6 +213,7 @@ export const EuiManagedFlyout = forwardRef<HTMLElement, EuiManagedFlyoutProps>(
         title!,
         level,
         size as string,
+        level === LEVEL_MAIN ? historyKey : undefined,
         _flyoutMenuProps?.iconType,
         typeof minWidth === 'number' ? minWidth : undefined
       );
@@ -231,6 +234,7 @@ export const EuiManagedFlyout = forwardRef<HTMLElement, EuiManagedFlyoutProps>(
       level,
       size,
       minWidth,
+      historyKey,
       _flyoutMenuProps?.iconType,
       addFlyout,
       closeFlyout,

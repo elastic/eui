@@ -180,6 +180,7 @@ describe('Flyout Manager Selectors', () => {
               title: 'Parent Flyout',
               zIndex: 0,
               childHistory: [],
+              historyKey: Symbol(),
             },
           ],
           flyouts: [
