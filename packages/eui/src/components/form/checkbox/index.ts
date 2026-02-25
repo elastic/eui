@@ -8,6 +8,8 @@
 
 export type { EuiCheckboxProps } from './checkbox';
 export { EuiCheckbox } from './checkbox';
+export type { EuiCheckboxControlProps } from './checkbox_control';
+export { EuiCheckboxControl } from './checkbox_control';
 export type {
   EuiCheckboxGroupProps,
   EuiCheckboxGroupOption,
