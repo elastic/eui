@@ -18,48 +18,79 @@ type MessageIds =
   | 'preferBackgroundColorSpecific'
   | 'preferBackgroundColorSpecificDeclaredVariable';
 
-const backgroundPropertyNames = ['background'];
+// Regex to find "background:" declarations in CSS strings.
+// Matches the standalone background property but not background-color, background-image, etc.
+// Note: intentionally not using the `g` flag to avoid stateful `lastIndex` issues with `.test()`.
+const cssBackgroundRegex = /\bbackground\s*:/i;
 
-const backgroundDeclarationRegex = RegExp(
-  String.raw`^(${backgroundPropertyNames.join('|')})$`
-);
-
-// Regex to find background declarations in CSS strings
-// Matches background property but not background-color, background-image, etc.
-const cssBackgroundRegex = /\bbackground\s*:/gi;
-
-const checkPropertyUsesBackground = (property: string) => {
+const checkPropertyUsesBackground = (property: string): boolean => {
   if (!property) return false;
-  const normalizedProperty = property.trim();
-  
-  // Check for exact 'background' match (camelCase or kebab-case)
-  return normalizedProperty === 'background';
+  return property.trim() === 'background';
 };
 
 const raiseReportIfPropertyUsesBackground = (
   context: RuleContext<MessageIds, []>,
   propertyNode: TSESTree.Property,
   messageToReport: ReportDescriptor<MessageIds>
-) => {
-  let didReport = false;
+): boolean => {
   const propertyName = getPropertyName(propertyNode);
 
   if (!propertyName || !checkPropertyUsesBackground(propertyName)) {
-    return didReport;
+    return false;
   }
 
-  // Report the usage of 'background' property
-  didReport = true;
   context.report({
     ...messageToReport,
     loc: propertyNode.loc,
   });
 
-  return didReport;
+  return true;
 };
 
 /**
- * @description Handle properties in an object expression
+ * @description Safely get a display name for a property node (for error messages).
+ * Uses type guards instead of type assertions.
+ */
+const getPropertyDisplayName = (
+  property: TSESTree.ObjectLiteralElement
+): string => {
+  if (property.type === 'Property') {
+    if (property.key.type === 'Identifier') {
+      return property.key.name;
+    }
+    if (property.key.type === 'Literal') {
+      return String(property.key.value);
+    }
+  } else if (
+    property.type === 'SpreadElement' &&
+    property.argument.type === 'Identifier'
+  ) {
+    return property.argument.name;
+  }
+  return 'unknown';
+};
+
+/**
+ * @description Safely resolve the initializer node from a variable declaration.
+ * Returns undefined if the definition is not a VariableDeclarator or has no init.
+ */
+const resolveVariableInit = (
+  resolved: { defs: Array<{ node: TSESTree.Node }> }
+): TSESTree.Expression | undefined => {
+  const firstDef = resolved.defs[0];
+  if (!firstDef) return undefined;
+
+  const defNode = firstDef.node;
+  if (defNode.type === 'VariableDeclarator' && defNode.init) {
+    return defNode.init;
+  }
+  return undefined;
+};
+
+/**
+ * @description Handle properties in an object expression.
+ * Inspects Property nodes for `background` usage and recursively
+ * resolves SpreadElement nodes when the argument is an Identifier.
  */
 const handleObjectProperties = (
   context: RuleContext<MessageIds, []>,
@@ -69,52 +100,82 @@ const handleObjectProperties = (
 ) => {
   if (property.type === 'Property') {
     raiseReportIfPropertyUsesBackground(context, property, reportMessage);
-  } else if (property.type === 'SpreadElement') {
-    const spreadElementIdentifierName = (
-      property.argument as TSESTree.Identifier
-    ).name;
+    return;
+  }
 
-    const spreadElementDeclaration = context.sourceCode
-      .getScope(
-        (propertyParentNode!.value as TSESTree.JSXExpressionContainer)
-          .expression!
-      )
-      .references.find(
-        (ref: { identifier: { name: string } }) =>
-          ref.identifier.name === spreadElementIdentifierName
-      )?.resolved;
+  if (property.type !== 'SpreadElement') return;
 
-    if (!spreadElementDeclaration) {
-      return;
-    }
+  // Only handle Identifier spread arguments (e.g., ...baseStyle).
+  // Skip MemberExpression (e.g., ...obj.nested) and CallExpression
+  // (e.g., ...getStyles()) since we can't statically resolve them.
+  if (property.argument.type !== 'Identifier') return;
 
-    reportMessage = {
-      loc: propertyParentNode.loc,
-      messageId: 'preferBackgroundColorSpecificDeclaredVariable',
-      data: {
-        // @ts-expect-error the key name is always present else this code will not execute
-        property: String(property.argument.name),
-        variableName: spreadElementIdentifierName,
-        line: String(property.loc.start.line),
-      },
-    };
+  const spreadIdentifierName = property.argument.name;
 
-    const spreadElementDeclarationNode =
-      'init' in spreadElementDeclaration.defs[0].node
-        ? spreadElementDeclaration.defs[0].node.init
-        : undefined;
+  // Safely access the parent's value expression
+  if (
+    !propertyParentNode.value ||
+    propertyParentNode.value.type !== 'JSXExpressionContainer' ||
+    propertyParentNode.value.expression.type === 'JSXEmptyExpression'
+  ) {
+    return;
+  }
 
-    // evaluate only statically defined declarations
-    if (spreadElementDeclarationNode?.type === 'ObjectExpression') {
-      (
-        spreadElementDeclarationNode as TSESTree.ObjectExpression
-      ).properties.forEach((spreadProperty) => {
-        handleObjectProperties(
-          context,
-          propertyParentNode,
-          spreadProperty,
-          reportMessage
-        );
+  const expression = propertyParentNode.value.expression;
+
+  const spreadDeclaration = context.sourceCode
+    .getScope(expression)
+    .references.find(
+      (ref) => ref.identifier.name === spreadIdentifierName
+    )?.resolved;
+
+  if (!spreadDeclaration) return;
+
+  const initNode = resolveVariableInit(spreadDeclaration);
+
+  if (!initNode || initNode.type !== 'ObjectExpression') return;
+
+  const updatedReportMessage: ReportDescriptor<MessageIds> = {
+    loc: propertyParentNode.loc,
+    messageId: 'preferBackgroundColorSpecificDeclaredVariable',
+    data: {
+      property: spreadIdentifierName,
+      variableName: spreadIdentifierName,
+      line: String(property.loc.start.line),
+    },
+  };
+
+  initNode.properties.forEach((spreadProperty) => {
+    handleObjectProperties(
+      context,
+      propertyParentNode,
+      spreadProperty,
+      updatedReportMessage
+    );
+  });
+};
+
+/**
+ * @description Check template literal quasis for `background:` property usage in CSS strings.
+ */
+const checkTemplateLiteralForBackground = (
+  context: RuleContext<MessageIds, []>,
+  quasis: TSESTree.TemplateElement[]
+) => {
+  for (const quasi of quasis) {
+    if (cssBackgroundRegex.test(quasi.value.raw)) {
+      const cssText = quasi.value.raw
+        .replace(/[\{\}\n\r]/g, ' ')
+        .trim();
+
+      cssText.split(';').forEach((declaration) => {
+        const [property] = declaration.split(':');
+        if (property && checkPropertyUsesBackground(property.trim())) {
+          context.report({
+            node: quasi,
+            messageId: 'preferBackgroundColor',
+          });
+        }
       });
     }
   }
@@ -123,112 +184,77 @@ const handleObjectProperties = (
 export const PreferBackgroundColor = ESLintUtils.RuleCreator.withoutDocs({
   create(context) {
     return {
-      // Handle template tagged CSS strings
+      // Handle tagged template CSS strings: css`background: red`
       TaggedTemplateExpression(node) {
+        if (node.tag.type !== 'Identifier' || node.tag.name !== 'css') {
+          return;
+        }
+        checkTemplateLiteralForBackground(context, node.quasi.quasis);
+      },
+
+      JSXAttribute(node: TSESTree.JSXAttribute) {
+        if (node.name.name !== 'style' && node.name.name !== 'css') {
+          return;
+        }
+
         if (
-          node.tag.type !== 'Identifier' ||
-          (node.tag.type === 'Identifier' && node.tag.name !== 'css')
+          !node.value ||
+          node.value.type !== 'JSXExpressionContainer' ||
+          node.value.expression.type === 'JSXEmptyExpression'
         ) {
           return;
         }
 
-        for (let i = 0; i < node.quasi.quasis.length; i++) {
-          const declarationTemplateNode = node.quasi.quasis[i];
-
-          if (cssBackgroundRegex.test(declarationTemplateNode.value.raw)) {
-            const cssText = declarationTemplateNode.value.raw
-              .replace(/[\{\}\n\r]/g, ' ')
-              .trim();
-
-            cssText.split(';').forEach((declaration) => {
-              const [property] = declaration.split(':');
-              if (
-                property &&
-                checkPropertyUsesBackground(property.trim())
-              ) {
-                context.report({
-                  node: declarationTemplateNode,
-                  messageId: 'preferBackgroundColor',
-                });
-              }
-            });
-          }
-        }
-      },
-      JSXAttribute(node: TSESTree.JSXAttribute) {
-        if (!(node.name.name === 'style' || node.name.name === 'css')) {
-          return;
-        }
+        const expression = node.value.expression;
 
         /**
-         * Handle style variables
+         * Handle variable references
          * @example
          * const codeStyle = { background: '#dd4040' };
          * <EuiCode style={codeStyle}>This is an example</EuiCode>
          */
-        if (
-          node.value?.type === 'JSXExpressionContainer' &&
-          node.value.expression.type === 'Identifier'
-        ) {
-          const styleVariableName = node.value.expression.name;
-          const nodeScope = context.sourceCode.getScope(node.value.expression);
+        if (expression.type === 'Identifier') {
+          const styleVariableName = expression.name;
+          const nodeScope = context.sourceCode.getScope(expression);
 
-          const variableDeclarationMatches = nodeScope.references.find(
+          const resolved = nodeScope.references.find(
             (ref) => ref.identifier.name === styleVariableName
           )?.resolved;
 
-          let variableInitializationNode;
+          if (!resolved) return;
 
-          if (
-            (variableInitializationNode =
-              variableDeclarationMatches?.defs?.[0]?.node &&
-              'init' in variableDeclarationMatches.defs[0].node &&
-              variableDeclarationMatches.defs[0].node.init)
-          ) {
-            if (variableInitializationNode.type === 'ObjectExpression') {
-              variableInitializationNode.properties.forEach((property) => {
-                handleObjectProperties(context, node, property, {
-                  loc: property.loc,
-                  messageId: 'preferBackgroundColorSpecificDeclaredVariable',
-                  data: {
-                    property:
-                      property.type === 'SpreadElement'
-                        ? String(
-                            (property.argument as TSESTree.Identifier).name
-                          )
-                        : String((property.key as TSESTree.Identifier).name),
-                    variableName: styleVariableName,
-                    line: String(property.loc.start.line),
-                  },
-                });
+          const initNode = resolveVariableInit(resolved);
+          if (!initNode) return;
+
+          if (initNode.type === 'ObjectExpression') {
+            initNode.properties.forEach((property) => {
+              handleObjectProperties(context, node, property, {
+                loc: property.loc,
+                messageId: 'preferBackgroundColorSpecificDeclaredVariable',
+                data: {
+                  property: getPropertyDisplayName(property),
+                  variableName: styleVariableName,
+                  line: String(property.loc.start.line),
+                },
               });
-            } else if (
-              variableInitializationNode.type === 'CallExpression' &&
-              (variableInitializationNode.callee as TSESTree.Identifier)
-                .name === 'css'
-            ) {
-              const cssFunctionArgument =
-                variableInitializationNode.arguments[0];
-
-              if (cssFunctionArgument.type === 'ObjectExpression') {
-                cssFunctionArgument.properties.forEach((property) => {
-                  handleObjectProperties(context, node, property, {
-                    loc: node.loc,
-                    messageId: 'preferBackgroundColorSpecificDeclaredVariable',
-                    data: {
-                      property:
-                        property.type === 'SpreadElement'
-                          ? String(
-                              (property.argument as TSESTree.Identifier).name
-                            )
-                          : String((property.key as TSESTree.Identifier).name),
-                      variableName: styleVariableName,
-                      line: String(property.loc.start.line),
-                    },
-                  });
-                });
-              }
-            }
+            });
+          } else if (
+            initNode.type === 'CallExpression' &&
+            initNode.callee.type === 'Identifier' &&
+            initNode.callee.name === 'css' &&
+            initNode.arguments[0]?.type === 'ObjectExpression'
+          ) {
+            initNode.arguments[0].properties.forEach((property) => {
+              handleObjectProperties(context, node, property, {
+                loc: node.loc,
+                messageId: 'preferBackgroundColorSpecificDeclaredVariable',
+                data: {
+                  property: getPropertyDisplayName(property),
+                  variableName: styleVariableName,
+                  line: String(property.loc.start.line),
+                },
+              });
+            });
           }
 
           return;
@@ -239,23 +265,13 @@ export const PreferBackgroundColor = ESLintUtils.RuleCreator.withoutDocs({
          * @example
          * <EuiCode style={{ background: '#dd4040' }}>This is an example</EuiCode>
          */
-        if (
-          node.value?.type === 'JSXExpressionContainer' &&
-          node.value.expression.type === 'ObjectExpression'
-        ) {
-          const declarationPropertiesNode = node.value.expression.properties;
-
-          declarationPropertiesNode?.forEach((property) => {
+        if (expression.type === 'ObjectExpression') {
+          expression.properties.forEach((property) => {
             handleObjectProperties(context, node, property, {
               loc: property.loc,
               messageId: 'preferBackgroundColorSpecific',
               data: {
-                property:
-                  property.type === 'SpreadElement'
-                    ? // @ts-expect-error the key name is always present else this code will not execute
-                      String(property.argument.name)
-                    : // @ts-expect-error the key name is always present else this code will not execute
-                      String(property.key.name),
+                property: getPropertyDisplayName(property),
               },
             });
           });
@@ -263,92 +279,68 @@ export const PreferBackgroundColor = ESLintUtils.RuleCreator.withoutDocs({
           return;
         }
 
+        // Remaining handlers are specific to css prop only
+        if (node.name.name !== 'css') return;
+
+        /**
+         * Handle CSS template literals
+         * @example
+         * <EuiCode css={`background: #dd4040`}>This is an example</EuiCode>
+         */
+        if (expression.type === 'TemplateLiteral') {
+          checkTemplateLiteralForBackground(context, expression.quasis);
+        }
+
+        /**
+         * Handle CSS functions
+         * @example
+         * <EuiCode css={() => ({ background: '#dd4040' })}>This is an example</EuiCode>
+         */
         if (
-          node.name.name === 'css' &&
-          node.value?.type === 'JSXExpressionContainer'
+          expression.type === 'ArrowFunctionExpression' ||
+          expression.type === 'FunctionExpression'
         ) {
-          /**
-           * Handle CSS template literals
-           * @example
-           * <EuiCode css={`background: #dd4040`}>This is an example</EuiCode>
-           */
-          if (node.value.expression.type === 'TemplateLiteral') {
-            for (let i = 0; i < node.value.expression.quasis.length; i++) {
-              const declarationTemplateNode = node.value.expression.quasis[i];
+          let properties: TSESTree.Property[] = [];
 
-              if (cssBackgroundRegex.test(declarationTemplateNode.value.raw)) {
-                const cssText = declarationTemplateNode.value.raw
-                  .replace(/(\{|\}|\\n)/g, '')
-                  .trim();
-
-                cssText.split(';').forEach((declaration) => {
-                  const [property] = declaration.split(':');
-                  if (
-                    property &&
-                    checkPropertyUsesBackground(property.trim())
-                  ) {
-                    context.report({
-                      node: declarationTemplateNode,
-                      messageId: 'preferBackgroundColor',
-                    });
-                  }
-                });
-              }
-            }
+          // Arrow function with expression body: () => ({ ... })
+          if (expression.body.type === 'ObjectExpression') {
+            properties = expression.body.properties.filter(
+              (p): p is TSESTree.Property => p.type === 'Property'
+            );
           }
 
-          /**
-           * Handle CSS functions
-           * @example
-           * <EuiCode css={() => ({ background: '#dd4040' })}>This is an example</EuiCode>
-           */
-          if (
-            node.value.expression.type === 'FunctionExpression' ||
-            node.value.expression.type === 'ArrowFunctionExpression'
-          ) {
-            let declarationPropertiesNode: TSESTree.Property[] = [];
+          // Function with block body: () => { return { ... } }
+          if (expression.body.type === 'BlockStatement') {
+            const returnStatement = expression.body.body.find(
+              (stmt): stmt is TSESTree.ReturnStatement =>
+                stmt.type === 'ReturnStatement'
+            );
 
-            if (node.value.expression.body.type === 'ObjectExpression') {
-              declarationPropertiesNode = node.value.expression.body
-                .properties as TSESTree.Property[];
-            }
-
-            if (node.value.expression.body.type === 'BlockStatement') {
-              const functionReturnStatementNode =
-                node.value.expression.body.body?.find((_node) => {
-                  return _node.type === 'ReturnStatement';
-                });
-
-              if (!functionReturnStatementNode) {
-                return;
-              }
-
-              declarationPropertiesNode = (
-                (functionReturnStatementNode as TSESTree.ReturnStatement)
-                  .argument as TSESTree.ObjectExpression
-              )?.properties.filter(
-                (property): property is TSESTree.Property =>
-                  property.type === 'Property'
-              );
-            }
-
-            if (!declarationPropertiesNode.length) {
+            // Guard against empty returns (return;) or non-object returns
+            if (
+              !returnStatement ||
+              !returnStatement.argument ||
+              returnStatement.argument.type !== 'ObjectExpression'
+            ) {
               return;
             }
 
-            declarationPropertiesNode.forEach((property) => {
-              handleObjectProperties(context, node, property, {
-                loc: property.loc,
-                messageId: 'preferBackgroundColorSpecific',
-                data: {
-                  // @ts-expect-error the key name is always present else this code will not execute
-                  property: property.key.name,
-                },
-              });
-            });
-
-            return;
+            properties = returnStatement.argument.properties.filter(
+              (p): p is TSESTree.Property => p.type === 'Property'
+            );
           }
+
+          if (properties.length === 0) return;
+
+          properties.forEach((property) => {
+            handleObjectProperties(context, node, property, {
+              loc: property.loc,
+              messageId: 'preferBackgroundColorSpecific',
+              data: {
+                property: getPropertyDisplayName(property),
+              },
+            });
+          });
         }
       },
     };

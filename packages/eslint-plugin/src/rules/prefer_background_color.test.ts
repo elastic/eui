@@ -24,7 +24,7 @@ const ruleTester = new RuleTester();
 ruleTester.run('prefer-background-color', PreferBackgroundColor, {
   valid: [
     {
-      // Valid: Using background-color instead of background
+      // Valid: Using background-color instead of background (style prop)
       filename: 'test.tsx',
       code: dedent`
         import React from 'react';
@@ -38,7 +38,7 @@ ruleTester.run('prefer-background-color', PreferBackgroundColor, {
       languageOptions,
     },
     {
-      // Valid: Using background-color in kebab-case
+      // Valid: Using background-color in kebab-case (tagged template)
       filename: 'test.tsx',
       code: dedent`
         import React from 'react';
@@ -54,7 +54,7 @@ ruleTester.run('prefer-background-color', PreferBackgroundColor, {
       languageOptions,
     },
     {
-      // Valid: Using backgroundColor in object style
+      // Valid: Using backgroundColor in object style variable
       filename: 'test.tsx',
       code: dedent`
         import React from 'react';
@@ -87,6 +87,73 @@ ruleTester.run('prefer-background-color', PreferBackgroundColor, {
         function TestComponent() {
           return (
             <div style={{ backgroundSize: 'cover' }}>test</div>
+          )
+        }`,
+      languageOptions,
+    },
+    {
+      // Valid: Arrow function with empty return (should not crash)
+      filename: 'test.tsx',
+      code: dedent`
+        import React from 'react';
+
+        function TestComponent() {
+          return (
+            <div css={() => {
+              return;
+            }}>test</div>
+          )
+        }`,
+      languageOptions,
+    },
+    {
+      // Valid: Arrow function returning undefined (should not crash)
+      filename: 'test.tsx',
+      code: dedent`
+        import React from 'react';
+
+        function TestComponent() {
+          return (
+            <div css={() => {
+              return undefined;
+            }}>test</div>
+          )
+        }`,
+      languageOptions,
+    },
+    {
+      // Valid: Spread from nested object via MemberExpression (graceful skip)
+      filename: 'test.tsx',
+      code: dedent`
+        import React from 'react';
+
+        function TestComponent() {
+          const obj = { nested: { background: 'red' } };
+          return <div style={{...obj.nested}}>test</div>
+        }`,
+      languageOptions,
+    },
+    {
+      // Valid: Spread from function call (graceful skip)
+      filename: 'test.tsx',
+      code: dedent`
+        import React from 'react';
+
+        function TestComponent() {
+          const getStyles = () => ({ background: 'red' });
+          return <div style={{...getStyles()}}>test</div>
+        }`,
+      languageOptions,
+    },
+    {
+      // Valid: Using backgroundColor in css prop
+      filename: 'test.tsx',
+      code: dedent`
+        import React from 'react';
+
+        function TestComponent() {
+          return (
+            <div css={{ backgroundColor: 'red' }}>test</div>
           )
         }`,
       languageOptions,
@@ -139,7 +206,7 @@ ruleTester.run('prefer-background-color', PreferBackgroundColor, {
       errors: [{ messageId: 'preferBackgroundColorSpecificDeclaredVariable' }],
     },
     {
-      // Invalid: Using background in css prop with function
+      // Invalid: Using background in css prop with arrow function (expression body)
       filename: 'test.tsx',
       code: dedent`
         import React from 'react';
@@ -194,6 +261,63 @@ ruleTester.run('prefer-background-color', PreferBackgroundColor, {
         }`,
       languageOptions,
       errors: [{ messageId: 'preferBackgroundColorSpecificDeclaredVariable' }],
+    },
+    {
+      // Invalid: Using background among multiple properties in inline style
+      filename: 'test.tsx',
+      code: dedent`
+        import React from 'react';
+
+        function TestComponent() {
+          return (
+            <div style={{ color: 'blue', padding: 10, background: 'red' }}>test</div>
+          )
+        }`,
+      languageOptions,
+      errors: [{ messageId: 'preferBackgroundColorSpecific' }],
+    },
+    {
+      // Invalid: Using background among multiple properties in css prop
+      filename: 'test.tsx',
+      code: dedent`
+        import React from 'react';
+
+        function TestComponent() {
+          return (
+            <div css={{ color: 'blue', padding: 10, background: 'red' }}>test</div>
+          )
+        }`,
+      languageOptions,
+      errors: [{ messageId: 'preferBackgroundColorSpecific' }],
+    },
+    {
+      // Invalid: Using background in css prop variable (object expression)
+      filename: 'test.tsx',
+      code: dedent`
+        import React from 'react';
+
+        function TestComponent() {
+          const myStyles = { background: 'blue' };
+          return <div css={myStyles}>test</div>
+        }`,
+      languageOptions,
+      errors: [{ messageId: 'preferBackgroundColorSpecificDeclaredVariable' }],
+    },
+    {
+      // Invalid: Using background in css template literal (JSX attribute)
+      filename: 'test.tsx',
+      code: dedent`
+        import React from 'react';
+
+        function TestComponent() {
+          return (
+            <div css={\`
+              background: #dd4040;
+            \`}>test</div>
+          )
+        }`,
+      languageOptions,
+      errors: [{ messageId: 'preferBackgroundColor' }],
     },
   ],
 });
