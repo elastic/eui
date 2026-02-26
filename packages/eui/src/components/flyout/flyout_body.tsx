@@ -38,6 +38,12 @@ export type EuiFlyoutBodyProps = FunctionComponent<
        * Use to access the flyout's internal scrollable container.
        */
       scrollContainerRef?: Ref<HTMLDivElement>;
+      /**
+       * Allows the flyout body content to fill the full height of the body container.
+       * This is useful when rendering height-dependent content such as `EuiSelectable`
+       * with `height="full"` inside the flyout body.
+       */
+      fullHeight?: boolean;
     }
 >;
 
@@ -47,6 +53,7 @@ export const EuiFlyoutBody: EuiFlyoutBodyProps = ({
   banner,
   scrollableTabIndex = 0,
   scrollContainerRef,
+  fullHeight = false,
   ...rest
 }) => {
   const classes = classNames('euiFlyoutBody', className);
@@ -55,6 +62,9 @@ export const EuiFlyoutBody: EuiFlyoutBodyProps = ({
   const overflowCssStyles = [
     styles.overflow.euiFlyoutBody__overflow,
     banner ? styles.overflow.hasBanner : styles.overflow.noBanner,
+  ];
+  const overflowContentCssStyles = [
+    fullHeight && styles.euiFlyoutBody__overflowContent_fullHeight,
   ];
 
   return (
@@ -74,7 +84,12 @@ export const EuiFlyoutBody: EuiFlyoutBodyProps = ({
             {banner}
           </div>
         )}
-        <div className="euiFlyoutBody__overflowContent">{children}</div>
+        <div
+          className="euiFlyoutBody__overflowContent"
+          css={overflowContentCssStyles}
+        >
+          {children}
+        </div>
       </div>
     </div>
   );

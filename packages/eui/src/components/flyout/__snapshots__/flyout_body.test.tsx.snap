@@ -1,5 +1,21 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`EuiFlyoutBody fullHeight 1`] = `
+<div
+  class="euiFlyoutBody emotion-euiFlyoutBody"
+>
+  <div
+    class="euiFlyoutBody__overflow emotion-euiFlyoutBody__overflow-noBanner"
+    data-test-subj="euiFlyoutBodyOverflow"
+    tabindex="0"
+  >
+    <div
+      class="euiFlyoutBody__overflowContent emotion-euiFlyoutBody__overflowContent_fullHeight"
+    />
+  </div>
+</div>
+`;
+
 exports[`EuiFlyoutBody is rendered 1`] = `
 <div
   aria-label="aria-label"
@@ -12,7 +28,7 @@ exports[`EuiFlyoutBody is rendered 1`] = `
     tabindex="0"
   >
     <div
-      class="euiFlyoutBody__overflowContent"
+      class="euiFlyoutBody__overflowContent emotion-EuiFlyoutBody"
     />
   </div>
 </div>
