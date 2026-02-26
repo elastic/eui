@@ -355,6 +355,49 @@ export const EuiFlyoutComponent = forwardRef(
     const _siblingFlyoutWidth = useFlyoutWidth(siblingFlyoutId);
     const siblingFlyoutWidth =
       layoutMode === LAYOUT_MODE_STACKED ? 0 : _siblingFlyoutWidth;
+    const shouldApplyPadding = !isInManagedContext || isActiveManagedFlyout;
+
+    // The setGlobalCSSVariables() call has to happen in useEffect
+    // and not useLayoutEffect due to an unexpected behavior when executed
+    // during the same React commit.
+    // As far as I can tell this is only happening in Kibana distribution builds
+    // and may be related to Emotion's implementation or configuration.
+    // See https://github.com/elastic/eui/issues/9389
+    useEffect(() => {
+      if (!isPushed) {
+        return; // Only push-type flyouts manage body padding
+      }
+
+      const cssVarName = `--euiPushFlyoutOffset${
+        side === 'left' ? 'InlineStart' : 'InlineEnd'
+      }`;
+
+      const paddingWidth =
+        layoutMode === LAYOUT_MODE_STACKED &&
+        isMainFlyout &&
+        _siblingFlyoutWidth
+          ? _siblingFlyoutWidth
+          : width;
+
+      setGlobalCSSVariables({
+        [cssVarName]: shouldApplyPadding ? `${paddingWidth}px` : null,
+      });
+
+      return () => {
+        setGlobalCSSVariables({
+          [cssVarName]: null,
+        });
+      };
+    }, [
+      shouldApplyPadding,
+      _siblingFlyoutWidth,
+      isMainFlyout,
+      isPushed,
+      layoutMode,
+      setGlobalCSSVariables,
+      side,
+      width,
+    ]);
 
     /**
      * Effect for adding push padding to body. Using useLayoutEffect to ensure
@@ -367,13 +410,8 @@ export const EuiFlyoutComponent = forwardRef(
         return; // Only push-type flyouts manage body padding
       }
 
-      const shouldApplyPadding = !isInManagedContext || isActiveManagedFlyout;
-
       const paddingSide =
         side === 'left' ? 'paddingInlineStart' : 'paddingInlineEnd';
-      const cssVarName = `--euiPushFlyoutOffset${
-        side === 'left' ? 'InlineStart' : 'InlineEnd'
-      }`;
       const managerSide = side === 'left' ? 'left' : 'right';
 
       const paddingWidth =
@@ -385,9 +423,6 @@ export const EuiFlyoutComponent = forwardRef(
 
       if (shouldApplyPadding) {
         document.body.style[paddingSide] = `${paddingWidth}px`;
-        setGlobalCSSVariables({
-          [cssVarName]: `${paddingWidth}px`,
-        });
         // Update manager state if in managed context
         if (isInManagedContext && flyoutManagerRef.current) {
           flyoutManagerRef.current.setPushPadding(managerSide, paddingWidth);
@@ -395,9 +430,6 @@ export const EuiFlyoutComponent = forwardRef(
       } else {
         // Explicitly remove padding when this push flyout becomes inactive
         document.body.style[paddingSide] = '';
-        setGlobalCSSVariables({
-          [cssVarName]: null,
-        });
         // Clear manager state if in managed context
         if (isInManagedContext && flyoutManagerRef.current) {
           flyoutManagerRef.current.setPushPadding(managerSide, 0);
@@ -407,9 +439,6 @@ export const EuiFlyoutComponent = forwardRef(
       // Cleanup on unmount
       return () => {
         document.body.style[paddingSide] = '';
-        setGlobalCSSVariables({
-          [cssVarName]: null,
-        });
         // Clear manager state on unmount if in managed context
         if (isInManagedContext && flyoutManagerRef.current) {
           flyoutManagerRef.current.setPushPadding(managerSide, 0);
@@ -418,13 +447,12 @@ export const EuiFlyoutComponent = forwardRef(
     }, [
       isPushed,
       isInManagedContext,
-      isActiveManagedFlyout,
-      setGlobalCSSVariables,
       side,
       width,
       layoutMode,
       isMainFlyout,
       _siblingFlyoutWidth,
+      shouldApplyPadding,
     ]);
 
     /**
