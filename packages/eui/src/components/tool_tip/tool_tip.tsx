@@ -37,12 +37,13 @@ import { toolTipManager } from './tool_tip_manager';
 export const POSITIONS = ['top', 'right', 'bottom', 'left'] as const;
 const DISPLAYS = ['inlineBlock', 'block'] as const;
 
-export type ToolTipDelay = 'regular' | 'long';
+export type ToolTipDelay = 'regular' | 'long' | 'none';
 export const DEFAULT_TOOLTIP_OFFSET = 16;
 
 const delayToMsMap: { [key in ToolTipDelay]: number } = {
   regular: 250,
   long: 250 * 5,
+  none: 0,
 };
 
 interface ToolTipStyles {
@@ -361,7 +362,9 @@ export class EuiToolTip extends Component<EuiToolTipProps, State> {
     const anchorClasses = classNames(anchorClassName, anchorProps?.className);
     const popoverStyles = {
       ...toolTipStyles,
-      '--euiToolTipAnimationDelay': `${delayToMsMap[delay] ?? 0}ms`,
+      '--euiToolTipAnimationDelay': `${
+        delayToMsMap[delay] ?? delayToMsMap.none
+      }ms`,
     } as CSSProperties;
 
     return (
