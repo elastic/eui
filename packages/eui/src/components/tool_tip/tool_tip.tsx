@@ -13,6 +13,7 @@ import React, {
   ReactNode,
   MouseEvent as ReactMouseEvent,
   HTMLAttributes,
+  CSSProperties,
 } from 'react';
 import classNames from 'classnames';
 
@@ -23,10 +24,10 @@ import {
   type CreateRepositionOnScrollReturnType,
 } from '../../services/popover/reposition_on_scroll';
 import { type EuiPopoverPosition } from '../../services/popover';
-import { enqueueStateChange } from '../../services/react';
 import { EuiResizeObserver } from '../observer/resize_observer';
 import { EuiPortal } from '../portal';
 import { EuiComponentDefaultsContext } from '../provider/component_defaults';
+import { enqueueStateChange } from '../../services/react';
 
 import { EuiToolTipPopover, ToolTipPositions } from './tool_tip_popover';
 import { EuiToolTipAnchor } from './tool_tip_anchor';
@@ -149,10 +150,9 @@ export class EuiToolTip extends Component<EuiToolTipProps, State> {
   declare context: ContextType<typeof EuiComponentDefaultsContext>;
   private repositionOnScroll: CreateRepositionOnScrollReturnType;
 
-  _isMounted = false;
+  private _isMounted = false;
   anchor: null | HTMLElement = null;
   popover: null | HTMLElement = null;
-  private timeoutId?: ReturnType<typeof setTimeout>;
 
   constructor(props: EuiToolTipProps) {
     super(props);
@@ -179,19 +179,12 @@ export class EuiToolTip extends Component<EuiToolTipProps, State> {
     disableScreenReaderOutput: false,
   };
 
-  clearAnimationTimeout = () => {
-    if (this.timeoutId) {
-      this.timeoutId = clearTimeout(this.timeoutId) as undefined;
-    }
-  };
-
   componentDidMount() {
     this._isMounted = true;
     this.repositionOnScroll.subscribe();
   }
 
   componentWillUnmount() {
-    this.clearAnimationTimeout();
     this._isMounted = false;
     this.repositionOnScroll.cleanup();
   }
@@ -206,6 +199,9 @@ export class EuiToolTip extends Component<EuiToolTipProps, State> {
   }
 
   testAnchor = () => {
+    if (!this._isMounted) {
+      return;
+    }
     // when the tooltip is visible, this checks if the anchor is still part of document
     // this fixes when the react root is removed from the dom without unmounting
     // https://github.com/elastic/eui/issues/1105
@@ -225,14 +221,14 @@ export class EuiToolTip extends Component<EuiToolTipProps, State> {
   setPopoverRef = (ref: HTMLElement) => (this.popover = ref);
 
   showToolTip = () => {
-    if (!this.timeoutId) {
-      this.timeoutId = setTimeout(() => {
-        enqueueStateChange(() => {
-          this.setState({ visible: true });
-          toolTipManager.registerTooltip(this.hideToolTip);
-        });
-      }, delayToMsMap[this.props.delay]);
+    if (this.state.visible || !this._isMounted) {
+      return;
     }
+
+    enqueueStateChange(() => {
+      this.setState({ visible: true });
+      toolTipManager.registerTooltip(this.hideToolTip);
+    });
   };
 
   positionToolTip = () => {
@@ -281,17 +277,16 @@ export class EuiToolTip extends Component<EuiToolTipProps, State> {
   };
 
   hideToolTip = () => {
-    this.clearAnimationTimeout();
-    enqueueStateChange(() => {
-      if (this._isMounted) {
+    if (this.state.visible && this._isMounted) {
+      enqueueStateChange(() => {
         this.setState({
           visible: false,
           toolTipStyles: DEFAULT_TOOLTIP_STYLES,
           arrowStyles: undefined,
         });
         toolTipManager.deregisterToolTip(this.hideToolTip);
-      }
-    });
+      });
+    }
   };
 
   onFocus = () => {
@@ -357,6 +352,10 @@ export class EuiToolTip extends Component<EuiToolTipProps, State> {
 
     const classes = classNames('euiToolTip', className);
     const anchorClasses = classNames(anchorClassName, anchorProps?.className);
+    const popoverStyles = {
+      ...toolTipStyles,
+      '--euiToolTipAnimationDelay': `${delayToMsMap[delay]}ms`,
+    } as CSSProperties;
 
     return (
       <>
@@ -380,7 +379,7 @@ export class EuiToolTip extends Component<EuiToolTipProps, State> {
           <EuiPortal>
             <EuiToolTipPopover
               className={classes}
-              style={toolTipStyles}
+              style={popoverStyles}
               positionToolTip={this.positionToolTip}
               popoverRef={this.setPopoverRef}
               title={title}
