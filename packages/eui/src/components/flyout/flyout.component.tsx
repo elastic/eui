@@ -46,6 +46,7 @@ import {
   useHasPushPadding,
 } from './manager';
 import {
+  LAYOUT_MODE_SIDE_BY_SIDE,
   LAYOUT_MODE_STACKED,
   LEVEL_MAIN,
   PROPERTY_LEVEL,
@@ -538,6 +539,14 @@ export const EuiFlyoutComponent = forwardRef(
     const flyoutToggle = useRef<Element | null>(document.activeElement);
     const [focusTrapShards, setFocusTrapShards] = useState<HTMLElement[]>([]);
 
+    const isSideBySideChild =
+      isChildFlyout && layoutMode === LAYOUT_MODE_SIDE_BY_SIDE;
+    // Side-by-side: main + child form a single modal unit; only main has aria-modal
+    // to avoid competing dialog semantics. Stacked children are independent modals.
+    const announcesAsModal = useMemo(() => {
+      return !isPushed && !isSideBySideChild;
+    }, [isPushed, isSideBySideChild]);
+
     const focusTrapSelectors = useMemo(() => {
       let selectors: string[] = [];
 
@@ -551,8 +560,9 @@ export const EuiFlyoutComponent = forwardRef(
         selectors.push('.euiHeader[data-fixed-header]');
       }
 
-      // Includes parent flyout in child focus trap shards
-      if (isChildFlyout) {
+      // Include parent in focus trap shards for side-by-side mode (unified navigation).
+      // In stacked mode, parent is hidden behind child so shouldn't be navigable.
+      if (isSideBySideChild) {
         selectors.push(`[${PROPERTY_LEVEL}="${LEVEL_MAIN}"]`);
       }
 
@@ -560,7 +570,7 @@ export const EuiFlyoutComponent = forwardRef(
     }, [
       includeSelectorInFocusTrap,
       includeFixedHeadersInFocusTrap,
-      isChildFlyout,
+      isSideBySideChild,
     ]);
 
     /**
@@ -737,8 +747,8 @@ export const EuiFlyoutComponent = forwardRef(
             ref={setRef}
             id={id}
             {...(rest as ComponentPropsWithRef<T>)}
-            role={!isPushed ? 'dialog' : rest.role}
-            aria-modal={!isPushed || undefined}
+            role={announcesAsModal ? 'dialog' : rest.role}
+            aria-modal={announcesAsModal ? true : undefined}
             tabIndex={!isPushed ? 0 : rest.tabIndex}
             aria-describedby={!isPushed ? ariaDescribedBy : _ariaDescribedBy}
             aria-labelledby={ariaLabelledBy}

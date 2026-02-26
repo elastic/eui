@@ -796,7 +796,7 @@ describe('EuiFlyout', () => {
       render(<TestComponent />);
 
       expect(childRef.current).toBeInstanceOf(HTMLElement);
-      expect(childRef.current).toHaveAttribute('role', 'dialog');
+      expect(childRef.current).not.toHaveAttribute('role', 'dialog');
       expect(childRef.current).toHaveAttribute('aria-label', 'Child flyout');
     });
 
@@ -810,6 +810,53 @@ describe('EuiFlyout', () => {
 
       expect(ref.current).toBeInstanceOf(HTMLElement);
       expect(ref.current).toHaveAttribute('role', 'dialog');
+    });
+  });
+
+  describe('child flyout aria-modal behavior', () => {
+    it('assigns role="dialog" and aria-modal to main flyout when no child is open', () => {
+      const { getByTestSubject } = render(
+        <EuiFlyoutManager>
+          <EuiFlyout
+            session="start"
+            onClose={() => {}}
+            data-test-subj="parent-flyout"
+          />
+        </EuiFlyoutManager>
+      );
+
+      const parentFlyout = getByTestSubject('parent-flyout');
+      expect(parentFlyout).toHaveAttribute('role', 'dialog');
+      expect(parentFlyout).toHaveAttribute('aria-modal', 'true');
+    });
+
+    it('assigns role="dialog" and aria-modal to main flyout only when child is open', () => {
+      const { getByTestSubject } = render(
+        <EuiFlyoutManager>
+          <EuiFlyout
+            session="start"
+            onClose={() => {}}
+            data-test-subj="parent-flyout"
+          >
+            <EuiFlyout
+              session="inherit"
+              onClose={() => {}}
+              data-test-subj="child-flyout"
+            />
+          </EuiFlyout>
+        </EuiFlyoutManager>
+      );
+
+      const parentFlyout = getByTestSubject('parent-flyout');
+      const childFlyout = getByTestSubject('child-flyout');
+
+      // Main keeps dialog semantics
+      expect(parentFlyout).toHaveAttribute('role', 'dialog');
+      expect(parentFlyout).toHaveAttribute('aria-modal', 'true');
+
+      // Child defers to main (side-by-side mode is default)
+      expect(childFlyout).not.toHaveAttribute('role', 'dialog');
+      expect(childFlyout).not.toHaveAttribute('aria-modal');
     });
   });
 });
