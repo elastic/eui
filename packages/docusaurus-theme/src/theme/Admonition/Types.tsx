@@ -32,7 +32,7 @@ const VARIANT_TO_PROPS_MAP: Record<
   tip: { iconType: 'faceHappy', color: 'success' },
   info: { iconType: 'info', color: 'primary' },
   accessibility: { iconType: 'accessibility', color: 'primary' },
-  warning: { iconType: 'alert', color: 'warning' },
+  warning: { iconType: 'warning', color: 'warning' },
   danger: { iconType: 'error', color: 'danger' },
   // Undocumented legacy admonition type aliases
   secondary: {},
