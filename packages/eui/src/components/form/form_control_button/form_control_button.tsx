@@ -6,7 +6,12 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, isValidElement, ReactNode } from 'react';
+import React, {
+  FunctionComponent,
+  isValidElement,
+  ReactNode,
+  useContext,
+} from 'react';
 
 import classNames from 'classnames';
 import { useEuiMemoizedStyles } from '../../../services';
@@ -18,6 +23,7 @@ import {
   EuiButtonEmptyPropsForAnchor,
   EuiButtonEmptyPropsForButton,
 } from '../../button/button_empty/button_empty';
+import { EuiFormControlLayoutContext } from '../form_control_layout/form_control_layout_context';
 
 export type EuiFormControlButtonInputProps = {
   /**
@@ -42,7 +48,7 @@ export type EuiFormControlButtonInputProps = {
 export type EuiFormControlButtonProps = EuiFormControlButtonInputProps &
   Omit<
     EuiButtonEmptyProps,
-    'value' | 'color' | 'size' | 'flush' | 'isSelected' | 'isLoading'
+    'value' | 'color' | 'size' | 'flush' | 'isSelected'
   > & {
     /**
      * Defines the button label when used like an input in combination with `placeholder`
@@ -59,14 +65,30 @@ export const EuiFormControlButton: FunctionComponent<
   className,
   contentProps: _contentProps,
   textProps: _textProps,
-  compressed,
-  isInvalid = false,
+  compressed: _compressed,
+  isDisabled: _isDisabled,
+  isInvalid: _isInvalid,
   fullWidth = true,
+  iconSide,
+  isLoading: _isLoading,
   href,
   rel, // required by our local href-with-rel eslint rule
   ...rest
 }) => {
   const [buttonTextRef, innerText] = useInnerText();
+
+  const {
+    isDisabled: formLayoutIsDisabled,
+    isInvalid: formLayoutIsInvalid,
+    isLoading: formLayoutIsLoading,
+    readOnly: formLayoutReadOnly,
+    compressed: formLayoutCompressed,
+  } = useContext(EuiFormControlLayoutContext);
+
+  const isDisabled = _isDisabled ?? formLayoutIsDisabled;
+  const isInvalid = _isInvalid ?? formLayoutIsInvalid;
+  const isLoading = formLayoutIsLoading === true ? false : _isLoading;
+  const compressed = _compressed ?? formLayoutCompressed;
 
   const styles = useEuiMemoizedStyles(euiFormControlButtonStyles);
   const classes = classNames('euiFormControlButton', className);
@@ -74,6 +96,8 @@ export const EuiFormControlButton: FunctionComponent<
   const cssStyles = [
     styles.euiFormControlButton,
     isInvalid && styles.isInvalid,
+    isLoading && styles.isLoading,
+    formLayoutReadOnly && styles.readOnly,
     compressed && styles.compressed,
     fullWidth ? styles.fullWidth : styles.formWidth,
   ];
@@ -125,6 +149,9 @@ export const EuiFormControlButton: FunctionComponent<
       contentProps={contentProps}
       textProps={false}
       color="text"
+      isDisabled={isDisabled}
+      isLoading={isLoading}
+      iconSide={isLoading ? 'right' : iconSide}
       {...restProps}
     >
       {hasText && (

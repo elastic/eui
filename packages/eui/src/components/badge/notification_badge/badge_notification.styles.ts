@@ -44,6 +44,8 @@ export const euiNotificationBadgeStyles = (euiThemeContext: UseEuiTheme) => {
       })}
       cursor: default;
 
+      /* prevent potential unwanted overrides from parent elements */
+      -webkit-text-fill-color: currentColor;
       font-size: ${euiFontSizeFromScale('xs', euiTheme)};
       font-weight: ${euiTheme.font.weight.medium};
       ${euiNumberFormat(euiThemeContext)}

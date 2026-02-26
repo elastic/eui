@@ -84,7 +84,7 @@ const euiHeaderDarkStyles = (euiThemeContext: UseEuiTheme) => {
     .euiHeaderLogo__text,
     .euiHeaderLink,
     .euiHeaderSectionItemButton {
-      color: ${euiTheme.colors.ghost};
+      color: ${euiTheme.colors.textGhost};
     }
 
     .euiHeaderLink-isActive {

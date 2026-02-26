@@ -49,7 +49,7 @@ export const euiSaturationStyles = (euiThemeContext: UseEuiTheme) => {
               border-color: ${euiTheme.colors.primary};
             `,
             preferred: `
-              outline: ${euiTheme.border.width.thin} solid ${euiTheme.colors.ink};
+              outline: ${euiTheme.border.width.thin} solid ${euiTheme.colors.plainDark};
               outline-offset: 0;
             `,
           })}
@@ -118,8 +118,8 @@ export const euiSaturationStyles = (euiThemeContext: UseEuiTheme) => {
           }
         `,
         preferred: `
-          border: ${euiTheme.border.width.thick} solid ${euiTheme.colors.ink};
-          background-color: ${euiTheme.colors.ghost};
+          border: ${euiTheme.border.width.thick} solid ${euiTheme.colors.plainDark};
+          background-color: ${euiTheme.colors.plainLight};
         `,
       })}
     `,

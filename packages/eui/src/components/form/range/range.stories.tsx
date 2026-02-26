@@ -17,6 +17,7 @@ import {
 import { EuiIcon } from '../../icon';
 import { _SingleRangeChangeEvent, EuiRangeProps } from './types';
 import { EuiRange } from './range';
+import { EuiFormAppend, EuiFormPrepend } from '../form_control_layout';
 
 const meta: Meta<EuiRangeProps> = {
   title: 'Forms/EuiRange',
@@ -26,7 +27,7 @@ const meta: Meta<EuiRangeProps> = {
       control: 'radio',
       options: [undefined, 'icon', 'text'],
       mapping: {
-        icon: <EuiIcon type="faceHappy" />,
+        icon: <EuiFormAppend iconLeft="faceHappy" />,
         text: 'Appended',
         undefined: undefined,
       },
@@ -35,7 +36,7 @@ const meta: Meta<EuiRangeProps> = {
       control: 'radio',
       options: [undefined, 'icon', 'text'],
       mapping: {
-        icon: <EuiIcon type="faceHappy" />,
+        icon: <EuiFormPrepend iconLeft="faceHappy" />,
         text: 'Prepended',
         undefined: undefined,
       },

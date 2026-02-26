@@ -7,22 +7,30 @@
  */
 
 import { LEVEL_MAIN } from '../const';
+import { FlyoutManagerApi } from '../types';
 
 /**
  * Centralized test utilities for flyout manager tests.
  */
 
 export const mockCloseFlyout = jest.fn();
+export const mockCloseAllFlyouts = jest.fn();
 
-export const createMockFunctions = () => ({
+export const createMockFunctions = (): Omit<
+  FlyoutManagerApi,
+  'state' | 'historyItems'
+> => ({
   dispatch: jest.fn(),
   addFlyout: jest.fn(),
   closeFlyout: mockCloseFlyout,
+  closeAllFlyouts: mockCloseAllFlyouts,
   setActiveFlyout: jest.fn(),
   setFlyoutWidth: jest.fn(),
   goBack: jest.fn(),
   goToFlyout: jest.fn(),
-  getHistoryItems: jest.fn(() => []),
+  addUnmanagedFlyout: jest.fn(),
+  closeUnmanagedFlyout: jest.fn(),
+  setPushPadding: jest.fn(),
 });
 
 export const createMockState = () => ({
@@ -36,6 +44,7 @@ export const createMockState = () => ({
  */
 export const createFlyoutManagerMock = () => ({
   state: createMockState(),
+  historyItems: [],
   ...createMockFunctions(),
 });
 

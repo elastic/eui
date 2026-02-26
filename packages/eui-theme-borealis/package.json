@@ -1,6 +1,6 @@
 {
   "name": "@elastic/eui-theme-borealis",
-  "version": "5.4.0",
+  "version": "6.1.0",
   "description": "A visual theme for EUI",
   "license": "SEE LICENSE IN LICENSE.txt",
   "scripts": {
@@ -11,6 +11,7 @@
     "build:compile:cjs": "NODE_ENV=production NO_COREJS_POLYFILL=true babel src --out-dir=lib/cjs --extensions .js,.ts,.tsx",
     "build:types": "NODE_ENV=production tsc --project tsconfig.types.json",
     "build-pack": "yarn build && npm pack",
+    "watch": "node ../../scripts/watch-eui.js --package @elastic/eui-theme-borealis",
     "copy-files": "node ./scripts/copy-json-files.js",
     "lint": "yarn run lint-ts && yarn run lint-es && yarn run lint-sass",
     "lint-ts": "tsc --noEmit",

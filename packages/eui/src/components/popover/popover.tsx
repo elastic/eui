@@ -18,7 +18,7 @@ import React, {
   ContextType,
 } from 'react';
 import classNames from 'classnames';
-import { focusable } from 'tabbable';
+import { focusable, type FocusableElement } from 'tabbable';
 
 import { CommonProps, NoArgCallback } from '../common';
 import { FocusTarget, EuiFocusTrap, EuiFocusTrapProps } from '../focus_trap';
@@ -177,7 +177,7 @@ export interface EuiPopoverProps extends PropsWithChildren, CommonProps {
    * however, the popover will attempt to reposition itself along the secondary
    * cross axis if there is room there instead.
    *
-   * If you do not not want this repositioning to occur (and it is acceptable for
+   * If you do not want this repositioning to occur (and it is acceptable for
    * the popover to appear offscreen), set this to false to disable this behavior.
    *
    * @default true
@@ -339,7 +339,9 @@ export class EuiPopover extends Component<Props, State> {
   private closingTransitionAnimationFrame: number | undefined;
   private button: HTMLElement | null = null;
   private panel: HTMLElement | null = null;
-  private descriptionId: string = htmlIdGenerator()();
+  private idGenerator = htmlIdGenerator('euiPopover');
+  private panelId: string = this.idGenerator('panelId');
+  private descriptionId: string = this.idGenerator('descriptionId');
 
   constructor(props: Props) {
     super(props);
@@ -380,6 +382,20 @@ export class EuiPopover extends Component<Props, State> {
     }
   };
 
+  getFocusableToggleButton = () => {
+    if (this.button) {
+      try {
+        const focusableItems = focusable(this.button);
+        if (focusableItems.length) {
+          return focusableItems[0];
+        }
+      } catch {
+        // tabbable's focusable() can throw in environments that don't
+        // fully support CSS selector parsing (e.g. jsdom with :has())
+      }
+    }
+  };
+
   handleStrandedFocus = () => {
     this.strandedFocusTimeout = window.setTimeout(() => {
       // If `returnFocus` failed and focus was stranded,
@@ -390,13 +406,11 @@ export class EuiPopover extends Component<Props, State> {
         document.activeElement === document.body ||
         this.panel?.contains(document.activeElement) // if focus is on OR within this.panel
       ) {
-        if (!this.button) return;
+        const toggleButton = this.getFocusableToggleButton();
 
-        const focusableItems = focusable(this.button);
-        if (!focusableItems.length) return;
-
-        const toggleButton = focusableItems[0];
-        toggleButton.focus(returnFocusConfig);
+        if (toggleButton) {
+          toggleButton.focus(returnFocusConfig);
+        }
       }
     }, closingTransitionTime);
   };
@@ -457,6 +471,31 @@ export class EuiPopover extends Component<Props, State> {
     }, durationMatch + delayMatch);
   };
 
+  /**
+   * Updates ARIA attributes on the popover trigger button
+   * Only applies ARIA when the trigger is button-like (semantic <button> or role="button").
+   * Avoids adding incorrect ARIA on inputs or other non-button elements.
+   */
+  private updateTriggerButtonAriaAttributes = (
+    toggleButton: FocusableElement | undefined,
+    isOpen: boolean
+  ) => {
+    if (!toggleButton) return;
+
+    const tag = toggleButton.tagName?.toLowerCase();
+    const role = toggleButton.getAttribute('role')?.toLowerCase();
+    const isButtonLike = tag === 'button' || role === 'button';
+    if (!isButtonLike) return;
+
+    toggleButton.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+
+    if (isOpen) {
+      toggleButton.setAttribute('aria-controls', this.panelId);
+    } else {
+      toggleButton.removeAttribute('aria-controls');
+    }
+  };
+
   componentDidMount() {
     if (this.state.suppressingPopover) {
       // component was created with isOpen=true; now that it's mounted
@@ -466,6 +505,11 @@ export class EuiPopover extends Component<Props, State> {
       });
     }
 
+    this.updateTriggerButtonAriaAttributes(
+      this.getFocusableToggleButton(),
+      this.props.isOpen ?? false
+    );
+
     this.repositionOnScroll.subscribe();
   }
 
@@ -473,6 +517,14 @@ export class EuiPopover extends Component<Props, State> {
     // The popover is being opened.
     if (!prevProps.isOpen && this.props.isOpen) {
       this.onOpenPopover();
+    }
+
+    // Update ARIA attributes on the toggle when open state changes
+    if (prevProps.isOpen !== this.props.isOpen) {
+      this.updateTriggerButtonAriaAttributes(
+        this.getFocusableToggleButton(),
+        this.props.isOpen ?? false
+      );
     }
 
     // ensure recalculation of panel position on prop updates
@@ -734,6 +786,7 @@ export class EuiPopover extends Component<Props, State> {
             {...focusTrapProps}
           >
             <EuiPopoverPanel
+              id={this.panelId}
               {...(panelProps as EuiPopoverPanelProps)}
               panelRef={this.panelRef}
               isOpen={this.state.isOpening}

@@ -10,7 +10,6 @@ import { UseEuiTheme } from '../../../services';
 import {
   euiFontSize,
   logicalCSS,
-  logicalShorthandCSS,
   logicalTextAlignCSS,
 } from '../../../global_styling';
 import { euiButtonSizeMap } from '../../../global_styling/mixins';
@@ -37,8 +36,10 @@ export const euiButtonDisplayStyles = (euiThemeContext: UseEuiTheme) => {
 
   const _buttonSize = (sizeKey: EuiButtonDisplaySizes) => {
     const size = sizes[sizeKey];
+
     return css`
       ${logicalCSS('height', size.height)}
+      ${logicalCSS('padding-horizontal', size.padding)}
       line-height: ${size.height}; /* Prevents descenders from getting cut off */
       ${euiFontSize(euiThemeContext, size.fontScale)}
       border-radius: ${size.radius};
@@ -50,7 +51,6 @@ export const euiButtonDisplayStyles = (euiThemeContext: UseEuiTheme) => {
     euiButtonDisplay: css`
       ${euiButtonBaseCSS()}
       font-weight: ${euiTheme.font.weight.medium};
-      ${logicalShorthandCSS('padding', `0 ${euiTheme.size.m}`)}
     `,
     // States
     isDisabled: css`

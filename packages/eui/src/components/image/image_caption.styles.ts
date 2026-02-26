@@ -20,12 +20,12 @@ export const euiImageCaptionStyles = (euiThemeContext: UseEuiTheme) => {
       ${logicalCSS('margin-top', euiTheme.size.xs)}
     `,
     isOnOverlayMask: css`
-      color: ${euiTheme.colors.ghost};
-      text-shadow: 0 1px 2px ${transparentize(euiTheme.colors.ink, 0.6)};
+      color: ${euiTheme.colors.textGhost};
+      text-shadow: 0 1px 2px ${transparentize(euiTheme.colors.plainDark, 0.6)};
 
       [class*='euiLink'] {
         /* Override link color for visibility */
-        color: ${euiTheme.colors.ghost};
+        color: ${euiTheme.colors.textGhost};
       }
     `,
   };

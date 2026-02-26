@@ -7,6 +7,8 @@ exports[`ColumnActions renders 1`] = `
       class="euiPopover euiPopover-isOpen emotion-euiPopover-block-euiDataGridHeaderCell__popover"
     >
       <button
+        aria-controls="euiPopover_generated-id_panelId"
+        aria-expanded="true"
         aria-label="Press the Enter key to view this column's actions"
         class="euiButtonIcon euiDataGridHeaderCell__button emotion-euiButtonIcon-xs-empty-text-action-end-ColumnActions"
         data-test-subj="dataGridHeaderCellActionButton-someColumn"
@@ -33,20 +35,21 @@ exports[`ColumnActions renders 1`] = `
       data-focus-lock-disabled="false"
     >
       <div
-        aria-describedby="generated-id"
+        aria-describedby="euiPopover_generated-id_descriptionId"
         aria-live="off"
         aria-modal="true"
         class="euiPanel euiPanel--plain euiPopover__panel emotion-euiPanel-grow-m-plain-euiPopover__panel-light-isOpen-hasTransform-bottom"
         data-autofocus="true"
         data-popover-open="true"
         data-popover-panel="true"
+        id="euiPopover_generated-id_panelId"
         role="dialog"
         style="top: 15px; left: 0px; z-index: 2000;"
         tabindex="0"
       >
         <p
           class="emotion-euiScreenReaderOnly"
-          id="generated-id"
+          id="euiPopover_generated-id_descriptionId"
         >
           You are in a dialog. Press Escape, or tap/click outside the dialog to close.
           To navigate through the list of column actions, press the Tab or Up and Down arrow keys.

@@ -37,6 +37,7 @@ exports[`EuiInMemoryTable behavior mobile header 1`] = `
       class="euiPopover emotion-euiPopover-inline-block"
     >
       <button
+        aria-expanded="false"
         class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-primary-flush-right"
         type="button"
       >
@@ -44,7 +45,7 @@ exports[`EuiInMemoryTable behavior mobile header 1`] = `
           class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
         >
           <span
-            class="eui-textTruncate euiButtonEmpty__text"
+            class="eui-textTruncate euiButtonEmpty__text css-1shwb46-xs"
           >
             Sorting
           </span>
@@ -106,7 +107,7 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
           class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
         >
           <span
-            class="eui-textTruncate euiButtonEmpty__text"
+            class="eui-textTruncate euiButtonEmpty__text css-1ryezsz-s"
           >
             1
           </span>
@@ -129,7 +130,7 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
           class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
         >
           <span
-            class="eui-textTruncate euiButtonEmpty__text"
+            class="eui-textTruncate euiButtonEmpty__text css-1ryezsz-s"
           >
             2
           </span>

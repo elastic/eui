@@ -9,7 +9,7 @@ $euiButtonTypes: (
   success: $euiColorSuccess,
   warning: $euiColorWarning,
   danger: $euiColorDanger,
-  ghost: $euiColorGhost, // Ghost is special, and does not care about theming.
+  ghost: $euiColorPlainLight, // Ghost is color-mode-invariant
   text: $euiColorDarkShade, // Reserved for special use cases
 ) !default;
 

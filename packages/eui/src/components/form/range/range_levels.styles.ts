@@ -18,7 +18,9 @@ export const euiRangeLevelsStyles = (euiThemeContext: UseEuiTheme) => {
   const range = euiRangeVariables(euiThemeContext);
 
   const isColorDark = colorMode === 'DARK';
-  const stripeColor = isColorDark ? euiTheme.colors.ink : euiTheme.colors.ghost;
+  const stripeColor = isColorDark
+    ? euiTheme.colors.plainDark
+    : euiTheme.colors.plainLight;
   const stripesBackground = `repeating-linear-gradient(
     -45deg,
     ${transparentize(stripeColor, 0.5)},
