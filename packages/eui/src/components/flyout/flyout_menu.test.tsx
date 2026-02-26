@@ -197,7 +197,11 @@ describe('EuiFlyoutMenu', () => {
 
     it('renders history items with iconType as list group item icons', async () => {
       const itemsWithIcon = [
-        { title: 'With icon', iconType: 'faceHappy' as const, onClick: jest.fn() },
+        {
+          title: 'With icon',
+          iconType: 'faceHappy' as const,
+          onClick: jest.fn(),
+        },
         { title: 'Without icon', onClick: jest.fn() },
       ];
       const { container } = renderWithContext(

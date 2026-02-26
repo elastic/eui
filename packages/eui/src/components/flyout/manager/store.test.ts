@@ -112,7 +112,13 @@ describe('Flyout Manager Store', () => {
     it('should include iconType in history items when sessions were added with iconType', () => {
       const store = getFlyoutManagerStore();
 
-      store.addFlyout('flyout-1', 'First Flyout', LEVEL_MAIN, undefined, 'faceHappy');
+      store.addFlyout(
+        'flyout-1',
+        'First Flyout',
+        LEVEL_MAIN,
+        undefined,
+        'faceHappy'
+      );
       store.addFlyout('flyout-2', 'Second Flyout', LEVEL_MAIN);
 
       const historyItems = store.historyItems;
