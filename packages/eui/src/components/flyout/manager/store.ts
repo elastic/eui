@@ -104,7 +104,9 @@ function createStore(
   // eslint-disable-next-line prefer-const -- Forward declaration requires 'let' not 'const'
   let store: FlyoutManagerStore;
 
-  const computeHistoryItems = (): Array<{
+  const computeHistoryItems = (
+    dispatchFn: (action: Action) => void
+  ): Array<{
     title: string;
     iconType?: IconType;
     onClick: () => void;
@@ -124,7 +126,7 @@ function createStore(
       title: entry.title,
       iconType: entry.iconType,
       onClick: () => {
-        store.dispatch(goToFlyoutAction(entry.flyoutId, 'child'));
+        dispatchFn(goToFlyoutAction(entry.flyoutId, 'child'));
       },
     }));
 
@@ -148,7 +150,7 @@ function createStore(
           title: session.childTitle,
           iconType: session.childIconType,
           onClick: () => {
-            store.dispatch(goToFlyoutAction(mainFlyoutId, 'main'));
+            dispatchFn(goToFlyoutAction(mainFlyoutId, 'main'));
           },
         });
       }
@@ -158,8 +160,8 @@ function createStore(
           title: entry.title,
           iconType: entry.iconType,
           onClick: () => {
-            store.dispatch(goToFlyoutAction(mainFlyoutId, 'main'));
-            store.dispatch(goToFlyoutAction(entry.flyoutId, 'child'));
+            dispatchFn(goToFlyoutAction(mainFlyoutId, 'main'));
+            dispatchFn(goToFlyoutAction(entry.flyoutId, 'child'));
           },
         });
       }
@@ -168,7 +170,7 @@ function createStore(
           title: mainTitle,
           iconType: session.iconType,
           onClick: () => {
-            store.dispatch(goToFlyoutAction(mainFlyoutId, 'main'));
+            dispatchFn(goToFlyoutAction(mainFlyoutId, 'main'));
           },
         });
       }
@@ -186,7 +188,7 @@ function createStore(
       // Recompute history items eagerly if sessions changed
       // This ensures stable references and avoids stale closures
       if (nextState.sessions !== previousSessions) {
-        store.historyItems = computeHistoryItems();
+        store.historyItems = computeHistoryItems(dispatch);
 
         // Detect removed sessions and emit CLOSE_SESSION events
         const nextSessionIds = new Set(
@@ -233,7 +235,7 @@ function createStore(
       dispatch(addUnmanagedFlyoutAction(flyoutId)),
     closeUnmanagedFlyout: (flyoutId) =>
       dispatch(closeUnmanagedFlyoutAction(flyoutId)),
-    historyItems: computeHistoryItems(), // Initialize with current state
+    historyItems: computeHistoryItems(dispatch), // Initialize with current state
   };
 
   return store;
