@@ -17,7 +17,7 @@ describe('getIconAffordanceStyles', () => {
     isDropdown: false,
   };
   const allIcons = {
-    icon: { type: 'search', side: 'right' as const },
+    icon: { type: 'magnify', side: 'right' as const },
     clear: true,
     isLoading: true,
     isInvalid: true,
