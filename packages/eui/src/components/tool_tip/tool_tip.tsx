@@ -221,11 +221,14 @@ export class EuiToolTip extends Component<EuiToolTipProps, State> {
   setPopoverRef = (ref: HTMLElement) => (this.popover = ref);
 
   showToolTip = () => {
-    if (this.state.visible || !this._isMounted) {
+    if (this.state.visible) {
       return;
     }
 
     enqueueStateChange(() => {
+      if (!this._isMounted) {
+        return;
+      }
       this.setState({ visible: true });
       toolTipManager.registerTooltip(this.hideToolTip);
     });
@@ -235,7 +238,7 @@ export class EuiToolTip extends Component<EuiToolTipProps, State> {
     const requestedPosition = this.props.position;
     const offset = this.props.offset ?? DEFAULT_TOOLTIP_OFFSET;
 
-    if (!this.anchor || !this.popover) {
+    if (!this.anchor || !this.popover || !this._isMounted) {
       return;
     }
 
@@ -277,16 +280,20 @@ export class EuiToolTip extends Component<EuiToolTipProps, State> {
   };
 
   hideToolTip = () => {
-    if (this.state.visible && this._isMounted) {
-      enqueueStateChange(() => {
-        this.setState({
-          visible: false,
-          toolTipStyles: DEFAULT_TOOLTIP_STYLES,
-          arrowStyles: undefined,
-        });
-        toolTipManager.deregisterToolTip(this.hideToolTip);
-      });
+    if (!this.state.visible) {
+      return;
     }
+    enqueueStateChange(() => {
+      if (!this._isMounted) {
+        return;
+      }
+      this.setState({
+        visible: false,
+        toolTipStyles: DEFAULT_TOOLTIP_STYLES,
+        arrowStyles: undefined,
+      });
+      toolTipManager.deregisterToolTip(this.hideToolTip);
+    });
   };
 
   onFocus = () => {
