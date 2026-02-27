@@ -15,19 +15,34 @@ import { CommonProps } from '../../common';
 import type { EuiTableProps } from '../table';
 import { useIsEuiTableResponsive } from './responsive_context';
 import { euiTableHeaderMobileStyles } from './table_header_mobile.styles';
+import { useComponentDefaults } from '../../provider/component_defaults';
 
 export const EuiTableHeaderMobile: FunctionComponent<
   CommonProps &
     HTMLAttributes<HTMLDivElement> &
     Pick<EuiTableProps, 'responsiveBreakpoint'>
-> = ({ children, className, responsiveBreakpoint, ...rest }) => {
+> = ({
+  children,
+  className,
+  responsiveBreakpoint: responsiveBreakpointProp,
+  ...rest
+}) => {
+  const responsiveBreakpointDefault =
+    useComponentDefaults().EuiTable?.responsiveBreakpoint;
+  const responsiveBreakpoint =
+    responsiveBreakpointProp || responsiveBreakpointDefault;
   const isResponsive = useIsEuiTableResponsive(responsiveBreakpoint);
+
   const styles = useEuiMemoizedStyles(euiTableHeaderMobileStyles);
   const classes = classNames('euiTableHeaderMobile', className);
 
-  return isResponsive ? (
+  if (!isResponsive) {
+    return null;
+  }
+
+  return (
     <div className={classes} css={styles.euiTableHeaderMobile} {...rest}>
       {children}
     </div>
-  ) : null;
+  );
 };

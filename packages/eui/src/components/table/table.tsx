@@ -18,6 +18,7 @@ import {
 } from './mobile/responsive_context';
 import { EuiTableVariantContext } from './table_context';
 import { euiTableStyles } from './table.styles';
+import { usePropsWithComponentDefaults } from '../provider/component_defaults';
 
 export interface EuiTableProps
   extends CommonProps,
@@ -65,16 +66,17 @@ export interface EuiTableProps
  *
  * @see {@link https://eui.elastic.co/docs/components/tables/custom/|EuiTable documentation}
  */
-export const EuiTable: FunctionComponent<EuiTableProps> = ({
-  children,
-  className,
-  compressed,
-  tableLayout = 'fixed',
-  hasBackground = true,
-  responsiveBreakpoint, // Default handled by `useIsEuiTableResponsive`
-  scrollable = false,
-  ...rest
-}) => {
+export const EuiTable: FunctionComponent<EuiTableProps> = (originalProps) => {
+  const {
+    children,
+    className,
+    compressed,
+    tableLayout = 'fixed',
+    hasBackground = true,
+    responsiveBreakpoint,
+    scrollable = false,
+    ...rest
+  } = usePropsWithComponentDefaults('EuiTable', originalProps);
   const isResponsive = useIsEuiTableResponsive(responsiveBreakpoint);
 
   const classes = classNames('euiTable', className);
