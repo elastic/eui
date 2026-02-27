@@ -12,7 +12,6 @@ import { UseEuiTheme } from '../../services';
 import {
   euiFontSize,
   euiNumberFormat,
-  logicalCSS,
   mathWithUnits,
 } from '../../global_styling';
 
@@ -53,9 +52,13 @@ export const euiTableStyles = (euiThemeContext: UseEuiTheme) => {
   return {
     euiTable: css`
       ${euiNumberFormat(euiThemeContext)}
-      ${logicalCSS('width', '100%')}
+      inline-size: 100%;
       border: none;
       border-collapse: collapse;
+    `,
+    euiTableScrollable: css`
+      inline-size: auto;
+      min-inline-size: 100%;
     `,
     layout: {
       fixed: css`
@@ -104,6 +107,9 @@ export const euiTableStyles = (euiThemeContext: UseEuiTheme) => {
       tfoot {
         display: none; /* Not supporting responsive footer content */
       }
+    `,
+    scrollableWrapper: css`
+      overflow-inline: auto;
     `,
   };
 };

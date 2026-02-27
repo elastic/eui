@@ -43,6 +43,16 @@ export interface EuiTableProps
    * @default true
    */
   hasBackground?: boolean;
+  /**
+   * Allow the table to grow over 100% of the container width
+   * and enable horizontal scrolling on overflow.
+   *
+   * This should only be used with [`tableLayout`]{@link EuiTableProps#tableLayout}
+   * set to `auto`.
+   * @beta
+   * @default false
+   */
+  scrollable?: boolean;
 }
 
 export const EuiTable: FunctionComponent<EuiTableProps> = ({
@@ -52,6 +62,7 @@ export const EuiTable: FunctionComponent<EuiTableProps> = ({
   tableLayout = 'fixed',
   hasBackground = true,
   responsiveBreakpoint, // Default handled by `useIsEuiTableResponsive`
+  scrollable = false,
   ...rest
 }) => {
   const isResponsive = useIsEuiTableResponsive(responsiveBreakpoint);
@@ -59,8 +70,9 @@ export const EuiTable: FunctionComponent<EuiTableProps> = ({
   const classes = classNames('euiTable', className);
 
   const styles = useEuiMemoizedStyles(euiTableStyles);
-  const cssStyles = [
+  const tableStyles = [
     styles.euiTable,
+    scrollable && styles.euiTableScrollable,
     styles.layout[tableLayout],
     (!compressed || isResponsive) && styles.uncompressed,
     compressed && !isResponsive && styles.compressed,
@@ -69,12 +81,14 @@ export const EuiTable: FunctionComponent<EuiTableProps> = ({
   ];
 
   return (
-    <table tabIndex={-1} css={cssStyles} className={classes} {...rest}>
-      <EuiTableIsResponsiveContext.Provider value={isResponsive}>
-        <EuiTableVariantContext.Provider value={{ hasBackground }}>
-          {children}
-        </EuiTableVariantContext.Provider>
-      </EuiTableIsResponsiveContext.Provider>
-    </table>
+    <div css={scrollable && styles.scrollableWrapper}>
+      <table tabIndex={-1} css={tableStyles} className={classes} {...rest}>
+        <EuiTableIsResponsiveContext.Provider value={isResponsive}>
+          <EuiTableVariantContext.Provider value={{ hasBackground }}>
+            {children}
+          </EuiTableVariantContext.Provider>
+        </EuiTableIsResponsiveContext.Provider>
+      </table>
+    </div>
   );
 };
