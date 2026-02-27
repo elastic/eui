@@ -45,7 +45,7 @@ export type EuiComponentDefaults = {
    *
    * Defaults will be inherited by all `EuiBasicTable`s and `EuiInMemoryTable`s.
    */
-  EuiTable?: Pick<EuiTableProps, 'responsiveBreakpoint'>;
+  EuiTable?: Pick<EuiTableProps, 'responsiveBreakpoint' | 'scrollable'>;
 
   /**
    * Provide a global configuration for `EuiFlyout`s.
