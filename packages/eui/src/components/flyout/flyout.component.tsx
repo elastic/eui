@@ -639,8 +639,8 @@ export const EuiFlyoutComponent = forwardRef(
               />
             ) : (
               <EuiI18n
-                token="euiFlyout.screenReaderNonModalDialog"
-                default="You are in a non-modal dialog. To close the dialog, press Escape."
+                token="euiFlyout.screenReaderNoOverlayMaskDialog"
+                default="You are in a modal dialog. To close the dialog, press Escape."
               />
             )}{' '}
             {focusTrapShards.length > 0 && (

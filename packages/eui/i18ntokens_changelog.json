@@ -1,5 +1,43 @@
 [
   {
+    "version": "113.1.0",
+    "changes": [
+      {
+        "token": "euiFlyout.screenReaderNonModalDialog",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiFlyoutBody.scrollableRegionAriaLabel",
+        "changeType": "added",
+        "value": "Flyout body"
+      },
+      {
+        "token": "euiFlyout.screenReaderNoOverlayMaskDialog",
+        "changeType": "added",
+        "value": "You are in a modal dialog. To close the dialog, press Escape."
+      }
+    ]
+  },
+  {
+    "version": "113.1.0",
+    "changes": [
+      {
+        "token": "euiFlyout.screenReaderNonModalDialog",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiFlyoutBody.scrollableRegionAriaLabel",
+        "changeType": "added",
+        "value": "Flyout body"
+      },
+      {
+        "token": "euiFlyout.screenReaderNoOverlayMaskDialog",
+        "changeType": "added",
+        "value": "You are in a modal dialog. To close the dialog, press Escape."
+      }
+    ]
+  },
+  {
     "version": "112.0.0",
     "changes": [
       {
