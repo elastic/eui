@@ -10,7 +10,7 @@
 // remark-parse v8 doesn't implement the CommonMark rule that underscore
 // emphasis delimiters flanked by alphanumerics on both sides (intraword)
 // cannot open or close emphasis. This causes identifiers like
-// `SBQQ__OrderProductBookings__c` to render with bold formatting.
+// `ABCD__PineappleCherry__e` to render with bold formatting.
 // This plugin walks the parsed AST and reverses incorrectly applied
 // emphasis/strong nodes when both sides are alphanumeric characters.
 
