@@ -42,19 +42,19 @@ describe('EuiTable', () => {
   describe('responsive/mobile context', () => {
     it('renders responsive styles if below the default m breakpoint', () => {
       window.innerWidth = 767;
-      const { container } = render(<EuiTable />);
+      const { getByRole } = render(<EuiTable />);
 
-      expect(container.firstElementChild!.className).toContain('-mobile');
+      expect(getByRole('table').className).toContain('-mobile');
     });
 
     it('allows customizing responsiveBreakpoint', () => {
-      const { container } = render(<EuiTable responsiveBreakpoint="xl" />);
+      const { getByRole } = render(<EuiTable responsiveBreakpoint="xl" />);
 
-      expect(container.firstElementChild!.className).toContain('-mobile');
+      expect(getByRole('table').className).toContain('-mobile');
     });
 
     it('allows customizing responsiveBreakpoint via EuiProvider.componentDefaults', () => {
-      const { container } = render(
+      const { getByRole } = render(
         <EuiProvider
           componentDefaults={{
             EuiTable: { responsiveBreakpoint: 'xl' },
@@ -65,21 +65,21 @@ describe('EuiTable', () => {
         { wrapper: undefined }
       );
 
-      expect(container.firstElementChild!.className).toContain('-mobile');
+      expect(getByRole('table').className).toContain('-mobile');
     });
   });
 
   it('always renders responsive tables styles if set to `true`', () => {
     window.innerWidth = 2000;
-    const { container } = render(<EuiTable responsiveBreakpoint={true} />);
+    const { getByRole } = render(<EuiTable responsiveBreakpoint={true} />);
 
-    expect(container.firstElementChild!.className).toContain('-mobile');
+    expect(getByRole('table').className).toContain('-mobile');
   });
 
   it('never renders responsive tables if set to `false`', () => {
     window.innerWidth = 320;
-    const { container } = render(<EuiTable responsiveBreakpoint={false} />);
+    const { getByRole } = render(<EuiTable responsiveBreakpoint={false} />);
 
-    expect(container.firstElementChild!.className).toContain('-desktop');
+    expect(getByRole('table').className).toContain('-desktop');
   });
 });
