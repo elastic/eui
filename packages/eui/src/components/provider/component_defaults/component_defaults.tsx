@@ -41,11 +41,14 @@ export type EuiComponentDefaults = {
     'itemsPerPage' | 'itemsPerPageOptions' | 'showPerPageOptions'
   >;
   /**
-   * Provide a global configuration for EuiTable's `responsiveBreakpoint` prop. Defaults to `'s'`.
+   * Provide a global configuration for EuiTable's.
    *
    * Defaults will be inherited by all `EuiBasicTable`s and `EuiInMemoryTable`s.
    */
-  EuiTable?: Pick<EuiTableProps, 'responsiveBreakpoint' | 'scrollable'>;
+  EuiTable?: Pick<
+    EuiTableProps,
+    'responsiveBreakpoint' | 'scrollable' | 'tableLayout'
+  >;
 
   /**
    * Provide a global configuration for `EuiFlyout`s.
