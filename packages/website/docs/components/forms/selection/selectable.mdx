@@ -73,7 +73,6 @@ export default () => {
     <EuiSelectable
       aria-label="Basic example"
       options={options}
-      listProps={{ bordered: true }}
       onChange={(newOptions) => setOptions(newOptions)}
     >
       {(list) => list}
@@ -221,7 +220,6 @@ export default () => {
         options={options}
         onChange={(newOptions) => setOptions(newOptions)}
         singleSelection={always ? 'always' : true}
-        listProps={{ bordered: true }}
       >
         {(list) => list}
       </EuiSelectable>
@@ -888,7 +886,7 @@ export default () => {
     <EuiSelectable
       aria-label="Example with option tooltips"
       options={options}
-      listProps={{ bordered: true, style: { maxInlineSize: 400 } }}
+      listProps={{ style: { maxInlineSize: 400 } }}
       onChange={(newOptions) => setOptions(newOptions)}
     >
       {(list) => list}
