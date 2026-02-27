@@ -10,19 +10,19 @@ import { css } from '@emotion/react';
 // .euiSelectableList__list requires a static vanilla className
 // as it's passed down to react-window's virtualization library
 import { css as classNameCss } from '@emotion/css';
+import { mathWithUnits } from '@elastic/eui-theme-common';
 
 import { UseEuiTheme } from '../../../services';
-import {
-  euiFocusRing,
-  euiYScrollWithShadows,
-  logicalCSS,
-} from '../../../global_styling';
+import { euiFocusRing, euiYScroll, logicalCSS } from '../../../global_styling';
 import { euiTitle } from '../../title/title.styles';
 import { euiSelectableListItemVariables } from './selectable_list_item.styles';
 
 export const euiSelectableListStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
   const itemVars = euiSelectableListItemVariables(euiThemeContext);
+
+  const spacingVertical = euiTheme.size.s;
+  const borderColor = euiTheme.components.selectableListItemBorderColor;
 
   return {
     euiSelectableList: css`
@@ -40,7 +40,7 @@ export const euiSelectableListStyles = (euiThemeContext: UseEuiTheme) => {
     `,
 
     euiSelectableList__list: classNameCss`
-      ${euiYScrollWithShadows(euiThemeContext)}
+      ${euiYScroll(euiThemeContext)}
 
       &:focus,
       & > ul:focus {
@@ -50,11 +50,29 @@ export const euiSelectableListStyles = (euiThemeContext: UseEuiTheme) => {
 
     euiSelectableList__groupLabel: css`
       ${euiTitle(euiThemeContext, 'xxxs')}
+      position: relative;
       display: flex;
       align-items: center;
-      ${logicalCSS('border-bottom', itemVars.border)}
-      ${logicalCSS('padding-vertical', itemVars.paddingVertical)}
-      ${logicalCSS('padding-horizontal', itemVars.paddingHorizontal)}
+      ${logicalCSS('padding-vertical', spacingVertical)}
+      ${logicalCSS('padding-horizontal', itemVars.spacingHorizontal)}
+
+      &:not(:first-child) {
+        ${logicalCSS(
+          'margin-top',
+          mathWithUnits(spacingVertical, (x) => x * 2)
+        )}
+
+        &::before {
+          content: '';
+          position: absolute;
+          inset: 0;
+          inset-block-start: -${spacingVertical};
+          ${logicalCSS(
+            'border-top',
+            `${euiTheme.border.width.thin} solid ${borderColor}`
+          )}
+        }
+      }
     `,
   };
 };

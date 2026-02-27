@@ -279,6 +279,7 @@ export class EuiSelectableList<T> extends Component<
       textWrap,
       onFocusBadge,
       searchable,
+      singleSelection,
     } = this.props;
 
     // using shouldComponentUpdate to determine needed rerender before actual rerender
@@ -289,7 +290,8 @@ export class EuiSelectableList<T> extends Component<
       nextProps.paddingSize !== paddingSize ||
       nextProps.textWrap !== textWrap ||
       nextProps.onFocusBadge !== onFocusBadge ||
-      nextProps.searchable !== searchable
+      nextProps.searchable !== searchable ||
+      nextProps.singleSelection !== singleSelection
     ) {
       this.listRowRerender += 1;
     }
@@ -309,6 +311,7 @@ export class EuiSelectableList<T> extends Component<
       textWrap,
       onFocusBadge,
       searchable,
+      singleSelection,
     } = this.props;
 
     if (prevProps.activeOptionIndex !== activeOptionIndex) {
@@ -357,7 +360,8 @@ export class EuiSelectableList<T> extends Component<
         prevProps.paddingSize !== paddingSize ||
         prevProps.textWrap !== textWrap ||
         prevProps.onFocusBadge !== onFocusBadge ||
-        prevProps.searchable !== searchable
+        prevProps.searchable !== searchable ||
+        prevProps.singleSelection !== singleSelection
       ) {
         this.setState({
           itemData: { ...optionArray },
@@ -412,6 +416,7 @@ export class EuiSelectableList<T> extends Component<
       searchValue,
       isPreFiltered,
       isVirtualized,
+      singleSelection,
     } = this.props;
 
     if (isGroupLabel) {
@@ -485,6 +490,7 @@ export class EuiSelectableList<T> extends Component<
         paddingSize={paddingSize}
         searchable={searchable}
         textWrap={textWrap}
+        singleSelection={singleSelection === false ? false : true}
         // @ts-ignore complex
         {...(optionRest as EuiSelectableListItemProps)}
       >

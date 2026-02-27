@@ -45,7 +45,6 @@ const options: EuiSelectableOption[] = [
   },
   {
     label: 'Iapetus',
-    checked: 'on',
   },
   {
     label: 'Phoebe',
@@ -102,9 +101,6 @@ export const Playground: Story = {
     loadingMessage: '',
     noMatchesMessage: '',
     selectableScreenReaderText: '',
-    listProps: {
-      bordered: true,
-    },
     searchable: false, // required for typing
   },
   render: ({ ...args }: EuiSelectableProps) => <StatefulSelectable {...args} />,

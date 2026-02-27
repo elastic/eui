@@ -12,50 +12,84 @@ import { UseEuiTheme } from '../../../services';
 import {
   euiFontSize,
   euiTextTruncate,
+  highContrastModeStyles,
   logicalCSS,
+  logicalShorthandCSS,
+  mathWithUnits,
 } from '../../../global_styling';
 
 export const euiSelectableListItemVariables = ({ euiTheme }: UseEuiTheme) => {
-  const lighterBorder = euiTheme.components.selectableListItemBorderColor;
   return {
-    border: `${euiTheme.border.width.thin} solid ${lighterBorder}`,
-    paddingHorizontal: euiTheme.size.m,
-    paddingVertical: euiTheme.size.xs,
+    spacingHorizontal: euiTheme.size.s,
+    spacingVertical: euiTheme.size.xs,
   };
 };
 
 export const euiSelectableListItemStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
-  const { border, paddingHorizontal, paddingVertical } =
+  const { spacingHorizontal, spacingVertical } =
     euiSelectableListItemVariables(euiThemeContext);
+
+  const textPadding = {
+    horizontal: euiTheme.size.xs,
+    vertical: mathWithUnits(
+      [spacingVertical, euiTheme.size.xxs],
+      (x, y) => x + y
+    ),
+  };
+
+  const sharedFlexStyles = `
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+  `;
 
   return {
     euiSelectableListItem: css`
       display: inline-flex; /* Necessary to make sure it doesn't force the whole popover to be too wide */
       ${logicalCSS('width', '100%')}
-      line-height: ${euiFontSize(euiThemeContext, 'm').lineHeight};
+      border-radius: ${euiTheme.border.radius.small};
+      min-block-size: ${euiTheme.size.xl};
+      ${logicalShorthandCSS('padding', `0 ${spacingHorizontal}`)}
+      line-height: ${euiFontSize(euiThemeContext, 's').lineHeight};
       font-size: ${euiFontSize(euiThemeContext, 's').fontSize};
       text-align: start;
       cursor: pointer;
       overflow: hidden;
-
-      &:not(:last-of-type) {
-        ${logicalCSS('border-bottom', border)}
-      }
 
       &[aria-disabled='true'] {
         color: ${euiTheme.colors.textDisabled};
         cursor: not-allowed;
       }
 
-      &:hover,
-      &.euiSelectableListItem-isFocused {
-        &:not([aria-disabled='true']) {
-          color: ${euiTheme.colors.textPrimary};
-          background-color: ${euiTheme.focus.backgroundColor};
+      &:not([aria-disabled='true']) {
+        &:hover,
+        &.euiSelectableListItem-isFocused {
+          background-color: ${euiTheme.colors.backgroundBaseInteractiveHover};
 
-          .euiSelectableListItem__text {
-            text-decoration: underline;
+          ${highContrastModeStyles(euiThemeContext, {
+            preferred: `
+              text-decoration: underline;
+            `,
+          })}
+        }
+      }
+    `,
+    singleSelection: css`
+      color: ${euiTheme.colors.textPrimary};
+      background-color: ${euiTheme.colors.backgroundBaseInteractiveSelect};
+
+      &:not([aria-disabled='true']) {
+        &:hover,
+        &.euiSelectableListItem-isFocused {
+          background-color: ${euiTheme.colors
+            .backgroundBaseInteractiveSelectHover};
+        }
+
+        .euiSelectableListItem__prepend,
+        .euiSelectableListItem__append {
+          .euiIcon {
+            color: ${euiTheme.colors.textPrimary};
           }
         }
       }
@@ -63,21 +97,29 @@ export const euiSelectableListItemStyles = (euiThemeContext: UseEuiTheme) => {
     padding: {
       none: css``,
       s: css`
-        ${logicalCSS('padding-vertical', paddingVertical)}
-        ${logicalCSS('padding-horizontal', paddingHorizontal)}
+        ${logicalCSS('padding-vertical', spacingVertical)}
+        ${logicalCSS('padding-horizontal', spacingHorizontal)}
       `,
     },
 
     // Child elements
-
     euiSelectableListItem__content: css`
       ${logicalCSS('width', '100%')}
       display: flex;
       align-items: center;
+      gap: ${spacingHorizontal};
     `,
 
     euiSelectableListItem__text: css`
       flex-grow: 1; /* Pushes appended content to the far right */
+      ${logicalCSS('padding-horizontal', textPadding.horizontal)}
+      ${logicalCSS('padding-vertical', textPadding.vertical)}
+
+      /* Apply expected text spacing for flat children for user convenience.
+      Requires manual handling if nested */
+      > * + * {
+        ${logicalCSS('margin-top', euiTheme.size.xxs)}
+      }
     `,
     textWrap: {
       truncate: css(euiTextTruncate()),
@@ -85,15 +127,19 @@ export const euiSelectableListItemStyles = (euiThemeContext: UseEuiTheme) => {
     },
 
     euiSelectableListItem__prepend: css`
-      flex-shrink: 0;
-      ${logicalCSS('margin-right', paddingHorizontal)}
+      ${sharedFlexStyles}
+      gap: ${spacingHorizontal};
     `,
     euiSelectableListItem__append: css`
-      flex-shrink: 0;
-      ${logicalCSS('margin-left', paddingHorizontal)}
+      ${sharedFlexStyles}
+      gap: ${spacingHorizontal};
+
+      > .euiIcon {
+        margin: ${spacingHorizontal};
+      }
     `,
-    get euiSelectableListItem__icon() {
-      return this.euiSelectableListItem__prepend;
-    },
+    euiSelectableListItem__icon: css`
+      ${sharedFlexStyles}
+    `,
   };
 };
