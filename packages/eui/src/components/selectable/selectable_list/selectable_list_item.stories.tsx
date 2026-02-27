@@ -46,7 +46,6 @@ const meta: Meta<EuiSelectableListItemProps> = {
   },
   args: {
     showIcons: true,
-    paddingSize: 's',
     onFocusBadge: false,
     textWrap: 'truncate',
     // set up for easier testing/QA

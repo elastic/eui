@@ -72,7 +72,6 @@ const meta: Meta<EuiSelectableListProps<{}>> = {
   },
   args: {
     textWrap: 'truncate',
-    paddingSize: 's',
     onFocusBadge: false,
     showIcons: true,
     // set up for easier testing/QA
@@ -88,14 +87,7 @@ const meta: Meta<EuiSelectableListProps<{}>> = {
 enableFunctionToggleControls(meta, ['onOptionClick', 'setActiveOptionIndex']);
 moveStorybookControlsToCategory(
   meta,
-  [
-    'allowExclusions',
-    'onFocusBadge',
-    'paddingSize',
-    'searchable',
-    'showIcons',
-    'textWrap',
-  ],
+  ['allowExclusions', 'onFocusBadge', 'searchable', 'showIcons', 'textWrap'],
   'EuiSelectableListItem props'
 );
 

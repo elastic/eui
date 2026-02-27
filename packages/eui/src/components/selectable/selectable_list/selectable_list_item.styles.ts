@@ -94,13 +94,6 @@ export const euiSelectableListItemStyles = (euiThemeContext: UseEuiTheme) => {
         }
       }
     `,
-    padding: {
-      none: css``,
-      s: css`
-        ${logicalCSS('padding-vertical', spacingVertical)}
-        ${logicalCSS('padding-horizontal', spacingHorizontal)}
-      `,
-    },
 
     // Child elements
     euiSelectableListItem__content: css`
