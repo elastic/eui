@@ -21,7 +21,6 @@ const options: EuiSelectableTemplateSitewideOption[] = [
   {
     label: 'Welcome dashboards',
     icon: { type: 'logoKibana' },
-    avatar: { name: 'Default Space' },
     meta: [
       {
         text: 'Dashboard',
@@ -105,6 +104,18 @@ type Story = StoryObj<EuiSelectableTemplateSitewideProps>;
 export const Playground: Story = {
   args: {
     options,
+    // set up for easier testing/QA
+    // @ts-ignore - using testing control types
+    popoverButton: false,
+    popoverTitle: false,
+    popoverFooter: false,
+    popoverButtonBreakpoints: ['xs', 's', 'm', 'l', 'xl'],
+  },
+};
+
+export const Scrollable: Story = {
+  args: {
+    options: [...options, ...options],
     // set up for easier testing/QA
     // @ts-ignore - using testing control types
     popoverButton: false,

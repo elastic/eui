@@ -73,7 +73,7 @@ const meta: Meta<EuiSelectableSearchProps<{}>> = {
     prepend: '',
     append: '',
     isPreFiltered: false,
-    compressed: false,
+    compressed: true,
     fullWidth: true,
     isClearable: true,
     isInvalid: false,
