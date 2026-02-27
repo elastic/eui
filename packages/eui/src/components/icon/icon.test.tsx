@@ -55,7 +55,7 @@ const testIcon =
   };
 
 describe('EuiIcon', () => {
-  test('is rendered', testIcon({ type: 'search', ...requiredProps }));
+  test('is rendered', testIcon({ type: 'magnify', ...requiredProps }));
 
   shouldRenderCustomStyles(<EuiIcon type="customImg" />);
   shouldRenderCustomStyles(<EuiIcon type="videoPlayer" />, {
@@ -70,7 +70,7 @@ describe('EuiIcon', () => {
     test('onIconLoad', async () => {
       const onIconLoad = jest.fn();
 
-      render(<EuiIcon type="search" onIconLoad={onIconLoad} />);
+      render(<EuiIcon type="magnify" onIconLoad={onIconLoad} />);
       expect(onIconLoad).toHaveBeenCalledTimes(0);
 
       await waitFor(() => {
@@ -82,7 +82,7 @@ describe('EuiIcon', () => {
       test(
         'are passed through to the icon',
         testIcon({
-          type: 'search',
+          type: 'magnify',
           'aria-label': 'A Search Icon',
           title: 'Search',
         })
@@ -93,7 +93,7 @@ describe('EuiIcon', () => {
       test(
         'are passed and generate an aria-labelledby',
         testIcon({
-          type: 'search',
+          type: 'magnify',
           title: 'Search icon',
           titleId: 'id-test',
         })
@@ -102,7 +102,7 @@ describe('EuiIcon', () => {
 
     describe('size', () => {
       SIZES.forEach((size) => {
-        test('${size} is rendered', testIcon({ type: 'search', size }));
+        test('${size} is rendered', testIcon({ type: 'magnify', size }));
       });
     });
 
@@ -120,24 +120,24 @@ describe('EuiIcon', () => {
         'rgb(100, 150, 200)',
         'hsla(270, 60%, 70%, 0.9)',
       ].forEach((color) => {
-        it(`${color} is rendered`, testIcon({ type: 'search', color }));
+        it(`${color} is rendered`, testIcon({ type: 'magnify', color }));
       });
     });
 
     describe('tabIndex', () => {
       it(
         'renders focusable="false" when not provided',
-        testIcon({ type: 'search' })
+        testIcon({ type: 'magnify' })
       );
 
       it(
         'renders focusable="false" when -1',
-        testIcon({ type: 'search', tabIndex: -1 })
+        testIcon({ type: 'magnify', tabIndex: -1 })
       );
 
       it(
         'renders focusable="true" when 0',
-        testIcon({ type: 'search', tabIndex: 0 })
+        testIcon({ type: 'magnify', tabIndex: 0 })
       );
     });
 

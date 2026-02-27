@@ -71,7 +71,7 @@ exports[`EuiDatePicker localization accepts the locale prop 1`] = `
                   <span
                     class="react-datepicker__month-read-view--down-arrow"
                     color="subdued"
-                    data-euiicon-type="arrowDown"
+                    data-euiicon-type="chevronSingleDown"
                   />
                 </div>
               </div>
@@ -92,7 +92,7 @@ exports[`EuiDatePicker localization accepts the locale prop 1`] = `
                   <span
                     class="react-datepicker__year-read-view--down-arrow"
                     color="subdued"
-                    data-euiicon-type="arrowDown"
+                    data-euiicon-type="chevronSingleDown"
                   />
                 </div>
               </div>
@@ -553,7 +553,7 @@ exports[`EuiDatePicker localization inherits locale from context 1`] = `
                   <span
                     class="react-datepicker__month-read-view--down-arrow"
                     color="subdued"
-                    data-euiicon-type="arrowDown"
+                    data-euiicon-type="chevronSingleDown"
                   />
                 </div>
               </div>
@@ -574,7 +574,7 @@ exports[`EuiDatePicker localization inherits locale from context 1`] = `
                   <span
                     class="react-datepicker__year-read-view--down-arrow"
                     color="subdued"
-                    data-euiicon-type="arrowDown"
+                    data-euiicon-type="chevronSingleDown"
                   />
                 </div>
               </div>

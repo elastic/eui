@@ -304,7 +304,7 @@ export const PieAlts = () => {
               disabled={isMisleadingChart || isBadChart}
               fill
               onClick={copy}
-              iconType="copyClipboard"
+              iconType="copy"
             >
               {isBadChart || isMisleadingChart
                 ? isMisleadingChart

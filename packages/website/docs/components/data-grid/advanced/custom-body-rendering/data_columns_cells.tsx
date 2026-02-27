@@ -92,7 +92,7 @@ const RenderRowDetails: EuiDataGridProps['renderCellValue'] = memo(
       <EuiCallOut
         size="s"
         color={hasFees ? 'danger' : 'success'}
-        iconType={hasFees ? 'errorFilled' : 'checkInCircleFilled'}
+        iconType={hasFees ? 'errorFill' : 'checkCircleFill'}
         title={`${firstName}'s account has ${
           hasFees ? '' : 'no'
         } outstanding fees`}
@@ -143,7 +143,7 @@ export const trailingControlColumns: EuiDataGridProps['trailingControlColumns'] 
       ),
       rowCellRender: () => (
         <EuiButtonIcon
-          iconType="boxesHorizontal"
+          iconType="boxes_vertical"
           aria-label="See row actions"
         />
       ),

@@ -153,7 +153,7 @@ export default class MonthDropdown extends React.Component {
         {monthNames[this.props.month]}
       </span>
       <EuiIcon
-        type="arrowDown"
+        type="chevronSingleDown"
         size="s"
         color="subdued"
         className="react-datepicker__month-read-view--down-arrow"
