@@ -97,10 +97,6 @@ export type EuiSelectableOptionsListProps = CommonProps &
      */
     onFocusBadge?: EuiSelectableListItemProps['onFocusBadge'];
     /**
-     * Padding for the list items.
-     */
-    paddingSize?: EuiSelectableListItemProps['paddingSize'];
-    /**
      * How to handle long text within the item.
      * Wrapping only works if virtualization is off.
      */
@@ -275,7 +271,6 @@ export class EuiSelectableList<T> extends Component<
     const {
       allowExclusions,
       showIcons,
-      paddingSize,
       textWrap,
       onFocusBadge,
       searchable,
@@ -287,7 +282,6 @@ export class EuiSelectableList<T> extends Component<
     if (
       nextProps.allowExclusions !== allowExclusions ||
       nextProps.showIcons !== showIcons ||
-      nextProps.paddingSize !== paddingSize ||
       nextProps.textWrap !== textWrap ||
       nextProps.onFocusBadge !== onFocusBadge ||
       nextProps.searchable !== searchable ||
@@ -307,7 +301,6 @@ export class EuiSelectableList<T> extends Component<
       options,
       allowExclusions,
       showIcons,
-      paddingSize,
       textWrap,
       onFocusBadge,
       searchable,
@@ -357,7 +350,6 @@ export class EuiSelectableList<T> extends Component<
       if (
         prevProps.allowExclusions !== allowExclusions ||
         prevProps.showIcons !== showIcons ||
-        prevProps.paddingSize !== paddingSize ||
         prevProps.textWrap !== textWrap ||
         prevProps.onFocusBadge !== onFocusBadge ||
         prevProps.searchable !== searchable ||
@@ -407,7 +399,6 @@ export class EuiSelectableList<T> extends Component<
       activeOptionIndex,
       allowExclusions,
       onFocusBadge,
-      paddingSize,
       showIcons,
       makeOptionId,
       renderOption,
@@ -487,7 +478,6 @@ export class EuiSelectableList<T> extends Component<
         onFocusBadge={onFocusBadge}
         allowExclusions={allowExclusions}
         showIcons={showIcons}
-        paddingSize={paddingSize}
         searchable={searchable}
         textWrap={textWrap}
         singleSelection={singleSelection === false ? false : true}
@@ -593,7 +583,6 @@ export class EuiSelectableList<T> extends Component<
     const mayTruncate = searchable || truncationProps;
     if (!mayTruncate) return;
 
-    const paddingOffset = this.props.paddingSize === 'none' ? 0 : 24; // Defaults to 's'
     const checkedIconOffset = this.props.showIcons === false ? 0 : 28; // Defaults to true
     this.focusBadgeOffset = this.props.onFocusBadge === false ? 0 : 46;
 
@@ -605,7 +594,7 @@ export class EuiSelectableList<T> extends Component<
 
       this.setState({
         defaultOptionWidth:
-          containerWidth - scrollbarOffset - paddingOffset - checkedIconOffset,
+          containerWidth - scrollbarOffset - checkedIconOffset,
       });
 
       // Potentially force list rows to rerender on dynamic resize as well,
@@ -716,7 +705,6 @@ export class EuiSelectableList<T> extends Component<
       visibleOptions,
       allowExclusions,
       bordered,
-      paddingSize,
       searchable,
       onFocusBadge,
       listId,

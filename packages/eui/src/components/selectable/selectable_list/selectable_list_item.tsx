@@ -52,9 +52,6 @@ function resolveIconAndColor(
   }
 }
 
-export const PADDING_SIZES = ['none', 's'] as const;
-export type EuiSelectablePaddingSize = (typeof PADDING_SIZES)[number];
-
 export type EuiSelectableListItemProps = LiHTMLAttributes<HTMLLIElement> &
   CommonProps & {
     children?: React.ReactNode;
@@ -81,10 +78,6 @@ export type EuiSelectableListItemProps = LiHTMLAttributes<HTMLLIElement> &
      * The default content when `true` is `↩ to select/deselect/include/exclude`
      */
     onFocusBadge?: boolean | EuiBadgeProps;
-    /**
-     * Padding for the list items.
-     */
-    paddingSize?: EuiSelectablePaddingSize;
     /**
      * Whether the `EuiSelectable` instance is searchable.
      * When true, the Space key will not toggle selection, as it will type into the search box instead. Screen reader instructions will be added instructing users to use the Enter key to select items.
@@ -126,7 +119,6 @@ export const EuiSelectableListItem: FunctionComponent<
   allowExclusions,
   singleSelection = true,
   onFocusBadge = false,
-  paddingSize = 's',
   role = 'option',
   searchable,
   textWrap = 'truncate',
@@ -144,7 +136,6 @@ export const EuiSelectableListItem: FunctionComponent<
   const styles = useEuiMemoizedStyles(euiSelectableListItemStyles);
   const cssStyles = [
     styles.euiSelectableListItem,
-    styles.padding[paddingSize],
     checked != null && singleSelection && styles.singleSelection,
   ];
   const textStyles = [

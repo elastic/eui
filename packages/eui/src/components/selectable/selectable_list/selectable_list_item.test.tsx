@@ -11,7 +11,7 @@ import { render, waitForEuiToolTipVisible } from '../../../test/rtl';
 import { shouldRenderCustomStyles } from '../../../test/internal';
 import { requiredProps } from '../../../test/required_props';
 
-import { EuiSelectableListItem, PADDING_SIZES } from './selectable_list_item';
+import { EuiSelectableListItem } from './selectable_list_item';
 import { fireEvent } from '@testing-library/react';
 
 describe('EuiSelectableListItem', () => {
@@ -122,18 +122,6 @@ describe('EuiSelectableListItem', () => {
       const { container } = render(<EuiSelectableListItem append={<span />} />);
 
       expect(container.firstChild).toMatchSnapshot();
-    });
-
-    describe('paddingSize', () => {
-      PADDING_SIZES.forEach((size) => {
-        test(`${size} is rendered`, () => {
-          const { container } = render(
-            <EuiSelectableListItem paddingSize={size} />
-          );
-
-          expect(container.firstChild).toMatchSnapshot();
-        });
-      });
     });
 
     describe('textWrap', () => {
