@@ -55,6 +55,16 @@ export interface EuiTableProps
   scrollable?: boolean;
 }
 
+/**
+ * EuiTable is a low-level building block component used to render tabular data
+ * in a customized way.
+ *
+ * It should only be used when confirmed that [EuiBasicTable]{@link EuiBasicTable}
+ * and [EuiInMemoryTable]{@link EuiInMemoryTable} are not flexible enough
+ * for the purposes of the job.
+ *
+ * @see {@link https://eui.elastic.co/docs/components/tables/custom/|EuiTable documentation}
+ */
 export const EuiTable: FunctionComponent<EuiTableProps> = ({
   children,
   className,
