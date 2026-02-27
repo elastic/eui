@@ -583,8 +583,9 @@ export class EuiSelectableList<T> extends Component<
     const mayTruncate = searchable || truncationProps;
     if (!mayTruncate) return;
 
-    const checkedIconOffset = this.props.showIcons === false ? 0 : 28; // Defaults to true
-    this.focusBadgeOffset = this.props.onFocusBadge === false ? 0 : 46;
+    const paddingOffset = 24; // 2 * list item padding (8px) + 2 * text padding (4px)
+    const checkedIconOffset = this.props.showIcons === false ? 0 : 24; // icon (16px) + gap (8px)
+    this.focusBadgeOffset = !this.props.onFocusBadge ? 0 : 28; // badge (20px) + gap (8px)
 
     // Wait a tick for the listbox ref to update before proceeding
     this.animationFrameId = requestAnimationFrame(() => {
@@ -594,7 +595,7 @@ export class EuiSelectableList<T> extends Component<
 
       this.setState({
         defaultOptionWidth:
-          containerWidth - scrollbarOffset - checkedIconOffset,
+          containerWidth - scrollbarOffset - paddingOffset - checkedIconOffset,
       });
 
       // Potentially force list rows to rerender on dynamic resize as well,
