@@ -13,14 +13,9 @@ export const SpecialColorsTable = () => {
           token: 'colors.body',
           description: (
             <>
-              The background color for the <strong>whole window (body)</strong>{' '}
-              and is a computed value of <strong>colors.lightestShade</strong>.
-              Provides denominator (background) value for{' '}
-              <strong>contrast calculations</strong>
-              <br />
-              @deprecated - use <code>backgroundBasePlain</code> or{' '}
-              <code>backgroundBaseSubdued</code>
-              instead
+              @deprecated — Use <code>backgroundBasePlain</code> for content
+              backgrounds or <code>backgroundBaseSubdued</code> for the page
+              background.
             </>
           ),
         },
@@ -39,11 +34,9 @@ export const SpecialColorsTable = () => {
           token: 'colors.disabled',
           description: (
             <>
-              Computed against <code>colors.darkestShade</code>.
-              <br />
-              @deprecated - use specific semantic tokens instead (e.g.
-              <code>backgroundBaseDisabled</code>,{' '}
-              <code>borderBaseDisabled</code> etc)
+              @deprecated — Use <code>backgroundBaseDisabled</code> for disabled
+              backgrounds or <code>borderBaseDisabled</code> for disabled
+              borders.
             </>
           ),
         },
@@ -52,9 +45,7 @@ export const SpecialColorsTable = () => {
           token: 'colors.disabledText',
           description: (
             <>
-              Computed against <code>colors.disabled</code>
-              <br />
-              @deprecated - use <code>textDisabled</code> instead
+              @deprecated — Use <code>textDisabled</code> instead.
             </>
           ),
         },
@@ -63,8 +54,8 @@ export const SpecialColorsTable = () => {
           token: 'colors.shadow',
           description: (
             <>
-              The base color for shadows that gets <code>transparentized</code>{' '}
-              at a base value on the <code>colorMode</code> and then layered.
+              Base color for box shadows. Automatically adjusted for{' '}
+              <code>colorMode</code>.
             </>
           ),
         },
