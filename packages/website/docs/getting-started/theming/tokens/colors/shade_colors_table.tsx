@@ -12,11 +12,8 @@ export const ShadeColorsTable = () => {
           token: 'colors.emptyShade',
           description: (
             <>
-              Used as the background color of primary{' '}
-              <strong>page content and panels</strong> including modals and
-              flyouts.
-              <br />
-              @deprecated - use specific semantic color tokens instead.
+              @deprecated — Use <code>backgroundBasePlain</code> for panels,
+              modals, and content containers.
             </>
           ),
         },
@@ -25,11 +22,9 @@ export const ShadeColorsTable = () => {
           token: 'colors.lightestShade',
           description: (
             <>
-              Used to lightly shade areas that contain{' '}
-              <strong>secondary content</strong> or contain panel-like
-              components.
-              <br />
-              @deprecated - use specific semantic color tokens instead.
+              @deprecated — Use <code>backgroundBaseSubdued</code> for secondary
+              content areas or <code>backgroundBaseDisabled</code> for disabled
+              states.
             </>
           ),
         },
@@ -38,10 +33,8 @@ export const ShadeColorsTable = () => {
           token: 'colors.lightShade',
           description: (
             <>
-              Used for most <strong>borders</strong> and dividers (horizontal
-              rules).
-              <br />
-              @deprecated - use specific semantic color tokens instead.
+              @deprecated — Use <code>borderBaseSubdued</code> for borders or{' '}
+              <code>borderBasePlain</code> for dividers.
             </>
           ),
         },
@@ -50,28 +43,29 @@ export const ShadeColorsTable = () => {
           token: 'colors.mediumShade',
           description: (
             <>
-              The middle gray for all themes; this is the base for{' '}
-              <code>colors.subdued</code>
-              <br />
-              @deprecated - use specific semantic color tokens instead.
+              @deprecated — Use <code>textSubdued</code> for subdued text or the
+              appropriate semantic token for your use case.
             </>
           ),
         },
         {
           value: euiTheme.colors.darkShade,
           token: 'colors.darkShade',
-          description: <>Slightly subtle graphic color</>,
+          description: (
+            <>
+              @deprecated — Use <code>textParagraph</code> for body text or the
+              appropriate semantic token.
+            </>
+          ),
         },
         {
           value: euiTheme.colors.darkestShade,
           token: 'colors.darkestShade',
           description: (
             <>
-              Used as the <strong>text</strong> color and the background color
-              for <strong>inverted components</strong> like tooltips and the
-              control bar.
-              <br />
-              @deprecated - use specific semantic color tokens instead.
+              @deprecated — Use <code>textHeading</code> for text, or{' '}
+              <code>backgroundFilledText</code> for inverted backgrounds like
+              tooltips.
             </>
           ),
         },
@@ -80,9 +74,8 @@ export const ShadeColorsTable = () => {
           token: 'colors.fullShade',
           description: (
             <>
-              The opposite of <code>emptyShade</code>
-              <br />
-              @deprecated - use specific semantic color tokens instead.
+              @deprecated — Use <code>textInk</code> for maximum contrast text
+              on light backgrounds, or <code>shadow</code> for shadow effects.
             </>
           ),
         },

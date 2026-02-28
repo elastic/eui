@@ -6,10 +6,13 @@ sidebar_position: 3
 
 import { EuiSpacer, EuiCodeBlock } from '@elastic/eui';
 
-Elastic UI builds with a color palette that is based on predefined 14-step scales for a core set of three colors (blue / teal / pink) as well as a green / yellow / red qualitative set and combined with a 28-step grayscale.
-Colors are defined to work well when combined for their semantic purpose.
+EUI provides a comprehensive set of semantic color tokens through the Borealis theme. Rather than using raw color values, you should use these **semantic tokens** which are purpose-driven and automatically adapt between light and dark color modes.
 
-When switching between light and dark color modes, the theme keys do not change, only their values do.
+All color tokens are accessed via `euiTheme.colors` (from the `useEuiTheme()` hook). When switching between light and dark color modes, the token keys do not change — only their resolved values do.
+
+:::tip Use semantic tokens, not raw values
+Always prefer semantic color tokens over raw hex values or shade tokens. Semantic tokens ensure your UI stays consistent, accessible, and compatible with all color modes (light, dark, and high contrast).
+:::
 
 import ForcedColorsWarning from './_forced_colors_warning.mdx';
 
@@ -17,7 +20,7 @@ import ForcedColorsWarning from './_forced_colors_warning.mdx';
 
 ## Brand colors
 
-Elastic has two main brand colors. The other three are used for statefulness like indicating between successful and dangerous actions.
+Brand colors are the core semantic colors used throughout the UI. **Primary** and **accent** drive most interactive and attention-drawing elements, while **success**, **warning**, and **danger** communicate status. Each brand color also has corresponding text, background, and border variants documented in the sections below.
 
 import { Example } from '@site/src/components';
 import { BrandColorPreview } from './brand_color_preview';
@@ -47,9 +50,12 @@ import { BrandColorsTable } from './brand_colors_table';
 
 ## Text colors
 
-Each brand color also has a corresponding text variant that should be used specifically when coloring text. As is used in [EuiTextColor](../../../../components/display/text.mdx#coloring-text).
+Text color tokens are optimized for readability and contrast. Each brand color has a corresponding text variant that should be used when coloring text (never use the brand color directly for text). These tokens are used by [EuiTextColor](../../../../components/display/text.mdx#coloring-text).
 
-Use `textGhost` for text and icons on dark backgrounds and `textInk` on light backgrounds. 
+- Use `textParagraph` for standard body text and `textHeading` for headings.
+- Use `textSubdued` for secondary or less prominent text.
+- Use `textGhost` for text and icons on dark backgrounds and `textInk` on light backgrounds.
+- Use `textDisabled` for disabled or inactive text elements.
 
 import { TextColorPreview } from './text_color_preview';
 import { TextColorsTable } from './text_colors_table';
@@ -78,9 +84,13 @@ import { TextColorsTable } from './text_colors_table';
 
 ## Background colors
 
-Semantic background colors. These should be used according to their semantic purpose.
+Background color tokens come in three intensity levels:
 
-If a border is needed use the semantically related border color, e.g. `backgroundBasePrimary` with `borderBasePrimary`.
+- **Base** (`backgroundBase*`) — Subtle backgrounds for containers, panels, and interactive states.
+- **Light** (`backgroundLight*`) — Slightly more prominent backgrounds, useful for callouts and highlighted sections.
+- **Filled** (`backgroundFilled*`) — Bold, fully saturated backgrounds typically used for badges, buttons, and strong emphasis.
+
+When pairing backgrounds with borders, use the semantically matching border token (e.g. `backgroundBasePrimary` with `borderBasePrimary`).
 
 import { BackgroundColorPreview } from './background_color_preview';
 import { BackgroundColorsTable } from './background_colors_table';
@@ -107,10 +117,11 @@ import { BackgroundColorsTable } from './background_colors_table';
 
 ## Borders
 
-Semantic border colors. These should be used according to their semantic purpose.
+Border color tokens come in three intensity levels:
 
-The default border color (used as `border.color`) `borderBaseSubdued`.
-Use the `base` border colors for most cases. Use `borderBasePlain` for a slightly stronger border (e.g. for forms).
+- **Base** (`borderBase*`) — Subtle borders for panels, cards, and containers. Use `borderBaseSubdued` as the default border and `borderBasePlain` for a slightly stronger border (e.g. for form controls).
+- **Interactive** (`borderInteractive*`) — Border colors for interactive states like form hover effects.
+- **Strong** (`borderStrong*`) — Bold, high-contrast borders for maximum emphasis.
 
 import { BorderColorPreview } from './border_color_preview';
 import { BorderColorsTable } from './border_colors_table';
@@ -137,18 +148,22 @@ import { BorderColorsTable } from './border_colors_table';
 
 ## Shades
 
-A six-color grayscale palette. Variation beyond these colors is minimal and always done through computations against this set.
+:::warning Deprecated
+Shade tokens are **deprecated** and will be removed in a future release. Use the semantic background, border, and text tokens instead. For example, instead of `emptyShade` use `backgroundBasePlain`, and instead of `lightShade` use `borderBaseSubdued`.
+:::
+
+A grayscale palette previously used for backgrounds, borders, and text. These are now replaced by purpose-specific semantic tokens.
 
 import { ShadeColorPreview } from './shade_color_preview';
 import { ShadeColorsTable } from './shade_colors_table';
 
 <Example>
   <Example.Description>
-    ### `euiTheme.colors[colorShade]` <Badge color="hollow">token</Badge>
+    ### `euiTheme.colors[colorShade]` <Badge color="hollow">deprecated</Badge>
 
-    Since the EUI colors usually evaluate to a hex value, the easiest way to perform color operations like transparency, shading, or tinting is by using the EUI provided methods of `transparentize()`, `shade()`, and `tint()` respectively.
+    These shade tokens are deprecated. Migrate to the semantic background, border, and text tokens for all new code.
 
-    For all available color functions see the [Colors Utilities page](../../utilities/colors.mdx).
+    For color manipulation functions see the [Colors Utilities page](../../utilities/colors.mdx).
   </Example.Description>
   <Example.Preview>
     <ShadeColorPreview />
@@ -168,7 +183,11 @@ import { ShadeColorsTable } from './shade_colors_table';
 
 ## Special colors
 
-These are used a lot for special cases.
+:::warning Mostly deprecated
+Most special color tokens are **deprecated** in favor of semantic alternatives. See individual token descriptions below for migration guidance. Only `highlight` and `shadow` remain as active tokens.
+:::
+
+Special-purpose color tokens for specific UI needs.
 
 import { SpecialColorsPreview } from './special_colors_preview';
 import { SpecialColorsTable } from './special_colors_table';
@@ -177,7 +196,7 @@ import { SpecialColorsTable } from './special_colors_table';
   <Example.Description>
     ### `euiTheme.colors[special]` <Badge color="hollow">token</Badge>
 
-    Constant colors are those that do not change no matter the theme or color mode and typically represent the polar extremes.
+    Special-purpose tokens. Most are deprecated — see descriptions for migration paths.
   </Example.Description>
   <Example.Preview>
     <SpecialColorsPreview />
@@ -198,12 +217,11 @@ import { SpecialColorsTable } from './special_colors_table';
 
 ## Data visualization colors
 
-:::note Guidance
-
-Data visualization colors are semantically tied to data visualizations and are not meant for use in other contexts. Do not use these colors in other contexts.
+:::warning Important
+Data visualization colors are **exclusively for charts and data visualizations**. Do not use them for UI elements like buttons, badges, or backgrounds — use the brand and semantic tokens above instead.
 :::
 
-import { DataVisColorsTable, DataVisBackgroundColor } from './data_vis_colors_table';
+import { DataVisColorsTable } from './data_vis_colors_table';
 import { DataVisColorsPreview } from './data_vis_colors_preview'
 
 
@@ -269,9 +287,8 @@ import { SeverityColorsPreview } from './severity_colors_preview'
 
 ## Data visualization text colors {#dataVisText}
 
-:::note Guidance
-
-Data visualization text colors are semantically tied to data visualizations colors and are not meant for use in other contexts. 
+:::warning Important
+Data visualization text colors are paired with the data visualization colors above. Use these **only** for text that labels or accompanies data visualizations — not for general UI text.
 :::
 
 import { DataVisTextColorsTable } from './data_vis_colors_table';
@@ -304,9 +321,9 @@ import { DataVisTextColorsPreview } from './data_vis_colors_preview'
 
 ## Contrast ratios and color modes {#contrast}
 
-Our Data visualization colors and Health and Severity colors prioritize visual clarity and aesthetic appeal over strict contrast compliance in light mode. **This means some colors may not meet WCAG contrast requirements against light backgrounds**, as lighter and more saturated tones help differentiate data and create a more visually engaging experience.
+Data visualization colors and severity colors prioritize visual clarity and data differentiation over strict contrast compliance in standard light mode. **This means some colors may not meet WCAG 3:1 contrast requirements against light backgrounds.**
 
-However, in dark mode, all colors meet the minimum 3:1 contrast ratio, ensuring accessibility compliance. 
+For accessible use cases, enable **high contrast mode** which ensures all colors meet minimum contrast ratios. In dark mode, all colors meet the minimum 3:1 contrast ratio by default.
 
 import { EuiTable, EuiTableHeader, EuiTableHeaderCell, EuiTableRow, EuiTableRowCell } from '@elastic/eui';
 
