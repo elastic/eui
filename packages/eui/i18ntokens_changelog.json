@@ -1,5 +1,15 @@
 [
   {
+    "version": "113.1.0",
+    "changes": [
+      {
+        "token": "euiFlyoutBody.scrollableRegionAriaLabel",
+        "changeType": "added",
+        "value": "Flyout body"
+      }
+    ]
+  },
+  {
     "version": "112.0.0",
     "changes": [
       {
