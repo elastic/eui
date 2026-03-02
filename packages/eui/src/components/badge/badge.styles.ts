@@ -27,6 +27,11 @@ export const euiBadgeStyles = (euiThemeContext: UseEuiTheme) => {
   const badgeColors = euiBadgeColors(euiThemeContext);
   const defaultBadgeColors = badgeColors.fill.default;
 
+  const focusOutlineOffset = mathWithUnits(
+    [euiTheme.focus.width, euiTheme.border.width.thin],
+    (x, y) => x + y
+  );
+
   const setBadgeColorVars = (
     colors: ReturnType<typeof euiBadgeColors>['fill']['primary']
   ) => `
@@ -69,6 +74,14 @@ export const euiBadgeStyles = (euiThemeContext: UseEuiTheme) => {
     `,
   });
 
+  const focusStyles = `
+    &:focus {
+      ${euiFocusRing(euiThemeContext, 'outset')}
+      /* uses custom offset as the default "outset" is not enough */
+      outline-offset: ${focusOutlineOffset};
+    }
+  `;
+
   const getClickableStyles = (interactionStyles: string) => `
     &:not(:disabled) {
       ${interactionStyles}
@@ -78,9 +91,7 @@ export const euiBadgeStyles = (euiThemeContext: UseEuiTheme) => {
         ${highContrastStyles}
       }
 
-      &:focus {
-        ${euiFocusRing(euiThemeContext)}
-      }
+      ${focusStyles}
     }
 
     &:disabled {
@@ -96,6 +107,8 @@ export const euiBadgeStyles = (euiThemeContext: UseEuiTheme) => {
     &:active {
       background-color: var(--euiBadgeBackgroundActiveColor);
     }
+
+    ${focusStyles}
   `;
 
   const inlinePadding = mathWithUnits(
