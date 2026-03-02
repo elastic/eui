@@ -16,6 +16,7 @@ import {
   logicalShorthandCSS,
   logicalTextAlignCSS,
   mathWithUnits,
+  euiButtonInteractionStyles,
 } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 import { euiBadgeColors } from './color_utils';
@@ -31,7 +32,70 @@ export const euiBadgeStyles = (euiThemeContext: UseEuiTheme) => {
   ) => `
     --euiBadgeTextColor: ${colors.color};
     --euiBadgeBackgroundColor: ${colors.backgroundColor};
-    ${colors.border ? `--euiBadgeBorder: ${colors.border};` : ''}
+    --euiBadgeBackgroundHoverColor: ${colors.backgroundHover};
+    --euiBadgeBackgroundActiveColor: ${colors.backgroundActive};
+    ${
+      colors.borderColor
+        ? `--euiBadgeBorder: ${euiTheme.border.width.thin} solid ${colors.borderColor};`
+        : ''
+    }
+  `;
+
+  const getButtonInteractionStyles = (
+    euiThemeContext: UseEuiTheme,
+    type: 'fill' | 'overlay' = 'fill'
+  ) => {
+    return `
+      ${euiButtonInteractionStyles(
+        euiThemeContext,
+        {
+          color: 'var(--euiBadgeTextColor)',
+          background: 'var(--euiBadgeBackgroundColor)',
+          borderColor: 'var(--euiBadgeBorder)',
+          backgroundHover: 'var(--euiBadgeBackgroundHoverColor)',
+          backgroundActive: 'var(--euiBadgeBackgroundActiveColor)',
+        },
+        type
+      )}
+    `;
+  };
+
+  const highContrastStyles = highContrastModeStyles(euiThemeContext, {
+    preferred: `
+      text-decoration: underline;
+    `,
+    forced: `
+      &::after { display: none; }
+    `,
+  });
+
+  const getClickableStyles = (interactionStyles: string) => `
+    &:not(:disabled) {
+      ${interactionStyles}
+
+      &:hover,
+      &:focus {
+        ${highContrastStyles}
+      }
+
+      &:focus {
+        ${euiFocusRing(euiThemeContext)}
+      }
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+    }
+  `;
+
+  const customInteractiveStyles = `
+    &:hover {
+      background-color: var(--euiBadgeBackgroundHoverColor);
+    }
+
+    &:active {
+      background-color: var(--euiBadgeBackgroundActiveColor);
+    }
   `;
 
   const inlinePadding = mathWithUnits(
@@ -102,23 +166,104 @@ export const euiBadgeStyles = (euiThemeContext: UseEuiTheme) => {
         (size, borderWidth) => size - borderWidth
       )};
     `,
-    clickable: css`
-      &:not(:disabled) {
-        &:hover,
-        &:focus {
-          text-decoration: underline;
+    get clickable() {
+      // ensures border colors are aligned with the background colors
+      const borderHoverStyles = `
+        &:hover { 
+          border-color: var(--euiBadgeBackgroundHoverColor);
         }
-      }
+        &:active {
+          border-color: var(--euiBadgeBackgroundActiveColor);
+        }
+      `;
 
-      &:focus {
-        ${euiFocusRing(euiThemeContext)}
-      }
+      return {
+        fill: css`
+          ${getClickableStyles(
+            getButtonInteractionStyles(euiThemeContext, 'fill')
+          )}
+          ${borderHoverStyles}
+        `,
+        base: css`
+          ${getClickableStyles(
+            getButtonInteractionStyles(euiThemeContext, 'overlay')
+          )}
+          ${highContrastModeStyles(euiThemeContext, {
+            none: borderHoverStyles,
+          })}
+        `,
+        // hollow has a visible border that must not be overwritten on hover
+        hollow: css`
+          ${getClickableStyles(
+            getButtonInteractionStyles(euiThemeContext, 'overlay')
+          )}
+          &:hover,
+          &:focus {
+            ${highContrastStyles}
+          }
+        `,
+        custom: css`
+          &:not(:disabled) {
+            &:hover,
+            &:focus {
+              ${highContrastStyles}
+            }
 
-      &:disabled {
-        cursor: not-allowed;
-      }
-    `,
+            ${customInteractiveStyles}
+          }
+        `,
+      };
+    },
+    // on icon button hover, we apply hover styles on the entire badge
+    get iconClickable() {
+      const iconButtonSelector = (state: string = ':hover') =>
+        `&:not(:disabled):where(:has(.euiBadge__iconButton${state}))`;
 
+      const borderHoverStyles = `
+        border-color: var(--euiBadgeBackgroundHoverColor);
+      `;
+
+      return {
+        fill: css`
+          ${iconButtonSelector()} {
+            ${getButtonInteractionStyles(euiThemeContext, 'fill')}
+            ${borderHoverStyles}
+          }
+
+          ${iconButtonSelector(':is(:hover, :focus)')} {
+            ${highContrastStyles}
+          }
+        `,
+        base: css`
+          ${iconButtonSelector()} {
+            ${getButtonInteractionStyles(euiThemeContext, 'overlay')}
+            ${highContrastModeStyles(euiThemeContext, {
+              none: borderHoverStyles,
+            })}
+          }
+
+          ${iconButtonSelector(':is(:hover, :focus)')} {
+            ${highContrastStyles}
+          }
+        `,
+        // hollow has a visible border that must not be overwritten on hover
+        hollow: css`
+          ${iconButtonSelector()} {
+            ${getButtonInteractionStyles(euiThemeContext, 'overlay')}
+          }
+
+          ${iconButtonSelector(':is(:hover, :focus)')} {
+            ${highContrastStyles}
+          }
+        `,
+        custom: css`
+          ${iconButtonSelector(':is(:hover, :focus)')} {
+            ${highContrastStyles}
+            ${customInteractiveStyles}
+          }
+        `,
+      };
+    },
     colors: {
       fill: {
         default: css`
@@ -162,7 +307,7 @@ export const euiBadgeStyles = (euiThemeContext: UseEuiTheme) => {
 
       /* Override selection color, since disabled badges have rgba backgrounds with opacity */
       *::selection {
-        color: ${euiTheme.colors.emptyShade};
+        color: ${euiTheme.colors.backgroundBasePlain};
       }
     `,
 

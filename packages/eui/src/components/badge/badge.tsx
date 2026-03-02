@@ -26,7 +26,11 @@ import { validateHref } from '../../services/security/href_validator';
 import { CommonProps, ExclusiveUnion, PropsOf } from '../common';
 import { EuiInnerText } from '../inner_text';
 import { EuiIcon, IconType } from '../icon';
-import { getTextColor, getIsValidColor } from './color_utils';
+import {
+  getTextColor,
+  getIsValidColor,
+  getCustomInteractiveColors,
+} from './color_utils';
 import {
   warnIfContrastBelowMin,
   wcagContrastMin,
@@ -145,7 +149,8 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
   const isNamedColor = COLORS.includes(color as BadgeColor);
   const isIconOnly = !children && !!iconType;
 
-  const euiTheme = useEuiTheme();
+  const euiThemeContext = useEuiTheme();
+
   const customColorStyles = useMemo(() => {
     // Disabled badges should not have custom colors
     if (isDisabled) return style;
@@ -155,7 +160,12 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
     // Do our best to ensure custom colors provide sufficient contrast
     try {
       // Set dark or light text color based upon best contrast
-      const textColor = getTextColor(euiTheme, color);
+      const textColor = getTextColor(euiThemeContext, color);
+      // These values are approximations as be don't know what custom color is passed
+      const customInteractiveColors = getCustomInteractiveColors(
+        euiThemeContext,
+        color
+      );
 
       // Emit a warning if contrast is below WCAG threshold (centralized util)
       warnIfContrastBelowMin(textColor, color, wcagContrastMin);
@@ -163,6 +173,10 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
       return {
         '--euiBadgeBackgroundColor': color,
         '--euiBadgeTextColor': textColor,
+        '--euiBadgeBackgroundHoverColor':
+          customInteractiveColors.backgroundHover,
+        '--euiBadgeBackgroundActiveColor':
+          customInteractiveColors.backgroundActive,
         ...style,
       };
     } catch (err) {
@@ -174,9 +188,26 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
         );
       }
     }
-  }, [color, isNamedColor, isDisabled, style, euiTheme]);
+  }, [color, isNamedColor, isDisabled, style, euiThemeContext]);
 
   const styles = useEuiMemoizedStyles(euiBadgeStyles);
+
+  const clickableCssStyles =
+    styles.clickable[
+      isNamedColor
+        ? color === 'hollow'
+          ? 'hollow'
+          : !fill
+          ? 'base'
+          : 'fill'
+        : 'custom'
+    ];
+  const iconOnClickCssStyles = isNamedColor
+    ? styles.iconClickable[
+        color === 'hollow' ? 'hollow' : !fill ? 'base' : 'fill'
+      ]
+    : styles.iconClickable.custom;
+
   const cssStyles = [
     styles.euiBadge,
     isIconOnly && styles.iconOnly,
@@ -185,13 +216,15 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
       : [
           isNamedColor && fill && styles.colors.fill[color as BadgeColor],
           isNamedColor && !fill && styles.colors.base[color as BadgeColor],
-          !iconOnClick && (onClick || href) && styles.clickable,
+          !iconOnClick && (onClick || href) && clickableCssStyles,
+          iconOnClick && !(onClick || href) && iconOnClickCssStyles,
         ]),
   ];
   const textCssStyles = [
     styles.text.euiBadge__text,
     (onClick || href) && !isDisabled && styles.text.clickable,
   ];
+
   const iconCssStyles = [styles.icon.euiBadge__icon, styles.icon[iconSide]];
   const iconButtonCssStyles = [
     styles.iconButton.euiBadge__iconButton,

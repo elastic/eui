@@ -10,8 +10,8 @@ import chroma from 'chroma-js';
 
 import { UseEuiTheme, isColorDark } from '../../services';
 import {
-  euiButtonColor,
-  euiButtonFillColor,
+  getEuiButtonColorValues,
+  getEuiFilledButtonColorValues,
 } from '../../global_styling/mixins/_button';
 import { chromaValid, parseColor } from '../color_picker/utils';
 
@@ -25,30 +25,34 @@ export const euiBadgeColors = (euiThemeContext: UseEuiTheme) => {
 
   const fill = {
     // Colors shared between buttons and badges
-    primary: euiButtonFillColor(euiThemeContext, 'primary'),
-    neutral: euiButtonFillColor(euiThemeContext, 'neutral'),
-    success: euiButtonFillColor(euiThemeContext, 'success'),
-    warning: euiButtonFillColor(euiThemeContext, 'warning'),
-    risk: euiButtonFillColor(euiThemeContext, 'risk'),
-    danger: euiButtonFillColor(euiThemeContext, 'danger'),
-    accent: euiButtonFillColor(euiThemeContext, 'accent'),
+    primary: getEuiFilledButtonColorValues(euiThemeContext, 'primary'),
+    neutral: getEuiFilledButtonColorValues(euiThemeContext, 'neutral'),
+    success: getEuiFilledButtonColorValues(euiThemeContext, 'success'),
+    warning: getEuiFilledButtonColorValues(euiThemeContext, 'warning'),
+    risk: getEuiFilledButtonColorValues(euiThemeContext, 'risk'),
+    danger: getEuiFilledButtonColorValues(euiThemeContext, 'danger'),
+    accent: getEuiFilledButtonColorValues(euiThemeContext, 'accent'),
     // Colors unique to badges
     default: {
       ...getBadgeColors(euiThemeContext, euiTheme.components.badgeBackground),
-      borderColor: highContrastMode ? euiTheme.border.color : '',
+      backgroundHover: euiTheme.components.buttons.backgroundFilledTextHover,
+      backgroundActive: euiTheme.components.buttons.backgroundFilledTextActive,
+      borderColor: 'transparent',
     },
   };
 
   const base = {
-    primary: euiButtonColor(euiThemeContext, 'primary'),
-    neutral: euiButtonColor(euiThemeContext, 'neutral'),
-    success: euiButtonColor(euiThemeContext, 'success'),
-    warning: euiButtonColor(euiThemeContext, 'warning'),
-    risk: euiButtonColor(euiThemeContext, 'risk'),
-    danger: euiButtonColor(euiThemeContext, 'danger'),
-    accent: euiButtonColor(euiThemeContext, 'accent'),
+    primary: getEuiButtonColorValues(euiThemeContext, 'primary'),
+    neutral: getEuiButtonColorValues(euiThemeContext, 'neutral'),
+    success: getEuiButtonColorValues(euiThemeContext, 'success'),
+    warning: getEuiButtonColorValues(euiThemeContext, 'warning'),
+    risk: getEuiButtonColorValues(euiThemeContext, 'risk'),
+    danger: getEuiButtonColorValues(euiThemeContext, 'danger'),
+    accent: getEuiButtonColorValues(euiThemeContext, 'accent'),
     default: {
       ...getBadgeColors(euiThemeContext, euiTheme.colors.backgroundLightText),
+      backgroundHover: euiTheme.components.buttons.backgroundTextHover,
+      backgroundActive: euiTheme.components.buttons.backgroundTextActive,
       borderColor: highContrastMode ? euiTheme.border.color : '',
     },
   };
@@ -57,12 +61,14 @@ export const euiBadgeColors = (euiThemeContext: UseEuiTheme) => {
     fill,
     base,
     disabled: {
-      ...euiButtonColor(euiThemeContext, 'disabled'),
+      ...getEuiButtonColorValues(euiThemeContext, 'disabled'),
       borderColor: highContrastMode ? euiTheme.colors.textDisabled : '',
     },
     // Hollow has a border and is used for autocompleters and beta badges
     hollow: {
       ...getBadgeColors(euiThemeContext, euiTheme.colors.emptyShade),
+      backgroundHover: euiTheme.components.buttons.backgroundTextHover,
+      backgroundActive: euiTheme.components.buttons.backgroundTextActive,
       borderColor: highContrastMode
         ? euiTheme.border.color
         : euiTheme.components.badgeBorderColorHollow,
@@ -102,6 +108,29 @@ export const getTextColor = ({ euiTheme }: UseEuiTheme, bgColor: string) => {
     : euiTheme.colors.textInk;
 
   return textColor;
+};
+
+/**
+ * Generates the background hover and active colors for custom interactive badges by mixing
+ * the background color with black or white depending on the background color luminance.
+ * @returns { backgroundHover: string, backgroundActive: string }
+ */
+export const getCustomInteractiveColors = (
+  { euiTheme }: UseEuiTheme,
+  bgColor: string
+) => {
+  const isDarkColor = isColorDark(...chroma(bgColor).rgb());
+  const backgroundHover = isDarkColor
+    ? `color-mix(in srgb, ${bgColor}, ${euiTheme.colors.textGhost} 10%)`
+    : `color-mix(in srgb, ${bgColor}, ${euiTheme.colors.textInk} 10%)`;
+  const backgroundActive = isDarkColor
+    ? `color-mix(in srgb, ${bgColor}, ${euiTheme.colors.textGhost} 15%)`
+    : `color-mix(in srgb, ${bgColor}, ${euiTheme.colors.textInk} 15%)`;
+
+  return {
+    backgroundHover,
+    backgroundActive,
+  };
 };
 
 export const getIsValidColor = (color?: string) => {
