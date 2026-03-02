@@ -161,7 +161,7 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
     try {
       // Set dark or light text color based upon best contrast
       const textColor = getTextColor(euiThemeContext, color);
-      // These values are approximations as be don't know what custom color is passed
+      // These values are approximations as we don't know what custom color is passed
       const customInteractiveColors = getCustomInteractiveColors(
         euiThemeContext,
         color
