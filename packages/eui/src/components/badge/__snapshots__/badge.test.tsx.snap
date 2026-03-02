@@ -178,7 +178,7 @@ exports[`EuiBadge props color accent is rendered 1`] = `
 exports[`EuiBadge props color accepts hex 1`] = `
 <span
   class="euiBadge emotion-euiBadge"
-  style="--euiBadgeBackgroundColor: #333; --euiBadgeTextColor: #FFFFFF; --euiBadgeBackgroundHoverColor: color-mix(in srgb, #333, #FFFFFF 10%); --euiBadgeBackgroundActiveColor: color-mix(in srgb, #333, #FFFFFF 15%);"
+  style="--euiBadgeBackgroundColor: #333; --euiBadgeTextColor: #FFFFFF; --euiBadgeBackgroundHoverColor: color-mix(in oklab, #333, #FFFFFF 10%); --euiBadgeBackgroundActiveColor: color-mix(in oklab, #333, #FFFFFF 15%);"
   title="Content"
 >
   <span
@@ -196,7 +196,7 @@ exports[`EuiBadge props color accepts hex 1`] = `
 exports[`EuiBadge props color accepts rgba 1`] = `
 <span
   class="euiBadge emotion-euiBadge"
-  style="--euiBadgeBackgroundColor: rgba(255,255,255,1); --euiBadgeTextColor: #07101F; --euiBadgeBackgroundHoverColor: color-mix(in srgb, rgba(255,255,255,1), #07101F 10%); --euiBadgeBackgroundActiveColor: color-mix(in srgb, rgba(255,255,255,1), #07101F 15%);"
+  style="--euiBadgeBackgroundColor: rgba(255,255,255,1); --euiBadgeTextColor: #07101F; --euiBadgeBackgroundHoverColor: color-mix(in oklab, rgba(255,255,255,1), #07101F 10%); --euiBadgeBackgroundActiveColor: color-mix(in oklab, rgba(255,255,255,1), #07101F 15%);"
   title="Content"
 >
   <span

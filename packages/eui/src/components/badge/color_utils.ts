@@ -121,11 +121,11 @@ export const getCustomInteractiveColors = (
 ) => {
   const isDarkColor = isColorDark(...chroma(bgColor).rgb());
   const backgroundHover = isDarkColor
-    ? `color-mix(in srgb, ${bgColor}, ${euiTheme.colors.textGhost} 10%)`
-    : `color-mix(in srgb, ${bgColor}, ${euiTheme.colors.textInk} 10%)`;
+    ? `color-mix(in oklab, ${bgColor}, ${euiTheme.colors.textGhost} 10%)`
+    : `color-mix(in oklab, ${bgColor}, ${euiTheme.colors.textInk} 10%)`;
   const backgroundActive = isDarkColor
-    ? `color-mix(in srgb, ${bgColor}, ${euiTheme.colors.textGhost} 15%)`
-    : `color-mix(in srgb, ${bgColor}, ${euiTheme.colors.textInk} 15%)`;
+    ? `color-mix(in oklab, ${bgColor}, ${euiTheme.colors.textGhost} 15%)`
+    : `color-mix(in oklab, ${bgColor}, ${euiTheme.colors.textInk} 15%)`;
 
   return {
     backgroundHover,
