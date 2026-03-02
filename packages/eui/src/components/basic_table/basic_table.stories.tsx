@@ -54,7 +54,7 @@ const meta: Meta<EuiBasicTableProps<User>> = {
 };
 moveStorybookControlsToCategory(
   meta,
-  ['responsiveBreakpoint', 'tableLayout', 'hasBackground'],
+  ['responsiveBreakpoint', 'tableLayout', 'hasBackground', 'scrollable'],
   'EuiTable props'
 );
 
@@ -233,6 +233,7 @@ export const Playground: Story = {
       pageSize: initialPageSize,
       pageSizeOptions: [3, 5],
     },
+    scrollable: false,
     sorting: {
       sort: {
         field: 'lastName',
