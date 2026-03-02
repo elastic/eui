@@ -50,11 +50,12 @@ const meta: Meta<EuiBasicTableProps<User>> = {
       'data-test-subj': `basic-table-row`,
     },
     noItemsMessage: '',
+    scrollableInline: false,
   },
 };
 moveStorybookControlsToCategory(
   meta,
-  ['responsiveBreakpoint', 'tableLayout', 'hasBackground', 'scrollable'],
+  ['responsiveBreakpoint', 'tableLayout', 'hasBackground', 'scrollableInline'],
   'EuiTable props'
 );
 
@@ -233,7 +234,6 @@ export const Playground: Story = {
       pageSize: initialPageSize,
       pageSizeOptions: [3, 5],
     },
-    scrollable: false,
     sorting: {
       sort: {
         field: 'lastName',
@@ -262,7 +262,13 @@ export const MarkedRow: Story = {
       })}  />`,
     },
     controls: {
-      include: ['rowProps', 'columns', 'items', 'hasBackground'],
+      include: [
+        'rowProps',
+        'columns',
+        'items',
+        'hasBackground',
+        'scrollableInline',
+      ],
     },
   },
   args: {
@@ -278,7 +284,13 @@ export const MarkedRow: Story = {
 export const ExpandedRow: Story = {
   parameters: {
     controls: {
-      include: ['columns', 'items', 'itemIdToExpandedRowMap', 'hasBackground'],
+      include: [
+        'columns',
+        'items',
+        'itemIdToExpandedRowMap',
+        'hasBackground',
+        'scrollableInline',
+      ],
     },
   },
   args: {
@@ -336,7 +348,13 @@ const NestedTable = ({
 export const ExpandedNestedTable: Story = {
   parameters: {
     controls: {
-      include: ['columns', 'items', 'itemIdToExpandedRowMap', 'hasBackground'],
+      include: [
+        'columns',
+        'items',
+        'itemIdToExpandedRowMap',
+        'hasBackground',
+        'scrollableInline',
+      ],
     },
   },
   args: {

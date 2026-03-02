@@ -45,15 +45,15 @@ export interface EuiTableProps
    */
   hasBackground?: boolean;
   /**
-   * Allow the table to grow over 100% of the container width
-   * and enable horizontal scrolling on overflow.
+   * Allow the table to grow over 100% of the container inline size
+   * (width in horizontal writing-mode) and enable scrolling on overflow.
    *
    * This should only be used with [`tableLayout`]{@link EuiTableProps#tableLayout}
    * set to `auto`.
    * @beta
    * @default false
    */
-  scrollable?: boolean;
+  scrollableInline?: boolean;
 }
 
 /**
@@ -74,7 +74,7 @@ export const EuiTable: FunctionComponent<EuiTableProps> = (originalProps) => {
     tableLayout = 'fixed',
     hasBackground = true,
     responsiveBreakpoint,
-    scrollable = false,
+    scrollableInline = false,
     ...rest
   } = usePropsWithComponentDefaults('EuiTable', originalProps);
   const isResponsive = useIsEuiTableResponsive(responsiveBreakpoint);
@@ -84,7 +84,7 @@ export const EuiTable: FunctionComponent<EuiTableProps> = (originalProps) => {
   const styles = useEuiMemoizedStyles(euiTableStyles);
   const tableStyles = [
     styles.euiTable,
-    scrollable && styles.euiTableScrollable,
+    scrollableInline && styles.euiTableScrollableInline,
     styles.layout[tableLayout],
     (!compressed || isResponsive) && styles.uncompressed,
     compressed && !isResponsive && styles.compressed,
@@ -93,7 +93,7 @@ export const EuiTable: FunctionComponent<EuiTableProps> = (originalProps) => {
   ];
 
   return (
-    <div css={scrollable && styles.scrollableWrapper}>
+    <div css={scrollableInline && styles.scrollableWrapper}>
       <table tabIndex={-1} css={tableStyles} className={classes} {...rest}>
         <EuiTableIsResponsiveContext.Provider value={isResponsive}>
           <EuiTableVariantContext.Provider value={{ hasBackground }}>

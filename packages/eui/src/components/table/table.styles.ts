@@ -56,7 +56,7 @@ export const euiTableStyles = (euiThemeContext: UseEuiTheme) => {
       border: none;
       border-collapse: collapse;
     `,
-    euiTableScrollable: css`
+    euiTableScrollableInline: css`
       inline-size: auto;
       min-inline-size: 100%;
     `,
