@@ -62,7 +62,7 @@ exports[`EuiBadge is rendered with href and rel provided 1`] = `
 exports[`EuiBadge is rendered with href provided 1`] = `
 <a
   aria-label="aria-label"
-  class="euiBadge testClass1 testClass2 emotion-euiBadge-default-clickable-euiTestCss"
+  class="euiBadge testClass1 testClass2 emotion-euiBadge-default-base-euiTestCss"
   data-test-subj="test subject string"
   href="/#/"
   rel="noreferrer"
@@ -123,7 +123,7 @@ exports[`EuiBadge is rendered with iconOnClick and onClick provided 1`] = `
 exports[`EuiBadge is rendered with iconOnClick provided 1`] = `
 <span
   aria-label="aria-label"
-  class="euiBadge testClass1 testClass2 emotion-euiBadge-default-euiTestCss"
+  class="euiBadge testClass1 testClass2 emotion-euiBadge-default-base-euiTestCss"
   data-test-subj="test subject string"
   title="Content"
 >
@@ -142,7 +142,7 @@ exports[`EuiBadge is rendered with iconOnClick provided 1`] = `
 exports[`EuiBadge is rendered with onClick provided 1`] = `
 <button
   aria-label="aria-label"
-  class="euiBadge testClass1 testClass2 emotion-euiBadge-default-clickable-euiTestCss"
+  class="euiBadge testClass1 testClass2 emotion-euiBadge-default-base-euiTestCss"
   data-test-subj="test subject string"
   title="Content"
 >
@@ -178,7 +178,7 @@ exports[`EuiBadge props color accent is rendered 1`] = `
 exports[`EuiBadge props color accepts hex 1`] = `
 <span
   class="euiBadge emotion-euiBadge"
-  style="--euiBadgeBackgroundColor: #333; --euiBadgeTextColor: #FFFFFF;"
+  style="--euiBadgeBackgroundColor: #333; --euiBadgeTextColor: #FFFFFF; --euiBadgeBackgroundHoverColor: color-mix(in srgb, #333, #FFFFFF 10%); --euiBadgeBackgroundActiveColor: color-mix(in srgb, #333, #FFFFFF 15%);"
   title="Content"
 >
   <span
@@ -196,7 +196,7 @@ exports[`EuiBadge props color accepts hex 1`] = `
 exports[`EuiBadge props color accepts rgba 1`] = `
 <span
   class="euiBadge emotion-euiBadge"
-  style="--euiBadgeBackgroundColor: rgba(255,255,255,1); --euiBadgeTextColor: #07101F;"
+  style="--euiBadgeBackgroundColor: rgba(255,255,255,1); --euiBadgeTextColor: #07101F; --euiBadgeBackgroundHoverColor: color-mix(in srgb, rgba(255,255,255,1), #07101F 10%); --euiBadgeBackgroundActiveColor: color-mix(in srgb, rgba(255,255,255,1), #07101F 15%);"
   title="Content"
 >
   <span
