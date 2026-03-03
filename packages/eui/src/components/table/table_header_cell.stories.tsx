@@ -39,6 +39,8 @@ const meta: Meta<EuiTableHeaderCellProps> = {
       options: [undefined, ...HEADER_CELL_SCOPE],
     },
     width: { control: 'text' },
+    minWidth: { control: 'text' },
+    maxWidth: { control: 'text' },
   },
   args: {
     align: LEFT_ALIGNMENT,

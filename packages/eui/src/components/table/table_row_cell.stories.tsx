@@ -43,7 +43,9 @@ const meta: Meta<EuiTableRowCellProps> = {
       options: [LEFT_ALIGNMENT, CENTER_ALIGNMENT, RIGHT_ALIGNMENT],
     },
     width: {
-      control: 'text',
+      width: { control: 'text' },
+      minWidth: { control: 'text' },
+      maxWidth: { control: 'text' },
     },
   },
   args: {
