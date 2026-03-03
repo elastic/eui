@@ -204,7 +204,7 @@ exports[`EuiSideNav props items is rendered 1`] = `
                 C
               </span>
               <span
-                data-euiicon-type="arrowRight"
+                data-euiicon-type="chevronSingleRight"
               />
             </span>
           </button>
@@ -278,7 +278,7 @@ exports[`EuiSideNav props items renders items having { forceOpen: true } in open
                 C
               </span>
               <span
-                data-euiicon-type="arrowDown"
+                data-euiicon-type="chevronSingleDown"
               />
             </span>
           </button>
@@ -302,7 +302,7 @@ exports[`EuiSideNav props items renders items having { forceOpen: true } in open
                     D
                   </span>
                   <span
-                    data-euiicon-type="arrowDown"
+                    data-euiicon-type="chevronSingleDown"
                   />
                 </span>
               </button>
@@ -457,7 +457,7 @@ exports[`EuiSideNav props items renders items which are links 1`] = `
                 C
               </span>
               <span
-                data-euiicon-type="arrowRight"
+                data-euiicon-type="chevronSingleRight"
               />
             </span>
           </button>
@@ -531,7 +531,7 @@ exports[`EuiSideNav props items renders selected item and automatically opens pa
                 C
               </span>
               <span
-                data-euiicon-type="arrowDown"
+                data-euiicon-type="chevronSingleDown"
               />
             </span>
           </button>

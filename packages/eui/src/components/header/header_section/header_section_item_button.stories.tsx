@@ -34,7 +34,7 @@ const render = ({ ...args }) => (
     <EuiHeaderSection side="right">
       <EuiHeaderSectionItem>
         <EuiHeaderSectionItemButton {...args}>
-          <EuiIcon type="search" size="m" />
+          <EuiIcon type="magnify" size="m" />
         </EuiHeaderSectionItemButton>
       </EuiHeaderSectionItem>
       <EuiHeaderSectionItem>

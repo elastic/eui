@@ -139,7 +139,7 @@ export default () => {
           },
           sortTextAsc: 'Star wars-Star trek',
           sortTextDesc: 'Star trek-Star wars',
-          icon: 'starFilled',
+          icon: 'starFill',
           color: '#800080',
         },
       ]}
@@ -568,7 +568,7 @@ const SelectionButton = () => {
         button={
           <EuiButtonEmpty
             size="xs"
-            iconType="arrowDown"
+            iconType="chevronSingleDown"
             iconSide="right"
             onClick={() => setIsPopoverOpen(!isPopoverOpen)}
           >
@@ -733,7 +733,7 @@ const trailingControlColumns = [
             button={
               <EuiButtonIcon
                 aria-label="show actions"
-                iconType="boxesHorizontal"
+                iconType="boxesVertical"
                 color="text"
                 onClick={() => setIsPopoverOpen(!isPopoverOpen)}
               />
@@ -970,7 +970,7 @@ const trailingControlColumns = [
       <span className="euiScreenReaderOnly">Actions</span>
     ),
     rowCellRender: () => (
-      <EuiButtonIcon aria-label="Show actions" iconType="boxesHorizontal" />
+      <EuiButtonIcon aria-label="Show actions" iconType="boxes_vertical" />
     ),
   },
 ];

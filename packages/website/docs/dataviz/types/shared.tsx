@@ -32,7 +32,7 @@ export type ChartType = keyof typeof CHART_COMPONENTS;
 export const ExternalBadge = () => {
   return (
     <EuiBadge
-      iconType="popout"
+      iconType="external"
       iconSide="right"
       onClickAriaLabel="Go to @elastic/charts docs"
       onClick={() =>

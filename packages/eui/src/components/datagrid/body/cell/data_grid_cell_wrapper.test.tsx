@@ -86,7 +86,7 @@ describe('Cell', () => {
             detector: () => 1,
             sortTextAsc: '',
             sortTextDesc: '',
-            icon: 'starFilled',
+            icon: 'starFill',
           },
         ]}
       />
