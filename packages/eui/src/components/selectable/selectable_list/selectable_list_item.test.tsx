@@ -63,6 +63,34 @@ describe('EuiSelectableListItem', () => {
       });
     });
 
+    describe('singleSelection', () => {
+      it('renders a checkbox control when singleSelection is false', () => {
+        const { container } = render(
+          <EuiSelectableListItem singleSelection={false} checked="on" />
+        );
+
+        expect(
+          container.querySelector('.euiSelectableListItem__checkbox')
+        ).toBeInTheDocument();
+        expect(
+          container.querySelector('[data-euiicon-type="check"]')
+        ).toBeInTheDocument();
+      });
+
+      it('renders a check icon when singleSelection is true', () => {
+        const { container } = render(
+          <EuiSelectableListItem singleSelection={true} checked="on" />
+        );
+
+        expect(
+          container.querySelector('.euiSelectableListItem__icon')
+        ).toBeInTheDocument();
+        expect(
+          container.querySelector('[data-euiicon-type="check"]')
+        ).toBeInTheDocument();
+      });
+    });
+
     describe('role and aria-checked behavior', () => {
       it('automatically handles `aria-checked` state for valid roles', () => {
         const { getByRole } = render(

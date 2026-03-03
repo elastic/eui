@@ -27,7 +27,7 @@ exports[`EuiSelectableListItem group labels handles updating aria attrs correctl
         aria-posinset="1"
         aria-selected="false"
         aria-setsize="5"
-        class="euiSelectableListItem emotion-euiSelectableListItem-s"
+        class="euiSelectableListItem emotion-euiSelectableListItem"
         id="option_1"
         role="option"
         title="Titan"
@@ -36,7 +36,7 @@ exports[`EuiSelectableListItem group labels handles updating aria attrs correctl
           class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
         >
           <span
-            class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
+            class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
             data-euiicon-type="empty"
           />
           <span
@@ -51,7 +51,7 @@ exports[`EuiSelectableListItem group labels handles updating aria attrs correctl
         aria-posinset="2"
         aria-selected="false"
         aria-setsize="5"
-        class="euiSelectableListItem emotion-euiSelectableListItem-s"
+        class="euiSelectableListItem emotion-euiSelectableListItem"
         id="option_2"
         role="option"
         title="Io"
@@ -60,7 +60,7 @@ exports[`EuiSelectableListItem group labels handles updating aria attrs correctl
           class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
         >
           <span
-            class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
+            class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
             data-euiicon-type="empty"
           />
           <span
@@ -81,7 +81,7 @@ exports[`EuiSelectableListItem group labels handles updating aria attrs correctl
         aria-posinset="3"
         aria-selected="false"
         aria-setsize="5"
-        class="euiSelectableListItem emotion-euiSelectableListItem-s"
+        class="euiSelectableListItem emotion-euiSelectableListItem"
         id="option_4"
         role="option"
         title="Mercury"
@@ -90,7 +90,7 @@ exports[`EuiSelectableListItem group labels handles updating aria attrs correctl
           class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
         >
           <span
-            class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
+            class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
             data-euiicon-type="empty"
           />
           <span
@@ -105,7 +105,7 @@ exports[`EuiSelectableListItem group labels handles updating aria attrs correctl
         aria-posinset="4"
         aria-selected="false"
         aria-setsize="5"
-        class="euiSelectableListItem emotion-euiSelectableListItem-s"
+        class="euiSelectableListItem emotion-euiSelectableListItem"
         id="option_5"
         role="option"
         title="Mars"
@@ -114,7 +114,7 @@ exports[`EuiSelectableListItem group labels handles updating aria attrs correctl
           class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
         >
           <span
-            class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
+            class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
             data-euiicon-type="empty"
           />
           <span
@@ -135,7 +135,7 @@ exports[`EuiSelectableListItem group labels handles updating aria attrs correctl
         aria-posinset="5"
         aria-selected="false"
         aria-setsize="5"
-        class="euiSelectableListItem emotion-euiSelectableListItem-s"
+        class="euiSelectableListItem emotion-euiSelectableListItem"
         id="option_7"
         role="option"
         title="Sol"
@@ -144,7 +144,7 @@ exports[`EuiSelectableListItem group labels handles updating aria attrs correctl
           class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
         >
           <span
-            class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
+            class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
             data-euiicon-type="empty"
           />
           <span
@@ -177,7 +177,7 @@ exports[`EuiSelectableListItem group labels renders with correct aria-setsize an
         aria-multiselectable="true"
         id="list"
         role="listbox"
-        style="height: 256px; width: 100%;"
+        style="height: 304px; width: 100%;"
         tabindex="0"
       >
         <li
@@ -185,7 +185,7 @@ exports[`EuiSelectableListItem group labels renders with correct aria-setsize an
           aria-posinset="1"
           aria-selected="false"
           aria-setsize="5"
-          class="euiSelectableListItem emotion-euiSelectableListItem-s"
+          class="euiSelectableListItem emotion-euiSelectableListItem"
           id="option_0"
           role="option"
           style="position: absolute; left: 0px; top: 0px; height: 32px; width: 100%;"
@@ -195,7 +195,7 @@ exports[`EuiSelectableListItem group labels renders with correct aria-setsize an
             class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
+              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
               data-euiicon-type="empty"
             />
             <span
@@ -208,7 +208,7 @@ exports[`EuiSelectableListItem group labels renders with correct aria-setsize an
         <li
           class="euiSelectableList__groupLabel emotion-euiSelectableList__groupLabel"
           role="presentation"
-          style="position: absolute; left: 0px; top: 32px; height: 32px; width: 100%;"
+          style="position: absolute; left: 0px; top: 32px; height: 48px; width: 100%;"
         >
           Moons
         </li>
@@ -217,17 +217,17 @@ exports[`EuiSelectableListItem group labels renders with correct aria-setsize an
           aria-posinset="2"
           aria-selected="false"
           aria-setsize="5"
-          class="euiSelectableListItem emotion-euiSelectableListItem-s"
+          class="euiSelectableListItem emotion-euiSelectableListItem"
           id="option_2"
           role="option"
-          style="position: absolute; left: 0px; top: 64px; height: 32px; width: 100%;"
+          style="position: absolute; left: 0px; top: 80px; height: 32px; width: 100%;"
           title="Titan"
         >
           <span
             class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
+              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
               data-euiicon-type="empty"
             />
             <span
@@ -242,17 +242,17 @@ exports[`EuiSelectableListItem group labels renders with correct aria-setsize an
           aria-posinset="3"
           aria-selected="false"
           aria-setsize="5"
-          class="euiSelectableListItem emotion-euiSelectableListItem-s"
+          class="euiSelectableListItem emotion-euiSelectableListItem"
           id="option_3"
           role="option"
-          style="position: absolute; left: 0px; top: 96px; height: 32px; width: 100%;"
+          style="position: absolute; left: 0px; top: 112px; height: 32px; width: 100%;"
           title="Io"
         >
           <span
             class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
+              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
               data-euiicon-type="empty"
             />
             <span
@@ -265,7 +265,7 @@ exports[`EuiSelectableListItem group labels renders with correct aria-setsize an
         <li
           class="euiSelectableList__groupLabel emotion-euiSelectableList__groupLabel"
           role="presentation"
-          style="position: absolute; left: 0px; top: 128px; height: 32px; width: 100%;"
+          style="position: absolute; left: 0px; top: 144px; height: 48px; width: 100%;"
         >
           Planets
         </li>
@@ -274,17 +274,17 @@ exports[`EuiSelectableListItem group labels renders with correct aria-setsize an
           aria-posinset="4"
           aria-selected="false"
           aria-setsize="5"
-          class="euiSelectableListItem emotion-euiSelectableListItem-s"
+          class="euiSelectableListItem emotion-euiSelectableListItem"
           id="option_5"
           role="option"
-          style="position: absolute; left: 0px; top: 160px; height: 32px; width: 100%;"
+          style="position: absolute; left: 0px; top: 192px; height: 32px; width: 100%;"
           title="Mercury"
         >
           <span
             class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
+              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
               data-euiicon-type="empty"
             />
             <span
@@ -299,17 +299,17 @@ exports[`EuiSelectableListItem group labels renders with correct aria-setsize an
           aria-posinset="5"
           aria-selected="false"
           aria-setsize="5"
-          class="euiSelectableListItem emotion-euiSelectableListItem-s"
+          class="euiSelectableListItem emotion-euiSelectableListItem"
           id="option_6"
           role="option"
-          style="position: absolute; left: 0px; top: 192px; height: 32px; width: 100%;"
+          style="position: absolute; left: 0px; top: 224px; height: 32px; width: 100%;"
           title="Mars"
         >
           <span
             class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
+              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
               data-euiicon-type="empty"
             />
             <span
@@ -322,7 +322,7 @@ exports[`EuiSelectableListItem group labels renders with correct aria-setsize an
         <li
           class="euiSelectableList__groupLabel emotion-euiSelectableList__groupLabel"
           role="presentation"
-          style="position: absolute; left: 0px; top: 224px; height: 32px; width: 100%;"
+          style="position: absolute; left: 0px; top: 256px; height: 48px; width: 100%;"
         >
           Suns
         </li>
@@ -358,7 +358,7 @@ exports[`EuiSelectableListItem is rendered 1`] = `
           aria-posinset="1"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem-s"
+          class="euiSelectableListItem emotion-euiSelectableListItem"
           data-test-subj="titanOption"
           id="option_0"
           role="option"
@@ -369,7 +369,7 @@ exports[`EuiSelectableListItem is rendered 1`] = `
             class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
+              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
               data-euiicon-type="empty"
             />
             <span
@@ -384,7 +384,7 @@ exports[`EuiSelectableListItem is rendered 1`] = `
           aria-posinset="2"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem-s"
+          class="euiSelectableListItem emotion-euiSelectableListItem"
           id="option_1"
           role="option"
           style="position: absolute; left: 0px; top: 32px; height: 32px; width: 100%;"
@@ -394,7 +394,7 @@ exports[`EuiSelectableListItem is rendered 1`] = `
             class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
+              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
               data-euiicon-type="empty"
             />
             <span
@@ -409,7 +409,7 @@ exports[`EuiSelectableListItem is rendered 1`] = `
           aria-posinset="3"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem-s"
+          class="euiSelectableListItem emotion-euiSelectableListItem"
           id="option_2"
           role="option"
           style="position: absolute; left: 0px; top: 64px; height: 32px; width: 100%;"
@@ -419,7 +419,7 @@ exports[`EuiSelectableListItem is rendered 1`] = `
             class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
+              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
               data-euiicon-type="empty"
             />
             <span
@@ -434,7 +434,7 @@ exports[`EuiSelectableListItem is rendered 1`] = `
           aria-posinset="4"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem-s"
+          class="euiSelectableListItem emotion-euiSelectableListItem"
           id="option_3"
           role="option"
           style="position: absolute; left: 0px; top: 96px; height: 32px; width: 100%;"
@@ -444,7 +444,7 @@ exports[`EuiSelectableListItem is rendered 1`] = `
             class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
+              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
               data-euiicon-type="empty"
             />
             <span
@@ -459,7 +459,7 @@ exports[`EuiSelectableListItem is rendered 1`] = `
           aria-posinset="5"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem-s"
+          class="euiSelectableListItem emotion-euiSelectableListItem"
           id="option_4"
           role="option"
           style="position: absolute; left: 0px; top: 128px; height: 32px; width: 100%;"
@@ -469,7 +469,7 @@ exports[`EuiSelectableListItem is rendered 1`] = `
             class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
+              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
               data-euiicon-type="empty"
             />
             <span
@@ -484,7 +484,7 @@ exports[`EuiSelectableListItem is rendered 1`] = `
           aria-posinset="6"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem-s"
+          class="euiSelectableListItem emotion-euiSelectableListItem"
           id="option_5"
           role="option"
           style="position: absolute; left: 0px; top: 160px; height: 32px; width: 100%;"
@@ -494,7 +494,7 @@ exports[`EuiSelectableListItem is rendered 1`] = `
             class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
+              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
               data-euiicon-type="empty"
             />
             <span
@@ -536,7 +536,7 @@ exports[`EuiSelectableListItem props activeOptionIndex 1`] = `
           aria-posinset="1"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem-s"
+          class="euiSelectableListItem emotion-euiSelectableListItem"
           data-test-subj="titanOption"
           id="option_0"
           role="option"
@@ -547,7 +547,7 @@ exports[`EuiSelectableListItem props activeOptionIndex 1`] = `
             class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
+              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
               data-euiicon-type="empty"
             />
             <span
@@ -562,7 +562,7 @@ exports[`EuiSelectableListItem props activeOptionIndex 1`] = `
           aria-posinset="2"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem-s"
+          class="euiSelectableListItem emotion-euiSelectableListItem"
           id="option_1"
           role="option"
           style="position: absolute; left: 0px; top: 32px; height: 32px; width: 100%;"
@@ -572,7 +572,7 @@ exports[`EuiSelectableListItem props activeOptionIndex 1`] = `
             class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
+              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
               data-euiicon-type="empty"
             />
             <span
@@ -587,7 +587,7 @@ exports[`EuiSelectableListItem props activeOptionIndex 1`] = `
           aria-posinset="3"
           aria-selected="true"
           aria-setsize="6"
-          class="euiSelectableListItem euiSelectableListItem-isFocused emotion-euiSelectableListItem-s"
+          class="euiSelectableListItem euiSelectableListItem-isFocused emotion-euiSelectableListItem"
           id="option_2"
           role="option"
           style="position: absolute; left: 0px; top: 64px; height: 32px; width: 100%;"
@@ -597,32 +597,13 @@ exports[`EuiSelectableListItem props activeOptionIndex 1`] = `
             class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
+              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
               data-euiicon-type="empty"
             />
             <span
               class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
             >
               Mimas
-            </span>
-            <span
-              class="euiSelectableListItem__append emotion-euiSelectableListItem__append"
-            >
-               
-              <span
-                aria-hidden="true"
-                class="euiBadge euiSelectableListItem__onFocusBadge emotion-euiBadge-iconOnly-hollow"
-              >
-                <span
-                  class="euiBadge__content emotion-euiBadge__content"
-                >
-                  <span
-                    class="euiBadge__icon emotion-euiBadge__icon-left"
-                    color="inherit"
-                    data-euiicon-type="return"
-                  />
-                </span>
-              </span>
             </span>
           </span>
         </li>
@@ -631,7 +612,7 @@ exports[`EuiSelectableListItem props activeOptionIndex 1`] = `
           aria-posinset="4"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem-s"
+          class="euiSelectableListItem emotion-euiSelectableListItem"
           id="option_3"
           role="option"
           style="position: absolute; left: 0px; top: 96px; height: 32px; width: 100%;"
@@ -641,7 +622,7 @@ exports[`EuiSelectableListItem props activeOptionIndex 1`] = `
             class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
+              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
               data-euiicon-type="empty"
             />
             <span
@@ -656,7 +637,7 @@ exports[`EuiSelectableListItem props activeOptionIndex 1`] = `
           aria-posinset="5"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem-s"
+          class="euiSelectableListItem emotion-euiSelectableListItem"
           id="option_4"
           role="option"
           style="position: absolute; left: 0px; top: 128px; height: 32px; width: 100%;"
@@ -666,7 +647,7 @@ exports[`EuiSelectableListItem props activeOptionIndex 1`] = `
             class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
+              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
               data-euiicon-type="empty"
             />
             <span
@@ -681,7 +662,7 @@ exports[`EuiSelectableListItem props activeOptionIndex 1`] = `
           aria-posinset="6"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem-s"
+          class="euiSelectableListItem emotion-euiSelectableListItem"
           id="option_5"
           role="option"
           style="position: absolute; left: 0px; top: 160px; height: 32px; width: 100%;"
@@ -691,7 +672,7 @@ exports[`EuiSelectableListItem props activeOptionIndex 1`] = `
             class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
+              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
               data-euiicon-type="empty"
             />
             <span
@@ -733,7 +714,7 @@ exports[`EuiSelectableListItem props allowExclusions 1`] = `
           aria-posinset="1"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem-s"
+          class="euiSelectableListItem emotion-euiSelectableListItem"
           data-test-subj="titanOption"
           id="option_0"
           role="option"
@@ -744,7 +725,7 @@ exports[`EuiSelectableListItem props allowExclusions 1`] = `
             class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
+              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
               data-euiicon-type="empty"
             />
             <span
@@ -765,7 +746,7 @@ exports[`EuiSelectableListItem props allowExclusions 1`] = `
           aria-posinset="2"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem-s"
+          class="euiSelectableListItem emotion-euiSelectableListItem"
           id="option_1"
           role="option"
           style="position: absolute; left: 0px; top: 32px; height: 32px; width: 100%;"
@@ -775,7 +756,7 @@ exports[`EuiSelectableListItem props allowExclusions 1`] = `
             class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
+              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
               data-euiicon-type="empty"
             />
             <span
@@ -796,7 +777,7 @@ exports[`EuiSelectableListItem props allowExclusions 1`] = `
           aria-posinset="3"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem-s"
+          class="euiSelectableListItem emotion-euiSelectableListItem"
           id="option_2"
           role="option"
           style="position: absolute; left: 0px; top: 64px; height: 32px; width: 100%;"
@@ -806,7 +787,7 @@ exports[`EuiSelectableListItem props allowExclusions 1`] = `
             class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
+              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
               data-euiicon-type="empty"
             />
             <span
@@ -827,7 +808,7 @@ exports[`EuiSelectableListItem props allowExclusions 1`] = `
           aria-posinset="4"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem-s"
+          class="euiSelectableListItem emotion-euiSelectableListItem"
           id="option_3"
           role="option"
           style="position: absolute; left: 0px; top: 96px; height: 32px; width: 100%;"
@@ -837,7 +818,7 @@ exports[`EuiSelectableListItem props allowExclusions 1`] = `
             class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
+              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
               data-euiicon-type="empty"
             />
             <span
@@ -858,7 +839,7 @@ exports[`EuiSelectableListItem props allowExclusions 1`] = `
           aria-posinset="5"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem-s"
+          class="euiSelectableListItem emotion-euiSelectableListItem"
           id="option_4"
           role="option"
           style="position: absolute; left: 0px; top: 128px; height: 32px; width: 100%;"
@@ -868,7 +849,7 @@ exports[`EuiSelectableListItem props allowExclusions 1`] = `
             class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
+              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
               data-euiicon-type="empty"
             />
             <span
@@ -889,7 +870,7 @@ exports[`EuiSelectableListItem props allowExclusions 1`] = `
           aria-posinset="6"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem-s"
+          class="euiSelectableListItem emotion-euiSelectableListItem"
           id="option_5"
           role="option"
           style="position: absolute; left: 0px; top: 160px; height: 32px; width: 100%;"
@@ -899,7 +880,7 @@ exports[`EuiSelectableListItem props allowExclusions 1`] = `
             class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
+              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
               data-euiicon-type="empty"
             />
             <span
@@ -947,7 +928,7 @@ exports[`EuiSelectableListItem props bordered 1`] = `
           aria-posinset="1"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem-s"
+          class="euiSelectableListItem emotion-euiSelectableListItem"
           data-test-subj="titanOption"
           id="option_0"
           role="option"
@@ -958,7 +939,7 @@ exports[`EuiSelectableListItem props bordered 1`] = `
             class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
+              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
               data-euiicon-type="empty"
             />
             <span
@@ -973,7 +954,7 @@ exports[`EuiSelectableListItem props bordered 1`] = `
           aria-posinset="2"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem-s"
+          class="euiSelectableListItem emotion-euiSelectableListItem"
           id="option_1"
           role="option"
           style="position: absolute; left: 0px; top: 32px; height: 32px; width: 100%;"
@@ -983,7 +964,7 @@ exports[`EuiSelectableListItem props bordered 1`] = `
             class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
+              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
               data-euiicon-type="empty"
             />
             <span
@@ -998,7 +979,7 @@ exports[`EuiSelectableListItem props bordered 1`] = `
           aria-posinset="3"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem-s"
+          class="euiSelectableListItem emotion-euiSelectableListItem"
           id="option_2"
           role="option"
           style="position: absolute; left: 0px; top: 64px; height: 32px; width: 100%;"
@@ -1008,7 +989,7 @@ exports[`EuiSelectableListItem props bordered 1`] = `
             class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
+              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
               data-euiicon-type="empty"
             />
             <span
@@ -1023,7 +1004,7 @@ exports[`EuiSelectableListItem props bordered 1`] = `
           aria-posinset="4"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem-s"
+          class="euiSelectableListItem emotion-euiSelectableListItem"
           id="option_3"
           role="option"
           style="position: absolute; left: 0px; top: 96px; height: 32px; width: 100%;"
@@ -1033,7 +1014,7 @@ exports[`EuiSelectableListItem props bordered 1`] = `
             class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
+              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
               data-euiicon-type="empty"
             />
             <span
@@ -1048,7 +1029,7 @@ exports[`EuiSelectableListItem props bordered 1`] = `
           aria-posinset="5"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem-s"
+          class="euiSelectableListItem emotion-euiSelectableListItem"
           id="option_4"
           role="option"
           style="position: absolute; left: 0px; top: 128px; height: 32px; width: 100%;"
@@ -1058,7 +1039,7 @@ exports[`EuiSelectableListItem props bordered 1`] = `
             class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
+              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
               data-euiicon-type="empty"
             />
             <span
@@ -1073,7 +1054,7 @@ exports[`EuiSelectableListItem props bordered 1`] = `
           aria-posinset="6"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem-s"
+          class="euiSelectableListItem emotion-euiSelectableListItem"
           id="option_5"
           role="option"
           style="position: absolute; left: 0px; top: 160px; height: 32px; width: 100%;"
@@ -1083,7 +1064,7 @@ exports[`EuiSelectableListItem props bordered 1`] = `
             class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
+              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
               data-euiicon-type="empty"
             />
             <span
@@ -1125,7 +1106,7 @@ exports[`EuiSelectableListItem props height is forced 1`] = `
           aria-posinset="1"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem-s"
+          class="euiSelectableListItem emotion-euiSelectableListItem"
           data-test-subj="titanOption"
           id="option_0"
           role="option"
@@ -1136,7 +1117,7 @@ exports[`EuiSelectableListItem props height is forced 1`] = `
             class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
+              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
               data-euiicon-type="empty"
             />
             <span
@@ -1151,7 +1132,7 @@ exports[`EuiSelectableListItem props height is forced 1`] = `
           aria-posinset="2"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem-s"
+          class="euiSelectableListItem emotion-euiSelectableListItem"
           id="option_1"
           role="option"
           style="position: absolute; left: 0px; top: 32px; height: 32px; width: 100%;"
@@ -1161,7 +1142,7 @@ exports[`EuiSelectableListItem props height is forced 1`] = `
             class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
+              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
               data-euiicon-type="empty"
             />
             <span
@@ -1176,7 +1157,7 @@ exports[`EuiSelectableListItem props height is forced 1`] = `
           aria-posinset="3"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem-s"
+          class="euiSelectableListItem emotion-euiSelectableListItem"
           id="option_2"
           role="option"
           style="position: absolute; left: 0px; top: 64px; height: 32px; width: 100%;"
@@ -1186,7 +1167,7 @@ exports[`EuiSelectableListItem props height is forced 1`] = `
             class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
+              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
               data-euiicon-type="empty"
             />
             <span
@@ -1201,7 +1182,7 @@ exports[`EuiSelectableListItem props height is forced 1`] = `
           aria-posinset="4"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem-s"
+          class="euiSelectableListItem emotion-euiSelectableListItem"
           id="option_3"
           role="option"
           style="position: absolute; left: 0px; top: 96px; height: 32px; width: 100%;"
@@ -1211,7 +1192,7 @@ exports[`EuiSelectableListItem props height is forced 1`] = `
             class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
+              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
               data-euiicon-type="empty"
             />
             <span
@@ -1226,7 +1207,7 @@ exports[`EuiSelectableListItem props height is forced 1`] = `
           aria-posinset="5"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem-s"
+          class="euiSelectableListItem emotion-euiSelectableListItem"
           id="option_4"
           role="option"
           style="position: absolute; left: 0px; top: 128px; height: 32px; width: 100%;"
@@ -1236,7 +1217,7 @@ exports[`EuiSelectableListItem props height is forced 1`] = `
             class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
+              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
               data-euiicon-type="empty"
             />
             <span
@@ -1251,7 +1232,7 @@ exports[`EuiSelectableListItem props height is forced 1`] = `
           aria-posinset="6"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem-s"
+          class="euiSelectableListItem emotion-euiSelectableListItem"
           id="option_5"
           role="option"
           style="position: absolute; left: 0px; top: 160px; height: 32px; width: 100%;"
@@ -1261,7 +1242,7 @@ exports[`EuiSelectableListItem props height is forced 1`] = `
             class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
+              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
               data-euiicon-type="empty"
             />
             <span
@@ -1303,7 +1284,7 @@ exports[`EuiSelectableListItem props height is full 1`] = `
           aria-posinset="1"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem-s"
+          class="euiSelectableListItem emotion-euiSelectableListItem"
           data-test-subj="titanOption"
           id="option_0"
           role="option"
@@ -1314,7 +1295,7 @@ exports[`EuiSelectableListItem props height is full 1`] = `
             class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
+              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
               data-euiicon-type="empty"
             />
             <span
@@ -1329,7 +1310,7 @@ exports[`EuiSelectableListItem props height is full 1`] = `
           aria-posinset="2"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem-s"
+          class="euiSelectableListItem emotion-euiSelectableListItem"
           id="option_1"
           role="option"
           style="position: absolute; left: 0px; top: 32px; height: 32px; width: 100%;"
@@ -1339,7 +1320,7 @@ exports[`EuiSelectableListItem props height is full 1`] = `
             class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
+              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
               data-euiicon-type="empty"
             />
             <span
@@ -1354,7 +1335,7 @@ exports[`EuiSelectableListItem props height is full 1`] = `
           aria-posinset="3"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem-s"
+          class="euiSelectableListItem emotion-euiSelectableListItem"
           id="option_2"
           role="option"
           style="position: absolute; left: 0px; top: 64px; height: 32px; width: 100%;"
@@ -1364,7 +1345,7 @@ exports[`EuiSelectableListItem props height is full 1`] = `
             class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
+              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
               data-euiicon-type="empty"
             />
             <span
@@ -1379,7 +1360,7 @@ exports[`EuiSelectableListItem props height is full 1`] = `
           aria-posinset="4"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem-s"
+          class="euiSelectableListItem emotion-euiSelectableListItem"
           id="option_3"
           role="option"
           style="position: absolute; left: 0px; top: 96px; height: 32px; width: 100%;"
@@ -1389,7 +1370,7 @@ exports[`EuiSelectableListItem props height is full 1`] = `
             class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
+              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
               data-euiicon-type="empty"
             />
             <span
@@ -1404,7 +1385,7 @@ exports[`EuiSelectableListItem props height is full 1`] = `
           aria-posinset="5"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem-s"
+          class="euiSelectableListItem emotion-euiSelectableListItem"
           id="option_4"
           role="option"
           style="position: absolute; left: 0px; top: 128px; height: 32px; width: 100%;"
@@ -1414,7 +1395,7 @@ exports[`EuiSelectableListItem props height is full 1`] = `
             class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
+              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
               data-euiicon-type="empty"
             />
             <span
@@ -1429,7 +1410,7 @@ exports[`EuiSelectableListItem props height is full 1`] = `
           aria-posinset="6"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem-s"
+          class="euiSelectableListItem emotion-euiSelectableListItem"
           id="option_5"
           role="option"
           style="position: absolute; left: 0px; top: 160px; height: 32px; width: 100%;"
@@ -1439,7 +1420,7 @@ exports[`EuiSelectableListItem props height is full 1`] = `
             class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
+              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
               data-euiicon-type="empty"
             />
             <span
@@ -1476,7 +1457,7 @@ exports[`EuiSelectableListItem props isVirtualized={false} renders 1`] = `
         aria-posinset="1"
         aria-selected="false"
         aria-setsize="6"
-        class="euiSelectableListItem emotion-euiSelectableListItem-s"
+        class="euiSelectableListItem emotion-euiSelectableListItem"
         data-test-subj="titanOption"
         id="option_0"
         role="option"
@@ -1486,7 +1467,7 @@ exports[`EuiSelectableListItem props isVirtualized={false} renders 1`] = `
           class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
         >
           <span
-            class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
+            class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
             data-euiicon-type="empty"
           />
           <span
@@ -1501,7 +1482,7 @@ exports[`EuiSelectableListItem props isVirtualized={false} renders 1`] = `
         aria-posinset="2"
         aria-selected="false"
         aria-setsize="6"
-        class="euiSelectableListItem emotion-euiSelectableListItem-s"
+        class="euiSelectableListItem emotion-euiSelectableListItem"
         id="option_1"
         role="option"
         title="Enceladus"
@@ -1510,7 +1491,7 @@ exports[`EuiSelectableListItem props isVirtualized={false} renders 1`] = `
           class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
         >
           <span
-            class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
+            class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
             data-euiicon-type="empty"
           />
           <span
@@ -1525,7 +1506,7 @@ exports[`EuiSelectableListItem props isVirtualized={false} renders 1`] = `
         aria-posinset="3"
         aria-selected="false"
         aria-setsize="6"
-        class="euiSelectableListItem emotion-euiSelectableListItem-s"
+        class="euiSelectableListItem emotion-euiSelectableListItem"
         id="option_2"
         role="option"
         title="Mimas"
@@ -1534,7 +1515,7 @@ exports[`EuiSelectableListItem props isVirtualized={false} renders 1`] = `
           class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
         >
           <span
-            class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
+            class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
             data-euiicon-type="empty"
           />
           <span
@@ -1549,7 +1530,7 @@ exports[`EuiSelectableListItem props isVirtualized={false} renders 1`] = `
         aria-posinset="4"
         aria-selected="false"
         aria-setsize="6"
-        class="euiSelectableListItem emotion-euiSelectableListItem-s"
+        class="euiSelectableListItem emotion-euiSelectableListItem"
         id="option_3"
         role="option"
         title="Pandora is one of Saturn's moons, named for a Titaness of Greek mythology"
@@ -1558,7 +1539,7 @@ exports[`EuiSelectableListItem props isVirtualized={false} renders 1`] = `
           class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
         >
           <span
-            class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
+            class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
             data-euiicon-type="empty"
           />
           <span
@@ -1573,7 +1554,7 @@ exports[`EuiSelectableListItem props isVirtualized={false} renders 1`] = `
         aria-posinset="5"
         aria-selected="false"
         aria-setsize="6"
-        class="euiSelectableListItem emotion-euiSelectableListItem-s"
+        class="euiSelectableListItem emotion-euiSelectableListItem"
         id="option_4"
         role="option"
         title="Tethys"
@@ -1582,7 +1563,7 @@ exports[`EuiSelectableListItem props isVirtualized={false} renders 1`] = `
           class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
         >
           <span
-            class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
+            class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
             data-euiicon-type="empty"
           />
           <span
@@ -1597,7 +1578,7 @@ exports[`EuiSelectableListItem props isVirtualized={false} renders 1`] = `
         aria-posinset="6"
         aria-selected="false"
         aria-setsize="6"
-        class="euiSelectableListItem emotion-euiSelectableListItem-s"
+        class="euiSelectableListItem emotion-euiSelectableListItem"
         id="option_5"
         role="option"
         title="Hyperion"
@@ -1606,7 +1587,7 @@ exports[`EuiSelectableListItem props isVirtualized={false} renders 1`] = `
           class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
         >
           <span
-            class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
+            class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
             data-euiicon-type="empty"
           />
           <span
@@ -1617,362 +1598,6 @@ exports[`EuiSelectableListItem props isVirtualized={false} renders 1`] = `
         </span>
       </li>
     </ul>
-  </div>
-</div>
-`;
-
-exports[`EuiSelectableListItem props paddingSize none is rendered 1`] = `
-<div
-  class="euiSelectableList testClass1 testClass2 emotion-euiSelectableList-euiTestCss"
-  data-test-subj="test subject string"
->
-  <div
-    data-eui="EuiAutoSizer"
-  >
-    <div
-      class="euiSelectableList__list emotion-euiSelectableList__list"
-      style="position: relative; height: 192px; width: 600px; overflow: auto; will-change: transform; direction: ltr;"
-      tabindex="-1"
-    >
-      <ul
-        aria-label="aria-label"
-        aria-multiselectable="true"
-        id="list"
-        role="listbox"
-        style="height: 192px; width: 100%;"
-        tabindex="0"
-      >
-        <li
-          aria-checked="false"
-          aria-posinset="1"
-          aria-selected="false"
-          aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem-none"
-          data-test-subj="titanOption"
-          id="option_0"
-          role="option"
-          style="position: absolute; left: 0px; top: 0px; height: 32px; width: 100%;"
-          title="Titan"
-        >
-          <span
-            class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
-          >
-            <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
-              data-euiicon-type="empty"
-            />
-            <span
-              class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
-            >
-              Titan
-            </span>
-          </span>
-        </li>
-        <li
-          aria-checked="false"
-          aria-posinset="2"
-          aria-selected="false"
-          aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem-none"
-          id="option_1"
-          role="option"
-          style="position: absolute; left: 0px; top: 32px; height: 32px; width: 100%;"
-          title="Enceladus"
-        >
-          <span
-            class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
-          >
-            <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
-              data-euiicon-type="empty"
-            />
-            <span
-              class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
-            >
-              Enceladus
-            </span>
-          </span>
-        </li>
-        <li
-          aria-checked="false"
-          aria-posinset="3"
-          aria-selected="false"
-          aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem-none"
-          id="option_2"
-          role="option"
-          style="position: absolute; left: 0px; top: 64px; height: 32px; width: 100%;"
-          title="Mimas"
-        >
-          <span
-            class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
-          >
-            <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
-              data-euiicon-type="empty"
-            />
-            <span
-              class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
-            >
-              Mimas
-            </span>
-          </span>
-        </li>
-        <li
-          aria-checked="false"
-          aria-posinset="4"
-          aria-selected="false"
-          aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem-none"
-          id="option_3"
-          role="option"
-          style="position: absolute; left: 0px; top: 96px; height: 32px; width: 100%;"
-          title="Pandora is one of Saturn's moons, named for a Titaness of Greek mythology"
-        >
-          <span
-            class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
-          >
-            <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
-              data-euiicon-type="empty"
-            />
-            <span
-              class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
-            >
-              Pandora is one of Saturn's moons, named for a Titaness of Greek mythology
-            </span>
-          </span>
-        </li>
-        <li
-          aria-checked="false"
-          aria-posinset="5"
-          aria-selected="false"
-          aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem-none"
-          id="option_4"
-          role="option"
-          style="position: absolute; left: 0px; top: 128px; height: 32px; width: 100%;"
-          title="Tethys"
-        >
-          <span
-            class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
-          >
-            <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
-              data-euiicon-type="empty"
-            />
-            <span
-              class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
-            >
-              Tethys
-            </span>
-          </span>
-        </li>
-        <li
-          aria-checked="false"
-          aria-posinset="6"
-          aria-selected="false"
-          aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem-none"
-          id="option_5"
-          role="option"
-          style="position: absolute; left: 0px; top: 160px; height: 32px; width: 100%;"
-          title="Hyperion"
-        >
-          <span
-            class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
-          >
-            <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
-              data-euiicon-type="empty"
-            />
-            <span
-              class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
-            >
-              Hyperion
-            </span>
-          </span>
-        </li>
-      </ul>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`EuiSelectableListItem props paddingSize s is rendered 1`] = `
-<div
-  class="euiSelectableList testClass1 testClass2 emotion-euiSelectableList-euiTestCss"
-  data-test-subj="test subject string"
->
-  <div
-    data-eui="EuiAutoSizer"
-  >
-    <div
-      class="euiSelectableList__list emotion-euiSelectableList__list"
-      style="position: relative; height: 192px; width: 600px; overflow: auto; will-change: transform; direction: ltr;"
-      tabindex="-1"
-    >
-      <ul
-        aria-label="aria-label"
-        aria-multiselectable="true"
-        id="list"
-        role="listbox"
-        style="height: 192px; width: 100%;"
-        tabindex="0"
-      >
-        <li
-          aria-checked="false"
-          aria-posinset="1"
-          aria-selected="false"
-          aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem-s"
-          data-test-subj="titanOption"
-          id="option_0"
-          role="option"
-          style="position: absolute; left: 0px; top: 0px; height: 32px; width: 100%;"
-          title="Titan"
-        >
-          <span
-            class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
-          >
-            <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
-              data-euiicon-type="empty"
-            />
-            <span
-              class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
-            >
-              Titan
-            </span>
-          </span>
-        </li>
-        <li
-          aria-checked="false"
-          aria-posinset="2"
-          aria-selected="false"
-          aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem-s"
-          id="option_1"
-          role="option"
-          style="position: absolute; left: 0px; top: 32px; height: 32px; width: 100%;"
-          title="Enceladus"
-        >
-          <span
-            class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
-          >
-            <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
-              data-euiicon-type="empty"
-            />
-            <span
-              class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
-            >
-              Enceladus
-            </span>
-          </span>
-        </li>
-        <li
-          aria-checked="false"
-          aria-posinset="3"
-          aria-selected="false"
-          aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem-s"
-          id="option_2"
-          role="option"
-          style="position: absolute; left: 0px; top: 64px; height: 32px; width: 100%;"
-          title="Mimas"
-        >
-          <span
-            class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
-          >
-            <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
-              data-euiicon-type="empty"
-            />
-            <span
-              class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
-            >
-              Mimas
-            </span>
-          </span>
-        </li>
-        <li
-          aria-checked="false"
-          aria-posinset="4"
-          aria-selected="false"
-          aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem-s"
-          id="option_3"
-          role="option"
-          style="position: absolute; left: 0px; top: 96px; height: 32px; width: 100%;"
-          title="Pandora is one of Saturn's moons, named for a Titaness of Greek mythology"
-        >
-          <span
-            class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
-          >
-            <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
-              data-euiicon-type="empty"
-            />
-            <span
-              class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
-            >
-              Pandora is one of Saturn's moons, named for a Titaness of Greek mythology
-            </span>
-          </span>
-        </li>
-        <li
-          aria-checked="false"
-          aria-posinset="5"
-          aria-selected="false"
-          aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem-s"
-          id="option_4"
-          role="option"
-          style="position: absolute; left: 0px; top: 128px; height: 32px; width: 100%;"
-          title="Tethys"
-        >
-          <span
-            class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
-          >
-            <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
-              data-euiicon-type="empty"
-            />
-            <span
-              class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
-            >
-              Tethys
-            </span>
-          </span>
-        </li>
-        <li
-          aria-checked="false"
-          aria-posinset="6"
-          aria-selected="false"
-          aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem-s"
-          id="option_5"
-          role="option"
-          style="position: absolute; left: 0px; top: 160px; height: 32px; width: 100%;"
-          title="Hyperion"
-        >
-          <span
-            class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
-          >
-            <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
-              data-euiicon-type="empty"
-            />
-            <span
-              class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
-            >
-              Hyperion
-            </span>
-          </span>
-        </li>
-      </ul>
-    </div>
   </div>
 </div>
 `;
@@ -2003,7 +1628,7 @@ exports[`EuiSelectableListItem props renderOption 1`] = `
           aria-posinset="1"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem-s"
+          class="euiSelectableListItem emotion-euiSelectableListItem"
           data-test-subj="titanOption"
           id="option_0"
           role="option"
@@ -2014,7 +1639,7 @@ exports[`EuiSelectableListItem props renderOption 1`] = `
             class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
+              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
               data-euiicon-type="empty"
             />
             <span
@@ -2032,7 +1657,7 @@ exports[`EuiSelectableListItem props renderOption 1`] = `
           aria-posinset="2"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem-s"
+          class="euiSelectableListItem emotion-euiSelectableListItem"
           id="option_1"
           role="option"
           style="position: absolute; left: 0px; top: 32px; height: 32px; width: 100%;"
@@ -2042,7 +1667,7 @@ exports[`EuiSelectableListItem props renderOption 1`] = `
             class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
+              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
               data-euiicon-type="empty"
             />
             <span
@@ -2060,7 +1685,7 @@ exports[`EuiSelectableListItem props renderOption 1`] = `
           aria-posinset="3"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem-s"
+          class="euiSelectableListItem emotion-euiSelectableListItem"
           id="option_2"
           role="option"
           style="position: absolute; left: 0px; top: 64px; height: 32px; width: 100%;"
@@ -2070,7 +1695,7 @@ exports[`EuiSelectableListItem props renderOption 1`] = `
             class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
+              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
               data-euiicon-type="empty"
             />
             <span
@@ -2088,7 +1713,7 @@ exports[`EuiSelectableListItem props renderOption 1`] = `
           aria-posinset="4"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem-s"
+          class="euiSelectableListItem emotion-euiSelectableListItem"
           id="option_3"
           role="option"
           style="position: absolute; left: 0px; top: 96px; height: 32px; width: 100%;"
@@ -2098,7 +1723,7 @@ exports[`EuiSelectableListItem props renderOption 1`] = `
             class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
+              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
               data-euiicon-type="empty"
             />
             <span
@@ -2116,7 +1741,7 @@ exports[`EuiSelectableListItem props renderOption 1`] = `
           aria-posinset="5"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem-s"
+          class="euiSelectableListItem emotion-euiSelectableListItem"
           id="option_4"
           role="option"
           style="position: absolute; left: 0px; top: 128px; height: 32px; width: 100%;"
@@ -2126,7 +1751,7 @@ exports[`EuiSelectableListItem props renderOption 1`] = `
             class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
+              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
               data-euiicon-type="empty"
             />
             <span
@@ -2144,7 +1769,7 @@ exports[`EuiSelectableListItem props renderOption 1`] = `
           aria-posinset="6"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem-s"
+          class="euiSelectableListItem emotion-euiSelectableListItem"
           id="option_5"
           role="option"
           style="position: absolute; left: 0px; top: 160px; height: 32px; width: 100%;"
@@ -2154,7 +1779,7 @@ exports[`EuiSelectableListItem props renderOption 1`] = `
             class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
+              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
               data-euiicon-type="empty"
             />
             <span
@@ -2199,7 +1824,7 @@ exports[`EuiSelectableListItem props rowHeight 1`] = `
           aria-posinset="1"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem-s"
+          class="euiSelectableListItem emotion-euiSelectableListItem"
           data-test-subj="titanOption"
           id="option_0"
           role="option"
@@ -2210,7 +1835,7 @@ exports[`EuiSelectableListItem props rowHeight 1`] = `
             class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
+              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
               data-euiicon-type="empty"
             />
             <span
@@ -2225,7 +1850,7 @@ exports[`EuiSelectableListItem props rowHeight 1`] = `
           aria-posinset="2"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem-s"
+          class="euiSelectableListItem emotion-euiSelectableListItem"
           id="option_1"
           role="option"
           style="position: absolute; left: 0px; top: 20px; height: 20px; width: 100%;"
@@ -2235,7 +1860,7 @@ exports[`EuiSelectableListItem props rowHeight 1`] = `
             class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
+              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
               data-euiicon-type="empty"
             />
             <span
@@ -2250,7 +1875,7 @@ exports[`EuiSelectableListItem props rowHeight 1`] = `
           aria-posinset="3"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem-s"
+          class="euiSelectableListItem emotion-euiSelectableListItem"
           id="option_2"
           role="option"
           style="position: absolute; left: 0px; top: 40px; height: 20px; width: 100%;"
@@ -2260,7 +1885,7 @@ exports[`EuiSelectableListItem props rowHeight 1`] = `
             class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
+              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
               data-euiicon-type="empty"
             />
             <span
@@ -2275,7 +1900,7 @@ exports[`EuiSelectableListItem props rowHeight 1`] = `
           aria-posinset="4"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem-s"
+          class="euiSelectableListItem emotion-euiSelectableListItem"
           id="option_3"
           role="option"
           style="position: absolute; left: 0px; top: 60px; height: 20px; width: 100%;"
@@ -2285,7 +1910,7 @@ exports[`EuiSelectableListItem props rowHeight 1`] = `
             class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
+              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
               data-euiicon-type="empty"
             />
             <span
@@ -2300,7 +1925,7 @@ exports[`EuiSelectableListItem props rowHeight 1`] = `
           aria-posinset="5"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem-s"
+          class="euiSelectableListItem emotion-euiSelectableListItem"
           id="option_4"
           role="option"
           style="position: absolute; left: 0px; top: 80px; height: 20px; width: 100%;"
@@ -2310,7 +1935,7 @@ exports[`EuiSelectableListItem props rowHeight 1`] = `
             class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
+              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
               data-euiicon-type="empty"
             />
             <span
@@ -2325,7 +1950,7 @@ exports[`EuiSelectableListItem props rowHeight 1`] = `
           aria-posinset="6"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem-s"
+          class="euiSelectableListItem emotion-euiSelectableListItem"
           id="option_5"
           role="option"
           style="position: absolute; left: 0px; top: 100px; height: 20px; width: 100%;"
@@ -2335,7 +1960,7 @@ exports[`EuiSelectableListItem props rowHeight 1`] = `
             class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
+              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
               data-euiicon-type="empty"
             />
             <span
@@ -2375,7 +2000,7 @@ exports[`EuiSelectableListItem props searchable enables correct screen reader in
           aria-posinset="1"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem-s"
+          class="euiSelectableListItem emotion-euiSelectableListItem"
           data-test-subj="titanOption"
           id="option_0"
           role="option"
@@ -2386,7 +2011,7 @@ exports[`EuiSelectableListItem props searchable enables correct screen reader in
             class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
+              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
               data-euiicon-type="empty"
             />
             <span
@@ -2407,7 +2032,7 @@ exports[`EuiSelectableListItem props searchable enables correct screen reader in
           aria-posinset="2"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem-s"
+          class="euiSelectableListItem emotion-euiSelectableListItem"
           id="option_1"
           role="option"
           style="position: absolute; left: 0px; top: 32px; height: 32px; width: 100%;"
@@ -2417,7 +2042,7 @@ exports[`EuiSelectableListItem props searchable enables correct screen reader in
             class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
+              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
               data-euiicon-type="empty"
             />
             <span
@@ -2438,7 +2063,7 @@ exports[`EuiSelectableListItem props searchable enables correct screen reader in
           aria-posinset="3"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem-s"
+          class="euiSelectableListItem emotion-euiSelectableListItem"
           id="option_2"
           role="option"
           style="position: absolute; left: 0px; top: 64px; height: 32px; width: 100%;"
@@ -2448,7 +2073,7 @@ exports[`EuiSelectableListItem props searchable enables correct screen reader in
             class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
+              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
               data-euiicon-type="empty"
             />
             <span
@@ -2469,7 +2094,7 @@ exports[`EuiSelectableListItem props searchable enables correct screen reader in
           aria-posinset="4"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem-s"
+          class="euiSelectableListItem emotion-euiSelectableListItem"
           id="option_3"
           role="option"
           style="position: absolute; left: 0px; top: 96px; height: 32px; width: 100%;"
@@ -2479,7 +2104,7 @@ exports[`EuiSelectableListItem props searchable enables correct screen reader in
             class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
+              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
               data-euiicon-type="empty"
             />
             <span
@@ -2500,7 +2125,7 @@ exports[`EuiSelectableListItem props searchable enables correct screen reader in
           aria-posinset="5"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem-s"
+          class="euiSelectableListItem emotion-euiSelectableListItem"
           id="option_4"
           role="option"
           style="position: absolute; left: 0px; top: 128px; height: 32px; width: 100%;"
@@ -2510,7 +2135,7 @@ exports[`EuiSelectableListItem props searchable enables correct screen reader in
             class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
+              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
               data-euiicon-type="empty"
             />
             <span
@@ -2531,7 +2156,7 @@ exports[`EuiSelectableListItem props searchable enables correct screen reader in
           aria-posinset="6"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem-s"
+          class="euiSelectableListItem emotion-euiSelectableListItem"
           id="option_5"
           role="option"
           style="position: absolute; left: 0px; top: 160px; height: 32px; width: 100%;"
@@ -2541,7 +2166,7 @@ exports[`EuiSelectableListItem props searchable enables correct screen reader in
             class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
+              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
               data-euiicon-type="empty"
             />
             <span
@@ -2589,7 +2214,7 @@ exports[`EuiSelectableListItem props showIcons can be turned off 1`] = `
           aria-posinset="1"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem-s"
+          class="euiSelectableListItem emotion-euiSelectableListItem"
           data-test-subj="titanOption"
           id="option_0"
           role="option"
@@ -2611,7 +2236,7 @@ exports[`EuiSelectableListItem props showIcons can be turned off 1`] = `
           aria-posinset="2"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem-s"
+          class="euiSelectableListItem emotion-euiSelectableListItem"
           id="option_1"
           role="option"
           style="position: absolute; left: 0px; top: 32px; height: 32px; width: 100%;"
@@ -2632,7 +2257,7 @@ exports[`EuiSelectableListItem props showIcons can be turned off 1`] = `
           aria-posinset="3"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem-s"
+          class="euiSelectableListItem emotion-euiSelectableListItem"
           id="option_2"
           role="option"
           style="position: absolute; left: 0px; top: 64px; height: 32px; width: 100%;"
@@ -2653,7 +2278,7 @@ exports[`EuiSelectableListItem props showIcons can be turned off 1`] = `
           aria-posinset="4"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem-s"
+          class="euiSelectableListItem emotion-euiSelectableListItem"
           id="option_3"
           role="option"
           style="position: absolute; left: 0px; top: 96px; height: 32px; width: 100%;"
@@ -2674,7 +2299,7 @@ exports[`EuiSelectableListItem props showIcons can be turned off 1`] = `
           aria-posinset="5"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem-s"
+          class="euiSelectableListItem emotion-euiSelectableListItem"
           id="option_4"
           role="option"
           style="position: absolute; left: 0px; top: 128px; height: 32px; width: 100%;"
@@ -2695,7 +2320,7 @@ exports[`EuiSelectableListItem props showIcons can be turned off 1`] = `
           aria-posinset="6"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem-s"
+          class="euiSelectableListItem emotion-euiSelectableListItem"
           id="option_5"
           role="option"
           style="position: absolute; left: 0px; top: 160px; height: 32px; width: 100%;"
@@ -2742,7 +2367,7 @@ exports[`EuiSelectableListItem props singleSelection can be forced so that at le
           aria-posinset="1"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem-s"
+          class="euiSelectableListItem emotion-euiSelectableListItem"
           data-test-subj="titanOption"
           id="option_0"
           role="option"
@@ -2753,7 +2378,7 @@ exports[`EuiSelectableListItem props singleSelection can be forced so that at le
             class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
+              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
               data-euiicon-type="empty"
             />
             <span
@@ -2768,7 +2393,7 @@ exports[`EuiSelectableListItem props singleSelection can be forced so that at le
           aria-posinset="2"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem-s"
+          class="euiSelectableListItem emotion-euiSelectableListItem"
           id="option_1"
           role="option"
           style="position: absolute; left: 0px; top: 32px; height: 32px; width: 100%;"
@@ -2778,7 +2403,7 @@ exports[`EuiSelectableListItem props singleSelection can be forced so that at le
             class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
+              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
               data-euiicon-type="empty"
             />
             <span
@@ -2793,7 +2418,7 @@ exports[`EuiSelectableListItem props singleSelection can be forced so that at le
           aria-posinset="3"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem-s"
+          class="euiSelectableListItem emotion-euiSelectableListItem"
           id="option_2"
           role="option"
           style="position: absolute; left: 0px; top: 64px; height: 32px; width: 100%;"
@@ -2803,7 +2428,7 @@ exports[`EuiSelectableListItem props singleSelection can be forced so that at le
             class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
+              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
               data-euiicon-type="empty"
             />
             <span
@@ -2818,7 +2443,7 @@ exports[`EuiSelectableListItem props singleSelection can be forced so that at le
           aria-posinset="4"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem-s"
+          class="euiSelectableListItem emotion-euiSelectableListItem"
           id="option_3"
           role="option"
           style="position: absolute; left: 0px; top: 96px; height: 32px; width: 100%;"
@@ -2828,7 +2453,7 @@ exports[`EuiSelectableListItem props singleSelection can be forced so that at le
             class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
+              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
               data-euiicon-type="empty"
             />
             <span
@@ -2843,7 +2468,7 @@ exports[`EuiSelectableListItem props singleSelection can be forced so that at le
           aria-posinset="5"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem-s"
+          class="euiSelectableListItem emotion-euiSelectableListItem"
           id="option_4"
           role="option"
           style="position: absolute; left: 0px; top: 128px; height: 32px; width: 100%;"
@@ -2853,7 +2478,7 @@ exports[`EuiSelectableListItem props singleSelection can be forced so that at le
             class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
+              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
               data-euiicon-type="empty"
             />
             <span
@@ -2868,7 +2493,7 @@ exports[`EuiSelectableListItem props singleSelection can be forced so that at le
           aria-posinset="6"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem-s"
+          class="euiSelectableListItem emotion-euiSelectableListItem"
           id="option_5"
           role="option"
           style="position: absolute; left: 0px; top: 160px; height: 32px; width: 100%;"
@@ -2878,7 +2503,7 @@ exports[`EuiSelectableListItem props singleSelection can be forced so that at le
             class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
+              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
               data-euiicon-type="empty"
             />
             <span
@@ -2919,7 +2544,7 @@ exports[`EuiSelectableListItem props singleSelection can be turned on 1`] = `
           aria-posinset="1"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem-s"
+          class="euiSelectableListItem emotion-euiSelectableListItem"
           data-test-subj="titanOption"
           id="option_0"
           role="option"
@@ -2930,7 +2555,7 @@ exports[`EuiSelectableListItem props singleSelection can be turned on 1`] = `
             class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
+              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
               data-euiicon-type="empty"
             />
             <span
@@ -2945,7 +2570,7 @@ exports[`EuiSelectableListItem props singleSelection can be turned on 1`] = `
           aria-posinset="2"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem-s"
+          class="euiSelectableListItem emotion-euiSelectableListItem"
           id="option_1"
           role="option"
           style="position: absolute; left: 0px; top: 32px; height: 32px; width: 100%;"
@@ -2955,7 +2580,7 @@ exports[`EuiSelectableListItem props singleSelection can be turned on 1`] = `
             class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
+              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
               data-euiicon-type="empty"
             />
             <span
@@ -2970,7 +2595,7 @@ exports[`EuiSelectableListItem props singleSelection can be turned on 1`] = `
           aria-posinset="3"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem-s"
+          class="euiSelectableListItem emotion-euiSelectableListItem"
           id="option_2"
           role="option"
           style="position: absolute; left: 0px; top: 64px; height: 32px; width: 100%;"
@@ -2980,7 +2605,7 @@ exports[`EuiSelectableListItem props singleSelection can be turned on 1`] = `
             class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
+              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
               data-euiicon-type="empty"
             />
             <span
@@ -2995,7 +2620,7 @@ exports[`EuiSelectableListItem props singleSelection can be turned on 1`] = `
           aria-posinset="4"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem-s"
+          class="euiSelectableListItem emotion-euiSelectableListItem"
           id="option_3"
           role="option"
           style="position: absolute; left: 0px; top: 96px; height: 32px; width: 100%;"
@@ -3005,7 +2630,7 @@ exports[`EuiSelectableListItem props singleSelection can be turned on 1`] = `
             class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
+              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
               data-euiicon-type="empty"
             />
             <span
@@ -3020,7 +2645,7 @@ exports[`EuiSelectableListItem props singleSelection can be turned on 1`] = `
           aria-posinset="5"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem-s"
+          class="euiSelectableListItem emotion-euiSelectableListItem"
           id="option_4"
           role="option"
           style="position: absolute; left: 0px; top: 128px; height: 32px; width: 100%;"
@@ -3030,7 +2655,7 @@ exports[`EuiSelectableListItem props singleSelection can be turned on 1`] = `
             class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
+              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
               data-euiicon-type="empty"
             />
             <span
@@ -3045,7 +2670,7 @@ exports[`EuiSelectableListItem props singleSelection can be turned on 1`] = `
           aria-posinset="6"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem-s"
+          class="euiSelectableListItem emotion-euiSelectableListItem"
           id="option_5"
           role="option"
           style="position: absolute; left: 0px; top: 160px; height: 32px; width: 100%;"
@@ -3055,7 +2680,7 @@ exports[`EuiSelectableListItem props singleSelection can be turned on 1`] = `
             class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
+              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
               data-euiicon-type="empty"
             />
             <span
@@ -3097,7 +2722,7 @@ exports[`EuiSelectableListItem props visibleOptions 1`] = `
           aria-posinset="1"
           aria-selected="false"
           aria-setsize="4"
-          class="euiSelectableListItem emotion-euiSelectableListItem-s"
+          class="euiSelectableListItem emotion-euiSelectableListItem"
           id="option_0"
           role="option"
           style="position: absolute; left: 0px; top: 0px; height: 32px; width: 100%;"
@@ -3107,7 +2732,7 @@ exports[`EuiSelectableListItem props visibleOptions 1`] = `
             class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
+              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
               data-euiicon-type="empty"
             />
             <span
@@ -3122,7 +2747,7 @@ exports[`EuiSelectableListItem props visibleOptions 1`] = `
           aria-posinset="2"
           aria-selected="false"
           aria-setsize="4"
-          class="euiSelectableListItem emotion-euiSelectableListItem-s"
+          class="euiSelectableListItem emotion-euiSelectableListItem"
           id="option_1"
           role="option"
           style="position: absolute; left: 0px; top: 32px; height: 32px; width: 100%;"
@@ -3132,7 +2757,7 @@ exports[`EuiSelectableListItem props visibleOptions 1`] = `
             class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
+              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
               data-euiicon-type="empty"
             />
             <span
@@ -3147,7 +2772,7 @@ exports[`EuiSelectableListItem props visibleOptions 1`] = `
           aria-posinset="3"
           aria-selected="false"
           aria-setsize="4"
-          class="euiSelectableListItem emotion-euiSelectableListItem-s"
+          class="euiSelectableListItem emotion-euiSelectableListItem"
           id="option_2"
           role="option"
           style="position: absolute; left: 0px; top: 64px; height: 32px; width: 100%;"
@@ -3157,7 +2782,7 @@ exports[`EuiSelectableListItem props visibleOptions 1`] = `
             class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
+              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
               data-euiicon-type="empty"
             />
             <span
@@ -3172,7 +2797,7 @@ exports[`EuiSelectableListItem props visibleOptions 1`] = `
           aria-posinset="4"
           aria-selected="false"
           aria-setsize="4"
-          class="euiSelectableListItem emotion-euiSelectableListItem-s"
+          class="euiSelectableListItem emotion-euiSelectableListItem"
           id="option_3"
           role="option"
           style="position: absolute; left: 0px; top: 96px; height: 32px; width: 100%;"
@@ -3182,7 +2807,7 @@ exports[`EuiSelectableListItem props visibleOptions 1`] = `
             class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
+              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
               data-euiicon-type="empty"
             />
             <span
