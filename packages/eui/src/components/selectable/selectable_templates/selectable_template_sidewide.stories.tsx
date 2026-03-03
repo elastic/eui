@@ -114,6 +114,10 @@ export const Playground: Story = {
 };
 
 export const Scrollable: Story = {
+  parameters: {
+    // the options is rendered in an options portal
+    loki: { chromeSelector: LOKI_SELECTORS.portal },
+  },
   args: {
     options: [...options, ...options],
     // set up for easier testing/QA
@@ -122,6 +126,7 @@ export const Scrollable: Story = {
     popoverTitle: false,
     popoverFooter: false,
     popoverButtonBreakpoints: ['xs', 's', 'm', 'l', 'xl'],
+    popoverProps: { isOpen: true },
   },
 };
 
