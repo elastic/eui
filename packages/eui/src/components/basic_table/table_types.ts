@@ -78,9 +78,35 @@ export interface EuiTableFieldDataColumnType<T>
    */
   dataType?: EuiTableDataType;
   /**
-   * A CSS width property. Hints for the required width of the column (e.g. "30%", "100px", etc..)
+   * Requested width of the column.
+   *
+   * Exact width settings are not guaranteed in certain table layouts
+   * or configurations, and may be adjusted by browser's algorithm.
+   * Consider this value a guidance.
+   *
+   * @see {@link https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/table-layout#values|table-layout algorithms on MDN}
    */
   width?: string;
+  /**
+   * Requested minimum width of the column
+   *
+   * Exact width settings are not guaranteed in certain table layouts
+   * or configurations, and may be adjusted by browser's algorithm.
+   * Consider this value a guidance.
+   *
+   * This property takes effect only when `tableLayout="auto"` is set on the table.
+   */
+  minWidth?: string;
+  /**
+   * Requested maximum width of the column.
+   *
+   * Exact width settings are not guaranteed in certain table layouts
+   * or configurations, and may be adjusted by browser's algorithm.
+   * Consider this value a guidance.
+   *
+   * This property takes effect only when `tableLayout="auto"` is set on the table.
+   */
+  maxWidth?: string;
   /**
    * Defines whether the user can sort on this column. If a function is provided, this function returns the value to sort against
    */
