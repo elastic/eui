@@ -13,7 +13,11 @@ import { css as classNameCss } from '@emotion/css';
 import { mathWithUnits } from '@elastic/eui-theme-common';
 
 import { UseEuiTheme } from '../../../services';
-import { euiFocusRing, euiYScroll, logicalCSS } from '../../../global_styling';
+import {
+  euiFocusRing,
+  euiYScrollWithShadows,
+  logicalCSS,
+} from '../../../global_styling';
 import { euiTitle } from '../../title/title.styles';
 import { euiSelectableListItemVariables } from './selectable_list_item.styles';
 
@@ -40,7 +44,7 @@ export const euiSelectableListStyles = (euiThemeContext: UseEuiTheme) => {
     `,
 
     euiSelectableList__list: classNameCss`
-      ${euiYScroll(euiThemeContext)}
+      ${euiYScrollWithShadows(euiThemeContext, { hasScrollTimeline: true })}
 
       &:focus,
       & > ul:focus {
