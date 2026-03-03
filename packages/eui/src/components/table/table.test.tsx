@@ -69,6 +69,26 @@ describe('EuiTable', () => {
     });
   });
 
+  // Should be in sync with the same test suite
+  // in src/components/basic_table/basic_table.test.tsx
+  // and src/components/basic_table/in_memory_table.test.tsx
+  // to ensure equal behavior
+  describe('scrollableInline', () => {
+    it('updates table width styles when enabled', () => {
+      const { getByRole, rerender } = render(<EuiTable />);
+      let table = getByRole('table');
+
+      expect(table).toHaveStyleRule('inline-size', '100%');
+      expect(table).not.toHaveStyleRule('min-inline-size');
+
+      rerender(<EuiTable scrollableInline />);
+      table = getByRole('table');
+
+      expect(table).toHaveStyleRule('inline-size', 'auto');
+      expect(table).toHaveStyleRule('min-inline-size', '100%');
+    });
+  });
+
   it('always renders responsive tables styles if set to `true`', () => {
     window.innerWidth = 2000;
     const { getByRole } = render(<EuiTable responsiveBreakpoint={true} />);
