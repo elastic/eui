@@ -15,7 +15,7 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 import {
-  FixedSizeList,
+  VariableSizeList,
   ListProps,
   ListChildComponentProps as ReactWindowListChildComponentProps,
   areEqual,
@@ -195,7 +195,7 @@ export class EuiSelectableList<T> extends Component<
     };
   }
 
-  listRef: FixedSizeList | null = null;
+  listRef: VariableSizeList | null = null;
   listBoxRef: HTMLUListElement | null = null;
 
   componentWillUnmount(): void {
@@ -207,7 +207,7 @@ export class EuiSelectableList<T> extends Component<
     }
   }
 
-  setListRef = (ref: FixedSizeList | null) => {
+  setListRef = (ref: VariableSizeList | null) => {
     this.listRef = ref;
 
     if (ref && this.props.activeOptionIndex) {
@@ -377,6 +377,15 @@ export class EuiSelectableList<T> extends Component<
     return { ariaPosInSetMap, ariaSetSize: latestAriaPosIndex };
   };
 
+  getItemSize = (index: number): number => {
+    const { rowHeight } = this.props as { rowHeight: number };
+    const option = this.state.optionArray[index];
+    if (option?.isGroupLabel && index > 0) {
+      return rowHeight + 16;
+    }
+    return rowHeight;
+  };
+
   ListRow = memo(({ data, index, style }: ListChildComponentProps<T>) => {
     const option = data[index];
     const { data: optionData, ..._option } = option;
@@ -514,7 +523,9 @@ export class EuiSelectableList<T> extends Component<
       innerElementType: 'ul',
       itemCount: optionArray.length,
       itemData: itemData,
-      itemSize: rowHeight,
+      itemSize: this.getItemSize,
+      // Prevents scrollbar jump before VariableSizeList populates the cached size
+      estimatedItemSize: rowHeight,
       'data-skip-axe': 'scrollable-region-focusable',
       ...windowProps,
     };
@@ -539,9 +550,13 @@ export class EuiSelectableList<T> extends Component<
     return heightIsFull ? (
       <EuiAutoSizer onResize={this.calculateDefaultOptionWidth}>
         {({ width, height }: EuiAutoSize) => (
-          <FixedSizeList width={width} height={height} {...virtualizationProps}>
+          <VariableSizeList
+            width={width}
+            height={height}
+            {...virtualizationProps}
+          >
             {this.ListRow}
-          </FixedSizeList>
+          </VariableSizeList>
         )}
       </EuiAutoSizer>
     ) : (
@@ -550,13 +565,13 @@ export class EuiSelectableList<T> extends Component<
         onResize={this.calculateDefaultOptionWidth}
       >
         {({ width }: EuiAutoSizeHorizontal) => (
-          <FixedSizeList
+          <VariableSizeList
             width={width}
             height={calculatedHeight}
             {...virtualizationProps}
           >
             {this.ListRow}
-          </FixedSizeList>
+          </VariableSizeList>
         )}
       </EuiAutoSizer>
     );

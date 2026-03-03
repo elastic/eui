@@ -53,20 +53,21 @@ export const euiSelectableListStyles = (euiThemeContext: UseEuiTheme) => {
       position: relative;
       display: flex;
       align-items: center;
-      ${logicalCSS('padding-vertical', spacingVertical)}
       ${logicalCSS('padding-horizontal', itemVars.spacingHorizontal)}
+      ${logicalCSS('padding-vertical', spacingVertical)}
 
       &:not(:first-child) {
+        /* includes spacing for the separator */
         ${logicalCSS(
-          'margin-top',
-          mathWithUnits(spacingVertical, (x) => x * 2)
+          'padding-top',
+          mathWithUnits([spacingVertical], (a) => a * 3)
         )}
 
         &::before {
           content: '';
           position: absolute;
           inset: 0;
-          inset-block-start: -${spacingVertical};
+          inset-block-start: ${spacingVertical};
           ${logicalCSS(
             'border-top',
             `${euiTheme.border.width.thin} solid ${borderColor}`
