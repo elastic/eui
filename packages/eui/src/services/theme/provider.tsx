@@ -9,6 +9,7 @@
 import React, {
   useContext,
   useEffect,
+  useLayoutEffect,
   useRef,
   useMemo,
   useState,
@@ -17,7 +18,7 @@ import React, {
   HTMLAttributes,
   Fragment,
 } from 'react';
-import { Global, type CSSObject } from '@emotion/react';
+import type { CSSObject } from '@emotion/react';
 import isEqual from 'lodash/isEqual';
 
 import type { CommonProps } from '../../components/common';
@@ -315,6 +316,40 @@ export const EuiThemeProvider = <T extends {} = {}>({
     themeCSSVariables,
   ]);
 
+  // Apply global CSS custom properties directly to document.documentElement
+  // rather than using Emotion's <Global> component. The Global component's
+  // flush/re-insert cycle can produce stale DOM references when multiple
+  // instances re-render in the same React batch (e.g. simultaneous flyout
+  // unmounts), causing "NotFoundError: Failed to execute 'insertBefore'"
+  // crashes in @emotion/sheet.
+  const prevCSSVariableKeys = useRef<Set<string>>(new Set());
+
+  useLayoutEffect(() => {
+    if (!isGlobalTheme || !themeCSSVariables) return;
+
+    const rootStyle = document.documentElement.style;
+    const currentKeys = new Set<string>();
+
+    for (const [key, value] of Object.entries(themeCSSVariables)) {
+      rootStyle.setProperty(key, String(value));
+      currentKeys.add(key);
+    }
+
+    for (const key of prevCSSVariableKeys.current) {
+      if (!currentKeys.has(key)) {
+        rootStyle.removeProperty(key);
+      }
+    }
+
+    prevCSSVariableKeys.current = currentKeys;
+
+    return () => {
+      for (const key of currentKeys) {
+        rootStyle.removeProperty(key);
+      }
+    };
+  }, [isGlobalTheme, themeCSSVariables]);
+
   const renderedChildren = useMemo(() => {
     if (isGlobalTheme) {
       return children; // No wrapper
@@ -353,9 +388,6 @@ export const EuiThemeProvider = <T extends {} = {}>({
 
   return (
     <>
-      {isGlobalTheme && themeCSSVariables && (
-        <Global styles={{ ':root': themeCSSVariables }} />
-      )}
       <EuiColorModeContext.Provider value={colorMode}>
         <EuiHighContrastModeContext.Provider value={highContrastMode}>
           <EuiSystemContext.Provider value={system}>
