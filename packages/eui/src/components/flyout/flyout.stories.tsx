@@ -20,13 +20,30 @@ import {
   EuiFlyoutFooter,
 } from './index';
 import { LOKI_SELECTORS } from '../../../.storybook/loki';
+import {
+  DEFAULT_MENU_DISPLAY_MODE,
+  EuiFlyoutMenuDisplayMode,
+  FLYOUT_MENU_DISPLAY_MODES,
+} from './const';
 
-const meta: Meta<EuiFlyoutProps> = {
+interface FlyoutStoryArgs extends EuiFlyoutProps {
+  onToggle?: (open: boolean) => void;
+  flyoutMenuDisplayMode?: EuiFlyoutMenuDisplayMode;
+  showCustomActions?: boolean;
+}
+
+const meta: Meta<FlyoutStoryArgs> = {
   title: 'Layout/EuiFlyout/EuiFlyout',
   component: EuiFlyout,
   argTypes: {
     as: { control: 'text' },
     // TODO: maxWidth has multiple types
+    flyoutMenuDisplayMode: {
+      options: FLYOUT_MENU_DISPLAY_MODES,
+      control: { type: 'radio' },
+      description: 'The display mode of the flyout menu.',
+    },
+    showCustomActions: { control: 'boolean' },
   },
   args: {
     // Component defaults
@@ -40,6 +57,8 @@ const meta: Meta<EuiFlyoutProps> = {
     closeButtonPosition: 'inside',
     hideCloseButton: false,
     ownFocus: true,
+    flyoutMenuDisplayMode: DEFAULT_MENU_DISPLAY_MODE,
+    showCustomActions: true,
     'aria-labelledby': 'flyoutHeader',
   },
   parameters: {
@@ -55,10 +74,16 @@ type Story = StoryObj<EuiFlyoutProps>;
 
 const onClose = action('onClose');
 
-const StatefulFlyout = (
-  props: Partial<EuiFlyoutProps & { onToggle: (open: boolean) => void }>
-) => {
-  const { onToggle } = props;
+const customActions = [
+  {
+    iconType: 'gear',
+    onClick: () => action('Settings clicked')(),
+    'aria-label': 'Settings',
+  },
+];
+
+const StatefulFlyout = (props: Partial<FlyoutStoryArgs>) => {
+  const { onToggle, flyoutMenuDisplayMode, showCustomActions, ...rest } = props;
   const [_isOpen, setIsOpen] = useState(true);
 
   const handleToggle = (open: boolean) => {
@@ -73,7 +98,11 @@ const StatefulFlyout = (
       </EuiButton>
       {_isOpen && (
         <EuiFlyout
-          {...props}
+          flyoutMenuDisplayMode={flyoutMenuDisplayMode}
+          flyoutMenuProps={{
+            customActions: showCustomActions ? customActions : undefined,
+          }}
+          {...rest}
           onClose={() => {
             handleToggle(false);
             onClose();
