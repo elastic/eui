@@ -7,6 +7,8 @@
  */
 
 import { CSSProperties } from 'react';
+import { euiCanAnimate, euiCantAnimate } from '@elastic/eui-theme-common';
+
 import { useEuiTheme, UseEuiTheme } from '../../services/theme';
 import { transparentize } from '../../services/color';
 import { logicalCSS, logicalCSSWithFallback } from '../functions';
@@ -86,10 +88,21 @@ export const useEuiScrollBar = (options?: EuiScrollBarStyles) => {
 interface EuiOverflowShadowStyles {
   direction?: 'y' | 'x';
   side?: 'both' | 'start' | 'end';
+  /**
+   * When enabled, uses scroll animated pseudo elements to create a soft scroll container edge.
+   * Otherwise uses `mask-image` to create a static, soft gradient edge.
+   * It falls back to `mask-image` for `prefers-reduced-motion: reduce` settings and browsers that don't
+   * support the scroll timeline API.
+   */
+  hasScrollTimeline?: boolean;
 }
-const euiOverflowShadowStyles = (
-  { euiTheme: { size } }: UseEuiTheme,
-  { direction: _direction, side: _side }: EuiOverflowShadowStyles = {}
+export const euiOverflowShadowStyles = (
+  { euiTheme: { size, colors } }: UseEuiTheme,
+  {
+    direction: _direction,
+    side: _side,
+    hasScrollTimeline = false,
+  }: EuiOverflowShadowStyles = {}
 ) => {
   const direction = _direction || 'y';
   const side = _side || 'both';
@@ -120,12 +133,93 @@ const euiOverflowShadowStyles = (
   // - https://github.com/elastic/kibana/issues/180828
   // - https://github.com/elastic/eui/pull/6343#issuecomment-1302732021
   const chromiumMaskWorkaround = 'transform: translateZ(0);';
+  const overflowShadowStatic =
+    direction === 'y'
+      ? `mask-image: linear-gradient(to bottom, ${gradient}); ${chromiumMaskWorkaround}`
+      : `mask-image: linear-gradient(to right, ${gradient}); ${chromiumMaskWorkaround}`;
 
-  if (direction === 'y') {
-    return `mask-image: linear-gradient(to bottom, ${gradient}); ${chromiumMaskWorkaround}`;
-  } else {
-    return `mask-image: linear-gradient(to right, ${gradient}); ${chromiumMaskWorkaround}`;
+  // If supported, use the scroll timeline API to animate the gradient to show/hide it on the scroll edges.
+  // We only support vertical scrolling as horizontal scrolling has increased complexity on element dimensions.
+  if (hasScrollTimeline && direction === 'y') {
+    const featureFlag = 'animation-timeline: scroll()';
+    const gradientStartColor = `var(--euiSelectableListOverflowColor, ${colors.backgroundBasePlain})`;
+    const gradientEndColor = 'transparent';
+    const gradientSize = size.l;
+    const gradientScrollRange = size.m;
+
+    const commonPseudoElementStyles = `
+      content: '';
+      display: block;
+      position: sticky;
+      z-index: 1;
+      block-size: ${gradientSize};
+      pointer-events: none;
+    `;
+
+    return `
+      @supports not (${featureFlag}) {
+        ${overflowShadowStatic}
+      }
+
+      ${euiCantAnimate} {
+        ${overflowShadowStatic}
+      }
+
+      ${euiCanAnimate} {
+        @supports (${featureFlag}) {
+          @keyframes show { 
+            from { opacity: 0 } 
+            to { opacity: 1 }
+          }
+          @keyframes hide { 
+            from { opacity: 1 }
+            to { opacity: 0 }
+          }
+
+          position: relative;
+
+          /* Gradient on start edge */
+          &::before {
+            ${commonPseudoElementStyles}
+            inset-block-start: 0;
+            /* prevent pushing down the content */
+            ${logicalCSS('margin-bottom', `-${gradientSize}`)} 
+            /* uses CSS custom property to support customization depending on layout wrapper background color */
+            background: linear-gradient(to bottom, ${gradientStartColor}, ${gradientEndColor});
+            
+            /* scroll animation - doesn't use euiCanAnimate()   */
+            opacity: 0;
+            animation: show linear both;
+            animation-timeline: scroll(y);
+            animation-range: 0px ${gradientScrollRange};
+          }
+
+          /* Gradient on end edge */
+          &::after {
+            ${commonPseudoElementStyles}
+            inset-block-end: 0;
+            /* prevent adding extra space */
+            ${logicalCSS('margin-top', `-${gradientSize}`)} 
+            background: linear-gradient(to top, ${gradientStartColor}, ${gradientEndColor});
+
+            
+            /* NOTE: To ensure the bottom gradient is not visible when the container has no overflow,
+            we need to use opacity: 0 as default. Using two animations with 'animation-fill-mode: forwards'
+            ensures the show/hide animation works both with and without overflow. */
+            /* scroll animation */
+            opacity: 0;
+            animation-name: show, hide;
+            animation-timing-function: step-start, linear;
+            animation-fill-mode: forwards;
+            animation-timeline: scroll(y);
+            animation-range: 0% 100%, calc(100% - ${gradientScrollRange}) 100%;
+          }
+        }
+      }
+    `;
   }
+
+  return overflowShadowStatic;
 };
 
 /**
@@ -155,17 +249,30 @@ export const useEuiYScroll = ({ height }: _EuiYScroll = {}) => {
 
 interface _EuiYScrollWithShadows extends _EuiYScroll {
   side?: 'both' | 'start' | 'end';
+  hasScrollTimeline?: boolean;
 }
 export const euiYScrollWithShadows = (
   euiTheme: UseEuiTheme,
-  { height, side = 'both' }: _EuiYScrollWithShadows = {}
+  {
+    height,
+    side = 'both',
+    hasScrollTimeline = false,
+  }: _EuiYScrollWithShadows = {}
 ) => `
   ${euiYScroll(euiTheme, { height })}
-  ${euiOverflowShadowStyles(euiTheme, { direction: 'y', side })}
+  ${euiOverflowShadowStyles(euiTheme, {
+    direction: 'y',
+    side,
+    hasScrollTimeline,
+  })}
 `;
-export const useEuiYScrollWithShadows = ({ height }: _EuiYScroll = {}) => {
+export const useEuiYScrollWithShadows = ({
+  height,
+  side,
+  hasScrollTimeline,
+}: _EuiYScrollWithShadows = {}) => {
   const euiTheme = useEuiTheme();
-  return euiYScrollWithShadows(euiTheme, { height });
+  return euiYScrollWithShadows(euiTheme, { height, side, hasScrollTimeline });
 };
 
 export const euiXScroll = (euiTheme: UseEuiTheme) => `
