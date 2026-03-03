@@ -22,11 +22,12 @@ import {
 } from '../../services';
 
 import { useEuiTableIsResponsive } from './mobile/responsive_context';
-import { resolveWidthAsStyle } from './utils';
+import { resolveWidthPropsAsStyle } from './utils';
 import { EuiTableCellContent } from './_table_cell_content';
 import { euiTableRowCellStyles } from './table_row_cell.styles';
+import type { EuiTableSharedWidthProps } from './types';
 
-interface EuiTableRowCellSharedPropsShape {
+interface EuiTableRowCellSharedPropsShape extends EuiTableSharedWidthProps {
   /**
    * Horizontal alignment of the text in the cell
    */
@@ -45,7 +46,6 @@ interface EuiTableRowCellSharedPropsShape {
    * @default false
    */
   truncateText?: boolean | { lines: number };
-  width?: CSSProperties['width'];
 }
 
 export interface EuiTableRowCellMobileOptionsShape
@@ -127,8 +127,10 @@ export const EuiTableRowCell: FunctionComponent<Props> = ({
   textOnly = true,
   hasActions,
   isExpander,
-  style,
-  width,
+  style: _style,
+  width: width,
+  minWidth: minWidth,
+  maxWidth: maxWidth,
   valign = 'middle',
   mobileOptions,
   append,
@@ -158,18 +160,28 @@ export const EuiTableRowCell: FunctionComponent<Props> = ({
     'euiTableRowCell--isExpander': isExpander,
   });
 
-  const widthValue = isResponsive
-    ? hasActions || isExpander
-      ? undefined // On mobile, actions are shifted to a right column via CSS
-      : mobileOptions?.width
-    : width;
-
-  const styleObj = resolveWidthAsStyle(style, widthValue);
+  const style = resolveWidthPropsAsStyle(_style, {
+    width: isResponsive
+      ? hasActions || isExpander
+        ? undefined // On mobile, actions are shifted to a right column via CSS
+        : mobileOptions?.width
+      : width,
+    minWidth: isResponsive
+      ? hasActions || isExpander
+        ? undefined // On mobile, actions are shifted to a right column via CSS
+        : mobileOptions?.minWidth
+      : minWidth,
+    maxWidth: isResponsive
+      ? hasActions || isExpander
+        ? undefined // On mobile, actions are shifted to a right column via CSS
+        : mobileOptions?.maxWidth
+      : maxWidth,
+  });
 
   const Element = setScopeRow ? 'th' : 'td';
   const sharedProps = {
     scope: setScopeRow ? 'row' : undefined,
-    style: styleObj,
+    style,
     css: cssStyles,
     ...rest,
   };

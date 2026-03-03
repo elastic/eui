@@ -16,15 +16,16 @@ import {
 } from '../../services';
 import { CommonProps } from '../common';
 
-import { resolveWidthAsStyle } from './utils';
+import { resolveWidthPropsAsStyle } from './utils';
 import { EuiTableCellContent } from './_table_cell_content';
 import { euiTableHeaderFooterCellStyles } from './table_cells_shared.styles';
 import { EuiTableVariantContext } from './table_context';
+import type { EuiTableSharedWidthProps } from './types';
 
 export type EuiTableFooterCellProps = CommonProps &
-  TdHTMLAttributes<HTMLTableCellElement> & {
+  Omit<TdHTMLAttributes<HTMLTableCellElement>, 'width'> &
+  EuiTableSharedWidthProps & {
     align?: HorizontalAlignment;
-    width?: string | number;
   };
 
 export const EuiTableFooterCell: FunctionComponent<EuiTableFooterCellProps> = ({
@@ -32,13 +33,19 @@ export const EuiTableFooterCell: FunctionComponent<EuiTableFooterCellProps> = ({
   align = LEFT_ALIGNMENT,
   className,
   width,
-  style,
+  minWidth,
+  maxWidth,
+  style: _style,
   ...rest
 }) => {
   const { hasBackground } = useContext(EuiTableVariantContext);
 
   const classes = classNames('euiTableFooterCell', className);
-  const inlineStyles = resolveWidthAsStyle(style, width);
+  const inlineStyles = resolveWidthPropsAsStyle(_style, {
+    width,
+    minWidth,
+    maxWidth,
+  });
   const styles = useEuiMemoizedStyles(euiTableHeaderFooterCellStyles);
   const cssStyles = [
     styles.euiTableFooterCell.euiTableFooterCell,

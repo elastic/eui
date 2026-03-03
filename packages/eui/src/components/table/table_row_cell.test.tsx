@@ -11,10 +11,15 @@ import { requiredProps } from '../../test/required_props';
 import { render } from '../../test/rtl';
 
 import { CENTER_ALIGNMENT, RIGHT_ALIGNMENT } from '../../services/alignment';
-import { WARNING_MESSAGE } from './utils';
+import {
+  WARNING_MESSAGE_MAX_WIDTH,
+  WARNING_MESSAGE_MIN_WIDTH,
+  WARNING_MESSAGE_WIDTH,
+} from './utils';
 import { EuiTableIsResponsiveContext } from './mobile/responsive_context';
 
 import { EuiTableRowCell } from './table_row_cell';
+import type { EuiTableSharedWidthProps } from './types';
 
 const renderInTableRow = (cell: React.ReactElement) =>
   render(
@@ -184,51 +189,87 @@ describe('EuiTableRowCell', () => {
     });
   });
 
-  describe('width and style', () => {
-    const _consoleWarn = console.warn;
-    beforeAll(() => {
-      console.warn = (...args: [any?, ...any[]]) => {
-        // Suppress an expected warning
-        if (args.length === 1 && args[0] === WARNING_MESSAGE) return;
-        _consoleWarn.apply(console, args);
-      };
-    });
-    afterAll(() => {
-      console.warn = _consoleWarn;
-    });
-
-    it('accepts style attribute', () => {
-      const { container } = renderInTableRow(
-        <EuiTableRowCell style={{ width: '20%' }}>Test</EuiTableRowCell>
-      );
-
-      expect(container.firstChild).toMatchSnapshot();
-    });
-
-    it('accepts width attribute', () => {
-      const { container } = renderInTableRow(
-        <EuiTableRowCell width="10%">Test</EuiTableRowCell>
-      );
-
-      expect(container.firstChild).toMatchSnapshot();
-    });
-
-    it('accepts width attribute as number', () => {
-      const { container } = renderInTableRow(
-        <EuiTableRowCell width={100}>Test</EuiTableRowCell>
-      );
-
-      expect(container.firstChild).toMatchSnapshot();
-    });
-
-    it('resolves style and width attribute', () => {
-      const { container } = renderInTableRow(
-        <EuiTableRowCell width="10%" style={{ width: '20%' }}>
+  describe('style and width props', () => {
+    it('accepts `style` prop', () => {
+      const { getByRole } = renderInTableRow(
+        <EuiTableRowCell
+          style={{ width: '20%', minWidth: '123px', maxWidth: '456px' }}
+        >
           Test
         </EuiTableRowCell>
       );
 
-      expect(container.firstChild).toMatchSnapshot();
+      expect(getByRole('cell')).toHaveStyle({
+        width: '20%',
+        minWidth: '123px',
+        maxWidth: '456px',
+      });
     });
+
+    const testProp =
+      (name: keyof EuiTableSharedWidthProps, warningMessage: string) => () => {
+        const defaultStyles = {
+          width: undefined,
+          minWidth: undefined,
+          maxWidth: undefined,
+        };
+
+        it(`accepts \`${name}\` prop`, () => {
+          const { getByRole } = renderInTableRow(
+            <EuiTableRowCell style={{ [name]: '10%' }}>Test</EuiTableRowCell>
+          );
+
+          expect(getByRole('cell')).toHaveStyle({
+            ...defaultStyles,
+            [name]: '10%',
+          });
+        });
+
+        it(`accepts \`${name}\` prop as number`, () => {
+          const props = {
+            [name]: 100,
+          };
+
+          const { getByRole } = renderInTableRow(
+            <EuiTableRowCell {...props}>Test</EuiTableRowCell>
+          );
+
+          expect(getByRole('cell')).toHaveStyle({
+            ...defaultStyles,
+            [name]: '100px',
+          });
+        });
+
+        it(`resolves \`style.${name}\` and \`${name}\` props`, () => {
+          const originalConsoleWarn = console.warn;
+          console.warn = jest.fn();
+
+          const props = {
+            [name]: '10%',
+            style: {
+              [name]: '20%',
+            },
+          };
+
+          const { getByRole } = renderInTableRow(
+            <EuiTableRowCell {...props}>Test</EuiTableRowCell>
+          );
+
+          expect(getByRole('cell')).toHaveStyle({
+            ...defaultStyles,
+            [name]: '10%',
+          });
+
+          expect(console.warn).toHaveBeenCalledWith(warningMessage);
+
+          console.warn = originalConsoleWarn;
+        });
+      };
+
+    describe('width', testProp('width', WARNING_MESSAGE_WIDTH));
+
+    describe('width', testProp('minWidth', WARNING_MESSAGE_MIN_WIDTH));
+
+    describe('width', testProp('maxWidth', WARNING_MESSAGE_MAX_WIDTH));
   });
 });
