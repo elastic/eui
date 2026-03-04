@@ -66,10 +66,7 @@ export const ControlledWithFiles: Story = {
     return (
       <div>
         <EuiText>
-          <p>
-            Click &quot;Toggle Picker&quot; to simulate unmount/remount. The
-            file picker state will be preserved.
-          </p>
+          <p>Toggle the button to simulate unmount/remount.</p>
         </EuiText>
         <EuiSpacer size="s" />
         <EuiButton onClick={() => setShowPicker(!showPicker)}>
