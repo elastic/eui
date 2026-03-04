@@ -8,7 +8,7 @@ exports[`EuiBasicTable actions custom item actions 1`] = `
     class="euiTableRowCell euiTableRowCell--hasActions emotion-euiTableRowCell-hasActions-middle-mobile-customActions"
   >
     <div
-      class="euiTableCellContent emotion-euiTableCellContent-wrapText-actions"
+      class="euiTableCellContent emotion-euiTableCellContent-wrapText-actions-custom"
     >
       <div
         class=""
