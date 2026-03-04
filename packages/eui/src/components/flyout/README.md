@@ -6,6 +6,20 @@
 
 [Documentation - sources](../../../../website/docs/components/containers/flyout)
 
+## Maintainer note: avoid `Global` from `@emotion/react`
+
+Do not use the `Global` component from `@emotion/react` in the flyout code
+(or anywhere that re-renders in response to flyout mount/unmount). The `Global`
+component's internal flush/re-insert cycle captures sibling `<style>` node
+references that can go stale when multiple `Global` instances re-render in the
+same React batch — for example, when several flyouts unmount simultaneously via
+`ACTION_CLOSE_ALL`. This causes a `NotFoundError: Failed to execute
+'insertBefore' on 'Node'` crash in `@emotion/sheet`.
+
+Using `setGlobalCSSVariables` from `useEuiThemeCSSVariables()` is safe — it
+bypasses Emotion's style sheet pipeline and applies CSS variables via direct DOM
+manipulation.
+
 ## Component composition
 
 ```mermaid
