@@ -148,7 +148,7 @@ const Popover = (props: any) => {
                 onClick={() => setIsPopoverVisible(true)}
                 notification={6}
               >
-                <EuiIcon type="cheer" />
+                <EuiIcon type="popper" />
               </EuiHeaderSectionItemButton>
             }
             isOpen={isPopoverVisible}

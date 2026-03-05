@@ -22,7 +22,7 @@ describe('EuiExternalLinkIcon', () => {
       <div>
         <span
           class="emotion-EuiExternalLinkIcon"
-          data-euiicon-type="popout"
+          data-euiicon-type="external"
           role="presentation"
         />
         <span
@@ -41,7 +41,7 @@ describe('EuiExternalLinkIcon', () => {
         <div>
           <span
             class="emotion-EuiExternalLinkIcon"
-            data-euiicon-type="popout"
+            data-euiicon-type="external"
             role="presentation"
           />
           <span

@@ -14,7 +14,7 @@ import { EuiAvatar } from '../avatar';
 describe('EuiCommentTimeline', () => {
   describe('props', () => {
     describe('timelineAvatar', () => {
-      it('defaults to an avatar with a `userAvatar` icon', () => {
+      it('defaults to an avatar with a `user` icon', () => {
         const { container } = render(<EuiCommentTimeline />);
 
         expect(container.firstChild).toMatchSnapshot();
@@ -32,11 +32,7 @@ describe('EuiCommentTimeline', () => {
         const { container } = render(
           <EuiCommentTimeline
             timelineAvatar={
-              <EuiAvatar
-                name="username"
-                iconType="userAvatar"
-                color="subdued"
-              />
+              <EuiAvatar name="username" iconType="user" color="subdued" />
             }
           />
         );
