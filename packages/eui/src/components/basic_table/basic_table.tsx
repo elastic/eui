@@ -521,6 +521,7 @@ export class EuiBasicTable<T extends object = any> extends Component<
       rowHeader,
       tableLayout,
       hasBackground,
+      scrollableInline,
       ...rest
     } = this.props;
 
@@ -548,6 +549,7 @@ export class EuiBasicTable<T extends object = any> extends Component<
       tableLayout,
       hasBackground,
       loading,
+      scrollableInline,
     } = this.props;
 
     return (
@@ -563,6 +565,7 @@ export class EuiBasicTable<T extends object = any> extends Component<
             responsiveBreakpoint={responsiveBreakpoint}
             compressed={compressed}
             hasBackground={hasBackground}
+            scrollableInline={scrollableInline}
             css={loading && safariLoadingWorkaround}
           >
             {this.renderTableCaption()}
@@ -772,6 +775,8 @@ export class EuiBasicTable<T extends object = any> extends Component<
       const {
         field,
         width,
+        minWidth,
+        maxWidth,
         name,
         nameTooltip,
         align,
@@ -786,6 +791,8 @@ export class EuiBasicTable<T extends object = any> extends Component<
 
       const sharedProps = {
         width,
+        minWidth,
+        maxWidth,
         tooltipProps: nameTooltip,
         description,
         mobileOptions,

@@ -6,25 +6,73 @@
  * Side Public License, v 1.
  */
 
-import { CSSProperties } from 'react';
+import type { CSSProperties } from 'react';
+import type { EuiTableSharedWidthProps } from './types';
 
-export const WARNING_MESSAGE =
+/**
+ * @internal
+ */
+export const WARNING_MESSAGE_WIDTH =
   'Two `width` properties were provided. Provide only one of `style.width` or `width` to avoid conflicts.';
 
-export const resolveWidthAsStyle = (
+/**
+ * @internal
+ */
+export const WARNING_MESSAGE_MIN_WIDTH =
+  'Two `minWidth` properties were provided. Provide only one of `style.minWidth` or `minWidth` to avoid conflicts.';
+
+/**
+ * @internal
+ */
+export const WARNING_MESSAGE_MAX_WIDTH =
+  'Two `maxWidth` properties were provided. Provide only one of `style.maxWidth` or `maxWidth` to avoid conflicts.';
+
+const normalizeValue = (
+  value: string | number | undefined
+): string | undefined => {
+  if (value === undefined || Number.isNaN(value)) {
+    return undefined;
+  }
+
+  if (typeof value === 'number') {
+    return `${value}px`;
+  }
+
+  return value;
+};
+
+/**
+ * @internal
+ */
+export const resolveWidthPropsAsStyle = (
   style: CSSProperties = {},
-  width?: string | number
+  {
+    width: rawWidth,
+    minWidth: rawMinWidth,
+    maxWidth: rawMaxWidth,
+  }: EuiTableSharedWidthProps
 ): CSSProperties => {
-  const { width: styleWidth, ...styleRest } = style;
-  let attrWidth = width;
-  if (
-    attrWidth != null &&
-    (typeof attrWidth === 'number' || !isNaN(Number(attrWidth))) // transform {number} or unitless 'number' to px string
-  ) {
-    attrWidth = `${attrWidth}px`;
+  const width = normalizeValue(rawWidth);
+  const minWidth = normalizeValue(rawMinWidth);
+  const maxWidth = normalizeValue(rawMaxWidth);
+
+  if (process.env.NODE_ENV !== 'production') {
+    if (style.width && width !== undefined) {
+      console.warn(WARNING_MESSAGE_WIDTH);
+    }
+
+    if (style.minWidth && minWidth !== undefined) {
+      console.warn(WARNING_MESSAGE_MIN_WIDTH);
+    }
+
+    if (style.maxWidth && maxWidth !== undefined) {
+      console.warn(WARNING_MESSAGE_MAX_WIDTH);
+    }
   }
-  if (styleWidth && attrWidth) {
-    console.warn(WARNING_MESSAGE);
-  }
-  return { ...styleRest, width: attrWidth || styleWidth };
+
+  return {
+    width: width || style.width,
+    minWidth: minWidth || style.minWidth,
+    maxWidth: maxWidth || style.maxWidth,
+  };
 };
