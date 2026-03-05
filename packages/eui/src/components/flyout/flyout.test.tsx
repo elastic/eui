@@ -22,9 +22,12 @@ import { EuiProvider } from '../provider';
 import { EuiFlyoutManager } from './manager';
 
 jest.mock('../overlay_mask', () => ({
-  EuiOverlayMask: ({ headerZindexLocation, maskRef, ...props }: any) => (
-    <div {...props} ref={maskRef} />
-  ),
+  EuiOverlayMask: ({
+    headerZindexLocation,
+    maskRef,
+    hasAnimation,
+    ...props
+  }: any) => <div {...props} ref={maskRef} />,
 }));
 
 jest.mock('../portal', () => ({
@@ -251,6 +254,34 @@ describe('EuiFlyout', () => {
       expect(baseElement).toMatchSnapshot();
     });
 
+    describe('pushAnimation', () => {
+      it('renders with animations by default', () => {
+        const { getByTestSubject } = render(
+          <EuiFlyout data-test-subj="flyout" onClose={() => {}} />
+        );
+
+        expect(getByTestSubject('flyout')).not.toHaveStyleRule(
+          'animation-duration',
+          '0s!important'
+        );
+      });
+
+      it('can render without animations', () => {
+        const { getByTestSubject } = render(
+          <EuiFlyout
+            data-test-subj="flyout"
+            onClose={() => {}}
+            pushAnimation={false}
+          />
+        );
+
+        expect(getByTestSubject('flyout')).toHaveStyleRule(
+          'animation-duration',
+          '0s!important'
+        );
+      });
+    });
+
     describe('sides', () => {
       FLYOUT_SIDES.forEach((side) => {
         it(`${side} is rendered`, () => {
@@ -277,6 +308,22 @@ describe('EuiFlyout', () => {
         expect(getByTestSubject('flyout')).toMatchSnapshot();
       });
 
+      it('renders without animations by default', () => {
+        const { getByTestSubject } = render(
+          <EuiFlyout
+            data-test-subj="flyout"
+            onClose={() => {}}
+            type="push"
+            pushMinBreakpoint="xs"
+          />
+        );
+
+        expect(getByTestSubject('flyout')).toHaveStyleRule(
+          'animation-duration',
+          '0s!important'
+        );
+      });
+
       it('can render with animations', () => {
         const { getByTestSubject } = render(
           <EuiFlyout
@@ -288,8 +335,9 @@ describe('EuiFlyout', () => {
           />
         );
 
-        expect(getByTestSubject('flyout').className).not.toContain(
-          'noAnimation'
+        expect(getByTestSubject('flyout')).not.toHaveStyleRule(
+          'animation-duration',
+          '0s!important'
         );
       });
     });
