@@ -129,7 +129,7 @@ describe('EuiFlyout', () => {
       cy.get('[data-test-subj="childFlyout"]').should('exist');
 
       // Tab through main item
-      cy.repeatRealPress('Tab', 2);
+      cy.repeatRealPress('Tab', 3);
       cy.get('[data-test-subj="mainItem"]').should('be.focused');
 
       // Tab through child item
