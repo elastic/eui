@@ -755,7 +755,6 @@ export const EuiFlyoutComponent = forwardRef(
             data-autofocus={!isPushed || undefined}
             onAnimationEnd={onAnimationEnd}
           >
-            <EuiFlyoutParentProvider>{children}</EuiFlyoutParentProvider>
             {!isPushed && screenReaderDescription}
             {!_flyoutMenuProps && !hideCloseButton && (
               <EuiFlyoutCloseButton
@@ -783,6 +782,7 @@ export const EuiFlyoutComponent = forwardRef(
                 onKeyDown={onKeyDownResizableButton}
               />
             )}
+            <EuiFlyoutParentProvider>{children}</EuiFlyoutParentProvider>
           </Element>
         </EuiFocusTrap>
       </EuiFlyoutOverlay>
