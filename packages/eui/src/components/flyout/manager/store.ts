@@ -227,15 +227,7 @@ function createStore(
     subscribeToEvents,
     addFlyout: (flyoutId, title, level, size, historyKey, iconType, minWidth) =>
       dispatch(
-        addFlyoutAction(
-          flyoutId,
-          title,
-          level,
-          size,
-          historyKey,
-          iconType,
-          minWidth
-        )
+        addFlyoutAction(flyoutId, title, level, size, historyKey, iconType, minWidth)
       ),
     closeFlyout: (flyoutId) => dispatch(closeFlyoutAction(flyoutId)),
     closeAllFlyouts: () => dispatch(closeAllFlyoutsAction()),
