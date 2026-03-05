@@ -143,7 +143,7 @@ export const DarkThemeWithSitewideSearch: Story = {
             }}
             popoverButton={
               <EuiHeaderSectionItemButton aria-label="Sitewide search">
-                <EuiIcon type="search" size="m" />
+                <EuiIcon type="magnify" size="m" />
               </EuiHeaderSectionItemButton>
             }
             popoverButtonBreakpoints={['xs', 's']}
@@ -164,7 +164,7 @@ export const DarkThemeWithSitewideSearch: Story = {
             notification={true}
             aria-label="Notifications: Updates available"
           >
-            <EuiIcon type="cheer" size="m" />
+            <EuiIcon type="popper" size="m" />
           </EuiHeaderSectionItemButton>,
         ],
       },
@@ -209,7 +209,7 @@ const MultipleFixedHeadersExample = () => {
         <br />
         <br />
         <EuiButton
-          iconType="minusInCircle"
+          iconType="minusCircle"
           disabled={fixedHeadersCount <= 0}
           onClick={() => setFixedHeadersCount((count) => count - 1)}
         >
@@ -218,7 +218,7 @@ const MultipleFixedHeadersExample = () => {
         &emsp;
         <EuiButton
           fill
-          iconType="plusInCircle"
+          iconType="plusCircle"
           onClick={() => setFixedHeadersCount((count) => count + 1)}
         >
           Add a fixed header
@@ -454,7 +454,7 @@ const ElasticNavigationPatternExample = () => {
       button={
         <EuiBadge
           color={euiTheme.colors.darkestShade}
-          iconType="arrowDown"
+          iconType="chevronSingleDown"
           iconSide="right"
           aria-controls={guideHeaderDeploymentPopoverId}
           aria-expanded={isDeploymentMenuVisible}
@@ -491,7 +491,7 @@ const ElasticNavigationPatternExample = () => {
       }}
       popoverButton={
         <EuiHeaderSectionItemButton aria-label="Sitewide search">
-          <EuiIcon type="search" size="m" />
+          <EuiIcon type="magnify" size="m" />
         </EuiHeaderSectionItemButton>
       }
       popoverButtonBreakpoints={['xs', 's']}
@@ -537,7 +537,7 @@ const ElasticNavigationPatternExample = () => {
                 aria-label="Notifications: Updates available"
                 onClick={() => setIsAlertFlyoutVisible(!isAlertFlyoutVisible)}
               >
-                <EuiIcon type="cheer" size="m" />
+                <EuiIcon type="popper" size="m" />
               </EuiHeaderSectionItemButton>,
               userMenu,
             ],

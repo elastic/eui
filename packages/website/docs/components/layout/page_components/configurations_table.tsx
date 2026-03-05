@@ -22,7 +22,7 @@ export const ConfigurationsTable = () => {
       name: 'EuiPageSidebar',
       render: (value: boolean) => (
         <EuiIcon
-          type={value ? 'checkInCircleFilled' : 'error'}
+          type={value ? 'checkCircleFill' : 'error'}
           color={value ? 'green' : 'danger'}
           title={value ? 'true' : 'false'}
         />
@@ -35,9 +35,9 @@ export const ConfigurationsTable = () => {
         <EuiIcon
           type={
             value === true
-              ? 'checkInCircleFilled'
+              ? 'checkCircleFill'
               : value === 'none'
-              ? 'minusInCircle'
+              ? 'minusCircle'
               : 'error'
           }
           color={

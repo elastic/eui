@@ -75,8 +75,8 @@ function CardCategory({ item }: { item: PropSidebarItemCategory }): ReactNode {
 }
 
 function CardLink({ item }: { item: PropSidebarItemLink }): ReactNode {
-  // We update Docusaurus `link` icon to EUI `popout` icon
-  const icon = isInternalUrl(item.href) ? 'document' : 'popout';
+  // We update Docusaurus `link` icon to EUI `external` icon
+  const icon = isInternalUrl(item.href) ? 'document' : 'external';
   const doc = useDocById(item.docId ?? undefined);
   return (
     <CardLayout

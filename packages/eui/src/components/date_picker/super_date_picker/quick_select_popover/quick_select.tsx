@@ -189,7 +189,7 @@ export class EuiQuickSelect extends Component<
                 <EuiToolTip content={previousLabel} disableScreenReaderOutput>
                   <EuiButtonIcon
                     aria-label={previousLabel}
-                    iconType="arrowLeft"
+                    iconType="chevronSingleLeft"
                     onClick={this.stepBackward}
                   />
                 </EuiToolTip>
@@ -205,7 +205,7 @@ export class EuiQuickSelect extends Component<
                 <EuiToolTip content={nextLabel} disableScreenReaderOutput>
                   <EuiButtonIcon
                     aria-label={nextLabel}
-                    iconType="arrowRight"
+                    iconType="chevronSingleRight"
                     onClick={this.stepForward}
                   />
                 </EuiToolTip>

@@ -16,6 +16,8 @@ import classNames from 'classnames';
 import { CommonProps } from '../common';
 import { useEuiMemoizedStyles } from '../../services';
 import { euiFlyoutBodyStyles } from './flyout_body.styles';
+import { useEuiI18n } from '../i18n';
+import { useAriaLabelAttributes } from '../accessibility';
 
 export type EuiFlyoutBodyProps = FunctionComponent<
   HTMLAttributes<HTMLDivElement> &
@@ -47,6 +49,8 @@ export const EuiFlyoutBody: EuiFlyoutBodyProps = ({
   banner,
   scrollableTabIndex = 0,
   scrollContainerRef,
+  'aria-labelledby': ariaLabelledBy,
+  'aria-label': ariaLabel,
   ...rest
 }) => {
   const classes = classNames('euiFlyoutBody', className);
@@ -57,14 +61,29 @@ export const EuiFlyoutBody: EuiFlyoutBodyProps = ({
     banner ? styles.overflow.hasBanner : styles.overflow.noBanner,
   ];
 
+  const scrollableRegionDefaultAriaLabel = useEuiI18n(
+    'euiFlyoutBody.scrollableRegionAriaLabel',
+    'Flyout body'
+  );
+
+  const ariaAttributes = useAriaLabelAttributes(
+    {
+      'aria-label': ariaLabel,
+      'aria-labelledby': ariaLabelledBy,
+    },
+    scrollableRegionDefaultAriaLabel
+  );
+
   return (
     <div className={classes} css={styles.euiFlyoutBody} {...rest}>
       <div
         tabIndex={scrollableTabIndex}
+        role="region"
         className="euiFlyoutBody__overflow"
         css={overflowCssStyles}
         ref={scrollContainerRef}
         data-test-subj="euiFlyoutBodyOverflow"
+        {...ariaAttributes}
       >
         {banner && (
           <div
