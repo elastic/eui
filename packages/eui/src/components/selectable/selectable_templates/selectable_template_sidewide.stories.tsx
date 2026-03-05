@@ -21,7 +21,6 @@ const options: EuiSelectableTemplateSitewideOption[] = [
   {
     label: 'Welcome dashboards',
     icon: { type: 'logoKibana' },
-    avatar: { name: 'Default Space' },
     meta: [
       {
         text: 'Dashboard',
@@ -111,6 +110,23 @@ export const Playground: Story = {
     popoverTitle: false,
     popoverFooter: false,
     popoverButtonBreakpoints: ['xs', 's', 'm', 'l', 'xl'],
+  },
+};
+
+export const Scrollable: Story = {
+  parameters: {
+    // the options is rendered in an options portal
+    loki: { chromeSelector: LOKI_SELECTORS.portal },
+  },
+  args: {
+    options: [...options, ...options],
+    // set up for easier testing/QA
+    // @ts-ignore - using testing control types
+    popoverButton: false,
+    popoverTitle: false,
+    popoverFooter: false,
+    popoverButtonBreakpoints: ['xs', 's', 'm', 'l', 'xl'],
+    popoverProps: { isOpen: true },
   },
 };
 

@@ -14,6 +14,8 @@ import {
   hideStorybookControls,
 } from '../../../.storybook/utils';
 
+import { EuiFlexItem } from '../flex';
+import { EuiIcon } from '../icon';
 import { EuiSelectableOption } from './selectable_option';
 import {
   EuiSelectable,
@@ -45,7 +47,6 @@ const options: EuiSelectableOption[] = [
   },
   {
     label: 'Iapetus',
-    checked: 'on',
   },
   {
     label: 'Phoebe',
@@ -102,9 +103,6 @@ export const Playground: Story = {
     loadingMessage: '',
     noMatchesMessage: '',
     selectableScreenReaderText: '',
-    listProps: {
-      bordered: true,
-    },
     searchable: false, // required for typing
   },
   render: ({ ...args }: EuiSelectableProps) => <StatefulSelectable {...args} />,
@@ -137,6 +135,36 @@ export const WithTooltip: Story = {
       value: idx,
     })),
     searchable: false,
+  },
+  render: ({ ...args }: EuiSelectableProps) => <StatefulSelectable {...args} />,
+};
+
+export const WithSearchAndGroups: Story = {
+  args: {
+    searchable: true,
+    // setting up for easier testing/QA
+    searchProps: {
+      'data-test-subj': 'selectableSearchHere',
+      'aria-label': 'Filter options',
+    },
+    options: [
+      { label: 'Group 1', isGroupLabel: true },
+      ...[...options].splice(0, 4),
+      {
+        label: 'Group 2',
+        isGroupLabel: true,
+        prepend: (
+          <EuiIcon
+            type="warning"
+            css={({ euiTheme }) => ({ marginRight: euiTheme.size.s })}
+          />
+        ),
+        append: (
+          <EuiFlexItem css={{ alignItems: 'flex-end' }}>(append)</EuiFlexItem>
+        ),
+      },
+      ...[...options].splice(4, options.length),
+    ],
   },
   render: ({ ...args }: EuiSelectableProps) => <StatefulSelectable {...args} />,
 };

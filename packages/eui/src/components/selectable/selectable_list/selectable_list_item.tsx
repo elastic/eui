@@ -23,6 +23,7 @@ import { EuiIcon, IconColor, IconType } from '../../icon';
 import { EuiScreenReaderOnly } from '../../accessibility';
 import { EuiBadge, EuiBadgeProps } from '../../badge';
 import { EuiToolTip } from '../../tool_tip';
+import { EuiCheckboxControl } from '../../form/checkbox';
 
 import type {
   EuiSelectableOption,
@@ -30,25 +31,26 @@ import type {
 } from '../selectable_option';
 import { euiSelectableListItemStyles } from './selectable_list_item.styles';
 
-function resolveIconAndColor(checked: EuiSelectableOptionCheckedType): {
+function resolveIconAndColor(
+  checked: EuiSelectableOptionCheckedType,
+  singleSelection?: boolean
+): {
   icon: IconType;
+  singleSelection?: boolean;
   color?: IconColor;
 } {
   switch (checked) {
     case 'on':
-      return { icon: 'check', color: 'text' };
+      return { icon: 'check', color: singleSelection ? 'primary' : 'text' };
     case 'off':
-      return { icon: 'cross', color: 'text' };
+      return { icon: 'cross', color: singleSelection ? 'primary' : 'text' };
     case 'mixed':
-      return { icon: 'minus', color: 'text' };
+      return { icon: 'minus', color: singleSelection ? 'primary' : 'text' };
     case undefined:
     default:
       return { icon: 'empty' };
   }
 }
-
-export const PADDING_SIZES = ['none', 's'] as const;
-export type EuiSelectablePaddingSize = (typeof PADDING_SIZES)[number];
 
 export type EuiSelectableListItemProps = LiHTMLAttributes<HTMLLIElement> &
   CommonProps & {
@@ -69,16 +71,13 @@ export type EuiSelectableListItemProps = LiHTMLAttributes<HTMLLIElement> &
     prepend?: React.ReactNode;
     append?: React.ReactNode;
     allowExclusions?: boolean;
+    singleSelection?: boolean;
     /**
      * When enabled by setting to either `true` or passing custom a custom badge,
      * shows a hollow badge as an append (far right) when the item is focused.
      * The default content when `true` is `↩ to select/deselect/include/exclude`
      */
     onFocusBadge?: boolean | EuiBadgeProps;
-    /**
-     * Padding for the list items.
-     */
-    paddingSize?: EuiSelectablePaddingSize;
     /**
      * Whether the `EuiSelectable` instance is searchable.
      * When true, the Space key will not toggle selection, as it will type into the search box instead. Screen reader instructions will be added instructing users to use the Enter key to select items.
@@ -118,8 +117,8 @@ export const EuiSelectableListItem: FunctionComponent<
   prepend,
   append,
   allowExclusions,
-  onFocusBadge = true,
-  paddingSize = 's',
+  singleSelection = true,
+  onFocusBadge = false,
   role = 'option',
   searchable,
   textWrap = 'truncate',
@@ -135,7 +134,10 @@ export const EuiSelectableListItem: FunctionComponent<
   );
 
   const styles = useEuiMemoizedStyles(euiSelectableListItemStyles);
-  const cssStyles = [styles.euiSelectableListItem, styles.padding[paddingSize]];
+  const cssStyles = [
+    styles.euiSelectableListItem,
+    checked != null && singleSelection && styles.singleSelection,
+  ];
   const textStyles = [
     styles.euiSelectableListItem__text,
     styles.textWrap[textWrap],
@@ -143,7 +145,19 @@ export const EuiSelectableListItem: FunctionComponent<
 
   const optionIcon = useMemo(() => {
     if (showIcons) {
-      const { icon, color } = resolveIconAndColor(checked);
+      if (!singleSelection) {
+        return (
+          <EuiCheckboxControl
+            className="euiSelectableListItem__checkbox"
+            checked={checked === 'on'}
+            indeterminate={checked === 'mixed'}
+            excluded={checked === 'off'}
+          />
+        );
+      }
+
+      const { icon, color } = resolveIconAndColor(checked, singleSelection);
+
       return (
         <EuiIcon
           css={styles.euiSelectableListItem__icon}
@@ -153,7 +167,7 @@ export const EuiSelectableListItem: FunctionComponent<
         />
       );
     }
-  }, [showIcons, checked, styles]);
+  }, [showIcons, checked, singleSelection, styles]);
 
   const prependNode = useMemo(() => {
     if (prepend) {
