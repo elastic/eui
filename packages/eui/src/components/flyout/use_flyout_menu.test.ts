@@ -8,11 +8,7 @@
 
 import { renderHook } from '../../test/rtl/render_hook';
 import { useEuiFlyoutMenu, UseEuiFlyoutMenu } from './use_flyout_menu';
-import {
-  MENU_DISPLAY_ALWAYS,
-  MENU_DISPLAY_AUTO,
-  MENU_DISPLAY_HIDDEN,
-} from './const';
+import { MENU_DISPLAY_ALWAYS, MENU_DISPLAY_AUTO } from './const';
 
 const defaultProps: UseEuiFlyoutMenu = {
   flyoutMenuDisplayMode: MENU_DISPLAY_ALWAYS,
@@ -71,21 +67,6 @@ describe('useEuiFlyoutMenu', () => {
           flyoutMenuProps: {},
         });
         expect(result.current.shouldRenderMenu).toBe(true);
-      });
-    });
-
-    describe('hidden mode', () => {
-      it('returns false even when menu has content', () => {
-        const { result } = render({
-          flyoutMenuDisplayMode: MENU_DISPLAY_HIDDEN,
-          flyoutMenuProps: {
-            showBackButton: true,
-            customActions: [
-              { iconType: 'gear', onClick: () => {}, 'aria-label': 'Settings' },
-            ],
-          },
-        });
-        expect(result.current.shouldRenderMenu).toBe(false);
       });
     });
 

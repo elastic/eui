@@ -20,11 +20,7 @@ import {
 } from './flyout';
 import { EuiProvider } from '../provider';
 import { EuiFlyoutManager } from './manager';
-import {
-  MENU_DISPLAY_ALWAYS,
-  MENU_DISPLAY_AUTO,
-  MENU_DISPLAY_HIDDEN,
-} from './const';
+import { MENU_DISPLAY_ALWAYS, MENU_DISPLAY_AUTO } from './const';
 
 jest.mock('../overlay_mask', () => ({
   EuiOverlayMask: ({ headerZindexLocation, maskRef, ...props }: any) => (
@@ -238,13 +234,12 @@ describe('EuiFlyout', () => {
       });
     });
 
-    describe('hidden mode', () => {
-      it('renders close button instead of menu', () => {
-        const { getByTestSubject, queryByTestSubject } = render(
+    describe('auto mode', () => {
+      it('renders menu when menu has content', () => {
+        const { getByTestSubject } = render(
           <EuiFlyout
             onClose={() => {}}
             flyoutMenuProps={{
-              title: 'Test Title',
               customActions: [
                 {
                   iconType: 'gear',
@@ -253,47 +248,24 @@ describe('EuiFlyout', () => {
                 },
               ],
             }}
-            flyoutMenuDisplayMode={MENU_DISPLAY_HIDDEN}
+            flyoutMenuDisplayMode={MENU_DISPLAY_AUTO}
+          />
+        );
+
+        expect(getByTestSubject('euiFlyoutMenu')).toBeInTheDocument();
+      });
+
+      it('renders close button when menu has no content', () => {
+        const { getByTestSubject, queryByTestSubject } = render(
+          <EuiFlyout
+            onClose={() => {}}
+            flyoutMenuProps={{}}
+            flyoutMenuDisplayMode={MENU_DISPLAY_AUTO}
           />
         );
 
         expect(getByTestSubject('euiFlyoutCloseButton')).toBeInTheDocument();
         expect(queryByTestSubject('euiFlyoutMenu')).not.toBeInTheDocument();
-      });
-
-      describe('auto mode', () => {
-        it('renders menu when menu has content', () => {
-          const { getByTestSubject } = render(
-            <EuiFlyout
-              onClose={() => {}}
-              flyoutMenuProps={{
-                customActions: [
-                  {
-                    iconType: 'gear',
-                    onClick: () => {},
-                    'aria-label': 'Settings',
-                  },
-                ],
-              }}
-              flyoutMenuDisplayMode={MENU_DISPLAY_AUTO}
-            />
-          );
-
-          expect(getByTestSubject('euiFlyoutMenu')).toBeInTheDocument();
-        });
-
-        it('renders close button when menu has no content', () => {
-          const { getByTestSubject, queryByTestSubject } = render(
-            <EuiFlyout
-              onClose={() => {}}
-              flyoutMenuProps={{}}
-              flyoutMenuDisplayMode={MENU_DISPLAY_AUTO}
-            />
-          );
-
-          expect(getByTestSubject('euiFlyoutCloseButton')).toBeInTheDocument();
-          expect(queryByTestSubject('euiFlyoutMenu')).not.toBeInTheDocument();
-        });
       });
     });
   });
