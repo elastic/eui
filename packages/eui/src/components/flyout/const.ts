@@ -27,13 +27,10 @@ export type EuiFlyoutSize = (typeof FLYOUT_SIZES)[number];
 export const MENU_DISPLAY_ALWAYS = 'always' as const;
 /** Menu display mode: only render menu when it has content (back button, history, title, or custom actions). */
 export const MENU_DISPLAY_AUTO = 'auto' as const;
-/** Menu display mode: never render menu, show standalone close button instead. */
-export const MENU_DISPLAY_HIDDEN = 'hidden' as const;
 /** Allowed flyout menu display modes. */
 export const FLYOUT_MENU_DISPLAY_MODES = [
   MENU_DISPLAY_ALWAYS,
   MENU_DISPLAY_AUTO,
-  MENU_DISPLAY_HIDDEN,
 ] as const;
 /** Type representing a supported flyout menu display mode. */
 export type EuiFlyoutMenuDisplayMode =

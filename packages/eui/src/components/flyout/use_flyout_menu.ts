@@ -11,7 +11,6 @@ import {
   EuiFlyoutMenuDisplayMode,
   MENU_DISPLAY_ALWAYS,
   MENU_DISPLAY_AUTO,
-  MENU_DISPLAY_HIDDEN,
 } from './const';
 import { EuiFlyoutMenuProps } from './flyout_menu';
 import { useMemo } from 'react';
@@ -74,7 +73,7 @@ export const useEuiFlyoutMenu = ({
 
   // Determine if the menu should be rendered based on the display mode and menu content
   const shouldRenderMenu = useMemo(() => {
-    if (!hasMenu || flyoutMenuDisplayMode === MENU_DISPLAY_HIDDEN) return false;
+    if (!hasMenu) return false;
     if (flyoutMenuDisplayMode === MENU_DISPLAY_ALWAYS) return true;
     if (flyoutMenuDisplayMode === MENU_DISPLAY_AUTO) return menuHasContent;
   }, [hasMenu, flyoutMenuDisplayMode, menuHasContent]);
