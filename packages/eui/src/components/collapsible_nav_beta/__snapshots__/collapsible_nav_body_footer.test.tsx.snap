@@ -13,7 +13,7 @@ exports[`EuiCollapsibleNavBody renders 1`] = `
     tabindex="-1"
   >
     <div
-      class="euiFlyoutBody__overflowContent"
+      class="euiFlyoutBody__overflowContent emotion-EuiFlyoutBody"
     />
   </div>
 </div>

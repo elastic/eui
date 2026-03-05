@@ -37,5 +37,10 @@ export const euiFlyoutBodyStyles = (euiThemeContext: UseEuiTheme) => {
         preferred: logicalCSS('border-bottom', euiTheme.border.thin),
       })}
     `,
+    euiFlyoutBody__overflowContent_fullHeight: css`
+      display: flex;
+      flex-direction: column;
+      ${logicalCSS('height', '100%')}
+    `,
   };
 };

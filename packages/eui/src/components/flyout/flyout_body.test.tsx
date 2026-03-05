@@ -39,4 +39,10 @@ describe('EuiFlyoutBody', () => {
       'euiFlyoutBodyOverflow'
     );
   });
+
+  test('fullHeight', () => {
+    const { container } = render(<EuiFlyoutBody fullHeight />);
+
+    expect(container.firstChild).toMatchSnapshot();
+  });
 });
