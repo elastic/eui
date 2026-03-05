@@ -226,9 +226,9 @@ describe('EuiTableHeaderCell', () => {
 
     describe('width', testProp('width', WARNING_MESSAGE_WIDTH));
 
-    describe('width', testProp('minWidth', WARNING_MESSAGE_MIN_WIDTH));
+    describe('minWidth', testProp('minWidth', WARNING_MESSAGE_MIN_WIDTH));
 
-    describe('width', testProp('maxWidth', WARNING_MESSAGE_MAX_WIDTH));
+    describe('maxWidth', testProp('maxWidth', WARNING_MESSAGE_MAX_WIDTH));
   });
 
   describe('tooltip', () => {
