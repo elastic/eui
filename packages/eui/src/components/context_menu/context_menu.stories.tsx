@@ -40,7 +40,7 @@ const panels: EuiContextMenuProps['panels'] = [
     items: [
       {
         name: 'Handle an onClick',
-        icon: 'search',
+        icon: 'magnify',
         onClick: noop,
       },
       {

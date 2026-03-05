@@ -17,7 +17,7 @@ describe('getIconAffordanceStyles', () => {
     isDropdown: false,
   };
   const allIcons = {
-    icon: { type: 'search', side: 'right' as const },
+    icon: { type: 'magnify', side: 'right' as const },
     clear: true,
     isLoading: true,
     isInvalid: true,
@@ -57,7 +57,7 @@ describe('getIconAffordanceStyles', () => {
 
   test('left icon', () => {
     const styles = getIconAffordanceStyles({
-      icon: 'search',
+      icon: 'magnify',
     });
     expect(styles).toMatchInlineSnapshot(`
       {

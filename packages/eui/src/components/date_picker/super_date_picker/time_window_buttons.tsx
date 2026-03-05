@@ -161,7 +161,7 @@ export const EuiTimeWindowButtons: React.FC<EuiTimeWindowButtonsProps> = ({
           toolTipContent={!isDisabled && previousTooltipContent}
           color={buttonColor}
           size={buttonSize}
-          iconType="arrowLeft"
+          iconType="chevronSingleLeft"
           iconSize={iconSize}
           isIconOnly
           isDisabled={isWindowDurationZero || isDisabled}
@@ -180,7 +180,7 @@ export const EuiTimeWindowButtons: React.FC<EuiTimeWindowButtonsProps> = ({
           }}
           color={buttonColor}
           size={buttonSize}
-          iconType="magnifyWithPlus"
+          iconType="magnifyPlus"
           iconSize={iconSize}
           isIconOnly
           isDisabled={isWindowDurationZero || isDisabled}
@@ -199,7 +199,7 @@ export const EuiTimeWindowButtons: React.FC<EuiTimeWindowButtonsProps> = ({
           }}
           color={buttonColor}
           size={buttonSize}
-          iconType="magnifyWithMinus"
+          iconType="magnifyMinus"
           iconSize={iconSize}
           isIconOnly
           isDisabled={isDisabled}
@@ -215,7 +215,7 @@ export const EuiTimeWindowButtons: React.FC<EuiTimeWindowButtonsProps> = ({
           toolTipContent={!isDisabled && nextTooltipContent}
           color={buttonColor}
           size={buttonSize}
-          iconType="arrowRight"
+          iconType="chevronSingleRight"
           iconSize={iconSize}
           isIconOnly
           isDisabled={isWindowDurationZero || isDisabled}

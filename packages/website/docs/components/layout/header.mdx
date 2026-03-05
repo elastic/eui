@@ -381,7 +381,7 @@ The header is made up of **many** individual components starting with **EuiHeade
         }}
         popoverButton={
           <EuiHeaderSectionItemButton aria-label="Sitewide search">
-            <EuiIcon type="search" size="m" />
+            <EuiIcon type="magnify" size="m" />
           </EuiHeaderSectionItemButton>
         }
         emptyMessage={
@@ -489,7 +489,7 @@ export default () => {
 
   const renderSearch = (
     <EuiHeaderSectionItemButton disabled aria-label="Sitewide search">
-      <EuiIcon type="search" size="m" />
+      <EuiIcon type="magnify" size="m" />
     </EuiHeaderSectionItemButton>
   );
   const renderUser = (
@@ -652,7 +652,7 @@ export default () => {
           items: [
             <EuiBadge
               color={euiTheme.colors.darkestShade}
-              iconType="arrowDown"
+              iconType="chevronSingleDown"
               iconSide="right"
             >
               Production logs
@@ -661,7 +661,7 @@ export default () => {
               aria-label="2 Notifications"
               notification={'2'}
             >
-              <EuiIcon type="cheer" size="m" />
+              <EuiIcon type="popper" size="m" />
             </EuiHeaderSectionItemButton>,
             <EuiHeaderSectionItemButton aria-label="Account menu">
               <EuiAvatar name="John Username" size="s" />
@@ -839,7 +839,7 @@ const HeaderUpdates = () => {
       onClick={showPopover}
       notification={6}
     >
-      <EuiIcon type="cheer" />
+      <EuiIcon type="popper" />
     </EuiHeaderSectionItemButton>
   );
 
@@ -1124,7 +1124,7 @@ const HeaderUpdates = forwardRef<
       }`}
       notification={showNotification && notificationsNumber}
     >
-      <EuiIcon type="cheer" />
+      <EuiIcon type="popper" />
     </EuiHeaderSectionItemButton>
   );
 
@@ -1271,7 +1271,7 @@ export default () => {
                 aria-label="News feed: Updates available"
                 notification={true}
               >
-                <EuiIcon type="cheer" size="m" />
+                <EuiIcon type="popper" size="m" />
               </EuiHeaderSectionItemButton>,
             ],
           },

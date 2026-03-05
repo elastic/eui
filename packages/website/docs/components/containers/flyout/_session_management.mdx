@@ -242,7 +242,11 @@ On smaller screens, child flyouts stack above the parent.
 
 #### Accessibility
 
-Both parent and child flyouts use `role="dialog"` and `aria-modal="true"` for accessibility. Focus is managed automatically between them, with the child flyout taking focus when open and returning focus to the parent when closed.
+Parent and child flyouts are treated as a single modal unit for accessibility.
+The parent flyout carries `role="dialog"` and `aria-modal="true"`, while the child
+defers to it when in side-by-side mode. On smaller screens (stacked mode), the child
+becomes the active modal. Keyboard navigation flows naturally between parent and child
+flyouts, and focus is managed automatically when flyouts close.
 
 #### Closing behavior
 
