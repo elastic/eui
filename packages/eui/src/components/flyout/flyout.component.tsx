@@ -160,8 +160,8 @@ interface _EuiFlyoutComponentProps {
    */
   pushMinBreakpoint?: EuiBreakpointSize;
   /**
-   * Enables a slide in animation on push flyouts
-   * @default false
+   * Enables a slide in animation on flyouts
+   * @default true for overlay flyouts, `false` for push flyouts
    */
   pushAnimation?: boolean;
   style?: CSSProperties;
@@ -313,7 +313,7 @@ export const EuiFlyoutComponent = forwardRef(
       type = DEFAULT_TYPE,
       outsideClickCloses,
       pushMinBreakpoint = DEFAULT_PUSH_MIN_BREAKPOINT,
-      pushAnimation = false,
+      pushAnimation: _pushAnimation,
       focusTrapProps: _focusTrapProps,
       includeFixedHeadersInFocusTrap = true,
       includeSelectorInFocusTrap,
@@ -329,6 +329,9 @@ export const EuiFlyoutComponent = forwardRef(
     } = usePropsWithComponentDefaults('EuiFlyout', props);
 
     const container = resolveContainer(containerProp);
+
+    const pushAnimationDefault = type === 'overlay' ? true : false;
+    const pushAnimation = _pushAnimation ?? pushAnimationDefault;
 
     const { setGlobalCSSVariables } = useEuiThemeCSSVariables();
 
@@ -889,7 +892,7 @@ export const EuiFlyoutComponent = forwardRef(
       maxWidth === false && styles.noMaxWidth,
       isPushed ? styles.push.push : styles.overlay.overlay,
       isPushed ? styles.push[side] : styles.overlay[side],
-      isPushed && !pushAnimation && styles.push.noAnimation,
+      !pushAnimation && styles.noAnimation,
       styles[side],
     ];
 
@@ -1068,6 +1071,7 @@ export const EuiFlyoutComponent = forwardRef(
         maskProps={{
           ...maskProps,
           maskRef: maskCombinedRefs,
+          hasAnimation: pushAnimation,
         }}
       >
         <EuiWindowEvent event="keydown" handler={onKeyDown} />
