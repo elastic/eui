@@ -1,83 +1,87 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EuiTable renders 1`] = `
-<table
-  aria-label="aria-label"
-  class="euiTable testClass1 testClass2 emotion-euiTable-fixed-uncompressed-hasBackground-desktop-euiTestCss"
-  data-test-subj="test subject string"
-  tabindex="-1"
+<div
+  class="css-0"
 >
-  <thead>
-    <tr>
-      <th
-        class="euiTableHeaderCell emotion-euiTableHeaderCell"
-        role="columnheader"
-        scope="col"
-      >
-        <div
-          class="euiTableCellContent emotion-euiTableCellContent-euiTableHeaderCell__content"
+  <table
+    aria-label="aria-label"
+    class="euiTable testClass1 testClass2 emotion-euiTable-fixed-uncompressed-hasBackground-desktop-euiTestCss"
+    data-test-subj="test subject string"
+    tabindex="-1"
+  >
+    <thead>
+      <tr>
+        <th
+          class="euiTableHeaderCell emotion-euiTableHeaderCell"
+          role="columnheader"
+          scope="col"
         >
-          <span
-            class="eui-textTruncate"
-            title="Hi Title"
+          <div
+            class="euiTableCellContent emotion-euiTableCellContent-euiTableHeaderCell__content"
           >
-            Hi Title
-          </span>
-        </div>
-      </th>
-      <th
-        class="euiTableHeaderCell emotion-euiTableHeaderCell"
-        role="columnheader"
-        scope="col"
-      >
-        <div
-          class="euiTableCellContent emotion-euiTableCellContent-euiTableHeaderCell__content"
+            <span
+              class="eui-textTruncate"
+              title="Hi Title"
+            >
+              Hi Title
+            </span>
+          </div>
+        </th>
+        <th
+          class="euiTableHeaderCell emotion-euiTableHeaderCell"
+          role="columnheader"
+          scope="col"
         >
-          <span
-            class="eui-textTruncate"
-            title="Bye Title"
+          <div
+            class="euiTableCellContent emotion-euiTableCellContent-euiTableHeaderCell__content"
           >
-            Bye Title
-          </span>
-        </div>
-      </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr
-      class="euiTableRow emotion-euiTableRow-desktop"
-    >
-      <td
-        class="euiTableRowCell emotion-euiTableRowCell-middle-desktop"
+            <span
+              class="eui-textTruncate"
+              title="Bye Title"
+            >
+              Bye Title
+            </span>
+          </div>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        class="euiTableRow emotion-euiTableRow-desktop"
       >
-        <div
-          class="euiTableCellContent emotion-euiTableCellContent-wrapText"
+        <td
+          class="euiTableRowCell emotion-euiTableRowCell-middle-desktop"
         >
-          <span
-            class="euiTableCellContent__text"
+          <div
+            class="euiTableCellContent emotion-euiTableCellContent-wrapText"
           >
-            Hi
-          </span>
-        </div>
-      </td>
-    </tr>
-    <tr
-      class="euiTableRow emotion-euiTableRow-desktop"
-    >
-      <td
-        class="euiTableRowCell emotion-euiTableRowCell-middle-desktop"
+            <span
+              class="euiTableCellContent__text"
+            >
+              Hi
+            </span>
+          </div>
+        </td>
+      </tr>
+      <tr
+        class="euiTableRow emotion-euiTableRow-desktop"
       >
-        <div
-          class="euiTableCellContent emotion-euiTableCellContent-wrapText"
+        <td
+          class="euiTableRowCell emotion-euiTableRowCell-middle-desktop"
         >
-          <span
-            class="euiTableCellContent__text"
+          <div
+            class="euiTableCellContent emotion-euiTableCellContent-wrapText"
           >
-            Bye
-          </span>
-        </div>
-      </td>
-    </tr>
-  </tbody>
-</table>
+            <span
+              class="euiTableCellContent__text"
+            >
+              Bye
+            </span>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 `;
