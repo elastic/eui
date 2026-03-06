@@ -50,7 +50,7 @@ describe('flyout.styles', () => {
     it('should apply correct fill size CSS', () => {
       const { getByTestId } = render(<TestComponent />);
       const stylesText = getByTestId('styles').textContent;
-      expect(stylesText).toContain('90vw');
+      expect(stylesText).toContain('90%');
     });
 
     it('should include all named size styles', () => {
@@ -95,7 +95,7 @@ describe('flyout.styles', () => {
         undefined
       );
       expect(result).toEqual({
-        inlineSize: 'calc(90vw - 300px)',
+        inlineSize: 'calc(90% - var(--euiFlyoutMainWidth, 300px))',
         minInlineSize: '0',
       });
     });
@@ -141,7 +141,7 @@ describe('flyout.styles', () => {
       );
       expect(result).toEqual({
         maxInlineSize: '600px',
-        minInlineSize: 'min(600px, 90vw)',
+        minInlineSize: 'min(600px, 90%)',
       });
     });
 
@@ -154,9 +154,11 @@ describe('flyout.styles', () => {
         600
       );
       expect(result).toEqual({
-        inlineSize: 'calc(90vw - 300px)',
-        maxInlineSize: 'min(600px, calc(90vw - 300px))',
-        minInlineSize: 'min(600px, calc(90vw - 300px))',
+        inlineSize: 'calc(90% - var(--euiFlyoutMainWidth, 300px))',
+        maxInlineSize:
+          'min(600px, calc(90% - var(--euiFlyoutMainWidth, 300px)))',
+        minInlineSize:
+          'min(600px, calc(90% - var(--euiFlyoutMainWidth, 300px)))',
       });
     });
 
@@ -170,7 +172,7 @@ describe('flyout.styles', () => {
       );
       expect(result).toEqual({
         maxInlineSize: '50%',
-        minInlineSize: 'min(50%, 90vw)',
+        minInlineSize: 'min(50%, 90%)',
       });
     });
 
@@ -201,7 +203,7 @@ describe('flyout.styles', () => {
       );
       expect(result).toEqual({
         maxInlineSize: '600px',
-        minInlineSize: 'min(600px, 90vw)',
+        minInlineSize: 'min(600px, 90%)',
       });
     });
 

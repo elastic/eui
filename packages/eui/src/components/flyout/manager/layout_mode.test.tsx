@@ -10,13 +10,7 @@ import React from 'react';
 import { renderHook } from '../../../test/rtl';
 import { render, act } from '@testing-library/react';
 import { useEuiTheme } from '../../../services';
-import { setLayoutMode } from './actions';
-import {
-  useCurrentChildFlyout,
-  useCurrentMainFlyout,
-  useCurrentSession,
-  useFlyoutWidth,
-} from './selectors';
+import { setLayoutMode, setReferenceWidth } from './actions';
 import { useFlyoutManager } from './hooks';
 import { LAYOUT_MODE_SIDE_BY_SIDE, LAYOUT_MODE_STACKED } from './const';
 import {
@@ -32,13 +26,7 @@ jest.mock('../../../services', () => ({
 
 jest.mock('./actions', () => ({
   setLayoutMode: jest.fn(),
-}));
-
-jest.mock('./selectors', () => ({
-  useCurrentChildFlyout: jest.fn(),
-  useCurrentMainFlyout: jest.fn(),
-  useCurrentSession: jest.fn(),
-  useFlyoutWidth: jest.fn(),
+  setReferenceWidth: jest.fn(),
 }));
 
 jest.mock('./hooks', () => ({
@@ -89,11 +77,32 @@ Object.defineProperty(window, 'cancelAnimationFrame', {
 
 const mockUseEuiTheme = useEuiTheme as jest.Mock;
 const mockSetLayoutMode = setLayoutMode as jest.Mock;
-const mockUseCurrentChildFlyout = useCurrentChildFlyout as jest.Mock;
-const mockUseCurrentMainFlyout = useCurrentMainFlyout as jest.Mock;
-const mockUseCurrentSession = useCurrentSession as jest.Mock;
-const mockUseFlyoutWidth = useFlyoutWidth as jest.Mock;
+const mockSetReferenceWidth = setReferenceWidth as jest.Mock;
 const mockUseFlyoutManager = useFlyoutManager as jest.Mock;
+
+const buildMockManagerState = ({
+  layoutMode = LAYOUT_MODE_SIDE_BY_SIDE,
+  session = {
+    mainFlyoutId: 'main-1',
+    childFlyoutId: 'child-1' as string | null,
+  } as { mainFlyoutId: string; childFlyoutId: string | null } | null,
+  mainFlyout = {
+    flyoutId: 'main-1',
+    level: 'main' as const,
+    size: 'm',
+    width: 600,
+  } as { flyoutId: string; level: string; size: string; width?: number } | null,
+  childFlyout = {
+    flyoutId: 'child-1',
+    level: 'child' as const,
+    size: 's',
+    width: 300,
+  } as { flyoutId: string; level: string; size: string; width?: number } | null,
+} = {}) => ({
+  layoutMode,
+  sessions: session ? [session] : [],
+  flyouts: [mainFlyout, childFlyout].filter(Boolean),
+});
 
 describe('layout_mode', () => {
   const getResizeHandler = () => {
@@ -118,31 +127,13 @@ describe('layout_mode', () => {
       layoutMode: LAYOUT_MODE_SIDE_BY_SIDE,
     });
 
-    mockUseCurrentSession.mockReturnValue({
-      mainFlyoutId: 'main-1',
-      childFlyoutId: 'child-1',
-    });
-
-    mockUseCurrentMainFlyout.mockReturnValue({
-      flyoutId: 'main-1',
-      level: 'main',
-      size: 'm',
-    });
-
-    mockUseCurrentChildFlyout.mockReturnValue({
-      flyoutId: 'child-1',
-      level: 'child',
-      size: 's',
-    });
-
-    mockUseFlyoutWidth
-      .mockReturnValueOnce(600) // parent width
-      .mockReturnValueOnce(300); // child width
+    mockSetReferenceWidth.mockImplementation((width: number) => ({
+      type: 'ACTION_SET_REFERENCE_WIDTH',
+      width,
+    }));
 
     mockUseFlyoutManager.mockReturnValue({
-      state: {
-        layoutMode: LAYOUT_MODE_SIDE_BY_SIDE,
-      },
+      state: buildMockManagerState(),
       dispatch: jest.fn(),
     });
   });
@@ -150,9 +141,7 @@ describe('layout_mode', () => {
   describe('useFlyoutLayoutMode', () => {
     it('returns layout mode from context when available', () => {
       mockUseFlyoutManager.mockReturnValue({
-        state: {
-          layoutMode: LAYOUT_MODE_STACKED,
-        },
+        state: buildMockManagerState({ layoutMode: LAYOUT_MODE_STACKED }),
       });
 
       const { result } = renderHook(() => useFlyoutLayoutMode());
@@ -314,9 +303,7 @@ describe('layout_mode', () => {
 
       const mockDispatch = jest.fn();
       mockUseFlyoutManager.mockReturnValue({
-        state: {
-          layoutMode: LAYOUT_MODE_SIDE_BY_SIDE,
-        },
+        state: buildMockManagerState({ layoutMode: LAYOUT_MODE_SIDE_BY_SIDE }),
         dispatch: mockDispatch,
       });
 
@@ -335,15 +322,14 @@ describe('layout_mode', () => {
 
       const mockDispatch = jest.fn();
       mockUseFlyoutManager.mockReturnValue({
-        state: {
-          layoutMode: LAYOUT_MODE_STACKED,
-        },
+        state: buildMockManagerState({ layoutMode: LAYOUT_MODE_STACKED }),
         dispatch: mockDispatch,
       });
 
       render(<TestComponent />);
 
-      expect(mockDispatch).not.toHaveBeenCalled();
+      // Layout mode should not change (already STACKED); setReferenceWidth may still be dispatched
+      expect(mockSetLayoutMode).not.toHaveBeenCalled();
     });
 
     it('switches to SIDE_BY_SIDE when no child flyout exists and currently in STACKED mode', () => {
@@ -353,24 +339,15 @@ describe('layout_mode', () => {
         value: 1200,
       });
 
-      mockUseCurrentSession.mockReturnValue({
-        mainFlyoutId: 'main-1',
-        childFlyoutId: null,
-      });
-
-      // Reset the mock to return undefined for widths since no child exists
-      mockUseFlyoutWidth.mockReset();
-      mockUseFlyoutWidth.mockReturnValue(undefined); // This will be used for both parent and child calls
-
       const mockDispatch = jest.fn();
-      const mockContext = {
-        state: {
-          layoutMode: LAYOUT_MODE_STACKED, // Currently in STACKED mode
-        },
+      mockUseFlyoutManager.mockReturnValue({
+        state: buildMockManagerState({
+          session: { mainFlyoutId: 'main-1', childFlyoutId: null },
+          childFlyout: null,
+          layoutMode: LAYOUT_MODE_STACKED,
+        }),
         dispatch: mockDispatch,
-      };
-
-      mockUseFlyoutManager.mockReturnValue(mockContext);
+      });
 
       render(<TestComponent />);
 
@@ -387,19 +364,25 @@ describe('layout_mode', () => {
         value: 1200,
       });
 
-      // Ensure both width calls return undefined
-      mockUseFlyoutWidth.mockReset();
-      mockUseFlyoutWidth.mockReturnValue(undefined);
-
       const mockDispatch = jest.fn();
-      const mockContext = {
-        state: {
-          layoutMode: LAYOUT_MODE_STACKED, // Currently in STACKED mode
-        },
+      mockUseFlyoutManager.mockReturnValue({
+        state: buildMockManagerState({
+          layoutMode: LAYOUT_MODE_STACKED,
+          mainFlyout: {
+            flyoutId: 'main-1',
+            level: 'main',
+            size: 'm',
+            width: undefined,
+          },
+          childFlyout: {
+            flyoutId: 'child-1',
+            level: 'child',
+            size: 's',
+            width: undefined,
+          },
+        }),
         dispatch: mockDispatch,
-      };
-
-      mockUseFlyoutManager.mockReturnValue(mockContext);
+      });
 
       render(<TestComponent />);
 
@@ -420,21 +403,25 @@ describe('layout_mode', () => {
       // Percentage: (900 / 1200) * 100 = 75%
       // Since 75% <= 85% threshold, should switch to SIDE_BY_SIDE
 
-      // Reset the mock to return the expected widths
-      mockUseFlyoutWidth.mockReset();
-      mockUseFlyoutWidth
-        .mockReturnValueOnce(600) // parent width
-        .mockReturnValueOnce(300); // child width
-
       const mockDispatch = jest.fn();
-      const mockContext = {
-        state: {
-          layoutMode: LAYOUT_MODE_STACKED, // Currently in STACKED mode
-        },
+      mockUseFlyoutManager.mockReturnValue({
+        state: buildMockManagerState({
+          layoutMode: LAYOUT_MODE_STACKED,
+          mainFlyout: {
+            flyoutId: 'main-1',
+            level: 'main',
+            size: 'm',
+            width: 600,
+          },
+          childFlyout: {
+            flyoutId: 'child-1',
+            level: 'child',
+            size: 's',
+            width: 300,
+          },
+        }),
         dispatch: mockDispatch,
-      };
-
-      mockUseFlyoutManager.mockReturnValue(mockContext);
+      });
 
       render(<TestComponent />);
 
@@ -452,40 +439,27 @@ describe('layout_mode', () => {
         value: 1200,
       });
 
-      // Set up session with both main and child flyouts
-      mockUseCurrentSession.mockReturnValue({
-        mainFlyoutId: 'main-1',
-        childFlyoutId: 'child-1',
-      });
-
-      // Set up flyout objects
-      mockUseCurrentMainFlyout.mockReturnValue({
-        flyoutId: 'main-1',
-        level: 'main',
-        size: 'm',
-      });
-
-      mockUseCurrentChildFlyout.mockReturnValue({
-        flyoutId: 'child-1',
-        level: 'child',
-        size: 's',
-      });
-
-      // Set a very wide combined width
-      mockUseFlyoutWidth.mockReset();
-      mockUseFlyoutWidth
-        .mockReturnValueOnce(800) // parent width
-        .mockReturnValueOnce(400); // child width
-
       // Combined width: 800 + 400 = 1200px
       // Percentage: (1200 / 1200) * 100 = 100%
       // Since 100% >= 95% threshold, should switch to STACKED
 
       const mockDispatch = jest.fn();
       mockUseFlyoutManager.mockReturnValue({
-        state: {
+        state: buildMockManagerState({
           layoutMode: LAYOUT_MODE_SIDE_BY_SIDE,
-        },
+          mainFlyout: {
+            flyoutId: 'main-1',
+            level: 'main',
+            size: 'm',
+            width: 800,
+          },
+          childFlyout: {
+            flyoutId: 'child-1',
+            level: 'child',
+            size: 's',
+            width: 400,
+          },
+        }),
         dispatch: mockDispatch,
       });
 
@@ -503,19 +477,26 @@ describe('layout_mode', () => {
         value: 1200,
       });
 
-      // Ensure both width calls return undefined so the hook falls back to size-based calculation
-      mockUseFlyoutWidth.mockReset();
-      mockUseFlyoutWidth.mockReturnValue(undefined);
-
+      // Ensure both width values are undefined so the hook falls back to size-based calculation
       const mockDispatch = jest.fn();
-      const mockContext = {
-        state: {
-          layoutMode: LAYOUT_MODE_STACKED, // Currently in STACKED mode
-        },
+      mockUseFlyoutManager.mockReturnValue({
+        state: buildMockManagerState({
+          layoutMode: LAYOUT_MODE_STACKED,
+          mainFlyout: {
+            flyoutId: 'main-1',
+            level: 'main',
+            size: 'm',
+            width: undefined,
+          },
+          childFlyout: {
+            flyoutId: 'child-1',
+            level: 'child',
+            size: 's',
+            width: undefined,
+          },
+        }),
         dispatch: mockDispatch,
-      };
-
-      mockUseFlyoutManager.mockReturnValue(mockContext);
+      });
 
       render(<TestComponent />);
 
@@ -534,24 +515,20 @@ describe('layout_mode', () => {
         value: 1200,
       });
 
-      // Set up a scenario where the layout mode should remain the same
-      mockUseCurrentSession.mockReturnValue({
-        mainFlyoutId: 'main-1',
-        childFlyoutId: null, // No child flyout
-      });
-
       const mockDispatch = jest.fn();
       mockUseFlyoutManager.mockReturnValue({
-        state: {
+        state: buildMockManagerState({
+          session: { mainFlyoutId: 'main-1', childFlyoutId: null },
+          childFlyout: null,
           layoutMode: LAYOUT_MODE_SIDE_BY_SIDE,
-        },
+        }),
         dispatch: mockDispatch,
       });
 
       render(<TestComponent />);
 
-      // Already in SIDE_BY_SIDE and no child exists - no action should dispatch
-      expect(mockDispatch).not.toHaveBeenCalled();
+      // Layout mode should not change; setReferenceWidth may still be dispatched
+      expect(mockSetLayoutMode).not.toHaveBeenCalled();
     });
 
     it('handles null context gracefully', () => {
@@ -564,9 +541,7 @@ describe('layout_mode', () => {
 
     it('handles missing dispatch gracefully', () => {
       mockUseFlyoutManager.mockReturnValue({
-        state: {
-          layoutMode: LAYOUT_MODE_SIDE_BY_SIDE,
-        },
+        state: buildMockManagerState({ layoutMode: LAYOUT_MODE_SIDE_BY_SIDE }),
         dispatch: undefined,
       });
 
@@ -623,19 +598,13 @@ describe('layout_mode', () => {
       });
 
       it('should attach resize listener when there is a parent flyout', () => {
-        // Set up session with only parent flyout (no child)
-        mockUseCurrentSession.mockReturnValue({
-          mainFlyoutId: 'main-1',
-          childFlyoutId: null,
-        });
-
-        mockUseCurrentChildFlyout.mockReturnValue(null);
-
         const mockDispatch = jest.fn();
         mockUseFlyoutManager.mockReturnValue({
-          state: {
+          state: buildMockManagerState({
+            session: { mainFlyoutId: 'main-1', childFlyoutId: null },
+            childFlyout: null,
             layoutMode: LAYOUT_MODE_SIDE_BY_SIDE,
-          },
+          }),
           dispatch: mockDispatch,
         });
 
@@ -650,23 +619,11 @@ describe('layout_mode', () => {
       });
 
       it('should attach resize listener when there is a child flyout', () => {
-        // Set up session with both parent and child flyouts
-        mockUseCurrentSession.mockReturnValue({
-          mainFlyoutId: 'main-1',
-          childFlyoutId: 'child-1',
-        });
-
-        mockUseCurrentChildFlyout.mockReturnValue({
-          flyoutId: 'child-1',
-          level: 'child',
-          size: 's',
-        });
-
         const mockDispatch = jest.fn();
         mockUseFlyoutManager.mockReturnValue({
-          state: {
+          state: buildMockManagerState({
             layoutMode: LAYOUT_MODE_SIDE_BY_SIDE,
-          },
+          }),
           dispatch: mockDispatch,
         });
 
@@ -680,20 +637,14 @@ describe('layout_mode', () => {
       });
 
       it('should add and remove resize listener when parent flyout opens and closes', () => {
-        // Start with no flyouts at all
-        mockUseCurrentSession.mockReturnValue({
-          mainFlyoutId: null,
-          childFlyoutId: null,
-        });
-
-        mockUseCurrentMainFlyout.mockReturnValue(null);
-        mockUseCurrentChildFlyout.mockReturnValue(null);
-
         const mockDispatch = jest.fn();
         mockUseFlyoutManager.mockReturnValue({
-          state: {
+          state: buildMockManagerState({
+            session: null,
+            mainFlyout: null,
+            childFlyout: null,
             layoutMode: LAYOUT_MODE_SIDE_BY_SIDE,
-          },
+          }),
           dispatch: mockDispatch,
         });
 
@@ -706,15 +657,13 @@ describe('layout_mode', () => {
         );
 
         // Now open a parent flyout
-        mockUseCurrentSession.mockReturnValue({
-          mainFlyoutId: 'main-1',
-          childFlyoutId: null,
-        });
-
-        mockUseCurrentMainFlyout.mockReturnValue({
-          flyoutId: 'main-1',
-          level: 'main',
-          size: 'm',
+        mockUseFlyoutManager.mockReturnValue({
+          state: buildMockManagerState({
+            session: { mainFlyoutId: 'main-1', childFlyoutId: null },
+            childFlyout: null,
+            layoutMode: LAYOUT_MODE_SIDE_BY_SIDE,
+          }),
+          dispatch: mockDispatch,
         });
 
         rerender(<TestComponent />);
@@ -726,12 +675,15 @@ describe('layout_mode', () => {
         );
 
         // Now close the parent flyout
-        mockUseCurrentSession.mockReturnValue({
-          mainFlyoutId: null,
-          childFlyoutId: null,
+        mockUseFlyoutManager.mockReturnValue({
+          state: buildMockManagerState({
+            session: null,
+            mainFlyout: null,
+            childFlyout: null,
+            layoutMode: LAYOUT_MODE_SIDE_BY_SIDE,
+          }),
+          dispatch: mockDispatch,
         });
-
-        mockUseCurrentMainFlyout.mockReturnValue(null);
 
         rerender(<TestComponent />);
 
@@ -743,20 +695,14 @@ describe('layout_mode', () => {
       });
 
       it('should NOT attach resize listener when there is no parent flyout', () => {
-        // Set up session with no flyouts at all
-        mockUseCurrentSession.mockReturnValue({
-          mainFlyoutId: null,
-          childFlyoutId: null,
-        });
-
-        mockUseCurrentMainFlyout.mockReturnValue(null);
-        mockUseCurrentChildFlyout.mockReturnValue(null);
-
         const mockDispatch = jest.fn();
         mockUseFlyoutManager.mockReturnValue({
-          state: {
+          state: buildMockManagerState({
+            session: null,
+            mainFlyout: null,
+            childFlyout: null,
             layoutMode: LAYOUT_MODE_SIDE_BY_SIDE,
-          },
+          }),
           dispatch: mockDispatch,
         });
 
@@ -788,29 +734,21 @@ describe('layout_mode', () => {
         value: 1200, // Above 768 * 1.4 = 1075.2
       });
 
-      // Mock flyout data with parent as fill
-      mockUseCurrentMainFlyout.mockReturnValue({
-        flyoutId: 'main-1',
-        level: 'main',
-        size: 'fill',
-      });
-
-      mockUseCurrentChildFlyout.mockReturnValue({
-        flyoutId: 'child-1',
-        level: 'child',
-        size: 's',
-      });
-
-      mockUseCurrentSession.mockReturnValue({
-        mainFlyoutId: 'main-1',
-        childFlyoutId: 'child-1',
-      });
-
       const mockDispatch = jest.fn();
       mockUseFlyoutManager.mockReturnValue({
-        state: {
-          layoutMode: LAYOUT_MODE_STACKED, // Currently in STACKED mode
-        },
+        state: buildMockManagerState({
+          layoutMode: LAYOUT_MODE_STACKED,
+          mainFlyout: {
+            flyoutId: 'main-1',
+            level: 'main',
+            size: 'fill',
+          },
+          childFlyout: {
+            flyoutId: 'child-1',
+            level: 'child',
+            size: 's',
+          },
+        }),
         dispatch: mockDispatch,
       });
 
@@ -829,29 +767,21 @@ describe('layout_mode', () => {
         value: 1200,
       });
 
-      // Mock flyout data with child as fill
-      mockUseCurrentMainFlyout.mockReturnValue({
-        flyoutId: 'main-1',
-        level: 'main',
-        size: 's',
-      });
-
-      mockUseCurrentChildFlyout.mockReturnValue({
-        flyoutId: 'child-1',
-        level: 'child',
-        size: 'fill',
-      });
-
-      mockUseCurrentSession.mockReturnValue({
-        mainFlyoutId: 'main-1',
-        childFlyoutId: 'child-1',
-      });
-
       const mockDispatch = jest.fn();
       mockUseFlyoutManager.mockReturnValue({
-        state: {
-          layoutMode: LAYOUT_MODE_STACKED, // Currently in STACKED mode
-        },
+        state: buildMockManagerState({
+          layoutMode: LAYOUT_MODE_STACKED,
+          mainFlyout: {
+            flyoutId: 'main-1',
+            level: 'main',
+            size: 's',
+          },
+          childFlyout: {
+            flyoutId: 'child-1',
+            level: 'child',
+            size: 'fill',
+          },
+        }),
         dispatch: mockDispatch,
       });
 
@@ -870,29 +800,21 @@ describe('layout_mode', () => {
         value: 1200,
       });
 
-      // Mock flyout data with both as fill
-      mockUseCurrentMainFlyout.mockReturnValue({
-        flyoutId: 'main-1',
-        level: 'main',
-        size: 'fill',
-      });
-
-      mockUseCurrentChildFlyout.mockReturnValue({
-        flyoutId: 'child-1',
-        level: 'child',
-        size: 'fill',
-      });
-
-      mockUseCurrentSession.mockReturnValue({
-        mainFlyoutId: 'main-1',
-        childFlyoutId: 'child-1',
-      });
-
       const mockDispatch = jest.fn();
       mockUseFlyoutManager.mockReturnValue({
-        state: {
-          layoutMode: LAYOUT_MODE_STACKED, // Currently in STACKED mode
-        },
+        state: buildMockManagerState({
+          layoutMode: LAYOUT_MODE_STACKED,
+          mainFlyout: {
+            flyoutId: 'main-1',
+            level: 'main',
+            size: 'fill',
+          },
+          childFlyout: {
+            flyoutId: 'child-1',
+            level: 'child',
+            size: 'fill',
+          },
+        }),
         dispatch: mockDispatch,
       });
 
@@ -911,29 +833,21 @@ describe('layout_mode', () => {
         value: 800, // Below 768 * 1.4 = 1075.2
       });
 
-      // Mock flyout data with parent as fill
-      mockUseCurrentMainFlyout.mockReturnValue({
-        flyoutId: 'main-1',
-        level: 'main',
-        size: 'fill',
-      });
-
-      mockUseCurrentChildFlyout.mockReturnValue({
-        flyoutId: 'child-1',
-        level: 'child',
-        size: 's',
-      });
-
-      mockUseCurrentSession.mockReturnValue({
-        mainFlyoutId: 'main-1',
-        childFlyoutId: 'child-1',
-      });
-
       const mockDispatch = jest.fn();
       mockUseFlyoutManager.mockReturnValue({
-        state: {
-          layoutMode: LAYOUT_MODE_SIDE_BY_SIDE, // Currently in SIDE_BY_SIDE mode
-        },
+        state: buildMockManagerState({
+          layoutMode: LAYOUT_MODE_SIDE_BY_SIDE,
+          mainFlyout: {
+            flyoutId: 'main-1',
+            level: 'main',
+            size: 'fill',
+          },
+          childFlyout: {
+            flyoutId: 'child-1',
+            level: 'child',
+            size: 's',
+          },
+        }),
         dispatch: mockDispatch,
       });
 
@@ -952,36 +866,28 @@ describe('layout_mode', () => {
         value: 1200,
       });
 
-      // Mock flyout data with parent as fill
-      mockUseCurrentMainFlyout.mockReturnValue({
-        flyoutId: 'main-1',
-        level: 'main',
-        size: 'fill',
-      });
-
-      mockUseCurrentChildFlyout.mockReturnValue({
-        flyoutId: 'child-1',
-        level: 'child',
-        size: 's',
-      });
-
-      mockUseCurrentSession.mockReturnValue({
-        mainFlyoutId: 'main-1',
-        childFlyoutId: 'child-1',
-      });
-
       const mockDispatch = jest.fn();
       mockUseFlyoutManager.mockReturnValue({
-        state: {
-          layoutMode: LAYOUT_MODE_SIDE_BY_SIDE, // Already in correct mode
-        },
+        state: buildMockManagerState({
+          layoutMode: LAYOUT_MODE_SIDE_BY_SIDE,
+          mainFlyout: {
+            flyoutId: 'main-1',
+            level: 'main',
+            size: 'fill',
+          },
+          childFlyout: {
+            flyoutId: 'child-1',
+            level: 'child',
+            size: 's',
+          },
+        }),
         dispatch: mockDispatch,
       });
 
       render(<TestComponent />);
 
-      // Should not dispatch when already in correct layout mode
-      expect(mockDispatch).not.toHaveBeenCalled();
+      // Layout mode should not change; setReferenceWidth may still be dispatched
+      expect(mockSetLayoutMode).not.toHaveBeenCalled();
     });
 
     it('should handle fill flyout with no child', () => {
@@ -991,25 +897,18 @@ describe('layout_mode', () => {
         value: 1200,
       });
 
-      // Mock flyout data with parent as fill and no child
-      mockUseCurrentMainFlyout.mockReturnValue({
-        flyoutId: 'main-1',
-        level: 'main',
-        size: 'fill',
-      });
-
-      mockUseCurrentChildFlyout.mockReturnValue(null);
-
-      mockUseCurrentSession.mockReturnValue({
-        mainFlyoutId: 'main-1',
-        childFlyoutId: null,
-      });
-
       const mockDispatch = jest.fn();
       mockUseFlyoutManager.mockReturnValue({
-        state: {
-          layoutMode: LAYOUT_MODE_STACKED, // Currently in STACKED mode
-        },
+        state: buildMockManagerState({
+          session: { mainFlyoutId: 'main-1', childFlyoutId: null },
+          mainFlyout: {
+            flyoutId: 'main-1',
+            level: 'main',
+            size: 'fill',
+          },
+          childFlyout: null,
+          layoutMode: LAYOUT_MODE_STACKED,
+        }),
         dispatch: mockDispatch,
       });
 
@@ -1028,16 +927,14 @@ describe('layout_mode', () => {
         value: 1200,
       });
 
-      // Mock no session
-      mockUseCurrentSession.mockReturnValue(null);
-      mockUseCurrentMainFlyout.mockReturnValue(null);
-      mockUseCurrentChildFlyout.mockReturnValue(null);
-
       const mockDispatch = jest.fn();
       mockUseFlyoutManager.mockReturnValue({
-        state: {
+        state: buildMockManagerState({
+          session: null,
+          mainFlyout: null,
+          childFlyout: null,
           layoutMode: LAYOUT_MODE_SIDE_BY_SIDE,
-        },
+        }),
         dispatch: mockDispatch,
       });
 

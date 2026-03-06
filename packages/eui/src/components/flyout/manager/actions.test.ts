@@ -111,6 +111,46 @@ describe('flyout manager actions', () => {
         size: undefined,
       });
     });
+
+    it('should include iconType in action when provided', () => {
+      const action = addFlyout(
+        'flyout-1',
+        'main',
+        LEVEL_MAIN,
+        'm',
+        'faceHappy'
+      );
+
+      expect(action).toEqual({
+        type: ACTION_ADD,
+        flyoutId: 'flyout-1',
+        title: 'main',
+        level: LEVEL_MAIN,
+        size: 'm',
+        iconType: 'faceHappy',
+      });
+    });
+
+    it('should include iconType and minWidth when both provided', () => {
+      const action = addFlyout(
+        'flyout-1',
+        'main',
+        LEVEL_MAIN,
+        'm',
+        'faceHappy',
+        100
+      );
+
+      expect(action).toEqual({
+        type: ACTION_ADD,
+        flyoutId: 'flyout-1',
+        title: 'main',
+        level: LEVEL_MAIN,
+        size: 'm',
+        iconType: 'faceHappy',
+        minWidth: 100,
+      });
+    });
   });
 
   describe('closeFlyout', () => {

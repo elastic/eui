@@ -56,7 +56,9 @@ export type EuiComponentDefaults = {
    */
   EuiFlyout?: Pick<
     EuiFlyoutProps,
-    'includeSelectorInFocusTrap' | 'includeFixedHeadersInFocusTrap'
+    | 'includeSelectorInFocusTrap'
+    | 'includeFixedHeadersInFocusTrap'
+    | 'container'
   >;
   /**
    * Provide a global configuration for `EuiPopover`s.
