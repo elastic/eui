@@ -51,7 +51,7 @@ In [managed session flyouts](#flyout-session-management), the Flyout Manager aut
 
 #### Menu display mode
 
-By default, the flyout menu is always rendered when `flyoutMenuProps` is provided. You can control this behavior with the `flyoutMenuDisplayMode` prop on `EuiFlyout`:
+By default, the flyout menu is rendered when `flyoutMenuProps` is provided and menu has meaningful content. You can control this behavior with the `flyoutMenuDisplayMode` prop on `EuiFlyout`:
 
-- **`'always'`** (default): Always render the menu, even if it only contains a close button.
-- **`'auto'`**: Only render the menu when it has meaningful content (back button, history, custom actions, or a visible title). Otherwise, use a standalone close button.
+- **`'auto'`** (default): Only render the menu when it has navigation content (back button, history or custom actions) or a visible title. Otherwise, use a standalone close button.
+- **`'always'`**: Always render the menu, even if it only contains a close button.
