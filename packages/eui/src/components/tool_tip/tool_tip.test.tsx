@@ -7,7 +7,7 @@
  */
 
 import React, { useRef } from 'react';
-import { fireEvent } from '@testing-library/react';
+import { fireEvent, act } from '@testing-library/react';
 import { userEvent } from '@storybook/test';
 import {
   render,
@@ -70,8 +70,9 @@ describe('EuiToolTip', () => {
       </EuiToolTip>
     );
     const trigger = getByRole('button');
-
-    await userEvent.hover(trigger);
+    act(() => {
+      userEvent.hover(trigger);
+    });
     await waitForEuiToolTipVisible();
     expect(baseElement).toMatchSnapshot();
   });
@@ -150,7 +151,9 @@ describe('EuiToolTip', () => {
           <button data-test-subj="anchor" aria-describedby="customId" />
         </EuiToolTip>
       );
-      fireEvent.mouseOver(getByTestSubject('anchor'));
+      act(() => {
+        fireEvent.mouseOver(getByTestSubject('anchor'));
+      });
       await waitForEuiToolTipVisible();
 
       expect(
