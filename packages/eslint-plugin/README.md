@@ -127,6 +127,52 @@ function MyComponent() {
 ```
 It's worth pointing out that although the examples provided are specific to EUI components, this rule applies to all JSX elements.
 
+### `@elastic/eui/prefer-background-color`
+
+This rule warns engineers to use the more specific `background-color` CSS property instead of the `background` shorthand when setting background colors. Using `background-color` makes the code intent clearer and prevents accidental overriding of other background properties like `background-image`, `background-position`, etc.
+
+This rule kicks in on the following JSXAttributes: `style` and `css`, and supports various approaches to providing styling declarations.
+
+#### Example
+
+The following code:
+
+```tsx
+import React from 'react';
+import { EuiText } from '@elastic/eui';
+
+function MyComponent() {
+    return (
+        <EuiText style={{ background: 'red' }}>You know, for search</EuiText>
+    )
+}
+```
+
+```tsx
+import React from 'react';
+import { EuiText } from '@elastic/eui';
+
+function MyComponent() {
+    const style = { background: 'red' };
+    return (
+        <EuiText style={style}>You know, for search</EuiText>
+    )
+}
+```
+
+```tsx
+import React from 'react';
+import { EuiText } from '@elastic/eui';
+
+function MyComponent() {
+    return (
+        <EuiText css={() => ({ background: 'red' })}>You know, for search</EuiText>
+    )
+}
+```
+
+will all raise an eslint report with an appropriate message suggesting to use `background-color` (or `backgroundColor` in JS objects) instead.
+
 ### `@elastic/eui/require-aria-label-for-modals`
 
 Ensure that EUI modal components (`EuiModal`, `EuiFlyout`, `EuiFlyoutResizable` ,`EuiConfirmModal`, `EuiPopover`, `EuiWrappingPopover`) have either an `aria-label` or `aria-labelledby` prop for accessibility. This helps screen reader users understand the purpose and content of modal dialogs.
