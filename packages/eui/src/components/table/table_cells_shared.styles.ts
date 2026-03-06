@@ -8,14 +8,17 @@
 
 import { css } from '@emotion/react';
 
-import { UseEuiTheme } from '../../services';
+import { useEuiMemoizedStyles, UseEuiTheme } from '../../services';
 import {
+  euiContainerQuery,
   euiFontSize,
   logicalCSS,
   logicalTextAlignCSS,
 } from '../../global_styling';
 
 import { euiTableVariables } from './table.styles';
+import { EUI_TABLE_CONTAINER_NAME } from './const';
+import { EuiTableStickyCellOptions } from './types';
 
 export const euiTableHeaderFooterCellStyles = (
   euiThemeContext: UseEuiTheme
@@ -99,4 +102,51 @@ export const euiTableCellCheckboxStyles = (euiThemeContext: UseEuiTheme) => {
       ${logicalCSS('left', mobileSizes.checkbox.offset)}
     `,
   };
+};
+
+const euiTableStickyCellStyles = ({ euiTheme }: UseEuiTheme) => {
+  return {
+    root: css`
+      position: sticky;
+
+      ${euiContainerQuery(
+        'scroll-state(scrollable: right)',
+        EUI_TABLE_CONTAINER_NAME
+      )} {
+        background: ${euiTheme.colors.backgroundBasePlain};
+
+        &::before {
+          content: '';
+          position: absolute;
+          inset-inline-start: 0;
+          inset-block: 0;
+          inline-size: 1px;
+          background: ${euiTheme.border.color};
+        }
+      }
+    `,
+    side: {
+      start: css`
+        inset-inline-start: 0;
+      `,
+      end: css`
+        inset-inline-end: 0;
+      `,
+    },
+  };
+};
+
+/**
+ * @internal
+ */
+export const useEuiTableStickyCellStyles = (
+  options?: EuiTableStickyCellOptions
+) => {
+  const styles = useEuiMemoizedStyles(euiTableStickyCellStyles);
+
+  if (!options) {
+    return undefined;
+  }
+
+  return [styles.root, styles.side[options.side]];
 };

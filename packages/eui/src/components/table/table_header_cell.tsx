@@ -31,8 +31,12 @@ import type { EuiTableColumnNameTooltipProps } from '../basic_table/table_types'
 import { resolveWidthAsStyle } from './utils';
 import { useEuiTableIsResponsive } from './mobile/responsive_context';
 import { EuiTableCellContent } from './_table_cell_content';
-import { euiTableHeaderFooterCellStyles } from './table_cells_shared.styles';
+import {
+  euiTableHeaderFooterCellStyles,
+  useEuiTableStickyCellStyles,
+} from './table_cells_shared.styles';
 import { HEADER_CELL_SCOPE } from './table_header_cell_shared';
+import type { EuiTableStickyCellOptions } from './types';
 
 export type TableHeaderCellScope = (typeof HEADER_CELL_SCOPE)[number];
 
@@ -58,6 +62,19 @@ export type EuiTableHeaderCellProps = CommonProps &
      * Used by EuiBasicTable to render hidden copy markers
      */
     append?: ReactNode;
+    /**
+     * Whether the cell should stick to a side of the table.
+     *
+     * This option is not applied in the responsive cards layout - see
+     * {@link EuiTableProps#responsiveBreakpoint|`responsiveBreakpoint`}.
+     *
+     * Currently, it can only be used when the cell is in the first or the last
+     * column of a table.
+     * @internal
+     * @beta
+     * @default false
+     */
+    sticky?: EuiTableStickyCellOptions;
   };
 
 const CellContents = ({
@@ -166,9 +183,11 @@ export const EuiTableHeaderCell: FunctionComponent<EuiTableHeaderCellProps> = ({
   tooltipProps,
   description,
   append,
+  sticky,
   ...rest
 }) => {
   const styles = useEuiMemoizedStyles(euiTableHeaderFooterCellStyles);
+  const stickyStyles = useEuiTableStickyCellStyles(sticky);
 
   const isResponsive = useEuiTableIsResponsive();
   const hideForDesktop = !isResponsive && mobileOptions?.only;
@@ -176,6 +195,7 @@ export const EuiTableHeaderCell: FunctionComponent<EuiTableHeaderCellProps> = ({
   if (hideForDesktop || hideForMobile) return null;
 
   const classes = classNames('euiTableHeaderCell', className);
+  const cssStyles = [styles.euiTableHeaderCell, !isResponsive && stickyStyles];
   const inlineStyles = resolveWidthAsStyle(style, width);
 
   const CellComponent = children ? 'th' : 'td';
@@ -202,12 +222,13 @@ export const EuiTableHeaderCell: FunctionComponent<EuiTableHeaderCellProps> = ({
 
   return (
     <CellComponent
-      css={styles.euiTableHeaderCell}
+      css={cssStyles}
       className={classes}
       scope={cellScope}
       role="columnheader"
       aria-sort={ariaSortValue}
       style={inlineStyles}
+      data-sticky={(!isResponsive && sticky?.side) || undefined}
       {...rest}
     >
       {canSort ? (
