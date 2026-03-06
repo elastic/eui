@@ -764,7 +764,10 @@ describe('EuiFlyout', () => {
           </EuiFlyout>
         </EuiFlyoutManager>
       );
-      expect(getByRole('dialog', { name: 'Test flyout' })).toBeInTheDocument();
+      const dialog = getByRole('dialog');
+      expect(dialog).toBeInTheDocument();
+      expect(dialog).toHaveAttribute('aria-label', 'Test flyout');
+      expect(dialog).toHaveAttribute('data-managed-flyout-level', 'main');
     });
   });
 
