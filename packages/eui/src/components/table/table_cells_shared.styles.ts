@@ -120,7 +120,7 @@ const euiTableStickyCellStyles = ({ euiTheme }: UseEuiTheme) => {
           position: absolute;
           inset-inline-start: 0;
           inset-block: 0;
-          inline-size: 1px;
+          inline-size: ${euiTheme.border.width.thin};
           background: ${euiTheme.border.color};
         }
       }
