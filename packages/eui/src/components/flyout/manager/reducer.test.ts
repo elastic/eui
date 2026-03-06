@@ -669,7 +669,7 @@ describe('flyoutManagerReducer', () => {
       expect(state.flyouts[0].flyoutId).toBe('main-1');
     });
 
-    it('should only pop sessions with same historyKey when going back', () => {
+    it('should keep other groups and restore previous session in current group when going back', () => {
       const keyA = Symbol();
       const keyB = Symbol();
       let state = flyoutManagerReducer(
@@ -687,12 +687,19 @@ describe('flyoutManagerReducer', () => {
 
       expect(state.sessions).toHaveLength(3);
 
-      // goBack from main-3 (keyA): pop main-3, then new top is main-2 (keyB) !== keyA, keep popping: pop main-2. New top main-1 (keyA) === keyA, stop.
+      // goBack from main-3 (keyA): remove current session and bring prior keyA session to top.
+      // main-2 (keyB) remains in state and is restored when keyA group closes.
       state = flyoutManagerReducer(state, goBack());
 
-      expect(state.sessions).toHaveLength(1);
-      expect(state.sessions[0].mainFlyoutId).toBe('main-1');
-      expect(state.flyouts).toHaveLength(1);
+      expect(state.sessions).toHaveLength(2);
+      expect(state.sessions.map((s) => s.mainFlyoutId)).toEqual([
+        'main-2',
+        'main-1',
+      ]);
+      expect(state.flyouts.map((f) => f.flyoutId)).toEqual([
+        'main-1',
+        'main-2',
+      ]);
     });
 
     it('should do nothing when no sessions exist', () => {
@@ -837,6 +844,41 @@ describe('flyoutManagerReducer', () => {
       expect(state.sessions[0].mainFlyoutId).toBe('main-1');
       expect(state.sessions[1].mainFlyoutId).toBe('main-2');
       expect(state.flyouts).toHaveLength(2);
+      expect(state.flyouts.map((f) => f.flyoutId)).toEqual([
+        'main-1',
+        'main-2',
+      ]);
+    });
+
+    it('should preserve intervening groups when navigating to prior session in current history group', () => {
+      const keyA = Symbol();
+      const keyB = Symbol();
+      let state = flyoutManagerReducer(
+        initialState,
+        addFlyout('main-1', 'Session A1', LEVEL_MAIN, undefined, keyA)
+      );
+      state = flyoutManagerReducer(
+        state,
+        addFlyout('main-2', 'Session B1', LEVEL_MAIN, undefined, keyB)
+      );
+      state = flyoutManagerReducer(
+        state,
+        addFlyout('main-3', 'Session A2', LEVEL_MAIN, undefined, keyA)
+      );
+
+      expect(state.sessions.map((s) => s.mainFlyoutId)).toEqual([
+        'main-1',
+        'main-2',
+        'main-3',
+      ]);
+
+      // Navigate from A2 to A1: remove newer same-group session(s) only and keep B1.
+      state = flyoutManagerReducer(state, goToFlyout('main-1'));
+
+      expect(state.sessions.map((s) => s.mainFlyoutId)).toEqual([
+        'main-2',
+        'main-1',
+      ]);
       expect(state.flyouts.map((f) => f.flyoutId)).toEqual([
         'main-1',
         'main-2',
