@@ -64,18 +64,17 @@ Example:
 
 ## Impact Assessment
 
-Replace `{}` for selection(s):
-
 This PR includes:
 - [ ] 🔴 Breaking changes:
   - {How many usages in Kibana and other products are impacted?}
   - {What will break and how do users migrate?}
 - [ ] 💅 Visual changes:
-  - These changes may impact existing style overrides and require visual testing.
+  - These changes may impact existing style overrides and could require visual testing.
   - {Explain}
   - {How many usages in Kibana and other products are impacted?}
 - Overall impact level:
-  - 🟢 [ ] No impact
+  - 🟢 [ ] No impact (refactors, opt-in features, etc.)
+  - 🟢 [ ] Low impact (minor changes)
   - 🟡 [ ] Moderate impact (e.g., multiple apps may need small updates)
   - 🔴 [ ] High impact (e.g., breaking or wide visual/behavior change)
 
@@ -85,8 +84,9 @@ This PR includes:
 
 Short step-by-step or code snippet. Use this for:
 - Breaking changes
+- Testing instructions for Visual Changes
 - Deprecations
-- New preferred patterns that we want users to migrate to
+- Migrating to something new
 
 -->
 
@@ -128,12 +128,12 @@ Ex. -- A PR that updates the colors of buttons:
 <!-- Changes need to be reflected in Figma for Parity. See https://github.com/elastic/eui/blob/main/wiki/contributing-to-eui/designing -->
 
 Choose one:
-- [ ] This change is not yet reflected in Figma, an issue to update Figma is here: {link}
+- [ ] This change is not yet reflected in Figma, an issue to update Figma is here: {Issue link}
 - [ ] This change is already reflected in the EUI Figma library here: {Figma link}
 - [ ] This change is reflected in a branch in EUI Figma library and will be released alongside this change: {Figma link}
 - [ ] This change does not need to be reflected in Figma.
 
-## QA instructions for reviewer
+### QA instructions for reviewer
 
 <!-- Steps for reviewers to test this PR -->
 
