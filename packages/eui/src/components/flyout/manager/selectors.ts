@@ -76,6 +76,10 @@ export const useCurrentChildFlyout = () => {
 export const useFlyoutWidth = (flyoutId?: string | null) =>
   useFlyout(flyoutId)?.width;
 
+/** The configured minWidth (px) of the specified flyout, or `undefined` if not set. */
+export const useFlyoutMinWidth = (flyoutId?: string | null) =>
+  useFlyout(flyoutId)?.minWidth;
+
 /** The configured size of the parent (main) flyout for a given child flyout ID. */
 export const useParentFlyoutSize = (childFlyoutId: string) => {
   const session = useSession(childFlyoutId);
