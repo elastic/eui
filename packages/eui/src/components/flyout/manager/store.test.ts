@@ -58,11 +58,23 @@ describe('Flyout Manager Store', () => {
       const historyKey = Symbol();
 
       // Add first flyout (with shared historyKey)
-      store.addFlyout('flyout-1', 'First Flyout', LEVEL_MAIN, undefined, historyKey);
+      store.addFlyout(
+        'flyout-1',
+        'First Flyout',
+        LEVEL_MAIN,
+        undefined,
+        historyKey
+      );
       const firstHistoryItems = store.historyItems;
 
       // Add second flyout (same historyKey so they share history)
-      store.addFlyout('flyout-2', 'Second Flyout', LEVEL_MAIN, undefined, historyKey);
+      store.addFlyout(
+        'flyout-2',
+        'Second Flyout',
+        LEVEL_MAIN,
+        undefined,
+        historyKey
+      );
       const secondHistoryItems = store.historyItems;
 
       // References should be different since sessions changed
@@ -78,8 +90,20 @@ describe('Flyout Manager Store', () => {
       const historyKey = Symbol();
 
       // Add two flyouts (same historyKey) to create history
-      store.addFlyout('flyout-1', 'First Flyout', LEVEL_MAIN, undefined, historyKey);
-      store.addFlyout('flyout-2', 'Second Flyout', LEVEL_MAIN, undefined, historyKey);
+      store.addFlyout(
+        'flyout-1',
+        'First Flyout',
+        LEVEL_MAIN,
+        undefined,
+        historyKey
+      );
+      store.addFlyout(
+        'flyout-2',
+        'Second Flyout',
+        LEVEL_MAIN,
+        undefined,
+        historyKey
+      );
 
       const firstHistoryItems = store.historyItems;
       const firstOnClick = firstHistoryItems[0].onClick;
@@ -100,9 +124,27 @@ describe('Flyout Manager Store', () => {
       const historyKey = Symbol();
 
       // Create multiple sessions (same historyKey so they share history)
-      store.addFlyout('flyout-1', 'First Flyout', LEVEL_MAIN, undefined, historyKey);
-      store.addFlyout('flyout-2', 'Second Flyout', LEVEL_MAIN, undefined, historyKey);
-      store.addFlyout('flyout-3', 'Third Flyout', LEVEL_MAIN, undefined, historyKey);
+      store.addFlyout(
+        'flyout-1',
+        'First Flyout',
+        LEVEL_MAIN,
+        undefined,
+        historyKey
+      );
+      store.addFlyout(
+        'flyout-2',
+        'Second Flyout',
+        LEVEL_MAIN,
+        undefined,
+        historyKey
+      );
+      store.addFlyout(
+        'flyout-3',
+        'Third Flyout',
+        LEVEL_MAIN,
+        undefined,
+        historyKey
+      );
 
       const historyItems = store.historyItems;
 
@@ -124,7 +166,13 @@ describe('Flyout Manager Store', () => {
         historyKey,
         'faceHappy'
       );
-      store.addFlyout('flyout-2', 'Second Flyout', LEVEL_MAIN, undefined, historyKey);
+      store.addFlyout(
+        'flyout-2',
+        'Second Flyout',
+        LEVEL_MAIN,
+        undefined,
+        historyKey
+      );
 
       const historyItems = store.historyItems;
 
@@ -139,8 +187,20 @@ describe('Flyout Manager Store', () => {
       const historyKey = Symbol();
 
       // Create two sessions (same historyKey)
-      store.addFlyout('flyout-1', 'First Flyout', LEVEL_MAIN, undefined, historyKey);
-      store.addFlyout('flyout-2', 'Second Flyout', LEVEL_MAIN, undefined, historyKey);
+      store.addFlyout(
+        'flyout-1',
+        'First Flyout',
+        LEVEL_MAIN,
+        undefined,
+        historyKey
+      );
+      store.addFlyout(
+        'flyout-2',
+        'Second Flyout',
+        LEVEL_MAIN,
+        undefined,
+        historyKey
+      );
 
       const historyItems = store.historyItems;
 
@@ -247,8 +307,20 @@ describe('Flyout Manager Store', () => {
       const historyKey = Symbol();
 
       // Create two sessions (same historyKey so goBack only removes one)
-      store.addFlyout('flyout-1', 'First Flyout', LEVEL_MAIN, undefined, historyKey);
-      store.addFlyout('flyout-2', 'Second Flyout', LEVEL_MAIN, undefined, historyKey);
+      store.addFlyout(
+        'flyout-1',
+        'First Flyout',
+        LEVEL_MAIN,
+        undefined,
+        historyKey
+      );
+      store.addFlyout(
+        'flyout-2',
+        'Second Flyout',
+        LEVEL_MAIN,
+        undefined,
+        historyKey
+      );
 
       const sessions = store.getState().sessions;
       expect(sessions).toHaveLength(2);
@@ -275,9 +347,27 @@ describe('Flyout Manager Store', () => {
       const historyKey = Symbol();
 
       // Create three sessions (same historyKey)
-      store.addFlyout('flyout-1', 'First Flyout', LEVEL_MAIN, undefined, historyKey);
-      store.addFlyout('flyout-2', 'Second Flyout', LEVEL_MAIN, undefined, historyKey);
-      store.addFlyout('flyout-3', 'Third Flyout', LEVEL_MAIN, undefined, historyKey);
+      store.addFlyout(
+        'flyout-1',
+        'First Flyout',
+        LEVEL_MAIN,
+        undefined,
+        historyKey
+      );
+      store.addFlyout(
+        'flyout-2',
+        'Second Flyout',
+        LEVEL_MAIN,
+        undefined,
+        historyKey
+      );
+      store.addFlyout(
+        'flyout-3',
+        'Third Flyout',
+        LEVEL_MAIN,
+        undefined,
+        historyKey
+      );
 
       const sessions = store.getState().sessions;
       expect(sessions).toHaveLength(3);
@@ -308,8 +398,20 @@ describe('Flyout Manager Store', () => {
       const eventListener2 = jest.fn();
       const historyKey = Symbol();
 
-      store.addFlyout('flyout-1', 'First Flyout', LEVEL_MAIN, undefined, historyKey);
-      store.addFlyout('flyout-2', 'Second Flyout', LEVEL_MAIN, undefined, historyKey);
+      store.addFlyout(
+        'flyout-1',
+        'First Flyout',
+        LEVEL_MAIN,
+        undefined,
+        historyKey
+      );
+      store.addFlyout(
+        'flyout-2',
+        'Second Flyout',
+        LEVEL_MAIN,
+        undefined,
+        historyKey
+      );
 
       const sessions = store.getState().sessions;
 
@@ -363,8 +465,20 @@ describe('Flyout Manager Store', () => {
       const historyKey = Symbol();
 
       // Create sessions (same historyKey so closeAllFlyouts closes both)
-      store.addFlyout('flyout-1', 'Test Flyout', LEVEL_MAIN, undefined, historyKey);
-      store.addFlyout('flyout-2', 'Second Flyout', LEVEL_MAIN, undefined, historyKey);
+      store.addFlyout(
+        'flyout-1',
+        'Test Flyout',
+        LEVEL_MAIN,
+        undefined,
+        historyKey
+      );
+      store.addFlyout(
+        'flyout-2',
+        'Second Flyout',
+        LEVEL_MAIN,
+        undefined,
+        historyKey
+      );
 
       const sessions = store.getState().sessions;
       expect(sessions).toHaveLength(2);

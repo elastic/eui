@@ -415,7 +415,8 @@ export function flyoutManagerReducer(
       // Keep popping while the new top session has a different historyKey (so we only "go back" within same group)
       while (
         newSessions.length > 0 &&
-        newSessions[newSessions.length - 1].historyKey !== currentSession.historyKey
+        newSessions[newSessions.length - 1].historyKey !==
+          currentSession.historyKey
       ) {
         const toRemove = newSessions[newSessions.length - 1];
         flyoutsToRemove.add(toRemove.mainFlyoutId);
