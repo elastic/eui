@@ -6,6 +6,7 @@
  * Side Public License, v 1.
  */
 
+import type { IconType } from '../../icon';
 import type {
   EuiFlyoutLevel,
   EuiFlyoutManagerState,
@@ -23,6 +24,7 @@ import {
   goToFlyout as goToFlyoutAction,
   addUnmanagedFlyout as addUnmanagedFlyoutAction,
   closeUnmanagedFlyout as closeUnmanagedFlyoutAction,
+  setContainerElement as setContainerElementAction,
 } from './actions';
 import { flyoutManagerReducer, initialState } from './reducer';
 
@@ -48,19 +50,23 @@ export interface FlyoutManagerStore {
     flyoutId: string,
     title: string,
     level?: EuiFlyoutLevel,
-    size?: string
+    size?: string,
+    iconType?: IconType,
+    minWidth?: number
   ) => void;
   closeFlyout: (flyoutId: string) => void;
   closeAllFlyouts: () => void;
   setActiveFlyout: (flyoutId: string | null) => void;
   setFlyoutWidth: (flyoutId: string, width: number) => void;
   setPushPadding: (side: 'left' | 'right', width: number) => void;
+  setContainerElement: (element: HTMLElement | null) => void;
   goBack: () => void;
   goToFlyout: (flyoutId: string) => void;
   addUnmanagedFlyout: (flyoutId: string) => void;
   closeUnmanagedFlyout: (flyoutId: string) => void;
   historyItems: Array<{
     title: string;
+    iconType?: IconType;
     onClick: () => void;
   }>;
 }
@@ -100,6 +106,7 @@ function createStore(
 
   const computeHistoryItems = (): Array<{
     title: string;
+    iconType?: IconType;
     onClick: () => void;
   }> => {
     const currentSessionIndex = currentState.sessions.length - 1;
@@ -107,12 +114,15 @@ function createStore(
       0,
       currentSessionIndex
     );
-    return previousSessions.reverse().map(({ title, mainFlyoutId }) => ({
-      title,
-      onClick: () => {
-        store.dispatch(goToFlyoutAction(mainFlyoutId));
-      },
-    }));
+    return previousSessions
+      .reverse()
+      .map(({ title, iconType, mainFlyoutId }) => ({
+        title,
+        iconType,
+        onClick: () => {
+          store.dispatch(goToFlyoutAction(mainFlyoutId));
+        },
+      }));
   };
 
   const dispatch = (action: Action) => {
@@ -149,10 +159,12 @@ function createStore(
   store = {
     getState,
     subscribe,
-    subscribeToEvents,
     dispatch,
-    addFlyout: (flyoutId, title, level, size) =>
-      dispatch(addFlyoutAction(flyoutId, title, level, size)),
+    subscribeToEvents,
+    addFlyout: (flyoutId, title, level, size, iconType, minWidth) =>
+      dispatch(
+        addFlyoutAction(flyoutId, title, level, size, iconType, minWidth)
+      ),
     closeFlyout: (flyoutId) => dispatch(closeFlyoutAction(flyoutId)),
     closeAllFlyouts: () => dispatch(closeAllFlyoutsAction()),
     setActiveFlyout: (flyoutId) => dispatch(setActiveFlyoutAction(flyoutId)),
@@ -160,6 +172,8 @@ function createStore(
       dispatch(setFlyoutWidthAction(flyoutId, width)),
     setPushPadding: (side, width) =>
       dispatch(setPushPaddingAction(side, width)),
+    setContainerElement: (element) =>
+      dispatch(setContainerElementAction(element)),
     goBack: () => dispatch(goBackAction()),
     goToFlyout: (flyoutId) => dispatch(goToFlyoutAction(flyoutId)),
     addUnmanagedFlyout: (flyoutId) =>
