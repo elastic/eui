@@ -366,7 +366,35 @@ describe('EuiFlyout', () => {
           <EuiFlyout
             data-test-subj="flyout"
             onClose={() => {}}
-            pushAnimation={false}
+            hasAnimation={false}
+          />
+        );
+
+        expect(getByTestSubject('flyout')).toHaveStyleRule(
+          'animation-duration',
+          '0s!important'
+        );
+      });
+    });
+
+    describe('hasAnimation', () => {
+      it('renders with animations by default', () => {
+        const { getByTestSubject } = render(
+          <EuiFlyout data-test-subj="flyout" onClose={() => {}} />
+        );
+
+        expect(getByTestSubject('flyout')).not.toHaveStyleRule(
+          'animation-duration',
+          '0s!important'
+        );
+      });
+
+      it('can render without animations', () => {
+        const { getByTestSubject } = render(
+          <EuiFlyout
+            data-test-subj="flyout"
+            onClose={() => {}}
+            hasAnimation={false}
           />
         );
 
@@ -426,7 +454,7 @@ describe('EuiFlyout', () => {
             onClose={() => {}}
             type="push"
             pushMinBreakpoint="xs"
-            pushAnimation={true}
+            hasAnimation={true}
           />
         );
 

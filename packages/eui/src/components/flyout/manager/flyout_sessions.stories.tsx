@@ -213,7 +213,7 @@ const FlyoutSession: React.FC<FlyoutSessionProps> = (props) => {
           maxWidth={mainMaxWidth}
           type={flyoutType}
           ownFocus={flyoutOwnFocus}
-          pushAnimation={true}
+          hasAnimation={true}
           onActive={mainFlyoutOnActive}
           onClose={mainFlyoutOnClose}
           resizable={true}
@@ -391,7 +391,7 @@ const NonSessionFlyout: React.FC<{ size: string }> = ({ size }) => {
           size={size}
           type={flyoutType}
           ownFocus={flyoutOwnFocus}
-          pushAnimation={true}
+          hasAnimation={true}
           onClose={flyoutOnClose}
         >
           <EuiFlyoutHeader>
