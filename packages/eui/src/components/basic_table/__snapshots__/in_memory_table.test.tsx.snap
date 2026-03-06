@@ -168,85 +168,89 @@ exports[`EuiInMemoryTable empty array 1`] = `
   >
     𐘂𐘂
   </span>
-  <table
-    class="euiTable emotion-euiTable-fixed-uncompressed-hasBackground-desktop"
-    id="__table_generated-id"
-    tabindex="-1"
+  <div
+    class="css-0"
   >
-    <caption
-      class="euiTableCaption emotion-euiTableCaptionStyles-euiScreenReaderOnly"
+    <table
+      class="euiTable emotion-euiTable-fixed-uncompressed-hasBackground-desktop"
+      id="__table_generated-id"
+      tabindex="-1"
     >
-      <span
-        aria-hidden="true"
-        class="euiScreenReaderOnly"
-        data-tabular-copy-marker="no-copy"
+      <caption
+        class="euiTableCaption emotion-euiTableCaptionStyles-euiScreenReaderOnly"
       >
-        ✄𐘗
-      </span>
-      <span
-        aria-hidden="true"
-        class="euiScreenReaderOnly"
-        data-tabular-copy-marker="no-copy"
-      >
-        ✄𐘗
-      </span>
-    </caption>
-    <thead>
-      <tr>
-        <th
-          class="euiTableHeaderCell emotion-euiTableHeaderCell"
-          data-test-subj="tableHeaderCell_name_0"
-          role="columnheader"
-          scope="col"
+        <span
+          aria-hidden="true"
+          class="euiScreenReaderOnly"
+          data-tabular-copy-marker="no-copy"
         >
-          <div
-            class="euiTableCellContent emotion-euiTableCellContent-euiTableHeaderCell__content"
-          >
-            <span
-              class="eui-textTruncate"
-              title="Name; description"
-            >
-              Name
-            </span>
-            <span
-              class="emotion-euiScreenReaderOnly"
-            >
-              description
-            </span>
-          </div>
-          <span
-            aria-hidden="true"
-            class="euiScreenReaderOnly"
-            data-tabular-copy-marker="newline"
-          >
-            ↵
-          </span>
-        </th>
-      </tr>
-    </thead>
-    <tbody
-      class="css-0"
-    >
-      <tr
-        class="euiTableRow emotion-euiTableRow-desktop"
-      >
-        <td
-          class="euiTableRowCell emotion-euiTableRowCell-middle-desktop"
-          colspan="1"
+          ✄𐘗
+        </span>
+        <span
+          aria-hidden="true"
+          class="euiScreenReaderOnly"
+          data-tabular-copy-marker="no-copy"
         >
-          <div
-            class="euiTableCellContent emotion-euiTableCellContent-center-wrapText"
+          ✄𐘗
+        </span>
+      </caption>
+      <thead>
+        <tr>
+          <th
+            class="euiTableHeaderCell emotion-euiTableHeaderCell"
+            data-test-subj="tableHeaderCell_name_0"
+            role="columnheader"
+            scope="col"
           >
-            <span
-              class="euiTableCellContent__text"
+            <div
+              class="euiTableCellContent emotion-euiTableCellContent-euiTableHeaderCell__content"
             >
-              No items found
+              <span
+                class="eui-textTruncate"
+                title="Name; description"
+              >
+                Name
+              </span>
+              <span
+                class="emotion-euiScreenReaderOnly"
+              >
+                description
+              </span>
+            </div>
+            <span
+              aria-hidden="true"
+              class="euiScreenReaderOnly"
+              data-tabular-copy-marker="newline"
+            >
+              ↵
             </span>
-          </div>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+          </th>
+        </tr>
+      </thead>
+      <tbody
+        class="css-0"
+      >
+        <tr
+          class="euiTableRow emotion-euiTableRow-desktop"
+        >
+          <td
+            class="euiTableRowCell emotion-euiTableRowCell-middle-desktop"
+            colspan="1"
+          >
+            <div
+              class="euiTableCellContent emotion-euiTableCellContent-center-wrapText"
+            >
+              <span
+                class="euiTableCellContent__text"
+              >
+                No items found
+              </span>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
   <span
     aria-hidden="true"
     class="euiScreenReaderOnly"
@@ -270,139 +274,143 @@ exports[`EuiInMemoryTable with items 1`] = `
   >
     𐘂𐘂
   </span>
-  <table
-    class="euiTable emotion-euiTable-fixed-uncompressed-hasBackground-desktop"
-    id="__table_generated-id"
-    tabindex="-1"
+  <div
+    class="css-0"
   >
-    <caption
-      class="euiTableCaption emotion-euiTableCaptionStyles-euiScreenReaderOnly"
+    <table
+      class="euiTable emotion-euiTable-fixed-uncompressed-hasBackground-desktop"
+      id="__table_generated-id"
+      tabindex="-1"
     >
-      <span
-        aria-hidden="true"
-        class="euiScreenReaderOnly"
-        data-tabular-copy-marker="no-copy"
+      <caption
+        class="euiTableCaption emotion-euiTableCaptionStyles-euiScreenReaderOnly"
       >
-        ✄𐘗
-      </span>
-      <span
-        aria-hidden="true"
-        class="euiScreenReaderOnly"
-        data-tabular-copy-marker="no-copy"
-      >
-        ✄𐘗
-      </span>
-    </caption>
-    <thead>
-      <tr>
-        <th
-          class="euiTableHeaderCell emotion-euiTableHeaderCell"
-          data-test-subj="tableHeaderCell_name_0"
-          role="columnheader"
-          scope="col"
+        <span
+          aria-hidden="true"
+          class="euiScreenReaderOnly"
+          data-tabular-copy-marker="no-copy"
         >
-          <div
-            class="euiTableCellContent emotion-euiTableCellContent-euiTableHeaderCell__content"
-          >
-            <span
-              class="eui-textTruncate"
-              title="Name; description"
-            >
-              Name
-            </span>
-            <span
-              class="emotion-euiScreenReaderOnly"
-            >
-              description
-            </span>
-          </div>
-          <span
-            aria-hidden="true"
-            class="euiScreenReaderOnly"
-            data-tabular-copy-marker="newline"
-          >
-            ↵
-          </span>
-        </th>
-      </tr>
-    </thead>
-    <tbody
-      class="css-0"
-    >
-      <tr
-        class="euiTableRow euiTableRow-isSelectable emotion-euiTableRow-desktop"
-      >
-        <td
-          class="euiTableRowCell emotion-euiTableRowCell-middle-desktop"
+          ✄𐘗
+        </span>
+        <span
+          aria-hidden="true"
+          class="euiScreenReaderOnly"
+          data-tabular-copy-marker="no-copy"
         >
-          <div
-            class="euiTableCellContent emotion-euiTableCellContent-wrapText"
+          ✄𐘗
+        </span>
+      </caption>
+      <thead>
+        <tr>
+          <th
+            class="euiTableHeaderCell emotion-euiTableHeaderCell"
+            data-test-subj="tableHeaderCell_name_0"
+            role="columnheader"
+            scope="col"
           >
-            <span
-              class="euiTableCellContent__text"
+            <div
+              class="euiTableCellContent emotion-euiTableCellContent-euiTableHeaderCell__content"
             >
-              name1
+              <span
+                class="eui-textTruncate"
+                title="Name; description"
+              >
+                Name
+              </span>
+              <span
+                class="emotion-euiScreenReaderOnly"
+              >
+                description
+              </span>
+            </div>
+            <span
+              aria-hidden="true"
+              class="euiScreenReaderOnly"
+              data-tabular-copy-marker="newline"
+            >
+              ↵
             </span>
-          </div>
-          <span
-            aria-hidden="true"
-            class="euiScreenReaderOnly"
-            data-tabular-copy-marker="newline"
-          >
-            ↵
-          </span>
-        </td>
-      </tr>
-      <tr
-        class="euiTableRow euiTableRow-isSelectable emotion-euiTableRow-desktop"
+          </th>
+        </tr>
+      </thead>
+      <tbody
+        class="css-0"
       >
-        <td
-          class="euiTableRowCell emotion-euiTableRowCell-middle-desktop"
+        <tr
+          class="euiTableRow euiTableRow-isSelectable emotion-euiTableRow-desktop"
         >
-          <div
-            class="euiTableCellContent emotion-euiTableCellContent-wrapText"
+          <td
+            class="euiTableRowCell emotion-euiTableRowCell-middle-desktop"
           >
-            <span
-              class="euiTableCellContent__text"
+            <div
+              class="euiTableCellContent emotion-euiTableCellContent-wrapText"
             >
-              name2
+              <span
+                class="euiTableCellContent__text"
+              >
+                name1
+              </span>
+            </div>
+            <span
+              aria-hidden="true"
+              class="euiScreenReaderOnly"
+              data-tabular-copy-marker="newline"
+            >
+              ↵
             </span>
-          </div>
-          <span
-            aria-hidden="true"
-            class="euiScreenReaderOnly"
-            data-tabular-copy-marker="newline"
-          >
-            ↵
-          </span>
-        </td>
-      </tr>
-      <tr
-        class="euiTableRow euiTableRow-isSelectable emotion-euiTableRow-desktop"
-      >
-        <td
-          class="euiTableRowCell emotion-euiTableRowCell-middle-desktop"
+          </td>
+        </tr>
+        <tr
+          class="euiTableRow euiTableRow-isSelectable emotion-euiTableRow-desktop"
         >
-          <div
-            class="euiTableCellContent emotion-euiTableCellContent-wrapText"
+          <td
+            class="euiTableRowCell emotion-euiTableRowCell-middle-desktop"
           >
-            <span
-              class="euiTableCellContent__text"
+            <div
+              class="euiTableCellContent emotion-euiTableCellContent-wrapText"
             >
-              name3
+              <span
+                class="euiTableCellContent__text"
+              >
+                name2
+              </span>
+            </div>
+            <span
+              aria-hidden="true"
+              class="euiScreenReaderOnly"
+              data-tabular-copy-marker="newline"
+            >
+              ↵
             </span>
-          </div>
-          <span
-            aria-hidden="true"
-            class="euiScreenReaderOnly"
-            data-tabular-copy-marker="newline"
+          </td>
+        </tr>
+        <tr
+          class="euiTableRow euiTableRow-isSelectable emotion-euiTableRow-desktop"
+        >
+          <td
+            class="euiTableRowCell emotion-euiTableRowCell-middle-desktop"
           >
-            ↵
-          </span>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+            <div
+              class="euiTableCellContent emotion-euiTableCellContent-wrapText"
+            >
+              <span
+                class="euiTableCellContent__text"
+              >
+                name3
+              </span>
+            </div>
+            <span
+              aria-hidden="true"
+              class="euiScreenReaderOnly"
+              data-tabular-copy-marker="newline"
+            >
+              ↵
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
   <span
     aria-hidden="true"
     class="euiScreenReaderOnly"
