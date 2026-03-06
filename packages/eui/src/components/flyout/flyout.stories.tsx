@@ -40,7 +40,6 @@ const meta: Meta<EuiFlyoutProps> = {
     closeButtonPosition: 'inside',
     hideCloseButton: false,
     ownFocus: true,
-    'aria-labelledby': 'flyoutHeader',
   },
   parameters: {
     loki: {
@@ -90,7 +89,7 @@ export const Playground: Story = {
       <>
         <EuiFlyoutHeader hasBorder>
           <EuiTitle size="m">
-            <h2 id="flyoutHeader">Flyout header</h2>
+            <h2>Flyout header</h2>
           </EuiTitle>
         </EuiFlyoutHeader>
         <EuiFlyoutBody>Flyout body</EuiFlyoutBody>
@@ -158,7 +157,7 @@ export const ManualReturnFocus: Story = {
       <>
         <EuiFlyoutHeader hasBorder>
           <EuiTitle size="m">
-            <h2 id="flyoutHeader">Flyout header</h2>
+            <h2>Flyout header</h2>
           </EuiTitle>
         </EuiFlyoutHeader>
         <EuiFlyoutBody>Flyout body</EuiFlyoutBody>
