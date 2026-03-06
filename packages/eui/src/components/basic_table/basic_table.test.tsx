@@ -862,10 +862,15 @@ describe('EuiBasicTable', () => {
     });
 
     describe('sticky', () => {
+      const defaultProps = {
+        items: basicItems,
+        scrollableInline: true,
+      };
+
       it('defaults to false', () => {
         const { getByText } = render(
           <EuiBasicTable
-            items={basicItems}
+            {...defaultProps}
             columns={[
               ...basicColumns,
               {
@@ -880,10 +885,10 @@ describe('EuiBasicTable', () => {
         expect(headerCell).not.toHaveAttribute('data-sticky');
       });
 
-      it('makes the column cells stick to the right when `sticky = true`', () => {
+      it('makes the column cells stick to the right when column has `sticky = true` and the table is scrollable', () => {
         const { getByText } = render(
           <EuiBasicTable
-            items={basicItems}
+            {...defaultProps}
             columns={[
               ...basicColumns,
               {
@@ -898,25 +903,6 @@ describe('EuiBasicTable', () => {
         const headerCell = getByText('Actions').closest('th');
         expect(headerCell).toHaveAttribute('data-sticky', 'end');
       });
-    });
-
-    test('sticky', () => {
-      const { getByText } = render(
-        <EuiBasicTable
-          items={basicItems}
-          columns={[
-            ...basicColumns,
-            {
-              name: 'Actions',
-              actions: [actions[3]],
-              sticky: true,
-            },
-          ]}
-        />
-      );
-
-      const headerCell = getByText('Actions').closest('th');
-      expect(headerCell).toHaveAttribute('data-sticky', 'end');
     });
   });
 

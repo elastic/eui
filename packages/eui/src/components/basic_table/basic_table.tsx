@@ -799,16 +799,16 @@ export class EuiBasicTable<T extends object = any> extends Component<
 
       // actions column
       if ((column as EuiTableActionsColumnType<T>).actions) {
+        const sticky =
+          this.props.scrollableInline &&
+          (column as EuiTableActionsColumnType<T>).sticky;
+
         headers.push(
           <EuiTableHeaderCell
             {...sharedProps}
             key={`_actions_h_${index}`}
             align="right"
-            sticky={
-              (column as EuiTableActionsColumnType<T>).sticky
-                ? { side: 'end' }
-                : undefined
-            }
+            sticky={sticky ? { side: 'end' } : undefined}
           >
             {name}
           </EuiTableHeaderCell>
@@ -886,7 +886,8 @@ export class EuiBasicTable<T extends object = any> extends Component<
   }
 
   renderTableFooter() {
-    const { items, columns, pagination, selection } = this.props;
+    const { items, columns, pagination, selection, scrollableInline } =
+      this.props;
 
     const footers = [];
     let hasDefinedFooter = false;
@@ -910,6 +911,7 @@ export class EuiBasicTable<T extends object = any> extends Component<
       }
 
       const sticky =
+        scrollableInline &&
         (column as EuiTableActionsColumnType<T>).actions &&
         (column as EuiTableActionsColumnType<T>).sticky === true;
 
@@ -1242,6 +1244,7 @@ export class EuiBasicTable<T extends object = any> extends Component<
       });
     }
 
+    const sticky = this.props.scrollableInline && column.sticky;
     const key = `record_actions_${itemId}_${columnIndex}`;
     return (
       <EuiTableRowCell
@@ -1250,7 +1253,7 @@ export class EuiBasicTable<T extends object = any> extends Component<
         textOnly={false}
         hasActions={hasCustomActions ? 'custom' : true}
         append={this.renderCopyChar(columnIndex)}
-        sticky={column.sticky ? { side: 'end' } : undefined}
+        sticky={sticky ? { side: 'end' } : undefined}
       >
         <ExpandedItemActions
           actions={actualActions}
