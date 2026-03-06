@@ -330,7 +330,7 @@ export const EuiFlyoutComponent = forwardRef(
 
     const container = resolveContainer(containerProp);
 
-    const pushAnimationDefault = type === 'overlay' ? true : false;
+    const pushAnimationDefault = type === 'overlay';
     const pushAnimation = _pushAnimation ?? pushAnimationDefault;
 
     const { setGlobalCSSVariables } = useEuiThemeCSSVariables();
