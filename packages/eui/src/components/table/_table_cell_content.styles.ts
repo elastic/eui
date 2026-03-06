@@ -49,6 +49,9 @@ export const euiTableCellContentStyles = ({ euiTheme }: UseEuiTheme) => ({
   // Action cells
   hasActions: {
     actions: css`
+      gap: ${euiTheme.size.xs};
+    `,
+    custom: css`
       gap: ${euiTheme.size.s};
     `,
     desktop: css`

@@ -36,11 +36,12 @@ const meta: Meta<EuiInMemoryTableProps> = {
     responsiveBreakpoint: 'm',
     tableLayout: 'fixed',
     hasBackground: true,
+    scrollableInline: false,
   },
 };
 moveStorybookControlsToCategory(
   meta,
-  ['responsiveBreakpoint', 'tableLayout', 'hasBackground'],
+  ['responsiveBreakpoint', 'tableLayout', 'hasBackground', 'scrollableInline'],
   'EuiTable props'
 );
 

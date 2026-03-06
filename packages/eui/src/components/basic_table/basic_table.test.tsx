@@ -862,6 +862,28 @@ describe('EuiBasicTable', () => {
     });
   });
 
+  // Should be in sync with the same test suite
+  // in src/components/table/table.test.tsx
+  // and src/components/basic_table/in_memory_table.test.tsx
+  // to ensure equal behavior
+  describe('scrollableInline', () => {
+    it('updates table width styles when enabled', () => {
+      const { getByRole, rerender } = render(
+        <EuiBasicTable items={[]} columns={[]} />
+      );
+      let table = getByRole('table');
+
+      expect(table).toHaveStyleRule('inline-size', '100%');
+      expect(table).not.toHaveStyleRule('min-inline-size');
+
+      rerender(<EuiBasicTable items={[]} columns={[]} scrollableInline />);
+      table = getByRole('table');
+
+      expect(table).toHaveStyleRule('inline-size', 'auto');
+      expect(table).toHaveStyleRule('min-inline-size', '100%');
+    });
+  });
+
   it('renders (kitchen sink) with pagination, selection, sorting, actions, and footer', () => {
     const props: EuiBasicTableProps<AgeItem> = {
       items: [
