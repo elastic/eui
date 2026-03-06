@@ -35,7 +35,7 @@ const meta: Meta<EuiFlyoutProps> = {
     side: 'right',
     size: 'm',
     paddingSize: 'l',
-    hasAnimation: false,
+    hasAnimation: true,
     pushMinBreakpoint: 'l',
     closeButtonPosition: 'inside',
     hideCloseButton: false,
