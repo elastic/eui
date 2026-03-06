@@ -163,10 +163,16 @@ interface _EuiFlyoutComponentProps {
    */
   pushMinBreakpoint?: EuiBreakpointSize;
   /**
-   * Enables a slide in animation on push flyouts
-   * @default false
+   * @deprecated - use `hasAnimation` instead
+   * Enables a slide in animation on flyouts
+   * @default true for overlay flyouts, `false` for push flyouts
    */
   pushAnimation?: boolean;
+  /**
+   * Enables a slide in animation on flyouts
+   * @default true for overlay flyouts, `false` for push flyouts
+   */
+  hasAnimation?: boolean;
   style?: CSSProperties;
   /**
    * When the flyout is used as a child in a managed flyout session, setting `true` gives the shaded background style.
@@ -256,7 +262,8 @@ export const EuiFlyoutComponent = forwardRef(
       type = DEFAULT_TYPE,
       outsideClickCloses,
       pushMinBreakpoint = DEFAULT_PUSH_MIN_BREAKPOINT,
-      pushAnimation = false,
+      pushAnimation: _pushAnimation,
+      hasAnimation: _hasAnimation,
       focusTrapProps: _focusTrapProps,
       includeFixedHeadersInFocusTrap = true,
       includeSelectorInFocusTrap,
@@ -269,6 +276,9 @@ export const EuiFlyoutComponent = forwardRef(
       onAnimationEnd,
       ...rest
     } = usePropsWithComponentDefaults('EuiFlyout', props);
+
+    const hasAnimationDefault = type === 'overlay';
+    const hasAnimation = _hasAnimation ?? hasAnimationDefault;
 
     const { setGlobalCSSVariables } = useEuiThemeCSSVariables();
 
@@ -526,7 +536,7 @@ export const EuiFlyoutComponent = forwardRef(
       maxWidth === false && styles.noMaxWidth,
       isPushed ? styles.push.push : styles.overlay.overlay,
       isPushed ? styles.push[side] : styles.overlay[side],
-      isPushed && !pushAnimation && styles.push.noAnimation,
+      !hasAnimation && styles.noAnimation,
       styles[side],
     ];
 
@@ -730,6 +740,7 @@ export const EuiFlyoutComponent = forwardRef(
         maskProps={{
           ...maskProps,
           maskRef: maskCombinedRefs,
+          hasAnimation,
         }}
       >
         <EuiWindowEvent event="keydown" handler={onKeyDown} />

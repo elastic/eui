@@ -35,7 +35,7 @@ type EuiFlyoutChildActualProps = Pick<
   | 'onClose'
   | 'ownFocus'
   | 'paddingSize'
-  | 'pushAnimation'
+  | 'hasAnimation'
   | 'side'
   | 'size'
   | 'style'
@@ -139,7 +139,7 @@ const meta: Meta<FlyoutChildStoryArgs> = {
     outsideClickCloses: false,
     ownFocus: false, // Depends on `mainFlyoutType=overlay`
     paddingSize: 'm',
-    pushAnimation: true,
+    hasAnimation: true,
     pushMinBreakpoint: 'xs',
     showFooter: true,
     mainFlyoutResizable: false,
