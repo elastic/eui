@@ -30,6 +30,7 @@ export {
   FLYOUT_PADDING_SIZES,
   FLYOUT_SIZES,
   FLYOUT_TYPES,
+  FLYOUT_MENU_DISPLAY_MODES,
 } from './const';
 
 export type EuiFlyoutProps<T extends ElementType = 'div' | 'nav'> = Omit<

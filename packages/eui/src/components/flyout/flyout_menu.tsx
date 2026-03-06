@@ -221,7 +221,12 @@ export const EuiFlyoutMenu: FunctionComponent<EuiFlyoutMenuProps> = ({
   );
 
   return (
-    <div className={classes} css={styles.euiFlyoutMenu__container} {...rest}>
+    <div
+      className={classes}
+      css={styles.euiFlyoutMenu__container}
+      data-test-subj="euiFlyoutMenu"
+      {...rest}
+    >
       <EuiFlexGroup
         alignItems="center"
         justifyContent="spaceBetween"
