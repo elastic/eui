@@ -47,6 +47,35 @@ export const initialState: EuiFlyoutManagerState = {
   unmanagedFlyouts: [],
 };
 
+const addSessionFlyoutsToRemove = (
+  session: FlyoutSession,
+  flyoutsToRemove: Set<string>
+) => {
+  flyoutsToRemove.add(session.mainFlyoutId);
+  if (session.childFlyoutId) {
+    flyoutsToRemove.add(session.childFlyoutId);
+  }
+  (session.childHistory ?? []).forEach((e) => flyoutsToRemove.add(e.flyoutId));
+};
+
+const moveHistoryGroupToTop = (
+  sessions: FlyoutSession[],
+  historyKey: symbol
+): FlyoutSession[] => {
+  const groupSessions: FlyoutSession[] = [];
+  const otherSessions: FlyoutSession[] = [];
+
+  sessions.forEach((session) => {
+    if (session.historyKey === historyKey) {
+      groupSessions.push(session);
+    } else {
+      otherSessions.push(session);
+    }
+  });
+
+  return [...otherSessions, ...groupSessions];
+};
+
 /**
  * Reducer handling all flyout manager actions and state transitions.
  */
@@ -408,30 +437,22 @@ export function flyoutManagerReducer(
       }
 
       // No child history: pop current session (main + all its children)
-      const flyoutsToRemove = new Set([currentSession.mainFlyoutId]);
-      if (currentSession.childFlyoutId) {
-        flyoutsToRemove.add(currentSession.childFlyoutId);
-      }
-      (currentSession.childHistory ?? []).forEach((e) =>
-        flyoutsToRemove.add(e.flyoutId)
-      );
+      const flyoutsToRemove = new Set<string>();
+      addSessionFlyoutsToRemove(currentSession, flyoutsToRemove);
 
-      let newSessions = state.sessions.slice(0, currentSessionIndex);
-      // Keep popping while the new top session has a different historyKey (so we only "go back" within same group)
-      while (
-        newSessions.length > 0 &&
-        newSessions[newSessions.length - 1].historyKey !== currentSession.historyKey
-      ) {
-        const toRemove = newSessions[newSessions.length - 1];
-        flyoutsToRemove.add(toRemove.mainFlyoutId);
-        if (toRemove.childFlyoutId) {
-          flyoutsToRemove.add(toRemove.childFlyoutId);
-        }
-        (toRemove.childHistory ?? []).forEach((e) =>
-          flyoutsToRemove.add(e.flyoutId)
-        );
-        newSessions = newSessions.slice(0, -1);
-      }
+      const sessionsWithoutCurrent = state.sessions.slice(
+        0,
+        currentSessionIndex
+      );
+      const hasRemainingInCurrentGroup = sessionsWithoutCurrent.some(
+        (s) => s.historyKey === currentSession.historyKey
+      );
+      const newSessions = hasRemainingInCurrentGroup
+        ? moveHistoryGroupToTop(
+            sessionsWithoutCurrent,
+            currentSession.historyKey
+          )
+        : sessionsWithoutCurrent;
 
       const newFlyouts = state.flyouts.filter(
         (f) => !flyoutsToRemove.has(f.flyoutId)
@@ -492,23 +513,49 @@ export function flyoutManagerReducer(
         return state; // Target flyout not found
       }
 
+      const currentSession = state.sessions[currentSessionIndex];
+      const targetSession = state.sessions[targetSessionIndex];
+
+      // Group-local navigation: keep other history groups, remove only newer sessions in target's group,
+      // then bring that group to the top.
+      if (targetSession.historyKey === currentSession.historyKey) {
+        const flyoutsToRemove = new Set<string>();
+        const sessionsAfterTargetInGroup = state.sessions.filter(
+          (session, index) =>
+            index > targetSessionIndex &&
+            session.historyKey === targetSession.historyKey
+        );
+
+        sessionsAfterTargetInGroup.forEach((session) => {
+          addSessionFlyoutsToRemove(session, flyoutsToRemove);
+        });
+
+        const sessionsWithoutRemoved = state.sessions.filter(
+          (session) =>
+            !sessionsAfterTargetInGroup.some(
+              (removed) => removed.mainFlyoutId === session.mainFlyoutId
+            )
+        );
+        const reorderedSessions = moveHistoryGroupToTop(
+          sessionsWithoutRemoved,
+          targetSession.historyKey
+        );
+        const newFlyouts = state.flyouts.filter(
+          (f) => !flyoutsToRemove.has(f.flyoutId)
+        );
+
+        return { ...state, sessions: reorderedSessions, flyouts: newFlyouts };
+      }
+
       const sessionsToClose = state.sessions.slice(targetSessionIndex + 1);
       const flyoutsToRemove = new Set<string>();
-
       sessionsToClose.forEach((session) => {
-        flyoutsToRemove.add(session.mainFlyoutId);
-        if (session.childFlyoutId) {
-          flyoutsToRemove.add(session.childFlyoutId);
-        }
-        (session.childHistory ?? []).forEach((e) =>
-          flyoutsToRemove.add(e.flyoutId)
-        );
+        addSessionFlyoutsToRemove(session, flyoutsToRemove);
       });
 
       const newFlyouts = state.flyouts.filter(
         (f) => !flyoutsToRemove.has(f.flyoutId)
       );
-
       const newSessions = state.sessions.slice(0, targetSessionIndex + 1);
 
       return { ...state, sessions: newSessions, flyouts: newFlyouts };
