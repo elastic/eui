@@ -20,7 +20,7 @@ import {
 } from './flyout';
 import { EuiProvider } from '../provider';
 import { EuiFlyoutManager } from './manager';
-import { MENU_DISPLAY_ALWAYS, MENU_DISPLAY_AUTO } from './const';
+import { MENU_DISPLAY_ALWAYS } from './const';
 
 jest.mock('../overlay_mask', () => ({
   EuiOverlayMask: ({ headerZindexLocation, maskRef, ...props }: any) => (
@@ -248,7 +248,6 @@ describe('EuiFlyout', () => {
                 },
               ],
             }}
-            flyoutMenuDisplayMode={MENU_DISPLAY_AUTO}
           />
         );
 
@@ -257,11 +256,7 @@ describe('EuiFlyout', () => {
 
       it('renders close button when menu has no content', () => {
         const { getByTestSubject, queryByTestSubject } = render(
-          <EuiFlyout
-            onClose={() => {}}
-            flyoutMenuProps={{}}
-            flyoutMenuDisplayMode={MENU_DISPLAY_AUTO}
-          />
+          <EuiFlyout onClose={() => {}} flyoutMenuProps={{}} />
         );
 
         expect(getByTestSubject('euiFlyoutCloseButton')).toBeInTheDocument();

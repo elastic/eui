@@ -208,11 +208,11 @@ interface _EuiFlyoutComponentProps {
 
   /**
    * Controls the display mode of the flyout menu:
+   * - `'auto'`: Render the menu whenever menu props are available and there is navigation content
+   * (back button, history, custom actions) or a visible title.
    * - `'always'`: Render the menu whenever menu props are available. This may result in a close-only menu.
-   * - `'auto'`: Render the menu whenever menu props are available and there is navigation content (back button, history, custom actions)
-   *   or a visible title.
    *
-   * @default 'always'
+   * @default 'auto'
    */
   flyoutMenuDisplayMode?: EuiFlyoutMenuDisplayMode;
 

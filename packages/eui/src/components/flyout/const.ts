@@ -53,7 +53,7 @@ export const DEFAULT_SIZE: EuiFlyoutSize = 'm';
 export const DEFAULT_PADDING_SIZE: _EuiFlyoutPaddingSize = 'l';
 /** Default flyout menu display mode. */
 export const DEFAULT_MENU_DISPLAY_MODE: EuiFlyoutMenuDisplayMode =
-  MENU_DISPLAY_ALWAYS;
+  MENU_DISPLAY_AUTO;
 
 /**
  * Custom type checker for named flyout sizes since the prop
