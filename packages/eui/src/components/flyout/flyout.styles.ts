@@ -196,7 +196,7 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
     },
 
     noAnimation: css`
-      /* Don't animate on loading a docked nav */
+      /* Skip flyout animation */
       animation-duration: 0s !important; /* stylelint-disable-line declaration-no-important */
     `,
 
