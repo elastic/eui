@@ -73,10 +73,10 @@ This PR includes:
   - {Explain}
   - {How many usages in Kibana and other products are impacted?}
 - Overall impact level:
-  - 🟢 [ ] No impact (refactors, opt-in features, etc.)
-  - 🟢 [ ] Low impact (minor changes)
-  - 🟡 [ ] Moderate impact (e.g., multiple apps may need small updates)
-  - 🔴 [ ] High impact (e.g., breaking or wide visual/behavior change)
+  - [ ] 🟢 No impact (refactors, opt-in features, etc.)
+  - [ ] 🟢 Low impact (minor changes)
+  - [ ] 🟡 Moderate impact (e.g., multiple apps may need small updates)
+  - [ ] 🔴 High impact (e.g., breaking or wide visual/behavior change)
 
 ## Migration Guide
 
