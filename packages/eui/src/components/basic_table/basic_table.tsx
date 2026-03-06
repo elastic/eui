@@ -50,6 +50,7 @@ import {
   EuiTableRowCell,
   EuiTableRowCellCheckbox,
   EuiTableSortMobile,
+  EuiTableFooterCellProps,
 } from '../table';
 import { euiTableCaptionStyles } from '../table/table.styles';
 
@@ -803,6 +804,11 @@ export class EuiBasicTable<T extends object = any> extends Component<
             {...sharedProps}
             key={`_actions_h_${index}`}
             align="right"
+            sticky={
+              (column as EuiTableActionsColumnType<T>).sticky
+                ? { side: 'end' }
+                : undefined
+            }
           >
             {name}
           </EuiTableHeaderCell>
@@ -903,11 +909,20 @@ export class EuiBasicTable<T extends object = any> extends Component<
         return; // exclude columns that only exist for mobile headers
       }
 
+      const sticky =
+        (column as EuiTableActionsColumnType<T>).actions &&
+        (column as EuiTableActionsColumnType<T>).sticky === true;
+
+      const sharedProps: Partial<EuiTableFooterCellProps> = {
+        align,
+        sticky: sticky ? { side: 'end' } : undefined,
+      };
+
       if (footer) {
         footers.push(
           <EuiTableFooterCell
             key={`footer_${String(field)}_${footers.length - 1}`}
-            align={align}
+            {...sharedProps}
           >
             {footer}
           </EuiTableFooterCell>
@@ -918,7 +933,7 @@ export class EuiBasicTable<T extends object = any> extends Component<
         footers.push(
           <EuiTableFooterCell
             key={`footer_empty_${footers.length - 1}`}
-            align={align}
+            {...sharedProps}
           >
             {undefined}
           </EuiTableFooterCell>
@@ -1235,6 +1250,7 @@ export class EuiBasicTable<T extends object = any> extends Component<
         textOnly={false}
         hasActions={hasCustomActions ? 'custom' : true}
         append={this.renderCopyChar(columnIndex)}
+        sticky={column.sticky ? { side: 'end' } : undefined}
       >
         <ExpandedItemActions
           actions={actualActions}

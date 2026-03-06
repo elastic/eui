@@ -860,6 +860,64 @@ describe('EuiBasicTable', () => {
         );
       });
     });
+
+    describe('sticky', () => {
+      it('defaults to false', () => {
+        const { getByText } = render(
+          <EuiBasicTable
+            items={basicItems}
+            columns={[
+              ...basicColumns,
+              {
+                name: 'Actions',
+                actions: [actions[3]],
+              },
+            ]}
+          />
+        );
+
+        const headerCell = getByText('Actions').closest('th');
+        expect(headerCell).not.toHaveAttribute('data-sticky');
+      });
+
+      it('makes the column cells stick to the right when `sticky = true`', () => {
+        const { getByText } = render(
+          <EuiBasicTable
+            items={basicItems}
+            columns={[
+              ...basicColumns,
+              {
+                name: 'Actions',
+                actions: [actions[3]],
+                sticky: true,
+              },
+            ]}
+          />
+        );
+
+        const headerCell = getByText('Actions').closest('th');
+        expect(headerCell).toHaveAttribute('data-sticky', 'end');
+      });
+    });
+
+    test('sticky', () => {
+      const { getByText } = render(
+        <EuiBasicTable
+          items={basicItems}
+          columns={[
+            ...basicColumns,
+            {
+              name: 'Actions',
+              actions: [actions[3]],
+              sticky: true,
+            },
+          ]}
+        />
+      );
+
+      const headerCell = getByText('Actions').closest('th');
+      expect(headerCell).toHaveAttribute('data-sticky', 'end');
+    });
   });
 
   // Should be in sync with the same test suite

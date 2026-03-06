@@ -177,6 +177,19 @@ export type EuiTableActionsColumnType<T extends object> = {
    * Allows configuring an icon with a tooltip, to be displayed next to the name
    */
   nameTooltip?: EuiTableColumnNameTooltipProps;
+  /**
+   * Whether the actions column should always stick to the right side
+   * of the table no matter the inline (horizontal) scroll position.
+   *
+   * This option should be used in tables with `scrollableInline={true}`
+   * and will be enabled by default in future versions of EUI.
+   *
+   * Currently, it can only be used when the actions column is the last column
+   * of the table.
+   * @beta
+   * @default false
+   */
+  sticky?: boolean;
 } & Pick<EuiTableFieldDataColumnType<T>, 'description' | 'width'>;
 
 export interface EuiTableSortingType<T> {
