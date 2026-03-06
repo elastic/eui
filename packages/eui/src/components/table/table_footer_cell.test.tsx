@@ -140,7 +140,7 @@ describe('EuiTableFooterCell', () => {
       expect(getByRole('cell')).toHaveStyleRule('inset-inline-end', '0');
     });
 
-    it('adds `data-sticky` attribute on desktop when `sticky` is set', () => {
+    it('adds `data-sticky` attribute only on desktop when `sticky` is set', () => {
       const { getByRole, rerender } = renderInTableFooter(
         <EuiTableFooterCell>Test</EuiTableFooterCell>
       );
