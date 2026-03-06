@@ -20,7 +20,7 @@ import { EuiTableVariantContext } from './table_context';
 import { euiTableStyles } from './table.styles';
 import { usePropsWithComponentDefaults } from '../provider/component_defaults';
 import { euiContainerCSS } from '../../global_styling';
-import { EUI_TABLE_CONTAINER_NAME } from './const';
+import { EUI_TABLE_CSS_CONTAINER_NAME } from './const';
 
 export interface EuiTableProps
   extends CommonProps,
@@ -94,7 +94,7 @@ export const EuiTable: FunctionComponent<EuiTableProps> = (originalProps) => {
     isResponsive ? styles.mobile : styles.desktop,
   ];
   const cssStyles = [
-    euiContainerCSS('inline-size', EUI_TABLE_CONTAINER_NAME, true),
+    euiContainerCSS('inline-size', EUI_TABLE_CSS_CONTAINER_NAME, true),
     scrollableInline && styles.scrollableWrapper,
   ];
 

@@ -17,7 +17,7 @@ import {
 } from '../../global_styling';
 
 import { euiTableVariables } from './table.styles';
-import { EUI_TABLE_CONTAINER_NAME } from './const';
+import { EUI_TABLE_CSS_CONTAINER_NAME } from './const';
 import { EuiTableStickyCellOptions } from './types';
 
 export const euiTableHeaderFooterCellStyles = (
@@ -111,7 +111,7 @@ const euiTableStickyCellStyles = ({ euiTheme }: UseEuiTheme) => {
 
       ${euiContainerQuery(
         'scroll-state(scrollable: right)',
-        EUI_TABLE_CONTAINER_NAME
+        EUI_TABLE_CSS_CONTAINER_NAME
       )} {
         background-color: ${euiTheme.colors.backgroundBasePlain};
 

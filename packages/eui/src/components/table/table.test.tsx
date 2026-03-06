@@ -17,7 +17,7 @@ import { EuiTableRowCell } from './table_row_cell';
 import { EuiTableBody } from './table_body';
 import { EuiTableHeader } from './table_header';
 import { EuiTableHeaderCell } from './table_header_cell';
-import { EUI_TABLE_CONTAINER_NAME } from './const';
+import { EUI_TABLE_CSS_CONTAINER_NAME } from './const';
 
 describe('EuiTable', () => {
   it('renders', () => {
@@ -110,7 +110,10 @@ describe('EuiTable', () => {
     // container styles are always applied on the wrapper element of the table
     const element = getByRole('table').parentElement;
 
-    expect(element).toHaveStyleRule('container-name', EUI_TABLE_CONTAINER_NAME);
+    expect(element).toHaveStyleRule(
+      'container-name',
+      EUI_TABLE_CSS_CONTAINER_NAME
+    );
     expect(element).toHaveStyleRule(
       'container-type',
       'inline-size scroll-state'

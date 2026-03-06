@@ -12,4 +12,4 @@
  *
  * @see {@link EuiTable}
  */
-export const EUI_TABLE_CONTAINER_NAME = 'EuiTable';
+export const EUI_TABLE_CSS_CONTAINER_NAME = 'EuiTable';
