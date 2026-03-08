@@ -109,6 +109,8 @@ const euiTableStickyCellStyles = ({ euiTheme }: UseEuiTheme) => {
     root: css`
       position: sticky;
 
+      /* Our version of stylelint doesn't like the query below */
+      /* stylelint-disable selector-type-no-unknown, selector-type-case */
       ${euiContainerQuery(
         'scroll-state(scrollable: right)',
         EUI_TABLE_CSS_CONTAINER_NAME
@@ -124,6 +126,7 @@ const euiTableStickyCellStyles = ({ euiTheme }: UseEuiTheme) => {
           background: ${euiTheme.border.color};
         }
       }
+      /* stylelint-enable */
     `,
     side: {
       start: css`
