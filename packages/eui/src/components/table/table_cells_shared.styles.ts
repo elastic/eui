@@ -115,7 +115,10 @@ const euiTableStickyCellStyles = ({ euiTheme }: UseEuiTheme) => {
         'scroll-state(scrollable: right)',
         EUI_TABLE_CSS_CONTAINER_NAME
       )} {
-        background-color: ${euiTheme.colors.backgroundBasePlain};
+        background-color: var(
+          --euiTableCellStickyBackgroundHoverColor,
+          ${euiTheme.colors.backgroundBasePlain}
+        );
 
         &::before {
           content: '';
