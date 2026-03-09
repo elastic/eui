@@ -42,11 +42,9 @@ const meta: Meta<EuiTableRowCellProps> = {
       control: 'radio',
       options: [LEFT_ALIGNMENT, CENTER_ALIGNMENT, RIGHT_ALIGNMENT],
     },
-    width: {
-      width: { control: 'text' },
-      minWidth: { control: 'text' },
-      maxWidth: { control: 'text' },
-    },
+    width: { control: 'text' },
+    minWidth: { control: 'text' },
+    maxWidth: { control: 'text' },
   },
   args: {
     align: LEFT_ALIGNMENT,
