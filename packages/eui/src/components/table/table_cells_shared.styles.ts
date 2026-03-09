@@ -123,7 +123,7 @@ const euiTableStickyCellStyles = ({ euiTheme }: UseEuiTheme) => {
           inset-inline-start: 0;
           inset-block: 0;
           inline-size: ${euiTheme.border.width.thin};
-          background: ${euiTheme.border.color};
+          background-color: ${euiTheme.border.color};
         }
       }
       /* stylelint-enable */
