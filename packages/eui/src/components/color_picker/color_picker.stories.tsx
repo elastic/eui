@@ -10,7 +10,8 @@ import React, { FunctionComponent, useState, useEffect } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { enableFunctionToggleControls } from '../../../.storybook/utils';
 
-import { euiPaletteColorBlind } from '../..//services';
+import { euiPaletteColorBlind } from '../../services';
+import { EuiFormRow } from '../form';
 import { EuiColorPicker, EuiColorPickerProps } from './color_picker';
 
 const meta: Meta<EuiColorPickerProps> = {
@@ -43,6 +44,21 @@ type Story = StoryObj<EuiColorPickerProps>;
 
 export const Playground: Story = {
   render: (args) => <StatefulColorPicker {...args} />,
+};
+
+export const InFormRow: Story = {
+  name: 'In FormRow',
+  parameters: {
+    loki: {
+      skip: true,
+    },
+  },
+  ...Playground,
+  render: (args) => (
+    <EuiFormRow label="Pick a color">
+      <StatefulColorPicker {...args} />
+    </EuiFormRow>
+  ),
 };
 
 export const InlineWithAllElements: Story = {

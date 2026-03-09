@@ -23,6 +23,7 @@ import {
   useEuiMemoizedStyles,
   keys,
   useEuiPaletteColorBlind,
+  useGeneratedHtmlId,
 } from '../../services';
 import { CommonProps } from '../common';
 import {
@@ -209,6 +210,9 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
   isClearable = false,
   placeholder,
   'data-test-subj': dataTestSubj,
+  'aria-label': ariaLabel,
+  'aria-labelledby': ariaLabelledby,
+  'aria-describedby': ariaDescribedby,
 }) => {
   const [
     popoverLabel,
@@ -241,6 +245,11 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
       'Press the down key to open a popover containing color options',
     ]
   );
+
+  const ariaDescribedById = useGeneratedHtmlId({
+    prefix: 'colorPicker',
+    suffix: 'ariaDescribedby',
+  });
 
   const defaultSwatches = useEuiPaletteColorBlind();
   const swatches = _swatches ?? defaultSwatches;
@@ -621,9 +630,16 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
           fullWidth={fullWidth}
           autoComplete="off"
           data-test-subj={testSubjAnchor}
-          aria-label={isColorSelectorShown ? openLabel : closeLabel}
+          aria-label={ariaLabel}
+          aria-labelledby={ariaLabelledby}
+          aria-describedby={classNames(ariaDescribedById, ariaDescribedby)}
           controlOnly // Don't need two EuiFormControlwrappers
         />
+        <EuiScreenReaderOnly>
+          <span id={ariaDescribedById}>
+            {isColorSelectorShown ? openLabel : closeLabel}
+          </span>
+        </EuiScreenReaderOnly>
       </EuiFormControlLayout>
     );
   }
