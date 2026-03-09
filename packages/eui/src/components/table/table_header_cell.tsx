@@ -33,7 +33,7 @@ import { useEuiTableIsResponsive } from './mobile/responsive_context';
 import { EuiTableCellContent } from './_table_cell_content';
 import {
   euiTableHeaderFooterCellStyles,
-  useEuiTableStickyCellStyles,
+  _useEuiTableStickyCellStyles,
 } from './table_cells_shared.styles';
 import { HEADER_CELL_SCOPE } from './table_header_cell_shared';
 import type { EuiTableStickyCellOptions } from './types';
@@ -187,7 +187,7 @@ export const EuiTableHeaderCell: FunctionComponent<EuiTableHeaderCellProps> = ({
   ...rest
 }) => {
   const styles = useEuiMemoizedStyles(euiTableHeaderFooterCellStyles);
-  const stickyStyles = useEuiTableStickyCellStyles(sticky);
+  const stickyStyles = _useEuiTableStickyCellStyles(sticky);
 
   const isResponsive = useEuiTableIsResponsive();
   const hideForDesktop = !isResponsive && mobileOptions?.only;

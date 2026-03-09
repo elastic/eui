@@ -26,7 +26,7 @@ import { resolveWidthAsStyle } from './utils';
 import { EuiTableCellContent } from './_table_cell_content';
 import { euiTableRowCellStyles } from './table_row_cell.styles';
 import type { EuiTableStickyCellOptions } from './types';
-import { useEuiTableStickyCellStyles } from './table_cells_shared.styles';
+import { _useEuiTableStickyCellStyles } from './table_cells_shared.styles';
 
 interface EuiTableRowCellSharedPropsShape {
   /**
@@ -152,7 +152,7 @@ export const EuiTableRowCell: FunctionComponent<Props> = ({
 }) => {
   const isResponsive = useEuiTableIsResponsive();
   const styles = useEuiMemoizedStyles(euiTableRowCellStyles);
-  const stickyStyles = useEuiTableStickyCellStyles(sticky);
+  const stickyStyles = _useEuiTableStickyCellStyles(sticky);
   const cssStyles = [
     styles.euiTableRowCell,
     setScopeRow && styles.rowHeader,

@@ -142,7 +142,7 @@ const euiTableStickyCellStyles = ({ euiTheme }: UseEuiTheme) => {
 /**
  * @internal
  */
-export const useEuiTableStickyCellStyles = (
+export const _useEuiTableStickyCellStyles = (
   options?: EuiTableStickyCellOptions
 ) => {
   const styles = useEuiMemoizedStyles(euiTableStickyCellStyles);

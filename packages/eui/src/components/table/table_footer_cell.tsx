@@ -20,7 +20,7 @@ import { resolveWidthAsStyle } from './utils';
 import { EuiTableCellContent } from './_table_cell_content';
 import {
   euiTableHeaderFooterCellStyles,
-  useEuiTableStickyCellStyles,
+  _useEuiTableStickyCellStyles,
 } from './table_cells_shared.styles';
 import { EuiTableVariantContext } from './table_context';
 import { EuiTableStickyCellOptions } from './types';
@@ -60,7 +60,7 @@ export const EuiTableFooterCell: FunctionComponent<EuiTableFooterCellProps> = ({
   const classes = classNames('euiTableFooterCell', className);
   const inlineStyles = resolveWidthAsStyle(style, width);
   const styles = useEuiMemoizedStyles(euiTableHeaderFooterCellStyles);
-  const stickyStyles = useEuiTableStickyCellStyles(sticky);
+  const stickyStyles = _useEuiTableStickyCellStyles(sticky);
   const cssStyles = [
     styles.euiTableFooterCell.euiTableFooterCell,
     hasBackground && styles.euiTableFooterCell.hasBackground,
