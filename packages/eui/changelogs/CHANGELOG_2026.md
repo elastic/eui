@@ -1,3 +1,16 @@
+## [`v113.2.0`](https://github.com/elastic/eui/releases/v113.2.0)
+
+- Added an optional `sticky` option to `EuiBasicTable` and `EuiInMemoryTable` actions columns. This option is currently in beta. ([#9430](https://github.com/elastic/eui/pull/9430))
+- Updated the gap between action buttons in `EuiTable`, `EuiBasicTable` and `EuiInMemoryTable` to `4px` ([#9423](https://github.com/elastic/eui/pull/9423))
+- Added `minWidth` and `maxWidth` options to `EuiBasicTable` and `EuiInMemoryTable` columns configuration object ([#9422](https://github.com/elastic/eui/pull/9422))
+- Added `minWidth` and `maxWidth` props to `EuiTableFooterCell`, `EuiTableHeaderCell`, `EuiTableHeaderCellCheckbox` and `EuiTableRowCell` ([#9422](https://github.com/elastic/eui/pull/9422))
+- Updated `EuiBadge` hover styles to match `EuiButton` styles ([#9418](https://github.com/elastic/eui/pull/9418))
+- Added a new optional `scrollableInline` (boolean) prop to EuiTable, EuiBasicTable and EuiInMemoryTable that enables horizontal scrolling on overflow ([#9416](https://github.com/elastic/eui/pull/9416))
+
+**Accessibility**
+
+- Improved the accessibility experience of managed flyouts by allowing keyboard navigation between child and parent flyouts. ([#9397](https://github.com/elastic/eui/pull/9397))
+
 ## [`v113.1.0`](https://github.com/elastic/eui/releases/v113.1.0)
 
 - Added `data-test-subj` attributes to `EuiFlyoutMenu` elements: back button, history dropdown, and history items. ([#9400](https://github.com/elastic/eui/pull/9400))
