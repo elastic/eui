@@ -23,10 +23,7 @@ import {
   _useEuiTableStickyCellStyles,
 } from './table_cells_shared.styles';
 import { EuiTableVariantContext } from './table_context';
-import {
-  EuiTableSharedWidthProps,
-  EuiTableStickyCellOptions,
-} from './types';
+import { EuiTableSharedWidthProps, EuiTableStickyCellOptions } from './types';
 import { useEuiTableIsResponsive } from './mobile/responsive_context';
 
 export type EuiTableFooterCellProps = CommonProps &
