@@ -41,7 +41,7 @@ export const EuiTableFooterCell: FunctionComponent<EuiTableFooterCellProps> = ({
   const { hasBackground } = useContext(EuiTableVariantContext);
 
   const classes = classNames('euiTableFooterCell', className);
-  const inlineStyles = resolveWidthPropsAsStyle(_style, {
+  const inlineWidthStyles = resolveWidthPropsAsStyle(_style, {
     width,
     minWidth,
     maxWidth,
@@ -53,7 +53,12 @@ export const EuiTableFooterCell: FunctionComponent<EuiTableFooterCellProps> = ({
   ];
 
   return (
-    <td css={cssStyles} className={classes} style={inlineStyles} {...rest}>
+    <td
+      css={cssStyles}
+      className={classes}
+      style={{ ..._style, ...inlineWidthStyles }}
+      {...rest}
+    >
       <EuiTableCellContent align={align} truncateText={true} textOnly={true}>
         {children}
       </EuiTableCellContent>

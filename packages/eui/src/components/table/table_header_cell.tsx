@@ -179,7 +179,11 @@ export const EuiTableHeaderCell: FunctionComponent<EuiTableHeaderCellProps> = ({
   if (hideForDesktop || hideForMobile) return null;
 
   const classes = classNames('euiTableHeaderCell', className);
-  const style = resolveWidthPropsAsStyle(_style, { width, minWidth, maxWidth });
+  const inlineWidthStyles = resolveWidthPropsAsStyle(_style, {
+    width,
+    minWidth,
+    maxWidth,
+  });
 
   const CellComponent = children ? 'th' : 'td';
   const cellScope = CellComponent === 'th' ? scope ?? 'col' : undefined; // `scope` is only valid on `th` elements
@@ -210,7 +214,7 @@ export const EuiTableHeaderCell: FunctionComponent<EuiTableHeaderCellProps> = ({
       scope={cellScope}
       role="columnheader"
       aria-sort={ariaSortValue}
-      style={style}
+      style={{ ..._style, ...inlineWidthStyles }}
       {...rest}
     >
       {canSort ? (

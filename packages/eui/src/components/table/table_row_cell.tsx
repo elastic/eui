@@ -160,28 +160,35 @@ export const EuiTableRowCell: FunctionComponent<Props> = ({
     'euiTableRowCell--isExpander': isExpander,
   });
 
-  const style = resolveWidthPropsAsStyle(_style, {
-    width: isResponsive
-      ? hasActions || isExpander
-        ? undefined // On mobile, actions are shifted to a right column via CSS
-        : mobileOptions?.width
-      : width,
-    minWidth: isResponsive
-      ? hasActions || isExpander
-        ? undefined // On mobile, actions are shifted to a right column via CSS
-        : mobileOptions?.minWidth
-      : minWidth,
-    maxWidth: isResponsive
-      ? hasActions || isExpander
-        ? undefined // On mobile, actions are shifted to a right column via CSS
-        : mobileOptions?.maxWidth
-      : maxWidth,
+  const getResponsiveWidth = (
+    defaultWidth?: string | number,
+    mobileWidth?: string | number
+  ) => {
+    if (isResponsive) {
+      if (hasActions || isExpander) {
+        // On mobile, actions are shifted to a right column via CSS
+        return undefined;
+      }
+
+      return mobileWidth;
+    }
+
+    return defaultWidth;
+  };
+
+  const inlineWidthStyles = resolveWidthPropsAsStyle(_style, {
+    width: getResponsiveWidth(width, mobileOptions?.minWidth),
+    minWidth: getResponsiveWidth(minWidth, mobileOptions?.minWidth),
+    maxWidth: getResponsiveWidth(maxWidth, mobileOptions?.minWidth),
   });
 
   const Element = setScopeRow ? 'th' : 'td';
   const sharedProps = {
     scope: setScopeRow ? 'row' : undefined,
-    style,
+    style: {
+      _style,
+      ...inlineWidthStyles,
+    },
     css: cssStyles,
     ...rest,
   };
