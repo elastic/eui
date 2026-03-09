@@ -16,20 +16,20 @@ import {
 } from '../../services';
 import { CommonProps } from '../common';
 
-import { resolveWidthAsStyle } from './utils';
+import { resolveWidthPropsAsStyle } from './utils';
 import { EuiTableCellContent } from './_table_cell_content';
 import {
   euiTableHeaderFooterCellStyles,
   _useEuiTableStickyCellStyles,
 } from './table_cells_shared.styles';
 import { EuiTableVariantContext } from './table_context';
-import { EuiTableStickyCellOptions } from './types';
+import { EuiTableSharedWidthProps, EuiTableStickyCellOptions } from './types';
 import { useEuiTableIsResponsive } from './mobile/responsive_context';
 
 export type EuiTableFooterCellProps = CommonProps &
-  TdHTMLAttributes<HTMLTableCellElement> & {
+  Omit<TdHTMLAttributes<HTMLTableCellElement>, 'width'> &
+  EuiTableSharedWidthProps & {
     align?: HorizontalAlignment;
-    width?: string | number;
     /**
      * Whether the cell should stick to a side of the table.
      *
@@ -56,15 +56,21 @@ export const EuiTableFooterCell: FunctionComponent<EuiTableFooterCellProps> = ({
   align = LEFT_ALIGNMENT,
   className,
   width,
-  style,
   sticky,
+  minWidth,
+  maxWidth,
+  style: _style,
   ...rest
 }) => {
   const { hasBackground } = useContext(EuiTableVariantContext);
   const isResponsive = useEuiTableIsResponsive();
 
   const classes = classNames('euiTableFooterCell', className);
-  const inlineStyles = resolveWidthAsStyle(style, width);
+  const inlineWidthStyles = resolveWidthPropsAsStyle(_style, {
+    width,
+    minWidth,
+    maxWidth,
+  });
   const styles = useEuiMemoizedStyles(euiTableHeaderFooterCellStyles);
   const stickyStyles = _useEuiTableStickyCellStyles(sticky);
   const cssStyles = [
@@ -77,7 +83,7 @@ export const EuiTableFooterCell: FunctionComponent<EuiTableFooterCellProps> = ({
     <td
       css={cssStyles}
       className={classes}
-      style={inlineStyles}
+      style={{ ..._style, ...inlineWidthStyles }}
       data-sticky={(!isResponsive && sticky?.side) || undefined}
       {...rest}
     >

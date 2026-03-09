@@ -9,6 +9,15 @@
 /**
  * @internal
  */
+export interface EuiTableSharedWidthProps {
+  width?: string | number;
+  minWidth?: string | number;
+  maxWidth?: string | number;
+}
+
+/**
+ * @internal
+ */
 export interface EuiTableStickyCellOptions {
   /**
    * The side the cell should stick to.

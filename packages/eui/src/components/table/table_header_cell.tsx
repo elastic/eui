@@ -28,7 +28,7 @@ import { EuiIconTip, EuiToolTip } from '../tool_tip';
 
 import type { EuiTableRowCellMobileOptionsShape } from './table_row_cell';
 import type { EuiTableColumnNameTooltipProps } from '../basic_table/table_types';
-import { resolveWidthAsStyle } from './utils';
+import { resolveWidthPropsAsStyle } from './utils';
 import { useEuiTableIsResponsive } from './mobile/responsive_context';
 import { EuiTableCellContent } from './_table_cell_content';
 import {
@@ -36,19 +36,22 @@ import {
   _useEuiTableStickyCellStyles,
 } from './table_cells_shared.styles';
 import { HEADER_CELL_SCOPE } from './table_header_cell_shared';
-import type { EuiTableStickyCellOptions } from './types';
+import type {
+  EuiTableSharedWidthProps,
+  EuiTableStickyCellOptions,
+} from './types';
 
 export type TableHeaderCellScope = (typeof HEADER_CELL_SCOPE)[number];
 
 export type EuiTableHeaderCellProps = CommonProps &
-  Omit<ThHTMLAttributes<HTMLTableCellElement>, 'align' | 'scope'> & {
+  Omit<ThHTMLAttributes<HTMLTableCellElement>, 'align' | 'scope' | 'width'> &
+  EuiTableSharedWidthProps & {
     align?: HorizontalAlignment;
     isSortAscending?: boolean;
     isSorted?: boolean;
     mobileOptions?: Pick<EuiTableRowCellMobileOptionsShape, 'only' | 'show'>;
     onSort?: NoArgCallback<void>;
     scope?: TableHeaderCellScope;
-    width?: string | number;
     /** Allows adding an icon with a tooltip displayed next to the name */
     tooltipProps?: EuiTableColumnNameTooltipProps;
     description?: string;
@@ -184,7 +187,9 @@ export const EuiTableHeaderCell: FunctionComponent<EuiTableHeaderCellProps> = ({
   scope,
   mobileOptions,
   width,
-  style,
+  minWidth,
+  maxWidth,
+  style: _style,
   readOnly,
   tooltipProps,
   description,
@@ -202,7 +207,11 @@ export const EuiTableHeaderCell: FunctionComponent<EuiTableHeaderCellProps> = ({
 
   const classes = classNames('euiTableHeaderCell', className);
   const cssStyles = [styles.euiTableHeaderCell, !isResponsive && stickyStyles];
-  const inlineStyles = resolveWidthAsStyle(style, width);
+  const inlineWidthStyles = resolveWidthPropsAsStyle(_style, {
+    width,
+    minWidth,
+    maxWidth,
+  });
 
   const CellComponent = children ? 'th' : 'td';
   const cellScope = CellComponent === 'th' ? scope ?? 'col' : undefined; // `scope` is only valid on `th` elements
@@ -233,8 +242,8 @@ export const EuiTableHeaderCell: FunctionComponent<EuiTableHeaderCellProps> = ({
       scope={cellScope}
       role="columnheader"
       aria-sort={ariaSortValue}
-      style={inlineStyles}
       data-sticky={(!isResponsive && sticky?.side) || undefined}
+      style={{ ..._style, ...inlineWidthStyles }}
       {...rest}
     >
       {canSort ? (

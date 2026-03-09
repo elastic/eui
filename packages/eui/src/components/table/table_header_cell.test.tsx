@@ -12,10 +12,15 @@ import { render, waitForEuiToolTipVisible } from '../../test/rtl';
 import { fireEvent } from '@testing-library/react';
 
 import { RIGHT_ALIGNMENT, CENTER_ALIGNMENT } from '../../services';
-import { WARNING_MESSAGE } from './utils';
+import {
+  WARNING_MESSAGE_MAX_WIDTH,
+  WARNING_MESSAGE_MIN_WIDTH,
+  WARNING_MESSAGE_WIDTH,
+} from './utils';
 import { EuiTableIsResponsiveContext } from './mobile/responsive_context';
 
 import { EuiTableHeaderCell } from './table_header_cell';
+import type { EuiTableSharedWidthProps } from './types';
 
 const renderInTableHeader = (cell: ReactElement) => {
   const Wrapper = ({ children }: PropsWithChildren) => (
@@ -149,51 +154,90 @@ describe('EuiTableHeaderCell', () => {
     });
   });
 
-  describe('width and style', () => {
-    const _consoleWarn = console.warn;
-    beforeAll(() => {
-      console.warn = (...args: [any?, ...any[]]) => {
-        // Suppress an expected warning
-        if (args.length === 1 && args[0] === WARNING_MESSAGE) return;
-        _consoleWarn.apply(console, args);
-      };
-    });
-    afterAll(() => {
-      console.warn = _consoleWarn;
-    });
-
-    it('accepts style attribute', () => {
-      const { container } = renderInTableHeader(
-        <EuiTableHeaderCell style={{ width: '20%' }}>Test</EuiTableHeaderCell>
-      );
-
-      expect(container.firstChild).toMatchSnapshot();
-    });
-
-    it('accepts width attribute', () => {
-      const { container } = renderInTableHeader(
-        <EuiTableHeaderCell width="10%">Test</EuiTableHeaderCell>
-      );
-
-      expect(container.firstChild).toMatchSnapshot();
-    });
-
-    it('accepts width attribute as number', () => {
-      const { container } = renderInTableHeader(
-        <EuiTableHeaderCell width={100}>Test</EuiTableHeaderCell>
-      );
-
-      expect(container.firstChild).toMatchSnapshot();
-    });
-
-    it('resolves style and width attribute', () => {
-      const { container } = renderInTableHeader(
-        <EuiTableHeaderCell width="10%" style={{ width: '20%' }}>
+  describe('style and width props', () => {
+    it('accepts `style` prop', () => {
+      const { getByRole } = renderInTableHeader(
+        <EuiTableHeaderCell
+          style={{ width: '20%', minWidth: '123px', maxWidth: '456px' }}
+        >
           Test
         </EuiTableHeaderCell>
       );
-      expect(container.firstChild).toMatchSnapshot();
+
+      expect(getByRole('columnheader')).toHaveStyle({
+        width: '20%',
+        minWidth: '123px',
+        maxWidth: '456px',
+      });
     });
+
+    const testProp =
+      (name: keyof EuiTableSharedWidthProps, warningMessage: string) => () => {
+        const defaultStyles = {
+          width: undefined,
+          minWidth: undefined,
+          maxWidth: undefined,
+        };
+
+        it(`accepts \`${name}\` prop`, () => {
+          const { getByRole } = renderInTableHeader(
+            <EuiTableHeaderCell style={{ [name]: '10%' }}>
+              Test
+            </EuiTableHeaderCell>
+          );
+
+          expect(getByRole('columnheader')).toHaveStyle({
+            ...defaultStyles,
+            [name]: '10%',
+          });
+        });
+
+        it(`accepts \`${name}\` prop as number`, () => {
+          const props = {
+            [name]: 100,
+          };
+
+          const { getByRole } = renderInTableHeader(
+            <EuiTableHeaderCell {...props}>Test</EuiTableHeaderCell>
+          );
+
+          expect(getByRole('columnheader')).toHaveStyle({
+            ...defaultStyles,
+            [name]: '100px',
+          });
+        });
+
+        it(`resolves \`style.${name}\` and \`${name}\` props`, () => {
+          const originalConsoleWarn = console.warn;
+          console.warn = jest.fn();
+
+          const props = {
+            [name]: '10%',
+            style: {
+              [name]: '20%',
+            },
+          };
+
+          const { getByRole } = renderInTableHeader(
+            <EuiTableHeaderCell {...props}>Test</EuiTableHeaderCell>
+          );
+
+          expect(getByRole('columnheader')).toHaveStyle({
+            ...defaultStyles,
+            [name]: '10%',
+          });
+
+          expect(console.warn).toHaveBeenCalledWith(warningMessage);
+
+          console.warn = originalConsoleWarn;
+        });
+      };
+
+    describe('width', testProp('width', WARNING_MESSAGE_WIDTH));
+
+    describe('minWidth', testProp('minWidth', WARNING_MESSAGE_MIN_WIDTH));
+
+    describe('maxWidth', testProp('maxWidth', WARNING_MESSAGE_MAX_WIDTH));
   });
 
   describe('tooltip', () => {

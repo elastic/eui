@@ -14,7 +14,12 @@ import { EuiTableFooterCell } from './table_footer_cell';
 
 import { CENTER_ALIGNMENT, RIGHT_ALIGNMENT } from '../../services';
 import { EuiTableIsResponsiveContext } from './mobile/responsive_context';
-import { WARNING_MESSAGE } from './utils';
+import {
+  WARNING_MESSAGE_MAX_WIDTH,
+  WARNING_MESSAGE_MIN_WIDTH,
+  WARNING_MESSAGE_WIDTH,
+} from './utils';
+import type { EuiTableSharedWidthProps } from './types';
 
 const renderInTableFooter = (cell: ReactElement) => {
   const Wrapper = ({ children }: PropsWithChildren) => (
@@ -35,18 +40,6 @@ const renderInTableFooter = (cell: ReactElement) => {
 };
 
 describe('EuiTableFooterCell', () => {
-  const _consoleWarn = console.warn;
-  beforeAll(() => {
-    console.warn = (...args: [any?, ...any[]]) => {
-      // Suppress an expected warning
-      if (args.length === 1 && args[0] === WARNING_MESSAGE) return;
-      _consoleWarn.apply(console, args);
-    };
-  });
-  afterAll(() => {
-    console.warn = _consoleWarn;
-  });
-
   test('is rendered', () => {
     const { container } = renderInTableFooter(
       <EuiTableFooterCell {...requiredProps}>children</EuiTableFooterCell>
@@ -79,40 +72,90 @@ describe('EuiTableFooterCell', () => {
     });
   });
 
-  describe('width and style', () => {
-    test('accepts style attribute', () => {
-      const { container } = renderInTableFooter(
-        <EuiTableFooterCell style={{ width: '20%' }}>Test</EuiTableFooterCell>
-      );
-
-      expect(container.firstChild).toMatchSnapshot();
-    });
-
-    test('accepts width attribute', () => {
-      const { container } = renderInTableFooter(
-        <EuiTableFooterCell width="10%">Test</EuiTableFooterCell>
-      );
-
-      expect(container.firstChild).toMatchSnapshot();
-    });
-
-    test('accepts width attribute as number', () => {
-      const { container } = renderInTableFooter(
-        <EuiTableFooterCell width={100}>Test</EuiTableFooterCell>
-      );
-
-      expect(container.firstChild).toMatchSnapshot();
-    });
-
-    test('resolves style and width attribute', () => {
-      const { container } = renderInTableFooter(
-        <EuiTableFooterCell width="10%" style={{ width: '20%' }}>
+  describe('style and width props', () => {
+    it('accepts `style` prop', () => {
+      const { getByRole } = renderInTableFooter(
+        <EuiTableFooterCell
+          style={{ width: '20%', minWidth: '123px', maxWidth: '456px' }}
+        >
           Test
         </EuiTableFooterCell>
       );
 
-      expect(container.firstChild).toMatchSnapshot();
+      expect(getByRole('cell')).toHaveStyle({
+        width: '20%',
+        minWidth: '123px',
+        maxWidth: '456px',
+      });
     });
+
+    const testProp =
+      (name: keyof EuiTableSharedWidthProps, warningMessage: string) => () => {
+        const defaultStyles = {
+          width: undefined,
+          minWidth: undefined,
+          maxWidth: undefined,
+        };
+
+        it(`accepts \`${name}\` prop`, () => {
+          const { getByRole } = renderInTableFooter(
+            <EuiTableFooterCell style={{ [name]: '10%' }}>
+              Test
+            </EuiTableFooterCell>
+          );
+
+          expect(getByRole('cell')).toHaveStyle({
+            ...defaultStyles,
+            [name]: '10%',
+          });
+        });
+
+        it(`accepts \`${name}\` prop as number`, () => {
+          const props = {
+            [name]: 100,
+          };
+
+          const { getByRole } = renderInTableFooter(
+            <EuiTableFooterCell {...props}>Test</EuiTableFooterCell>
+          );
+
+          expect(getByRole('cell')).toHaveStyle({
+            ...defaultStyles,
+            [name]: '100px',
+          });
+        });
+
+        it(`resolves \`style.${name}\` and \`${name}\` props`, () => {
+          const originalConsoleWarn = console.warn;
+          console.warn = jest.fn();
+
+          const props = {
+            [name]: '10%',
+            style: {
+              [name]: '20%',
+            },
+          };
+
+          const { getByRole } = renderInTableFooter(
+            <EuiTableFooterCell {...props}>Test</EuiTableFooterCell>
+          );
+
+          expect(getByRole('cell')).toHaveStyle({
+            ...defaultStyles,
+            [name]: '10%',
+          });
+
+          expect(console.warn).toHaveBeenCalledWith(warningMessage);
+
+          console.warn = originalConsoleWarn;
+        });
+      };
+
+    describe('width', testProp('width', WARNING_MESSAGE_WIDTH));
+
+    describe('width', testProp('minWidth', WARNING_MESSAGE_MIN_WIDTH));
+
+    describe('width', testProp('maxWidth', WARNING_MESSAGE_MAX_WIDTH));
   });
 
   describe('sticky', () => {

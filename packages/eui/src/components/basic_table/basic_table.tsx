@@ -776,6 +776,8 @@ export class EuiBasicTable<T extends object = any> extends Component<
       const {
         field,
         width,
+        minWidth,
+        maxWidth,
         name,
         nameTooltip,
         align,
@@ -790,6 +792,8 @@ export class EuiBasicTable<T extends object = any> extends Component<
 
       const sharedProps = {
         width,
+        minWidth,
+        maxWidth,
         tooltipProps: nameTooltip,
         description,
         mobileOptions,
