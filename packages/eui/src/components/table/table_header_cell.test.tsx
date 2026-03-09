@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React from 'react';
+import React, { PropsWithChildren, ReactElement } from 'react';
 import { requiredProps } from '../../test/required_props';
 import { render, waitForEuiToolTipVisible } from '../../test/rtl';
 import { fireEvent } from '@testing-library/react';
@@ -22,14 +22,23 @@ import { EuiTableIsResponsiveContext } from './mobile/responsive_context';
 import { EuiTableHeaderCell } from './table_header_cell';
 import type { EuiTableSharedWidthProps } from './types';
 
-const renderInTableHeader = (cell: React.ReactElement) =>
-  render(
+const renderInTableHeader = (cell: ReactElement) => {
+  const Wrapper = ({ children }: PropsWithChildren) => (
     <table>
       <thead>
-        <tr>{cell}</tr>
+        <tr>{children}</tr>
       </thead>
     </table>
   );
+
+  const result = render(<Wrapper>{cell}</Wrapper>);
+
+  return {
+    ...result,
+    rerender: (cell: ReactElement) =>
+      result.rerender(<Wrapper>{cell}</Wrapper>),
+  };
+};
 
 describe('EuiTableHeaderCell', () => {
   it('renders', () => {
@@ -313,6 +322,71 @@ describe('EuiTableHeaderCell', () => {
       expect(queryByText('Test')?.nextSibling).toEqual(
         getByTestSubject('icon')
       );
+    });
+  });
+
+  describe('sticky', () => {
+    it('applies base sticky styles when `sticky` is set', () => {
+      const { getByRole } = renderInTableHeader(
+        <EuiTableHeaderCell sticky={{ side: 'end' }}>Test</EuiTableHeaderCell>
+      );
+
+      expect(getByRole('columnheader')).toHaveStyleRule('position', 'sticky');
+    });
+
+    it('applies sticky styles specific to `side = "start"`', () => {
+      const { getByRole } = renderInTableHeader(
+        <EuiTableHeaderCell sticky={{ side: 'start' }}>Test</EuiTableHeaderCell>
+      );
+
+      expect(getByRole('columnheader')).toHaveStyleRule(
+        'inset-inline-start',
+        '0'
+      );
+    });
+
+    it('applies sticky styles specific to `side = "end"`', () => {
+      const { getByRole } = renderInTableHeader(
+        <EuiTableHeaderCell sticky={{ side: 'end' }}>Test</EuiTableHeaderCell>
+      );
+
+      expect(getByRole('columnheader')).toHaveStyleRule(
+        'inset-inline-end',
+        '0'
+      );
+    });
+
+    it('adds `data-sticky` attribute only on desktop when `sticky` is set', () => {
+      const { getByRole, rerender } = renderInTableHeader(
+        <EuiTableHeaderCell>Test</EuiTableHeaderCell>
+      );
+
+      expect(getByRole('columnheader')).not.toHaveAttribute('data-sticky');
+
+      rerender(
+        <EuiTableHeaderCell sticky={{ side: 'end' }}></EuiTableHeaderCell>
+      );
+      expect(getByRole('columnheader')).toHaveAttribute('data-sticky', 'end');
+
+      // Simulate mobile view with EuiTableIsResponsiveContext
+      rerender(
+        <EuiTableIsResponsiveContext.Provider value={true}>
+          <EuiTableHeaderCell sticky={{ side: 'end' }}></EuiTableHeaderCell>
+        </EuiTableIsResponsiveContext.Provider>
+      );
+
+      expect(getByRole('columnheader')).not.toHaveAttribute('data-sticky');
+    });
+
+    it('does not apply any sticky styles when `sticky` is not set', () => {
+      const { getByRole } = renderInTableHeader(
+        <EuiTableHeaderCell>Test</EuiTableHeaderCell>
+      );
+
+      const element = getByRole('columnheader');
+      expect(element).not.toHaveStyleRule('position', 'sticky');
+      expect(element).not.toHaveStyleRule('inset-inline-start');
+      expect(element).not.toHaveStyleRule('inset-inline-end');
     });
   });
 });

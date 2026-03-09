@@ -46,7 +46,7 @@ const meta: Meta<EuiTableFooterCellProps> = {
     align: LEFT_ALIGNMENT,
   },
 };
-hideStorybookControls(meta, ['aria-label']);
+hideStorybookControls(meta, ['aria-label', 'sticky']);
 
 export default meta;
 type Story = StoryObj<EuiTableFooterCellProps>;

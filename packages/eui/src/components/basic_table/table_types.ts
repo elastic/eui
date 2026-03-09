@@ -205,6 +205,25 @@ export type EuiTableActionsColumnType<T extends object> = {
    * Allows configuring an icon with a tooltip, to be displayed next to the name
    */
   nameTooltip?: EuiTableColumnNameTooltipProps;
+  /**
+   * Whether the actions column should always stick to the right side
+   * of the table no matter the inline (horizontal) scroll position.
+   *
+   * This option should be used in tables with `scrollableInline={true}`
+   * and will be enabled by default in future versions of EUI.
+   *
+   * Currently, it can only be used when the actions column is the last column
+   * of the table.
+   *
+   * When set to `true` and `hasBackground: false` is set on the table,
+   * `--euiTableCellStickyBackgroundColor` CSS variable should be set to match
+   * the background color of the element containing the table.
+   * Otherwise, the sticky column will use the default `backgroundBasePlain`
+   * background color.
+   * @beta
+   * @default false
+   */
+  sticky?: boolean;
 } & Pick<
   EuiTableFieldDataColumnType<T>,
   'description' | 'width' | 'minWidth' | 'maxWidth'

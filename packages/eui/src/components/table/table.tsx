@@ -19,6 +19,8 @@ import {
 import { EuiTableVariantContext } from './table_context';
 import { euiTableStyles } from './table.styles';
 import { usePropsWithComponentDefaults } from '../provider/component_defaults';
+import { euiContainerCSS } from '../../global_styling';
+import { EUI_TABLE_CSS_CONTAINER_NAME } from './const';
 
 export interface EuiTableProps
   extends CommonProps,
@@ -91,9 +93,13 @@ export const EuiTable: FunctionComponent<EuiTableProps> = (originalProps) => {
     hasBackground && styles.hasBackground,
     isResponsive ? styles.mobile : styles.desktop,
   ];
+  const cssStyles = [
+    euiContainerCSS('inline-size', EUI_TABLE_CSS_CONTAINER_NAME, true),
+    scrollableInline && styles.scrollableWrapper,
+  ];
 
   return (
-    <div css={scrollableInline && styles.scrollableWrapper}>
+    <div css={cssStyles}>
       <table tabIndex={-1} css={tableStyles} className={classes} {...rest}>
         <EuiTableIsResponsiveContext.Provider value={isResponsive}>
           <EuiTableVariantContext.Provider value={{ hasBackground }}>

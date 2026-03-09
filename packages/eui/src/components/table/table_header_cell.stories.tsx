@@ -55,7 +55,7 @@ const meta: Meta<EuiTableHeaderCellProps> = {
     description: '',
   },
 };
-hideStorybookControls(meta, ['aria-label']);
+hideStorybookControls(meta, ['aria-label', 'sticky']);
 enableFunctionToggleControls(meta, ['onSort']);
 
 export default meta;

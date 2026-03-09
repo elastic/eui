@@ -14,3 +14,15 @@ export interface EuiTableSharedWidthProps {
   minWidth?: string | number;
   maxWidth?: string | number;
 }
+
+/**
+ * @internal
+ */
+export interface EuiTableStickyCellOptions {
+  /**
+   * The side the cell should stick to.
+   * In horizontal writing-mode, `start` equals the left side and `end`
+   * the right side.
+   */
+  side: 'start' | 'end';
+}
