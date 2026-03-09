@@ -186,6 +186,12 @@ export type EuiTableActionsColumnType<T extends object> = {
    *
    * Currently, it can only be used when the actions column is the last column
    * of the table.
+   *
+   * When set to `true` and `hasBackground: false` is set on the table,
+   * `--euiTableCellStickyBackgroundColor` CSS variable should be set to match
+   * the background color of the element containing the table.
+   * Otherwise, the sticky column will use the default `backgroundBasePlain`
+   * background color.
    * @beta
    * @default false
    */

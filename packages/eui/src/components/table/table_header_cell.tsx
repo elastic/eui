@@ -70,6 +70,12 @@ export type EuiTableHeaderCellProps = CommonProps &
      *
      * Currently, it can only be used when the cell is in the first or the last
      * column of a table.
+     *
+     * When set to `true` and `hasBackground: false` is set on the table,
+     * `--euiTableCellStickyBackgroundColor` CSS variable should be set to match
+     * the background color of the element containing the table.
+     * Otherwise, the sticky cell will use the default `backgroundBasePlain`
+     * background color.
      * @internal
      * @beta
      * @default false
