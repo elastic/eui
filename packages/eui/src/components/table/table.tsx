@@ -94,7 +94,7 @@ export const EuiTable: FunctionComponent<EuiTableProps> = (originalProps) => {
     isResponsive ? styles.mobile : styles.desktop,
   ];
   const cssStyles = [
-    euiContainerCSS('inline-size', EUI_TABLE_CSS_CONTAINER_NAME, true),
+    euiContainerCSS('normal', EUI_TABLE_CSS_CONTAINER_NAME, true),
     scrollableInline && styles.scrollableWrapper,
   ];
 

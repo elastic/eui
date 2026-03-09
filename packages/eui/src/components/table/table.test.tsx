@@ -114,9 +114,6 @@ describe('EuiTable', () => {
       'container-name',
       EUI_TABLE_CSS_CONTAINER_NAME
     );
-    expect(element).toHaveStyleRule(
-      'container-type',
-      'inline-size scroll-state'
-    );
+    expect(element).toHaveStyleRule('container-type', 'scroll-state');
   });
 });
