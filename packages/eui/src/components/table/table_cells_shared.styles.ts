@@ -108,18 +108,18 @@ const euiTableStickyCellStyles = ({ euiTheme }: UseEuiTheme) => {
   return {
     root: css`
       position: sticky;
+      background-color: var(
+        --euiTableCellStickyBackgroundColor,
+        ${euiTheme.colors.backgroundBasePlain}
+      );
 
+      /* Firefox and Safari don't support scroll-state container queries yet */
       /* Our version of stylelint doesn't like the query below */
       /* stylelint-disable selector-type-no-unknown, selector-type-case */
       ${euiContainerQuery(
         'scroll-state(scrollable: right)',
         EUI_TABLE_CSS_CONTAINER_NAME
       )} {
-        background-color: var(
-          --euiTableCellStickyBackgroundHoverColor,
-          ${euiTheme.colors.backgroundBasePlain}
-        );
-
         &::before {
           content: '';
           position: absolute;
