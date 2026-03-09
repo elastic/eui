@@ -507,3 +507,109 @@ const StatefulPlayground = ({
     />
   );
 };
+
+const scrollableColumns: Array<EuiBasicTableColumn<User>> = [
+  {
+    field: 'firstName',
+    name: 'First Name',
+    sortable: true,
+    truncateText: true,
+    mobileOptions: {
+      render: (user: User) => (
+        <span>
+          {user.firstName} {user.lastName}
+        </span>
+      ),
+      header: false,
+      truncateText: false,
+      enlarge: true,
+      width: '100%',
+    },
+    width: '300px',
+  },
+  {
+    field: 'lastName',
+    name: 'Last Name',
+    truncateText: true,
+    sortable: true,
+    mobileOptions: {
+      show: false,
+    },
+    width: '300px',
+  },
+  {
+    field: 'location',
+    name: 'Location',
+    nameTooltip: {
+      content: 'The city and country in which this person resides',
+    },
+    truncateText: true,
+    textOnly: true,
+    render: (location: User['location']) => {
+      return `${location.city}, ${location.country}`;
+    },
+    width: '400px',
+  },
+  {
+    field: 'online',
+    name: 'Online',
+    dataType: 'boolean',
+    nameTooltip: {
+      content: 'Current online status',
+    },
+    render: (online: User['online']) => {
+      const color = online ? 'success' : 'danger';
+      const label = online ? 'Online' : 'Offline';
+      return <EuiHealth color={color}>{label}</EuiHealth>;
+    },
+    sortable: true,
+    mobileOptions: {
+      show: false,
+    },
+  },
+  {
+    name: 'Actions',
+    sticky: true,
+    actions: [
+      {
+        name: 'User profile',
+        description: ({ firstName, lastName }) =>
+          `Visit ${firstName} ${lastName}'s profile`,
+        icon: 'link',
+        color: 'primary',
+        type: 'icon',
+        href: ({ id }) => `${window.location.href}?id=${id}`,
+        target: '_self',
+        'data-test-subj': 'action-outboundlink',
+      },
+      {
+        name: (user: User) => (user.id ? 'Delete' : 'Remove'),
+        description: ({ firstName, lastName }) =>
+          `Delete ${firstName} ${lastName}`,
+        icon: 'trash',
+        color: 'danger',
+        type: 'icon',
+        onClick: () => {},
+        'data-test-subj': ({ id }) => `action-delete-${id}`,
+      },
+      {
+        name: 'Edit',
+        description: 'Edit this user',
+        icon: 'pencil',
+        type: 'icon',
+        onClick: () => {},
+        'data-test-subj': 'action-edit',
+      },
+    ],
+  },
+];
+
+export const Scrollable: Story = {
+  args: {
+    ...Playground.args,
+    scrollableInline: true,
+    responsiveBreakpoint: false,
+    tableLayout: 'auto',
+    columns: scrollableColumns,
+  },
+};

@@ -45,7 +45,7 @@ exports[`EuiBasicTable renders (bare-bones) 1`] = `
     𐘂𐘂
   </span>
   <div
-    class="css-0"
+    class="emotion-euiContainerCSS"
   >
     <table
       class="euiTable emotion-euiTable-fixed-uncompressed-hasBackground-desktop"
@@ -203,7 +203,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
     𐘂𐘂
   </span>
   <div
-    class="css-0"
+    class="emotion-euiContainerCSS"
   >
     <table
       class="euiTable emotion-euiTable-fixed-uncompressed-hasBackground-desktop"

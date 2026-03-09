@@ -22,11 +22,16 @@ import {
 } from '../../services';
 
 import { useEuiTableIsResponsive } from './mobile/responsive_context';
-import { resolveWidthAsStyle } from './utils';
+import { resolveWidthPropsAsStyle } from './utils';
 import { EuiTableCellContent } from './_table_cell_content';
 import { euiTableRowCellStyles } from './table_row_cell.styles';
+import type {
+  EuiTableStickyCellOptions,
+  EuiTableSharedWidthProps,
+} from './types';
+import { _useEuiTableStickyCellStyles } from './table_cells_shared.styles';
 
-interface EuiTableRowCellSharedPropsShape {
+interface EuiTableRowCellSharedPropsShape extends EuiTableSharedWidthProps {
   /**
    * Horizontal alignment of the text in the cell
    */
@@ -45,7 +50,6 @@ interface EuiTableRowCellSharedPropsShape {
    * @default false
    */
   truncateText?: boolean | { lines: number };
-  width?: CSSProperties['width'];
 }
 
 export interface EuiTableRowCellMobileOptionsShape
@@ -111,6 +115,25 @@ export interface EuiTableRowCellProps extends EuiTableRowCellSharedPropsShape {
    * Used by EuiBasicTable to render hidden copy markers
    */
   append?: ReactNode;
+  /**
+   * Whether the cell should stick to a side of the table.
+   *
+   * This option is not applied in the responsive cards layout - see
+   * {@link EuiTableProps#responsiveBreakpoint|`responsiveBreakpoint`}.
+   *
+   * Currently, it can only be used when the cell is in the first or the last
+   * column of a table.
+   *
+   * When set to `true` and `hasBackground: false` is set on the table,
+   * `--euiTableCellStickyBackgroundColor` CSS variable should be set to match
+   * the background color of the element containing the table.
+   * Otherwise, the sticky cell will use the default `backgroundBasePlain`
+   * background color.
+   * @internal
+   * @beta
+   * @default false
+   */
+  sticky?: EuiTableStickyCellOptions;
 }
 
 type Props = CommonProps &
@@ -127,15 +150,19 @@ export const EuiTableRowCell: FunctionComponent<Props> = ({
   textOnly = true,
   hasActions,
   isExpander,
-  style,
-  width,
+  style: _style,
+  width: width,
+  minWidth: minWidth,
+  maxWidth: maxWidth,
   valign = 'middle',
   mobileOptions,
   append,
+  sticky,
   ...rest
 }) => {
   const isResponsive = useEuiTableIsResponsive();
   const styles = useEuiMemoizedStyles(euiTableRowCellStyles);
+  const stickyStyles = _useEuiTableStickyCellStyles(sticky);
   const cssStyles = [
     styles.euiTableRowCell,
     setScopeRow && styles.rowHeader,
@@ -150,7 +177,11 @@ export const EuiTableRowCell: FunctionComponent<Props> = ({
           hasActions === true && styles.mobile.actions,
           isExpander && styles.mobile.expander,
         ]
-      : [styles.desktop.desktop, hasActions && styles.desktop.actions]),
+      : [
+          styles.desktop.desktop,
+          hasActions && styles.desktop.actions,
+          stickyStyles,
+        ]),
   ];
 
   const cellClasses = classNames('euiTableRowCell', className, {
@@ -158,18 +189,35 @@ export const EuiTableRowCell: FunctionComponent<Props> = ({
     'euiTableRowCell--isExpander': isExpander,
   });
 
-  const widthValue = isResponsive
-    ? hasActions || isExpander
-      ? undefined // On mobile, actions are shifted to a right column via CSS
-      : mobileOptions?.width
-    : width;
+  const getResponsiveWidth = (
+    defaultWidth?: string | number,
+    mobileWidth?: string | number
+  ) => {
+    if (isResponsive) {
+      if (hasActions || isExpander) {
+        // On mobile, actions are shifted to a right column via CSS
+        return undefined;
+      }
 
-  const styleObj = resolveWidthAsStyle(style, widthValue);
+      return mobileWidth;
+    }
+
+    return defaultWidth;
+  };
+
+  const inlineWidthStyles = resolveWidthPropsAsStyle(_style, {
+    width: getResponsiveWidth(width, mobileOptions?.minWidth),
+    minWidth: getResponsiveWidth(minWidth, mobileOptions?.minWidth),
+    maxWidth: getResponsiveWidth(maxWidth, mobileOptions?.minWidth),
+  });
 
   const Element = setScopeRow ? 'th' : 'td';
   const sharedProps = {
     scope: setScopeRow ? 'row' : undefined,
-    style: styleObj,
+    style: {
+      ..._style,
+      ...inlineWidthStyles,
+    },
     css: cssStyles,
     ...rest,
   };
@@ -213,7 +261,11 @@ export const EuiTableRowCell: FunctionComponent<Props> = ({
       return null;
     } else {
       return (
-        <Element className={cellClasses} {...sharedProps}>
+        <Element
+          className={cellClasses}
+          {...sharedProps}
+          data-sticky={sticky?.side}
+        >
           <EuiTableCellContent {...sharedContentProps}>
             {children}
           </EuiTableCellContent>
