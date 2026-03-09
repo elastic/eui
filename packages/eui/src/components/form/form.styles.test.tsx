@@ -28,7 +28,7 @@ describe('euiFormVariables', () => {
       {
         "animationTiming": "150ms ease-in",
         "appendPrependBackground": "#ECF1F9",
-        "backgroundAutoFilled": "#E8F1FF",
+        "backgroundAutoFilled": "#F1F6FF",
         "backgroundColor": "#FFFFFF",
         "backgroundDisabledColor": "#ECF1F9",
         "backgroundReadOnlyColor": "#ECF1F9",
@@ -92,7 +92,7 @@ describe('euiFormControlStyles', () => {
             --euiFormControlStateAutofillColor: #BFDBFF;
             
             -webkit-text-fill-color: #2B394F;
-            -webkit-box-shadow: inset 0 0 0 var(--euiFormControlStateAutofillWidth) var(--euiFormControlStateAutofillColor), inset 0 0 0 100vw #E8F1FF;
+            -webkit-box-shadow: inset 0 0 0 var(--euiFormControlStateAutofillWidth) var(--euiFormControlStateAutofillColor), inset 0 0 0 100vw #F1F6FF;
            
 
             &:hover {
