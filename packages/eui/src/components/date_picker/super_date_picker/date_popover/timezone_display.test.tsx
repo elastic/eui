@@ -16,11 +16,17 @@ import { EuiButtonIcon } from '../../../button';
 
 describe('EuiTimeZoneDisplay', () => {
   it('renders', () => {
-    const { container } = render(
+    jest.useFakeTimers().setSystemTime(new Date('2025-01-15T12:00:00Z'));
+
+    const { getByTestSubject } = render(
       <EuiTimeZoneDisplay timeZone="America/Los_Angeles" />
     );
 
-    expect(container).toMatchSnapshot();
+    expect(getByTestSubject('euiTimeZoneDisplay')).toHaveTextContent(
+      'UTC-8 (America/Los_Angeles)'
+    );
+
+    jest.useRealTimers();
   });
 
   it('handles "Browser" time zone name', () => {
