@@ -88,7 +88,7 @@ export interface EuiTableFieldDataColumnType<T>
    */
   width?: string;
   /**
-   * Requested minimum width of the column
+   * Requested minimum width of the column.
    *
    * Exact width settings are not guaranteed in certain table layouts
    * or configurations, and may be adjusted by browser's algorithm.
@@ -185,6 +185,8 @@ export type EuiTableComputedColumnType<T> = CommonProps &
     | 'readOnly'
     | 'description'
     | 'width'
+    | 'minWidth'
+    | 'maxWidth'
     | 'align'
     | 'truncateText'
     | 'isExpander'
@@ -203,7 +205,10 @@ export type EuiTableActionsColumnType<T extends object> = {
    * Allows configuring an icon with a tooltip, to be displayed next to the name
    */
   nameTooltip?: EuiTableColumnNameTooltipProps;
-} & Pick<EuiTableFieldDataColumnType<T>, 'description' | 'width'>;
+} & Pick<
+  EuiTableFieldDataColumnType<T>,
+  'description' | 'width' | 'minWidth' | 'maxWidth'
+>;
 
 export interface EuiTableSortingType<T> {
   /**
