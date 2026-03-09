@@ -50,6 +50,7 @@ import {
   EuiTableRowCell,
   EuiTableRowCellCheckbox,
   EuiTableSortMobile,
+  EuiTableFooterCellProps,
 } from '../table';
 import { euiTableCaptionStyles } from '../table/table.styles';
 
@@ -798,11 +799,16 @@ export class EuiBasicTable<T extends object = any> extends Component<
 
       // actions column
       if ((column as EuiTableActionsColumnType<T>).actions) {
+        const sticky =
+          this.props.scrollableInline &&
+          (column as EuiTableActionsColumnType<T>).sticky;
+
         headers.push(
           <EuiTableHeaderCell
             {...sharedProps}
             key={`_actions_h_${index}`}
             align="right"
+            sticky={sticky ? { side: 'end' } : undefined}
           >
             {name}
           </EuiTableHeaderCell>
@@ -880,7 +886,8 @@ export class EuiBasicTable<T extends object = any> extends Component<
   }
 
   renderTableFooter() {
-    const { items, columns, pagination, selection } = this.props;
+    const { items, columns, pagination, selection, scrollableInline } =
+      this.props;
 
     const footers = [];
     let hasDefinedFooter = false;
@@ -903,11 +910,21 @@ export class EuiBasicTable<T extends object = any> extends Component<
         return; // exclude columns that only exist for mobile headers
       }
 
+      const sticky =
+        scrollableInline &&
+        (column as EuiTableActionsColumnType<T>).actions &&
+        (column as EuiTableActionsColumnType<T>).sticky === true;
+
+      const sharedProps: Partial<EuiTableFooterCellProps> = {
+        align,
+        sticky: sticky ? { side: 'end' } : undefined,
+      };
+
       if (footer) {
         footers.push(
           <EuiTableFooterCell
             key={`footer_${String(field)}_${footers.length - 1}`}
-            align={align}
+            {...sharedProps}
           >
             {footer}
           </EuiTableFooterCell>
@@ -918,7 +935,7 @@ export class EuiBasicTable<T extends object = any> extends Component<
         footers.push(
           <EuiTableFooterCell
             key={`footer_empty_${footers.length - 1}`}
-            align={align}
+            {...sharedProps}
           >
             {undefined}
           </EuiTableFooterCell>
@@ -1227,6 +1244,7 @@ export class EuiBasicTable<T extends object = any> extends Component<
       });
     }
 
+    const sticky = this.props.scrollableInline && column.sticky;
     const key = `record_actions_${itemId}_${columnIndex}`;
     return (
       <EuiTableRowCell
@@ -1235,6 +1253,7 @@ export class EuiBasicTable<T extends object = any> extends Component<
         textOnly={false}
         hasActions={hasCustomActions ? 'custom' : true}
         append={this.renderCopyChar(columnIndex)}
+        sticky={sticky ? { side: 'end' } : undefined}
       >
         <ExpandedItemActions
           actions={actualActions}

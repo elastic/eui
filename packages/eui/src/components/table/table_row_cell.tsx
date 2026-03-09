@@ -25,6 +25,8 @@ import { useEuiTableIsResponsive } from './mobile/responsive_context';
 import { resolveWidthAsStyle } from './utils';
 import { EuiTableCellContent } from './_table_cell_content';
 import { euiTableRowCellStyles } from './table_row_cell.styles';
+import type { EuiTableStickyCellOptions } from './types';
+import { _useEuiTableStickyCellStyles } from './table_cells_shared.styles';
 
 interface EuiTableRowCellSharedPropsShape {
   /**
@@ -111,6 +113,25 @@ export interface EuiTableRowCellProps extends EuiTableRowCellSharedPropsShape {
    * Used by EuiBasicTable to render hidden copy markers
    */
   append?: ReactNode;
+  /**
+   * Whether the cell should stick to a side of the table.
+   *
+   * This option is not applied in the responsive cards layout - see
+   * {@link EuiTableProps#responsiveBreakpoint|`responsiveBreakpoint`}.
+   *
+   * Currently, it can only be used when the cell is in the first or the last
+   * column of a table.
+   *
+   * When set to `true` and `hasBackground: false` is set on the table,
+   * `--euiTableCellStickyBackgroundColor` CSS variable should be set to match
+   * the background color of the element containing the table.
+   * Otherwise, the sticky cell will use the default `backgroundBasePlain`
+   * background color.
+   * @internal
+   * @beta
+   * @default false
+   */
+  sticky?: EuiTableStickyCellOptions;
 }
 
 type Props = CommonProps &
@@ -132,10 +153,12 @@ export const EuiTableRowCell: FunctionComponent<Props> = ({
   valign = 'middle',
   mobileOptions,
   append,
+  sticky,
   ...rest
 }) => {
   const isResponsive = useEuiTableIsResponsive();
   const styles = useEuiMemoizedStyles(euiTableRowCellStyles);
+  const stickyStyles = _useEuiTableStickyCellStyles(sticky);
   const cssStyles = [
     styles.euiTableRowCell,
     setScopeRow && styles.rowHeader,
@@ -150,7 +173,11 @@ export const EuiTableRowCell: FunctionComponent<Props> = ({
           hasActions === true && styles.mobile.actions,
           isExpander && styles.mobile.expander,
         ]
-      : [styles.desktop.desktop, hasActions && styles.desktop.actions]),
+      : [
+          styles.desktop.desktop,
+          hasActions && styles.desktop.actions,
+          stickyStyles,
+        ]),
   ];
 
   const cellClasses = classNames('euiTableRowCell', className, {
@@ -213,7 +240,11 @@ export const EuiTableRowCell: FunctionComponent<Props> = ({
       return null;
     } else {
       return (
-        <Element className={cellClasses} {...sharedProps}>
+        <Element
+          className={cellClasses}
+          {...sharedProps}
+          data-sticky={sticky?.side}
+        >
           <EuiTableCellContent {...sharedContentProps}>
             {children}
           </EuiTableCellContent>

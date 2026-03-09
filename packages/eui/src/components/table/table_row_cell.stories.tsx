@@ -9,6 +9,7 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
+import { hideStorybookControls } from '../../../.storybook/utils';
 import {
   LEFT_ALIGNMENT,
   CENTER_ALIGNMENT,
@@ -67,6 +68,8 @@ const meta: Meta<EuiTableRowCellProps> = {
     width: '',
   },
 };
+
+hideStorybookControls(meta, ['sticky']);
 
 export default meta;
 type Story = StoryObj<EuiTableRowCellProps>;
