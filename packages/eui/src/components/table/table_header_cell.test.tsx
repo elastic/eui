@@ -312,7 +312,7 @@ describe('EuiTableHeaderCell', () => {
       );
     });
 
-    it('adds `data-sticky` attribute on desktop when `sticky` is set', () => {
+    it('adds `data-sticky` attribute only on desktop when `sticky` is set', () => {
       const { getByRole, rerender } = renderInTableHeader(
         <EuiTableHeaderCell>Test</EuiTableHeaderCell>
       );
