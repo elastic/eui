@@ -16,7 +16,6 @@ import {
   WARNING_MESSAGE_MIN_WIDTH,
   WARNING_MESSAGE_WIDTH,
 } from './utils';
-import { EuiTableHeaderCell } from './table_header_cell';
 import type { EuiTableSharedWidthProps } from './types';
 
 const renderInTableHeader = (cell: React.ReactElement) =>
@@ -40,11 +39,11 @@ describe('EuiTableHeaderCellCheckbox', () => {
   describe('style and width props', () => {
     it('accepts `style` prop', () => {
       const { getByRole } = renderInTableHeader(
-        <EuiTableHeaderCell
+        <EuiTableHeaderCellCheckbox
           style={{ width: '20%', minWidth: '123px', maxWidth: '456px' }}
         >
           Test
-        </EuiTableHeaderCell>
+        </EuiTableHeaderCellCheckbox>
       );
 
       expect(getByRole('columnheader')).toHaveStyle({
@@ -64,9 +63,9 @@ describe('EuiTableHeaderCellCheckbox', () => {
 
         it(`accepts \`${name}\` prop`, () => {
           const { getByRole } = renderInTableHeader(
-            <EuiTableHeaderCell style={{ [name]: '10%' }}>
+            <EuiTableHeaderCellCheckbox style={{ [name]: '10%' }}>
               Test
-            </EuiTableHeaderCell>
+            </EuiTableHeaderCellCheckbox>
           );
 
           expect(getByRole('columnheader')).toHaveStyle({
@@ -81,7 +80,9 @@ describe('EuiTableHeaderCellCheckbox', () => {
           };
 
           const { getByRole } = renderInTableHeader(
-            <EuiTableHeaderCell {...props}>Test</EuiTableHeaderCell>
+            <EuiTableHeaderCellCheckbox {...props}>
+              Test
+            </EuiTableHeaderCellCheckbox>
           );
 
           expect(getByRole('columnheader')).toHaveStyle({
@@ -102,7 +103,9 @@ describe('EuiTableHeaderCellCheckbox', () => {
           };
 
           const { getByRole } = renderInTableHeader(
-            <EuiTableHeaderCell {...props}>Test</EuiTableHeaderCell>
+            <EuiTableHeaderCellCheckbox {...props}>
+              Test
+            </EuiTableHeaderCellCheckbox>
           );
 
           expect(getByRole('columnheader')).toHaveStyle({
