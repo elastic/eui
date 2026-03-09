@@ -186,7 +186,7 @@ export const EuiTableRowCell: FunctionComponent<Props> = ({
   const sharedProps = {
     scope: setScopeRow ? 'row' : undefined,
     style: {
-      _style,
+      ..._style,
       ...inlineWidthStyles,
     },
     css: cssStyles,
