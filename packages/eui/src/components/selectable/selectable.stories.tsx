@@ -153,12 +153,7 @@ export const WithSearchAndGroups: Story = {
       {
         label: 'Group 2',
         isGroupLabel: true,
-        prepend: (
-          <EuiIcon
-            type="warning"
-            css={({ euiTheme }) => ({ marginRight: euiTheme.size.s })}
-          />
-        ),
+        prepend: <EuiIcon type="warning" />,
         append: (
           <EuiFlexItem css={{ alignItems: 'flex-end' }}>(append)</EuiFlexItem>
         ),

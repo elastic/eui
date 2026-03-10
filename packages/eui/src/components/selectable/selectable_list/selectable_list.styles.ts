@@ -57,6 +57,7 @@ export const euiSelectableListStyles = (euiThemeContext: UseEuiTheme) => {
       position: relative;
       display: flex;
       align-items: center;
+      gap: ${itemVars.spacingHorizontal};
       ${logicalCSS('padding-horizontal', itemVars.spacingHorizontal)}
       ${logicalCSS('padding-vertical', spacingVertical)}
 
