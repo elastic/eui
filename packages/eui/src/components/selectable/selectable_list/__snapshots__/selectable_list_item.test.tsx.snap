@@ -4,7 +4,7 @@ exports[`EuiSelectableListItem is rendered 1`] = `
 <li
   aria-checked="false"
   aria-label="aria-label"
-  class="euiSelectableListItem testClass1 testClass2 emotion-euiSelectableListItem-s-euiTestCss"
+  class="euiSelectableListItem testClass1 testClass2 emotion-euiSelectableListItem-euiTestCss"
   data-test-subj="test subject string"
   role="option"
 >
@@ -12,7 +12,7 @@ exports[`EuiSelectableListItem is rendered 1`] = `
     class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
   >
     <span
-      class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
+      class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
       data-euiicon-type="empty"
     />
     <span
@@ -25,14 +25,14 @@ exports[`EuiSelectableListItem is rendered 1`] = `
 exports[`EuiSelectableListItem props append 1`] = `
 <li
   aria-checked="false"
-  class="euiSelectableListItem emotion-euiSelectableListItem-s"
+  class="euiSelectableListItem emotion-euiSelectableListItem"
   role="option"
 >
   <span
     class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
   >
     <span
-      class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
+      class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
       data-euiicon-type="empty"
     />
     <span
@@ -51,15 +51,15 @@ exports[`EuiSelectableListItem props append 1`] = `
 exports[`EuiSelectableListItem props checked & allowExclusions mixed 1`] = `
 <li
   aria-checked="mixed"
-  class="euiSelectableListItem emotion-euiSelectableListItem-s"
+  class="euiSelectableListItem emotion-euiSelectableListItem-singleSelection"
   role="option"
 >
   <span
     class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
   >
     <span
-      class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
-      color="text"
+      class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
+      color="primary"
       data-euiicon-type="minus"
     />
     <span
@@ -83,15 +83,15 @@ exports[`EuiSelectableListItem props checked & allowExclusions mixed 1`] = `
 exports[`EuiSelectableListItem props checked & allowExclusions off 1`] = `
 <li
   aria-checked="true"
-  class="euiSelectableListItem emotion-euiSelectableListItem-s"
+  class="euiSelectableListItem emotion-euiSelectableListItem-singleSelection"
   role="option"
 >
   <span
     class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
   >
     <span
-      class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
-      color="text"
+      class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
+      color="primary"
       data-euiicon-type="cross"
     />
     <span
@@ -113,15 +113,15 @@ exports[`EuiSelectableListItem props checked & allowExclusions off 1`] = `
 exports[`EuiSelectableListItem props checked & allowExclusions on 1`] = `
 <li
   aria-checked="true"
-  class="euiSelectableListItem emotion-euiSelectableListItem-s"
+  class="euiSelectableListItem emotion-euiSelectableListItem-singleSelection"
   role="option"
 >
   <span
     class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
   >
     <span
-      class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
-      color="text"
+      class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
+      color="primary"
       data-euiicon-type="check"
     />
     <span
@@ -143,14 +143,14 @@ exports[`EuiSelectableListItem props checked & allowExclusions on 1`] = `
 exports[`EuiSelectableListItem props checked & allowExclusions undefined 1`] = `
 <li
   aria-checked="false"
-  class="euiSelectableListItem emotion-euiSelectableListItem-s"
+  class="euiSelectableListItem emotion-euiSelectableListItem"
   role="option"
 >
   <span
     class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
   >
     <span
-      class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
+      class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
       data-euiicon-type="empty"
     />
     <span
@@ -170,15 +170,15 @@ exports[`EuiSelectableListItem props checked & allowExclusions undefined 1`] = `
 exports[`EuiSelectableListItem props checked & searchable on 1`] = `
 <li
   aria-checked="true"
-  class="euiSelectableListItem emotion-euiSelectableListItem-s"
+  class="euiSelectableListItem emotion-euiSelectableListItem-singleSelection"
   role="option"
 >
   <span
     class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
   >
     <span
-      class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
-      color="text"
+      class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
+      color="primary"
       data-euiicon-type="check"
     />
     <span
@@ -200,14 +200,14 @@ exports[`EuiSelectableListItem props checked & searchable on 1`] = `
 exports[`EuiSelectableListItem props checked & searchable undefined 1`] = `
 <li
   aria-checked="false"
-  class="euiSelectableListItem emotion-euiSelectableListItem-s"
+  class="euiSelectableListItem emotion-euiSelectableListItem"
   role="option"
 >
   <span
     class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
   >
     <span
-      class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
+      class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
       data-euiicon-type="empty"
     />
     <span
@@ -227,15 +227,15 @@ exports[`EuiSelectableListItem props checked & searchable undefined 1`] = `
 exports[`EuiSelectableListItem props checked mixed 1`] = `
 <li
   aria-checked="mixed"
-  class="euiSelectableListItem emotion-euiSelectableListItem-s"
+  class="euiSelectableListItem emotion-euiSelectableListItem-singleSelection"
   role="option"
 >
   <span
     class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
   >
     <span
-      class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
-      color="text"
+      class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
+      color="primary"
       data-euiicon-type="minus"
     />
     <span
@@ -259,15 +259,15 @@ exports[`EuiSelectableListItem props checked mixed 1`] = `
 exports[`EuiSelectableListItem props checked on 1`] = `
 <li
   aria-checked="true"
-  class="euiSelectableListItem emotion-euiSelectableListItem-s"
+  class="euiSelectableListItem emotion-euiSelectableListItem-singleSelection"
   role="option"
 >
   <span
     class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
   >
     <span
-      class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
-      color="text"
+      class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
+      color="primary"
       data-euiicon-type="check"
     />
     <span
@@ -287,14 +287,14 @@ exports[`EuiSelectableListItem props checked on 1`] = `
 exports[`EuiSelectableListItem props checked undefined 1`] = `
 <li
   aria-checked="false"
-  class="euiSelectableListItem emotion-euiSelectableListItem-s"
+  class="euiSelectableListItem emotion-euiSelectableListItem"
   role="option"
 >
   <span
     class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
   >
     <span
-      class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
+      class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
       data-euiicon-type="empty"
     />
     <span
@@ -309,14 +309,14 @@ exports[`EuiSelectableListItem props disabled 1`] = `
   aria-checked="false"
   aria-disabled="true"
   aria-selected="false"
-  class="euiSelectableListItem emotion-euiSelectableListItem-s"
+  class="euiSelectableListItem emotion-euiSelectableListItem"
   role="option"
 >
   <span
     class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
   >
     <span
-      class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
+      class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
       data-euiicon-type="empty"
     />
     <span
@@ -330,38 +330,19 @@ exports[`EuiSelectableListItem props isFocused 1`] = `
 <li
   aria-checked="false"
   aria-selected="true"
-  class="euiSelectableListItem euiSelectableListItem-isFocused emotion-euiSelectableListItem-s"
+  class="euiSelectableListItem euiSelectableListItem-isFocused emotion-euiSelectableListItem"
   role="option"
 >
   <span
     class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
   >
     <span
-      class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
+      class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
       data-euiicon-type="empty"
     />
     <span
       class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
     />
-    <span
-      class="euiSelectableListItem__append emotion-euiSelectableListItem__append"
-    >
-       
-      <span
-        aria-hidden="true"
-        class="euiBadge euiSelectableListItem__onFocusBadge emotion-euiBadge-iconOnly-hollow"
-      >
-        <span
-          class="euiBadge__content emotion-euiBadge__content"
-        >
-          <span
-            class="euiBadge__icon emotion-euiBadge__icon-left"
-            color="inherit"
-            data-euiicon-type="return"
-          />
-        </span>
-      </span>
-    </span>
   </span>
 </li>
 `;
@@ -369,14 +350,14 @@ exports[`EuiSelectableListItem props isFocused 1`] = `
 exports[`EuiSelectableListItem props onFocusBadge can be custom 1`] = `
 <li
   aria-checked="false"
-  class="euiSelectableListItem emotion-euiSelectableListItem-s"
+  class="euiSelectableListItem emotion-euiSelectableListItem"
   role="option"
 >
   <span
     class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
   >
     <span
-      class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
+      class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
       data-euiicon-type="empty"
     />
     <span
@@ -389,54 +370,14 @@ exports[`EuiSelectableListItem props onFocusBadge can be custom 1`] = `
 exports[`EuiSelectableListItem props onFocusBadge can be true 1`] = `
 <li
   aria-checked="false"
-  class="euiSelectableListItem emotion-euiSelectableListItem-s"
+  class="euiSelectableListItem emotion-euiSelectableListItem"
   role="option"
 >
   <span
     class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
   >
     <span
-      class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
-      data-euiicon-type="empty"
-    />
-    <span
-      class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
-    />
-  </span>
-</li>
-`;
-
-exports[`EuiSelectableListItem props paddingSize none is rendered 1`] = `
-<li
-  aria-checked="false"
-  class="euiSelectableListItem emotion-euiSelectableListItem-none"
-  role="option"
->
-  <span
-    class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
-  >
-    <span
-      class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
-      data-euiicon-type="empty"
-    />
-    <span
-      class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
-    />
-  </span>
-</li>
-`;
-
-exports[`EuiSelectableListItem props paddingSize s is rendered 1`] = `
-<li
-  aria-checked="false"
-  class="euiSelectableListItem emotion-euiSelectableListItem-s"
-  role="option"
->
-  <span
-    class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
-  >
-    <span
-      class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
+      class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
       data-euiicon-type="empty"
     />
     <span
@@ -449,14 +390,14 @@ exports[`EuiSelectableListItem props paddingSize s is rendered 1`] = `
 exports[`EuiSelectableListItem props prepend 1`] = `
 <li
   aria-checked="false"
-  class="euiSelectableListItem emotion-euiSelectableListItem-s"
+  class="euiSelectableListItem emotion-euiSelectableListItem"
   role="option"
 >
   <span
     class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
   >
     <span
-      class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
+      class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
       data-euiicon-type="empty"
     />
     <span
@@ -474,7 +415,7 @@ exports[`EuiSelectableListItem props prepend 1`] = `
 exports[`EuiSelectableListItem props showIcons can be turned off 1`] = `
 <li
   aria-checked="false"
-  class="euiSelectableListItem emotion-euiSelectableListItem-s"
+  class="euiSelectableListItem emotion-euiSelectableListItem"
   role="option"
 >
   <span
@@ -490,14 +431,14 @@ exports[`EuiSelectableListItem props showIcons can be turned off 1`] = `
 exports[`EuiSelectableListItem props textWrap can be "wrap" 1`] = `
 <li
   aria-checked="false"
-  class="euiSelectableListItem emotion-euiSelectableListItem-s"
+  class="euiSelectableListItem emotion-euiSelectableListItem"
   role="option"
 >
   <span
     class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
   >
     <span
-      class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
+      class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
       data-euiicon-type="empty"
     />
     <span
@@ -515,7 +456,7 @@ exports[`EuiSelectableListItem props tooltip behavior on mouseover 1`] = `
     <li
       aria-checked="false"
       aria-describedby="generated-id"
-      class="euiSelectableListItem emotion-euiSelectableListItem-s"
+      class="euiSelectableListItem emotion-euiSelectableListItem"
       role="option"
     >
       <span
@@ -527,7 +468,7 @@ exports[`EuiSelectableListItem props tooltip behavior on mouseover 1`] = `
           class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
         >
           <span
-            class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
+            class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
             data-euiicon-type="empty"
           />
           <span
@@ -577,7 +518,7 @@ exports[`EuiSelectableListItem props tooltip behavior when isFocused 1`] = `
       aria-checked="false"
       aria-describedby="generated-id"
       aria-selected="true"
-      class="euiSelectableListItem euiSelectableListItem-isFocused emotion-euiSelectableListItem-s"
+      class="euiSelectableListItem euiSelectableListItem-isFocused emotion-euiSelectableListItem"
       role="option"
     >
       <span
@@ -589,32 +530,13 @@ exports[`EuiSelectableListItem props tooltip behavior when isFocused 1`] = `
           class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
         >
           <span
-            class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
+            class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
             data-euiicon-type="empty"
           />
           <span
             class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
           >
             Item content
-          </span>
-          <span
-            class="euiSelectableListItem__append emotion-euiSelectableListItem__append"
-          >
-             
-            <span
-              aria-hidden="true"
-              class="euiBadge euiSelectableListItem__onFocusBadge emotion-euiBadge-iconOnly-hollow"
-            >
-              <span
-                class="euiBadge__content emotion-euiBadge__content"
-              >
-                <span
-                  class="euiBadge__icon emotion-euiBadge__icon-left"
-                  color="inherit"
-                  data-euiicon-type="return"
-                />
-              </span>
-            </span>
           </span>
         </span>
       </span>

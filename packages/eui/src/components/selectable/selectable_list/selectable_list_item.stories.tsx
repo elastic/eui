@@ -9,6 +9,10 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
+import { EuiIcon } from '../../icon';
+import { EuiBadge } from '../../badge';
+import { EuiFlexGroup } from '../../flex';
+import { EuiCode } from '../../code';
 import { OPTION_CHECKED_STATES } from '../selectable_option';
 import {
   EuiSelectableListItem,
@@ -42,8 +46,7 @@ const meta: Meta<EuiSelectableListItemProps> = {
   },
   args: {
     showIcons: true,
-    paddingSize: 's',
-    onFocusBadge: true,
+    onFocusBadge: false,
     textWrap: 'truncate',
     // set up for easier testing/QA
     allowExclusions: false,
@@ -52,6 +55,7 @@ const meta: Meta<EuiSelectableListItemProps> = {
     isFocused: false,
     append: false,
     prepend: false,
+    singleSelection: true,
   },
 };
 
@@ -61,5 +65,35 @@ type Story = StoryObj<EuiSelectableListItemProps>;
 export const Playground: Story = {
   args: {
     children: 'Selectable list item',
+  },
+};
+
+export const SingleSelection: Story = {
+  name: 'singleSelection',
+  parameters: {
+    controls: {
+      include: ['showIcons', 'checked', 'disabled', 'isFocused'],
+    },
+  },
+  args: {
+    children: 'Selectable list item',
+    showIcons: true,
+    checked: 'on',
+    prepend: <EuiIcon type="info" />,
+    append: <EuiBadge color="hollow">Badge</EuiBadge>,
+  },
+  render: function Render(args: EuiSelectableListItemProps) {
+    return (
+      <EuiFlexGroup direction="column" gutterSize="l">
+        <div>
+          <EuiCode>singleSelection=true/always</EuiCode>
+        </div>
+        <EuiSelectableListItem {...args} singleSelection />
+        <div>
+          <EuiCode>singleSelection=false</EuiCode>
+        </div>
+        <EuiSelectableListItem {...args} singleSelection={false} />
+      </EuiFlexGroup>
+    );
   },
 };
