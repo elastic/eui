@@ -182,6 +182,25 @@ For main flyouts, the title is primarily used for history navigation.
 </EuiFlyout>
 ```
 
+##### Session icon
+
+You can optionally set an `iconType` in `flyoutMenuProps` to display an icon
+next to the session's title in the history popover. This helps users visually
+distinguish between sessions when navigating history. The icon only appears in
+the history popover — it is not shown in the flyout's menu bar.
+
+```tsx
+<EuiFlyout
+  session="start"
+  flyoutMenuProps={{
+    title: 'Alerts overview',
+    iconType: 'bell',
+  }}
+>
+  {/* flyout content */}
+</EuiFlyout>
+```
+
 To prevent a flyout from being a part of the session management system:
 - Set `session="never"` explicitly, OR
 - Don't nest it inside any parent flyout (non-nested flyouts default to standard behavior)
