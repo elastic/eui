@@ -206,9 +206,9 @@ export const EuiTableRowCell: FunctionComponent<Props> = ({
   };
 
   const inlineWidthStyles = resolveWidthPropsAsStyle(_style, {
-    width: getResponsiveWidth(width, mobileOptions?.minWidth),
+    width: getResponsiveWidth(width, mobileOptions?.width),
     minWidth: getResponsiveWidth(minWidth, mobileOptions?.minWidth),
-    maxWidth: getResponsiveWidth(maxWidth, mobileOptions?.minWidth),
+    maxWidth: getResponsiveWidth(maxWidth, mobileOptions?.maxWidth),
   });
 
   const Element = setScopeRow ? 'th' : 'td';
