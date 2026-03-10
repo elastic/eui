@@ -44,7 +44,9 @@ export const euiSelectableListStyles = (euiThemeContext: UseEuiTheme) => {
     `,
 
     euiSelectableList__list: classNameCss`
-      ${euiYScrollWithShadows(euiThemeContext, { hasScrollTimeline: true })}
+      ${euiYScrollWithShadows(euiThemeContext, {
+        hasAnimatedOverflowShadow: true,
+      })}
 
       &:focus,
       & > ul:focus {

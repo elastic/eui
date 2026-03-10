@@ -94,14 +94,14 @@ interface EuiOverflowShadowStyles {
    * It falls back to `mask-image` for `prefers-reduced-motion: reduce` settings and browsers that don't
    * support the scroll timeline API.
    */
-  hasScrollTimeline?: boolean;
+  hasAnimatedOverflowShadow?: boolean;
 }
 export const euiOverflowShadowStyles = (
   { euiTheme: { size, colors } }: UseEuiTheme,
   {
     direction: _direction,
     side: _side,
-    hasScrollTimeline = false,
+    hasAnimatedOverflowShadow = false,
   }: EuiOverflowShadowStyles = {}
 ) => {
   const direction = _direction || 'y';
@@ -140,7 +140,7 @@ export const euiOverflowShadowStyles = (
 
   // If supported, use the scroll timeline API to animate the gradient to show/hide it on the scroll edges.
   // We only support vertical scrolling as horizontal scrolling has increased complexity on element dimensions.
-  if (hasScrollTimeline && direction === 'y') {
+  if (hasAnimatedOverflowShadow && direction === 'y') {
     const featureFlag = 'animation-timeline: scroll()';
     const gradientStartColor = `var(--euiSelectableListOverflowColor, ${colors.backgroundBasePlain})`;
     const gradientEndColor = 'transparent';
@@ -248,30 +248,34 @@ export const useEuiYScroll = ({ height }: _EuiYScroll = {}) => {
 
 interface _EuiYScrollWithShadows extends _EuiYScroll {
   side?: 'both' | 'start' | 'end';
-  hasScrollTimeline?: boolean;
+  hasAnimatedOverflowShadow?: boolean;
 }
 export const euiYScrollWithShadows = (
   euiTheme: UseEuiTheme,
   {
     height,
     side = 'both',
-    hasScrollTimeline = false,
+    hasAnimatedOverflowShadow = false,
   }: _EuiYScrollWithShadows = {}
 ) => `
   ${euiYScroll(euiTheme, { height })}
   ${euiOverflowShadowStyles(euiTheme, {
     direction: 'y',
     side,
-    hasScrollTimeline,
+    hasAnimatedOverflowShadow,
   })}
 `;
 export const useEuiYScrollWithShadows = ({
   height,
   side,
-  hasScrollTimeline,
+  hasAnimatedOverflowShadow,
 }: _EuiYScrollWithShadows = {}) => {
   const euiTheme = useEuiTheme();
-  return euiYScrollWithShadows(euiTheme, { height, side, hasScrollTimeline });
+  return euiYScrollWithShadows(euiTheme, {
+    height,
+    side,
+    hasAnimatedOverflowShadow,
+  });
 };
 
 export const euiXScroll = (euiTheme: UseEuiTheme) => `
