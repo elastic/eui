@@ -83,47 +83,80 @@ const DisplayContext: React.FC<{ title: string }> = ({ title }) => {
   );
 };
 
+const childId1 = (t: string) => `childFlyout1-${t}`;
+const childId2 = (t: string) => `childFlyout2-${t}`;
+
 const FlyoutSession: React.FC<FlyoutSessionProps> = (props) => {
   const { title, mainSize, childSize, mainMaxWidth, childMaxWidth } = props;
 
   const [isFlyoutVisible, setIsFlyoutVisible] = useState(false);
-  const [isChildFlyoutVisible, setIsChildFlyoutVisible] = useState(false);
+  const [isChild1FlyoutVisible, setIsChild1FlyoutVisible] = useState(false);
+  const [isChild2FlyoutVisible, setIsChild2FlyoutVisible] = useState(false);
+
+  const currentSession = useCurrentSession();
+  const flyoutManager = useFlyoutManager();
 
   const [flyoutType, setFlyoutType] = useState<'overlay' | 'push'>('push');
   const [flyoutOwnFocus, setFlyoutOwnFocus] = useState(false);
 
-  // Handlers for "Open" buttons
+  const childIdsInSession = new Set<string>([
+    ...(currentSession?.childFlyoutId ? [currentSession.childFlyoutId] : []),
+    ...(currentSession?.childHistory ?? []).map((e) => e.flyoutId),
+  ]);
 
   const handleOpenMainFlyout = () => {
     setIsFlyoutVisible(true);
   };
 
-  const handleOpenChildFlyout = () => {
-    setIsChildFlyoutVisible(true);
+  const handleOpenChild1 = () => {
+    setIsChild1FlyoutVisible(true);
   };
 
-  // Callbacks for state synchronization
+  const handleOpenChild2 = () => {
+    setIsChild2FlyoutVisible(true);
+  };
+
+  /** Switch to Child 1 when it's already in the session (e.g. from Child 2's "Open previous" button). */
+  const handleGoToChild1 = useCallback(() => {
+    flyoutManager?.goToFlyout(childId1(title), 'child');
+  }, [flyoutManager, title]);
 
   const mainFlyoutOnActive = useCallback(() => {
     action('activate main flyout')(title);
   }, [title]);
 
-  const childFlyoutOnActive = useCallback(() => {
-    action('activate child flyout')(title);
-  }, [title]);
+  const childFlyoutOnActive = useCallback(
+    (which: 'child1' | 'child2') => () => {
+      action('activate child flyout')(`${title} - ${which}`);
+    },
+    [title]
+  );
 
   const mainFlyoutOnClose = useCallback(() => {
     action('close main flyout')(title);
     setIsFlyoutVisible(false);
-    setIsChildFlyoutVisible(false);
   }, [title]);
 
-  const childFlyoutOnClose = useCallback(() => {
-    action('close child flyout')(title);
-    setIsChildFlyoutVisible(false);
+  const child1FlyoutOnClose = useCallback(() => {
+    action('close child flyout')(`${title} - Child 1`);
+    setIsChild1FlyoutVisible(false);
   }, [title]);
 
-  // Render
+  const child2FlyoutOnClose = useCallback(() => {
+    action('close child flyout')(`${title} - Child 2`);
+    setIsChild2FlyoutVisible(false);
+  }, [title]);
+
+  if (!childSize) {
+    return (
+      <EuiText size="s" color="subdued">
+        <p>
+          Child-to-child session requires childSize (e.g.
+          childSize=&quot;s&quot;).
+        </p>
+      </EuiText>
+    );
+  }
 
   return (
     <>
@@ -172,6 +205,7 @@ const FlyoutSession: React.FC<FlyoutSessionProps> = (props) => {
           pushAnimation={true}
           onActive={mainFlyoutOnActive}
           onClose={mainFlyoutOnClose}
+          resizable={true}
         >
           <EuiFlyoutHeader>
             <EuiTitle size="m">
@@ -180,7 +214,7 @@ const FlyoutSession: React.FC<FlyoutSessionProps> = (props) => {
           </EuiFlyoutHeader>
           <EuiFlyoutBody>
             <EuiText>
-              <p>This is the content of {title}.</p>
+              <p>Child-to-child navigation: open one child, then the other.</p>
               <EuiSpacer size="s" />
               <EuiDescriptionList
                 type="column"
@@ -200,39 +234,52 @@ const FlyoutSession: React.FC<FlyoutSessionProps> = (props) => {
                   },
                 ]}
               />
-              {childSize && (
-                <EuiButton
-                  onClick={handleOpenChildFlyout}
-                  disabled={isChildFlyoutVisible}
-                >
-                  Open child flyout
-                </EuiButton>
-              )}
+              <EuiSpacer size="m" />
+              <EuiFlexGroup gutterSize="s">
+                <EuiFlexItem grow={false}>
+                  <EuiButton
+                    onClick={handleOpenChild1}
+                    disabled={childIdsInSession.has(childId1(title))}
+                  >
+                    Open Child 1
+                  </EuiButton>
+                </EuiFlexItem>
+                <EuiFlexItem grow={false}>
+                  <EuiButton
+                    onClick={handleOpenChild2}
+                    disabled={childIdsInSession.has(childId2(title))}
+                  >
+                    Open Child 2
+                  </EuiButton>
+                </EuiFlexItem>
+              </EuiFlexGroup>
             </EuiText>
           </EuiFlyoutBody>
-          {childSize && isChildFlyoutVisible && (
+          {isChild1FlyoutVisible && (
             <EuiFlyout
-              id={`childFlyout-${title}`}
+              id={childId1(title)}
               flyoutMenuProps={{
-                title: `${title} - Child`,
+                title: `${title} - Child 1`,
                 iconType: 'faceNeutral',
               }}
               size={childSize}
               maxWidth={childMaxWidth}
-              onActive={childFlyoutOnActive}
-              onClose={childFlyoutOnClose}
+              onActive={childFlyoutOnActive('child1')}
+              onClose={child1FlyoutOnClose}
+              resizable={true}
+              hasChildBackground={true}
             >
               <EuiFlyoutBody>
                 <EuiText>
                   <p>
-                    This is the content of the child flyout of {title}. It
-                    automatically inherits the session because it&apos;s nested
-                    inside the parent.
+                    Child 1. Open &quot;Child 2&quot; to test child→child
+                    navigation.
                   </p>
                   <EuiSpacer size="s" />
                   <EuiDescriptionList
                     type="column"
                     listItems={[
+                      { title: 'Child', description: '1' },
                       {
                         title: 'Child flyout size',
                         description: childSize ?? 'N/A',
@@ -241,6 +288,41 @@ const FlyoutSession: React.FC<FlyoutSessionProps> = (props) => {
                         title: 'Child flyout maxWidth',
                         description: childMaxWidth ?? 'N/A',
                       },
+                    ]}
+                  />
+                  <EuiSpacer size="m" />
+                  <EuiButton onClick={handleOpenChild2}>
+                    Open next (Child 2)
+                  </EuiButton>
+                </EuiText>
+              </EuiFlyoutBody>
+            </EuiFlyout>
+          )}
+          {isChild2FlyoutVisible && (
+            <EuiFlyout
+              id={childId2(title)}
+              flyoutMenuProps={{
+                title: `${title} - Child 2`,
+                iconType: 'faceNeutral',
+              }}
+              size={childSize}
+              maxWidth={childMaxWidth}
+              onActive={childFlyoutOnActive('child2')}
+              onClose={child2FlyoutOnClose}
+              resizable={true}
+              hasChildBackground={true}
+            >
+              <EuiFlyoutBody>
+                <EuiText>
+                  <p>
+                    Child 2. You navigated from Child 1. Check manager state
+                    below.
+                  </p>
+                  <EuiSpacer size="s" />
+                  <EuiDescriptionList
+                    type="column"
+                    listItems={[
+                      { title: 'Child', description: '2' },
                       {
                         title: 'session',
                         description: (
@@ -251,6 +333,10 @@ const FlyoutSession: React.FC<FlyoutSessionProps> = (props) => {
                       },
                     ]}
                   />
+                  <EuiSpacer size="m" />
+                  <EuiButton onClick={handleGoToChild1}>
+                    Open previous (Child 1)
+                  </EuiButton>
                 </EuiText>
               </EuiFlyoutBody>
             </EuiFlyout>

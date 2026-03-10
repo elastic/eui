@@ -179,6 +179,7 @@ describe('Flyout Manager Selectors', () => {
               childFlyoutId: 'child-flyout',
               title: 'Parent Flyout',
               zIndex: 0,
+              childHistory: [],
             },
           ],
           flyouts: [
