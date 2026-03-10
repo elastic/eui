@@ -164,7 +164,7 @@ export type Action =
  * - `title` is used for the flyout menu.
  * - `level` determines whether the flyout is `main` or `child`.
  * - Optional `size` is the named EUI size (e.g. `s`, `m`, `l`).
- * - Optional `iconType` is shown in the history popover (not in the menu title).
+ * - Optional `iconType` is shown in the history popover
  */
 export const addFlyout = (
   flyoutId: string,
