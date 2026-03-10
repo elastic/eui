@@ -266,7 +266,7 @@ describe('EuiSelectable', () => {
 
       cy.realPress('Tab');
       cy.realPress('ArrowUp');
-      cy.get('.euiSelectableList__list').invoke('scrollTop').should('eq', 48);
+      cy.get('.euiSelectableList__list').invoke('scrollTop').should('eq', 46);
     });
   });
 
@@ -297,7 +297,7 @@ describe('EuiSelectable', () => {
         cy.get('.euiTextTruncate').should('exist');
         cy.get('[data-test-subj="truncatedText"]').should(
           'have.text',
-          'Lorem ipsum d…piscing elit.'
+          'Lorem ipsum d…ipiscing elit.'
         );
       });
 
@@ -319,14 +319,19 @@ describe('EuiSelectable', () => {
       });
 
       it('correctly accounts for the keyboard focus badge', () => {
-        cy.realMount(<EuiSelectableListboxOnly {...truncationProps} />);
+        cy.realMount(
+          <EuiSelectableListboxOnly
+            {...truncationProps}
+            listProps={{ ...truncationProps.listProps, onFocusBadge: true }}
+          />
+        );
 
         cy.realPress('Tab');
         cy.get('.euiSelectableListItem__onFocusBadge').should('exist');
 
         cy.get('[data-test-subj="truncatedText"]').should(
           'have.text',
-          'Lorem ipsu…cing elit.'
+          'Lorem ipsum…scing elit.'
         );
       });
 
@@ -341,7 +346,7 @@ describe('EuiSelectable', () => {
         );
         cy.get('[data-test-subj="truncatedText"]').should(
           'have.text',
-          'Lorem i…ng elit.'
+          'Lorem ip…ing elit.'
         );
       });
 
@@ -355,7 +360,7 @@ describe('EuiSelectable', () => {
         cy.viewport(100, 100);
         cy.get('[data-test-subj="truncatedText"]').should(
           'have.text',
-          'Lor…it.'
+          'Lor…lit.'
         );
       });
 
@@ -385,7 +390,7 @@ describe('EuiSelectable', () => {
         cy.realType('sit');
         cy.get('[data-test-subj="truncatedText"]').should(
           'have.text',
-          '…m dolor sit amet, …'
+          '…psum dolor sit amet, con…'
         );
       });
 
@@ -395,7 +400,7 @@ describe('EuiSelectable', () => {
         cy.realType('ipsum');
         cy.get('[data-test-subj="truncatedText"]').should(
           'have.text',
-          'Lorem ipsum dolor …'
+          'Lorem ipsum dolor sit amet…'
         );
       });
 
@@ -405,15 +410,15 @@ describe('EuiSelectable', () => {
         cy.realType('eli');
         cy.get('[data-test-subj="truncatedText"]').should(
           'have.text',
-          '…tetur adipiscing elit.'
+          '…consectetur adipiscing elit.'
         );
       });
 
       it('marks the full available text if the search input is longer than the truncated text', () => {
         cy.realMount(<EuiSelectableWithSearchInput {...sharedProps} />);
         cy.get('input[type="search"]').realClick();
-        cy.realType('Lorem ipsum dolor sit amet');
-        cy.get('.euiMark').should('have.text', '…m ipsum dolor sit …');
+        cy.realType('Lorem ipsum dolor sit amet, consectetur');
+        cy.get('.euiMark').should('have.text', '…psum dolor sit amet, con…');
       });
     });
   });

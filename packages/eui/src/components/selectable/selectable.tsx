@@ -133,6 +133,7 @@ export type EuiSelectableProps<T = {}> = CommonProps &
      * `false`: allows multiple selection
      * `true`: only allows one selection
      * `always`: can and must have only one selection
+     * @default false
      */
     singleSelection?: EuiSelectableOptionsListProps['singleSelection'];
     /**
