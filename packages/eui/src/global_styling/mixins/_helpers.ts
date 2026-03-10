@@ -187,7 +187,6 @@ export const euiOverflowShadowStyles = (
             /* uses CSS custom property to support customization depending on layout wrapper background color */
             background: linear-gradient(to bottom, ${gradientStartColor}, ${gradientEndColor});
             
-            /* scroll animation - doesn't use euiCanAnimate()   */
             opacity: 0;
             animation: show linear both;
             animation-timeline: scroll(y);

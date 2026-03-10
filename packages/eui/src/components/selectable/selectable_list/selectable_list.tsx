@@ -381,7 +381,7 @@ export class EuiSelectableList<T> extends Component<
     const { rowHeight } = this.props as { rowHeight: number };
     const option = this.state.optionArray[index];
     if (option?.isGroupLabel && index > 0) {
-      return rowHeight + 16;
+      return rowHeight + 16; // 16px = the additional 2 * 8px padding of the divider line
     }
     return rowHeight;
   };

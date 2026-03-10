@@ -126,10 +126,6 @@ export const euiSelectableListItemStyles = (euiThemeContext: UseEuiTheme) => {
     euiSelectableListItem__append: css`
       ${sharedFlexStyles}
       gap: ${spacingHorizontal};
-
-      > .euiIcon {
-        margin: ${spacingHorizontal};
-      }
     `,
     euiSelectableListItem__icon: css`
       ${sharedFlexStyles}
