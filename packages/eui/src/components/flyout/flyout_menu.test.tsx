@@ -7,7 +7,8 @@
  */
 
 import React from 'react';
-import { render, screen } from '../../test/rtl';
+import { fireEvent } from '@testing-library/react';
+import { render, screen, waitForEuiPopoverOpen } from '../../test/rtl';
 import { requiredProps } from '../../test';
 
 import { EuiFlyoutMenu } from './flyout_menu';
@@ -192,6 +193,40 @@ describe('EuiFlyoutMenu', () => {
       expect(
         container.querySelector('[aria-label="History"]')
       ).toBeInTheDocument();
+    });
+
+    it('renders history items with iconType as list group item icons', async () => {
+      const itemsWithIcon = [
+        {
+          title: 'With icon',
+          iconType: 'faceHappy' as const,
+          onClick: jest.fn(),
+        },
+        { title: 'Without icon', onClick: jest.fn() },
+      ];
+      const { container } = renderWithContext(
+        <EuiFlyoutMenu title="Test Title" historyItems={itemsWithIcon} />
+      );
+
+      const historyButton = container.querySelector(
+        '[aria-label="History"]'
+      ) as HTMLElement;
+      fireEvent.click(historyButton!);
+      await waitForEuiPopoverOpen();
+
+      // Popover panel may render in a portal
+      const listGroupItems = document.querySelectorAll('.euiListGroupItem');
+      expect(listGroupItems).toHaveLength(2);
+      // First item has iconType: expect icon (euiListGroupItem__icon)
+      const firstItem = listGroupItems[0];
+      expect(
+        firstItem.querySelector('.euiListGroupItem__icon')
+      ).toBeInTheDocument();
+      // Second item has no iconType: no icon node
+      const secondItem = listGroupItems[1];
+      expect(
+        secondItem.querySelector('.euiListGroupItem__icon')
+      ).not.toBeInTheDocument();
     });
   });
 

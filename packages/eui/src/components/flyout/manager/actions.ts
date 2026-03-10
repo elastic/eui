@@ -6,6 +6,7 @@
  * Side Public License, v 1.
  */
 
+import type { IconType } from '../../icon';
 import { LEVEL_MAIN } from './const';
 import {
   EuiFlyoutActivityStage,
@@ -60,6 +61,7 @@ export interface AddFlyoutAction extends BaseAction {
   title: string;
   level: EuiFlyoutLevel;
   size?: string;
+  iconType?: IconType;
   minWidth?: number;
 }
 
@@ -162,12 +164,14 @@ export type Action =
  * - `title` is used for the flyout menu.
  * - `level` determines whether the flyout is `main` or `child`.
  * - Optional `size` is the named EUI size (e.g. `s`, `m`, `l`).
+ * - Optional `iconType` is shown in the history popover (not in the menu title).
  */
 export const addFlyout = (
   flyoutId: string,
   title: string,
   level: EuiFlyoutLevel = LEVEL_MAIN,
   size?: string,
+  iconType?: IconType,
   minWidth?: number
 ): AddFlyoutAction => ({
   type: ACTION_ADD,
@@ -175,6 +179,7 @@ export const addFlyout = (
   title,
   level,
   size,
+  iconType,
   minWidth,
 });
 
