@@ -52,9 +52,9 @@ export default meta;
 
 interface FlyoutSessionProps {
   title: string;
-  mainSize?: 's' | 'm' | 'l' | 'fill';
+  mainSize: 's' | 'm' | 'l' | 'fill';
   mainMaxWidth?: number;
-  childSize?: 's' | 'm' | 'fill';
+  childSize: 's' | 'm' | 'fill';
   childMaxWidth?: number;
 }
 
@@ -489,48 +489,25 @@ const MultiSessionFlyoutDemo: React.FC = () => {
       ),
     },
     {
-      title: 'Session E: main size = fill',
+      title: 'Session E: main size = fill, child size = m',
       description: (
         <FlyoutSession
           // Session E
           title="Session E"
           mainSize="fill"
+          childSize="m"
         />
       ),
     },
     {
-      title:
-        'Session F: main size = undefined, child size = fill (maxWidth 1000px)',
+      title: 'Session F: main size = m, child size = fill (maxWidth 1000px)',
       description: (
         <FlyoutSession
           // Session F
           title="Session F"
-          mainSize={undefined}
+          mainSize="m"
           childSize="fill"
           childMaxWidth={1000}
-        />
-      ),
-    },
-    {
-      title: 'Session G: main size = fill (maxWidth 1000px), child size = s',
-      description: (
-        <FlyoutSession
-          // Session G
-          title="Session G"
-          mainSize="fill"
-          mainMaxWidth={1000}
-          childSize="s"
-        />
-      ),
-    },
-    {
-      title: 'Session H: main size = s, child size = s',
-      description: (
-        <FlyoutSession
-          // Session H
-          title="Session H"
-          mainSize="s"
-          childSize="s"
         />
       ),
     },
