@@ -1,3 +1,9 @@
+## [`v113.2.1`](https://github.com/elastic/eui/releases/v113.2.1)
+
+**Bug fixes**
+
+- Fixed `mobileOptions.width` and `mobileOptions.maxWidth` props support in the EuiTableRowCell component ([#9442](https://github.com/elastic/eui/pull/9442))
+
 ## [`v113.2.0`](https://github.com/elastic/eui/releases/v113.2.0)
 
 - Added an optional `sticky` option to `EuiBasicTable` and `EuiInMemoryTable` actions columns. This option is currently in beta. ([#9430](https://github.com/elastic/eui/pull/9430))
