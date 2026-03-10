@@ -28,22 +28,6 @@ export const euiSelectableTemplateSitewideStyles = (
       display: block;
     `,
 
-    // Override EuiSelectable's default item underline
-    euiSelectableTemplateSitewide__listItem: css`
-      &:hover,
-      &.euiSelectableListItem-isFocused {
-        &:not([aria-disabled='true']) {
-          .euiSelectableListItem__text {
-            text-decoration: none;
-          }
-
-          .euiSelectableTemplateSitewide__listItemTitle {
-            text-decoration: underline;
-          }
-        }
-      }
-    `,
-
     euiSelectableTemplateSitewide__optionMetasList: css`
       display: block;
       ${logicalCSS('margin-top', euiTheme.size.xs)}
