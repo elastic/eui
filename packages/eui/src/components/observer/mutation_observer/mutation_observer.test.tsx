@@ -44,6 +44,36 @@ describe('EuiMutationObserver', () => {
 
     expect(onMutation).toHaveBeenCalledTimes(1);
   });
+
+  it('watches for a mutation in React Strict Mode', async () => {
+    expect.assertions(1);
+    const onMutation = jest.fn();
+
+    const Wrapper: FunctionComponent<{ value: number }> = ({ value }) => {
+      return (
+        <React.StrictMode>
+          <EuiMutationObserver
+            observerOptions={{ attributes: true }}
+            onMutation={onMutation}
+          >
+            {(mutationRef) => (
+              <div ref={mutationRef} data-test-ref={value}>
+                Hello World
+              </div>
+            )}
+          </EuiMutationObserver>
+        </React.StrictMode>
+      );
+    };
+
+    const { rerender } = render(<Wrapper value={5} />);
+
+    rerender(<Wrapper value={6} />);
+
+    await waitforMutationObserver();
+
+    expect(onMutation).toHaveBeenCalledTimes(1);
+  });
 });
 
 describe('useMutationObserver', () => {

@@ -106,3 +106,18 @@ const StatefulPlayground = ({
 export const Playground: Story = {
   render: (args) => <StatefulPlayground {...args} />,
 };
+
+/**
+ * Verifies that EuiMutationObserver works correctly when wrapped in React.StrictMode.
+ * In Strict Mode, React intentionally double-invokes lifecycle methods to detect
+ * side effects. Without the fix, the MutationObserver would be disconnected and
+ * never restarted, so no mutations would be detected.
+ */
+export const StrictMode: Story = {
+  render: (args) => (
+    <React.StrictMode>
+      <StatefulPlayground {...args} />
+    </React.StrictMode>
+  ),
+  name: 'Strict Mode (bug fix verification)',
+};

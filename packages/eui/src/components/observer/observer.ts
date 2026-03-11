@@ -29,11 +29,19 @@ export class EuiObserver<Props extends BaseProps> extends Component<Props> {
     if (this.childNode == null) {
       throw new Error(`${this.name} did not receive a ref`);
     }
+    // In React Strict Mode, componentWillUnmount is called after the initial
+    // componentDidMount to simulate unmount/remount. The ref callback is NOT
+    // called again (the DOM is reused), so we must restart observation here
+    // if it was disconnected during the simulated unmount.
+    if (this.observer == null) {
+      this.beginObserve();
+    }
   }
 
   componentWillUnmount() {
     if (this.observer != null) {
       this.observer.disconnect();
+      this.observer = null;
     }
   }
 
