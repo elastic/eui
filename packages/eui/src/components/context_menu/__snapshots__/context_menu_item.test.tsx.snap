@@ -1,5 +1,32 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`EuiContextMenuItem props color 1`] = `
+<button
+  class="euiContextMenuItem emotion-euiContextMenuItem-m-center-colors"
+  type="button"
+>
+  <span
+    class="euiContextMenuItem__text emotion-euiContextMenuItem__text"
+  >
+    Delete
+  </span>
+</button>
+`;
+
+exports[`EuiContextMenuItem props color is ignored when disabled 1`] = `
+<button
+  class="euiContextMenuItem emotion-euiContextMenuItem-m-center-disabled"
+  disabled=""
+  type="button"
+>
+  <span
+    class="euiContextMenuItem__text emotion-euiContextMenuItem__text"
+  >
+    Delete
+  </span>
+</button>
+`;
+
 exports[`EuiContextMenuItem props disabled 1`] = `
 <button
   class="euiContextMenuItem emotion-euiContextMenuItem-m-center-disabled"

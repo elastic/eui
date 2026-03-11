@@ -130,6 +130,45 @@ describe('CollapsedItemActions', () => {
     await waitForEuiPopoverClose();
   });
 
+  test('default actions - renders color on EuiContextMenuItem', async () => {
+    const props = {
+      actions: [
+        {
+          name: 'delete',
+          description: 'Delete this item',
+          onClick: () => {},
+          color: 'danger' as const,
+          'data-test-subj': 'dangerAction',
+        },
+        {
+          name: 'view',
+          description: 'View this item',
+          onClick: () => {},
+          'data-test-subj': 'defaultAction',
+        },
+        {
+          name: 'dynamic color',
+          description: 'Dynamic color action',
+          onClick: () => {},
+          color: ({ id }: Item) => (id === 'xyz' ? 'danger' : 'primary') as any,
+          'data-test-subj': 'dynamicColorAction',
+        },
+      ],
+      itemId: 'id',
+      item: { id: 'xyz' },
+      actionsDisabled: false,
+      displayedRowIndex: 0,
+    };
+
+    const { getByTestSubject, baseElement } = render(
+      <CollapsedItemActions {...props} />
+    );
+    fireEvent.click(getByTestSubject('euiCollapsedItemActionsButton'));
+    await waitForEuiPopoverOpen();
+
+    expect(baseElement).toMatchSnapshot();
+  });
+
   test('custom actions', async () => {
     const props = {
       actions: [
