@@ -17,7 +17,7 @@ ruleTester.run('EuiIconAccessibilityRules', EuiIconAccessibilityRules, {
     {
       code: dedent`
         const MyComponent = () => (
-          <EuiIcon title="Search" type="search" />
+          <EuiIcon title="Search" type="magnify" />
         )
       `,
       languageOptions,
@@ -33,7 +33,7 @@ ruleTester.run('EuiIconAccessibilityRules', EuiIconAccessibilityRules, {
     {
       code: dedent`
         const MyComponent = () => (
-          <EuiIcon aria-labelledby="iconDesc" type="alert" />
+          <EuiIcon aria-labelledby="iconDesc" type="warning" />
         )
       `,
       languageOptions,
@@ -66,7 +66,7 @@ ruleTester.run('EuiIconAccessibilityRules', EuiIconAccessibilityRules, {
       code: dedent`
         const extraProps = {title: 'Search'};
         const MyComponent = () => (
-          <EuiIcon type="search" {...extraProps} />
+          <EuiIcon type="magnify" {...extraProps} />
         )
       `,
       languageOptions,
@@ -76,10 +76,10 @@ ruleTester.run('EuiIconAccessibilityRules', EuiIconAccessibilityRules, {
     // Missing accessible name -> autofix adds aria-hidden={true}
     {
       code: dedent`
-        const MyComponent = () => (<EuiIcon type="search" />)
+        const MyComponent = () => (<EuiIcon type="magnify" />)
       `,
       output: dedent`
-        const MyComponent = () => (<EuiIcon type="search"  aria-hidden={true}/>)
+        const MyComponent = () => (<EuiIcon type="magnify"  aria-hidden={true}/>)
       `,
       languageOptions,
       errors: [
@@ -110,7 +110,7 @@ ruleTester.run('EuiIconAccessibilityRules', EuiIconAccessibilityRules, {
     // tabIndex without accessible name and without aria-hidden -> error
     {
       code: dedent`
-        const MyComponent = () => (<EuiIcon tabIndex={0} type="alert" />)
+        const MyComponent = () => (<EuiIcon tabIndex={0} type="warning" />)
       `,
       output: null, // no autofix
       languageOptions,

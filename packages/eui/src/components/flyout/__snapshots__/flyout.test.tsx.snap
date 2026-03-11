@@ -639,7 +639,7 @@ exports[`EuiFlyout props ownFocus can be false 1`] = `
           class="emotion-euiScreenReaderOnly"
           id="generated-id"
         >
-          You are in a non-modal dialog. To close the dialog, press Escape.
+          You are in a modal dialog. To close the dialog, press Escape.
            
         </p>
         <button

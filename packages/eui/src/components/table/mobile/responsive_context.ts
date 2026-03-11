@@ -11,7 +11,6 @@ import {
   useIsWithinMinBreakpoint,
   type EuiBreakpointSize,
 } from '../../../services';
-import { useComponentDefaults } from '../../provider/component_defaults';
 
 export const DEFAULT_TABLE_BREAKPOINT: EuiBreakpointSize = 'm';
 
@@ -20,13 +19,8 @@ export const DEFAULT_TABLE_BREAKPOINT: EuiBreakpointSize = 'm';
  * based on the passed breakpoint
  */
 export const useIsEuiTableResponsive = (
-  componentProp?: EuiBreakpointSize | boolean
+  breakpoint: EuiBreakpointSize | boolean = DEFAULT_TABLE_BREAKPOINT
 ): boolean => {
-  const componentDefault =
-    useComponentDefaults().EuiTable?.responsiveBreakpoint;
-  const breakpoint =
-    componentProp ?? componentDefault ?? DEFAULT_TABLE_BREAKPOINT;
-
   const isBoolean = typeof breakpoint === 'boolean';
 
   // Note: we're using `!useIsWithinMinBreakpoint` here instead of `useIsWithinMaxBreakpoint`

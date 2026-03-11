@@ -11,7 +11,12 @@ import { requiredProps } from '../../test';
 import { render } from '../../test/rtl';
 
 import { EuiTableHeaderCellCheckbox } from './table_header_cell_checkbox';
-import { WARNING_MESSAGE } from './utils';
+import {
+  WARNING_MESSAGE_MAX_WIDTH,
+  WARNING_MESSAGE_MIN_WIDTH,
+  WARNING_MESSAGE_WIDTH,
+} from './utils';
+import type { EuiTableSharedWidthProps } from './types';
 
 const renderInTableHeader = (cell: React.ReactElement) =>
   render(
@@ -23,18 +28,6 @@ const renderInTableHeader = (cell: React.ReactElement) =>
   );
 
 describe('EuiTableHeaderCellCheckbox', () => {
-  const _consoleWarn = console.warn;
-  beforeAll(() => {
-    console.warn = (...args: [any?, ...any[]]) => {
-      // Suppress an expected warning
-      if (args.length === 1 && args[0] === WARNING_MESSAGE) return;
-      _consoleWarn.apply(console, args);
-    };
-  });
-  afterAll(() => {
-    console.warn = _consoleWarn;
-  });
-
   test('is rendered', () => {
     const { container } = renderInTableHeader(
       <EuiTableHeaderCellCheckbox {...requiredProps} />
@@ -43,45 +36,93 @@ describe('EuiTableHeaderCellCheckbox', () => {
     expect(container.firstChild).toMatchSnapshot();
   });
 
-  describe('width and style', () => {
-    test('accepts style attribute', () => {
-      const { container } = renderInTableHeader(
-        <EuiTableHeaderCellCheckbox style={{ width: '20%' }}>
+  describe('style and width props', () => {
+    it('accepts `style` prop', () => {
+      const { getByRole } = renderInTableHeader(
+        <EuiTableHeaderCellCheckbox
+          style={{ width: '20%', minWidth: '123px', maxWidth: '456px' }}
+        >
           Test
         </EuiTableHeaderCellCheckbox>
       );
 
-      expect(container.firstChild).toMatchSnapshot();
+      expect(getByRole('columnheader')).toHaveStyle({
+        width: '20%',
+        minWidth: '123px',
+        maxWidth: '456px',
+      });
     });
 
-    test('accepts width attribute', () => {
-      const { container } = renderInTableHeader(
-        <EuiTableHeaderCellCheckbox width="10%">
-          Test
-        </EuiTableHeaderCellCheckbox>
-      );
+    const testProp =
+      (name: keyof EuiTableSharedWidthProps, warningMessage: string) => () => {
+        const defaultStyles = {
+          width: undefined,
+          minWidth: undefined,
+          maxWidth: undefined,
+        };
 
-      expect(container.firstChild).toMatchSnapshot();
-    });
+        it(`accepts \`${name}\` prop`, () => {
+          const { getByRole } = renderInTableHeader(
+            <EuiTableHeaderCellCheckbox style={{ [name]: '10%' }}>
+              Test
+            </EuiTableHeaderCellCheckbox>
+          );
 
-    test('accepts width attribute as number', () => {
-      const { container } = renderInTableHeader(
-        <EuiTableHeaderCellCheckbox width={100}>
-          Test
-        </EuiTableHeaderCellCheckbox>
-      );
+          expect(getByRole('columnheader')).toHaveStyle({
+            ...defaultStyles,
+            [name]: '10%',
+          });
+        });
 
-      expect(container.firstChild).toMatchSnapshot();
-    });
+        it(`accepts \`${name}\` prop as number`, () => {
+          const props = {
+            [name]: 100,
+          };
 
-    test('resolves style and width attribute', () => {
-      const { container } = renderInTableHeader(
-        <EuiTableHeaderCellCheckbox width="10%" style={{ width: '20%' }}>
-          Test
-        </EuiTableHeaderCellCheckbox>
-      );
+          const { getByRole } = renderInTableHeader(
+            <EuiTableHeaderCellCheckbox {...props}>
+              Test
+            </EuiTableHeaderCellCheckbox>
+          );
 
-      expect(container.firstChild).toMatchSnapshot();
-    });
+          expect(getByRole('columnheader')).toHaveStyle({
+            ...defaultStyles,
+            [name]: '100px',
+          });
+        });
+
+        it(`resolves \`style.${name}\` and \`${name}\` props`, () => {
+          const originalConsoleWarn = console.warn;
+          console.warn = jest.fn();
+
+          const props = {
+            [name]: '10%',
+            style: {
+              [name]: '20%',
+            },
+          };
+
+          const { getByRole } = renderInTableHeader(
+            <EuiTableHeaderCellCheckbox {...props}>
+              Test
+            </EuiTableHeaderCellCheckbox>
+          );
+
+          expect(getByRole('columnheader')).toHaveStyle({
+            ...defaultStyles,
+            [name]: '10%',
+          });
+
+          expect(console.warn).toHaveBeenCalledWith(warningMessage);
+
+          console.warn = originalConsoleWarn;
+        });
+      };
+
+    describe('width', testProp('width', WARNING_MESSAGE_WIDTH));
+
+    describe('minWidth', testProp('minWidth', WARNING_MESSAGE_MIN_WIDTH));
+
+    describe('maxWidth', testProp('maxWidth', WARNING_MESSAGE_MAX_WIDTH));
   });
 });

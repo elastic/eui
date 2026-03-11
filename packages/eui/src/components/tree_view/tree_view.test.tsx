@@ -33,8 +33,8 @@ const items = [
       {
         label: 'Item B',
         id: 'item_b',
-        icon: <EuiIcon type="arrowRight" />,
-        iconWhenExpanded: <EuiIcon type="arrowDown" />,
+        icon: <EuiIcon type="chevronSingleRight" />,
+        iconWhenExpanded: <EuiIcon type="chevronSingleDown" />,
         children: [
           {
             label: 'A Cloud',
@@ -52,8 +52,8 @@ const items = [
       {
         label: 'Item C',
         id: 'item_c',
-        icon: <EuiIcon type="arrowRight" />,
-        iconWhenExpanded: <EuiIcon type="arrowDown" />,
+        icon: <EuiIcon type="chevronSingleRight" />,
+        iconWhenExpanded: <EuiIcon type="chevronSingleDown" />,
         children: [
           {
             label: 'Another Cloud',
