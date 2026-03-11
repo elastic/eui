@@ -76,6 +76,7 @@ export class EuiDelayHide extends Component<
   componentWillUnmount() {
     if (this.timeoutId != null) {
       clearTimeout(this.timeoutId);
+      this.timeoutId = undefined;
     }
   }
 

@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React from 'react';
+import React, { StrictMode } from 'react';
 import { render } from '../../test/rtl';
 import { act } from '@testing-library/react';
 import { EuiDelayHide } from './index';
@@ -218,6 +218,39 @@ describe('when EuiDelayHide is visible initially and has a minimumDuration of 20
         render={() => <div>Hello World</div>}
       />
     );
+    expect(container.firstChild).toMatchInlineSnapshot(`null`);
+  });
+});
+
+describe('when EuiDelayHide is rendered in React Strict Mode', () => {
+  it('should correctly hide content after the minimum duration', () => {
+    jest.useFakeTimers();
+    const { container, rerender } = render(
+      <StrictMode>
+        <EuiDelayHide hide={false} render={() => <div>Hello World</div>} />
+      </StrictMode>
+    );
+
+    expect(container.firstChild).toMatchInlineSnapshot(`
+      <div>
+        Hello World
+      </div>
+    `);
+
+    rerender(
+      <StrictMode>
+        <EuiDelayHide hide={true} render={() => <div>Hello World</div>} />
+      </StrictMode>
+    );
+
+    actAdvanceTimersByTime(1100);
+
+    rerender(
+      <StrictMode>
+        <EuiDelayHide hide={true} render={() => <div>Hello World</div>} />
+      </StrictMode>
+    );
+
     expect(container.firstChild).toMatchInlineSnapshot(`null`);
   });
 });
