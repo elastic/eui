@@ -176,6 +176,26 @@ export const euiCodeSyntaxVariables = (euiThemeContext: UseEuiTheme) => {
 
   .token.entity {
     cursor: help;
+  }
+
+  /* ES|QL-specific token styling for Monaco compatibility */
+  .language-esql .token.builtin {
+    color: ${this.functionTitleColor};
+  }
+
+  .language-esql .token.comparison,
+  .language-esql .token.comparison-operator {
+    color: ${this.keywordColor};
+  }
+
+  .language-esql .token.arithmetic,
+  .language-esql .token.arithmetic-operator {
+    color: ${this.symbolColor};
+  }
+
+  .language-esql .token.command {
+    color: ${this.keywordColor};
+    font-weight: ${euiTheme.font.weight.semiBold};
   }`;
     },
   };

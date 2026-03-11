@@ -32,7 +32,49 @@ import {
 } from './code_block_annotations';
 import { euiCodeBlockLineStyles } from './code_block_line.styles';
 
+// Register the base ES|QL grammar first
 register(esqlLanguage as RefractorSyntax);
+
+/**
+ * Enhance the ES|QL grammar to match Monaco editor's token classifications.
+ * This addresses the following issues identified in Task 3.3:
+ * 1. Functions need 'builtin' alias for semantic highlighting
+ * 2. Missing != operator in the operator pattern
+ * 3. Operators need semantic specificity (comparison vs arithmetic)
+ */
+import refractor from 'refractor';
+
+// Access the registered ES|QL grammar and enhance it
+const esqlGrammar = (refractor as any).languages?.esql;
+if (esqlGrammar) {
+  // Add 'builtin' alias to function tokens for Monaco compatibility
+  if (esqlGrammar.function && typeof esqlGrammar.function === 'object') {
+    const functionToken = esqlGrammar.function as any;
+    if (!functionToken.alias) {
+      functionToken.alias = ['builtin'];
+    } else if (Array.isArray(functionToken.alias)) {
+      if (!functionToken.alias.includes('builtin')) {
+        functionToken.alias.push('builtin');
+      }
+    }
+  }
+
+  // Fix operator pattern to include missing != operator and add semantic categories
+  // The != operator must come before = in the alternation for correct matching
+  if (esqlGrammar.operator) {
+    // Split operators into semantic categories for Monaco compatibility
+    esqlGrammar['comparison-operator'] = {
+      pattern: /!=|==|<=|>=|<|>/,
+      alias: ['operator', 'comparison'],
+    };
+    esqlGrammar['arithmetic-operator'] = {
+      pattern: /-|\+|\*|\/|%/,
+      alias: ['operator', 'arithmetic'],
+    };
+    // Remove the generic operator pattern since we've split it into categories
+    delete esqlGrammar.operator;
+  }
+}
 
 /**
  * Utils shared between EuiCode and EuiCodeBlock
