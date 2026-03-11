@@ -50,12 +50,15 @@ export const useScroll = (args: Dependencies) => {
   const { scrollCellIntoView } = useScrollCellIntoView(args);
 
   const { focusedCell } = useContext(DataGridFocusContext);
-  const isPointerDown = useIsPointerDown(args.outerGridRef);
+  const isPointerDownRef = useIsPointerDown(args.outerGridRef);
 
   useEffect(() => {
     if (focusedCell) {
       // do not scroll if text is being selected
-      if (isPointerDown || window?.getSelection()?.type === 'Range') {
+      if (
+        isPointerDownRef.current ||
+        window?.getSelection()?.type === 'Range'
+      ) {
         return;
       }
 
@@ -64,7 +67,7 @@ export const useScroll = (args: Dependencies) => {
         colIndex: focusedCell[0],
       });
     }
-  }, [focusedCell, isPointerDown, scrollCellIntoView]);
+  }, [focusedCell, scrollCellIntoView, isPointerDownRef]);
 
   const { popoverIsOpen, cellLocation } = useContext(
     DataGridCellPopoverContext
