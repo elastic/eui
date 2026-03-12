@@ -147,17 +147,6 @@ const FlyoutSession: React.FC<FlyoutSessionProps> = (props) => {
     setIsChild2FlyoutVisible(false);
   }, [title]);
 
-  if (!childSize) {
-    return (
-      <EuiText size="s" color="subdued">
-        <p>
-          Child-to-child session requires childSize (e.g.
-          childSize=&quot;s&quot;).
-        </p>
-      </EuiText>
-    );
-  }
-
   return (
     <>
       <EuiFlexGroup gutterSize="s" alignItems="center">
@@ -269,7 +258,7 @@ const FlyoutSession: React.FC<FlyoutSessionProps> = (props) => {
           maxWidth={childMaxWidth}
           onActive={childFlyoutOnActive('child1')}
           onClose={child1FlyoutOnClose}
-          resizable={true}
+          resizable={false}
           hasChildBackground={true}
         >
           <EuiFlyoutBody>
@@ -317,7 +306,7 @@ const FlyoutSession: React.FC<FlyoutSessionProps> = (props) => {
           maxWidth={childMaxWidth}
           onActive={childFlyoutOnActive('child2')}
           onClose={child2FlyoutOnClose}
-          resizable={true}
+          resizable={false}
           hasChildBackground={true}
         >
           <EuiFlyoutBody>
@@ -615,6 +604,7 @@ const ExternalRootChildFlyout: React.FC<{ parentId: string }> = ({
           onClose={handleClose}
           ownFocus={false}
           flyoutMenuProps={{ title: `Child flyout of ${parentId}` }}
+          resizable={false}
           data-test-subj="child-flyout-in-new-root"
         >
           <EuiFlyoutBody>
@@ -695,6 +685,7 @@ const ExternalRootFlyout: React.FC<{ id: string }> = ({ id }) => {
           onClose={() => setIsOpen(false)}
           ownFocus={false}
           flyoutMenuProps={{ title: `${id} flyout` }}
+          resizable={true}
         >
           <EuiFlyoutHeader>
             <EuiTitle size="m">
