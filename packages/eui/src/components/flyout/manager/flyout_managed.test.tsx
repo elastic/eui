@@ -32,6 +32,11 @@ import {
   PROPERTY_FLYOUT,
   PROPERTY_LEVEL,
 } from './const';
+import {
+  createFlyoutManagerMock,
+  mockCloseAllFlyouts,
+  mockCloseFlyout,
+} from './__mocks__';
 
 const mockFlushSync: jest.Mock = jest.mocked(ReactDOM.flushSync);
 
@@ -56,33 +61,7 @@ jest.mock('../flyout.component', () => {
   };
 });
 
-// Shared mock functions - must be defined in module scope for Jest
-const mockCloseFlyout = jest.fn();
-const mockCloseAllFlyouts = jest.fn();
-
-// Create mock state and functions once at module scope to avoid redundant object creation
-const mockState = {
-  sessions: [],
-  flyouts: [],
-  layoutMode: 'side-by-side' as const,
-};
-
-const mockFunctions = {
-  dispatch: jest.fn(),
-  addFlyout: jest.fn(),
-  closeFlyout: mockCloseFlyout,
-  closeAllFlyouts: mockCloseAllFlyouts,
-  setActiveFlyout: jest.fn(),
-  setFlyoutWidth: jest.fn(),
-  goBack: jest.fn(),
-  goToFlyout: jest.fn(),
-  historyItems: [],
-};
-
-const mockFlyoutManager = {
-  state: mockState,
-  ...mockFunctions,
-};
+const mockFlyoutManager = createFlyoutManagerMock();
 
 // Mock hooks that would otherwise depend on ResizeObserver or animation timing
 jest.mock('./hooks', () => ({
