@@ -397,7 +397,7 @@ export function flyoutManagerReducer(
       const { flyoutId, level } = action;
       const currentSessionIndex = state.sessions.length - 1;
 
-      if (level === 'child' && state.sessions.length > 0) {
+      if (level === LEVEL_CHILD && state.sessions.length > 0) {
         const currentSession = state.sessions[currentSessionIndex];
         const childHistory = currentSession.childHistory ?? [];
         const targetIndex = childHistory.findIndex(
