@@ -56,7 +56,7 @@ export interface FlyoutSession {
   childFlyoutId: string | null;
   /** Title of the main flyout in this session */
   title: string;
-  /** Optional icon for this session (e.g. shown in history popover) */
+  /** Optional icon for this session when shown in history popover */
   iconType?: IconType;
   /** z-index value to be used by the flyout session */
   zIndex: number;

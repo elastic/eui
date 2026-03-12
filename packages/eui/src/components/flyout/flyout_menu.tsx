@@ -42,7 +42,7 @@ export interface EuiFlyoutHistoryItem {
    */
   title: string;
   /**
-   * An optional icon to display in the history menu.
+   * An optional icon to display next to the session title in the history menu
    */
   iconType?: IconType;
   /**
@@ -92,7 +92,7 @@ export type EuiFlyoutMenuProps = CommonProps &
      */
     title?: React.ReactNode;
     /**
-     * An optional icon to display in the history menu.
+     * An optional icon to display next to the session title in the history menu
      */
     iconType?: IconType;
     /**
