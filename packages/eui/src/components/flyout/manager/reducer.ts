@@ -192,8 +192,8 @@ export function flyoutManagerReducer(
 
     // Unregister a flyout and update sessions accordingly.
     // - When closing a `main` flyout, drop its entire session and all associated flyouts.
-    // - When closing a `child` flyout, clear the child pointer on the most
-    //   recent session if it matches.
+    // - When closing a `child` flyout, find the session that owns it (childFlyoutId or
+    //   childHistory) and clear that session's child state so navigation back stays consistent.
     case ACTION_CLOSE: {
       const removedFlyout = state.flyouts.find(
         (f) => f.flyoutId === action.flyoutId
@@ -243,7 +243,8 @@ export function flyoutManagerReducer(
         }
       }
 
-      // Handle child flyout closing: close all children of that session
+      // Handle child flyout closing: find the session that owns this child and
+      // clear that session's child state (so we stay consistent when navigating back).
       if (state.sessions.length === 0) {
         return {
           ...state,
@@ -251,30 +252,34 @@ export function flyoutManagerReducer(
         };
       }
 
-      const updatedSessions = [...state.sessions];
-      const currentSessionIndex = updatedSessions.length - 1;
-      const currentSession = updatedSessions[currentSessionIndex];
-
-      // Only clear session child state if the closed flyout is current or in child history
-      const childIds = new Set(
-        [
-          currentSession.childFlyoutId,
-          ...(currentSession.childHistory ?? []).map((e) => e.flyoutId),
-        ].filter(Boolean) as string[]
+      const owningSessionIndex = state.sessions.findIndex(
+        (session) =>
+          session.childFlyoutId === action.flyoutId ||
+          (session.childHistory ?? []).some(
+            (entry) => entry.flyoutId === action.flyoutId
+          )
       );
 
-      if (!childIds.has(action.flyoutId)) {
-        // Closed flyout not in this session's children; just remove the one flyout
+      if (owningSessionIndex === -1) {
+        // Closed flyout not in any session's child state; just remove the one flyout
         return {
           ...state,
           flyouts: state.flyouts.filter((f) => f.flyoutId !== action.flyoutId),
         };
       }
 
-      const newFlyouts = state.flyouts.filter((f) => !childIds.has(f.flyoutId));
+      const owningSession = state.sessions[owningSessionIndex];
+      const childIds = new Set(
+        [
+          owningSession.childFlyoutId,
+          ...(owningSession.childHistory ?? []).map((e) => e.flyoutId),
+        ].filter(Boolean) as string[]
+      );
 
-      updatedSessions[currentSessionIndex] = {
-        ...currentSession,
+      const newFlyouts = state.flyouts.filter((f) => !childIds.has(f.flyoutId));
+      const updatedSessions = [...state.sessions];
+      updatedSessions[owningSessionIndex] = {
+        ...owningSession,
         childFlyoutId: null,
         childTitle: undefined,
         childIconType: undefined,

@@ -292,6 +292,50 @@ describe('flyoutManagerReducer', () => {
       expect(state.flyouts).toHaveLength(1);
       expect(state.flyouts[0].flyoutId).toBe('main-1');
     });
+
+    it('should clear child state of the session that owns the closed child when closing a child in a non-current session', () => {
+      // Session 0: main-1 + child-1. Session 1: main-2 + child-2 (current).
+      let state = flyoutManagerReducer(
+        initialState,
+        addFlyout('main-1', 'Main 1', LEVEL_MAIN)
+      );
+      state = flyoutManagerReducer(
+        state,
+        addFlyout('child-1', 'Child 1', LEVEL_CHILD)
+      );
+      state = flyoutManagerReducer(
+        state,
+        addFlyout('main-2', 'Main 2', LEVEL_MAIN)
+      );
+      state = flyoutManagerReducer(
+        state,
+        addFlyout('child-2', 'Child 2', LEVEL_CHILD)
+      );
+      expect(state.sessions).toHaveLength(2);
+      expect(state.sessions[0].childFlyoutId).toBe('child-1');
+      expect(state.sessions[1].childFlyoutId).toBe('child-2');
+      expect(state.flyouts.map((f) => f.flyoutId)).toEqual([
+        'main-1',
+        'child-1',
+        'main-2',
+        'child-2',
+      ]);
+
+      // Close child-1 (belongs to session 0, which is not the current session)
+      state = flyoutManagerReducer(state, closeFlyout('child-1'));
+
+      // Session 0's child state must be cleared so navigating back stays consistent
+      expect(state.sessions[0].childFlyoutId).toBe(null);
+      expect(state.sessions[0].childHistory).toHaveLength(0);
+      // Session 1 unchanged
+      expect(state.sessions[1].childFlyoutId).toBe('child-2');
+      // child-1 removed from flyouts; main-1, main-2, child-2 remain
+      expect(state.flyouts.map((f) => f.flyoutId)).toEqual([
+        'main-1',
+        'main-2',
+        'child-2',
+      ]);
+    });
   });
 
   describe('ACTION_CLOSE_ALL', () => {
