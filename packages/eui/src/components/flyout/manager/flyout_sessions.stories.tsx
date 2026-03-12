@@ -251,7 +251,9 @@ const FlyoutSession: React.FC<FlyoutSessionProps> = (props) => {
                   <EuiFlexItem key={n} grow={false}>
                     <EuiButton
                       onClick={n === 1 ? handleOpenChild1 : handleOpenChild2}
-                      disabled={childIdsInSession.has(`childFlyout${n}-${title}`)}
+                      disabled={childIdsInSession.has(
+                        `childFlyout${n}-${title}`
+                      )}
                     >
                       Open Child {n}
                     </EuiButton>
