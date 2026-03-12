@@ -38,6 +38,7 @@ import { EuiFlyoutIsManagedProvider } from './context';
 import { euiManagedFlyoutStyles } from './flyout_managed.styles';
 import { useFlyoutManager as _useFlyoutManager, useFlyoutId } from './hooks';
 import { useIsFlyoutRegistered } from './selectors';
+import { getFlyoutManagerStore } from './store';
 import type { EuiFlyoutLevel } from './types';
 import {
   createValidationErrorMessage,
@@ -216,13 +217,18 @@ export const EuiManagedFlyout = forwardRef<HTMLElement, EuiManagedFlyoutProps>(
       );
 
       return () => {
-        // Only call closeFlyout if it wasn't already called via onClose
-        // This prevents duplicate removal when using Escape/X button
-        if (flyoutExistsInManagerRef.current) {
-          level === LEVEL_MAIN ? closeAllFlyouts() : closeFlyout(flyoutId);
-        }
+        const currentStoreState = getFlyoutManagerStore().getState();
+        const stillInStore = currentStoreState.flyouts.some(
+          (f) => f.flyoutId === flyoutId
+        );
 
-        // Reset navigation tracking when explicitly closed via isOpen=false
+        if (stillInStore) {
+          // Normal cleanup (deps changed or explicit close via isOpen=false)
+          level === LEVEL_MAIN ? closeAllFlyouts() : closeFlyout(flyoutId);
+        } else if (wasRegisteredRef.current) {
+          // Cascade close: was registered but removed externally (e.g. main closed)
+          onCloseCallbackRef.current?.(new MouseEvent('navigation'));
+        }
         wasRegisteredRef.current = false;
       };
     }, [
@@ -282,7 +288,7 @@ export const EuiManagedFlyout = forwardRef<HTMLElement, EuiManagedFlyoutProps>(
         level === LEVEL_MAIN ? closeAllFlyouts() : closeFlyout(flyoutId);
       });
 
-      // trigger parent callback, unmounts the component
+      wasRegisteredRef.current = false; // Prevent cleanup from double-firing onClose
       if (onCloseCallbackRef.current) {
         const event = e || new MouseEvent('click');
         onCloseCallbackRef.current(event);
