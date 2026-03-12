@@ -255,92 +255,93 @@ const FlyoutSession: React.FC<FlyoutSessionProps> = (props) => {
               </EuiFlexGroup>
             </EuiText>
           </EuiFlyoutBody>
-          {isChild1FlyoutVisible && (
-            <EuiFlyout
-              id={childId1(title)}
-              flyoutMenuProps={{
-                title: `${title} - Child 1`,
-                iconType: 'faceNeutral',
-              }}
-              size={childSize}
-              maxWidth={childMaxWidth}
-              onActive={childFlyoutOnActive('child1')}
-              onClose={child1FlyoutOnClose}
-              resizable={true}
-              hasChildBackground={true}
-            >
-              <EuiFlyoutBody>
-                <EuiText>
-                  <p>
-                    Child 1. Open &quot;Child 2&quot; to test child→child
-                    navigation.
-                  </p>
-                  <EuiSpacer size="s" />
-                  <EuiDescriptionList
-                    type="column"
-                    listItems={[
-                      { title: 'Child', description: '1' },
-                      {
-                        title: 'Child flyout size',
-                        description: childSize ?? 'N/A',
-                      },
-                      {
-                        title: 'Child flyout maxWidth',
-                        description: childMaxWidth ?? 'N/A',
-                      },
-                    ]}
-                  />
-                  <EuiSpacer size="m" />
-                  <EuiButton onClick={handleOpenChild2}>
-                    Open next (Child 2)
-                  </EuiButton>
-                </EuiText>
-              </EuiFlyoutBody>
-            </EuiFlyout>
-          )}
-          {isChild2FlyoutVisible && (
-            <EuiFlyout
-              id={childId2(title)}
-              flyoutMenuProps={{
-                title: `${title} - Child 2`,
-                iconType: 'faceNeutral',
-              }}
-              size={childSize}
-              maxWidth={childMaxWidth}
-              onActive={childFlyoutOnActive('child2')}
-              onClose={child2FlyoutOnClose}
-              resizable={true}
-              hasChildBackground={true}
-            >
-              <EuiFlyoutBody>
-                <EuiText>
-                  <p>
-                    Child 2. You navigated from Child 1. Check manager state
-                    below.
-                  </p>
-                  <EuiSpacer size="s" />
-                  <EuiDescriptionList
-                    type="column"
-                    listItems={[
-                      { title: 'Child', description: '2' },
-                      {
-                        title: 'session',
-                        description: (
-                          <>
-                            <EuiCode>inherit</EuiCode> (auto)
-                          </>
-                        ),
-                      },
-                    ]}
-                  />
-                  <EuiSpacer size="m" />
-                  <EuiButton onClick={handleGoToChild1}>
-                    Open previous (Child 1)
-                  </EuiButton>
-                </EuiText>
-              </EuiFlyoutBody>
-            </EuiFlyout>
-          )}
+        </EuiFlyout>
+      )}
+      {isChild1FlyoutVisible && (
+        <EuiFlyout
+          id={childId1(title)}
+          session="inherit"
+          flyoutMenuProps={{
+            title: `${title} - Child 1`,
+            iconType: 'faceNeutral',
+          }}
+          size={childSize}
+          maxWidth={childMaxWidth}
+          onActive={childFlyoutOnActive('child1')}
+          onClose={child1FlyoutOnClose}
+          resizable={true}
+          hasChildBackground={true}
+        >
+          <EuiFlyoutBody>
+            <EuiText>
+              <p>
+                Child 1. Open &quot;Child 2&quot; to test child→child
+                navigation.
+              </p>
+              <EuiSpacer size="s" />
+              <EuiDescriptionList
+                type="column"
+                listItems={[
+                  { title: 'Child', description: '1' },
+                  {
+                    title: 'Child flyout size',
+                    description: childSize ?? 'N/A',
+                  },
+                  {
+                    title: 'Child flyout maxWidth',
+                    description: childMaxWidth ?? 'N/A',
+                  },
+                  {
+                    title: 'session',
+                    description: <EuiCode>inherit</EuiCode>,
+                  },
+                ]}
+              />
+              <EuiSpacer size="m" />
+              <EuiButton onClick={handleOpenChild2}>
+                Open next (Child 2)
+              </EuiButton>
+            </EuiText>
+          </EuiFlyoutBody>
+        </EuiFlyout>
+      )}
+      {isChild2FlyoutVisible && (
+        <EuiFlyout
+          id={childId2(title)}
+          session="inherit"
+          flyoutMenuProps={{
+            title: `${title} - Child 2`,
+            iconType: 'faceNeutral',
+          }}
+          size={childSize}
+          maxWidth={childMaxWidth}
+          onActive={childFlyoutOnActive('child2')}
+          onClose={child2FlyoutOnClose}
+          resizable={true}
+          hasChildBackground={true}
+        >
+          <EuiFlyoutBody>
+            <EuiText>
+              <p>
+                Child 2. You navigated from Child 1. Check manager state below.
+              </p>
+              <EuiSpacer size="s" />
+              <EuiDescriptionList
+                type="column"
+                listItems={[
+                  { title: 'Child', description: '2' },
+                  {
+                    title: 'session',
+                    description: <EuiCode>inherit</EuiCode>,
+                  },
+                ]}
+              />
+              <EuiSpacer size="m" />
+              <EuiButton onClick={handleGoToChild1}>
+                Open previous (Child 1)
+              </EuiButton>
+            </EuiText>
+          </EuiFlyoutBody>
         </EuiFlyout>
       )}
     </>
