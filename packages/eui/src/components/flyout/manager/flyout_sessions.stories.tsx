@@ -161,7 +161,10 @@ const FlyoutSession: React.FC<FlyoutSessionProps> = (props) => {
         <EuiFlyout
           id={`mainFlyout-${title}`}
           session="start"
-          flyoutMenuProps={{ title: `${title} - Main` }}
+          flyoutMenuProps={{
+            title: `${title} - Main`,
+            iconType: 'faceHappy',
+          }}
           size={mainSize}
           maxWidth={mainMaxWidth}
           type={flyoutType}
@@ -210,7 +213,10 @@ const FlyoutSession: React.FC<FlyoutSessionProps> = (props) => {
           {childSize && isChildFlyoutVisible && (
             <EuiFlyout
               id={`childFlyout-${title}`}
-              flyoutMenuProps={{ title: `${title} - Child` }}
+              flyoutMenuProps={{
+                title: `${title} - Child`,
+                iconType: 'faceNeutral',
+              }}
               size={childSize}
               maxWidth={childMaxWidth}
               onActive={childFlyoutOnActive}

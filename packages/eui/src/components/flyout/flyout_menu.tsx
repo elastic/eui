@@ -26,6 +26,7 @@ import { euiFlyoutMenuStyles } from './flyout_menu.styles';
 import { EuiFlyoutMenuContext } from './flyout_menu_context';
 import type { EuiFlyoutCloseEvent } from './types';
 import { EuiI18n, useEuiI18n } from '../i18n';
+import type { IconType } from '../icon';
 
 type EuiFlyoutMenuBackButtonProps = Pick<
   PropsForAnchor<EuiButtonProps>,
@@ -40,6 +41,10 @@ export interface EuiFlyoutHistoryItem {
    * Title for the history item
    */
   title: string;
+  /**
+   * An optional icon to display next to the session title in the history menu
+   */
+  iconType?: IconType;
   /**
    * onClick handler for the history item
    */
@@ -86,6 +91,10 @@ export type EuiFlyoutMenuProps = CommonProps &
      * Title for the menu component. In a managed flyout context, the title is used to indicate the flyout session for history navigation.
      */
     title?: React.ReactNode;
+    /**
+     * An optional icon to display next to the session title in the history menu
+     */
+    iconType?: IconType;
     /**
      * Hides the title in the `EuiFlyoutMenu`. This is useful when the title is already shown in an `EuiFlyoutHeader`.
      * @default true for main flyout in a managed flyout session; false otherwise
@@ -158,6 +167,7 @@ const HistoryPopover: React.FC<{
           <EuiListGroupItem
             key={`history-item-${index}`}
             label={item.title}
+            iconType={item.iconType}
             size="s"
             onClick={() => {
               item.onClick();

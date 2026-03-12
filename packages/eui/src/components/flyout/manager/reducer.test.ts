@@ -77,8 +77,24 @@ describe('flyoutManagerReducer', () => {
         mainFlyoutId: 'main-1',
         childFlyoutId: null,
         title: 'main',
+        iconType: undefined,
         zIndex: 0,
       });
+    });
+
+    it('should store iconType on session when addFlyout is called with iconType', () => {
+      const action = addFlyout(
+        'main-1',
+        'Session A',
+        LEVEL_MAIN,
+        'm',
+        'faceHappy'
+      );
+      const newState = flyoutManagerReducer(initialState, action);
+
+      expect(newState.sessions).toHaveLength(1);
+      expect(newState.sessions[0].iconType).toBe('faceHappy');
+      expect(newState.sessions[0].title).toBe('Session A');
     });
 
     it('should add a child flyout to the most recent session', () => {
