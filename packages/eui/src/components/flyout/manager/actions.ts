@@ -112,7 +112,7 @@ export interface GoToFlyoutAction extends BaseAction {
   type: typeof ACTION_GO_TO_FLYOUT;
   flyoutId: string;
   /** When 'child', find flyout in current session's childHistory and pop to it. When 'main' or omitted, find session by mainFlyoutId. */
-  level?: 'main' | 'child';
+  level?: EuiFlyoutLevel;
 }
 
 /** Set push padding offset for a specific side. */
@@ -240,7 +240,7 @@ export const goBack = (): GoBackAction => ({
 /** Navigate to a specific flyout (remove all sessions after it, or pop to child in history when level === 'child'). */
 export const goToFlyout = (
   flyoutId: string,
-  level?: 'main' | 'child'
+  level?: EuiFlyoutLevel
 ): GoToFlyoutAction => ({
   type: ACTION_GO_TO_FLYOUT,
   flyoutId,

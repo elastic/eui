@@ -61,7 +61,7 @@ export interface FlyoutManagerStore {
   setPushPadding: (side: 'left' | 'right', width: number) => void;
   setContainerElement: (element: HTMLElement | null) => void;
   goBack: () => void;
-  goToFlyout: (flyoutId: string, level?: 'main' | 'child') => void;
+  goToFlyout: (flyoutId: string, level?: EuiFlyoutLevel) => void;
   addUnmanagedFlyout: (flyoutId: string) => void;
   closeUnmanagedFlyout: (flyoutId: string) => void;
   historyItems: Array<{
