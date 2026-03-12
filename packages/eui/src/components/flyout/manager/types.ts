@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import { IconType } from '../../icon';
+import type { IconType } from '../../icon';
 import type { Action } from './actions';
 
 import {

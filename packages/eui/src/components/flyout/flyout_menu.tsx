@@ -26,7 +26,7 @@ import { euiFlyoutMenuStyles } from './flyout_menu.styles';
 import { EuiFlyoutMenuContext } from './flyout_menu_context';
 import type { EuiFlyoutCloseEvent } from './types';
 import { EuiI18n, useEuiI18n } from '../i18n';
-import { IconType } from '../icon';
+import type { IconType } from '../icon';
 
 type EuiFlyoutMenuBackButtonProps = Pick<
   PropsForAnchor<EuiButtonProps>,
@@ -196,7 +196,6 @@ export const EuiFlyoutMenu: FunctionComponent<EuiFlyoutMenuProps> = ({
   className,
   title,
   titleId,
-  iconType,
   hideTitle,
   hideCloseButton,
   historyItems = [],
