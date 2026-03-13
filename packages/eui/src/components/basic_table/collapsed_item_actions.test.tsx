@@ -150,7 +150,7 @@ describe('CollapsedItemActions', () => {
           name: 'dynamic color',
           description: 'Dynamic color action',
           onClick: () => {},
-          color: ({ id }: Item) => (id === 'xyz' ? 'danger' : 'primary') as any,
+          color: ({ id }: Item) => (id === 'xyz' ? 'danger' : 'primary'),
           'data-test-subj': 'dynamicColorAction',
         },
       ],
