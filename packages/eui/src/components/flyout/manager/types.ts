@@ -6,6 +6,7 @@
  * Side Public License, v 1.
  */
 
+import type { IconType } from '../../icon';
 import type { Action } from './actions';
 
 import {
@@ -44,6 +45,7 @@ export interface EuiManagedFlyoutState {
   level: EuiFlyoutLevel;
   width?: number;
   size?: string;
+  minWidth?: number;
   activityStage?: EuiFlyoutActivityStage;
 }
 
@@ -54,6 +56,8 @@ export interface FlyoutSession {
   childFlyoutId: string | null;
   /** Title of the main flyout in this session */
   title: string;
+  /** Optional icon for this session when shown in history popover */
+  iconType?: IconType;
   /** z-index value to be used by the flyout session */
   zIndex: number;
 }
@@ -73,6 +77,13 @@ export interface EuiFlyoutManagerState {
   pushPadding?: PushPaddingOffsets;
   currentZIndex: number;
   unmanagedFlyouts: string[];
+  /** The container element that flyouts are positioned relative to (if any). */
+  containerElement?: HTMLElement | null;
+  /**
+   * Reference width used for layout and resize clamping (container or viewport).
+   * Set by the layout mode hook so flyouts use the same value for consistent clamping.
+   */
+  referenceWidth?: number;
 }
 
 /**
@@ -86,19 +97,23 @@ export interface FlyoutManagerApi {
     flyoutId: string,
     title: string,
     level?: EuiFlyoutLevel,
-    size?: string
+    size?: string,
+    iconType?: IconType,
+    minWidth?: number
   ) => void;
   closeFlyout: (flyoutId: string) => void;
   closeAllFlyouts: () => void;
   setActiveFlyout: (flyoutId: string | null) => void;
   setFlyoutWidth: (flyoutId: string, width: number) => void;
   setPushPadding: (side: 'left' | 'right', width: number) => void;
+  setContainerElement: (element: HTMLElement | null) => void;
   goBack: () => void;
   goToFlyout: (flyoutId: string) => void;
   addUnmanagedFlyout: (flyoutId: string) => void;
   closeUnmanagedFlyout: (flyoutId: string) => void;
   historyItems: Array<{
     title: string;
+    iconType?: IconType;
     onClick: () => void;
   }>;
 }

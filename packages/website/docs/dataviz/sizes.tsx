@@ -349,7 +349,7 @@ class _Sizes extends Component<WithEuiThemeProps, State> {
               <EuiButton
                 fill
                 onClick={copy}
-                iconType="copyClipboard"
+                iconType="copy"
                 disabled={false}
               >
                 {false

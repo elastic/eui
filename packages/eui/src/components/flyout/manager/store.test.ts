@@ -109,6 +109,26 @@ describe('Flyout Manager Store', () => {
       expect(historyItems[1].title).toBe('First Flyout');
     });
 
+    it('should include iconType in history items when sessions were added with iconType', () => {
+      const store = getFlyoutManagerStore();
+
+      store.addFlyout(
+        'flyout-1',
+        'First Flyout',
+        LEVEL_MAIN,
+        undefined,
+        'faceHappy'
+      );
+      store.addFlyout('flyout-2', 'Second Flyout', LEVEL_MAIN);
+
+      const historyItems = store.historyItems;
+
+      expect(historyItems).toHaveLength(1);
+      expect(historyItems[0].title).toBe('First Flyout');
+      expect(historyItems[0].iconType).toBe('faceHappy');
+      expect(historyItems[0].onClick).toBeDefined();
+    });
+
     it('should have functional onClick handlers', () => {
       const store = getFlyoutManagerStore();
 

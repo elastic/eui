@@ -152,7 +152,7 @@ const columns = [
         return (
           <Component
             onClick={() => alert(data[rowIndex][columnId].raw)}
-            iconType="email"
+            iconType="mail"
             aria-label={`Send email to ${data[rowIndex][columnId].raw}`}
           >
             Send email
@@ -176,7 +176,7 @@ const columns = [
         {
           label: 'Custom action',
           onClick: () => {},
-          iconType: 'cheer',
+          iconType: 'popper',
           size: 'xs',
           color: 'text',
         },
@@ -345,7 +345,7 @@ const trailingControlColumns = [
       }
 
       const actions = [
-        <EuiContextMenuItem icon="apmTrace" key="modal" onClick={showModal}>
+        <EuiContextMenuItem icon="chartWaterfall" key="modal" onClick={showModal}>
           Modal example
         </EuiContextMenuItem>,
         <EuiContextMenuItem
@@ -366,7 +366,7 @@ const trailingControlColumns = [
             button={
               <EuiButtonIcon
                 aria-label="Show actions"
-                iconType="boxesHorizontal"
+                iconType="boxesVertical"
                 color="text"
                 onClick={() => setIsPopoverVisible(!isPopoverVisible)}
               />

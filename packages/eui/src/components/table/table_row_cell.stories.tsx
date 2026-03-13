@@ -9,6 +9,7 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
+import { hideStorybookControls } from '../../../.storybook/utils';
 import {
   LEFT_ALIGNMENT,
   CENTER_ALIGNMENT,
@@ -42,9 +43,9 @@ const meta: Meta<EuiTableRowCellProps> = {
       control: 'radio',
       options: [LEFT_ALIGNMENT, CENTER_ALIGNMENT, RIGHT_ALIGNMENT],
     },
-    width: {
-      control: 'text',
-    },
+    width: { control: 'text' },
+    minWidth: { control: 'text' },
+    maxWidth: { control: 'text' },
   },
   args: {
     align: LEFT_ALIGNMENT,
@@ -68,6 +69,8 @@ const meta: Meta<EuiTableRowCellProps> = {
   },
 };
 
+hideStorybookControls(meta, ['sticky']);
+
 export default meta;
 type Story = StoryObj<EuiTableRowCellProps>;
 
@@ -87,7 +90,7 @@ export const Expander: Story = {
     isExpander: true,
     width: '32px',
     align: 'center',
-    children: <EuiButtonIcon iconType="arrowDown" />,
+    children: <EuiButtonIcon iconType="chevronSingleDown" />,
   },
 };
 

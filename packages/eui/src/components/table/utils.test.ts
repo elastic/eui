@@ -6,54 +6,58 @@
  * Side Public License, v 1.
  */
 
-import { resolveWidthAsStyle } from './utils';
-describe('resolveWidthAsStyle', () => {
-  describe('without style or width', () => {
-    it('returns empty', () => {
-      expect(resolveWidthAsStyle(undefined, undefined)).toEqual({});
-      expect(resolveWidthAsStyle({}, undefined)).toEqual({});
-    });
-  });
-  describe('with style; without width', () => {
-    it('returns style clone', () => {
-      const style = { width: '20%', color: 'red' };
-      expect(resolveWidthAsStyle(style, undefined)).toEqual(style);
-      expect(resolveWidthAsStyle({}, undefined)).toEqual({});
-    });
-  });
-  describe('without style; with width', () => {
-    it('returns style with width', () => {
-      const width = '10%';
-      const expected = { width: width };
-      expect(resolveWidthAsStyle(undefined, width)).toEqual(expected);
-      expect(resolveWidthAsStyle({}, width)).toEqual(expected);
-      expect(resolveWidthAsStyle(undefined, 100)).toEqual({ width: '100px' });
-      expect(resolveWidthAsStyle(undefined, '100')).toEqual({ width: '100px' });
-    });
-  });
-  describe('with style and width', () => {
-    const oldConsoleError = console.warn;
-    let consoleStub: jest.Mock;
+import {
+  resolveWidthPropsAsStyle,
+  WARNING_MESSAGE_MAX_WIDTH,
+  WARNING_MESSAGE_MIN_WIDTH,
+  WARNING_MESSAGE_WIDTH,
+} from './utils';
 
-    beforeEach(() => {
-      console.warn = consoleStub = jest.fn();
+describe('resolveWidthPropsAsStyle', () => {
+  it('returns an empty style object when no style or width props are provided', () => {
+    expect(resolveWidthPropsAsStyle(undefined, {})).toEqual({});
+    expect(resolveWidthPropsAsStyle({}, {})).toEqual({});
+  });
+
+  const testPropAndStyle = (name: string, warningMessage: string) => () => {
+    let originalConsoleWarn: typeof console.warn;
+
+    beforeAll(() => {
+      originalConsoleWarn = console.warn;
+      console.warn = jest.fn();
     });
 
-    afterEach(() => {
-      console.warn = oldConsoleError;
+    afterAll(() => {
+      console.warn = originalConsoleWarn;
     });
-    const result = {
-      width: '10%',
-      color: 'red',
-    };
-    it('returns width overriding style', () => {
-      const style = { width: '20%', color: 'red' };
-      expect(resolveWidthAsStyle(style, '10%')).toEqual(result);
-      expect(consoleStub).toHaveBeenCalled();
+
+    it(`supports setting ${name} via the prop`, () => {
+      expect(resolveWidthPropsAsStyle({}, { [name]: '123px' })).toEqual({
+        [name]: '123px',
+      });
     });
-    it('returns style merged with width', () => {
-      const style = { color: 'red' };
-      expect(resolveWidthAsStyle(style, '10%')).toEqual(result);
+
+    it(`supports setting ${name} via the style`, () => {
+      expect(resolveWidthPropsAsStyle({ [name]: '123px' }, {})).toEqual({
+        [name]: '123px',
+      });
     });
-  });
+
+    it(`prefers \`${name}\` prop over \`style.${name}\``, () => {
+      expect(
+        resolveWidthPropsAsStyle({ [name]: '123px' }, { [name]: '456px' })
+      ).toEqual({ [name]: '456px' });
+    });
+
+    it('calls console.warn() when set using both the prop and the style', () => {
+      resolveWidthPropsAsStyle({ [name]: '123px' }, { [name]: '456px' });
+      expect(console.warn).toHaveBeenCalledWith(warningMessage);
+    });
+  };
+
+  describe('width', testPropAndStyle('width', WARNING_MESSAGE_WIDTH));
+
+  describe('minWidth', testPropAndStyle('minWidth', WARNING_MESSAGE_MIN_WIDTH));
+
+  describe('maxWidth', testPropAndStyle('maxWidth', WARNING_MESSAGE_MAX_WIDTH));
 });

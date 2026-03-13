@@ -135,7 +135,7 @@ export const CollapsedItemActions = <T extends {}>({
           : allActionsButtonAriaLabel
       }
       title={actionsDisabled ? allActionsButtonDisabledAriaLabel : undefined}
-      iconType="boxesHorizontal"
+      iconType="boxesVertical"
       color="text"
       isDisabled={actionsDisabled}
       onClick={() => setPopoverOpen((isOpen) => !isOpen)}

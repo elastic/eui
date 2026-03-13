@@ -37,7 +37,7 @@ const types: Array<{
     <EuiButton color="primary" fill>
       Home
     </EuiButton>,
-    <EuiButtonEmpty iconType="arrowLeft" flush="both">
+    <EuiButtonEmpty iconType="chevronSingleLeft" flush="both">
       Go back
     </EuiButtonEmpty>,
   ]}
@@ -71,7 +71,7 @@ const types: Array<{
     <EuiButton color="primary" fill>
       Home
     </EuiButton>,
-    <EuiButtonEmpty iconType="arrowLeft" flush="both">
+    <EuiButtonEmpty iconType="chevronSingleLeft" flush="both">
       Go back
     </EuiButtonEmpty>,
   ]}

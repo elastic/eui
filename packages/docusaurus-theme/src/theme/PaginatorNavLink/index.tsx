@@ -63,9 +63,9 @@ export default function PaginatorNavLink(props: Props): JSX.Element {
       {subLabel && <div className="pagination-nav__sublabel">{subLabel}</div>}
 
       <div className="pagination-nav__label">
-        {isPrev && <EuiIcon type="arrowLeft" />}
+        {isPrev && <EuiIcon type="chevronSingleLeft" />}
         {title}
-        {isNext && <EuiIcon type="arrowRight" />}
+        {isNext && <EuiIcon type="chevronSingleRight" />}
       </div>
     </Link>
   );

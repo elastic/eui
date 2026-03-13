@@ -57,6 +57,30 @@ ruleTester.run('require-aria-label-for-modals', RequireAriaLabelForModals, {
     },
     {
       code: dedent`
+        module.export = (props) => (
+          <EuiModal {...props} />
+        )
+      `,
+      languageOptions,
+    },
+    {
+      code: dedent`
+        module.export = () => (
+          <EuiPopover aria-label="Popover title" />
+        )
+      `,
+      languageOptions,
+    },
+    {
+      code: dedent`
+        module.export = () => (
+          <EuiWrappingPopover aria-labelledby="popoverTitleId" />
+        )
+      `,
+      languageOptions,
+    },
+    {
+      code: dedent`
         module.export = () => (
           <div>Regular component without aria</div>
         )
@@ -119,6 +143,34 @@ ruleTester.run('require-aria-label-for-modals', RequireAriaLabelForModals, {
         {
           messageId: 'confirmModalAriaMissing',
           data: { component: 'EuiConfirmModal' },
+        },
+      ],
+    },
+    {
+      code: dedent`
+        module.export = () => (
+          <EuiPopover />
+        )
+      `,
+      languageOptions,
+      errors: [
+        {
+          messageId: 'popoverAriaMissing',
+          data: { component: 'EuiPopover' },
+        },
+      ],
+    },
+    {
+      code: dedent`
+        module.export = () => (
+          <EuiWrappingPopover />
+        )
+      `,
+      languageOptions,
+      errors: [
+        {
+          messageId: 'popoverAriaMissing',
+          data: { component: 'EuiWrappingPopover' },
         },
       ],
     },

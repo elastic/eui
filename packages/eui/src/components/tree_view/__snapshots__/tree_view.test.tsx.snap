@@ -82,7 +82,7 @@ exports[`EuiTreeView is rendered 1`] = `
                 class="euiTreeView__iconWrapper emotion-euiTreeView__iconWrapper-default"
               >
                 <span
-                  data-euiicon-type="arrowRight"
+                  data-euiicon-type="chevronSingleRight"
                 />
               </span>
               <span
@@ -109,7 +109,7 @@ exports[`EuiTreeView is rendered 1`] = `
                 class="euiTreeView__iconWrapper emotion-euiTreeView__iconWrapper-default"
               >
                 <span
-                  data-euiicon-type="arrowRight"
+                  data-euiicon-type="chevronSingleRight"
                 />
               </span>
               <span

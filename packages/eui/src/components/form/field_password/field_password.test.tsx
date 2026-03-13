@@ -147,7 +147,7 @@ describe('EuiFieldPassword', () => {
               aria-hidden="true"
               class="euiButtonIcon__icon"
               color="inherit"
-              data-euiicon-type="eyeClosed"
+              data-euiicon-type="eyeSlash"
             />
           </button>
         `);

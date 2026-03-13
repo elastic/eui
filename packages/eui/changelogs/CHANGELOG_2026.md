@@ -1,3 +1,35 @@
+## [`v113.2.1`](https://github.com/elastic/eui/releases/v113.2.1)
+
+**Bug fixes**
+
+- Fixed `mobileOptions.width` and `mobileOptions.maxWidth` props support in the EuiTableRowCell component ([#9442](https://github.com/elastic/eui/pull/9442))
+
+## [`v113.2.0`](https://github.com/elastic/eui/releases/v113.2.0)
+
+- Added an optional `sticky` option to `EuiBasicTable` and `EuiInMemoryTable` actions columns. This option is currently in beta. ([#9430](https://github.com/elastic/eui/pull/9430))
+- Added `minWidth` and `maxWidth` options to `EuiBasicTable` and `EuiInMemoryTable` columns configuration object ([#9422](https://github.com/elastic/eui/pull/9422))
+- Added `minWidth` and `maxWidth` props to `EuiTableFooterCell`, `EuiTableHeaderCell`, `EuiTableHeaderCellCheckbox` and `EuiTableRowCell` ([#9422](https://github.com/elastic/eui/pull/9422))
+- Updated the gap between action buttons in `EuiTable`, `EuiBasicTable` and `EuiInMemoryTable` to `4px` ([#9423](https://github.com/elastic/eui/pull/9423))
+- Updated `EuiBadge` hover styles to match `EuiButton` styles ([#9418](https://github.com/elastic/eui/pull/9418))
+- Added `container` prop to `EuiFlyout` for positioning flyouts relative to a container element instead of the viewport, enabling app-scoped flyouts that stay within the container bounds using `position: fixed` and container-derived inline styles ([#9377](https://github.com/elastic/eui/pull/9377)) ([#9377](https://github.com/elastic/eui/pull/9377))
+- Added `container` to `EuiFlyout` component defaults configuration in `EuiProvider` ([#9377](https://github.com/elastic/eui/pull/9377)) ([#9377](https://github.com/elastic/eui/pull/9377))
+- Added a new optional `scrollableInline` (boolean) prop to EuiTable, EuiBasicTable and EuiInMemoryTable that enables horizontal scrolling on overflow ([#9416](https://github.com/elastic/eui/pull/9416))
+
+**Bug fixes**
+
+- Fixed resizable flyouts to output percentage-based widths relative to the container or viewport, preventing size drift on resize ([#9377](https://github.com/elastic/eui/pull/9377)) ([#9377](https://github.com/elastic/eui/pull/9377))
+- Fixed resizable flyout clamping to account for sibling flyout widths in side-by-side layout mode ([#9377](https://github.com/elastic/eui/pull/9377)) ([#9377](https://github.com/elastic/eui/pull/9377))
+- Fixed fill-size flyouts incorrectly triggering stacked layout due to combined-width hysteresis deadlock ([#9377](https://github.com/elastic/eui/pull/9377)) ([#9377](https://github.com/elastic/eui/pull/9377))
+
+**Deprecations**
+
+- Deprecated `maskProps` on `EuiFlyout`. Use the `container` prop to scope flyouts to an application area; when `container` is provided, `maskProps` is ignored. For global (viewport-relative) flyouts, use `container={null}` ([#9377](https://github.com/elastic/eui/pull/9377)) ([#9377](https://github.com/elastic/eui/pull/9377))
+- Deprecated `includeFixedHeadersInFocusTrap` on `EuiFlyout`. When using the `container` prop, use `includeSelectorInFocusTrap` to include specific elements (e.g. app headers) in the focus trap instead ([#9377](https://github.com/elastic/eui/pull/9377)) ([#9377](https://github.com/elastic/eui/pull/9377))
+
+**Accessibility**
+
+- Improved the accessibility experience of managed flyouts by allowing keyboard navigation between child and parent flyouts. ([#9397](https://github.com/elastic/eui/pull/9397))
+
 ## [`v113.1.0`](https://github.com/elastic/eui/releases/v113.1.0)
 
 - Added `data-test-subj` attributes to `EuiFlyoutMenu` elements: back button, history dropdown, and history items. ([#9400](https://github.com/elastic/eui/pull/9400))

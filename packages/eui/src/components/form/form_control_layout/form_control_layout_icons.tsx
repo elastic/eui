@@ -140,7 +140,7 @@ export class EuiFormControlLayoutIcons extends Component<EuiFormControlLayoutIco
       <EuiFormControlLayoutCustomIcon
         size="m"
         disabled={isDisabled}
-        type="arrowDown"
+        type="chevronSingleDown"
       />
     );
   }

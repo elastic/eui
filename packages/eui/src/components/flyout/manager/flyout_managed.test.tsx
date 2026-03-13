@@ -43,8 +43,8 @@ jest.mock('../flyout.component', () => {
       { isOpen, ...props }: any,
       ref: any
     ) {
-      // Extract flyoutMenuProps to prevent it from being passed to DOM
-      const { flyoutMenuProps, ...domProps } = props;
+      // Extract non-DOM props to prevent them from being passed to DOM
+      const { flyoutMenuProps, minWidth, container, ...domProps } = props;
       return React.createElement('div', {
         ref,
         ...domProps,
