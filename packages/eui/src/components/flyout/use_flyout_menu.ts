@@ -76,6 +76,7 @@ export const useEuiFlyoutMenu = ({
     if (!hasMenu) return false;
     if (flyoutMenuDisplayMode === MENU_DISPLAY_ALWAYS) return true;
     if (flyoutMenuDisplayMode === MENU_DISPLAY_AUTO) return menuHasContent;
+    return false;
   }, [hasMenu, flyoutMenuDisplayMode, menuHasContent]);
 
   // If the flyout menu is to be rendered, ensure the flyout has aria-labelledby referencing the menu's titleId
