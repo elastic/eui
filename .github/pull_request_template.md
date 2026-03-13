@@ -37,25 +37,11 @@ Example:
 
 <!-- Useful for review and release notes -- most PRs should provide these. -->
 
-<table>
-  <colgroup>
-    <col style="width:50%">
-    <col style="width:50%">
-  </colgroup>
-  <thead>
-    <tr><th>Before</th><th>After</th></tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>
-      {Before image}
-      </td>
-      <td>
-      {After image}
-      </td>
-    </tr>
-  </tbody>
-</table>
+
+| Before         | After         |
+| -------------- | ------------- |
+| {Before image} | {After image} |
+
 
 ## Impact Assessment
 
@@ -79,7 +65,14 @@ Example:
 
 ### QA instructions for reviewer
 
-<!-- Steps for reviewers to test this PR. Please, try to be as thorough as possible, remembering that the reviewer may not have the same context and knowledge as you have. -->
+<!-- 
+Steps for reviewers to test this PR. Please, try to be as thorough as possible, remembering that the reviewer may not have the same context and knowledge as you have.
+
+Ex.
+- Open the table (basic/in-memory) demos in Storybook or docs.
+- [ ] Confirm that **action buttons** (default row actions) have a **4px** gap between them.
+- [ ] Confirm that **custom actions** (when used) still have an **8px** gap.
+  -->
 
 ### Checklist before marking Ready for Review
 
