@@ -63,14 +63,15 @@ describe('EuiFlyoutMenu', () => {
   });
 
   describe('hideTitle prop', () => {
-    it('shows title by default when hideTitle is not specified', () => {
+    it('hides title by default when hideTitle is not specified', () => {
       const { getByText } = renderWithContext(
-        <EuiFlyoutMenu title="Visible Title" />
+        <EuiFlyoutMenu title="Hidden Title" />
       );
 
-      const title = getByText('Visible Title');
+      const title = getByText('Hidden Title');
       expect(title).toBeInTheDocument();
-      expect(title).toBeVisible();
+      // Title is visually hidden by default (screen reader only)
+      expect(title.className).toContain('euiFlyoutMenu__hiddenTitle');
     });
 
     it('applies screen reader only styles when hideTitle is true', () => {

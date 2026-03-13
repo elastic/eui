@@ -137,10 +137,11 @@ describe('EuiFlyout', () => {
   });
 
   describe('aria-labelledby and flyout menu integration', () => {
-    it('sets aria-labelledby when flyout has a menu with title', () => {
+    it('sets aria-labelledby when flyout has a visible menu', () => {
       const { getByTestSubject } = render(
         <EuiFlyout
           onClose={() => {}}
+          flyoutMenuDisplayMode={MENU_DISPLAY_ALWAYS}
           flyoutMenuProps={{ title: 'Test Menu Title' }}
           data-test-subj="flyout"
         />
@@ -159,6 +160,7 @@ describe('EuiFlyout', () => {
       const { getByTestSubject } = render(
         <EuiFlyout
           onClose={() => {}}
+          flyoutMenuDisplayMode={MENU_DISPLAY_ALWAYS}
           flyoutMenuProps={{
             title: 'Test Menu Title',
             titleId: customTitleId,
@@ -178,6 +180,7 @@ describe('EuiFlyout', () => {
       const { getByTestSubject } = render(
         <EuiFlyout
           onClose={() => {}}
+          flyoutMenuDisplayMode={MENU_DISPLAY_ALWAYS}
           flyoutMenuProps={{
             title: 'Test Menu Title',
             titleId: customTitleId,
@@ -280,7 +283,11 @@ describe('EuiFlyout', () => {
         const { getByTestSubject } = render(
           <EuiFlyout
             onClose={() => {}}
-            flyoutMenuProps={{ title: 'Test', titleId: 'menu-title' }}
+            flyoutMenuDisplayMode={MENU_DISPLAY_ALWAYS}
+            flyoutMenuProps={{
+              title: 'Test',
+              titleId: 'menu-title',
+            }}
             data-test-subj="flyout"
           />
         );

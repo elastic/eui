@@ -22,8 +22,6 @@ import classnames from 'classnames';
 export interface UseEuiFlyoutMenu {
   flyoutMenuProps?: EuiFlyoutMenuProps;
   flyoutMenuDisplayMode: EuiFlyoutMenuDisplayMode;
-  flyoutId?: string;
-  currentSession?: { mainFlyoutId?: string } | null;
   ariaLabelledBy?: string;
 }
 
@@ -37,8 +35,6 @@ export interface UseEuiFlyoutMenu {
 export const useEuiFlyoutMenu = ({
   flyoutMenuProps: _flyoutMenuProps,
   flyoutMenuDisplayMode,
-  flyoutId,
-  currentSession,
   ariaLabelledBy: _ariaLabelledBy,
 }: UseEuiFlyoutMenu) => {
   const generatedMenuId = useGeneratedHtmlId();
@@ -50,12 +46,6 @@ export const useEuiFlyoutMenu = ({
     return _titleId || generatedMenuId;
   }, [hasMenu, _titleId, generatedMenuId]);
 
-  // Determine if the menu should hide its title
-  // If provided, use the explicit hideTitle prop, if not hide menu title for main flyouts
-  const flyoutMenuHideTitle = hasMenu
-    ? _flyoutMenuProps?.hideTitle ?? currentSession?.mainFlyoutId === flyoutId
-    : undefined;
-
   // Determine if the menu has any content
   // hasBackButton or hasHistory or hasCustomActions or hasVisibleTitle
   const menuHasContent =
@@ -63,7 +53,8 @@ export const useEuiFlyoutMenu = ({
     (!!flyoutMenuProps.showBackButton ||
       (flyoutMenuProps.historyItems?.length ?? 0) > 0 ||
       (flyoutMenuProps.customActions?.length ?? 0) > 0 ||
-      !!(flyoutMenuProps.title && !flyoutMenuHideTitle));
+      // Component defaults to hiding the title, so only explicit false means the title will be visible
+      !!(flyoutMenuProps.title && flyoutMenuProps.hideTitle === false));
 
   // Determine if the menu should be rendered based on the display mode and menu content
   const shouldRenderMenu = useMemo(() => {
@@ -84,7 +75,6 @@ export const useEuiFlyoutMenu = ({
   return {
     flyoutMenuId,
     flyoutMenuProps,
-    flyoutMenuHideTitle,
     shouldRenderMenu,
     ariaLabelledBy,
   };

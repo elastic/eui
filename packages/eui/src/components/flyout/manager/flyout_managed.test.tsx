@@ -383,7 +383,7 @@ describe('EuiManagedFlyout', () => {
           onClose={() => {}}
           flyoutMenuProps={{
             title: 'Test Title',
-            // hideTitle not specified - will be auto-determined by base component
+            // hideTitle not specified - defaults to true
           }}
         />
       );
@@ -400,7 +400,7 @@ describe('EuiManagedFlyout', () => {
           onClose={() => {}}
           flyoutMenuProps={{
             title: 'Child Title',
-            // hideTitle not specified - will be auto-determined by base component
+            // hideTitle not specified - defaults to true
           }}
         />
       );

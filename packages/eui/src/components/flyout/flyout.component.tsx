@@ -395,19 +395,25 @@ export const EuiFlyoutComponent = forwardRef(
       currentSession?.childFlyoutId === flyoutId;
     const currentZIndexRef = useRef(managerState?.currentZIndex ?? 0);
 
-    const {
-      flyoutMenuId,
-      flyoutMenuProps,
-      flyoutMenuHideTitle,
-      shouldRenderMenu,
-      ariaLabelledBy,
-    } = useEuiFlyoutMenu({
-      flyoutMenuProps: _flyoutMenuProps,
-      flyoutMenuDisplayMode,
-      flyoutId,
-      currentSession,
-      ariaLabelledBy: _ariaLabelledBy,
-    });
+    const { flyoutMenuId, flyoutMenuProps, shouldRenderMenu, ariaLabelledBy } =
+      useEuiFlyoutMenu({
+        flyoutMenuProps: _flyoutMenuProps,
+        flyoutMenuDisplayMode,
+        ariaLabelledBy: _ariaLabelledBy,
+      });
+
+    useEffect(() => {
+      if (
+        process.env.NODE_ENV === 'development' &&
+        _flyoutMenuProps &&
+        'hideTitle' in _flyoutMenuProps
+      ) {
+        console.warn(
+          'EuiFlyout: `flyoutMenuProps.hideTitle` is deprecated. Use `EuiFlyoutHeader` for visible titles instead.'
+        );
+      }
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     // Use a ref to access the latest flyoutManager without triggering effect re-runs
     const flyoutManagerRef = useRef(flyoutManager);
@@ -1089,11 +1095,7 @@ export const EuiFlyoutComponent = forwardRef(
           >
             {!isPushed && screenReaderDescription}
             {shouldRenderMenu ? (
-              <EuiFlyoutMenu
-                {...flyoutMenuProps}
-                hideTitle={flyoutMenuHideTitle}
-                titleId={flyoutMenuId}
-              />
+              <EuiFlyoutMenu {...flyoutMenuProps} titleId={flyoutMenuId} />
             ) : (
               !hideCloseButton && (
                 <EuiFlyoutCloseButton

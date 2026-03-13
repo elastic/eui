@@ -13,7 +13,6 @@ import { MENU_DISPLAY_ALWAYS, MENU_DISPLAY_AUTO } from './const';
 const defaultProps: UseEuiFlyoutMenu = {
   flyoutMenuDisplayMode: MENU_DISPLAY_ALWAYS,
   flyoutMenuProps: { title: 'Test Menu Title' },
-  flyoutId: 'test-flyout',
 };
 
 describe('useEuiFlyoutMenu', () => {
@@ -38,40 +37,6 @@ describe('useEuiFlyoutMenu', () => {
         flyoutMenuProps: { titleId: undefined },
       });
       expect(result.current.flyoutMenuId).toMatch(/^generated-id/);
-    });
-  });
-
-  describe('flyoutMenuHideTitle', () => {
-    it('returns true when flyout is the main flyout in session', () => {
-      const { result } = render({
-        currentSession: { mainFlyoutId: 'main-flyout' },
-        flyoutId: 'main-flyout',
-      });
-      expect(result.current.flyoutMenuHideTitle).toBe(true);
-    });
-
-    it('returns false when flyout is not the main flyout', () => {
-      const { result } = render({
-        currentSession: { mainFlyoutId: 'main-flyout' },
-        flyoutId: 'child-flyout',
-      });
-      expect(result.current.flyoutMenuHideTitle).toBe(false);
-    });
-
-    it('returns true when explicit hideTitle is true', () => {
-      const { result } = render({
-        flyoutMenuProps: { hideTitle: true },
-      });
-      expect(result.current.flyoutMenuHideTitle).toBe(true);
-    });
-
-    it('returns false when explicit hideTitle is false even for main flyout', () => {
-      const { result } = render({
-        currentSession: { mainFlyoutId: 'main-flyout' },
-        flyoutId: 'main-flyout',
-        flyoutMenuProps: { hideTitle: false },
-      });
-      expect(result.current.flyoutMenuHideTitle).toBe(false);
     });
   });
 
@@ -120,6 +85,7 @@ describe('useEuiFlyoutMenu', () => {
       it('returns true when menu has visible title', () => {
         const { result } = render({
           flyoutMenuDisplayMode: MENU_DISPLAY_AUTO,
+          flyoutMenuProps: { title: 'Visible Title', hideTitle: false },
         });
         expect(result.current.shouldRenderMenu).toBe(true);
       });
@@ -136,6 +102,14 @@ describe('useEuiFlyoutMenu', () => {
         const { result } = render({
           flyoutMenuDisplayMode: MENU_DISPLAY_AUTO,
           flyoutMenuProps: { title: 'Title to hide', hideTitle: true },
+        });
+        expect(result.current.shouldRenderMenu).toBe(false);
+      });
+
+      it('returns false when menu has title and hideTitle is not explicitly set', () => {
+        const { result } = render({
+          flyoutMenuDisplayMode: MENU_DISPLAY_AUTO,
+          flyoutMenuProps: { title: 'Title to hide' },
         });
         expect(result.current.shouldRenderMenu).toBe(false);
       });
