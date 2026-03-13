@@ -33,7 +33,7 @@ Example:
 | ------------------ | ------------ | ------ | ----------- |
 |                    |              |        |             |
 
-## Screenshots <a href="#user-content-screenshots" id="screenshots">#</a>
+## Screenshots
 
 <!-- Useful for review and release notes -- most PRs should provide these. -->
 
