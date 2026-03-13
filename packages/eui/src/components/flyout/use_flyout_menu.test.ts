@@ -57,6 +57,22 @@ describe('useEuiFlyoutMenu', () => {
       });
       expect(result.current.flyoutMenuHideTitle).toBe(false);
     });
+
+    it('returns true when explicit hideTitle is true', () => {
+      const { result } = render({
+        flyoutMenuProps: { hideTitle: true },
+      });
+      expect(result.current.flyoutMenuHideTitle).toBe(true);
+    });
+
+    it('returns false when explicit hideTitle is false even for main flyout', () => {
+      const { result } = render({
+        currentSession: { mainFlyoutId: 'main-flyout' },
+        flyoutId: 'main-flyout',
+        flyoutMenuProps: { hideTitle: false },
+      });
+      expect(result.current.flyoutMenuHideTitle).toBe(false);
+    });
   });
 
   describe('shouldRenderMenu with display modes', () => {
@@ -115,6 +131,14 @@ describe('useEuiFlyoutMenu', () => {
         });
         expect(result.current.shouldRenderMenu).toBe(false);
       });
+
+      it('returns false when menu only has a hidden title', () => {
+        const { result } = render({
+          flyoutMenuDisplayMode: MENU_DISPLAY_AUTO,
+          flyoutMenuProps: { title: 'Title to hide', hideTitle: true },
+        });
+        expect(result.current.shouldRenderMenu).toBe(false);
+      });
     });
   });
 
@@ -132,6 +156,15 @@ describe('useEuiFlyoutMenu', () => {
         ariaLabelledBy: 'existing-label',
       });
       expect(result.current.ariaLabelledBy).toBe('menu-title existing-label');
+    });
+
+    it('excludes flyoutMenuId when auto mode hides the menu', () => {
+      const { result } = render({
+        flyoutMenuDisplayMode: MENU_DISPLAY_AUTO,
+        flyoutMenuProps: { titleId: 'menu-title' },
+        ariaLabelledBy: 'existing-label',
+      });
+      expect(result.current.ariaLabelledBy).toBe('existing-label');
     });
   });
 });

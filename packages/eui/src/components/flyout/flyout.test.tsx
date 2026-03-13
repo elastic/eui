@@ -262,6 +262,47 @@ describe('EuiFlyout', () => {
         expect(getByTestSubject('euiFlyoutCloseButton')).toBeInTheDocument();
         expect(queryByTestSubject('euiFlyoutMenu')).not.toBeInTheDocument();
       });
+
+      it('renders no close button when hideCloseButton is true and menu has no content', () => {
+        const { queryByTestSubject } = render(
+          <EuiFlyout onClose={() => {}} flyoutMenuProps={{}} hideCloseButton />
+        );
+
+        expect(queryByTestSubject('euiFlyoutMenu')).not.toBeInTheDocument();
+        expect(
+          queryByTestSubject('euiFlyoutCloseButton')
+        ).not.toBeInTheDocument();
+      });
+    });
+
+    describe('aria-labelledby', () => {
+      it('includes menu titleId when menu is rendered', () => {
+        const { getByTestSubject } = render(
+          <EuiFlyout
+            onClose={() => {}}
+            flyoutMenuProps={{ title: 'Test', titleId: 'menu-title' }}
+            data-test-subj="flyout"
+          />
+        );
+        expect(getByTestSubject('flyout')).toHaveAttribute(
+          'aria-labelledby',
+          'menu-title'
+        );
+      });
+      it('excludes menu titleId when auto mode hides the menu', () => {
+        const { getByTestSubject } = render(
+          <EuiFlyout
+            onClose={() => {}}
+            flyoutMenuProps={{ titleId: 'menu-title' }}
+            aria-labelledby="existing-label"
+            data-test-subj="flyout"
+          />
+        );
+        expect(getByTestSubject('flyout')).toHaveAttribute(
+          'aria-labelledby',
+          'existing-label'
+        );
+      });
     });
   });
 
