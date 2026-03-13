@@ -319,6 +319,13 @@ const StatefulFlyout: React.FC<FlyoutChildStoryArgs> = ({
                 aria-label={`Child Flyout Panel (${childSize})`}
                 onClose={closeChild}
               >
+                <EuiFlyoutHeader>
+                  <EuiText>
+                    <h2 id="flyout-manager-playground-child-title">
+                      Child Flyout Menu ({childSize})
+                    </h2>
+                  </EuiText>
+                </EuiFlyoutHeader>
                 <EuiFlyoutBody>
                   <EuiText>
                     <p>This is the child flyout content.</p>
