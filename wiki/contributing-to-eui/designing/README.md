@@ -15,4 +15,4 @@ Code changes that impact design and require Figma library updates include:
 
 1. Contact the design colleague in your team who can support you throughout the process, if needed.
 2. Create a new Figma branch in the [Elastic UI Borealis](https://www.figma.com/design/FHys7gLzyvD1gc9DrJM6D8/Elastic-UI--Borealis-?m=auto) library that includes the proposed changes and links to the related PR.
-3. Request a design review in Figma using the built-in workflow, or share the branch in the #eui-figma Slack channel.
+3. Request a design review in Figma using the built-in workflow, or share the branch in the #eui-design Slack channel.
