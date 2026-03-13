@@ -247,7 +247,9 @@ export function useEuiTimeWindow(
   This ensures the window is always at a clean boundary (e.g. 00:00:00.000 - 23:59:59.999). */
   const isInclusiveBoundary = !isInvalid && max.milliseconds() === 999;
   const endBoundary = !isInvalid
-    ? moment(isInclusiveBoundary ? moment(max).add(1, 'ms') : max)
+    ? isInclusiveBoundary
+      ? moment(max).add(1, 'ms')
+      : moment(max)
     : null;
   const windowDuration = isInvalid || !endBoundary ? -1 : endBoundary.diff(min);
   const isWindowDurationZero = windowDuration === 0;
@@ -280,7 +282,10 @@ export function useEuiTimeWindow(
     apply({
       /* Prevent 1ms drifts for inclusive boundaries by using the exclusive max (+ 1ms)
       as the start of the next window (e.g. 00:00:00.000 instead of 23:59:59.999) */
-      start: moment(isInclusiveBoundary ? endBoundary : max).toISOString(),
+      start: (isInclusiveBoundary
+        ? endBoundary! // `!` is safe here because we early return on `isInvalid`
+        : moment(max)
+      ).toISOString(),
       end: moment(max).add(windowDuration, 'ms').toISOString(),
     });
   }
@@ -291,8 +296,9 @@ export function useEuiTimeWindow(
       start: moment(min).subtract(windowDuration, 'ms').toISOString(),
       /* Prevent 1ms drifts for inclusive boundaries by using the exclusive min (- 1ms)
       as the end of the previous window (e.g. 23:59:59.999 instead of 00:00:00.000) */
-      end: moment(
-        isInclusiveBoundary ? moment(min).subtract(1, 'ms') : min
+      end: (isInclusiveBoundary
+        ? moment(min).subtract(1, 'ms')
+        : moment(min)
       ).toISOString(),
     });
   }
