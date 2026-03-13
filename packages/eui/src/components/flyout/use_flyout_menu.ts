@@ -50,26 +50,20 @@ export const useEuiFlyoutMenu = ({
     return _titleId || generatedMenuId;
   }, [hasMenu, _titleId, generatedMenuId]);
 
-  // If the flyout level is LEVEL_MAIN, the title should be hidden by default
-  const flyoutMenuHideTitle = useMemo(() => {
-    if (!hasMenu) return undefined;
-    if (_flyoutMenuProps?.hideTitle !== undefined) {
-      return _flyoutMenuProps.hideTitle;
-    }
-    return currentSession?.mainFlyoutId === flyoutId;
-  }, [hasMenu, _flyoutMenuProps, currentSession, flyoutId]);
+  // Determine if the menu should hide its title
+  // If provided, use the explicit hideTitle prop, if not hide menu title for main flyouts
+  const flyoutMenuHideTitle = hasMenu
+    ? _flyoutMenuProps?.hideTitle ?? currentSession?.mainFlyoutId === flyoutId
+    : undefined;
 
   // Determine if the menu has any content
-  const menuHasContent = useMemo(() => {
-    if (!hasMenu) return false;
-
-    const hasBackButton = !!flyoutMenuProps.showBackButton;
-    const hasHistory = (flyoutMenuProps.historyItems?.length ?? 0) > 0;
-    const hasCustomActions = (flyoutMenuProps.customActions?.length ?? 0) > 0;
-    const hasVisibleTitle = !!(flyoutMenuProps.title && !flyoutMenuHideTitle);
-
-    return hasBackButton || hasHistory || hasCustomActions || hasVisibleTitle;
-  }, [hasMenu, flyoutMenuProps, flyoutMenuHideTitle]);
+  // hasBackButton or hasHistory or hasCustomActions or hasVisibleTitle
+  const menuHasContent =
+    hasMenu &&
+    (!!flyoutMenuProps.showBackButton ||
+      (flyoutMenuProps.historyItems?.length ?? 0) > 0 ||
+      (flyoutMenuProps.customActions?.length ?? 0) > 0 ||
+      !!(flyoutMenuProps.title && !flyoutMenuHideTitle));
 
   // Determine if the menu should be rendered based on the display mode and menu content
   const shouldRenderMenu = useMemo(() => {
