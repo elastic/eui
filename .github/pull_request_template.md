@@ -79,7 +79,7 @@ Example:
 
 ### QA instructions for reviewer
 
-<!-- Steps for reviewers to test this PR -->
+<!-- Steps for reviewers to test this PR. Please, try to be as thorough as possible, remembering that the reviewer may not have the same context and knowledge as you have. -->
 
 ### Checklist before marking Ready for Review
 
