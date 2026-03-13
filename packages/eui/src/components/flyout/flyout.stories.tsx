@@ -20,15 +20,10 @@ import {
   EuiFlyoutFooter,
 } from './index';
 import { LOKI_SELECTORS } from '../../../.storybook/loki';
-import {
-  DEFAULT_MENU_DISPLAY_MODE,
-  EuiFlyoutMenuDisplayMode,
-  FLYOUT_MENU_DISPLAY_MODES,
-} from './const';
+import { DEFAULT_MENU_DISPLAY_MODE, FLYOUT_MENU_DISPLAY_MODES } from './const';
 
 interface FlyoutStoryArgs extends EuiFlyoutProps {
   onToggle?: (open: boolean) => void;
-  flyoutMenuDisplayMode?: EuiFlyoutMenuDisplayMode;
   showCustomActions?: boolean;
 }
 
