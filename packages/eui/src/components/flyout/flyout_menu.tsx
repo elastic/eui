@@ -96,8 +96,10 @@ export type EuiFlyoutMenuProps = CommonProps &
      */
     iconType?: IconType;
     /**
-     * Hides the title in the `EuiFlyoutMenu`. This is useful when the title is already shown in an `EuiFlyoutHeader`.
-     * @default true for main flyout in a managed flyout session; false otherwise
+     * Hides the title in the `EuiFlyoutMenu`.
+     * @default true
+     * @deprecated Use `EuiFlyoutHeader` for visible titles instead.
+     * `hideTitle` is still honored but may be removed in a future major version.
      */
     hideTitle?: boolean;
     /**
@@ -196,7 +198,7 @@ export const EuiFlyoutMenu: FunctionComponent<EuiFlyoutMenuProps> = ({
   className,
   title,
   titleId,
-  hideTitle,
+  hideTitle = true,
   hideCloseButton,
   historyItems = [],
   showBackButton,
