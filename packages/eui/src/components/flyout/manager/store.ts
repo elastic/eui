@@ -6,6 +6,7 @@
  * Side Public License, v 1.
  */
 
+import type { IconType } from '../../icon';
 import type {
   EuiFlyoutLevel,
   EuiFlyoutManagerState,
@@ -50,6 +51,7 @@ export interface FlyoutManagerStore {
     title: string,
     level?: EuiFlyoutLevel,
     size?: string,
+    iconType?: IconType,
     minWidth?: number
   ) => void;
   closeFlyout: (flyoutId: string) => void;
@@ -64,6 +66,7 @@ export interface FlyoutManagerStore {
   closeUnmanagedFlyout: (flyoutId: string) => void;
   historyItems: Array<{
     title: string;
+    iconType?: IconType;
     onClick: () => void;
   }>;
 }
@@ -103,6 +106,7 @@ function createStore(
 
   const computeHistoryItems = (): Array<{
     title: string;
+    iconType?: IconType;
     onClick: () => void;
   }> => {
     const currentSessionIndex = currentState.sessions.length - 1;
@@ -110,12 +114,15 @@ function createStore(
       0,
       currentSessionIndex
     );
-    return previousSessions.reverse().map(({ title, mainFlyoutId }) => ({
-      title,
-      onClick: () => {
-        store.dispatch(goToFlyoutAction(mainFlyoutId));
-      },
-    }));
+    return previousSessions
+      .reverse()
+      .map(({ title, iconType, mainFlyoutId }) => ({
+        title,
+        iconType,
+        onClick: () => {
+          store.dispatch(goToFlyoutAction(mainFlyoutId));
+        },
+      }));
   };
 
   const dispatch = (action: Action) => {
@@ -154,8 +161,10 @@ function createStore(
     subscribe,
     subscribeToEvents,
     dispatch,
-    addFlyout: (flyoutId, title, level, size, minWidth) =>
-      dispatch(addFlyoutAction(flyoutId, title, level, size, minWidth)),
+    addFlyout: (flyoutId, title, level, size, iconType, minWidth) =>
+      dispatch(
+        addFlyoutAction(flyoutId, title, level, size, iconType, minWidth)
+      ),
     closeFlyout: (flyoutId) => dispatch(closeFlyoutAction(flyoutId)),
     closeAllFlyouts: () => dispatch(closeAllFlyoutsAction()),
     setActiveFlyout: (flyoutId) => dispatch(setActiveFlyoutAction(flyoutId)),

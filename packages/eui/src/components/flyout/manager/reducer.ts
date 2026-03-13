@@ -88,7 +88,7 @@ export function flyoutManagerReducer(
     // - For a `child` flyout, attach it to the most recent session; if no
     //   session exists, do nothing (invalid child without a parent).
     case ACTION_ADD: {
-      const { flyoutId, title, level, size, minWidth } = action;
+      const { flyoutId, title, level, size, iconType, minWidth } = action;
 
       // Ignore duplicate registrations
       if (state.flyouts.some((f) => f.flyoutId === flyoutId)) {
@@ -111,6 +111,7 @@ export function flyoutManagerReducer(
         const newSession: FlyoutSession = {
           mainFlyoutId: flyoutId,
           title: title,
+          iconType,
           childFlyoutId: null,
           zIndex: state.currentZIndex,
         };

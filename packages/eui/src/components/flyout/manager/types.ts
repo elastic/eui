@@ -6,6 +6,7 @@
  * Side Public License, v 1.
  */
 
+import type { IconType } from '../../icon';
 import type { Action } from './actions';
 
 import {
@@ -55,6 +56,8 @@ export interface FlyoutSession {
   childFlyoutId: string | null;
   /** Title of the main flyout in this session */
   title: string;
+  /** Optional icon for this session when shown in history popover */
+  iconType?: IconType;
   /** z-index value to be used by the flyout session */
   zIndex: number;
 }
@@ -95,6 +98,7 @@ export interface FlyoutManagerApi {
     title: string,
     level?: EuiFlyoutLevel,
     size?: string,
+    iconType?: IconType,
     minWidth?: number
   ) => void;
   closeFlyout: (flyoutId: string) => void;
@@ -109,6 +113,7 @@ export interface FlyoutManagerApi {
   closeUnmanagedFlyout: (flyoutId: string) => void;
   historyItems: Array<{
     title: string;
+    iconType?: IconType;
     onClick: () => void;
   }>;
 }

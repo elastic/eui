@@ -211,6 +211,7 @@ export const EuiManagedFlyout = forwardRef<HTMLElement, EuiManagedFlyoutProps>(
         title!,
         level,
         size as string,
+        _flyoutMenuProps?.iconType,
         typeof minWidth === 'number' ? minWidth : undefined
       );
 
@@ -230,6 +231,7 @@ export const EuiManagedFlyout = forwardRef<HTMLElement, EuiManagedFlyoutProps>(
       level,
       size,
       minWidth,
+      _flyoutMenuProps?.iconType,
       addFlyout,
       closeFlyout,
       closeAllFlyouts,

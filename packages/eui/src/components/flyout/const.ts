@@ -23,6 +23,19 @@ export const FLYOUT_SIZES = ['s', 'm', 'l', 'fill'] as const;
 /** Type representing a supported named flyout size. */
 export type EuiFlyoutSize = (typeof FLYOUT_SIZES)[number];
 
+/** Menu display mode: always render menu when flyoutMenuProps is provided. */
+export const MENU_DISPLAY_ALWAYS = 'always' as const;
+/** Menu display mode: only render menu when it has content (back button, history, title, or custom actions). */
+export const MENU_DISPLAY_AUTO = 'auto' as const;
+/** Allowed flyout menu display modes. */
+export const FLYOUT_MENU_DISPLAY_MODES = [
+  MENU_DISPLAY_ALWAYS,
+  MENU_DISPLAY_AUTO,
+] as const;
+/** Type representing a supported flyout menu display mode. */
+export type EuiFlyoutMenuDisplayMode =
+  (typeof FLYOUT_MENU_DISPLAY_MODES)[number];
+
 /** Allowed padding sizes for flyout content. */
 export const FLYOUT_PADDING_SIZES = ['none', 's', 'm', 'l'] as const;
 /** Type representing a supported flyout padding size. */
@@ -38,6 +51,9 @@ export const DEFAULT_SIDE: _EuiFlyoutSide = 'right';
 export const DEFAULT_SIZE: EuiFlyoutSize = 'm';
 /** Default padding size inside flyouts. */
 export const DEFAULT_PADDING_SIZE: _EuiFlyoutPaddingSize = 'l';
+/** Default flyout menu display mode. */
+export const DEFAULT_MENU_DISPLAY_MODE: EuiFlyoutMenuDisplayMode =
+  MENU_DISPLAY_AUTO;
 
 /**
  * Custom type checker for named flyout sizes since the prop
