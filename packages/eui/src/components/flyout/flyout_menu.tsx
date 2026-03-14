@@ -204,6 +204,7 @@ export const EuiFlyoutMenu: FunctionComponent<EuiFlyoutMenuProps> = ({
   showBackButton,
   backButtonProps,
   customActions,
+  iconType: _iconType,
   ...rest
 }) => {
   const { onClose } = useContext(EuiFlyoutMenuContext);
