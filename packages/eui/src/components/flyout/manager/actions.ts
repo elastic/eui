@@ -107,10 +107,12 @@ export interface GoBackAction extends BaseAction {
   type: typeof ACTION_GO_BACK;
 }
 
-/** Navigate to a specific flyout (remove all sessions after it). */
+/** Navigate to a specific flyout (remove all sessions after it, or pop to child in history). */
 export interface GoToFlyoutAction extends BaseAction {
   type: typeof ACTION_GO_TO_FLYOUT;
   flyoutId: string;
+  /** When 'child', find flyout in current session's childHistory and pop to it. When 'main' or omitted, find session by mainFlyoutId. */
+  level?: EuiFlyoutLevel;
 }
 
 /** Set push padding offset for a specific side. */
@@ -235,10 +237,14 @@ export const goBack = (): GoBackAction => ({
   type: ACTION_GO_BACK,
 });
 
-/** Navigate to a specific flyout (remove all sessions after it). */
-export const goToFlyout = (flyoutId: string): GoToFlyoutAction => ({
+/** Navigate to a specific flyout (remove all sessions after it, or pop to child in history when level === 'child'). */
+export const goToFlyout = (
+  flyoutId: string,
+  level?: EuiFlyoutLevel
+): GoToFlyoutAction => ({
   type: ACTION_GO_TO_FLYOUT,
   flyoutId,
+  level,
 });
 
 /** Set push padding offset for a specific side. */
