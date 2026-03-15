@@ -88,6 +88,7 @@ export const createTestSession = (
   title,
   childFlyoutId,
   childHistory: [],
+  historyKey: Symbol(mainFlyoutId),
   zIndex: 0,
   ...overrides,
 });
