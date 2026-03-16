@@ -88,10 +88,6 @@ export const SeverityBackgroundColorsTable = () => {
           value: euiTheme.colors.backgroundFilledDanger,
           token: 'colors.backgroundFilledDanger',
         },
-        {
-          value: euiTheme.colors.backgroundFilledAssistance,
-          token: 'colors.backgroundFilledAssistance',
-        },
       ]}
     />
   );
