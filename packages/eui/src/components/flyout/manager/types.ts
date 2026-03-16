@@ -6,6 +6,7 @@
  * Side Public License, v 1.
  */
 
+import type { IconType } from '../../icon';
 import type { Action } from './actions';
 
 import {
@@ -48,6 +49,13 @@ export interface EuiManagedFlyoutState {
   activityStage?: EuiFlyoutActivityStage;
 }
 
+/** Entry for a child flyout in session history. */
+export interface ChildHistoryEntry {
+  flyoutId: string;
+  title: string;
+  iconType?: IconType;
+}
+
 export interface FlyoutSession {
   /** ID of the main flyout for this session */
   mainFlyoutId: string;
@@ -55,8 +63,16 @@ export interface FlyoutSession {
   childFlyoutId: string | null;
   /** Title of the main flyout in this session */
   title: string;
+  /** Optional icon for this session when shown in history popover */
+  iconType?: IconType;
   /** z-index value to be used by the flyout session */
   zIndex: number;
+  /** Title of the current child flyout. */
+  childTitle?: string;
+  /** Icon of the current child flyout. */
+  childIconType?: IconType;
+  /** Stack of child flyouts we navigated away from. */
+  childHistory: ChildHistoryEntry[];
 }
 
 export interface PushPaddingOffsets {
@@ -95,6 +111,7 @@ export interface FlyoutManagerApi {
     title: string,
     level?: EuiFlyoutLevel,
     size?: string,
+    iconType?: IconType,
     minWidth?: number
   ) => void;
   closeFlyout: (flyoutId: string) => void;
@@ -104,11 +121,12 @@ export interface FlyoutManagerApi {
   setPushPadding: (side: 'left' | 'right', width: number) => void;
   setContainerElement: (element: HTMLElement | null) => void;
   goBack: () => void;
-  goToFlyout: (flyoutId: string) => void;
+  goToFlyout: (flyoutId: string, level?: EuiFlyoutLevel) => void;
   addUnmanagedFlyout: (flyoutId: string) => void;
   closeUnmanagedFlyout: (flyoutId: string) => void;
   historyItems: Array<{
     title: string;
+    iconType?: IconType;
     onClick: () => void;
   }>;
 }

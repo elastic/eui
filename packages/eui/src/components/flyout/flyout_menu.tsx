@@ -26,6 +26,7 @@ import { euiFlyoutMenuStyles } from './flyout_menu.styles';
 import { EuiFlyoutMenuContext } from './flyout_menu_context';
 import type { EuiFlyoutCloseEvent } from './types';
 import { EuiI18n, useEuiI18n } from '../i18n';
+import type { IconType } from '../icon';
 
 type EuiFlyoutMenuBackButtonProps = Pick<
   PropsForAnchor<EuiButtonProps>,
@@ -40,6 +41,10 @@ export interface EuiFlyoutHistoryItem {
    * Title for the history item
    */
   title: string;
+  /**
+   * An optional icon to display next to the session title in the history menu
+   */
+  iconType?: IconType;
   /**
    * onClick handler for the history item
    */
@@ -87,8 +92,14 @@ export type EuiFlyoutMenuProps = CommonProps &
      */
     title?: React.ReactNode;
     /**
-     * Hides the title in the `EuiFlyoutMenu`. This is useful when the title is already shown in an `EuiFlyoutHeader`.
-     * @default true for main flyout in a managed flyout session; false otherwise
+     * An optional icon to display next to the session title in the history menu
+     */
+    iconType?: IconType;
+    /**
+     * Hides the title in the `EuiFlyoutMenu`.
+     * @default true
+     * @deprecated Use `EuiFlyoutHeader` for visible titles instead.
+     * `hideTitle` is still honored but may be removed in a future major version.
      */
     hideTitle?: boolean;
     /**
@@ -158,6 +169,7 @@ const HistoryPopover: React.FC<{
           <EuiListGroupItem
             key={`history-item-${index}`}
             label={item.title}
+            iconType={item.iconType}
             size="s"
             onClick={() => {
               item.onClick();
@@ -186,7 +198,7 @@ export const EuiFlyoutMenu: FunctionComponent<EuiFlyoutMenuProps> = ({
   className,
   title,
   titleId,
-  hideTitle,
+  hideTitle = true,
   hideCloseButton,
   historyItems = [],
   showBackButton,
@@ -221,7 +233,12 @@ export const EuiFlyoutMenu: FunctionComponent<EuiFlyoutMenuProps> = ({
   );
 
   return (
-    <div className={classes} css={styles.euiFlyoutMenu__container} {...rest}>
+    <div
+      className={classes}
+      css={styles.euiFlyoutMenu__container}
+      data-test-subj="euiFlyoutMenu"
+      {...rest}
+    >
       <EuiFlexGroup
         alignItems="center"
         justifyContent="spaceBetween"

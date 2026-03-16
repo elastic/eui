@@ -20,6 +20,7 @@ import {
 } from './flyout';
 import { EuiProvider } from '../provider';
 import { EuiFlyoutManager } from './manager';
+import { MENU_DISPLAY_ALWAYS } from './const';
 
 jest.mock('../overlay_mask', () => ({
   EuiOverlayMask: ({ headerZindexLocation, maskRef, ...props }: any) => (
@@ -136,10 +137,11 @@ describe('EuiFlyout', () => {
   });
 
   describe('aria-labelledby and flyout menu integration', () => {
-    it('sets aria-labelledby when flyout has a menu with title', () => {
+    it('sets aria-labelledby when flyout has a visible menu', () => {
       const { getByTestSubject } = render(
         <EuiFlyout
           onClose={() => {}}
+          flyoutMenuDisplayMode={MENU_DISPLAY_ALWAYS}
           flyoutMenuProps={{ title: 'Test Menu Title' }}
           data-test-subj="flyout"
         />
@@ -158,6 +160,7 @@ describe('EuiFlyout', () => {
       const { getByTestSubject } = render(
         <EuiFlyout
           onClose={() => {}}
+          flyoutMenuDisplayMode={MENU_DISPLAY_ALWAYS}
           flyoutMenuProps={{
             title: 'Test Menu Title',
             titleId: customTitleId,
@@ -177,6 +180,7 @@ describe('EuiFlyout', () => {
       const { getByTestSubject } = render(
         <EuiFlyout
           onClose={() => {}}
+          flyoutMenuDisplayMode={MENU_DISPLAY_ALWAYS}
           flyoutMenuProps={{
             title: 'Test Menu Title',
             titleId: customTitleId,
@@ -215,6 +219,97 @@ describe('EuiFlyout', () => {
 
       const flyout = getByTestSubject('flyout');
       expect(flyout).toHaveAttribute('aria-labelledby', existingAriaLabelledBy);
+    });
+  });
+
+  describe('flyoutMenuDisplayMode', () => {
+    describe('always mode', () => {
+      it('renders menu even when menu has no content', () => {
+        const { getByTestSubject } = render(
+          <EuiFlyout
+            onClose={() => {}}
+            flyoutMenuProps={{}}
+            flyoutMenuDisplayMode={MENU_DISPLAY_ALWAYS}
+          />
+        );
+
+        expect(getByTestSubject('euiFlyoutMenu')).toBeInTheDocument();
+      });
+    });
+
+    describe('auto mode', () => {
+      it('renders menu when menu has content', () => {
+        const { getByTestSubject } = render(
+          <EuiFlyout
+            onClose={() => {}}
+            flyoutMenuProps={{
+              customActions: [
+                {
+                  iconType: 'gear',
+                  onClick: () => {},
+                  'aria-label': 'Settings',
+                },
+              ],
+            }}
+          />
+        );
+
+        expect(getByTestSubject('euiFlyoutMenu')).toBeInTheDocument();
+      });
+
+      it('renders close button when menu has no content', () => {
+        const { getByTestSubject, queryByTestSubject } = render(
+          <EuiFlyout onClose={() => {}} flyoutMenuProps={{}} />
+        );
+
+        expect(getByTestSubject('euiFlyoutCloseButton')).toBeInTheDocument();
+        expect(queryByTestSubject('euiFlyoutMenu')).not.toBeInTheDocument();
+      });
+
+      it('renders no close button when hideCloseButton is true and menu has no content', () => {
+        const { queryByTestSubject } = render(
+          <EuiFlyout onClose={() => {}} flyoutMenuProps={{}} hideCloseButton />
+        );
+
+        expect(queryByTestSubject('euiFlyoutMenu')).not.toBeInTheDocument();
+        expect(
+          queryByTestSubject('euiFlyoutCloseButton')
+        ).not.toBeInTheDocument();
+      });
+    });
+
+    describe('aria-labelledby', () => {
+      it('includes menu titleId when menu is rendered', () => {
+        const { getByTestSubject } = render(
+          <EuiFlyout
+            onClose={() => {}}
+            flyoutMenuDisplayMode={MENU_DISPLAY_ALWAYS}
+            flyoutMenuProps={{
+              title: 'Test',
+              titleId: 'menu-title',
+            }}
+            data-test-subj="flyout"
+          />
+        );
+        expect(getByTestSubject('flyout')).toHaveAttribute(
+          'aria-labelledby',
+          'menu-title'
+        );
+      });
+      it('excludes menu titleId when auto mode hides the menu', () => {
+        const { getByTestSubject } = render(
+          <EuiFlyout
+            onClose={() => {}}
+            flyoutMenuProps={{ titleId: 'menu-title' }}
+            aria-labelledby="existing-label"
+            data-test-subj="flyout"
+          />
+        );
+        expect(getByTestSubject('flyout')).toHaveAttribute(
+          'aria-labelledby',
+          'existing-label'
+        );
+      });
     });
   });
 

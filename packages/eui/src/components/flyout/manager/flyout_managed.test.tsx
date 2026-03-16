@@ -32,6 +32,11 @@ import {
   PROPERTY_FLYOUT,
   PROPERTY_LEVEL,
 } from './const';
+import {
+  createFlyoutManagerMock,
+  mockCloseAllFlyouts,
+  mockCloseFlyout,
+} from './__mocks__';
 
 const mockFlushSync: jest.Mock = jest.mocked(ReactDOM.flushSync);
 
@@ -56,33 +61,7 @@ jest.mock('../flyout.component', () => {
   };
 });
 
-// Shared mock functions - must be defined in module scope for Jest
-const mockCloseFlyout = jest.fn();
-const mockCloseAllFlyouts = jest.fn();
-
-// Create mock state and functions once at module scope to avoid redundant object creation
-const mockState = {
-  sessions: [],
-  flyouts: [],
-  layoutMode: 'side-by-side' as const,
-};
-
-const mockFunctions = {
-  dispatch: jest.fn(),
-  addFlyout: jest.fn(),
-  closeFlyout: mockCloseFlyout,
-  closeAllFlyouts: mockCloseAllFlyouts,
-  setActiveFlyout: jest.fn(),
-  setFlyoutWidth: jest.fn(),
-  goBack: jest.fn(),
-  goToFlyout: jest.fn(),
-  historyItems: [],
-};
-
-const mockFlyoutManager = {
-  state: mockState,
-  ...mockFunctions,
-};
+const mockFlyoutManager = createFlyoutManagerMock();
 
 // Mock hooks that would otherwise depend on ResizeObserver or animation timing
 jest.mock('./hooks', () => ({
@@ -96,7 +75,7 @@ jest.mock('./hooks', () => ({
 }));
 
 jest.mock('./selectors', () => ({
-  useIsFlyoutRegistered: () => false,
+  useIsFlyoutRegistered: jest.fn(() => false),
   useIsFlyoutActive: () => true,
   useHasChildFlyout: () => false,
   useParentFlyoutSize: () => 'm',
@@ -383,7 +362,7 @@ describe('EuiManagedFlyout', () => {
           onClose={() => {}}
           flyoutMenuProps={{
             title: 'Test Title',
-            // hideTitle not specified - will be auto-determined by base component
+            // hideTitle not specified - defaults to true
           }}
         />
       );
@@ -400,7 +379,7 @@ describe('EuiManagedFlyout', () => {
           onClose={() => {}}
           flyoutMenuProps={{
             title: 'Child Title',
-            // hideTitle not specified - will be auto-determined by base component
+            // hideTitle not specified - defaults to true
           }}
         />
       );
@@ -631,6 +610,49 @@ describe('EuiManagedFlyout', () => {
       // Manager should be notified to handle cascade close
       expect(mockCloseAllFlyouts).toHaveBeenCalled();
       expect(onCloseMain).toHaveBeenCalled();
+    });
+
+    it('calls child onClose when child is sibling-rendered and unmounts after store was cleared (cascade-close detection in cleanup)', () => {
+      const onCloseChild = jest.fn();
+      const selectors = jest.requireMock('./selectors');
+      selectors.useIsFlyoutRegistered.mockReturnValue(true);
+
+      const { rerender } = renderInProvider(
+        <>
+          <EuiManagedFlyout
+            id="main-flyout"
+            level={LEVEL_MAIN}
+            onClose={() => {}}
+            flyoutMenuProps={{ title: 'Main Flyout' }}
+          />
+          <EuiManagedFlyout
+            id="child-flyout"
+            level={LEVEL_CHILD}
+            onClose={onCloseChild}
+            flyoutMenuProps={{ title: 'Child Flyout' }}
+          />
+        </>
+      );
+
+      expect(onCloseChild).not.toHaveBeenCalled();
+
+      // Unmount the child only (re-render with only main). The real store was never
+      // updated by the mocked context, so getFlyoutManagerStore().getState().flyouts
+      // is empty. Cleanup sees flyout not in store + wasRegisteredRef → cascade close.
+      rerender(
+        <EuiFlyoutManager>
+          <EuiManagedFlyout
+            id="main-flyout"
+            level={LEVEL_MAIN}
+            onClose={() => {}}
+            flyoutMenuProps={{ title: 'Main Flyout' }}
+          />
+        </EuiFlyoutManager>
+      );
+
+      expect(onCloseChild).toHaveBeenCalledTimes(1);
+
+      selectors.useIsFlyoutRegistered.mockReturnValue(false);
     });
 
     it('calls closeFlyout when closing a child flyout', () => {

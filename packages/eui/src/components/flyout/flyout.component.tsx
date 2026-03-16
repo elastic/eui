@@ -58,11 +58,13 @@ import {
   _EuiFlyoutPaddingSize,
   _EuiFlyoutSide,
   _EuiFlyoutType,
+  DEFAULT_MENU_DISPLAY_MODE,
   DEFAULT_PADDING_SIZE,
   DEFAULT_PUSH_MIN_BREAKPOINT,
   DEFAULT_SIDE,
   DEFAULT_SIZE,
   DEFAULT_TYPE,
+  EuiFlyoutMenuDisplayMode,
   EuiFlyoutSize,
   isEuiFlyoutSizeNamed,
 } from './const';
@@ -74,6 +76,7 @@ import { useEuiFlyoutResizable } from './use_flyout_resizable';
 import type { EuiFlyoutCloseEvent } from './types';
 import { useEuiFlyoutZIndex } from './use_flyout_z_index';
 import { EuiFlyoutParentProvider } from './flyout_parent_context';
+import { useEuiFlyoutMenu } from './use_flyout_menu';
 
 interface _EuiFlyoutComponentProps {
   /**
@@ -198,8 +201,20 @@ interface _EuiFlyoutComponentProps {
   /**
    * Props for the flyout menu to have one rendered in the flyout.
    * If used, the close button will be automatically hidden, as the flyout menu has its own close button.
+   *
+   * Use `flyoutMenuDisplayMode` to control whether/when the menu is rendered. See {@link EuiFlyoutMenuDisplayMode}.
    */
   flyoutMenuProps?: EuiFlyoutMenuProps;
+
+  /**
+   * Controls the display mode of the flyout menu:
+   * - `'auto'`: Render the menu whenever menu props are available and there is navigation content
+   * (back button, history, custom actions) or a visible title.
+   * - `'always'`: Render the menu whenever menu props are available. This may result in a close-only menu.
+   *
+   * @default 'auto'
+   */
+  flyoutMenuDisplayMode?: EuiFlyoutMenuDisplayMode;
 
   /**
    * Whether the flyout should be resizable.
@@ -283,6 +298,7 @@ export const EuiFlyoutComponent = forwardRef(
       as,
       hideCloseButton = false,
       flyoutMenuProps: _flyoutMenuProps,
+      flyoutMenuDisplayMode = DEFAULT_MENU_DISPLAY_MODE,
       closeButtonProps,
       closeButtonPosition = 'inside',
       onClose,
@@ -378,6 +394,26 @@ export const EuiFlyoutComponent = forwardRef(
       currentSession?.mainFlyoutId === flyoutId ||
       currentSession?.childFlyoutId === flyoutId;
     const currentZIndexRef = useRef(managerState?.currentZIndex ?? 0);
+
+    const { flyoutMenuId, flyoutMenuProps, shouldRenderMenu, ariaLabelledBy } =
+      useEuiFlyoutMenu({
+        flyoutMenuProps: _flyoutMenuProps,
+        flyoutMenuDisplayMode,
+        ariaLabelledBy: _ariaLabelledBy,
+      });
+
+    useEffect(() => {
+      if (
+        process.env.NODE_ENV === 'development' &&
+        _flyoutMenuProps &&
+        'hideTitle' in _flyoutMenuProps
+      ) {
+        console.warn(
+          'EuiFlyout: `flyoutMenuProps.hideTitle` is deprecated. Use `EuiFlyoutHeader` for visible titles instead.'
+        );
+      }
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     // Use a ref to access the latest flyoutManager without triggering effect re-runs
     const flyoutManagerRef = useRef(flyoutManager);
@@ -983,34 +1019,6 @@ export const EuiFlyoutComponent = forwardRef(
     );
 
     /*
-     * If the flyout menu is to be rendered, ensure the flyout has aria-labelledby referencing the menu's titleId
-     */
-    const generatedMenuId = useGeneratedHtmlId();
-    const { titleId: _titleId, ...flyoutMenuProps } = _flyoutMenuProps || {};
-    const hasMenu = !!_flyoutMenuProps;
-
-    const flyoutMenuId = useMemo(() => {
-      if (!hasMenu) return undefined;
-      return _titleId || generatedMenuId;
-    }, [hasMenu, _titleId, generatedMenuId]);
-
-    // If the flyout level is LEVEL_MAIN, the title should be hidden by default
-    const flyoutMenuHideTitle = useMemo(() => {
-      if (!hasMenu) return undefined;
-      if (_flyoutMenuProps?.hideTitle !== undefined) {
-        return _flyoutMenuProps.hideTitle;
-      }
-      return currentSession?.mainFlyoutId === flyoutId;
-    }, [hasMenu, _flyoutMenuProps, currentSession, flyoutId]);
-
-    const ariaLabelledBy = useMemo(() => {
-      if (flyoutMenuId) {
-        return classnames(flyoutMenuId, _ariaLabelledBy);
-      }
-      return _ariaLabelledBy;
-    }, [flyoutMenuId, _ariaLabelledBy]);
-
-    /*
      * Trap focus even when `ownFocus={false}`, otherwise closing
      * the flyout won't return focus to the originating button.
      *
@@ -1086,20 +1094,17 @@ export const EuiFlyoutComponent = forwardRef(
             onAnimationEnd={onAnimationEnd}
           >
             {!isPushed && screenReaderDescription}
-            {!_flyoutMenuProps && !hideCloseButton && (
-              <EuiFlyoutCloseButton
-                {...closeButtonProps}
-                onClose={handleClose}
-                closeButtonPosition={closeButtonPosition}
-                side={side}
-              />
-            )}
-            {_flyoutMenuProps && (
-              <EuiFlyoutMenu
-                {...flyoutMenuProps}
-                hideTitle={flyoutMenuHideTitle}
-                titleId={flyoutMenuId}
-              />
+            {shouldRenderMenu ? (
+              <EuiFlyoutMenu {...flyoutMenuProps} titleId={flyoutMenuId} />
+            ) : (
+              !hideCloseButton && (
+                <EuiFlyoutCloseButton
+                  {...closeButtonProps}
+                  onClose={handleClose}
+                  closeButtonPosition={closeButtonPosition}
+                  side={side}
+                />
+              )
             )}
             {resizable && (
               <EuiFlyoutResizeButton

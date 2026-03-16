@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import { actions } from '@storybook/addon-actions';
+import { action, actions } from '@storybook/addon-actions';
 import type { Meta, StoryObj } from '@storybook/react';
 import React, { useState } from 'react';
 
@@ -20,6 +20,12 @@ import { EuiFlyoutFooter } from '../flyout_footer';
 import { EuiFlyoutChild, EuiFlyoutChildProps } from './flyout_child';
 import { useFlyoutLayoutMode } from './hooks';
 import { EuiFlyoutHeader } from '../flyout_header';
+import {
+  DEFAULT_MENU_DISPLAY_MODE,
+  EuiFlyoutMenuDisplayMode,
+  FLYOUT_MENU_DISPLAY_MODES,
+} from '../const';
+import { EuiFlyoutMenuProps } from '../flyout_menu';
 
 type EuiFlyoutChildActualProps = Pick<
   EuiFlyoutChildProps,
@@ -56,6 +62,12 @@ interface FlyoutChildStoryArgs extends EuiFlyoutChildActualProps {
   showFooter?: boolean;
   mainFlyoutResizable?: boolean;
   childFlyoutResizable?: boolean;
+  mainFlyoutMenuDisplayMode?: EuiFlyoutMenuDisplayMode;
+  childFlyoutMenuDisplayMode?: EuiFlyoutMenuDisplayMode;
+  mainFlyoutMenuProps?: EuiFlyoutMenuProps;
+  childFlyoutMenuProps?: EuiFlyoutMenuProps;
+  showMainCustomActions?: boolean;
+  showChildCustomActions?: boolean;
 }
 
 const breakpointSizes: EuiBreakpointSize[] = ['xs', 's', 'm', 'l', 'xl'];
@@ -115,6 +127,24 @@ const meta: Meta<FlyoutChildStoryArgs> = {
       control: { type: 'boolean' },
       description: 'Whether the child flyout should be resizable.',
     },
+    mainFlyoutMenuDisplayMode: {
+      options: FLYOUT_MENU_DISPLAY_MODES,
+      control: { type: 'radio' },
+      description: 'The display mode of the main flyout menu.',
+    },
+    showMainCustomActions: {
+      control: { type: 'boolean' },
+      description: 'Whether to show custom actions in the main flyout menu.',
+    },
+    childFlyoutMenuDisplayMode: {
+      options: FLYOUT_MENU_DISPLAY_MODES,
+      control: { type: 'radio' },
+      description: 'The display mode of the child flyout menu.',
+    },
+    showChildCustomActions: {
+      control: { type: 'boolean' },
+      description: 'Whether to show custom actions in the child flyout menu.',
+    },
     // use "mainSize" and "childSize" instead
     size: { table: { disable: true } },
     // use "mainMaxWidth" and "childMaxWidth" instead
@@ -144,6 +174,10 @@ const meta: Meta<FlyoutChildStoryArgs> = {
     showFooter: true,
     mainFlyoutResizable: false,
     childFlyoutResizable: false,
+    mainFlyoutMenuDisplayMode: DEFAULT_MENU_DISPLAY_MODE,
+    showMainCustomActions: true,
+    childFlyoutMenuDisplayMode: DEFAULT_MENU_DISPLAY_MODE,
+    showChildCustomActions: true,
   },
   parameters: {
     // Skipping visual regression testing with Loki
@@ -170,6 +204,10 @@ const StatefulFlyout: React.FC<FlyoutChildStoryArgs> = ({
   showFooter,
   mainFlyoutResizable,
   childFlyoutResizable,
+  mainFlyoutMenuDisplayMode,
+  showMainCustomActions,
+  childFlyoutMenuDisplayMode,
+  showChildCustomActions,
   ...args
 }) => {
   const [isMainOpen, setIsMainOpen] = useState(true);
@@ -194,6 +232,14 @@ const StatefulFlyout: React.FC<FlyoutChildStoryArgs> = ({
   };
 
   const layoutMode = useFlyoutLayoutMode();
+
+  const customActions = ['gear', 'broom'].map((iconType) => ({
+    iconType,
+    onClick: () => {
+      action('custom action')(`${iconType} action clicked`);
+    },
+    'aria-label': `${iconType} action`,
+  }));
 
   return (
     <>
@@ -224,6 +270,10 @@ const StatefulFlyout: React.FC<FlyoutChildStoryArgs> = ({
           ownFocus={false}
           resizable={mainFlyoutResizable}
           aria-label={`Main Flyout Menu (${mainSize})`}
+          flyoutMenuDisplayMode={mainFlyoutMenuDisplayMode}
+          flyoutMenuProps={{
+            customActions: showMainCustomActions ? customActions : undefined,
+          }}
           {...args}
           onClose={closeMain}
         >
@@ -259,10 +309,23 @@ const StatefulFlyout: React.FC<FlyoutChildStoryArgs> = ({
                 maxWidth={childMaxWidth}
                 ownFocus={false}
                 resizable={childFlyoutResizable}
+                flyoutMenuDisplayMode={childFlyoutMenuDisplayMode}
+                flyoutMenuProps={{
+                  customActions: showChildCustomActions
+                    ? customActions
+                    : undefined,
+                }}
                 {...args}
                 aria-label={`Child Flyout Panel (${childSize})`}
                 onClose={closeChild}
               >
+                <EuiFlyoutHeader>
+                  <EuiText>
+                    <h2 id="flyout-manager-playground-child-title">
+                      Child Flyout Menu ({childSize})
+                    </h2>
+                  </EuiText>
+                </EuiFlyoutHeader>
                 <EuiFlyoutBody>
                   <EuiText>
                     <p>This is the child flyout content.</p>
