@@ -212,6 +212,149 @@ flyouts independently (for example, an Alerts panel and a Logs panel that are
 both active at the same time). Without any extra configuration these areas each
 have their own history.
 
+In the example below, the two **Alerts** buttons share a `historyKey` so their
+flyouts form a single history group — use the Back button or history popover to
+navigate between them. The **Logs** button uses a separate key, so its flyout
+has its own isolated history.
+
+```tsx interactive
+import React, { useState } from "react";
+import {
+  EuiButton,
+  EuiCode,
+  EuiFlyout,
+  EuiFlyoutBody,
+  EuiFlyoutHeader,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiText,
+  EuiTitle,
+} from "@elastic/eui";
+
+const alertsKey = Symbol("alerts");
+const logsKey = Symbol("logs");
+
+export default () => {
+  const [showAlertOverview, setShowAlertOverview] = useState(false);
+  const [showAlertDetail, setShowAlertDetail] = useState(false);
+  const [showLogs, setShowLogs] = useState(false);
+
+  return (
+    <>
+      <EuiFlexGroup gutterSize="s" responsive={false}>
+        <EuiFlexItem grow={false}>
+          <EuiButton
+            iconType="bell"
+            onClick={() => setShowAlertOverview(true)}
+            disabled={showAlertOverview}
+          >
+            Alert overview
+          </EuiButton>
+        </EuiFlexItem>
+        <EuiFlexItem grow={false}>
+          <EuiButton
+            iconType="bell"
+            onClick={() => setShowAlertDetail(true)}
+            disabled={showAlertDetail}
+          >
+            Alert detail
+          </EuiButton>
+        </EuiFlexItem>
+        <EuiFlexItem grow={false}>
+          <EuiButton
+            iconType="logstashOutput"
+            onClick={() => setShowLogs(true)}
+            disabled={showLogs}
+          >
+            Logs
+          </EuiButton>
+        </EuiFlexItem>
+      </EuiFlexGroup>
+
+      {showAlertOverview && (
+        <EuiFlyout
+          session="start"
+          size="s"
+          ownFocus={false}
+          historyKey={alertsKey}
+          aria-labelledby="alertOverviewHeading"
+          flyoutMenuProps={{ title: "Alert overview", iconType: "bell" }}
+          onClose={() => setShowAlertOverview(false)}
+        >
+          <EuiFlyoutHeader>
+            <EuiTitle>
+              <h2 id="alertOverviewHeading">Alert overview</h2>
+            </EuiTitle>
+          </EuiFlyoutHeader>
+          <EuiFlyoutBody>
+            <EuiText>
+              <p>
+                This flyout shares a <EuiCode>historyKey</EuiCode> with{" "}
+                <strong>Alert detail</strong>. Open both to see them appear in
+                the same history group.
+              </p>
+            </EuiText>
+          </EuiFlyoutBody>
+        </EuiFlyout>
+      )}
+
+      {showAlertDetail && (
+        <EuiFlyout
+          session="start"
+          size="s"
+          ownFocus={false}
+          historyKey={alertsKey}
+          aria-labelledby="alertDetailHeading"
+          flyoutMenuProps={{ title: "Alert detail", iconType: "bell" }}
+          onClose={() => setShowAlertDetail(false)}
+        >
+          <EuiFlyoutHeader>
+            <EuiTitle>
+              <h2 id="alertDetailHeading">Alert detail</h2>
+            </EuiTitle>
+          </EuiFlyoutHeader>
+          <EuiFlyoutBody>
+            <EuiText>
+              <p>
+                This flyout shares a <EuiCode>historyKey</EuiCode> with{" "}
+                <strong>Alert overview</strong>. They form a single history
+                group, connected by the Back button.
+              </p>
+            </EuiText>
+          </EuiFlyoutBody>
+        </EuiFlyout>
+      )}
+
+      {showLogs && (
+        <EuiFlyout
+          session="start"
+          size="s"
+          ownFocus={false}
+          historyKey={logsKey}
+          aria-labelledby="logsHeading"
+          flyoutMenuProps={{ title: "Logs", iconType: "logstashOutput" }}
+          onClose={() => setShowLogs(false)}
+        >
+          <EuiFlyoutHeader>
+            <EuiTitle>
+              <h2 id="logsHeading">Logs</h2>
+            </EuiTitle>
+          </EuiFlyoutHeader>
+          <EuiFlyoutBody>
+            <EuiText>
+              <p>
+                This flyout uses a different <EuiCode>historyKey</EuiCode> than
+                the Alerts flyouts. Its history is completely independent.
+              </p>
+            </EuiText>
+          </EuiFlyoutBody>
+        </EuiFlyout>
+      )}
+    </>
+  );
+};
+```
+
 However, if you want **two or more independently-rendered flyouts to share a single
 history** — so that navigating Back can move between them — you can pass the same
 `Symbol` reference as the `historyKey` prop to each flyout:
