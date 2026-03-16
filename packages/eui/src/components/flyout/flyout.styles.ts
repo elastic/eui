@@ -25,8 +25,6 @@ import {
 import { UseEuiTheme } from '../../services';
 import { euiFormMaxWidth } from '../form/form.styles';
 
-export const EUI_FLYOUT_CONTAINER_NAME = 'euiFlyout' as const;
-
 export const FLYOUT_BREAKPOINT = 'm' as const;
 
 export const euiFlyoutSlideInRight = keyframes`
@@ -73,6 +71,11 @@ export const euiFlyoutSlideOutLeft = keyframes`
   }
 `;
 
+/**
+ * When a `container` reference element is provided, the flyout's position
+ * and dimensions are constrained to the container's bounding rect via
+ * inline styles computed in JS.
+ */
 export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
 
@@ -98,28 +101,10 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
 
       ${maxedFlyoutWidth(euiThemeContext)}
     `,
-    // Flyout sizes
-    // When a child flyout is stacked on top of the parent, the parent flyout size will match the child flyout size
-    s: css`
-      ${composeFlyoutSizing(euiThemeContext, 's')}
 
-      &.euiFlyout--hasChild--stacked.euiFlyout--hasChild--m {
-        ${composeFlyoutSizing(euiThemeContext, 'm')}
-      }
-    `,
-    m: css`
-      ${composeFlyoutSizing(euiThemeContext, 'm')}
+    // Flyout sizes (media queries + % sizing)
+    ...composeFlyoutSizing(euiThemeContext),
 
-      &.euiFlyout--hasChild--stacked.euiFlyout--hasChild--s {
-        ${composeFlyoutSizing(euiThemeContext, 's')}
-      }
-    `,
-    l: css`
-      ${composeFlyoutSizing(euiThemeContext, 'l')}
-    `,
-    fill: css`
-      ${composeFlyoutSizing(euiThemeContext, 'fill')}
-    `,
     noMaxWidth: css`
       ${logicalCSS('max-width', 'none')}
     `,
@@ -217,50 +202,59 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
   };
 };
 
+/**
+ * Applies a max-width constraint at the flyout breakpoint.
+ */
 export const maxedFlyoutWidth = (euiThemeContext: UseEuiTheme) => `
   ${euiMaxBreakpoint(euiThemeContext, FLYOUT_BREAKPOINT)} {
-    ${logicalCSS('max-width', '90vw !important')}
+    ${logicalCSS('max-width', '90% !important')}
   }
 `;
 
-export const composeFlyoutSizing = (
-  euiThemeContext: UseEuiTheme,
-  size: EuiFlyoutSize
-) => {
+/**
+ * Composes the full set of named size styles (`s`, `m`, `l`, `fill`).
+ *
+ * Uses `%` units for widths. Media queries drive responsive breakpoints.
+ *
+ * When a child flyout is stacked on top of the parent, the parent flyout
+ * size will match the child flyout size. The `s` and `m` sizes include
+ * overrides for this stacked-child behavior.
+ */
+export const composeFlyoutSizing = (euiThemeContext: UseEuiTheme) => {
   const euiTheme = euiThemeContext.euiTheme;
   const formMaxWidth = euiFormMaxWidth(euiThemeContext);
 
-  // 1. Calculating the minimum width based on the screen takeover breakpoint
+  // Calculating the minimum width based on the screen takeover breakpoint
   const flyoutSizes = {
     s: {
-      min: `${Math.round(euiTheme.breakpoint.m * 0.5)}px`, // 1.
-      width: '25vw',
+      min: `${Math.round(euiTheme.breakpoint.m * 0.5)}px`,
+      width: '25%',
       max: `${Math.round(euiTheme.breakpoint.s * 0.7)}px`,
     },
 
     m: {
       // Calculated for forms plus padding
       min: `${mathWithUnits(formMaxWidth, (x) => x + 24)}`,
-      width: '50vw',
+      width: '50%',
       max: `${euiTheme.breakpoint.m}px`,
     },
 
     l: {
-      min: `${Math.round(euiTheme.breakpoint.m * 0.9)}px`, // 1.
-      width: '75vw',
+      min: `${Math.round(euiTheme.breakpoint.m * 0.9)}px`,
+      width: '75%',
       max: `${euiTheme.breakpoint.l}px`,
     },
 
     // NOTE: These styles are for the flyout system in `stacked` layout mode.
     // In `side-by-side` mode, @flyout.component.tsx uses inline styles.
     fill: {
-      min: '90vw',
-      width: '90vw',
-      max: '90vw',
+      min: '90%',
+      width: '90%',
+      max: '90%',
     },
   };
 
-  return `
+  const sizingRules = (size: EuiFlyoutSize): string => `
     ${logicalCSS('max-width', flyoutSizes[size].max)}
 
     ${euiMaxBreakpoint(euiThemeContext, FLYOUT_BREAKPOINT)} {
@@ -272,6 +266,29 @@ export const composeFlyoutSizing = (
       ${logicalCSS('width', flyoutSizes[size].width)}
     }
   `;
+
+  return {
+    s: css`
+      ${sizingRules('s')}
+
+      &.euiFlyout--hasChild--stacked.euiFlyout--hasChild--m {
+        ${sizingRules('m')}
+      }
+    `,
+    m: css`
+      ${sizingRules('m')}
+
+      &.euiFlyout--hasChild--stacked.euiFlyout--hasChild--s {
+        ${sizingRules('s')}
+      }
+    `,
+    l: css`
+      ${sizingRules('l')}
+    `,
+    fill: css`
+      ${sizingRules('fill')}
+    `,
+  };
 };
 
 const composeFlyoutPadding = (
@@ -333,6 +350,8 @@ const composeMaxWidthOverrides = (
     return {};
   }
 
+  const fillUnit = '90%';
+
   const overrides: React.CSSProperties = {
     maxWidth,
   };
@@ -342,12 +361,12 @@ const composeMaxWidthOverrides = (
     overrides.minWidth = '0';
 
     // When maxWidth is provided for fill flyouts, we need to override the CSS rule
-    // that sets min-inline-size: 90vw. We calculate min(maxWidth, 90vw) to ensure
-    // the flyout respects both constraints and doesn't get stuck at 90vw minimum.
+    // that sets min-inline-size to the fill unit. We calculate min(maxWidth, fillUnit)
+    // to ensure the flyout respects both constraints.
     if (maxWidth) {
       const maxWidthWithUnits =
         typeof maxWidth === 'number' ? `${maxWidth}px` : maxWidth;
-      overrides.minWidth = `min(${maxWidthWithUnits}, 90vw)`;
+      overrides.minWidth = `min(${maxWidthWithUnits}, ${fillUnit})`;
     }
   }
 
@@ -355,7 +374,10 @@ const composeMaxWidthOverrides = (
 };
 
 /**
- * Composes all inline styles for a flyout based on its configuration
+ * Composes all inline styles for a flyout based on its configuration.
+ * Uses a CSS custom property (`--euiFlyoutMainWidth`) for synchronous
+ * tracking of the main flyout width during resize drag, falling back to
+ * the pixel value from manager state when the variable is not set.
  */
 export const composeFlyoutInlineStyles = (
   size: EuiFlyoutSize | string | number,
@@ -365,6 +387,8 @@ export const composeFlyoutInlineStyles = (
   maxWidth: boolean | number | string | undefined,
   zIndex?: number
 ): React.CSSProperties => {
+  const fillUnit = '90%';
+
   // Handle custom width values (non-named sizes)
   const customWidthStyles = !isEuiFlyoutSizeNamed(size)
     ? logicalStyles({ width: size })
@@ -379,13 +403,13 @@ export const composeFlyoutInlineStyles = (
     siblingFlyoutId &&
     siblingFlyoutWidth
       ? logicalStyles({
-          width: `calc(90vw - ${siblingFlyoutWidth}px)`,
+          width: `calc(${fillUnit} - var(--euiFlyoutMainWidth, ${siblingFlyoutWidth}px))`,
           minWidth: '0',
         })
       : {};
 
   // For fill flyouts with maxWidth, we need to ensure the minWidth override is applied
-  // to override the CSS rule that sets min-inline-size: 90vw
+  // to override the CSS rule that sets min-inline-size to the fill unit
   let minWidthOverride = {};
   if (isFill && maxWidth) {
     if (
@@ -394,7 +418,7 @@ export const composeFlyoutInlineStyles = (
       siblingFlyoutWidth &&
       dynamicStyles.inlineSize
     ) {
-      // For fill flyouts with maxWidth and a sibling: min(maxWidth, calc(90vw - siblingWidth))
+      // For fill flyouts with maxWidth and a sibling: min(maxWidth, calc(fillUnit - siblingWidth))
       const dynamicWidth = dynamicStyles.inlineSize;
       const maxWidthWithUnits =
         typeof maxWidth === 'number' ? `${maxWidth}px` : maxWidth;
@@ -402,7 +426,7 @@ export const composeFlyoutInlineStyles = (
         minWidth: `min(${maxWidthWithUnits}, ${dynamicWidth})`,
       };
     } else {
-      // For fill flyouts with maxWidth but no sibling: min(maxWidth, 90vw)
+      // For fill flyouts with maxWidth but no sibling: min(maxWidth, fillUnit)
       const maxWidthOverrides = composeMaxWidthOverrides(maxWidth, isFill);
       minWidthOverride = { minWidth: maxWidthOverrides.minInlineSize };
     }
@@ -419,7 +443,7 @@ export const composeFlyoutInlineStyles = (
     siblingFlyoutWidth &&
     dynamicStyles.inlineSize
   ) {
-    // For fill flyouts with maxWidth and a sibling: min(maxWidth, calc(90vw - siblingWidth))
+    // For fill flyouts with maxWidth and a sibling: min(maxWidth, calc(fillUnit - siblingWidth))
     const dynamicWidth = dynamicStyles.inlineSize;
     const maxWidthWithUnits =
       typeof maxWidth === 'number' ? `${maxWidth}px` : maxWidth;

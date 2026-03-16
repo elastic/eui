@@ -8,7 +8,7 @@
 
 import React, { FunctionComponent, useState } from 'react';
 import classNames from 'classnames';
-import { EuiFieldText, EuiFieldTextProps } from '../../form';
+import { EuiFieldText, EuiFieldTextProps, EuiFormPrepend } from '../../form';
 import {
   EuiButtonEmpty,
   CommonEuiButtonEmptyProps,
@@ -61,18 +61,14 @@ export const EuiAutoRefresh: FunctionComponent<EuiAutoRefreshProps> = ({
           aria-label={autoRefeshLabel}
           onClick={() => setIsPopoverOpen((isOpen) => !isOpen)}
           prepend={
-            <EuiButtonEmpty
+            <EuiFormPrepend
               className="euiFormControlLayout__prepend"
-              onClick={() => setIsPopoverOpen((isOpen) => !isOpen)}
-              size="s"
-              color="text"
-              iconType="timeRefresh"
+              element="button"
+              label={<strong>{autoRefeshLabel}</strong>}
+              iconLeft="refreshTime"
               isDisabled={isDisabled}
-            >
-              <strong>
-                <small>{autoRefeshLabel}</small>
-              </strong>
-            </EuiButtonEmpty>
+              onClick={() => setIsPopoverOpen((isOpen) => !isOpen)}
+            />
           }
           readOnly={readOnly}
           disabled={isDisabled}
@@ -148,7 +144,7 @@ export const EuiAutoRefreshButton: FunctionComponent<
           className={classes}
           size={size}
           color={color}
-          iconType="timeRefresh"
+          iconType="refreshTime"
           title={isPaused ? autoRefeshLabelOff : autoRefeshLabelOn}
           isDisabled={isDisabled}
           {...rest}

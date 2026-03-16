@@ -23,6 +23,7 @@ import {
   EuiFormControlLayoutDelimitedProps,
 } from './form_control_layout_delimited';
 import { EuiFormControlLayoutProps } from './form_control_layout';
+import { EuiFormAppend, EuiFormPrepend } from './append_prepend';
 
 // re-declaring the component with props as the Partial<EuiFormControlLayoutProps>
 // of EuiFormControlLayoutDelimitedProps is otherwise not resolved
@@ -38,7 +39,7 @@ const meta: Meta<EuiFormControlLayoutDelimitedProps> = {
       control: 'radio',
       options: [undefined, 'icon', 'text'],
       mapping: {
-        icon: <EuiIcon type="arrowRight" />,
+        icon: <EuiIcon type="chevronSingleRight" />,
         text: '+',
       },
     },
@@ -46,7 +47,7 @@ const meta: Meta<EuiFormControlLayoutDelimitedProps> = {
       control: 'radio',
       options: [undefined, 'icon', 'text'],
       mapping: {
-        icon: <EuiIcon type="faceHappy" />,
+        icon: <EuiFormAppend iconLeft="faceHappy" />,
         text: 'Appended',
         undefined: undefined,
       },
@@ -55,7 +56,7 @@ const meta: Meta<EuiFormControlLayoutDelimitedProps> = {
       control: 'radio',
       options: [undefined, 'icon', 'text'],
       mapping: {
-        icon: <EuiIcon type="faceHappy" />,
+        icon: <EuiFormPrepend iconLeft="faceHappy" />,
         text: 'Prepended',
         undefined: undefined,
       },
@@ -106,6 +107,7 @@ export const Playground: Story = {
         controlOnly
         placeholder="0"
         aria-label="EuiFormControlLayoutDelimited demo - start control"
+        id="foo"
       />
     ),
     endControl: (
@@ -157,7 +159,7 @@ export const KitchenSink: Story = {
           endControl={<EuiFieldNumber controlOnly placeholder="100" />}
         />
         <EuiFormControlLayoutDelimited
-          icon="vector"
+          icon="vectorSquare"
           startControl={<EuiFieldNumber placeholder="0" controlOnly />}
           endControl={<EuiFieldNumber controlOnly placeholder="100" />}
         />

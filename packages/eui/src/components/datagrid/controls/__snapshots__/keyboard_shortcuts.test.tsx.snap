@@ -15,6 +15,8 @@ exports[`useDataGridKeyboardShortcuts [React 17] returns a popover containing a 
           id="generated-id-wrapper"
         >
           <button
+            aria-controls="euiPopover_generated-id_panelId"
+            aria-expanded="true"
             aria-label="Keyboard shortcuts"
             class="euiButtonIcon emotion-euiButtonIcon-xs-empty-text"
             data-test-subj="dataGridKeyboardShortcutsButton"
@@ -43,20 +45,21 @@ exports[`useDataGridKeyboardShortcuts [React 17] returns a popover containing a 
       data-focus-lock-disabled="false"
     >
       <div
-        aria-describedby="generated-id"
+        aria-describedby="euiPopover_generated-id_descriptionId"
         aria-live="off"
         aria-modal="true"
         class="euiPanel euiPanel--plain euiPopover__panel emotion-euiPanel-grow-m-plain-euiPopover__panel-light-isOpen-hasTransform-bottom"
         data-autofocus="true"
         data-popover-open="true"
         data-popover-panel="true"
+        id="euiPopover_generated-id_panelId"
         role="dialog"
         style="top: 12px; left: 0px; z-index: 2000;"
         tabindex="0"
       >
         <p
           class="emotion-euiScreenReaderOnly"
-          id="generated-id"
+          id="euiPopover_generated-id_descriptionId"
         >
           You are in a dialog. Press Escape, or tap/click outside the dialog to close.
         </p>
@@ -261,6 +264,8 @@ exports[`useDataGridKeyboardShortcuts [React 18] returns a popover containing a 
           id="generated-id-wrapper"
         >
           <button
+            aria-controls="euiPopover_generated-id_panelId"
+            aria-expanded="true"
             aria-label="Keyboard shortcuts"
             class="euiButtonIcon emotion-euiButtonIcon-xs-empty-text"
             data-test-subj="dataGridKeyboardShortcutsButton"
@@ -289,20 +294,21 @@ exports[`useDataGridKeyboardShortcuts [React 18] returns a popover containing a 
       data-focus-lock-disabled="false"
     >
       <div
-        aria-describedby="generated-id"
+        aria-describedby="euiPopover_generated-id_descriptionId"
         aria-live="off"
         aria-modal="true"
         class="euiPanel euiPanel--plain euiPopover__panel emotion-euiPanel-grow-m-plain-euiPopover__panel-light-isOpen-hasTransform-bottom"
         data-autofocus="true"
         data-popover-open="true"
         data-popover-panel="true"
+        id="euiPopover_generated-id_panelId"
         role="dialog"
         style="top: 12px; left: 0px; z-index: 2000;"
         tabindex="0"
       >
         <p
           class="emotion-euiScreenReaderOnly"
-          id="generated-id"
+          id="euiPopover_generated-id_descriptionId"
         >
           You are in a dialog. Press Escape, or tap/click outside the dialog to close.
         </p>

@@ -343,7 +343,7 @@ export default () => {
   };
 
   const button = (
-    <EuiButton iconType="arrowDown" iconSide="right" onClick={onButtonClick}>
+    <EuiButton iconType="chevronSingleDown" iconSide="right" onClick={onButtonClick}>
       Open form in popover
     </EuiButton>
   );
@@ -422,6 +422,7 @@ import {
   EuiFlexItem,
   EuiFormLabel,
   EuiFormRow,
+  EuiFormPrepend,
   EuiHorizontalRule,
   EuiIcon,
   EuiPanel,
@@ -457,25 +458,25 @@ export default () => {
       id: typeStyleToggleButtonId__1,
       label: 'Bold',
       name: 'bold',
-      iconType: 'editorBold',
+      iconType: 'textBold',
     },
     {
       id: typeStyleToggleButtonId__2,
       label: 'Italic',
       name: 'italic',
-      iconType: 'editorItalic',
+      iconType: 'textItalic',
     },
     {
       id: typeStyleToggleButtonId__3,
       label: 'Underline',
       name: 'underline',
-      iconType: 'editorUnderline',
+      iconType: 'textUnderline',
     },
     {
       id: typeStyleToggleButtonId__4,
       label: 'Strikethrough',
       name: 'strikethrough',
-      iconType: 'editorStrike',
+      iconType: 'textStrike',
     },
   ];
 
@@ -670,14 +671,14 @@ export default () => {
           max={100}
           defaultValue={10}
           compressed
-          prepend={[
-            <EuiButtonIcon
-              iconType="magnet"
+          prepend={
+            <EuiFormPrepend
+              element="button"
+              iconLeft="magnet"
+              label="kibana_sample_ecommerce_data"
               aria-label="Dynamic toggle"
-              title="Make dynamic"
-            />,
-            'kibana_sample_ecommerce_data',
-          ]}
+            />
+          }
           append="px"
         />
       </EuiFormRow>

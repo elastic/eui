@@ -11,7 +11,7 @@ exports[`EuiButtonDisplayContent button icon loading icon renders disabled & loa
     style="border-color: #0b64dd currentcolor currentcolor currentcolor;"
   />
   <span
-    class="eui-textTruncate"
+    class="eui-textTruncate css-13ifi6d-m"
   >
     Loading
   </span>
@@ -28,7 +28,7 @@ exports[`EuiButtonDisplayContent button icon loading icon replaces existing icon
     role="progressbar"
   />
   <span
-    class="eui-textTruncate"
+    class="eui-textTruncate css-13ifi6d-m"
   >
     Loading
   </span>
@@ -70,7 +70,7 @@ exports[`EuiButtonDisplayContent renders 1`] = `
   data-test-subj="test subject string"
 >
   <span
-    class="eui-textTruncate"
+    class="eui-textTruncate css-13ifi6d-m"
   >
     Content
   </span>

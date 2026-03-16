@@ -189,6 +189,7 @@ const _semantic_rgb_colors = {
   warning60RGB: chroma(_semantic_colors.warning60).rgb().join(),
   risk60RGB: chroma(_semantic_colors.risk60).rgb().join(),
   danger70RGB: chroma(_semantic_colors.danger70).rgb().join(),
+  assistance70RGB: chroma(_semantic_colors.assistance70).rgb().join(),
   shade100RGB: chroma(_semantic_colors.shade100).rgb().join(),
   shade120RGB: chroma(_semantic_colors.shade120).rgb().join(),
   shade140RGB: chroma(_semantic_colors.shade140).rgb().join(),
@@ -235,6 +236,8 @@ const _semantic_alpha_colors = {
   danger70Alpha12: `rgba(${_semantic_rgb_colors.danger70RGB}, 0.12)`,
   danger70Alpha16: `rgba(${_semantic_rgb_colors.danger70RGB}, 0.16)`,
   danger70Alpha20: `rgba(${_semantic_rgb_colors.danger70RGB}, 0.2)`,
+
+  assistance70Alpha12: `rgba(${_semantic_rgb_colors.assistance70RGB}, 0.12)`,
 
   shade100Alpha4: `rgba(${_semantic_rgb_colors.shade100RGB}, 0.04)`,
   shade100Alpha16: `rgba(${_semantic_rgb_colors.shade100RGB}, 0.16)`,

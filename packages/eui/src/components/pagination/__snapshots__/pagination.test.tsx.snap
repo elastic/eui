@@ -25,7 +25,7 @@ exports[`EuiPagination is rendered 1`] = `
       aria-hidden="true"
       class="euiButtonIcon__icon"
       color="inherit"
-      data-euiicon-type="arrowLeft"
+      data-euiicon-type="chevronSingleLeft"
     />
   </button>
   <ul
@@ -46,7 +46,7 @@ exports[`EuiPagination is rendered 1`] = `
           class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
         >
           <span
-            class="eui-textTruncate euiButtonEmpty__text"
+            class="eui-textTruncate euiButtonEmpty__text css-1ryezsz-s"
           >
             1
           </span>
@@ -65,7 +65,7 @@ exports[`EuiPagination is rendered 1`] = `
       aria-hidden="true"
       class="euiButtonIcon__icon"
       color="inherit"
-      data-euiicon-type="arrowRight"
+      data-euiicon-type="chevronSingleRight"
     />
   </button>
 </nav>
@@ -94,7 +94,7 @@ exports[`EuiPagination props activePage can be -1 1`] = `
       aria-hidden="true"
       class="euiButtonIcon__icon"
       color="inherit"
-      data-euiicon-type="arrowStart"
+      data-euiicon-type="chevronLimitLeft"
     />
   </button>
   <button
@@ -108,7 +108,7 @@ exports[`EuiPagination props activePage can be -1 1`] = `
       aria-hidden="true"
       class="euiButtonIcon__icon"
       color="inherit"
-      data-euiicon-type="arrowLeft"
+      data-euiicon-type="chevronSingleLeft"
     />
   </button>
   <button
@@ -122,7 +122,7 @@ exports[`EuiPagination props activePage can be -1 1`] = `
       aria-hidden="true"
       class="euiButtonIcon__icon"
       color="inherit"
-      data-euiicon-type="arrowRight"
+      data-euiicon-type="chevronSingleRight"
     />
   </button>
   <button
@@ -136,7 +136,7 @@ exports[`EuiPagination props activePage can be -1 1`] = `
       aria-hidden="true"
       class="euiButtonIcon__icon"
       color="inherit"
-      data-euiicon-type="arrowEnd"
+      data-euiicon-type="chevronLimitRight"
     />
   </button>
 </nav>
@@ -165,7 +165,7 @@ exports[`EuiPagination props activePage is rendered 1`] = `
       aria-hidden="true"
       class="euiButtonIcon__icon"
       color="inherit"
-      data-euiicon-type="arrowLeft"
+      data-euiicon-type="chevronSingleLeft"
     />
   </button>
   <ul
@@ -184,7 +184,7 @@ exports[`EuiPagination props activePage is rendered 1`] = `
           class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
         >
           <span
-            class="eui-textTruncate euiButtonEmpty__text"
+            class="eui-textTruncate euiButtonEmpty__text css-1ryezsz-s"
           >
             1
           </span>
@@ -210,7 +210,7 @@ exports[`EuiPagination props activePage is rendered 1`] = `
           class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
         >
           <span
-            class="eui-textTruncate euiButtonEmpty__text"
+            class="eui-textTruncate euiButtonEmpty__text css-1ryezsz-s"
           >
             4
           </span>
@@ -230,7 +230,7 @@ exports[`EuiPagination props activePage is rendered 1`] = `
           class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
         >
           <span
-            class="eui-textTruncate euiButtonEmpty__text"
+            class="eui-textTruncate euiButtonEmpty__text css-1ryezsz-s"
           >
             5
           </span>
@@ -252,7 +252,7 @@ exports[`EuiPagination props activePage is rendered 1`] = `
           class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
         >
           <span
-            class="eui-textTruncate euiButtonEmpty__text"
+            class="eui-textTruncate euiButtonEmpty__text css-1ryezsz-s"
           >
             6
           </span>
@@ -272,7 +272,7 @@ exports[`EuiPagination props activePage is rendered 1`] = `
           class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
         >
           <span
-            class="eui-textTruncate euiButtonEmpty__text"
+            class="eui-textTruncate euiButtonEmpty__text css-1ryezsz-s"
           >
             7
           </span>
@@ -292,7 +292,7 @@ exports[`EuiPagination props activePage is rendered 1`] = `
           class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
         >
           <span
-            class="eui-textTruncate euiButtonEmpty__text"
+            class="eui-textTruncate euiButtonEmpty__text css-1ryezsz-s"
           >
             8
           </span>
@@ -312,7 +312,7 @@ exports[`EuiPagination props activePage is rendered 1`] = `
           class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
         >
           <span
-            class="eui-textTruncate euiButtonEmpty__text"
+            class="eui-textTruncate euiButtonEmpty__text css-1ryezsz-s"
           >
             9
           </span>
@@ -332,7 +332,7 @@ exports[`EuiPagination props activePage is rendered 1`] = `
           class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
         >
           <span
-            class="eui-textTruncate euiButtonEmpty__text"
+            class="eui-textTruncate euiButtonEmpty__text css-1ryezsz-s"
           >
             10
           </span>
@@ -351,7 +351,7 @@ exports[`EuiPagination props activePage is rendered 1`] = `
       aria-hidden="true"
       class="euiButtonIcon__icon"
       color="inherit"
-      data-euiicon-type="arrowRight"
+      data-euiicon-type="chevronSingleRight"
     />
   </button>
 </nav>
@@ -380,7 +380,7 @@ exports[`EuiPagination props aria-controls is rendered 1`] = `
       aria-hidden="true"
       class="euiButtonIcon__icon"
       color="inherit"
-      data-euiicon-type="arrowLeft"
+      data-euiicon-type="chevronSingleLeft"
     />
   </button>
   <ul
@@ -402,7 +402,7 @@ exports[`EuiPagination props aria-controls is rendered 1`] = `
           class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
         >
           <span
-            class="eui-textTruncate euiButtonEmpty__text"
+            class="eui-textTruncate euiButtonEmpty__text css-1ryezsz-s"
           >
             1
           </span>
@@ -421,7 +421,7 @@ exports[`EuiPagination props aria-controls is rendered 1`] = `
       aria-hidden="true"
       class="euiButtonIcon__icon"
       color="inherit"
-      data-euiicon-type="arrowRight"
+      data-euiicon-type="chevronSingleRight"
     />
   </button>
 </nav>
@@ -450,7 +450,7 @@ exports[`EuiPagination props compressed is rendered 1`] = `
       aria-hidden="true"
       class="euiButtonIcon__icon"
       color="inherit"
-      data-euiicon-type="arrowStart"
+      data-euiicon-type="chevronLimitLeft"
     />
   </button>
   <button
@@ -464,7 +464,7 @@ exports[`EuiPagination props compressed is rendered 1`] = `
       aria-hidden="true"
       class="euiButtonIcon__icon"
       color="inherit"
-      data-euiicon-type="arrowLeft"
+      data-euiicon-type="chevronSingleLeft"
     />
   </button>
   <div
@@ -489,7 +489,7 @@ exports[`EuiPagination props compressed is rendered 1`] = `
       aria-hidden="true"
       class="euiButtonIcon__icon"
       color="inherit"
-      data-euiicon-type="arrowRight"
+      data-euiicon-type="chevronSingleRight"
     />
   </button>
   <button
@@ -503,7 +503,7 @@ exports[`EuiPagination props compressed is rendered 1`] = `
       aria-hidden="true"
       class="euiButtonIcon__icon"
       color="inherit"
-      data-euiicon-type="arrowEnd"
+      data-euiicon-type="chevronLimitRight"
     />
   </button>
 </nav>
@@ -532,7 +532,7 @@ exports[`EuiPagination props pageCount can be 0 1`] = `
       aria-hidden="true"
       class="euiButtonIcon__icon"
       color="inherit"
-      data-euiicon-type="arrowStart"
+      data-euiicon-type="chevronLimitLeft"
     />
   </button>
   <button
@@ -546,7 +546,7 @@ exports[`EuiPagination props pageCount can be 0 1`] = `
       aria-hidden="true"
       class="euiButtonIcon__icon"
       color="inherit"
-      data-euiicon-type="arrowLeft"
+      data-euiicon-type="chevronSingleLeft"
     />
   </button>
   <button
@@ -560,7 +560,7 @@ exports[`EuiPagination props pageCount can be 0 1`] = `
       aria-hidden="true"
       class="euiButtonIcon__icon"
       color="inherit"
-      data-euiicon-type="arrowRight"
+      data-euiicon-type="chevronSingleRight"
     />
   </button>
   <button
@@ -574,7 +574,7 @@ exports[`EuiPagination props pageCount can be 0 1`] = `
       aria-hidden="true"
       class="euiButtonIcon__icon"
       color="inherit"
-      data-euiicon-type="arrowEnd"
+      data-euiicon-type="chevronLimitRight"
     />
   </button>
 </nav>
@@ -603,7 +603,7 @@ exports[`EuiPagination props pageCount is rendered 1`] = `
       aria-hidden="true"
       class="euiButtonIcon__icon"
       color="inherit"
-      data-euiicon-type="arrowLeft"
+      data-euiicon-type="chevronSingleLeft"
     />
   </button>
   <ul
@@ -624,7 +624,7 @@ exports[`EuiPagination props pageCount is rendered 1`] = `
           class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
         >
           <span
-            class="eui-textTruncate euiButtonEmpty__text"
+            class="eui-textTruncate euiButtonEmpty__text css-1ryezsz-s"
           >
             1
           </span>
@@ -644,7 +644,7 @@ exports[`EuiPagination props pageCount is rendered 1`] = `
           class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
         >
           <span
-            class="eui-textTruncate euiButtonEmpty__text"
+            class="eui-textTruncate euiButtonEmpty__text css-1ryezsz-s"
           >
             2
           </span>
@@ -664,7 +664,7 @@ exports[`EuiPagination props pageCount is rendered 1`] = `
           class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
         >
           <span
-            class="eui-textTruncate euiButtonEmpty__text"
+            class="eui-textTruncate euiButtonEmpty__text css-1ryezsz-s"
           >
             3
           </span>
@@ -684,7 +684,7 @@ exports[`EuiPagination props pageCount is rendered 1`] = `
           class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
         >
           <span
-            class="eui-textTruncate euiButtonEmpty__text"
+            class="eui-textTruncate euiButtonEmpty__text css-1ryezsz-s"
           >
             4
           </span>
@@ -704,7 +704,7 @@ exports[`EuiPagination props pageCount is rendered 1`] = `
           class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
         >
           <span
-            class="eui-textTruncate euiButtonEmpty__text"
+            class="eui-textTruncate euiButtonEmpty__text css-1ryezsz-s"
           >
             5
           </span>
@@ -730,7 +730,7 @@ exports[`EuiPagination props pageCount is rendered 1`] = `
           class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
         >
           <span
-            class="eui-textTruncate euiButtonEmpty__text"
+            class="eui-textTruncate euiButtonEmpty__text css-1ryezsz-s"
           >
             10
           </span>
@@ -749,7 +749,7 @@ exports[`EuiPagination props pageCount is rendered 1`] = `
       aria-hidden="true"
       class="euiButtonIcon__icon"
       color="inherit"
-      data-euiicon-type="arrowRight"
+      data-euiicon-type="chevronSingleRight"
     />
   </button>
 </nav>
@@ -778,7 +778,7 @@ exports[`EuiPagination props responsive can be customized 1`] = `
       aria-hidden="true"
       class="euiButtonIcon__icon"
       color="inherit"
-      data-euiicon-type="arrowLeft"
+      data-euiicon-type="chevronSingleLeft"
     />
   </button>
   <ul
@@ -799,7 +799,7 @@ exports[`EuiPagination props responsive can be customized 1`] = `
           class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
         >
           <span
-            class="eui-textTruncate euiButtonEmpty__text"
+            class="eui-textTruncate euiButtonEmpty__text css-1ryezsz-s"
           >
             1
           </span>
@@ -818,7 +818,7 @@ exports[`EuiPagination props responsive can be customized 1`] = `
       aria-hidden="true"
       class="euiButtonIcon__icon"
       color="inherit"
-      data-euiicon-type="arrowRight"
+      data-euiicon-type="chevronSingleRight"
     />
   </button>
 </nav>
@@ -847,7 +847,7 @@ exports[`EuiPagination props responsive can be false 1`] = `
       aria-hidden="true"
       class="euiButtonIcon__icon"
       color="inherit"
-      data-euiicon-type="arrowLeft"
+      data-euiicon-type="chevronSingleLeft"
     />
   </button>
   <ul
@@ -868,7 +868,7 @@ exports[`EuiPagination props responsive can be false 1`] = `
           class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
         >
           <span
-            class="eui-textTruncate euiButtonEmpty__text"
+            class="eui-textTruncate euiButtonEmpty__text css-1ryezsz-s"
           >
             1
           </span>
@@ -887,7 +887,7 @@ exports[`EuiPagination props responsive can be false 1`] = `
       aria-hidden="true"
       class="euiButtonIcon__icon"
       color="inherit"
-      data-euiicon-type="arrowRight"
+      data-euiicon-type="chevronSingleRight"
     />
   </button>
 </nav>

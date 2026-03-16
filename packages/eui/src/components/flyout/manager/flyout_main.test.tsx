@@ -12,6 +12,7 @@ import { render } from '../../../test/rtl';
 import { EuiFlyoutMain } from './flyout_main';
 import { EuiFlyoutManager } from './provider';
 import { LEVEL_MAIN, PROPERTY_LEVEL } from './const';
+import { createFlyoutManagerMock } from './__mocks__';
 
 // Mock managed flyout so we can observe props passed through
 jest.mock('./flyout_managed', () => ({
@@ -27,19 +28,11 @@ jest.mock('./flyout_managed', () => ({
   ),
 }));
 
+const mockUseFlyoutManager = createFlyoutManagerMock();
+
 // Keep layout/ID hooks deterministic
 jest.mock('./hooks', () => ({
-  useFlyoutManager: () => ({
-    state: { sessions: [], flyouts: [], layoutMode: 'side-by-side' },
-    dispatch: jest.fn(),
-    addFlyout: jest.fn(),
-    closeFlyout: jest.fn(),
-    setActiveFlyout: jest.fn(),
-    setFlyoutWidth: jest.fn(),
-    goBack: jest.fn(),
-    goToFlyout: jest.fn(),
-    historyItems: [],
-  }),
+  useFlyoutManager: () => mockUseFlyoutManager,
   useHasChildFlyout: () => false,
   useFlyoutId: (id?: string) => id ?? 'generated-id',
 }));

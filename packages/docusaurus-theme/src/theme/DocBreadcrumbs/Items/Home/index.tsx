@@ -35,7 +35,7 @@ export default function HomeBreadcrumbItem(): JSX.Element {
       >
         {title}
       </Link>
-      <EuiIcon type="arrowRight" size="s" css={styles.icon} />
+      <EuiIcon type="chevronSingleRight" size="s" css={styles.icon} />
     </li>
   );
 }

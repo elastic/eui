@@ -114,7 +114,7 @@ const getButtonVariantTokenValues = (
   };
 };
 
-export const getEuiButtonColors = (
+export const getEuiButtonColorValues = (
   euiThemeContext: UseEuiTheme,
   color: _EuiExtendedButtonColor | 'disabled'
 ) => {
@@ -134,6 +134,8 @@ export const getEuiButtonColors = (
         : makeHighContrastColor(foreground)(background),
     backgroundColor: background,
     borderColor: buttonColors.borderColor,
+    backgroundHover: buttonColors.backgroundHover,
+    backgroundActive: buttonColors.backgroundActive,
   };
 };
 
@@ -147,7 +149,7 @@ export const euiButtonColor = (
   euiThemeContext: UseEuiTheme,
   color: _EuiExtendedButtonColor | 'disabled'
 ) => {
-  const buttonColors = getEuiButtonColors(euiThemeContext, color);
+  const buttonColors = getEuiButtonColorValues(euiThemeContext, color);
 
   return {
     color: buttonColors.color,
@@ -156,7 +158,7 @@ export const euiButtonColor = (
   };
 };
 
-export const getEuiFilledButtonColors = (
+export const getEuiFilledButtonColorValues = (
   euiThemeContext: UseEuiTheme,
   color: _EuiExtendedButtonColor | 'disabled'
 ) => {
@@ -173,6 +175,8 @@ export const getEuiFilledButtonColors = (
     color: foreground,
     backgroundColor: background,
     borderColor: color === 'disabled' ? foreground : background,
+    backgroundHover: buttonColors.backgroundHover,
+    backgroundActive: buttonColors.backgroundActive,
   };
 };
 
@@ -186,7 +190,7 @@ export const euiButtonFillColor = (
   euiThemeContext: UseEuiTheme,
   color: _EuiExtendedButtonColor | 'disabled'
 ) => {
-  const buttonColors = getEuiFilledButtonColors(euiThemeContext, color);
+  const buttonColors = getEuiFilledButtonColorValues(euiThemeContext, color);
 
   const foreground = buttonColors.color;
   const background = buttonColors.backgroundColor;
@@ -251,7 +255,7 @@ export const useEuiButtonColorCSS = (options: _EuiButtonOptions = {}) => {
   return colorsDisplaysMap[display];
 };
 
-const euiButtonDisplaysColors = (euiThemeContext: UseEuiTheme) => {
+export const euiButtonDisplaysColors = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
 
   const COLORS = [...EXTENDED_BUTTON_COLORS, 'disabled'] as const;
@@ -282,7 +286,11 @@ const euiButtonDisplaysColors = (euiThemeContext: UseEuiTheme) => {
 
           displaysColorsMap[display][color] = css`
             ${euiButtonColor(euiThemeContext, color)}
-            ${_interactionStyles(euiThemeContext, buttonColors, 'overlay')}
+            ${euiButtonInteractionStyles(
+              euiThemeContext,
+              buttonColors,
+              'overlay'
+            )}
             ${borderStyle}
           `;
           break;
@@ -305,7 +313,7 @@ const euiButtonDisplaysColors = (euiThemeContext: UseEuiTheme) => {
               ? euiThemeContext.euiTheme.colors.fullShade
               : ''};
 
-            ${_interactionStyles(euiThemeContext, buttonColors)}
+            ${euiButtonInteractionStyles(euiThemeContext, buttonColors)}
           `;
           break;
         }
@@ -319,7 +327,11 @@ const euiButtonDisplaysColors = (euiThemeContext: UseEuiTheme) => {
           displaysColorsMap[display][color] = css`
             color: ${euiButtonEmptyColor(euiThemeContext, color).color};
 
-            ${_interactionStyles(euiThemeContext, buttonColors, 'overlay')}
+            ${euiButtonInteractionStyles(
+              euiThemeContext,
+              buttonColors,
+              'overlay'
+            )}
           `;
           break;
         }
@@ -365,18 +377,21 @@ export const euiButtonSizeMap = (euiThemeContext: UseEuiTheme) => {
     xs: {
       minWidth: euiTheme.base * 6,
       height: euiTheme.size.l,
+      padding: mathWithUnits(euiTheme.size.m, (x) => x / 2),
       radius: euiTheme.border.radius.small,
       fontScale: 'xs' as const,
     },
     s: {
       minWidth: euiTheme.base * 6,
       height: euiTheme.size.xl,
+      padding: euiTheme.size.s,
       radius: euiTheme.border.radius.small,
       fontScale: 's' as const,
     },
     m: {
       minWidth: euiTheme.base * 7,
       height: euiTheme.size.xxl,
+      padding: euiTheme.size.m,
       radius: euiTheme.border.radius.small,
       fontScale: 's' as const,
     },
@@ -386,7 +401,7 @@ export const euiButtonSizeMap = (euiThemeContext: UseEuiTheme) => {
 /**
  * internal styles util for applying button background color on hover
  */
-const _interactionStyles = (
+export const euiButtonInteractionStyles = (
   euiThemeContext: UseEuiTheme,
   buttonColors: ButtonVariantColors,
   type: 'fill' | 'overlay' = 'fill'

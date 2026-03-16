@@ -9,6 +9,7 @@ exports[`EuiTableSortMobile is rendered 1`] = `
     data-test-subj="test subject string"
   >
     <button
+      aria-expanded="false"
       class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-primary-flush-right"
       type="button"
     >
@@ -16,13 +17,13 @@ exports[`EuiTableSortMobile is rendered 1`] = `
         class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
       >
         <span
-          class="eui-textTruncate euiButtonEmpty__text"
+          class="eui-textTruncate euiButtonEmpty__text css-1shwb46-xs"
         >
           Sorting
         </span>
         <span
           color="inherit"
-          data-euiicon-type="arrowDown"
+          data-euiicon-type="chevronSingleDown"
         />
       </span>
     </button>

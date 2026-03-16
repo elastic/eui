@@ -20,6 +20,7 @@ import {
 } from './flyout';
 import { EuiProvider } from '../provider';
 import { EuiFlyoutManager } from './manager';
+import { MENU_DISPLAY_ALWAYS } from './const';
 
 jest.mock('../overlay_mask', () => ({
   EuiOverlayMask: ({ headerZindexLocation, maskRef, ...props }: any) => (
@@ -90,6 +91,32 @@ describe('EuiFlyout', () => {
     ).toBeTruthy();
   });
 
+  it('renders extra screen reader instructions for child flyouts', () => {
+    const { queryByText } = render(
+      <EuiFlyoutManager>
+        <EuiFlyout
+          onClose={() => {}}
+          session="start"
+          flyoutMenuProps={{ title: 'Main Flyout' }}
+          data-test-subj="main-flyout"
+          includeSelectorInFocusTrap={[]}
+          includeFixedHeadersInFocusTrap={false}
+        >
+          <EuiFlyout
+            onClose={() => {}}
+            data-test-subj="child-flyout"
+            includeSelectorInFocusTrap={[]}
+            includeFixedHeadersInFocusTrap={false}
+          />
+        </EuiFlyout>
+      </EuiFlyoutManager>
+    );
+
+    expect(
+      queryByText('You can still continue tabbing through', { exact: false })
+    ).toBeTruthy();
+  });
+
   it('allows setting custom aria-describedby attributes', () => {
     const { getByTestSubject } = render(
       <>
@@ -110,10 +137,11 @@ describe('EuiFlyout', () => {
   });
 
   describe('aria-labelledby and flyout menu integration', () => {
-    it('sets aria-labelledby when flyout has a menu with title', () => {
+    it('sets aria-labelledby when flyout has a visible menu', () => {
       const { getByTestSubject } = render(
         <EuiFlyout
           onClose={() => {}}
+          flyoutMenuDisplayMode={MENU_DISPLAY_ALWAYS}
           flyoutMenuProps={{ title: 'Test Menu Title' }}
           data-test-subj="flyout"
         />
@@ -132,6 +160,7 @@ describe('EuiFlyout', () => {
       const { getByTestSubject } = render(
         <EuiFlyout
           onClose={() => {}}
+          flyoutMenuDisplayMode={MENU_DISPLAY_ALWAYS}
           flyoutMenuProps={{
             title: 'Test Menu Title',
             titleId: customTitleId,
@@ -151,6 +180,7 @@ describe('EuiFlyout', () => {
       const { getByTestSubject } = render(
         <EuiFlyout
           onClose={() => {}}
+          flyoutMenuDisplayMode={MENU_DISPLAY_ALWAYS}
           flyoutMenuProps={{
             title: 'Test Menu Title',
             titleId: customTitleId,
@@ -189,6 +219,97 @@ describe('EuiFlyout', () => {
 
       const flyout = getByTestSubject('flyout');
       expect(flyout).toHaveAttribute('aria-labelledby', existingAriaLabelledBy);
+    });
+  });
+
+  describe('flyoutMenuDisplayMode', () => {
+    describe('always mode', () => {
+      it('renders menu even when menu has no content', () => {
+        const { getByTestSubject } = render(
+          <EuiFlyout
+            onClose={() => {}}
+            flyoutMenuProps={{}}
+            flyoutMenuDisplayMode={MENU_DISPLAY_ALWAYS}
+          />
+        );
+
+        expect(getByTestSubject('euiFlyoutMenu')).toBeInTheDocument();
+      });
+    });
+
+    describe('auto mode', () => {
+      it('renders menu when menu has content', () => {
+        const { getByTestSubject } = render(
+          <EuiFlyout
+            onClose={() => {}}
+            flyoutMenuProps={{
+              customActions: [
+                {
+                  iconType: 'gear',
+                  onClick: () => {},
+                  'aria-label': 'Settings',
+                },
+              ],
+            }}
+          />
+        );
+
+        expect(getByTestSubject('euiFlyoutMenu')).toBeInTheDocument();
+      });
+
+      it('renders close button when menu has no content', () => {
+        const { getByTestSubject, queryByTestSubject } = render(
+          <EuiFlyout onClose={() => {}} flyoutMenuProps={{}} />
+        );
+
+        expect(getByTestSubject('euiFlyoutCloseButton')).toBeInTheDocument();
+        expect(queryByTestSubject('euiFlyoutMenu')).not.toBeInTheDocument();
+      });
+
+      it('renders no close button when hideCloseButton is true and menu has no content', () => {
+        const { queryByTestSubject } = render(
+          <EuiFlyout onClose={() => {}} flyoutMenuProps={{}} hideCloseButton />
+        );
+
+        expect(queryByTestSubject('euiFlyoutMenu')).not.toBeInTheDocument();
+        expect(
+          queryByTestSubject('euiFlyoutCloseButton')
+        ).not.toBeInTheDocument();
+      });
+    });
+
+    describe('aria-labelledby', () => {
+      it('includes menu titleId when menu is rendered', () => {
+        const { getByTestSubject } = render(
+          <EuiFlyout
+            onClose={() => {}}
+            flyoutMenuDisplayMode={MENU_DISPLAY_ALWAYS}
+            flyoutMenuProps={{
+              title: 'Test',
+              titleId: 'menu-title',
+            }}
+            data-test-subj="flyout"
+          />
+        );
+        expect(getByTestSubject('flyout')).toHaveAttribute(
+          'aria-labelledby',
+          'menu-title'
+        );
+      });
+      it('excludes menu titleId when auto mode hides the menu', () => {
+        const { getByTestSubject } = render(
+          <EuiFlyout
+            onClose={() => {}}
+            flyoutMenuProps={{ titleId: 'menu-title' }}
+            aria-labelledby="existing-label"
+            data-test-subj="flyout"
+          />
+        );
+        expect(getByTestSubject('flyout')).toHaveAttribute(
+          'aria-labelledby',
+          'existing-label'
+        );
+      });
     });
   });
 
@@ -770,7 +891,7 @@ describe('EuiFlyout', () => {
       render(<TestComponent />);
 
       expect(childRef.current).toBeInstanceOf(HTMLElement);
-      expect(childRef.current).toHaveAttribute('role', 'dialog');
+      expect(childRef.current).not.toHaveAttribute('role', 'dialog');
       expect(childRef.current).toHaveAttribute('aria-label', 'Child flyout');
     });
 
@@ -784,6 +905,53 @@ describe('EuiFlyout', () => {
 
       expect(ref.current).toBeInstanceOf(HTMLElement);
       expect(ref.current).toHaveAttribute('role', 'dialog');
+    });
+  });
+
+  describe('child flyout aria-modal behavior', () => {
+    it('assigns role="dialog" and aria-modal to main flyout when no child is open', () => {
+      const { getByTestSubject } = render(
+        <EuiFlyoutManager>
+          <EuiFlyout
+            session="start"
+            onClose={() => {}}
+            data-test-subj="parent-flyout"
+          />
+        </EuiFlyoutManager>
+      );
+
+      const parentFlyout = getByTestSubject('parent-flyout');
+      expect(parentFlyout).toHaveAttribute('role', 'dialog');
+      expect(parentFlyout).toHaveAttribute('aria-modal', 'true');
+    });
+
+    it('assigns role="dialog" and aria-modal to main flyout only when child is open', () => {
+      const { getByTestSubject } = render(
+        <EuiFlyoutManager>
+          <EuiFlyout
+            session="start"
+            onClose={() => {}}
+            data-test-subj="parent-flyout"
+          >
+            <EuiFlyout
+              session="inherit"
+              onClose={() => {}}
+              data-test-subj="child-flyout"
+            />
+          </EuiFlyout>
+        </EuiFlyoutManager>
+      );
+
+      const parentFlyout = getByTestSubject('parent-flyout');
+      const childFlyout = getByTestSubject('child-flyout');
+
+      // Main keeps dialog semantics
+      expect(parentFlyout).toHaveAttribute('role', 'dialog');
+      expect(parentFlyout).toHaveAttribute('aria-modal', 'true');
+
+      // Child defers to main (side-by-side mode is default)
+      expect(childFlyout).not.toHaveAttribute('role', 'dialog');
+      expect(childFlyout).not.toHaveAttribute('aria-modal');
     });
   });
 });

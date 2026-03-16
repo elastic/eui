@@ -83,7 +83,7 @@ describe('euiPaletteForTemperature', () => {
     const colors = colorVis;
     const resultLong = euiPaletteForTemperature(6, { colors });
 
-    expect(resultLong[2]).toEqual('#e8f1ff');
+    expect(resultLong[2]).toEqual('#f1f6ff');
   });
 
   it('should return custom colors', () => {
@@ -230,7 +230,7 @@ describe('euiPaletteCool', () => {
     const colors = colorVis;
     const resultLong = euiPaletteCool(6, { colors });
 
-    expect(resultLong[2]).toEqual('#a8caff');
+    expect(resultLong[2]).toEqual('#adccff');
   });
 
   it('should return custom colors', () => {
@@ -251,7 +251,7 @@ describe('euiPaletteWarm', () => {
     const colors = colorVis;
     const resultLong = euiPaletteWarm(6, { colors });
 
-    expect(resultLong[2]).toEqual('#ffafa6');
+    expect(resultLong[2]).toEqual('#ffb5ac');
   });
 
   it('should return custom colors', () => {

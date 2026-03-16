@@ -16,6 +16,7 @@ exports[`EuiColorPalettePicker is rendered 1`] = `
       style="--euiFormControlRightIconsCount: 1;"
     >
       <button
+        aria-expanded="false"
         aria-haspopup="listbox"
         aria-label="aria-label"
         class="euiSuperSelectControl testClass1 testClass2 emotion-euiSuperSelect__control-euiTestCss"
@@ -31,7 +32,7 @@ exports[`EuiColorPalettePicker is rendered 1`] = `
           <span
             aria-hidden="true"
             class="euiFormControlLayoutCustomIcon__icon"
-            data-euiicon-type="arrowDown"
+            data-euiicon-type="chevronSingleDown"
           />
         </span>
       </div>
@@ -56,6 +57,7 @@ exports[`EuiColorPalettePicker is rendered with a selected custom text 1`] = `
       style="--euiFormControlRightIconsCount: 1;"
     >
       <button
+        aria-expanded="false"
         aria-haspopup="listbox"
         aria-label="aria-label"
         class="euiSuperSelectControl testClass1 testClass2 emotion-euiSuperSelect__control-euiTestCss"
@@ -73,7 +75,7 @@ exports[`EuiColorPalettePicker is rendered with a selected custom text 1`] = `
           <span
             aria-hidden="true"
             class="euiFormControlLayoutCustomIcon__icon"
-            data-euiicon-type="arrowDown"
+            data-euiicon-type="chevronSingleDown"
           />
         </span>
       </div>
@@ -98,6 +100,7 @@ exports[`EuiColorPalettePicker is rendered with a selected fixed palette 1`] = `
       style="--euiFormControlRightIconsCount: 1;"
     >
       <button
+        aria-expanded="false"
         aria-haspopup="listbox"
         aria-label="aria-label"
         class="euiSuperSelectControl testClass1 testClass2 emotion-euiSuperSelect__control-euiTestCss"
@@ -143,7 +146,7 @@ exports[`EuiColorPalettePicker is rendered with a selected fixed palette 1`] = `
           <span
             aria-hidden="true"
             class="euiFormControlLayoutCustomIcon__icon"
-            data-euiicon-type="arrowDown"
+            data-euiicon-type="chevronSingleDown"
           />
         </span>
       </div>
@@ -168,6 +171,7 @@ exports[`EuiColorPalettePicker is rendered with a selected gradient palette 1`] 
       style="--euiFormControlRightIconsCount: 1;"
     >
       <button
+        aria-expanded="false"
         aria-haspopup="listbox"
         aria-label="aria-label"
         class="euiSuperSelectControl testClass1 testClass2 emotion-euiSuperSelect__control-euiTestCss"
@@ -193,7 +197,7 @@ exports[`EuiColorPalettePicker is rendered with a selected gradient palette 1`] 
           <span
             aria-hidden="true"
             class="euiFormControlLayoutCustomIcon__icon"
-            data-euiicon-type="arrowDown"
+            data-euiicon-type="chevronSingleDown"
           />
         </span>
       </div>
@@ -218,6 +222,7 @@ exports[`EuiColorPalettePicker is rendered with a selected gradient palette with
       style="--euiFormControlRightIconsCount: 1;"
     >
       <button
+        aria-expanded="false"
         aria-haspopup="listbox"
         aria-label="aria-label"
         class="euiSuperSelectControl testClass1 testClass2 emotion-euiSuperSelect__control-euiTestCss"
@@ -243,7 +248,7 @@ exports[`EuiColorPalettePicker is rendered with a selected gradient palette with
           <span
             aria-hidden="true"
             class="euiFormControlLayoutCustomIcon__icon"
-            data-euiicon-type="arrowDown"
+            data-euiicon-type="chevronSingleDown"
           />
         </span>
       </div>
@@ -268,6 +273,7 @@ exports[`EuiColorPalettePicker is rendered with the prop selectionDisplay set as
       style="--euiFormControlRightIconsCount: 1;"
     >
       <button
+        aria-expanded="false"
         aria-haspopup="listbox"
         aria-label="aria-label"
         class="euiSuperSelectControl testClass1 testClass2 emotion-euiSuperSelect__control-euiTestCss"
@@ -285,7 +291,7 @@ exports[`EuiColorPalettePicker is rendered with the prop selectionDisplay set as
           <span
             aria-hidden="true"
             class="euiFormControlLayoutCustomIcon__icon"
-            data-euiicon-type="arrowDown"
+            data-euiicon-type="chevronSingleDown"
           />
         </span>
       </div>
@@ -312,6 +318,8 @@ exports[`EuiColorPalettePicker more props are propagated to each option 1`] = `
           style="--euiFormControlRightIconsCount: 1;"
         >
           <button
+            aria-controls="euiPopover_generated-id_panelId"
+            aria-expanded="true"
             aria-haspopup="listbox"
             class="euiSuperSelectControl emotion-euiSuperSelect__control-open"
             data-test-subj="colorPalettePicker"
@@ -356,7 +364,7 @@ exports[`EuiColorPalettePicker more props are propagated to each option 1`] = `
               <span
                 aria-hidden="true"
                 class="euiFormControlLayoutCustomIcon__icon"
-                data-euiicon-type="arrowDown"
+                data-euiicon-type="chevronSingleDown"
               />
             </span>
           </div>
@@ -380,6 +388,7 @@ exports[`EuiColorPalettePicker more props are propagated to each option 1`] = `
         aria-modal="true"
         class="euiPanel euiPanel--plain euiPopover__panel emotion-euiPanel-grow-m-plain-euiPopover__panel-light-isAttached-bottom"
         data-popover-panel="true"
+        id="euiPopover_generated-id_panelId"
         role="dialog"
         style="top: 2px; left: 0px; will-change: transform, opacity; z-index: 2000; inline-size: 0px;"
       >

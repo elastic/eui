@@ -8,7 +8,8 @@
 
 import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../../../services';
-import { _buttonStyles } from '../super_date_picker.styles';
+import { euiFontSize, logicalCSS } from '../../../../global_styling';
+import { euiFormControlHoverStyles } from '../../../form/form.styles';
 
 export const euiDatePopoverButtonStyles = (euiThemeContext: UseEuiTheme) => {
   return {
@@ -20,4 +21,26 @@ export const euiDatePopoverButtonStyles = (euiThemeContext: UseEuiTheme) => {
       flex-grow: 0.5 !important; /* stylelint-disable-line declaration-no-important */
     `,
   };
+};
+
+export const _buttonStyles = (euiThemeContext: UseEuiTheme) => {
+  const { euiTheme } = euiThemeContext;
+
+  return css`
+    ${euiFormControlHoverStyles(euiThemeContext)}
+    ${logicalCSS('height', '100%')}
+    ${logicalCSS('width', '100%')}
+    ${logicalCSS('padding-horizontal', euiTheme.size.s)}
+
+    font-size: ${euiFontSize(euiThemeContext, 's').fontSize};
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    color: inherit;
+    background-color: inherit;
+
+    &:disabled {
+      cursor: not-allowed;
+    }
+  `;
 };

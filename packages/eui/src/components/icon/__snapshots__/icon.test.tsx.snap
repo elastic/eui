@@ -4,7 +4,7 @@ exports[`EuiIcon is rendered 1`] = `
 <svg
   aria-label="aria-label"
   class="euiIcon testClass1 testClass2 emotion-euiIcon-m-isLoaded-euiTestCss"
-  data-icon-type="search"
+  data-icon-type="magnify"
   data-is-loaded="true"
   data-test-subj="test subject string"
   height="16"
@@ -24,7 +24,7 @@ exports[`EuiIcon is rendered 1`] = `
 exports[`EuiIcon props color #885522 is rendered 1`] = `
 <svg
   class="euiIcon emotion-euiIcon-m-customColor-isLoaded"
-  data-icon-type="search"
+  data-icon-type="magnify"
   data-is-loaded="true"
   height="16"
   role="presentation"
@@ -44,7 +44,7 @@ exports[`EuiIcon props color #885522 is rendered 1`] = `
 exports[`EuiIcon props color #fde is rendered 1`] = `
 <svg
   class="euiIcon emotion-euiIcon-m-customColor-isLoaded"
-  data-icon-type="search"
+  data-icon-type="magnify"
   data-is-loaded="true"
   height="16"
   role="presentation"
@@ -64,7 +64,7 @@ exports[`EuiIcon props color #fde is rendered 1`] = `
 exports[`EuiIcon props color accent is rendered 1`] = `
 <svg
   class="euiIcon emotion-euiIcon-m-accent-isLoaded"
-  data-icon-type="search"
+  data-icon-type="magnify"
   data-is-loaded="true"
   height="16"
   role="presentation"
@@ -83,7 +83,7 @@ exports[`EuiIcon props color accent is rendered 1`] = `
 exports[`EuiIcon props color accentSecondary is rendered 1`] = `
 <svg
   class="euiIcon emotion-euiIcon-m-accentSecondary-isLoaded"
-  data-icon-type="search"
+  data-icon-type="magnify"
   data-is-loaded="true"
   height="16"
   role="presentation"
@@ -102,7 +102,7 @@ exports[`EuiIcon props color accentSecondary is rendered 1`] = `
 exports[`EuiIcon props color danger is rendered 1`] = `
 <svg
   class="euiIcon emotion-euiIcon-m-danger-isLoaded"
-  data-icon-type="search"
+  data-icon-type="magnify"
   data-is-loaded="true"
   height="16"
   role="presentation"
@@ -121,7 +121,7 @@ exports[`EuiIcon props color danger is rendered 1`] = `
 exports[`EuiIcon props color default is rendered 1`] = `
 <svg
   class="euiIcon emotion-euiIcon-m-default-isLoaded"
-  data-icon-type="search"
+  data-icon-type="magnify"
   data-is-loaded="true"
   height="16"
   role="presentation"
@@ -140,7 +140,7 @@ exports[`EuiIcon props color default is rendered 1`] = `
 exports[`EuiIcon props color ghost is rendered 1`] = `
 <svg
   class="euiIcon emotion-euiIcon-m-ghost-isLoaded"
-  data-icon-type="search"
+  data-icon-type="magnify"
   data-is-loaded="true"
   height="16"
   role="presentation"
@@ -159,7 +159,7 @@ exports[`EuiIcon props color ghost is rendered 1`] = `
 exports[`EuiIcon props color hsla(270, 60%, 70%, 0.9) is rendered 1`] = `
 <svg
   class="euiIcon emotion-euiIcon-m-customColor-isLoaded"
-  data-icon-type="search"
+  data-icon-type="magnify"
   data-is-loaded="true"
   height="16"
   role="presentation"
@@ -179,7 +179,7 @@ exports[`EuiIcon props color hsla(270, 60%, 70%, 0.9) is rendered 1`] = `
 exports[`EuiIcon props color inherit is rendered 1`] = `
 <svg
   class="euiIcon emotion-euiIcon-m-inherit-isLoaded"
-  data-icon-type="search"
+  data-icon-type="magnify"
   data-is-loaded="true"
   height="16"
   role="presentation"
@@ -198,7 +198,7 @@ exports[`EuiIcon props color inherit is rendered 1`] = `
 exports[`EuiIcon props color neutral is rendered 1`] = `
 <svg
   class="euiIcon emotion-euiIcon-m-neutral-isLoaded"
-  data-icon-type="search"
+  data-icon-type="magnify"
   data-is-loaded="true"
   height="16"
   role="presentation"
@@ -217,7 +217,7 @@ exports[`EuiIcon props color neutral is rendered 1`] = `
 exports[`EuiIcon props color primary is rendered 1`] = `
 <svg
   class="euiIcon emotion-euiIcon-m-primary-isLoaded"
-  data-icon-type="search"
+  data-icon-type="magnify"
   data-is-loaded="true"
   height="16"
   role="presentation"
@@ -236,7 +236,7 @@ exports[`EuiIcon props color primary is rendered 1`] = `
 exports[`EuiIcon props color rgb(100, 150, 200) is rendered 1`] = `
 <svg
   class="euiIcon emotion-euiIcon-m-customColor-isLoaded"
-  data-icon-type="search"
+  data-icon-type="magnify"
   data-is-loaded="true"
   height="16"
   role="presentation"
@@ -256,7 +256,7 @@ exports[`EuiIcon props color rgb(100, 150, 200) is rendered 1`] = `
 exports[`EuiIcon props color risk is rendered 1`] = `
 <svg
   class="euiIcon emotion-euiIcon-m-risk-isLoaded"
-  data-icon-type="search"
+  data-icon-type="magnify"
   data-is-loaded="true"
   height="16"
   role="presentation"
@@ -275,7 +275,7 @@ exports[`EuiIcon props color risk is rendered 1`] = `
 exports[`EuiIcon props color subdued is rendered 1`] = `
 <svg
   class="euiIcon emotion-euiIcon-m-subdued-isLoaded"
-  data-icon-type="search"
+  data-icon-type="magnify"
   data-is-loaded="true"
   height="16"
   role="presentation"
@@ -294,7 +294,7 @@ exports[`EuiIcon props color subdued is rendered 1`] = `
 exports[`EuiIcon props color success is rendered 1`] = `
 <svg
   class="euiIcon emotion-euiIcon-m-success-isLoaded"
-  data-icon-type="search"
+  data-icon-type="magnify"
   data-is-loaded="true"
   height="16"
   role="presentation"
@@ -313,7 +313,7 @@ exports[`EuiIcon props color success is rendered 1`] = `
 exports[`EuiIcon props color text is rendered 1`] = `
 <svg
   class="euiIcon emotion-euiIcon-m-text-isLoaded"
-  data-icon-type="search"
+  data-icon-type="magnify"
   data-is-loaded="true"
   height="16"
   role="presentation"
@@ -332,7 +332,7 @@ exports[`EuiIcon props color text is rendered 1`] = `
 exports[`EuiIcon props color warning is rendered 1`] = `
 <svg
   class="euiIcon emotion-euiIcon-m-warning-isLoaded"
-  data-icon-type="search"
+  data-icon-type="magnify"
   data-is-loaded="true"
   height="16"
   role="presentation"
@@ -352,7 +352,7 @@ exports[`EuiIcon props other props are passed through to the icon 1`] = `
 <svg
   aria-label="A Search Icon"
   class="euiIcon emotion-euiIcon-m-isLoaded"
-  data-icon-type="search"
+  data-icon-type="magnify"
   data-is-loaded="true"
   height="16"
   role="img"
@@ -374,7 +374,7 @@ exports[`EuiIcon props other props are passed through to the icon 1`] = `
 exports[`EuiIcon props size \${size} is rendered 1`] = `
 <svg
   class="euiIcon emotion-euiIcon-original-isLoaded"
-  data-icon-type="search"
+  data-icon-type="magnify"
   data-is-loaded="true"
   height="16"
   role="presentation"
@@ -393,7 +393,7 @@ exports[`EuiIcon props size \${size} is rendered 1`] = `
 exports[`EuiIcon props size \${size} is rendered 2`] = `
 <svg
   class="euiIcon emotion-euiIcon-s-isLoaded"
-  data-icon-type="search"
+  data-icon-type="magnify"
   data-is-loaded="true"
   height="16"
   role="presentation"
@@ -412,7 +412,7 @@ exports[`EuiIcon props size \${size} is rendered 2`] = `
 exports[`EuiIcon props size \${size} is rendered 3`] = `
 <svg
   class="euiIcon emotion-euiIcon-m-isLoaded"
-  data-icon-type="search"
+  data-icon-type="magnify"
   data-is-loaded="true"
   height="16"
   role="presentation"
@@ -431,7 +431,7 @@ exports[`EuiIcon props size \${size} is rendered 3`] = `
 exports[`EuiIcon props size \${size} is rendered 4`] = `
 <svg
   class="euiIcon emotion-euiIcon-l-isLoaded"
-  data-icon-type="search"
+  data-icon-type="magnify"
   data-is-loaded="true"
   height="16"
   role="presentation"
@@ -450,7 +450,7 @@ exports[`EuiIcon props size \${size} is rendered 4`] = `
 exports[`EuiIcon props size \${size} is rendered 5`] = `
 <svg
   class="euiIcon emotion-euiIcon-xl-isLoaded"
-  data-icon-type="search"
+  data-icon-type="magnify"
   data-is-loaded="true"
   height="16"
   role="presentation"
@@ -469,7 +469,7 @@ exports[`EuiIcon props size \${size} is rendered 5`] = `
 exports[`EuiIcon props size \${size} is rendered 6`] = `
 <svg
   class="euiIcon emotion-euiIcon-xxl-isLoaded"
-  data-icon-type="search"
+  data-icon-type="magnify"
   data-is-loaded="true"
   height="16"
   role="presentation"
@@ -488,7 +488,7 @@ exports[`EuiIcon props size \${size} is rendered 6`] = `
 exports[`EuiIcon props tabIndex renders focusable="false" when -1 1`] = `
 <svg
   class="euiIcon emotion-euiIcon-m-isLoaded"
-  data-icon-type="search"
+  data-icon-type="magnify"
   data-is-loaded="true"
   height="16"
   role="presentation"
@@ -508,7 +508,7 @@ exports[`EuiIcon props tabIndex renders focusable="false" when -1 1`] = `
 exports[`EuiIcon props tabIndex renders focusable="false" when not provided 1`] = `
 <svg
   class="euiIcon emotion-euiIcon-m-isLoaded"
-  data-icon-type="search"
+  data-icon-type="magnify"
   data-is-loaded="true"
   height="16"
   role="presentation"
@@ -527,7 +527,7 @@ exports[`EuiIcon props tabIndex renders focusable="false" when not provided 1`] 
 exports[`EuiIcon props tabIndex renders focusable="true" when 0 1`] = `
 <svg
   class="euiIcon emotion-euiIcon-m-isLoaded"
-  data-icon-type="search"
+  data-icon-type="magnify"
   data-is-loaded="true"
   height="16"
   role="presentation"
@@ -548,7 +548,7 @@ exports[`EuiIcon props title and titleId are passed and generate an aria-labelle
 <svg
   aria-labelledby="id-test"
   class="euiIcon emotion-euiIcon-m-isLoaded"
-  data-icon-type="search"
+  data-icon-type="magnify"
   data-is-loaded="true"
   height="16"
   role="img"

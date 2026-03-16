@@ -40,7 +40,7 @@ export const BreakpointsTable = () => {
           return (
             <EuiIcon
               title="Current window size is within this breakpoint"
-              type="checkInCircleFilled"
+              type="checkCircleFill"
               color="success"
             />
           );

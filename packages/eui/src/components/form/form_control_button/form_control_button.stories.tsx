@@ -37,6 +37,7 @@ const meta: Meta<EuiFormControlButtonProps> = {
     value: '',
     isDisabled: false,
     isInvalid: false,
+    isLoading: false,
     compressed: false,
     fullWidth: true,
   },
