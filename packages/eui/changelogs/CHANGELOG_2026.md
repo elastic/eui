@@ -1,3 +1,34 @@
+## [`v113.3.0`](https://github.com/elastic/eui/releases/v113.3.0)
+
+- Added `color` prop to `EuiContextMenuItem`, accepting all standard button color values ([#9448](https://github.com/elastic/eui/pull/9448))
+- Adjusted lightest color tokens to get a more balanced palette and contrast with content over light backgrounds: ([#9432](https://github.com/elastic/eui/pull/9432))
+  - `blue10` / `euiColorPrimary10`
+  - `sky10` / `euiColorNeutral10`
+  - `teal10` / `euiColorAccentSecondary10`
+  - `pink10` / `euiColorAccent10`
+  - `green10` / `euiColorSuccess10`
+  - `yellow10` / `euiColorWarning10`
+  - `orange10` / `euiColorRisk10`
+  - `red10` / `euiColorDanger10`
+  - `purple10` / `euiColorAssistance10`
+- Added `flyoutMenuDisplayMode` prop to `EuiFlyout` to control when the flyout menu renders. Defaults to `'auto'`, which hides the menu bar when it only contains a close button. ([#9426](https://github.com/elastic/eui/pull/9426))
+- Added `iconType` support to `EuiFlyoutManager` sessions, allowing icons to be displayed in the flyout history popover ([#9412](https://github.com/elastic/eui/pull/9412))
+- Child flyout history in the Flyout Manager: sessions now track a stack of child flyouts (`childHistory`) so you can open multiple child flyouts in sequence and navigate back through them ([#9409](https://github.com/elastic/eui/pull/9409))
+- Optional `level` argument to `goToFlyout(flyoutId, level?)` — when `level` is `'child'`, navigates to a child in the current session's history (e.g. from the history popover); when `'main'` or omitted, navigates by main session as before ([#9409](https://github.com/elastic/eui/pull/9409))
+- `FlyoutSession` now includes `childTitle`, `childIconType`, and `childHistory` so the history popover can show child flyout titles and icons and support jumping back to a previous child ([#9409](https://github.com/elastic/eui/pull/9409))
+- Back button now pops child history first (returning to the previous child flyout), then pops the current session when no child history remains ([#9409](https://github.com/elastic/eui/pull/9409))
+- Added `files` prop to `EuiFilePicker` to maintain visual state when re-mounting ([#9362](https://github.com/elastic/eui/pull/9362))
+
+**Bug fixes**
+
+- Fixed `DefaultItemAction.color` being ignored in the collapsed overflow menu (`...` popover) of `EuiBasicTable` — it now renders with the correct color, matching the expanded inline action view ([#9448](https://github.com/elastic/eui/pull/9448))
+- Fixed `EuiSuperDatePicker`'s time window adding a `1ms` drift for relative date times ([#9434](https://github.com/elastic/eui/pull/9434))
+- Fixed cascade close when child flyouts are rendered as siblings of the main (not nested): closing the main now correctly invokes each child's `onClose` so consumer state and DOM stay in sync and children do not remain visible as orphaned flyouts ([#9409](https://github.com/elastic/eui/pull/9409))
+
+**Deprecations**
+
+- Deprecated `hideTitle` prop in `EuiFlyoutMenuProps`. The menu title is now hidden by default for all flyouts. Use `EuiFlyoutHeader` for visible titles instead. ([#9502](https://github.com/elastic/eui/pull/9502))
+
 ## [`v113.2.1`](https://github.com/elastic/eui/releases/v113.2.1)
 
 **Bug fixes**
