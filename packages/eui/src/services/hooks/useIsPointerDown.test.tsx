@@ -6,10 +6,10 @@
  * Side Public License, v 1.
  */
 
-import React, { useRef } from 'react';
+import React, { type MutableRefObject, useRef } from 'react';
 import { act } from '@testing-library/react';
 
-import { render } from '../../test/rtl';
+import { render, renderHook, renderHookAct } from '../../test/rtl';
 
 import { useIsPointerDown } from './useIsPointerDown';
 
@@ -26,39 +26,36 @@ global.PointerEvent = MockPointerEvent;
 describe('useIsPointerDown', () => {
   describe('without container', () => {
     it('returns true when pointer is down and false when pointer is up', () => {
-      let isPointerDown: boolean;
+      const {
+        result: { current: ref },
+      } = renderHook(useIsPointerDown);
 
-      const TestComponent = () => {
-        isPointerDown = useIsPointerDown();
-        return null;
-      };
+      expect(ref.current).toBe(false);
 
-      render(<TestComponent />);
-      expect(isPointerDown!).toBe(false);
-
-      act(() => {
+      renderHookAct(() => {
         document.dispatchEvent(
           new PointerEvent('pointerdown', { bubbles: true })
         );
       });
-      expect(isPointerDown!).toBe(true);
 
-      act(() => {
+      expect(ref.current).toBe(true);
+
+      renderHookAct(() => {
         document.dispatchEvent(
           new PointerEvent('pointerup', { bubbles: true })
         );
       });
-      expect(isPointerDown!).toBe(false);
+      expect(ref.current).toBe(false);
     });
   });
 
   describe('with container', () => {
     it('returns true when pointer is down inside the container', () => {
-      let isPointerDown: boolean;
+      let isPointerDownRef: MutableRefObject<boolean>;
 
       const TestComponent = () => {
         const containerRef = useRef<HTMLDivElement | null>(null);
-        isPointerDown = useIsPointerDown(containerRef);
+        isPointerDownRef = useIsPointerDown(containerRef);
         return (
           <div>
             <div data-test-subj="outside" />
@@ -68,7 +65,7 @@ describe('useIsPointerDown', () => {
       };
 
       const { getByTestSubject } = render(<TestComponent />);
-      expect(isPointerDown!).toBe(false);
+      expect(isPointerDownRef!.current).toBe(false);
 
       act(() => {
         const container = getByTestSubject('container');
@@ -76,22 +73,22 @@ describe('useIsPointerDown', () => {
           new PointerEvent('pointerdown', { bubbles: true })
         );
       });
-      expect(isPointerDown!).toBe(true);
+      expect(isPointerDownRef!.current).toBe(true);
 
       act(() => {
         document.dispatchEvent(
           new PointerEvent('pointerup', { bubbles: true })
         );
       });
-      expect(isPointerDown!).toBe(false);
+      expect(isPointerDownRef!.current).toBe(false);
     });
 
     it('returns false when pointer is down outside the container', () => {
-      let isPointerDown: boolean;
+      let isPointerDownRef: MutableRefObject<boolean>;
 
       const TestComponent = () => {
         const containerRef = useRef<HTMLDivElement | null>(null);
-        isPointerDown = useIsPointerDown(containerRef);
+        isPointerDownRef = useIsPointerDown(containerRef);
         return (
           <div>
             <div data-test-subj="outside" />
@@ -101,7 +98,7 @@ describe('useIsPointerDown', () => {
       };
 
       const { getByTestSubject } = render(<TestComponent />);
-      expect(isPointerDown!).toBe(false);
+      expect(isPointerDownRef!.current).toBe(false);
 
       act(() => {
         const outside = getByTestSubject('outside');
@@ -109,61 +106,51 @@ describe('useIsPointerDown', () => {
           new PointerEvent('pointerdown', { bubbles: true })
         );
       });
-      expect(isPointerDown!).toBe(false);
+      expect(isPointerDownRef!.current).toBe(false);
     });
   });
 
   describe('pointercancel and visibilitychange events', () => {
     it('resets to false on pointercancel', () => {
-      let isPointerDown: boolean;
+      const {
+        result: { current: ref },
+      } = renderHook(useIsPointerDown);
 
-      const TestComponent = () => {
-        isPointerDown = useIsPointerDown();
-        return null;
-      };
-
-      render(<TestComponent />);
-
-      act(() => {
+      renderHookAct(() => {
         document.dispatchEvent(
           new PointerEvent('pointerdown', { bubbles: true })
         );
       });
-      expect(isPointerDown!).toBe(true);
+      expect(ref.current).toBe(true);
 
-      act(() => {
+      renderHookAct(() => {
         document.dispatchEvent(
           new PointerEvent('pointercancel', { bubbles: true })
         );
       });
-      expect(isPointerDown!).toBe(false);
+      expect(ref.current).toBe(false);
     });
 
     it('resets to false when document becomes hidden', () => {
-      let isPointerDown: boolean;
+      const {
+        result: { current: ref },
+      } = renderHook(useIsPointerDown);
 
-      const TestComponent = () => {
-        isPointerDown = useIsPointerDown();
-        return null;
-      };
-
-      render(<TestComponent />);
-
-      act(() => {
+      renderHookAct(() => {
         document.dispatchEvent(
           new PointerEvent('pointerdown', { bubbles: true })
         );
       });
-      expect(isPointerDown!).toBe(true);
+      expect(ref.current).toBe(true);
 
-      act(() => {
+      renderHookAct(() => {
         Object.defineProperty(document, 'visibilityState', {
           value: 'hidden',
           configurable: true,
         });
         document.dispatchEvent(new Event('visibilitychange'));
       });
-      expect(isPointerDown!).toBe(false);
+      expect(ref.current).toBe(false);
 
       // reset
       Object.defineProperty(document, 'visibilityState', {
