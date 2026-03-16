@@ -309,8 +309,6 @@ declare module '@elastic/eui-theme-borealis/lib/eui_theme_borealis_dark.json' {
     euiColorVis7: string;
     euiColorVis8: string;
     euiColorVis9: string;
-    euiColorVis10: string;
-    euiColorVis11: string;
     euiColorVis0_behindText: string;
     euiColorVis1_behindText: string;
     euiColorVis2_behindText: string;
@@ -321,8 +319,6 @@ declare module '@elastic/eui-theme-borealis/lib/eui_theme_borealis_dark.json' {
     euiColorVis7_behindText: string;
     euiColorVis8_behindText: string;
     euiColorVis9_behindText: string;
-    euiColorVis10_behindText: string;
-    euiColorVis11_behindText: string;
     euiColorVisText0: string;
     euiColorVisText1: string;
     euiColorVisText2: string;
@@ -333,14 +329,11 @@ declare module '@elastic/eui-theme-borealis/lib/eui_theme_borealis_dark.json' {
     euiColorVisText7: string;
     euiColorVisText8: string;
     euiColorVisText9: string;
-    euiColorVisText10: string;
-    euiColorVisText11: string;
     euiColorVisSuccess0: string;
     euiColorVisSuccess1: string;
     euiColorVisWarning0: string;
     euiColorVisDanger0: string;
     euiColorVisDanger1: string;
-    euiColorVisAssistance: string;
     euiColorVisNeutral0: string;
     euiColorVisGrey0: string;
     euiColorVisGrey1: string;
