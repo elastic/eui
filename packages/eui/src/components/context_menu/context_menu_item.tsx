@@ -27,6 +27,7 @@ import { validateHref } from '../../services/security/href_validator';
 import { CommonProps, keysOf } from '../common';
 import { EuiIcon, type IconType } from '../icon';
 import { EuiToolTip, EuiToolTipProps } from '../tool_tip';
+import { type _EuiExtendedButtonColor } from '../../global_styling';
 
 import { euiContextMenuItemStyles } from './context_menu_item.styles';
 
@@ -64,6 +65,11 @@ export interface EuiContextMenuItemProps
    * Reduce the size to `s` when in need of a more compressed menu
    */
   size?: (typeof SIZES)[number];
+  /**
+   * Applies a color to the text and icon of the item.
+   * Accepts the same color values as `EuiButtonEmpty`.
+   */
+  color?: _EuiExtendedButtonColor;
 }
 
 type Props = CommonProps &
@@ -97,6 +103,7 @@ export const EuiContextMenuItem: FunctionComponent<Props> = ({
   target,
   rel,
   size = 'm',
+  color,
   ...rest
 }) => {
   const isHrefValid = !href || validateHref(href);
@@ -110,6 +117,7 @@ export const EuiContextMenuItem: FunctionComponent<Props> = ({
     styles.sizes[size],
     styles.layoutAlign[layoutAlign],
     disabled && styles.disabled,
+    !disabled && color && styles.colors[color],
   ];
 
   const iconInstance =

@@ -54,6 +54,26 @@ describe('EuiContextMenuItem', () => {
       expect(container.firstChild).toMatchSnapshot();
     });
 
+    test('color', () => {
+      const { container } = render(
+        <EuiContextMenuItem onClick={() => {}} color="danger">
+          Delete
+        </EuiContextMenuItem>
+      );
+
+      expect(container.firstChild).toMatchSnapshot();
+    });
+
+    test('color is ignored when disabled', () => {
+      const { container } = render(
+        <EuiContextMenuItem onClick={() => {}} color="danger" disabled>
+          Delete
+        </EuiContextMenuItem>
+      );
+
+      expect(container.firstChild).toMatchSnapshot();
+    });
+
     describe('size', () => {
       SIZES.forEach((size) => {
         test(size, () => {
