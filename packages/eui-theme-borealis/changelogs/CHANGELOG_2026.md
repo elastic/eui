@@ -1,3 +1,16 @@
+## [`v6.2.0`](https://github.com/elastic/eui/releases/v6.2.0)
+
+- Adjusted lightest color tokens to get a more balanced palette and contrast with content over light backgrounds: ([#9432](https://github.com/elastic/eui/pull/9432))
+  - `blue10` / `euiColorPrimary10`
+  - `sky10` / `euiColorNeutral10`
+  - `teal10` / `euiColorAccentSecondary10`
+  - `pink10` / `euiColorAccent10`
+  - `green10` / `euiColorSuccess10`
+  - `yellow10` / `euiColorWarning10`
+  - `orange10` / `euiColorRisk10`
+  - `red10` / `euiColorDanger10`
+  - `purple10` / `euiColorAssistance10`
+
 ## [`v6.1.0`](https://github.com/elastic/eui/releases/v6.1.0)
 
 - Added new assistance tokens: ([#9383](https://github.com/elastic/eui/pull/9383))
