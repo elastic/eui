@@ -49,7 +49,7 @@ export default () => {
       items: [
         {
           name: 'Handle an onClick',
-          icon: 'search',
+          icon: 'magnify',
           onClick: closePopover,
         },
         {
@@ -149,7 +149,7 @@ export default () => {
   ];
 
   const button = (
-    <EuiButton iconType="arrowDown" iconSide="right" onClick={onButtonClick}>
+    <EuiButton iconType="chevronSingleDown" iconSide="right" onClick={onButtonClick}>
       Click me to load a context menu
     </EuiButton>
   );
@@ -215,7 +215,7 @@ export default () => {
   ];
 
   const button = (
-    <EuiButton iconType="arrowDown" iconSide="right" onClick={onButtonClick}>
+    <EuiButton iconType="chevronSingleDown" iconSide="right" onClick={onButtonClick}>
       Click to show a single panel
     </EuiButton>
   );
@@ -278,7 +278,7 @@ export default () => {
   const button = (
     <EuiButtonEmpty
       size="s"
-      iconType="arrowDown"
+      iconType="chevronSingleDown"
       iconSide="right"
       onClick={onButtonClick}
     >
@@ -381,7 +381,7 @@ export default () => {
   const button = (
     <EuiButton
       size="s"
-      iconType="arrowDown"
+      iconType="chevronSingleDown"
       iconSide="right"
       onClick={onButtonClick}
     >
@@ -539,12 +539,12 @@ export default () => {
       items: [
         {
           name: 'Show fullscreen',
-          icon: <EuiIcon type="search" size="m" />,
+          icon: <EuiIcon type="magnify" size="m" />,
           onClick: closePopover,
         },
         {
           name: 'See more',
-          icon: 'plusInCircle',
+          icon: 'plusCircle',
           panel: {
             id: 1,
             width: 400,
@@ -618,7 +618,7 @@ export default () => {
         {
           id: 'hydrogen--id',
           name: 'Hydrogen',
-          prepend: <EuiIcon type="heatmap" />,
+          prepend: <EuiIcon type="chartHeatmap" />,
           content: (
             <EuiText>
               <p>
@@ -634,14 +634,14 @@ export default () => {
   ));
 
   const button = (
-    <EuiButton iconType="arrowDown" iconSide="right" onClick={onButtonClick}>
+    <EuiButton iconType="chevronSingleDown" iconSide="right" onClick={onButtonClick}>
       Click me to load mixed content menu
     </EuiButton>
   );
 
   const dynamicButton = (
     <EuiButton
-      iconType="arrowDown"
+      iconType="chevronSingleDown"
       iconSide="right"
       onClick={onDynamicButtonClick}
     >

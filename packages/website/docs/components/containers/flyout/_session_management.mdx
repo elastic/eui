@@ -182,6 +182,27 @@ For main flyouts, the title is primarily used for history navigation.
 </EuiFlyout>
 ```
 
+##### Session icon
+
+You can optionally set an `iconType` in `flyoutMenuProps` to display an icon
+next to the session's title in the history popover. This helps users visually
+distinguish between sessions when navigating history. The icon only appears in
+the history popover — it is not shown in the flyout's menu bar.
+
+```tsx
+<EuiFlyout
+  session="start"
+  flyoutMenuProps={{
+    title: 'Alerts overview',
+    iconType: 'bell',
+  }}
+>
+  {/* flyout content */}
+</EuiFlyout>
+```
+
+##### Controlling session participation
+
 To prevent a flyout from being a part of the session management system:
 - Set `session="never"` explicitly, OR
 - Don't nest it inside any parent flyout (non-nested flyouts default to standard behavior)
@@ -242,7 +263,11 @@ On smaller screens, child flyouts stack above the parent.
 
 #### Accessibility
 
-Both parent and child flyouts use `role="dialog"` and `aria-modal="true"` for accessibility. Focus is managed automatically between them, with the child flyout taking focus when open and returning focus to the parent when closed.
+Parent and child flyouts are treated as a single modal unit for accessibility.
+The parent flyout carries `role="dialog"` and `aria-modal="true"`, while the child
+defers to it when in side-by-side mode. On smaller screens (stacked mode), the child
+becomes the active modal. Keyboard navigation flows naturally between parent and child
+flyouts, and focus is managed automatically when flyouts close.
 
 #### Closing behavior
 

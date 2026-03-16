@@ -14,7 +14,7 @@ exports[`EuiSplitButton renders 1`] = `
       class="emotion-euiButtonDisplayContent"
     >
       <span
-        class="eui-textTruncate"
+        class="eui-textTruncate css-13ifi6d-m"
       >
         Primary Action
       </span>
@@ -34,7 +34,7 @@ exports[`EuiSplitButton renders 1`] = `
       aria-hidden="true"
       class="euiButtonIcon__icon"
       color="inherit"
-      data-euiicon-type="arrowDown"
+      data-euiicon-type="chevronSingleDown"
     />
   </button>
 </div>

@@ -32,6 +32,7 @@ import { EuiPopover } from '../popover';
 import { EuiText } from '../text';
 import { EuiTitle } from '../title';
 import { useEuiTheme } from '../../services';
+import { EuiFlyoutManager } from './manager';
 
 const childrenDefault = (
   <>
@@ -87,6 +88,57 @@ describe('EuiFlyout', () => {
       cy.get('[data-test-subj="itemC"]').should('be.focused');
       cy.repeatRealPress('Tab', 3);
       cy.get('[data-test-subj="euiFlyoutCloseButton"]').should('be.focused');
+    });
+
+    it('allows tabbing between main and child flyouts in side-by-side mode', () => {
+      const FlyoutWithChild = () => {
+        const [isOpen, setIsOpen] = useState(true);
+        const [isChildOpen, setIsChildOpen] = useState(true);
+
+        return (
+          <EuiFlyoutManager>
+            {isOpen && (
+              <EuiFlyout
+                session="start"
+                onClose={() => setIsOpen(false)}
+                data-test-subj="mainFlyout"
+              >
+                <EuiFlyoutBody>
+                  <button data-test-subj="mainItem">Main Item</button>
+                </EuiFlyoutBody>
+                {isChildOpen && (
+                  <EuiFlyout
+                    session="inherit"
+                    onClose={() => setIsChildOpen(false)}
+                    data-test-subj="childFlyout"
+                  >
+                    <EuiFlyoutBody>
+                      <button data-test-subj="childItem">Child Item</button>
+                    </EuiFlyoutBody>
+                  </EuiFlyout>
+                )}
+              </EuiFlyout>
+            )}
+          </EuiFlyoutManager>
+        );
+      };
+      cy.viewport(1200, 800); // Wide viewport for side-by-side
+      cy.mount(<FlyoutWithChild />);
+
+      cy.get('[data-test-subj="mainFlyout"]').should('be.focused');
+      cy.get('[data-test-subj="childFlyout"]').should('exist');
+
+      // Tab through main item
+      cy.repeatRealPress('Tab', 3);
+      cy.get('[data-test-subj="mainItem"]').should('be.focused');
+
+      // Tab through child item
+      cy.repeatRealPress('Tab', 4);
+      cy.get('[data-test-subj="childItem"]').should('be.focused');
+
+      // Navigate back to main item
+      cy.repeatRealPress('Tab', 4);
+      cy.get('[data-test-subj="mainItem"]').should('be.focused');
     });
 
     it('does not focus trap or scrollLock for push flyouts', () => {

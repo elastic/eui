@@ -24,7 +24,7 @@ const defaultPrimaryActionProps = {
 };
 
 const defaultSecondaryActionProps = {
-  iconType: 'arrowDown',
+  iconType: 'chevronSingleDown',
   'aria-label': 'Secondary action',
   'data-test-subj': 'secondary-action',
 };

@@ -17,6 +17,7 @@ import { flyoutManagerReducer, initialState } from './reducer';
 import {
   addFlyout,
   closeFlyout,
+  closeAllFlyouts,
   setActiveFlyout,
   setFlyoutWidth,
   setLayoutMode,
@@ -75,9 +76,26 @@ describe('flyoutManagerReducer', () => {
       expect(newState.sessions[0]).toEqual({
         mainFlyoutId: 'main-1',
         childFlyoutId: null,
+        childHistory: [],
         title: 'main',
+        iconType: undefined,
         zIndex: 0,
       });
+    });
+
+    it('should store iconType on session when addFlyout is called with iconType', () => {
+      const action = addFlyout(
+        'main-1',
+        'Session A',
+        LEVEL_MAIN,
+        'm',
+        'faceHappy'
+      );
+      const newState = flyoutManagerReducer(initialState, action);
+
+      expect(newState.sessions).toHaveLength(1);
+      expect(newState.sessions[0].iconType).toBe('faceHappy');
+      expect(newState.sessions[0].title).toBe('Session A');
     });
 
     it('should add a child flyout to the most recent session', () => {
@@ -114,6 +132,68 @@ describe('flyoutManagerReducer', () => {
       expect(newState).toEqual(initialState);
     });
 
+    it('should push current child to history and append new child when adding second child (do not remove previous)', () => {
+      let state = flyoutManagerReducer(
+        initialState,
+        addFlyout('main-1', 'Main', LEVEL_MAIN)
+      );
+      state = flyoutManagerReducer(
+        state,
+        addFlyout('child-1', 'Child 1', LEVEL_CHILD)
+      );
+      state = flyoutManagerReducer(
+        state,
+        addFlyout('child-2', 'Child 2', LEVEL_CHILD)
+      );
+
+      expect(state.flyouts).toHaveLength(3); // main + child-1 + child-2 (previous child not removed)
+      expect(state.sessions).toHaveLength(1);
+      expect(state.sessions[0].childFlyoutId).toBe('child-2');
+      expect(state.sessions[0].childTitle).toBe('Child 2');
+      expect(state.sessions[0].childHistory).toHaveLength(1);
+      expect(state.sessions[0].childHistory[0]).toEqual({
+        flyoutId: 'child-1',
+        title: 'Child 1',
+        iconType: undefined,
+      });
+    });
+
+    it('should treat addFlyout child as idempotent when childFlyoutId already matches (e.g. after goBack)', () => {
+      let state = flyoutManagerReducer(
+        initialState,
+        addFlyout('main-1', 'Main', LEVEL_MAIN)
+      );
+      state = flyoutManagerReducer(
+        state,
+        addFlyout('child-1', 'Child 1', LEVEL_CHILD)
+      );
+      state = flyoutManagerReducer(
+        state,
+        addFlyout('child-2', 'Child 2', LEVEL_CHILD)
+      );
+      // Go back: pop child history, current becomes child-1, child-2 removed from flyouts
+      state = flyoutManagerReducer(state, goBack());
+      const flyoutCountAfterGoBack = state.flyouts.length;
+
+      // Re-register child-1 (idempotent: already in flyouts and session.childFlyoutId === child-1)
+      state = flyoutManagerReducer(
+        state,
+        addFlyout(
+          'child-1',
+          'Child 1 Updated',
+          LEVEL_CHILD,
+          undefined,
+          'starFilled'
+        )
+      );
+
+      expect(state.flyouts).toHaveLength(flyoutCountAfterGoBack); // no duplicate flyout
+      expect(state.sessions[0].childFlyoutId).toBe('child-1');
+      expect(state.sessions[0].childTitle).toBe('Child 1 Updated');
+      expect(state.sessions[0].childIconType).toBe('starFilled');
+      expect(state.sessions[0].childHistory).toHaveLength(0); // popped by goBack
+    });
+
     it('should handle multiple sessions correctly', () => {
       // Add first main flyout
       let state = flyoutManagerReducer(
@@ -137,12 +217,16 @@ describe('flyoutManagerReducer', () => {
       expect(state.sessions[0]).toEqual({
         mainFlyoutId: 'main-1',
         childFlyoutId: 'child-1',
+        childTitle: 'child',
+        childIconType: undefined,
+        childHistory: [],
         title: 'main',
         zIndex: 0,
       });
       expect(state.sessions[1]).toEqual({
         mainFlyoutId: 'main-2',
         childFlyoutId: null,
+        childHistory: [],
         title: 'main',
         zIndex: 3,
       });
@@ -150,26 +234,6 @@ describe('flyoutManagerReducer', () => {
   });
 
   describe('ACTION_CLOSE', () => {
-    it('should close a main flyout and remove its session', () => {
-      // Setup: add main flyout with child
-      let state = flyoutManagerReducer(
-        initialState,
-        addFlyout('main-1', 'main', LEVEL_MAIN)
-      );
-      state = flyoutManagerReducer(
-        state,
-        addFlyout('child-1', 'child', LEVEL_CHILD)
-      );
-
-      // Close main flyout
-      const action = closeFlyout('main-1');
-      state = flyoutManagerReducer(state, action);
-
-      // When main flyout is closed, all related flyouts should be removed
-      expect(state.flyouts).toHaveLength(0);
-      expect(state.sessions).toHaveLength(0);
-    });
-
     it('should close a child flyout and clear child reference', () => {
       // Setup: add main flyout with child
       let state = flyoutManagerReducer(
@@ -204,24 +268,180 @@ describe('flyoutManagerReducer', () => {
       expect(newState).toEqual(initialState);
     });
 
-    it('should reset currentZIndex value when all unmanaged and managed flyouts are closed', () => {
+    it('should close all children of session when closing a child (clear childHistory, remove all child flyouts)', () => {
+      let state = flyoutManagerReducer(
+        initialState,
+        addFlyout('main-1', 'Main', LEVEL_MAIN)
+      );
+      state = flyoutManagerReducer(
+        state,
+        addFlyout('child-1', 'Child 1', LEVEL_CHILD)
+      );
+      state = flyoutManagerReducer(
+        state,
+        addFlyout('child-2', 'Child 2', LEVEL_CHILD)
+      );
+      expect(state.flyouts).toHaveLength(3);
+      expect(state.sessions[0].childFlyoutId).toBe('child-2');
+      expect(state.sessions[0].childHistory).toHaveLength(1);
+
+      state = flyoutManagerReducer(state, closeFlyout('child-2'));
+
+      expect(state.sessions[0].childFlyoutId).toBe(null);
+      expect(state.sessions[0].childHistory).toHaveLength(0);
+      expect(state.flyouts).toHaveLength(1);
+      expect(state.flyouts[0].flyoutId).toBe('main-1');
+    });
+
+    it('should clear child state of the session that owns the closed child when closing a child in a non-current session', () => {
+      // Session 0: main-1 + child-1. Session 1: main-2 + child-2 (current).
+      let state = flyoutManagerReducer(
+        initialState,
+        addFlyout('main-1', 'Main 1', LEVEL_MAIN)
+      );
+      state = flyoutManagerReducer(
+        state,
+        addFlyout('child-1', 'Child 1', LEVEL_CHILD)
+      );
+      state = flyoutManagerReducer(
+        state,
+        addFlyout('main-2', 'Main 2', LEVEL_MAIN)
+      );
+      state = flyoutManagerReducer(
+        state,
+        addFlyout('child-2', 'Child 2', LEVEL_CHILD)
+      );
+      expect(state.sessions).toHaveLength(2);
+      expect(state.sessions[0].childFlyoutId).toBe('child-1');
+      expect(state.sessions[1].childFlyoutId).toBe('child-2');
+      expect(state.flyouts.map((f) => f.flyoutId)).toEqual([
+        'main-1',
+        'child-1',
+        'main-2',
+        'child-2',
+      ]);
+
+      // Close child-1 (belongs to session 0, which is not the current session)
+      state = flyoutManagerReducer(state, closeFlyout('child-1'));
+
+      // Session 0's child state must be cleared so navigating back stays consistent
+      expect(state.sessions[0].childFlyoutId).toBe(null);
+      expect(state.sessions[0].childHistory).toHaveLength(0);
+      // Session 1 unchanged
+      expect(state.sessions[1].childFlyoutId).toBe('child-2');
+      // child-1 removed from flyouts; main-1, main-2, child-2 remain
+      expect(state.flyouts.map((f) => f.flyoutId)).toEqual([
+        'main-1',
+        'main-2',
+        'child-2',
+      ]);
+    });
+  });
+
+  describe('ACTION_CLOSE_ALL', () => {
+    it('should close flyout and child when closing a single session', () => {
+      // Setup: add main flyout with child
       let state = flyoutManagerReducer(
         initialState,
         addFlyout('main-1', 'main', LEVEL_MAIN)
       );
-
       state = flyoutManagerReducer(
         state,
-        addFlyout('main-2', 'main 2', LEVEL_MAIN)
+        addFlyout('child-1', 'child', LEVEL_CHILD)
+      );
+
+      // Close main flyout
+      const action = closeAllFlyouts();
+      state = flyoutManagerReducer(state, action);
+
+      // When main flyout is closed, all related flyouts should be removed
+      expect(state.flyouts).toHaveLength(0);
+      expect(state.sessions).toHaveLength(0);
+    });
+
+    it('should close all sessions and preserve unmanaged flyouts', () => {
+      // Setup: add managed and unmanaged flyouts
+      let state = flyoutManagerReducer(
+        initialState,
+        addFlyout('main-1', 'Main 1', LEVEL_MAIN)
+      );
+      state = flyoutManagerReducer(
+        state,
+        addFlyout('main-2', 'Main 2', LEVEL_MAIN)
       );
       state = flyoutManagerReducer(state, addUnmanagedFlyout('unmanaged-1'));
 
-      state = flyoutManagerReducer(state, closeFlyout('main-2'));
+      expect(state.sessions).toHaveLength(2);
+      expect(state.flyouts).toHaveLength(2);
+      expect(state.unmanagedFlyouts).toHaveLength(1);
+
+      // Close all flyouts
+      const action = closeAllFlyouts();
+      state = flyoutManagerReducer(state, action);
+
+      // All managed flyouts and sessions should be removed
+      expect(state.flyouts).toHaveLength(0);
+      expect(state.sessions).toHaveLength(0);
+      expect(state.unmanagedFlyouts).toHaveLength(1);
+    });
+
+    it('should close all sessions including child flyouts', () => {
+      // Setup: add sessions with children
+      let state = flyoutManagerReducer(
+        initialState,
+        addFlyout('main-1', 'Main 1', LEVEL_MAIN)
+      );
+      state = flyoutManagerReducer(
+        state,
+        addFlyout('child-1', 'Child 1', LEVEL_CHILD)
+      );
+      state = flyoutManagerReducer(
+        state,
+        addFlyout('main-2', 'Main 2', LEVEL_MAIN)
+      );
+
+      expect(state.sessions).toHaveLength(2);
+      expect(state.flyouts).toHaveLength(3);
+
+      // Close all flyouts
+      const action = closeAllFlyouts();
+      state = flyoutManagerReducer(state, action);
+
+      // All flyouts (main and child) should be removed
+      expect(state.flyouts).toHaveLength(0);
+      expect(state.sessions).toHaveLength(0);
+    });
+
+    it('should handle closing when no sessions exist', () => {
+      const action = closeAllFlyouts();
+      const newState = flyoutManagerReducer(initialState, action);
+
+      // Should return same state (no-op)
+      expect(newState).toEqual(initialState);
+    });
+
+    it('should reset currentZIndex value when all unmanaged and managed flyouts are closed', () => {
+      // Setup: add managed and unmanaged flyouts
+      let state = flyoutManagerReducer(
+        initialState,
+        addFlyout('main-1', 'Main 1', LEVEL_MAIN)
+      );
+      state = flyoutManagerReducer(
+        state,
+        addFlyout('main-2', 'Main 2', LEVEL_MAIN)
+      );
+      state = flyoutManagerReducer(state, addUnmanagedFlyout('unmanaged-1'));
+
+      // currentZIndex should have incremented
+      expect(state.currentZIndex).toEqual(8);
+
+      // Close unmanaged flyout, currentZIndex should remain the same
       state = flyoutManagerReducer(state, closeUnmanagedFlyout('unmanaged-1'));
       expect(state.currentZIndex).toEqual(8);
 
-      state = flyoutManagerReducer(state, closeFlyout('main-1'));
-      expect(state.currentZIndex).toEqual(0);
+      // Close all flyouts, currentZIndex should reset to 0
+      state = flyoutManagerReducer(state, closeAllFlyouts());
+      expect(state.currentZIndex).toBe(0);
     });
   });
 
@@ -446,6 +666,33 @@ describe('flyoutManagerReducer', () => {
       expect(newState).toEqual(initialState);
     });
 
+    it('should pop child history first when current session has childHistory (remove current child from flyouts)', () => {
+      let state = flyoutManagerReducer(
+        initialState,
+        addFlyout('main-1', 'Main', LEVEL_MAIN)
+      );
+      state = flyoutManagerReducer(
+        state,
+        addFlyout('child-1', 'Child 1', LEVEL_CHILD)
+      );
+      state = flyoutManagerReducer(
+        state,
+        addFlyout('child-2', 'Child 2', LEVEL_CHILD)
+      );
+      expect(state.sessions[0].childFlyoutId).toBe('child-2');
+      expect(state.sessions[0].childHistory).toHaveLength(1);
+
+      state = flyoutManagerReducer(state, goBack());
+
+      expect(state.sessions).toHaveLength(1); // session not removed
+      expect(state.sessions[0].childFlyoutId).toBe('child-1');
+      expect(state.sessions[0].childHistory).toHaveLength(0);
+      expect(state.flyouts.map((f) => f.flyoutId)).toEqual([
+        'main-1',
+        'child-1',
+      ]); // child-2 removed
+    });
+
     it('should remove the last session when only one exists', () => {
       // Setup: create single session
       let state = flyoutManagerReducer(
@@ -601,6 +848,36 @@ describe('flyoutManagerReducer', () => {
 
       expect(newState).toEqual(initialState);
     });
+
+    it('should navigate to child in current session history when level is "child"', () => {
+      let state = flyoutManagerReducer(
+        initialState,
+        addFlyout('main-1', 'Main', LEVEL_MAIN)
+      );
+      state = flyoutManagerReducer(
+        state,
+        addFlyout('child-1', 'Child 1', LEVEL_CHILD)
+      );
+      state = flyoutManagerReducer(
+        state,
+        addFlyout('child-2', 'Child 2', LEVEL_CHILD)
+      );
+      state = flyoutManagerReducer(
+        state,
+        addFlyout('child-3', 'Child 3', LEVEL_CHILD)
+      );
+      expect(state.sessions[0].childFlyoutId).toBe('child-3');
+      expect(state.sessions[0].childHistory).toHaveLength(2);
+
+      state = flyoutManagerReducer(state, goToFlyout('child-1', 'child'));
+
+      expect(state.sessions[0].childFlyoutId).toBe('child-1');
+      expect(state.sessions[0].childHistory).toHaveLength(0); // popped to child-1
+      expect(state.flyouts.map((f) => f.flyoutId)).toEqual([
+        'main-1',
+        'child-1',
+      ]); // child-2, child-3 removed
+    });
   });
 
   describe('ACTION_ADD_UNMANAGED', () => {
@@ -718,7 +995,7 @@ describe('flyoutManagerReducer', () => {
       );
 
       state = flyoutManagerReducer(state, closeUnmanagedFlyout('unmanaged-1'));
-      state = flyoutManagerReducer(state, closeFlyout('main-1'));
+      state = flyoutManagerReducer(state, closeAllFlyouts());
       expect(state.currentZIndex).toEqual(7);
 
       state = flyoutManagerReducer(state, closeUnmanagedFlyout('unmanaged-2'));
@@ -779,7 +1056,7 @@ describe('flyoutManagerReducer', () => {
       expect(state.sessions[0].childFlyoutId).toBe(null);
 
       // 7. Close main flyout
-      state = flyoutManagerReducer(state, closeFlyout('main-1'));
+      state = flyoutManagerReducer(state, closeAllFlyouts());
       expect(state.flyouts).toHaveLength(0);
       expect(state.sessions).toHaveLength(0);
     });
@@ -807,21 +1084,25 @@ describe('flyoutManagerReducer', () => {
       expect(state.sessions[0]).toEqual({
         mainFlyoutId: 'main-1',
         childFlyoutId: 'child-1',
+        childTitle: 'child',
+        childIconType: undefined,
+        childHistory: [],
         title: 'main',
         zIndex: 0,
       });
       expect(state.sessions[1]).toEqual({
         mainFlyoutId: 'main-2',
         childFlyoutId: null,
+        childHistory: [],
         title: 'main',
         zIndex: 3,
       });
 
       // Close first session's main flyout
-      state = flyoutManagerReducer(state, closeFlyout('main-1'));
+      state = flyoutManagerReducer(state, closeAllFlyouts());
 
-      expect(state.sessions).toHaveLength(1);
-      expect(state.sessions[0].mainFlyoutId).toBe('main-2');
+      expect(state.sessions).toHaveLength(0);
+      expect(state.flyouts).toHaveLength(0);
     });
   });
 });

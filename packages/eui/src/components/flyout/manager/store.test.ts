@@ -7,7 +7,7 @@
  */
 
 import { getFlyoutManagerStore, _resetFlyoutManagerStore } from './store';
-import { LEVEL_MAIN } from './const';
+import { LEVEL_MAIN, LEVEL_CHILD } from './const';
 
 describe('Flyout Manager Store', () => {
   beforeEach(() => {
@@ -109,6 +109,26 @@ describe('Flyout Manager Store', () => {
       expect(historyItems[1].title).toBe('First Flyout');
     });
 
+    it('should include iconType in history items when sessions were added with iconType', () => {
+      const store = getFlyoutManagerStore();
+
+      store.addFlyout(
+        'flyout-1',
+        'First Flyout',
+        LEVEL_MAIN,
+        undefined,
+        'faceHappy'
+      );
+      store.addFlyout('flyout-2', 'Second Flyout', LEVEL_MAIN);
+
+      const historyItems = store.historyItems;
+
+      expect(historyItems).toHaveLength(1);
+      expect(historyItems[0].title).toBe('First Flyout');
+      expect(historyItems[0].iconType).toBe('faceHappy');
+      expect(historyItems[0].onClick).toBeDefined();
+    });
+
     it('should have functional onClick handlers', () => {
       const store = getFlyoutManagerStore();
 
@@ -125,6 +145,40 @@ describe('Flyout Manager Store', () => {
       expect(store.historyItems).toHaveLength(0);
       expect(store.getState().sessions).toHaveLength(1);
       expect(store.getState().sessions[0].mainFlyoutId).toBe('flyout-1');
+    });
+
+    it('should include current session child history first, then previous main sessions (child items most recent first)', () => {
+      const store = getFlyoutManagerStore();
+
+      store.addFlyout('main-1', 'Main', LEVEL_MAIN);
+      store.addFlyout('child-1', 'Child 1', LEVEL_CHILD);
+      store.addFlyout('child-2', 'Child 2', LEVEL_CHILD);
+
+      const historyItems = store.historyItems;
+
+      expect(historyItems).toHaveLength(1); // one child in history (Child 1), no previous mains
+      expect(historyItems[0].title).toBe('Child 1');
+      expect(historyItems[0].onClick).toBeDefined();
+
+      // Add a second main: current session becomes main-2 (no child). History = previous session's child breadcrumb (current child + child history), most recent first
+      store.addFlyout('main-2', 'Main 2', LEVEL_MAIN);
+      const historyItems2 = store.historyItems;
+      expect(historyItems2).toHaveLength(2); // Child 2 (main-1's current child), then Child 1 (main-1's child history)
+      expect(historyItems2[0].title).toBe('Child 2');
+      expect(historyItems2[1].title).toBe('Child 1');
+    });
+
+    it('should have empty historyItems (zero depth) when only one main', () => {
+      const store = getFlyoutManagerStore();
+      store.addFlyout('main-1', 'Main', LEVEL_MAIN);
+      expect(store.historyItems).toHaveLength(0);
+    });
+
+    it('should have empty historyItems (zero depth) when one main and one child (no child-to-child)', () => {
+      const store = getFlyoutManagerStore();
+      store.addFlyout('main-1', 'Main', LEVEL_MAIN);
+      store.addFlyout('child-1', 'Child', LEVEL_CHILD);
+      expect(store.historyItems).toHaveLength(0);
     });
   });
 
@@ -258,7 +312,7 @@ describe('Flyout Manager Store', () => {
       });
     });
 
-    it('should emit CLOSE_SESSION when closing a main flyout removes its session', () => {
+    it('should emit CLOSE_SESSION event when a session is removed by closeFlyout', () => {
       const store = getFlyoutManagerStore();
       const eventListener = jest.fn();
 
@@ -279,6 +333,39 @@ describe('Flyout Manager Store', () => {
         type: 'CLOSE_SESSION',
         session: sessions[0],
       });
+
+      unsubscribe();
+    });
+
+    it('should emit CLOSE_SESSION events when all sessions are removed by closeAllFlyouts', () => {
+      const store = getFlyoutManagerStore();
+      const eventListener = jest.fn();
+
+      // Create sessions
+      store.addFlyout('flyout-1', 'Test Flyout', LEVEL_MAIN);
+      store.addFlyout('flyout-2', 'Second Flyout', LEVEL_MAIN);
+
+      const sessions = store.getState().sessions;
+      expect(sessions).toHaveLength(2);
+
+      const unsubscribe = store.subscribeToEvents(eventListener);
+
+      // Closing flyout will close all sessions
+      store.closeAllFlyouts();
+
+      // Should have emitted CLOSE_SESSION
+      expect(eventListener).toHaveBeenCalledTimes(2);
+      expect(eventListener).toHaveBeenNthCalledWith(1, {
+        type: 'CLOSE_SESSION',
+        session: sessions[0],
+      });
+      expect(eventListener).toHaveBeenNthCalledWith(2, {
+        type: 'CLOSE_SESSION',
+        session: sessions[1],
+      });
+
+      // Should have no sessions left
+      expect(store.getState().sessions).toHaveLength(0);
 
       unsubscribe();
     });

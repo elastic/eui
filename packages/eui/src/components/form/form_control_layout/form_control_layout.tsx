@@ -29,6 +29,8 @@ import {
   euiFormControlLayoutStyles,
   euiFormControlLayoutSideNodeStyles,
 } from './form_control_layout.styles';
+import { EuiFormAppend, EuiFormPrepend } from './append_prepend';
+import { EuiFormControlLayoutContextProvider } from './form_control_layout_context';
 
 type StringOrReactElement = string | ReactElement;
 type PrependAppendType = StringOrReactElement | StringOrReactElement[];
@@ -137,8 +139,6 @@ export const EuiFormControlLayout: FunctionComponent<
   const childrenWrapperStyles = [
     styles.children.euiFormControlLayout__childrenWrapper,
     isGroup && styles.children.inGroup,
-    isGroup && !append && styles.children.prependOnly,
-    isGroup && !prepend && styles.children.appendOnly,
     wrapperProps?.css,
   ];
 
@@ -160,55 +160,71 @@ export const EuiFormControlLayout: FunctionComponent<
     });
   }, [iconsPosition, icon, clear, isInvalid, isLoading, hasDropdownIcon]);
 
+  const sideNodeCommonProps = {
+    inputId: inputId,
+    compressed: compressed,
+    isDisabled: isDisabled,
+    readOnly: readOnly,
+  };
+
   return (
     <div css={cssStyles} className={classes} {...rest}>
-      <EuiFormControlLayoutSideNodes
-        side="prepend"
-        nodes={prepend}
-        inputId={inputId}
-        compressed={compressed}
-      />
-      <div
-        {...wrapperProps}
-        css={childrenWrapperStyles}
-        className={classNames(
-          'euiFormControlLayout__childrenWrapper',
-          wrapperProps?.className
-        )}
-        style={{ ...iconAffordanceStyles, ...wrapperProps?.style }}
+      <EuiFormControlLayoutContextProvider
+        value={{
+          compressed: !!compressed,
+          inputId,
+          isDisabled: isDisabled,
+          isInvalid: isInvalid,
+          readOnly: readOnly,
+          isLoading: isLoading,
+        }}
       >
-        {hasLeftIcon && (
-          <EuiFormControlLayoutIcons
-            side="left"
-            icon={icon}
-            iconsPosition={iconsPosition}
-            compressed={compressed}
-            isDisabled={isDisabled}
-          />
-        )}
+        <EuiFormControlLayoutSideNodes
+          side="prepend"
+          nodes={prepend}
+          {...sideNodeCommonProps}
+        />
+        <div
+          {...wrapperProps}
+          css={childrenWrapperStyles}
+          className={classNames(
+            'euiFormControlLayout__childrenWrapper',
+            wrapperProps?.className
+          )}
+          style={{ ...iconAffordanceStyles, ...wrapperProps?.style }}
+        >
+          {hasLeftIcon && (
+            <EuiFormControlLayoutIcons
+              side="left"
+              icon={icon}
+              iconsPosition={iconsPosition}
+              compressed={compressed}
+              isDisabled={isDisabled}
+            />
+          )}
 
-        {children}
+          {children}
 
-        {hasRightIcons && (
-          <EuiFormControlLayoutIcons
-            side="right"
-            icon={hasRightIcon ? icon : undefined}
-            iconsPosition={iconsPosition}
-            compressed={compressed}
-            clear={clear}
-            isLoading={isLoading}
-            isInvalid={isInvalid}
-            isDropdown={hasDropdownIcon}
-            isDisabled={isDisabled}
-          />
-        )}
-      </div>
-      <EuiFormControlLayoutSideNodes
-        side="append"
-        nodes={append}
-        inputId={inputId}
-        compressed={compressed}
-      />
+          {hasRightIcons && (
+            <EuiFormControlLayoutIcons
+              side="right"
+              icon={hasRightIcon ? icon : undefined}
+              iconsPosition={iconsPosition}
+              compressed={compressed}
+              clear={clear}
+              isLoading={isLoading}
+              isInvalid={isInvalid}
+              isDropdown={hasDropdownIcon}
+              isDisabled={isDisabled}
+            />
+          )}
+        </div>
+        <EuiFormControlLayoutSideNodes
+          side="append"
+          nodes={append}
+          {...sideNodeCommonProps}
+        />
+      </EuiFormControlLayoutContextProvider>
     </div>
   );
 };
@@ -221,26 +237,53 @@ const EuiFormControlLayoutSideNodes: FunctionComponent<{
   nodes?: PrependAppendType; // For some bizarre reason if you make this the `children` prop instead, React doesn't properly override cloned keys :|
   inputId?: string;
   compressed?: boolean;
-}> = ({ side, nodes, inputId, compressed }) => {
+  isDisabled?: boolean;
+  readOnly?: boolean;
+}> = (props) => {
+  const { side, nodes, inputId, compressed, isDisabled, readOnly } = props;
+
   const className = `euiFormControlLayout__${side}`;
   const styles = useEuiMemoizedStyles(euiFormControlLayoutSideNodeStyles);
   const cssStyles = [
     styles.euiFormControlLayout__side,
-    styles[side],
-    compressed ? styles.compressed : styles.uncompressed,
+    compressed
+      ? [styles.compressed.compressed, styles.compressed[side]]
+      : [styles.uncompressed.uncompressed, styles.uncompressed[side]],
+    isDisabled && styles.disabled,
+    readOnly && styles.readOnly,
   ];
 
   if (!nodes) return null;
 
+  let content;
+
+  const AppendOrPrepend = side === 'append' ? EuiFormAppend : EuiFormPrepend;
+
+  if (Array.isArray(nodes)) {
+    if (nodes.length === 0) return null;
+
+    content = React.Children.map(nodes, (node) =>
+      typeof node === 'string' ? (
+        <EuiFormLabel htmlFor={inputId}>{node}</EuiFormLabel>
+      ) : (
+        node
+      )
+    );
+  } else if (typeof nodes === 'string') {
+    content = (
+      <AppendOrPrepend
+        inputId={inputId}
+        compressed={compressed}
+        label={nodes}
+      />
+    );
+  } else {
+    content = nodes;
+  }
+
   return (
     <div css={cssStyles} className={className}>
-      {React.Children.map(nodes, (node) =>
-        typeof node === 'string' ? (
-          <EuiFormLabel htmlFor={inputId}>{node}</EuiFormLabel>
-        ) : (
-          node
-        )
-      )}
+      {content}
     </div>
   );
 };

@@ -48,7 +48,7 @@ export const EuiExternalLinkIcon: FunctionComponent<
       <EuiIcon
         css={iconCssStyle}
         size="s"
-        type="popout"
+        type="external"
         role="presentation"
         {...rest}
       />

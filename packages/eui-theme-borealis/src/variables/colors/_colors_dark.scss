@@ -34,6 +34,7 @@ $euiColorBackgroundBaseSuccess: $euiColorSuccess140 !default;
 $euiColorBackgroundBaseWarning: $euiColorWarning140 !default;
 $euiColorBackgroundBaseRisk: $euiColorRisk140 !default;
 $euiColorBackgroundBaseDanger: $euiColorDanger140 !default;
+$euiColorBackgroundBaseAssistance: $euiColorAssistance140 !default;
 $euiColorBackgroundBaseSubdued: $euiColorPlainDark !default;
 $euiColorBackgroundBasePlain: $euiColorShade145 !default;
 $euiColorBackgroundBaseDisabled: $euiColorShade130 !default;
@@ -42,6 +43,7 @@ $euiColorBackgroundBaseFormsPrepend: $euiColorShade125 !default;
 $euiColorBackgroundBaseFormsControlDisabled: $euiColorShade120 !default;
 
 $euiColorBackgroundBaseInteractiveHover: $euiColorPlainLightAlpha8 !default;
+$euiColorBackgroundBaseInteractiveHoverAssistance: $euiColorAssistance130 !default;
 $euiColorBackgroundBaseInteractiveSelect: $euiColorPrimary130 !default;
 $euiColorBackgroundBaseInteractiveSelectHover: $euiColorPrimary120 !default;
 $euiColorBackgroundBaseInteractiveOverlay: $euiColorShade120Alpha70 !default;
@@ -56,6 +58,7 @@ $euiColorBackgroundLightSuccess: $euiColorSuccess130 !default;
 $euiColorBackgroundLightRisk: $euiColorRisk130 !default;
 $euiColorBackgroundLightWarning: $euiColorWarning130 !default;
 $euiColorBackgroundLightDanger: $euiColorDanger130 !default;
+$euiColorBackgroundLightAssistance: $euiColorAssistance120 !default;
 $euiColorBackgroundLightText: $euiColorShade120 !default;
 
 $euiColorBackgroundFilledPrimary: $euiColorPrimary60 !default;
@@ -66,6 +69,7 @@ $euiColorBackgroundFilledSuccess: $euiColorSuccess60 !default;
 $euiColorBackgroundFilledWarning: $euiColorWarning40 !default;
 $euiColorBackgroundFilledRisk: $euiColorRisk50 !default;
 $euiColorBackgroundFilledDanger: $euiColorDanger60 !default;
+$euiColorBackgroundFilledAssistance: $euiColorAssistance50 !default;
 $euiColorBackgroundFilledText: $euiColorShade60 !default;
 
 // Texts (legacy)
@@ -99,6 +103,7 @@ $euiColorTextSuccess: $euiColorSuccess60 !default;
 $euiColorTextWarning: $euiColorWarning30 !default;
 $euiColorTextRisk: $euiColorRisk50 !default;
 $euiColorTextDanger: $euiColorDanger60 !default;
+$euiColorTextAssistance: $euiColorAssistance50 !default;
 
 // Borders
 $euiColorBorderBasePrimary: $euiColorPrimary120 !default;
@@ -109,6 +114,7 @@ $euiColorBorderBaseSuccess: $euiColorSuccess120 !default;
 $euiColorBorderBaseWarning: $euiColorWarning120 !default;
 $euiColorBorderBaseRisk: $euiColorRisk120 !default;
 $euiColorBorderBaseDanger: $euiColorDanger120 !default;
+$euiColorBorderBaseAssistance: $euiColorAssistance120 !default;
 
 $euiColorBorderBasePlain: $euiColorShade100 !default;
 $euiColorBorderBaseSubdued: $euiColorShade120 !default;
@@ -129,6 +135,7 @@ $euiColorBorderStrongSuccess: $euiColorSuccess60 !default;
 $euiColorBorderStrongWarning: $euiColorWarning40 !default;
 $euiColorBorderStrongRisk: $euiColorRisk50 !default;
 $euiColorBorderStrongDanger: $euiColorDanger60 !default;
+$euiColorBorderStrongAssistance: $euiColorAssistance60 !default;
 $euiColorBorderStrongText: $euiColorShade60 !default;
 
 // Charts

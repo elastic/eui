@@ -62,7 +62,7 @@ const tabs = [
     id: 'hydrogen--id',
     disabled: true,
     name: 'Hydrogen',
-    prepend: <EuiIcon type="heatmap" />,
+    prepend: <EuiIcon type="chartHeatmap" />,
     content: (
       <Fragment>
         <EuiSpacer />
@@ -170,7 +170,7 @@ const tabs = [
   {
     id: 'hydrogen',
     name: 'Hydrogen',
-    prepend: <EuiIcon type="heatmap" size="s" />,
+    prepend: <EuiIcon type="chartHeatmap" size="s" />,
     disabled: true,
   },
 ];
@@ -207,7 +207,7 @@ export default () => {
   };
 
   const button = (
-    <EuiButton iconType="arrowDown" iconSide="right" onClick={onButtonClick}>
+    <EuiButton iconType="chevronSingleDown" iconSide="right" onClick={onButtonClick}>
       Click to show small tabs in a popover
     </EuiButton>
   );
@@ -398,7 +398,7 @@ export default () => {
     {
       id: 'hydrogen--id',
       name: 'Hydrogen',
-      prepend: <EuiIcon type="heatmap" />,
+      prepend: <EuiIcon type="chartHeatmap" />,
       content: (
         <Fragment>
           <EuiSpacer />
@@ -498,7 +498,7 @@ const tabs: EuiTabbedContentProps['tabs'] = [
   {
     id: 'hydrogen',
     name: 'Hydrogen',
-    prepend: <EuiIcon type="heatmap" />,
+    prepend: <EuiIcon type="chartHeatmap" />,
     content: (
       <Fragment>
         <EuiSpacer />
@@ -547,7 +547,7 @@ export default () => {
 
   return (
     <Fragment>
-      <EuiButton iconType="arrowRight" iconSide="right" onClick={cycleTab}>
+      <EuiButton iconType="chevronSingleRight" iconSide="right" onClick={cycleTab}>
         Cycle through the tabs
       </EuiButton>
 

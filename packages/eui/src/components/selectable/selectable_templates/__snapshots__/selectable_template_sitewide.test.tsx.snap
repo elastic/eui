@@ -27,7 +27,7 @@ exports[`EuiSelectableTemplateSitewide is rendered 1`] = `
               <span
                 aria-hidden="true"
                 class="euiFormControlLayoutCustomIcon__icon"
-                data-euiicon-type="search"
+                data-euiicon-type="magnify"
               />
             </span>
           </div>
@@ -66,6 +66,7 @@ exports[`EuiSelectableTemplateSitewide props popoverButton is rendered 1`] = `
       class="euiSelectableTemplateSitewide__popoverTrigger"
     >
       <button
+        aria-expanded="false"
         data-test-subj="mobilePopoverButton"
       >
         Button
@@ -101,7 +102,7 @@ exports[`EuiSelectableTemplateSitewide props popoverFooter is rendered 1`] = `
               <span
                 aria-hidden="true"
                 class="euiFormControlLayoutCustomIcon__icon"
-                data-euiicon-type="search"
+                data-euiicon-type="magnify"
               />
             </span>
           </div>
@@ -155,7 +156,7 @@ exports[`EuiSelectableTemplateSitewide props popoverProps is rendered 1`] = `
               <span
                 aria-hidden="true"
                 class="euiFormControlLayoutCustomIcon__icon"
-                data-euiicon-type="search"
+                data-euiicon-type="magnify"
               />
             </span>
           </div>
@@ -209,7 +210,7 @@ exports[`EuiSelectableTemplateSitewide props popoverTitle is rendered 1`] = `
               <span
                 aria-hidden="true"
                 class="euiFormControlLayoutCustomIcon__icon"
-                data-euiicon-type="search"
+                data-euiicon-type="magnify"
               />
             </span>
           </div>

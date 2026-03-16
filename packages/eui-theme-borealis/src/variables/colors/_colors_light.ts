@@ -51,6 +51,7 @@ export const brand_text_colors: _EuiThemeBrandTextColors = {
   textWarning: SEMANTIC_COLORS.warning100,
   textRisk: SEMANTIC_COLORS.risk100,
   textDanger: SEMANTIC_COLORS.danger100,
+  textAssistance: SEMANTIC_COLORS.assistance100,
 };
 
 export const text_colors: _EuiThemeTextColors = {
@@ -89,6 +90,7 @@ export const background_colors: _EuiThemeBackgroundColors = {
   backgroundBaseWarning: SEMANTIC_COLORS.warning10,
   backgroundBaseRisk: SEMANTIC_COLORS.risk10,
   backgroundBaseDanger: SEMANTIC_COLORS.danger10,
+  backgroundBaseAssistance: SEMANTIC_COLORS.assistance10,
   backgroundBaseSubdued: SEMANTIC_COLORS.shade10,
   backgroundBasePlain: SEMANTIC_COLORS.plainLight,
   backgroundBaseDisabled: SEMANTIC_COLORS.shade15,
@@ -98,6 +100,7 @@ export const background_colors: _EuiThemeBackgroundColors = {
   backgroundBaseFormsControlDisabled: SEMANTIC_COLORS.shade30,
 
   backgroundBaseInteractiveHover: SEMANTIC_COLORS.primary100Alpha4,
+  backgroundBaseInteractiveHoverAssistance: SEMANTIC_COLORS.assistance20,
   backgroundBaseInteractiveSelect: SEMANTIC_COLORS.primary10,
   backgroundBaseInteractiveSelectHover: SEMANTIC_COLORS.primary20,
   backgroundBaseInteractiveOverlay: SEMANTIC_COLORS.shade100Alpha70,
@@ -113,6 +116,7 @@ export const background_colors: _EuiThemeBackgroundColors = {
   backgroundLightWarning: SEMANTIC_COLORS.warning20,
   backgroundLightRisk: SEMANTIC_COLORS.risk20,
   backgroundLightDanger: SEMANTIC_COLORS.danger20,
+  backgroundLightAssistance: SEMANTIC_COLORS.assistance20,
   backgroundLightText: SEMANTIC_COLORS.shade20,
 
   backgroundFilledPrimary: SEMANTIC_COLORS.primary90,
@@ -123,6 +127,7 @@ export const background_colors: _EuiThemeBackgroundColors = {
   backgroundFilledWarning: SEMANTIC_COLORS.warning40,
   backgroundFilledRisk: SEMANTIC_COLORS.risk70,
   backgroundFilledDanger: SEMANTIC_COLORS.danger90,
+  backgroundFilledAssistance: SEMANTIC_COLORS.assistance90,
   backgroundFilledText: SEMANTIC_COLORS.shade90,
 };
 
@@ -157,6 +162,7 @@ export const border_colors: _EuiThemeBorderColors = {
   borderBaseWarning: SEMANTIC_COLORS.warning30,
   borderBaseRisk: SEMANTIC_COLORS.risk30,
   borderBaseDanger: SEMANTIC_COLORS.danger30,
+  borderBaseAssistance: SEMANTIC_COLORS.assistance30,
 
   borderBasePlain: SEMANTIC_COLORS.shade30,
   borderBaseSubdued: SEMANTIC_COLORS.shade20,
@@ -178,6 +184,7 @@ export const border_colors: _EuiThemeBorderColors = {
   borderStrongWarning: SEMANTIC_COLORS.warning90,
   borderStrongRisk: SEMANTIC_COLORS.risk90,
   borderStrongDanger: SEMANTIC_COLORS.danger90,
+  borderStrongAssistance: SEMANTIC_COLORS.assistance90,
   borderStrongText: SEMANTIC_COLORS.shade90,
 };
 

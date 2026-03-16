@@ -45,7 +45,7 @@ exports[`EuiContextMenu props panels and initialPanelId renders the referenced p
       <span
         class="euiContextMenu__icon emotion-euiContextMenu__icon"
         color="inherit"
-        data-euiicon-type="arrowLeft"
+        data-euiicon-type="chevronSingleLeft"
       />
       <span
         class="euiContextMenuItem__text emotion-euiContextMenuItem__text"
@@ -79,7 +79,7 @@ exports[`EuiContextMenu props size m 1`] = `
       <span
         class="euiContextMenu__icon emotion-euiContextMenu__icon"
         color="inherit"
-        data-euiicon-type="arrowLeft"
+        data-euiicon-type="chevronSingleLeft"
       />
       <span
         class="euiContextMenuItem__text emotion-euiContextMenuItem__text"
@@ -113,7 +113,7 @@ exports[`EuiContextMenu props size s 1`] = `
       <span
         class="euiContextMenu__icon emotion-euiContextMenu__icon"
         color="inherit"
-        data-euiicon-type="arrowLeft"
+        data-euiicon-type="chevronSingleLeft"
       />
       <span
         class="euiContextMenuItem__text emotion-euiContextMenuItem__text"

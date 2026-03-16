@@ -24,4 +24,6 @@ export const colorVisDark: _EuiThemeVisColors = {
   euiColorVisText7: SEMANTIC_COLORS.danger30,
   euiColorVisText8: SEMANTIC_COLORS.warning60,
   euiColorVisText9: SEMANTIC_COLORS.warning30,
+  euiColorVisText10: SEMANTIC_COLORS.assistance60,
+  euiColorVisText11: SEMANTIC_COLORS.assistance30,
 };

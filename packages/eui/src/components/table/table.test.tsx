@@ -17,6 +17,7 @@ import { EuiTableRowCell } from './table_row_cell';
 import { EuiTableBody } from './table_body';
 import { EuiTableHeader } from './table_header';
 import { EuiTableHeaderCell } from './table_header_cell';
+import { EUI_TABLE_CSS_CONTAINER_NAME } from './const';
 
 describe('EuiTable', () => {
   it('renders', () => {
@@ -42,19 +43,19 @@ describe('EuiTable', () => {
   describe('responsive/mobile context', () => {
     it('renders responsive styles if below the default m breakpoint', () => {
       window.innerWidth = 767;
-      const { container } = render(<EuiTable />);
+      const { getByRole } = render(<EuiTable />);
 
-      expect(container.firstElementChild!.className).toContain('-mobile');
+      expect(getByRole('table').className).toContain('-mobile');
     });
 
     it('allows customizing responsiveBreakpoint', () => {
-      const { container } = render(<EuiTable responsiveBreakpoint="xl" />);
+      const { getByRole } = render(<EuiTable responsiveBreakpoint="xl" />);
 
-      expect(container.firstElementChild!.className).toContain('-mobile');
+      expect(getByRole('table').className).toContain('-mobile');
     });
 
     it('allows customizing responsiveBreakpoint via EuiProvider.componentDefaults', () => {
-      const { container } = render(
+      const { getByRole } = render(
         <EuiProvider
           componentDefaults={{
             EuiTable: { responsiveBreakpoint: 'xl' },
@@ -65,21 +66,54 @@ describe('EuiTable', () => {
         { wrapper: undefined }
       );
 
-      expect(container.firstElementChild!.className).toContain('-mobile');
+      expect(getByRole('table').className).toContain('-mobile');
+    });
+  });
+
+  // Should be in sync with the same test suite
+  // in src/components/basic_table/basic_table.test.tsx
+  // and src/components/basic_table/in_memory_table.test.tsx
+  // to ensure equal behavior
+  describe('scrollableInline', () => {
+    it('updates table width styles when enabled', () => {
+      const { getByRole, rerender } = render(<EuiTable />);
+      let table = getByRole('table');
+
+      expect(table).toHaveStyleRule('inline-size', '100%');
+      expect(table).not.toHaveStyleRule('min-inline-size');
+
+      rerender(<EuiTable scrollableInline />);
+      table = getByRole('table');
+
+      expect(table).toHaveStyleRule('inline-size', 'auto');
+      expect(table).toHaveStyleRule('min-inline-size', '100%');
     });
   });
 
   it('always renders responsive tables styles if set to `true`', () => {
     window.innerWidth = 2000;
-    const { container } = render(<EuiTable responsiveBreakpoint={true} />);
+    const { getByRole } = render(<EuiTable responsiveBreakpoint={true} />);
 
-    expect(container.firstElementChild!.className).toContain('-mobile');
+    expect(getByRole('table').className).toContain('-mobile');
   });
 
   it('never renders responsive tables if set to `false`', () => {
     window.innerWidth = 320;
-    const { container } = render(<EuiTable responsiveBreakpoint={false} />);
+    const { getByRole } = render(<EuiTable responsiveBreakpoint={false} />);
 
-    expect(container.firstElementChild!.className).toContain('-desktop');
+    expect(getByRole('table').className).toContain('-desktop');
+  });
+
+  it('has CSS container properties set', () => {
+    const { getByRole } = render(<EuiTable />);
+
+    // container styles are always applied on the wrapper element of the table
+    const element = getByRole('table').parentElement;
+
+    expect(element).toHaveStyleRule(
+      'container-name',
+      EUI_TABLE_CSS_CONTAINER_NAME
+    );
+    expect(element).toHaveStyleRule('container-type', 'scroll-state');
   });
 });

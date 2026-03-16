@@ -60,7 +60,7 @@ export const useCopy = ({
           {(copy) => (
             <EuiButtonIcon
               onClick={copy}
-              iconType="copyClipboard"
+              iconType="copy"
               color="text"
               aria-label={copyAriaLabel || copyDefaultAriaLabel}
               data-test-subj="euiCodeBlockCopy"

@@ -41,6 +41,10 @@ export const BorderColorsTable = () => {
           token: 'colors.borderBaseDanger',
         },
         {
+          value: euiTheme.colors.borderBaseAssistance,
+          token: 'colors.borderBaseAssistance',
+        },
+        {
           value: euiTheme.colors.borderBasePlain,
           token: 'colors.borderBasePlain',
         },
@@ -107,6 +111,10 @@ export const BorderColorsTable = () => {
         {
           value: euiTheme.colors.borderStrongDanger,
           token: 'colors.borderStrongDanger',
+        },
+        {
+          value: euiTheme.colors.borderStrongAssistance,
+          token: 'colors.borderStrongAssistance',
         },
       ]}
     />

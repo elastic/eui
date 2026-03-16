@@ -655,6 +655,74 @@ describe('EuiPopover', () => {
       expect(getByTestSubject('toggleButton')).not.toHaveFocus();
     });
   });
+
+  describe('ARIA attributes on toggle button', () => {
+    beforeAll(() => jest.useFakeTimers());
+    afterAll(() => jest.useRealTimers());
+
+    it('sets aria-expanded="false" and no aria-controls on initial render', async () => {
+      const buttonTrigger = <button data-test-subj="buttonTrigger" />;
+
+      const { getByTestSubject } = render(
+        <EuiPopover button={buttonTrigger} closePopover={() => {}} />
+      );
+
+      const button = getByTestSubject('buttonTrigger');
+      expect(button).toHaveAttribute('aria-expanded', 'false');
+      expect(button).not.toHaveAttribute('aria-controls');
+    });
+
+    it('does not set ARIA attributes for non-button triggers', async () => {
+      const inputTrigger = <input data-test-subj="inputTrigger" />;
+
+      const { getByTestSubject } = render(
+        <EuiPopover
+          button={inputTrigger}
+          isOpen={false}
+          closePopover={() => {}}
+        />
+      );
+
+      const input = getByTestSubject('inputTrigger');
+      expect(input).not.toHaveAttribute('aria-expanded');
+      expect(input).not.toHaveAttribute('aria-controls');
+    });
+
+    it('updates ARIA attributes to reflect the open state', async () => {
+      const buttonTrigger = <button data-test-subj="buttonTrigger" />;
+
+      const { rerender, getByTestSubject } = render(
+        <EuiPopover
+          isOpen={true}
+          button={buttonTrigger}
+          closePopover={() => {}}
+        />
+      );
+
+      const button = getByTestSubject('buttonTrigger');
+
+      expect(button).toHaveAttribute('aria-expanded', 'true');
+      expect(button).toHaveAttribute(
+        'aria-controls',
+        'euiPopover_generated-id_panelId'
+      );
+
+      // Close the popover
+      rerender(
+        <EuiPopover
+          isOpen={false}
+          button={buttonTrigger}
+          closePopover={() => {}}
+        />
+      );
+
+      actAdvanceTimersByTime(openingTransitionTime);
+      await waitForEuiPopoverClose();
+
+      expect(button).toHaveAttribute('aria-expanded', 'false');
+      expect(button).not.toHaveAttribute('aria-controls');
+    });
+  });
 });
 
 describe('getPopoverPositionFromAnchorPosition', () => {

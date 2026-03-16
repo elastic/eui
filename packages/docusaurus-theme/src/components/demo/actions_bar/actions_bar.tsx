@@ -81,7 +81,7 @@ export const DemoActionsBar = ({
       <EuiToolTip content="Copy to clipboard">
         <EuiButtonIcon
           size="s"
-          iconType="copyClipboard"
+          iconType="copy"
           color="text"
           onClick={onClickCopyToClipboard}
           aria-label="Copy code to clipboard"

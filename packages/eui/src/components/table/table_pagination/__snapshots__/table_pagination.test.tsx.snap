@@ -13,6 +13,8 @@ exports[`EuiTablePagination renders 1`] = `
           class="euiPopover emotion-euiPopover-inline-block"
         >
           <button
+            aria-controls="euiPopover_generated-id_panelId"
+            aria-expanded="true"
             class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-text"
             data-test-subj="tablePaginationPopoverButton"
             type="button"
@@ -21,7 +23,7 @@ exports[`EuiTablePagination renders 1`] = `
               class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
             >
               <span
-                class="eui-textTruncate euiButtonEmpty__text"
+                class="eui-textTruncate euiButtonEmpty__text css-1shwb46-xs"
               >
                 Rows per page
                 : 
@@ -29,7 +31,7 @@ exports[`EuiTablePagination renders 1`] = `
               </span>
               <span
                 color="inherit"
-                data-euiicon-type="arrowDown"
+                data-euiicon-type="chevronSingleDown"
               />
             </span>
           </button>
@@ -62,7 +64,7 @@ exports[`EuiTablePagination renders 1`] = `
               aria-hidden="true"
               class="euiButtonIcon__icon"
               color="inherit"
-              data-euiicon-type="arrowLeft"
+              data-euiicon-type="chevronSingleLeft"
             />
           </button>
           <ul
@@ -81,7 +83,7 @@ exports[`EuiTablePagination renders 1`] = `
                   class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
                 >
                   <span
-                    class="eui-textTruncate euiButtonEmpty__text"
+                    class="eui-textTruncate euiButtonEmpty__text css-1ryezsz-s"
                   >
                     1
                   </span>
@@ -103,7 +105,7 @@ exports[`EuiTablePagination renders 1`] = `
                   class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
                 >
                   <span
-                    class="eui-textTruncate euiButtonEmpty__text"
+                    class="eui-textTruncate euiButtonEmpty__text css-1ryezsz-s"
                   >
                     2
                   </span>
@@ -123,7 +125,7 @@ exports[`EuiTablePagination renders 1`] = `
                   class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
                 >
                   <span
-                    class="eui-textTruncate euiButtonEmpty__text"
+                    class="eui-textTruncate euiButtonEmpty__text css-1ryezsz-s"
                   >
                     3
                   </span>
@@ -143,7 +145,7 @@ exports[`EuiTablePagination renders 1`] = `
                   class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
                 >
                   <span
-                    class="eui-textTruncate euiButtonEmpty__text"
+                    class="eui-textTruncate euiButtonEmpty__text css-1ryezsz-s"
                   >
                     4
                   </span>
@@ -163,7 +165,7 @@ exports[`EuiTablePagination renders 1`] = `
                   class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
                 >
                   <span
-                    class="eui-textTruncate euiButtonEmpty__text"
+                    class="eui-textTruncate euiButtonEmpty__text css-1ryezsz-s"
                   >
                     5
                   </span>
@@ -182,7 +184,7 @@ exports[`EuiTablePagination renders 1`] = `
               aria-hidden="true"
               class="euiButtonIcon__icon"
               color="inherit"
-              data-euiicon-type="arrowRight"
+              data-euiicon-type="chevronSingleRight"
             />
           </button>
         </nav>
@@ -201,19 +203,20 @@ exports[`EuiTablePagination renders 1`] = `
       data-focus-lock-disabled="disabled"
     >
       <div
-        aria-describedby="generated-id"
+        aria-describedby="euiPopover_generated-id_descriptionId"
         aria-live="off"
         aria-modal="true"
         class="euiPanel euiPanel--plain euiPopover__panel emotion-euiPanel-grow-m-plain-euiPopover__panel-light-hasTransform"
         data-autofocus="true"
         data-popover-panel="true"
+        id="euiPopover_generated-id_panelId"
         role="dialog"
         style="top: -12px; left: 0px; will-change: transform, opacity; z-index: 2000;"
         tabindex="0"
       >
         <p
           class="emotion-euiScreenReaderOnly"
-          id="generated-id"
+          id="euiPopover_generated-id_descriptionId"
         >
           You are in a dialog. Press Escape, or tap/click outside the dialog to close.
         </p>

@@ -363,10 +363,10 @@ export default () => (
 
 <EuiFlexGroup gutterSize="m">
   <Guideline type="do" text="Use icon buttons for universal actions that are easy to understand.">
-    <EuiButtonIcon size="m" iconType="pencil" aria-label="Edit" />&nbsp;&nbsp;<EuiButtonIcon size="m" iconType="expand" aria-label="Expand" />
+    <EuiButtonIcon size="m" iconType="pencil" aria-label="Edit" />&nbsp;&nbsp;<EuiButtonIcon size="m" iconType="maximize" aria-label="Expand" />
   </Guideline>
   <Guideline type="dont" text="Icons alone in a standard button look awkward and take too much space.">
-    <EuiButton><EuiIcon type="pencil" aria-label="Edit" /></EuiButton>&nbsp;&nbsp;<EuiButton><EuiIcon type="expand" aria-label="Expand" /></EuiButton>
+    <EuiButton><EuiIcon type="pencil" aria-label="Edit" /></EuiButton>&nbsp;&nbsp;<EuiButton><EuiIcon type="maximize" aria-label="Expand" /></EuiButton>
   </Guideline>
 </EuiFlexGroup>
 
@@ -596,8 +596,8 @@ import { EuiBetaBadge } from '@elastic/eui';
 By default, when using `isDisabled` or `disabled` on **EuiButton**, the button will render with the native `disabled` attribute, making it unfocusable.
 :::
 
-For accessibility, you may want a button to appear disabled but remain focusable (e.g., to provide context via tooltips). 
-In such cases, you may set `hasAriaDisabled={true}` which will change the native disabled behavior to a custom disabled behavior. This will renders a visually 
+For accessibility, you may want a button to appear disabled but remain focusable (e.g., to provide context via tooltips).
+In such cases, you may set `hasAriaDisabled={true}` which will change the native disabled behavior to a custom disabled behavior. This will renders a visually
 identical disabled button that remains focusable.
 
 :::warning `hasAriaDisabled` is a new, experimental prop.
@@ -633,7 +633,7 @@ export default () => {
         onChange={() => setDisableButton(!disableButton)}
       />
       <EuiSpacer />
-      
+
       <EuiFlexGroup responsive={false} gutterSize="s" alignItems="flexStart">
         <EuiFlexItem grow={false}>
           <EuiButton disabled={disableButton} fill>
@@ -660,7 +660,7 @@ import { EuiSpacer } from '@elastic/eui';
 :::danger CSS selector `:disabled` does not apply
 :::
 
-CSS selectors that rely on `:disabled` will not apply when using `hasAriaDisabled={true}`. Use `[aria-disabled="true"]` as selector instead. 
+CSS selectors that rely on `:disabled` will not apply when using `hasAriaDisabled={true}`. Use `[aria-disabled="true"]` as selector instead.
 
 To streamline this, EUI provides a `euiDisabledSelector` variable (for usage in CSS-in-JS) which combines both `:disabled` and `[aria-disabled="true"]` selectors.
 
@@ -790,17 +790,17 @@ Button labels should **clearly indicate the action**, using action words and an 
 
 ### Preferred words
 
-* **Add X** — Establishes a new relationship (e.g., "Add visualization"). Always followed by an object. Opposite: Remove.  
-* **Cancel** — Stops an action without saving. Never red; always an empty button.  
-* **Create X** — Creates a new object (e.g., "Create pipeline"). Always followed by an object. Opposite: Delete.  
-* **Delete N items** — Permanently deletes data. Opposite: Create. Not to be confused with Remove.  
-* **Remove X** — Removes a relationship without permanently deleting data (e.g., "Remove visualization"). Opposite: Add.  
+* **Add X** — Establishes a new relationship (e.g., "Add visualization"). Always followed by an object. Opposite: Remove.
+* **Cancel** — Stops an action without saving. Never red; always an empty button.
+* **Create X** — Creates a new object (e.g., "Create pipeline"). Always followed by an object. Opposite: Delete.
+* **Delete N items** — Permanently deletes data. Opposite: Create. Not to be confused with Remove.
+* **Remove X** — Removes a relationship without permanently deleting data (e.g., "Remove visualization"). Opposite: Add.
 * **Save** / **Save and complete** — Carries out pending changes (e.g., "Save edits"). Can be green if final save action. Not to be confused with Add.
 
 ### Words to be avoided
 
-* **New** — Use ‘Add’ or ‘Create’.  
-* **Ok** — Use action-specific words.  
+* **New** — Use ‘Add’ or ‘Create’.
+* **Ok** — Use action-specific words.
 * **Yes / No** — Use words that clearly explain the action.
 
 ## Usage
@@ -811,7 +811,7 @@ Icons can serve as an **addition to the text label** to emphasize actions, but s
 
 <EuiFlexGroup gutterSize="m">
   <Guideline type="do" text={` The arrow shows that there are more items to fill out, and the check icon indicates the final action.`}>
-    <EuiButton iconType="arrowRight" iconSide="right" fill>Continue</EuiButton>&nbsp;&nbsp;<EuiButton iconType="check" color="success" fill>Save and complete</EuiButton>
+    <EuiButton iconType="chevronSingleRight" iconSide="right" fill>Continue</EuiButton>&nbsp;&nbsp;<EuiButton iconType="check" color="success" fill>Save and complete</EuiButton>
   </Guideline>
   <Guideline type="dont" text="Unnecessary icon just distracts the user, especially it is on the right and is hard to interpret.">
     <EuiButton iconType="indexOpen" iconSide="right" fill>Create index pattern</EuiButton>
@@ -987,7 +987,7 @@ export default () => {
       <EuiButton
         isSelected={toggle2On}
         fill={toggle2On}
-        iconType={toggle2On ? 'starFilledSpace' : 'starPlusEmpty'}
+        iconType={toggle2On ? 'starFillSpace' : 'starPlusEmpty'}
         onClick={() => {
           setToggle2On((isOn) => !isOn);
         }}
