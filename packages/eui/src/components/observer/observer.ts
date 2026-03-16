@@ -6,59 +6,53 @@
  * Side Public License, v 1.
  */
 
-import { Component, ReactNode } from 'react';
-
-interface BaseProps {
-  /**
-   * ReactNode to render as this component's content
-   */
-  children: (ref: any) => ReactNode;
-}
+import { useCallback, useEffect, useRef } from 'react';
 
 export interface Observer {
   disconnect: () => void;
   observe: (element: Element, options?: { [key: string]: any }) => void;
 }
 
-export class EuiObserver<Props extends BaseProps> extends Component<Props> {
-  protected name: string = 'EuiObserver';
-  protected childNode: null | Element = null;
-  protected observer: null | Observer = null;
+/**
+ * A shared custom hook that provides a pattern for observing DOM nodes
+ * via browser observer APIs. Used by `EuiResizeObserver`.
+ *
+ * @param beginObserve - A callback that receives the target DOM element and should
+ *   create and return the observer instance (e.g., `ResizeObserver`).
+ */
+export const useObserver = (
+  beginObserve: (node: Element) => Observer | undefined
+) => {
+  const childNodeRef = useRef<Element | null>(null);
+  const observerRef = useRef<Observer | null>(null);
 
-  componentDidMount() {
-    if (this.childNode == null) {
-      throw new Error(`${this.name} did not receive a ref`);
-    }
-  }
+  // Store beginObserve in a ref so the ref callback doesn't cycle
+  const beginObserveRef = useRef(beginObserve);
+  beginObserveRef.current = beginObserve;
 
-  componentWillUnmount() {
-    if (this.observer != null) {
-      this.observer.disconnect();
-    }
-  }
+  // Clean up observer on unmount
+  useEffect(() => {
+    return () => {
+      observerRef.current?.disconnect();
+    };
+  }, []);
 
-  updateChildNode = (ref: Element) => {
-    if (this.childNode === ref) return; // node hasn't changed
+  const updateChildNode = useCallback((ref: Element | null) => {
+    if (childNodeRef.current === ref) return; // node hasn't changed
 
     // if there's an existing observer disconnect it
-    if (this.observer != null) {
-      this.observer.disconnect();
-      this.observer = null;
+    if (observerRef.current != null) {
+      observerRef.current.disconnect();
+      observerRef.current = null;
     }
 
-    this.childNode = ref;
+    childNodeRef.current = ref;
 
-    if (this.childNode != null) {
-      this.beginObserve();
+    if (childNodeRef.current != null) {
+      observerRef.current =
+        beginObserveRef.current(childNodeRef.current) ?? null;
     }
-  };
+  }, []);
 
-  beginObserve: () => void = () => {
-    throw new Error('EuiObserver has no default observation method');
-  };
-
-  render() {
-    const props: BaseProps = this.props;
-    return props.children(this.updateChildNode);
-  }
-}
+  return updateChildNode;
+};

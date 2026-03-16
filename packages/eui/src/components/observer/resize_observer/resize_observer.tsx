@@ -6,8 +6,14 @@
  * Side Public License, v 1.
  */
 
-import { ReactNode, useCallback, useEffect, useRef, useState } from 'react';
-import { EuiObserver } from '../observer';
+import React, {
+  ReactNode,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
+import { useObserver } from '../observer';
 
 export interface EuiResizeObserverProps {
   /**
@@ -20,36 +26,35 @@ export interface EuiResizeObserverProps {
 export const hasResizeObserver =
   typeof window !== 'undefined' && typeof window.ResizeObserver !== 'undefined';
 
-export class EuiResizeObserver extends EuiObserver<EuiResizeObserverProps> {
-  name = 'EuiResizeObserver';
+export const EuiResizeObserver: React.FunctionComponent<
+  EuiResizeObserverProps
+> = ({ children, onResize }) => {
+  const onResizeRef = useRef(onResize);
+  onResizeRef.current = onResize;
 
-  state = {
-    height: 0,
-    width: 0,
-  };
+  const sizeRef = useRef({ height: 0, width: 0 });
 
-  onResize: ResizeObserverCallback = ([entry]) => {
+  const resizeCallback: ResizeObserverCallback = useCallback(([entry]) => {
     const { inlineSize: width, blockSize: height } = entry.borderBoxSize[0];
 
     // Check for actual resize event
-    if (this.state.height === height && this.state.width === width) {
+    if (sizeRef.current.height === height && sizeRef.current.width === width) {
       return;
     }
 
-    this.props.onResize({
-      height,
-      width,
-    });
-    this.setState({ height, width });
-  };
+    sizeRef.current = { height, width };
+    onResizeRef.current({ height, width });
+  }, []);
 
-  beginObserve = () => {
-    // The superclass checks that childNode is not null before invoking
-    // beginObserve()
-    const childNode = this.childNode!;
-    this.observer = makeResizeObserver(childNode, this.onResize)!;
-  };
-}
+  const beginObserve = useCallback(
+    (node: Element) => makeResizeObserver(node, resizeCallback),
+    [resizeCallback]
+  );
+
+  const updateChildNode = useObserver(beginObserve);
+
+  return children(updateChildNode) as React.ReactElement;
+};
 
 const makeResizeObserver = (
   node: Element,

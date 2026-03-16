@@ -6,9 +6,9 @@
  * Side Public License, v 1.
  */
 
-import { ReactNode, useEffect } from 'react';
+import React, { ReactNode, useCallback, useEffect, useRef } from 'react';
 
-import { EuiObserver } from '../observer';
+import { useObserver } from '../observer';
 
 export interface EuiMutationObserverProps {
   /**
@@ -19,24 +19,35 @@ export interface EuiMutationObserverProps {
   observerOptions?: MutationObserverInit;
 }
 
-export class EuiMutationObserver extends EuiObserver<EuiMutationObserverProps> {
-  name = 'EuiMutationObserver';
+export const EuiMutationObserver: React.FunctionComponent<
+  EuiMutationObserverProps
+> = ({ children, onMutation, observerOptions }) => {
+  // Store onMutation and observerOptions in refs so the observer callback
+  // and setup always use the latest prop values without needing to
+  // re-subscribe (which would cause the ref callback to cycle)
+  const onMutationRef = useRef<MutationCallback>(onMutation);
+  onMutationRef.current = onMutation;
 
-  // the `onMutation` prop may change while the observer is bound, abstracting
-  // it out into a separate function means the current `onMutation` value is used
-  onMutation: MutationCallback = (records, observer) => {
-    this.props.onMutation(records, observer);
-  };
+  const observerOptionsRef = useRef(observerOptions);
+  observerOptionsRef.current = observerOptions;
 
-  beginObserve = () => {
-    const childNode = this.childNode!;
-    this.observer = makeMutationObserver(
-      childNode,
-      this.props.observerOptions,
-      this.onMutation
-    );
-  };
-}
+  const mutationCallback: MutationCallback = useCallback(
+    (records, observer) => {
+      onMutationRef.current(records, observer);
+    },
+    []
+  );
+
+  const beginObserve = useCallback(
+    (node: Element) =>
+      makeMutationObserver(node, observerOptionsRef.current, mutationCallback),
+    [mutationCallback]
+  );
+
+  const updateChildNode = useObserver(beginObserve);
+
+  return children(updateChildNode) as React.ReactElement;
+};
 
 const makeMutationObserver = (
   node: Element,
