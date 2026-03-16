@@ -33,10 +33,6 @@ export const SeverityBackgroundColorsTable = () => {
           token: 'colors.backgroundBaseDanger',
         },
         {
-          value: euiTheme.colors.backgroundBaseAssistance,
-          token: 'colors.backgroundBaseAssistance',
-        },
-        {
           value: euiTheme.colors.backgroundLightText,
           token: 'colors.backgroundLightText',
         },
@@ -59,10 +55,6 @@ export const SeverityBackgroundColorsTable = () => {
         {
           value: euiTheme.colors.backgroundLightDanger,
           token: 'colors.backgroundLightDanger',
-        },
-        {
-          value: euiTheme.colors.backgroundLightAssistance,
-          token: 'colors.backgroundLightAssistance',
         },
         {
           value: euiTheme.colors.backgroundFilledText,
