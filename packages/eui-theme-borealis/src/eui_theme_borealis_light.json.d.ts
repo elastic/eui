@@ -360,7 +360,6 @@ declare module '@elastic/eui-theme-borealis/lib/eui_theme_borealis_light.json' {
     euiColorSeverityWarning: string;
     euiColorSeverityRisk: string;
     euiColorSeverityDanger: string;
-    euiColorSeverityAssistance: string;
     euiColorChartLines: string;
     euiColorChartBand: string;
     euiColorPrimary: string;
