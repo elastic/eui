@@ -1,56 +1,92 @@
+<!--
+NOTE:
+- If this is your first PR in the EUI repo, please ensure you've fully read through our [contributing to EUI](https://github.com/elastic/eui/blob/main/wiki/contributing-to-eui#how-to-ensure-the-timely-review-of-pull-requests) wiki guide.
+- Ask @eui-team if you need help.
+-->
+
 ## Summary
 
 <!--
-Provide a detailed summary of your PR. What changed? Explain how you arrived at your solution.
-
-If this is your first PR in the EUI repo, please ensure you've fully read through our [contributing to EUI](https://github.com/elastic/eui/blob/main/wiki/contributing-to-eui#how-to-ensure-the-timely-review-of-pull-requests) wiki guide.
+- **What:** What changed.
+- **Why:** Link to issue (e.g. Fixes #123) and/or briefly explain motivation.
+- **How:** Implementation approach and any non-obvious decisions for reviewers.
+- Any other context to help reviewers.
 -->
 
-## Why are we making this change?
+### API Changes
 
 <!--
-Generally, most PRs should have a related issue from the [public EUI repo](https://github.com/elastic/eui) that explain **why** we are making changes.
+List any change to the public EUI API here.
 
-If this change does *not* have an issue associated with, or it is not clear in the issue, please clearly explain *why* we are making this change. This is valuable context for our changelogs.
+Example:
+
+| component / parent   | prop / child                 | change     | description                                                             |
+| -------------------- | ---------------------------- | ---------- | ----------------------------------------------------------------------- |
+| EuiOverlayMask       | hasAnimation                 | Added      | Conditionally add animation                                             |
+| EuiBadge             | fill                         | Default    | Default is now "false" -- Makes all badges have a light fill by default |
+| Tokens               | colors.severity.someOldColor | Deprecated | Use `colors.severity.someOtherColor` instead                            |
+| Global CSS Variables | --my-variable                | Added      | Some reason listed here                                                 |
+
 -->
 
-## Screenshots <a href="#user-content-screenshots" id="screenshots">#</a>
+| component / parent | prop / child | change | description |
+| ------------------ | ------------ | ------ | ----------- |
+|                    |              |        |             |
 
-<!--
-If this change includes changes to UI, it is important to include screenshots or gif. This helps our users understand what changed when reviewing our changelogs.
--->
+## Screenshots
 
-## Impact to users
+<!-- Useful for review and release notes -- most PRs should provide these. -->
 
-<!--
-How will this change impact EUI users? If it's a breaking change, what will they need to do to handle this change when upgrading? Take a moment to look at usage in Kibana and consider how many usages this will impact and note it here.
 
-Even if it is not a breaking change, how significant is the visual change? Is it a large enough visual change that we would want them advise them to test it?
--->
+| Before         | After         |
+| -------------- | ------------- |
+| {Before image} | {After image} |
 
-## QA
 
-Remove or strikethrough items that do not apply to your PR.
+## Impact Assessment
 
-### General checklist
+<!-- Help reviewers understand the consumer impact of merging this PR. -->
 
-- Browser QA
-    - [ ] Checked in both **light and dark** modes
-    - [ ] Checked in both [MacOS](https://support.apple.com/lv-lv/guide/mac-help/unac089/mac) and [Windows](https://support.microsoft.com/en-us/windows/turn-high-contrast-mode-on-or-off-in-windows-909e9d89-a0f9-a3a9-b993-7a6dcee85025) **high contrast modes**
-      - (_[emulate forced colors](https://devtoolstips.org/tips/en/emulate-forced-colors/) if you do not have access to a Windows machine_.)
-    - [ ] Checked in **mobile**
-    - [ ] Checked in **Chrome**, **Safari**, **Edge**, and **Firefox**
-    - [ ] Checked for **accessibility** including keyboard-only and screenreader modes
-- Docs site QA
-    - [ ] Added **[documentation](https://github.com/elastic/eui/blob/main/wiki/contributing-to-eui/documenting)**
-    - [ ] Props have proper **autodocs** (using `@default` if default values are missing) and **[playground toggles](https://github.com/elastic/eui/blob/main/wiki/contributing-to-eui/documenting/playgrounds.md)**
-    - [ ] Checked **[Code Sandbox](https://codesandbox.io/)** works for any docs examples
-- Code quality checklist
-    - [ ] Added or updated **[jest](https://github.com/elastic/eui/blob/main/wiki/contributing-to-eui/testing/unit-testing.md) and [cypress](https://github.com/elastic/eui/blob/main/wiki/contributing-to-eui/testing/cypress-testing.md) tests**
-    - [ ] Updated **[visual regression tests](https://github.com/elastic/eui/blob/main/wiki/contributing-to-eui/testing/visual-regression-testing.md)**
-- Release checklist
-    - [ ] A **[changelog](https://github.com/elastic/eui/blob/main/wiki/contributing-to-eui/documenting/changelogs.md)** entry exists and is marked appropriately
-    - [ ] If applicable, added the **breaking change** issue label (and filled out the breaking change checklist)
-    - [ ] If the changes unblock an issue in a different repo, smoke tested carefully (see [Testing EUI features in Kibana ahead of time](https://github.com/elastic/eui/blob/main/wiki/contributing-to-eui/testing/testing-in-kibana.md))
-- Designer checklist
-  - [ ] If applicable, [file an issue](https://github.com/elastic/platform-ux-team/issues/new/choose) to update [EUI's Figma library](https://www.figma.com/community/file/964536385682658129) with any corresponding UI changes. _(This is an internal repo, if you are external to Elastic, ask a maintainer to submit this request)_
+- [ ] 🔴 **Breaking changes** — What will break? How many usages in Kibana/Cloud UI are impacted?
+- [ ] 💅 **Visual changes** — May impact style overrides; could require visual testing. Explain and estimate impact.
+- [ ] 🧪 **Test impact** — May break functional or snapshot tests (e.g., HTML structure, class names, default values).
+- [ ] 🔧 **Hard to integrate** — If integration is complex, stage commits in Kibana/Cloud UI branches for cherry-picking and link to them below.
+
+**Impact level:** 🟢 None / 🟢 Low / 🟡 Moderate / 🔴 High
+
+## Release Readiness
+
+<!-- Ensure this PR is ready to ship. ~~cross out~~ items that don't apply. -->
+
+- [ ] **Documentation:** {link to docs page(s)}
+- [ ] **Figma:** {link to Figma or [issue](https://github.com/elastic/eui/blob/main/wiki/contributing-to-eui/designing)}
+- [ ] **Migration guide:** {steps or link, for breaking/visual changes or deprecations}
+- [ ] **Adoption plan** (new features): {link to issue/doc or outline who will integrate this and where} <!-- We don't ship features without a plan for adoption. -->
+
+### QA instructions for reviewer
+
+<!-- 
+Steps for reviewers to test this PR. Please, try to be as thorough as possible, remembering that the reviewer may not have the same context and knowledge as you have.
+
+Ex.
+- Open the table (basic/in-memory) demos in Storybook or docs.
+- [ ] Confirm that **action buttons** (default row actions) have a **4px** gap between them.
+- [ ] Confirm that **custom actions** (when used) still have an **8px** gap.
+  -->
+
+### Checklist before marking Ready for Review
+
+<!-- ~~Cross out~~ items that don't apply. -->
+
+- [ ] Filled out all sections above
+- [ ] **QA:** Tested [light/dark modes, high contrast](https://devtoolstips.org/tips/en/emulate-forced-colors/), mobile, Chrome/Safari/Edge/Firefox, keyboard-only, screen reader
+- [ ] **QA:** Tested in [CodeSandbox](https://codesandbox.io/) and [Kibana](https://github.com/elastic/eui/blob/main/wiki/contributing-to-eui/testing/testing-in-kibana.md)
+- [ ] **QA:** Tested docs changes
+- [ ] **Tests:** Added/updated [Jest](https://github.com/elastic/eui/blob/main/wiki/contributing-to-eui/testing/unit-testing.md), [Cypress](https://github.com/elastic/eui/blob/main/wiki/contributing-to-eui/testing/cypress-testing.md), and [VRT](https://github.com/elastic/eui/blob/main/wiki/contributing-to-eui/testing/visual-regression-testing.md)
+- [ ] **Changelog:** Added [changelog entry](https://github.com/elastic/eui/blob/main/wiki/contributing-to-eui/documenting/changelogs.md)
+- [ ] **Breaking changes:** Added `breaking change` label (if applicable)
+
+### Reviewer checklist
+
+- [ ] Approved **Impact Assessment** — Acceptable to merge given the consumer impact.
+- [ ] Approved **Release Readiness** — Docs, Figma, and migration info are sufficient to ship.

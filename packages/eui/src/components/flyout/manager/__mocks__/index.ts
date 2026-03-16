@@ -7,7 +7,11 @@
  */
 
 import { LEVEL_MAIN } from '../const';
-import { FlyoutManagerApi } from '../types';
+import type {
+  EuiFlyoutManagerState,
+  FlyoutManagerApi,
+  FlyoutSession,
+} from '../types';
 
 /**
  * Centralized test utilities for flyout manager tests.
@@ -34,10 +38,14 @@ export const createMockFunctions = (): Omit<
   setContainerElement: jest.fn(),
 });
 
-export const createMockState = () => ({
+/** Default state shape matching EuiFlyoutManagerState for tests. */
+export const createMockState = (): EuiFlyoutManagerState => ({
   sessions: [],
   flyouts: [],
-  layoutMode: 'side-by-side' as const,
+  layoutMode: 'side-by-side',
+  pushPadding: { left: 0, right: 0 },
+  unmanagedFlyouts: [],
+  currentZIndex: 0,
 });
 
 /**
@@ -58,26 +66,30 @@ export const createFlyoutManagerReducerMock = () => ({
 });
 
 /**
- * Helper for creating dynamic test state.
+ * Helper for creating dynamic test state (merge overrides onto default state).
  */
 export const createTestState = (
-  overrides: Partial<ReturnType<typeof createMockState>> = {}
-) => ({
+  overrides: Partial<EuiFlyoutManagerState> = {}
+): EuiFlyoutManagerState => ({
   ...createMockState(),
   ...overrides,
 });
 
 /**
- * Helper for creating test session data.
+ * Minimal session for tests (matches FlyoutSession shape).
  */
 export const createTestSession = (
-  main: string,
+  mainFlyoutId: string,
   title: string,
-  child: string | null = null
-) => ({
-  main,
+  childFlyoutId: string | null = null,
+  overrides: Partial<FlyoutSession> = {}
+): FlyoutSession => ({
+  mainFlyoutId,
   title,
-  child,
+  childFlyoutId,
+  childHistory: [],
+  zIndex: 0,
+  ...overrides,
 });
 
 /**
