@@ -22,9 +22,17 @@ export interface EuiFlyoutOverlayProps extends PropsWithChildren {
    * z-index); 'below' to keep them in the flyout stacking level.
    */
   headerZindexLocation?: 'above' | 'below';
+  /**
+   * When provided, clips the overlay mask to the container's bounding rect
+   * rather than covering the full viewport.
+   */
+  containerRect?: DOMRect | null;
 }
 
-const getEuiFlyoutOverlayStyles = (zIndex: number) => {
+const getEuiFlyoutOverlayStyles = (
+  zIndex: number,
+  containerRect?: DOMRect | null
+) => {
   /*
   This needs to have !important to override the default EuiOverlayMask
   z-index based on the headerZindexLocation prop. Using the style attribute
@@ -33,6 +41,16 @@ const getEuiFlyoutOverlayStyles = (zIndex: number) => {
   */
   return css`
     z-index: ${zIndex} !important;
+    ${containerRect
+      ? `
+      inset-block-start: ${containerRect.top}px !important;
+      inset-inline-start: ${containerRect.left}px !important;
+      inline-size: ${containerRect.width}px !important;
+      block-size: ${containerRect.height}px !important;
+      inset-inline-end: auto !important;
+      inset-block-end: auto !important;
+    `
+      : ''}
   `;
 };
 
@@ -51,10 +69,11 @@ export const EuiFlyoutOverlay = ({
   hasOverlayMask,
   maskZIndex,
   headerZindexLocation = 'below',
+  containerRect,
 }: EuiFlyoutOverlayProps) => {
   const styles = useMemo(
-    () => getEuiFlyoutOverlayStyles(maskZIndex),
-    [maskZIndex]
+    () => getEuiFlyoutOverlayStyles(maskZIndex, containerRect),
+    [maskZIndex, containerRect]
   );
 
   let content = children;
