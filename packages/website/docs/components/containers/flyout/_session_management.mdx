@@ -201,6 +201,48 @@ the history popover — it is not shown in the flyout's menu bar.
 </EuiFlyout>
 ```
 
+##### Scoping history (`historyKey`)
+
+By default, every `session="start"` flyout gets its own isolated history group -
+the Back button and history popover only ever show entries from flyouts that are
+part of the same group.
+
+In some applications, multiple areas of the product can open `session="start"`
+flyouts independently (for example, an Alerts panel and a Logs panel that are
+both active at the same time). Without any extra configuration these areas each
+have their own history.
+
+However, if you want **two or more independently-rendered flyouts to share a single
+history** — so that navigating Back can move between them — you can pass the same
+`Symbol` reference as the `historyKey` prop to each flyout:
+
+```tsx
+// Create the key once, outside the component (or in a shared module).
+const alertsHistoryKey = Symbol('alerts');
+
+// Both flyouts below will share the same Back button and history entries.
+<EuiFlyout session="start" historyKey={alertsHistoryKey} flyoutMenuProps={{ title: 'Alert overview' }}>
+  {/* ... */}
+</EuiFlyout>
+
+<EuiFlyout session="start" historyKey={alertsHistoryKey} flyoutMenuProps={{ title: 'Alert detail' }}>
+  {/* ... */}
+</EuiFlyout>
+```
+
+Because JavaScript `Symbol` identity is used for the comparison, you must pass the
+**same `Symbol` reference.**.
+
+:::info Note
+`historyKey` is only meaningful on `session="start"` (main) flyouts. Child flyouts
+don't carry their own key — they attach to the most recent session, which already
+has the key set by its main flyout. You should not pass `historyKey` on child flyouts.
+:::
+
+Closing a managed flyout (via the × button or `ACTION_CLOSE_ALL`) will close all
+flyouts in the **same history group** and leave flyouts belonging to other groups
+untouched.
+
 ##### Controlling session participation
 
 To prevent a flyout from being a part of the session management system:
