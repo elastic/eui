@@ -43,6 +43,30 @@ const meta: Meta<EuiTreeViewProps> = {
 export default meta;
 type Story = StoryObj<EuiTreeViewProps>;
 
+export const ManyChildren: Story = {
+  render: () => (
+    <div style={{ height: 400, overflow: 'auto', border: '1px solid' }}>
+      <EuiTreeView
+        aria-label="Many children tree"
+        expandByDefault
+        items={[
+          {
+            label: 'Parent',
+            id: 'parent',
+            isExpanded: true,
+            children: Array.from({ length: 50 }, (_, i) => ({
+              label: `Child ${i + 1}`,
+              id: `child_${i + 1}`,
+            })),
+          },
+          { label: 'Sibling after 1', id: 'sibling_1' },
+          { label: 'Sibling after 2', id: 'sibling_2' },
+        ]}
+      />
+    </div>
+  ),
+};
+
 export const Playground: Story = {
   args: {
     'aria-label': 'Directory of items',
