@@ -6,9 +6,7 @@
  * Side Public License, v 1.
  */
 
-import { ReactNode, useEffect } from 'react';
-
-import { EuiObserver } from '../observer';
+import React, { ReactNode, useCallback, useEffect, useRef } from 'react';
 
 export interface EuiMutationObserverProps {
   /**
@@ -19,24 +17,60 @@ export interface EuiMutationObserverProps {
   observerOptions?: MutationObserverInit;
 }
 
-export class EuiMutationObserver extends EuiObserver<EuiMutationObserverProps> {
-  name = 'EuiMutationObserver';
+export const EuiMutationObserver: React.FunctionComponent<
+  EuiMutationObserverProps
+> = ({ children, onMutation, observerOptions }) => {
+  const childNodeRef = useRef<Element | null>(null);
+  const observerRef = useRef<MutationObserver | null>(null);
 
-  // the `onMutation` prop may change while the observer is bound, abstracting
-  // it out into a separate function means the current `onMutation` value is used
-  onMutation: MutationCallback = (records, observer) => {
-    this.props.onMutation(records, observer);
-  };
+  // Store onMutation and observerOptions in refs so the observer callback
+  // and setup always use the latest prop values without needing to
+  // re-subscribe (which would cause the ref callback to cycle)
+  const onMutationRef = useRef<MutationCallback>(onMutation);
+  onMutationRef.current = onMutation;
 
-  beginObserve = () => {
-    const childNode = this.childNode!;
-    this.observer = makeMutationObserver(
-      childNode,
-      this.props.observerOptions,
-      this.onMutation
-    );
-  };
-}
+  const observerOptionsRef = useRef(observerOptions);
+  observerOptionsRef.current = observerOptions;
+
+  const mutationCallback: MutationCallback = useCallback(
+    (records, observer) => {
+      onMutationRef.current(records, observer);
+    },
+    []
+  );
+
+  // Clean up observer on unmount
+  useEffect(() => {
+    return () => {
+      observerRef.current?.disconnect();
+    };
+  }, []);
+
+  const updateChildNode = useCallback(
+    (ref: HTMLElement | null) => {
+      if (childNodeRef.current === ref) return; // node hasn't changed
+
+      // if there's an existing observer disconnect it
+      if (observerRef.current != null) {
+        observerRef.current.disconnect();
+        observerRef.current = null;
+      }
+
+      childNodeRef.current = ref;
+
+      if (childNodeRef.current != null) {
+        observerRef.current = makeMutationObserver(
+          childNodeRef.current,
+          observerOptionsRef.current,
+          mutationCallback
+        );
+      }
+    },
+    [mutationCallback]
+  );
+
+  return children(updateChildNode) as React.ReactElement;
+};
 
 const makeMutationObserver = (
   node: Element,
