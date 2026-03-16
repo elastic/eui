@@ -16,7 +16,8 @@ import React, {
 } from 'react';
 import { VariableSizeGrid as Grid } from 'react-window';
 
-import { useEuiMemoizedStyles, useIsPointerDown } from '../../../services';
+import { useEuiMemoizedStyles } from '../../../services';
+import { useIsPointerDown } from '../../../services/hooks';
 import { logicalStyles } from '../../../global_styling';
 import { DataGridCellPopoverContext } from '../body/cell';
 import { EuiDataGridStyle } from '../data_grid_types';
