@@ -31,7 +31,7 @@ export const euiTreeViewItemStyles = (euiThemeContext: UseEuiTheme) => {
         line-height: ${compressedSize};
       `,
       expanded: css`
-        ${logicalCSS('max-height', '100vh')}
+        ${logicalCSS('max-height', 'none')}
       `,
     },
 
