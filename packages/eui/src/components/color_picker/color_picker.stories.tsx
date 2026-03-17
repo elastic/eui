@@ -43,9 +43,6 @@ export default meta;
 type Story = StoryObj<EuiColorPickerProps>;
 
 export const Playground: Story = {
-  args: {
-    'aria-label': 'Pick a color',
-  },
   render: (args) => <StatefulColorPicker {...args} />,
 };
 
