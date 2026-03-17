@@ -50,6 +50,7 @@ export const InFormRow: Story = {
   name: 'In FormRow',
   parameters: {
     loki: {
+      // The visual composition of label + select is tested by form controls separately
       skip: true,
     },
   },
