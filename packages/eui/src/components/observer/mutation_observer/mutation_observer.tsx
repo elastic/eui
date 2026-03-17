@@ -44,7 +44,7 @@ export const EuiMutationObserver: React.FunctionComponent<
     [mutationCallback]
   );
 
-  const updateChildNode = useObserver(beginObserve);
+  const updateChildNode = useObserver(beginObserve, 'EuiMutationObserver');
 
   return children(updateChildNode) as React.ReactElement;
 };

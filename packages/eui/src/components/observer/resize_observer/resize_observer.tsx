@@ -51,7 +51,7 @@ export const EuiResizeObserver: React.FunctionComponent<
     [resizeCallback]
   );
 
-  const updateChildNode = useObserver(beginObserve);
+  const updateChildNode = useObserver(beginObserve, 'EuiResizeObserver');
 
   return children(updateChildNode) as React.ReactElement;
 };

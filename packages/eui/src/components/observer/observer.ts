@@ -15,13 +15,16 @@ export interface Observer {
 
 /**
  * A shared custom hook that provides a pattern for observing DOM nodes
- * via browser observer APIs. Used by `EuiResizeObserver`.
+ * via browser observer APIs. Used by `EuiResizeObserver` and `EuiMutationObserver`.
  *
  * @param beginObserve - A callback that receives the target DOM element and should
  *   create and return the observer instance (e.g., `ResizeObserver`).
+ * @param componentName - Optional name used in error messages when no ref is
+ *   attached on mount, mirroring the guard previously in `EuiObserver`.
  */
 export const useObserver = (
-  beginObserve: (node: Element) => Observer | undefined
+  beginObserve: (node: Element) => Observer | undefined,
+  componentName: string = 'useObserver'
 ) => {
   const childNodeRef = useRef<Element | null>(null);
   const observerRef = useRef<Observer | null>(null);
@@ -30,12 +33,17 @@ export const useObserver = (
   const beginObserveRef = useRef(beginObserve);
   beginObserveRef.current = beginObserve;
 
-  // Clean up observer on unmount
+  // Guard: throw if the ref callback was never called (no element attached),
+  // mirroring the check previously in EuiObserver.componentDidMount.
+  // Also cleans up the observer on unmount.
   useEffect(() => {
+    if (childNodeRef.current == null) {
+      throw new Error(`${componentName} did not receive a ref`);
+    }
     return () => {
       observerRef.current?.disconnect();
     };
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const updateChildNode = useCallback((ref: Element | null) => {
     if (childNodeRef.current === ref) return; // node hasn't changed
