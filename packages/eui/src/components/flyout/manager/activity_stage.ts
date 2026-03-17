@@ -32,17 +32,14 @@ export interface UseFlyoutActivityStageParams {
 
 export interface UseFlyoutActivityStageReturn {
   activityStage: EuiFlyoutActivityStage;
+  /**
+   * Pass to the flyout's `onAnimationEnd` prop to finalize transitional stages
+   * (e.g. CLOSING -> INACTIVE). Has no effect when `shouldAnimate` is false,
+   * since those stages are never entered.
+   */
   onAnimationEnd: () => void;
 }
 
-/**
- * Encapsulates all activity-stage transitions and animation-driven updates
- * for managed flyouts.
- *
- * Performance: reads `useFlyoutManager()` once and derives isActive,
- * hasChild, and layoutMode inline (replaces useIsFlyoutActive,
- * useHasChildFlyout, useFlyoutLayoutMode hooks).
- */
 /**
  * Returns the final stage after an animation completes.
  * OPENING/RETURNING -> ACTIVE; CLOSING -> INACTIVE; BACKGROUNDING -> BACKGROUNDED.
@@ -63,6 +60,14 @@ const getNextStage = (
   }
 };
 
+/**
+ * Encapsulates all activity-stage transitions and animation-driven updates
+ * for managed flyouts.
+ *
+ * Performance: reads `useFlyoutManager()` once and derives isActive,
+ * hasChild, and layoutMode inline (replaces useIsFlyoutActive,
+ * useHasChildFlyout, useFlyoutLayoutMode hooks).
+ */
 export const useFlyoutActivityStage = ({
   flyoutId,
   level,
