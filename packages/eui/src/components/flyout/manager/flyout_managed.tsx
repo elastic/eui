@@ -130,13 +130,12 @@ export const EuiManagedFlyout = forwardRef<HTMLElement, EuiManagedFlyoutProps>(
           ?.size
       : undefined;
 
-    // Animate opening only for the first main (only session) or first child (no prior child in session).
-    const sessionCount = managerSessions?.length ?? 0;
+    // Animate opening only for the first main flyout (sole session) or first child (no prior child in session).
     const shouldAnimateOpening =
       level === LEVEL_MAIN
-        ? sessionCount <= 1 &&
-          (sessionCount === 0 || currentSession?.mainFlyoutId === flyoutId)
-        : level === LEVEL_CHILD && (session?.childHistory?.length ?? 0) === 0;
+        ? (managerSessions?.length ?? 0) <= 1 &&
+          currentSession?.mainFlyoutId === flyoutId
+        : (session?.childHistory?.length ?? 0) === 0;
 
     const styles = useEuiMemoizedStyles(euiManagedFlyoutStyles);
 
