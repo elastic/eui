@@ -44,6 +44,10 @@ ruleTester.run('NoUnnamedInteractiveElement', NoUnnamedInteractiveElement, {
       code: '<EuiBreadcrumbs aria-label="Breadcrumbs label" />',
       languageOptions,
     },
+    {
+      code: '<EuiColorPicker aria-label="ColorPicker label" />',
+      languageOptions,
+    },
     // Wrapped in EuiFormRow with label
     {
       code: '<EuiFormRow label="Row label"><EuiComboBox /></EuiFormRow>',
@@ -98,6 +102,11 @@ ruleTester.run('NoUnnamedInteractiveElement', NoUnnamedInteractiveElement, {
     },
     {
       code: '<EuiBreadcrumbs />',
+      languageOptions,
+      errors: [{ messageId: 'missingA11y' }],
+    },
+    {
+      code: '<EuiColorPicker />',
       languageOptions,
       errors: [{ messageId: 'missingA11y' }],
     },
