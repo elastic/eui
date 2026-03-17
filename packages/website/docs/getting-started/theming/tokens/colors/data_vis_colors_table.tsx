@@ -168,6 +168,29 @@ export const DataVisTextColorsTable = () => {
             </>
           ),
         },
+<<<<<<< HEAD
+=======
+        {
+          value: euiTheme.colors.vis.euiColorVisText10,
+          token: 'colors.vis.euiColorVisText10',
+          description: (
+            <>
+              Text variant of <EuiCode>euiColorVis10</EuiCode>. Higher contrast
+              in light mode.
+            </>
+          ),
+        },
+        {
+          value: euiTheme.colors.vis.euiColorVisText11,
+          token: 'colors.vis.euiColorVisText11',
+          description: (
+            <>
+              Text variant of <EuiCode>euiColorVis11</EuiCode>. Higher contrast
+              in light mode.
+            </>
+          ),
+        }
+>>>>>>> e4db21a4ccab7c17b7f4ca5437806916ef0c5013
       ]}
     />
   );
