@@ -34,8 +34,7 @@ const getEuiFlyoutOverlayStyles = (zIndex: number) => {
   /*
   This needs to have !important to override the default EuiOverlayMask
   z-index based on the headerZindexLocation prop. Using the style attribute
-  doesn't work since EuiOverlayMask requires a string style prop that
-  causes React errors in the test environment.
+  doesn't work since EuiOverlayMask requires the styles to be provided via className
   */
   return css`
     z-index: ${zIndex} !important;
@@ -76,6 +75,8 @@ export const EuiFlyoutOverlay = ({
     const node = internalMaskRef.current;
     if (!node) return;
 
+    //  containerRect positioning must be applied via node.style.setProperty rather than
+    //  through the style prop - EuiOverlayMask requires styles to be passed via className
     if (containerRect) {
       node.style.setProperty('inset-block-start', `${containerRect.top}px`);
       node.style.setProperty('inset-inline-start', `${containerRect.left}px`);
