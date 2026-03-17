@@ -650,7 +650,7 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
 
         <EuiScreenReaderOnly>
           <span>
-            {/* Separate hint messages that are toggled on the id work more 
+            {/* Separate hint messages that are toggled on the id work more
             reliably to prevent stale messages in VO/Safari */}
             <span id={openLabelId} aria-hidden={!isColorSelectorShown}>
               {openLabel}
