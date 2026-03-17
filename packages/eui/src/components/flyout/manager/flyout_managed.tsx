@@ -346,6 +346,7 @@ export const EuiManagedFlyout = forwardRef<HTMLElement, EuiManagedFlyoutProps>(
               styles.managedFlyout,
               customCss,
               styles.stage(activityStage, props.side, level),
+              // Suppress EuiFlyout's built-in opening animation for non-initial flyouts.
               !shouldAnimateOpening &&
                 css`
                   animation-duration: 0s !important;
