@@ -6,8 +6,9 @@
  * Side Public License, v 1.
  */
 
-import React, { PropsWithChildren, useMemo } from 'react';
+import React, { PropsWithChildren, useEffect, useMemo, useRef } from 'react';
 import { css, cx } from '@emotion/css';
+import { useCombinedRefs } from '../../services';
 import { EuiOverlayMask } from '../overlay_mask';
 import { EuiPortal } from '../portal';
 import type { EuiFlyoutComponentProps } from './flyout.component';
@@ -29,10 +30,7 @@ export interface EuiFlyoutOverlayProps extends PropsWithChildren {
   containerRect?: DOMRect | null;
 }
 
-const getEuiFlyoutOverlayStyles = (
-  zIndex: number,
-  containerRect?: DOMRect | null
-) => {
+const getEuiFlyoutOverlayStyles = (zIndex: number) => {
   /*
   This needs to have !important to override the default EuiOverlayMask
   z-index based on the headerZindexLocation prop. Using the style attribute
@@ -41,16 +39,6 @@ const getEuiFlyoutOverlayStyles = (
   */
   return css`
     z-index: ${zIndex} !important;
-    ${containerRect
-      ? `
-      inset-block-start: ${containerRect.top}px !important;
-      inset-inline-start: ${containerRect.left}px !important;
-      inline-size: ${containerRect.width}px !important;
-      block-size: ${containerRect.height}px !important;
-      inset-inline-end: auto !important;
-      inset-block-end: auto !important;
-    `
-      : ''}
   `;
 };
 
@@ -72,9 +60,38 @@ export const EuiFlyoutOverlay = ({
   containerRect,
 }: EuiFlyoutOverlayProps) => {
   const styles = useMemo(
-    () => getEuiFlyoutOverlayStyles(maskZIndex, containerRect),
-    [maskZIndex, containerRect]
+    () => getEuiFlyoutOverlayStyles(maskZIndex),
+    [maskZIndex]
   );
+
+  // Internal ref so we can apply containerRect positioning directly on the DOM
+  // node, avoiding new Emotion CSS class generation on every scroll/resize.
+  const internalMaskRef = useRef<HTMLDivElement>(null);
+  const combinedMaskRef = useCombinedRefs([
+    internalMaskRef,
+    maskProps?.maskRef,
+  ]);
+
+  useEffect(() => {
+    const node = internalMaskRef.current;
+    if (!node) return;
+
+    if (containerRect) {
+      node.style.setProperty('inset-block-start', `${containerRect.top}px`);
+      node.style.setProperty('inset-inline-start', `${containerRect.left}px`);
+      node.style.setProperty('inline-size', `${containerRect.width}px`);
+      node.style.setProperty('block-size', `${containerRect.height}px`);
+      node.style.setProperty('inset-inline-end', 'auto');
+      node.style.setProperty('inset-block-end', 'auto');
+    } else {
+      node.style.removeProperty('inset-block-start');
+      node.style.removeProperty('inset-inline-start');
+      node.style.removeProperty('inline-size');
+      node.style.removeProperty('block-size');
+      node.style.removeProperty('inset-inline-end');
+      node.style.removeProperty('inset-block-end');
+    }
+  }, [containerRect]);
 
   let content = children;
 
@@ -92,6 +109,7 @@ export const EuiFlyoutOverlay = ({
             maskProps?.headerZindexLocation ?? headerZindexLocation
           }
           {...maskProps}
+          maskRef={combinedMaskRef}
           className={classes}
         />
       )}
