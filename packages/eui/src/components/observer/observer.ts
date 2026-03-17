@@ -43,7 +43,7 @@ export const useObserver = (
     return () => {
       observerRef.current?.disconnect();
     };
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [componentName]);
 
   const updateChildNode = useCallback((ref: Element | null) => {
     if (childNodeRef.current === ref) return; // node hasn't changed
