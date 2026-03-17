@@ -47,7 +47,7 @@ const meta: Meta<FlyoutStoryArgs> = {
     side: 'right',
     size: 'm',
     paddingSize: 'l',
-    pushAnimation: false,
+    hasAnimation: true,
     pushMinBreakpoint: 'l',
     closeButtonPosition: 'inside',
     hideCloseButton: false,
@@ -129,7 +129,7 @@ export const Playground: Story = {
 export const PushFlyouts: Story = {
   parameters: {
     controls: {
-      include: ['pushAnimation', 'pushMinBreakpoint', 'side', 'size', 'type'],
+      include: ['hasAnimation', 'pushMinBreakpoint', 'side', 'size', 'type'],
     },
     loki: {
       chromeSelector: LOKI_SELECTORS.default,
@@ -137,7 +137,7 @@ export const PushFlyouts: Story = {
   },
   args: {
     type: 'push',
-    pushAnimation: false,
+    hasAnimation: false,
     pushMinBreakpoint: 'xs',
   },
   render: ({ ...args }) => {

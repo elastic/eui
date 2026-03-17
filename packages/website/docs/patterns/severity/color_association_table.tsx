@@ -70,14 +70,6 @@ export const SeverityColorAssociationTable = () => {
         name: 'Red',
       },
     },
-    {
-      id: 6,
-      name: 'Assistance',
-      tint: {
-        color: euiTheme.colors.backgroundFilledAssistance,
-        name: 'Purple',
-      },
-    },
   ];
 
   return (

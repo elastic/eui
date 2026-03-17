@@ -49,7 +49,7 @@ const meta: Meta<EuiCollapsibleNavProps> = {
     side: 'left',
     size: 320,
     paddingSize: 'none',
-    pushAnimation: false,
+    hasAnimation: false,
     pushMinBreakpoint: 'l',
     isDocked: false,
     dockedBreakpoint: 'l',
