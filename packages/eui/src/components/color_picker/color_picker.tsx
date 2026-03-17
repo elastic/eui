@@ -246,9 +246,13 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
     ]
   );
 
-  const ariaDescribedById = useGeneratedHtmlId({
+  const openLabelId = useGeneratedHtmlId({
     prefix: 'colorPicker',
-    suffix: 'ariaDescribedby',
+    suffix: 'openLabel',
+  });
+  const closeLabelId = useGeneratedHtmlId({
+    prefix: 'colorPicker',
+    suffix: 'closeLabel',
   });
 
   const defaultSwatches = useEuiPaletteColorBlind();
@@ -632,12 +636,23 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
           data-test-subj={testSubjAnchor}
           aria-label={ariaLabel}
           aria-labelledby={ariaLabelledby}
-          aria-describedby={classNames(ariaDescribedById, ariaDescribedby)}
+          aria-describedby={classNames(
+            isColorSelectorShown ? openLabelId : closeLabelId,
+            ariaDescribedby
+          )}
           controlOnly // Don't need two EuiFormControlwrappers
         />
+
         <EuiScreenReaderOnly>
-          <span id={ariaDescribedById}>
-            {isColorSelectorShown ? openLabel : closeLabel}
+          <span>
+            {/* Separate hint messages that are toggled on the id work more 
+            reliably to prevent stale messages in VO/Safari */}
+            <span id={openLabelId} aria-hidden={!isColorSelectorShown}>
+              {openLabel}
+            </span>
+            <span id={closeLabelId} aria-hidden={isColorSelectorShown}>
+              {closeLabel}
+            </span>
           </span>
         </EuiScreenReaderOnly>
       </EuiFormControlLayout>
