@@ -87,7 +87,7 @@ The `gutterSize` prop can be applied to a parent **EuiFlexGrid** to adjust the s
 <FlexDemo>
   ```tsx
   import React, { Fragment } from 'react';
-  import { EuiFlexGroup, EuiFlexItem, EuiSpacer } from '@elastic/eui';
+  import { EuiFlexGrid, EuiFlexItem, EuiSpacer } from '@elastic/eui';
 
   const gutterSizes = {
     'none': 'None',
@@ -107,7 +107,7 @@ The `gutterSize` prop can be applied to a parent **EuiFlexGrid** to adjust the s
             <EuiFlexItem>{text}</EuiFlexItem>
             <EuiFlexItem>{text}</EuiFlexItem>
             <EuiFlexItem>{text}</EuiFlexItem>
-          </EuiFlexGroup>
+          </EuiFlexGrid>
           <EuiSpacer size="m" />
         </Fragment>
       ))}
