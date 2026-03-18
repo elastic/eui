@@ -44,7 +44,7 @@ No special configuration is needed — a properly configured bundler will tree-s
 
 ## Icons and code-splitting
 
-EUI icons use explicit dynamic imports to load SVGs on demand. Each icon in `EuiIcon`'s internal mapping is a separate chunk that your bundler generates and loads lazily at runtime:
+**EuiIcon** uses dynamic imports to load icon assets only when actually used. Depending on your bundler's configuration, each icon may become a fully separate chunk loaded lazily at runtime, or be otherwise grouped together with other code. It's common for bundlers to decide that based on the minimum and maximum chunk sizes to optimize code delivery efficiency. Please check your bundler documentation to learn more.
 
 ```ts
 // Simplified example of how EUI maps icon names to dynamic imports
