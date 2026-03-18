@@ -639,7 +639,13 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
           data-test-subj={testSubjAnchor}
           // if an id is provided it might be used in combination with `htmlFor` on a label,
           // so we don't want to override it with a fallback `aria-label`
-          aria-label={id ? undefined : _ariaLabel ?? ariaLabel}
+          aria-label={
+            _ariaLabel
+              ? _ariaLabel
+              : id || ariaLabelledby
+              ? undefined
+              : ariaLabel
+          }
           aria-labelledby={ariaLabelledby}
           aria-describedby={classNames(
             isColorSelectorShown ? openLabelId : closeLabelId,
