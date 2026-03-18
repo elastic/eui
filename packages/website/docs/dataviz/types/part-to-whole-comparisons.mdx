@@ -2,6 +2,9 @@
 sidebar_position: 3
 ---
 
+import useChartBaseThemeSource from '!raw-loader!../use_chart_base_theme';
+import dataSource from '!raw-loader!../data';
+
 # Part to whole comparisons
 
 import VersionBadge from '../version_badge';
@@ -24,7 +27,7 @@ import { useChartBaseTheme } from '../use_chart_base_theme';
 import BrowserOnly from '@docusaurus/BrowserOnly';
 ```
 
-<Demo scope={{ ...ElasticCharts, useChartBaseTheme }}>
+<Demo scope={{ ...ElasticCharts, useChartBaseTheme }} extraFiles={{ 'use_chart_base_theme.ts': useChartBaseThemeSource }}>
   ```tsx
   import React from 'react';
   import {
@@ -41,6 +44,8 @@ import BrowserOnly from '@docusaurus/BrowserOnly';
     PartitionLayout,
     PartialTheme,
   } from '@elastic/charts';
+  import { useChartBaseTheme } from './use_chart_base_theme';
+
 
   const STATUS_DATA = [
     {
@@ -173,7 +178,7 @@ Below are some basic examples and how EUI supports them with theming. However, t
 import { GITHUB_DATASET_MOD } from '../data';
 ```
 
-<Demo scope={{ ...ElasticCharts, useChartBaseTheme, GITHUB_DATASET_MOD }}>
+<Demo scope={{ ...ElasticCharts, useChartBaseTheme, GITHUB_DATASET_MOD }} extraFiles={{ 'use_chart_base_theme.ts': useChartBaseThemeSource, 'data.tsx': dataSource }}>
   ```tsx
   import React from 'react';
   import {
@@ -184,6 +189,9 @@ import { GITHUB_DATASET_MOD } from '../data';
     useEuiPaletteColorBlind,
   } from '@elastic/eui';
   import { Chart, Partition, Settings, PartitionLayout } from '@elastic/charts';
+  import { useChartBaseTheme } from './use_chart_base_theme';
+
+  import { GITHUB_DATASET_MOD } from './data';
 
 
   type DataType = (typeof GITHUB_DATASET_MOD)[0];

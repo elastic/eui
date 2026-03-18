@@ -2,6 +2,8 @@
 sidebar_position: 3
 ---
 
+import useChartBaseThemeSource from '!raw-loader!./use_chart_base_theme';
+
 # Accessibility features
 
 import VersionBadge from './version_badge';
@@ -102,11 +104,13 @@ In version 64.1.0, data tables are only available for **partition charts**.
 Partition charts include: sunburst, treemap, icicle, flame, mosaic, and waffle.
 :::
 
-<Demo scope={{ ...ElasticCharts, useChartBaseTheme }}>
+<Demo scope={{ ...ElasticCharts, useChartBaseTheme }} extraFiles={{ 'use_chart_base_theme.ts': useChartBaseThemeSource }}>
   ```tsx
   import React from 'react';
   import { EuiTitle, EuiSpacer, htmlIdGenerator } from '@elastic/eui';
   import { Chart, Partition, Settings, PartitionLayout } from '@elastic/charts';
+  import { useChartBaseTheme } from './use_chart_base_theme';
+
 
   export default () => {
     const chartBaseTheme = useChartBaseTheme();
@@ -217,7 +221,7 @@ In version 64.1.0, texture fills are only available for **XY charts**.
 XY charts include: area, bar, and histogram.
 :::
 
-<Demo scope={{ ...ElasticCharts, useChartBaseTheme }}>
+<Demo scope={{ ...ElasticCharts, useChartBaseTheme }} extraFiles={{ 'use_chart_base_theme.ts': useChartBaseThemeSource }}>
   ```tsx
   import React from 'react';
   import { EuiSpacer, EuiTitle, htmlIdGenerator } from '@elastic/eui';
@@ -229,6 +233,8 @@ XY charts include: area, bar, and histogram.
     Axis,
     Position,
   } from '@elastic/charts';
+  import { useChartBaseTheme } from './use_chart_base_theme';
+
 
   const SAMPLE_SMALL_DATA = [
     { x: 0, y: 10.934269 },
@@ -337,7 +343,7 @@ You can add meaning to your color segments by using the `bandLabels` prop.
 In version 64.1.0, semantic groupings are only available for **goal and gauge charts**.
 :::
 
-<Demo scope={{ ...ElasticCharts, useChartBaseTheme }}>
+<Demo scope={{ ...ElasticCharts, useChartBaseTheme }} extraFiles={{ 'use_chart_base_theme.ts': useChartBaseThemeSource }}>
   ```tsx
   import React from 'react';
   import {
@@ -350,6 +356,8 @@ In version 64.1.0, semantic groupings are only available for **goal and gauge ch
     useEuiTheme,
   } from '@elastic/eui';
   import { Chart, Settings, Goal } from '@elastic/charts';
+  import { useChartBaseTheme } from './use_chart_base_theme';
+
 
   export default () => {
     const id = htmlIdGenerator()();
