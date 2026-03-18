@@ -7299,7 +7299,7 @@ __metadata:
     "@elastic/eui-theme-common": "workspace:^"
     "@emotion/css": "npm:^11.11.2"
     "@emotion/react": "npm:^11.11.4"
-    "@faker-js/faker": "npm:^8.4.1"
+    "@faker-js/faker": "npm:^10.3.0"
     "@mdx-js/react": "npm:^3.0.0"
     "@types/lodash": "npm:^4.14.202"
     "@types/react": "npm:^18.3.3"
@@ -8044,17 +8044,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@faker-js/faker@npm:^10.3.0":
+  version: 10.3.0
+  resolution: "@faker-js/faker@npm:10.3.0"
+  checksum: 10c0/5a4688f8a040366bda83e6c7f144f9db9bef1d44f7c5b43fcee15c8def07463fcdcb572458b0d14072aca58c14321f1195e11d8664ce094266e29eb4d2a70ac4
+  languageName: node
+  linkType: hard
+
 "@faker-js/faker@npm:^8.0.2":
   version: 8.0.2
   resolution: "@faker-js/faker@npm:8.0.2"
   checksum: 10c0/a7851d4abfcd93c8c9d40ca7f1a7ad2218b9dcac1b11afe9dcf0fe38f5c1d91610e56bcedf5193a5b178dc10e052baab35977853342e84ec12b1fb27b425b356
-  languageName: node
-  linkType: hard
-
-"@faker-js/faker@npm:^8.4.1":
-  version: 8.4.1
-  resolution: "@faker-js/faker@npm:8.4.1"
-  checksum: 10c0/4f2aecddcfdc2cc8b50b2d15d1e37302a7c7a5bbd184ae910a9d271bc11248533ca74dcdd4a9ccbe20410553e7af0f6a4d334c5b955635e09a32ddf4a64942d4
   languageName: node
   linkType: hard
 
