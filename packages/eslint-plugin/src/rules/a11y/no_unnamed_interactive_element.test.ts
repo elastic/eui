@@ -57,6 +57,10 @@ ruleTester.run('NoUnnamedInteractiveElement', NoUnnamedInteractiveElement, {
       code: '<EuiFormRow label="Row label"><EuiSelect /></EuiFormRow>',
       languageOptions,
     },
+    {
+      code: '<EuiFormRow label="Row label"><EuiColorPicker /></EuiFormRow>',
+      languageOptions,
+    },
   ],
   invalid: [
     // Missing a11y prop for interactive components
@@ -118,6 +122,11 @@ ruleTester.run('NoUnnamedInteractiveElement', NoUnnamedInteractiveElement, {
     },
     {
       code: '<EuiFormRow><EuiSelect /></EuiFormRow>',
+      languageOptions,
+      errors: [{ messageId: 'missingA11y' }],
+    },
+    {
+      code: '<EuiFormRow><EuiColorPicker /></EuiFormRow>',
       languageOptions,
       errors: [{ messageId: 'missingA11y' }],
     },
