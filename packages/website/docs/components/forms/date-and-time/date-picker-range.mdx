@@ -3,14 +3,18 @@ sidebar_position: 2
 keywords: [EuiDatePickerRange]
 ---
 
+import displayTogglesSource from '!raw-loader!../../../../src/components/display_toggles/display_toggles';
+
 # Date picker range
 
 To create a single date range control, use **EuiDatePickerRange** and pass individual [EuiDatePicker](./date-picker.mdx) components into the `startDateControl` and `endDateControl` props. You can control the state of both inputs as direct props on **EuiDatePickerRange** as well as control each individually. Date specific props need to applied to the individual components.
 
+<Demo extraFiles={{ 'display_toggles.tsx': displayTogglesSource }}>
 ```tsx interactive
 import React, { useState } from 'react';
 import { EuiDatePicker, EuiDatePickerRange } from '@elastic/eui';
 import moment from 'moment';
+import { DisplayToggles } from './display_toggles';
 
 export default () => {
   const [startDate, setStartDate] = useState(moment());
@@ -45,6 +49,7 @@ export default () => {
   );
 };
 ```
+</Demo>
 
 :::tip
 If you need even more functionality such as relative time, suggested date ranges, and refresh intervals, consider using [EuiSuperDatePicker](./super-date-picker.mdx).
@@ -54,6 +59,7 @@ If you need even more functionality such as relative time, suggested date ranges
 
 Use the `inline` prop to display the date picker directly in the page instead of inside a popover. If you do not need the default inline shadow effect, apply the `shadow={false}` prop.
 
+<Demo extraFiles={{ 'display_toggles.tsx': displayTogglesSource }}>
 ```tsx interactive
 import React, { useState } from 'react';
 import {
@@ -64,6 +70,7 @@ import {
   EuiSpacer,
 } from '@elastic/eui';
 import moment from 'moment';
+import { DisplayToggles } from './display_toggles';
 
 export default () => {
   const [shadow, setShadow] = useState(true);
@@ -117,6 +124,7 @@ export default () => {
   );
 };
 ```
+</Demo>
 
 ### Dynamic `minDate` and `maxDate`
 

@@ -2,6 +2,8 @@
 keywords: [EuiRange, EuiDualRange]
 ---
 
+import displayTogglesSource from '!raw-loader!../../../../src/components/display_toggles/display_toggles';
+
 # Range sliders
 
 :::tip Understanding precision
@@ -554,6 +556,7 @@ export default () => {
 
 Passing `showInput="inputWithPopover"` instead of a boolean will only display the inputs until the input is interacted with in which case a dropdown will appear displaying the actual slider.
 
+<Demo extraFiles={{ 'display_toggles.tsx': displayTogglesSource }}>
 ```tsx interactive
 import React, { useState } from 'react';
 import {
@@ -564,6 +567,7 @@ import {
   EuiDualRangeProps,
   useGeneratedHtmlId,
 } from '@elastic/eui';
+import { DisplayToggles } from './display_toggles';
 
 export default () => {
   const [value, setValue] = useState<EuiRangeProps['value']>('20');
@@ -623,11 +627,13 @@ export default () => {
   );
 };
 ```
+</Demo>
 
 ## Kitchen sink
 
 Other alterations you can add to the range are `fullWidth`, and `disabled`.
 
+<Demo extraFiles={{ 'display_toggles.tsx': displayTogglesSource }}>
 ```tsx interactive
 import React, { useState } from 'react';
 import {
@@ -637,6 +643,7 @@ import {
   EuiDualRangeProps,
   useGeneratedHtmlId,
 } from '@elastic/eui';
+import { DisplayToggles } from './display_toggles';
 
 export default () => {
   const [value, setValue] = useState('20');
@@ -706,6 +713,7 @@ export default () => {
   );
 };
 ```
+</Demo>
 
 ## Props
 

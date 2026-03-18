@@ -3,6 +3,8 @@ sidebar_position: 8
 keywords: [EuiSwitch]
 ---
 
+import displayTogglesSource from '!raw-loader!../../../../src/components/display_toggles/display_toggles';
+
 # Switch
 
 ```mdx-code-block
@@ -11,9 +13,11 @@ import { EuiBasicTable, EuiFlexGrid, EuiFormRow, EuiSwitch, useEuiTheme } from '
 
 An **EuiSwitch** can be substituted for an **EuiCheckbox** when the semantics of the label dictate a true on/off state.
 
+<Demo extraFiles={{ 'display_toggles.tsx': displayTogglesSource }}>
 ```tsx interactive
 import React, { useState } from 'react';
 import { EuiSwitch } from '@elastic/eui';
+import { DisplayToggles } from './display_toggles';
 
 export default () => {
   const [checked, setChecked] = useState(false);
@@ -39,6 +43,7 @@ export default () => {
   );
 };
 ```
+</Demo>
 
 Make sure to pass a `label` to ensure a larger clickable area and ensure that screen readers will read out the label when the user is focused on the input.
 

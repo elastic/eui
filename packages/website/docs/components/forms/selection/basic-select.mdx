@@ -3,6 +3,8 @@ sidebar_position: 2
 keywords: [EuiSelect]
 ---
 
+import displayTogglesSource from '!raw-loader!../../../../src/components/display_toggles/display_toggles';
+
 # Basic select
 
 ```mdx-code-block
@@ -13,9 +15,11 @@ import EuiFormRowCallout from '../layouts/_form_row_callout.mdx';
 
 Use **EuiSelect** to allow users to choose from a list of 7 to 12 options. When there are less than 7 options consider using a [EuiRadioGroup](./radio-and-radio-group.mdx#radio-group). For more details on which selection component to use, see the [Component comparison](./overview.mdx).
 
+<Demo extraFiles={{ 'display_toggles.tsx': displayTogglesSource }}>
 ```tsx interactive
 import React, { useState } from 'react';
 import { EuiSelect, useGeneratedHtmlId } from '@elastic/eui';
+import { DisplayToggles } from './display_toggles';
 
 export default () => {
   const options = [
@@ -46,6 +50,7 @@ export default () => {
   );
 };
 ```
+</Demo>
 
 <EuiFormRowCallout />
 

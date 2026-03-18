@@ -4,6 +4,8 @@ sidebar_label: Text
 keywords: [EuiFieldText, EuiTextArea]
 ---
 
+import displayTogglesSource from '!raw-loader!../../../../src/components/display_toggles/display_toggles';
+
 # Basic text controls
 
 import EuiFormRowCallout from '../layouts/_form_row_callout.mdx';
@@ -14,9 +16,11 @@ import EuiFormRowCallout from '../layouts/_form_row_callout.mdx';
 
 Use a **EuiFieldText** to allow users to enter or edit text. This component renders a basic HTML `<input type="text">` element.
 
+<Demo extraFiles={{ 'display_toggles.tsx': displayTogglesSource }}>
 ```tsx interactive
 import React, { useState } from 'react';
 import { EuiFieldText } from '@elastic/eui';
+import { DisplayToggles } from './display_toggles';
 
 export default function () {
   const [value, setValue] = useState('');
@@ -38,14 +42,17 @@ export default function () {
   );
 }
 ```
+</Demo>
 
 ## Textarea
 
 Use **EuiTextArea** to allow users to enter multi-line text. This component renders a basic HTML `<textarea />` element.
 
+<Demo extraFiles={{ 'display_toggles.tsx': displayTogglesSource }}>
 ```tsx interactive
 import React, { useState } from 'react';
 import { EuiTextArea } from '@elastic/eui';
+import { DisplayToggles } from './display_toggles';
 
 export default () => {
   const [value, setValue] = useState('');
@@ -67,6 +74,7 @@ export default () => {
   );
 };
 ```
+</Demo>
 
 import FormUsage from '../_partials/form-usage.mdx';
 

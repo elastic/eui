@@ -4,6 +4,8 @@ sidebar_label: Number
 keywords: [EuiFieldNumber]
 ---
 
+import displayTogglesSource from '!raw-loader!../../../../src/components/display_toggles/display_toggles';
+
 # Basic number field
 
 import EuiFormRowCallout from '../layouts/_form_row_callout.mdx';
@@ -12,9 +14,11 @@ import EuiFormRowCallout from '../layouts/_form_row_callout.mdx';
 
 Use a **EuiFieldNumber** to allow users to enter numbers. This component renders a basic HTML `<input type="number">` element.
 
+<Demo extraFiles={{ 'display_toggles.tsx': displayTogglesSource }}>
 ```tsx interactive
 import React, { useState } from 'react';
 import { EuiFieldNumber } from '@elastic/eui';
+import { DisplayToggles } from './display_toggles';
 
 export default () => {
   const [value, setValue] = useState('');
@@ -36,6 +40,7 @@ export default () => {
   );
 };
 ```
+</Demo>
 
 ## Native validation
 

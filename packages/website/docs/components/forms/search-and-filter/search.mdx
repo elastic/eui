@@ -4,6 +4,8 @@ sidebar_label: Search
 keywords: [EuiFieldSearch]
 ---
 
+import displayTogglesSource from '!raw-loader!../../../../src/components/display_toggles/display_toggles';
+
 # Basic search field
 
 Use **EuiFieldSearch** to allow users to enter search queries. This component renders a basic HTML `<input type="search">` element.
@@ -12,9 +14,11 @@ import EuiFormRowCallout from '../layouts/_form_row_callout.mdx';
 
 <EuiFormRowCallout />
 
+<Demo extraFiles={{ 'display_toggles.tsx': displayTogglesSource }}>
 ```tsx interactive
 import React, { useState } from 'react';
 import { EuiFieldSearch, EuiSwitch } from '@elastic/eui';
+import { DisplayToggles } from './display_toggles';
 
 export default () => {
   const [isClearable, setIsClearable] = useState(true);
@@ -51,6 +55,7 @@ export default () => {
   );
 };
 ```
+</Demo>
 
 ## Searching on enter key
 
