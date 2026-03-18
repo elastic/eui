@@ -4,110 +4,174 @@ import { EuiSelect, useEuiTheme } from '@elastic/eui';
 
 import { Demo } from '@elastic/eui-docusaurus-theme/components';
 
+// @ts-ignore - webpack url-loader
+import pageNotFoundDarkUrl from '!url-loader!../../../../static/images/empty_prompt/pageNotFound--dark.png';
+// @ts-ignore - webpack url-loader
+import pageNotFoundLightUrl from '!url-loader!../../../../static/images/empty_prompt/pageNotFound--light.png';
+// @ts-ignore - webpack url-loader
+import accessDeniedDarkUrl from '!url-loader!../../../../static/images/empty_prompt/accessDenied--dark.png';
+// @ts-ignore - webpack url-loader
+import accessDeniedLightUrl from '!url-loader!../../../../static/images/empty_prompt/accessDenied--light.png';
+
 const types: Array<{
   value: string;
   text: string;
-  code: (colorMode: 'DARK' | 'LIGHT') => string;
+  code: string;
+  scope: Record<string, unknown>;
+  extraFiles: Record<string, string>;
 }> = [
   {
     value: 'errorPages',
     text: 'Page not found',
-    code: (colorMode) => `<EuiEmptyPrompt
-  color="subdued"
-  icon={
-    <EuiImage
-      size="fullWidth"
-      src="${
-        colorMode === 'DARK'
-          ? '/images/empty_prompt/pageNotFound--dark.png'
-          : '/images/empty_prompt/pageNotFound--light.png'
-      }"
-      alt="An outer space illustration. In the background is a large moon and two planets. In the foreground is an astronaut floating in space and the numbers '404'."
+    scope: {
+      pageNotFoundDark: pageNotFoundDarkUrl,
+      pageNotFoundLight: pageNotFoundLightUrl,
+    },
+    extraFiles: {
+      'pageNotFound--dark.ts': `export default "${pageNotFoundDarkUrl}";`,
+      'pageNotFound--light.ts': `export default "${pageNotFoundLightUrl}";`,
+    },
+    code: `import React from 'react';
+import {
+  EuiEmptyPrompt,
+  EuiButton,
+  EuiButtonEmpty,
+  EuiImage,
+  useEuiTheme,
+} from '@elastic/eui';
+import pageNotFoundDark from './pageNotFound--dark';
+import pageNotFoundLight from './pageNotFound--light';
+
+export default () => {
+  const { colorMode } = useEuiTheme();
+  return (
+    <EuiEmptyPrompt
+      color="subdued"
+      icon={
+        <EuiImage
+          size="fullWidth"
+          src={colorMode === 'DARK' ? pageNotFoundDark : pageNotFoundLight}
+          alt="An outer space illustration. In the background is a large moon and two planets. In the foreground is an astronaut floating in space and the numbers '404'."
+        />
+      }
+      title={<h2>Page not found</h2>}
+      layout="vertical"
+      body={
+        <p>
+          We can&apos;t find the page you&apos;re looking for. It might have
+          been removed, renamed, or it didn&apos;t exist in the first place.
+        </p>
+      }
+      actions={[
+        <EuiButton color="primary" fill>
+          Home
+        </EuiButton>,
+        <EuiButtonEmpty iconType="chevronSingleLeft" flush="both">
+          Go back
+        </EuiButtonEmpty>,
+      ]}
     />
-  }
-  title={<h2>Page not found</h2>}
-  layout="vertical"
-  body={
-    <p>
-      We can&apos;t find the page you&apos;re looking for. It might have
-      been removed, renamed, or it didn&apos;t exist in the first place.
-    </p>
-  }
-  actions={[
-    <EuiButton color="primary" fill>
-      Home
-    </EuiButton>,
-    <EuiButtonEmpty iconType="chevronSingleLeft" flush="both">
-      Go back
-    </EuiButtonEmpty>,
-  ]}
-/>`,
+  );
+};`,
   },
   {
     value: 'noPrivileges',
     text: 'No permission',
-    code: (colorMode) => `<EuiEmptyPrompt
-  color="subdued"
-  icon={
-    <EuiImage
-      size="fullWidth"
-      src="${
-        colorMode === 'DARK'
-          ? '/images/empty_prompt/accessDenied--dark.png'
-          : '/images/empty_prompt/accessDenied--light.png'
-      }"
-      alt=""
+    scope: {
+      accessDeniedDark: accessDeniedDarkUrl,
+      accessDeniedLight: accessDeniedLightUrl,
+    },
+    extraFiles: {
+      'accessDenied--dark.ts': `export default "${accessDeniedDarkUrl}";`,
+      'accessDenied--light.ts': `export default "${accessDeniedLightUrl}";`,
+    },
+    code: `import React from 'react';
+import {
+  EuiEmptyPrompt,
+  EuiButton,
+  EuiButtonEmpty,
+  EuiImage,
+  useEuiTheme,
+} from '@elastic/eui';
+import accessDeniedDark from './accessDenied--dark';
+import accessDeniedLight from './accessDenied--light';
+
+export default () => {
+  const { colorMode } = useEuiTheme();
+  return (
+    <EuiEmptyPrompt
+      color="subdued"
+      icon={
+        <EuiImage
+          size="fullWidth"
+          src={colorMode === 'DARK' ? accessDeniedDark : accessDeniedLight}
+          alt=""
+        />
+      }
+      title={<h2>Access denied</h2>}
+      layout="vertical"
+      body={
+        <p>
+          Sorry to rain on your parade, but you don't have permissions to access
+          this page.
+        </p>
+      }
+      actions={[
+        <EuiButton color="primary" fill>
+          Home
+        </EuiButton>,
+        <EuiButtonEmpty iconType="chevronSingleLeft" flush="both">
+          Go back
+        </EuiButtonEmpty>,
+      ]}
     />
-  }
-  title={<h2>Access denied</h2>}
-  layout="vertical"
-  body={
-    <p>
-      Sorry to rain on your parade, but you don't have permissions to access
-      this page.
-    </p>
-  }
-  actions={[
-    <EuiButton color="primary" fill>
-      Home
-    </EuiButton>,
-    <EuiButtonEmpty iconType="chevronSingleLeft" flush="both">
-      Go back
-    </EuiButtonEmpty>,
-  ]}
-/>`,
+  );
+};`,
   },
   {
     value: 'licenseUpgrade',
     text: 'License upgrade',
-    code: () => `<EuiEmptyPrompt
-  color="subdued"
-  iconType="logoKibana"
-  title={<h2>Do more with Kibana!</h2>}
-  layout="vertical"
-  hasBorder
-  body={
-    <p>
-      Start a free trial or upgrade your license to use anomaly detection.
-    </p>
-  }
-  actions={[
-    <EuiButton color="primary" fill>
-      Upgrade
-    </EuiButton>,
-    <EuiButtonEmpty>Start a free trial</EuiButtonEmpty>,
-  ]}
-  footer={
-    <>
-      <EuiTitle size="xxs">
-        <h3>Want to learn more?</h3>
-      </EuiTitle>
-      <EuiLink href="#" target="_blank">
-        Read the docs
-      </EuiLink>
-    </>
-  }
-/>`,
+    scope: {},
+    extraFiles: {},
+    code: `import React from 'react';
+import {
+  EuiEmptyPrompt,
+  EuiButton,
+  EuiButtonEmpty,
+  EuiTitle,
+  EuiLink,
+} from '@elastic/eui';
+
+export default () => (
+  <EuiEmptyPrompt
+    color="subdued"
+    iconType="logoKibana"
+    title={<h2>Do more with Kibana!</h2>}
+    layout="vertical"
+    hasBorder
+    body={
+      <p>
+        Start a free trial or upgrade your license to use anomaly detection.
+      </p>
+    }
+    actions={[
+      <EuiButton color="primary" fill>
+        Upgrade
+      </EuiButton>,
+      <EuiButtonEmpty>Start a free trial</EuiButtonEmpty>,
+    ]}
+    footer={
+      <>
+        <EuiTitle size="xxs">
+          <h3>Want to learn more?</h3>
+        </EuiTitle>
+        <EuiLink href="#" target="_blank">
+          Read the docs
+        </EuiLink>
+      </>
+    }
+  />
+);`,
   },
 ];
 
@@ -136,8 +200,12 @@ export default () => {
         aria-label="Empty prompt examples"
       />
 
-      <Demo key={`${selectedType.value}--${colorMode}`}>
-        {selectedType.code(colorMode)}
+      <Demo
+        key={`${selectedType.value}--${colorMode}`}
+        scope={selectedType.scope}
+        extraFiles={selectedType.extraFiles}
+      >
+        {selectedType.code}
       </Demo>
     </>
   );

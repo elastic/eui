@@ -1,5 +1,8 @@
 import { ReactNode } from 'react';
-import useBaseUrl from '@docusaurus/useBaseUrl';
+// @ts-ignore - webpack url-loader
+import single from '!url-loader!../../../../../static/images/single.svg';
+// @ts-ignore - webpack url-loader
+import sideNav from '!url-loader!../../../../../static/images/empty_prompt/side_nav.svg';
 
 import {
   EuiPageTemplate,
@@ -12,6 +15,7 @@ import { Demo } from '@elastic/eui-docusaurus-theme/components';
 
 import { TYPES_OF_USE_CASES } from './use_cases';
 import { convertToJsxString } from './utils';
+import { USE_CASE_IMAGE_URLS } from './use_case_images';
 
 type Props = {
   radioUseCaseId: string;
@@ -25,13 +29,10 @@ export const SidebarSnippet = ({ radioUseCaseId }: Props) => {
 
   const { example } = TYPES_OF_USE_CASES[radioUseCaseId];
 
-  const single = useBaseUrl('/images/single.svg');
-  const sideNav = useBaseUrl('/images/empty_prompt/side_nav.svg');
-
-  const src = useBaseUrl(isDarkTheme ? example.iconDark : example.iconLight);
-  const src2x = useBaseUrl(
-    isDarkTheme ? example.iconDark2x : example.iconLight2x
-  );
+  const iconPath = isDarkTheme ? example.iconDark : example.iconLight;
+  const icon2xPath = isDarkTheme ? example.iconDark2x : example.iconLight2x;
+  const src = iconPath ? USE_CASE_IMAGE_URLS[iconPath as string] : undefined;
+  const src2x = icon2xPath ? USE_CASE_IMAGE_URLS[icon2xPath as string] : undefined;
 
   // Conditionally set the `icon` prop if a non-standard icon is needed
   // See EuiEmptyPrompt docs to learn more about custom icon usage
@@ -43,8 +44,8 @@ export const SidebarSnippet = ({ radioUseCaseId }: Props) => {
       <EuiImage
         size="fullWidth"
         alt={example.alt ?? ''}
-        src={src}
-        srcSet={`${src} 1x, ${src2x} 2x`}
+        src={src ?? ''}
+        srcSet={src2x ? `${src} 1x, ${src2x} 2x` : undefined}
       />
     )
   }
@@ -73,12 +74,33 @@ export const SidebarSnippet = ({ radioUseCaseId }: Props) => {
     </EuiPageTemplate>
   );
 
+  const code = `import React from 'react';
+import {
+  EuiPageTemplate,
+  EuiImage,
+  EuiEmptyPrompt,
+  EuiButton,
+  EuiButtonEmpty,
+  EuiLoadingLogo,
+  EuiTitle,
+  EuiLink,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiDescriptionList,
+  EuiDescriptionListTitle,
+  EuiDescriptionListDescription,
+} from '@elastic/eui';
+
+export default () => (
+  ${snippet}
+);`;
+
   return (
     <Demo
       key={`${radioUseCaseId}-${colorMode}`}
       previewPadding="s"
     >
-      {snippet}
+      {code}
     </Demo>
   );
 };
