@@ -425,7 +425,7 @@ import * as ElasticCharts from '@elastic/charts';
 
 <Demo scope={{ ...ElasticCharts }}>
   ```tsx
-  import React, { useCallback, useState } from 'react';
+  import React, { useCallback, useState } from "react";
   import {
     getDefaultEuiMarkdownParsingPlugins,
     getDefaultEuiMarkdownProcessingPlugins,
@@ -459,7 +459,7 @@ import * as ElasticCharts from '@elastic/charts';
     euiPaletteOrange,
     euiPaletteWarm,
     getDefaultEuiMarkdownUiPlugins,
-  } from '@elastic/eui';
+  } from "@elastic/eui";
   import {
     Chart,
     Settings,
@@ -468,7 +468,7 @@ import * as ElasticCharts from '@elastic/charts';
     DataGenerator,
     LIGHT_THEME,
     DARK_THEME,
-  } from '@elastic/charts';
+  } from "@elastic/charts";
 
   const paletteData = {
     euiPaletteForStatus,
@@ -490,15 +490,15 @@ import * as ElasticCharts from '@elastic/charts';
   const generateData = (categories) => dg.generateGroupedSeries(10, categories);
 
   const chartDemoPlugin = {
-    name: 'chartDemoPlugin',
+    name: "chartDemoPlugin",
     button: {
-      label: 'Chart',
-      iconType: 'visBarVerticalStacked',
+      label: "Chart",
+      iconType: "visBarVerticalStacked",
     },
     helpText: (
       <div>
         <EuiCodeBlock language="md" fontSize="l" paddingSize="s" isCopyable>
-          {'!{chart{options}}'}
+          {"!{chart{options}}"}
         </EuiCodeBlock>
         <EuiSpacer size="s" />
         <EuiText size="xs" style={{ marginLeft: 16 }}>
@@ -516,7 +516,7 @@ import * as ElasticCharts from '@elastic/charts';
       </div>
     ),
     editor: function ChartEditor({ node, onSave, onCancel }) {
-      const [palette, setPalette] = useState((node && node.palette) || '1');
+      const [palette, setPalette] = useState((node && node.palette) || "1");
       const [categories, setCategories] = useState(5);
 
       const onChange = (e) => {
@@ -528,7 +528,7 @@ import * as ElasticCharts from '@elastic/charts';
           value: String(index + 1),
           title: paletteName,
           palette: paletteData[paletteNames[index]](categories),
-          type: 'fixed',
+          type: "fixed",
         };
       });
 
@@ -596,33 +596,33 @@ import * as ElasticCharts from '@elastic/charts';
     const methods = Parser.prototype.blockMethods;
 
     function tokenizeChart(eat, value, silent) {
-      if (value.startsWith('!{chart') === false) return false;
+      if (value.startsWith("!{chart") === false) return false;
 
       const nextChar = value[7];
 
-      if (nextChar !== '{' && nextChar !== '}') return false; // this isn't actually a chart
+      if (nextChar !== "{" && nextChar !== "}") return false; // this isn't actually a chart
 
       if (silent) {
         return true;
       }
 
       // is there a configuration?
-      const hasConfiguration = nextChar === '{';
+      const hasConfiguration = nextChar === "{";
 
-      let match = '!{chart';
+      let match = "!{chart";
       let configuration = {};
 
       if (hasConfiguration) {
-        let configurationString = '';
+        let configurationString = "";
 
         let openObjects = 0;
 
         for (let i = 7; i < value.length; i++) {
           const char = value[i];
-          if (char === '{') {
+          if (char === "{") {
             openObjects++;
             configurationString += char;
-          } else if (char === '}') {
+          } else if (char === "}") {
             openObjects--;
             if (openObjects === -1) {
               break;
@@ -645,22 +645,22 @@ import * as ElasticCharts from '@elastic/charts';
         }
       }
 
-      match += '}';
+      match += "}";
 
       return eat(match)({
-        type: 'chartDemoPlugin',
+        type: "chartDemoPlugin",
         ...configuration,
       });
     }
 
     tokenizers.chart = tokenizeChart;
-    methods.splice(methods.indexOf('text'), 0, 'chart');
+    methods.splice(methods.indexOf("text"), 0, "chart");
   }
 
   // receives the configuration from the parser and renders
   const ChartMarkdownRenderer = ({ palette, categories }) => {
     const { colorMode } = useEuiTheme();
-    const chartBaseTheme = colorMode === 'DARK' ? DARK_THEME : LIGHT_THEME;
+    const chartBaseTheme = colorMode === "DARK" ? DARK_THEME : LIGHT_THEME;
     const customColors = {
       colors: {
         vizColors: paletteData[paletteNames[palette - 1]](categories),
@@ -678,10 +678,10 @@ import * as ElasticCharts from '@elastic/charts';
           id="status"
           name="Status"
           data={generateData(categories)}
-          xAccessor={'x'}
-          yAccessors={['y']}
-          splitSeriesAccessors={['g']}
-          stackAccessors={['g']}
+          xAccessor={"x"}
+          yAccessors={["y"]}
+          splitSeriesAccessors={["g"]}
+          stackAccessors={["g"]}
         />
         <Axis id="bottom-axis" position="bottom" showGridLines />
         <Axis
@@ -739,11 +739,11 @@ import * as ElasticCharts from '@elastic/charts';
         <div className="eui-textRight">
           <EuiButton
             size="s"
-            iconType={isAstShowing ? 'eyeClosed' : 'eye'}
+            iconType={isAstShowing ? "eyeClosed" : "eye"}
             onClick={() => setIsAstShowing(!isAstShowing)}
             fill={isAstShowing}
           >
-            {isAstShowing ? 'Hide editor AST' : 'Show editor AST'}
+            {isAstShowing ? "Hide editor AST" : "Show editor AST"}
           </EuiButton>
         </div>
         {isAstShowing && <EuiCodeBlock language="json">{ast}</EuiCodeBlock>}
