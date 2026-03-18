@@ -69,7 +69,24 @@ export type Options = {
 const processTsxSource = (source: string) => {
   // jsxImportSource pragma is needed in CodeSandbox as it doesn't seem
   // to support that setting via tsconfig.json
-  return `/** @jsxImportSource @emotion/react */\n${source}`;
+  let processed = `/** @jsxImportSource @emotion/react */\n${source}`;
+
+  // Inject `@elastic/charts` CSS for demos that use the charts library,
+  // since CodeSandbox doesn't load it globally unlike the docs site
+  if (source.includes('@elastic/charts')) {
+    // Match the closing line of the @elastic/charts import (handles both
+    // single-line and multi-line imports, and both quote styles)
+    processed = processed.replace(
+      /^(.*from ['"]@elastic\/charts['"];)$/m,
+      [
+        '$1',
+        "import '@elastic/charts/dist/theme_only_light.css';",
+        "import '@elastic/charts/dist/theme_only_dark.css';",
+      ].join('\n')
+    );
+  }
+
+  return processed;
 };
 
 export const createOpenInCodeSandboxAction =
