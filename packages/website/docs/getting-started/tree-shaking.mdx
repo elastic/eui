@@ -32,11 +32,7 @@ This tells bundlers that all JavaScript modules are side-effect-free and safe to
 
 ## What you need
 
-For tree-shaking to work, your bundler must resolve `@elastic/eui` to the **ES module build** (`es/`). Most bundlers do this automatically via the `module` field. Verify that:
-
-1. Your bundler is running in **production mode** (e.g., `mode: 'production'` in Webpack)
-2. **Minification** is enabled (dead code is only physically removed during minification)
-3. You're importing from the top-level package:
+For tree-shaking to work, your bundler must resolve `@elastic/eui` to the **ES module build** (`es/`). Most bundlers do this automatically via the `module` field. Verify that you're importing from the top-level package:
 
 ```tsx
 import { EuiButton, EuiPanel } from '@elastic/eui';
