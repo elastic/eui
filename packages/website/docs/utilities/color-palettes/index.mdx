@@ -1,6 +1,7 @@
 # Color palettes
 
 import { ColorPaletteCopyCode, ColorPaletteFlexItem } from './color_palettes_components';
+import colorPaletteComponentsSource from '!raw-loader!./color_palettes_components';
 
 EUI provides a base set of color palettes that return an array of hexadecimal color for use in other EUI components or charts.
 
@@ -12,9 +13,11 @@ This palette is restricted to only 10 colors. However, you can add more groups o
 
 These colors are meant to be used as graphics and contrasted against the value of `euiColorEmptyShade` for the current theme. When placing text on top of these colors, use the `euiPaletteColorBlindBehindText()` variant. It is a brightened version of the base palette to create better contrast with text.
 
-<Demo scope={{ ColorPaletteCopyCode, ColorPaletteFlexItem }}>
+<Demo scope={{ ColorPaletteCopyCode, ColorPaletteFlexItem }} extraFiles={{ 'color_palettes_components.tsx': colorPaletteComponentsSource }}>
   ```tsx
-  import React, { Fragment } from 'react';
+  import React, { Fragment, useState, useEffect } from 'react';
+  import { css } from '@emotion/react';
+  import { ColorPaletteCopyCode, ColorPaletteFlexItem } from './color_palettes_components';
 
   import {
     EuiBadge,
@@ -158,9 +161,11 @@ For usages in React we recommend using the respective <a href="https://github.co
 The palette for status is the only palette that has proper contrast ratios. When using the other palettes, consider adding another form of the data for screen readers.
 :::
 
-<Demo scope={{ ColorPaletteCopyCode, ColorPaletteFlexItem }}>
+<Demo scope={{ ColorPaletteCopyCode, ColorPaletteFlexItem }} extraFiles={{ 'color_palettes_components.tsx': colorPaletteComponentsSource }}>
   ```tsx interactive
   import React, { Fragment, useState } from 'react';
+  import { css } from '@emotion/react';
+  import { ColorPaletteCopyCode, ColorPaletteFlexItem } from './color_palettes_components';
 
   import {
     EuiFlexGroup,
@@ -253,9 +258,11 @@ The palette for status is the only palette that has proper contrast ratios. When
 
 Use the `colorPalette` service to generate a custom, gradiated palette array of any length from one or more hexadecimal color codes. The third parameter `divergent`, will interpolate between the two halves of the spectrums separately. If a middle point is not provided, it will graduate to light gray.
 
-<Demo scope={{ ColorPaletteCopyCode, ColorPaletteFlexItem }}>
+<Demo scope={{ ColorPaletteCopyCode, ColorPaletteFlexItem }} extraFiles={{ 'color_palettes_components.tsx': colorPaletteComponentsSource }}>
   ```tsx interactive
   import React, { Fragment, useState } from 'react';
+  import { css } from '@emotion/react';
+  import { ColorPaletteCopyCode, ColorPaletteFlexItem } from './color_palettes_components';
 
   import {
     EuiFlexGroup,
