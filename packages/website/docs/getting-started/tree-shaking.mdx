@@ -23,7 +23,9 @@ The `es/` build preserves `import`/`export` syntax, which bundlers like Webpack,
 EUI's `package.json` also declares:
 
 ```json
-"sideEffects": ["*.css", "*.scss"]
+{
+  "sideEffects": ["*.css", "*.scss"]
+}
 ```
 
 This tells bundlers that all JavaScript modules are side-effect-free and safe to remove if unused. Only CSS/SCSS files are marked as having side effects.
