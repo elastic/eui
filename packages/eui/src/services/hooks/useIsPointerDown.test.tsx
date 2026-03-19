@@ -51,7 +51,7 @@ describe('useIsPointerDown', () => {
 
   describe('with container', () => {
     it('returns true when pointer is down inside the container', () => {
-      let isPointerDownRef: MutableRefObject<boolean>;
+      let isPointerDownRef: MutableRefObject<boolean> = { current: false };
 
       const TestComponent = () => {
         const containerRef = useRef<HTMLDivElement | null>(null);
@@ -65,7 +65,7 @@ describe('useIsPointerDown', () => {
       };
 
       const { getByTestSubject } = render(<TestComponent />);
-      expect(isPointerDownRef!.current).toBe(false);
+      expect(isPointerDownRef.current).toBe(false);
 
       act(() => {
         const container = getByTestSubject('container');
@@ -73,18 +73,18 @@ describe('useIsPointerDown', () => {
           new PointerEvent('pointerdown', { bubbles: true })
         );
       });
-      expect(isPointerDownRef!.current).toBe(true);
+      expect(isPointerDownRef.current).toBe(true);
 
       act(() => {
         document.dispatchEvent(
           new PointerEvent('pointerup', { bubbles: true })
         );
       });
-      expect(isPointerDownRef!.current).toBe(false);
+      expect(isPointerDownRef.current).toBe(false);
     });
 
     it('returns false when pointer is down outside the container', () => {
-      let isPointerDownRef: MutableRefObject<boolean>;
+      let isPointerDownRef: MutableRefObject<boolean> = { current: false };
 
       const TestComponent = () => {
         const containerRef = useRef<HTMLDivElement | null>(null);
@@ -98,7 +98,7 @@ describe('useIsPointerDown', () => {
       };
 
       const { getByTestSubject } = render(<TestComponent />);
-      expect(isPointerDownRef!.current).toBe(false);
+      expect(isPointerDownRef.current).toBe(false);
 
       act(() => {
         const outside = getByTestSubject('outside');
@@ -106,7 +106,7 @@ describe('useIsPointerDown', () => {
           new PointerEvent('pointerdown', { bubbles: true })
         );
       });
-      expect(isPointerDownRef!.current).toBe(false);
+      expect(isPointerDownRef.current).toBe(false);
     });
   });
 
