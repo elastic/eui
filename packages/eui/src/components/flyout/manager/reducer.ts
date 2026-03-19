@@ -337,13 +337,7 @@ export function flyoutManagerReducer(
       const flyoutsToRemove = new Set<string>();
       state.sessions.forEach((session) => {
         if (session.historyKey === currentKey) {
-          flyoutsToRemove.add(session.mainFlyoutId);
-          if (session.childFlyoutId) {
-            flyoutsToRemove.add(session.childFlyoutId);
-          }
-          (session.childHistory ?? []).forEach((e) =>
-            flyoutsToRemove.add(e.flyoutId)
-          );
+          addSessionFlyoutsToRemove(session, flyoutsToRemove);
         }
       });
 
