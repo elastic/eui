@@ -92,7 +92,7 @@ export const EuiFlyoutOverlay = ({
       node.style.removeProperty('inset-inline-end');
       node.style.removeProperty('inset-block-end');
     }
-  }, [containerRect]);
+  }, [containerRect, hasOverlayMask]); // toggling ownFocus while the flyout is already open should cause re-render
 
   let content = children;
 
