@@ -1075,6 +1075,7 @@ export const EuiFlyoutComponent = forwardRef(
         isPushed={isPushed}
         maskZIndex={maskZIndex}
         headerZindexLocation={effectiveHeaderZindexLocation}
+        containerRect={containerRect}
         maskProps={{
           ...maskProps,
           maskRef: maskCombinedRefs,
