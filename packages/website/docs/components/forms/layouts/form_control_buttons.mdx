@@ -83,8 +83,9 @@ export default () => {
   const handleOnSearch = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.target.value);
 
+    const search = e.target.value.toLowerCase();
     const filteredOptions = _options.filter((opt) => {
-      return opt.label.toLowerCase().includes(e.target.value);
+      return opt.label.toLowerCase().includes(search);
     });
 
     setOptions(filteredOptions);
@@ -104,9 +105,7 @@ export default () => {
   };
 
   const getSelectedOptions = (options: EuiSelectableOption[]) => {
-    return options
-      .map((option) => (option.checked === "on" ? option : null))
-      .filter((option) => option !== null);
+    return options.filter((option) => option.checked === "on");
   };
 
   return (
