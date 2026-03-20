@@ -37,7 +37,7 @@ Yes! We welcome community-contributed PRs, especially around feature requests th
 
 ### What about reporting bugs and feature requests?
 
-Bug reports and feature requests are most welcome, but our roadmap and prioritization are driven primarily by [internal Elastic usage](wiki/contributing-to-eui#how-we-assign-work-and-define-our-roadmap).
+Bug reports and feature requests are most welcome, but our roadmap and prioritization are driven primarily by internal Elastic usage.
 
 Please note that in order to keep our backlog manageable and focused on tasks we intend to complete, feature requests & tech debt issues that are inactive for a year will be auto-closed (bugs will remain open if determined to be reproducible and valid).
 
