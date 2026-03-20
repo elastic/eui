@@ -4,7 +4,7 @@
 
 We welcome and encourage contributions.
 
-However, because EUI has a large footprint inside of our products, we must maintain a high standard of quality and due diligence for contributions. The guidance below outlines our expectations. **While we'd hate to turn away any contribution, PRs that deviate from this guidance will most likely be rejected.**
+However, because EUI has a large footprint in Elastic products, we must maintain a high standard of quality and due diligence for contributions. The guidance below outlines our expectations. **While we'd hate to turn away any contribution, PRs that deviate from this guidance will most likely be rejected.**
 ****
 ## Who can contribute
 
