@@ -19,9 +19,16 @@ import {
   ACTION_SET_PUSH_PADDING,
   ACTION_ADD_UNMANAGED_FLYOUT,
   ACTION_CLOSE_UNMANAGED_FLYOUT,
+  ACTION_SET_CONTAINER_ELEMENT,
+  ACTION_SET_REFERENCE_WIDTH,
   Action,
 } from './actions';
-import { LAYOUT_MODE_SIDE_BY_SIDE, LEVEL_MAIN, STAGE_OPENING } from './const';
+import {
+  LAYOUT_MODE_SIDE_BY_SIDE,
+  LEVEL_MAIN,
+  LEVEL_CHILD,
+  STAGE_OPENING,
+} from './const';
 import {
   EuiFlyoutManagerState,
   FlyoutSession,
@@ -38,6 +45,35 @@ export const initialState: EuiFlyoutManagerState = {
   pushPadding: { left: 0, right: 0 },
   currentZIndex: 0,
   unmanagedFlyouts: [],
+};
+
+const addSessionFlyoutsToRemove = (
+  session: FlyoutSession,
+  flyoutsToRemove: Set<string>
+) => {
+  flyoutsToRemove.add(session.mainFlyoutId);
+  if (session.childFlyoutId) {
+    flyoutsToRemove.add(session.childFlyoutId);
+  }
+  (session.childHistory ?? []).forEach((e) => flyoutsToRemove.add(e.flyoutId));
+};
+
+const moveHistoryGroupToTop = (
+  sessions: FlyoutSession[],
+  historyKey: symbol
+): FlyoutSession[] => {
+  const groupSessions: FlyoutSession[] = [];
+  const otherSessions: FlyoutSession[] = [];
+
+  sessions.forEach((session) => {
+    if (session.historyKey === historyKey) {
+      groupSessions.push(session);
+    } else {
+      otherSessions.push(session);
+    }
+  });
+
+  return [...otherSessions, ...groupSessions];
 };
 
 /**
@@ -86,10 +122,17 @@ export function flyoutManagerReducer(
     // - For a `child` flyout, attach it to the most recent session; if no
     //   session exists, do nothing (invalid child without a parent).
     case ACTION_ADD: {
-      const { flyoutId, title, level, size } = action;
+      const { flyoutId, title, level, size, historyKey, iconType, minWidth } =
+        action;
 
-      // Ignore duplicate registrations
-      if (state.flyouts.some((f) => f.flyoutId === flyoutId)) {
+      const isDuplicate = state.flyouts.some((f) => f.flyoutId === flyoutId);
+      const isIdempotentChild =
+        level === LEVEL_CHILD &&
+        state.sessions.length > 0 &&
+        state.sessions[state.sessions.length - 1].childFlyoutId === flyoutId;
+
+      // Ignore duplicate registrations (except idempotent child re-registration after goBack)
+      if (isDuplicate && !isIdempotentChild) {
         return state;
       }
 
@@ -97,19 +140,22 @@ export function flyoutManagerReducer(
         level,
         flyoutId,
         size,
+        minWidth,
         activityStage: STAGE_OPENING,
       };
-      const newFlyouts: EuiManagedFlyoutState[] = [
-        ...state.flyouts,
-        newFlyoutState,
-      ];
+      const newFlyouts: EuiManagedFlyoutState[] = isIdempotentChild
+        ? state.flyouts
+        : [...state.flyouts, newFlyoutState];
 
       if (level === LEVEL_MAIN) {
         const newSession: FlyoutSession = {
           mainFlyoutId: flyoutId,
           title: title,
+          iconType,
           childFlyoutId: null,
+          childHistory: [],
           zIndex: state.currentZIndex,
+          historyKey: historyKey ?? Symbol(),
         };
 
         return {
@@ -129,10 +175,47 @@ export function flyoutManagerReducer(
 
       const updatedSessions = [...state.sessions];
       const currentSessionIndex = updatedSessions.length - 1;
+      const currentSession = updatedSessions[currentSessionIndex];
+      const childHistory = currentSession.childHistory ?? [];
 
+      // Idempotent re-registration (e.g. after goBack): flyout already in flyouts and session already points to it
+      if (state.flyouts.some((f) => f.flyoutId === flyoutId)) {
+        if (currentSession.childFlyoutId === flyoutId) {
+          updatedSessions[currentSessionIndex] = {
+            ...currentSession,
+            childTitle: title,
+            childIconType: iconType,
+            childHistory,
+          };
+          return { ...state, sessions: updatedSessions };
+        }
+        return state; // duplicate registration for a different child, ignore
+      }
+
+      // Session already has a child: push current child to history, then set new child (do not remove previous from flyouts)
+      if (currentSession.childFlyoutId) {
+        const historyEntry = {
+          flyoutId: currentSession.childFlyoutId,
+          title: currentSession.childTitle ?? '',
+          iconType: currentSession.childIconType,
+        };
+        updatedSessions[currentSessionIndex] = {
+          ...currentSession,
+          childHistory: [...childHistory, historyEntry],
+          childFlyoutId: flyoutId,
+          childTitle: title,
+          childIconType: iconType,
+        };
+        return { ...state, sessions: updatedSessions, flyouts: newFlyouts };
+      }
+
+      // First child in session
       updatedSessions[currentSessionIndex] = {
-        ...updatedSessions[currentSessionIndex],
+        ...currentSession,
         childFlyoutId: flyoutId,
+        childTitle: title,
+        childIconType: iconType,
+        childHistory,
       };
 
       return { ...state, sessions: updatedSessions, flyouts: newFlyouts };
@@ -140,8 +223,8 @@ export function flyoutManagerReducer(
 
     // Unregister a flyout and update sessions accordingly.
     // - When closing a `main` flyout, drop its entire session and all associated flyouts.
-    // - When closing a `child` flyout, clear the child pointer on the most
-    //   recent session if it matches.
+    // - When closing a `child` flyout, find the session that owns it (childFlyoutId or
+    //   childHistory) and clear that session's child state so navigation back stays consistent.
     case ACTION_CLOSE: {
       const removedFlyout = state.flyouts.find(
         (f) => f.flyoutId === action.flyoutId
@@ -158,11 +241,14 @@ export function flyoutManagerReducer(
         );
 
         if (sessionToRemove) {
-          // Remove all flyouts associated with this session (main + child)
+          // Remove all flyouts associated with this session (main + current child + child history)
           const flyoutsToRemove = new Set([action.flyoutId]);
           if (sessionToRemove.childFlyoutId) {
             flyoutsToRemove.add(sessionToRemove.childFlyoutId);
           }
+          (sessionToRemove.childHistory ?? []).forEach((entry) =>
+            flyoutsToRemove.add(entry.flyoutId)
+          );
 
           const newFlyouts = state.flyouts.filter(
             (f) => !flyoutsToRemove.has(f.flyoutId)
@@ -188,46 +274,87 @@ export function flyoutManagerReducer(
         }
       }
 
-      // Handle child flyout closing (existing logic)
-      const newFlyouts = state.flyouts.filter(
-        (f) => f.flyoutId !== action.flyoutId
-      );
-
+      // Handle child flyout closing: find the session that owns this child and
+      // clear that session's child state (so we stay consistent when navigating back).
       if (state.sessions.length === 0) {
-        return { ...state, flyouts: newFlyouts };
-      }
-
-      const updatedSessions = [...state.sessions];
-      const currentSessionIndex = updatedSessions.length - 1;
-
-      if (
-        updatedSessions[currentSessionIndex].childFlyoutId === action.flyoutId
-      ) {
-        updatedSessions[currentSessionIndex] = {
-          ...updatedSessions[currentSessionIndex],
-          childFlyoutId: null,
+        return {
+          ...state,
+          flyouts: state.flyouts.filter((f) => f.flyoutId !== action.flyoutId),
         };
       }
+
+      const owningSessionIndex = state.sessions.findIndex(
+        (session) =>
+          session.childFlyoutId === action.flyoutId ||
+          (session.childHistory ?? []).some(
+            (entry) => entry.flyoutId === action.flyoutId
+          )
+      );
+
+      if (owningSessionIndex === -1) {
+        // Closed flyout not in any session's child state; just remove the one flyout
+        return {
+          ...state,
+          flyouts: state.flyouts.filter((f) => f.flyoutId !== action.flyoutId),
+        };
+      }
+
+      const owningSession = state.sessions[owningSessionIndex];
+      const childIds = new Set(
+        [
+          owningSession.childFlyoutId,
+          ...(owningSession.childHistory ?? []).map((e) => e.flyoutId),
+        ].filter(Boolean) as string[]
+      );
+
+      const newFlyouts = state.flyouts.filter((f) => !childIds.has(f.flyoutId));
+      const updatedSessions = [...state.sessions];
+      updatedSessions[owningSessionIndex] = {
+        ...owningSession,
+        childFlyoutId: null,
+        childTitle: undefined,
+        childIconType: undefined,
+        childHistory: [],
+      };
 
       return { ...state, sessions: updatedSessions, flyouts: newFlyouts };
     }
 
-    // Unregister all flyouts.
+    // Unregister all flyouts (within the current history group only).
     case ACTION_CLOSE_ALL: {
       if (state.sessions.length === 0) {
         return state;
       }
 
-      // Reset current z-index to 0 only if no unmanaged flyouts remain.
+      const currentSessionIndex = state.sessions.length - 1;
+      const currentSession = state.sessions[currentSessionIndex];
+      const currentKey = currentSession.historyKey;
+
+      // Remove all sessions that have the current historyKey (entire group)
+      const newSessions = state.sessions.filter(
+        (s) => s.historyKey !== currentKey
+      );
+      const flyoutsToRemove = new Set<string>();
+      state.sessions.forEach((session) => {
+        if (session.historyKey === currentKey) {
+          addSessionFlyoutsToRemove(session, flyoutsToRemove);
+        }
+      });
+
+      const newFlyouts = state.flyouts.filter(
+        (f) => !flyoutsToRemove.has(f.flyoutId)
+      );
+
       let newCurrentZIndex = state.currentZIndex;
-      if (state.unmanagedFlyouts.length === 0) {
+      if (newSessions.length === 0 && state.unmanagedFlyouts.length === 0) {
         newCurrentZIndex = 0;
       }
 
       return {
-        ...initialState,
+        ...state,
+        sessions: newSessions,
+        flyouts: newFlyouts,
         currentZIndex: newCurrentZIndex,
-        unmanagedFlyouts: state.unmanagedFlyouts,
       };
     }
 
@@ -275,7 +402,7 @@ export function flyoutManagerReducer(
       return { ...state, flyouts: updatedFlyouts };
     }
 
-    // Go back one session (remove current session from stack)
+    // Go back: pop child history when any, else pop current session (only within same historyKey).
     case ACTION_GO_BACK: {
       if (state.sessions.length === 0) {
         return state;
@@ -283,27 +410,95 @@ export function flyoutManagerReducer(
 
       const currentSessionIndex = state.sessions.length - 1;
       const currentSession = state.sessions[currentSessionIndex];
+      const childHistory = currentSession.childHistory ?? [];
 
-      // Close all flyouts in the current session
-      const flyoutsToRemove = new Set([currentSession.mainFlyoutId]);
-      if (currentSession.childFlyoutId) {
-        flyoutsToRemove.add(currentSession.childFlyoutId);
+      if (childHistory.length > 0) {
+        // Pop one child: set current child to the last entry in history, remove the current child flyout
+        const popped = childHistory[childHistory.length - 1];
+        const newChildHistory = childHistory.slice(0, -1);
+        const updatedSessions = [...state.sessions];
+        updatedSessions[currentSessionIndex] = {
+          ...currentSession,
+          childHistory: newChildHistory,
+          childFlyoutId: popped.flyoutId,
+          childTitle: popped.title,
+          childIconType: popped.iconType,
+        };
+        const newFlyouts = state.flyouts.filter(
+          (f) => f.flyoutId !== currentSession.childFlyoutId
+        );
+        return { ...state, sessions: updatedSessions, flyouts: newFlyouts };
       }
+
+      // No child history: pop current session (main + all its children)
+      const flyoutsToRemove = new Set<string>();
+      addSessionFlyoutsToRemove(currentSession, flyoutsToRemove);
+
+      const sessionsWithoutCurrent = state.sessions.slice(
+        0,
+        currentSessionIndex
+      );
+      const hasRemainingInCurrentGroup = sessionsWithoutCurrent.some(
+        (s) => s.historyKey === currentSession.historyKey
+      );
+      const newSessions = hasRemainingInCurrentGroup
+        ? moveHistoryGroupToTop(
+            sessionsWithoutCurrent,
+            currentSession.historyKey
+          )
+        : sessionsWithoutCurrent;
 
       const newFlyouts = state.flyouts.filter(
         (f) => !flyoutsToRemove.has(f.flyoutId)
       );
 
-      const newSessions = state.sessions.slice(0, currentSessionIndex);
-
       return { ...state, sessions: newSessions, flyouts: newFlyouts };
     }
 
-    // Navigate to a specific flyout (remove all sessions after it)
+    // Navigate to a specific flyout (by main session or by child in current session's history)
     case ACTION_GO_TO_FLYOUT: {
-      const { flyoutId } = action;
+      const { flyoutId, level } = action;
+      const currentSessionIndex = state.sessions.length - 1;
 
-      // Find the session containing the target flyout
+      if (level === LEVEL_CHILD && state.sessions.length > 0) {
+        const currentSession = state.sessions[currentSessionIndex];
+        const childHistory = currentSession.childHistory ?? [];
+        const targetIndex = childHistory.findIndex(
+          (entry) => entry.flyoutId === flyoutId
+        );
+
+        if (targetIndex === -1) {
+          return state; // Target child not in history
+        }
+
+        const targetEntry = childHistory[targetIndex];
+        const newChildHistory = childHistory.slice(0, targetIndex);
+
+        const flyoutsToRemove = new Set<string>();
+        if (currentSession.childFlyoutId) {
+          flyoutsToRemove.add(currentSession.childFlyoutId);
+        }
+        childHistory.slice(targetIndex + 1).forEach((e) => {
+          flyoutsToRemove.add(e.flyoutId);
+        });
+
+        const newFlyouts = state.flyouts.filter(
+          (f) => !flyoutsToRemove.has(f.flyoutId)
+        );
+
+        const updatedSessions = [...state.sessions];
+        updatedSessions[currentSessionIndex] = {
+          ...currentSession,
+          childHistory: newChildHistory,
+          childFlyoutId: targetEntry.flyoutId,
+          childTitle: targetEntry.title,
+          childIconType: targetEntry.iconType,
+        };
+
+        return { ...state, sessions: updatedSessions, flyouts: newFlyouts };
+      }
+
+      // Navigate by main flyout: remove all sessions after the target
       const targetSessionIndex = state.sessions.findIndex(
         (session) => session.mainFlyoutId === flyoutId
       );
@@ -312,21 +507,49 @@ export function flyoutManagerReducer(
         return state; // Target flyout not found
       }
 
-      // Close all sessions after the target session
+      const currentSession = state.sessions[currentSessionIndex];
+      const targetSession = state.sessions[targetSessionIndex];
+
+      // Group-local navigation: keep other history groups, remove only newer sessions in target's group,
+      // then bring that group to the top.
+      if (targetSession.historyKey === currentSession.historyKey) {
+        const flyoutsToRemove = new Set<string>();
+        const sessionsAfterTargetInGroup = state.sessions.filter(
+          (session, index) =>
+            index > targetSessionIndex &&
+            session.historyKey === targetSession.historyKey
+        );
+
+        sessionsAfterTargetInGroup.forEach((session) => {
+          addSessionFlyoutsToRemove(session, flyoutsToRemove);
+        });
+
+        const sessionsWithoutRemoved = state.sessions.filter(
+          (session) =>
+            !sessionsAfterTargetInGroup.some(
+              (removed) => removed.mainFlyoutId === session.mainFlyoutId
+            )
+        );
+        const reorderedSessions = moveHistoryGroupToTop(
+          sessionsWithoutRemoved,
+          targetSession.historyKey
+        );
+        const newFlyouts = state.flyouts.filter(
+          (f) => !flyoutsToRemove.has(f.flyoutId)
+        );
+
+        return { ...state, sessions: reorderedSessions, flyouts: newFlyouts };
+      }
+
       const sessionsToClose = state.sessions.slice(targetSessionIndex + 1);
       const flyoutsToRemove = new Set<string>();
-
       sessionsToClose.forEach((session) => {
-        flyoutsToRemove.add(session.mainFlyoutId);
-        if (session.childFlyoutId) {
-          flyoutsToRemove.add(session.childFlyoutId);
-        }
+        addSessionFlyoutsToRemove(session, flyoutsToRemove);
       });
 
       const newFlyouts = state.flyouts.filter(
         (f) => !flyoutsToRemove.has(f.flyoutId)
       );
-
       const newSessions = state.sessions.slice(0, targetSessionIndex + 1);
 
       return { ...state, sessions: newSessions, flyouts: newFlyouts };
@@ -342,6 +565,21 @@ export function flyoutManagerReducer(
           [side]: width,
         },
       };
+    }
+
+    // Store the container element for container-relative layout calculations.
+    case ACTION_SET_CONTAINER_ELEMENT: {
+      if (state.containerElement === action.element) {
+        return state; // No-op if same element
+      }
+      return { ...state, containerElement: action.element };
+    }
+
+    case ACTION_SET_REFERENCE_WIDTH: {
+      if (state.referenceWidth === action.width) {
+        return state;
+      }
+      return { ...state, referenceWidth: action.width };
     }
 
     default:

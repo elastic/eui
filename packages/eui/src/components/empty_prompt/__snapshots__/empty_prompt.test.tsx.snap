@@ -14,7 +14,7 @@ exports[`EuiEmptyPrompt is rendered 1`] = `
     >
       <span
         color="subdued"
-        data-euiicon-type="arrowUp"
+        data-euiicon-type="chevronSingleUp"
       />
     </div>
     <div
@@ -331,7 +331,7 @@ exports[`EuiEmptyPrompt props iconType renders alone 1`] = `
     >
       <span
         color="subdued"
-        data-euiicon-type="arrowUp"
+        data-euiicon-type="chevronSingleUp"
       />
     </div>
     <div
@@ -353,7 +353,7 @@ exports[`EuiEmptyPrompt props iconType renders with iconColor 1`] = `
     >
       <span
         color="danger"
-        data-euiicon-type="arrowUp"
+        data-euiicon-type="chevronSingleUp"
       />
     </div>
     <div

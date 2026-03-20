@@ -30,6 +30,7 @@ export {
   FLYOUT_PADDING_SIZES,
   FLYOUT_SIZES,
   FLYOUT_TYPES,
+  FLYOUT_MENU_DISPLAY_MODES,
 } from './const';
 
 export type EuiFlyoutProps<T extends ElementType = 'div' | 'nav'> = Omit<
@@ -54,6 +55,11 @@ export type EuiFlyoutProps<T extends ElementType = 'div' | 'nav'> = Omit<
     | typeof SESSION_INHERIT
     | typeof SESSION_NEVER;
   /**
+   * Optional Symbol to scope flyout history. Only flyouts that receive the same Symbol reference share Back button and history; omit to get a unique group per session.
+   * @default undefined (each session gets a unique key and does not share history)
+   */
+  historyKey?: symbol;
+  /**
    * Callback fired when the flyout becomes active/visible, which may happen programmatically from history navigation.
    */
   onActive?: () => void;
@@ -67,7 +73,7 @@ export const EuiFlyout = forwardRef<
   HTMLDivElement | HTMLElement,
   EuiFlyoutProps<'div' | 'nav'>
 >((props, ref) => {
-  const { as, onClose, onActive, session, ...rest } =
+  const { as, onClose, onActive, session, historyKey, ...rest } =
     usePropsWithComponentDefaults('EuiFlyout', props);
   const hasActiveSession = useHasActiveSession();
   const isInsideParentFlyout = useIsInsideParentFlyout();
@@ -100,6 +106,7 @@ export const EuiFlyout = forwardRef<
       return (
         <EuiFlyoutMain
           {...rest}
+          historyKey={historyKey}
           onClose={onClose}
           onActive={onActive}
           as="div"
@@ -113,6 +120,7 @@ export const EuiFlyout = forwardRef<
       return (
         <EuiFlyoutChild
           {...rest}
+          historyKey={historyKey}
           onClose={onClose}
           onActive={onActive}
           as="div"

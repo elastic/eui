@@ -106,8 +106,8 @@ export const EuiSplitButtonActionSecondary: FunctionComponent<
     ...rest,
     ...sharedRest,
     display,
-    // enforce arrowDown icon when a popover is rendered
-    iconType: popoverProps != null ? 'arrowDown' : rest.iconType,
+    // enforce chevronSingleDown icon when a popover is rendered
+    iconType: popoverProps != null ? 'chevronSingleDown' : rest.iconType,
     isDisabled: _isDisabled,
     isLoading: _isLoading,
     css: [styles.euiSplitButtonActionSecondary],

@@ -99,14 +99,14 @@ export default () => {
           {...props}
           id="input-2"
           prepend={
-            <EuiFormPrepend label="String" iconLeft="vector" iconRight="gear" />
+            <EuiFormPrepend label="String" iconLeft="vectorSquare" iconRight="gear" />
           }
           append={
             <EuiFormAppend
               element="button"
               label="String"
               iconLeft="gear"
-              iconRight="vector"
+              iconRight="vectorSquare"
               onClick={() => {}}
             />
           }
@@ -116,7 +116,7 @@ export default () => {
           {...props}
           id="input-3"
           prepend={
-            <EuiFormPrepend label="String" iconLeft="vector" iconRight="gear">
+            <EuiFormPrepend label="String" iconLeft="vectorSquare" iconRight="gear">
               <EuiNotificationBadge color="subdued">1</EuiNotificationBadge>
             </EuiFormPrepend>
           }
@@ -125,7 +125,7 @@ export default () => {
               element="button"
               label="String"
               iconLeft="gear"
-              iconRight="vector"
+              iconRight="vectorSquare"
               onClick={() => {}}
             >
               <EuiNotificationBadge>1</EuiNotificationBadge>
@@ -161,7 +161,7 @@ export default () => {
                  <EuiFormPrepend
                     element="button"
                     iconLeft="calendar"
-                    iconRight="arrowDown"
+                    iconRight="chevronSingleDown"
                     onClick={() => {}}
                   />
               }
@@ -173,7 +173,7 @@ export default () => {
               button={
                 <EuiFormAppend
                   element="button"
-                  iconRight="arrowDown"
+                  iconRight="chevronSingleDown"
                   label="Popover"
                   onClick={() => {}}
                 />
@@ -186,7 +186,7 @@ export default () => {
         <EuiFieldText
           {...props}
           id="input-6"
-          prepend={<EuiFormPrepend iconLeft="vector" />}
+          prepend={<EuiFormPrepend iconLeft="vectorSquare" />}
           append={
             <EuiFormAppend
               element="button"

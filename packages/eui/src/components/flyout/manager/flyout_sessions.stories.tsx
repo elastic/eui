@@ -27,7 +27,6 @@ import {
   EuiFlexItem,
   EuiFlyoutBody,
   EuiFlyoutHeader,
-  EuiPanel,
   EuiProvider,
   EuiSpacer,
   EuiSwitch,
@@ -52,10 +51,12 @@ export default meta;
 
 interface FlyoutSessionProps {
   title: string;
-  mainSize?: 's' | 'm' | 'l' | 'fill';
+  mainSize: 's' | 'm' | 'l' | 'fill';
   mainMaxWidth?: number;
-  childSize?: 's' | 'm' | 'fill';
+  childSize: 's' | 'm' | 'fill';
   childMaxWidth?: number;
+  /** Optional. When set, flyouts in this session share history with others using the same Symbol. */
+  historyKey?: symbol;
 }
 
 const DisplayContext: React.FC<{ title: string }> = ({ title }) => {
@@ -83,47 +84,98 @@ const DisplayContext: React.FC<{ title: string }> = ({ title }) => {
   );
 };
 
+/** Reusable session child flyout (shared props; body content passed as children). */
+const SessionChildFlyout: React.FC<{
+  id: string;
+  flyoutTitle: string;
+  size: 's' | 'm' | 'fill';
+  maxWidth?: number;
+  onClose: () => void;
+  onActive: () => void;
+  children: React.ReactNode;
+}> = ({ id, flyoutTitle, size, maxWidth, onClose, onActive, children }) => (
+  <EuiFlyout
+    id={id}
+    session="inherit"
+    flyoutMenuProps={{ title: flyoutTitle, iconType: 'faceNeutral' }}
+    size={size}
+    maxWidth={maxWidth}
+    onActive={onActive}
+    onClose={onClose}
+    resizable={false}
+    hasChildBackground={true}
+  >
+    <EuiFlyoutBody>{children}</EuiFlyoutBody>
+  </EuiFlyout>
+);
+
 const FlyoutSession: React.FC<FlyoutSessionProps> = (props) => {
-  const { title, mainSize, childSize, mainMaxWidth, childMaxWidth } = props;
+  const {
+    title,
+    mainSize,
+    childSize,
+    mainMaxWidth,
+    childMaxWidth,
+    historyKey,
+  } = props;
 
   const [isFlyoutVisible, setIsFlyoutVisible] = useState(false);
-  const [isChildFlyoutVisible, setIsChildFlyoutVisible] = useState(false);
+  const [isChild1FlyoutVisible, setIsChild1FlyoutVisible] = useState(false);
+  const [isChild2FlyoutVisible, setIsChild2FlyoutVisible] = useState(false);
+
+  const currentSession = useCurrentSession();
+  const flyoutManager = useFlyoutManager();
 
   const [flyoutType, setFlyoutType] = useState<'overlay' | 'push'>('push');
   const [flyoutOwnFocus, setFlyoutOwnFocus] = useState(false);
 
-  // Handlers for "Open" buttons
+  const childIdsInSession = new Set<string>([
+    ...(currentSession?.childFlyoutId ? [currentSession.childFlyoutId] : []),
+    ...(currentSession?.childHistory ?? []).map((e) => e.flyoutId),
+  ]);
 
   const handleOpenMainFlyout = () => {
     setIsFlyoutVisible(true);
   };
 
-  const handleOpenChildFlyout = () => {
-    setIsChildFlyoutVisible(true);
+  const handleOpenChild1 = () => {
+    setIsChild1FlyoutVisible(true);
   };
 
-  // Callbacks for state synchronization
+  const handleOpenChild2 = () => {
+    setIsChild2FlyoutVisible(true);
+  };
+
+  /** Switch to Child 1 when it's already in the session (e.g. from Child 2's "Open previous" button). */
+  const handleGoToChild1 = useCallback(() => {
+    flyoutManager?.goToFlyout(`childFlyout1-${title}`, 'child');
+  }, [flyoutManager, title]);
 
   const mainFlyoutOnActive = useCallback(() => {
     action('activate main flyout')(title);
   }, [title]);
 
-  const childFlyoutOnActive = useCallback(() => {
-    action('activate child flyout')(title);
-  }, [title]);
+  const childFlyoutOnActive = useCallback(
+    (which: 'child1' | 'child2') => () => {
+      action('activate child flyout')(`${title} - ${which}`);
+    },
+    [title]
+  );
 
   const mainFlyoutOnClose = useCallback(() => {
     action('close main flyout')(title);
     setIsFlyoutVisible(false);
-    setIsChildFlyoutVisible(false);
   }, [title]);
 
-  const childFlyoutOnClose = useCallback(() => {
-    action('close child flyout')(title);
-    setIsChildFlyoutVisible(false);
+  const child1FlyoutOnClose = useCallback(() => {
+    action('close child flyout')(`${title} - Child 1`);
+    setIsChild1FlyoutVisible(false);
   }, [title]);
 
-  // Render
+  const child2FlyoutOnClose = useCallback(() => {
+    action('close child flyout')(`${title} - Child 2`);
+    setIsChild2FlyoutVisible(false);
+  }, [title]);
 
   return (
     <>
@@ -161,14 +213,19 @@ const FlyoutSession: React.FC<FlyoutSessionProps> = (props) => {
         <EuiFlyout
           id={`mainFlyout-${title}`}
           session="start"
-          flyoutMenuProps={{ title: `${title} - Main` }}
+          historyKey={historyKey}
+          flyoutMenuProps={{
+            title: `${title} - Main`,
+            iconType: 'faceHappy',
+          }}
           size={mainSize}
           maxWidth={mainMaxWidth}
           type={flyoutType}
           ownFocus={flyoutOwnFocus}
-          pushAnimation={true}
+          hasAnimation={true}
           onActive={mainFlyoutOnActive}
           onClose={mainFlyoutOnClose}
+          resizable={true}
         >
           <EuiFlyoutHeader>
             <EuiTitle size="m">
@@ -177,7 +234,7 @@ const FlyoutSession: React.FC<FlyoutSessionProps> = (props) => {
           </EuiFlyoutHeader>
           <EuiFlyoutBody>
             <EuiText>
-              <p>This is the content of {title}.</p>
+              <p>Child-to-child navigation: open one child, then the other.</p>
               <EuiSpacer size="s" />
               <EuiDescriptionList
                 type="column"
@@ -197,59 +254,91 @@ const FlyoutSession: React.FC<FlyoutSessionProps> = (props) => {
                   },
                 ]}
               />
-              {childSize && (
-                <EuiButton
-                  onClick={handleOpenChildFlyout}
-                  disabled={isChildFlyoutVisible}
-                >
-                  Open child flyout
-                </EuiButton>
-              )}
+              <EuiSpacer size="m" />
+              <EuiFlexGroup gutterSize="s">
+                {([1, 2] as const).map((n) => (
+                  <EuiFlexItem key={n} grow={false}>
+                    <EuiButton
+                      onClick={n === 1 ? handleOpenChild1 : handleOpenChild2}
+                      disabled={childIdsInSession.has(
+                        `childFlyout${n}-${title}`
+                      )}
+                    >
+                      Open Child {n}
+                    </EuiButton>
+                  </EuiFlexItem>
+                ))}
+              </EuiFlexGroup>
             </EuiText>
           </EuiFlyoutBody>
-          {childSize && isChildFlyoutVisible && (
-            <EuiFlyout
-              id={`childFlyout-${title}`}
-              flyoutMenuProps={{ title: `${title} - Child` }}
-              size={childSize}
-              maxWidth={childMaxWidth}
-              onActive={childFlyoutOnActive}
-              onClose={childFlyoutOnClose}
-            >
-              <EuiFlyoutBody>
-                <EuiText>
-                  <p>
-                    This is the content of the child flyout of {title}. It
-                    automatically inherits the session because it&apos;s nested
-                    inside the parent.
-                  </p>
-                  <EuiSpacer size="s" />
-                  <EuiDescriptionList
-                    type="column"
-                    listItems={[
-                      {
-                        title: 'Child flyout size',
-                        description: childSize ?? 'N/A',
-                      },
-                      {
-                        title: 'Child flyout maxWidth',
-                        description: childMaxWidth ?? 'N/A',
-                      },
-                      {
-                        title: 'session',
-                        description: (
-                          <>
-                            <EuiCode>inherit</EuiCode> (auto)
-                          </>
-                        ),
-                      },
-                    ]}
-                  />
-                </EuiText>
-              </EuiFlyoutBody>
-            </EuiFlyout>
-          )}
         </EuiFlyout>
+      )}
+      {isChild1FlyoutVisible && (
+        <SessionChildFlyout
+          id={`childFlyout1-${title}`}
+          flyoutTitle={`${title} - Child 1`}
+          size={childSize}
+          maxWidth={childMaxWidth}
+          onClose={child1FlyoutOnClose}
+          onActive={childFlyoutOnActive('child1')}
+        >
+          <EuiText>
+            <p>
+              Child 1. Open &quot;Child 2&quot; to test child→child navigation.
+            </p>
+            <EuiSpacer size="s" />
+            <EuiDescriptionList
+              type="column"
+              listItems={[
+                { title: 'Child', description: '1' },
+                {
+                  title: 'Child flyout size',
+                  description: childSize ?? 'N/A',
+                },
+                {
+                  title: 'Child flyout maxWidth',
+                  description: childMaxWidth ?? 'N/A',
+                },
+                { title: 'session', description: <EuiCode>inherit</EuiCode> },
+              ]}
+            />
+            <EuiSpacer size="m" />
+            <EuiButton onClick={handleOpenChild2}>
+              Open next (Child 2)
+            </EuiButton>
+          </EuiText>
+        </SessionChildFlyout>
+      )}
+      {isChild2FlyoutVisible && (
+        <SessionChildFlyout
+          id={`childFlyout2-${title}`}
+          flyoutTitle={`${title} - Child 2`}
+          size={childSize}
+          maxWidth={childMaxWidth}
+          onClose={child2FlyoutOnClose}
+          onActive={childFlyoutOnActive('child2')}
+        >
+          <EuiText>
+            <p>
+              Child 2. You navigated from Child 1. Check manager state below.
+            </p>
+            <EuiSpacer size="s" />
+            <EuiDescriptionList
+              type="column"
+              listItems={[
+                { title: 'Child', description: '2' },
+                {
+                  title: 'session',
+                  description: <EuiCode>inherit</EuiCode>,
+                },
+              ]}
+            />
+            <EuiSpacer size="m" />
+            <EuiButton onClick={handleGoToChild1}>
+              Open previous (Child 1)
+            </EuiButton>
+          </EuiText>
+        </SessionChildFlyout>
       )}
     </>
   );
@@ -311,7 +400,7 @@ const NonSessionFlyout: React.FC<{ size: string }> = ({ size }) => {
           size={size}
           type={flyoutType}
           ownFocus={flyoutOwnFocus}
-          pushAnimation={true}
+          hasAnimation={true}
           onClose={flyoutOnClose}
         >
           <EuiFlyoutHeader>
@@ -351,94 +440,80 @@ const NonSessionFlyout: React.FC<{ size: string }> = ({ size }) => {
 };
 
 const MultiSessionFlyoutDemo: React.FC = () => {
+  const parksHistoryKey = React.useRef(Symbol()).current;
+  const sanitationHistoryKey = React.useRef(Symbol()).current;
+
   const listItems = [
     {
-      title: 'Session A: main size = s, child size = s',
+      title: 'Parks (shared history)',
+      description: (
+        <EuiFlexGroup gutterSize="s" direction="column" alignItems="flexStart">
+          <EuiFlexItem grow={false}>
+            <FlyoutSession
+              title="Park hours"
+              mainSize="s"
+              childSize="s"
+              historyKey={parksHistoryKey}
+            />
+          </EuiFlexItem>
+          <EuiFlexItem grow={false}>
+            <FlyoutSession
+              title="Facility reservations"
+              mainSize="s"
+              childSize="s"
+              historyKey={parksHistoryKey}
+            />
+          </EuiFlexItem>
+          <EuiFlexItem grow={false}>
+            <FlyoutSession
+              title="Events"
+              mainSize="s"
+              childSize="s"
+              historyKey={parksHistoryKey}
+            />
+          </EuiFlexItem>
+        </EuiFlexGroup>
+      ),
+    },
+    {
+      title: 'Sanitation (shared history)',
+      description: (
+        <EuiFlexGroup gutterSize="s" direction="column" alignItems="flexStart">
+          <EuiFlexItem grow={false}>
+            <FlyoutSession
+              title="Trash schedule"
+              mainSize="m"
+              childSize="s"
+              historyKey={sanitationHistoryKey}
+            />
+          </EuiFlexItem>
+          <EuiFlexItem grow={false}>
+            <FlyoutSession
+              title="Recycling guidelines"
+              mainSize="m"
+              childSize="s"
+              historyKey={sanitationHistoryKey}
+            />
+          </EuiFlexItem>
+          <EuiFlexItem grow={false}>
+            <FlyoutSession
+              title="Bulk pickup"
+              mainSize="m"
+              childSize="s"
+              historyKey={sanitationHistoryKey}
+            />
+          </EuiFlexItem>
+        </EuiFlexGroup>
+      ),
+    },
+    {
+      title: 'Permits (no historyKey: unique group)',
       description: (
         <FlyoutSession
-          // Session A
-          title="Session A"
+          title="Permits"
           mainSize="s"
           childSize="s"
-        />
-      ),
-    },
-    {
-      title: 'Session B: main size = m, child size = s',
-      description: (
-        <FlyoutSession
-          // Session B
-          title="Session B"
-          mainSize="m"
-          childSize="s"
-        />
-      ),
-    },
-    {
-      title: 'Session C: main size = s, child size = fill',
-      description: (
-        <FlyoutSession
-          // Session C
-          title="Session C"
-          mainSize="s"
-          childSize="fill"
-        />
-      ),
-    },
-    {
-      title: 'Session D: main size = fill, child size = s',
-      description: (
-        <FlyoutSession
-          // Session D
-          title="Session D"
-          mainSize="fill"
-          childSize="s"
-        />
-      ),
-    },
-    {
-      title: 'Session E: main size = fill',
-      description: (
-        <FlyoutSession
-          // Session E
-          title="Session E"
-          mainSize="fill"
-        />
-      ),
-    },
-    {
-      title:
-        'Session F: main size = undefined, child size = fill (maxWidth 1000px)',
-      description: (
-        <FlyoutSession
-          // Session F
-          title="Session F"
-          mainSize={undefined}
-          childSize="fill"
-          childMaxWidth={1000}
-        />
-      ),
-    },
-    {
-      title: 'Session G: main size = fill (maxWidth 1000px), child size = s',
-      description: (
-        <FlyoutSession
-          // Session G
-          title="Session G"
-          mainSize="fill"
-          mainMaxWidth={1000}
-          childSize="s"
-        />
-      ),
-    },
-    {
-      title: 'Session H: main size = s, child size = s',
-      description: (
-        <FlyoutSession
-          // Session H
-          title="Session H"
-          mainSize="s"
-          childSize="s"
+          // no historyKey - each session is alone in its history group
         />
       ),
     },
@@ -450,6 +525,14 @@ const MultiSessionFlyoutDemo: React.FC = () => {
 
   return (
     <>
+      <EuiText>
+        <p>
+          &quot;Parks&quot;, &quot;Sanitation&quot;, and &quot;Permits&quot; are
+          separate groups of scoped history. Navigating with the Back button and
+          the history menu does not cross over into other groups.
+        </p>
+      </EuiText>
+      <EuiSpacer size="l" />
       <EuiDescriptionList
         type="column"
         columnGutterSize="s"
@@ -512,12 +595,21 @@ const MultiSessionFlyoutDemo: React.FC = () => {
 
 export const MultiSessionExample: StoryObj<typeof EuiFlyout> = {
   name: 'Multi-session example',
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Parks and Sanitation use a shared `historyKey` so Back/history are scoped to each domain. Permits omits `historyKey` so it is alone in its history group. Open flyouts from different sections to see that histories do not mix.',
+      },
+    },
+  },
   render: () => <MultiSessionFlyoutDemo />,
 };
 
-const ExternalRootChildFlyout: React.FC<{ parentId: string }> = ({
-  parentId,
-}) => {
+const ExternalRootChildFlyout: React.FC<{
+  historyKey: symbol;
+  parentId: string;
+}> = ({ historyKey, parentId }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleToggle = () => {
@@ -529,13 +621,9 @@ const ExternalRootChildFlyout: React.FC<{ parentId: string }> = ({
   };
 
   return (
-    <EuiPanel hasBorder paddingSize="m" grow={false}>
-      <EuiTitle size="xs">
-        <h4>Root within {parentId}</h4>
-      </EuiTitle>
-      <EuiSpacer size="s" />
+    <>
       <EuiButton onClick={handleToggle} size="s" disabled={isOpen}>
-        Open child flyout
+        {`Open ${parentId} child flyout in external root`}
       </EuiButton>
       {isOpen && (
         <EuiFlyout
@@ -545,7 +633,9 @@ const ExternalRootChildFlyout: React.FC<{ parentId: string }> = ({
           onClose={handleClose}
           ownFocus={false}
           flyoutMenuProps={{ title: `Child flyout of ${parentId}` }}
+          resizable={false}
           data-test-subj="child-flyout-in-new-root"
+          historyKey={historyKey}
         >
           <EuiFlyoutBody>
             <EuiText>
@@ -559,11 +649,14 @@ const ExternalRootChildFlyout: React.FC<{ parentId: string }> = ({
           </EuiFlyoutBody>
         </EuiFlyout>
       )}
-    </EuiPanel>
+    </>
   );
 };
 
-const ExternalRootFlyout: React.FC<{ id: string }> = ({ id }) => {
+const ExternalRootFlyout: React.FC<{ id: string; historyKey: symbol }> = ({
+  id,
+  historyKey,
+}) => {
   const [isOpen, setIsOpen] = useState(false);
   const buttonContainerRef = useRef<HTMLDivElement | null>(null);
   const buttonRootRef = useRef<Root | null>(null);
@@ -585,7 +678,7 @@ const ExternalRootFlyout: React.FC<{ id: string }> = ({ id }) => {
         const newRoot = createRoot(buttonContainerRef.current);
         newRoot.render(
           <EuiProvider>
-            <ExternalRootChildFlyout parentId={id} />
+            <ExternalRootChildFlyout historyKey={historyKey} parentId={id} />
           </EuiProvider>
         );
         buttonRootRef.current = newRoot;
@@ -609,13 +702,9 @@ const ExternalRootFlyout: React.FC<{ id: string }> = ({ id }) => {
   }, []);
 
   return (
-    <EuiPanel hasBorder paddingSize="m" grow={false}>
-      <EuiTitle size="xs">
-        <h3>{id}</h3>
-      </EuiTitle>
-      <EuiSpacer size="s" />
-      <EuiButton onClick={() => setIsOpen((prev) => !prev)}>
-        {isOpen ? 'Close flyout' : 'Open flyout'}
+    <>
+      <EuiButton onClick={() => setIsOpen((prev) => !prev)} disabled={isOpen}>
+        {`Open ${id} flyout`}
       </EuiButton>
       {isOpen && (
         <EuiFlyout
@@ -625,6 +714,8 @@ const ExternalRootFlyout: React.FC<{ id: string }> = ({ id }) => {
           onClose={() => setIsOpen(false)}
           ownFocus={false}
           flyoutMenuProps={{ title: `${id} flyout` }}
+          resizable={true}
+          historyKey={historyKey}
         >
           <EuiFlyoutHeader>
             <EuiTitle size="m">
@@ -652,9 +743,11 @@ const ExternalRootFlyout: React.FC<{ id: string }> = ({ id }) => {
           </EuiFlyoutBody>
         </EuiFlyout>
       )}
-    </EuiPanel>
+    </>
   );
 };
+
+const multiRootHistoryKey = Symbol('multiRootSharedHistory');
 
 const MultiRootFlyoutDemo: React.FC = () => {
   const secondaryRootRef = useRef<HTMLDivElement | null>(null);
@@ -676,7 +769,7 @@ const MultiRootFlyoutDemo: React.FC = () => {
         const root = createRoot(container);
         root.render(
           <EuiProvider>
-            <ExternalRootFlyout id={id} />
+            <ExternalRootFlyout id={id} historyKey={multiRootHistoryKey} />
           </EuiProvider>
         );
         return root;

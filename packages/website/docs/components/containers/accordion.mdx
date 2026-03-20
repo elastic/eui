@@ -484,7 +484,7 @@ const Rows = () => {
       <p>
         <EuiButton
           size="s"
-          iconType="plusInCircleFilled"
+          iconType="plusCircle"
           onClick={() => setCounter(counter + 1)}
           aria-controls={listId}
           aria-describedby={growingAccordionDescriptionId}
@@ -493,7 +493,7 @@ const Rows = () => {
         </EuiButton>{' '}
         <EuiButton
           size="s"
-          iconType="minusInCircleFilled"
+          iconType="minusCircle"
           aria-controls={listId}
           aria-describedby={growingAccordionDescriptionId}
           onClick={() => setCounter(Math.max(0, counter - 1))}

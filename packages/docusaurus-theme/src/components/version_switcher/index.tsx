@@ -123,7 +123,7 @@ export const VersionSwitcher = ({
     <EuiButtonEmpty
       size="s"
       color="text"
-      iconType="arrowDown"
+      iconType="chevronSingleDown"
       iconSide="right"
       css={styles.button}
       onClick={() => setPopoverOpen((isOpen) => !isOpen)}

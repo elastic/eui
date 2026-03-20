@@ -1,0 +1,82 @@
+---
+sidebar_position: 2
+keywords: [tree-shaking, bundle size, optimization, dead code elimination]
+---
+
+# Tree-shaking
+
+```mdx-code-block
+import Link from '@docusaurus/Link';
+```
+
+Tree-shaking (dead code elimination) allows bundlers to remove unused code from your production builds, reducing the amount of JavaScript shipped to users.
+
+## How EUI supports tree-shaking
+
+EUI publishes two build outputs:
+
+- **`es/`** — ES modules (used by modern bundlers via the `module` field in `package.json`)
+- **`lib/`** — CommonJS (used as fallback via the `main` field)
+
+The `es/` build preserves `import`/`export` syntax, which bundlers like Webpack, Rollup, and esbuild can statically analyze to determine which exports are actually used.
+
+EUI's `package.json` also declares:
+
+```json
+{
+  "sideEffects": ["*.css", "*.scss"]
+}
+```
+
+This tells bundlers that all JavaScript modules are side-effect-free and safe to remove if unused. Only CSS/SCSS files are marked as having side effects.
+
+## What you need
+
+For tree-shaking to work, your bundler must resolve `@elastic/eui` to the **ES module build** (`es/`). Most bundlers do this automatically via the `module` field. Verify that you're importing from the top-level package:
+
+```tsx
+import { EuiButton, EuiPanel } from '@elastic/eui';
+```
+
+No special configuration is needed — a properly configured bundler will tree-shake unused components automatically.
+
+## Icons and code-splitting
+
+**EuiIcon** uses dynamic imports to load icon assets only when actually used. Depending on your bundler's configuration, each icon may become a fully separate chunk loaded lazily at runtime, or be otherwise grouped together with other code. It's common for bundlers to decide that based on the minimum and maximum chunk sizes to optimize code delivery efficiency. Please check your bundler documentation to learn more.
+
+```ts
+// Simplified example of how EUI maps icon names to dynamic imports
+const typeToPathMap = {
+  calendar: () => import('./assets/calendar'),
+  check: () => import('./assets/check'),
+  // ...
+};
+```
+
+This means icon SVGs are **not** included in your main bundle — they're fetched only when a specific icon renders on the page. However, the mapping object itself (which associates icon names with their chunk references) is always included when `EuiIcon` is used.
+
+:::info
+There is an ongoing effort to <Link to="https://github.com/elastic/eui/issues/8860">refactor EuiIcon</Link> for improved performance and reduced mapping overhead.
+:::
+
+## Verifying tree-shaking in your project
+
+To confirm tree-shaking is working:
+
+1. **Webpack**: Use <Link to="https://www.npmjs.com/package/webpack-bundle-analyzer">webpack-bundle-analyzer</Link> to visualize your bundle and check that unused EUI components are not present
+2. **Vite/Rollup**: Use <Link to="https://www.npmjs.com/package/rollup-plugin-visualizer">rollup-plugin-visualizer</Link> for a similar analysis
+
+A minimal app importing only `EuiButton` should produce a production bundle significantly smaller than the full EUI library.
+
+## CommonJS consumers
+
+If your project resolves to the **`lib/`** (CommonJS) build, tree-shaking will **not** work because CommonJS modules are not statically analyzable. In this case, you can use direct subpath imports to limit what gets included:
+
+```tsx
+import { EuiButton } from '@elastic/eui/lib/components/button';
+import { keys } from '@elastic/eui/lib/services';
+```
+
+:::warning
+Subpath imports are not a guaranteed API and may change between versions. Prefer using the ES module build with top-level imports for reliable tree-shaking.
+:::

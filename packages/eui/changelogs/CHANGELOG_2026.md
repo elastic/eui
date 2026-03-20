@@ -1,3 +1,66 @@
+## [`v113.3.0`](https://github.com/elastic/eui/releases/v113.3.0)
+
+- Added `color` prop to `EuiContextMenuItem`, accepting all standard button color values ([#9448](https://github.com/elastic/eui/pull/9448))
+- Adjusted lightest color tokens to get a more balanced palette and contrast with content over light backgrounds: ([#9432](https://github.com/elastic/eui/pull/9432))
+  - `blue10` / `euiColorPrimary10`
+  - `sky10` / `euiColorNeutral10`
+  - `teal10` / `euiColorAccentSecondary10`
+  - `pink10` / `euiColorAccent10`
+  - `green10` / `euiColorSuccess10`
+  - `yellow10` / `euiColorWarning10`
+  - `orange10` / `euiColorRisk10`
+  - `red10` / `euiColorDanger10`
+  - `purple10` / `euiColorAssistance10`
+- Added `flyoutMenuDisplayMode` prop to `EuiFlyout` to control when the flyout menu renders. Defaults to `'auto'`, which hides the menu bar when it only contains a close button. ([#9426](https://github.com/elastic/eui/pull/9426))
+- Added `iconType` support to `EuiFlyoutManager` sessions, allowing icons to be displayed in the flyout history popover ([#9412](https://github.com/elastic/eui/pull/9412))
+- Child flyout history in the Flyout Manager: sessions now track a stack of child flyouts (`childHistory`) so you can open multiple child flyouts in sequence and navigate back through them ([#9409](https://github.com/elastic/eui/pull/9409))
+- Optional `level` argument to `goToFlyout(flyoutId, level?)` — when `level` is `'child'`, navigates to a child in the current session's history (e.g. from the history popover); when `'main'` or omitted, navigates by main session as before ([#9409](https://github.com/elastic/eui/pull/9409))
+- `FlyoutSession` now includes `childTitle`, `childIconType`, and `childHistory` so the history popover can show child flyout titles and icons and support jumping back to a previous child ([#9409](https://github.com/elastic/eui/pull/9409))
+- Back button now pops child history first (returning to the previous child flyout), then pops the current session when no child history remains ([#9409](https://github.com/elastic/eui/pull/9409))
+- Added `files` prop to `EuiFilePicker` to maintain visual state when re-mounting ([#9362](https://github.com/elastic/eui/pull/9362))
+
+**Bug fixes**
+
+- Fixed `DefaultItemAction.color` being ignored in the collapsed overflow menu (`...` popover) of `EuiBasicTable` — it now renders with the correct color, matching the expanded inline action view ([#9448](https://github.com/elastic/eui/pull/9448))
+- Fixed `EuiSuperDatePicker`'s time window adding a `1ms` drift for relative date times ([#9434](https://github.com/elastic/eui/pull/9434))
+- Fixed cascade close when child flyouts are rendered as siblings of the main (not nested): closing the main now correctly invokes each child's `onClose` so consumer state and DOM stay in sync and children do not remain visible as orphaned flyouts ([#9409](https://github.com/elastic/eui/pull/9409))
+
+**Deprecations**
+
+- Deprecated `hideTitle` prop in `EuiFlyoutMenuProps`. The menu title is now hidden by default for all flyouts. Use `EuiFlyoutHeader` for visible titles instead. ([#9502](https://github.com/elastic/eui/pull/9502))
+
+## [`v113.2.1`](https://github.com/elastic/eui/releases/v113.2.1)
+
+**Bug fixes**
+
+- Fixed `mobileOptions.width` and `mobileOptions.maxWidth` props support in the EuiTableRowCell component ([#9442](https://github.com/elastic/eui/pull/9442))
+
+## [`v113.2.0`](https://github.com/elastic/eui/releases/v113.2.0)
+
+- Added an optional `sticky` option to `EuiBasicTable` and `EuiInMemoryTable` actions columns. This option is currently in beta. ([#9430](https://github.com/elastic/eui/pull/9430))
+- Added `minWidth` and `maxWidth` options to `EuiBasicTable` and `EuiInMemoryTable` columns configuration object ([#9422](https://github.com/elastic/eui/pull/9422))
+- Added `minWidth` and `maxWidth` props to `EuiTableFooterCell`, `EuiTableHeaderCell`, `EuiTableHeaderCellCheckbox` and `EuiTableRowCell` ([#9422](https://github.com/elastic/eui/pull/9422))
+- Updated the gap between action buttons in `EuiTable`, `EuiBasicTable` and `EuiInMemoryTable` to `4px` ([#9423](https://github.com/elastic/eui/pull/9423))
+- Updated `EuiBadge` hover styles to match `EuiButton` styles ([#9418](https://github.com/elastic/eui/pull/9418))
+- Added `container` prop to `EuiFlyout` for positioning flyouts relative to a container element instead of the viewport, enabling app-scoped flyouts that stay within the container bounds using `position: fixed` and container-derived inline styles ([#9377](https://github.com/elastic/eui/pull/9377)) ([#9377](https://github.com/elastic/eui/pull/9377))
+- Added `container` to `EuiFlyout` component defaults configuration in `EuiProvider` ([#9377](https://github.com/elastic/eui/pull/9377)) ([#9377](https://github.com/elastic/eui/pull/9377))
+- Added a new optional `scrollableInline` (boolean) prop to EuiTable, EuiBasicTable and EuiInMemoryTable that enables horizontal scrolling on overflow ([#9416](https://github.com/elastic/eui/pull/9416))
+
+**Bug fixes**
+
+- Fixed resizable flyouts to output percentage-based widths relative to the container or viewport, preventing size drift on resize ([#9377](https://github.com/elastic/eui/pull/9377)) ([#9377](https://github.com/elastic/eui/pull/9377))
+- Fixed resizable flyout clamping to account for sibling flyout widths in side-by-side layout mode ([#9377](https://github.com/elastic/eui/pull/9377)) ([#9377](https://github.com/elastic/eui/pull/9377))
+- Fixed fill-size flyouts incorrectly triggering stacked layout due to combined-width hysteresis deadlock ([#9377](https://github.com/elastic/eui/pull/9377)) ([#9377](https://github.com/elastic/eui/pull/9377))
+
+**Deprecations**
+
+- Deprecated `maskProps` on `EuiFlyout`. Use the `container` prop to scope flyouts to an application area; when `container` is provided, `maskProps` is ignored. For global (viewport-relative) flyouts, use `container={null}` ([#9377](https://github.com/elastic/eui/pull/9377)) ([#9377](https://github.com/elastic/eui/pull/9377))
+- Deprecated `includeFixedHeadersInFocusTrap` on `EuiFlyout`. When using the `container` prop, use `includeSelectorInFocusTrap` to include specific elements (e.g. app headers) in the focus trap instead ([#9377](https://github.com/elastic/eui/pull/9377)) ([#9377](https://github.com/elastic/eui/pull/9377))
+
+**Accessibility**
+
+- Improved the accessibility experience of managed flyouts by allowing keyboard navigation between child and parent flyouts. ([#9397](https://github.com/elastic/eui/pull/9397))
+
 ## [`v113.1.0`](https://github.com/elastic/eui/releases/v113.1.0)
 
 - Added `data-test-subj` attributes to `EuiFlyoutMenu` elements: back button, history dropdown, and history items. ([#9400](https://github.com/elastic/eui/pull/9400))

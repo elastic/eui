@@ -24,8 +24,8 @@ import {
   useGeneratedHtmlId,
 } from '../../../services';
 import {
-  getEuiButtonColors,
-  getEuiFilledButtonColors,
+  getEuiButtonColorValues,
+  getEuiFilledButtonColorValues,
 } from '../../../global_styling';
 import { CommonProps } from '../../common';
 import { EuiButtonProps } from '../button';
@@ -92,11 +92,11 @@ export const _EuiSplitButton: FunctionComponent<EuiSplitButtonProps> = ({
     isLoading,
   };
 
-  const buttonFilledColors = getEuiFilledButtonColors(
+  const buttonFilledColors = getEuiFilledButtonColorValues(
     euiThemeContext,
     isDisabled ? 'disabled' : color
   );
-  const buttonColors = getEuiButtonColors(
+  const buttonColors = getEuiButtonColorValues(
     euiThemeContext,
     isDisabled ? 'disabled' : color
   );

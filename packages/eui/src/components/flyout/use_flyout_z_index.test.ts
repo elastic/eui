@@ -52,7 +52,7 @@ describe('useEuiFlyoutZIndex', () => {
     rerender({
       ...defaultProps,
       isPushed: true,
-      maskProps: { headerZindexLocation: 'above' },
+      headerZindexLocation: 'above',
     });
     expect(result.current.flyoutZIndex).toEqual(1000);
     expect(result.current.maskZIndex).toEqual(998);
@@ -60,30 +60,33 @@ describe('useEuiFlyoutZIndex', () => {
     rerender({
       ...defaultProps,
       isPushed: true,
-      maskProps: { headerZindexLocation: 'below' },
+      headerZindexLocation: 'below',
     });
     expect(result.current.flyoutZIndex).toEqual(1000);
     expect(result.current.maskZIndex).toEqual(998);
   });
 
-  it('returns flyout level based z-index values when maskProps.headerZindexLocation != "above"', () => {
-    const { result, rerender } = render({ isPushed: false, maskProps: {} });
+  it('returns flyout level based z-index values when headerZindexLocation != "above"', () => {
+    const { result, rerender } = render({
+      isPushed: false,
+      headerZindexLocation: 'below',
+    });
     expect(result.current.flyoutZIndex).toEqual(1000);
     expect(result.current.maskZIndex).toEqual(998);
 
     rerender({
       ...defaultProps,
       isPushed: false,
-      maskProps: { headerZindexLocation: 'below' },
+      headerZindexLocation: 'below',
     });
     expect(result.current.flyoutZIndex).toEqual(1000);
     expect(result.current.maskZIndex).toEqual(998);
   });
 
-  it('returns mask level based z-index values when maskProps.headerZindexLocation = "above"', () => {
+  it('returns mask level based z-index values when headerZindexLocation = "above"', () => {
     const { result } = render({
       isPushed: false,
-      maskProps: { headerZindexLocation: 'above' },
+      headerZindexLocation: 'above',
     });
     expect(result.current.flyoutZIndex).toEqual(6000);
     expect(result.current.maskZIndex).toEqual(5998);

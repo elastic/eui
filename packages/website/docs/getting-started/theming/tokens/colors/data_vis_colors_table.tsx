@@ -47,14 +47,6 @@ export const DataVisColorsTable = () => {
           value: euiTheme.colors.vis.euiColorVis9,
           token: 'colors.vis.euiColorVis9',
         },
-        {
-          value: euiTheme.colors.vis.euiColorVis10,
-          token: 'colors.vis.euiColorVis10',
-        },
-        {
-          value: euiTheme.colors.vis.euiColorVis11,
-          token: 'colors.vis.euiColorVis11',
-        },
       ]}
     />
   );
@@ -106,14 +98,6 @@ export const DataVisTextColorsTable = () => {
           value: euiTheme.colors.vis.euiColorVisText9,
           token: 'colors.vis.euiColorVisText9',
         },
-        {
-          value: euiTheme.colors.vis.euiColorVisText10,
-          token: 'colors.vis.euiColorVisText10',
-        },
-        {
-          value: euiTheme.colors.vis.euiColorVisText11,
-          token: 'colors.vis.euiColorVisText11',
-        }
       ]}
     />
   );

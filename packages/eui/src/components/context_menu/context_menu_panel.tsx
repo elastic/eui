@@ -452,7 +452,7 @@ export class EuiContextMenuPanelClass extends Component<
         data-test-subj={
           onClose ? 'contextMenuPanelTitleButton' : 'contextMenuPanelTitle'
         }
-        icon={onClose && 'arrowLeft'}
+        icon={onClose && 'chevronSingleLeft'}
       >
         {title}
       </EuiContextMenuItem>
