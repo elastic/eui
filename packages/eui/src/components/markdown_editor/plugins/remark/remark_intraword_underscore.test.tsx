@@ -63,4 +63,54 @@ describe('remarkIntrawordUnderscore', () => {
       'Fields ABDC__AppleBanana__c and ABDC__MangoKiwi__c are required'
     );
   });
+
+  it('preserves trailing double underscores as plain text', () => {
+    const { container } = render(
+      <EuiMarkdownFormat>{'Mango__Kiwi__'}</EuiMarkdownFormat>
+    );
+
+    expect(container.querySelector('strong')).not.toBeInTheDocument();
+    expect(container).toHaveTextContent('Mango__Kiwi__');
+  });
+
+  it('preserves leading double underscores as plain text', () => {
+    const { container } = render(
+      <EuiMarkdownFormat>{'__Mango__Kiwi'}</EuiMarkdownFormat>
+    );
+
+    expect(container.querySelector('strong')).not.toBeInTheDocument();
+    expect(container).toHaveTextContent('__Mango__Kiwi');
+  });
+
+  it('preserves trailing single underscores as plain text', () => {
+    const { container } = render(
+      <EuiMarkdownFormat>{'Mango_Kiwi_'}</EuiMarkdownFormat>
+    );
+
+    expect(container.querySelector('em')).not.toBeInTheDocument();
+    expect(container).toHaveTextContent('Mango_Kiwi_');
+  });
+
+  it('preserves mixed double/single trailing underscores as plain text', () => {
+    const { container } = render(
+      <EuiMarkdownFormat>{'Mango__Kiwi_'}</EuiMarkdownFormat>
+    );
+
+    expect(container.querySelector('em')).not.toBeInTheDocument();
+    expect(container.querySelector('strong')).not.toBeInTheDocument();
+    expect(container).toHaveTextContent('Mango__Kiwi_');
+  });
+
+  it('handles edge-case identifiers mixed in a sentence', () => {
+    const { container } = render(
+      <EuiMarkdownFormat>
+        {'Check __Mango__Kiwi and Mango__Kiwi__ fields'}
+      </EuiMarkdownFormat>
+    );
+
+    expect(container.querySelector('strong')).not.toBeInTheDocument();
+    expect(container).toHaveTextContent(
+      'Check __Mango__Kiwi and Mango__Kiwi__ fields'
+    );
+  });
 });

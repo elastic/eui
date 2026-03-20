@@ -95,9 +95,33 @@ function processParent(parent: Parent, source: string) {
   }
 }
 
+function getInnerText(node: Node): string {
+  if (isTextNode(node)) return node.value;
+  if ('children' in node) {
+    const children = (node as Parent).children;
+    if (children.length > 0) return getInnerText(children[0]);
+  }
+  return '';
+}
+
+function getInnerTextEnd(node: Node): string {
+  if (isTextNode(node)) return node.value;
+  if ('children' in node) {
+    const children = (node as Parent).children;
+    if (children.length > 0)
+      return getInnerTextEnd(children[children.length - 1]);
+  }
+  return '';
+}
+
 /**
  * Checks whether the emphasis/strong node at `index` within `parent`
  * is an intraword usage of underscore delimiters.
+ *
+ * A node is intraword when at least one side has an alphanumeric text
+ * neighbor AND the inner content on the corresponding delimiter side
+ * also touches word characters — proving the underscores are embedded
+ * in a word rather than used as formatting.
  */
 function isIntraword(parent: Parent, index: number, source: string): boolean {
   const node = parent.children[index];
@@ -112,19 +136,38 @@ function isIntraword(parent: Parent, index: number, source: string): boolean {
   const next =
     index < parent.children.length - 1 ? parent.children[index + 1] : null;
 
-  const prevEndsWithAlpha =
-    prev != null &&
-    isTextNode(prev) &&
-    prev.value.length > 0 &&
-    isAlphanumeric(prev.value[prev.value.length - 1]);
+  const prevChar =
+    prev != null && isTextNode(prev) && prev.value.length > 0
+      ? prev.value[prev.value.length - 1]
+      : null;
 
-  const nextStartsWithAlpha =
-    next != null &&
-    isTextNode(next) &&
-    next.value.length > 0 &&
-    isAlphanumeric(next.value[0]);
+  const nextChar =
+    next != null && isTextNode(next) && next.value.length > 0
+      ? next.value[0]
+      : null;
 
-  return prevEndsWithAlpha && nextStartsWithAlpha;
+  const prevIsAlpha = prevChar != null && isAlphanumeric(prevChar);
+  const nextIsAlpha = nextChar != null && isAlphanumeric(nextChar);
+
+  // Both sides flanked by alphanumeric — classic intraword (e.g. `foo__bar__baz`)
+  if (prevIsAlpha && nextIsAlpha) return true;
+
+  // One-sided: prev is alpha or underscore, no alpha next — check inner text
+  // starts with alpha (e.g. `Lorem__ipsum__` or `Lorem__ipsum_`)
+  if (prevIsAlpha || prevChar === '_') {
+    const inner = getInnerText(node);
+    if (inner.length > 0 && isAlphanumeric(inner[0])) return true;
+  }
+
+  // One-sided: next is alpha or underscore, no alpha prev — check inner text
+  // ends with alpha (e.g. `__Lorem__ipsum` or `_Lorem__ipsum`)
+  if (nextIsAlpha || nextChar === '_') {
+    const inner = getInnerTextEnd(node);
+    if (inner.length > 0 && isAlphanumeric(inner[inner.length - 1]))
+      return true;
+  }
+
+  return false;
 }
 
 function mergeAdjacentText(parent: Parent) {
