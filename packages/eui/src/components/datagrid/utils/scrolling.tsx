@@ -11,12 +11,14 @@ import React, {
   useEffect,
   useCallback,
   useMemo,
+  useRef,
   MutableRefObject,
   ReactNode,
 } from 'react';
 import { VariableSizeGrid as Grid } from 'react-window';
 
-import { useEuiMemoizedStyles, useIsPointerDown } from '../../../services';
+import { useEuiMemoizedStyles } from '../../../services';
+import { useIsPointerDown } from '../../../services/hooks';
 import { logicalStyles } from '../../../global_styling';
 import { DataGridCellPopoverContext } from '../body/cell';
 import { EuiDataGridStyle } from '../data_grid_types';
@@ -50,21 +52,48 @@ export const useScroll = (args: Dependencies) => {
   const { scrollCellIntoView } = useScrollCellIntoView(args);
 
   const { focusedCell } = useContext(DataGridFocusContext);
-  const isPointerDown = useIsPointerDown(args.outerGridRef);
+  const isPointerDownRef = useIsPointerDown(args.outerGridRef);
+
+  /**
+   * Set when `focusedCell` changes while the pointer is held down (e.g. clicking a cell).
+   * Allows the `pointerup` listener below to scroll on release without
+   * causing snap-back when the user scrolls the grid without changing focus.
+   */
+  const pendingScrollRef = useRef(false);
 
   useEffect(() => {
-    if (focusedCell) {
-      // do not scroll if text is being selected
-      if (isPointerDown || window?.getSelection()?.type === 'Range') {
-        return;
-      }
+    if (!focusedCell) return;
+    if (isPointerDownRef.current) {
+      // Pointer is down - defer scroll decision to the pointerup listener
+      pendingScrollRef.current = true;
+      return;
+    }
+
+    scrollCellIntoView({ rowIndex: focusedCell[1], colIndex: focusedCell[0] });
+  }, [focusedCell, scrollCellIntoView, isPointerDownRef]);
+
+  useEffect(() => {
+    const handlePointerUp = () => {
+      if (!pendingScrollRef.current || !focusedCell) return;
+
+      pendingScrollRef.current = false;
+
+      // Skip if the interaction resulted in text being selected
+      if (window?.getSelection()?.type === 'Range') return;
 
       scrollCellIntoView({
         rowIndex: focusedCell[1],
         colIndex: focusedCell[0],
       });
-    }
-  }, [focusedCell, isPointerDown, scrollCellIntoView]);
+    };
+
+    document.addEventListener('pointerup', handlePointerUp, { capture: true });
+
+    return () =>
+      document.removeEventListener('pointerup', handlePointerUp, {
+        capture: true,
+      });
+  }, [focusedCell, scrollCellIntoView]);
 
   const { popoverIsOpen, cellLocation } = useContext(
     DataGridCellPopoverContext
