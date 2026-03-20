@@ -8,7 +8,7 @@ However, because EUI has a large footprint in Elastic products, we must maintain
 ****
 ## Who can contribute
 
-- **Elastic employees** — EUI is built primarily for Elastic products; internal roadmap needs usually drive priorities, and maintainer time and review focus follow that work first.
+- **Elastic employees** — EUI is built primarily for Elastic products; maintainers prioritize internal roadmap work first. If your need isn't currently a priority, feel free to contribute the solution yourself.
 - **Community** — Outside contributions are welcome and merged on a **best-effort** basis.
 
 ## What to contribute
