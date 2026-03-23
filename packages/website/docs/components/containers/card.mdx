@@ -185,7 +185,7 @@ export default () => (
 
 ### Beta badge
 
-If the card links to or references a module that is not GA (beta, lab, etc), you can add a `betaBadgeProps.label` and `betaBadgeProps.tooltipContent` to the card and it will properly create and position an **EuiBetaBadge**. If you want to change the title of the tooltip, supply a `betaBadgeProps.title` prop.
+If the card links to or references a module that is not GA (beta, lab, etc), pass `betaBadgeProps.children` for the badge text and `betaBadgeTooltipProps.content` (and optionally `betaBadgeTooltipProps.title`) for the tooltip. **EuiCard** positions an **EuiBadge** and wraps it in **EuiToolTip** when tooltip props are provided.
 
 ```tsx interactive
 import React from 'react';
@@ -199,9 +199,9 @@ export default () => (
         title="Dashboards"
         description="Example of a card's description. Stick to one or two sentences."
         onClick={() => {}}
-        betaBadgeProps={{
-          label: 'Beta',
-          tooltipContent:
+        betaBadgeProps={{ children: 'Beta' }}
+        betaBadgeTooltipProps={{
+          content:
             'This module is not GA. Please help us by reporting any bugs.',
         }}
       />
@@ -211,10 +211,9 @@ export default () => (
         icon={<EuiIcon size="xxl" type="monitoringApp" />}
         title="Monitoring"
         description="Example of a card's description. Stick to one or two sentences."
-        betaBadgeProps={{
-          label: 'Accent',
-          color: 'accent',
-          tooltipContent:
+        betaBadgeProps={{ children: 'Accent', color: 'accent' }}
+        betaBadgeTooltipProps={{
+          content:
             'You can change the badge color using betaBadgeProps.color.',
         }}
         onClick={() => {}}
@@ -225,13 +224,15 @@ export default () => (
         icon={<EuiIcon size="xxl" type="lensApp" />}
         title="Lens"
         isDisabled
-        description="Disabled cards can have active links using EuiBetaBadge."
+        description="Disabled cards can have active links using EuiBadge."
         betaBadgeProps={{
           href: 'http://www.elastic.co/subscriptions',
           target: '_blank',
-          label: 'Basic',
-          tooltipContent:
-            'Disabled cards with still clickable badges will stay hollow.',
+          children: 'Basic',
+        }}
+        betaBadgeTooltipProps={{
+          content:
+            'Disabled cards that have clickable badges will stay hollow.',
         }}
         onClick={() => {}}
       />
@@ -615,9 +616,9 @@ export default () => (
         title="Transparent"
         display="transparent"
         description="This one doesn't have a background color anymore."
-        betaBadgeProps={{
-          label: 'Beta',
-          tooltipContent:
+        betaBadgeProps={{ children: 'Beta' }}
+        betaBadgeTooltipProps={{
+          content:
             'This module is not GA. Please help us by reporting any bugs.',
         }}
         onClick={() => {}}
