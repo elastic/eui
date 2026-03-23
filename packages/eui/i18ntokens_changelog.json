@@ -1,5 +1,15 @@
 [
   {
+    "version": "113.3.0",
+    "changes": [
+      {
+        "token": "euiColorPicker.ariaLabel",
+        "changeType": "added",
+        "value": "Select a color"
+      }
+    ]
+  },
+  {
     "version": "113.1.0",
     "changes": [
       {
