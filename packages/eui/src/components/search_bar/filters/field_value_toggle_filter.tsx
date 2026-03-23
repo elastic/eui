@@ -49,7 +49,7 @@ export const FieldValueToggleFilter: FC<FieldValueToggleFilterProps> = (props) =
       ? props.query.removeSimpleFieldValue(field, value)
       : props.query.addSimpleFieldValue(field, value, true, operator);
     props.onChange(query);
-  }
+  };
 
   const { query, config } = props;
   const clause = query.getSimpleFieldClause(config.field, config.value);
