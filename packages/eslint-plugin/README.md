@@ -153,7 +153,7 @@ Ensure that `EuiCallOut` components rendered conditionally have the `announceOnM
 
 ### `@elastic/eui/no-unnamed-interactive-element`
 
-Ensure that appropriate aria-attributes are set for `EuiBetaBadge`, `EuiButtonIcon`, `EuiComboBox`, `EuiSelect`, `EuiSelectWithWidth`,`EuiSuperSelect`,`EuiPagination`, `EuiTreeView`, `EuiBreadcrumbs`. Without this rule, screen reader users lose context, keyboard navigation can be confusing.
+Ensure that appropriate aria-attributes are set for `EuiBadge`, `EuiButtonIcon`, `EuiComboBox`, `EuiSelect`, `EuiSelectWithWidth`,`EuiSuperSelect`,`EuiPagination`, `EuiTreeView`, `EuiBreadcrumbs`. Without this rule, screen reader users lose context, keyboard navigation can be confusing.
 
 ### `@elastic/eui/tooltip-focusable-anchor`
 

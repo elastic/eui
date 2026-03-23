@@ -15,7 +15,7 @@ import {
 import { hasA11yPropForComponent } from '../../utils/has_a11y_prop_for_component';
 
 const interactiveComponents = [
-  'EuiBetaBadge',
+  'EuiBadge',
   'EuiButtonIcon',
   'EuiComboBox',
   'EuiSelect',
@@ -27,7 +27,7 @@ const interactiveComponents = [
 ] as const;
 
 const wrappingComponents = ['EuiFormRow'] as const;
-const interactiveComponentsWithLabel = ['EuiBetaBadge'] as const;
+const interactiveComponentsWithLabel = ['EuiBadge'] as const;
 const baseA11yProps = ['aria-label', 'aria-labelledby'] as const;
 
 // Single source of truth for the utils (keeps them reusable)

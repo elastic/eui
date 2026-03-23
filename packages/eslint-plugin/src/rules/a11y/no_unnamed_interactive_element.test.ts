@@ -23,7 +23,7 @@ const languageOptions = {
 ruleTester.run('NoUnnamedInteractiveElement', NoUnnamedInteractiveElement, {
   valid: [
     // Components with allowed a11y props
-    { code: '<EuiBetaBadge aria-label="Beta badge" />', languageOptions },
+    { code: '<EuiBadge aria-label="Badge" />', languageOptions },
     { code: '<EuiButtonIcon aria-label="Icon" />', languageOptions },
     { code: '<EuiComboBox aria-label="Combo label" />', languageOptions },
     { code: '<EuiSelect aria-label="Select label" />', languageOptions },
@@ -57,7 +57,7 @@ ruleTester.run('NoUnnamedInteractiveElement', NoUnnamedInteractiveElement, {
   invalid: [
     // Missing a11y prop for interactive components
     {
-      code: '<EuiBetaBadge />',
+      code: '<EuiBadge />',
       languageOptions,
       errors: [{ messageId: 'missingA11y' }],
     },
