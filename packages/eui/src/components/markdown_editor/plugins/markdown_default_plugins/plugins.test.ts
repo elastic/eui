@@ -13,7 +13,7 @@ describe('default plugins', () => {
     const { parsingPlugins, processingPlugins, uiPlugins } =
       getDefaultEuiMarkdownPlugins();
 
-    expect(parsingPlugins).toHaveLength(7);
+    expect(parsingPlugins).toHaveLength(8);
     expect(Object.keys(processingPlugins[1][1].components)).toHaveLength(8);
     expect(uiPlugins).toHaveLength(1);
 
@@ -27,7 +27,7 @@ describe('default plugins', () => {
         exclude: ['tooltip'],
       });
 
-    expect(parsingPlugins).toHaveLength(6);
+    expect(parsingPlugins).toHaveLength(7);
     expect(processingPlugins[1][1].components.tooltipPlugin).toBeUndefined();
     expect(uiPlugins).toHaveLength(0);
   });
@@ -38,7 +38,7 @@ describe('default plugins', () => {
         exclude: ['checkbox'],
       });
 
-    expect(parsingPlugins).toHaveLength(6);
+    expect(parsingPlugins).toHaveLength(7);
     expect(processingPlugins[1][1].components.checkboxPlugin).toBeUndefined();
     expect(uiPlugins).toHaveLength(1);
   });
@@ -55,7 +55,7 @@ describe('default plugins', () => {
         ],
       });
 
-    expect(parsingPlugins).toHaveLength(2);
+    expect(parsingPlugins).toHaveLength(3);
     expect(Object.keys(processingPlugins[1][1].components)).toHaveLength(6);
     expect(uiPlugins).toHaveLength(0);
   });
