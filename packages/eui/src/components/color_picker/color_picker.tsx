@@ -23,6 +23,7 @@ import {
   useEuiMemoizedStyles,
   keys,
   useEuiPaletteColorBlind,
+  useGeneratedHtmlId,
 } from '../../services';
 import { CommonProps } from '../common';
 import {
@@ -209,6 +210,9 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
   isClearable = false,
   placeholder,
   'data-test-subj': dataTestSubj,
+  'aria-label': _ariaLabel,
+  'aria-labelledby': ariaLabelledby,
+  'aria-describedby': ariaDescribedby,
 }) => {
   const [
     popoverLabel,
@@ -219,6 +223,7 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
     alphaLabel,
     openLabel,
     closeLabel,
+    ariaLabel,
   ] = useEuiI18n(
     [
       'euiColorPicker.popoverLabel',
@@ -229,6 +234,7 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
       'euiColorPicker.alphaLabel',
       'euiColorPicker.openLabel',
       'euiColorPicker.closeLabel',
+      'euiColorPicker.ariaLabel',
     ],
     [
       'Color selection dialog',
@@ -239,8 +245,18 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
       'Alpha channel (opacity) value',
       'Press the escape key to close the popover',
       'Press the down key to open a popover containing color options',
+      'Select a color',
     ]
   );
+
+  const openLabelId = useGeneratedHtmlId({
+    prefix: 'colorPicker',
+    suffix: 'openLabel',
+  });
+  const closeLabelId = useGeneratedHtmlId({
+    prefix: 'colorPicker',
+    suffix: 'closeLabel',
+  });
 
   const defaultSwatches = useEuiPaletteColorBlind();
   const swatches = _swatches ?? defaultSwatches;
@@ -621,9 +637,35 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
           fullWidth={fullWidth}
           autoComplete="off"
           data-test-subj={testSubjAnchor}
-          aria-label={isColorSelectorShown ? openLabel : closeLabel}
+          // if an id is provided it might be used in combination with `htmlFor` on a label,
+          // so we don't want to override it with a fallback `aria-label`
+          aria-label={
+            _ariaLabel
+              ? _ariaLabel
+              : id || ariaLabelledby
+              ? undefined
+              : ariaLabel
+          }
+          aria-labelledby={ariaLabelledby}
+          aria-describedby={classNames(
+            isColorSelectorShown ? openLabelId : closeLabelId,
+            ariaDescribedby
+          )}
           controlOnly // Don't need two EuiFormControlwrappers
         />
+
+        <EuiScreenReaderOnly>
+          <span>
+            {/* Separate hint messages that are toggled on the id work more
+            reliably to prevent stale messages in VO/Safari */}
+            <span id={openLabelId} aria-hidden={!isColorSelectorShown}>
+              {openLabel}
+            </span>
+            <span id={closeLabelId} aria-hidden={isColorSelectorShown}>
+              {closeLabel}
+            </span>
+          </span>
+        </EuiScreenReaderOnly>
       </EuiFormControlLayout>
     );
   }
