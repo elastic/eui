@@ -190,9 +190,11 @@ This is primarily useful for announcing navigation or page changes, when program
   ```
 </Demo>
 
-import { EuiBetaBadge } from '@elastic/eui';
+```mdx-code-block
+import { BetaBadge } from '@site/src/components/beta_badge';
+```
 
-## Live announcer region <EuiBetaBadge label="Beta" color="accent" />
+## Live announcer region <BetaBadge />
 
 :::warning `EuiLiveAnnouncer` is a new, experimental alternative to `EuiScreenReaderLive` for screen reader live region announcements. 
 Its API and behavior may change based on feedback and testing.

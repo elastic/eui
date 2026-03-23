@@ -4,7 +4,10 @@ keywords: [EuiProvider]
 
 # Provider
 
-import { EuiBetaBadge, EuiSpacer } from '@elastic/eui';
+```mdx-code-block
+import { EuiSpacer } from '@elastic/eui';
+import { BetaBadge } from '@site/src/components/beta_badge';
+```
 
 **EuiProvider** contains all necessary context providers required for full functionality and styling of EUI. A single instance of **EuiProvider** should exist at the top level of your app, where functionality will flow down the component tree.
 
@@ -88,7 +91,7 @@ For most applications, the above configuration will be enough to have styles ord
 
 Any other options available with <a href="https://emotion.sh/docs/@emotion/cache#createcache" target="_blank" rel="noopener noreferrer">**the createCache API**</a> will be respected by EUI. Note that EUI does not include the `@emotion/cache` library, so you will need to add it to your application dependencies.
 
-## Component defaults <EuiBetaBadge alignment="middle" label="Beta" size="s" color="accent" />
+## Component defaults <BetaBadge />
 
 :::info Beta status
 
