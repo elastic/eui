@@ -218,7 +218,7 @@ async function compileLib() {
   } else {
     console.log('Generating TypeScript definitions file...');
 
-    execSync(`node ${path.resolve(__dirname, 'dtsgenerator.js')}`, {
+    execSync(`node "${path.resolve(__dirname, 'dtsgenerator.js')}"`, {
       stdio: 'inherit',
     });
 

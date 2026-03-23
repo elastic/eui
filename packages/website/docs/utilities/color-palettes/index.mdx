@@ -2,15 +2,21 @@
 
 import { ColorPaletteCopyCode, ColorPaletteFlexItem } from './color_palettes_components';
 
-EUI provides a base set of color palettes that return an array of hexadecimal color for use in other EUI components or charts.
+EUI provides a set of color palette utility functions that return arrays of hexadecimal colors for use in charts and data visualizations.
+
+:::tip When to use palettes vs. color tokens
+**Color tokens** (`euiTheme.colors.vis.*`) should be your first choice for data visualizations — they are semantic, theme-aware, and automatically adapt to color modes.
+
+**Color palette functions** are useful when you need a dynamic number of colors (e.g. generating a gradient with N steps), or when working with charting libraries that require arrays of colors. For categorical data with 10 or fewer series, prefer using the `euiColorVis0`–`euiColorVis11` tokens directly.
+:::
 
 ## Preset qualitative palettes
 
-Qualitative palettes are best suited for communicating and comparing discrete data series. EUI recommends using the `euiPaletteColorBlind()` for qualitative and categorical data.
+Qualitative palettes are best suited for communicating and comparing discrete data series. Use `euiPaletteColorBlind()` for categorical data that needs more than 10 colors or dynamic palette generation.
 
-This palette is restricted to only 10 colors. However, you can add more groups of 10 which are alternates of the original. This is better than allowing the initial set to loop.
+This palette is restricted to 10 base colors. You can add more groups of 10 by increasing `rotations`, which generates alternates of the original set (preferable to letting the initial set loop).
 
-These colors are meant to be used as graphics and contrasted against the value of `euiColorEmptyShade` for the current theme. When placing text on top of these colors, use the `euiPaletteColorBlindBehindText()` variant. It is a brightened version of the base palette to create better contrast with text.
+These colors are designed to contrast against the current theme's background (`backgroundBasePlain`). When placing text on top of these colors, use the `euiPaletteColorBlindBehindText()` variant which provides better contrast for text readability.
 
 <Demo scope={{ ColorPaletteCopyCode, ColorPaletteFlexItem }}>
   ```tsx
@@ -149,13 +155,17 @@ These colors are meant to be used as graphics and contrasted against the value o
 
 ## Recommended quantitative palettes
 
-Quantitative palettes are best suited for displaying data on a continuum, as in the case of health statuses and large geographic or demographic-based data sets.
+Quantitative palettes are best suited for displaying data on a continuum, such as health statuses, geographic data, or demographic data sets.
 
-EUI provides the following common palettes for quantitative data and [charts](../../dataviz/index.mdx). Just pass in the number of steps needed and the function will interpolate between the colors.
-For usages in React we recommend using the respective <a href="https://github.com/elastic/eui/blob/main/packages/eui/src/services/color/eui_palettes_hooks.ts" target="_blank" rel="noopener noreferrer">palette hooks</a>, e.g. `useEuiPaletteColorBlind`.
+EUI provides the following palette functions for quantitative data and [charts](../../dataviz/index.mdx). Pass in the number of steps needed and the function will interpolate between the colors.
+For React usage, we recommend the corresponding <a href="https://github.com/elastic/eui/blob/main/packages/eui/src/services/color/eui_palettes_hooks.ts" target="_blank" rel="noopener noreferrer">palette hooks</a>, e.g. `useEuiPaletteColorBlind`.
+
+:::warning Deprecation notice
+`euiPaletteForLightBackground` and `euiPaletteForDarkBackground` have been **deprecated**. Use the data visualization color tokens (`euiTheme.colors.vis.*`) instead.
+:::
 
 :::warning
-The palette for status is the only palette that has proper contrast ratios. When using the other palettes, consider adding another form of the data for screen readers.
+The `euiPaletteForStatus` palette is the only palette that has proper contrast ratios. When using the other palettes, consider adding another form of the data for screen readers.
 :::
 
 <Demo scope={{ ColorPaletteCopyCode, ColorPaletteFlexItem }}>
