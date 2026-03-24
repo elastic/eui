@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { Fragment, ReactElement, useMemo } from 'react';
+import React, { Fragment, ReactElement } from 'react';
 import { createFilter, SearchFilterConfig } from './filters';
 import { Query } from './query';
 import { EuiFilterGroup } from '../filter_group';
@@ -19,23 +19,20 @@ export interface EuiSearchBarFiltersProps {
   filters: SearchFilterConfig[];
 }
 
-const EuiSearchBarFilters: React.FC<EuiSearchBarFiltersProps> = ({
+export const EuiSearchBarFilters: React.FC<EuiSearchBarFiltersProps> = ({
   filters = [],
   query,
   onChange,
 }) => {
-  const items = useMemo(() => {
-    return filters.reduce((acc, filterConfig, index) => {
-      if (filterConfig.available && !filterConfig.available()) {
-        return acc;
-      }
-      const key = `filter_${index}`;
-      const control = createFilter(index, filterConfig, query, onChange);
-      return [...acc, <Fragment key={key}>{control}</Fragment>];
-    }, [] as ReactElement[]);
-  }, [filters, query, onChange]);
+  const items = filters.reduce<ReactElement[]>((acc, filterConfig, index) => {
+    if (filterConfig.available && !filterConfig.available()) {
+      return acc;
+    }
+    const key = `filter_${index}`;
+    const control = createFilter(index, filterConfig, query, onChange);
+    acc.push(<Fragment key={key}>{control}</Fragment>);
+    return acc;
+  }, []);
 
   return <EuiFilterGroup>{items}</EuiFilterGroup>;
 };
-
-export { EuiSearchBarFilters };
