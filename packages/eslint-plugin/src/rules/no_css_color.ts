@@ -478,10 +478,20 @@ export const NoCssColor = ESLintUtils.RuleCreator.withoutDocs({
                 return;
               }
 
+              const returnArgument = (
+                functionReturnStatementNode as TSESTree.ReturnStatement
+              ).argument;
+
+              if (
+                !returnArgument ||
+                returnArgument.type !== 'ObjectExpression'
+              ) {
+                return;
+              }
+
               declarationPropertiesNode = (
-                (functionReturnStatementNode as TSESTree.ReturnStatement)
-                  .argument as TSESTree.ObjectExpression
-              )?.properties.filter(
+                returnArgument as TSESTree.ObjectExpression
+              ).properties.filter(
                 (property): property is TSESTree.Property =>
                   property.type === 'Property'
               );
