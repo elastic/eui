@@ -29,7 +29,9 @@ export interface FieldValueToggleFilterProps {
   onChange: (value: Query) => void;
 }
 
-export const FieldValueToggleFilter: FC<FieldValueToggleFilterProps> = (props) => {
+export const FieldValueToggleFilter: FC<FieldValueToggleFilterProps> = (
+  props
+) => {
   const resolveDisplay = (clause: Clause | undefined) => {
     const { name, negatedName } = props.config;
     if (isNil(clause)) {
@@ -38,10 +40,10 @@ export const FieldValueToggleFilter: FC<FieldValueToggleFilterProps> = (props) =
     return Query.isMust(clause)
       ? { hasActiveFilters: true, name }
       : {
-        hasActiveFilters: true,
-        name: negatedName ? negatedName : `Not ${name}`,
-      };
-  }
+          hasActiveFilters: true,
+          name: negatedName ? negatedName : `Not ${name}`,
+        };
+  };
 
   const valueChanged = (checked: boolean) => {
     const { field, value, operator } = props.config;
@@ -70,8 +72,4 @@ export const FieldValueToggleFilter: FC<FieldValueToggleFilterProps> = (props) =
       {name}
     </EuiFilterButton>
   );
-}
-
-
-
-
+};
