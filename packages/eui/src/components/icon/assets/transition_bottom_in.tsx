@@ -28,10 +28,10 @@ const EuiIconTransitionBottomIn = ({
     {...props}
   >
     {title ? <title id={titleId}>{title}</title> : null}
-    <path d="M6.5 8V4.207L4.854 5.854l-.708-.708L7 2.293l2.854 2.853-.708.708L7.5 4.207V8h-1Z" />
+    <path d="M7.5 9V5.207L5.854 6.854l-.708-.708L8 3.293l2.854 2.853-.707.708L8.5 5.207V9z" />
     <path
       fillRule="evenodd"
-      d="M1 14a1 1 0 0 1-1-1V1a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H1ZM13 1H1v8h12V1Zm0 9.793V10h-.793l-3 3h1.586L13 10.793ZM10.793 10H9.207l-3 3h1.586l3-3Zm-3 0H6.207l-3 3h1.586l3-3Zm-3 0H3.207L1 12.207V13h.793l3-3Zm-3 0H1v.793L1.793 10ZM13 12.207l-.793.793H13v-.793Z"
+      d="M2 15a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1zM14 2H2v8h12zm0 9.793V11h-.793l-3 3h1.586zM11.793 11h-1.586l-3 3h1.586zm-3 0H7.207l-3 3h1.586zm-3 0H4.207L2 13.207V14h.793zm-3 0H2v.793zM14 13.207l-.793.793H14z"
       clipRule="evenodd"
     />
   </svg>
