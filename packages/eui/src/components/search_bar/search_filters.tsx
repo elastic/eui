@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { Fragment, ReactElement } from 'react';
+import React, { Fragment, FunctionComponent, ReactElement } from 'react';
 import { createFilter, SearchFilterConfig } from './filters';
 import { Query } from './query';
 import { EuiFilterGroup } from '../filter_group';
@@ -19,11 +19,9 @@ export interface EuiSearchBarFiltersProps {
   filters: SearchFilterConfig[];
 }
 
-export const EuiSearchBarFilters: React.FC<EuiSearchBarFiltersProps> = ({
-  filters = [],
-  query,
-  onChange,
-}) => {
+export const EuiSearchBarFilters: FunctionComponent<
+  EuiSearchBarFiltersProps
+> = ({ filters = [], query, onChange }) => {
   const items = filters.reduce<ReactElement[]>((acc, filterConfig, index) => {
     if (filterConfig.available && !filterConfig.available()) {
       return acc;
