@@ -11,7 +11,7 @@ import { render, waitForEuiToolTipVisible } from '../../../test/rtl';
 import { shouldRenderCustomStyles } from '../../../test/internal';
 import { requiredProps } from '../../../test/required_props';
 
-import { EuiSelectableListItem, PADDING_SIZES } from './selectable_list_item';
+import { EuiSelectableListItem } from './selectable_list_item';
 import { fireEvent } from '@testing-library/react';
 
 describe('EuiSelectableListItem', () => {
@@ -60,6 +60,34 @@ describe('EuiSelectableListItem', () => {
             expect(container.firstChild).toMatchSnapshot();
           });
         });
+      });
+    });
+
+    describe('singleSelection', () => {
+      it('renders a checkbox control when singleSelection is false', () => {
+        const { container } = render(
+          <EuiSelectableListItem singleSelection={false} checked="on" />
+        );
+
+        expect(
+          container.querySelector('.euiSelectableListItem__checkbox')
+        ).toBeInTheDocument();
+        expect(
+          container.querySelector('[data-euiicon-type="check"]')
+        ).toBeInTheDocument();
+      });
+
+      it('renders a check icon when singleSelection is true', () => {
+        const { container } = render(
+          <EuiSelectableListItem singleSelection={true} checked="on" />
+        );
+
+        expect(
+          container.querySelector('.euiSelectableListItem__icon')
+        ).toBeInTheDocument();
+        expect(
+          container.querySelector('[data-euiicon-type="check"]')
+        ).toBeInTheDocument();
       });
     });
 
@@ -122,18 +150,6 @@ describe('EuiSelectableListItem', () => {
       const { container } = render(<EuiSelectableListItem append={<span />} />);
 
       expect(container.firstChild).toMatchSnapshot();
-    });
-
-    describe('paddingSize', () => {
-      PADDING_SIZES.forEach((size) => {
-        test(`${size} is rendered`, () => {
-          const { container } = render(
-            <EuiSelectableListItem paddingSize={size} />
-          );
-
-          expect(container.firstChild).toMatchSnapshot();
-        });
-      });
     });
 
     describe('textWrap', () => {

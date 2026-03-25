@@ -26,18 +26,12 @@ export const euiCheckboxStyles = (euiThemeContext: UseEuiTheme) => {
 
     input: {
       euiCheckbox__square: css`
-        ${controlStyles.input.fauxInput}
+        /* context for absolute positioned input */
+        position: relative;
+        ${controlStyles.input.focusVisible}
         border-radius: ${euiTheme.border.radius.small};
       `,
       hasLabel: controlStyles.input.hasLabel, // Skip css`` className generation
-      enabled: {
-        selected: css(controlStyles.input.enabled.selected),
-        unselected: css(controlStyles.input.enabled.unselected),
-      },
-      disabled: {
-        selected: css(controlStyles.input.disabled.selected),
-        unselected: css(controlStyles.input.disabled.unselected),
-      },
       // Readonly checkboxes are used by EuiMarkdownEditor
       // Maintain the initial color to enforce that clicks are not doing anything
       readOnly: css`
@@ -49,17 +43,6 @@ export const euiCheckboxStyles = (euiThemeContext: UseEuiTheme) => {
           border-color: ${unselectedBorder};
         }
       `,
-
-      icon: {
-        euiCheckbox__icon: css``,
-        check: css`
-          ${controlStyles.input.icon}
-          stroke: currentColor;
-        `,
-        indeterminate: css`
-          transform: scale(0.5);
-        `,
-      },
 
       euiCheckbox__input: css`
         ${controlStyles.input.hiddenInput}
