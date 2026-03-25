@@ -13,8 +13,9 @@ For components that project content in a React portal, **EuiFocusTrap** will mai
 * Use `crossFrame={true}` when focus should not be allowed on other iframes on the page.
 
 import FormExample from './form_compressed';
+import formCompressedSource from '!raw-loader!./form_compressed';
 
-<Demo scope={{ FormExample }}>
+<Demo scope={{ FormExample }} extraFiles={{ 'form_compressed.tsx': formCompressedSource }}>
 ```tsx interactive
 import React, { useState } from 'react';
 
@@ -26,6 +27,7 @@ import {
   EuiSpacer,
   EuiText,
 } from '@elastic/eui';
+import FormExample from './form_compressed';
 
 export default () => {
   const [isDisabled, changeDisabled] = useState(true);

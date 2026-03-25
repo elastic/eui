@@ -2,6 +2,8 @@
 sidebar_position: 6
 ---
 
+import useChartBaseThemeSource from '!raw-loader!./use_chart_base_theme';
+
 # Theming
 
 import VersionBadge from './version_badge';
@@ -53,7 +55,7 @@ const MyChart = () => {
 
 You'll find an example of these in the demo below.
 
-<Demo scope={{ ...ElasticCharts, useChartBaseTheme }}>
+<Demo scope={{ ...ElasticCharts, useChartBaseTheme }} extraFiles={{ 'use_chart_base_theme.ts': useChartBaseThemeSource }}>
   ```tsx
   import React, { useState } from 'react';
   import {
@@ -81,6 +83,7 @@ You'll find an example of these in the demo below.
     DataGenerator,
   } from '@elastic/charts';
   import { VIS_COLOR_STORE_EVENTS } from '@elastic/eui-theme-common';
+  import { useChartBaseTheme } from './use_chart_base_theme';
 
   const getPaletteData = () => ({
   euiPaletteColorBlind,

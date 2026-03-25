@@ -14,6 +14,7 @@ export type ActionComponentProps = {
   activeSource: DemoSourceMeta | null;
   sources: DemoSourceMeta[];
   extraFiles?: ExtraFiles;
+  previewWrapperSource?: string;
 };
 
 export type ActionComponent = ComponentType<ActionComponentProps>;

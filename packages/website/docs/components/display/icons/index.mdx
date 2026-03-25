@@ -11,7 +11,10 @@ import { EuiCodeBlock, EuiSpacer, EuiSplitPanel, EuiToken } from '@elastic/eui';
 ## Component
 
 ```tsx interactive
-<EuiIcon type="grid" />
+import React from 'react';
+import { EuiIcon } from '@elastic/eui';
+
+export default () => <EuiIcon type="grid" />;
 ```
 
 :::accessibility Accessibility recommendation
@@ -25,29 +28,37 @@ If possible, provide a descriptive title based on the icon use. If no title is p
 Use the `size` prop to automatically size your icons. Medium is the default, and will output a `16x16` icon.
 
 import { iconSizes, iconSizesText } from './icon_sizes';
+import iconSizeSource from '!raw-loader!./icon_sizes';
 
-<Demo scope={{ iconSizes, iconSizesText }}>
+<Demo scope={{ iconSizes, iconSizesText }} extraFiles={{ 'icon_sizes.ts': iconSizeSource }}>
   ```tsx
-  <>
-    <EuiCodeBlock language="tsx" isCopyable paddingSize="m">
-      {'<EuiIcon type="logoElasticsearch" size="xl" />'}
-    </EuiCodeBlock>
-    <EuiSpacer />
-    <EuiFlexGrid direction="row" columns={3}>
-      {iconSizes.map((size, index) => (
-        <EuiFlexItem key={size}>
-          <EuiCopy textToCopy={size} afterMessage={`${size} copied`} tooltipProps={{ display: 'block' }}>
-            {(copy) => (
-              <EuiPanel hasShadow={false} hasBorder={false} onClick={copy} paddingSize="s">
-                <EuiIcon className="eui-alignMiddle" type="logoElasticsearch" size={size} /> &emsp;{' '}
-                <small>{iconSizesText[index]}</small>
-              </EuiPanel>
-            )}
-          </EuiCopy>
-        </EuiFlexItem>
-      ))}
-    </EuiFlexGrid>
-  </>
+  import React from 'react';
+  import { css } from '@emotion/react';
+  import { EuiCodeBlock, EuiSpacer, EuiFlexGrid, EuiFlexItem, EuiCopy, EuiPanel, EuiIcon } from '@elastic/eui';
+  import { iconSizes, iconSizesText } from './icon_sizes';
+
+  export default () => (
+    <div css={css`height: fit-content;`}>
+      <EuiCodeBlock language="tsx" isCopyable paddingSize="m">
+        {'<EuiIcon type="logoElasticsearch" size="xl" />'}
+      </EuiCodeBlock>
+      <EuiSpacer />
+      <EuiFlexGrid direction="row" columns={3}>
+        {iconSizes.map((size, index) => (
+          <EuiFlexItem key={size}>
+            <EuiCopy textToCopy={size} afterMessage={`${size} copied`} tooltipProps={{ display: 'block' }}>
+              {(copy) => (
+                <EuiPanel hasShadow={false} hasBorder={false} onClick={copy} paddingSize="s">
+                  <EuiIcon className="eui-alignMiddle" type="logoElasticsearch" size={size} /> &emsp;{' '}
+                  <small>{iconSizesText[index]}</small>
+                </EuiPanel>
+              )}
+            </EuiCopy>
+          </EuiFlexItem>
+        ))}
+      </EuiFlexGrid>
+    </div>
+  );
   ```
 </Demo>
 
@@ -58,34 +69,42 @@ The default behavior of icons is to inherit from the text color. You can use the
 Two-tone icons, like our app style icons, will behave similarly to normal glyphs when provided a specific color by applying the color to **all** the shapes within. You can force the icon to match the parent's text color by passing `color="inherit"` to the icon.
 
 import { iconColors } from './icon_colors.ts'
+import iconColorsSource from '!raw-loader!./icon_colors';
 
-<Demo scope={{ iconColors }}>
+<Demo scope={{ iconColors }} extraFiles={{ 'icon_colors.ts': iconColorsSource }}>
   ```tsx
-  <>
-    <EuiCodeBlock language="tsx" isCopyable paddingSize="m">
-      {'<EuiIcon type="brush" color="primary" />'}
-    </EuiCodeBlock>
-    <EuiSpacer />
-    <EuiFlexGrid direction="row" columns={3}>
-      {iconColors.map((color) => (
-        <EuiFlexItem key={color}>
-          <EuiCopy textToCopy={color} afterMessage={`${color} copied`} tooltipProps={{ display: 'block' }}>
-            {(copy) => {
-              const panel = (
-                <EuiPanel hasShadow={false} hasBorder={false} onClick={copy} paddingSize="s">
-                  <EuiIcon className="eui-alignMiddle" type="brush" color={color} /> &emsp;{' '}
-                  <small>{color}</small>
-                </EuiPanel>
-              );
-              return color === 'ghost'
-                ? <EuiThemeProvider colorMode="DARK">{panel}</EuiThemeProvider>
-                : panel;
-            }}
-          </EuiCopy>
-        </EuiFlexItem>
-      ))}
-    </EuiFlexGrid>
-  </>
+  import React from 'react';
+  import { css } from '@emotion/react';
+  import { EuiCodeBlock, EuiSpacer, EuiFlexGrid, EuiFlexItem, EuiCopy, EuiPanel, EuiIcon, EuiThemeProvider } from '@elastic/eui';
+  import { iconColors } from './icon_colors';
+
+  export default () => (
+    <div css={css`height: fit-content;`}>
+      <EuiCodeBlock language="tsx" isCopyable paddingSize="m">
+        {'<EuiIcon type="brush" color="primary" />'}
+      </EuiCodeBlock>
+      <EuiSpacer />
+      <EuiFlexGrid direction="row" columns={3}>
+        {iconColors.map((color) => (
+          <EuiFlexItem key={color}>
+            <EuiCopy textToCopy={color} afterMessage={`${color} copied`} tooltipProps={{ display: 'block' }}>
+              {(copy) => {
+                const panel = (
+                  <EuiPanel hasShadow={false} hasBorder={false} onClick={copy} paddingSize="s">
+                    <EuiIcon className="eui-alignMiddle" type="brush" color={color} /> &emsp;{' '}
+                    <small>{color}</small>
+                  </EuiPanel>
+                );
+                return color === 'ghost'
+                  ? <EuiThemeProvider colorMode="DARK">{panel}</EuiThemeProvider>
+                  : panel;
+              }}
+            </EuiCopy>
+          </EuiFlexItem>
+        ))}
+      </EuiFlexGrid>
+    </div>
+  );
   ```
 </Demo>
 
@@ -96,29 +115,37 @@ Glyphs are small, monochromatic icons that typically should always use the defau
 If you would like to contribute to our growing list of glyphs, you can follow [these guidelines](https://github.com/elastic/eui/blob/main/wiki/contributing-to-eui/developing/creating-icons.md).
 
 import { iconTypes } from './icon_types';
+import iconTypesSource from '!raw-loader!./icon_types';
 
-<Demo scope={{ iconTypes }}>
+<Demo scope={{ iconTypes }} extraFiles={{ 'icon_types.ts': iconTypesSource }}>
   ```tsx
-  <>
-    <EuiCodeBlock language="tsx" isCopyable paddingSize="m">
-      {'<EuiIcon type="warning" />'}
-    </EuiCodeBlock>
-    <EuiSpacer />
-    <EuiFlexGrid direction="row" columns={3}>
-      {iconTypes.map((iconType) => (
-        <EuiFlexItem key={iconType}>
-          <EuiCopy textToCopy={iconType} afterMessage={`${iconType} copied`} tooltipProps={{ display: 'block' }}>
-            {(copy) => (
-              <EuiPanel hasShadow={false} hasBorder={false} onClick={copy} paddingSize="s">
-                <EuiIcon className="eui-alignMiddle" type={iconType} /> &emsp;{' '}
-                <small>{iconType}</small>
-              </EuiPanel>
-            )}
-          </EuiCopy>
-        </EuiFlexItem>
-      ))}
-    </EuiFlexGrid>
-  </>
+  import React from 'react';
+  import { css } from '@emotion/react';
+  import { EuiCodeBlock, EuiSpacer, EuiFlexGrid, EuiFlexItem, EuiCopy, EuiPanel, EuiIcon } from '@elastic/eui';
+  import { iconTypes } from './icon_types';
+
+  export default () => (
+    <div css={css`height: fit-content;`}>
+      <EuiCodeBlock language="tsx" isCopyable paddingSize="m">
+        {'<EuiIcon type="warning" />'}
+      </EuiCodeBlock>
+      <EuiSpacer />
+      <EuiFlexGrid direction="row" columns={3}>
+        {iconTypes.map((iconType) => (
+          <EuiFlexItem key={iconType}>
+            <EuiCopy textToCopy={iconType} afterMessage={`${iconType} copied`} tooltipProps={{ display: 'block' }}>
+              {(copy) => (
+                <EuiPanel hasShadow={false} hasBorder={false} onClick={copy} paddingSize="s">
+                  <EuiIcon className="eui-alignMiddle" type={iconType} /> &emsp;{' '}
+                  <small>{iconType}</small>
+                </EuiPanel>
+              )}
+            </EuiCopy>
+          </EuiFlexItem>
+        ))}
+      </EuiFlexGrid>
+    </div>
+  );
   ```
 </Demo>
 
@@ -127,9 +154,15 @@ import { iconTypes } from './icon_types';
 These logos are restricted in use to Elastic products or when referencing Elastic products. They are multi-color with some internal paths having a class of `.euiIcon__fillNegative` to handle flipping colors for dark mode. The only other colors most of them support are ghost and text which turn them into a solid shape.
 
 import { iconTypesLogos } from './icon_types_logos';
+import iconTypesLogosSource from '!raw-loader!./icon_types_logos';
 
-<Demo scope={{ iconTypes: iconTypesLogos }} previewPadding="none">
+<Demo scope={{ iconTypes: iconTypesLogos }} previewPadding="none" extraFiles={{ 'icon_types_logos.ts': iconTypesLogosSource }}>
   ```tsx
+  import React, { useState } from 'react';
+  import { css } from '@emotion/react';
+  import { EuiButtonGroup, EuiSplitPanel, EuiCodeBlock, EuiSpacer, EuiFlexGrid, EuiFlexItem, EuiCopy, EuiPanel, EuiIcon, UseEuiTheme, useEuiMemoizedStyles } from '@elastic/eui';
+  import { iconTypesLogos as iconTypes } from './icon_types_logos';
+
   const allowedColors = ['multi', 'ghost', 'text'];
   const getPanelGhostStyles = ({ euiTheme }: UseEuiTheme) => css`
     color: ${euiTheme.colors.textGhost};
@@ -199,29 +232,37 @@ App logos are logos for Elastic Apps, and can contain multiple colors. Normally 
 Our set of App Icons are a subset of what the [Elastic Design team provides](https://brand.elastic.co/302f66895/p/031452-icons). If you require an icon from that set which EUI does not currently provide, please open a [Feature Request](https://github.com/elastic/eui/issues) for the EUI team to add it.
 
 import { iconTypesApps } from './icon_types_apps';
+import iconTypesAppsSource from '!raw-loader!./icon_types_apps';
 
-<Demo scope={{ iconTypes: iconTypesApps }}>
+<Demo scope={{ iconTypes: iconTypesApps }} extraFiles={{ 'icon_types_apps.ts': iconTypesAppsSource }}>
   ```tsx
-  <>
-    <EuiCodeBlock language="tsx" isCopyable paddingSize="m">
-      {'<EuiIcon type="addDataApp" size="xl" />'}
-    </EuiCodeBlock>
-    <EuiSpacer />
-    <EuiFlexGrid direction="row" columns={3}>
-      {iconTypes.map((iconType) => (
-        <EuiFlexItem key={iconType}>
-          <EuiCopy textToCopy={iconType} afterMessage={`${iconType} copied`} tooltipProps={{ display: 'block' }}>
-            {(copy) => (
-              <EuiPanel hasShadow={false} hasBorder={false} onClick={copy} paddingSize="s">
-                <EuiIcon className="eui-alignMiddle" type={iconType} size="xl" /> &emsp;{' '}
-                <small>{iconType}</small>
-              </EuiPanel>
-            )}
-          </EuiCopy>
-        </EuiFlexItem>
-      ))}
-    </EuiFlexGrid>
-  </>
+  import React from 'react';
+  import { css } from '@emotion/react';
+  import { EuiCodeBlock, EuiSpacer, EuiFlexGrid, EuiFlexItem, EuiCopy, EuiPanel, EuiIcon } from '@elastic/eui';
+  import { iconTypesApps as iconTypes } from './icon_types_apps';
+
+  export default () => (
+    <div css={css`height: fit-content;`}>
+      <EuiCodeBlock language="tsx" isCopyable paddingSize="m">
+        {'<EuiIcon type="addDataApp" size="xl" />'}
+      </EuiCodeBlock>
+      <EuiSpacer />
+      <EuiFlexGrid direction="row" columns={3}>
+        {iconTypes.map((iconType) => (
+          <EuiFlexItem key={iconType}>
+            <EuiCopy textToCopy={iconType} afterMessage={`${iconType} copied`} tooltipProps={{ display: 'block' }}>
+              {(copy) => (
+                <EuiPanel hasShadow={false} hasBorder={false} onClick={copy} paddingSize="s">
+                  <EuiIcon className="eui-alignMiddle" type={iconType} size="xl" /> &emsp;{' '}
+                  <small>{iconType}</small>
+                </EuiPanel>
+              )}
+            </EuiCopy>
+          </EuiFlexItem>
+        ))}
+      </EuiFlexGrid>
+    </div>
+  );
   ```
 </Demo>
 
@@ -230,29 +271,37 @@ import { iconTypesApps } from './icon_types_apps';
 Machine learning has some specific icons for job creation. Again, these are made for `32x32`.
 
 import { iconTypesML } from './icon_types_ml';
+import iconTypesMLSource from '!raw-loader!./icon_types_ml';
 
-<Demo scope={{ iconTypes: iconTypesML }}>
+<Demo scope={{ iconTypes: iconTypesML }} extraFiles={{ 'icon_types_ml.ts': iconTypesMLSource }}>
   ```tsx
-  <>
-    <EuiCodeBlock language="tsx" isCopyable paddingSize="m">
-      {'<EuiIcon type="addDataApp" size="xl" />'}
-    </EuiCodeBlock>
-    <EuiSpacer />
-    <EuiFlexGrid direction="row" columns={3}>
-      {iconTypes.map((iconType) => (
-        <EuiFlexItem key={iconType}>
-          <EuiCopy textToCopy={iconType} afterMessage={`${iconType} copied`} tooltipProps={{ display: 'block' }}>
-            {(copy) => (
-              <EuiPanel hasShadow={false} hasBorder={false} onClick={copy} paddingSize="s">
-                <EuiIcon className="eui-alignMiddle" type={iconType} size="xl" /> &emsp;{' '}
-                <small>{iconType}</small>
-              </EuiPanel>
-            )}
-          </EuiCopy>
-        </EuiFlexItem>
-      ))}
-    </EuiFlexGrid>
-  </>
+  import React from 'react';
+  import { css } from '@emotion/react';
+  import { EuiCodeBlock, EuiSpacer, EuiFlexGrid, EuiFlexItem, EuiCopy, EuiPanel, EuiIcon } from '@elastic/eui';
+  import { iconTypesML as iconTypes } from './icon_types_ml';
+
+  export default () => (
+    <div css={css`height: fit-content;`}>
+      <EuiCodeBlock language="tsx" isCopyable paddingSize="m">
+        {'<EuiIcon type="addDataApp" size="xl" />'}
+      </EuiCodeBlock>
+      <EuiSpacer />
+      <EuiFlexGrid direction="row" columns={3}>
+        {iconTypes.map((iconType) => (
+          <EuiFlexItem key={iconType}>
+            <EuiCopy textToCopy={iconType} afterMessage={`${iconType} copied`} tooltipProps={{ display: 'block' }}>
+              {(copy) => (
+                <EuiPanel hasShadow={false} hasBorder={false} onClick={copy} paddingSize="s">
+                  <EuiIcon className="eui-alignMiddle" type={iconType} size="xl" /> &emsp;{' '}
+                  <small>{iconType}</small>
+                </EuiPanel>
+              )}
+            </EuiCopy>
+          </EuiFlexItem>
+        ))}
+      </EuiFlexGrid>
+    </div>
+  );
   ```
 </Demo>
 
@@ -261,29 +310,37 @@ import { iconTypesML } from './icon_types_ml';
 Tokens are most commonly used to visually signify field or code types. An **EuiToken** accepts any valid **EuiIcon** as its `iconType` property. However, icons designed specifically for use in the **EuiToken** are prefixed with "token" in their name and have pre-defined styles.
 
 import { iconTypesTokens } from './icon_types_tokens';
+import iconTypesTokensSource from '!raw-loader!./icon_types_tokens';
 
-<Demo scope={{ iconTypes: iconTypesTokens }}>
+<Demo scope={{ iconTypes: iconTypesTokens }} extraFiles={{ 'icon_types_tokens.ts': iconTypesTokensSource }}>
   ```tsx
-  <>
-    <EuiCodeBlock language="tsx" isCopyable paddingSize="m">
-      {'<EuiToken iconType="tokenAlias" />'}
-    </EuiCodeBlock>
-    <EuiSpacer />
-    <EuiFlexGrid direction="row" columns={3}>
-      {iconTypes.map((iconType) => (
-        <EuiFlexItem key={iconType}>
-          <EuiCopy textToCopy={iconType} afterMessage={`${iconType} copied`} tooltipProps={{ display: 'block' }}>
-            {(copy) => (
-              <EuiPanel hasShadow={false} hasBorder={false} onClick={copy} paddingSize="s">
-                <EuiToken className="eui-alignMiddle" iconType={iconType} /> &emsp;{' '}
-                <small>{iconType}</small>
-              </EuiPanel>
-            )}
-          </EuiCopy>
-        </EuiFlexItem>
-      ))}
-    </EuiFlexGrid>
-  </>
+  import React from 'react';
+  import { css } from '@emotion/react';
+  import { EuiCodeBlock, EuiSpacer, EuiFlexGrid, EuiFlexItem, EuiCopy, EuiPanel, EuiToken } from '@elastic/eui';
+  import { iconTypesTokens as iconTypes } from './icon_types_tokens';
+
+  export default () => (
+    <div css={css`height: fit-content;`}>
+      <EuiCodeBlock language="tsx" isCopyable paddingSize="m">
+        {'<EuiToken iconType="tokenAlias" />'}
+      </EuiCodeBlock>
+      <EuiSpacer />
+      <EuiFlexGrid direction="row" columns={3}>
+        {iconTypes.map((iconType) => (
+          <EuiFlexItem key={iconType}>
+            <EuiCopy textToCopy={iconType} afterMessage={`${iconType} copied`} tooltipProps={{ display: 'block' }}>
+              {(copy) => (
+                <EuiPanel hasShadow={false} hasBorder={false} onClick={copy} paddingSize="s">
+                  <EuiToken className="eui-alignMiddle" iconType={iconType} /> &emsp;{' '}
+                  <small>{iconType}</small>
+                </EuiPanel>
+              )}
+            </EuiCopy>
+          </EuiFlexItem>
+        ))}
+      </EuiFlexGrid>
+    </div>
+  );
   ```
 </Demo>
 
@@ -364,8 +421,9 @@ When importing an SVG as a component like `import { ReactComponent as ReactLogo 
 :::
 
 import customSvg from '!url-loader!./custom.svg';
+import customSvgSource from '!raw-loader!./custom.svg';
 
-<Demo scope={{ customSvg }}>
+<Demo scope={{ customSvg }} extraFiles={{ 'custom.svg': customSvgSource }}>
   ```tsx
   import React from 'react';
   import {
@@ -378,6 +436,7 @@ import customSvg from '!url-loader!./custom.svg';
     EuiSplitPanel,
     EuiCodeBlock,
   } from '@elastic/eui';
+  import customSvg from './custom.svg';
 
   export default () => (
     <div>

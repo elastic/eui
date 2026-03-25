@@ -18,16 +18,21 @@ Using `EuiScreenReaderOnly` hides the wrapped element from the page, but keeps i
 
 <Demo>
   ```tsx
-  <EuiText>
-    <p>This is the first paragraph. It is visible to all.</p>
-    <EuiScreenReaderOnly>
-      <p>
-      This is the second paragraph. It is hidden for sighted users but visible
-      to screen readers.
-      </p>
-    </EuiScreenReaderOnly>
-    <p>This is the third paragraph. It is visible to all.</p>
-  </EuiText>
+  import React from 'react';
+  import { EuiText, EuiScreenReaderOnly } from '@elastic/eui';
+
+  export default () => (
+    <EuiText>
+      <p>This is the first paragraph. It is visible to all.</p>
+      <EuiScreenReaderOnly>
+        <p>
+        This is the second paragraph. It is hidden for sighted users but visible
+        to screen readers.
+        </p>
+      </EuiScreenReaderOnly>
+      <p>This is the third paragraph. It is visible to all.</p>
+    </EuiText>
+  );
   ```
 </Demo>
 
@@ -39,24 +44,29 @@ If the wrapped element is **focusable**, you must use the `showOnFocus` prop to 
 
 <Demo>
   ```tsx
-  <EuiText>
-    <p>
-      This link is visible to all on focus:{' '}
-      <EuiScreenReaderOnly showOnFocus>
-        <EuiLink href="./utilities/accessibility">Link text</EuiLink>
-      </EuiScreenReaderOnly>
-    </p>
-    <p>
-      This tooltip + button is visible on focus within:{' '}
-      <EuiScreenReaderOnly showOnFocus>
-        <span>
-          <EuiToolTip content="Information">
-            <EuiButtonIcon iconType="info" aria-label="Information" />
-          </EuiToolTip>
-        </span>
-      </EuiScreenReaderOnly>
-    </p>
-  </EuiText>
+  import React from 'react';
+  import { EuiText, EuiScreenReaderOnly, EuiLink, EuiToolTip, EuiButtonIcon } from '@elastic/eui';
+
+  export default () => (
+    <EuiText>
+      <p>
+        This link is visible to all on focus:{' '}
+        <EuiScreenReaderOnly showOnFocus>
+          <EuiLink href="./utilities/accessibility">Link text</EuiLink>
+        </EuiScreenReaderOnly>
+      </p>
+      <p>
+        This tooltip + button is visible on focus within:{' '}
+        <EuiScreenReaderOnly showOnFocus>
+          <span>
+            <EuiToolTip content="Information">
+              <EuiButtonIcon iconType="info" aria-label="Information" />
+            </EuiToolTip>
+          </span>
+        </EuiScreenReaderOnly>
+      </p>
+    </EuiText>
+  );
   ```
 </Demo>
 
@@ -218,7 +228,7 @@ announcements and duplicated DOM content for screen reader users. Screen readers
 <Demo>
   ```tsx
   import { useState } from 'react';
-  import { EuiButton, EuiLiveAnnouncer, EuiSpacer } from '@elastic/eui';
+  import { EuiButton, EuiCodeBlock, EuiFlexGroup, EuiFlexItem, EuiLiveAnnouncer, EuiSpacer } from '@elastic/eui';
 
   export default () => {
     const [announcement, setAnnouncement] = useState('No notifications.');

@@ -3,6 +3,8 @@ sidebar_position: 6
 keywords: [EuiCheckbox, EuiCheckboxGroup]
 ---
 
+import displayTogglesSource from '!raw-loader!../../../../src/components/display_toggles/display_toggles';
+
 # Checkbox and Checkbox group
 
 ```mdx-code-block
@@ -94,9 +96,11 @@ When the individual labels for each radio do not provide a sufficient descriptio
 
 Use the `compressed` prop to tighten up the spacing between checkbox rows.
 
+<Demo extraFiles={{ 'display_toggles.tsx': displayTogglesSource }}>
 ```tsx interactive
 import React, { useState } from 'react';
 import { EuiCheckboxGroup, useGeneratedHtmlId } from '@elastic/eui';
+import { DisplayToggles } from './display_toggles';
 
 export default () => {
   const checkboxGroupItemId__1 = useGeneratedHtmlId({
@@ -160,6 +164,7 @@ export default () => {
   );
 };
 ```
+</Demo>
 
 ## Usage
 

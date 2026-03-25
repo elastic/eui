@@ -3,6 +3,8 @@ sidebar_position: 1
 keywords: [EuiDatePicker]
 ---
 
+import displayTogglesSource from '!raw-loader!../../../../src/components/display_toggles/display_toggles';
+
 # Date picker
 
 **EuiDatePicker** is the foundational component that all other EUI date and time controls are built upon. It itself depends upon <a href="https://momentjs.com/docs/" target="_blank">moment</a> for all of its formatting, and a forked and modified version of <a href="https://github.com/Hacker0x01/react-datepicker/tree/v2.0.0" target="_blank">react-datepicker</a> for accessibility.
@@ -33,9 +35,11 @@ export default () => {
 
 Examples of how the input can appear within a form. This should match our other form styles.
 
+<Demo extraFiles={{ 'display_toggles.tsx': displayTogglesSource }}>
 ```tsx interactive
 import React, { useState } from 'react';
 import { EuiDatePicker, EuiSpacer, EuiFormRow } from '@elastic/eui';
+import { DisplayToggles } from './display_toggles';
 
 export default () => {
   const [startDate, setStartDate] = useState(null);
@@ -86,6 +90,7 @@ export default () => {
   );
 };
 ```
+</Demo>
 
 ## Time selection
 
@@ -425,6 +430,7 @@ export default () => {
 
 Use the `inline` prop to display the date picker directly in the page instead of inside a popover. If you do not need the default inline shadow effect, apply the `shadow={false}` prop.
 
+<Demo extraFiles={{ 'display_toggles.tsx': displayTogglesSource }}>
 ```tsx interactive
 import React, { useState } from 'react';
 import {
@@ -434,6 +440,7 @@ import {
   EuiSpacer,
 } from '@elastic/eui';
 import moment from 'moment';
+import { DisplayToggles } from './display_toggles';
 
 export default () => {
   const [shadow, setShadow] = useState(true);
@@ -470,6 +477,7 @@ export default () => {
   );
 };
 ```
+</Demo>
 
 ## Custom classes
 
