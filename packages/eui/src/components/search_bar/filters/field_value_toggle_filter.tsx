@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { Component } from 'react';
+import React, { FC } from 'react';
 import { EuiFilterButton } from '../../filter_group';
 import { isNil } from '../../../services/predicate';
 import { Query } from '../query';
@@ -29,9 +29,11 @@ export interface FieldValueToggleFilterProps {
   onChange: (value: Query) => void;
 }
 
-export class FieldValueToggleFilter extends Component<FieldValueToggleFilterProps> {
-  resolveDisplay(clause: Clause | undefined) {
-    const { name, negatedName } = this.props.config;
+export const FieldValueToggleFilter: FC<FieldValueToggleFilterProps> = (
+  props
+) => {
+  const resolveDisplay = (clause: Clause | undefined) => {
+    const { name, negatedName } = props.config;
     if (isNil(clause)) {
       return { hasActiveFilters: false, name };
     }
@@ -41,34 +43,33 @@ export class FieldValueToggleFilter extends Component<FieldValueToggleFilterProp
           hasActiveFilters: true,
           name: negatedName ? negatedName : `Not ${name}`,
         };
-  }
+  };
 
-  valueChanged(checked: boolean) {
-    const { field, value, operator } = this.props.config;
+  const valueChanged = (checked: boolean) => {
+    const { field, value, operator } = props.config;
     const query = checked
-      ? this.props.query.removeSimpleFieldValue(field, value)
-      : this.props.query.addSimpleFieldValue(field, value, true, operator);
-    this.props.onChange(query);
-  }
+      ? props.query.removeSimpleFieldValue(field, value)
+      : props.query.addSimpleFieldValue(field, value, true, operator);
+    props.onChange(query);
+  };
 
-  render() {
-    const { query, config } = this.props;
-    const clause = query.getSimpleFieldClause(config.field, config.value);
-    const checked = !isNil(clause);
-    const { hasActiveFilters, name } = this.resolveDisplay(clause);
-    const onClick = () => {
-      this.valueChanged(checked);
-    };
-    return (
-      <EuiFilterButton
-        onClick={onClick}
-        isSelected={hasActiveFilters}
-        hasActiveFilters={hasActiveFilters}
-        aria-pressed={!!hasActiveFilters}
-        isToggle
-      >
-        {name}
-      </EuiFilterButton>
-    );
-  }
-}
+  const { query, config } = props;
+  const clause = query.getSimpleFieldClause(config.field, config.value);
+  const checked = !isNil(clause);
+  const { hasActiveFilters, name } = resolveDisplay(clause);
+  const onClick = () => {
+    valueChanged(checked);
+  };
+
+  return (
+    <EuiFilterButton
+      onClick={onClick}
+      isSelected={hasActiveFilters}
+      hasActiveFilters={hasActiveFilters}
+      aria-pressed={!!hasActiveFilters}
+      isToggle
+    >
+      {name}
+    </EuiFilterButton>
+  );
+};
