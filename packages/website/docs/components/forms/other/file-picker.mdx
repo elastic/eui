@@ -108,12 +108,12 @@ import {
 } from '@elastic/eui';
 
 export default () => {
-  const [files, setFiles] = useState({});
+  const [files, setFiles] = useState(null);
   const filePickerRef = useRef();
   const removeFilePickerId = useGeneratedHtmlId({ prefix: 'removeFilePicker' });
 
   const onChange = (files) => {
-    setFiles(files.length > 0 ? files : {});
+    setFiles(files);
   };
 
   return (
@@ -135,7 +135,7 @@ export default () => {
             <EuiButton
               color="danger"
               iconType="trash"
-              disabled={files.length > 0 ? false : true}
+              disabled={!files}
               onClick={() => filePickerRef.current.removeFiles()}
             >
               <h3>Remove files</h3>
