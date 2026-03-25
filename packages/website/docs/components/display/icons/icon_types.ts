@@ -313,6 +313,8 @@ export const iconTypes: Array<IconType> = [
   'thumbUp',
   'timeline',
   'timelineWithArrow', // To be deprecated
+  'transitionBottomIn',
+  'transitionBottomOut',
   'transitionLeftIn',
   'transitionLeftOut',
   'transitionTopIn',
