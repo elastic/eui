@@ -27,7 +27,6 @@ import {
   EuiFlexItem,
   EuiFlyoutBody,
   EuiFlyoutHeader,
-  EuiPanel,
   EuiProvider,
   EuiSpacer,
   EuiSwitch,
@@ -56,6 +55,8 @@ interface FlyoutSessionProps {
   mainMaxWidth?: number;
   childSize: 's' | 'm' | 'fill';
   childMaxWidth?: number;
+  /** Optional. When set, flyouts in this session share history with others using the same Symbol. */
+  historyKey?: symbol;
 }
 
 const DisplayContext: React.FC<{ title: string }> = ({ title }) => {
@@ -109,7 +110,14 @@ const SessionChildFlyout: React.FC<{
 );
 
 const FlyoutSession: React.FC<FlyoutSessionProps> = (props) => {
-  const { title, mainSize, childSize, mainMaxWidth, childMaxWidth } = props;
+  const {
+    title,
+    mainSize,
+    childSize,
+    mainMaxWidth,
+    childMaxWidth,
+    historyKey,
+  } = props;
 
   const [isFlyoutVisible, setIsFlyoutVisible] = useState(false);
   const [isChild1FlyoutVisible, setIsChild1FlyoutVisible] = useState(false);
@@ -205,6 +213,7 @@ const FlyoutSession: React.FC<FlyoutSessionProps> = (props) => {
         <EuiFlyout
           id={`mainFlyout-${title}`}
           session="start"
+          historyKey={historyKey}
           flyoutMenuProps={{
             title: `${title} - Main`,
             iconType: 'faceHappy',
@@ -431,71 +440,80 @@ const NonSessionFlyout: React.FC<{ size: string }> = ({ size }) => {
 };
 
 const MultiSessionFlyoutDemo: React.FC = () => {
+  const parksHistoryKey = React.useRef(Symbol()).current;
+  const sanitationHistoryKey = React.useRef(Symbol()).current;
+
   const listItems = [
     {
-      title: 'Session A: main size = s, child size = s',
+      title: 'Parks (shared history)',
+      description: (
+        <EuiFlexGroup gutterSize="s" direction="column" alignItems="flexStart">
+          <EuiFlexItem grow={false}>
+            <FlyoutSession
+              title="Park hours"
+              mainSize="s"
+              childSize="s"
+              historyKey={parksHistoryKey}
+            />
+          </EuiFlexItem>
+          <EuiFlexItem grow={false}>
+            <FlyoutSession
+              title="Facility reservations"
+              mainSize="s"
+              childSize="s"
+              historyKey={parksHistoryKey}
+            />
+          </EuiFlexItem>
+          <EuiFlexItem grow={false}>
+            <FlyoutSession
+              title="Events"
+              mainSize="s"
+              childSize="s"
+              historyKey={parksHistoryKey}
+            />
+          </EuiFlexItem>
+        </EuiFlexGroup>
+      ),
+    },
+    {
+      title: 'Sanitation (shared history)',
+      description: (
+        <EuiFlexGroup gutterSize="s" direction="column" alignItems="flexStart">
+          <EuiFlexItem grow={false}>
+            <FlyoutSession
+              title="Trash schedule"
+              mainSize="m"
+              childSize="s"
+              historyKey={sanitationHistoryKey}
+            />
+          </EuiFlexItem>
+          <EuiFlexItem grow={false}>
+            <FlyoutSession
+              title="Recycling guidelines"
+              mainSize="m"
+              childSize="s"
+              historyKey={sanitationHistoryKey}
+            />
+          </EuiFlexItem>
+          <EuiFlexItem grow={false}>
+            <FlyoutSession
+              title="Bulk pickup"
+              mainSize="m"
+              childSize="s"
+              historyKey={sanitationHistoryKey}
+            />
+          </EuiFlexItem>
+        </EuiFlexGroup>
+      ),
+    },
+    {
+      title: 'Permits (no historyKey: unique group)',
       description: (
         <FlyoutSession
-          // Session A
-          title="Session A"
+          title="Permits"
           mainSize="s"
           childSize="s"
-        />
-      ),
-    },
-    {
-      title: 'Session B: main size = m, child size = s',
-      description: (
-        <FlyoutSession
-          // Session B
-          title="Session B"
-          mainSize="m"
-          childSize="s"
-        />
-      ),
-    },
-    {
-      title: 'Session C: main size = s, child size = fill',
-      description: (
-        <FlyoutSession
-          // Session C
-          title="Session C"
-          mainSize="s"
-          childSize="fill"
-        />
-      ),
-    },
-    {
-      title: 'Session D: main size = fill, child size = s',
-      description: (
-        <FlyoutSession
-          // Session D
-          title="Session D"
-          mainSize="fill"
-          childSize="s"
-        />
-      ),
-    },
-    {
-      title: 'Session E: main size = fill, child size = m',
-      description: (
-        <FlyoutSession
-          // Session E
-          title="Session E"
-          mainSize="fill"
-          childSize="m"
-        />
-      ),
-    },
-    {
-      title: 'Session F: main size = m, child size = fill (maxWidth 1000px)',
-      description: (
-        <FlyoutSession
-          // Session F
-          title="Session F"
-          mainSize="m"
-          childSize="fill"
-          childMaxWidth={1000}
+          // no historyKey - each session is alone in its history group
         />
       ),
     },
@@ -507,6 +525,14 @@ const MultiSessionFlyoutDemo: React.FC = () => {
 
   return (
     <>
+      <EuiText>
+        <p>
+          &quot;Parks&quot;, &quot;Sanitation&quot;, and &quot;Permits&quot; are
+          separate groups of scoped history. Navigating with the Back button and
+          the history menu does not cross over into other groups.
+        </p>
+      </EuiText>
+      <EuiSpacer size="l" />
       <EuiDescriptionList
         type="column"
         columnGutterSize="s"
@@ -569,12 +595,21 @@ const MultiSessionFlyoutDemo: React.FC = () => {
 
 export const MultiSessionExample: StoryObj<typeof EuiFlyout> = {
   name: 'Multi-session example',
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Parks and Sanitation use a shared `historyKey` so Back/history are scoped to each domain. Permits omits `historyKey` so it is alone in its history group. Open flyouts from different sections to see that histories do not mix.',
+      },
+    },
+  },
   render: () => <MultiSessionFlyoutDemo />,
 };
 
-const ExternalRootChildFlyout: React.FC<{ parentId: string }> = ({
-  parentId,
-}) => {
+const ExternalRootChildFlyout: React.FC<{
+  historyKey: symbol;
+  parentId: string;
+}> = ({ historyKey, parentId }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleToggle = () => {
@@ -586,13 +621,9 @@ const ExternalRootChildFlyout: React.FC<{ parentId: string }> = ({
   };
 
   return (
-    <EuiPanel hasBorder paddingSize="m" grow={false}>
-      <EuiTitle size="xs">
-        <h4>Root within {parentId}</h4>
-      </EuiTitle>
-      <EuiSpacer size="s" />
+    <>
       <EuiButton onClick={handleToggle} size="s" disabled={isOpen}>
-        Open child flyout
+        {`Open ${parentId} child flyout in external root`}
       </EuiButton>
       {isOpen && (
         <EuiFlyout
@@ -604,6 +635,7 @@ const ExternalRootChildFlyout: React.FC<{ parentId: string }> = ({
           flyoutMenuProps={{ title: `Child flyout of ${parentId}` }}
           resizable={false}
           data-test-subj="child-flyout-in-new-root"
+          historyKey={historyKey}
         >
           <EuiFlyoutBody>
             <EuiText>
@@ -617,11 +649,14 @@ const ExternalRootChildFlyout: React.FC<{ parentId: string }> = ({
           </EuiFlyoutBody>
         </EuiFlyout>
       )}
-    </EuiPanel>
+    </>
   );
 };
 
-const ExternalRootFlyout: React.FC<{ id: string }> = ({ id }) => {
+const ExternalRootFlyout: React.FC<{ id: string; historyKey: symbol }> = ({
+  id,
+  historyKey,
+}) => {
   const [isOpen, setIsOpen] = useState(false);
   const buttonContainerRef = useRef<HTMLDivElement | null>(null);
   const buttonRootRef = useRef<Root | null>(null);
@@ -643,7 +678,7 @@ const ExternalRootFlyout: React.FC<{ id: string }> = ({ id }) => {
         const newRoot = createRoot(buttonContainerRef.current);
         newRoot.render(
           <EuiProvider>
-            <ExternalRootChildFlyout parentId={id} />
+            <ExternalRootChildFlyout historyKey={historyKey} parentId={id} />
           </EuiProvider>
         );
         buttonRootRef.current = newRoot;
@@ -667,13 +702,9 @@ const ExternalRootFlyout: React.FC<{ id: string }> = ({ id }) => {
   }, []);
 
   return (
-    <EuiPanel hasBorder paddingSize="m" grow={false}>
-      <EuiTitle size="xs">
-        <h3>{id}</h3>
-      </EuiTitle>
-      <EuiSpacer size="s" />
-      <EuiButton onClick={() => setIsOpen((prev) => !prev)}>
-        {isOpen ? 'Close flyout' : 'Open flyout'}
+    <>
+      <EuiButton onClick={() => setIsOpen((prev) => !prev)} disabled={isOpen}>
+        {`Open ${id} flyout`}
       </EuiButton>
       {isOpen && (
         <EuiFlyout
@@ -684,6 +715,7 @@ const ExternalRootFlyout: React.FC<{ id: string }> = ({ id }) => {
           ownFocus={false}
           flyoutMenuProps={{ title: `${id} flyout` }}
           resizable={true}
+          historyKey={historyKey}
         >
           <EuiFlyoutHeader>
             <EuiTitle size="m">
@@ -711,9 +743,11 @@ const ExternalRootFlyout: React.FC<{ id: string }> = ({ id }) => {
           </EuiFlyoutBody>
         </EuiFlyout>
       )}
-    </EuiPanel>
+    </>
   );
 };
+
+const multiRootHistoryKey = Symbol('multiRootSharedHistory');
 
 const MultiRootFlyoutDemo: React.FC = () => {
   const secondaryRootRef = useRef<HTMLDivElement | null>(null);
@@ -735,7 +769,7 @@ const MultiRootFlyoutDemo: React.FC = () => {
         const root = createRoot(container);
         root.render(
           <EuiProvider>
-            <ExternalRootFlyout id={id} />
+            <ExternalRootFlyout id={id} historyKey={multiRootHistoryKey} />
           </EuiProvider>
         );
         return root;

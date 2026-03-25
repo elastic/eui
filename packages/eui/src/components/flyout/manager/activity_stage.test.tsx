@@ -50,7 +50,7 @@ const buildMockState = ({
   }>,
 } = {}) => ({
   layoutMode,
-  sessions: [{ mainFlyoutId, childFlyoutId }],
+  sessions: [{ mainFlyoutId, childFlyoutId, historyKey: Symbol() }],
   flyouts,
 });
 

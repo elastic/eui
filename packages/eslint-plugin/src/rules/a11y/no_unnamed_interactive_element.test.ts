@@ -44,6 +44,10 @@ ruleTester.run('NoUnnamedInteractiveElement', NoUnnamedInteractiveElement, {
       code: '<EuiBreadcrumbs aria-label="Breadcrumbs label" />',
       languageOptions,
     },
+    {
+      code: '<EuiColorPicker aria-label="ColorPicker label" />',
+      languageOptions,
+    },
     // Wrapped in EuiFormRow with label
     {
       code: '<EuiFormRow label="Row label"><EuiComboBox /></EuiFormRow>',
@@ -51,6 +55,10 @@ ruleTester.run('NoUnnamedInteractiveElement', NoUnnamedInteractiveElement, {
     },
     {
       code: '<EuiFormRow label="Row label"><EuiSelect /></EuiFormRow>',
+      languageOptions,
+    },
+    {
+      code: '<EuiFormRow label="Row label"><EuiColorPicker /></EuiFormRow>',
       languageOptions,
     },
   ],
@@ -101,6 +109,11 @@ ruleTester.run('NoUnnamedInteractiveElement', NoUnnamedInteractiveElement, {
       languageOptions,
       errors: [{ messageId: 'missingA11y' }],
     },
+    {
+      code: '<EuiColorPicker />',
+      languageOptions,
+      errors: [{ messageId: 'missingA11y' }],
+    },
     // Wrapped but missing label
     {
       code: '<EuiFormRow><EuiComboBox /></EuiFormRow>',
@@ -109,6 +122,11 @@ ruleTester.run('NoUnnamedInteractiveElement', NoUnnamedInteractiveElement, {
     },
     {
       code: '<EuiFormRow><EuiSelect /></EuiFormRow>',
+      languageOptions,
+      errors: [{ messageId: 'missingA11y' }],
+    },
+    {
+      code: '<EuiFormRow><EuiColorPicker /></EuiFormRow>',
       languageOptions,
       errors: [{ messageId: 'missingA11y' }],
     },

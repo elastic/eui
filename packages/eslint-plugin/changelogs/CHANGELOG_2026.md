@@ -1,3 +1,7 @@
+## [`v2.11.0`](https://github.com/elastic/eui/releases/v2.11.0)
+
+- Updated `no-unnamed-interactive-element` to include checking `EuiColorPicker` ([#9436](https://github.com/elastic/eui/pull/9436))
+
 ## [`v2.10.0`](https://github.com/elastic/eui/releases/v2.10.0)
 
 - Added `EuiPopover` and `EuiWrappingPopover` checks to `require-aria-label-for-modals`, requiring either `aria-label` or `aria-labelledby` for these popover components. ([#9427](https://github.com/elastic/eui/pull/9427))
