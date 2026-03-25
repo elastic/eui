@@ -14,6 +14,7 @@ import React, {
   useState,
   forwardRef,
 } from 'react';
+import { css } from '@emotion/react';
 import { flushSync } from 'react-dom';
 import { useCombinedRefs, useEuiMemoizedStyles } from '../../../services';
 import { useEuiI18n } from '../../i18n';
@@ -130,6 +131,13 @@ export const EuiManagedFlyout = forwardRef<HTMLElement, EuiManagedFlyoutProps>(
       ? managerState?.flyouts.find((f) => f.flyoutId === session.mainFlyoutId)
           ?.size
       : undefined;
+
+    // Animate opening only for the first main flyout (sole session) or first child (no prior child in session).
+    const shouldAnimateOpening =
+      level === LEVEL_MAIN
+        ? (managerSessions?.length ?? 0) <= 1 &&
+          currentSession?.mainFlyoutId === flyoutId
+        : (session?.childHistory?.length ?? 0) === 0;
 
     const styles = useEuiMemoizedStyles(euiManagedFlyoutStyles);
 
@@ -309,6 +317,7 @@ export const EuiManagedFlyout = forwardRef<HTMLElement, EuiManagedFlyoutProps>(
     const { activityStage, onAnimationEnd } = useFlyoutActivityStage({
       flyoutId,
       level,
+      shouldAnimate: false,
     });
 
     // Note: history controls are only relevant for main flyouts
@@ -341,6 +350,11 @@ export const EuiManagedFlyout = forwardRef<HTMLElement, EuiManagedFlyoutProps>(
               styles.managedFlyout,
               customCss,
               styles.stage(activityStage, props.side, level),
+              // Suppress EuiFlyout's built-in opening animation for non-initial flyouts.
+              !shouldAnimateOpening &&
+                css`
+                  animation-duration: 0s !important;
+                `,
             ]}
             {...{
               ...props,
