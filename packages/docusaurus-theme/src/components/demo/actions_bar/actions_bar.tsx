@@ -23,6 +23,7 @@ export interface DemoActionsBarProps {
   activeSource: DemoSourceMeta | null;
   sources: DemoSourceMeta[];
   extraFiles?: ExtraFiles;
+  previewWrapperSource?: string;
   isSourceOpen: boolean;
   setSourceOpen(isOpen: boolean): void;
   onClickReloadExample(): void;
@@ -55,6 +56,7 @@ export const DemoActionsBar = ({
   activeSource,
   sources,
   extraFiles,
+  previewWrapperSource,
   onClickReloadExample,
   onClickCopyToClipboard,
 }: DemoActionsBarProps) => {
@@ -76,6 +78,7 @@ export const DemoActionsBar = ({
           key={ActionComponent.displayName ?? ActionComponent.name}
           sources={sources}
           extraFiles={extraFiles}
+          previewWrapperSource={previewWrapperSource}
           activeSource={activeSource}
         />
       ))}

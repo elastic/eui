@@ -5,13 +5,16 @@ keywords: [EuiFlexGrid]
 
 # Flex grids
 
+```mdx-code-block
 import { createDemo } from '@elastic/eui-docusaurus-theme/components';
-import { FlexPreviewWrapper } from './flex_preview_wrapper';
+import FlexPreviewWrapper from './flex_preview_wrapper';
+import flexPreviewWrapperSource from '!raw-loader!./flex_preview_wrapper';
 import DemoNote from './_flex_preview_note.mdx';
 
-export const FlexDemo = createDemo({ previewWrapper: FlexPreviewWrapper });
+export const FlexDemo = createDemo({ previewWrapper: FlexPreviewWrapper, previewWrapperSource: flexPreviewWrapperSource });
 
 <DemoNote />
+```
 
 **EuiFlexGrid** is a more rigid component, used for repeatable rows of same-width items. You can set a `columns` prop to specify anywhere between 1-4 columns. Any more would likely break on laptop screens.
 

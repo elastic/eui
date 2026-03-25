@@ -34,7 +34,8 @@ const indexTsxSource = dedent`
     <EuiProvider cache={cache}>
       <Demo />
     </EuiProvider>
-  );`;
+  );
+`;
 
 const publicIndexHtmlSource = dedent`
   <head>
@@ -91,7 +92,7 @@ const processTsxSource = (source: string) => {
 
 export const createOpenInCodeSandboxAction =
   ({ files = {}, dependencies }: Options): ActionComponent =>
-  ({ extraFiles, activeSource }) => {
+  ({ extraFiles, activeSource, previewWrapperSource }) => {
     const parameters: string = useMemo(() => {
       const source = activeSource?.code || '';
 
@@ -110,6 +111,24 @@ export const createOpenInCodeSandboxAction =
       return getParameters({
         files: {
           ...defaultCodeSandboxParameters.files,
+          ...(previewWrapperSource
+            ? {
+                'index.tsx': {
+                  content: indexTsxSource
+                    .replace(
+                      "import Demo from './demo';",
+                      "import Demo from './demo';\nimport PreviewWrapper from './preview_wrapper';"
+                    )
+                    .replace(
+                      '<Demo />',
+                      '<PreviewWrapper>\n      <Demo />\n    </PreviewWrapper>'
+                    ),
+                },
+                'preview_wrapper.tsx': {
+                  content: processTsxSource(previewWrapperSource),
+                },
+              }
+            : {}),
           'demo.tsx': {
             content: processTsxSource(source),
           },
@@ -124,7 +143,7 @@ export const createOpenInCodeSandboxAction =
           ...codeSandboxFiles,
         },
       } as any);
-    }, [activeSource, extraFiles]);
+    }, [activeSource, extraFiles, previewWrapperSource]);
 
     return (
       <form
