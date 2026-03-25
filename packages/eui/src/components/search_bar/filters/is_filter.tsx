@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { Component } from 'react';
+import React, { FC } from 'react';
 import { EuiFilterButton } from '../../filter_group';
 import { isNil } from '../../../services/predicate';
 import { Query } from '../query';
@@ -27,9 +27,9 @@ export interface IsFilterProps {
   onChange: (value: Query) => void;
 }
 
-export class IsFilter extends Component<IsFilterProps> {
-  resolveDisplay(clause: Clause) {
-    const { name, negatedName } = this.props.config;
+export const IsFilter: FC<IsFilterProps> = (props) => {
+  const resolveDisplay = (clause: Clause) => {
+    const { name, negatedName } = props.config;
     if (isNil(clause)) {
       return { hasActiveFilters: false, name };
     }
@@ -39,33 +39,32 @@ export class IsFilter extends Component<IsFilterProps> {
           hasActiveFilters: true,
           name: negatedName ? negatedName : `Not ${name}`,
         };
-  }
+  };
 
-  valueChanged(field: string, checked: boolean) {
+  const valueChanged = (field: string, checked: boolean) => {
     const query = checked
-      ? this.props.query.removeIsClause(field)
-      : this.props.query.addMustIsClause(field);
-    this.props.onChange(query);
-  }
+      ? props.query.removeIsClause(field)
+      : props.query.addMustIsClause(field);
+    props.onChange(query);
+  };
 
-  render() {
-    const { query, config } = this.props;
-    const clause = query.getIsClause(config.field);
-    const checked = !isNil(clause);
-    const { hasActiveFilters, name } = this.resolveDisplay(clause);
-    const onClick = () => {
-      this.valueChanged(config.field, checked);
-    };
-    return (
-      <EuiFilterButton
-        onClick={onClick}
-        isSelected={hasActiveFilters}
-        hasActiveFilters={hasActiveFilters}
-        aria-pressed={!!hasActiveFilters}
-        isToggle
-      >
-        {name}
-      </EuiFilterButton>
-    );
-  }
-}
+  const { query, config } = props;
+  const clause = query.getIsClause(config.field);
+  const checked = !isNil(clause);
+  const { hasActiveFilters, name } = resolveDisplay(clause);
+  const onClick = () => {
+    valueChanged(config.field, checked);
+  };
+
+  return (
+    <EuiFilterButton
+      onClick={onClick}
+      isSelected={hasActiveFilters}
+      hasActiveFilters={hasActiveFilters}
+      aria-pressed={!!hasActiveFilters}
+      isToggle
+    >
+      {name}
+    </EuiFilterButton>
+  );
+};
