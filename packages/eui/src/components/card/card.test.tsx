@@ -33,8 +33,8 @@ describe('EuiCard', () => {
   });
 
   shouldRenderCustomStyles(
-    <EuiCard title="Card title" betaBadgeProps={{ label: 'beta' }} />,
-    { childProps: ['betaBadgeProps', 'betaBadgeProps.anchorProps'] }
+    <EuiCard title="Card title" betaBadgeProps={{ children: 'beta' }} />,
+    { childProps: ['betaBadgeProps', 'betaBadgeTooltipProps.anchorProps'] }
   );
 
   describe('props', () => {
@@ -329,7 +329,7 @@ describe('EuiCard', () => {
         description="Card description"
         betaBadgeProps={{
           href: 'http://www.elastic.co/',
-          label: 'Link',
+          children: 'Link',
         }}
       />
     );

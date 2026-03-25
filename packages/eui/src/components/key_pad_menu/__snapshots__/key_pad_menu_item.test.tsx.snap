@@ -116,13 +116,19 @@ exports[`EuiKeyPadMenuItem props betaBadge renders 1`] = `
     <span
       class="euiKeyPadMenuItem__inner emotion-euiKeyPadMenuItem__inner"
     >
-      <span>
+      <span
+        aria-hidden="true"
+        class="euiBadge euiKeyPadMenuItem__betaBadge emotion-euiBadge-default-euiKeyPadMenuItem__betaBadge-euiKeyPadMenuItem__betaBadgeLetter-betaBadge"
+        title="B"
+      >
         <span
-          aria-hidden="true"
-          class="euiBetaBadge euiKeyPadMenuItem__betaBadge emotion-euiBetaBadge-subdued-s-baseline-euiKeyPadMenuItem__betaBadge"
-          title="B"
+          class="euiBadge__content emotion-euiBadge__content"
         >
-          B
+          <span
+            class="euiBadge__text emotion-euiBadge__text"
+          >
+            B
+          </span>
         </span>
       </span>
       <span
@@ -152,13 +158,19 @@ exports[`EuiKeyPadMenuItem props betaBadge renders extra betaBadgeTooltipProps 1
     <span
       class="euiKeyPadMenuItem__inner emotion-euiKeyPadMenuItem__inner"
     >
-      <span>
+      <span
+        aria-hidden="true"
+        class="euiBadge euiKeyPadMenuItem__betaBadge emotion-euiBadge-default-euiKeyPadMenuItem__betaBadge-euiKeyPadMenuItem__betaBadgeLetter-betaBadge"
+        title="B"
+      >
         <span
-          aria-hidden="true"
-          class="euiBetaBadge euiKeyPadMenuItem__betaBadge emotion-euiBetaBadge-subdued-s-baseline-euiKeyPadMenuItem__betaBadge"
-          title="B"
+          class="euiBadge__content emotion-euiBadge__content"
         >
-          B
+          <span
+            class="euiBadge__text emotion-euiBadge__text"
+          >
+            B
+          </span>
         </span>
       </span>
       <span
@@ -188,15 +200,15 @@ exports[`EuiKeyPadMenuItem props betaBadge renders with betaBadgeIconType 1`] = 
     <span
       class="euiKeyPadMenuItem__inner emotion-euiKeyPadMenuItem__inner"
     >
-      <span>
+      <span
+        aria-hidden="true"
+        class="euiBadge euiKeyPadMenuItem__betaBadge emotion-euiBadge-iconOnly-default-euiKeyPadMenuItem__betaBadge-betaBadge"
+      >
         <span
-          aria-hidden="true"
-          class="euiBetaBadge euiKeyPadMenuItem__betaBadge emotion-euiBetaBadge-subdued-s-baseline-euiKeyPadMenuItem__betaBadge"
-          title="B"
+          class="euiBadge__content emotion-euiBadge__content"
         >
           <span
-            aria-hidden="true"
-            class="euiBetaBadge__icon emotion-euiBetaBadge__icon"
+            class="euiBadge__icon emotion-euiBadge__icon-left"
             color="inherit"
             data-euiicon-type="bolt"
           />
@@ -229,13 +241,19 @@ exports[`EuiKeyPadMenuItem props betaBadge renders with betaBadgeTooltipContent 
     <span
       class="euiKeyPadMenuItem__inner emotion-euiKeyPadMenuItem__inner"
     >
-      <span>
+      <span
+        aria-hidden="true"
+        class="euiBadge euiKeyPadMenuItem__betaBadge emotion-euiBadge-default-euiKeyPadMenuItem__betaBadge-euiKeyPadMenuItem__betaBadgeLetter-betaBadge"
+        title="B"
+      >
         <span
-          aria-hidden="true"
-          class="euiBetaBadge euiKeyPadMenuItem__betaBadge emotion-euiBetaBadge-subdued-s-baseline-euiKeyPadMenuItem__betaBadge"
-          title="B"
+          class="euiBadge__content emotion-euiBadge__content"
         >
-          B
+          <span
+            class="euiBadge__text emotion-euiBadge__text"
+          >
+            B
+          </span>
         </span>
       </span>
       <span

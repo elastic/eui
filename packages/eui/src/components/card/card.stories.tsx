@@ -46,6 +46,13 @@ export const Playground: Story = {
     title: 'Card title',
     description: 'Card description',
     footer: '',
+    betaBadgeProps: {
+      "color": "accent",
+      "children": "Hello"
+    },
+    betaBadgeTooltipProps: {
+      "content": "hello"
+    }
   },
   render: function Render({
     icon,

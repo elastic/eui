@@ -29,7 +29,7 @@ import {
   PropsForButton,
 } from '../common';
 
-import { EuiBetaBadge } from '../badge/beta_badge';
+import { EuiBadge } from '../badge';
 import { IconType } from '../icon';
 import { EuiRadio, EuiCheckbox } from '../form';
 import { validateHref } from '../../services/security/href_validator';
@@ -248,16 +248,20 @@ export const EuiKeyPadMenuItem: FunctionComponent<EuiKeyPadMenuItemProps> = ({
     if (!betaBadgeLabel) return;
 
     return (
-      <EuiBetaBadge
-        // Since we move the tooltip contents to a wrapping EuiToolTip,
-        // this badge is purely visual therefore we can safely hide it from screen readers
+      <EuiBadge
+        // Beta copy is provided by the wrapping `EuiToolTip` using `betaBadgeLabel`,
+        // so we can safely hide this badge from screen readers to avoid duplicated announcements.
+        // It's a visual cue only and doesn't provide any additional information.
         aria-hidden="true"
-        size="s"
-        color="subdued"
         className="euiKeyPadMenuItem__betaBadge"
-        css={childStyles.euiKeyPadMenuItem__betaBadge}
-        label={betaBadgeLabel.charAt(0)}
-        iconType={betaBadgeIconType}
+        css={[
+          childStyles.euiKeyPadMenuItem__betaBadge,
+          !betaBadgeIconType && childStyles.euiKeyPadMenuItem__betaBadgeLetter,
+        ]}
+        // If an icon type is provided, use it, otherwise use the first letter of the label.
+        {...(betaBadgeIconType
+          ? { iconType: betaBadgeIconType }
+          : { children: betaBadgeLabel.charAt(0) })}
       />
     );
   }, [betaBadgeLabel, betaBadgeIconType, childStyles]);
