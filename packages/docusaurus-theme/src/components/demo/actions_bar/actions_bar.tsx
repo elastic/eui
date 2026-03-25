@@ -73,6 +73,7 @@ export const DemoActionsBar = ({
       </EuiButton>
       {extraActions.map((ActionComponent) => (
         <ActionComponent
+          key={ActionComponent.displayName ?? ActionComponent.name}
           sources={sources}
           extraFiles={extraFiles}
           activeSource={activeSource}
