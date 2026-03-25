@@ -34,8 +34,9 @@ export interface UseFlyoutActivityStageReturn {
   activityStage: EuiFlyoutActivityStage;
   /**
    * Pass to the flyout's `onAnimationEnd` prop to finalize transitional stages
-   * (e.g. CLOSING -> INACTIVE). Has no effect when `shouldAnimate` is false,
-   * since those stages are never entered.
+   * (e.g. CLOSING -> INACTIVE). When `shouldAnimate` is false, the intermediate
+   * CLOSING/RETURNING/BACKGROUNDING stages are skipped, but OPENING -> ACTIVE
+   * still relies on this handler since new flyouts always start in OPENING.
    */
   onAnimationEnd: () => void;
 }
