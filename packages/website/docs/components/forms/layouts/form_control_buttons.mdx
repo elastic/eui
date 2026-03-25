@@ -21,7 +21,7 @@ Set `isDropdown` on **EuiFormControlLayout** to indicate a dropdown toggle that 
 :::
 
 ```tsx interactive
-import React, { useState, type ChangeEvent } from "react";
+import React, { useState, type ChangeEvent } from 'react';
 import {
   EuiFormRow,
   EuiFieldSearch,
@@ -36,16 +36,16 @@ import {
   EuiSpacer,
   EuiBadge,
   type EuiSelectableOption,
-} from "@elastic/eui";
+} from '@elastic/eui';
 
 const _options: EuiSelectableOption[] = [
-  { label: "Titan" },
-  { label: "Enceladus" },
-  { label: "Mimas" },
-  { label: "Dione" },
-  { label: "Iapetus" },
-  { label: "Phoebe" },
-  { label: "Rhea" },
+  { label: 'Titan' },
+  { label: 'Enceladus' },
+  { label: 'Mimas' },
+  { label: 'Dione' },
+  { label: 'Iapetus' },
+  { label: 'Phoebe' },
+  { label: 'Rhea' },
 ];
 
 export default () => {
@@ -56,12 +56,12 @@ export default () => {
   const [isClearable, setClearable] = useState(false);
 
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
-  const [searchValue, setSearchValue] = useState("");
+  const [searchValue, setSearchValue] = useState('');
   const [options, setOptions] = useState(_options);
   const [selectedOptions, setSelectedOptions] = useState<EuiSelectableOption[]>(
     []
   );
-  const [buttonLabel, setButtonLabel] = useState("");
+  const [buttonLabel, setButtonLabel] = useState('');
 
   const formLayoutProps = {
     compressed: isCompressed,
@@ -77,8 +77,8 @@ export default () => {
     isInvalid,
   };
 
-  const popoverId = "popover-id";
-  const panelTitle = "popover-panel-title";
+  const popoverId = 'popover-id';
+  const panelTitle = 'popover-panel-title';
 
   const handleOnSearch = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.target.value);
@@ -95,17 +95,17 @@ export default () => {
     setOptions(options);
     const _selectedOptions = getSelectedOptions(options);
     setSelectedOptions(_selectedOptions);
-    setButtonLabel(_selectedOptions.map((opt) => opt.label).join(", "));
+    setButtonLabel(_selectedOptions.map((opt) => opt.label).join(', '));
   };
 
   const handleOnClear = () => {
     setOptions(_options);
     setSelectedOptions([]);
-    setButtonLabel("");
+    setButtonLabel('');
   };
 
   const getSelectedOptions = (options: EuiSelectableOption[]) => {
-    return options.filter((option) => option.checked === "on");
+    return options.filter((option) => option.checked === 'on');
   };
 
   return (
@@ -177,7 +177,7 @@ export default () => {
               ownFocus
               input={
                 <EuiFormControlButton
-                  value={buttonLabel ?? ""}
+                  value={buttonLabel ?? ''}
                   placeholder="Placeholder"
                   role="combobox"
                   onClick={() => setIsPopoverOpen(!isPopoverOpen)}
@@ -189,8 +189,8 @@ export default () => {
                     <EuiNotificationBadge
                       color={
                         selectedOptions.length > 0 && !isDisabled
-                          ? "success"
-                          : "subdued"
+                          ? 'success'
+                          : 'subdued'
                       }
                     >
                       {selectedOptions.length > 0
@@ -205,11 +205,11 @@ export default () => {
               isOpen={isPopoverOpen}
               panelPaddingSize="none"
               panelMinWidth={200}
-              initialFocus={"[data-test-subj=panel-search-input]"}
+              initialFocus="[data-test-subj=panel-search-input]"
               closePopover={() => setIsPopoverOpen(false)}
               panelProps={{
                 title: panelTitle,
-                "aria-label": panelTitle,
+                'aria-label': panelTitle,
               }}
             >
               <EuiFieldSearch
