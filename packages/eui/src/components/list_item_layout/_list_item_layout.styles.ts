@@ -97,7 +97,14 @@ export const euiListItemLayoutStyles = (euiThemeContext: UseEuiTheme) => {
     euiListItemLayout__text: css`
       flex-grow: 1; /* Pushes appended content to the far right */
       ${logicalCSS('padding-vertical', textPadding.vertical)}
+      ${euiFontSize(euiThemeContext, 's')}
       text-align: start;
+
+      /* Apply expected text spacing for flat children for user convenience.
+      Requires manual handling if nested */
+      > * + * {
+        ${logicalCSS('margin-top', euiTheme.size.xxs)}
+      }
     `,
     textWrap: {
       truncate: css(euiTextTruncate()),
