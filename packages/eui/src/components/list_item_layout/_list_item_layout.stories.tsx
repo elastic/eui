@@ -85,6 +85,9 @@ const meta: Meta<EuiListItemLayoutProps> = {
     rel: {
       control: 'text',
     },
+    role: {
+      control: 'text',
+    },
   },
   args: {
     component: 'li',
@@ -98,6 +101,7 @@ const meta: Meta<EuiListItemLayoutProps> = {
     href: undefined,
     target: undefined,
     rel: undefined,
+    showIndicator: true,
   },
 };
 
