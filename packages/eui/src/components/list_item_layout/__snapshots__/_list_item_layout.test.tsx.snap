@@ -1,0 +1,89 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiListItemLayout is rendered as anchor element 1`] = `
+<a
+  class="euiListItemLayout emotion-euiListItemLayout-isInteractive"
+  data-test-subj="euiListItemLayout"
+>
+  <span
+    class="euiListItemLayout__content emotion-euiListItemLayout__content"
+  >
+    <span
+      class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+      color="text"
+      data-euiicon-type="empty"
+    />
+    <span
+      class="euiListItemLayout__text emotion-euiListItemLayout__text-truncate"
+    >
+      Option
+    </span>
+  </span>
+</a>
+`;
+
+exports[`EuiListItemLayout is rendered as button element 1`] = `
+<button
+  class="euiListItemLayout emotion-euiListItemLayout-isInteractive"
+  data-test-subj="euiListItemLayout"
+>
+  <span
+    class="euiListItemLayout__content emotion-euiListItemLayout__content"
+  >
+    <span
+      class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+      color="text"
+      data-euiicon-type="empty"
+    />
+    <span
+      class="euiListItemLayout__text emotion-euiListItemLayout__text-truncate"
+    >
+      Option
+    </span>
+  </span>
+</button>
+`;
+
+exports[`EuiListItemLayout is rendered as div element 1`] = `
+<div
+  class="euiListItemLayout emotion-euiListItemLayout-isInteractive"
+  data-test-subj="euiListItemLayout"
+>
+  <span
+    class="euiListItemLayout__content emotion-euiListItemLayout__content"
+  >
+    <span
+      class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+      color="text"
+      data-euiicon-type="empty"
+    />
+    <span
+      class="euiListItemLayout__text emotion-euiListItemLayout__text-truncate"
+    >
+      Option
+    </span>
+  </span>
+</div>
+`;
+
+exports[`EuiListItemLayout is rendered as li element 1`] = `
+<li
+  class="euiListItemLayout emotion-euiListItemLayout-isInteractive"
+  data-test-subj="euiListItemLayout"
+>
+  <span
+    class="euiListItemLayout__content emotion-euiListItemLayout__content"
+  >
+    <span
+      class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+      color="text"
+      data-euiicon-type="empty"
+    />
+    <span
+      class="euiListItemLayout__text emotion-euiListItemLayout__text-truncate"
+    >
+      Option
+    </span>
+  </span>
+</li>
+`;
