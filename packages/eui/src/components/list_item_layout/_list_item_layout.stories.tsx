@@ -27,6 +27,27 @@ import {
   type EuiListItemLayoutAsAnchor,
 } from './_list_item_layout';
 
+type EuiListItemLayoutStoryProps = EuiListItemLayoutProps & {
+  checkedSingle: 'on' | undefined;
+};
+
+/* Story HOC to pass the correct `checked` control value to the component, since we're
+conditionally switching between `checked` and `checkedSingle` to advocate expected usage */
+const StoryRender = ({
+  checkedSingle,
+  checked,
+  isSingleSelection,
+  ...args
+}: EuiListItemLayoutStoryProps) => {
+  return (
+    <EuiListItemLayout
+      {...(args as EuiListItemLayoutProps)}
+      isSingleSelection={isSingleSelection}
+      checked={isSingleSelection ? checkedSingle : checked}
+    />
+  );
+};
+
 const meta: Meta<EuiListItemLayoutProps> = {
   title: 'Internal/EuiListItemLayout',
   component: EuiListItemLayout,
@@ -43,6 +64,14 @@ const meta: Meta<EuiListItemLayoutProps> = {
     checked: {
       control: 'radio',
       options: ['on', 'off', 'mixed', undefined],
+      if: { arg: 'isSingleSelection', truthy: false }, // show for multi selection only
+    },
+    // @ts-expect-error - custom variant of `checked` control that isn't a standalone prop
+    checkedSingle: {
+      name: 'checked',
+      control: 'radio',
+      options: ['on', undefined],
+      if: { arg: 'isSingleSelection' }, // show for single selection only
     },
     prepend: {
       control: 'radio',
@@ -103,6 +132,7 @@ const meta: Meta<EuiListItemLayoutProps> = {
     rel: undefined,
     showIndicator: true,
   },
+  render: (args) => <StoryRender {...(args as EuiListItemLayoutStoryProps)} />,
 };
 
 export default meta;
@@ -126,7 +156,12 @@ export const Playground: Story = {
           })
         : extraAction;
 
-    return <EuiListItemLayout {...rest} extraAction={_extraAction} />;
+    return (
+      <StoryRender
+        {...(rest as EuiListItemLayoutStoryProps)}
+        extraAction={_extraAction}
+      />
+    );
   },
 };
 
@@ -229,7 +264,7 @@ export const Truncation: Story = {
         inline-size: 250px;
       `}
     >
-      <EuiListItemLayout {...(args as EuiListItemLayoutProps)} />
+      <StoryRender {...(args as EuiListItemLayoutStoryProps)} />
     </div>
   ),
 };
@@ -253,7 +288,7 @@ export const TextWrap: Story = {
         inline-size: 250px;
       `}
     >
-      <EuiListItemLayout {...(args as EuiListItemLayoutProps)} />
+      <StoryRender {...(args as EuiListItemLayoutStoryProps)} />
     </div>
   ),
 };
@@ -359,12 +394,6 @@ const renderKitchenSink = (args: EuiListItemLayoutProps) => {
         </EuiListItemLayout>
         <EuiListItemLayout {...args} isSingleSelection>
           {children} <small>(isSingleSelection & checked=undefined)</small>
-        </EuiListItemLayout>
-        <EuiListItemLayout {...args} isSingleSelection checked="mixed">
-          {children} <small>(isSingleSelection & checked=mixed)</small>
-        </EuiListItemLayout>
-        <EuiListItemLayout {...args} isSingleSelection checked="off">
-          {children} <small>(isSingleSelection & checked=off)</small>
         </EuiListItemLayout>
 
         <EuiListItemLayout {...args} append={_append}>

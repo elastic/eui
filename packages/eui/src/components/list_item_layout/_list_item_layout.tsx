@@ -95,6 +95,9 @@ export type EuiListItemLayoutSharedProps = CommonProps & {
    * Controls the item checked indicator and applies a semantic `aria-checked` attribute.
    * Ensure to pass an appropriate `role` for the item that supports semantic
    * `checked` state. For no/other role(s) `checked` only controls the visual checked indicator.
+   *
+   * When using `singleSelection=true` it's expected to only use the values `on` or `undefined`
+   * to toggle between checked and not checked.
    */
   checked?: EuiListItemLayoutCheckedType;
   /**
