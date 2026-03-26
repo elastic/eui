@@ -13,6 +13,7 @@ import React, {
   ReactNode,
   MouseEvent as ReactMouseEvent,
   HTMLAttributes,
+  CSSProperties,
 } from 'react';
 import classNames from 'classnames';
 
@@ -23,10 +24,10 @@ import {
   type CreateRepositionOnScrollReturnType,
 } from '../../services/popover/reposition_on_scroll';
 import { type EuiPopoverPosition } from '../../services/popover';
-import { enqueueStateChange } from '../../services/react';
 import { EuiResizeObserver } from '../observer/resize_observer';
 import { EuiPortal } from '../portal';
 import { EuiComponentDefaultsContext } from '../provider/component_defaults';
+import { enqueueStateChange } from '../../services/react';
 
 import { EuiToolTipPopover, ToolTipPositions } from './tool_tip_popover';
 import { EuiToolTipAnchor } from './tool_tip_anchor';
@@ -36,12 +37,13 @@ import { toolTipManager } from './tool_tip_manager';
 export const POSITIONS = ['top', 'right', 'bottom', 'left'] as const;
 const DISPLAYS = ['inlineBlock', 'block'] as const;
 
-export type ToolTipDelay = 'regular' | 'long';
+export type ToolTipDelay = 'regular' | 'long' | 'none';
 export const DEFAULT_TOOLTIP_OFFSET = 16;
 
 const delayToMsMap: { [key in ToolTipDelay]: number } = {
   regular: 250,
   long: 250 * 5,
+  none: 0,
 };
 
 interface ToolTipStyles {
@@ -149,10 +151,9 @@ export class EuiToolTip extends Component<EuiToolTipProps, State> {
   declare context: ContextType<typeof EuiComponentDefaultsContext>;
   private repositionOnScroll: CreateRepositionOnScrollReturnType;
 
-  _isMounted = false;
+  private _isMounted = false;
   anchor: null | HTMLElement = null;
   popover: null | HTMLElement = null;
-  private timeoutId?: ReturnType<typeof setTimeout>;
 
   constructor(props: EuiToolTipProps) {
     super(props);
@@ -179,19 +180,12 @@ export class EuiToolTip extends Component<EuiToolTipProps, State> {
     disableScreenReaderOutput: false,
   };
 
-  clearAnimationTimeout = () => {
-    if (this.timeoutId) {
-      this.timeoutId = clearTimeout(this.timeoutId) as undefined;
-    }
-  };
-
   componentDidMount() {
     this._isMounted = true;
     this.repositionOnScroll.subscribe();
   }
 
   componentWillUnmount() {
-    this.clearAnimationTimeout();
     this._isMounted = false;
     this.repositionOnScroll.cleanup();
   }
@@ -206,6 +200,9 @@ export class EuiToolTip extends Component<EuiToolTipProps, State> {
   }
 
   testAnchor = () => {
+    if (!this._isMounted) {
+      return;
+    }
     // when the tooltip is visible, this checks if the anchor is still part of document
     // this fixes when the react root is removed from the dom without unmounting
     // https://github.com/elastic/eui/issues/1105
@@ -225,21 +222,24 @@ export class EuiToolTip extends Component<EuiToolTipProps, State> {
   setPopoverRef = (ref: HTMLElement) => (this.popover = ref);
 
   showToolTip = () => {
-    if (!this.timeoutId) {
-      this.timeoutId = setTimeout(() => {
-        enqueueStateChange(() => {
-          this.setState({ visible: true });
-          toolTipManager.registerTooltip(this.hideToolTip);
-        });
-      }, delayToMsMap[this.props.delay]);
+    if (this.state.visible) {
+      return;
     }
+
+    enqueueStateChange(() => {
+      if (!this._isMounted) {
+        return;
+      }
+      this.setState({ visible: true });
+      toolTipManager.registerTooltip(this.hideToolTip);
+    });
   };
 
   positionToolTip = () => {
     const requestedPosition = this.props.position;
     const offset = this.props.offset ?? DEFAULT_TOOLTIP_OFFSET;
 
-    if (!this.anchor || !this.popover) {
+    if (!this.anchor || !this.popover || !this._isMounted) {
       return;
     }
 
@@ -281,16 +281,19 @@ export class EuiToolTip extends Component<EuiToolTipProps, State> {
   };
 
   hideToolTip = () => {
-    this.clearAnimationTimeout();
+    if (!this.state.visible) {
+      return;
+    }
     enqueueStateChange(() => {
-      if (this._isMounted) {
-        this.setState({
-          visible: false,
-          toolTipStyles: DEFAULT_TOOLTIP_STYLES,
-          arrowStyles: undefined,
-        });
-        toolTipManager.deregisterToolTip(this.hideToolTip);
+      if (!this._isMounted) {
+        return;
       }
+      this.setState({
+        visible: false,
+        toolTipStyles: DEFAULT_TOOLTIP_STYLES,
+        arrowStyles: undefined,
+      });
+      toolTipManager.deregisterToolTip(this.hideToolTip);
     });
   };
 
@@ -357,6 +360,12 @@ export class EuiToolTip extends Component<EuiToolTipProps, State> {
 
     const classes = classNames('euiToolTip', className);
     const anchorClasses = classNames(anchorClassName, anchorProps?.className);
+    const popoverStyles = {
+      ...toolTipStyles,
+      '--euiToolTipAnimationDelay': `${
+        delayToMsMap[delay] ?? delayToMsMap.none
+      }ms`,
+    } as CSSProperties;
 
     return (
       <>
@@ -380,7 +389,7 @@ export class EuiToolTip extends Component<EuiToolTipProps, State> {
           <EuiPortal>
             <EuiToolTipPopover
               className={classes}
-              style={toolTipStyles}
+              style={popoverStyles}
               positionToolTip={this.positionToolTip}
               popoverRef={this.setPopoverRef}
               title={title}

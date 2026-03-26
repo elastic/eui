@@ -20,26 +20,32 @@ export const euiToolTipBackgroundColor = (euiTheme: UseEuiTheme['euiTheme']) =>
 export const euiToolTipBorderColor = (euiTheme: UseEuiTheme['euiTheme']) =>
   euiTheme.components.tooltipBorder;
 
-const euiToolTipAnimationVertical = (size: string) => keyframes`
+const euiToolTipOpacity = () => keyframes`
     0% {
         opacity: 0;
-        transform: translateY(${size});
     }
 
     100% {
         opacity: 1;
+    }
+`;
+
+const euiToolTipAnimationVertical = (size: string) => keyframes`
+    0% {
+        transform: translateY(${size});
+    }
+
+    100% {
         transform: translateY(0);
     }
 `;
 
 const euiToolTipAnimationHorizontal = (size: string) => keyframes`
     0% {
-        opacity: 0;
         transform: translateX(${size});
     }
 
     100% {
-        opacity: 1;
         transform: translateX(0);
     }
 `;
@@ -49,6 +55,7 @@ export const euiToolTipStyles = (euiThemeContext: UseEuiTheme) => {
 
   const hasShadow = !highContrastMode;
   const animationTiming = `${euiTheme.animation.slow} ease-out 0s forwards`;
+  const opacityTiming = `${euiTheme.animation.slow} ease-out var(--euiToolTipAnimationDelay, 0s) both`;
 
   const arrowSize = euiTheme.size.m;
   const arrowStyles = _popoverArrowStyles(euiThemeContext, arrowSize);
@@ -67,6 +74,7 @@ export const euiToolTipStyles = (euiThemeContext: UseEuiTheme) => {
       ${euiFontSize(euiThemeContext, 's')}
 
       position: absolute;
+      animation: ${euiToolTipOpacity()} ${opacityTiming};
 
       ${euiPanelBorderStyles(euiThemeContext)}
 
@@ -81,26 +89,29 @@ export const euiToolTipStyles = (euiThemeContext: UseEuiTheme) => {
     // Positions
     top: css`
       ${euiCanAnimate} {
-        animation: ${euiToolTipAnimationVertical(`-${euiTheme.size.base}`)}
-          ${animationTiming};
+        animation: ${euiToolTipOpacity()} ${opacityTiming},
+          ${euiToolTipAnimationVertical(`-${euiTheme.size.base}`)}
+            ${animationTiming};
       }
     `,
     bottom: css`
       ${euiCanAnimate} {
-        animation: ${euiToolTipAnimationVertical(euiTheme.size.base)}
-          ${animationTiming};
+        animation: ${euiToolTipOpacity()} ${opacityTiming},
+          ${euiToolTipAnimationVertical(euiTheme.size.base)} ${animationTiming};
       }
     `,
     left: css`
       ${euiCanAnimate} {
-        animation: ${euiToolTipAnimationHorizontal(`-${euiTheme.size.base}`)}
-          ${animationTiming};
+        animation: ${euiToolTipOpacity()} ${opacityTiming},
+          ${euiToolTipAnimationHorizontal(`-${euiTheme.size.base}`)}
+            ${animationTiming};
       }
     `,
     right: css`
       ${euiCanAnimate} {
-        animation: ${euiToolTipAnimationHorizontal(euiTheme.size.base)}
-          ${animationTiming};
+        animation: ${euiToolTipOpacity()} ${opacityTiming},
+          ${euiToolTipAnimationHorizontal(euiTheme.size.base)}
+            ${animationTiming};
       }
     `,
     // Arrow

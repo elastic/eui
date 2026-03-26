@@ -11,7 +11,6 @@ import React, {
   FunctionComponent,
   ReactNode,
   useEffect,
-  useRef,
   useCallback,
 } from 'react';
 import classNames from 'classnames';
@@ -39,8 +38,6 @@ export const EuiToolTipPopover: FunctionComponent<Props> = ({
   calculatedPosition,
   ...rest
 }) => {
-  const popover = useRef<HTMLDivElement>();
-
   const euiTheme = useEuiTheme();
   const styles = euiToolTipStyles(euiTheme);
   const cssStyles = [
@@ -51,11 +48,11 @@ export const EuiToolTipPopover: FunctionComponent<Props> = ({
   const updateDimensions = useCallback(() => {
     requestAnimationFrame(() => {
       // Because of this delay, sometimes `positionToolTip` becomes unavailable.
-      if (popover.current) {
+      if (popoverRef) {
         positionToolTip();
       }
     });
-  }, [positionToolTip]);
+  }, [popoverRef, positionToolTip]);
 
   const setPopoverRef = (ref: HTMLDivElement) => {
     if (popoverRef) {
