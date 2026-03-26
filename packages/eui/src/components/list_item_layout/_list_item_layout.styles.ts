@@ -96,7 +96,6 @@ export const euiListItemLayoutStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     euiListItemLayout__text: css`
       flex-grow: 1; /* Pushes appended content to the far right */
-      ${logicalCSS('padding-horizontal', textPadding.horizontal)}
       ${logicalCSS('padding-vertical', textPadding.vertical)}
       text-align: start;
     `,
