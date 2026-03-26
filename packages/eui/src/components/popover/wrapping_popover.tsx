@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { useEffect, useRef } from 'react';
+import React, { useCallback, useLayoutEffect, useRef } from 'react';
 import { EuiPopover, Props as EuiPopoverProps } from './popover';
 import { EuiPortal } from '../portal';
 
@@ -26,24 +26,24 @@ export function EuiWrappingPopover(props: EuiWrappingPopoverProps) {
 
   const portalRef = useRef<HTMLElement | null>(null);
 
-  const setPortalRef = (node: HTMLElement | null) => {
-    if (node) {
-      portalRef.current = node;
-    }
-  };
+  const setPortalRef = useCallback((node: HTMLElement | null) => {
+    portalRef.current = node;
+  }, []);
 
-  const setAnchorRef = (node: HTMLElement | null) => {
-    node?.insertAdjacentElement('beforebegin', props.button);
-  };
+  const setAnchorRef = useCallback(
+    (node: HTMLDivElement | null) => {
+      node?.insertAdjacentElement('beforebegin', button);
+    },
+    [button]
+  );
 
-  useEffect(() => {
-    // component clean up
+  useLayoutEffect(() => {
     return () => {
-      if (props.button.parentNode && portalRef.current) {
-        portalRef.current.insertAdjacentElement('beforebegin', props.button);
+      if (button.parentNode && portalRef.current) {
+        portalRef.current.insertAdjacentElement('beforebegin', button);
       }
     };
-  }, [props.button]);
+  }, [button]);
 
   return (
     <EuiPortal
