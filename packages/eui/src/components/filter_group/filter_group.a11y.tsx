@@ -253,20 +253,26 @@ describe('EuiFilterGroup multiselect example', () => {
       cy.realPress('Tab');
       cy.repeatRealPress('ArrowDown', 4);
       cy.realPress('Enter');
-      cy.get('li[aria-selected="true"]')
-        .find('span.euiSelectableListItem__text')
-        .should(
-          'have.text',
-          'Dmitri Shostakovich. Checked option. To exclude this option, press Enter.'
-        );
+      cy.get('input[role="combobox"]').then(($input) => {
+        const activeOptionId = $input.attr('aria-activedescendant');
+        cy.get(`li[id="${activeOptionId}"]`)
+          .find('span.euiSelectableListItem__text')
+          .should(
+            'have.text',
+            'Dmitri Shostakovich. Checked option. To exclude this option, press Enter.'
+          );
+      });
       cy.realPress('ArrowDown');
       cy.repeatRealPress('Enter');
-      cy.get('li[aria-selected="true"]')
-        .find('span.euiSelectableListItem__text')
-        .should(
-          'have.text',
-          'Felix Mendelssohn-Bartholdy. Excluded option. To uncheck this option, press Enter.'
-        );
+      cy.get('input[role="combobox"]').then(($input) => {
+        const activeOptionId = $input.attr('aria-activedescendant');
+        cy.get(`li[id="${activeOptionId}"]`)
+          .find('span.euiSelectableListItem__text')
+          .should(
+            'have.text',
+            'Felix Mendelssohn-Bartholdy. Excluded option. To uncheck this option, press Enter.'
+          );
+      });
       cy.checkAxe();
     });
 

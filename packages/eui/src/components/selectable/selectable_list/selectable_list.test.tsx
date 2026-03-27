@@ -377,7 +377,7 @@ describe('EuiSelectableListItem', () => {
 
         expect(
           container.querySelectorAll(
-            '[class*="euiSelectableListItem__text-truncate"]'
+            '[class*="euiListItemLayout__text-truncate"]'
           )
         ).toHaveLength(1);
       });
@@ -392,7 +392,7 @@ describe('EuiSelectableListItem', () => {
         );
 
         expect(
-          container.querySelector('.euiSelectableListItem__text')!.className
+          container.querySelector('.euiListItemLayout__text')!.className
         ).toContain('truncate');
       });
     });

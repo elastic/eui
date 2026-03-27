@@ -62,9 +62,9 @@ describe('EuiSelectable', () => {
         .realPress('{downarrow}')
         .realPress('{downarrow}')
         .then(() => {
-          cy.get('li[role=option]')
-            .eq(1)
-            .should('have.attr', 'aria-selected', 'true');
+          cy.get('input')
+            .should('have.attr', 'aria-activedescendant')
+            .and('include', 'option-1');
         });
 
       // Focus remains on the second option
@@ -75,9 +75,9 @@ describe('EuiSelectable', () => {
         .realPress('Meta')
         .realPress('Shift')
         .then(() => {
-          cy.get('li[role=option]')
-            .eq(1)
-            .should('have.attr', 'aria-selected', 'true');
+          cy.get('input')
+            .should('have.attr', 'aria-activedescendant')
+            .and('include', 'option-1');
         });
 
       // Filter the list
@@ -346,7 +346,7 @@ describe('EuiSelectable', () => {
         );
         cy.get('[data-test-subj="truncatedText"]').should(
           'have.text',
-          'Lorem ip…ing elit.'
+          'Lorem ips…ing elit.'
         );
       });
 

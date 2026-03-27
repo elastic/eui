@@ -142,9 +142,9 @@ export const euiOverflowShadowStyles = (
   // We only support vertical scrolling as horizontal scrolling has increased complexity on element dimensions.
   if (hasAnimatedOverflowShadow && direction === 'y') {
     const featureFlag = 'animation-timeline: scroll()';
-    const gradientStartColor = `var(--euiSelectableListOverflowColor, ${colors.backgroundBasePlain})`;
+    const gradientStartColor = `var(--euiOverflowShadowColor, ${colors.backgroundBasePlain})`;
     const gradientEndColor = 'transparent';
-    const gradientSize = size.l;
+    const gradientSize = size.base;
     const gradientScrollRange = size.m;
 
     const commonPseudoElementStyles = `

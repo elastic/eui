@@ -194,45 +194,45 @@ describe('FieldValueSelectionFilter', () => {
       cy.get('button').click();
 
       cy.get('li[role="option"][title="feature"]')
-        .should('have.attr', 'aria-checked', 'false')
+        .should('have.attr', 'aria-selected', 'false')
         .click();
       cy.get('.euiNotificationBadge').should('have.text', '1');
       cy.get('li[role="option"][title="feature"]').should(
         'have.attr',
-        'aria-checked',
+        'aria-selected',
         'true'
       );
 
       // Multiselect false should close the popover, so we need to re-open it
       cy.get('button').click();
       cy.get('li[role="option"][title="Bug"]')
-        .should('have.attr', 'aria-checked', 'false')
+        .should('have.attr', 'aria-selected', 'false')
         .click();
       // Filter count should have remained at 1
       cy.get('.euiNotificationBadge').should('have.text', '1');
       cy.get('li[role="option"][title="Bug"]').should(
         'have.attr',
-        'aria-checked',
+        'aria-selected',
         'true'
       );
       // 'featured' should now be unchecked
       cy.get('li[role="option"][title="feature"]').should(
         'have.attr',
-        'aria-checked',
+        'aria-selected',
         'false'
       );
     });
   });
 
   describe('auto-close testing', () => {
-    const selectFilter = () => {
+    const selectFilter = (state: 'checked' | 'selected' = 'checked') => {
       // Open popover
       cy.get('button').click();
       cy.get('.euiPopover__panel').should('exist');
 
       // Select filter option
       cy.get('li[role="option"][title="feature"]')
-        .should('have.attr', 'aria-checked', 'false')
+        .should('have.attr', `aria-${state}`, 'false')
         .click();
     };
 
@@ -244,7 +244,7 @@ describe('FieldValueSelectionFilter', () => {
             multiSelect={true}
           />
         );
-        selectFilter();
+        selectFilter('checked');
         cy.get('.euiPopover__panel').should('exist');
       });
 
@@ -255,7 +255,7 @@ describe('FieldValueSelectionFilter', () => {
             multiSelect={false}
           />
         );
-        selectFilter();
+        selectFilter('selected');
         cy.get('.euiPopover__panel').should('not.exist');
       });
     });
@@ -268,7 +268,7 @@ describe('FieldValueSelectionFilter', () => {
             multiSelect={true}
           />
         );
-        selectFilter();
+        selectFilter('checked');
         cy.get('.euiPopover__panel').should('exist');
       });
 
@@ -279,7 +279,7 @@ describe('FieldValueSelectionFilter', () => {
             multiSelect={false}
           />
         );
-        selectFilter();
+        selectFilter('selected');
         cy.get('.euiPopover__panel').should('exist');
       });
     });
@@ -292,7 +292,7 @@ describe('FieldValueSelectionFilter', () => {
             multiSelect={true}
           />
         );
-        selectFilter();
+        selectFilter('checked');
         cy.get('.euiPopover__panel').should('not.exist');
       });
 
@@ -304,7 +304,7 @@ describe('FieldValueSelectionFilter', () => {
           />
         );
 
-        selectFilter();
+        selectFilter('selected');
         cy.get('.euiPopover__panel').should('not.exist');
       });
     });
@@ -323,8 +323,10 @@ describe('FieldValueSelectionFilter', () => {
       getOptions()
         .first()
         .should('have.attr', 'title', 'Bug')
-        .should('have.attr', 'aria-checked', 'true')
-        .should('have.attr', 'aria-selected', 'true');
+        .should('have.attr', 'aria-checked', 'true');
+      cy.get('ul[role="listbox"]')
+        .should('have.attr', 'aria-activedescendant')
+        .should('include', 'option-0');
     });
 
     it('does not sort selected options to the top when set to false', () => {
@@ -336,8 +338,10 @@ describe('FieldValueSelectionFilter', () => {
       getOptions()
         .last()
         .should('have.attr', 'title', 'Bug')
-        .should('have.attr', 'aria-checked', 'true')
-        .should('have.attr', 'aria-selected', 'true');
+        .should('have.attr', 'aria-checked', 'true');
+      cy.get('ul[role="listbox"]')
+        .should('have.attr', 'aria-activedescendant')
+        .should('include', 'option-2');
     });
   });
 
