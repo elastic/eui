@@ -41,7 +41,11 @@ import {
   EuiSelectableListItem,
   EuiSelectableListItemProps,
 } from './selectable_list_item';
-import { euiSelectableListStyles } from './selectable_list.styles';
+import {
+  euiSelectableListGroupLabelStyles,
+  euiSelectableListStyles,
+} from './selectable_list.styles';
+import { getListItemSize } from './utils/get_list_item_size';
 
 interface ListChildComponentProps<T>
   extends Omit<ReactWindowListChildComponentProps, 'style'> {
@@ -77,7 +81,7 @@ export type EuiSelectableOptionsListProps = CommonProps &
      */
     activeOptionIndex?: number;
     /**
-     * Show the check/cross selection indicator icons
+     * Show the check/cross selection indicators
      */
     showIcons?: boolean;
     singleSelection?: 'always' | boolean;
@@ -319,6 +323,8 @@ export class EuiSelectableList<T> extends Component<
 
       if (typeof activeOptionIndex !== 'undefined') {
         if (isVirtualized) {
+          // NOTE: Maybe we might want to consider changing scroll position to
+          // 'center' to not have items stick to the edges of the list
           this.listRef?.scrollToItem(activeOptionIndex, 'auto');
         } else {
           const activeOptionId = makeOptionId(activeOptionIndex);
@@ -380,10 +386,8 @@ export class EuiSelectableList<T> extends Component<
   getItemSize = (index: number): number => {
     const { rowHeight } = this.props as { rowHeight: number };
     const option = this.state.optionArray[index];
-    if (option?.isGroupLabel && index > 0) {
-      return rowHeight + 16; // 16px = the additional 2 * 8px padding of the divider line
-    }
-    return rowHeight;
+
+    return getListItemSize(index, rowHeight, !!option?.isGroupLabel);
   };
 
   ListRow = memo(({ data, index, style }: ListChildComponentProps<T>) => {
@@ -423,11 +427,12 @@ export class EuiSelectableList<T> extends Component<
       return (
         <RenderWithEuiStylesMemoizer>
           {(stylesMemoizer) => {
-            const styles = stylesMemoizer(euiSelectableListStyles);
+            const styles = stylesMemoizer(euiSelectableListGroupLabelStyles);
+
             return (
               <li
                 role="presentation"
-                css={styles.euiSelectableList__groupLabel}
+                css={styles.groupLabel}
                 className="euiSelectableList__groupLabel"
                 style={style}
                 {...(optionRest as HTMLAttributes<HTMLLIElement>)}

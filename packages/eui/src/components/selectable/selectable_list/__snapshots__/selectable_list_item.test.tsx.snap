@@ -2,21 +2,22 @@
 
 exports[`EuiSelectableListItem is rendered 1`] = `
 <li
-  aria-checked="false"
   aria-label="aria-label"
-  class="euiSelectableListItem testClass1 testClass2 emotion-euiSelectableListItem-euiTestCss"
+  aria-selected="false"
+  class="euiListItemLayout euiSelectableListItem testClass1 testClass2 emotion-euiListItemLayout-isInteractive-euiTestCss"
   data-test-subj="test subject string"
   role="option"
 >
   <span
-    class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+    class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
   >
     <span
-      class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
+      class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+      color="text"
       data-euiicon-type="empty"
     />
     <span
-      class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+      class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
     />
   </span>
 </li>
@@ -24,25 +25,26 @@ exports[`EuiSelectableListItem is rendered 1`] = `
 
 exports[`EuiSelectableListItem props append 1`] = `
 <li
-  aria-checked="false"
-  class="euiSelectableListItem emotion-euiSelectableListItem"
+  aria-selected="false"
+  class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive"
+  data-test-subj="euiListItemLayout"
   role="option"
 >
   <span
-    class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+    class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
   >
     <span
-      class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
+      class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+      color="text"
       data-euiicon-type="empty"
     />
     <span
-      class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+      class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
     />
     <span
-      class="euiSelectableListItem__append emotion-euiSelectableListItem__append"
+      class="euiListItemLayout__append euiSelectableListItem__append emotion-euiListItemLayout__append"
     >
       <span />
-       
     </span>
   </span>
 </li>
@@ -51,19 +53,20 @@ exports[`EuiSelectableListItem props append 1`] = `
 exports[`EuiSelectableListItem props checked & allowExclusions mixed 1`] = `
 <li
   aria-checked="mixed"
-  class="euiSelectableListItem emotion-euiSelectableListItem-singleSelection"
+  class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive-isSelected"
+  data-test-subj="euiListItemLayout"
   role="option"
 >
   <span
-    class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+    class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
   >
     <span
-      class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
+      class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
       color="primary"
       data-euiicon-type="minus"
     />
     <span
-      class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+      class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
     >
       <div
         class="emotion-euiScreenReaderOnly"
@@ -83,19 +86,20 @@ exports[`EuiSelectableListItem props checked & allowExclusions mixed 1`] = `
 exports[`EuiSelectableListItem props checked & allowExclusions off 1`] = `
 <li
   aria-checked="true"
-  class="euiSelectableListItem emotion-euiSelectableListItem-singleSelection"
+  class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive-isSelected"
+  data-test-subj="euiListItemLayout"
   role="option"
 >
   <span
-    class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+    class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
   >
     <span
-      class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
+      class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
       color="primary"
       data-euiicon-type="cross"
     />
     <span
-      class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+      class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
     >
       <div
         class="emotion-euiScreenReaderOnly"
@@ -113,19 +117,20 @@ exports[`EuiSelectableListItem props checked & allowExclusions off 1`] = `
 exports[`EuiSelectableListItem props checked & allowExclusions on 1`] = `
 <li
   aria-checked="true"
-  class="euiSelectableListItem emotion-euiSelectableListItem-singleSelection"
+  class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive-isSelected"
+  data-test-subj="euiListItemLayout"
   role="option"
 >
   <span
-    class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+    class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
   >
     <span
-      class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
+      class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
       color="primary"
       data-euiicon-type="check"
     />
     <span
-      class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+      class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
     >
       <div
         class="emotion-euiScreenReaderOnly"
@@ -143,18 +148,20 @@ exports[`EuiSelectableListItem props checked & allowExclusions on 1`] = `
 exports[`EuiSelectableListItem props checked & allowExclusions undefined 1`] = `
 <li
   aria-checked="false"
-  class="euiSelectableListItem emotion-euiSelectableListItem"
+  class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive"
+  data-test-subj="euiListItemLayout"
   role="option"
 >
   <span
-    class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+    class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
   >
     <span
-      class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
+      class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+      color="text"
       data-euiicon-type="empty"
     />
     <span
-      class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+      class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
     >
       <div
         class="emotion-euiScreenReaderOnly"
@@ -169,20 +176,21 @@ exports[`EuiSelectableListItem props checked & allowExclusions undefined 1`] = `
 
 exports[`EuiSelectableListItem props checked & searchable on 1`] = `
 <li
-  aria-checked="true"
-  class="euiSelectableListItem emotion-euiSelectableListItem-singleSelection"
+  aria-selected="true"
+  class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive-isSelected"
+  data-test-subj="euiListItemLayout"
   role="option"
 >
   <span
-    class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+    class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
   >
     <span
-      class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
+      class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
       color="primary"
       data-euiicon-type="check"
     />
     <span
-      class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+      class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
     >
       <div
         class="emotion-euiScreenReaderOnly"
@@ -199,19 +207,21 @@ exports[`EuiSelectableListItem props checked & searchable on 1`] = `
 
 exports[`EuiSelectableListItem props checked & searchable undefined 1`] = `
 <li
-  aria-checked="false"
-  class="euiSelectableListItem emotion-euiSelectableListItem"
+  aria-selected="false"
+  class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive"
+  data-test-subj="euiListItemLayout"
   role="option"
 >
   <span
-    class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+    class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
   >
     <span
-      class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
+      class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+      color="text"
       data-euiicon-type="empty"
     />
     <span
-      class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+      class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
     >
       <div
         class="emotion-euiScreenReaderOnly"
@@ -227,19 +237,20 @@ exports[`EuiSelectableListItem props checked & searchable undefined 1`] = `
 exports[`EuiSelectableListItem props checked mixed 1`] = `
 <li
   aria-checked="mixed"
-  class="euiSelectableListItem emotion-euiSelectableListItem-singleSelection"
+  class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive-isSelected"
+  data-test-subj="euiListItemLayout"
   role="option"
 >
   <span
-    class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+    class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
   >
     <span
-      class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
+      class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
       color="primary"
       data-euiicon-type="minus"
     />
     <span
-      class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+      class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
     >
       <div
         class="emotion-euiScreenReaderOnly"
@@ -258,20 +269,21 @@ exports[`EuiSelectableListItem props checked mixed 1`] = `
 
 exports[`EuiSelectableListItem props checked on 1`] = `
 <li
-  aria-checked="true"
-  class="euiSelectableListItem emotion-euiSelectableListItem-singleSelection"
+  aria-selected="true"
+  class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive-isSelected"
+  data-test-subj="euiListItemLayout"
   role="option"
 >
   <span
-    class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+    class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
   >
     <span
-      class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
+      class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
       color="primary"
       data-euiicon-type="check"
     />
     <span
-      class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+      class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
     >
       <div
         class="emotion-euiScreenReaderOnly"
@@ -286,19 +298,21 @@ exports[`EuiSelectableListItem props checked on 1`] = `
 
 exports[`EuiSelectableListItem props checked undefined 1`] = `
 <li
-  aria-checked="false"
-  class="euiSelectableListItem emotion-euiSelectableListItem"
+  aria-selected="false"
+  class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive"
+  data-test-subj="euiListItemLayout"
   role="option"
 >
   <span
-    class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+    class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
   >
     <span
-      class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
+      class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+      color="text"
       data-euiicon-type="empty"
     />
     <span
-      class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+      class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
     />
   </span>
 </li>
@@ -306,21 +320,22 @@ exports[`EuiSelectableListItem props checked undefined 1`] = `
 
 exports[`EuiSelectableListItem props disabled 1`] = `
 <li
-  aria-checked="false"
   aria-disabled="true"
   aria-selected="false"
-  class="euiSelectableListItem emotion-euiSelectableListItem"
+  class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isDisabled"
+  data-test-subj="euiListItemLayout"
   role="option"
 >
   <span
-    class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+    class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
   >
     <span
-      class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
+      class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+      color="subdued"
       data-euiicon-type="empty"
     />
     <span
-      class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+      class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
     />
   </span>
 </li>
@@ -328,20 +343,21 @@ exports[`EuiSelectableListItem props disabled 1`] = `
 
 exports[`EuiSelectableListItem props isFocused 1`] = `
 <li
-  aria-checked="false"
-  aria-selected="true"
-  class="euiSelectableListItem euiSelectableListItem-isFocused emotion-euiSelectableListItem"
+  aria-selected="false"
+  class="euiListItemLayout euiSelectableListItem euiSelectableListItem-isFocused emotion-euiListItemLayout-isInteractive-isFocused"
+  data-test-subj="euiListItemLayout"
   role="option"
 >
   <span
-    class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+    class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
   >
     <span
-      class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
+      class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+      color="text"
       data-euiicon-type="empty"
     />
     <span
-      class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+      class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
     />
   </span>
 </li>
@@ -349,19 +365,21 @@ exports[`EuiSelectableListItem props isFocused 1`] = `
 
 exports[`EuiSelectableListItem props onFocusBadge can be custom 1`] = `
 <li
-  aria-checked="false"
-  class="euiSelectableListItem emotion-euiSelectableListItem"
+  aria-selected="false"
+  class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive"
+  data-test-subj="euiListItemLayout"
   role="option"
 >
   <span
-    class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+    class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
   >
     <span
-      class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
+      class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+      color="text"
       data-euiicon-type="empty"
     />
     <span
-      class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+      class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
     />
   </span>
 </li>
@@ -369,19 +387,21 @@ exports[`EuiSelectableListItem props onFocusBadge can be custom 1`] = `
 
 exports[`EuiSelectableListItem props onFocusBadge can be true 1`] = `
 <li
-  aria-checked="false"
-  class="euiSelectableListItem emotion-euiSelectableListItem"
+  aria-selected="false"
+  class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive"
+  data-test-subj="euiListItemLayout"
   role="option"
 >
   <span
-    class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+    class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
   >
     <span
-      class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
+      class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+      color="text"
       data-euiicon-type="empty"
     />
     <span
-      class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+      class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
     />
   </span>
 </li>
@@ -389,24 +409,26 @@ exports[`EuiSelectableListItem props onFocusBadge can be true 1`] = `
 
 exports[`EuiSelectableListItem props prepend 1`] = `
 <li
-  aria-checked="false"
-  class="euiSelectableListItem emotion-euiSelectableListItem"
+  aria-selected="false"
+  class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive"
+  data-test-subj="euiListItemLayout"
   role="option"
 >
   <span
-    class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+    class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
   >
     <span
-      class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
+      class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+      color="text"
       data-euiicon-type="empty"
     />
     <span
-      class="euiSelectableListItem__prepend emotion-euiSelectableListItem__prepend"
+      class="euiListItemLayout__prepend euiSelectableListItem__prepend emotion-euiListItemLayout__prepend"
     >
       <span />
     </span>
     <span
-      class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+      class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
     />
   </span>
 </li>
@@ -414,15 +436,16 @@ exports[`EuiSelectableListItem props prepend 1`] = `
 
 exports[`EuiSelectableListItem props showIcons can be turned off 1`] = `
 <li
-  aria-checked="false"
-  class="euiSelectableListItem emotion-euiSelectableListItem"
+  aria-selected="false"
+  class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive"
+  data-test-subj="euiListItemLayout"
   role="option"
 >
   <span
-    class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+    class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
   >
     <span
-      class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+      class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
     />
   </span>
 </li>
@@ -430,19 +453,21 @@ exports[`EuiSelectableListItem props showIcons can be turned off 1`] = `
 
 exports[`EuiSelectableListItem props textWrap can be "wrap" 1`] = `
 <li
-  aria-checked="false"
-  class="euiSelectableListItem emotion-euiSelectableListItem"
+  aria-selected="false"
+  class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive"
+  data-test-subj="euiListItemLayout"
   role="option"
 >
   <span
-    class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+    class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
   >
     <span
-      class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
+      class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+      color="text"
       data-euiicon-type="empty"
     />
     <span
-      class="euiSelectableListItem__text emotion-euiSelectableListItem__text-wrap"
+      class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-wrap"
     />
   </span>
 </li>
@@ -454,9 +479,10 @@ exports[`EuiSelectableListItem props tooltip behavior on mouseover 1`] = `
 >
   <div>
     <li
-      aria-checked="false"
       aria-describedby="generated-id"
-      class="euiSelectableListItem emotion-euiSelectableListItem"
+      aria-selected="false"
+      class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive"
+      data-test-subj="euiListItemLayout"
       role="option"
     >
       <span
@@ -465,14 +491,15 @@ exports[`EuiSelectableListItem props tooltip behavior on mouseover 1`] = `
       >
         <span
           aria-describedby="generated-id"
-          class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+          class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
         >
           <span
-            class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
+            class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+            color="text"
             data-euiicon-type="empty"
           />
           <span
-            class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+            class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
           >
             Item content
           </span>
@@ -515,10 +542,10 @@ exports[`EuiSelectableListItem props tooltip behavior when isFocused 1`] = `
 >
   <div>
     <li
-      aria-checked="false"
       aria-describedby="generated-id"
-      aria-selected="true"
-      class="euiSelectableListItem euiSelectableListItem-isFocused emotion-euiSelectableListItem"
+      aria-selected="false"
+      class="euiListItemLayout euiSelectableListItem euiSelectableListItem-isFocused emotion-euiListItemLayout-isInteractive-isFocused"
+      data-test-subj="euiListItemLayout"
       role="option"
     >
       <span
@@ -527,14 +554,15 @@ exports[`EuiSelectableListItem props tooltip behavior when isFocused 1`] = `
       >
         <span
           aria-describedby="generated-id"
-          class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+          class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
         >
           <span
-            class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
+            class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+            color="text"
             data-euiicon-type="empty"
           />
           <span
-            class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+            class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
           >
             Item content
           </span>

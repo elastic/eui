@@ -40,7 +40,6 @@ import {
   EuiComboBoxInputProps,
   EuiComboBoxInput,
 } from './combo_box_input/combo_box_input';
-import { EuiComboBoxOptionsListProps } from './combo_box_options_list/combo_box_options_list';
 import {
   OptionHandler,
   RefInstance,
@@ -48,7 +47,10 @@ import {
   EuiComboBoxSingleSelectionShape,
   EuiComboBoxOptionMatcher,
 } from './types';
-import { EuiComboBoxOptionsList } from './combo_box_options_list';
+import {
+  EuiComboBoxOptionsList,
+  type EuiComboBoxOptionsListProps,
+} from './combo_box_options_list';
 import { euiComboBoxStyles as styles } from './combo_box.styles';
 
 type DrillProps<T> = Pick<
@@ -58,6 +60,7 @@ type DrillProps<T> = Pick<
   | 'options'
   | 'renderOption'
   | 'selectedOptions'
+  | 'onFocusBadge'
 >;
 
 export interface _EuiComboBoxProps<T>
@@ -169,7 +172,7 @@ export interface _EuiComboBoxProps<T>
   'aria-labelledby'?: string;
   /**
    * By default, EuiComboBox will truncate option labels at the end of
-   * the string. You can use pass in a custom truncation configuration that
+   * the string. You can pass in a custom truncation configuration that
    * accepts any [EuiTextTruncate](/#/utilities/text-truncation) prop,
    * except for `text` and `children`.
    *
@@ -213,7 +216,7 @@ interface EuiComboBoxState<T> {
   hasFocus: boolean;
   isListOpen: boolean;
   matchingOptions: Array<EuiComboBoxOptionOption<T>>;
-  listOptionRefs: Array<HTMLButtonElement | null>;
+  listOptionRefs: Array<HTMLLIElement | null>;
   searchValue: string;
 }
 
@@ -274,7 +277,11 @@ export class EuiComboBox<T> extends Component<
     this.listRefInstance = ref;
   };
 
-  setListOptionRefs = (node: HTMLButtonElement | null, index: number) => {
+  setListOptionRefs = (node: HTMLLIElement | null, index: number) => {
+    const current = this.state.listOptionRefs[index];
+    // Skip updating if the ref is null (on cleanup) or didn't change
+    if (node === null || node === current) return;
+
     this.setState(({ listOptionRefs }) => {
       const _listOptionRefs = listOptionRefs;
       _listOptionRefs[index] = node;
@@ -296,43 +303,48 @@ export class EuiComboBox<T> extends Component<
     this.setState({ isListOpen: false });
   };
 
-  incrementActiveOptionIndex = (amount: number) => {
-    // If there are no options available, do nothing.
-    if (!this.state.matchingOptions.length) {
-      return;
+  findNextSelectableOptionIndex = (
+    options: Array<EuiComboBoxOptionOption<T>>,
+    startIndex: number,
+    direction: 1 | -1 = 1
+  ): number => {
+    if (!options.length) return -1;
+
+    let index = startIndex;
+
+    for (let count = 0; count < options.length; count++) {
+      const option = options[index];
+
+      if (!option.isGroupLabelOption && !option.disabled) {
+        return index;
+      }
+
+      index = (index + direction + options.length) % options.length;
     }
 
+    return -1; // the remaining options can't be selected (group labels or disabled)
+  };
+
+  incrementActiveOptionIndex = (amount: number) => {
+    if (!this.state.matchingOptions.length) return;
     this.setState(({ activeOptionIndex, matchingOptions }) => {
-      let nextActiveOptionIndex;
-
-      if (activeOptionIndex < 0) {
-        // If this is the beginning of the user's keyboard navigation of the menu, then we'll focus
-        // either the first or last item.
-        nextActiveOptionIndex = amount < 0 ? matchingOptions.length - 1 : 0;
-      } else {
-        nextActiveOptionIndex = activeOptionIndex + amount;
-
-        if (nextActiveOptionIndex < 0) {
-          nextActiveOptionIndex = matchingOptions.length - 1;
-        } else if (nextActiveOptionIndex === matchingOptions.length) {
-          nextActiveOptionIndex = 0;
-        }
-      }
-
-      // Group titles are included in option list but are not selectable
-      // Skip group title options
       const direction = amount > 0 ? 1 : -1;
-      while (matchingOptions[nextActiveOptionIndex].isGroupLabelOption) {
-        nextActiveOptionIndex = nextActiveOptionIndex + direction;
-
-        if (nextActiveOptionIndex < 0) {
-          nextActiveOptionIndex = matchingOptions.length - 1;
-        } else if (nextActiveOptionIndex === matchingOptions.length) {
-          nextActiveOptionIndex = 0;
-        }
-      }
-
-      return { activeOptionIndex: nextActiveOptionIndex };
+      const startIndex =
+        activeOptionIndex < 0
+          ? // Inintial interaction: jump to first or last item
+            amount < 0
+            ? matchingOptions.length - 1
+            : 0
+          : // Advance by amount, wrapping around
+            (activeOptionIndex + amount + matchingOptions.length) %
+            matchingOptions.length;
+      return {
+        activeOptionIndex: this.findNextSelectableOptionIndex(
+          matchingOptions,
+          startIndex,
+          direction
+        ),
+      };
     });
   };
 
@@ -515,6 +527,7 @@ export class EuiComboBox<T> extends Component<
       // firefox doesn't support calling .focus() during a blur event
       // https://bugzilla.mozilla.org/show_bug.cgi?id=53579
       requestAnimationFrame(() => {
+        console.log('return focus');
         this.searchInputRefInstance?.focus();
       });
     }
@@ -601,6 +614,8 @@ export class EuiComboBox<T> extends Component<
       selectedOptions,
       singleSelection: singleSelectionProp,
     } = this.props;
+    const { matchingOptions, listOptionRefs } = this.state;
+
     const singleSelection = Boolean(singleSelectionProp);
     const changeOptions = singleSelection
       ? [addedOption]
@@ -609,19 +624,33 @@ export class EuiComboBox<T> extends Component<
     onChange?.(changeOptions);
 
     this.clearSearchValue();
-    this.clearActiveOption();
-
-    if (!isContainerBlur) {
-      this.searchInputRefInstance?.focus();
-    }
 
     if (singleSelection) {
+      // List closes after single selection; return focus to the input
+      this.clearActiveOption();
+
+      if (!isContainerBlur) {
+        this.searchInputRefInstance?.focus();
+      }
+
       requestAnimationFrame(() => this.closeList());
+    } else if (isContainerBlur) {
+      // User tabbed away. `onContainerBlur` will close the list. We're only cleaning up state
+      this.clearActiveOption();
     } else {
-      this.setState(({ listOptionRefs, matchingOptions }) => ({
+      const currentIndex = matchingOptions.indexOf(addedOption);
+      const nextOptions = matchingOptions.filter(
+        (option) => option !== addedOption
+      );
+
+      this.setState({
         listOptionRefs: listOptionRefs.slice(0, matchingOptions.length - 1),
-        activeOptionIndex: matchingOptions.indexOf(addedOption),
-      }));
+        activeOptionIndex: this.findNextSelectableOptionIndex(
+          nextOptions,
+          Math.min(currentIndex, nextOptions.length - 1)
+          // direction defaults to 1 (forward)
+        ),
+      });
     }
   };
 
@@ -765,6 +794,7 @@ export class EuiComboBox<T> extends Component<
       delimiter,
       append,
       autoFocus,
+      onFocusBadge,
       truncationProps,
       inputPopoverProps,
       optionMatcher,
@@ -843,6 +873,7 @@ export class EuiComboBox<T> extends Component<
               getSelectedOptionForSearchValue={getSelectedOptionForSearchValue}
               listboxAriaLabel={listboxAriaLabel}
               truncationProps={truncationProps}
+              onFocusBadge={onFocusBadge}
             />
           )}
         </EuiI18n>
@@ -877,7 +908,7 @@ export class EuiComboBox<T> extends Component<
             >
               <EuiInputPopover
                 fullWidth={fullWidth}
-                panelPaddingSize="none"
+                panelPaddingSize="s"
                 disableFocusTrap={true}
                 closeOnScroll={true}
                 {...inputPopoverProps}
@@ -895,7 +926,13 @@ export class EuiComboBox<T> extends Component<
                         ? this.state.listOptionRefs[
                             this.state.activeOptionIndex
                           ]?.id ??
-                          this.rootId(`_option-${this.state.activeOptionIndex}`)
+                          // uses the original `options` array to ensure a stable `id`, otherwise `aria-activedescendant`
+                          // loses focus on selecting an option (due to actively removing it from the list)
+                          this.rootId(
+                            `_option-${this.props.options.indexOf(
+                              matchingOptions[activeOptionIndex]
+                            )}`
+                          )
                         : undefined
                     }
                     fullWidth={fullWidth}

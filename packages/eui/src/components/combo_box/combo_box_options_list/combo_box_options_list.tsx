@@ -6,13 +6,20 @@
  * Side Public License, v 1.
  */
 
-import React, { Component, ContextType, ReactNode, RefCallback } from 'react';
+import React, {
+  Component,
+  ContextType,
+  ReactNode,
+  RefCallback,
+  RefObject,
+  createRef,
+} from 'react';
 import classNames from 'classnames';
 import {
-  FixedSizeList,
-  FixedSizeListProps,
   ListProps,
   ListChildComponentProps,
+  VariableSizeList,
+  VariableSizeListProps,
 } from 'react-window';
 
 import {
@@ -26,13 +33,13 @@ import { EuiMark } from '../../mark';
 import { EuiText } from '../../text';
 import { EuiLoadingSpinner } from '../../loading';
 import { EuiI18n } from '../../i18n';
-import {
-  EuiFilterSelectItem,
-  FilterChecked,
-} from '../../filter_group/filter_select_item';
+import { FilterChecked } from '../../filter_group/filter_select_item';
+import { euiSelectableListGroupLabelStyles } from '../../selectable/selectable_list/selectable_list.styles';
+import { getListItemSize } from '../../selectable/selectable_list/utils/get_list_item_size';
 import { EuiBadge } from '../../badge';
 import { EuiTextTruncate } from '../../text_truncate';
 import { EuiInputPopoverWidthContext } from '../../popover/input_popover';
+import { EuiListItemLayout } from '../../list_item_layout';
 
 import type { _EuiComboBoxProps } from '../combo_box';
 import {
@@ -40,8 +47,6 @@ import {
   EuiComboBoxSingleSelectionShape,
   OptionHandler,
 } from '../types';
-import { EuiComboBoxOptionAppendPrepend } from '../utils';
-import { EuiComboBoxTitle } from './combo_box_title';
 import {
   euiComboBoxOptionListStyles,
   LIST_MAX_HEIGHT,
@@ -65,7 +70,7 @@ export type EuiComboBoxOptionsListProps<T> = CommonProps & {
   isCaseSensitive?: boolean;
   isLoading?: boolean;
   listRef: RefCallback<HTMLDivElement>;
-  setListOptionRefs: (ref: HTMLButtonElement | null, index: number) => void;
+  setListOptionRefs: (ref: HTMLLIElement | null, index: number) => void;
   matchingOptions: Array<EuiComboBoxOptionOption<T>>;
   onCloseList: (event: Event) => void;
   onCreateOption?: (
@@ -92,6 +97,7 @@ export type EuiComboBoxOptionsListProps<T> = CommonProps & {
   singleSelection?: boolean | EuiComboBoxSingleSelectionShape;
   delimiter?: string;
   truncationProps?: _EuiComboBoxProps<T>['truncationProps'];
+  onFocusBadge?: boolean;
 };
 
 const hitEnterBadge = (
@@ -106,7 +112,9 @@ const hitEnterBadge = (
 export class EuiComboBoxOptionsList<T> extends Component<
   EuiComboBoxOptionsListProps<T>
 > {
-  listRef: FixedSizeList | null = null;
+  listRef: VariableSizeList | null = null;
+  listBoxRef: RefObject<HTMLUListElement> = createRef();
+  optionRefs: Record<number, HTMLLIElement | null> = {};
 
   static contextType = EuiInputPopoverWidthContext;
   declare context: ContextType<typeof EuiInputPopoverWidthContext>;
@@ -118,28 +126,41 @@ export class EuiComboBoxOptionsList<T> extends Component<
   };
 
   componentDidUpdate(prevProps: EuiComboBoxOptionsListProps<T>) {
+    const { activeOptionIndex, rowHeight } = this.props;
+
     if (
       this.listRef &&
-      typeof this.props.activeOptionIndex !== 'undefined' &&
-      this.props.activeOptionIndex !== prevProps.activeOptionIndex &&
-      this.props.rowHeight !== 'auto'
+      typeof activeOptionIndex !== 'undefined' &&
+      activeOptionIndex !== prevProps.activeOptionIndex &&
+      rowHeight !== 'auto'
     ) {
-      this.listRef.scrollToItem(this.props.activeOptionIndex, 'auto');
+      // NOTE: The 'auto' setting results in the item being scrolled to the top/end edge;
+      // We could consider changing it to 'center' to keep items further way from the listbox edges.
+      this.listRef.scrollToItem(activeOptionIndex, 'auto');
+    } else if (rowHeight === 'auto') {
+      this.optionRefs[activeOptionIndex ?? 0]?.scrollIntoView?.({
+        block: 'nearest',
+      });
     }
   }
 
-  setListRef = (ref: FixedSizeList | null) => {
+  setListRef = (ref: VariableSizeList | null) => {
     this.listRef = ref;
   };
 
-  ListInnerElement: FixedSizeListProps['innerElementType'] = ({
+  setOptionRef = (ref: HTMLLIElement | null, index: number) => {
+    this.optionRefs[index] = ref;
+    this.props.setListOptionRefs?.(ref, index);
+  };
+
+  ListInnerElement: VariableSizeListProps['innerElementType'] = ({
     children,
     ...rest
   }) => {
     return (
-      <div {...rest} {...this.getListInnerElementProps()}>
+      <ul {...rest} {...this.getListInnerElementProps()}>
         {children}
-      </div>
+      </ul>
     );
   };
 
@@ -153,9 +174,12 @@ export class EuiComboBoxOptionsList<T> extends Component<
       prepend,
       append,
       truncationProps: _truncationProps,
+      toolTipContent,
+      toolTipProps,
       ...rest
     } = option;
     const {
+      options,
       singleSelection,
       selectedOptions,
       onOptionClick,
@@ -164,7 +188,7 @@ export class EuiComboBoxOptionsList<T> extends Component<
       searchValue,
       rootId,
       matchingOptions,
-      setListOptionRefs,
+      onFocusBadge,
       rowHeight,
     } = this.props;
 
@@ -178,13 +202,25 @@ export class EuiComboBoxOptionsList<T> extends Component<
 
     if (isGroupLabelOption) {
       return (
-        <div key={key ?? label} style={style}>
-          <EuiComboBoxTitle>
-            {prepend}
-            {label}
-            {append}
-          </EuiComboBoxTitle>
-        </div>
+        <RenderWithEuiStylesMemoizer>
+          {(stylesMemoizer) => {
+            const styles = stylesMemoizer(euiSelectableListGroupLabelStyles);
+
+            return (
+              <li
+                key={key ?? label}
+                style={style}
+                role="presentation"
+                className="euiComboBoxTitle"
+                css={styles.groupLabel}
+              >
+                {prepend}
+                {label}
+                {append}
+              </li>
+            );
+          }}
+        </RenderWithEuiStylesMemoizer>
       );
     }
 
@@ -201,55 +237,67 @@ export class EuiComboBoxOptionsList<T> extends Component<
     const optionIsFocused = activeOptionIndex === index;
     const optionIsDisabled =
       option.hasOwnProperty('disabled') && option.disabled === true;
+    const hasOnFocusBadge =
+      onFocusBadge && optionIsFocused && !optionIsDisabled;
 
     return (
-      <EuiFilterSelectItem
-        style={style}
+      <EuiListItemLayout
+        component="li"
+        role="option"
+        // uses `aria-selected` over `aria-checked` for multi-selection as the selected options are removed from the list
+        selectionMode="selected"
+        className="euiComboBoxOption"
+        ref={(node: HTMLLIElement | null) => this.setOptionRef(node, index)}
+        // uses the original `options` array for the index to ensure a stable `id`, otherwise `aria-activedescendant`
+        // loses focus on selecting an option (due to actively removing it from the list)
+        id={rootId(`_option-${options.indexOf(option)}`)}
         key={option.key ?? option.label}
+        title={label}
+        prepend={option.prepend}
+        append={
+          hasOnFocusBadge ? (
+            <>
+              {option.append}
+              {hitEnterBadge}
+            </>
+          ) : (
+            option.append
+          )
+        }
+        checked={checked}
+        isFocused={optionIsFocused}
+        isSelected={!optionIsDisabled && checked !== undefined}
+        isDisabled={optionIsDisabled}
+        isSingleSelection={!!singleSelection}
+        showIndicator={!!singleSelection}
+        textWrap={rowHeight !== 'auto' ? 'truncate' : 'wrap'}
+        tooltipProps={
+          toolTipContent
+            ? {
+                ...toolTipProps,
+                content: toolTipContent,
+              }
+            : undefined
+        }
+        style={style}
+        aria-setsize={matchingOptions.length}
+        aria-posinset={optionIndex + 1}
+        contentProps={{
+          className: 'euiComboBoxOption__content',
+        }}
         onClick={() => {
           if (onOptionClick) {
             onOptionClick(option);
           }
         }}
-        isFocused={optionIsFocused}
-        checked={checked}
-        showIcons={singleSelection ? true : false}
-        truncateContent={rowHeight !== 'auto'}
-        id={rootId(`_option-${index}`)}
-        title={label}
-        aria-setsize={matchingOptions.length}
-        aria-posinset={optionIndex + 1}
-        forwardRef={(ref) => setListOptionRefs(ref, index)}
         {...rest}
       >
-        <span className="euiComboBoxOption__contentWrapper">
-          <EuiComboBoxOptionAppendPrepend
-            option={option}
-            classNamePrefix="euiComboBoxOption"
-            marginSize="s"
-          >
-            {/* Note for possible future refactor: `eui-textTruncate` here
-            is redundant beacuse it's already applied in EuiFilterSelectItem */}
-            <span
-              className={classNames(
-                'euiComboBoxOption__content',
-                rowHeight !== 'auto' && 'eui-textTruncate'
-              )}
-            >
-              {renderOption
-                ? renderOption(
-                    option,
-                    searchValue,
-                    'euiComboBoxOption__renderOption'
-                  )
-                : rowHeight === 'auto'
-                ? this.renderVariableHeightOption(label)
-                : this.renderTruncatedOption(label, truncationProps)}
-            </span>
-          </EuiComboBoxOptionAppendPrepend>
-          {optionIsFocused && !optionIsDisabled ? hitEnterBadge : null}
-        </span>
-      </EuiFilterSelectItem>
+        {renderOption
+          ? renderOption(option, searchValue, 'euiComboBoxOption__renderOption')
+          : rowHeight === 'auto'
+          ? this.renderVariableHeightOption(label)
+          : this.renderTruncatedOption(label, truncationProps)}
+      </EuiListItemLayout>
     );
   };
 
@@ -258,6 +306,8 @@ export class EuiComboBoxOptionsList<T> extends Component<
       'aria-label': this.props.listboxAriaLabel,
       id: this.props.rootId('listbox'),
       role: 'listbox',
+      'aria-multiselectable':
+        this.props.singleSelection === false ? true : undefined,
       tabIndex: 0,
     };
   };
@@ -341,6 +391,13 @@ export class EuiComboBoxOptionsList<T> extends Component<
     );
   };
 
+  getItemSize = (index: number): number => {
+    const { rowHeight } = this.props as { rowHeight: number };
+    const option = this.props.matchingOptions[index];
+
+    return getListItemSize(index, rowHeight, !!option?.isGroupLabelOption);
+  };
+
   render() {
     const {
       'data-test-subj': dataTestSubj,
@@ -367,6 +424,7 @@ export class EuiComboBoxOptionsList<T> extends Component<
       selectedOptions,
       singleSelection,
       delimiter,
+      onFocusBadge,
       truncationProps,
       listboxAriaLabel,
       setListOptionRefs,
@@ -504,6 +562,11 @@ export class EuiComboBoxOptionsList<T> extends Component<
       boundedHeight = height > LIST_MAX_HEIGHT ? LIST_MAX_HEIGHT : height;
     }
 
+    /* We need to consider the panel padding (2 * 8px) but should only subtract it if
+    the panel width has already been set. */
+    const listWidth =
+      this.context && this.context > 0 ? this.context - 16 : this.context;
+
     return (
       <RenderWithEuiStylesMemoizer>
         {(stylesMemoizer) => {
@@ -528,31 +591,33 @@ export class EuiComboBoxOptionsList<T> extends Component<
                   {emptyStateContent}
                 </EuiText>
               ) : rowHeight === 'auto' ? (
-                <div {...this.getListInnerElementProps()}>
+                <ul ref={this.listBoxRef} {...this.getListInnerElementProps()}>
                   {matchingOptions.map((_, index) => (
                     <this.ListRow
                       data={matchingOptions}
                       index={index}
-                      key={index} // same as FixedSizeList's default
+                      key={index} // same as VariableSizeList's default
                       style={{}}
                     />
                   ))}
-                </div>
+                </ul>
               ) : (
-                <FixedSizeList
+                <VariableSizeList
                   css={styles.euiComboBoxOptionList__virtualization}
                   className="euiComboBoxOptionsList__virtualization"
                   height={boundedHeight}
                   onScroll={onScroll}
                   itemCount={matchingOptions.length}
-                  itemSize={rowHeight}
+                  itemSize={this.getItemSize}
                   itemData={matchingOptions}
+                  // Prevents scrollbar jump before VariableSizeList populates the cached size
+                  estimatedItemSize={rowHeight}
                   ref={this.setListRef}
                   innerElementType={this.ListInnerElement}
-                  width={this.context}
+                  width={listWidth}
                 >
                   {this.ListRow}
-                </FixedSizeList>
+                </VariableSizeList>
               )}
             </div>
           );
