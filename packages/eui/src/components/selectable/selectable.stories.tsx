@@ -86,12 +86,15 @@ const meta: Meta<EuiSelectableProps> = {
     searchable: false,
     singleSelection: false,
     isPreFiltered: false,
+    allowExclusions: false,
   },
 };
 hideStorybookControls(meta, ['aria-label']);
 
 export default meta;
 type Story = StoryObj<EuiSelectableProps>;
+
+enableFunctionToggleControls(meta, ['onChange', 'onActiveOptionChange']);
 
 export const Playground: Story = {
   args: {
@@ -107,7 +110,6 @@ export const Playground: Story = {
   },
   render: ({ ...args }: EuiSelectableProps) => <StatefulSelectable {...args} />,
 };
-enableFunctionToggleControls(Playground, ['onChange', 'onActiveOptionChange']);
 
 export const WithSearch: Story = {
   args: {
@@ -164,9 +166,56 @@ export const WithSearchAndGroups: Story = {
   render: ({ ...args }: EuiSelectableProps) => <StatefulSelectable {...args} />,
 };
 
+export const WithoutVirtualization: Story = {
+  args: {
+    ...Playground.args,
+    listProps: {
+      isVirtualized: false,
+    },
+    // same height as virtualized variant to support direct comparison
+    height: 208,
+  },
+  render: ({ ...args }: EuiSelectableProps) => <StatefulSelectable {...args} />,
+};
+
+export const WithTruncation: Story = {
+  tags: ['vrt-only'],
+  args: {
+    ...Playground.args,
+    options: [
+      {
+        label:
+          'Titan Titan Titan Titan Titan Titan Titan Titan Titan Titan Titan', // CSS truncation
+      },
+      {
+        label:
+          'Mimas Mimas Mimas Mimas Mimas Mimas Mimas Mimas Mimas Mimas Mimas',
+        truncationProps: { truncation: 'end' }, // EuiTextTruncate truncation
+      },
+      {
+        label:
+          'Dione Dione Dione Dione Dione Dione Dione Dione Dione Dione Dione',
+        truncationProps: { truncation: 'start' },
+      },
+      {
+        label:
+          'Iapetus Iapetus Iapetus Iapetus Iapetus Iapetus Iapetus Iapetus',
+        truncationProps: { truncation: 'startEnd' },
+      },
+      {
+        label: 'Phoebe Phoebe Phoebe Phoebe Phoebe Phoebe Phoebe Phoebe Phoebe',
+        truncationProps: { truncation: 'middle' },
+      },
+    ],
+    style: { width: 250 },
+  },
+  render: ({ ...args }: EuiSelectableProps) => <StatefulSelectable {...args} />,
+};
+
 const StatefulSelectable = ({
   options,
   onChange,
+  onActiveOptionChange,
   ...rest
 }: EuiSelectableProps) => {
   const [selectableOptions, setOptions] = useState(options);

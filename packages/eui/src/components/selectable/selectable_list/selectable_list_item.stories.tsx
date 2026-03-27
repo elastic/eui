@@ -7,6 +7,7 @@
  */
 
 import React from 'react';
+import { css } from '@emotion/react';
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { EuiIcon } from '../../icon';
@@ -19,6 +20,29 @@ import {
   EuiSelectableListItemProps,
 } from './selectable_list_item';
 
+type EuiSelectableListItemStoryProps = EuiSelectableListItemProps & {
+  checkedSingle: 'on' | undefined;
+};
+
+/* Story HOC to pass the correct `checked` control value to the component, since we're
+conditionally switching between `checked` and `checkedSingle` to advocate expected usage */
+const StoryRender = ({
+  checkedSingle,
+  checked,
+  singleSelection,
+  ...args
+}: EuiSelectableListItemStoryProps & {
+  checkedSingle: any;
+}) => {
+  return (
+    <EuiSelectableListItem
+      {...(args as EuiSelectableListItemProps)}
+      singleSelection={singleSelection}
+      checked={singleSelection !== false ? checkedSingle : checked}
+    />
+  );
+};
+
 const meta: Meta<EuiSelectableListItemProps> = {
   title: 'Forms/EuiSelectable/Subcomponents/EuiSelectableListItem',
   component: EuiSelectableListItem,
@@ -26,6 +50,14 @@ const meta: Meta<EuiSelectableListItemProps> = {
     checked: {
       control: 'radio',
       options: [undefined, ...OPTION_CHECKED_STATES],
+      if: { arg: 'singleSelection', truthy: false }, // show for multi selection only
+    },
+    // @ts-expect-error - custom variant of `checked` control that isn't a standalone prop
+    checkedSingle: {
+      name: 'checked',
+      control: 'radio',
+      options: ['on', undefined],
+      if: { arg: 'singleSelection' }, // show for single selection only
     },
     append: {
       control: 'boolean',
@@ -43,6 +75,9 @@ const meta: Meta<EuiSelectableListItemProps> = {
         false: undefined,
       },
     },
+    allowExclusions: {
+      if: { arg: 'singleSelection', truthy: false }, // show for multi selection only
+    },
   },
   args: {
     showIcons: true,
@@ -57,6 +92,9 @@ const meta: Meta<EuiSelectableListItemProps> = {
     prepend: false,
     singleSelection: true,
   },
+  render: (args) => (
+    <StoryRender {...(args as EuiSelectableListItemStoryProps)} />
+  ),
 };
 
 export default meta;
@@ -78,22 +116,74 @@ export const SingleSelection: Story = {
   args: {
     children: 'Selectable list item',
     showIcons: true,
-    checked: 'on',
+    // @ts-expect-error - custom storybook-only variant of `checked` control
+    checkedSingle: 'on',
     prepend: <EuiIcon type="info" />,
     append: <EuiBadge color="hollow">Badge</EuiBadge>,
   },
-  render: function Render(args: EuiSelectableListItemProps) {
+  render: function Render(args) {
+    const { checkedSingle, checked, ...rest } =
+      args as EuiSelectableListItemStoryProps;
+
     return (
       <EuiFlexGroup direction="column" gutterSize="l">
         <div>
           <EuiCode>singleSelection=true/always</EuiCode>
         </div>
-        <EuiSelectableListItem {...args} singleSelection />
+        <EuiSelectableListItem
+          {...rest}
+          checked={checkedSingle}
+          singleSelection
+        />
         <div>
           <EuiCode>singleSelection=false</EuiCode>
         </div>
-        <EuiSelectableListItem {...args} singleSelection={false} />
+        <EuiSelectableListItem
+          {...rest}
+          checked={checkedSingle}
+          singleSelection={false}
+        />
       </EuiFlexGroup>
+    );
+  },
+};
+
+export const Truncate: Story = {
+  tags: ['vrt-only'],
+  name: 'textWrap: truncate',
+  args: {
+    children: 'Selectable list item with long label that should be truncated',
+    textWrap: 'truncate',
+  },
+  render: function Render(args: EuiSelectableListItemProps) {
+    return (
+      <div
+        css={css`
+          inline-size: 250px;
+        `}
+      >
+        <EuiSelectableListItem {...args} />
+      </div>
+    );
+  },
+};
+
+export const TextWrap: Story = {
+  tags: ['vrt-only'],
+  name: 'textWrap: wrap',
+  args: {
+    children: 'Selectable list item with long label that should be wrapped',
+    textWrap: 'wrap',
+  },
+  render: function Render(args: EuiSelectableListItemProps) {
+    return (
+      <div
+        css={css`
+          inline-size: 250px;
+        `}
+      >
+        <EuiSelectableListItem {...args} />
+      </div>
     );
   },
 };
