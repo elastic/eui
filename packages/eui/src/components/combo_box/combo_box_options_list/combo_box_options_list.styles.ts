@@ -11,11 +11,10 @@ import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../../services';
 import {
   logicalCSS,
-  mathWithUnits,
   euiScrollBarStyles,
   euiTextBreakWord,
+  euiYScrollWithShadows,
 } from '../../../global_styling';
-import { euiTitle } from '../../title/title.styles';
 
 export const LIST_MAX_HEIGHT = 200;
 
@@ -61,22 +60,12 @@ export const euiComboBoxOptionListStyles = (euiThemeContext: UseEuiTheme) => {
       .euiComboBoxOption__enterBadge {
         ${logicalCSS('margin-left', euiTheme.size.xs)}
       }
-
-      .euiComboBoxTitle {
-        display: flex;
-        ${logicalCSS('padding-horizontal', euiTheme.size.s)}
-        /* Force each title to be the same height as an option, so that the virtualized scroll logic works */
-        ${logicalCSS(
-          'padding-top',
-          mathWithUnits(euiTheme.size.s, (x) => x + 1)
-        )}
-        ${logicalCSS('padding-bottom', euiTheme.size.xs)}
-        ${euiTitle(euiThemeContext, 'xxxs')}
-      }
     `,
     /* eslint-disable local/css-logical-properties */
     hasRowHeightAuto: css`
-      overflow-y: auto;
+      ${euiYScrollWithShadows(euiThemeContext, {
+        hasAnimatedOverflowShadow: true,
+      })}
 
       .euiComboBoxOption__contentWrapper {
         align-items: flex-start;
@@ -87,7 +76,9 @@ export const euiComboBoxOptionListStyles = (euiThemeContext: UseEuiTheme) => {
     /* eslint-enable local/css-logical-properties */
 
     euiComboBoxOptionList__virtualization: css`
-      ${euiScrollBarStyles(euiThemeContext)}
+      ${euiYScrollWithShadows(euiThemeContext, {
+        hasAnimatedOverflowShadow: true,
+      })}
     `,
 
     euiComboBoxOptionsList__empty: css`
