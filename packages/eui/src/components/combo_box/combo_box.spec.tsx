@@ -81,13 +81,10 @@ describe('EuiComboBox', () => {
           ]}
         />
       );
-
       cy.get(
         '[data-test-subj=combobox] [data-test-subj=comboBoxSearchInput]'
       ).realClick();
-
       cy.get('span').contains('Item 2').realClick();
-
       cy.focused().should('have.attr', 'data-test-subj', 'comboBoxSearchInput');
     });
   });
@@ -314,7 +311,7 @@ describe('EuiComboBox', () => {
       cy.get('.euiTextTruncate').should('exist');
       cy.get('[data-test-subj="truncatedText"]').should(
         'have.text',
-        'Lorem ipsum …iscing elit.'
+        'Lorem ipsum…iscing elit.'
       );
     });
 
@@ -334,7 +331,7 @@ describe('EuiComboBox', () => {
       cy.get('[data-test-subj="comboBoxInput"]').realClick();
       cy.get('[data-test-subj="truncatedText"]').should(
         'have.text',
-        'Lorem…tur adipiscing elit.'
+        'Lorem…ur adipiscing elit.'
       );
     });
 
@@ -345,7 +342,7 @@ describe('EuiComboBox', () => {
         cy.realType('sit');
         cy.get('[data-test-subj="truncatedText"]').should(
           'have.text',
-          '…sum dolor sit amet, co…'
+          '…um dolor sit amet, co…'
         );
       });
 
@@ -365,7 +362,7 @@ describe('EuiComboBox', () => {
         cy.realType('eli');
         cy.get('[data-test-subj="truncatedText"]').should(
           'have.text',
-          '…nsectetur adipiscing elit.'
+          '…sectetur adipiscing elit.'
         );
       });
 
@@ -373,7 +370,7 @@ describe('EuiComboBox', () => {
         cy.realMount(<EuiComboBox {...sharedProps} />);
         cy.get('[data-test-subj="comboBoxInput"]').realClick();
         cy.realType('Lorem ipsum dolor sit amet');
-        cy.get('.euiMark').should('have.text', '…rem ipsum dolor sit am…');
+        cy.get('.euiMark').should('have.text', '…em ipsum dolor sit a…');
       });
     });
   });
@@ -461,7 +458,7 @@ describe('EuiComboBox', () => {
           cy.get('[data-test-subj="comboBoxInput"]').click();
 
           cy.get('[data-test-subj="comboBoxOptionsList"]')
-            .find('button')
+            .find('[role="option"]')
             .first()
             .click();
           cy.get('[data-test-subj="comboBoxOptionsList"]').should('not.exist');
@@ -483,7 +480,7 @@ describe('EuiComboBox', () => {
           cy.get('[data-test-subj="comboBoxSearchInput"]').click();
 
           cy.get('[data-test-subj="comboBoxOptionsList"]')
-            .find('button')
+            .find('[role="option"]')
             .first()
             .click();
           cy.get('[data-test-subj="comboBoxOptionsList"]').should('not.exist');

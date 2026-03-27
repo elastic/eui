@@ -139,7 +139,7 @@ exports[`EuiComboBox renders the options list dropdown 1`] = `
       <div
         aria-live="off"
         aria-modal="true"
-        class="euiPanel euiPanel--plain euiPopover__panel emotion-euiPanel-grow-m-plain-euiPopover__panel-light-isOpen-isAttached-bottom"
+        class="euiPanel euiPanel--plain euiPanel--paddingSmall euiPopover__panel emotion-euiPanel-grow-m-s-plain-euiPopover__panel-light-isOpen-isAttached-bottom"
         data-popover-open="true"
         data-popover-panel="true"
         id="euiPopover_generated-id_panelId"
@@ -163,276 +163,204 @@ exports[`EuiComboBox renders the options list dropdown 1`] = `
                 class="euiComboBoxOptionsList__virtualization emotion-euiComboBoxOptionList__virtualization"
                 style="position: relative; height: 200px; width: 0px; overflow: auto; will-change: transform; direction: ltr;"
               >
-                <div
+                <ul
                   aria-label="Choose from the following options"
+                  aria-multiselectable="true"
                   id="generated-id_listbox"
                   role="listbox"
                   style="height: 290px; width: 100%;"
                   tabindex="0"
                 >
-                  <button
+                  <li
                     aria-posinset="1"
                     aria-selected="false"
                     aria-setsize="10"
-                    class="euiFilterSelectItem emotion-euiFilterSelectItem"
+                    class="euiListItemLayout euiComboBoxOption emotion-euiListItemLayout-isInteractive"
                     data-test-subj="titanOption"
                     id="generated-id__option-0"
                     role="option"
                     style="position: absolute; left: 0px; top: 0px; height: 29px; width: 100%;"
                     title="Titan"
-                    type="button"
                   >
                     <span
-                      class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-center-row"
+                      class="euiListItemLayout__content euiComboBoxOption__content emotion-euiListItemLayout__content"
                     >
                       <span
-                        class="euiFlexItem euiFilterSelectItem__content eui-textTruncate emotion-euiFlexItem-grow-1"
+                        class="euiListItemLayout__text emotion-euiListItemLayout__text-truncate"
                       >
-                        <span
-                          class="euiComboBoxOption__contentWrapper"
-                        >
-                          <span
-                            class="euiComboBoxOption__content eui-textTruncate"
-                          >
-                            Titan
-                          </span>
-                        </span>
+                        Titan
                       </span>
                     </span>
-                  </button>
-                  <button
+                  </li>
+                  <li
                     aria-posinset="2"
                     aria-selected="false"
                     aria-setsize="10"
-                    class="euiFilterSelectItem emotion-euiFilterSelectItem"
+                    class="euiListItemLayout euiComboBoxOption emotion-euiListItemLayout-isInteractive"
+                    data-test-subj="euiListItemLayout"
                     id="generated-id__option-1"
                     role="option"
                     style="position: absolute; left: 0px; top: 29px; height: 29px; width: 100%;"
                     title="Enceladus"
-                    type="button"
                   >
                     <span
-                      class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-center-row"
+                      class="euiListItemLayout__content euiComboBoxOption__content emotion-euiListItemLayout__content"
                     >
                       <span
-                        class="euiFlexItem euiFilterSelectItem__content eui-textTruncate emotion-euiFlexItem-grow-1"
+                        class="euiListItemLayout__text emotion-euiListItemLayout__text-truncate"
                       >
-                        <span
-                          class="euiComboBoxOption__contentWrapper"
-                        >
-                          <span
-                            class="euiComboBoxOption__content eui-textTruncate"
-                          >
-                            Enceladus
-                          </span>
-                        </span>
+                        Enceladus
                       </span>
                     </span>
-                  </button>
-                  <button
+                  </li>
+                  <li
                     aria-posinset="3"
                     aria-selected="false"
                     aria-setsize="10"
-                    class="euiFilterSelectItem emotion-euiFilterSelectItem"
+                    class="euiListItemLayout euiComboBoxOption emotion-euiListItemLayout-isInteractive"
+                    data-test-subj="euiListItemLayout"
                     id="generated-id__option-2"
                     role="option"
                     style="position: absolute; left: 0px; top: 58px; height: 29px; width: 100%;"
                     title="Mimas"
-                    type="button"
                   >
                     <span
-                      class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-center-row"
+                      class="euiListItemLayout__content euiComboBoxOption__content emotion-euiListItemLayout__content"
                     >
                       <span
-                        class="euiFlexItem euiFilterSelectItem__content eui-textTruncate emotion-euiFlexItem-grow-1"
+                        class="euiListItemLayout__text emotion-euiListItemLayout__text-truncate"
                       >
-                        <span
-                          class="euiComboBoxOption__contentWrapper"
-                        >
-                          <span
-                            class="euiComboBoxOption__content eui-textTruncate"
-                          >
-                            Mimas
-                          </span>
-                        </span>
+                        Mimas
                       </span>
                     </span>
-                  </button>
-                  <button
+                  </li>
+                  <li
                     aria-posinset="4"
                     aria-selected="false"
                     aria-setsize="10"
-                    class="euiFilterSelectItem emotion-euiFilterSelectItem"
+                    class="euiListItemLayout euiComboBoxOption emotion-euiListItemLayout-isInteractive"
+                    data-test-subj="euiListItemLayout"
                     id="generated-id__option-3"
                     role="option"
                     style="position: absolute; left: 0px; top: 87px; height: 29px; width: 100%;"
                     title="Dione"
-                    type="button"
                   >
                     <span
-                      class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-center-row"
+                      class="euiListItemLayout__content euiComboBoxOption__content emotion-euiListItemLayout__content"
                     >
                       <span
-                        class="euiFlexItem euiFilterSelectItem__content eui-textTruncate emotion-euiFlexItem-grow-1"
+                        class="euiListItemLayout__text emotion-euiListItemLayout__text-truncate"
                       >
-                        <span
-                          class="euiComboBoxOption__contentWrapper"
-                        >
-                          <span
-                            class="euiComboBoxOption__content eui-textTruncate"
-                          >
-                            Dione
-                          </span>
-                        </span>
+                        Dione
                       </span>
                     </span>
-                  </button>
-                  <button
+                  </li>
+                  <li
                     aria-posinset="5"
                     aria-selected="false"
                     aria-setsize="10"
-                    class="euiFilterSelectItem emotion-euiFilterSelectItem"
+                    class="euiListItemLayout euiComboBoxOption emotion-euiListItemLayout-isInteractive"
+                    data-test-subj="euiListItemLayout"
                     id="generated-id__option-4"
                     role="option"
                     style="position: absolute; left: 0px; top: 116px; height: 29px; width: 100%;"
                     title="Iapetus"
-                    type="button"
                   >
                     <span
-                      class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-center-row"
+                      class="euiListItemLayout__content euiComboBoxOption__content emotion-euiListItemLayout__content"
                     >
                       <span
-                        class="euiFlexItem euiFilterSelectItem__content eui-textTruncate emotion-euiFlexItem-grow-1"
+                        class="euiListItemLayout__text emotion-euiListItemLayout__text-truncate"
                       >
-                        <span
-                          class="euiComboBoxOption__contentWrapper"
-                        >
-                          <span
-                            class="euiComboBoxOption__content eui-textTruncate"
-                          >
-                            Iapetus
-                          </span>
-                        </span>
+                        Iapetus
                       </span>
                     </span>
-                  </button>
-                  <button
+                  </li>
+                  <li
                     aria-posinset="6"
                     aria-selected="false"
                     aria-setsize="10"
-                    class="euiFilterSelectItem emotion-euiFilterSelectItem"
+                    class="euiListItemLayout euiComboBoxOption emotion-euiListItemLayout-isInteractive"
+                    data-test-subj="euiListItemLayout"
                     id="generated-id__option-5"
                     role="option"
                     style="position: absolute; left: 0px; top: 145px; height: 29px; width: 100%;"
                     title="Phoebe"
-                    type="button"
                   >
                     <span
-                      class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-center-row"
+                      class="euiListItemLayout__content euiComboBoxOption__content emotion-euiListItemLayout__content"
                     >
                       <span
-                        class="euiFlexItem euiFilterSelectItem__content eui-textTruncate emotion-euiFlexItem-grow-1"
+                        class="euiListItemLayout__text emotion-euiListItemLayout__text-truncate"
                       >
-                        <span
-                          class="euiComboBoxOption__contentWrapper"
-                        >
-                          <span
-                            class="euiComboBoxOption__content eui-textTruncate"
-                          >
-                            Phoebe
-                          </span>
-                        </span>
+                        Phoebe
                       </span>
                     </span>
-                  </button>
-                  <button
+                  </li>
+                  <li
                     aria-posinset="7"
                     aria-selected="false"
                     aria-setsize="10"
-                    class="euiFilterSelectItem emotion-euiFilterSelectItem"
+                    class="euiListItemLayout euiComboBoxOption emotion-euiListItemLayout-isInteractive"
+                    data-test-subj="euiListItemLayout"
                     id="generated-id__option-6"
                     role="option"
                     style="position: absolute; left: 0px; top: 174px; height: 29px; width: 100%;"
                     title="Rhea"
-                    type="button"
                   >
                     <span
-                      class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-center-row"
+                      class="euiListItemLayout__content euiComboBoxOption__content emotion-euiListItemLayout__content"
                     >
                       <span
-                        class="euiFlexItem euiFilterSelectItem__content eui-textTruncate emotion-euiFlexItem-grow-1"
+                        class="euiListItemLayout__text emotion-euiListItemLayout__text-truncate"
                       >
-                        <span
-                          class="euiComboBoxOption__contentWrapper"
-                        >
-                          <span
-                            class="euiComboBoxOption__content eui-textTruncate"
-                          >
-                            Rhea
-                          </span>
-                        </span>
+                        Rhea
                       </span>
                     </span>
-                  </button>
-                  <button
+                  </li>
+                  <li
                     aria-posinset="8"
                     aria-selected="false"
                     aria-setsize="10"
-                    class="euiFilterSelectItem emotion-euiFilterSelectItem"
+                    class="euiListItemLayout euiComboBoxOption emotion-euiListItemLayout-isInteractive"
+                    data-test-subj="euiListItemLayout"
                     id="generated-id__option-7"
                     role="option"
                     style="position: absolute; left: 0px; top: 203px; height: 29px; width: 100%;"
                     title="Pandora is one of Saturn's moons, named for a Titaness of Greek mythology"
-                    type="button"
                   >
                     <span
-                      class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-center-row"
+                      class="euiListItemLayout__content euiComboBoxOption__content emotion-euiListItemLayout__content"
                     >
                       <span
-                        class="euiFlexItem euiFilterSelectItem__content eui-textTruncate emotion-euiFlexItem-grow-1"
+                        class="euiListItemLayout__text emotion-euiListItemLayout__text-truncate"
                       >
-                        <span
-                          class="euiComboBoxOption__contentWrapper"
-                        >
-                          <span
-                            class="euiComboBoxOption__content eui-textTruncate"
-                          >
-                            Pandora is one of Saturn's moons, named for a Titaness of Greek mythology
-                          </span>
-                        </span>
+                        Pandora is one of Saturn's moons, named for a Titaness of Greek mythology
                       </span>
                     </span>
-                  </button>
-                  <button
+                  </li>
+                  <li
                     aria-posinset="9"
                     aria-selected="false"
                     aria-setsize="10"
-                    class="euiFilterSelectItem emotion-euiFilterSelectItem"
+                    class="euiListItemLayout euiComboBoxOption emotion-euiListItemLayout-isInteractive"
+                    data-test-subj="euiListItemLayout"
                     id="generated-id__option-8"
                     role="option"
                     style="position: absolute; left: 0px; top: 232px; height: 29px; width: 100%;"
                     title="Tethys"
-                    type="button"
                   >
                     <span
-                      class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-center-row"
+                      class="euiListItemLayout__content euiComboBoxOption__content emotion-euiListItemLayout__content"
                     >
                       <span
-                        class="euiFlexItem euiFilterSelectItem__content eui-textTruncate emotion-euiFlexItem-grow-1"
+                        class="euiListItemLayout__text emotion-euiListItemLayout__text-truncate"
                       >
-                        <span
-                          class="euiComboBoxOption__contentWrapper"
-                        >
-                          <span
-                            class="euiComboBoxOption__content eui-textTruncate"
-                          >
-                            Tethys
-                          </span>
-                        </span>
+                        Tethys
                       </span>
                     </span>
-                  </button>
-                </div>
+                  </li>
+                </ul>
               </div>
             </div>
           </div>
