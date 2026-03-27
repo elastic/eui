@@ -26,19 +26,19 @@ exports[`EuiSelectable custom options with data 1`] = `
           <li
             aria-checked="false"
             aria-posinset="1"
-            aria-selected="false"
             aria-setsize="3"
-            class="euiSelectableListItem emotion-euiSelectableListItem"
+            class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive"
+            data-test-subj="euiListItemLayout"
             id="generated-id_listbox_option-0"
             role="option"
             style="position: absolute; left: 0px; top: 0px; height: 32px; width: 100%;"
             title="Titan"
           >
             <span
-              class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+              class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
             >
               <span
-                class="EuiCheckboxControl euiSelectableListItem__checkbox emotion-EuiCheckboxControl-unselected"
+                class="EuiCheckboxControl euiListItemLayout__checkbox emotion-EuiCheckboxControl-unselected"
               >
                 <span
                   class="emotion-euiCheckbox__icon-check"
@@ -47,7 +47,7 @@ exports[`EuiSelectable custom options with data 1`] = `
                 />
               </span>
               <span
-                class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+                class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
               >
                 <span>
                   VI
@@ -60,19 +60,19 @@ exports[`EuiSelectable custom options with data 1`] = `
           <li
             aria-checked="false"
             aria-posinset="2"
-            aria-selected="false"
             aria-setsize="3"
-            class="euiSelectableListItem emotion-euiSelectableListItem"
+            class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive"
+            data-test-subj="euiListItemLayout"
             id="generated-id_listbox_option-1"
             role="option"
             style="position: absolute; left: 0px; top: 32px; height: 32px; width: 100%;"
             title="Enceladus"
           >
             <span
-              class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+              class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
             >
               <span
-                class="EuiCheckboxControl euiSelectableListItem__checkbox emotion-EuiCheckboxControl-unselected"
+                class="EuiCheckboxControl euiListItemLayout__checkbox emotion-EuiCheckboxControl-unselected"
               >
                 <span
                   class="emotion-euiCheckbox__icon-check"
@@ -81,7 +81,7 @@ exports[`EuiSelectable custom options with data 1`] = `
                 />
               </span>
               <span
-                class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+                class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
               >
                 <span>
                   II
@@ -94,19 +94,19 @@ exports[`EuiSelectable custom options with data 1`] = `
           <li
             aria-checked="false"
             aria-posinset="3"
-            aria-selected="false"
             aria-setsize="3"
-            class="euiSelectableListItem emotion-euiSelectableListItem"
+            class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive"
+            data-test-subj="euiListItemLayout"
             id="generated-id_listbox_option-2"
             role="option"
             style="position: absolute; left: 0px; top: 64px; height: 32px; width: 100%;"
             title="Pandora is one of Saturn's moons, named for a Titaness of Greek mythology"
           >
             <span
-              class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+              class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
             >
               <span
-                class="EuiCheckboxControl euiSelectableListItem__checkbox emotion-EuiCheckboxControl-unselected"
+                class="EuiCheckboxControl euiListItemLayout__checkbox emotion-EuiCheckboxControl-unselected"
               >
                 <span
                   class="emotion-euiCheckbox__icon-check"
@@ -115,7 +115,7 @@ exports[`EuiSelectable custom options with data 1`] = `
                 />
               </span>
               <span
-                class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+                class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
               >
                 <span>
                   XVII
@@ -174,9 +174,8 @@ exports[`EuiSelectable errorMessage prop does not render the message when not de
           <li
             aria-checked="false"
             aria-posinset="1"
-            aria-selected="false"
             aria-setsize="3"
-            class="euiSelectableListItem emotion-euiSelectableListItem"
+            class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive"
             data-test-subj="titanOption"
             id="generated-id_listbox_option-0"
             role="option"
@@ -184,10 +183,10 @@ exports[`EuiSelectable errorMessage prop does not render the message when not de
             title="Titan"
           >
             <span
-              class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+              class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
             >
               <span
-                class="EuiCheckboxControl euiSelectableListItem__checkbox emotion-EuiCheckboxControl-unselected"
+                class="EuiCheckboxControl euiListItemLayout__checkbox emotion-EuiCheckboxControl-unselected"
               >
                 <span
                   class="emotion-euiCheckbox__icon-check"
@@ -196,7 +195,7 @@ exports[`EuiSelectable errorMessage prop does not render the message when not de
                 />
               </span>
               <span
-                class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+                class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
               >
                 Titan
               </span>
@@ -205,19 +204,19 @@ exports[`EuiSelectable errorMessage prop does not render the message when not de
           <li
             aria-checked="false"
             aria-posinset="2"
-            aria-selected="false"
             aria-setsize="3"
-            class="euiSelectableListItem emotion-euiSelectableListItem"
+            class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive"
+            data-test-subj="euiListItemLayout"
             id="generated-id_listbox_option-1"
             role="option"
             style="position: absolute; left: 0px; top: 32px; height: 32px; width: 100%;"
             title="Enceladus"
           >
             <span
-              class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+              class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
             >
               <span
-                class="EuiCheckboxControl euiSelectableListItem__checkbox emotion-EuiCheckboxControl-unselected"
+                class="EuiCheckboxControl euiListItemLayout__checkbox emotion-EuiCheckboxControl-unselected"
               >
                 <span
                   class="emotion-euiCheckbox__icon-check"
@@ -226,7 +225,7 @@ exports[`EuiSelectable errorMessage prop does not render the message when not de
                 />
               </span>
               <span
-                class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+                class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
               >
                 Enceladus
               </span>
@@ -235,19 +234,19 @@ exports[`EuiSelectable errorMessage prop does not render the message when not de
           <li
             aria-checked="false"
             aria-posinset="3"
-            aria-selected="false"
             aria-setsize="3"
-            class="euiSelectableListItem emotion-euiSelectableListItem"
+            class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive"
+            data-test-subj="euiListItemLayout"
             id="generated-id_listbox_option-2"
             role="option"
             style="position: absolute; left: 0px; top: 64px; height: 32px; width: 100%;"
             title="Pandora is one of Saturn's moons, named for a Titaness of Greek mythology"
           >
             <span
-              class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+              class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
             >
               <span
-                class="EuiCheckboxControl euiSelectableListItem__checkbox emotion-EuiCheckboxControl-unselected"
+                class="EuiCheckboxControl euiListItemLayout__checkbox emotion-EuiCheckboxControl-unselected"
               >
                 <span
                   class="emotion-euiCheckbox__icon-check"
@@ -256,7 +255,7 @@ exports[`EuiSelectable errorMessage prop does not render the message when not de
                 />
               </span>
               <span
-                class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+                class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
               >
                 Pandora is one of Saturn's moons, named for a Titaness of Greek mythology
               </span>
