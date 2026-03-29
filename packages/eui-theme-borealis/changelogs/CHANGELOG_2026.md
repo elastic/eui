@@ -1,3 +1,17 @@
+## [`v7.0.0`](https://github.com/elastic/eui/releases/v7.0.0)
+
+**Breaking changes**
+
+- Removed `severity.assistance` color token ([#9507](https://github.com/elastic/eui/pull/9507))
+- Removed assistance datavis color tokens: ([#9507](https://github.com/elastic/eui/pull/9507))
+  - `vis.euiColorVisAssistance`
+  - `vis.euiColorVis10`
+  - `vis.euiColorVis11`
+  - `vis.euiColorVisText10`
+  - `vis.euiColorVisText11`
+  - `vis.euiColorVisBehindText10`
+  - `vis.euiColorVisBehindText11`
+
 ## [`v6.2.0`](https://github.com/elastic/eui/releases/v6.2.0)
 
 - Adjusted lightest color tokens to get a more balanced palette and contrast with content over light backgrounds: ([#9432](https://github.com/elastic/eui/pull/9432))
