@@ -238,9 +238,7 @@ describe('EuiTableHeaderCell', () => {
           console.warn = jest.fn();
 
           renderInTableHeader(
-            <EuiTableHeaderCell {...{ [name]: '20%' }}>
-              Test
-            </EuiTableHeaderCell>
+            <EuiTableHeaderCell {...{ [name]: '20%' }}>Test</EuiTableHeaderCell>
           );
 
           expect(console.warn).toHaveBeenCalledWith(
