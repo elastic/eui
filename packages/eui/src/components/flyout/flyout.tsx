@@ -327,16 +327,17 @@ export const EuiFlyout = forwardRef(
     }, []);
 
     /**
-     * ESC key closes flyout (always?)
+     * ESC closes the flyout for both overlay and push types (when no child flyout is open).
+     * Push flyouts are non-modal but still advertise Escape in screen reader copy.
      */
     const onKeyDown = useCallback(
       (event: KeyboardEvent) => {
-        if (!isPushed && event.key === keys.ESCAPE && !isChildFlyoutOpen) {
+        if (event.key === keys.ESCAPE && !isChildFlyoutOpen) {
           event.preventDefault();
           onClose(event);
         }
       },
-      [onClose, isPushed, isChildFlyoutOpen]
+      [onClose, isChildFlyoutOpen]
     );
 
     /**

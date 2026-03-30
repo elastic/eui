@@ -163,6 +163,13 @@ describe('EuiFlyout', () => {
         expect(cy.get('[data-test-subj="flyoutSpec"]').should('not.exist'));
       });
     });
+
+    it('closes the push flyout with `escape` key', () => {
+      cy.mount(<Flyout type="push" pushMinBreakpoint="xs" size="100px" />);
+      cy.realPress('Escape').then(() => {
+        expect(cy.get('[data-test-subj="flyoutSpec"]').should('not.exist'));
+      });
+    });
   });
 
   describe('Close behavior: outside clicks', () => {
