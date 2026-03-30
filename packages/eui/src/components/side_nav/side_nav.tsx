@@ -73,7 +73,7 @@ export type EuiSideNavProps<T = {}> = T &
     truncate?: boolean;
   };
 
-export const EuiSideNav = <T,>(props: EuiSideNavProps<T>) => {
+export const EuiSideNav = <T>(props: EuiSideNavProps<T>) => {
   const theme = useEuiTheme();
 
   const generateId = htmlIdGenerator('euiSideNav');
