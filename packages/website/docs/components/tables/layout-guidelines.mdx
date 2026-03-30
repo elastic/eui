@@ -12,7 +12,7 @@ the same domain across tables, we need to prioritize readability and accessibili
 table's layout and cannot be made into one solution that fits all.
 
 This set of guidelines will help you create and maintain tables that transform a dense wall of data
-into highly intuitive interface that remains legible across any viewport size.
+into a highly intuitive interface that remains legible across any viewport size.
 
 ## Layout and scrolling
 
@@ -20,7 +20,7 @@ Enable `scrollableInline={true}` and `tableLayout="auto"` to allow horizontal sc
 to maintain usability across different viewports.
 
 Whenever creating a table, always consider all possible viewport and container sizes, and especially smaller
-resolutions, even if the application doesn't explicitly support mobile devices. This helps to persist usability
+resolutions, even if the application doesn't explicitly support mobile devices. This helps to maintain usability
 even when push flyouts are open or other container-affecting components are rendered.
 
 ### Sticky actions
@@ -31,7 +31,7 @@ scrollable, and it's especially useful on smaller screens.
 
 ## Column sizing
 
-To ensure optimal reading experience, you must explicitly control column behavior using a combination of `width`,
+To ensure an optimal reading experience, you must explicitly control column behavior using a combination of `width`,
 `minWidth` and `maxWidth` props available on the `columns` objects of [`<EuiBasicTable />`](./basic.mdx)
 and [`<EuiInMemoryTable />`](./in-memory.mdx).
 
@@ -43,7 +43,7 @@ from truncating and wrapping while ensuring body cells don't have excessive whit
 - **Header integrity** - Set a minimum width (`minWidth`) that accommodates the full column header text.
     Users should never have to guess a column's purpose due to an ellipsis in the header.
     If the header text is longer than allowed body text, you should consider renaming it or using iconography instead.
-    You can add a tooltip via the `nameTooltip` prop to provide better description of the column.
+    You can add a tooltip via the `nameTooltip` prop to provide a better description of the column.
 - **Body optimization** - While headers shouldn't truncate, body cells may truncate if the content is unexpectedly long
     (e.g., long user-provided descriptions) and the height of each row should remain stable, provided a tooltip
     with the whole cell content is available.
@@ -57,7 +57,7 @@ Consistency in column length units is important for predictable layouts:
     This includes raw strings, numbers, and other text-wrapping components like
     [`<EuiBadge />`](../display/badge/index.mdx), [`<EuiLink />`](../navigation/link.mdx), and more.
 - **Use `px` for static elements** - Fixed-size elements like icons, checkmarks, or small plots should use pixel values
-    to enure they always take the same amount of space no matter the font scaling.
+    to ensure they always take the same amount of space no matter the font scaling.
 
     **Important:** You may not use `px` for any components that also render text.
 
@@ -67,12 +67,12 @@ Consistent alignment helps the human eye scan data and identify patterns quickly
 You can configure text alignment using the `align` property on the `columns` objects of [`<EuiBasicTable />`](./basic.mdx)
 and [`<EuiInMemoryTable />`](./in-memory.mdx).
 
-| **Content type**    | **Alignment**    | **Rationale**                                                      |
-|---------------------|------------------|--------------------------------------------------------------------|
-| Standard text       | `left` (default) | Matches the natural reading direction for most languages.          |
-| Numbers and metrics | `right`          | Allows uers to compare magnitudes and decimal places visually.     |
-| Booleans and icons  | `center`         | Provides visual balance for narrow, symmetrical columns            |
-| Actions             | `right`          | Keeps the primary interaction point near the edge of the container |
+| **Content type**    | **Alignment**    | **Rationale**                                                       |
+|---------------------|------------------|---------------------------------------------------------------------|
+| Standard text       | `left` (default) | Matches the natural reading direction for most languages.           |
+| Numbers and metrics | `right`          | Allows users to compare magnitudes and decimal places visually.     |
+| Booleans and icons  | `center`         | Provides visual balance for narrow, symmetrical columns.            |
+| Actions             | `right`          | Keeps the primary interaction point near the edge of the container. |
 
 ## Text wrapping and truncation
 
