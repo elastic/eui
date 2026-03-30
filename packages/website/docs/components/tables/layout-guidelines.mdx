@@ -1,0 +1,99 @@
+---
+sidebar_position: 4
+---
+
+# Table layout guidelines
+
+Tables are the most common way to represent complex, tabular datasets. Users don't just read tables; they often
+subconsciously scan them for patterns in order to find the information they need, quickly.
+
+Every table and dataset needs an individual approach. While common patterns exist and can be shared within
+the same domain across tables, we need to prioritize readability and accessibility, which depends on the whole
+table's layout and cannot be made into one solution that fits all.
+
+This set of guidelines will help you create and maintain tables that transform a dense wall of data
+into highly intuitive interface that remains legible across any viewport size.
+
+## Layout and scrolling
+
+Enable `scrollableInline={true}` and `tableLayout="auto"` to allow horizontal scrolling on overflow
+to maintain usability across different viewports.
+
+Whenever creating a table, always consider all possible viewport and container sizes, and especially smaller
+resolutions, even if the application doesn't explicitly support mobile devices. This helps to persist usability
+even when push flyouts are open or other container-affecting components are rendered.
+
+### Sticky actions
+
+The _Actions_ column should always be the last column to the right. To ensure it's always reachable, add `sticky: true`
+to its column configuration. This keeps the actions column visible even when the table overflows and is horizontally
+scrollable, and it's especially useful on smaller screens.
+
+## Column sizing
+
+To ensure optimal reading experience, you must explicitly control column behavior using a combination of `width`,
+`minWidth` and `maxWidth` props available on the `columns` objects of [`<EuiBasicTable />`](./basic.mdx)
+and [`<EuiInMemoryTable />`](./in-memory.mdx).
+
+### Matching content length
+
+Column widths should be tailored to the expected rendered content. A well-sized column prevents header text
+from truncating and wrapping while ensuring body cells don't have excessive white space.
+
+- **Header integrity** - Set a minimum width (`minWidth`) that accommodates the full column header text.
+    Users should never have to guess a column's purpose due to an ellipsis in the header.
+    If the header text is longer than allowed body text, you should consider renaming it or using iconography instead.
+    You can add a tooltip via the `nameTooltip` prop to provide better description of the column.
+- **Body optimization** - While headers shouldn't truncate, body cells may truncate if the content is unexpectedly long
+    (e.g., long user-provided descriptions) and the height of each row should remain stable, provided a tooltip
+    with the whole cell content is available.
+
+### Choosing the right length units
+
+Consistency in column length units is important for predictable layouts:
+
+- **Use `em` for any text content** - Since `em` is relative to the font size, it scales naturally with the text.
+    It helps with accessibility and browser-specific font size configurations.
+    This includes raw strings, numbers, and other text-wrapping components like
+    [`<EuiBadge />`](../display/badge/index.mdx), [`<EuiLink />`](../navigation/link.mdx), and more.
+- **Use `px` for static elements** - Fixed-size elements like icons, checkmarks, or small plots should use pixel values
+    to enure they always take the same amount of space no matter the font scaling.
+
+    **Important:** You may not use `px` for any components that also render text.
+
+## Text alignment
+
+Consistent alignment helps the human eye scan data and identify patterns quickly.
+You can configure text alignment using the `align` property on the `columns` objects of [`<EuiBasicTable />`](./basic.mdx)
+and [`<EuiInMemoryTable />`](./in-memory.mdx).
+
+| **Content type**    | **Alignment**    | **Rationale**                                                      |
+|---------------------|------------------|--------------------------------------------------------------------|
+| Standard text       | `left` (default) | Matches the natural reading direction for most languages.          |
+| Numbers and metrics | `right`          | Allows uers to compare magnitudes and decimal places visually.     |
+| Booleans and icons  | `center`         | Provides visual balance for narrow, symmetrical columns            |
+| Actions             | `right`          | Keeps the primary interaction point near the edge of the container |
+
+## Text wrapping and truncation
+
+By default, table cells wrap text to fit the container, unless the `maxWidth` prop is not configured.
+However, some content becomes difficult to read when broken across many lines.
+
+### Enabling text truncation
+
+Use the `truncateText` prop to enable text truncation on a column. This setting needs a stable column width to work
+properly:
+
+- **Automatic table layouts** (recommended) - You must set the `maxWidth` prop and preferably `width` and `minWidth`
+    to control column length across different container sizes.
+- **Fixed table layouts** - You must set the `width` prop.
+
+### Preventing text wrapping
+
+Apply the CSS class `eui-textNoWrap` through the `className` property on the `columns` object to columns of strictly
+known or static length. This is highly recommended for:
+
+- Dates and timestamps (e.g., `2026-01-01 00:00:00`)
+- Numeric values, large ID strings (e.g., UUID) and monetary values
+- Short badges and statuses (e.g., [`<EuiBadge />`](../display/badge/index.mdx),
+    [`<EuiHealth />`](../display/health.mdx) and locale-agnostic static text)
