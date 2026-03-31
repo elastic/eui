@@ -47,10 +47,12 @@ Example:
 
 <!-- Help reviewers understand the consumer impact of merging this PR. -->
 
+Note: Most PRs should be [tested in Kibana](https://github.com/elastic/eui/blob/main/wiki/contributing-to-eui/testing/testing-in-kibana.md) to help gauge their **Impact** before merging.
+
 - [ ] 🔴 **Breaking changes** — What will break? How many usages in Kibana/Cloud UI are impacted?
 - [ ] 💅 **Visual changes** — May impact style overrides; could require visual testing. Explain and estimate impact.
 - [ ] 🧪 **Test impact** — May break functional or snapshot tests (e.g., HTML structure, class names, default values).
-- [ ] 🔧 **Hard to integrate** — If integration is complex, stage commits in Kibana/Cloud UI branches for cherry-picking and link to them below.
+- [ ] 🔧 **Hard to integrate** — If changes require substantial updates to Kibana, please [stage the changes](https://github.com/elastic/eui/blob/main/wiki/contributing-to-eui/testing/testing-in-kibana.md#staging-integrations) and link them here.
 
 **Impact level:** 🟢 None / 🟢 Low / 🟡 Moderate / 🔴 High
 
