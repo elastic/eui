@@ -21,7 +21,7 @@ import { EuiI18n, useEuiI18n } from '../i18n';
 import { EuiPopover } from '../popover';
 import { EuiText } from '../text';
 import { EuiSpacer } from '../spacer';
-import { EuiToolTip } from '../tool_tip';
+import { EuiToolTip, ToolTipPositions } from '../tool_tip';
 import { EuiHorizontalRule } from '../horizontal_rule';
 import { EuiLink } from '../link';
 import { EuiMarkdownEditorUiPlugin } from './markdown_types';
@@ -32,6 +32,7 @@ import { euiMarkdownEditorHelpButtonStyles } from './markdown_editor_help_button
 
 interface EuiMarkdownEditorHelpButtonProps {
   uiPlugins: EuiMarkdownEditorUiPlugin[];
+  tooltipPosition?: ToolTipPositions;
 }
 
 const mdSyntaxHref = 'https://guides.github.com/features/mastering-markdown/';
@@ -47,6 +48,7 @@ const mdSyntaxLink = (
 
 export const EuiMarkdownEditorHelpButton = ({
   uiPlugins,
+  tooltipPosition,
 }: EuiMarkdownEditorHelpButtonProps) => {
   const [isShowingHelpModal, setIsShowingHelpModal] = useState(false);
   const [isShowingHelpPopover, setIsShowingHelpPopover] = useState(false);
@@ -71,7 +73,7 @@ export const EuiMarkdownEditorHelpButton = ({
   if (hasUiPluginsWithHelpText) {
     return (
       <>
-        <EuiToolTip content={syntaxTitle}>
+        <EuiToolTip content={syntaxTitle} position={tooltipPosition}>
           <EuiButtonIcon
             size="s"
             css={styles.euiMarkdownEditorFooter__helpButton}
