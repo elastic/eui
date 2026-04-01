@@ -77,7 +77,7 @@ export type EuiListItemLayoutSharedProps = CommonProps & {
   wrapperComponent?: 'li' | 'div';
   /**
    * Props applied to the wrapper.
-   * Applies only if `warpperComponent` is defined or `extraAction` is passed.
+   * Applies only for `component=button/a` if `wrapperComponent` is defined or `extraAction` is passed.
    */
   wrapperProps?: CommonProps;
   /**
@@ -96,6 +96,10 @@ export type EuiListItemLayoutSharedProps = CommonProps & {
    * Ensure to pass an appropriate `role` for the item that supports semantic
    * `checked` state. For no/other role(s) `checked` only controls the visual checked indicator.
    *
+   * Leave `undefined` to indicate not selected. Pass a string of
+   * 'on' to indicate inclusion, 'off' to indicate exclusion,
+   * or 'mixed' to indicate inclusion for some.
+   *
    * When using `singleSelection=true` it's expected to only use the values `on` or `undefined`
    * to toggle between checked and not checked.
    */
@@ -108,19 +112,20 @@ export type EuiListItemLayoutSharedProps = CommonProps & {
   isSelected?: boolean;
   /**
    * Highlights the item as currently navigated item within a listbox.
-   * The item is not acutally focused, it will only be styled as active.
+   * The item is not actually focused, it will only be styled as active.
    */
   isFocused?: boolean;
   isDisabled?: boolean;
   /**
    * Toggles between multi-selection (renders checkbox indicators) and
    * single-selection (renders icon indicators).
-   * @default false
+   * @default true
    */
   isSingleSelection?: boolean;
   /**
-   * Manually overrides the selection type (checkbox vs selection).
+   * Manually overrides the selection type (checkbox vs selection) for checkable/selectable roles.
    * This controls whether `aria-checked` or `aria-selected` attributes are set.
+   * For no `role` or unsupported roles, this has no effect and `aria-current` is applied.
    *
    * By default when unset, it's handled internally based on `isSingleSelection`
    * and applies `aria-checked` to multi-selection and `aria-selected` to single-selection.
@@ -534,8 +539,8 @@ export const EuiListItemLayout = forwardRef<
       innerContent
     );
 
-    /* Uses `createElement` to side step having to speficy element types. Since this is an
-    internal-only component and we're speficying separate types for each element, we can safely
+    /* Uses `createElement` to side step having to specify element types. Since this is an
+    internal-only component and we're specifying separate types for each element, we can safely
     assume the right props are passed at this point.
     It uses the import from @emotion/react to ensure the `css` props works as in JSX. */
     const innerElement = createElement(component, elementProps, content);
