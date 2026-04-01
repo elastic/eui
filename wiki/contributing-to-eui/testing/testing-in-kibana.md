@@ -1,6 +1,35 @@
 # Testing EUI features in Kibana ahead of time
 
-For changes that may have major implications on existing Kibana usages of EUI, a built version of EUI should be tested against Kibana (ideally before being merged/released into EUI) to ensure that the [upgrade process](../../eui-team-processes/upgrading-kibana.md) is as painless as possible.
+Most PRs should be tested in Kibana before merging into EUI main. Test a built version of EUI against Kibana and considering staging the integration [staging the integration](#staging-integrations) to ensure the upgrade process is as painless as possible.
+
+## Staging Integrations
+
+Use this **Staging Workflow** to assist the EUI team integrating your PR into Kibana during an upgrade. Useful when:
+- PR involves breaking changes
+- You want to apply a new feature in Kibana to ensure adoption
+- Existing styles may need to be tweaked
+- There are test failures, especially integration tests
+
+1.  **Stage in Kibana:** Create a **Draft PR** in the Kibana repo. Use this to handle test failures, style tweaks, or API migrations.
+2.  **Reference in EUI PR:** Link the Kibana Draft in your EUI PR description.
+3.  **Final Upgrade:** The upgrader will cherry-pick your staged commits into the final Kibana version bump PR.
+
+### Example: Staging Workflow
+
+| Step | Link | Action |
+| :--- | :--- | :--- |
+| **1. Staging** | [Kibana Draft \#248805](https://github.com/elastic/kibana/pull/248805) | Create commits for API updates, style adjustments, and test fixes. |
+| **2. Source** | [EUI PR \#9308](https://github.com/elastic/eui/pull/9308) | Note: *"All commits in the linked PR should be included in the upgrade."* |
+| **3. Final** | [Kibana Upgrade \#253286](https://github.com/elastic/kibana/pull/253286) | Upgrader cherry-picks staged commits into the version bump. |
+
+### Recommended Commit Structure
+
+Keep staged commits atomic to simplify cherry-picking for the upgrader:
+
+  * `refactor: update [some Kibana code] to use new EUI API`
+  * `style: adjust styles for [some EUI change]`
+  * `test: update snapshots for [some EUI change]`
+  * `test: fix broken integration tests for [some EUI change]`
 
 ## Testing local EUI in local Kibana
 
