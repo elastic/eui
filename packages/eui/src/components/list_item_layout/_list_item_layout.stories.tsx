@@ -152,8 +152,8 @@ export const Playground: Story = {
   args: {
     children: 'List item',
   },
-  render: function Render(args) {
-    const { isDisabled, extraAction, ...rest } = args as EuiListItemLayoutProps;
+  render: function Render(args: EuiListItemLayoutProps) {
+    const { isDisabled, extraAction, ...rest } = args;
 
     // mimic implementation handling of synchronized disabled state
     const _extraAction =
@@ -219,6 +219,7 @@ export const TooltipProps: Story = {
     tooltipProps: {
       title: 'Tooltip',
       content: 'Tooltip content',
+      // @ts-expect-error - unsupported value for VRT only
       delay: 'none',
       position: 'bottom',
     },
@@ -248,6 +249,7 @@ export const ExtraActionAndTooltipProps: Story = {
     tooltipProps: {
       title: 'Tooltip',
       content: 'Tooltip content',
+      // @ts-expect-error - unsupported value for VRT only
       delay: 'none',
       position: 'bottom',
     },
@@ -267,7 +269,7 @@ export const Truncation: Story = {
     children: 'List item with long label that should be truncated',
     textWrap: 'truncate',
   },
-  render: (args) => (
+  render: (args: EuiListItemLayoutProps) => (
     <div
       css={css`
         inline-size: 250px;
@@ -291,7 +293,7 @@ export const TextWrap: Story = {
     children: 'List item with long label that should break into a new line',
     textWrap: 'wrap',
   },
-  render: (args) => (
+  render: (args: EuiListItemLayoutProps) => (
     <div
       css={css`
         inline-size: 250px;
@@ -314,7 +316,7 @@ export const KitchenSink: Story = {
     element: 'li',
     children: 'List item',
   },
-  render: function Render(args) {
+  render: function Render(args: EuiListItemLayoutProps) {
     return (
       <>
         <EuiFlexGroup direction="row" gutterSize="m">
