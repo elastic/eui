@@ -111,26 +111,6 @@ export const euiListItemLayoutStyles = (euiThemeContext: UseEuiTheme) => {
       wrap: css``,
     },
 
-    // Sizes
-    xs: css`
-      ${euiFontSize(euiThemeContext, 'xs')}
-      letter-spacing: 0;
-      ${logicalCSS('min-height', euiTheme.size.l)}
-    `,
-    s: css`
-      ${euiFontSize(euiThemeContext, 's')}
-      letter-spacing: 0;
-      ${logicalCSS('min-height', euiTheme.size.xl)}
-    `,
-    m: css`
-      ${euiFontSize(euiThemeContext, 'm')}
-      ${logicalCSS('min-height', euiTheme.size.xl)}
-    `,
-    l: css`
-      ${euiFontSize(euiThemeContext, 'l')}
-      ${logicalCSS('min-height', euiTheme.size.xxl)}
-    `,
-
     euiListItemLayout__prepend: css`
       ${sharedFlexStyles}
       gap: ${spacing.horizontal};
