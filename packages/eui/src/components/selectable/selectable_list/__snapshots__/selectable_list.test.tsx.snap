@@ -17,138 +17,143 @@ exports[`EuiSelectableListItem group labels handles updating aria attrs correctl
       tabindex="0"
     >
       <li
-        class="euiSelectableList__groupLabel emotion-euiSelectableList__groupLabel"
+        class="euiSelectableList__groupLabel css-qwp38o-groupLabel"
         role="presentation"
       >
         Moons
       </li>
       <li
-        aria-checked="false"
         aria-posinset="1"
         aria-selected="false"
         aria-setsize="5"
-        class="euiSelectableListItem emotion-euiSelectableListItem"
+        class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive"
+        data-test-subj="euiListItemLayout"
         id="option_1"
         role="option"
         title="Titan"
       >
         <span
-          class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+          class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
         >
           <span
-            class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
+            class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+            color="text"
             data-euiicon-type="empty"
           />
           <span
-            class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+            class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
           >
             Titan
           </span>
         </span>
       </li>
       <li
-        aria-checked="false"
         aria-posinset="2"
         aria-selected="false"
         aria-setsize="5"
-        class="euiSelectableListItem emotion-euiSelectableListItem"
+        class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive"
+        data-test-subj="euiListItemLayout"
         id="option_2"
         role="option"
         title="Io"
       >
         <span
-          class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+          class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
         >
           <span
-            class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
+            class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+            color="text"
             data-euiicon-type="empty"
           />
           <span
-            class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+            class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
           >
             Io
           </span>
         </span>
       </li>
       <li
-        class="euiSelectableList__groupLabel emotion-euiSelectableList__groupLabel"
+        class="euiSelectableList__groupLabel css-qwp38o-groupLabel"
         role="presentation"
       >
         Planets
       </li>
       <li
-        aria-checked="false"
         aria-posinset="3"
         aria-selected="false"
         aria-setsize="5"
-        class="euiSelectableListItem emotion-euiSelectableListItem"
+        class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive"
+        data-test-subj="euiListItemLayout"
         id="option_4"
         role="option"
         title="Mercury"
       >
         <span
-          class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+          class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
         >
           <span
-            class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
+            class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+            color="text"
             data-euiicon-type="empty"
           />
           <span
-            class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+            class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
           >
             Mercury
           </span>
         </span>
       </li>
       <li
-        aria-checked="false"
         aria-posinset="4"
         aria-selected="false"
         aria-setsize="5"
-        class="euiSelectableListItem emotion-euiSelectableListItem"
+        class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive"
+        data-test-subj="euiListItemLayout"
         id="option_5"
         role="option"
         title="Mars"
       >
         <span
-          class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+          class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
         >
           <span
-            class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
+            class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+            color="text"
             data-euiicon-type="empty"
           />
           <span
-            class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+            class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
           >
             Mars
           </span>
         </span>
       </li>
       <li
-        class="euiSelectableList__groupLabel emotion-euiSelectableList__groupLabel"
+        class="euiSelectableList__groupLabel css-qwp38o-groupLabel"
         role="presentation"
       >
         Suns
       </li>
       <li
-        aria-checked="false"
         aria-posinset="5"
         aria-selected="false"
         aria-setsize="5"
-        class="euiSelectableListItem emotion-euiSelectableListItem"
+        class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive"
+        data-test-subj="euiListItemLayout"
         id="option_7"
         role="option"
         title="Sol"
       >
         <span
-          class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+          class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
         >
           <span
-            class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
+            class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+            color="text"
             data-euiicon-type="empty"
           />
           <span
-            class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+            class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
           >
             Sol
           </span>
@@ -181,146 +186,151 @@ exports[`EuiSelectableListItem group labels renders with correct aria-setsize an
         tabindex="0"
       >
         <li
-          aria-checked="false"
           aria-posinset="1"
           aria-selected="false"
           aria-setsize="5"
-          class="euiSelectableListItem emotion-euiSelectableListItem"
+          class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive"
+          data-test-subj="euiListItemLayout"
           id="option_0"
           role="option"
           style="position: absolute; left: 0px; top: 0px; height: 32px; width: 100%;"
           title="Spaaaace"
         >
           <span
-            class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+            class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
+              class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+              color="text"
               data-euiicon-type="empty"
             />
             <span
-              class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+              class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
             >
               Spaaaace
             </span>
           </span>
         </li>
         <li
-          class="euiSelectableList__groupLabel emotion-euiSelectableList__groupLabel"
+          class="euiSelectableList__groupLabel css-qwp38o-groupLabel"
           role="presentation"
           style="position: absolute; left: 0px; top: 32px; height: 48px; width: 100%;"
         >
           Moons
         </li>
         <li
-          aria-checked="false"
           aria-posinset="2"
           aria-selected="false"
           aria-setsize="5"
-          class="euiSelectableListItem emotion-euiSelectableListItem"
+          class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive"
+          data-test-subj="euiListItemLayout"
           id="option_2"
           role="option"
           style="position: absolute; left: 0px; top: 80px; height: 32px; width: 100%;"
           title="Titan"
         >
           <span
-            class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+            class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
+              class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+              color="text"
               data-euiicon-type="empty"
             />
             <span
-              class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+              class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
             >
               Titan
             </span>
           </span>
         </li>
         <li
-          aria-checked="false"
           aria-posinset="3"
           aria-selected="false"
           aria-setsize="5"
-          class="euiSelectableListItem emotion-euiSelectableListItem"
+          class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive"
+          data-test-subj="euiListItemLayout"
           id="option_3"
           role="option"
           style="position: absolute; left: 0px; top: 112px; height: 32px; width: 100%;"
           title="Io"
         >
           <span
-            class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+            class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
+              class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+              color="text"
               data-euiicon-type="empty"
             />
             <span
-              class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+              class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
             >
               Io
             </span>
           </span>
         </li>
         <li
-          class="euiSelectableList__groupLabel emotion-euiSelectableList__groupLabel"
+          class="euiSelectableList__groupLabel css-qwp38o-groupLabel"
           role="presentation"
           style="position: absolute; left: 0px; top: 144px; height: 48px; width: 100%;"
         >
           Planets
         </li>
         <li
-          aria-checked="false"
           aria-posinset="4"
           aria-selected="false"
           aria-setsize="5"
-          class="euiSelectableListItem emotion-euiSelectableListItem"
+          class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive"
+          data-test-subj="euiListItemLayout"
           id="option_5"
           role="option"
           style="position: absolute; left: 0px; top: 192px; height: 32px; width: 100%;"
           title="Mercury"
         >
           <span
-            class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+            class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
+              class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+              color="text"
               data-euiicon-type="empty"
             />
             <span
-              class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+              class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
             >
               Mercury
             </span>
           </span>
         </li>
         <li
-          aria-checked="false"
           aria-posinset="5"
           aria-selected="false"
           aria-setsize="5"
-          class="euiSelectableListItem emotion-euiSelectableListItem"
+          class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive"
+          data-test-subj="euiListItemLayout"
           id="option_6"
           role="option"
           style="position: absolute; left: 0px; top: 224px; height: 32px; width: 100%;"
           title="Mars"
         >
           <span
-            class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+            class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
+              class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+              color="text"
               data-euiicon-type="empty"
             />
             <span
-              class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+              class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
             >
               Mars
             </span>
           </span>
         </li>
         <li
-          class="euiSelectableList__groupLabel emotion-euiSelectableList__groupLabel"
+          class="euiSelectableList__groupLabel css-qwp38o-groupLabel"
           role="presentation"
           style="position: absolute; left: 0px; top: 256px; height: 48px; width: 100%;"
         >
@@ -354,11 +364,10 @@ exports[`EuiSelectableListItem is rendered 1`] = `
         tabindex="0"
       >
         <li
-          aria-checked="false"
           aria-posinset="1"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem"
+          class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive"
           data-test-subj="titanOption"
           id="option_0"
           role="option"
@@ -366,139 +375,145 @@ exports[`EuiSelectableListItem is rendered 1`] = `
           title="Titan"
         >
           <span
-            class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+            class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
+              class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+              color="text"
               data-euiicon-type="empty"
             />
             <span
-              class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+              class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
             >
               Titan
             </span>
           </span>
         </li>
         <li
-          aria-checked="false"
           aria-posinset="2"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem"
+          class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive"
+          data-test-subj="euiListItemLayout"
           id="option_1"
           role="option"
           style="position: absolute; left: 0px; top: 32px; height: 32px; width: 100%;"
           title="Enceladus"
         >
           <span
-            class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+            class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
+              class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+              color="text"
               data-euiicon-type="empty"
             />
             <span
-              class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+              class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
             >
               Enceladus
             </span>
           </span>
         </li>
         <li
-          aria-checked="false"
           aria-posinset="3"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem"
+          class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive"
+          data-test-subj="euiListItemLayout"
           id="option_2"
           role="option"
           style="position: absolute; left: 0px; top: 64px; height: 32px; width: 100%;"
           title="Mimas"
         >
           <span
-            class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+            class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
+              class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+              color="text"
               data-euiicon-type="empty"
             />
             <span
-              class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+              class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
             >
               Mimas
             </span>
           </span>
         </li>
         <li
-          aria-checked="false"
           aria-posinset="4"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem"
+          class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive"
+          data-test-subj="euiListItemLayout"
           id="option_3"
           role="option"
           style="position: absolute; left: 0px; top: 96px; height: 32px; width: 100%;"
           title="Pandora is one of Saturn's moons, named for a Titaness of Greek mythology"
         >
           <span
-            class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+            class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
+              class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+              color="text"
               data-euiicon-type="empty"
             />
             <span
-              class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+              class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
             >
               Pandora is one of Saturn's moons, named for a Titaness of Greek mythology
             </span>
           </span>
         </li>
         <li
-          aria-checked="false"
           aria-posinset="5"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem"
+          class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive"
+          data-test-subj="euiListItemLayout"
           id="option_4"
           role="option"
           style="position: absolute; left: 0px; top: 128px; height: 32px; width: 100%;"
           title="Tethys"
         >
           <span
-            class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+            class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
+              class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+              color="text"
               data-euiicon-type="empty"
             />
             <span
-              class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+              class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
             >
               Tethys
             </span>
           </span>
         </li>
         <li
-          aria-checked="false"
           aria-posinset="6"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem"
+          class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive"
+          data-test-subj="euiListItemLayout"
           id="option_5"
           role="option"
           style="position: absolute; left: 0px; top: 160px; height: 32px; width: 100%;"
           title="Hyperion"
         >
           <span
-            class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+            class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
+              class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+              color="text"
               data-euiicon-type="empty"
             />
             <span
-              class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+              class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
             >
               Hyperion
             </span>
@@ -532,11 +547,10 @@ exports[`EuiSelectableListItem props activeOptionIndex 1`] = `
         tabindex="0"
       >
         <li
-          aria-checked="false"
           aria-posinset="1"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem"
+          class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive"
           data-test-subj="titanOption"
           id="option_0"
           role="option"
@@ -544,139 +558,145 @@ exports[`EuiSelectableListItem props activeOptionIndex 1`] = `
           title="Titan"
         >
           <span
-            class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+            class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
+              class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+              color="text"
               data-euiicon-type="empty"
             />
             <span
-              class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+              class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
             >
               Titan
             </span>
           </span>
         </li>
         <li
-          aria-checked="false"
           aria-posinset="2"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem"
+          class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive"
+          data-test-subj="euiListItemLayout"
           id="option_1"
           role="option"
           style="position: absolute; left: 0px; top: 32px; height: 32px; width: 100%;"
           title="Enceladus"
         >
           <span
-            class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+            class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
+              class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+              color="text"
               data-euiicon-type="empty"
             />
             <span
-              class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+              class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
             >
               Enceladus
             </span>
           </span>
         </li>
         <li
-          aria-checked="false"
           aria-posinset="3"
-          aria-selected="true"
+          aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem euiSelectableListItem-isFocused emotion-euiSelectableListItem"
+          class="euiListItemLayout euiSelectableListItem euiSelectableListItem-isFocused emotion-euiListItemLayout-isInteractive-isFocused"
+          data-test-subj="euiListItemLayout"
           id="option_2"
           role="option"
           style="position: absolute; left: 0px; top: 64px; height: 32px; width: 100%;"
           title="Mimas"
         >
           <span
-            class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+            class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
+              class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+              color="text"
               data-euiicon-type="empty"
             />
             <span
-              class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+              class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
             >
               Mimas
             </span>
           </span>
         </li>
         <li
-          aria-checked="false"
           aria-posinset="4"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem"
+          class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive"
+          data-test-subj="euiListItemLayout"
           id="option_3"
           role="option"
           style="position: absolute; left: 0px; top: 96px; height: 32px; width: 100%;"
           title="Pandora is one of Saturn's moons, named for a Titaness of Greek mythology"
         >
           <span
-            class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+            class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
+              class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+              color="text"
               data-euiicon-type="empty"
             />
             <span
-              class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+              class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
             >
               Pandora is one of Saturn's moons, named for a Titaness of Greek mythology
             </span>
           </span>
         </li>
         <li
-          aria-checked="false"
           aria-posinset="5"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem"
+          class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive"
+          data-test-subj="euiListItemLayout"
           id="option_4"
           role="option"
           style="position: absolute; left: 0px; top: 128px; height: 32px; width: 100%;"
           title="Tethys"
         >
           <span
-            class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+            class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
+              class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+              color="text"
               data-euiicon-type="empty"
             />
             <span
-              class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+              class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
             >
               Tethys
             </span>
           </span>
         </li>
         <li
-          aria-checked="false"
           aria-posinset="6"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem"
+          class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive"
+          data-test-subj="euiListItemLayout"
           id="option_5"
           role="option"
           style="position: absolute; left: 0px; top: 160px; height: 32px; width: 100%;"
           title="Hyperion"
         >
           <span
-            class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+            class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
+              class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+              color="text"
               data-euiicon-type="empty"
             />
             <span
-              class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+              class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
             >
               Hyperion
             </span>
@@ -712,9 +732,8 @@ exports[`EuiSelectableListItem props allowExclusions 1`] = `
         <li
           aria-checked="false"
           aria-posinset="1"
-          aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem"
+          class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive"
           data-test-subj="titanOption"
           id="option_0"
           role="option"
@@ -722,14 +741,15 @@ exports[`EuiSelectableListItem props allowExclusions 1`] = `
           title="Titan"
         >
           <span
-            class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+            class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
+              class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+              color="text"
               data-euiicon-type="empty"
             />
             <span
-              class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+              class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
             >
               Titan
               <div
@@ -744,23 +764,24 @@ exports[`EuiSelectableListItem props allowExclusions 1`] = `
         <li
           aria-checked="false"
           aria-posinset="2"
-          aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem"
+          class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive"
+          data-test-subj="euiListItemLayout"
           id="option_1"
           role="option"
           style="position: absolute; left: 0px; top: 32px; height: 32px; width: 100%;"
           title="Enceladus"
         >
           <span
-            class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+            class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
+              class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+              color="text"
               data-euiicon-type="empty"
             />
             <span
-              class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+              class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
             >
               Enceladus
               <div
@@ -775,23 +796,24 @@ exports[`EuiSelectableListItem props allowExclusions 1`] = `
         <li
           aria-checked="false"
           aria-posinset="3"
-          aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem"
+          class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive"
+          data-test-subj="euiListItemLayout"
           id="option_2"
           role="option"
           style="position: absolute; left: 0px; top: 64px; height: 32px; width: 100%;"
           title="Mimas"
         >
           <span
-            class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+            class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
+              class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+              color="text"
               data-euiicon-type="empty"
             />
             <span
-              class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+              class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
             >
               Mimas
               <div
@@ -806,23 +828,24 @@ exports[`EuiSelectableListItem props allowExclusions 1`] = `
         <li
           aria-checked="false"
           aria-posinset="4"
-          aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem"
+          class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive"
+          data-test-subj="euiListItemLayout"
           id="option_3"
           role="option"
           style="position: absolute; left: 0px; top: 96px; height: 32px; width: 100%;"
           title="Pandora is one of Saturn's moons, named for a Titaness of Greek mythology"
         >
           <span
-            class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+            class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
+              class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+              color="text"
               data-euiicon-type="empty"
             />
             <span
-              class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+              class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
             >
               Pandora is one of Saturn's moons, named for a Titaness of Greek mythology
               <div
@@ -837,23 +860,24 @@ exports[`EuiSelectableListItem props allowExclusions 1`] = `
         <li
           aria-checked="false"
           aria-posinset="5"
-          aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem"
+          class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive"
+          data-test-subj="euiListItemLayout"
           id="option_4"
           role="option"
           style="position: absolute; left: 0px; top: 128px; height: 32px; width: 100%;"
           title="Tethys"
         >
           <span
-            class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+            class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
+              class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+              color="text"
               data-euiicon-type="empty"
             />
             <span
-              class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+              class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
             >
               Tethys
               <div
@@ -868,23 +892,24 @@ exports[`EuiSelectableListItem props allowExclusions 1`] = `
         <li
           aria-checked="false"
           aria-posinset="6"
-          aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem"
+          class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive"
+          data-test-subj="euiListItemLayout"
           id="option_5"
           role="option"
           style="position: absolute; left: 0px; top: 160px; height: 32px; width: 100%;"
           title="Hyperion"
         >
           <span
-            class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+            class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
+              class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+              color="text"
               data-euiicon-type="empty"
             />
             <span
-              class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+              class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
             >
               Hyperion
               <div
@@ -924,11 +949,10 @@ exports[`EuiSelectableListItem props bordered 1`] = `
         tabindex="0"
       >
         <li
-          aria-checked="false"
           aria-posinset="1"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem"
+          class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive"
           data-test-subj="titanOption"
           id="option_0"
           role="option"
@@ -936,139 +960,145 @@ exports[`EuiSelectableListItem props bordered 1`] = `
           title="Titan"
         >
           <span
-            class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+            class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
+              class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+              color="text"
               data-euiicon-type="empty"
             />
             <span
-              class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+              class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
             >
               Titan
             </span>
           </span>
         </li>
         <li
-          aria-checked="false"
           aria-posinset="2"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem"
+          class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive"
+          data-test-subj="euiListItemLayout"
           id="option_1"
           role="option"
           style="position: absolute; left: 0px; top: 32px; height: 32px; width: 100%;"
           title="Enceladus"
         >
           <span
-            class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+            class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
+              class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+              color="text"
               data-euiicon-type="empty"
             />
             <span
-              class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+              class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
             >
               Enceladus
             </span>
           </span>
         </li>
         <li
-          aria-checked="false"
           aria-posinset="3"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem"
+          class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive"
+          data-test-subj="euiListItemLayout"
           id="option_2"
           role="option"
           style="position: absolute; left: 0px; top: 64px; height: 32px; width: 100%;"
           title="Mimas"
         >
           <span
-            class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+            class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
+              class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+              color="text"
               data-euiicon-type="empty"
             />
             <span
-              class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+              class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
             >
               Mimas
             </span>
           </span>
         </li>
         <li
-          aria-checked="false"
           aria-posinset="4"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem"
+          class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive"
+          data-test-subj="euiListItemLayout"
           id="option_3"
           role="option"
           style="position: absolute; left: 0px; top: 96px; height: 32px; width: 100%;"
           title="Pandora is one of Saturn's moons, named for a Titaness of Greek mythology"
         >
           <span
-            class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+            class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
+              class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+              color="text"
               data-euiicon-type="empty"
             />
             <span
-              class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+              class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
             >
               Pandora is one of Saturn's moons, named for a Titaness of Greek mythology
             </span>
           </span>
         </li>
         <li
-          aria-checked="false"
           aria-posinset="5"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem"
+          class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive"
+          data-test-subj="euiListItemLayout"
           id="option_4"
           role="option"
           style="position: absolute; left: 0px; top: 128px; height: 32px; width: 100%;"
           title="Tethys"
         >
           <span
-            class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+            class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
+              class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+              color="text"
               data-euiicon-type="empty"
             />
             <span
-              class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+              class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
             >
               Tethys
             </span>
           </span>
         </li>
         <li
-          aria-checked="false"
           aria-posinset="6"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem"
+          class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive"
+          data-test-subj="euiListItemLayout"
           id="option_5"
           role="option"
           style="position: absolute; left: 0px; top: 160px; height: 32px; width: 100%;"
           title="Hyperion"
         >
           <span
-            class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+            class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
+              class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+              color="text"
               data-euiicon-type="empty"
             />
             <span
-              class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+              class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
             >
               Hyperion
             </span>
@@ -1102,11 +1132,10 @@ exports[`EuiSelectableListItem props height is forced 1`] = `
         tabindex="0"
       >
         <li
-          aria-checked="false"
           aria-posinset="1"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem"
+          class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive"
           data-test-subj="titanOption"
           id="option_0"
           role="option"
@@ -1114,139 +1143,145 @@ exports[`EuiSelectableListItem props height is forced 1`] = `
           title="Titan"
         >
           <span
-            class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+            class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
+              class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+              color="text"
               data-euiicon-type="empty"
             />
             <span
-              class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+              class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
             >
               Titan
             </span>
           </span>
         </li>
         <li
-          aria-checked="false"
           aria-posinset="2"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem"
+          class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive"
+          data-test-subj="euiListItemLayout"
           id="option_1"
           role="option"
           style="position: absolute; left: 0px; top: 32px; height: 32px; width: 100%;"
           title="Enceladus"
         >
           <span
-            class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+            class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
+              class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+              color="text"
               data-euiicon-type="empty"
             />
             <span
-              class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+              class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
             >
               Enceladus
             </span>
           </span>
         </li>
         <li
-          aria-checked="false"
           aria-posinset="3"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem"
+          class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive"
+          data-test-subj="euiListItemLayout"
           id="option_2"
           role="option"
           style="position: absolute; left: 0px; top: 64px; height: 32px; width: 100%;"
           title="Mimas"
         >
           <span
-            class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+            class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
+              class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+              color="text"
               data-euiicon-type="empty"
             />
             <span
-              class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+              class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
             >
               Mimas
             </span>
           </span>
         </li>
         <li
-          aria-checked="false"
           aria-posinset="4"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem"
+          class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive"
+          data-test-subj="euiListItemLayout"
           id="option_3"
           role="option"
           style="position: absolute; left: 0px; top: 96px; height: 32px; width: 100%;"
           title="Pandora is one of Saturn's moons, named for a Titaness of Greek mythology"
         >
           <span
-            class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+            class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
+              class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+              color="text"
               data-euiicon-type="empty"
             />
             <span
-              class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+              class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
             >
               Pandora is one of Saturn's moons, named for a Titaness of Greek mythology
             </span>
           </span>
         </li>
         <li
-          aria-checked="false"
           aria-posinset="5"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem"
+          class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive"
+          data-test-subj="euiListItemLayout"
           id="option_4"
           role="option"
           style="position: absolute; left: 0px; top: 128px; height: 32px; width: 100%;"
           title="Tethys"
         >
           <span
-            class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+            class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
+              class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+              color="text"
               data-euiicon-type="empty"
             />
             <span
-              class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+              class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
             >
               Tethys
             </span>
           </span>
         </li>
         <li
-          aria-checked="false"
           aria-posinset="6"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem"
+          class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive"
+          data-test-subj="euiListItemLayout"
           id="option_5"
           role="option"
           style="position: absolute; left: 0px; top: 160px; height: 32px; width: 100%;"
           title="Hyperion"
         >
           <span
-            class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+            class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
+              class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+              color="text"
               data-euiicon-type="empty"
             />
             <span
-              class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+              class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
             >
               Hyperion
             </span>
@@ -1280,11 +1315,10 @@ exports[`EuiSelectableListItem props height is full 1`] = `
         tabindex="0"
       >
         <li
-          aria-checked="false"
           aria-posinset="1"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem"
+          class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive"
           data-test-subj="titanOption"
           id="option_0"
           role="option"
@@ -1292,139 +1326,145 @@ exports[`EuiSelectableListItem props height is full 1`] = `
           title="Titan"
         >
           <span
-            class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+            class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
+              class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+              color="text"
               data-euiicon-type="empty"
             />
             <span
-              class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+              class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
             >
               Titan
             </span>
           </span>
         </li>
         <li
-          aria-checked="false"
           aria-posinset="2"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem"
+          class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive"
+          data-test-subj="euiListItemLayout"
           id="option_1"
           role="option"
           style="position: absolute; left: 0px; top: 32px; height: 32px; width: 100%;"
           title="Enceladus"
         >
           <span
-            class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+            class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
+              class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+              color="text"
               data-euiicon-type="empty"
             />
             <span
-              class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+              class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
             >
               Enceladus
             </span>
           </span>
         </li>
         <li
-          aria-checked="false"
           aria-posinset="3"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem"
+          class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive"
+          data-test-subj="euiListItemLayout"
           id="option_2"
           role="option"
           style="position: absolute; left: 0px; top: 64px; height: 32px; width: 100%;"
           title="Mimas"
         >
           <span
-            class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+            class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
+              class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+              color="text"
               data-euiicon-type="empty"
             />
             <span
-              class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+              class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
             >
               Mimas
             </span>
           </span>
         </li>
         <li
-          aria-checked="false"
           aria-posinset="4"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem"
+          class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive"
+          data-test-subj="euiListItemLayout"
           id="option_3"
           role="option"
           style="position: absolute; left: 0px; top: 96px; height: 32px; width: 100%;"
           title="Pandora is one of Saturn's moons, named for a Titaness of Greek mythology"
         >
           <span
-            class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+            class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
+              class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+              color="text"
               data-euiicon-type="empty"
             />
             <span
-              class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+              class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
             >
               Pandora is one of Saturn's moons, named for a Titaness of Greek mythology
             </span>
           </span>
         </li>
         <li
-          aria-checked="false"
           aria-posinset="5"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem"
+          class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive"
+          data-test-subj="euiListItemLayout"
           id="option_4"
           role="option"
           style="position: absolute; left: 0px; top: 128px; height: 32px; width: 100%;"
           title="Tethys"
         >
           <span
-            class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+            class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
+              class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+              color="text"
               data-euiicon-type="empty"
             />
             <span
-              class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+              class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
             >
               Tethys
             </span>
           </span>
         </li>
         <li
-          aria-checked="false"
           aria-posinset="6"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem"
+          class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive"
+          data-test-subj="euiListItemLayout"
           id="option_5"
           role="option"
           style="position: absolute; left: 0px; top: 160px; height: 32px; width: 100%;"
           title="Hyperion"
         >
           <span
-            class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+            class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
+              class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+              color="text"
               data-euiicon-type="empty"
             />
             <span
-              class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+              class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
             >
               Hyperion
             </span>
@@ -1453,145 +1493,150 @@ exports[`EuiSelectableListItem props isVirtualized={false} renders 1`] = `
       tabindex="0"
     >
       <li
-        aria-checked="false"
         aria-posinset="1"
         aria-selected="false"
         aria-setsize="6"
-        class="euiSelectableListItem emotion-euiSelectableListItem"
+        class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive"
         data-test-subj="titanOption"
         id="option_0"
         role="option"
         title="Titan"
       >
         <span
-          class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+          class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
         >
           <span
-            class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
+            class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+            color="text"
             data-euiicon-type="empty"
           />
           <span
-            class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+            class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
           >
             Titan
           </span>
         </span>
       </li>
       <li
-        aria-checked="false"
         aria-posinset="2"
         aria-selected="false"
         aria-setsize="6"
-        class="euiSelectableListItem emotion-euiSelectableListItem"
+        class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive"
+        data-test-subj="euiListItemLayout"
         id="option_1"
         role="option"
         title="Enceladus"
       >
         <span
-          class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+          class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
         >
           <span
-            class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
+            class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+            color="text"
             data-euiicon-type="empty"
           />
           <span
-            class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+            class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
           >
             Enceladus
           </span>
         </span>
       </li>
       <li
-        aria-checked="false"
         aria-posinset="3"
         aria-selected="false"
         aria-setsize="6"
-        class="euiSelectableListItem emotion-euiSelectableListItem"
+        class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive"
+        data-test-subj="euiListItemLayout"
         id="option_2"
         role="option"
         title="Mimas"
       >
         <span
-          class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+          class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
         >
           <span
-            class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
+            class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+            color="text"
             data-euiicon-type="empty"
           />
           <span
-            class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+            class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
           >
             Mimas
           </span>
         </span>
       </li>
       <li
-        aria-checked="false"
         aria-posinset="4"
         aria-selected="false"
         aria-setsize="6"
-        class="euiSelectableListItem emotion-euiSelectableListItem"
+        class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive"
+        data-test-subj="euiListItemLayout"
         id="option_3"
         role="option"
         title="Pandora is one of Saturn's moons, named for a Titaness of Greek mythology"
       >
         <span
-          class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+          class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
         >
           <span
-            class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
+            class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+            color="text"
             data-euiicon-type="empty"
           />
           <span
-            class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+            class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
           >
             Pandora is one of Saturn's moons, named for a Titaness of Greek mythology
           </span>
         </span>
       </li>
       <li
-        aria-checked="false"
         aria-posinset="5"
         aria-selected="false"
         aria-setsize="6"
-        class="euiSelectableListItem emotion-euiSelectableListItem"
+        class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive"
+        data-test-subj="euiListItemLayout"
         id="option_4"
         role="option"
         title="Tethys"
       >
         <span
-          class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+          class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
         >
           <span
-            class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
+            class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+            color="text"
             data-euiicon-type="empty"
           />
           <span
-            class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+            class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
           >
             Tethys
           </span>
         </span>
       </li>
       <li
-        aria-checked="false"
         aria-posinset="6"
         aria-selected="false"
         aria-setsize="6"
-        class="euiSelectableListItem emotion-euiSelectableListItem"
+        class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive"
+        data-test-subj="euiListItemLayout"
         id="option_5"
         role="option"
         title="Hyperion"
       >
         <span
-          class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+          class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
         >
           <span
-            class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
+            class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+            color="text"
             data-euiicon-type="empty"
           />
           <span
-            class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+            class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
           >
             Hyperion
           </span>
@@ -1624,11 +1669,10 @@ exports[`EuiSelectableListItem props renderOption 1`] = `
         tabindex="0"
       >
         <li
-          aria-checked="false"
           aria-posinset="1"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem"
+          class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive"
           data-test-subj="titanOption"
           id="option_0"
           role="option"
@@ -1636,14 +1680,15 @@ exports[`EuiSelectableListItem props renderOption 1`] = `
           title="Titan"
         >
           <span
-            class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+            class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
+              class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+              color="text"
               data-euiicon-type="empty"
             />
             <span
-              class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+              class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
             >
               <span>
                  =&gt; 
@@ -1653,25 +1698,26 @@ exports[`EuiSelectableListItem props renderOption 1`] = `
           </span>
         </li>
         <li
-          aria-checked="false"
           aria-posinset="2"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem"
+          class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive"
+          data-test-subj="euiListItemLayout"
           id="option_1"
           role="option"
           style="position: absolute; left: 0px; top: 32px; height: 32px; width: 100%;"
           title="Enceladus"
         >
           <span
-            class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+            class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
+              class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+              color="text"
               data-euiicon-type="empty"
             />
             <span
-              class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+              class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
             >
               <span>
                  =&gt; 
@@ -1681,25 +1727,26 @@ exports[`EuiSelectableListItem props renderOption 1`] = `
           </span>
         </li>
         <li
-          aria-checked="false"
           aria-posinset="3"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem"
+          class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive"
+          data-test-subj="euiListItemLayout"
           id="option_2"
           role="option"
           style="position: absolute; left: 0px; top: 64px; height: 32px; width: 100%;"
           title="Mimas"
         >
           <span
-            class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+            class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
+              class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+              color="text"
               data-euiicon-type="empty"
             />
             <span
-              class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+              class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
             >
               <span>
                  =&gt; 
@@ -1709,25 +1756,26 @@ exports[`EuiSelectableListItem props renderOption 1`] = `
           </span>
         </li>
         <li
-          aria-checked="false"
           aria-posinset="4"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem"
+          class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive"
+          data-test-subj="euiListItemLayout"
           id="option_3"
           role="option"
           style="position: absolute; left: 0px; top: 96px; height: 32px; width: 100%;"
           title="Pandora is one of Saturn's moons, named for a Titaness of Greek mythology"
         >
           <span
-            class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+            class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
+              class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+              color="text"
               data-euiicon-type="empty"
             />
             <span
-              class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+              class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
             >
               <span>
                  =&gt; 
@@ -1737,25 +1785,26 @@ exports[`EuiSelectableListItem props renderOption 1`] = `
           </span>
         </li>
         <li
-          aria-checked="false"
           aria-posinset="5"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem"
+          class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive"
+          data-test-subj="euiListItemLayout"
           id="option_4"
           role="option"
           style="position: absolute; left: 0px; top: 128px; height: 32px; width: 100%;"
           title="Tethys"
         >
           <span
-            class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+            class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
+              class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+              color="text"
               data-euiicon-type="empty"
             />
             <span
-              class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+              class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
             >
               <span>
                  =&gt; 
@@ -1765,25 +1814,26 @@ exports[`EuiSelectableListItem props renderOption 1`] = `
           </span>
         </li>
         <li
-          aria-checked="false"
           aria-posinset="6"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem"
+          class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive"
+          data-test-subj="euiListItemLayout"
           id="option_5"
           role="option"
           style="position: absolute; left: 0px; top: 160px; height: 32px; width: 100%;"
           title="Hyperion"
         >
           <span
-            class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+            class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
+              class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+              color="text"
               data-euiicon-type="empty"
             />
             <span
-              class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+              class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
             >
               <span>
                  =&gt; 
@@ -1820,11 +1870,10 @@ exports[`EuiSelectableListItem props rowHeight 1`] = `
         tabindex="0"
       >
         <li
-          aria-checked="false"
           aria-posinset="1"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem"
+          class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive"
           data-test-subj="titanOption"
           id="option_0"
           role="option"
@@ -1832,139 +1881,145 @@ exports[`EuiSelectableListItem props rowHeight 1`] = `
           title="Titan"
         >
           <span
-            class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+            class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
+              class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+              color="text"
               data-euiicon-type="empty"
             />
             <span
-              class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+              class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
             >
               Titan
             </span>
           </span>
         </li>
         <li
-          aria-checked="false"
           aria-posinset="2"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem"
+          class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive"
+          data-test-subj="euiListItemLayout"
           id="option_1"
           role="option"
           style="position: absolute; left: 0px; top: 20px; height: 20px; width: 100%;"
           title="Enceladus"
         >
           <span
-            class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+            class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
+              class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+              color="text"
               data-euiicon-type="empty"
             />
             <span
-              class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+              class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
             >
               Enceladus
             </span>
           </span>
         </li>
         <li
-          aria-checked="false"
           aria-posinset="3"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem"
+          class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive"
+          data-test-subj="euiListItemLayout"
           id="option_2"
           role="option"
           style="position: absolute; left: 0px; top: 40px; height: 20px; width: 100%;"
           title="Mimas"
         >
           <span
-            class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+            class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
+              class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+              color="text"
               data-euiicon-type="empty"
             />
             <span
-              class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+              class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
             >
               Mimas
             </span>
           </span>
         </li>
         <li
-          aria-checked="false"
           aria-posinset="4"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem"
+          class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive"
+          data-test-subj="euiListItemLayout"
           id="option_3"
           role="option"
           style="position: absolute; left: 0px; top: 60px; height: 20px; width: 100%;"
           title="Pandora is one of Saturn's moons, named for a Titaness of Greek mythology"
         >
           <span
-            class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+            class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
+              class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+              color="text"
               data-euiicon-type="empty"
             />
             <span
-              class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+              class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
             >
               Pandora is one of Saturn's moons, named for a Titaness of Greek mythology
             </span>
           </span>
         </li>
         <li
-          aria-checked="false"
           aria-posinset="5"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem"
+          class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive"
+          data-test-subj="euiListItemLayout"
           id="option_4"
           role="option"
           style="position: absolute; left: 0px; top: 80px; height: 20px; width: 100%;"
           title="Tethys"
         >
           <span
-            class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+            class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
+              class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+              color="text"
               data-euiicon-type="empty"
             />
             <span
-              class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+              class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
             >
               Tethys
             </span>
           </span>
         </li>
         <li
-          aria-checked="false"
           aria-posinset="6"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem"
+          class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive"
+          data-test-subj="euiListItemLayout"
           id="option_5"
           role="option"
           style="position: absolute; left: 0px; top: 100px; height: 20px; width: 100%;"
           title="Hyperion"
         >
           <span
-            class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+            class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
+              class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+              color="text"
               data-euiicon-type="empty"
             />
             <span
-              class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+              class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
             >
               Hyperion
             </span>
@@ -1996,11 +2051,10 @@ exports[`EuiSelectableListItem props searchable enables correct screen reader in
         style="height: 192px; width: 100%;"
       >
         <li
-          aria-checked="false"
           aria-posinset="1"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem"
+          class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive"
           data-test-subj="titanOption"
           id="option_0"
           role="option"
@@ -2008,14 +2062,15 @@ exports[`EuiSelectableListItem props searchable enables correct screen reader in
           title="Titan"
         >
           <span
-            class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+            class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
+              class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+              color="text"
               data-euiicon-type="empty"
             />
             <span
-              class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+              class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
             >
               Titan
               <div
@@ -2028,25 +2083,26 @@ exports[`EuiSelectableListItem props searchable enables correct screen reader in
           </span>
         </li>
         <li
-          aria-checked="false"
           aria-posinset="2"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem"
+          class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive"
+          data-test-subj="euiListItemLayout"
           id="option_1"
           role="option"
           style="position: absolute; left: 0px; top: 32px; height: 32px; width: 100%;"
           title="Enceladus"
         >
           <span
-            class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+            class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
+              class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+              color="text"
               data-euiicon-type="empty"
             />
             <span
-              class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+              class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
             >
               Enceladus
               <div
@@ -2059,25 +2115,26 @@ exports[`EuiSelectableListItem props searchable enables correct screen reader in
           </span>
         </li>
         <li
-          aria-checked="false"
           aria-posinset="3"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem"
+          class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive"
+          data-test-subj="euiListItemLayout"
           id="option_2"
           role="option"
           style="position: absolute; left: 0px; top: 64px; height: 32px; width: 100%;"
           title="Mimas"
         >
           <span
-            class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+            class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
+              class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+              color="text"
               data-euiicon-type="empty"
             />
             <span
-              class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+              class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
             >
               Mimas
               <div
@@ -2090,25 +2147,26 @@ exports[`EuiSelectableListItem props searchable enables correct screen reader in
           </span>
         </li>
         <li
-          aria-checked="false"
           aria-posinset="4"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem"
+          class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive"
+          data-test-subj="euiListItemLayout"
           id="option_3"
           role="option"
           style="position: absolute; left: 0px; top: 96px; height: 32px; width: 100%;"
           title="Pandora is one of Saturn's moons, named for a Titaness of Greek mythology"
         >
           <span
-            class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+            class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
+              class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+              color="text"
               data-euiicon-type="empty"
             />
             <span
-              class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+              class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
             >
               Pandora is one of Saturn's moons, named for a Titaness of Greek mythology
               <div
@@ -2121,25 +2179,26 @@ exports[`EuiSelectableListItem props searchable enables correct screen reader in
           </span>
         </li>
         <li
-          aria-checked="false"
           aria-posinset="5"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem"
+          class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive"
+          data-test-subj="euiListItemLayout"
           id="option_4"
           role="option"
           style="position: absolute; left: 0px; top: 128px; height: 32px; width: 100%;"
           title="Tethys"
         >
           <span
-            class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+            class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
+              class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+              color="text"
               data-euiicon-type="empty"
             />
             <span
-              class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+              class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
             >
               Tethys
               <div
@@ -2152,25 +2211,26 @@ exports[`EuiSelectableListItem props searchable enables correct screen reader in
           </span>
         </li>
         <li
-          aria-checked="false"
           aria-posinset="6"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem"
+          class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive"
+          data-test-subj="euiListItemLayout"
           id="option_5"
           role="option"
           style="position: absolute; left: 0px; top: 160px; height: 32px; width: 100%;"
           title="Hyperion"
         >
           <span
-            class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+            class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
+              class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+              color="text"
               data-euiicon-type="empty"
             />
             <span
-              class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+              class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
             >
               Hyperion
               <div
@@ -2210,11 +2270,10 @@ exports[`EuiSelectableListItem props showIcons can be turned off 1`] = `
         tabindex="0"
       >
         <li
-          aria-checked="false"
           aria-posinset="1"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem"
+          class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive"
           data-test-subj="titanOption"
           id="option_0"
           role="option"
@@ -2222,115 +2281,115 @@ exports[`EuiSelectableListItem props showIcons can be turned off 1`] = `
           title="Titan"
         >
           <span
-            class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+            class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
-              class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+              class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
             >
               Titan
             </span>
           </span>
         </li>
         <li
-          aria-checked="false"
           aria-posinset="2"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem"
+          class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive"
+          data-test-subj="euiListItemLayout"
           id="option_1"
           role="option"
           style="position: absolute; left: 0px; top: 32px; height: 32px; width: 100%;"
           title="Enceladus"
         >
           <span
-            class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+            class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
-              class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+              class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
             >
               Enceladus
             </span>
           </span>
         </li>
         <li
-          aria-checked="false"
           aria-posinset="3"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem"
+          class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive"
+          data-test-subj="euiListItemLayout"
           id="option_2"
           role="option"
           style="position: absolute; left: 0px; top: 64px; height: 32px; width: 100%;"
           title="Mimas"
         >
           <span
-            class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+            class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
-              class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+              class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
             >
               Mimas
             </span>
           </span>
         </li>
         <li
-          aria-checked="false"
           aria-posinset="4"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem"
+          class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive"
+          data-test-subj="euiListItemLayout"
           id="option_3"
           role="option"
           style="position: absolute; left: 0px; top: 96px; height: 32px; width: 100%;"
           title="Pandora is one of Saturn's moons, named for a Titaness of Greek mythology"
         >
           <span
-            class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+            class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
-              class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+              class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
             >
               Pandora is one of Saturn's moons, named for a Titaness of Greek mythology
             </span>
           </span>
         </li>
         <li
-          aria-checked="false"
           aria-posinset="5"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem"
+          class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive"
+          data-test-subj="euiListItemLayout"
           id="option_4"
           role="option"
           style="position: absolute; left: 0px; top: 128px; height: 32px; width: 100%;"
           title="Tethys"
         >
           <span
-            class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+            class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
-              class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+              class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
             >
               Tethys
             </span>
           </span>
         </li>
         <li
-          aria-checked="false"
           aria-posinset="6"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem"
+          class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive"
+          data-test-subj="euiListItemLayout"
           id="option_5"
           role="option"
           style="position: absolute; left: 0px; top: 160px; height: 32px; width: 100%;"
           title="Hyperion"
         >
           <span
-            class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+            class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
-              class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+              class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
             >
               Hyperion
             </span>
@@ -2363,11 +2422,10 @@ exports[`EuiSelectableListItem props singleSelection can be forced so that at le
         tabindex="0"
       >
         <li
-          aria-checked="false"
           aria-posinset="1"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem"
+          class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive"
           data-test-subj="titanOption"
           id="option_0"
           role="option"
@@ -2375,139 +2433,145 @@ exports[`EuiSelectableListItem props singleSelection can be forced so that at le
           title="Titan"
         >
           <span
-            class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+            class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
+              class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+              color="text"
               data-euiicon-type="empty"
             />
             <span
-              class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+              class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
             >
               Titan
             </span>
           </span>
         </li>
         <li
-          aria-checked="false"
           aria-posinset="2"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem"
+          class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive"
+          data-test-subj="euiListItemLayout"
           id="option_1"
           role="option"
           style="position: absolute; left: 0px; top: 32px; height: 32px; width: 100%;"
           title="Enceladus"
         >
           <span
-            class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+            class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
+              class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+              color="text"
               data-euiicon-type="empty"
             />
             <span
-              class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+              class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
             >
               Enceladus
             </span>
           </span>
         </li>
         <li
-          aria-checked="false"
           aria-posinset="3"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem"
+          class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive"
+          data-test-subj="euiListItemLayout"
           id="option_2"
           role="option"
           style="position: absolute; left: 0px; top: 64px; height: 32px; width: 100%;"
           title="Mimas"
         >
           <span
-            class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+            class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
+              class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+              color="text"
               data-euiicon-type="empty"
             />
             <span
-              class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+              class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
             >
               Mimas
             </span>
           </span>
         </li>
         <li
-          aria-checked="false"
           aria-posinset="4"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem"
+          class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive"
+          data-test-subj="euiListItemLayout"
           id="option_3"
           role="option"
           style="position: absolute; left: 0px; top: 96px; height: 32px; width: 100%;"
           title="Pandora is one of Saturn's moons, named for a Titaness of Greek mythology"
         >
           <span
-            class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+            class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
+              class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+              color="text"
               data-euiicon-type="empty"
             />
             <span
-              class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+              class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
             >
               Pandora is one of Saturn's moons, named for a Titaness of Greek mythology
             </span>
           </span>
         </li>
         <li
-          aria-checked="false"
           aria-posinset="5"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem"
+          class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive"
+          data-test-subj="euiListItemLayout"
           id="option_4"
           role="option"
           style="position: absolute; left: 0px; top: 128px; height: 32px; width: 100%;"
           title="Tethys"
         >
           <span
-            class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+            class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
+              class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+              color="text"
               data-euiicon-type="empty"
             />
             <span
-              class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+              class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
             >
               Tethys
             </span>
           </span>
         </li>
         <li
-          aria-checked="false"
           aria-posinset="6"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem"
+          class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive"
+          data-test-subj="euiListItemLayout"
           id="option_5"
           role="option"
           style="position: absolute; left: 0px; top: 160px; height: 32px; width: 100%;"
           title="Hyperion"
         >
           <span
-            class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+            class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
+              class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+              color="text"
               data-euiicon-type="empty"
             />
             <span
-              class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+              class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
             >
               Hyperion
             </span>
@@ -2540,11 +2604,10 @@ exports[`EuiSelectableListItem props singleSelection can be turned on 1`] = `
         tabindex="0"
       >
         <li
-          aria-checked="false"
           aria-posinset="1"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem"
+          class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive"
           data-test-subj="titanOption"
           id="option_0"
           role="option"
@@ -2552,139 +2615,145 @@ exports[`EuiSelectableListItem props singleSelection can be turned on 1`] = `
           title="Titan"
         >
           <span
-            class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+            class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
+              class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+              color="text"
               data-euiicon-type="empty"
             />
             <span
-              class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+              class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
             >
               Titan
             </span>
           </span>
         </li>
         <li
-          aria-checked="false"
           aria-posinset="2"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem"
+          class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive"
+          data-test-subj="euiListItemLayout"
           id="option_1"
           role="option"
           style="position: absolute; left: 0px; top: 32px; height: 32px; width: 100%;"
           title="Enceladus"
         >
           <span
-            class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+            class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
+              class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+              color="text"
               data-euiicon-type="empty"
             />
             <span
-              class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+              class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
             >
               Enceladus
             </span>
           </span>
         </li>
         <li
-          aria-checked="false"
           aria-posinset="3"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem"
+          class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive"
+          data-test-subj="euiListItemLayout"
           id="option_2"
           role="option"
           style="position: absolute; left: 0px; top: 64px; height: 32px; width: 100%;"
           title="Mimas"
         >
           <span
-            class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+            class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
+              class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+              color="text"
               data-euiicon-type="empty"
             />
             <span
-              class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+              class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
             >
               Mimas
             </span>
           </span>
         </li>
         <li
-          aria-checked="false"
           aria-posinset="4"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem"
+          class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive"
+          data-test-subj="euiListItemLayout"
           id="option_3"
           role="option"
           style="position: absolute; left: 0px; top: 96px; height: 32px; width: 100%;"
           title="Pandora is one of Saturn's moons, named for a Titaness of Greek mythology"
         >
           <span
-            class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+            class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
+              class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+              color="text"
               data-euiicon-type="empty"
             />
             <span
-              class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+              class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
             >
               Pandora is one of Saturn's moons, named for a Titaness of Greek mythology
             </span>
           </span>
         </li>
         <li
-          aria-checked="false"
           aria-posinset="5"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem"
+          class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive"
+          data-test-subj="euiListItemLayout"
           id="option_4"
           role="option"
           style="position: absolute; left: 0px; top: 128px; height: 32px; width: 100%;"
           title="Tethys"
         >
           <span
-            class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+            class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
+              class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+              color="text"
               data-euiicon-type="empty"
             />
             <span
-              class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+              class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
             >
               Tethys
             </span>
           </span>
         </li>
         <li
-          aria-checked="false"
           aria-posinset="6"
           aria-selected="false"
           aria-setsize="6"
-          class="euiSelectableListItem emotion-euiSelectableListItem"
+          class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive"
+          data-test-subj="euiListItemLayout"
           id="option_5"
           role="option"
           style="position: absolute; left: 0px; top: 160px; height: 32px; width: 100%;"
           title="Hyperion"
         >
           <span
-            class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+            class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
+              class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+              color="text"
               data-euiicon-type="empty"
             />
             <span
-              class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+              class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
             >
               Hyperion
             </span>
@@ -2718,100 +2787,104 @@ exports[`EuiSelectableListItem props visibleOptions 1`] = `
         tabindex="0"
       >
         <li
-          aria-checked="false"
           aria-posinset="1"
           aria-selected="false"
           aria-setsize="4"
-          class="euiSelectableListItem emotion-euiSelectableListItem"
+          class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive"
+          data-test-subj="euiListItemLayout"
           id="option_0"
           role="option"
           style="position: absolute; left: 0px; top: 0px; height: 32px; width: 100%;"
           title="Mimas"
         >
           <span
-            class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+            class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
+              class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+              color="text"
               data-euiicon-type="empty"
             />
             <span
-              class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+              class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
             >
               Mimas
             </span>
           </span>
         </li>
         <li
-          aria-checked="false"
           aria-posinset="2"
           aria-selected="false"
           aria-setsize="4"
-          class="euiSelectableListItem emotion-euiSelectableListItem"
+          class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive"
+          data-test-subj="euiListItemLayout"
           id="option_1"
           role="option"
           style="position: absolute; left: 0px; top: 32px; height: 32px; width: 100%;"
           title="Pandora is one of Saturn's moons, named for a Titaness of Greek mythology"
         >
           <span
-            class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+            class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
+              class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+              color="text"
               data-euiicon-type="empty"
             />
             <span
-              class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+              class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
             >
               Pandora is one of Saturn's moons, named for a Titaness of Greek mythology
             </span>
           </span>
         </li>
         <li
-          aria-checked="false"
           aria-posinset="3"
           aria-selected="false"
           aria-setsize="4"
-          class="euiSelectableListItem emotion-euiSelectableListItem"
+          class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive"
+          data-test-subj="euiListItemLayout"
           id="option_2"
           role="option"
           style="position: absolute; left: 0px; top: 64px; height: 32px; width: 100%;"
           title="Tethys"
         >
           <span
-            class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+            class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
+              class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+              color="text"
               data-euiicon-type="empty"
             />
             <span
-              class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+              class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
             >
               Tethys
             </span>
           </span>
         </li>
         <li
-          aria-checked="false"
           aria-posinset="4"
           aria-selected="false"
           aria-setsize="4"
-          class="euiSelectableListItem emotion-euiSelectableListItem"
+          class="euiListItemLayout euiSelectableListItem emotion-euiListItemLayout-isInteractive"
+          data-test-subj="euiListItemLayout"
           id="option_3"
           role="option"
           style="position: absolute; left: 0px; top: 96px; height: 32px; width: 100%;"
           title="Hyperion"
         >
           <span
-            class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
+            class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
-              class="euiSelectableListItem__icon emotion-euiSelectableListItem__icon"
+              class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+              color="text"
               data-euiicon-type="empty"
             />
             <span
-              class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
+              class="euiListItemLayout__text euiSelectableListItem__text emotion-euiListItemLayout__text-truncate"
             >
               Hyperion
             </span>
