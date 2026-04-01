@@ -41,7 +41,7 @@ const StoryRender = ({
 }: EuiListItemLayoutStoryProps) => {
   return (
     <EuiListItemLayout
-      {...(args as EuiListItemLayoutProps)}
+      {...args}
       isSingleSelection={isSingleSelection}
       checked={isSingleSelection ? checkedSingle : checked}
     />
@@ -69,6 +69,10 @@ const meta: Meta<EuiListItemLayoutProps> = {
     // @ts-expect-error - custom variant of `checked` control that isn't a standalone prop
     checkedSingle: {
       name: 'checked',
+      description: `Controls the item checked indicator and applies a semantic \`aria-checked\` attribute.
+        Ensure to pass an appropriate \`role\` for the item that supports semantic \`checked\` state.
+        For no/other role(s) \`checked\` only controls the visual checked indicator.<br/><br/>
+        Leave \`undefined\` to indicate not selected. Pass a string of "on" to indicate inclusion.`,
       control: 'radio',
       options: ['on', undefined],
       if: { arg: 'isSingleSelection' }, // show for single selection only
@@ -104,6 +108,10 @@ const meta: Meta<EuiListItemLayoutProps> = {
         ),
         undefined: undefined,
       },
+    },
+    selectionMode: {
+      control: 'radio',
+      options: ['checked', 'selected', undefined],
     },
     href: {
       control: 'text',
@@ -159,6 +167,7 @@ export const Playground: Story = {
     return (
       <StoryRender
         {...(rest as EuiListItemLayoutStoryProps)}
+        isDisabled={isDisabled}
         extraAction={_extraAction}
       />
     );
