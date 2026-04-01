@@ -136,7 +136,7 @@ export function isBareRelativeUrl(url: string): boolean {
 
 /**
  * Resolves a bare relative URL against a base URL, replicating
- * native browser resolution of `<a href="discover">`.
+ * native browser resolution of e.g. `<a href="discover">`.
  */
 function resolveBareRelativeUrl(url: string, baseUrl: string): string {
   const resolved = new URL(url, baseUrl);
