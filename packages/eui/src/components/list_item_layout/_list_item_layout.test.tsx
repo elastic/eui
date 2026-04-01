@@ -20,29 +20,25 @@ import { EuiButtonIcon } from '../button';
 
 const NON_INTERACTRIVE_ELEMENTS = ['li', 'div'] as const;
 const INTERACTIVE_ELEMENTS = [
-  ['button', { component: 'button' }],
-  ['a', { component: 'a', href: '#' }],
+  ['button', { element: 'button' }],
+  ['a', { element: 'a', href: '#' }],
 ] as const;
 
 describe('EuiListItemLayout', () => {
   shouldRenderCustomStyles(
-    <EuiListItemLayout component="li" {...requiredProps}>
+    <EuiListItemLayout element="li" {...requiredProps}>
       Option
     </EuiListItemLayout>
   );
 
   shouldRenderCustomStyles(
-    <EuiListItemLayout component="button" {...requiredProps}>
+    <EuiListItemLayout element="button" {...requiredProps}>
       Option
     </EuiListItemLayout>
   );
 
   shouldRenderCustomStyles(
-    <EuiListItemLayout
-      component="button"
-      wrapperComponent="li"
-      {...requiredProps}
-    >
+    <EuiListItemLayout element="button" wrapperElement="li" {...requiredProps}>
       Option
     </EuiListItemLayout>,
     {
@@ -52,7 +48,7 @@ describe('EuiListItemLayout', () => {
 
   test('is rendered as li element', () => {
     const { container } = render(
-      <EuiListItemLayout component="li">Option</EuiListItemLayout>
+      <EuiListItemLayout element="li">Option</EuiListItemLayout>
     );
 
     expect(container.firstChild).toMatchSnapshot();
@@ -60,7 +56,7 @@ describe('EuiListItemLayout', () => {
 
   test('is rendered as button element', () => {
     const { container } = render(
-      <EuiListItemLayout component="button">Option</EuiListItemLayout>
+      <EuiListItemLayout element="button">Option</EuiListItemLayout>
     );
 
     expect(container.firstChild).toMatchSnapshot();
@@ -68,7 +64,7 @@ describe('EuiListItemLayout', () => {
 
   test('is rendered as anchor element', () => {
     const { container } = render(
-      <EuiListItemLayout component="a">Option</EuiListItemLayout>
+      <EuiListItemLayout element="a">Option</EuiListItemLayout>
     );
 
     expect(container.firstChild).toMatchSnapshot();
@@ -76,19 +72,19 @@ describe('EuiListItemLayout', () => {
 
   test('is rendered as div element', () => {
     const { container } = render(
-      <EuiListItemLayout component="div">Option</EuiListItemLayout>
+      <EuiListItemLayout element="div">Option</EuiListItemLayout>
     );
 
     expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('props', () => {
-    describe('component', () => {
+    describe('element', () => {
       NON_INTERACTRIVE_ELEMENTS.forEach((name) => {
         describe(`${name}`, () => {
           it(`renders as ${name} element`, () => {
             const { getByTestSubject } = render(
-              <EuiListItemLayout component={name}>Option</EuiListItemLayout>
+              <EuiListItemLayout element={name}>Option</EuiListItemLayout>
             );
 
             const element = getByTestSubject('euiListItemLayout');
@@ -120,7 +116,7 @@ describe('EuiListItemLayout', () => {
             it('renders `aria-checked="true"` for a checkable role', () => {
               const { getByTestSubject } = render(
                 <EuiListItemLayout
-                  component={name}
+                  element={name}
                   role="option"
                   checked="on"
                   isSelected
@@ -139,7 +135,7 @@ describe('EuiListItemLayout', () => {
             it('renders `aria-checked="false"` for a checkable role', () => {
               const { getByTestSubject } = render(
                 <EuiListItemLayout
-                  component={name}
+                  element={name}
                   role="option"
                   checked={undefined}
                   isSelected={false}
@@ -158,7 +154,7 @@ describe('EuiListItemLayout', () => {
             it('renders `aria-selected="true"` for a non-checkable, selectable role', () => {
               const { getByTestSubject } = render(
                 <EuiListItemLayout
-                  component={name}
+                  element={name}
                   role="tab"
                   checked="on"
                   isSelected
@@ -177,7 +173,7 @@ describe('EuiListItemLayout', () => {
             it('renders `aria-selected="false"` for a non-checkable, selectable role', () => {
               const { getByTestSubject } = render(
                 <EuiListItemLayout
-                  component={name}
+                  element={name}
                   role="tab"
                   checked={undefined}
                   isSelected={false}
@@ -196,7 +192,7 @@ describe('EuiListItemLayout', () => {
             it('renders `aria-current="true"` for a non-checkable, non-selectable role', () => {
               const { getByTestSubject } = render(
                 <EuiListItemLayout
-                  component={name}
+                  element={name}
                   role="presentation"
                   checked="on"
                   isSelected
@@ -215,7 +211,7 @@ describe('EuiListItemLayout', () => {
             it('renders `aria-current=undefined` for a non-checkable, non-selectable role', () => {
               const { getByTestSubject } = render(
                 <EuiListItemLayout
-                  component={name}
+                  element={name}
                   role="presentation"
                   checked={undefined}
                   isSelected={false}
@@ -235,7 +231,7 @@ describe('EuiListItemLayout', () => {
               it('renders `aria-checked` when `isSingleSelection=false`', () => {
                 const { getByTestSubject } = render(
                   <EuiListItemLayout
-                    component={name}
+                    element={name}
                     role="option"
                     isSingleSelection={false}
                     checked="on"
@@ -253,7 +249,7 @@ describe('EuiListItemLayout', () => {
               it('renders `aria-selected` when `isSingleSelection=true`', () => {
                 const { getByTestSubject } = render(
                   <EuiListItemLayout
-                    component={name}
+                    element={name}
                     role="option"
                     isSingleSelection
                     checked="on"
@@ -319,7 +315,7 @@ describe('EuiListItemLayout', () => {
             it('renders `aria-checked="true"` for a natively checkable role', () => {
               const { getByTestSubject } = render(
                 <EuiListItemLayout
-                  component={name}
+                  element={name}
                   role="menuitemcheckbox"
                   checked="on"
                   isSelected
@@ -338,7 +334,7 @@ describe('EuiListItemLayout', () => {
             it('renders `aria-checked="false"` for a natively checkable role', () => {
               const { getByTestSubject } = render(
                 <EuiListItemLayout
-                  component={name}
+                  element={name}
                   role="menuitemcheckbox"
                   checked={undefined}
                   isSelected={false}
@@ -357,7 +353,7 @@ describe('EuiListItemLayout', () => {
             it('renders `aria-selected="true"` for a checkable, selectable role', () => {
               const { getByTestSubject } = render(
                 <EuiListItemLayout
-                  component={name}
+                  element={name}
                   role="option"
                   checked="on"
                   isSelected
@@ -376,7 +372,7 @@ describe('EuiListItemLayout', () => {
             it('renders `aria-selected="false"` for a checkable, selectable role', () => {
               const { getByTestSubject } = render(
                 <EuiListItemLayout
-                  component={name}
+                  element={name}
                   role="option"
                   checked={undefined}
                   isSelected={false}
@@ -395,7 +391,7 @@ describe('EuiListItemLayout', () => {
             it('renders `aria-current="true"` for a non-checkable, non-selectable role', () => {
               const { getByTestSubject } = render(
                 <EuiListItemLayout
-                  component={name}
+                  element={name}
                   role="presentation"
                   checked="on"
                   isSelected
@@ -414,7 +410,7 @@ describe('EuiListItemLayout', () => {
             it('renders `aria-current=undefined` for a non-checkable, non-selectable role', () => {
               const { getByTestSubject } = render(
                 <EuiListItemLayout
-                  component={name}
+                  element={name}
                   role="presentation"
                   checked={undefined}
                   isSelected={false}
@@ -476,10 +472,10 @@ describe('EuiListItemLayout', () => {
     });
 
     describe('href, target, rel', () => {
-      it('passes anchor props to the element when `component=a`', () => {
+      it('passes anchor props to the element when `element=a`', () => {
         const { getByTestSubject } = render(
           <EuiListItemLayout
-            component="a"
+            element="a"
             href="#"
             target="_blank"
             rel="noopener noreferrer"
@@ -494,11 +490,11 @@ describe('EuiListItemLayout', () => {
         expect(element).toHaveAttribute('rel', 'noopener noreferrer');
       });
 
-      it('does not passes anchor props to the element when it is not `component=a`', () => {
+      it('does not passes anchor props to the element when it is not `element=a`', () => {
         const { getByTestSubject } = render(
           // @ts-expect-error - testing invalid props
           <EuiListItemLayout
-            component="button"
+            element="button"
             href="#"
             target="_blank"
             rel="noopener noreferrer"
@@ -517,7 +513,7 @@ describe('EuiListItemLayout', () => {
     describe('role', () => {
       it('applies a role attribute', () => {
         const { getByTestSubject } = render(
-          <EuiListItemLayout component="li" role="menuitemcheckbox">
+          <EuiListItemLayout element="li" role="menuitemcheckbox">
             Option
           </EuiListItemLayout>
         );
@@ -530,7 +526,7 @@ describe('EuiListItemLayout', () => {
     describe('isDisabled', () => {
       it('applies a visual disabled state', () => {
         const { getByTestSubject } = render(
-          <EuiListItemLayout component="li" isDisabled>
+          <EuiListItemLayout element="li" isDisabled>
             Option
           </EuiListItemLayout>
         );
@@ -540,9 +536,9 @@ describe('EuiListItemLayout', () => {
         expect(classes.some((clx) => clx.includes('isDisabled'))).toBe(true);
       });
 
-      it('applies a semantic disabled state when `component=li`', () => {
+      it('applies a semantic disabled state when `element=li`', () => {
         const { getByTestSubject } = render(
-          <EuiListItemLayout component="li" isDisabled>
+          <EuiListItemLayout element="li" isDisabled>
             Option
           </EuiListItemLayout>
         );
@@ -552,9 +548,9 @@ describe('EuiListItemLayout', () => {
         expect(element).not.toHaveAttribute('disabled');
       });
 
-      it('applies a semantic disabled state when `component=button`', () => {
+      it('applies a semantic disabled state when `element=button`', () => {
         const { getByTestSubject } = render(
-          <EuiListItemLayout component="button" isDisabled>
+          <EuiListItemLayout element="button" isDisabled>
             Option
           </EuiListItemLayout>
         );
@@ -563,9 +559,9 @@ describe('EuiListItemLayout', () => {
         expect(element).toHaveAttribute('disabled');
       });
 
-      it('renders a disabled `button` when `component=a`', () => {
+      it('renders a disabled `button` when `element=a`', () => {
         const { getByTestSubject } = render(
-          <EuiListItemLayout component="a" isDisabled>
+          <EuiListItemLayout element="a" isDisabled>
             Option
           </EuiListItemLayout>
         );
@@ -579,7 +575,7 @@ describe('EuiListItemLayout', () => {
       it('applies a checked state for multi-selection items when `checked="on"`', () => {
         const { getByTestSubject } = render(
           <EuiListItemLayout
-            component="li"
+            element="li"
             role="option"
             checked="on"
             isSingleSelection={false}
@@ -601,7 +597,7 @@ describe('EuiListItemLayout', () => {
       it('applies an unchecked state for multi-selection items when `checked=undefined`', () => {
         const { getByTestSubject } = render(
           <EuiListItemLayout
-            component="li"
+            element="li"
             role="option"
             checked={undefined}
             isSingleSelection={false}
@@ -623,7 +619,7 @@ describe('EuiListItemLayout', () => {
       it('applies an exclusion state for multi-selection items when checked="off"', () => {
         const { getByTestSubject } = render(
           <EuiListItemLayout
-            component="li"
+            element="li"
             role="option"
             checked="off"
             isSingleSelection={false}
@@ -645,7 +641,7 @@ describe('EuiListItemLayout', () => {
       it('applies an indeterminate state for multi-selection items when checked="mixed"', () => {
         const { getByTestSubject } = render(
           <EuiListItemLayout
-            component="li"
+            element="li"
             role="option"
             checked="mixed"
             isSingleSelection={false}
@@ -667,7 +663,7 @@ describe('EuiListItemLayout', () => {
       it('applies an indeterminate state for a supported custom `role`', () => {
         const { getByTestSubject } = render(
           <EuiListItemLayout
-            component="li"
+            element="li"
             role="checkbox"
             checked="mixed"
             isSingleSelection={false}
@@ -683,7 +679,7 @@ describe('EuiListItemLayout', () => {
       it('applies does not apply an indeterminate state for a non supported custom `role`', () => {
         const { getByTestSubject } = render(
           <EuiListItemLayout
-            component="li"
+            element="li"
             role="radio"
             checked="mixed"
             isSingleSelection={false}
@@ -701,7 +697,7 @@ describe('EuiListItemLayout', () => {
       it('applies a selected state when `isSingleSelection=true`', () => {
         const { getByTestSubject } = render(
           <EuiListItemLayout
-            component="li"
+            element="li"
             role="option"
             isSelected
             isSingleSelection
@@ -717,9 +713,9 @@ describe('EuiListItemLayout', () => {
         expect(classes.some((clx) => clx.includes('isSelected'))).toBe(true);
       });
 
-      it('applies `aria-current` when `component=button`', () => {
+      it('applies `aria-current` when `element=button`', () => {
         const { getByTestSubject } = render(
-          <EuiListItemLayout component="button" isSelected>
+          <EuiListItemLayout element="button" isSelected>
             Option
           </EuiListItemLayout>
         );
@@ -729,9 +725,9 @@ describe('EuiListItemLayout', () => {
         expect(element).toHaveAttribute('aria-current', 'true');
       });
 
-      it('applies `aria-current` when `component=a`', () => {
+      it('applies `aria-current` when `element=a`', () => {
         const { getByTestSubject } = render(
-          <EuiListItemLayout component="button" isSelected>
+          <EuiListItemLayout element="button" isSelected>
             Option
           </EuiListItemLayout>
         );
@@ -741,9 +737,9 @@ describe('EuiListItemLayout', () => {
         expect(element).toHaveAttribute('aria-current', 'true');
       });
 
-      it('applies `aria-current` when `component=li` without selectable role', () => {
+      it('applies `aria-current` when `element=li` without selectable role', () => {
         const { getByTestSubject } = render(
-          <EuiListItemLayout component="li" isSelected>
+          <EuiListItemLayout element="li" isSelected>
             Option
           </EuiListItemLayout>
         );
@@ -753,9 +749,9 @@ describe('EuiListItemLayout', () => {
         expect(element).toHaveAttribute('aria-current', 'true');
       });
 
-      it('applies `aria-current` when `component=div` without selectable role', () => {
+      it('applies `aria-current` when `element=div` without selectable role', () => {
         const { getByTestSubject } = render(
-          <EuiListItemLayout component="div" isSelected>
+          <EuiListItemLayout element="div" isSelected>
             Option
           </EuiListItemLayout>
         );
@@ -769,7 +765,7 @@ describe('EuiListItemLayout', () => {
     describe('isFocused', () => {
       it('applies a pseudofocus state', () => {
         const { getByTestSubject } = render(
-          <EuiListItemLayout component="li" isFocused>
+          <EuiListItemLayout element="li" isFocused>
             Option
           </EuiListItemLayout>
         );
@@ -785,7 +781,7 @@ describe('EuiListItemLayout', () => {
       it('overrides the default selection mode when `isSingleSelection=true`', () => {
         const { getByTestSubject } = render(
           <EuiListItemLayout
-            component="li"
+            element="li"
             role="option"
             checked="on"
             isSingleSelection
@@ -803,7 +799,7 @@ describe('EuiListItemLayout', () => {
       it('overrides the default selection mode when `isSingleSelection=false`', () => {
         const { getByTestSubject } = render(
           <EuiListItemLayout
-            component="li"
+            element="li"
             role="option"
             isSelected
             isSingleSelection={false}
@@ -822,7 +818,7 @@ describe('EuiListItemLayout', () => {
     describe('showIndicator', () => {
       it('hides the indicator element when `showIndicator=false`for single selection', () => {
         const { getByTestSubject } = render(
-          <EuiListItemLayout component="li" showIndicator={false}>
+          <EuiListItemLayout element="li" showIndicator={false}>
             Option
           </EuiListItemLayout>
         );
@@ -836,7 +832,7 @@ describe('EuiListItemLayout', () => {
       it('hides the indicator element when `showIndicator=false` for multi selection', () => {
         const { getByTestSubject } = render(
           <EuiListItemLayout
-            component="li"
+            element="li"
             isSingleSelection={false}
             showIndicator={false}
           >
@@ -856,7 +852,7 @@ describe('EuiListItemLayout', () => {
         const label = 'A longer option label that should be truncated';
 
         const { getByText } = render(
-          <EuiListItemLayout component="li" textWrap="truncate">
+          <EuiListItemLayout element="li" textWrap="truncate">
             {label}
           </EuiListItemLayout>
         );
@@ -873,7 +869,7 @@ describe('EuiListItemLayout', () => {
         const label = 'A longer option label that should not be truncated';
 
         const { getByText } = render(
-          <EuiListItemLayout component="li" textWrap="wrap">
+          <EuiListItemLayout element="li" textWrap="wrap">
             {label}
           </EuiListItemLayout>
         );
@@ -890,7 +886,7 @@ describe('EuiListItemLayout', () => {
     describe('prepend', () => {
       it('renders prepended content', () => {
         const { getByText } = render(
-          <EuiListItemLayout component="li" prepend={<span>Prepend</span>}>
+          <EuiListItemLayout element="li" prepend={<span>Prepend</span>}>
             Option
           </EuiListItemLayout>
         );
@@ -902,7 +898,7 @@ describe('EuiListItemLayout', () => {
     describe('append', () => {
       it('renders appended content', () => {
         const { getByText } = render(
-          <EuiListItemLayout component="li" append={<span>Append</span>}>
+          <EuiListItemLayout element="li" append={<span>Append</span>}>
             Option
           </EuiListItemLayout>
         );
@@ -911,10 +907,10 @@ describe('EuiListItemLayout', () => {
       });
     });
 
-    describe('wrapperComponent', () => {
-      it('renders a wrapping `div` element when component="button"', () => {
+    describe('wrapperElement', () => {
+      it('renders a wrapping `div` element when element="button"', () => {
         const { getByTestSubject } = render(
-          <EuiListItemLayout component="button" wrapperComponent="div">
+          <EuiListItemLayout element="button" wrapperElement="div">
             Option
           </EuiListItemLayout>
         );
@@ -925,9 +921,9 @@ describe('EuiListItemLayout', () => {
         );
       });
 
-      it('renders a wrapping `div` element when component="a"', () => {
+      it('renders a wrapping `div` element when element="a"', () => {
         const { getByTestSubject } = render(
-          <EuiListItemLayout component="a" wrapperComponent="div">
+          <EuiListItemLayout element="a" wrapperElement="div">
             Option
           </EuiListItemLayout>
         );
@@ -938,9 +934,9 @@ describe('EuiListItemLayout', () => {
         );
       });
 
-      it('does not have any effect on the element when component="li"', () => {
+      it('does not have any effect on the element when element="li"', () => {
         const { getByTestSubject, container } = render(
-          <EuiListItemLayout component="li" wrapperComponent="div">
+          <EuiListItemLayout element="li" wrapperElement="div">
             Option
           </EuiListItemLayout>
         );
@@ -950,9 +946,9 @@ describe('EuiListItemLayout', () => {
         expect(container.firstChild).toBe(element);
       });
 
-      it('does not have any effect on the element when component="div"', () => {
+      it('does not have any effect on the element when element="div"', () => {
         const { getByTestSubject, container } = render(
-          <EuiListItemLayout component="div" wrapperComponent="li">
+          <EuiListItemLayout element="div" wrapperElement="li">
             Option
           </EuiListItemLayout>
         );
@@ -964,10 +960,10 @@ describe('EuiListItemLayout', () => {
     });
 
     describe('extraAction', () => {
-      it('renders a wrapping `li` element and a sibling extra action to the main element when component="button"', () => {
+      it('renders a wrapping `li` element and a sibling extra action to the main element when element="button"', () => {
         const { getByTestSubject } = render(
           <EuiListItemLayout
-            component="button"
+            element="button"
             extraAction={
               <EuiButtonIcon
                 iconType="ellipsis"
@@ -991,10 +987,10 @@ describe('EuiListItemLayout', () => {
         expect(wrapper.childNodes[1]).toBe(extraAction);
       });
 
-      it('renders a wrapping `li` and a sibling extra action to the main element when component="a"', () => {
+      it('renders a wrapping `li` and a sibling extra action to the main element when element="a"', () => {
         const { getByTestSubject } = render(
           <EuiListItemLayout
-            component="a"
+            element="a"
             extraAction={
               <EuiButtonIcon
                 iconType="ellipsis"
@@ -1018,10 +1014,10 @@ describe('EuiListItemLayout', () => {
         expect(wrapper.childNodes[1]).toBe(extraAction);
       });
 
-      it('does not render a wrapping `li` element when component="li"', () => {
+      it('does not render a wrapping `li` element when element="li"', () => {
         const { getByTestSubject, container } = render(
           <EuiListItemLayout
-            component="li"
+            element="li"
             extraAction={
               <EuiButtonIcon
                 iconType="ellipsis"
@@ -1042,10 +1038,10 @@ describe('EuiListItemLayout', () => {
         expect(element).toContainElement(extraAction);
       });
 
-      it('does not render a wrapping `li` element when component="div"', () => {
+      it('does not render a wrapping `li` element when element="div"', () => {
         const { getByTestSubject, container } = render(
           <EuiListItemLayout
-            component="div"
+            element="div"
             extraAction={
               <EuiButtonIcon
                 iconType="ellipsis"
@@ -1066,11 +1062,11 @@ describe('EuiListItemLayout', () => {
         expect(element).toContainElement(extraAction);
       });
 
-      it('renders a wrapping `div` element and a sibling extra action to the main element when `wrapperComponent="div"`', () => {
+      it('renders a wrapping `div` element and a sibling extra action to the main element when `wrapperElement="div"`', () => {
         const { getByTestSubject } = render(
           <EuiListItemLayout
-            component="button"
-            wrapperComponent="div"
+            element="button"
+            wrapperElement="div"
             extraAction={
               <EuiButtonIcon
                 iconType="ellipsis"
@@ -1096,11 +1092,11 @@ describe('EuiListItemLayout', () => {
     });
 
     describe('wrapperProps', () => {
-      it('passes `wrapperProps` to the wrapper element when `wrapperComponent` is defined', () => {
+      it('passes `wrapperProps` to the wrapper element when `wrapperElement` is defined', () => {
         const { getByTestSubject } = render(
           <EuiListItemLayout
-            component="button"
-            wrapperComponent="li"
+            element="button"
+            wrapperElement="li"
             wrapperProps={{
               className: 'item-wrapper',
               'data-test-subj': 'item-wrapper',
@@ -1120,7 +1116,7 @@ describe('EuiListItemLayout', () => {
       it('passes `wrapperProps` to the wrapper element when `extraAction` is passed', () => {
         const { getByTestSubject } = render(
           <EuiListItemLayout
-            component="button"
+            element="button"
             extraAction={
               <EuiButtonIcon iconType="ellipsis" aria-label="Extra action" />
             }
@@ -1140,10 +1136,10 @@ describe('EuiListItemLayout', () => {
         expect(wrapper.firstChild).toBe(getByTestSubject('euiListItemLayout'));
       });
 
-      it('does not apply `wrapperProps` when `wrapperComponent` is not defined', () => {
+      it('does not apply `wrapperProps` when `wrapperElement` is not defined', () => {
         const { container } = render(
           <EuiListItemLayout
-            component="li"
+            element="li"
             wrapperProps={{
               className: 'item-wrapper',
               'data-test-subj': 'item-wrapper',
@@ -1158,11 +1154,11 @@ describe('EuiListItemLayout', () => {
         ).not.toBeInTheDocument();
       });
 
-      it('does not apply `wrapperProps` when `wrapperComponent="div"` and `component="li"`', () => {
+      it('does not apply `wrapperProps` when `wrapperElement="div"` and `element="li"`', () => {
         const { container } = render(
           <EuiListItemLayout
-            component="li"
-            wrapperComponent="div"
+            element="li"
+            wrapperElement="div"
             wrapperProps={{
               className: 'item-wrapper',
               'data-test-subj': 'item-wrapper',
@@ -1177,11 +1173,11 @@ describe('EuiListItemLayout', () => {
         ).not.toBeInTheDocument();
       });
 
-      it('does not apply `wrapperProps` when `wrapperComponent="li"` and `component="div"`', () => {
+      it('does not apply `wrapperProps` when `wrapperElement="li"` and `element="div"`', () => {
         const { container } = render(
           <EuiListItemLayout
-            component="li"
-            wrapperComponent="div"
+            element="li"
+            wrapperElement="div"
             wrapperProps={{
               className: 'item-wrapper',
               'data-test-subj': 'item-wrapper',
@@ -1201,7 +1197,7 @@ describe('EuiListItemLayout', () => {
       it('passes `contentProps` to the content element', () => {
         const { getByTestSubject } = render(
           <EuiListItemLayout
-            component="li"
+            element="li"
             contentProps={{
               className: 'item-content',
               'data-test-subj': 'item-content',
@@ -1222,7 +1218,7 @@ describe('EuiListItemLayout', () => {
       it('passes `textProps` to the text element', () => {
         const { getByTestSubject } = render(
           <EuiListItemLayout
-            component="li"
+            element="li"
             textProps={{
               className: 'item-text',
               'data-test-subj': 'item-text',
@@ -1243,7 +1239,7 @@ describe('EuiListItemLayout', () => {
       it('passes `prependProps` to the prepended element', () => {
         const { getByTestSubject } = render(
           <EuiListItemLayout
-            component="li"
+            element="li"
             prepend={<span>Prepend</span>}
             prependProps={{
               className: 'item-prepend',
@@ -1266,7 +1262,7 @@ describe('EuiListItemLayout', () => {
       it('passes `appendProps` to the appended element', () => {
         const { getByTestSubject } = render(
           <EuiListItemLayout
-            component="li"
+            element="li"
             append={<span>Append</span>}
             appendProps={{
               className: 'item-append',
@@ -1287,10 +1283,10 @@ describe('EuiListItemLayout', () => {
 
     describe('tooltipProps', () => {
       NON_INTERACTRIVE_ELEMENTS.forEach((name) => {
-        it(`renders a tooltip and passes 'tooltipProps' when component=${name}`, async () => {
+        it(`renders a tooltip and passes 'tooltipProps' when element=${name}`, async () => {
           const { baseElement, getByTestSubject } = render(
             <EuiListItemLayout
-              component={name as 'li' | 'div'}
+              element={name as 'li' | 'div'}
               tooltipProps={{
                 title: 'Tooltip',
                 content: 'Tooltip content',
@@ -1315,10 +1311,10 @@ describe('EuiListItemLayout', () => {
       });
 
       INTERACTIVE_ELEMENTS.forEach(([name]) => {
-        it(`renders a tooltip and passes 'tooltipProps' when component=${name}`, async () => {
+        it(`renders a tooltip and passes 'tooltipProps' when element=${name}`, async () => {
           const { baseElement, getByTestSubject } = render(
             <EuiListItemLayout
-              component={name as 'button' | 'a'}
+              element={name as 'button' | 'a'}
               tooltipProps={{
                 title: 'Tooltip',
                 content: 'Tooltip content',
@@ -1346,7 +1342,7 @@ describe('EuiListItemLayout', () => {
       it('shows a tooltip when `isFocused=true` and a non interactive element is rendered', async () => {
         const { getByTestSubject } = render(
           <EuiListItemLayout
-            component="li"
+            element="li"
             isFocused
             tooltipProps={{
               title: 'Tooltip',
@@ -1368,7 +1364,7 @@ describe('EuiListItemLayout', () => {
       it('shows a tooltip when `isFocused=true` and an interactive element is rendered', async () => {
         const { getByTestSubject } = render(
           <EuiListItemLayout
-            component="button"
+            element="button"
             isFocused
             tooltipProps={{
               title: 'Tooltip',
@@ -1390,7 +1386,7 @@ describe('EuiListItemLayout', () => {
       it('does not show a tooltip when `isFocused=false`', () => {
         render(
           <EuiListItemLayout
-            component="button"
+            element="button"
             isFocused={false}
             tooltipProps={{
               title: 'Tooltip',
@@ -1415,7 +1411,7 @@ describe('EuiListItemLayout', () => {
       it('does not show a tooltip when `isDisabled=true` and `isFocused=true`', async () => {
         render(
           <EuiListItemLayout
-            component="button"
+            element="button"
             isFocused
             isDisabled
             tooltipProps={{
@@ -1441,7 +1437,7 @@ describe('EuiListItemLayout', () => {
       it('hides a visible tooltip when `isFocused` is updated to `false`', async () => {
         const { getByTestSubject, rerender } = render(
           <EuiListItemLayout
-            component="button"
+            element="button"
             isFocused
             tooltipProps={{
               title: 'Tooltip',
@@ -1461,7 +1457,7 @@ describe('EuiListItemLayout', () => {
 
         rerender(
           <EuiListItemLayout
-            component="button"
+            element="button"
             isFocused={false}
             tooltipProps={{
               title: 'Tooltip',
@@ -1482,7 +1478,7 @@ describe('EuiListItemLayout', () => {
     describe('data-test-subj', () => {
       it('applies custom `data-test-subj`', async () => {
         const { getByTestSubject } = render(
-          <EuiListItemLayout component="li" data-test-subj="custom-selector">
+          <EuiListItemLayout element="li" data-test-subj="custom-selector">
             Option
           </EuiListItemLayout>
         );
@@ -1492,11 +1488,11 @@ describe('EuiListItemLayout', () => {
         expect(element).toBeInTheDocument();
       });
 
-      it('applies custom `data-test-subj` to the wrapper if `wrapperComponent` is defined', async () => {
+      it('applies custom `data-test-subj` to the wrapper if `wrapperElement` is defined', async () => {
         const { getByTestSubject } = render(
           <EuiListItemLayout
-            component="button"
-            wrapperComponent="li"
+            element="button"
+            wrapperElement="li"
             data-test-subj="custom-selector"
           >
             Option

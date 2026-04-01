@@ -74,10 +74,10 @@ export type EuiListItemLayoutSharedProps = CommonProps & {
    * This has no effect when `component=li/div`.
    * @default 'li'
    */
-  wrapperComponent?: 'li' | 'div';
+  wrapperElement?: 'li' | 'div';
   /**
    * Props applied to the wrapper.
-   * Applies only for `component=button/a` if `wrapperComponent` is defined or `extraAction` is passed.
+   * Applies only for `component=button/a` if `wrapperElement` is defined or `extraAction` is passed.
    */
   wrapperProps?: CommonProps;
   /**
@@ -154,19 +154,19 @@ export type EuiListItemLayoutSharedProps = CommonProps & {
 };
 
 export type EuiListItemLayoutAsLi = {
-  component: 'li';
+  element: 'li';
 } & EuiListItemLayoutSharedProps &
   Omit<HTMLAttributes<HTMLLIElement>, 'role'>;
 export type EuiListItemLayoutAsDiv = {
-  component: 'div';
+  element: 'div';
 } & EuiListItemLayoutSharedProps &
   Omit<HTMLAttributes<HTMLDivElement>, 'role'>;
 export type EuiListItemLayoutAsButton = {
-  component: 'button';
+  element: 'button';
 } & EuiListItemLayoutSharedProps &
   Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'disabled' | 'role'>;
 export type EuiListItemLayoutAsAnchor = {
-  component: 'a';
+  element: 'a';
 } & EuiListItemLayoutSharedProps &
   Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'role'>;
 
@@ -190,8 +190,8 @@ export const EuiListItemLayout = forwardRef<
   (
     {
       children: _children,
-      component: _component = 'li',
-      wrapperComponent,
+      element: _element = 'li',
+      wrapperElement,
       className,
       css,
       role,
@@ -226,7 +226,7 @@ export const EuiListItemLayout = forwardRef<
     const { href, target, rel, ...rest } =
       props as AnchorHTMLAttributes<HTMLAnchorElement>;
 
-    const component = _component === 'a' && isDisabled ? 'button' : _component;
+    const component = _element === 'a' && isDisabled ? 'button' : _element;
     const hasToolTip = !!_tooltipProps && !isDisabled;
 
     const isNonInteractiveComponent = ['li', 'div'].includes(component);
@@ -238,12 +238,12 @@ export const EuiListItemLayout = forwardRef<
     hover/focus/selected styles.
     Single-action: component (li/div) is the outermost element and owns all styles. */
     const isMultiAction = extraAction != null && isInteractiveComponent;
-    const WrapperComponent = isMultiAction
-      ? wrapperComponent ?? 'li'
+    const WrapperElement = isMultiAction
+      ? wrapperElement ?? 'li'
       : isInteractiveComponent
-      ? wrapperComponent
+      ? wrapperElement
       : undefined;
-    const hasWrapper = WrapperComponent != null;
+    const hasWrapper = WrapperElement != null;
 
     // aria-checked is intended to be used with role="checkbox" but
     // the MDN documentation lists it as a possibility for role="option".
@@ -558,11 +558,11 @@ export const EuiListItemLayout = forwardRef<
         innerElement
       );
 
-    return WrapperComponent ? (
-      <WrapperComponent {...wrapperProps}>
+    return WrapperElement ? (
+      <WrapperElement {...wrapperProps}>
         {element}
         {isMultiAction && extraAction}
-      </WrapperComponent>
+      </WrapperElement>
     ) : (
       element
     );

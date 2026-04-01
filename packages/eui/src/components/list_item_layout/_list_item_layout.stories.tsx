@@ -57,7 +57,7 @@ const meta: Meta<EuiListItemLayoutProps> = {
     },
   },
   argTypes: {
-    component: {
+    element: {
       control: 'radio',
       options: ['li', 'div', 'button', 'a'],
     },
@@ -127,7 +127,7 @@ const meta: Meta<EuiListItemLayoutProps> = {
     },
   },
   args: {
-    component: 'li',
+    element: 'li',
     checked: undefined,
     prepend: undefined,
     append: undefined,
@@ -179,7 +179,7 @@ export const Role: Story = {
   // tags: ['vrt-only'],
   parameters: {
     controls: {
-      include: ['component', 'role', 'checked', 'isSelected', 'children'],
+      include: ['element', 'role', 'checked', 'isSelected', 'children'],
     },
   },
   args: {
@@ -194,7 +194,7 @@ export const ExtraAction: Story = {
   name: 'extraAction',
   parameters: {
     controls: {
-      include: ['component', 'extraAction', 'children'],
+      include: ['element', 'extraAction', 'children'],
     },
   },
   args: {
@@ -209,7 +209,7 @@ export const TooltipProps: Story = {
   name: 'tooltipProps',
   parameters: {
     controls: {
-      include: ['component', 'tooltipProps', 'isFocused', 'children'],
+      include: ['element', 'tooltipProps', 'isFocused', 'children'],
     },
   },
   args: {
@@ -232,7 +232,7 @@ export const ExtraActionAndTooltipProps: Story = {
   parameters: {
     controls: {
       include: [
-        'component',
+        'element',
         'tooltipProps',
         'extraAction',
         'isFocused',
@@ -242,7 +242,7 @@ export const ExtraActionAndTooltipProps: Story = {
   },
   args: {
     children: 'List item',
-    component: 'button',
+    element: 'button',
     isFocused: true,
     extraAction: 'action',
     tooltipProps: {
@@ -260,7 +260,7 @@ export const Truncation: Story = {
   name: 'textWrap: truncate',
   parameters: {
     controls: {
-      include: ['component', 'textWrap', 'children'],
+      include: ['element', 'textWrap', 'children'],
     },
   },
   args: {
@@ -284,7 +284,7 @@ export const TextWrap: Story = {
   name: 'textWrap: wrap',
   parameters: {
     controls: {
-      include: ['component', 'textWrap', 'children'],
+      include: ['element', 'textWrap', 'children'],
     },
   },
   args: {
@@ -311,7 +311,7 @@ export const KitchenSink: Story = {
     },
   },
   args: {
-    component: 'li',
+    element: 'li',
     children: 'List item',
   },
   render: function Render(args) {
@@ -321,14 +321,14 @@ export const KitchenSink: Story = {
           <EuiFlexItem>
             {renderKitchenSink({
               ...args,
-              component: 'li',
+              element: 'li',
             } as EuiListItemLayoutAsLi)}
           </EuiFlexItem>
 
           <EuiFlexItem>
             {renderKitchenSink({
               ...args,
-              component: 'div',
+              element: 'div',
             } as EuiListItemLayoutAsDiv)}
           </EuiFlexItem>
         </EuiFlexGroup>
@@ -339,14 +339,14 @@ export const KitchenSink: Story = {
           <EuiFlexItem>
             {renderKitchenSink({
               ...args,
-              component: 'button',
+              element: 'button',
             } as EuiListItemLayoutAsButton)}
           </EuiFlexItem>
 
           <EuiFlexItem>
             {renderKitchenSink({
               ...args,
-              component: 'a',
+              element: 'a',
               href: '#',
             } as EuiListItemLayoutAsAnchor)}
           </EuiFlexItem>
@@ -357,7 +357,7 @@ export const KitchenSink: Story = {
 };
 
 const renderKitchenSink = (args: EuiListItemLayoutProps) => {
-  const { children, component, isDisabled } = args;
+  const { children, element, isDisabled } = args;
 
   const _prepend = <EuiIcon type="info" />;
   const _append = <EuiBadge color="hollow">Badge</EuiBadge>;
@@ -373,7 +373,7 @@ const renderKitchenSink = (args: EuiListItemLayoutProps) => {
   return (
     <>
       <EuiText size="s">
-        <EuiCode>component="{component}"</EuiCode>
+        <EuiCode>element="{element}"</EuiCode>
       </EuiText>
       <EuiSpacer size="m" />
 
@@ -438,14 +438,14 @@ const renderKitchenSink = (args: EuiListItemLayoutProps) => {
         </EuiListItemLayout>
         <EuiListItemLayout
           {...args}
-          wrapperComponent="li"
+          wrapperElement="li"
           tooltipProps={{
             content: 'Tooltip content',
             delay: 'regular',
             position: 'bottom',
           }}
         >
-          {children} <small>(wrapperComponent & tooltipProps)</small>
+          {children} <small>(wrapperElement & tooltipProps)</small>
         </EuiListItemLayout>
 
         <EuiListItemLayout {...args} isFocused>
