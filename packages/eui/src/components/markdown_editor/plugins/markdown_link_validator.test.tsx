@@ -9,7 +9,7 @@
 import {
   validateUrl,
   mutateLinkToText,
-  isBareRelativeUrl,
+  isDocumentRelativeUrl,
   euiMarkdownLinkValidator,
   EuiMarkdownLinkValidatorOptions,
 } from './markdown_link_validator';
@@ -63,32 +63,35 @@ describe('validateURL', () => {
   });
 });
 
-describe('isBareRelativeUrl', () => {
-  it('identifies bare relative URLs', () => {
-    expect(isBareRelativeUrl('discover')).toBe(true);
-    expect(isBareRelativeUrl('dashboards#/view/123')).toBe(true);
-    expect(isBareRelativeUrl('app/home')).toBe(true);
+describe('isDocumentRelativeUrl', () => {
+  it('identifies document relative URLs', () => {
+    expect(isDocumentRelativeUrl('app')).toBe(true);
+    expect(isDocumentRelativeUrl('page#/view/123')).toBe(true);
+    expect(isDocumentRelativeUrl('app/home')).toBe(true);
+    expect(isDocumentRelativeUrl('../settings/account')).toBe(true);
+    expect(isDocumentRelativeUrl('../../other-path')).toBe(true);
+    expect(isDocumentRelativeUrl('./app')).toBe(true);
   });
 
   it('rejects slash-prefixed URLs', () => {
-    expect(isBareRelativeUrl('/app/discover')).toBe(false);
-    expect(isBareRelativeUrl('//example.com')).toBe(false);
+    expect(isDocumentRelativeUrl('/app/discover')).toBe(false);
+    expect(isDocumentRelativeUrl('//example.com')).toBe(false);
   });
 
   it('rejects anchor-only and query-only URLs', () => {
-    expect(isBareRelativeUrl('#section')).toBe(false);
-    expect(isBareRelativeUrl('?foo=bar')).toBe(false);
+    expect(isDocumentRelativeUrl('#section')).toBe(false);
+    expect(isDocumentRelativeUrl('?foo=bar')).toBe(false);
   });
 
   it('rejects URLs with protocols', () => {
-    expect(isBareRelativeUrl('https://example.com')).toBe(false);
-    expect(isBareRelativeUrl('mailto:test@example.com')).toBe(false);
+    expect(isDocumentRelativeUrl('https://example.com')).toBe(false);
+    expect(isDocumentRelativeUrl('mailto:test@example.com')).toBe(false);
     // eslint-disable-next-line no-script-url
-    expect(isBareRelativeUrl('javascript:alert()')).toBe(false);
+    expect(isDocumentRelativeUrl('javascript:alert()')).toBe(false);
   });
 });
 
-describe('euiMarkdownLinkValidator with allowBareRelative', () => {
+describe('euiMarkdownLinkValidator with allowDocumentRelative', () => {
   const baseUrl = 'http://localhost:5601/s/my-space/app/dashboards';
 
   const createLinkAst = (url: string) => ({
@@ -110,25 +113,25 @@ describe('euiMarkdownLinkValidator with allowBareRelative', () => {
   const getLinkNode = (ast: ReturnType<typeof createLinkAst>) =>
     ast.children[0].children[0];
 
-  it('resolves bare relative links when allowBareRelative is true', () => {
+  it('resolves document relative links when allowDocumentRelative is true', () => {
     const ast = createLinkAst('discover');
-    euiMarkdownLinkValidator({ allowBareRelative: true, baseUrl })(ast);
+    euiMarkdownLinkValidator({ allowDocumentRelative: true, baseUrl })(ast);
 
     expect(getLinkNode(ast).type).toBe('link');
     expect(getLinkNode(ast).url).toBe('/s/my-space/app/discover');
   });
 
-  it('still strips bare relative links when allowBareRelative is false', () => {
+  it('still strips document relative links when allowDocumentRelative is false', () => {
     const ast = createLinkAst('discover');
-    euiMarkdownLinkValidator({ allowBareRelative: false, baseUrl })(ast);
+    euiMarkdownLinkValidator({ allowDocumentRelative: false, baseUrl })(ast);
 
     expect(getLinkNode(ast).type).toBe('text');
   });
 
-  it('does not resolve absolute URLs even when allowBareRelative is true', () => {
+  it('does not resolve absolute URLs even when allowDocumentRelative is true', () => {
     const ast = createLinkAst('https://elastic.co');
     euiMarkdownLinkValidator({
-      allowBareRelative: true,
+      allowDocumentRelative: true,
       allowProtocols: ['https:'],
       baseUrl,
     })(ast);
@@ -137,10 +140,10 @@ describe('euiMarkdownLinkValidator with allowBareRelative', () => {
     expect(getLinkNode(ast).url).toBe('https://elastic.co');
   });
 
-  it('does not resolve slash-prefixed URLs via bare relative logic', () => {
+  it('does not resolve slash-prefixed URLs via document relative logic', () => {
     const ast = createLinkAst('/app/discover');
     euiMarkdownLinkValidator({
-      allowBareRelative: true,
+      allowDocumentRelative: true,
       allowRelative: true,
       baseUrl,
     })(ast);
@@ -151,21 +154,52 @@ describe('euiMarkdownLinkValidator with allowBareRelative', () => {
 
   it('preserves hash fragments during resolution', () => {
     const ast = createLinkAst('discover#/view/saved-search');
-    euiMarkdownLinkValidator({ allowBareRelative: true, baseUrl })(ast);
+    euiMarkdownLinkValidator({ allowDocumentRelative: true, baseUrl })(ast);
 
     expect(getLinkNode(ast).url).toBe(
       '/s/my-space/app/discover#/view/saved-search'
     );
   });
 
-  it('resolves against a non-/app/ base path', () => {
-    const ast = createLinkAst('sibling');
+  it('resolves the same way with or without a trailing slash on the base URL', () => {
+    const withoutSlash = createLinkAst('editor');
     euiMarkdownLinkValidator({
-      allowBareRelative: true,
-      baseUrl: 'http://localhost:5601/some/other/path',
-    })(ast);
+      allowDocumentRelative: true,
+      baseUrl: 'http://localhost:3000/docs/markdown/plugins',
+    })(withoutSlash);
 
-    expect(getLinkNode(ast).url).toBe('/some/other/sibling');
+    const withSlash = createLinkAst('editor');
+    euiMarkdownLinkValidator({
+      allowDocumentRelative: true,
+      baseUrl: 'http://localhost:3000/docs/markdown/plugins/',
+    })(withSlash);
+
+    expect(getLinkNode(withoutSlash).url).toBe('/docs/markdown/editor');
+    expect(getLinkNode(withSlash).url).toBe('/docs/markdown/editor');
+  });
+
+  it('resolves ../ parent traversal links', () => {
+    const ast = createLinkAst('../security/account');
+    euiMarkdownLinkValidator({ allowDocumentRelative: true, baseUrl })(ast);
+
+    expect(getLinkNode(ast).type).toBe('link');
+    expect(getLinkNode(ast).url).toBe('/s/my-space/security/account');
+  });
+
+  it('resolves multiple levels of ../ traversal', () => {
+    const ast = createLinkAst('../../other-path');
+    euiMarkdownLinkValidator({ allowDocumentRelative: true, baseUrl })(ast);
+
+    expect(getLinkNode(ast).type).toBe('link');
+    expect(getLinkNode(ast).url).toBe('/s/other-path');
+  });
+
+  it('resolves ./ current directory links', () => {
+    const ast = createLinkAst('./discover');
+    euiMarkdownLinkValidator({ allowDocumentRelative: true, baseUrl })(ast);
+
+    expect(getLinkNode(ast).type).toBe('link');
+    expect(getLinkNode(ast).url).toBe('/s/my-space/app/discover');
   });
 });
 
