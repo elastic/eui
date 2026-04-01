@@ -28,7 +28,7 @@ export interface IsFilterProps {
 }
 
 export const IsFilter: FC<IsFilterProps> = (props) => {
-  const resolveDisplay = (clause: Clause) => {
+  const resolveDisplay = (clause: Clause | undefined) => {
     const { name, negatedName } = props.config;
     if (isNil(clause)) {
       return { hasActiveFilters: false, name };
