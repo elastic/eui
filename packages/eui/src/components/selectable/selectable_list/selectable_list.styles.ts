@@ -19,14 +19,10 @@ import {
   logicalCSS,
 } from '../../../global_styling';
 import { euiTitle } from '../../title/title.styles';
-import { euiSelectableListItemVariables } from './selectable_list_item.styles';
+import { euiListItemVariables } from '../../list_item_layout/_list_item_layout.styles';
 
 export const euiSelectableListStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
-  const itemVars = euiSelectableListItemVariables(euiThemeContext);
-
-  const spacingVertical = euiTheme.size.s;
-  const borderColor = euiTheme.components.selectableListItemBorderColor;
 
   return {
     euiSelectableList: css`
@@ -53,14 +49,26 @@ export const euiSelectableListStyles = (euiThemeContext: UseEuiTheme) => {
         outline: none; /* Focus outline handled by parent .euiSelectableList */
       }
     `,
+  };
+};
 
-    euiSelectableList__groupLabel: css`
+export const euiSelectableListGroupLabelStyles = (
+  euiThemeContext: UseEuiTheme
+) => {
+  const { euiTheme } = euiThemeContext;
+
+  const itemVars = euiListItemVariables(euiThemeContext);
+  const spacingVertical = euiTheme.size.s;
+  const borderColor = euiTheme.components.selectableListItemBorderColor;
+
+  return {
+    groupLabel: css`
       ${euiTitle(euiThemeContext, 'xxxs')}
       position: relative;
       display: flex;
       align-items: center;
-      gap: ${itemVars.spacingHorizontal};
-      ${logicalCSS('padding-horizontal', itemVars.spacingHorizontal)}
+      gap: ${itemVars.spacing.horizontal};
+      ${logicalCSS('padding-horizontal', itemVars.textPadding.horizontal)}
       ${logicalCSS('padding-vertical', spacingVertical)}
 
       &:not(:first-child) {
