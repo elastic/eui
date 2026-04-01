@@ -23,6 +23,22 @@ export type EuiMarkdownLinkValidatorOptions = {
    */
   allowRelative?: boolean;
   /**
+   * Allow or disallow bare relative links (e.g. `discover` instead of `/app/discover`).
+   * When enabled, bare relative URLs are resolved against `baseUrl`
+   * (defaults to `window.location.href`) using the browser's native URL
+   * resolution, the same way an `<a href="discover">` would behave in
+   * plain HTML.
+   * @default false
+   */
+  allowBareRelative?: boolean;
+  /**
+   * The base URL to resolve bare relative links against.
+   * Only used when `allowBareRelative` is true.
+   * Useful for EUI's testing environment which cannot mock window.location, unlikely to be changed from default in actual end use.
+   * @default window.location.href
+   */
+  baseUrl?: string;
+  /**
    * Allow or disallow specific [URL protocols or schemes](https://developer.mozilla.org/en-US/docs/Web/URI/Schemes)
    * @default ['https:', 'http:', 'mailto:']
    */
@@ -31,6 +47,7 @@ export type EuiMarkdownLinkValidatorOptions = {
 
 export const DEFAULT_OPTIONS = {
   allowRelative: true,
+  allowBareRelative: false,
   allowProtocols: ['https:', 'http:', 'mailto:'],
 };
 
@@ -40,6 +57,18 @@ export function euiMarkdownLinkValidator(
   return (ast: any) => {
     visit(ast, 'link', (_node: unknown) => {
       const node = _node as LinkOrTextNode;
+
+      if (
+        options.allowBareRelative &&
+        node.url &&
+        isBareRelativeUrl(node.url)
+      ) {
+        node.url = resolveBareRelativeUrl(
+          node.url,
+          options.baseUrl ?? window.location.href
+        );
+        return;
+      }
 
       if (!validateUrl(node.url!, options)) {
         mutateLinkToText(node);
@@ -88,4 +117,28 @@ export function validateUrl(
     // failed to parse input as url
     return false;
   }
+}
+
+/**
+ * Tests whether a URL is a bare relative URL (e.g. "discover", "dashboards#/view/123")
+ * that has no scheme, no leading slash, and is not an anchor or query-only link.
+ */
+export function isBareRelativeUrl(url: string): boolean {
+  if (url.startsWith('/') || url.startsWith('#') || url.startsWith('?')) {
+    return false;
+  }
+  // Return false if the url starts with a protocol/scheme. Catches http:, https:, mailto:, etc.
+  if (/^[a-z][a-z0-9+.-]*:/i.test(url)) {
+    return false;
+  }
+  return true;
+}
+
+/**
+ * Resolves a bare relative URL against a base URL, replicating
+ * native browser resolution of `<a href="discover">`.
+ */
+function resolveBareRelativeUrl(url: string, baseUrl: string): string {
+  const resolved = new URL(url, baseUrl);
+  return `${resolved.pathname}${resolved.search}${resolved.hash}`;
 }
