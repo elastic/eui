@@ -147,8 +147,7 @@ export default meta;
 type Story = StoryObj<EuiListItemLayoutProps>;
 
 export const Playground: Story = {
-  // TODO: uncomment after review
-  // tags: ['vrt-only'],
+  tags: ['vrt-only'],
   args: {
     children: 'List item',
   },
@@ -175,8 +174,7 @@ export const Playground: Story = {
 };
 
 export const Role: Story = {
-  // TODO: uncomment after review
-  // tags: ['vrt-only'],
+  tags: ['vrt-only'],
   parameters: {
     controls: {
       include: ['element', 'role', 'checked', 'isSelected', 'children'],
@@ -189,8 +187,7 @@ export const Role: Story = {
 };
 
 export const ExtraAction: Story = {
-  // TODO: uncomment after review
-  // tags: ['vrt-only'],
+  tags: ['vrt-only'],
   name: 'extraAction',
   parameters: {
     controls: {
@@ -204,8 +201,7 @@ export const ExtraAction: Story = {
 };
 
 export const TooltipProps: Story = {
-  // TODO: uncomment after review
-  // tags: ['vrt-only'],
+  tags: ['vrt-only'],
   name: 'tooltipProps',
   parameters: {
     controls: {
@@ -227,8 +223,7 @@ export const TooltipProps: Story = {
 };
 
 export const ExtraActionAndTooltipProps: Story = {
-  // TODO: uncomment after review
-  // tags: ['vrt-only'],
+  tags: ['vrt-only'],
   name: 'extraAction & tooltipProps',
   parameters: {
     controls: {
@@ -257,8 +252,7 @@ export const ExtraActionAndTooltipProps: Story = {
 };
 
 export const Truncation: Story = {
-  // TODO: uncomment after review
-  // tags: ['vrt-only'],
+  tags: ['vrt-only'],
   name: 'textWrap: truncate',
   parameters: {
     controls: {
@@ -281,8 +275,7 @@ export const Truncation: Story = {
 };
 
 export const TextWrap: Story = {
-  // TODO: uncomment after review
-  // tags: ['vrt-only'],
+  tags: ['vrt-only'],
   name: 'textWrap: wrap',
   parameters: {
     controls: {
@@ -305,8 +298,7 @@ export const TextWrap: Story = {
 };
 
 export const KitchenSink: Story = {
-  // TODO: uncomment after review
-  // tags: ['vrt-only'],
+  tags: ['vrt-only'],
   parameters: {
     controls: {
       include: ['isDisabled', 'isFocused', 'isSelected', 'children'],
