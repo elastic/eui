@@ -18,6 +18,7 @@ import {
   WARNING_MESSAGE_MAX_WIDTH,
   WARNING_MESSAGE_MIN_WIDTH,
   WARNING_MESSAGE_WIDTH,
+  WARNING_MESSAGE_NOT_RECOMMENDED_UNIT,
 } from './utils';
 import type { EuiTableSharedWidthProps } from './types';
 
@@ -76,14 +77,14 @@ describe('EuiTableFooterCell', () => {
     it('accepts `style` prop', () => {
       const { getByRole } = renderInTableFooter(
         <EuiTableFooterCell
-          style={{ width: '20%', minWidth: '123px', maxWidth: '456px' }}
+          style={{ width: '200px', minWidth: '123px', maxWidth: '456px' }}
         >
           Test
         </EuiTableFooterCell>
       );
 
       expect(getByRole('cell')).toHaveStyle({
-        width: '20%',
+        width: '200px',
         minWidth: '123px',
         maxWidth: '456px',
       });
@@ -99,14 +100,14 @@ describe('EuiTableFooterCell', () => {
 
         it(`accepts \`${name}\` prop`, () => {
           const { getByRole } = renderInTableFooter(
-            <EuiTableFooterCell style={{ [name]: '10%' }}>
+            <EuiTableFooterCell style={{ [name]: '100px' }}>
               Test
             </EuiTableFooterCell>
           );
 
           expect(getByRole('cell')).toHaveStyle({
             ...defaultStyles,
-            [name]: '10%',
+            [name]: '100px',
           });
         });
 
@@ -130,9 +131,9 @@ describe('EuiTableFooterCell', () => {
           console.warn = jest.fn();
 
           const props = {
-            [name]: '10%',
+            [name]: '100px',
             style: {
-              [name]: '20%',
+              [name]: '200px',
             },
           };
 
@@ -142,10 +143,25 @@ describe('EuiTableFooterCell', () => {
 
           expect(getByRole('cell')).toHaveStyle({
             ...defaultStyles,
-            [name]: '10%',
+            [name]: '100px',
           });
 
           expect(console.warn).toHaveBeenCalledWith(warningMessage);
+
+          console.warn = originalConsoleWarn;
+        });
+
+        it('warns when a not recommended unit is used', () => {
+          const originalConsoleWarn = console.warn;
+          console.warn = jest.fn();
+
+          renderInTableFooter(
+            <EuiTableFooterCell {...{ [name]: '20%' }}>Test</EuiTableFooterCell>
+          );
+
+          expect(console.warn).toHaveBeenCalledWith(
+            WARNING_MESSAGE_NOT_RECOMMENDED_UNIT
+          );
 
           console.warn = originalConsoleWarn;
         });
