@@ -20,7 +20,6 @@ import { EuiFlexGroup, EuiFlexItem } from '../../flex';
 import { EuiIcon } from '../../icon';
 import { EuiText } from '../../text';
 import { EuiBadge } from '../../badge';
-import { EuiButtonIcon } from '../../button';
 import { EuiSelectableOption } from '../selectable_option';
 
 import { EuiSelectableList, EuiSelectableListProps } from './selectable_list';
@@ -69,6 +68,9 @@ const meta: Meta<EuiSelectableListProps<{}>> = {
     height: { control: 'number' },
     isPreFiltered: { control: 'boolean' },
     singleSelection: { control: 'boolean' },
+    allowExclusions: {
+      if: { arg: 'singleSelection', truthy: false }, // show for multi selection only
+    },
   },
   args: {
     textWrap: 'truncate',
@@ -191,10 +193,7 @@ export const PaddingSize: Story = {
     },
   },
   args: {
-    options: [
-      { ...options[0], checked: 'on' },
-      ...options.slice(1, options.length - 1),
-    ],
+    options,
     paddingSize: 's',
   },
   render: (args: EuiSelectableListProps<{}>) => (
@@ -211,12 +210,7 @@ type OptionAsRendered = Omit<EuiSelectableOption<MoonOptionData>, 'data'> &
 
 const sharedOptionProps = {
   prepend: <EuiIcon type="info" />,
-  append: (
-    <>
-      <EuiBadge color="hollow">Badge</EuiBadge>
-      <EuiButtonIcon color="text" iconType="arrowRight" />
-    </>
-  ),
+  append: <EuiBadge color="hollow">Badge</EuiBadge>,
 };
 
 const optionsWithCustomData: Array<EuiSelectableOption<MoonOptionData>> = [
@@ -288,7 +282,7 @@ const customListItemRenderOption = (
 export const CustomContentListItems: Story = {
   parameters: {
     controls: {
-      include: ['allowExclusions', 'showIcons'],
+      include: ['showIcons'],
     },
     codeSnippet: {
       skip: true,
