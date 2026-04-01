@@ -101,6 +101,11 @@ export type EuiSelectableOptionsListProps = CommonProps &
      */
     onFocusBadge?: EuiSelectableListItemProps['onFocusBadge'];
     /**
+     * Optional list container padding.
+     * @default 'none'
+     */
+    paddingSize?: 'none' | 's';
+    /**
      * How to handle long text within the item.
      * Wrapping only works if virtualization is off.
      */
@@ -178,6 +183,7 @@ export class EuiSelectableList<T> extends Component<
 > {
   static defaultProps = {
     rowHeight: 32,
+    paddingSize: 'none' as const,
     searchValue: '',
     isVirtualized: true as const,
   };
@@ -275,6 +281,7 @@ export class EuiSelectableList<T> extends Component<
     const {
       allowExclusions,
       showIcons,
+      paddingSize,
       textWrap,
       onFocusBadge,
       searchable,
@@ -286,6 +293,7 @@ export class EuiSelectableList<T> extends Component<
     if (
       nextProps.allowExclusions !== allowExclusions ||
       nextProps.showIcons !== showIcons ||
+      nextProps.paddingSize !== paddingSize ||
       nextProps.textWrap !== textWrap ||
       nextProps.onFocusBadge !== onFocusBadge ||
       nextProps.searchable !== searchable ||
@@ -305,6 +313,7 @@ export class EuiSelectableList<T> extends Component<
       options,
       allowExclusions,
       showIcons,
+      paddingSize,
       textWrap,
       onFocusBadge,
       searchable,
@@ -356,6 +365,7 @@ export class EuiSelectableList<T> extends Component<
       if (
         prevProps.allowExclusions !== allowExclusions ||
         prevProps.showIcons !== showIcons ||
+        prevProps.paddingSize !== paddingSize ||
         prevProps.textWrap !== textWrap ||
         prevProps.onFocusBadge !== onFocusBadge ||
         prevProps.searchable !== searchable ||
@@ -726,6 +736,7 @@ export class EuiSelectableList<T> extends Component<
       visibleOptions,
       allowExclusions,
       bordered,
+      paddingSize,
       searchable,
       onFocusBadge,
       listId,
@@ -754,6 +765,7 @@ export class EuiSelectableList<T> extends Component<
             styles.euiSelectableList,
             heightIsFull && styles.fullHeight,
             bordered && styles.bordered,
+            paddingSize === 's' && styles.paddingSize.s,
           ];
           const listClasses = classNames(
             'euiSelectableList__list',

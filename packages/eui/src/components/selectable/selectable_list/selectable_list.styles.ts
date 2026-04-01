@@ -38,6 +38,11 @@ export const euiSelectableListStyles = (euiThemeContext: UseEuiTheme) => {
       border: ${euiTheme.border.thin};
       border-radius: ${euiTheme.border.radius.medium};
     `,
+    paddingSize: {
+      s: css`
+        padding: ${euiTheme.size.s};
+      `,
+    },
 
     euiSelectableList__list: classNameCss`
       ${euiYScrollWithShadows(euiThemeContext, {

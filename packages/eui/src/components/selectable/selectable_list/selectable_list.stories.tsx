@@ -78,6 +78,7 @@ const meta: Meta<EuiSelectableListProps<{}>> = {
     listId: '',
     allowExclusions: false,
     bordered: false,
+    paddingSize: 'none',
     isPreFiltered: false,
     isVirtualized: false,
     searchable: false,
@@ -179,6 +180,26 @@ export const Groups: Story = {
       action('setActiveOptionIndex')(index);
     },
   },
+};
+
+export const PaddingSize: Story = {
+  tags: ['vrt-only'],
+  name: 'paddingSize',
+  parameters: {
+    controls: {
+      include: ['paddingSize', 'bordered'],
+    },
+  },
+  args: {
+    options: [
+      { ...options[0], checked: 'on' },
+      ...options.slice(1, options.length - 1),
+    ],
+    paddingSize: 's',
+  },
+  render: (args: EuiSelectableListProps<{}>) => (
+    <StatefulSelectableList {...args} />
+  ),
 };
 
 interface MoonOptionData {
