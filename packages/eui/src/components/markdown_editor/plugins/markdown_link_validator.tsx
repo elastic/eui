@@ -51,31 +51,34 @@ export const DEFAULT_OPTIONS = {
   allowProtocols: ['https:', 'http:', 'mailto:'],
 };
 
-export function euiMarkdownLinkValidator(
-  options: EuiMarkdownLinkValidatorOptions
-) {
+export function euiMarkdownLinkValidator({
+  allowRelative = DEFAULT_OPTIONS.allowRelative,
+  allowDocumentRelative = DEFAULT_OPTIONS.allowDocumentRelative,
+  allowProtocols = DEFAULT_OPTIONS.allowProtocols,
+  baseUrl,
+}: EuiMarkdownLinkValidatorOptions) {
   return (ast: any) => {
     visit(ast, 'link', (_node: unknown) => {
       const node = _node as LinkOrTextNode;
 
       if (
-        options.allowRelative &&
-        options.allowDocumentRelative &&
+        allowRelative &&
+        allowDocumentRelative &&
         // Prevent throwing in non-browser environments if baseUrl isn't configured
-        (typeof window !== 'undefined' || options.baseUrl) &&
+        (typeof window !== 'undefined' || baseUrl) &&
         node.url &&
         isDocumentRelativeUrl(node.url)
       ) {
         const newUrl = resolveDocumentRelativeUrl(
           node.url,
-          options.baseUrl ?? window.location.href
+          baseUrl ?? window.location.href
         );
         if (newUrl) {
           node.url = newUrl;
         } else {
           mutateLinkToText(node);
         }
-      } else if (!validateUrl(node.url!, options)) {
+      } else if (!validateUrl(node.url!, { allowRelative, allowProtocols })) {
         mutateLinkToText(node);
       }
     });
