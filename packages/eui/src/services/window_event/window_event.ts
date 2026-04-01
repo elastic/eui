@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import { useEffect } from 'react';
+import { useEuiWindowEvent } from './hooks';
 
 type EventNames = keyof WindowEventMap;
 
@@ -19,11 +19,7 @@ export const EuiWindowEvent = <E extends EventNames>({
   event,
   handler,
 }: Props<E>) => {
-  useEffect(() => {
-    window.addEventListener(event, handler);
-
-    return () => window.removeEventListener(event, handler);
-  }, [event, handler]);
+  useEuiWindowEvent(event, handler);
 
   return null;
 };

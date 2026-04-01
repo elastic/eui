@@ -38,7 +38,10 @@ describe('EuiWindowEvent', () => {
   test('attaches handler to window event on mount', () => {
     const handler = () => null;
     render(<EuiWindowEvent event="click" handler={handler} />);
-    expect(window.addEventListener).toHaveBeenCalledWith('click', handler);
+    expect(window.addEventListener).toHaveBeenCalledWith(
+      'click',
+      expect.any(Function)
+    );
     expect(windowAddCount).toEqual(1);
   });
 
@@ -48,7 +51,10 @@ describe('EuiWindowEvent', () => {
       <EuiWindowEvent event="click" handler={handler} />
     );
     unmount();
-    expect(window.removeEventListener).toHaveBeenCalledWith('click', handler);
+    expect(window.removeEventListener).toHaveBeenCalledWith(
+      'click',
+      expect.any(Function)
+    );
     expect(windowRemoveCount).toEqual(1);
   });
 
@@ -59,12 +65,21 @@ describe('EuiWindowEvent', () => {
       <EuiWindowEvent event="click" handler={handler1} />
     );
 
-    expect(window.addEventListener).toHaveBeenCalledWith('click', handler1);
+    expect(window.addEventListener).toHaveBeenCalledWith(
+      'click',
+      expect.any(Function)
+    );
 
     rerender(<EuiWindowEvent event="keydown" handler={handler2} />);
 
-    expect(window.removeEventListener).toHaveBeenCalledWith('click', handler1);
-    expect(window.addEventListener).toHaveBeenCalledWith('keydown', handler2);
+    expect(window.removeEventListener).toHaveBeenCalledWith(
+      'click',
+      expect.any(Function)
+    );
+    expect(window.addEventListener).toHaveBeenCalledWith(
+      'keydown',
+      expect.any(Function)
+    );
   });
 
   test('does not remove or re-attach handler if update is irrelevant', () => {
