@@ -145,6 +145,5 @@ function resolveDocumentRelativeUrl(url: string, baseUrl: string): string {
   // instead of the expected "/foo/baz".
   const normalizedBase = baseUrl.endsWith('/') ? baseUrl.slice(0, -1) : baseUrl;
   const resolved = new URL(url, normalizedBase);
-  console.log(url, baseUrl, normalizedBase, resolved);
   return `${resolved.pathname}${resolved.search}${resolved.hash}`;
 }
