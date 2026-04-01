@@ -579,8 +579,6 @@ function resolveIconAndColor(
   isDisabled?: boolean
 ): {
   icon: IconType;
-  isSelected?: boolean;
-  isDisabled?: boolean;
   color?: IconColor;
 } {
   switch (checked) {
