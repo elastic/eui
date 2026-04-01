@@ -59,18 +59,23 @@ export function euiMarkdownLinkValidator(
       const node = _node as LinkOrTextNode;
 
       if (
+        options.allowRelative &&
         options.allowDocumentRelative &&
+        // Prevent throwing in non-browser environments if baseUrl isn't configured
+        (typeof window !== 'undefined' || options.baseUrl) &&
         node.url &&
         isDocumentRelativeUrl(node.url)
       ) {
-        node.url = resolveDocumentRelativeUrl(
+        const newUrl = resolveDocumentRelativeUrl(
           node.url,
           options.baseUrl ?? window.location.href
         );
-        return;
-      }
-
-      if (!validateUrl(node.url!, options)) {
+        if (newUrl) {
+          node.url = newUrl;
+        } else {
+          mutateLinkToText(node);
+        }
+      } else if (!validateUrl(node.url!, options)) {
         mutateLinkToText(node);
       }
     });
@@ -138,12 +143,20 @@ export function isDocumentRelativeUrl(url: string): boolean {
  * Resolves a document relative URL against a base URL, replicating
  * native browser resolution of e.g. `<a href="discover">`.
  */
-function resolveDocumentRelativeUrl(url: string, baseUrl: string): string {
+function resolveDocumentRelativeUrl(
+  url: string,
+  baseUrl: string
+): string | null {
   // Strip trailing slash so that resolution is consistent regardless of
   // whether the current page URL ends with one. Without this,
   // "baz" on "/foo/bar/" resolves to "/foo/bar/baz"
   // instead of the expected "/foo/baz".
   const normalizedBase = baseUrl.endsWith('/') ? baseUrl.slice(0, -1) : baseUrl;
-  const resolved = new URL(url, normalizedBase);
-  return `${resolved.pathname}${resolved.search}${resolved.hash}`;
+  try {
+    const resolved = new URL(url, normalizedBase);
+    return `${resolved.pathname}${resolved.search}${resolved.hash}`;
+  } catch (e) {
+    // failed to parse URL
+    return null;
+  }
 }
