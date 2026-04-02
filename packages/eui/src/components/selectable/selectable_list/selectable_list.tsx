@@ -415,6 +415,7 @@ export class EuiSelectableList<T> extends Component<
       searchableLabel,
       data: _data,
       truncationProps: _truncationProps,
+      css,
       ...optionRest
     } = option;
 
@@ -442,7 +443,7 @@ export class EuiSelectableList<T> extends Component<
             return (
               <li
                 role="presentation"
-                css={styles.groupLabel}
+                css={[styles.groupLabel, css]}
                 className="euiSelectableList__groupLabel"
                 style={style}
                 {...(optionRest as HTMLAttributes<HTMLLIElement>)}
