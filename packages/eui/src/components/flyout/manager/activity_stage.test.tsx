@@ -93,13 +93,16 @@ describe('useFlyoutActivityStage', () => {
   const TestComponent = ({
     flyoutId,
     level,
+    shouldAnimate,
   }: {
     flyoutId: string;
     level: 'main' | 'child';
+    shouldAnimate?: boolean;
   }) => {
     const { activityStage, onAnimationEnd } = useFlyoutActivityStage({
       flyoutId,
       level,
+      shouldAnimate,
     });
 
     return (
@@ -175,7 +178,7 @@ describe('useFlyoutActivityStage', () => {
   });
 
   describe('stage transitions based on activity', () => {
-    it('transitions from ACTIVE to CLOSING when flyout becomes inactive', () => {
+    it('when shouldAnimate is false (default), transitions directly to final stage: ACTIVE to INACTIVE', () => {
       let currentMockState = buildMockState({
         layoutMode: LAYOUT_MODE_SIDE_BY_SIDE,
         mainFlyoutId: 'main-1',
@@ -197,12 +200,10 @@ describe('useFlyoutActivityStage', () => {
         <TestComponent flyoutId="main-1" level={LEVEL_MAIN} />
       );
 
-      // Initially active
       expect(screen.getByTestSubject('activity-stage')).toHaveTextContent(
         STAGE_ACTIVE
       );
 
-      // Change to inactive - session no longer contains main-1
       currentMockState = buildMockState({
         layoutMode: LAYOUT_MODE_SIDE_BY_SIDE,
         mainFlyoutId: 'other-main',
@@ -218,11 +219,54 @@ describe('useFlyoutActivityStage', () => {
       rerender(<TestComponent flyoutId="main-1" level={LEVEL_MAIN} />);
 
       expect(mockDispatch).toHaveBeenCalledWith(
+        mockSetActivityStage('main-1', STAGE_INACTIVE)
+      );
+    });
+
+    it('when shouldAnimate is true, transitions to intermediate CLOSING when flyout becomes inactive', () => {
+      let currentMockState = buildMockState({
+        layoutMode: LAYOUT_MODE_SIDE_BY_SIDE,
+        mainFlyoutId: 'main-1',
+        childFlyoutId: null,
+        flyouts: [
+          {
+            flyoutId: 'main-1',
+            level: LEVEL_MAIN,
+            activityStage: STAGE_ACTIVE,
+          },
+        ],
+      });
+      mockUseFlyoutManager.mockImplementation(() => ({
+        state: currentMockState,
+        dispatch: mockDispatch,
+      }));
+
+      const { rerender } = render(
+        <TestComponent flyoutId="main-1" level={LEVEL_MAIN} shouldAnimate />
+      );
+
+      currentMockState = buildMockState({
+        layoutMode: LAYOUT_MODE_SIDE_BY_SIDE,
+        mainFlyoutId: 'other-main',
+        childFlyoutId: null,
+        flyouts: [
+          {
+            flyoutId: 'main-1',
+            level: LEVEL_MAIN,
+            activityStage: STAGE_ACTIVE,
+          },
+        ],
+      });
+      rerender(
+        <TestComponent flyoutId="main-1" level={LEVEL_MAIN} shouldAnimate />
+      );
+
+      expect(mockDispatch).toHaveBeenCalledWith(
         mockSetActivityStage('main-1', STAGE_CLOSING)
       );
     });
 
-    it('transitions from INACTIVE to RETURNING when flyout becomes active', () => {
+    it('when shouldAnimate is false (default), transitions directly: INACTIVE to ACTIVE', () => {
       const stateWithInactive = buildMockState({
         layoutMode: LAYOUT_MODE_SIDE_BY_SIDE,
         mainFlyoutId: 'other-main',
@@ -245,12 +289,10 @@ describe('useFlyoutActivityStage', () => {
         <TestComponent flyoutId="main-1" level={LEVEL_MAIN} />
       );
 
-      // Initially inactive
       expect(screen.getByTestSubject('activity-stage')).toHaveTextContent(
         STAGE_INACTIVE
       );
 
-      // Change to active - session now contains main-1
       currentMockState = buildMockState({
         layoutMode: LAYOUT_MODE_SIDE_BY_SIDE,
         mainFlyoutId: 'main-1',
@@ -266,13 +308,57 @@ describe('useFlyoutActivityStage', () => {
       rerender(<TestComponent flyoutId="main-1" level={LEVEL_MAIN} />);
 
       expect(mockDispatch).toHaveBeenCalledWith(
+        mockSetActivityStage('main-1', STAGE_ACTIVE)
+      );
+    });
+
+    it('when shouldAnimate is true, transitions to intermediate RETURNING when flyout becomes active', () => {
+      const stateWithInactive = buildMockState({
+        layoutMode: LAYOUT_MODE_SIDE_BY_SIDE,
+        mainFlyoutId: 'other-main',
+        childFlyoutId: null,
+        flyouts: [
+          {
+            flyoutId: 'main-1',
+            level: LEVEL_MAIN,
+            activityStage: STAGE_INACTIVE,
+          },
+        ],
+      });
+      let currentMockState = stateWithInactive;
+      mockUseFlyoutManager.mockImplementation(() => ({
+        state: currentMockState,
+        dispatch: mockDispatch,
+      }));
+
+      const { rerender } = render(
+        <TestComponent flyoutId="main-1" level={LEVEL_MAIN} shouldAnimate />
+      );
+
+      currentMockState = buildMockState({
+        layoutMode: LAYOUT_MODE_SIDE_BY_SIDE,
+        mainFlyoutId: 'main-1',
+        childFlyoutId: null,
+        flyouts: [
+          {
+            flyoutId: 'main-1',
+            level: LEVEL_MAIN,
+            activityStage: STAGE_INACTIVE,
+          },
+        ],
+      });
+      rerender(
+        <TestComponent flyoutId="main-1" level={LEVEL_MAIN} shouldAnimate />
+      );
+
+      expect(mockDispatch).toHaveBeenCalledWith(
         mockSetActivityStage('main-1', STAGE_RETURNING)
       );
     });
   });
 
   describe('main flyout backgrounding logic', () => {
-    it('transitions to BACKGROUNDING when main flyout is active, has child, and layout is stacked', () => {
+    it('when shouldAnimate is false (default), transitions directly to BACKGROUNDED when main has child and layout is stacked', () => {
       const stateWithChild = buildMockState({
         layoutMode: LAYOUT_MODE_STACKED,
         mainFlyoutId: 'main-1',
@@ -285,6 +371,27 @@ describe('useFlyoutActivityStage', () => {
       });
 
       render(<TestComponent flyoutId="main-1" level={LEVEL_MAIN} />);
+
+      expect(mockDispatch).toHaveBeenCalledWith(
+        mockSetActivityStage('main-1', STAGE_BACKGROUNDED)
+      );
+    });
+
+    it('when shouldAnimate is true, transitions to BACKGROUNDING when main has child and layout is stacked', () => {
+      const stateWithChild = buildMockState({
+        layoutMode: LAYOUT_MODE_STACKED,
+        mainFlyoutId: 'main-1',
+        childFlyoutId: 'child-1',
+        flyouts: defaultFlyouts,
+      });
+      mockUseFlyoutManager.mockReturnValue({
+        state: stateWithChild,
+        dispatch: mockDispatch,
+      });
+
+      render(
+        <TestComponent flyoutId="main-1" level={LEVEL_MAIN} shouldAnimate />
+      );
 
       expect(mockDispatch).toHaveBeenCalledWith(
         mockSetActivityStage('main-1', STAGE_BACKGROUNDING)
@@ -350,7 +457,7 @@ describe('useFlyoutActivityStage', () => {
   });
 
   describe('main flyout returning logic', () => {
-    it('transitions from BACKGROUNDED to RETURNING when child is gone', () => {
+    it('when shouldAnimate is false (default), transitions directly from BACKGROUNDED to ACTIVE when child is gone', () => {
       const stateWithBackgrounded = buildMockState({
         layoutMode: LAYOUT_MODE_STACKED,
         mainFlyoutId: 'main-1',
@@ -371,11 +478,11 @@ describe('useFlyoutActivityStage', () => {
       render(<TestComponent flyoutId="main-1" level={LEVEL_MAIN} />);
 
       expect(mockDispatch).toHaveBeenCalledWith(
-        mockSetActivityStage('main-1', STAGE_RETURNING)
+        mockSetActivityStage('main-1', STAGE_ACTIVE)
       );
     });
 
-    it('transitions from BACKGROUNDING to RETURNING when child is gone', () => {
+    it('when shouldAnimate is false (default), transitions directly from BACKGROUNDING to ACTIVE when child is gone', () => {
       const stateWithBackgrounding = buildMockState({
         layoutMode: LAYOUT_MODE_STACKED,
         mainFlyoutId: 'main-1',
@@ -396,11 +503,38 @@ describe('useFlyoutActivityStage', () => {
       render(<TestComponent flyoutId="main-1" level={LEVEL_MAIN} />);
 
       expect(mockDispatch).toHaveBeenCalledWith(
+        mockSetActivityStage('main-1', STAGE_ACTIVE)
+      );
+    });
+
+    it('when shouldAnimate is true, transitions from BACKGROUNDED to RETURNING when child is gone', () => {
+      const stateWithBackgrounded = buildMockState({
+        layoutMode: LAYOUT_MODE_STACKED,
+        mainFlyoutId: 'main-1',
+        childFlyoutId: null,
+        flyouts: [
+          {
+            flyoutId: 'main-1',
+            level: LEVEL_MAIN,
+            activityStage: STAGE_BACKGROUNDED,
+          },
+        ],
+      });
+      mockUseFlyoutManager.mockReturnValue({
+        state: stateWithBackgrounded,
+        dispatch: mockDispatch,
+      });
+
+      render(
+        <TestComponent flyoutId="main-1" level={LEVEL_MAIN} shouldAnimate />
+      );
+
+      expect(mockDispatch).toHaveBeenCalledWith(
         mockSetActivityStage('main-1', STAGE_RETURNING)
       );
     });
 
-    it('transitions from BACKGROUNDED to RETURNING when layout changes to side-by-side', () => {
+    it('when shouldAnimate is false (default), transitions directly from BACKGROUNDED to ACTIVE when layout is side-by-side', () => {
       const stateWithBackgrounded = buildMockState({
         layoutMode: LAYOUT_MODE_SIDE_BY_SIDE,
         mainFlyoutId: 'main-1',
@@ -421,7 +555,7 @@ describe('useFlyoutActivityStage', () => {
       render(<TestComponent flyoutId="main-1" level={LEVEL_MAIN} />);
 
       expect(mockDispatch).toHaveBeenCalledWith(
-        mockSetActivityStage('main-1', STAGE_RETURNING)
+        mockSetActivityStage('main-1', STAGE_ACTIVE)
       );
     });
 
