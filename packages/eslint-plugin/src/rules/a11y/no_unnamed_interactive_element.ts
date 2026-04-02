@@ -24,6 +24,7 @@ const interactiveComponents = [
   'EuiPagination',
   'EuiTreeView',
   'EuiBreadcrumbs',
+  'EuiColorPicker',
 ] as const;
 
 const wrappingComponents = ['EuiFormRow'] as const;
@@ -54,7 +55,10 @@ export const NoUnnamedInteractiveElement = ESLintUtils.RuleCreator.withoutDocs({
     function report(opening: TSESTree.JSXOpeningElement) {
       if (opening.name.type !== 'JSXIdentifier') return;
       const component = opening.name.name;
-      const allowed = getAllowedA11yPropNamesForComponent(component, a11yConfig).join(', ');
+      const allowed = getAllowedA11yPropNamesForComponent(
+        component,
+        a11yConfig
+      ).join(', ');
       context.report({
         node: opening,
         messageId: 'missingA11y',

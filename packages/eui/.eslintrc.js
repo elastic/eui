@@ -37,6 +37,7 @@ module.exports = {
     'plugin:@typescript-eslint/recommended',
     'plugin:deprecation/recommended',
     'plugin:storybook/recommended',
+    'plugin:@elastic/eui/recommended',
     // Prettier options need to come last, in order to override other style rules
     'plugin:prettier/recommended',
   ],
@@ -48,7 +49,8 @@ module.exports = {
     'react',
     'react-hooks',
     '@emotion',
-    'deprecation'
+    'deprecation',
+    '@elastic/eui'
   ],
   rules: {
     'deprecation/deprecation': 'warn',

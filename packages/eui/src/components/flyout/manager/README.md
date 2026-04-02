@@ -7,7 +7,16 @@
 [Documentation - sources](../../../../../website/docs/components/containers/flyout/session-management.mdx)
 
 Session management for EuiFlyout is enabled with the `session` prop. You can read more about that
-in the [main EuiFlyout developer README](../README.md). 
+in the [main EuiFlyout developer README](../README.md).
+
+## History scoping (`historyKey`)
+
+Flyout history (Back button and history popover) is scoped by an optional **`historyKey`** prop (type `symbol`).
+
+- **When `historyKey` is omitted**: Each session gets a unique key internally (`Symbol()`), so flyouts do not share history. The Back button will not appear for cross-session navigation.
+- **When `historyKey` is set**: Only flyouts that receive the **same Symbol reference** share history. Use a shared Symbol (e.g. `const key = Symbol();` passed to multiple `EuiFlyout` instances) to group related flyouts so their Back button and history only show entries from that group.
+
+This allows different domains (e.g. different product areas) to use `session="start"` without mixing their histories. Child flyouts inherit the main flyout's key and do not pass their own.
 
 ## Components and hooks
 

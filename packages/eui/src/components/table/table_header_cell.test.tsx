@@ -16,6 +16,7 @@ import {
   WARNING_MESSAGE_MAX_WIDTH,
   WARNING_MESSAGE_MIN_WIDTH,
   WARNING_MESSAGE_WIDTH,
+  WARNING_MESSAGE_NOT_RECOMMENDED_UNIT,
 } from './utils';
 import { EuiTableIsResponsiveContext } from './mobile/responsive_context';
 
@@ -158,14 +159,14 @@ describe('EuiTableHeaderCell', () => {
     it('accepts `style` prop', () => {
       const { getByRole } = renderInTableHeader(
         <EuiTableHeaderCell
-          style={{ width: '20%', minWidth: '123px', maxWidth: '456px' }}
+          style={{ width: '200px', minWidth: '123px', maxWidth: '456px' }}
         >
           Test
         </EuiTableHeaderCell>
       );
 
       expect(getByRole('columnheader')).toHaveStyle({
-        width: '20%',
+        width: '200px',
         minWidth: '123px',
         maxWidth: '456px',
       });
@@ -181,14 +182,14 @@ describe('EuiTableHeaderCell', () => {
 
         it(`accepts \`${name}\` prop`, () => {
           const { getByRole } = renderInTableHeader(
-            <EuiTableHeaderCell style={{ [name]: '10%' }}>
+            <EuiTableHeaderCell style={{ [name]: '100px' }}>
               Test
             </EuiTableHeaderCell>
           );
 
           expect(getByRole('columnheader')).toHaveStyle({
             ...defaultStyles,
-            [name]: '10%',
+            [name]: '100px',
           });
         });
 
@@ -212,9 +213,9 @@ describe('EuiTableHeaderCell', () => {
           console.warn = jest.fn();
 
           const props = {
-            [name]: '10%',
+            [name]: '100px',
             style: {
-              [name]: '20%',
+              [name]: '200px',
             },
           };
 
@@ -224,10 +225,25 @@ describe('EuiTableHeaderCell', () => {
 
           expect(getByRole('columnheader')).toHaveStyle({
             ...defaultStyles,
-            [name]: '10%',
+            [name]: '100px',
           });
 
           expect(console.warn).toHaveBeenCalledWith(warningMessage);
+
+          console.warn = originalConsoleWarn;
+        });
+
+        it('warns when a not recommended unit is used', () => {
+          const originalConsoleWarn = console.warn;
+          console.warn = jest.fn();
+
+          renderInTableHeader(
+            <EuiTableHeaderCell {...{ [name]: '20%' }}>Test</EuiTableHeaderCell>
+          );
+
+          expect(console.warn).toHaveBeenCalledWith(
+            WARNING_MESSAGE_NOT_RECOMMENDED_UNIT
+          );
 
           console.warn = originalConsoleWarn;
         });

@@ -118,6 +118,7 @@ describe('flyout manager actions', () => {
         'main',
         LEVEL_MAIN,
         'm',
+        undefined,
         'faceHappy'
       );
 
@@ -127,6 +128,7 @@ describe('flyout manager actions', () => {
         title: 'main',
         level: LEVEL_MAIN,
         size: 'm',
+        historyKey: undefined,
         iconType: 'faceHappy',
       });
     });
@@ -137,6 +139,7 @@ describe('flyout manager actions', () => {
         'main',
         LEVEL_MAIN,
         'm',
+        undefined,
         'faceHappy',
         100
       );
@@ -147,8 +150,31 @@ describe('flyout manager actions', () => {
         title: 'main',
         level: LEVEL_MAIN,
         size: 'm',
+        historyKey: undefined,
         iconType: 'faceHappy',
         minWidth: 100,
+      });
+    });
+
+    it('should include historyKey in action when provided', () => {
+      const key = Symbol('test');
+      const action = addFlyout(
+        'flyout-1',
+        'main',
+        LEVEL_MAIN,
+        'm',
+        key,
+        'faceHappy'
+      );
+
+      expect(action).toEqual({
+        type: ACTION_ADD,
+        flyoutId: 'flyout-1',
+        title: 'main',
+        level: LEVEL_MAIN,
+        size: 'm',
+        historyKey: key,
+        iconType: 'faceHappy',
       });
     });
   });

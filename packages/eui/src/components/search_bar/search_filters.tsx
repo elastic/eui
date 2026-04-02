@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { Component, Fragment, ReactElement } from 'react';
+import React, { Fragment, FunctionComponent, ReactElement } from 'react';
 import { createFilter, SearchFilterConfig } from './filters';
 import { Query } from './query';
 import { EuiFilterGroup } from '../filter_group';
@@ -19,27 +19,18 @@ export interface EuiSearchBarFiltersProps {
   filters: SearchFilterConfig[];
 }
 
-type DefaultProps = Pick<EuiSearchBarFiltersProps, 'filters'>;
+export const EuiSearchBarFilters: FunctionComponent<
+  EuiSearchBarFiltersProps
+> = ({ filters = [], query, onChange }) => {
+  const items = filters.reduce<ReactElement[]>((acc, filterConfig, index) => {
+    if (filterConfig.available && !filterConfig.available()) {
+      return acc;
+    }
+    const key = `filter_${index}`;
+    const control = createFilter(index, filterConfig, query, onChange);
+    acc.push(<Fragment key={key}>{control}</Fragment>);
+    return acc;
+  }, []);
 
-export class EuiSearchBarFilters extends Component<EuiSearchBarFiltersProps> {
-  static defaultProps: DefaultProps = {
-    filters: [],
-  };
-
-  render() {
-    const { filters = [], query, onChange } = this.props;
-
-    const items: ReactElement[] = [];
-
-    filters.forEach((filterConfig, index) => {
-      if (filterConfig.available && !filterConfig.available()) {
-        return;
-      }
-      const key = `filter_${index}`;
-      const control = createFilter(index, filterConfig, query, onChange);
-      items.push(<Fragment key={key}>{control}</Fragment>);
-    });
-
-    return <EuiFilterGroup>{items}</EuiFilterGroup>;
-  }
-}
+  return <EuiFilterGroup>{items}</EuiFilterGroup>;
+};
