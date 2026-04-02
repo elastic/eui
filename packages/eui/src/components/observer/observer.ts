@@ -33,17 +33,24 @@ export const useObserver = (
   const beginObserveRef = useRef(beginObserve);
   beginObserveRef.current = beginObserve;
 
+  // Store componentName in a ref so the mount-only effect can access the
+  // latest value without needing it as a dependency.
+  const componentNameRef = useRef(componentName);
+  componentNameRef.current = componentName;
+
   // Guard: throw if the ref callback was never called (no element attached),
   // mirroring the check previously in EuiObserver.componentDidMount.
   // Also cleans up the observer on unmount.
+  // Empty deps: run only on mount/unmount — componentName is only used for the
+  // error message and changing it must not disconnect/re-connect the observer.
   useEffect(() => {
     if (childNodeRef.current == null) {
-      throw new Error(`${componentName} did not receive a ref`);
+      throw new Error(`${componentNameRef.current} did not receive a ref`);
     }
     return () => {
       observerRef.current?.disconnect();
     };
-  }, [componentName]);
+  }, []);
 
   const updateChildNode = useCallback((ref: Element | null) => {
     if (childNodeRef.current === ref) return; // node hasn't changed
