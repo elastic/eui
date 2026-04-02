@@ -12,6 +12,7 @@ import {
   useEffect,
   useRef,
   useState,
+  FunctionComponent,
 } from 'react';
 import { useObserver } from '../observer';
 
@@ -26,10 +27,10 @@ export interface EuiResizeObserverProps {
 export const hasResizeObserver =
   typeof window !== 'undefined' && typeof window.ResizeObserver !== 'undefined';
 
-export const EuiResizeObserver = ({
+export const EuiResizeObserver: FunctionComponent<EuiResizeObserverProps> = ({
   children,
   onResize,
-}: EuiResizeObserverProps) => {
+}) => {
   const onResizeRef = useRef(onResize);
   onResizeRef.current = onResize;
 
