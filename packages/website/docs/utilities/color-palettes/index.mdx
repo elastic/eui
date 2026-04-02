@@ -7,7 +7,7 @@ EUI provides a set of color palette utility functions that return arrays of hexa
 :::tip When to use palettes vs. color tokens
 **Color tokens** (`euiTheme.colors.vis.*`) should be your first choice for data visualizations — they are semantic, theme-aware, and automatically adapt to color modes.
 
-**Color palette functions** are useful when you need a dynamic number of colors (e.g. generating a gradient with N steps), or when working with charting libraries that require arrays of colors. For categorical data with 10 or fewer series, prefer using the `euiColorVis0`–`euiColorVis11` tokens directly.
+**Color palette functions** are useful when you need a dynamic number of colors (e.g. generating a gradient with N steps), or when working with charting libraries that require arrays of colors. For categorical data with up to 10 series, prefer using the `euiColorVis0`–`euiColorVis9` tokens directly.
 :::
 
 ## Preset qualitative palettes
@@ -160,8 +160,8 @@ Quantitative palettes are best suited for displaying data on a continuum, such a
 EUI provides the following palette functions for quantitative data and [charts](../../dataviz/index.mdx). Pass in the number of steps needed and the function will interpolate between the colors.
 For React usage, we recommend the corresponding <a href="https://github.com/elastic/eui/blob/main/packages/eui/src/services/color/eui_palettes_hooks.ts" target="_blank" rel="noopener noreferrer">palette hooks</a>, e.g. `useEuiPaletteColorBlind`.
 
-:::warning Deprecation notice
-`euiPaletteForLightBackground` and `euiPaletteForDarkBackground` have been **deprecated**. Use the data visualization color tokens (`euiTheme.colors.vis.*`) instead.
+:::tip Palette usage guidance
+Whenever possible, prefer the data visualization color tokens (`euiTheme.colors.vis.*`) and the palette hooks (e.g. `useEuiPaletteColorBlind`) over manually calling these palette functions.
 :::
 
 :::warning
