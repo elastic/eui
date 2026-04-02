@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, {
+import {
   ReactNode,
   useCallback,
   useEffect,
@@ -26,9 +26,10 @@ export interface EuiResizeObserverProps {
 export const hasResizeObserver =
   typeof window !== 'undefined' && typeof window.ResizeObserver !== 'undefined';
 
-export const EuiResizeObserver: React.FunctionComponent<
-  EuiResizeObserverProps
-> = ({ children, onResize }) => {
+export const EuiResizeObserver = ({
+  children,
+  onResize,
+}: EuiResizeObserverProps) => {
   const onResizeRef = useRef(onResize);
   onResizeRef.current = onResize;
 
@@ -53,7 +54,7 @@ export const EuiResizeObserver: React.FunctionComponent<
 
   const updateChildNode = useObserver(beginObserve, 'EuiResizeObserver');
 
-  return children(updateChildNode) as React.ReactElement;
+  return children(updateChildNode);
 };
 
 const makeResizeObserver = (
