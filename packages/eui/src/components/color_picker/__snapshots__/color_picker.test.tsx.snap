@@ -26,7 +26,8 @@ exports[`EuiColorPicker color empty string 1`] = `
         </span>
       </div>
       <input
-        aria-label="Press the down key to open a popover containing color options"
+        aria-describedby="colorPicker_generated-id_closeLabel"
+        aria-label="aria-label"
         autocomplete="off"
         class="euiFieldText euiColorPicker__input emotion-euiFieldText-controlOnly"
         data-test-subj="euiColorPickerAnchor test subject string"
@@ -34,6 +35,22 @@ exports[`EuiColorPicker color empty string 1`] = `
         type="text"
         value=""
       />
+      <span
+        class="emotion-euiScreenReaderOnly"
+      >
+        <span
+          aria-hidden="true"
+          id="colorPicker_generated-id_openLabel"
+        >
+          Press the escape key to close the popover
+        </span>
+        <span
+          aria-hidden="false"
+          id="colorPicker_generated-id_closeLabel"
+        >
+          Press the down key to open a popover containing color options
+        </span>
+      </span>
       <div
         class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-right"
       >
@@ -78,7 +95,8 @@ exports[`EuiColorPicker color null 1`] = `
         </span>
       </div>
       <input
-        aria-label="Press the down key to open a popover containing color options"
+        aria-describedby="colorPicker_generated-id_closeLabel"
+        aria-label="aria-label"
         autocomplete="off"
         class="euiFieldText euiColorPicker__input emotion-euiFieldText-controlOnly"
         data-test-subj="euiColorPickerAnchor test subject string"
@@ -86,6 +104,22 @@ exports[`EuiColorPicker color null 1`] = `
         type="text"
         value=""
       />
+      <span
+        class="emotion-euiScreenReaderOnly"
+      >
+        <span
+          aria-hidden="true"
+          id="colorPicker_generated-id_openLabel"
+        >
+          Press the escape key to close the popover
+        </span>
+        <span
+          aria-hidden="false"
+          id="colorPicker_generated-id_closeLabel"
+        >
+          Press the down key to open a popover containing color options
+        </span>
+      </span>
       <div
         class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-right"
       >
@@ -130,13 +164,30 @@ exports[`EuiColorPicker color valid string 1`] = `
         </span>
       </div>
       <input
-        aria-label="Press the down key to open a popover containing color options"
+        aria-describedby="colorPicker_generated-id_closeLabel"
+        aria-label="aria-label"
         autocomplete="off"
         class="euiFieldText euiColorPicker__input emotion-euiFieldText-controlOnly"
         data-test-subj="euiColorPickerAnchor test subject string"
         type="text"
         value="#FFFFFF"
       />
+      <span
+        class="emotion-euiScreenReaderOnly"
+      >
+        <span
+          aria-hidden="true"
+          id="colorPicker_generated-id_openLabel"
+        >
+          Press the escape key to close the popover
+        </span>
+        <span
+          aria-hidden="false"
+          id="colorPicker_generated-id_closeLabel"
+        >
+          Press the down key to open a popover containing color options
+        </span>
+      </span>
       <div
         class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-right"
       >
@@ -181,13 +232,30 @@ exports[`EuiColorPicker compressed 1`] = `
         </span>
       </div>
       <input
-        aria-label="Press the down key to open a popover containing color options"
+        aria-describedby="colorPicker_generated-id_closeLabel"
+        aria-label="aria-label"
         autocomplete="off"
         class="euiFieldText euiColorPicker__input emotion-euiFieldText-compressed-controlOnly"
         data-test-subj="euiColorPickerAnchor test subject string"
         type="text"
         value="#FFEEDD"
       />
+      <span
+        class="emotion-euiScreenReaderOnly"
+      >
+        <span
+          aria-hidden="true"
+          id="colorPicker_generated-id_openLabel"
+        >
+          Press the escape key to close the popover
+        </span>
+        <span
+          aria-hidden="false"
+          id="colorPicker_generated-id_closeLabel"
+        >
+          Press the down key to open a popover containing color options
+        </span>
+      </span>
       <div
         class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-compressed-absolute-right"
       >
@@ -232,7 +300,8 @@ exports[`EuiColorPicker disabled 1`] = `
         </span>
       </div>
       <input
-        aria-label="Press the down key to open a popover containing color options"
+        aria-describedby="colorPicker_generated-id_closeLabel"
+        aria-label="aria-label"
         autocomplete="off"
         class="euiFieldText euiColorPicker__input emotion-euiFieldText-controlOnly"
         data-test-subj="euiColorPickerAnchor test subject string"
@@ -240,6 +309,22 @@ exports[`EuiColorPicker disabled 1`] = `
         type="text"
         value="#FFEEDD"
       />
+      <span
+        class="emotion-euiScreenReaderOnly"
+      >
+        <span
+          aria-hidden="true"
+          id="colorPicker_generated-id_openLabel"
+        >
+          Press the escape key to close the popover
+        </span>
+        <span
+          aria-hidden="false"
+          id="colorPicker_generated-id_closeLabel"
+        >
+          Press the down key to open a popover containing color options
+        </span>
+      </span>
     </div>
   </div>
 </div>
@@ -271,13 +356,30 @@ exports[`EuiColorPicker fullWidth 1`] = `
         </span>
       </div>
       <input
-        aria-label="Press the down key to open a popover containing color options"
+        aria-describedby="colorPicker_generated-id_closeLabel"
+        aria-label="aria-label"
         autocomplete="off"
         class="euiFieldText euiColorPicker__input emotion-euiFieldText-fullWidth-controlOnly"
         data-test-subj="euiColorPickerAnchor test subject string"
         type="text"
         value="#FFEEDD"
       />
+      <span
+        class="emotion-euiScreenReaderOnly"
+      >
+        <span
+          aria-hidden="true"
+          id="colorPicker_generated-id_openLabel"
+        >
+          Press the escape key to close the popover
+        </span>
+        <span
+          aria-hidden="false"
+          id="colorPicker_generated-id_closeLabel"
+        >
+          Press the down key to open a popover containing color options
+        </span>
+      </span>
       <div
         class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-right"
       >
@@ -531,13 +633,30 @@ exports[`EuiColorPicker isClearable 1`] = `
         </span>
       </div>
       <input
-        aria-label="Press the down key to open a popover containing color options"
+        aria-describedby="colorPicker_generated-id_closeLabel"
+        aria-label="aria-label"
         autocomplete="off"
         class="euiFieldText euiColorPicker__input emotion-euiFieldText-controlOnly"
         data-test-subj="euiColorPickerAnchor test subject string"
         type="text"
         value="#FFEEDD"
       />
+      <span
+        class="emotion-euiScreenReaderOnly"
+      >
+        <span
+          aria-hidden="true"
+          id="colorPicker_generated-id_openLabel"
+        >
+          Press the escape key to close the popover
+        </span>
+        <span
+          aria-hidden="false"
+          id="colorPicker_generated-id_closeLabel"
+        >
+          Press the down key to open a popover containing color options
+        </span>
+      </span>
       <div
         class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-right"
       >
@@ -592,7 +711,8 @@ exports[`EuiColorPicker placeholder 1`] = `
         </span>
       </div>
       <input
-        aria-label="Press the down key to open a popover containing color options"
+        aria-describedby="colorPicker_generated-id_closeLabel"
+        aria-label="aria-label"
         autocomplete="off"
         class="euiFieldText euiColorPicker__input emotion-euiFieldText-controlOnly"
         data-test-subj="euiColorPickerAnchor test subject string"
@@ -600,6 +720,22 @@ exports[`EuiColorPicker placeholder 1`] = `
         type="text"
         value=""
       />
+      <span
+        class="emotion-euiScreenReaderOnly"
+      >
+        <span
+          aria-hidden="true"
+          id="colorPicker_generated-id_openLabel"
+        >
+          Press the escape key to close the popover
+        </span>
+        <span
+          aria-hidden="false"
+          id="colorPicker_generated-id_closeLabel"
+        >
+          Press the down key to open a popover containing color options
+        </span>
+      </span>
       <div
         class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-right"
       >
@@ -661,13 +797,30 @@ exports[`EuiColorPicker prepend and append 1`] = `
         </span>
       </div>
       <input
-        aria-label="Press the down key to open a popover containing color options"
+        aria-describedby="colorPicker_generated-id_closeLabel"
+        aria-label="aria-label"
         autocomplete="off"
         class="euiFieldText euiColorPicker__input emotion-euiFieldText-controlOnly"
         data-test-subj="euiColorPickerAnchor test subject string"
         type="text"
         value="#FFEEDD"
       />
+      <span
+        class="emotion-euiScreenReaderOnly"
+      >
+        <span
+          aria-hidden="true"
+          id="colorPicker_generated-id_openLabel"
+        >
+          Press the escape key to close the popover
+        </span>
+        <span
+          aria-hidden="false"
+          id="colorPicker_generated-id_closeLabel"
+        >
+          Press the down key to open a popover containing color options
+        </span>
+      </span>
       <div
         class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-right"
       >
@@ -729,7 +882,8 @@ exports[`EuiColorPicker readOnly 1`] = `
         </span>
       </div>
       <input
-        aria-label="Press the down key to open a popover containing color options"
+        aria-describedby="colorPicker_generated-id_closeLabel"
+        aria-label="aria-label"
         autocomplete="off"
         class="euiFieldText euiColorPicker__input emotion-euiFieldText-controlOnly"
         data-test-subj="euiColorPickerAnchor test subject string"
@@ -737,6 +891,22 @@ exports[`EuiColorPicker readOnly 1`] = `
         type="text"
         value="#FFEEDD"
       />
+      <span
+        class="emotion-euiScreenReaderOnly"
+      >
+        <span
+          aria-hidden="true"
+          id="colorPicker_generated-id_openLabel"
+        >
+          Press the escape key to close the popover
+        </span>
+        <span
+          aria-hidden="false"
+          id="colorPicker_generated-id_closeLabel"
+        >
+          Press the down key to open a popover containing color options
+        </span>
+      </span>
     </div>
   </div>
 </div>
@@ -768,13 +938,30 @@ exports[`EuiColorPicker renders 1`] = `
         </span>
       </div>
       <input
-        aria-label="Press the down key to open a popover containing color options"
+        aria-describedby="colorPicker_generated-id_closeLabel"
+        aria-label="aria-label"
         autocomplete="off"
         class="euiFieldText euiColorPicker__input emotion-euiFieldText-controlOnly"
         data-test-subj="euiColorPickerAnchor test subject string"
         type="text"
         value="#FFEEDD"
       />
+      <span
+        class="emotion-euiScreenReaderOnly"
+      >
+        <span
+          aria-hidden="true"
+          id="colorPicker_generated-id_openLabel"
+        >
+          Press the escape key to close the popover
+        </span>
+        <span
+          aria-hidden="false"
+          id="colorPicker_generated-id_closeLabel"
+        >
+          Press the down key to open a popover containing color options
+        </span>
+      </span>
       <div
         class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-right"
       >
@@ -819,13 +1006,30 @@ exports[`EuiColorPicker showAlpha 1`] = `
         </span>
       </div>
       <input
-        aria-label="Press the down key to open a popover containing color options"
+        aria-describedby="colorPicker_generated-id_closeLabel"
+        aria-label="aria-label"
         autocomplete="off"
         class="euiFieldText euiColorPicker__input emotion-euiFieldText-controlOnly"
         data-test-subj="euiColorPickerAnchor test subject string"
         type="text"
         value="#FFEEDD"
       />
+      <span
+        class="emotion-euiScreenReaderOnly"
+      >
+        <span
+          aria-hidden="true"
+          id="colorPicker_generated-id_openLabel"
+        >
+          Press the escape key to close the popover
+        </span>
+        <span
+          aria-hidden="false"
+          id="colorPicker_generated-id_closeLabel"
+        >
+          Press the down key to open a popover containing color options
+        </span>
+      </span>
       <div
         class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-right"
       >

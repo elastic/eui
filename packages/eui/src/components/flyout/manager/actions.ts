@@ -61,6 +61,7 @@ export interface AddFlyoutAction extends BaseAction {
   title: string;
   level: EuiFlyoutLevel;
   size?: string;
+  historyKey?: symbol;
   iconType?: IconType;
   minWidth?: number;
 }
@@ -166,6 +167,7 @@ export type Action =
  * - `title` is used for the flyout menu.
  * - `level` determines whether the flyout is `main` or `child`.
  * - Optional `size` is the named EUI size (e.g. `s`, `m`, `l`).
+ * - Optional `historyKey` (Symbol) scopes history; only flyouts with the same reference share Back/history. Omit for a unique group per session.
  * - Optional `iconType` is shown next to the session title in the history menu.
  */
 export const addFlyout = (
@@ -173,6 +175,7 @@ export const addFlyout = (
   title: string,
   level: EuiFlyoutLevel = LEVEL_MAIN,
   size?: string,
+  historyKey?: symbol,
   iconType?: IconType,
   minWidth?: number
 ): AddFlyoutAction => ({
@@ -181,6 +184,7 @@ export const addFlyout = (
   title,
   level,
   size,
+  historyKey,
   iconType,
   minWidth,
 });

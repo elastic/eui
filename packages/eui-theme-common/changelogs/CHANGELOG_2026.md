@@ -1,3 +1,17 @@
+## [`v9.0.0`](https://github.com/elastic/eui/releases/v9.0.0)
+
+**Breaking changes**
+
+- Removed type for `severity.assistance` color token ([#9507](https://github.com/elastic/eui/pull/9507))
+- Removed types for assistance datavis color tokens: ([#9507](https://github.com/elastic/eui/pull/9507))
+  - `vis.euiColorVisAssistance`
+  - `vis.euiColorVis10`
+  - `vis.euiColorVis11`
+  - `vis.euiColorVisText10`
+  - `vis.euiColorVisText11`
+  - `vis.euiColorVisBehindText10`
+  - `vis.euiColorVisBehindText11`
+
 ## [`v8.1.0`](https://github.com/elastic/eui/releases/v8.1.0)
 
 - Added new assistance tokens: ([#9383](https://github.com/elastic/eui/pull/9383))

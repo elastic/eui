@@ -73,6 +73,8 @@ export interface FlyoutSession {
   childIconType?: IconType;
   /** Stack of child flyouts we navigated away from. */
   childHistory: ChildHistoryEntry[];
+  /** Key that scopes this session's history; same Symbol reference = same history group. Always set (from action or Symbol()). */
+  historyKey: symbol;
 }
 
 export interface PushPaddingOffsets {
@@ -111,6 +113,7 @@ export interface FlyoutManagerApi {
     title: string,
     level?: EuiFlyoutLevel,
     size?: string,
+    historyKey?: symbol,
     iconType?: IconType,
     minWidth?: number
   ) => void;
