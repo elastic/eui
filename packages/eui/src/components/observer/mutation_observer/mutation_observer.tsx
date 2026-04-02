@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import { ReactNode, useCallback, useEffect, useRef } from 'react';
+import { ReactNode, useCallback, useEffect, useRef, FunctionComponent } from 'react';
 
 import { useObserver } from '../observer';
 
@@ -19,11 +19,11 @@ export interface EuiMutationObserverProps {
   observerOptions?: MutationObserverInit;
 }
 
-export const EuiMutationObserver = ({
+export const EuiMutationObserver: FunctionComponent<EuiMutationObserverProps> = ({
   children,
   onMutation,
   observerOptions,
-}: EuiMutationObserverProps) => {
+}) => {
   // Store onMutation and observerOptions in refs so the observer callback
   // and setup always use the latest prop values without needing to
   // re-subscribe (which would cause the ref callback to cycle)
