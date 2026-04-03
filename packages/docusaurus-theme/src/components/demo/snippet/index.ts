@@ -6,7 +6,4 @@
  * Side Public License, v 1.
  */
 
-export { Demo, type DemoProps, type SnippetFn } from './demo';
-export { DemoSource } from './source';
-export { createDemo } from './create_demo';
-export { useSnippetState } from './context';
+export { DemoSnippet, type DemoSnippetProps } from './snippet';

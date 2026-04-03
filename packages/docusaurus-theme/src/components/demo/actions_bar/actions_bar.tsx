@@ -27,6 +27,11 @@ export interface DemoActionsBarProps {
   setSourceOpen(isOpen: boolean): void;
   onClickReloadExample(): void;
   onClickCopyToClipboard(): void;
+  /**
+   * Whether a snippet is available for this demo.
+   * Changes the toggle button text to "Show snippet" / "Show full source".
+   */
+  hasSnippet?: boolean;
 }
 
 const getDemoActionsBarStyles = (euiTheme: UseEuiTheme) => {
@@ -57,8 +62,16 @@ export const DemoActionsBar = ({
   extraFiles,
   onClickReloadExample,
   onClickCopyToClipboard,
+  hasSnippet = false,
 }: DemoActionsBarProps) => {
   const styles = useEuiMemoizedStyles(getDemoActionsBarStyles);
+
+  const getToggleButtonText = () => {
+    if (hasSnippet) {
+      return isSourceOpen ? 'Show snippet' : 'Show full source';
+    }
+    return isSourceOpen ? 'Hide source' : 'Show source';
+  };
 
   return (
     <EuiFlexGroup alignItems="center" css={styles.actionsBar} gutterSize="s">
@@ -69,7 +82,7 @@ export const DemoActionsBar = ({
         color="text"
         minWidth={false}
       >
-        {isSourceOpen ? 'Hide source' : 'Show source'}
+        {getToggleButtonText()}
       </EuiButton>
       {extraActions.map((ActionComponent) => (
         <ActionComponent

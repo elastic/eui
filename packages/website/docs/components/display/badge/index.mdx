@@ -10,14 +10,20 @@ keywords: [EuiBadge, EuiBetaBadge, EuiNotificationBadge]
 
 ### Default
 
-```tsx interactive
-import React, { useState } from 'react';
-import {
-  EuiBadge,
-} from '@elastic/eui';
+```mdx-code-block
+import { Demo } from '@elastic/eui-docusaurus-theme/lib/components/demo';
 
-export default () => <EuiBadge>Default badge</EuiBadge>;
+const badgeSnippet = () => `<EuiBadge>Default badge</EuiBadge>`;
 ```
+
+<Demo snippetFn={badgeSnippet}>
+  ```tsx
+  import React from 'react';
+  import { EuiBadge } from '@elastic/eui';
+
+  export default () => <EuiBadge>Default badge</EuiBadge>;
+  ```
+</Demo>
 
 ### Notification badge
 
