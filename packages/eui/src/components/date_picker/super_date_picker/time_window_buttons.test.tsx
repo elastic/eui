@@ -477,7 +477,7 @@ describe('EuiTimeWindowButtons', () => {
     const start = 'not a date';
     const end = 'now';
 
-    const { getByTestSubject, findByText } = render(
+    const { debug, getByTestSubject, findByText } = render(
       <EuiTimeWindowButtons start={start} end={end} applyTime={apply} />
     );
 
@@ -489,13 +489,13 @@ describe('EuiTimeWindowButtons', () => {
 
     expect(apply).not.toHaveBeenCalled();
 
-    act(() => {
-      fireEvent.mouseEnter(getByTestSubject('timeWindowButtonsZoomOut'));
-    });
+    fireEvent.mouseOver(getByTestSubject('timeWindowButtonsZoomOut'));
 
-    expect(
-      await findByText('Cannot zoom out invalid time window')
-    ).toBeInTheDocument();
+    debug();
+
+    const tooltip = await findByText('Cannot zoom out invalid time window');
+
+    expect(tooltip).toBeInTheDocument();
   });
 
   it('hides zoom in button by default', () => {

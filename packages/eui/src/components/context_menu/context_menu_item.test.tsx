@@ -158,7 +158,7 @@ describe('EuiContextMenuItem', () => {
     const { getByRole, baseElement } = render(
       <EuiContextMenuItem
         toolTipContent="tooltip content"
-        toolTipProps={{ title: 'Test', position: 'top', delay: 'long' }}
+        toolTipProps={{ title: 'Test', position: 'top' }}
       >
         Hello
       </EuiContextMenuItem>

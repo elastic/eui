@@ -115,7 +115,6 @@ export const CollapsedItemActions = <T extends {}>({
             }}
             toolTipContent={toolTipContent}
             toolTipProps={{
-              delay: 'long',
               // Avoid screen-readers announcing the same text twice
               disableScreenReaderOutput:
                 typeof buttonContent === 'string' &&
@@ -148,7 +147,7 @@ export const CollapsedItemActions = <T extends {}>({
   );
 
   const withTooltip = !actionsDisabled && (
-    <EuiToolTip content={allActionsTooltip} delay="long">
+    <EuiToolTip content={allActionsTooltip}>
       {popoverButton}
     </EuiToolTip>
   );

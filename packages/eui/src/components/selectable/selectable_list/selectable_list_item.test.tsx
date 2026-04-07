@@ -174,7 +174,6 @@ describe('EuiSelectableListItem', () => {
           toolTipProps={{
             title: 'Test',
             position: 'top',
-            delay: 'long',
             'data-test-subj': 'listItemToolTip',
           }}
         >
@@ -197,7 +196,6 @@ describe('EuiSelectableListItem', () => {
           toolTipProps={{
             title: 'Test',
             position: 'top',
-            delay: 'long',
             'data-test-subj': 'listItemToolTip',
           }}
           isFocused
