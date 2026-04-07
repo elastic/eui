@@ -46,7 +46,7 @@ export type EuiFlyoutProps<T extends ElementType = 'div' | 'nav'> = Omit<
    * When the `session` prop is undefined (not set), the flyout will automatically inherit from
    * a parent flyout if it's nested inside one. Otherwise, it defaults to `never`.
    *
-   * Check out [EuiFlyout session management](https://eui.elastic.co/docs/components/containers/flyout/session-management)
+   * Check out [EuiFlyout session management](https://eui.elastic.co/docs/components/containers/flyout/#flyout-session-management)
    * documentation to learn more.
    * @default undefined (auto-inherit when nested, otherwise 'never')
    */
