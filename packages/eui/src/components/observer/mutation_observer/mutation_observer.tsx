@@ -6,7 +6,13 @@
  * Side Public License, v 1.
  */
 
-import { ReactNode, useCallback, useEffect, useRef, FunctionComponent } from 'react';
+import {
+  ReactNode,
+  useCallback,
+  useEffect,
+  useRef,
+  FunctionComponent,
+} from 'react';
 
 import { useObserver } from '../observer';
 
