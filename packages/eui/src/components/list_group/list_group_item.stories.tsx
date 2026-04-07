@@ -6,9 +6,14 @@
  * Side Public License, v 1.
  */
 
+import React from 'react';
+import { css } from '@emotion/react';
 import type { Meta, StoryObj } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
 
 import { disableStorybookControls } from '../../../.storybook/utils';
+import { LOKI_SELECTORS, lokiPlayDecorator } from '../../../.storybook/loki';
+import { sleep } from '../../test';
 import { EuiListGroupItem, EuiListGroupItemProps } from './list_group_item';
 
 const meta: Meta<EuiListGroupItemProps> = {
@@ -20,9 +25,10 @@ const meta: Meta<EuiListGroupItemProps> = {
     },
   },
   args: {
-    size: 'm',
     color: 'text',
     showToolTip: false,
+    isActive: false,
+    isDisabled: false,
   },
 };
 disableStorybookControls(meta, ['buttonRef']);
@@ -32,6 +38,131 @@ type Story = StoryObj<EuiListGroupItemProps>;
 
 export const Playground: Story = {
   args: {
-    label: 'Link group item',
+    label: 'List group item',
   },
+};
+
+export const Icon: Story = {
+  args: {
+    label: 'List group item',
+    iconType: 'info',
+  },
+};
+
+export const Clickable: Story = {
+  args: {
+    label: 'List group item',
+    onClick: action('onClick'),
+  },
+};
+
+export const ExternalLink: Story = {
+  args: {
+    label: 'List group item',
+    href: '/',
+    external: true,
+  },
+};
+
+export const ExtraAction: Story = {
+  name: 'extraAction',
+  args: {
+    label: 'List group item',
+    onClick: action('foo'),
+    iconType: 'info',
+    extraAction: {
+      iconType: 'ellipsis',
+      alwaysShow: true,
+      'aria-label': 'extra action',
+      onClick: action('extraAction: onClick'),
+    },
+  },
+};
+
+export const Tooltip: Story = {
+  tags: ['vrt-only'],
+  parameters: {
+    controls: {
+      include: ['showToolTip', 'toolTipText', 'toolTipProps'],
+    },
+    loki: {
+      chromeSelector: LOKI_SELECTORS.portal,
+    },
+  },
+  args: {
+    label: 'List group item',
+    onClick: () => {}, // render button element
+    autoFocus: true,
+    showToolTip: true,
+    toolTipText: 'Tooltip content',
+    toolTipProps: {
+      position: 'bottom',
+      delay: 'regular',
+    },
+  },
+  play: lokiPlayDecorator(async () => {
+    // Reduce VRT flakiness/screenshots before tooltip is fully visible
+    await sleep(300);
+  }),
+};
+
+export const TooltipAndExtraAction: Story = {
+  tags: ['vrt-only'],
+  name: 'Tooltip & extraAction',
+  args: {
+    label: 'List group item',
+    onClick: action('foo'),
+    autoFocus: true,
+    iconType: 'info',
+    extraAction: {
+      iconType: 'ellipsis',
+      alwaysShow: true,
+      'aria-label': 'extra action',
+      onClick: action('extraAction: onClick'),
+    },
+    showToolTip: true,
+    toolTipText: 'Tooltip content',
+    toolTipProps: {
+      position: 'bottom',
+      delay: 'regular',
+    },
+  },
+  play: lokiPlayDecorator(async () => {
+    // Reduce VRT flakiness/screenshots before tooltip is fully visible
+    await sleep(300);
+  }),
+};
+
+export const Truncation: Story = {
+  tags: ['vrt-only'],
+  args: {
+    label: 'Long list group item label that should be truncated',
+  },
+  render: (args) => (
+    <div
+      css={css`
+        inline-size: 200px;
+      `}
+    >
+      <EuiListGroupItem {...args} />
+    </div>
+  ),
+};
+
+export const WrapText: Story = {
+  tags: ['vrt-only'],
+  name: 'wrapText',
+  args: {
+    label: 'Long list group item label that should be wrapped',
+    wrapText: true,
+  },
+  render: (args) => (
+    <div
+      css={css`
+        inline-size: 200px;
+      `}
+    >
+      <EuiListGroupItem {...args} />
+    </div>
+  ),
 };
