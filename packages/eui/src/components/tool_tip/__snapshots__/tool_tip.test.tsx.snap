@@ -74,7 +74,6 @@ exports[`EuiToolTip shows tooltip on mouseover and focus 1`] = `
       data-position="top"
       data-test-subj="test subject string"
       id="id"
-      position="top"
       role="tooltip"
       style="top: -16px; left: -10px;"
     >
@@ -121,8 +120,6 @@ exports[`EuiToolTip uses custom offset prop value 1`] = `
       data-position="top"
       data-test-subj="test subject string"
       id="generated-id"
-      offset="32"
-      position="top"
       role="tooltip"
       style="top: -32px; left: -10px;"
     >

@@ -23,6 +23,7 @@ import { EuiIcon, IconColor, IconType } from '../../icon';
 import { EuiScreenReaderOnly } from '../../accessibility';
 import { EuiBadge, EuiBadgeProps } from '../../badge';
 import { EuiToolTip } from '../../tool_tip';
+import type { EuiToolTipRef } from '../../tool_tip';
 
 import type {
   EuiSelectableOption,
@@ -358,7 +359,7 @@ export const EuiSelectableListItem: FunctionComponent<
   }, [role, checked]);
 
   const hasToolTip = !!toolTipContent && !disabled;
-  const [tooltipRef, setTooltipRef] = useState<EuiToolTip | null>(null); // Needs to be state and not a ref to trigger useEffect
+  const [tooltipRef, setTooltipRef] = useState<EuiToolTipRef | null>(null); // Needs to be state and not a ref to trigger useEffect
   const [ariaDescribedBy, setAriaDescribedBy] = useState(_ariaDescribedBy);
 
   // Manually trigger the tooltip on keyboard focus
@@ -375,7 +376,7 @@ export const EuiSelectableListItem: FunctionComponent<
   // Manually set the `aria-describedby` id on the <li> wrapper
   useEffect(() => {
     if (tooltipRef) {
-      const tooltipId = tooltipRef.state.id;
+      const tooltipId = tooltipRef.id;
       setAriaDescribedBy(classNames(tooltipId, _ariaDescribedBy));
     }
   }, [tooltipRef, _ariaDescribedBy]);

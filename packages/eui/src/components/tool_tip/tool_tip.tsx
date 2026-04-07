@@ -140,6 +140,7 @@ export interface EuiToolTipProps extends CommonProps {
 export interface EuiToolTipRef {
   showToolTip: () => void;
   hideToolTip: () => void;
+  id: string;
 }
 
 export const EuiToolTip = forwardRef<EuiToolTipRef, EuiToolTipProps>(
@@ -260,9 +261,10 @@ export const EuiToolTip = forwardRef<EuiToolTipRef, EuiToolTipProps>(
       }
     }, [delay, hideToolTip]);
 
-    useImperativeHandle(ref, () => ({ showToolTip, hideToolTip }), [
+    useImperativeHandle(ref, () => ({ showToolTip, hideToolTip, id }), [
       showToolTip,
       hideToolTip,
+      id,
     ]);
 
     useEffect(() => {

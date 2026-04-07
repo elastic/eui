@@ -14,6 +14,7 @@ import { CommonProps } from '../common';
 
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
 import { EuiToolTip } from '../tool_tip';
+import type { EuiToolTipRef } from '../tool_tip';
 import { EuiIcon } from '../icon';
 import { EuiComboBoxOptionOption } from '../combo_box';
 
@@ -62,7 +63,7 @@ export class EuiFilterSelectItemClass extends Component<
   };
 
   buttonRef: HTMLButtonElement | null = null;
-  tooltipRef = createRef<EuiToolTip>();
+  tooltipRef = createRef<EuiToolTipRef>();
 
   state = {
     hasFocus: false,
