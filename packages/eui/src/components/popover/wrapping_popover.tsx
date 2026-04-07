@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { Component } from 'react';
+import React, { useCallback, useLayoutEffect, useRef } from 'react';
 import { EuiPopover, Props as EuiPopoverProps } from './popover';
 import { EuiPortal } from '../portal';
 
@@ -20,43 +20,42 @@ export interface EuiWrappingPopoverProps
  * then the button element is moved into the popover dom.
  * On unmount, the button is moved back to its original location.
  */
-export class EuiWrappingPopover extends Component<EuiWrappingPopoverProps> {
-  private portal: HTMLElement | null = null;
 
-  componentWillUnmount() {
-    if (this.props.button.parentNode) {
-      if (this.portal) {
-        this.portal.insertAdjacentElement('beforebegin', this.props.button);
+export function EuiWrappingPopover(props: EuiWrappingPopoverProps) {
+  const { button, ...rest } = props;
+
+  const portalRef = useRef<HTMLElement | null>(null);
+
+  const setPortalRef = useCallback((node: HTMLElement | null) => {
+    portalRef.current = node;
+  }, []);
+
+  const setAnchorRef = useCallback(
+    (node: HTMLDivElement | null) => {
+      node?.insertAdjacentElement('beforebegin', button);
+    },
+    [button]
+  );
+
+  useLayoutEffect(() => {
+    return () => {
+      if (button.parentNode && portalRef.current) {
+        portalRef.current.insertAdjacentElement('beforebegin', button);
       }
-    }
-  }
+    };
+  }, [button]);
 
-  setPortalRef = (node: HTMLElement | null) => {
-    this.portal = node;
-  };
-
-  setAnchorRef = (node: HTMLElement | null) => {
-    node?.insertAdjacentElement('beforebegin', this.props.button);
-  };
-
-  render() {
-    const { button, ...rest } = this.props;
-
-    return (
-      <EuiPortal
-        portalRef={this.setPortalRef}
-        insert={{ sibling: this.props.button, position: 'after' }}
-      >
-        <EuiPopover
-          {...rest}
-          button={
-            <div
-              ref={this.setAnchorRef}
-              className="euiWrappingPopover__anchor"
-            />
-          }
-        />
-      </EuiPortal>
-    );
-  }
+  return (
+    <EuiPortal
+      portalRef={setPortalRef}
+      insert={{ sibling: button, position: 'after' }}
+    >
+      <EuiPopover
+        {...rest}
+        button={
+          <div ref={setAnchorRef} className="euiWrappingPopover__anchor" />
+        }
+      />
+    </EuiPortal>
+  );
 }
