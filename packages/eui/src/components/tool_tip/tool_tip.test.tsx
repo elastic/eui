@@ -18,6 +18,7 @@ import { requiredProps } from '../../test';
 import { shouldRenderCustomStyles } from '../../test/internal';
 
 import { EuiToolTip } from './tool_tip';
+import type { EuiToolTipRef } from './tool_tip';
 
 describe('EuiToolTip', () => {
   shouldRenderCustomStyles(
@@ -185,7 +186,7 @@ describe('EuiToolTip', () => {
 
     test('showToolTip', async () => {
       const ConsumerToolTip = () => {
-        const toolTipRef = useRef<EuiToolTip>(null);
+        const toolTipRef = useRef<EuiToolTipRef>(null);
 
         const showToolTip = () => {
           toolTipRef.current?.showToolTip();
@@ -216,7 +217,7 @@ describe('EuiToolTip', () => {
       // focus is returned to toggling buttons with a tooltip, & said tooltip blocks UI
       // @see https://github.com/elastic/eui/issues/5883#issuecomment-1120908605 for example
       const ConsumerToolTip = () => {
-        const toolTipRef = useRef<EuiToolTip>(null);
+        const toolTipRef = useRef<EuiToolTipRef>(null);
 
         const hideToolTip = () => {
           toolTipRef.current?.hideToolTip();
