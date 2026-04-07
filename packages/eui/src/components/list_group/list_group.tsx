@@ -21,9 +21,6 @@ import { CommonProps } from '../common';
 import { EuiListGroupItem, EuiListGroupItemProps } from './list_group_item';
 import { euiListGroupStyles } from './list_group.styles';
 
-export const GUTTER_SIZES = ['none', 's', 'm'] as const;
-export type EuiListGroupGutterSize = (typeof GUTTER_SIZES)[number];
-
 export type EuiListGroupProps = CommonProps &
   Omit<HTMLAttributes<HTMLUListElement>, 'color'> & {
     /**
@@ -37,11 +34,6 @@ export type EuiListGroupProps = CommonProps &
     flush?: boolean;
 
     /**
-     * Spacing between list items
-     */
-    gutterSize?: EuiListGroupGutterSize;
-
-    /**
      * Items to display in this group. See {@link EuiListGroupItem}
      */
     listItems?: EuiListGroupItemProps[];
@@ -51,12 +43,6 @@ export type EuiListGroupProps = CommonProps &
      * @default text
      */
     color?: EuiListGroupItemProps['color'];
-
-    /**
-     * Change the size of all `listItems` at once
-     * @default m
-     */
-    size?: EuiListGroupItemProps['size'];
 
     /**
      * Sets the max-width of the page.
@@ -85,12 +71,10 @@ export const EuiListGroup: FunctionComponent<EuiListGroupProps> = ({
   style,
   flush = false,
   bordered = false,
-  gutterSize = 's',
   wrapText = false,
   maxWidth = true,
   showToolTips = false,
-  color,
-  size,
+  color = 'text',
   ariaLabelledby,
   ...rest
 }) => {
@@ -98,7 +82,6 @@ export const EuiListGroup: FunctionComponent<EuiListGroupProps> = ({
   const styles = useEuiMemoizedStyles(euiListGroupStyles);
   const cssStyles = [
     styles.euiListGroup,
-    styles[gutterSize],
     flush && styles.flush,
     bordered && styles.bordered,
     maxWidth === true && styles.maxWidthDefault,
@@ -120,12 +103,11 @@ export const EuiListGroup: FunctionComponent<EuiListGroupProps> = ({
           // we're passing the parent `color` and `size` down to the children
           // so that they can inherit it if they don't have one
           color={color}
-          size={size}
           {...item}
         />
       ));
     }
-  }, [listItems, color, size, wrapText, showToolTips]);
+  }, [listItems, color, wrapText, showToolTips]);
 
   const listItemsOrChildren =
     renderedListItems ||
@@ -136,7 +118,6 @@ export const EuiListGroup: FunctionComponent<EuiListGroupProps> = ({
           // we're passing the parent `color` and `size` down to the children
           // so that they can inherit it if they don't have one
           color: color,
-          size: size,
           ...(showToolTips && { showToolTip: true }),
           ...child.props,
         });

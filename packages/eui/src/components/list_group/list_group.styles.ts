@@ -38,15 +38,5 @@ export const euiListGroupStyles = (euiThemeContext: UseEuiTheme) => {
     maxWidthDefault: css`
       ${logicalCSS('max-width', formMaxWidth)}
     `,
-    // Gutter sizes
-    none: css``,
-    s: css`
-      padding: ${euiTheme.size.s};
-      gap: ${euiTheme.size.s};
-    `,
-    m: css`
-      padding: ${euiTheme.size.base};
-      gap: ${euiTheme.size.base};
-    `,
   };
 };
