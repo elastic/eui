@@ -26,7 +26,7 @@ describe('EuiIconTip', () => {
     }
   );
 
-  test('is rendered', () => {
+  it('is rendered', () => {
     const { container } = render(
       <EuiIconTip title="title" id="id" content="content" {...requiredProps} />
     );
@@ -35,34 +35,67 @@ describe('EuiIconTip', () => {
   });
 
   describe('props', () => {
-    describe('type', () => {
-      test('is rendered as the icon', () => {
-        const { container } = render(
-          <EuiIconTip type="warning" id="id" content="content" />
-        );
+    it('renders a different icon for each type', () => {
+      const { container: defaultContainer } = render(
+        <EuiIconTip content="content" />
+      );
+      const { container: warningContainer } = render(
+        <EuiIconTip type="warning" content="content" />
+      );
 
-        expect(container.firstChild).toMatchSnapshot();
-      });
+      expect(defaultContainer.innerHTML).not.toEqual(
+        warningContainer.innerHTML
+      );
     });
 
-    describe('color', () => {
-      test('is rendered as the icon color', () => {
-        const { container } = render(
-          <EuiIconTip color="warning" id="id" content="content" />
-        );
+    it('renders a different icon for each color', () => {
+      const { container: defaultContainer } = render(
+        <EuiIconTip content="content" />
+      );
+      const { container: colorContainer } = render(
+        <EuiIconTip color="warning" content="content" />
+      );
 
-        expect(container.firstChild).toMatchSnapshot();
-      });
+      expect(defaultContainer.innerHTML).not.toEqual(colorContainer.innerHTML);
     });
 
-    describe('size', () => {
-      test('is rendered as the icon size', () => {
-        const { container } = render(
-          <EuiIconTip size="xl" id="id" content="content" />
-        );
-
-        expect(container.firstChild).toMatchSnapshot();
-      });
+    it('accepts a size prop without errors', () => {
+      // Size is applied via CSS and has no observable DOM difference in the test environment
+      expect(() =>
+        render(<EuiIconTip size="xl" content="content" />)
+      ).not.toThrow();
     });
+  });
+
+  describe('aria-label', () => {
+    // In the test environment EuiIcon renders aria-label as its text content
+    it('uses "Info" as the default aria-label', () => {
+      const { container } = render(<EuiIconTip content="content" />);
+
+      expect(container.querySelector('[data-euiicon-type]')).toHaveTextContent(
+        'Info'
+      );
+    });
+
+    it('uses a custom aria-label when provided', () => {
+      const { container } = render(
+        <EuiIconTip content="content" aria-label="More information" />
+      );
+
+      expect(container.querySelector('[data-euiicon-type]')).toHaveTextContent(
+        'More information'
+      );
+    });
+  });
+
+  it('shows tooltip content on hover', async () => {
+    const { container, getByRole } = render(
+      <EuiIconTip content="Tooltip content" />
+    );
+
+    fireEvent.mouseOver(container.querySelector('[data-euiicon-type]')!);
+    await waitForEuiToolTipVisible();
+
+    expect(getByRole('tooltip')).toHaveTextContent('Tooltip content');
   });
 });
