@@ -41,7 +41,11 @@ import {
   EuiSelectableListItem,
   EuiSelectableListItemProps,
 } from './selectable_list_item';
-import { euiSelectableListStyles } from './selectable_list.styles';
+import {
+  euiSelectableListGroupLabelStyles,
+  euiSelectableListStyles,
+} from './selectable_list.styles';
+import { getListItemSize } from './utils/get_list_item_size';
 
 interface ListChildComponentProps<T>
   extends Omit<ReactWindowListChildComponentProps, 'style'> {
@@ -77,7 +81,7 @@ export type EuiSelectableOptionsListProps = CommonProps &
      */
     activeOptionIndex?: number;
     /**
-     * Show the check/cross selection indicator icons
+     * Show the check/cross selection indicators
      */
     showIcons?: boolean;
     singleSelection?: 'always' | boolean;
@@ -96,6 +100,11 @@ export type EuiSelectableOptionsListProps = CommonProps &
      * The default content when `true` is `↩ to select/deselect/include/exclude`
      */
     onFocusBadge?: EuiSelectableListItemProps['onFocusBadge'];
+    /**
+     * Optional list container padding.
+     * @default 'none'
+     */
+    paddingSize?: 'none' | 's';
     /**
      * How to handle long text within the item.
      * Wrapping only works if virtualization is off.
@@ -174,6 +183,7 @@ export class EuiSelectableList<T> extends Component<
 > {
   static defaultProps = {
     rowHeight: 32,
+    paddingSize: 'none' as const,
     searchValue: '',
     isVirtualized: true as const,
   };
@@ -271,6 +281,7 @@ export class EuiSelectableList<T> extends Component<
     const {
       allowExclusions,
       showIcons,
+      paddingSize,
       textWrap,
       onFocusBadge,
       searchable,
@@ -282,6 +293,7 @@ export class EuiSelectableList<T> extends Component<
     if (
       nextProps.allowExclusions !== allowExclusions ||
       nextProps.showIcons !== showIcons ||
+      nextProps.paddingSize !== paddingSize ||
       nextProps.textWrap !== textWrap ||
       nextProps.onFocusBadge !== onFocusBadge ||
       nextProps.searchable !== searchable ||
@@ -301,6 +313,7 @@ export class EuiSelectableList<T> extends Component<
       options,
       allowExclusions,
       showIcons,
+      paddingSize,
       textWrap,
       onFocusBadge,
       searchable,
@@ -319,6 +332,8 @@ export class EuiSelectableList<T> extends Component<
 
       if (typeof activeOptionIndex !== 'undefined') {
         if (isVirtualized) {
+          // NOTE: Maybe we might want to consider changing scroll position to
+          // 'center' to not have items stick to the edges of the list
           this.listRef?.scrollToItem(activeOptionIndex, 'auto');
         } else {
           const activeOptionId = makeOptionId(activeOptionIndex);
@@ -350,6 +365,7 @@ export class EuiSelectableList<T> extends Component<
       if (
         prevProps.allowExclusions !== allowExclusions ||
         prevProps.showIcons !== showIcons ||
+        prevProps.paddingSize !== paddingSize ||
         prevProps.textWrap !== textWrap ||
         prevProps.onFocusBadge !== onFocusBadge ||
         prevProps.searchable !== searchable ||
@@ -380,10 +396,8 @@ export class EuiSelectableList<T> extends Component<
   getItemSize = (index: number): number => {
     const { rowHeight } = this.props as { rowHeight: number };
     const option = this.state.optionArray[index];
-    if (option?.isGroupLabel && index > 0) {
-      return rowHeight + 16; // 16px = the additional 2 * 8px padding of the divider line
-    }
-    return rowHeight;
+
+    return getListItemSize(index, rowHeight, !!option?.isGroupLabel);
   };
 
   ListRow = memo(({ data, index, style }: ListChildComponentProps<T>) => {
@@ -401,6 +415,7 @@ export class EuiSelectableList<T> extends Component<
       searchableLabel,
       data: _data,
       truncationProps: _truncationProps,
+      css,
       ...optionRest
     } = option;
 
@@ -423,11 +438,12 @@ export class EuiSelectableList<T> extends Component<
       return (
         <RenderWithEuiStylesMemoizer>
           {(stylesMemoizer) => {
-            const styles = stylesMemoizer(euiSelectableListStyles);
+            const styles = stylesMemoizer(euiSelectableListGroupLabelStyles);
+
             return (
               <li
                 role="presentation"
-                css={styles.euiSelectableList__groupLabel}
+                css={[styles.groupLabel, css]}
                 className="euiSelectableList__groupLabel"
                 style={style}
                 {...(optionRest as HTMLAttributes<HTMLLIElement>)}
@@ -721,6 +737,7 @@ export class EuiSelectableList<T> extends Component<
       visibleOptions,
       allowExclusions,
       bordered,
+      paddingSize,
       searchable,
       onFocusBadge,
       listId,
@@ -749,6 +766,7 @@ export class EuiSelectableList<T> extends Component<
             styles.euiSelectableList,
             heightIsFull && styles.fullHeight,
             bordered && styles.bordered,
+            paddingSize === 's' && styles.paddingSize.s,
           ];
           const listClasses = classNames(
             'euiSelectableList__list',
