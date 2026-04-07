@@ -404,6 +404,7 @@ export class FieldValueSelectionFilter extends Component<
               listProps={{
                 isVirtualized: isOverSearchThreshold || false,
                 autoFocus: true,
+                paddingSize: 's',
               }}
               onChange={(options, event, changedOption) => {
                 if (changedOption.data) {
