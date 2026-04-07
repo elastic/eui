@@ -30,7 +30,6 @@ export const euiSelectableTemplateSitewideStyles = (
 
     euiSelectableTemplateSitewide__optionMetasList: css`
       display: block;
-      ${logicalCSS('margin-top', euiTheme.size.xs)}
       ${euiFontSize(euiThemeContext, 'xs')}
       color: ${euiTheme.colors.textSubdued};
     `,
