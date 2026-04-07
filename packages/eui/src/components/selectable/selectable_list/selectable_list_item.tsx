@@ -249,7 +249,7 @@ export const EuiSelectableListItem: FunctionComponent<
   }, [checked, searchable, allowExclusions]);
 
   const hasToolTip = !!toolTipContent && !disabled;
-  const showOnFocusBadge = !!(isFocused && !disabled && onFocusBadgeNode);
+  const showOnFocusBadge = isFocused && !disabled && !!onFocusBadgeNode;
 
   const listItemLayoutProps: Omit<EuiListItemLayoutAsLi, 'children'> = {
     element: 'li',
