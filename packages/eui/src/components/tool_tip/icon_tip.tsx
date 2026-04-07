@@ -15,7 +15,7 @@ import { EuiToolTip, EuiToolTipProps } from './tool_tip';
 
 export type EuiIconTipProps = Omit<
   EuiToolTipProps,
-  'children' | 'delay' | 'position'
+  'children' | 'position'
 > & {
   /**
    * Children are not allowed as they are built using the icon props
@@ -44,9 +44,8 @@ export type EuiIconTipProps = Omit<
   // iconProps; however, due to TS's bivariant function arguments `type` could be
   // passed without any error/feedback so we explicitly set it to `never` type
   iconProps?: Omit<PropsOf<typeof EuiIcon>, 'type'> & { type?: never };
-  // This are copied from EuiToolTipProps, but made optional. Defaults
-  // are applied below.
-  delay?: EuiToolTipProps['delay'];
+  // This is copied from EuiToolTipProps, but made optional. Default
+  // is applied below.
   position?: EuiToolTipProps['position'];
 };
 
@@ -57,13 +56,12 @@ export const EuiIconTip: FunctionComponent<EuiIconTipProps> = ({
   size,
   iconProps,
   position = 'top',
-  delay = 'regular',
   ...rest
 }) => {
   const defaultAriaLabel = useEuiI18n('euiIconTip.defaultAriaLabel', 'Info');
 
   return (
-    <EuiToolTip position={position} delay={delay} {...rest}>
+    <EuiToolTip position={position} {...rest}>
       <EuiIcon
         tabIndex={0}
         type={type}
