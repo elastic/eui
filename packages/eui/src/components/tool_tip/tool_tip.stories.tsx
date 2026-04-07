@@ -44,7 +44,6 @@ const meta: Meta<EuiToolTipProps> = {
   ],
   args: {
     position: 'top',
-    delay: 'regular',
     display: 'inlineBlock',
     // set up for easier testing/QA
     anchorClassName: '',

@@ -38,13 +38,7 @@ import { toolTipManager } from './tool_tip_manager';
 export const POSITIONS = ['top', 'right', 'bottom', 'left'] as const;
 const DISPLAYS = ['inlineBlock', 'block'] as const;
 
-export type ToolTipDelay = 'regular' | 'long';
 export const DEFAULT_TOOLTIP_OFFSET = 16;
-
-const delayToMsMap: { [key in ToolTipDelay]: number } = {
-  regular: 250,
-  long: 250 * 5,
-};
 
 interface ToolTipStyles {
   top: number;
@@ -92,10 +86,6 @@ export interface EuiToolTipProps extends CommonProps {
    * Common display alternatives for the anchor wrapper
    */
   display?: (typeof DISPLAYS)[number];
-  /**
-   * Delay before showing tooltip. Good for repeatable items.
-   */
-  delay?: ToolTipDelay;
   /**
    * An optional title for your tooltip.
    */
@@ -152,7 +142,6 @@ export const EuiToolTip = forwardRef<EuiToolTipRef, EuiToolTipProps>(
       anchorProps,
       content,
       title,
-      delay = 'regular',
       display = 'inlineBlock',
       repositionOnScroll,
       disableScreenReaderOutput = false,
@@ -181,10 +170,8 @@ export const EuiToolTip = forwardRef<EuiToolTipRef, EuiToolTipProps>(
 
     const anchorRef = useRef<HTMLElement | null>(null);
     const popoverRef = useRef<HTMLElement | null>(null);
-    const timeoutRef = useRef<ReturnType<typeof setTimeout> | undefined>(
-      undefined
-    );
     const isMounted = useRef(false);
+    const showPendingRef = useRef(false);
 
     const setAnchorRef = useCallback((el: HTMLElement) => {
       anchorRef.current = el;
@@ -195,11 +182,7 @@ export const EuiToolTip = forwardRef<EuiToolTipRef, EuiToolTipProps>(
     }, []);
 
     const hideToolTip = useCallback(() => {
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current);
-        timeoutRef.current = undefined;
-      }
-
+      showPendingRef.current = false;
       enqueueStateChange(() => {
         if (isMounted.current) {
           setVisible(false);
@@ -251,15 +234,17 @@ export const EuiToolTip = forwardRef<EuiToolTipRef, EuiToolTipProps>(
     }, [positionProp, offset]);
 
     const showToolTip = useCallback(() => {
-      if (!timeoutRef.current) {
-        timeoutRef.current = setTimeout(() => {
-          enqueueStateChange(() => {
+      if (!showPendingRef.current) {
+        showPendingRef.current = true;
+        enqueueStateChange(() => {
+          showPendingRef.current = false;
+          if (isMounted.current) {
             setVisible(true);
             toolTipManager.registerTooltip(hideToolTip);
-          });
-        }, delayToMsMap[delay]);
+          }
+        });
       }
-    }, [delay, hideToolTip]);
+    }, [hideToolTip]);
 
     useImperativeHandle(ref, () => ({ showToolTip, hideToolTip, id }), [
       showToolTip,
@@ -271,9 +256,7 @@ export const EuiToolTip = forwardRef<EuiToolTipRef, EuiToolTipProps>(
       isMounted.current = true;
       return () => {
         isMounted.current = false;
-        if (timeoutRef.current) {
-          clearTimeout(timeoutRef.current);
-        }
+        showPendingRef.current = false;
         toolTipManager.deregisterToolTip(hideToolTip);
       };
     }, [hideToolTip]);

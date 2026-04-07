@@ -7,8 +7,7 @@
  */
 
 import React, { createRef, useRef } from 'react';
-import { act, fireEvent } from '@testing-library/react';
-import { userEvent } from '@storybook/test';
+import { fireEvent } from '@testing-library/react';
 import {
   render,
   waitForEuiToolTipVisible,
@@ -97,7 +96,6 @@ describe('EuiToolTip', () => {
     });
 
     it('does not render when neither content nor title are provided', () => {
-      jest.useFakeTimers();
       const { queryByRole, getByTestSubject } = render(
         <EuiToolTip>
           <button data-test-subj="trigger">Trigger</button>
@@ -105,11 +103,7 @@ describe('EuiToolTip', () => {
       );
 
       fireEvent.mouseOver(getByTestSubject('trigger'));
-      // Flush tooltip delay and state queue
-      act(() => jest.runAllTimers());
-
       expect(queryByRole('tooltip')).not.toBeInTheDocument();
-      jest.useRealTimers();
     });
 
     it('renders with title only and no content', async () => {
@@ -183,7 +177,7 @@ describe('EuiToolTip', () => {
         </EuiToolTip>
       );
 
-      await userEvent.hover(getByRole('button'));
+      fireEvent.mouseOver(getByRole('button'));
       await waitForEuiToolTipVisible();
 
       expect(document.querySelector('[role="tooltip"]')).toBeInTheDocument();
