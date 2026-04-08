@@ -58,6 +58,7 @@ export const EuiToolTipPopover: FunctionComponent<Props> = ({
 
   const setPopoverRef = useCallback(
     (ref: HTMLDivElement) => {
+      popover.current = ref;
       if (popoverRef) {
         popoverRef(ref);
       }
