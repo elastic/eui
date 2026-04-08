@@ -177,7 +177,8 @@ export const EuiToolTip = forwardRef<EuiToolTipRef, EuiToolTipProps>(
       Record<EuiPopoverPosition, number | string> | undefined
     >(undefined);
 
-    const [id] = useState<string>(() => idProp || htmlIdGenerator()());
+    const idRef = useRef(idProp ?? htmlIdGenerator()());
+    const id = idRef.current;
 
     const anchorRef = useRef<HTMLElement | null>(null);
     const popoverRef = useRef<HTMLElement | null>(null);
@@ -382,7 +383,7 @@ export const EuiToolTip = forwardRef<EuiToolTipRef, EuiToolTipProps>(
           // `id` defines if the trigger and tooltip are automatically linked via `aria-describedby`.
           id={!disableScreenReaderOutput ? id : undefined}
           className={anchorClasses}
-          display={display!}
+          display={display}
           isVisible={visible}
         >
           {children}

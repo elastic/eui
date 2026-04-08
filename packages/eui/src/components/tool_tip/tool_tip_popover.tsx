@@ -39,7 +39,7 @@ export const EuiToolTipPopover: FunctionComponent<Props> = ({
   calculatedPosition,
   ...rest
 }) => {
-  const popover = useRef<HTMLDivElement>();
+  const popover = useRef<HTMLDivElement | null>(null);
 
   const styles = useEuiMemoizedStyles(euiToolTipStyles);
   const cssStyles = [
@@ -56,11 +56,14 @@ export const EuiToolTipPopover: FunctionComponent<Props> = ({
     });
   }, [positionToolTip]);
 
-  const setPopoverRef = (ref: HTMLDivElement) => {
-    if (popoverRef) {
-      popoverRef(ref);
-    }
-  };
+  const setPopoverRef = useCallback(
+    (ref: HTMLDivElement) => {
+      if (popoverRef) {
+        popoverRef(ref);
+      }
+    },
+    [popoverRef]
+  );
 
   useEffect(() => {
     document.body.classList.add('euiBody-hasPortalContent');

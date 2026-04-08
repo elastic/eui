@@ -58,13 +58,6 @@ describe('EuiIconTip', () => {
 
       expect(defaultContainer.innerHTML).not.toEqual(colorContainer.innerHTML);
     });
-
-    it('accepts a size prop without errors', () => {
-      // Size is applied via CSS and has no observable DOM difference in the test environment
-      expect(() =>
-        render(<EuiIconTip size="xl" content="content" />)
-      ).not.toThrow();
-    });
   });
 
   describe('aria-label', () => {

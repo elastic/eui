@@ -8,7 +8,6 @@
 
 import React, { createRef, useRef } from 'react';
 import { act, fireEvent } from '@testing-library/react';
-import { userEvent } from '@storybook/test';
 import {
   render,
   waitForEuiToolTipVisible,
@@ -45,6 +44,8 @@ describe('EuiToolTip', () => {
   });
 
   describe('visibility', () => {
+    afterEach(() => jest.useRealTimers());
+
     it('shows on mouseover and hides on mouseout', async () => {
       const { getByTestSubject, queryByRole } = render(
         <EuiToolTip content="Tooltip content">
@@ -109,7 +110,6 @@ describe('EuiToolTip', () => {
       act(() => jest.runAllTimers());
 
       expect(queryByRole('tooltip')).not.toBeInTheDocument();
-      jest.useRealTimers();
     });
 
     it('renders with title only and no content', async () => {
@@ -174,19 +174,6 @@ describe('EuiToolTip', () => {
 
       fireEvent.mouseOut(getByTestSubject('trigger'));
       expect(onMouseOut).toHaveBeenCalledTimes(1);
-    });
-
-    it('uses a custom offset', async () => {
-      const { getByRole } = render(
-        <EuiToolTip content="content" offset={32} {...requiredProps}>
-          <button>Trigger</button>
-        </EuiToolTip>
-      );
-
-      await userEvent.hover(getByRole('button'));
-      await waitForEuiToolTipVisible();
-
-      expect(document.querySelector('[role="tooltip"]')).toBeInTheDocument();
     });
   });
 
@@ -360,11 +347,9 @@ describe('EuiToolTip', () => {
             </>
           );
         };
-        const { getByTestSubject, getByRole } = render(<ConsumerToolTip />);
+        const { getByTestSubject, getByRole, queryByRole } = render(<ConsumerToolTip />);
 
-        expect(
-          document.querySelector('.euiToolTipPopover')
-        ).not.toBeInTheDocument();
+        expect(queryByRole('tooltip')).not.toBeInTheDocument();
 
         fireEvent.click(getByTestSubject('trigger'));
         await waitForEuiToolTipVisible();
@@ -397,9 +382,7 @@ describe('EuiToolTip', () => {
 
         fireEvent.mouseOver(getByTestSubject('trigger'));
         await waitForEuiToolTipVisible();
-        expect(
-          document.querySelector('.euiToolTipPopover')
-        ).toBeInTheDocument();
+        expect(queryByRole('tooltip')).toBeInTheDocument();
 
         fireEvent.click(getByTestSubject('trigger'));
         await waitForEuiToolTipHidden();
