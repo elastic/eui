@@ -347,7 +347,9 @@ describe('EuiToolTip', () => {
             </>
           );
         };
-        const { getByTestSubject, getByRole, queryByRole } = render(<ConsumerToolTip />);
+        const { getByTestSubject, getByRole, queryByRole } = render(
+          <ConsumerToolTip />
+        );
 
         expect(queryByRole('tooltip')).not.toBeInTheDocument();
 

@@ -142,8 +142,8 @@ const InsideModalStory = () => {
             <EuiText size="s">
               <p>
                 Hover or focus the button to show the tooltip, then press{' '}
-                <kbd>Escape</kbd>. The tooltip should close but the modal
-                should stay open.
+                <kbd>Escape</kbd>. The tooltip should close but the modal should
+                stay open.
               </p>
             </EuiText>
             <br />
