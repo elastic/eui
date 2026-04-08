@@ -187,30 +187,6 @@ export const EuiToolTip = forwardRef<EuiToolTipRef, EuiToolTipProps>(
     );
     const isMounted = useRef(false);
 
-    const setAnchorRef = useCallback((el: HTMLElement) => {
-      anchorRef.current = el;
-    }, []);
-
-    const setPopoverRef = useCallback((el: HTMLElement) => {
-      popoverRef.current = el;
-    }, []);
-
-    const hideToolTip = useCallback(() => {
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current);
-        timeoutRef.current = undefined;
-      }
-
-      enqueueStateChange(() => {
-        if (isMounted.current) {
-          setVisible(false);
-          setToolTipStyles(DEFAULT_TOOLTIP_STYLES);
-          setArrowStyles(undefined);
-          toolTipManager.deregisterToolTip(hideToolTip);
-        }
-      });
-    }, []);
-
     const positionToolTip = useCallback(() => {
       if (!anchorRef.current || !popoverRef.current) {
         return;
@@ -250,6 +226,34 @@ export const EuiToolTip = forwardRef<EuiToolTipRef, EuiToolTipProps>(
       setToolTipStyles(newToolTipStyles);
       setArrowStyles(arrow);
     }, [positionProp, offset]);
+
+    const setAnchorRef = useCallback((el: HTMLElement) => {
+      anchorRef.current = el;
+    }, []);
+
+    const setPopoverRef = useCallback(
+      (el: HTMLElement) => {
+        popoverRef.current = el;
+        if (el) positionToolTip();
+      },
+      [positionToolTip]
+    );
+
+    const hideToolTip = useCallback(() => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+        timeoutRef.current = undefined;
+      }
+
+      enqueueStateChange(() => {
+        if (isMounted.current) {
+          setVisible(false);
+          setToolTipStyles(DEFAULT_TOOLTIP_STYLES);
+          setArrowStyles(undefined);
+          toolTipManager.deregisterToolTip(hideToolTip);
+        }
+      });
+    }, []);
 
     const showToolTip = useCallback(() => {
       if (!timeoutRef.current) {
