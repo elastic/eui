@@ -113,7 +113,7 @@ export const EuiStepHorizontal: FunctionComponent<EuiStepHorizontalProps> = ({
   const onStepClick = (
     event: ReactMouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
-    if (!disabled) onClick(event);
+    if (!disabled && status !== 'disabled') onClick(event);
   };
 
   return (
