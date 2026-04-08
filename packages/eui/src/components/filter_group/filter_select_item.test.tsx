@@ -7,7 +7,11 @@
  */
 
 import React from 'react';
-import { render } from '../../test/rtl';
+import {
+  render,
+  waitForEuiToolTipVisible,
+  waitForEuiToolTipHidden,
+} from '../../test/rtl';
 import { requiredProps } from '../../test';
 import { shouldRenderCustomStyles } from '../../test/internal';
 
@@ -20,5 +24,57 @@ describe('EuiFilterSelectItem', () => {
     const { container } = render(<EuiFilterSelectItem {...requiredProps} />);
 
     expect(container.firstChild).toMatchSnapshot();
+  });
+
+  describe('tooltip behavior', () => {
+    const tooltipProps = {
+      toolTipContent: 'Filter item tooltip',
+      toolTipProps: { 'data-test-subj': 'filterItemToolTip' },
+    };
+
+    // toggleToolTip is called during render; on first render the tooltipRef is null,
+    // so a rerender is required to trigger showToolTip/hideToolTip via the ref
+    test('shows tooltip when isFocused becomes true', async () => {
+      const { rerender, getByTestSubject } = render(
+        <EuiFilterSelectItem {...tooltipProps} isFocused={false}>
+          <span>Item</span>
+        </EuiFilterSelectItem>
+      );
+
+      rerender(
+        <EuiFilterSelectItem {...tooltipProps} isFocused={true}>
+          <span>Item</span>
+        </EuiFilterSelectItem>
+      );
+
+      await waitForEuiToolTipVisible();
+      expect(getByTestSubject('filterItemToolTip')).toBeInTheDocument();
+    });
+
+    test('hides tooltip when isFocused becomes false', async () => {
+      const { rerender, queryByRole } = render(
+        <EuiFilterSelectItem {...tooltipProps} isFocused={false}>
+          <span>Item</span>
+        </EuiFilterSelectItem>
+      );
+
+      rerender(
+        <EuiFilterSelectItem {...tooltipProps} isFocused={true}>
+          <span>Item</span>
+        </EuiFilterSelectItem>
+      );
+
+      await waitForEuiToolTipVisible();
+      expect(queryByRole('tooltip')).toBeInTheDocument();
+
+      rerender(
+        <EuiFilterSelectItem {...tooltipProps} isFocused={false}>
+          <span>Item</span>
+        </EuiFilterSelectItem>
+      );
+
+      await waitForEuiToolTipHidden();
+      expect(queryByRole('tooltip')).not.toBeInTheDocument();
+    });
   });
 });
