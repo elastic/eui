@@ -180,8 +180,8 @@ export const EuiToolTip = forwardRef<EuiToolTipRef, EuiToolTipProps>(
     const idRef = useRef(idProp ?? htmlIdGenerator()());
     const id = idRef.current;
 
-    const anchorRef = useRef<HTMLElement | null>(null);
-    const popoverRef = useRef<HTMLElement | null>(null);
+    const anchorRef = useRef<HTMLSpanElement | null>(null);
+    const popoverRef = useRef<HTMLDivElement | null>(null);
     const timeoutRef = useRef<ReturnType<typeof setTimeout> | undefined>(
       undefined
     );
@@ -227,12 +227,12 @@ export const EuiToolTip = forwardRef<EuiToolTipRef, EuiToolTipProps>(
       setArrowStyles(arrow);
     }, [positionProp, offset]);
 
-    const setAnchorRef = useCallback((el: HTMLElement) => {
+    const setAnchorRef = useCallback((el: HTMLSpanElement | null) => {
       anchorRef.current = el;
     }, []);
 
     const setPopoverRef = useCallback(
-      (el: HTMLElement) => {
+      (el: HTMLDivElement | null) => {
         popoverRef.current = el;
         if (el) positionToolTip();
       },

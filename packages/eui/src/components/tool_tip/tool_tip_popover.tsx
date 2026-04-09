@@ -26,7 +26,7 @@ type Props = CommonProps &
     positionToolTip: () => void;
     children?: ReactNode;
     title?: ReactNode;
-    popoverRef?: (ref: HTMLDivElement) => void;
+    popoverRef?: (ref: HTMLDivElement | null) => void;
     calculatedPosition?: ToolTipPositions;
   };
 
@@ -57,7 +57,7 @@ export const EuiToolTipPopover: FunctionComponent<Props> = ({
   }, [positionToolTip]);
 
   const setPopoverRef = useCallback(
-    (ref: HTMLDivElement) => {
+    (ref: HTMLDivElement | null) => {
       popover.current = ref;
       if (popoverRef) {
         popoverRef(ref);
