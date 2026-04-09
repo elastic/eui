@@ -119,5 +119,5 @@ export {
   getWaitDuration,
   performOnFrame,
 } from './transition';
-export { EuiWindowEvent } from './window_event';
+export { EuiWindowEvent, useEuiWindowEvent } from './window_event';
 export { keys };

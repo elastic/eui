@@ -13,10 +13,10 @@ type EuiEventHandler<EventName extends keyof WindowEventMap> = (
   event: WindowEventMap[EventName]
 ) => any;
 
-export function useEuiWindowEvent<EventName extends keyof WindowEventMap>(
+export const useEuiWindowEvent = <EventName extends keyof WindowEventMap>(
   event: EventName,
   handler: EuiEventHandler<EventName>
-) {
+) => {
   const handlerRef = useRef<EuiEventHandler<EventName>>(handler);
   handlerRef.current = handler;
 
@@ -34,4 +34,4 @@ export function useEuiWindowEvent<EventName extends keyof WindowEventMap>(
   }, [event, stableHandler]);
 
   return null;
-}
+};
