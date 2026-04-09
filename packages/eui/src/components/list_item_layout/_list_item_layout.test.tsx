@@ -571,6 +571,36 @@ describe('EuiListItemLayout', () => {
       });
     });
 
+    describe('hasAriaDisabled', () => {
+      it('renders `aria-disabled` when `isDisabled=true` for `element="button"`', () => {
+        const { getByTestSubject } = render(
+          <EuiListItemLayout element="button" isDisabled hasAriaDisabled>
+            Option
+          </EuiListItemLayout>
+        );
+
+        const button = getByTestSubject('euiListItemLayout');
+
+        expect(button).toBeEuiDisabled();
+        expect(button).toHaveAttribute('aria-disabled', 'true');
+        expect(button).not.toHaveAttribute('disabled');
+      });
+
+      it('renders `aria-disabled` when `isDisabled=true` for `element="a"`', () => {
+        const { getByTestSubject } = render(
+          <EuiListItemLayout element="a" isDisabled hasAriaDisabled>
+            Option
+          </EuiListItemLayout>
+        );
+
+        const button = getByTestSubject('euiListItemLayout');
+
+        expect(button).toBeEuiDisabled();
+        expect(button).toHaveAttribute('aria-disabled', 'true');
+        expect(button).not.toHaveAttribute('disabled');
+      });
+    });
+
     describe('checked', () => {
       it('applies a checked state for multi-selection items when `checked="on"`', () => {
         const { getByTestSubject } = render(
