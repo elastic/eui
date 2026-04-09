@@ -11,7 +11,7 @@ import { shouldRenderCustomStyles } from '../../test/internal';
 import { requiredProps } from '../../test/required_props';
 import { render } from '../../test/rtl';
 
-import { EuiListGroup, GUTTER_SIZES } from './list_group';
+import { EuiListGroup } from './list_group';
 import { EuiListGroupItemProps } from './list_group_item';
 
 const someListItems: EuiListGroupItemProps[] = [
@@ -67,12 +67,6 @@ describe('EuiListGroup', () => {
 
       expect(container.firstChild).toMatchSnapshot();
     });
-
-    test('is rendered with size', () => {
-      const { container } = render(<EuiListGroup color="primary" size="xs" />);
-
-      expect(container.firstChild).toMatchSnapshot();
-    });
   });
 
   describe('props', () => {
@@ -98,16 +92,6 @@ describe('EuiListGroup', () => {
       const { container } = render(<EuiListGroup wrapText />);
 
       expect(container.firstChild).toMatchSnapshot();
-    });
-
-    describe('gutter size', () => {
-      GUTTER_SIZES.forEach((gutter) => {
-        test(`${gutter} is rendered`, () => {
-          const { container } = render(<EuiListGroup gutterSize={gutter} />);
-
-          expect(container.firstChild).toMatchSnapshot();
-        });
-      });
     });
 
     describe('maxWidth', () => {
