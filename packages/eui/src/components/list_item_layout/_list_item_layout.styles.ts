@@ -100,6 +100,11 @@ export const euiListItemLayoutStyles = (euiThemeContext: UseEuiTheme) => {
       ${euiFontSize(euiThemeContext, 's')}
       text-align: start;
 
+      /* Workaround for decent alingment for custom flex wrapper content */
+      > *:only-child {
+        vertical-align: middle;
+      }
+
       /* Apply expected text spacing for flat children for user convenience.
       Requires manual handling if nested */
       > * + * {
