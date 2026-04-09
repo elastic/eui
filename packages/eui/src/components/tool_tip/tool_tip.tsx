@@ -319,8 +319,20 @@ export const EuiToolTip = forwardRef<EuiToolTipRef, EuiToolTipProps>(
 
     const onFocus = useCallback(
       (e: React.FocusEvent) => {
-        // Only show on keyboard focus, not mouse-click focus
-        if ((e.target as Element).matches?.(':focus-visible')) {
+        /**
+         * Only show on intentional keyboard focus, not on mouse-click focus.
+         *
+         * `:focus-visible` tracks the browser's input modality: it is `true` after
+         * keyboard navigation and `false` after a mouse click. Programmatic focus return
+         * (e.g. after a modal/flyout/popover closes) happen asynchronously
+         * in React effects, at which point the browser no longer considers the
+         * focus keyboard-initiated, so `:focus-visible` is `false` and the tooltip
+         * stays hidden.
+         */
+        const isFocusVisible = (e.target as Element).matches?.(
+          ':focus-visible'
+        );
+        if (isFocusVisible) {
           setHasFocus(true);
           showToolTip();
         }
