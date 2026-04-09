@@ -19,6 +19,20 @@ import { shouldRenderCustomStyles } from '../../test/internal';
 import { EuiToolTip } from './tool_tip';
 import type { EuiToolTipRef } from './tool_tip';
 
+/**
+ * jsdom's CSS engine (nwsapi) does not track keyboard vs mouse input modality,
+ * so `element.matches(':focus-visible')` always returns false.
+ * Use this helper in tests that assert keyboard-focus tooltip behavior.
+ */
+const simulateFocusVisible = (element: Element) => {
+  const originalMatches = Element.prototype.matches.bind(element);
+  jest
+    .spyOn(element, 'matches')
+    .mockImplementation((selector: string) =>
+      selector === ':focus-visible' ? true : originalMatches(selector)
+    );
+};
+
 describe('EuiToolTip', () => {
   shouldRenderCustomStyles(
     <EuiToolTip content="test">
@@ -44,7 +58,10 @@ describe('EuiToolTip', () => {
   });
 
   describe('visibility', () => {
-    afterEach(() => jest.useRealTimers());
+    afterEach(() => {
+      jest.useRealTimers();
+      jest.restoreAllMocks();
+    });
 
     it('shows on mouseover and hides on mouseout', async () => {
       const { getByTestSubject, queryByRole } = render(
@@ -64,7 +81,7 @@ describe('EuiToolTip', () => {
       expect(queryByRole('tooltip')).not.toBeInTheDocument();
     });
 
-    it('shows on focus and hides on blur', async () => {
+    it('shows on keyboard focus and hides on blur', async () => {
       const { getByTestSubject, queryByRole } = render(
         <EuiToolTip content="Tooltip content">
           <button data-test-subj="trigger">Trigger</button>
@@ -73,6 +90,7 @@ describe('EuiToolTip', () => {
 
       expect(queryByRole('tooltip')).not.toBeInTheDocument();
 
+      simulateFocusVisible(getByTestSubject('trigger'));
       fireEvent.focus(getByTestSubject('trigger'));
       await waitForEuiToolTipVisible();
       expect(queryByRole('tooltip')).toBeInTheDocument();
@@ -82,19 +100,50 @@ describe('EuiToolTip', () => {
       expect(queryByRole('tooltip')).not.toBeInTheDocument();
     });
 
-    it('keeps tooltip visible on mouseout when the trigger has focus', async () => {
+    it('does not show on mouse-click focus', () => {
       const { getByTestSubject, queryByRole } = render(
         <EuiToolTip content="Tooltip content">
           <button data-test-subj="trigger">Trigger</button>
         </EuiToolTip>
       );
 
+      // `fireEvent.focus` without `simulateFocusVisible` → `:focus-visible` is `false` (mouse-click focus)
+      fireEvent.focus(getByTestSubject('trigger'));
+      expect(queryByRole('tooltip')).not.toBeInTheDocument();
+    });
+
+    it('persists tooltip on mouseout when trigger was keyboard-focused', async () => {
+      const { getByTestSubject, queryByRole } = render(
+        <EuiToolTip content="Tooltip content">
+          <button data-test-subj="trigger">Trigger</button>
+        </EuiToolTip>
+      );
+
+      simulateFocusVisible(getByTestSubject('trigger'));
       fireEvent.focus(getByTestSubject('trigger'));
       await waitForEuiToolTipVisible();
 
       fireEvent.mouseOut(getByTestSubject('trigger'));
-      // Tooltip stays visible because hasFocus=true
+      // Tooltip stays visible because `hasFocus=true` (keyboard focus)
       expect(queryByRole('tooltip')).toBeInTheDocument();
+    });
+
+    it('hides tooltip on mouseout when trigger was mouse-click focused', async () => {
+      const { getByTestSubject, queryByRole } = render(
+        <EuiToolTip content="Tooltip content">
+          <button data-test-subj="trigger">Trigger</button>
+        </EuiToolTip>
+      );
+
+      // Show on hover first, then click-focus (no `:focus-visible`)
+      fireEvent.mouseOver(getByTestSubject('trigger'));
+      await waitForEuiToolTipVisible();
+      fireEvent.focus(getByTestSubject('trigger'));
+
+      fireEvent.mouseOut(getByTestSubject('trigger'));
+      // Tooltip hides because `hasFocus` was not set (click focus, not keyboard)
+      await waitForEuiToolTipHidden();
+      expect(queryByRole('tooltip')).not.toBeInTheDocument();
     });
 
     it('does not render when neither content nor title are provided', () => {
@@ -268,6 +317,8 @@ describe('EuiToolTip', () => {
   });
 
   describe('disableScreenReaderOutput', () => {
+    afterEach(() => jest.restoreAllMocks());
+
     it('when false (default), Escape stops event propagation while tooltip is visible', async () => {
       const parentKeyDown = jest.fn();
       const { getByTestSubject } = render(
@@ -278,6 +329,7 @@ describe('EuiToolTip', () => {
         </div>
       );
 
+      simulateFocusVisible(getByTestSubject('trigger'));
       fireEvent.focus(getByTestSubject('trigger'));
       await waitForEuiToolTipVisible();
 
@@ -297,6 +349,7 @@ describe('EuiToolTip', () => {
         </div>
       );
 
+      simulateFocusVisible(getByTestSubject('trigger'));
       fireEvent.focus(getByTestSubject('trigger'));
       await waitForEuiToolTipVisible();
 
