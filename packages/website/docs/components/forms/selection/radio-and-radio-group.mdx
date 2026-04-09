@@ -3,6 +3,8 @@ sidebar_position: 7
 keywords: [EuiRadio, EuiRadioGroup]
 ---
 
+import displayTogglesSource from '!raw-loader!../../../../src/components/display_toggles/display_toggles';
+
 # Radio and Radio group
 
 ```mdx-code-block
@@ -77,9 +79,11 @@ Use a **EuiRadioGroup** when you want to generate a group of radio buttons by pa
 
 When the individual labels for each radio do not provide a sufficient description, pass a `legend` to the group.
 
+<Demo extraFiles={{ 'display_toggles.tsx': displayTogglesSource }}>
 ```tsx interactive
 import React, { useState } from 'react';
 import { EuiRadioGroup, useGeneratedHtmlId } from '@elastic/eui';
+import { DisplayToggles } from './display_toggles';
 
 export default () => {
   const radioGroupItemId__1 = useGeneratedHtmlId({
@@ -138,6 +142,7 @@ export default () => {
   );
 };
 ```
+</Demo>
 
 ## Usage
 

@@ -79,6 +79,7 @@ export interface DemoProps extends PropsWithChildren {
   extraFiles?: ExtraFiles;
   previewPadding?: DemoPreviewProps['padding'];
   previewWrapper?: DemoPreviewProps['wrapperComponent'];
+  previewWrapperSource?: string;
 }
 
 const getDemoStyles = (euiTheme: UseEuiTheme) => ({
@@ -100,6 +101,7 @@ export const Demo = ({
   isSourceOpen: _isSourceOpen = false,
   previewPadding,
   previewWrapper,
+  previewWrapperSource,
 }: DemoProps) => {
   const styles = useEuiMemoizedStyles(getDemoStyles);
   const [sources, setSources] = useState<DemoSourceMeta[]>([]);
@@ -153,6 +155,7 @@ export const Demo = ({
             activeSource={activeSource}
             extraFiles={extraFiles}
             sources={sources}
+            previewWrapperSource={previewWrapperSource}
             onClickCopyToClipboard={onClickCopyToClipboard}
             onClickReloadExample={onClickReloadExample}
           />

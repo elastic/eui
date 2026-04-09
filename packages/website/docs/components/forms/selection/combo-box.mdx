@@ -3,6 +3,8 @@ sidebar_position: 4
 keywords: [EuiComboBox]
 ---
 
+import displayTogglesSource from '!raw-loader!../../../../src/components/display_toggles/display_toggles';
+
 # Combo box
 
 ```mdx-code-block
@@ -19,9 +21,11 @@ Use **EuiComboBox** when:
 
 For more details on which selection component to use, see the [Component comparison](./overview.mdx).
 
+<Demo extraFiles={{ 'display_toggles.tsx': displayTogglesSource }}>
 ```tsx interactive
 import React, { useState } from 'react';
 import { EuiComboBox } from '@elastic/eui';
+import { DisplayToggles } from './display_toggles';
 
 const optionsStatic = [
   {
@@ -108,6 +112,7 @@ export default () => {
   );
 };
 ```
+</Demo>
 
 <EuiFormRowCallout />
 
@@ -415,9 +420,11 @@ export default () => {
 
 Useful for visualization or tagging systems. You can also pass a color in your option list. The color can be a hex value (like `#000`) or any other named color value accepted by the [**EuiBadge**](../../display/badge/index.mdx) component.
 
+<Demo extraFiles={{ 'display_toggles.tsx': displayTogglesSource }}>
 ```tsx interactive
 import React, { useState, useEffect } from 'react';
 import { EuiComboBox, useEuiPaletteColorBlindBehindText } from '@elastic/eui';
+import { DisplayToggles } from './display_toggles';
 
 const getOptionsStatic = (visColorsBehindText) => [
   {
@@ -524,6 +531,7 @@ export default () => {
   );
 };
 ```
+</Demo>
 
 ## Option rendering
 
@@ -612,7 +620,7 @@ You can use the `value` prop of the `option` object to store metadata about the 
 **Note:** virtualization (above) requires that each option have the same height. Ensure that you render the options so that wrapping text is truncated instead of causing the height of the option to change.
 
 ```tsx interactive
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   EuiComboBox,
   EuiHighlight,
@@ -1075,9 +1083,11 @@ export default () => {
 
 To only allow the user to select a single option, provide the `singleSelection` prop. You may want to render the selected option as plain text instead of pill form. To do this, pass `singleSelection={{ asPlainText: true }}`
 
+<Demo extraFiles={{ 'display_toggles.tsx': displayTogglesSource }}>
 ```tsx interactive
 import React, { useState } from 'react';
 import { EuiComboBox } from '@elastic/eui';
+import { DisplayToggles } from './display_toggles';
 
 const options = [
   {
@@ -1144,6 +1154,7 @@ export default () => {
   );
 };
 ```
+</Demo>
 
 ### Single selection with prepended label
 

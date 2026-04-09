@@ -286,6 +286,9 @@ These functionalities can cause performance issues if the component is rendered 
 ```tsx interactive
 import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { css } from '@emotion/react';
+import { FixedSizeList } from 'react-window';
+import { faker } from '@faker-js/faker';
+import { throttle } from 'lodash';
 
 import {
   EuiFlexGroup,

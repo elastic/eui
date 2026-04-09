@@ -30,7 +30,7 @@ export const EuiTableHeaderMobile: FunctionComponent<
   const responsiveBreakpointDefault =
     useComponentDefaults().EuiTable?.responsiveBreakpoint;
   const responsiveBreakpoint =
-    responsiveBreakpointProp || responsiveBreakpointDefault;
+    responsiveBreakpointProp ?? responsiveBreakpointDefault;
   const isResponsive = useIsEuiTableResponsive(responsiveBreakpoint);
 
   const styles = useEuiMemoizedStyles(euiTableHeaderMobileStyles);
