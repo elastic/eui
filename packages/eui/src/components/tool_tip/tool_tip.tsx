@@ -41,11 +41,6 @@ const DISPLAYS = ['inlineBlock', 'block'] as const;
 export type ToolTipDelay = 'regular' | 'long';
 export const DEFAULT_TOOLTIP_OFFSET = 16;
 
-const delayToMsMap: { [key in ToolTipDelay]: number } = {
-  regular: 250,
-  long: 250 * 5,
-};
-
 interface ToolTipStyles {
   top: number;
   left: number | 'auto';
@@ -93,7 +88,8 @@ export interface EuiToolTipProps extends CommonProps {
    */
   display?: (typeof DISPLAYS)[number];
   /**
-   * Delay before showing tooltip. Good for repeatable items.
+   * TODO: remove. Breaking change.
+   * @deprecated No-op. The delay is zero. Kept for no Kibana churn while testing.
    */
   delay?: ToolTipDelay;
   /**
@@ -152,7 +148,8 @@ export const EuiToolTip = forwardRef<EuiToolTipRef, EuiToolTipProps>(
       anchorProps,
       content,
       title,
-      delay = 'regular',
+      // eslint-disable-line @typescript-eslint/no-unused-vars
+      delay: _delay,
       display = 'inlineBlock',
       repositionOnScroll,
       disableScreenReaderOutput = false,
@@ -182,9 +179,7 @@ export const EuiToolTip = forwardRef<EuiToolTipRef, EuiToolTipProps>(
 
     const anchorRef = useRef<HTMLSpanElement | null>(null);
     const popoverRef = useRef<HTMLDivElement | null>(null);
-    const timeoutRef = useRef<ReturnType<typeof setTimeout> | undefined>(
-      undefined
-    );
+    const isShowingRef = useRef(false);
     const isMounted = useRef(false);
 
     const positionToolTip = useCallback(() => {
@@ -240,11 +235,9 @@ export const EuiToolTip = forwardRef<EuiToolTipRef, EuiToolTipProps>(
     );
 
     const hideToolTip = useCallback(() => {
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current);
-        timeoutRef.current = undefined;
-      }
-
+      isShowingRef.current = false;
+      // `enqueueStateChange` batches the three `setState` calls below into a single render
+      // with `unstable_batchedUpdates`, safe to remove once React 17 support is dropped
       enqueueStateChange(() => {
         if (isMounted.current) {
           setVisible(false);
@@ -256,15 +249,16 @@ export const EuiToolTip = forwardRef<EuiToolTipRef, EuiToolTipProps>(
     }, []);
 
     const showToolTip = useCallback(() => {
-      if (!timeoutRef.current) {
-        timeoutRef.current = setTimeout(() => {
-          enqueueStateChange(() => {
-            setVisible(true);
-            toolTipManager.registerTooltip(hideToolTip);
-          });
-        }, delayToMsMap[delay]);
+      if (!isShowingRef.current) {
+        isShowingRef.current = true;
+        // `enqueueStateChange` batches the three `setState` calls below into a single render
+        // with `unstable_batchedUpdates`, safe to remove once React 17 support is dropped
+        enqueueStateChange(() => {
+          setVisible(true);
+          toolTipManager.registerTooltip(hideToolTip);
+        });
       }
-    }, [delay, hideToolTip]);
+    }, [hideToolTip]);
 
     useImperativeHandle(ref, () => ({ showToolTip, hideToolTip, id }), [
       showToolTip,
@@ -276,9 +270,6 @@ export const EuiToolTip = forwardRef<EuiToolTipRef, EuiToolTipProps>(
       isMounted.current = true;
       return () => {
         isMounted.current = false;
-        if (timeoutRef.current) {
-          clearTimeout(timeoutRef.current);
-        }
         toolTipManager.deregisterToolTip(hideToolTip);
       };
     }, [hideToolTip]);

@@ -106,7 +106,7 @@ describe('EuiToolTip', () => {
       );
 
       fireEvent.mouseOver(getByTestSubject('trigger'));
-      // Flush tooltip delay and state queue
+      // Flush the setTimeout(0) and any enqueued state changes
       act(() => jest.runAllTimers());
 
       expect(queryByRole('tooltip')).not.toBeInTheDocument();
