@@ -23,12 +23,20 @@ const meta: Meta<EuiListGroupItemProps> = {
     iconType: {
       control: { type: 'text' },
     },
+    hasAriaDisabled: {
+      description: `NOTE: Beta feature, may be changed or removed in the future.<br/>
+      Changes the native \`disabled\` attribute for \`element="button"\` usages to \`aria-disabled\` to preserve focusability.
+      This results in a semantically disabled button without the default browser handling of the disabled state.<br/>
+      Use e.g. when a disabled button element should have a tooltip.
+      `,
+    },
   },
   args: {
     color: 'text',
     showToolTip: false,
     isActive: false,
     isDisabled: false,
+    hasAriaDisabled: false,
   },
 };
 disableStorybookControls(meta, ['buttonRef']);
