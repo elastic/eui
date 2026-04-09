@@ -32,8 +32,9 @@ describe('EuiFilterSelectItem', () => {
       toolTipProps: { 'data-test-subj': 'filterItemToolTip' },
     };
 
-    // `toggleToolTip` is called during render; on first render the `tooltipRef` is null,
-    // so a re-render is required to trigger `showToolTip`/`hideToolTip`.
+    // `toggleToolTip` is called in `componentDidUpdate`; on initial mount `tooltipRef.current`
+    // is null because `EuiToolTip` hasn't committed its ref yet, so a re-render is required
+    // to trigger `showToolTip`/`hideToolTip`.
     it('shows tooltip when `isFocused` becomes true', async () => {
       const { rerender, getByTestSubject } = render(
         <EuiFilterSelectItem {...tooltipProps} isFocused={false}>
