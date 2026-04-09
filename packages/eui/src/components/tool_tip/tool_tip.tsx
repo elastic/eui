@@ -317,10 +317,16 @@ export const EuiToolTip = forwardRef<EuiToolTipRef, EuiToolTipProps>(
       componentDefaultsContext.EuiToolTip,
     ]);
 
-    const onFocus = useCallback(() => {
-      setHasFocus(true);
-      showToolTip();
-    }, [showToolTip]);
+    const onFocus = useCallback(
+      (e: React.FocusEvent) => {
+        // Only show on keyboard focus, not mouse-click focus
+        if ((e.target as Element).matches?.(':focus-visible')) {
+          setHasFocus(true);
+          showToolTip();
+        }
+      },
+      [showToolTip]
+    );
 
     const onBlur = useCallback(() => {
       setHasFocus(false);
