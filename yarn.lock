@@ -7252,8 +7252,8 @@ __metadata:
     jest: "npm:^29.7.0"
     lodash: "npm:^4.17.21"
     prettier: "npm:^2.8.8"
-    react: "npm:^18.2.0"
-    react-dom: "npm:^18.2.0"
+    react: "npm:^18.3.1"
+    react-dom: "npm:^18.3.1"
     rimraf: "npm:^6.0.1"
     stylelint: "npm:^15.7.0"
     stylelint-config-prettier-scss: "npm:^1.0.0"
@@ -7317,8 +7317,8 @@ __metadata:
     moment-timezone: "npm:^0.5.46"
     prism-react-renderer: "npm:^2.3.0"
     raw-loader: "npm:^4.0.2"
-    react: "npm:^18.0.0"
-    react-dom: "npm:^18.0.0"
+    react: "npm:^18.3.1"
+    react-dom: "npm:^18.3.1"
     react-element-to-jsx-string: "npm:^15.0.0"
     react-window: "npm:^1.8.11"
     typedoc: "npm:^0.28.5"
@@ -7389,8 +7389,8 @@ __metadata:
     "@types/lodash": "npm:^4.14.202"
     "@types/numeral": "npm:^2.0.5"
     "@types/prettier": "npm:2.7.3"
-    "@types/react": "npm:^18.2.14"
-    "@types/react-dom": "npm:^18.2.6"
+    "@types/react": "npm:^18.3.28"
+    "@types/react-dom": "npm:^18.3.7"
     "@types/react-is": "npm:^17.0.3"
     "@types/react-router-dom": "npm:^5.3.3"
     "@types/react-window": "npm:^1.8.8"
@@ -7473,10 +7473,10 @@ __metadata:
     process: "npm:^0.11.10"
     prop-types: "npm:^15.8.1"
     raw-loader: "npm:^4.0.1"
-    react: "npm:^18.2.0"
+    react: "npm:^18.3.1"
     react-17: "npm:react@^17.0.2"
     react-docgen-typescript: "npm:^2.2.2"
-    react-dom: "npm:^18.2.0"
+    react-dom: "npm:^18.3.1"
     react-dom-17: "npm:react-dom@^17.0.2"
     react-dropzone: "npm:^11.7.1"
     react-element-to-jsx-string: "npm:^15.0.0"
@@ -11421,12 +11421,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-dom@npm:^18.0.0, @types/react-dom@npm:^18.2.6":
+"@types/react-dom@npm:^18.0.0":
   version: 18.2.6
   resolution: "@types/react-dom@npm:18.2.6"
   dependencies:
     "@types/react": "npm:*"
   checksum: 10c0/bd734ca04c52b3c96891a7f9c1139486807dac7a2449fb72e8f8e23018bc6eeeb87a490a105cb39d05ccb7ddf80ed7a441e5bd3e5866c6f6ae8870cd723599e8
+  languageName: node
+  linkType: hard
+
+"@types/react-dom@npm:^18.3.7":
+  version: 18.3.7
+  resolution: "@types/react-dom@npm:18.3.7"
+  peerDependencies:
+    "@types/react": ^18.0.0
+  checksum: 10c0/8bd309e2c3d1604a28a736a24f96cbadf6c05d5288cfef8883b74f4054c961b6b3a5e997fd5686e492be903c8f3380dba5ec017eff3906b1256529cd2d39603e
   languageName: node
   linkType: hard
 
@@ -34553,7 +34562,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-dom@npm:^16.8.0 || ^17.0.0 || ^18.0.0, react-dom@npm:^18.2.0":
+"react-dom@npm:^16.8.0 || ^17.0.0 || ^18.0.0":
   version: 18.2.0
   resolution: "react-dom@npm:18.2.0"
   dependencies:
@@ -34565,7 +34574,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-dom@npm:^18.0.0":
+"react-dom@npm:^18.3.1":
   version: 18.3.1
   resolution: "react-dom@npm:18.3.1"
   dependencies:

@@ -45,8 +45,8 @@
     "moment-timezone": "^0.5.46",
     "prism-react-renderer": "^2.3.0",
     "raw-loader": "^4.0.2",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
     "react-element-to-jsx-string": "^15.0.0",
     "react-window": "^1.8.11",
     "typedoc": "^0.28.5"
