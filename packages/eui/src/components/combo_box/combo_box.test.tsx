@@ -231,6 +231,9 @@ describe('EuiComboBox', () => {
             toolTipContent: 'I am a tooltip!',
             toolTipProps: {
               'data-test-subj': 'optionToolTip',
+              anchorProps: {
+                'data-test-subj': 'optionToolTipAnchor',
+              },
             },
           },
           {
@@ -245,7 +248,7 @@ describe('EuiComboBox', () => {
 
         await showEuiComboBoxOptions();
 
-        fireEvent.mouseOver(getByTestSubject('titanOption'));
+        fireEvent.mouseOver(getByTestSubject('optionToolTipAnchor'));
         await waitForEuiToolTipVisible();
 
         expect(getByTestSubject('optionToolTip')).toBeInTheDocument();
@@ -436,15 +439,31 @@ describe('EuiComboBox', () => {
       );
       await showEuiComboBoxOptions();
 
-      const dropdownOptions = baseElement.querySelectorAll(
-        '.euiFilterSelectItem'
-      );
+      const dropdownOptions =
+        baseElement.querySelectorAll('.euiComboBoxOption');
       expect(
         dropdownOptions[0]!.querySelector('[data-euiicon-type="check"]')
       ).toBeFalsy();
       expect(
         dropdownOptions[1]!.querySelector('[data-euiicon-type="check"]')
       ).toBeTruthy();
+    });
+
+    it('it renders a badge when onFocusBadge is `true`', async () => {
+      const { getByTestSubject, getAllByRole } = render(
+        <EuiComboBox options={options} onFocusBadge />
+      );
+
+      await showEuiComboBoxOptions();
+
+      // Navigate to an option (2 arrow downs: -1 -> 0 -> 1, so focused option is index 1)
+      const input = getByTestSubject('comboBoxSearchInput');
+      fireEvent.keyDown(input, { key: keys.ARROW_DOWN });
+
+      const focusedOption = getAllByRole('option')[0];
+      expect(
+        focusedOption.querySelector('.euiComboBoxOption__enterBadge')
+      ).toBeInTheDocument();
     });
 
     describe('behavior', () => {
