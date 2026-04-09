@@ -319,7 +319,6 @@ const ElasticNavigationPatternExample = () => {
         <EuiShowFor sizes={['l', 'xl']}>
           <EuiCollapsibleNavGroup>
             <EuiListGroupItem
-              size="xs"
               color="subdued"
               label={`${navIsDocked ? 'Undock' : 'Dock'} navigation`}
               onClick={() => {
