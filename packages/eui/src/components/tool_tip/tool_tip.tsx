@@ -177,8 +177,8 @@ export const EuiToolTip = forwardRef<EuiToolTipRef, EuiToolTipProps>(
       Record<EuiPopoverPosition, number | string> | undefined
     >(undefined);
 
-    const idRef = useRef(idProp ?? htmlIdGenerator()());
-    const id = idRef.current;
+    const generatedId = useRef(htmlIdGenerator()());
+    const id = idProp ?? generatedId.current;
 
     const anchorRef = useRef<HTMLSpanElement | null>(null);
     const popoverRef = useRef<HTMLDivElement | null>(null);
