@@ -43,9 +43,12 @@ describe('EuiIconTip', () => {
         <EuiIconTip type="warning" content="content" />
       );
 
-      expect(defaultContainer.innerHTML).not.toEqual(
-        warningContainer.innerHTML
-      );
+      expect(
+        defaultContainer.querySelector('[data-euiicon-type]')
+      ).toHaveAttribute('data-euiicon-type', 'question');
+      expect(
+        warningContainer.querySelector('[data-euiicon-type]')
+      ).toHaveAttribute('data-euiicon-type', 'warning');
     });
 
     it('renders a different icon for each color', () => {
@@ -56,7 +59,12 @@ describe('EuiIconTip', () => {
         <EuiIconTip color="warning" content="content" />
       );
 
-      expect(defaultContainer.innerHTML).not.toEqual(colorContainer.innerHTML);
+      expect(
+        defaultContainer.querySelector('[data-euiicon-type]')
+      ).not.toHaveAttribute('color');
+      expect(
+        colorContainer.querySelector('[data-euiicon-type]')
+      ).toHaveAttribute('color', 'warning');
     });
   });
 
