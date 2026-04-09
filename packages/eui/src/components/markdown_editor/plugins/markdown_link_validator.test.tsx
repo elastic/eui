@@ -201,6 +201,27 @@ describe('euiMarkdownLinkValidator with allowDocumentRelative', () => {
     expect(getLinkNode(ast).type).toBe('link');
     expect(getLinkNode(ast).url).toBe('/s/my-space/app/discover');
   });
+
+  it('does not allow document-relative links when allowRelative is false', () => {
+    const ast = createLinkAst('discover');
+    euiMarkdownLinkValidator({
+      allowDocumentRelative: true,
+      allowRelative: false,
+      baseUrl,
+    })(ast);
+
+    expect(getLinkNode(ast).type).toBe('text');
+  });
+
+  it('preserves query strings during resolution', () => {
+    const ast = createLinkAst('discover?_g=(filters:!())');
+    euiMarkdownLinkValidator({ allowDocumentRelative: true, baseUrl })(ast);
+
+    expect(getLinkNode(ast).type).toBe('link');
+    expect(getLinkNode(ast).url).toBe(
+      '/s/my-space/app/discover?_g=(filters:!())'
+    );
+  });
 });
 
 describe('mutateLinkToText', () => {

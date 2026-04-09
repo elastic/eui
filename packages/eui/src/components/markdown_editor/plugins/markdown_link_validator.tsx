@@ -23,11 +23,13 @@ export type EuiMarkdownLinkValidatorOptions = {
    */
   allowRelative?: boolean;
   /**
+   * Only used if `allowRelative` is true.
    * Allow or disallow document relative links (e.g. `discover` instead of `/app/discover`).
    * When enabled, document relative URLs are resolved against `baseUrl`
    * (defaults to `window.location.href`) using the browser's native URL
    * resolution, the same way an `<a href="discover">` would behave in
-   * plain HTML.
+   * plain HTML. (Unlike native URL resolution, trailing slashes
+   * e.g. `discover/` are ignored)
    * @default false
    */
   allowDocumentRelative?: boolean;
@@ -143,17 +145,17 @@ export function isDocumentRelativeUrl(url: string): boolean {
 }
 
 /**
- * Resolves a document relative URL against a base URL, replicating
- * native browser resolution of e.g. `<a href="discover">`.
+ * Resolves a document relative URL against a base URL. This mostly replicates
+ * native browser resolution of e.g. `<a href="discover">`, except that
+ * trailing slashes are always removed to ensure consistent resolution,
+ * regardless of whether the current page URL ends with a trailing slash or not.
+ * Without this, "baz" on "/foo/bar/" resolves to "/foo/bar/baz" instead of the
+ * expected "/foo/baz".
  */
 function resolveDocumentRelativeUrl(
   url: string,
   baseUrl: string
 ): string | null {
-  // Strip trailing slash so that resolution is consistent regardless of
-  // whether the current page URL ends with one. Without this,
-  // "baz" on "/foo/bar/" resolves to "/foo/bar/baz"
-  // instead of the expected "/foo/baz".
   const normalizedBase = baseUrl.endsWith('/') ? baseUrl.slice(0, -1) : baseUrl;
   try {
     const resolved = new URL(url, normalizedBase);
