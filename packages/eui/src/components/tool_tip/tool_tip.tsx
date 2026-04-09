@@ -25,7 +25,6 @@ import { CommonProps } from '../common';
 import { findPopoverPosition, htmlIdGenerator, keys } from '../../services';
 import { getRepositionOnScroll } from '../../services/popover/reposition_on_scroll';
 import { type EuiPopoverPosition } from '../../services/popover';
-import { enqueueStateChange } from '../../services/react';
 import { EuiResizeObserver } from '../observer/resize_observer';
 import { EuiPortal } from '../portal';
 import { EuiComponentDefaultsContext } from '../provider/component_defaults';
@@ -236,27 +235,21 @@ export const EuiToolTip = forwardRef<EuiToolTipRef, EuiToolTipProps>(
 
     const hideToolTip = useCallback(() => {
       isShowingRef.current = false;
-      // `enqueueStateChange` batches the three `setState` calls below into a single render
-      // with `unstable_batchedUpdates`, safe to remove once React 17 support is dropped
-      enqueueStateChange(() => {
-        if (isMounted.current) {
-          setVisible(false);
-          setToolTipStyles(DEFAULT_TOOLTIP_STYLES);
-          setArrowStyles(undefined);
-          toolTipManager.deregisterToolTip(hideToolTip);
-        }
-      });
+      if (isMounted.current) {
+        setVisible(false);
+        setToolTipStyles(DEFAULT_TOOLTIP_STYLES);
+        setArrowStyles(undefined);
+        toolTipManager.deregisterToolTip(hideToolTip);
+      }
     }, []);
 
     const showToolTip = useCallback(() => {
       if (!isShowingRef.current) {
         isShowingRef.current = true;
-        // `enqueueStateChange` batches the three `setState` calls below into a single render
-        // with `unstable_batchedUpdates`, safe to remove once React 17 support is dropped
-        enqueueStateChange(() => {
+        if (isMounted.current) {
           setVisible(true);
           toolTipManager.registerTooltip(hideToolTip);
-        });
+        }
       }
     }, [hideToolTip]);
 
