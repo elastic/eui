@@ -11,6 +11,7 @@ import { requiredProps } from '../../test/required_props';
 import { shouldRenderCustomStyles } from '../../test/internal';
 import {
   render,
+  simulateFocusVisible,
   waitForEuiToolTipHidden,
   waitForEuiToolTipVisible,
 } from '../../test/rtl';
@@ -23,6 +24,7 @@ const onChange = () => {
 };
 
 describe('EuiSaturation', () => {
+  afterEach(() => jest.restoreAllMocks());
   shouldRenderCustomStyles(<EuiSaturation onChange={onChange} />);
 
   test('is rendered', () => {
@@ -70,6 +72,7 @@ describe('EuiSaturation', () => {
 
     const thumbElement = document.querySelector('.euiSaturation__indicator')!;
 
+    simulateFocusVisible(thumbElement);
     fireEvent.focus(thumbElement);
 
     await waitForEuiToolTipVisible();

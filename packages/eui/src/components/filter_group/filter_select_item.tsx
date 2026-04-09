@@ -98,6 +98,12 @@ export class EuiFilterSelectItemClass extends Component<
     if (this.props.isFocused && !prevProps.isFocused) {
       this.buttonRef?.scrollIntoView?.({ block: 'nearest' });
     }
+    if (
+      this.props.isFocused !== prevProps.isFocused &&
+      this.props.toolTipContent
+    ) {
+      this.toggleToolTip(this.props.isFocused ?? false);
+    }
   }
 
   render() {
@@ -143,8 +149,6 @@ export class EuiFilterSelectItemClass extends Component<
             style: anchorStyles,
           }
         : { style };
-
-      this.toggleToolTip(isFocused ?? false);
     }
 
     let iconNode;

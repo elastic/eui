@@ -28,6 +28,21 @@ export const waitForEuiPopoverClose = async () =>
   });
 
 /**
+ * jsdom's CSS engine does not track keyboard vs. mouse input modality,
+ * so `element.matches(':focus-visible')` always returns false.
+ * Use this helper in tests that assert keyboard-focus tooltip behavior.
+ * Requires `jest.restoreAllMocks()` in `afterEach`.
+ */
+export const simulateFocusVisible = (element: Element) => {
+  const originalMatches = Element.prototype.matches.bind(element);
+  jest
+    .spyOn(element, 'matches')
+    .mockImplementation((selector: string) =>
+      selector === ':focus-visible' ? true : originalMatches(selector)
+    );
+};
+
+/**
  * Ensure the EuiToolTip being tested is open and visible before continuing
  */
 export const waitForEuiToolTipVisible = async () =>

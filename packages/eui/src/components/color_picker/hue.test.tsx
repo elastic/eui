@@ -11,6 +11,7 @@ import { requiredProps } from '../../test/required_props';
 import { shouldRenderCustomStyles } from '../../test/internal';
 import {
   render,
+  simulateFocusVisible,
   waitForEuiToolTipHidden,
   waitForEuiToolTipVisible,
 } from '../../test/rtl';
@@ -23,6 +24,7 @@ const onChange = () => {
 };
 
 describe('EuiHue', () => {
+  afterEach(() => jest.restoreAllMocks());
   shouldRenderCustomStyles(<EuiHue onChange={onChange} />, {
     skip: { style: true },
   });
@@ -81,6 +83,7 @@ describe('EuiHue', () => {
 
     const thumbElement = document.querySelector('.euiHue__range')!;
 
+    simulateFocusVisible(thumbElement);
     fireEvent.focus(thumbElement);
 
     await waitForEuiToolTipVisible();

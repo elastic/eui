@@ -10,6 +10,7 @@ import React, { createRef, useRef } from 'react';
 import { fireEvent } from '@testing-library/react';
 import {
   render,
+  simulateFocusVisible,
   waitForEuiToolTipVisible,
   waitForEuiToolTipHidden,
 } from '../../test/rtl';
@@ -18,20 +19,6 @@ import { shouldRenderCustomStyles } from '../../test/internal';
 
 import { EuiToolTip } from './tool_tip';
 import type { EuiToolTipRef } from './tool_tip';
-
-/**
- * jsdom's CSS engine (nwsapi) does not track keyboard vs mouse input modality,
- * so `element.matches(':focus-visible')` always returns false.
- * Use this helper in tests that assert keyboard-focus tooltip behavior.
- */
-const simulateFocusVisible = (element: Element) => {
-  const originalMatches = Element.prototype.matches.bind(element);
-  jest
-    .spyOn(element, 'matches')
-    .mockImplementation((selector: string) =>
-      selector === ':focus-visible' ? true : originalMatches(selector)
-    );
-};
 
 describe('EuiToolTip', () => {
   shouldRenderCustomStyles(

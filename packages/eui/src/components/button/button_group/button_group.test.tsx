@@ -11,6 +11,7 @@ import { css } from '@emotion/react';
 import { fireEvent } from '@testing-library/react';
 import {
   render,
+  simulateFocusVisible,
   waitForEuiToolTipHidden,
   waitForEuiToolTipVisible,
 } from '../../../test/rtl';
@@ -245,6 +246,7 @@ describe('EuiButtonGroup', () => {
   });
 
   describe('tooltips', () => {
+    afterEach(() => jest.restoreAllMocks());
     it('shows a tooltip on hover and focus', async () => {
       const { getByTestSubject, getByRole } = render(
         <EuiButtonGroup
@@ -268,6 +270,7 @@ describe('EuiButtonGroup', () => {
       fireEvent.mouseOut(getByTestSubject('buttonWithTooltip'));
       await waitForEuiToolTipHidden();
 
+      simulateFocusVisible(getByTestSubject('buttonWithTooltip'));
       fireEvent.focus(getByTestSubject('buttonWithTooltip'));
       await waitForEuiToolTipVisible();
       fireEvent.blur(getByTestSubject('buttonWithTooltip'));
@@ -302,6 +305,7 @@ describe('EuiButtonGroup', () => {
       fireEvent.mouseOut(getByTestSubject('buttonWithTooltip').parentElement!);
       await waitForEuiToolTipHidden();
 
+      simulateFocusVisible(getByTestSubject('buttonWithTooltip'));
       fireEvent.focus(getByTestSubject('buttonWithTooltip'));
       await waitForEuiToolTipVisible();
       fireEvent.blur(getByTestSubject('buttonWithTooltip'));

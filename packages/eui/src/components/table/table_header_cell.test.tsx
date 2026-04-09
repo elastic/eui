@@ -8,7 +8,11 @@
 
 import React, { PropsWithChildren, ReactElement } from 'react';
 import { requiredProps } from '../../test/required_props';
-import { render, waitForEuiToolTipVisible } from '../../test/rtl';
+import {
+  render,
+  simulateFocusVisible,
+  waitForEuiToolTipVisible,
+} from '../../test/rtl';
 import { fireEvent } from '@testing-library/react';
 
 import { RIGHT_ALIGNMENT, CENTER_ALIGNMENT } from '../../services';
@@ -241,6 +245,7 @@ describe('EuiTableHeaderCell', () => {
   });
 
   describe('tooltip', () => {
+    afterEach(() => jest.restoreAllMocks());
     it('renders an icon with tooltip', async () => {
       const { getByTestSubject } = renderInTableHeader(
         <EuiTableHeaderCell
@@ -264,6 +269,7 @@ describe('EuiTableHeaderCell', () => {
         'info'
       );
 
+      simulateFocusVisible(getByTestSubject('icon'));
       fireEvent.focus(getByTestSubject('icon'));
       await waitForEuiToolTipVisible();
 
@@ -296,6 +302,7 @@ describe('EuiTableHeaderCell', () => {
         'info'
       );
 
+      simulateFocusVisible(getByTestSubject('tableHeaderSortButton'));
       fireEvent.focus(getByTestSubject('tableHeaderSortButton'));
       await waitForEuiToolTipVisible();
 

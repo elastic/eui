@@ -12,6 +12,7 @@ import { requiredProps } from '../../test';
 import { shouldRenderCustomStyles } from '../../test/internal';
 import {
   render,
+  simulateFocusVisible,
   waitForEuiToolTipHidden,
   waitForEuiToolTipVisible,
 } from '../../test/rtl';
@@ -19,6 +20,7 @@ import {
 import { EuiColorPickerSwatch } from './color_picker_swatch';
 
 describe('EuiColorPickerSwatch', () => {
+  afterEach(() => jest.restoreAllMocks());
   shouldRenderCustomStyles(<EuiColorPickerSwatch />);
 
   test('is rendered', () => {
@@ -61,6 +63,7 @@ describe('EuiColorPickerSwatch', () => {
 
       const swatchElement = getByTestSubject('color-picker-swatch');
 
+      simulateFocusVisible(swatchElement);
       fireEvent.focus(swatchElement);
 
       await waitForEuiToolTipVisible();
