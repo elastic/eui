@@ -32,9 +32,9 @@ describe('EuiFilterSelectItem', () => {
       toolTipProps: { 'data-test-subj': 'filterItemToolTip' },
     };
 
-    // toggleToolTip is called during render; on first render the tooltipRef is null,
-    // so a rerender is required to trigger showToolTip/hideToolTip via the ref
-    test('shows tooltip when isFocused becomes true', async () => {
+    // `toggleToolTip` is called during render; on first render the `tooltipRef` is null,
+    // so a re-render is required to trigger `showToolTip`/`hideToolTip`.
+    it('shows tooltip when `isFocused` becomes true', async () => {
       const { rerender, getByTestSubject } = render(
         <EuiFilterSelectItem {...tooltipProps} isFocused={false}>
           <span>Item</span>
@@ -51,7 +51,7 @@ describe('EuiFilterSelectItem', () => {
       expect(getByTestSubject('filterItemToolTip')).toBeInTheDocument();
     });
 
-    test('hides tooltip when isFocused becomes false', async () => {
+    it('hides tooltip when `isFocused` becomes false', async () => {
       const { rerender, queryByRole } = render(
         <EuiFilterSelectItem {...tooltipProps} isFocused={false}>
           <span>Item</span>
