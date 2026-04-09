@@ -20,7 +20,12 @@ import React, {
 import { createElement } from '@emotion/react';
 import classNames from 'classnames';
 
-import { useEuiMemoizedStyles } from '../../services';
+import {
+  EuiDisabledProps,
+  useCombinedRefs,
+  useEuiDisabledElement,
+  useEuiMemoizedStyles,
+} from '../../services';
 import { CommonProps, ExclusiveUnion } from '../common';
 import {
   euiListItemLayoutStyles,
@@ -29,6 +34,7 @@ import {
 import { EuiToolTip, EuiToolTipProps } from '../tool_tip';
 import { EuiCheckboxControl } from '../form';
 import { EuiIcon, IconColor, IconType } from '../icon';
+import { isButtonDisabled } from '../button/button_display/_button_display';
 
 export const OPTION_CHECKED_STATES = ['on', 'off', 'mixed', undefined] as const;
 export type EuiListItemLayoutCheckedType =
@@ -54,104 +60,104 @@ const ROLES_THAT_CAN_USE_ARIA_SELECTED = [
   'treeitem',
 ];
 
-export type EuiListItemLayoutSharedProps = CommonProps & {
-  children?: ReactNode;
-  /**
-   * Slot for prepended content (icons)
-   */
-  prepend?: ReactNode;
-  /**
-   * Slot for additional appended content (e.g. badges)
-   * Use extraAction instead for interactive elements.
-   */
-  append?: ReactNode;
-  /**
-   * Slot for additional interactive appended content (extra actions)
-   */
-  extraAction?: ReactNode;
-  /**
-   * Set to manually define the wrapping element for navigational items (`component=button/a`).
-   * This has no effect when `component=li/div`.
-   * @default 'li'
-   */
-  wrapperElement?: 'li' | 'div';
-  /**
-   * Props applied to the wrapper.
-   * Applies only for `component=button/a` if `wrapperElement` is defined or `extraAction` is passed.
-   */
-  wrapperProps?: CommonProps;
-  /**
-   * Props applied to the content wrapper element.
-   */
-  contentProps?: CommonProps;
-  /**
-   * Props applied to the label text element.
-   */
-  textProps?: CommonProps;
-  prependProps?: CommonProps;
-  appendProps?: CommonProps;
-  tooltipProps?: Omit<EuiToolTipProps, 'children'>;
-  /**
-   * Controls the item checked indicator and applies a semantic `aria-checked` attribute.
-   * Ensure to pass an appropriate `role` for the item that supports semantic
-   * `checked` state. For no/other role(s) `checked` only controls the visual checked indicator.
-   *
-   * Leave `undefined` to indicate not selected. Pass a string of
-   * 'on' to indicate inclusion, 'off' to indicate exclusion,
-   * or 'mixed' to indicate inclusion for some.
-   *
-   * When using `singleSelection=true` it's expected to only use the values `on` or `undefined`
-   * to toggle between checked and not checked.
-   */
-  checked?: EuiListItemLayoutCheckedType;
-  /**
-   * Controls the item selection state within a list (not the checked indicator).
-   * It applies an `aria-selected` or `aria-current` attributes depending on `component` and `role`.
-   * It adds a visual selected style when `isSingleSelection=true` or `showIndicator=false`.
-   */
-  isSelected?: boolean;
-  /**
-   * Highlights the item as currently navigated item within a listbox.
-   * The item is not actually focused, it will only be styled as active.
-   */
-  isFocused?: boolean;
-  isDisabled?: boolean;
-  /**
-   * Toggles between multi-selection (renders checkbox indicators) and
-   * single-selection (renders icon indicators).
-   * @default true
-   */
-  isSingleSelection?: boolean;
-  /**
-   * Manually overrides the selection type (checkbox vs selection) for checkable/selectable roles.
-   * This controls whether `aria-checked` or `aria-selected` attributes are set.
-   * For no `role` or unsupported roles, this has no effect and `aria-current` is applied.
-   *
-   * By default when unset, it's handled internally based on `isSingleSelection`
-   * and applies `aria-checked` to multi-selection and `aria-selected` to single-selection.
-   *
-   * Use only when you need to manually adjust this, e.g. for a single-selection
-   * multi-state checkbox item (supports exclusion or indeterminate).
-   */
-  selectionMode?: 'checked' | 'selected';
-  /**
-   * Controls the visibility of the indicator.
-   * @default true
-   */
-  showIndicator?: boolean;
-  /**
-   * Native `role` attribute.
-   * If you pass a custom role make sure to align `selectionMode` where needed as well.
-   * Set it to `checked` when the role natively supports checked states and to `selected` otherwise.
-   */
-  role?: HTMLAttributes<HTMLElement>['role'];
+export type EuiListItemLayoutSharedProps = CommonProps &
+  EuiDisabledProps & {
+    children?: ReactNode;
+    /**
+     * Slot for prepended content (icons)
+     */
+    prepend?: ReactNode;
+    /**
+     * Slot for additional appended content (e.g. badges)
+     * Use extraAction instead for interactive elements.
+     */
+    append?: ReactNode;
+    /**
+     * Slot for additional interactive appended content (extra actions)
+     */
+    extraAction?: ReactNode;
+    /**
+     * Set to manually define the wrapping element for navigational items (`component=button/a`).
+     * This has no effect when `component=li/div`.
+     * @default 'li'
+     */
+    wrapperElement?: 'li' | 'div';
+    /**
+     * Props applied to the wrapper.
+     * Applies only for `component=button/a` if `wrapperElement` is defined or `extraAction` is passed.
+     */
+    wrapperProps?: CommonProps;
+    /**
+     * Props applied to the content wrapper element.
+     */
+    contentProps?: CommonProps;
+    /**
+     * Props applied to the label text element.
+     */
+    textProps?: CommonProps;
+    prependProps?: CommonProps;
+    appendProps?: CommonProps;
+    tooltipProps?: Omit<EuiToolTipProps, 'children'>;
+    /**
+     * Controls the item checked indicator and applies a semantic `aria-checked` attribute.
+     * Ensure to pass an appropriate `role` for the item that supports semantic
+     * `checked` state. For no/other role(s) `checked` only controls the visual checked indicator.
+     *
+     * Leave `undefined` to indicate not selected. Pass a string of
+     * 'on' to indicate inclusion, 'off' to indicate exclusion,
+     * or 'mixed' to indicate inclusion for some.
+     *
+     * When using `singleSelection=true` it's expected to only use the values `on` or `undefined`
+     * to toggle between checked and not checked.
+     */
+    checked?: EuiListItemLayoutCheckedType;
+    /**
+     * Controls the item selection state within a list (not the checked indicator).
+     * It applies an `aria-selected` or `aria-current` attributes depending on `component` and `role`.
+     * It adds a visual selected style when `isSingleSelection=true` or `showIndicator=false`.
+     */
+    isSelected?: boolean;
+    /**
+     * Highlights the item as currently navigated item within a listbox.
+     * The item is not actually focused, it will only be styled as active.
+     */
+    isFocused?: boolean;
+    /**
+     * Toggles between multi-selection (renders checkbox indicators) and
+     * single-selection (renders icon indicators).
+     * @default true
+     */
+    isSingleSelection?: boolean;
+    /**
+     * Manually overrides the selection type (checkbox vs selection) for checkable/selectable roles.
+     * This controls whether `aria-checked` or `aria-selected` attributes are set.
+     * For no `role` or unsupported roles, this has no effect and `aria-current` is applied.
+     *
+     * By default when unset, it's handled internally based on `isSingleSelection`
+     * and applies `aria-checked` to multi-selection and `aria-selected` to single-selection.
+     *
+     * Use only when you need to manually adjust this, e.g. for a single-selection
+     * multi-state checkbox item (supports exclusion or indeterminate).
+     */
+    selectionMode?: 'checked' | 'selected';
+    /**
+     * Controls the visibility of the indicator.
+     * @default true
+     */
+    showIndicator?: boolean;
+    /**
+     * Native `role` attribute.
+     * If you pass a custom role make sure to align `selectionMode` where needed as well.
+     * Set it to `checked` when the role natively supports checked states and to `selected` otherwise.
+     */
+    role?: HTMLAttributes<HTMLElement>['role'];
 
-  /**
-   * How to handle long text within the item.
-   * @default 'truncate'
-   */
-  textWrap?: 'truncate' | 'wrap';
-};
+    /**
+     * How to handle long text within the item.
+     * @default 'truncate'
+     */
+    textWrap?: 'truncate' | 'wrap';
+  };
 
 export type EuiListItemLayoutAsLi = {
   element: 'li';
@@ -206,6 +212,7 @@ export const EuiListItemLayout = forwardRef<
       tooltipProps: _tooltipProps,
       checked,
       isDisabled,
+      hasAriaDisabled = false,
       isFocused,
       isSelected,
       isSingleSelection = true,
@@ -227,7 +234,22 @@ export const EuiListItemLayout = forwardRef<
       props as AnchorHTMLAttributes<HTMLAnchorElement>;
 
     const component = _element === 'a' && isDisabled ? 'button' : _element;
-    const hasToolTip = !!_tooltipProps && !isDisabled;
+
+    const buttonIsDisabled = isButtonDisabled({
+      href,
+      isDisabled: component === 'button' && isDisabled,
+    });
+
+    const { ref: disabledRef, ...disabledButtonProps } =
+      useEuiDisabledElement<HTMLButtonElement>({
+        isDisabled: buttonIsDisabled,
+        hasAriaDisabled,
+        onKeyDown: rest.onKeyDown,
+      });
+
+    const setCombinedRef = useCombinedRefs([disabledRef, ref]);
+
+    const hasToolTip = !!_tooltipProps;
 
     const isNonInteractiveComponent = ['li', 'div'].includes(component);
     const isInteractiveComponent =
@@ -321,6 +343,10 @@ export const EuiListItemLayout = forwardRef<
       !isDisabled && !hasWrapper && interactiveStyles,
       !hasWrapper && css,
       isDisabled && styles.isDisabled,
+      hasAriaDisabled &&
+        buttonIsDisabled &&
+        hasToolTip &&
+        styles.buttonIsDisabled,
     ];
 
     // Manually trigger the tooltip on keyboard focus
@@ -415,10 +441,12 @@ export const EuiListItemLayout = forwardRef<
         : {};
 
     const disabledProps = isDisabled
-      ? {
-          disabled: component === 'button' ? isDisabled : undefined,
-          'aria-disabled': component !== 'button' ? isDisabled : undefined,
-        }
+      ? buttonIsDisabled
+        ? disabledButtonProps
+        : {
+            disabled: component === 'button' ? isDisabled : undefined,
+            'aria-disabled': component !== 'button' ? isDisabled : undefined,
+          }
       : {};
 
     const wrapperProps = {
@@ -428,9 +456,20 @@ export const EuiListItemLayout = forwardRef<
       css: [wrapperCssStyles, _wrapperProps?.css],
     };
 
+    const tooltipProps = {
+      ..._tooltipProps,
+      anchorProps: {
+        ..._tooltipProps?.anchorProps,
+        css: [
+          isDisabled && styles.tooltip.isDisabled,
+          _tooltipProps?.anchorProps?.css,
+        ],
+      },
+    };
+
     const hasInternalTooltip = isNonInteractiveComponent && hasToolTip;
     const elementProps = {
-      ref,
+      ref: setCombinedRef,
       role,
       className: classes,
       css: cssStyles,
@@ -529,9 +568,9 @@ export const EuiListItemLayout = forwardRef<
     const content = hasInternalTooltip ? (
       <EuiToolTip
         ref={setTooltipRef}
-        content={_tooltipProps?.content}
+        content={tooltipProps?.content}
         anchorClassName="eui-fullWidth"
-        {..._tooltipProps}
+        {...tooltipProps}
       >
         {innerContent}
       </EuiToolTip>
@@ -548,9 +587,9 @@ export const EuiListItemLayout = forwardRef<
       !isNonInteractiveComponent && hasToolTip ? (
         <EuiToolTip
           ref={setTooltipRef}
-          content={_tooltipProps?.content}
+          content={tooltipProps?.content}
           anchorClassName="eui-fullWidth"
-          {..._tooltipProps}
+          {...tooltipProps}
         >
           {innerElement}
         </EuiToolTip>
