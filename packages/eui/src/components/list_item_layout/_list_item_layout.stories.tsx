@@ -125,6 +125,13 @@ const meta: Meta<EuiListItemLayoutProps> = {
     role: {
       control: 'text',
     },
+    hasAriaDisabled: {
+      description: `NOTE: Beta feature, may be changed or removed in the future.<br/>
+      Changes the native \`disabled\` attribute for \`element="button"\` usages to \`aria-disabled\` to preserve focusability.
+      This results in a semantically disabled button without the default browser handling of the disabled state.<br/>
+      Use e.g. when a disabled button element should have a tooltip.
+      `,
+    },
   },
   args: {
     element: 'li',
@@ -132,6 +139,7 @@ const meta: Meta<EuiListItemLayoutProps> = {
     prepend: undefined,
     append: undefined,
     isDisabled: false,
+    hasAriaDisabled: false,
     isFocused: false,
     isSelected: false,
     isSingleSelection: false,
@@ -205,12 +213,19 @@ export const TooltipProps: Story = {
   name: 'tooltipProps (prop)',
   parameters: {
     controls: {
-      include: ['element', 'tooltipProps', 'isFocused', 'children'],
+      include: [
+        'element',
+        'tooltipProps',
+        'isFocused',
+        'children',
+        'isDisabled',
+        'hasAriaDisabled',
+      ],
     },
   },
   args: {
     children: 'List item',
-    component: 'button',
+    element: 'button',
     isFocused: true,
     tooltipProps: {
       title: 'Tooltip',
@@ -301,7 +316,13 @@ export const KitchenSink: Story = {
   tags: ['vrt-only'],
   parameters: {
     controls: {
-      include: ['isDisabled', 'isFocused', 'isSelected', 'children'],
+      include: [
+        'isDisabled',
+        'hasAriaDisabled',
+        'isFocused',
+        'isSelected',
+        'children',
+      ],
     },
   },
   args: {
