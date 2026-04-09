@@ -49,7 +49,7 @@ export const EuiToolTipPopover: FunctionComponent<Props> = ({
 
   const updateDimensions = useCallback(() => {
     requestAnimationFrame(() => {
-      // Because of this delay, sometimes `positionToolTip` becomes unavailable.
+      // Because of this delay, the popover may have unmounted by the time the rAF fires.
       if (popover.current) {
         positionToolTip();
       }
