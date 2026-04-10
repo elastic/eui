@@ -69,7 +69,7 @@ export const EuiFormControlButton: FunctionComponent<
   isDisabled: _isDisabled,
   isInvalid: _isInvalid,
   fullWidth = true,
-  iconSide,
+  iconSide: _iconSide,
   isLoading: _isLoading,
   href,
   rel, // required by our local href-with-rel eslint rule
@@ -90,6 +90,7 @@ export const EuiFormControlButton: FunctionComponent<
   const isLoading = formLayoutIsLoading === true ? false : _isLoading;
   const compressed = _compressed ?? formLayoutCompressed;
   const hasText = value || placeholder;
+  const iconSide = isLoading ? 'right' : _iconSide;
 
   const styles = useEuiMemoizedStyles(euiFormControlButtonStyles);
   const classes = classNames('euiFormControlButton', className);
@@ -107,8 +108,8 @@ export const EuiFormControlButton: FunctionComponent<
     ..._contentProps,
     css: [
       styles.euiFormControlButton__content,
-      _contentProps?.css,
       !hasText && iconSide === 'right' && styles.alignEnd,
+      _contentProps?.css,
     ],
   };
 
