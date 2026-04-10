@@ -364,10 +364,9 @@ export const EuiToolTip = forwardRef<EuiToolTipRef, EuiToolTipProps>(
           if (!hasFocus) {
             hideToolTip();
           }
-        }
-
-        if (onMouseOutProp) {
-          onMouseOutProp(event);
+          if (onMouseOutProp) {
+            onMouseOutProp(event);
+          }
         }
       },
       [hasFocus, hideToolTip, onMouseOutProp]
