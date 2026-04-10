@@ -89,6 +89,7 @@ export const EuiFormControlButton: FunctionComponent<
   const isInvalid = _isInvalid ?? formLayoutIsInvalid;
   const isLoading = formLayoutIsLoading === true ? false : _isLoading;
   const compressed = _compressed ?? formLayoutCompressed;
+  const hasText = value || placeholder;
 
   const styles = useEuiMemoizedStyles(euiFormControlButtonStyles);
   const classes = classNames('euiFormControlButton', className);
@@ -104,7 +105,11 @@ export const EuiFormControlButton: FunctionComponent<
 
   const contentProps = {
     ..._contentProps,
-    css: [styles.euiFormControlButton__content, _contentProps?.css],
+    css: [
+      styles.euiFormControlButton__content,
+      _contentProps?.css,
+      !hasText && iconSide === 'right' && styles.alignEnd,
+    ],
   };
 
   const customTextProps = {
@@ -127,7 +132,6 @@ export const EuiFormControlButton: FunctionComponent<
       <span>{children}</span>
     )
   ) : null;
-  const hasText = value || placeholder;
 
   const linkProps = {
     href,
