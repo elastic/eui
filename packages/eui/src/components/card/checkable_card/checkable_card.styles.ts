@@ -21,13 +21,17 @@ export const euiCheckableCardStyles = (euiThemeContext: UseEuiTheme) => {
 
   return {
     euiCheckableCard: css`
-      ${euiCanAnimate} {
-        transition: border-color ${euiTheme.animation.normal} ease-in;
+      &::after {
+        ${euiCanAnimate} {
+          transition: border-color ${euiTheme.animation.normal} ease-in;
+        }
       }
     `,
 
     isChecked: css`
-      border-color: ${euiTheme.colors.primary};
+      &::after {
+        border-color: ${euiTheme.colors.primary};
+      }
     `,
 
     label: {
