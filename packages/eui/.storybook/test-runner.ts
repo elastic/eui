@@ -17,6 +17,11 @@ const config: TestRunnerConfig = {
   setup() {
     expect.extend({ toMatchImageSnapshot });
   },
+  async preVisit(page) {
+    // Emulate `prefers-reduced-motion` so EUI components that respect it
+    // render in their reduced/static state before the screenshot is taken
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+  },
   async postVisit(page, context) {
     const storyContext = await getStoryContext(page, context);
 
@@ -25,7 +30,12 @@ const config: TestRunnerConfig = {
     const selector = storyContext.parameters?.vrt?.selector ?? STORY_SELECTOR;
     const viewport = page.viewportSize();
     const project = viewport?.width === 390 ? 'mobile' : 'desktop';
-    const image = await page.locator(selector).first().screenshot();
+    // `{ animations: 'disabled' }` pauses CSS animations before screenshotting,
+    // preventing stability timeouts on infinite looping animations (spinners etc.)
+    const image = await page
+      .locator(selector)
+      .first()
+      .screenshot({ animations: 'disabled' });
 
     expect(image).toMatchImageSnapshot({
       customSnapshotsDir: path.join(__dirname, '..', '.vrt', 'reference'),
