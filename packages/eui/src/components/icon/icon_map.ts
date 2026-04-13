@@ -9,6 +9,7 @@
 export const typeToPathMap = {
   accessibility: () => import('./assets/accessibility'),
   addDataApp: () => import('./assets/app_add_data'),
+  addToDashboard: () => import('./assets/add_to_dashboard'),
   advancedSettingsApp: () => import('./assets/app_advanced_settings'),
   agentApp: () => import('./assets/app_fleet'),
   aggregate: () => import('./assets/aggregate'),
