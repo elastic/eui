@@ -9,7 +9,7 @@
 import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { LOKI_SELECTORS } from '../../../.storybook/loki';
+import { VRT_SELECTORS } from '../../../.storybook/vrt';
 import {
   EuiAvatar,
   EuiBadge,
@@ -104,7 +104,7 @@ export const DarkThemeWithSitewideSearch: Story = {
   parameters: {
     layout: 'fullscreen',
     controls: { include: ['theme'] },
-    loki: { chromeSelector: LOKI_SELECTORS.portal }, // Required to capture the open popover
+    vrt: { selector: VRT_SELECTORS.portal }, // Required to capture the open popover
   },
   args: {
     theme: 'dark',

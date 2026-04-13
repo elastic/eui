@@ -14,7 +14,7 @@ import {
   enableFunctionToggleControls,
   hideStorybookControls,
 } from '../../../.storybook/utils';
-import { LOKI_SELECTORS, lokiPlayDecorator } from '../../../.storybook/loki';
+import { VRT_SELECTORS, vrtPlayDecorator } from '../../../.storybook/vrt';
 import { EuiCode } from '../code';
 import { EuiFlexItem } from '../flex';
 
@@ -86,7 +86,7 @@ export const WithCustomOptionIds: Story = {
       include: ['options', 'selectedOptions', 'onChange'],
     },
     // This story is visually effectively the same as Playground
-    loki: { skip: true },
+    vrt: { skip: true },
   },
   args: {
     options: [
@@ -110,8 +110,8 @@ export const RowHeightAuto: Story = {
     controls: {
       include: ['rowHeight', 'singleSelection', 'options', 'onChange'],
     },
-    loki: {
-      chromeSelector: LOKI_SELECTORS.portal,
+    vrt: {
+      selector: VRT_SELECTORS.portal,
     },
   },
   args: {
@@ -172,7 +172,7 @@ export const WithTooltip: Story = {
       include: ['fullWidth', 'options', 'selectedOptions', 'onChange'],
     },
     // This story is flaky in VRT and always takes a new screenshot - skipping it
-    loki: { skip: true },
+    vrt: { skip: true },
   },
   args: {
     options: options.map((option, idx) => ({
@@ -186,7 +186,7 @@ export const WithTooltip: Story = {
     })),
   },
   render: (args) => <StatefulComboBox {...args} />,
-  play: lokiPlayDecorator(async (context) => {
+  play: vrtPlayDecorator(async (context) => {
     const { bodyElement, step } = context;
 
     const canvas = within(bodyElement);
@@ -229,8 +229,8 @@ export const Groups: Story = {
     controls: {
       include: ['options'],
     },
-    loki: {
-      chromeSelector: LOKI_SELECTORS.portal,
+    vrt: {
+      selector: VRT_SELECTORS.portal,
     },
   },
   args: {
@@ -257,8 +257,8 @@ export const NestedOptionsGroups: Story = {
     controls: {
       include: ['options'],
     },
-    loki: {
-      chromeSelector: LOKI_SELECTORS.portal,
+    vrt: {
+      selector: VRT_SELECTORS.portal,
     },
   },
   args: {

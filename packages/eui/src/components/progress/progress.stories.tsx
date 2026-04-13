@@ -75,7 +75,7 @@ export const DeterminateLoading: Story = {
     codeSnippet: {
       resolveStoryElementOnly: true,
     },
-    loki: {
+    vrt: {
       skip: true,
     },
   },

@@ -26,7 +26,7 @@ const meta: Meta<EuiLiveAnnouncerProps> = {
     isActive: true,
   },
   parameters: {
-    loki: {
+    vrt: {
       // There are no visual elements to test
       skip: true,
     },

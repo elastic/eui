@@ -9,7 +9,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { fireEvent, waitFor } from '@storybook/test';
 import { within } from '../../../../.storybook/test';
-import { LOKI_SELECTORS } from '../../../../.storybook/loki';
+import { VRT_SELECTORS } from '../../../../.storybook/vrt';
 import { enableFunctionToggleControls } from '../../../../.storybook/utils';
 
 import { REFRESH_UNIT_OPTIONS } from '../types';
@@ -19,8 +19,8 @@ const meta: Meta<EuiAutoRefreshProps> = {
   title: 'Forms/EuiAutoRefresh/EuiAutoRefresh',
   component: EuiAutoRefresh,
   parameters: {
-    loki: {
-      chromeSelector: LOKI_SELECTORS.portal,
+    vrt: {
+      selector: VRT_SELECTORS.portal,
     },
   },
   argTypes: {

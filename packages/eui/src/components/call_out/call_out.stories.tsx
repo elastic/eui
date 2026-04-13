@@ -42,7 +42,7 @@ export const AnnounceOnMount: Story = {
     controls: {
       include: ['children', 'announceOnMount'],
     },
-    loki: {
+    vrt: {
       skip: true,
     },
   },
@@ -72,7 +72,7 @@ export const OnDismiss: Story = {
     controls: {
       include: ['children', 'onDismiss', 'dismissButtonProps'],
     },
-    loki: {
+    vrt: {
       skip: true,
     },
   },

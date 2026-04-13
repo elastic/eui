@@ -15,7 +15,7 @@ import {
   enableFunctionToggleControls,
   moveStorybookControlsToCategory,
 } from '../../../.storybook/utils';
-import { LOKI_SELECTORS } from '../../../.storybook/loki';
+import { VRT_SELECTORS } from '../../../.storybook/vrt';
 import { EuiFieldText } from '../form';
 import { EuiButton } from '../button';
 import { EuiInputPopover, EuiInputPopoverProps } from './input_popover';
@@ -24,7 +24,7 @@ const meta: Meta<EuiInputPopoverProps> = {
   title: 'Layout/EuiInputPopover',
   component: EuiInputPopover,
   parameters: {
-    loki: { chromeSelector: LOKI_SELECTORS.portal },
+    vrt: { selector: VRT_SELECTORS.portal },
   },
   argTypes: {
     offset: {
@@ -161,7 +161,7 @@ export const AnchorPosition: Story = {
 export const InteractiveChildren: Story = {
   parameters: {
     controls: { include: ['ownFocus', 'disableFocusTrap'] },
-    loki: {
+    vrt: {
       skip: true,
     },
   },

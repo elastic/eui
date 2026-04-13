@@ -156,7 +156,7 @@ const meta: Meta<FlyoutChildStoryArgs> = {
   },
   parameters: {
     layout: 'fullscreen',
-    loki: { skip: true },
+    vrt: { skip: true },
   },
 };
 

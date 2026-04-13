@@ -10,7 +10,7 @@ import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { enableFunctionToggleControls } from '../../../.storybook/utils';
-import { LOKI_SELECTORS, lokiPlayDecorator } from '../../../.storybook/loki';
+import { VRT_SELECTORS, vrtPlayDecorator } from '../../../.storybook/vrt';
 import { sleep } from '../../test';
 import { EuiFlexGroup } from '../flex';
 import { EuiButton } from '../button';
@@ -25,8 +25,8 @@ const meta: Meta<EuiToolTipProps> = {
   component: EuiToolTip,
   parameters: {
     layout: 'fullscreen',
-    loki: {
-      chromeSelector: LOKI_SELECTORS.portal,
+    vrt: {
+      selector: VRT_SELECTORS.portal,
     },
   },
   decorators: [
@@ -62,11 +62,10 @@ type Story = StoryObj<EuiToolTipProps>;
 export const Playground: Story = {
   args: {
     // using autoFocus here as small trick to ensure showing the tooltip on load (e.g. for VRT)
-    // TODO: uncomment loki play() interactions and remove autoFocus once #7747 is merged
     children: <EuiButton autoFocus>Tooltip trigger</EuiButton>,
     content: 'tooltip content',
   },
-  play: lokiPlayDecorator(async () => {
+  play: vrtPlayDecorator(async () => {
     // Reduce VRT flakiness/screenshots before tooltip is fully visible
     await sleep(300);
   }),
