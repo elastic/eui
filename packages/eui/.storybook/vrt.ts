@@ -6,15 +6,13 @@
  * Side Public License, v 1.
  */
 
-import createAsyncCallback from '@loki/create-async-callback';
-import isLokiRunning from '@loki/is-loki-running';
 import type { PlayFunction } from '@storybook/csf';
 import type { ReactRenderer } from '@storybook/react';
 
-export const LOKI_SELECTORS = {
+export const VRT_SELECTORS = {
   /**
    * Default story selector
-   * Please keep in sync with loki.config.js
+   * Please keep in sync with the fallback in .storybook/test-runner.ts
    */
   default: '#story-wrapper > *',
   /**
@@ -29,13 +27,12 @@ export const LOKI_SELECTORS = {
 } as const;
 
 /**
- * decorator for story play functions to ensure loki VRT with included interactions
- * ref: https://github.com/oblador/loki/issues/359#issuecomment-1248135073
+ * decorator for story play functions to ensure VRT with included interactions
  * @param target - story play() function
  * @param vrtOnly - optional flag to en/disable vrt only interaction (defaults to true)
  * @returns enhanced story play function
  */
-export const lokiPlayDecorator = (
+export const vrtPlayDecorator = (
   // using any type here as ReactFramework is not exported from @storybook/react
   target: PlayFunction<ReactRenderer, any>,
   vrtOnly: boolean = true
@@ -43,12 +40,14 @@ export const lokiPlayDecorator = (
   | (PlayFunction<ReactRenderer, any> & { bodyElement?: HTMLElement })
   | undefined => {
   return async (context) => {
-    const lokiIsRunning = isLokiRunning();
-    const asyncCallback = createAsyncCallback();
+    // navigator.webdriver is true when Playwright (or any WebDriver-controlled browser)
+    // is driving the page — works regardless of whether Storybook was started by the
+    // test-runner or is an already-running dev server.
+    const isVrtRunning = navigator.webdriver;
 
-    if (vrtOnly && !lokiIsRunning) return;
+    if (vrtOnly && !isVrtRunning) return;
 
-    if (lokiIsRunning) {
+    if (isVrtRunning) {
       await waitForDocumentLoaded();
 
       enablePointerEvents();
@@ -61,18 +60,14 @@ export const lokiPlayDecorator = (
     // NOTE: using selectors for elements outside of the context.canvasElement (e.g. for portals)
     // will result in failing interactions while the browser window is not focused (e.g. hot-reload).
     // It works fine while used directly in the browser window or in the CLI.
-    // To reach portals we want to pass the body element to lokis canvas() instead of canvasElement.
+    // To reach portals we want to pass the body element to the canvas() instead of canvasElement.
     // That way we increase the scope of the testing utils (to include portals)
     const enhancedContext = {
       ...context,
       bodyElement: body,
     };
 
-    try {
-      await target(enhancedContext);
-    } finally {
-      asyncCallback();
-    }
+    await target(enhancedContext);
   };
 };
 
