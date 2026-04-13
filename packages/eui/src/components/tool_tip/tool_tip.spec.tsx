@@ -65,10 +65,10 @@ describe('EuiToolTip', () => {
     );
     cy.get('[data-test-subj="tooltip"]').should('not.exist');
 
-    cy.get('[data-test-subj="toggleToolTip"]').focus();
+    cy.realPress('Tab');
     cy.get('[data-test-subj="tooltip"]').should('exist');
 
-    cy.get('[data-test-subj="toggleToolTip"]').blur();
+    cy.realPress('Tab');
     cy.get('[data-test-subj="tooltip"]').should('not.exist');
   });
 
