@@ -538,6 +538,78 @@ describe('EuiSelectable', () => {
     });
   });
 
+  describe('screen reader live region', () => {
+    const getLiveRegionContent = (container: HTMLElement) => {
+      // EuiScreenReaderLive uses two alternating divs with role="status"
+      const statusDivs = container.querySelectorAll('[role="status"]');
+      const visibleDiv = Array.from(statusDivs).find(
+        (div) => div.getAttribute('aria-hidden') !== 'true'
+      );
+      return visibleDiv?.textContent ?? '';
+    };
+
+    it('does not re-announce results count on arrow key navigation when count has not changed', () => {
+      const { container } = render(
+        <EuiSelectable options={options} searchable>
+          {(list, search) => (
+            <>
+              {search}
+              {list}
+            </>
+          )}
+        </EuiSelectable>
+      );
+
+      const listbox = container.querySelector('.euiSelectableList__list')!;
+
+      // Navigate down to activate the live region
+      fireEvent.keyDown(listbox, { key: 'ArrowDown' });
+      const contentAfterFirstArrow = getLiveRegionContent(container);
+      expect(contentAfterFirstArrow).toBe('3 results available');
+
+      // Navigate again - content should remain the same string,
+      // meaning EuiScreenReaderLive should not toggle/re-announce
+      fireEvent.keyDown(listbox, { key: 'ArrowDown' });
+      const contentAfterSecondArrow = getLiveRegionContent(container);
+      expect(contentAfterSecondArrow).toBe('3 results available');
+
+      // Both announcements should be in the same live region div
+      // (no toggle occurred), confirming no re-announcement
+      const statusDivs = container.querySelectorAll('[role="status"]');
+      const divsWithContent = Array.from(statusDivs).filter(
+        (div) => div.textContent === '3 results available'
+      );
+      expect(divsWithContent).toHaveLength(1);
+    });
+
+    it('announces updated results count when search filtering changes results', () => {
+      const { container } = render(
+        <EuiSelectable options={options} searchable>
+          {(list, search) => (
+            <>
+              {search}
+              {list}
+            </>
+          )}
+        </EuiSelectable>
+      );
+
+      const searchbox = container.querySelector(
+        'input[type="search"]'
+      ) as HTMLInputElement;
+
+      // Type to filter results
+      fireEvent.change(searchbox, { target: { value: 'Enceladus' } });
+      fireEvent.keyDown(searchbox, { key: 'ArrowDown' });
+      expect(getLiveRegionContent(container)).toBe('1 result available');
+
+      // Clear search to show all results
+      fireEvent.change(searchbox, { target: { value: '' } });
+      fireEvent.keyDown(searchbox, { key: 'ArrowDown' });
+      expect(getLiveRegionContent(container)).toBe('3 results available');
+    });
+  });
+
   describe('screen reader instructions', () => {
     it('sets default accessibility instructions correctly', () => {
       const searchProps = {
