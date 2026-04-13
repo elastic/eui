@@ -3,6 +3,8 @@ sidebar_position: 3
 keywords: [EuiColorPalettePicker, EuiColorPaletteDisplay]
 ---
 
+import displayTogglesSource from '!raw-loader!../../../../src/components/display_toggles/display_toggles';
+
 # Color palette picker
 
 Use **EuiColorPalettePicker** to select palettes to apply colors to data visualization like maps and charts.
@@ -11,6 +13,7 @@ Use the `palettes` prop to pass your palettes as an array `strings` or an array 
 
 Each of the `palettes`, excluding `type='text'` palettes, can use the `append` prop to append an element to the right of the title.
 
+<Demo extraFiles={{ 'display_toggles.tsx': displayTogglesSource }}>
 ```tsx interactive
 import React, { useState } from 'react';
 import {
@@ -23,6 +26,7 @@ import {
   EuiColorPalettePicker,
   EuiFlexGroup
 } from '@elastic/eui';
+import { DisplayToggles } from './display_toggles';
 
 const getPalettes = (appendTitles) => [
   {
@@ -154,6 +158,7 @@ export default () => {
   );
 };
 ```
+</Demo>
 
 ## Color palette display
 

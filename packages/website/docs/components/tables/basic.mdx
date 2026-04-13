@@ -41,7 +41,7 @@ for (let i = 0; i < 10; i++) {
     id: faker.string.uuid(),
     firstName: faker.person.firstName(),
     lastName: faker.person.lastName(),
-    github: faker.internet.userName(),
+    github: faker.internet.username(),
     dateOfBirth: faker.date.past(),
     online: faker.datatype.boolean(),
   });
@@ -727,7 +727,7 @@ for (let i = 0; i < 5; i++) {
     id: faker.string.uuid(),
     firstName: faker.person.firstName(),
     lastName: faker.person.lastName(),
-    github: faker.internet.userName(),
+    github: faker.internet.username(),
     dateOfBirth: faker.date.past(),
     online: i === 0 ? true : faker.datatype.boolean(),
   });
@@ -792,7 +792,6 @@ export default () => {
   ];
 
   const getRowProps = (user: User) => {
-    const { id } = user;
     return {
       className: user.online ? 'euiTableRow--marked' : ''
     };
@@ -966,7 +965,6 @@ type User = {
   firstName: string | null | undefined;
   lastName: string;
   github: string;
-  dateOfBirth: Date;
   jobTitle: string;
   address: string;
 };
@@ -978,7 +976,7 @@ for (let i = 0; i < 10; i++) {
     id: i + 1,
     firstName: faker.person.firstName(),
     lastName: faker.person.lastName(),
-    github: faker.internet.userName(),
+    github: faker.internet.username(),
     jobTitle: faker.person.jobTitle(),
     address: `${faker.location.streetAddress()} ${faker.location.city()} ${faker.location.state(
       { abbreviated: true }
@@ -1093,8 +1091,8 @@ export default () => {
 
   const onTableLayoutChange = (id: string, value: string) => {
     setTableLayout(id);
-    columns[4].width = value === 'custom' ? '100px' : undefined;
-    columns[5].width = value === 'custom' ? '20%' : undefined;
+    columns[3].width = value === 'custom' ? '100px' : undefined;
+    columns[4].width = value === 'custom' ? '20%' : undefined;
   };
 
   const onVAlignChange = (id: string, value: 'top' | 'middle' | 'bottom') => {
@@ -1178,12 +1176,8 @@ To customize how your cells look in mobile vs. desktop view, use the `mobileOpti
 import React, { useState } from 'react';
 import {
   formatDate,
-  Comparators,
   EuiBasicTable,
   EuiBasicTableColumn,
-  EuiTableSelectionType,
-  EuiTableSortingType,
-  Criteria,
   EuiLink,
   EuiHealth,
   EuiFlexGroup,
@@ -1213,7 +1207,7 @@ for (let i = 0; i < 3; i++) {
     id: i + 1,
     firstName: faker.person.firstName(),
     lastName: faker.person.lastName(),
-    github: faker.internet.userName(),
+    github: faker.internet.username(),
     dateOfBirth: faker.date.past(),
     online: faker.datatype.boolean(),
     location: {
@@ -1246,6 +1240,7 @@ export default () => {
    */
   const [customHeader, setCustomHeader] = useState(true);
   const [isResponsive, setIsResponsive] = useState(true);
+  const [selectedItems, setSelectedItems] = useState<User[]>([]);
 
   const columns: Array<EuiBasicTableColumn<User>> = [
     {

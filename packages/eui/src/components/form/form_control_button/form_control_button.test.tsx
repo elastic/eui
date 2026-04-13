@@ -235,4 +235,36 @@ describe('EuiButtonEmpty', () => {
       });
     });
   });
+
+  describe('icon alignment', () => {
+    it('renders icons with `iconSide="right"` right aligned when no `value` is passed', () => {
+      const { baseElement } = render(
+        <EuiFormControlButton
+          {...defaultProps}
+          value={undefined}
+          iconType="user"
+          iconSide="right"
+        />
+      );
+
+      expect(
+        baseElement.querySelector('.euiButtonEmpty__content')
+      ).toHaveStyleRule('justify-content', 'flex-end');
+    });
+
+    it('renders icons with `iconSide="left"` left aligned when no `value` is passed', () => {
+      const { baseElement } = render(
+        <EuiFormControlButton
+          {...defaultProps}
+          value={undefined}
+          iconType="user"
+          iconSide="left"
+        />
+      );
+
+      expect(
+        baseElement.querySelector('.euiButtonEmpty__content')
+      ).toHaveStyleRule('justify-content', 'flex-start');
+    });
+  });
 });
