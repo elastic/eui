@@ -26,7 +26,7 @@ const customWithin = (canvasElement: HTMLElement) => {
     ...canvas,
 
     /**
-     * 1. Loki doesn't like userEvent, only fireEvent
+     * 1. VRT interaction tests use fireEvent (not userEvent) to avoid timing issues
      * 2. Storybook fires fireEvents too early (esp. on page load), so we add a waitFor
      */
     waitForAndClick: async (testSubject: string) => {
