@@ -35,6 +35,7 @@ jobs:
         with:
           repository: ${{ inputs.upstream_repository }}
           fetch-depth: 1
+          path: kibana
       - uses: actions/setup-node@v6
         with:
           node-version-file: .nvmrc
