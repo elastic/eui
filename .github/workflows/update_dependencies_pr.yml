@@ -1,0 +1,31 @@
+name: Open a PR with updated dependencies
+on:
+  workflow_dispatch:
+    inputs:
+      dependencies:
+        description: JSON-serialized map of dependencies to update
+        type: string
+        required: true
+      upstream_repository:
+        description: Upstream repository to open the PR in
+        type: string
+        required: true
+      fork_repository:
+        description: Fork repository to create the branch in
+        type: string
+        required: true
+jobs:
+  checkout:
+    name: Checkout the repository
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          repository: ${{ inputs.upstream_repository }}
+          fetch-depth: 1
+      - uses: actions/setup-node@v6
+        with:
+          node-version-file: .nvmrc
+          cache: yarn
+      - name: Install dependencies
+        run: yarn kbn bootstrap

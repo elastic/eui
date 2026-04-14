@@ -45,7 +45,7 @@ export type DefaultParsingPluginsConfig = {
    */
   emoji?: { emoticon?: boolean };
   /**
-   * Allows configuring the `allowRelative` and `allowProtocols` of
+   * Allows configuring the `allowRelative`, `allowProtocols`, and `allowDocumentRelative` of
    * {@link EuiMarkdownLinkValidatorOptions}
    */
   linkValidator?: EuiMarkdownLinkValidatorOptions;
