@@ -25,9 +25,10 @@ jobs:
           num_deps=$(jq 'map(select(has("package") and has("version"))) | length' <<< "${{ inputs.dependencies }}")
           if [[ "$?" -ne 0 ]]; then
             echo "::error:: Invalid dependencies input"
-            exit 1
-          elif [[ -z "$num_deps" ]]; then
+            exit 2
+          elif [[ "$num_deps" -eq 0 ]]; then
             echo "::warning:: No dependencies to update"
+            exit 1
           else
             echo "$num_deps dependencies to update"
           fi
