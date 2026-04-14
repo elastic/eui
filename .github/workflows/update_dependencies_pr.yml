@@ -40,6 +40,7 @@ jobs:
         run: |
           echo "${GH_AUTH_TOKEN}" | gh auth login --with-token
           gh auth setup-git
+          gh auth status
           git config --global user.name 'github-actions[bot]'
           git config --global user.email '41898282+github-actions[bot]@users.noreply.github.com'
       - name: Checkout the upstream repository
