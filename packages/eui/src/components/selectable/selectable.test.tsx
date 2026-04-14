@@ -564,26 +564,26 @@ describe('EuiSelectable', () => {
 
       // Navigate down to activate the live region
       fireEvent.keyDown(listbox, { key: 'ArrowDown' });
-      const contentAfterFirstArrow = getLiveRegionContent(container);
-      expect(contentAfterFirstArrow).toBe('3 results available');
 
-      // Navigate again - content should remain the same string,
-      // meaning EuiScreenReaderLive should not toggle/re-announce
-      fireEvent.keyDown(listbox, { key: 'ArrowDown' });
-      const contentAfterSecondArrow = getLiveRegionContent(container);
-      expect(contentAfterSecondArrow).toBe('3 results available');
-
-      // Both announcements should be in the same live region div
-      // (no toggle occurred), confirming no re-announcement
+      // Capture the state of both live region divs before further navigation
       const statusDivs = container.querySelectorAll('[role="status"]');
-      const divsWithContent = Array.from(statusDivs).filter(
-        (div) => div.textContent === '3 results available'
+      const activeDiv = Array.from(statusDivs).find(
+        (element) => element.textContent === '3 results available'
       );
-      expect(divsWithContent).toHaveLength(1);
+      const inactiveDiv = Array.from(statusDivs).find(
+        (element) => element.getAttribute('aria-hidden') === 'true'
+      );
+
+      // Navigate again - the live region divs should not toggle,
+      // confirming no re-announcement to screen readers
+      fireEvent.keyDown(listbox, { key: 'ArrowDown' });
+
+      expect(activeDiv).toHaveTextContent('3 results available');
+      expect(inactiveDiv).toHaveTextContent('');
     });
 
     it('announces updated results count when search filtering changes results', () => {
-      const { container } = render(
+      const { container, getByRole } = render(
         <EuiSelectable options={options} searchable>
           {(list, search) => (
             <>
@@ -594,9 +594,7 @@ describe('EuiSelectable', () => {
         </EuiSelectable>
       );
 
-      const searchbox = container.querySelector(
-        'input[type="search"]'
-      ) as HTMLInputElement;
+      const searchbox = getByRole('searchbox');
 
       // Type to filter results
       fireEvent.change(searchbox, { target: { value: 'Enceladus' } });
