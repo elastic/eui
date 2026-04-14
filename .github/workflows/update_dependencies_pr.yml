@@ -40,5 +40,4 @@ jobs:
         with:
           node-version-file: .nvmrc
           cache: yarn
-      - name: Install dependencies
-        run: yarn kbn bootstrap
+          package-manager-cache: false
