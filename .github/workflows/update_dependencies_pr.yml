@@ -34,6 +34,10 @@ jobs:
           else
             echo "$num_deps dependencies to update"
           fi
+      - name: Configure git
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email '41898282+github-actions[bot]@users.noreply.github.com'
       - name: Checkout the upstream repository
         uses: actions/checkout@v6
         with:
