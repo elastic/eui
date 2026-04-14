@@ -40,6 +40,8 @@ jobs:
           repository: ${{ inputs.upstream_repository }}
           fetch-depth: 1
       - name: Configure git remote for the fork
+        env:
+          GH_TOKEN: ${{ github.token }}
         # language=bash
         run: |
           ssh_url=$(gh repo view "${{ inputs.fork_repository }}" --json sshUrl --jq .sshUrl)
