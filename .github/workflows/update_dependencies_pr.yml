@@ -35,7 +35,11 @@ jobs:
             echo "$num_deps dependencies to update"
           fi
       - name: Configure git
+        env:
+          GH_TOKEN: ${{ secrets.UPDATE_DEPS_KIBANA_REPO_TOKEN }}
         run: |
+          echo "${GH_TOKEN}" | gh auth login --with-token
+          gh auth setup-git
           git config --global user.name 'github-actions[bot]'
           git config --global user.email '41898282+github-actions[bot]@users.noreply.github.com'
       - name: Checkout the upstream repository
