@@ -42,7 +42,12 @@ export const mathWithUnits = (
   if (values.some((v) => typeof v === 'string' && v.includes('var('))) {
     const _elapsed = performance.now() - _t0;
     _totalTime += _elapsed;
-    console.log(`mathWithUnits #${_callCount} (var path): ${_elapsed.toFixed(3)}ms | total: ${_totalTime.toFixed(3)}ms`, values);
+    console.log(
+      `mathWithUnits #${_callCount} (var path): ${_elapsed.toFixed(
+        3
+      )}ms | total: ${_totalTime.toFixed(3)}ms`,
+      values
+    );
     return _emitCalcForVars(values, callback, unit);
   }
 
@@ -81,7 +86,14 @@ export const mathWithUnits = (
   const _result = `${callback(...foundNumericValues)}${unit || foundUnit}`;
   const _elapsed = performance.now() - _t0;
   _totalTime += _elapsed;
-  console.log(`mathWithUnits #${_callCount}: ${_elapsed.toFixed(3)}ms | total: ${_totalTime.toFixed(3)}ms`, values, '->', _result);
+  console.log(
+    `mathWithUnits #${_callCount}: ${_elapsed.toFixed(
+      3
+    )}ms | total: ${_totalTime.toFixed(3)}ms`,
+    values,
+    '->',
+    _result
+  );
   return _result;
 };
 
@@ -194,5 +206,4 @@ const _formatTerm = (coeff: number, value: string): string => {
 };
 
 /** Round to avoid floating-point artifacts from callback probing */
-const _preciseRound = (n: number): number =>
-  Math.round(n * 1e10) / 1e10;
+const _preciseRound = (n: number): number => Math.round(n * 1e10) / 1e10;
