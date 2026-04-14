@@ -46,10 +46,11 @@ jobs:
         run: |
           ssh_url=$(gh repo view "${{ inputs.fork_repository }}" --json sshUrl --jq .sshUrl)
           if [[ "$?" -ne 0 ]] || [[ -z "$ssh_url" ]]; then
-            echo "::error:: Cannot find the fork repository. Please make sure the fork_repository input points to the correct fork in the format of <repo_owner>/<repo_name>."
+            echo "::error::Cannot find the fork repository. Please make sure the fork_repository input points to the correct fork in the format of <repo_owner>/<repo_name>."
             exit 1
           fi
           git remote add fork "$ssh_url"
+          echo "::debug::Resolved the fork repository '${{ inputs.fork_repository }}' to '$ssh_url'"
       - name: Create new branch
         id: git_branch
         # language=bash
@@ -57,6 +58,7 @@ jobs:
           branch_name="update-dependencies/$(date +%s)"
           git checkout -b "$branch_name"
           echo "BRANCH_NAME=$branch_name" >> "$GITHUB_OUTPUT"
+          echo "::debug::Created branch '$branch_name'"
       - name: Setup Node
         uses: actions/setup-node@v6
         with:
