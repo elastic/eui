@@ -44,4 +44,19 @@ jobs:
           cache: yarn
           package-manager-cache: false
       - name: Update dependency versions
-        run: pwd && echo "${{ github.workspace }}"
+        env:
+          DEPENDENCIES: ${{ inputs.dependencies }}
+        # language=bash
+        run: |
+          jq -j '.[] | .package, "\u0000", .version, "\u0000"' <<< "$DEPENDENCIES" |
+          xargs -0 -n 2 bash -c '
+            pkg="$0"
+            ver="$1"
+            if [[ $(npm pkg get "devDependencies.$pkg") != "{}" ]]; then
+              npm pkg set "devDependencies.$pkg=$ver"
+            elif [[ $(npm pkg get "dependencies.$pkg") != "" ]]; then
+              npm pkg set "dependencies.$pkg=$ver"
+            else
+              echo "Skipping $pkg: Not found in either dependencies or devDependencies";
+          fi'
+          cat package.json
