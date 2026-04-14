@@ -19,6 +19,18 @@ jobs:
     name: Checkout the repository
     runs-on: ubuntu-latest
     steps:
+      - name: Verify dependencies input
+        # language=bash
+        run: |
+          num_deps=$(jq 'map(select(has("package") and has("version"))) | length' <<< "${{ inputs.dependencies }}")
+          if [[ "$?" -ne 0 ]]; then
+            echo "::error:: Invalid dependencies input"
+            exit 1
+          elif [[ -z "$num_deps" ]]; then
+            echo "::warning:: No dependencies to update"
+          else
+            echo "$num_deps dependencies to update"
+          fi
       - uses: actions/checkout@v6
         with:
           repository: ${{ inputs.upstream_repository }}
