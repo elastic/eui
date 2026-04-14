@@ -74,7 +74,7 @@ export default () => {
 
 ## Link validation for security
 
-Markdown content often comes from untrusted sources like user generated content. To help with potential security issues, `EuiMarkdownRenderer` only renders links if they begin with `https:`, `http:`, `mailto:`, or `/`.
+Markdown content often comes from untrusted sources like user generated content. To help with potential security issues, `EuiMarkdownRenderer` by default only renders links if they begin with `https:`, `http:`, `mailto:`, or `/`.
 
 ```
 **Links starting with http:, https:, mailto:, and / are valid:**
@@ -91,6 +91,17 @@ Markdown content often comes from untrusted sources like user generated content.
 * ftp://elastic.co
 * An [ftp link](ftp://elastic.co)
 ```
+
+By default, the link validator will not render document-relative links which do not begin with a protocol or a `/`, such as:
+
+```
+* Linking to a [page with the same current base path](editor)
+* Linking to a [page above this current path](../../../templates/page-template)
+```
+
+If you want to allow document-relative links while preserving the security benefits of restricting protocols, use the `allowDocumentRelative` option when
+[configuring the default plugins](./plugins.mdx#configuring-the-default-plugins).
+
 
 ```tsx interactive
 import React from 'react';

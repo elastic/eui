@@ -614,6 +614,44 @@ exports[`EuiIcon props type addDataApp is rendered 1`] = `
 </svg>
 `;
 
+exports[`EuiIcon props type addToDashboard is rendered 1`] = `
+<svg
+  class="euiIcon emotion-euiIcon-m-isLoaded"
+  data-icon-type="addToDashboard"
+  data-is-loaded="true"
+  height="16"
+  role="presentation"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="m8.5 9.207 3.854-3.853-.708-.708L8.5 7.793l-2-2-3.854 3.853.708.708L6.5 7.207zM14 13h2v1h-2v2h-1v-2h-2v-1h2v-2h1z"
+  />
+  <mask
+    height="13"
+    id="add_to_dashboard_generated-id_a"
+    maskUnits="userSpaceOnUse"
+    style="mask-type: alpha;"
+    width="13"
+    x="1"
+    y="1"
+  >
+    <path
+      d="M13.072 1c.464 0 .928.542.928 1.083v10.834c0 .541-.464 1.083-.929 1.083H1.931C1.464 14 1 13.567 1 12.917V2.083C1 1.542 1.467 1 1.93 1zM1.93 12.917h11.14V2.083H1.932z"
+      fill-rule="evenodd"
+    />
+  </mask>
+  <g
+    mask="url(#add_to_dashboard_generated-id_a)"
+  >
+    <path
+      d="M1-.083h13.464V9H9v5H1z"
+    />
+  </g>
+</svg>
+`;
+
 exports[`EuiIcon props type advancedSettingsApp is rendered 1`] = `
 <svg
   class="euiIcon emotion-euiIcon-m-app-isLoaded"
