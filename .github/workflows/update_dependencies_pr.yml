@@ -38,7 +38,8 @@ jobs:
         with:
           repository: ${{ inputs.upstream_repository }}
           fetch-depth: 1
-          path: kibana
+          path: repo_to_update
+      - run: cd repo_to_update
       - uses: actions/setup-node@v6
         with:
           node-version-file: .nvmrc
