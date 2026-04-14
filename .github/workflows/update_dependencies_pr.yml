@@ -48,6 +48,7 @@ jobs:
         with:
           repository: ${{ inputs.upstream_repository }}
           fetch-depth: 1
+          persist-credentials: false
       - name: Configure git remote for the fork
         env:
           GH_TOKEN: ${{ github.token }}
