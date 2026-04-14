@@ -57,6 +57,84 @@ describe('mathWithUnits', () => {
     });
   });
 
+  describe('CSS var() references emit calc() expressions', () => {
+    test('single var with multiplication', () => {
+      expect(mathWithUnits('var(--size)', (x) => x * 2)).toEqual(
+        'calc(2 * var(--size))'
+      );
+    });
+    test('single var with division', () => {
+      expect(mathWithUnits('var(--size)', (x) => x / 2)).toEqual(
+        'calc(var(--size) / 2)'
+      );
+    });
+    test('single var with fractional multiplication', () => {
+      expect(mathWithUnits('var(--size)', (x) => x * 0.75)).toEqual(
+        'calc(0.75 * var(--size))'
+      );
+    });
+    test('single var with addition', () => {
+      expect(mathWithUnits('var(--size)', (x) => x + 2)).toEqual(
+        'calc(var(--size) + 2px)'
+      );
+    });
+    test('single var with negative division', () => {
+      expect(mathWithUnits('var(--size)', (x) => x / -2)).toEqual(
+        'calc(var(--size) / -2)'
+      );
+    });
+    test('single var identity', () => {
+      expect(mathWithUnits('var(--size)', (x) => x)).toEqual(
+        'calc(var(--size))'
+      );
+    });
+    test('multiple vars with subtraction', () => {
+      expect(
+        mathWithUnits(
+          ['var(--a)', 'var(--b)'],
+          (x, y) => x - y
+        )
+      ).toEqual('calc(var(--a) - var(--b))');
+    });
+    test('multiple vars with complex linear', () => {
+      expect(
+        mathWithUnits(
+          ['var(--a)', 'var(--b)'],
+          (x, y) => x - 3 * y
+        )
+      ).toEqual('calc(var(--a) - 3 * var(--b))');
+    });
+    test('mixed var and literal', () => {
+      expect(
+        mathWithUnits(['var(--a)', '4px'], (x, y) => x + y)
+      ).toEqual('calc(var(--a) + 4px)');
+    });
+    test('unit detection from literal input', () => {
+      expect(
+        mathWithUnits(['var(--a)', '2rem'], (x, y) => x + y)
+      ).toEqual('calc(var(--a) + 2rem)');
+    });
+    test('override unit is respected', () => {
+      expect(
+        mathWithUnits('var(--size)', (x) => x + 4, '%')
+      ).toEqual('calc(var(--size) + 4%)');
+    });
+    test('constant-only result', () => {
+      expect(mathWithUnits('var(--size)', (_x) => 16)).toEqual('16px');
+    });
+    test('var mixed with number input — multiplication', () => {
+      expect(
+        mathWithUnits(['var(--size)', 3], (x, y) => x * y)
+      ).toEqual('calc(3 * var(--size))');
+    });
+    test('var mixed with number input — addition with closure', () => {
+      const base = 16;
+      expect(
+        mathWithUnits('var(--size)', (x) => x + base)
+      ).toEqual('calc(var(--size) + 16px)');
+    });
+  });
+
   describe('weird edge cases', () => {
     it('throws on undefined', () => {
       expect(() => mathWithUnits(undefined, (x) => x * 3)).toThrow(

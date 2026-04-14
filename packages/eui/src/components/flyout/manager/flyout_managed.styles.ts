@@ -44,7 +44,7 @@ export const euiManagedFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
       `;
 
       const activeFlyout = css`
-        z-index: ${parseInt(euiTheme.levels.flyout as string) + 1};
+        z-index: calc(${euiTheme.levels.flyout} + 1);
         pointer-events: auto;
       `;
 

@@ -102,7 +102,17 @@ export const getBadgeColors = (
   };
 };
 
-export const getTextColor = ({ euiTheme }: UseEuiTheme, bgColor: string) => {
+export const getTextColor = (
+  { euiTheme, colorMode }: UseEuiTheme,
+  bgColor: string
+) => {
+  // CSS var() references can't be parsed by chroma — fall back based on color mode
+  if (bgColor.includes('var(')) {
+    return colorMode === 'DARK'
+      ? euiTheme.colors.textGhost
+      : euiTheme.colors.textInk;
+  }
+
   const textColor = isColorDark(...chroma(bgColor).rgb())
     ? euiTheme.colors.textGhost
     : euiTheme.colors.textInk;
@@ -116,10 +126,13 @@ export const getTextColor = ({ euiTheme }: UseEuiTheme, bgColor: string) => {
  * @returns { backgroundHover: string, backgroundActive: string }
  */
 export const getCustomInteractiveColors = (
-  { euiTheme }: UseEuiTheme,
+  { euiTheme, colorMode }: UseEuiTheme,
   bgColor: string
 ) => {
-  const isDarkColor = isColorDark(...chroma(bgColor).rgb());
+  // CSS var() references can't be parsed by chroma — fall back based on color mode
+  const isDarkColor = bgColor.includes('var(')
+    ? colorMode === 'DARK'
+    : isColorDark(...chroma(bgColor).rgb());
   const backgroundHover = isDarkColor
     ? `color-mix(in oklab, ${bgColor}, ${euiTheme.colors.textGhost} 10%)`
     : `color-mix(in oklab, ${bgColor}, ${euiTheme.colors.textInk} 10%)`;

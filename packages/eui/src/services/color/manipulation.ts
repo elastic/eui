@@ -10,6 +10,9 @@ import chroma, { Color } from 'chroma-js';
 import { EuiThemeColorModeStandard } from '../theme';
 import { isValidHex } from './is_valid_hex';
 
+/** Check whether a color string is a CSS var() reference */
+const _isVarRef = (color: string) => color.includes('var(');
+
 const inOriginalFormat = (originalColor: string, newColor: Color) => {
   return isValidHex(originalColor) ? newColor.hex() : newColor.css();
 };
@@ -18,16 +21,28 @@ const inOriginalFormat = (originalColor: string, newColor: Color) => {
  * Makes a color more transparent.
  * @param color - Color to manipulate
  * @param alpha - alpha channel value. From 0-1.
+ *
+ * When the color is a CSS var() reference, emits CSS relative color syntax
+ * instead of parsing through chroma-js.
  */
-export const transparentize = (color: string, alpha: number) =>
-  chroma(color).alpha(alpha).css();
+export const transparentize = (color: string, alpha: number) => {
+  if (_isVarRef(color)) {
+    return `rgb(from ${color} r g b / ${alpha})`;
+  }
+  return chroma(color).alpha(alpha).css();
+};
 
 /**
  * Mixes a provided color with white.
  * @param color - Color to mix with white
  * @param ratio - Mix weight. From 0-1. Larger value indicates more white.
+ *
+ * When the color is a CSS var() reference, emits color-mix() instead.
  */
 export const tint = (color: string, ratio: number) => {
+  if (_isVarRef(color)) {
+    return `color-mix(in srgb, ${color}, white ${ratio * 100}%)`;
+  }
   const tint = chroma.mix(color, '#fff', ratio, 'rgb');
   return inOriginalFormat(color, tint);
 };
@@ -36,8 +51,13 @@ export const tint = (color: string, ratio: number) => {
  * Mixes a provided color with black.
  * @param color - Color to mix with black
  * @param ratio - Mix weight. From 0-1. Larger value indicates more black.
+ *
+ * When the color is a CSS var() reference, emits color-mix() instead.
  */
 export const shade = (color: string, ratio: number) => {
+  if (_isVarRef(color)) {
+    return `color-mix(in srgb, ${color}, black ${ratio * 100}%)`;
+  }
   const shade = chroma.mix(color, '#000', ratio, 'rgb');
   return inOriginalFormat(color, shade);
 };

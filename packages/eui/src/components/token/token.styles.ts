@@ -74,9 +74,15 @@ const getTokenColor = (
     ? shade(iconColor, 0.6)
     : tint(iconColor, 0.2);
 
-  const darkColor = isColorDark(...chroma(backgroundDarkColor).rgb())
-    ? euiTheme.colors.textGhost
-    : euiTheme.colors.textInk;
+  const darkColor =
+    typeof backgroundDarkColor === 'string' &&
+    backgroundDarkColor.includes('var(')
+      ? isDarkMode
+        ? euiTheme.colors.textGhost
+        : euiTheme.colors.textInk
+      : isColorDark(...chroma(backgroundDarkColor).rgb())
+      ? euiTheme.colors.textGhost
+      : euiTheme.colors.textInk;
 
   switch (fill) {
     case 'none':

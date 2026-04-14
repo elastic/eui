@@ -10,6 +10,9 @@ import chroma from 'chroma-js';
 import { shade, tint, lightness as getLightness } from './manipulation';
 import { getOn } from '../theme/utils';
 
+/** Check whether a color string is a CSS var() reference */
+const _isVarRef = (color: string) => color.includes('var(');
+
 export const getColorContrast = (textColor: string, backgroundColor: string) =>
   chroma.contrast(textColor, backgroundColor);
 
@@ -21,6 +24,11 @@ export const wcagContrastMin = 4.5; // WCAG AA minimum contrast ratio for normal
  * @param ratio - Amount to change in absolute terms. 0-10.
  * *
  * @param themeOrBackground - Color to use as the contrast basis or just pass EuiTheme
+ *
+ * When the foreground or background is a CSS var() reference, the iterative
+ * contrast algorithm cannot run. The foreground color is returned as-is
+ * (graceful degradation — the pre-computed theme tokens should already have
+ * adequate contrast).
  */
 export const makeHighContrastColor =
   (_foreground: string, ratio = 4.85) =>
@@ -41,6 +49,11 @@ export const makeHighContrastColor =
       typeof themeOrBackground === 'object'
         ? themeOrBackground.colors.body
         : themeOrBackground;
+
+    // CSS var() references can't be parsed by chroma — pass through as-is
+    if (_isVarRef(foreground) || _isVarRef(background)) {
+      return foreground;
+    }
 
     if (chroma(foreground).alpha() < 1 || chroma(background).alpha() < 1) {
       console.warn(

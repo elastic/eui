@@ -93,7 +93,9 @@ export const euiRangeThumbBorder = (euiThemeContext: UseEuiTheme) => {
 
 export const euiRangeThumbBoxShadow = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
-  const shadowColor = `rgba(${hexToRgb(euiTheme.colors.shadow)}, .2)`;
+  const shadowColor = euiTheme.colors.shadow.includes('var(')
+    ? `rgb(from ${euiTheme.colors.shadow} r g b / 0.2)`
+    : `rgba(${hexToRgb(euiTheme.colors.shadow)}, .2)`;
 
   const range = euiRangeVariables(euiThemeContext);
   const borderWidth = range.thumbBorderWidth;

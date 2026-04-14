@@ -69,7 +69,7 @@ const _colorCSS = (color: string) => {
     color: ${color};
 
     &:target {
-      color: darken(${color}, 10%);
+      color: color-mix(in srgb, ${color}, black 10%);
     }
   `;
 };

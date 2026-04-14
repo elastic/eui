@@ -40,10 +40,10 @@ export const euiSuperDatePickerStyles = (euiThemeContext: UseEuiTheme) => {
   );
 
   // Set a sensible min-width for when width is auto
-  const minFormWidth = parseFloat(forms.maxWidth) / 2;
+  const minFormWidth = mathWithUnits(forms.maxWidth, (x) => x / 2);
   const autoMinWidth = mathWithUnits(
-    gap,
-    (gap) => minFormWidth + gap + buttonWidth
+    [forms.maxWidth, gap],
+    (maxWidth, gap) => maxWidth / 2 + gap + buttonWidth
   );
 
   // Needs updating colors
@@ -83,7 +83,7 @@ export const euiSuperDatePickerStyles = (euiThemeContext: UseEuiTheme) => {
       `,
       auto: `
         label: noUpdateButton;
-        ${logicalCSS('min-width', `min(${minFormWidth}px, 100%)`)};
+        ${logicalCSS('min-width', `min(${minFormWidth}, 100%)`)};
       `,
       full: `
         label: noUpdateButton;
