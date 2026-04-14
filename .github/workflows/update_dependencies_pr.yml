@@ -79,3 +79,5 @@ jobs:
           fi'
       - name: Run install script
         run: yarn kbn bootstrap # TODO: this should be configurable
+      - name: Check changes
+        run: git status
