@@ -42,3 +42,5 @@ jobs:
           node-version-file: .nvmrc
           cache: yarn
           package-manager-cache: false
+      - name: Update dependency versions
+        run: pwd && echo "${{ github.workspace }}"
