@@ -82,6 +82,13 @@ jobs:
               echo "::warning:: Skipping $pkg: Not found in either dependencies or devDependencies";
           fi'
       - name: Run install script
-        run: yarn kbn bootstrap # TODO: this should be configurable
+        # TODO: this should be configurable
+        run: yarn kbn bootstrap
       - name: Check changes
         run: git status
+      - name: Commit changed files
+        # TODO: this should be configurable
+        # language=bash
+        run: |
+          git add package.json yarn.lock src/platform/packages/private/kbn-ui-shared-deps-npm/version_dependencies.txt
+          git commit -m "chore: update dependencies"
