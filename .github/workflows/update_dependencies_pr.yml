@@ -59,3 +59,5 @@ jobs:
             else
               echo "::warning:: Skipping $pkg: Not found in either dependencies or devDependencies";
           fi'
+      - name: Run install script
+        run: yarn kbn bootstrap # TODO: this should be configurable
