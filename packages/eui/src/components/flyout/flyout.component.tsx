@@ -347,7 +347,11 @@ export const EuiFlyoutComponent = forwardRef(
 
     // Ref for the main flyout element to pass to context
     const internalParentFlyoutRef = useRef<HTMLDivElement>(null);
-    const isPushed = useIsPushed({ type, pushMinBreakpoint, containerElement: container });
+    const isPushed = useIsPushed({
+      type,
+      pushMinBreakpoint,
+      containerElement: container,
+    });
     // When no explicit container is provided, push padding targets
     // document.body and global push-offset CSS vars are set. When a
     // container is provided, only that element receives padding.
