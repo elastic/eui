@@ -57,6 +57,5 @@ jobs:
             elif [[ $(npm pkg get "dependencies.$pkg") != "" ]]; then
               npm pkg set "dependencies.$pkg=$ver"
             else
-              echo "Skipping $pkg: Not found in either dependencies or devDependencies";
+              echo "::warning:: Skipping $pkg: Not found in either dependencies or devDependencies";
           fi'
-          cat package.json
