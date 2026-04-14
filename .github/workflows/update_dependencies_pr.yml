@@ -15,8 +15,8 @@ on:
         type: string
         required: true
 jobs:
-  checkout:
-    name: Checkout the repository
+  update:
+    name: Update dependencies
     runs-on: ubuntu-latest
     steps:
       - name: Verify dependencies input
@@ -34,7 +34,8 @@ jobs:
           else
             echo "$num_deps dependencies to update"
           fi
-      - uses: actions/checkout@v6
+      - name: Checkout the upstream repository
+        uses: actions/checkout@v6
         with:
           repository: ${{ inputs.upstream_repository }}
           fetch-depth: 1
