@@ -105,4 +105,4 @@ jobs:
         run: |
           gh auth status
           git remote get-url fork
-          git push fork "${{ steps.git_branch.outputs.BRANCH_NAME }}" --dry-run
+          git push fork "${{ steps.git_branch.outputs.BRANCH_NAME }}"
