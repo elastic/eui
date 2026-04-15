@@ -200,13 +200,30 @@ if is_pipeline_trigger_pull_request; then
   echo "+++ Running visual regression tests against ${STORYBOOK_BASE_URL}"
   # Use an `if` block so `set -e` doesn't abort the script on VRT failure —
   # we need to capture the result and include it in the notification below.
-  if yarn workspace @elastic/eui test-visual-regression -- --url "${STORYBOOK_BASE_URL}"; then
+  if yarn workspace @elastic/eui test-visual-regression update -- --url "${STORYBOOK_BASE_URL}"; then
     echo "Visual regression tests passed"
   else
     VRT_PASSED=false
     echo "^^^ +++"
     echo "Visual regression tests failed. Uploading diff images as artifacts..."
     buildkite-agent artifact upload "packages/eui/.vrt/diff/**/*.png"
+  fi
+
+  # One-time: commit new baselines to the PR branch
+  if [[ -n "$(git status --porcelain -- packages/eui/.vrt/reference)" ]]; then
+    echo "+++ :git: Committing updated VRT baseline screenshots"
+    echo "Fetching OIDC token to sign the commit"
+    SIGSTORE_ID_TOKEN="$(buildkite-agent oidc request-token --audience sigstore)"
+    export SIGSTORE_ID_TOKEN
+    github_user_vault="secret/ci/elastic-eui/github_machine_user"
+    git config --local user.name "$(retry 5 vault read -field=name "${github_user_vault}")"
+    git config --local user.email "$(retry 5 vault read -field=email "${github_user_vault}")"
+    git config --local commit.gpgsign true
+    git config --local gpg.x509.program gitsign
+    git config --local gpg.format x509
+    git add packages/eui/.vrt/reference
+    git commit -m "chore: add baseline screenshots" --no-verify
+    git push origin "HEAD:${BUILDKITE_BRANCH}"
   fi
 fi
 
