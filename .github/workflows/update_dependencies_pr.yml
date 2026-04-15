@@ -34,6 +34,12 @@ jobs:
           else
             echo "$num_deps dependencies to update"
           fi
+      - name: Checkout the upstream repository
+        uses: actions/checkout@v6
+        with:
+          repository: ${{ inputs.upstream_repository }}
+          fetch-depth: 1
+          persist-credentials: false
       - name: Configure git
         env:
           GH_AUTH_TOKEN: ${{ secrets.UPDATE_DEPS_KIBANA_REPO_TOKEN }}
@@ -43,12 +49,6 @@ jobs:
           gh auth status
           git config --global user.name 'github-actions[bot]'
           git config --global user.email '41898282+github-actions[bot]@users.noreply.github.com'
-      - name: Checkout the upstream repository
-        uses: actions/checkout@v6
-        with:
-          repository: ${{ inputs.upstream_repository }}
-          fetch-depth: 1
-          persist-credentials: false
       - name: Configure git remote for the fork
         env:
           GH_TOKEN: ${{ github.token }}
