@@ -107,6 +107,11 @@ jobs:
           git remote get-url fork
           git push -u fork "${{ steps.git_branch.outputs.BRANCH_NAME }}"
       - name: Open a PR
-        run: gh pr create --draft --body "@${{ github.actor }}" --title "[EUI] Test updated dependencies" --dry-run
+        # language=bash
+        run: |
+          # Extract user from fork_repository
+          fork_user="$(cut -d '/' -f1 <<< "${{ inputs.fork_repository }}")"
+          head="${fork_user}:${{ steps.git_branch.outputs.BRANCH_NAME }}}"
+          gh pr create --draft --head "$head" --body "@${{ github.actor }}" --title "[EUI] Test updated dependencies" --dry-run
         env:
           GH_TOKEN: ${{ secrets.UPDATE_DEPS_KIBANA_REPO_TOKEN }}
