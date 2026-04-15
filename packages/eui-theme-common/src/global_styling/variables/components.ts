@@ -91,11 +91,6 @@ export type _EuiThemeComponentColors = {
   flyoutFooterBackground: ColorModeSwitch;
   flyoutCloseButtonInsideBackground: ColorModeSwitch;
 
-  listGroupItemBackgroundPrimaryActive: ColorModeSwitch;
-  listGroupItemBackgroundSubduedActive: ColorModeSwitch;
-  listGroupItemBackgroundHover: ColorModeSwitch;
-  listGroupItemBackgroundPrimaryHover: ColorModeSwitch;
-
   loadingSpinnerBorder: ColorModeSwitch;
   loadingSpinnerHighlight: ColorModeSwitch;
 

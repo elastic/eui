@@ -6,8 +6,6 @@ keywords: [EuiListGroup, EuiListGroupItem]
 
 The **EuiListGroup** component is used to present **EuiListGroupItems** in a neatly formatted list. Use the `flush` and `bordered` properties for full-width and bordered presentations, respectively.
 
-Adjust the `gutterSize` prop to increase or decrease the spacing between items.
-
 ```tsx interactive
 import React, { useState, Fragment } from 'react';
 import {
@@ -113,7 +111,7 @@ const myContent = [
 ];
 
 export default () => {
-  return <EuiListGroup listItems={myContent} color="primary" size="s" />;
+  return <EuiListGroup listItems={myContent} color="primary" />;
 };
 ```
 
@@ -332,18 +330,17 @@ import {
 export default () => (
   <>
     <EuiListGroup>
-      <EuiListGroupItem href="#" label="Text by default (xs)" size="xs" />
+      <EuiListGroupItem href="#" label="Text by default (xs)" />
 
       <EuiListGroupItem
         onClick={() => {}}
         label="Primary (s)"
         color="primary"
-        size="s"
       />
 
       <EuiListGroupItem href="#" label="Text (m)" color="text" />
 
-      <EuiListGroupItem href="#" label="Subdued (l)" color="subdued" size="l" />
+      <EuiListGroupItem href="#" label="Subdued (l)" color="subdued" />
     </EuiListGroup>
 
     <EuiSpacer size="s" />

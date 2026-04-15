@@ -221,7 +221,6 @@ export const ColumnActions: FunctionComponent<
       >
         <EuiListGroup
           listItems={columnActions}
-          gutterSize="none"
           data-test-subj={`dataGridHeaderCellActionGroup-${id}`}
         />
       </EuiPopover>
