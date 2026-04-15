@@ -105,7 +105,7 @@ jobs:
         run: |
           gh auth status
           git remote get-url fork
-          git push fork "${{ steps.git_branch.outputs.BRANCH_NAME }}"
+          git push -u fork "${{ steps.git_branch.outputs.BRANCH_NAME }}"
       - name: Open a PR
         run: gh pr create --draft --body "@${{ github.actor }}" --title "[EUI] Test updated dependencies" --dry-run
         env:
