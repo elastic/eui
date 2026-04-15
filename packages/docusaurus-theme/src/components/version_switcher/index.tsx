@@ -157,15 +157,15 @@ export const VersionSwitcher = ({
           const isCurrentVersion = version === currentVersion;
           const screenReaderVersion = pronounceVersion(version!);
 
-          const url = version === latestVersion
-            ? `${previousVersionUrl}/`
-            : `${previousVersionUrl}/v${version}/`;
+          const url =
+            version === latestVersion
+              ? `${previousVersionUrl}/`
+              : `${previousVersionUrl}/v${version}/`;
 
           return (
             <EuiListGroupItem
               css={styles.listItem}
               style={style}
-              size="xs"
               label={`v${version}`}
               aria-label={screenReaderVersion}
               href={url}

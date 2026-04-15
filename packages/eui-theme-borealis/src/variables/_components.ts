@@ -206,23 +206,6 @@ const component_colors: _EuiThemeComponentColors = {
   headerDarkSectionItemBackgroundFocus:
     dark_background_colors.backgroundBasePrimary,
 
-  listGroupItemBackgroundPrimaryActive: computed(
-    ([backgroundBaseInteractiveSelect]) => backgroundBaseInteractiveSelect,
-    ['colors.backgroundBaseInteractiveSelect']
-  ),
-  listGroupItemBackgroundSubduedActive: computed(
-    ([backgroundBaseInteractiveSelect]) => backgroundBaseInteractiveSelect,
-    ['colors.backgroundBaseInteractiveSelect']
-  ),
-  listGroupItemBackgroundHover: computed(
-    ([backgroundBaseInteractiveHover]) => backgroundBaseInteractiveHover,
-    ['colors.backgroundBaseInteractiveHover']
-  ),
-  listGroupItemBackgroundPrimaryHover: computed(
-    ([backgroundBaseInteractiveHover]) => backgroundBaseInteractiveHover,
-    ['colors.backgroundBaseInteractiveHover']
-  ),
-
   // we don't want to inherit overrides (e.g. HCM)
   loadingSpinnerBorder: border_colors.borderBasePlain,
   loadingSpinnerHighlight: computed(
