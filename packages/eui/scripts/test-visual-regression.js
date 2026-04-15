@@ -8,6 +8,11 @@ const { argv } = yargs(hideBin(process.argv))
     'camel-case-expansion': false,
     'unknown-options-as-args': true,
     'halt-at-non-option': true,
+  })
+  .option('url', {
+    type: 'string',
+    description:
+      'Storybook URL to run tests against. Defaults to the local dev server (http://localhost:6006).',
   });
 
 const isUpdate = argv._.includes('update');
@@ -21,6 +26,7 @@ console.log('Running visual regression tests');
 const cmd = [
   'yarn test-storybook',
   isUpdate && '--updateSnapshot',
+  argv.url && `--url ${argv.url}`,
   ...extraArgs,
 ];
 

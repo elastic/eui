@@ -190,7 +190,28 @@ if [[ "${copy_to_root_directory}" == true ]]; then
 fi
 
 ############################################################
-#                      Step 8 - Notify                     #
+#            Step 8 - Visual Regression Tests              #
+############################################################
+
+# VRT_PASSED defaults to true for non-PR builds (no VRT to run)
+VRT_PASSED=true
+
+if is_pipeline_trigger_pull_request; then
+  echo "+++ Running visual regression tests against ${STORYBOOK_BASE_URL}"
+  # Use an `if` block so `set -e` doesn't abort the script on VRT failure —
+  # we need to capture the result and include it in the notification below.
+  if yarn workspace @elastic/eui test-visual-regression -- --url "${STORYBOOK_BASE_URL}"; then
+    echo "Visual regression tests passed"
+  else
+    VRT_PASSED=false
+    echo "^^^ +++"
+    echo "Visual regression tests failed. Uploading diff images as artifacts..."
+    buildkite-agent artifact upload "packages/eui/.vrt/diff/**/*.png"
+  fi
+fi
+
+############################################################
+#                      Step 9 - Notify                     #
 ############################################################
 
 published_website_url="https://eui.elastic.co/${bucket_directory}"
@@ -201,8 +222,28 @@ if [[ "${copy_to_root_directory}" == true ]]; then
   published_storybook_url="https://eui.elastic.co/storybook/ (root) and https://eui.elastic.co/${bucket_directory}storybook/"
 fi
 
+annotation_style="success"
+vrt_annotation=""
+vrt_pr_comment=""
+
+if is_pipeline_trigger_pull_request; then
+  if [[ "${VRT_PASSED}" == "true" ]]; then
+    vrt_annotation="\n:white_check_mark: Visual regression tests passed"
+    vrt_pr_comment="\n* :white_check_mark: Visual regression tests passed"
+  else
+    annotation_style="error"
+    vrt_annotation="\n:x: Visual regression tests failed - [view results](${BUILDKITE_BUILD_URL})"
+    vrt_pr_comment="\n* :x: Visual regression tests failed - [view results](${BUILDKITE_BUILD_URL})"
+  fi
+fi
+
 # Add an annotation on top of the pipeline
-echo -e "New documentation website deployed: ${published_website_url}\nNew Storybook deployed: ${published_storybook_url}" | buildkite-agent annotate --style "success" --context "deployed"
+echo -e "New documentation website deployed: ${published_website_url}\nNew Storybook deployed: ${published_storybook_url}${vrt_annotation}" | buildkite-agent annotate --style "${annotation_style}" --context "deployed"
 
 # Add an annotation in build status github comment
-echo -e "* [Documentation website](${published_website_url})\n* [Storybook](${published_storybook_url})" | buildkite-agent meta-data set pr_comment:docs_deployment_link:head
+echo -e "* [Documentation website](${published_website_url})\n* [Storybook](${published_storybook_url})${vrt_pr_comment}" | buildkite-agent meta-data set pr_comment:docs_deployment_link:head
+
+# Fail the build after notifications have been sent
+if [[ "${VRT_PASSED}" == "false" ]]; then
+  exit 1
+fi
