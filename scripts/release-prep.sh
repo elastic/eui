@@ -2,15 +2,14 @@
 #
 # Official release preparation script (pre-PR)
 #
-# Automates steps 1-8 of the official release process:
-#   1. Log out of npm
-#   2. Checkout main
-#   3. Pull latest from upstream
-#   4. Create a timestamped release branch
-#   5. Build the release CLI
-#   6. Run the release dry-run (interactive)
-#   7. (User confirms in the interactive CLI)
-#   8. Push the branch to origin and open a PR
+# Automates initial steps of the process:
+# - Log out of npm
+# - Checkout main, pull latest from upstream
+# - Create a timestamped release branch
+# - Build the release CLI
+# - Run the release dry-run (interactive)
+# - (User confirms in the interactive CLI)
+# - Push the branch to origin and open a PR
 #
 # Usage: yarn release:prep
 #
@@ -40,57 +39,61 @@ error() {
 REPO_ROOT=$(git rev-parse --show-toplevel 2>/dev/null) || error "Not inside a git repository"
 cd "$REPO_ROOT"
 
-# Verify the upstream remote exists
+PACKAGE_DIRS=(packages/eui packages/eui-theme-common packages/eui-theme-borealis packages/docusaurus-preset packages/docusaurus-theme packages/eslint-plugin)
+
 git remote get-url upstream &>/dev/null || error "'upstream' remote not found. Please add it: git remote add upstream git@github.com:elastic/eui.git"
 
-# ── Step 1: Log out of npm ──────────────────────────────────────────────────
+# Bail early if there are uncommitted changes
+if [[ -n "$(git status --porcelain)" ]]; then
+  error "Working tree is dirty. Please commit or stash your changes before running this script."
+fi
 
 step "1/8" "Ensuring npm is not authenticated..."
 npm logout 2>/dev/null || true
 yarn npm logout 2>/dev/null || true
 
-# ── Step 2: Checkout main ───────────────────────────────────────────────────
-
 step "2/8" "Checking out main branch..."
 git checkout main
 
-# ── Step 3: Pull latest ────────────────────────────────────────────────────
-
 step "3/8" "Pulling latest changes from upstream..."
 git pull upstream main
-
-# ── Step 4: Create release branch ───────────────────────────────────────────
 
 BRANCH_NAME="release/$(date +%s)"
 step "4/8" "Creating release branch: ${BOLD}${BRANCH_NAME}${RESET}"
 git checkout -b "$BRANCH_NAME"
 
-# ── Step 5: Build release CLI ───────────────────────────────────────────────
-
 step "5/8" "Installing dependencies and building release CLI..."
 yarn
 yarn workspace @elastic/eui-release-cli run build
-
-# ── Step 6: Run release (dry-run) ───────────────────────────────────────────
 
 step "6/8" "Starting release process (dry-run)..."
 echo ""
 yarn release run official --dry-run --allow-custom --skip-auth-check --use-auth-token
 
-# ── Step 7: Push branch ────────────────────────────────────────────────────
+# Check for uncommitted changes after the release CLI run
+if [[ -n "$(git status --porcelain)" ]]; then
+  echo ""
+  warn "There are uncommitted changes in the working tree:"
+  git status --short
+  echo ""
+  read -r -p "Continue pushing without these changes? They won't be included in the PR. (y/N) " confirm
+  if [[ "$confirm" != "y" && "$confirm" != "Y" ]]; then
+    echo ""
+    echo "Stopped. Commit your changes and re-run from step 7 manually:"
+    echo "  git push -u origin $BRANCH_NAME"
+    exit 0
+  fi
+fi
 
 step "7/8" "Pushing branch to origin..."
 git push -u origin "$BRANCH_NAME"
 
-# ── Step 8: Open PR ────────────────────────────────────────────────────────
-
 step "8/8" "Opening release PR..."
 
-# Detect changed packages by comparing versions on this branch vs main
 PR_TITLE_PARTS=""
 PR_BODY_LINES=""
 
-for pkg_dir in packages/eui packages/eui-theme-common packages/eui-theme-borealis packages/docusaurus-preset packages/docusaurus-theme packages/eslint-plugin; do
+for pkg_dir in "${PACKAGE_DIRS[@]}"; do
   pkg_json="${pkg_dir}/package.json"
   [[ -f "$pkg_json" ]] || continue
 
