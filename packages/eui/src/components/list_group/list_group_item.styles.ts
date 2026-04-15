@@ -25,7 +25,6 @@ export const euiListGroupItemStyles = (euiThemeContext: UseEuiTheme) => {
       flex-grow: 1;
       max-inline-size: 100%;
       overflow: hidden;
-      text-align: start;
       font-weight: inherit;
     `,
     // Colors
