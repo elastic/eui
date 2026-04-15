@@ -48,7 +48,7 @@ export const EuiFlyoutMain = forwardRef<HTMLElement, EuiFlyoutMainProps>(
     const isPushed = useIsPushed({
       type,
       pushMinBreakpoint,
-      containerElement: context?.state.containerElement,
+      containerWidth: context?.state.referenceWidth,
     });
 
     const cssStyles = [
