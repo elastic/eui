@@ -291,7 +291,7 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
   const tooltipStyles = euiListGroupItemTooltipStyles;
 
   const _tooltipProps = showToolTip
-    ? {
+    ? ({
         content: toolTipText ?? label,
         position: 'right',
         delay: 'long',
@@ -307,7 +307,7 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
             toolTipProps?.anchorProps?.css,
           ],
         },
-      }
+      } as EuiToolTipProps)
     : undefined;
 
   return (
@@ -317,7 +317,7 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
       css={cssStyles}
       style={style}
       {...restItemProps}
-      tooltipProps={_tooltipProps as EuiToolTipProps}
+      tooltipProps={_tooltipProps}
       showIndicator={false}
       isSelected={isActive}
       isDisabled={isDisabled}
