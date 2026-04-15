@@ -24,7 +24,9 @@ export const euiListGroupItemExtraActionStyles = ({
     `,
     hoverStyles: css`
       .euiListGroupItem:hover &,
-      .euiListGroupItem__button:focus &,
+      .euiListGroupItem:hover + &,
+      .euiListGroupItem__button:focus + &,
+      &:hover,
       &:focus {
         opacity: 1;
       }
