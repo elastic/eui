@@ -188,7 +188,7 @@ export const Role: Story = {
 
 export const ExtraAction: Story = {
   tags: ['vrt-only'],
-  name: 'extraAction',
+  name: 'extraAction (prop)',
   parameters: {
     controls: {
       include: ['element', 'extraAction', 'children'],
@@ -202,7 +202,7 @@ export const ExtraAction: Story = {
 
 export const TooltipProps: Story = {
   tags: ['vrt-only'],
-  name: 'tooltipProps',
+  name: 'tooltipProps (prop)',
   parameters: {
     controls: {
       include: ['element', 'tooltipProps', 'isFocused', 'children'],
@@ -224,7 +224,7 @@ export const TooltipProps: Story = {
 
 export const ExtraActionAndTooltipProps: Story = {
   tags: ['vrt-only'],
-  name: 'extraAction & tooltipProps',
+  name: 'extraAction (prop) & tooltipProps (prop)',
   parameters: {
     controls: {
       include: [
@@ -253,7 +253,7 @@ export const ExtraActionAndTooltipProps: Story = {
 
 export const Truncation: Story = {
   tags: ['vrt-only'],
-  name: 'textWrap: truncate',
+  name: 'textWrap (prop): truncate',
   parameters: {
     controls: {
       include: ['element', 'textWrap', 'children'],
@@ -276,7 +276,7 @@ export const Truncation: Story = {
 
 export const TextWrap: Story = {
   tags: ['vrt-only'],
-  name: 'textWrap: wrap',
+  name: 'textWrap (prop): wrap',
   parameters: {
     controls: {
       include: ['element', 'textWrap', 'children'],

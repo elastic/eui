@@ -65,10 +65,10 @@ export const ExternalLink: Story = {
 };
 
 export const ExtraAction: Story = {
-  name: 'extraAction',
+  name: 'extraAction (prop)',
   args: {
     label: 'List group item',
-    onClick: action('foo'),
+    onClick: action('onClick'),
     iconType: 'info',
     extraAction: {
       iconType: 'ellipsis',
@@ -108,10 +108,10 @@ export const Tooltip: Story = {
 
 export const TooltipAndExtraAction: Story = {
   tags: ['vrt-only'],
-  name: 'Tooltip & extraAction',
+  name: 'Tooltip & extraAction (prop)',
   args: {
     label: 'List group item',
-    onClick: action('foo'),
+    onClick: action('onClick'),
     autoFocus: true,
     iconType: 'info',
     extraAction: {
@@ -151,7 +151,7 @@ export const Truncation: Story = {
 
 export const WrapText: Story = {
   tags: ['vrt-only'],
-  name: 'wrapText',
+  name: 'wrapText (prop)',
   args: {
     label: 'Long list group item label that should be wrapped',
     wrapText: true,
