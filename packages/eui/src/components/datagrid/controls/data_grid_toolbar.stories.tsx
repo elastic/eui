@@ -31,6 +31,9 @@ import {
 const meta: Meta = {
   title: 'Tabular Content/EuiDataGrid/toolbarVisibility (prop)',
   component: ToolbarStorybookComponent,
+  parameters: {
+    vrt: { selector: VRT_SELECTORS.portal },
+  },
 };
 
 export default meta;
