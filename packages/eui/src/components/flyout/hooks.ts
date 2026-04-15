@@ -14,13 +14,6 @@ import { DEFAULT_PUSH_MIN_BREAKPOINT, DEFAULT_TYPE } from './const';
 /**
  * Determines if a flyout should be rendered in a "pushed" state based on its
  * configuration and the current window or container size.
- *
- * When `containerWidth` is provided, the push/overlay breakpoint decision
- * is based on the container's measured width rather than the viewport width.
- * This ensures flyouts scoped to a container respond to the available space
- * within that container. The caller is responsible for observing the
- * container's width (e.g. via `useResizeObserver`) so that no duplicate
- * observer is created here.
  */
 export const useIsPushed = (
   props: Pick<EuiFlyoutProps, 'type' | 'pushMinBreakpoint'> & {
