@@ -1,4 +1,5 @@
 name: Open a PR with updated dependencies
+
 on:
   workflow_dispatch:
     inputs:
@@ -14,6 +15,10 @@ on:
         description: Fork repository to create the branch in
         type: string
         required: true
+
+permissions:
+  id-token: write
+
 jobs:
   update:
     name: Update dependencies
@@ -102,6 +107,12 @@ jobs:
           git commit -m "chore: update dependencies"
       - name: Push branch to forked repository
         run: git push -u fork "${{ steps.git_branch.outputs.BRANCH_NAME }}"
+      - name: Fetch ephemeral GitHub token
+        id: fetch_ephemeral_token
+        uses: elastic/ci-gh-actions/fetch-github-token@v1.5.0
+        with:
+          vault-instance: ci-prod
+          vault-role: token-policy-3de0c59c60e3
       - name: Open a PR
         # language=bash
         run: |
@@ -110,4 +121,4 @@ jobs:
           head="${fork_user}:${{ steps.git_branch.outputs.BRANCH_NAME }}"
           gh pr create --draft --head "$head" --base main --repo "${{ inputs.upstream_repository }}" --body "@${{ github.actor }}" --title "[EUI] Test updated dependencies"
         env:
-          GH_TOKEN: ${{ secrets.UPDATE_DEPS_KIBANA_REPO_TOKEN }}
+          GH_TOKEN: ${{ steps.fetch_ephemeral_token.outputs.token }}
