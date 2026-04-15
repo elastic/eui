@@ -101,10 +101,7 @@ jobs:
           git add package.json yarn.lock src/platform/packages/private/kbn-ui-shared-deps-npm/version_dependencies.txt
           git commit -m "chore: update dependencies"
       - name: Push branch to forked repository
-        run: |
-          gh auth status
-          git remote get-url fork
-          git push -u fork "${{ steps.git_branch.outputs.BRANCH_NAME }}"
+        run: git push -u fork "${{ steps.git_branch.outputs.BRANCH_NAME }}"
       - name: Open a PR
         # language=bash
         run: |
