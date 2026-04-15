@@ -111,6 +111,6 @@ jobs:
           # Extract user from fork_repository
           fork_user="$(cut -d '/' -f1 <<< "${{ inputs.fork_repository }}")"
           head="${fork_user}:${{ steps.git_branch.outputs.BRANCH_NAME }}}"
-          gh pr create --draft --head "$head" --body "@${{ github.actor }}" --title "[EUI] Test updated dependencies" --dry-run
+          gh pr create --draft --head "$head" --body "@${{ github.actor }}" --title "[EUI] Test updated dependencies"
         env:
           GH_TOKEN: ${{ secrets.UPDATE_DEPS_KIBANA_REPO_TOKEN }}
