@@ -7,7 +7,6 @@
  */
 
 import { useIsWithinMinBreakpoint, useEuiTheme } from '../../services';
-import { useResizeObserver } from '../observer/resize_observer';
 import { EuiFlyoutProps } from './flyout';
 import { usePropsWithComponentDefaults } from '../provider/component_defaults';
 import { DEFAULT_PUSH_MIN_BREAKPOINT, DEFAULT_TYPE } from './const';
@@ -16,14 +15,16 @@ import { DEFAULT_PUSH_MIN_BREAKPOINT, DEFAULT_TYPE } from './const';
  * Determines if a flyout should be rendered in a "pushed" state based on its
  * configuration and the current window or container size.
  *
- * When `containerElement` is provided, the push/overlay breakpoint decision
- * is based on the container's width rather than the viewport width. This
- * ensures flyouts scoped to a container respond to the available space
- * within that container.
+ * When `containerWidth` is provided, the push/overlay breakpoint decision
+ * is based on the container's measured width rather than the viewport width.
+ * This ensures flyouts scoped to a container respond to the available space
+ * within that container. The caller is responsible for observing the
+ * container's width (e.g. via `useResizeObserver`) so that no duplicate
+ * observer is created here.
  */
 export const useIsPushed = (
   props: Pick<EuiFlyoutProps, 'type' | 'pushMinBreakpoint'> & {
-    containerElement?: HTMLElement | null;
+    containerWidth?: number;
   }
 ) => {
   const {
@@ -36,20 +37,13 @@ export const useIsPushed = (
   } = useEuiTheme();
 
   // Always called to satisfy React hook rules; used as fallback
-  // when no container element is provided.
+  // when no container width is provided.
   const windowIsLargeEnoughToPush = useIsWithinMinBreakpoint(pushMinBreakpoint);
 
-  // Observe container width so the push/overlay decision reacts to
-  // container resizes, not just viewport resizes.
-  const containerDimensions = useResizeObserver(
-    props.containerElement ?? null,
-    'width'
-  );
-
-  const isLargeEnoughToPush = props.containerElement
-    ? (containerDimensions.width || props.containerElement.clientWidth) >=
-      breakpoints[pushMinBreakpoint]
-    : windowIsLargeEnoughToPush;
+  const isLargeEnoughToPush =
+    props.containerWidth != null
+      ? props.containerWidth >= breakpoints[pushMinBreakpoint]
+      : windowIsLargeEnoughToPush;
 
   return type === 'push' && isLargeEnoughToPush;
 };
