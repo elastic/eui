@@ -12,6 +12,11 @@ import { getStoryContext } from '@storybook/test-runner';
 import { toMatchImageSnapshot } from 'jest-image-snapshot';
 
 const STORY_SELECTOR = '#story-wrapper > *';
+/**
+ * `{ animations: 'disabled' }` pauses CSS animations before taking a screenshot,
+ * preventing stability timeouts on infinite looping animations (spinners etc.).
+ */
+const SCREENSHOT_OPTIONS = { animations: 'disabled' } as const;
 
 const config: TestRunnerConfig = {
   setup() {
@@ -30,12 +35,10 @@ const config: TestRunnerConfig = {
     const selector = storyContext.parameters?.vrt?.selector ?? STORY_SELECTOR;
     const viewport = page.viewportSize();
     const project = viewport?.width === 390 ? 'mobile' : 'desktop';
-    // `{ animations: 'disabled' }` pauses CSS animations before screenshotting,
-    // preventing stability timeouts on infinite looping animations (spinners etc.)
-    const image = await page
-      .locator(selector)
-      .first()
-      .screenshot({ animations: 'disabled' });
+    const image =
+      selector === 'page'
+        ? await page.screenshot(SCREENSHOT_OPTIONS)
+        : await page.locator(selector).first().screenshot(SCREENSHOT_OPTIONS);
 
     expect(image).toMatchImageSnapshot({
       customSnapshotsDir: path.join(__dirname, '..', '.vrt', 'reference'),

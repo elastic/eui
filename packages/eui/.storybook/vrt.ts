@@ -12,18 +12,23 @@ import type { ReactRenderer } from '@storybook/react';
 export const VRT_SELECTORS = {
   /**
    * Default story selector
-   * Please keep in sync with the fallback in .storybook/test-runner.ts
+   * 
+   * Please keep in sync with the fallback in `.storybook/test-runner.ts`.
    */
   default: '#story-wrapper > *',
   /**
    * Text node only selector
-   * To be used in stories for components rendering a text node instead of JSX elements
+   * 
+   * To be used in stories for components rendering a text node instead of JSX elements.
    */
   textOnly: '#story-wrapper',
   /**
    * Portal element content selector
+   * 
+   * To be used in stories for components rendering a portal, e.g. flyouts, modals and popovers.
+   * Might change in the future, see https://github.com/elastic/eui/issues/9503
    */
-  portal: '#storybook-root > *',
+  portal: 'page',
 } as const;
 
 /**

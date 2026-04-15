@@ -131,9 +131,6 @@ export const PushFlyouts: Story = {
     controls: {
       include: ['hasAnimation', 'pushMinBreakpoint', 'side', 'size', 'type'],
     },
-    vrt: {
-      selector: VRT_SELECTORS.default,
-    },
   },
   args: {
     type: 'push',
