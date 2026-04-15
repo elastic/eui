@@ -91,7 +91,7 @@ jobs:
           fi'
       - name: Run install script
         # TODO: this should be configurable
-        run: yarn kbn reset && yarn kbn bootstrap --force-install # force-install seems to be currently needed due to ongoing yaml package migration :shrug:
+        run: yarn kbn bootstrap || yarn kbn bootstrap # retry if the first one failed due to shenanigans with yaml dependency
       - name: Check changes
         run: git status
       - name: Commit changed files
