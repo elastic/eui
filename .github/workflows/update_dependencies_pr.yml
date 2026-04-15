@@ -46,7 +46,6 @@ jobs:
         run: |
           echo "${GH_AUTH_TOKEN}" | gh auth login --with-token
           gh auth setup-git
-          gh auth status
           git config --global user.name 'github-actions[bot]'
           git config --global user.email '41898282+github-actions[bot]@users.noreply.github.com'
       - name: Configure git remote for the fork
@@ -54,13 +53,13 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         # language=bash
         run: |
-          ssh_url=$(gh repo view "${{ inputs.fork_repository }}" --json sshUrl --jq .sshUrl)
-          if [[ "$?" -ne 0 ]] || [[ -z "$ssh_url" ]]; then
+          git_url=$(gh repo view "${{ inputs.fork_repository }}" --json url --jq .url)
+          if [[ "$?" -ne 0 ]] || [[ -z "$git_url" ]]; then
             echo "::error::Cannot find the fork repository. Please make sure the fork_repository input points to the correct fork in the format of <repo_owner>/<repo_name>."
             exit 1
           fi
-          git remote add fork "$ssh_url"
-          echo "::debug::Resolved the fork repository '${{ inputs.fork_repository }}' to '$ssh_url'"
+          git remote add fork "$git_url.git"
+          echo "::debug::Resolved the fork repository '${{ inputs.fork_repository }}' to '$git_url'"
       - name: Create new branch
         id: git_branch
         # language=bash
