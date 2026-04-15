@@ -129,7 +129,7 @@ It's worth pointing out that although the examples provided are specific to EUI 
 
 ### `@elastic/eui/require-aria-label-for-modals`
 
-Ensure that EUI modal components (`EuiModal`, `EuiFlyout`, `EuiFlyoutResizable` ,`EuiConfirmModal`) have either an `aria-label` or `aria-labelledby` prop for accessibility. This helps screen reader users understand the purpose and content of modal dialogs.
+Ensure that EUI modal components (`EuiModal`, `EuiFlyout`, `EuiFlyoutResizable` ,`EuiConfirmModal`, `EuiPopover`, `EuiWrappingPopover`) have either an `aria-label` or `aria-labelledby` prop for accessibility. This helps screen reader users understand the purpose and content of modal dialogs.
 
 ### `@elastic/eui/consistent-is-invalid-props`
 

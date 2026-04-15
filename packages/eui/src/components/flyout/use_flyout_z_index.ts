@@ -8,13 +8,13 @@
 
 import type { CSSProperties } from 'react';
 import { useEuiTheme } from '../../services';
-import type { EuiOverlayMaskProps } from '../overlay_mask';
 
 /**
  * @internal
  */
 export interface UseEuiFlyoutZIndex {
-  maskProps?: EuiOverlayMaskProps;
+  /** Use 'above' to stack the flyout above fixed headers (mask-level z-index); 'below' otherwise. */
+  headerZindexLocation?: 'above' | 'below';
   isPushed: boolean;
   managedFlyoutIndex: number;
   isChildFlyout: boolean;
@@ -37,7 +37,7 @@ const calculateZIndex = (
  * @internal
  */
 export const useEuiFlyoutZIndex = ({
-  maskProps,
+  headerZindexLocation = 'below',
   isPushed,
   managedFlyoutIndex,
   isChildFlyout,
@@ -46,12 +46,9 @@ export const useEuiFlyoutZIndex = ({
 
   let baseLevel = Number(euiTheme.levels.flyout);
 
-  // The default headerZindexLocation for EuiFlyout is "below"
-  // which is different from what EuiOverlayMask fallbacks to - see
-  // _flyout_overlay.tsx.
-  // We set z-index to mask level only when explicitly overridden
-  // via the maskProps prop
-  if (!isPushed && maskProps?.headerZindexLocation === 'above') {
+  // headerZindexLocation 'above' uses mask-level z-index so the flyout stacks
+  // above fixed headers (which typically use a high z-index).
+  if (!isPushed && headerZindexLocation === 'above') {
     baseLevel = Number(euiTheme.levels.mask);
   }
 

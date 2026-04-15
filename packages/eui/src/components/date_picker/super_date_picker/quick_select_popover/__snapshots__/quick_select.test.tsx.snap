@@ -33,7 +33,7 @@ exports[`EuiQuickSelect is rendered 1`] = `
               aria-hidden="true"
               class="euiButtonIcon__icon"
               color="inherit"
-              data-euiicon-type="arrowLeft"
+              data-euiicon-type="chevronSingleLeft"
             />
           </button>
         </span>
@@ -54,7 +54,7 @@ exports[`EuiQuickSelect is rendered 1`] = `
               aria-hidden="true"
               class="euiButtonIcon__icon"
               color="inherit"
-              data-euiicon-type="arrowRight"
+              data-euiicon-type="chevronSingleRight"
             />
           </button>
         </span>
@@ -98,7 +98,7 @@ exports[`EuiQuickSelect is rendered 1`] = `
                 <span
                   aria-hidden="true"
                   class="euiFormControlLayoutCustomIcon__icon"
-                  data-euiicon-type="arrowDown"
+                  data-euiicon-type="chevronSingleDown"
                 />
               </span>
             </div>
@@ -185,7 +185,7 @@ exports[`EuiQuickSelect is rendered 1`] = `
                 <span
                   aria-hidden="true"
                   class="euiFormControlLayoutCustomIcon__icon"
-                  data-euiicon-type="arrowDown"
+                  data-euiicon-type="chevronSingleDown"
                 />
               </span>
             </div>
@@ -252,7 +252,7 @@ exports[`EuiQuickSelect prevQuickSelect 1`] = `
               aria-hidden="true"
               class="euiButtonIcon__icon"
               color="inherit"
-              data-euiicon-type="arrowLeft"
+              data-euiicon-type="chevronSingleLeft"
             />
           </button>
         </span>
@@ -273,7 +273,7 @@ exports[`EuiQuickSelect prevQuickSelect 1`] = `
               aria-hidden="true"
               class="euiButtonIcon__icon"
               color="inherit"
-              data-euiicon-type="arrowRight"
+              data-euiicon-type="chevronSingleRight"
             />
           </button>
         </span>
@@ -317,7 +317,7 @@ exports[`EuiQuickSelect prevQuickSelect 1`] = `
                 <span
                   aria-hidden="true"
                   class="euiFormControlLayoutCustomIcon__icon"
-                  data-euiicon-type="arrowDown"
+                  data-euiicon-type="chevronSingleDown"
                 />
               </span>
             </div>
@@ -404,7 +404,7 @@ exports[`EuiQuickSelect prevQuickSelect 1`] = `
                 <span
                   aria-hidden="true"
                   class="euiFormControlLayoutCustomIcon__icon"
-                  data-euiicon-type="arrowDown"
+                  data-euiicon-type="chevronSingleDown"
                 />
               </span>
             </div>

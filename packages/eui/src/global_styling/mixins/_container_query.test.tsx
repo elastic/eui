@@ -17,36 +17,36 @@ import {
 describe('euiContainer', () => {
   it('supports naming containers', () => {
     expect(euiContainer('normal', 'my-unique-name')).toEqual(
-      'container-name: my-unique-name'
+      'container-name: my-unique-name;'
     );
   });
 
   it('supports non-scroll state container types', () => {
     expect(euiContainer('size', 'my-unique-name')).toEqual(
-      'container-name: my-unique-name;container-type: size'
+      'container-name: my-unique-name;container-type: size;'
     );
     expect(euiContainer('inline-size', 'my-unique-name')).toEqual(
-      'container-name: my-unique-name;container-type: inline-size'
+      'container-name: my-unique-name;container-type: inline-size;'
     );
   });
 
   it('supports scroll states via the scrollState argument', () => {
     expect(euiContainer('size', 'my-unique-name', true)).toEqual(
-      'container-name: my-unique-name;container-type: size scroll-state'
+      'container-name: my-unique-name;container-type: size scroll-state;'
     );
 
     expect(euiContainer('size', 'my-unique-name', false)).toEqual(
-      'container-name: my-unique-name;container-type: size'
+      'container-name: my-unique-name;container-type: size;'
     );
   });
 
   it('ignores the default "normal" container type', () => {
     expect(euiContainer('normal', 'my-unique-name')).toEqual(
-      'container-name: my-unique-name'
+      'container-name: my-unique-name;'
     );
 
     expect(euiContainer('normal', 'my-unique-name', true)).toEqual(
-      'container-name: my-unique-name;container-type: scroll-state'
+      'container-name: my-unique-name;container-type: scroll-state;'
     );
   });
 });

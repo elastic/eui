@@ -8,14 +8,17 @@
 
 import { css } from '@emotion/react';
 
-import { UseEuiTheme } from '../../services';
+import { useEuiMemoizedStyles, UseEuiTheme } from '../../services';
 import {
+  euiContainerQuery,
   euiFontSize,
   logicalCSS,
   logicalTextAlignCSS,
 } from '../../global_styling';
 
 import { euiTableVariables } from './table.styles';
+import { EUI_TABLE_CSS_CONTAINER_NAME } from './const';
+import { EuiTableStickyCellOptions } from './types';
 
 export const euiTableHeaderFooterCellStyles = (
   euiThemeContext: UseEuiTheme
@@ -99,4 +102,57 @@ export const euiTableCellCheckboxStyles = (euiThemeContext: UseEuiTheme) => {
       ${logicalCSS('left', mobileSizes.checkbox.offset)}
     `,
   };
+};
+
+const euiTableStickyCellStyles = ({ euiTheme }: UseEuiTheme) => {
+  return {
+    root: css`
+      position: sticky;
+      background-color: var(
+        --euiTableCellStickyBackgroundColor,
+        ${euiTheme.colors.backgroundBasePlain}
+      );
+
+      /* Firefox and Safari don't support scroll-state container queries yet */
+      /* Our version of stylelint doesn't like the query below */
+      /* stylelint-disable selector-type-no-unknown, selector-type-case */
+      ${euiContainerQuery(
+        'scroll-state(scrollable: right)',
+        EUI_TABLE_CSS_CONTAINER_NAME
+      )} {
+        &::before {
+          content: '';
+          position: absolute;
+          inset-inline-start: 0;
+          inset-block: 0;
+          inline-size: ${euiTheme.border.width.thin};
+          background-color: ${euiTheme.border.color};
+        }
+      }
+      /* stylelint-enable */
+    `,
+    side: {
+      start: css`
+        inset-inline-start: 0;
+      `,
+      end: css`
+        inset-inline-end: 0;
+      `,
+    },
+  };
+};
+
+/**
+ * @internal
+ */
+export const _useEuiTableStickyCellStyles = (
+  options?: EuiTableStickyCellOptions
+) => {
+  const styles = useEuiMemoizedStyles(euiTableStickyCellStyles);
+
+  if (!options) {
+    return undefined;
+  }
+
+  return [styles.root, styles.side[options.side]];
 };

@@ -20,39 +20,82 @@ import {
   STAGE_RETURNING,
 } from './const';
 import type { EuiFlyoutActivityStage, EuiFlyoutLevel } from './types';
-import {
-  useFlyoutLayoutMode,
-  useHasChildFlyout,
-  useIsFlyoutActive,
-} from './hooks';
 import { setActivityStage } from './actions';
 import { useFlyoutManager } from './provider';
 
 export interface UseFlyoutActivityStageParams {
   flyoutId: string;
   level: EuiFlyoutLevel;
+  /** When false, skip intermediate stages (CLOSING, RETURNING, BACKGROUNDING) and transition directly to final state. */
+  shouldAnimate?: boolean;
 }
 
 export interface UseFlyoutActivityStageReturn {
   activityStage: EuiFlyoutActivityStage;
+  /**
+   * Pass to the flyout's `onAnimationEnd` prop to finalize transitional stages
+   * (e.g. CLOSING -> INACTIVE). When `shouldAnimate` is false, the intermediate
+   * CLOSING/RETURNING/BACKGROUNDING stages are skipped, but OPENING -> ACTIVE
+   * still relies on this handler since new flyouts always start in OPENING.
+   */
   onAnimationEnd: () => void;
 }
 
 /**
+ * Returns the final stage after an animation completes.
+ * OPENING/RETURNING -> ACTIVE; CLOSING -> INACTIVE; BACKGROUNDING -> BACKGROUNDED.
+ */
+const getNextStage = (
+  stage: EuiFlyoutActivityStage
+): EuiFlyoutActivityStage | null => {
+  switch (stage) {
+    case STAGE_OPENING:
+    case STAGE_RETURNING:
+      return STAGE_ACTIVE;
+    case STAGE_CLOSING:
+      return STAGE_INACTIVE;
+    case STAGE_BACKGROUNDING:
+      return STAGE_BACKGROUNDED;
+    default:
+      return null;
+  }
+};
+
+/**
  * Encapsulates all activity-stage transitions and animation-driven updates
  * for managed flyouts.
+ *
+ * Performance: reads `useFlyoutManager()` once and derives isActive,
+ * hasChild, and layoutMode inline (replaces useIsFlyoutActive,
+ * useHasChildFlyout, useFlyoutLayoutMode hooks).
  */
 export const useFlyoutActivityStage = ({
   flyoutId,
   level,
+  shouldAnimate = false,
 }: UseFlyoutActivityStageParams) => {
-  const isActive = useIsFlyoutActive(flyoutId);
-  const hasChild = useHasChildFlyout(flyoutId);
-  const layoutMode = useFlyoutLayoutMode();
   const ctx = useFlyoutManager();
+  const state = ctx?.state;
+
+  // Derive all needed values from single context read
+  const sessions = state?.sessions;
+  const currentSession = sessions
+    ? sessions[sessions.length - 1] ?? null
+    : null;
+  const isActive =
+    currentSession?.mainFlyoutId === flyoutId ||
+    currentSession?.childFlyoutId === flyoutId;
+
+  const session =
+    state?.sessions.find(
+      (s) => s.mainFlyoutId === flyoutId || s.childFlyoutId === flyoutId
+    ) ?? null;
+  const hasChild = !!session?.childFlyoutId;
+
+  const layoutMode = state?.layoutMode ?? LAYOUT_MODE_SIDE_BY_SIDE;
 
   const stage: EuiFlyoutActivityStage =
-    ctx?.state.flyouts.find((f) => f.flyoutId === flyoutId)?.activityStage ||
+    state?.flyouts.find((f) => f.flyoutId === flyoutId)?.activityStage ||
     (isActive ? STAGE_ACTIVE : STAGE_INACTIVE);
 
   const stageRef = useRef(stage);
@@ -60,83 +103,68 @@ export const useFlyoutActivityStage = ({
     stageRef.current = stage;
   }
 
+  const transitionTo = useCallback(
+    (nextStage: EuiFlyoutActivityStage) => {
+      ctx?.dispatch?.(setActivityStage(flyoutId, nextStage));
+      stageRef.current = nextStage;
+    },
+    [ctx, flyoutId]
+  );
+
   /**
-   * 1. ACTIVE -> CLOSING when no longer the active flyout.
-   * 2. INACTIVE -> RETURNING when it becomes active again (e.g., reopened or brought forward).
-   * 3. (Main flyout only) ACTIVE + stacked + has child -> BACKGROUNDING (begin background animation).
-   * 4. (Main only) BACKGROUNDED/BACKGROUNDING + (child gone OR side-by-side) -> RETURNING (bring main to foreground).
-   *
-   * Any stages that depend on animation end (OPENING, RETURNING, CLOSING, BACKGROUNDING) are finalized in `onAnimationEnd`.
+   * 1. ACTIVE -> CLOSING (or INACTIVE when !shouldAnimate) when no longer the active flyout.
+   * 2. INACTIVE -> RETURNING (or ACTIVE when !shouldAnimate) when it becomes active again.
+   * 3. (Main only) ACTIVE + stacked + has child -> BACKGROUNDING (or BACKGROUNDED when !shouldAnimate).
+   * 4. (Main only) BACKGROUNDED/BACKGROUNDING + (child gone OR side-by-side) -> RETURNING (or ACTIVE when !shouldAnimate).
    */
   useEffect(() => {
     const s = stageRef.current;
     let next: EuiFlyoutActivityStage | null = null;
 
-    if (s === STAGE_ACTIVE && !isActive) next = STAGE_CLOSING;
-    else if (s === STAGE_INACTIVE && isActive) {
-      next = STAGE_RETURNING;
+    if (s === STAGE_ACTIVE && !isActive) {
+      next = shouldAnimate ? STAGE_CLOSING : STAGE_INACTIVE;
+    } else if (s === STAGE_INACTIVE && isActive) {
+      next = shouldAnimate ? STAGE_RETURNING : STAGE_ACTIVE;
     } else if (
       level === LEVEL_MAIN &&
       isActive &&
       s === STAGE_ACTIVE &&
       hasChild &&
       layoutMode === LAYOUT_MODE_STACKED
-    )
-      next = STAGE_BACKGROUNDING;
-    else if (
+    ) {
+      next = shouldAnimate ? STAGE_BACKGROUNDING : STAGE_BACKGROUNDED;
+    } else if (
       level === LEVEL_MAIN &&
       (s === STAGE_BACKGROUNDED || s === STAGE_BACKGROUNDING) &&
       (!hasChild || layoutMode === LAYOUT_MODE_SIDE_BY_SIDE)
-    )
-      next = STAGE_RETURNING;
+    ) {
+      next = shouldAnimate ? STAGE_RETURNING : STAGE_ACTIVE;
+    }
 
     if (next && next !== s) {
-      ctx?.dispatch?.(setActivityStage(flyoutId, next));
-      stageRef.current = next;
+      transitionTo(next);
     }
-  }, [isActive, hasChild, layoutMode, level, ctx, flyoutId, stage]);
+  }, [
+    isActive,
+    hasChild,
+    layoutMode,
+    level,
+    shouldAnimate,
+    transitionTo,
+    stage,
+  ]);
 
   /**
-   * Get the stage to transition to for given current stage.
-   * Returns `null` if stage should remain unchanged.
-   *
-   * Stage transitions:
-   *  - OPENING / RETURNING -> ACTIVE
-   *  - CLOSING -> INACTIVE
-   *  - BACKGROUNDING -> BACKGROUNDED
-   */
-  const getNextStage = (
-    stage: EuiFlyoutActivityStage
-  ): EuiFlyoutActivityStage | null => {
-    switch (stage) {
-      case STAGE_OPENING:
-      case STAGE_RETURNING:
-        return STAGE_ACTIVE;
-
-      case STAGE_CLOSING:
-        return STAGE_INACTIVE;
-
-      case STAGE_BACKGROUNDING:
-        return STAGE_BACKGROUNDED;
-    }
-
-    return null;
-  };
-
-  /**
-   * onAnimationEnd event handler that must be passed to EuiFlyout.
-   * It handles transitions between stages and updates activity stage
-   * in EuiFlyoutManagerContext.
+   * onAnimationEnd: browser signal when a CSS animation completes.
+   * Calls transitionTo to move to the final stage (e.g. CLOSING -> INACTIVE).
    */
   const onAnimationEnd = useCallback(() => {
     const currentStage = stageRef.current;
     const nextStage = getNextStage(currentStage);
-
     if (nextStage && nextStage !== currentStage) {
-      ctx?.dispatch?.(setActivityStage(flyoutId, nextStage));
-      stageRef.current = nextStage;
+      transitionTo(nextStage);
     }
-  }, [ctx, flyoutId]);
+  }, [transitionTo]);
 
   return { activityStage: stage, onAnimationEnd };
 };

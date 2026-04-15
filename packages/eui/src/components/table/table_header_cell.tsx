@@ -28,23 +28,30 @@ import { EuiIconTip, EuiToolTip } from '../tool_tip';
 
 import type { EuiTableRowCellMobileOptionsShape } from './table_row_cell';
 import type { EuiTableColumnNameTooltipProps } from '../basic_table/table_types';
-import { resolveWidthAsStyle } from './utils';
+import { resolveWidthPropsAsStyle } from './utils';
 import { useEuiTableIsResponsive } from './mobile/responsive_context';
 import { EuiTableCellContent } from './_table_cell_content';
-import { euiTableHeaderFooterCellStyles } from './table_cells_shared.styles';
+import {
+  euiTableHeaderFooterCellStyles,
+  _useEuiTableStickyCellStyles,
+} from './table_cells_shared.styles';
 import { HEADER_CELL_SCOPE } from './table_header_cell_shared';
+import type {
+  EuiTableSharedWidthProps,
+  EuiTableStickyCellOptions,
+} from './types';
 
 export type TableHeaderCellScope = (typeof HEADER_CELL_SCOPE)[number];
 
 export type EuiTableHeaderCellProps = CommonProps &
-  Omit<ThHTMLAttributes<HTMLTableCellElement>, 'align' | 'scope'> & {
+  Omit<ThHTMLAttributes<HTMLTableCellElement>, 'align' | 'scope' | 'width'> &
+  EuiTableSharedWidthProps & {
     align?: HorizontalAlignment;
     isSortAscending?: boolean;
     isSorted?: boolean;
     mobileOptions?: Pick<EuiTableRowCellMobileOptionsShape, 'only' | 'show'>;
     onSort?: NoArgCallback<void>;
     scope?: TableHeaderCellScope;
-    width?: string | number;
     /** Allows adding an icon with a tooltip displayed next to the name */
     tooltipProps?: EuiTableColumnNameTooltipProps;
     description?: string;
@@ -58,6 +65,25 @@ export type EuiTableHeaderCellProps = CommonProps &
      * Used by EuiBasicTable to render hidden copy markers
      */
     append?: ReactNode;
+    /**
+     * Whether the cell should stick to a side of the table.
+     *
+     * This option is not applied in the responsive cards layout - see
+     * {@link EuiTableProps#responsiveBreakpoint|`responsiveBreakpoint`}.
+     *
+     * Currently, it can only be used when the cell is in the first or the last
+     * column of a table.
+     *
+     * When set to `true` and `hasBackground: false` is set on the table,
+     * `--euiTableCellStickyBackgroundColor` CSS variable should be set to match
+     * the background color of the element containing the table.
+     * Otherwise, the sticky cell will use the default `backgroundBasePlain`
+     * background color.
+     * @internal
+     * @beta
+     * @default false
+     */
+    sticky?: EuiTableStickyCellOptions;
   };
 
 const CellContents = ({
@@ -161,14 +187,18 @@ export const EuiTableHeaderCell: FunctionComponent<EuiTableHeaderCellProps> = ({
   scope,
   mobileOptions,
   width,
-  style,
+  minWidth,
+  maxWidth,
+  style: _style,
   readOnly,
   tooltipProps,
   description,
   append,
+  sticky,
   ...rest
 }) => {
   const styles = useEuiMemoizedStyles(euiTableHeaderFooterCellStyles);
+  const stickyStyles = _useEuiTableStickyCellStyles(sticky);
 
   const isResponsive = useEuiTableIsResponsive();
   const hideForDesktop = !isResponsive && mobileOptions?.only;
@@ -176,7 +206,12 @@ export const EuiTableHeaderCell: FunctionComponent<EuiTableHeaderCellProps> = ({
   if (hideForDesktop || hideForMobile) return null;
 
   const classes = classNames('euiTableHeaderCell', className);
-  const inlineStyles = resolveWidthAsStyle(style, width);
+  const cssStyles = [styles.euiTableHeaderCell, !isResponsive && stickyStyles];
+  const inlineWidthStyles = resolveWidthPropsAsStyle(_style, {
+    width,
+    minWidth,
+    maxWidth,
+  });
 
   const CellComponent = children ? 'th' : 'td';
   const cellScope = CellComponent === 'th' ? scope ?? 'col' : undefined; // `scope` is only valid on `th` elements
@@ -202,12 +237,13 @@ export const EuiTableHeaderCell: FunctionComponent<EuiTableHeaderCellProps> = ({
 
   return (
     <CellComponent
-      css={styles.euiTableHeaderCell}
+      css={cssStyles}
       className={classes}
       scope={cellScope}
       role="columnheader"
       aria-sort={ariaSortValue}
-      style={inlineStyles}
+      data-sticky={(!isResponsive && sticky?.side) || undefined}
+      style={{ ..._style, ...inlineWidthStyles }}
       {...rest}
     >
       {canSort ? (

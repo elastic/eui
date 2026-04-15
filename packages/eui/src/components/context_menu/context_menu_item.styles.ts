@@ -13,6 +13,9 @@ import {
   logicalCSS,
   logicalTextAlignCSS,
   euiFontSize,
+  EXTENDED_BUTTON_COLORS,
+  euiButtonEmptyColor,
+  type _EuiExtendedButtonColor,
 } from '../../global_styling';
 
 export const euiContextMenuItemStyles = (euiThemeContext: UseEuiTheme) => {
@@ -77,5 +80,14 @@ export const euiContextMenuItemStyles = (euiThemeContext: UseEuiTheme) => {
     euiContextMenuItem__arrow: css`
       align-self: flex-end;
     `,
+    // Colors - maps button color names to text color overrides
+    colors: Object.fromEntries(
+      EXTENDED_BUTTON_COLORS.map((color) => [
+        color,
+        css`
+          color: ${euiButtonEmptyColor(euiThemeContext, color).color};
+        `,
+      ])
+    ) as Record<_EuiExtendedButtonColor, ReturnType<typeof css>>,
   };
 };

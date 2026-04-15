@@ -280,7 +280,10 @@ export const EuiSideNavItem = <
           </EuiInnerText>
 
           {hasCaret && (
-            <EuiIcon type={itemIsOpen ? 'arrowDown' : 'arrowRight'} size="s" />
+            <EuiIcon
+              type={itemIsOpen ? 'chevronSingleDown' : 'chevronSingleRight'}
+              size="s"
+            />
           )}
         </span>
       </RenderItem>

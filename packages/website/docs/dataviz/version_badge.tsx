@@ -8,7 +8,7 @@ const chartsVersion = pkg.dependencies['@elastic/charts'].replace(
 
 export default () => (
   <EuiBadge
-    iconType="popout"
+    iconType="external"
     iconSide="right"
     href={`https://github.com/elastic/elastic-charts/tree/v${chartsVersion}`}
   >

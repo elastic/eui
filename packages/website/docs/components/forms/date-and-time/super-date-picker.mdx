@@ -387,7 +387,13 @@ import React, { useState } from 'react';
 import {
   EuiSuperDatePicker,
   EuiSuperDatePickerProps,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiSelect,
+  EuiSwitch,
+  EuiSpacer,
   OnTimeChangeProps,
+  useEuiTheme,
 } from '@elastic/eui';
 
 export default () => {
@@ -435,7 +441,7 @@ export default () => {
         width={width}
         compressed={compressed}
       />
-    </EuiSpacer>
+    </>
   );
 };
 ```

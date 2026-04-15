@@ -159,7 +159,6 @@ const Palettes = (
     euiTheme.colors.severity.warning,
     euiTheme.colors.severity.risk,
     euiTheme.colors.severity.danger,
-    euiTheme.colors.severity.assistance,
   ];
 
   return (

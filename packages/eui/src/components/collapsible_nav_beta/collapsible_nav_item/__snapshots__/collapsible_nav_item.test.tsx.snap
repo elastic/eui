@@ -66,7 +66,7 @@ exports[`EuiCollapsibleNavItem renders a top level accordion if items exist 1`] 
         aria-hidden="true"
         class="euiButtonIcon__icon"
         color="inherit"
-        data-euiicon-type="arrowRight"
+        data-euiicon-type="chevronSingleRight"
       />
     </button>
   </div>

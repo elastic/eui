@@ -82,7 +82,7 @@ export const EdgeCaseTesting: Story = {
           title="Accordion with no icon"
           items={[
             { ...args, title: 'Link with no icon', href: '#' },
-            { ...args, title: 'Link with icon', href: '#', icon: 'alert' },
+            { ...args, title: 'Link with icon', href: '#', icon: 'warning' },
           ]}
         />
         <EuiCollapsibleNavItem
@@ -91,7 +91,7 @@ export const EdgeCaseTesting: Story = {
           icon="clock"
           items={[
             { ...args, title: 'Link with no icon', href: '#' },
-            { ...args, title: 'Link with icon', href: '#', icon: 'alert' },
+            { ...args, title: 'Link with icon', href: '#', icon: 'warning' },
           ]}
         />
         <EuiCollapsibleNavItem

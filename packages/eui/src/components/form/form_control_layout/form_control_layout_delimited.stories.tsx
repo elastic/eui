@@ -39,7 +39,7 @@ const meta: Meta<EuiFormControlLayoutDelimitedProps> = {
       control: 'radio',
       options: [undefined, 'icon', 'text'],
       mapping: {
-        icon: <EuiIcon type="arrowRight" />,
+        icon: <EuiIcon type="chevronSingleRight" />,
         text: '+',
       },
     },
@@ -159,7 +159,7 @@ export const KitchenSink: Story = {
           endControl={<EuiFieldNumber controlOnly placeholder="100" />}
         />
         <EuiFormControlLayoutDelimited
-          icon="vector"
+          icon="vectorSquare"
           startControl={<EuiFieldNumber placeholder="0" controlOnly />}
           endControl={<EuiFieldNumber controlOnly placeholder="100" />}
         />

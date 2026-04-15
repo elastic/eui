@@ -44,6 +44,17 @@ export interface EuiFilePickerProps
    */
   onChange?: (files: FileList | null) => void;
   /**
+   * Optionally pass a `File[]` array to maintain the file picker's displayed
+   * state between re-renders. Useful for multi-step forms where the component
+   * may unmount and remount while the file data is still stored in context.
+   *
+   * Note: Due to browser security restrictions, the actual file input
+   * cannot be programmatically set with files. This prop only controls
+   * the displayed state (file names in the prompt). The actual file data
+   * should be stored and managed separately in your application state.
+   */
+  files?: File[] | null;
+  /**
    * Reduces the size to a typical (compressed) input
    * @default false
    */
@@ -82,38 +93,70 @@ export class EuiFilePickerClass extends Component<
     display: 'large',
   };
 
-  state = {
-    promptText: null,
-    isHoveringDrop: false,
-  };
-
   fileInput: HTMLInputElement | null = null;
 
   generatedId: string = htmlIdGenerator()();
 
+  getPromptTextFromFileList = (
+    files: File[] | null
+  ): React.ReactNode | null => {
+    if (!files || files.length === 0) {
+      return null;
+    }
+    if (files.length > 1) {
+      return (
+        <EuiI18n
+          token="euiFilePicker.filesSelected"
+          default="{fileCount} files selected"
+          values={{ fileCount: files.length }}
+        />
+      );
+    }
+    return files[0].name;
+  };
+
+  state: {
+    promptText: React.ReactNode | null;
+    isHoveringDrop: boolean;
+  } = {
+    promptText: this.props.files
+      ? this.getPromptTextFromFileList(this.props.files)
+      : null,
+    isHoveringDrop: false,
+  };
+
+  componentDidUpdate(
+    prevProps: EuiFilePickerProps & WithEuiStylesMemoizerProps
+  ) {
+    // Update prompt text when files prop changes
+    if (this.props.files !== prevProps.files) {
+      this.setState({
+        promptText: this.getPromptTextFromFileList(this.props.files ?? null),
+      });
+    }
+  }
+
   handleChange = () => {
     if (!this.fileInput) return;
 
-    if (this.fileInput.files && this.fileInput.files.length > 1) {
+    if (this.fileInput.files && this.fileInput.files.length === 1) {
+      this.setState({ promptText: this.fileInput.value.split('\\').pop() });
+    } else {
       this.setState({
-        promptText: (
-          <EuiI18n
-            token="euiFilePicker.filesSelected"
-            default="{fileCount} files selected"
-            values={{ fileCount: this.fileInput.files.length }}
-          />
+        promptText: this.getPromptTextFromFileList(
+          this.fileInput.files ? Array.from(this.fileInput.files) : null
         ),
       });
-    } else if (this.fileInput.files && this.fileInput.files.length === 0) {
-      this.setState({ promptText: null });
-    } else {
-      this.setState({ promptText: this.fileInput.value.split('\\').pop() });
     }
 
     const { onChange } = this.props;
 
     if (onChange) {
-      onChange(this.fileInput.files);
+      onChange(
+        this.fileInput.files && this.fileInput.files.length > 0
+          ? this.fileInput.files
+          : null
+      );
     }
   };
 
@@ -161,6 +204,7 @@ export class EuiFilePickerClass extends Component<
             fullWidth = defaultFullWidth,
             isLoading,
             display,
+            files, // Extracted to prevent passing to input element
             ...rest
           } = this.props;
 
@@ -312,7 +356,7 @@ export class EuiFilePickerClass extends Component<
                   className="euiFilePicker__icon"
                   color={iconColor}
                   type={
-                    isInvalid ? 'alert' : disabled ? 'minusInCircle' : 'upload'
+                    isInvalid ? 'warning' : disabled ? 'minusCircle' : 'upload'
                   }
                   size={normalFormControl ? 'm' : 'l'}
                   aria-hidden="true"

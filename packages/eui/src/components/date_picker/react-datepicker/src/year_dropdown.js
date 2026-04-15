@@ -138,7 +138,7 @@ export default class YearDropdown extends React.Component {
         {this.props.year}
       </span>
       <EuiIcon
-        type="arrowDown"
+        type="chevronSingleDown"
         size="s"
         color="subdued"
         className="react-datepicker__year-read-view--down-arrow"

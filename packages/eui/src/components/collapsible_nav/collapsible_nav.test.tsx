@@ -15,9 +15,12 @@ import { EuiCollapsibleNav } from './collapsible_nav';
 import { EuiOverlayMaskProps } from '../overlay_mask';
 
 jest.mock('../overlay_mask', () => ({
-  EuiOverlayMask: ({ headerZindexLocation, maskRef, ...props }: any) => (
-    <div {...props} ref={maskRef} />
-  ),
+  EuiOverlayMask: ({
+    headerZindexLocation,
+    maskRef,
+    hasAnimation,
+    ...props
+  }: any) => <div {...props} ref={maskRef} />,
 }));
 
 jest.mock('../portal', () => ({

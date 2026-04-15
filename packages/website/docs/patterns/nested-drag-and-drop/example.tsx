@@ -579,7 +579,7 @@ const DraggablePanel = memo(function DraggablePanel({
               button={
                 <EuiButtonIcon
                   aria-label="More actions"
-                  iconType="boxesHorizontal"
+                  iconType="boxesVertical"
                   onClick={() => setIsPopoverOpen((isOpen) => !isOpen)}
                 />
               }
@@ -592,7 +592,7 @@ const DraggablePanel = memo(function DraggablePanel({
                     items: [
                       {
                         name: 'Move up',
-                        icon: 'arrowUp',
+                        icon: 'chevronSingleUp',
                         onClick: () => {
                           onMove(id, 'up');
                           setIsPopoverOpen(false);
@@ -601,7 +601,7 @@ const DraggablePanel = memo(function DraggablePanel({
                       },
                       {
                         name: 'Move down',
-                        icon: 'arrowDown',
+                        icon: 'chevronSingleDown',
                         onClick: () => {
                           onMove(id, 'down');
                           setIsPopoverOpen(false);
@@ -610,7 +610,7 @@ const DraggablePanel = memo(function DraggablePanel({
                       },
                       {
                         name: 'Indent',
-                        icon: 'arrowRight',
+                        icon: 'chevronSingleRight',
                         onClick: () => {
                           onMove(id, 'indent');
                           setIsPopoverOpen(false);
@@ -619,7 +619,7 @@ const DraggablePanel = memo(function DraggablePanel({
                       },
                       {
                         name: 'Outdent',
-                        icon: 'arrowLeft',
+                        icon: 'chevronSingleLeft',
                         onClick: () => {
                           onMove(id, 'outdent');
                           setIsPopoverOpen(false);
@@ -640,11 +640,11 @@ const DraggablePanel = memo(function DraggablePanel({
           buttonContent={
             <span css={buttonContentStyles}>
               <span className="grab-icon" css={[iconStyles, grabIconStyles]}>
-                <EuiIcon type="grab" />
+                <EuiIcon type="dragVertical" />
               </span>
               {hasChildren && (
                 <span css={iconStyles}>
-                  <EuiIcon type={isExpanded ? 'arrowDown' : 'arrowRight'} />
+                  <EuiIcon type={isExpanded ? 'chevronSingleDown' : 'chevronSingleRight'} />
                 </span>
               )}
               <EuiText size="s" component="span">

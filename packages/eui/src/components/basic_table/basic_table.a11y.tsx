@@ -195,8 +195,8 @@ describe('EuiTable', () => {
                 }
                 iconType={
                   itemIdToExpandedRowMapValues[user.id]
-                    ? 'arrowDown'
-                    : 'arrowRight'
+                    ? 'chevronSingleDown'
+                    : 'chevronSingleRight'
                 }
               />
             );

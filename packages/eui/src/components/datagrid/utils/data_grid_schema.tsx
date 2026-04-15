@@ -91,7 +91,7 @@ export const schemaDetectors: EuiDataGridSchemaDetector[] = [
       if (aValue > bValue) return direction === 'asc' ? 1 : -1;
       return 0;
     },
-    icon: 'currency',
+    icon: 'money',
     color: 'euiColorVis0',
     sortTextAsc: (
       <EuiI18n

@@ -9,11 +9,7 @@
 import React, { forwardRef } from 'react';
 import { useEuiTheme } from '../../../services';
 import { EuiManagedFlyout, type EuiManagedFlyoutProps } from './flyout_managed';
-import {
-  useCurrentMainFlyout,
-  useFlyoutLayoutMode,
-  useFlyoutWidth,
-} from './hooks';
+import { useFlyoutManager } from './hooks';
 import {
   LAYOUT_MODE_SIDE_BY_SIDE,
   LAYOUT_MODE_STACKED,
@@ -43,9 +39,20 @@ export type EuiFlyoutChildProps = Omit<
 export const EuiFlyoutChild = forwardRef<HTMLElement, EuiFlyoutChildProps>(
   ({ css: customCss, side = DEFAULT_SIDE, ...props }, ref) => {
     const { euiTheme } = useEuiTheme();
-    const mainFlyout = useCurrentMainFlyout();
-    const mainWidth = useFlyoutWidth(mainFlyout?.flyoutId);
-    const layoutMode = useFlyoutLayoutMode();
+
+    // Performance: read context once and derive all needed values inline
+    const context = useFlyoutManager();
+    const state = context?.state;
+    const sessions = state?.sessions;
+    const currentSession = sessions
+      ? sessions[sessions.length - 1] ?? null
+      : null;
+    const mainFlyoutId = currentSession?.mainFlyoutId;
+    const mainFlyout = mainFlyoutId
+      ? state?.flyouts.find((f) => f.flyoutId === mainFlyoutId) ?? null
+      : null;
+    const mainWidth = mainFlyout?.width;
+    const layoutMode = state?.layoutMode ?? LAYOUT_MODE_SIDE_BY_SIDE;
 
     // Runtime validation: prevent orphan child flyouts
     if (!mainFlyout) {
@@ -65,7 +72,12 @@ export const EuiFlyoutChild = forwardRef<HTMLElement, EuiFlyoutChildProps>(
 
     let style: React.CSSProperties = {};
     if (mainWidth && layoutMode === LAYOUT_MODE_SIDE_BY_SIDE) {
-      style = { [side]: mainWidth };
+      // Use the CSS custom property for synchronous tracking during resize.
+      // Falls back to the pixel value from manager state when the variable
+      // is not set (e.g. main flyout is not actively being resized).
+      style = {
+        [side]: `var(--euiFlyoutMainWidth, ${mainWidth}px)`,
+      };
     } else if (layoutMode === LAYOUT_MODE_STACKED) {
       style = { zIndex: Number(euiTheme.levels.flyout) + 2 };
     }

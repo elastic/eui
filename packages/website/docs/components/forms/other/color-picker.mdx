@@ -3,6 +3,8 @@ sidebar_position: 2
 keywords: [EuiColorPicker]
 ---
 
+import displayTogglesSource from '!raw-loader!../../../../src/components/display_toggles/display_toggles';
+
 # Color picker
 
 Color input component allowing for multiple methods of entry and selection.
@@ -33,8 +35,10 @@ Use the `palettes` prop to pass your palettes as an array `strings` or an array 
 
 Each of the `palettes`, excluding `type='text'` palettes, can use the `append` prop to append an element to the right of the title.
 
+<Demo extraFiles={{ 'display_toggles.tsx': displayTogglesSource }}>
 ```tsx interactive
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { css } from '@emotion/react';
 import {
   euiPaletteColorBlind,
   euiPaletteForStatus,
@@ -42,11 +46,13 @@ import {
   EuiSwitch,
   EuiSpacer,
   EuiCode,
+  EuiText,
   EuiColorPalettePicker,
-  EuiFlexGroup
-  EUI_VIS_COLOR_STORE
+  EuiFlexGroup,
+  EUI_VIS_COLOR_STORE,
 } from '@elastic/eui';
 import { VIS_COLOR_STORE_EVENTS } from '@elastic/eui-theme-common';
+import { DisplayToggles } from './display_toggles';
 
 const getPalettes = (appendTitles) => [
   {
@@ -192,6 +198,7 @@ export default () => {
   );
 };
 ```
+</Demo>
 
 ## Color palette display
 
@@ -739,7 +746,7 @@ export default () => {
   const colorPicker = <EuiColorPicker color={color} onChange={setColor} />;
 
   const button = (
-    <EuiButton iconType="arrowDown" iconSide="right" onClick={togglePopover}>
+    <EuiButton iconType="chevronSingleDown" iconSide="right" onClick={togglePopover}>
       Open popover
     </EuiButton>
   );
@@ -796,9 +803,11 @@ export default () => {
 
 ## Option toggling
 
+<Demo extraFiles={{ 'display_toggles.tsx': displayTogglesSource }}>
 ```tsx interactive
 import React from 'react';
 import { EuiColorPicker, useColorPickerState } from '@elastic/eui';
+import { DisplayToggles } from './display_toggles';
 
 export default () => {
   const [color, setColor] = useColorPickerState('#D36086');
@@ -811,6 +820,7 @@ export default () => {
   );
 };
 ```
+</Demo>
 
 ## Props
 

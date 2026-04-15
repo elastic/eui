@@ -56,7 +56,7 @@ exports[`EuiSearchBarFilters render - with filters 1`] = `
           </span>
           <span
             color="inherit"
-            data-euiicon-type="arrowDown"
+            data-euiicon-type="chevronSingleDown"
           />
         </span>
       </button>

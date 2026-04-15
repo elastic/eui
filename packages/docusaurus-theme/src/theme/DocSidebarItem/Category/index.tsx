@@ -138,7 +138,7 @@ function CollapseButton({
       onClick={onClick}
       {...rest}
     >
-      <EuiIcon size="s" type={collapsed ? 'arrowRight' : 'arrowDown'} />
+      <EuiIcon size="s" type={collapsed ? 'chevronSingleRight' : 'chevronSingleDown'} />
     </button>
   );
 }

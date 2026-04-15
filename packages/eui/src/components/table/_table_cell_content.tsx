@@ -46,6 +46,7 @@ export const EuiTableCellContent: FunctionComponent<
     ...(hasActions
       ? [
           styles.hasActions.actions,
+          hasActions === 'custom' && styles.hasActions.custom,
           !isResponsive && styles.hasActions.desktop,
           isResponsive && hasActions !== 'custom' && styles.hasActions.mobile,
         ]

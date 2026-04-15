@@ -184,7 +184,7 @@ describe('EuiFilterGroup multiselect example', () => {
 
     const button = (
       <EuiFilterButton
-        iconType="arrowDown"
+        iconType="chevronSingleDown"
         onClick={onButtonClick}
         isSelected={isPopoverOpen}
         numFilters={items.filter((item) => item.checked !== 'off').length}

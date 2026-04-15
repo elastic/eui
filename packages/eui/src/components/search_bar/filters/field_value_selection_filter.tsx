@@ -307,7 +307,7 @@ export class FieldValueSelectionFilter extends Component<
           const ariaLabel = `${config.name} ${buttonLabelHint}`;
           return (
             <EuiFilterButton
-              iconType="arrowDown"
+              iconType="chevronSingleDown"
               iconSide="right"
               isSelected={active}
               hasActiveFilters={active}

@@ -365,7 +365,7 @@ exports[`EuiSelectable search value supports inheriting initialSearchValue from 
           <span
             aria-hidden="true"
             class="euiFormControlLayoutCustomIcon__icon"
-            data-euiicon-type="search"
+            data-euiicon-type="magnify"
           />
         </span>
       </div>

@@ -28,19 +28,19 @@ export const ProviderDetails = ({
           <div>
             <EuiIcon
               aria-hidden="true"
-              type="stopFilled"
+              type="stopFill"
               size="s"
               css={{ color: euiTheme.colors.primary }}
             />
             <EuiIcon
               aria-hidden="true"
-              type="stopFilled"
+              type="stopFill"
               size="s"
               css={{ color: euiTheme.colors.success }}
             />
             <EuiIcon
               aria-hidden="true"
-              type="stopFilled"
+              type="stopFill"
               size="s"
               css={{ color: euiTheme.colors.text }}
             />

@@ -40,7 +40,7 @@ const CUSTOM_LINK_COMPONENT_MAP: Record<
   },
   changelog: {
     component: NavbarItem,
-    icon: 'cheer',
+    icon: 'popper',
   },
   figma: {
     component: NavbarItem,

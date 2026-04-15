@@ -38,12 +38,15 @@ const meta: Meta<EuiTableFooterCellProps> = {
       control: 'radio',
       options: [LEFT_ALIGNMENT, CENTER_ALIGNMENT, RIGHT_ALIGNMENT],
     },
+    width: { control: 'text' },
+    minWidth: { control: 'text' },
+    maxWidth: { control: 'text' },
   },
   args: {
     align: LEFT_ALIGNMENT,
   },
 };
-hideStorybookControls(meta, ['aria-label']);
+hideStorybookControls(meta, ['aria-label', 'sticky']);
 
 export default meta;
 type Story = StoryObj<EuiTableFooterCellProps>;

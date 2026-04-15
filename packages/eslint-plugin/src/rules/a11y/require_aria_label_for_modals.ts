@@ -7,13 +7,15 @@
  */
 
 import { TSESTree, ESLintUtils } from '@typescript-eslint/utils';
+import { hasSpread } from "../../utils/has_spread";
 
 const modalComponents = ['EuiModal', 'EuiFlyout', 'EuiFlyoutResizable'];
 const confirmModalComponents = ['EuiConfirmModal'];
+const popoverComponents = ['EuiPopover', 'EuiWrappingPopover'];
 
 export const RequireAriaLabelForModals = ESLintUtils.RuleCreator.withoutDocs({
   create(context) {
-    function checkAttributes(node: TSESTree.JSXOpeningElement, componentName: string, messageId: 'modalAriaMissing' | 'confirmModalAriaMissing') {
+    function checkAttributes(node: TSESTree.JSXOpeningElement, componentName: string, messageId: 'modalAriaMissing' | 'confirmModalAriaMissing' | 'popoverAriaMissing') {
       const hasAriaLabel = node.attributes.some(
         (attr) =>
           attr.type === 'JSXAttribute' &&
@@ -33,7 +35,7 @@ export const RequireAriaLabelForModals = ESLintUtils.RuleCreator.withoutDocs({
     return {
       JSXOpeningElement(node) {
         if (
-          node.name.type === 'JSXIdentifier'
+          node.name.type === 'JSXIdentifier' && !hasSpread(node.attributes)
         ) {
           if (modalComponents.includes(node.name.name)) {
             checkAttributes(node, node.name.name, 'modalAriaMissing')
@@ -42,6 +44,11 @@ export const RequireAriaLabelForModals = ESLintUtils.RuleCreator.withoutDocs({
           if (confirmModalComponents.includes(node.name.name)) {
             checkAttributes(node, node.name.name, 'confirmModalAriaMissing')
           }
+
+          if (popoverComponents.includes(node.name.name)) {
+            checkAttributes(node, node.name.name, 'popoverAriaMissing')
+          }
+
         }
         return
       },
@@ -97,6 +104,29 @@ export const RequireAriaLabelForModals = ESLintUtils.RuleCreator.withoutDocs({
         '\n',
         'Option 2: Using \'aria-label\':',
         '   <{{ component }} aria-label="Descriptive title for the {{ component }}" {...props} />',
+    ].join('\n'),
+
+    popoverAriaMissing: [
+      '{{ component }} must have either \'aria-label\' or \'aria-labelledby\' prop for accessibility.',
+      '\n',
+      'Option 1: Using \'aria-labelledby\' (preferred):',
+      '1. Import \'useGeneratedHtmlId\':',
+      '   import { useGeneratedHtmlId } from \'@elastic/eui\';',
+      '2. Update your component:',
+      '   const popoverTitleId = useGeneratedHtmlId();',
+      '   ...',
+      '   <{{ component }}',
+      '    aria-labelledby={popoverTitleId}',
+      '    {...props} ',
+      '   />',
+      '     <EuiPopoverTitle id={popoverTitleId}>' +
+      '       {\'Descriptive title for the {{ component }}\'}',
+      '     </EuiPopoverTitle>',
+      '     ...',
+      '   </{{ component }}>',
+      '\n',
+      'Option 2: Using \'aria-label\':',
+      '   <{{ component }} aria-label="Descriptive title for the {{ component }}" {...props} />',
     ].join('\n')
     },
   },

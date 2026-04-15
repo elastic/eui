@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EuiCommentTimeline props timelineAvatar defaults to an avatar with a \`userAvatar\` icon 1`] = `
+exports[`EuiCommentTimeline props timelineAvatar defaults to an avatar with a \`user\` icon 1`] = `
 <div
   aria-label=""
   class="euiAvatar euiAvatar--m euiAvatar--user euiCommentAvatar emotion-euiAvatar-user-m-uppercase-subdued"
@@ -23,7 +23,7 @@ exports[`EuiCommentTimeline props timelineAvatar is rendered with a ReactNode 1`
 >
   <span
     class="euiAvatar__icon"
-    data-euiicon-type="userAvatar"
+    data-euiicon-type="user"
   />
 </div>
 `;

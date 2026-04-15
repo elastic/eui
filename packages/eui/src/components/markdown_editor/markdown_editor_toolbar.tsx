@@ -43,13 +43,13 @@ const boldItalicButtons = [
     id: 'mdBold',
     label: 'Bold',
     name: 'strong',
-    iconType: 'editorBold',
+    iconType: 'textBold',
   },
   {
     id: 'mdItalic',
     label: 'Italic',
     name: 'emphasis',
-    iconType: 'editorItalic',
+    iconType: 'textItalic',
   },
 ];
 
@@ -58,19 +58,19 @@ const listButtons = [
     id: 'mdUl',
     label: 'Unordered list',
     name: 'ul',
-    iconType: 'editorUnorderedList',
+    iconType: 'listBullet',
   },
   {
     id: 'mdOl',
     label: 'Ordered list',
     name: 'ol',
-    iconType: 'editorOrderedList',
+    iconType: 'listNumber',
   },
   {
     id: 'mdTl',
     label: 'Task list',
     name: 'tl',
-    iconType: 'editorChecklist',
+    iconType: 'listCheck',
   },
 ];
 
@@ -91,7 +91,7 @@ const quoteCodeLinkButtons = [
     id: 'mdLink',
     label: 'Link',
     name: 'link',
-    iconType: 'editorLink',
+    iconType: 'link',
   },
 ];
 

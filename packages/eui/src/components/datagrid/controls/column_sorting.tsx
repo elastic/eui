@@ -243,7 +243,7 @@ export const DataGridSortingControl: FunctionComponent<ColumnSortingProps> =
                       <EuiButtonEmpty
                         size="xs"
                         flush="left"
-                        iconType="arrowDown"
+                        iconType="chevronSingleDown"
                         iconSide="right"
                         data-test-subj="dataGridColumnSortingSelectionButton"
                         onClick={() =>

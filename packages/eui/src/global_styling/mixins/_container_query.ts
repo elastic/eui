@@ -50,11 +50,11 @@ export const euiContainer = (
   }
 
   return [
-    !!name && `container-name: ${name}`,
-    !!finalType && `container-type: ${finalType}`,
+    !!name && `container-name: ${name};`,
+    !!finalType && `container-type: ${finalType};`,
   ]
     .filter(Boolean)
-    .join(';');
+    .join('');
 };
 
 /**

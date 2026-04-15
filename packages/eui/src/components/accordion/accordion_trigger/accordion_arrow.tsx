@@ -47,7 +47,7 @@ export const EuiAccordionArrow: FunctionComponent<_EuiAccordionArrowProps> = ({
       {...rest}
       className={classes}
       css={cssStyles}
-      iconType="arrowRight"
+      iconType="chevronSingleRight"
     />
   );
 };

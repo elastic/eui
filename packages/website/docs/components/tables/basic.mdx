@@ -41,7 +41,7 @@ for (let i = 0; i < 10; i++) {
     id: faker.string.uuid(),
     firstName: faker.person.firstName(),
     lastName: faker.person.lastName(),
-    github: faker.internet.userName(),
+    github: faker.internet.username(),
     dateOfBirth: faker.date.past(),
     online: faker.datatype.boolean(),
   });
@@ -682,7 +682,7 @@ export default () => {
 
 import { Example } from '@site/src/components';
 
-You can highlight specific rows or apply custom styling using the `rowProps` prop. 
+You can highlight specific rows or apply custom styling using the `rowProps` prop.
 It receives the current row data item as an argument, which you can use to add classes conditionally.
 
 <Example.Snippet>
@@ -695,7 +695,7 @@ It receives the current row data item as an argument, which you can use to add c
 
 :::tip There's a styling utility class available: `euiTableRow--marked`
 
-This class highlights rows. Use the `rowProps.className` prop to add the class to specific rows. 
+This class highlights rows. Use the `rowProps.className` prop to add the class to specific rows.
 The utility class also includes hover styles.
 :::
 
@@ -727,7 +727,7 @@ for (let i = 0; i < 5; i++) {
     id: faker.string.uuid(),
     firstName: faker.person.firstName(),
     lastName: faker.person.lastName(),
-    github: faker.internet.userName(),
+    github: faker.internet.username(),
     dateOfBirth: faker.date.past(),
     online: i === 0 ? true : faker.datatype.boolean(),
   });
@@ -792,7 +792,6 @@ export default () => {
   ];
 
   const getRowProps = (user: User) => {
-    const { id } = user;
     return {
       className: user.online ? 'euiTableRow--marked' : ''
     };
@@ -966,7 +965,6 @@ type User = {
   firstName: string | null | undefined;
   lastName: string;
   github: string;
-  dateOfBirth: Date;
   jobTitle: string;
   address: string;
 };
@@ -978,7 +976,7 @@ for (let i = 0; i < 10; i++) {
     id: i + 1,
     firstName: faker.person.firstName(),
     lastName: faker.person.lastName(),
-    github: faker.internet.userName(),
+    github: faker.internet.username(),
     jobTitle: faker.person.jobTitle(),
     address: `${faker.location.streetAddress()} ${faker.location.city()} ${faker.location.state(
       { abbreviated: true }
@@ -1093,8 +1091,8 @@ export default () => {
 
   const onTableLayoutChange = (id: string, value: string) => {
     setTableLayout(id);
-    columns[4].width = value === 'custom' ? '100px' : undefined;
-    columns[5].width = value === 'custom' ? '20%' : undefined;
+    columns[3].width = value === 'custom' ? '100px' : undefined;
+    columns[4].width = value === 'custom' ? '20%' : undefined;
   };
 
   const onVAlignChange = (id: string, value: 'top' | 'middle' | 'bottom') => {
@@ -1178,12 +1176,8 @@ To customize how your cells look in mobile vs. desktop view, use the `mobileOpti
 import React, { useState } from 'react';
 import {
   formatDate,
-  Comparators,
   EuiBasicTable,
   EuiBasicTableColumn,
-  EuiTableSelectionType,
-  EuiTableSortingType,
-  Criteria,
   EuiLink,
   EuiHealth,
   EuiFlexGroup,
@@ -1213,7 +1207,7 @@ for (let i = 0; i < 3; i++) {
     id: i + 1,
     firstName: faker.person.firstName(),
     lastName: faker.person.lastName(),
-    github: faker.internet.userName(),
+    github: faker.internet.username(),
     dateOfBirth: faker.date.past(),
     online: faker.datatype.boolean(),
     location: {
@@ -1246,6 +1240,7 @@ export default () => {
    */
   const [customHeader, setCustomHeader] = useState(true);
   const [isResponsive, setIsResponsive] = useState(true);
+  const [selectedItems, setSelectedItems] = useState<User[]>([]);
 
   const columns: Array<EuiBasicTableColumn<User>> = [
     {
@@ -1382,6 +1377,27 @@ export default () => {
   );
 };
 ```
+
+```mdx-code-block
+import { EuiBetaBadge } from '@elastic/eui';
+```
+
+### Inline scrolling <EuiBetaBadge size="s" color="accent" label="Beta" /> {#inline-scrolling}
+
+**EuiBasicTable** supports inline (horizontal) scrolling on overflow, which can be
+enabled by setting `scrollableInline={true}`. It sets the minimum table width
+to 100% and allows it to grow beyond that when the content cannot fit
+the available space.
+
+We recommend that all high-density tables have it enabled, so that they can
+adjust to all screen resolutions and extend what `responsiveBreakpoint`
+provides on its own. You should utilize the `width`, `minWidth`, and `maxWidth`
+properties on the column object to adjust column sizes to the type of data
+they display. For best results, you should never use container- or viewport-
+relative length units (e.g., `%`, `vw` or `cqw`/`cqi`).
+
+Enabling inline scrolling automatically switches `tableLayout` to `auto`
+because in that configuration the table's width is dependent on its cell widths.
 
 ## Manual pagination and sorting
 

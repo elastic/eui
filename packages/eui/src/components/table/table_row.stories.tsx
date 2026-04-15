@@ -92,7 +92,7 @@ export const Playground: Story = {
           )}
           {isExpandable && (
             <EuiTableRowCell width="1%" isExpander={true}>
-              <EuiButtonIcon iconType="arrowDown" />
+              <EuiButtonIcon iconType="chevronSingleDown" />
             </EuiTableRowCell>
           )}
         </EuiTableRow>

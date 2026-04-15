@@ -72,7 +72,7 @@ const columns = [
         return (
           <Component
             onClick={() => alert(message)}
-            iconType="cheer"
+            iconType="popper"
             aria-label={message}
           >
             Cheer
@@ -208,12 +208,12 @@ const cellActions1: EuiDataGridColumnCellAction[] = [
 ];
 const cellActions2: EuiDataGridColumnCellAction[] = [
   ({ Component }) => (
-    <Component iconType="plusInCircle" aria-label="Filter in">
+    <Component iconType="plusCircle" aria-label="Filter in">
       Filter in
     </Component>
   ),
   ({ Component }) => (
-    <Component iconType="minusInCircle" aria-label="Filter out">
+    <Component iconType="minusCircle" aria-label="Filter out">
       Filter out
     </Component>
   ),
@@ -222,12 +222,12 @@ const cellActions3 = [...cellActions2, ...cellActions1];
 const cellActions5: EuiDataGridColumnCellAction[] = [
   ...cellActions3,
   ({ Component }) => (
-    <Component onClick={() => {}} iconType="starEmpty">
+    <Component onClick={() => {}} iconType="star">
       Custom action 1
     </Component>
   ),
   ({ Component }) => (
-    <Component onClick={() => {}} iconType="starEmpty">
+    <Component onClick={() => {}} iconType="star">
       Custom action 2
     </Component>
   ),
@@ -310,12 +310,12 @@ import { faker } from '@faker-js/faker';
 
 const cellActions: EuiDataGridColumnCellAction[] = [
   ({ Component }) => (
-    <Component iconType="plusInCircle" aria-label="Filter in">
+    <Component iconType="plusCircle" aria-label="Filter in">
       Filter in
     </Component>
   ),
   ({ Component }) => (
-    <Component iconType="minusInCircle" aria-label="Filter out">
+    <Component iconType="minusCircle" aria-label="Filter out">
       Filter out
     </Component>
   ),
@@ -430,12 +430,12 @@ import { faker } from '@faker-js/faker';
 
 const cellActions: EuiDataGridColumnCellAction[] = [
   ({ Component }) => (
-    <Component iconType="plusInCircle" aria-label="Filter in">
+    <Component iconType="plusCircle" aria-label="Filter in">
       Filter in
     </Component>
   ),
   ({ Component }) => (
-    <Component iconType="minusInCircle" aria-label="Filter out">
+    <Component iconType="minusCircle" aria-label="Filter out">
       Filter out
     </Component>
   ),
@@ -620,12 +620,12 @@ import { faker } from '@faker-js/faker';
 
 const cellActions: EuiDataGridColumnCellAction[] = [
   ({ Component }) => (
-    <Component iconType="plusInCircle" aria-label="Filter in">
+    <Component iconType="plusCircle" aria-label="Filter in">
       Filter in
     </Component>
   ),
   ({ Component }) => (
-    <Component iconType="minusInCircle" aria-label="Filter out">
+    <Component iconType="minusCircle" aria-label="Filter out">
       Filter out
     </Component>
   ),
@@ -788,7 +788,7 @@ export default () => {
           <EuiFlexItem grow={false}>
             <EuiToken
               iconSize="s"
-              iconType="expand"
+              iconType="maximize"
               color="euiColorVis0"
               shape="square"
               fill="dark"
@@ -824,7 +824,7 @@ export default () => {
           <EuiFlexItem grow={false}>
             <EuiToken
               iconSize="s"
-              iconType="expand"
+              iconType="maximize"
               color="euiColorVis0"
               shape="square"
               fill="dark"
@@ -865,7 +865,7 @@ export default () => {
           <EuiFlexItem grow={false}>
             <EuiToken
               iconSize="s"
-              iconType="expand"
+              iconType="maximize"
               color="euiColorVis0"
               shape="square"
               fill="dark"

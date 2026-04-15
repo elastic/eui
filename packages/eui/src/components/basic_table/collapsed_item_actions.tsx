@@ -91,6 +91,9 @@ export const CollapsedItemActions = <T extends {}>({
         const dataTestSubj = callWithItemIfFunction(item)(
           action['data-test-subj']
         );
+        const color = action.color
+          ? callWithItemIfFunction(item)(action.color)
+          : undefined;
 
         const { onClick, target } = action;
 
@@ -102,6 +105,7 @@ export const CollapsedItemActions = <T extends {}>({
             href={href}
             target={target}
             icon={icon}
+            color={color}
             data-test-subj={dataTestSubj}
             onClick={(event) => {
               event.persist();
@@ -135,7 +139,7 @@ export const CollapsedItemActions = <T extends {}>({
           : allActionsButtonAriaLabel
       }
       title={actionsDisabled ? allActionsButtonDisabledAriaLabel : undefined}
-      iconType="boxesHorizontal"
+      iconType="boxesVertical"
       color="text"
       isDisabled={actionsDisabled}
       onClick={() => setPopoverOpen((isOpen) => !isOpen)}

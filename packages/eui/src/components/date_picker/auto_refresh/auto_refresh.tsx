@@ -65,7 +65,7 @@ export const EuiAutoRefresh: FunctionComponent<EuiAutoRefreshProps> = ({
               className="euiFormControlLayout__prepend"
               element="button"
               label={<strong>{autoRefeshLabel}</strong>}
-              iconLeft="timeRefresh"
+              iconLeft="refreshTime"
               isDisabled={isDisabled}
               onClick={() => setIsPopoverOpen((isOpen) => !isOpen)}
             />
@@ -144,7 +144,7 @@ export const EuiAutoRefreshButton: FunctionComponent<
           className={classes}
           size={size}
           color={color}
-          iconType="timeRefresh"
+          iconType="refreshTime"
           title={isPaused ? autoRefeshLabelOff : autoRefeshLabelOn}
           isDisabled={isDisabled}
           {...rest}

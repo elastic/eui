@@ -5,7 +5,7 @@ exports[`EuiFieldSearch is rendered 1`] = `
   clear="[object Object]"
   compressed="false"
   fullwidth="false"
-  icon="search"
+  icon="magnify"
   isloading="false"
 >
   <eui-validatable-control>
@@ -27,7 +27,7 @@ exports[`EuiFieldSearch props append is rendered 1`] = `
 <eui-form-control-layout
   compressed="false"
   fullwidth="false"
-  icon="search"
+  icon="magnify"
   isloading="false"
   prepend="Append"
 >
@@ -44,7 +44,7 @@ exports[`EuiFieldSearch props fullWidth is rendered 1`] = `
 <eui-form-control-layout
   compressed="false"
   fullwidth="true"
-  icon="search"
+  icon="magnify"
   isloading="false"
 >
   <eui-validatable-control>
@@ -60,7 +60,7 @@ exports[`EuiFieldSearch props isClearable is accepted 1`] = `
 <eui-form-control-layout
   compressed="false"
   fullwidth="false"
-  icon="search"
+  icon="magnify"
   isloading="false"
 >
   <eui-validatable-control>
@@ -77,7 +77,7 @@ exports[`EuiFieldSearch props isClearable is rendered when a value exists 1`] = 
   clear="[object Object]"
   compressed="false"
   fullwidth="false"
-  icon="search"
+  icon="magnify"
   isloading="false"
 >
   <eui-validatable-control>
@@ -94,7 +94,7 @@ exports[`EuiFieldSearch props isInvalid is rendered 1`] = `
 <eui-form-control-layout
   compressed="false"
   fullwidth="false"
-  icon="search"
+  icon="magnify"
   isinvalid="true"
   isloading="false"
 >
@@ -113,7 +113,7 @@ exports[`EuiFieldSearch props isLoading is rendered 1`] = `
 <eui-form-control-layout
   compressed="false"
   fullwidth="false"
-  icon="search"
+  icon="magnify"
   isloading="true"
 >
   <eui-validatable-control>
@@ -129,7 +129,7 @@ exports[`EuiFieldSearch props prepend is rendered 1`] = `
 <eui-form-control-layout
   compressed="false"
   fullwidth="false"
-  icon="search"
+  icon="magnify"
   isloading="false"
   prepend="Prepend"
 >

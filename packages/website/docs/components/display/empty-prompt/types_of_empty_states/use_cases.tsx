@@ -98,7 +98,7 @@ export const TYPES_OF_USE_CASES: {
           <span>
             <EuiButtonEmpty
               href="#"
-              iconType="popout"
+              iconType="external"
               iconSide="right"
               iconSize="s"
               flush="both"
@@ -241,7 +241,7 @@ export const TYPES_OF_USE_CASES: {
         <EuiButton color="primary" fill>
           Go home
         </EuiButton>,
-        <EuiButtonEmpty iconType="arrowLeft" flush="both">
+        <EuiButtonEmpty iconType="chevronSingleLeft" flush="both">
           Go back
         </EuiButtonEmpty>,
       ],

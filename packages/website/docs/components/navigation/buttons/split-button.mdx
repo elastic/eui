@@ -205,9 +205,9 @@ export default () => {
 }
 ```
 
-Both sub-components accept the same props as `EuiButton` and `EuiButtonIcon` respectively. 
-Some specific props are however controlled by the parent `EuiSplitButton` component to ensure expected visual output. 
-These common props are: `size`, `color`, and `fill`. Additionally, you can control `isDisabled` and `isLoading` states for both actions combined as well as individually. 
+Both sub-components accept the same props as `EuiButton` and `EuiButtonIcon` respectively.
+Some specific props are however controlled by the parent `EuiSplitButton` component to ensure expected visual output.
+These common props are: `size`, `color`, and `fill`. Additionally, you can control `isDisabled` and `isLoading` states for both actions combined as well as individually.
 The parent prop will always override the sub-component prop when both are provided.
 
 ## Tooltips and popovers
@@ -242,7 +242,7 @@ export default () => {
           items: [
             {
               name: 'Action 1 (click)',
-              icon: 'search',
+              icon: 'magnify',
               onClick: () => {},
             },
             {
@@ -280,7 +280,7 @@ export default () => {
         Save
       </EuiSplitButton.ActionPrimary>
       <EuiSplitButton.ActionSecondary
-        iconType="arrowDown"
+        iconType="chevronSingleDown"
         aria-label="Open secondary actions menu"
         onClick={() => setIsFirstPopoverOpen(!isFirstPopoverOpen)}
         popoverProps={{
@@ -298,7 +298,7 @@ export default () => {
 ## Usage
 
 :::accessibility Accessibility
-Using `<EuiSplitButton.ActionSecondary>` or `<EuiSplitButton.ActionPrimary isIconOnly>` requires `aria-label` to be set to ensure an accessible label for the icon-only 
+Using `<EuiSplitButton.ActionSecondary>` or `<EuiSplitButton.ActionPrimary isIconOnly>` requires `aria-label` to be set to ensure an accessible label for the icon-only
 button is available to screen readers.
 :::
 

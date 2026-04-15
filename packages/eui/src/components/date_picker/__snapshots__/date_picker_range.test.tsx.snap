@@ -337,7 +337,7 @@ exports[`EuiDatePickerRange props inline renders 1`] = `
                   <span
                     class="react-datepicker__month-read-view--down-arrow"
                     color="subdued"
-                    data-euiicon-type="arrowDown"
+                    data-euiicon-type="chevronSingleDown"
                   />
                 </div>
               </div>
@@ -358,7 +358,7 @@ exports[`EuiDatePickerRange props inline renders 1`] = `
                   <span
                     class="react-datepicker__year-read-view--down-arrow"
                     color="subdued"
-                    data-euiicon-type="arrowDown"
+                    data-euiicon-type="chevronSingleDown"
                   />
                 </div>
               </div>
@@ -863,7 +863,7 @@ exports[`EuiDatePickerRange props inline renders 1`] = `
                   <span
                     class="react-datepicker__month-read-view--down-arrow"
                     color="subdued"
-                    data-euiicon-type="arrowDown"
+                    data-euiicon-type="chevronSingleDown"
                   />
                 </div>
               </div>
@@ -884,7 +884,7 @@ exports[`EuiDatePickerRange props inline renders 1`] = `
                   <span
                     class="react-datepicker__year-read-view--down-arrow"
                     color="subdued"
-                    data-euiicon-type="arrowDown"
+                    data-euiicon-type="chevronSingleDown"
                   />
                 </div>
               </div>

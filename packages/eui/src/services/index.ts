@@ -85,7 +85,19 @@ export {
   formatNumber,
   formatText,
 } from './format';
-export * from './hooks';
+export {
+  useDependentState,
+  useCombinedRefs,
+  setMultipleRefs,
+  useForceRender,
+  useLatest,
+  useDeepEqual,
+  isMouseEvent,
+  useMouseMove,
+  useUpdateEffect,
+  useEuiDisabledElement,
+  type EuiDisabledProps,
+} from './hooks';
 export { isEvenlyDivisibleBy, isWithinRange } from './number';
 export { Pager } from './paging';
 export { calculatePopoverPosition, findPopoverPosition } from './popover';
@@ -107,5 +119,5 @@ export {
   getWaitDuration,
   performOnFrame,
 } from './transition';
-export { EuiWindowEvent } from './window_event';
+export { EuiWindowEvent, useEuiWindowEvent } from './window_event';
 export { keys };

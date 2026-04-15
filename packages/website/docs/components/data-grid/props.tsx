@@ -105,6 +105,9 @@ inMemory={{ level: 'sorting' }}`,
     right: <EuiButtonIcon size="xs" />,
   },
 }}`,
+  headerVisibility: 'headerVisibility={false}',
+  height: 'height={400}',
+  width: 'width="100%"',
   minSizeForControls: 'minSizeForControls={500}',
   gridStyle: `gridStyle={{
   border: 'none',
@@ -168,6 +171,8 @@ const propLinks = {
   renderCustomToolbar:
     '../data-grid/toolbar#completely-custom-toolbar-rendering',
   toolbarVisibility: '../data-grid/toolbar#toolbar-visibility',
+  height: '../data-grid/container-constraints',
+  width: '../data-grid/container-constraints',
   minSizeForControls: '../data-grid/container-constraints',
   virtualizationOptions: '../data-grid/container-constraints#virtualization',
   onFullScreenChange:

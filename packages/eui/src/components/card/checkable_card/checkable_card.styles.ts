@@ -10,8 +10,10 @@ import { css } from '@emotion/react';
 import {
   euiCanAnimate,
   euiPaddingSize,
+  highContrastModeStyles,
   logicalCSS,
   logicals,
+  preventForcedColors,
 } from '../../../global_styling';
 import { UseEuiTheme } from '../../../services';
 
@@ -22,12 +24,37 @@ export const euiCheckableCardStyles = (euiThemeContext: UseEuiTheme) => {
   return {
     euiCheckableCard: css`
       ${euiCanAnimate} {
-        transition: border-color ${euiTheme.animation.normal} ease-in;
+        &::after {
+          transition: border-color ${euiTheme.animation.normal} ease-in;
+        }
       }
     `,
 
     isChecked: css`
-      border-color: ${euiTheme.colors.primary};
+      ${highContrastModeStyles(euiThemeContext, {
+        none: `
+          &::after {
+            border-color: ${euiTheme.colors.primary};
+          }
+        `,
+        preferred: `
+          border-color: ${euiTheme.colors.primary};
+        `,
+        forced: `
+          &::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border: ${euiTheme.border.width.thick} solid ${
+          euiTheme.colors.primary
+        };
+            border-radius: inherit;
+            pointer-events: none;
+
+            ${preventForcedColors(euiThemeContext)}
+          }
+        `,
+      })}
     `,
 
     label: {

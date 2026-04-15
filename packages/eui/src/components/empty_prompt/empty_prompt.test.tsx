@@ -20,7 +20,7 @@ describe('EuiEmptyPrompt', () => {
   test('is rendered', () => {
     const { container } = render(
       <EuiEmptyPrompt
-        iconType="arrowUp"
+        iconType="chevronSingleUp"
         title={<h2>Title</h2>}
         body={<p>Body</p>}
         actions={<div>Actions</div>}
@@ -34,13 +34,15 @@ describe('EuiEmptyPrompt', () => {
   describe('props', () => {
     describe('iconType', () => {
       test('renders alone', () => {
-        const { container } = render(<EuiEmptyPrompt iconType="arrowUp" />);
+        const { container } = render(
+          <EuiEmptyPrompt iconType="chevronSingleUp" />
+        );
         expect(container.firstChild).toMatchSnapshot();
       });
 
       test('renders with iconColor', () => {
         const { container } = render(
-          <EuiEmptyPrompt iconType="arrowUp" iconColor="danger" />
+          <EuiEmptyPrompt iconType="chevronSingleUp" iconColor="danger" />
         );
         expect(container.firstChild).toMatchSnapshot();
       });

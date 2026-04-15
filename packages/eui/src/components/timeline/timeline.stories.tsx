@@ -30,7 +30,7 @@ export const Playground: Story = {
         children: 'Project renamed to "Revenue Dashboard".',
       },
       {
-        icon: 'email',
+        icon: 'mail',
         children: (
           <>
             <strong>dev@elastic.co</strong> was invited to the project.

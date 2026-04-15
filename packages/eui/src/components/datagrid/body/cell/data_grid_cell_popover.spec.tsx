@@ -126,14 +126,14 @@ describe('EuiDataGridCellPopover', () => {
     const cellActions = [
       ({ Component }) => (
         <Component
-          iconType="plusInCircle"
+          iconType="plusCircle"
           aria-label="A"
           data-test-subj="cellActionA"
         />
       ),
       ({ Component }) => (
         <Component
-          iconType="minusInCircle"
+          iconType="minusCircle"
           aria-label="B"
           data-test-subj="cellActionB"
         />

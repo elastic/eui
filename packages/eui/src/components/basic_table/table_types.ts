@@ -78,9 +78,35 @@ export interface EuiTableFieldDataColumnType<T>
    */
   dataType?: EuiTableDataType;
   /**
-   * A CSS width property. Hints for the required width of the column (e.g. "30%", "100px", etc..)
+   * Requested width of the column.
+   *
+   * Exact width settings are not guaranteed in certain table layouts
+   * or configurations, and may be adjusted by browser's algorithm.
+   * Consider this value a guidance.
+   *
+   * @see {@link https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/table-layout#values|table-layout algorithms on MDN}
    */
   width?: string;
+  /**
+   * Requested minimum width of the column.
+   *
+   * Exact width settings are not guaranteed in certain table layouts
+   * or configurations, and may be adjusted by browser's algorithm.
+   * Consider this value a guidance.
+   *
+   * This property takes effect only when `tableLayout="auto"` is set on the table.
+   */
+  minWidth?: string;
+  /**
+   * Requested maximum width of the column.
+   *
+   * Exact width settings are not guaranteed in certain table layouts
+   * or configurations, and may be adjusted by browser's algorithm.
+   * Consider this value a guidance.
+   *
+   * This property takes effect only when `tableLayout="auto"` is set on the table.
+   */
+  maxWidth?: string;
   /**
    * Defines whether the user can sort on this column. If a function is provided, this function returns the value to sort against
    */
@@ -159,6 +185,8 @@ export type EuiTableComputedColumnType<T> = CommonProps &
     | 'readOnly'
     | 'description'
     | 'width'
+    | 'minWidth'
+    | 'maxWidth'
     | 'align'
     | 'truncateText'
     | 'isExpander'
@@ -177,7 +205,29 @@ export type EuiTableActionsColumnType<T extends object> = {
    * Allows configuring an icon with a tooltip, to be displayed next to the name
    */
   nameTooltip?: EuiTableColumnNameTooltipProps;
-} & Pick<EuiTableFieldDataColumnType<T>, 'description' | 'width'>;
+  /**
+   * Whether the actions column should always stick to the right side
+   * of the table no matter the inline (horizontal) scroll position.
+   *
+   * This option should be used in tables with `scrollableInline={true}`
+   * and will be enabled by default in future versions of EUI.
+   *
+   * Currently, it can only be used when the actions column is the last column
+   * of the table.
+   *
+   * When set to `true` and `hasBackground: false` is set on the table,
+   * `--euiTableCellStickyBackgroundColor` CSS variable should be set to match
+   * the background color of the element containing the table.
+   * Otherwise, the sticky column will use the default `backgroundBasePlain`
+   * background color.
+   * @beta
+   * @default false
+   */
+  sticky?: boolean;
+} & Pick<
+  EuiTableFieldDataColumnType<T>,
+  'description' | 'width' | 'minWidth' | 'maxWidth'
+>;
 
 export interface EuiTableSortingType<T> {
   /**

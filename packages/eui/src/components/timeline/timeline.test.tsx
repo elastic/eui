@@ -13,7 +13,7 @@ import { EuiTimeline, EuiTimelineProps, GUTTER_SIZES } from './timeline';
 
 const items: EuiTimelineProps['items'] = [
   {
-    icon: <EuiAvatar name="email" iconType="email" color="subdued" />,
+    icon: <EuiAvatar name="email" iconType="mail" color="subdued" />,
     verticalAlign: 'center',
     children: (
       <p>

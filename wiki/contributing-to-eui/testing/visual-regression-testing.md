@@ -4,7 +4,7 @@ EUI uses [Loki](https://loki.js.org/) for component visual regression testing.
 Loki compares snapshots of previously approved against current Storybook
 stories and ensures there are no unexpected differences.
 
-Visual regression tests are being run automatically on every pull request.
+Visual regression tests are currently not being run automatically on every pull request. Please remember to update screenshots if relevant stories are modified.
 
 ## Running Loki locally
 

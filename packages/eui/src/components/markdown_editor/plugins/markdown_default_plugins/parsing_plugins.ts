@@ -26,6 +26,7 @@ import markdown from 'remark-parse-no-trim';
 import emoji from 'remark-emoji';
 import breaks from 'remark-breaks';
 import highlight from '../remark/remark_prismjs';
+import intrawordUnderscore from '../remark/remark_intraword_underscore';
 import * as MarkdownTooltip from '../markdown_tooltip';
 import * as MarkdownCheckbox from '../markdown_checkbox';
 import {
@@ -44,7 +45,7 @@ export type DefaultParsingPluginsConfig = {
    */
   emoji?: { emoticon?: boolean };
   /**
-   * Allows configuring the `allowRelative` and `allowProtocols` of
+   * Allows configuring the `allowRelative`, `allowProtocols`, and `allowDocumentRelative` of
    * {@link EuiMarkdownLinkValidatorOptions}
    */
   linkValidator?: EuiMarkdownLinkValidatorOptions;
@@ -69,6 +70,7 @@ export const getDefaultEuiMarkdownParsingPlugins = ({
   const parsingPlugins: PluggableList = [
     [markdown, {}],
     [highlight, {}],
+    [intrawordUnderscore, {}],
   ];
 
   Object.entries(DEFAULT_PARSING_PLUGINS).forEach(([pluginName, plugin]) => {

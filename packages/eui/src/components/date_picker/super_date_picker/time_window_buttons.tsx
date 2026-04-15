@@ -161,7 +161,7 @@ export const EuiTimeWindowButtons: React.FC<EuiTimeWindowButtonsProps> = ({
           toolTipContent={!isDisabled && previousTooltipContent}
           color={buttonColor}
           size={buttonSize}
-          iconType="arrowLeft"
+          iconType="chevronSingleLeft"
           iconSize={iconSize}
           isIconOnly
           isDisabled={isWindowDurationZero || isDisabled}
@@ -180,7 +180,7 @@ export const EuiTimeWindowButtons: React.FC<EuiTimeWindowButtonsProps> = ({
           }}
           color={buttonColor}
           size={buttonSize}
-          iconType="magnifyWithPlus"
+          iconType="magnifyPlus"
           iconSize={iconSize}
           isIconOnly
           isDisabled={isWindowDurationZero || isDisabled}
@@ -199,7 +199,7 @@ export const EuiTimeWindowButtons: React.FC<EuiTimeWindowButtonsProps> = ({
           }}
           color={buttonColor}
           size={buttonSize}
-          iconType="magnifyWithMinus"
+          iconType="magnifyMinus"
           iconSize={iconSize}
           isIconOnly
           isDisabled={isDisabled}
@@ -215,7 +215,7 @@ export const EuiTimeWindowButtons: React.FC<EuiTimeWindowButtonsProps> = ({
           toolTipContent={!isDisabled && nextTooltipContent}
           color={buttonColor}
           size={buttonSize}
-          iconType="arrowRight"
+          iconType="chevronSingleRight"
           iconSize={iconSize}
           isIconOnly
           isDisabled={isWindowDurationZero || isDisabled}
@@ -236,9 +236,22 @@ export function useEuiTimeWindow(
   options?: { zoomFactor?: EuiTimeWindowButtonsConfig['zoomFactor'] }
 ) {
   const min = dateMath.parse(start);
+
+  /* `roundUp: true` will result in an "inclusive" time (e.g. 23:59:59.999 for 'now/d').
+  It only changes the value for relative expressions (e.g. 'now/d') but not absolute ISO strings. */
   const max = dateMath.parse(end, { roundUp: true });
   const isInvalid = !min || !min.isValid() || !max || !max.isValid();
-  const windowDuration = isInvalid ? -1 : max.diff(min);
+  /* An end at .999ms is always considered an inclusive boundary (either as result of `roundUp: true`
+  or entered manually). 
+  To avoid a 1ms drift on every time window or zoom step, windowDuration has to be increased by 1ms.
+  This ensures the window is always at a clean boundary (e.g. 00:00:00.000 - 23:59:59.999). */
+  const isInclusiveBoundary = !isInvalid && max.milliseconds() === 999;
+  const endBoundary = !isInvalid
+    ? isInclusiveBoundary
+      ? moment(max).add(1, 'ms')
+      : moment(max)
+    : null;
+  const windowDuration = isInvalid || !endBoundary ? -1 : endBoundary.diff(min);
   const isWindowDurationZero = windowDuration === 0;
   const zoomFactor = getPercentageMultiplier(
     options?.zoomFactor ?? ZOOM_FACTOR_DEFAULT
@@ -267,7 +280,12 @@ export function useEuiTimeWindow(
   function stepForward() {
     if (isInvalid || isWindowDurationZero) return;
     apply({
-      start: moment(max).toISOString(),
+      /* Prevent 1ms drifts for inclusive boundaries by using the exclusive max (+ 1ms)
+      as the start of the next window (e.g. 00:00:00.000 instead of 23:59:59.999) */
+      start: (isInclusiveBoundary
+        ? endBoundary! // `!` is safe here because we early return on `isInvalid`
+        : moment(max)
+      ).toISOString(),
       end: moment(max).add(windowDuration, 'ms').toISOString(),
     });
   }
@@ -276,7 +294,12 @@ export function useEuiTimeWindow(
     if (isInvalid || isWindowDurationZero) return;
     apply({
       start: moment(min).subtract(windowDuration, 'ms').toISOString(),
-      end: moment(min).toISOString(),
+      /* Prevent 1ms drifts for inclusive boundaries by using the exclusive min (- 1ms)
+      as the end of the previous window (e.g. 23:59:59.999 instead of 00:00:00.000) */
+      end: (isInclusiveBoundary
+        ? moment(min).subtract(1, 'ms')
+        : moment(min)
+      ).toISOString(),
     });
   }
 

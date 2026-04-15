@@ -25,7 +25,7 @@ exports[`CollapsedItemActions custom actions 1`] = `
             aria-hidden="true"
             class="euiButtonIcon__icon"
             color="inherit"
-            data-euiicon-type="boxesHorizontal"
+            data-euiicon-type="boxesVertical"
           />
         </button>
       </span>
@@ -111,6 +111,135 @@ exports[`CollapsedItemActions custom actions 1`] = `
 </body>
 `;
 
+exports[`CollapsedItemActions default actions - renders color on EuiContextMenuItem 1`] = `
+<body
+  class=""
+>
+  <div>
+    <div
+      class="euiPopover euiPopover-isOpen emotion-euiPopover-inline-block"
+      id="id-actions"
+    >
+      <span
+        class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+        id="generated-id-wrapper"
+      >
+        <button
+          aria-controls="euiPopover_generated-id_panelId"
+          aria-expanded="true"
+          aria-label="All actions, row 1"
+          class="euiButtonIcon emotion-euiButtonIcon-xs-empty-text"
+          data-test-subj="euiCollapsedItemActionsButton"
+          type="button"
+        >
+          <span
+            aria-hidden="true"
+            class="euiButtonIcon__icon"
+            color="inherit"
+            data-euiicon-type="boxesVertical"
+          />
+        </button>
+      </span>
+    </div>
+  </div>
+  <div
+    data-euiportal="true"
+  >
+    <div
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="0"
+    />
+    <div
+      data-focus-lock-disabled="false"
+    >
+      <div
+        aria-describedby="euiPopover_generated-id_descriptionId"
+        aria-live="off"
+        aria-modal="true"
+        class="euiPanel euiPanel--plain euiPopover__panel emotion-euiPanel-grow-m-plain-euiPopover__panel-light-isOpen-hasTransform-left"
+        data-autofocus="true"
+        data-popover-open="true"
+        data-popover-panel="true"
+        id="euiPopover_generated-id_panelId"
+        role="dialog"
+        style="top: 0px; left: -12px; z-index: 2000;"
+        tabindex="0"
+      >
+        <p
+          class="emotion-euiScreenReaderOnly"
+          id="euiPopover_generated-id_descriptionId"
+        >
+          You are in a dialog. Press Escape, or tap/click outside the dialog to close.
+        </p>
+        <div>
+          <div
+            class="euiContextMenuPanel euiBasicTable__collapsedActions emotion-euiContextMenuPanel"
+            tabindex="-1"
+          >
+            <div>
+              <span
+                class="euiToolTipAnchor eui-displayBlock emotion-euiToolTipAnchor-inlineBlock"
+                id="generated-id-wrapper"
+              >
+                <button
+                  class="euiContextMenuItem euiBasicTable__collapsedAction emotion-euiContextMenuItem-m-center-colors"
+                  data-test-subj="dangerAction"
+                  type="button"
+                >
+                  <span
+                    class="euiContextMenuItem__text emotion-euiContextMenuItem__text"
+                  >
+                    delete
+                  </span>
+                </button>
+              </span>
+              <span
+                class="euiToolTipAnchor eui-displayBlock emotion-euiToolTipAnchor-inlineBlock"
+                id="generated-id-wrapper"
+              >
+                <button
+                  class="euiContextMenuItem euiBasicTable__collapsedAction emotion-euiContextMenuItem-m-center"
+                  data-test-subj="defaultAction"
+                  type="button"
+                >
+                  <span
+                    class="euiContextMenuItem__text emotion-euiContextMenuItem__text"
+                  >
+                    view
+                  </span>
+                </button>
+              </span>
+              <span
+                class="euiToolTipAnchor eui-displayBlock emotion-euiToolTipAnchor-inlineBlock"
+                id="generated-id-wrapper"
+              >
+                <button
+                  class="euiContextMenuItem euiBasicTable__collapsedAction emotion-euiContextMenuItem-m-center-colors"
+                  data-test-subj="dynamicColorAction"
+                  type="button"
+                >
+                  <span
+                    class="euiContextMenuItem__text emotion-euiContextMenuItem__text"
+                  >
+                    dynamic color
+                  </span>
+                </button>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="0"
+    />
+  </div>
+</body>
+`;
+
 exports[`CollapsedItemActions default actions 1`] = `
 <body>
   <div>
@@ -134,7 +263,7 @@ exports[`CollapsedItemActions default actions 1`] = `
             aria-hidden="true"
             class="euiButtonIcon__icon"
             color="inherit"
-            data-euiicon-type="boxesHorizontal"
+            data-euiicon-type="boxesVertical"
           />
         </button>
       </span>
@@ -244,7 +373,7 @@ exports[`CollapsedItemActions renders 1`] = `
         aria-hidden="true"
         class="euiButtonIcon__icon"
         color="inherit"
-        data-euiicon-type="boxesHorizontal"
+        data-euiicon-type="boxesVertical"
       />
     </button>
   </span>

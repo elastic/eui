@@ -39,6 +39,8 @@ const meta: Meta<EuiTableHeaderCellProps> = {
       options: [undefined, ...HEADER_CELL_SCOPE],
     },
     width: { control: 'text' },
+    minWidth: { control: 'text' },
+    maxWidth: { control: 'text' },
   },
   args: {
     align: LEFT_ALIGNMENT,
@@ -53,7 +55,7 @@ const meta: Meta<EuiTableHeaderCellProps> = {
     description: '',
   },
 };
-hideStorybookControls(meta, ['aria-label']);
+hideStorybookControls(meta, ['aria-label', 'sticky']);
 enableFunctionToggleControls(meta, ['onSort']);
 
 export default meta;

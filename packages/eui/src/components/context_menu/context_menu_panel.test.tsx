@@ -70,7 +70,7 @@ describe('EuiContextMenuPanel', () => {
           getByTestSubject('contextMenuPanelTitleButton').nodeName
         ).toEqual('BUTTON');
         expect(
-          container.querySelector('[data-euiicon-type="arrowLeft"]')
+          container.querySelector('[data-euiicon-type="chevronSingleLeft"]')
         ).toBeInTheDocument();
       });
 

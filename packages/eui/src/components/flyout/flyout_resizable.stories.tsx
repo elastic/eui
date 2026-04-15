@@ -58,7 +58,7 @@ moveStorybookControlsToCategory(
     'focusTrapProps',
     'includeFixedHeadersInFocusTrap',
     'maskProps',
-    'pushAnimation',
+    'hasAnimation',
     'pushMinBreakpoint',
     'paddingSize',
     'style',

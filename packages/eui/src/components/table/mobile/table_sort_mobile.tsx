@@ -67,7 +67,7 @@ export class EuiTableSortMobile extends Component<
 
     const mobileSortButton = (
       <EuiButtonEmpty
-        iconType="arrowDown"
+        iconType="chevronSingleDown"
         iconSide="right"
         onClick={this.onButtonClick.bind(this)}
         flush="right"

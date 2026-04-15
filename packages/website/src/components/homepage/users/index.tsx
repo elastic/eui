@@ -25,7 +25,7 @@ const CONTENT_DATA = {
       title: 'Contributing',
       description: 'Help EUI improve even faster',
       href: 'https://github.com/elastic/eui/tree/main/wiki/contributing-to-eui',
-      icon: 'plusInCircle',
+      icon: 'plusCircle',
       target: '_blank',
     },
     {
@@ -40,7 +40,7 @@ const CONTENT_DATA = {
       title: 'Patterns',
       description: 'Preferred solutions to specific user needs',
       href: './docs/patterns/',
-      icon: 'logPatternAnalysis',
+      icon: 'pattern',
     },
     {
       title: 'Content',

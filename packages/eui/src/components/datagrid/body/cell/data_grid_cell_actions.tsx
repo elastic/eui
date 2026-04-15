@@ -59,7 +59,7 @@ export const EuiDataGridCellActions = ({
             display="fill"
             color="primary"
             iconSize="s"
-            iconType="expand"
+            iconType="maximize"
             aria-hidden
             onClick={onExpandClick}
             title={expandButtonTitle}

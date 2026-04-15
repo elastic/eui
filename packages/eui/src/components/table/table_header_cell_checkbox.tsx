@@ -12,34 +12,49 @@ import classNames from 'classnames';
 import { useEuiMemoizedStyles } from '../../services';
 import { CommonProps } from '../common';
 
-import { resolveWidthAsStyle } from './utils';
+import { resolveWidthPropsAsStyle } from './utils';
 import { euiTableCellCheckboxStyles } from './table_cells_shared.styles';
 import { HEADER_CELL_SCOPE } from './table_header_cell_shared';
+import type { EuiTableSharedWidthProps } from './types';
 
 export type EuiTableHeaderCellCheckboxScope =
   (typeof HEADER_CELL_SCOPE)[number];
 
-export interface EuiTableHeaderCellCheckboxProps {
-  width?: string | number;
+export interface EuiTableHeaderCellCheckboxProps
+  extends EuiTableSharedWidthProps {
   scope?: EuiTableHeaderCellCheckboxScope;
   append?: ReactNode;
 }
 
 export const EuiTableHeaderCellCheckbox: FunctionComponent<
   CommonProps &
-    ThHTMLAttributes<HTMLTableCellElement> &
+    Omit<ThHTMLAttributes<HTMLTableCellElement>, 'width'> &
     EuiTableHeaderCellCheckboxProps
-> = ({ children, className, scope = 'col', style, width, append, ...rest }) => {
+> = ({
+  children,
+  className,
+  scope = 'col',
+  style: _style,
+  width,
+  minWidth,
+  maxWidth,
+  append,
+  ...rest
+}) => {
   const classes = classNames('euiTableHeaderCellCheckbox', className);
   const styles = useEuiMemoizedStyles(euiTableCellCheckboxStyles);
-  const inlineStyles = resolveWidthAsStyle(style, width);
+  const style = resolveWidthPropsAsStyle(_style, {
+    width,
+    minWidth,
+    maxWidth,
+  });
 
   return (
     <th
       css={styles.euiTableHeaderCellCheckbox}
       className={classes}
       scope={scope}
-      style={inlineStyles}
+      style={style}
       {...rest}
     >
       <div className="euiTableCellContent">{children}</div>

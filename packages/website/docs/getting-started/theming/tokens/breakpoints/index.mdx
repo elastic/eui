@@ -60,11 +60,11 @@ If you want to align your custom responsive styles with EUI's breakpoints, or wh
     These hooks automatically inherits breakpoint sizes from the current EUI theme and any theme overrides.
   </Example.Description>
   <Example.Preview>
-    Targeting large devices only: {useIsWithinBreakpoints(['l', 'xl']) ? <EuiIcon type="checkInCircleFilled" color="success" /> : <EuiIcon type="cross" color="danger" />}
+    Targeting large devices only: {useIsWithinBreakpoints(['l', 'xl']) ? <EuiIcon type="checkCircleFill" color="success" /> : <EuiIcon type="cross" color="danger" />}
 
-    Targeting medium devices and below: {useIsWithinMaxBreakpoint('m') ? <EuiIcon type="checkInCircleFilled" color="success" /> : <EuiIcon type="cross" color="danger" />}
+    Targeting medium devices and below: {useIsWithinMaxBreakpoint('m') ? <EuiIcon type="checkCircleFill" color="success" /> : <EuiIcon type="cross" color="danger" />}
 
-    Targeting small devices and above: {useIsWithinMinBreakpoint('s') ? <EuiIcon type="checkInCircleFilled" color="success" /> : <EuiIcon type="cross" color="danger" />}
+    Targeting small devices and above: {useIsWithinMinBreakpoint('s') ? <EuiIcon type="checkCircleFill" color="success" /> : <EuiIcon type="cross" color="danger" />}
   </Example.Preview>
   <Example.Snippet>
     ```tsx

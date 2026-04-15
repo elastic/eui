@@ -68,6 +68,13 @@ const KitchenSinkVariantRow = (
     </EuiBadge>
     <EuiBadge
       {...props}
+      onClick={action('onClick')}
+      onClickAriaLabel="Interactive badge"
+    >
+      Badge with onClick
+    </EuiBadge>
+    <EuiBadge
+      {...props}
       iconType="cross"
       iconSide="right"
       iconOnClick={action('iconOnClick')}
@@ -100,7 +107,27 @@ export const KitchenSink: Story = {
         {COLORS.map((color, index) => (
           <KitchenSinkVariantRow color={color} key={index} />
         ))}
+        <EuiSpacer size="l" />
+        <EuiCode transparentBackground>custom colors</EuiCode>
+        <KitchenSinkVariantRow color="#3333FF" />
+        <KitchenSinkVariantRow color="#AAAAFF" />
+        <KitchenSinkVariantRow color="#FFAAAA" />
+        <KitchenSinkVariantRow color="#AAFFAA" />
+        <KitchenSinkVariantRow color="#666666" />
+        <KitchenSinkVariantRow color="#777777" />
       </EuiFlexGroup>
     );
   },
+};
+
+export const DarkMode: Story = {
+  tags: ['vrt-only'],
+  globals: { colorMode: 'dark' },
+  ...KitchenSink,
+};
+
+export const HighContrastMode: Story = {
+  tags: ['vrt-only'],
+  globals: { highContrastMode: true },
+  ...KitchenSink,
 };

@@ -179,7 +179,7 @@ export const TimeChart = () => {
             <EuiButton
               fill
               onClick={copy}
-              iconType="copyClipboard"
+              iconType="copy"
               disabled={isBadChart}
             >
               {isBadChart

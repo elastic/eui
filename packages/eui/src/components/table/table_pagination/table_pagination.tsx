@@ -88,7 +88,7 @@ export const EuiTablePagination: FunctionComponent<EuiTablePaginationProps> = (
     <EuiButtonEmpty
       size="xs"
       color="text"
-      iconType="arrowDown"
+      iconType="chevronSingleDown"
       iconSide="right"
       data-test-subj="tablePaginationPopoverButton"
       onClick={togglePopover}

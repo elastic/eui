@@ -87,7 +87,7 @@ export const EuiPinnableListGroup: FunctionComponent<
       if (pinnable && !itemProps.extraAction) {
         // Different displays for pinned vs unpinned
         const sharedProps: EuiListGroupItemProps['extraAction'] = {
-          iconType: 'pinFilled',
+          iconType: 'pinFill',
           iconSize: 's',
           css: [
             styles.euiPinnableListGroup__itemExtraAction,

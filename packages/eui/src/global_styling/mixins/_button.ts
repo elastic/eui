@@ -114,7 +114,7 @@ const getButtonVariantTokenValues = (
   };
 };
 
-export const getEuiButtonColors = (
+export const getEuiButtonColorValues = (
   euiThemeContext: UseEuiTheme,
   color: _EuiExtendedButtonColor | 'disabled'
 ) => {
@@ -134,6 +134,8 @@ export const getEuiButtonColors = (
         : makeHighContrastColor(foreground)(background),
     backgroundColor: background,
     borderColor: buttonColors.borderColor,
+    backgroundHover: buttonColors.backgroundHover,
+    backgroundActive: buttonColors.backgroundActive,
   };
 };
 
@@ -147,7 +149,7 @@ export const euiButtonColor = (
   euiThemeContext: UseEuiTheme,
   color: _EuiExtendedButtonColor | 'disabled'
 ) => {
-  const buttonColors = getEuiButtonColors(euiThemeContext, color);
+  const buttonColors = getEuiButtonColorValues(euiThemeContext, color);
 
   return {
     color: buttonColors.color,
@@ -156,7 +158,7 @@ export const euiButtonColor = (
   };
 };
 
-export const getEuiFilledButtonColors = (
+export const getEuiFilledButtonColorValues = (
   euiThemeContext: UseEuiTheme,
   color: _EuiExtendedButtonColor | 'disabled'
 ) => {
@@ -173,6 +175,8 @@ export const getEuiFilledButtonColors = (
     color: foreground,
     backgroundColor: background,
     borderColor: color === 'disabled' ? foreground : background,
+    backgroundHover: buttonColors.backgroundHover,
+    backgroundActive: buttonColors.backgroundActive,
   };
 };
 
@@ -186,7 +190,7 @@ export const euiButtonFillColor = (
   euiThemeContext: UseEuiTheme,
   color: _EuiExtendedButtonColor | 'disabled'
 ) => {
-  const buttonColors = getEuiFilledButtonColors(euiThemeContext, color);
+  const buttonColors = getEuiFilledButtonColorValues(euiThemeContext, color);
 
   const foreground = buttonColors.color;
   const background = buttonColors.backgroundColor;
@@ -282,7 +286,11 @@ export const euiButtonDisplaysColors = (euiThemeContext: UseEuiTheme) => {
 
           displaysColorsMap[display][color] = css`
             ${euiButtonColor(euiThemeContext, color)}
-            ${_interactionStyles(euiThemeContext, buttonColors, 'overlay')}
+            ${euiButtonInteractionStyles(
+              euiThemeContext,
+              buttonColors,
+              'overlay'
+            )}
             ${borderStyle}
           `;
           break;
@@ -305,7 +313,7 @@ export const euiButtonDisplaysColors = (euiThemeContext: UseEuiTheme) => {
               ? euiThemeContext.euiTheme.colors.fullShade
               : ''};
 
-            ${_interactionStyles(euiThemeContext, buttonColors)}
+            ${euiButtonInteractionStyles(euiThemeContext, buttonColors)}
           `;
           break;
         }
@@ -319,7 +327,11 @@ export const euiButtonDisplaysColors = (euiThemeContext: UseEuiTheme) => {
           displaysColorsMap[display][color] = css`
             color: ${euiButtonEmptyColor(euiThemeContext, color).color};
 
-            ${_interactionStyles(euiThemeContext, buttonColors, 'overlay')}
+            ${euiButtonInteractionStyles(
+              euiThemeContext,
+              buttonColors,
+              'overlay'
+            )}
           `;
           break;
         }
@@ -389,7 +401,7 @@ export const euiButtonSizeMap = (euiThemeContext: UseEuiTheme) => {
 /**
  * internal styles util for applying button background color on hover
  */
-const _interactionStyles = (
+export const euiButtonInteractionStyles = (
   euiThemeContext: UseEuiTheme,
   buttonColors: ButtonVariantColors,
   type: 'fill' | 'overlay' = 'fill'

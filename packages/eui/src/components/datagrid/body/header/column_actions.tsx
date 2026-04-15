@@ -396,7 +396,7 @@ export const getHideColumnAction = ({
       <EuiI18n token="euiColumnActions.hideColumn" default="Hide column" />
     ),
     onClick: onClickHideColumn,
-    iconType: 'eyeClosed',
+    iconType: 'eyeSlash',
     size: 'xs',
     color: 'text',
   } as EuiListGroupItemProps;

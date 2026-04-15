@@ -12,13 +12,14 @@ import { ADDON_ID, PANEL_ID } from './addons/code-snippet/constants';
 import { Panel } from './addons/code-snippet/components/panel';
 import { setupCodeSnippetEvents } from './addons/code-snippet/event-handlers/setup';
 
-// filter out stories based on tags that should not
-// be shown in the Storybook sidebar menu
 addons.setConfig({
   sidebar: {
+    // Filter which stories should be visible in the sidebar based on tags
     filters: {
       patterns: (item) => {
-        // Storybook only accepts string literals in the tags
+        // Always show all stories in development mode in the sidebar.
+        if (process.env.NODE_ENV === 'development') return true;
+        // Storybook only accepts string literals in the tags,
         // handling this centrally via a map doesn't work :(
         return !item.tags?.includes('vrt-only');
       },

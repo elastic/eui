@@ -47,7 +47,7 @@ export default function TOCCollapsibleCollapseButton({
       >
         On this page
       </Translate>
-      <EuiIcon type={collapsed ? 'arrowDown' : 'arrowUp'} />
+      <EuiIcon type={collapsed ? 'chevronSingleDown' : 'chevronSingleUp'} />
     </button>
   );
 }

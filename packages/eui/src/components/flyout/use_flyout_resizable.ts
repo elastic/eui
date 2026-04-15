@@ -24,6 +24,8 @@ type UseEuiFlyoutResizable = Pick<
   enabled: boolean;
   minWidth?: number;
   maxWidth: number | undefined;
+  siblingFlyoutWidth?: number | null;
+  referenceWidth?: number;
   size: string | number;
 };
 
@@ -34,19 +36,37 @@ export const useEuiFlyoutResizable = ({
   enabled,
   minWidth = 0,
   maxWidth,
+  siblingFlyoutWidth,
+  referenceWidth,
   onResize,
   side,
   size: _size,
 }: UseEuiFlyoutResizable) => {
+  // Use container width when provided. When referenceWidth is 0 (e.g. container
+  // not yet measured by ResizeObserver), do not fall back to viewport — that
+  // would allow resizing beyond the container (e.g. over a sidebar). Use 0 so
+  // the clamp keeps the flyout at minWidth until the real width is available.
+  const _referenceWidth =
+    referenceWidth !== undefined
+      ? referenceWidth
+      : typeof window !== 'undefined'
+      ? window.innerWidth
+      : Infinity;
+
   const getFlyoutMinMaxWidth = useCallback(
     (width: number) => {
-      return Math.min(
-        Math.max(width, minWidth),
-        maxWidth || Infinity,
-        window.innerWidth - 20 // Leave some offset
-      );
+      const maxResizeWidth = siblingFlyoutWidth
+        ? _referenceWidth * 0.9 - siblingFlyoutWidth
+        : _referenceWidth * 0.9;
+
+      // Clamp between minWidth and the maximum allowed width.
+      // minWidth always takes precedence — if the available space
+      // (maxResizeWidth) is smaller than minWidth, the flyout stays
+      // at minWidth. The fill sibling's CSS will adjust accordingly.
+      const upperBound = Math.min(maxWidth || Infinity, maxResizeWidth);
+      return Math.max(minWidth, Math.min(width, upperBound));
     },
-    [minWidth, maxWidth]
+    [minWidth, maxWidth, siblingFlyoutWidth, _referenceWidth]
   );
 
   const [flyoutWidth, setFlyoutWidth] = useState(0);
@@ -63,13 +83,52 @@ export const useEuiFlyoutResizable = ({
     }
   }, [flyoutWidth, flyoutRef, getFlyoutMinMaxWidth, enabled]);
 
-  // Update flyout width when consumers pass in a new `size`
+  // Track the previous `_size` prop to distinguish between a consumer size
+  // change (which should reset the width) and a reference-width / constraint
+  // change (which should re-clamp the existing width).
+  // Initialized to `null` so the first render always takes the "reset" path.
+  const prevSizeRef = useRef<string | number | null>(null);
+
+  // Track the previous reference width so we can scale proportionally when
+  // the container / viewport resizes (both shrink AND grow).
+  const prevReferenceWidthRef = useRef(_referenceWidth);
+
+  // Update flyout width when consumers pass in a new `size`, or scale
+  // proportionally and re-clamp when constraints change (e.g. container
+  // resize, sibling width change).
   useEffect(() => {
     if (!enabled) return; // Don't update width when resizing is disabled
-    setCallOnResize(false);
-    // For string `size`s, resetting flyoutWidth to 0 will trigger the above useEffect's recalculation
-    setFlyoutWidth(typeof _size === 'number' ? getFlyoutMinMaxWidth(_size) : 0);
-  }, [_size, getFlyoutMinMaxWidth, enabled]);
+
+    if (prevSizeRef.current !== _size) {
+      // The consumer's `size` prop actually changed — reset so the new size takes effect
+      prevSizeRef.current = _size;
+      prevReferenceWidthRef.current = _referenceWidth;
+      setCallOnResize(false);
+      setFlyoutWidth(
+        typeof _size === 'number' ? getFlyoutMinMaxWidth(_size) : 0
+      );
+    } else {
+      // Only constraints changed (referenceWidth, sibling width, etc.) —
+      // scale the pixel width proportionally to the reference width change
+      // and then clamp. This preserves the flyout's percentage position in
+      // both directions (viewport shrink AND grow).
+      const prevRefWidth = prevReferenceWidthRef.current ?? _referenceWidth;
+      prevReferenceWidthRef.current = _referenceWidth;
+
+      setFlyoutWidth((currentWidth) => {
+        if (currentWidth && prevRefWidth > 0 && _referenceWidth > 0) {
+          const scaleFactor = _referenceWidth / prevRefWidth;
+          return getFlyoutMinMaxWidth(currentWidth * scaleFactor);
+        }
+        // When reference width was 0 (e.g. container not yet measured), now
+        // that we have a real width, reset from the size prop instead of scaling.
+        if (_referenceWidth > 0) {
+          return typeof _size === 'number' ? getFlyoutMinMaxWidth(_size) : 0;
+        }
+        return currentWidth;
+      });
+    }
+  }, [_size, getFlyoutMinMaxWidth, enabled, _referenceWidth]);
 
   // Initial numbers to calculate from, on resize drag start
   const initialWidth = useRef(0);
@@ -171,10 +230,13 @@ export const useEuiFlyoutResizable = ({
     }
   }, [onResize, callOnResize, flyoutWidth, enabled]);
 
-  const size = useMemo(
-    () => (enabled ? flyoutWidth || _size : _size),
-    [enabled, flyoutWidth, _size]
-  );
+  const size = useMemo(() => {
+    if (enabled && flyoutWidth && _referenceWidth > 0) {
+      const pctValue = (flyoutWidth / _referenceWidth) * 100;
+      return `${pctValue}%`;
+    }
+    return _size;
+  }, [enabled, flyoutWidth, _referenceWidth, _size]);
 
   return {
     onKeyDown,

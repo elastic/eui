@@ -33,6 +33,8 @@ const meta: Meta<EuiTableHeaderCellCheckboxProps> = {
   ],
   argTypes: {
     width: { control: 'text' },
+    minWidth: { control: 'text' },
+    maxWidth: { control: 'text' },
   },
   args: {
     scope: 'col',

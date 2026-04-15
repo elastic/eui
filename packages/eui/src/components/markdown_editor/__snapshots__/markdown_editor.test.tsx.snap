@@ -26,7 +26,7 @@ exports[`EuiMarkdownEditor is rendered 1`] = `
             aria-hidden="true"
             class="euiButtonIcon__icon"
             color="inherit"
-            data-euiicon-type="editorBold"
+            data-euiicon-type="textBold"
           />
         </button>
       </span>
@@ -44,7 +44,7 @@ exports[`EuiMarkdownEditor is rendered 1`] = `
             aria-hidden="true"
             class="euiButtonIcon__icon"
             color="inherit"
-            data-euiicon-type="editorItalic"
+            data-euiicon-type="textItalic"
           />
         </button>
       </span>
@@ -65,7 +65,7 @@ exports[`EuiMarkdownEditor is rendered 1`] = `
             aria-hidden="true"
             class="euiButtonIcon__icon"
             color="inherit"
-            data-euiicon-type="editorUnorderedList"
+            data-euiicon-type="listBullet"
           />
         </button>
       </span>
@@ -83,7 +83,7 @@ exports[`EuiMarkdownEditor is rendered 1`] = `
             aria-hidden="true"
             class="euiButtonIcon__icon"
             color="inherit"
-            data-euiicon-type="editorOrderedList"
+            data-euiicon-type="listNumber"
           />
         </button>
       </span>
@@ -101,7 +101,7 @@ exports[`EuiMarkdownEditor is rendered 1`] = `
             aria-hidden="true"
             class="euiButtonIcon__icon"
             color="inherit"
-            data-euiicon-type="editorChecklist"
+            data-euiicon-type="listCheck"
           />
         </button>
       </span>
@@ -158,7 +158,7 @@ exports[`EuiMarkdownEditor is rendered 1`] = `
             aria-hidden="true"
             class="euiButtonIcon__icon"
             color="inherit"
-            data-euiicon-type="editorLink"
+            data-euiicon-type="link"
           />
         </button>
       </span>
@@ -284,7 +284,7 @@ exports[`EuiMarkdownEditor props autoExpandPreview is rendered with false 1`] = 
             aria-hidden="true"
             class="euiButtonIcon__icon"
             color="inherit"
-            data-euiicon-type="editorBold"
+            data-euiicon-type="textBold"
           />
         </button>
       </span>
@@ -302,7 +302,7 @@ exports[`EuiMarkdownEditor props autoExpandPreview is rendered with false 1`] = 
             aria-hidden="true"
             class="euiButtonIcon__icon"
             color="inherit"
-            data-euiicon-type="editorItalic"
+            data-euiicon-type="textItalic"
           />
         </button>
       </span>
@@ -323,7 +323,7 @@ exports[`EuiMarkdownEditor props autoExpandPreview is rendered with false 1`] = 
             aria-hidden="true"
             class="euiButtonIcon__icon"
             color="inherit"
-            data-euiicon-type="editorUnorderedList"
+            data-euiicon-type="listBullet"
           />
         </button>
       </span>
@@ -341,7 +341,7 @@ exports[`EuiMarkdownEditor props autoExpandPreview is rendered with false 1`] = 
             aria-hidden="true"
             class="euiButtonIcon__icon"
             color="inherit"
-            data-euiicon-type="editorOrderedList"
+            data-euiicon-type="listNumber"
           />
         </button>
       </span>
@@ -359,7 +359,7 @@ exports[`EuiMarkdownEditor props autoExpandPreview is rendered with false 1`] = 
             aria-hidden="true"
             class="euiButtonIcon__icon"
             color="inherit"
-            data-euiicon-type="editorChecklist"
+            data-euiicon-type="listCheck"
           />
         </button>
       </span>
@@ -416,7 +416,7 @@ exports[`EuiMarkdownEditor props autoExpandPreview is rendered with false 1`] = 
             aria-hidden="true"
             class="euiButtonIcon__icon"
             color="inherit"
-            data-euiicon-type="editorLink"
+            data-euiicon-type="link"
           />
         </button>
       </span>
@@ -541,7 +541,7 @@ exports[`EuiMarkdownEditor props height is rendered in full mode 1`] = `
             aria-hidden="true"
             class="euiButtonIcon__icon"
             color="inherit"
-            data-euiicon-type="editorBold"
+            data-euiicon-type="textBold"
           />
         </button>
       </span>
@@ -559,7 +559,7 @@ exports[`EuiMarkdownEditor props height is rendered in full mode 1`] = `
             aria-hidden="true"
             class="euiButtonIcon__icon"
             color="inherit"
-            data-euiicon-type="editorItalic"
+            data-euiicon-type="textItalic"
           />
         </button>
       </span>
@@ -580,7 +580,7 @@ exports[`EuiMarkdownEditor props height is rendered in full mode 1`] = `
             aria-hidden="true"
             class="euiButtonIcon__icon"
             color="inherit"
-            data-euiicon-type="editorUnorderedList"
+            data-euiicon-type="listBullet"
           />
         </button>
       </span>
@@ -598,7 +598,7 @@ exports[`EuiMarkdownEditor props height is rendered in full mode 1`] = `
             aria-hidden="true"
             class="euiButtonIcon__icon"
             color="inherit"
-            data-euiicon-type="editorOrderedList"
+            data-euiicon-type="listNumber"
           />
         </button>
       </span>
@@ -616,7 +616,7 @@ exports[`EuiMarkdownEditor props height is rendered in full mode 1`] = `
             aria-hidden="true"
             class="euiButtonIcon__icon"
             color="inherit"
-            data-euiicon-type="editorChecklist"
+            data-euiicon-type="listCheck"
           />
         </button>
       </span>
@@ -673,7 +673,7 @@ exports[`EuiMarkdownEditor props height is rendered in full mode 1`] = `
             aria-hidden="true"
             class="euiButtonIcon__icon"
             color="inherit"
-            data-euiicon-type="editorLink"
+            data-euiicon-type="link"
           />
         </button>
       </span>
@@ -798,7 +798,7 @@ exports[`EuiMarkdownEditor props height is rendered with a custom size 1`] = `
             aria-hidden="true"
             class="euiButtonIcon__icon"
             color="inherit"
-            data-euiicon-type="editorBold"
+            data-euiicon-type="textBold"
           />
         </button>
       </span>
@@ -816,7 +816,7 @@ exports[`EuiMarkdownEditor props height is rendered with a custom size 1`] = `
             aria-hidden="true"
             class="euiButtonIcon__icon"
             color="inherit"
-            data-euiicon-type="editorItalic"
+            data-euiicon-type="textItalic"
           />
         </button>
       </span>
@@ -837,7 +837,7 @@ exports[`EuiMarkdownEditor props height is rendered with a custom size 1`] = `
             aria-hidden="true"
             class="euiButtonIcon__icon"
             color="inherit"
-            data-euiicon-type="editorUnorderedList"
+            data-euiicon-type="listBullet"
           />
         </button>
       </span>
@@ -855,7 +855,7 @@ exports[`EuiMarkdownEditor props height is rendered with a custom size 1`] = `
             aria-hidden="true"
             class="euiButtonIcon__icon"
             color="inherit"
-            data-euiicon-type="editorOrderedList"
+            data-euiicon-type="listNumber"
           />
         </button>
       </span>
@@ -873,7 +873,7 @@ exports[`EuiMarkdownEditor props height is rendered with a custom size 1`] = `
             aria-hidden="true"
             class="euiButtonIcon__icon"
             color="inherit"
-            data-euiicon-type="editorChecklist"
+            data-euiicon-type="listCheck"
           />
         </button>
       </span>
@@ -930,7 +930,7 @@ exports[`EuiMarkdownEditor props height is rendered with a custom size 1`] = `
             aria-hidden="true"
             class="euiButtonIcon__icon"
             color="inherit"
-            data-euiicon-type="editorLink"
+            data-euiicon-type="link"
           />
         </button>
       </span>
@@ -1055,7 +1055,7 @@ exports[`EuiMarkdownEditor props maxHeight is rendered with a custom size 1`] = 
             aria-hidden="true"
             class="euiButtonIcon__icon"
             color="inherit"
-            data-euiicon-type="editorBold"
+            data-euiicon-type="textBold"
           />
         </button>
       </span>
@@ -1073,7 +1073,7 @@ exports[`EuiMarkdownEditor props maxHeight is rendered with a custom size 1`] = 
             aria-hidden="true"
             class="euiButtonIcon__icon"
             color="inherit"
-            data-euiicon-type="editorItalic"
+            data-euiicon-type="textItalic"
           />
         </button>
       </span>
@@ -1094,7 +1094,7 @@ exports[`EuiMarkdownEditor props maxHeight is rendered with a custom size 1`] = 
             aria-hidden="true"
             class="euiButtonIcon__icon"
             color="inherit"
-            data-euiicon-type="editorUnorderedList"
+            data-euiicon-type="listBullet"
           />
         </button>
       </span>
@@ -1112,7 +1112,7 @@ exports[`EuiMarkdownEditor props maxHeight is rendered with a custom size 1`] = 
             aria-hidden="true"
             class="euiButtonIcon__icon"
             color="inherit"
-            data-euiicon-type="editorOrderedList"
+            data-euiicon-type="listNumber"
           />
         </button>
       </span>
@@ -1130,7 +1130,7 @@ exports[`EuiMarkdownEditor props maxHeight is rendered with a custom size 1`] = 
             aria-hidden="true"
             class="euiButtonIcon__icon"
             color="inherit"
-            data-euiicon-type="editorChecklist"
+            data-euiicon-type="listCheck"
           />
         </button>
       </span>
@@ -1187,7 +1187,7 @@ exports[`EuiMarkdownEditor props maxHeight is rendered with a custom size 1`] = 
             aria-hidden="true"
             class="euiButtonIcon__icon"
             color="inherit"
-            data-euiicon-type="editorLink"
+            data-euiicon-type="link"
           />
         </button>
       </span>
@@ -1313,7 +1313,7 @@ exports[`EuiMarkdownEditor props readOnly is set to true 1`] = `
             aria-hidden="true"
             class="euiButtonIcon__icon"
             color="inherit"
-            data-euiicon-type="editorBold"
+            data-euiicon-type="textBold"
           />
         </button>
       </span>
@@ -1332,7 +1332,7 @@ exports[`EuiMarkdownEditor props readOnly is set to true 1`] = `
             aria-hidden="true"
             class="euiButtonIcon__icon"
             color="inherit"
-            data-euiicon-type="editorItalic"
+            data-euiicon-type="textItalic"
           />
         </button>
       </span>
@@ -1354,7 +1354,7 @@ exports[`EuiMarkdownEditor props readOnly is set to true 1`] = `
             aria-hidden="true"
             class="euiButtonIcon__icon"
             color="inherit"
-            data-euiicon-type="editorUnorderedList"
+            data-euiicon-type="listBullet"
           />
         </button>
       </span>
@@ -1373,7 +1373,7 @@ exports[`EuiMarkdownEditor props readOnly is set to true 1`] = `
             aria-hidden="true"
             class="euiButtonIcon__icon"
             color="inherit"
-            data-euiicon-type="editorOrderedList"
+            data-euiicon-type="listNumber"
           />
         </button>
       </span>
@@ -1392,7 +1392,7 @@ exports[`EuiMarkdownEditor props readOnly is set to true 1`] = `
             aria-hidden="true"
             class="euiButtonIcon__icon"
             color="inherit"
-            data-euiicon-type="editorChecklist"
+            data-euiicon-type="listCheck"
           />
         </button>
       </span>
@@ -1452,7 +1452,7 @@ exports[`EuiMarkdownEditor props readOnly is set to true 1`] = `
             aria-hidden="true"
             class="euiButtonIcon__icon"
             color="inherit"
-            data-euiicon-type="editorLink"
+            data-euiicon-type="link"
           />
         </button>
       </span>

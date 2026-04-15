@@ -132,7 +132,7 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
                   {canDragAndDropColumns && (
                     <span className="euiDataGridHeaderCell__draggableIcon">
                       <EuiIcon
-                        type="grabOmnidirectional"
+                        type="drag"
                         size="s"
                         css={[
                           styles.euiDataGridHeaderCell__actions.action,

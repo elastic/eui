@@ -22,6 +22,7 @@ const meta: Meta<EuiOverlayMaskProps> = {
   // Component defaults
   args: {
     headerZindexLocation: 'above',
+    hasAnimation: true,
   },
 };
 disableStorybookControls(meta, ['maskRef']);

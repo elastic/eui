@@ -43,6 +43,6 @@ type Story = StoryObj<EuiTimelineItemProps>;
 export const Playground: Story = {
   args: {
     children: 'timeline item',
-    icon: 'email',
+    icon: 'mail',
   },
 };

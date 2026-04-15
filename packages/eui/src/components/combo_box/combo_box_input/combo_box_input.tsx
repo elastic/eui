@@ -308,7 +308,7 @@ export class EuiComboBoxInput<T> extends Component<
         onClick: isListOpen && !isDisabled ? onCloseListClick : onOpenListClick,
         side: 'right',
         tabIndex: -1,
-        type: 'arrowDown',
+        type: 'chevronSingleDown',
       };
     }
 

@@ -263,7 +263,7 @@ export class EuiFieldSearchClass extends Component<
       >
         {(clearSearchButtonLabel: string) => (
           <EuiFormControlLayout
-            icon="search"
+            icon="magnify"
             fullWidth={fullWidth}
             isLoading={isLoading}
             isInvalid={isInvalid}

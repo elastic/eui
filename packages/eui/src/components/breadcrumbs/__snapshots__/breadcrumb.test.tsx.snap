@@ -36,7 +36,7 @@ exports[`EuiBreadcrumbCollapsed renders a ... breadcrumb with collapsed content 
             </span>
           </span>
           <span
-            data-euiicon-type="arrowDown"
+            data-euiicon-type="chevronSingleDown"
           >
              - Clicking this button will toggle a popover dialog.
           </span>

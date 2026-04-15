@@ -36,11 +36,12 @@ const meta: Meta<EuiInMemoryTableProps> = {
     responsiveBreakpoint: 'm',
     tableLayout: 'fixed',
     hasBackground: true,
+    scrollableInline: false,
   },
 };
 moveStorybookControlsToCategory(
   meta,
-  ['responsiveBreakpoint', 'tableLayout', 'hasBackground'],
+  ['responsiveBreakpoint', 'tableLayout', 'hasBackground', 'scrollableInline'],
   'EuiTable props'
 );
 
@@ -133,7 +134,7 @@ const columns: Array<EuiBasicTableColumn<User>> = [
         name: 'User profile',
         description: ({ firstName, lastName }) =>
           `Visit ${firstName} ${lastName}'s profile`,
-        icon: 'editorLink',
+        icon: 'link',
         color: 'primary',
         type: 'icon',
         enabled: ({ online }) => !!online,

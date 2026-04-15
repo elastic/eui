@@ -154,7 +154,7 @@ export default class MonthYearDropdown extends React.Component {
           {yearMonth}
         </span>
         <EuiIcon
-          type="arrowDown"
+          type="chevronSingleDown"
           size="s"
           color="subdued"
           className="react-datepicker__month-year-read-view--down-arrow"

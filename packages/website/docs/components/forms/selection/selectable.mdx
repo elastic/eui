@@ -507,7 +507,7 @@ const SelectablePopover = (
       panelPaddingSize="none"
       button={
         <EuiButton
-          iconType="arrowDown"
+          iconType="chevronSingleDown"
           iconSide="right"
           onClick={() => setIsPopoverOpen(!isPopoverOpen)}
         >
@@ -742,7 +742,7 @@ export default () => {
       label: 'Vestibulum lobortis ipsum sit amet tellus scelerisque vestibulum',
     },
     {
-      prepend: <EuiIcon type="alert" color="warning" aria-label="Note!" />,
+      prepend: <EuiIcon type="warning" color="warning" aria-label="Note!" />,
       label:
         'This option has `textWrap` and `truncationProps` settings that will override the parent',
       textWrap: 'truncate',
@@ -781,7 +781,7 @@ export default () => {
         {textWrap === 'wrap' && (
           <EuiFlexItem grow={false} css={{ alignSelf: 'center' }}>
             <EuiText color="danger" size="s">
-              <EuiIcon type="alert" /> Wrapping text requires disabling
+              <EuiIcon type="warning" /> Wrapping text requires disabling
               virtualization. We do not recommend this for large (50+) amounts
               of options.
             </EuiText>

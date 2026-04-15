@@ -6,37 +6,41 @@
  * Side Public License, v 1.
  */
 
-import React from 'react';
+import React, { PropsWithChildren, ReactElement } from 'react';
 import { requiredProps } from '../../test/required_props';
 import { render } from '../../test/rtl';
 
 import { EuiTableFooterCell } from './table_footer_cell';
 
 import { CENTER_ALIGNMENT, RIGHT_ALIGNMENT } from '../../services';
-import { WARNING_MESSAGE } from './utils';
+import { EuiTableIsResponsiveContext } from './mobile/responsive_context';
+import {
+  WARNING_MESSAGE_MAX_WIDTH,
+  WARNING_MESSAGE_MIN_WIDTH,
+  WARNING_MESSAGE_WIDTH,
+  WARNING_MESSAGE_NOT_RECOMMENDED_UNIT,
+} from './utils';
+import type { EuiTableSharedWidthProps } from './types';
 
-const renderInTableFooter = (cell: React.ReactElement) =>
-  render(
+const renderInTableFooter = (cell: ReactElement) => {
+  const Wrapper = ({ children }: PropsWithChildren) => (
     <table>
       <tfoot>
-        <tr>{cell}</tr>
+        <tr>{children}</tr>
       </tfoot>
     </table>
   );
 
-describe('EuiTableFooterCell', () => {
-  const _consoleWarn = console.warn;
-  beforeAll(() => {
-    console.warn = (...args: [any?, ...any[]]) => {
-      // Suppress an expected warning
-      if (args.length === 1 && args[0] === WARNING_MESSAGE) return;
-      _consoleWarn.apply(console, args);
-    };
-  });
-  afterAll(() => {
-    console.warn = _consoleWarn;
-  });
+  const result = render(<Wrapper>{cell}</Wrapper>);
 
+  return {
+    ...result,
+    rerender: (cell: ReactElement) =>
+      result.rerender(<Wrapper>{cell}</Wrapper>),
+  };
+};
+
+describe('EuiTableFooterCell', () => {
   test('is rendered', () => {
     const { container } = renderInTableFooter(
       <EuiTableFooterCell {...requiredProps}>children</EuiTableFooterCell>
@@ -69,39 +73,163 @@ describe('EuiTableFooterCell', () => {
     });
   });
 
-  describe('width and style', () => {
-    test('accepts style attribute', () => {
-      const { container } = renderInTableFooter(
-        <EuiTableFooterCell style={{ width: '20%' }}>Test</EuiTableFooterCell>
-      );
-
-      expect(container.firstChild).toMatchSnapshot();
-    });
-
-    test('accepts width attribute', () => {
-      const { container } = renderInTableFooter(
-        <EuiTableFooterCell width="10%">Test</EuiTableFooterCell>
-      );
-
-      expect(container.firstChild).toMatchSnapshot();
-    });
-
-    test('accepts width attribute as number', () => {
-      const { container } = renderInTableFooter(
-        <EuiTableFooterCell width={100}>Test</EuiTableFooterCell>
-      );
-
-      expect(container.firstChild).toMatchSnapshot();
-    });
-
-    test('resolves style and width attribute', () => {
-      const { container } = renderInTableFooter(
-        <EuiTableFooterCell width="10%" style={{ width: '20%' }}>
+  describe('style and width props', () => {
+    it('accepts `style` prop', () => {
+      const { getByRole } = renderInTableFooter(
+        <EuiTableFooterCell
+          style={{ width: '200px', minWidth: '123px', maxWidth: '456px' }}
+        >
           Test
         </EuiTableFooterCell>
       );
 
-      expect(container.firstChild).toMatchSnapshot();
+      expect(getByRole('cell')).toHaveStyle({
+        width: '200px',
+        minWidth: '123px',
+        maxWidth: '456px',
+      });
+    });
+
+    const testProp =
+      (name: keyof EuiTableSharedWidthProps, warningMessage: string) => () => {
+        const defaultStyles = {
+          width: undefined,
+          minWidth: undefined,
+          maxWidth: undefined,
+        };
+
+        it(`accepts \`${name}\` prop`, () => {
+          const { getByRole } = renderInTableFooter(
+            <EuiTableFooterCell style={{ [name]: '100px' }}>
+              Test
+            </EuiTableFooterCell>
+          );
+
+          expect(getByRole('cell')).toHaveStyle({
+            ...defaultStyles,
+            [name]: '100px',
+          });
+        });
+
+        it(`accepts \`${name}\` prop as number`, () => {
+          const props = {
+            [name]: 100,
+          };
+
+          const { getByRole } = renderInTableFooter(
+            <EuiTableFooterCell {...props}>Test</EuiTableFooterCell>
+          );
+
+          expect(getByRole('cell')).toHaveStyle({
+            ...defaultStyles,
+            [name]: '100px',
+          });
+        });
+
+        it(`resolves \`style.${name}\` and \`${name}\` props`, () => {
+          const originalConsoleWarn = console.warn;
+          console.warn = jest.fn();
+
+          const props = {
+            [name]: '100px',
+            style: {
+              [name]: '200px',
+            },
+          };
+
+          const { getByRole } = renderInTableFooter(
+            <EuiTableFooterCell {...props}>Test</EuiTableFooterCell>
+          );
+
+          expect(getByRole('cell')).toHaveStyle({
+            ...defaultStyles,
+            [name]: '100px',
+          });
+
+          expect(console.warn).toHaveBeenCalledWith(warningMessage);
+
+          console.warn = originalConsoleWarn;
+        });
+
+        it('warns when a not recommended unit is used', () => {
+          const originalConsoleWarn = console.warn;
+          console.warn = jest.fn();
+
+          renderInTableFooter(
+            <EuiTableFooterCell {...{ [name]: '20%' }}>Test</EuiTableFooterCell>
+          );
+
+          expect(console.warn).toHaveBeenCalledWith(
+            WARNING_MESSAGE_NOT_RECOMMENDED_UNIT
+          );
+
+          console.warn = originalConsoleWarn;
+        });
+      };
+
+    describe('width', testProp('width', WARNING_MESSAGE_WIDTH));
+
+    describe('width', testProp('minWidth', WARNING_MESSAGE_MIN_WIDTH));
+
+    describe('width', testProp('maxWidth', WARNING_MESSAGE_MAX_WIDTH));
+  });
+
+  describe('sticky', () => {
+    it('applies base sticky styles when `sticky` is set', () => {
+      const { getByRole } = renderInTableFooter(
+        <EuiTableFooterCell sticky={{ side: 'end' }}>Test</EuiTableFooterCell>
+      );
+
+      expect(getByRole('cell')).toHaveStyleRule('position', 'sticky');
+    });
+
+    it('applies sticky styles specific to `side = "start"`', () => {
+      const { getByRole } = renderInTableFooter(
+        <EuiTableFooterCell sticky={{ side: 'start' }}>Test</EuiTableFooterCell>
+      );
+
+      expect(getByRole('cell')).toHaveStyleRule('inset-inline-start', '0');
+    });
+
+    it('applies sticky styles specific to `side = "end"`', () => {
+      const { getByRole } = renderInTableFooter(
+        <EuiTableFooterCell sticky={{ side: 'end' }}>Test</EuiTableFooterCell>
+      );
+
+      expect(getByRole('cell')).toHaveStyleRule('inset-inline-end', '0');
+    });
+
+    it('adds `data-sticky` attribute only on desktop when `sticky` is set', () => {
+      const { getByRole, rerender } = renderInTableFooter(
+        <EuiTableFooterCell>Test</EuiTableFooterCell>
+      );
+
+      expect(getByRole('cell')).not.toHaveAttribute('data-sticky');
+
+      rerender(
+        <EuiTableFooterCell sticky={{ side: 'end' }}></EuiTableFooterCell>
+      );
+      expect(getByRole('cell')).toHaveAttribute('data-sticky', 'end');
+
+      // Simulate mobile view with EuiTableIsResponsiveContext
+      rerender(
+        <EuiTableIsResponsiveContext.Provider value={true}>
+          <EuiTableFooterCell sticky={{ side: 'end' }}></EuiTableFooterCell>
+        </EuiTableIsResponsiveContext.Provider>
+      );
+
+      expect(getByRole('cell')).not.toHaveAttribute('data-sticky');
+    });
+
+    it('does not apply any sticky styles when `sticky` is not set', () => {
+      const { getByRole } = renderInTableFooter(
+        <EuiTableFooterCell>Test</EuiTableFooterCell>
+      );
+
+      const element = getByRole('cell');
+      expect(element).not.toHaveStyleRule('position', 'sticky');
+      expect(element).not.toHaveStyleRule('inset-inline-start');
+      expect(element).not.toHaveStyleRule('inset-inline-end');
     });
   });
 });

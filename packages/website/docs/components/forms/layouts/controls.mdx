@@ -39,7 +39,7 @@ export default () => {
         gap: euiTheme.size.l,
       }}
     >
-      <EuiFormControlLayout icon="search">
+      <EuiFormControlLayout icon="magnify">
         <EuiFieldText
           type="search"
           controlOnly
@@ -72,7 +72,7 @@ export default () => {
         />
       </EuiFormControlLayout>
 
-      <EuiFormControlLayout clear={{ onClick: () => {} }} icon="search">
+      <EuiFormControlLayout clear={{ onClick: () => {} }} icon="magnify">
         <EuiFieldText
           type="search"
           controlOnly
@@ -91,7 +91,7 @@ export default () => {
       <EuiFormControlLayout
         clear={{ onClick: () => {} }}
         isDropdown
-        icon={{ type: 'stopFilled', color: 'success', side: 'left' }}
+        icon={{ type: 'stopFill', color: 'success', side: 'left' }}
       >
         <EuiFieldText
           type="text"
@@ -145,7 +145,7 @@ export default () => {
         isLoading
         clear={{ onClick: () => {} }}
         prepend={
-          <EuiFormPrepend element="button" iconRight="arrowDown" label="Button" />
+          <EuiFormPrepend element="button" iconRight="chevronSingleDown" label="Button" />
         }
       >
         <EuiFieldText
@@ -238,7 +238,7 @@ export default () => (
     />
 
     <EuiFormControlLayoutDelimited
-      icon="vector"
+      icon="vectorSquare"
       startControl={
         <EuiFieldNumber
           placeholder="0"

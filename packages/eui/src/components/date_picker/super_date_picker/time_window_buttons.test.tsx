@@ -72,6 +72,18 @@ describe('EuiTimeWindowButtons: useEuiTimeWindow hook', () => {
       expect(result.current.isInvalid).toBeTruthy();
     });
 
+    it('does not add a tilde for inclusive boundary ranges', () => {
+      const applyTime = jest.fn();
+      const start = 'now/d';
+      const end = 'now/d';
+
+      const { result } = renderHook(() =>
+        useEuiTimeWindow(start, end, applyTime)
+      );
+
+      expect(result.current.displayInterval).toBe('1 day');
+    });
+
     it('adds a tilde for approximate ranges', () => {
       const applyTime = jest.fn();
       const start = '2025-10-27T16:00:01.000Z';
@@ -117,6 +129,37 @@ describe('EuiTimeWindowButtons: useEuiTimeWindow hook', () => {
       });
     });
 
+    it('correctly shifts the time window forward for inclusive boundaries', () => {
+      const applyTime = jest.fn();
+      const start = '2025-10-30T00:00:00.000Z';
+      const end = '2025-10-30T23:59:59.999Z';
+
+      const { result, rerender } = renderHook(
+        ({ start, end }) => useEuiTimeWindow(start, end, applyTime),
+        { initialProps: { start, end } }
+      );
+
+      renderHookAct(() => {
+        result.current.stepForward();
+      });
+      rerender({
+        start: applyTime.mock.calls[0][0].start,
+        end: applyTime.mock.calls[0][0].end,
+      });
+      renderHookAct(() => {
+        result.current.stepForward();
+      });
+
+      expect(applyTime).toHaveBeenNthCalledWith(1, {
+        start: '2025-10-31T00:00:00.000Z',
+        end: '2025-10-31T23:59:59.999Z',
+      });
+      expect(applyTime).toHaveBeenNthCalledWith(2, {
+        start: '2025-11-01T00:00:00.000Z',
+        end: '2025-11-01T23:59:59.999Z',
+      });
+    });
+
     it('does not fire when time window is 0', () => {
       const applyTime = jest.fn();
       const start = '2026-01-19T11:11:11.000Z';
@@ -154,6 +197,37 @@ describe('EuiTimeWindowButtons: useEuiTimeWindow hook', () => {
       });
     });
 
+    it('correctly shifts the time window backwards for inclusive boundaries', () => {
+      const applyTime = jest.fn();
+      const start = '2025-10-30T00:00:00.000Z';
+      const end = '2025-10-30T23:59:59.999Z';
+
+      const { result, rerender } = renderHook(
+        ({ start, end }) => useEuiTimeWindow(start, end, applyTime),
+        { initialProps: { start, end } }
+      );
+
+      renderHookAct(() => {
+        result.current.stepBackward();
+      });
+      rerender({
+        start: applyTime.mock.calls[0][0].start,
+        end: applyTime.mock.calls[0][0].end,
+      });
+      renderHookAct(() => {
+        result.current.stepBackward();
+      });
+
+      expect(applyTime).toHaveBeenNthCalledWith(1, {
+        start: '2025-10-29T00:00:00.000Z',
+        end: '2025-10-29T23:59:59.999Z',
+      });
+      expect(applyTime).toHaveBeenNthCalledWith(2, {
+        start: '2025-10-28T00:00:00.000Z',
+        end: '2025-10-28T23:59:59.999Z',
+      });
+    });
+
     it('does not fire when time window is 0', () => {
       const applyTime = jest.fn();
       const start = '2026-01-19T11:11:11.000Z';
@@ -182,6 +256,32 @@ describe('EuiTimeWindowButtons: useEuiTimeWindow hook', () => {
         'hours'
       );
       const shiftedEnd = moment(end).add(ZOOM_FACTOR_DEFAULT / 2, 'hours');
+
+      const { result } = renderHook(() =>
+        useEuiTimeWindow(start, end, applyTime)
+      );
+
+      renderHookAct(() => {
+        result.current.expandWindow();
+      });
+
+      expect(applyTime).toHaveBeenCalledWith({
+        start: shiftedStart.toISOString(),
+        end: shiftedEnd.toISOString(),
+      });
+    });
+
+    it('correctly expands the time window for inclusive boundaries', () => {
+      const applyTime = jest.fn();
+      const start = '2025-10-30T00:00:00.000Z';
+      const end = '2025-10-30T23:59:59.999Z';
+
+      // Inclusive boundary: +1ms sets windowDuration to span the full unit (24h)
+      const windowDuration = moment(end).diff(moment(start)) + 1;
+      const zoomDelta = windowDuration * (ZOOM_FACTOR_DEFAULT / 2);
+
+      const shiftedStart = moment(start).subtract(zoomDelta, 'ms');
+      const shiftedEnd = moment(end).add(zoomDelta, 'ms');
 
       const { result } = renderHook(() =>
         useEuiTimeWindow(start, end, applyTime)
@@ -256,6 +356,32 @@ describe('EuiTimeWindowButtons: useEuiTimeWindow hook', () => {
 
       const shiftedStart = moment(start).add(ZOOM_FACTOR_DEFAULT / 2, 'hours');
       const shiftedEnd = moment(end).subtract(ZOOM_FACTOR_DEFAULT / 2, 'hours');
+
+      const { result } = renderHook(() =>
+        useEuiTimeWindow(start, end, applyTime)
+      );
+
+      renderHookAct(() => {
+        result.current.shrinkWindow();
+      });
+
+      expect(applyTime).toHaveBeenCalledWith({
+        start: shiftedStart.toISOString(),
+        end: shiftedEnd.toISOString(),
+      });
+    });
+
+    it('correctly shrinks the time window for inclusive boundaries', () => {
+      const applyTime = jest.fn();
+      const start = '2026-01-21T10:00:00.000Z';
+      const end = '2026-01-21T10:59:59.999Z';
+
+      // Inclusive boundary: +1ms sets windowDuration to span the full unit (1h)
+      const windowDuration = moment(end).diff(moment(start)) + 1;
+      const zoomDelta = windowDuration * (ZOOM_FACTOR_DEFAULT / 2);
+
+      const shiftedStart = moment(start).add(zoomDelta, 'ms');
+      const shiftedEnd = moment(end).subtract(zoomDelta, 'ms');
 
       const { result } = renderHook(() =>
         useEuiTimeWindow(start, end, applyTime)

@@ -88,7 +88,7 @@ function BreadcrumbsItem({
     >
       {children}
       <meta itemProp="position" content={String(index + 1)} />
-      {!active && <EuiIcon type="arrowRight" css={styles.icon} />}
+      {!active && <EuiIcon type="chevronSingleRight" css={styles.icon} />}
     </li>
   );
 }

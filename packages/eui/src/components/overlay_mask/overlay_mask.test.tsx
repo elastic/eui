@@ -15,6 +15,9 @@ import { EuiThemeProvider } from '../../services';
 import { EuiOverlayMask } from './overlay_mask';
 
 describe('EuiOverlayMask', () => {
+  const getClassName = (element: HTMLElement) =>
+    element.querySelector('.euiOverlayMask')!.className;
+
   it('renders', () => {
     const { baseElement } = render(
       <EuiOverlayMask {...requiredProps}>Content</EuiOverlayMask>
@@ -41,10 +44,8 @@ describe('EuiOverlayMask', () => {
         Content
       </EuiOverlayMask>
     );
-    const getClassName = () =>
-      baseElement.querySelector('.euiOverlayMask')!.className;
 
-    expect(getClassName()).toMatchInlineSnapshot(
+    expect(getClassName(baseElement)).toMatchInlineSnapshot(
       `"euiOverlayMask css-cjuudi-euiOverlayMask-aboveHeader hello"`
     );
 
@@ -53,7 +54,7 @@ describe('EuiOverlayMask', () => {
         Content
       </EuiOverlayMask>
     );
-    expect(getClassName()).toMatchInlineSnapshot(
+    expect(getClassName(baseElement)).toMatchInlineSnapshot(
       `"euiOverlayMask css-1hs3u1r-euiOverlayMask-belowHeader world"`
     );
   });
@@ -81,6 +82,22 @@ describe('EuiOverlayMask', () => {
 
       expect(maskRef).toHaveBeenCalledTimes(2);
       expect(maskRef.mock.calls[1][0]).toBeNull();
+    });
+
+    test('hasAnimation', () => {
+      const { baseElement, rerender } = render(
+        <EuiOverlayMask hasAnimation>Content</EuiOverlayMask>
+      );
+
+      expect(getClassName(baseElement)).toMatchInlineSnapshot(
+        `"euiOverlayMask css-cjuudi-euiOverlayMask-aboveHeader"`
+      );
+
+      rerender(<EuiOverlayMask hasAnimation={false}>Content</EuiOverlayMask>);
+
+      expect(getClassName(baseElement)).toMatchInlineSnapshot(
+        `"euiOverlayMask css-15c6294-euiOverlayMask-aboveHeader-noAnimation"`
+      );
     });
   });
 

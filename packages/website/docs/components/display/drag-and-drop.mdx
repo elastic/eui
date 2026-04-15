@@ -217,7 +217,7 @@ export default () => {
                       {...provided.dragHandleProps}
                       aria-label="Drag Handle"
                     >
-                      <EuiIcon type="grab" />
+                      <EuiIcon type="dragVertical" />
                     </EuiPanel>
                   </EuiFlexItem>
                   <EuiFlexItem>{content}</EuiFlexItem>
@@ -298,7 +298,7 @@ export default () => {
                       {...provided.dragHandleProps}
                       aria-label="Drag Handle"
                     >
-                      <EuiIcon type="grab" />
+                      <EuiIcon type="dragVertical" />
                     </EuiPanel>
                   </EuiFlexItem>
                   <EuiFlexItem grow={true}>
@@ -1027,7 +1027,7 @@ export default () => {
             {(provided) => (
               <EuiPanel color="subdued" paddingSize="s">
                 <EuiButtonIcon
-                  iconType="grab"
+                  iconType="dragVertical"
                   aria-label="Drag Handle"
                   {...provided.dragHandleProps}
                 />

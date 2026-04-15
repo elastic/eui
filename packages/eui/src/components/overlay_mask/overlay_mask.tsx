@@ -38,6 +38,11 @@ export interface EuiOverlayMaskInterface {
    * React ref to be passed to the wrapping container
    */
   maskRef?: Ref<HTMLDivElement> | MutableRefObject<HTMLDivElement>;
+  /**
+   * If enabled, the mask will have a fade in animation.
+   * @default true
+   */
+  hasAnimation?: boolean;
 }
 
 export type EuiOverlayMaskProps = Omit<CommonProps, 'css'> &
@@ -52,6 +57,7 @@ export const EuiOverlayMask: FunctionComponent<EuiOverlayMaskProps> = ({
   children,
   headerZindexLocation = 'above',
   maskRef,
+  hasAnimation = true,
   ...rest
 }) => {
   const hasRendered = useRef(false);
@@ -71,7 +77,7 @@ export const EuiOverlayMask: FunctionComponent<EuiOverlayMaskProps> = ({
   const cssStyles = cx([
     styles.euiOverlayMask,
     styles[`${headerZindexLocation}Header`],
-    hasRendered.current && styles.noAnimation,
+    (hasRendered.current || !hasAnimation) && styles.noAnimation,
   ]);
 
   useEffect(() => {

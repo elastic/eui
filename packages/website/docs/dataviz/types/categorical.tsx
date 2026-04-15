@@ -447,7 +447,7 @@ export const Categorical = () => {
             <EuiButton
               fill
               onClick={copy}
-              iconType="copyClipboard"
+              iconType="copy"
               disabled={isBadChart || isComplicatedChart}
             >
               {isBadChart || isComplicatedChart

@@ -19,10 +19,10 @@ import { useEuiTheme } from '../../services';
 import { euiPaginationButtonStyles } from './pagination_button.styles';
 
 const typeToIconTypeMap = {
-  first: 'arrowStart',
-  previous: 'arrowLeft',
-  next: 'arrowRight',
-  last: 'arrowEnd',
+  first: 'chevronLimitLeft',
+  previous: 'chevronSingleLeft',
+  next: 'chevronSingleRight',
+  last: 'chevronLimitRight',
 };
 
 export const TYPES = keysOf(typeToIconTypeMap);
