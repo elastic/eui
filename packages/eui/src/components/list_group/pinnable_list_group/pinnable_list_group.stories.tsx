@@ -20,7 +20,7 @@ const meta: Meta<EuiPinnableListGroupProps> = {
 };
 moveStorybookControlsToCategory(
   meta,
-  ['bordered', 'color', 'flush', 'maxWidth', 'showToolTips', 'wrapText'],
+  ['bordered', 'color', 'maxWidth', 'showToolTips', 'wrapText'],
   'EuiListGroup props'
 );
 

@@ -17,7 +17,6 @@ const meta: Meta<EuiListGroupProps> = {
   title: 'Display/EuiListGroup/EuiListGroup',
   component: EuiListGroup,
   args: {
-    flush: false,
     bordered: false,
     color: 'text',
     wrapText: false,

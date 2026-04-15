@@ -29,11 +29,6 @@ export type EuiListGroupProps = CommonProps &
     bordered?: boolean;
 
     /**
-     * Remove container padding, stretching list items to the edges
-     */
-    flush?: boolean;
-
-    /**
      * Items to display in this group. See {@link EuiListGroupItem}
      */
     listItems?: EuiListGroupItemProps[];
@@ -69,7 +64,6 @@ export const EuiListGroup: FunctionComponent<EuiListGroupProps> = ({
   className,
   listItems,
   style,
-  flush = false,
   bordered = false,
   wrapText = false,
   maxWidth = true,
@@ -82,7 +76,6 @@ export const EuiListGroup: FunctionComponent<EuiListGroupProps> = ({
   const styles = useEuiMemoizedStyles(euiListGroupStyles);
   const cssStyles = [
     styles.euiListGroup,
-    flush && styles.flush,
     bordered && styles.bordered,
     maxWidth === true && styles.maxWidthDefault,
   ];

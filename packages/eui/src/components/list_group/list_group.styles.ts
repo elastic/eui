@@ -21,16 +21,6 @@ export const euiListGroupStyles = (euiThemeContext: UseEuiTheme) => {
       display: flex;
       flex-direction: column;
     `,
-    // Variants
-    flush: css`
-      padding: 0;
-      border: none;
-
-      /* Override the default border radius */
-      .euiListGroupItem {
-        border-radius: 0;
-      }
-    `,
     bordered: css`
       border-radius: ${euiTheme.border.radius.medium};
       border: ${euiTheme.border.thin};

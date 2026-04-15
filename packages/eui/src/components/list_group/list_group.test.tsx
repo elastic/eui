@@ -76,12 +76,6 @@ describe('EuiListGroup', () => {
       expect(container.firstChild).toMatchSnapshot();
     });
 
-    test('flush is rendered', () => {
-      const { container } = render(<EuiListGroup flush />);
-
-      expect(container.firstChild).toMatchSnapshot();
-    });
-
     test('showToolTips is rendered', () => {
       const { container } = render(<EuiListGroup showToolTips />);
 
