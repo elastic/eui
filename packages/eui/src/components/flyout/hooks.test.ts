@@ -19,9 +19,8 @@ jest.mock('../../services', () => {
   };
 });
 
-const mockUseIsWithinMinBreakpoint = jest.requireMock(
-  '../../services'
-).useIsWithinMinBreakpoint as jest.Mock;
+const mockUseIsWithinMinBreakpoint = jest.requireMock('../../services')
+  .useIsWithinMinBreakpoint as jest.Mock;
 
 describe('useIsPushed', () => {
   beforeEach(() => {
