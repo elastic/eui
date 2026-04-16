@@ -9,6 +9,11 @@
 // Values sourced from @elastic/design-tokens — do not edit manually.
 // To change a color, update the corresponding token in packages/design-tokens/
 // and rebuild.
+//
+// TODO: This file exists only because _buttons.ts, _forms.ts, and _components.ts
+// still reference shade-level names (e.g. SEMANTIC_COLORS.primary70Alpha12).
+// Once those consumers are wired to the design tokens JSON directly, this file
+// can be removed.
 import tokens from '@elastic/design-tokens/dist/ts/light-all.json';
 
 const c = tokens.color;
