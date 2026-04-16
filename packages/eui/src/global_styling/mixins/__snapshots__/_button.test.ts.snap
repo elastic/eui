@@ -4,7 +4,7 @@ exports[`useEuiButtonColorCSS base 1`] = `
 {
   "accent": {
     "map": undefined,
-    "name": "iw9nst-displaysColorsMap-display-color",
+    "name": "fxxqbh-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#a11262;background-color:#FDDDE9;     
     position: relative;
@@ -17,7 +17,7 @@ exports[`useEuiButtonColorCSS base 1`] = `
             /* should stay under the content */
             z-index: 0;
             inset: 0;
-            background-color: rgba(229,74,145, 0.12);
+            background-color: rgb(89.804% 29.02% 56.863% / 0.12);
             pointer-events: none;
           }
         }
@@ -30,7 +30,7 @@ exports[`useEuiButtonColorCSS base 1`] = `
             content: '';
             position: absolute;
             inset: 0;
-            background-color: rgba(229,74,145, 0.16);
+            background-color: rgb(89.804% 29.02% 56.863% / 0.16);
           }
         }
    ;;label:base-accent;",
@@ -38,7 +38,7 @@ exports[`useEuiButtonColorCSS base 1`] = `
   },
   "accentSecondary": {
     "map": undefined,
-    "name": "2bsqr1-displaysColorsMap-display-color",
+    "name": "vwjfla-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#046e6b;background-color:#C9F3F0;     
     position: relative;
@@ -51,7 +51,7 @@ exports[`useEuiButtonColorCSS base 1`] = `
             /* should stay under the content */
             z-index: 0;
             inset: 0;
-            background-color: rgba(0,176,170, 0.12);
+            background-color: rgb(0% 69.02% 66.667% / 0.12);
             pointer-events: none;
           }
         }
@@ -64,7 +64,7 @@ exports[`useEuiButtonColorCSS base 1`] = `
             content: '';
             position: absolute;
             inset: 0;
-            background-color: rgba(0,176,170, 0.16);
+            background-color: rgb(0% 69.02% 66.667% / 0.16);
           }
         }
    ;;label:base-accentSecondary;",
@@ -72,7 +72,7 @@ exports[`useEuiButtonColorCSS base 1`] = `
   },
   "danger": {
     "map": undefined,
-    "name": "hpbqa7-displaysColorsMap-display-color",
+    "name": "1i2t6l5-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#a71627;background-color:#FDDDD8;     
     position: relative;
@@ -85,7 +85,7 @@ exports[`useEuiButtonColorCSS base 1`] = `
             /* should stay under the content */
             z-index: 0;
             inset: 0;
-            background-color: rgba(238,76,72, 0.12);
+            background-color: rgb(93.333% 29.804% 28.235% / 0.12);
             pointer-events: none;
           }
         }
@@ -98,7 +98,7 @@ exports[`useEuiButtonColorCSS base 1`] = `
             content: '';
             position: absolute;
             inset: 0;
-            background-color: rgba(238,76,72, 0.16);
+            background-color: rgb(93.333% 29.804% 28.235% / 0.16);
           }
         }
    ;;label:base-danger;",
@@ -140,7 +140,7 @@ exports[`useEuiButtonColorCSS base 1`] = `
   },
   "neutral": {
     "map": undefined,
-    "name": "1yg34tv-displaysColorsMap-display-color",
+    "name": "1wtgqs4-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#0f658a;background-color:#CFEEF7;     
     position: relative;
@@ -153,7 +153,7 @@ exports[`useEuiButtonColorCSS base 1`] = `
             /* should stay under the content */
             z-index: 0;
             inset: 0;
-            background-color: rgba(13,161,201, 0.12);
+            background-color: rgb(5.098% 63.137% 78.824% / 0.12);
             pointer-events: none;
           }
         }
@@ -166,7 +166,7 @@ exports[`useEuiButtonColorCSS base 1`] = `
             content: '';
             position: absolute;
             inset: 0;
-            background-color: rgba(13,161,201, 0.16);
+            background-color: rgb(5.098% 63.137% 78.824% / 0.16);
           }
         }
    ;;label:base-neutral;",
@@ -174,7 +174,7 @@ exports[`useEuiButtonColorCSS base 1`] = `
   },
   "primary": {
     "map": undefined,
-    "name": "igkusz-displaysColorsMap-display-color",
+    "name": "dkdxj8-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#1750ba;background-color:#D9E8FF;     
     position: relative;
@@ -187,7 +187,7 @@ exports[`useEuiButtonColorCSS base 1`] = `
             /* should stay under the content */
             z-index: 0;
             inset: 0;
-            background-color: rgba(55,136,255, 0.12);
+            background-color: rgb(21.569% 53.333% 100% / 0.12);
             pointer-events: none;
           }
         }
@@ -200,7 +200,7 @@ exports[`useEuiButtonColorCSS base 1`] = `
             content: '';
             position: absolute;
             inset: 0;
-            background-color: rgba(55,136,255, 0.16);
+            background-color: rgb(21.569% 53.333% 100% / 0.16);
           }
         }
    ;;label:base-primary;",
@@ -208,7 +208,7 @@ exports[`useEuiButtonColorCSS base 1`] = `
   },
   "risk": {
     "map": undefined,
-    "name": "wow7ut-displaysColorsMap-display-color",
+    "name": "7zzpve-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#9e3a16;background-color:#FFDEBF;     
     position: relative;
@@ -221,7 +221,7 @@ exports[`useEuiButtonColorCSS base 1`] = `
             /* should stay under the content */
             z-index: 0;
             inset: 0;
-            background-color: rgba(252,133,68, 0.16);
+            background-color: rgb(98.824% 52.157% 26.667% / 0.16);
             pointer-events: none;
           }
         }
@@ -234,7 +234,7 @@ exports[`useEuiButtonColorCSS base 1`] = `
             content: '';
             position: absolute;
             inset: 0;
-            background-color: rgba(252,133,68, 0.2);
+            background-color: rgb(98.824% 52.157% 26.667% / 0.2);
           }
         }
    ;;label:base-risk;",
@@ -242,7 +242,7 @@ exports[`useEuiButtonColorCSS base 1`] = `
   },
   "success": {
     "map": undefined,
-    "name": "17r4hv8-displaysColorsMap-display-color",
+    "name": "1a6arpi-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#09724d;background-color:#C9F3E3;     
     position: relative;
@@ -255,7 +255,7 @@ exports[`useEuiButtonColorCSS base 1`] = `
             /* should stay under the content */
             z-index: 0;
             inset: 0;
-            background-color: rgba(4,174,126, 0.12);
+            background-color: rgb(1.5686% 68.235% 49.412% / 0.12);
             pointer-events: none;
           }
         }
@@ -268,7 +268,7 @@ exports[`useEuiButtonColorCSS base 1`] = `
             content: '';
             position: absolute;
             inset: 0;
-            background-color: rgba(4,174,126, 0.16);
+            background-color: rgb(1.5686% 68.235% 49.412% / 0.16);
           }
         }
    ;;label:base-success;",
@@ -276,7 +276,7 @@ exports[`useEuiButtonColorCSS base 1`] = `
   },
   "text": {
     "map": undefined,
-    "name": "1am2lf7-displaysColorsMap-display-color",
+    "name": "b1nign-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#1d2a3e;background-color:#FFFFFF;     
     position: relative;
@@ -289,7 +289,7 @@ exports[`useEuiButtonColorCSS base 1`] = `
             /* should stay under the content */
             z-index: 0;
             inset: 0;
-            background-color: rgba(23,80,186, 0.08);
+            background-color: rgb(9.0196% 31.373% 72.941% / 0.08);
             pointer-events: none;
           }
         }
@@ -302,7 +302,7 @@ exports[`useEuiButtonColorCSS base 1`] = `
             content: '';
             position: absolute;
             inset: 0;
-            background-color: rgba(23,80,186, 0.12);
+            background-color: rgb(9.0196% 31.373% 72.941% / 0.12);
           }
         }
    
@@ -312,7 +312,7 @@ exports[`useEuiButtonColorCSS base 1`] = `
   },
   "warning": {
     "map": undefined,
-    "name": "1v3b4oo-displaysColorsMap-display-color",
+    "name": "19lh30v-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#825803;background-color:#FDE9B5;     
     position: relative;
@@ -325,7 +325,7 @@ exports[`useEuiButtonColorCSS base 1`] = `
             /* should stay under the content */
             z-index: 0;
             inset: 0;
-            background-color: rgba(234,174,1, 0.16);
+            background-color: rgb(91.765% 68.235% 0.39216% / 0.16);
             pointer-events: none;
           }
         }
@@ -338,7 +338,7 @@ exports[`useEuiButtonColorCSS base 1`] = `
             content: '';
             position: absolute;
             inset: 0;
-            background-color: rgba(234,174,1, 0.2);
+            background-color: rgb(91.765% 68.235% 0.39216% / 0.2);
           }
         }
    ;;label:base-warning;",
@@ -351,7 +351,7 @@ exports[`useEuiButtonColorCSS empty 1`] = `
 {
   "accent": {
     "map": undefined,
-    "name": "17z5qwe-displaysColorsMap-display-color",
+    "name": "17idgo9-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#a11262;    
     position: relative;
@@ -364,7 +364,7 @@ exports[`useEuiButtonColorCSS empty 1`] = `
             /* should stay under the content */
             z-index: 0;
             inset: 0;
-            background-color: rgba(229,74,145, 0.12);
+            background-color: rgb(89.804% 29.02% 56.863% / 0.12);
             pointer-events: none;
           }
         }
@@ -377,7 +377,7 @@ exports[`useEuiButtonColorCSS empty 1`] = `
             content: '';
             position: absolute;
             inset: 0;
-            background-color: rgba(229,74,145, 0.16);
+            background-color: rgb(89.804% 29.02% 56.863% / 0.16);
           }
         }
   ;;label:empty-accent;",
@@ -385,7 +385,7 @@ exports[`useEuiButtonColorCSS empty 1`] = `
   },
   "accentSecondary": {
     "map": undefined,
-    "name": "utsfcv-displaysColorsMap-display-color",
+    "name": "1t47tuc-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#046e6b;    
     position: relative;
@@ -398,7 +398,7 @@ exports[`useEuiButtonColorCSS empty 1`] = `
             /* should stay under the content */
             z-index: 0;
             inset: 0;
-            background-color: rgba(0,176,170, 0.12);
+            background-color: rgb(0% 69.02% 66.667% / 0.12);
             pointer-events: none;
           }
         }
@@ -411,7 +411,7 @@ exports[`useEuiButtonColorCSS empty 1`] = `
             content: '';
             position: absolute;
             inset: 0;
-            background-color: rgba(0,176,170, 0.16);
+            background-color: rgb(0% 69.02% 66.667% / 0.16);
           }
         }
   ;;label:empty-accentSecondary;",
@@ -419,7 +419,7 @@ exports[`useEuiButtonColorCSS empty 1`] = `
   },
   "danger": {
     "map": undefined,
-    "name": "opz89a-displaysColorsMap-display-color",
+    "name": "2xgh68-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#a71627;    
     position: relative;
@@ -432,7 +432,7 @@ exports[`useEuiButtonColorCSS empty 1`] = `
             /* should stay under the content */
             z-index: 0;
             inset: 0;
-            background-color: rgba(238,76,72, 0.12);
+            background-color: rgb(93.333% 29.804% 28.235% / 0.12);
             pointer-events: none;
           }
         }
@@ -445,7 +445,7 @@ exports[`useEuiButtonColorCSS empty 1`] = `
             content: '';
             position: absolute;
             inset: 0;
-            background-color: rgba(238,76,72, 0.16);
+            background-color: rgb(93.333% 29.804% 28.235% / 0.16);
           }
         }
   ;;label:empty-danger;",
@@ -487,7 +487,7 @@ exports[`useEuiButtonColorCSS empty 1`] = `
   },
   "neutral": {
     "map": undefined,
-    "name": "zxc0ya-displaysColorsMap-display-color",
+    "name": "131shwl-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#0f658a;    
     position: relative;
@@ -500,7 +500,7 @@ exports[`useEuiButtonColorCSS empty 1`] = `
             /* should stay under the content */
             z-index: 0;
             inset: 0;
-            background-color: rgba(13,161,201, 0.12);
+            background-color: rgb(5.098% 63.137% 78.824% / 0.12);
             pointer-events: none;
           }
         }
@@ -513,7 +513,7 @@ exports[`useEuiButtonColorCSS empty 1`] = `
             content: '';
             position: absolute;
             inset: 0;
-            background-color: rgba(13,161,201, 0.16);
+            background-color: rgb(5.098% 63.137% 78.824% / 0.16);
           }
         }
   ;;label:empty-neutral;",
@@ -521,7 +521,7 @@ exports[`useEuiButtonColorCSS empty 1`] = `
   },
   "primary": {
     "map": undefined,
-    "name": "1kjaxh0-displaysColorsMap-display-color",
+    "name": "g0a30-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#1750ba;    
     position: relative;
@@ -534,7 +534,7 @@ exports[`useEuiButtonColorCSS empty 1`] = `
             /* should stay under the content */
             z-index: 0;
             inset: 0;
-            background-color: rgba(55,136,255, 0.12);
+            background-color: rgb(21.569% 53.333% 100% / 0.12);
             pointer-events: none;
           }
         }
@@ -547,7 +547,7 @@ exports[`useEuiButtonColorCSS empty 1`] = `
             content: '';
             position: absolute;
             inset: 0;
-            background-color: rgba(55,136,255, 0.16);
+            background-color: rgb(21.569% 53.333% 100% / 0.16);
           }
         }
   ;;label:empty-primary;",
@@ -555,7 +555,7 @@ exports[`useEuiButtonColorCSS empty 1`] = `
   },
   "risk": {
     "map": undefined,
-    "name": "d7pn4b-displaysColorsMap-display-color",
+    "name": "hll24f-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#9e3a16;    
     position: relative;
@@ -568,7 +568,7 @@ exports[`useEuiButtonColorCSS empty 1`] = `
             /* should stay under the content */
             z-index: 0;
             inset: 0;
-            background-color: rgba(252,133,68, 0.16);
+            background-color: rgb(98.824% 52.157% 26.667% / 0.16);
             pointer-events: none;
           }
         }
@@ -581,7 +581,7 @@ exports[`useEuiButtonColorCSS empty 1`] = `
             content: '';
             position: absolute;
             inset: 0;
-            background-color: rgba(252,133,68, 0.2);
+            background-color: rgb(98.824% 52.157% 26.667% / 0.2);
           }
         }
   ;;label:empty-risk;",
@@ -589,7 +589,7 @@ exports[`useEuiButtonColorCSS empty 1`] = `
   },
   "success": {
     "map": undefined,
-    "name": "pi9t03-displaysColorsMap-display-color",
+    "name": "y7hmi1-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#09724d;    
     position: relative;
@@ -602,7 +602,7 @@ exports[`useEuiButtonColorCSS empty 1`] = `
             /* should stay under the content */
             z-index: 0;
             inset: 0;
-            background-color: rgba(4,174,126, 0.12);
+            background-color: rgb(1.5686% 68.235% 49.412% / 0.12);
             pointer-events: none;
           }
         }
@@ -615,7 +615,7 @@ exports[`useEuiButtonColorCSS empty 1`] = `
             content: '';
             position: absolute;
             inset: 0;
-            background-color: rgba(4,174,126, 0.16);
+            background-color: rgb(1.5686% 68.235% 49.412% / 0.16);
           }
         }
   ;;label:empty-success;",
@@ -623,7 +623,7 @@ exports[`useEuiButtonColorCSS empty 1`] = `
   },
   "text": {
     "map": undefined,
-    "name": "o4omlr-displaysColorsMap-display-color",
+    "name": "1q5f4u9-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#1d2a3e;    
     position: relative;
@@ -636,7 +636,7 @@ exports[`useEuiButtonColorCSS empty 1`] = `
             /* should stay under the content */
             z-index: 0;
             inset: 0;
-            background-color: rgba(23,80,186, 0.08);
+            background-color: rgb(9.0196% 31.373% 72.941% / 0.08);
             pointer-events: none;
           }
         }
@@ -649,7 +649,7 @@ exports[`useEuiButtonColorCSS empty 1`] = `
             content: '';
             position: absolute;
             inset: 0;
-            background-color: rgba(23,80,186, 0.12);
+            background-color: rgb(9.0196% 31.373% 72.941% / 0.12);
           }
         }
   ;;label:empty-text;",
@@ -657,7 +657,7 @@ exports[`useEuiButtonColorCSS empty 1`] = `
   },
   "warning": {
     "map": undefined,
-    "name": "1s2ubv0-displaysColorsMap-display-color",
+    "name": "1injul9-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#825803;    
     position: relative;
@@ -670,7 +670,7 @@ exports[`useEuiButtonColorCSS empty 1`] = `
             /* should stay under the content */
             z-index: 0;
             inset: 0;
-            background-color: rgba(234,174,1, 0.16);
+            background-color: rgb(91.765% 68.235% 0.39216% / 0.16);
             pointer-events: none;
           }
         }
@@ -683,7 +683,7 @@ exports[`useEuiButtonColorCSS empty 1`] = `
             content: '';
             position: absolute;
             inset: 0;
-            background-color: rgba(234,174,1, 0.2);
+            background-color: rgb(91.765% 68.235% 0.39216% / 0.2);
           }
         }
   ;;label:empty-warning;",
