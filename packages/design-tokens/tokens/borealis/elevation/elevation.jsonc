@@ -1,0 +1,15 @@
+{
+  "elevation": {
+    "$type": "number",
+    "$description": "Z-index levels for layering UI elements",
+    "content": { "$value": 0 },
+    "flyout": { "$value": 1000 },
+    "header": { "$value": 1000 },
+    "mask-below-header": { "$value": 1000 },
+    "menu": { "$value": 2000 },
+    "mask": { "$value": 6000 },
+    "navigation": { "$value": 6000 },
+    "modal": { "$value": 8000 },
+    "toast": { "$value": 9000 }
+  }
+}

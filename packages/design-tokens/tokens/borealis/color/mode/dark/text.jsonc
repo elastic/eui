@@ -1,0 +1,26 @@
+{
+  "color": {
+    "$type": "color",
+    "text": {
+      // Brand text colors
+      "primary": { "$value": "{color.primary.60}" },
+      "accent": { "$value": "{color.accent.60}" },
+      "accent-secondary": { "$value": "{color.accent-secondary.60}" },
+      "neutral": { "$value": "{color.neutral.60}" },
+      "success": { "$value": "{color.success.60}" },
+      "warning": { "$value": "{color.warning.30}" },
+      "risk": { "$value": "{color.risk.50}" },
+      "danger": { "$value": "{color.danger.60}" },
+      "assistance": { "$value": "{color.assistance.50}" },
+      // General text colors
+      "paragraph": { "$value": "{color.shade.30}" },
+      "heading": { "$value": "{color.shade.20}" },
+      "subdued": { "$value": "{color.shade.55}" },
+      "disabled": { "$value": "{color.shade.80}" },
+      "inverse": { "$value": "{color.plain.dark}" },
+      "ink": { "$value": "{color.plain.dark}" },
+      "ghost": { "$value": "{color.plain.light}" },
+      "link": { "$value": "{color.primary.60}" }
+    }
+  }
+}

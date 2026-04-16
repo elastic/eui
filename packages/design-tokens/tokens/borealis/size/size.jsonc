@@ -1,0 +1,15 @@
+{
+  "size": {
+    "$type": "dimension",
+    "base": { "$value": "16px" },
+    "xxs": { "$value": "2px" },
+    "xs": { "$value": "4px" },
+    "s": { "$value": "8px" },
+    "m": { "$value": "12px" },
+    "l": { "$value": "24px" },
+    "xl": { "$value": "32px" },
+    "xxl": { "$value": "40px" },
+    "xxxl": { "$value": "48px" },
+    "xxxxl": { "$value": "64px" }
+  }
+}

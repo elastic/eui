@@ -1,0 +1,35 @@
+{
+  "name": "@elastic/design-tokens",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Design tokens for the Elastic design system",
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "scripts": {
+    "build": "node scripts/build.js",
+    "build:css": "EUI_DT_TARGETS=css node scripts/build.js",
+    "build:scss": "EUI_DT_TARGETS=scss node scripts/build.js",
+    "build:ts": "EUI_DT_TARGETS=ts node scripts/build.js",
+    "build:figma": "EUI_DT_TARGETS=figma node scripts/build.js",
+    "validate": "node scripts/validate-legacy-json.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/elastic/eui.git",
+    "directory": "packages/design-tokens"
+  },
+  "dependencies": {
+    "@tokens-studio/sd-transforms": "^1.2.9",
+    "style-dictionary": "^4.3.2"
+  },
+  "exports": {
+    "./dist/*": "./dist/*"
+  },
+  "files": [
+    "dist/",
+    "tokens/"
+  ],
+  "installConfig": {
+    "hoistingLimits": "workspaces"
+  }
+}

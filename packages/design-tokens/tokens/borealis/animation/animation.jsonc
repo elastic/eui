@@ -1,0 +1,17 @@
+{
+  "animation": {
+    "speed": {
+      "$type": "duration",
+      "extra-fast": { "$value": "90ms" },
+      "fast": { "$value": "150ms" },
+      "normal": { "$value": "250ms" },
+      "slow": { "$value": "350ms" },
+      "extra-slow": { "$value": "500ms" }
+    },
+    "easing": {
+      "$type": "cubicBezier",
+      "bounce": { "$value": [0.34, 1.61, 0.7, 1] },
+      "resistance": { "$value": [0.32, 0.72, 0, 1] }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "color": {
+    "$type": "color",
+    "special": {
+      "body": { "$value": "{color.shade.10}" },
+      "highlight": { "$value": "{color.primary.10}" },
+      "disabled": { "$value": "{color.shade.20}" },
+      "disabled-text": { "$value": "{color.shade.80}" },
+      "shadow": { "$value": "{core.color.black}" }
+    },
+    // Legacy shade aliases (emptyShade, lightestShade, etc.)
+    "shade-alias": {
+      "empty": { "$value": "{color.plain.light}" },
+      "lightest": { "$value": "{color.shade.15}" },
+      "light": { "$value": "{color.shade.30}" },
+      "medium": { "$value": "{color.shade.60}" },
+      "dark": { "$value": "{color.shade.90}" },
+      "darkest": { "$value": "{color.shade.120}" },
+      "full": { "$value": "{color.plain.dark}" }
+    }
+  }
+}
