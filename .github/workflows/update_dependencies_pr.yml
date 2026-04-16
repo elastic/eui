@@ -15,6 +15,9 @@ on:
         description: PR body
         type: string
 
+permissions:
+  id-token: write
+
 jobs:
   update:
     name: Create a dependency updates PR
@@ -46,12 +49,17 @@ jobs:
         with:
           node-version-file: .nvmrc
           package-manager-cache: false # Don't cache anything as it's a different repository
+      - name: Fetch ephemeral GitHub token
+        id: fetch_ephemeral_token
+        uses: elastic/ci-gh-actions/fetch-github-token@v1.5.0
+        with:
+          vault-instance: ci-prod
+          vault-role: token-policy-3de0c59c60e3
       - name: Configure git
         env:
-          GH_AUTH_TOKEN: ${{ secrets.UPDATE_DEPENDENCIES_PR_TOKEN }} # TODO: To be replaced with ephemeral token
+          GH_TOKEN: ${{ steps.fetch_ephemeral_token.outputs.token }}
         # language=bash
         run: |
-          echo "${GH_AUTH_TOKEN}" | gh auth login --with-token
           gh auth setup-git
           git config --global user.name 'github-actions[bot]'
           git config --global user.email '41898282+github-actions[bot]@users.noreply.github.com'
