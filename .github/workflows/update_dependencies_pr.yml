@@ -63,7 +63,7 @@ jobs:
           gh auth setup-git
           git config --global user.name 'github-actions[bot]'
           git config --global user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git remote add fork git@github.com:elastic/eui-kibana.git
+          git remote add fork https://github.com/elastic/eui-kibana.git
       - name: Create new branch
         id: git_branch
         # language=bash
@@ -98,4 +98,6 @@ jobs:
           git commit -m "chore: update dependencies"
       - name: Push branch to elastic/eui-kibana
         # language=bash
-        run: git push -u fork "${{ steps.git_branch.outputs.BRANCH_NAME }}"
+        run: |
+          git remote get-url fork
+          git push -u fork "${{ steps.git_branch.outputs.BRANCH_NAME }}"
