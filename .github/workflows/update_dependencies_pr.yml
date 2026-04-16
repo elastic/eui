@@ -97,7 +97,7 @@ jobs:
           git add package.json yarn.lock src/platform/packages/private/kbn-ui-shared-deps-npm/version_dependencies.txt
           git commit -m "chore: update dependencies"
       - name: Push branch to elastic/eui-kibana
+        env:
+          GH_TOKEN: ${{ steps.fetch_ephemeral_token.outputs.token }}
         # language=bash
-        run: |
-          git remote get-url fork
-          git push -u fork "${{ steps.git_branch.outputs.BRANCH_NAME }}"
+        run: git push -u fork "${{ steps.git_branch.outputs.BRANCH_NAME }}"
