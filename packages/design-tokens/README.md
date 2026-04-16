@@ -52,8 +52,13 @@ These match the current Figma structure. Consider normalizing in a future pass.
 
 The shadow design tokens (`color.shadow.*`) only define the **color component** of shadows. The full shadow definitions (layer count, x/y offsets, blur, spread, opacity per layer) live in `eui-theme-borealis/_shadows.ts` as `shadowPrimitives`.
 
-TODO: Consider replacing `shadowPrimitives` with DTCG `shadow` type tokens in this package to make the full shadow definitions part of the design token source of truth.
-
 ### Alpha color format
 
 Alpha colors (via Tokens Studio `studio.tokens.modify`) output in CSS Color Level 4 format: `rgb(21.569% 53.333% 100% / 0.12)` instead of the legacy `rgba(55,136,255, 0.12)`. Both are valid CSS and visually identical, but the string representation differs. This may affect snapshot tests in `eui-theme-borealis`.
+
+## TODO
+
+- **Finish SCSS wiring**: The `_semantic_colors.scss` import is done but several borealis SCSS files still have hardcoded values (severity, font weights, borders). Non-color SCSS variables (sizes, typography) live in `eui-theme-common` and need a coordinated change across both packages. <mark>Do we really need this still?!</mark>
+- **Figma workflow**: Document and polish the Figma variable sync workflow — evaluate Figma REST API (Enterprise), Tokens Studio plugin, or native DTCG import for production use.
+- **Documentation**: Add a standalone documentation site (e.g. Storybook) for browsing and previewing design tokens.
+- **Shadows**: Consider replacing `shadowPrimitives` with DTCG `shadow` type tokens in this package to make the full shadow definitions part of the design token source of truth.
