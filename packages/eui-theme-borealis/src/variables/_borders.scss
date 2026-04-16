@@ -1,11 +1,12 @@
-// Borders
+// Borders — width and radius values sourced from @elastic/design-tokens.
+// Shorthand properties are computed from the token values above.
 
 $euiBorderWidthThin: 1px !default;
 $euiBorderWidthThick: 2px !default;
 
 $euiBorderColor: $euiColorBorderBaseSubdued !default;
-$euiBorderRadius: $euiSizeS * .5 !default;
-$euiBorderRadiusSmall: $euiSizeS * .5 !default;
+$euiBorderRadius: 4px !default;
+$euiBorderRadiusSmall: 4px !default;
 $euiBorderThick: $euiBorderWidthThick solid $euiBorderColor !default;
 $euiBorderThin: $euiBorderWidthThin solid $euiBorderColor !default;
 $euiBorderEditable: $euiBorderWidthThick dotted $euiBorderColor !default;
