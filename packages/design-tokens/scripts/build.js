@@ -7,6 +7,30 @@ import { register } from '@tokens-studio/sd-transforms';
 // Register Tokens Studio transforms (includes ts/color/modifiers for alpha)
 register(StyleDictionary);
 
+// Uppercase hex values to match EUI convention (#F1F6FF not #f1f6ff)
+StyleDictionary.registerTransform({
+  name: 'color/hexUppercase',
+  type: 'value',
+  transitive: true,
+  filter: (token) => token.$type === 'color',
+  transform: (token) => {
+    const value = token.$value ?? token.value;
+    if (typeof value === 'string' && value.startsWith('#')) {
+      return value.toUpperCase();
+    }
+    return value;
+  },
+});
+
+// Extend the tokens-studio transform group with our custom transform
+StyleDictionary.registerTransformGroup({
+  name: 'eui',
+  transforms: [
+    ...StyleDictionary.hooks.transformGroups['tokens-studio'],
+    'color/hexUppercase',
+  ],
+});
+
 const OUTPUT_PATH = 'dist';
 
 const ALL_TARGETS = ['css', 'scss', 'ts', 'figma'];

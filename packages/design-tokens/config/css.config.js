@@ -10,7 +10,7 @@ export function getConfigs() {
       preprocessors: ['tokens-studio'],
       platforms: {
         css: {
-          transformGroup: 'tokens-studio',
+          transformGroup: 'eui',
           buildPath: 'dist/css/',
           files: [
             {
@@ -30,7 +30,7 @@ export function getConfigs() {
       preprocessors: ['tokens-studio'],
       platforms: {
         css: {
-          transformGroup: 'tokens-studio',
+          transformGroup: 'eui',
           buildPath: 'dist/css/',
           files: [
             {

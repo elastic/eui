@@ -65,7 +65,7 @@ export function getConfigs() {
       },
       platforms: {
         figma: {
-          transformGroup: 'tokens-studio',
+          transformGroup: 'eui',
           buildPath: 'dist/figma/',
           files: [
             {
@@ -96,7 +96,7 @@ export function getConfigs() {
       },
       platforms: {
         figma: {
-          transformGroup: 'tokens-studio',
+          transformGroup: 'eui',
           buildPath: 'dist/figma/',
           files: [
             {

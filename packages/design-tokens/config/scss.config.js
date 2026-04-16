@@ -62,7 +62,7 @@ export function getConfigs() {
       },
       platforms: {
         scss: {
-          transformGroup: 'tokens-studio',
+          transformGroup: 'eui',
           buildPath: 'dist/scss/',
           files: [
             // Generic SCSS (kebab-case naming)
@@ -95,7 +95,7 @@ export function getConfigs() {
       },
       platforms: {
         scss: {
-          transformGroup: 'tokens-studio',
+          transformGroup: 'eui',
           buildPath: 'dist/scss/',
           files: [
             {
