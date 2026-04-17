@@ -13,10 +13,65 @@ const { argv } = yargs(hideBin(process.argv))
     type: 'string',
     description:
       'Storybook URL to run tests against. Defaults to the local dev server (http://localhost:6006).',
+  })
+  .option('docker', {
+    type: 'boolean',
+    description:
+      'Run tests inside a Linux Docker container (matching CI) to generate Linux-compatible screenshots. Defaults to true locally, false in CI. Use --no-docker to disable.',
   });
 
 const isUpdate = argv._.includes('update');
 const extraArgs = argv._.filter((arg) => arg !== 'update');
+const isCI = Boolean(process.env.CI || process.env.BUILDKITE);
+const useDocker = argv.docker !== undefined ? argv.docker : !isCI;
+
+if (useDocker) {
+  let playwrightVersion;
+  try {
+    playwrightVersion = require('@playwright/test/package.json').version;
+  } catch {
+    playwrightVersion = require('playwright-core/package.json').version;
+  }
+
+  const dockerImage = `mcr.microsoft.com/playwright:v${playwrightVersion}-noble`;
+
+  // On macOS, Docker containers can't reach the host via localhost; use `host.docker.internal` instead
+  let url = argv.url;
+  if (url && process.platform === 'darwin') {
+    url = url
+      .replace(/\blocalhost\b/g, 'host.docker.internal')
+      .replace(/127\.0\.0\.1/g, 'host.docker.internal');
+  }
+
+  const testStorybookArgs = [
+    isUpdate && '--updateSnapshot',
+    url && `--url ${url}`,
+    ...extraArgs,
+  ].filter(Boolean);
+
+  const innerCmd = [
+    'corepack enable',
+    'yarn',
+    'yarn playwright install chromium',
+    `yarn workspace @elastic/eui test-storybook${
+      testStorybookArgs.length ? ' ' + testStorybookArgs.join(' ') : ''
+    }`,
+  ].join(' && ');
+
+  // `--network=host` lets containers reach host services on Linux;
+  // Docker Desktop on macOS handles `host.docker.internal` automatically
+  const networkFlag = process.platform === 'linux' ? '--network=host ' : '';
+  const cwd = process.cwd();
+
+  console.log(`Running visual regression tests in Docker (${dockerImage})`);
+  execSync(
+    `docker run --rm -i ${networkFlag}-v "${cwd}:/work" -w /work ${dockerImage} bash -c ${JSON.stringify(
+      innerCmd
+    )}`,
+    { stdio: 'inherit' }
+  );
+  process.exit(0);
+}
 
 // Safe-guard to ensure the browser is installed before running the tests
 execSync('yarn playwright install chromium', { stdio: 'inherit' });
