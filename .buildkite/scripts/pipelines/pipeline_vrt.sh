@@ -49,7 +49,6 @@ fi
 
 if [[ "${VRT_PASSED}" == "true" ]]; then
   buildkite-agent meta-data set vrt_has_changes "false"
-  buildkite-agent meta-data set vrt_passed "true"
 
   if [[ -n "$(git status --porcelain -- "${REF_DIR}")" ]]; then
     echo "+++ Committing new VRT baseline screenshots (first run)"
@@ -69,6 +68,8 @@ if [[ "${VRT_PASSED}" == "true" ]]; then
     echo "Visual regression tests passed with no new VRT baseline screenshots"
   fi
 
+  # Mark as passed only after a successful commit/push (or when there was nothing to commit)
+  buildkite-agent meta-data set vrt_passed "true"
   exit 0
 fi
 
