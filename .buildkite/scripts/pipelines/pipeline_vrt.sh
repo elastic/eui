@@ -52,14 +52,9 @@ if [[ "${VRT_PASSED}" == "true" ]]; then
 
   if [[ -n "$(git status --porcelain -- "${REF_DIR}")" ]]; then
     echo "+++ Committing new VRT baseline screenshots (first run)"
-    SIGSTORE_ID_TOKEN="$(buildkite-agent oidc request-token --audience sigstore)"
-    export SIGSTORE_ID_TOKEN
     github_user_vault="secret/ci/elastic-eui/github_machine_user"
     git config --local user.name "$(retry 5 vault read -field=name "${github_user_vault}")"
     git config --local user.email "$(retry 5 vault read -field=email "${github_user_vault}")"
-    git config --local commit.gpgsign true
-    git config --local gpg.x509.program gitsign
-    git config --local gpg.format x509
     git add "${REF_DIR}"
     git commit -m "chore(eui): add VRT baseline screenshots" --no-verify
     git push origin "HEAD:${BUILDKITE_BRANCH}"
