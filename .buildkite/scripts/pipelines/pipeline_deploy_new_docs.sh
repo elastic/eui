@@ -119,19 +119,8 @@ steps:
     soft_fail:
       - exit_status: 1
 
-  - block: "Approve visual changes"
-    key: "approve-vrt"
-    prompt: "Review the diff annotation in this build, then click Approve to update the baselines on this branch."
-    depends_on:
-      - step: "vrt"
-        allow_failure: true
-    if: 'build.pull_request.id != null && build.meta_data.vrt_has_changes == "true"'
-
-  - label: "Update VRT baselines"
-    key: "update-baselines"
-    depends_on: "approve-vrt"
-    if: 'build.pull_request.id != null && build.meta_data.vrt_has_changes == "true"'
-    command: ".buildkite/scripts/pipelines/pipeline_vrt_update.sh"
+  # The "Approve visual changes" block step and "Update VRT baselines" step are
+  # injected dynamically by pipeline_vrt.sh only when differences are found.
 
   - label: "Notify"
     key: "notify"

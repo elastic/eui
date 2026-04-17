@@ -139,4 +139,17 @@ ${annotation_rows}
 </details>
 HTML
 
+# Inject the approval block step and baseline-update step into the pipeline.
+buildkite-agent pipeline upload << 'APPROVAL_PIPELINE'
+steps:
+  - block: "Approve visual changes"
+    key: "approve-vrt"
+    prompt: "Review the diff annotation in this build, then click Approve to update the baselines on this branch."
+
+  - label: "Update VRT baselines"
+    key: "update-baselines"
+    depends_on: "approve-vrt"
+    command: ".buildkite/scripts/pipelines/pipeline_vrt_update.sh"
+APPROVAL_PIPELINE
+
 exit 1
