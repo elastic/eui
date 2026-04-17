@@ -13,6 +13,7 @@ import {
   useContext,
   useEffect,
   useLayoutEffect,
+  useRef,
   useState,
 } from 'react';
 import { createPortal } from 'react-dom';
@@ -48,7 +49,9 @@ export interface EuiPortalProps {
 
 export const EuiPortal: FunctionComponent<EuiPortalProps> = memo((_props) => {
   const props = usePropsWithComponentDefaults('EuiPortal', _props);
-  const { children, insert, portalRef } = props;
+  const { children, insert, portalRef: setPortalRef } = props;
+
+  const portalRef = useRef(setPortalRef);
 
   const { hasDifferentColorFromGlobalTheme, colorClassName } = useContext(
     EuiNestedThemeContext
@@ -64,10 +67,12 @@ export const EuiPortal: FunctionComponent<EuiPortalProps> = memo((_props) => {
   };
 
   const updatePortalRef = (ref: HTMLDivElement | null) => {
-    if (portalRef) {
-      portalRef(ref);
-    }
+    portalRef.current?.(ref);
   };
+
+  useEffect(() => {
+    portalRef.current = setPortalRef;
+  }, [setPortalRef]);
 
   /* Uses `useLayoutEffect` on client-side instead of `useEffect` to ensure the portal
   node is created and inserted into the DOM synchronously. This matches the same timing
