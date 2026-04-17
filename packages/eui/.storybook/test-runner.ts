@@ -43,6 +43,8 @@ const config: TestRunnerConfig = {
     expect(image).toMatchImageSnapshot({
       customSnapshotsDir: path.join(__dirname, '..', '.vrt', 'reference'),
       customDiffDir: path.join(__dirname, '..', '.vrt', 'diff'),
+      customReceivedDir: path.join(__dirname, '..', '.vrt', 'current'),
+      storeReceivedOnFailure: true,
       customSnapshotIdentifier: `${context.id}-${project}`,
     });
   },
