@@ -28,29 +28,27 @@ on:
         required: false
         type: string
   workflow_call:
-    release_ref:
-      description: Upstream git ref to create the release from
-      required: true
-      type: string
-    type:
-      description: Release type
-      required: true
-      type: choice
-      options:
-        - snapshot
-        - official
-    workspaces:
-      description: A comma-separated list of workspaces to release
-      required: false
-      type: string
-    dry_run:
-      description: Dry run (do not publish the packages)
-      required: true
-      type: boolean
-    npm_tag:
-      description: "[Custom releases only] npm tag to use"
-      required: false
-      type: string
+    inputs:
+      release_ref:
+        description: Upstream git ref to create the release from
+        required: true
+        type: string
+      type:
+        description: Release type - snapshot or official
+        required: true
+        type: string
+      workspaces:
+        description: A comma-separated list of workspaces to release
+        required: false
+        type: string
+      dry_run:
+        description: Dry run (do not publish the packages)
+        required: true
+        type: boolean
+      npm_tag:
+        description: "[Custom releases only] npm tag to use"
+        required: false
+        type: string
     outputs:
       published_packages_json:
         description: A JSON-formatted list of published packages and their versions
