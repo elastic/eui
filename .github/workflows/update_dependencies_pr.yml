@@ -83,11 +83,11 @@ jobs:
             ver="$1"
             if [[ $(npm pkg get "devDependencies.$pkg") != "{}" ]]; then
               npm pkg set "devDependencies.$pkg=$ver"
-            elif [[ $(npm pkg get "dependencies.$pkg") != "" ]]; then
+            elif [[ $(npm pkg get "dependencies.$pkg") != "{}" ]]; then
               npm pkg set "dependencies.$pkg=$ver"
             else
               echo "::warning:: Skipping $pkg: Not found in either dependencies or devDependencies";
-          fi'
+            fi'
       - name: Run Kibana bootstrap scripts
         # language=bash
         run: yarn kbn bootstrap
