@@ -9,7 +9,11 @@
 import React, { Component, FocusEvent, ReactNode, createRef } from 'react';
 import classNames from 'classnames';
 
-import { htmlIdGenerator, keys } from '../../../services';
+import {
+  htmlIdGenerator,
+  keys,
+  RenderWithEuiStylesMemoizer,
+} from '../../../services';
 import { CommonProps } from '../../common';
 import { EuiI18n } from '../../i18n';
 import { EuiScreenReaderOnly } from '../../accessibility';
@@ -24,7 +28,7 @@ import {
   EuiSuperSelectItem,
   type EuiSuperSelectOption,
 } from './super_select_item';
-import { euiSuperSelectStyles as styles } from './super_select.styles';
+import { euiSuperSelectStyles } from './super_select.styles';
 
 enum ShiftDirection {
   BACK = 'back',
@@ -110,6 +114,7 @@ export class EuiSuperSelect<T = string> extends Component<
 
   state = {
     isPopoverOpen: this.props.isOpen || false,
+    currentIndex: 0,
   };
 
   componentDidMount() {
@@ -165,6 +170,7 @@ export class EuiSuperSelect<T = string> extends Component<
   closePopover = () => {
     this.setState({
       isPopoverOpen: false,
+      currentIndex: -1,
     });
 
     // Refocus back to the toggling control button on popover close
@@ -258,6 +264,9 @@ export class EuiSuperSelect<T = string> extends Component<
     }
 
     this.focusItemAt(targetElementIndex, direction);
+    this.setState({
+      currentIndex: targetElementIndex,
+    });
   }
 
   render() {
@@ -303,20 +312,33 @@ export class EuiSuperSelect<T = string> extends Component<
     );
 
     const items = options.map((option, index) => {
-      const { value, dropdownDisplay, inputDisplay, ...optionRest } = option;
+      const { value, dropdownDisplay, inputDisplay, disabled, ...optionRest } =
+        option;
       if (value == null) return;
 
       return (
         <EuiSuperSelectItem
           key={index}
+          /* NOTE: This should rather use "li" to align select-like behavior. But the current
+          implementation relies on the interactive and focusable item for the navigation.
+          This will require additional refactoring to adjust but we might want to decide first
+          if the effort is worth it, considering the unification plans for selection components
+          as part of OneSelect (https://github.com/elastic/eui/issues/8808).
+          */
+          element="button"
           id={String(value)}
           className={itemClassName}
-          hasDividers={hasDividers}
-          layoutAlign={itemLayoutAlign}
-          icon={valueOfSelected === value ? 'check' : 'empty'}
+          checked={valueOfSelected === value ? 'on' : undefined}
+          isSelected={valueOfSelected === value}
+          isFocused={this.state.currentIndex === index}
+          isSingleSelection
+          isDisabled={disabled}
+          textWrap="wrap"
           onClick={() => this.itemClicked(value)}
           onKeyDown={this.onItemKeyDown}
-          buttonRef={(node) => this.setItemNode(node, index)}
+          ref={(node: HTMLButtonElement | null) =>
+            this.setItemNode(node, index)
+          }
           aria-selected={valueOfSelected === value}
           {...optionRest}
         >
@@ -326,43 +348,54 @@ export class EuiSuperSelect<T = string> extends Component<
     });
 
     return (
-      <EuiInputPopover
-        closePopover={this.closePopover}
-        panelPaddingSize="none"
-        {...popoverProps}
-        className={popoverClasses}
-        isOpen={isOpen || this.state.isPopoverOpen}
-        input={button}
-        fullWidth={fullWidth}
-        disableFocusTrap // This component handles its own focus manually
-      >
-        <EuiScreenReaderOnly>
-          <p id={this.describedById}>
-            <EuiI18n
-              token="euiSuperSelect.screenReaderAnnouncement"
-              default="You are in a form selector and must select a single option.
-              Use the Up and Down arrow keys to navigate or Escape to close."
-            />
-          </p>
-        </EuiScreenReaderOnly>
-        <EuiI18n token="euiSuperSelect.ariaLabel" default="Select listbox">
-          {(ariaLabel: string) => (
-            <div
-              aria-label={ariaLabel}
-              aria-describedby={this.describedById}
-              css={styles.euiSuperSelect__listbox}
-              className="euiSuperSelect__listbox eui-scrollBar"
-              role="listbox"
-              aria-activedescendant={
-                valueOfSelected != null ? String(valueOfSelected) : undefined
-              }
-              tabIndex={0}
+      <RenderWithEuiStylesMemoizer>
+        {(stylesMemoizer) => {
+          const styles = stylesMemoizer(euiSuperSelectStyles);
+
+          return (
+            <EuiInputPopover
+              closePopover={this.closePopover}
+              panelPaddingSize="none"
+              {...popoverProps}
+              className={popoverClasses}
+              isOpen={isOpen || this.state.isPopoverOpen}
+              input={button}
+              fullWidth={fullWidth}
+              disableFocusTrap // This component handles its own focus manually
             >
-              {items}
-            </div>
-          )}
-        </EuiI18n>
-      </EuiInputPopover>
+              <EuiScreenReaderOnly>
+                <p id={this.describedById}>
+                  <EuiI18n
+                    token="euiSuperSelect.screenReaderAnnouncement"
+                    default="You are in a form selector and must select a single option.
+              Use the Up and Down arrow keys to navigate or Escape to close."
+                  />
+                </p>
+              </EuiScreenReaderOnly>
+              <EuiI18n
+                token="euiSuperSelect.ariaLabel"
+                default="Select listbox"
+              >
+                {(ariaLabel: string) => (
+                  <div
+                    aria-label={ariaLabel}
+                    aria-describedby={this.describedById}
+                    css={styles.euiSuperSelect__listbox}
+                    className="euiSuperSelect__listbox eui-scrollBar"
+                    role="listbox"
+                    aria-activedescendant={
+                      this.itemNodes[this.state.currentIndex]?.id
+                    }
+                    tabIndex={0}
+                  >
+                    {items}
+                  </div>
+                )}
+              </EuiI18n>
+            </EuiInputPopover>
+          );
+        }}
+      </RenderWithEuiStylesMemoizer>
     );
   }
 }
