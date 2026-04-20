@@ -30,10 +30,10 @@ jobs:
         run: |
           num_deps=$(jq 'map(select(has("package") and has("version"))) | length' <<< "$DEPENDENCIES")
           if [[ "$?" -ne 0 ]]; then
-            echo "::error:: Invalid dependencies input"
+            echo "::error::Invalid dependencies input"
             exit 2
           elif [[ "$num_deps" -eq 0 ]]; then
-            echo "::warning:: No dependencies to update"
+            echo "::warning::No dependencies to update"
             exit 1
           else
             echo "$num_deps dependencies to update"
@@ -86,7 +86,7 @@ jobs:
             elif [[ $(npm pkg get "dependencies.$pkg") != "{}" ]]; then
               npm pkg set "dependencies.$pkg=$ver"
             else
-              echo "::warning:: Skipping $pkg: Not found in either dependencies or devDependencies";
+              echo "::warning::Skipping $pkg: Not found in either dependencies or devDependencies";
             fi'
       - name: Run Kibana bootstrap scripts
         # language=bash
