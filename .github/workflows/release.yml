@@ -252,7 +252,7 @@ jobs:
     steps:
       - id: resolver
         run: |
-          PUBLISHED_PACKAGES_JSON_SNAPSHOT="${{ jobs.release_snapshot.outputs.published_packages_json }}"
-          PUBLISHED_PACKAGES_JSON_OFFICIAL="${{ jobs.release_official.outputs.published_packages_json }}"
+          PUBLISHED_PACKAGES_JSON_SNAPSHOT="${{ needs.release_snapshot.outputs.published_packages_json }}"
+          PUBLISHED_PACKAGES_JSON_OFFICIAL="${{ needs.release_official.outputs.published_packages_json }}"
 
           echo "json=${PUBLISHED_PACKAGES_JSON_SNAPSHOT:-$PUBLISHED_PACKAGES_JSON_OFFICIAL}" >> "$GITHUB_OUTPUT"
