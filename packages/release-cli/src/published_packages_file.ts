@@ -28,7 +28,7 @@ export const emitPublishedPackagesFile = async (packages: PublishedPackages) => 
     PUBLISHED_PACKAGES_FILE_NAME
   );
 
-  await fs.mkdir(releaseDir);
+  await fs.mkdir(releaseDir, { recursive: true });
 
   const fileContent = JSON.stringify(packages, null, 2);
   await fs.writeFile(publishedPackagesFile, fileContent, 'utf8');
