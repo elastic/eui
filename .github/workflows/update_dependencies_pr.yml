@@ -28,8 +28,8 @@ jobs:
           DEPENDENCIES: ${{ inputs.dependencies }}
         # language=bash
         run: |
-          num_deps=$(jq 'map(select(has("package") and has("version"))) | length' <<< "$DEPENDENCIES")
-          if [[ "$?" -ne 0 ]]; then
+          num_deps=$(jq 'map(select(has("package") and has("version"))) | length' <<< "$DEPENDENCIES") || exit_code=$?
+          if [[ "$exit_code" -ne 0 ]]; then
             echo "::error::Invalid dependencies input"
             exit 2
           elif [[ "$num_deps" -eq 0 ]]; then
