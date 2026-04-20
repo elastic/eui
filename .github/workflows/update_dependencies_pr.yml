@@ -99,5 +99,6 @@ jobs:
       - name: Push branch to elastic/eui-kibana
         env:
           GH_TOKEN: ${{ steps.fetch_ephemeral_token.outputs.token }}
+          BRANCH_NAME: ${{ steps.git_branch.outputs.BRANCH_NAME }}
         # language=bash
-        run: git push -u fork "${{ steps.git_branch.outputs.BRANCH_NAME }}"
+        run: git push -u fork "$BRANCH_NAME"
