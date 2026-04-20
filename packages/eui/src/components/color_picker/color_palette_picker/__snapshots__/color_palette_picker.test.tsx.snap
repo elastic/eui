@@ -408,7 +408,6 @@ exports[`EuiColorPalettePicker more props are propagated to each option 1`] = `
               You are in a form selector and must select a single option. Use the Up and Down arrow keys to navigate or Escape to close.
             </p>
             <div
-              aria-activedescendant="paletteFixed"
               aria-describedby="euiSuperSelect__generated-id__screenreaderDescribeId"
               aria-label="Select listbox"
               class="euiSuperSelect__listbox eui-scrollBar emotion-euiSuperSelect__listbox"
@@ -417,26 +416,22 @@ exports[`EuiColorPalettePicker more props are propagated to each option 1`] = `
             >
               <button
                 aria-label="my palette fixed"
-                class="euiListItemLayout euiContextMenuItem euiSuperSelect__item paletteFixedClass emotion-euiListItemLayout-isInteractive-euiContextMenuItem-center-euiSuperSelect__item-hasDividers"
+                aria-selected="true"
+                class="euiListItemLayout euiSuperSelect__item paletteFixedClass emotion-euiListItemLayout-isInteractive-isFocused-isSelected-isSelectedFocused"
                 data-test-subj="fixed-data-test-subj"
                 id="paletteFixed"
                 role="option"
-                type="button"
               >
                 <span
                   class="euiListItemLayout__content emotion-euiListItemLayout__content"
                 >
                   <span
-                    class="euiListItemLayout__prepend emotion-euiListItemLayout__prepend"
-                  >
-                    <span
-                      class="euiContextMenu__icon emotion-euiContextMenu__icon"
-                      color="inherit"
-                      data-euiicon-type="check"
-                    />
-                  </span>
+                    class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+                    color="primary"
+                    data-euiicon-type="check"
+                  />
                   <span
-                    class="euiListItemLayout__text euiContextMenuItem__text emotion-euiListItemLayout__text-wrap-euiContextMenuItem__text"
+                    class="euiListItemLayout__text emotion-euiListItemLayout__text-wrap"
                   >
                     <div
                       class="euiColorPalettePicker__item"
@@ -492,26 +487,22 @@ exports[`EuiColorPalettePicker more props are propagated to each option 1`] = `
                 </span>
               </button>
               <button
-                class="euiListItemLayout euiContextMenuItem euiSuperSelect__item paletteLinearClass emotion-euiListItemLayout-isInteractive-euiContextMenuItem-center-euiSuperSelect__item-hasDividers"
+                aria-selected="false"
+                class="euiListItemLayout euiSuperSelect__item paletteLinearClass emotion-euiListItemLayout-isInteractive"
                 data-test-subj="gradient-data-test-subj"
                 id="paletteLinear"
                 role="option"
-                type="button"
               >
                 <span
                   class="euiListItemLayout__content emotion-euiListItemLayout__content"
                 >
                   <span
-                    class="euiListItemLayout__prepend emotion-euiListItemLayout__prepend"
-                  >
-                    <span
-                      class="euiContextMenu__icon emotion-euiContextMenu__icon"
-                      color="inherit"
-                      data-euiicon-type="empty"
-                    />
-                  </span>
+                    class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+                    color="text"
+                    data-euiicon-type="empty"
+                  />
                   <span
-                    class="euiListItemLayout__text euiContextMenuItem__text emotion-euiListItemLayout__text-wrap-euiContextMenuItem__text"
+                    class="euiListItemLayout__text emotion-euiListItemLayout__text-wrap"
                   >
                     <div
                       class="euiColorPalettePicker__item"
@@ -547,26 +538,22 @@ exports[`EuiColorPalettePicker more props are propagated to each option 1`] = `
                 </span>
               </button>
               <button
-                class="euiListItemLayout euiContextMenuItem euiSuperSelect__item emotion-euiListItemLayout-isInteractive-euiContextMenuItem-center-euiSuperSelect__item-hasDividers"
+                aria-selected="false"
+                class="euiListItemLayout euiSuperSelect__item emotion-euiListItemLayout-isInteractive"
                 data-test-subj="gradient-with-stops-data-test-subj"
                 id="paletteLinearStops"
                 role="option"
-                type="button"
               >
                 <span
                   class="euiListItemLayout__content emotion-euiListItemLayout__content"
                 >
                   <span
-                    class="euiListItemLayout__prepend emotion-euiListItemLayout__prepend"
-                  >
-                    <span
-                      class="euiContextMenu__icon emotion-euiContextMenu__icon"
-                      color="inherit"
-                      data-euiicon-type="empty"
-                    />
-                  </span>
+                    class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+                    color="text"
+                    data-euiicon-type="empty"
+                  />
                   <span
-                    class="euiListItemLayout__text euiContextMenuItem__text emotion-euiListItemLayout__text-wrap-euiContextMenuItem__text"
+                    class="euiListItemLayout__text emotion-euiListItemLayout__text-wrap"
                   >
                     <div
                       class="euiColorPalettePicker__item"
@@ -602,26 +589,22 @@ exports[`EuiColorPalettePicker more props are propagated to each option 1`] = `
                 </span>
               </button>
               <button
-                class="euiListItemLayout euiContextMenuItem euiSuperSelect__item emotion-euiListItemLayout-isInteractive-euiContextMenuItem-center-euiSuperSelect__item-hasDividers"
+                aria-selected="false"
+                class="euiListItemLayout euiSuperSelect__item emotion-euiListItemLayout-isInteractive"
                 data-test-subj="text-data-test-subj"
                 id="custom"
                 role="option"
-                type="button"
               >
                 <span
                   class="euiListItemLayout__content emotion-euiListItemLayout__content"
                 >
                   <span
-                    class="euiListItemLayout__prepend emotion-euiListItemLayout__prepend"
-                  >
-                    <span
-                      class="euiContextMenu__icon emotion-euiContextMenu__icon"
-                      color="inherit"
-                      data-euiicon-type="empty"
-                    />
-                  </span>
+                    class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+                    color="text"
+                    data-euiicon-type="empty"
+                  />
                   <span
-                    class="euiListItemLayout__text euiContextMenuItem__text emotion-euiListItemLayout__text-wrap-euiContextMenuItem__text"
+                    class="euiListItemLayout__text emotion-euiListItemLayout__text-wrap"
                   >
                     <div
                       class="euiColorPalettePicker__item"

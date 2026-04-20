@@ -237,52 +237,44 @@ exports[`EuiSuperSelect renders 1`] = `
               tabindex="0"
             >
               <button
-                class="euiListItemLayout euiContextMenuItem euiSuperSelect__item emotion-euiListItemLayout-isInteractive-euiContextMenuItem-center-euiSuperSelect__item"
+                aria-selected="false"
+                class="euiListItemLayout euiSuperSelect__item emotion-euiListItemLayout-isInteractive-isFocused"
                 data-test-subj="euiListItemLayout"
                 id="1"
                 role="option"
-                type="button"
               >
                 <span
                   class="euiListItemLayout__content emotion-euiListItemLayout__content"
                 >
                   <span
-                    class="euiListItemLayout__prepend emotion-euiListItemLayout__prepend"
-                  >
-                    <span
-                      class="euiContextMenu__icon emotion-euiContextMenu__icon"
-                      color="inherit"
-                      data-euiicon-type="empty"
-                    />
-                  </span>
+                    class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+                    color="text"
+                    data-euiicon-type="empty"
+                  />
                   <span
-                    class="euiListItemLayout__text euiContextMenuItem__text emotion-euiListItemLayout__text-wrap-euiContextMenuItem__text"
+                    class="euiListItemLayout__text emotion-euiListItemLayout__text-wrap"
                   >
                     Option #1
                   </span>
                 </span>
               </button>
               <button
-                class="euiListItemLayout euiContextMenuItem euiSuperSelect__item emotion-euiListItemLayout-isInteractive-euiContextMenuItem-center-euiSuperSelect__item"
+                aria-selected="false"
+                class="euiListItemLayout euiSuperSelect__item emotion-euiListItemLayout-isInteractive"
                 data-test-subj="euiListItemLayout"
                 id="2"
                 role="option"
-                type="button"
               >
                 <span
                   class="euiListItemLayout__content emotion-euiListItemLayout__content"
                 >
                   <span
-                    class="euiListItemLayout__prepend emotion-euiListItemLayout__prepend"
-                  >
-                    <span
-                      class="euiContextMenu__icon emotion-euiContextMenu__icon"
-                      color="inherit"
-                      data-euiicon-type="empty"
-                    />
-                  </span>
+                    class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+                    color="text"
+                    data-euiicon-type="empty"
+                  />
                   <span
-                    class="euiListItemLayout__text euiContextMenuItem__text emotion-euiListItemLayout__text-wrap-euiContextMenuItem__text"
+                    class="euiListItemLayout__text emotion-euiListItemLayout__text-wrap"
                   >
                     Option #2
                   </span>
