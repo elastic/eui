@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import { useState, useEffect, MutableRefObject } from 'react';
+import { useRef, useEffect, type MutableRefObject } from 'react';
 
 /**
  * A hook that tracks whether the pointer is currently down/pressed.
@@ -15,7 +15,7 @@ import { useState, useEffect, MutableRefObject } from 'react';
 export function useIsPointerDown(
   container?: MutableRefObject<HTMLElement | null>
 ) {
-  const [isPointerDown, setIsPointerDown] = useState(false);
+  const isPointerDownRef = useRef(false);
 
   useEffect(() => {
     const handlePointerDown = (event: PointerEvent) => {
@@ -25,16 +25,16 @@ export function useIsPointerDown(
       ) {
         return;
       }
-      setIsPointerDown(true);
+      isPointerDownRef.current = true;
     };
 
     const handlePointerUpOrCancel = () => {
-      setIsPointerDown(false);
+      isPointerDownRef.current = false;
     };
 
     const handleVisibilityChange = () => {
       if (document.visibilityState === 'hidden') {
-        setIsPointerDown(false);
+        isPointerDownRef.current = false;
       }
     };
 
@@ -57,5 +57,5 @@ export function useIsPointerDown(
     };
   }, [container]);
 
-  return isPointerDown;
+  return isPointerDownRef;
 }

@@ -401,13 +401,12 @@ describe('EuiInlineEditForm', () => {
           target: { value: '' },
         });
 
-        fireEvent.click(getByTestSubject('euiInlineEditModeSaveButton'));
-        expect(onSave).toHaveBeenCalledTimes(1);
-
-        await act(() => {
+        await act(async () => {
+          fireEvent.click(getByTestSubject('euiInlineEditModeSaveButton'));
           promiseResolve(false);
-          return expect(promise).resolves.toBe(false);
+          await expect(promise).resolves.toBe(false);
         });
+        expect(onSave).toHaveBeenCalledTimes(1);
 
         expect(
           queryByTestSubject('euiInlineReadModeButton')
@@ -419,13 +418,12 @@ describe('EuiInlineEditForm', () => {
           target: { value: 'hey there' },
         });
 
-        fireEvent.click(getByTestSubject('euiInlineEditModeSaveButton'));
-        expect(onSave).toHaveBeenCalledTimes(2);
-
         await act(async () => {
+          fireEvent.click(getByTestSubject('euiInlineEditModeSaveButton'));
           promiseResolve(true);
-          return expect(promise).resolves.toBe(true);
+          await expect(promise).resolves.toBe(true);
         });
+        expect(onSave).toHaveBeenCalledTimes(2);
 
         expect(getByTestSubject('euiInlineReadModeButton')).toBeInTheDocument();
         expect(getByText('hey there')).toBeTruthy();

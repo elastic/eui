@@ -2,6 +2,8 @@
 sidebar_position: 4
 ---
 
+import useChartBaseThemeSource from '!raw-loader!../use_chart_base_theme';
+
 # Metric chart
 
 import VersionBadge from '../version_badge';
@@ -59,11 +61,13 @@ The `color` attribute can be used to render a color background. Such color can b
 
 If the passed `value` is a `Number` then you must provide a `valueFormatter`, if instead is a `String` then the `valueFormatter` is not required.
 
-<Demo scope={{ ...ElasticCharts, useChartBaseTheme }}>
+<Demo scope={{ ...ElasticCharts, useChartBaseTheme }} extraFiles={{ 'use_chart_base_theme.ts': useChartBaseThemeSource }}>
   ```tsx
   import React, { useState } from 'react';
   import { EuiFlexGroup, EuiFlexItem, EuiPanel, EuiRange } from '@elastic/eui';
   import { Chart, Metric, Settings } from '@elastic/charts';
+  import { useChartBaseTheme } from './use_chart_base_theme';
+
 
   export default () => {
     const chartBaseTheme = useChartBaseTheme();
@@ -187,11 +191,13 @@ If your metric chart could display negative values (such as temperature, variati
 
 To use this progress bar, your data should adhere to the `MetricWProgress` type. In particular, in addition to the already required properties you have to specify the maximum value the progress bar can reach through the `domainMax` prop and you have to specify a progress bar direction via `progressBarDirection`.
 
-<Demo scope={{ ...ElasticCharts, useChartBaseTheme }}>
+<Demo scope={{ ...ElasticCharts, useChartBaseTheme }} extraFiles={{ 'use_chart_base_theme.ts': useChartBaseThemeSource }}>
   ```tsx
   import React from 'react';
   import { EuiFlexGroup, EuiFlexItem, EuiPanel } from '@elastic/eui';
   import { Chart, LayoutDirection, Metric, Settings } from '@elastic/charts';
+  import { useChartBaseTheme } from './use_chart_base_theme';
+
 
   export default () => {
     const chartBaseTheme = useChartBaseTheme();
@@ -278,11 +284,13 @@ The trend is then rendered following these principles:
 *   the horizontal space represents the range from the minimum to the maximum `x` value
 *   the trend height is limited to 50% of the overall Metric height, so the maximum `y` value always touches the vertical middle of the metric chart.
 
-<Demo scope={{ ...ElasticCharts, useChartBaseTheme }}>
+<Demo scope={{ ...ElasticCharts, useChartBaseTheme }} extraFiles={{ 'use_chart_base_theme.ts': useChartBaseThemeSource }}>
   ```tsx
   import React from 'react';
   import { EuiPanel } from '@elastic/eui';
   import { Chart, Metric, Settings } from '@elastic/charts';
+  import { useChartBaseTheme } from './use_chart_base_theme';
+
 
   export default () => {
     const chartBaseTheme = useChartBaseTheme();
@@ -338,11 +346,13 @@ Providing the following data structure `data={[[{col1}, {col2}, {col3}]]}`you wi
 
 You can align vertically the progress bars' directions to compare values using `LayoutDirection.Vertical`
 
-<Demo scope={{ ...ElasticCharts, useChartBaseTheme }}>
+<Demo scope={{ ...ElasticCharts, useChartBaseTheme }} extraFiles={{ 'use_chart_base_theme.ts': useChartBaseThemeSource }}>
   ```tsx
   import React from 'react';
   import { EuiPanel } from '@elastic/eui';
   import { Chart, LayoutDirection, Metric, Settings } from '@elastic/charts';
+  import { useChartBaseTheme } from './use_chart_base_theme';
+
 
   export default () => {
     const chartBaseTheme = useChartBaseTheme();
@@ -395,11 +405,13 @@ Providing the following data structure `data={[[{col1}], [{col2}], [{col3}]]}`yo
 
 You can align horizontally the progress bars directions to compare values using `LayoutDirection.Horizontal`
 
-<Demo scope={{ ...ElasticCharts, useChartBaseTheme }}>
+<Demo scope={{ ...ElasticCharts, useChartBaseTheme }} extraFiles={{ 'use_chart_base_theme.ts': useChartBaseThemeSource }}>
   ```tsx
   import React from 'react';
   import { EuiPanel } from '@elastic/eui';
   import { Chart, LayoutDirection, Metric, Settings } from '@elastic/charts';
+  import { useChartBaseTheme } from './use_chart_base_theme';
+
 
   export default () => {
     const chartBaseTheme = useChartBaseTheme();
@@ -456,11 +468,13 @@ You can mix columns and rows in the `data` array to create a grid. The grid is f
 
 Different types of metrics can be mixed together.
 
-<Demo scope={{ ...ElasticCharts, useChartBaseTheme }}>
+<Demo scope={{ ...ElasticCharts, useChartBaseTheme }} extraFiles={{ 'use_chart_base_theme.ts': useChartBaseThemeSource }}>
   ```tsx
   import React from 'react';
   import { EuiIcon, EuiPanel } from '@elastic/eui';
   import { Chart, Metric, MetricSpec, Settings } from '@elastic/charts';
+  import { useChartBaseTheme } from './use_chart_base_theme';
+
 
   const osTrend = Array.from({ length: 30 }).map((d, i) => ({
     x: i,

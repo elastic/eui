@@ -9,6 +9,7 @@
 export const typeToPathMap = {
   accessibility: () => import('./assets/accessibility'),
   addDataApp: () => import('./assets/app_add_data'),
+  addToDashboard: () => import('./assets/add_to_dashboard'),
   advancedSettingsApp: () => import('./assets/app_advanced_settings'),
   agentApp: () => import('./assets/app_fleet'),
   aggregate: () => import('./assets/aggregate'),
@@ -579,6 +580,8 @@ export const typeToPathMap = {
   refreshTime: () => import('./assets/refresh_time'),
   timeslider: () => import('./assets/clock_control'), // NOTE: To be deprecated in favor of clockControl
   training: () => import('./assets/presentation'), // NOTE: To be deprecated in favor of presentation,
+  transitionBottomIn: () => import('./assets/transition_bottom_in'),
+  transitionBottomOut: () => import('./assets/transition_bottom_out'),
   transitionLeftIn: () => import('./assets/transition_left_in'),
   transitionLeftOut: () => import('./assets/transition_left_out'),
   transitionTopIn: () => import('./assets/transition_top_in'),

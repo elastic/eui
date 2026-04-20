@@ -85,7 +85,11 @@ const buildMockManagerState = ({
   session = {
     mainFlyoutId: 'main-1',
     childFlyoutId: 'child-1' as string | null,
-  } as { mainFlyoutId: string; childFlyoutId: string | null } | null,
+  } as {
+    mainFlyoutId: string;
+    childFlyoutId: string | null;
+    historyKey?: symbol;
+  } | null,
   mainFlyout = {
     flyoutId: 'main-1',
     level: 'main' as const,
@@ -100,7 +104,9 @@ const buildMockManagerState = ({
   } as { flyoutId: string; level: string; size: string; width?: number } | null,
 } = {}) => ({
   layoutMode,
-  sessions: session ? [session] : [],
+  sessions: session
+    ? [{ ...session, historyKey: session.historyKey ?? Symbol() }]
+    : [],
   flyouts: [mainFlyout, childFlyout].filter(Boolean),
 });
 

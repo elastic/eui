@@ -5,13 +5,16 @@ keywords: [EuiFlexGroup]
 
 # Flex groups
 
+```mdx-code-block
 import { createDemo } from '@elastic/eui-docusaurus-theme/components';
-import { FlexPreviewWrapper } from './flex_preview_wrapper';
+import FlexPreviewWrapper from './flex_preview_wrapper';
+import flexPreviewWrapperSource from '!raw-loader!./flex_preview_wrapper';
 import DemoNote from './_flex_preview_note.mdx';
 
-export const FlexDemo = createDemo({ previewWrapper: FlexPreviewWrapper });
+export const FlexDemo = createDemo({ previewWrapper: FlexPreviewWrapper, previewWrapperSource: flexPreviewWrapperSource });
 
 <DemoNote />
+```
 
 **EuiFlexGroup** is useful for setting up layouts for a single row of content. By default, any [EuiFlexItem](./item.mdx) within **EuiFlexGroup** will stretch and grow to match their siblings.
 

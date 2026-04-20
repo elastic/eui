@@ -1,3 +1,51 @@
+## [`v114.1.0`](https://github.com/elastic/eui/releases/v114.1.0)
+
+- Added an optional `tooltipProps` prop to `EuiMarkdownEditorHelpButton` ([#9546](https://github.com/elastic/eui/pull/9546))
+- Added a warning when non-recommended units are used in `width`, `minWidth` or `maxWidth` props on `<EuiTableFooterCell>`, `<EuiTableHeaderCell>`, `<EuiTableHeaderCellCheckbox>` as well as the `columns` configuration on `<EuiBasicTable>` and `<EuiInMemoryTable>` ([#9540](https://github.com/elastic/eui/pull/9540))
+- Added `transitionBottomIn` and `transitionBottomOut` icons to `EuiIcon` ([#9528](https://github.com/elastic/eui/pull/9528))
+
+**Bug fixes**
+
+- Fixed `EuiFlyoutManager` animation flickering when switching between flyout sessions by removing intermediate transition stages (backgrounding, returning, closing) and limiting opening animations to the initial flyout and first child only ([#9514](https://github.com/elastic/eui/pull/9514))
+- Fixed rendering of `EuiTableHeaderMobile` when `responsiveBreakpoint=false` prop is set ([#9531](https://github.com/elastic/eui/pull/9531))
+
+## [`v114.0.0`](https://github.com/elastic/eui/releases/v114.0.0)
+
+- Fixed the clipping of `EuiFlyout` overlay mask to the container bounds when the `container` prop is provided, so the mask no longer covers the full viewport for app-scoped flyouts. ([#9512](https://github.com/elastic/eui/pull/9512))
+- Updated `EuiFlyout` to support `pushAnimation` prop for `type="overlay"` ([#9428](https://github.com/elastic/eui/pull/9428))
+- Added `hasAnimation` prop on `EuiFlyout` (replaces `pushAnimation`) ([#9428](https://github.com/elastic/eui/pull/9428))
+- Added `hasAnimation` prop on `EuiOverlayMask` to conditionally add animation styles ([#9428](https://github.com/elastic/eui/pull/9428))
+- Added `historyKey` prop (type `symbol`) to `EuiFlyout` and the flyout manager API to support scoped flyout history. ([#9413](https://github.com/elastic/eui/pull/9413))
+    - Only flyouts sharing the same `Symbol` reference share Back button navigation and history entries; omitting `historyKey` gives each session its own isolated history group.
+    - `ACTION_CLOSE_ALL` now closes only the current history group rather than all open flyouts.
+
+**Bug fixes**
+
+- Fixed `EuiTreeView` expanded nodes clipping content and causing sibling overlap when children exceed viewport height ([#9510](https://github.com/elastic/eui/pull/9510))
+- Fixed `EuiDataGrid` scroll bouncing back to the focused element in certain cases ([#9453](https://github.com/elastic/eui/pull/9453))
+- Fixed support for intraword underscores in `EuiMarkdownFormat` ([#9408](https://github.com/elastic/eui/pull/9408))
+
+**Deprecations**
+
+- Deprecated `pushAnimation` prop on `EuiFlyout`. Use `hasAnimation` instead. ([#9428](https://github.com/elastic/eui/pull/9428))
+
+**Breaking changes**
+
+- Removed `severity.assistance` color token ([#9507](https://github.com/elastic/eui/pull/9507))
+- Removed assistance datavis color tokens: ([#9507](https://github.com/elastic/eui/pull/9507))
+  - `vis.euiColorVisAssistance`
+  - `vis.euiColorVis10`
+  - `vis.euiColorVis11`
+  - `vis.euiColorVisText10`
+  - `vis.euiColorVisText11`
+  - `vis.euiColorVisBehindText10`
+  - `vis.euiColorVisBehindText11`
+- The positional signature of `FlyoutManagerApi.addFlyout` and the flyout store's `addFlyout` now includes `historyKey` before the `iconType`/`minWidth` arguments. Call sites that pass arguments positionally must be updated (or switched to named parameters) to account for this new parameter ordering. ([#9413](https://github.com/elastic/eui/pull/9413))
+
+**Accessibility**
+
+- Fixed `aria-label` not being applied to `EuiColorPicker`'s input element ([#9436](https://github.com/elastic/eui/pull/9436))
+
 ## [`v113.3.0`](https://github.com/elastic/eui/releases/v113.3.0)
 
 - Added `color` prop to `EuiContextMenuItem`, accepting all standard button color values ([#9448](https://github.com/elastic/eui/pull/9448))

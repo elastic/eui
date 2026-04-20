@@ -2,6 +2,7 @@ import { IconType } from '@elastic/eui';
 
 export const iconTypes: Array<IconType> = [
   'accessibility',
+  'addToDashboard',
   'aggregate',
   'alignBottom',
   'alignBottomLeft',
@@ -313,6 +314,8 @@ export const iconTypes: Array<IconType> = [
   'thumbUp',
   'timeline',
   'timelineWithArrow', // To be deprecated
+  'transitionBottomIn',
+  'transitionBottomOut',
   'transitionLeftIn',
   'transitionLeftOut',
   'transitionTopIn',
