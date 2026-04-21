@@ -12,7 +12,7 @@ import { render, waitForEuiToolTipVisible } from '../../test/rtl';
 import { shouldRenderCustomStyles } from '../../test/internal';
 import { requiredProps } from '../../test/required_props';
 
-import { EuiContextMenuItem, SIZES } from './context_menu_item';
+import { EuiContextMenuItem } from './context_menu_item';
 
 describe('EuiContextMenuItem', () => {
   shouldRenderCustomStyles(<EuiContextMenuItem />);
@@ -72,16 +72,6 @@ describe('EuiContextMenuItem', () => {
       );
 
       expect(container.firstChild).toMatchSnapshot();
-    });
-
-    describe('size', () => {
-      SIZES.forEach((size) => {
-        test(size, () => {
-          const { container } = render(<EuiContextMenuItem size={size} />);
-
-          expect(container.firstChild).toMatchSnapshot();
-        });
-      });
     });
 
     describe('onClick', () => {
