@@ -102,3 +102,11 @@ jobs:
           BRANCH_NAME: ${{ steps.git_branch.outputs.BRANCH_NAME }}
         # language=bash
         run: git push -u fork "$BRANCH_NAME"
+      - name: Open a pull request
+        env:
+          GH_TOKEN: ${{ steps.fetch_ephemeral_token.outputs.token }}
+          BRANCH_NAME: ${{ steps.git_branch.outputs.BRANCH_NAME }}
+          PR_TITLE: ${{ inputs.pr_title }}
+          PR_BODY: ${{ inputs.pr_body }}
+        # language=bash
+        run: gh pr create --dry-run --draft --repo elastic/eui-kibana --base main --head "$BRANCH_NAME" --title "$PR_TITLE" --body "$PR_BODY"
