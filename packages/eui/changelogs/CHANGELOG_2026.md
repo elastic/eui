@@ -1,3 +1,18 @@
+## [`v114.2.0`](https://github.com/elastic/eui/releases/v114.2.0)
+
+- Added `addToDashboard` icon ([#9590](https://github.com/elastic/eui/pull/9590))
+- Added support for document-relative links in `EuiMarkdownFormat` and `EuiMarkdownEditor` via a new `allowDocumentRelative` option in `parsingConfig.linkValidator` ([#9554](https://github.com/elastic/eui/pull/9554))
+- Added `useEuiWindowEvent` hook and refactored `EuiWindowEvent` to use it internally, preventing unnecessary listener re-registration when inline arrow functions are passed as handlers ([#9536](https://github.com/elastic/eui/pull/9536))
+
+**Bug fixes**
+
+- Fixed a missing checked border state on `EuiCheckableCard` ([#9589](https://github.com/elastic/eui/pull/9589))
+- Fixed the visual alignment of right aligned icons in `EuiFormControlButton` when `value` is not passed ([#9588](https://github.com/elastic/eui/pull/9588))
+
+**Accessibility**
+
+- Fixed `EuiSelectable` screen reader repeatedly announcing total results count on every option navigation instead of only when the count changes ([#9555](https://github.com/elastic/eui/pull/9555))
+
 ## [`v114.1.0`](https://github.com/elastic/eui/releases/v114.1.0)
 
 - Added an optional `tooltipProps` prop to `EuiMarkdownEditorHelpButton` ([#9546](https://github.com/elastic/eui/pull/9546))

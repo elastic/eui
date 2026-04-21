@@ -1,6 +1,10 @@
 import { PropsWithChildren } from 'react';
 import { css } from '@emotion/react';
-import { transparentize, useEuiMemoizedStyles, type UseEuiTheme } from '@elastic/eui';
+import {
+  transparentize,
+  useEuiMemoizedStyles,
+  type UseEuiTheme,
+} from '@elastic/eui';
 
 const getFlexPreviewWrapperStyles = ({ euiTheme }: UseEuiTheme) => css`
   .euiFlexItem {
@@ -9,12 +13,10 @@ const getFlexPreviewWrapperStyles = ({ euiTheme }: UseEuiTheme) => css`
   }
 `;
 
-export const FlexPreviewWrapper = ({ children }: PropsWithChildren) => {
+const FlexPreviewWrapper = ({ children }: PropsWithChildren) => {
   const styles = useEuiMemoizedStyles(getFlexPreviewWrapperStyles);
 
-  return (
-    <div css={styles}>
-      {children}
-    </div>
-  );
+  return <div css={styles}>{children}</div>;
 };
+
+export default FlexPreviewWrapper;

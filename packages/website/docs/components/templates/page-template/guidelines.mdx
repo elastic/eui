@@ -12,11 +12,15 @@ Try to use as much of the namespaced (e.g. `<EuiPageTemplate.Header />`) as much
 
 import contentCenterSvg from '!url-loader!./content_center.svg';
 import singleSvg from '!url-loader!./content_single.svg';
+import contentCenterSvgSource from '!raw-loader!./content_center.svg';
+import singleSvgSource from '!raw-loader!./content_single.svg';
 
-<Demo scope={{ singleSvg, contentCenterSvg }}>
+<Demo scope={{ singleSvg, contentCenterSvg }} extraFiles={{ 'content_single.svg': singleSvgSource, 'content_center.svg': contentCenterSvgSource }}>
   ```tsx
   import React from 'react';
   import { EuiPageTemplate, EuiPageSection, EuiImage } from '@elastic/eui';
+  import singleSvg from './content_single.svg';
+  import contentCenterSvg from './content_center.svg';
 
   export default () => {
     return (

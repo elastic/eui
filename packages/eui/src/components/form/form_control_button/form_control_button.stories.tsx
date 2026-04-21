@@ -57,60 +57,98 @@ export const Playground: Story = {
 export const Kitchensink: Story = {
   tags: ['vrt-only'],
   render: () => {
-    return (
-      <EuiFlexGroup gutterSize="s" direction="column">
-        <EuiFormControlButton placeholder="Placeholder" />
-        <EuiFormControlButton value="Button value" />
-        <EuiFormControlButton autoFocus>Button content</EuiFormControlButton>
-        <EuiFormControlButton value="Button value">
+    const renderItems = ({
+      compressed,
+      autoFocus,
+    }: {
+      compressed?: boolean;
+      autoFocus?: boolean;
+    }) => (
+      <>
+        <EuiFormControlButton
+          placeholder="Placeholder"
+          compressed={compressed}
+        />
+        <EuiFormControlButton value="Button value" compressed={compressed} />
+        <EuiFormControlButton autoFocus={autoFocus} compressed={compressed}>
           Button content
         </EuiFormControlButton>
-        <EuiFormControlButton value="Button value" isDisabled />
-        <EuiFormControlButton value="Button value" isInvalid />
-        <EuiFormControlButton value="Button value" iconType="faceHappy" />
+        <EuiFormControlButton value="Button value" compressed={compressed}>
+          Button content
+        </EuiFormControlButton>
+        <EuiFormControlButton compressed={compressed}>
+          Button content
+        </EuiFormControlButton>
+        <EuiFormControlButton
+          iconType="faceHappy"
+          iconSide="left"
+          compressed={compressed}
+        >
+          Button content
+        </EuiFormControlButton>
+        <EuiFormControlButton
+          iconType="faceHappy"
+          iconSide="right"
+          compressed={compressed}
+        >
+          Button content
+        </EuiFormControlButton>
+        <EuiFormControlButton
+          value="Button value"
+          isDisabled
+          compressed={compressed}
+        />
+        <EuiFormControlButton
+          value="Button value"
+          isInvalid
+          compressed={compressed}
+        />
+        <EuiFormControlButton
+          iconType="faceHappy"
+          iconSide="left"
+          compressed={compressed}
+        />
+        <EuiFormControlButton
+          iconType="faceHappy"
+          iconSide="right"
+          compressed={compressed}
+        />
+        <EuiFormControlButton
+          value="Button value"
+          iconType="faceHappy"
+          compressed={compressed}
+        />
+        <EuiFormControlButton
+          value="Button value"
+          iconType="faceHappy"
+          compressed={compressed}
+        >
+          Button content
+        </EuiFormControlButton>
         <EuiFormControlButton
           value="Button value"
           iconType="faceHappy"
           iconSide="right"
+          compressed={compressed}
         />
         <EuiFormControlButton
           value="Button value"
           iconType="faceHappy"
           iconSide="right"
+          compressed={compressed}
         >
           Button content
         </EuiFormControlButton>
+      </>
+    );
+    return (
+      <EuiFlexGroup gutterSize="s" direction="column">
+        {renderItems({ compressed: false, autoFocus: true })}
 
         <EuiSpacer size="s" />
 
         {/* compressed */}
-        <EuiFormControlButton placeholder="Placeholder" compressed />
-        <EuiFormControlButton value="Button value" compressed />
-        <EuiFormControlButton compressed>Button content</EuiFormControlButton>
-        <EuiFormControlButton value="Button value" compressed>
-          Button content
-        </EuiFormControlButton>
-        <EuiFormControlButton value="Button value" isDisabled compressed />
-        <EuiFormControlButton value="Button value" isInvalid compressed />
-        <EuiFormControlButton
-          value="Button value"
-          iconType="faceHappy"
-          compressed
-        />
-        <EuiFormControlButton
-          value="Button value"
-          iconType="faceHappy"
-          iconSide="right"
-          compressed
-        />
-        <EuiFormControlButton
-          value="Button value"
-          iconType="faceHappy"
-          iconSide="right"
-          compressed
-        >
-          Button content
-        </EuiFormControlButton>
+        {renderItems({ compressed: true })}
       </EuiFlexGroup>
     );
   },

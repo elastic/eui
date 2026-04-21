@@ -1,0 +1,104 @@
+name: Open a Kibana PR with dependency updates
+
+on:
+  workflow_dispatch:
+    inputs:
+      dependencies:
+        description: JSON-serialized map of dependencies to update
+        type: string
+        required: true
+      pr_title:
+        description: PR title
+        type: string
+        default: '[DRAFT] Test updated EUI dependencies'
+      pr_body:
+        description: PR body
+        type: string
+
+permissions:
+  id-token: write
+
+jobs:
+  update:
+    name: Create a dependency updates PR
+    runs-on: ubuntu-latest
+    steps:
+      - name: Verify dependencies input
+        env:
+          DEPENDENCIES: ${{ inputs.dependencies }}
+        # language=bash
+        run: |
+          num_deps=$(jq 'map(select(has("name") and has("version"))) | length' <<< "$DEPENDENCIES") || exit_code=$?
+          if [[ "$exit_code" -ne 0 ]]; then
+            echo "::error::Invalid dependencies input"
+            exit 2
+          elif [[ "$num_deps" -eq 0 ]]; then
+            echo "::warning::No dependencies to update"
+            exit 1
+          else
+            echo "$num_deps dependencies to update"
+          fi
+      - name: Checkout the upstream elastic/kibana repository
+        uses: actions/checkout@v6
+        with:
+          repository: elastic/kibana
+          fetch-depth: 1
+          persist-credentials: false # We use different credentials for other git operations
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version-file: .nvmrc
+          package-manager-cache: false # Don't cache anything as it's a different repository
+      - name: Fetch ephemeral GitHub token
+        id: fetch_ephemeral_token
+        uses: elastic/ci-gh-actions/fetch-github-token@v1.5.0
+        with:
+          vault-instance: ci-prod
+          vault-role: token-policy-3de0c59c60e3
+      - name: Configure git
+        env:
+          GH_TOKEN: ${{ steps.fetch_ephemeral_token.outputs.token }}
+        # language=bash
+        run: |
+          gh auth setup-git
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git remote add fork https://github.com/elastic/eui-kibana.git
+      - name: Create new branch
+        id: git_branch
+        # language=bash
+        run: |
+          branch_name="update-dependencies/$(date +%s)"
+          git checkout -b "$branch_name"
+          echo "BRANCH_NAME=$branch_name" >> "$GITHUB_OUTPUT"
+          echo "::debug::Created branch '$branch_name'"
+      - name: Update dependency versions
+        env:
+          DEPENDENCIES: ${{ inputs.dependencies }}
+        # language=bash
+        run: |
+          jq -j '.[] | .name, "\u0000", .version, "\u0000"' <<< "$DEPENDENCIES" |
+          xargs -0 -n 2 bash -c '
+            pkg="$0"
+            ver="$1"
+            if [[ $(npm pkg get "devDependencies.$pkg") != "{}" ]]; then
+              npm pkg set "devDependencies.$pkg=$ver"
+            elif [[ $(npm pkg get "dependencies.$pkg") != "{}" ]]; then
+              npm pkg set "dependencies.$pkg=$ver"
+            else
+              echo "::warning::Skipping $pkg: Not found in either dependencies or devDependencies";
+            fi'
+      - name: Run Kibana bootstrap scripts
+        # language=bash
+        run: yarn kbn bootstrap
+      - name: Commit changed files
+        # language=bash
+        run: |
+          git add package.json yarn.lock src/platform/packages/private/kbn-ui-shared-deps-npm/version_dependencies.txt
+          git commit -m "chore: update dependencies"
+      - name: Push branch to elastic/eui-kibana
+        env:
+          GH_TOKEN: ${{ steps.fetch_ephemeral_token.outputs.token }}
+          BRANCH_NAME: ${{ steps.git_branch.outputs.BRANCH_NAME }}
+        # language=bash
+        run: git push -u fork "$BRANCH_NAME"

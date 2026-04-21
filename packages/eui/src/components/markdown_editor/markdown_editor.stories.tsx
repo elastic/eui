@@ -27,6 +27,8 @@ The editor also ships with some built in plugins. For example it can handle chec
 It can also handle emojis! :smile:
 
 And it can render !{tooltip[tooltips like this](Look! I'm a very helpful tooltip content!)}
+
+[link](link)
 `;
 
 const meta: Meta<EuiMarkdownEditorProps> = {

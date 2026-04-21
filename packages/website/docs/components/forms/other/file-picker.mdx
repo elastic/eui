@@ -3,10 +3,13 @@ sidebar_position: 1
 keywords: [EuiFilePicker]
 ---
 
+import displayTogglesSource from '!raw-loader!../../../../src/components/display_toggles/display_toggles';
+
 # File picker
 
 **EuiFilePicker** is a stylized, but generic HTML `<input type="file">` tag. It supports drag and drop as well as on click style selection of files. The example below shows how to grab the files using the <a href="https://developer.mozilla.org/en-US/docs/Web/API/FileList" target="_blank">FileList API</a>. Like other form elements, you can wrap it in an [EuiFormRow](../layouts/row.mdx) to apply a label.
 
+<Demo extraFiles={{ 'display_toggles.tsx': displayTogglesSource }}>
 ```tsx interactive
 import React, { useState } from 'react';
 import {
@@ -18,6 +21,7 @@ import {
   EuiSwitch,
   useGeneratedHtmlId,
 } from '@elastic/eui';
+import { DisplayToggles } from './display_toggles';
 
 export default () => {
   const [files, setFiles] = useState({});
@@ -87,6 +91,7 @@ export default () => {
   );
 };
 ```
+</Demo>
 
 ## Removing files programmatically
 
@@ -103,12 +108,12 @@ import {
 } from '@elastic/eui';
 
 export default () => {
-  const [files, setFiles] = useState({});
+  const [files, setFiles] = useState(null);
   const filePickerRef = useRef();
   const removeFilePickerId = useGeneratedHtmlId({ prefix: 'removeFilePicker' });
 
   const onChange = (files) => {
-    setFiles(files.length > 0 ? files : {});
+    setFiles(files);
   };
 
   return (
@@ -130,7 +135,7 @@ export default () => {
             <EuiButton
               color="danger"
               iconType="trash"
-              disabled={files.length > 0 ? false : true}
+              disabled={!files}
               onClick={() => filePickerRef.current.removeFiles()}
             >
               <h3>Remove files</h3>

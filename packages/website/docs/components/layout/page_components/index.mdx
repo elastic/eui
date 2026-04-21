@@ -13,6 +13,9 @@ import fakeParagraph from '!url-loader!./fake_paragraph.svg';
 import { PageComponentsPreviewWrapper, FixedHeightPreviewWrapper } from './_preview_wrapper';
 ```
 
+import fakeSidebarSource from '!raw-loader!./fake_sidebar.svg';
+import fakeParagraphSource from '!raw-loader!./fake_paragraph.svg';
+
 Page layouts are modular and fit together in a precise manner, though certain parts can also be added or removed as needed. EUI provides both the **individual page components** and an [over-arching template](../../templates/page-template/index.mdx) for easily creating some pre-defined layouts.
 
 ## Components
@@ -29,7 +32,7 @@ If you're looking for full page layout examples, we recommend using the [EuiPage
 
 **EuiPageSidebar** doesn't contain many configurations itself, but it does dictate how the rest of the page contents should be displayed. Typically you'll want to wrap all your page contents in **EuiPageBody** and set `panelled={true}` when you have a side bar.
 
-<Demo scope={{ fakeParagraph, fakeSidebar }} previewPadding="none" previewWrapper={FixedHeightPreviewWrapper}>
+<Demo scope={{ fakeParagraph, fakeSidebar }} previewPadding="none" previewWrapper={FixedHeightPreviewWrapper} extraFiles={{ 'fake_sidebar.svg': fakeSidebarSource, 'fake_paragraph.svg': fakeParagraphSource }}>
 
   ```tsx
   import React, { useState } from 'react';
@@ -45,6 +48,8 @@ If you're looking for full page layout examples, we recommend using the [EuiPage
     EuiSwitch,
     useEuiTheme,
   } from '@elastic/eui';
+  import fakeSidebar from './fake_sidebar.svg';
+  import fakeParagraph from './fake_paragraph.svg';
 
   export default () => {
     const { euiTheme } = useEuiTheme();
@@ -119,11 +124,13 @@ If you're looking for full page layout examples, we recommend using the [EuiPage
 
 To create dividers between contents, use the `bottomBorder` prop. The `'extended'` version ensures the border touches the sides of the parent. It also supports `restrictWidth` and `alignment` to align with common usages.
 
-<Demo scope={{ fakeParagraph }} previewPadding="none" previewWrapper={PageComponentsPreviewWrapper}>
+<Demo scope={{ fakeParagraph }} previewPadding="none" previewWrapper={PageComponentsPreviewWrapper} extraFiles={{ 'fake_paragraph.svg': fakeParagraphSource }}>
   ```tsx interactive
   import React, { useState } from 'react';
+  import { css } from '@emotion/react';
 
-  import { EuiPageHeader, EuiPageSection, useEuiTheme } from '@elastic/eui';
+  import { EuiFlexGroup, EuiSwitch, EuiImage, EuiPageHeader, EuiPageSection, useEuiTheme } from '@elastic/eui';
+  import fakeParagraph from './fake_paragraph.svg';
 
   export default () => {
     const { euiTheme } = useEuiTheme();
@@ -204,7 +211,7 @@ import { ConfigurationsTable } from './configurations_table';
 Reminder: [EuiPageTemplate](../../templates/page-template/index.mdx) can handle all these configurations for you.
 :::
 
-<Demo scope={{ fakeParagraph, fakeSidebar }} previewPadding="none" previewWrapper={PageComponentsPreviewWrapper}>
+<Demo scope={{ fakeParagraph, fakeSidebar }} previewPadding="none" previewWrapper={PageComponentsPreviewWrapper} extraFiles={{ 'fake_sidebar.svg': fakeSidebarSource, 'fake_paragraph.svg': fakeParagraphSource }}>
   ```tsx
   import React, { ReactElement, useState } from 'react';
   import { css } from '@emotion/react';
@@ -221,6 +228,8 @@ Reminder: [EuiPageTemplate](../../templates/page-template/index.mdx) can handle 
     EuiSwitch,
     useEuiTheme,
   } from '@elastic/eui';
+  import fakeSidebar from './fake_sidebar.svg';
+  import fakeParagraph from './fake_paragraph.svg';
 
   export default () => {
     const { euiTheme } = useEuiTheme();
