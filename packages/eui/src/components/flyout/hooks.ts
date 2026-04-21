@@ -30,12 +30,14 @@ export const useIsPushed = (
   } = useEuiTheme();
 
   // Always called to satisfy React hook rules; used as fallback
-  // when no container width is provided.
+  // when no container width is provided or the breakpoint key is
+  // not present on the theme.
   const windowIsLargeEnoughToPush = useIsWithinMinBreakpoint(pushMinBreakpoint);
 
+  const minWidth = breakpoints[pushMinBreakpoint];
   const isLargeEnoughToPush =
-    props.containerWidth != null
-      ? props.containerWidth >= breakpoints[pushMinBreakpoint]
+    props.containerWidth != null && minWidth != null
+      ? props.containerWidth >= minWidth
       : windowIsLargeEnoughToPush;
 
   return type === 'push' && isLargeEnoughToPush;

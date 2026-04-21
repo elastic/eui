@@ -82,6 +82,19 @@ describe('useIsPushed', () => {
       );
       expect(result.current).toBe(true);
     });
+
+    it('falls back to the viewport hook when the breakpoint key is not on the theme', () => {
+      mockUseIsWithinMinBreakpoint.mockReturnValue(true);
+      const { result } = renderHook(() =>
+        useIsPushed({
+          type: 'push',
+          pushMinBreakpoint: 'xxl', // not a default theme key
+          containerWidth: 2000,
+        })
+      );
+      expect(result.current).toBe(true);
+      expect(mockUseIsWithinMinBreakpoint).toHaveBeenCalledWith('xxl');
+    });
   });
 
   describe('non-push type', () => {
