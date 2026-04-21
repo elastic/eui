@@ -137,6 +137,17 @@ export const euiListItemLayoutStyles = (euiThemeContext: UseEuiTheme) => {
       cursor: not-allowed;
       background-color: transparent;
     `,
+    buttonIsDisabled: css`
+      /* prevent user (mouse) interactions for custom disabled buttons.
+      Covers user interaction only. Programmatic event handling is done in the \`useEuiDisabledElement\` hook */
+      &[aria-disabled='true'] {
+        pointer-events: none;
+
+        > * {
+          pointer-events: none;
+        }
+      }
+    `,
     isFocused: css`
       ${highlightedStyles}
     `,
@@ -168,6 +179,11 @@ export const euiListItemLayoutStyles = (euiThemeContext: UseEuiTheme) => {
           .backgroundBaseInteractiveSelectHover};
       }
     `,
+    tooltip: {
+      isDisabled: css`
+        cursor: not-allowed;
+      `,
+    },
   };
 };
 

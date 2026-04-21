@@ -90,6 +90,26 @@ describe('EuiListGroupItem', () => {
       });
     });
 
+    describe('hasAriaDisabled', () => {
+      it('renders interactive items with `aria-disabled` when `isDisabled=true`', () => {
+        const { getByTestSubject } = render(
+          <EuiListGroupItem
+            label="Label"
+            hasAriaDisabled
+            isDisabled
+            onClick={() => {}}
+            data-test-subj="euiListGroupItem"
+          />
+        );
+
+        const button = getByTestSubject('euiListGroupItem');
+
+        expect(button).toBeEuiDisabled();
+        expect(button).toHaveAttribute('aria-disabled', 'true');
+        expect(button).not.toHaveAttribute('disabled');
+      });
+    });
+
     describe('iconType', () => {
       test('is rendered', () => {
         const { container } = render(

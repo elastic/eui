@@ -21,6 +21,7 @@ import {
   getSecureRelForTarget,
   useEuiMemoizedStyles,
   cloneElementWithCss,
+  EuiDisabledProps,
 } from '../../services';
 import { validateHref } from '../../services/security/href_validator';
 import { ExclusiveUnion, CommonProps } from '../common';
@@ -58,7 +59,8 @@ export type EuiListGroupItemProps = CommonProps &
       HTMLAttributes<HTMLSpanElement>
     >,
     'onClick' | 'color' | 'target' | 'rel'
-  > & {
+  > &
+  EuiDisabledProps & {
     /**
      * By default the item will get the color `text`.
      * You can customize the color of the item by passing a color name.
@@ -75,11 +77,6 @@ export type EuiListGroupItemProps = CommonProps &
      * Apply styles indicating an item is active
      */
     isActive?: boolean;
-
-    /**
-     * Apply styles indicating an item is disabled
-     */
-    isDisabled?: boolean;
 
     /**
      * Make the list item label a link.

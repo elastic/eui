@@ -273,7 +273,7 @@ export class EuiComboBoxOptionsList<T> extends Component<
         showIndicator={!!singleSelection}
         textWrap={rowHeight !== 'auto' ? 'truncate' : 'wrap'}
         tooltipProps={
-          toolTipContent
+          toolTipContent && !optionIsDisabled
             ? {
                 ...toolTipProps,
                 content: toolTipContent,
