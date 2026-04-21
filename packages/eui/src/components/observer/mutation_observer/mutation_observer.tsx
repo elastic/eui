@@ -25,11 +25,9 @@ export interface EuiMutationObserverProps {
   observerOptions?: MutationObserverInit;
 }
 
-export const EuiMutationObserver: FunctionComponent<EuiMutationObserverProps> = ({
-  children,
-  onMutation,
-  observerOptions,
-}) => {
+export const EuiMutationObserver: FunctionComponent<
+  EuiMutationObserverProps
+> = ({ children, onMutation, observerOptions }) => {
   // Store onMutation and observerOptions in refs so the observer callback
   // and setup always use the latest prop values without needing to
   // re-subscribe (which would cause the ref callback to cycle)
@@ -56,6 +54,8 @@ export const EuiMutationObserver: FunctionComponent<EuiMutationObserverProps> = 
 
   return children(updateChildNode);
 };
+
+EuiMutationObserver.displayName = 'EuiMutationObserver';
 
 const makeMutationObserver = (
   node: Element,

@@ -58,6 +58,8 @@ export const EuiResizeObserver: FunctionComponent<EuiResizeObserverProps> = ({
   return children(updateChildNode);
 };
 
+EuiResizeObserver.displayName = 'EuiResizeObserver';
+
 const makeResizeObserver = (
   node: Element,
   callback: ResizeObserverCallback
