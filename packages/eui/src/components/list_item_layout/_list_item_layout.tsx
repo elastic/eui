@@ -247,7 +247,9 @@ export const EuiListItemLayout = forwardRef<
         onKeyDown: rest.onKeyDown,
       });
 
-    const setCombinedRef = useCombinedRefs([disabledRef, ref]);
+    const setCombinedRef = useCombinedRefs(
+      useMemo(() => [disabledRef, ref], [disabledRef, ref])
+    );
 
     const hasToolTip = !!_tooltipProps;
 
