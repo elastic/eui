@@ -109,4 +109,4 @@ jobs:
           PR_TITLE: ${{ inputs.pr_title }}
           PR_BODY: ${{ inputs.pr_body }}
         # language=bash
-        run: gh pr create --dry-run --draft --repo elastic/eui-kibana --base main --head "$BRANCH_NAME" --title "$PR_TITLE" --body "$PR_BODY"
+        run: gh pr create --draft --repo elastic/eui-kibana --base main --head "$BRANCH_NAME" --title "$PR_TITLE" --body "$PR_BODY"
