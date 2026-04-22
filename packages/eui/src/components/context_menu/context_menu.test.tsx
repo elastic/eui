@@ -131,7 +131,7 @@ describe('EuiContextMenu', () => {
       <div data-test-subj="custom">Hello world</div>
     );
 
-    const { container, getByTestSubject, baseElement, debug } = render(
+    const { container, getByTestSubject } = render(
       <EuiContextMenu
         panels={[
           {
@@ -156,8 +156,6 @@ describe('EuiContextMenu', () => {
         initialPanelId={1}
       />
     );
-
-    debug(baseElement);
 
     expect(container.querySelectorAll('.euiContextMenuItem')).toHaveLength(2);
     expect(getByTestSubject('subtitle')).toHaveTextContent('Subtitle');
