@@ -6,83 +6,49 @@
  * Side Public License, v 1.
  */
 
-import React, { Component, ReactElement, ReactNode } from 'react';
+import React, { ReactElement, ReactNode, useState } from 'react';
 import { CommonProps } from '../common';
 import { copyToClipboard } from '../../services';
 import { EuiToolTip, EuiToolTipProps } from '../tool_tip';
 
 export interface EuiCopyProps extends CommonProps {
-  /**
-   * Text that will be copied to clipboard when copy function is executed.
-   */
   textToCopy: string;
-  /**
-   * Tooltip message displayed before copy function is called.
-   */
   beforeMessage?: ReactNode;
-  /**
-   * Tooltip message displayed after copy function is called that lets the user know that
-   * 'textToCopy' has been copied to the clipboard.
-   */
   afterMessage?: ReactNode;
-  /**
-   * Function that must return a component. First argument is 'copy' function.
-   * Use your own logic to create the component that users interact with when triggering copy.
-   */
   children(copy: () => void): ReactElement;
-  /**
-   * Optional props to pass to the EuiToolTip component.
-   */
   tooltipProps?: Partial<
     Omit<EuiToolTipProps, 'children' | 'content' | 'onMouseOut'>
   >;
 }
 
-interface EuiCopyState {
-  tooltipText: ReactNode;
-}
+export const EuiCopy = ({
+  textToCopy,
+  beforeMessage,
+  afterMessage = 'Copied',
+  children,
+  tooltipProps,
+}: EuiCopyProps) => {
+  const [tooltipText, setTooltipText] = useState<ReactNode>(beforeMessage);
 
-export class EuiCopy extends Component<EuiCopyProps, EuiCopyState> {
-  static defaultProps = {
-    afterMessage: 'Copied',
-  };
-
-  constructor(props: EuiCopyProps) {
-    super(props);
-
-    this.state = {
-      tooltipText: this.props.beforeMessage,
-    };
-  }
-
-  copy = () => {
-    const isCopied = copyToClipboard(this.props.textToCopy);
+  const copy = () => {
+    const isCopied = copyToClipboard(textToCopy);
     if (isCopied) {
-      this.setState({
-        tooltipText: this.props.afterMessage,
-      });
+      setTooltipText(afterMessage);
     }
   };
 
-  resetTooltipText = () => {
-    this.setState({
-      tooltipText: this.props.beforeMessage,
-    });
+  const resetTooltipText = () => {
+    setTooltipText(beforeMessage);
   };
 
-  render() {
-    const { children, tooltipProps } = this.props;
-
-    return (
-      // See `src/components/tool_tip/tool_tip.js` for explanation of below eslint-disable
-      // eslint-disable-next-line jsx-a11y/mouse-events-have-key-events
-      <EuiToolTip
-        content={this.state.tooltipText}
-        onMouseOut={this.resetTooltipText}
-        {...tooltipProps}
-      >
-        {children(this.copy)}
-      </EuiToolTip>
-    );
-  }
-}
+  return (
+    // eslint-disable-next-line jsx-a11y/mouse-events-have-key-events
+    <EuiToolTip
+      content={tooltipText}
+      onMouseOut={resetTooltipText}
+      {...tooltipProps}
+    >
+      {children(copy)}
+    </EuiToolTip>
+  );
+};
