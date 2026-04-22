@@ -64,7 +64,7 @@ export type EuiContextMenuPanelProps = PropsWithChildren &
     title?: ReactNode;
     transitionDirection?: EuiContextMenuPanelTransitionDirection;
     transitionType?: EuiContextMenuPanelTransitionType;
-    height?: CSSProperties['width'];
+    height?: CSSProperties['height'];
   };
 
 type Props = EuiContextMenuPanelProps;

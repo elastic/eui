@@ -89,7 +89,7 @@ export type EuiContextMenuProps = CommonProps &
       direction?: EuiContextMenuPanelTransitionDirection;
     }) => void;
     initialPanelId?: EuiContextMenuPanelId;
-    height?: CSSProperties['width'];
+    height?: CSSProperties['height'];
   };
 
 const isItemSeparator = (
