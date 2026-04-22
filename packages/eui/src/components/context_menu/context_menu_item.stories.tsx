@@ -27,6 +27,7 @@ const meta: Meta<EuiContextMenuItemProps> = {
     layoutAlign: 'center',
     hasPanel: false,
     disabled: false,
+    external: false,
   },
 };
 disableStorybookControls(meta, ['buttonRef']);
@@ -40,6 +41,20 @@ export const Playground: Story = {
     href: '',
     icon: 'link',
     toolTipContent: '',
+  },
+};
+
+export const ExternalLink: Story = {
+  parameters: {
+    controls: {
+      include: ['children', 'href', 'icon', 'target', 'external'],
+    },
+  },
+  args: {
+    children: 'Context menu item',
+    href: '#',
+    icon: 'link',
+    target: '_blank',
   },
 };
 

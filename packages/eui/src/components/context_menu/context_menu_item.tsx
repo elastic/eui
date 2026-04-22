@@ -70,6 +70,11 @@ export interface EuiContextMenuItemProps
    *
    */
   color?: _EuiExtendedButtonColor;
+  /**
+   * Set to true to show an icon indicating that it is an external link;
+   * Defaults to true if `target="_blank"`
+   */
+  external?: boolean;
 }
 
 type Props = CommonProps &
@@ -103,6 +108,7 @@ export const EuiContextMenuItem: FunctionComponent<Props> = ({
   target,
   rel,
   color = 'text',
+  external,
   ...rest
 }) => {
   const isHrefValid = !href || validateHref(href);
@@ -176,6 +182,7 @@ export const EuiContextMenuItem: FunctionComponent<Props> = ({
         target,
         rel: secureRel,
         ref: buttonRef as Ref<HTMLAnchorElement>,
+        external,
         ...(rest as AnchorHTMLAttributes<HTMLAnchorElement>),
       }
     : {};
