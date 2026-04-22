@@ -572,8 +572,6 @@ export const EuiListItemLayout = forwardRef<
       }
     }, [_append, _appendProps, styles]);
 
-    console.log('isLink', isLink);
-
     const innerContent = (
       <span {...contentProps}>
         {indicator}
