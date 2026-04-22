@@ -384,6 +384,16 @@ exports[`CollapsedItemActions default actions 1`] = `
                       class="euiListItemLayout__text euiContextMenuItem__text emotion-euiListItemLayout__text-wrap-euiContextMenuItem__text"
                     >
                       name xyz
+                      <span
+                        class="css-1j45mse-externalIcon"
+                        data-euiicon-type="external"
+                        role="presentation"
+                      />
+                      <span
+                        class="emotion-euiScreenReaderOnly"
+                      >
+                        (external, opens in a new tab or window)
+                      </span>
                     </span>
                   </span>
                 </a>
