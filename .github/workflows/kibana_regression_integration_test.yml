@@ -16,7 +16,7 @@ jobs:
   prepare_and_open_pr:
     name: Prepare and open PR in Kibana
     needs: [release]
-    uses: ./.github/workflows/update_dependencies/kibana.yml
+    uses: ./.github/workflows/update_dependencies_kibana.yml
     with:
       dependencies: ${{ needs.release.outputs.published_packages_json }}
       pr_title: '[DO NOT MERGE] EUI Regression Integration Test'

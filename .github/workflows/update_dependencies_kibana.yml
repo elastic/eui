@@ -33,13 +33,13 @@ on:
 jobs:
   prepare:
     name: Prepare changes
-    uses: ./.github/workflows/update_dependencies/kibana/prepare_changes.yml
+    uses: ./.github/workflows/update_dependencies_kibana__prepare_changes.yml
     with:
       dependencies: ${{ inputs.dependencies }}
   open_pr:
     name: Open PR
     needs: [prepare]
-    uses: ./.github/workflows/update_dependencies/kibana/open_pr.yml
+    uses: ./.github/workflows/update_dependencies_kibana__open_pr.yml
     with:
       pr_head: eui-kibana:${{ needs.prepare.outputs.branch_name }}
       pr_title: ${{ inputs.pr_title }}
