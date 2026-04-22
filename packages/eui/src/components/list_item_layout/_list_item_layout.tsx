@@ -35,6 +35,7 @@ import { EuiToolTip, EuiToolTipProps } from '../tool_tip';
 import { EuiCheckboxControl } from '../form';
 import { EuiIcon, IconColor, IconType } from '../icon';
 import { isButtonDisabled } from '../button/button_display/_button_display';
+import { EuiExternalLinkIcon } from '../link/external_link_icon';
 
 export const OPTION_CHECKED_STATES = ['on', 'off', 'mixed', undefined] as const;
 export type EuiListItemLayoutCheckedType =
@@ -173,6 +174,11 @@ export type EuiListItemLayoutAsButton = {
   Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'disabled' | 'role'>;
 export type EuiListItemLayoutAsAnchor = {
   element: 'a';
+  /**
+   * Set to true to show an icon indicating that it is an external link;
+   * Defaults to true if `target="_blank"`
+   */
+  external?: boolean;
 } & EuiListItemLayoutSharedProps &
   Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'role'>;
 
@@ -219,6 +225,7 @@ export const EuiListItemLayout = forwardRef<
       selectionMode: _selectionMode,
       showIndicator = true,
       textWrap = 'truncate',
+      external,
       'aria-describedby': _ariaDescribedBy,
       'aria-selected': _ariaSelected,
       'aria-checked': _ariaChecked,
@@ -236,6 +243,7 @@ export const EuiListItemLayout = forwardRef<
 
     const component = _element === 'a' && isDisabled ? 'button' : _element;
 
+    const isLink = component === 'a' && !isDisabled;
     const buttonIsDisabled = isButtonDisabled({
       href,
       isDisabled: component === 'button' && isDisabled,
@@ -564,11 +572,23 @@ export const EuiListItemLayout = forwardRef<
       }
     }, [_append, _appendProps, styles]);
 
+    console.log('isLink', isLink);
+
     const innerContent = (
       <span {...contentProps}>
         {indicator}
         {prepend}
-        <span {...textProps}>{_children}</span>
+        <span {...textProps}>
+          {_children}
+          {isLink && (
+            <EuiExternalLinkIcon
+              css={styles.externalIcon}
+              external={external}
+              target={target}
+              size="m"
+            />
+          )}
+        </span>
         {append}
         {!isMultiAction && extraAction}
       </span>
