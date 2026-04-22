@@ -181,6 +181,21 @@ export const Playground: Story = {
   },
 };
 
+export const Interactive: Story = {
+  tags: ['vrt-only'], // remove story from sidebar in production
+  parameters: {
+    loki: {
+      // VRT looks the same as the Playground story
+      skip: true,
+    },
+  },
+  ...Playground,
+  args: {
+    children: 'List item',
+    onClick: () => {},
+  },
+};
+
 export const Role: Story = {
   tags: ['vrt-only'],
   parameters: {
