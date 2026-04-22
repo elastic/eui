@@ -1,0 +1,23 @@
+name: Kibana Regression Integration Test
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '30 1 * * 1-5' # Every weekday at 1:30 AM UTC
+
+jobs:
+  release:
+    name: Release a snapshot of main
+    uses: ./.github/workflows/release.yml
+    with:
+      release_ref: refs/heads/main
+      type: snapshot
+      dry_run: false
+      workspaces: '@elastic/eui,@elastic/eui-theme-borealis,@elastic/eui-theme-common'
+  prepare_and_open_pr:
+    name: Prepare and open PR in Kibana
+    needs: [release]
+    uses: ./.github/workflows/update_dependencies/kibana.yml
+    with:
+      dependencies: ${{ needs.release.outputs.published_packages_json }}
+      pr_title: '[DO NOT MERGE] EUI Regression Integration Test'
+      pr_body: '**This is an automatically-generated PR. Do not review. It will be closed after the CI run.**'

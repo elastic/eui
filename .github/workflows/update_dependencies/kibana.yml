@@ -1,0 +1,48 @@
+name: 'Update dependencies - Kibana'
+on:
+  workflow_dispatch:
+    inputs:
+      dependencies:
+        description: JSON-serialized map of dependencies to update
+        type: string
+        required: true
+      pr_title:
+        description: PR title
+        default: Update EUI dependencies
+        type: string
+      pr_body:
+        description: PR body
+        type: string
+  workflow_call:
+    inputs:
+      dependencies:
+        description: JSON-serialized map of dependencies to update
+        type: string
+        required: true
+      pr_title:
+        description: PR title
+        default: Update EUI dependencies
+        type: string
+      pr_body:
+        description: PR body
+        type: string
+    outputs:
+      pr_url:
+        value: ${{ jobs.open_pr.outputs.pr_url }}
+
+jobs:
+  prepare:
+    name: Prepare changes
+    uses: ./.github/workflows/update_dependencies/kibana/prepare_changes.yml
+    with:
+      dependencies: ${{ inputs.dependencies }}
+  open_pr:
+    name: Open PR
+    needs: [prepare]
+    uses: ./.github/workflows/update_dependencies/kibana/open_pr.yml
+    with:
+      pr_head: eui-kibana:${{ needs.prepare.outputs.branch_name }}
+      pr_title: ${{ inputs.pr_title }}
+      pr_body: ${{ inputs.pr_body }}
+      pr_draft: true
+      pr_labels: 'EUI,backport:skip,release_note:skip'
