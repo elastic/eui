@@ -308,8 +308,7 @@ export class EuiContextMenuClass extends Component<
 
   mapIdsToRenderedItems = (panels: EuiContextMenuPanelDescriptor[] = []) => {
     const idToRenderedItemsMap: { [id: string]: ReactElement[] } = {};
-    const panelsList = panels ?? [];
-    const idToPanelMap = mapIdsToPanels(panelsList);
+    const idToPanelMap = mapIdsToPanels(panels);
 
     // Pre-rendering the items lets us check reference equality inside of EuiContextMenuPanel.
     panels.forEach((panel) => {

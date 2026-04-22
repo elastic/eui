@@ -476,7 +476,7 @@ export class EuiContextMenuPanelClass extends Component<
       items && items.length
         ? items.map((MenuItem) => {
             const cloneProps: Partial<EuiContextMenuItemProps> = {
-              role: MenuItem.props?.role ?? (isMenu ? 'menuitem' : undefined),
+              role: MenuItem.props?.role ?? 'menuitem',
             };
             return MenuItem.type === EuiContextMenuItem
               ? cloneElement(MenuItem, cloneProps)
