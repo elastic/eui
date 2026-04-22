@@ -94,7 +94,7 @@ exports[`KibanaCollapsibleNavSolution renders docked icons: popover 1`] = `
         data-test-subj="kibanaSolutionSwitcherList"
       >
         <li
-          class="euiListItemLayout euiListGroupItem euiListGroupItem__text emotion-euiListItemLayout-isInteractive-euiListGroupItem-euiListGroupItem__inner-text"
+          class="euiListItemLayout euiListGroupItem euiListGroupItem__text emotion-euiListItemLayout-euiListGroupItem-euiListGroupItem__inner-text"
           data-test-subj="test-solution"
         >
           <span
@@ -113,7 +113,7 @@ exports[`KibanaCollapsibleNavSolution renders docked icons: popover 1`] = `
         class="euiListGroup emotion-euiListGroup-maxWidthDefault-euiCollapsibleNavKibanaSolution__secondaryItems"
       >
         <li
-          class="euiListItemLayout euiListGroupItem euiListGroupItem__text emotion-euiListItemLayout-isInteractive-euiListGroupItem-euiListGroupItem__inner-text"
+          class="euiListItemLayout euiListGroupItem euiListGroupItem__text emotion-euiListItemLayout-euiListGroupItem-euiListGroupItem__inner-text"
           data-test-subj="euiListItemLayout"
         >
           <span
@@ -220,7 +220,7 @@ exports[`KibanaCollapsibleNavSolution renders with a solution switcher: popover 
         data-test-subj="kibanaSolutionSwitcherList"
       >
         <li
-          class="euiListItemLayout euiListGroupItem euiListGroupItem__text emotion-euiListItemLayout-isInteractive-euiListGroupItem-euiListGroupItem__inner-text"
+          class="euiListItemLayout euiListGroupItem euiListGroupItem__text emotion-euiListItemLayout-euiListGroupItem-euiListGroupItem__inner-text"
           data-test-subj="test-solution"
         >
           <span
@@ -239,7 +239,7 @@ exports[`KibanaCollapsibleNavSolution renders with a solution switcher: popover 
         class="euiListGroup emotion-euiListGroup-maxWidthDefault-euiCollapsibleNavKibanaSolution__secondaryItems"
       >
         <li
-          class="euiListItemLayout euiListGroupItem euiListGroupItem__text emotion-euiListItemLayout-isInteractive-euiListGroupItem-euiListGroupItem__inner-text"
+          class="euiListItemLayout euiListGroupItem euiListGroupItem__text emotion-euiListItemLayout-euiListGroupItem-euiListGroupItem__inner-text"
           data-test-subj="euiListItemLayout"
         >
           <span

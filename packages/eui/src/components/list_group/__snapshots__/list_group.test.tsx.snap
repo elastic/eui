@@ -13,7 +13,7 @@ exports[`EuiListGroup listItems is rendered 1`] = `
   class="euiListGroup emotion-euiListGroup-maxWidthDefault"
 >
   <li
-    class="euiListItemLayout euiListGroupItem euiListGroupItem__text emotion-euiListItemLayout-isInteractive-euiListGroupItem-euiListGroupItem__inner-text"
+    class="euiListItemLayout euiListGroupItem euiListGroupItem__text emotion-euiListItemLayout-euiListGroupItem-euiListGroupItem__inner-text"
     data-test-subj="euiListItemLayout"
   >
     <span
@@ -37,7 +37,7 @@ exports[`EuiListGroup listItems is rendered 1`] = `
     </span>
   </li>
   <li
-    class="euiListItemLayout euiListGroupItem euiListGroupItem__text emotion-euiListItemLayout-isInteractive-euiListGroupItem-euiListGroupItem__inner-text"
+    class="euiListItemLayout euiListGroupItem euiListGroupItem__text emotion-euiListItemLayout-euiListGroupItem-euiListGroupItem__inner-text"
     data-test-subj="euiListItemLayout"
   >
     <span
@@ -137,7 +137,7 @@ exports[`EuiListGroup listItems is rendered with color 1`] = `
   class="euiListGroup emotion-euiListGroup-maxWidthDefault"
 >
   <li
-    class="euiListItemLayout euiListGroupItem euiListGroupItem__text emotion-euiListItemLayout-isInteractive-euiListGroupItem-euiListGroupItem__inner-primary"
+    class="euiListItemLayout euiListGroupItem euiListGroupItem__text emotion-euiListItemLayout-euiListGroupItem-euiListGroupItem__inner-primary"
     data-test-subj="euiListItemLayout"
   >
     <span
@@ -161,7 +161,7 @@ exports[`EuiListGroup listItems is rendered with color 1`] = `
     </span>
   </li>
   <li
-    class="euiListItemLayout euiListGroupItem euiListGroupItem__text emotion-euiListItemLayout-isInteractive-euiListGroupItem-euiListGroupItem__inner-primary"
+    class="euiListItemLayout euiListGroupItem euiListGroupItem__text emotion-euiListItemLayout-euiListGroupItem-euiListGroupItem__inner-primary"
     data-test-subj="euiListItemLayout"
   >
     <span
