@@ -100,7 +100,8 @@ export const euiListItemLayoutStyles = (euiThemeContext: UseEuiTheme) => {
       text-align: start;
 
       /* Workaround for decent alingment for custom flex wrapper content */
-      > *:only-child {
+      > *:only-child,
+      > *:first-child {
         vertical-align: middle;
       }
 
