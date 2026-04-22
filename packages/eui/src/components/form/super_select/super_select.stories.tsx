@@ -44,7 +44,6 @@ const meta: Meta<EuiSuperSelectProps> = {
     valueOfSelected: { control: 'text' },
   },
   args: {
-    hasDividers: false,
     fullWidth: false,
     compressed: false,
     isInvalid: false,

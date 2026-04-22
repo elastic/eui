@@ -68,12 +68,6 @@ export type EuiSuperSelectProps<T = string> = CommonProps &
     onBlur?: (event?: FocusEvent) => void;
 
     /**
-     * Change to `true` if you want horizontal lines between options.
-     * This is best used when options are multi-line.
-     */
-    hasDividers?: boolean;
-
-    /**
      * Change `EuiContextMenuItem` layout position of icon
      */
     itemLayoutAlign?: EuiContextMenuItemLayoutAlignment;
@@ -99,7 +93,6 @@ export class EuiSuperSelect<T = string> extends Component<
   EuiSuperSelectProps<T>
 > {
   static defaultProps = {
-    hasDividers: false,
     fullWidth: false,
     compressed: false,
     isInvalid: false,
@@ -278,7 +271,6 @@ export class EuiSuperSelect<T = string> extends Component<
       onChange,
       isOpen,
       isInvalid,
-      hasDividers,
       itemClassName,
       itemLayoutAlign,
       fullWidth,
