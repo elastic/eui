@@ -28,7 +28,6 @@ import { ExclusiveUnion, CommonProps } from '../common';
 import { useInnerText } from '../inner_text';
 import { EuiIcon, IconType, EuiIconProps } from '../icon';
 import { EuiToolTipProps } from '../tool_tip';
-import { EuiExternalLinkIcon } from '../link/external_link_icon';
 import {
   EuiListItemLayout,
   EuiListItemLayoutAsAnchor,
@@ -176,8 +175,6 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
   const isHrefValid = !href || validateHref(href);
   const isDisabled = _isDisabled || !isHrefValid;
 
-  const isLink = href && !isDisabled;
-
   let iconNode;
 
   if (iconType) {
@@ -255,6 +252,7 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
       href,
       target,
       rel: getSecureRelForTarget({ href, rel, target }),
+      external,
       onClick: onClick as AnchorHTMLAttributes<HTMLAnchorElement>['onClick'],
       ...(rest as AnchorHTMLAttributes<HTMLAnchorElement>),
     } as EuiListItemLayoutAsAnchor;
@@ -324,14 +322,6 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
       textProps={labelProps}
     >
       {label}
-      {isLink && (
-        <EuiExternalLinkIcon
-          css={styles.externalIcon}
-          external={external}
-          target={target}
-          size="m"
-        />
-      )}
     </EuiListItemLayout>
   );
 };

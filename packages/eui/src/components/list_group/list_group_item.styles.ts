@@ -37,9 +37,6 @@ export const euiListGroupItemStyles = (euiThemeContext: UseEuiTheme) => {
     subdued: css`
       color: ${euiTheme.colors.textSubdued};
     `,
-    externalIcon: css`
-      color: ${euiTheme.colors.textDisabled};
-    `,
   };
 };
 
