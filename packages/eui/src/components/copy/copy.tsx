@@ -6,17 +6,34 @@
  * Side Public License, v 1.
  */
 
-import React, { ReactElement, ReactNode, useState } from 'react';
+import React, { ReactElement, ReactNode, useState, useCallback } from 'react';
 import { CommonProps } from '../common';
 import { copyToClipboard } from '../../services';
 import { EuiToolTip, EuiToolTipProps } from '../tool_tip';
 
 export interface EuiCopyProps extends CommonProps {
+  /**
+   * Text that will be copied to clipboard when copy function is executed.
+   */
   textToCopy: string;
+  /**
+   * Tooltip message displayed before copy function is called.
+   */
   beforeMessage?: ReactNode;
+  /**
+   * Tooltip message displayed after copy function is called that lets the user know that
+   * 'textToCopy' has been copied to the clipboard.
+   */
   afterMessage?: ReactNode;
+  /**
+   * Function that must return a component. First argument is 'copy' function.
+   * Use your own logic to create the component that users interact with when triggering copy.
+   */
   children(copy: () => void): ReactElement;
-  tooltipProps?: Partial<
+  /**
+   * Optional props to pass to the EuiToolTip component.
+   */
+  tooltipProps?: Partial
     Omit<EuiToolTipProps, 'children' | 'content' | 'onMouseOut'>
   >;
 }
@@ -30,16 +47,16 @@ export const EuiCopy = ({
 }: EuiCopyProps) => {
   const [tooltipText, setTooltipText] = useState<ReactNode>(beforeMessage);
 
-  const copy = () => {
+  const copy = useCallback(() => {
     const isCopied = copyToClipboard(textToCopy);
     if (isCopied) {
       setTooltipText(afterMessage);
     }
-  };
+  }, [textToCopy, afterMessage]);
 
-  const resetTooltipText = () => {
+  const resetTooltipText = useCallback(() => {
     setTooltipText(beforeMessage);
-  };
+  }, [beforeMessage]);
 
   return (
     // eslint-disable-next-line jsx-a11y/mouse-events-have-key-events
