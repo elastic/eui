@@ -15,13 +15,13 @@ exports[`EuiContextMenu can pass-through horizontal rule props 1`] = `
     >
       <h2
         class="euiContextMenuPanelTitle__text css-8u7lys-text"
-        id="euiContextMenuPanelTitle_generated-id"
+        id="generated-id_euiContextMenuPanelTitle"
       >
         Testing separator
       </h2>
     </div>
     <div
-      aria-labelledby="euiContextMenuPanelTitle_generated-id"
+      aria-labelledby="generated-id_euiContextMenuPanelTitle"
       class="euiContextMenuPanel__list"
       role="menu"
     >
@@ -62,13 +62,13 @@ exports[`EuiContextMenu props panels and initialPanelId renders the referenced p
       </button>
       <h2
         class="euiContextMenuPanelTitle__text css-8u7lys-text"
-        id="euiContextMenuPanelTitle_generated-id"
+        id="generated-id_euiContextMenuPanelTitle"
       >
         2
       </h2>
     </div>
     <div
-      aria-labelledby="euiContextMenuPanelTitle_generated-id"
+      aria-labelledby="generated-id_euiContextMenuPanelTitle"
       class="euiContextMenuPanel__list"
     >
       <div>
@@ -102,13 +102,13 @@ exports[`EuiContextMenu renders isSeparator items 1`] = `
     >
       <h2
         class="euiContextMenuPanelTitle__text css-8u7lys-text"
-        id="euiContextMenuPanelTitle_generated-id"
+        id="generated-id_euiContextMenuPanelTitle"
       >
         Testing separator
       </h2>
     </div>
     <div
-      aria-labelledby="euiContextMenuPanelTitle_generated-id"
+      aria-labelledby="generated-id_euiContextMenuPanelTitle"
       class="euiContextMenuPanel__list"
       role="menu"
     >
@@ -166,13 +166,13 @@ exports[`EuiContextMenu renders panels with JSX 1`] = `
     >
       <h2
         class="euiContextMenuPanelTitle__text css-8u7lys-text"
-        id="euiContextMenuPanelTitle_generated-id"
+        id="generated-id_euiContextMenuPanelTitle"
       >
         3
       </h2>
     </div>
     <div
-      aria-labelledby="euiContextMenuPanelTitle_generated-id"
+      aria-labelledby="generated-id_euiContextMenuPanelTitle"
       class="euiContextMenuPanel__list"
       role="menu"
     >

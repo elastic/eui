@@ -427,6 +427,8 @@ export class EuiContextMenuPanelClass extends Component<
     this.findMenuItems();
   };
 
+  rootId = htmlIdGenerator();
+
   render() {
     const {
       stylesMemoizer,
@@ -446,7 +448,7 @@ export class EuiContextMenuPanelClass extends Component<
       ...rest
     } = this.props;
 
-    const titleId = htmlIdGenerator('euiContextMenuPanelTitle')();
+    const titleId = this.rootId('euiContextMenuPanelTitle');
     const classes = classNames('euiContextMenuPanel', className);
 
     const styles = stylesMemoizer(euiContextMenuPanelStyles);
