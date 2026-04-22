@@ -47,7 +47,6 @@ const listItemCommonStyles = (euiThemeContext: UseEuiTheme) => {
     line-height: ${euiFontSize(euiThemeContext, 's').lineHeight};
     font-size: ${euiFontSize(euiThemeContext, 's').fontSize};
     color: ${euiTheme.colors.textParagraph};
-    cursor: pointer;
     overflow: hidden;
   `;
 };
@@ -128,6 +127,8 @@ export const euiListItemLayoutStyles = (euiThemeContext: UseEuiTheme) => {
       ${sharedFlexStyles}
     `,
     isInteractive: css`
+      cursor: pointer;
+
       &:hover {
         ${highlightedStyles}
       }
