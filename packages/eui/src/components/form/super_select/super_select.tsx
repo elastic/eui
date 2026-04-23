@@ -18,7 +18,6 @@ import { CommonProps } from '../../common';
 import { EuiI18n } from '../../i18n';
 import { EuiScreenReaderOnly } from '../../accessibility';
 import { EuiInputPopover, type EuiInputPopoverProps } from '../../popover';
-import { type EuiContextMenuItemLayoutAlignment } from '../../context_menu';
 
 import {
   EuiSuperSelectControl,
@@ -66,11 +65,6 @@ export type EuiSuperSelectProps<T = string> = CommonProps &
     onChange?: (value: T) => void;
     onFocus?: (event?: FocusEvent) => void;
     onBlur?: (event?: FocusEvent) => void;
-
-    /**
-     * Change `EuiContextMenuItem` layout position of icon
-     */
-    itemLayoutAlign?: EuiContextMenuItemLayoutAlignment;
 
     /**
      * Controls whether the options are shown. Default: false
@@ -272,7 +266,6 @@ export class EuiSuperSelect<T = string> extends Component<
       isOpen,
       isInvalid,
       itemClassName,
-      itemLayoutAlign,
       fullWidth,
       popoverProps,
       compressed,

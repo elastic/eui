@@ -74,7 +74,6 @@ const meta: Meta<EuiSuperSelectProps> = {
     compressed: false,
     isInvalid: false,
     isLoading: false,
-    itemLayoutAlign: 'center',
     // set up for easier testing/QA
     name: '',
     placeholder: '',
