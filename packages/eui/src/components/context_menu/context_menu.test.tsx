@@ -12,7 +12,7 @@ import { render, waitForEuiContextMenuPanelTransition } from '../../test/rtl';
 import { shouldRenderCustomStyles } from '../../test/internal';
 import { requiredProps } from '../../test';
 
-import { EuiContextMenu, SIZES } from './context_menu';
+import { EuiContextMenu } from './context_menu';
 
 const panel3 = {
   id: 3,
@@ -157,7 +157,7 @@ describe('EuiContextMenu', () => {
       />
     );
 
-    expect(container.querySelectorAll('.euiContextMenuItem')).toHaveLength(3);
+    expect(container.querySelectorAll('.euiContextMenuItem')).toHaveLength(2);
     expect(getByTestSubject('subtitle')).toHaveTextContent('Subtitle');
     expect(getByTestSubject('custom')).toHaveTextContent('Hello world');
   });
@@ -205,18 +205,6 @@ describe('EuiContextMenu', () => {
         expect(onPanelChange).toHaveBeenCalledWith({
           panelId: 1,
           direction: 'previous',
-        });
-      });
-    });
-
-    describe('size', () => {
-      SIZES.forEach((size) => {
-        test(size, () => {
-          const { container } = render(
-            <EuiContextMenu panels={panels} initialPanelId={2} size={size} />
-          );
-
-          expect(container.firstChild).toMatchSnapshot();
         });
       });
     });
