@@ -288,9 +288,9 @@ export const EuiListItemLayout = forwardRef<
             return false;
           }
         default:
-          return false;
+          return _ariaChecked ?? false;
       }
-    }, [role, checked]);
+    }, [role, checked, _ariaChecked]);
 
     const defaultSelectionMode = useMemo((): 'checked' | 'selected' => {
       if (!isSingleSelection) {
@@ -425,11 +425,16 @@ export const EuiListItemLayout = forwardRef<
     // added to navigational list items only (`component=button/a`)
     const navigationalProps = isInteractiveComponent
       ? {
+          /* supports aria-checked as custom `role` can enable checked states */
+          'aria-checked': hasAriaChecked ? ariaChecked : undefined,
           'aria-current':
-            !hasCustomAriaSelected && isSelected ? 'true' : undefined, // indicates currently active navigation item
+            !hasAriaChecked && !hasCustomAriaSelected && isSelected
+              ? 'true'
+              : undefined, // indicates currently active navigation item
           /* allow manual `aria-selected` overrides; By default a list of navigational elements likely uses `aria-current` but using
           a button with appropriate `role` within a selection list could still be valid, though weird (e.g. custom EuiSuperSelect) */
-          'aria-selected': hasCustomAriaSelected ? isSelected : undefined, // indicates current selected item
+          'aria-selected':
+            !hasAriaChecked && hasCustomAriaSelected ? isSelected : undefined, // indicates current selected item
         }
       : {};
 

@@ -6,6 +6,8 @@
  * Side Public License, v 1.
  */
 
+import React from 'react';
+import { css } from '@emotion/react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { disableStorybookControls } from '../../../.storybook/utils';
 
@@ -22,7 +24,6 @@ const meta: Meta<EuiContextMenuItemProps> = {
   },
   args: {
     // Component defaults
-    size: 'm',
     layoutAlign: 'center',
     hasPanel: false,
     disabled: false,
@@ -40,4 +41,27 @@ export const Playground: Story = {
     icon: 'link',
     toolTipContent: '',
   },
+};
+
+export const LayoutAlign: Story = {
+  tags: ['vrt-only'],
+  name: 'layoutAlign',
+  args: {
+    children:
+      'Context menu item with a long label that should break into multiple lines',
+    href: '',
+    icon: 'link',
+    toolTipContent: '',
+  },
+  render: (args) => (
+    <div
+      css={css`
+        inline-size: 250px;
+      `}
+    >
+      <EuiContextMenuItem {...args} layoutAlign="top" />
+      <EuiContextMenuItem {...args} />
+      <EuiContextMenuItem {...args} layoutAlign="bottom" />
+    </div>
+  ),
 };
