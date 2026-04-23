@@ -8,11 +8,13 @@ on:
         type: string
         required: true
       pr_title:
-        description: Title of the PR
+        description: PR title
+        default: Update EUI dependencies
         type: string
       pr_body:
-        description: Body of the PR
+        description: PR body
         type: string
+        default: ''
 
 jobs:
   prepare_changes:
@@ -24,6 +26,7 @@ jobs:
     uses: ./.github/workflows/update_kibana_dependencies__open_pr.yml
     with:
       pr_head: eui-kibana:${{ needs.prepare_changes.outputs.branch_name }}
-      pr_title: Update EUI dependencies
+      pr_title: ${{ inputs.pr_tite }}
+      pr_body: ${{ input.pr_body }}
       pr_draft: true
       pr_labels: 'EUI,backport:skip,release_note:skip'
