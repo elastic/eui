@@ -59,6 +59,7 @@ jobs:
         uses: elastic/ci-gh-actions/fetch-github-token@v1.5.0
         with:
           vault-instance: ci-prod
+          vault-role: token-policy-4fabc48bd03f
       - name: Configure git
         env:
           GH_TOKEN: ${{ steps.fetch_ephemeral_token.outputs.token }}

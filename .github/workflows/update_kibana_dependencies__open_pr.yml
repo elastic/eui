@@ -39,6 +39,7 @@ jobs:
         uses: elastic/ci-gh-actions/fetch-github-token@v1.5.0
         with:
           vault-instance: ci-prod
+          vault-role: token-policy-6becee3e5a43
       - name: Open PR
         id: open_pr
         env:
