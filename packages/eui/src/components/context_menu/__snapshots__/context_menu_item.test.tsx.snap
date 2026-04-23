@@ -56,7 +56,7 @@ exports[`EuiContextMenuItem props disabled 1`] = `
 
 exports[`EuiContextMenuItem props icon 1`] = `
 <div
-  class="euiListItemLayout euiContextMenuItem emotion-euiListItemLayout-isInteractive-euiContextMenuItem-center"
+  class="euiListItemLayout euiContextMenuItem emotion-euiListItemLayout-euiContextMenuItem-center"
   data-test-subj="euiListItemLayout"
 >
   <span

@@ -72,7 +72,7 @@ exports[`CollapsedItemActions custom actions 1`] = `
               role="menu"
             >
               <div
-                class="euiListItemLayout euiContextMenuItem euiBasicTable__collapsedCustomAction emotion-euiListItemLayout-isInteractive-euiContextMenuItem-center"
+                class="euiListItemLayout euiContextMenuItem euiBasicTable__collapsedCustomAction emotion-euiListItemLayout-euiContextMenuItem-center"
                 data-test-subj="euiListItemLayout"
                 role="menuitem"
               >
@@ -93,7 +93,7 @@ exports[`CollapsedItemActions custom actions 1`] = `
                 </span>
               </div>
               <div
-                class="euiListItemLayout euiContextMenuItem euiBasicTable__collapsedCustomAction emotion-euiListItemLayout-isInteractive-euiContextMenuItem-center"
+                class="euiListItemLayout euiContextMenuItem euiBasicTable__collapsedCustomAction emotion-euiListItemLayout-euiContextMenuItem-center"
                 data-test-subj="euiListItemLayout"
                 role="menuitem"
               >

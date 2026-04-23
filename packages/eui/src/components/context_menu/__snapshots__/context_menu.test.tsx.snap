@@ -113,7 +113,7 @@ exports[`EuiContextMenu renders isSeparator items 1`] = `
       role="menu"
     >
       <div
-        class="euiListItemLayout euiContextMenuItem emotion-euiListItemLayout-isInteractive-euiContextMenuItem-center"
+        class="euiListItemLayout euiContextMenuItem emotion-euiListItemLayout-euiContextMenuItem-center"
         data-test-subj="euiListItemLayout"
         role="menuitem"
       >
@@ -132,7 +132,7 @@ exports[`EuiContextMenu renders isSeparator items 1`] = `
         role="separator"
       />
       <div
-        class="euiListItemLayout euiContextMenuItem emotion-euiListItemLayout-isInteractive-euiContextMenuItem-center"
+        class="euiListItemLayout euiContextMenuItem emotion-euiListItemLayout-euiContextMenuItem-center"
         data-test-subj="euiListItemLayout"
         role="menuitem"
       >
@@ -177,7 +177,7 @@ exports[`EuiContextMenu renders panels with JSX 1`] = `
       role="menu"
     >
       <div
-        class="euiListItemLayout euiContextMenuItem emotion-euiListItemLayout-isInteractive-euiContextMenuItem-center"
+        class="euiListItemLayout euiContextMenuItem emotion-euiListItemLayout-euiContextMenuItem-center"
         data-test-subj="euiListItemLayout"
         role="menuitem"
       >
