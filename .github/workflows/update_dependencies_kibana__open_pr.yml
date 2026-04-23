@@ -65,6 +65,29 @@ jobs:
             args+=(--label "$PR_LABELS")
           fi
 
-          pr_url="$(gh pr create "${args[@]}")"
-          echo "pr_url=$pr_url" >> "$GITHUB_OUTPUT"
-          echo "Created PR: $pr_url"
+          stderr_file="$(mktemp)"
+          trap 'rm -f "$stderr_file"' EXIT
+
+          # Create PR
+          exit_code=0
+          pr_url="$(gh pr create "${args[@]}" 2>"$stderr_file")" || exit_code=$?
+
+          stderr_content="$(cat "$stderr_file")"
+          [[ -n "$stderr_content" ]] && printf '%s\n' "$stderr_content" >&2
+
+          if [[ "$exit_code" -eq 0 ]]; then
+            echo "pr_url=$pr_url" >> "$GITHUB_OUTPUT"
+            {
+              echo "### Pull request created"
+              echo ""
+              echo "$pr_url"
+            } >> "$GITHUB_STEP_SUMMARY"
+          else
+            {
+              echo "### Failed to create pull request"
+              echo ""
+              echo "Exit code: \`$exit_code\`"
+              echo "Check the job output for error details"
+            } >> "$GITHUB_STEP_SUMMARY"
+            exit "$exit_code"
+          fi
