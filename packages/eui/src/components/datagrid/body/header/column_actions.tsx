@@ -191,7 +191,7 @@ export const ColumnActions: FunctionComponent<
     return (
       <EuiPopover
         display="block"
-        panelPaddingSize="none"
+        panelPaddingSize="s"
         offset={7}
         anchorPosition="downRight"
         css={styles.euiDataGridHeaderCell__popover}
