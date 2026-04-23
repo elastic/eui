@@ -145,6 +145,11 @@ export const Open: Story = {
         dropdownDisplay: 'Option Four',
         disabled: true,
       },
+      {
+        value: 'option-5',
+        inputDisplay: 'Option 5',
+        dropdownDisplay: 'Option Five',
+      },
     ],
   },
 };
