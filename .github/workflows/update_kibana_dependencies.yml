@@ -21,7 +21,7 @@ jobs:
       dependencies: ${{ inputs.dependencies }}
   open_pr:
     needs: [prepare_changes]
-    uses: ./.github/workflows/update_dependencies_kibana__open_pr.yml
+    uses: ./.github/workflows/update_kibana_dependencies__open_pr.yml
     with:
       pr_head: eui-kibana:${{ needs.prepare_changes.outputs.branch_name }}
       pr_title: Update EUI dependencies
