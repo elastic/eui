@@ -47,11 +47,15 @@ import { EuiMarkdownFormat, getDefaultEuiMarkdownPlugins } from '@elastic/eui';
 const markdownContent = `
 - :cry: Automatic emoji formatting has been excluded from this markdown.
 - In the example below, only \`https:\` and \`mailto:\` protocols should turn into links.
+- Document-relative links have been enabled, so that \`[link](path)\` or \`[link](../another-path)\` will turn into links.
 - Links should open in a new tab.
 
 https://elastic.co
 http://elastic.co
 someone@elastic.co
+
+[Relative link to the EuiMarkdownEditor docs](editor)
+[Relative link to EuiPageTemplate docs](../../templates/page-template)
 `;
 
 export default () => {
@@ -61,7 +65,7 @@ export default () => {
       linkProps: { target: '_blank' },
     },
     parsingConfig: {
-      linkValidator: { allowProtocols: ['https:', 'mailto:'] },
+      linkValidator: { allowProtocols: ['https:', 'mailto:'], allowDocumentRelative: true },
     },
   });
 
