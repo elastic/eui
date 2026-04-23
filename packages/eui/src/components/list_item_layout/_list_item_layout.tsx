@@ -223,6 +223,7 @@ export const EuiListItemLayout = forwardRef<
       'aria-selected': _ariaSelected,
       'aria-checked': _ariaChecked,
       'data-test-subj': dataTestSubj = 'euiListItemLayout',
+      onClick,
       ...props
     },
     ref
@@ -257,6 +258,7 @@ export const EuiListItemLayout = forwardRef<
     const isInteractiveComponent =
       ['button', 'a'].includes(component) ||
       ['button', 'link'].includes(role ?? '');
+    const isInteractive = isInteractiveComponent || !!onClick;
     /* Multi-action: component is interactive (button/a) and has an additional action passed via `extraAction`,
     which requires to not nest interactive elements. The wrapper is the outermost styled container and owns
     hover/focus/selected styles.
@@ -323,7 +325,7 @@ export const EuiListItemLayout = forwardRef<
     const styles = useEuiMemoizedStyles(euiListItemLayoutStyles);
 
     const interactiveStyles = [
-      styles.isInteractive,
+      isInteractive && styles.isInteractive,
       isFocused && styles.isFocused,
       (isSingleSelection || !showIndicator) && isSelected && styles.isSelected,
       (isSingleSelection || !showIndicator) &&
@@ -488,6 +490,7 @@ export const EuiListItemLayout = forwardRef<
         ? ariaDescribedBy
         : _ariaDescribedBy,
       'data-test-subj': dataTestSubj,
+      onClick,
       ...rest,
     };
 

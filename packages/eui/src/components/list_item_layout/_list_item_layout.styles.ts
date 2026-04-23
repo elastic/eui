@@ -47,7 +47,6 @@ const listItemCommonStyles = (euiThemeContext: UseEuiTheme) => {
     line-height: ${euiFontSize(euiThemeContext, 's').lineHeight};
     font-size: ${euiFontSize(euiThemeContext, 's').fontSize};
     color: ${euiTheme.colors.textParagraph};
-    cursor: pointer;
     overflow: hidden;
   `;
 };
@@ -101,7 +100,8 @@ export const euiListItemLayoutStyles = (euiThemeContext: UseEuiTheme) => {
       text-align: start;
 
       /* Workaround for decent alingment for custom flex wrapper content */
-      > *:only-child {
+      > *:only-child,
+      > *:first-child {
         vertical-align: middle;
       }
 
@@ -128,6 +128,8 @@ export const euiListItemLayoutStyles = (euiThemeContext: UseEuiTheme) => {
       ${sharedFlexStyles}
     `,
     isInteractive: css`
+      cursor: pointer;
+
       &:hover {
         ${highlightedStyles}
       }
