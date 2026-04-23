@@ -21,13 +21,17 @@ const meta: Meta<EuiContextMenuItemProps> = {
   component: EuiContextMenuItem,
   argTypes: {
     icon: { control: 'text' },
+    external: {
+      control: 'radio',
+      options: [undefined, true, false],
+    },
   },
   args: {
     // Component defaults
     layoutAlign: 'center',
     hasPanel: false,
     disabled: false,
-    external: false,
+    external: undefined,
   },
 };
 disableStorybookControls(meta, ['buttonRef']);
