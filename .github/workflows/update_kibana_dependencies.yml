@@ -2,9 +2,28 @@ name: Update Kibana dependencies
 
 on:
   workflow_dispatch:
+    inputs:
+      dependencies:
+        description: JSON-serialized map of dependencies to update
+        type: string
+        required: true
+      pr_title:
+        description: Title of the PR
+        type: string
+      pr_body:
+        description: Body of the PR
+        type: string
 
 jobs:
-  noop:
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo "Hello, World!"
+  prepare_changes:
+    uses: ./.github/workflows/update_kibana_dependencies__prepare_changes.yml
+    with:
+      dependencies: ${{ inputs.dependencies }}
+  open_pr:
+    needs: [prepare_changes]
+    uses: ./.github/workflows/update_dependencies_kibana__open_pr.yml
+    with:
+      pr_head: eui-kibana:${{ needs.prepare_changes.outputs.branch_name }}
+      pr_title: Update EUI dependencies
+      pr_draft: true
+      pr_labels: 'EUI,backport:skip,release_note:skip'
