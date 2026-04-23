@@ -81,7 +81,7 @@ export default () => {
 
 ## More complex
 
-Both `inputDisplay` and `dropdownDisplay` accept React nodes. Therefore you can pass some descriptions with each option to show in the dropdown. If your options will most likely be multi-line, add the `hasDividers` prop to show borders between options.
+Both `inputDisplay` and `dropdownDisplay` accept React nodes. Therefore you can pass some descriptions with each option to show in the dropdown.
 
 A `placeholder` prop may also be passed that accepts string as well as React nodes (to match your `inputDisplay` if necessary). This placeholder will only show when `valueOfSelected` is empty.
 
@@ -141,8 +141,6 @@ export default () => {
       valueOfSelected={value}
       placeholder="Select an option"
       onChange={(value) => onChange(value)}
-      itemLayoutAlign="top"
-      hasDividers
     />
   );
 };
