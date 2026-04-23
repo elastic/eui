@@ -186,6 +186,9 @@ export const euiListItemLayoutStyles = (euiThemeContext: UseEuiTheme) => {
         cursor: not-allowed;
       `,
     },
+    externalIcon: css`
+      color: ${euiTheme.colors.textDisabled};
+    `,
   };
 };
 

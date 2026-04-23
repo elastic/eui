@@ -209,6 +209,22 @@ export const Role: Story = {
   },
 };
 
+export const ExternalLink: Story = {
+  tags: ['vrt-only'],
+  parameters: {
+    controls: {
+      include: ['element', 'role', 'checked', 'isSelected', 'children'],
+    },
+  },
+  args: {
+    children: 'List item',
+    element: 'a',
+    href: '#',
+    target: '_blank',
+    external: true,
+  },
+};
+
 export const ExtraAction: Story = {
   tags: ['vrt-only'],
   name: 'extraAction (prop)',
