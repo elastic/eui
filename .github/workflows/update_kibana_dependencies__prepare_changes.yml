@@ -7,13 +7,6 @@ on:
         description: JSON-serialized map of dependencies to update
         type: string
         required: true
-      pr_title:
-        description: PR title
-        type: string
-        default: '[DRAFT] Test updated EUI dependencies'
-      pr_body:
-        description: PR body
-        type: string
 
 permissions:
   id-token: write
