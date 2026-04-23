@@ -7,6 +7,16 @@ on:
         description: JSON-serialized map of dependencies to update
         type: string
         required: true
+  workflow_call:
+    inputs:
+      dependencies:
+        description: JSON-serialized map of dependencies to update
+        type: string
+        required: true
+    outputs:
+      branch_name:
+        description: Name of the branch created in the elastic/eui-kibana repository
+        value: ${{ jobs.update.outputs.branch_name }}
 
 permissions:
   id-token: write
@@ -15,6 +25,8 @@ jobs:
   update:
     name: Create a dependency updates PR
     runs-on: ubuntu-latest
+    outputs:
+      branch_name: ${{ steps.git_branch.outputs.BRANCH_NAME }}
     steps:
       - name: Verify dependencies input
         env:
