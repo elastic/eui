@@ -120,38 +120,42 @@ export class EuiSuperSelect<T = string> extends Component<
   };
 
   openPopover = () => {
+    const { options, valueOfSelected } = this.props;
+
+    const indexOfSelected = options.findIndex(
+      (option) => option?.value === valueOfSelected
+    );
+    const candidateIndex =
+      valueOfSelected != null && indexOfSelected >= 0 ? indexOfSelected : 0;
+
+    let initialIndex = candidateIndex;
+
+    // If the item is disabled, find the first focusable item going forward
+    while (initialIndex < options.length && options[initialIndex]?.disabled) {
+      initialIndex++;
+    }
+    if (initialIndex >= options.length) {
+      initialIndex = candidateIndex;
+    }
+
     this.setState({
       isPopoverOpen: true,
+      currentIndex: initialIndex,
     });
 
-    const focusSelected = () => {
-      const indexOfSelected = this.props.options.reduce<number | null>(
-        (indexOfSelected, option, index) => {
-          if (indexOfSelected != null) return indexOfSelected;
-          if (option == null) return null;
-          return option.value === this.props.valueOfSelected ? index : null;
-        },
-        null
-      );
-
+    requestAnimationFrame(() => {
       requestAnimationFrame(() => {
         if (!this._isMounted) {
           return;
         }
 
-        if (this.props.valueOfSelected != null && indexOfSelected != null) {
-          this.focusItemAt(indexOfSelected);
-        } else {
-          this.focusItemAt(0);
-        }
+        this.focusItemAt(initialIndex);
 
         if (this.props.onFocus) {
           this.props.onFocus();
         }
       });
-    };
-
-    requestAnimationFrame(focusSelected);
+    });
   };
 
   closePopover = () => {
@@ -221,39 +225,33 @@ export class EuiSuperSelect<T = string> extends Component<
     }
   };
 
-  focusItemAt(index: number, direction?: ShiftDirection) {
-    let targetElement = this.itemNodes[index];
-    // If the current index is disabled, find the next non-disabled element
-    while (targetElement && targetElement.disabled) {
-      direction === ShiftDirection.BACK ? index-- : index++;
-      targetElement = this.itemNodes[index];
-    }
-    targetElement?.focus();
+  focusItemAt(index: number) {
+    this.itemNodes[index]?.focus();
   }
 
   shiftFocus(direction: ShiftDirection) {
-    const currentIndex = this.itemNodes.indexOf(
-      document.activeElement as HTMLButtonElement
-    );
-    let targetElementIndex: number;
+    const { options } = this.props;
+    const { currentIndex } = this.state;
 
     if (currentIndex === -1) {
       // somehow the select options has lost focus
-      targetElementIndex = 0;
-    } else {
-      // Note: this component purposely does not cycle arrow key navigation
-      // to match native <select> elements
-      if (direction === ShiftDirection.BACK) {
-        targetElementIndex = currentIndex - 1;
-      } else {
-        targetElementIndex = currentIndex + 1;
-      }
+      this.focusItemAt(0);
+      this.setState({ currentIndex: 0 });
+      return;
     }
 
-    this.focusItemAt(targetElementIndex, direction);
-    this.setState({
-      currentIndex: targetElementIndex,
-    });
+    // Note: this component purposely does not cycle arrow key navigation
+    // to match native <select> elements
+    const step = direction === ShiftDirection.BACK ? -1 : 1;
+    let nextIndex = currentIndex + step;
+    while (nextIndex >= 0 && nextIndex < options.length) {
+      if (!options[nextIndex]?.disabled) {
+        this.focusItemAt(nextIndex);
+        this.setState({ currentIndex: nextIndex });
+        return;
+      }
+      nextIndex += step;
+    }
   }
 
   render() {
@@ -332,6 +330,11 @@ export class EuiSuperSelect<T = string> extends Component<
       );
     });
 
+    const ariaActiveDescendant =
+      options[this.state.currentIndex]?.value != null
+        ? String(options[this.state.currentIndex].value)
+        : undefined;
+
     return (
       <RenderWithEuiStylesMemoizer>
         {(stylesMemoizer) => {
@@ -368,9 +371,7 @@ export class EuiSuperSelect<T = string> extends Component<
                     css={styles.euiSuperSelect__listbox}
                     className="euiSuperSelect__listbox eui-scrollBar"
                     role="listbox"
-                    aria-activedescendant={
-                      this.itemNodes[this.state.currentIndex]?.id
-                    }
+                    aria-activedescendant={ariaActiveDescendant}
                     tabIndex={0}
                   >
                     {items}

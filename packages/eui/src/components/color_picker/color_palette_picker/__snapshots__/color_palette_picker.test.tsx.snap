@@ -408,6 +408,7 @@ exports[`EuiColorPalettePicker more props are propagated to each option 1`] = `
               You are in a form selector and must select a single option. Use the Up and Down arrow keys to navigate or Escape to close.
             </p>
             <div
+              aria-activedescendant="paletteFixed"
               aria-describedby="euiSuperSelect__generated-id__screenreaderDescribeId"
               aria-label="Select listbox"
               class="euiSuperSelect__listbox eui-scrollBar emotion-euiSuperSelect__listbox"
