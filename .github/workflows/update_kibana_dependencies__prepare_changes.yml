@@ -1,4 +1,4 @@
-name: Open a Kibana PR with dependency updates
+name: 'Update Kibana dependencies - Prepare changes'
 
 on:
   workflow_dispatch:
