@@ -3,7 +3,7 @@
 exports[`EuiListGroupItem is rendered 1`] = `
 <li
   aria-label="aria-label"
-  class="euiListItemLayout euiListGroupItem testClass1 testClass2 euiListGroupItem__text emotion-euiListItemLayout-isInteractive-euiListGroupItem-euiListGroupItem__inner-text-euiTestCss"
+  class="euiListItemLayout euiListGroupItem testClass1 testClass2 euiListGroupItem__text emotion-euiListItemLayout-euiListGroupItem-euiListGroupItem__inner-text-euiTestCss"
   data-test-subj="test subject string"
 >
   <span
@@ -21,7 +21,7 @@ exports[`EuiListGroupItem is rendered 1`] = `
 
 exports[`EuiListGroupItem props color primary is rendered 1`] = `
 <li
-  class="euiListItemLayout euiListGroupItem euiListGroupItem__text emotion-euiListItemLayout-isInteractive-euiListGroupItem-euiListGroupItem__inner-primary"
+  class="euiListItemLayout euiListGroupItem euiListGroupItem__text emotion-euiListItemLayout-euiListGroupItem-euiListGroupItem__inner-primary"
   data-test-subj="euiListItemLayout"
 >
   <span
@@ -39,7 +39,7 @@ exports[`EuiListGroupItem props color primary is rendered 1`] = `
 
 exports[`EuiListGroupItem props color subdued is rendered 1`] = `
 <li
-  class="euiListItemLayout euiListGroupItem euiListGroupItem__text emotion-euiListItemLayout-isInteractive-euiListGroupItem-euiListGroupItem__inner-subdued"
+  class="euiListItemLayout euiListGroupItem euiListGroupItem__text emotion-euiListItemLayout-euiListGroupItem-euiListGroupItem__inner-subdued"
   data-test-subj="euiListItemLayout"
 >
   <span
@@ -57,7 +57,7 @@ exports[`EuiListGroupItem props color subdued is rendered 1`] = `
 
 exports[`EuiListGroupItem props color text is rendered 1`] = `
 <li
-  class="euiListItemLayout euiListGroupItem euiListGroupItem__text emotion-euiListItemLayout-isInteractive-euiListGroupItem-euiListGroupItem__inner-text"
+  class="euiListItemLayout euiListGroupItem euiListGroupItem__text emotion-euiListItemLayout-euiListGroupItem-euiListGroupItem__inner-text"
   data-test-subj="euiListItemLayout"
 >
   <span
@@ -75,7 +75,7 @@ exports[`EuiListGroupItem props color text is rendered 1`] = `
 
 exports[`EuiListGroupItem props extraAction is rendered 1`] = `
 <li
-  class="euiListItemLayout euiListGroupItem euiListGroupItem__text emotion-euiListItemLayout-isInteractive-euiListGroupItem-euiListGroupItem__inner-text"
+  class="euiListItemLayout euiListGroupItem euiListGroupItem__text emotion-euiListItemLayout-euiListGroupItem-euiListGroupItem__inner-text"
   data-test-subj="euiListItemLayout"
 >
   <span
@@ -180,7 +180,7 @@ exports[`EuiListGroupItem props href is rendered with rel 1`] = `
 
 exports[`EuiListGroupItem props icon is rendered 1`] = `
 <li
-  class="euiListItemLayout euiListGroupItem euiListGroupItem__text emotion-euiListItemLayout-isInteractive-euiListGroupItem-euiListGroupItem__inner-text"
+  class="euiListItemLayout euiListGroupItem euiListGroupItem__text emotion-euiListItemLayout-euiListGroupItem-euiListGroupItem__inner-text"
   data-test-subj="euiListItemLayout"
 >
   <span
@@ -205,7 +205,7 @@ exports[`EuiListGroupItem props icon is rendered 1`] = `
 
 exports[`EuiListGroupItem props iconType is rendered 1`] = `
 <li
-  class="euiListItemLayout euiListGroupItem euiListGroupItem__text emotion-euiListItemLayout-isInteractive-euiListGroupItem-euiListGroupItem__inner-text"
+  class="euiListItemLayout euiListGroupItem euiListGroupItem__text emotion-euiListItemLayout-euiListGroupItem-euiListGroupItem__inner-text"
   data-test-subj="euiListItemLayout"
 >
   <span
@@ -233,7 +233,7 @@ exports[`EuiListGroupItem props iconType is rendered 1`] = `
 exports[`EuiListGroupItem props isActive is rendered 1`] = `
 <li
   aria-current="true"
-  class="euiListItemLayout euiListGroupItem euiListGroupItem__text emotion-euiListItemLayout-isInteractive-isSelected-euiListGroupItem-euiListGroupItem__inner"
+  class="euiListItemLayout euiListGroupItem euiListGroupItem__text emotion-euiListItemLayout-isSelected-euiListGroupItem-euiListGroupItem__inner"
   data-test-subj="euiListItemLayout"
 >
   <span
@@ -295,7 +295,7 @@ exports[`EuiListGroupItem props onClick is rendered 1`] = `
 exports[`EuiListGroupItem props showToolTip is rendered 1`] = `
 <li
   aria-describedby="generated-id"
-  class="euiListItemLayout euiListGroupItem euiListGroupItem__text emotion-euiListItemLayout-isInteractive-euiListGroupItem-euiListGroupItem__inner-text"
+  class="euiListItemLayout euiListGroupItem euiListGroupItem__text emotion-euiListItemLayout-euiListGroupItem-euiListGroupItem__inner-text"
   data-test-subj="euiListItemLayout"
 >
   <span
@@ -317,7 +317,7 @@ exports[`EuiListGroupItem props showToolTip is rendered 1`] = `
 
 exports[`EuiListGroupItem props style is rendered 1`] = `
 <li
-  class="euiListItemLayout euiListGroupItem euiListGroupItem__text emotion-euiListItemLayout-isInteractive-euiListGroupItem-euiListGroupItem__inner-text"
+  class="euiListItemLayout euiListGroupItem euiListGroupItem__text emotion-euiListItemLayout-euiListGroupItem-euiListGroupItem__inner-text"
   data-test-subj="euiListItemLayout"
   style="color: red;"
 >
@@ -336,7 +336,7 @@ exports[`EuiListGroupItem props style is rendered 1`] = `
 
 exports[`EuiListGroupItem props wrapText is rendered 1`] = `
 <li
-  class="euiListItemLayout euiListGroupItem euiListGroupItem__text emotion-euiListItemLayout-isInteractive-euiListGroupItem-euiListGroupItem__inner-text"
+  class="euiListItemLayout euiListGroupItem euiListGroupItem__text emotion-euiListItemLayout-euiListGroupItem-euiListGroupItem__inner-text"
   data-test-subj="euiListItemLayout"
 >
   <span
@@ -403,7 +403,7 @@ exports[`EuiListGroupItem renders a disabled button even if provided an href 2`]
 
 exports[`EuiListGroupItem throws a warning if both iconType and icon are provided but still renders 1`] = `
 <li
-  class="euiListItemLayout euiListGroupItem euiListGroupItem__text emotion-euiListItemLayout-isInteractive-euiListGroupItem-euiListGroupItem__inner-text"
+  class="euiListItemLayout euiListGroupItem euiListGroupItem__text emotion-euiListItemLayout-euiListGroupItem-euiListGroupItem__inner-text"
   data-test-subj="euiListItemLayout"
 >
   <span

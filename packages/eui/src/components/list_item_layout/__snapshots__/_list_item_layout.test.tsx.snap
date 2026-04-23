@@ -46,7 +46,7 @@ exports[`EuiListItemLayout is rendered as button element 1`] = `
 
 exports[`EuiListItemLayout is rendered as div element 1`] = `
 <div
-  class="euiListItemLayout emotion-euiListItemLayout-isInteractive"
+  class="euiListItemLayout emotion-euiListItemLayout"
   data-test-subj="euiListItemLayout"
 >
   <span
@@ -68,7 +68,7 @@ exports[`EuiListItemLayout is rendered as div element 1`] = `
 
 exports[`EuiListItemLayout is rendered as li element 1`] = `
 <li
-  class="euiListItemLayout emotion-euiListItemLayout-isInteractive"
+  class="euiListItemLayout emotion-euiListItemLayout"
   data-test-subj="euiListItemLayout"
 >
   <span

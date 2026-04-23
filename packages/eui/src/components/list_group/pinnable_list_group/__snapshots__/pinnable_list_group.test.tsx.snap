@@ -7,7 +7,7 @@ exports[`EuiPinnableListGroup can have custom pin icon titles 1`] = `
   data-test-subj="test subject string"
 >
   <li
-    class="euiListItemLayout euiListGroupItem euiPinnableListGroup__item euiListGroupItem__text emotion-euiListItemLayout-isInteractive-euiListGroupItem-euiListGroupItem__inner-text"
+    class="euiListItemLayout euiListGroupItem euiPinnableListGroup__item euiListGroupItem__text emotion-euiListItemLayout-euiListGroupItem-euiListGroupItem__inner-text"
     data-test-subj="euiListItemLayout"
   >
     <span
@@ -44,7 +44,7 @@ exports[`EuiPinnableListGroup can have custom pin icon titles 1`] = `
     </span>
   </li>
   <li
-    class="euiListItemLayout euiListGroupItem euiPinnableListGroup__item euiListGroupItem__text emotion-euiListItemLayout-isInteractive-euiListGroupItem-euiListGroupItem__inner-text"
+    class="euiListItemLayout euiListGroupItem euiPinnableListGroup__item euiListGroupItem__text emotion-euiListItemLayout-euiListGroupItem-euiListGroupItem__inner-text"
     data-test-subj="euiListItemLayout"
   >
     <span
@@ -207,7 +207,7 @@ exports[`EuiPinnableListGroup is rendered 1`] = `
   data-test-subj="test subject string"
 >
   <li
-    class="euiListItemLayout euiListGroupItem euiPinnableListGroup__item euiListGroupItem__text emotion-euiListItemLayout-isInteractive-euiListGroupItem-euiListGroupItem__inner-text"
+    class="euiListItemLayout euiListGroupItem euiPinnableListGroup__item euiListGroupItem__text emotion-euiListItemLayout-euiListGroupItem-euiListGroupItem__inner-text"
     data-test-subj="euiListItemLayout"
   >
     <span
@@ -244,7 +244,7 @@ exports[`EuiPinnableListGroup is rendered 1`] = `
     </span>
   </li>
   <li
-    class="euiListItemLayout euiListGroupItem euiPinnableListGroup__item euiListGroupItem__text emotion-euiListItemLayout-isInteractive-euiListGroupItem-euiListGroupItem__inner-text"
+    class="euiListItemLayout euiListGroupItem euiPinnableListGroup__item euiListGroupItem__text emotion-euiListItemLayout-euiListGroupItem-euiListGroupItem__inner-text"
     data-test-subj="euiListItemLayout"
   >
     <span
