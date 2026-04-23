@@ -23,7 +23,7 @@ permissions:
 
 jobs:
   update:
-    name: Create a dependency updates PR
+    name: Prepare changes
     runs-on: ubuntu-latest
     outputs:
       branch_name: ${{ steps.git_branch.outputs.BRANCH_NAME }}
