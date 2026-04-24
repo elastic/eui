@@ -46,7 +46,7 @@ jobs:
     uses: ./.github/workflows/update_kibana_dependencies__open_pr.yml
     with:
       pr_head: eui-kibana:${{ needs.prepare_changes.outputs.branch_name }}
-      pr_title: ${{ inputs.pr_tite }}
+      pr_title: ${{ inputs.pr_title }}
       pr_body: ${{ inputs.pr_body }}
       pr_draft: true
       pr_labels: 'EUI,backport:skip,release_note:skip'
