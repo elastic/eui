@@ -347,7 +347,20 @@ export const EuiFlyoutComponent = forwardRef(
 
     // Ref for the main flyout element to pass to context
     const internalParentFlyoutRef = useRef<HTMLDivElement>(null);
-    const isPushed = useIsPushed({ type, pushMinBreakpoint });
+
+    // Observe the container's dimensions so the resize hook and
+    // positioning styles stay aligned with its bounding rect.
+    // When no container is provided, these remain inert (null/undefined).
+    const containerDimensions = useResizeObserver(container ?? null, 'width');
+    const containerReferenceWidth = container
+      ? containerDimensions.width || container.clientWidth
+      : undefined;
+
+    const isPushed = useIsPushed({
+      type,
+      pushMinBreakpoint,
+      containerWidth: containerReferenceWidth,
+    });
     // When no explicit container is provided, push padding targets
     // document.body and global push-offset CSS vars are set. When a
     // container is provided, only that element receives padding.
@@ -476,14 +489,6 @@ export const EuiFlyoutComponent = forwardRef(
     const siblingFlyoutMinWidth = siblingFlyout?.minWidth;
     const siblingFlyoutWidth =
       layoutMode === LAYOUT_MODE_STACKED ? 0 : _siblingFlyoutWidth;
-
-    // Observe the container's dimensions so the resize hook and
-    // positioning styles stay aligned with its bounding rect.
-    // When no container is provided, these remain inert (null/undefined).
-    const containerDimensions = useResizeObserver(container ?? null, 'width');
-    const containerReferenceWidth = container
-      ? containerDimensions.width || container.clientWidth
-      : undefined;
 
     // Track the container's bounding rect for positioning the flyout.
     const [containerRect, setContainerRect] = useState<DOMRect | null>(null);

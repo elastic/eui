@@ -1,0 +1,93 @@
+name: 'Update Kibana dependencies - Open PR'
+on:
+  workflow_call:
+    inputs:
+      pr_head:
+        description: HEAD ref
+        required: true
+        type: string
+      pr_title:
+        description: Title of the PR
+        required: true
+        type: string
+      pr_body:
+        description: Body of the PR
+        type: string
+      pr_draft:
+        description: Whether the PR should be marked as draft
+        type: boolean
+      pr_labels:
+        description: Comma-separated list of labels to add to the PR
+        type: string
+    outputs:
+      pr_url:
+        description: 'URL of the created pull request'
+        value: ${{ jobs.open_pr.outputs.pr_url }}
+
+permissions:
+  id-token: write
+
+jobs:
+  open_pr:
+    name: Open PR
+    runs-on: ubuntu-latest
+    outputs:
+      pr_url: ${{ steps.open_pr.outputs.pr_url }}
+    steps:
+      - name: Fetch GitHub token
+        id: ephemeral_token
+        uses: elastic/ci-gh-actions/fetch-github-token@v1.5.0
+        with:
+          vault-instance: ci-prod
+      - name: Open PR
+        id: open_pr
+        env:
+          GH_TOKEN: ${{ steps.ephemeral_token.outputs.token }}
+          PR_HEAD: ${{ inputs.pr_head }}
+          PR_TITLE: ${{ inputs.pr_title }}
+          PR_BODY: ${{ inputs.pr_body }}
+          PR_DRAFT: ${{ inputs.pr_draft }}
+          PR_LABELS: ${{ inputs.pr_labels }}
+        # language=bash
+        run: |
+          args=(
+            --repo "elastic/kibana"
+            --head "$PR_HEAD"
+            --title "$PR_TITLE"
+            --body "$PR_BODY"
+          )
+
+          if [[ "$PR_DRAFT" == "true" ]]; then
+            args+=(--draft)
+          fi
+
+          if [[ -n "$PR_LABELS" ]]; then
+            args+=(--label "$PR_LABELS")
+          fi
+
+          stderr_file="$(mktemp)"
+          trap 'rm -f "$stderr_file"' EXIT
+
+          # Create PR
+          exit_code=0
+          pr_url="$(gh pr create "${args[@]}" 2>"$stderr_file")" || exit_code=$?
+
+          stderr_content="$(cat "$stderr_file")"
+          [[ -n "$stderr_content" ]] && printf '%s\n' "$stderr_content" >&2
+
+          if [[ "$exit_code" -eq 0 ]]; then
+            echo "pr_url=$pr_url" >> "$GITHUB_OUTPUT"
+            {
+              echo "### Pull request created"
+              echo ""
+              echo "$pr_url"
+            } >> "$GITHUB_STEP_SUMMARY"
+          else
+            {
+              echo "### Failed to create pull request"
+              echo ""
+              echo "Exit code: \`$exit_code\`"
+              echo "Check the job output for error details"
+            } >> "$GITHUB_STEP_SUMMARY"
+            exit "$exit_code"
+          fi

@@ -594,6 +594,7 @@ declare module '@theme/Demo/actions' {
     activeSource: DemoSourceMeta;
     sources: DemoSourceMeta[];
     extraFiles?: ExtraFiles;
+    previewWrapperSource?: string;
   };
 
   export type ActionComponent = ComponentType<ActionComponentProps>;

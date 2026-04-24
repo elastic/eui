@@ -538,6 +538,76 @@ describe('EuiSelectable', () => {
     });
   });
 
+  describe('screen reader live region', () => {
+    const getLiveRegionContent = (container: HTMLElement) => {
+      // EuiScreenReaderLive uses two alternating divs with role="status"
+      const statusDivs = container.querySelectorAll('[role="status"]');
+      const visibleDiv = Array.from(statusDivs).find(
+        (div) => div.getAttribute('aria-hidden') !== 'true'
+      );
+      return visibleDiv?.textContent ?? '';
+    };
+
+    it('does not re-announce results count on arrow key navigation when count has not changed', () => {
+      const { container } = render(
+        <EuiSelectable options={options} searchable>
+          {(list, search) => (
+            <>
+              {search}
+              {list}
+            </>
+          )}
+        </EuiSelectable>
+      );
+
+      const listbox = container.querySelector('.euiSelectableList__list')!;
+
+      // Navigate down to activate the live region
+      fireEvent.keyDown(listbox, { key: 'ArrowDown' });
+
+      // Capture the state of both live region divs before further navigation
+      const statusDivs = container.querySelectorAll('[role="status"]');
+      const activeDiv = Array.from(statusDivs).find(
+        (element) => element.textContent === '3 results available'
+      );
+      const inactiveDiv = Array.from(statusDivs).find(
+        (element) => element.getAttribute('aria-hidden') === 'true'
+      );
+
+      // Navigate again - the live region divs should not toggle,
+      // confirming no re-announcement to screen readers
+      fireEvent.keyDown(listbox, { key: 'ArrowDown' });
+
+      expect(activeDiv).toHaveTextContent('3 results available');
+      expect(inactiveDiv).toHaveTextContent('');
+    });
+
+    it('announces updated results count when search filtering changes results', () => {
+      const { container, getByRole } = render(
+        <EuiSelectable options={options} searchable>
+          {(list, search) => (
+            <>
+              {search}
+              {list}
+            </>
+          )}
+        </EuiSelectable>
+      );
+
+      const searchbox = getByRole('searchbox');
+
+      // Type to filter results
+      fireEvent.change(searchbox, { target: { value: 'Enceladus' } });
+      fireEvent.keyDown(searchbox, { key: 'ArrowDown' });
+      expect(getLiveRegionContent(container)).toBe('1 result available');
+
+      // Clear search to show all results
+      fireEvent.change(searchbox, { target: { value: '' } });
+      fireEvent.keyDown(searchbox, { key: 'ArrowDown' });
+      expect(getLiveRegionContent(container)).toBe('3 results available');
+    });
+  });
+
   describe('screen reader instructions', () => {
     it('sets default accessibility instructions correctly', () => {
       const searchProps = {

@@ -1,5 +1,15 @@
 [
   {
+    "version": "114.1.0",
+    "changes": [
+      {
+        "token": "euiSelectable.searchResults",
+        "changeType": "modified",
+        "value": "({\n  resultsLength\n}: {\n  resultsLength: number;\n}) => `${resultsLength} result${resultsLength === 1 ? '' : 's'} available`;"
+      }
+    ]
+  },
+  {
     "version": "113.3.0",
     "changes": [
       {

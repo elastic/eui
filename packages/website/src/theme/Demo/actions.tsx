@@ -20,6 +20,7 @@ export const extraActions = [
       '@emotion/react': 'latest',
       '@emotion/css': 'latest',
       'moment': 'latest',
+      'moment-timezone': 'latest',
       '@elastic/datemath': 'latest',
       '@elastic/eui': 'latest',
       '@elastic/eui-theme-borealis': 'latest',

@@ -13,10 +13,7 @@ import { type ReleaseOptions } from '../release';
 import { getRootWorkspaceDir, getWorkspacePackageJson } from '../workspace';
 import { yarnPack, YarnWorkspace } from '../yarn_utils';
 import { npmExecPublish } from '../npm_utils';
-
-interface PublishedWorkspace extends YarnWorkspace {
-  version: string;
-}
+import { emitPublishedPackagesFile, type PublishedPackages } from '../published_packages_file';
 
 /**
  * Publish changed packages to the registry
@@ -33,7 +30,7 @@ export const stepPublish = async (
     return;
   }
 
-  const publishedWorkspaces: Array<PublishedWorkspace> = [];
+  const publishedPackages: PublishedPackages = [];
 
   for (const workspace of workspacesToPublish) {
     const workspaceDir = path.join(rootWorkspaceDir, workspace.location);
@@ -75,10 +72,10 @@ export const stepPublish = async (
       logger.error(err);
       logger.error(chalk.red(`[${workspace.name}] Failed to publish package`));
 
-      if (publishedWorkspaces.length) {
+      if (publishedPackages.length) {
         const remainingPackages = workspacesToPublish.filter(
           (workspaceToPublish) => {
-            return !!publishedWorkspaces.find(
+            return !!publishedPackages.find(
               (publishedWorkspace) =>
                 publishedWorkspace.name === workspaceToPublish.name
             );
@@ -87,7 +84,7 @@ export const stepPublish = async (
 
         logger.error(
           chalk.red(
-            `${publishedWorkspaces.length} out of ` +
+            `${publishedPackages.length} out of ` +
               `${workspacesToPublish.length} packages were already published.`
           )
         );
@@ -100,7 +97,7 @@ export const stepPublish = async (
           `Otherwise, deprecate just published versions of the following ` +
             `packages if they are strictly dependent on remaining ` +
             `packages' updates:\n` +
-            `  ${publishedWorkspaces
+            `  ${publishedPackages
               .map((workspace) => workspace.name)
               .join(' ')}`
         );
@@ -111,14 +108,16 @@ export const stepPublish = async (
       return;
     }
 
-    publishedWorkspaces.push({
-      ...workspace,
+    publishedPackages.push({
+      name: workspace.name,
       version: packageJson.version,
     });
     logger.info(
       `[${workspace.name}] Successfully published ${workspace.name}@${packageJson.version} to npmjs - https://npmjs.com/package/${workspace.name}`
     );
   }
+
+  await emitPublishedPackagesFile(publishedPackages);
 
   logger.info('Publishing packages finished 🎉');
 };

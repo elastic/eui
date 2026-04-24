@@ -2,6 +2,8 @@
 sidebar_position: 5
 ---
 
+import useChartBaseThemeSource from '!raw-loader!./use_chart_base_theme';
+
 # Sizing
 
 import VersionBadge from './version_badge';
@@ -50,7 +52,7 @@ import * as ElasticCharts from '@elastic/charts';
 import { useChartBaseTheme } from './use_chart_base_theme';
 ```
 
-<Demo scope={{ ...ElasticCharts, useChartBaseTheme }}>
+<Demo scope={{ ...ElasticCharts, useChartBaseTheme }} extraFiles={{ 'use_chart_base_theme.ts': useChartBaseThemeSource }}>
   ```tsx
   import React from 'react';
   import {
@@ -72,6 +74,8 @@ import { useChartBaseTheme } from './use_chart_base_theme';
     AreaSeries,
     PartialTheme,
   } from '@elastic/charts';
+  import { useChartBaseTheme } from './use_chart_base_theme';
+
 
   /**
    * Example sparkline styles to match `ThemeService.useSparklineOverrides` from kibana `charts` plugin
