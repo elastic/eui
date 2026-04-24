@@ -1,5 +1,15 @@
 #!/bin/bash
 
+# Push HEAD to the PR source branch using the elastic machine user.
+function git_push_to_pr_branch {
+  local branch="${BUILDKITE_BRANCH##*:}"
+  local pr_repo_url="${BUILDKITE_PULL_REQUEST_REPO/https:\/\//https:\/\/x-access-token:${GITHUB_TOKEN}@}"
+  
+  git remote add pr-origin "${pr_repo_url}" 2>/dev/null \
+    || git remote set-url pr-origin "${pr_repo_url}"
+  git push pr-origin "HEAD:${branch}"
+}
+
 function retry {
   local retries=$1
   shift

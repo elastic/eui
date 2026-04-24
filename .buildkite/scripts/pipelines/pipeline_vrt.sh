@@ -57,7 +57,7 @@ if [[ "${VRT_PASSED}" == "true" ]]; then
     git config --local user.email "$(retry 5 vault read -field=email "${github_user_vault}")"
     git add "${REF_DIR}"
     git commit -m "chore(eui): add VRT baseline screenshots" --no-verify
-    git push origin "HEAD:${BUILDKITE_BRANCH}"
+    git_push_to_pr_branch
     echo "New VRT baseline screenshots committed and pushed"
   else
     echo "Visual regression tests passed with no new VRT baseline screenshots"

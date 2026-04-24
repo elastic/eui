@@ -44,7 +44,7 @@ if [[ -n "$(git status --porcelain -- "${REF_DIR}")" ]]; then
   git config --local user.email "$(retry 5 vault read -field=email "${github_user_vault}")"
   git add "${REF_DIR}"
   git commit -m "chore(eui): update VRT baseline screenshots" --no-verify
-  git push origin "HEAD:${BUILDKITE_BRANCH}"
+  git_push_to_pr_branch
   echo "Updated VRT baseline screenshots committed and pushed"
 else
   echo "No VRT baseline screenshots changes to commit"
