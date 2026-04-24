@@ -15,6 +15,24 @@ on:
         description: PR body
         type: string
         default: ''
+  workflow_call:
+    inputs:
+      dependencies:
+        description: JSON-serialized map of dependencies to update
+        type: string
+        required: true
+      pr_title:
+        description: PR title
+        default: Update EUI dependencies
+        type: string
+      pr_body:
+        description: PR body
+        type: string
+        default: ''
+    outputs:
+      pr_url:
+        description: 'URL of the created pull request'
+        value: ${{ jobs.open_pr.outputs.pr_url }}
 
 jobs:
   prepare_changes:
