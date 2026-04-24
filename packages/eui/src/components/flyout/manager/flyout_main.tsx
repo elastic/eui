@@ -9,7 +9,7 @@
 import React, { forwardRef } from 'react';
 
 import { EuiManagedFlyout, type EuiManagedFlyoutProps } from './flyout_managed';
-import { useHasChildFlyout, useFlyoutId } from './hooks';
+import { useHasChildFlyout, useFlyoutId, useFlyoutManager } from './hooks';
 import { euiMainFlyoutStyles } from './flyout_main.styles';
 import { useEuiMemoizedStyles } from '../../../services';
 import {
@@ -44,7 +44,12 @@ export const EuiFlyoutMain = forwardRef<HTMLElement, EuiFlyoutMainProps>(
     const flyoutId = useFlyoutId(id);
     const hasChildFlyout = useHasChildFlyout(flyoutId);
     const styles = useEuiMemoizedStyles(euiMainFlyoutStyles);
-    const isPushed = useIsPushed({ type, pushMinBreakpoint });
+    const context = useFlyoutManager();
+    const isPushed = useIsPushed({
+      type,
+      pushMinBreakpoint,
+      containerWidth: context?.state.referenceWidth,
+    });
 
     const cssStyles = [
       hasChildFlyout && !isPushed && styles.hasChildFlyout[side],

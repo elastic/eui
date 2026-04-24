@@ -120,11 +120,7 @@ export default () => {
 
 The `errors` prop allows you to pass an array of errors if syntax is malformed. The below example starts with an incomplete tooltip tag, showing this error message by default. These errors are meant to be ephemeral and part of the editing experience. They should not be a substitute for [form validation](../../forms/layouts/validation.mdx).
 
-```mdx-code-block
-import Link from '@docusaurus/Link';
-```
-
-<Demo scope={{ Link }}>
+<Demo>
 ```tsx interactive
 import React, { useCallback, useState, useRef } from 'react';
 import {
@@ -133,6 +129,7 @@ import {
   EuiCodeBlock,
   EuiButton,
   EuiFormErrorText,
+  EuiLink,
   htmlIdGenerator,
 } from '@elastic/eui';
 
@@ -175,7 +172,7 @@ export default () => {
       >
         Utilize error text or{' '}
         <strong>
-          <Link to="/docs/forms/validation">EuiFormRow</Link>
+          <EuiLink href="/docs/forms/validation">EuiFormRow</EuiLink>
         </strong>{' '}
         for more permanent error feedback
       </EuiFormErrorText>

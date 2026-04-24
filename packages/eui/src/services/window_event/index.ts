@@ -7,3 +7,4 @@
  */
 
 export { EuiWindowEvent } from './window_event';
+export { useEuiWindowEvent } from './hooks';

@@ -1,3 +1,9 @@
+## [`v2.11.1`](https://github.com/elastic/eui/releases/v2.11.1)
+
+**Bug fixes**
+
+- Fixed `no-css-color` ESLint rule crash when analyzing functions that return `undefined` or non-object values ([#9368](https://github.com/elastic/eui/pull/9368))
+
 ## [`v2.11.0`](https://github.com/elastic/eui/releases/v2.11.0)
 
 - Updated `no-unnamed-interactive-element` to include checking `EuiColorPicker` ([#9436](https://github.com/elastic/eui/pull/9436))

@@ -109,3 +109,14 @@ export const WithInteractiveChildren: Story = {
     ),
   },
 };
+
+/* VRT */
+
+export const Checked: Story = {
+  tags: ['vrt-only'],
+  args: {
+    id: 'id',
+    label: 'Checkable option',
+    checked: true,
+  },
+};

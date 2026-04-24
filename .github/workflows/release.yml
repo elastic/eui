@@ -27,6 +27,32 @@ on:
         description: "[Custom releases only] npm tag to use"
         required: false
         type: string
+  workflow_call:
+    inputs:
+      release_ref:
+        description: Upstream git ref to create the release from
+        required: true
+        type: string
+      type:
+        description: Release type - snapshot or official
+        required: true
+        type: string
+      workspaces:
+        description: A comma-separated list of workspaces to release
+        required: false
+        type: string
+      dry_run:
+        description: Dry run (do not publish the packages)
+        required: true
+        type: boolean
+      npm_tag:
+        description: "[Custom releases only] npm tag to use"
+        required: false
+        type: string
+    outputs:
+      published_packages_json:
+        description: A JSON-formatted list of published packages and their versions
+        value: ${{ jobs.resolver.outputs.published_packages_json }}
 
 permissions:
   id-token: write # Required for OIDC
@@ -76,6 +102,8 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ inputs.type == 'snapshot' }}
     needs: [ lint_and_unit_tests, cypress_tests ]
+    outputs:
+      published_packages_json: ${{ steps.published_packages_info.outputs.json }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -131,11 +159,20 @@ jobs:
           result-encoding: string
       - name: Release
         run: yarn release run snapshot --skip-prompts --skip-auth-check --use-auth-token --allow-custom ${{ inputs.dry_run && '--dry-run' || ''}} ${{ steps.prepare_npm_tag_arg.outputs.result }} ${{ steps.prepare_workspaces_arg.outputs.result }}
+      - name: Output published packages info
+        id: published_packages_info
+        # language=bash
+        run: |
+          # minify JSON content for easier handling
+          file_content=$(jq -c . .release/published_packages.json)
+          echo "json=$file_content" >> "$GITHUB_OUTPUT"
   release_official:
     name: Create an official release
     runs-on: ubuntu-latest
     if: ${{ inputs.type == 'official' }}
     needs: [ lint_and_unit_tests, cypress_tests ]
+    outputs:
+      published_packages_json: ${{ steps.published_packages_info.outputs.json }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -195,3 +232,27 @@ jobs:
           result-encoding: string
       - name: Release
         run: yarn release run official --skip-prompts --skip-auth-check --use-auth-token --allow-custom --skip-update-versions ${{ inputs.dry_run && '--dry-run' || ''}} ${{ steps.prepare_npm_tag_arg.outputs.result }} ${{ steps.prepare_workspaces_arg.outputs.result }}
+      - name: Output published packages info
+        id: published_packages_info
+        # language=bash
+        run: |
+          # minify JSON content for easier handling
+          file_content=$(jq -c . .release/published_packages.json)
+          echo "json=$file_content" >> "$GITHUB_OUTPUT"
+  resolver:
+    name: Resolve outputs
+    needs: [release_snapshot, release_official]
+    runs-on: ubuntu-latest
+    outputs:
+      published_packages_json: ${{ steps.resolver.outputs.published_packages.json }}
+    if: |
+      always() &&
+      (needs.release_snapshot.result == 'success' || needs.release_snapshot.result == 'skipped') &&
+      (needs.release_official.result == 'success' || needs.release_official.result == 'skipped')
+    steps:
+      - id: resolver
+        run: |
+          PUBLISHED_PACKAGES_JSON_SNAPSHOT="${{ needs.release_snapshot.outputs.published_packages_json }}"
+          PUBLISHED_PACKAGES_JSON_OFFICIAL="${{ needs.release_official.outputs.published_packages_json }}"
+
+          echo "json=${PUBLISHED_PACKAGES_JSON_SNAPSHOT:-$PUBLISHED_PACKAGES_JSON_OFFICIAL}" >> "$GITHUB_OUTPUT"

@@ -1,6 +1,7 @@
 # Window events
 
 import { ModalExample } from './modal_example';
+import modalExampleSource from '!raw-loader!./modal_example';
 
 ## Basic example: closing a modal on escape
 
@@ -8,7 +9,7 @@ Use an **EuiWindowEvent** to safely and declaratively manage adding and auto-rem
 
 This modal example registers a listener on the `keydown` event and listens for ESC key presses, which closes the open modal.
 
-<Demo scope={{ ModalExample }}>
+<Demo scope={{ ModalExample }} extraFiles={{ 'modal_example.tsx': modalExampleSource }}>
 ```tsx interactive
 import React from 'react';
 
@@ -18,6 +19,7 @@ import {
   EuiModalHeader,
   EuiModalHeaderTitle,
 } from '@elastic/eui';
+import { ModalExample } from './modal_example';
 
 const BasicModal = ({ onClose }) => (
   <EuiModal onClose={onClose} style={{ width: '800px' }}>
@@ -45,7 +47,7 @@ Since window event listeners are global, they can conflict with other event list
 
 The safest and best way to avoid these conflicts is to use `event.stopPropagation()` at the lowest, most specific level where you are responding to a DOM event. This will prevent the event from bubbling up to the window, and the **EuiWindowEvent** listener will never be triggered, avoiding the conflict.
 
-<Demo scope={{ ModalExample }}>
+<Demo scope={{ ModalExample }} extraFiles={{ 'modal_example.tsx': modalExampleSource }}>
 ```tsx interactive
 import React, { useState } from 'react';
 
@@ -58,6 +60,7 @@ import {
   EuiSpacer,
   keys,
 } from '@elastic/eui';
+import { ModalExample } from './modal_example';
 
 const ConflictModal = (props) => {
   const [inputValue, setInputValue] = useState('');

@@ -70,6 +70,9 @@ export const euiFormControlButtonStyles = (euiThemeContext: UseEuiTheme) => {
       justify-content: flex-start;
       ${logicalCSS('width', '100%')}
     `,
+    alignEnd: css`
+      justify-content: flex-end;
+    `,
     textContent: css`
       flex: 1;
       text-align: start;

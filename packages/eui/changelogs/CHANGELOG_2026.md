@@ -1,3 +1,29 @@
+## [`v114.2.0`](https://github.com/elastic/eui/releases/v114.2.0)
+
+- Added `addToDashboard` icon ([#9590](https://github.com/elastic/eui/pull/9590))
+- Added support for document-relative links in `EuiMarkdownFormat` and `EuiMarkdownEditor` via a new `allowDocumentRelative` option in `parsingConfig.linkValidator` ([#9554](https://github.com/elastic/eui/pull/9554))
+- Added `useEuiWindowEvent` hook and refactored `EuiWindowEvent` to use it internally, preventing unnecessary listener re-registration when inline arrow functions are passed as handlers ([#9536](https://github.com/elastic/eui/pull/9536))
+
+**Bug fixes**
+
+- Fixed a missing checked border state on `EuiCheckableCard` ([#9589](https://github.com/elastic/eui/pull/9589))
+- Fixed the visual alignment of right aligned icons in `EuiFormControlButton` when `value` is not passed ([#9588](https://github.com/elastic/eui/pull/9588))
+
+**Accessibility**
+
+- Fixed `EuiSelectable` screen reader repeatedly announcing total results count on every option navigation instead of only when the count changes ([#9555](https://github.com/elastic/eui/pull/9555))
+
+## [`v114.1.0`](https://github.com/elastic/eui/releases/v114.1.0)
+
+- Added an optional `tooltipProps` prop to `EuiMarkdownEditorHelpButton` ([#9546](https://github.com/elastic/eui/pull/9546))
+- Added a warning when non-recommended units are used in `width`, `minWidth` or `maxWidth` props on `<EuiTableFooterCell>`, `<EuiTableHeaderCell>`, `<EuiTableHeaderCellCheckbox>` as well as the `columns` configuration on `<EuiBasicTable>` and `<EuiInMemoryTable>` ([#9540](https://github.com/elastic/eui/pull/9540))
+- Added `transitionBottomIn` and `transitionBottomOut` icons to `EuiIcon` ([#9528](https://github.com/elastic/eui/pull/9528))
+
+**Bug fixes**
+
+- Fixed `EuiFlyoutManager` animation flickering when switching between flyout sessions by removing intermediate transition stages (backgrounding, returning, closing) and limiting opening animations to the initial flyout and first child only ([#9514](https://github.com/elastic/eui/pull/9514))
+- Fixed rendering of `EuiTableHeaderMobile` when `responsiveBreakpoint=false` prop is set ([#9531](https://github.com/elastic/eui/pull/9531))
+
 ## [`v114.0.0`](https://github.com/elastic/eui/releases/v114.0.0)
 
 - Fixed the clipping of `EuiFlyout` overlay mask to the container bounds when the `container` prop is provided, so the mask no longer covers the full viewport for app-scoped flyouts. ([#9512](https://github.com/elastic/eui/pull/9512))

@@ -3,6 +3,8 @@ sidebar_position: 3
 keywords: [EuiSuperSelect]
 ---
 
+import displayTogglesSource from '!raw-loader!../../../../src/components/display_toggles/display_toggles';
+
 # Super select
 
 ```mdx-code-block
@@ -150,9 +152,11 @@ export default () => {
 
 You can pass the same props as you normally would to **EuiSelect** like disabled, isLoading, compressed, etc.
 
+<Demo extraFiles={{ 'display_toggles.tsx': displayTogglesSource }}>
 ```tsx interactive
 import React, { useState } from 'react';
 import { EuiSuperSelect } from '@elastic/eui';
+import { DisplayToggles } from './display_toggles';
 
 export default () => {
   const options = [
@@ -193,6 +197,7 @@ export default () => {
   );
 };
 ```
+</Demo>
 import FormUsage from '../_partials/form-usage.mdx';
 
 <FormUsage />
