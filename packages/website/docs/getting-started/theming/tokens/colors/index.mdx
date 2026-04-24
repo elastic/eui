@@ -323,14 +323,14 @@ import { DataVisTextColorsPreview } from './data_vis_colors_preview'
 
 Data visualization colors and severity colors prioritize visual clarity and data differentiation over strict contrast compliance in standard light mode. **This means some colors may not meet WCAG 3:1 contrast requirements against light backgrounds.**
 
-For accessible use cases, enable **high contrast mode** which ensures all colors meet minimum contrast ratios. In dark mode, all colors meet the minimum 3:1 contrast ratio by default.
+For accessible use cases, enable **high contrast mode** which improves contrast for data vis and severity colors in light mode. In dark mode, all colors meet the minimum 3:1 contrast ratio by default.
 
 import { EuiTable, EuiTableHeader, EuiTableHeaderCell, EuiTableRow, EuiTableRowCell } from '@elastic/eui';
 
 <EuiTable>
   <EuiTableHeader>
     <EuiTableHeaderCell>Color Mode</EuiTableHeaderCell>
-    <EuiTableHeaderCell>Meets 3:1 contrast ratios?</EuiTableHeaderCell>
+    <EuiTableHeaderCell>Data vis / severity colors meet 3:1?</EuiTableHeaderCell>
   </EuiTableHeader>
   <EuiTableRow>
     <EuiTableRowCell>Dark</EuiTableRowCell>
@@ -342,7 +342,7 @@ import { EuiTable, EuiTableHeader, EuiTableHeaderCell, EuiTableRow, EuiTableRowC
   </EuiTableRow>
   <EuiTableRow>
     <EuiTableRowCell>Light (high contrast)</EuiTableRowCell>
-    <EuiTableRowCell>Yes</EuiTableRowCell>
+    <EuiTableRowCell>Improved</EuiTableRowCell>
   </EuiTableRow>
   <EuiTableRow>
     <EuiTableRowCell>Dark (high contrast)</EuiTableRowCell>
