@@ -26,6 +26,19 @@ DIFF_DIR="${VRT_DIR}/diff"
 CURRENT_DIR="${VRT_DIR}/current"
 
 ############################################################
+#                  Debug: verify GitHub auth               #
+############################################################
+
+echo "--- Checking available GitHub auth"
+echo "GITHUB_TOKEN set: ${GITHUB_TOKEN:+yes (length ${#GITHUB_TOKEN})}"
+echo "BUILDKITE_PULL_REQUEST_REPO: ${BUILDKITE_PULL_REQUEST_REPO}"
+echo "BUILDKITE_BRANCH: ${BUILDKITE_BRANCH}"
+gh auth status 2>&1 || echo "gh CLI not authenticated"
+vault read -field=token secret/ci/elastic-eui/github_machine_user > /dev/null 2>&1 \
+  && echo "vault token field: exists" \
+  || echo "vault token field: not found"
+
+############################################################
 #                     Install dependencies                 #
 ############################################################
 
