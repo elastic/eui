@@ -230,7 +230,14 @@ export const ExtraAction: Story = {
   name: 'extraAction (prop)',
   parameters: {
     controls: {
-      include: ['element', 'extraAction', 'children'],
+      include: [
+        'element',
+        'extraAction',
+        'children',
+        'isFocused',
+        'isSelected',
+        'isSingleSelection',
+      ],
     },
   },
   args: {

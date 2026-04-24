@@ -164,7 +164,8 @@ export const euiListItemLayoutStyles = (euiThemeContext: UseEuiTheme) => {
         }
       }
 
-      .euiIcon {
+      .euiIcon,
+      .euiButtonIcon {
         color: inherit;
       }
 
