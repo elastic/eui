@@ -36,10 +36,12 @@ on:
 
 jobs:
   prepare_changes:
+    name: Prepare changes
     uses: ./.github/workflows/update_kibana_dependencies__prepare_changes.yml
     with:
       dependencies: ${{ inputs.dependencies }}
   open_pr:
+    name: Open PR
     needs: [prepare_changes]
     uses: ./.github/workflows/update_kibana_dependencies__open_pr.yml
     with:
