@@ -1,0 +1,11 @@
+{
+  "core": {
+    "color": {
+      "$type": "color",
+      "white": { "$value": "#FFFFFF" },
+      "black": { "$value": "#000000" },
+      "blue-black": { "$value": "#07101F" },
+      "muted-black": { "$value": "#0E0F12" }
+    }
+  }
+}

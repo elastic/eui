@@ -1,0 +1,23 @@
+{
+  "core": {
+    "color": {
+      "$type": "color",
+      "purple": {
+        "10": { "$value": "#F7F2FF" },
+        "20": { "$value": "#ECE2FE" },
+        "30": { "$value": "#E2D3FE" },
+        "40": { "$value": "#D1BAFC" },
+        "50": { "$value": "#C5A5FA" },
+        "60": { "$value": "#B386F9" },
+        "70": { "$value": "#A36DEF" },
+        "80": { "$value": "#925CDA" },
+        "90": { "$value": "#8144CC" },
+        "100": { "$value": "#6B3C9F" },
+        "110": { "$value": "#52357E" },
+        "120": { "$value": "#3E2C63" },
+        "130": { "$value": "#322452" },
+        "140": { "$value": "#2A1E3E" }
+      }
+    }
+  }
+}

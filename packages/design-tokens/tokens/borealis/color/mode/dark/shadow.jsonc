@@ -1,0 +1,17 @@
+{
+  "color": {
+    "$type": "color",
+    "shadow": {
+      // Dark mode uses pure black for all shadow layers
+      "base": { "$value": "{core.color.black}" },
+      "panel-hover": {
+        "primary": { "$value": "{core.color.black}" },
+        "accent": { "$value": "{core.color.black}" },
+        "accent-secondary": { "$value": "{core.color.black}" },
+        "success": { "$value": "{core.color.black}" },
+        "warning": { "$value": "{core.color.black}" },
+        "danger": { "$value": "{core.color.black}" }
+      }
+    }
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "color": {
+    "$type": "color",
+    "datavis": {
+      // Default palette is the same as light mode
+      "default": {
+        "0": { "$value": "{color.accent-secondary.60}" },
+        "1": { "$value": "{color.accent-secondary.30}" },
+        "2": { "$value": "{color.primary.60}" },
+        "3": { "$value": "{color.primary.30}" },
+        "4": { "$value": "{color.accent.60}" },
+        "5": { "$value": "{color.accent.30}" },
+        "6": { "$value": "{color.danger.60}" },
+        "7": { "$value": "{color.danger.30}" },
+        "8": { "$value": "{color.warning.60}" },
+        "9": { "$value": "{color.warning.30}" }
+      },
+      // In dark mode, text uses the same bright shades as the default palette
+      // (60/30 are readable on dark backgrounds without needing darker variants)
+      "text": {
+        "0": { "$value": "{color.accent-secondary.60}" },
+        "1": { "$value": "{color.accent-secondary.30}" },
+        "2": { "$value": "{color.primary.60}" },
+        "3": { "$value": "{color.primary.30}" },
+        "4": { "$value": "{color.accent.60}" },
+        "5": { "$value": "{color.accent.30}" },
+        "6": { "$value": "{color.danger.60}" },
+        "7": { "$value": "{color.danger.30}" },
+        "8": { "$value": "{color.warning.60}" },
+        "9": { "$value": "{color.warning.30}" }
+      },
+      "neutral": {
+        "0": { "$value": "{color.neutral.60}" },
+        "1": { "$value": "{color.neutral.30}" }
+      },
+      "success": {
+        "0": { "$value": "{color.success.60}" },
+        "1": { "$value": "{color.success.30}" }
+      },
+      "warning": {
+        "0": { "$value": "{color.warning.60}" },
+        "1": { "$value": "{color.warning.30}" }
+      },
+      "risk": {
+        "0": { "$value": "{color.risk.60}" },
+        "1": { "$value": "{color.risk.30}" }
+      },
+      "danger": {
+        "0": { "$value": "{color.danger.60}" },
+        "1": { "$value": "{color.danger.30}" }
+      },
+      "grey": {
+        "0": { "$value": "{color.shade.30}" },
+        "1": { "$value": "{color.shade.60}" },
+        "2": { "$value": "{color.shade.90}" },
+        "3": { "$value": "{color.shade.130}" }
+      },
+      "warm": {
+        "0": { "$value": "{color.danger.10}" },
+        "1": { "$value": "{color.danger.40}" },
+        "2": { "$value": "{color.danger.60}" }
+      },
+      "cool": {
+        "0": { "$value": "{color.primary.10}" },
+        "1": { "$value": "{color.primary.40}" },
+        "2": { "$value": "{color.primary.60}" }
+      },
+      "complementary": {
+        "0": { "$value": "{color.primary.60}" },
+        "1": { "$value": "{color.warning.60}" }
+      }
+    },
+    // Severity is the same in both modes
+    "severity": {
+      "unknown": { "$value": "{color.shade.20}" },
+      "neutral": { "$value": "{color.neutral.30}" },
+      "success": { "$value": "{color.success.60}" },
+      "warning": { "$value": "{color.warning.30}" },
+      "risk": { "$value": "{color.risk.50}" },
+      "danger": { "$value": "{color.danger.70}" }
+    }
+  }
+}

@@ -18,117 +18,123 @@ import {
   _EuiThemeTransparentBackgroundColors,
 } from '@elastic/eui-theme-common';
 
+// Values sourced from @elastic/design-tokens — do not edit manually.
+// To change a color, update the corresponding token in packages/design-tokens/
+// and rebuild.
+import tokens from '@elastic/design-tokens/dist/ts/dark-all.json';
+
 import { PRIMITIVE_COLORS } from './_primitive_colors';
-import { SEMANTIC_COLORS } from './_semantic_colors';
 
 /*
  * DARK THEME
  */
 
+const m = tokens.color;
+
 export const dark_brand_colors: _EuiThemeBrandColors = {
-  primary: SEMANTIC_COLORS.primary60,
-  accent: SEMANTIC_COLORS.accent60,
-  accentSecondary: SEMANTIC_COLORS.accentSecondary60,
-  success: SEMANTIC_COLORS.success60,
-  warning: SEMANTIC_COLORS.warning40,
-  danger: SEMANTIC_COLORS.danger60,
+  primary: m.brand.primary,
+  accent: m.brand.accent,
+  accentSecondary: m.brand['accent-secondary'],
+  success: m.brand.success,
+  warning: m.brand.warning,
+  danger: m.brand.danger,
 };
 
 export const dark_brand_text_colors: _EuiThemeBrandTextColors = {
   /* Legacy colors */
-  primaryText: SEMANTIC_COLORS.primary60,
-  accentText: SEMANTIC_COLORS.accent60,
-  successText: SEMANTIC_COLORS.success60,
-  warningText: SEMANTIC_COLORS.warning30,
-  dangerText: SEMANTIC_COLORS.danger60,
+  primaryText: m.text.primary,
+  accentText: m.text.accent,
+  successText: m.text.success,
+  warningText: m.text.warning,
+  dangerText: m.text.danger,
 
   /* New colors */
-  textPrimary: SEMANTIC_COLORS.primary60,
-  textAccent: SEMANTIC_COLORS.accent60,
-  textAccentSecondary: SEMANTIC_COLORS.accentSecondary60,
-  textNeutral: SEMANTIC_COLORS.neutral60,
-  textSuccess: SEMANTIC_COLORS.success60,
-  textWarning: SEMANTIC_COLORS.warning30,
-  textRisk: SEMANTIC_COLORS.risk50,
-  textDanger: SEMANTIC_COLORS.danger60,
-  textAssistance: SEMANTIC_COLORS.assistance50,
+  textPrimary: m.text.primary,
+  textAccent: m.text.accent,
+  textAccentSecondary: m.text['accent-secondary'],
+  textNeutral: m.text.neutral,
+  textSuccess: m.text.success,
+  textWarning: m.text.warning,
+  textRisk: m.text.risk,
+  textDanger: m.text.danger,
+  textAssistance: m.text.assistance,
 };
 
 export const dark_text_colors: _EuiThemeTextColors = {
   /* Legacy colors */
-  text: SEMANTIC_COLORS.shade30,
-  title: SEMANTIC_COLORS.shade20,
-  subduedText: SEMANTIC_COLORS.shade55,
-  link: SEMANTIC_COLORS.primary60,
+  text: m.text.paragraph,
+  title: m.text.heading,
+  subduedText: m.text.subdued,
+  link: m.text.link,
 
   /* New colors */
-  textParagraph: SEMANTIC_COLORS.shade30,
-  textHeading: SEMANTIC_COLORS.shade20,
-  textSubdued: SEMANTIC_COLORS.shade55,
-  textDisabled: SEMANTIC_COLORS.shade80,
-  textInverse: SEMANTIC_COLORS.plainDark,
-  textInk: SEMANTIC_COLORS.plainDark,
-  textGhost: SEMANTIC_COLORS.plainLight,
+  textParagraph: m.text.paragraph,
+  textHeading: m.text.heading,
+  textSubdued: m.text.subdued,
+  textDisabled: m.text.disabled,
+  textInverse: m.text.inverse,
+  textInk: m.text.ink,
+  textGhost: m.text.ghost,
 };
 
 export const dark_shades: _EuiThemeShadeColors = {
-  emptyShade: SEMANTIC_COLORS.shade145,
-  lightestShade: SEMANTIC_COLORS.shade135,
-  lightShade: SEMANTIC_COLORS.shade125,
-  mediumShade: SEMANTIC_COLORS.shade95,
-  darkShade: SEMANTIC_COLORS.shade75,
-  darkestShade: SEMANTIC_COLORS.shade30,
-  fullShade: SEMANTIC_COLORS.plainLight,
+  emptyShade: m['shade-alias'].empty,
+  lightestShade: m['shade-alias'].lightest,
+  lightShade: m['shade-alias'].light,
+  mediumShade: m['shade-alias'].medium,
+  darkShade: m['shade-alias'].dark,
+  darkestShade: m['shade-alias'].darkest,
+  fullShade: m['shade-alias'].full,
 };
 
 export const dark_background_colors: _EuiThemeBackgroundColors = {
-  backgroundBasePrimary: SEMANTIC_COLORS.primary140,
-  backgroundBaseAccent: SEMANTIC_COLORS.accent140,
-  backgroundBaseAccentSecondary: SEMANTIC_COLORS.accentSecondary140,
-  backgroundBaseNeutral: SEMANTIC_COLORS.neutral140,
-  backgroundBaseSuccess: SEMANTIC_COLORS.success140,
-  backgroundBaseWarning: SEMANTIC_COLORS.warning140,
-  backgroundBaseRisk: SEMANTIC_COLORS.risk140,
-  backgroundBaseDanger: SEMANTIC_COLORS.danger140,
-  backgroundBaseAssistance: SEMANTIC_COLORS.assistance140,
-  backgroundBaseSubdued: SEMANTIC_COLORS.plainDark,
-  backgroundBasePlain: SEMANTIC_COLORS.shade145,
-  backgroundBaseDisabled: SEMANTIC_COLORS.shade130,
-  backgroundBaseHighlighted: SEMANTIC_COLORS.shade135,
+  backgroundBasePrimary: m.background.base.primary,
+  backgroundBaseAccent: m.background.base.accent,
+  backgroundBaseAccentSecondary: m.background.base['accent-secondary'],
+  backgroundBaseNeutral: m.background.base.neutral,
+  backgroundBaseSuccess: m.background.base.success,
+  backgroundBaseWarning: m.background.base.warning,
+  backgroundBaseRisk: m.background.base.risk,
+  backgroundBaseDanger: m.background.base.danger,
+  backgroundBaseAssistance: m.background.base.assistance,
+  backgroundBaseSubdued: m.background.base.subdued,
+  backgroundBasePlain: m.background.base.plain,
+  backgroundBaseDisabled: m.background.base.disabled,
+  backgroundBaseHighlighted: m.background.base.highlighted,
 
-  backgroundBaseFormsPrepend: SEMANTIC_COLORS.shade125,
-  backgroundBaseFormsControlDisabled: SEMANTIC_COLORS.shade120,
+  backgroundBaseFormsPrepend: m.background.base['forms-prepend'],
+  backgroundBaseFormsControlDisabled: m.background.base['forms-control-disabled'],
 
-  backgroundBaseInteractiveHover: SEMANTIC_COLORS.plainLightAlpha8,
-  backgroundBaseInteractiveHoverAssistance: SEMANTIC_COLORS.assistance130,
-  backgroundBaseInteractiveSelect: SEMANTIC_COLORS.primary130,
-  backgroundBaseInteractiveSelectHover: SEMANTIC_COLORS.primary120,
-  backgroundBaseInteractiveOverlay: SEMANTIC_COLORS.shade120Alpha70,
+  backgroundBaseInteractiveHover: m.background.base['interactive-hover'],
+  backgroundBaseInteractiveHoverAssistance: m.background.base['interactive-hover-assistance'],
+  backgroundBaseInteractiveSelect: m.background.base['interactive-select'],
+  backgroundBaseInteractiveSelectHover: m.background.base['interactive-select-hover'],
+  backgroundBaseInteractiveOverlay: m.background.base['interactive-overlay'],
 
-  backgroundBaseSkeletonEdge: SEMANTIC_COLORS.plainLightAlpha16,
-  backgroundBaseSkeletonMiddle: SEMANTIC_COLORS.plainLightAlpha8,
+  backgroundBaseSkeletonEdge: m.background.base['skeleton-edge'],
+  backgroundBaseSkeletonMiddle: m.background.base['skeleton-middle'],
 
-  backgroundLightPrimary: SEMANTIC_COLORS.primary130,
-  backgroundLightAccent: SEMANTIC_COLORS.accent130,
-  backgroundLightAccentSecondary: SEMANTIC_COLORS.accentSecondary130,
-  backgroundLightNeutral: SEMANTIC_COLORS.neutral130,
-  backgroundLightSuccess: SEMANTIC_COLORS.success130,
-  backgroundLightWarning: SEMANTIC_COLORS.warning130,
-  backgroundLightRisk: SEMANTIC_COLORS.risk130,
-  backgroundLightDanger: SEMANTIC_COLORS.danger130,
-  backgroundLightAssistance: SEMANTIC_COLORS.assistance120,
-  backgroundLightText: SEMANTIC_COLORS.shade120,
+  backgroundLightPrimary: m.background.light.primary,
+  backgroundLightAccent: m.background.light.accent,
+  backgroundLightAccentSecondary: m.background.light['accent-secondary'],
+  backgroundLightNeutral: m.background.light.neutral,
+  backgroundLightSuccess: m.background.light.success,
+  backgroundLightWarning: m.background.light.warning,
+  backgroundLightRisk: m.background.light.risk,
+  backgroundLightDanger: m.background.light.danger,
+  backgroundLightAssistance: m.background.light.assistance,
+  backgroundLightText: m.background.light.text,
 
-  backgroundFilledPrimary: SEMANTIC_COLORS.primary60,
-  backgroundFilledAccent: SEMANTIC_COLORS.accent60,
-  backgroundFilledAccentSecondary: SEMANTIC_COLORS.accentSecondary60,
-  backgroundFilledNeutral: SEMANTIC_COLORS.neutral50,
-  backgroundFilledSuccess: SEMANTIC_COLORS.success60,
-  backgroundFilledWarning: SEMANTIC_COLORS.warning40,
-  backgroundFilledRisk: SEMANTIC_COLORS.risk50,
-  backgroundFilledDanger: SEMANTIC_COLORS.danger60,
-  backgroundFilledAssistance: SEMANTIC_COLORS.assistance50,
-  backgroundFilledText: SEMANTIC_COLORS.shade60,
+  backgroundFilledPrimary: m.background.filled.primary,
+  backgroundFilledAccent: m.background.filled.accent,
+  backgroundFilledAccentSecondary: m.background.filled['accent-secondary'],
+  backgroundFilledNeutral: m.background.filled.neutral,
+  backgroundFilledSuccess: m.background.filled.success,
+  backgroundFilledWarning: m.background.filled.warning,
+  backgroundFilledRisk: m.background.filled.risk,
+  backgroundFilledDanger: m.background.filled.danger,
+  backgroundFilledAssistance: m.background.filled.assistance,
+  backgroundFilledText: m.background.filled.text,
 };
 
 /**
@@ -155,46 +161,46 @@ export const dark_transparent_background_colors: _EuiThemeTransparentBackgroundC
   };
 
 export const dark_border_colors: _EuiThemeBorderColors = {
-  borderBasePrimary: SEMANTIC_COLORS.primary120,
-  borderBaseAccent: SEMANTIC_COLORS.accent120,
-  borderBaseAccentSecondary: SEMANTIC_COLORS.accentSecondary120,
-  borderBaseNeutral: SEMANTIC_COLORS.neutral120,
-  borderBaseSuccess: SEMANTIC_COLORS.success120,
-  borderBaseWarning: SEMANTIC_COLORS.warning120,
-  borderBaseRisk: SEMANTIC_COLORS.risk120,
-  borderBaseDanger: SEMANTIC_COLORS.danger120,
-  borderBaseAssistance: SEMANTIC_COLORS.assistance120,
+  borderBasePrimary: m.border.base.primary,
+  borderBaseAccent: m.border.base.accent,
+  borderBaseAccentSecondary: m.border.base['accent-secondary'],
+  borderBaseNeutral: m.border.base.neutral,
+  borderBaseSuccess: m.border.base.success,
+  borderBaseWarning: m.border.base.warning,
+  borderBaseRisk: m.border.base.risk,
+  borderBaseDanger: m.border.base.danger,
+  borderBaseAssistance: m.border.base.assistance,
 
-  borderBasePlain: SEMANTIC_COLORS.shade100,
-  borderBaseSubdued: SEMANTIC_COLORS.shade120,
-  borderBaseProminent: SEMANTIC_COLORS.shade80,
-  borderBaseDisabled: SEMANTIC_COLORS.shade100,
-  borderBaseFloating: SEMANTIC_COLORS.shade120,
+  borderBasePlain: m.border.base.plain,
+  borderBaseSubdued: m.border.base.subdued,
+  borderBaseProminent: m.border.base.prominent,
+  borderBaseDisabled: m.border.base.disabled,
+  borderBaseFloating: m.border.base.floating,
 
-  borderBaseFormsColorSwatch: SEMANTIC_COLORS.plainLightAlpha32,
+  borderBaseFormsColorSwatch: m.border.base['forms-color-swatch'],
 
-  borderInteractiveFormsHoverPlain: SEMANTIC_COLORS.shade90,
-  borderInteractiveFormsHoverProminent: SEMANTIC_COLORS.shade60,
-  borderInteractiveFormsHoverDanger: SEMANTIC_COLORS.danger70,
+  borderInteractiveFormsHoverPlain: m.border.interactive['forms-hover-plain'],
+  borderInteractiveFormsHoverProminent: m.border.interactive['forms-hover-prominent'],
+  borderInteractiveFormsHoverDanger: m.border.interactive['forms-hover-danger'],
 
-  borderStrongPrimary: SEMANTIC_COLORS.primary60,
-  borderStrongAccent: SEMANTIC_COLORS.accent60,
-  borderStrongAccentSecondary: SEMANTIC_COLORS.accentSecondary60,
-  borderStrongNeutral: SEMANTIC_COLORS.neutral60,
-  borderStrongSuccess: SEMANTIC_COLORS.success60,
-  borderStrongWarning: SEMANTIC_COLORS.warning40,
-  borderStrongRisk: SEMANTIC_COLORS.risk50,
-  borderStrongDanger: SEMANTIC_COLORS.danger60,
-  borderStrongAssistance: SEMANTIC_COLORS.assistance60,
-  borderStrongText: SEMANTIC_COLORS.shade60,
+  borderStrongPrimary: m.border.strong.primary,
+  borderStrongAccent: m.border.strong.accent,
+  borderStrongAccentSecondary: m.border.strong['accent-secondary'],
+  borderStrongNeutral: m.border.strong.neutral,
+  borderStrongSuccess: m.border.strong.success,
+  borderStrongWarning: m.border.strong.warning,
+  borderStrongRisk: m.border.strong.risk,
+  borderStrongDanger: m.border.strong.danger,
+  borderStrongAssistance: m.border.strong.assistance,
+  borderStrongText: m.border.strong.text,
 };
 
 export const dark_special_colors: _EuiThemeSpecialColors = {
-  body: SEMANTIC_COLORS.plainDark,
-  highlight: SEMANTIC_COLORS.primary100,
-  disabled: SEMANTIC_COLORS.shade130,
-  disabledText: SEMANTIC_COLORS.shade80,
-  shadow: PRIMITIVE_COLORS.black,
+  body: m.special.body,
+  highlight: m.special.highlight,
+  disabled: m.special.disabled,
+  disabledText: m.special['disabled-text'],
+  shadow: m.special.shadow,
 };
 
 export const dark_colors: _EuiThemeColorsMode = {

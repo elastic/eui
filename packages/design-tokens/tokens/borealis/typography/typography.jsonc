@@ -1,0 +1,38 @@
+{
+  "typography": {
+    "family": {
+      "$type": "fontFamily",
+      "default": { "$value": ["Inter", "BlinkMacSystemFont", "Helvetica", "Arial", "sans-serif"] },
+      "code": { "$value": ["Roboto Mono", "Menlo", "Courier", "monospace"] },
+      "serif": { "$value": ["Georgia", "Times", "Times New Roman", "serif"] }
+    },
+    "scale": {
+      "$type": "number",
+      "$description": "Font size multipliers relative to base (16px). E.g. 0.875 = 14px.",
+      "xxxs": { "$value": 0.5625 },
+      "xxs": { "$value": 0.6875 },
+      "xs": { "$value": 0.75 },
+      "s": { "$value": 0.875 },
+      "m": { "$value": 1 },
+      "l": { "$value": 1.25 },
+      "xl": { "$value": 1.5 },
+      "xxl": { "$value": 1.875 }
+    },
+    "weight": {
+      "$type": "fontWeight",
+      "light": { "$value": 300 },
+      "regular": { "$value": 400 },
+      "medium": { "$value": 450 },
+      "semi-bold": { "$value": 500 },
+      "bold": { "$value": 600 }
+    },
+    "line-height-multiplier": {
+      "$type": "number",
+      "$value": 1.5
+    },
+    "feature-settings": {
+      "$type": "string",
+      "$value": "'calt' 1, 'kern' 1, 'liga' 1"
+    }
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "color": {
+    "$type": "color",
+    "plain": {
+      "light": { "$value": "{core.color.white}" },
+      "dark": { "$value": "{core.color.blue-black}" },
+      // Alpha variants of plain light (used in dark mode backgrounds)
+      "light-alpha-8": {
+        "$value": "{core.color.white}",
+        "$extensions": {
+          "studio.tokens": {
+            "modify": { "type": "alpha", "value": "0.08", "space": "srgb" }
+          }
+        }
+      },
+      "light-alpha-12": {
+        "$value": "{core.color.white}",
+        "$extensions": {
+          "studio.tokens": {
+            "modify": { "type": "alpha", "value": "0.12", "space": "srgb" }
+          }
+        }
+      },
+      "light-alpha-16": {
+        "$value": "{core.color.white}",
+        "$extensions": {
+          "studio.tokens": {
+            "modify": { "type": "alpha", "value": "0.16", "space": "srgb" }
+          }
+        }
+      },
+      "light-alpha-32": {
+        "$value": "{core.color.white}",
+        "$extensions": {
+          "studio.tokens": {
+            "modify": { "type": "alpha", "value": "0.32", "space": "srgb" }
+          }
+        }
+      }
+    }
+  }
+}

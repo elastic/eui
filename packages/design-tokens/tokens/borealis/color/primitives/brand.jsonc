@@ -1,0 +1,59 @@
+{
+  "core": {
+    "color": {
+      "$type": "color",
+      // Elastic brand colors — ported from Figma variables as-is.
+      // NOTE: naming is inconsistent (flat "developer-blue" vs nested "blue.elastic",
+      // "dark-midnight" vs "midnight" without nesting). These names match the current
+      // Figma structure; consider normalizing in a future pass.
+      "brand": {
+        "developer-blue": { "$value": "#101C3F" },
+        "dark-midnight": { "$value": "#172D63" },
+        "midnight": { "$value": "#153385" },
+        "light-midnight": { "$value": "#294492" },
+        "lighter-midnight": { "$value": "#2E4FA3" },
+        "lime": { "$value": "#9ADC30" },
+        "teal": {
+          "dark": { "$value": "#019B8F" },
+          "regular": { "$value": "#02BCB7" },
+          "light": { "$value": "#48EFCF" }
+        },
+        "blue": {
+          "dark": { "$value": "#005A9E" },
+          "elastic": { "$value": "#0B64DD" },
+          "light": { "$value": "#1BA9F5" }
+        },
+        "pink": {
+          "dark": { "$value": "#DD0A73" },
+          "regular": { "$value": "#F04E98" },
+          "light": { "$value": "#F990C6" }
+        },
+        "poppy": {
+          "dark": { "$value": "#E55940" },
+          "regular": { "$value": "#FA744E" },
+          "light": { "$value": "#FF957D" }
+        },
+        "yellow": {
+          "dark": { "$value": "#F9B110" },
+          "regular": { "$value": "#FEC514" },
+          "light": { "$value": "#FFD836" }
+        },
+        "ink": {
+          "dark": { "$value": "#1C1E23" },
+          "regular": { "$value": "#343741" },
+          "light": { "$value": "#535966" },
+          "lighter": { "$value": "#7F8494" }
+        },
+        "smoke": {
+          "dark": { "$value": "#949BAB" },
+          "regular": { "$value": "#ABB4C4" },
+          "light": { "$value": "#C5CDD8" }
+        },
+        "fog": {
+          "regular": { "$value": "#E6EBF2" },
+          "light": { "$value": "#F5F7FA" }
+        }
+      }
+    }
+  }
+}

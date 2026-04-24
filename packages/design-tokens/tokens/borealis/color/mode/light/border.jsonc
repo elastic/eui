@@ -1,0 +1,41 @@
+{
+  "color": {
+    "$type": "color",
+    "border": {
+      "base": {
+        "primary": { "$value": "{color.primary.30}" },
+        "accent": { "$value": "{color.accent.30}" },
+        "accent-secondary": { "$value": "{color.accent-secondary.30}" },
+        "neutral": { "$value": "{color.neutral.30}" },
+        "success": { "$value": "{color.success.30}" },
+        "warning": { "$value": "{color.warning.30}" },
+        "risk": { "$value": "{color.risk.30}" },
+        "danger": { "$value": "{color.danger.30}" },
+        "assistance": { "$value": "{color.assistance.30}" },
+        "plain": { "$value": "{color.shade.30}" },
+        "subdued": { "$value": "{color.shade.20}" },
+        "prominent": { "$value": "{color.shade.50}" },
+        "disabled": { "$value": "{color.shade.30}" },
+        "floating": { "$value": "#00000000" },
+        "forms-color-swatch": { "$value": "{color.shade.100-alpha-24}" }
+      },
+      "interactive": {
+        "forms-hover-plain": { "$value": "{color.shade.40}" },
+        "forms-hover-prominent": { "$value": "{color.shade.70}" },
+        "forms-hover-danger": { "$value": "{color.danger.80}" }
+      },
+      "strong": {
+        "primary": { "$value": "{color.primary.90}" },
+        "accent": { "$value": "{color.accent.90}" },
+        "accent-secondary": { "$value": "{color.accent-secondary.90}" },
+        "neutral": { "$value": "{color.neutral.90}" },
+        "success": { "$value": "{color.success.90}" },
+        "warning": { "$value": "{color.warning.90}" },
+        "risk": { "$value": "{color.risk.90}" },
+        "danger": { "$value": "{color.danger.90}" },
+        "assistance": { "$value": "{color.assistance.90}" },
+        "text": { "$value": "{color.shade.90}" }
+      }
+    }
+  }
+}

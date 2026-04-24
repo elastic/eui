@@ -9,7 +9,6 @@
 import { _EuiThemeVisColors } from '@elastic/eui-theme-common';
 
 import { SEMANTIC_COLORS } from './_semantic_colors';
-import { PRIMITIVE_COLORS } from './_primitive_colors';
 
 const baseColorVis = {
   euiColorVis0: SEMANTIC_COLORS.accentSecondary110,
@@ -65,10 +64,10 @@ export const visColorsLightHighContrast: _EuiThemeVisColors = {
   // We want to limit its usage to visualizations only, so we're keeping it hardcoded here.
   euiColorVisBase0: '#F6F9FC',
 
-  euiColorVisGrey0: PRIMITIVE_COLORS.blueGrey30,
-  euiColorVisGrey1: PRIMITIVE_COLORS.blueGrey60,
-  euiColorVisGrey2: PRIMITIVE_COLORS.blueGrey90,
-  euiColorVisGrey3: PRIMITIVE_COLORS.blueGrey130,
+  euiColorVisGrey0: SEMANTIC_COLORS.shade30,
+  euiColorVisGrey1: SEMANTIC_COLORS.shade60,
+  euiColorVisGrey2: SEMANTIC_COLORS.shade90,
+  euiColorVisGrey3: SEMANTIC_COLORS.shade130,
 
   euiColorVisWarm0: SEMANTIC_COLORS.danger10,
   euiColorVisWarm1: SEMANTIC_COLORS.danger50,

@@ -1,0 +1,16 @@
+{
+  "color": {
+    "$type": "color",
+    "shadow": {
+      "base": { "$value": "{color.shade.120}" },
+      "panel-hover": {
+        "primary": { "$value": "{color.primary.100}" },
+        "accent": { "$value": "{color.accent.100}" },
+        "accent-secondary": { "$value": "{color.accent-secondary.100}" },
+        "success": { "$value": "{color.success.100}" },
+        "warning": { "$value": "{color.warning.100}" },
+        "danger": { "$value": "{color.danger.100}" }
+      }
+    }
+  }
+}

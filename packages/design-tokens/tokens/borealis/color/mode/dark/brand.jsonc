@@ -1,0 +1,13 @@
+{
+  "color": {
+    "$type": "color",
+    "brand": {
+      "primary": { "$value": "{color.primary.60}" },
+      "accent": { "$value": "{color.accent.60}" },
+      "accent-secondary": { "$value": "{color.accent-secondary.60}" },
+      "success": { "$value": "{color.success.60}" },
+      "warning": { "$value": "{color.warning.40}" },
+      "danger": { "$value": "{color.danger.60}" }
+    }
+  }
+}

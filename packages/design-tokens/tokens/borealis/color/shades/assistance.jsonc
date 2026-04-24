@@ -1,0 +1,29 @@
+{
+  "color": {
+    "$type": "color",
+    "assistance": {
+      "10": { "$value": "{core.color.purple.10}" },
+      "20": { "$value": "{core.color.purple.20}" },
+      "30": { "$value": "{core.color.purple.30}" },
+      "40": { "$value": "{core.color.purple.40}" },
+      "50": { "$value": "{core.color.purple.50}" },
+      "60": { "$value": "{core.color.purple.60}" },
+      "70": { "$value": "{core.color.purple.70}" },
+      "80": { "$value": "{core.color.purple.80}" },
+      "90": { "$value": "{core.color.purple.90}" },
+      "100": { "$value": "{core.color.purple.100}" },
+      "110": { "$value": "{core.color.purple.110}" },
+      "120": { "$value": "{core.color.purple.120}" },
+      "130": { "$value": "{core.color.purple.130}" },
+      "140": { "$value": "{core.color.purple.140}" },
+      "70-alpha-12": {
+        "$value": "{core.color.purple.70}",
+        "$extensions": {
+          "studio.tokens": {
+            "modify": { "type": "alpha", "value": "0.12", "space": "srgb" }
+          }
+        }
+      }
+    }
+  }
+}
