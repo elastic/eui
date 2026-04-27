@@ -7,10 +7,118 @@
  */
 
 import React from 'react';
+import { act } from '@testing-library/react';
 import { render, renderHook } from '../../../test/rtl';
-import { useScrollCellIntoView, useScrollBars } from './scrolling';
+import { DataGridCellPopoverContext } from '../body/cell';
+import { useScroll, useScrollCellIntoView, useScrollBars } from './scrolling';
+import { DataGridFocusContext } from './focus';
 
 // see scrolling.spec.tsx for E2E useScroll tests
+
+const createPointerEvent = (
+  type: string,
+  init: PointerEventInit = {}
+): MouseEvent => {
+  const event = new MouseEvent(type, { bubbles: true, ...init });
+  Object.defineProperty(event, 'pointerType', {
+    configurable: true,
+    value: init.pointerType ?? 'mouse',
+  });
+  return event;
+};
+
+describe('useScroll', () => {
+  it('ignores deferred scrolling on non-primary mouse pointerup events', () => {
+    const scrollTo = jest.fn();
+    const scrollToItem = jest.fn();
+    const outerGrid = document.createElement('div');
+    const pointerTarget = document.createElement('div');
+    outerGrid.appendChild(pointerTarget);
+    document.body.appendChild(outerGrid);
+
+    const args = {
+      gridRef: { current: { scrollTo, scrollToItem } as any },
+      outerGridRef: {
+        current: {
+          scrollTop: 0,
+          scrollLeft: 0,
+          clientHeight: 100,
+          clientWidth: 100,
+          querySelector: () =>
+            ({
+              parentNode: { offsetTop: 0 },
+              offsetLeft: 150,
+              offsetWidth: 100,
+              offsetHeight: 20,
+            } as any),
+          contains: outerGrid.contains.bind(outerGrid),
+        } as any,
+      },
+      hasGridScrolling: true,
+      headerRowHeight: 0,
+      footerRowHeight: 0,
+      visibleRowCount: 20,
+      hasStickyFooter: false,
+    };
+
+    const focusContext = {
+      setFocusedCell: jest.fn(),
+      setIsFocusedCellInView: jest.fn(),
+      onFocusUpdate: () => () => {},
+      focusFirstVisibleInteractiveCell: jest.fn(),
+    };
+    const popoverContext = {
+      popoverIsOpen: false,
+      cellLocation: { rowIndex: 0, colIndex: 0 },
+      openCellPopover: jest.fn(),
+      closeCellPopover: jest.fn(),
+      setPopoverAnchor: jest.fn(),
+      setPopoverAnchorPosition: jest.fn(),
+      setPopoverContent: jest.fn(),
+      setCellPopoverProps: jest.fn(),
+    };
+
+    const HookConsumer = () => {
+      useScroll(args);
+      return null;
+    };
+
+    const Component = ({ focusedCell }: { focusedCell?: [number, number] }) => (
+      <DataGridFocusContext.Provider value={{ ...focusContext, focusedCell }}>
+        <DataGridCellPopoverContext.Provider value={popoverContext}>
+          <HookConsumer />
+        </DataGridCellPopoverContext.Provider>
+      </DataGridFocusContext.Provider>
+    );
+
+    const { rerender, unmount } = render(<Component />);
+
+    act(() => {
+      pointerTarget.dispatchEvent(
+        createPointerEvent('pointerdown', {
+          button: 1,
+          pointerType: 'mouse',
+        })
+      );
+    });
+
+    rerender(<Component focusedCell={[1, 1]} />);
+
+    act(() => {
+      document.dispatchEvent(
+        createPointerEvent('pointerup', {
+          button: 1,
+          pointerType: 'mouse',
+        })
+      );
+    });
+
+    expect(scrollTo).not.toHaveBeenCalled();
+
+    unmount();
+    outerGrid.remove();
+  });
+});
 
 describe('useScrollCellIntoView', () => {
   const scrollToItem = jest.fn();
