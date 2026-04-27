@@ -22,7 +22,7 @@ export const HrefOnClick = ESLintUtils.RuleCreator.withoutDocs({
           return;
         }
 
-        // Check if the node has both `href` and `onClick` attributes
+        // Check if the node has `href` and `onClick` attributes
         const hasHref = node.attributes.some(
           (attr) => attr.type === 'JSXAttribute' && attr.name.name === 'href'
         );
@@ -30,8 +30,8 @@ export const HrefOnClick = ESLintUtils.RuleCreator.withoutDocs({
           (attr) => attr.type === 'JSXAttribute' && attr.name.name === 'onClick'
         );
 
-        // Report an issue if both attributes are present
-        if (hasHref && hasOnClick) {
+        // Report an issue if `onClick` is present without `href`
+        if (hasOnClick && !hasHref) {
           context.report({
             node,
             messageId: 'hrefOrOnClick',
@@ -44,15 +44,15 @@ export const HrefOnClick = ESLintUtils.RuleCreator.withoutDocs({
     };
   },
   meta: {
-    type: 'problem',
+    type: 'suggestion',
     docs: {
       description:
-        'Discourage supplying both `href` and `onClick` to certain EUI components.',
+        'Recommend including `href` alongside `onClick` on link-like EUI components so that Cmd+Click (open in new tab) works.',
     },
     schema: [],
     messages: {
       hrefOrOnClick:
-        '<{{name}}> supplied with both `href` and `onClick`; is this intentional? (Valid use cases include programmatic navigation via `onClick` while preserving "Open in new tab" style functionality via `href`.)',
+        '<{{name}}> has `onClick` but no `href`. Consider adding an `href` so that the component renders as a link and supports Cmd+Click / "Open in new tab".',
     },
   },
   defaultOptions: [],

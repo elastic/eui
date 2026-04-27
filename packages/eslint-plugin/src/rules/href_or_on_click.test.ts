@@ -54,7 +54,7 @@ ruleTester.run('href-or-on-click', HrefOnClick, {
     {
       code: dedent`
         module.export = () => (
-          <EuiButton onClick={executeAction} />
+          <EuiButton href="/" onClick={executeAction} />
         )
       `,
       languageOptions,
@@ -62,7 +62,23 @@ ruleTester.run('href-or-on-click', HrefOnClick, {
     {
       code: dedent`
         module.export = () => (
-          <EuiButton onClick={() => executeAction()} />
+          <EuiButtonEmpty href="/" onClick={handleClick} />
+        )
+      `,
+      languageOptions,
+    },
+    {
+      code: dedent`
+        module.export = () => (
+          <EuiLink href="/home" onClick={handleClick} />
+        )
+      `,
+      languageOptions,
+    },
+    {
+      code: dedent`
+        module.export = () => (
+          <SomeOtherComponent onClick={handleClick} />
         )
       `,
       languageOptions,
@@ -73,7 +89,7 @@ ruleTester.run('href-or-on-click', HrefOnClick, {
     {
       code: dedent`
         module.export = () => (
-          <EuiButton href="/" onClick={fooBar} />
+          <EuiButton onClick={handleClick} />
         )
       `,
       languageOptions,
@@ -86,7 +102,7 @@ ruleTester.run('href-or-on-click', HrefOnClick, {
     {
       code: dedent`
         module.export = () => (
-          <EuiButtonEmpty href="/" onClick={fooBar} />
+          <EuiButtonEmpty onClick={handleClick} />
         )
       `,
       languageOptions,
@@ -99,7 +115,20 @@ ruleTester.run('href-or-on-click', HrefOnClick, {
     {
       code: dedent`
         module.export = () => (
-          <EuiLink href="/" onClick={fooBar} />
+          <EuiLink onClick={handleClick} />
+        )
+      `,
+      languageOptions,
+      errors: [
+        {
+          messageId: 'hrefOrOnClick',
+        },
+      ],
+    },
+    {
+      code: dedent`
+        module.export = () => (
+          <EuiBadge onClick={handleClick} />
         )
       `,
       languageOptions,
