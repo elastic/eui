@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React from 'react';
+import React, { type ReactNode } from 'react';
 import { act } from '@testing-library/react';
 import { render, renderHook } from '../../../test/rtl';
 import { DataGridCellPopoverContext } from '../body/cell';
@@ -28,15 +28,50 @@ const createPointerEvent = (
 };
 
 describe('useScroll', () => {
-  it('ignores deferred scrolling on non-primary mouse pointerup events', () => {
-    const scrollTo = jest.fn();
-    const scrollToItem = jest.fn();
-    const outerGrid = document.createElement('div');
-    const pointerTarget = document.createElement('div');
+  const scrollTo = jest.fn();
+  const scrollToItem = jest.fn();
+  let outerGrid: HTMLDivElement;
+  let pointerTarget: HTMLDivElement;
+  let focusedCell: [number, number] | undefined;
+  let args: Parameters<typeof useScroll>[0];
+
+  const focusContext = {
+    setFocusedCell: jest.fn(),
+    setIsFocusedCellInView: jest.fn(),
+    onFocusUpdate: () => () => {},
+    focusFirstVisibleInteractiveCell: jest.fn(),
+  };
+
+  const popoverContext = {
+    popoverIsOpen: false,
+    cellLocation: { rowIndex: 0, colIndex: 0 },
+    openCellPopover: jest.fn(),
+    closeCellPopover: jest.fn(),
+    setPopoverAnchor: jest.fn(),
+    setPopoverAnchorPosition: jest.fn(),
+    setPopoverContent: jest.fn(),
+    setCellPopoverProps: jest.fn(),
+  };
+
+  const wrapper = ({ children }: { children: ReactNode }) => (
+    <DataGridFocusContext.Provider value={{ ...focusContext, focusedCell }}>
+      <DataGridCellPopoverContext.Provider value={popoverContext}>
+        {children}
+      </DataGridCellPopoverContext.Provider>
+    </DataGridFocusContext.Provider>
+  );
+
+  beforeEach(() => {
+    scrollTo.mockReset();
+    scrollToItem.mockReset();
+    focusedCell = undefined;
+
+    outerGrid = document.createElement('div');
+    pointerTarget = document.createElement('div');
     outerGrid.appendChild(pointerTarget);
     document.body.appendChild(outerGrid);
 
-    const args = {
+    args = {
       gridRef: { current: { scrollTo, scrollToItem } as any },
       outerGridRef: {
         current: {
@@ -60,63 +95,70 @@ describe('useScroll', () => {
       visibleRowCount: 20,
       hasStickyFooter: false,
     };
+  });
 
-    const focusContext = {
-      setFocusedCell: jest.fn(),
-      setIsFocusedCellInView: jest.fn(),
-      onFocusUpdate: () => () => {},
-      focusFirstVisibleInteractiveCell: jest.fn(),
-    };
-    const popoverContext = {
-      popoverIsOpen: false,
-      cellLocation: { rowIndex: 0, colIndex: 0 },
-      openCellPopover: jest.fn(),
-      closeCellPopover: jest.fn(),
-      setPopoverAnchor: jest.fn(),
-      setPopoverAnchorPosition: jest.fn(),
-      setPopoverContent: jest.fn(),
-      setCellPopoverProps: jest.fn(),
-    };
+  afterEach(() => {
+    outerGrid.remove();
+  });
 
-    const HookConsumer = () => {
-      useScroll(args);
-      return null;
-    };
+  it('scrolls the focused cell into view on primary (left) pointerup after deferred focus', () => {
+    jest.spyOn(window, 'getSelection').mockReturnValue({
+      type: 'Caret',
+    } as Selection);
 
-    const Component = ({ focusedCell }: { focusedCell?: [number, number] }) => (
-      <DataGridFocusContext.Provider value={{ ...focusContext, focusedCell }}>
-        <DataGridCellPopoverContext.Provider value={popoverContext}>
-          <HookConsumer />
-        </DataGridCellPopoverContext.Provider>
-      </DataGridFocusContext.Provider>
-    );
+    const { rerender } = renderHook(() => useScroll(args), {
+      wrapper,
+    });
 
-    const { rerender, unmount } = render(<Component />);
+    act(() => {
+      pointerTarget.dispatchEvent(
+        createPointerEvent('pointerdown', {
+          button: 0,
+        })
+      );
+    });
+
+    focusedCell = [1, 1];
+    rerender();
+
+    act(() => {
+      document.dispatchEvent(
+        createPointerEvent('pointerup', {
+          button: 0,
+        })
+      );
+    });
+
+    expect(scrollTo).toHaveBeenCalledWith({ scrollLeft: 150, scrollTop: 0 });
+    expect(scrollToItem).not.toHaveBeenCalled();
+  });
+
+  it('ignores deferred scrolling on non-primary mouse pointerup events', () => {
+    const { rerender } = renderHook(() => useScroll(args), {
+      wrapper,
+    });
 
     act(() => {
       pointerTarget.dispatchEvent(
         createPointerEvent('pointerdown', {
           button: 1,
-          pointerType: 'mouse',
         })
       );
     });
 
-    rerender(<Component focusedCell={[1, 1]} />);
+    focusedCell = [1, 1];
+    rerender();
 
     act(() => {
       document.dispatchEvent(
         createPointerEvent('pointerup', {
           button: 1,
-          pointerType: 'mouse',
         })
       );
     });
 
     expect(scrollTo).not.toHaveBeenCalled();
-
-    unmount();
-    outerGrid.remove();
+    expect(scrollToItem).not.toHaveBeenCalled();
   });
 });
 
