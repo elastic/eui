@@ -55,12 +55,12 @@ export const HrefOnClick = ESLintUtils.RuleCreator.withoutDocs({
     type: 'suggestion',
     docs: {
       description:
-        'Recommend including `href` alongside `onClick` on link-like EUI components so that Cmd+Click (open in new tab) works.',
+        'Recommend including `href` alongside `onClick` on link-like EUI components so that Ctrl/Cmd+Click (open link in new tab) works.',
     },
     schema: [],
     messages: {
       hrefOrOnClick:
-        '<{{name}}> has `onClick` but no `href`. Consider adding an `href` so that the component renders as a link and supports Cmd+Click / "Open in new tab".',
+        '<{{name}}> has `onClick` but no `href`. Consider adding an `href` so that the component renders as a link and supports Ctrl/Cmd+Click / "Open link in new tab".',
     },
   },
   defaultOptions: [],
