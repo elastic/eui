@@ -6,7 +6,7 @@
 **Bug fixes**
 
 - Fixed broken SVG for `chartPie` icon. ([#9607](https://github.com/elastic/eui/pull/9607))
-- Fixed a bug in EuiDataGrid that caused the scroll position to reset when using middle mouse button to scroll the container. ([#9613](https://github.com/elastic/eui/pull/9613))
+- Fixed a bug in `EuiDataGrid` that caused the scroll position to reset when using middle mouse button to scroll the container. ([#9613](https://github.com/elastic/eui/pull/9613))
 - Fixed `EuiFlyout` to compare `pushMinBreakpoint` against the container's width, instead of the viewport width, when the `container` prop is provided. This ensures app-scoped flyouts switch between push and overlay modes based on the space actually available inside their container. ([#9592](https://github.com/elastic/eui/pull/9592))
 
 **Accessibility**
