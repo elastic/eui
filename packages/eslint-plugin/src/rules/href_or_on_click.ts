@@ -8,6 +8,8 @@
 
 import { TSESTree, ESLintUtils } from '@typescript-eslint/utils';
 
+import { hasSpread } from '../utils/has_spread';
+
 const componentNames = ['EuiButton', 'EuiButtonEmpty', 'EuiLink', 'EuiBadge'];
 
 export const HrefOnClick = ESLintUtils.RuleCreator.withoutDocs({
@@ -19,6 +21,12 @@ export const HrefOnClick = ESLintUtils.RuleCreator.withoutDocs({
           node.name.type !== 'JSXIdentifier' ||
           !componentNames.includes(node.name.name)
         ) {
+          return;
+        }
+
+        // Bail out if props are spread — we can't statically determine
+        // whether `href` is provided via the spread
+        if (hasSpread(node.attributes)) {
           return;
         }
 

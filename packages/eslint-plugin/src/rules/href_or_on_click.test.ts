@@ -83,6 +83,14 @@ ruleTester.run('href-or-on-click', HrefOnClick, {
       `,
       languageOptions,
     },
+    {
+      code: dedent`
+        module.export = () => (
+          <EuiButton {...linkProps} onClick={handleClick} />
+        )
+      `,
+      languageOptions,
+    },
   ],
 
   invalid: [
