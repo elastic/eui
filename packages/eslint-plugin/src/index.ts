@@ -11,6 +11,7 @@ import { AccessibleInteractiveElements } from './rules/a11y/accessible_interacti
 import { CallOutAnnounceOnMount } from './rules/a11y/callout_announce_on_mount';
 import { ConsistentIsInvalidProps } from './rules/a11y/consistent_is_invalid_props';
 import { HrefOnClick } from './rules/href_or_on_click';
+import { RequireHrefForLink } from './rules/require_href_for_link';
 import { NoCssColor } from './rules/no_css_color';
 import { NoRestrictedEuiImports } from './rules/no_restricted_eui_imports';
 import { NoStaticZIndex } from './rules/no_static_z_index';
@@ -41,7 +42,8 @@ const config = {
     'sr-output-disabled-tooltip': ScreenReaderOutputDisabledTooltip,
     'tooltip-focusable-anchor': TooltipFocusableAnchor,
     'badge-accessibility-rules': EuiBadgeAccessibilityRules,
-    'icon-accessibility-rules': EuiIconAccessibilityRules
+    'icon-accessibility-rules': EuiIconAccessibilityRules,
+    'require-href-for-link': RequireHrefForLink,
   },
   configs: {
     recommended: {
@@ -63,6 +65,7 @@ const config = {
         '@elastic/eui/tooltip-focusable-anchor': 'warn',
         '@elastic/eui/badge-accessibility-rules': 'warn',
         '@elastic/eui/icon-accessibility-rules': 'warn',
+        '@elastic/eui/require-href-for-link': 'warn',
       },
     },
   },

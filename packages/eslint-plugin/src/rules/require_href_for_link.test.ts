@@ -9,12 +9,8 @@
 import dedent from 'dedent';
 import { RuleTester } from '@typescript-eslint/rule-tester';
 
-import { HrefOnClick } from './href_or_on_click';
+import { RequireHrefForLink } from './require_href_for_link';
 
-/**
- * For some reason, `languageOptions` is defined in `RuleTesterConfig` but causes an error: "Object literal may only specify known properties".
- * Documented way (per each test case) works as expected: https://typescript-eslint.io/packages/rule-tester/.
- */
 const languageOptions = {
   parserOptions: {
     ecmaFeatures: {
@@ -25,12 +21,12 @@ const languageOptions = {
 
 const ruleTester = new RuleTester();
 
-ruleTester.run('href-or-on-click', HrefOnClick, {
+ruleTester.run('require-href-for-link', RequireHrefForLink, {
   valid: [
     {
       code: dedent`
         module.export = () => (
-          <EuiButton />
+          <EuiLink />
         )
       `,
       languageOptions,
@@ -38,7 +34,7 @@ ruleTester.run('href-or-on-click', HrefOnClick, {
     {
       code: dedent`
         module.export = () => (
-          <EuiButton href="/" />
+          <EuiLink href="/" />
         )
       `,
       languageOptions,
@@ -46,7 +42,7 @@ ruleTester.run('href-or-on-click', HrefOnClick, {
     {
       code: dedent`
         module.export = () => (
-          <EuiButton href={'/' + 'home'} />
+          <EuiLink href="/" onClick={handleClick} />
         )
       `,
       languageOptions,
@@ -54,7 +50,7 @@ ruleTester.run('href-or-on-click', HrefOnClick, {
     {
       code: dedent`
         module.export = () => (
-          <EuiButton onClick={executeAction} />
+          <EuiLink {...linkProps} onClick={handleClick} />
         )
       `,
       languageOptions,
@@ -62,7 +58,7 @@ ruleTester.run('href-or-on-click', HrefOnClick, {
     {
       code: dedent`
         module.export = () => (
-          <EuiButton onClick={() => executeAction()} />
+          <EuiButton onClick={handleClick} />
         )
       `,
       languageOptions,
@@ -73,39 +69,13 @@ ruleTester.run('href-or-on-click', HrefOnClick, {
     {
       code: dedent`
         module.export = () => (
-          <EuiButton href="/" onClick={fooBar} />
+          <EuiLink onClick={handleClick} />
         )
       `,
       languageOptions,
       errors: [
         {
-          messageId: 'hrefOrOnClick',
-        },
-      ],
-    },
-    {
-      code: dedent`
-        module.export = () => (
-          <EuiButtonEmpty href="/" onClick={fooBar} />
-        )
-      `,
-      languageOptions,
-      errors: [
-        {
-          messageId: 'hrefOrOnClick',
-        },
-      ],
-    },
-    {
-      code: dedent`
-        module.export = () => (
-          <EuiLink href="/" onClick={fooBar} />
-        )
-      `,
-      languageOptions,
-      errors: [
-        {
-          messageId: 'hrefOrOnClick',
+          messageId: 'requireHrefForLink',
         },
       ],
     },
