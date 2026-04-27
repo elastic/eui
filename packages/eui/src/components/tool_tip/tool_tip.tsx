@@ -259,8 +259,10 @@ export const EuiToolTip = forwardRef<EuiToolTipRef, EuiToolTipProps>(
       if (!timeoutRef.current) {
         timeoutRef.current = setTimeout(() => {
           enqueueStateChange(() => {
-            setVisible(true);
-            toolTipManager.registerTooltip(hideToolTip);
+            if (isMounted.current) {
+              setVisible(true);
+              toolTipManager.registerTooltip(hideToolTip);
+            }
           });
         }, delayToMsMap[delay]);
       }
