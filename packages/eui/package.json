@@ -233,7 +233,6 @@
     "sass": "^1.56.1",
     "sass-loader": "^13.2.0",
     "shelljs": "^0.8.4",
-    "start-server-and-test": "^1.11.3",
     "storybook": "^8.4.5",
     "style-loader": "^3.3.1",
     "stylelint": "^15.7.0",
