@@ -225,7 +225,6 @@
     "react-docgen-typescript": "^2.2.2",
     "react-dom": "^18.2.0",
     "react-dom-17": "npm:react-dom@^17.0.2",
-    "react-helmet": "^6.1.0",
     "react-router-dom": "^5.3.4",
     "react-view": "^2.3.2",
     "resolve": "^1.17.0",
