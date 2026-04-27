@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { createRef, useRef } from 'react';
+import React, { createRef, StrictMode, useRef } from 'react';
 import { act, fireEvent } from '@testing-library/react';
 import {
   render,
@@ -60,6 +60,25 @@ describe('EuiToolTip', () => {
       expect(queryByRole('tooltip')).toBeInTheDocument();
 
       fireEvent.mouseOut(getByTestSubject('trigger'));
+      await waitForEuiToolTipHidden();
+      expect(queryByRole('tooltip')).not.toBeInTheDocument();
+    });
+
+    it('shows on initial autoFocus in StrictMode', async () => {
+      const { getByTestSubject, queryByRole } = render(
+        <StrictMode>
+          <EuiToolTip content="Tooltip content">
+            <button data-test-subj="trigger" autoFocus>
+              Trigger
+            </button>
+          </EuiToolTip>
+        </StrictMode>
+      );
+
+      await waitForEuiToolTipVisible();
+      expect(queryByRole('tooltip')).toBeInTheDocument();
+
+      fireEvent.blur(getByTestSubject('trigger'));
       await waitForEuiToolTipHidden();
       expect(queryByRole('tooltip')).not.toBeInTheDocument();
     });
