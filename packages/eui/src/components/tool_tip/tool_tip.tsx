@@ -272,12 +272,22 @@ export const EuiToolTip = forwardRef<EuiToolTipRef, EuiToolTipProps>(
       id,
     ]);
 
+    // If the anchor already has focus on mount (e.g. `autoFocus`), show the tooltip.
+    // Important for StrictMode double-mount.
+    useEffect(() => {
+      if (anchorRef.current?.contains(document.activeElement)) {
+        setHasFocus(true);
+        showToolTip();
+      }
+    }, [showToolTip]);
+
     useEffect(() => {
       isMounted.current = true;
       return () => {
         isMounted.current = false;
         if (timeoutRef.current) {
           clearTimeout(timeoutRef.current);
+          timeoutRef.current = undefined;
         }
         toolTipManager.deregisterToolTip(hideToolTip);
       };
