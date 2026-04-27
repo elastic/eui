@@ -10,15 +10,13 @@ import { TSESTree, ESLintUtils } from '@typescript-eslint/utils';
 
 import { hasSpread } from '../utils/has_spread';
 
-const componentNames = ['EuiLink'];
-
 export const RequireHrefForLink = ESLintUtils.RuleCreator.withoutDocs({
   create(context) {
     return {
       JSXOpeningElement(node: TSESTree.JSXOpeningElement): void {
         if (
           node.name.type !== 'JSXIdentifier' ||
-          !componentNames.includes(node.name.name)
+          node.name.name !== 'EuiLink'
         ) {
           return;
         }
