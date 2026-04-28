@@ -41,9 +41,7 @@ export const vrtPlayDecorator = (
   // using any type here as ReactFramework is not exported from @storybook/react
   target: PlayFunction<ReactRenderer, any>,
   vrtOnly: boolean = true
-):
-  | (PlayFunction<ReactRenderer, any> & { bodyElement?: HTMLElement })
-  | undefined => {
+): PlayFunction<ReactRenderer, any> | undefined => {
   return async (context) => {
     // navigator.webdriver is true when Playwright (or any WebDriver-controlled browser)
     // is driving the page — works regardless of whether Storybook was started by the
