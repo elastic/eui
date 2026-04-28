@@ -107,17 +107,40 @@ echo "Found ${diff_count} visual difference(s). Uploading artifacts and generati
 buildkite-agent meta-data set vrt_has_changes "true"
 buildkite-agent meta-data set vrt_passed "false"
 
-# Upload all three image sets as artifacts so the annotation can reference them
+# Upload all three image sets as Buildkite artifacts (for the annotation)
 buildkite-agent artifact upload "${DIFF_DIR}/*.diff.png"
 buildkite-agent artifact upload "${CURRENT_DIR}/*-received.png"
 if compgen -G "${REF_DIR}/*.png" > /dev/null 2>&1; then
   buildkite-agent artifact upload "${REF_DIR}/*.png"
 fi
 
+# Also upload diff images to GCS so they have public URLs for the GitHub PR comment
+GCLOUD_BUCKET_FULL="$(buildkite-agent meta-data get gcloud_bucket_full)"
+bucket_directory="$(buildkite-agent meta-data get bucket_directory)"
+vrt_gcs_base="gs://${GCLOUD_BUCKET_FULL}/${bucket_directory}vrt-diff"
+vrt_public_base="https://eui.elastic.co/${bucket_directory}vrt-diff"
+
+gcloud auth activate-service-account --key-file <(echo "${GCE_ACCOUNT}")
+unset GCE_ACCOUNT
+
+GCS_UPLOAD_ARGS=(
+  --cache-control="no-store"
+  --predefined-acl="publicRead"
+)
+
 annotation_rows=""
+pr_comment_rows=""
 while IFS= read -r diff_file; do
   filename="$(basename "${diff_file}")"
   story_name="${filename%.diff.png}"
+
+  gcloud storage cp "${GCS_UPLOAD_ARGS[@]}" "${diff_file}" "${vrt_gcs_base}/${filename}"
+  if [[ -f "${CURRENT_DIR}/${story_name}-received.png" ]]; then
+    gcloud storage cp "${GCS_UPLOAD_ARGS[@]}" "${CURRENT_DIR}/${story_name}-received.png" "${vrt_gcs_base}/${story_name}-received.png"
+  fi
+  if [[ -f "${REF_DIR}/${story_name}.png" ]]; then
+    gcloud storage cp "${GCS_UPLOAD_ARGS[@]}" "${REF_DIR}/${story_name}.png" "${vrt_gcs_base}/${story_name}-before.png"
+  fi
 
   annotation_rows+="
 <tr>
@@ -125,6 +148,14 @@ while IFS= read -r diff_file; do
   <td><img src=\"artifact://${REF_DIR}/${story_name}.png\" width=\"300\"/></td>
   <td><img src=\"artifact://${CURRENT_DIR}/${story_name}-received.png\" width=\"300\"/></td>
   <td><img src=\"artifact://${DIFF_DIR}/${story_name}.diff.png\" width=\"300\"/></td>
+</tr>"
+
+  pr_comment_rows+="
+<tr>
+  <td><code>${story_name}</code></td>
+  <td><img src=\"${vrt_public_base}/${story_name}-before.png\" width=\"300\"/></td>
+  <td><img src=\"${vrt_public_base}/${story_name}-received.png\" width=\"300\"/></td>
+  <td><img src=\"${vrt_public_base}/${filename}\" width=\"300\"/></td>
 </tr>"
 done < <(find "${DIFF_DIR}" -name "*.diff.png" | sort)
 
@@ -143,6 +174,27 @@ buildkite-agent annotate --style "error" --context "vrt-diff" << HTML
 </thead>
 <tbody>
 ${annotation_rows}
+</tbody>
+</table>
+</details>
+HTML
+
+# Store the diff table (with public image URLs) for inclusion in the GitHub PR comment
+buildkite-agent meta-data set vrt_diff_table << HTML
+<details>
+<summary><strong>${diff_count}</strong> visual difference(s) found — expand to review, then click <em>Approve visual changes</em> to update baselines</summary>
+
+<table>
+<thead>
+<tr>
+  <th>Story</th>
+  <th>Before</th>
+  <th>After</th>
+  <th>Diff</th>
+</tr>
+</thead>
+<tbody>
+${pr_comment_rows}
 </tbody>
 </table>
 </details>

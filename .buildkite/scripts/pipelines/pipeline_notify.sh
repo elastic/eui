@@ -39,7 +39,12 @@ if [[ -n "${BUILDKITE_PULL_REQUEST:-}" ]] && [[ "${BUILDKITE_PULL_REQUEST}" != "
   else
     annotation_style="error"
     vrt_annotation="\n:x: Visual regression tests failed — [view diff table](${BUILDKITE_BUILD_URL})"
-    vrt_pr_comment="\n* :x: Visual regression tests failed — [view diff table](${BUILDKITE_BUILD_URL})"
+    vrt_diff_table="$(buildkite-agent meta-data get vrt_diff_table --default "")"
+    if [[ -n "${vrt_diff_table}" ]]; then
+      vrt_pr_comment="\n* :x: Visual regression tests failed\n\n${vrt_diff_table}"
+    else
+      vrt_pr_comment="\n* :x: Visual regression tests failed — [view diff table](${BUILDKITE_BUILD_URL})"
+    fi
   fi
 fi
 
