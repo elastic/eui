@@ -1,3 +1,33 @@
+## [`v114.3.0`](https://github.com/elastic/eui/releases/v114.3.0)
+
+- Updated `productDashboard` icon. ([#9607](https://github.com/elastic/eui/pull/9607))
+- Updated `EuiStepsHorizontal` to prevent steps being clickable when `status="disabled"` ([#9574](https://github.com/elastic/eui/pull/9574))
+
+**Bug fixes**
+
+- Fixed broken SVG for `chartPie` icon. ([#9607](https://github.com/elastic/eui/pull/9607))
+- Fixed a bug in `EuiDataGrid` that caused the scroll position to reset when using middle mouse button to scroll the container. ([#9613](https://github.com/elastic/eui/pull/9613))
+- Fixed `EuiFlyout` to compare `pushMinBreakpoint` against the container's width, instead of the viewport width, when the `container` prop is provided. This ensures app-scoped flyouts switch between push and overlay modes based on the space actually available inside their container. ([#9592](https://github.com/elastic/eui/pull/9592))
+
+**Accessibility**
+
+- Fixed duplicate screen reader output for `EuiStepsHorizontal` ([#9574](https://github.com/elastic/eui/pull/9574))
+
+## [`v114.2.0`](https://github.com/elastic/eui/releases/v114.2.0)
+
+- Added `addToDashboard` icon ([#9590](https://github.com/elastic/eui/pull/9590))
+- Added support for document-relative links in `EuiMarkdownFormat` and `EuiMarkdownEditor` via a new `allowDocumentRelative` option in `parsingConfig.linkValidator` ([#9554](https://github.com/elastic/eui/pull/9554))
+- Added `useEuiWindowEvent` hook and refactored `EuiWindowEvent` to use it internally, preventing unnecessary listener re-registration when inline arrow functions are passed as handlers ([#9536](https://github.com/elastic/eui/pull/9536))
+
+**Bug fixes**
+
+- Fixed a missing checked border state on `EuiCheckableCard` ([#9589](https://github.com/elastic/eui/pull/9589))
+- Fixed the visual alignment of right aligned icons in `EuiFormControlButton` when `value` is not passed ([#9588](https://github.com/elastic/eui/pull/9588))
+
+**Accessibility**
+
+- Fixed `EuiSelectable` screen reader repeatedly announcing total results count on every option navigation instead of only when the count changes ([#9555](https://github.com/elastic/eui/pull/9555))
+
 ## [`v114.1.0`](https://github.com/elastic/eui/releases/v114.1.0)
 
 - Added an optional `tooltipProps` prop to `EuiMarkdownEditorHelpButton` ([#9546](https://github.com/elastic/eui/pull/9546))

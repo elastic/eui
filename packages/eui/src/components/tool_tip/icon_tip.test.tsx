@@ -26,7 +26,7 @@ describe('EuiIconTip', () => {
     }
   );
 
-  test('is rendered', () => {
+  it('is rendered', () => {
     const { container } = render(
       <EuiIconTip title="title" id="id" content="content" {...requiredProps} />
     );
@@ -35,34 +35,68 @@ describe('EuiIconTip', () => {
   });
 
   describe('props', () => {
-    describe('type', () => {
-      test('is rendered as the icon', () => {
-        const { container } = render(
-          <EuiIconTip type="warning" id="id" content="content" />
-        );
+    it('renders a different icon for each type', () => {
+      const { container: defaultContainer } = render(
+        <EuiIconTip content="content" />
+      );
+      const { container: warningContainer } = render(
+        <EuiIconTip type="warning" content="content" />
+      );
 
-        expect(container.firstChild).toMatchSnapshot();
-      });
+      expect(
+        defaultContainer.querySelector('[data-euiicon-type]')
+      ).toHaveAttribute('data-euiicon-type', 'question');
+      expect(
+        warningContainer.querySelector('[data-euiicon-type]')
+      ).toHaveAttribute('data-euiicon-type', 'warning');
     });
 
-    describe('color', () => {
-      test('is rendered as the icon color', () => {
-        const { container } = render(
-          <EuiIconTip color="warning" id="id" content="content" />
-        );
+    it('renders a different icon for each color', () => {
+      const { container: defaultContainer } = render(
+        <EuiIconTip content="content" />
+      );
+      const { container: colorContainer } = render(
+        <EuiIconTip color="warning" content="content" />
+      );
 
-        expect(container.firstChild).toMatchSnapshot();
-      });
+      expect(
+        defaultContainer.querySelector('[data-euiicon-type]')
+      ).not.toHaveAttribute('color');
+      expect(
+        colorContainer.querySelector('[data-euiicon-type]')
+      ).toHaveAttribute('color', 'warning');
+    });
+  });
+
+  describe('aria-label', () => {
+    // In the test environment EuiIcon renders aria-label as its text content
+    it('uses "Info" as the default aria-label', () => {
+      const { container } = render(<EuiIconTip content="content" />);
+
+      expect(container.querySelector('[data-euiicon-type]')).toHaveTextContent(
+        'Info'
+      );
     });
 
-    describe('size', () => {
-      test('is rendered as the icon size', () => {
-        const { container } = render(
-          <EuiIconTip size="xl" id="id" content="content" />
-        );
+    it('uses a custom aria-label when provided', () => {
+      const { container } = render(
+        <EuiIconTip content="content" aria-label="More information" />
+      );
 
-        expect(container.firstChild).toMatchSnapshot();
-      });
+      expect(container.querySelector('[data-euiicon-type]')).toHaveTextContent(
+        'More information'
+      );
     });
+  });
+
+  it('shows tooltip content on hover', async () => {
+    const { container, getByRole } = render(
+      <EuiIconTip content="Tooltip content" />
+    );
+
+    fireEvent.mouseOver(container.querySelector('[data-euiicon-type]')!);
+    await waitForEuiToolTipVisible();
+
+    expect(getByRole('tooltip')).toHaveTextContent('Tooltip content');
   });
 });

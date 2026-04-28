@@ -10,9 +10,9 @@ exports[`EuiStepsHorizontal is rendered 1`] = `
     class="euiStepsHorizontal__item emotion-euiStepsHorizontal__item"
   >
     <button
+      aria-label="Step 1: Completed Step 1 is complete"
       class="euiStepHorizontal emotion-euiStepHorizontal-enabled"
       data-step-status="complete"
-      title="Step 1: Completed Step 1 is complete"
     >
       <span
         class="euiStepNumber euiStepHorizontal__number emotion-euiStepNumber-m-complete-euiStepHorizontal__number"
@@ -36,9 +36,9 @@ exports[`EuiStepsHorizontal is rendered 1`] = `
     class="euiStepsHorizontal__item emotion-euiStepsHorizontal__item"
   >
     <button
+      aria-label="Current step 2: Selected Step 2"
       class="euiStepHorizontal emotion-euiStepHorizontal-enabled"
       data-step-status="current"
-      title="Current step 2: Selected Step 2"
     >
       <span
         class="euiStepNumber euiStepHorizontal__number emotion-euiStepNumber-m-current-euiStepHorizontal__number"
@@ -66,9 +66,9 @@ exports[`EuiStepsHorizontal is rendered 1`] = `
     class="euiStepsHorizontal__item emotion-euiStepsHorizontal__item"
   >
     <button
+      aria-label="Step 3: Incomplete Step 3 is incomplete"
       class="euiStepHorizontal emotion-euiStepHorizontal-enabled"
       data-step-status="incomplete"
-      title="Step 3: Incomplete Step 3 is incomplete"
     >
       <span
         class="euiStepNumber euiStepHorizontal__number emotion-euiStepNumber-m-incomplete-euiStepHorizontal__number"
@@ -97,9 +97,9 @@ exports[`EuiStepsHorizontal is rendered 1`] = `
   >
     <button
       aria-disabled="true"
+      aria-label="Step 4: Disabled Step 4 is disabled"
       class="euiStepHorizontal emotion-euiStepHorizontal-disabled"
       data-step-status="disabled"
-      title="Step 4: Disabled Step 4 is disabled"
     >
       <span
         class="euiStepNumber euiStepHorizontal__number emotion-euiStepNumber-m-disabled-euiStepHorizontal__number"
