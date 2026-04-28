@@ -6,7 +6,6 @@ exports[`EuiStepHorizontal is rendered 1`] = `
   class="euiStepHorizontal testClass1 testClass2 emotion-euiStepHorizontal-enabled-euiTestCss"
   data-step-status="incomplete"
   data-test-subj="test subject string"
-  title="Step 1 is incomplete"
 >
   <span
     class="euiStepNumber euiStepHorizontal__number emotion-euiStepNumber-m-incomplete-euiStepHorizontal__number"
@@ -31,9 +30,9 @@ exports[`EuiStepHorizontal is rendered 1`] = `
 
 exports[`EuiStepHorizontal props size m is rendered 1`] = `
 <button
+  aria-label="Step 1 is incomplete"
   class="euiStepHorizontal emotion-euiStepHorizontal-enabled"
   data-step-status="incomplete"
-  title="Step 1 is incomplete"
 >
   <span
     class="euiStepNumber euiStepHorizontal__number emotion-euiStepNumber-m-incomplete-euiStepHorizontal__number"
@@ -58,9 +57,9 @@ exports[`EuiStepHorizontal props size m is rendered 1`] = `
 
 exports[`EuiStepHorizontal props size s is rendered 1`] = `
 <button
+  aria-label="Step 1 is incomplete"
   class="euiStepHorizontal emotion-euiStepHorizontal-enabled"
   data-step-status="incomplete"
-  title="Step 1 is incomplete"
 >
   <span
     class="euiStepNumber euiStepHorizontal__number emotion-euiStepNumber-xs-incomplete-euiStepHorizontal__number"
@@ -85,9 +84,9 @@ exports[`EuiStepHorizontal props size s is rendered 1`] = `
 
 exports[`EuiStepHorizontal props size xs is rendered 1`] = `
 <button
+  aria-label="Step 1 is incomplete"
   class="euiStepHorizontal emotion-euiStepHorizontal-enabled"
   data-step-status="incomplete"
-  title="Step 1 is incomplete"
 >
   <span
     class="euiStepNumber euiStepHorizontal__number emotion-euiStepNumber-none-incomplete-euiStepHorizontal__number"
@@ -106,9 +105,9 @@ exports[`EuiStepHorizontal props size xs is rendered 1`] = `
 
 exports[`EuiStepHorizontal props status complete is rendered 1`] = `
 <button
+  aria-label="Step 1 is complete"
   class="euiStepHorizontal emotion-euiStepHorizontal-enabled"
   data-step-status="complete"
-  title="Step 1 is complete"
 >
   <span
     class="euiStepNumber euiStepHorizontal__number emotion-euiStepNumber-m-complete-euiStepHorizontal__number"
@@ -128,9 +127,9 @@ exports[`EuiStepHorizontal props status complete is rendered 1`] = `
 
 exports[`EuiStepHorizontal props status current is rendered 1`] = `
 <button
+  aria-label="Current step is 1"
   class="euiStepHorizontal emotion-euiStepHorizontal-enabled"
   data-step-status="current"
-  title="Current step is 1"
 >
   <span
     class="euiStepNumber euiStepHorizontal__number emotion-euiStepNumber-m-current-euiStepHorizontal__number"
@@ -155,9 +154,9 @@ exports[`EuiStepHorizontal props status current is rendered 1`] = `
 
 exports[`EuiStepHorizontal props status danger is rendered 1`] = `
 <button
+  aria-label="Step 1 has errors"
   class="euiStepHorizontal emotion-euiStepHorizontal-enabled"
   data-step-status="danger"
-  title="Step 1 has errors"
 >
   <span
     class="euiStepNumber euiStepHorizontal__number emotion-euiStepNumber-m-danger-euiStepHorizontal__number"
@@ -178,9 +177,9 @@ exports[`EuiStepHorizontal props status danger is rendered 1`] = `
 exports[`EuiStepHorizontal props status disabled is rendered 1`] = `
 <button
   aria-disabled="true"
+  aria-label="Step 1 is disabled"
   class="euiStepHorizontal emotion-euiStepHorizontal-disabled"
   data-step-status="disabled"
-  title="Step 1 is disabled"
 >
   <span
     class="euiStepNumber euiStepHorizontal__number emotion-euiStepNumber-m-disabled-euiStepHorizontal__number"
@@ -206,10 +205,10 @@ exports[`EuiStepHorizontal props status disabled is rendered 1`] = `
 exports[`EuiStepHorizontal props status disabled overrides the passed status 1`] = `
 <button
   aria-disabled="true"
+  aria-label="Step 1 is disabled"
   class="euiStepHorizontal emotion-euiStepHorizontal-disabled"
   data-step-status="disabled"
   disabled=""
-  title="Step 1 is disabled"
 >
   <span
     class="euiStepNumber euiStepHorizontal__number emotion-euiStepNumber-m-disabled-euiStepHorizontal__number"
@@ -234,9 +233,9 @@ exports[`EuiStepHorizontal props status disabled overrides the passed status 1`]
 
 exports[`EuiStepHorizontal props status incomplete is rendered 1`] = `
 <button
+  aria-label="Step 1 is incomplete"
   class="euiStepHorizontal emotion-euiStepHorizontal-enabled"
   data-step-status="incomplete"
-  title="Step 1 is incomplete"
 >
   <span
     class="euiStepNumber euiStepHorizontal__number emotion-euiStepNumber-m-incomplete-euiStepHorizontal__number"
@@ -261,9 +260,9 @@ exports[`EuiStepHorizontal props status incomplete is rendered 1`] = `
 
 exports[`EuiStepHorizontal props status loading is rendered 1`] = `
 <button
+  aria-label="Step 1 is loading"
   class="euiStepHorizontal emotion-euiStepHorizontal-enabled"
   data-step-status="loading"
-  title="Step 1 is loading"
 >
   <span
     class="euiStepNumber euiStepHorizontal__number emotion-euiStepNumber-m-loading-euiStepHorizontal__number"
@@ -287,9 +286,9 @@ exports[`EuiStepHorizontal props status loading is rendered 1`] = `
 
 exports[`EuiStepHorizontal props status warning is rendered 1`] = `
 <button
+  aria-label="Step 1 has warnings"
   class="euiStepHorizontal emotion-euiStepHorizontal-enabled"
   data-step-status="warning"
-  title="Step 1 has warnings"
 >
   <span
     class="euiStepNumber euiStepHorizontal__number emotion-euiStepNumber-m-warning-euiStepHorizontal__number"
@@ -309,9 +308,9 @@ exports[`EuiStepHorizontal props status warning is rendered 1`] = `
 
 exports[`EuiStepHorizontal props step 1`] = `
 <button
+  aria-label="Step 5 is incomplete"
   class="euiStepHorizontal emotion-euiStepHorizontal-enabled"
   data-step-status="incomplete"
-  title="Step 5 is incomplete"
 >
   <span
     class="euiStepNumber euiStepHorizontal__number emotion-euiStepNumber-m-incomplete-euiStepHorizontal__number"
@@ -336,9 +335,9 @@ exports[`EuiStepHorizontal props step 1`] = `
 
 exports[`EuiStepHorizontal props title 1`] = `
 <button
+  aria-label="Step 1: First step is incomplete"
   class="euiStepHorizontal emotion-euiStepHorizontal-enabled"
   data-step-status="incomplete"
-  title="Step 1: First step is incomplete"
 >
   <span
     class="euiStepNumber euiStepHorizontal__number emotion-euiStepNumber-m-incomplete-euiStepHorizontal__number"
