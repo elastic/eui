@@ -124,6 +124,10 @@ export const EuiFocusTrap: FunctionComponent<EuiFocusTrapProps> = (_props) => {
     node.setAttribute('data-autofocus', 'true');
   };
 
+  // Stabilize the onClickOutside callback
+  const onClickOutsideRef = useRef(onClickOutside);
+  onClickOutsideRef.current = onClickOutside;
+
   // We use a ref to store the listener to prevent circular dependencies
   // while still ensuring the listeners can properly be cleaned up
   const mouseupListenerRef = useRef<
@@ -138,21 +142,18 @@ export const EuiFocusTrap: FunctionComponent<EuiFocusTrapProps> = (_props) => {
     }
   }, []);
 
-  const addMouseupListener = useCallback(
-    (callback: typeof onClickOutside) => {
-      const listener = (e: MouseEvent | TouchEvent) => {
-        removeMouseupListener();
-        // Timeout gives precedence to the consumer to initiate close if it has toggle behavior.
-        // Otherwise this event may occur first and the consumer toggle will reopen the flyout.
-        setTimeout(() => callback?.(e));
-      };
+  const addMouseupListener = useCallback(() => {
+    removeMouseupListener();
 
-      mouseupListenerRef.current = listener;
-      document.addEventListener('mouseup', listener);
-      document.addEventListener('touchend', listener);
-    },
-    [removeMouseupListener]
-  );
+    mouseupListenerRef.current = (e: MouseEvent | TouchEvent) => {
+      removeMouseupListener();
+      // Timeout gives precedence to the consumer to initiate close if it has toggle behavior.
+      // Otherwise this event may occur first and the consumer toggle will reopen the flyout.
+      setTimeout(() => onClickOutsideRef.current?.(e));
+    };
+    document.addEventListener('mouseup', mouseupListenerRef.current);
+    document.addEventListener('touchend', mouseupListenerRef.current);
+  }, [removeMouseupListener]);
 
   const handleOutsideClick = useCallback(
     (event: MouseEvent | TouchEvent) => {
@@ -161,9 +162,7 @@ export const EuiFocusTrap: FunctionComponent<EuiFocusTrapProps> = (_props) => {
       }
 
       if (onClickOutside) {
-        closeOnMouseup
-          ? addMouseupListener(onClickOutside)
-          : onClickOutside(event);
+        closeOnMouseup ? addMouseupListener() : onClickOutside(event);
       }
     },
     [clickOutsideDisables, closeOnMouseup, onClickOutside, addMouseupListener]
@@ -180,7 +179,7 @@ export const EuiFocusTrap: FunctionComponent<EuiFocusTrapProps> = (_props) => {
     }
   }, [disabled]);
 
-  // listener cleanup on onmount
+  // listener cleanup on unmount
   useEffect(() => () => removeMouseupListener(), [removeMouseupListener]);
 
   const focusOnProps = {
