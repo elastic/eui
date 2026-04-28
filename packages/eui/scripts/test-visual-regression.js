@@ -1,6 +1,17 @@
 const { execSync } = require('child_process');
+const fs = require('fs');
+const path = require('path');
 const yargs = require('yargs/yargs');
 const { hideBin } = require('yargs/helpers');
+
+function findRepoRoot(start) {
+  let dir = start;
+  while (dir !== path.dirname(dir)) {
+    if (fs.existsSync(path.join(dir, '.git'))) return dir;
+    dir = path.dirname(dir);
+  }
+  return start;
+}
 
 const { argv } = yargs(hideBin(process.argv))
   .parserConfiguration({
@@ -35,10 +46,12 @@ if (useDocker) {
 
   const dockerImage = `mcr.microsoft.com/playwright:v${playwrightVersion}-noble`;
 
-  // On macOS, Docker containers can't reach the host via localhost; use `host.docker.internal` instead
+  // On macOS, Docker containers can't reach the host via localhost; use `host.docker.internal` instead.
+  // If no URL is provided, inject the default port with the correct hostname so the container can
+  // reach the Storybook dev server running on the host.
   let url = argv.url;
-  if (url && process.platform === 'darwin') {
-    url = url
+  if (process.platform === 'darwin') {
+    url = (url || 'http://localhost:6006')
       .replace(/\blocalhost\b/g, 'host.docker.internal')
       .replace(/127\.0\.0\.1/g, 'host.docker.internal');
   }
@@ -49,11 +62,19 @@ if (useDocker) {
     ...extraArgs,
   ].filter(Boolean);
 
+  // Mount the full monorepo root so yarn can resolve workspace:* dependencies
+  // across sibling packages (e.g. @elastic/eui-theme-common).
+  const repoRoot = findRepoRoot(__dirname);
+  const workspaceDir = path.relative(repoRoot, process.cwd());
+  const nodeVersion = fs.readFileSync(path.join(repoRoot, '.nvmrc'), 'utf8').trim();
+
   const innerCmd = [
+    `npm install -g n && n ${nodeVersion} && hash -r`,
     'corepack enable',
     'yarn',
+    `cd ${workspaceDir}`,
     'yarn playwright install chromium',
-    `yarn workspace @elastic/eui test-storybook${
+    `yarn test-storybook${
       testStorybookArgs.length ? ' ' + testStorybookArgs.join(' ') : ''
     }`,
   ].join(' && ');
@@ -61,11 +82,10 @@ if (useDocker) {
   // `--network=host` lets containers reach host services on Linux;
   // Docker Desktop on macOS handles `host.docker.internal` automatically
   const networkFlag = process.platform === 'linux' ? '--network=host ' : '';
-  const cwd = process.cwd();
 
   console.log(`Running visual regression tests in Docker (${dockerImage})`);
   execSync(
-    `docker run --rm -i ${networkFlag}-v "${cwd}:/work" -w /work ${dockerImage} bash -c ${JSON.stringify(
+    `docker run --rm -i ${networkFlag}-v "${repoRoot}:/work" -w /work ${dockerImage} bash -c ${JSON.stringify(
       innerCmd
     )}`,
     { stdio: 'inherit' }
