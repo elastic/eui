@@ -85,7 +85,7 @@ if (useDocker) {
 
   console.log(`Running visual regression tests in Docker (${dockerImage})`);
   execSync(
-    `docker run --rm -i ${networkFlag}-v "${repoRoot}:/work" -w /work ${dockerImage} bash -c ${JSON.stringify(
+    `docker run --rm -i --platform linux/amd64 ${networkFlag}-v "${repoRoot}:/work" -w /work ${dockerImage} bash -c ${JSON.stringify(
       innerCmd
     )}`,
     { stdio: 'inherit' }
