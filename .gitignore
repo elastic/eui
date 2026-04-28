@@ -38,3 +38,6 @@ WARP.md
 
 # Build artifacts
 package.tgz
+
+# Release metadata directory
+.release

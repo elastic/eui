@@ -28,10 +28,7 @@ const EuiIconChartPie = ({
     {...props}
   >
     {title ? <title id={titleId}>{title}</title> : null}
-    <path
-      stroke="#1D2A3E"
-      d="M7.5 8.5h6.979A6.498 6.498 0 0 1 1.5 8a6.5 6.5 0 0 1 6-6.48V8.5Zm2-6.824A6.506 6.506 0 0 1 14.323 6.5H9.5V1.676Z"
-    />
+    <path d="M7 2.084A6 6 0 0 0 8 14v1A7 7 0 1 1 8 1v7h7a7 7 0 0 1-7 7v-1a6 6 0 0 0 5.915-5H7V2.084Zm2-1.012A7.002 7.002 0 0 1 14.928 7H9V1.072ZM10 6h3.657A6.015 6.015 0 0 0 10 2.343V6Z" />
   </svg>
 );
 export const icon = EuiIconChartPie;

@@ -7191,6 +7191,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@elastic/eui-test-helpers@workspace:packages/test-helpers":
+  version: 0.0.0-use.local
+  resolution: "@elastic/eui-test-helpers@workspace:packages/test-helpers"
+  languageName: unknown
+  linkType: soft
+
 "@elastic/eui-theme-borealis@workspace:*, @elastic/eui-theme-borealis@workspace:^, @elastic/eui-theme-borealis@workspace:packages/eui-theme-borealis":
   version: 0.0.0-use.local
   resolution: "@elastic/eui-theme-borealis@workspace:packages/eui-theme-borealis"
