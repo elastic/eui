@@ -175,6 +175,10 @@ Ensure the `EuiBadge` includes appropriate accessibility attributes.
 - `iconOnClickAriaLabel` is only valid when `iconOnClick` is present. The rule autofixes by removing `iconOnClickAriaLabel`.
 - `onClickAriaLabel` is only valid when `onClick` is present. The rule autofixes by removing `onClickAriaLabel`.
 
+### `@elastic/eui/require-href-for-link`
+
+Ensure `EuiLink` components that have an `onClick` handler also include an `href` prop. Without `href`, the component does not render as a true link, which means users cannot Ctrl/Cmd+Click to open in a new tab or use other standard link interactions. The rule bails out when spread attributes are present, since `href` may be provided via the spread.
+
 ### `@elastic/eui/icon-accessibility-rules`
 
 Ensure the `EuiIcon` includes appropriate accessibility attributes.
