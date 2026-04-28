@@ -103,15 +103,15 @@ echo "Uploading pipeline for ${bucket_directory}..."
 
 buildkite-agent pipeline upload << 'PIPELINE'
 steps:
-  - label: "Build and deploy website"
+  - label: ":docusaurus: Build and deploy website"
     key: "build-website"
     command: ".buildkite/scripts/pipelines/pipeline_build_website.sh"
 
-  - label: "Build and deploy Storybook"
+  - label: ":book: Build and deploy Storybook"
     key: "build-storybook"
     command: ".buildkite/scripts/pipelines/pipeline_build_storybook.sh"
 
-  - label: "Visual regression tests"
+  - label: ":camera: Test visual regression"
     key: "vrt"
     depends_on: "build-storybook"
     if: "build.pull_request.id != null"
@@ -122,7 +122,7 @@ steps:
   # The "Approve visual changes" block step and "Update VRT baselines" step are
   # injected dynamically by pipeline_vrt.sh only when differences are found.
 
-  - label: "Notify"
+  - label: ":loudspeaker: Notify"
     key: "notify"
     depends_on:
       - step: "build-website"

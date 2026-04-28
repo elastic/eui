@@ -34,17 +34,13 @@ vrt_pr_comment=""
 
 if [[ -n "${BUILDKITE_PULL_REQUEST:-}" ]] && [[ "${BUILDKITE_PULL_REQUEST}" != "false" ]]; then
   if [[ "${vrt_passed}" == "true" ]]; then
-    vrt_annotation="\n:white_check_mark: Visual regression tests passed"
+    vrt_annotation="- :white_check_mark: Visual regression tests passed"
     vrt_pr_comment="\n* :white_check_mark: Visual regression tests passed"
   else
     annotation_style="error"
-    vrt_annotation="\n:x: Visual regression tests failed — [view diff table](${BUILDKITE_BUILD_URL})"
-    vrt_diff_table="$(buildkite-agent meta-data get vrt_diff_table --default "")"
-    if [[ -n "${vrt_diff_table}" ]]; then
-      vrt_pr_comment="\n* :x: Visual regression tests failed\n\n${vrt_diff_table}"
-    else
-      vrt_pr_comment="\n* :x: Visual regression tests failed — [view diff table](${BUILDKITE_BUILD_URL})"
-    fi
+    vrt_comment_url="$(buildkite-agent meta-data get vrt_comment_url --default "")"
+    vrt_annotation="- :x: Visual regression tests failed - [view diff table](${vrt_comment_url:-${BUILDKITE_BUILD_URL}})"
+    vrt_pr_comment="\n* :x: Visual regression tests failed"
   fi
 fi
 
@@ -53,8 +49,11 @@ fi
 ############################################################
 
 # Buildkite annotation (visible in the build page)
-echo -e "New documentation website deployed: ${published_website_url}\nNew Storybook deployed: ${published_storybook_url}${vrt_annotation}" \
-  | buildkite-agent annotate --style "${annotation_style}" --context "deployed"
+buildkite-agent annotate --style "${annotation_style}" --context "deployed" << ANNOTATION
+- :docusaurus: [Documentation website](${published_website_url})
+- :book: [Storybook](${published_storybook_url})
+${vrt_annotation}
+ANNOTATION
 
 # GitHub PR comment (via the pr_comment meta-data convention)
 echo -e "* [Documentation website](${published_website_url})\n* [Storybook](${published_storybook_url})${vrt_pr_comment}" \

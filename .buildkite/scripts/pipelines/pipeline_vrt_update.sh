@@ -19,6 +19,8 @@ echo "Yarn version: $(yarn -v)"
 STORYBOOK_URL="$(buildkite-agent meta-data get storybook_base_url)"
 REF_DIR="packages/eui/.vrt/reference"
 
+export GH_TOKEN="${VAULT_GITHUB_TOKEN}"
+
 ############################################################
 #                     Install dependencies                 #
 ############################################################
@@ -39,9 +41,7 @@ yarn workspace @elastic/eui test-visual-regression update -- --url "${STORYBOOK_
 
 if [[ -n "$(git status --porcelain -- "${REF_DIR}")" ]]; then
   echo "+++ Committing updated VRT baseline screenshots"
-  github_user_vault="secret/ci/elastic-eui/github_machine_user"
-  git config --local user.name "$(retry 5 vault read -field=name "${github_user_vault}")"
-  git config --local user.email "$(retry 5 vault read -field=email "${github_user_vault}")"
+  gh auth setup-git
   git add "${REF_DIR}"
   git commit -m "chore(eui): update VRT baseline screenshots" --no-verify
   git_push_to_pr_branch

@@ -2,8 +2,8 @@
 # Run visual regression tests against the deployed Storybook.
 #
 # On success: commits any newly-created reference screenshots (first-run baseline generation).
-# On failure: uploads diff artifacts, posts a Buildkite annotation with a Before / After / Diff table
-# and sets meta-data so the downstream block step appears for approval.
+# On failure: uploads diff artifacts, posts a Buildkite annotation and a GitHub PR comment with a
+# Before / After / Diff table, and injects the approval block step into the pipeline.
 
 set -eo pipefail
 
@@ -25,18 +25,7 @@ REF_DIR="${VRT_DIR}/reference"
 DIFF_DIR="${VRT_DIR}/diff"
 CURRENT_DIR="${VRT_DIR}/current"
 
-############################################################
-#                  Debug: verify GitHub auth               #
-############################################################
-
-echo "--- Checking available GitHub auth"
-echo "GITHUB_TOKEN set: ${GITHUB_TOKEN:+yes (length ${#GITHUB_TOKEN})}"
-echo "BUILDKITE_PULL_REQUEST_REPO: ${BUILDKITE_PULL_REQUEST_REPO}"
-echo "BUILDKITE_BRANCH: ${BUILDKITE_BRANCH}"
-gh auth status 2>&1 || echo "gh CLI not authenticated"
-vault read -field=token secret/ci/elastic-eui/github_machine_user > /dev/null 2>&1 \
-  && echo "vault token field: exists" \
-  || echo "vault token field: not found"
+export GH_TOKEN="${VAULT_GITHUB_TOKEN}"
 
 ############################################################
 #                     Install dependencies                 #
@@ -61,13 +50,9 @@ fi
 ############################################################
 
 if [[ "${VRT_PASSED}" == "true" ]]; then
-  buildkite-agent meta-data set vrt_has_changes "false"
-
   if [[ -n "$(git status --porcelain -- "${REF_DIR}")" ]]; then
     echo "+++ Committing new VRT baseline screenshots (first run)"
-    github_user_vault="secret/ci/elastic-eui/github_machine_user"
-    git config --local user.name "$(retry 5 vault read -field=name "${github_user_vault}")"
-    git config --local user.email "$(retry 5 vault read -field=email "${github_user_vault}")"
+    gh auth setup-git
     git add "${REF_DIR}"
     git commit -m "chore(eui): add VRT baseline screenshots" --no-verify
     git_push_to_pr_branch
@@ -95,7 +80,6 @@ diff_count=$(find "${DIFF_DIR}" -name "*.diff.png" 2>/dev/null | wc -l | tr -d '
 if [[ "${diff_count}" -eq 0 ]]; then
   # No diff images means VRT crashed before producing comparisons. Don't surface
   # the approval flow, just fail clearly.
-  buildkite-agent meta-data set vrt_has_changes "false"
   buildkite-agent meta-data set vrt_passed "false"
   echo "No diff images found — this looks like an infrastructure failure, not a visual regression."
   echo "Check the Playwright output above for connection or timeout errors."
@@ -104,7 +88,6 @@ fi
 
 echo "Found ${diff_count} visual difference(s). Uploading artifacts and generating annotation..."
 
-buildkite-agent meta-data set vrt_has_changes "true"
 buildkite-agent meta-data set vrt_passed "false"
 
 # Upload all three image sets as Buildkite artifacts (for the annotation)
@@ -179,8 +162,8 @@ ${annotation_rows}
 </details>
 HTML
 
-# Store the diff table (with public image URLs) for inclusion in the GitHub PR comment
-buildkite-agent meta-data set vrt_diff_table << HTML
+# Post the diff table as a GitHub PR comment and store the URL for the notification annotation
+vrt_comment_body="$(cat << HTML
 <details>
 <summary><strong>${diff_count}</strong> visual difference(s) found — expand to review, then click <em>Approve visual changes</em> to update baselines</summary>
 
@@ -199,6 +182,14 @@ ${pr_comment_rows}
 </table>
 </details>
 HTML
+)"
+
+vrt_comment_url="$(gh api "repos/elastic/eui/issues/${BUILDKITE_PULL_REQUEST}/comments" \
+  --method POST \
+  -f "body=${vrt_comment_body}" \
+  --jq '.html_url')"
+
+buildkite-agent meta-data set vrt_comment_url "${vrt_comment_url}"
 
 # Inject the approval block step and baseline-update step into the pipeline.
 buildkite-agent pipeline upload << 'APPROVAL_PIPELINE'
@@ -206,6 +197,8 @@ steps:
   - block: "Approve visual changes"
     key: "approve-vrt"
     prompt: "Review the diff annotation in this build, then click Approve to update the baselines on this branch."
+    allowed_teams:
+      - "elastic/eui"
 
   - label: "Update VRT baselines"
     key: "update-baselines"
