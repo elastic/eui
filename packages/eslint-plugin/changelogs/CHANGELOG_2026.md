@@ -1,7 +1,3 @@
-## [`v2.12.0`](https://github.com/elastic/eui/releases/v2.12.0)
-
-- Added new `require-href-for-link` rule. ([#9615](https://github.com/elastic/eui/pull/9615))
-
 ## [`v2.11.1`](https://github.com/elastic/eui/releases/v2.11.1)
 
 **Bug fixes**
