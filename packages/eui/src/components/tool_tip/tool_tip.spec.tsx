@@ -65,10 +65,10 @@ describe('EuiToolTip', () => {
     );
     cy.get('[data-test-subj="tooltip"]').should('not.exist');
 
-    cy.get('[data-test-subj="toggleToolTip"]').focus();
+    cy.realPress('Tab');
     cy.get('[data-test-subj="tooltip"]').should('exist');
 
-    cy.get('[data-test-subj="toggleToolTip"]').blur();
+    cy.realPress('Tab');
     cy.get('[data-test-subj="tooltip"]').should('not.exist');
   });
 
@@ -82,10 +82,10 @@ describe('EuiToolTip', () => {
     );
     cy.get('[data-test-subj="tooltip"]').should('not.exist');
 
-    cy.get('[data-test-subj="toggleToolTip"]').focus();
+    cy.realPress('Tab');
     cy.get('[data-test-subj="tooltip"]').should('exist');
 
-    cy.get('[data-test-subj="toggleToolTip"]').blur();
+    cy.realPress('Tab');
     cy.get('[data-test-subj="tooltip"]').should('not.exist');
   });
 
@@ -102,7 +102,7 @@ describe('EuiToolTip', () => {
     );
     cy.get('[data-test-subj="tooltip"]').should('not.exist');
 
-    cy.get('[data-test-subj="toggleToolTipA"]').focus();
+    cy.realPress('Tab');
     cy.contains('Tooltip A').should('exist');
     cy.contains('Tooltip B').should('not.exist');
 

@@ -16,7 +16,8 @@ import React, {
   useState,
   ReactElement,
   ReactNode,
-  MouseEvent as ReactMouseEvent,
+  type MouseEvent as ReactMouseEvent,
+  type FocusEvent as ReactFocusEvent,
   HTMLAttributes,
 } from 'react';
 import classNames from 'classnames';
@@ -277,7 +278,10 @@ export const EuiToolTip = forwardRef<EuiToolTipRef, EuiToolTipProps>(
     // If the anchor already has focus on mount (e.g. `autoFocus`), show the tooltip.
     // Important for StrictMode double-mount.
     useEffect(() => {
-      if (anchorRef.current?.contains(document.activeElement)) {
+      if (
+        anchorRef.current?.contains(document.activeElement) &&
+        document.activeElement?.matches?.(':focus-visible')
+      ) {
         setHasFocus(true);
         showToolTip();
       }
@@ -338,10 +342,15 @@ export const EuiToolTip = forwardRef<EuiToolTipRef, EuiToolTipProps>(
       componentDefaultsContext.EuiToolTip,
     ]);
 
-    const onFocus = useCallback(() => {
-      setHasFocus(true);
-      showToolTip();
-    }, [showToolTip]);
+    const onFocus = useCallback(
+      (e: ReactFocusEvent) => {
+        if ((e.target as Element).matches?.(':focus-visible')) {
+          setHasFocus(true);
+          showToolTip();
+        }
+      },
+      [showToolTip]
+    );
 
     const onBlur = useCallback(() => {
       setHasFocus(false);

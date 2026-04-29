@@ -280,7 +280,7 @@ describe('EuiTableHeaderCell', () => {
         'info'
       );
 
-      fireEvent.focus(getByTestSubject('icon'));
+      fireEvent.mouseOver(getByTestSubject('icon'));
       await waitForEuiToolTipVisible();
 
       expect(getByTestSubject('tooltip')).toHaveTextContent(
@@ -312,7 +312,7 @@ describe('EuiTableHeaderCell', () => {
         'info'
       );
 
-      fireEvent.focus(getByTestSubject('tableHeaderSortButton'));
+      fireEvent.mouseOver(getByTestSubject('tableHeaderSortButton'));
       await waitForEuiToolTipVisible();
 
       expect(getByTestSubject('tooltip')).toHaveTextContent(

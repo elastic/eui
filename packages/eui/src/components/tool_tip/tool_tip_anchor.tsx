@@ -6,7 +6,12 @@
  * Side Public License, v 1.
  */
 
-import React, { cloneElement, HTMLAttributes, forwardRef } from 'react';
+import React, {
+  cloneElement,
+  HTMLAttributes,
+  forwardRef,
+  type FocusEvent as ReactFocusEvent,
+} from 'react';
 import classNames from 'classnames';
 
 import { useGeneratedHtmlId, useEuiMemoizedStyles } from '../../services';
@@ -19,7 +24,7 @@ export type EuiToolTipAnchorProps = Omit<
 > &
   Required<Pick<EuiToolTipProps, 'display' | 'children'>> & {
     onBlur: () => void;
-    onFocus: () => void;
+    onFocus: (e: ReactFocusEvent) => void;
     isVisible: boolean;
   };
 
@@ -75,7 +80,7 @@ export const EuiToolTipAnchor = forwardRef<
          */}
         {cloneElement(children, {
           onFocus: (e: React.FocusEvent) => {
-            onFocus();
+            onFocus(e);
             children.props.onFocus && children.props.onFocus(e);
           },
           onBlur: (e: React.FocusEvent) => {

@@ -14,6 +14,7 @@ import {
   render,
   waitForEuiToolTipHidden,
   waitForEuiToolTipVisible,
+  simulateFocusVisible,
 } from '../../test/rtl';
 
 import { EuiColorPickerSwatch } from './color_picker_swatch';
@@ -28,6 +29,8 @@ describe('EuiColorPickerSwatch', () => {
   });
 
   describe('showToolTip', () => {
+    afterEach(() => jest.restoreAllMocks());
+
     test('it renders a color label tooltip on hover', async () => {
       const { getByTestSubject, getByText } = render(
         <EuiColorPickerSwatch
@@ -61,6 +64,7 @@ describe('EuiColorPickerSwatch', () => {
 
       const swatchElement = getByTestSubject('color-picker-swatch');
 
+      simulateFocusVisible(swatchElement);
       fireEvent.focus(swatchElement);
 
       await waitForEuiToolTipVisible();

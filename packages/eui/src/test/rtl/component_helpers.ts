@@ -46,6 +46,21 @@ export const waitForEuiToolTipHidden = async () =>
   });
 
 /**
+ * jsdom does not track keyboard vs. mouse input modality, so `:focus-visible`
+ * always returns false. Call this before `fireEvent.focus()` on an element that
+ * should be treated as keyboard-focused.
+ * Requires `jest.restoreAllMocks()` in `afterEach`.
+ */
+export const simulateFocusVisible = (element: Element) => {
+  const originalMatches = Element.prototype.matches.bind(element);
+  jest
+    .spyOn(element, 'matches')
+    .mockImplementation((selector: string) =>
+      selector === ':focus-visible' ? true : originalMatches(selector)
+    );
+};
+
+/**
  * EuiComboBox
  */
 
