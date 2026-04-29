@@ -201,6 +201,8 @@ export const euiListItemLayoutWrapperStyles = (
   return {
     euiListItemLayout__wrapper: css`
       ${listItemCommonStyles(euiThemeContext)}
+      /* prevent items from collapsing inside flex layouts */
+      flex-shrink: 0;
       list-style: none;
     `,
     hasExtraAction: css`
