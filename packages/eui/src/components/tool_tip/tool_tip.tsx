@@ -47,6 +47,18 @@ const delayToMsMap: { [key in ToolTipDelay]: number } = {
   long: 250 * 5,
 };
 
+/**
+ * `:focus-visible` may throw in browsers that don't support the selector,
+ * fall back to treating all focus as visible so tooltips still appear.
+ */
+const isFocusVisible = (element: Element): boolean => {
+  try {
+    return element.matches(':focus-visible');
+  } catch {
+    return element.matches(':focus');
+  }
+};
+
 interface ToolTipStyles {
   top: number;
   left: number | 'auto';
@@ -280,7 +292,8 @@ export const EuiToolTip = forwardRef<EuiToolTipRef, EuiToolTipProps>(
     useEffect(() => {
       if (
         anchorRef.current?.contains(document.activeElement) &&
-        document.activeElement?.matches?.(':focus-visible')
+        document.activeElement != null &&
+        isFocusVisible(document.activeElement)
       ) {
         setHasFocus(true);
         showToolTip();
@@ -344,7 +357,7 @@ export const EuiToolTip = forwardRef<EuiToolTipRef, EuiToolTipProps>(
 
     const onFocus = useCallback(
       (e: ReactFocusEvent) => {
-        if ((e.target as Element).matches?.(':focus-visible')) {
+        if (isFocusVisible(e.target as Element)) {
           setHasFocus(true);
           showToolTip();
         }
