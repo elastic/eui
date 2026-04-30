@@ -6,8 +6,8 @@
  * Side Public License, v 1.
  */
 
-import { css } from '@emotion/react';
-import { euiShadow } from '@elastic/eui-theme-common';
+import { css, keyframes } from '@emotion/react';
+import { euiCanAnimate, euiShadow } from '@elastic/eui-theme-common';
 
 import { logicalCSS, euiFontSize } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
@@ -19,6 +19,11 @@ export const euiToolTipBackgroundColor = (euiTheme: UseEuiTheme['euiTheme']) =>
 
 export const euiToolTipBorderColor = (euiTheme: UseEuiTheme['euiTheme']) =>
   euiTheme.components.tooltipBorder;
+
+const euiToolTipAnimation = keyframes`
+  from { opacity: 0; }
+  to { opacity: 1; }
+`;
 
 export const euiToolTipStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme, highContrastMode } = euiThemeContext;
@@ -47,6 +52,11 @@ export const euiToolTipStyles = (euiThemeContext: UseEuiTheme) => {
 
       [class*='euiHorizontalRule'] {
         background-color: ${euiToolTipBorderColor(euiTheme)};
+      }
+
+      ${euiCanAnimate} {
+        animation: ${euiToolTipAnimation} ${euiTheme.animation.extraFast}
+          ease-out ${euiTheme.animation.fast} both;
       }
     `,
     // Positions - kept for component compatibility. Animation is in the base style.
