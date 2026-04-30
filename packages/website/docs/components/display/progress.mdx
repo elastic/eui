@@ -335,6 +335,54 @@ export default () => (
   </EuiFlexGroup>
 );
 
+## Gradients
+
+The `color` prop also accepts CSS gradient strings (`linear-gradient(...)`, `radial-gradient(...)`, etc.). Gradient values are applied to the bar's fill via `background-image`, leaving the track at its default theme background. This is useful when the bar is acting as a magnitude indicator (data bar / meter) rather than task progress and you want a multi-stop color treatment such as a status palette.
+
+When passing a gradient, the component does not derive a custom `valueText` color from it — pass your own `valueText` styling if you need a specific text color.
+
+```tsx interactive
+import React from 'react';
+import { EuiProgress, EuiSpacer, useEuiTheme } from '@elastic/eui';
+
+export default () => {
+  const { euiTheme } = useEuiTheme();
+
+  // Driving the gradient from theme tokens keeps it in sync with light/dark mode.
+  const statusGradient = `linear-gradient(90deg, ${euiTheme.colors.success}, ${euiTheme.colors.warning}, ${euiTheme.colors.danger})`;
+  const visGradient = `linear-gradient(90deg, ${euiTheme.colors.vis.euiColorVis0}, ${euiTheme.colors.vis.euiColorVis5}, ${euiTheme.colors.vis.euiColorVis9})`;
+
+  return (
+    <div>
+      <EuiProgress
+        label="Status palette"
+        valueText={true}
+        value={80}
+        max={100}
+        color={statusGradient}
+        size="m"
+      />
+      <EuiSpacer size="s" />
+      <EuiProgress
+        label="Visualization palette"
+        valueText={true}
+        value={60}
+        max={100}
+        color={visGradient}
+        size="m"
+      />
+      <EuiSpacer size="s" />
+      <EuiProgress
+        label="Static gradient"
+        valueText={true}
+        value={40}
+        max={100}
+        color="linear-gradient(90deg, #00BFB3, #FEC514, #BD271E)"
+        size="m"
+      />
+    </div>
+  );
+};
 ```
 
 ## Progress for charts

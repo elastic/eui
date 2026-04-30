@@ -1,5 +1,33 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`euiProgressGradientStyles indeterminate progress applies the gradient via background-image on the ::before pseudo-element 1`] = `
+"
+  &::before {
+    
+      background-color: transparent;
+      background-image: linear-gradient(90deg, #00BFB3, #FEC514, #BD271E);
+    
+  }
+;;label:euiProgressGradientStyles;"
+`;
+
+exports[`euiProgressGradientStyles native progress applies the gradient via background-image on cross-browser fill selectors 1`] = `
+"
+  &::-webkit-progress-value {
+    
+      background-color: transparent;
+      background-image: linear-gradient(90deg, #00BFB3, #FEC514, #BD271E);
+    
+  }
+  &::-moz-progress-bar {
+    
+      background-color: transparent;
+      background-image: linear-gradient(90deg, #00BFB3, #FEC514, #BD271E);
+    
+  }
+;;label:euiProgressGradientStyles;"
+`;
+
 exports[`euiProgressStyles indeterminate div CSS colors accent 1`] = `
 "&::before {
     background-color: #BC1E70;
