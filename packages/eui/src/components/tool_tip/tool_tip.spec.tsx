@@ -58,7 +58,7 @@ describe('EuiToolTip', () => {
   });
 
   it('shows the tooltip on keyboard focus and hides it on blur', () => {
-    cy.mount(
+    cy.realMount(
       <EuiToolTip content="Tooltip text here" data-test-subj="tooltip">
         <EuiButton data-test-subj="toggleToolTip">Show tooltip</EuiButton>
       </EuiToolTip>
@@ -73,7 +73,7 @@ describe('EuiToolTip', () => {
   });
 
   it('shows the tooltip on keyboard focus and hides it on blur for a custom disabled trigger button', () => {
-    cy.mount(
+    cy.realMount(
       <EuiToolTip content="Tooltip text here" data-test-subj="tooltip">
         <EuiButton data-test-subj="toggleToolTip" hasAriaDisabled isDisabled>
           Show tooltip
@@ -90,7 +90,7 @@ describe('EuiToolTip', () => {
   });
 
   it('does not show multiple tooltips if one tooltip toggle is focused and another tooltip toggle is hovered', () => {
-    cy.mount(
+    cy.realMount(
       <>
         <EuiToolTip content="Tooltip A" data-test-subj="tooltipA">
           <EuiButton data-test-subj="toggleToolTipA">Show tooltip A</EuiButton>
@@ -113,7 +113,7 @@ describe('EuiToolTip', () => {
 
   describe('Escape key', () => {
     it('hides the tooltip when rendered by itself', () => {
-      cy.mount(
+      cy.realMount(
         <EuiToolTip content="Tooltip text here" data-test-subj="tooltip">
           <EuiButton data-test-subj="toggleToolTip">Show tooltip</EuiButton>
         </EuiToolTip>
