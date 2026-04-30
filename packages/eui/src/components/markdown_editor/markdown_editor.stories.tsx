@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React from 'react';
+import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
@@ -88,4 +88,55 @@ export const CustomToolbarContent: Story = {
       ),
     },
   },
+};
+
+export const DropZone: Story = {
+  parameters: {
+    controls: { include: ['dropHandlers', 'value'] },
+    loki: {
+      // functional test story only
+      skip: true,
+    },
+  },
+  args: {
+    value: initialContent,
+    dropHandlers: [
+      {
+        supportedFiles: ['image/png', 'image/jpeg'],
+        accepts: (type: string) => type.startsWith('image/'),
+        getFormattingForItem: (file: File) =>
+          new Promise((resolve) => {
+            const reader = new FileReader();
+            reader.onload = () =>
+              resolve({
+                text: `![${file.name}](${reader.result})`,
+                config: { block: true },
+              });
+            reader.readAsDataURL(file);
+          }),
+      },
+    ],
+  },
+  render: (args: EuiMarkdownEditorProps) => (
+    <StatefulMarkdownEditor {...args} />
+  ),
+};
+
+const StatefulMarkdownEditor = ({
+  value: initialValue,
+  onChange,
+  ...rest
+}: EuiMarkdownEditorProps) => {
+  const [value, setValue] = useState(initialValue);
+
+  return (
+    <EuiMarkdownEditor
+      {...rest}
+      value={value}
+      onChange={(v) => {
+        setValue(v);
+        onChange?.(v);
+      }}
+    />
+  );
 };
