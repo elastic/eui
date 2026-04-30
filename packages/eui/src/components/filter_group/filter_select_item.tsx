@@ -92,11 +92,27 @@ export class EuiFilterSelectItemClass extends Component<
     return this.state.hasFocus;
   };
 
+  componentDidMount() {
+    const { isFocused, toolTipContent, disabled, children } = this.props;
+    if (React.isValidElement(children) && !disabled && toolTipContent) {
+      this.toggleToolTip(isFocused ?? false);
+    }
+  }
+
   componentDidUpdate(
     prevProps: Readonly<WithEuiThemeProps<{}> & EuiFilterSelectItemProps>
   ) {
     if (this.props.isFocused && !prevProps.isFocused) {
       this.buttonRef?.scrollIntoView?.({ block: 'nearest' });
+    }
+    const { isFocused, toolTipContent, disabled, children } = this.props;
+    if (
+      React.isValidElement(children) &&
+      !disabled &&
+      toolTipContent &&
+      isFocused !== prevProps.isFocused
+    ) {
+      this.toggleToolTip(isFocused ?? false);
     }
   }
 
@@ -143,8 +159,6 @@ export class EuiFilterSelectItemClass extends Component<
             style: anchorStyles,
           }
         : { style };
-
-      this.toggleToolTip(isFocused ?? false);
     }
 
     let iconNode;
