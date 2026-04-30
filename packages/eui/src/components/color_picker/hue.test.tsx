@@ -13,7 +13,7 @@ import {
   render,
   waitForEuiToolTipHidden,
   waitForEuiToolTipVisible,
-  simulateFocusVisible,
+  focusEuiToolTipTrigger,
 } from '../../test/rtl';
 
 import { EuiHue } from './hue';
@@ -24,8 +24,6 @@ const onChange = () => {
 };
 
 describe('EuiHue', () => {
-  afterEach(() => jest.restoreAllMocks());
-
   shouldRenderCustomStyles(<EuiHue onChange={onChange} />, {
     skip: { style: true },
   });
@@ -84,8 +82,7 @@ describe('EuiHue', () => {
 
     const thumbElement = document.querySelector('.euiHue__range')!;
 
-    simulateFocusVisible(thumbElement);
-    fireEvent.focus(thumbElement);
+    const cleanup = focusEuiToolTipTrigger(thumbElement);
 
     await waitForEuiToolTipVisible();
 
@@ -94,5 +91,6 @@ describe('EuiHue', () => {
     fireEvent.blur(thumbElement);
 
     await waitForEuiToolTipHidden();
+    cleanup();
   });
 });

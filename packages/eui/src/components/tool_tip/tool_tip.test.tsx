@@ -12,7 +12,7 @@ import {
   render,
   waitForEuiToolTipVisible,
   waitForEuiToolTipHidden,
-  simulateFocusVisible,
+  focusEuiToolTipTrigger,
 } from '../../test/rtl';
 import { requiredProps } from '../../test';
 import { shouldRenderCustomStyles } from '../../test/internal';
@@ -47,7 +47,6 @@ describe('EuiToolTip', () => {
   describe('visibility', () => {
     afterEach(() => {
       jest.useRealTimers();
-      jest.restoreAllMocks();
     });
 
     it('shows on mouseover and hides on mouseout', async () => {
@@ -106,14 +105,14 @@ describe('EuiToolTip', () => {
       expect(queryByRole('tooltip')).not.toBeInTheDocument();
 
       const trigger = getByTestSubject('trigger');
-      simulateFocusVisible(trigger);
-      fireEvent.focus(trigger);
+      const cleanup = focusEuiToolTipTrigger(trigger);
       await waitForEuiToolTipVisible();
       expect(queryByRole('tooltip')).toBeInTheDocument();
 
       fireEvent.blur(trigger);
       await waitForEuiToolTipHidden();
       expect(queryByRole('tooltip')).not.toBeInTheDocument();
+      cleanup();
     });
 
     it('does not show on mouse-click focus', () => {
@@ -123,7 +122,8 @@ describe('EuiToolTip', () => {
         </EuiToolTip>
       );
 
-      // `fireEvent.focus` without `simulateFocusVisible` → `:focus-visible` is false (mouse-click focus)
+      // Intentionally using plain `fireEvent.focus` (no `:focus-visible`) to simulate mouse-click focus
+      // eslint-disable-next-line @elastic/eui/prefer-tooltip-trigger-focus-test-utility
       fireEvent.focus(getByTestSubject('trigger'));
       expect(queryByRole('tooltip')).not.toBeInTheDocument();
     });
@@ -136,13 +136,13 @@ describe('EuiToolTip', () => {
       );
 
       const trigger = getByTestSubject('trigger');
-      simulateFocusVisible(trigger);
-      fireEvent.focus(trigger);
+      const cleanup = focusEuiToolTipTrigger(trigger);
       await waitForEuiToolTipVisible();
 
       fireEvent.mouseOut(getByTestSubject('trigger'));
       // Tooltip stays visible because `hasFocus=true` (keyboard focus)
       expect(queryByRole('tooltip')).toBeInTheDocument();
+      cleanup();
     });
 
     it('hides tooltip on mouseout when trigger was mouse-click focused', async () => {
@@ -155,6 +155,8 @@ describe('EuiToolTip', () => {
       // Show on hover first, then click-focus (no `:focus-visible`)
       fireEvent.mouseOver(getByTestSubject('trigger'));
       await waitForEuiToolTipVisible();
+      // Intentionally using plain `fireEvent.focus` (no `:focus-visible`) to simulate mouse-click focus
+      // eslint-disable-next-line @elastic/eui/prefer-tooltip-trigger-focus-test-utility
       fireEvent.focus(getByTestSubject('trigger'));
 
       fireEvent.mouseOut(getByTestSubject('trigger'));
@@ -334,8 +336,6 @@ describe('EuiToolTip', () => {
   });
 
   describe('disableScreenReaderOutput', () => {
-    afterEach(() => jest.restoreAllMocks());
-
     it('when false (default), Escape stops event propagation while tooltip is visible', async () => {
       const parentKeyDown = jest.fn();
       const { getByTestSubject } = render(
@@ -347,14 +347,14 @@ describe('EuiToolTip', () => {
       );
 
       const trigger = getByTestSubject('trigger');
-      simulateFocusVisible(trigger);
-      fireEvent.focus(trigger);
+      const cleanup = focusEuiToolTipTrigger(trigger);
       await waitForEuiToolTipVisible();
 
       fireEvent.keyDown(getByTestSubject('trigger'), { key: 'Escape' });
       await waitForEuiToolTipHidden();
 
       expect(parentKeyDown).not.toHaveBeenCalled();
+      cleanup();
     });
 
     it('when true, Escape does not stop event propagation', async () => {
@@ -368,14 +368,14 @@ describe('EuiToolTip', () => {
       );
 
       const trigger = getByTestSubject('trigger');
-      simulateFocusVisible(trigger);
-      fireEvent.focus(trigger);
+      const cleanup = focusEuiToolTipTrigger(trigger);
       await waitForEuiToolTipVisible();
 
       fireEvent.keyDown(getByTestSubject('trigger'), { key: 'Escape' });
       await waitForEuiToolTipHidden();
 
       expect(parentKeyDown).toHaveBeenCalledTimes(1);
+      cleanup();
     });
 
     it('when true, tooltip still renders visually', async () => {

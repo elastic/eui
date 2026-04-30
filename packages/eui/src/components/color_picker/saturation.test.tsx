@@ -13,7 +13,7 @@ import {
   render,
   waitForEuiToolTipHidden,
   waitForEuiToolTipVisible,
-  simulateFocusVisible,
+  focusEuiToolTipTrigger,
 } from '../../test/rtl';
 
 import { EuiSaturation } from './saturation';
@@ -24,8 +24,6 @@ const onChange = () => {
 };
 
 describe('EuiSaturation', () => {
-  afterEach(() => jest.restoreAllMocks());
-
   shouldRenderCustomStyles(<EuiSaturation onChange={onChange} />);
 
   test('is rendered', () => {
@@ -73,8 +71,7 @@ describe('EuiSaturation', () => {
 
     const thumbElement = document.querySelector('.euiSaturation__indicator')!;
 
-    simulateFocusVisible(thumbElement);
-    fireEvent.focus(thumbElement);
+    const cleanup = focusEuiToolTipTrigger(thumbElement);
 
     await waitForEuiToolTipVisible();
 
@@ -83,5 +80,6 @@ describe('EuiSaturation', () => {
     fireEvent.blur(thumbElement);
 
     await waitForEuiToolTipHidden();
+    cleanup();
   });
 });
