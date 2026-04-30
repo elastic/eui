@@ -43,6 +43,10 @@ PACKAGE_DIRS=(packages/eui packages/eui-theme-common packages/eui-theme-borealis
 
 git remote get-url upstream &>/dev/null || error "'upstream' remote not found"
 
+if [[ -n "$(git status --porcelain)" ]]; then
+  error "Working tree is dirty. Please commit or stash your changes before running this script."
+fi
+
 step "1/6" "Updating main branch..."
 git checkout main
 git pull upstream main
