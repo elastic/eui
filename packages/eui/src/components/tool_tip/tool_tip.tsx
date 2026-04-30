@@ -26,7 +26,6 @@ import { CommonProps } from '../common';
 import { findPopoverPosition, htmlIdGenerator, keys } from '../../services';
 import { getRepositionOnScroll } from '../../services/popover/reposition_on_scroll';
 import { type EuiPopoverPosition } from '../../services/popover';
-import { enqueueStateChange } from '../../services/react';
 import { EuiResizeObserver } from '../observer/resize_observer';
 import { EuiPortal } from '../portal';
 import { EuiComponentDefaultsContext } from '../provider/component_defaults';
@@ -39,12 +38,18 @@ import { toolTipManager } from './tool_tip_manager';
 export const POSITIONS = ['top', 'right', 'bottom', 'left'] as const;
 const DISPLAYS = ['inlineBlock', 'block'] as const;
 
-export type ToolTipDelay = 'regular' | 'long';
 export const DEFAULT_TOOLTIP_OFFSET = 16;
 
-const delayToMsMap: { [key in ToolTipDelay]: number } = {
-  regular: 250,
-  long: 250 * 5,
+/**
+ * `:focus-visible` may throw in browsers that don't support the selector,
+ * fall back to treating all focus as visible so tooltips still appear.
+ */
+const isFocusVisible = (element: Element): boolean => {
+  try {
+    return element.matches(':focus-visible');
+  } catch {
+    return element.matches(':focus');
+  }
 };
 
 /**
@@ -106,10 +111,6 @@ export interface EuiToolTipProps extends CommonProps {
    */
   display?: (typeof DISPLAYS)[number];
   /**
-   * Delay before showing tooltip. Good for repeatable items.
-   */
-  delay?: ToolTipDelay;
-  /**
    * An optional title for your tooltip.
    */
   title?: ReactNode;
@@ -165,7 +166,6 @@ export const EuiToolTip = forwardRef<EuiToolTipRef, EuiToolTipProps>(
       anchorProps,
       content,
       title,
-      delay = 'regular',
       display = 'inlineBlock',
       repositionOnScroll,
       disableScreenReaderOutput = false,
@@ -195,10 +195,6 @@ export const EuiToolTip = forwardRef<EuiToolTipRef, EuiToolTipProps>(
 
     const anchorRef = useRef<HTMLSpanElement | null>(null);
     const popoverRef = useRef<HTMLDivElement | null>(null);
-    const timeoutRef = useRef<ReturnType<typeof setTimeout> | undefined>(
-      undefined
-    );
-    const isMounted = useRef(false);
 
     const positionToolTip = useCallback(() => {
       if (!anchorRef.current || !popoverRef.current) {
@@ -253,33 +249,16 @@ export const EuiToolTip = forwardRef<EuiToolTipRef, EuiToolTipProps>(
     );
 
     const hideToolTip = useCallback(() => {
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current);
-        timeoutRef.current = undefined;
-      }
-
-      enqueueStateChange(() => {
-        if (isMounted.current) {
-          setVisible(false);
-          setToolTipStyles(DEFAULT_TOOLTIP_STYLES);
-          setArrowStyles(undefined);
-          toolTipManager.deregisterToolTip(hideToolTip);
-        }
-      });
+      setVisible(false);
+      setToolTipStyles(DEFAULT_TOOLTIP_STYLES);
+      setArrowStyles(undefined);
+      toolTipManager.deregisterToolTip(hideToolTip);
     }, []);
 
     const showToolTip = useCallback(() => {
-      if (!timeoutRef.current) {
-        timeoutRef.current = setTimeout(() => {
-          enqueueStateChange(() => {
-            if (isMounted.current) {
-              setVisible(true);
-              toolTipManager.registerTooltip(hideToolTip);
-            }
-          });
-        }, delayToMsMap[delay]);
-      }
-    }, [delay, hideToolTip]);
+      setVisible(true);
+      toolTipManager.registerTooltip(hideToolTip);
+    }, [hideToolTip]);
 
     useImperativeHandle(ref, () => ({ showToolTip, hideToolTip, id }), [
       showToolTip,
@@ -301,13 +280,7 @@ export const EuiToolTip = forwardRef<EuiToolTipRef, EuiToolTipProps>(
     }, [showToolTip]);
 
     useEffect(() => {
-      isMounted.current = true;
       return () => {
-        isMounted.current = false;
-        if (timeoutRef.current) {
-          clearTimeout(timeoutRef.current);
-          timeoutRef.current = undefined;
-        }
         toolTipManager.deregisterToolTip(hideToolTip);
       };
     }, [hideToolTip]);

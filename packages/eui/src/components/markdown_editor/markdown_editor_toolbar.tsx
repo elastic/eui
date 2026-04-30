@@ -178,7 +178,7 @@ export const EuiMarkdownEditorToolbar = forwardRef<
           className="euiMarkdownEditorToolbar__buttons"
         >
           {boldItalicButtons.map((item) => (
-            <EuiToolTip key={item.id} content={item.label} delay="long">
+            <EuiToolTip key={item.id} content={item.label}>
               <EuiMarkdownEditorToolbarButton
                 selectedNode={selectedNode}
                 handleMdButtonClick={handleMdButtonClick}
@@ -195,7 +195,7 @@ export const EuiMarkdownEditorToolbar = forwardRef<
             className="euiMarkdownEditorToolbar__divider"
           />
           {listButtons.map((item) => (
-            <EuiToolTip key={item.id} content={item.label} delay="long">
+            <EuiToolTip key={item.id} content={item.label}>
               <EuiMarkdownEditorToolbarButton
                 selectedNode={selectedNode}
                 handleMdButtonClick={handleMdButtonClick}
@@ -212,7 +212,7 @@ export const EuiMarkdownEditorToolbar = forwardRef<
             className="euiMarkdownEditorToolbar__divider"
           />
           {quoteCodeLinkButtons.map((item) => (
-            <EuiToolTip key={item.id} content={item.label} delay="long">
+            <EuiToolTip key={item.id} content={item.label}>
               <EuiMarkdownEditorToolbarButton
                 selectedNode={selectedNode}
                 handleMdButtonClick={handleMdButtonClick}
@@ -233,7 +233,7 @@ export const EuiMarkdownEditorToolbar = forwardRef<
               />
               {uiPlugins.map(({ name, button }) => {
                 return (
-                  <EuiToolTip key={name} content={button.label} delay="long">
+                  <EuiToolTip key={name} content={button.label}>
                     <EuiMarkdownEditorToolbarButton
                       selectedNode={selectedNode}
                       handleMdButtonClick={handleMdButtonClick}

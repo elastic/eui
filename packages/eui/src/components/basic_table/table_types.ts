@@ -46,8 +46,7 @@ export type EuiTableColumnNameTooltipProps = {
   /** Additional props for EuiIcon */
   iconProps?: EuiIconTipProps['iconProps'];
   /** Additional props for the EuiToolip */
-  tooltipProps?: Omit<EuiToolTipProps, 'children' | 'delay' | 'position'> & {
-    delay?: EuiToolTipProps['delay'];
+  tooltipProps?: Omit<EuiToolTipProps, 'children' | 'position'> & {
     position?: EuiToolTipProps['position'];
   };
 };
