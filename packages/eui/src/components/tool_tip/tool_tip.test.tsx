@@ -69,7 +69,7 @@ describe('EuiToolTip', () => {
 
     it('shows on initial autoFocus in StrictMode', async () => {
       const originalMatches = Element.prototype.matches;
-      jest
+      const spy = jest
         .spyOn(Element.prototype, 'matches')
         .mockImplementation(function (this: Element, selector: string) {
           return selector === ':focus-visible'
@@ -93,6 +93,8 @@ describe('EuiToolTip', () => {
       fireEvent.blur(getByTestSubject('trigger'));
       await waitForEuiToolTipHidden();
       expect(queryByRole('tooltip')).not.toBeInTheDocument();
+
+      spy.mockRestore();
     });
 
     it('shows on keyboard focus and hides on blur', async () => {
