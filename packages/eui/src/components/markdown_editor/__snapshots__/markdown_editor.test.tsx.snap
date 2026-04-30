@@ -210,7 +210,6 @@ exports[`EuiMarkdownEditor is rendered 1`] = `
   >
     <div
       class="euiMarkdownEditorDropZone emotion-euiMarkdownEditorDropZone"
-      role="button"
     >
       <textarea
         aria-label="aria-label"
@@ -468,7 +467,6 @@ exports[`EuiMarkdownEditor props autoExpandPreview is rendered with false 1`] = 
   >
     <div
       class="euiMarkdownEditorDropZone emotion-euiMarkdownEditorDropZone"
-      role="button"
     >
       <textarea
         aria-label="aria-label"
@@ -725,7 +723,6 @@ exports[`EuiMarkdownEditor props height is rendered in full mode 1`] = `
   >
     <div
       class="euiMarkdownEditorDropZone emotion-euiMarkdownEditorDropZone"
-      role="button"
     >
       <textarea
         aria-label="aria-label"
@@ -982,7 +979,6 @@ exports[`EuiMarkdownEditor props height is rendered with a custom size 1`] = `
   >
     <div
       class="euiMarkdownEditorDropZone emotion-euiMarkdownEditorDropZone"
-      role="button"
     >
       <textarea
         aria-label="aria-label"
@@ -1239,7 +1235,6 @@ exports[`EuiMarkdownEditor props maxHeight is rendered with a custom size 1`] = 
   >
     <div
       class="euiMarkdownEditorDropZone emotion-euiMarkdownEditorDropZone"
-      role="button"
     >
       <textarea
         aria-label="aria-label"
