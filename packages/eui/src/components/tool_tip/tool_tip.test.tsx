@@ -77,24 +77,26 @@ describe('EuiToolTip', () => {
             : originalMatches.call(this, selector);
         });
 
-      const { getByTestSubject, queryByRole } = render(
-        <StrictMode>
-          <EuiToolTip content="Tooltip content">
-            <button data-test-subj="trigger" autoFocus>
-              Trigger
-            </button>
-          </EuiToolTip>
-        </StrictMode>
-      );
+      try {
+        const { getByTestSubject, queryByRole } = render(
+          <StrictMode>
+            <EuiToolTip content="Tooltip content">
+              <button data-test-subj="trigger" autoFocus>
+                Trigger
+              </button>
+            </EuiToolTip>
+          </StrictMode>
+        );
 
-      await waitForEuiToolTipVisible();
-      expect(queryByRole('tooltip')).toBeInTheDocument();
+        await waitForEuiToolTipVisible();
+        expect(queryByRole('tooltip')).toBeInTheDocument();
 
-      fireEvent.blur(getByTestSubject('trigger'));
-      await waitForEuiToolTipHidden();
-      expect(queryByRole('tooltip')).not.toBeInTheDocument();
-
-      spy.mockRestore();
+        fireEvent.blur(getByTestSubject('trigger'));
+        await waitForEuiToolTipHidden();
+        expect(queryByRole('tooltip')).not.toBeInTheDocument();
+      } finally {
+        spy.mockRestore();
+      }
     });
 
     it('shows on keyboard focus and hides on blur', async () => {

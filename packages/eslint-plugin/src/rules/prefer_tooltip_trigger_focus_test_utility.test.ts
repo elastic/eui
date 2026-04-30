@@ -123,12 +123,6 @@ ruleTester.run(
         `,
         languageOptions,
         errors: [{ messageId: 'preferTooltipTriggerFocusTestUtility' }],
-        output: dedent`
-          it('shows tooltip on focus', () => {
-            focusEuiToolTipTrigger(element);
-            queryByRole('tooltip');
-          });
-        `,
       },
       {
         // `getByRole('tooltip')` in same it block, `fireEvent.focus` should be flagged
@@ -140,12 +134,6 @@ ruleTester.run(
         `,
         languageOptions,
         errors: [{ messageId: 'preferTooltipTriggerFocusTestUtility' }],
-        output: dedent`
-          it('shows tooltip on focus', () => {
-            focusEuiToolTipTrigger(element);
-            getByRole('tooltip');
-          });
-        `,
       },
       {
         // `screen.findByRole('tooltip')` in same it block, `fireEvent.focus` should be flagged
@@ -157,12 +145,6 @@ ruleTester.run(
         `,
         languageOptions,
         errors: [{ messageId: 'preferTooltipTriggerFocusTestUtility' }],
-        output: dedent`
-          it('shows tooltip on focus', async () => {
-            focusEuiToolTipTrigger(element);
-            await screen.findByRole('tooltip');
-          });
-        `,
       },
       {
         // test() block (alias for it), `fireEvent.focus` should be flagged
@@ -174,12 +156,6 @@ ruleTester.run(
         `,
         languageOptions,
         errors: [{ messageId: 'preferTooltipTriggerFocusTestUtility' }],
-        output: dedent`
-          test('shows tooltip on focus', () => {
-            focusEuiToolTipTrigger(element);
-            queryByRole('tooltip');
-          });
-        `,
       },
       {
         // tooltip query appears before `fireEvent.focus`, still flagged (whole-block analysis)
@@ -191,12 +167,6 @@ ruleTester.run(
         `,
         languageOptions,
         errors: [{ messageId: 'preferTooltipTriggerFocusTestUtility' }],
-        output: dedent`
-          it('shows tooltip on focus', () => {
-            queryByRole('tooltip');
-            focusEuiToolTipTrigger(element);
-          });
-        `,
       },
       {
         // Only the it block with a tooltip signal is flagged, not unrelated blocks
@@ -212,16 +182,6 @@ ruleTester.run(
         `,
         languageOptions,
         errors: [{ messageId: 'preferTooltipTriggerFocusTestUtility' }],
-        output: dedent`
-          it('focuses an input', () => {
-            fireEvent.focus(input);
-            getByRole('textbox');
-          });
-          it('shows tooltip on focus', () => {
-            focusEuiToolTipTrigger(trigger);
-            queryByRole('tooltip');
-          });
-        `,
       },
       {
         // Multiple `fireEvent.focus` calls in same tooltip it block, each flagged
@@ -237,13 +197,6 @@ ruleTester.run(
           { messageId: 'preferTooltipTriggerFocusTestUtility' },
           { messageId: 'preferTooltipTriggerFocusTestUtility' },
         ],
-        output: dedent`
-          it('shows tooltip on focus', () => {
-            queryByRole('tooltip');
-            focusEuiToolTipTrigger(triggerA);
-            focusEuiToolTipTrigger(triggerB);
-          });
-        `,
       },
       {
         // `.euiToolTip` class selector in same it block, `fireEvent.focus` should be flagged
@@ -255,12 +208,6 @@ ruleTester.run(
         `,
         languageOptions,
         errors: [{ messageId: 'preferTooltipTriggerFocusTestUtility' }],
-        output: dedent`
-          it('shows tooltip on focus', () => {
-            focusEuiToolTipTrigger(trigger);
-            document.querySelector('.euiToolTip');
-          });
-        `,
       },
       {
         // `.euiToolTipAnchor` through `closest()` in same it block, `fireEvent.focus` should be flagged
@@ -272,12 +219,6 @@ ruleTester.run(
         `,
         languageOptions,
         errors: [{ messageId: 'preferTooltipTriggerFocusTestUtility' }],
-        output: dedent`
-          it('shows tooltip on focus', () => {
-            focusEuiToolTipTrigger(trigger);
-            trigger.closest('.euiToolTipAnchor');
-          });
-        `,
       },
       {
         // `[class*="euiToolTip"]` wildcard selector in same it block, `fireEvent.focus` should be flagged
@@ -289,12 +230,6 @@ ruleTester.run(
         `,
         languageOptions,
         errors: [{ messageId: 'preferTooltipTriggerFocusTestUtility' }],
-        output: dedent`
-          it('shows tooltip on focus', () => {
-            focusEuiToolTipTrigger(trigger);
-            trigger.closest('[class*="euiToolTip"]');
-          });
-        `,
       },
     ],
   }

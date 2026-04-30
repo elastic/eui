@@ -93,12 +93,6 @@ export const PreferTooltipTriggerFocusTestUtility =
             context.report({
               node: violation,
               messageId: 'preferTooltipTriggerFocusTestUtility',
-              fix(fixer) {
-                return fixer.replaceText(
-                  violation.callee,
-                  'focusEuiToolTipTrigger'
-                );
-              },
             });
           }
         },
@@ -106,7 +100,6 @@ export const PreferTooltipTriggerFocusTestUtility =
     },
     meta: {
       type: 'suggestion',
-      fixable: 'code',
       docs: {
         description:
           'Prefer `focusEuiToolTipTrigger` over `fireEvent.focus` in tooltip tests. Plain `fireEvent.focus` does not simulate `:focus-visible` in jsdom and will not trigger the tooltip.',

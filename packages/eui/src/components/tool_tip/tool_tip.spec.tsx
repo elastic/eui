@@ -59,9 +59,12 @@ describe('EuiToolTip', () => {
 
   it('shows the tooltip on keyboard focus and hides it on blur', () => {
     cy.realMount(
-      <EuiToolTip content="Tooltip text here" data-test-subj="tooltip">
-        <EuiButton data-test-subj="toggleToolTip">Show tooltip</EuiButton>
-      </EuiToolTip>
+      <>
+        <EuiToolTip content="Tooltip text here" data-test-subj="tooltip">
+          <EuiButton data-test-subj="toggleToolTip">Show tooltip</EuiButton>
+        </EuiToolTip>
+        <EuiButton>After</EuiButton>
+      </>
     );
     cy.get('[data-test-subj="tooltip"]').should('not.exist');
 
@@ -74,11 +77,14 @@ describe('EuiToolTip', () => {
 
   it('shows the tooltip on keyboard focus and hides it on blur for a custom disabled trigger button', () => {
     cy.realMount(
-      <EuiToolTip content="Tooltip text here" data-test-subj="tooltip">
-        <EuiButton data-test-subj="toggleToolTip" hasAriaDisabled isDisabled>
-          Show tooltip
-        </EuiButton>
-      </EuiToolTip>
+      <>
+        <EuiToolTip content="Tooltip text here" data-test-subj="tooltip">
+          <EuiButton data-test-subj="toggleToolTip" hasAriaDisabled isDisabled>
+            Show tooltip
+          </EuiButton>
+        </EuiToolTip>
+        <EuiButton>After</EuiButton>
+      </>
     );
     cy.get('[data-test-subj="tooltip"]').should('not.exist');
 
