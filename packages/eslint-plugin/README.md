@@ -182,6 +182,25 @@ Ensure the `EuiIcon` includes appropriate accessibility attributes.
 - `EuiIcon` has an accessible name via `title`, `aria-label`, or `aria-labelledby`; otherwise mark it decorative with `aria-hidden={true}`
 - Do not combine `tabIndex` with `aria-hidden`
 
+### `@elastic/eui/prefer-tooltip-trigger-focus-test-utility`
+
+Flags `fireEvent.focus()` inside `it`/`test` blocks that also query for a tooltip element (`getByRole('tooltip')`, `queryByRole('tooltip')`, `findByRole('tooltip')` or any selector containing `euiToolTip`). Plain `fireEvent.focus` does not simulate `:focus-visible` in jsdom and will not trigger `EuiToolTip`, so tooltip focus tests will silently pass without actually showing the tooltip.
+
+Use `focusEuiToolTipTrigger` from EUI's RTL test utilities instead, which correctly mocks `:focus-visible` before firing the focus event:
+
+```tsx
+import { focusEuiToolTipTrigger } from '@elastic/eui/test/rtl';
+
+it('shows tooltip on focus', async () => {
+  const { getByRole } = render(<MyComponent />);
+  const cleanup = focusEuiToolTipTrigger(getByRole('button'));
+  expect(getByRole('tooltip')).toBeInTheDocument();
+  cleanup();
+});
+```
+
+The rule auto-fixes `fireEvent.focus(element)` to `focusEuiToolTipTrigger(element)`. If `fireEvent.focus` is intentional, suppress it with `// eslint-disable-next-line @elastic/eui/prefer-tooltip-trigger-focus-test-utility`.
+
 ## Testing
 
 ### Running unit tests
