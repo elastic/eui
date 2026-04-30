@@ -74,6 +74,8 @@ export const EuiStepHorizontal: FunctionComponent<EuiStepHorizontalProps> = ({
   disabled,
   status = 'incomplete',
   size = 'm',
+  'aria-label': ariaLabel,
+  'aria-labelledby': ariaLabelledby,
   ...rest
 }) => {
   if (disabled) status = 'disabled';
@@ -96,7 +98,7 @@ export const EuiStepHorizontal: FunctionComponent<EuiStepHorizontalProps> = ({
     status === 'disabled' && titleStyles.disabled,
   ];
 
-  const titleAttrsMap: Record<EuiStepStatus | 'step', string> = {
+  const labelMap: Record<EuiStepStatus | 'step', string> = {
     step: useI18nStep({ number: step, title }),
     current: useI18nCurrentStep({ number: step, title }),
     disabled: useI18nDisabledStep({ number: step, title }),
@@ -106,19 +108,20 @@ export const EuiStepHorizontal: FunctionComponent<EuiStepHorizontalProps> = ({
     danger: useI18nErrorsStep({ number: step, title }),
     loading: useI18nLoadingStep({ number: step, title }),
   };
-  const titleAttr = titleAttrsMap[status || 'step'];
+  const ariaLabelAttr = labelMap[status || 'step'];
 
   const onStepClick = (
     event: ReactMouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
-    if (!disabled) onClick(event);
+    if (!disabled && status !== 'disabled') onClick(event);
   };
 
   return (
     <button
       aria-disabled={status === 'disabled' ? true : undefined}
       className={classes}
-      title={titleAttr}
+      aria-label={ariaLabel ?? (ariaLabelledby ? undefined : ariaLabelAttr)}
+      aria-labelledby={ariaLabelledby}
       onClick={onStepClick}
       disabled={disabled}
       css={cssStyles}

@@ -117,7 +117,6 @@ exports[`EuiContextMenuItem tooltip behavior 1`] = `
       class="euiToolTipPopover euiToolTip emotion-euiToolTip-top"
       data-position="top"
       id="generated-id"
-      position="top"
       role="tooltip"
       style="top: -16px; left: -10px;"
     >

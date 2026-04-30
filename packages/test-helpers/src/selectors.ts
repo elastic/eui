@@ -6,9 +6,4 @@
  * Side Public License, v 1.
  */
 
-export type { ToolTipPositions } from './tool_tip_popover';
-export type { EuiToolTipProps, EuiToolTipRef } from './tool_tip';
-export { EuiToolTip } from './tool_tip';
-
-export type { EuiIconTipProps } from './icon_tip';
-export { EuiIconTip } from './icon_tip';
+export { EuiComboBoxSelectors } from './components/combo_box/selectors';

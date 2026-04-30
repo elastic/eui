@@ -6,9 +6,8 @@
  * Side Public License, v 1.
  */
 
-import React, { useRef } from 'react';
-import { fireEvent } from '@testing-library/react';
-import { userEvent } from '@storybook/test';
+import React, { createRef, StrictMode, useRef } from 'react';
+import { act, fireEvent } from '@testing-library/react';
 import {
   render,
   waitForEuiToolTipVisible,
@@ -18,6 +17,7 @@ import { requiredProps } from '../../test';
 import { shouldRenderCustomStyles } from '../../test/internal';
 
 import { EuiToolTip } from './tool_tip';
+import type { EuiToolTipRef } from './tool_tip';
 
 describe('EuiToolTip', () => {
   shouldRenderCustomStyles(
@@ -43,72 +43,157 @@ describe('EuiToolTip', () => {
     expect(baseElement).toMatchSnapshot();
   });
 
-  it('shows tooltip on mouseover and focus', async () => {
-    const { baseElement, getByTestSubject } = render(
-      <EuiToolTip title="title" id="id" content="content" {...requiredProps}>
-        <button data-test-subj="trigger">Trigger</button>
-      </EuiToolTip>
-    );
+  describe('visibility', () => {
+    afterEach(() => jest.useRealTimers());
 
-    fireEvent.mouseOver(getByTestSubject('trigger'));
-    await waitForEuiToolTipVisible();
+    it('shows on mouseover and hides on mouseout', async () => {
+      const { getByTestSubject, queryByRole } = render(
+        <EuiToolTip content="Tooltip content">
+          <button data-test-subj="trigger">Trigger</button>
+        </EuiToolTip>
+      );
 
-    expect(baseElement).toMatchSnapshot();
+      expect(queryByRole('tooltip')).not.toBeInTheDocument();
 
-    fireEvent.mouseOut(getByTestSubject('trigger'));
-    await waitForEuiToolTipHidden();
+      fireEvent.mouseOver(getByTestSubject('trigger'));
+      await waitForEuiToolTipVisible();
+      expect(queryByRole('tooltip')).toBeInTheDocument();
 
-    fireEvent.focus(getByTestSubject('trigger'));
-    await waitForEuiToolTipVisible();
+      fireEvent.mouseOut(getByTestSubject('trigger'));
+      await waitForEuiToolTipHidden();
+      expect(queryByRole('tooltip')).not.toBeInTheDocument();
+    });
+
+    it('shows on initial autoFocus in StrictMode', async () => {
+      const { getByTestSubject, queryByRole } = render(
+        <StrictMode>
+          <EuiToolTip content="Tooltip content">
+            <button data-test-subj="trigger" autoFocus>
+              Trigger
+            </button>
+          </EuiToolTip>
+        </StrictMode>
+      );
+
+      await waitForEuiToolTipVisible();
+      expect(queryByRole('tooltip')).toBeInTheDocument();
+
+      fireEvent.blur(getByTestSubject('trigger'));
+      await waitForEuiToolTipHidden();
+      expect(queryByRole('tooltip')).not.toBeInTheDocument();
+    });
+
+    it('shows on focus and hides on blur', async () => {
+      const { getByTestSubject, queryByRole } = render(
+        <EuiToolTip content="Tooltip content">
+          <button data-test-subj="trigger">Trigger</button>
+        </EuiToolTip>
+      );
+
+      expect(queryByRole('tooltip')).not.toBeInTheDocument();
+
+      fireEvent.focus(getByTestSubject('trigger'));
+      await waitForEuiToolTipVisible();
+      expect(queryByRole('tooltip')).toBeInTheDocument();
+
+      fireEvent.blur(getByTestSubject('trigger'));
+      await waitForEuiToolTipHidden();
+      expect(queryByRole('tooltip')).not.toBeInTheDocument();
+    });
+
+    it('keeps tooltip visible on mouseout when the trigger has focus', async () => {
+      const { getByTestSubject, queryByRole } = render(
+        <EuiToolTip content="Tooltip content">
+          <button data-test-subj="trigger">Trigger</button>
+        </EuiToolTip>
+      );
+
+      fireEvent.focus(getByTestSubject('trigger'));
+      await waitForEuiToolTipVisible();
+
+      fireEvent.mouseOut(getByTestSubject('trigger'));
+      // Tooltip stays visible because hasFocus=true
+      expect(queryByRole('tooltip')).toBeInTheDocument();
+    });
+
+    it('does not render when neither content nor title are provided', () => {
+      jest.useFakeTimers();
+      const { queryByRole, getByTestSubject } = render(
+        <EuiToolTip>
+          <button data-test-subj="trigger">Trigger</button>
+        </EuiToolTip>
+      );
+
+      fireEvent.mouseOver(getByTestSubject('trigger'));
+      // Flush tooltip delay and state queue
+      act(() => jest.runAllTimers());
+
+      expect(queryByRole('tooltip')).not.toBeInTheDocument();
+    });
+
+    it('renders with title only and no content', async () => {
+      const { getByTestSubject, getByRole } = render(
+        <EuiToolTip title="Tooltip title">
+          <button data-test-subj="trigger">Trigger</button>
+        </EuiToolTip>
+      );
+
+      fireEvent.mouseOver(getByTestSubject('trigger'));
+      await waitForEuiToolTipVisible();
+
+      expect(getByRole('tooltip')).toHaveTextContent('Tooltip title');
+    });
   });
 
-  it('uses custom offset prop value', async () => {
-    const offsetValue = 32;
-    const { baseElement, getByRole } = render(
-      <EuiToolTip content="content" offset={offsetValue} {...requiredProps}>
-        <button data-test-subj="trigger">Trigger</button>
-      </EuiToolTip>
-    );
-    const trigger = getByRole('button');
+  describe('props', () => {
+    it('applies anchorClassName and anchorProps to the anchor wrapper', () => {
+      const { container } = render(
+        <EuiToolTip
+          content="content"
+          anchorClassName="customAnchorClass"
+          anchorProps={{ 'data-test-subj': 'anchor' }}
+        >
+          <button>Trigger</button>
+        </EuiToolTip>
+      );
 
-    await userEvent.hover(trigger);
-    await waitForEuiToolTipVisible();
-    expect(baseElement).toMatchSnapshot();
-  });
+      const anchor = container.querySelector('.euiToolTipAnchor');
+      expect(anchor).toHaveClass('customAnchorClass');
+      expect(anchor).toHaveAttribute('data-test-subj', 'anchor');
+    });
 
-  test('anchor props are rendered', () => {
-    const { baseElement } = render(
-      <EuiToolTip
-        title="title"
-        id="id"
-        content="content"
-        anchorProps={{
-          className: 'customAnchorClass1',
-          'data-test-subj': 'DTS',
-        }}
-        className="customAnchorClass2"
-      >
-        <button>Trigger</button>
-      </EuiToolTip>
-    );
+    it('display="block" applies a different CSS class than display="inlineBlock"', () => {
+      const { container: blockContainer } = render(
+        <EuiToolTip content="content" display="block">
+          <button>Trigger</button>
+        </EuiToolTip>
+      );
+      const { container: inlineBlockContainer } = render(
+        <EuiToolTip content="content" display="inlineBlock">
+          <button>Trigger</button>
+        </EuiToolTip>
+      );
 
-    expect(baseElement).toMatchSnapshot();
-  });
+      const blockAnchor = blockContainer.querySelector('.euiToolTipAnchor')!;
+      const inlineBlockAnchor =
+        inlineBlockContainer.querySelector('.euiToolTipAnchor')!;
+      expect(blockAnchor.className).not.toEqual(inlineBlockAnchor.className);
+    });
 
-  test('display prop renders block', () => {
-    const { container } = render(
-      <EuiToolTip
-        title="title"
-        id="id"
-        content="content"
-        {...requiredProps}
-        display="block"
-      >
-        <button>Trigger</button>
-      </EuiToolTip>
-    );
+    it('calls the onMouseOut prop callback on mouseout', async () => {
+      const onMouseOut = jest.fn();
+      const { getByTestSubject } = render(
+        <EuiToolTip content="content" onMouseOut={onMouseOut}>
+          <button data-test-subj="trigger" />
+        </EuiToolTip>
+      );
 
-    expect(container).toMatchSnapshot();
+      fireEvent.mouseOver(getByTestSubject('trigger'));
+      await waitForEuiToolTipVisible();
+
+      fireEvent.mouseOut(getByTestSubject('trigger'));
+      expect(onMouseOut).toHaveBeenCalledTimes(1);
+    });
   });
 
   describe('aria-describedby', () => {
@@ -121,9 +206,31 @@ describe('EuiToolTip', () => {
       fireEvent.mouseOver(getByTestSubject('anchor'));
       await waitForEuiToolTipVisible();
 
-      expect(
-        getByTestSubject('anchor').getAttribute('aria-describedby')
-      ).toEqual('toolTipId');
+      expect(getByTestSubject('anchor')).toHaveAttribute(
+        'aria-describedby',
+        'toolTipId'
+      );
+    });
+
+    it('removes `aria-describedby` when the tooltip is hidden', async () => {
+      const { getByTestSubject } = render(
+        <EuiToolTip content="Tooltip content" id="toolTipId">
+          <button data-test-subj="anchor" />
+        </EuiToolTip>
+      );
+
+      fireEvent.mouseOver(getByTestSubject('anchor'));
+      await waitForEuiToolTipVisible();
+      expect(getByTestSubject('anchor')).toHaveAttribute(
+        'aria-describedby',
+        'toolTipId'
+      );
+
+      fireEvent.mouseOut(getByTestSubject('anchor'));
+      await waitForEuiToolTipHidden();
+      expect(getByTestSubject('anchor')).not.toHaveAttribute(
+        'aria-describedby'
+      );
     });
 
     it('does not add `aria-describedby` when `disableScreenReaderOutput` is `true`', async () => {
@@ -139,9 +246,9 @@ describe('EuiToolTip', () => {
       fireEvent.mouseOver(getByTestSubject('anchor'));
       await waitForEuiToolTipVisible();
 
-      expect(
-        getByTestSubject('anchor').getAttribute('aria-describedby')
-      ).toEqual(null);
+      expect(getByTestSubject('anchor')).not.toHaveAttribute(
+        'aria-describedby'
+      );
     });
 
     it('merges with custom consumer `aria-describedby`s', async () => {
@@ -153,9 +260,10 @@ describe('EuiToolTip', () => {
       fireEvent.mouseOver(getByTestSubject('anchor'));
       await waitForEuiToolTipVisible();
 
-      expect(
-        getByTestSubject('anchor').getAttribute('aria-describedby')
-      ).toEqual('toolTipId customId');
+      expect(getByTestSubject('anchor')).toHaveAttribute(
+        'aria-describedby',
+        'toolTipId customId'
+      );
     });
 
     it('adds custom consumer `aria-describedby` when `disableScreenReaderOutput` is `true`', async () => {
@@ -171,74 +279,159 @@ describe('EuiToolTip', () => {
       fireEvent.mouseOver(getByTestSubject('anchor'));
       await waitForEuiToolTipVisible();
 
-      expect(
-        getByTestSubject('anchor').getAttribute('aria-describedby')
-      ).toEqual('customId');
+      expect(getByTestSubject('anchor')).toHaveAttribute(
+        'aria-describedby',
+        'customId'
+      );
     });
   });
 
-  describe('ref methods', () => {
-    // Although we don't publicly recommend it, consumers may need to reach into EuiToolTip
-    // class methods to manually control visibility state via `show/hideToolTip`.
-    // If we switch EuiToolTip to a function component, we'll need to use
-    // `useImperativeHandle` to continue exposing these APIs
+  describe('disableScreenReaderOutput', () => {
+    it('when false (default), Escape stops event propagation while tooltip is visible', async () => {
+      const parentKeyDown = jest.fn();
+      const { getByTestSubject } = render(
+        <div onKeyDown={parentKeyDown}>
+          <EuiToolTip content="content">
+            <button data-test-subj="trigger" />
+          </EuiToolTip>
+        </div>
+      );
 
-    test('showToolTip', async () => {
-      const ConsumerToolTip = () => {
-        const toolTipRef = useRef<EuiToolTip>(null);
-
-        const showToolTip = () => {
-          toolTipRef.current?.showToolTip();
-        };
-
-        // NOTE: KEEP IN MIND THAT THIS IS BAD ACCESSIBILITY PRACTICE AND ONLY HERE FOR TESTING
-        // Because focus is on separate item from the tooltip, aria-describedby does not trigger
-        // and the tooltip contents are not read out to screen readers
-        return (
-          <>
-            <EuiToolTip content="Tooltip text" ref={toolTipRef}>
-              <span>Not focusable</span>
-            </EuiToolTip>
-            <button data-test-subj="trigger" onClick={showToolTip}>
-              Controls tooltip
-            </button>
-          </>
-        );
-      };
-      const { getByTestSubject } = render(<ConsumerToolTip />);
-
-      fireEvent.click(getByTestSubject('trigger'));
+      fireEvent.focus(getByTestSubject('trigger'));
       await waitForEuiToolTipVisible();
+
+      fireEvent.keyDown(getByTestSubject('trigger'), { key: 'Escape' });
+      await waitForEuiToolTipHidden();
+
+      expect(parentKeyDown).not.toHaveBeenCalled();
     });
 
-    test('hideToolTip', async () => {
-      // Consumers appear to mostly want this after modal/flyout/focus trap close, when
-      // focus is returned to toggling buttons with a tooltip, & said tooltip blocks UI
-      // @see https://github.com/elastic/eui/issues/5883#issuecomment-1120908605 for example
-      const ConsumerToolTip = () => {
-        const toolTipRef = useRef<EuiToolTip>(null);
+    it('when true, Escape does not stop event propagation', async () => {
+      const parentKeyDown = jest.fn();
+      const { getByTestSubject } = render(
+        <div onKeyDown={parentKeyDown}>
+          <EuiToolTip content="content" disableScreenReaderOutput={true}>
+            <button data-test-subj="trigger" />
+          </EuiToolTip>
+        </div>
+      );
 
-        const hideToolTip = () => {
-          toolTipRef.current?.hideToolTip();
-        };
+      fireEvent.focus(getByTestSubject('trigger'));
+      await waitForEuiToolTipVisible();
 
-        return (
-          <>
-            <EuiToolTip content="Tooltip text" ref={toolTipRef}>
-              <button data-test-subj="trigger" onClick={hideToolTip}>
-                Closes tooltip on click
-              </button>
-            </EuiToolTip>
-          </>
-        );
-      };
-      const { getByTestSubject } = render(<ConsumerToolTip />);
+      fireEvent.keyDown(getByTestSubject('trigger'), { key: 'Escape' });
+      await waitForEuiToolTipHidden();
+
+      expect(parentKeyDown).toHaveBeenCalledTimes(1);
+    });
+
+    it('when true, tooltip still renders visually', async () => {
+      const { getByTestSubject, getByRole } = render(
+        <EuiToolTip content="Tooltip content" disableScreenReaderOutput={true}>
+          <button data-test-subj="trigger" />
+        </EuiToolTip>
+      );
 
       fireEvent.mouseOver(getByTestSubject('trigger'));
       await waitForEuiToolTipVisible();
 
-      fireEvent.click(getByTestSubject('trigger'));
-      await waitForEuiToolTipHidden();
+      expect(getByRole('tooltip')).toBeInTheDocument();
+    });
+  });
+
+  describe('ref', () => {
+    describe('showToolTip / hideToolTip', () => {
+      // Although we don't publicly recommend it, consumers may need to reach into EuiToolTip
+      // to manually control visibility state via `show/hideToolTip`, exposed via `useImperativeHandle`.
+
+      test('showToolTip', async () => {
+        const ConsumerToolTip = () => {
+          const toolTipRef = useRef<EuiToolTipRef>(null);
+
+          const showToolTip = () => {
+            toolTipRef.current?.showToolTip();
+          };
+
+          // NOTE: KEEP IN MIND THAT THIS IS BAD ACCESSIBILITY PRACTICE AND ONLY HERE FOR TESTING
+          // Because focus is on separate item from the tooltip, aria-describedby does not trigger
+          // and the tooltip contents are not read out to screen readers
+          return (
+            <>
+              <EuiToolTip content="Tooltip text" ref={toolTipRef}>
+                <span>Not focusable</span>
+              </EuiToolTip>
+              <button data-test-subj="trigger" onClick={showToolTip}>
+                Controls tooltip
+              </button>
+            </>
+          );
+        };
+        const { getByTestSubject, getByRole, queryByRole } = render(
+          <ConsumerToolTip />
+        );
+
+        expect(queryByRole('tooltip')).not.toBeInTheDocument();
+
+        fireEvent.click(getByTestSubject('trigger'));
+        await waitForEuiToolTipVisible();
+
+        expect(getByRole('tooltip')).toBeInTheDocument();
+      });
+
+      test('hideToolTip', async () => {
+        // Consumers appear to mostly want this after modal/flyout/focus trap close, when
+        // focus is returned to toggling buttons with a tooltip, & said tooltip blocks UI
+        // @see https://github.com/elastic/eui/issues/5883#issuecomment-1120908605 for example
+        const ConsumerToolTip = () => {
+          const toolTipRef = useRef<EuiToolTipRef>(null);
+
+          const hideToolTip = () => {
+            toolTipRef.current?.hideToolTip();
+          };
+
+          return (
+            <>
+              <EuiToolTip content="Tooltip text" ref={toolTipRef}>
+                <button data-test-subj="trigger" onClick={hideToolTip}>
+                  Closes tooltip on click
+                </button>
+              </EuiToolTip>
+            </>
+          );
+        };
+        const { getByTestSubject, queryByRole } = render(<ConsumerToolTip />);
+
+        fireEvent.mouseOver(getByTestSubject('trigger'));
+        await waitForEuiToolTipVisible();
+        expect(queryByRole('tooltip')).toBeInTheDocument();
+
+        fireEvent.click(getByTestSubject('trigger'));
+        await waitForEuiToolTipHidden();
+
+        expect(queryByRole('tooltip')).not.toBeInTheDocument();
+      });
+    });
+
+    describe('id', () => {
+      it('exposes the id prop value', () => {
+        const ref = createRef<EuiToolTipRef>();
+        render(
+          <EuiToolTip content="content" id="custom-id" ref={ref}>
+            <button>Trigger</button>
+          </EuiToolTip>
+        );
+        expect(ref.current?.id).toBe('custom-id');
+      });
+
+      it('exposes a generated id when no id prop is provided', () => {
+        const ref = createRef<EuiToolTipRef>();
+        render(
+          <EuiToolTip content="content" ref={ref}>
+            <button>Trigger</button>
+          </EuiToolTip>
+        );
+        expect(ref.current?.id).toBeTruthy();
+      });
     });
   });
 });

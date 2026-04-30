@@ -28,11 +28,9 @@ const EuiIconProductDashboard = ({
     {...props}
   >
     {title ? <title id={titleId}>{title}</title> : null}
-    <path
-      fillRule="evenodd"
-      d="M6 11a1 1 0 0 1 1 1v1l-.005.102A1 1 0 0 1 6 14H2a1 1 0 0 1-1-1v-1a1 1 0 0 1 1-1h4Zm-4 2h4v-1H2v1ZM14 7a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5Zm-5 6h5V8H9v5ZM6 7a1 1 0 0 1 1 1v1l-.005.103A1 1 0 0 1 6 10H2a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h4ZM2 9h4V8H2v1ZM14 2a1 1 0 0 1 .995.897L15 3v2a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1h12ZM2 5h12V3H2v2Z"
-      clipRule="evenodd"
-    />
+    <path d="m8.528 10.265.972-.972 1.5 1.5 1.646-1.647.707.708L11 12.207l-1.5-1.5-1.028 1.028-3-3.5-2.118 2.119-.708-.708 2.882-2.881 3 3.5Z" />
+    <path d="M9 8H8V6h1v2Zm2 0h-1V5h1v3Zm2 0h-1V4h1v4ZM7 5H3V4h4v1Z" />
+    <path d="M14 2a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1h12ZM2 13h12V3H2v10Z" />
   </svg>
 );
 export const icon = EuiIconProductDashboard;
