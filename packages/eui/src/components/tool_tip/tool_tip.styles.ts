@@ -64,7 +64,7 @@ export const euiToolTipStyles = (euiThemeContext: UseEuiTheme) => {
       ${logicalCSS('max-width', '256px')}
       overflow-wrap: break-word;
       padding: ${euiTheme.size.s};
-      ${euiFontSize(euiThemeContext, 's')}
+      ${euiFontSize(euiThemeContext, 'xs')}
 
       position: absolute;
 
@@ -74,35 +74,11 @@ export const euiToolTipStyles = (euiThemeContext: UseEuiTheme) => {
         background-color: ${euiToolTipBorderColor(euiTheme)};
       }
     `,
-    // Sizes
-    s: css`
-      ${euiFontSize(euiThemeContext, 'xs')}
-    `,
-    // Positions
-    top: css`
-      ${euiCanAnimate} {
-        animation: ${euiToolTipAnimationVertical(`-${euiTheme.size.base}`)}
-          ${animationTiming};
-      }
-    `,
-    bottom: css`
-      ${euiCanAnimate} {
-        animation: ${euiToolTipAnimationVertical(euiTheme.size.base)}
-          ${animationTiming};
-      }
-    `,
-    left: css`
-      ${euiCanAnimate} {
-        animation: ${euiToolTipAnimationHorizontal(`-${euiTheme.size.base}`)}
-          ${animationTiming};
-      }
-    `,
-    right: css`
-      ${euiCanAnimate} {
-        animation: ${euiToolTipAnimationHorizontal(euiTheme.size.base)}
-          ${animationTiming};
-      }
-    `,
+    // Positions - kept for component compatibility. Animation is in the base style.
+    top: css``,
+    bottom: css``,
+    left: css``,
+    right: css``,
     // Arrow
     euiToolTip__arrow: css`
       ${arrowStyles._arrowStyles}
