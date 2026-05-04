@@ -6,7 +6,12 @@
  * Side Public License, v 1.
  */
 
-import React, { ButtonHTMLAttributes, Component, createRef } from 'react';
+import React, {
+  ButtonHTMLAttributes,
+  Component,
+  createRef,
+  isValidElement,
+} from 'react';
 import classNames from 'classnames';
 
 import { withEuiTheme, WithEuiThemeProps } from '../../services';
@@ -94,7 +99,7 @@ export class EuiFilterSelectItemClass extends Component<
 
   componentDidMount() {
     const { isFocused, toolTipContent, disabled, children } = this.props;
-    if (React.isValidElement(children) && !disabled && toolTipContent) {
+    if (isValidElement(children) && !disabled && toolTipContent) {
       this.toggleToolTip(isFocused ?? false);
     }
   }
@@ -107,7 +112,7 @@ export class EuiFilterSelectItemClass extends Component<
     }
     const { isFocused, toolTipContent, disabled, children } = this.props;
     if (
-      React.isValidElement(children) &&
+      isValidElement(children) &&
       !disabled &&
       toolTipContent &&
       isFocused !== prevProps.isFocused
@@ -144,7 +149,7 @@ export class EuiFilterSelectItemClass extends Component<
     const hasToolTip =
       // we're using isValidElement here as EuiToolTipAnchor uses
       // cloneElement to enhance the element with required attributes
-      React.isValidElement(children) && !disabled && toolTipContent;
+      isValidElement(children) && !disabled && toolTipContent;
 
     let anchorProps = undefined;
 
