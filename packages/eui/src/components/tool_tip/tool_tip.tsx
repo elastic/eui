@@ -52,18 +52,6 @@ const isFocusVisible = (element: Element): boolean => {
   }
 };
 
-/**
- * `:focus-visible` may throw in browsers that don't support the selector,
- * fall back to treating all focus as visible so tooltips still appear.
- */
-const isFocusVisible = (element: Element): boolean => {
-  try {
-    return element.matches(':focus-visible');
-  } catch {
-    return element.matches(':focus');
-  }
-};
-
 interface ToolTipStyles {
   top: number;
   left: number | 'auto';
