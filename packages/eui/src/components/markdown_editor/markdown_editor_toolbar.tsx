@@ -28,6 +28,17 @@ import { EuiMarkdownContext } from './markdown_context';
 import MarkdownActions from './markdown_actions';
 import { euiMarkdownEditorToolbarStyles } from './markdown_editor_toolbar.styles';
 
+/**
+ * A helper type to ensure the `button` property is defined
+ * on an ` EuiMarkdownEditorUiPlugin ` object.
+ */
+type EuiMarkdownEditorUiPluginWithButton = Omit<
+  EuiMarkdownEditorUiPlugin,
+  'button'
+> & {
+  button: NonNullable<EuiMarkdownEditorUiPlugin['button']>;
+};
+
 export type EuiMarkdownEditorToolbarProps = HTMLAttributes<HTMLDivElement> &
   CommonProps & {
     selectedNode?: null | any;
@@ -145,7 +156,7 @@ export const EuiMarkdownEditorToolbar = forwardRef<
       markdownActions,
       viewMode,
       onClickPreview,
-      uiPlugins,
+      uiPlugins: _uiPlugins,
       selectedNode,
       right,
     },
@@ -165,6 +176,10 @@ export const EuiMarkdownEditorToolbar = forwardRef<
     const isEditable = !isPreviewing && !readOnly;
 
     const styles = useEuiMemoizedStyles(euiMarkdownEditorToolbarStyles);
+
+    const uiPlugins = _uiPlugins.filter(
+      (uiPlugin) => !!uiPlugin.button
+    ) as EuiMarkdownEditorUiPluginWithButton[];
 
     return (
       <div
