@@ -7,8 +7,13 @@
  */
 
 import React, { createRef, StrictMode, useRef } from 'react';
-import { fireEvent } from '@testing-library/react';
-import { render, focusEuiToolTipTrigger } from '../../test/rtl';
+import { act, fireEvent } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import {
+  render,
+  focusEuiToolTipTrigger,
+  simulateFocusVisible,
+} from '../../test/rtl';
 import { requiredProps } from '../../test';
 import { shouldRenderCustomStyles } from '../../test/internal';
 
@@ -55,7 +60,7 @@ describe('EuiToolTip', () => {
       expect(queryByRole('tooltip')).not.toBeInTheDocument();
     });
 
-    it('shows on initial autoFocus in StrictMode', () => {
+    it('shows on initial `autoFocus` in StrictMode', () => {
       const originalMatches = Element.prototype.matches;
       const spy = jest
         .spyOn(Element.prototype, 'matches')
@@ -97,15 +102,20 @@ describe('EuiToolTip', () => {
       expect(queryByRole('tooltip')).not.toBeInTheDocument();
 
       const trigger = getByTestSubject('trigger');
-      fireEvent.keyPress(trigger, { key: 'Tab' });
+      const cleanup = simulateFocusVisible(trigger);
 
+      act(() => {
+        userEvent.tab();
+      });
       expect(queryByRole('tooltip')).toBeInTheDocument();
 
       fireEvent.blur(trigger);
       expect(queryByRole('tooltip')).not.toBeInTheDocument();
+
+      cleanup();
     });
 
-    it('persists tooltip on mouseout when trigger was keyboard-focused', () => {
+    it('persists on mouseout when trigger was keyboard-focused', () => {
       const { getByTestSubject, queryByRole } = render(
         <EuiToolTip content="Tooltip content">
           <button data-test-subj="trigger">Trigger</button>
@@ -123,7 +133,7 @@ describe('EuiToolTip', () => {
       expect(queryByRole('tooltip')).not.toBeInTheDocument();
     });
 
-    it('hides tooltip on mouseout when trigger was mouse-click focused', () => {
+    it('hides on mouseout when trigger was mouse-click focused', () => {
       const { getByTestSubject, queryByRole } = render(
         <EuiToolTip content="Tooltip content">
           <button data-test-subj="trigger">Trigger</button>
@@ -167,7 +177,7 @@ describe('EuiToolTip', () => {
   });
 
   describe('props', () => {
-    it('applies anchorClassName and anchorProps to the anchor wrapper', () => {
+    it('applies `anchorClassName` and `anchorProps` to the anchor wrapper', () => {
       const { container } = render(
         <EuiToolTip
           content="content"
@@ -183,7 +193,7 @@ describe('EuiToolTip', () => {
       expect(anchor).toHaveAttribute('data-test-subj', 'anchor');
     });
 
-    it('display="block" applies a different CSS class than display="inlineBlock"', () => {
+    it('`display="block"` applies a different CSS class than `display="inlineBlock"`', () => {
       const { container: blockContainer } = render(
         <EuiToolTip content="content" display="block">
           <button>Trigger</button>
@@ -201,7 +211,7 @@ describe('EuiToolTip', () => {
       expect(blockAnchor.className).not.toEqual(inlineBlockAnchor.className);
     });
 
-    it('calls the onMouseOut prop callback on mouseout', () => {
+    it('calls the `onMouseOut` prop callback on mouseout', () => {
       const onMouseOut = jest.fn();
       const { getByTestSubject } = render(
         <EuiToolTip content="content" onMouseOut={onMouseOut}>
@@ -353,11 +363,11 @@ describe('EuiToolTip', () => {
   });
 
   describe('ref', () => {
-    describe('showToolTip / hideToolTip', () => {
+    describe('`showToolTip` / `hideToolTip`', () => {
       // Although we don't publicly recommend it, consumers may need to reach into EuiToolTip
       // to manually control visibility state via `show/hideToolTip`, exposed via `useImperativeHandle`.
 
-      test('showToolTip', () => {
+      test('`showToolTip`', () => {
         const ConsumerToolTip = () => {
           const toolTipRef = useRef<EuiToolTipRef>(null);
 
@@ -390,7 +400,7 @@ describe('EuiToolTip', () => {
         expect(getByRole('tooltip')).toBeInTheDocument();
       });
 
-      test('hideToolTip', () => {
+      test('`hideToolTip`', () => {
         // Consumers appear to mostly want this after modal/flyout/focus trap close, when
         // focus is returned to toggling buttons with a tooltip, & said tooltip blocks UI
         // @see https://github.com/elastic/eui/issues/5883#issuecomment-1120908605 for example
@@ -423,7 +433,7 @@ describe('EuiToolTip', () => {
     });
 
     describe('id', () => {
-      it('exposes the id prop value', () => {
+      it('exposes the `id` prop value', () => {
         const ref = createRef<EuiToolTipRef>();
         render(
           <EuiToolTip content="content" id="custom-id" ref={ref}>
@@ -433,7 +443,7 @@ describe('EuiToolTip', () => {
         expect(ref.current?.id).toBe('custom-id');
       });
 
-      it('exposes a generated id when no id prop is provided', () => {
+      it('exposes a generated id when no `id` prop is provided', () => {
         const ref = createRef<EuiToolTipRef>();
         render(
           <EuiToolTip content="content" ref={ref}>
