@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
@@ -123,11 +123,15 @@ export const DropZone: Story = {
 };
 
 const StatefulMarkdownEditor = ({
-  value: initialValue,
+  value: _value,
   onChange,
   ...rest
 }: EuiMarkdownEditorProps) => {
-  const [value, setValue] = useState(initialValue);
+  const [value, setValue] = useState(_value);
+
+  useEffect(() => {
+    setValue(_value);
+  }, [_value]);
 
   return (
     <EuiMarkdownEditor
