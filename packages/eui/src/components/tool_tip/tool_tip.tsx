@@ -218,7 +218,6 @@ export const EuiToolTip = forwardRef<EuiToolTipRef, EuiToolTipProps>(
           : 'auto',
       };
 
-      setVisible(true);
       setCalculatedPosition(position);
       setToolTipStyles(newToolTipStyles);
       setArrowStyles(arrow);
