@@ -89,9 +89,7 @@ describe('EuiToolTip', () => {
       const { getByTestSubject, queryByRole } = render(
         <StrictMode>
           <EuiToolTip content="Tooltip content">
-            <button data-test-subj="trigger" autoFocus>
-              Trigger
-            </button>
+            <button data-test-subj="trigger">Trigger</button>
           </EuiToolTip>
         </StrictMode>
       );
@@ -99,7 +97,8 @@ describe('EuiToolTip', () => {
       expect(queryByRole('tooltip')).not.toBeInTheDocument();
 
       const trigger = getByTestSubject('trigger');
-      focusEuiToolTipTrigger(trigger);
+      fireEvent.keyPress(trigger, { key: 'Tab' });
+
       expect(queryByRole('tooltip')).toBeInTheDocument();
 
       fireEvent.blur(trigger);
