@@ -6,10 +6,10 @@
  * Side Public License, v 1.
  */
 
-import { css, keyframes } from '@emotion/react';
+import { css } from '@emotion/react';
 import { euiShadow } from '@elastic/eui-theme-common';
 
-import { logicalCSS, euiFontSize, euiCanAnimate } from '../../global_styling';
+import { logicalCSS, euiFontSize } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 import { _popoverArrowStyles } from '../../services/popover';
 import { euiPanelBorderStyles } from '../panel/panel.styles';
@@ -20,35 +20,10 @@ export const euiToolTipBackgroundColor = (euiTheme: UseEuiTheme['euiTheme']) =>
 export const euiToolTipBorderColor = (euiTheme: UseEuiTheme['euiTheme']) =>
   euiTheme.components.tooltipBorder;
 
-const euiToolTipAnimationVertical = (size: string) => keyframes`
-    0% {
-        opacity: 0;
-        transform: translateY(${size});
-    }
-
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
-`;
-
-const euiToolTipAnimationHorizontal = (size: string) => keyframes`
-    0% {
-        opacity: 0;
-        transform: translateX(${size});
-    }
-
-    100% {
-        opacity: 1;
-        transform: translateX(0);
-    }
-`;
-
 export const euiToolTipStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme, highContrastMode } = euiThemeContext;
 
   const hasShadow = !highContrastMode;
-  const animationTiming = `${euiTheme.animation.slow} ease-out 0s forwards`;
 
   const arrowSize = euiTheme.size.m;
   const arrowStyles = _popoverArrowStyles(euiThemeContext, arrowSize);
