@@ -11,7 +11,7 @@ import { fireEvent } from '@storybook/test';
 import type { Meta, StoryObj, ReactRenderer } from '@storybook/react';
 import type { PlayFunctionContext } from '@storybook/csf';
 import { within } from '../../../../.storybook/test';
-import { LOKI_SELECTORS } from '../../../../.storybook/loki';
+import { VRT_SELECTORS } from '../../../../.storybook/vrt';
 
 import { EuiButtonEmpty, EuiButtonIcon } from '../../button';
 import { EuiFlexGroup, EuiFlexItem } from '../../flex';
@@ -31,6 +31,9 @@ import {
 const meta: Meta = {
   title: 'Tabular Content/EuiDataGrid/toolbarVisibility (prop)',
   component: ToolbarStorybookComponent,
+  parameters: {
+    vrt: { selector: VRT_SELECTORS.portal },
+  },
 };
 
 export default meta;
@@ -263,7 +266,7 @@ const vrtProps = {
 export const ColumnSelector: Story = {
   tags: ['vrt-only'],
   parameters: {
-    loki: { chromeSelector: LOKI_SELECTORS.portal },
+    vrt: { selector: VRT_SELECTORS.portal },
   },
   render: () => <StatefulDataGrid {...vrtProps} minSizeForControls={1} />, // Column sorting is hidden on mobile otherwise
   play: async ({ canvasElement, step }: PlayFunctionContext<ReactRenderer>) => {
@@ -284,7 +287,7 @@ export const ColumnSelector: Story = {
 export const ColumnSorting: Story = {
   tags: ['vrt-only'],
   parameters: {
-    loki: { chromeSelector: LOKI_SELECTORS.portal },
+    vrt: { selector: VRT_SELECTORS.portal },
   },
   render: () => <StatefulDataGrid {...vrtProps} minSizeForControls={1} />, // Column sorting is hidden on mobile otherwise
   play: async ({ canvasElement, step }: PlayFunctionContext<ReactRenderer>) => {
@@ -310,7 +313,7 @@ export const ColumnSorting: Story = {
 export const KeyboardShortcuts: Story = {
   tags: ['vrt-only'],
   parameters: {
-    loki: { chromeSelector: LOKI_SELECTORS.portal },
+    vrt: { selector: VRT_SELECTORS.portal },
   },
   render: () => <StatefulDataGrid {...vrtProps} />,
   play: async ({ canvasElement }: PlayFunctionContext<ReactRenderer>) => {
@@ -322,7 +325,7 @@ export const KeyboardShortcuts: Story = {
 export const DisplaySelector: Story = {
   tags: ['vrt-only'],
   parameters: {
-    loki: { chromeSelector: LOKI_SELECTORS.portal },
+    vrt: { selector: VRT_SELECTORS.portal },
   },
   render: () => <StatefulDataGrid {...vrtProps} />,
   play: async ({ canvasElement, step }: PlayFunctionContext<ReactRenderer>) => {
@@ -342,7 +345,7 @@ export const DisplaySelector: Story = {
 export const FullScreenToggle: Story = {
   tags: ['vrt-only'],
   parameters: {
-    loki: { chromeSelector: LOKI_SELECTORS.portal },
+    vrt: { selector: VRT_SELECTORS.portal },
   },
   render: () => <StatefulDataGrid {...vrtProps} />,
   play: async ({ canvasElement }: PlayFunctionContext<ReactRenderer>) => {

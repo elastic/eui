@@ -1,5 +1,16 @@
 #!/bin/bash
 
+# Push HEAD to the PR source branch. Requires `GH_TOKEN` to be exported.
+function git_push_to_pr_branch {
+  local branch="${BUILDKITE_BRANCH##*:}"
+  # Normalize to HTTPS in case `BUILDKITE_PULL_REQUEST_REPO` is an SSH URL
+  local pr_repo_url="${BUILDKITE_PULL_REQUEST_REPO}"
+  pr_repo_url="${pr_repo_url/git@github.com:/https://github.com/}"
+  git remote add pr-origin "${pr_repo_url}" 2>/dev/null \
+    || git remote set-url pr-origin "${pr_repo_url}"
+  git push pr-origin "HEAD:${branch}"
+}
+
 function retry {
   local retries=$1
   shift

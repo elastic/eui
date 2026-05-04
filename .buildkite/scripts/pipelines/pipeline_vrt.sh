@@ -1,0 +1,209 @@
+#!/bin/bash
+# Run visual regression tests against the deployed Storybook.
+#
+# On success: commits any newly-created reference screenshots (first-run baseline generation).
+# On failure: uploads diff artifacts, posts a Buildkite annotation and a GitHub PR comment with a
+# Before / After / Diff table, and injects the approval block step into the pipeline.
+
+set -eo pipefail
+
+source ~/.bash_profile
+source .buildkite/scripts/common/utils.sh
+
+corepack enable
+echo "Node.js version: $(node -v)"
+echo "Yarn version: $(yarn -v)"
+
+############################################################
+#                      Configuration                       #
+############################################################
+
+STORYBOOK_URL="$(buildkite-agent meta-data get storybook_base_url)"
+
+VRT_DIR="packages/eui/.vrt"
+REF_DIR="${VRT_DIR}/reference"
+DIFF_DIR="${VRT_DIR}/diff"
+CURRENT_DIR="${VRT_DIR}/current"
+
+export GH_TOKEN="${VAULT_GITHUB_TOKEN}"
+
+############################################################
+#                     Install dependencies                 #
+############################################################
+
+echo "+++ Installing dependencies"
+yarn
+
+############################################################
+#                    Run VRT (check mode)                  #
+############################################################
+
+echo "+++ Running visual regression tests against ${STORYBOOK_URL}"
+
+VRT_PASSED=true
+if ! yarn workspace @elastic/eui test-visual-regression -- --url "${STORYBOOK_URL}"; then
+  VRT_PASSED=false
+fi
+
+############################################################
+#            On pass: commit any new baselines             #
+############################################################
+
+if [[ "${VRT_PASSED}" == "true" ]]; then
+  if [[ -n "$(git status --porcelain -- "${REF_DIR}")" ]]; then
+    echo "+++ Committing new VRT baseline screenshots (first run)"
+    gh auth setup-git
+    git add "${REF_DIR}"
+    git commit -m "chore(eui): add VRT baseline screenshots" --no-verify
+    git_push_to_pr_branch
+    echo "New VRT baseline screenshots committed and pushed"
+  else
+    echo "Visual regression tests passed with no new VRT baseline screenshots"
+  fi
+
+  # Mark as passed only after a successful commit/push (or when there was nothing to commit)
+  buildkite-agent meta-data set vrt_passed "true"
+  exit 0
+fi
+
+############################################################
+#           On failure: artifacts + annotation             #
+############################################################
+
+echo "^^^ +++"
+echo "Visual regression tests failed."
+
+# Count diff images first to distinguish visual regressions from infrastructure
+# failures (e.g. Playwright unable to connect to the deployed Storybook URL).
+diff_count=$(find "${DIFF_DIR}" -name "*.diff.png" 2>/dev/null | wc -l | tr -d ' ')
+
+if [[ "${diff_count}" -eq 0 ]]; then
+  # No diff images means VRT crashed before producing comparisons. Don't surface
+  # the approval flow, just fail clearly.
+  buildkite-agent meta-data set vrt_passed "false"
+  echo "No diff images found — this looks like an infrastructure failure, not a visual regression."
+  echo "Check the Playwright output above for connection or timeout errors."
+  exit 1
+fi
+
+echo "Found ${diff_count} visual difference(s). Uploading artifacts and generating annotation..."
+
+buildkite-agent meta-data set vrt_passed "false"
+
+# Upload all three image sets as Buildkite artifacts (for the annotation)
+buildkite-agent artifact upload "${DIFF_DIR}/*.diff.png"
+buildkite-agent artifact upload "${CURRENT_DIR}/*-received.png"
+if compgen -G "${REF_DIR}/*.png" > /dev/null 2>&1; then
+  buildkite-agent artifact upload "${REF_DIR}/*.png"
+fi
+
+# Also upload diff images to GCS so they have public URLs for the GitHub PR comment
+GCLOUD_BUCKET_FULL="$(buildkite-agent meta-data get gcloud_bucket_full)"
+bucket_directory="$(buildkite-agent meta-data get bucket_directory)"
+vrt_gcs_base="gs://${GCLOUD_BUCKET_FULL}/${bucket_directory}vrt-diff"
+vrt_public_base="https://eui.elastic.co/${bucket_directory}vrt-diff"
+
+gcloud auth activate-service-account --key-file <(echo "${GCE_ACCOUNT}")
+unset GCE_ACCOUNT
+
+GCS_UPLOAD_ARGS=(
+  --cache-control="no-store"
+  --predefined-acl="publicRead"
+)
+
+annotation_rows=""
+pr_comment_rows=""
+while IFS= read -r diff_file; do
+  filename="$(basename "${diff_file}")"
+  story_name="${filename%.diff.png}"
+
+  gcloud storage cp "${GCS_UPLOAD_ARGS[@]}" "${diff_file}" "${vrt_gcs_base}/${filename}"
+  if [[ -f "${CURRENT_DIR}/${story_name}-received.png" ]]; then
+    gcloud storage cp "${GCS_UPLOAD_ARGS[@]}" "${CURRENT_DIR}/${story_name}-received.png" "${vrt_gcs_base}/${story_name}-received.png"
+  fi
+  if [[ -f "${REF_DIR}/${story_name}.png" ]]; then
+    gcloud storage cp "${GCS_UPLOAD_ARGS[@]}" "${REF_DIR}/${story_name}.png" "${vrt_gcs_base}/${story_name}-before.png"
+  fi
+
+  annotation_rows+="
+<tr>
+  <td><code>${story_name}</code></td>
+  <td><img src=\"artifact://${REF_DIR}/${story_name}.png\" width=\"300\"/></td>
+  <td><img src=\"artifact://${CURRENT_DIR}/${story_name}-received.png\" width=\"300\"/></td>
+  <td><img src=\"artifact://${DIFF_DIR}/${story_name}.diff.png\" width=\"300\"/></td>
+</tr>"
+
+  pr_comment_rows+="
+<tr>
+  <td><code>${story_name}</code></td>
+  <td><img src=\"${vrt_public_base}/${story_name}-before.png\" width=\"300\"/></td>
+  <td><img src=\"${vrt_public_base}/${story_name}-received.png\" width=\"300\"/></td>
+  <td><img src=\"${vrt_public_base}/${filename}\" width=\"300\"/></td>
+</tr>"
+done < <(find "${DIFF_DIR}" -name "*.diff.png" | sort)
+
+buildkite-agent annotate --style "error" --context "vrt-diff" << HTML
+<details>
+<summary><strong>${diff_count}</strong> visual difference(s) found - expand to review, then click <em>Approve visual changes</em> to update baselines</summary>
+
+<table>
+<thead>
+<tr>
+  <th>Story</th>
+  <th>Before</th>
+  <th>After</th>
+  <th>Diff</th>
+</tr>
+</thead>
+<tbody>
+${annotation_rows}
+</tbody>
+</table>
+</details>
+HTML
+
+# Post the diff table as a GitHub PR comment and store the URL for the notification annotation
+vrt_comment_body="$(cat << HTML
+<details>
+<summary><strong>${diff_count}</strong> visual difference(s) found — expand to review, then click <em>Approve visual changes</em> to update baselines</summary>
+
+<table>
+<thead>
+<tr>
+  <th>Story</th>
+  <th>Before</th>
+  <th>After</th>
+  <th>Diff</th>
+</tr>
+</thead>
+<tbody>
+${pr_comment_rows}
+</tbody>
+</table>
+</details>
+HTML
+)"
+
+vrt_comment_url="$(gh api "repos/elastic/eui/issues/${BUILDKITE_PULL_REQUEST}/comments" \
+  --method POST \
+  -f "body=${vrt_comment_body}" \
+  --jq '.html_url')"
+
+buildkite-agent meta-data set vrt_comment_url "${vrt_comment_url}"
+
+# Inject the approval block step and baseline-update step into the pipeline.
+buildkite-agent pipeline upload << 'APPROVAL_PIPELINE'
+steps:
+  - block: "Approve visual changes"
+    key: "approve-vrt"
+    prompt: "Review the diff annotation in this build, then click Approve to update the baselines on this branch."
+    allowed_teams:
+      - "elastic/eui"
+
+  - label: "Update VRT baselines"
+    key: "update-baselines"
+    depends_on: "approve-vrt"
+    command: ".buildkite/scripts/pipelines/pipeline_vrt_update.sh"
+APPROVAL_PIPELINE
+
+exit 1

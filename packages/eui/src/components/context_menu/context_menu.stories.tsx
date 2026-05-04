@@ -10,7 +10,7 @@ import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { css } from '@emotion/react';
 
-import { LOKI_SELECTORS } from '../../../.storybook/loki';
+import { VRT_SELECTORS } from '../../../.storybook/vrt';
 import { logicalCSS, useEuiScrollBar } from '../../global_styling';
 import { EuiPopover } from '../popover';
 import { EuiButton } from '../button';
@@ -143,8 +143,8 @@ export const Playground: Story = {
 
 export const InPopover: Story = {
   parameters: {
-    loki: {
-      chromeSelector: LOKI_SELECTORS.portal,
+    vrt: {
+      selector: VRT_SELECTORS.portal,
     },
   },
   args: {
@@ -176,8 +176,8 @@ export const InPopover: Story = {
 
 export const InScrollablePopover: Story = {
   parameters: {
-    loki: {
-      chromeSelector: LOKI_SELECTORS.portal,
+    vrt: {
+      selector: VRT_SELECTORS.portal,
     },
   },
   globals: {

@@ -16,7 +16,7 @@ const meta: Meta<EuiDelayHideProps> = {
   title: 'Utilities/EuiDelayHide',
   component: EuiDelayHide,
   parameters: {
-    loki: {
+    vrt: {
       // VRT is not really useful here as the main functionality is the timeout
       skip: true,
     },

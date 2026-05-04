@@ -41,9 +41,9 @@ const meta: Meta<typeof EuiFlyout> = {
   title: 'Layout/EuiFlyout/Flyout Manager',
   component: EuiFlyout,
   parameters: {
-    // Skipping visual regression testing with Loki
+    // Skipping visual regression testing
     // This is a playground for Flyout Manager and doesn't show anything testable on page load
-    loki: { skip: true },
+    vrt: { skip: true },
   },
 };
 

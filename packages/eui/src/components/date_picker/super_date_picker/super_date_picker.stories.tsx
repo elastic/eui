@@ -14,7 +14,7 @@ import { expect, fireEvent, waitFor } from '@storybook/test';
 import { StoryContext } from '@storybook/csf';
 
 import { within } from '../../../../.storybook/test';
-import { LOKI_SELECTORS } from '../../../../.storybook/loki';
+import { VRT_SELECTORS } from '../../../../.storybook/vrt';
 import { enableFunctionToggleControls } from '../../../../.storybook/utils';
 
 import { EuiLink } from '../../link';
@@ -95,8 +95,8 @@ export const CustomQuickSelectPanel: Story = {
     controls: {
       include: ['customQuickSelectPanels', 'onTimeChange'],
     },
-    loki: {
-      chromeSelector: LOKI_SELECTORS.portal,
+    vrt: {
+      selector: VRT_SELECTORS.portal,
     },
   },
   args: {
@@ -130,8 +130,8 @@ export const RestrictedRange: Story = {
         'onTimeChange',
       ],
     },
-    loki: {
-      chromeSelector: LOKI_SELECTORS.portal,
+    vrt: {
+      selector: VRT_SELECTORS.portal,
     },
   },
   args: {
@@ -146,7 +146,7 @@ export const QuickSelectOnly: Story = {
     controls: {
       include: ['isQuickSelectOnly'],
     },
-    loki: { chromeSelector: LOKI_SELECTORS.portal },
+    vrt: { selector: VRT_SELECTORS.portal },
   },
   args: {
     start: '2025-01-01T00:00:00',
@@ -222,8 +222,8 @@ export const CustomTimeZoneDisplay: Story = {
     controls: {
       include: ['timeZoneDisplayProps'],
     },
-    loki: {
-      chromeSelector: LOKI_SELECTORS.portal,
+    vrt: {
+      selector: VRT_SELECTORS.portal,
     },
   },
   args: {
@@ -269,7 +269,7 @@ export const CollapsedQuickSelectOnly: Story = {
     controls: {
       include: ['isQuickSelectOnly'],
     },
-    loki: { chromeSelector: LOKI_SELECTORS.portal },
+    vrt: { selector: VRT_SELECTORS.portal },
   },
   args: {
     start: '2025-01-01T00:00:00',

@@ -13,7 +13,7 @@ import {
   enableFunctionToggleControls,
   moveStorybookControlsToCategory,
 } from '../../../.storybook/utils';
-import { LOKI_SELECTORS } from '../../../.storybook/loki';
+import { VRT_SELECTORS } from '../../../.storybook/vrt';
 import { EuiFlexGroup } from '../flex';
 import { ToolTipDelay } from './tool_tip';
 import { EuiIconTip, EuiIconTipProps } from './icon_tip';
@@ -23,8 +23,8 @@ const meta: Meta<EuiIconTipProps> = {
   component: EuiIconTip,
   parameters: {
     layout: 'fullscreen',
-    loki: {
-      chromeSelector: LOKI_SELECTORS.portal,
+    vrt: {
+      selector: VRT_SELECTORS.portal,
     },
   },
   decorators: [

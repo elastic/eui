@@ -81,7 +81,7 @@ moveStorybookControlsToCategory(IconShape, [
 export const AutoFill: Story = {
   parameters: {
     controls: { include: ['name', 'isInvalid'] },
-    loki: { skip: true },
+    vrt: { skip: true },
   },
   decorators: [
     (Story) => (

@@ -12,7 +12,7 @@ import type { PlayFunctionContext } from '@storybook/csf';
 import { css } from '@emotion/react';
 
 import { within } from '../../../.storybook/test';
-import { LOKI_SELECTORS } from '../../../.storybook/loki';
+import { VRT_SELECTORS } from '../../../.storybook/vrt';
 import { mathWithUnits } from '../../global_styling';
 
 import { EuiCodeBlock, EuiCodeBlockProps } from './code_block';
@@ -92,7 +92,7 @@ export const Annotations: Story = {
     lineNumbers: { table: { disable: true } },
   },
   parameters: {
-    loki: { chromeSelector: LOKI_SELECTORS.portal },
+    vrt: { selector: VRT_SELECTORS.portal },
   },
   play: async ({ canvasElement }: PlayFunctionContext<ReactRenderer>) => {
     const canvas = within(canvasElement);
@@ -158,8 +158,8 @@ rendered correctly and not cut-off after scrolling */
 export const VirtualizedCodeBlockScrolling: Story = {
   tags: ['vrt-only'],
   parameters: {
-    loki: {
-      chromeSelector: LOKI_SELECTORS.portal,
+    vrt: {
+      selector: VRT_SELECTORS.portal,
     },
     codeSnippet: {
       skip: true,
