@@ -27,7 +27,7 @@ export type EuiColorPickerSwatchProps = CommonProps &
      */
     showToolTip?: boolean;
 
-    /** Additional props for the EuiToolip when `showToolTip={true}` */
+    /** Additional props for the EuiToolTip when `showToolTip={true}` */
     toolTipProps?: Omit<EuiToolTipProps, 'children' | 'position'> & {
       position?: EuiToolTipProps['position'];
     };
