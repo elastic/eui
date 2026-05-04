@@ -199,7 +199,6 @@ it('shows tooltip on focus', async () => {
 });
 ```
 
-The rule auto-fixes `fireEvent.focus(element)` to `focusEuiToolTipTrigger(element)`. If `fireEvent.focus` is intentional, suppress it with `// eslint-disable-next-line @elastic/eui/prefer-tooltip-trigger-focus-test-utility`.
 
 ## Testing
 
