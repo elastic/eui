@@ -85,6 +85,7 @@ export const ColumnActions: FunctionComponent<
     hasFocusTrap: boolean;
     setPropsFromColumnActions: (props: PropsFromColumnActions) => void;
     actionsButtonRef: Ref<HTMLButtonElement>;
+    showColumnActionsAlways: boolean;
   }
 > = memo(
   ({
@@ -101,6 +102,7 @@ export const ColumnActions: FunctionComponent<
     hasFocusTrap,
     setPropsFromColumnActions,
     actionsButtonRef,
+    showColumnActionsAlways,
   }) => {
     /**
      * Popover logic and accessibility
@@ -194,6 +196,7 @@ export const ColumnActions: FunctionComponent<
         panelPaddingSize="none"
         offset={7}
         anchorPosition="downRight"
+        className="euiDataGridHeaderCell__columnActionsPopover"
         css={styles.euiDataGridHeaderCell__popover}
         button={
           <EuiButtonIcon
@@ -211,6 +214,8 @@ export const ColumnActions: FunctionComponent<
             css={[
               styles.euiDataGridHeaderCell__actions.action,
               styles.euiDataGridHeaderCell__actions.end,
+              showColumnActionsAlways &&
+                styles.euiDataGridHeaderCell__actionAlwaysVisible,
             ]}
             data-test-subj={`dataGridHeaderCellActionButton-${id}`}
           />

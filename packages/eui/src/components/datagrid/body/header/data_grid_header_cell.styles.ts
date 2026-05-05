@@ -52,6 +52,15 @@ export const euiDataGridHeaderCellStyles = (euiThemeContext: UseEuiTheme) => {
       /* Remove inline struts from EuiButtonIcon */
       line-height: 0;
     `,
+    /** Undo hide-on-hover affordance when headerColumnActionsVisibility is `always` */
+    euiDataGridHeaderCell__actionAlwaysVisible: css`
+      opacity: 1 !important; /* stylelint-disable-line declaration-no-important */
+      transform: none !important; /* stylelint-disable-line declaration-no-important */
+      ${logicalCSS(
+        'margin-left',
+        '0 !important'
+      )}/* stylelint-disable-line declaration-no-important */
+    `,
     euiDataGridHeaderCell__actions: {
       action: css`
         overflow: hidden;

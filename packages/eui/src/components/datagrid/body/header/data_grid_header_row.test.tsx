@@ -78,7 +78,7 @@ describe('EuiDataGridHeaderRow', () => {
             someColumn
           </div>
           <div
-            class="euiPopover emotion-euiPopover-block-euiDataGridHeaderCell__popover"
+            class="euiPopover euiDataGridHeaderCell__columnActionsPopover emotion-euiPopover-block-euiDataGridHeaderCell__popover"
           >
             <button
               aria-expanded="false"
