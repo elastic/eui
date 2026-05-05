@@ -14,7 +14,7 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 
-import { useEuiTheme, useGeneratedHtmlId } from '../../services';
+import { useEuiMemoizedStyles, useGeneratedHtmlId } from '../../services';
 import { CommonProps } from '../common';
 import { EuiLoadingSpinner } from '../loading';
 import type { EuiButtonIconProps } from '../button';
@@ -115,7 +115,7 @@ export type EuiAccordionProps = CommonProps &
     isDisabled?: boolean;
   };
 
-export const EuiAccordionClass: FunctionComponent<EuiAccordionProps> = ({
+export const EuiAccordion: FunctionComponent<EuiAccordionProps> = ({
   children,
   className,
   id,
@@ -149,25 +149,22 @@ export const EuiAccordionClass: FunctionComponent<EuiAccordionProps> = ({
     if (forceState) {
       onToggle?.(!isOpen);
     } else {
-      setIsOpenState((prevIsOpen) => {
-        const nextState = !prevIsOpen;
-        onToggle?.(nextState);
-        return nextState;
-      });
+      const nextState = !isOpenState;
+      setIsOpenState(nextState);
+      onToggle?.(nextState);
     }
   };
 
   const generatedId = useGeneratedHtmlId();
   const buttonId = buttonProps?.id ?? generatedId;
 
-  const euiTheme = useEuiTheme();
   const classes = classNames(
     'euiAccordion',
     { 'euiAccordion-isOpen': isOpen },
     className
   );
 
-  const styles = euiAccordionStyles(euiTheme);
+  const styles = useEuiMemoizedStyles(euiAccordionStyles);
   const cssStyles = [
     styles.euiAccordion,
     borders !== 'none' && styles.borders.borders,
@@ -208,5 +205,3 @@ export const EuiAccordionClass: FunctionComponent<EuiAccordionProps> = ({
     </Element>
   );
 };
-
-export const EuiAccordion = EuiAccordionClass;
