@@ -7,13 +7,14 @@
  */
 
 import React, { ReactNode, FunctionComponent, Ref } from 'react';
+import classNames from 'classnames';
 
 import { useEuiMemoizedStyles } from '../../services';
 import { CommonProps, NoArgCallback } from '../common';
 import { EuiButtonIcon, EuiButtonIconProps } from '../button';
-import { euiContextMenuPanelTitleStyles } from './context_menu_panel_title.styles';
-import classNames from 'classnames';
 import { useEuiI18n } from '../i18n';
+import { useInnerText } from '../inner_text';
+import { euiContextMenuPanelTitleStyles } from './context_menu_panel_title.styles';
 
 export type EuiContextMenuPanelTitleProps = CommonProps & {
   component?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
@@ -38,13 +39,15 @@ export const EuiContextMenuPanelTitle: FunctionComponent<
     ...rest
   } = props;
 
+  const [ref, innerText] = useInnerText('');
+
   const classes = classNames('euiContextMenuPanelTitle', className);
   const styles = useEuiMemoizedStyles(euiContextMenuPanelTitleStyles);
 
   const buttonAriaLabel = useEuiI18n(
     'euiContextMenuPanelTitle.ariaLabel',
     'Close current panel for: {title}',
-    { title }
+    { title: innerText }
   );
 
   return (
@@ -69,6 +72,7 @@ export const EuiContextMenuPanelTitle: FunctionComponent<
         className="euiContextMenuPanelTitle__text"
         css={styles.text}
         id={id}
+        ref={ref}
       >
         {title}
       </Component>
