@@ -243,9 +243,10 @@ export const EuiToolTip = forwardRef<EuiToolTipRef, EuiToolTipProps>(
     }, []);
 
     const showToolTip = useCallback(() => {
+      if (!content && !title) return;
       setVisible(true);
       toolTipManager.registerTooltip(hideToolTip);
-    }, [hideToolTip]);
+    }, [content, title, hideToolTip]);
 
     useImperativeHandle(ref, () => ({ showToolTip, hideToolTip, id }), [
       showToolTip,
