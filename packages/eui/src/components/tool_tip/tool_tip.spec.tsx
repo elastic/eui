@@ -35,6 +35,27 @@ describe('EuiToolTip', () => {
     cy.get('[data-test-subj="tooltip"]').should('not.exist');
   });
 
+  it('does not intercept pointer events on the trigger while visible', () => {
+    const onClick = cy.stub().as('onClick');
+    cy.mount(
+      <EuiToolTip content="Tooltip text here" data-test-subj="tooltip">
+        <EuiButton data-test-subj="trigger" onClick={onClick}>
+          Show tooltip
+        </EuiButton>
+      </EuiToolTip>
+    );
+
+    cy.get('[data-test-subj="trigger"]').trigger('mouseover');
+    cy.get('[data-test-subj="tooltip"]').should('exist');
+    cy.get('[data-test-subj="tooltip"]').should(
+      'have.css',
+      'pointer-events',
+      'none'
+    );
+    cy.get('[data-test-subj="trigger"]').click();
+    cy.get('@onClick').should('have.been.calledOnce');
+  });
+
   it('shows the tooltip on hover and hides it on mouseout for a custom disabled trigger button', () => {
     cy.mount(
       <EuiToolTip
