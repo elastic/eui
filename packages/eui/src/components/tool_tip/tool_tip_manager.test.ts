@@ -9,35 +9,53 @@
 import { toolTipManager } from './tool_tip_manager';
 
 describe('ToolTipManager', () => {
-  describe('registerToolTip', () => {
-    const hideToolTip = jest.fn();
+  afterEach(() => {
+    // Reset the singleton between tests to prevent cross-test contamination
+    toolTipManager.toolTipsToHide.clear();
+  });
 
-    it('stores the passed hideToolTip callback', () => {
-      toolTipManager.registerTooltip(hideToolTip);
+  describe('registerTooltip', () => {
+    it('does not call the newly registered callback', () => {
+      const hide = jest.fn();
 
-      expect(toolTipManager.toolTipsToHide.has(hideToolTip)).toBeTruthy();
+      toolTipManager.registerTooltip(hide);
+
+      expect(hide).not.toHaveBeenCalled();
     });
 
-    it('calls the previously stored hideToolTip callback and removes it from storage', () => {
-      toolTipManager.registerTooltip(() => {});
+    it('calls and removes any previously registered callback when a new tooltip registers', () => {
+      const hide1 = jest.fn();
+      const hide2 = jest.fn();
 
-      expect(hideToolTip).toHaveBeenCalledTimes(1);
-      expect(toolTipManager.toolTipsToHide.has(hideToolTip)).toBeFalsy();
+      toolTipManager.registerTooltip(hide1);
+      toolTipManager.registerTooltip(hide2);
+
+      expect(hide1).toHaveBeenCalledTimes(1);
+      expect(hide2).not.toHaveBeenCalled();
+    });
+
+    it('does not call the callback when re-registering the same tooltip', () => {
+      const hide = jest.fn();
+
+      toolTipManager.registerTooltip(hide);
+      toolTipManager.registerTooltip(hide);
+
+      expect(hide).not.toHaveBeenCalled();
     });
   });
 
   describe('deregisterToolTip', () => {
-    // If the current tooltip is already hidden before the next tooltip is visible,
-    // there's no need to re-hide it, so we deregister the callback
-    const deregisteredHide = jest.fn();
+    it('prevents a deregistered callback from being called when a new tooltip registers', () => {
+      // If the current tooltip is already hidden before the next tooltip is visible,
+      // there's no need to re-hide it, so we deregister the callback
+      const hide1 = jest.fn();
+      const hide2 = jest.fn();
 
-    it('removes the hide callback from storage', () => {
-      toolTipManager.registerTooltip(deregisteredHide);
-      toolTipManager.deregisterToolTip(deregisteredHide);
-      toolTipManager.registerTooltip(() => {});
+      toolTipManager.registerTooltip(hide1);
+      toolTipManager.deregisterToolTip(hide1);
+      toolTipManager.registerTooltip(hide2);
 
-      expect(deregisteredHide).toHaveBeenCalledTimes(0);
-      expect(toolTipManager.toolTipsToHide.has(deregisteredHide)).toBeFalsy();
+      expect(hide1).not.toHaveBeenCalled();
     });
   });
 });

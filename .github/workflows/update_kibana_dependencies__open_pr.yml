@@ -1,5 +1,26 @@
 name: 'Update Kibana dependencies - Open PR'
 on:
+  workflow_dispatch:
+    inputs:
+      pr_head:
+        description: HEAD ref
+        required: true
+        type: string
+      pr_title:
+        description: Title of the PR
+        required: true
+        type: string
+      pr_body:
+        description: Body of the PR
+        type: string
+      pr_draft:
+        description: Whether the PR should be marked as draft
+        type: boolean
+        default: true
+      pr_labels:
+        description: Comma-separated list of labels to add to the PR
+        type: string
+        default: 'EUI,backport:skip,release_note:skip'
   workflow_call:
     inputs:
       pr_head:

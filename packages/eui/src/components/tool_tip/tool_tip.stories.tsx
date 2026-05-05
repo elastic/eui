@@ -12,8 +12,8 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { enableFunctionToggleControls } from '../../../.storybook/utils';
 import { LOKI_SELECTORS, lokiPlayDecorator } from '../../../.storybook/loki';
 import { sleep } from '../../test';
-import { EuiFlexGroup } from '../flex';
 import { EuiButton } from '../button';
+import { EuiFlexGroup } from '../flex';
 import {
   EuiToolTip,
   EuiToolTipProps,
@@ -44,7 +44,6 @@ const meta: Meta<EuiToolTipProps> = {
   ],
   args: {
     position: 'top',
-    delay: 'regular',
     display: 'inlineBlock',
     // set up for easier testing/QA
     anchorClassName: '',

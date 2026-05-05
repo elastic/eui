@@ -60,7 +60,6 @@ export const DefaultItemAction = <T extends object>({
   const tooltipContent = callWithItemIfFunction(item)(action.description);
   const tooltipProps: Omit<EuiToolTipProps, 'position' | 'children'> = {
     content: tooltipContent,
-    delay: 'long',
     // Avoid screen-readers announcing the same text twice
     disableScreenReaderOutput:
       typeof actionContent === 'string' && actionContent === tooltipContent,

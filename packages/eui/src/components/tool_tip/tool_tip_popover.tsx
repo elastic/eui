@@ -16,7 +16,7 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../common';
-import { useEuiTheme } from '../../services';
+import { useEuiMemoizedStyles } from '../../services';
 import { euiToolTipStyles } from './tool_tip.styles';
 
 export type ToolTipPositions = 'top' | 'right' | 'bottom' | 'left';
@@ -26,7 +26,7 @@ type Props = CommonProps &
     positionToolTip: () => void;
     children?: ReactNode;
     title?: ReactNode;
-    popoverRef?: (ref: HTMLDivElement) => void;
+    popoverRef?: (ref: HTMLDivElement | null) => void;
     calculatedPosition?: ToolTipPositions;
   };
 
@@ -39,10 +39,9 @@ export const EuiToolTipPopover: FunctionComponent<Props> = ({
   calculatedPosition,
   ...rest
 }) => {
-  const popover = useRef<HTMLDivElement>();
+  const popover = useRef<HTMLDivElement | null>(null);
 
-  const euiTheme = useEuiTheme();
-  const styles = euiToolTipStyles(euiTheme);
+  const styles = useEuiMemoizedStyles(euiToolTipStyles);
   const cssStyles = [
     styles.euiToolTip,
     calculatedPosition && styles[calculatedPosition],
@@ -50,18 +49,22 @@ export const EuiToolTipPopover: FunctionComponent<Props> = ({
 
   const updateDimensions = useCallback(() => {
     requestAnimationFrame(() => {
-      // Because of this delay, sometimes `positionToolTip` becomes unavailable.
+      // Because of this delay, the popover may have unmounted by the time the RAF fires.
       if (popover.current) {
         positionToolTip();
       }
     });
   }, [positionToolTip]);
 
-  const setPopoverRef = (ref: HTMLDivElement) => {
-    if (popoverRef) {
-      popoverRef(ref);
-    }
-  };
+  const setPopoverRef = useCallback(
+    (ref: HTMLDivElement | null) => {
+      popover.current = ref;
+      if (popoverRef) {
+        popoverRef(ref);
+      }
+    },
+    [popoverRef]
+  );
 
   useEffect(() => {
     document.body.classList.add('euiBody-hasPortalContent');

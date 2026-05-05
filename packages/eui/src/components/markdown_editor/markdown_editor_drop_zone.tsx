@@ -214,7 +214,11 @@ export const EuiMarkdownEditorDropZone: FunctionComponent<
   });
 
   const rootProps = { ...getRootProps() };
-  if (readOnly) rootProps.role = undefined; // Unset the default `role="button"` attribute which sets a misleading pointer icon
+  /* Unset the default `role="button"` attribute to prevent invalid nested interactive elements.
+  The dropzone has `noClick=true` and `noKeyboard=true` set via `useDropzone`.
+  Keyboard drop interactions expect the drop zone element to have `role="button` but we're supporting
+  adding files via a standalone footer button instead." */
+  rootProps.role = undefined;
 
   return (
     <div {...rootProps} css={cssStyles} className={classes}>

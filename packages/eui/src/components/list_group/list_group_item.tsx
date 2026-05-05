@@ -289,7 +289,6 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
     ? ({
         content: toolTipText ?? label,
         position: 'right',
-        delay: 'long',
         ...toolTipProps,
         anchorClassName: classNames(
           'euiListGroupItem__tooltip',

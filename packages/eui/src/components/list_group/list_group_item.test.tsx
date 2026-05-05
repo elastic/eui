@@ -11,7 +11,7 @@ import React from 'react';
 import { fireEvent } from '@testing-library/react';
 import { shouldRenderCustomStyles } from '../../test/internal';
 import { requiredProps } from '../../test/required_props';
-import { render, waitForEuiToolTipVisible } from '../../test/rtl';
+import { render } from '../../test/rtl';
 
 import { EuiListGroupItem, COLORS } from './list_group_item';
 
@@ -42,9 +42,8 @@ describe('EuiListGroupItem', () => {
     {
       childProps: ['toolTipProps', 'toolTipProps.anchorProps'],
       skip: { parentTest: true },
-      renderCallback: async ({ getByTestSubject }) => {
+      renderCallback: ({ getByTestSubject }) => {
         fireEvent.mouseOver(getByTestSubject('trigger'));
-        await waitForEuiToolTipVisible();
       },
     }
   );
@@ -267,7 +266,7 @@ describe('EuiListGroupItem', () => {
     });
 
     describe('toolTipProps', () => {
-      test('renders custom tooltip props', async () => {
+      test('renders custom tooltip props', () => {
         const { getByTestSubject } = render(
           <EuiListGroupItem
             label="Label"
@@ -282,7 +281,6 @@ describe('EuiListGroupItem', () => {
           />
         );
         fireEvent.mouseOver(getByTestSubject('trigger'));
-        await waitForEuiToolTipVisible();
         expect(getByTestSubject('tooltip')).toBeInTheDocument();
       });
     });

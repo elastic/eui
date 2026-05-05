@@ -287,7 +287,6 @@ export const EuiSelectableListItem: FunctionComponent<
           content: toolTipContent,
           anchorClassName: 'eui-fullWidth',
           position: 'left',
-          delay: 'regular',
           ...toolTipProps,
         }
       : undefined,

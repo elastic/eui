@@ -58,39 +58,45 @@ describe('EuiToolTip', () => {
   });
 
   it('shows the tooltip on keyboard focus and hides it on blur', () => {
-    cy.mount(
-      <EuiToolTip content="Tooltip text here" data-test-subj="tooltip">
-        <EuiButton data-test-subj="toggleToolTip">Show tooltip</EuiButton>
-      </EuiToolTip>
+    cy.realMount(
+      <>
+        <EuiToolTip content="Tooltip text here" data-test-subj="tooltip">
+          <EuiButton data-test-subj="toggleToolTip">Show tooltip</EuiButton>
+        </EuiToolTip>
+        <EuiButton>After</EuiButton>
+      </>
     );
     cy.get('[data-test-subj="tooltip"]').should('not.exist');
 
-    cy.get('[data-test-subj="toggleToolTip"]').focus();
+    cy.realPress('Tab');
     cy.get('[data-test-subj="tooltip"]').should('exist');
 
-    cy.get('[data-test-subj="toggleToolTip"]').blur();
+    cy.realPress('Tab');
     cy.get('[data-test-subj="tooltip"]').should('not.exist');
   });
 
   it('shows the tooltip on keyboard focus and hides it on blur for a custom disabled trigger button', () => {
-    cy.mount(
-      <EuiToolTip content="Tooltip text here" data-test-subj="tooltip">
-        <EuiButton data-test-subj="toggleToolTip" hasAriaDisabled isDisabled>
-          Show tooltip
-        </EuiButton>
-      </EuiToolTip>
+    cy.realMount(
+      <>
+        <EuiToolTip content="Tooltip text here" data-test-subj="tooltip">
+          <EuiButton data-test-subj="toggleToolTip" hasAriaDisabled isDisabled>
+            Show tooltip
+          </EuiButton>
+        </EuiToolTip>
+        <EuiButton>After</EuiButton>
+      </>
     );
     cy.get('[data-test-subj="tooltip"]').should('not.exist');
 
-    cy.get('[data-test-subj="toggleToolTip"]').focus();
+    cy.realPress('Tab');
     cy.get('[data-test-subj="tooltip"]').should('exist');
 
-    cy.get('[data-test-subj="toggleToolTip"]').blur();
+    cy.realPress('Tab');
     cy.get('[data-test-subj="tooltip"]').should('not.exist');
   });
 
   it('does not show multiple tooltips if one tooltip toggle is focused and another tooltip toggle is hovered', () => {
-    cy.mount(
+    cy.realMount(
       <>
         <EuiToolTip content="Tooltip A" data-test-subj="tooltipA">
           <EuiButton data-test-subj="toggleToolTipA">Show tooltip A</EuiButton>
@@ -102,7 +108,7 @@ describe('EuiToolTip', () => {
     );
     cy.get('[data-test-subj="tooltip"]').should('not.exist');
 
-    cy.get('[data-test-subj="toggleToolTipA"]').focus();
+    cy.realPress('Tab');
     cy.contains('Tooltip A').should('exist');
     cy.contains('Tooltip B').should('not.exist');
 
@@ -113,7 +119,7 @@ describe('EuiToolTip', () => {
 
   describe('Escape key', () => {
     it('hides the tooltip when rendered by itself', () => {
-      cy.mount(
+      cy.realMount(
         <EuiToolTip content="Tooltip text here" data-test-subj="tooltip">
           <EuiButton data-test-subj="toggleToolTip">Show tooltip</EuiButton>
         </EuiToolTip>

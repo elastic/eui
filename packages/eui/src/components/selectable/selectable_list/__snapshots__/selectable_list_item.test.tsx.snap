@@ -515,7 +515,6 @@ exports[`EuiSelectableListItem props tooltip behavior on mouseover 1`] = `
       data-position="top"
       data-test-subj="listItemToolTip"
       id="generated-id"
-      position="top"
       role="tooltip"
       style="top: -16px; left: -10px;"
     >
@@ -578,7 +577,6 @@ exports[`EuiSelectableListItem props tooltip behavior when isFocused 1`] = `
       data-position="top"
       data-test-subj="listItemToolTip"
       id="generated-id"
-      position="top"
       role="tooltip"
       style="top: -16px; left: -10px;"
     >
