@@ -11,7 +11,7 @@ import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../../services';
 import { euiFormCustomControlStyles } from '../form.styles';
 
-export const EuiCheckboxControlStyles = (euiThemeContext: UseEuiTheme) => {
+export const euiCheckboxControlStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
 
   const controlStyles = euiFormCustomControlStyles(euiThemeContext);

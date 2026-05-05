@@ -13,7 +13,7 @@ import { useEuiMemoizedStyles } from '../../../services';
 import { CommonProps } from '../../common';
 import { EuiIcon } from '../../icon';
 
-import { EuiCheckboxControlStyles } from './checkbox_control.styles';
+import { euiCheckboxControlStyles } from './checkbox_control.styles';
 
 export interface EuiCheckboxControlProps extends CommonProps {
   /**
@@ -55,7 +55,7 @@ export const EuiCheckboxControl: FunctionComponent<EuiCheckboxControlProps> = ({
   const isExcluded = excluded && !indeterminate;
 
   const classes = classNames('EuiCheckboxControl', className);
-  const styles = useEuiMemoizedStyles(EuiCheckboxControlStyles);
+  const styles = useEuiMemoizedStyles(euiCheckboxControlStyles);
 
   const cssStyles = [
     styles.EuiCheckboxControl,
