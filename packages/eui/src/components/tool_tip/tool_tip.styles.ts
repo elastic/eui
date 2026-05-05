@@ -47,6 +47,7 @@ export const euiToolTipStyles = (euiThemeContext: UseEuiTheme) => {
       ${euiFontSize(euiThemeContext, 'xs')}
 
       position: absolute;
+      pointer-events: none;
 
       ${euiPanelBorderStyles(euiThemeContext)}
 
