@@ -268,8 +268,6 @@ export const TooltipProps: Story = {
     tooltipProps: {
       title: 'Tooltip',
       content: 'Tooltip content',
-      // @ts-expect-error - unsupported value for VRT only
-      delay: 'none',
       position: 'bottom',
     },
   },
@@ -297,8 +295,6 @@ export const ExtraActionAndTooltipProps: Story = {
     tooltipProps: {
       title: 'Tooltip',
       content: 'Tooltip content',
-      // @ts-expect-error - unsupported value for VRT only
-      delay: 'none',
       position: 'bottom',
     },
   },
@@ -483,7 +479,6 @@ const renderKitchenSink = (args: EuiListItemLayoutProps) => {
           {...args}
           tooltipProps={{
             content: 'Tooltip content',
-            delay: 'regular',
             position: 'bottom',
           }}
         >
@@ -494,7 +489,6 @@ const renderKitchenSink = (args: EuiListItemLayoutProps) => {
           wrapperElement="li"
           tooltipProps={{
             content: 'Tooltip content',
-            delay: 'regular',
             position: 'bottom',
           }}
         >

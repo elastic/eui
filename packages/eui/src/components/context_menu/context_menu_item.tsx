@@ -221,7 +221,6 @@ export const EuiContextMenuItem: FunctionComponent<Props> = ({
           ? {
               ...toolTipProps,
               position: 'right',
-              delay: toolTipProps?.delay ?? 'regular',
               anchorClassName: anchorClasses,
               content: toolTipContent,
             }

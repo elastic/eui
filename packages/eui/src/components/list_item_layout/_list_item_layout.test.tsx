@@ -7,11 +7,7 @@
  */
 
 import React from 'react';
-import {
-  render,
-  waitForEuiToolTipHidden,
-  waitForEuiToolTipVisible,
-} from '../../test/rtl';
+import { focusEuiToolTipTrigger, render } from '../../test/rtl';
 import { requiredProps } from '../../test/required_props';
 import { shouldRenderCustomStyles } from '../../test/internal';
 import { EuiListItemLayout } from './_list_item_layout';
@@ -1320,7 +1316,6 @@ describe('EuiListItemLayout', () => {
               tooltipProps={{
                 title: 'Tooltip',
                 content: 'Tooltip content',
-                delay: 'regular',
                 position: 'bottom',
                 'data-test-subj': 'item-tooltip',
               }}
@@ -1334,7 +1329,6 @@ describe('EuiListItemLayout', () => {
           expect(tooltipAnchor).toBeInTheDocument();
 
           fireEvent.mouseOver(tooltipAnchor!);
-          await waitForEuiToolTipVisible();
 
           expect(getByTestSubject('item-tooltip')).toBeInTheDocument();
         });
@@ -1348,7 +1342,6 @@ describe('EuiListItemLayout', () => {
               tooltipProps={{
                 title: 'Tooltip',
                 content: 'Tooltip content',
-                delay: 'regular',
                 position: 'bottom',
                 'data-test-subj': 'item-tooltip',
               }}
@@ -1362,8 +1355,8 @@ describe('EuiListItemLayout', () => {
 
           expect(tooltipAnchor).toBeInTheDocument();
 
-          fireEvent.focus(element);
-          await waitForEuiToolTipVisible();
+          const cleanup = focusEuiToolTipTrigger(element!);
+          cleanup();
 
           expect(getByTestSubject('item-tooltip')).toBeInTheDocument();
         });
@@ -1377,7 +1370,6 @@ describe('EuiListItemLayout', () => {
             tooltipProps={{
               title: 'Tooltip',
               content: 'Tooltip content',
-              delay: 'regular',
               position: 'bottom',
               'data-test-subj': 'item-tooltip',
             }}
@@ -1385,8 +1377,6 @@ describe('EuiListItemLayout', () => {
             Option
           </EuiListItemLayout>
         );
-
-        await waitForEuiToolTipVisible();
 
         expect(getByTestSubject('item-tooltip')).toBeInTheDocument();
       });
@@ -1399,7 +1389,6 @@ describe('EuiListItemLayout', () => {
             tooltipProps={{
               title: 'Tooltip',
               content: 'Tooltip content',
-              delay: 'regular',
               position: 'bottom',
               'data-test-subj': 'item-tooltip',
             }}
@@ -1407,8 +1396,6 @@ describe('EuiListItemLayout', () => {
             Option
           </EuiListItemLayout>
         );
-
-        await waitForEuiToolTipVisible();
 
         expect(getByTestSubject('item-tooltip')).toBeInTheDocument();
       });
@@ -1421,7 +1408,6 @@ describe('EuiListItemLayout', () => {
             tooltipProps={{
               title: 'Tooltip',
               content: 'Tooltip content',
-              delay: 'regular',
               position: 'bottom',
               'data-test-subj': 'item-tooltip',
             }}
@@ -1447,7 +1433,6 @@ describe('EuiListItemLayout', () => {
             tooltipProps={{
               title: 'Tooltip',
               content: 'Tooltip content',
-              delay: 'regular',
               position: 'bottom',
               'data-test-subj': 'item-tooltip',
             }}
@@ -1472,7 +1457,6 @@ describe('EuiListItemLayout', () => {
             tooltipProps={{
               title: 'Tooltip',
               content: 'Tooltip content',
-              delay: 'regular',
               position: 'bottom',
               'data-test-subj': 'item-tooltip',
             }}
@@ -1480,8 +1464,6 @@ describe('EuiListItemLayout', () => {
             Option
           </EuiListItemLayout>
         );
-
-        await waitForEuiToolTipVisible();
 
         expect(getByTestSubject('item-tooltip')).toBeInTheDocument();
 
@@ -1492,7 +1474,6 @@ describe('EuiListItemLayout', () => {
             tooltipProps={{
               title: 'Tooltip',
               content: 'Tooltip content',
-              delay: 'regular',
               position: 'bottom',
               'data-test-subj': 'item-tooltip',
             }}
@@ -1500,8 +1481,6 @@ describe('EuiListItemLayout', () => {
             Option
           </EuiListItemLayout>
         );
-
-        await waitForEuiToolTipHidden();
       });
     });
 

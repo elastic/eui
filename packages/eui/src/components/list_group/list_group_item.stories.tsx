@@ -105,7 +105,6 @@ export const Tooltip: Story = {
     toolTipText: 'Tooltip content',
     toolTipProps: {
       position: 'bottom',
-      delay: 'regular',
     },
   },
   play: lokiPlayDecorator(async () => {
@@ -132,7 +131,6 @@ export const TooltipAndExtraAction: Story = {
     toolTipText: 'Tooltip content',
     toolTipProps: {
       position: 'bottom',
-      delay: 'regular',
     },
   },
   play: lokiPlayDecorator(async () => {

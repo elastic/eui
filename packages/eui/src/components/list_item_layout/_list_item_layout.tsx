@@ -31,7 +31,7 @@ import {
   euiListItemLayoutStyles,
   euiListItemLayoutWrapperStyles,
 } from './_list_item_layout.styles';
-import { EuiToolTip, EuiToolTipProps } from '../tool_tip';
+import { EuiToolTip, EuiToolTipProps, EuiToolTipRef } from '../tool_tip';
 import { EuiCheckboxControl } from '../form';
 import { EuiIcon, IconColor, IconType } from '../icon';
 import { isButtonDisabled } from '../button/button_display/_button_display';
@@ -235,7 +235,7 @@ export const EuiListItemLayout = forwardRef<
     },
     ref
   ) => {
-    const [tooltipRef, setTooltipRef] = useState<EuiToolTip | null>(null); // Needs to be state and not a ref to trigger useEffect
+    const [tooltipRef, setTooltipRef] = useState<EuiToolTipRef | null>(null); // Needs to be state and not a ref to trigger useEffect
     const [ariaDescribedBy, setAriaDescribedBy] = useState(_ariaDescribedBy);
 
     const { href, target, rel, ...rest } =
@@ -363,21 +363,27 @@ export const EuiListItemLayout = forwardRef<
 
     // Manually trigger the tooltip on keyboard focus
     useEffect(() => {
-      if (!tooltipRef || isFocused == null) return;
+      if (
+        !tooltipRef ||
+        isFocused == null ||
+        (!hasAriaDisabled && isDisabled)
+      ) {
+        return;
+      }
 
       if (isFocused) {
         tooltipRef.showToolTip();
       } else {
         tooltipRef.hideToolTip();
       }
-    }, [isFocused, tooltipRef]);
+    }, [isFocused, isDisabled, hasAriaDisabled, tooltipRef]);
 
     /* Props */
 
     // Manually set the `aria-describedby` id on the wrapper
     useEffect(() => {
       if (tooltipRef) {
-        const tooltipId = tooltipRef.state.id;
+        const tooltipId = tooltipRef.id;
         setAriaDescribedBy(classNames(tooltipId, _ariaDescribedBy));
       }
     }, [tooltipRef, _ariaDescribedBy]);
