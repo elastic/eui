@@ -15,6 +15,16 @@ jest.mock('./../../../src/components/icon', () => {
   return { EuiIcon };
 });
 
+jest.mock(
+  './../../../src/components/notification_icon/notification_icon',
+  () => {
+    const {
+      EuiNotificationIcon,
+    } = require('./../../../src/components/notification_icon/notification_icon.testenv');
+    return { EuiNotificationIcon };
+  }
+);
+
 jest.mock('./../../../src/services/canvas', () => {
   const rest = jest.requireActual('./../../../src/services/canvas');
   const {
