@@ -227,7 +227,6 @@ exports[`EuiTablePagination renders 1`] = `
             tabindex="-1"
           >
             <div
-              aria-labelledby="generated-id_euiContextMenuPanelTitle"
               class="euiContextMenuPanel__list"
               role="menu"
             >

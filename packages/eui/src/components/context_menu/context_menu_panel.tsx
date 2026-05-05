@@ -502,7 +502,7 @@ export class EuiContextMenuPanelClass extends Component<
               ref={resizeRef}
               role={isMenu ? 'menu' : undefined}
               className="euiContextMenuPanel__list"
-              aria-labelledby={titleId}
+              aria-labelledby={title ? titleId : undefined}
               onFocus={this.setInitialFocusedItemIndex}
             >
               {content}

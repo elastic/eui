@@ -67,7 +67,6 @@ exports[`CollapsedItemActions custom actions 1`] = `
             tabindex="-1"
           >
             <div
-              aria-labelledby="generated-id_euiContextMenuPanelTitle"
               class="euiContextMenuPanel__list"
               role="menu"
             >
@@ -194,7 +193,6 @@ exports[`CollapsedItemActions default actions - renders color on EuiContextMenuI
             tabindex="-1"
           >
             <div
-              aria-labelledby="generated-id_euiContextMenuPanelTitle"
               class="euiContextMenuPanel__list"
               role="menu"
             >
@@ -340,7 +338,6 @@ exports[`CollapsedItemActions default actions 1`] = `
             tabindex="-1"
           >
             <div
-              aria-labelledby="generated-id_euiContextMenuPanelTitle"
               class="euiContextMenuPanel__list"
               role="menu"
             >
