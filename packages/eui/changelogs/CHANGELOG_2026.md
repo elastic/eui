@@ -1,6 +1,5 @@
 ## [`v115.0.0`](https://github.com/elastic/eui/releases/v115.0.0)
 
-- Updated `CODEOWNERS` file so that `@elastic/eui-icons` team is added to review any icon-related PRs. ([#9632](https://github.com/elastic/eui/pull/9632))
 - Updated `EuiToolTip` default font size from 14px to 12px ([#9627](https://github.com/elastic/eui/pull/9627))
 - Updated `EuiToolTip` show animation to opacity-only with a 150ms grace period delay, preventing visual flickering when quickly hovering over multiple tooltip triggers ([#9626](https://github.com/elastic/eui/pull/9626))
 - Updated `EuiToolTip` to respect input modality. Tooltip no longer persists on mouse-click focus or shows on programmatic focus return. ([#9624](https://github.com/elastic/eui/pull/9624))
