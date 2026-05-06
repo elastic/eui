@@ -57,7 +57,7 @@ export const RequireHrefForLink = ESLintUtils.RuleCreator.withoutDocs({
     schema: [],
     messages: {
       requireHrefForLink:
-        '<{{name}}> has `onClick` but no `href`. Consider adding an `href` so that the component renders as a link and supports Ctrl/Cmd+Click / "Open link in new tab".',
+        '<{{name}}> has `onClick` but no `href`. Consider adding `href` so that the component renders as a link and supports Ctrl/Cmd+Click / "Open link in new tab".',
     },
   },
   defaultOptions: [],
