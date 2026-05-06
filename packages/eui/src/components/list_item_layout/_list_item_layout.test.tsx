@@ -611,7 +611,7 @@ describe('EuiListItemLayout', () => {
         );
 
         const element = getByTestSubject('euiListItemLayout');
-        const checkbox = element.querySelector('.EuiCheckboxControl');
+        const checkbox = element.querySelector('.euiCheckboxControl');
 
         expect(element).toHaveAttribute('aria-checked', 'true');
         expect(checkbox).toBeInTheDocument();
@@ -633,7 +633,7 @@ describe('EuiListItemLayout', () => {
         );
 
         const element = getByTestSubject('euiListItemLayout');
-        const checkbox = element.querySelector('.EuiCheckboxControl');
+        const checkbox = element.querySelector('.euiCheckboxControl');
 
         expect(element).toHaveAttribute('aria-checked', 'false');
         expect(checkbox).toBeInTheDocument();
@@ -655,7 +655,7 @@ describe('EuiListItemLayout', () => {
         );
 
         const element = getByTestSubject('euiListItemLayout');
-        const checkbox = element.querySelector('.EuiCheckboxControl');
+        const checkbox = element.querySelector('.euiCheckboxControl');
 
         expect(element).toHaveAttribute('aria-checked', 'true');
         expect(checkbox).toBeInTheDocument();
@@ -677,7 +677,7 @@ describe('EuiListItemLayout', () => {
         );
 
         const element = getByTestSubject('euiListItemLayout');
-        const checkbox = element.querySelector('.EuiCheckboxControl');
+        const checkbox = element.querySelector('.euiCheckboxControl');
 
         expect(element).toHaveAttribute('aria-checked', 'mixed');
         expect(checkbox).toBeInTheDocument();

@@ -35,7 +35,7 @@ describe('EuiCheckboxControl', () => {
         <EuiCheckboxControl {...requiredProps} checked />
       );
 
-      const wrapper = container.querySelector('.EuiCheckboxControl')!;
+      const wrapper = container.querySelector('.euiCheckboxControl')!;
       const classes = Array.from(wrapper.classList) as string[];
       expect(classes.some((clx) => clx.includes('selected'))).toBe(true);
 
@@ -50,7 +50,7 @@ describe('EuiCheckboxControl', () => {
           <EuiCheckboxControl {...requiredProps} indeterminate />
         );
 
-        const wrapper = container.querySelector('.EuiCheckboxControl')!;
+        const wrapper = container.querySelector('.euiCheckboxControl')!;
         const classes = Array.from(wrapper.classList) as string[];
         expect(classes.some((clx) => clx.includes('selected'))).toBe(true);
 
@@ -85,7 +85,7 @@ describe('EuiCheckboxControl', () => {
         <EuiCheckboxControl {...requiredProps} excluded />
       );
 
-      const wrapper = container.querySelector('.EuiCheckboxControl')!;
+      const wrapper = container.querySelector('.euiCheckboxControl')!;
       const classes = Array.from(wrapper.classList) as string[];
       expect(classes.some((clx) => clx.includes('excluded'))).toBe(true);
 
@@ -99,7 +99,7 @@ describe('EuiCheckboxControl', () => {
         <EuiCheckboxControl {...requiredProps} disabled />
       );
 
-      const wrapper = container.querySelector('.EuiCheckboxControl')!;
+      const wrapper = container.querySelector('.euiCheckboxControl')!;
 
       const classes = Array.from(wrapper.classList) as string[];
       expect(classes.some((clx) => clx.includes('disabled'))).toBe(true);
@@ -115,7 +115,7 @@ describe('EuiCheckboxControl', () => {
         <EuiCheckboxControl {...requiredProps} disabled checked />
       );
 
-      const wrapper = container.querySelector('.EuiCheckboxControl')!;
+      const wrapper = container.querySelector('.euiCheckboxControl')!;
       const classes = Array.from(wrapper.classList) as string[];
       expect(classes.some((clx) => clx.includes('disabled'))).toBe(true);
       expect(classes.some((clx) => clx.includes('selected'))).toBe(true);

@@ -3,7 +3,7 @@
 exports[`EuiCheckboxControl renders 1`] = `
 <span
   aria-label="aria-label"
-  class="EuiCheckboxControl testClass1 testClass2 emotion-EuiCheckboxControl-unselected-euiTestCss"
+  class="euiCheckboxControl testClass1 testClass2 emotion-euiCheckboxControl-unselected-euiTestCss"
   data-test-subj="test subject string"
 >
   <span

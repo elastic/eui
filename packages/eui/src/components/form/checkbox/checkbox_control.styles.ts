@@ -17,7 +17,7 @@ export const euiCheckboxControlStyles = (euiThemeContext: UseEuiTheme) => {
   const controlStyles = euiFormCustomControlStyles(euiThemeContext);
 
   return {
-    EuiCheckboxControl: css`
+    euiCheckboxControl: css`
       ${controlStyles.input.fauxInput}
       border-radius: ${euiTheme.border.radius.small};
     `,

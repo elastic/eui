@@ -54,11 +54,11 @@ export const EuiCheckboxControl: FunctionComponent<EuiCheckboxControlProps> = ({
   const isSelected = checked || indeterminate || excluded;
   const isExcluded = excluded && !indeterminate;
 
-  const classes = classNames('EuiCheckboxControl', className);
+  const classes = classNames('euiCheckboxControl', className);
   const styles = useEuiMemoizedStyles(euiCheckboxControlStyles);
 
   const cssStyles = [
-    styles.EuiCheckboxControl,
+    styles.euiCheckboxControl,
     disabled
       ? isSelected
         ? styles.disabled.selected
