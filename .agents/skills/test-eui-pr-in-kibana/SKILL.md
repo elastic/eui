@@ -1,0 +1,300 @@
+---
+name: test-eui-pr-in-kibana
+description: >-
+  Build a local @elastic/eui tarball from an EUI PR branch and stand up a
+  Kibana branch that consumes it, so Kibana CI can run against the EUI PR's
+  changes before merging. Use when the user wants to test an EUI PR in
+  Kibana, create a Kibana test/staging PR for an EUI change, run Kibana CI
+  against a local EUI build, or "stage" an EUI PR in Kibana.
+---
+
+# Test an EUI PR in Kibana
+
+Generates a local `.tgz` from the current EUI branch, copies it into a fresh
+Kibana branch off `upstream/main`, wires up the dependency, and runs
+`yarn kbn bootstrap`. Stops at "branch ready"; ask the user whether to push
+and open a draft PR.
+
+The official wiki for this workflow lives at
+`wiki/contributing-to-eui/testing/testing-in-kibana.md` ("Testing local EUI
+in local Kibana" section). The example reference PR is
+[elastic/kibana#248805](https://github.com/elastic/kibana/pull/248805).
+
+## Inputs
+
+- **EUI PR number** (required, e.g. `9630`).
+- **EUI worktree path**: default to the current EUI repo / worktree. If the
+  user has the PR branch checked out in a worktree under
+  `.claude/worktrees/`, prefer that.
+- **Kibana repo path**: default to `../kibana` from the EUI repo's main
+  worktree (resolve via `git worktree list --porcelain | head -1` if
+  invoked from a sub-worktree). If the default does not exist, ask the
+  user.
+
+Derived during the run:
+
+- `EUI_VERSION` from `packages/eui/package.json`.
+- `THEME_COMMON_VERSION` from `packages/eui-theme-common/package.json`.
+- `THEME_BOREALIS_VERSION` from `packages/eui-theme-borealis/package.json`.
+- `SLUG` from the EUI PR title — lowercase, hyphenated, drop scope tags
+  (e.g. `[EuiDataGrid] Fix cell popover hidden behind sibling/nested flyouts`
+  → `cell-popover-hidden-behind-sibling-nested-flyouts`). Keep it under ~50
+  chars.
+- Branch name: `test-eui-{N}-{SLUG}`.
+
+## Decide which tarballs to build
+
+`@elastic/eui` is always built. Decide on `eui-theme-common` and
+`eui-theme-borealis` by inspecting the PR's diff:
+
+```bash
+git -C {EUI_WORKTREE} diff main..HEAD --name-only -- \
+  packages/eui-theme-common packages/eui-theme-borealis
+```
+
+- If a theme package has changes, build it.
+- If neither has changes, ask whether to build them anyway. Default: no.
+  When skipping, Kibana will use the published versions of the theme
+  packages.
+
+## Phase 1 — Build the tarball(s) in EUI
+
+Always work in the EUI worktree. Confirm `git status` is clean before
+modifying anything.
+
+### 1.1 — Temporary edit to `packages/eui/package.json`
+
+`yarn pack` does not resolve `workspace:*` references, so the
+`@elastic/eui-theme-common` dependency must be moved out of `dependencies`
+before packing. This change is local-only and reverted at the end of the
+phase.
+
+Edit `packages/eui/package.json`:
+
+- Remove `"@elastic/eui-theme-common": "workspace:*"` from `dependencies`.
+- Add `"@elastic/eui-theme-common": "workspace:^"` to `devDependencies`,
+  alphabetically after `@elastic/eui-theme-borealis`.
+- Add `"@elastic/eui-theme-common": "{THEME_COMMON_VERSION}"` to
+  `peerDependencies`, alphabetically after `@elastic/eui-theme-borealis`.
+
+### 1.2 — Build
+
+```bash
+cd {EUI_WORKTREE}/packages/eui && yarn build-pack
+```
+
+Output is `packages/eui/package.tgz` (Yarn 4 default name). The build is
+slow (~2–10 min). Run it in the background.
+
+If also building theme packages:
+
+```bash
+cd {EUI_WORKTREE}/packages/eui-theme-common && yarn build-pack
+cd {EUI_WORKTREE}/packages/eui-theme-borealis && yarn build-pack
+```
+
+### 1.3 — Rename and move tarballs
+
+Move directly into the Kibana repo root with snake_case names matching the
+example PR's pattern:
+
+- `eui_{EUI_VERSION}_{N}.tgz`
+- `eui_theme_common_{THEME_COMMON_VERSION}_{N}.tgz` (if built)
+- `eui_theme_borealis_{THEME_BOREALIS_VERSION}_{N}.tgz` (if built)
+
+```bash
+mv {EUI_WORKTREE}/packages/eui/package.tgz \
+   {KIBANA_PATH}/eui_{EUI_VERSION}_{N}.tgz
+```
+
+Snake_case is **required** — Kibana lints filenames for it.
+
+### 1.4 — Revert the EUI package.json edit
+
+```bash
+git -C {EUI_WORKTREE} checkout -- packages/eui/package.json
+```
+
+Verify `git status` shows the file is back to clean.
+
+## Phase 2 — Set up the Kibana branch
+
+### 2.1 — Verify clean state and update main
+
+```bash
+cd {KIBANA_PATH}
+git status                          # must be clean (warn if not)
+git fetch upstream main
+git checkout main
+git merge --ff-only upstream/main   # if this fails, stop and ask
+```
+
+### 2.2 — Create the branch
+
+```bash
+git checkout -b test-eui-{N}-{SLUG}
+```
+
+### 2.3 — Edit Kibana's `package.json`
+
+Find the `@elastic/eui` and `@elastic/eui-theme-borealis` entries (around
+lines 148–149 in current Kibana). Replace `@elastic/eui` with the local
+file reference. Always add a `@elastic/eui-theme-common` entry below them.
+
+```jsonc
+"@elastic/eui": "file:./eui_{EUI_VERSION}_{N}.tgz",
+"@elastic/eui-theme-borealis": "{THEME_BOREALIS_VERSION}",   // or file:./eui_theme_borealis_*.tgz
+"@elastic/eui-theme-common": "{THEME_COMMON_VERSION}",       // or file:./eui_theme_common_*.tgz
+```
+
+When `eui-theme-common` is using its published version, it must match the
+version declared in EUI's `packages/eui/package.json`.
+
+### 2.4 — Register `eui-theme-common` in two more files
+
+Why: `@elastic/eui-theme-common` is normally a transitive dep via
+`@elastic/eui`. Adding it explicitly trips Kibana's
+dependency-ownership and license CI checks unless registered.
+
+`packages/kbn-dependency-ownership/src/rule.ts`, inside `packageFilter`:
+
+```ts
+pkg !== '@elastic/eui-theme-common' &&
+```
+
+Place it next to the existing `@elastic/eui` and
+`@elastic/eui-theme-borealis` entries.
+
+`src/dev/license_checker/config.ts`, inside `LICENSE_OVERRIDES`:
+
+```ts
+'@elastic/eui-theme-common': ['Elastic License 2.0 OR AGPL-3.0-only OR SSPL-1.0'],
+```
+
+Match the **current** Kibana style (unversioned keys, e.g.
+`'@elastic/eui'`). Older example PRs may show versioned keys
+(`'@elastic/eui@1.2.3'`) — do not copy that form.
+
+## Phase 3 — Bootstrap and commit
+
+### 3.1 — Use the right Node version
+
+Kibana enforces `.nvmrc`. Each Bash invocation gets a fresh shell, so
+source nvm and use the right version in the same command:
+
+```bash
+cd {KIBANA_PATH} && \
+  source ~/.nvm/nvm.sh && nvm use > /dev/null && \
+  yarn kbn bootstrap --no-validate
+```
+
+If the required Node version isn't installed, run `nvm install $(cat .nvmrc)`
+first.
+
+`yarn kbn bootstrap --no-validate` takes 5–20 minutes. Run it in the
+background and wait for the notification.
+
+### 3.2 — Commit (do not push)
+
+Stage explicitly — do **not** use `git add -A`, since the user may have
+unrelated edits in the working tree:
+
+```bash
+git add package.json yarn.lock \
+        eui_{EUI_VERSION}_{N}.tgz \
+        packages/kbn-dependency-ownership/src/rule.ts \
+        src/dev/license_checker/config.ts
+# plus any theme tarballs if built
+```
+
+Commit message — match Kibana's bracketed-tag style:
+
+```
+[EUI] Test EUI #{N} {short-title} with local build
+
+Tests EUI PR https://github.com/elastic/eui/pull/{N} against Kibana
+using a local @elastic/eui tarball.
+```
+
+Do **not** push. Do **not** open a PR.
+
+## Phase 4 — Ask about push + draft PR
+
+Branch is ready. Ask the user something like:
+
+> Branch `test-eui-{N}-{SLUG}` is ready, single commit on top of latest
+> `upstream/main`. Push to your fork and open a draft PR?
+
+If no, stop. If yes, continue to Phase 5.
+
+## Phase 5 — Pre-push hygiene + push (optional, only on user OK)
+
+### 5.1 — Re-sync with upstream/main if behind
+
+If hours or days have passed since Phase 2, `upstream/main` has likely
+moved. CI will run the branch as-is, so stale baselines mean noisy
+results.
+
+```bash
+git fetch upstream main
+git rev-list --count HEAD..upstream/main
+```
+
+If non-zero, propose merging `upstream/main` into the branch:
+
+```bash
+git merge upstream/main --no-edit
+```
+
+Resolve any conflicts (the test commit's edits to `package.json` and
+`yarn.lock` are the most likely conflict points). Verify the EUI tarball
+ref and the dependency-ownership / license entries survive the merge.
+
+### 5.2 — Identify the push remote
+
+The push target is the user's personal fork, not `upstream`. Check
+`git remote -v` and confirm with the user before pushing.
+
+### 5.3 — Push and open the draft PR
+
+```bash
+git push -u {remote} test-eui-{N}-{SLUG}
+gh pr create --draft \
+  --base main \
+  --head {github-user}:test-eui-{N}-{SLUG} \
+  --title "[EUI] Test EUI #{N} {short-title}" \
+  --body "$(cat <<'EOF'
+## Summary
+
+Test PR for [EUI #{N}](https://github.com/elastic/eui/pull/{N}). Runs
+Kibana CI against a local build of EUI to surface regressions before
+merging.
+
+> [!warning]
+> Do not merge.
+EOF
+)"
+```
+
+Return the PR URL.
+
+## Common gotchas
+
+- **`yarn build-pack` outputs `package.tgz`, not `elastic-eui-*.tgz`** under
+  Yarn 4. Always rename to the snake_case format before moving.
+- **Snake_case filenames are required** in Kibana. Hyphens and dots between
+  words will fail Kibana's lint.
+- **Cwd is fresh on every Bash call.** Use absolute paths or compound
+  commands (`source ~/.nvm/nvm.sh && nvm use && yarn ...`).
+- **Node version mismatch** is the most common bootstrap failure. Always
+  source nvm and `nvm use` first.
+- **Revert the temp `packages/eui/package.json` edit** before finishing
+  Phase 1 — otherwise it lands in the EUI branch.
+- **The license_checker uses unversioned keys** in current Kibana. Match
+  that style; older PRs may show versioned keys.
+- **Never `git add -A` in Kibana.** The user may have unrelated edits in
+  the working tree (e.g. local workarounds being tested against the
+  build). Always stage by file name.
+- **Re-sync with `upstream/main` before pushing** if the branch was
+  prepared on a different day. Otherwise CI runs against an outdated
+  baseline.

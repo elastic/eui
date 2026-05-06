@@ -8,6 +8,8 @@ npm-debug.log
 .idea
 .vscode
 .cursor
+.claude/*.local.json
+.claude/worktrees/
 
 # OS-specific files
 Thumbs.db
