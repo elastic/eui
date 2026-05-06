@@ -911,7 +911,7 @@ export class EuiComboBox<T> extends Component<
                 disableFocusTrap={true}
                 closeOnScroll={true}
                 {...inputPopoverProps}
-                isOpen={isListOpen}
+                isOpen={isListOpen && !noSuggestions}
                 closePopover={this.closeList}
                 /* we don't want content changes to be announced via aria-live 
                 because ComboBox uses a virtualized list that updates itself
