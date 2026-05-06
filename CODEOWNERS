@@ -1,2 +1,8 @@
 # @elastic/eui-team owns all files
 * @elastic/eui-team
+
+# Both teams review icon-related updates
+/packages/eui/src/components/icon/svgs/ @elastic/eui-team @elastic/eui-icons
+/packages/eui/src/components/icon/assets/ @elastic/eui-team @elastic/eui-icons
+/packages/eui/src/components/icon/icon_map.ts @elastic/eui-team @elastic/eui-icons
+/packages/website/docs/components/display/icons/icon_types.ts @elastic/eui-team @elastic/eui-icons

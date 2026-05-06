@@ -19,6 +19,7 @@ class ToolTipManager {
   toolTipsToHide = new Set<Function>();
 
   registerTooltip = (hideCallback: Function) => {
+    if (this.toolTipsToHide.has(hideCallback)) return;
     this.toolTipsToHide.forEach((hide) => hide());
     this.toolTipsToHide.clear();
     this.toolTipsToHide.add(hideCallback);

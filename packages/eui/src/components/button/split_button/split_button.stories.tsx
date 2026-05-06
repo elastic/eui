@@ -16,7 +16,6 @@ import { EuiSpacer } from '../../spacer';
 import { EuiFlexGroup } from '../../flex';
 import { EuiWrappingPopover } from '../../popover';
 import { EuiContextMenu } from '../../context_menu';
-import { ToolTipDelay } from '../../tool_tip/tool_tip';
 import { EuiSplitButton, EuiSplitButtonProps } from './split_button';
 
 const decorators: Meta<EuiSplitButtonProps>['decorators'] = [
@@ -90,7 +89,6 @@ export const WithTooltip: Story = {
         aria-label="Secondary action"
         tooltipProps={{
           content: 'Tooltip content',
-          delay: 'none' as ToolTipDelay, // passing a not (yet) supported value to hackishly force a lower delay for VRT
         }}
         autoFocus={true} // VRT-only workaround to ensure an opened tooltip
       />,

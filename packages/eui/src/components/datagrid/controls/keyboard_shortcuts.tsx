@@ -37,7 +37,7 @@ export const useDataGridKeyboardShortcuts = (): {
         anchorPosition="downRight"
         panelPaddingSize="none"
         button={
-          <EuiToolTip content={title} delay="long">
+          <EuiToolTip content={title}>
             <EuiButtonIcon
               size="xs"
               iconType="keyboard"

@@ -1,4 +1,4 @@
-name: Open a Kibana PR with dependency updates
+name: 'Update Kibana dependencies - Prepare changes'
 
 on:
   workflow_dispatch:
@@ -7,21 +7,26 @@ on:
         description: JSON-serialized map of dependencies to update
         type: string
         required: true
-      pr_title:
-        description: PR title
+  workflow_call:
+    inputs:
+      dependencies:
+        description: JSON-serialized map of dependencies to update
         type: string
-        default: '[DRAFT] Test updated EUI dependencies'
-      pr_body:
-        description: PR body
-        type: string
+        required: true
+    outputs:
+      branch_name:
+        description: Name of the branch created in the elastic/eui-kibana repository
+        value: ${{ jobs.update.outputs.branch_name }}
 
 permissions:
   id-token: write
 
 jobs:
   update:
-    name: Create a dependency updates PR
+    name: Prepare changes
     runs-on: ubuntu-latest
+    outputs:
+      branch_name: ${{ steps.git_branch.outputs.BRANCH_NAME }}
     steps:
       - name: Verify dependencies input
         env:
@@ -54,7 +59,7 @@ jobs:
         uses: elastic/ci-gh-actions/fetch-github-token@v1.5.0
         with:
           vault-instance: ci-prod
-          vault-role: token-policy-3de0c59c60e3
+          vault-role: token-policy-4fabc48bd03f
       - name: Configure git
         env:
           GH_TOKEN: ${{ steps.fetch_ephemeral_token.outputs.token }}
