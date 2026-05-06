@@ -24,6 +24,7 @@ import { TooltipFocusableAnchor } from './rules/a11y/tooltip_focusable_anchor';
 import { PreferTooltipTriggerFocusTestUtility } from './rules/prefer_tooltip_trigger_focus_test_utility';
 import { EuiBadgeAccessibilityRules } from './rules/a11y/badge_accessibility_rules';
 import { EuiIconAccessibilityRules } from './rules/a11y/icon_accessibility_rules';
+import { TooltipNoInteractiveContent } from './rules/a11y/tooltip_no_interactive_content';
 import { TooltipButtonIconWrap } from './rules/a11y/tooltip_button_icon_wrap';
 
 const config = {
@@ -47,6 +48,7 @@ const config = {
     'badge-accessibility-rules': EuiBadgeAccessibilityRules,
     'icon-accessibility-rules': EuiIconAccessibilityRules,
     'require-href-for-link': RequireHrefForLink,
+    'tooltip-no-interactive-content': TooltipNoInteractiveContent,
     'tooltip-button-icon-wrap': TooltipButtonIconWrap,
   },
   configs: {
@@ -71,6 +73,7 @@ const config = {
         '@elastic/eui/badge-accessibility-rules': 'warn',
         '@elastic/eui/icon-accessibility-rules': 'warn',
         '@elastic/eui/require-href-for-link': 'warn',
+        '@elastic/eui/tooltip-no-interactive-content': 'warn',
         '@elastic/eui/tooltip-button-icon-wrap': 'warn',
       },
     },
