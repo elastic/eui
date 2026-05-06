@@ -192,6 +192,41 @@ Ensure the `EuiIcon` includes appropriate accessibility attributes.
 - `EuiIcon` has an accessible name via `title`, `aria-label`, or `aria-labelledby`; otherwise mark it decorative with `aria-hidden={true}`
 - Do not combine `tabIndex` with `aria-hidden`
 
+### `@elastic/eui/tooltip-button-icon-wrap`
+
+Ensure `EuiButtonIcon` is wrapped with `EuiToolTip` for sighted users.
+
+Browser-native tooltips (the `title` prop) are unstyled, have no delay control, and are not keyboard-accessible. Every icon button should have a visible tooltip so that sighted users who do not rely on screen readers can understand its purpose.
+
+The rule reports two situations:
+
+- **`title` prop is present** - remove it and use `<EuiToolTip content={…}>` instead. The rule auto-fixes by removing `title` and wrapping the button with `EuiToolTip` (or only removing `title` when the button is already wrapped).
+- **No `EuiToolTip` wrapper** - the button icon has no visible tooltip. The rule auto-fixes by wrapping the button with `<EuiToolTip content={ariaLabel}>` when `aria-label` is a static string or expression.
+
+Buttons with spread props (`{...props}`) are intentionally skipped because their final prop set cannot be statically determined.
+
+#### Examples
+
+```tsx
+// ✗ Bad - browser tooltip, not keyboard-accessible
+<EuiButtonIcon title="Edit item" aria-label="Edit item" iconType="pencil" />
+
+// ✓ Fixed automatically
+<EuiToolTip content="Edit item">
+  <EuiButtonIcon aria-label="Edit item" iconType="pencil" />
+</EuiToolTip>
+```
+
+```tsx
+// ✗ Bad - no tooltip for sighted users
+<EuiButtonIcon aria-label="Delete" iconType="trash" />
+
+// ✓ Fixed automatically
+<EuiToolTip content="Delete">
+  <EuiButtonIcon aria-label="Delete" iconType="trash" />
+</EuiToolTip>
+```
+
 ### `@elastic/eui/prefer-tooltip-trigger-focus-test-utility`
 
 Flags `fireEvent.focus()` inside `it`/`test` blocks that also query for a tooltip element (`getByRole('tooltip')`, `queryByRole('tooltip')`, `findByRole('tooltip')` or any selector containing `euiToolTip`). Plain `fireEvent.focus` does not simulate `:focus-visible` in jsdom and will not trigger `EuiToolTip`, so tooltip focus tests will silently pass without actually showing the tooltip.
