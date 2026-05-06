@@ -53,9 +53,12 @@ git -C {EUI_WORKTREE} diff main..HEAD --name-only -- \
 ```
 
 - If a theme package has changes, build it.
-- If neither has changes, ask whether to build them anyway. Default: no.
-  When skipping, Kibana will use the published versions of the theme
-  packages.
+- If neither has changes, skip local theme tarballs and use the published
+  `@elastic/eui-theme-common` and `@elastic/eui-theme-borealis` versions in
+  Kibana.
+- Only build unchanged theme packages when the user explicitly asks, and warn
+  that local theme tarballs are more likely to hit `workspace:*` resolution
+  issues in Kibana.
 
 ## Phase 1 — Build the tarball(s) in EUI
 
@@ -93,6 +96,11 @@ cd {EUI_WORKTREE}/packages/eui-theme-common && yarn build-pack
 cd {EUI_WORKTREE}/packages/eui-theme-borealis && yarn build-pack
 ```
 
+Before `eui-theme-borealis` packing, temporarily replace
+`@elastic/eui-theme-common: "workspace:*"` in **both** `dependencies` and
+`devDependencies` with `{THEME_COMMON_VERSION}`. Revert that file after
+packing (same as the temporary `packages/eui/package.json` edit).
+
 ### 1.3 — Rename and move tarballs
 
 Move directly into the Kibana repo root with snake_case names matching the
@@ -105,14 +113,25 @@ example PR's pattern:
 ```bash
 mv {EUI_WORKTREE}/packages/eui/package.tgz \
    {KIBANA_PATH}/eui_{EUI_VERSION}_{N}.tgz
+
+mv {EUI_WORKTREE}/packages/eui-theme-common/elastic-eui-theme-common-{THEME_COMMON_VERSION}.tgz \
+   {KIBANA_PATH}/eui_theme_common_{THEME_COMMON_VERSION}_{N}.tgz
+
+mv {EUI_WORKTREE}/packages/eui-theme-borealis/elastic-eui-theme-borealis-{THEME_BOREALIS_VERSION}.tgz \
+   {KIBANA_PATH}/eui_theme_borealis_{THEME_BOREALIS_VERSION}_{N}.tgz
 ```
 
 Snake_case is **required** — Kibana lints filenames for it.
+If you rebuild a tarball, use a new filename (e.g. append `_r2`) and update
+Kibana `package.json` accordingly; Yarn can keep using stale tarball contents
+when the filename/path is reused.
 
 ### 1.4 — Revert the EUI package.json edit
 
 ```bash
 git -C {EUI_WORKTREE} checkout -- packages/eui/package.json
+# if temporarily edited for packing:
+git -C {EUI_WORKTREE} checkout -- packages/eui-theme-borealis/package.json
 ```
 
 Verify `git status` shows the file is back to clean.
@@ -282,6 +301,15 @@ Return the PR URL.
 
 - **`yarn build-pack` outputs `package.tgz`, not `elastic-eui-*.tgz`** under
   Yarn 4. Always rename to the snake_case format before moving.
+- **Theme tarball output names differ from EUI.**
+  `eui-theme-common` and `eui-theme-borealis` output
+  `elastic-eui-theme-*.tgz` (not `package.tgz`).
+- **Prefer published theme packages unless the PR changes those packages.**
+  This follows the wiki workflow and avoids avoidable `workspace:*`
+  resolution failures in Kibana.
+- **If you rebuild a tarball, change its filename before re-bootstrap.**
+  Reusing the same filename/path can cause Yarn to keep stale package
+  contents.
 - **Snake_case filenames are required** in Kibana. Hyphens and dots between
   words will fail Kibana's lint.
 - **Cwd is fresh on every Bash call.** Use absolute paths or compound
