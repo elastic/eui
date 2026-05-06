@@ -13,7 +13,13 @@ This package contains an eslint plugin that enforces some default rules for usin
 
 `<EuiButton />` should either be a button or a link, for a11y purposes. When given an `href` the button behaves as a link, otherwise an `onClick` handler is expected and it will behave as a button.
 
+### `@elastic/eui/href-or-on-click`
+
+`<EuiButton />` should either be a button or a link, for a11y purposes. When given an `href` the button behaves as a link, otherwise an `onClick` handler is expected and it will behave as a button.
+
 In some cases it makes sense to disable this rule locally, such as when <kbd>cmd</kbd> + click should open the link in a new tab, but a standard click should use the `history.pushState()` API to change the URL without triggering a full page load.
+
+**Exception**: `EuiLink` has to be provided with both `onClick` and `href` so that it renders as an anchor and support Ctrl/Cmd+Click to open in a new tab, and other standard link interactions. See `@elastic/eui/require-href-for-link`.
 
 ### `@elastic/eui/no-restricted-eui-imports`
 
