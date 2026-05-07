@@ -8,7 +8,7 @@
 
 import React, { PropsWithChildren, ReactElement } from 'react';
 import { requiredProps } from '../../test/required_props';
-import { render, waitForEuiToolTipVisible } from '../../test/rtl';
+import { render } from '../../test/rtl';
 import { fireEvent } from '@testing-library/react';
 
 import { RIGHT_ALIGNMENT, CENTER_ALIGNMENT } from '../../services';
@@ -257,7 +257,7 @@ describe('EuiTableHeaderCell', () => {
   });
 
   describe('tooltip', () => {
-    it('renders an icon with tooltip', async () => {
+    it('renders an icon with tooltip', () => {
       const { getByTestSubject } = renderInTableHeader(
         <EuiTableHeaderCell
           tooltipProps={{
@@ -281,14 +281,13 @@ describe('EuiTableHeaderCell', () => {
       );
 
       fireEvent.mouseOver(getByTestSubject('icon'));
-      await waitForEuiToolTipVisible();
 
       expect(getByTestSubject('tooltip')).toHaveTextContent(
         'This is the content of the tooltip'
       );
     });
 
-    it('renders a tooltip on the cell if sortable', async () => {
+    it('renders a tooltip on the cell if sortable', () => {
       const { getByTestSubject } = renderInTableHeader(
         <EuiTableHeaderCell
           tooltipProps={{
@@ -313,7 +312,6 @@ describe('EuiTableHeaderCell', () => {
       );
 
       fireEvent.mouseOver(getByTestSubject('tableHeaderSortButton'));
-      await waitForEuiToolTipVisible();
 
       expect(getByTestSubject('tooltip')).toHaveTextContent(
         'This is the content of the tooltip'

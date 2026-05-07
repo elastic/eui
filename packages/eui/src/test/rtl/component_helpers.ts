@@ -28,24 +28,6 @@ export const waitForEuiPopoverClose = async () =>
   });
 
 /**
- * Ensure the EuiToolTip being tested is open and visible before continuing
- */
-export const waitForEuiToolTipVisible = async () =>
-  await waitFor(
-    () => {
-      const tooltip = document.querySelector('.euiToolTipPopover');
-      expect(tooltip).toBeVisible();
-    },
-    { timeout: 3000 } // Account for long delay on tooltips
-  );
-
-export const waitForEuiToolTipHidden = async () =>
-  await waitFor(() => {
-    const tooltip = document.querySelector('.euiToolTipPopover');
-    expect(tooltip).toBeNull();
-  });
-
-/**
  * jsdom does not track keyboard vs. mouse input modality, so `:focus-visible`
  * always returns false. Call this before `fireEvent.focus()` on an element that
  * should be treated as keyboard-focused.

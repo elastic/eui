@@ -9,12 +9,7 @@
 import React from 'react';
 import { css } from '@emotion/react';
 import { fireEvent } from '@testing-library/react';
-import {
-  render,
-  waitForEuiToolTipHidden,
-  waitForEuiToolTipVisible,
-  focusEuiToolTipTrigger,
-} from '../../../test/rtl';
+import { render, focusEuiToolTipTrigger } from '../../../test/rtl';
 import { requiredProps as commonProps } from '../../../test';
 import { shouldRenderCustomStyles } from '../../../test/internal';
 
@@ -262,19 +257,15 @@ describe('EuiButtonGroup', () => {
         />
       );
       fireEvent.mouseOver(getByTestSubject('buttonWithTooltip'));
-      await waitForEuiToolTipVisible();
 
       expect(getByRole('tooltip')).toHaveTextContent('I am a tooltip');
 
       fireEvent.mouseOut(getByTestSubject('buttonWithTooltip'));
-      await waitForEuiToolTipHidden();
 
       const cleanup = focusEuiToolTipTrigger(
         getByTestSubject('buttonWithTooltip')
       );
-      await waitForEuiToolTipVisible();
       fireEvent.blur(getByTestSubject('buttonWithTooltip'));
-      await waitForEuiToolTipHidden();
       cleanup();
     });
 
@@ -299,23 +290,19 @@ describe('EuiButtonGroup', () => {
       // NOTE: uses `parentElement` as the hover event is triggered on the tooltip wrapper.
       // The button itself doesn't allow mouse events when disabled.
       fireEvent.mouseOver(getByTestSubject('buttonWithTooltip').parentElement!);
-      await waitForEuiToolTipVisible();
 
       expect(await findByRole('tooltip')).toHaveTextContent('I am a tooltip');
 
       fireEvent.mouseOut(getByTestSubject('buttonWithTooltip').parentElement!);
-      await waitForEuiToolTipHidden();
 
       const cleanup = focusEuiToolTipTrigger(
         getByTestSubject('buttonWithTooltip')
       );
-      await waitForEuiToolTipVisible();
       fireEvent.blur(getByTestSubject('buttonWithTooltip'));
-      await waitForEuiToolTipHidden();
       cleanup();
     });
 
-    it('allows customizing the tooltip via `toolTipProps`', async () => {
+    it('allows customizing the tooltip via `toolTipProps`', () => {
       const { getByTestSubject } = render(
         <EuiButtonGroup
           {...requiredMultiProps}
@@ -328,7 +315,7 @@ describe('EuiButtonGroup', () => {
               toolTipContent: 'I am a tooltip',
               toolTipProps: {
                 position: 'right',
-                delay: 'regular',
+
                 'data-test-subj': 'toolTipTest',
               },
             },
@@ -336,7 +323,6 @@ describe('EuiButtonGroup', () => {
         />
       );
       fireEvent.mouseOver(getByTestSubject('buttonWithTooltip'));
-      await waitForEuiToolTipVisible();
 
       expect(getByTestSubject('toolTipTest')).toHaveAttribute(
         'data-position',

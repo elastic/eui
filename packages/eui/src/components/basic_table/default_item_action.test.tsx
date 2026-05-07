@@ -8,11 +8,7 @@
 
 import React from 'react';
 import { fireEvent } from '@testing-library/react';
-import {
-  render,
-  waitForEuiToolTipVisible,
-  waitForEuiToolTipHidden,
-} from '../../test/rtl';
+import { render } from '../../test/rtl';
 
 import { DefaultItemAction } from './default_item_action';
 import {
@@ -79,7 +75,7 @@ describe('DefaultItemAction', () => {
     expect(container.querySelector('.euiButtonEmpty')).toBeInTheDocument();
   });
 
-  test('props that can be functions', async () => {
+  test('props that can be functions', () => {
     const action: EmptyButtonAction<Item> = {
       name: ({ id }) =>
         id === 'hello' ? <span>Hello</span> : <span>world</span>,
@@ -113,17 +109,14 @@ describe('DefaultItemAction', () => {
     expect(secondAction).toHaveAttribute('href', '#/world');
 
     fireEvent.mouseOver(firstAction);
-    await waitForEuiToolTipVisible();
     expect(getByText('hello tooltip')).toBeInTheDocument();
     fireEvent.mouseOut(firstAction);
-    await waitForEuiToolTipHidden();
 
     fireEvent.mouseOver(secondAction);
-    await waitForEuiToolTipVisible();
     expect(getByText('goodbye tooltip')).toBeInTheDocument();
   });
 
-  it('is described by the tooltip via aria-describedby', async () => {
+  it('is described by the tooltip via aria-describedby', () => {
     const actionWithDifferentNameAndDescription: EmptyButtonAction<Item> = {
       name: 'same',
       description: 'different',
@@ -141,7 +134,6 @@ describe('DefaultItemAction', () => {
 
     const action = getByTestSubject('different');
     fireEvent.mouseOver(action);
-    await waitForEuiToolTipVisible();
     const tooltip = getByRole('tooltip');
     expect(tooltip).toHaveTextContent('different');
     expect(tooltip).toBeInTheDocument();
@@ -151,7 +143,7 @@ describe('DefaultItemAction', () => {
 
   // If `name` and `description` are exactly the same
   // we don't want screen readers announcing the same text twice
-  it('has visual-only tooltip when `name` equals `description`', async () => {
+  it('has visual-only tooltip when `name` equals `description`', () => {
     const actionWithEqualNameAndDescription: EmptyButtonAction<Item> = {
       name: 'same',
       description: 'same',
@@ -169,7 +161,6 @@ describe('DefaultItemAction', () => {
 
     const action = getByTestSubject('same');
     fireEvent.mouseOver(action);
-    await waitForEuiToolTipVisible();
     const tooltip = getByRole('tooltip');
     expect(tooltip).toBeInTheDocument();
     expect(tooltip).toHaveTextContent('same');

@@ -8,11 +8,7 @@
 
 import React from 'react';
 import { fireEvent } from '@testing-library/react';
-import {
-  waitForEuiToolTipVisible,
-  waitForEuiToolTipHidden,
-  render,
-} from '../../test/rtl';
+import { render } from '../../test/rtl';
 import { requiredProps } from '../../test';
 
 import { EuiCopy } from './copy';
@@ -44,7 +40,7 @@ describe('EuiCopy', () => {
   });
 
   describe('props', () => {
-    it('beforeMessage', async () => {
+    it('beforeMessage', () => {
       const beforeMessage = 'copy this';
       const { getByRole, getByText } = render(
         <EuiCopy textToCopy="some text" beforeMessage={beforeMessage}>
@@ -57,14 +53,13 @@ describe('EuiCopy', () => {
       );
       // Simulate mouse over to show the tooltip
       fireEvent.mouseOver(getByRole('button'));
-      await waitForEuiToolTipVisible();
+
       // The beforeMessage should be shown in the tooltip
       expect(getByText(beforeMessage)).toBeInTheDocument();
       fireEvent.mouseOut(getByRole('button'));
-      await waitForEuiToolTipHidden();
     });
 
-    it('afterMessage', async () => {
+    it('afterMessage', () => {
       const afterMessage = 'successfully copied';
       const { getByRole, getByText } = render(
         <EuiCopy textToCopy="some text" afterMessage={afterMessage}>
@@ -79,14 +74,13 @@ describe('EuiCopy', () => {
       // Simulate a click to copy the text
       fireEvent.click(getByRole('button'));
       fireEvent.mouseOver(getByRole('button'));
-      await waitForEuiToolTipVisible();
+
       // The afterMessage should be shown after the copy action
       expect(getByText(afterMessage)).toBeInTheDocument();
       fireEvent.mouseOut(getByRole('button'));
-      await waitForEuiToolTipHidden();
     });
 
-    it('tooltipProps', async () => {
+    it('tooltipProps', () => {
       const tooltipProps = {
         'data-test-subj': 'customTooltip',
         className: 'myTooltipClass',
@@ -107,13 +101,12 @@ describe('EuiCopy', () => {
       );
       // Simulate mouse over to show the tooltip
       fireEvent.mouseOver(getByRole('button'));
-      await waitForEuiToolTipVisible();
+
       // The tooltip portalled, so search the global document
       const tooltip = getByTestSubject('customTooltip');
       expect(tooltip).toBeInTheDocument();
       expect(tooltip?.className).toContain('myTooltipClass');
       fireEvent.mouseOut(getByRole('button'));
-      await waitForEuiToolTipHidden();
     });
   });
 });

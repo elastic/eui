@@ -8,11 +8,7 @@
 
 import React from 'react';
 import { fireEvent } from '@testing-library/react';
-import {
-  render,
-  showEuiComboBoxOptions,
-  waitForEuiToolTipVisible,
-} from '../../test/rtl';
+import { render, showEuiComboBoxOptions } from '../../test/rtl';
 import {
   shouldRenderCustomStyles,
   testOnReactVersion,
@@ -246,7 +242,6 @@ describe('EuiComboBox', () => {
         await showEuiComboBoxOptions();
 
         fireEvent.mouseOver(getByTestSubject('titanOption'));
-        await waitForEuiToolTipVisible();
 
         expect(getByTestSubject('optionToolTip')).toBeInTheDocument();
         expect(getByTestSubject('optionToolTip')).toHaveTextContent(
@@ -277,8 +272,6 @@ describe('EuiComboBox', () => {
 
         const input = getByTestSubject('comboBoxSearchInput');
         fireEvent.keyDown(input, { key: keys.ARROW_DOWN });
-
-        await waitForEuiToolTipVisible();
 
         expect(getByTestSubject('optionToolTip')).toBeInTheDocument();
         expect(getByTestSubject('optionToolTip')).toHaveTextContent(
