@@ -12,11 +12,12 @@ import {
   logicalCSS,
   logicalCSSWithFallback,
   euiYScrollWithShadows,
+  logicalShorthandCSS,
 } from '../../global_styling';
-import { highContrastModeStyles } from '../../global_styling/functions/high_contrast';
 
 export const euiFlyoutBodyStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
+
   return {
     euiFlyoutBody: css`
       ${logicalCSSWithFallback('overflow-y', 'hidden')}
@@ -33,9 +34,13 @@ export const euiFlyoutBodyStyles = (euiThemeContext: UseEuiTheme) => {
     },
     euiFlyoutBody__banner: css`
       ${logicalCSSWithFallback('overflow-x', 'hidden')}
-      ${highContrastModeStyles(euiThemeContext, {
-        preferred: logicalCSS('border-bottom', euiTheme.border.thin),
-      })}
+
+      .euiCallOut {
+        ${logicalShorthandCSS(
+          'margin',
+          `${euiTheme.size.s} ${euiTheme.size.l}`
+        )}
+      }
     `,
   };
 };
