@@ -1,3 +1,23 @@
+## [`v115.0.0`](https://github.com/elastic/eui/releases/v115.0.0)
+
+- Updated `EuiToolTip` default font size from 14px to 12px ([#9627](https://github.com/elastic/eui/pull/9627))
+- Updated `EuiToolTip` show animation to opacity-only with a 150ms grace period delay, preventing visual flickering when quickly hovering over multiple tooltip triggers ([#9626](https://github.com/elastic/eui/pull/9626))
+- Updated `EuiToolTip` to respect input modality. Tooltip no longer persists on mouse-click focus or shows on programmatic focus return. ([#9624](https://github.com/elastic/eui/pull/9624))
+
+**Bug fixes**
+
+- Fixed `uiPlugins[].button` type to allow UI plugins to not have a toolbar button in `EuiMarkdownEditor` ([#9634](https://github.com/elastic/eui/pull/9634))
+- Fixed `EuiToolTip` self-hiding when the mouse moves over child elements within the trigger ([#9626](https://github.com/elastic/eui/pull/9626))
+
+**Breaking changes**
+
+- Removed `delay` prop and `ToolTipDelay` type from `EuiToolTip` and `EuiIconTip` ([#9626](https://github.com/elastic/eui/pull/9626))
+- Removed `waitForEuiToolTipVisible` and `waitForEuiToolTipHidden` RTL test helpers; tooltip show/hide is now synchronous so direct assertions can be used instead ([#9626](https://github.com/elastic/eui/pull/9626))
+
+**Accessibility**
+
+- Fixed invalid nested interactive elements in `EuiMarkdownEditor` by removing `role` from the drop zone wrapper. ([#9625](https://github.com/elastic/eui/pull/9625))
+
 ## [`v114.3.0`](https://github.com/elastic/eui/releases/v114.3.0)
 
 - Updated `productDashboard` icon. ([#9607](https://github.com/elastic/eui/pull/9607))

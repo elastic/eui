@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React from 'react';
+import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { enableFunctionToggleControls } from '../../../.storybook/utils';
@@ -19,6 +19,7 @@ import {
   EuiToolTipProps,
   DEFAULT_TOOLTIP_OFFSET,
 } from './tool_tip';
+import { EuiIconTip } from './icon_tip';
 
 const meta: Meta<EuiToolTipProps> = {
   title: 'Display/EuiToolTip',
@@ -93,4 +94,60 @@ export const HighContrastMode: Story = {
     ...Playground.args,
     position: 'left',
   },
+};
+
+/**
+ * TODO: REMOVE BEFORE MERGE
+ *
+ * Regression stories
+ */
+
+/**
+ * Reproduces the `pointer-events` regression: before the fix, the visible tooltip
+ * popover had no `pointer-events: none` and could intercept clicks on the trigger.
+ *
+ * Hover over the button to show the tooltip, then click. The counter should increment.
+ */
+const PointerEventsNoneStory = () => {
+  const [count, setCount] = useState(0);
+
+  return (
+    <EuiToolTip content="The tooltip should not block the button click — hover and then click">
+      <EuiButton onClick={() => setCount((c) => c + 1)}>
+        Clicked {count} {count === 1 ? 'time' : 'times'}
+      </EuiButton>
+    </EuiToolTip>
+  );
+};
+
+export const PointerEventsNone: Story = {
+  render: () => {
+    return <PointerEventsNoneStory />;
+  },
+};
+
+/**
+ * Reproduces the nested-tooltip regression: `EuiTableHeaderCell` wraps every sortable
+ * column's sort button in an `EuiToolTip` with no content. Before the fix, hovering the
+ * inner `EuiIconTip` caused the outer empty tooltip to call `toolTipManager.registerTooltip()`,
+ * which immediately hid the inner tooltip.
+ *
+ * Hover the info icon. The inner tooltip should remain visible.
+ */
+export const NestedEmptyTooltip: Story = {
+  render: () => (
+    <EuiToolTip display="block">
+      <button
+        type="button"
+        style={{ display: 'inline-flex', alignItems: 'center', gap: 4 }}
+      >
+        <span>Duration</span>
+        <EuiIconTip
+          content="The length of time it took for the rule to run (mm:ss)."
+          type="iInCircle"
+          size="s"
+        />
+      </button>
+    </EuiToolTip>
+  ),
 };
