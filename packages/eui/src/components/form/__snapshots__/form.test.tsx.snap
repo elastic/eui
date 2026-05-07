@@ -24,15 +24,34 @@ exports[`EuiForm renders with error callout when isInvalid is "true" 1`] = `
 >
   <div
     aria-live="assertive"
-    class="euiPanel euiPanel--danger euiPanel--paddingMedium euiCallOut euiCallOut--danger euiForm__errors emotion-euiPanel-none-m-danger-euiCallOut"
+    class="euiPanel euiPanel--primary euiCallOut euiForm__errors emotion-euiPanel-none-primary-euiCallOut-primary"
+    data-size="m"
+    data-type="neutral"
     role="alert"
+    style="--euiCallOutTypeColor: #0B64DD;"
     tabindex="-1"
   >
-    <p
-      class="euiTitle euiCallOutHeader__title emotion-euiTitle-xs-euiCallOutHeader-danger"
+    <div
+      class="css-tc1q32-wrapper"
     >
-      Please address the highlighted errors.
-    </p>
+      <div
+        class="css-wlziyu-body"
+      >
+        <span
+          class="css-19b7t2f-icon"
+          data-euiicon-type="info"
+        />
+        <div
+          class="css-qvenhi-content"
+        >
+          <p
+            class="euiTitle euiCallOutHeader__title emotion-euiTitle-xs-euiCallOutHeader"
+          >
+            Please address the highlighted errors.
+          </p>
+        </div>
+      </div>
+    </div>
   </div>
   <div
     class="euiSpacer euiSpacer--m emotion-euiSpacer-m"
@@ -48,37 +67,53 @@ exports[`EuiForm renders with error callout when isInvalid is "true" and has mul
 >
   <div
     aria-live="assertive"
-    class="euiPanel euiPanel--danger euiPanel--paddingMedium euiCallOut euiCallOut--danger euiForm__errors emotion-euiPanel-none-m-danger-euiCallOut"
+    class="euiPanel euiPanel--primary euiCallOut euiForm__errors emotion-euiPanel-none-primary-euiCallOut-primary"
+    data-size="m"
+    data-type="neutral"
     role="alert"
+    style="--euiCallOutTypeColor: #0B64DD;"
     tabindex="-1"
   >
-    <p
-      class="euiTitle euiCallOutHeader__title emotion-euiTitle-xs-euiCallOutHeader-danger"
-    >
-      Please address the highlighted errors.
-    </p>
     <div
-      class="euiSpacer euiSpacer--s emotion-euiSpacer-s"
-    />
-    <div
-      class="euiText emotion-euiText-s-euiTextColor-default"
+      class="css-tc1q32-wrapper"
     >
-      <ul>
-        <li
-          class="euiForm__error"
+      <div
+        class="css-wlziyu-body"
+      >
+        <span
+          class="css-19b7t2f-icon"
+          data-euiicon-type="info"
+        />
+        <div
+          class="css-qvenhi-content"
         >
-          <span>
-            This is one error
-          </span>
-        </li>
-        <li
-          class="euiForm__error"
-        >
-          <span>
-            This is another error
-          </span>
-        </li>
-      </ul>
+          <p
+            class="euiTitle euiCallOutHeader__title emotion-euiTitle-xs-euiCallOutHeader"
+          >
+            Please address the highlighted errors.
+          </p>
+          <div
+            class="euiText euiCallOut__text emotion-euiText-s-euiTextColor-default"
+          >
+            <ul>
+              <li
+                class="euiForm__error"
+              >
+                <span>
+                  This is one error
+                </span>
+              </li>
+              <li
+                class="euiForm__error"
+              >
+                <span>
+                  This is another error
+                </span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
   <div
@@ -95,30 +130,46 @@ exports[`EuiForm renders with error callout when isInvalid is "true" and has one
 >
   <div
     aria-live="assertive"
-    class="euiPanel euiPanel--danger euiPanel--paddingMedium euiCallOut euiCallOut--danger euiForm__errors emotion-euiPanel-none-m-danger-euiCallOut"
+    class="euiPanel euiPanel--primary euiCallOut euiForm__errors emotion-euiPanel-none-primary-euiCallOut-primary"
+    data-size="m"
+    data-type="neutral"
     role="alert"
+    style="--euiCallOutTypeColor: #0B64DD;"
     tabindex="-1"
   >
-    <p
-      class="euiTitle euiCallOutHeader__title emotion-euiTitle-xs-euiCallOutHeader-danger"
-    >
-      Please address the highlighted errors.
-    </p>
     <div
-      class="euiSpacer euiSpacer--s emotion-euiSpacer-s"
-    />
-    <div
-      class="euiText emotion-euiText-s-euiTextColor-default"
+      class="css-tc1q32-wrapper"
     >
-      <ul>
-        <li
-          class="euiForm__error"
+      <div
+        class="css-wlziyu-body"
+      >
+        <span
+          class="css-19b7t2f-icon"
+          data-euiicon-type="info"
+        />
+        <div
+          class="css-qvenhi-content"
         >
-          <span>
-            This is one error
-          </span>
-        </li>
-      </ul>
+          <p
+            class="euiTitle euiCallOutHeader__title emotion-euiTitle-xs-euiCallOutHeader"
+          >
+            Please address the highlighted errors.
+          </p>
+          <div
+            class="euiText euiCallOut__text emotion-euiText-s-euiTextColor-default"
+          >
+            <ul>
+              <li
+                class="euiForm__error"
+              >
+                <span>
+                  This is one error
+                </span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
   <div

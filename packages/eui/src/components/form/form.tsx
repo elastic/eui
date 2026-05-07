@@ -106,12 +106,11 @@ export const EuiForm = forwardRef<HTMLElement, EuiFormProps>(
                 ref={handleFocus}
                 className="euiForm__errors"
                 title={addressFormErrors}
+                text={optionalErrors}
                 color="danger"
                 role="alert"
                 aria-live="assertive"
-              >
-                {optionalErrors}
-              </EuiCallOut>
+              />
               <EuiSpacer size="m" />
             </>
           )}

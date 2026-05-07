@@ -7,7 +7,7 @@
  */
 
 import { css } from '@emotion/react';
-import { EuiCallOut, EuiText } from '@elastic/eui';
+import { EuiCallOut } from '@elastic/eui';
 import type { Props } from '@theme-original/Admonition';
 import type AdmonitionTypes from '@theme-original/Admonition/Types';
 
@@ -22,13 +22,13 @@ type CalloutVariant =
   | 'important'
   | 'success'
   | 'caution';
-type VariantColor = 'accent' | 'primary' | 'success' | 'warning' | 'danger';
+type VariantColor = 'primary' | 'success' | 'warning' | 'danger';
 
 const VARIANT_TO_PROPS_MAP: Record<
   CalloutVariant,
   { iconType?: string; color?: VariantColor }
 > = {
-  note: { iconType: 'paperClip', color: 'accent' },
+  note: { iconType: 'paperClip', color: 'primary' },
   tip: { iconType: 'faceHappy', color: 'success' },
   info: { iconType: 'info', color: 'primary' },
   accessibility: { iconType: 'accessibility', color: 'primary' },
@@ -56,8 +56,7 @@ const Callout = ({ title, type, children }: Props) => {
   return (
     <EuiCallOut
       title={title}
-      iconType="info"
-      color="primary"
+      type="neutral"
       {...variantProps}
       css={css`
         margin-block: var(--eui-theme-content-vertical-spacing);
