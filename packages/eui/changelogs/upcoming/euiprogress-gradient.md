@@ -1,0 +1,1 @@
+- `EuiProgress`'s `color` prop now accepts CSS gradient strings (e.g. `linear-gradient(...)`). Gradient values are applied to the bar's fill via `background-image`; named palette colors and solid CSS color strings continue to work unchanged.

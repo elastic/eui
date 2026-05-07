@@ -18,6 +18,20 @@ exports[`EuiProgress color danger is rendered 1`] = `
 />
 `;
 
+exports[`EuiProgress color gradient determinate progress renders a gradient color 1`] = `
+<progress
+  class="euiProgress emotion-euiProgress-native-m-static-euiProgressGradientStyles"
+  max="100"
+  value="50"
+/>
+`;
+
+exports[`EuiProgress color gradient indeterminate progress renders a gradient color 1`] = `
+<div
+  class="euiProgress emotion-euiProgress-indeterminate-m-static-euiProgressGradientStyles"
+/>
+`;
+
 exports[`EuiProgress color primary is rendered 1`] = `
 <div
   class="euiProgress emotion-euiProgress-indeterminate-m-static-primary"

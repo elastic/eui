@@ -9,6 +9,7 @@
 import React, { useEffect, useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
+import { useEuiTheme } from '../../services';
 import { EuiProgress, COLORS } from './progress';
 import { EuiButton } from '../button';
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
@@ -65,6 +66,37 @@ export const HighContrast: Story = {
     color: 'primary',
   },
   render: (args) => <EuiProgress {...args} />,
+};
+
+/**
+ * `color` accepts any valid CSS color string, including multi-stop CSS
+ * gradients (e.g. `linear-gradient(...)`). Composing the gradient from
+ * `useEuiTheme` tokens — as this story does by default — keeps the bar
+ * aligned with light/dark mode and any future palette refresh. Edit the
+ * `color` control to pass a literal gradient string instead.
+ */
+export const GradientColor: Story = {
+  parameters: {
+    controls: { include: ['color', 'size', 'value', 'max'] },
+    codeSnippet: {
+      resolveStoryElementOnly: true,
+    },
+  },
+  argTypes: {
+    color: { control: 'text' },
+  },
+  args: {
+    ...Determinate.args,
+    size: 'm',
+    // Override the meta-level `color: 'success'` default so the render
+    // function's themed-gradient fallback is what shows on first load.
+    color: undefined,
+  },
+  render: function Render(args) {
+    const { euiTheme } = useEuiTheme();
+    const themedStatusGradient = `linear-gradient(90deg, ${euiTheme.colors.success}, ${euiTheme.colors.warning}, ${euiTheme.colors.danger})`;
+    return <EuiProgress {...args} color={args.color || themedStatusGradient} />;
+  },
 };
 
 export const DeterminateLoading: Story = {
