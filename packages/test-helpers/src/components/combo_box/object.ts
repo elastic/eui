@@ -32,12 +32,16 @@ export class EuiComboBoxObject extends BaseObject {
   async setSelectedOptions(labels: string[]): Promise<void> {
     // Dedupe while preserving order.
     const targetLabels = [...new Set(labels)];
-    const current = await this.getSelectedOptions();
+    // `[...arr].sort()` (not `arr.sort()`) — sort mutates in place; the copy
+    // avoids mutating either the consumer's input or our internal state.
+    const sortedTarget = [...targetLabels].sort();
+
+    const sortedCurrent = [...(await this.getSelectedOptions())].sort();
 
     // Set-equality short-circuit (any order).
     if (
-      current.length === targetLabels.length &&
-      targetLabels.every((l) => current.includes(l))
+      sortedCurrent.length === sortedTarget.length &&
+      sortedCurrent.every((label, i) => label === sortedTarget[i])
     ) {
       return;
     }
@@ -57,15 +61,12 @@ export class EuiComboBoxObject extends BaseObject {
 
     await expect
       .poll(
-        async () => {
-          const selected = await this.getSelectedOptions();
-          return [...selected].sort();
-        },
+        async () => [...(await this.getSelectedOptions())].sort(),
         {
           message: `EuiComboBox: selection did not match after setSelectedOptions(${JSON.stringify(labels)})`,
         }
       )
-      .toEqual([...targetLabels].sort());
+      .toEqual(sortedTarget);
   }
 
   /**
