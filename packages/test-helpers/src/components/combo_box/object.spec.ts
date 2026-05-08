@@ -32,22 +32,32 @@ test.describe('EuiComboBoxObject', () => {
     await combo.clear();
   });
 
-  test('selectOption adds a pill for the chosen label', async () => {
-    await combo.selectOption('Item 2');
+  test('setSelectedOptions sets the selection to the provided labels', async () => {
+    await combo.setSelectedOptions(['Item 2']);
 
     expect(await combo.getSelectedOptions()).toEqual(['Item 2']);
   });
 
-  test('selectOption is idempotent when the label is already selected', async () => {
-    await combo.selectOption('Item 1');
+  test('setSelectedOptions replaces the existing selection', async () => {
+    await combo.setSelectedOptions(['Item 1', 'Item 2']);
+    expect(await combo.getSelectedOptions()).toEqual(['Item 1', 'Item 2']);
 
-    await expect(combo.selectOption('Item 1')).resolves.not.toThrow();
-    expect(await combo.getSelectedOptions()).toEqual(['Item 1']);
+    // Replace, don't add.
+    await combo.setSelectedOptions(['Item 3']);
+    expect(await combo.getSelectedOptions()).toEqual(['Item 3']);
+  });
+
+  test('setSelectedOptions is idempotent when the selection already matches', async () => {
+    await combo.setSelectedOptions(['Item 1', 'Item 2']);
+
+    await expect(
+      combo.setSelectedOptions(['Item 1', 'Item 2'])
+    ).resolves.not.toThrow();
+    expect(await combo.getSelectedOptions()).toEqual(['Item 1', 'Item 2']);
   });
 
   test('clear removes all selected options', async () => {
-    await combo.selectOption('Item 1');
-    await combo.selectOption('Item 2');
+    await combo.setSelectedOptions(['Item 1', 'Item 2']);
 
     await combo.clear();
 
@@ -70,8 +80,8 @@ test.describe('EuiComboBoxObject', () => {
 
     // Distinct labels + reverse order so a regression that mis-routed a
     // selection across combos would surface.
-    await combo2.selectOption('Item 5');
-    await combo1.selectOption('Item 2');
+    await combo2.setSelectedOptions(['Item 5']);
+    await combo1.setSelectedOptions(['Item 2']);
 
     expect(await combo1.getSelectedOptions()).toEqual(['Item 2']);
     expect(await combo2.getSelectedOptions()).toEqual(['Item 5']);

@@ -30,8 +30,8 @@ user-like interactions for a specific EUI component.
 import { EuiComboBoxObject } from '@elastic/eui-test-helpers/playwright';
 
 const combo = new EuiComboBoxObject(page, 'dataViewSelector');
-await combo.selectOption('logs-*');
-expect(await combo.getSelectedOptions()).toContain('logs-*');
+await combo.setSelectedOptions(['logs-*']);
+expect(await combo.getSelectedOptions()).toEqual(['logs-*']);
 ```
 
 The constructor's second argument is the `data-test-subj` set by the

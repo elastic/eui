@@ -22,36 +22,50 @@ import { EuiComboBoxSelectors } from './selectors';
  */
 export class EuiComboBoxObject extends BaseObject {
   /**
-   * Select an option by its visible label. No-op if already selected. Throws
-   * with a descriptive message if the matching option never appears in the
-   * dropdown.
+   * Replace the current selection with `labels`. Set-semantics: order-
+   * independent — already-selected labels are kept, missing ones are added,
+   * extras are removed. No-op if the current selection already matches.
+   *
+   * Throws with a descriptive message if any label never appears in the
+   * dropdown (catches test/data drift early).
    */
-  async selectOption(label: string): Promise<void> {
-    if ((await this.getSelectedOptions()).includes(label)) {
+  async setSelectedOptions(labels: string[]): Promise<void> {
+    // Dedupe while preserving order.
+    const targetLabels = [...new Set(labels)];
+    const current = await this.getSelectedOptions();
+
+    // Set-equality short-circuit (any order).
+    if (
+      current.length === targetLabels.length &&
+      targetLabels.every((l) => current.includes(l))
+    ) {
       return;
     }
 
-    // Clicking the outer wrapper does not reliably open the dropdown; the
-    // inner `comboBoxInput` element does.
-    await this.input.click();
-    await this.searchInput.pressSequentially(label, { delay: 50 });
+    // Naive replace — clear, then add each. A diff-based approach would do
+    // less DOM work but require a per-pill remove primitive we don't ship yet.
+    await this.clear();
 
-    // Options list is rendered in a portal outside `this.root`, so locate
-    // from page level.
-    const option = this.root
-      .page()
-      .locator(EuiComboBoxSelectors.optionFor(this.testSubj, label));
-    await option.waitFor({ state: 'visible' });
-    await option.click();
+    for (const label of targetLabels) {
+      await this.addOption(label);
+    }
+
+    if (targetLabels.length > 0) {
+      // Close the dropdown so subsequent interactions start clean.
+      await this.root.page().keyboard.press('Escape');
+    }
 
     await expect
-      .poll(() => this.getSelectedOptions(), {
-        message: `EuiComboBox: option "${label}" did not appear as selected after click`,
-      })
-      .toContain(label);
-
-    // Close the dropdown so subsequent interactions start clean.
-    await this.root.page().keyboard.press('Escape');
+      .poll(
+        async () => {
+          const selected = await this.getSelectedOptions();
+          return [...selected].sort();
+        },
+        {
+          message: `EuiComboBox: selection did not match after setSelectedOptions(${JSON.stringify(labels)})`,
+        }
+      )
+      .toEqual([...targetLabels].sort());
   }
 
   /**
@@ -80,6 +94,21 @@ export class EuiComboBoxObject extends BaseObject {
     }
     const inputValue = await this.searchInput.inputValue();
     return inputValue ? [inputValue] : [];
+  }
+
+  private async addOption(label: string): Promise<void> {
+    // Clicking the outer wrapper does not reliably open the dropdown; the
+    // inner `comboBoxInput` element does.
+    await this.input.click();
+    await this.searchInput.pressSequentially(label, { delay: 50 });
+
+    // Options list is rendered in a portal outside `this.root`, so locate
+    // from page level.
+    const option = this.root
+      .page()
+      .locator(EuiComboBoxSelectors.optionFor(this.testSubj, label));
+    await option.waitFor({ state: 'visible' });
+    await option.click();
   }
 
   private get input(): Locator {
