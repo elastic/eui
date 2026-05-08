@@ -14,6 +14,7 @@ import {
   logicalSizeCSS,
   euiCanAnimate,
   euiFontSize,
+  mathWithUnits,
 } from '../../global_styling';
 import { highContrastModeStyles } from '../../global_styling/functions/high_contrast';
 import { euiScreenReaderOnly } from '../accessibility';
@@ -143,6 +144,20 @@ export const euiKeyPadMenuItemChildStyles = (euiThemeContext: UseEuiTheme) => {
 
     euiKeyPadMenuItem__betaBadge: css`
       ${topRightChildren}
+    `,
+
+    euiKeyPadMenuItem__betaBadgeLetter: css`
+      align-items: center;
+      border-radius: 50%;
+      display: inline-flex;
+      justify-content: center;
+      line-height: 1;
+      padding: 0;
+
+      ${logicalSizeCSS(
+        mathWithUnits(euiTheme.size.base, (base) => base * 1.25)
+      )}
+      ${logicalCSS('max-width', 'none')}
     `,
 
     euiKeyPadMenuItem__checkableInput: css`

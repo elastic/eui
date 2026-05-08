@@ -127,6 +127,9 @@ export type EuiBetaBadgeProps = CommonProps &
   > &
   BadgeProps;
 
+/**
+ * @deprecated Use `EuiBadge` instead
+ */
 export const EuiBetaBadge: FunctionComponent<EuiBetaBadgeProps> = ({
   className,
   label,

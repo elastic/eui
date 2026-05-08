@@ -24,12 +24,13 @@ import { useGeneratedHtmlId } from '../../services/accessibility';
 import { validateHref } from '../../services/security/href_validator';
 
 import { CommonProps, ExclusiveUnion } from '../common';
-import { EuiText } from '../text';
-import { EuiTitle } from '../title';
-import { EuiBetaBadge, EuiBetaBadgeProps } from '../badge/beta_badge';
+import { EuiBadge, EuiBadgeProps } from '../badge';
 import { EuiIconProps } from '../icon';
 import { EuiPanel, EuiPanelProps } from '../panel';
 import { EuiSpacer } from '../spacer';
+import { EuiText } from '../text';
+import { EuiTitle } from '../title';
+import { EuiToolTip, EuiToolTipProps } from '../tool_tip';
 
 import { EuiCardSelect, EuiCardSelectProps } from './card_select';
 import {
@@ -114,10 +115,15 @@ export type EuiCardProps = Omit<CommonProps, 'aria-label'> &
     target?: string;
     rel?: string;
     /**
-     * Adds a badge to top of the card to label it as "Beta" or other non-GA state.
-     * Accepts all the props of [EuiBetaBadge](#/display/badge#beta-badge-type), where `label` is required.
+     * Adds a badge to top of the card.
+     * Accepts all the props of {@link https://eui.elastic.co/docs/components/display/badge/ | EuiBadge}.
      */
-    betaBadgeProps?: EuiBetaBadgeProps;
+    betaBadgeProps?: EuiBadgeProps;
+    /**
+     * Extends the wrapping {@link https://eui.elastic.co/docs/components/display/tooltip/ | EuiToolTip} props
+     * when `betaBadgeProps` is provided.
+     */
+    betaBadgeTooltipProps?: Omit<EuiToolTipProps, 'children'>;
     /**
      * Matches to the color property of EuiPanel. If defined, removes any border & shadow.
      * Leave as `undefined` to display as a default panel.
@@ -155,6 +161,7 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
   target,
   textAlign = 'center',
   betaBadgeProps,
+  betaBadgeTooltipProps,
   layout = 'vertical',
   selectable,
   display,
@@ -267,37 +274,61 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
   }
 
   /**
-   * Optional EuiBetaBadge
+   * Optional `EuiBadge`
    */
 
   let optionalBetaBadge;
   let optionalBetaBadgeID = '';
   let optionalBetaCSS;
-  if (betaBadgeProps?.label) {
+
+  if (betaBadgeProps?.children) {
     const betaStyles = euiCardBetaBadgeStyles(euiThemeContext, paddingSize);
     optionalBetaCSS = betaStyles.hasBetaBadge;
 
-    const { anchorProps, ...cleanedBetaBadgeProps } = betaBadgeProps;
-    const anchorCSS = [betaStyles.euiCard__betaBadgeAnchor, anchorProps?.css];
+    const { anchorProps: tooltipAnchorProps, ...tooltipPropsRest } =
+      betaBadgeTooltipProps ?? {};
+    const { css: tooltipAnchorCss, ...tooltipAnchorRest } =
+      tooltipAnchorProps ?? {};
+
+    const anchorCSS = [betaStyles.euiCard__betaBadgeAnchor, tooltipAnchorCss];
     const badgeCSS = [betaStyles.euiCard__betaBadge, betaBadgeProps?.css];
 
     optionalBetaBadgeID = `${ariaId}BetaBadge`;
-    optionalBetaBadge = (
-      <EuiBetaBadge
-        color={
-          isDisabled && !betaBadgeProps.onClick && !betaBadgeProps.href
-            ? 'subdued'
-            : 'hollow'
-        }
-        {...cleanedBetaBadgeProps}
+    const defaultBetaBadgeColor =
+      isDisabled && !betaBadgeProps.onClick && !betaBadgeProps.href
+        ? 'subdued'
+        : 'hollow';
+    const badgeColor = betaBadgeProps.color ?? defaultBetaBadgeColor;
+    const badgeFill =
+      betaBadgeProps.fill ??
+      (badgeColor !== 'hollow' &&
+        badgeColor !== 'subdued' &&
+        badgeColor !== 'default');
+
+    const badge = (
+      <EuiBadge
+        {...betaBadgeProps}
+        color={badgeColor}
         css={badgeCSS}
-        anchorProps={{ ...anchorProps, css: anchorCSS }}
+        fill={badgeFill}
         id={optionalBetaBadgeID}
       />
     );
 
-    // Increase padding size when there is a beta badge unless it's already determined
-    // paddingSize = paddingSize || 'l';
+    const hasTooltip =
+      betaBadgeTooltipProps?.content != null ||
+      betaBadgeTooltipProps?.title != null;
+
+    optionalBetaBadge = (
+      // Card positioning must live on an outer wrapper
+      <span {...tooltipAnchorRest} css={anchorCSS}>
+        {hasTooltip ? (
+          <EuiToolTip {...tooltipPropsRest}>{badge}</EuiToolTip>
+        ) : (
+          badge
+        )}
+      </span>
+    );
   }
 
   /**

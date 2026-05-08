@@ -100,7 +100,6 @@ export const INTERACTIVE_EUI_COMPONENTS = [
   'EuiFilterSelectItem',
   'EuiFilterSelectable',
   'EuiBadge',
-  'EuiBetaBadge',
   'EuiSelectable',
   'EuiComboBox',
   'EuiSuperSelect',

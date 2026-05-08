@@ -588,9 +588,12 @@ export default () => {
   );
 };
 ```
-import { EuiBetaBadge } from '@elastic/eui';
 
-### Disabled and focusable <EuiBetaBadge label="Beta" color="accent" />
+```mdx-code-block
+import { BetaBadge } from '@site/src/components/beta_badge';
+```
+
+### Disabled and focusable <BetaBadge />
 
 :::info Natively disabled buttons are not focusable
 By default, when using `isDisabled` or `disabled` on **EuiButton**, the button will render with the native `disabled` attribute, making it unfocusable.

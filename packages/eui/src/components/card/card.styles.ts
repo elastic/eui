@@ -268,6 +268,16 @@ export const euiCardBetaBadgeStyles = (
 
     euiCard__betaBadge: css`
       ${logicalCSS('width', '100%')}
+
+      /* Styles to keep visual parity with EuiBetaBadge */
+      align-items: center;
+      block-size: ${euiTheme.size.l};
+      display: flex;
+      font-weight: ${euiTheme.font.weight.semiBold};
+      letter-spacing: 0.05em;
+      padding-inline: ${euiTheme.size.base};
+      text-align: center;
+      text-transform: uppercase;
     `,
   };
 };

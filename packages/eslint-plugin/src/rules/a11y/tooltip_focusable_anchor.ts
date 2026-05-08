@@ -17,7 +17,6 @@ const NON_INTERACTIVE_ELEMENTS = [
   'EuiText',
   'EuiImage',
   'EuiBadge',
-  'EuiBetaBadge'
 ];
 
 const INTERACTIVE_ATTRS = [

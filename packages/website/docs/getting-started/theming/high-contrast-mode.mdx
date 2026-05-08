@@ -3,9 +3,11 @@ title: High contrast mode
 sidebar_position: 4
 ---
 
-import { EuiBetaBadge } from '@elastic/eui';
+```mdx-code-block
+import { BetaBadge } from '@site/src/components/beta_badge';
+```
 
-# High contrast mode <EuiBetaBadge label="Beta" color="accent" />
+# High contrast mode <BetaBadge />
 
 The `highContrastMode` determines and sets certain un-overrideable modifications to the EUI theme, primarily around borders and shadows. Borders will always be pure black or white (depending on the color mode), and shadows will be entirely replaced with borders.
 

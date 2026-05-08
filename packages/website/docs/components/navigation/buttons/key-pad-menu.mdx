@@ -145,9 +145,9 @@ export default () => {
 
 ## Beta item
 
-If the item links to a module that is not GA (beta, lab, etc), you can add a `betaBadgeLabel` and `betaBadgeTooltipContent` to the card and it will properly create and position an [EuiBetaBadge](../../display/badge/index.mdx#beta-badge).
+If the item links to a module that is not GA (beta, lab, etc), you can add a `betaBadgeLabel` and `betaBadgeTooltipContent` to the menu item and it will properly create and position an [EuiBadge](../../display/badge/index.mdx).
 
-Supplying just a label will only show the first letter in the badge but displays the full label to the tooltip. You can also pass an `iconType` to replace the letter.
+Supplying just a label will only show the first letter in the badge but displays the full label to the tooltip. You can also pass a `betaBadgeIconType` to replace the letter.
 
 ```tsx interactive
 import React from 'react';
@@ -173,6 +173,14 @@ export default () => (
       betaBadgeLabel="External"
       betaBadgeTooltipContent="This module is an external app."
       betaBadgeIconType="external"
+    >
+      <EuiIcon type="code" size="l" />
+    </EuiKeyPadMenuItem>
+
+    <EuiKeyPadMenuItem
+      label="Icon"
+      betaBadgeLabel="External"
+      betaBadgeTooltipContent="This module is an external app."
     >
       <EuiIcon type="code" size="l" />
     </EuiKeyPadMenuItem>
