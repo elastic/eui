@@ -13,7 +13,6 @@ import { useEuiMemoizedStyles } from '../../services';
 import { CommonProps, NoArgCallback } from '../common';
 import { EuiButtonIcon, EuiButtonIconProps } from '../button';
 import { useEuiI18n } from '../i18n';
-import { useInnerText } from '../inner_text';
 import { euiContextMenuPanelTitleStyles } from './context_menu_panel_title.styles';
 
 export type EuiContextMenuPanelTitleProps = CommonProps & {
@@ -38,16 +37,13 @@ export const EuiContextMenuPanelTitle: FunctionComponent<
     buttonProps,
     ...rest
   } = props;
-
-  const [ref, innerText] = useInnerText('');
-
   const classes = classNames('euiContextMenuPanelTitle', className);
   const styles = useEuiMemoizedStyles(euiContextMenuPanelTitleStyles);
 
+  const closeButtonId = `${id}-closeButton`;
   const buttonAriaLabel = useEuiI18n(
     'euiContextMenuPanelTitle.ariaLabel',
-    'Close current panel for: {title}',
-    { title: innerText }
+    'Close current panel:'
   );
 
   return (
@@ -58,21 +54,25 @@ export const EuiContextMenuPanelTitle: FunctionComponent<
       {...rest}
     >
       {onClose && (
-        <EuiButtonIcon
-          buttonRef={buttonRef}
-          color="text"
-          iconType="chevronSingleLeft"
-          onClick={onClose}
-          data-test-subj="contextMenuPanelTitleButton"
-          aria-label={buttonAriaLabel}
-          {...buttonProps}
-        />
+        <>
+          <EuiButtonIcon
+            buttonRef={buttonRef}
+            color="text"
+            iconType="chevronSingleLeft"
+            onClick={onClose}
+            data-test-subj="contextMenuPanelTitleButton"
+            id={closeButtonId}
+            aria-label={buttonAriaLabel}
+            // Uses aria-labelledby to combine aria-label with the panel title for screen readers.
+            aria-labelledby={`${closeButtonId} ${id}`}
+            {...buttonProps}
+          />
+        </>
       )}
       <Component
         className="euiContextMenuPanelTitle__text"
         css={styles.text}
         id={id}
-        ref={ref}
       >
         {title}
       </Component>

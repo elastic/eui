@@ -48,9 +48,11 @@ exports[`EuiContextMenu props panels and initialPanelId renders the referenced p
       data-test-subj="contextMenuPanelTitle"
     >
       <button
-        aria-label="Close current panel for: 2"
+        aria-label="Close current panel:"
+        aria-labelledby="generated-id_euiContextMenuPanelTitle-closeButton generated-id_euiContextMenuPanelTitle"
         class="euiButtonIcon emotion-euiButtonIcon-xs-empty-text"
         data-test-subj="contextMenuPanelTitleButton"
+        id="generated-id_euiContextMenuPanelTitle-closeButton"
         type="button"
       >
         <span
