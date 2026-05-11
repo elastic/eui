@@ -1,3 +1,7 @@
+## [`v2.4.0`](https://github.com/elastic/eui/releases/v2.4.0)
+
+- Updated `VersionSwitcher` to align with the updated API for `EuiListGroupItem` ([#9579](https://github.com/elastic/eui/pull/9579))
+
 ## [`v2.3.0`](https://github.com/elastic/eui/releases/v2.3.0)
 
 - Added `versionsUrl` prop to `VersionSwitcher` component to fetch the versions list at runtime from the main deployment, ensuring all released versions are always visible in the version switcher ([#9363](https://github.com/elastic/eui/pull/9363))
