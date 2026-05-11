@@ -1,57 +1,77 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EuiCommentTimeline props timelineAvatar defaults to an avatar with a \`user\` icon 1`] = `
-<div
-  aria-label=""
-  class="euiAvatar euiAvatar--m euiAvatar--user euiCommentAvatar emotion-euiAvatar-user-m-uppercase-subdued"
-  role="img"
-  title=""
+<span
+  class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+  id="generated-id_euiToolTipAnchor"
 >
-  <span
-    class="euiAvatar__icon"
-    data-euiicon-type="user"
-  />
-</div>
+  <div
+    aria-label=""
+    class="euiAvatar euiAvatar--m euiAvatar--user euiCommentAvatar emotion-euiAvatar-user-m-uppercase-subdued"
+    role="img"
+  >
+    <span
+      aria-hidden="true"
+      class="euiAvatar__icon"
+      data-euiicon-type="user"
+    />
+  </div>
+</span>
 `;
 
 exports[`EuiCommentTimeline props timelineAvatar is rendered with a ReactNode 1`] = `
-<div
-  aria-label="username"
-  class="euiAvatar euiAvatar--m euiAvatar--user emotion-euiAvatar-user-m-uppercase-subdued"
-  role="img"
-  title="username"
+<span
+  class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+  id="generated-id_euiToolTipAnchor"
 >
-  <span
-    class="euiAvatar__icon"
-    data-euiicon-type="user"
-  />
-</div>
+  <div
+    aria-label="username"
+    class="euiAvatar euiAvatar--m euiAvatar--user emotion-euiAvatar-user-m-uppercase-subdued"
+    role="img"
+  >
+    <span
+      aria-hidden="true"
+      class="euiAvatar__icon"
+      data-euiicon-type="user"
+    />
+  </div>
+</span>
 `;
 
 exports[`EuiCommentTimeline props timelineAvatar is rendered with a string 1`] = `
-<div
-  aria-label=""
-  class="euiAvatar euiAvatar--m euiAvatar--user euiCommentAvatar emotion-euiAvatar-user-m-uppercase-subdued"
-  role="img"
-  title=""
+<span
+  class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+  id="generated-id_euiToolTipAnchor"
 >
-  <span
-    class="euiAvatar__icon"
-    data-euiicon-type="dot"
-  />
-</div>
+  <div
+    aria-label=""
+    class="euiAvatar euiAvatar--m euiAvatar--user euiCommentAvatar emotion-euiAvatar-user-m-uppercase-subdued"
+    role="img"
+  >
+    <span
+      aria-hidden="true"
+      class="euiAvatar__icon"
+      data-euiicon-type="dot"
+    />
+  </div>
+</span>
 `;
 
 exports[`EuiCommentTimeline props timelineAvatar is rendered with timelineAvatarAriaLabel 1`] = `
-<div
-  aria-label="timelineAvatarAriaLabel"
-  class="euiAvatar euiAvatar--m euiAvatar--user euiCommentAvatar emotion-euiAvatar-user-m-uppercase-subdued"
-  role="img"
-  title="timelineAvatarAriaLabel"
+<span
+  class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+  id="generated-id_euiToolTipAnchor"
 >
-  <span
-    class="euiAvatar__icon"
-    data-euiicon-type="dot"
-  />
-</div>
+  <div
+    aria-label="timelineAvatarAriaLabel"
+    class="euiAvatar euiAvatar--m euiAvatar--user euiCommentAvatar emotion-euiAvatar-user-m-uppercase-subdued"
+    role="img"
+  >
+    <span
+      aria-hidden="true"
+      class="euiAvatar__icon"
+      data-euiicon-type="dot"
+    />
+  </div>
+</span>
 `;
