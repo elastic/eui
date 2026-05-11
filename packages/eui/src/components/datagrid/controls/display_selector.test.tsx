@@ -563,6 +563,8 @@ describe('useDataGridDisplaySelector', () => {
                 "fontSize": "m",
                 "footer": "overline",
                 "header": "shade",
+                "headerColumnActionsDisplay": "inline",
+                "headerColumnActionsVisibility": "hover",
                 "rowHover": "highlight",
                 "stickyFooter": true,
                 "stripes": true,
