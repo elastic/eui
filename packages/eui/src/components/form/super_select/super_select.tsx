@@ -139,7 +139,7 @@ export class EuiSuperSelect<T = string> extends Component<
     }
 
     this.setState({
-      isPopoverOpen: true,
+      isPopoverOpen: options.length > 0,
       currentIndex: initialIndex,
     });
 
