@@ -1,5 +1,15 @@
 [
   {
+    "version": "115.0.0",
+    "changes": [
+      {
+        "token": "euiContextMenuPanelTitle.ariaLabel",
+        "changeType": "added",
+        "value": "Close current panel:"
+      }
+    ]
+  },
+  {
     "version": "114.1.0",
     "changes": [
       {
