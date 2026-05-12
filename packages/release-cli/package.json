@@ -13,6 +13,7 @@
     "directory": "packages/release-cli"
   },
   "devDependencies": {
+    "@elastic/eui-config-tsconfig": "workspace:*",
     "@types/prompts": "^2.4.9",
     "typescript": "^5.7.3"
   },
