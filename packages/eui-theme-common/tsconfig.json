@@ -1,21 +1,11 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
+  "extends": "@elastic/eui-config-tsconfig",
   "compilerOptions": {
-    "rootDir": "src",
     "outDir": "lib/esm",
     "target": "ES2020",
     "module": "ESNext",
-    "lib": [
-      "ESNext",
-      "DOM"
-    ],
-    "moduleResolution": "Node",
-    "declaration": true,
     "noEmitHelpers": true,
-    "incremental": true,
-    "esModuleInterop": true,
-    "strict": true,
-    "skipLibCheck": true,
     "tsBuildInfoFile": "lib/esm/.tsbuildinfo"
   },
   "include": [
