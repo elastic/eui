@@ -116,6 +116,21 @@ ruleTester.run('tooltip-no-interactive-content', TooltipNoInteractiveContent, {
       ],
     },
     {
+      name: '`EuiFieldText` in content',
+      code: dedent`
+        <EuiToolTip content={<EuiFieldText placeholder="Search" />}>
+          <EuiButton>Hover</EuiButton>
+        </EuiToolTip>
+      `,
+      languageOptions,
+      errors: [
+        {
+          messageId: 'noInteractiveContent',
+          data: { elementName: 'EuiFieldText', componentName: 'EuiToolTip', propName: 'content' },
+        },
+      ],
+    },
+    {
       name: 'native `<a>` in content',
       code: dedent`
         <EuiToolTip content={<span><a href="/docs">link</a></span>}>
