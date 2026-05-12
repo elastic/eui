@@ -140,8 +140,24 @@ Verify `git status` shows the file is back to clean.
 
 ### 2.1 — Verify clean state and update main
 
+Phase 2 assumes a remote named `upstream` points at `elastic/kibana`. Many
+fresh clones only have `origin` — check first, and fix or ask before
+continuing:
+
 ```bash
 cd {KIBANA_PATH}
+git remote get-url upstream 2>/dev/null   # must resolve to elastic/kibana
+```
+
+If `upstream` is missing or points elsewhere, ask the user which remote
+tracks `elastic/kibana`. Either rename it (`git remote rename <name>
+upstream`) or add it (`git remote add upstream
+git@github.com:elastic/kibana.git`) before proceeding. Do not silently
+rewrite an existing `upstream` that points somewhere else.
+
+Then update main:
+
+```bash
 git status                          # must be clean (warn if not)
 git fetch upstream main
 git checkout main
@@ -198,17 +214,30 @@ Match the **current** Kibana style (unversioned keys, e.g.
 
 ### 3.1 — Use the right Node version
 
-Kibana enforces `.nvmrc`. Each Bash invocation gets a fresh shell, so
-source nvm and use the right version in the same command:
+Kibana enforces `.nvmrc`. Each Bash invocation gets a fresh shell, so the
+Node version must be activated in the same command as `yarn kbn bootstrap`.
+
+The skill assumes nvm (the standard on Kibana dev machines). Check it
+exists first:
+
+```bash
+[ -s "${NVM_DIR:-$HOME/.nvm}/nvm.sh" ]
+```
+
+If present, source it and bootstrap:
 
 ```bash
 cd {KIBANA_PATH} && \
-  source ~/.nvm/nvm.sh && nvm use > /dev/null && \
+  source "${NVM_DIR:-$HOME/.nvm}/nvm.sh" && nvm use > /dev/null && \
   yarn kbn bootstrap --no-validate
 ```
 
-If the required Node version isn't installed, run `nvm install $(cat .nvmrc)`
-first.
+If nvm is not installed, stop and ask the user to switch Node to the
+version in `.nvmrc` with their own tool, then re-run bootstrap themselves:
+`cd {KIBANA_PATH} && yarn kbn bootstrap --no-validate`.
+
+If the required Node version isn't installed under nvm, run
+`nvm install $(cat .nvmrc)` first.
 
 `yarn kbn bootstrap --no-validate` takes 5–20 minutes. Run it in the
 background and wait for the notification.
