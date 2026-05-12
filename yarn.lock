@@ -7027,6 +7027,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@elastic/eui-config-tsconfig@workspace:*, @elastic/eui-config-tsconfig@workspace:packages/config-tsconfig":
+  version: 0.0.0-use.local
+  resolution: "@elastic/eui-config-tsconfig@workspace:packages/config-tsconfig"
+  languageName: unknown
+  linkType: soft
+
 "@elastic/eui-docgen@workspace:^, @elastic/eui-docgen@workspace:packages/eui-docgen":
   version: 0.0.0-use.local
   resolution: "@elastic/eui-docgen@workspace:packages/eui-docgen"

@@ -1,0 +1,14 @@
+{
+  "name": "@elastic/eui-config-tsconfig",
+  "version": "0.0.0",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/elastic/eui.git",
+    "directory": "packages/config-tsconfig"
+  },
+  "files": [
+    "tsconfig.json"
+  ],
+  "main": "tsconfig.json"
+}
