@@ -7,7 +7,10 @@
  */
 
 import { type TSESTree, ESLintUtils } from '@typescript-eslint/utils';
-import { INTERACTIVE_EUI_COMPONENTS } from '../../utils/constants';
+import {
+  INTERACTIVE_EUI_COMPONENTS,
+  CONDITIONALLY_INTERACTIVE_EUI_COMPONENTS,
+} from '../../utils/constants';
 
 const TOOLTIP_COMPONENTS = ['EuiToolTip', 'EuiIconTip'];
 const TOOLTIP_CONTENT_PROPS = ['content', 'title'];
@@ -18,9 +21,15 @@ const INTERACTIVE_HTML_ELEMENTS = [
   'select',
   'textarea',
 ];
+const CONDITIONALLY_INTERACTIVE_SET = new Set(
+  CONDITIONALLY_INTERACTIVE_EUI_COMPONENTS
+);
+
 const INTERACTIVE_ELEMENTS = new Set([
   ...INTERACTIVE_HTML_ELEMENTS,
-  ...INTERACTIVE_EUI_COMPONENTS,
+  ...INTERACTIVE_EUI_COMPONENTS.filter(
+    (c) => !CONDITIONALLY_INTERACTIVE_SET.has(c)
+  ),
 ]);
 
 function findInteractiveElement(
@@ -53,7 +62,9 @@ function findInteractiveElement(
     return findInteractiveElement(left) ?? findInteractiveElement(right);
   } else if (node.type === 'ConditionalExpression') {
     const { consequent, alternate } = node as TSESTree.ConditionalExpression;
-    return findInteractiveElement(consequent) ?? findInteractiveElement(alternate);
+    return (
+      findInteractiveElement(consequent) ?? findInteractiveElement(alternate)
+    );
   }
   return null;
 }

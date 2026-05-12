@@ -120,3 +120,15 @@ export const INTERACTIVE_EUI_COMPONENTS = [
   'EuiTextArea',
   'EuiTreeView'
 ];
+
+/**
+ * EUI components that are only interactive when `onClick` or `href` is provided.
+ * Without those props they render as a plain non-focusable element (span/div),
+ * so rules that need to distinguish unconditionally-interactive components should
+ * exclude these.
+ */
+export const CONDITIONALLY_INTERACTIVE_EUI_COMPONENTS = [
+  'EuiBadge',
+  'EuiBetaBadge',
+  'EuiCard',
+];

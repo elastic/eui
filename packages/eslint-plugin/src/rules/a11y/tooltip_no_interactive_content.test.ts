@@ -57,6 +57,15 @@ ruleTester.run('tooltip-no-interactive-content', TooltipNoInteractiveContent, {
       languageOptions,
     },
     {
+      name: 'conditionally-interactive component used as display element',
+      code: dedent`
+        <EuiToolTip content={<EuiBadge>v2.0</EuiBadge>}>
+          <EuiButton>Hover me</EuiButton>
+        </EuiToolTip>
+      `,
+      languageOptions,
+    },
+    {
       name: 'non-tooltip component with interactive content prop is ignored',
       code: dedent`
         <EuiPopover content={<EuiButton>Click</EuiButton>}>
