@@ -63,7 +63,7 @@ describe('EuiCopy', () => {
 
     it('afterMessage', () => {
       const afterMessage = 'successfully copied';
-      const { getByRole, getAllByText } = render(
+      const { getByRole } = render(
         <EuiCopy textToCopy="some text" afterMessage={afterMessage}>
           {(copy) => (
             <button onClick={copy} onMouseOver={() => {}} onFocus={() => {}}>
@@ -79,9 +79,7 @@ describe('EuiCopy', () => {
       fireEvent.mouseOver(getByRole('button'));
       fireEvent.click(getByRole('button'));
 
-      // The tooltip and the screen-reader-live region both render the
-      // `afterMessage`, so we expect at least one match in the document.
-      expect(getAllByText(afterMessage).length).toBeGreaterThan(0);
+      expect(getByRole('tooltip')).toHaveTextContent(afterMessage);
 
       fireEvent.mouseOut(getByRole('button'));
     });

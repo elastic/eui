@@ -90,7 +90,7 @@ export class EuiCopy extends Component<EuiCopyProps, EuiCopyState> {
 
     return (
       <>
-        {/* See `src/components/tool_tip/tool_tip.js` for explanation of below eslint-disable */}
+        {/* See `src/components/tool_tip/tool_tip_anchor.tsx` for explanation of below eslint-disable */}
         {/* eslint-disable-next-line jsx-a11y/mouse-events-have-key-events */}
         <EuiToolTip
           ref={this.tooltipRef}
