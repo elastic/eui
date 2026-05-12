@@ -189,6 +189,36 @@ ruleTester.run('tooltip-no-interactive-content', TooltipNoInteractiveContent, {
       ],
     },
     {
+      name: 'interactive element inside logical expression in content',
+      code: dedent`
+        <EuiToolTip content={<span>{cond && <EuiLink href="#">Link</EuiLink>}</span>}>
+          <EuiButton>Hover</EuiButton>
+        </EuiToolTip>
+      `,
+      languageOptions,
+      errors: [
+        {
+          messageId: 'noInteractiveContent',
+          data: { elementName: 'EuiLink', componentName: 'EuiToolTip', propName: 'content' },
+        },
+      ],
+    },
+    {
+      name: 'interactive element inside conditional expression in content',
+      code: dedent`
+        <EuiToolTip content={cond ? <EuiLink href="#">Link</EuiLink> : null}>
+          <EuiButton>Hover</EuiButton>
+        </EuiToolTip>
+      `,
+      languageOptions,
+      errors: [
+        {
+          messageId: 'noInteractiveContent',
+          data: { elementName: 'EuiLink', componentName: 'EuiToolTip', propName: 'content' },
+        },
+      ],
+    },
+    {
       name: 'interactive element nested inside a fragment in content',
       code: dedent`
         <EuiToolTip content={<><span>Text</span><EuiLink href="#">Link</EuiLink></>}>

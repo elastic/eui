@@ -43,6 +43,17 @@ function findInteractiveElement(
       const found = findInteractiveElement(child);
       if (found) return found;
     }
+  } else if (node.type === 'JSXExpressionContainer') {
+    const { expression } = node as TSESTree.JSXExpressionContainer;
+    if (expression.type !== 'JSXEmptyExpression') {
+      return findInteractiveElement(expression);
+    }
+  } else if (node.type === 'LogicalExpression') {
+    const { left, right } = node as TSESTree.LogicalExpression;
+    return findInteractiveElement(left) ?? findInteractiveElement(right);
+  } else if (node.type === 'ConditionalExpression') {
+    const { consequent, alternate } = node as TSESTree.ConditionalExpression;
+    return findInteractiveElement(consequent) ?? findInteractiveElement(alternate);
   }
   return null;
 }

@@ -20,10 +20,14 @@ function isWrappedByTooltip(node: TSESTree.JSXElement): boolean {
     switch (current.type) {
       case 'JSXElement': {
         const el = current as TSESTree.JSXElement;
-        return (
+        if (
           el.openingElement.name.type === 'JSXIdentifier' &&
           el.openingElement.name.name === TOOLTIP
-        );
+        ) {
+          return true;
+        }
+        current = current.parent;
+        break;
       }
       case 'JSXFragment':
       case 'JSXExpressionContainer':

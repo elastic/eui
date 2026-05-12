@@ -71,6 +71,17 @@ ruleTester.run('tooltip-button-icon-wrap', TooltipButtonIconWrap, {
       languageOptions,
     },
     {
+      name: 'wrapped inside intermediate JSX element',
+      code: dedent`
+        <EuiToolTip content="Edit">
+          <EuiFlexItem>
+            <EuiButtonIcon aria-label="Edit" iconType="pencil" />
+          </EuiFlexItem>
+        </EuiToolTip>
+      `,
+      languageOptions,
+    },
+    {
       name: 'spread props — cannot statically determine, skip',
       code: dedent`
         <EuiButtonIcon {...props} />
