@@ -111,6 +111,7 @@ jobs:
     name: Create a snapshot release
     runs-on: ubuntu-latest
     if: |
+      always() &&
       inputs.type == 'snapshot' &&
       (needs.lint_and_unit_tests.result == 'success' || needs.lint_and_unit_tests.result == 'skipped') &&
       (needs.cypress_tests.result == 'success' || needs.cypress_tests.result == 'skipped')
