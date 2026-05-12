@@ -12,8 +12,6 @@ import {
   render,
   waitForEuiPopoverOpen,
   waitForEuiPopoverClose,
-  waitForEuiToolTipVisible,
-  waitForEuiToolTipHidden,
 } from '../../test/rtl';
 
 import { CollapsedItemActions } from './collapsed_item_actions';
@@ -80,7 +78,6 @@ describe('CollapsedItemActions', () => {
     expect(getByTestSubject('xyz-link')).toHaveAttribute('href', '#/xyz');
     expect(getByTestSubject('xyz-link')).toHaveTextContent('name xyz');
     fireEvent.mouseEnter(getByTestSubject('xyz-link'));
-    await waitForEuiToolTipVisible();
     expect(getByText('description xyz')).toBeInTheDocument();
 
     fireEvent.click(getByTestSubject('defaultAction'));
@@ -229,7 +226,6 @@ describe('CollapsedItemActions', () => {
 
     const actionDifferent = getByTestSubject('different');
     fireEvent.mouseOver(actionDifferent);
-    await waitForEuiToolTipVisible();
     const tooltipDifferent = getByRole('tooltip');
     expect(tooltipDifferent).toHaveTextContent('different');
     expect(actionDifferent).toHaveAttribute('aria-describedby');
@@ -237,11 +233,9 @@ describe('CollapsedItemActions', () => {
       tooltipDifferent.id
     );
     fireEvent.mouseOut(actionDifferent);
-    await waitForEuiToolTipHidden();
 
     const actionSame = getByTestSubject('same');
     fireEvent.mouseOver(actionSame);
-    await waitForEuiToolTipVisible();
     const tooltipSame = getByRole('tooltip');
     expect(tooltipSame).toHaveTextContent('same');
     expect(actionSame).not.toHaveAttribute('aria-describedby');

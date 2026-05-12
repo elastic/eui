@@ -10,6 +10,7 @@ import { css } from '@emotion/react';
 // .euiSelectableList__list requires a static vanilla className
 // as it's passed down to react-window's virtualization library
 import { css as classNameCss } from '@emotion/css';
+import { mathWithUnits } from '@elastic/eui-theme-common';
 
 import { UseEuiTheme } from '../../../services';
 import {
@@ -18,11 +19,10 @@ import {
   logicalCSS,
 } from '../../../global_styling';
 import { euiTitle } from '../../title/title.styles';
-import { euiSelectableListItemVariables } from './selectable_list_item.styles';
+import { euiListItemVariables } from '../../list_item_layout/_list_item_layout.styles';
 
 export const euiSelectableListStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
-  const itemVars = euiSelectableListItemVariables(euiThemeContext);
 
   return {
     euiSelectableList: css`
@@ -38,23 +38,62 @@ export const euiSelectableListStyles = (euiThemeContext: UseEuiTheme) => {
       border: ${euiTheme.border.thin};
       border-radius: ${euiTheme.border.radius.medium};
     `,
+    paddingSize: {
+      s: css`
+        padding: ${euiTheme.size.s};
+      `,
+    },
 
     euiSelectableList__list: classNameCss`
-      ${euiYScrollWithShadows(euiThemeContext)}
+      ${euiYScrollWithShadows(euiThemeContext, {
+        hasAnimatedOverflowShadow: true,
+      })}
 
       &:focus,
       & > ul:focus {
         outline: none; /* Focus outline handled by parent .euiSelectableList */
       }
     `,
+  };
+};
 
-    euiSelectableList__groupLabel: css`
+export const euiSelectableListGroupLabelStyles = (
+  euiThemeContext: UseEuiTheme
+) => {
+  const { euiTheme } = euiThemeContext;
+
+  const itemVars = euiListItemVariables(euiThemeContext);
+  const spacingVertical = euiTheme.size.s;
+  const borderColor = euiTheme.components.selectableListItemBorderColor;
+
+  return {
+    groupLabel: css`
       ${euiTitle(euiThemeContext, 'xxxs')}
+      position: relative;
       display: flex;
       align-items: center;
-      ${logicalCSS('border-bottom', itemVars.border)}
-      ${logicalCSS('padding-vertical', itemVars.paddingVertical)}
-      ${logicalCSS('padding-horizontal', itemVars.paddingHorizontal)}
+      gap: ${itemVars.spacing.horizontal};
+      ${logicalCSS('padding-horizontal', itemVars.textPadding.horizontal)}
+      ${logicalCSS('padding-vertical', spacingVertical)}
+
+      &:not(:first-child) {
+        /* includes spacing for the separator */
+        ${logicalCSS(
+          'padding-top',
+          mathWithUnits([spacingVertical], (a) => a * 3)
+        )}
+
+        &::before {
+          content: '';
+          position: absolute;
+          inset: 0;
+          inset-block-start: ${spacingVertical};
+          ${logicalCSS(
+            'border-top',
+            `${euiTheme.border.width.thin} solid ${borderColor}`
+          )}
+        }
+      }
     `,
   };
 };

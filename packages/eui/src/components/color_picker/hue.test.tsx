@@ -9,11 +9,7 @@
 import React from 'react';
 import { requiredProps } from '../../test/required_props';
 import { shouldRenderCustomStyles } from '../../test/internal';
-import {
-  render,
-  waitForEuiToolTipHidden,
-  waitForEuiToolTipVisible,
-} from '../../test/rtl';
+import { render, focusEuiToolTipTrigger } from '../../test/rtl';
 
 import { EuiHue } from './hue';
 import { fireEvent } from '@testing-library/react';
@@ -56,7 +52,7 @@ describe('EuiHue', () => {
     expect(container).toMatchSnapshot();
   });
 
-  test('it renders a color label tooltip on hover', async () => {
+  test('it renders a color label tooltip on hover', () => {
     const { getByText } = render(
       <EuiHue hue={180} hex="#00FFFF" onChange={onChange} {...requiredProps} />
     );
@@ -65,30 +61,24 @@ describe('EuiHue', () => {
 
     fireEvent.mouseOver(thumbElement);
 
-    await waitForEuiToolTipVisible();
-
     expect(getByText('#00FFFF')).toBeInTheDocument();
 
     fireEvent.mouseLeave(thumbElement);
-
-    await waitForEuiToolTipHidden();
   });
 
-  test('it renders a color label tooltip on focus', async () => {
+  test('it renders a color label tooltip on focus', () => {
     const { getByText } = render(
       <EuiHue hue={180} hex="#00FFFF" onChange={onChange} {...requiredProps} />
     );
 
     const thumbElement = document.querySelector('.euiHue__range')!;
 
-    fireEvent.focus(thumbElement);
-
-    await waitForEuiToolTipVisible();
+    const cleanup = focusEuiToolTipTrigger(thumbElement);
 
     expect(getByText('#00FFFF')).toBeInTheDocument();
 
     fireEvent.blur(thumbElement);
 
-    await waitForEuiToolTipHidden();
+    cleanup();
   });
 });

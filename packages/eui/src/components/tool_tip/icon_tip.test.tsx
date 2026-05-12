@@ -9,7 +9,7 @@
 import React from 'react';
 import { fireEvent } from '@testing-library/react';
 import { requiredProps } from '../../test';
-import { render, waitForEuiToolTipVisible } from '../../test/rtl';
+import { render } from '../../test/rtl';
 import { shouldRenderCustomStyles } from '../../test/internal';
 
 import { EuiIconTip } from './icon_tip';
@@ -19,9 +19,8 @@ describe('EuiIconTip', () => {
     <EuiIconTip content="test" iconProps={{ 'data-test-subj': 'trigger' }} />,
     {
       childProps: ['iconProps'],
-      renderCallback: async ({ getByTestSubject }) => {
+      renderCallback: ({ getByTestSubject }) => {
         fireEvent.mouseOver(getByTestSubject('trigger'));
-        await waitForEuiToolTipVisible();
       },
     }
   );
@@ -89,13 +88,12 @@ describe('EuiIconTip', () => {
     });
   });
 
-  it('shows tooltip content on hover', async () => {
+  it('shows tooltip content on hover', () => {
     const { container, getByRole } = render(
       <EuiIconTip content="Tooltip content" />
     );
 
     fireEvent.mouseOver(container.querySelector('[data-euiicon-type]')!);
-    await waitForEuiToolTipVisible();
 
     expect(getByRole('tooltip')).toHaveTextContent('Tooltip content');
   });

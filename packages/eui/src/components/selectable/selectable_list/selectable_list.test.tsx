@@ -12,7 +12,6 @@ import { shouldRenderCustomStyles } from '../../../test/internal';
 import { requiredProps } from '../../../test/required_props';
 
 import { EuiSelectableList } from './selectable_list';
-import { PADDING_SIZES } from './selectable_list_item';
 import { EuiSelectableOption } from '../selectable_option';
 
 const options: EuiSelectableOption[] = [
@@ -331,22 +330,6 @@ describe('EuiSelectableListItem', () => {
       expect(container.firstChild).toMatchSnapshot();
     });
 
-    describe('paddingSize', () => {
-      PADDING_SIZES.forEach((size) => {
-        test(`${size} is rendered`, () => {
-          const { container } = render(
-            <EuiSelectableList
-              options={options}
-              paddingSize={size}
-              {...selectableListRequiredProps}
-            />
-          );
-
-          expect(container.firstChild).toMatchSnapshot();
-        });
-      });
-    });
-
     describe('textWrap', () => {
       test('wrap', () => {
         const { container } = render(
@@ -394,7 +377,7 @@ describe('EuiSelectableListItem', () => {
 
         expect(
           container.querySelectorAll(
-            '[class*="euiSelectableListItem__text-truncate"]'
+            '[class*="euiListItemLayout__text-truncate"]'
           )
         ).toHaveLength(1);
       });
@@ -409,7 +392,7 @@ describe('EuiSelectableListItem', () => {
         );
 
         expect(
-          container.querySelector('.euiSelectableListItem__text')!.className
+          container.querySelector('.euiListItemLayout__text')!.className
         ).toContain('truncate');
       });
     });

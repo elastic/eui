@@ -191,7 +191,7 @@ export const ColumnActions: FunctionComponent<
     return (
       <EuiPopover
         display="block"
-        panelPaddingSize="none"
+        panelPaddingSize="s"
         offset={7}
         anchorPosition="downRight"
         css={styles.euiDataGridHeaderCell__popover}
@@ -221,7 +221,6 @@ export const ColumnActions: FunctionComponent<
       >
         <EuiListGroup
           listItems={columnActions}
-          gutterSize="none"
           data-test-subj={`dataGridHeaderCellActionGroup-${id}`}
         />
       </EuiPopover>

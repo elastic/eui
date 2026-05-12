@@ -62,7 +62,6 @@ export const useDataGridFullScreenSelector = (
             fullScreenButton
           )
         }
-        delay="long"
       >
         <EuiButtonIcon
           size="xs"

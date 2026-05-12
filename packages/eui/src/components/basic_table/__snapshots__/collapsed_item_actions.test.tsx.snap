@@ -66,34 +66,49 @@ exports[`CollapsedItemActions custom actions 1`] = `
             class="euiContextMenuPanel euiBasicTable__collapsedActions emotion-euiContextMenuPanel"
             tabindex="-1"
           >
-            <div>
+            <div
+              class="euiContextMenuPanel__list"
+              role="menu"
+            >
               <div
-                class="euiContextMenuItem euiBasicTable__collapsedCustomAction emotion-euiContextMenuItem-m-center"
+                class="euiListItemLayout euiContextMenuItem euiBasicTable__collapsedCustomAction emotion-euiListItemLayout-euiContextMenuItem-center"
+                data-test-subj="euiListItemLayout"
+                role="menuitem"
               >
                 <span
-                  class="euiContextMenuItem__text emotion-euiContextMenuItem__text"
+                  class="euiListItemLayout__content emotion-euiListItemLayout__content"
                 >
-                  <span>
-                    <button
-                      data-test-subj="customAction"
-                    >
-                      hello
-                    </button>
+                  <span
+                    class="euiListItemLayout__text euiContextMenuItem__text emotion-euiListItemLayout__text-wrap-euiContextMenuItem__text"
+                  >
+                    <span>
+                      <button
+                        data-test-subj="customAction"
+                      >
+                        hello
+                      </button>
+                    </span>
                   </span>
                 </span>
               </div>
               <div
-                class="euiContextMenuItem euiBasicTable__collapsedCustomAction emotion-euiContextMenuItem-m-center"
+                class="euiListItemLayout euiContextMenuItem euiBasicTable__collapsedCustomAction emotion-euiListItemLayout-euiContextMenuItem-center"
+                data-test-subj="euiListItemLayout"
+                role="menuitem"
               >
                 <span
-                  class="euiContextMenuItem__text emotion-euiContextMenuItem__text"
+                  class="euiListItemLayout__content emotion-euiListItemLayout__content"
                 >
-                  <span>
-                    <a
-                      href="#"
-                    >
-                      world
-                    </a>
+                  <span
+                    class="euiListItemLayout__text euiContextMenuItem__text emotion-euiListItemLayout__text-wrap-euiContextMenuItem__text"
+                  >
+                    <span>
+                      <a
+                        href="#"
+                      >
+                        world
+                      </a>
+                    </span>
                   </span>
                 </span>
               </div>
@@ -177,20 +192,28 @@ exports[`CollapsedItemActions default actions - renders color on EuiContextMenuI
             class="euiContextMenuPanel euiBasicTable__collapsedActions emotion-euiContextMenuPanel"
             tabindex="-1"
           >
-            <div>
+            <div
+              class="euiContextMenuPanel__list"
+              role="menu"
+            >
               <span
                 class="euiToolTipAnchor eui-displayBlock emotion-euiToolTipAnchor-inlineBlock"
                 id="generated-id-wrapper"
               >
                 <button
-                  class="euiContextMenuItem euiBasicTable__collapsedAction emotion-euiContextMenuItem-m-center-colors"
+                  class="euiListItemLayout euiContextMenuItem euiBasicTable__collapsedAction emotion-euiListItemLayout-isInteractive-euiContextMenuItem-center-colors"
                   data-test-subj="dangerAction"
+                  role="menuitem"
                   type="button"
                 >
                   <span
-                    class="euiContextMenuItem__text emotion-euiContextMenuItem__text"
+                    class="euiListItemLayout__content emotion-euiListItemLayout__content"
                   >
-                    delete
+                    <span
+                      class="euiListItemLayout__text euiContextMenuItem__text emotion-euiListItemLayout__text-wrap-euiContextMenuItem__text"
+                    >
+                      delete
+                    </span>
                   </span>
                 </button>
               </span>
@@ -199,14 +222,19 @@ exports[`CollapsedItemActions default actions - renders color on EuiContextMenuI
                 id="generated-id-wrapper"
               >
                 <button
-                  class="euiContextMenuItem euiBasicTable__collapsedAction emotion-euiContextMenuItem-m-center"
+                  class="euiListItemLayout euiContextMenuItem euiBasicTable__collapsedAction emotion-euiListItemLayout-isInteractive-euiContextMenuItem-center"
                   data-test-subj="defaultAction"
+                  role="menuitem"
                   type="button"
                 >
                   <span
-                    class="euiContextMenuItem__text emotion-euiContextMenuItem__text"
+                    class="euiListItemLayout__content emotion-euiListItemLayout__content"
                   >
-                    view
+                    <span
+                      class="euiListItemLayout__text euiContextMenuItem__text emotion-euiListItemLayout__text-wrap-euiContextMenuItem__text"
+                    >
+                      view
+                    </span>
                   </span>
                 </button>
               </span>
@@ -215,14 +243,19 @@ exports[`CollapsedItemActions default actions - renders color on EuiContextMenuI
                 id="generated-id-wrapper"
               >
                 <button
-                  class="euiContextMenuItem euiBasicTable__collapsedAction emotion-euiContextMenuItem-m-center-colors"
+                  class="euiListItemLayout euiContextMenuItem euiBasicTable__collapsedAction emotion-euiListItemLayout-isInteractive-euiContextMenuItem-center-colors"
                   data-test-subj="dynamicColorAction"
+                  role="menuitem"
                   type="button"
                 >
                   <span
-                    class="euiContextMenuItem__text emotion-euiContextMenuItem__text"
+                    class="euiListItemLayout__content emotion-euiListItemLayout__content"
                   >
-                    dynamic color
+                    <span
+                      class="euiListItemLayout__text euiContextMenuItem__text emotion-euiListItemLayout__text-wrap-euiContextMenuItem__text"
+                    >
+                      dynamic color
+                    </span>
                   </span>
                 </button>
               </span>
@@ -304,20 +337,28 @@ exports[`CollapsedItemActions default actions 1`] = `
             class="euiContextMenuPanel euiBasicTable__collapsedActions emotion-euiContextMenuPanel"
             tabindex="-1"
           >
-            <div>
+            <div
+              class="euiContextMenuPanel__list"
+              role="menu"
+            >
               <span
                 class="euiToolTipAnchor eui-displayBlock emotion-euiToolTipAnchor-inlineBlock"
                 id="generated-id-wrapper"
               >
                 <button
-                  class="euiContextMenuItem euiBasicTable__collapsedAction emotion-euiContextMenuItem-m-center"
+                  class="euiListItemLayout euiContextMenuItem euiBasicTable__collapsedAction emotion-euiListItemLayout-isInteractive-euiContextMenuItem-center"
                   data-test-subj="defaultAction"
+                  role="menuitem"
                   type="button"
                 >
                   <span
-                    class="euiContextMenuItem__text emotion-euiContextMenuItem__text"
+                    class="euiListItemLayout__content emotion-euiListItemLayout__content"
                   >
-                    default1
+                    <span
+                      class="euiListItemLayout__text euiContextMenuItem__text emotion-euiListItemLayout__text-wrap-euiContextMenuItem__text"
+                    >
+                      default1
+                    </span>
                   </span>
                 </button>
               </span>
@@ -326,16 +367,31 @@ exports[`CollapsedItemActions default actions 1`] = `
                 id="generated-id-wrapper"
               >
                 <a
-                  class="euiContextMenuItem euiBasicTable__collapsedAction emotion-euiContextMenuItem-m-center"
+                  class="euiListItemLayout euiContextMenuItem euiBasicTable__collapsedAction emotion-euiListItemLayout-isInteractive-euiContextMenuItem-center"
                   data-test-subj="xyz-link"
                   href="#/xyz"
                   rel="noopener noreferrer"
+                  role="menuitem"
                   target="_blank"
                 >
                   <span
-                    class="euiContextMenuItem__text emotion-euiContextMenuItem__text"
+                    class="euiListItemLayout__content emotion-euiListItemLayout__content"
                   >
-                    name xyz
+                    <span
+                      class="euiListItemLayout__text euiContextMenuItem__text emotion-euiListItemLayout__text-wrap-euiContextMenuItem__text"
+                    >
+                      name xyz
+                      <span
+                        class="css-1j45mse-externalIcon"
+                        data-euiicon-type="external"
+                        role="presentation"
+                      />
+                      <span
+                        class="emotion-euiScreenReaderOnly"
+                      >
+                        (external, opens in a new tab or window)
+                      </span>
+                    </span>
                   </span>
                 </a>
               </span>

@@ -69,6 +69,8 @@ const meta: Meta<EuiComboBoxProps<{}>> = {
     compressed: false,
     fullWidth: false,
     onCreateOption: undefined, // Override Storybook's default callback
+    onFocusBadge: false,
+    'aria-label': 'Select an item',
   },
 };
 enableFunctionToggleControls(meta, ['onChange', 'onCreateOption']);
@@ -180,7 +182,7 @@ export const WithTooltip: Story = {
       toolTipContent: 'This is a tooltip!',
       toolTipProps: {
         position: 'left' as const,
-        ['data-test-subj']: 'tooltip',
+        ['data-test-subj']: `tooltip-${idx}`,
       },
       value: idx,
     })),
@@ -283,9 +285,56 @@ export const NestedOptionsGroups: Story = {
   render: (args) => <StatefulComboBox {...args} />,
 };
 
+export const CustomTruncation: Story = {
+  name: 'truncationProps',
+  parameters: {
+    controls: {
+      include: ['options', 'truncationProps'],
+    },
+    loki: {
+      chromeSelector: LOKI_SELECTORS.portal,
+    },
+  },
+  args: {
+    options: [
+      options[0],
+      { label: 'Item 2 with a long label that should truncation by default' },
+      {
+        label: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+        truncationProps: { truncation: 'start', truncationOffset: 5 },
+      },
+      ...options.slice(3, options.length),
+    ],
+    style: { width: 200 },
+    truncationProps: {
+      truncation: 'middle',
+    },
+    autoFocus: true,
+  },
+  render: (args) => <StatefulComboBox {...args} />,
+};
+
 /**
  * VRT only
  */
+
+export const DefaultTruncation: Story = {
+  tags: ['vrt-only'],
+  parameters: {
+    loki: {
+      chromeSelector: LOKI_SELECTORS.portal,
+    },
+  },
+  args: {
+    options: [
+      options[0],
+      { label: 'Item 2 with a long label that should truncation by default' },
+      ...options.slice(2, options.length),
+    ],
+    autoFocus: true,
+  },
+  render: (args) => <StatefulComboBox {...args} />,
+};
 
 export const IconsAndManyOptionsSelected: Story = {
   tags: ['vrt-only'],

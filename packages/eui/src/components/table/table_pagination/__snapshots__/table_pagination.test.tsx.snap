@@ -226,54 +226,84 @@ exports[`EuiTablePagination renders 1`] = `
             data-test-subj="tablePaginationRowOptions"
             tabindex="-1"
           >
-            <div>
+            <div
+              class="euiContextMenuPanel__list"
+              role="menu"
+            >
               <button
                 aria-current="true"
-                class="euiContextMenuItem emotion-euiContextMenuItem-m-center"
+                class="euiListItemLayout euiContextMenuItem emotion-euiListItemLayout-isInteractive-euiContextMenuItem-center"
                 data-test-subj="tablePagination-10-rows"
+                role="menuitem"
                 type="button"
               >
                 <span
-                  class="euiContextMenu__icon emotion-euiContextMenu__icon"
-                  color="inherit"
-                  data-euiicon-type="check"
-                />
-                <span
-                  class="euiContextMenuItem__text emotion-euiContextMenuItem__text"
+                  class="euiListItemLayout__content emotion-euiListItemLayout__content"
                 >
-                  10 rows
+                  <span
+                    class="euiListItemLayout__prepend emotion-euiListItemLayout__prepend"
+                  >
+                    <span
+                      class="euiContextMenu__icon emotion-euiContextMenu__icon"
+                      color="inherit"
+                      data-euiicon-type="check"
+                    />
+                  </span>
+                  <span
+                    class="euiListItemLayout__text euiContextMenuItem__text emotion-euiListItemLayout__text-wrap-euiContextMenuItem__text"
+                  >
+                    10 rows
+                  </span>
                 </span>
               </button>
               <button
-                class="euiContextMenuItem emotion-euiContextMenuItem-m-center"
+                class="euiListItemLayout euiContextMenuItem emotion-euiListItemLayout-isInteractive-euiContextMenuItem-center"
                 data-test-subj="tablePagination-25-rows"
+                role="menuitem"
                 type="button"
               >
                 <span
-                  class="euiContextMenu__icon emotion-euiContextMenu__icon"
-                  color="inherit"
-                  data-euiicon-type="empty"
-                />
-                <span
-                  class="euiContextMenuItem__text emotion-euiContextMenuItem__text"
+                  class="euiListItemLayout__content emotion-euiListItemLayout__content"
                 >
-                  25 rows
+                  <span
+                    class="euiListItemLayout__prepend emotion-euiListItemLayout__prepend"
+                  >
+                    <span
+                      class="euiContextMenu__icon emotion-euiContextMenu__icon"
+                      color="inherit"
+                      data-euiicon-type="empty"
+                    />
+                  </span>
+                  <span
+                    class="euiListItemLayout__text euiContextMenuItem__text emotion-euiListItemLayout__text-wrap-euiContextMenuItem__text"
+                  >
+                    25 rows
+                  </span>
                 </span>
               </button>
               <button
-                class="euiContextMenuItem emotion-euiContextMenuItem-m-center"
+                class="euiListItemLayout euiContextMenuItem emotion-euiListItemLayout-isInteractive-euiContextMenuItem-center"
                 data-test-subj="tablePagination-50-rows"
+                role="menuitem"
                 type="button"
               >
                 <span
-                  class="euiContextMenu__icon emotion-euiContextMenu__icon"
-                  color="inherit"
-                  data-euiicon-type="empty"
-                />
-                <span
-                  class="euiContextMenuItem__text emotion-euiContextMenuItem__text"
+                  class="euiListItemLayout__content emotion-euiListItemLayout__content"
                 >
-                  50 rows
+                  <span
+                    class="euiListItemLayout__prepend emotion-euiListItemLayout__prepend"
+                  >
+                    <span
+                      class="euiContextMenu__icon emotion-euiContextMenu__icon"
+                      color="inherit"
+                      data-euiicon-type="empty"
+                    />
+                  </span>
+                  <span
+                    class="euiListItemLayout__text euiContextMenuItem__text emotion-euiListItemLayout__text-wrap-euiContextMenuItem__text"
+                  >
+                    50 rows
+                  </span>
                 </span>
               </button>
             </div>

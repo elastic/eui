@@ -159,7 +159,11 @@ describe('EuiContextMenuPanel', () => {
         cy.realPress('{rightarrow}');
         cy.focused().should('have.attr', 'data-test-subj', 'panelB'); // has initialFocusedItemIndex
         cy.realPress('{rightarrow}');
-        cy.focused().should('have.class', 'euiContextMenuPanel__title');
+        cy.focused().should(
+          'have.attr',
+          'data-test-subj',
+          'contextMenuPanelTitleButton'
+        );
       });
 
       it('focuses the correct toggling item when using the left arrow key to navigate to the previous panel', () => {
@@ -406,7 +410,7 @@ describe('EuiContextMenuPanel', () => {
 
         it('does not lose focus when inside an EuiPopover and during rapid left/right arrow usage', () => {
           cy.mount(
-            <EuiPopover isOpen={true} button={<button />}>
+            <EuiPopover isOpen={true} button={<button>button</button>}>
               <EuiContextMenu panels={panels} initialPanelId={0} />
             </EuiPopover>
           );

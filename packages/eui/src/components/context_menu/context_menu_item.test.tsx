@@ -8,11 +8,11 @@
 
 import React from 'react';
 import { fireEvent } from '@testing-library/react';
-import { render, waitForEuiToolTipVisible } from '../../test/rtl';
+import { render } from '../../test/rtl';
 import { shouldRenderCustomStyles } from '../../test/internal';
 import { requiredProps } from '../../test/required_props';
 
-import { EuiContextMenuItem, SIZES } from './context_menu_item';
+import { EuiContextMenuItem } from './context_menu_item';
 
 describe('EuiContextMenuItem', () => {
   shouldRenderCustomStyles(<EuiContextMenuItem />);
@@ -22,9 +22,8 @@ describe('EuiContextMenuItem', () => {
     {
       childProps: ['toolTipProps', 'toolTipProps.anchorProps'],
       skip: { parentTest: true },
-      renderCallback: async ({ getByTestSubject }) => {
+      renderCallback: ({ getByTestSubject }) => {
         fireEvent.mouseOver(getByTestSubject('trigger'));
-        await waitForEuiToolTipVisible();
       },
     }
   );
@@ -72,16 +71,6 @@ describe('EuiContextMenuItem', () => {
       );
 
       expect(container.firstChild).toMatchSnapshot();
-    });
-
-    describe('size', () => {
-      SIZES.forEach((size) => {
-        test(size, () => {
-          const { container } = render(<EuiContextMenuItem size={size} />);
-
-          expect(container.firstChild).toMatchSnapshot();
-        });
-      });
     });
 
     describe('onClick', () => {
@@ -154,18 +143,17 @@ describe('EuiContextMenuItem', () => {
     });
   });
 
-  test('tooltip behavior', async () => {
+  test('tooltip behavior', () => {
     const { getByRole, baseElement } = render(
       <EuiContextMenuItem
         toolTipContent="tooltip content"
-        toolTipProps={{ title: 'Test', position: 'top', delay: 'long' }}
+        toolTipProps={{ title: 'Test', position: 'top' }}
       >
         Hello
       </EuiContextMenuItem>
     );
 
     fireEvent.mouseOver(getByRole('button'));
-    await waitForEuiToolTipVisible();
 
     expect(baseElement).toMatchSnapshot();
   });

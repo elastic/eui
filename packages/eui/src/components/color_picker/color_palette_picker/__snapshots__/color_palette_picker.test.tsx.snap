@@ -418,189 +418,201 @@ exports[`EuiColorPalettePicker more props are propagated to each option 1`] = `
               <button
                 aria-label="my palette fixed"
                 aria-selected="true"
-                class="euiContextMenuItem euiSuperSelect__item paletteFixedClass emotion-euiContextMenuItem-m-center-euiSuperSelect__item-hasDividers"
+                class="euiListItemLayout euiSuperSelect__item paletteFixedClass emotion-euiListItemLayout-isInteractive-isFocused-isSelected-isSelectedFocused"
                 data-test-subj="fixed-data-test-subj"
                 id="paletteFixed"
                 role="option"
-                type="button"
               >
                 <span
-                  class="euiContextMenu__icon emotion-euiContextMenu__icon"
-                  color="inherit"
-                  data-euiicon-type="check"
-                />
-                <span
-                  class="euiContextMenuItem__text emotion-euiContextMenuItem__text"
+                  class="euiListItemLayout__content emotion-euiListItemLayout__content"
                 >
-                  <div
-                    class="euiColorPalettePicker__item"
+                  <span
+                    class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+                    color="primary"
+                    data-euiicon-type="check"
+                  />
+                  <span
+                    class="euiListItemLayout__text emotion-euiListItemLayout__text-wrap"
                   >
                     <div
-                      class="euiFlexGroup emotion-euiFlexGroup-m-flexStart-stretch-row"
+                      class="euiColorPalettePicker__item"
                     >
                       <div
-                        class="euiFlexItem emotion-euiFlexItem-grow-1"
+                        class="euiFlexGroup emotion-euiFlexGroup-m-flexStart-stretch-row"
                       >
                         <div
-                          aria-hidden="true"
-                          class="euiText euiColorPalettePicker__itemTitle emotion-euiText-xs"
+                          class="euiFlexItem emotion-euiFlexItem-grow-1"
                         >
-                          Palette 1
+                          <div
+                            aria-hidden="true"
+                            class="euiText euiColorPalettePicker__itemTitle emotion-euiText-xs"
+                          >
+                            Palette 1
+                          </div>
                         </div>
                       </div>
+                      <div
+                        class="euiSpacer euiSpacer--xs emotion-euiSpacer-xs"
+                      />
+                      <span
+                        class="euiColorPaletteDisplay emotion-euiColorPaletteDisplay-s"
+                      >
+                        <span
+                          class="emotion-euiScreenReaderOnly"
+                        >
+                          Palette 1
+                        </span>
+                        <span
+                          aria-hidden="true"
+                          class="euiColorPaletteDisplayFixed__bleedArea emotion-euiColorPaletteDisplayFixed__bleedArea"
+                        >
+                          <span
+                            style="background-color: rgb(31, 176, 178); width: 20%;"
+                          />
+                          <span
+                            style="background-color: rgb(255, 219, 109); width: 20%;"
+                          />
+                          <span
+                            style="background-color: rgb(238, 145, 145); width: 20%;"
+                          />
+                          <span
+                            style="background-color: rgb(255, 255, 255); width: 20%;"
+                          />
+                          <span
+                            style="background-color: rgb(136, 128, 148); width: 20%;"
+                          />
+                        </span>
+                      </span>
                     </div>
-                    <div
-                      class="euiSpacer euiSpacer--xs emotion-euiSpacer-xs"
-                    />
-                    <span
-                      class="euiColorPaletteDisplay emotion-euiColorPaletteDisplay-s"
-                    >
-                      <span
-                        class="emotion-euiScreenReaderOnly"
-                      >
-                        Palette 1
-                      </span>
-                      <span
-                        aria-hidden="true"
-                        class="euiColorPaletteDisplayFixed__bleedArea emotion-euiColorPaletteDisplayFixed__bleedArea"
-                      >
-                        <span
-                          style="background-color: rgb(31, 176, 178); width: 20%;"
-                        />
-                        <span
-                          style="background-color: rgb(255, 219, 109); width: 20%;"
-                        />
-                        <span
-                          style="background-color: rgb(238, 145, 145); width: 20%;"
-                        />
-                        <span
-                          style="background-color: rgb(255, 255, 255); width: 20%;"
-                        />
-                        <span
-                          style="background-color: rgb(136, 128, 148); width: 20%;"
-                        />
-                      </span>
-                    </span>
-                  </div>
+                  </span>
                 </span>
               </button>
               <button
                 aria-selected="false"
-                class="euiContextMenuItem euiSuperSelect__item paletteLinearClass emotion-euiContextMenuItem-m-center-euiSuperSelect__item-hasDividers"
+                class="euiListItemLayout euiSuperSelect__item paletteLinearClass emotion-euiListItemLayout-isInteractive"
                 data-test-subj="gradient-data-test-subj"
                 id="paletteLinear"
                 role="option"
-                type="button"
               >
                 <span
-                  class="euiContextMenu__icon emotion-euiContextMenu__icon"
-                  color="inherit"
-                  data-euiicon-type="empty"
-                />
-                <span
-                  class="euiContextMenuItem__text emotion-euiContextMenuItem__text"
+                  class="euiListItemLayout__content emotion-euiListItemLayout__content"
                 >
-                  <div
-                    class="euiColorPalettePicker__item"
+                  <span
+                    class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+                    color="text"
+                    data-euiicon-type="empty"
+                  />
+                  <span
+                    class="euiListItemLayout__text emotion-euiListItemLayout__text-wrap"
                   >
                     <div
-                      class="euiFlexGroup emotion-euiFlexGroup-m-flexStart-stretch-row"
+                      class="euiColorPalettePicker__item"
                     >
                       <div
-                        class="euiFlexItem emotion-euiFlexItem-grow-1"
+                        class="euiFlexGroup emotion-euiFlexGroup-m-flexStart-stretch-row"
                       >
                         <div
-                          aria-hidden="true"
-                          class="euiText euiColorPalettePicker__itemTitle emotion-euiText-xs"
+                          class="euiFlexItem emotion-euiFlexItem-grow-1"
                         >
-                          Linear Gradient
+                          <div
+                            aria-hidden="true"
+                            class="euiText euiColorPalettePicker__itemTitle emotion-euiText-xs"
+                          >
+                            Linear Gradient
+                          </div>
                         </div>
                       </div>
+                      <div
+                        class="euiSpacer euiSpacer--xs emotion-euiSpacer-xs"
+                      />
+                      <span
+                        class="emotion-euiScreenReaderOnly"
+                      >
+                        Linear Gradient
+                      </span>
+                      <span
+                        aria-hidden="true"
+                        class="euiColorPaletteDisplay emotion-euiColorPaletteDisplay-s"
+                      />
                     </div>
-                    <div
-                      class="euiSpacer euiSpacer--xs emotion-euiSpacer-xs"
-                    />
-                    <span
-                      class="emotion-euiScreenReaderOnly"
-                    >
-                      Linear Gradient
-                    </span>
-                    <span
-                      aria-hidden="true"
-                      class="euiColorPaletteDisplay emotion-euiColorPaletteDisplay-s"
-                    />
-                  </div>
+                  </span>
                 </span>
               </button>
               <button
                 aria-selected="false"
-                class="euiContextMenuItem euiSuperSelect__item emotion-euiContextMenuItem-m-center-euiSuperSelect__item-hasDividers"
+                class="euiListItemLayout euiSuperSelect__item emotion-euiListItemLayout-isInteractive"
                 data-test-subj="gradient-with-stops-data-test-subj"
                 id="paletteLinearStops"
                 role="option"
-                type="button"
               >
                 <span
-                  class="euiContextMenu__icon emotion-euiContextMenu__icon"
-                  color="inherit"
-                  data-euiicon-type="empty"
-                />
-                <span
-                  class="euiContextMenuItem__text emotion-euiContextMenuItem__text"
+                  class="euiListItemLayout__content emotion-euiListItemLayout__content"
                 >
-                  <div
-                    class="euiColorPalettePicker__item"
+                  <span
+                    class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+                    color="text"
+                    data-euiicon-type="empty"
+                  />
+                  <span
+                    class="euiListItemLayout__text emotion-euiListItemLayout__text-wrap"
                   >
                     <div
-                      class="euiFlexGroup emotion-euiFlexGroup-m-flexStart-stretch-row"
+                      class="euiColorPalettePicker__item"
                     >
                       <div
-                        class="euiFlexItem emotion-euiFlexItem-grow-1"
+                        class="euiFlexGroup emotion-euiFlexGroup-m-flexStart-stretch-row"
                       >
                         <div
-                          aria-hidden="true"
-                          class="euiText euiColorPalettePicker__itemTitle emotion-euiText-xs"
+                          class="euiFlexItem emotion-euiFlexItem-grow-1"
                         >
-                          Linear Gradient with stops
+                          <div
+                            aria-hidden="true"
+                            class="euiText euiColorPalettePicker__itemTitle emotion-euiText-xs"
+                          >
+                            Linear Gradient with stops
+                          </div>
                         </div>
                       </div>
+                      <div
+                        class="euiSpacer euiSpacer--xs emotion-euiSpacer-xs"
+                      />
+                      <span
+                        class="emotion-euiScreenReaderOnly"
+                      >
+                        Linear Gradient with stops
+                      </span>
+                      <span
+                        aria-hidden="true"
+                        class="euiColorPaletteDisplay emotion-euiColorPaletteDisplay-s"
+                      />
                     </div>
-                    <div
-                      class="euiSpacer euiSpacer--xs emotion-euiSpacer-xs"
-                    />
-                    <span
-                      class="emotion-euiScreenReaderOnly"
-                    >
-                      Linear Gradient with stops
-                    </span>
-                    <span
-                      aria-hidden="true"
-                      class="euiColorPaletteDisplay emotion-euiColorPaletteDisplay-s"
-                    />
-                  </div>
+                  </span>
                 </span>
               </button>
               <button
                 aria-selected="false"
-                class="euiContextMenuItem euiSuperSelect__item emotion-euiContextMenuItem-m-center-euiSuperSelect__item-hasDividers"
+                class="euiListItemLayout euiSuperSelect__item emotion-euiListItemLayout-isInteractive"
                 data-test-subj="text-data-test-subj"
                 id="custom"
                 role="option"
-                type="button"
               >
                 <span
-                  class="euiContextMenu__icon emotion-euiContextMenu__icon"
-                  color="inherit"
-                  data-euiicon-type="empty"
-                />
-                <span
-                  class="euiContextMenuItem__text emotion-euiContextMenuItem__text"
+                  class="euiListItemLayout__content emotion-euiListItemLayout__content"
                 >
-                  <div
-                    class="euiColorPalettePicker__item"
+                  <span
+                    class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+                    color="text"
+                    data-euiicon-type="empty"
+                  />
+                  <span
+                    class="euiListItemLayout__text emotion-euiListItemLayout__text-wrap"
                   >
-                    Plain text as a custom option
-                  </div>
+                    <div
+                      class="euiColorPalettePicker__item"
+                    >
+                      Plain text as a custom option
+                    </div>
+                  </span>
                 </span>
               </button>
             </div>

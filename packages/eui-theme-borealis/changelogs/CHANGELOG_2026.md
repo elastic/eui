@@ -1,3 +1,13 @@
+## [`v8.0.0`](https://github.com/elastic/eui/releases/v8.0.0)
+
+**Breaking changes**
+
+- Removed component tokens: ([#9579](https://github.com/elastic/eui/pull/9579))
+  - `components.listGroupItemBackgroundPrimaryActive`
+  - `components.listGroupItemBackgroundSubduedActive`
+  - `components.listGroupItemBackgroundHover`
+  - `components.listGroupItemBackgroundPrimaryHover`
+
 ## [`v7.0.0`](https://github.com/elastic/eui/releases/v7.0.0)
 
 **Breaking changes**

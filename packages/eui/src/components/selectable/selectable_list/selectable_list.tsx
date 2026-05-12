@@ -15,7 +15,7 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 import {
-  FixedSizeList,
+  VariableSizeList,
   ListProps,
   ListChildComponentProps as ReactWindowListChildComponentProps,
   areEqual,
@@ -41,7 +41,11 @@ import {
   EuiSelectableListItem,
   EuiSelectableListItemProps,
 } from './selectable_list_item';
-import { euiSelectableListStyles } from './selectable_list.styles';
+import {
+  euiSelectableListGroupLabelStyles,
+  euiSelectableListStyles,
+} from './selectable_list.styles';
+import { getListItemSize } from './utils/get_list_item_size';
 
 interface ListChildComponentProps<T>
   extends Omit<ReactWindowListChildComponentProps, 'style'> {
@@ -77,7 +81,7 @@ export type EuiSelectableOptionsListProps = CommonProps &
      */
     activeOptionIndex?: number;
     /**
-     * Show the check/cross selection indicator icons
+     * Show the check/cross selection indicators
      */
     showIcons?: boolean;
     singleSelection?: 'always' | boolean;
@@ -97,9 +101,10 @@ export type EuiSelectableOptionsListProps = CommonProps &
      */
     onFocusBadge?: EuiSelectableListItemProps['onFocusBadge'];
     /**
-     * Padding for the list items.
+     * Optional list container padding.
+     * @default 'none'
      */
-    paddingSize?: EuiSelectableListItemProps['paddingSize'];
+    paddingSize?: 'none' | 's';
     /**
      * How to handle long text within the item.
      * Wrapping only works if virtualization is off.
@@ -178,6 +183,7 @@ export class EuiSelectableList<T> extends Component<
 > {
   static defaultProps = {
     rowHeight: 32,
+    paddingSize: 'none' as const,
     searchValue: '',
     isVirtualized: true as const,
   };
@@ -199,7 +205,7 @@ export class EuiSelectableList<T> extends Component<
     };
   }
 
-  listRef: FixedSizeList | null = null;
+  listRef: VariableSizeList | null = null;
   listBoxRef: HTMLUListElement | null = null;
 
   componentWillUnmount(): void {
@@ -211,7 +217,7 @@ export class EuiSelectableList<T> extends Component<
     }
   }
 
-  setListRef = (ref: FixedSizeList | null) => {
+  setListRef = (ref: VariableSizeList | null) => {
     this.listRef = ref;
 
     if (ref && this.props.activeOptionIndex) {
@@ -279,6 +285,7 @@ export class EuiSelectableList<T> extends Component<
       textWrap,
       onFocusBadge,
       searchable,
+      singleSelection,
     } = this.props;
 
     // using shouldComponentUpdate to determine needed rerender before actual rerender
@@ -289,7 +296,8 @@ export class EuiSelectableList<T> extends Component<
       nextProps.paddingSize !== paddingSize ||
       nextProps.textWrap !== textWrap ||
       nextProps.onFocusBadge !== onFocusBadge ||
-      nextProps.searchable !== searchable
+      nextProps.searchable !== searchable ||
+      nextProps.singleSelection !== singleSelection
     ) {
       this.listRowRerender += 1;
     }
@@ -309,6 +317,7 @@ export class EuiSelectableList<T> extends Component<
       textWrap,
       onFocusBadge,
       searchable,
+      singleSelection,
     } = this.props;
 
     if (prevProps.activeOptionIndex !== activeOptionIndex) {
@@ -323,6 +332,8 @@ export class EuiSelectableList<T> extends Component<
 
       if (typeof activeOptionIndex !== 'undefined') {
         if (isVirtualized) {
+          // NOTE: Maybe we might want to consider changing scroll position to
+          // 'center' to not have items stick to the edges of the list
           this.listRef?.scrollToItem(activeOptionIndex, 'auto');
         } else {
           const activeOptionId = makeOptionId(activeOptionIndex);
@@ -357,7 +368,8 @@ export class EuiSelectableList<T> extends Component<
         prevProps.paddingSize !== paddingSize ||
         prevProps.textWrap !== textWrap ||
         prevProps.onFocusBadge !== onFocusBadge ||
-        prevProps.searchable !== searchable
+        prevProps.searchable !== searchable ||
+        prevProps.singleSelection !== singleSelection
       ) {
         this.setState({
           itemData: { ...optionArray },
@@ -381,6 +393,13 @@ export class EuiSelectableList<T> extends Component<
     return { ariaPosInSetMap, ariaSetSize: latestAriaPosIndex };
   };
 
+  getItemSize = (index: number): number => {
+    const { rowHeight } = this.props as { rowHeight: number };
+    const option = this.state.optionArray[index];
+
+    return getListItemSize(index, rowHeight, !!option?.isGroupLabel);
+  };
+
   ListRow = memo(({ data, index, style }: ListChildComponentProps<T>) => {
     const option = data[index];
     const { data: optionData, ..._option } = option;
@@ -396,6 +415,7 @@ export class EuiSelectableList<T> extends Component<
       searchableLabel,
       data: _data,
       truncationProps: _truncationProps,
+      css,
       ...optionRest
     } = option;
 
@@ -403,7 +423,6 @@ export class EuiSelectableList<T> extends Component<
       activeOptionIndex,
       allowExclusions,
       onFocusBadge,
-      paddingSize,
       showIcons,
       makeOptionId,
       renderOption,
@@ -412,17 +431,19 @@ export class EuiSelectableList<T> extends Component<
       searchValue,
       isPreFiltered,
       isVirtualized,
+      singleSelection,
     } = this.props;
 
     if (isGroupLabel) {
       return (
         <RenderWithEuiStylesMemoizer>
           {(stylesMemoizer) => {
-            const styles = stylesMemoizer(euiSelectableListStyles);
+            const styles = stylesMemoizer(euiSelectableListGroupLabelStyles);
+
             return (
               <li
                 role="presentation"
-                css={styles.euiSelectableList__groupLabel}
+                css={[styles.groupLabel, css]}
                 className="euiSelectableList__groupLabel"
                 style={style}
                 {...(optionRest as HTMLAttributes<HTMLLIElement>)}
@@ -482,9 +503,9 @@ export class EuiSelectableList<T> extends Component<
         onFocusBadge={onFocusBadge}
         allowExclusions={allowExclusions}
         showIcons={showIcons}
-        paddingSize={paddingSize}
         searchable={searchable}
         textWrap={textWrap}
+        singleSelection={singleSelection === false ? false : true}
         // @ts-ignore complex
         {...(optionRest as EuiSelectableListItemProps)}
       >
@@ -518,7 +539,9 @@ export class EuiSelectableList<T> extends Component<
       innerElementType: 'ul',
       itemCount: optionArray.length,
       itemData: itemData,
-      itemSize: rowHeight,
+      itemSize: this.getItemSize,
+      // Prevents scrollbar jump before VariableSizeList populates the cached size
+      estimatedItemSize: rowHeight,
       'data-skip-axe': 'scrollable-region-focusable',
       ...windowProps,
     };
@@ -543,9 +566,13 @@ export class EuiSelectableList<T> extends Component<
     return heightIsFull ? (
       <EuiAutoSizer onResize={this.calculateDefaultOptionWidth}>
         {({ width, height }: EuiAutoSize) => (
-          <FixedSizeList width={width} height={height} {...virtualizationProps}>
+          <VariableSizeList
+            width={width}
+            height={height}
+            {...virtualizationProps}
+          >
             {this.ListRow}
-          </FixedSizeList>
+          </VariableSizeList>
         )}
       </EuiAutoSizer>
     ) : (
@@ -554,13 +581,13 @@ export class EuiSelectableList<T> extends Component<
         onResize={this.calculateDefaultOptionWidth}
       >
         {({ width }: EuiAutoSizeHorizontal) => (
-          <FixedSizeList
+          <VariableSizeList
             width={width}
             height={calculatedHeight}
             {...virtualizationProps}
           >
             {this.ListRow}
-          </FixedSizeList>
+          </VariableSizeList>
         )}
       </EuiAutoSizer>
     );
@@ -587,9 +614,9 @@ export class EuiSelectableList<T> extends Component<
     const mayTruncate = searchable || truncationProps;
     if (!mayTruncate) return;
 
-    const paddingOffset = this.props.paddingSize === 'none' ? 0 : 24; // Defaults to 's'
-    const checkedIconOffset = this.props.showIcons === false ? 0 : 28; // Defaults to true
-    this.focusBadgeOffset = this.props.onFocusBadge === false ? 0 : 46;
+    const paddingOffset = 24; // 2 * list item padding (8px) + 2 * text padding (4px)
+    const checkedIconOffset = this.props.showIcons === false ? 0 : 24; // icon (16px) + gap (8px)
+    this.focusBadgeOffset = !this.props.onFocusBadge ? 0 : 28; // badge (20px) + gap (8px)
 
     // Wait a tick for the listbox ref to update before proceeding
     this.animationFrameId = requestAnimationFrame(() => {
@@ -739,6 +766,7 @@ export class EuiSelectableList<T> extends Component<
             styles.euiSelectableList,
             heightIsFull && styles.fullHeight,
             bordered && styles.bordered,
+            paddingSize === 's' && styles.paddingSize.s,
           ];
           const listClasses = classNames(
             'euiSelectableList__list',

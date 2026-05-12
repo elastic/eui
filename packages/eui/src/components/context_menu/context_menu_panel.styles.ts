@@ -11,12 +11,14 @@ import { css, keyframes } from '@emotion/react';
 import { UseEuiTheme } from '../../services';
 import { logicalCSS, euiCantAnimate } from '../../global_styling';
 import { euiTitle } from '../title/title.styles';
+import { euiListItemVariables } from '../list_item_layout/_list_item_layout.styles';
 
 import { euiContextMenuVariables } from './context_menu.styles';
 
 export const euiContextMenuPanelStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
   const { panelWidth } = euiContextMenuVariables(euiThemeContext);
+  const { spacing, textPadding } = euiListItemVariables(euiThemeContext);
 
   const animations = {
     transitioning: css`
@@ -50,6 +52,7 @@ export const euiContextMenuPanelStyles = (euiThemeContext: UseEuiTheme) => {
   return {
     euiContextMenuPanel: css`
       ${logicalCSS('width', '100%')}
+      padding: ${euiTheme.size.s};
       visibility: visible;
       outline-offset: -${euiTheme.focus.width};
 
@@ -80,13 +83,17 @@ export const euiContextMenuPanelStyles = (euiThemeContext: UseEuiTheme) => {
     },
     // Children
     euiContextMenuPanel__title: css`
+      display: flex;
+      align-items: center;
+      gap: ${spacing.horizontal};
       ${euiTitle(euiThemeContext, 'xxs')}
-      ${logicalCSS('border-bottom', euiTheme.border.thin)}
-
-      &:enabled:focus {
-        /* Override the default focus background on EUiContextMenuItems */
-        background-color: unset;
-      }
+      ${logicalCSS('padding-horizontal', spacing.horizontal)}
+    `,
+    euiContextMenuPanel__label: css`
+      flex-grow: 1;
+      overflow: hidden; /* allows for text truncation */
+      ${logicalCSS('padding-horizontal', textPadding.horizontal)}
+      ${logicalCSS('padding-vertical', textPadding.vertical)}
     `,
   };
 };
