@@ -401,11 +401,16 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
     optionalFooter = <div css={footerStyles}>{footer}</div>;
   }
 
+  const rootAriaLabelledby =
+    rest['aria-label'] == null && rest['aria-labelledby'] == null
+      ? titleId
+      : undefined;
+
   return (
     <EuiPanel
       element="div"
       role="group"
-      aria-labelledby={titleId}
+      aria-labelledby={rootAriaLabelledby}
       className={classes}
       css={[...cardStyles, optionalBetaCSS]}
       onClick={isClickable ? outerOnClick : undefined}
