@@ -6,9 +6,9 @@
  * Side Public License, v 1.
  */
 
-import React, { ReactElement, useEffect, useMemo, useState } from 'react';
+import React, { ReactElement, useEffect, useState } from 'react';
 
-import { htmlIdGenerator, useEuiTheme } from '../../services';
+import { useEuiTheme, useGeneratedHtmlId } from '../../services';
 import { isString } from '../../services/predicate';
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
 import { EuiSearchBox } from './search_box';
@@ -202,8 +202,6 @@ function notifyControllingParent(
 }
 
 export const EuiSearchBar = (props: EuiSearchBarProps) => {
-  const theme = useEuiTheme();
-
   const {
     box: { schema, ...box } = { schema: '' }, // strip `schema` out to prevent passing it to EuiSearchBox
     filters,
@@ -212,12 +210,14 @@ export const EuiSearchBar = (props: EuiSearchBarProps) => {
     hint,
   } = props;
 
-  const [hintId] = useState<string>(htmlIdGenerator('__hint')());
+  const theme = useEuiTheme();
+  const hintId = useGeneratedHtmlId({ prefix: '__hint' });
   const [query, setQuery] = useState<Query>(
     parseQuery(props.defaultQuery || props.query, props)
   );
-  const queryText = useMemo(() => query.text, [query]);
+  const [queryText, setQueryText] = useState<string>(() => query.text);
   const [error, setError] = useState<null | Error>(null);
+  const [isHintVisibleState, setIsHintVisibleState] = useState<boolean>(false);
 
   useEffect(() => {
     const nextQuery = props.query;
@@ -232,14 +232,17 @@ export const EuiSearchBar = (props: EuiSearchBarProps) => {
     if (shouldUpdate) {
       const query = parseQuery(nextQuery, props);
       setQuery(query);
+      setQueryText(query.text);
       setError(null);
     }
+
+    // query and parseQuery's transitive deps (schema, dateFormat) are
+    // intentionally omitted. This effect mirrors getDerivedStateFromProps, which
+    // only re-parsed when props.query itself changed, and the shouldUpdate checks
+    // for the same thing. If props.query hasn't changed, there is nothing to
+    // re-derive regardless of other prop changes.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.query]);
-
-  const [isHintVisible, setIsHintVisible] = useState<boolean>(false);
-
-  const toolsLeftEl = renderTools(toolsLeft);
-  const toolsRightEl = renderTools(toolsRight);
 
   function onSearch(newQueryText: string) {
     const oldState: NotifyControllingParent = { query, queryText, error };
@@ -253,6 +256,7 @@ export const EuiSearchBar = (props: EuiSearchBarProps) => {
         props.onChange
       );
       setQuery(newQuery);
+      setQueryText(newQuery.text);
       setError(null);
     } catch (e) {
       const error: Error =
@@ -261,23 +265,28 @@ export const EuiSearchBar = (props: EuiSearchBarProps) => {
           : { name: 'Unexpected error', message: String(e) };
       notifyControllingParent(
         oldState,
-        { query: null, queryText, error },
+        { query: null, queryText: newQueryText, error },
         props.onChange
       );
+      setQueryText(newQueryText);
       setError(error);
     }
   }
 
-  function onFiltersChange(query: Query) {
-    const oldState: NotifyControllingParent = { query, queryText, error };
+  function onFiltersChange(newQuery: Query) {
     notifyControllingParent(
-      oldState,
-      { query, queryText: query.text, error: null },
+      { query, queryText, error },
+      { query: newQuery, queryText: newQuery.text, error: null },
       props.onChange
     );
-    setQuery(query);
+    setQuery(newQuery);
+    setQueryText(newQuery.text);
     setError(null);
   }
+
+  const isHintVisible = hint?.popoverProps?.isOpen ?? isHintVisibleState;
+  const toolsLeftEl = renderTools(toolsLeft);
+  const toolsRightEl = renderTools(toolsRight);
 
   return (
     <EuiFlexGroup gutterSize="s" alignItems="center" wrap>
@@ -299,7 +308,7 @@ export const EuiSearchBar = (props: EuiSearchBarProps) => {
               ? {
                   isVisible: isHintVisible,
                   setIsVisible: (isVisible: boolean) => {
-                    setIsHintVisible(isVisible);
+                    setIsHintVisibleState(isVisible);
                   },
                   id: hintId,
                   ...hint,
