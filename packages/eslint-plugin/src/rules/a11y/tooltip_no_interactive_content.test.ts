@@ -185,6 +185,36 @@ ruleTester.run('tooltip-no-interactive-content', TooltipNoInteractiveContent, {
       ],
     },
     {
+      name: 'native `<select>` in content',
+      code: dedent`
+        <EuiToolTip content={<select><option>A</option></select>}>
+          <EuiButton>Hover</EuiButton>
+        </EuiToolTip>
+      `,
+      languageOptions,
+      errors: [
+        {
+          messageId: 'noInteractiveContent',
+          data: { elementName: 'select', componentName: 'EuiToolTip', propName: 'content' },
+        },
+      ],
+    },
+    {
+      name: 'native `<textarea>` in content',
+      code: dedent`
+        <EuiToolTip content={<textarea placeholder="Enter text" />}>
+          <EuiButton>Hover</EuiButton>
+        </EuiToolTip>
+      `,
+      languageOptions,
+      errors: [
+        {
+          messageId: 'noInteractiveContent',
+          data: { elementName: 'textarea', componentName: 'EuiToolTip', propName: 'content' },
+        },
+      ],
+    },
+    {
       name: '`EuiButton` in `EuiIconTip` content',
       code: dedent`
         <EuiIconTip content={<EuiButton>Click</EuiButton>} type="info" />

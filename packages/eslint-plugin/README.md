@@ -203,7 +203,7 @@ The rule reports two situations:
 - **`title` prop is present** - remove it and use `<EuiToolTip content={…}>` instead. The rule auto-fixes by removing `title` and wrapping the button with `EuiToolTip` (or only removing `title` when the button is already wrapped).
 - **No `EuiToolTip` wrapper** - the button icon has no visible tooltip. The rule auto-fixes by wrapping the button with `<EuiToolTip content={ariaLabel}>` when `aria-label` is a static string or expression.
 
-Buttons with spread props (`{...props}`) are intentionally skipped because their final prop set cannot be statically determined.
+Buttons with spread props (`{...props}`) are intentionally skipped when no `title` prop is explicitly present because their final prop set cannot be statically determined.
 
 #### Examples
 

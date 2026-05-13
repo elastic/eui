@@ -82,7 +82,7 @@ ruleTester.run('tooltip-button-icon-wrap', TooltipButtonIconWrap, {
       languageOptions,
     },
     {
-      name: 'spread props — cannot statically determine, skip',
+      name: 'spread props without title — cannot statically determine, skip',
       code: dedent`
         <EuiButtonIcon {...props} />
       `,
@@ -172,6 +172,19 @@ ruleTester.run('tooltip-button-icon-wrap', TooltipButtonIconWrap, {
       output: dedent`
         <EuiToolTip content="Edit">
           <EuiButtonIcon aria-label="Edit" iconType="pencil" />
+        </EuiToolTip>
+      `,
+      languageOptions,
+      errors: [{ messageId: 'useEuiToolTipInsteadOfTitle' }],
+    },
+    {
+      name: 'spread props with explicit title — title is still reported',
+      code: dedent`
+        <EuiButtonIcon {...props} title="Edit" iconType="pencil" />
+      `,
+      output: dedent`
+        <EuiToolTip content="Edit">
+          <EuiButtonIcon {...props} iconType="pencil" />
         </EuiToolTip>
       `,
       languageOptions,
