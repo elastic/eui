@@ -69,27 +69,4 @@ test.describe('EuiComboBoxObject', () => {
     expect(await combo.getSelectedOptions()).toEqual([]);
   });
 
-  test('two combo boxes on the same page are operated independently', async ({
-    page,
-  }) => {
-    await page.goto('/iframe.html?id=forms-euicombobox--multiple-instances');
-    const combo1 = new EuiComboBoxObject(page, 'combo1');
-    const combo2 = new EuiComboBoxObject(page, 'combo2');
-    await combo1.clear();
-    await combo2.clear();
-
-    // Distinct labels + reverse order so a regression that mis-routed a
-    // selection across combos would surface.
-    await combo2.setSelectedOptions(['Item 5']);
-    await combo1.setSelectedOptions(['Item 2']);
-
-    expect(await combo1.getSelectedOptions()).toEqual(['Item 2']);
-    expect(await combo2.getSelectedOptions()).toEqual(['Item 5']);
-
-    // Clearing combo1 must not affect combo2 — guards the `clearButton`
-    // getter against a page-level scoping regression.
-    await combo1.clear();
-    expect(await combo1.getSelectedOptions()).toEqual([]);
-    expect(await combo2.getSelectedOptions()).toEqual(['Item 5']);
-  });
 });

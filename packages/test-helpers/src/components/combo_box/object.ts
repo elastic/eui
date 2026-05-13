@@ -55,8 +55,10 @@ export class EuiComboBoxObject extends BaseObject {
     }
 
     if (targetLabels.length > 0) {
-      // Close the dropdown so subsequent interactions start clean.
-      await this.root.page().keyboard.press('Escape');
+      // Blur the input to close the dropdown. Using blur() rather than a
+      // keyboard event avoids bubbling Escape to page-level handlers
+      // (modal/flyout close listeners) on the consumer page.
+      await this.searchInput.blur();
     }
 
     await expect
