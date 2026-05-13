@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { Component, ReactElement, ReactNode } from 'react';
+import React, { ReactElement, ReactNode, useState, useCallback } from 'react';
 import { CommonProps } from '../common';
 import { copyToClipboard } from '../../services';
 import { EuiToolTip, EuiToolTipProps } from '../tool_tip';
@@ -33,56 +33,39 @@ export interface EuiCopyProps extends CommonProps {
   /**
    * Optional props to pass to the EuiToolTip component.
    */
-  tooltipProps?: Partial<
+  tooltipProps?: Partial
     Omit<EuiToolTipProps, 'children' | 'content' | 'onMouseOut'>
   >;
 }
 
-interface EuiCopyState {
-  tooltipText: ReactNode;
-}
+export const EuiCopy = ({
+  textToCopy,
+  beforeMessage,
+  afterMessage = 'Copied',
+  children,
+  tooltipProps,
+}: EuiCopyProps) => {
+  const [tooltipText, setTooltipText] = useState<ReactNode>(beforeMessage);
 
-export class EuiCopy extends Component<EuiCopyProps, EuiCopyState> {
-  static defaultProps = {
-    afterMessage: 'Copied',
-  };
-
-  constructor(props: EuiCopyProps) {
-    super(props);
-
-    this.state = {
-      tooltipText: this.props.beforeMessage,
-    };
-  }
-
-  copy = () => {
-    const isCopied = copyToClipboard(this.props.textToCopy);
+  const copy = useCallback(() => {
+    const isCopied = copyToClipboard(textToCopy);
     if (isCopied) {
-      this.setState({
-        tooltipText: this.props.afterMessage,
-      });
+      setTooltipText(afterMessage);
     }
-  };
+  }, [textToCopy, afterMessage]);
 
-  resetTooltipText = () => {
-    this.setState({
-      tooltipText: this.props.beforeMessage,
-    });
-  };
+  const resetTooltipText = useCallback(() => {
+    setTooltipText(beforeMessage);
+  }, [beforeMessage]);
 
-  render() {
-    const { children, tooltipProps } = this.props;
-
-    return (
-      // See `src/components/tool_tip/tool_tip.js` for explanation of below eslint-disable
-      // eslint-disable-next-line jsx-a11y/mouse-events-have-key-events
-      <EuiToolTip
-        content={this.state.tooltipText}
-        onMouseOut={this.resetTooltipText}
-        {...tooltipProps}
-      >
-        {children(this.copy)}
-      </EuiToolTip>
-    );
-  }
-}
+  return (
+    // eslint-disable-next-line jsx-a11y/mouse-events-have-key-events
+    <EuiToolTip
+      content={tooltipText}
+      onMouseOut={resetTooltipText}
+      {...tooltipProps}
+    >
+      {children(copy)}
+    </EuiToolTip>
+  );
+};
