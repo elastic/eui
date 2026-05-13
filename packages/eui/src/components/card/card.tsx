@@ -217,7 +217,7 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
   const titleId = `${ariaId}Title`;
   const ariaDesc = description ? `${ariaId}Description` : '';
   const joinAriaIds = (...ids: Array<string | undefined>) =>
-    ids.filter((id): id is string => Boolean(id)).join(' ');
+    (ids.filter((id): id is string => Boolean(id)).join(' ')) || undefined;
 
   /**
    * Top area containing image, icon or both
