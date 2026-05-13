@@ -419,11 +419,7 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
         {optionalCardTop}
 
         <div className="euiCard__content" css={contentStyles}>
-          <EuiTitle
-            id={titleId}
-            className="euiCard__title"
-            size={titleSize}
-          >
+          <EuiTitle id={titleId} className="euiCard__title" size={titleSize}>
             <TitleElement>{theTitle}</TitleElement>
           </EuiTitle>
 
