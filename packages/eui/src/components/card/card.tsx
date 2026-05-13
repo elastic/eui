@@ -214,7 +214,10 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
   const classes = classNames('euiCard', className);
 
   const ariaId = useGeneratedHtmlId();
+  const titleId = `${ariaId}Title`;
   const ariaDesc = description ? `${ariaId}Description` : '';
+  const joinAriaIds = (...ids: Array<string | undefined>) =>
+    ids.filter((id): id is string => Boolean(id)).join(' ');
 
   /**
    * Top area containing image, icon or both
@@ -310,11 +313,12 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
 
   let optionalSelectButton;
   if (selectable) {
+    const selectDescribedBy = joinAriaIds(titleId, ariaDesc);
     optionalSelectButton = (
       <>
         {paddingSize !== 'none' && <EuiSpacer size={paddingSize || 'm'} />}
         <EuiCardSelect
-          aria-describedby={`${ariaId}Title ${ariaDesc}`}
+          aria-describedby={selectDescribedBy}
           {...selectable}
           buttonRef={(node: HTMLAnchorElement | HTMLButtonElement | null) => {
             link = node;
@@ -350,13 +354,14 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
       </a>
     );
   } else if (isDisabled || onClick) {
+    const buttonDescribedBy = joinAriaIds(optionalBetaBadgeID, ariaDesc);
     theTitle = (
       <button
         className="euiCard__titleButton"
         css={textCSS}
         onClick={onClick as React.MouseEventHandler<HTMLButtonElement>}
         disabled={isDisabled}
-        aria-describedby={`${optionalBetaBadgeID} ${ariaDesc}`}
+        aria-describedby={buttonDescribedBy}
         ref={(node) => {
           link = node;
         }}
@@ -399,6 +404,8 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
   return (
     <EuiPanel
       element="div"
+      role="group"
+      aria-labelledby={titleId}
       className={classes}
       css={[...cardStyles, optionalBetaCSS]}
       onClick={isClickable ? outerOnClick : undefined}
@@ -413,7 +420,7 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
 
         <div className="euiCard__content" css={contentStyles}>
           <EuiTitle
-            id={`${ariaId}Title`}
+            id={titleId}
             className="euiCard__title"
             size={titleSize}
           >
