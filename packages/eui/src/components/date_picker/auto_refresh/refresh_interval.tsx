@@ -7,15 +7,12 @@
  */
 
 import React, {
-  useCallback,
-  useMemo,
-  useRef,
   useState,
   ChangeEventHandler,
   KeyboardEventHandler,
 } from 'react';
 
-import { htmlIdGenerator } from '../../../services';
+import { useGeneratedHtmlId } from '../../../services';
 import { EuiI18n } from '../../i18n';
 import { EuiFlexGroup, EuiFlexItem } from '../../flex';
 import { EuiSelect, EuiFieldNumber, EuiFormLabel, EuiSwitch } from '../../form';
@@ -126,39 +123,35 @@ export const EuiRefreshInterval = ({
     min: getMinInterval(minInterval, intervalUnits),
   }));
 
-  const stateRef = useRef(state);
-  stateRef.current = state;
+  const refreshSelectionId = useGeneratedHtmlId({
+    prefix: 'euiRefreshInterval',
+  });
 
-  const refreshSelectionId = useMemo(() => htmlIdGenerator()(), []);
+  const applyRefreshInterval = (nextState: EuiRefreshIntervalState) => {
+    const { units, value } = nextState;
+    if (value === '') {
+      return;
+    }
+    if (!onRefreshChange) {
+      return;
+    }
 
-  const applyRefreshInterval = useCallback(
-    (nextState: EuiRefreshIntervalState) => {
-      const { units, value } = nextState;
-      if (value === '') {
-        return;
-      }
-      if (!onRefreshChange) {
-        return;
-      }
+    const refreshIntervalMs = Math.max(
+      toMilliseconds(units, value),
+      minInterval || 0
+    );
 
-      const refreshIntervalMs = Math.max(
-        toMilliseconds(units, value),
-        minInterval || 0
-      );
-
-      onRefreshChange({
-        refreshInterval: refreshIntervalMs,
-        intervalUnits: units,
-        isPaused: refreshIntervalMs <= 0 ? true : !!isPaused,
-      });
-    },
-    [onRefreshChange, isPaused, minInterval]
-  );
+    onRefreshChange({
+      refreshInterval: refreshIntervalMs,
+      intervalUnits: units,
+      isPaused: refreshIntervalMs <= 0 ? true : !!isPaused,
+    });
+  };
 
   const onValueChange: ChangeEventHandler<HTMLInputElement> = (event) => {
     const sanitizedValue = parseFloat(event.target.value);
     const newValue: number | '' = isNaN(sanitizedValue) ? '' : sanitizedValue;
-    const nextState = { ...stateRef.current, value: newValue };
+    const nextState = { ...state, value: newValue };
     setState(nextState);
     applyRefreshInterval(nextState);
   };
@@ -166,7 +159,7 @@ export const EuiRefreshInterval = ({
   const onUnitsChange: ChangeEventHandler<HTMLSelectElement> = (event) => {
     const units = event.target.value as RefreshUnitsOptions;
     const nextState = {
-      ...stateRef.current,
+      ...state,
       units,
       min: getMinInterval(minInterval, units),
     };
@@ -175,7 +168,7 @@ export const EuiRefreshInterval = ({
   };
 
   const startRefresh = () => {
-    const { value, units } = stateRef.current;
+    const { value, units } = state;
 
     if (value !== '' && value > 0 && onRefreshChange !== undefined) {
       onRefreshChange({
@@ -193,10 +186,10 @@ export const EuiRefreshInterval = ({
   };
 
   const toggleRefresh = () => {
-    if (!onRefreshChange || stateRef.current.value === '') {
+    if (!onRefreshChange || state.value === '') {
       return;
     }
-    const { units, value } = stateRef.current;
+    const { units, value } = state;
 
     onRefreshChange({
       refreshInterval: toMilliseconds(units, value),
