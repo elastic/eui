@@ -22,7 +22,6 @@ import {
   DataGridCellPopoverContextShape,
   EuiDataGridCellPopoverElementProps,
 } from '../../data_grid_types';
-import { euiDataGridVariables } from '../../data_grid.styles';
 import { euiDataGridCellPopoverStyles } from './data_grid_cell_popover.styles';
 
 export const DataGridCellPopoverContext =
@@ -130,14 +129,20 @@ export const useCellPopover = (): {
   }, [popoverIsOpen, closeCellPopover, openCellPopover, cellLocation]);
 
   const styles = useEuiMemoizedStyles(euiDataGridCellPopoverStyles);
-  const { levels } = useEuiMemoizedStyles(euiDataGridVariables);
 
   const cellPopover = useMemo(() => {
     if (!popoverIsOpen || !popoverAnchor) return null;
 
     const cell = popoverAnchor.closest<HTMLElement>('.euiDataGridRowCell');
 
-    // Note that this popover is rendered once at the top grid level, rather than one popover per cell
+    // Note that this popover is rendered once at the top grid level, rather than one popover per cell.
+    //
+    // We intentionally do NOT pass `zIndex` here. Letting `EuiPopover` derive the
+    // panel's z-index from the anchor's stacking context (`getElementZIndex(button) + 2000`)
+    // keeps cell popovers above their host flyout — including when sibling/nested
+    // flyouts push the host's z-index above `levels.header`. See
+    // https://github.com/elastic/eui/issues/8801. Consumers that need a fixed
+    // value can still override via `setCellPopoverProps({ zIndex })`.
     return (
       <EuiWrappingPopover
         isOpen={popoverIsOpen}
@@ -147,7 +152,6 @@ export const useCellPopover = (): {
         panelPaddingSize="s"
         anchorPosition={popoverAnchorPosition}
         repositionToCrossAxis={false}
-        zIndex={levels.cellPopover}
         {...cellPopoverProps}
         focusTrapProps={{ onClickOutside, clickOutsideDisables: false }}
         panelProps={{
@@ -173,7 +177,6 @@ export const useCellPopover = (): {
     );
   }, [
     styles,
-    levels.cellPopover,
     popoverIsOpen,
     popoverAnchor,
     popoverContent,

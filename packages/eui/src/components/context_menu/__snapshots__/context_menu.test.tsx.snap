@@ -10,18 +10,24 @@ exports[`EuiContextMenu can pass-through horizontal rule props 1`] = `
     tabindex="-1"
   >
     <div
-      class="euiContextMenuItem euiContextMenuPanel__title emotion-euiContextMenuItem-m-center-euiContextMenuPanel__title"
+      class="euiContextMenuPanelTitle euiContextMenuPanel__title emotion-euiContextMenuPanelTitle"
       data-test-subj="contextMenuPanelTitle"
     >
-      <span
-        class="euiContextMenuItem__text emotion-euiContextMenuItem__text"
+      <h2
+        class="euiContextMenuPanelTitle__text css-8u7lys-text"
+        id="generated-id_euiContextMenuPanelTitle"
       >
         Testing separator
-      </span>
+      </h2>
     </div>
-    <div>
+    <div
+      aria-labelledby="generated-id_euiContextMenuPanelTitle"
+      class="euiContextMenuPanel__list"
+      role="menu"
+    >
       <hr
         class="euiHorizontalRule emotion-euiHorizontalRule-half-s"
+        role="separator"
       />
     </div>
   </div>
@@ -37,91 +43,36 @@ exports[`EuiContextMenu props panels and initialPanelId renders the referenced p
     class="euiContextMenuPanel emotion-euiContextMenuPanel-euiContextMenu__panel"
     tabindex="-1"
   >
-    <button
-      class="euiContextMenuItem euiContextMenuPanel__title emotion-euiContextMenuItem-m-center-euiContextMenuPanel__title"
-      data-test-subj="contextMenuPanelTitleButton"
-      type="button"
+    <div
+      class="euiContextMenuPanelTitle euiContextMenuPanel__title emotion-euiContextMenuPanelTitle"
+      data-test-subj="contextMenuPanelTitle"
     >
-      <span
-        class="euiContextMenu__icon emotion-euiContextMenu__icon"
-        color="inherit"
-        data-euiicon-type="chevronSingleLeft"
-      />
-      <span
-        class="euiContextMenuItem__text emotion-euiContextMenuItem__text"
+      <button
+        aria-label="Close current panel:"
+        aria-labelledby="generated-id_euiContextMenuPanelTitle-closeButton generated-id_euiContextMenuPanelTitle"
+        class="euiButtonIcon emotion-euiButtonIcon-xs-empty-text"
+        data-test-subj="contextMenuPanelTitleButton"
+        id="generated-id_euiContextMenuPanelTitle-closeButton"
+        type="button"
+      >
+        <span
+          aria-hidden="true"
+          class="euiButtonIcon__icon"
+          color="inherit"
+          data-euiicon-type="chevronSingleLeft"
+        />
+      </button>
+      <h2
+        class="euiContextMenuPanelTitle__text css-8u7lys-text"
+        id="generated-id_euiContextMenuPanelTitle"
       >
         2
-      </span>
-    </button>
-    <div>
-      <div>
-        2
-      </div>
+      </h2>
     </div>
-  </div>
-</div>
-`;
-
-exports[`EuiContextMenu props size m 1`] = `
-<div
-  class="euiContextMenu emotion-euiContextMenu"
-  style="height: 0px;"
->
-  <div
-    class="euiContextMenuPanel emotion-euiContextMenuPanel-euiContextMenu__panel"
-    tabindex="-1"
-  >
-    <button
-      class="euiContextMenuItem euiContextMenuPanel__title emotion-euiContextMenuItem-m-center-euiContextMenuPanel__title"
-      data-test-subj="contextMenuPanelTitleButton"
-      type="button"
+    <div
+      aria-labelledby="generated-id_euiContextMenuPanelTitle"
+      class="euiContextMenuPanel__list"
     >
-      <span
-        class="euiContextMenu__icon emotion-euiContextMenu__icon"
-        color="inherit"
-        data-euiicon-type="chevronSingleLeft"
-      />
-      <span
-        class="euiContextMenuItem__text emotion-euiContextMenuItem__text"
-      >
-        2
-      </span>
-    </button>
-    <div>
-      <div>
-        2
-      </div>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`EuiContextMenu props size s 1`] = `
-<div
-  class="euiContextMenu emotion-euiContextMenu"
-  style="height: 0px;"
->
-  <div
-    class="euiContextMenuPanel emotion-euiContextMenuPanel-euiContextMenu__panel"
-    tabindex="-1"
-  >
-    <button
-      class="euiContextMenuItem euiContextMenuPanel__title emotion-euiContextMenuItem-m-center-euiContextMenuPanel__title"
-      data-test-subj="contextMenuPanelTitleButton"
-      type="button"
-    >
-      <span
-        class="euiContextMenu__icon emotion-euiContextMenu__icon"
-        color="inherit"
-        data-euiicon-type="chevronSingleLeft"
-      />
-      <span
-        class="euiContextMenuItem__text emotion-euiContextMenuItem__text"
-      >
-        2
-      </span>
-    </button>
-    <div>
       <div>
         2
       </div>
@@ -148,35 +99,53 @@ exports[`EuiContextMenu renders isSeparator items 1`] = `
     tabindex="-1"
   >
     <div
-      class="euiContextMenuItem euiContextMenuPanel__title emotion-euiContextMenuItem-m-center-euiContextMenuPanel__title"
+      class="euiContextMenuPanelTitle euiContextMenuPanel__title emotion-euiContextMenuPanelTitle"
       data-test-subj="contextMenuPanelTitle"
     >
-      <span
-        class="euiContextMenuItem__text emotion-euiContextMenuItem__text"
+      <h2
+        class="euiContextMenuPanelTitle__text css-8u7lys-text"
+        id="generated-id_euiContextMenuPanelTitle"
       >
         Testing separator
-      </span>
+      </h2>
     </div>
-    <div>
+    <div
+      aria-labelledby="generated-id_euiContextMenuPanelTitle"
+      class="euiContextMenuPanel__list"
+      role="menu"
+    >
       <div
-        class="euiContextMenuItem emotion-euiContextMenuItem-m-center"
+        class="euiListItemLayout euiContextMenuItem emotion-euiListItemLayout-euiContextMenuItem-center"
+        data-test-subj="euiListItemLayout"
+        role="menuitem"
       >
         <span
-          class="euiContextMenuItem__text emotion-euiContextMenuItem__text"
+          class="euiListItemLayout__content emotion-euiListItemLayout__content"
         >
-          Foo
+          <span
+            class="euiListItemLayout__text euiContextMenuItem__text emotion-euiListItemLayout__text-wrap-euiContextMenuItem__text"
+          >
+            Foo
+          </span>
         </span>
       </div>
       <hr
-        class="euiHorizontalRule emotion-euiHorizontalRule-full"
+        class="euiHorizontalRule emotion-euiHorizontalRule-full-xs"
+        role="separator"
       />
       <div
-        class="euiContextMenuItem emotion-euiContextMenuItem-m-center"
+        class="euiListItemLayout euiContextMenuItem emotion-euiListItemLayout-euiContextMenuItem-center"
+        data-test-subj="euiListItemLayout"
+        role="menuitem"
       >
         <span
-          class="euiContextMenuItem__text emotion-euiContextMenuItem__text"
+          class="euiListItemLayout__content emotion-euiListItemLayout__content"
         >
-          Bar
+          <span
+            class="euiListItemLayout__text euiContextMenuItem__text emotion-euiListItemLayout__text-wrap-euiContextMenuItem__text"
+          >
+            Bar
+          </span>
         </span>
       </div>
     </div>
@@ -194,26 +163,37 @@ exports[`EuiContextMenu renders panels with JSX 1`] = `
     tabindex="-1"
   >
     <div
-      class="euiContextMenuItem euiContextMenuPanel__title emotion-euiContextMenuItem-m-center-euiContextMenuPanel__title"
+      class="euiContextMenuPanelTitle euiContextMenuPanel__title emotion-euiContextMenuPanelTitle"
       data-test-subj="contextMenuPanelTitle"
     >
-      <span
-        class="euiContextMenuItem__text emotion-euiContextMenuItem__text"
+      <h2
+        class="euiContextMenuPanelTitle__text css-8u7lys-text"
+        id="generated-id_euiContextMenuPanelTitle"
       >
         3
-      </span>
+      </h2>
     </div>
-    <div>
+    <div
+      aria-labelledby="generated-id_euiContextMenuPanelTitle"
+      class="euiContextMenuPanel__list"
+      role="menu"
+    >
       <div
-        class="euiContextMenuItem emotion-euiContextMenuItem-m-center"
+        class="euiListItemLayout euiContextMenuItem emotion-euiListItemLayout-euiContextMenuItem-center"
+        data-test-subj="euiListItemLayout"
+        role="menuitem"
       >
         <span
-          class="euiContextMenuItem__text emotion-euiContextMenuItem__text"
+          class="euiListItemLayout__content emotion-euiListItemLayout__content"
         >
           <span
-            style="color: tomato;"
+            class="euiListItemLayout__text euiContextMenuItem__text emotion-euiListItemLayout__text-wrap-euiContextMenuItem__text"
           >
-            foo
+            <span
+              style="color: tomato;"
+            >
+              foo
+            </span>
           </span>
         </span>
       </div>

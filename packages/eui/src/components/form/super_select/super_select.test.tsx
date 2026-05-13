@@ -148,6 +148,15 @@ describe('EuiSuperSelect', () => {
       expect(getByTestSubject('option2')).toBeDisabled();
     });
 
+    it('does not open the listbox if no options are provided', () => {
+      const { queryByRole, getByRole } = render(
+        <EuiSuperSelect options={[]} />
+      );
+
+      fireEvent.click(getByRole('button'));
+      expect(queryByRole('listbox')).not.toBeInTheDocument();
+    });
+
     test('popoverProps', () => {
       render(
         <EuiSuperSelect

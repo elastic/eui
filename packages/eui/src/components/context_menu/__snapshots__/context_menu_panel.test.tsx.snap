@@ -1,70 +1,38 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EuiContextMenuPanel props size m 1`] = `
-<div
-  class="euiContextMenuPanel emotion-euiContextMenuPanel"
-  tabindex="-1"
->
-  <div
-    class="euiContextMenuItem euiContextMenuPanel__title emotion-euiContextMenuItem-m-center-euiContextMenuPanel__title"
-    data-test-subj="contextMenuPanelTitle"
-  >
-    <span
-      class="euiContextMenuItem__text emotion-euiContextMenuItem__text"
-    >
-      Title
-    </span>
-  </div>
-  <div />
-</div>
-`;
-
-exports[`EuiContextMenuPanel props size s 1`] = `
-<div
-  class="euiContextMenuPanel emotion-euiContextMenuPanel"
-  tabindex="-1"
->
-  <div
-    class="euiContextMenuItem euiContextMenuPanel__title emotion-euiContextMenuItem-m-center-euiContextMenuPanel__title"
-    data-test-subj="contextMenuPanelTitle"
-  >
-    <span
-      class="euiContextMenuItem__text emotion-euiContextMenuItem__text"
-    >
-      Title
-    </span>
-  </div>
-  <div />
-</div>
-`;
-
 exports[`EuiContextMenuPanel props title 1`] = `
 <div
   class="euiContextMenuPanel emotion-euiContextMenuPanel"
   tabindex="-1"
 >
   <div
-    class="euiContextMenuItem euiContextMenuPanel__title emotion-euiContextMenuItem-m-center-euiContextMenuPanel__title"
+    class="euiContextMenuPanelTitle euiContextMenuPanel__title emotion-euiContextMenuPanelTitle"
     data-test-subj="contextMenuPanelTitle"
   >
-    <span
-      class="euiContextMenuItem__text emotion-euiContextMenuItem__text"
+    <h2
+      class="euiContextMenuPanelTitle__text css-8u7lys-text"
+      id="generated-id_euiContextMenuPanelTitle"
     >
       Title
-    </span>
+    </h2>
   </div>
-  <div />
+  <div
+    aria-labelledby="generated-id_euiContextMenuPanelTitle"
+    class="euiContextMenuPanel__list"
+  />
 </div>
 `;
 
 exports[`EuiContextMenuPanel renders 1`] = `
 <div
   aria-label="aria-label"
-  class="euiContextMenuPanel testClass1 testClass2 emotion-euiContextMenuPanel-euiTestCss"
+  class="euiContextMenuPanel testClass1 testClass2 css-79l2-euiContextMenuPanel-euiTestCss"
   data-test-subj="test subject string"
   tabindex="-1"
 >
-  <div>
+  <div
+    class="euiContextMenuPanel__list"
+  >
     Hello
   </div>
 </div>

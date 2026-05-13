@@ -1,5 +1,26 @@
 name: 'Update Kibana dependencies - Open PR'
 on:
+  workflow_dispatch:
+    inputs:
+      pr_head:
+        description: HEAD ref
+        required: true
+        type: string
+      pr_title:
+        description: Title of the PR
+        required: true
+        type: string
+      pr_body:
+        description: Body of the PR
+        type: string
+      pr_draft:
+        description: Whether the PR should be marked as draft
+        type: boolean
+        default: true
+      pr_labels:
+        description: Comma-separated list of labels to add to the PR
+        type: string
+        default: 'EUI,backport:skip,release_note:skip'
   workflow_call:
     inputs:
       pr_head:
@@ -51,44 +72,61 @@ jobs:
           PR_LABELS: ${{ inputs.pr_labels }}
         # language=bash
         run: |
-          args=(
-            --repo "elastic/kibana"
-            --head "$PR_HEAD"
-            --title "$PR_TITLE"
-            --body "$PR_BODY"
+          set -euo pipefail
+
+          # `gh pr create` cannot open a PR from `elastic/eui-kibana` into `elastic/kibana`
+          # because both repositories are under the same org.
+          # GraphQL createPullRequest with `headRepositoryId` identifies the head fork explicitly.
+          base_repo='elastic/kibana'
+          head_repo='elastic/eui-kibana'
+
+          base_repo_id="$(gh api "repos/$base_repo" --jq .node_id)"
+          head_repo_id="$(gh api "repos/$head_repo" --jq .node_id)"
+
+          IFS=$'\t' read -r err_msg pr_url pr_number < <(
+            gh api graphql \
+              -f query='mutation ($input: CreatePullRequestInput!) {
+                createPullRequest(input: $input) {
+                  pullRequest {
+                    url
+                    number
+                  }
+                }
+              }' \
+              -F "input[repositoryId]=$base_repo_id" \
+              -F "input[headRepositoryId]=$head_repo_id" \
+              -F "input[baseRefName]=main" \
+              -F "input[headRefName]=$PR_HEAD" \
+              -F "input[title]=$PR_TITLE" \
+              -F "input[body]=${PR_BODY:-}" \
+              -F "input[draft]=${PR_DRAFT:-true}" \
+              -F "input[maintainerCanModify]=false" \
+              -q 'def pr: .data.createPullRequest.pullRequest;
+                [
+                  ((.errors // []) | .[0].message // ""),
+                  (pr | if . then .url else "" end),
+                  (pr | if . then (.number | tostring) else "" end)
+                ] | @tsv'
           )
 
-          if [[ "$PR_DRAFT" == "true" ]]; then
-            args+=(--draft)
-          fi
-
-          if [[ -n "$PR_LABELS" ]]; then
-            args+=(--label "$PR_LABELS")
-          fi
-
-          stderr_file="$(mktemp)"
-          trap 'rm -f "$stderr_file"' EXIT
-
-          # Create PR
-          exit_code=0
-          pr_url="$(gh pr create "${args[@]}" 2>"$stderr_file")" || exit_code=$?
-
-          stderr_content="$(cat "$stderr_file")"
-          [[ -n "$stderr_content" ]] && printf '%s\n' "$stderr_content" >&2
-
-          if [[ "$exit_code" -eq 0 ]]; then
-            echo "pr_url=$pr_url" >> "$GITHUB_OUTPUT"
-            {
-              echo "### Pull request created"
-              echo ""
-              echo "$pr_url"
-            } >> "$GITHUB_STEP_SUMMARY"
-          else
+          if [[ -n "$err_msg" ]]; then
+            echo "::error::$err_msg" >&2
             {
               echo "### Failed to create pull request"
               echo ""
-              echo "Exit code: \`$exit_code\`"
-              echo "Check the job output for error details"
+              echo "Check job logs for details."
             } >> "$GITHUB_STEP_SUMMARY"
-            exit "$exit_code"
+            exit 1
           fi
+
+          # Add labels to the PR
+          if [[ -n "${PR_LABELS:-}" ]]; then
+            gh pr edit "$pr_number" -R "$base_repo" --add-label "$PR_LABELS"
+          fi
+
+          echo "pr_url=$pr_url" >> "$GITHUB_OUTPUT"
+          {
+            echo "### Pull request created"
+            echo ""
+            echo "$pr_url"
+          } >> "$GITHUB_STEP_SUMMARY"

@@ -9,7 +9,12 @@
 import { css } from '@emotion/react';
 
 import { UseEuiTheme } from '../../services';
-import { logicalCSS, mathWithUnits, euiCanAnimate } from '../../global_styling';
+import {
+  logicalCSS,
+  mathWithUnits,
+  euiCanAnimate,
+  euiYScrollWithShadows,
+} from '../../global_styling';
 
 export const euiContextMenuVariables = ({ euiTheme }: UseEuiTheme) => {
   return {
@@ -32,6 +37,21 @@ export const euiContextMenuStyles = (euiThemeContext: UseEuiTheme) => {
       ${euiCanAnimate} {
         transition: height ${euiTheme.animation.fast}
           ${euiTheme.animation.resistance};
+      }
+    `,
+    fixedHeight: css`
+      .euiContextMenuPanel {
+        display: flex;
+        flex-direction: column;
+        ${logicalCSS('height', '100%')}
+      }
+
+      .euiContextMenuPanel__list {
+        display: block;
+        flex: 1 1 0;
+        ${euiYScrollWithShadows(euiThemeContext, {
+          hasAnimatedOverflowShadow: true,
+        })}
       }
     `,
   };

@@ -201,7 +201,6 @@ export const EuiColorPalettePicker: FunctionComponent<
       options={paletteOptions}
       valueOfSelected={valueOfSelected}
       onChange={onChange}
-      hasDividers
       isInvalid={isInvalid}
       compressed={compressed}
       disabled={disabled}

@@ -1,15 +1,13 @@
 ---
-keywords: [EuiToolTip]
+keywords: [EuiToolTip, EuiIconTip, disabled, disableScreenReaderOutput]
 ---
 
 # Tooltip
 
-Generally, tooltips should provide short, **non-essential**, contextual information, usually naming or describing with more detail. If you need interactive content or anything other than text, we recommend using [EuiPopover](../containers/popover.mdx) instead.
+Tooltips provide short, **non-essential**, contextual information, usually naming or describing with more detail. If you need interactive content or anything other than text, we recommend using [EuiPopover](../containers/popover.mdx) instead.
 
-:::accessibility Accessibility requirements
-- Tooltips **must** be anchored to focusable elements — if you’re using a non-interactive tag (like `span` or `EuiText`), add `tabIndex={0}`, or preferably use an interactive one (like `EuiButton`) for built-in accessibility.
-- Put only plain text in tooltips so the content is accessible to keyboard and screen reader users.
-- Do not add links, buttons, or other interactive content inside tooltips.
+:::tip `EuiToolTip` vs browser tooltip
+Always prefer `EuiToolTip` over the HTML `title` attribute. Native browser tooltips are unstyled, inaccessible on touch devices and have inconsistent screen reader support across browsers and platforms.
 :::
 
 Wrap **EuiToolTip** around any item that you need a tooltip for and provide the `content` and optionally the `title`. The `position` prop will take a suggested position, but will change it if the tooltip gets too close to the edge of the screen.
@@ -51,15 +49,6 @@ export default () => (
       </p>
 
       <p>
-        This tooltip has a long <EuiCode>delay</EuiCode> because it might be in
-        a repeatable component{' '}
-        <EuiToolTip delay="long" content="Here is some tooltip text">
-          <EuiLink href="#">wink</EuiLink>
-        </EuiToolTip>
-        .
-      </p>
-
-      <p>
         This tooltip appears on the bottom of this icon:{' '}
         <EuiToolTip position="bottom" content="Here is some tooltip text">
           <EuiIcon tabIndex="0" type="warning" title="Icon with tooltip" />
@@ -76,11 +65,112 @@ export default () => (
 );
 ```
 
+## Accessibility requirements
+
+### Tooltip anchor
+
+Tooltips **must** be anchored to focusable elements. If you're using a non-interactive tag (like `span` or `EuiText`), add `tabIndex={0}` or preferably use an interactive one (like `EuiButton`) for built-in accessibility.
+
+### Tooltip content
+
+Put only plain text in tooltips. Tooltip content is not reachable by keyboard, so any interactive content (links, buttons, inputs) inside a tooltip is inaccessible, violating [WCAG 2.1.1 Keyboard](https://www.w3.org/WAI/WCAG21/Understanding/keyboard.html) and [WCAG 1.4.13 Content on Hover or Focus](https://www.w3.org/WAI/WCAG21/Understanding/content-on-hover-or-focus.html). Use [EuiPopover](../containers/popover.mdx) for any content requiring interaction.
+
+## Screen reader output
+
+By default, `EuiToolTip` links its content to the trigger via `aria-describedby`, causing screen readers to announce both the trigger's accessible label and the tooltip content. This is the correct behavior when the tooltip provides context not already present in the trigger label.
+
+When the tooltip content **exactly duplicates** the trigger's accessible label, such as an icon button whose `aria-label` and tooltip both say "Edit", set `disableScreenReaderOutput` to prevent the redundant double-announcement.
+
+```tsx interactive
+import React from 'react';
+import {
+  EuiToolTip,
+  EuiButtonIcon,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiText,
+  EuiSpacer,
+} from '@elastic/eui';
+
+export default () => (
+  <div>
+    <EuiFlexGroup gutterSize="m" alignItems="center">
+      <EuiFlexItem grow={false}>
+        <EuiToolTip content="Edit">
+          <EuiButtonIcon aria-label="Edit" iconType="pencil" onClick={() => {}} />
+        </EuiToolTip>
+      </EuiFlexItem>
+      <EuiFlexItem grow={false}>
+        <EuiText size="s">
+          <strong>Without <code>disableScreenReaderOutput</code></strong><br />
+          Screen reader announces: <em>"Edit. Edit"</em>
+        </EuiText>
+      </EuiFlexItem>
+    </EuiFlexGroup>
+
+    <EuiSpacer size="m" />
+
+    <EuiFlexGroup gutterSize="m" alignItems="center">
+      <EuiFlexItem grow={false}>
+        <EuiToolTip content="Edit" disableScreenReaderOutput>
+          <EuiButtonIcon aria-label="Edit" iconType="pencil" onClick={() => {}} />
+        </EuiToolTip>
+      </EuiFlexItem>
+      <EuiFlexItem grow={false}>
+        <EuiText size="s">
+          <strong>With <code>disableScreenReaderOutput</code></strong><br />
+          Screen reader announces: <em>"Edit"</em>
+        </EuiText>
+      </EuiFlexItem>
+    </EuiFlexGroup>
+  </div>
+);
+```
+
+```mdx-code-block
+import { EuiBetaBadge } from '@elastic/eui';
+```
+
+## Disabled elements <EuiBetaBadge label="Beta" color="accent" />
+
+Natively `disabled` elements are removed from the tab order, which prevents keyboard users from focusing them and discovering the tooltip. For EUI button components, use `hasAriaDisabled` instead of `disabled`. It renders a visually identical disabled state while keeping the element focusable.
+
+For non-EUI elements or custom components, use `aria-disabled="true"` instead of the native `disabled` attribute. This keeps the element focusable and accessible to keyboard users, while still conveying the disabled state to assistive technologies. You should set `pointer-events: none` to prevent mouse interactions.
+
+```tsx interactive
+import React from 'react';
+import { EuiToolTip, EuiButton, EuiFlexGroup, EuiFlexItem } from '@elastic/eui';
+
+export default () => (
+  <EuiFlexGroup alignItems="center" gutterSize="m">
+    <EuiFlexItem grow={false}>
+      <EuiToolTip content="Fill in all required fields to save">
+        <EuiButton isDisabled>Save (disabled)</EuiButton>
+      </EuiToolTip>
+    </EuiFlexItem>
+
+    <EuiFlexItem grow={false}>
+      <EuiToolTip content="Fill in all required fields to save">
+        <button aria-disabled="true" style={{ pointerEvents: 'none' }}>
+          Save (native HTML)
+        </button>
+      </EuiToolTip>
+    </EuiFlexItem>
+
+    <EuiFlexItem grow={false}>
+      <EuiToolTip content="Fill in all required fields to save">
+        <EuiButton isDisabled hasAriaDisabled>Save (EuiButton)</EuiButton>
+      </EuiToolTip>
+    </EuiFlexItem>
+  </EuiFlexGroup>
+);
+```
+
 ## Wrapping components
 
 **EuiToolTip** wraps its children in a `<span>` element that is `display: inline-block`. If you are wrapping a block-level child (e.g. a `<div>`), you may need to change this by passing `display="block"` but the resulting DOM may be in violation of the HTML5 spec.
 
-It also applies `onFocus` and `onBlur` props the the cloned `children`. If you pass in a custom component, then you’ll need to make sure these props are applied to the root element rendered by your component. The best way to do that is to follow [EUI’s guidelines on pass-through props](https://github.com/elastic/eui/blob/main/wiki/contributing-to-eui/developing/props.md#pass-through-props).
+It also applies `onFocus` and `onBlur` props the the cloned `children`. If you pass in a custom component, then you'll need to make sure these props are applied to the root element rendered by your component. The best way to do that is to follow [EUI’s guidelines on pass-through props](https://github.com/elastic/eui/blob/main/wiki/contributing-to-eui/developing/props.md#pass-through-props).
 
 ```tsx interactive
 import React from 'react';
@@ -170,7 +260,7 @@ export default () => {
 };
 ```
 
-## IconTip
+## Icon tip
 
 You can use **EuiIconTip** to explain options, other controls, or entire parts of the user interface. When possible, surface explanations inline within the UI, and only hide them behind a **EuiIconTip** as a last resort.
 

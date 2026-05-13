@@ -13,7 +13,13 @@ This package contains an eslint plugin that enforces some default rules for usin
 
 `<EuiButton />` should either be a button or a link, for a11y purposes. When given an `href` the button behaves as a link, otherwise an `onClick` handler is expected and it will behave as a button.
 
+### `@elastic/eui/href-or-on-click`
+
+`<EuiButton />` should either be a button or a link, for a11y purposes. When given an `href` the button behaves as a link, otherwise an `onClick` handler is expected and it will behave as a button.
+
 In some cases it makes sense to disable this rule locally, such as when <kbd>cmd</kbd> + click should open the link in a new tab, but a standard click should use the `history.pushState()` API to change the URL without triggering a full page load.
+
+**Exception**: `EuiLink` has to be provided with both `onClick` and `href` so that it renders as an anchor and support Ctrl/Cmd+Click to open in a new tab, and other standard link interactions. See `@elastic/eui/require-href-for-link`.
 
 ### `@elastic/eui/no-restricted-eui-imports`
 
@@ -175,12 +181,34 @@ Ensure the `EuiBadge` includes appropriate accessibility attributes.
 - `iconOnClickAriaLabel` is only valid when `iconOnClick` is present. The rule autofixes by removing `iconOnClickAriaLabel`.
 - `onClickAriaLabel` is only valid when `onClick` is present. The rule autofixes by removing `onClickAriaLabel`.
 
+### `@elastic/eui/require-href-for-link`
+
+Ensure `EuiLink` components that have an `onClick` handler also include an `href` prop. Without `href`, the component does not render as a true link, which means users cannot Ctrl/Cmd+Click to open in a new tab or use other standard link interactions. The rule bails out when spread attributes are present, since `href` may be provided via the spread.
+
 ### `@elastic/eui/icon-accessibility-rules`
 
 Ensure the `EuiIcon` includes appropriate accessibility attributes.
  
 - `EuiIcon` has an accessible name via `title`, `aria-label`, or `aria-labelledby`; otherwise mark it decorative with `aria-hidden={true}`
 - Do not combine `tabIndex` with `aria-hidden`
+
+### `@elastic/eui/prefer-tooltip-trigger-focus-test-utility`
+
+Flags `fireEvent.focus()` inside `it`/`test` blocks that also query for a tooltip element (`getByRole('tooltip')`, `queryByRole('tooltip')`, `findByRole('tooltip')` or any selector containing `euiToolTip`). Plain `fireEvent.focus` does not simulate `:focus-visible` in jsdom and will not trigger `EuiToolTip`, so tooltip focus tests will silently pass without actually showing the tooltip.
+
+Use `focusEuiToolTipTrigger` from EUI's RTL test utilities instead, which correctly mocks `:focus-visible` before firing the focus event:
+
+```tsx
+import { focusEuiToolTipTrigger } from '@elastic/eui/test/rtl';
+
+it('shows tooltip on focus', async () => {
+  const { getByRole } = render(<MyComponent />);
+  const cleanup = focusEuiToolTipTrigger(getByRole('button'));
+  expect(getByRole('tooltip')).toBeInTheDocument();
+  cleanup();
+});
+```
+
 
 ## Testing
 

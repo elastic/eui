@@ -6,21 +6,23 @@
  * Side Public License, v 1.
  */
 
-/**
- * NOTE: We can't test this component because Enzyme doesn't support rendering
- * into portals.
- */
-
-import React, {
+import {
   FunctionComponent,
-  Component,
-  ContextType,
   ReactNode,
+  memo,
+  useContext,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
 } from 'react';
 import { createPortal } from 'react-dom';
 
 import { EuiNestedThemeContext } from '../../services';
 import { usePropsWithComponentDefaults } from '../provider/component_defaults';
+
+const usePortalEffect =
+  typeof document === 'undefined' ? useEffect : useLayoutEffect;
 
 const INSERT_POSITIONS = ['after', 'before'] as const;
 type EuiPortalInsertPosition = (typeof INSERT_POSITIONS)[number];
@@ -45,84 +47,75 @@ export interface EuiPortalProps {
   portalRef?: (ref: HTMLDivElement | null) => void;
 }
 
-export const EuiPortal: FunctionComponent<EuiPortalProps> = (props) => {
-  const propsWithDefaults = usePropsWithComponentDefaults('EuiPortal', props);
-  return <EuiPortalClass {...propsWithDefaults} />;
-};
+export const EuiPortal: FunctionComponent<EuiPortalProps> = memo((_props) => {
+  const props = usePropsWithComponentDefaults('EuiPortal', _props);
+  const { children, insert, portalRef: setPortalRef } = props;
 
-interface EuiPortalState {
-  portalNode: HTMLDivElement | null;
-}
+  const portalRef = useRef(setPortalRef);
 
-export class EuiPortalClass extends Component<EuiPortalProps, EuiPortalState> {
-  static contextType = EuiNestedThemeContext;
-  declare context: ContextType<typeof EuiNestedThemeContext>;
+  const { hasDifferentColorFromGlobalTheme, colorClassName } = useContext(
+    EuiNestedThemeContext
+  );
 
-  constructor(props: EuiPortalProps) {
-    super(props);
+  const [portalNode, setPortalNode] = useState<HTMLDivElement | null>(null);
 
-    this.state = {
-      portalNode: null,
-    };
-  }
+  // Set the inherited color of the portal based on the wrapping EuiThemeProvider
+  const setThemeColor = (portalNode: HTMLDivElement) => {
+    if (hasDifferentColorFromGlobalTheme && insert == null) {
+      portalNode.classList.add(colorClassName);
+    }
+  };
 
-  componentDidMount() {
-    const { insert } = this.props;
+  const updatePortalRef = (ref: HTMLDivElement | null) => {
+    portalRef.current?.(ref);
+  };
 
-    const portalNode = document.createElement('div');
-    portalNode.dataset.euiportal = 'true';
+  useEffect(() => {
+    portalRef.current = setPortalRef;
+  }, [setPortalRef]);
+
+  /* Uses `useLayoutEffect` on client-side instead of `useEffect` to ensure the portal
+  node is created and inserted into the DOM synchronously. This matches the same timing
+  as the previous class component `componentDidMount` behavior.
+  Using `useEffect` would add an additional render cycle that would break expected
+  behavior of e.g. `@hello-pangea/dnd` which handles keyboard focus and doesn't expect
+  a rerender. This falls back to `useEffect` for SSR to avoid console errors. `useEffect` will
+  be a no-op, same as `componentDidMount` */
+  usePortalEffect(() => {
+    const node = document.createElement('div');
+    node.dataset.euiportal = 'true';
 
     if (insert == null) {
       // no insertion defined, append to body
-      document.body.appendChild(portalNode);
+      document.body.appendChild(node);
     } else {
       // inserting before or after an element
       const { sibling, position } = insert;
-      sibling.insertAdjacentElement(insertPositions[position], portalNode);
+      sibling.insertAdjacentElement(insertPositions[position], node);
     }
 
-    this.setThemeColor(portalNode);
-    this.updatePortalRef(portalNode);
+    setThemeColor(node);
+    updatePortalRef(node);
 
     // Update state with portalNode to intentionally trigger component rerender
-    // and call createPortal with correct root element in render()
-    this.setState({
-      portalNode,
-    });
-  }
+    // and call createPortal with the correct root element
+    setPortalNode(node);
 
-  componentWillUnmount() {
-    const { portalNode } = this.state;
-    if (portalNode?.parentNode) {
-      portalNode.parentNode.removeChild(portalNode);
-    }
-    this.updatePortalRef(null);
-  }
-
-  // Set the inherited color of the portal based on the wrapping EuiThemeProvider
-  private setThemeColor(portalNode: HTMLDivElement) {
-    if (this.context) {
-      const { hasDifferentColorFromGlobalTheme, colorClassName } = this.context;
-
-      if (hasDifferentColorFromGlobalTheme && this.props.insert == null) {
-        portalNode.classList.add(colorClassName);
+    return () => {
+      if (node?.parentNode) {
+        node.parentNode.removeChild(node);
       }
-    }
+
+      updatePortalRef(null);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- on mount only
+  }, []);
+
+  if (!portalNode) {
+    return null;
   }
 
-  private updatePortalRef(ref: HTMLDivElement | null) {
-    if (this.props.portalRef) {
-      this.props.portalRef(ref);
-    }
-  }
+  return createPortal(children, portalNode);
+});
 
-  render() {
-    const { portalNode } = this.state;
-
-    if (!portalNode) {
-      return null;
-    }
-
-    return createPortal(this.props.children, portalNode);
-  }
-}
+EuiPortal.displayName = 'EuiPortal';
