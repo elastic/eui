@@ -37,35 +37,55 @@ steps:
     label: ":cypress: Cypress tests on React 17"
     agents:
       provider: "gcp"
+      machineType: "c4d-standard-4"
+      preemptible: true
+      diskType: hyperdisk-balanced
     env:
       TEST_TYPE: 'cypress:17'
     if: build.branch != "main"
     artifact_paths:
       - "cypress/screenshots/**/*.png"
       - "cypress/videos/**/*.mp4"
+    timeout_in_minutes: 45
     retry:
-      automatic: true
+      automatic:
+        - exit_status: -1
+          limit: 3
 
   - command: .buildkite/scripts/pipelines/pipeline_test.sh
     label: ":cypress: Cypress tests on React 18"
     agents:
       provider: "gcp"
+      machineType: "c4d-standard-4"
+      preemptible: true
+      diskType: hyperdisk-balanced
     env:
       TEST_TYPE: 'cypress:18'
     if: build.branch != "main"
     artifact_paths:
       - "cypress/screenshots/**/*.png"
       - "cypress/videos/**/*.mp4"
+    timeout_in_minutes: 45
     retry:
-      automatic: true
+      automatic:
+        - exit_status: -1
+          limit: 3
 
   - command: .buildkite/scripts/pipelines/pipeline_test.sh
     label: ":axe: Cypress accessibility (a11y) tests on React 18"
     agents:
       provider: "gcp"
+      machineType: "c4d-standard-4"
+      preemptible: true
+      diskType: hyperdisk-balanced
     env:
       TEST_TYPE: 'cypress:a11y'
     if: build.branch != "main"
     artifact_paths:
       - "cypress/screenshots/**/*.png"
       - "cypress/videos/**/*.mp4"
+    timeout_in_minutes: 45
+    retry:
+      automatic:
+        - exit_status: -1
+          limit: 3
