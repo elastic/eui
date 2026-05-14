@@ -7284,7 +7284,6 @@ __metadata:
     "@testing-library/react-17": "npm:@testing-library/react@^12.1.5"
     "@testing-library/react-hooks": "npm:^7.0.2"
     "@testing-library/user-event": "npm:^13.5.0"
-    "@types/cheerio": "npm:^0.22.31"
     "@types/chroma-js": "npm:^2.4.0"
     "@types/classnames": "npm:^2.3.1"
     "@types/enzyme": "npm:^3.10.5"
@@ -10451,7 +10450,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/cheerio@npm:^0.22.22, @types/cheerio@npm:^0.22.31":
+"@types/cheerio@npm:^0.22.22":
   version: 0.22.31
   resolution: "@types/cheerio@npm:0.22.31"
   dependencies:
