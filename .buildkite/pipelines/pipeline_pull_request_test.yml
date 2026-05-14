@@ -52,6 +52,8 @@ steps:
       automatic:
         - exit_status: -1
           limit: 3
+        - exit_status: "*"
+          limit: 2
 
   - command: .buildkite/scripts/pipelines/pipeline_test.sh
     label: ":cypress: Cypress tests on React 18"
@@ -72,6 +74,8 @@ steps:
       automatic:
         - exit_status: -1
           limit: 3
+        - exit_status: "*"
+          limit: 2
 
   - command: .buildkite/scripts/pipelines/pipeline_test.sh
     label: ":axe: Cypress accessibility (a11y) tests on React 18"
@@ -92,3 +96,5 @@ steps:
       automatic:
         - exit_status: -1
           limit: 3
+        - exit_status: "*"
+          limit: 2
