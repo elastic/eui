@@ -6906,38 +6906,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@elastic/charts@npm:^64.1.0":
-  version: 64.1.0
-  resolution: "@elastic/charts@npm:64.1.0"
-  dependencies:
-    "@popperjs/core": "npm:^2.11.8"
-    bezier-easing: "npm:^2.1.0"
-    chroma-js: "npm:^2.4.2"
-    classnames: "npm:^2.2.6"
-    d3-array: "npm:^1.2.4"
-    d3-cloud: "npm:^1.2.5"
-    d3-collection: "npm:^1.0.7"
-    d3-interpolate: "npm:^3.0.1"
-    d3-scale: "npm:^3.3.0"
-    d3-shape: "npm:^2.0.0"
-    luxon: "npm:^1.25.0"
-    prop-types: "npm:^15.7.2"
-    re-reselect: "npm:^3.4.0"
-    react-redux: "npm:^7.1.0"
-    redux: "npm:^4.0.4"
-    reselect: "npm:^4.0.0"
-    ts-debounce: "npm:^4.0.0"
-    utility-types: "npm:^3.10.0"
-    uuid: "npm:^9"
-  peerDependencies:
-    moment: ^2.29.1
-    moment-timezone: ^0.5.32
-    react: ^16.12 || ^17.0 || ^18.0
-    react-dom: ^16.12 || ^17.0 || ^18.0
-  checksum: 10c0/b00cdbb900b9e26c208dd046177c1740c42274e2aa12f484e0ae7ca64032aaaae943bc0cbe5955c5dcccdec26b6fc0a2dbae017699d8271c4c0303fc3af03537
-  languageName: node
-  linkType: hard
-
 "@elastic/charts@npm:^70.0.1":
   version: 70.0.1
   resolution: "@elastic/charts@npm:70.0.1"
@@ -7282,7 +7250,6 @@ __metadata:
     "@cypress/react": "npm:^7.0.3"
     "@cypress/react18": "npm:^2.0.0"
     "@cypress/webpack-dev-server": "npm:^1.7.0"
-    "@elastic/charts": "npm:^64.1.0"
     "@elastic/datemath": "npm:^5.0.3"
     "@elastic/eslint-plugin-eui": "workspace:*"
     "@elastic/eui-theme-borealis": "workspace:*"
@@ -33802,15 +33769,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"re-reselect@npm:^3.4.0":
-  version: 3.4.0
-  resolution: "re-reselect@npm:3.4.0"
-  peerDependencies:
-    reselect: ">1.0.0"
-  checksum: 10c0/696fb645a8ba223ba0d2c5da4a4735047fe82cb5ba5d07b082d09974b7dd6e89aa03900b10088fff61dfc4f4b1ee6f1fdcc9af84c74bea287bb7ab639d5f3752
-  languageName: node
-  linkType: hard
-
 "re-reselect@npm:^4.0.1":
   version: 4.0.1
   resolution: "re-reselect@npm:4.0.1"
@@ -34161,27 +34119,6 @@ __metadata:
   peerDependencies:
     react: ^17.0.2
   checksum: 10c0/3ae2e09804d7c1295643b5b3f15bee26cef04e38e0ed1d47c3b3d3d712ca2c37fbc3461ea0d22041b1f3bbf3656c96b8ec3c1df46280f714dcf8e4fe66146bc6
-  languageName: node
-  linkType: hard
-
-"react-redux@npm:^7.1.0":
-  version: 7.2.6
-  resolution: "react-redux@npm:7.2.6"
-  dependencies:
-    "@babel/runtime": "npm:^7.15.4"
-    "@types/react-redux": "npm:^7.1.20"
-    hoist-non-react-statics: "npm:^3.3.2"
-    loose-envify: "npm:^1.4.0"
-    prop-types: "npm:^15.7.2"
-    react-is: "npm:^17.0.2"
-  peerDependencies:
-    react: ^16.8.3 || ^17
-  peerDependenciesMeta:
-    react-dom:
-      optional: true
-    react-native:
-      optional: true
-  checksum: 10c0/f2329642ef6ea95ad9384de08529ded1f836a82098a19f4f09f6afef612d9d5785b4e8aef4f9c9292d3f93812b979f94cd9b8d3aa8747e0a4a10e2600771c3f5
   languageName: node
   linkType: hard
 
@@ -34694,7 +34631,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"redux@npm:^4.0.0, redux@npm:^4.0.4":
+"redux@npm:^4.0.0":
   version: 4.1.2
   resolution: "redux@npm:4.1.2"
   dependencies:
@@ -35269,13 +35206,6 @@ __metadata:
   version: 1.0.0
   resolution: "requires-port@npm:1.0.0"
   checksum: 10c0/b2bfdd09db16c082c4326e573a82c0771daaf7b53b9ce8ad60ea46aa6e30aaf475fe9b164800b89f93b748d2c234d8abff945d2551ba47bf5698e04cd7713267
-  languageName: node
-  linkType: hard
-
-"reselect@npm:^4.0.0":
-  version: 4.0.0
-  resolution: "reselect@npm:4.0.0"
-  checksum: 10c0/b5957ad2a8fa1ad0c6510da6bd199511eee8bb0ea9278ca67a6f92d8b968ca632b46955a4332de19cc983325123c5cdc88e5887c8fc5b0d4b5938d1807cc3882
   languageName: node
   linkType: hard
 
