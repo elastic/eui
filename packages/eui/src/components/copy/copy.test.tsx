@@ -63,7 +63,7 @@ describe('EuiCopy', () => {
 
     it('afterMessage', () => {
       const afterMessage = 'successfully copied';
-      const { getByRole } = render(
+      const { getByRole, queryByRole } = render(
         <EuiCopy textToCopy="some text" afterMessage={afterMessage}>
           {(copy) => (
             <button onClick={copy} onMouseOver={() => {}} onFocus={() => {}}>
@@ -81,7 +81,8 @@ describe('EuiCopy', () => {
 
       expect(getByRole('tooltip')).toHaveTextContent(afterMessage);
 
-      fireEvent.mouseOut(getByRole('button'));
+      fireEvent.blur(getByRole('button'));
+      expect(queryByRole('tooltip')).not.toBeInTheDocument();
     });
 
     it('announces `afterMessage` with an `aria-live` region after copy', () => {

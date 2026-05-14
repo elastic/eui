@@ -9,7 +9,7 @@
 import React, { Component, createRef, ReactElement, ReactNode } from 'react';
 import { CommonProps } from '../common';
 import { copyToClipboard } from '../../services';
-import { EuiScreenReaderLive } from '../accessibility';
+import { EuiScreenReaderOnly } from '../accessibility';
 import { EuiToolTip, EuiToolTipProps, type EuiToolTipRef } from '../tool_tip';
 
 export interface EuiCopyProps extends CommonProps {
@@ -97,14 +97,24 @@ export class EuiCopy extends Component<EuiCopyProps, EuiCopyState> {
           content={tooltipText}
           onMouseOut={this.resetTooltipText}
           {...tooltipProps}
+          onBlur={() => {
+            tooltipProps?.onBlur?.();
+            if (isCopied) this.resetTooltipText();
+          }}
+          disableScreenReaderOutput={
+            isCopied || !!tooltipProps?.disableScreenReaderOutput
+          }
         >
           {children(this.copy)}
         </EuiToolTip>
-        {/* Announce the copy confirmation independently of the tooltip so screen reader
-        users get reliable feedback regardless of focus location. */}
-        <EuiScreenReaderLive>
-          {isCopied ? afterMessage : ''}
-        </EuiScreenReaderLive>
+        {/* Stable `aria-live` region so VoiceOver/Safari announces reliably.
+       `EuiScreenReaderLive` alternates `aria-live` between "off" and active which
+        Safari ignores when attribute and content change in the same render. */}
+        <EuiScreenReaderOnly>
+          <div aria-live="assertive" aria-atomic="true">
+            {isCopied ? afterMessage : ''}
+          </div>
+        </EuiScreenReaderOnly>
       </>
     );
   }
