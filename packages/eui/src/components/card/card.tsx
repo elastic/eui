@@ -72,7 +72,6 @@ type EuiCardPropsLayout = ExclusiveUnion<
 const joinAriaIds = (...ids: Array<string | undefined>) =>
   ids.filter((id): id is string => Boolean(id)).join(' ') || undefined;
 
-
 export type EuiCardProps = Omit<CommonProps, 'aria-label'> &
   Omit<HTMLAttributes<HTMLDivElement>, 'color' | 'title' | 'onClick'> &
   EuiCardPropsLayout & {
