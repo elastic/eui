@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { ReactElement, useEffect, useState } from 'react';
+import React, { ReactElement, useState } from 'react';
 
 import { useEuiTheme, useGeneratedHtmlId } from '../../services';
 import { isString } from '../../services/predicate';
@@ -212,37 +212,32 @@ export const EuiSearchBar = (props: EuiSearchBarProps) => {
 
   const theme = useEuiTheme();
   const hintId = useGeneratedHtmlId({ prefix: '__hint' });
-  const [query, setQuery] = useState<Query>(
+  const [query, setQuery] = useState<Query>(() =>
     parseQuery(props.defaultQuery || props.query, props)
   );
-  const [queryText, setQueryText] = useState<string>(() => query.text);
+  const [queryText, setQueryText] = useState<string>(query.text);
   const [error, setError] = useState<null | Error>(null);
   const [isHintVisibleState, setIsHintVisibleState] = useState<boolean>(false);
+  const [prevPropsQuery, setPrevPropsQuery] = useState(props.query);
 
-  useEffect(() => {
+  if (props.query !== prevPropsQuery) {
+    setPrevPropsQuery(props.query);
+
     const nextQuery = props.query;
     const prevQuery = query;
 
     const shouldUpdate =
       (nextQuery || nextQuery === '') &&
-      (!prevQuery ||
-        (typeof nextQuery !== 'string' && nextQuery.text !== prevQuery.text) ||
+      ((typeof nextQuery !== 'string' && nextQuery.text !== prevQuery.text) ||
         (typeof nextQuery === 'string' && nextQuery !== prevQuery.text));
 
     if (shouldUpdate) {
-      const query = parseQuery(nextQuery, props);
-      setQuery(query);
-      setQueryText(query.text);
+      const parsedQuery = parseQuery(nextQuery, props);
+      setQuery(parsedQuery);
+      setQueryText(parsedQuery.text);
       setError(null);
     }
-
-    // query and parseQuery's transitive deps (schema, dateFormat) are
-    // intentionally omitted. This effect mirrors getDerivedStateFromProps, which
-    // only re-parsed when props.query itself changed, and the shouldUpdate checks
-    // for the same thing. If props.query hasn't changed, there is nothing to
-    // re-derive regardless of other prop changes.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [props.query]);
+  }
 
   function onSearch(newQueryText: string) {
     const oldState: NotifyControllingParent = { query, queryText, error };
