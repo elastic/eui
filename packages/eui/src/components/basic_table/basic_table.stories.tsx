@@ -75,7 +75,7 @@ type User = {
 
 const users: User[] = [];
 
-for (let i = 0; i < 5; i++) {
+for (let i = 0; i < 75; i++) {
   users.push({
     id: i + 1,
     firstName: faker.person.firstName(),

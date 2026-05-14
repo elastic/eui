@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, TableHTMLAttributes } from 'react';
+import React, { FunctionComponent, TableHTMLAttributes, Ref } from 'react';
 import classNames from 'classnames';
 
 import { useEuiMemoizedStyles, type EuiBreakpointSize } from '../../services';
@@ -56,6 +56,7 @@ export interface EuiTableProps
    * @default false
    */
   scrollableInline?: boolean;
+  tableWrapperElementRef?: Ref<HTMLDivElement>;
 }
 
 /**
@@ -77,6 +78,7 @@ export const EuiTable: FunctionComponent<EuiTableProps> = (originalProps) => {
     hasBackground = true,
     responsiveBreakpoint,
     scrollableInline = false,
+    tableWrapperElementRef,
     ...rest
   } = usePropsWithComponentDefaults('EuiTable', originalProps);
   const isResponsive = useIsEuiTableResponsive(responsiveBreakpoint);
@@ -99,7 +101,7 @@ export const EuiTable: FunctionComponent<EuiTableProps> = (originalProps) => {
   ];
 
   return (
-    <div css={cssStyles}>
+    <div css={cssStyles} ref={tableWrapperElementRef}>
       <table tabIndex={-1} css={tableStyles} className={classes} {...rest}>
         <EuiTableIsResponsiveContext.Provider value={isResponsive}>
           <EuiTableVariantContext.Provider value={{ hasBackground }}>
