@@ -221,8 +221,6 @@ export const EuiSearchBar = (props: EuiSearchBarProps) => {
   const [prevPropsQuery, setPrevPropsQuery] = useState(props.query);
 
   if (props.query !== prevPropsQuery) {
-    setPrevPropsQuery(props.query);
-
     const nextQuery = props.query;
     const prevQuery = query;
 
@@ -232,6 +230,7 @@ export const EuiSearchBar = (props: EuiSearchBarProps) => {
         (typeof nextQuery === 'string' && nextQuery !== prevQuery.text));
 
     if (shouldUpdate) {
+      setPrevPropsQuery(props.query);
       const parsedQuery = parseQuery(nextQuery, props);
       setQuery(parsedQuery);
       setQueryText(parsedQuery.text);
