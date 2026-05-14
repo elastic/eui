@@ -7344,9 +7344,7 @@ __metadata:
     eslint-plugin-storybook: "npm:^0.9.0"
     expose-gc: "npm:^1.0.0"
     findup: "npm:^0.1.5"
-    get-port: "npm:^5.1.1"
     glob: "npm:^11.0.3"
-    html-format: "npm:^1.0.1"
     inquirer: "npm:^9.1.4"
     jest: "npm:^29.7.0"
     jest-cli: "npm:^29.7.0"
@@ -22170,13 +22168,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"get-port@npm:^5.1.1":
-  version: 5.1.1
-  resolution: "get-port@npm:5.1.1"
-  checksum: 10c0/2873877a469b24e6d5e0be490724a17edb39fafc795d1d662e7bea951ca649713b4a50117a473f9d162312cb0e946597bd0e049ed2f866e79e576e8e213d3d1c
-  languageName: node
-  linkType: hard
-
 "get-stdin@npm:^4.0.1":
   version: 4.0.1
   resolution: "get-stdin@npm:4.0.1"
@@ -23598,13 +23589,6 @@ __metadata:
   version: 2.0.2
   resolution: "html-escaper@npm:2.0.2"
   checksum: 10c0/208e8a12de1a6569edbb14544f4567e6ce8ecc30b9394fcaa4e7bb1e60c12a7c9a1ed27e31290817157e8626f3a4f29e76c8747030822eb84a6abb15c255f0a0
-  languageName: node
-  linkType: hard
-
-"html-format@npm:^1.0.1":
-  version: 1.0.1
-  resolution: "html-format@npm:1.0.1"
-  checksum: 10c0/9e3d203e05e138a5814726f5767142b289770a369064a5710345e5753f7bb994db0d09067d0d4172539ee62c9179a39c942e094c63b061f0589d6476f43d1afc
   languageName: node
   linkType: hard
 
