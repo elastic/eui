@@ -132,6 +132,10 @@ export interface EuiToolTipProps extends CommonProps {
    * hidden.
    */
   onMouseOut?: (event: ReactMouseEvent<HTMLSpanElement, MouseEvent>) => void;
+  /**
+   * If supplied, called when the trigger loses focus.
+   */
+  onBlur?: () => void;
 
   /**
    * Offset in pixels from the anchor. Defaults to 16.
@@ -161,6 +165,7 @@ export const EuiToolTip = forwardRef<EuiToolTipRef, EuiToolTipProps>(
       offset,
       id: idProp,
       onMouseOut: onMouseOutProp,
+      onBlur: onBlurProp,
       ...rest
     },
     ref
@@ -329,7 +334,8 @@ export const EuiToolTip = forwardRef<EuiToolTipRef, EuiToolTipProps>(
     const onBlur = useCallback(() => {
       setHasFocus(false);
       hideToolTip();
-    }, [hideToolTip]);
+      onBlurProp?.();
+    }, [hideToolTip, onBlurProp]);
 
     const onEscapeKey = useCallback(
       (event: React.KeyboardEvent<HTMLSpanElement>) => {
