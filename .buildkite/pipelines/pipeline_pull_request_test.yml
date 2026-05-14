@@ -40,7 +40,7 @@ steps:
       machineType: "c4d-standard-4"
       preemptible: true
       diskType: hyperdisk-balanced
-      zones: us-central1-a,us-central1-b,us-central1-c
+      spotZones: us-central1-a,us-central1-b,us-central1-c
     env:
       TEST_TYPE: 'cypress:17'
     if: build.branch != "main"
@@ -60,7 +60,7 @@ steps:
       machineType: "c4d-standard-4"
       preemptible: true
       diskType: hyperdisk-balanced
-      zones: us-central1-a,us-central1-b,us-central1-c
+      spotZones: us-central1-a,us-central1-b,us-central1-c
     env:
       TEST_TYPE: 'cypress:18'
     if: build.branch != "main"
@@ -80,7 +80,7 @@ steps:
       machineType: "c4d-standard-4"
       preemptible: true
       diskType: hyperdisk-balanced
-      zones: us-central1-a,us-central1-b,us-central1-c
+      spotZones: us-central1-a,us-central1-b,us-central1-c
     env:
       TEST_TYPE: 'cypress:a11y'
     if: build.branch != "main"
