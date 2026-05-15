@@ -26,6 +26,7 @@ import { validateHref } from '../../services/security/href_validator';
 import { CommonProps, ExclusiveUnion, PropsOf } from '../common';
 import { EuiInnerText } from '../inner_text';
 import { EuiIcon, IconType } from '../icon';
+import { EuiToolTip } from '../tool_tip';
 import {
   getTextColor,
   getIsValidColor,
@@ -266,24 +267,25 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
         );
       }
       optionalIcon = (
-        <button
-          type="button"
-          className="euiBadge__iconButton"
-          css={iconButtonCssStyles}
-          aria-label={iconOnClickAriaLabel}
-          disabled={isDisabled}
-          title={iconOnClickAriaLabel}
-          onClick={iconOnClick}
-        >
-          <EuiIcon
-            type={iconType}
-            size="s"
-            color="inherit" // forces the icon to inherit its parent color
-            {...closeButtonProps}
-            className={closeClassNames}
-            css={[...iconCssStyles, closeButtonProps?.css]}
-          />
-        </button>
+        <EuiToolTip content={iconOnClickAriaLabel} disableScreenReaderOutput>
+          <button
+            type="button"
+            className="euiBadge__iconButton"
+            css={iconButtonCssStyles}
+            aria-label={iconOnClickAriaLabel}
+            disabled={isDisabled}
+            onClick={iconOnClick}
+          >
+            <EuiIcon
+              type={iconType}
+              size="s"
+              color="inherit" // forces the icon to inherit its parent color
+              {...closeButtonProps}
+              className={closeClassNames}
+              css={[...iconCssStyles, closeButtonProps?.css]}
+            />
+          </button>
+        </EuiToolTip>
       );
     } else {
       optionalIcon = (
@@ -293,6 +295,7 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
           className="euiBadge__icon"
           css={iconCssStyles}
           color="inherit" // forces the icon to inherit its parent color
+          aria-hidden
         />
       );
     }
@@ -351,7 +354,15 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
             title={innerText}
             {...rest}
           >
-            {content}
+            <span className="euiBadge__content" css={styles.euiBadge__content}>
+              {iconSide === 'left' && optionalIcon}
+              {children && (
+                <span className="euiBadge__text" css={textCssStyles}>
+                  {children}
+                </span>
+              )}
+              {iconSide === 'right' && optionalIcon}
+            </span>
           </span>
         )}
       </EuiInnerText>

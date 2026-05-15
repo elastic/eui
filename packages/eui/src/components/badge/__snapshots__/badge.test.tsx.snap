@@ -356,6 +356,7 @@ exports[`EuiBadge props iconSide left is rendered 1`] = `
     class="euiBadge__content emotion-euiBadge__content"
   >
     <span
+      aria-hidden="true"
       class="euiBadge__icon emotion-euiBadge__icon-left"
       color="inherit"
       data-euiicon-type="user"
@@ -383,6 +384,7 @@ exports[`EuiBadge props iconSide right is rendered 1`] = `
       Content
     </span>
     <span
+      aria-hidden="true"
       class="euiBadge__icon emotion-euiBadge__icon-right"
       color="inherit"
       data-euiicon-type="user"
@@ -400,6 +402,7 @@ exports[`EuiBadge props iconType is rendered 1`] = `
     class="euiBadge__content emotion-euiBadge__content"
   >
     <span
+      aria-hidden="true"
       class="euiBadge__icon emotion-euiBadge__icon-left"
       color="inherit"
       data-euiicon-type="user"
