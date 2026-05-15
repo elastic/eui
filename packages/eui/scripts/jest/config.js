@@ -1,3 +1,4 @@
+const path = require('path');
 const jestConfig = require('jest-config');
 const getCacheDirectory = () => jestConfig.defaults.cacheDirectory;
 
@@ -44,7 +45,6 @@ const config = {
     '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
       '<rootDir>/scripts/jest/mocks/file_mock.js',
     '\\.(css|less|scss)$': '<rootDir>/scripts/jest/mocks/style_mock.js',
-    '^uuid$': require.resolve('uuid'),
   },
   setupFiles: [
     '<rootDir>/scripts/jest/setup/enzyme.js',
@@ -62,8 +62,11 @@ const config = {
   testEnvironment: 'jsdom',
   testMatch: ['**/*.test.js', '**/*.test.ts', '**/*.test.tsx'],
   transform: {
-    '^.+\\.(js|tsx?)$': 'babel-jest',
+    '^.+\\.(js|tsx?)$': ['babel-jest', {
+      configFile: path.resolve(__dirname, '../../.babelrc.js'),
+    }],
   },
+  transformIgnorePatterns: ['/node_modules/(?!(uuid)/)'],
   snapshotSerializers: [
     '<rootDir>/node_modules/enzyme-to-json/serializer',
     '<rootDir>/scripts/jest/setup/emotion',
