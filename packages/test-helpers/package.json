@@ -6,5 +6,18 @@
     "type": "git",
     "url": "https://github.com/elastic/eui.git"
   },
-  "private": true
+  "private": true,
+  "scripts": {
+    "lint": "tsc --noEmit",
+    "test": "yarn lint && yarn test-unit",
+    "test-unit": "playwright test",
+    "show-report": "playwright show-report"
+  },
+  "peerDependencies": {
+    "@playwright/test": "^1.50.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.59.1",
+    "typescript": "^5.7.3"
+  }
 }

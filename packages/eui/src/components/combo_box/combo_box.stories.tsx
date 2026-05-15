@@ -82,6 +82,16 @@ export const Playground: Story = {
   render: (args) => <StatefulComboBox {...args} />,
 };
 
+export const MultipleInstances: Story = {
+  parameters: { loki: { skip: true } },
+  render: () => (
+    <>
+      <StatefulComboBox data-test-subj="combo1" options={options} />
+      <StatefulComboBox data-test-subj="combo2" options={options} />
+    </>
+  ),
+};
+
 export const WithCustomOptionIds: Story = {
   parameters: {
     controls: {

@@ -42,21 +42,31 @@ export const EuiComboBoxSelectors = {
   SELECTED_OPTIONS_TEST_SUBJ: 'euiComboBoxPill',
 
   /**
-   * CSS selector to find all options (currently rendered on the screen).
+   * CSS selector for options in a specific combo box's dropdown — all
+   * options if `label` is omitted, or the option matching that label.
    *
-   * Note: Because the list of options might be virtualized, when searching
-   * for a specific option, type in the searched string into the search input
-   * before running any assertions to ensure the option is in DOM.
+   * `testSubj` is the consumer's `data-test-subj` on `<EuiComboBox>`. EUI
+   * propagates this to the options list as `${testSubj}-optionsList`,
+   * letting us disambiguate when multiple combo boxes coexist on one page.
+   *
+   * `title` is set by EUI to the exact label string and avoids
+   * accessible-name mismatches caused by option icons.
+   *
+   * Note: the list may be virtualized — type the search string into the
+   * input before asserting on a specific option to ensure it is in DOM.
    */
-  OPTION: '[data-test-subj="comboBoxOptionsList"] button[role="option"]',
+  optionFor: (testSubj: string, label?: string): string => {
+    const base = `[data-test-subj~="${testSubj}-optionsList"] button[role="option"]`;
+    return label ? `${base}[title="${label}"]` : base;
+  },
 
   /**
-   * CSS selector to find all selected options (currently rendered on the screen)
-   *
-   * Note: Because the list of options might be virtualized, when searching
-   * for a specific option, type in the searched string into the search input
-   * before running any assertions to ensure the option is in DOM.
+   * CSS selector for selected options in a specific combo box's dropdown —
+   * all selected if `label` is omitted, or the selected option matching
+   * that label. See `optionFor` for `testSubj` and `title` rationale.
    */
-  SELECTED_OPTION:
-    '[data-test-subj="comboBoxOptionsList"] button[role="option"][aria-selected="true"]',
+  selectedOptionFor: (testSubj: string, label?: string): string => {
+    const base = `[data-test-subj~="${testSubj}-optionsList"] button[role="option"][aria-selected="true"]`;
+    return label ? `${base}[title="${label}"]` : base;
+  },
 };
