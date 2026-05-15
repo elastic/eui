@@ -36,6 +36,8 @@ GCLOUD_CP_ARGS=(
   --gzip-local="js,css,html,svg,png,jpg,ico" # gzip these file extensions before copying to the bucket
 )
 
+export NODE_OPTIONS="--max-old-space-size=12288"
+
 # Default to production deployment of Storybook
 export STORYBOOK_BASE_URL="https://eui.elastic.co/storybook"
 
