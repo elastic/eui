@@ -222,18 +222,11 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
     );
   }
 
-  // Only add the label as the title attribute if it's possibly truncated
-  // Also ensure the value of the title attribute is a string
   const [ref, innerText] = useInnerText();
-  const shouldRenderTitle = !wrapText && !showToolTip;
+  const shouldRenderTooltip = !wrapText && !showToolTip;
   const labelProps = {
-    ref: shouldRenderTitle ? ref : undefined,
+    ref: shouldRenderTooltip ? ref : undefined,
     className: 'euiListGroupItem__label',
-    title: shouldRenderTitle
-      ? typeof label === 'string'
-        ? label
-        : innerText
-      : undefined,
   };
 
   const styles = useEuiMemoizedStyles(euiListGroupItemStyles);
@@ -301,6 +294,11 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
             toolTipProps?.anchorProps?.css,
           ],
         },
+      } as EuiToolTipProps)
+    : shouldRenderTooltip
+    ? ({
+        content: typeof label === 'string' ? label : innerText,
+        disableScreenReaderOutput: true,
       } as EuiToolTipProps)
     : undefined;
 

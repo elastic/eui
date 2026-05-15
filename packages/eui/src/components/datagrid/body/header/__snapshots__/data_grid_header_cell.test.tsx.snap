@@ -21,7 +21,6 @@ exports[`EuiDataGridHeaderCell renders 1`] = `
     aria-label="someColumn"
     class="euiDataGridHeaderCell__content emotion-euiDataGridHeaderCell__content-right"
     id="dataGridHeaderCellContent-someColumn"
-    title="someColumn"
   >
     someColumn
   </div>

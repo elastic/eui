@@ -41,27 +41,31 @@ exports[`EuiBreadcrumbs is rendered 1`] = `
       <div
         class="euiPopover emotion-euiPopover-inline-block-euiBreadcrumb__popoverWrapper-page"
       >
-        <button
-          aria-expanded="false"
-          class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__popoverButton-euiBreadcrumb__content-page-isInteractive"
-          title="See collapsed breadcrumbs"
-          type="button"
+        <span
+          class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+          id="generated-id_euiToolTipAnchor"
         >
-          <span
-            class="emotion-euiBreadcrumb__popoverTruncation"
+          <button
+            aria-expanded="false"
+            class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__popoverButton-euiBreadcrumb__content-page-isInteractive"
+            type="button"
           >
             <span
-              aria-label="See collapsed breadcrumbs"
+              class="emotion-euiBreadcrumb__popoverTruncation"
             >
-              …
+              <span
+                aria-label="See collapsed breadcrumbs"
+              >
+                …
+              </span>
             </span>
-          </span>
-          <span
-            data-euiicon-type="chevronSingleDown"
-          >
-             - Clicking this button will toggle a popover dialog.
-          </span>
-        </button>
+            <span
+              data-euiicon-type="chevronSingleDown"
+            >
+               - Clicking this button will toggle a popover dialog.
+            </span>
+          </button>
+        </span>
       </div>
     </li>
     <li
@@ -146,27 +150,31 @@ exports[`EuiBreadcrumbs is rendered with final item as link 1`] = `
       <div
         class="euiPopover emotion-euiPopover-inline-block-euiBreadcrumb__popoverWrapper-page"
       >
-        <button
-          aria-expanded="false"
-          class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__popoverButton-euiBreadcrumb__content-page-isInteractive"
-          title="See collapsed breadcrumbs"
-          type="button"
+        <span
+          class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+          id="generated-id_euiToolTipAnchor"
         >
-          <span
-            class="emotion-euiBreadcrumb__popoverTruncation"
+          <button
+            aria-expanded="false"
+            class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__popoverButton-euiBreadcrumb__content-page-isInteractive"
+            type="button"
           >
             <span
-              aria-label="See collapsed breadcrumbs"
+              class="emotion-euiBreadcrumb__popoverTruncation"
             >
-              …
+              <span
+                aria-label="See collapsed breadcrumbs"
+              >
+                …
+              </span>
             </span>
-          </span>
-          <span
-            data-euiicon-type="chevronSingleDown"
-          >
-             - Clicking this button will toggle a popover dialog.
-          </span>
-        </button>
+            <span
+              data-euiicon-type="chevronSingleDown"
+            >
+               - Clicking this button will toggle a popover dialog.
+            </span>
+          </button>
+        </span>
       </div>
     </li>
     <li
@@ -333,27 +341,31 @@ exports[`EuiBreadcrumbs props max renders 1 item 1`] = `
       <div
         class="euiPopover emotion-euiPopover-inline-block-euiBreadcrumb__popoverWrapper-page"
       >
-        <button
-          aria-expanded="false"
-          class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__popoverButton-euiBreadcrumb__content-page-isInteractive"
-          title="See collapsed breadcrumbs"
-          type="button"
+        <span
+          class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+          id="generated-id_euiToolTipAnchor"
         >
-          <span
-            class="emotion-euiBreadcrumb__popoverTruncation"
+          <button
+            aria-expanded="false"
+            class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__popoverButton-euiBreadcrumb__content-page-isInteractive"
+            type="button"
           >
             <span
-              aria-label="See collapsed breadcrumbs"
+              class="emotion-euiBreadcrumb__popoverTruncation"
             >
-              …
+              <span
+                aria-label="See collapsed breadcrumbs"
+              >
+                …
+              </span>
             </span>
-          </span>
-          <span
-            data-euiicon-type="chevronSingleDown"
-          >
-             - Clicking this button will toggle a popover dialog.
-          </span>
-        </button>
+            <span
+              data-euiicon-type="chevronSingleDown"
+            >
+               - Clicking this button will toggle a popover dialog.
+            </span>
+          </button>
+        </span>
       </div>
     </li>
     <li
@@ -519,27 +531,31 @@ exports[`EuiBreadcrumbs props responsive is rendered 1`] = `
       <div
         class="euiPopover emotion-euiPopover-inline-block-euiBreadcrumb__popoverWrapper-page"
       >
-        <button
-          aria-expanded="false"
-          class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__popoverButton-euiBreadcrumb__content-page-isInteractive"
-          title="See collapsed breadcrumbs"
-          type="button"
+        <span
+          class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+          id="generated-id_euiToolTipAnchor"
         >
-          <span
-            class="emotion-euiBreadcrumb__popoverTruncation"
+          <button
+            aria-expanded="false"
+            class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__popoverButton-euiBreadcrumb__content-page-isInteractive"
+            type="button"
           >
             <span
-              aria-label="See collapsed breadcrumbs"
+              class="emotion-euiBreadcrumb__popoverTruncation"
             >
-              …
+              <span
+                aria-label="See collapsed breadcrumbs"
+              >
+                …
+              </span>
             </span>
-          </span>
-          <span
-            data-euiicon-type="chevronSingleDown"
-          >
-             - Clicking this button will toggle a popover dialog.
-          </span>
-        </button>
+            <span
+              data-euiicon-type="chevronSingleDown"
+            >
+               - Clicking this button will toggle a popover dialog.
+            </span>
+          </button>
+        </span>
       </div>
     </li>
     <li
@@ -623,27 +639,31 @@ exports[`EuiBreadcrumbs props responsive is rendered as false 1`] = `
       <div
         class="euiPopover emotion-euiPopover-inline-block-euiBreadcrumb__popoverWrapper-page"
       >
-        <button
-          aria-expanded="false"
-          class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__popoverButton-euiBreadcrumb__content-page-isInteractive"
-          title="See collapsed breadcrumbs"
-          type="button"
+        <span
+          class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+          id="generated-id_euiToolTipAnchor"
         >
-          <span
-            class="emotion-euiBreadcrumb__popoverTruncation"
+          <button
+            aria-expanded="false"
+            class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__popoverButton-euiBreadcrumb__content-page-isInteractive"
+            type="button"
           >
             <span
-              aria-label="See collapsed breadcrumbs"
+              class="emotion-euiBreadcrumb__popoverTruncation"
             >
-              …
+              <span
+                aria-label="See collapsed breadcrumbs"
+              >
+                …
+              </span>
             </span>
-          </span>
-          <span
-            data-euiicon-type="chevronSingleDown"
-          >
-             - Clicking this button will toggle a popover dialog.
-          </span>
-        </button>
+            <span
+              data-euiicon-type="chevronSingleDown"
+            >
+               - Clicking this button will toggle a popover dialog.
+            </span>
+          </button>
+        </span>
       </div>
     </li>
     <li
@@ -702,27 +722,31 @@ exports[`EuiBreadcrumbs props responsive is rendered with custom breakpoints 1`]
       <div
         class="euiPopover emotion-euiPopover-inline-block-euiBreadcrumb__popoverWrapper-page"
       >
-        <button
-          aria-expanded="false"
-          class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__popoverButton-euiBreadcrumb__content-page-isInteractive"
-          title="See collapsed breadcrumbs"
-          type="button"
+        <span
+          class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+          id="generated-id_euiToolTipAnchor"
         >
-          <span
-            class="emotion-euiBreadcrumb__popoverTruncation"
+          <button
+            aria-expanded="false"
+            class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__popoverButton-euiBreadcrumb__content-page-isInteractive"
+            type="button"
           >
             <span
-              aria-label="See collapsed breadcrumbs"
+              class="emotion-euiBreadcrumb__popoverTruncation"
             >
-              …
+              <span
+                aria-label="See collapsed breadcrumbs"
+              >
+                …
+              </span>
             </span>
-          </span>
-          <span
-            data-euiicon-type="chevronSingleDown"
-          >
-             - Clicking this button will toggle a popover dialog.
-          </span>
-        </button>
+            <span
+              data-euiicon-type="chevronSingleDown"
+            >
+               - Clicking this button will toggle a popover dialog.
+            </span>
+          </button>
+        </span>
       </div>
     </li>
     <li

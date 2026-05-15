@@ -12,7 +12,6 @@ exports[`EuiTimeWindowButtons renders 1`] = `
     <button
       class="euiButtonGroupButton euiButtonGroupButton-isIconOnly emotion-euiButtonDisplay-m-defaultMinWidth-euiButtonGroupButton-iconOnly-hasToolTip-uncompressed-base-text"
       data-test-subj="timeWindowButtonsPrevious"
-      title=""
       type="button"
     >
       <span
@@ -38,7 +37,6 @@ exports[`EuiTimeWindowButtons renders 1`] = `
     <button
       class="euiButtonGroupButton euiButtonGroupButton-isIconOnly emotion-euiButtonDisplay-m-defaultMinWidth-euiButtonGroupButton-iconOnly-hasToolTip-uncompressed-base-text"
       data-test-subj="timeWindowButtonsZoomOut"
-      title=""
       type="button"
     >
       <span
@@ -64,7 +62,6 @@ exports[`EuiTimeWindowButtons renders 1`] = `
     <button
       class="euiButtonGroupButton euiButtonGroupButton-isIconOnly emotion-euiButtonDisplay-m-defaultMinWidth-euiButtonGroupButton-iconOnly-hasToolTip-uncompressed-base-text"
       data-test-subj="timeWindowButtonsNext"
-      title=""
       type="button"
     >
       <span

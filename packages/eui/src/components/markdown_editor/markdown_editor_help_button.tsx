@@ -150,16 +150,17 @@ export const EuiMarkdownEditorHelpButton = ({
     return (
       <EuiPopover
         button={
-          <EuiButtonIcon
-            title={syntaxTitle}
-            size="s"
-            css={styles.euiMarkdownEditorFooter__helpButton}
-            className="euiMarkdownEditorFooter__helpButton"
-            iconType={MarkdownLogo}
-            color="text"
-            aria-label={ariaLabels.showMarkdownHelp}
-            onClick={() => setIsShowingHelpPopover(!isShowingHelpPopover)}
-          />
+          <EuiToolTip content={syntaxTitle} disableScreenReaderOutput>
+            <EuiButtonIcon
+              size="s"
+              css={styles.euiMarkdownEditorFooter__helpButton}
+              className="euiMarkdownEditorFooter__helpButton"
+              iconType={MarkdownLogo}
+              color="text"
+              aria-label={ariaLabels.showMarkdownHelp}
+              onClick={() => setIsShowingHelpPopover(!isShowingHelpPopover)}
+            />
+          </EuiToolTip>
         }
         isOpen={isShowingHelpPopover}
         closePopover={() => setIsShowingHelpPopover(false)}

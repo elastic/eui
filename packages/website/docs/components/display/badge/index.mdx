@@ -299,9 +299,9 @@ export default () => (
 
 ### Badge groups and truncation
 
-Badges, like buttons, will only every be a single line of text. This means text will not wrap, but be truncated if the badge's width reaches that of its parent's.
+Badges, like buttons, will only ever be a single line of text. This means text will not wrap, but be truncated if the badge's width reaches that of its parent's.
 
-For this reason, badges also auto-apply the inner text of the badge to the `title` attribute of the element to provide default browser tooltips with the full badge text.
+For this reason, badges are wrapped with `EuiToolTip` and automatically pass their inner text as content. The tooltip is reachable with mouse hover or by focusing the badge trigger with keyboard as long as it's interactive (has `onClick`, `href`, or `iconOnClick`).
 
 To ensure proper wrapping, truncation and spacing of multiple badges, it is advisable to wrap them in a **EuiBadgeGroup**.
 

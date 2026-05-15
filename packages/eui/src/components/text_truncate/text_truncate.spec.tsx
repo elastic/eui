@@ -34,9 +34,10 @@ describe('EuiTextTruncate', () => {
     getTruncatedText().should('not.exist');
   });
 
-  it('renders truncated text and a title when truncation is needed', () => {
+  it('renders truncated text and a tooltip when truncation is needed', () => {
     cy.mount(<EuiTextTruncate {...props} />);
-    cy.get('#text').should('have.attr', 'title', props.text);
+    cy.get('#text').should('have.attr', 'tabindex', '0');
+    cy.get('#text').parent().should('have.class', 'euiToolTipAnchor');
     cy.get('#text [data-test-subj="fullText"]').should('have.text', props.text);
     getTruncatedText().should('exist');
   });

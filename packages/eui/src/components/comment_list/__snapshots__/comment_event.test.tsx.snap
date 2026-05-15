@@ -73,18 +73,23 @@ exports[`EuiCommentEvent props eventIcon and eventIconAriaLabel are rendered 1`]
         <div
           class="euiCommentEvent__headerData emotion-euiCommentEvent__headerData"
         >
-          <div
-            aria-hidden="false"
-            aria-label="edit"
-            class="euiAvatar euiAvatar--s euiAvatar--user euiCommentEvent__headerEventIcon emotion-euiAvatar-user-s-uppercase-subdued-euiCommentEvent__headerEventIcon"
-            role="img"
-            title="edit"
+          <span
+            class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+            id="generated-id_euiToolTipAnchor"
           >
-            <span
-              class="euiAvatar__icon"
-              data-euiicon-type="pencil"
-            />
-          </div>
+            <div
+              aria-hidden="false"
+              aria-label="edit"
+              class="euiAvatar euiAvatar--s euiAvatar--user euiCommentEvent__headerEventIcon emotion-euiAvatar-user-s-uppercase-subdued-euiCommentEvent__headerEventIcon"
+              role="img"
+            >
+              <span
+                aria-hidden="true"
+                class="euiAvatar__icon"
+                data-euiicon-type="pencil"
+              />
+            </div>
+          </span>
           <div
             class="euiCommentEvent__headerUsername emotion-euiCommentEvent__headerUsername"
           >

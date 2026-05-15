@@ -352,10 +352,7 @@ describe('EuiButtonGroup', () => {
       expect(getByTestSubject('buttonWithTooltip')).not.toHaveAttribute(
         'title'
       );
-      expect(getByTestSubject('button01')).toHaveAttribute(
-        'title',
-        'Option two'
-      );
+      expect(getByTestSubject('button01')).not.toHaveAttribute('title');
     });
   });
 });

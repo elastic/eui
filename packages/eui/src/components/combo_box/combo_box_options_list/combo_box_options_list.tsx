@@ -253,7 +253,6 @@ export class EuiComboBoxOptionsList<T> extends Component<
         // loses focus on selecting an option (due to actively removing it from the list)
         id={rootId(`_option-${options.indexOf(option)}`)}
         key={option.key ?? option.label}
-        title={label}
         prepend={option.prepend}
         append={
           hasOnFocusBadge ? (
