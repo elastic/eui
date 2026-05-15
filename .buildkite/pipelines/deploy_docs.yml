@@ -1,10 +1,13 @@
 agents:
   provider: gcp
   image: "family/eui-ubuntu-2204"
-  # 4 AMD Rome / Milan vCPUs, 16GB RAM
-  machineType: 'n2d-standard-4'
+  machineType: c4d-standard-4
   # No spot instances to protect against agent losses during file upload
   preemptible: false
+  diskType: hyperdisk-balanced
+  diskSizeGb: 30
+  # c4d instances are only available in some regions
+  zones: us-central1-a,us-central1-b,us-central1-c
 
 steps:
   - label: ':docusaurus: Build and deploy documentation website'
