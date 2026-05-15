@@ -2,18 +2,23 @@
 
 exports[`EuiListGroupItem is rendered 1`] = `
 <li
+  aria-describedby="generated-id"
   aria-label="aria-label"
   class="euiListItemLayout euiListGroupItem testClass1 testClass2 euiListGroupItem__text emotion-euiListItemLayout-euiListGroupItem-euiListGroupItem__inner-text-euiTestCss"
   data-test-subj="test subject string"
 >
   <span
-    class="euiListItemLayout__content emotion-euiListItemLayout__content"
+    class="euiToolTipAnchor eui-fullWidth emotion-euiToolTipAnchor-inlineBlock"
+    id="generated-id_euiToolTipAnchor"
   >
     <span
-      class="euiListItemLayout__text euiListGroupItem__label emotion-euiListItemLayout__text-truncate"
-      title="Label"
+      class="euiListItemLayout__content emotion-euiListItemLayout__content"
     >
-      Label
+      <span
+        class="euiListItemLayout__text euiListGroupItem__label emotion-euiListItemLayout__text-truncate"
+      >
+        Label
+      </span>
     </span>
   </span>
 </li>
@@ -21,17 +26,22 @@ exports[`EuiListGroupItem is rendered 1`] = `
 
 exports[`EuiListGroupItem props color primary is rendered 1`] = `
 <li
+  aria-describedby="generated-id"
   class="euiListItemLayout euiListGroupItem euiListGroupItem__text emotion-euiListItemLayout-euiListGroupItem-euiListGroupItem__inner-primary"
   data-test-subj="euiListItemLayout"
 >
   <span
-    class="euiListItemLayout__content emotion-euiListItemLayout__content"
+    class="euiToolTipAnchor eui-fullWidth emotion-euiToolTipAnchor-inlineBlock"
+    id="generated-id_euiToolTipAnchor"
   >
     <span
-      class="euiListItemLayout__text euiListGroupItem__label emotion-euiListItemLayout__text-truncate"
-      title="Label"
+      class="euiListItemLayout__content emotion-euiListItemLayout__content"
     >
-      Label
+      <span
+        class="euiListItemLayout__text euiListGroupItem__label emotion-euiListItemLayout__text-truncate"
+      >
+        Label
+      </span>
     </span>
   </span>
 </li>
@@ -39,17 +49,22 @@ exports[`EuiListGroupItem props color primary is rendered 1`] = `
 
 exports[`EuiListGroupItem props color subdued is rendered 1`] = `
 <li
+  aria-describedby="generated-id"
   class="euiListItemLayout euiListGroupItem euiListGroupItem__text emotion-euiListItemLayout-euiListGroupItem-euiListGroupItem__inner-subdued"
   data-test-subj="euiListItemLayout"
 >
   <span
-    class="euiListItemLayout__content emotion-euiListItemLayout__content"
+    class="euiToolTipAnchor eui-fullWidth emotion-euiToolTipAnchor-inlineBlock"
+    id="generated-id_euiToolTipAnchor"
   >
     <span
-      class="euiListItemLayout__text euiListGroupItem__label emotion-euiListItemLayout__text-truncate"
-      title="Label"
+      class="euiListItemLayout__content emotion-euiListItemLayout__content"
     >
-      Label
+      <span
+        class="euiListItemLayout__text euiListGroupItem__label emotion-euiListItemLayout__text-truncate"
+      >
+        Label
+      </span>
     </span>
   </span>
 </li>
@@ -57,17 +72,22 @@ exports[`EuiListGroupItem props color subdued is rendered 1`] = `
 
 exports[`EuiListGroupItem props color text is rendered 1`] = `
 <li
+  aria-describedby="generated-id"
   class="euiListItemLayout euiListGroupItem euiListGroupItem__text emotion-euiListItemLayout-euiListGroupItem-euiListGroupItem__inner-text"
   data-test-subj="euiListItemLayout"
 >
   <span
-    class="euiListItemLayout__content emotion-euiListItemLayout__content"
+    class="euiToolTipAnchor eui-fullWidth emotion-euiToolTipAnchor-inlineBlock"
+    id="generated-id_euiToolTipAnchor"
   >
     <span
-      class="euiListItemLayout__text euiListGroupItem__label emotion-euiListItemLayout__text-truncate"
-      title="Label"
+      class="euiListItemLayout__content emotion-euiListItemLayout__content"
     >
-      Label
+      <span
+        class="euiListItemLayout__text euiListGroupItem__label emotion-euiListItemLayout__text-truncate"
+      >
+        Label
+      </span>
     </span>
   </span>
 </li>
@@ -75,30 +95,35 @@ exports[`EuiListGroupItem props color text is rendered 1`] = `
 
 exports[`EuiListGroupItem props extraAction is rendered 1`] = `
 <li
+  aria-describedby="generated-id"
   class="euiListItemLayout euiListGroupItem euiListGroupItem__text emotion-euiListItemLayout-euiListGroupItem-euiListGroupItem__inner-text"
   data-test-subj="euiListItemLayout"
 >
   <span
-    class="euiListItemLayout__content emotion-euiListItemLayout__content"
+    class="euiToolTipAnchor eui-fullWidth emotion-euiToolTipAnchor-inlineBlock"
+    id="generated-id_euiToolTipAnchor"
   >
     <span
-      class="euiListItemLayout__text euiListGroupItem__label emotion-euiListItemLayout__text-truncate"
-      title="Label"
-    >
-      Label
-    </span>
-    <button
-      aria-label="label"
-      class="euiButtonIcon euiListGroupItemExtraAction emotion-euiButtonIcon-xs-empty-text-euiListGroupItemExtraAction-alwaysShow"
-      type="button"
+      class="euiListItemLayout__content emotion-euiListItemLayout__content"
     >
       <span
-        aria-hidden="true"
-        class="euiButtonIcon__icon"
-        color="inherit"
-        data-euiicon-type="empty"
-      />
-    </button>
+        class="euiListItemLayout__text euiListGroupItem__label emotion-euiListItemLayout__text-truncate"
+      >
+        Label
+      </span>
+      <button
+        aria-label="label"
+        class="euiButtonIcon euiListGroupItemExtraAction emotion-euiButtonIcon-xs-empty-text-euiListGroupItemExtraAction-alwaysShow"
+        type="button"
+      >
+        <span
+          aria-hidden="true"
+          class="euiButtonIcon__icon"
+          color="inherit"
+          data-euiicon-type="empty"
+        />
+      </button>
+    </span>
   </span>
 </li>
 `;
@@ -108,23 +133,27 @@ exports[`EuiListGroupItem props href and onClick is rendered 1`] = `
   class="euiListItemLayout__wrapper emotion-euiListItemLayout__wrapper-isInteractive"
   data-test-subj="euiListItemLayout-wrapper"
 >
-  <a
-    class="euiListItemLayout euiListGroupItem euiListGroupItem__button emotion-euiListItemLayout-euiListItemLayout__action-euiListGroupItem-euiListGroupItem__inner-text"
-    data-test-subj="euiListItemLayout"
-    href="#"
-    rel="noreferrer"
+  <span
+    class="euiToolTipAnchor eui-fullWidth emotion-euiToolTipAnchor-inlineBlock"
+    id="generated-id_euiToolTipAnchor"
   >
-    <span
-      class="euiListItemLayout__content emotion-euiListItemLayout__content"
+    <a
+      class="euiListItemLayout euiListGroupItem euiListGroupItem__button emotion-euiListItemLayout-euiListItemLayout__action-euiListGroupItem-euiListGroupItem__inner-text"
+      data-test-subj="euiListItemLayout"
+      href="#"
+      rel="noreferrer"
     >
       <span
-        class="euiListItemLayout__text euiListGroupItem__label emotion-euiListItemLayout__text-truncate"
-        title="Label"
+        class="euiListItemLayout__content emotion-euiListItemLayout__content"
       >
-        Label
+        <span
+          class="euiListItemLayout__text euiListGroupItem__label emotion-euiListItemLayout__text-truncate"
+        >
+          Label
+        </span>
       </span>
-    </span>
-  </a>
+    </a>
+  </span>
 </li>
 `;
 
@@ -133,23 +162,27 @@ exports[`EuiListGroupItem props href is rendered 1`] = `
   class="euiListItemLayout__wrapper emotion-euiListItemLayout__wrapper-isInteractive"
   data-test-subj="euiListItemLayout-wrapper"
 >
-  <a
-    class="euiListItemLayout euiListGroupItem euiListGroupItem__button emotion-euiListItemLayout-euiListItemLayout__action-euiListGroupItem-euiListGroupItem__inner-text"
-    data-test-subj="euiListItemLayout"
-    href="#"
-    rel="noreferrer"
+  <span
+    class="euiToolTipAnchor eui-fullWidth emotion-euiToolTipAnchor-inlineBlock"
+    id="generated-id_euiToolTipAnchor"
   >
-    <span
-      class="euiListItemLayout__content emotion-euiListItemLayout__content"
+    <a
+      class="euiListItemLayout euiListGroupItem euiListGroupItem__button emotion-euiListItemLayout-euiListItemLayout__action-euiListGroupItem-euiListGroupItem__inner-text"
+      data-test-subj="euiListItemLayout"
+      href="#"
+      rel="noreferrer"
     >
       <span
-        class="euiListItemLayout__text euiListGroupItem__label emotion-euiListItemLayout__text-truncate"
-        title="Label"
+        class="euiListItemLayout__content emotion-euiListItemLayout__content"
       >
-        Label
+        <span
+          class="euiListItemLayout__text euiListGroupItem__label emotion-euiListItemLayout__text-truncate"
+        >
+          Label
+        </span>
       </span>
-    </span>
-  </a>
+    </a>
+  </span>
 </li>
 `;
 
@@ -158,46 +191,55 @@ exports[`EuiListGroupItem props href is rendered with rel 1`] = `
   class="euiListItemLayout__wrapper emotion-euiListItemLayout__wrapper-isInteractive"
   data-test-subj="euiListItemLayout-wrapper"
 >
-  <a
-    class="euiListItemLayout euiListGroupItem euiListGroupItem__button emotion-euiListItemLayout-euiListItemLayout__action-euiListGroupItem-euiListGroupItem__inner-text"
-    data-test-subj="euiListItemLayout"
-    href="#"
-    rel="noreferrer"
+  <span
+    class="euiToolTipAnchor eui-fullWidth emotion-euiToolTipAnchor-inlineBlock"
+    id="generated-id_euiToolTipAnchor"
   >
-    <span
-      class="euiListItemLayout__content emotion-euiListItemLayout__content"
+    <a
+      class="euiListItemLayout euiListGroupItem euiListGroupItem__button emotion-euiListItemLayout-euiListItemLayout__action-euiListGroupItem-euiListGroupItem__inner-text"
+      data-test-subj="euiListItemLayout"
+      href="#"
+      rel="noreferrer"
     >
       <span
-        class="euiListItemLayout__text euiListGroupItem__label emotion-euiListItemLayout__text-truncate"
-        title="Label"
+        class="euiListItemLayout__content emotion-euiListItemLayout__content"
       >
-        Label
+        <span
+          class="euiListItemLayout__text euiListGroupItem__label emotion-euiListItemLayout__text-truncate"
+        >
+          Label
+        </span>
       </span>
-    </span>
-  </a>
+    </a>
+  </span>
 </li>
 `;
 
 exports[`EuiListGroupItem props icon is rendered 1`] = `
 <li
+  aria-describedby="generated-id"
   class="euiListItemLayout euiListGroupItem euiListGroupItem__text emotion-euiListItemLayout-euiListGroupItem-euiListGroupItem__inner-text"
   data-test-subj="euiListItemLayout"
 >
   <span
-    class="euiListItemLayout__content emotion-euiListItemLayout__content"
+    class="euiToolTipAnchor eui-fullWidth emotion-euiToolTipAnchor-inlineBlock"
+    id="generated-id_euiToolTipAnchor"
   >
     <span
-      class="euiListItemLayout__prepend emotion-euiListItemLayout__prepend"
+      class="euiListItemLayout__content emotion-euiListItemLayout__content"
     >
       <span
-        class="euiListGroupItem__icon css-0"
-      />
-    </span>
-    <span
-      class="euiListItemLayout__text euiListGroupItem__label emotion-euiListItemLayout__text-truncate"
-      title="Label"
-    >
-      Label
+        class="euiListItemLayout__prepend emotion-euiListItemLayout__prepend"
+      >
+        <span
+          class="euiListGroupItem__icon css-0"
+        />
+      </span>
+      <span
+        class="euiListItemLayout__text euiListGroupItem__label emotion-euiListItemLayout__text-truncate"
+      >
+        Label
+      </span>
     </span>
   </span>
 </li>
@@ -205,26 +247,31 @@ exports[`EuiListGroupItem props icon is rendered 1`] = `
 
 exports[`EuiListGroupItem props iconType is rendered 1`] = `
 <li
+  aria-describedby="generated-id"
   class="euiListItemLayout euiListGroupItem euiListGroupItem__text emotion-euiListItemLayout-euiListGroupItem-euiListGroupItem__inner-text"
   data-test-subj="euiListItemLayout"
 >
   <span
-    class="euiListItemLayout__content emotion-euiListItemLayout__content"
+    class="euiToolTipAnchor eui-fullWidth emotion-euiToolTipAnchor-inlineBlock"
+    id="generated-id_euiToolTipAnchor"
   >
     <span
-      class="euiListItemLayout__prepend emotion-euiListItemLayout__prepend"
+      class="euiListItemLayout__content emotion-euiListItemLayout__content"
     >
       <span
-        class="euiListGroupItem__icon css-0"
-        color="inherit"
-        data-euiicon-type="empty"
-      />
-    </span>
-    <span
-      class="euiListItemLayout__text euiListGroupItem__label emotion-euiListItemLayout__text-truncate"
-      title="Label"
-    >
-      Label
+        class="euiListItemLayout__prepend emotion-euiListItemLayout__prepend"
+      >
+        <span
+          class="euiListGroupItem__icon css-0"
+          color="inherit"
+          data-euiicon-type="empty"
+        />
+      </span>
+      <span
+        class="euiListItemLayout__text euiListGroupItem__label emotion-euiListItemLayout__text-truncate"
+      >
+        Label
+      </span>
     </span>
   </span>
 </li>
@@ -233,17 +280,22 @@ exports[`EuiListGroupItem props iconType is rendered 1`] = `
 exports[`EuiListGroupItem props isActive is rendered 1`] = `
 <li
   aria-current="true"
+  aria-describedby="generated-id"
   class="euiListItemLayout euiListGroupItem euiListGroupItem__text emotion-euiListItemLayout-isSelected-euiListGroupItem-euiListGroupItem__inner"
   data-test-subj="euiListItemLayout"
 >
   <span
-    class="euiListItemLayout__content emotion-euiListItemLayout__content"
+    class="euiToolTipAnchor eui-fullWidth emotion-euiToolTipAnchor-inlineBlock"
+    id="generated-id_euiToolTipAnchor"
   >
     <span
-      class="euiListItemLayout__text euiListGroupItem__label emotion-euiListItemLayout__text-truncate"
-      title="Label"
+      class="euiListItemLayout__content emotion-euiListItemLayout__content"
     >
-      Label
+      <span
+        class="euiListItemLayout__text euiListGroupItem__label emotion-euiListItemLayout__text-truncate"
+      >
+        Label
+      </span>
     </span>
   </span>
 </li>
@@ -251,18 +303,23 @@ exports[`EuiListGroupItem props isActive is rendered 1`] = `
 
 exports[`EuiListGroupItem props isDisabled is rendered 1`] = `
 <li
+  aria-describedby="generated-id"
   aria-disabled="true"
   class="euiListItemLayout euiListGroupItem euiListGroupItem__text emotion-euiListItemLayout-isDisabled-euiListGroupItem-euiListGroupItem__inner"
   data-test-subj="euiListItemLayout"
 >
   <span
-    class="euiListItemLayout__content emotion-euiListItemLayout__content"
+    class="euiToolTipAnchor eui-fullWidth emotion-euiToolTipAnchor-inlineBlock-isDisabled"
+    id="generated-id_euiToolTipAnchor"
   >
     <span
-      class="euiListItemLayout__text euiListGroupItem__label emotion-euiListItemLayout__text-truncate"
-      title="Label"
+      class="euiListItemLayout__content emotion-euiListItemLayout__content"
     >
-      Label
+      <span
+        class="euiListItemLayout__text euiListGroupItem__label emotion-euiListItemLayout__text-truncate"
+      >
+        Label
+      </span>
     </span>
   </span>
 </li>
@@ -273,22 +330,26 @@ exports[`EuiListGroupItem props onClick is rendered 1`] = `
   class="euiListItemLayout__wrapper emotion-euiListItemLayout__wrapper-isInteractive"
   data-test-subj="euiListItemLayout-wrapper"
 >
-  <button
-    class="euiListItemLayout euiListGroupItem euiListGroupItem__button emotion-euiListItemLayout-euiListItemLayout__action-euiListGroupItem-euiListGroupItem__inner-text"
-    data-test-subj="euiListItemLayout"
-    type="button"
+  <span
+    class="euiToolTipAnchor eui-fullWidth emotion-euiToolTipAnchor-inlineBlock"
+    id="generated-id_euiToolTipAnchor"
   >
-    <span
-      class="euiListItemLayout__content emotion-euiListItemLayout__content"
+    <button
+      class="euiListItemLayout euiListGroupItem euiListGroupItem__button emotion-euiListItemLayout-euiListItemLayout__action-euiListGroupItem-euiListGroupItem__inner-text"
+      data-test-subj="euiListItemLayout"
+      type="button"
     >
       <span
-        class="euiListItemLayout__text euiListGroupItem__label emotion-euiListItemLayout__text-truncate"
-        title="Label"
+        class="euiListItemLayout__content emotion-euiListItemLayout__content"
       >
-        Label
+        <span
+          class="euiListItemLayout__text euiListGroupItem__label emotion-euiListItemLayout__text-truncate"
+        >
+          Label
+        </span>
       </span>
-    </span>
-  </button>
+    </button>
+  </span>
 </li>
 `;
 
@@ -317,18 +378,23 @@ exports[`EuiListGroupItem props showToolTip is rendered 1`] = `
 
 exports[`EuiListGroupItem props style is rendered 1`] = `
 <li
+  aria-describedby="generated-id"
   class="euiListItemLayout euiListGroupItem euiListGroupItem__text emotion-euiListItemLayout-euiListGroupItem-euiListGroupItem__inner-text"
   data-test-subj="euiListItemLayout"
   style="color: red;"
 >
   <span
-    class="euiListItemLayout__content emotion-euiListItemLayout__content"
+    class="euiToolTipAnchor eui-fullWidth emotion-euiToolTipAnchor-inlineBlock"
+    id="generated-id_euiToolTipAnchor"
   >
     <span
-      class="euiListItemLayout__text euiListGroupItem__label emotion-euiListItemLayout__text-truncate"
-      title="Label"
+      class="euiListItemLayout__content emotion-euiListItemLayout__content"
     >
-      Label
+      <span
+        class="euiListItemLayout__text euiListGroupItem__label emotion-euiListItemLayout__text-truncate"
+      >
+        Label
+      </span>
     </span>
   </span>
 </li>
@@ -356,23 +422,27 @@ exports[`EuiListGroupItem renders a disabled button even if provided an href 1`]
   class="euiListItemLayout__wrapper emotion-euiListItemLayout__wrapper-isDisabled"
   data-test-subj="euiListItemLayout-wrapper"
 >
-  <button
-    class="euiListItemLayout euiListGroupItem euiListGroupItem__button emotion-euiListItemLayout-euiListItemLayout__action-isDisabled-euiListGroupItem-euiListGroupItem__inner"
-    data-test-subj="euiListItemLayout"
-    disabled=""
-    type="button"
+  <span
+    class="euiToolTipAnchor eui-fullWidth emotion-euiToolTipAnchor-inlineBlock-isDisabled"
+    id="generated-id_euiToolTipAnchor"
   >
-    <span
-      class="euiListItemLayout__content emotion-euiListItemLayout__content"
+    <button
+      class="euiListItemLayout euiListGroupItem euiListGroupItem__button emotion-euiListItemLayout-euiListItemLayout__action-isDisabled-euiListGroupItem-euiListGroupItem__inner"
+      data-test-subj="euiListItemLayout"
+      disabled=""
+      type="button"
     >
       <span
-        class="euiListItemLayout__text euiListGroupItem__label emotion-euiListItemLayout__text-truncate"
-        title="Label"
+        class="euiListItemLayout__content emotion-euiListItemLayout__content"
       >
-        Label
+        <span
+          class="euiListItemLayout__text euiListGroupItem__label emotion-euiListItemLayout__text-truncate"
+        >
+          Label
+        </span>
       </span>
-    </span>
-  </button>
+    </button>
+  </span>
 </li>
 `;
 
@@ -381,48 +451,57 @@ exports[`EuiListGroupItem renders a disabled button even if provided an href 2`]
   class="euiListItemLayout__wrapper emotion-euiListItemLayout__wrapper-isDisabled"
   data-test-subj="euiListItemLayout-wrapper"
 >
-  <button
-    class="euiListItemLayout euiListGroupItem euiListGroupItem__button emotion-euiListItemLayout-euiListItemLayout__action-isDisabled-euiListGroupItem-euiListGroupItem__inner"
-    data-test-subj="euiListItemLayout"
-    disabled=""
-    type="button"
+  <span
+    class="euiToolTipAnchor eui-fullWidth emotion-euiToolTipAnchor-inlineBlock-isDisabled"
+    id="generated-id_euiToolTipAnchor"
   >
-    <span
-      class="euiListItemLayout__content emotion-euiListItemLayout__content"
+    <button
+      class="euiListItemLayout euiListGroupItem euiListGroupItem__button emotion-euiListItemLayout-euiListItemLayout__action-isDisabled-euiListGroupItem-euiListGroupItem__inner"
+      data-test-subj="euiListItemLayout"
+      disabled=""
+      type="button"
     >
       <span
-        class="euiListItemLayout__text euiListGroupItem__label emotion-euiListItemLayout__text-truncate"
-        title="Label"
+        class="euiListItemLayout__content emotion-euiListItemLayout__content"
       >
-        Label
+        <span
+          class="euiListItemLayout__text euiListGroupItem__label emotion-euiListItemLayout__text-truncate"
+        >
+          Label
+        </span>
       </span>
-    </span>
-  </button>
+    </button>
+  </span>
 </li>
 `;
 
 exports[`EuiListGroupItem throws a warning if both iconType and icon are provided but still renders 1`] = `
 <li
+  aria-describedby="generated-id"
   class="euiListItemLayout euiListGroupItem euiListGroupItem__text emotion-euiListItemLayout-euiListGroupItem-euiListGroupItem__inner-text"
   data-test-subj="euiListItemLayout"
 >
   <span
-    class="euiListItemLayout__content emotion-euiListItemLayout__content"
+    class="euiToolTipAnchor eui-fullWidth emotion-euiToolTipAnchor-inlineBlock"
+    id="generated-id_euiToolTipAnchor"
   >
     <span
-      class="euiListItemLayout__prepend emotion-euiListItemLayout__prepend"
+      class="euiListItemLayout__content emotion-euiListItemLayout__content"
     >
       <span
-        class="euiListGroupItem__icon css-0"
-        color="inherit"
-        data-euiicon-type="empty"
-      />
-    </span>
-    <span
-      class="euiListItemLayout__text euiListGroupItem__label emotion-euiListItemLayout__text-truncate"
-      title="Label"
-    >
-      Label
+        class="euiListItemLayout__prepend emotion-euiListItemLayout__prepend"
+      >
+        <span
+          class="euiListGroupItem__icon css-0"
+          color="inherit"
+          data-euiicon-type="empty"
+        />
+      </span>
+      <span
+        class="euiListItemLayout__text euiListGroupItem__label emotion-euiListItemLayout__text-truncate"
+      >
+        Label
+      </span>
     </span>
   </span>
 </li>

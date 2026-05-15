@@ -138,6 +138,7 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
                           styles.euiDataGridHeaderCell__actions.action,
                           styles.euiDataGridHeaderCell__actions.start,
                         ]}
+                        aria-hidden={true}
                       />
                     </span>
                   )}
@@ -145,7 +146,6 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
                   <div
                     css={contentStyles}
                     className="euiDataGridHeaderCell__content"
-                    title={title}
                     id={cellContentId}
                     aria-label={
                       displayAsText

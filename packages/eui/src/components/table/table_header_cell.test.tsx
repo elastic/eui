@@ -337,6 +337,13 @@ describe('EuiTableHeaderCell', () => {
         getByTestSubject('icon')
       );
     });
+
+    it('shows a title attribute with cell text on non-sortable column', () => {
+      const { getByText } = renderInTableHeader(
+        <EuiTableHeaderCell>Label</EuiTableHeaderCell>
+      );
+      expect(getByText('Label')).toHaveAttribute('title', 'Label');
+    });
   });
 
   describe('sticky', () => {

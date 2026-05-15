@@ -19,28 +19,32 @@ exports[`EuiBreadcrumbCollapsed renders a ... breadcrumb with collapsed content 
       <div
         class="euiPopover emotion-euiPopover-inline-block-euiBreadcrumb__popoverWrapper"
       >
-        <button
-          aria-controls="euiPopover_generated-id_panelId"
-          aria-expanded="true"
-          class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__popoverButton-euiBreadcrumb__content-application"
-          title="See collapsed breadcrumbs"
-          type="button"
+        <span
+          class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+          id="generated-id_euiToolTipAnchor"
         >
-          <span
-            class="emotion-euiBreadcrumb__popoverTruncation"
+          <button
+            aria-controls="euiPopover_generated-id_panelId"
+            aria-expanded="true"
+            class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__popoverButton-euiBreadcrumb__content-application"
+            type="button"
           >
             <span
-              aria-label="See collapsed breadcrumbs"
+              class="emotion-euiBreadcrumb__popoverTruncation"
             >
-              …
+              <span
+                aria-label="See collapsed breadcrumbs"
+              >
+                …
+              </span>
             </span>
-          </span>
-          <span
-            data-euiicon-type="chevronSingleDown"
-          >
-             - Clicking this button will toggle a popover dialog.
-          </span>
-        </button>
+            <span
+              data-euiicon-type="chevronSingleDown"
+            >
+               - Clicking this button will toggle a popover dialog.
+            </span>
+          </button>
+        </span>
       </div>
     </li>
   </div>

@@ -216,6 +216,43 @@ export default () => (
 );
 ```
 
+## Dynamic content
+
+**EuiToolTip** assumes that `content` (or `title`) is present at the moment the user interacts with the trigger. If both are empty when hover/focus fires, the tooltip is suppressed. Empty popovers add visual noise and pollute the trigger's accessible description with nothing.
+
+If your content is loaded asynchronously or changes in response to a user action **while the trigger is still hovered or focused**, the hover/focus event has already fired and won't re-evaluate. In that case, hold a ref to the tooltip and call `showToolTip()` once the new content is in place. The ref also exposes `hideToolTip()` and the tooltip's generated `id`. **Use this API sparingly!**
+
+For action confirmations like a copy button's "Copied!" message, also pair this with an `aria-live` region. For example, [EuiScreenReaderLive](../../utilities/accessibility/index.mdx#screen-reader-live-region) so screen reader users get a reliable announcement regardless of focus location. Tooltips alone aren't a dependable announcement channel, since screen readers don't consistently re-read `aria-describedby` content that changes in place.
+
+```tsx interactive
+import React, { useEffect, useRef, useState } from 'react';
+import { EuiToolTip, EuiToolTipRef, EuiButton, EuiSpacer } from '@elastic/eui';
+
+export default () => {
+  const tooltipRef = useRef<EuiToolTipRef>(null);
+
+  const [content, setContent] = useState<string | undefined>();
+
+  // Surface the tooltip once content becomes available, covering the case
+  // where the trigger is already hovered or focused.
+  useEffect(() => {
+    if (content) tooltipRef.current?.showToolTip();
+  }, [content]);
+
+  return (
+    <>
+      <EuiToolTip ref={tooltipRef} content={content}>
+        <EuiButton onClick={() => setContent('Loaded!')}>
+          Load tooltip content
+        </EuiButton>
+      </EuiToolTip>
+      <EuiSpacer />
+      <EuiButton onClick={() => setContent(undefined)}>Reset</EuiButton>
+    </>
+  );
+};
+```
+
 ## Tooltip on a fixed element
 
 Tooltips even work on `position: fixed;` elements. Add the `repositionOnScroll` boolean prop to ensure the tooltip realigns to the fixed anchor on scroll.

@@ -47,7 +47,10 @@ describe('EuiInlineEditForm', () => {
 
       expect(container.firstChild).toMatchSnapshot();
 
-      expect(getByTestSubject('euiInlineReadModeButton')).toBeDisabled();
+      expect(getByTestSubject('euiInlineReadModeButton')).toHaveAttribute(
+        'aria-disabled',
+        'true'
+      );
     });
 
     test('readModeProps', () => {
@@ -77,7 +80,7 @@ describe('EuiInlineEditForm', () => {
     });
 
     test('placeholder', () => {
-      const { container, getByText, getByTitle } = render(
+      const { container, getByText } = render(
         <EuiInlineEditForm
           {...commonInlineEditFormProps}
           defaultValue=""
@@ -87,15 +90,17 @@ describe('EuiInlineEditForm', () => {
 
       expect(container.firstChild).toMatchSnapshot();
       expect(getByText('This is a placeholder.')).toBeTruthy();
-      expect(getByTitle('This is a placeholder.')).toBeTruthy();
     });
 
-    it('renders the read mode value in a title tooltip', () => {
-      const { getByTitle } = render(
+    it('renders the read mode value in a tooltip', () => {
+      const { getByTestSubject, queryByRole } = render(
         <EuiInlineEditForm {...commonInlineEditFormProps} />
       );
 
-      expect(getByTitle('Hello World!')).toBeTruthy();
+      const button = getByTestSubject('euiInlineReadModeButton');
+      fireEvent.mouseOver(button);
+      expect(queryByRole('tooltip')).toHaveTextContent('Hello World!');
+      fireEvent.mouseOut(button);
     });
   });
 
@@ -246,16 +251,16 @@ describe('EuiInlineEditForm', () => {
   });
 
   describe('toggling between read mode and edit mode', () => {
-    jest
-      .spyOn(window, 'requestAnimationFrame')
-      .mockImplementation((cb: Function) => cb());
-
     const onClick = jest.fn();
     const onSave = jest.fn();
     beforeEach(() => {
+      jest
+        .spyOn(window, 'requestAnimationFrame')
+        .mockImplementation((cb: Function) => cb());
       onClick.mockReset();
       onSave.mockReset();
     });
+    afterEach(() => jest.restoreAllMocks());
 
     it('activates edit mode when the read mode button is clicked', () => {
       const { getByTestSubject, queryByTestSubject } = render(

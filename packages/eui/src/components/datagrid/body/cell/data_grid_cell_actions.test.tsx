@@ -36,11 +36,9 @@ describe('EuiDataGridCellActions', () => {
     expect(getByTestSubject('euiDataGridCellExpandButton'))
       .toMatchInlineSnapshot(`
       <button
-        aria-hidden="true"
+        aria-label="Click or hit enter to interact with cell content"
         class="euiButtonIcon euiDataGridRowCell__actionButtonIcon euiDataGridRowCell__expandCell emotion-euiButtonIcon-xs-fill-primary-euiDataGridRowCell__actionButtonIcon"
         data-test-subj="euiDataGridCellExpandButton"
-        tabindex="-1"
-        title="Click or hit enter to interact with cell content"
         type="button"
       >
         <span

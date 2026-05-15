@@ -180,7 +180,6 @@ exports[`EuiComboBox renders the options list dropdown 1`] = `
                     id="generated-id__option-0"
                     role="option"
                     style="position: absolute; left: 0px; top: 0px; height: 29px; width: 100%;"
-                    title="Titan"
                   >
                     <span
                       class="euiListItemLayout__content euiComboBoxOption__content emotion-euiListItemLayout__content"
@@ -201,7 +200,6 @@ exports[`EuiComboBox renders the options list dropdown 1`] = `
                     id="generated-id__option-1"
                     role="option"
                     style="position: absolute; left: 0px; top: 29px; height: 29px; width: 100%;"
-                    title="Enceladus"
                   >
                     <span
                       class="euiListItemLayout__content euiComboBoxOption__content emotion-euiListItemLayout__content"
@@ -222,7 +220,6 @@ exports[`EuiComboBox renders the options list dropdown 1`] = `
                     id="generated-id__option-2"
                     role="option"
                     style="position: absolute; left: 0px; top: 58px; height: 29px; width: 100%;"
-                    title="Mimas"
                   >
                     <span
                       class="euiListItemLayout__content euiComboBoxOption__content emotion-euiListItemLayout__content"
@@ -243,7 +240,6 @@ exports[`EuiComboBox renders the options list dropdown 1`] = `
                     id="generated-id__option-3"
                     role="option"
                     style="position: absolute; left: 0px; top: 87px; height: 29px; width: 100%;"
-                    title="Dione"
                   >
                     <span
                       class="euiListItemLayout__content euiComboBoxOption__content emotion-euiListItemLayout__content"
@@ -264,7 +260,6 @@ exports[`EuiComboBox renders the options list dropdown 1`] = `
                     id="generated-id__option-4"
                     role="option"
                     style="position: absolute; left: 0px; top: 116px; height: 29px; width: 100%;"
-                    title="Iapetus"
                   >
                     <span
                       class="euiListItemLayout__content euiComboBoxOption__content emotion-euiListItemLayout__content"
@@ -285,7 +280,6 @@ exports[`EuiComboBox renders the options list dropdown 1`] = `
                     id="generated-id__option-5"
                     role="option"
                     style="position: absolute; left: 0px; top: 145px; height: 29px; width: 100%;"
-                    title="Phoebe"
                   >
                     <span
                       class="euiListItemLayout__content euiComboBoxOption__content emotion-euiListItemLayout__content"
@@ -306,7 +300,6 @@ exports[`EuiComboBox renders the options list dropdown 1`] = `
                     id="generated-id__option-6"
                     role="option"
                     style="position: absolute; left: 0px; top: 174px; height: 29px; width: 100%;"
-                    title="Rhea"
                   >
                     <span
                       class="euiListItemLayout__content euiComboBoxOption__content emotion-euiListItemLayout__content"
@@ -327,7 +320,6 @@ exports[`EuiComboBox renders the options list dropdown 1`] = `
                     id="generated-id__option-7"
                     role="option"
                     style="position: absolute; left: 0px; top: 203px; height: 29px; width: 100%;"
-                    title="Pandora is one of Saturn's moons, named for a Titaness of Greek mythology"
                   >
                     <span
                       class="euiListItemLayout__content euiComboBoxOption__content emotion-euiListItemLayout__content"
@@ -348,7 +340,6 @@ exports[`EuiComboBox renders the options list dropdown 1`] = `
                     id="generated-id__option-8"
                     role="option"
                     style="position: absolute; left: 0px; top: 232px; height: 29px; width: 100%;"
-                    title="Tethys"
                   >
                     <span
                       class="euiListItemLayout__content euiComboBoxOption__content emotion-euiListItemLayout__content"

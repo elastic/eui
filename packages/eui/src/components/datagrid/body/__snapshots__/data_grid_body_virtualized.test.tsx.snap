@@ -33,7 +33,6 @@ exports[`EuiDataGridBodyVirtualized renders 1`] = `
           aria-label="columnA"
           class="euiDataGridHeaderCell__content emotion-euiDataGridHeaderCell__content"
           id="dataGridHeaderCellContent-columnA"
-          title="columnA"
         >
           columnA
         </div>
@@ -85,7 +84,6 @@ exports[`EuiDataGridBodyVirtualized renders 1`] = `
           aria-label="columnB"
           class="euiDataGridHeaderCell__content emotion-euiDataGridHeaderCell__content"
           id="dataGridHeaderCellContent-columnB"
-          title="columnB"
         >
           columnB
         </div>

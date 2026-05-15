@@ -831,9 +831,9 @@ describe('EuiBasicTable', () => {
         };
         const { getByTestSubject } = render(<EuiBasicTable {...props} />);
 
-        expect(getByTestSubject('deleteAction-1')).toBeDisabled();
-        expect(getByTestSubject('deleteAction-2')).toBeDisabled();
-        expect(getByTestSubject('deleteAction-3')).toBeDisabled();
+        expect(getByTestSubject('deleteAction-1')).toHaveAttribute('aria-disabled', 'true');
+        expect(getByTestSubject('deleteAction-2')).toHaveAttribute('aria-disabled', 'true');
+        expect(getByTestSubject('deleteAction-3')).toHaveAttribute('aria-disabled', 'true');
       });
 
       test('multiple actions', () => {
@@ -855,7 +855,7 @@ describe('EuiBasicTable', () => {
 
         getAllByTestSubject('euiCollapsedItemActionsButton').forEach(
           (button) => {
-            expect(button).toBeDisabled();
+            expect(button).toHaveAttribute('aria-disabled', 'true');
           }
         );
       });

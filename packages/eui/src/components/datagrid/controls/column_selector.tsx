@@ -311,7 +311,10 @@ export const useDataGridColumnSelector = (
                               {...provided.dragHandleProps}
                               aria-label={`${label} ${dragHandleAriaLabel}`}
                             >
-                              <EuiIcon type="dragVertical" color="subdued" />
+                              <EuiIcon
+                                type="dragVertical"
+                                color="subdued"
+                              />
                             </EuiFlexItem>
                           )}
                         </EuiFlexGroup>

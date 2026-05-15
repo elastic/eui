@@ -29,7 +29,6 @@ exports[`EuiDataGridBodyCustomRender treats \`renderCustomGridBody\` as a render
         aria-label="columnA"
         class="euiDataGridHeaderCell__content emotion-euiDataGridHeaderCell__content"
         id="dataGridHeaderCellContent-columnA"
-        title="columnA"
       >
         columnA
       </div>
@@ -81,7 +80,6 @@ exports[`EuiDataGridBodyCustomRender treats \`renderCustomGridBody\` as a render
         aria-label="columnB"
         class="euiDataGridHeaderCell__content emotion-euiDataGridHeaderCell__content"
         id="dataGridHeaderCellContent-columnB"
-        title="columnB"
       >
         columnB
       </div>

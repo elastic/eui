@@ -493,7 +493,6 @@ export class EuiSelectableList<T> extends Component<
           this.onAddOrRemoveOption(option, event);
         }}
         isFocused={isFocused}
-        title={searchableLabel || label}
         checked={checked}
         disabled={disabled}
         prepend={prepend}

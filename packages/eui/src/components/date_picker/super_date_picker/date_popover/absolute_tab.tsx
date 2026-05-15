@@ -26,6 +26,7 @@ import { useEuiI18n } from '../../../i18n';
 import { EuiFormRow, EuiFieldText, EuiFormLabel } from '../../../form';
 import { EuiFlexGroup } from '../../../flex';
 import { EuiButtonIcon } from '../../../button';
+import { EuiToolTip } from '../../../tool_tip';
 import { EuiCode } from '../../../code';
 
 import { EuiDatePicker, EuiDatePickerProps } from '../../date_picker';
@@ -226,16 +227,17 @@ export const EuiAbsoluteTab: FunctionComponent<EuiAbsoluteTabProps> = ({
           />
         </EuiFormRow>
         {hasUnparsedText && (
-          <EuiButtonIcon
-            type="submit"
-            css={styles.euiAbsoluteTabDateForm__submit}
-            size="s"
-            display="base"
-            iconType="check"
-            aria-label={submitButtonLabel}
-            title={submitButtonLabel}
-            data-test-subj="parseAbsoluteDateFormat"
-          />
+          <EuiToolTip content={submitButtonLabel} disableScreenReaderOutput>
+            <EuiButtonIcon
+              type="submit"
+              css={styles.euiAbsoluteTabDateForm__submit}
+              size="s"
+              display="base"
+              iconType="check"
+              aria-label={submitButtonLabel}
+              data-test-subj="parseAbsoluteDateFormat"
+            />
+          </EuiToolTip>
         )}
       </EuiFlexGroup>
       <EuiTimeZoneDisplay

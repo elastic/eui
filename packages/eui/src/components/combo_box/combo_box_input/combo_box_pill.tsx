@@ -79,7 +79,6 @@ export const EuiComboBoxPill = <T,>({
             iconOnClickAriaLabel={removeSelection}
             iconSide="right"
             iconType="cross"
-            title={children}
             {...onClickProps}
             {...rest}
           >
@@ -96,7 +95,6 @@ export const EuiComboBoxPill = <T,>({
       className={classes}
       color={color}
       data-test-subj="euiComboBoxPill"
-      title={children}
       {...rest}
       {...onClickProps}
     >

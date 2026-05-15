@@ -73,7 +73,6 @@ describe('EuiDataGridHeaderRow', () => {
             aria-label="someColumn"
             class="euiDataGridHeaderCell__content emotion-euiDataGridHeaderCell__content"
             id="dataGridHeaderCellContent-someColumn"
-            title="someColumn"
           >
             someColumn
           </div>

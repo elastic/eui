@@ -22,6 +22,7 @@ import {
 } from '../../services/color';
 import { toInitials, useEuiMemoizedStyles, useEuiTheme } from '../../services';
 import { IconType, EuiIcon, IconSize, IconColor } from '../icon';
+import { EuiToolTip } from '../tool_tip';
 
 import { euiAvatarStyles } from './avatar.styles';
 
@@ -80,7 +81,8 @@ export type EuiAvatarProps = Omit<HTMLAttributes<HTMLDivElement>, 'color'> &
   CommonProps &
   _EuiAvatarContent & {
     /**
-     * Full name of avatar for title attribute and calculating initial if not provided
+     * Full name of the avatar. Used as the accessible label (`aria-label`),
+     * tooltip content and used to derive initials when `initials` is not provided.
      */
     name: string;
 
@@ -201,29 +203,34 @@ export const EuiAvatar: FunctionComponent<EuiAvatarProps> = ({
   }, [iconColor, avatarStyle?.color, isForcedColors, euiTheme]);
 
   return (
-    <div
-      css={cssStyles}
-      className={classes}
-      style={{ ...style, ...avatarStyle, ...highContrastBorder }}
-      aria-label={isDisabled ? undefined : name}
-      role={isDisabled ? 'presentation' : 'img'}
-      title={name}
-      {...rest}
-    >
-      {!imageUrl &&
-        (iconType ? (
-          <EuiIcon
-            className="euiAvatar__icon"
-            size={iconSize || size}
-            type={iconType}
-            color={iconCustomColor}
-          />
-        ) : (
-          <span aria-hidden="true">
-            {toInitials(name, initialsLength, initials)}
-          </span>
-        ))}
-    </div>
+    <EuiToolTip content={name} disableScreenReaderOutput>
+      {/* `EuiAvatar` is not interactive so we don't need to add a `tabIndex`.
+      It already has `aria-label`, the tooltip is only visual. */}
+      {/* eslint-disable-next-line @elastic/eui/tooltip-focusable-anchor */}
+      <div
+        css={cssStyles}
+        className={classes}
+        style={{ ...style, ...avatarStyle, ...highContrastBorder }}
+        aria-label={isDisabled ? undefined : name}
+        role={isDisabled ? 'presentation' : 'img'}
+        {...rest}
+      >
+        {!imageUrl &&
+          (iconType ? (
+            <EuiIcon
+              className="euiAvatar__icon"
+              size={iconSize || size}
+              type={iconType}
+              color={iconCustomColor}
+              aria-hidden={true}
+            />
+          ) : (
+            <span aria-hidden="true">
+              {toInitials(name, initialsLength, initials)}
+            </span>
+          ))}
+      </div>
+    </EuiToolTip>
   );
 };
 

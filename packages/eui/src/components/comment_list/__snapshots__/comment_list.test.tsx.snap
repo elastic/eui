@@ -16,17 +16,22 @@ exports[`EuiCommentList is rendered 1`] = `
       <div
         class="emotion-euiTimelineItemIcon__content"
       >
-        <div
-          aria-label=""
-          class="euiAvatar euiAvatar--m euiAvatar--user euiCommentAvatar emotion-euiAvatar-user-m-uppercase-subdued"
-          role="img"
-          title=""
+        <span
+          class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+          id="generated-id_euiToolTipAnchor"
         >
-          <span
-            class="euiAvatar__icon"
-            data-euiicon-type="user"
-          />
-        </div>
+          <div
+            aria-label=""
+            class="euiAvatar euiAvatar--m euiAvatar--user euiCommentAvatar emotion-euiAvatar-user-m-uppercase-subdued"
+            role="img"
+          >
+            <span
+              aria-hidden="true"
+              class="euiAvatar__icon"
+              data-euiicon-type="user"
+            />
+          </div>
+        </span>
       </div>
     </div>
     <div
@@ -55,17 +60,22 @@ exports[`EuiCommentList props gutterSize l is rendered 1`] = `
       <div
         class="emotion-euiTimelineItemIcon__content"
       >
-        <div
-          aria-label=""
-          class="euiAvatar euiAvatar--m euiAvatar--user euiCommentAvatar emotion-euiAvatar-user-m-uppercase-subdued"
-          role="img"
-          title=""
+        <span
+          class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+          id="generated-id_euiToolTipAnchor"
         >
-          <span
-            class="euiAvatar__icon"
-            data-euiicon-type="user"
-          />
-        </div>
+          <div
+            aria-label=""
+            class="euiAvatar euiAvatar--m euiAvatar--user euiCommentAvatar emotion-euiAvatar-user-m-uppercase-subdued"
+            role="img"
+          >
+            <span
+              aria-hidden="true"
+              class="euiAvatar__icon"
+              data-euiicon-type="user"
+            />
+          </div>
+        </span>
       </div>
     </div>
     <div
@@ -94,17 +104,22 @@ exports[`EuiCommentList props gutterSize m is rendered 1`] = `
       <div
         class="emotion-euiTimelineItemIcon__content"
       >
-        <div
-          aria-label=""
-          class="euiAvatar euiAvatar--m euiAvatar--user euiCommentAvatar emotion-euiAvatar-user-m-uppercase-subdued"
-          role="img"
-          title=""
+        <span
+          class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+          id="generated-id_euiToolTipAnchor"
         >
-          <span
-            class="euiAvatar__icon"
-            data-euiicon-type="user"
-          />
-        </div>
+          <div
+            aria-label=""
+            class="euiAvatar euiAvatar--m euiAvatar--user euiCommentAvatar emotion-euiAvatar-user-m-uppercase-subdued"
+            role="img"
+          >
+            <span
+              aria-hidden="true"
+              class="euiAvatar__icon"
+              data-euiicon-type="user"
+            />
+          </div>
+        </span>
       </div>
     </div>
     <div
@@ -133,17 +148,22 @@ exports[`EuiCommentList props gutterSize xl is rendered 1`] = `
       <div
         class="emotion-euiTimelineItemIcon__content"
       >
-        <div
-          aria-label=""
-          class="euiAvatar euiAvatar--m euiAvatar--user euiCommentAvatar emotion-euiAvatar-user-m-uppercase-subdued"
-          role="img"
-          title=""
+        <span
+          class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+          id="generated-id_euiToolTipAnchor"
         >
-          <span
-            class="euiAvatar__icon"
-            data-euiicon-type="user"
-          />
-        </div>
+          <div
+            aria-label=""
+            class="euiAvatar euiAvatar--m euiAvatar--user euiCommentAvatar emotion-euiAvatar-user-m-uppercase-subdued"
+            role="img"
+          >
+            <span
+              aria-hidden="true"
+              class="euiAvatar__icon"
+              data-euiicon-type="user"
+            />
+          </div>
+        </span>
       </div>
     </div>
     <div

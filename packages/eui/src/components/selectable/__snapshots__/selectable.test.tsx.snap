@@ -32,7 +32,6 @@ exports[`EuiSelectable custom options with data 1`] = `
             id="generated-id_listbox_option-0"
             role="option"
             style="position: absolute; left: 0px; top: 0px; height: 32px; width: 100%;"
-            title="Titan"
           >
             <span
               class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
@@ -66,7 +65,6 @@ exports[`EuiSelectable custom options with data 1`] = `
             id="generated-id_listbox_option-1"
             role="option"
             style="position: absolute; left: 0px; top: 32px; height: 32px; width: 100%;"
-            title="Enceladus"
           >
             <span
               class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
@@ -100,7 +98,6 @@ exports[`EuiSelectable custom options with data 1`] = `
             id="generated-id_listbox_option-2"
             role="option"
             style="position: absolute; left: 0px; top: 64px; height: 32px; width: 100%;"
-            title="Pandora is one of Saturn's moons, named for a Titaness of Greek mythology"
           >
             <span
               class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
@@ -180,7 +177,6 @@ exports[`EuiSelectable errorMessage prop does not render the message when not de
             id="generated-id_listbox_option-0"
             role="option"
             style="position: absolute; left: 0px; top: 0px; height: 32px; width: 100%;"
-            title="Titan"
           >
             <span
               class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
@@ -210,7 +206,6 @@ exports[`EuiSelectable errorMessage prop does not render the message when not de
             id="generated-id_listbox_option-1"
             role="option"
             style="position: absolute; left: 0px; top: 32px; height: 32px; width: 100%;"
-            title="Enceladus"
           >
             <span
               class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
@@ -240,7 +235,6 @@ exports[`EuiSelectable errorMessage prop does not render the message when not de
             id="generated-id_listbox_option-2"
             role="option"
             style="position: absolute; left: 0px; top: 64px; height: 32px; width: 100%;"
-            title="Pandora is one of Saturn's moons, named for a Titaness of Greek mythology"
           >
             <span
               class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"

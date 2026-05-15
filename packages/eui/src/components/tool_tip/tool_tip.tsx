@@ -144,8 +144,23 @@ export interface EuiToolTipProps extends CommonProps {
 }
 
 export interface EuiToolTipRef {
+  /**
+   * Imperatively show the tooltip.
+   *
+   * Useful when `content` (or `title`) is loaded asynchronously
+   * or updated in response to a user action while the trigger is still hovered/focused.
+   * In that case the normal hover/focus event has already fired and won't re-evaluate.
+   *
+   * Has no effect when both `content` and `title` are empty.
+   */
   showToolTip: () => void;
+  /**
+   * Imperatively hide the tooltip.
+   */
   hideToolTip: () => void;
+  /**
+   * The tooltip's generated `id`, matching the `aria-describedby` set on the trigger.
+   */
   id: string;
 }
 

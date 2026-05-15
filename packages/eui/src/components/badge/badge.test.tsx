@@ -236,9 +236,10 @@ describe('EuiBadge', () => {
 
     it('applies correct sizing styles to the main element', () => {
       const { container } = render(<EuiBadge>Badge</EuiBadge>);
+      const badge = container.querySelector('.euiBadge');
 
-      expect(container.firstChild).toHaveStyleRule('padding-block', '0');
-      expect(container.firstChild).toHaveStyleRule(
+      expect(badge).toHaveStyleRule('padding-block', '0');
+      expect(badge).toHaveStyleRule(
         'padding-inline',
         mathWithUnits(
           [theme.euiTheme.size.s, theme.euiTheme.border.width.thin],
@@ -249,9 +250,10 @@ describe('EuiBadge', () => {
 
     it('applies custom sizing styles to the main element when rendering an icon-only variant', () => {
       const { container } = render(<EuiBadge iconType="gear" />);
+      const badge = container.querySelector('.euiBadge');
 
-      expect(container.firstChild).toHaveStyleRule('padding-block', '0');
-      expect(container.firstChild).toHaveStyleRule(
+      expect(badge).toHaveStyleRule('padding-block', '0');
+      expect(badge).toHaveStyleRule(
         'padding-inline',
         mathWithUnits(
           [theme.euiTheme.size.xs, theme.euiTheme.border.width.thin],
@@ -315,24 +317,19 @@ describe('EuiBadge', () => {
       );
 
       const colors = colorsMap[color];
+      const badge = result.container.querySelector('.euiBadge');
 
-      expect(result.container.firstChild).toHaveStyleRule(
+      expect(badge).toHaveStyleRule(
         '--euiBadgeBackgroundColor',
         colors.backgroundColor
       );
 
-      expect(result.container.firstChild).toHaveStyleRule(
-        '--euiBadgeTextColor',
-        colors.textColor
-      );
+      expect(badge).toHaveStyleRule('--euiBadgeTextColor', colors.textColor);
 
       if (Object.hasOwn(colors, 'borderColor')) {
-        expect(result.container.firstChild).toHaveStyleRule(
-          'border-color',
-          colors.borderColor
-        );
+        expect(badge).toHaveStyleRule('border-color', colors.borderColor);
       } else {
-        expect(result.container.firstChild).not.toHaveStyleRule('border-color');
+        expect(badge).not.toHaveStyleRule('border-color');
       }
     };
 

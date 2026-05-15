@@ -35,6 +35,7 @@ import { EuiSkeletonLoading, EuiSkeletonRectangle } from '../skeleton';
 import { useEuiMemoizedStyles, useCombinedRefs, keys } from '../../services';
 import { EuiI18n, useEuiI18n } from '../i18n';
 import { useGeneratedHtmlId } from '../../services/accessibility';
+import { EuiToolTip } from '../tool_tip';
 import { euiInlineEditReadModeStyles } from './inline_edit_form.styles';
 
 // Props shared between the internal form component as well as consumer-facing components
@@ -362,30 +363,33 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
 
   const readModeElement = (
     <>
-      <EuiButtonEmpty
-        color="text"
-        iconType={isReadOnly ? undefined : 'pencil'}
-        iconSide="right"
-        flush="both"
-        iconSize={sizes.iconSize}
-        size={sizes.buttonSize}
-        data-test-subj="euiInlineReadModeButton"
-        disabled={isReadOnly}
-        css={readModeCssStyles}
-        title={value}
-        {...readModeProps}
-        buttonRef={setReadModeRefs}
-        aria-describedby={classNames(
-          readModeDescribedById,
-          readModeProps?.['aria-describedby']
-        )}
-        onClick={(e: MouseEvent<HTMLButtonElement>) => {
-          activateEditMode();
-          readModeProps?.onClick?.(e);
-        }}
-      >
-        {children(value)}
-      </EuiButtonEmpty>
+      <EuiToolTip content={value} disableScreenReaderOutput>
+        <EuiButtonEmpty
+          color="text"
+          iconType={isReadOnly ? undefined : 'pencil'}
+          iconSide="right"
+          flush="both"
+          iconSize={sizes.iconSize}
+          size={sizes.buttonSize}
+          data-test-subj="euiInlineReadModeButton"
+          isDisabled={isReadOnly}
+          hasAriaDisabled={isReadOnly}
+          css={readModeCssStyles}
+          {...readModeProps}
+          buttonRef={setReadModeRefs}
+          aria-describedby={classNames(
+            readModeDescribedById,
+            readModeProps?.['aria-describedby']
+          )}
+          onClick={(e: MouseEvent<HTMLButtonElement>) => {
+            if (isReadOnly) return;
+            activateEditMode();
+            readModeProps?.onClick?.(e);
+          }}
+        >
+          {children(value)}
+        </EuiButtonEmpty>
+      </EuiToolTip>
       <span id={readModeDescribedById} hidden>
         {!isReadOnly && (
           <EuiI18n

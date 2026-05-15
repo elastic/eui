@@ -94,17 +94,22 @@ exports[`KibanaCollapsibleNavSolution renders docked icons: popover 1`] = `
         data-test-subj="kibanaSolutionSwitcherList"
       >
         <li
+          aria-describedby="generated-id"
           class="euiListItemLayout euiListGroupItem euiListGroupItem__text emotion-euiListItemLayout-euiListGroupItem-euiListGroupItem__inner-text"
           data-test-subj="test-solution"
         >
           <span
-            class="euiListItemLayout__content emotion-euiListItemLayout__content"
+            class="euiToolTipAnchor eui-fullWidth emotion-euiToolTipAnchor-inlineBlock"
+            id="generated-id_euiToolTipAnchor"
           >
             <span
-              class="euiListItemLayout__text euiListGroupItem__label emotion-euiListItemLayout__text-truncate"
-              title="Some other solution"
+              class="euiListItemLayout__content emotion-euiListItemLayout__content"
             >
-              Some other solution
+              <span
+                class="euiListItemLayout__text euiListGroupItem__label emotion-euiListItemLayout__text-truncate"
+              >
+                Some other solution
+              </span>
             </span>
           </span>
         </li>
@@ -113,17 +118,22 @@ exports[`KibanaCollapsibleNavSolution renders docked icons: popover 1`] = `
         class="euiListGroup emotion-euiListGroup-maxWidthDefault-euiCollapsibleNavKibanaSolution__secondaryItems"
       >
         <li
+          aria-describedby="generated-id"
           class="euiListItemLayout euiListGroupItem euiListGroupItem__text emotion-euiListItemLayout-euiListGroupItem-euiListGroupItem__inner-text"
           data-test-subj="euiListItemLayout"
         >
           <span
-            class="euiListItemLayout__content emotion-euiListItemLayout__content"
+            class="euiToolTipAnchor eui-fullWidth emotion-euiToolTipAnchor-inlineBlock"
+            id="generated-id_euiToolTipAnchor"
           >
             <span
-              class="euiListItemLayout__text euiListGroupItem__label emotion-euiListItemLayout__text-truncate"
-              title="Some other popover content"
+              class="euiListItemLayout__content emotion-euiListItemLayout__content"
             >
-              Some other popover content
+              <span
+                class="euiListItemLayout__text euiListGroupItem__label emotion-euiListItemLayout__text-truncate"
+              >
+                Some other popover content
+              </span>
             </span>
           </span>
         </li>
@@ -220,17 +230,22 @@ exports[`KibanaCollapsibleNavSolution renders with a solution switcher: popover 
         data-test-subj="kibanaSolutionSwitcherList"
       >
         <li
+          aria-describedby="generated-id"
           class="euiListItemLayout euiListGroupItem euiListGroupItem__text emotion-euiListItemLayout-euiListGroupItem-euiListGroupItem__inner-text"
           data-test-subj="test-solution"
         >
           <span
-            class="euiListItemLayout__content emotion-euiListItemLayout__content"
+            class="euiToolTipAnchor eui-fullWidth emotion-euiToolTipAnchor-inlineBlock"
+            id="generated-id_euiToolTipAnchor"
           >
             <span
-              class="euiListItemLayout__text euiListGroupItem__label emotion-euiListItemLayout__text-truncate"
-              title="Some other solution"
+              class="euiListItemLayout__content emotion-euiListItemLayout__content"
             >
-              Some other solution
+              <span
+                class="euiListItemLayout__text euiListGroupItem__label emotion-euiListItemLayout__text-truncate"
+              >
+                Some other solution
+              </span>
             </span>
           </span>
         </li>
@@ -239,17 +254,22 @@ exports[`KibanaCollapsibleNavSolution renders with a solution switcher: popover 
         class="euiListGroup emotion-euiListGroup-maxWidthDefault-euiCollapsibleNavKibanaSolution__secondaryItems"
       >
         <li
+          aria-describedby="generated-id"
           class="euiListItemLayout euiListGroupItem euiListGroupItem__text emotion-euiListItemLayout-euiListGroupItem-euiListGroupItem__inner-text"
           data-test-subj="euiListItemLayout"
         >
           <span
-            class="euiListItemLayout__content emotion-euiListItemLayout__content"
+            class="euiToolTipAnchor eui-fullWidth emotion-euiToolTipAnchor-inlineBlock"
+            id="generated-id_euiToolTipAnchor"
           >
             <span
-              class="euiListItemLayout__text euiListGroupItem__label emotion-euiListItemLayout__text-truncate"
-              title="Some other popover content"
+              class="euiListItemLayout__content emotion-euiListItemLayout__content"
             >
-              Some other popover content
+              <span
+                class="euiListItemLayout__text euiListGroupItem__label emotion-euiListItemLayout__text-truncate"
+              >
+                Some other popover content
+              </span>
             </span>
           </span>
         </li>
