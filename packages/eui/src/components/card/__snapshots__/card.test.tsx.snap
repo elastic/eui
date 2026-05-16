@@ -2,7 +2,9 @@
 
 exports[`EuiCard betaBadgeProps renders href 1`] = `
 <div
+  aria-labelledby="generated-idTitle"
   class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard emotion-euiPanel-grow-m-m-plain-hasShadow-euiCard-center-hasBetaBadge"
+  role="group"
 >
   <div
     class="euiCard__main emotion-euiCard__main-vertical"
@@ -48,7 +50,9 @@ exports[`EuiCard betaBadgeProps renders href 1`] = `
 
 exports[`EuiCard horizontal selectable 1`] = `
 <div
+  aria-labelledby="generated-idTitle"
   class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard emotion-euiPanel-grow-m-m-plain-hasShadow-isClickable-euiCard-left"
+  role="group"
 >
   <div
     class="euiCard__main emotion-euiCard__main-horizontal"
@@ -100,6 +104,7 @@ exports[`EuiCard is rendered 1`] = `
   aria-label="aria-label"
   class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard testClass1 testClass2 emotion-euiPanel-grow-m-m-plain-hasShadow-euiCard-center-euiTestCss"
   data-test-subj="test subject string"
+  role="group"
 >
   <div
     class="euiCard__main emotion-euiCard__main-vertical"
@@ -132,7 +137,9 @@ exports[`EuiCard is rendered 1`] = `
 
 exports[`EuiCard props a null icon 1`] = `
 <div
+  aria-labelledby="generated-idTitle"
   class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard emotion-euiPanel-grow-m-m-plain-hasShadow-euiCard-center"
+  role="group"
 >
   <div
     class="euiCard__main emotion-euiCard__main-vertical"
@@ -165,7 +172,9 @@ exports[`EuiCard props a null icon 1`] = `
 
 exports[`EuiCard props accepts div props like style 1`] = `
 <div
+  aria-labelledby="generated-idTitle"
   class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard emotion-euiPanel-grow-m-m-plain-hasShadow-euiCard-center"
+  role="group"
   style="min-width: 0;"
 >
   <div
@@ -199,7 +208,9 @@ exports[`EuiCard props accepts div props like style 1`] = `
 
 exports[`EuiCard props an avatar icon 1`] = `
 <div
+  aria-labelledby="generated-idTitle"
   class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard emotion-euiPanel-grow-m-m-plain-hasShadow-euiCard-center"
+  role="group"
 >
   <div
     class="euiCard__main emotion-euiCard__main-vertical"
@@ -248,7 +259,9 @@ exports[`EuiCard props an avatar icon 1`] = `
 
 exports[`EuiCard props children 1`] = `
 <div
+  aria-labelledby="generated-idTitle"
   class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard emotion-euiPanel-grow-m-m-plain-hasShadow-euiCard-center"
+  role="group"
 >
   <div
     class="euiCard__main emotion-euiCard__main-vertical"
@@ -278,7 +291,9 @@ exports[`EuiCard props children 1`] = `
 
 exports[`EuiCard props children with description 1`] = `
 <div
+  aria-labelledby="generated-idTitle"
   class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard emotion-euiPanel-grow-m-m-plain-hasShadow-euiCard-center"
+  role="group"
 >
   <div
     class="euiCard__main emotion-euiCard__main-vertical"
@@ -316,7 +331,9 @@ exports[`EuiCard props children with description 1`] = `
 
 exports[`EuiCard props display accent is rendered 1`] = `
 <div
+  aria-labelledby="generated-idTitle"
   class="euiPanel euiPanel--accent euiPanel--paddingMedium euiCard emotion-euiPanel-grow-m-m-accent-euiCard-center"
+  role="group"
 >
   <div
     class="euiCard__main emotion-euiCard__main-vertical"
@@ -349,7 +366,9 @@ exports[`EuiCard props display accent is rendered 1`] = `
 
 exports[`EuiCard props display accentSecondary is rendered 1`] = `
 <div
+  aria-labelledby="generated-idTitle"
   class="euiPanel euiPanel--accentSecondary euiPanel--paddingMedium euiCard emotion-euiPanel-grow-m-m-accentSecondary-euiCard-center"
+  role="group"
 >
   <div
     class="euiCard__main emotion-euiCard__main-vertical"
@@ -382,7 +401,9 @@ exports[`EuiCard props display accentSecondary is rendered 1`] = `
 
 exports[`EuiCard props display danger is rendered 1`] = `
 <div
+  aria-labelledby="generated-idTitle"
   class="euiPanel euiPanel--danger euiPanel--paddingMedium euiCard emotion-euiPanel-grow-m-m-danger-euiCard-center"
+  role="group"
 >
   <div
     class="euiCard__main emotion-euiCard__main-vertical"
@@ -415,7 +436,9 @@ exports[`EuiCard props display danger is rendered 1`] = `
 
 exports[`EuiCard props display highlighted is rendered 1`] = `
 <div
+  aria-labelledby="generated-idTitle"
   class="euiPanel euiPanel--highlighted euiPanel--paddingMedium euiCard emotion-euiPanel-grow-m-m-highlighted-euiCard-center"
+  role="group"
 >
   <div
     class="euiCard__main emotion-euiCard__main-vertical"
@@ -448,7 +471,9 @@ exports[`EuiCard props display highlighted is rendered 1`] = `
 
 exports[`EuiCard props display neutral is rendered 1`] = `
 <div
+  aria-labelledby="generated-idTitle"
   class="euiPanel euiPanel--neutral euiPanel--paddingMedium euiCard emotion-euiPanel-grow-m-m-neutral-euiCard-center"
+  role="group"
 >
   <div
     class="euiCard__main emotion-euiCard__main-vertical"
@@ -481,7 +506,9 @@ exports[`EuiCard props display neutral is rendered 1`] = `
 
 exports[`EuiCard props display plain is rendered 1`] = `
 <div
+  aria-labelledby="generated-idTitle"
   class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard emotion-euiPanel-grow-m-m-plain-euiCard-center"
+  role="group"
 >
   <div
     class="euiCard__main emotion-euiCard__main-vertical"
@@ -514,7 +541,9 @@ exports[`EuiCard props display plain is rendered 1`] = `
 
 exports[`EuiCard props display primary is rendered 1`] = `
 <div
+  aria-labelledby="generated-idTitle"
   class="euiPanel euiPanel--primary euiPanel--paddingMedium euiCard emotion-euiPanel-grow-m-m-primary-euiCard-center"
+  role="group"
 >
   <div
     class="euiCard__main emotion-euiCard__main-vertical"
@@ -547,7 +576,9 @@ exports[`EuiCard props display primary is rendered 1`] = `
 
 exports[`EuiCard props display risk is rendered 1`] = `
 <div
+  aria-labelledby="generated-idTitle"
   class="euiPanel euiPanel--risk euiPanel--paddingMedium euiCard emotion-euiPanel-grow-m-m-risk-euiCard-center"
+  role="group"
 >
   <div
     class="euiCard__main emotion-euiCard__main-vertical"
@@ -580,7 +611,9 @@ exports[`EuiCard props display risk is rendered 1`] = `
 
 exports[`EuiCard props display subdued is rendered 1`] = `
 <div
+  aria-labelledby="generated-idTitle"
   class="euiPanel euiPanel--subdued euiPanel--paddingMedium euiCard emotion-euiPanel-grow-m-m-subdued-euiCard-center"
+  role="group"
 >
   <div
     class="euiCard__main emotion-euiCard__main-vertical"
@@ -613,7 +646,9 @@ exports[`EuiCard props display subdued is rendered 1`] = `
 
 exports[`EuiCard props display success is rendered 1`] = `
 <div
+  aria-labelledby="generated-idTitle"
   class="euiPanel euiPanel--success euiPanel--paddingMedium euiCard emotion-euiPanel-grow-m-m-success-euiCard-center"
+  role="group"
 >
   <div
     class="euiCard__main emotion-euiCard__main-vertical"
@@ -646,7 +681,9 @@ exports[`EuiCard props display success is rendered 1`] = `
 
 exports[`EuiCard props display transparent is rendered 1`] = `
 <div
+  aria-labelledby="generated-idTitle"
   class="euiPanel euiPanel--transparent euiPanel--paddingMedium euiCard emotion-euiPanel-grow-m-m-transparent-euiCard-center"
+  role="group"
 >
   <div
     class="euiCard__main emotion-euiCard__main-vertical"
@@ -679,7 +716,9 @@ exports[`EuiCard props display transparent is rendered 1`] = `
 
 exports[`EuiCard props display warning is rendered 1`] = `
 <div
+  aria-labelledby="generated-idTitle"
   class="euiPanel euiPanel--warning euiPanel--paddingMedium euiCard emotion-euiPanel-grow-m-m-warning-euiCard-center"
+  role="group"
 >
   <div
     class="euiCard__main emotion-euiCard__main-vertical"
@@ -712,7 +751,9 @@ exports[`EuiCard props display warning is rendered 1`] = `
 
 exports[`EuiCard props footer 1`] = `
 <div
+  aria-labelledby="generated-idTitle"
   class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard emotion-euiPanel-grow-m-m-plain-hasShadow-euiCard-center"
+  role="group"
 >
   <div
     class="euiCard__main emotion-euiCard__main-vertical"
@@ -752,7 +793,9 @@ exports[`EuiCard props footer 1`] = `
 
 exports[`EuiCard props hasBorder 1`] = `
 <div
+  aria-labelledby="generated-idTitle"
   class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard emotion-euiPanel-grow-m-m-plain-hasBorder-euiCard-center"
+  role="group"
 >
   <div
     class="euiCard__main emotion-euiCard__main-vertical"
@@ -785,7 +828,9 @@ exports[`EuiCard props hasBorder 1`] = `
 
 exports[`EuiCard props horizontal 1`] = `
 <div
+  aria-labelledby="generated-idTitle"
   class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard emotion-euiPanel-grow-m-m-plain-hasShadow-euiCard-left"
+  role="group"
 >
   <div
     class="euiCard__main emotion-euiCard__main-horizontal"
@@ -818,7 +863,9 @@ exports[`EuiCard props horizontal 1`] = `
 
 exports[`EuiCard props href supports href as a link 1`] = `
 <div
+  aria-labelledby="generated-idTitle"
   class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard emotion-euiPanel-grow-m-m-plain-hasShadow-isClickable-euiCard-center"
+  role="group"
 >
   <div
     class="euiCard__main emotion-euiCard__main-vertical"
@@ -854,7 +901,9 @@ exports[`EuiCard props href supports href as a link 1`] = `
 
 exports[`EuiCard props icon 1`] = `
 <div
+  aria-labelledby="generated-idTitle"
   class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard emotion-euiPanel-grow-m-m-plain-hasShadow-euiCard-center"
+  role="group"
 >
   <div
     class="euiCard__main emotion-euiCard__main-vertical"
@@ -895,7 +944,9 @@ exports[`EuiCard props icon 1`] = `
 
 exports[`EuiCard props image 1`] = `
 <div
+  aria-labelledby="generated-idTitle"
   class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard emotion-euiPanel-grow-m-m-plain-hasShadow-euiCard-center"
+  role="group"
 >
   <div
     class="euiCard__main emotion-euiCard__main-vertical"
@@ -942,7 +993,9 @@ exports[`EuiCard props image 1`] = `
 
 exports[`EuiCard props isDisabled 1`] = `
 <div
+  aria-labelledby="generated-idTitle"
   class="euiPanel euiPanel--subdued euiPanel--paddingMedium euiCard emotion-euiPanel-grow-m-m-subdued-euiCard-center-disabled"
+  role="group"
 >
   <div
     class="euiCard__main emotion-euiCard__main-vertical"
@@ -955,7 +1008,7 @@ exports[`EuiCard props isDisabled 1`] = `
         id="generated-idTitle"
       >
         <button
-          aria-describedby=" generated-idDescription"
+          aria-describedby="generated-idDescription"
           class="euiCard__titleButton emotion-euiCard__text-center-disabled"
           disabled=""
         >
@@ -977,7 +1030,9 @@ exports[`EuiCard props isDisabled 1`] = `
 
 exports[`EuiCard props paddingSize l is rendered 1`] = `
 <div
+  aria-labelledby="generated-idTitle"
   class="euiPanel euiPanel--plain euiPanel--paddingLarge euiCard emotion-euiPanel-grow-m-l-plain-hasShadow-euiCard-center"
+  role="group"
 >
   <div
     class="euiCard__main emotion-euiCard__main-vertical"
@@ -1010,7 +1065,9 @@ exports[`EuiCard props paddingSize l is rendered 1`] = `
 
 exports[`EuiCard props paddingSize m is rendered 1`] = `
 <div
+  aria-labelledby="generated-idTitle"
   class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard emotion-euiPanel-grow-m-m-plain-hasShadow-euiCard-center"
+  role="group"
 >
   <div
     class="euiCard__main emotion-euiCard__main-vertical"
@@ -1043,7 +1100,9 @@ exports[`EuiCard props paddingSize m is rendered 1`] = `
 
 exports[`EuiCard props paddingSize none is rendered 1`] = `
 <div
+  aria-labelledby="generated-idTitle"
   class="euiPanel euiPanel--plain euiCard emotion-euiPanel-grow-m-plain-hasShadow-euiCard-center"
+  role="group"
 >
   <div
     class="euiCard__main emotion-euiCard__main-vertical"
@@ -1076,7 +1135,9 @@ exports[`EuiCard props paddingSize none is rendered 1`] = `
 
 exports[`EuiCard props paddingSize s is rendered 1`] = `
 <div
+  aria-labelledby="generated-idTitle"
   class="euiPanel euiPanel--plain euiPanel--paddingSmall euiCard emotion-euiPanel-grow-m-s-plain-hasShadow-euiCard-center"
+  role="group"
 >
   <div
     class="euiCard__main emotion-euiCard__main-vertical"
@@ -1109,7 +1170,9 @@ exports[`EuiCard props paddingSize s is rendered 1`] = `
 
 exports[`EuiCard props paddingSize xl is rendered 1`] = `
 <div
+  aria-labelledby="generated-idTitle"
   class="euiPanel euiPanel--plain euiCard emotion-euiPanel-grow-m-xl-plain-hasShadow-euiCard-center"
+  role="group"
 >
   <div
     class="euiCard__main emotion-euiCard__main-vertical"
@@ -1142,7 +1205,9 @@ exports[`EuiCard props paddingSize xl is rendered 1`] = `
 
 exports[`EuiCard props paddingSize xs is rendered 1`] = `
 <div
+  aria-labelledby="generated-idTitle"
   class="euiPanel euiPanel--plain euiCard emotion-euiPanel-grow-m-xs-plain-hasShadow-euiCard-center"
+  role="group"
 >
   <div
     class="euiCard__main emotion-euiCard__main-vertical"
@@ -1175,7 +1240,9 @@ exports[`EuiCard props paddingSize xs is rendered 1`] = `
 
 exports[`EuiCard props selectable 1`] = `
 <div
+  aria-labelledby="generated-idTitle"
   class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard emotion-euiPanel-grow-m-m-plain-hasShadow-isClickable-euiCard-center"
+  role="group"
 >
   <div
     class="euiCard__main emotion-euiCard__main-vertical"
@@ -1224,7 +1291,9 @@ exports[`EuiCard props selectable 1`] = `
 
 exports[`EuiCard props textAlign center 1`] = `
 <div
+  aria-labelledby="generated-idTitle"
   class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard emotion-euiPanel-grow-m-m-plain-hasShadow-euiCard-center"
+  role="group"
 >
   <div
     class="euiCard__main emotion-euiCard__main-vertical"
@@ -1257,7 +1326,9 @@ exports[`EuiCard props textAlign center 1`] = `
 
 exports[`EuiCard props textAlign left 1`] = `
 <div
+  aria-labelledby="generated-idTitle"
   class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard emotion-euiPanel-grow-m-m-plain-hasShadow-euiCard-left"
+  role="group"
 >
   <div
     class="euiCard__main emotion-euiCard__main-vertical"
@@ -1290,7 +1361,9 @@ exports[`EuiCard props textAlign left 1`] = `
 
 exports[`EuiCard props textAlign right 1`] = `
 <div
+  aria-labelledby="generated-idTitle"
   class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard emotion-euiPanel-grow-m-m-plain-hasShadow-euiCard-right"
+  role="group"
 >
   <div
     class="euiCard__main emotion-euiCard__main-vertical"
@@ -1323,7 +1396,9 @@ exports[`EuiCard props textAlign right 1`] = `
 
 exports[`EuiCard props titleElement 1`] = `
 <div
+  aria-labelledby="generated-idTitle"
   class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard emotion-euiPanel-grow-m-m-plain-hasShadow-euiCard-center"
+  role="group"
 >
   <div
     class="euiCard__main emotion-euiCard__main-vertical"
@@ -1356,7 +1431,9 @@ exports[`EuiCard props titleElement 1`] = `
 
 exports[`EuiCard props titleElement with nodes 1`] = `
 <div
+  aria-labelledby="generated-idTitle"
   class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard emotion-euiPanel-grow-m-m-plain-hasShadow-euiCard-center"
+  role="group"
 >
   <div
     class="euiCard__main emotion-euiCard__main-vertical"
@@ -1389,7 +1466,9 @@ exports[`EuiCard props titleElement with nodes 1`] = `
 
 exports[`EuiCard props titleSize 1`] = `
 <div
+  aria-labelledby="generated-idTitle"
   class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard emotion-euiPanel-grow-m-m-plain-hasShadow-euiCard-center"
+  role="group"
 >
   <div
     class="euiCard__main emotion-euiCard__main-vertical"
