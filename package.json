@@ -26,6 +26,7 @@
     "pre-push"
   ],
   "devDependencies": {
+    "@types/node": "^22",
     "chalk": "^4.1.0",
     "chokidar": "^4.0.3",
     "pre-push": "^0.1.4",
