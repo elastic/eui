@@ -14,7 +14,7 @@ import {
   useState,
   FunctionComponent,
 } from 'react';
-import { useObserver } from '../observer';
+import { useObserver } from '../use_observer';
 
 export interface EuiResizeObserverProps {
   /**
