@@ -1,3 +1,92 @@
+## [`v116.0.0`](https://github.com/elastic/eui/releases/v116.0.0)
+
+- Updated `EuiSuperSelect` to not open the listbox if no `options` are passed. ([#9645](https://github.com/elastic/eui/pull/9645))
+- Added `external` prop on `EuiContextMenuItem` to control rendering an icon for external links ([#9606](https://github.com/elastic/eui/pull/9606))
+- Updated `EuiSuperSelectItem` to use `EuiListItemLayout` ([#9603](https://github.com/elastic/eui/pull/9603))
+- Updated `EuiListGroupItem` to use `EuiListItemLayout` ([#9579](https://github.com/elastic/eui/pull/9579))
+- Updated `EuiSelectableListItem` to use the shared `EuiListItemLayout` component to align layout and styles between list components ([#9532](https://github.com/elastic/eui/pull/9532))
+- Updated `EuiSelectableTemplateSitewide` option text spacing from `4px` to `2px` ([#9532](https://github.com/elastic/eui/pull/9532))
+- Added a padding on `EuiDataGrid`s column actions popover ([#9515](https://github.com/elastic/eui/pull/9515))
+- Updated `EuiSelectableList` and `EuiSelectableListItem` styles ([#9411](https://github.com/elastic/eui/pull/9411))
+- Updated `EuiSelectableListItem` to use `EuiCheckboxControl` for `singleSelection=false` ([#9411](https://github.com/elastic/eui/pull/9411))
+- Updated `EuiSelectableList` to use `VariableSizeList` instead of `FixedSizeList` from `react-window` ([#9411](https://github.com/elastic/eui/pull/9411))
+- Updated `EuiSelectableList` overflow scroll styles to use `animation-timeline` ([#9411](https://github.com/elastic/eui/pull/9411))
+- Updated `EuiSelectableSearch`'s `compressed` default value to `true` ([#9411](https://github.com/elastic/eui/pull/9411))
+- Updated `EuiContextMenuItem` to use `EuiListItemLayout` ([#9600](https://github.com/elastic/eui/pull/9600))
+- Added `EuiContextMenuPanelTitle` component and changed the back button to be a standalone icon button instead of the entire title element ([#9600](https://github.com/elastic/eui/pull/9600))
+- Added `height` prop on  `EuiContextMenu` and `EuiContextMenuPanel`. When set, the panel will be scrollable if overflown. ([#9600](https://github.com/elastic/eui/pull/9600))
+- Added `EuiCheckboxControl` component which renders the presentational-only control element ([#9401](https://github.com/elastic/eui/pull/9401))
+- Updated `EuiCheckbox` to use `EuiCheckboxControl` ([#9401](https://github.com/elastic/eui/pull/9401))
+- Updated `EuiComboBox`'s listbox and list item styles by using `EuiListItemLayout` ([#9538](https://github.com/elastic/eui/pull/9538))
+- Updated the rendered output element of `EuiComboBoxOptionsList`'s list items from `button` to `li` ([#9538](https://github.com/elastic/eui/pull/9538))
+- Updated `EuiComboBox` to exclude disabled options from list navigation (aligning with native `<select>` behavior) ([#9538](https://github.com/elastic/eui/pull/9538))
+- Updated `EuiComboBoxOptionsList` to use `VariableSizeList` instead of `FixedSizeList` from `react-window` ([#9538](https://github.com/elastic/eui/pull/9538))
+- Added opt-in `onFocusBadge` prop on `EuiComboBox` and `EuiComboBoxOptionsList`. By default the "Enter" badge is not shown anymore. ([#9538](https://github.com/elastic/eui/pull/9538))
+- Updated `EuiComboBoxOptionsList`'s list item `id` to use a stable array index to ensure `aria-activedescendant` isn't stale. ([#9538](https://github.com/elastic/eui/pull/9538))
+
+**Bug fixes**
+
+- Fixed `EuiComboBox` opening the popover on focus when `noSuggestions=true` ([#9515](https://github.com/elastic/eui/pull/9515))
+
+**Deprecations**
+
+- Deprecated `layoutAlign` prop on `EuiContextMenuItem` ([#9600](https://github.com/elastic/eui/pull/9600))
+
+**Breaking changes**
+
+- Removed `itemLayoutAlign` prop from `EuiSuperSelect` ([#9603](https://github.com/elastic/eui/pull/9603))
+- Removed `hasDividers` prop on `EuiSuperSelectItem` ([#9603](https://github.com/elastic/eui/pull/9603))
+- Removed support for `EuiContextMenuItemProps` on `EuiSuperSelectItem` (uses `EuiListItemLayoutProps` instead) ([#9603](https://github.com/elastic/eui/pull/9603))
+- Removed `gutterSize` and `flush` props on `EuiListGroup` ([#9579](https://github.com/elastic/eui/pull/9579))
+- Removed `size` prop on `EuiListGroup` and `EuiListGroupItem` ([#9579](https://github.com/elastic/eui/pull/9579))
+- Removed component tokens: ([#9579](https://github.com/elastic/eui/pull/9579))
+  - `components.listGroupItemBackgroundPrimaryActive`
+  - `components.listGroupItemBackgroundSubduedActive`
+  - `components.listGroupItemBackgroundHover`
+  - `components.listGroupItemBackgroundPrimaryHover`
+- Removed `paddingSize` prop from `EuiSelectableListItem` ([#9411](https://github.com/elastic/eui/pull/9411))
+- Removed `size` prop from `EuiContextMenu`, `EuiContextMenuPanel` and `EuiContextMenuItem` (uses previous `s` size statically) ([#9600](https://github.com/elastic/eui/pull/9600))
+
+**Accessibility**
+
+- Improved the accessibility of `EuiSuperSelect` by fixing the value of `aria-activedescendant` to reflect the current navigated option instead of the selected one ([#9603](https://github.com/elastic/eui/pull/9603))
+- Improved the accessibility of `EuiContextMenuPanel` and `EuiContextMenuItem` by adding roles `menu`/`menuitem` and `aria-haspopup` for nested panels. ([#9600](https://github.com/elastic/eui/pull/9600))
+
+## [`v115.0.0`](https://github.com/elastic/eui/releases/v115.0.0)
+
+- Updated `EuiToolTip` default font size from 14px to 12px ([#9627](https://github.com/elastic/eui/pull/9627))
+- Updated `EuiToolTip` show animation to opacity-only with a 150ms grace period delay, preventing visual flickering when quickly hovering over multiple tooltip triggers ([#9626](https://github.com/elastic/eui/pull/9626))
+- Updated `EuiToolTip` to respect input modality. Tooltip no longer persists on mouse-click focus or shows on programmatic focus return. ([#9624](https://github.com/elastic/eui/pull/9624))
+
+**Bug fixes**
+
+- Fixed `uiPlugins[].button` type to allow UI plugins to not have a toolbar button in `EuiMarkdownEditor` ([#9634](https://github.com/elastic/eui/pull/9634))
+- Fixed `EuiToolTip` self-hiding when the mouse moves over child elements within the trigger ([#9626](https://github.com/elastic/eui/pull/9626))
+
+**Breaking changes**
+
+- Removed `delay` prop and `ToolTipDelay` type from `EuiToolTip` and `EuiIconTip` ([#9626](https://github.com/elastic/eui/pull/9626))
+- Removed `waitForEuiToolTipVisible` and `waitForEuiToolTipHidden` RTL test helpers; tooltip show/hide is now synchronous so direct assertions can be used instead ([#9626](https://github.com/elastic/eui/pull/9626))
+
+**Accessibility**
+
+- Fixed invalid nested interactive elements in `EuiMarkdownEditor` by removing `role` from the drop zone wrapper. ([#9625](https://github.com/elastic/eui/pull/9625))
+
+## [`v114.3.0`](https://github.com/elastic/eui/releases/v114.3.0)
+
+- Updated `productDashboard` icon. ([#9607](https://github.com/elastic/eui/pull/9607))
+- Updated `EuiStepsHorizontal` to prevent steps being clickable when `status="disabled"` ([#9574](https://github.com/elastic/eui/pull/9574))
+
+**Bug fixes**
+
+- Fixed broken SVG for `chartPie` icon. ([#9607](https://github.com/elastic/eui/pull/9607))
+- Fixed a bug in `EuiDataGrid` that caused the scroll position to reset when using middle mouse button to scroll the container. ([#9613](https://github.com/elastic/eui/pull/9613))
+- Fixed `EuiFlyout` to compare `pushMinBreakpoint` against the container's width, instead of the viewport width, when the `container` prop is provided. This ensures app-scoped flyouts switch between push and overlay modes based on the space actually available inside their container. ([#9592](https://github.com/elastic/eui/pull/9592))
+
+**Accessibility**
+
+- Fixed duplicate screen reader output for `EuiStepsHorizontal` ([#9574](https://github.com/elastic/eui/pull/9574))
+
 ## [`v114.2.0`](https://github.com/elastic/eui/releases/v114.2.0)
 
 - Added `addToDashboard` icon ([#9590](https://github.com/elastic/eui/pull/9590))

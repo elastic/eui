@@ -22,3 +22,7 @@ export type {
   EuiContextMenuItemLayoutAlignment,
 } from './context_menu_item';
 export { EuiContextMenuItem } from './context_menu_item';
+export {
+  EuiContextMenuPanelTitle,
+  type EuiContextMenuPanelTitleProps,
+} from './context_menu_panel_title';

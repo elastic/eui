@@ -311,7 +311,7 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<
         className: searchClasses,
       }}
       listProps={{
-        rowHeight: 68,
+        rowHeight: 52,
         showIcons: false,
         onFocusBadge: {
           iconSide: 'right',

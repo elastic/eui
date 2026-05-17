@@ -4,9 +4,7 @@ keywords: [EuiListGroup, EuiListGroupItem]
 
 # List group
 
-The **EuiListGroup** component is used to present **EuiListGroupItems** in a neatly formatted list. Use the `flush` and `bordered` properties for full-width and bordered presentations, respectively.
-
-Adjust the `gutterSize` prop to increase or decrease the spacing between items.
+The **EuiListGroup** component is used to present **EuiListGroupItems** in a neatly formatted list. Use `bordered` properties for bordered presentations.
 
 ```tsx interactive
 import React, { useState, Fragment } from 'react';
@@ -21,23 +19,11 @@ import {
 } from '@elastic/eui';
 
 export default () => {
-  const [flushWidth, setFlushWidth] = useState(false);
   const [showBorder, setShowBorder] = useState(false);
 
   return (
     <Fragment>
       <EuiFlexGroup alignItems="center">
-        <EuiFlexItem grow={false}>
-          <EuiSwitch
-            label={
-              <span>
-                Show as <EuiCode>flush</EuiCode>
-              </span>
-            }
-            checked={flushWidth}
-            onChange={() => setFlushWidth(!flushWidth)}
-          />
-        </EuiFlexItem>
         <EuiFlexItem grow={false}>
           <EuiSwitch
             label={
@@ -55,7 +41,7 @@ export default () => {
 
       <EuiSpacer size="l" />
 
-      <EuiListGroup flush={flushWidth} bordered={showBorder}>
+      <EuiListGroup bordered={showBorder}>
         <EuiListGroupItem onClick={() => {}} label="First item" />
 
         <EuiListGroupItem onClick={() => {}} label="Second item" />
@@ -113,7 +99,7 @@ const myContent = [
 ];
 
 export default () => {
-  return <EuiListGroup listItems={myContent} color="primary" size="s" />;
+  return <EuiListGroup listItems={myContent} color="primary" />;
 };
 ```
 
@@ -304,7 +290,6 @@ export default () => (
       wrapText
       label="Fourth very long item with wrapping enabled, custom props, and will not force truncation."
       toolTipProps={{
-        delay: 'regular',
         position: 'top',
         title: 'Title of record',
       }}
@@ -313,11 +298,9 @@ export default () => (
 );
 ```
 
-## List item color and size
+## List item color
 
 **EuiListGroupItems** will get by default the color `text`. You can enforce a different color of `primary`, `text`, or `subdued` with the `color` prop. Or provide the prop directly to **EuiListGroup**.
-
-They also accept options for text size; `'xs' | 's' | 'm' | 'l'`.
 
 ```tsx interactive
 import React from 'react';
@@ -332,18 +315,17 @@ import {
 export default () => (
   <>
     <EuiListGroup>
-      <EuiListGroupItem href="#" label="Text by default (xs)" size="xs" />
+      <EuiListGroupItem href="#" label="Text by default (xs)" />
 
       <EuiListGroupItem
         onClick={() => {}}
         label="Primary (s)"
         color="primary"
-        size="s"
       />
 
       <EuiListGroupItem href="#" label="Text (m)" color="text" />
 
-      <EuiListGroupItem href="#" label="Subdued (l)" color="subdued" size="l" />
+      <EuiListGroupItem href="#" label="Subdued (l)" color="subdued" />
     </EuiListGroup>
 
     <EuiSpacer size="s" />

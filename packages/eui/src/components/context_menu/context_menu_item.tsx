@@ -24,18 +24,17 @@ import {
   cloneElementWithCss,
 } from '../../services';
 import { validateHref } from '../../services/security/href_validator';
+import { type _EuiExtendedButtonColor } from '../../global_styling';
 import { CommonProps, keysOf } from '../common';
 import { EuiIcon, type IconType } from '../icon';
-import { EuiToolTip, EuiToolTipProps } from '../tool_tip';
-import { type _EuiExtendedButtonColor } from '../../global_styling';
+import { EuiToolTipProps } from '../tool_tip';
 
 import { euiContextMenuItemStyles } from './context_menu_item.styles';
+import { EuiListItemLayout, EuiListItemLayoutProps } from '../list_item_layout';
 
 export type EuiContextMenuItemIcon = IconType | ReactElement<any> | HTMLElement;
 
 export type EuiContextMenuItemLayoutAlignment = 'center' | 'top' | 'bottom';
-
-export const SIZES = ['s', 'm'] as const;
 
 export interface EuiContextMenuItemProps
   extends PropsWithChildren,
@@ -45,6 +44,7 @@ export interface EuiContextMenuItemProps
   disabled?: boolean;
   onClick?: (event: React.MouseEvent) => void;
   buttonRef?: Ref<HTMLButtonElement>;
+  role?: HTMLAttributes<HTMLElement>['role'];
   /**
    * Required if using a tooltip. Add an optional tooltip on hover
    */
@@ -58,18 +58,23 @@ export interface EuiContextMenuItemProps
   target?: string;
   rel?: string;
   /**
+   * @deprecated - will be removed in the future and handled statically as `center`
    * How to align icon with content of button
    */
   layoutAlign?: EuiContextMenuItemLayoutAlignment;
   /**
-   * Reduce the size to `s` when in need of a more compressed menu
-   */
-  size?: (typeof SIZES)[number];
-  /**
    * Applies a color to the text and icon of the item.
-   * Accepts the same color values as `EuiButtonEmpty`.
+   *
+   * Deprecated: This won't match all `EuiButtonEmpty` colors in the near future.
+   * Use supported variants "text" and "danger".
+   *
    */
   color?: _EuiExtendedButtonColor;
+  /**
+   * Set to true to show an icon indicating that it is an external link;
+   * Defaults to true if `target="_blank"`
+   */
+  external?: boolean;
 }
 
 type Props = CommonProps &
@@ -102,23 +107,26 @@ export const EuiContextMenuItem: FunctionComponent<Props> = ({
   href,
   target,
   rel,
-  size = 'm',
-  color,
+  color = 'text',
+  external,
   ...rest
 }) => {
   const isHrefValid = !href || validateHref(href);
   const disabled = _disabled || !isHrefValid;
 
   const classes = classNames('euiContextMenuItem', className);
+  const anchorClasses = classNames(
+    'eui-displayBlock',
+    toolTipProps?.anchorClassName
+  );
 
   const styles = useEuiMemoizedStyles(euiContextMenuItemStyles);
   const cssStyles = [
     styles.euiContextMenuItem,
-    styles.sizes[size],
     styles.layoutAlign[layoutAlign],
-    disabled && styles.disabled,
-    !disabled && color && styles.colors[color],
+    !disabled && color !== 'text' && styles.colors[color],
   ];
+  const textStyles = [styles.text.euiContextMenuItem__text];
 
   const iconInstance =
     icon &&
@@ -146,81 +154,80 @@ export const EuiContextMenuItem: FunctionComponent<Props> = ({
     />
   );
 
-  const textStyles = [
-    styles.text.euiContextMenuItem__text,
-    size === 's' && styles.text.s,
-  ];
-  const buttonContent = (
-    <>
-      {iconInstance}
-      <span className="euiContextMenuItem__text" css={textStyles}>
-        {children}
-      </span>
-      {arrow}
-    </>
+  const isLink = href && !disabled;
+  const isButton = !isLink && (href || rest.onClick || toolTipContent);
+
+  const commonProps = {
+    css: cssStyles,
+    className: classes,
+  };
+
+  const buttonProps = isButton
+    ? {
+        element: 'button',
+        type: 'button',
+        ref: buttonRef,
+        ...rest,
+      }
+    : {};
+
+  const secureRel = isLink
+    ? getSecureRelForTarget({ href, target, rel })
+    : undefined;
+
+  const linkProps = isLink
+    ? {
+        element: 'a',
+        href,
+        target,
+        rel: secureRel,
+        ref: buttonRef as Ref<HTMLAnchorElement>,
+        external,
+        ...(rest as AnchorHTMLAttributes<HTMLAnchorElement>),
+      }
+    : {};
+
+  const divProps =
+    !isButton && !isLink
+      ? {
+          element: 'div',
+          ref: buttonRef as Ref<HTMLDivElement>,
+          ...(rest as HTMLAttributes<HTMLDivElement>),
+        }
+      : {};
+
+  const props = {
+    ...commonProps,
+    ...divProps,
+    ...buttonProps,
+    ...linkProps,
+  } as EuiListItemLayoutProps;
+
+  return (
+    <EuiListItemLayout
+      {...props}
+      role={props.role}
+      showIndicator={false}
+      prepend={iconInstance}
+      append={arrow}
+      textWrap="wrap"
+      isDisabled={disabled}
+      textProps={{
+        className: 'euiContextMenuItem__text',
+        css: textStyles,
+      }}
+      tooltipProps={
+        toolTipContent
+          ? {
+              ...toolTipProps,
+              position: 'right',
+              anchorClassName: anchorClasses,
+              content: toolTipContent,
+            }
+          : undefined
+      }
+    >
+      {children}
+    </EuiListItemLayout>
   );
-
-  let button;
-  // <a> elements don't respect the `disabled` attribute. So if we're disabled, we'll just pretend
-  // this is a button and piggyback off its disabled styles.
-  if (href && !disabled) {
-    const secureRel = getSecureRelForTarget({ href, target, rel });
-
-    button = (
-      <a
-        css={cssStyles}
-        className={classes}
-        href={href}
-        target={target}
-        rel={secureRel}
-        ref={buttonRef as Ref<HTMLAnchorElement>}
-        {...(rest as AnchorHTMLAttributes<HTMLAnchorElement>)}
-      >
-        {buttonContent}
-      </a>
-    );
-  } else if (href || rest.onClick || toolTipContent) {
-    button = (
-      <button
-        disabled={disabled}
-        css={cssStyles}
-        className={classes}
-        type="button"
-        ref={buttonRef}
-        {...rest}
-      >
-        {buttonContent}
-      </button>
-    );
-  } else {
-    button = (
-      <div
-        css={cssStyles}
-        className={classes}
-        ref={buttonRef as Ref<HTMLDivElement>}
-        {...(rest as HTMLAttributes<HTMLDivElement>)}
-      >
-        {buttonContent}
-      </div>
-    );
-  }
-
-  if (toolTipContent) {
-    const anchorClasses = classNames(
-      'eui-displayBlock',
-      toolTipProps?.anchorClassName
-    );
-    return (
-      <EuiToolTip
-        position="right"
-        {...toolTipProps}
-        anchorClassName={anchorClasses}
-        content={toolTipContent}
-      >
-        {button}
-      </EuiToolTip>
-    );
-  } else {
-    return button;
-  }
 };

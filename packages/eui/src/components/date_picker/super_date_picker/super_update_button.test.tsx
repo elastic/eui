@@ -8,7 +8,7 @@
 
 import React from 'react';
 import { fireEvent } from '@testing-library/react';
-import { render, waitForEuiToolTipVisible, within } from '../../../test/rtl';
+import { render, within } from '../../../test/rtl';
 import { shouldRenderCustomStyles } from '../../../test/internal';
 
 import { EuiSuperUpdateButton } from './super_update_button';
@@ -24,14 +24,13 @@ describe('EuiSuperUpdateButton', () => {
       data-test-subj="trigger"
       showTooltip
       needsUpdate
-      toolTipProps={{ children: <>Test</>, delay: 'regular', position: 'top' }} // React throws a `Failed prop type` error without this
+      toolTipProps={{ children: <>Test</>, position: 'top' }} // React throws a `Failed prop type` error without this
     />,
     {
       childProps: ['toolTipProps'],
       skip: { parentTest: true },
-      renderCallback: async ({ getByTestSubject }) => {
+      renderCallback: ({ getByTestSubject }) => {
         fireEvent.mouseOver(getByTestSubject('trigger'));
-        await waitForEuiToolTipVisible();
       },
     }
   );

@@ -324,15 +324,16 @@ describe('euiFormCustomControlStyles', () => {
               /* For Windows high contrast themes, a border must always be rendered, not just a background */
               border: 1px solid transparent;
 
-              &:has(input:focus-visible) {
-                outline: 2px solid #0B64DD;
-                outline-offset: 2px;
-              }
-
               @media screen and (prefers-reduced-motion: no-preference) {
                 transition-property: background-color, color;
                 transition-duration: 150ms;
                 transition-timing-function: ease-in;
+              }
+            ",
+          "focusVisible": "
+              &:has(input:focus-visible) {
+                outline: 2px solid #0B64DD;
+                outline-offset: 2px;
               }
             ",
           "hasLabel": "

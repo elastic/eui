@@ -3,80 +3,93 @@
 exports[`EuiPinnableListGroup can have custom pin icon titles 1`] = `
 <ul
   aria-label="aria-label"
-  class="euiListGroup euiPinnableListGroup testClass1 testClass2 emotion-euiListGroup-s-maxWidthDefault-euiTestCss"
+  class="euiListGroup euiPinnableListGroup testClass1 testClass2 emotion-euiListGroup-maxWidthDefault-euiTestCss"
   data-test-subj="test subject string"
 >
   <li
-    class="euiListGroupItem euiPinnableListGroup__item emotion-euiListGroupItem-m"
+    class="euiListItemLayout euiListGroupItem euiPinnableListGroup__item euiListGroupItem__text emotion-euiListItemLayout-euiListGroupItem-euiListGroupItem__inner-text"
+    data-test-subj="euiListItemLayout"
   >
     <span
-      class="euiListGroupItem__text emotion-euiListGroupItem__inner-m-text"
+      class="euiListItemLayout__content emotion-euiListItemLayout__content"
     >
       <span
-        class="euiListGroupItem__icon emotion-euiListGroupItem__icon"
-        color="inherit"
-        data-euiicon-type="stop"
-      />
+        class="euiListItemLayout__prepend emotion-euiListItemLayout__prepend"
+      >
+        <span
+          class="euiListGroupItem__icon css-0"
+          color="inherit"
+          data-euiicon-type="stop"
+        />
+      </span>
       <span
-        class="euiListGroupItem__label emotion-euiListGroupItem__label-truncate"
+        class="euiListItemLayout__text euiListGroupItem__label emotion-euiListItemLayout__text-truncate"
         title="Label with iconType"
       >
         Label with iconType
       </span>
+      <button
+        aria-label="Pin Label with iconType to the top"
+        class="euiButtonIcon euiListGroupItemExtraAction emotion-euiButtonIcon-xs-empty-text-euiListGroupItemExtraAction-hoverStyles-euiPinnableListGroup__itemExtraAction"
+        title="Pin Label with iconType to the top"
+        type="button"
+      >
+        <span
+          aria-hidden="true"
+          class="euiButtonIcon__icon"
+          color="inherit"
+          data-euiicon-type="pinFill"
+        />
+      </button>
     </span>
-    <button
-      aria-label="Pin Label with iconType to the top"
-      class="euiButtonIcon euiListGroupItemExtraAction emotion-euiButtonIcon-xs-empty-text-euiListGroupItemExtraAction-hoverStyles-euiPinnableListGroup__itemExtraAction"
-      title="Pin Label with iconType to the top"
-      type="button"
-    >
-      <span
-        aria-hidden="true"
-        class="euiButtonIcon__icon"
-        color="inherit"
-        data-euiicon-type="pinFill"
-      />
-    </button>
   </li>
   <li
-    class="euiListGroupItem euiPinnableListGroup__item emotion-euiListGroupItem-m"
+    class="euiListItemLayout euiListGroupItem euiPinnableListGroup__item euiListGroupItem__text emotion-euiListItemLayout-euiListGroupItem-euiListGroupItem__inner-text"
+    data-test-subj="euiListItemLayout"
   >
     <span
-      class="euiListGroupItem__text emotion-euiListGroupItem__inner-m-text"
+      class="euiListItemLayout__content emotion-euiListItemLayout__content"
     >
       <span
-        class="euiListGroupItem__label emotion-euiListGroupItem__label-truncate"
+        class="euiListItemLayout__text euiListGroupItem__label emotion-euiListItemLayout__text-truncate"
         title="Custom extra action"
       >
         Custom extra action
       </span>
+      <button
+        aria-label="bell"
+        class="euiButtonIcon euiListGroupItemExtraAction emotion-euiButtonIcon-xs-empty-text-euiListGroupItemExtraAction-alwaysShow"
+        type="button"
+      >
+        <span
+          aria-hidden="true"
+          class="euiButtonIcon__icon"
+          color="inherit"
+          data-euiicon-type="bell"
+        />
+      </button>
     </span>
-    <button
-      aria-label="bell"
-      class="euiButtonIcon euiListGroupItemExtraAction emotion-euiButtonIcon-xs-empty-text-euiListGroupItemExtraAction-alwaysShow"
-      type="button"
-    >
-      <span
-        aria-hidden="true"
-        class="euiButtonIcon__icon"
-        color="inherit"
-        data-euiicon-type="bell"
-      />
-    </button>
   </li>
   <li
-    class="euiListGroupItem euiPinnableListGroup__item emotion-euiListGroupItem-text-text-m"
+    class="euiListItemLayout__wrapper emotion-euiListItemLayout__wrapper-hasExtraAction-isInteractive-isSelected"
+    data-test-subj="euiListItemLayout-wrapper"
   >
     <a
-      class="euiListGroupItem__button emotion-euiListGroupItem__inner-m-text-isActive-isClickable"
+      aria-current="true"
+      class="euiListItemLayout euiListGroupItem euiPinnableListGroup__item euiListGroupItem__button emotion-euiListItemLayout-euiListItemLayout__action-euiListGroupItem-euiListGroupItem__inner"
+      data-test-subj="euiListItemLayout"
       href="#"
       rel="noreferrer"
     >
       <span
-        class="euiListGroupItem__label emotion-euiListGroupItem__label-truncate"
-        title="Active link"
+        class="euiListItemLayout__content emotion-euiListItemLayout__content"
       >
-        Active link
+        <span
+          class="euiListItemLayout__text euiListGroupItem__label emotion-euiListItemLayout__text-truncate"
+          title="Active link"
+        >
+          Active link
+        </span>
       </span>
     </a>
     <button
@@ -94,17 +107,23 @@ exports[`EuiPinnableListGroup can have custom pin icon titles 1`] = `
     </button>
   </li>
   <li
-    class="euiListGroupItem euiPinnableListGroup__item emotion-euiListGroupItem-text-m"
+    class="euiListItemLayout__wrapper emotion-euiListItemLayout__wrapper-hasExtraAction-isInteractive"
+    data-test-subj="euiListItemLayout-wrapper"
   >
     <button
-      class="euiListGroupItem__button emotion-euiListGroupItem__inner-m-text-isClickable"
+      class="euiListItemLayout euiListGroupItem euiPinnableListGroup__item euiListGroupItem__button emotion-euiListItemLayout-euiListItemLayout__action-euiListGroupItem-euiListGroupItem__inner-text"
+      data-test-subj="euiListItemLayout"
       type="button"
     >
       <span
-        class="euiListGroupItem__label emotion-euiListGroupItem__label-truncate"
-        title="Button with onClick"
+        class="euiListItemLayout__content emotion-euiListItemLayout__content"
       >
-        Button with onClick
+        <span
+          class="euiListItemLayout__text euiListGroupItem__label emotion-euiListItemLayout__text-truncate"
+          title="Button with onClick"
+        >
+          Button with onClick
+        </span>
       </span>
     </button>
     <button
@@ -122,18 +141,24 @@ exports[`EuiPinnableListGroup can have custom pin icon titles 1`] = `
     </button>
   </li>
   <li
-    class="euiListGroupItem euiPinnableListGroup__item emotion-euiListGroupItem-text-m"
+    class="euiListItemLayout__wrapper emotion-euiListItemLayout__wrapper-hasExtraAction-isInteractive"
+    data-test-subj="euiListItemLayout-wrapper"
   >
     <a
-      class="euiListGroupItem__button emotion-euiListGroupItem__inner-m-text-isClickable"
+      class="euiListItemLayout euiListGroupItem euiPinnableListGroup__item euiListGroupItem__button emotion-euiListItemLayout-euiListItemLayout__action-euiListGroupItem-euiListGroupItem__inner-text"
+      data-test-subj="euiListItemLayout"
       href="#"
       rel="noreferrer"
     >
       <span
-        class="euiListGroupItem__label emotion-euiListGroupItem__label-truncate"
-        title="Link with href"
+        class="euiListItemLayout__content emotion-euiListItemLayout__content"
       >
-        Link with href
+        <span
+          class="euiListItemLayout__text euiListGroupItem__label emotion-euiListItemLayout__text-truncate"
+          title="Link with href"
+        >
+          Link with href
+        </span>
       </span>
     </a>
     <button
@@ -151,18 +176,24 @@ exports[`EuiPinnableListGroup can have custom pin icon titles 1`] = `
     </button>
   </li>
   <li
-    class="euiListGroupItem euiPinnableListGroup__item emotion-euiListGroupItem-text-m"
+    class="euiListItemLayout__wrapper emotion-euiListItemLayout__wrapper-isInteractive"
+    data-test-subj="euiListItemLayout-wrapper"
   >
     <a
-      class="euiListGroupItem__button emotion-euiListGroupItem__inner-m-text-isClickable"
+      class="euiListItemLayout euiListGroupItem euiPinnableListGroup__item euiListGroupItem__button emotion-euiListItemLayout-euiListItemLayout__action-euiListGroupItem-euiListGroupItem__inner-text"
+      data-test-subj="euiListItemLayout"
       href="#"
       rel="noreferrer"
     >
       <span
-        class="euiListGroupItem__label emotion-euiListGroupItem__label-truncate"
-        title="Not pinnable"
+        class="euiListItemLayout__content emotion-euiListItemLayout__content"
       >
-        Not pinnable
+        <span
+          class="euiListItemLayout__text euiListGroupItem__label emotion-euiListItemLayout__text-truncate"
+          title="Not pinnable"
+        >
+          Not pinnable
+        </span>
       </span>
     </a>
   </li>
@@ -172,80 +203,93 @@ exports[`EuiPinnableListGroup can have custom pin icon titles 1`] = `
 exports[`EuiPinnableListGroup is rendered 1`] = `
 <ul
   aria-label="aria-label"
-  class="euiListGroup euiPinnableListGroup testClass1 testClass2 emotion-euiListGroup-s-maxWidthDefault-euiTestCss"
+  class="euiListGroup euiPinnableListGroup testClass1 testClass2 emotion-euiListGroup-maxWidthDefault-euiTestCss"
   data-test-subj="test subject string"
 >
   <li
-    class="euiListGroupItem euiPinnableListGroup__item emotion-euiListGroupItem-m"
+    class="euiListItemLayout euiListGroupItem euiPinnableListGroup__item euiListGroupItem__text emotion-euiListItemLayout-euiListGroupItem-euiListGroupItem__inner-text"
+    data-test-subj="euiListItemLayout"
   >
     <span
-      class="euiListGroupItem__text emotion-euiListGroupItem__inner-m-text"
+      class="euiListItemLayout__content emotion-euiListItemLayout__content"
     >
       <span
-        class="euiListGroupItem__icon emotion-euiListGroupItem__icon"
-        color="inherit"
-        data-euiicon-type="stop"
-      />
+        class="euiListItemLayout__prepend emotion-euiListItemLayout__prepend"
+      >
+        <span
+          class="euiListGroupItem__icon css-0"
+          color="inherit"
+          data-euiicon-type="stop"
+        />
+      </span>
       <span
-        class="euiListGroupItem__label emotion-euiListGroupItem__label-truncate"
+        class="euiListItemLayout__text euiListGroupItem__label emotion-euiListItemLayout__text-truncate"
         title="Label with iconType"
       >
         Label with iconType
       </span>
+      <button
+        aria-label="Pin item"
+        class="euiButtonIcon euiListGroupItemExtraAction emotion-euiButtonIcon-xs-empty-text-euiListGroupItemExtraAction-hoverStyles-euiPinnableListGroup__itemExtraAction"
+        title="Pin item"
+        type="button"
+      >
+        <span
+          aria-hidden="true"
+          class="euiButtonIcon__icon"
+          color="inherit"
+          data-euiicon-type="pinFill"
+        />
+      </button>
     </span>
-    <button
-      aria-label="Pin item"
-      class="euiButtonIcon euiListGroupItemExtraAction emotion-euiButtonIcon-xs-empty-text-euiListGroupItemExtraAction-hoverStyles-euiPinnableListGroup__itemExtraAction"
-      title="Pin item"
-      type="button"
-    >
-      <span
-        aria-hidden="true"
-        class="euiButtonIcon__icon"
-        color="inherit"
-        data-euiicon-type="pinFill"
-      />
-    </button>
   </li>
   <li
-    class="euiListGroupItem euiPinnableListGroup__item emotion-euiListGroupItem-m"
+    class="euiListItemLayout euiListGroupItem euiPinnableListGroup__item euiListGroupItem__text emotion-euiListItemLayout-euiListGroupItem-euiListGroupItem__inner-text"
+    data-test-subj="euiListItemLayout"
   >
     <span
-      class="euiListGroupItem__text emotion-euiListGroupItem__inner-m-text"
+      class="euiListItemLayout__content emotion-euiListItemLayout__content"
     >
       <span
-        class="euiListGroupItem__label emotion-euiListGroupItem__label-truncate"
+        class="euiListItemLayout__text euiListGroupItem__label emotion-euiListItemLayout__text-truncate"
         title="Custom extra action"
       >
         Custom extra action
       </span>
+      <button
+        aria-label="bell"
+        class="euiButtonIcon euiListGroupItemExtraAction emotion-euiButtonIcon-xs-empty-text-euiListGroupItemExtraAction-alwaysShow"
+        type="button"
+      >
+        <span
+          aria-hidden="true"
+          class="euiButtonIcon__icon"
+          color="inherit"
+          data-euiicon-type="bell"
+        />
+      </button>
     </span>
-    <button
-      aria-label="bell"
-      class="euiButtonIcon euiListGroupItemExtraAction emotion-euiButtonIcon-xs-empty-text-euiListGroupItemExtraAction-alwaysShow"
-      type="button"
-    >
-      <span
-        aria-hidden="true"
-        class="euiButtonIcon__icon"
-        color="inherit"
-        data-euiicon-type="bell"
-      />
-    </button>
   </li>
   <li
-    class="euiListGroupItem euiPinnableListGroup__item emotion-euiListGroupItem-text-text-m"
+    class="euiListItemLayout__wrapper emotion-euiListItemLayout__wrapper-hasExtraAction-isInteractive-isSelected"
+    data-test-subj="euiListItemLayout-wrapper"
   >
     <a
-      class="euiListGroupItem__button emotion-euiListGroupItem__inner-m-text-isActive-isClickable"
+      aria-current="true"
+      class="euiListItemLayout euiListGroupItem euiPinnableListGroup__item euiListGroupItem__button emotion-euiListItemLayout-euiListItemLayout__action-euiListGroupItem-euiListGroupItem__inner"
+      data-test-subj="euiListItemLayout"
       href="#"
       rel="noreferrer"
     >
       <span
-        class="euiListGroupItem__label emotion-euiListGroupItem__label-truncate"
-        title="Active link"
+        class="euiListItemLayout__content emotion-euiListItemLayout__content"
       >
-        Active link
+        <span
+          class="euiListItemLayout__text euiListGroupItem__label emotion-euiListItemLayout__text-truncate"
+          title="Active link"
+        >
+          Active link
+        </span>
       </span>
     </a>
     <button
@@ -263,17 +307,23 @@ exports[`EuiPinnableListGroup is rendered 1`] = `
     </button>
   </li>
   <li
-    class="euiListGroupItem euiPinnableListGroup__item emotion-euiListGroupItem-text-m"
+    class="euiListItemLayout__wrapper emotion-euiListItemLayout__wrapper-hasExtraAction-isInteractive"
+    data-test-subj="euiListItemLayout-wrapper"
   >
     <button
-      class="euiListGroupItem__button emotion-euiListGroupItem__inner-m-text-isClickable"
+      class="euiListItemLayout euiListGroupItem euiPinnableListGroup__item euiListGroupItem__button emotion-euiListItemLayout-euiListItemLayout__action-euiListGroupItem-euiListGroupItem__inner-text"
+      data-test-subj="euiListItemLayout"
       type="button"
     >
       <span
-        class="euiListGroupItem__label emotion-euiListGroupItem__label-truncate"
-        title="Button with onClick"
+        class="euiListItemLayout__content emotion-euiListItemLayout__content"
       >
-        Button with onClick
+        <span
+          class="euiListItemLayout__text euiListGroupItem__label emotion-euiListItemLayout__text-truncate"
+          title="Button with onClick"
+        >
+          Button with onClick
+        </span>
       </span>
     </button>
     <button
@@ -291,18 +341,24 @@ exports[`EuiPinnableListGroup is rendered 1`] = `
     </button>
   </li>
   <li
-    class="euiListGroupItem euiPinnableListGroup__item emotion-euiListGroupItem-text-m"
+    class="euiListItemLayout__wrapper emotion-euiListItemLayout__wrapper-hasExtraAction-isInteractive"
+    data-test-subj="euiListItemLayout-wrapper"
   >
     <a
-      class="euiListGroupItem__button emotion-euiListGroupItem__inner-m-text-isClickable"
+      class="euiListItemLayout euiListGroupItem euiPinnableListGroup__item euiListGroupItem__button emotion-euiListItemLayout-euiListItemLayout__action-euiListGroupItem-euiListGroupItem__inner-text"
+      data-test-subj="euiListItemLayout"
       href="#"
       rel="noreferrer"
     >
       <span
-        class="euiListGroupItem__label emotion-euiListGroupItem__label-truncate"
-        title="Link with href"
+        class="euiListItemLayout__content emotion-euiListItemLayout__content"
       >
-        Link with href
+        <span
+          class="euiListItemLayout__text euiListGroupItem__label emotion-euiListItemLayout__text-truncate"
+          title="Link with href"
+        >
+          Link with href
+        </span>
       </span>
     </a>
     <button
@@ -320,18 +376,24 @@ exports[`EuiPinnableListGroup is rendered 1`] = `
     </button>
   </li>
   <li
-    class="euiListGroupItem euiPinnableListGroup__item emotion-euiListGroupItem-text-m"
+    class="euiListItemLayout__wrapper emotion-euiListItemLayout__wrapper-isInteractive"
+    data-test-subj="euiListItemLayout-wrapper"
   >
     <a
-      class="euiListGroupItem__button emotion-euiListGroupItem__inner-m-text-isClickable"
+      class="euiListItemLayout euiListGroupItem euiPinnableListGroup__item euiListGroupItem__button emotion-euiListItemLayout-euiListItemLayout__action-euiListGroupItem-euiListGroupItem__inner-text"
+      data-test-subj="euiListItemLayout"
       href="#"
       rel="noreferrer"
     >
       <span
-        class="euiListGroupItem__label emotion-euiListGroupItem__label-truncate"
-        title="Not pinnable"
+        class="euiListItemLayout__content emotion-euiListItemLayout__content"
       >
-        Not pinnable
+        <span
+          class="euiListItemLayout__text euiListGroupItem__label emotion-euiListItemLayout__text-truncate"
+          title="Not pinnable"
+        >
+          Not pinnable
+        </span>
       </span>
     </a>
   </li>

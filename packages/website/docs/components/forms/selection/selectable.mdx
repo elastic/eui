@@ -73,7 +73,6 @@ export default () => {
     <EuiSelectable
       aria-label="Basic example"
       options={options}
-      listProps={{ bordered: true }}
       onChange={(newOptions) => setOptions(newOptions)}
     >
       {(list) => list}
@@ -221,7 +220,6 @@ export default () => {
         options={options}
         onChange={(newOptions) => setOptions(newOptions)}
         singleSelection={always ? 'always' : true}
-        listProps={{ bordered: true }}
       >
         {(list) => list}
       </EuiSelectable>
@@ -674,7 +672,7 @@ export default () => {
         <h4>
           Using <EuiCode language="js">listProps.bordered=true</EuiCode> and{' '}
           <EuiCode language="js">
-            listProps.paddingSize=&quot;none&quot;
+            listProps.paddingSize=&quot;s&quot;
           </EuiCode>
         </h4>
       </EuiTitle>
@@ -684,7 +682,7 @@ export default () => {
         options={options}
         onChange={onChange}
         style={{ width: 300 }}
-        listProps={{ bordered: true, paddingSize: 'none' }}
+        listProps={{ bordered: true, paddingSize: 's' }}
       >
         {(list) => list}
       </EuiSelectable>
@@ -888,7 +886,7 @@ export default () => {
     <EuiSelectable
       aria-label="Example with option tooltips"
       options={options}
-      listProps={{ bordered: true, style: { maxInlineSize: 400 } }}
+      listProps={{ style: { maxInlineSize: 400 } }}
       onChange={(newOptions) => setOptions(newOptions)}
     >
       {(list) => list}
@@ -1054,7 +1052,7 @@ export default () => {
         onChange={(options) => setOptions(options)}
         listProps={{
           isVirtualized,
-          rowHeight: useCustomContent ? 50 : undefined,
+          rowHeight: useCustomContent ? 57 : undefined,
           showIcons: false,
         }}
         renderOption={useCustomContent ? renderCountryOption : undefined}

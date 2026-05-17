@@ -6,7 +6,12 @@
  * Side Public License, v 1.
  */
 
-import React, { ButtonHTMLAttributes, Component, createRef } from 'react';
+import React, {
+  ButtonHTMLAttributes,
+  Component,
+  createRef,
+  isValidElement,
+} from 'react';
 import classNames from 'classnames';
 
 import { withEuiTheme, WithEuiThemeProps } from '../../services';
@@ -14,6 +19,7 @@ import { CommonProps } from '../common';
 
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
 import { EuiToolTip } from '../tool_tip';
+import type { EuiToolTipRef } from '../tool_tip';
 import { EuiIcon } from '../icon';
 import { EuiComboBoxOptionOption } from '../combo_box';
 
@@ -62,7 +68,7 @@ export class EuiFilterSelectItemClass extends Component<
   };
 
   buttonRef: HTMLButtonElement | null = null;
-  tooltipRef = createRef<EuiToolTip>();
+  tooltipRef = createRef<EuiToolTipRef>();
 
   state = {
     hasFocus: false,
@@ -91,11 +97,27 @@ export class EuiFilterSelectItemClass extends Component<
     return this.state.hasFocus;
   };
 
+  componentDidMount() {
+    const { isFocused, toolTipContent, disabled, children } = this.props;
+    if (isValidElement(children) && !disabled && toolTipContent) {
+      this.toggleToolTip(isFocused ?? false);
+    }
+  }
+
   componentDidUpdate(
     prevProps: Readonly<WithEuiThemeProps<{}> & EuiFilterSelectItemProps>
   ) {
     if (this.props.isFocused && !prevProps.isFocused) {
       this.buttonRef?.scrollIntoView?.({ block: 'nearest' });
+    }
+    const { isFocused, toolTipContent, disabled, children } = this.props;
+    if (
+      isValidElement(children) &&
+      !disabled &&
+      toolTipContent &&
+      isFocused !== prevProps.isFocused
+    ) {
+      this.toggleToolTip(isFocused ?? false);
     }
   }
 
@@ -127,7 +149,7 @@ export class EuiFilterSelectItemClass extends Component<
     const hasToolTip =
       // we're using isValidElement here as EuiToolTipAnchor uses
       // cloneElement to enhance the element with required attributes
-      React.isValidElement(children) && !disabled && toolTipContent;
+      isValidElement(children) && !disabled && toolTipContent;
 
     let anchorProps = undefined;
 
@@ -142,8 +164,6 @@ export class EuiFilterSelectItemClass extends Component<
             style: anchorStyles,
           }
         : { style };
-
-      this.toggleToolTip(isFocused ?? false);
     }
 
     let iconNode;

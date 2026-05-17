@@ -164,13 +164,12 @@ const HistoryPopover: React.FC<{
       panelPaddingSize="xs"
       anchorPosition="downLeft"
     >
-      <EuiListGroup gutterSize="none">
+      <EuiListGroup>
         {items.map((item, index) => (
           <EuiListGroupItem
             key={`history-item-${index}`}
             label={item.title}
             iconType={item.iconType}
-            size="s"
             onClick={() => {
               item.onClick();
               setIsPopoverOpen(false);

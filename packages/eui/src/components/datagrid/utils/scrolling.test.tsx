@@ -6,11 +6,161 @@
  * Side Public License, v 1.
  */
 
-import React from 'react';
+import React, { type ReactNode } from 'react';
+import { act } from '@testing-library/react';
 import { render, renderHook } from '../../../test/rtl';
-import { useScrollCellIntoView, useScrollBars } from './scrolling';
+import { DataGridCellPopoverContext } from '../body/cell';
+import { useScroll, useScrollCellIntoView, useScrollBars } from './scrolling';
+import { DataGridFocusContext } from './focus';
 
 // see scrolling.spec.tsx for E2E useScroll tests
+
+const createPointerEvent = (
+  type: string,
+  init: PointerEventInit = {}
+): MouseEvent => {
+  const event = new MouseEvent(type, { bubbles: true, ...init });
+  Object.defineProperty(event, 'pointerType', {
+    configurable: true,
+    value: init.pointerType ?? 'mouse',
+  });
+  return event;
+};
+
+describe('useScroll', () => {
+  const scrollTo = jest.fn();
+  const scrollToItem = jest.fn();
+  let outerGrid: HTMLDivElement;
+  let pointerTarget: HTMLDivElement;
+  let focusedCell: [number, number] | undefined;
+  let args: Parameters<typeof useScroll>[0];
+
+  const focusContext = {
+    setFocusedCell: jest.fn(),
+    setIsFocusedCellInView: jest.fn(),
+    onFocusUpdate: () => () => {},
+    focusFirstVisibleInteractiveCell: jest.fn(),
+  };
+
+  const popoverContext = {
+    popoverIsOpen: false,
+    cellLocation: { rowIndex: 0, colIndex: 0 },
+    openCellPopover: jest.fn(),
+    closeCellPopover: jest.fn(),
+    setPopoverAnchor: jest.fn(),
+    setPopoverAnchorPosition: jest.fn(),
+    setPopoverContent: jest.fn(),
+    setCellPopoverProps: jest.fn(),
+  };
+
+  const wrapper = ({ children }: { children: ReactNode }) => (
+    <DataGridFocusContext.Provider value={{ ...focusContext, focusedCell }}>
+      <DataGridCellPopoverContext.Provider value={popoverContext}>
+        {children}
+      </DataGridCellPopoverContext.Provider>
+    </DataGridFocusContext.Provider>
+  );
+
+  beforeEach(() => {
+    scrollTo.mockReset();
+    scrollToItem.mockReset();
+    focusedCell = undefined;
+
+    outerGrid = document.createElement('div');
+    pointerTarget = document.createElement('div');
+    outerGrid.appendChild(pointerTarget);
+    document.body.appendChild(outerGrid);
+
+    args = {
+      gridRef: { current: { scrollTo, scrollToItem } as any },
+      outerGridRef: {
+        current: {
+          scrollTop: 0,
+          scrollLeft: 0,
+          clientHeight: 100,
+          clientWidth: 100,
+          querySelector: () =>
+            ({
+              parentNode: { offsetTop: 0 },
+              offsetLeft: 150,
+              offsetWidth: 100,
+              offsetHeight: 20,
+            } as any),
+          contains: outerGrid.contains.bind(outerGrid),
+        } as any,
+      },
+      hasGridScrolling: true,
+      headerRowHeight: 0,
+      footerRowHeight: 0,
+      visibleRowCount: 20,
+      hasStickyFooter: false,
+    };
+  });
+
+  afterEach(() => {
+    outerGrid.remove();
+  });
+
+  it('scrolls the focused cell into view on primary (left) pointerup after deferred focus', () => {
+    jest.spyOn(window, 'getSelection').mockReturnValue({
+      type: 'Caret',
+    } as Selection);
+
+    const { rerender } = renderHook(() => useScroll(args), {
+      wrapper,
+    });
+
+    act(() => {
+      pointerTarget.dispatchEvent(
+        createPointerEvent('pointerdown', {
+          button: 0,
+        })
+      );
+    });
+
+    focusedCell = [1, 1];
+    rerender();
+
+    act(() => {
+      document.dispatchEvent(
+        createPointerEvent('pointerup', {
+          button: 0,
+        })
+      );
+    });
+
+    expect(scrollTo).toHaveBeenCalledWith({ scrollLeft: 150, scrollTop: 0 });
+    expect(scrollToItem).not.toHaveBeenCalled();
+  });
+
+  it('ignores deferred scrolling on non-primary mouse pointerup events', () => {
+    const { rerender } = renderHook(() => useScroll(args), {
+      wrapper,
+    });
+
+    act(() => {
+      pointerTarget.dispatchEvent(
+        createPointerEvent('pointerdown', {
+          button: 1,
+        })
+      );
+    });
+
+    focusedCell = [1, 1];
+    rerender();
+
+    act(() => {
+      document.dispatchEvent(
+        createPointerEvent('pointerup', {
+          button: 1,
+        })
+      );
+    });
+
+    expect(scrollTo).not.toHaveBeenCalled();
+    expect(scrollToItem).not.toHaveBeenCalled();
+  });
+});
 
 describe('useScrollCellIntoView', () => {
   const scrollToItem = jest.fn();

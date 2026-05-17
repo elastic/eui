@@ -21,13 +21,20 @@ import {
   getSecureRelForTarget,
   useEuiMemoizedStyles,
   cloneElementWithCss,
+  EuiDisabledProps,
 } from '../../services';
 import { validateHref } from '../../services/security/href_validator';
 import { ExclusiveUnion, CommonProps } from '../common';
 import { useInnerText } from '../inner_text';
 import { EuiIcon, IconType, EuiIconProps } from '../icon';
-import { EuiToolTip, EuiToolTipProps } from '../tool_tip';
-import { EuiExternalLinkIcon } from '../link/external_link_icon';
+import { EuiToolTipProps } from '../tool_tip';
+import {
+  EuiListItemLayout,
+  EuiListItemLayoutAsAnchor,
+  EuiListItemLayoutAsButton,
+  EuiListItemLayoutAsLi,
+  type EuiListItemLayoutProps,
+} from '../list_item_layout/_list_item_layout';
 
 import {
   EuiListGroupItemExtraAction,
@@ -35,14 +42,8 @@ import {
 } from './list_group_item_extra_action';
 import {
   euiListGroupItemStyles,
-  euiListGroupItemIconStyles,
-  euiListGroupItemInnerStyles,
   euiListGroupItemTooltipStyles,
-  euiListGroupItemLabelStyles,
 } from './list_group_item.styles';
-
-export const SIZES = ['xs', 's', 'm', 'l'] as const;
-export type EuiListGroupItemSize = (typeof SIZES)[number];
 
 export const COLORS = ['primary', 'text', 'subdued'] as const;
 export type EuiListGroupItemColor = (typeof COLORS)[number];
@@ -57,14 +58,12 @@ export type EuiListGroupItemProps = CommonProps &
       HTMLAttributes<HTMLSpanElement>
     >,
     'onClick' | 'color' | 'target' | 'rel'
-  > & {
-    /**
-     * Size of the label text
-     */
-    size?: EuiListGroupItemSize;
+  > &
+  EuiDisabledProps & {
     /**
      * By default the item will get the color `text`.
      * You can customize the color of the item by passing a color name.
+     * @default 'text'
      */
     color?: EuiListGroupItemColor;
 
@@ -77,11 +76,6 @@ export type EuiListGroupItemProps = CommonProps &
      * Apply styles indicating an item is active
      */
     isActive?: boolean;
-
-    /**
-     * Apply styles indicating an item is disabled
-     */
-    isDisabled?: boolean;
 
     /**
      * Make the list item label a link.
@@ -170,7 +164,6 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
   iconProps,
   extraAction,
   onClick,
-  size = 'm',
   color = 'text',
   showToolTip = false,
   wrapText,
@@ -179,12 +172,8 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
   toolTipProps,
   ...rest
 }) => {
-  const isClickable = !!(href || onClick);
   const isHrefValid = !href || validateHref(href);
   const isDisabled = _isDisabled || !isHrefValid;
-
-  const iconStyles = useEuiMemoizedStyles(euiListGroupItemIconStyles);
-  const cssIconStyles = [iconStyles.euiListGroupItem__icon, iconProps?.css];
 
   let iconNode;
 
@@ -195,7 +184,7 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
         {...iconProps}
         type={iconType}
         className={classNames('euiListGroupItem__icon', iconProps?.className)}
-        css={cssIconStyles}
+        css={iconProps?.css}
       />
     );
 
@@ -206,7 +195,7 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
     }
   } else if (icon) {
     iconNode = cloneElementWithCss(icon, {
-      css: cssIconStyles,
+      css: iconProps?.css,
       className: classNames('euiListGroupItem__icon', icon.props.className),
     });
   }
@@ -221,15 +210,9 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
       ...rest
     } = extraAction;
 
-    // EuiListGroupItemExtraActionProps extends EuiButtonIconPropsForButton
-    // which doesn't have the color `subdued` so we need to assign a valid color
-    // the most similar is `text` so we'll use that
-    const extraActionColor: EuiListGroupItemExtraActionProps['color'] =
-      color === 'subdued' ? 'text' : color;
-
     extraActionNode = (
       <EuiListGroupItemExtraAction
-        color={extraActionColor}
+        color={color === 'subdued' ? 'text' : color}
         iconType={iconType}
         alwaysShow={alwaysShow}
         {...rest}
@@ -239,137 +222,105 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
     );
   }
 
-  const labelStyles = euiListGroupItemLabelStyles;
-  const cssLabelStyles = [
-    labelStyles.euiListGroupItem__label,
-    wrapText ? labelStyles.wrapText : labelStyles.truncate,
-  ];
-
   // Only add the label as the title attribute if it's possibly truncated
   // Also ensure the value of the title attribute is a string
   const [ref, innerText] = useInnerText();
   const shouldRenderTitle = !wrapText && !showToolTip;
-  const labelContent = shouldRenderTitle ? (
-    <span
-      ref={ref}
-      className="euiListGroupItem__label"
-      css={cssLabelStyles}
-      title={typeof label === 'string' ? label : innerText}
-    >
-      {label}
-    </span>
-  ) : (
-    <span className="euiListGroupItem__label" css={cssLabelStyles}>
-      {label}
-    </span>
-  );
-
-  // Handle the variety of interaction behavior
-  let itemContent;
-
-  const innerStyles = useEuiMemoizedStyles(euiListGroupItemInnerStyles);
-  const cssInnerStyles = [
-    innerStyles.euiListGroupItem__inner,
-    innerStyles[size],
-    !isDisabled && innerStyles[color],
-    isActive && innerStyles.isActive,
-    isDisabled && innerStyles.isDisabled,
-    isClickable && !isDisabled && innerStyles.isClickable,
-  ];
-
-  if (href && !isDisabled) {
-    itemContent = (
-      <a
-        className="euiListGroupItem__button"
-        css={cssInnerStyles}
-        href={href}
-        target={target}
-        rel={getSecureRelForTarget({ href, rel, target })}
-        onClick={onClick as AnchorHTMLAttributes<HTMLAnchorElement>['onClick']}
-        {...(rest as AnchorHTMLAttributes<HTMLAnchorElement>)}
-      >
-        {iconNode}
-        {labelContent}
-        <EuiExternalLinkIcon external={external} target={target} />
-      </a>
-    );
-  } else if ((href && isDisabled) || onClick) {
-    itemContent = (
-      <button
-        type="button"
-        className="euiListGroupItem__button"
-        css={cssInnerStyles}
-        disabled={isDisabled}
-        onClick={onClick}
-        ref={buttonRef}
-        {...(rest as ButtonHTMLAttributes<HTMLButtonElement>)}
-      >
-        {iconNode}
-        {labelContent}
-      </button>
-    );
-  } else {
-    itemContent = (
-      <span className="euiListGroupItem__text" css={cssInnerStyles} {...rest}>
-        {iconNode}
-        {labelContent}
-      </span>
-    );
-  }
+  const labelProps = {
+    ref: shouldRenderTitle ? ref : undefined,
+    className: 'euiListGroupItem__label',
+    title: shouldRenderTitle
+      ? typeof label === 'string'
+        ? label
+        : innerText
+      : undefined,
+  };
 
   const styles = useEuiMemoizedStyles(euiListGroupItemStyles);
-  const cssStyles = [
-    styles.euiListGroupItem,
-    !isDisabled && isActive && styles.colors.isActive[color],
-    !isDisabled && isClickable && styles.colors.isClickable[color],
-    styles[size],
-    customCss,
+  const cssInnerStyles = [
+    styles.euiListGroupItem__inner,
+    !isDisabled && !isActive && styles[color],
   ];
 
-  const classes = classNames('euiListGroupItem', className);
+  let itemProps = {} as EuiListItemLayoutProps;
 
-  if (showToolTip) {
-    const tooltipStyles = euiListGroupItemTooltipStyles;
-    const cssTooltipStyles = [
-      tooltipStyles.euiListGroupItem__tooltip,
-      toolTipProps?.anchorProps?.css,
-    ];
-
-    const anchorClasses = classNames(
-      'euiListGroupItem__tooltip',
-      toolTipProps?.anchorClassName
-    );
-
-    const anchorPropsAndCss = {
-      ...toolTipProps?.anchorProps,
-      css: cssTooltipStyles,
-    };
-
-    itemContent = (
-      <li className={classes} css={cssStyles} style={style}>
-        <EuiToolTip
-          content={toolTipText ?? label}
-          position="right"
-          delay="long"
-          {...toolTipProps}
-          anchorClassName={anchorClasses}
-          anchorProps={anchorPropsAndCss}
-        >
-          <>
-            {itemContent}
-            {extraActionNode}
-          </>
-        </EuiToolTip>
-      </li>
-    );
+  if (href && !isDisabled) {
+    itemProps = {
+      element: 'a',
+      className: 'euiListGroupItem__button',
+      css: cssInnerStyles,
+      href,
+      target,
+      rel: getSecureRelForTarget({ href, rel, target }),
+      external,
+      onClick: onClick as AnchorHTMLAttributes<HTMLAnchorElement>['onClick'],
+      ...(rest as AnchorHTMLAttributes<HTMLAnchorElement>),
+    } as EuiListItemLayoutAsAnchor;
+  } else if ((href && isDisabled) || onClick) {
+    itemProps = {
+      element: 'button',
+      type: 'button',
+      className: 'euiListGroupItem__button',
+      css: cssInnerStyles,
+      onClick: onClick,
+      ref: buttonRef,
+      ...(rest as ButtonHTMLAttributes<HTMLButtonElement>),
+    } as EuiListItemLayoutAsButton;
   } else {
-    itemContent = (
-      <li className={classes} css={cssStyles} style={style}>
-        {itemContent}
-        {extraActionNode}
-      </li>
-    );
+    itemProps = {
+      element: 'li',
+      className: 'euiListGroupItem__text',
+      css: cssInnerStyles,
+      ...rest,
+    } as EuiListItemLayoutAsLi;
   }
 
-  return <>{itemContent}</>;
+  const {
+    className: itemClassName,
+    css: itemCss,
+    ...restItemProps
+  } = itemProps;
+  const classes = classNames('euiListGroupItem', className, itemClassName);
+
+  const cssStyles = [styles.euiListGroupItem, itemCss, customCss];
+  const tooltipStyles = euiListGroupItemTooltipStyles;
+
+  const _tooltipProps = showToolTip
+    ? ({
+        content: toolTipText ?? label,
+        position: 'right',
+        ...toolTipProps,
+        anchorClassName: classNames(
+          'euiListGroupItem__tooltip',
+          toolTipProps?.anchorClassName
+        ),
+        anchorProps: {
+          ...toolTipProps?.anchorProps,
+          css: [
+            tooltipStyles.euiListGroupItem__tooltip,
+            toolTipProps?.anchorProps?.css,
+          ],
+        },
+      } as EuiToolTipProps)
+    : undefined;
+
+  return (
+    <EuiListItemLayout
+      className={classes}
+      wrapperElement="li"
+      css={cssStyles}
+      style={style}
+      {...restItemProps}
+      tooltipProps={_tooltipProps}
+      showIndicator={false}
+      isSelected={isActive}
+      isDisabled={isDisabled}
+      prepend={iconNode}
+      extraAction={extraActionNode}
+      textWrap={wrapText ? 'wrap' : 'truncate'}
+      textProps={labelProps}
+    >
+      {label}
+    </EuiListItemLayout>
+  );
 };

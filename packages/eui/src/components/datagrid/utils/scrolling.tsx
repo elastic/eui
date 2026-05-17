@@ -73,10 +73,16 @@ export const useScroll = (args: Dependencies) => {
   }, [focusedCell, scrollCellIntoView, isPointerDownRef]);
 
   useEffect(() => {
-    const handlePointerUp = () => {
+    const handlePointerUp = (event: PointerEvent) => {
       if (!pendingScrollRef.current || !focusedCell) return;
 
       pendingScrollRef.current = false;
+
+      // The pointerup event can come from any mouse button, not only the left
+      // click. We only care about the primary (usually left) mouse button
+      // clicks, and specifically have to ignore middle mouse button clicks,
+      // which indicate scrolling on Windows.
+      if (event.pointerType === 'mouse' && event.button !== 0) return;
 
       // Skip if the interaction resulted in text being selected
       if (window?.getSelection()?.type === 'Range') return;

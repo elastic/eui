@@ -7,9 +7,9 @@
  */
 
 import { css, keyframes } from '@emotion/react';
-import { euiShadow } from '@elastic/eui-theme-common';
+import { euiCanAnimate, euiShadow } from '@elastic/eui-theme-common';
 
-import { logicalCSS, euiFontSize, euiCanAnimate } from '../../global_styling';
+import { logicalCSS, euiFontSize } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 import { _popoverArrowStyles } from '../../services/popover';
 import { euiPanelBorderStyles } from '../panel/panel.styles';
@@ -20,35 +20,15 @@ export const euiToolTipBackgroundColor = (euiTheme: UseEuiTheme['euiTheme']) =>
 export const euiToolTipBorderColor = (euiTheme: UseEuiTheme['euiTheme']) =>
   euiTheme.components.tooltipBorder;
 
-const euiToolTipAnimationVertical = (size: string) => keyframes`
-    0% {
-        opacity: 0;
-        transform: translateY(${size});
-    }
-
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
-`;
-
-const euiToolTipAnimationHorizontal = (size: string) => keyframes`
-    0% {
-        opacity: 0;
-        transform: translateX(${size});
-    }
-
-    100% {
-        opacity: 1;
-        transform: translateX(0);
-    }
+const euiToolTipAnimation = keyframes`
+  from { opacity: 0; }
+  to { opacity: 1; }
 `;
 
 export const euiToolTipStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme, highContrastMode } = euiThemeContext;
 
   const hasShadow = !highContrastMode;
-  const animationTiming = `${euiTheme.animation.slow} ease-out 0s forwards`;
 
   const arrowSize = euiTheme.size.m;
   const arrowStyles = _popoverArrowStyles(euiThemeContext, arrowSize);
@@ -64,45 +44,27 @@ export const euiToolTipStyles = (euiThemeContext: UseEuiTheme) => {
       ${logicalCSS('max-width', '256px')}
       overflow-wrap: break-word;
       padding: ${euiTheme.size.s};
-      ${euiFontSize(euiThemeContext, 's')}
+      ${euiFontSize(euiThemeContext, 'xs')}
 
       position: absolute;
+      pointer-events: none;
 
       ${euiPanelBorderStyles(euiThemeContext)}
 
       [class*='euiHorizontalRule'] {
         background-color: ${euiToolTipBorderColor(euiTheme)};
       }
-    `,
-    // Sizes
-    s: css`
-      ${euiFontSize(euiThemeContext, 'xs')}
-    `,
-    // Positions
-    top: css`
+
       ${euiCanAnimate} {
-        animation: ${euiToolTipAnimationVertical(`-${euiTheme.size.base}`)}
-          ${animationTiming};
+        animation: ${euiToolTipAnimation} ${euiTheme.animation.extraFast}
+          ease-out ${euiTheme.animation.fast} both;
       }
     `,
-    bottom: css`
-      ${euiCanAnimate} {
-        animation: ${euiToolTipAnimationVertical(euiTheme.size.base)}
-          ${animationTiming};
-      }
-    `,
-    left: css`
-      ${euiCanAnimate} {
-        animation: ${euiToolTipAnimationHorizontal(`-${euiTheme.size.base}`)}
-          ${animationTiming};
-      }
-    `,
-    right: css`
-      ${euiCanAnimate} {
-        animation: ${euiToolTipAnimationHorizontal(euiTheme.size.base)}
-          ${animationTiming};
-      }
-    `,
+    // Positions - kept for component compatibility. Animation is in the base style.
+    top: css``,
+    bottom: css``,
+    left: css``,
+    right: css``,
     // Arrow
     euiToolTip__arrow: css`
       ${arrowStyles._arrowStyles}

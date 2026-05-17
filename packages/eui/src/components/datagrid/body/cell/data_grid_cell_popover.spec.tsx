@@ -192,6 +192,25 @@ describe('EuiDataGridCellPopover', () => {
     cy.get('.euiDataGridRowCell__popover.hello.world').should('exist');
   });
 
+  it('renders above an ancestor stacking context (e.g. a flyout)', () => {
+    // Regression test for https://github.com/elastic/eui/issues/8801 — the
+    // popover's z-index must be derived from its anchor's stacking context,
+    // not a fixed theme value, so it stays above the host flyout.
+    cy.realMount(
+      // eslint-disable-next-line @elastic/eui/no-static-z-index -- intentionally a literal value to simulate a flyout's stacking context
+      <div style={{ position: 'relative', zIndex: 6000 }}>
+        <EuiDataGrid {...baseProps} />
+      </div>
+    );
+    cy.get(
+      '[data-gridcell-row-index="0"][data-gridcell-column-index="0"]'
+    ).click();
+    cy.realPress('Enter');
+    cy.get('[data-test-subj="euiDataGridExpansionPopover"]')
+      .invoke('css', 'z-index')
+      .then((zIndex) => expect(Number(zIndex)).to.be.greaterThan(6000));
+  });
+
   describe('popover anchor/positioning', () => {
     const props = {
       ...baseProps,

@@ -33,7 +33,7 @@ const iconStyle = ({ euiTheme }: UseEuiTheme) =>
 
 export const EuiExternalLinkIcon: FunctionComponent<
   EuiExternalLinkIconProps & Partial<EuiIconProps>
-> = ({ target, external, ...rest }) => {
+> = ({ target, external, size = 's', ...rest }) => {
   const iconCssStyle = useEuiMemoizedStyles(iconStyle);
 
   const showExternalLinkIcon =
@@ -47,7 +47,7 @@ export const EuiExternalLinkIcon: FunctionComponent<
     <>
       <EuiIcon
         css={iconCssStyle}
-        size="s"
+        size={size}
         type="external"
         role="presentation"
         {...rest}

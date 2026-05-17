@@ -239,8 +239,6 @@ const FullHeaderPatternExample = () => {
         <EuiCollapsibleNavGroup isCollapsible={false} background="dark">
           <EuiListGroup
             maxWidth="none"
-            gutterSize="none"
-            size="s"
             listItems={[
               {
                 label: 'Manage deployment',
@@ -271,8 +269,6 @@ const FullHeaderPatternExample = () => {
             onPinClick={removePin}
             maxWidth="none"
             color="text"
-            gutterSize="none"
-            size="s"
           />
         </EuiCollapsibleNavGroup>
       </EuiFlexItem>
@@ -312,8 +308,6 @@ const FullHeaderPatternExample = () => {
             onPinClick={addPin}
             maxWidth="none"
             color="subdued"
-            gutterSize="none"
-            size="s"
           />
         </EuiCollapsibleNavGroup>
 
@@ -366,8 +360,6 @@ const FullHeaderPatternExample = () => {
             onPinClick={addPin}
             maxWidth="none"
             color="subdued"
-            gutterSize="none"
-            size="s"
           />
         </EuiCollapsibleNavGroup>
       </EuiFlexItem>
