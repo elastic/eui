@@ -294,7 +294,7 @@ exports[`EuiQuickSelectPanels customQuickSelectPanels should render custom panel
         >
           <button
             aria-checked="false"
-            aria-describedby="generated-id"
+            aria-describedby="euiRefreshInterval_generated-id"
             aria-label="Toggle refresh"
             class="euiSwitch__button emotion-euiSwitch__button-compressed"
             data-test-subj="superDatePickerToggleRefreshButton"
@@ -332,7 +332,7 @@ exports[`EuiQuickSelectPanels customQuickSelectPanels should render custom panel
             class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
           >
             <input
-              aria-describedby="generated-id"
+              aria-describedby="euiRefreshInterval_generated-id"
               aria-label="Refresh interval value"
               class="euiFieldNumber emotion-euiFieldNumber-compressed-fullWidth"
               data-test-subj="superDatePickerRefreshIntervalInput"
@@ -356,7 +356,7 @@ exports[`EuiQuickSelectPanels customQuickSelectPanels should render custom panel
             class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
           >
             <select
-              aria-describedby="generated-id"
+              aria-describedby="euiRefreshInterval_generated-id"
               aria-label="Refresh interval units"
               class="euiSelect emotion-euiSelect-compressed-fullWidth"
               data-test-subj="superDatePickerRefreshIntervalUnitsSelect"
@@ -384,7 +384,7 @@ exports[`EuiQuickSelectPanels customQuickSelectPanels should render custom panel
     </div>
     <p
       class="emotion-euiScreenReaderOnly"
-      id="generated-id"
+      id="euiRefreshInterval_generated-id"
     >
       Refresh is off, interval set to 0 Seconds.
     </p>
