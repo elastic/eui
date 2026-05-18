@@ -508,7 +508,7 @@ describe('EuiPopover', () => {
       expect(activeAnimationFrames.size).toEqual(1);
 
       unmount();
-      expect(window.clearTimeout).toHaveBeenCalledTimes(9);
+      expect(window.clearTimeout).toHaveBeenCalledTimes(8);
       expect(cafSpy).toHaveBeenCalledTimes(1);
       expect(activeAnimationFrames.size).toEqual(0);
 
