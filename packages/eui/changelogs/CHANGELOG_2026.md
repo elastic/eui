@@ -1,3 +1,17 @@
+## [`v116.1.0`](https://github.com/elastic/eui/releases/v116.1.0)
+
+- Updates the guard condition in `EuiContextMenuPanel`'s update lifecycle method to use input props instead of internal state to reduce unnecessary re-renders. ([#9656](https://github.com/elastic/eui/pull/9656))
+- Replaced `EuiObserver` abstract base class with a `useObserver` hook ([#9511](https://github.com/elastic/eui/pull/9511))
+
+**Bug fixes**
+
+- Fixed `EuiCopy` not showing the `afterMessage` tooltip after a successful copy when the user had already hovered or focused the trigger before clicking ([#9650](https://github.com/elastic/eui/pull/9650))
+- Fixed `EuiDataGrid` cell expansion popovers being hidden behind sibling or nested `EuiFlyout`s. The cell popover now derives its `z-index` from its anchor's stacking context (matching default `EuiPopover` behavior) instead of being pinned to `levels.header`. ([#9630](https://github.com/elastic/eui/pull/9630))
+
+**Accessibility**
+
+- Added a screen reader live region to `EuiCopy` so the copy confirmation is announced reliably, independent of the tooltip and focus location ([#9650](https://github.com/elastic/eui/pull/9650))
+
 ## [`v116.0.0`](https://github.com/elastic/eui/releases/v116.0.0)
 
 - Updated `EuiSuperSelect` to not open the listbox if no `options` are passed. ([#9645](https://github.com/elastic/eui/pull/9645))
