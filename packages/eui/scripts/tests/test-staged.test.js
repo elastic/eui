@@ -12,13 +12,16 @@ describe('test-staged.js', () => {
       .split('\n')
       .filter((item) => item.endsWith('test.tsx'));
 
+    expect(output).toHaveLength(2);
     expect(
-      output[0].endsWith('src/components/tour/tour_step.test.tsx')
+      output.some((item) =>
+        item.endsWith('src/components/tour/tour_step.test.tsx')
+      )
     ).toBeTruthy();
     expect(
-      output[1].endsWith('src/components/beacon/beacon.test.tsx')
+      output.some((item) =>
+        item.endsWith('src/components/beacon/beacon.test.tsx')
+      )
     ).toBeTruthy();
-
-    expect(output[2]).toBeUndefined();
   });
 });
