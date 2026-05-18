@@ -52,62 +52,30 @@ const mockWindow = {
 
 let rafId = 1;
 
-const originalWindowDescriptors = {
-  innerWidth: Object.getOwnPropertyDescriptor(window, 'innerWidth'),
-  addEventListener: Object.getOwnPropertyDescriptor(window, 'addEventListener'),
-  removeEventListener: Object.getOwnPropertyDescriptor(
-    window,
-    'removeEventListener'
-  ),
-  requestAnimationFrame: Object.getOwnPropertyDescriptor(
-    window,
-    'requestAnimationFrame'
-  ),
-  cancelAnimationFrame: Object.getOwnPropertyDescriptor(
-    window,
-    'cancelAnimationFrame'
-  ),
-};
+Object.defineProperty(window, 'innerWidth', {
+  writable: true,
+  value: mockWindow.innerWidth,
+});
 
-const installWindowMocks = () => {
-  Object.defineProperty(window, 'innerWidth', {
-    writable: true,
-    value: mockWindow.innerWidth,
-  });
+Object.defineProperty(window, 'addEventListener', {
+  writable: true,
+  value: mockWindow.addEventListener,
+});
 
-  Object.defineProperty(window, 'addEventListener', {
-    writable: true,
-    value: mockWindow.addEventListener,
-  });
+Object.defineProperty(window, 'removeEventListener', {
+  writable: true,
+  value: mockWindow.removeEventListener,
+});
 
-  Object.defineProperty(window, 'removeEventListener', {
-    writable: true,
-    value: mockWindow.removeEventListener,
-  });
+Object.defineProperty(window, 'requestAnimationFrame', {
+  writable: true,
+  value: mockWindow.requestAnimationFrame,
+});
 
-  Object.defineProperty(window, 'requestAnimationFrame', {
-    writable: true,
-    value: mockWindow.requestAnimationFrame,
-  });
-
-  Object.defineProperty(window, 'cancelAnimationFrame', {
-    writable: true,
-    value: mockWindow.cancelAnimationFrame,
-  });
-};
-
-const restoreWindow = () => {
-  (
-    Object.keys(originalWindowDescriptors) as Array<
-      keyof typeof originalWindowDescriptors
-    >
-  ).forEach((key) => {
-    const descriptor = originalWindowDescriptors[key];
-    if (descriptor) {
-      Object.defineProperty(window, key, descriptor);
-    }
-  });
-};
+Object.defineProperty(window, 'cancelAnimationFrame', {
+  writable: true,
+  value: mockWindow.cancelAnimationFrame,
+});
 
 const mockUseEuiTheme = useEuiTheme as jest.Mock;
 const mockSetLayoutMode = setLayoutMode as jest.Mock;
@@ -145,14 +113,6 @@ const buildMockManagerState = ({
 });
 
 describe('layout_mode', () => {
-  beforeAll(() => {
-    installWindowMocks();
-  });
-
-  afterAll(() => {
-    restoreWindow();
-  });
-
   const getResizeHandler = () => {
     const call = mockWindow.addEventListener.mock.calls.find(
       (args) => args[0] === 'resize'
