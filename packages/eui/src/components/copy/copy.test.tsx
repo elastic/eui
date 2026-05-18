@@ -51,17 +51,19 @@ describe('EuiCopy', () => {
           )}
         </EuiCopy>
       );
+
       // Simulate mouse over to show the tooltip
       fireEvent.mouseOver(getByRole('button'));
 
-      // The beforeMessage should be shown in the tooltip
+      // The `beforeMessage` should be shown in the tooltip
       expect(getByText(beforeMessage)).toBeInTheDocument();
+
       fireEvent.mouseOut(getByRole('button'));
     });
 
     it('afterMessage', () => {
       const afterMessage = 'successfully copied';
-      const { getByRole, getByText } = render(
+      const { getByRole, queryByRole } = render(
         <EuiCopy textToCopy="some text" afterMessage={afterMessage}>
           {(copy) => (
             <button onClick={copy} onMouseOver={() => {}} onFocus={() => {}}>
@@ -71,13 +73,43 @@ describe('EuiCopy', () => {
         </EuiCopy>
       );
 
-      // Simulate a click to copy the text
-      fireEvent.click(getByRole('button'));
+      // Hover first, then click. The tooltip should appear
+      // automatically with the `afterMessage` after copy succeeds, without
+      // requiring the user to move the pointer out and back in.
       fireEvent.mouseOver(getByRole('button'));
+      fireEvent.click(getByRole('button'));
 
-      // The afterMessage should be shown after the copy action
-      expect(getByText(afterMessage)).toBeInTheDocument();
-      fireEvent.mouseOut(getByRole('button'));
+      expect(getByRole('tooltip')).toHaveTextContent(afterMessage);
+
+      fireEvent.blur(getByRole('button'));
+      expect(queryByRole('tooltip')).not.toBeInTheDocument();
+    });
+
+    it('announces `afterMessage` with an `aria-live` region after copy', () => {
+      const afterMessage = 'successfully copied';
+      const { container, getByRole } = render(
+        <EuiCopy textToCopy="some text" afterMessage={afterMessage}>
+          {(copy) => <button onClick={copy}>Click to copy input text</button>}
+        </EuiCopy>
+      );
+
+      // Before any copy action, the live region should not contain the message.
+      const liveRegionsBefore = container.querySelectorAll('[aria-live]');
+
+      liveRegionsBefore.forEach((region) => {
+        expect(region.textContent).not.toContain(afterMessage);
+      });
+
+      fireEvent.click(getByRole('button'));
+
+      // After copy, the message is rendered inside an aria-live region so
+      // screen readers announce it regardless of focus location.
+      const liveRegions = container.querySelectorAll('[aria-live]');
+      const hasAnnouncement = Array.from(liveRegions).some((region) =>
+        region.textContent?.includes(afterMessage)
+      );
+
+      expect(hasAnnouncement).toBe(true);
     });
 
     it('tooltipProps', () => {

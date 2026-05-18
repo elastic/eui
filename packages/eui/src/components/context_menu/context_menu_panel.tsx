@@ -327,8 +327,8 @@ export class EuiContextMenuPanelClass extends Component<
     }
   };
 
-  componentDidUpdate(_: Props, prevState: State) {
-    if (prevState.menuItems !== this.state.menuItems) {
+  componentDidUpdate(prevProps: Props) {
+    if (prevProps.items !== this.props.items) {
       this.findMenuItems();
     }
     // Focus isn't always ready to be taken on mount, so we need to call it

@@ -10,6 +10,8 @@ const isBuildkiteReporterAvailable =
   typeof process.env.BUILDKITE_ANALYTICS_TOKEN === 'string' &&
   process.env.BUILDKITE_ANALYTICS_TOKEN !== '';
 
+const isCI = process.env.CI === 'true';
+
 if (isBuildkiteReporterAvailable) {
   console.log('Buildkite Test Analytics reporter available');
 }
@@ -27,8 +29,10 @@ export default defineConfig({
       webpackConfig,
     },
     setupNodeEvents(on, config) {
-      require('@cypress/code-coverage/task')(on, config);
-      on('file:preprocessor', require('@cypress/code-coverage/use-babelrc'));
+      if (!isCI) {
+        require('@cypress/code-coverage/task')(on, config);
+        on('file:preprocessor', require('@cypress/code-coverage/use-babelrc'));
+      }
 
       on('task', {
         log(message) {
