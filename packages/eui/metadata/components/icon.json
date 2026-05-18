@@ -1,7 +1,7 @@
 {
   "name": "EuiIcon",
   "description": "SVG icon from the EUI icon library. Add aria-label when used standalone.",
-  "visualDescription": "",
+  "visualDescription": "A small SVG pictogram, typically 16px (s) or 24px (m) square. Transparent background by default. Used inline in text, inside buttons, or as standalone decorative/informational elements. Color matches the surrounding text or is explicitly set. NOT EuiButtonIcon (EuiIcon is not interactive; it has no click area or hover state). NOT EuiAvatar (which is circular with initials or an image). Identify by recognizing the specific glyph from the EUI icon set.",
   "category": "Display",
   "import": "import { EuiIcon } from '@elastic/eui';",
   "props": {},

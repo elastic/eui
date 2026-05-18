@@ -1,7 +1,7 @@
 {
   "name": "EuiButtonEmpty",
   "description": "Text-only button with no background. Use for secondary or cancel actions.",
-  "visualDescription": "",
+  "visualDescription": "Text-only button with no visible background or border at rest. Looks similar to a hyperlink but has button padding and alignment. The label color signals its role: primary blue for navigational actions, subdued grey for secondary, red for danger. May include a small icon. NOT EuiButton (no bounding box visible). NOT a plain <a> link.",
   "category": "Navigation",
   "import": "import { EuiButtonEmpty } from '@elastic/eui';",
   "props": {

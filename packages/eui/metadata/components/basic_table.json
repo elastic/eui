@@ -1,7 +1,7 @@
 {
   "name": "EuiBasicTable",
   "description": "Data table with sorting, pagination, and row actions. Use when data is fetched server-side.",
-  "visualDescription": "",
+  "visualDescription": "A standard data table with a header row of column labels (bold, light background) and data rows below. Column headers may show up/down sort arrows. Rows can have a hover highlight. Left-most column may have checkboxes for row selection. Right-most column often contains action buttons (EuiButtonIcon). Horizontal dividers between rows, no vertical grid lines by default. NOT EuiDataGrid (which has cell-level editing, column resizing handles, and a toolbar above). The distinction between EuiBasicTable and EuiInMemoryTable is invisible in a screenshot — both look identical; the difference is whether filtering/sorting is client-side or server-side.",
   "category": "Tabular Content",
   "import": "import { EuiBasicTable } from '@elastic/eui';",
   "props": {

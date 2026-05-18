@@ -1,7 +1,7 @@
 {
   "name": "EuiHealth",
   "description": "Small colored status dot with an adjacent text label.",
-  "visualDescription": "",
+  "visualDescription": "A small filled circle (dot, ~10–12px diameter) followed immediately by a short inline text label. The dot color is the only visual signal: green = success/healthy, red = danger/critical, yellow = warning, grey = unknown/inactive. Very compact — typically appears in table cells, list items, or inline next to an entity name. NOT EuiBadge (no pill shape or background fill). NOT a status icon (no SVG glyph, just a dot).",
   "category": "Display",
   "import": "import { EuiHealth } from '@elastic/eui';",
   "props": {

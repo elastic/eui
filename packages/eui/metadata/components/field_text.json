@@ -1,7 +1,7 @@
 {
   "name": "EuiFieldText",
   "description": "Single-line text input field.",
-  "visualDescription": "",
+  "visualDescription": "A single-line rectangular text input. Has a visible border on all four sides (default) with a subtle background. Shows placeholder text when empty. Focused state adds a blue border/glow. May have a prepend or append element (icon, label, button) inside the input boundary. NOT EuiSearchBar (EuiFieldText has no built-in search icon or filter pills). NOT EuiTextArea (single line vs multi-line).",
   "category": "Forms",
   "import": "import { EuiFieldText } from '@elastic/eui';",
   "props": {

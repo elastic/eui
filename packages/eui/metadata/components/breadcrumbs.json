@@ -1,7 +1,7 @@
 {
   "name": "EuiBreadcrumbs",
   "description": "Navigation trail showing the current page location within a hierarchy.",
-  "visualDescription": "",
+  "visualDescription": "A single horizontal line of text items separated by › or / chevron characters. Each item except the last is a clickable link (primary color). The last item (current page) is plain, non-linked text. Very compact height. Sits above the page title, usually inside EuiPageHeader. NOT EuiSteps. NOT EuiTabs. NOT a pagination control.",
   "category": "Navigation",
   "import": "import { EuiBreadcrumbs } from '@elastic/eui';",
   "props": {

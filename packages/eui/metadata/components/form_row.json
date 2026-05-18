@@ -1,7 +1,7 @@
 {
   "name": "EuiFormRow",
   "description": "Labeled form field wrapper with error message and help text support.",
-  "visualDescription": "",
+  "visualDescription": "A vertically stacked form field unit. From top to bottom: a short text label (regular weight, small), the input control (text field, select, etc.), and optionally a one-line helper text or red error message below. The group has consistent vertical spacing. NOT a standalone label (EuiFormRow always wraps an input). In a form with multiple fields, each EuiFormRow is a self-contained label+input+feedback stack.",
   "category": "Forms",
   "import": "import { EuiFormRow } from '@elastic/eui';",
   "props": {

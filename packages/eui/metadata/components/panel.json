@@ -1,7 +1,7 @@
 {
   "name": "EuiPanel",
   "description": "Contained surface with configurable background, border, and padding.",
-  "visualDescription": "",
+  "visualDescription": "A card-like rectangular container with a white or light-grey background, a subtle border or low-elevation box-shadow, and internal padding. Corner radius is consistent (~6px). Can be flat (border only, no shadow) or raised (shadow). Contains arbitrary content — titles, text, tables, forms. NOT EuiCallOut (no colored left border). NOT EuiCard (EuiCard has a fixed header/description/footer structure and is typically clickable as a unit).",
   "category": "Layout",
   "import": "import { EuiPanel } from '@elastic/eui';",
   "props": {

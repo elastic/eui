@@ -1,7 +1,7 @@
 {
   "name": "EuiTitle",
   "description": "Styled heading element. Use the size prop to control scale; use as to set the HTML heading level.",
-  "visualDescription": "",
+  "visualDescription": "Styled heading text — larger and heavier font weight than body copy. No background, no border, no container. Comes in scale sizes: xxxs → xxl, corresponding to h1–h6 visual weight. NOT EuiText (which wraps body copy). NOT EuiStat (which is always paired with a metric descriptor label). The HTML element rendered (h1–h6) is set by the `as` prop and may differ from the visual size.",
   "category": "Display",
   "import": "import { EuiTitle } from '@elastic/eui';",
   "props": {

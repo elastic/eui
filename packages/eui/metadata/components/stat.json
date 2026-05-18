@@ -1,7 +1,7 @@
 {
   "name": "EuiStat",
   "description": "Large metric value with a smaller label, designed for dashboard KPIs.",
-  "visualDescription": "",
+  "visualDescription": "A high-contrast metric display: a large, heavy-weight number or short value (the stat) paired with a smaller descriptive label. Label is typically above or below the value, subdued color. Common in dashboard cards and summary panels. No border or background of its own — usually sits inside an EuiPanel. NOT EuiTitle (EuiStat is always paired with a descriptor label; EuiTitle is standalone heading text).",
   "category": "Display",
   "import": "import { EuiStat } from '@elastic/eui';",
   "props": {

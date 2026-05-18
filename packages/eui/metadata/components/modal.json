@@ -1,7 +1,7 @@
 {
   "name": "EuiModal",
   "description": "Focused dialog that traps focus and requires explicit user action.",
-  "visualDescription": "",
+  "visualDescription": "A centered dialog box that floats above the page behind a full-viewport dark overlay/backdrop. Fixed width, variable height. Structured in three regions: a header bar (title left, × close button right), a scrollable body, and a footer with action buttons (typically Cancel + primary action). Corners are rounded. NOT EuiFlyout (centered vs edge-anchored). EuiConfirmModal is a pre-structured variant with a title, body text, and exactly two buttons.",
   "category": "Layout",
   "import": "import { EuiModal } from '@elastic/eui';",
   "props": {

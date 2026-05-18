@@ -1,7 +1,7 @@
 {
   "name": "EuiSearchBar",
   "description": "Structured search input with filter pills and query syntax support.",
-  "visualDescription": "",
+  "visualDescription": "A full-width search input that spans the content area or a panel. Has a magnifier (🔍) icon on the left inside the field. May render active filters as pill-shaped chips immediately to the right of the search text. Can have a Filters button on the right end. Visually wider and more prominent than EuiFieldSearch. NOT EuiFieldSearch (standalone narrow search input). NOT EuiComboBox (no option dropdown from the bar itself).",
   "category": "Forms",
   "import": "import { EuiSearchBar } from '@elastic/eui';",
   "props": {

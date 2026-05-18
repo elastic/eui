@@ -1,7 +1,7 @@
 {
   "name": "EuiFlyout",
   "description": "Slide-in overlay panel anchored to the viewport edge.",
-  "visualDescription": "",
+  "visualDescription": "A full-height panel anchored to and sliding in from the right (default) or left edge of the viewport. Covers a portion of the page (medium default width ~480px) with a semi-transparent dark overlay behind it. Has a distinct header bar at the top (containing a title and an × close button in the top-right corner), a scrollable body region, and an optional sticky footer with action buttons. NOT EuiModal (which is centered, not edge-anchored). NOT a sidebar nav (EuiFlyout is transient/overlay, nav is persistent).",
   "category": "Layout",
   "import": "import { EuiFlyout } from '@elastic/eui';",
   "props": {},

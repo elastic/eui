@@ -1,7 +1,7 @@
 {
   "name": "EuiTabs",
   "description": "Horizontal tab navigation bar.",
-  "visualDescription": "",
+  "visualDescription": "A horizontal row of tab items, each a text label with generous padding. The active tab is visually distinguished by a solid underline (2–3px, primary color) or a filled background depending on the variant. Inactive tabs are muted. The tab bar sits above the content it controls. NOT EuiSteps (tabs are non-sequential navigation, steps imply a progression). NOT a segmented control / EuiButtonGroup.",
   "category": "Navigation",
   "import": "import { EuiTabs } from '@elastic/eui';",
   "props": {

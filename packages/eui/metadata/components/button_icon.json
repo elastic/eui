@@ -1,7 +1,7 @@
 {
   "name": "EuiButtonIcon",
   "description": "Icon-only button. Always requires an aria-label for accessibility.",
-  "visualDescription": "",
+  "visualDescription": "Icon-only button — a single SVG icon with no visible text label. The clickable area is a small square or circle (~24–32px). Background is transparent at rest; shows a subtle fill on hover. ALWAYS requires an aria-label (not visible). Common in table row actions, toolbars, and close/dismiss controls. NOT EuiIcon (which is purely decorative and non-interactive). Distinguished from EuiButton by the absence of any text label.",
   "category": "Navigation",
   "import": "import { EuiButtonIcon } from '@elastic/eui';",
   "props": {

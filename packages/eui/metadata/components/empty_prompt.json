@@ -1,7 +1,7 @@
 {
   "name": "EuiEmptyPrompt",
   "description": "Placeholder for empty states, error pages, and onboarding flows.",
-  "visualDescription": "",
+  "visualDescription": "A vertically centered content block used for empty, error, or onboarding states. Typically contains: an illustration or large icon at the top, a bold heading below it, one or two lines of body text, and one or more call-to-action buttons. Occupies a significant portion of the content area. May be contained in an EuiPanel or shown full-width. NOT a modal (not overlaid). NOT EuiCallOut (much larger, illustration-led, not an alert strip).",
   "category": "Display",
   "import": "import { EuiEmptyPrompt } from '@elastic/eui';",
   "props": {

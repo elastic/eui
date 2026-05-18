@@ -1,7 +1,7 @@
 {
   "name": "EuiButton",
   "description": "Primary interactive button. Handles keyboard focus, loading, and disabled states automatically.",
-  "visualDescription": "",
+  "visualDescription": "Rectangular button with rounded corners, consistent horizontal padding, and a visible text label. Comes in two fills: solid (filled, opaque background — the default primary action) and outlined (transparent background with a border, same border-radius). May include a small icon to the left or right of the label. Size variants: medium (default, ~32px tall) and small (~24px). NOT a plain text link (has a bounding box). NOT EuiButtonEmpty (which has no border or background).",
   "category": "Navigation",
   "import": "import { EuiButton } from '@elastic/eui';",
   "props": {

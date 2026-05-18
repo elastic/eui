@@ -1,7 +1,7 @@
 {
   "name": "EuiPageHeader",
   "description": "Page-level header with title, description, breadcrumbs, and action buttons.",
-  "visualDescription": "",
+  "visualDescription": "A horizontal page-level header bar sitting at the top of the content area (below the global Kibana chrome). Left side: optional breadcrumbs above a large page title, with an optional description line below the title. Right side: one or more action buttons aligned to the top-right. Optional tabs row at the bottom of the header. NOT the global EuiHeader (which is the app-wide top bar with the Elastic logo and nav). NOT a section heading inside a page.",
   "category": "Layout",
   "import": "import { EuiPageHeader } from '@elastic/eui';",
   "props": {

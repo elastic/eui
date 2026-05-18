@@ -363,8 +363,228 @@ const COMPONENT_DESCRIPTIONS = {
 // ---------------------------------------------------------------------------
 
 const VISUAL_DESCRIPTIONS = {
+  // ---------------------------------------------------------------------------
   // Core 25 — filled by EUI design team (OnWeek May 2025)
-  // Remaining entries are intentionally left empty; contributions welcome.
+  // ---------------------------------------------------------------------------
+
+  EuiButton:
+    'Rectangular button with rounded corners, consistent horizontal padding, ' +
+    'and a visible text label. Comes in two fills: solid (filled, opaque ' +
+    'background — the default primary action) and outlined (transparent ' +
+    'background with a border, same border-radius). May include a small icon ' +
+    'to the left or right of the label. Size variants: medium (default, ~32px ' +
+    'tall) and small (~24px). NOT a plain text link (has a bounding box). ' +
+    'NOT EuiButtonEmpty (which has no border or background).',
+
+  EuiButtonEmpty:
+    'Text-only button with no visible background or border at rest. Looks ' +
+    'similar to a hyperlink but has button padding and alignment. The label ' +
+    'color signals its role: primary blue for navigational actions, subdued ' +
+    'grey for secondary, red for danger. May include a small icon. ' +
+    'NOT EuiButton (no bounding box visible). NOT a plain <a> link.',
+
+  EuiButtonIcon:
+    'Icon-only button — a single SVG icon with no visible text label. The ' +
+    'clickable area is a small square or circle (~24–32px). Background is ' +
+    'transparent at rest; shows a subtle fill on hover. ALWAYS requires an ' +
+    'aria-label (not visible). Common in table row actions, toolbars, and ' +
+    'close/dismiss controls. NOT EuiIcon (which is purely decorative and ' +
+    'non-interactive). Distinguished from EuiButton by the absence of any ' +
+    'text label.',
+
+  EuiCallOut:
+    'A rectangular box with a prominent 4px solid colored left-border accent. ' +
+    'Inside: an icon on the far left of the header row, a bold title text ' +
+    'next to it, and optional body text below. The border (and icon) color ' +
+    'encodes semantic meaning: blue = info/primary, green = success, ' +
+    'yellow = warning, red = danger. No drop shadow (not floating). ' +
+    'Full-width by default. NOT EuiPanel (no shadow, always has the left ' +
+    'accent border). NOT EuiToast (not positioned/floating). NOT EuiModal.',
+
+  EuiHealth:
+    'A small filled circle (dot, ~10–12px diameter) followed immediately by ' +
+    'a short inline text label. The dot color is the only visual signal: ' +
+    'green = success/healthy, red = danger/critical, yellow = warning, ' +
+    'grey = unknown/inactive. Very compact — typically appears in table cells, ' +
+    'list items, or inline next to an entity name. NOT EuiBadge (no pill ' +
+    'shape or background fill). NOT a status icon (no SVG glyph, just a dot).',
+
+  EuiBadge:
+    'A pill-shaped chip with fully rounded ends and a solid or light ' +
+    'background fill. Contains short text (1–3 words), optionally preceded ' +
+    'by a small icon or followed by a dismissible ×. Color variants cover ' +
+    'semantic states (success green, danger red, warning yellow) as well as ' +
+    'arbitrary custom colors. Sits inline within text or stacks in a flex ' +
+    'row. NOT EuiHealth (no dot, has a pill container). NOT EuiButton ' +
+    '(not interactive as a primary action, rectangular corners on EuiButton).',
+
+  EuiPanel:
+    'A card-like rectangular container with a white or light-grey background, ' +
+    'a subtle border or low-elevation box-shadow, and internal padding. ' +
+    'Corner radius is consistent (~6px). Can be flat (border only, no shadow) ' +
+    'or raised (shadow). Contains arbitrary content — titles, text, tables, ' +
+    'forms. NOT EuiCallOut (no colored left border). NOT EuiCard (EuiCard ' +
+    'has a fixed header/description/footer structure and is typically ' +
+    'clickable as a unit).',
+
+  EuiFlexGroup:
+    'A layout-only container — has no visual appearance of its own. ' +
+    'Recognized by its children being arranged in a horizontal row (default) ' +
+    'or vertical column with consistent gaps between them. The gap size ' +
+    'corresponds to EUI spacing tokens (none / xs / s / m / l / xl). ' +
+    'In Figma it appears as a frame with Auto Layout. Cannot be identified ' +
+    'in a rasterized screenshot without inspecting the DOM — infer its ' +
+    'presence from a row of sibling elements with uniform spacing.',
+
+  EuiSpacer:
+    'Pure vertical whitespace — a transparent block that adds a fixed gap ' +
+    'between stacked elements. Not visually distinguishable in a rendered ' +
+    'screenshot; only identifiable in Figma as an empty frame or spacing ' +
+    'annotation. Infer its presence from gaps between vertically stacked ' +
+    'components. Size tokens: xs (4px), s (8px), m (16px), l (24px), ' +
+    'xl (32px), xxl (40px).',
+
+  EuiFlyout:
+    'A full-height panel anchored to and sliding in from the right (default) ' +
+    'or left edge of the viewport. Covers a portion of the page (medium ' +
+    'default width ~480px) with a semi-transparent dark overlay behind it. ' +
+    'Has a distinct header bar at the top (containing a title and an × close ' +
+    'button in the top-right corner), a scrollable body region, and an ' +
+    'optional sticky footer with action buttons. NOT EuiModal (which is ' +
+    'centered, not edge-anchored). NOT a sidebar nav (EuiFlyout is ' +
+    'transient/overlay, nav is persistent).',
+
+  EuiModal:
+    'A centered dialog box that floats above the page behind a full-viewport ' +
+    'dark overlay/backdrop. Fixed width, variable height. Structured in three ' +
+    'regions: a header bar (title left, × close button right), a scrollable ' +
+    'body, and a footer with action buttons (typically Cancel + primary ' +
+    'action). Corners are rounded. NOT EuiFlyout (centered vs edge-anchored). ' +
+    'EuiConfirmModal is a pre-structured variant with a title, body text, and ' +
+    'exactly two buttons.',
+
+  EuiBasicTable:
+    'A standard data table with a header row of column labels (bold, light ' +
+    'background) and data rows below. Column headers may show up/down sort ' +
+    'arrows. Rows can have a hover highlight. Left-most column may have ' +
+    'checkboxes for row selection. Right-most column often contains action ' +
+    'buttons (EuiButtonIcon). Horizontal dividers between rows, no vertical ' +
+    'grid lines by default. NOT EuiDataGrid (which has cell-level editing, ' +
+    'column resizing handles, and a toolbar above). The distinction between ' +
+    'EuiBasicTable and EuiInMemoryTable is invisible in a screenshot — ' +
+    'both look identical; the difference is whether filtering/sorting is ' +
+    'client-side or server-side.',
+
+  EuiStat:
+    'A high-contrast metric display: a large, heavy-weight number or short ' +
+    'value (the stat) paired with a smaller descriptive label. Label is ' +
+    'typically above or below the value, subdued color. Common in dashboard ' +
+    'cards and summary panels. No border or background of its own — usually ' +
+    'sits inside an EuiPanel. NOT EuiTitle (EuiStat is always paired with ' +
+    'a descriptor label; EuiTitle is standalone heading text).',
+
+  EuiEmptyPrompt:
+    'A vertically centered content block used for empty, error, or onboarding ' +
+    'states. Typically contains: an illustration or large icon at the top, a ' +
+    'bold heading below it, one or two lines of body text, and one or more ' +
+    'call-to-action buttons. Occupies a significant portion of the content ' +
+    'area. May be contained in an EuiPanel or shown full-width. NOT a modal ' +
+    '(not overlaid). NOT EuiCallOut (much larger, illustration-led, not an ' +
+    'alert strip).',
+
+  EuiPageHeader:
+    'A horizontal page-level header bar sitting at the top of the content ' +
+    'area (below the global Kibana chrome). Left side: optional breadcrumbs ' +
+    'above a large page title, with an optional description line below the ' +
+    'title. Right side: one or more action buttons aligned to the top-right. ' +
+    'Optional tabs row at the bottom of the header. NOT the global EuiHeader ' +
+    '(which is the app-wide top bar with the Elastic logo and nav). ' +
+    'NOT a section heading inside a page.',
+
+  EuiTabs:
+    'A horizontal row of tab items, each a text label with generous padding. ' +
+    'The active tab is visually distinguished by a solid underline (2–3px, ' +
+    'primary color) or a filled background depending on the variant. Inactive ' +
+    'tabs are muted. The tab bar sits above the content it controls. ' +
+    'NOT EuiSteps (tabs are non-sequential navigation, steps imply a ' +
+    'progression). NOT a segmented control / EuiButtonGroup.',
+
+  EuiBreadcrumbs:
+    'A single horizontal line of text items separated by › or / chevron ' +
+    'characters. Each item except the last is a clickable link (primary ' +
+    'color). The last item (current page) is plain, non-linked text. Very ' +
+    'compact height. Sits above the page title, usually inside EuiPageHeader. ' +
+    'NOT EuiSteps. NOT EuiTabs. NOT a pagination control.',
+
+  EuiTitle:
+    'Styled heading text — larger and heavier font weight than body copy. ' +
+    'No background, no border, no container. Comes in scale sizes: ' +
+    'xxxs → xxl, corresponding to h1–h6 visual weight. NOT EuiText (which ' +
+    'wraps body copy). NOT EuiStat (which is always paired with a metric ' +
+    'descriptor label). The HTML element rendered (h1–h6) is set by the ' +
+    '`as` prop and may differ from the visual size.',
+
+  EuiText:
+    'A wrapper that applies EUI typography to arbitrary HTML content — ' +
+    'paragraphs, lists, inline elements. Visually: regular-weight body text ' +
+    'at standard reading size, with correct line-height and color. No visible ' +
+    'border or background. NOT EuiTitle (body weight vs heading weight). ' +
+    'Identified in a mockup by blocks of readable paragraph text or bulleted ' +
+    'lists inside a layout region.',
+
+  EuiFormRow:
+    'A vertically stacked form field unit. From top to bottom: a short text ' +
+    'label (regular weight, small), the input control (text field, select, ' +
+    'etc.), and optionally a one-line helper text or red error message below. ' +
+    'The group has consistent vertical spacing. NOT a standalone label ' +
+    '(EuiFormRow always wraps an input). In a form with multiple fields, ' +
+    'each EuiFormRow is a self-contained label+input+feedback stack.',
+
+  EuiFieldText:
+    'A single-line rectangular text input. Has a visible border on all four ' +
+    'sides (default) with a subtle background. Shows placeholder text when ' +
+    'empty. Focused state adds a blue border/glow. May have a prepend or ' +
+    'append element (icon, label, button) inside the input boundary. ' +
+    'NOT EuiSearchBar (EuiFieldText has no built-in search icon or filter ' +
+    'pills). NOT EuiTextArea (single line vs multi-line).',
+
+  EuiComboBox:
+    'A multi-value select input. The input area shows selected items as ' +
+    'pill-shaped badges inside the field, followed by a blinking text cursor ' +
+    'for typing a search query. Has a dropdown chevron on the right. On click, ' +
+    'opens a dropdown list of options. Single-select variant looks like ' +
+    'a regular input with a chevron. NOT EuiSelect (native dropdown, no ' +
+    'in-field pills). NOT EuiSelectable (EuiSelectable is a standalone ' +
+    'panel list, not an inline input field).',
+
+  EuiSearchBar:
+    'A full-width search input that spans the content area or a panel. Has ' +
+    'a magnifier (🔍) icon on the left inside the field. May render active ' +
+    'filters as pill-shaped chips immediately to the right of the search text. ' +
+    'Can have a Filters button on the right end. Visually wider and more ' +
+    'prominent than EuiFieldSearch. NOT EuiFieldSearch (standalone narrow ' +
+    'search input). NOT EuiComboBox (no option dropdown from the bar itself).',
+
+  EuiPageTemplate:
+    'The full-page scaffold — not a single visible element but the overall ' +
+    'layout structure. Recognizable as the combination of: an optional fixed ' +
+    'left sidebar, a top page header region, and a main content area filling ' +
+    'the remaining space. The sidebar has a distinct background color. ' +
+    'In a screenshot, infer EuiPageTemplate from the two-column ' +
+    'sidebar+content layout with a header strip above the content column.',
+
+  EuiIcon:
+    'A small SVG pictogram, typically 16px (s) or 24px (m) square. ' +
+    'Transparent background by default. Used inline in text, inside buttons, ' +
+    'or as standalone decorative/informational elements. Color matches the ' +
+    'surrounding text or is explicitly set. NOT EuiButtonIcon (EuiIcon is ' +
+    'not interactive; it has no click area or hover state). NOT EuiAvatar ' +
+    '(which is circular with initials or an image). Identify by recognizing ' +
+    'the specific glyph from the EUI icon set.',
+
+  // ---------------------------------------------------------------------------
+  // Remaining entries — contributions welcome
+  // ---------------------------------------------------------------------------
 };
 
 // ---------------------------------------------------------------------------

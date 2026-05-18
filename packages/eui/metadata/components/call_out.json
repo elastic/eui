@@ -1,7 +1,7 @@
 {
   "name": "EuiCallOut",
   "description": "Inline alert box for informational, success, warning, or danger messages.",
-  "visualDescription": "",
+  "visualDescription": "A rectangular box with a prominent 4px solid colored left-border accent. Inside: an icon on the far left of the header row, a bold title text next to it, and optional body text below. The border (and icon) color encodes semantic meaning: blue = info/primary, green = success, yellow = warning, red = danger. No drop shadow (not floating). Full-width by default. NOT EuiPanel (no shadow, always has the left accent border). NOT EuiToast (not positioned/floating). NOT EuiModal.",
   "category": "Display",
   "import": "import { EuiCallOut } from '@elastic/eui';",
   "props": {

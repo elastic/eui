@@ -1,7 +1,7 @@
 {
   "name": "EuiText",
   "description": "Semantic wrapper that applies EUI typography styles to arbitrary HTML content.",
-  "visualDescription": "",
+  "visualDescription": "A wrapper that applies EUI typography to arbitrary HTML content — paragraphs, lists, inline elements. Visually: regular-weight body text at standard reading size, with correct line-height and color. No visible border or background. NOT EuiTitle (body weight vs heading weight). Identified in a mockup by blocks of readable paragraph text or bulleted lists inside a layout region.",
   "category": "Display",
   "import": "import { EuiText } from '@elastic/eui';",
   "props": {

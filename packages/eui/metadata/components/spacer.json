@@ -1,7 +1,7 @@
 {
   "name": "EuiSpacer",
   "description": "Vertical whitespace block. Always prefer over margin on surrounding elements.",
-  "visualDescription": "",
+  "visualDescription": "Pure vertical whitespace — a transparent block that adds a fixed gap between stacked elements. Not visually distinguishable in a rendered screenshot; only identifiable in Figma as an empty frame or spacing annotation. Infer its presence from gaps between vertically stacked components. Size tokens: xs (4px), s (8px), m (16px), l (24px), xl (32px), xxl (40px).",
   "category": "Layout",
   "import": "import { EuiSpacer } from '@elastic/eui';",
   "props": {

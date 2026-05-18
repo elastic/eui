@@ -1,7 +1,7 @@
 {
   "name": "EuiPageTemplate",
   "description": "Full-page layout template managing sidebar, header, and content regions.",
-  "visualDescription": "",
+  "visualDescription": "The full-page scaffold — not a single visible element but the overall layout structure. Recognizable as the combination of: an optional fixed left sidebar, a top page header region, and a main content area filling the remaining space. The sidebar has a distinct background color. In a screenshot, infer EuiPageTemplate from the two-column sidebar+content layout with a header strip above the content column.",
   "category": "Templates",
   "import": "import { EuiPageTemplate } from '@elastic/eui';",
   "props": {

@@ -1,7 +1,7 @@
 {
   "name": "EuiFlexGroup",
   "description": "Flexbox row/column container. Children must be EuiFlexItem.",
-  "visualDescription": "",
+  "visualDescription": "A layout-only container — has no visual appearance of its own. Recognized by its children being arranged in a horizontal row (default) or vertical column with consistent gaps between them. The gap size corresponds to EUI spacing tokens (none / xs / s / m / l / xl). In Figma it appears as a frame with Auto Layout. Cannot be identified in a rasterized screenshot without inspecting the DOM — infer its presence from a row of sibling elements with uniform spacing.",
   "category": "Layout",
   "import": "import { EuiFlexGroup } from '@elastic/eui';",
   "props": {

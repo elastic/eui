@@ -1,7 +1,7 @@
 {
   "name": "EuiComboBox",
   "description": "Multi-select or single-select input with search and custom option support.",
-  "visualDescription": "",
+  "visualDescription": "A multi-value select input. The input area shows selected items as pill-shaped badges inside the field, followed by a blinking text cursor for typing a search query. Has a dropdown chevron on the right. On click, opens a dropdown list of options. Single-select variant looks like a regular input with a chevron. NOT EuiSelect (native dropdown, no in-field pills). NOT EuiSelectable (EuiSelectable is a standalone panel list, not an inline input field).",
   "category": "Forms",
   "import": "import { EuiComboBox } from '@elastic/eui';",
   "props": {

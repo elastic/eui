@@ -1,7 +1,7 @@
 {
   "name": "EuiBadge",
   "description": "Colored label for status, category, or count. Supports click handlers.",
-  "visualDescription": "",
+  "visualDescription": "A pill-shaped chip with fully rounded ends and a solid or light background fill. Contains short text (1–3 words), optionally preceded by a small icon or followed by a dismissible ×. Color variants cover semantic states (success green, danger red, warning yellow) as well as arbitrary custom colors. Sits inline within text or stacks in a flex row. NOT EuiHealth (no dot, has a pill container). NOT EuiButton (not interactive as a primary action, rectangular corners on EuiButton).",
   "category": "Display",
   "import": "import { EuiBadge } from '@elastic/eui';",
   "props": {
