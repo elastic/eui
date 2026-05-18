@@ -101,3 +101,5 @@ export const EuiTableSortMobile = ({
     </div>
   );
 };
+
+EuiTableSortMobile.displayName = 'EuiTableSortMobile';
