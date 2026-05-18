@@ -1,0 +1,147 @@
+{
+  "name": "EuiInMemoryTable",
+  "description": "Data table with built-in client-side search, sort, and pagination.",
+  "category": "Tabular Content",
+  "import": "import { EuiInMemoryTable } from '@elastic/eui';",
+  "props": {
+    "aria-label": {
+      "type": "string",
+      "required": false,
+      "description": "Defines a string value that labels the current element.\n@see aria-labelledby."
+    },
+    "error": {
+      "type": "string",
+      "required": false,
+      "description": "Error message to display"
+    },
+    "compressed": {
+      "type": "boolean",
+      "required": false
+    },
+    "loading": {
+      "type": "boolean",
+      "required": false,
+      "description": "Provides an infinite loading indicator"
+    },
+    "items": {
+      "type": "T[]",
+      "required": true,
+      "description": "A list of objects to appear in the table - an item per row"
+    },
+    "columns": {
+      "type": "EuiBasicTableColumn<T>[]",
+      "required": true,
+      "description": "An array of one of the objects: {@link EuiTableFieldDataColumnType}, {@link EuiTableComputedColumnType} or {@link EuiTableActionsColumnType}."
+    },
+    "responsiveBreakpoint": {
+      "type": "string | boolean",
+      "required": false,
+      "default": "m",
+      "description": "Named breakpoint. Below this size, the table will collapse\ninto responsive cards.\n\nPass `false` to never collapse to a mobile view, or inversely,\n`true` to always render mobile-friendly cards."
+    },
+    "tableLayout": {
+      "type": "\"fixed\" | \"auto\"",
+      "required": false,
+      "default": "fixed",
+      "description": "Sets the table-layout CSS property. Note that auto tableLayout prevents truncateText from working properly."
+    },
+    "hasBackground": {
+      "type": "boolean",
+      "required": false,
+      "default": "true",
+      "description": "Toggle the table's background"
+    },
+    "scrollableInline": {
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": "Allow the table to grow over 100% of the container inline size\n(width in horizontal writing-mode) and enable scrolling on overflow.\n\nThis should only be used with [`tableLayout`]{@link EuiTableProps#tableLayout }\nset to `auto`.\n@beta"
+    },
+    "itemId": {
+      "type": "ItemId<T>",
+      "required": false,
+      "description": "Describes how to extract a unique ID from each item, used for selections & expanded rows"
+    },
+    "itemIdToExpandedRowMap": {
+      "type": "ItemIdToExpandedRowMap",
+      "required": false,
+      "description": "Row expansion uses the itemId prop to identify each row"
+    },
+    "cellProps": {
+      "type": "object | CellPropsCallback<T>",
+      "required": false,
+      "description": "Applied to `EuiTableRowCell`"
+    },
+    "tableCaption": {
+      "type": "string",
+      "required": false,
+      "description": "Provides a description of the table’s content. If no description is provided, the table will default to the name Data Table."
+    },
+    "rowHeader": {
+      "type": "string",
+      "required": false,
+      "description": "Indicates which column should be used as the identifying cell in each row. Should match a \"field\" prop in FieldDataColumn"
+    },
+    "rowProps": {
+      "type": "object | RowPropsCallback<T>",
+      "required": false,
+      "description": "Applied to `EuiTableRow`"
+    },
+    "selection": {
+      "type": "EuiTableSelectionType<T>",
+      "required": false,
+      "description": "Configures {@link EuiTableSelectionType}"
+    },
+    "noItemsMessage": {
+      "type": "ReactNode",
+      "required": false,
+      "description": "Message to display if table is empty"
+    },
+    "search": {
+      "type": "Search",
+      "required": false,
+      "description": "Configures the search bar. Can be `true` for defaults,\nor an {@link EuiSearchBarProps} object.\n\nWhen `searchFormat=\"text\"`, `query` and `defaultQuery` must be strings\n({@link Query} objects are ignored)."
+    },
+    "searchFormat": {
+      "type": "\"text\" | \"eql\"",
+      "required": false,
+      "default": "eql",
+      "description": "By default, tables use `eql` format for search which allows using advanced filters.\n\nHowever, certain special characters (such as quotes, parentheses, and colons)\nare reserved for EQL syntax and will error if used.\n\nIf your table does not require filter search and instead requires searching for certain\nsymbols, use a plain `text` search format instead (note that filters will be ignored\nin this format)."
+    },
+    "pagination": {
+      "type": "Pagination",
+      "required": false,
+      "description": "Configures {@link Pagination}"
+    },
+    "sorting": {
+      "type": "Sorting",
+      "required": false,
+      "description": "Configures {@link EuiTableSortingType}"
+    },
+    "allowNeutralSort": {
+      "type": "boolean",
+      "required": false,
+      "description": "Set `allowNeutralSort` to false to force column sorting. Defaults to true."
+    },
+    "onChange": {
+      "type": "((criteria: Criteria<T>) => void) | ((criteria: CriteriaWithPagination<T>) => void)",
+      "required": false,
+      "description": "`onChange` is not required when `pagination` and/or `sorting` are configured,\nbut if `onChange` is present it is responsible for handling state for each/both.\nSee {@link Criteria} or {@link CriteriaWithPagination}"
+    },
+    "onTableChange": {
+      "type": "((nextValues: Criteria<T>) => void) | ((nextValues: CriteriaWithPagination<T>) => void)",
+      "required": false,
+      "description": "Callback for when table pagination or sorting is changed. This is meant to be informational only,\nand not used to set any state as the in-memory table already manages this state.\nSee {@link Criteria} or {@link CriteriaWithPagination}."
+    },
+    "executeQueryOptions": {
+      "type": "{ defaultFields?: string[]; isClauseMatcher?: (...args: any) => boolean; explain?: boolean; enabled?: boolean; }",
+      "required": false
+    },
+    "childrenBetween": {
+      "type": "ReactNode",
+      "required": false,
+      "description": "Insert content between the search bar and table components."
+    }
+  },
+  "example": "<EuiInMemoryTable />"
+}

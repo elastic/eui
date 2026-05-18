@@ -1,0 +1,83 @@
+{
+  "name": "EuiFormControlLayout",
+  "description": "",
+  "category": "Forms",
+  "import": "import { EuiFormControlLayout } from '@elastic/eui';",
+  "props": {
+    "aria-label": {
+      "type": "string",
+      "required": false,
+      "description": "Defines a string value that labels the current element.\n@see aria-labelledby."
+    },
+    "prepend": {
+      "type": "PrependAppendType",
+      "required": false,
+      "description": "Creates an input group with element(s) coming before children.\n`string` | `ReactElement` or an array of these"
+    },
+    "append": {
+      "type": "PrependAppendType",
+      "required": false,
+      "description": "Creates an input group with element(s) coming after children.\n`string` | `ReactElement` or an array of these"
+    },
+    "icon": {
+      "type": "IconType | IconShape",
+      "required": false
+    },
+    "iconsPosition": {
+      "type": "\"absolute\" | \"static\"",
+      "required": false,
+      "default": "absolute",
+      "description": "Determines whether icons are absolutely or statically rendered. For single inputs,\nabsolute rendering is typically preferred."
+    },
+    "clear": {
+      "type": "EuiFormControlLayoutClearButtonProps",
+      "required": false
+    },
+    "fullWidth": {
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": "Expand to fill 100% of the parent.\nDefaults to `fullWidth` prop of `<EuiForm>`."
+    },
+    "isLoading": {
+      "type": "boolean",
+      "required": false
+    },
+    "isDisabled": {
+      "type": "boolean",
+      "required": false
+    },
+    "compressed": {
+      "type": "boolean",
+      "required": false
+    },
+    "readOnly": {
+      "type": "boolean",
+      "required": false
+    },
+    "isInvalid": {
+      "type": "boolean",
+      "required": false
+    },
+    "isDropdown": {
+      "type": "boolean",
+      "required": false,
+      "description": "Controls the adding of and visibility of a down arrow icon"
+    },
+    "inputId": {
+      "type": "string",
+      "required": false,
+      "description": "Connects the prepend and append labels to the input"
+    },
+    "wrapperProps": {
+      "type": "CommonProps & HTMLAttributes<HTMLDivElement>",
+      "required": false,
+      "description": "Allows passing optional additional props to `.euiFormControlLayout__childrenWrapper`"
+    },
+    "isDelimited": {
+      "type": "boolean",
+      "required": false
+    }
+  },
+  "example": "<EuiFormControlLayout type=\"faceHappy\" side=\"right\" />"
+}

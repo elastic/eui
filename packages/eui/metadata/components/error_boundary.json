@@ -1,0 +1,24 @@
+{
+  "name": "EuiErrorBoundary",
+  "description": "",
+  "category": "Utilities",
+  "import": "import { EuiErrorBoundary } from '@elastic/eui';",
+  "props": {
+    "aria-label": {
+      "type": "string",
+      "required": false,
+      "description": "Defines a string value that labels the current element.\n@see aria-labelledby."
+    },
+    "children": {
+      "type": "ReactNode",
+      "required": false,
+      "description": "ReactNode to render as this component's content"
+    },
+    "onError": {
+      "type": "(error: Error) => void",
+      "required": false,
+      "description": "Callback that fires when an error is caught. Passes back the full error"
+    }
+  },
+  "example": "<EuiErrorBoundary />"
+}

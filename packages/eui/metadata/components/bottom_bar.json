@@ -1,0 +1,77 @@
+{
+  "name": "EuiBottomBar",
+  "description": "Fixed bar anchored to the bottom of the viewport for persistent actions.",
+  "category": "Layout",
+  "import": "import { EuiBottomBar } from '@elastic/eui';",
+  "props": {
+    "aria-label": {
+      "type": "string",
+      "required": false,
+      "description": "Defines a string value that labels the current element.\n@see aria-labelledby."
+    },
+    "usePortal": {
+      "type": "boolean | EuiPortalProps",
+      "required": false,
+      "default": "true",
+      "description": "Whether to wrap in an EuiPortal which appends the component to the body element.\nOnly works if `position` is `fixed`."
+    },
+    "affordForDisplacement": {
+      "type": "boolean",
+      "required": false,
+      "default": "true",
+      "description": "Whether the component should apply padding on the document body element to afford for its own displacement height.\nOnly works if `usePortal` is true and `position` is `fixed`."
+    },
+    "position": {
+      "type": "\"fixed\" | \"static\" | \"sticky\"",
+      "required": false,
+      "default": "fixed",
+      "description": "How to position the bottom bar against its parent."
+    },
+    "paddingSize": {
+      "type": "\"s\" | \"m\" | \"l\" | \"none\"",
+      "required": false,
+      "default": "m",
+      "description": "Padding applied to the bar. Default is 'm'."
+    },
+    "bodyClassName": {
+      "type": "string",
+      "required": false,
+      "description": "Optional class applied to the body element on mount."
+    },
+    "landmarkHeading": {
+      "type": "string",
+      "required": false,
+      "default": "Page level controls",
+      "description": "Customize the screen reader heading that helps users find this control."
+    },
+    "top": {
+      "type": "Top<string | number>",
+      "required": false,
+      "description": "Starting vertical position when `fixed` position.\nOffset from the top of the window when `sticky` position.\nHas no affect on `static` positions."
+    },
+    "right": {
+      "type": "Right<string | number>",
+      "required": false,
+      "default": "0",
+      "description": "Ending horizontal position when `fixed` position.\nHas no affect on `static` or `sticky` positions."
+    },
+    "bottom": {
+      "type": "Bottom<string | number>",
+      "required": false,
+      "default": "0",
+      "description": "Starting vertical position when `fixed` position.\nOffset from the bottom of the window when `sticky` position.\nHas no affect on `static` positions."
+    },
+    "left": {
+      "type": "Left<string | number>",
+      "required": false,
+      "default": "0",
+      "description": "Starting horizontal position when `fixed` position.\nHas no affect on `static` or `sticky` positions."
+    },
+    "ref": {
+      "type": "LegacyRef<HTMLElement>",
+      "required": false,
+      "description": "Allows getting a ref to the component instance.\nOnce the component unmounts, React will set `ref.current` to `null`\n(or call the ref with `null` if you passed a callback ref).\n@see {@link https://react.dev/learn/referencing-values-with-refs#refs-and-the-dom React Docs}"
+    }
+  },
+  "example": "<EuiBottomBar bottom={0} left={0} right={0} paddingSize=\"m\" position=\"fixed\" usePortal affordForDisplacement>Bottom bar content</EuiBottomBar>"
+}

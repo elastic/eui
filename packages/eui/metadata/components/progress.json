@@ -1,0 +1,50 @@
+{
+  "name": "EuiProgress",
+  "description": "Linear determinate or indeterminate progress indicator.",
+  "category": "Display",
+  "import": "import { EuiProgress } from '@elastic/eui';",
+  "props": {
+    "label": {
+      "type": "ReactNode",
+      "required": false
+    },
+    "max": {
+      "type": "number",
+      "required": false,
+      "description": "When set, creates determinate progress with a value/max ratio"
+    },
+    "labelProps": {
+      "type": "CommonProps & HTMLAttributes<HTMLSpanElement>",
+      "required": false,
+      "description": "Object of props passed to the <span/> wrapping the determinate progress's label"
+    },
+    "valueText": {
+      "type": "ReactNode",
+      "required": false,
+      "default": "false",
+      "description": "Displays custom text or percentage\nPass `true` to display the percentage value\nPass a ReactNode for custom text"
+    },
+    "aria-label": {
+      "type": "string",
+      "required": false,
+      "description": "Defines a string value that labels the current element.\n@see aria-labelledby."
+    },
+    "size": {
+      "type": "\"s\" | \"xs\" | \"m\" | \"l\"",
+      "required": false,
+      "default": "m"
+    },
+    "color": {
+      "type": "string",
+      "required": false,
+      "default": "success",
+      "description": "One of EUI's color palette, vis colors or a valid CSS color value https://developer.mozilla.org/en-US/docs/Web/CSS/color_value"
+    },
+    "position": {
+      "type": "\"fixed\" | \"absolute\" | \"static\"",
+      "required": false,
+      "default": "static"
+    }
+  },
+  "example": "<EuiProgress />"
+}

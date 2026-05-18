@@ -1,0 +1,46 @@
+{
+  "name": "EuiAutoSizer",
+  "description": "",
+  "category": "Utilities",
+  "import": "import { EuiAutoSizer } from '@elastic/eui';",
+  "props": {
+    "doNotBailOutOnEmptyChildren": {
+      "type": "boolean",
+      "required": false
+    },
+    "nonce": {
+      "type": "string",
+      "required": false
+    },
+    "tagName": {
+      "type": "string",
+      "required": false
+    },
+    "aria-label": {
+      "type": "string",
+      "required": false,
+      "description": "Defines a string value that labels the current element.\n@see aria-labelledby."
+    },
+    "defaultHeight": {
+      "type": "number",
+      "required": false
+    },
+    "disableHeight": {
+      "type": "boolean",
+      "required": false
+    },
+    "disableWidth": {
+      "type": "boolean",
+      "required": false
+    },
+    "onResize": {
+      "type": "((size: VerticalSize) => void) | ((size: HorizontalSize) => void) | ((size: Size) => void)",
+      "required": false
+    },
+    "defaultWidth": {
+      "type": "number",
+      "required": false
+    }
+  },
+  "example": "<EuiAutoSizer tagName=\"div\" />"
+}

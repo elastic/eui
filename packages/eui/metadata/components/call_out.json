@@ -1,0 +1,58 @@
+{
+  "name": "EuiCallOut",
+  "description": "Inline alert box for informational, success, warning, or danger messages.",
+  "category": "Display",
+  "import": "import { EuiCallOut } from '@elastic/eui';",
+  "props": {
+    "aria-label": {
+      "type": "string",
+      "required": false,
+      "description": "Defines a string value that labels the current element.\n@see aria-labelledby."
+    },
+    "title": {
+      "type": "ReactNode",
+      "required": false
+    },
+    "iconType": {
+      "type": "IconType",
+      "required": false
+    },
+    "color": {
+      "type": "\"accent\" | \"primary\" | \"success\" | \"warning\" | \"danger\"",
+      "required": false,
+      "default": "primary"
+    },
+    "size": {
+      "type": "\"s\" | \"m\"",
+      "required": false,
+      "default": "m"
+    },
+    "heading": {
+      "type": "\"h1\" | \"h2\" | \"h3\" | \"h4\" | \"h5\" | \"h6\" | \"p\"",
+      "required": false,
+      "default": "p"
+    },
+    "onDismiss": {
+      "type": "() => void",
+      "required": false,
+      "description": "Passing an `onDismiss` callback will render a cross in the top right hand corner\nof the callout.\n\nThis callback fires when users click this button, which allows conditionally\nremoving the callout or other actions."
+    },
+    "dismissButtonProps": {
+      "type": "Partial<EuiButtonIconPropsForButton> & DataAttributeProps",
+      "required": false,
+      "description": "Useful for passing additional props to the dismiss button e.g. data attributes"
+    },
+    "announceOnMount": {
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": "Enables the content to be read by screen readers on mount.\nUse this for callouts that are shown based on a user action."
+    },
+    "ref": {
+      "type": "LegacyRef<HTMLDivElement>",
+      "required": false,
+      "description": "Allows getting a ref to the component instance.\nOnce the component unmounts, React will set `ref.current` to `null`\n(or call the ref with `null` if you passed a callback ref).\n@see {@link https://react.dev/learn/referencing-values-with-refs#refs-and-the-dom React Docs}"
+    }
+  },
+  "example": "<EuiCallOut color=\"primary\" heading=\"p\" size=\"m\" title=\"Callout title\">Callout text</EuiCallOut>"
+}

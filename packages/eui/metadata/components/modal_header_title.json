@@ -1,0 +1,28 @@
+{
+  "name": "EuiModalHeaderTitle",
+  "description": "",
+  "category": "Layout",
+  "import": "import { EuiModalHeaderTitle } from '@elastic/eui';",
+  "props": {
+    "size": {
+      "type": "\"s\" | \"xs\" | \"m\" | \"l\" | \"xxs\" | \"xxxs\"",
+      "required": false
+    },
+    "aria-label": {
+      "type": "string",
+      "required": false,
+      "description": "Defines a string value that labels the current element.\n@see aria-labelledby."
+    },
+    "textTransform": {
+      "type": "\"uppercase\"",
+      "required": false
+    },
+    "component": {
+      "type": "ElementType",
+      "required": false,
+      "default": "h1",
+      "description": "The tag to render. Can be changed to a lower heading\nlevel like `h2` or a container `div`."
+    }
+  },
+  "example": "<EuiModalHeaderTitle component=\"h1\">Modal header title</EuiModalHeaderTitle>"
+}

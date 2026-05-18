@@ -1,0 +1,74 @@
+{
+  "name": "EuiImage",
+  "description": "Responsive image with optional caption and fullscreen zoom.",
+  "category": "Display",
+  "import": "import { EuiImage } from '@elastic/eui';",
+  "props": {
+    "aria-label": {
+      "type": "string",
+      "required": false,
+      "description": "Defines a string value that labels the current element.\n@see aria-labelledby."
+    },
+    "src": {
+      "type": "string",
+      "required": false,
+      "description": "Requires either `src` or `url` but defaults to using `src` if both are provided"
+    },
+    "url": {
+      "type": "string",
+      "required": false
+    },
+    "alt": {
+      "type": "string",
+      "required": true,
+      "description": "Alt text should describe the image to aid screen reader users. See\nhttps://webaim.org/techniques/alttext/ for a guide on writing\neffective alt text.\n\nIf no meaningful description exists, or if the image is adequately\ndescribed by the surrounding text, pass an empty string."
+    },
+    "caption": {
+      "type": "ReactNode",
+      "required": false,
+      "description": "Provides a visible caption to the image"
+    },
+    "size": {
+      "type": "string | number",
+      "required": false,
+      "default": "original",
+      "description": "Accepts `s` / `m` / `l` / `xl` / `original` / `fullWidth` / or a CSS size of `number` or `string`.\n`fullWidth` will set the figure to stretch to 100% of its container.\n`string` and `number` types will max both the width or height, whichever is greater."
+    },
+    "float": {
+      "type": "\"left\" | \"right\"",
+      "required": false,
+      "description": "Float the image to the left or right. Useful in large text blocks."
+    },
+    "margin": {
+      "type": "\"s\" | \"m\" | \"l\" | \"xl\"",
+      "required": false,
+      "description": "Margin around the image."
+    },
+    "hasShadow": {
+      "type": "boolean",
+      "required": false,
+      "description": "When set to `true` (default) will apply a slight shadow to the image"
+    },
+    "allowFullScreen": {
+      "type": "boolean",
+      "required": false,
+      "description": "When set to `true` will make the image clickable to a larger version"
+    },
+    "onFullScreen": {
+      "type": "(isFullScreen: boolean) => void",
+      "required": false,
+      "description": "Callback when the image is clicked and `allowFullScreen` is `true`"
+    },
+    "fullScreenIconColor": {
+      "type": "EuiImageButtonIconColor",
+      "required": false,
+      "description": "Changes the color of the icon that floats above the image when it can be clicked to fullscreen.\nThe default value of `light` is fine unless your image has a white background, in which case you should change it to `dark`."
+    },
+    "wrapperProps": {
+      "type": "CommonProps & HTMLAttributes<HTMLDivElement>",
+      "required": false,
+      "description": "Props to add to the wrapping figure element"
+    }
+  },
+  "example": "<EuiImage size=\"original\" src=\"https://images.unsplash.com/photo-1650253618249-fb0d32d3865c?w=900&h=400&fit=crop&q=60\" />"
+}

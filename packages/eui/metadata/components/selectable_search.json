@@ -1,0 +1,83 @@
+{
+  "name": "EuiSelectableSearch",
+  "description": "",
+  "category": "Forms",
+  "import": "import { EuiSelectableSearch } from '@elastic/eui';",
+  "props": {
+    "append": {
+      "type": "PrependAppendType",
+      "required": false,
+      "description": "Creates an input group with element(s) coming after input.\n`string` | `ReactElement` or an array of these"
+    },
+    "value": {
+      "type": "string",
+      "required": false,
+      "description": "Search value state managed by parent EuiSelectable"
+    },
+    "prepend": {
+      "type": "PrependAppendType",
+      "required": false,
+      "description": "Creates an input group with element(s) coming before input\n`string` | `ReactElement` or an array of these"
+    },
+    "name": {
+      "type": "string",
+      "required": false
+    },
+    "isLoading": {
+      "type": "boolean",
+      "required": false
+    },
+    "fullWidth": {
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": "Expand to fill 100% of the parent.\nDefaults to `fullWidth` prop of `<EuiForm>`."
+    },
+    "compressed": {
+      "type": "boolean",
+      "required": false,
+      "description": "when `true` creates a shorter height input"
+    },
+    "inputRef": {
+      "type": "(node: HTMLInputElement) => void",
+      "required": false
+    },
+    "placeholder": {
+      "type": "string",
+      "required": false
+    },
+    "isInvalid": {
+      "type": "boolean",
+      "required": false
+    },
+    "isClearable": {
+      "type": "boolean",
+      "required": false,
+      "description": "Shows a button that quickly clears any input"
+    },
+    "onChange": {
+      "type": "(searchValue: string, matchingOptions: ExclusiveUnion<EuiSelectableGroupLabelOption<T>, EuiSelectableLIOption<T>>[]) => void",
+      "required": true,
+      "description": "Passes back (searchValue, matchingOptions)"
+    },
+    "options": {
+      "type": "ExclusiveUnion<EuiSelectableGroupLabelOption<T>, EuiSelectableLIOption<T>>[]",
+      "required": true
+    },
+    "listId": {
+      "type": "string",
+      "required": false,
+      "description": "The id of the visible list to create the appropriate aria controls"
+    },
+    "isPreFiltered": {
+      "type": "boolean",
+      "required": true
+    },
+    "optionMatcher": {
+      "type": "EuiSelectableOptionMatcher<T>",
+      "required": true,
+      "description": "Option matcher function"
+    }
+  },
+  "example": "<EuiSelectableSearch />"
+}

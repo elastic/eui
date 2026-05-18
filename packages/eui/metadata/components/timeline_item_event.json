@@ -1,0 +1,19 @@
+{
+  "name": "EuiTimelineItemEvent",
+  "description": "",
+  "category": "Display",
+  "import": "import { EuiTimelineItemEvent } from '@elastic/eui';",
+  "props": {
+    "children": {
+      "type": "ReactNode",
+      "required": true,
+      "description": "Accepts any node. But preferably `EuiPanel`"
+    },
+    "verticalAlign": {
+      "type": "\"center\" | \"top\"",
+      "required": false,
+      "default": "center"
+    }
+  },
+  "example": "<EuiTimelineItemEvent>timeline item event</EuiTimelineItemEvent>"
+}

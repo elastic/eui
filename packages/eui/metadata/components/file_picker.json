@@ -1,0 +1,59 @@
+{
+  "name": "EuiFilePicker",
+  "description": "File upload input.",
+  "category": "Forms",
+  "import": "import { EuiFilePicker } from '@elastic/eui';",
+  "props": {
+    "name": {
+      "type": "string",
+      "required": false
+    },
+    "disabled": {
+      "type": "boolean",
+      "required": false
+    },
+    "isLoading": {
+      "type": "boolean",
+      "required": false
+    },
+    "fullWidth": {
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": "Expand to fill 100% of the parent.\nDefaults to `fullWidth` prop of `<EuiForm>`."
+    },
+    "onChange": {
+      "type": "(files: FileList) => void",
+      "required": false,
+      "description": "Use as a callback to access the HTML FileList API"
+    },
+    "display": {
+      "type": "\"default\" | \"large\"",
+      "required": false,
+      "default": "large",
+      "description": "Size or type of display;\n`default` for normal height, similar to other controls;\n`large` for taller size"
+    },
+    "compressed": {
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": "Reduces the size to a typical (compressed) input"
+    },
+    "isInvalid": {
+      "type": "boolean",
+      "required": false
+    },
+    "initialPromptText": {
+      "type": "ReactNode",
+      "required": false,
+      "default": "'Select or drag and drop a file'",
+      "description": "The content that appears in the dropzone if no file is attached"
+    },
+    "ref": {
+      "type": "LegacyRef<unknown>",
+      "required": false,
+      "description": "Allows getting a ref to the component instance.\nOnce the component unmounts, React will set `ref.current` to `null`\n(or call the ref with `null` if you passed a callback ref).\n@see {@link https://react.dev/learn/referencing-values-with-refs#refs-and-the-dom React Docs}"
+    }
+  },
+  "example": "<EuiFilePicker display=\"default\" />"
+}

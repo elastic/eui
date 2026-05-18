@@ -1,0 +1,64 @@
+{
+  "name": "EuiComment",
+  "description": "",
+  "category": "Display",
+  "import": "import { EuiComment } from '@elastic/eui';",
+  "props": {
+    "username": {
+      "type": "ReactNode",
+      "required": true,
+      "description": "Author of the comment."
+    },
+    "timestamp": {
+      "type": "ReactNode",
+      "required": false,
+      "description": "Time of occurrence of the event. Its format is set on the consumer's side"
+    },
+    "event": {
+      "type": "ReactNode",
+      "required": false,
+      "description": "Describes the event that took place"
+    },
+    "actions": {
+      "type": "ReactNode | ReactNode[]",
+      "required": false,
+      "description": "Custom actions that the user can perform from the comment's header"
+    },
+    "children": {
+      "type": "ReactNode",
+      "required": false,
+      "description": "Accepts any ReactNode. Renders in a panel within the comment event."
+    },
+    "eventIcon": {
+      "type": "IconType",
+      "required": false,
+      "description": "Custom icon that shows before the username."
+    },
+    "eventIconAriaLabel": {
+      "type": "string",
+      "required": false,
+      "description": "Specify an `aria-label` for the `eventIcon`.\nIf no `aria-label` is passed we assume the icon is purely decorative."
+    },
+    "eventColor": {
+      "type": "PanelColor",
+      "required": false,
+      "description": "Background color for the comment's header."
+    },
+    "timelineAvatar": {
+      "type": "string | number | boolean | ReactElement | Iterable<ReactNode> | ReactPortal | ComponentClass<...> | FunctionComponent<...>",
+      "required": false,
+      "description": "Main avatar that accompanies the comment. Should indicate who is the author of the comment.\nAny `ReactNode`, but preferably `EuiAvatar`, or a `string` as an `EuiAvatarProps['iconType']`.\nIf no `timelineAvatar` is passed, the `user` icon will be used as the avatar."
+    },
+    "timelineAvatarAriaLabel": {
+      "type": "string",
+      "required": false,
+      "description": "Specify an `aria-label` and `title` for the `timelineAvatar` when passed as an `IconType` or when nothing is passed.\nIf no `timelineAvatarAriaLabel` is passed we assume the avatar is purely decorative."
+    },
+    "verticalAlign": {
+      "type": "\"center\" | \"top\"",
+      "required": false,
+      "description": "Vertical alignment of the event with the icon"
+    }
+  },
+  "example": "<EuiComment username=\"User\" timelineAvatar=\"user\" event=\"posted\" eventIcon=\"pencil\" timestamp=\"on Jan 1, 2020\" actions=\"Example action\">A user message or any custom component</EuiComment>"
+}

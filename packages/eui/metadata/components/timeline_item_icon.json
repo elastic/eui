@@ -1,0 +1,24 @@
+{
+  "name": "EuiTimelineItemIcon",
+  "description": "",
+  "category": "Display",
+  "import": "import { EuiTimelineItemIcon } from '@elastic/eui';",
+  "props": {
+    "icon": {
+      "type": "string | number | boolean | ReactElement | Iterable<ReactNode> | ReactPortal | ComponentClass<...> | FunctionComponent<...>",
+      "required": true,
+      "description": "Any `ReactNode`, but preferably `EuiAvatar`, or a `string` as an `EuiIcon['type']`."
+    },
+    "verticalAlign": {
+      "type": "\"center\" | \"top\"",
+      "required": false,
+      "default": "center"
+    },
+    "iconAriaLabel": {
+      "type": "string",
+      "required": false,
+      "description": "Specify an `aria-label` for the icon when passed as an `IconType`.\nIf no `aria-label` is passed we assume the icon is purely decorative."
+    }
+  },
+  "example": "<EuiTimelineItemIcon icon=\"mail\" />"
+}

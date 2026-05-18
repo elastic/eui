@@ -1,0 +1,34 @@
+{
+  "name": "EuiLink",
+  "description": "Anchor or button styled as a hyperlink.",
+  "category": "Navigation",
+  "import": "import { EuiLink } from '@elastic/eui';",
+  "props": {
+    "onClick": {
+      "type": "MouseEventHandler<HTMLAnchorElement> | MouseEventHandler<HTMLButtonElement>",
+      "required": false
+    },
+    "type": {
+      "type": "EuiLinkType",
+      "required": false,
+      "default": "button"
+    },
+    "color": {
+      "type": "\"text\" | \"subdued\" | \"accent\" | \"primary\" | \"success\" | \"warning\" | \"danger\" | \"ghost\"",
+      "required": false,
+      "default": "primary",
+      "description": "Any of our named colors."
+    },
+    "external": {
+      "type": "boolean",
+      "required": false,
+      "description": "Set to true to show an icon indicating that it is an external link;\nDefaults to true if `target=\"_blank\"`"
+    },
+    "ref": {
+      "type": "LegacyRef<HTMLAnchorElement | HTMLButtonElement>",
+      "required": false,
+      "description": "Allows getting a ref to the component instance.\nOnce the component unmounts, React will set `ref.current` to `null`\n(or call the ref with `null` if you passed a callback ref).\n@see {@link https://react.dev/learn/referencing-values-with-refs#refs-and-the-dom React Docs}"
+    }
+  },
+  "example": "<EuiLink href=\"http://www.elastic.co/\">Elastic website</EuiLink>"
+}

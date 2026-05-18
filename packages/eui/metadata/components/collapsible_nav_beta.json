@@ -1,0 +1,57 @@
+{
+  "name": "EuiCollapsibleNavBeta",
+  "description": "",
+  "category": "Navigation",
+  "import": "import { EuiCollapsibleNavBeta } from '@elastic/eui';",
+  "props": {
+    "aria-label": {
+      "type": "string",
+      "required": false,
+      "default": "'Site menu'",
+      "description": "Defines a string value that labels the current element.\nOverlay flyouts are considered dialogs, and dialogs must have a label.\nBy default, a label of `Site menu` will be applied.\n\nIf your usage of this component is not actually for site-wide navigation,\nplease set your own `aria-label` or `aria-labelledby`.\n@see aria-labelledby."
+    },
+    "children": {
+      "type": "ReactNode",
+      "required": false,
+      "description": "ReactNode(s) to render as navigation flyout content, typically `EuiCollapsibleNavBeta.Item`s.\nYou will likely want to use `EuiCollapsibleNavBeta.Body` and `EuiCollapsibleNavBeta.Footer`\nfor organization."
+    },
+    "side": {
+      "type": "\"left\" | \"right\"",
+      "required": false,
+      "default": "left",
+      "description": "Which side of the window to attach to.\nThe `left` option should only be used for navigation."
+    },
+    "focusTrapProps": {
+      "type": "Pick<EuiFocusTrapProps, \"returnFocus\" | \"shards\" | \"closeOnMouseup\">",
+      "required": false,
+      "description": "Object of props passed to EuiFocusTrap.\n`shards` specifies an array of elements that will be considered part of the flyout, preventing the flyout from being closed when clicked.\n`closeOnMouseup` will delay the close callback, allowing time for external toggle buttons to handle close behavior.\n`returnFocus` defines the return focus behavior and provides the possibility to check the available target element or opt out of the behavior in favor of manually returning focus"
+    },
+    "includeFixedHeadersInFocusTrap": {
+      "type": "boolean",
+      "required": false,
+      "description": "By default, EuiFlyout will consider any fixed `EuiHeader`s that sit alongside or above the EuiFlyout\nas part of the flyout's focus trap. This prevents focus fighting with interactive elements\nwithin fixed headers.\n\nSet this to `false` if you need to disable this behavior for a specific reason."
+    },
+    "initialIsCollapsed": {
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": "Whether the navigation flyout should default to initially collapsed or expanded.\nUsed for **uncontrolled** state."
+    },
+    "isCollapsed": {
+      "type": "boolean",
+      "required": false,
+      "description": "If defined, the navigation collapsed/expanded state is **controlled**\nby the consumer and `onCollapseToggle` must be passed as well.\nThis prop supercedes `initialIsCollapsed`."
+    },
+    "onCollapseToggle": {
+      "type": "(isCollapsed: boolean) => void",
+      "required": false,
+      "description": "Optional callback that fires when the user toggles the nav between\ncollapsed and uncollapsed states"
+    },
+    "width": {
+      "type": "number",
+      "required": false,
+      "description": "Defaults to 248px wide. The navigation width determines behavior at\nvarious responsive breakpoints.\n\nAt larger screen sizes (at least 3x the width of the nav), the nav will\nbe able to be toggled between a docked full width nav and a collapsed\nside bar that only shows the icon of each item.\n\nAt under 3 times the width of the nav, the behavior will lose the collapsed\nside bar behavior, and switch from a docked flyout to an overlay flyout only.\n\nIf the page is under 1.5 times the width of the nav, the overlay will\ntake up the full width of the page."
+    }
+  },
+  "example": "<EuiCollapsibleNavBeta side=\"left\" width={248} />"
+}

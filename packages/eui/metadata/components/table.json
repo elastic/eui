@@ -1,0 +1,37 @@
+{
+  "name": "EuiTable",
+  "description": "",
+  "category": "Tabular Content",
+  "import": "import { EuiTable } from '@elastic/eui';",
+  "props": {
+    "compressed": {
+      "type": "boolean",
+      "required": false
+    },
+    "responsiveBreakpoint": {
+      "type": "string | boolean",
+      "required": false,
+      "default": "m",
+      "description": "Named breakpoint. Below this size, the table will collapse\ninto responsive cards.\n\nPass `false` to never collapse to a mobile view, or inversely,\n`true` to always render mobile-friendly cards."
+    },
+    "tableLayout": {
+      "type": "\"fixed\" | \"auto\"",
+      "required": false,
+      "default": "'fixed'",
+      "description": "Sets the table-layout CSS property"
+    },
+    "hasBackground": {
+      "type": "boolean",
+      "required": false,
+      "default": "true",
+      "description": "Toggle the table's background"
+    },
+    "scrollableInline": {
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": "Allow the table to grow over 100% of the container inline size\n(width in horizontal writing-mode) and enable scrolling on overflow.\n\nThis should only be used with [`tableLayout`]{@link EuiTableProps#tableLayout }\nset to `auto`.\n@beta"
+    }
+  },
+  "example": "<EuiTable />"
+}

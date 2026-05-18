@@ -1,0 +1,19 @@
+{
+  "name": "EuiHideFor",
+  "description": "",
+  "category": "Utilities",
+  "import": "import { EuiHideFor } from '@elastic/eui';",
+  "props": {
+    "children": {
+      "type": "ReactNode",
+      "required": true,
+      "description": "Required otherwise nothing ever gets returned"
+    },
+    "sizes": {
+      "type": "string[] | \"none\" | \"all\"",
+      "required": true,
+      "description": "List of all the responsive sizes to hide the children for.\nArray of {@link EuiBreakpointSize}"
+    }
+  },
+  "example": "<EuiHideFor>Try changing the Storybook viewport, or adding the `l` size, to see how it affects the visibility of this text.</EuiHideFor>"
+}

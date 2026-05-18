@@ -1,0 +1,50 @@
+{
+  "name": "EuiCheckableCard",
+  "description": "",
+  "category": "Display",
+  "import": "import { EuiCheckableCard } from '@elastic/eui';",
+  "props": {
+    "disabled": {
+      "type": "boolean",
+      "required": false
+    },
+    "aria-label": {
+      "type": "string",
+      "required": false,
+      "description": "Defines a string value that labels the current element.\n@see aria-labelledby."
+    },
+    "onChange": {
+      "type": "ChangeEventHandler<HTMLInputElement>",
+      "required": true
+    },
+    "checked": {
+      "type": "boolean",
+      "required": false
+    },
+    "labelProps": {
+      "type": "CommonProps & LabelHTMLAttributes<HTMLLabelElement>",
+      "required": false,
+      "description": "Object of props passed to the `label` element"
+    },
+    "checkableType": {
+      "type": "\"checkbox\" | \"radio\"",
+      "required": false,
+      "default": "radio",
+      "description": "Whether the control is a radio button or checkbox"
+    },
+    "label": {
+      "type": "ReactNode",
+      "required": true
+    },
+    "hasShadow": {
+      "type": "boolean",
+      "required": false
+    },
+    "hasBorder": {
+      "type": "boolean",
+      "required": false,
+      "default": "true"
+    }
+  },
+  "example": "<EuiCheckableCard checkableType=\"radio\" hasBorder id=\"id\" label=\"Checkable option\" />"
+}

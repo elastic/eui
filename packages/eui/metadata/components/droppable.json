@@ -1,0 +1,46 @@
+{
+  "name": "EuiDroppable",
+  "description": "",
+  "category": "Display",
+  "import": "import { EuiDroppable } from '@elastic/eui';",
+  "props": {
+    "children": {
+      "type": "ReactElement<any, string | JSXElementConstructor<any>> | ReactElement<any, string | JSXElementConstructor<any>>[] | ((provided: DroppableProvided, snapshot: DroppableStateSnapshot) => ReactNode)",
+      "required": true,
+      "description": "ReactNode to render as this component's content"
+    },
+    "cloneDraggables": {
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": "Makes its items immutable. Dragging creates cloned items that can be dropped elsewhere."
+    },
+    "spacing": {
+      "type": "\"s\" | \"m\" | \"l\" | \"none\"",
+      "required": false,
+      "default": "none",
+      "description": "Adds padding to the droppable area"
+    },
+    "withPanel": {
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": "Adds an EuiPanel style to the droppable area"
+    },
+    "grow": {
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": "Allow the panel to flex-grow?"
+    },
+    "renderClone": {
+      "type": "DraggableChildrenFn",
+      "required": false
+    },
+    "droppableId": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "example": "<EuiDroppable droppableId=\"droppableArea\" />"
+}

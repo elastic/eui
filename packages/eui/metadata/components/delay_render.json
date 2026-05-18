@@ -1,0 +1,14 @@
+{
+  "name": "EuiDelayRender",
+  "description": "",
+  "category": "Utilities",
+  "import": "import { EuiDelayRender } from '@elastic/eui';",
+  "props": {
+    "delay": {
+      "type": "number",
+      "required": false,
+      "default": "500"
+    }
+  },
+  "example": "<EuiDelayRender />"
+}

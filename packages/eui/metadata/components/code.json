@@ -1,0 +1,24 @@
+{
+  "name": "EuiCode",
+  "description": "Inline code snippet with monospace styling.",
+  "category": "Editors & Syntax",
+  "import": "import { EuiCode } from '@elastic/eui';",
+  "props": {
+    "aria-label": {
+      "type": "string",
+      "required": false,
+      "description": "Defines a string value that labels the current element.\n@see aria-labelledby."
+    },
+    "language": {
+      "type": "string",
+      "required": false,
+      "description": "Sets the syntax highlighting for a specific language\n@see [https://prismjs.com/#supported-languages](https://prismjs.com/#supported-languages) for options"
+    },
+    "transparentBackground": {
+      "type": "boolean",
+      "required": false,
+      "default": "false"
+    }
+  },
+  "example": "<EuiCode><!-- Hello world --></EuiCode>"
+}

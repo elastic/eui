@@ -1,0 +1,19 @@
+{
+  "name": "EuiScreenReaderOnly",
+  "description": "",
+  "category": "Utilities",
+  "import": "import { EuiScreenReaderOnly } from '@elastic/eui';",
+  "props": {
+    "children": {
+      "type": "ReactElement<any, string | JSXElementConstructor<any>>",
+      "required": true,
+      "description": "ReactElement to render as this component's content"
+    },
+    "showOnFocus": {
+      "type": "boolean",
+      "required": false,
+      "description": "For keyboard navigation, force content to display visually upon focus/focus-within."
+    }
+  },
+  "example": "<EuiScreenReaderOnly>Hello world</EuiScreenReaderOnly>"
+}

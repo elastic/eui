@@ -1,0 +1,90 @@
+{
+  "name": "EuiPageHeaderContent",
+  "description": "",
+  "category": "Layout",
+  "import": "import { EuiPageHeaderContent } from '@elastic/eui';",
+  "props": {
+    "bottomBorder": {
+      "type": "boolean",
+      "required": false,
+      "description": "If not set, defaults to true if `tabs` are passed and render at the bottom of the page.\nOtherwise, defaults to false."
+    },
+    "paddingSize": {
+      "type": "\"s\" | \"xs\" | \"m\" | \"l\" | \"xl\" | \"none\"",
+      "required": false,
+      "description": "Adjust the padding.\nWhen using this setting it's best to be consistent throughout all similar usages"
+    },
+    "responsive": {
+      "type": "boolean | \"reverse\"",
+      "required": false,
+      "default": "true",
+      "description": "Set to false if you don't want the children to stack at small screen sizes.\nSet to `reverse` to display the right side content first for the sake of hierarchy (like global time)"
+    },
+    "alignItems": {
+      "type": "\"center\" | \"top\" | \"bottom\" | \"stretch\"",
+      "required": false,
+      "description": "Vertical alignment of the left and right side content;\nDefault is `center` for custom content, but `top` for when `pageTitle` or `tabs` are included"
+    },
+    "rightSideItems": {
+      "type": "ReactNode[]",
+      "required": false,
+      "description": "Pass custom an array of content to this side usually up to 3 buttons.\nThe first button should be primary, usually with `fill`. At larger breakpoints, items will\nrender from right to left, but will collapse vertically and render left to right on smaller mobile screens."
+    },
+    "rightSideGroupProps": {
+      "type": "Partial<EuiFlexGroupProps>",
+      "required": false,
+      "description": "Additional EuiFlexGroup props to pass to the container of the `rightSideItems`"
+    },
+    "description": {
+      "type": "ReactNode",
+      "required": false,
+      "description": "Position is dependent on existing with a `pageTitle` or `tabs`\nAutomatically get wrapped in a single paragraph tag inside an EuiText block"
+    },
+    "pageTitle": {
+      "type": "ReactNode",
+      "required": false,
+      "description": "Wrapped in an `H1` so choose appropriately.\nA simple string is best"
+    },
+    "pageTitleProps": {
+      "type": "Omit<EuiTitleProps, \"children\" | \"size\">",
+      "required": false,
+      "description": "Additional props to pass to the EuiTitle"
+    },
+    "iconType": {
+      "type": "IconType",
+      "required": false,
+      "description": "Optional icon to place to the left of the title"
+    },
+    "iconProps": {
+      "type": "Partial<Omit<EuiIconProps, \"type\">>",
+      "required": false,
+      "description": "Additional EuiIcon props to apply to the optional icon"
+    },
+    "breadcrumbs": {
+      "type": "EuiBreadcrumbProps[]",
+      "required": false,
+      "description": "Optional array breadcrumbs that render before the `pageTitle`"
+    },
+    "breadcrumbProps": {
+      "type": "Partial<Omit<EuiBreadcrumbsProps, \"breadcrumbs\">>",
+      "required": false,
+      "description": "Adjust the props of [EuiBreadcrumbs](#/navigation/breadcrumbs)"
+    },
+    "tabs": {
+      "type": "Tab[]",
+      "required": false,
+      "description": "In-app navigation presented as large borderless tabs.\nAccepts an array of `EuiTab` objects;"
+    },
+    "tabsProps": {
+      "type": "Omit<EuiTabsProps, \"size\" | \"expand\">",
+      "required": false,
+      "description": "Any extras to apply to the outer tabs container.\nExtends `EuiTabs`"
+    },
+    "restrictWidth": {
+      "type": "string | number | boolean",
+      "required": false,
+      "description": "Sets the max-width of the page,\nset to `true` to use the default size of `1200px`,\nset to `false` to not restrict the width,\nset to a number for a custom width in px,\nset to a string for a custom width in custom measurement."
+    }
+  },
+  "example": "<EuiPageHeaderContent paddingSize=\"none\" responsive pageTitle=\"Page title\" iconType=\"logoKibana\" description=\"Example of a description.\" />"
+}

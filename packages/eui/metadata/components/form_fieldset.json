@@ -1,0 +1,14 @@
+{
+  "name": "EuiFormFieldset",
+  "description": "",
+  "category": "Forms",
+  "import": "import { EuiFormFieldset } from '@elastic/eui';",
+  "props": {
+    "legend": {
+      "type": "EuiFormLegendProps",
+      "required": false,
+      "description": "Adds an EuiFormLegend element as the first child"
+    }
+  },
+  "example": "<EuiFormFieldset display=\"visible\">form legend</EuiFormFieldset>"
+}

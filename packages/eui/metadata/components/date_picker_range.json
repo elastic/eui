@@ -1,0 +1,104 @@
+{
+  "name": "EuiDatePickerRange",
+  "description": "",
+  "category": "Forms",
+  "import": "import { EuiDatePickerRange } from '@elastic/eui';",
+  "props": {
+    "append": {
+      "type": "PrependAppendType",
+      "required": false,
+      "description": "Creates an input group with element(s) coming after children.\n`string` | `ReactElement` or an array of these"
+    },
+    "prepend": {
+      "type": "PrependAppendType",
+      "required": false,
+      "description": "Creates an input group with element(s) coming before children.\n`string` | `ReactElement` or an array of these"
+    },
+    "isLoading": {
+      "type": "boolean",
+      "required": false
+    },
+    "fullWidth": {
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": "Expand to fill 100% of the parent.\nDefaults to `fullWidth` prop of `<EuiForm>`."
+    },
+    "readOnly": {
+      "type": "boolean",
+      "required": false
+    },
+    "compressed": {
+      "type": "boolean",
+      "required": false
+    },
+    "isInvalid": {
+      "type": "boolean",
+      "required": false
+    },
+    "delimiter": {
+      "type": "ReactNode",
+      "required": false,
+      "description": "The center content. Accepts a string to be wrapped in a subdued EuiText\nor a single ReactElement"
+    },
+    "children": {
+      "type": "ReactNode",
+      "required": false,
+      "description": "Including any children will replace all innards with the provided children"
+    },
+    "endDateControl": {
+      "type": "ReactElement",
+      "required": false,
+      "description": "The end date `EuiDatePicker` element"
+    },
+    "startDateControl": {
+      "type": "ReactElement",
+      "required": false,
+      "description": "The start date `EuiDatePicker` element"
+    },
+    "iconType": {
+      "type": "boolean | IconType",
+      "required": false,
+      "default": "true",
+      "description": "Pass either an icon type or set to `false` to remove icon entirely"
+    },
+    "iconSide": {
+      "type": "\"left\" | \"right\"",
+      "required": false,
+      "default": "left",
+      "description": "Define the side the icon should be displayed on. Applies only if `iconType` is defined as `IconType`."
+    },
+    "isCustom": {
+      "type": "boolean",
+      "required": false,
+      "description": "Won't apply any additional props to start and end date components"
+    },
+    "disabled": {
+      "type": "boolean",
+      "required": false,
+      "description": "Passes through to each control"
+    },
+    "inline": {
+      "type": "boolean",
+      "required": false,
+      "description": "Displays both date picker calendars directly on the page.\nWill not render `iconType`, `fullWidth`, `prepend`, or `append`.\n\nPasses through to each control if `isCustom` is not set."
+    },
+    "shadow": {
+      "type": "boolean",
+      "required": false,
+      "default": "true",
+      "description": "Allows turning the shadow off if using the `inline` prop"
+    },
+    "onBlur": {
+      "type": "FocusEventHandler<HTMLInputElement>",
+      "required": false,
+      "description": "Triggered whenever the start or end controls are blurred"
+    },
+    "onFocus": {
+      "type": "FocusEventHandler<HTMLInputElement>",
+      "required": false,
+      "description": "Triggered whenever the start or end controls are focused"
+    }
+  },
+  "example": "<EuiDatePickerRange />"
+}

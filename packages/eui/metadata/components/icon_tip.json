@@ -1,0 +1,96 @@
+{
+  "name": "EuiIconTip",
+  "description": "",
+  "category": "Display",
+  "import": "import { EuiIconTip } from '@elastic/eui';",
+  "props": {
+    "title": {
+      "type": "ReactNode",
+      "required": false,
+      "description": "An optional title for your tooltip."
+    },
+    "content": {
+      "type": "ReactNode",
+      "required": false,
+      "description": "The main content of your tooltip."
+    },
+    "aria-label": {
+      "type": "string",
+      "required": false,
+      "description": "Explain what this icon means for screen readers."
+    },
+    "onMouseOut": {
+      "type": "(event: MouseEvent<HTMLSpanElement, MouseEvent>) => void",
+      "required": false,
+      "description": "If supplied, called when mouse movement causes the tool tip to be\nhidden."
+    },
+    "display": {
+      "type": "\"block\" | \"inlineBlock\"",
+      "required": false,
+      "description": "Common display alternatives for the anchor wrapper"
+    },
+    "offset": {
+      "type": "number",
+      "required": false,
+      "description": "Offset in pixels from the anchor. Defaults to 16."
+    },
+    "anchorProps": {
+      "type": "CommonProps & HTMLAttributes<HTMLSpanElement>",
+      "required": false,
+      "description": "Passes onto the span wrapping the trigger."
+    },
+    "anchorClassName": {
+      "type": "string",
+      "required": false,
+      "description": "Passes onto the span wrapping the trigger."
+    },
+    "repositionOnScroll": {
+      "type": "boolean",
+      "required": false,
+      "description": "When `true`, the tooltip's position is re-calculated when the user\nscrolls. This supports having fixed-position tooltip anchors.\n\nWhen nesting an `EuiTooltip` in a scrollable container, `repositionOnScroll` should be `true`"
+    },
+    "disableScreenReaderOutput": {
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": "Disables the tooltip content being read by screen readers when focusing the trigger element.\nDo not use when the trigger `aria-label` and tooltip `content` can be rephrased to be standalone\ninformation (action & additional information).\nEnable this prop only when the trigger has a descriptive label that either duplicates or includes\nthe tooltip content and would result in repetitive output."
+    },
+    "children": {
+      "type": "never",
+      "required": false,
+      "description": "Children are not allowed as they are built using the icon props"
+    },
+    "color": {
+      "type": "string",
+      "required": false,
+      "description": "The icon color."
+    },
+    "type": {
+      "type": "IconType",
+      "required": false,
+      "default": "question",
+      "description": "The icon type."
+    },
+    "size": {
+      "type": "\"s\" | \"m\" | \"l\" | \"xl\" | \"xxl\" | \"original\"",
+      "required": false,
+      "description": "The icon size."
+    },
+    "iconProps": {
+      "type": "Omit<Omit<EuiIconProps, \"stylesMemoizer\"> & RefAttributes<unknown>, \"type\"> & { type?: never; }",
+      "required": false,
+      "description": "Pass certain props down to `EuiIcon`"
+    },
+    "delay": {
+      "type": "ToolTipDelay",
+      "required": false,
+      "default": "regular"
+    },
+    "position": {
+      "type": "ToolTipPositions",
+      "required": false,
+      "default": "top"
+    }
+  },
+  "example": "<EuiIconTip content=\"tooltip content\" autofocus />"
+}

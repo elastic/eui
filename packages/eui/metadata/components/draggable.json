@@ -1,0 +1,65 @@
+{
+  "name": "EuiDraggable",
+  "description": "",
+  "category": "Display",
+  "import": "import { EuiDraggable } from '@elastic/eui';",
+  "props": {
+    "children": {
+      "type": "ReactElement<any, string | JSXElementConstructor<any>> | DraggableChildrenFn",
+      "required": true,
+      "description": "ReactNode to render as this component's content"
+    },
+    "customDragHandle": {
+      "type": "boolean | \"custom\"",
+      "required": false,
+      "default": "false",
+      "description": "Whether the `children` will provide and set up its own drag handle.\nThe `custom` value additionally removes the `role` from the draggable container.\nUse this if the `children` element is focusable and should keep its\nsemantic role for accessibility purposes."
+    },
+    "hasInteractiveChildren": {
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": "Whether the container has interactive children and should have `role=\"group\"` instead of `\"button\"`.\nSetting this flag ensures your drag & drop container is keyboard and screen reader accessible."
+    },
+    "isRemovable": {
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": "Whether the item is currently in a position to be removed"
+    },
+    "usePortal": {
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": "Whether the currently dragged item is cloned into a portal in the body. This settings will\nensure that drag & drop still works as expected within stacking contexts (e.g. within `EuiFlyout`,\n`EuiModal` and `EuiPopover`).\n\nMake sure to apply styles directly to the Draggable content as relative styling from an outside\nscope might not be applied when the content is placed in a portal as the DOM structure changes."
+    },
+    "spacing": {
+      "type": "\"s\" | \"m\" | \"l\" | \"none\"",
+      "required": false,
+      "default": "none",
+      "description": "Adds padding to the draggable item"
+    },
+    "index": {
+      "type": "number",
+      "required": true
+    },
+    "draggableId": {
+      "type": "string",
+      "required": true
+    },
+    "isDragDisabled": {
+      "type": "boolean",
+      "required": false,
+      "default": "false"
+    },
+    "disableInteractiveElementBlocking": {
+      "type": "boolean",
+      "required": false
+    },
+    "shouldRespectForcePress": {
+      "type": "boolean",
+      "required": false
+    }
+  },
+  "example": "<EuiDraggable draggableId=\"draggable-item\" index={0} />"
+}

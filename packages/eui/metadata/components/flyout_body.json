@@ -1,0 +1,30 @@
+{
+  "name": "EuiFlyoutBody",
+  "description": "Scrollable body region inside an EuiFlyout.",
+  "category": "Layout",
+  "import": "import { EuiFlyoutBody } from '@elastic/eui';",
+  "props": {
+    "aria-label": {
+      "type": "string",
+      "required": false,
+      "description": "Defines a string value that labels the current element.\n@see aria-labelledby."
+    },
+    "banner": {
+      "type": "ReactNode",
+      "required": false,
+      "description": "Use to display a banner at the top of the body. It is suggested to use `EuiCallOut` for it."
+    },
+    "scrollableTabIndex": {
+      "type": "number",
+      "required": false,
+      "default": "0",
+      "description": "[Scrollable regions (or their children) should be focusable](https://dequeuniversity.com/rules/axe/4.0/scrollable-region-focusable)\nto allow keyboard users to scroll the region via arrow keys.\n\nBy default, EuiFlyoutBody's scroll overflow wrapper sets a `tabIndex` of `0`.\nIf you know your flyout body content already contains focusable children\nthat satisfy keyboard accessibility requirements, you can use this prop\nto override this default."
+    },
+    "scrollContainerRef": {
+      "type": "Ref<HTMLDivElement>",
+      "required": false,
+      "description": "Use to access the flyout's internal scrollable container."
+    }
+  },
+  "example": "<EuiFlyoutBody scrollableTabIndex={0}>Flyout body content</EuiFlyoutBody>"
+}

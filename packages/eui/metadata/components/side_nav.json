@@ -1,0 +1,64 @@
+{
+  "name": "EuiSideNav",
+  "description": "Vertical tree navigation menu for app-level page navigation.",
+  "category": "Navigation",
+  "import": "import { EuiSideNav } from '@elastic/eui';",
+  "props": {
+    "children": {
+      "type": "never",
+      "required": false,
+      "description": "`children` are not rendered. Use `items` to specify navigation items instead."
+    },
+    "heading": {
+      "type": "ReactNode",
+      "required": false,
+      "description": "Creates an associated heading element and uses the same node as default for `mobileTitle`"
+    },
+    "truncate": {
+      "type": "boolean",
+      "required": false,
+      "description": "Truncates the text of all items to stick to a single line"
+    },
+    "items": {
+      "type": "EuiSideNavItemType<{}>[]",
+      "required": true,
+      "description": "An array of {@link EuiSideNavItem} objects. Lists navigation menu items."
+    },
+    "renderItem": {
+      "type": "RenderItem<{}>",
+      "required": false,
+      "description": "Overrides default navigation menu item rendering. When called, it should return a React node representing a replacement navigation item."
+    },
+    "headingProps": {
+      "type": "Partial<EuiSideNavHeadingProps>",
+      "required": false,
+      "description": "Adds a couple extra {@link EuiSideNavHeading} props and extends the props of EuiTitle that wraps the `heading`"
+    },
+    "toggleOpenOnMobile": {
+      "type": "MouseEventHandler<HTMLButtonElement>",
+      "required": false,
+      "description": "When called, toggles visibility of the navigation menu at mobile responsive widths. The callback should set the `isOpenOnMobile` prop to actually toggle navigation visibility."
+    },
+    "isOpenOnMobile": {
+      "type": "boolean",
+      "required": false,
+      "description": "If `true`, the navigation menu will be open at mobile device widths. Use in conjunction with the `toggleOpenOnMobile` prop."
+    },
+    "mobileTitle": {
+      "type": "ReactNode",
+      "required": false,
+      "description": "A React node to render at mobile responsive widths, representing the title of this navigation menu."
+    },
+    "mobileBreakpoints": {
+      "type": "string[]",
+      "required": false,
+      "description": "Array of breakpoint names for when to show the mobile version.\nSet to `undefined` to remove responsive behavior"
+    },
+    "ref": {
+      "type": "LegacyRef<unknown>",
+      "required": false,
+      "description": "Allows getting a ref to the component instance.\nOnce the component unmounts, React will set `ref.current` to `null`\n(or call the ref with `null` if you passed a callback ref).\n@see {@link https://react.dev/learn/referencing-values-with-refs#refs-and-the-dom React Docs}"
+    }
+  },
+  "example": "<EuiSideNav heading=\"Elastic\" size=\"xs\" element=\"h2\" />"
+}

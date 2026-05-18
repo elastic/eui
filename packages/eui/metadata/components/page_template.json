@@ -1,0 +1,85 @@
+{
+  "name": "EuiPageTemplate",
+  "description": "Full-page layout template managing sidebar, header, and content regions.",
+  "category": "Templates",
+  "import": "import { EuiPageTemplate } from '@elastic/eui';",
+  "props": {
+    "grow": {
+      "type": "boolean",
+      "required": false,
+      "default": "true",
+      "description": "Adds `flex-grow: 1` to the whole page for stretching to fit vertically.\nMust be wrapped inside a flexbox, preferrably with `min-height: 100vh`"
+    },
+    "direction": {
+      "type": "\"column\" | \"row\"",
+      "required": false,
+      "description": "Changes the `flex-direction` property.\nFlip to `column` when not including a sidebar."
+    },
+    "responsive": {
+      "type": "string[]",
+      "required": false,
+      "default": "['xs', 's']",
+      "description": "When direction is `row`, it will flip to `column` when within these breakpoints.\nDecides at which point the main content wrapper will be 100vw."
+    },
+    "aria-label": {
+      "type": "string",
+      "required": false,
+      "description": "Defines a string value that labels the current element.\n@see aria-labelledby."
+    },
+    "paddingSize": {
+      "type": "\"s\" | \"xs\" | \"m\" | \"l\" | \"xl\" | \"none\"",
+      "required": false,
+      "default": "l",
+      "description": "Adjust the overall padding."
+    },
+    "ref": {
+      "type": "LegacyRef<HTMLElement>",
+      "required": false,
+      "description": "Allows getting a ref to the component instance.\nOnce the component unmounts, React will set `ref.current` to `null`\n(or call the ref with `null` if you passed a callback ref).\n@see {@link https://react.dev/learn/referencing-values-with-refs#refs-and-the-dom React Docs}"
+    },
+    "panelled": {
+      "type": "boolean",
+      "required": false,
+      "description": "Adds a background and shadow to define the area."
+    },
+    "restrictWidth": {
+      "type": "string | number | boolean",
+      "required": false,
+      "default": "true",
+      "description": "Sets the max-width of the page,\nset to `true` to use the default size of `1200px`,\nset to `false` to not restrict the width,\nset to a number for a custom width in px,\nset to a string for a custom width in custom measurement."
+    },
+    "bottomBorder": {
+      "type": "boolean | \"extended\"",
+      "required": false,
+      "description": "Adds a bottom border to separate it from the content after;\nPassing `extended` will ensure the border touches the sides of the parent container."
+    },
+    "contentBorder": {
+      "type": "boolean",
+      "required": false,
+      "description": "Applies a top or left border to the inner contents\nto add separation between content and sidebar when a sidebar exists."
+    },
+    "minHeight": {
+      "type": "MinHeight<string | number>",
+      "required": false,
+      "default": "460px",
+      "description": "Minimum height in which to enforce scrolling"
+    },
+    "offset": {
+      "type": "number",
+      "required": false,
+      "description": "To account for any fixed elements like headers,\npass in the value of the total height of those fixed elements.\nOtherwise they will be calculated based on the data attributes on the body element."
+    },
+    "mainProps": {
+      "type": "CommonProps & HTMLAttributes<HTMLElement>",
+      "required": false,
+      "description": "Passes through some common HTML attributes to the `main` content wrapper"
+    },
+    "component": {
+      "type": "ComponentTypes",
+      "required": false,
+      "default": "main",
+      "description": "Sets which HTML element to render for the `main` content wrapper"
+    }
+  },
+  "example": "<EuiPageTemplate>With everything</EuiPageTemplate>"
+}

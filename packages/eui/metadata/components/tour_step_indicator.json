@@ -1,0 +1,17 @@
+{
+  "name": "EuiTourStepIndicator",
+  "description": "",
+  "category": "Display",
+  "import": "import { EuiTourStepIndicator } from '@elastic/eui';",
+  "props": {
+    "number": {
+      "type": "number",
+      "required": true
+    },
+    "status": {
+      "type": "EuiTourStepStatus",
+      "required": true
+    }
+  },
+  "example": "<EuiTourStepIndicator number={1} status=\"active\" />"
+}

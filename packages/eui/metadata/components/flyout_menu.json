@@ -1,0 +1,53 @@
+{
+  "name": "EuiFlyoutMenu",
+  "description": "",
+  "category": "Layout",
+  "import": "import { EuiFlyoutMenu } from '@elastic/eui';",
+  "props": {
+    "aria-label": {
+      "type": "string",
+      "required": false,
+      "description": "Defines a string value that labels the current element.\n@see aria-labelledby."
+    },
+    "titleId": {
+      "type": "string",
+      "required": false,
+      "description": "An id to use for the title element. Useful for setting aria-labelledby on the flyout.\nExample:\n```jsx\n<EuiFlyout\n  aria-labelledby=\"myMenuTitleId\"\n  flyoutMenuProps={{ title: 'Menu title', titleId: 'myMenuTitleId' }\n>\n ...\n</EuiFlyout>\n```"
+    },
+    "hideTitle": {
+      "type": "boolean",
+      "required": false,
+      "default": "true for main flyout in a managed flyout session; false otherwise",
+      "description": "Hides the title in the `EuiFlyoutMenu`. This is useful when the title is already shown in an `EuiFlyoutHeader`."
+    },
+    "hideCloseButton": {
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": "Hides the close button in the menu component"
+    },
+    "showBackButton": {
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": "Shows a back button in the menu component"
+    },
+    "backButtonProps": {
+      "type": "EuiFlyoutMenuBackButtonProps",
+      "required": false,
+      "description": "Props to pass to the back button, such as `onClick` handler"
+    },
+    "historyItems": {
+      "type": "EuiFlyoutHistoryItem[]",
+      "required": false,
+      "default": "[]",
+      "description": "List of history items for the history popover"
+    },
+    "customActions": {
+      "type": "EuiFlyoutMenuCustomAction[]",
+      "required": false,
+      "description": "List of custom action items for the menu component"
+    }
+  },
+  "example": "<EuiFlyoutMenu />"
+}

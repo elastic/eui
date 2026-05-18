@@ -1,0 +1,57 @@
+{
+  "name": "EuiFocusTrap",
+  "description": "",
+  "category": "Utilities",
+  "import": "import { EuiFocusTrap } from '@elastic/eui';",
+  "props": {
+    "disabled": {
+      "type": "boolean",
+      "required": false,
+      "default": "false"
+    },
+    "closeOnMouseup": {
+      "type": "boolean",
+      "required": false,
+      "description": "Whether `onClickOutside` should be called on mouseup instead of mousedown.\nThis flag can be used to prevent conflicts with outside toggle buttons by delaying the closing click callback."
+    },
+    "clickOutsideDisables": {
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": "Clicking outside the trap area will disable the trap"
+    },
+    "initialFocus": {
+      "type": "ElementTarget",
+      "required": false,
+      "description": "Reference to element that will get focus when the trap is initiated"
+    },
+    "gapMode": {
+      "type": "\"padding\" | \"margin\"",
+      "required": false,
+      "default": "padding",
+      "description": "if `scrollLock` is set to true, the body's scrollbar width will be preserved on lock\nvia the `gapMode` CSS property. Depending on your custom CSS, you may prefer to use\n`margin` instead of `padding`."
+    },
+    "crossFrame": {
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": "Configures focus trapping between iframes.\nBy default, EuiFocusTrap allows focus to leave iframes and move to elements outside of it.\nSet to `true` if you want focus to remain trapped within the iframe."
+    },
+    "scrollLock": {
+      "type": "boolean",
+      "required": false,
+      "default": "false"
+    },
+    "noIsolation": {
+      "type": "boolean",
+      "required": false,
+      "default": "true"
+    },
+    "returnFocus": {
+      "type": "boolean | FocusOptions | ((returnTo: Element) => boolean | FocusOptions)",
+      "required": false,
+      "default": "true"
+    }
+  },
+  "example": "<EuiFocusTrap disabled gapMode=\"padding\" noIsolation returnFocus />"
+}

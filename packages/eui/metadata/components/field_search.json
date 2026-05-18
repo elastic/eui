@@ -1,0 +1,74 @@
+{
+  "name": "EuiFieldSearch",
+  "description": "Search text input with a magnifier icon.",
+  "category": "Forms",
+  "import": "import { EuiFieldSearch } from '@elastic/eui';",
+  "props": {
+    "append": {
+      "type": "PrependAppendType",
+      "required": false,
+      "description": "Creates an input group with element(s) coming after input.\n`string` | `ReactElement` or an array of these"
+    },
+    "value": {
+      "type": "string",
+      "required": false
+    },
+    "prepend": {
+      "type": "PrependAppendType",
+      "required": false,
+      "description": "Creates an input group with element(s) coming before input\n`string` | `ReactElement` or an array of these"
+    },
+    "name": {
+      "type": "string",
+      "required": false
+    },
+    "isLoading": {
+      "type": "boolean",
+      "required": false
+    },
+    "fullWidth": {
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": "Expand to fill 100% of the parent.\nDefaults to `fullWidth` prop of `<EuiForm>`."
+    },
+    "compressed": {
+      "type": "boolean",
+      "required": false,
+      "description": "when `true` creates a shorter height input"
+    },
+    "inputRef": {
+      "type": "(node: HTMLInputElement) => void",
+      "required": false
+    },
+    "placeholder": {
+      "type": "string",
+      "required": false
+    },
+    "isInvalid": {
+      "type": "boolean",
+      "required": false
+    },
+    "isClearable": {
+      "type": "boolean",
+      "required": false,
+      "description": "Shows a button that quickly clears any input"
+    },
+    "onSearch": {
+      "type": "(value: string) => void",
+      "required": false,
+      "description": "Called when the user presses [Enter] OR on change if the incremental prop is `true`.\nIf you don't need the on[Enter] functionality, prefer using onChange"
+    },
+    "incremental": {
+      "type": "boolean",
+      "required": false,
+      "description": "When `true` the search will be executed (that is, the `onSearch` will be called) as the\nuser types."
+    },
+    "ref": {
+      "type": "LegacyRef<unknown>",
+      "required": false,
+      "description": "Allows getting a ref to the component instance.\nOnce the component unmounts, React will set `ref.current` to `null`\n(or call the ref with `null` if you passed a callback ref).\n@see {@link https://react.dev/learn/referencing-values-with-refs#refs-and-the-dom React Docs}"
+    }
+  },
+  "example": "<EuiFieldSearch />"
+}

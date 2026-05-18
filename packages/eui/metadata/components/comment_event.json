@@ -1,0 +1,49 @@
+{
+  "name": "EuiCommentEvent",
+  "description": "",
+  "category": "Display",
+  "import": "import { EuiCommentEvent } from '@elastic/eui';",
+  "props": {
+    "username": {
+      "type": "ReactNode",
+      "required": true,
+      "description": "Author of the comment."
+    },
+    "timestamp": {
+      "type": "ReactNode",
+      "required": false,
+      "description": "Time of occurrence of the event. Its format is set on the consumer's side"
+    },
+    "event": {
+      "type": "ReactNode",
+      "required": false,
+      "description": "Describes the event that took place"
+    },
+    "actions": {
+      "type": "ReactNode | ReactNode[]",
+      "required": false,
+      "description": "Custom actions that the user can perform from the comment's header"
+    },
+    "children": {
+      "type": "ReactNode",
+      "required": false,
+      "description": "Accepts any ReactNode. Renders in a panel within the comment event."
+    },
+    "eventIcon": {
+      "type": "IconType",
+      "required": false,
+      "description": "Custom icon that shows before the username."
+    },
+    "eventIconAriaLabel": {
+      "type": "string",
+      "required": false,
+      "description": "Specify an `aria-label` for the `eventIcon`.\nIf no `aria-label` is passed we assume the icon is purely decorative."
+    },
+    "eventColor": {
+      "type": "PanelColor",
+      "required": false,
+      "description": "Background color for the comment's header."
+    }
+  },
+  "example": "<EuiCommentEvent />"
+}

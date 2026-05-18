@@ -1,0 +1,77 @@
+{
+  "name": "EuiAvatar",
+  "description": "",
+  "category": "Display",
+  "import": "import { EuiAvatar } from '@elastic/eui';",
+  "props": {
+    "aria-label": {
+      "type": "string",
+      "required": false,
+      "description": "Defines a string value that labels the current element.\n@see aria-labelledby."
+    },
+    "initials": {
+      "type": "string",
+      "required": false,
+      "description": "Custom initials (max 2 characters).\nBy default will take the first character (of each word)."
+    },
+    "initialsLength": {
+      "type": "1 | 2",
+      "required": false,
+      "description": "Specify how many characters to show (1 or 2).\nBy default, will show based on number of words (max first 2)."
+    },
+    "imageUrl": {
+      "type": "string",
+      "required": false,
+      "description": "Path to an image to display instead of initials"
+    },
+    "iconType": {
+      "type": "IconType",
+      "required": false,
+      "description": "Any EUI glyph, logo or custom icon to display instead of initials"
+    },
+    "iconSize": {
+      "type": "\"s\" | \"m\" | \"l\" | \"xl\" | \"xxl\" | \"original\"",
+      "required": false,
+      "description": "Manually change icon size"
+    },
+    "iconColor": {
+      "type": "string",
+      "required": false,
+      "description": "Manually change icon color"
+    },
+    "name": {
+      "type": "string",
+      "required": true,
+      "description": "Full name of avatar for title attribute and calculating initial if not provided"
+    },
+    "color": {
+      "type": "string",
+      "required": false,
+      "description": "Accepts hex values like `#FFFFFF`, `#000` otherwise a viz palette color will be assigned.\nOr pass `'plain'` for an empty shade, `'subdued'` for a light gray shade or `null` to remove entirely and the text/icon color will `inherit`"
+    },
+    "type": {
+      "type": "\"space\" | \"user\"",
+      "required": false,
+      "default": "user",
+      "description": "The type of avatar mainly controlling the shape.\n`user` = circle\n`space` = rounded square"
+    },
+    "size": {
+      "type": "\"s\" | \"m\" | \"l\" | \"xl\"",
+      "required": false,
+      "default": "m"
+    },
+    "casing": {
+      "type": "\"none\" | \"capitalize\" | \"lowercase\" | \"uppercase\"",
+      "required": false,
+      "default": "uppercase",
+      "description": "Sets the letter casing of the displayed initials.\nDefaults to `uppercase` for `type=\"user\"` avatars.\nDefaults to `none` (uses the existing casing of the passed `name` or `initials`) for `type=\"space\"` avatars."
+    },
+    "isDisabled": {
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": "Grays out the avatar to simulate being disabled"
+    }
+  },
+  "example": "<EuiAvatar casing=\"uppercase\" size=\"m\" type=\"user\" name=\"Hello World\" />"
+}

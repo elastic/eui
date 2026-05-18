@@ -1,0 +1,55 @@
+{
+  "name": "EuiFlexGrid",
+  "description": "Responsive grid layout that wraps children into equal-width columns.",
+  "category": "Layout",
+  "import": "import { EuiFlexGrid } from '@elastic/eui';",
+  "props": {
+    "aria-label": {
+      "type": "string",
+      "required": false,
+      "description": "Defines a string value that labels the current element.\n@see aria-labelledby."
+    },
+    "children": {
+      "type": "ReactNode",
+      "required": false,
+      "description": "ReactNode to render as this component's content"
+    },
+    "columns": {
+      "type": "1 | 2 | 3 | 4",
+      "required": false,
+      "default": "1",
+      "description": "Number of columns. Accepts `1-4`"
+    },
+    "direction": {
+      "type": "\"column\" | \"row\"",
+      "required": false,
+      "default": "row",
+      "description": "Flex layouts default to left-right then top-down (`row`).\nChange this prop to `column` to create a top-down then left-right display."
+    },
+    "alignItems": {
+      "type": "\"center\" | \"stretch\" | \"end\" | \"start\" | \"baseline\"",
+      "required": false,
+      "default": "stretch",
+      "description": "Aligns grid items vertically"
+    },
+    "gutterSize": {
+      "type": "\"s\" | \"m\" | \"l\" | \"xl\" | \"none\"",
+      "required": false,
+      "default": "l",
+      "description": "Space between flex items"
+    },
+    "responsive": {
+      "type": "boolean",
+      "required": false,
+      "default": "true",
+      "description": "Will display each item at full-width on smaller screens"
+    },
+    "component": {
+      "type": "ElementType",
+      "required": false,
+      "default": "div",
+      "description": "The tag to render"
+    }
+  },
+  "example": "<EuiFlexGrid component=\"div\" alignItems=\"stretch\" direction=\"row\" columns={1} gutterSize=\"l\" responsive />"
+}

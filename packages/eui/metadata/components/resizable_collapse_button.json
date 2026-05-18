@@ -1,0 +1,97 @@
+{
+  "name": "EuiResizableCollapseButton",
+  "description": "",
+  "category": "Layout",
+  "import": "import { EuiResizableCollapseButton } from '@elastic/eui';",
+  "props": {
+    "isDisabled": {
+      "type": "boolean",
+      "required": false,
+      "description": "Controls the disabled behavior via the native `disabled` attribute."
+    },
+    "hasAriaDisabled": {
+      "type": "boolean",
+      "required": false,
+      "description": "NOTE: Beta feature, may be changed or removed in the future\n\nChanges the native `disabled` attribute to `aria-disabled` to preserve focusability.\nThis results in a semantically disabled button without the default browser handling of the disabled state.\n\nUse e.g. when a disabled button should have a tooltip."
+    },
+    "size": {
+      "type": "\"s\" | \"xs\" | \"m\"",
+      "required": false,
+      "description": "Overall size of button.\nMatches the sizes of other EuiButtons"
+    },
+    "color": {
+      "type": "\"text\" | \"accent\" | \"accentSecondary\" | \"primary\" | \"success\" | \"warning\" | \"danger\" | \"neutral\" | \"risk\"",
+      "required": false,
+      "description": "Any of the named color palette options.\n\nDo not use the following colors for standalone buttons directly,\nthey exist to serve other components:\n - accent\n - warning\n - neutral\n - risk"
+    },
+    "isLoading": {
+      "type": "boolean",
+      "required": false,
+      "description": "Disables the button and changes the icon to a loading spinner"
+    },
+    "iconSize": {
+      "type": "\"s\" | \"m\" | \"l\" | \"xl\" | \"xxl\" | \"original\"",
+      "required": false,
+      "description": "Size of the icon only.\nThis will not affect the overall size of the button"
+    },
+    "aria-label": {
+      "type": "string",
+      "required": false,
+      "description": "Defines a string value that labels the current element.\n@see aria-labelledby."
+    },
+    "isSelected": {
+      "type": "boolean",
+      "required": false,
+      "description": "Applies the boolean state as the `aria-pressed` property to create a toggle button.\n*Only use when the readable text does not change between states.*"
+    },
+    "type": {
+      "type": "\"reset\" | \"submit\" | \"button\"",
+      "required": false
+    },
+    "onClick": {
+      "type": "MouseEventHandler<HTMLButtonElement>",
+      "required": false
+    },
+    "aria-labelledby": {
+      "type": "string",
+      "required": false,
+      "description": "Identifies the element (or elements) that labels the current element.\n@see aria-describedby."
+    },
+    "buttonRef": {
+      "type": "Ref<HTMLButtonElement>",
+      "required": false
+    },
+    "display": {
+      "type": "\"base\" | \"fill\" | \"empty\"",
+      "required": false,
+      "description": "Sets the display style for matching other EuiButton types.\n`base` is equivalent to a typical EuiButton\n`fill` is equivalent to a filled EuiButton\n`empty` (default) is equivalent to an EuiButtonEmpty"
+    },
+    "internalPosition": {
+      "type": "\"left\" | \"right\" | \"top\" | \"bottom\" | \"middle\"",
+      "required": false,
+      "default": "middle",
+      "description": "Position of the toggle button.\nEnums based on the `direction` of the EuiResizableContainer"
+    },
+    "externalPosition": {
+      "type": "\"before\" | \"after\"",
+      "required": false,
+      "default": "before",
+      "description": "Position of the toggle button.\nEnums based on the `direction` of the EuiResizableContainer"
+    },
+    "direction": {
+      "type": "\"horizontal\" | \"vertical\"",
+      "required": false,
+      "default": "horizontal",
+      "description": "Same direction derived from EuiResizableContainer"
+    },
+    "isVisible": {
+      "type": "boolean",
+      "required": false
+    },
+    "isCollapsed": {
+      "type": "boolean",
+      "required": false
+    }
+  },
+  "example": "<EuiResizableCollapseButton direction=\"horizontal\" externalPosition=\"before\" internalPosition=\"middle\" />"
+}

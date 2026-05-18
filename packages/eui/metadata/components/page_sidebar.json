@@ -1,0 +1,39 @@
+{
+  "name": "EuiPageSidebar",
+  "description": "",
+  "category": "Layout",
+  "import": "import { EuiPageSidebar } from '@elastic/eui';",
+  "props": {
+    "paddingSize": {
+      "type": "\"s\" | \"xs\" | \"m\" | \"l\" | \"xl\" | \"none\"",
+      "required": false,
+      "default": "none",
+      "description": "Adjust the padding.\nWhen using this setting it's best to be consistent throughout all similar usages."
+    },
+    "hasEmbellish": {
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": "Renders a fancy little visual in the top left corner of the side bar"
+    },
+    "sticky": {
+      "type": "boolean | { offset?: number; }",
+      "required": false,
+      "default": "false",
+      "description": "Adds `position: sticky` and affords for any fixed position headers."
+    },
+    "minWidth": {
+      "type": "Width<string | number>",
+      "required": false,
+      "default": "248",
+      "description": "A minimum width is necessary to maintain size.\nBe sure to take `paddingSize` into account."
+    },
+    "responsive": {
+      "type": "string[]",
+      "required": false,
+      "default": "['xs', 's']",
+      "description": "Sets the `minWidth` to 100% when within these breakpoints."
+    }
+  },
+  "example": "<EuiPageSidebar paddingSize=\"m\" minWidth={248} offset={50} />"
+}

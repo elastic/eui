@@ -1,0 +1,18 @@
+{
+  "name": "EuiInnerText",
+  "description": "",
+  "category": "Utilities",
+  "import": "import { EuiInnerText } from '@elastic/eui';",
+  "props": {
+    "children": {
+      "type": "(ref?: (node: RefT) => void, innerText?: string) => ReactElement<any, string | JSXElementConstructor<any>>",
+      "required": true,
+      "description": "ReactNode to render as this component's content"
+    },
+    "fallback": {
+      "type": "string",
+      "required": false
+    }
+  },
+  "example": "<EuiInnerText>Simple text</EuiInnerText>"
+}

@@ -1,0 +1,102 @@
+{
+  "name": "EuiFormControlButton",
+  "description": "",
+  "category": "Forms",
+  "import": "import { EuiFormControlButton } from '@elastic/eui';",
+  "props": {
+    "placeholder": {
+      "type": "string",
+      "required": false,
+      "description": "Placeholder value to be shown when no `value` is passed"
+    },
+    "compressed": {
+      "type": "boolean",
+      "required": false,
+      "description": "When `true`, it renders a shorter height element"
+    },
+    "isInvalid": {
+      "type": "boolean",
+      "required": false,
+      "description": "Defines invalid state styling"
+    },
+    "fullWidth": {
+      "type": "boolean",
+      "required": false,
+      "default": "true",
+      "description": "Expand to fill 100% of the parent.\nDefaults to `fullWidth` prop of `<EuiForm>`."
+    },
+    "target": {
+      "type": "string",
+      "required": false
+    },
+    "rel": {
+      "type": "string",
+      "required": false
+    },
+    "isDisabled": {
+      "type": "boolean",
+      "required": false
+    },
+    "hasAriaDisabled": {
+      "type": "boolean",
+      "required": false,
+      "description": "NOTE: Beta feature, may be changed or removed in the future\n\nChanges the native `disabled` attribute to `aria-disabled` to preserve focusability.\nThis results in a semantically disabled button without the default browser handling of the disabled state.\n\nUse e.g. when a disabled button should have a tooltip."
+    },
+    "iconType": {
+      "type": "IconType",
+      "required": false,
+      "description": "Any `type` accepted by EuiIcon"
+    },
+    "iconSide": {
+      "type": "ButtonContentIconSide",
+      "required": false,
+      "description": "Can only be one side `left` or `right`"
+    },
+    "isLoading": {
+      "type": "boolean",
+      "required": false,
+      "description": "Force disables the button and changes the icon to a loading spinner"
+    },
+    "textProps": {
+      "type": "false | (HTMLAttributes<HTMLSpanElement> & CommonProps & { ref?: Ref<HTMLSpanElement>; 'data-text'?: string; })",
+      "required": false,
+      "description": "Object of props passed to the `<span>` wrapping the content's text/children only (not icon)\n\nThis span wrapper can be removed by passing `textProps={false}`."
+    },
+    "iconSize": {
+      "type": "\"s\" | \"m\"",
+      "required": false
+    },
+    "aria-label": {
+      "type": "string",
+      "required": false,
+      "description": "Defines a string value that labels the current element.\n@see aria-labelledby."
+    },
+    "contentProps": {
+      "type": "CommonProps & EuiButtonDisplayContentType",
+      "required": false,
+      "description": "Object of props passed to the `<span>` wrapping the button's content"
+    },
+    "type": {
+      "type": "\"reset\" | \"submit\" | \"button\"",
+      "required": false
+    },
+    "href": {
+      "type": "string",
+      "required": false
+    },
+    "onClick": {
+      "type": "MouseEventHandler<HTMLAnchorElement> | MouseEventHandler<HTMLButtonElement>",
+      "required": false
+    },
+    "buttonRef": {
+      "type": "Ref<HTMLAnchorElement | HTMLButtonElement>",
+      "required": false
+    },
+    "value": {
+      "type": "ReactNode",
+      "required": false,
+      "description": "Defines the button label when used like an input in combination with `placeholder`"
+    }
+  },
+  "example": "<EuiFormControlButton value=\"Button value\" />"
+}

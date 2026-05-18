@@ -1,0 +1,69 @@
+{
+  "name": "EuiContextMenuPanel",
+  "description": "",
+  "category": "Navigation",
+  "import": "import { EuiContextMenuPanel } from '@elastic/eui';",
+  "props": {
+    "title": {
+      "type": "ReactNode",
+      "required": false
+    },
+    "size": {
+      "type": "\"s\" | \"m\"",
+      "required": false,
+      "description": "Alters the size of the items and the title"
+    },
+    "aria-label": {
+      "type": "string",
+      "required": false,
+      "description": "Defines a string value that labels the current element.\n@see aria-labelledby."
+    },
+    "onClose": {
+      "type": "NoArgCallback<void>",
+      "required": false
+    },
+    "items": {
+      "type": "ReactElement[]",
+      "required": false
+    },
+    "initialFocusedItemIndex": {
+      "type": "number",
+      "required": false,
+      "description": "Determines the initially focused menu item for keyboard and screen reader users.\n\nCan be set to `-1` to prevent autofocus (an uncommon case that must have\nkeyboard accessibility accounted for manually if used)"
+    },
+    "onHeightChange": {
+      "type": "EuiContextMenuPanelHeightChangeHandler",
+      "required": false
+    },
+    "onTransitionComplete": {
+      "type": "NoArgCallback<void>",
+      "required": false
+    },
+    "onUseKeyboardToNavigate": {
+      "type": "NoArgCallback<void>",
+      "required": false
+    },
+    "showNextPanel": {
+      "type": "EuiContextMenuPanelShowPanelCallback",
+      "required": false
+    },
+    "showPreviousPanel": {
+      "type": "NoArgCallback<void>",
+      "required": false
+    },
+    "transitionDirection": {
+      "type": "EuiContextMenuPanelTransitionDirection",
+      "required": false
+    },
+    "transitionType": {
+      "type": "EuiContextMenuPanelTransitionType",
+      "required": false
+    },
+    "ref": {
+      "type": "LegacyRef<unknown>",
+      "required": false,
+      "description": "Allows getting a ref to the component instance.\nOnce the component unmounts, React will set `ref.current` to `null`\n(or call the ref with `null` if you passed a callback ref).\n@see {@link https://react.dev/learn/referencing-values-with-refs#refs-and-the-dom React Docs}"
+    }
+  },
+  "example": "<EuiContextMenuPanel title=\"Context menu panel title\">Context menu panel title</EuiContextMenuPanel>"
+}

@@ -1,0 +1,41 @@
+{
+  "name": "EuiCheckbox",
+  "description": "Single boolean checkbox input.",
+  "category": "Forms",
+  "import": "import { EuiCheckbox } from '@elastic/eui';",
+  "props": {
+    "checked": {
+      "type": "boolean",
+      "required": false,
+      "default": "false"
+    },
+    "onChange": {
+      "type": "ChangeEventHandler<HTMLInputElement>",
+      "required": true
+    },
+    "inputRef": {
+      "type": "Ref<HTMLInputElement> | ((element: HTMLInputElement) => void)",
+      "required": false
+    },
+    "label": {
+      "type": "ReactNode",
+      "required": false
+    },
+    "disabled": {
+      "type": "boolean",
+      "required": false,
+      "default": "false"
+    },
+    "indeterminate": {
+      "type": "boolean",
+      "required": false,
+      "default": "false"
+    },
+    "labelProps": {
+      "type": "CommonProps & LabelHTMLAttributes<HTMLLabelElement>",
+      "required": false,
+      "description": "Object of props passed to the `label` element"
+    }
+  },
+  "example": "<EuiCheckbox id=\"checkbox\" label=\"Checkbox label\" />"
+}

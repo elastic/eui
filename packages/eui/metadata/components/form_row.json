@@ -1,0 +1,81 @@
+{
+  "name": "EuiFormRow",
+  "description": "Labeled form field wrapper with error message and help text support.",
+  "category": "Forms",
+  "import": "import { EuiFormRow } from '@elastic/eui';",
+  "props": {
+    "labelType": {
+      "type": "\"label\" | \"legend\"",
+      "required": false,
+      "default": "label",
+      "description": "Defaults to rendering a `<label>` but if passed `'legend'` for labelType,\nwill render both a `<legend>` and the surrounding container as a `<fieldset>`"
+    },
+    "aria-label": {
+      "type": "string",
+      "required": false,
+      "description": "Defines a string value that labels the current element.\n@see aria-labelledby."
+    },
+    "display": {
+      "type": "\"center\" | \"row\" | \"columnCompressed\" | \"centerCompressed\" | \"rowCompressed\"",
+      "required": false,
+      "default": "row",
+      "description": "- `columnCompressed` creates a compressed and horizontal layout\n- `center`/`centerCompressed` helps align non-input content better with inline form layouts\n- `rowCompressed` - **deprecated**, does not currently affect styling"
+    },
+    "hasEmptyLabelSpace": {
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": "Useful for inline form layouts, primarily for content that\nneeds to be aligned with inputs but does not need a label"
+    },
+    "fullWidth": {
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": "Expand to fill 100% of the parent.\nDefaults to `fullWidth` prop of `<EuiForm>`."
+    },
+    "describedByIds": {
+      "type": "string[]",
+      "required": false,
+      "description": "IDs of additional elements that should be part of children's `aria-describedby`"
+    },
+    "hasChildLabel": {
+      "type": "boolean",
+      "required": false,
+      "default": "true",
+      "description": "Escape hatch to not render duplicate labels if the child also renders a label"
+    },
+    "children": {
+      "type": "ReactElement<any, string | JSXElementConstructor<any>> & ReactNode",
+      "required": false,
+      "description": "ReactElement to render as this component's content"
+    },
+    "label": {
+      "type": "ReactNode",
+      "required": false
+    },
+    "labelAppend": {
+      "type": "any",
+      "required": false,
+      "description": "Adds an extra node to the right of the form label without\nbeing contained inside the form label. Good for things\nlike documentation links."
+    },
+    "isInvalid": {
+      "type": "boolean",
+      "required": false
+    },
+    "error": {
+      "type": "ReactNode | ReactNode[]",
+      "required": false
+    },
+    "helpText": {
+      "type": "ReactNode | ReactNode[]",
+      "required": false,
+      "description": "Adds a single node/string or an array of nodes/strings below the input"
+    },
+    "isDisabled": {
+      "type": "boolean",
+      "required": false,
+      "description": "Passed along to the label element; and to the child field element when `disabled` doesn't already exist on the child field element."
+    }
+  },
+  "example": "<EuiFormRow label=\"Text field label\" helpText=\"I am some friendly help text.\" />"
+}

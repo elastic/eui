@@ -1,0 +1,75 @@
+{
+  "name": "EuiBadge",
+  "description": "Colored label for status, category, or count. Supports click handlers.",
+  "category": "Display",
+  "import": "import { EuiBadge } from '@elastic/eui';",
+  "props": {
+    "iconType": {
+      "type": "IconType",
+      "required": false,
+      "description": "Accepts any string from our icon library"
+    },
+    "iconSide": {
+      "type": "\"left\" | \"right\"",
+      "required": false,
+      "default": "left",
+      "description": "The side of the badge the icon should sit"
+    },
+    "color": {
+      "type": "string",
+      "required": false,
+      "default": "default",
+      "description": "Accepts either our palette colors (primary, success ..etc) or a hex value `#FFFFFF`, `#000`."
+    },
+    "fill": {
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": "Whether the badge should use filled (more intense) colors.\nIt has no effect when a non-named color is passed to the `color` prop."
+    },
+    "isDisabled": {
+      "type": "boolean",
+      "required": false,
+      "description": "Will override any color passed through the `color` prop."
+    },
+    "closeButtonProps": {
+      "type": "Partial<Omit<EuiIconProps, \"stylesMemoizer\"> & RefAttributes<unknown>>",
+      "required": false,
+      "description": "Props passed to the close button."
+    },
+    "aria-label": {
+      "type": "string",
+      "required": false,
+      "description": "Defines a string value that labels the current element.\n@see aria-labelledby."
+    },
+    "iconOnClick": {
+      "type": "MouseEventHandler<HTMLButtonElement>",
+      "required": false,
+      "description": "Will apply an onclick to icon within the badge"
+    },
+    "iconOnClickAriaLabel": {
+      "type": "string",
+      "required": false,
+      "description": "Aria label applied to the iconOnClick button"
+    },
+    "target": {
+      "type": "string",
+      "required": false
+    },
+    "href": {
+      "type": "string",
+      "required": false
+    },
+    "onClick": {
+      "type": "MouseEventHandler<HTMLButtonElement>",
+      "required": false,
+      "description": "Will apply an onclick to the badge itself"
+    },
+    "onClickAriaLabel": {
+      "type": "string",
+      "required": false,
+      "description": "Aria label applied to the onClick button"
+    }
+  },
+  "example": "<EuiBadge iconSide=\"left\" color=\"default\">Badge text</EuiBadge>"
+}

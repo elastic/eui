@@ -1,0 +1,35 @@
+{
+  "name": "EuiTimelineItem",
+  "description": "",
+  "category": "Display",
+  "import": "import { EuiTimelineItem } from '@elastic/eui';",
+  "props": {
+    "verticalAlign": {
+      "type": "\"center\" | \"top\"",
+      "required": false,
+      "default": "center",
+      "description": "Vertical alignment of the event with the icon"
+    },
+    "aria-label": {
+      "type": "string",
+      "required": false,
+      "description": "Defines a string value that labels the current element.\n@see aria-labelledby."
+    },
+    "icon": {
+      "type": "string | number | boolean | ReactElement | Iterable<ReactNode> | ReactPortal | ComponentClass<...> | FunctionComponent<...>",
+      "required": true,
+      "description": "Any `ReactNode`, but preferably `EuiAvatar`, or a `string` as an `EuiIcon['type']`."
+    },
+    "iconAriaLabel": {
+      "type": "string",
+      "required": false,
+      "description": "Specify an `aria-label` for the icon when passed as an `IconType`.\nIf no `aria-label` is passed we assume the icon is purely decorative."
+    },
+    "children": {
+      "type": "ReactNode",
+      "required": true,
+      "description": "Accepts any node. But preferably `EuiPanel`"
+    }
+  },
+  "example": "<EuiTimelineItem icon=\"mail\">timeline item</EuiTimelineItem>"
+}

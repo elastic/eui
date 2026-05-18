@@ -1,0 +1,105 @@
+{
+  "name": "EuiSuperSelect",
+  "description": "",
+  "category": "Forms",
+  "import": "import { EuiSuperSelect } from '@elastic/eui';",
+  "props": {
+    "append": {
+      "type": "PrependAppendType",
+      "required": false,
+      "description": "Creates an input group with element(s) coming after input.\n`string` | `ReactElement` or an array of these"
+    },
+    "prepend": {
+      "type": "PrependAppendType",
+      "required": false,
+      "description": "Creates an input group with element(s) coming before input.\n`string` | `ReactElement` or an array of these"
+    },
+    "name": {
+      "type": "string",
+      "required": false
+    },
+    "isLoading": {
+      "type": "boolean",
+      "required": false,
+      "default": "false"
+    },
+    "fullWidth": {
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": "Expand to fill 100% of the parent.\nDefaults to `fullWidth` prop of `<EuiForm>`."
+    },
+    "buttonRef": {
+      "type": "Ref<HTMLButtonElement>",
+      "required": false
+    },
+    "readOnly": {
+      "type": "boolean",
+      "required": false
+    },
+    "compressed": {
+      "type": "boolean",
+      "required": false,
+      "default": "false"
+    },
+    "placeholder": {
+      "type": "ReactNode",
+      "required": false,
+      "description": "Placeholder to display when the current selected value is empty."
+    },
+    "isInvalid": {
+      "type": "boolean",
+      "required": false,
+      "default": "false"
+    },
+    "options": {
+      "type": "EuiSuperSelectOption<T>[]",
+      "required": true,
+      "description": "Pass an array of options that must at least include:\n`value`: storing unique value of item,\n`inputDisplay`: what shows inside the form input when selected\n`dropdownDisplay` (optional): what shows for the item in the dropdown"
+    },
+    "valueOfSelected": {
+      "type": "{}",
+      "required": false
+    },
+    "itemClassName": {
+      "type": "string",
+      "required": false,
+      "description": "Classes for the context menu item"
+    },
+    "onChange": {
+      "type": "(value: T) => void",
+      "required": false,
+      "description": "You must pass an `onChange` function to handle the update of the value"
+    },
+    "onFocus": {
+      "type": "(event?: FocusEvent<Element, Element>) => void",
+      "required": false
+    },
+    "onBlur": {
+      "type": "(event?: FocusEvent<Element, Element>) => void",
+      "required": false
+    },
+    "hasDividers": {
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": "Change to `true` if you want horizontal lines between options.\nThis is best used when options are multi-line."
+    },
+    "itemLayoutAlign": {
+      "type": "EuiContextMenuItemLayoutAlignment",
+      "required": false,
+      "description": "Change `EuiContextMenuItem` layout position of icon"
+    },
+    "isOpen": {
+      "type": "boolean",
+      "required": false,
+      "description": "Controls whether the options are shown. Default: false"
+    },
+    "popoverProps": {
+      "type": "Partial<CommonProps & Omit<EuiInputPopoverProps, \"isOpen\">>",
+      "required": false,
+      "description": "Optional props to pass to the underlying [EuiInputPopover](/#/layout/popover#popover-attached-to-input-element).\nAllows fine-grained control of the popover dropdown menu, including\n`repositionOnScroll` for EuiSuperSelects used within scrollable containers,\nand customizing popover panel styling.\n\nDoes not accept a nested `popoverProps.isOpen` property - use the top level\n`isOpen` API instead."
+    }
+  },
+  "example": "<EuiSuperSelect valueOfSelected=\"option-1\" />"
+}

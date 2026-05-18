@@ -1,0 +1,38 @@
+{
+  "name": "EuiLiveAnnouncer",
+  "description": "",
+  "category": "Utilities",
+  "import": "import { EuiLiveAnnouncer } from '@elastic/eui';",
+  "props": {
+    "children": {
+      "type": "ReactNode",
+      "required": false,
+      "description": "Content for screen readers to announce"
+    },
+    "role": {
+      "type": "AriaRole",
+      "required": false,
+      "default": "status",
+      "description": "`role` attribute for both live regions.\n\nhttps://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Live_Regions#roles_with_implicit_live_region_attributes"
+    },
+    "isActive": {
+      "type": "boolean",
+      "required": false,
+      "default": "true",
+      "description": "Whether to make screen readers aware of the content"
+    },
+    "aria-live": {
+      "type": "\"off\" | \"assertive\" | \"polite\"",
+      "required": false,
+      "default": "'polite'",
+      "description": "`aria-live` attribute for both live regions"
+    },
+    "clearAfterMs": {
+      "type": "number | false",
+      "required": false,
+      "default": "2000",
+      "description": "Sets a delay in ms before the live region is cleared.\nThe message will still be read by screen readers even if it's cleared in between."
+    }
+  },
+  "example": "<EuiLiveAnnouncer role=\"status\" isActive>You have new notifications</EuiLiveAnnouncer>"
+}

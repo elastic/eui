@@ -1,0 +1,111 @@
+{
+  "name": "EuiCard",
+  "description": "Clickable or informational card with title, description, and optional icon.",
+  "category": "Display",
+  "import": "import { EuiCard } from '@elastic/eui';",
+  "props": {
+    "children": {
+      "type": "ReactNode",
+      "required": false,
+      "description": "Custom children"
+    },
+    "aria-label": {
+      "type": "string",
+      "required": false,
+      "description": "Defines a string value that labels the current element.\n@see aria-labelledby."
+    },
+    "footer": {
+      "type": "ReactNode",
+      "required": false,
+      "description": "Accepts any combination of elements"
+    },
+    "image": {
+      "type": "string | ReactElement",
+      "required": false,
+      "description": "Accepts a url in string form or ReactElement for a custom image component"
+    },
+    "textAlign": {
+      "type": "\"center\" | \"left\" | \"right\"",
+      "required": false,
+      "default": "center",
+      "description": "Changes alignment of the title and description"
+    },
+    "layout": {
+      "type": "\"horizontal\" | \"vertical\"",
+      "required": false,
+      "default": "vertical",
+      "description": "Change to \"horizontal\" if you need the icon to be left of the content.\nHorizontal layouts cannot be used in conjunction with `image`, `footer`, or `textAlign`."
+    },
+    "title": {
+      "type": "NonNullable<ReactNode>",
+      "required": true,
+      "description": "Cards are required to have at least a title and a description and/or children"
+    },
+    "titleElement": {
+      "type": "\"h2\" | \"h3\" | \"h4\" | \"h5\" | \"h6\" | \"p\" | \"span\"",
+      "required": false,
+      "default": "p",
+      "description": "Determines the title's heading element"
+    },
+    "titleSize": {
+      "type": "\"s\" | \"xs\"",
+      "required": false,
+      "default": "s",
+      "description": "Determines the title's size, matching that of EuiTitle.\nThough, card titles can't be too large or small relative to the description text."
+    },
+    "description": {
+      "type": "NonNullable<ReactNode>",
+      "required": false,
+      "description": "Placed within a small EuiText `<p>` tag"
+    },
+    "icon": {
+      "type": "ReactElement<EuiIconProps, string | JSXElementConstructor<any>>",
+      "required": false,
+      "description": "Accepts an `<EuiIcon>` node or `null`"
+    },
+    "onClick": {
+      "type": "any",
+      "required": false,
+      "description": "Use only if you want to forego a button in the footer and make the whole card clickable"
+    },
+    "isDisabled": {
+      "type": "boolean",
+      "required": false
+    },
+    "href": {
+      "type": "string",
+      "required": false
+    },
+    "target": {
+      "type": "string",
+      "required": false
+    },
+    "betaBadgeProps": {
+      "type": "EuiBetaBadgeProps",
+      "required": false,
+      "description": "Adds a badge to top of the card to label it as \"Beta\" or other non-GA state.\nAccepts all the props of [EuiBetaBadge](#/display/badge#beta-badge-type), where `label` is required."
+    },
+    "display": {
+      "type": "PanelColor",
+      "required": false,
+      "description": "Matches to the color property of EuiPanel. If defined, removes any border & shadow.\nLeave as `undefined` to display as a default panel.\nSelectable cards will always display as a default panel."
+    },
+    "paddingSize": {
+      "type": "\"s\" | \"xs\" | \"m\" | \"l\" | \"xl\" | \"none\"",
+      "required": false,
+      "default": "m",
+      "description": "Padding applied around the content of the card"
+    },
+    "selectable": {
+      "type": "(DisambiguateSet<EuiButtonPropsForAnchor, EuiButtonPropsForButton> & EuiButtonDisplayCommonProps & EuiButtonProps & { ...; } & ButtonHTMLAttributes<...> & { ...; }) | (DisambiguateSet<...> & ... 3 more ... & { ...; })",
+      "required": false,
+      "description": "Adds a button to the bottom of the card to allow for in-place selection"
+    },
+    "hasBorder": {
+      "type": "boolean",
+      "required": false,
+      "description": "Use a border style of card instead of shadow"
+    }
+  },
+  "example": "<EuiCard paddingSize=\"m\" textAlign=\"center\" titleElement=\"p\" titleSize=\"s\" title=\"Card title\" description=\"Card description\" footer={0}>Card title</EuiCard>"
+}

@@ -1,0 +1,41 @@
+{
+  "name": "EuiHeaderLinks",
+  "description": "Container for a group of EuiHeaderLink items.",
+  "category": "Layout",
+  "import": "import { EuiHeaderLinks } from '@elastic/eui';",
+  "props": {
+    "aria-label": {
+      "type": "string",
+      "required": false,
+      "description": "Defines a string value that labels the current element.\n@see aria-labelledby."
+    },
+    "children": {
+      "type": "ReactNode | ((closeMobilePopover: () => void) => ReactNode)",
+      "required": false,
+      "description": "Takes any rendered node(s), typically of `EuiHeaderLink`s.\n\nOptionally takes a render function that will pass a callback allowing you\nto close the mobile popover from within your popover content."
+    },
+    "gutterSize": {
+      "type": "\"s\" | \"xs\" | \"m\" | \"l\" | \"xxs\"",
+      "required": false,
+      "default": "s",
+      "description": "Spacing between direct children"
+    },
+    "popoverBreakpoints": {
+      "type": "string[] | \"none\" | \"all\"",
+      "required": false,
+      "default": "['xs', 's']",
+      "description": "A list of named breakpoints at which to show the popover version"
+    },
+    "popoverButtonProps": {
+      "type": "EuiHeaderLinksPopoverButtonProps",
+      "required": false,
+      "description": "Extend the functionality of the EuiPopover.button which is a EuiHeaderSectionItemButton.\nWith the addition of `iconType` to change the display icon which defaults to `apps`"
+    },
+    "popoverProps": {
+      "type": "Omit<EuiPopoverProps, \"button\" | \"closePopover\">",
+      "required": false,
+      "description": "Extend the functionality of the EuiPopover"
+    }
+  },
+  "example": "<EuiHeaderLinks gutterSize=\"s\" />"
+}

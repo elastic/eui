@@ -1,0 +1,33 @@
+{
+  "name": "EuiFormLabel",
+  "description": "",
+  "category": "Forms",
+  "import": "import { EuiFormLabel } from '@elastic/eui';",
+  "props": {
+    "type": {
+      "type": "\"label\" | \"legend\" | \"span\"",
+      "required": false,
+      "default": "label",
+      "description": "Default type is a `label` but can be changed to a `legend`\nif using inside a `fieldset`."
+    },
+    "isFocused": {
+      "type": "boolean",
+      "required": false
+    },
+    "isInvalid": {
+      "type": "boolean",
+      "required": false
+    },
+    "isDisabled": {
+      "type": "boolean",
+      "required": false,
+      "description": "Changes `cursor` to `default`."
+    },
+    "aria-label": {
+      "type": "string",
+      "required": false,
+      "description": "Defines a string value that labels the current element.\n@see aria-labelledby."
+    }
+  },
+  "example": "<EuiFormLabel>form label</EuiFormLabel>"
+}

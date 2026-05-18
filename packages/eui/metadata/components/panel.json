@@ -1,0 +1,53 @@
+{
+  "name": "EuiPanel",
+  "description": "Contained surface with configurable background, border, and padding.",
+  "category": "Layout",
+  "import": "import { EuiPanel } from '@elastic/eui';",
+  "props": {
+    "element": {
+      "type": "\"button\" | \"div\"",
+      "required": false
+    },
+    "hasShadow": {
+      "type": "boolean",
+      "required": false,
+      "default": "true",
+      "description": "Adds a medium shadow to the panel;\nOnly works when `color=\"plain\"`"
+    },
+    "hasBorder": {
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": "Adds a slight 1px border on all edges.\nOnly works when `color=\"plain | transparent\"`"
+    },
+    "paddingSize": {
+      "type": "\"s\" | \"xs\" | \"m\" | \"l\" | \"xl\" | \"none\"",
+      "required": false,
+      "default": "m",
+      "description": "Padding for all four sides"
+    },
+    "borderRadius": {
+      "type": "\"m\" | \"none\"",
+      "required": false,
+      "default": "m",
+      "description": "Corner border radius"
+    },
+    "grow": {
+      "type": "boolean",
+      "required": false,
+      "default": "true",
+      "description": "When true the panel will grow in height to match `EuiFlexItem`"
+    },
+    "panelRef": {
+      "type": "Ref<HTMLDivElement>",
+      "required": false
+    },
+    "color": {
+      "type": "PanelColor",
+      "required": false,
+      "default": "plain",
+      "description": "Background color of the panel;\nUsually a lightened form of the brand colors"
+    }
+  },
+  "example": "<EuiPanel>Panel content</EuiPanel>"
+}

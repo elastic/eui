@@ -1,0 +1,8 @@
+{
+  "name": "EuiTableFooter",
+  "description": "",
+  "category": "Tabular Content",
+  "import": "import { EuiTableFooter } from '@elastic/eui';",
+  "props": {},
+  "example": "<EuiTableFooter />"
+}

@@ -1,0 +1,44 @@
+{
+  "name": "EuiResizableContainer",
+  "description": "Two-pane layout with a draggable divider between panels.",
+  "category": "Layout",
+  "import": "import { EuiResizableContainer } from '@elastic/eui';",
+  "props": {
+    "direction": {
+      "type": "\"horizontal\" | \"vertical\"",
+      "required": false,
+      "default": "horizontal",
+      "description": "Specify the container direction"
+    },
+    "children": {
+      "type": "(Panel: ComponentType<EuiResizablePanelProps>, Resizer: ComponentType<EuiResizableButtonProps>, actions: Partial<...>) => ReactNode",
+      "required": true,
+      "description": "Pure function which accepts Panel and Resizer components in arguments\nand returns a component tree"
+    },
+    "onPanelWidthChange": {
+      "type": "({}: { [key: string]: number; }) => void",
+      "required": false,
+      "description": "Pure function which accepts an object where keys are IDs of panels, which sizes were changed,\nand values are actual sizes in percents"
+    },
+    "onToggleCollapsed": {
+      "type": "ToggleCollapseCallback",
+      "required": false
+    },
+    "onResizeStart": {
+      "type": "(trigger: ResizeTrigger) => void",
+      "required": false,
+      "description": "Called when resizing starts"
+    },
+    "onResizeEnd": {
+      "type": "() => void",
+      "required": false,
+      "description": "Called when resizing ends"
+    },
+    "aria-label": {
+      "type": "string",
+      "required": false,
+      "description": "Defines a string value that labels the current element.\n@see aria-labelledby."
+    }
+  },
+  "example": "<EuiResizableContainer height=\"50vh\">2 columns</EuiResizableContainer>"
+}

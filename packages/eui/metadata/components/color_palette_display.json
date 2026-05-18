@@ -1,0 +1,31 @@
+{
+  "name": "EuiColorPaletteDisplay",
+  "description": "",
+  "category": "Forms",
+  "import": "import { EuiColorPaletteDisplay } from '@elastic/eui';",
+  "props": {
+    "size": {
+      "type": "\"s\" | \"xs\" | \"m\"",
+      "required": false,
+      "default": "s",
+      "description": "Height of the palette display"
+    },
+    "type": {
+      "type": "\"fixed\" | \"gradient\"",
+      "required": false,
+      "default": "fixed",
+      "description": "Specify the type of palette.\n`gradient`: each color fades into the next.\n`fixed`: individual color blocks."
+    },
+    "aria-label": {
+      "type": "string",
+      "required": false,
+      "description": "Defines a string value that labels the current element.\n@see aria-labelledby."
+    },
+    "palette": {
+      "type": "string[] | PaletteColorStop[]",
+      "required": true,
+      "description": "Array of color `strings` or an array of {@link PaletteColorStop}. The stops must be numbers in an ordered range."
+    }
+  },
+  "example": "<EuiColorPaletteDisplay type=\"fixed\" size=\"s\" />"
+}

@@ -1,0 +1,53 @@
+{
+  "name": "EuiMarkdownFormat",
+  "description": "",
+  "category": "Editors & Syntax",
+  "import": "import { EuiMarkdownFormat } from '@elastic/eui';",
+  "props": {
+    "aria-label": {
+      "type": "string",
+      "required": false,
+      "description": "Defines a string value that labels the current element.\n@see aria-labelledby."
+    },
+    "color": {
+      "type": "\"default\" | Color | \"subdued\" | \"accent\" | \"accentSecondary\" | \"success\" | \"warning\" | \"danger\" | \"ghost\"",
+      "required": false,
+      "default": "default",
+      "description": "Any of our named colors or a `hex`, `rgb` or `rgba` value."
+    },
+    "textAlign": {
+      "type": "\"center\" | \"left\" | \"right\"",
+      "required": false,
+      "default": "left",
+      "description": "Applies horizontal text alignment"
+    },
+    "grow": {
+      "type": "boolean",
+      "required": false
+    },
+    "component": {
+      "type": "\"div\" | \"p\" | \"span\"",
+      "required": false,
+      "description": "The HTML element/tag to render.\nUse with care when nesting multiple components to ensure valid XHTML:\n- `<div>` and other block tags are not valid to use inside `<p>`. If using the `<p>` tag, we recommend passing strings/text only.\n- `<span>` is valid to be nested in any tag, and can have any tag nested within it."
+    },
+    "parsingPluginList": {
+      "type": "PluggableList",
+      "required": false,
+      "default": "getDefaultEuiMarkdownParsingPlugins()",
+      "description": "array of unified plugins to parse content into an AST"
+    },
+    "processingPluginList": {
+      "type": "PluggableList",
+      "required": false,
+      "default": "getDefaultEuiMarkdownProcessingPlugins()",
+      "description": "array of unified plugins to convert the AST into a ReactNode"
+    },
+    "textSize": {
+      "type": "\"s\" | \"xs\" | \"m\" | \"relative\"",
+      "required": false,
+      "default": "m",
+      "description": "Determines the text size. Choose `relative` to control the `font-size` based on the value of a parent container."
+    }
+  },
+  "example": "<EuiMarkdownFormat textSize=\"m\" />"
+}

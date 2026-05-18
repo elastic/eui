@@ -1,0 +1,76 @@
+{
+  "name": "EuiFieldNumber",
+  "description": "Numeric text input field.",
+  "category": "Forms",
+  "import": "import { EuiFieldNumber } from '@elastic/eui';",
+  "props": {
+    "aria-label": {
+      "type": "string",
+      "required": false,
+      "description": "Defines a string value that labels the current element.\n@see aria-labelledby."
+    },
+    "icon": {
+      "type": "IconType | IconShape",
+      "required": false
+    },
+    "isInvalid": {
+      "type": "boolean",
+      "required": false
+    },
+    "fullWidth": {
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": "Expand to fill 100% of the parent.\nDefaults to `fullWidth` prop of `<EuiForm>`."
+    },
+    "isLoading": {
+      "type": "boolean",
+      "required": false,
+      "default": "false"
+    },
+    "readOnly": {
+      "type": "boolean",
+      "required": false
+    },
+    "min": {
+      "type": "number",
+      "required": false
+    },
+    "max": {
+      "type": "number",
+      "required": false
+    },
+    "step": {
+      "type": "number | \"any\"",
+      "required": false,
+      "default": "\"any\"",
+      "description": "Specifies the granularity that the value must adhere to.\nAccepts a `number`, e.g. `1` for integers, or `0.5` for decimal steps.\nDefaults to `\"any\"` for no stepping, which allows any decimal value(s)."
+    },
+    "inputRef": {
+      "type": "Ref<HTMLInputElement>",
+      "required": false
+    },
+    "prepend": {
+      "type": "PrependAppendType",
+      "required": false,
+      "description": "Creates an input group with element(s) coming before input.\n`string` | `ReactElement` or an array of these"
+    },
+    "append": {
+      "type": "PrependAppendType",
+      "required": false,
+      "description": "Creates an input group with element(s) coming after input.\n`string` | `ReactElement` or an array of these"
+    },
+    "controlOnly": {
+      "type": "boolean",
+      "required": false,
+      "description": "Completely removes form control layout wrapper and ignores\nicon, prepend, and append. Best used inside EuiFormControlLayoutDelimited."
+    },
+    "compressed": {
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": "when `true` creates a shorter height input"
+    }
+  },
+  "example": "<EuiFieldNumber placeholder={0} id={0} name={0} value={0} />"
+}

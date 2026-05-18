@@ -1,0 +1,54 @@
+{
+  "name": "EuiFormPrepend",
+  "description": "",
+  "category": "Forms",
+  "import": "import { EuiFormPrepend } from '@elastic/eui';",
+  "props": {
+    "isDisabled": {
+      "type": "boolean",
+      "required": false
+    },
+    "aria-label": {
+      "type": "string",
+      "required": false,
+      "description": "Defines a string value that labels the current element.\n@see aria-labelledby."
+    },
+    "label": {
+      "type": "ReactNode",
+      "required": false,
+      "description": "Main content label"
+    },
+    "iconLeft": {
+      "type": "IconType",
+      "required": false,
+      "description": "Left side icon"
+    },
+    "iconRight": {
+      "type": "IconType",
+      "required": false,
+      "description": "Right side icon"
+    },
+    "children": {
+      "type": "ReactNode",
+      "required": false,
+      "description": "Optional content that will be appended to `label` and icons"
+    },
+    "inputId": {
+      "type": "string",
+      "required": false,
+      "description": "id of the input element that the form label is linked to via `htmlFor` attribute"
+    },
+    "compressed": {
+      "type": "boolean",
+      "required": false,
+      "description": "Renders the element with smaller height and padding"
+    },
+    "element": {
+      "type": "\"button\" | \"div\"",
+      "required": false,
+      "default": "div",
+      "description": "Defines the rendered HTML element"
+    }
+  },
+  "example": "<EuiFormPrepend label=\"Prepend\" />"
+}

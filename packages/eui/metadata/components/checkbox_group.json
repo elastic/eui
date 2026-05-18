@@ -1,0 +1,43 @@
+{
+  "name": "EuiCheckboxGroup",
+  "description": "Group of related checkbox options.",
+  "category": "Forms",
+  "import": "import { EuiCheckboxGroup } from '@elastic/eui';",
+  "props": {
+    "aria-label": {
+      "type": "string",
+      "required": false,
+      "description": "Defines a string value that labels the current element.\n@see aria-labelledby."
+    },
+    "options": {
+      "type": "EuiCheckboxGroupOption[]",
+      "required": false,
+      "default": "[]"
+    },
+    "idToSelectedMap": {
+      "type": "EuiCheckboxGroupIdToSelectedMap",
+      "required": false,
+      "default": "{}"
+    },
+    "onChange": {
+      "type": "(optionId: string) => void",
+      "required": true
+    },
+    "compressed": {
+      "type": "boolean",
+      "required": false,
+      "description": "Tightens up the spacing between checkbox rows"
+    },
+    "disabled": {
+      "type": "boolean",
+      "required": false,
+      "description": "Passed down to all child `EuiCheckbox`es"
+    },
+    "legend": {
+      "type": "HTMLAttributes<HTMLLegendElement> & CommonProps & { children: ReactNode; display?: \"hidden\" | \"visible\"; compressed?: boolean; }",
+      "required": false,
+      "description": "Adds an EuiFormLegend element as the first child\nIf the individual labels for each radio do not provide a sufficient description, add a legend.\nWraps the group in a `EuiFormFieldset` which adds an `EuiLegend` for titling the whole group.\nAccepts an `EuiFormLegendProps` shape."
+    }
+  },
+  "example": "<EuiCheckboxGroup id=\"checkbox-1\" label=\"Checkbox 1\" />"
+}

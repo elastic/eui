@@ -1,0 +1,39 @@
+{
+  "name": "EuiPage",
+  "description": "",
+  "category": "Layout",
+  "import": "import { EuiPage } from '@elastic/eui';",
+  "props": {
+    "paddingSize": {
+      "type": "\"s\" | \"xs\" | \"m\" | \"l\" | \"xl\" | \"none\"",
+      "required": false,
+      "default": "none",
+      "description": "Adjust the padding.\nWhen using this setting it's best to be consistent throughout all similar usages"
+    },
+    "grow": {
+      "type": "boolean",
+      "required": false,
+      "default": "true",
+      "description": "Adds `flex-grow: 1` to the whole page for stretching to fit vertically.\nMust be wrapped inside a flexbox, preferrably with `min-height: 100vh`"
+    },
+    "direction": {
+      "type": "\"column\" | \"row\"",
+      "required": false,
+      "default": "row",
+      "description": "Changes the `flex-direction` property.\nFlip to `column` when not including a sidebar."
+    },
+    "color": {
+      "type": "\"transparent\" | \"plain\"",
+      "required": false,
+      "default": "transparent",
+      "description": "Defines the page background color."
+    },
+    "restrictWidth": {
+      "type": "string | number | boolean",
+      "required": false,
+      "default": "false",
+      "description": "Sets the max-width of the page,\nset to `true` to use the default size of `1200px`,\nset to `false` to not restrict the width,\nset to a number for a custom width in px,\nset to a string for a custom width in custom measurement."
+    }
+  },
+  "example": "<EuiPage paddingSize=\"none\" grow direction=\"row\" restrictWidth=\"80vw\" color=\"transparent\" />"
+}

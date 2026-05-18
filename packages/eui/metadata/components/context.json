@@ -1,0 +1,19 @@
+{
+  "name": "EuiContext",
+  "description": "",
+  "category": "Utilities",
+  "import": "import { EuiContext } from '@elastic/eui';",
+  "props": {
+    "i18n": {
+      "type": "I18nShape",
+      "required": false,
+      "default": "{}"
+    },
+    "children": {
+      "type": "ReactNode",
+      "required": true,
+      "description": "ReactNode to render as this component's content"
+    }
+  },
+  "example": "<EuiContext locale=\"fr\" />"
+}
