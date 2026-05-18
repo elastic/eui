@@ -425,7 +425,7 @@ export const useDataGridDisplaySelector = (
         panelProps={{ css: logicalStyle('width', popoverWidth) }}
         panelClassName="euiDataGrid__displayPopoverPanel"
         button={
-          <EuiToolTip content={buttonLabel}>
+          <EuiToolTip content={buttonLabel} disableScreenReaderOutput>
             <EuiButtonIcon
               size="xs"
               iconType="controls"

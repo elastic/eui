@@ -47,22 +47,26 @@ exports[`EuiDataGrid pagination renders 1`] = `
       >
         Page 2 of 2
       </span>
-      <a
-        aria-controls="generated-id"
-        aria-label="Previous page"
-        class="euiButtonIcon euiPaginationArrowButton emotion-euiButtonIcon-xs-empty-text-euiPaginationButton"
-        data-test-subj="pagination-button-previous"
-        href="#generated-id"
-        rel="noreferrer"
-        title="Previous page"
+      <span
+        class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+        id="generated-id_euiToolTipAnchor"
       >
-        <span
-          aria-hidden="true"
-          class="euiButtonIcon__icon"
-          color="inherit"
-          data-euiicon-type="chevronSingleLeft"
-        />
-      </a>
+        <a
+          aria-controls="generated-id"
+          aria-label="Previous page"
+          class="euiButtonIcon euiPaginationArrowButton emotion-euiButtonIcon-xs-empty-text-euiPaginationButton"
+          data-test-subj="pagination-button-previous"
+          href="#generated-id"
+          rel="noreferrer"
+        >
+          <span
+            aria-hidden="true"
+            class="euiButtonIcon__icon"
+            color="inherit"
+            data-euiicon-type="chevronSingleLeft"
+          />
+        </a>
+      </span>
       <ul
         class="euiPagination__list emotion-euiPagination__list"
       >
@@ -654,7 +658,7 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
           >
             <span
               class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
-              id="generated-id-wrapper"
+              id="generated-id_euiToolTipAnchor"
             >
               <button
                 aria-expanded="false"
@@ -678,7 +682,7 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
           >
             <span
               class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
-              id="generated-id-wrapper"
+              id="generated-id_euiToolTipAnchor"
             >
               <button
                 aria-expanded="false"
@@ -1099,7 +1103,7 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
           >
             <span
               class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
-              id="generated-id-wrapper"
+              id="generated-id_euiToolTipAnchor"
             >
               <button
                 aria-expanded="false"
@@ -1123,7 +1127,7 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
           >
             <span
               class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
-              id="generated-id-wrapper"
+              id="generated-id_euiToolTipAnchor"
             >
               <button
                 aria-expanded="false"
@@ -1741,7 +1745,7 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
           >
             <span
               class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
-              id="generated-id-wrapper"
+              id="generated-id_euiToolTipAnchor"
             >
               <button
                 aria-expanded="false"
@@ -1765,7 +1769,7 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
           >
             <span
               class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
-              id="generated-id-wrapper"
+              id="generated-id_euiToolTipAnchor"
             >
               <button
                 aria-expanded="false"
@@ -2184,7 +2188,7 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
           >
             <span
               class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
-              id="generated-id-wrapper"
+              id="generated-id_euiToolTipAnchor"
             >
               <button
                 aria-expanded="false"
@@ -2208,7 +2212,7 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
           >
             <span
               class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
-              id="generated-id-wrapper"
+              id="generated-id_euiToolTipAnchor"
             >
               <button
                 aria-expanded="false"

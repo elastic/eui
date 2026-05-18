@@ -36,7 +36,7 @@ import { EuiToolTipArrow } from './tool_tip_arrow';
 import { toolTipManager } from './tool_tip_manager';
 
 export const POSITIONS = ['top', 'right', 'bottom', 'left'] as const;
-const DISPLAYS = ['inlineBlock', 'block'] as const;
+const DISPLAYS = ['inlineBlock', 'block', 'flex'] as const;
 
 export const DEFAULT_TOOLTIP_OFFSET = 16;
 
