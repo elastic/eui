@@ -241,6 +241,9 @@ export class EuiComboBoxOptionsList<T> extends Component<
     const hasOnFocusBadge =
       onFocusBadge && optionIsFocused && !optionIsDisabled;
 
+    const usesTruncation =
+      !hasTruncationProps && !searchValue && rowHeight !== 'auto';
+
     return (
       <EuiListItemLayout
         element="li"
@@ -252,8 +255,8 @@ export class EuiComboBoxOptionsList<T> extends Component<
         // uses the original `options` array for the index to ensure a stable `id`, otherwise `aria-activedescendant`
         // loses focus on selecting an option (due to actively removing it from the list)
         id={rootId(`_option-${options.indexOf(option)}`)}
+        title={usesTruncation && !toolTipContent ? label : undefined}
         key={option.key ?? option.label}
-        title={label}
         prepend={option.prepend}
         append={
           hasOnFocusBadge ? (
