@@ -1,6 +1,7 @@
 {
   "name": "EuiTour",
   "description": "Multi-step guided product tour anchored to specific elements.",
+  "visualDescription": "",
   "category": "Display",
   "import": "import { EuiTour } from '@elastic/eui';",
   "props": {

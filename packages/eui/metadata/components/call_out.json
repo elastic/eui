@@ -1,6 +1,7 @@
 {
   "name": "EuiCallOut",
   "description": "Inline alert box for informational, success, warning, or danger messages.",
+  "visualDescription": "",
   "category": "Display",
   "import": "import { EuiCallOut } from '@elastic/eui';",
   "props": {

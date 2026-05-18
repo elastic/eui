@@ -1,6 +1,7 @@
 {
   "name": "EuiMutationObserver",
   "description": "",
+  "visualDescription": "",
   "category": "Utilities",
   "import": "import { EuiMutationObserver } from '@elastic/eui';",
   "props": {

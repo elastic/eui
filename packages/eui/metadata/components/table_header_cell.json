@@ -1,6 +1,7 @@
 {
   "name": "EuiTableHeaderCell",
   "description": "",
+  "visualDescription": "",
   "category": "Tabular Content",
   "import": "import { EuiTableHeaderCell } from '@elastic/eui';",
   "props": {

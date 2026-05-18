@@ -1,6 +1,7 @@
 {
   "name": "EuiCodeBlock",
   "description": "Multi-line syntax-highlighted code display with optional copy button.",
+  "visualDescription": "",
   "category": "Editors & Syntax",
   "import": "import { EuiCodeBlock } from '@elastic/eui';",
   "props": {

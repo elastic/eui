@@ -1,6 +1,7 @@
 {
   "name": "EuiMarkdownEditor",
   "description": "",
+  "visualDescription": "",
   "category": "Editors & Syntax",
   "import": "import { EuiMarkdownEditor } from '@elastic/eui';",
   "props": {

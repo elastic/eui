@@ -1,6 +1,7 @@
 {
   "name": "EuiToast",
   "description": "Auto-dismissing notification message shown in the toast list.",
+  "visualDescription": "",
   "category": "Display",
   "import": "import { EuiToast } from '@elastic/eui';",
   "props": {

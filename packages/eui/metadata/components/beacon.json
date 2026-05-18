@@ -1,6 +1,7 @@
 {
   "name": "EuiBeacon",
   "description": "",
+  "visualDescription": "",
   "category": "Utilities",
   "import": "import { EuiBeacon } from '@elastic/eui';",
   "props": {

@@ -1,6 +1,7 @@
 {
   "name": "EuiPageTemplate",
   "description": "Full-page layout template managing sidebar, header, and content regions.",
+  "visualDescription": "",
   "category": "Templates",
   "import": "import { EuiPageTemplate } from '@elastic/eui';",
   "props": {

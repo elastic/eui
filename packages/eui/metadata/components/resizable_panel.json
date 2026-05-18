@@ -1,6 +1,7 @@
 {
   "name": "EuiResizablePanel",
   "description": "",
+  "visualDescription": "",
   "category": "Layout",
   "import": "import { EuiResizablePanel } from '@elastic/eui';",
   "props": {

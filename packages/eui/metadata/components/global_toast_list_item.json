@@ -1,6 +1,7 @@
 {
   "name": "EuiGlobalToastListItem",
   "description": "",
+  "visualDescription": "",
   "category": "Display",
   "import": "import { EuiGlobalToastListItem } from '@elastic/eui';",
   "props": {

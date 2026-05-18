@@ -1,6 +1,7 @@
 {
   "name": "EuiTab",
   "description": "Individual tab item. Must be a child of EuiTabs.",
+  "visualDescription": "",
   "category": "Navigation",
   "import": "import { EuiTab } from '@elastic/eui';",
   "props": {

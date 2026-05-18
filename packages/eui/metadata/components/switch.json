@@ -1,6 +1,7 @@
 {
   "name": "EuiSwitch",
   "description": "Toggle switch for boolean on/off settings.",
+  "visualDescription": "",
   "category": "Forms",
   "import": "import { EuiSwitch } from '@elastic/eui';",
   "props": {

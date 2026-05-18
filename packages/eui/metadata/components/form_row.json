@@ -1,6 +1,7 @@
 {
   "name": "EuiFormRow",
   "description": "Labeled form field wrapper with error message and help text support.",
+  "visualDescription": "",
   "category": "Forms",
   "import": "import { EuiFormRow } from '@elastic/eui';",
   "props": {

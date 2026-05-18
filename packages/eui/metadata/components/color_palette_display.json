@@ -1,6 +1,7 @@
 {
   "name": "EuiColorPaletteDisplay",
   "description": "",
+  "visualDescription": "",
   "category": "Forms",
   "import": "import { EuiColorPaletteDisplay } from '@elastic/eui';",
   "props": {

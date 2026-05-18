@@ -1,6 +1,7 @@
 {
   "name": "EuiProgress",
   "description": "Linear determinate or indeterminate progress indicator.",
+  "visualDescription": "",
   "category": "Display",
   "import": "import { EuiProgress } from '@elastic/eui';",
   "props": {

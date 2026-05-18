@@ -1,6 +1,7 @@
 {
   "name": "EuiStepHorizontal",
   "description": "",
+  "visualDescription": "",
   "category": "Navigation",
   "import": "import { EuiStepHorizontal } from '@elastic/eui';",
   "props": {

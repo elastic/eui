@@ -1,6 +1,7 @@
 {
   "name": "EuiHorizontalRule",
   "description": "Visual divider line. Use instead of raw <hr>.",
+  "visualDescription": "",
   "category": "Layout",
   "import": "import { EuiHorizontalRule } from '@elastic/eui';",
   "props": {

@@ -1,6 +1,7 @@
 {
   "name": "EuiI18n",
   "description": "",
+  "visualDescription": "",
   "category": "Utilities",
   "import": "import { EuiI18n } from '@elastic/eui';",
   "props": {

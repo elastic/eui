@@ -1,6 +1,7 @@
 {
   "name": "EuiBottomBar",
   "description": "Fixed bar anchored to the bottom of the viewport for persistent actions.",
+  "visualDescription": "",
   "category": "Layout",
   "import": "import { EuiBottomBar } from '@elastic/eui';",
   "props": {

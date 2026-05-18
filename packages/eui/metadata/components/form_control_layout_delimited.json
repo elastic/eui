@@ -1,6 +1,7 @@
 {
   "name": "EuiFormControlLayoutDelimited",
   "description": "",
+  "visualDescription": "",
   "category": "Forms",
   "import": "import { EuiFormControlLayoutDelimited } from '@elastic/eui';",
   "props": {

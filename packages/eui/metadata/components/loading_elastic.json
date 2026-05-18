@@ -1,6 +1,7 @@
 {
   "name": "EuiLoadingElastic",
   "description": "Animated Elastic logo loading indicator.",
+  "visualDescription": "",
   "category": "Display",
   "import": "import { EuiLoadingElastic } from '@elastic/eui';",
   "props": {

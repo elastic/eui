@@ -1,6 +1,7 @@
 {
   "name": "EuiHighlight",
   "description": "Wraps text and highlights a substring match (for search results).",
+  "visualDescription": "",
   "category": "Utilities",
   "import": "import { EuiHighlight } from '@elastic/eui';",
   "props": {

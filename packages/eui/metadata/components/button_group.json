@@ -1,6 +1,7 @@
 {
   "name": "EuiButtonGroup",
   "description": "Toggle group of mutually exclusive (single) or multi-select button options.",
+  "visualDescription": "",
   "category": "Navigation",
   "import": "import { EuiButtonGroup } from '@elastic/eui';",
   "props": {

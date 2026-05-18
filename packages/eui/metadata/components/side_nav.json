@@ -1,6 +1,7 @@
 {
   "name": "EuiSideNav",
   "description": "Vertical tree navigation menu for app-level page navigation.",
+  "visualDescription": "",
   "category": "Navigation",
   "import": "import { EuiSideNav } from '@elastic/eui';",
   "props": {

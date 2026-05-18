@@ -1,6 +1,7 @@
 {
   "name": "EuiSubSteps",
   "description": "Nested sub-steps inside an EuiSteps item.",
+  "visualDescription": "",
   "category": "Navigation",
   "import": "import { EuiSubSteps } from '@elastic/eui';",
   "props": {

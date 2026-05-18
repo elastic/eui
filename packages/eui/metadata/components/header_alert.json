@@ -1,6 +1,7 @@
 {
   "name": "EuiHeaderAlert",
   "description": "",
+  "visualDescription": "",
   "category": "Layout",
   "import": "import { EuiHeaderAlert } from '@elastic/eui';",
   "props": {

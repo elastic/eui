@@ -1,6 +1,7 @@
 {
   "name": "EuiSuperSelect",
   "description": "",
+  "visualDescription": "",
   "category": "Forms",
   "import": "import { EuiSuperSelect } from '@elastic/eui';",
   "props": {

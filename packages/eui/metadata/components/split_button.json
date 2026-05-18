@@ -1,6 +1,7 @@
 {
   "name": "EuiSplitButton",
   "description": "",
+  "visualDescription": "",
   "category": "Navigation",
   "import": "import { EuiSplitButton } from '@elastic/eui';",
   "props": {

@@ -1,6 +1,7 @@
 {
   "name": "EuiListGroup",
   "description": "Vertical list of action items or links.",
+  "visualDescription": "",
   "category": "Display",
   "import": "import { EuiListGroup } from '@elastic/eui';",
   "props": {

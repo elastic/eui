@@ -1,6 +1,7 @@
 {
   "name": "EuiFormHelpText",
   "description": "",
+  "visualDescription": "",
   "category": "Forms",
   "import": "import { EuiFormHelpText } from '@elastic/eui';",
   "props": {

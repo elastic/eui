@@ -1,6 +1,7 @@
 {
   "name": "EuiFacetGroup",
   "description": "",
+  "visualDescription": "",
   "category": "Navigation",
   "import": "import { EuiFacetGroup } from '@elastic/eui';",
   "props": {

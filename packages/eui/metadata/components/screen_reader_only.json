@@ -1,6 +1,7 @@
 {
   "name": "EuiScreenReaderOnly",
   "description": "",
+  "visualDescription": "",
   "category": "Utilities",
   "import": "import { EuiScreenReaderOnly } from '@elastic/eui';",
   "props": {

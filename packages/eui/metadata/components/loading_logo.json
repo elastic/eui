@@ -1,6 +1,7 @@
 {
   "name": "EuiLoadingLogo",
   "description": "",
+  "visualDescription": "",
   "category": "Display",
   "import": "import { EuiLoadingLogo } from '@elastic/eui';",
   "props": {

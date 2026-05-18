@@ -1,6 +1,7 @@
 {
   "name": "EuiTextArea",
   "description": "",
+  "visualDescription": "",
   "category": "Forms",
   "import": "import { EuiTextArea } from '@elastic/eui';",
   "props": {

@@ -1,6 +1,7 @@
 {
   "name": "EuiBadge",
   "description": "Colored label for status, category, or count. Supports click handlers.",
+  "visualDescription": "",
   "category": "Display",
   "import": "import { EuiBadge } from '@elastic/eui';",
   "props": {

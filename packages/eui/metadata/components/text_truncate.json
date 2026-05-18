@@ -1,6 +1,7 @@
 {
   "name": "EuiTextTruncate",
   "description": "",
+  "visualDescription": "",
   "category": "Utilities",
   "import": "import { EuiTextTruncate } from '@elastic/eui';",
   "props": {

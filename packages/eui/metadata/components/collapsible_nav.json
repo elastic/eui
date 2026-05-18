@@ -1,6 +1,7 @@
 {
   "name": "EuiCollapsibleNav",
   "description": "Collapsible side navigation panel for app-level navigation.",
+  "visualDescription": "",
   "category": "Navigation",
   "import": "import { EuiCollapsibleNav } from '@elastic/eui';",
   "props": {

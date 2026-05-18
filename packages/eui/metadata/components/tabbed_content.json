@@ -1,6 +1,7 @@
 {
   "name": "EuiTabbedContent",
   "description": "",
+  "visualDescription": "",
   "category": "Navigation",
   "import": "import { EuiTabbedContent } from '@elastic/eui';",
   "props": {

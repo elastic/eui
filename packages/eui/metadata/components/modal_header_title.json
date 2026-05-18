@@ -1,6 +1,7 @@
 {
   "name": "EuiModalHeaderTitle",
   "description": "",
+  "visualDescription": "",
   "category": "Layout",
   "import": "import { EuiModalHeaderTitle } from '@elastic/eui';",
   "props": {

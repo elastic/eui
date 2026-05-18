@@ -1,6 +1,7 @@
 {
   "name": "EuiDroppable",
   "description": "",
+  "visualDescription": "",
   "category": "Display",
   "import": "import { EuiDroppable } from '@elastic/eui';",
   "props": {

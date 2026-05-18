@@ -1,6 +1,7 @@
 {
   "name": "EuiSelectableSearch",
   "description": "",
+  "visualDescription": "",
   "category": "Forms",
   "import": "import { EuiSelectableSearch } from '@elastic/eui';",
   "props": {

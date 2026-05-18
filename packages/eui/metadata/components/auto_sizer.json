@@ -1,6 +1,7 @@
 {
   "name": "EuiAutoSizer",
   "description": "",
+  "visualDescription": "",
   "category": "Utilities",
   "import": "import { EuiAutoSizer } from '@elastic/eui';",
   "props": {

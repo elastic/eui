@@ -1,6 +1,7 @@
 {
   "name": "EuiDescriptionList",
   "description": "Key-value pair list for displaying metadata or entity attributes.",
+  "visualDescription": "",
   "category": "Display",
   "import": "import { EuiDescriptionList } from '@elastic/eui';",
   "props": {

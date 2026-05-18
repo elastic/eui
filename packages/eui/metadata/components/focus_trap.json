@@ -1,6 +1,7 @@
 {
   "name": "EuiFocusTrap",
   "description": "",
+  "visualDescription": "",
   "category": "Utilities",
   "import": "import { EuiFocusTrap } from '@elastic/eui';",
   "props": {

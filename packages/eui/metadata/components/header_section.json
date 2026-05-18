@@ -1,6 +1,7 @@
 {
   "name": "EuiHeaderSection",
   "description": "",
+  "visualDescription": "",
   "category": "Layout",
   "import": "import { EuiHeaderSection } from '@elastic/eui';",
   "props": {

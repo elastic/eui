@@ -1,6 +1,7 @@
 {
   "name": "EuiTextAlign",
   "description": "Wrapper that sets text alignment on its children.",
+  "visualDescription": "",
   "category": "Display",
   "import": "import { EuiTextAlign } from '@elastic/eui';",
   "props": {

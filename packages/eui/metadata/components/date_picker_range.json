@@ -1,6 +1,7 @@
 {
   "name": "EuiDatePickerRange",
   "description": "",
+  "visualDescription": "",
   "category": "Forms",
   "import": "import { EuiDatePickerRange } from '@elastic/eui';",
   "props": {

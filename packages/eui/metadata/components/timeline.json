@@ -1,6 +1,7 @@
 {
   "name": "EuiTimeline",
   "description": "",
+  "visualDescription": "",
   "category": "Display",
   "import": "import { EuiTimeline } from '@elastic/eui';",
   "props": {

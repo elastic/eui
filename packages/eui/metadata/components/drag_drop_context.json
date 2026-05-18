@@ -1,6 +1,7 @@
 {
   "name": "EuiDragDropContext",
   "description": "",
+  "visualDescription": "",
   "category": "Display",
   "import": "import { EuiDragDropContext } from '@elastic/eui';",
   "props": {

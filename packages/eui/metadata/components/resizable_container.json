@@ -1,6 +1,7 @@
 {
   "name": "EuiResizableContainer",
   "description": "Two-pane layout with a draggable divider between panels.",
+  "visualDescription": "",
   "category": "Layout",
   "import": "import { EuiResizableContainer } from '@elastic/eui';",
   "props": {

@@ -1,6 +1,7 @@
 {
   "name": "EuiSuperUpdateButton",
   "description": "",
+  "visualDescription": "",
   "category": "Forms",
   "import": "import { EuiSuperUpdateButton } from '@elastic/eui';",
   "props": {

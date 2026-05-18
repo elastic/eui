@@ -1,6 +1,7 @@
 {
   "name": "EuiDualRange",
   "description": "",
+  "visualDescription": "",
   "category": "Forms",
   "import": "import { EuiDualRange } from '@elastic/eui';",
   "props": {

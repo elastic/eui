@@ -1,6 +1,7 @@
 {
   "name": "EuiAccordion",
   "description": "Collapsible section that shows/hides content on toggle.",
+  "visualDescription": "",
   "category": "Layout",
   "import": "import { EuiAccordion } from '@elastic/eui';",
   "props": {

@@ -1,6 +1,7 @@
 {
   "name": "EuiPopoverTitle",
   "description": "",
+  "visualDescription": "",
   "category": "Layout",
   "import": "import { EuiPopoverTitle } from '@elastic/eui';",
   "props": {

@@ -1,6 +1,7 @@
 {
   "name": "EuiAvatar",
   "description": "",
+  "visualDescription": "",
   "category": "Display",
   "import": "import { EuiAvatar } from '@elastic/eui';",
   "props": {

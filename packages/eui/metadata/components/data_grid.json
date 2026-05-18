@@ -1,6 +1,7 @@
 {
   "name": "EuiDataGrid",
   "description": "High-performance virtualized data grid for large or complex datasets.",
+  "visualDescription": "",
   "category": "Tabular Content",
   "import": "import { EuiDataGrid } from '@elastic/eui';",
   "props": {

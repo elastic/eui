@@ -1,6 +1,7 @@
 {
   "name": "EuiSearchBar",
   "description": "Structured search input with filter pills and query syntax support.",
+  "visualDescription": "",
   "category": "Forms",
   "import": "import { EuiSearchBar } from '@elastic/eui';",
   "props": {

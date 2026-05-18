@@ -1,6 +1,7 @@
 {
   "name": "EuiKeyPadMenu",
   "description": "Grid of icon+label menu items, typically used in popovers.",
+  "visualDescription": "",
   "category": "Navigation",
   "import": "import { EuiKeyPadMenu } from '@elastic/eui';",
   "props": {

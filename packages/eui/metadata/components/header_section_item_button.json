@@ -1,6 +1,7 @@
 {
   "name": "EuiHeaderSectionItemButton",
   "description": "",
+  "visualDescription": "",
   "category": "Layout",
   "import": "import { EuiHeaderSectionItemButton } from '@elastic/eui';",
   "props": {

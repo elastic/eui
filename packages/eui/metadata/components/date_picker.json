@@ -1,6 +1,7 @@
 {
   "name": "EuiDatePicker",
   "description": "Calendar-based date and time input.",
+  "visualDescription": "",
   "category": "Forms",
   "import": "import { EuiDatePicker } from '@elastic/eui';",
   "props": {

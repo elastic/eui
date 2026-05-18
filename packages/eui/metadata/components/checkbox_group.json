@@ -1,6 +1,7 @@
 {
   "name": "EuiCheckboxGroup",
   "description": "Group of related checkbox options.",
+  "visualDescription": "",
   "category": "Forms",
   "import": "import { EuiCheckboxGroup } from '@elastic/eui';",
   "props": {

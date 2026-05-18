@@ -1,6 +1,7 @@
 {
   "name": "EuiPanel",
   "description": "Contained surface with configurable background, border, and padding.",
+  "visualDescription": "",
   "category": "Layout",
   "import": "import { EuiPanel } from '@elastic/eui';",
   "props": {

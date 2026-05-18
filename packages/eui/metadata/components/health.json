@@ -1,6 +1,7 @@
 {
   "name": "EuiHealth",
   "description": "Small colored status dot with an adjacent text label.",
+  "visualDescription": "",
   "category": "Display",
   "import": "import { EuiHealth } from '@elastic/eui';",
   "props": {

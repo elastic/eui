@@ -1,6 +1,7 @@
 {
   "name": "EuiHeaderLink",
   "description": "Navigation link styled for use inside EuiHeader.",
+  "visualDescription": "",
   "category": "Layout",
   "import": "import { EuiHeaderLink } from '@elastic/eui';",
   "props": {

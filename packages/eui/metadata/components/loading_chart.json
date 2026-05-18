@@ -1,6 +1,7 @@
 {
   "name": "EuiLoadingChart",
   "description": "",
+  "visualDescription": "",
   "category": "Display",
   "import": "import { EuiLoadingChart } from '@elastic/eui';",
   "props": {

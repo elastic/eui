@@ -1,6 +1,7 @@
 {
   "name": "EuiHeader",
   "description": "Top application header bar. Used for global navigation and branding.",
+  "visualDescription": "",
   "category": "Layout",
   "import": "import { EuiHeader } from '@elastic/eui';",
   "props": {

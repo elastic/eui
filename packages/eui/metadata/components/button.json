@@ -1,6 +1,7 @@
 {
   "name": "EuiButton",
   "description": "Primary interactive button. Handles keyboard focus, loading, and disabled states automatically.",
+  "visualDescription": "",
   "category": "Navigation",
   "import": "import { EuiButton } from '@elastic/eui';",
   "props": {

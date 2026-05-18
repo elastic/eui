@@ -1,6 +1,7 @@
 {
   "name": "EuiFlexItem",
   "description": "Flex child within EuiFlexGroup. Controls grow, shrink, and alignment.",
+  "visualDescription": "",
   "category": "Layout",
   "import": "import { EuiFlexItem } from '@elastic/eui';",
   "props": {

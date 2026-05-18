@@ -1,6 +1,7 @@
 {
   "name": "EuiTableRowCellCheckbox",
   "description": "",
+  "visualDescription": "",
   "category": "Tabular Content",
   "import": "import { EuiTableRowCellCheckbox } from '@elastic/eui';",
   "props": {

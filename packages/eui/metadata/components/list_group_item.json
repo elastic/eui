@@ -1,6 +1,7 @@
 {
   "name": "EuiListGroupItem",
   "description": "Individual item within EuiListGroup.",
+  "visualDescription": "",
   "category": "Display",
   "import": "import { EuiListGroupItem } from '@elastic/eui';",
   "props": {

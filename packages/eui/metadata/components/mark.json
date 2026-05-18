@@ -1,6 +1,7 @@
 {
   "name": "EuiMark",
   "description": "Highlights text with a background color (like a highlighter marker).",
+  "visualDescription": "",
   "category": "Utilities",
   "import": "import { EuiMark } from '@elastic/eui';",
   "props": {

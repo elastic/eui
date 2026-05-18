@@ -1,6 +1,7 @@
 {
   "name": "EuiFlyoutFooter",
   "description": "Sticky footer region inside an EuiFlyout, typically for action buttons.",
+  "visualDescription": "",
   "category": "Layout",
   "import": "import { EuiFlyoutFooter } from '@elastic/eui';",
   "props": {

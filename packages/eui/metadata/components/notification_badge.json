@@ -1,6 +1,7 @@
 {
   "name": "EuiNotificationBadge",
   "description": "",
+  "visualDescription": "",
   "category": "Display",
   "import": "import { EuiNotificationBadge } from '@elastic/eui';",
   "props": {

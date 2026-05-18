@@ -1,6 +1,7 @@
 {
   "name": "EuiButtonIcon",
   "description": "Icon-only button. Always requires an aria-label for accessibility.",
+  "visualDescription": "",
   "category": "Navigation",
   "import": "import { EuiButtonIcon } from '@elastic/eui';",
   "props": {

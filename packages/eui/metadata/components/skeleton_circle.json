@@ -1,6 +1,7 @@
 {
   "name": "EuiSkeletonCircle",
   "description": "",
+  "visualDescription": "",
   "category": "Display",
   "import": "import { EuiSkeletonCircle } from '@elastic/eui';",
   "props": {

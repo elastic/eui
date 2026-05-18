@@ -1,6 +1,7 @@
 {
   "name": "EuiPageHeader",
   "description": "Page-level header with title, description, breadcrumbs, and action buttons.",
+  "visualDescription": "",
   "category": "Layout",
   "import": "import { EuiPageHeader } from '@elastic/eui';",
   "props": {

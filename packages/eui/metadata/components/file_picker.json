@@ -1,6 +1,7 @@
 {
   "name": "EuiFilePicker",
   "description": "File upload input.",
+  "visualDescription": "",
   "category": "Forms",
   "import": "import { EuiFilePicker } from '@elastic/eui';",
   "props": {

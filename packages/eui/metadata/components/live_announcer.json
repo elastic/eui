@@ -1,6 +1,7 @@
 {
   "name": "EuiLiveAnnouncer",
   "description": "",
+  "visualDescription": "",
   "category": "Utilities",
   "import": "import { EuiLiveAnnouncer } from '@elastic/eui';",
   "props": {

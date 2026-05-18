@@ -1,6 +1,7 @@
 {
   "name": "EuiToolTip",
   "description": "Hover/focus tooltip anchored to a trigger element.",
+  "visualDescription": "",
   "category": "Display",
   "import": "import { EuiToolTip } from '@elastic/eui';",
   "props": {

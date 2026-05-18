@@ -1,6 +1,7 @@
 {
   "name": "EuiImage",
   "description": "Responsive image with optional caption and fullscreen zoom.",
+  "visualDescription": "",
   "category": "Display",
   "import": "import { EuiImage } from '@elastic/eui';",
   "props": {

@@ -1,6 +1,7 @@
 {
   "name": "EuiDraggable",
   "description": "",
+  "visualDescription": "",
   "category": "Display",
   "import": "import { EuiDraggable } from '@elastic/eui';",
   "props": {

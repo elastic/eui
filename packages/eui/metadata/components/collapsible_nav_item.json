@@ -1,6 +1,7 @@
 {
   "name": "EuiCollapsibleNavItem",
   "description": "",
+  "visualDescription": "",
   "category": "Navigation",
   "import": "import { EuiCollapsibleNavItem } from '@elastic/eui';",
   "props": {

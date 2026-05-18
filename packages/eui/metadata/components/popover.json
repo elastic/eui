@@ -1,6 +1,7 @@
 {
   "name": "EuiPopover",
   "description": "Anchored floating panel for contextual menus or content.",
+  "visualDescription": "",
   "category": "Layout",
   "import": "import { EuiPopover } from '@elastic/eui';",
   "props": {

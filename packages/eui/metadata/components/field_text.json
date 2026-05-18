@@ -1,6 +1,7 @@
 {
   "name": "EuiFieldText",
   "description": "Single-line text input field.",
+  "visualDescription": "",
   "category": "Forms",
   "import": "import { EuiFieldText } from '@elastic/eui';",
   "props": {

@@ -1,6 +1,7 @@
 {
   "name": "EuiDescriptionListTitle",
   "description": "",
+  "visualDescription": "",
   "category": "Display",
   "import": "import { EuiDescriptionListTitle } from '@elastic/eui';",
   "props": {},

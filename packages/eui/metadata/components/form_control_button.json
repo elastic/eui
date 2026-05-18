@@ -1,6 +1,7 @@
 {
   "name": "EuiFormControlButton",
   "description": "",
+  "visualDescription": "",
   "category": "Forms",
   "import": "import { EuiFormControlButton } from '@elastic/eui';",
   "props": {

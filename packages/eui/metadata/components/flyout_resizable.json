@@ -1,6 +1,7 @@
 {
   "name": "EuiFlyoutResizable",
   "description": "",
+  "visualDescription": "",
   "category": "Layout",
   "import": "import { EuiFlyoutResizable } from '@elastic/eui';",
   "props": {

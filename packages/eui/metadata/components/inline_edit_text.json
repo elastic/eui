@@ -1,6 +1,7 @@
 {
   "name": "EuiInlineEditText",
   "description": "",
+  "visualDescription": "",
   "category": "Forms",
   "import": "import { EuiInlineEditText } from '@elastic/eui';",
   "props": {

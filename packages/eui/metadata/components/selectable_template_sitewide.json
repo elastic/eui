@@ -1,6 +1,7 @@
 {
   "name": "EuiSelectableTemplateSitewide",
   "description": "",
+  "visualDescription": "",
   "category": "Templates",
   "import": "import { EuiSelectableTemplateSitewide } from '@elastic/eui';",
   "props": {

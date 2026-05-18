@@ -1,6 +1,7 @@
 {
   "name": "EuiAspectRatio",
   "description": "",
+  "visualDescription": "",
   "category": "Display",
   "import": "import { EuiAspectRatio } from '@elastic/eui';",
   "props": {

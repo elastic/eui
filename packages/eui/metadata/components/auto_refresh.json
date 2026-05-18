@@ -1,6 +1,7 @@
 {
   "name": "EuiAutoRefresh",
   "description": "",
+  "visualDescription": "",
   "category": "Forms",
   "import": "import { EuiAutoRefresh } from '@elastic/eui';",
   "props": {

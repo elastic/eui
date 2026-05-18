@@ -1,6 +1,7 @@
 {
   "name": "EuiIconTip",
   "description": "",
+  "visualDescription": "",
   "category": "Display",
   "import": "import { EuiIconTip } from '@elastic/eui';",
   "props": {

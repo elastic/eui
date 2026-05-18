@@ -1,6 +1,7 @@
 {
   "name": "EuiFormPrepend",
   "description": "",
+  "visualDescription": "",
   "category": "Forms",
   "import": "import { EuiFormPrepend } from '@elastic/eui';",
   "props": {

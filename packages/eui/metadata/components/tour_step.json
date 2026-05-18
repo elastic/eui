@@ -1,6 +1,7 @@
 {
   "name": "EuiTourStep",
   "description": "",
+  "visualDescription": "",
   "category": "Display",
   "import": "import { EuiTourStep } from '@elastic/eui';",
   "props": {

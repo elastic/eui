@@ -1,6 +1,7 @@
 {
   "name": "EuiFlyoutMenu",
   "description": "",
+  "visualDescription": "",
   "category": "Layout",
   "import": "import { EuiFlyoutMenu } from '@elastic/eui';",
   "props": {

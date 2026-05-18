@@ -1,6 +1,7 @@
 {
   "name": "EuiResizeObserver",
   "description": "",
+  "visualDescription": "",
   "category": "Utilities",
   "import": "import { EuiResizeObserver } from '@elastic/eui';",
   "props": {

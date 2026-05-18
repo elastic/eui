@@ -1,6 +1,7 @@
 {
   "name": "EuiErrorBoundary",
   "description": "",
+  "visualDescription": "",
   "category": "Utilities",
   "import": "import { EuiErrorBoundary } from '@elastic/eui';",
   "props": {

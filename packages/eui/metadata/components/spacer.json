@@ -1,6 +1,7 @@
 {
   "name": "EuiSpacer",
   "description": "Vertical whitespace block. Always prefer over margin on surrounding elements.",
+  "visualDescription": "",
   "category": "Layout",
   "import": "import { EuiSpacer } from '@elastic/eui';",
   "props": {

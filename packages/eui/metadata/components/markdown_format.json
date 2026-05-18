@@ -1,6 +1,7 @@
 {
   "name": "EuiMarkdownFormat",
   "description": "",
+  "visualDescription": "",
   "category": "Editors & Syntax",
   "import": "import { EuiMarkdownFormat } from '@elastic/eui';",
   "props": {

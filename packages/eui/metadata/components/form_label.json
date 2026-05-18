@@ -1,6 +1,7 @@
 {
   "name": "EuiFormLabel",
   "description": "",
+  "visualDescription": "",
   "category": "Forms",
   "import": "import { EuiFormLabel } from '@elastic/eui';",
   "props": {

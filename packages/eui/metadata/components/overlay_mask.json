@@ -1,6 +1,7 @@
 {
   "name": "EuiOverlayMask",
   "description": "",
+  "visualDescription": "",
   "category": "Utilities",
   "import": "import { EuiOverlayMask } from '@elastic/eui';",
   "props": {

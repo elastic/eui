@@ -1,6 +1,7 @@
 {
   "name": "EuiSkeletonText",
   "description": "Placeholder skeleton lines shown while content is loading.",
+  "visualDescription": "",
   "category": "Display",
   "import": "import { EuiSkeletonText } from '@elastic/eui';",
   "props": {

@@ -1,6 +1,7 @@
 {
   "name": "EuiLink",
   "description": "Anchor or button styled as a hyperlink.",
+  "visualDescription": "",
   "category": "Navigation",
   "import": "import { EuiLink } from '@elastic/eui';",
   "props": {

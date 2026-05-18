@@ -348,6 +348,26 @@ const COMPONENT_DESCRIPTIONS = {
 };
 
 // ---------------------------------------------------------------------------
+// Visual descriptions — how each component looks in a screenshot or mockup.
+// Used by agents doing visual recognition when no Figma metadata is available.
+//
+// Authored by the EUI design team. See:
+// https://github.com/elastic/eui/pull/9664
+//
+// Filling guide for each entry:
+//   - Shape and container (box, pill, dot, row, panel…)
+//   - Color cues (border color, background, accent)
+//   - Typography (title weight, label size)
+//   - Key visual differentiators from similar components
+//   - What it is NOT (to prevent misidentification)
+// ---------------------------------------------------------------------------
+
+const VISUAL_DESCRIPTIONS = {
+  // Core 25 — filled by EUI design team (OnWeek May 2025)
+  // Remaining entries are intentionally left empty; contributions welcome.
+};
+
+// ---------------------------------------------------------------------------
 // Main
 // ---------------------------------------------------------------------------
 
@@ -450,6 +470,11 @@ async function main() {
     const componentData = {
       name,
       description: COMPONENT_DESCRIPTIONS[name] ?? '',
+      // How this component looks in a screenshot or mockup — used by agents
+      // doing visual recognition when no Figma metadata is available.
+      // Fill in for each component: shape, color cues, borders, shadows,
+      // typical size, and anything that distinguishes it from similar components.
+      visualDescription: VISUAL_DESCRIPTIONS[name] ?? '',
       category: meta.category ?? 'Other',
       import: `import { ${name} } from '@elastic/eui';`,
       props: formattedProps,

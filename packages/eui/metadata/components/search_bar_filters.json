@@ -1,6 +1,7 @@
 {
   "name": "EuiSearchBarFilters",
   "description": "",
+  "visualDescription": "",
   "category": "Forms",
   "import": "import { EuiSearchBarFilters } from '@elastic/eui';",
   "props": {

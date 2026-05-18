@@ -1,6 +1,7 @@
 {
   "name": "EuiSkeletonRectangle",
   "description": "Placeholder skeleton rectangle shown while content is loading.",
+  "visualDescription": "",
   "category": "Display",
   "import": "import { EuiSkeletonRectangle } from '@elastic/eui';",
   "props": {

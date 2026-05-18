@@ -1,6 +1,7 @@
 {
   "name": "EuiCard",
   "description": "Clickable or informational card with title, description, and optional icon.",
+  "visualDescription": "",
   "category": "Display",
   "import": "import { EuiCard } from '@elastic/eui';",
   "props": {

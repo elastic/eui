@@ -1,6 +1,7 @@
 {
   "name": "EuiModalBody",
   "description": "",
+  "visualDescription": "",
   "category": "Layout",
   "import": "import { EuiModalBody } from '@elastic/eui';",
   "props": {

@@ -1,6 +1,7 @@
 {
   "name": "EuiFormErrorText",
   "description": "",
+  "visualDescription": "",
   "category": "Forms",
   "import": "import { EuiFormErrorText } from '@elastic/eui';",
   "props": {

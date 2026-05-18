@@ -1,6 +1,7 @@
 {
   "name": "EuiModalFooter",
   "description": "",
+  "visualDescription": "",
   "category": "Layout",
   "import": "import { EuiModalFooter } from '@elastic/eui';",
   "props": {

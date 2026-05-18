@@ -1,6 +1,7 @@
 {
   "name": "EuiSkeletonLoading",
   "description": "",
+  "visualDescription": "",
   "category": "Display",
   "import": "import { EuiSkeletonLoading } from '@elastic/eui';",
   "props": {

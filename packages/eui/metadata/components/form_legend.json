@@ -1,6 +1,7 @@
 {
   "name": "EuiFormLegend",
   "description": "",
+  "visualDescription": "",
   "category": "Forms",
   "import": "import { EuiFormLegend } from '@elastic/eui';",
   "props": {

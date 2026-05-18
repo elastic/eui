@@ -1,6 +1,7 @@
 {
   "name": "EuiDelayHide",
   "description": "",
+  "visualDescription": "",
   "category": "Utilities",
   "import": "import { EuiDelayHide } from '@elastic/eui';",
   "props": {

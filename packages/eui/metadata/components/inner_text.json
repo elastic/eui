@@ -1,6 +1,7 @@
 {
   "name": "EuiInnerText",
   "description": "",
+  "visualDescription": "",
   "category": "Utilities",
   "import": "import { EuiInnerText } from '@elastic/eui';",
   "props": {

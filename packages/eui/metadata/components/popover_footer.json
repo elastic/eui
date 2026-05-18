@@ -1,6 +1,7 @@
 {
   "name": "EuiPopoverFooter",
   "description": "",
+  "visualDescription": "",
   "category": "Layout",
   "import": "import { EuiPopoverFooter } from '@elastic/eui';",
   "props": {

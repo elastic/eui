@@ -1,6 +1,7 @@
 {
   "name": "EuiContextMenuItem",
   "description": "",
+  "visualDescription": "",
   "category": "Navigation",
   "import": "import { EuiContextMenuItem } from '@elastic/eui';",
   "props": {

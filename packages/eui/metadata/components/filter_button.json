@@ -1,6 +1,7 @@
 {
   "name": "EuiFilterButton",
   "description": "",
+  "visualDescription": "",
   "category": "Forms",
   "import": "import { EuiFilterButton } from '@elastic/eui';",
   "props": {

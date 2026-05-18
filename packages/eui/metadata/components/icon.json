@@ -1,6 +1,7 @@
 {
   "name": "EuiIcon",
   "description": "SVG icon from the EUI icon library. Add aria-label when used standalone.",
+  "visualDescription": "",
   "category": "Display",
   "import": "import { EuiIcon } from '@elastic/eui';",
   "props": {},

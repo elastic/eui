@@ -1,6 +1,7 @@
 {
   "name": "EuiTabs",
   "description": "Horizontal tab navigation bar.",
+  "visualDescription": "",
   "category": "Navigation",
   "import": "import { EuiTabs } from '@elastic/eui';",
   "props": {

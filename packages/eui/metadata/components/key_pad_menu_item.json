@@ -1,6 +1,7 @@
 {
   "name": "EuiKeyPadMenuItem",
   "description": "Individual item within EuiKeyPadMenu.",
+  "visualDescription": "",
   "category": "Navigation",
   "import": "import { EuiKeyPadMenuItem } from '@elastic/eui';",
   "props": {

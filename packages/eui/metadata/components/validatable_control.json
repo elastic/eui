@@ -1,6 +1,7 @@
 {
   "name": "EuiValidatableControl",
   "description": "",
+  "visualDescription": "",
   "category": "Forms",
   "import": "import { EuiValidatableControl } from '@elastic/eui';",
   "props": {

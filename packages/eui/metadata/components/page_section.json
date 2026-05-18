@@ -1,6 +1,7 @@
 {
   "name": "EuiPageSection",
   "description": "",
+  "visualDescription": "",
   "category": "Layout",
   "import": "import { EuiPageSection } from '@elastic/eui';",
   "props": {

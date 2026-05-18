@@ -1,6 +1,7 @@
 {
   "name": "EuiSuperDatePicker",
   "description": "",
+  "visualDescription": "",
   "category": "Forms",
   "import": "import { EuiSuperDatePicker } from '@elastic/eui';",
   "props": {

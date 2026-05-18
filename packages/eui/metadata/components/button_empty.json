@@ -1,6 +1,7 @@
 {
   "name": "EuiButtonEmpty",
   "description": "Text-only button with no background. Use for secondary or cancel actions.",
+  "visualDescription": "",
   "category": "Navigation",
   "import": "import { EuiButtonEmpty } from '@elastic/eui';",
   "props": {

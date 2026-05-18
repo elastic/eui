@@ -1,6 +1,7 @@
 {
   "name": "EuiCopy",
   "description": "",
+  "visualDescription": "",
   "category": "Utilities",
   "import": "import { EuiCopy } from '@elastic/eui';",
   "props": {

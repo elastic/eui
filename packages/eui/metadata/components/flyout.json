@@ -1,6 +1,7 @@
 {
   "name": "EuiFlyout",
   "description": "Slide-in overlay panel anchored to the viewport edge.",
+  "visualDescription": "",
   "category": "Layout",
   "import": "import { EuiFlyout } from '@elastic/eui';",
   "props": {},

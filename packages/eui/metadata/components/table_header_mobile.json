@@ -1,6 +1,7 @@
 {
   "name": "EuiTableHeaderMobile",
   "description": "",
+  "visualDescription": "",
   "category": "Tabular Content",
   "import": "import { EuiTableHeaderMobile } from '@elastic/eui';",
   "props": {

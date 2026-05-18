@@ -1,6 +1,7 @@
 {
   "name": "EuiCode",
   "description": "Inline code snippet with monospace styling.",
+  "visualDescription": "",
   "category": "Editors & Syntax",
   "import": "import { EuiCode } from '@elastic/eui';",
   "props": {

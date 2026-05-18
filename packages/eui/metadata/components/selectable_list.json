@@ -1,6 +1,7 @@
 {
   "name": "EuiSelectableList",
   "description": "",
+  "visualDescription": "",
   "category": "Forms",
   "import": "import { EuiSelectableList } from '@elastic/eui';",
   "props": {

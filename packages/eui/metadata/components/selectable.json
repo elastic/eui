@@ -1,6 +1,7 @@
 {
   "name": "EuiSelectable",
   "description": "Searchable list with keyboard-accessible single or multi-select.",
+  "visualDescription": "",
   "category": "Forms",
   "import": "import { EuiSelectable } from '@elastic/eui';",
   "props": {

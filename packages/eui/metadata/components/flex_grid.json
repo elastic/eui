@@ -1,6 +1,7 @@
 {
   "name": "EuiFlexGrid",
   "description": "Responsive grid layout that wraps children into equal-width columns.",
+  "visualDescription": "",
   "category": "Layout",
   "import": "import { EuiFlexGrid } from '@elastic/eui';",
   "props": {

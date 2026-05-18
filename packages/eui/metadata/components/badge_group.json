@@ -1,6 +1,7 @@
 {
   "name": "EuiBadgeGroup",
   "description": "Wrapping container for a group of EuiBadge items.",
+  "visualDescription": "",
   "category": "Display",
   "import": "import { EuiBadgeGroup } from '@elastic/eui';",
   "props": {

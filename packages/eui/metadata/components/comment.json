@@ -1,6 +1,7 @@
 {
   "name": "EuiComment",
   "description": "",
+  "visualDescription": "",
   "category": "Display",
   "import": "import { EuiComment } from '@elastic/eui';",
   "props": {

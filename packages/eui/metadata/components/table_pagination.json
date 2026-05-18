@@ -1,6 +1,7 @@
 {
   "name": "EuiTablePagination",
   "description": "",
+  "visualDescription": "",
   "category": "Tabular Content",
   "import": "import { EuiTablePagination } from '@elastic/eui';",
   "props": {

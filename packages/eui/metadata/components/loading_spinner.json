@@ -1,6 +1,7 @@
 {
   "name": "EuiLoadingSpinner",
   "description": "Animated circular loading indicator.",
+  "visualDescription": "",
   "category": "Display",
   "import": "import { EuiLoadingSpinner } from '@elastic/eui';",
   "props": {

@@ -1,6 +1,7 @@
 {
   "name": "EuiExpression",
   "description": "",
+  "visualDescription": "",
   "category": "Forms",
   "import": "import { EuiExpression } from '@elastic/eui';",
   "props": {

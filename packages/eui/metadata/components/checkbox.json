@@ -1,6 +1,7 @@
 {
   "name": "EuiCheckbox",
   "description": "Single boolean checkbox input.",
+  "visualDescription": "",
   "category": "Forms",
   "import": "import { EuiCheckbox } from '@elastic/eui';",
   "props": {

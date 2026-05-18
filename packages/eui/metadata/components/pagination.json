@@ -1,6 +1,7 @@
 {
   "name": "EuiPagination",
   "description": "Page navigation control for paginated data sets.",
+  "visualDescription": "",
   "category": "Navigation",
   "import": "import { EuiPagination } from '@elastic/eui';",
   "props": {

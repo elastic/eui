@@ -1,6 +1,7 @@
 {
   "name": "EuiFlexGroup",
   "description": "Flexbox row/column container. Children must be EuiFlexItem.",
+  "visualDescription": "",
   "category": "Layout",
   "import": "import { EuiFlexGroup } from '@elastic/eui';",
   "props": {

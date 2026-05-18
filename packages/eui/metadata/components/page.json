@@ -1,6 +1,7 @@
 {
   "name": "EuiPage",
   "description": "",
+  "visualDescription": "",
   "category": "Layout",
   "import": "import { EuiPage } from '@elastic/eui';",
   "props": {

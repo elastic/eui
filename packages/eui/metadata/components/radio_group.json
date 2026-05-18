@@ -1,6 +1,7 @@
 {
   "name": "EuiRadioGroup",
   "description": "Group of mutually exclusive radio button options.",
+  "visualDescription": "",
   "category": "Forms",
   "import": "import { EuiRadioGroup } from '@elastic/eui';",
   "props": {

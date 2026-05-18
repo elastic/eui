@@ -1,6 +1,7 @@
 {
   "name": "EuiSkipLink",
   "description": "",
+  "visualDescription": "",
   "category": "Utilities",
   "import": "import { EuiSkipLink } from '@elastic/eui';",
   "props": {

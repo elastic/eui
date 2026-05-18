@@ -1,6 +1,7 @@
 {
   "name": "EuiTableSortMobile",
   "description": "",
+  "visualDescription": "",
   "category": "Tabular Content",
   "import": "import { EuiTableSortMobile } from '@elastic/eui';",
   "props": {

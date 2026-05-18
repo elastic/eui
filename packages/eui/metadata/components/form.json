@@ -1,6 +1,7 @@
 {
   "name": "EuiForm",
   "description": "Form wrapper providing consistent layout and validation context.",
+  "visualDescription": "",
   "category": "Forms",
   "import": "import { EuiForm } from '@elastic/eui';",
   "props": {

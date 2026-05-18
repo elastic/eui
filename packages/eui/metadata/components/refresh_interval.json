@@ -1,6 +1,7 @@
 {
   "name": "EuiRefreshInterval",
   "description": "",
+  "visualDescription": "",
   "category": "Forms",
   "import": "import { EuiRefreshInterval } from '@elastic/eui';",
   "props": {

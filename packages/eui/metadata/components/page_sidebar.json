@@ -1,6 +1,7 @@
 {
   "name": "EuiPageSidebar",
   "description": "",
+  "visualDescription": "",
   "category": "Layout",
   "import": "import { EuiPageSidebar } from '@elastic/eui';",
   "props": {

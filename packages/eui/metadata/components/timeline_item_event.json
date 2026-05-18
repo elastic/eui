@@ -1,6 +1,7 @@
 {
   "name": "EuiTimelineItemEvent",
   "description": "",
+  "visualDescription": "",
   "category": "Display",
   "import": "import { EuiTimelineItemEvent } from '@elastic/eui';",
   "props": {

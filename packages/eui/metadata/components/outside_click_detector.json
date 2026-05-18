@@ -1,6 +1,7 @@
 {
   "name": "EuiOutsideClickDetector",
   "description": "",
+  "visualDescription": "",
   "category": "Utilities",
   "import": "import { EuiOutsideClickDetector } from '@elastic/eui';",
   "props": {

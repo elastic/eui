@@ -1,6 +1,7 @@
 {
   "name": "EuiTreeView",
   "description": "Collapsible tree structure for hierarchical data.",
+  "visualDescription": "",
   "category": "Navigation",
   "import": "import { EuiTreeView } from '@elastic/eui';",
   "props": {

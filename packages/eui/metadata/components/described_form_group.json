@@ -1,6 +1,7 @@
 {
   "name": "EuiDescribedFormGroup",
   "description": "",
+  "visualDescription": "",
   "category": "Forms",
   "import": "import { EuiDescribedFormGroup } from '@elastic/eui';",
   "props": {

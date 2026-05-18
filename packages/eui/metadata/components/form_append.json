@@ -1,6 +1,7 @@
 {
   "name": "EuiFormAppend",
   "description": "",
+  "visualDescription": "",
   "category": "Forms",
   "import": "import { EuiFormAppend } from '@elastic/eui';",
   "props": {

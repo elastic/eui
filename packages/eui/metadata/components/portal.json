@@ -1,6 +1,7 @@
 {
   "name": "EuiPortal",
   "description": "",
+  "visualDescription": "",
   "category": "Utilities",
   "import": "import { EuiPortal } from '@elastic/eui';",
   "props": {

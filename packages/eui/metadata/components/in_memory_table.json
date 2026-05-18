@@ -1,6 +1,7 @@
 {
   "name": "EuiInMemoryTable",
   "description": "Data table with built-in client-side search, sort, and pagination.",
+  "visualDescription": "",
   "category": "Tabular Content",
   "import": "import { EuiInMemoryTable } from '@elastic/eui';",
   "props": {

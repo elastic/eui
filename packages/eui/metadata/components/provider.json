@@ -1,6 +1,7 @@
 {
   "name": "EuiProvider",
   "description": "",
+  "visualDescription": "",
   "category": "Theming",
   "import": "import { EuiProvider } from '@elastic/eui';",
   "props": {

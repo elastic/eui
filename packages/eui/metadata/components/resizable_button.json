@@ -1,6 +1,7 @@
 {
   "name": "EuiResizableButton",
   "description": "",
+  "visualDescription": "",
   "category": "Layout",
   "import": "import { EuiResizableButton } from '@elastic/eui';",
   "props": {

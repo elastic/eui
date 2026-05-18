@@ -1,6 +1,7 @@
 {
   "name": "EuiBreadcrumbs",
   "description": "Navigation trail showing the current page location within a hierarchy.",
+  "visualDescription": "",
   "category": "Navigation",
   "import": "import { EuiBreadcrumbs } from '@elastic/eui';",
   "props": {

@@ -1,6 +1,7 @@
 {
   "name": "EuiColorPickerSwatch",
   "description": "",
+  "visualDescription": "",
   "category": "Forms",
   "import": "import { EuiColorPickerSwatch } from '@elastic/eui';",
   "props": {

@@ -1,6 +1,7 @@
 {
   "name": "EuiHideFor",
   "description": "",
+  "visualDescription": "",
   "category": "Utilities",
   "import": "import { EuiHideFor } from '@elastic/eui';",
   "props": {

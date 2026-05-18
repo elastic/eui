@@ -1,6 +1,7 @@
 {
   "name": "EuiFieldNumber",
   "description": "Numeric text input field.",
+  "visualDescription": "",
   "category": "Forms",
   "import": "import { EuiFieldNumber } from '@elastic/eui';",
   "props": {

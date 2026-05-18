@@ -1,6 +1,7 @@
 {
   "name": "EuiPageBody",
   "description": "",
+  "visualDescription": "",
   "category": "Layout",
   "import": "import { EuiPageBody } from '@elastic/eui';",
   "props": {

@@ -1,6 +1,7 @@
 {
   "name": "EuiFieldSearch",
   "description": "Search text input with a magnifier icon.",
+  "visualDescription": "",
   "category": "Forms",
   "import": "import { EuiFieldSearch } from '@elastic/eui';",
   "props": {

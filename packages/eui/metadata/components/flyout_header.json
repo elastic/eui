@@ -1,6 +1,7 @@
 {
   "name": "EuiFlyoutHeader",
   "description": "Header region inside an EuiFlyout, typically contains an EuiTitle.",
+  "visualDescription": "",
   "category": "Layout",
   "import": "import { EuiFlyoutHeader } from '@elastic/eui';",
   "props": {

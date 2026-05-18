@@ -1,6 +1,7 @@
 {
   "name": "EuiRadio",
   "description": "Single radio button. Use EuiRadioGroup for a related set.",
+  "visualDescription": "",
   "category": "Forms",
   "import": "import { EuiRadio } from '@elastic/eui';",
   "props": {

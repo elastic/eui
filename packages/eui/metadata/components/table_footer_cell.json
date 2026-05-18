@@ -1,6 +1,7 @@
 {
   "name": "EuiTableFooterCell",
   "description": "",
+  "visualDescription": "",
   "category": "Tabular Content",
   "import": "import { EuiTableFooterCell } from '@elastic/eui';",
   "props": {

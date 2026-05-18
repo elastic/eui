@@ -1,6 +1,7 @@
 {
   "name": "EuiFlyoutBody",
   "description": "Scrollable body region inside an EuiFlyout.",
+  "visualDescription": "",
   "category": "Layout",
   "import": "import { EuiFlyoutBody } from '@elastic/eui';",
   "props": {

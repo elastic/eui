@@ -1,6 +1,7 @@
 {
   "name": "EuiContext",
   "description": "",
+  "visualDescription": "",
   "category": "Utilities",
   "import": "import { EuiContext } from '@elastic/eui';",
   "props": {

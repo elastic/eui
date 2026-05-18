@@ -1,6 +1,7 @@
 {
   "name": "EuiWrappingPopover",
   "description": "",
+  "visualDescription": "",
   "category": "Layout",
   "import": "import { EuiWrappingPopover } from '@elastic/eui';",
   "props": {

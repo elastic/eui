@@ -1,6 +1,7 @@
 {
   "name": "EuiModal",
   "description": "Focused dialog that traps focus and requires explicit user action.",
+  "visualDescription": "",
   "category": "Layout",
   "import": "import { EuiModal } from '@elastic/eui';",
   "props": {

@@ -1,6 +1,7 @@
 {
   "name": "EuiResizableCollapseButton",
   "description": "",
+  "visualDescription": "",
   "category": "Layout",
   "import": "import { EuiResizableCollapseButton } from '@elastic/eui';",
   "props": {

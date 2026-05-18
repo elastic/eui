@@ -1,6 +1,7 @@
 {
   "name": "EuiSelectableMessage",
   "description": "",
+  "visualDescription": "",
   "category": "Forms",
   "import": "import { EuiSelectableMessage } from '@elastic/eui';",
   "props": {

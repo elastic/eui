@@ -1,6 +1,7 @@
 {
   "name": "EuiHeaderSectionItem",
   "description": "Individual section item within the EuiHeader.",
+  "visualDescription": "",
   "category": "Layout",
   "import": "import { EuiHeaderSectionItem } from '@elastic/eui';",
   "props": {

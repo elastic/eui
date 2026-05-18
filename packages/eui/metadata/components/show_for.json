@@ -1,6 +1,7 @@
 {
   "name": "EuiShowFor",
   "description": "",
+  "visualDescription": "",
   "category": "Utilities",
   "import": "import { EuiShowFor } from '@elastic/eui';",
   "props": {

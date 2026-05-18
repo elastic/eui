@@ -1,6 +1,7 @@
 {
   "name": "EuiSelect",
   "description": "Native select dropdown. Prefer EuiComboBox for searchable or multi-select needs.",
+  "visualDescription": "",
   "category": "Forms",
   "import": "import { EuiSelect } from '@elastic/eui';",
   "props": {

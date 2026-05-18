@@ -1,6 +1,7 @@
 {
   "name": "EuiAutoRefreshButton",
   "description": "",
+  "visualDescription": "",
   "category": "Forms",
   "import": "import { EuiAutoRefreshButton } from '@elastic/eui';",
   "props": {

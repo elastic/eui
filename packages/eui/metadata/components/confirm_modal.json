@@ -1,6 +1,7 @@
 {
   "name": "EuiConfirmModal",
   "description": "Standardised confirmation dialog for destructive or irreversible actions.",
+  "visualDescription": "",
   "category": "Layout",
   "import": "import { EuiConfirmModal } from '@elastic/eui';",
   "props": {

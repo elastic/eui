@@ -1,6 +1,7 @@
 {
   "name": "EuiPinnableListGroup",
   "description": "",
+  "visualDescription": "",
   "category": "Display",
   "import": "import { EuiPinnableListGroup } from '@elastic/eui';",
   "props": {

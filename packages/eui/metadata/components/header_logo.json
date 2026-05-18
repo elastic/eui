@@ -1,6 +1,7 @@
 {
   "name": "EuiHeaderLogo",
   "description": "",
+  "visualDescription": "",
   "category": "Layout",
   "import": "import { EuiHeaderLogo } from '@elastic/eui';",
   "props": {

@@ -1,6 +1,7 @@
 {
   "name": "EuiBetaBadge",
   "description": "",
+  "visualDescription": "",
   "category": "Display",
   "import": "import { EuiBetaBadge } from '@elastic/eui';",
   "props": {

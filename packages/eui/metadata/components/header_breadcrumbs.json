@@ -1,6 +1,7 @@
 {
   "name": "EuiHeaderBreadcrumbs",
   "description": "Breadcrumbs variant styled for use inside EuiHeader.",
+  "visualDescription": "",
   "category": "Layout",
   "import": "import { EuiHeaderBreadcrumbs } from '@elastic/eui';",
   "props": {

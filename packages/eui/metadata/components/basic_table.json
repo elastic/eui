@@ -1,6 +1,7 @@
 {
   "name": "EuiBasicTable",
   "description": "Data table with sorting, pagination, and row actions. Use when data is fetched server-side.",
+  "visualDescription": "",
   "category": "Tabular Content",
   "import": "import { EuiBasicTable } from '@elastic/eui';",
   "props": {

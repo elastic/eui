@@ -1,6 +1,7 @@
 {
   "name": "EuiHeaderLinks",
   "description": "Container for a group of EuiHeaderLink items.",
+  "visualDescription": "",
   "category": "Layout",
   "import": "import { EuiHeaderLinks } from '@elastic/eui';",
   "props": {

@@ -1,6 +1,7 @@
 {
   "name": "EuiEmptyPrompt",
   "description": "Placeholder for empty states, error pages, and onboarding flows.",
+  "visualDescription": "",
   "category": "Display",
   "import": "import { EuiEmptyPrompt } from '@elastic/eui';",
   "props": {

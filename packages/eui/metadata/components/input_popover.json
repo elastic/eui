@@ -1,6 +1,7 @@
 {
   "name": "EuiInputPopover",
   "description": "",
+  "visualDescription": "",
   "category": "Layout",
   "import": "import { EuiInputPopover } from '@elastic/eui';",
   "props": {

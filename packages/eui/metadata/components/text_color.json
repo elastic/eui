@@ -1,6 +1,7 @@
 {
   "name": "EuiTextColor",
   "description": "",
+  "visualDescription": "",
   "category": "Display",
   "import": "import { EuiTextColor } from '@elastic/eui';",
   "props": {

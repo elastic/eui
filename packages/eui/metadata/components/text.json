@@ -1,6 +1,7 @@
 {
   "name": "EuiText",
   "description": "Semantic wrapper that applies EUI typography styles to arbitrary HTML content.",
+  "visualDescription": "",
   "category": "Display",
   "import": "import { EuiText } from '@elastic/eui';",
   "props": {

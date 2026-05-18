@@ -1,6 +1,7 @@
 {
   "name": "EuiScreenReaderLive",
   "description": "",
+  "visualDescription": "",
   "category": "Utilities",
   "import": "import { EuiScreenReaderLive } from '@elastic/eui';",
   "props": {

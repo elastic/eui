@@ -1,6 +1,7 @@
 {
   "name": "EuiPaginationButton",
   "description": "",
+  "visualDescription": "",
   "category": "Navigation",
   "import": "import { EuiPaginationButton } from '@elastic/eui';",
   "props": {

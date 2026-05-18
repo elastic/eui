@@ -1,6 +1,7 @@
 {
   "name": "EuiTitle",
   "description": "Styled heading element. Use the size prop to control scale; use as to set the HTML heading level.",
+  "visualDescription": "",
   "category": "Display",
   "import": "import { EuiTitle } from '@elastic/eui';",
   "props": {

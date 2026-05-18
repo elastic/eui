@@ -1,6 +1,7 @@
 {
   "name": "EuiFormFieldset",
   "description": "",
+  "visualDescription": "",
   "category": "Forms",
   "import": "import { EuiFormFieldset } from '@elastic/eui';",
   "props": {

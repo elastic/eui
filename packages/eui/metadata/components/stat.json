@@ -1,6 +1,7 @@
 {
   "name": "EuiStat",
   "description": "Large metric value with a smaller label, designed for dashboard KPIs.",
+  "visualDescription": "",
   "category": "Display",
   "import": "import { EuiStat } from '@elastic/eui';",
   "props": {

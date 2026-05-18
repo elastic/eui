@@ -1,6 +1,7 @@
 {
   "name": "EuiTableRow",
   "description": "",
+  "visualDescription": "",
   "category": "Tabular Content",
   "import": "import { EuiTableRow } from '@elastic/eui';",
   "props": {

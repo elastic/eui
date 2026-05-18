@@ -1,6 +1,7 @@
 {
   "name": "EuiCheckableCard",
   "description": "",
+  "visualDescription": "",
   "category": "Display",
   "import": "import { EuiCheckableCard } from '@elastic/eui';",
   "props": {

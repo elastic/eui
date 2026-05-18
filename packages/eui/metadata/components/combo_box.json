@@ -1,6 +1,7 @@
 {
   "name": "EuiComboBox",
   "description": "Multi-select or single-select input with search and custom option support.",
+  "visualDescription": "",
   "category": "Forms",
   "import": "import { EuiComboBox } from '@elastic/eui';",
   "props": {
