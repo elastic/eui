@@ -28,11 +28,13 @@ const EuiIconSignificantEvents = ({
     {...props}
   >
     {title ? <title id={titleId}>{title}</title> : null}
+    <path d="M8.5 15h-1v-3h1v3ZM4.354 12.354l-1.5 1.5-.708-.707 1.5-1.5.708.707ZM13.854 13.146l-.707.707-1.5-1.5.707-.707 1.5 1.5Z" />
     <path
-      fill="none"
-      stroke="currentColor"
-      d="M10 5.5H6a.5.5 0 0 0-.5.5v4a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5V6a.5.5 0 0 0-.5-.5ZM12 4l1.5-1.5M4 4 2.5 2.5M4 12l-1.5 1.5M12 12l1.5 1.5M8 4V1M8 15v-3M12.005 7.996h3M1.005 7.996h3"
+      fillRule="evenodd"
+      d="M10 5a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h4Zm-4 5h4V6H6v4Z"
+      clipRule="evenodd"
     />
+    <path d="M4.005 8.495h-3v-1h3v1ZM15.005 8.495h-3v-1h3v1ZM4.354 3.646l-.708.708-1.5-1.5.708-.708 1.5 1.5ZM13.854 2.854l-1.5 1.5-.707-.708 1.5-1.5.707.708ZM8.5 4h-1V1h1v3Z" />
   </svg>
 );
 export const icon = EuiIconSignificantEvents;
