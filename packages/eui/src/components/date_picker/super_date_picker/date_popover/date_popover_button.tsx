@@ -11,6 +11,7 @@ import React, {
   ButtonHTMLAttributes,
   MouseEventHandler,
 } from 'react';
+import { css } from '@emotion/react';
 import classNames from 'classnames';
 import { LocaleSpecifier, Moment } from 'moment'; // eslint-disable-line import/named
 
@@ -18,6 +19,7 @@ import { useEuiMemoizedStyles } from '../../../../services';
 import { CommonProps } from '../../../common';
 import { useEuiI18n } from '../../../i18n';
 import { EuiPopover, EuiPopoverProps } from '../../../popover';
+import { EuiToolTip } from '../../../tool_tip';
 
 import { TimeOptions } from '../time_options';
 import { useFormatTimeString } from '../pretty_duration';
@@ -121,12 +123,11 @@ export const EuiDatePopoverButton: FunctionComponent<
     title = outdatedTitle;
   }
 
-  const button = (
+  const rawButton = (
     <button
       type="button"
       onClick={onPopoverToggle}
       className={classes}
-      title={title}
       disabled={isDisabled}
       data-test-subj={`superDatePicker${position}DatePopoverButton`}
       {...buttonProps}
@@ -134,6 +135,23 @@ export const EuiDatePopoverButton: FunctionComponent<
     >
       {formattedValue}
     </button>
+  );
+
+  const button = title ? (
+    <EuiToolTip
+      content={title}
+      display="block"
+      anchorProps={{
+        css: css`
+          block-size: 100%;
+          inline-size: 100%;
+        `,
+      }}
+    >
+      {rawButton}
+    </EuiToolTip>
+  ) : (
+    rawButton
   );
 
   return (

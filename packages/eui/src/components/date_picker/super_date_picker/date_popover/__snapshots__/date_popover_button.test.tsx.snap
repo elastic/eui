@@ -10,7 +10,6 @@ exports[`EuiDatePopoverButton renders 1`] = `
       aria-expanded="false"
       class="euiDatePopoverButton euiDatePopoverButton--start emotion-euiDatePopoverButton"
       data-test-subj="superDatePickerstartDatePopoverButton"
-      title=""
       type="button"
     />
   </div>
