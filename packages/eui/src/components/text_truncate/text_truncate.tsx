@@ -24,6 +24,7 @@ import {
   EuiResizeObserverProps,
 } from '../observer/resize_observer';
 import type { CommonProps } from '../common';
+import { EuiToolTip } from '../tool_tip';
 
 import { TruncationUtils } from './utils';
 import { euiTextTruncateStyles } from './text_truncate.styles';
@@ -216,12 +217,12 @@ const EuiTextTruncateWithWidth: FunctionComponent<
 
   const styles = useEuiMemoizedStyles(euiTextTruncateStyles);
 
-  return (
+  const content = (
     <div
+      tabIndex={isTruncating ? 0 : undefined}
       className={classNames('euiTextTruncate', className)}
       css={styles.euiTextTruncate}
       ref={refs}
-      title={isTruncating ? text : undefined}
       {...rest}
     >
       {isTruncating ? (
@@ -248,6 +249,14 @@ const EuiTextTruncateWithWidth: FunctionComponent<
         </span>
       )}
     </div>
+  );
+
+  return isTruncating ? (
+    <EuiToolTip content={text} disableScreenReaderOutput display="block">
+      {content}
+    </EuiToolTip>
+  ) : (
+    content
   );
 };
 
