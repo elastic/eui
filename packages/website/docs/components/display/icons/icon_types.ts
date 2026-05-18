@@ -265,6 +265,7 @@ export const iconTypes: Array<IconType> = [
   'sessionViewer', // To be deprecated
   'shard',
   'share',
+  'significantEvents',
   'singleMetricViewer', // To be deprecated
   'snowflake',
   'sortAscending',
