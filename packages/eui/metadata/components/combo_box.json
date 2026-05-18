@@ -1,0 +1,177 @@
+{
+  "name": "EuiComboBox",
+  "description": "Multi-select or single-select input with search and custom option support.",
+  "category": "Forms",
+  "import": "import { EuiComboBox } from '@elastic/eui';",
+  "props": {
+    "async": {
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": "Updates the list of options asynchronously"
+    },
+    "compressed": {
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": "When `true` creates a shorter height input"
+    },
+    "fullWidth": {
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": "When `true` expands to the entire width available"
+    },
+    "inputRef": {
+      "type": "RefCallback<HTMLInputElement>",
+      "required": false
+    },
+    "isClearable": {
+      "type": "boolean",
+      "required": false,
+      "default": "true",
+      "description": "Shows a button that quickly clears any input"
+    },
+    "isDisabled": {
+      "type": "boolean",
+      "required": false,
+      "description": "Disables the input"
+    },
+    "isInvalid": {
+      "type": "boolean",
+      "required": false
+    },
+    "isLoading": {
+      "type": "boolean",
+      "required": false,
+      "description": "Swaps the dropdown options for a loading spinner"
+    },
+    "noSuggestions": {
+      "type": "boolean",
+      "required": false,
+      "description": "Doesn't show the suggestions list/dropdown"
+    },
+    "onBlur": {
+      "type": "FocusEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onChange": {
+      "type": "(options: EuiComboBoxOptionOption<T>[]) => void",
+      "required": false,
+      "description": "Called every time the query in the combo box is parsed"
+    },
+    "onFocus": {
+      "type": "FocusEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onKeyDown": {
+      "type": "KeyboardEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onSearchChange": {
+      "type": "(searchValue: string, hasMatchingOptions?: boolean) => void",
+      "required": false,
+      "description": "Called every time the text query in the search box is parsed"
+    },
+    "placeholder": {
+      "type": "string",
+      "required": false,
+      "description": "Sets the placeholder of the input"
+    },
+    "rowHeight": {
+      "type": "number | \"auto\"",
+      "required": false,
+      "description": "The height of each option in pixels. When using a custom render (`renderOption` prop) it's recommended to set it explicitly.\n`auto` will disable virtualization, enabling text to wrap onto multiple lines."
+    },
+    "singleSelection": {
+      "type": "boolean | EuiComboBoxSingleSelectionShape",
+      "required": false,
+      "default": "false",
+      "description": "When `true` only allows the user to select a single option. Set to `{ asPlainText: true }` to not render input selection as pills"
+    },
+    "sortMatchesBy": {
+      "type": "SortMatchesBy",
+      "required": false,
+      "default": "'none' as const",
+      "description": "Display matching options by:\n`startsWith`: moves items that start with search value to top of the list;\n`none`: don't change the sort order of initial object"
+    },
+    "isCaseSensitive": {
+      "type": "boolean",
+      "required": false,
+      "description": "Whether to match options with case sensitivity."
+    },
+    "optionMatcher": {
+      "type": "EuiComboBoxOptionMatcher<T>",
+      "required": false,
+      "default": "createPartialStringEqualityOptionMatcher()",
+      "description": "Optional custom option matcher function\n@example const exactEqualityMatcher: EuiComboBoxOptionMatcher = ({ option, searchValue }) => {\n  return option.label === searchValue;\n}"
+    },
+    "prepend": {
+      "type": "PrependAppendType",
+      "required": false,
+      "default": "undefined",
+      "description": "Creates an input group with element(s) coming before input. It won't show if `singleSelection` is set to `false`.\n`string` | `ReactElement` or an array of these"
+    },
+    "append": {
+      "type": "PrependAppendType",
+      "required": false,
+      "default": "undefined",
+      "description": "Creates an input group with element(s) coming after input. It won't show if `singleSelection` is set to `false`.\n`string` | `ReactElement` or an array of these"
+    },
+    "delimiter": {
+      "type": "string",
+      "required": false,
+      "description": "A special character to use as a value separator. Typically a comma `,`"
+    },
+    "autoFocus": {
+      "type": "boolean",
+      "required": false,
+      "description": "Specifies that the input should have focus when the component loads"
+    },
+    "aria-label": {
+      "type": "string",
+      "required": false,
+      "description": "Required when rendering without a visible label from [EuiFormRow](/#/forms/form-layouts)."
+    },
+    "aria-labelledby": {
+      "type": "string",
+      "required": false,
+      "description": "Reference ID of a text element containing the visible label for the combo box when not\nsupplied by `aria-label` or from [EuiFormRow](/#/forms/form-layouts)."
+    },
+    "truncationProps": {
+      "type": "Partial<Omit<EuiTextTruncateProps, \"text\" | \"children\">>",
+      "required": false,
+      "description": "By default, EuiComboBox will truncate option labels at the end of\nthe string. You can use pass in a custom truncation configuration that\naccepts any [EuiTextTruncate](/#/utilities/text-truncation) prop,\nexcept for `text` and `children`.\n\nNote: when searching, custom truncation props are ignored. The highlighted search\ntext will always take precedence."
+    },
+    "inputPopoverProps": {
+      "type": "Partial<Omit<EuiInputPopoverProps, \"input\" | \"isOpen\" | \"closePopover\">>",
+      "required": false,
+      "description": "Allows customizing the underlying EuiInputPopover component\n(except for props that control state)."
+    },
+    "options": {
+      "type": "EuiComboBoxOptionOption<T>[]",
+      "required": false,
+      "default": "[]",
+      "description": "Array of EuiComboBoxOptionOption objects. See {@link EuiComboBoxOptionOption}"
+    },
+    "customOptionText": {
+      "type": "string",
+      "required": false,
+      "description": "Creates a custom text option. You can use `{searchValue}` inside your string to better customize your text.\nIt won't show if there's no onCreateOption."
+    },
+    "onCreateOption": {
+      "type": "(searchValue: string, options: EuiComboBoxOptionOption<T>[]) => boolean | void",
+      "required": false
+    },
+    "renderOption": {
+      "type": "(option: EuiComboBoxOptionOption<T>, searchValue: string, OPTION_CONTENT_CLASSNAME: string) => ReactNode",
+      "required": false
+    },
+    "selectedOptions": {
+      "type": "EuiComboBoxOptionOption<T>[]",
+      "required": false,
+      "default": "[]"
+    }
+  },
+  "example": "<EuiComboBox delimiter=\",\" sortMatchesBy=\"none\" isClearable id=\"item-1\" label=\"Item 1\" />"
+}

@@ -1,0 +1,40 @@
+{
+  "name": "EuiTreeView",
+  "description": "Collapsible tree structure for hierarchical data.",
+  "category": "Navigation",
+  "import": "import { EuiTreeView } from '@elastic/eui';",
+  "props": {
+    "children": {
+      "type": "never",
+      "required": false,
+      "description": "Never accepts children directly, only through the `items` prop"
+    },
+    "display": {
+      "type": "EuiTreeViewDisplayOptions",
+      "required": false,
+      "default": "default",
+      "description": "Optionally use a variation with smaller text and icon sizes"
+    },
+    "items": {
+      "type": "Node[]",
+      "required": true,
+      "description": "An array of EuiTreeViewNodes"
+    },
+    "expandByDefault": {
+      "type": "boolean",
+      "required": false,
+      "description": "Set all items to open on initial load"
+    },
+    "showExpansionArrows": {
+      "type": "boolean",
+      "required": false,
+      "description": "Display expansion arrows next to all items\nthat contain children"
+    },
+    "ref": {
+      "type": "LegacyRef<unknown>",
+      "required": false,
+      "description": "Allows getting a ref to the component instance.\nOnce the component unmounts, React will set `ref.current` to `null`\n(or call the ref with `null` if you passed a callback ref).\n@see {@link https://react.dev/learn/referencing-values-with-refs#refs-and-the-dom React Docs}"
+    }
+  },
+  "example": "<EuiTreeView display=\"default\" label=\"Item A\" id=\"item_a\" isExpanded />"
+}

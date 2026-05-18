@@ -1,0 +1,24 @@
+{
+  "name": "EuiPortal",
+  "description": "",
+  "category": "Utilities",
+  "import": "import { EuiPortal } from '@elastic/eui';",
+  "props": {
+    "children": {
+      "type": "ReactNode",
+      "required": true,
+      "description": "ReactNode to render as this component's content"
+    },
+    "insert": {
+      "type": "{ sibling: HTMLElement; position: \"before\" | \"after\"; }",
+      "required": false,
+      "description": "If not specified, `EuiPortal` will insert itself\ninto the end of the `document.body` by default"
+    },
+    "portalRef": {
+      "type": "(ref: HTMLDivElement) => void",
+      "required": false,
+      "description": "Optional ref callback"
+    }
+  },
+  "example": "<EuiPortal>This element is appended to the body in the DOM if you inspect</EuiPortal>"
+}

@@ -1,0 +1,20 @@
+{
+  "name": "EuiHorizontalRule",
+  "description": "Visual divider line. Use instead of raw <hr>.",
+  "category": "Layout",
+  "import": "import { EuiHorizontalRule } from '@elastic/eui';",
+  "props": {
+    "size": {
+      "type": "\"full\" | \"half\" | \"quarter\"",
+      "required": false,
+      "default": "full",
+      "description": "Defines the width of the HR."
+    },
+    "margin": {
+      "type": "\"s\" | \"xs\" | \"m\" | \"l\" | \"xl\" | \"none\" | \"xxl\"",
+      "required": false,
+      "default": "m"
+    }
+  },
+  "example": "<EuiHorizontalRule size=\"full\" margin=\"l\" />"
+}

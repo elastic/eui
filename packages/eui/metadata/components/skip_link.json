@@ -1,0 +1,130 @@
+{
+  "name": "EuiSkipLink",
+  "description": "",
+  "category": "Utilities",
+  "import": "import { EuiSkipLink } from '@elastic/eui';",
+  "props": {
+    "position": {
+      "type": "\"fixed\" | \"absolute\" | \"static\"",
+      "required": false,
+      "default": "static",
+      "description": "Change the display position of the element when focused.\nIf 'fixed', the link will be fixed to the top left of the viewport"
+    },
+    "destinationId": {
+      "type": "string",
+      "required": true,
+      "description": "Typically an anchor id (e.g. `a11yMainContent`), the value provided\nwill be prepended with a hash `#` and used as the link `href`"
+    },
+    "fallbackDestination": {
+      "type": "string | string[]",
+      "required": false,
+      "default": "main",
+      "description": "If no destination ID element exists or can be found, you may provide a query selector\nstring to fall back to.\n\nFor complex applications with potentially variable layouts per page, an array of\nquery selectors can be passed, e.g. `['main', '[role=main]', '.appWrapper']`, which\nprioritizes looking for multiple fallbacks based on array order."
+    },
+    "overrideLinkBehavior": {
+      "type": "boolean",
+      "required": false,
+      "description": "If default HTML anchor link behavior is not desired (e.g. for SPAs with hash routing),\nsetting this flag to true will manually scroll to and focus the destination element\nwithout changing the browser URL's hash"
+    },
+    "tabIndex": {
+      "type": "number",
+      "required": false,
+      "description": "When position is fixed, this is forced to `0`"
+    },
+    "fill": {
+      "type": "boolean",
+      "required": false,
+      "description": "Make button a solid color for prominence"
+    },
+    "color": {
+      "type": "\"text\" | \"accent\" | \"accentSecondary\" | \"primary\" | \"success\" | \"warning\" | \"danger\" | \"neutral\" | \"risk\"",
+      "required": false,
+      "description": "Any of the named color palette options.\n\nDo not use the following colors for standalone buttons directly,\nthey exist to serve other components:\n - accent\n - warning\n - neutral\n - risk"
+    },
+    "size": {
+      "type": "\"s\" | \"m\"",
+      "required": false,
+      "description": "Use size `s` in confined spaces"
+    },
+    "isDisabled": {
+      "type": "boolean",
+      "required": false,
+      "description": "Controls the disabled behavior via the native `disabled` attribute."
+    },
+    "hasAriaDisabled": {
+      "type": "boolean",
+      "required": false,
+      "description": "NOTE: Beta feature, may be changed or removed in the future\n\nChanges the native `disabled` attribute to `aria-disabled` to preserve focusability.\nThis results in a semantically disabled button without the default browser handling of the disabled state.\n\nUse e.g. when a disabled button should have a tooltip."
+    },
+    "element": {
+      "type": "\"a\" | \"button\" | \"span\"",
+      "required": false
+    },
+    "iconType": {
+      "type": "IconType",
+      "required": false,
+      "description": "Any `type` accepted by EuiIcon"
+    },
+    "iconSide": {
+      "type": "ButtonContentIconSide",
+      "required": false,
+      "description": "Can only be one side `left` or `right`"
+    },
+    "isLoading": {
+      "type": "boolean",
+      "required": false,
+      "description": "Force disables the button and changes the icon to a loading spinner"
+    },
+    "textProps": {
+      "type": "false | (HTMLAttributes<HTMLSpanElement> & CommonProps & { ref?: Ref<HTMLSpanElement>; 'data-text'?: string; })",
+      "required": false,
+      "description": "Object of props passed to the `<span>` wrapping the content's text/children only (not icon)\n\nThis span wrapper can be removed by passing `textProps={false}`."
+    },
+    "iconSize": {
+      "type": "\"s\" | \"m\"",
+      "required": false
+    },
+    "aria-label": {
+      "type": "string",
+      "required": false,
+      "description": "Defines a string value that labels the current element.\n@see aria-labelledby."
+    },
+    "isSelected": {
+      "type": "boolean",
+      "required": false,
+      "description": "Applies the boolean state as the `aria-pressed` property to create a toggle button.\n*Only use when the readable text does not change between states.*"
+    },
+    "fullWidth": {
+      "type": "boolean",
+      "required": false,
+      "description": "Extends the button to 100% width"
+    },
+    "minWidth": {
+      "type": "false | MinWidth<string | number>",
+      "required": false,
+      "description": "Override the default minimum width"
+    },
+    "contentProps": {
+      "type": "CommonProps & EuiButtonDisplayContentType",
+      "required": false,
+      "description": "Object of props passed to the <span/> wrapping the button's content"
+    },
+    "type": {
+      "type": "\"reset\" | \"submit\" | \"button\"",
+      "required": false
+    },
+    "href": {
+      "type": "string",
+      "required": false
+    },
+    "onClick": {
+      "type": "MouseEventHandler<HTMLAnchorElement>",
+      "required": false
+    },
+    "buttonRef": {
+      "type": "Ref<HTMLAnchorElement>",
+      "required": false
+    }
+  },
+  "example": "<EuiSkipLink position=\"static\" destinationId=\"storybook-root\" fallbackDestination=\"main\" overrideLinkBehavior>Skip to content</EuiSkipLink>"
+}

@@ -1,0 +1,62 @@
+{
+  "name": "EuiTableHeaderCell",
+  "description": "",
+  "category": "Tabular Content",
+  "import": "import { EuiTableHeaderCell } from '@elastic/eui';",
+  "props": {
+    "aria-label": {
+      "type": "string",
+      "required": false,
+      "description": "Defines a string value that labels the current element.\n@see aria-labelledby."
+    },
+    "align": {
+      "type": "HorizontalAlignment",
+      "required": false,
+      "default": "left"
+    },
+    "isSortAscending": {
+      "type": "boolean",
+      "required": false
+    },
+    "isSorted": {
+      "type": "boolean",
+      "required": false
+    },
+    "mobileOptions": {
+      "type": "Pick<EuiTableRowCellMobileOptionsShape, \"show\" | \"only\">",
+      "required": false
+    },
+    "onSort": {
+      "type": "NoArgCallback<void>",
+      "required": false
+    },
+    "scope": {
+      "type": "\"col\" | \"colgroup\" | \"row\" | \"rowgroup\"",
+      "required": false
+    },
+    "width": {
+      "type": "string | number",
+      "required": false
+    },
+    "tooltipProps": {
+      "type": "EuiTableColumnNameTooltipProps",
+      "required": false,
+      "description": "Allows adding an icon with a tooltip displayed next to the name"
+    },
+    "description": {
+      "type": "string",
+      "required": false
+    },
+    "readOnly": {
+      "type": "boolean",
+      "required": false,
+      "description": "Shows the sort indicator but removes the button"
+    },
+    "append": {
+      "type": "ReactNode",
+      "required": false,
+      "description": "Content rendered outside the visible cell content wrapper. Useful for, e.g. screen reader text.\n\nUsed by EuiBasicTable to render hidden copy markers"
+    }
+  },
+  "example": "<EuiTableHeaderCell>Header cell content</EuiTableHeaderCell>"
+}

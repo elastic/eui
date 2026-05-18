@@ -1,0 +1,126 @@
+{
+  "name": "EuiSelectableList",
+  "description": "",
+  "category": "Forms",
+  "import": "import { EuiSelectableList } from '@elastic/eui';",
+  "props": {
+    "aria-label": {
+      "type": "string",
+      "required": false,
+      "description": "Defines a string value that labels the current element.\n@see aria-labelledby."
+    },
+    "activeOptionIndex": {
+      "type": "number",
+      "required": false,
+      "description": "The index of the option to be highlighted as pseudo-focused;\nGood for use when only one selection is allowed and needing to open\ndirectly to that option"
+    },
+    "showIcons": {
+      "type": "boolean",
+      "required": false,
+      "description": "Show the check/cross selection indicator icons"
+    },
+    "singleSelection": {
+      "type": "boolean | \"always\"",
+      "required": false
+    },
+    "windowProps": {
+      "type": "Partial<ListProps<any>>",
+      "required": false,
+      "description": "Any props to send specifically to the react-window `FixedSizeList`"
+    },
+    "bordered": {
+      "type": "boolean",
+      "required": false,
+      "description": "Adds a border around the list to indicate the bounds;\nUseful when the list scrolls, otherwise use your own container"
+    },
+    "onFocusBadge": {
+      "type": "boolean | EuiBadgeProps",
+      "required": false,
+      "description": "When enabled by setting to either `true` or passing custom text,\nshows a hollow badge as an append (far right) when the item is focused.\nThe default content when `true` is `↩ to select/deselect/include/exclude`"
+    },
+    "paddingSize": {
+      "type": "\"s\" | \"none\"",
+      "required": false,
+      "description": "Padding for the list items."
+    },
+    "textWrap": {
+      "type": "\"wrap\" | \"truncate\"",
+      "required": false,
+      "description": "How to handle long text within the item.\nWrapping only works if virtualization is off."
+    },
+    "truncationProps": {
+      "type": "Partial<Omit<EuiTextTruncateProps, \"text\" | \"children\">>",
+      "required": false,
+      "description": "If textWrap is set to `truncate`, you can pass a custom truncation configuration\nthat accepts any [EuiTextTruncate](/#/utilities/text-truncation) prop except for\n`text` and `children`.\n\nNote: when searching, custom truncation props are ignored. The highlighted search\ntext will always take precedence."
+    },
+    "rowHeight": {
+      "type": "number",
+      "required": false,
+      "default": "32",
+      "description": "The height of each option in pixels. Defaults to `32`.\nHas no effect if `isVirtualized=false`."
+    },
+    "isVirtualized": {
+      "type": "boolean",
+      "required": false,
+      "default": "true as const",
+      "description": "Use virtualized rendering for list items with `react-window`.\nSets each row's height to the value of `rowHeight`."
+    },
+    "options": {
+      "type": "ExclusiveUnion<EuiSelectableGroupLabelOption<T>, EuiSelectableLIOption<T>>[]",
+      "required": true,
+      "description": "All possible options"
+    },
+    "visibleOptions": {
+      "type": "ExclusiveUnion<EuiSelectableGroupLabelOption<T>, EuiSelectableLIOption<T>>[]",
+      "required": false,
+      "description": "Filtered options list (if applicable)"
+    },
+    "searchValue": {
+      "type": "string",
+      "required": false,
+      "default": "",
+      "description": "Search value to highlight on the option render"
+    },
+    "onOptionClick": {
+      "type": "(options: ExclusiveUnion<EuiSelectableGroupLabelOption<T>, EuiSelectableLIOption<T>>[], event: EuiSelectableOnChangeEvent, clickedOption: ExclusiveUnion<...>) => void",
+      "required": true,
+      "description": "Returns the array of options with altered checked state, the click/keyboard event,\nand the option that triggered the click/keyboard event"
+    },
+    "renderOption": {
+      "type": "(option: ExclusiveUnion<EuiSelectableGroupLabelOption<T>, EuiSelectableLIOption<T>>, searchValue: string) => ReactNode",
+      "required": false,
+      "description": "Custom render for the label portion of the option;\nTakes (option, searchValue), returns ReactNode"
+    },
+    "height": {
+      "type": "number | \"full\"",
+      "required": false,
+      "description": "Sets the max height in pixels or pass `full` to allow\nthe whole group to fill the height of its container and\nallows the list grow as well"
+    },
+    "allowExclusions": {
+      "type": "boolean",
+      "required": false,
+      "description": "Allow cycling through the on, off and undefined state of option.checked\nand not just on and undefined"
+    },
+    "searchable": {
+      "type": "boolean",
+      "required": false
+    },
+    "isPreFiltered": {
+      "type": "boolean | { highlightSearch?: boolean; }",
+      "required": false
+    },
+    "makeOptionId": {
+      "type": "(index: number) => string",
+      "required": true
+    },
+    "listId": {
+      "type": "string",
+      "required": true
+    },
+    "setActiveOptionIndex": {
+      "type": "(index: number, cb?: () => void) => void",
+      "required": true
+    }
+  },
+  "example": "<EuiSelectableList activeOptionIndex={0} />"
+}

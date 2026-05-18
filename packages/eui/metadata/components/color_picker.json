@@ -1,0 +1,116 @@
+{
+  "name": "EuiColorPicker",
+  "description": "",
+  "category": "Forms",
+  "import": "import { EuiColorPicker } from '@elastic/eui';",
+  "props": {
+    "button": {
+      "type": "ReactElement",
+      "required": false,
+      "description": "Custom element to use instead of text input"
+    },
+    "compressed": {
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": "Use the compressed style for EuiFieldText"
+    },
+    "display": {
+      "type": "EuiColorPickerDisplay",
+      "required": false,
+      "default": "default"
+    },
+    "disabled": {
+      "type": "boolean",
+      "required": false
+    },
+    "fullWidth": {
+      "type": "boolean",
+      "required": false,
+      "default": "false"
+    },
+    "isInvalid": {
+      "type": "boolean",
+      "required": false,
+      "description": "Custom validation flag"
+    },
+    "mode": {
+      "type": "EuiColorPickerMode",
+      "required": false,
+      "default": "default",
+      "description": "Choose between swatches with gradient picker (default), swatches only, gradient picker only, or secondary input only."
+    },
+    "popoverZIndex": {
+      "type": "number",
+      "required": false,
+      "description": "Custom z-index for the popover"
+    },
+    "readOnly": {
+      "type": "boolean",
+      "required": false,
+      "default": "false"
+    },
+    "swatches": {
+      "type": "string[]",
+      "required": false,
+      "description": "Array of hex strings (3 or 6 character) to use as swatch options. Defaults to EUI visualization colors"
+    },
+    "prepend": {
+      "type": "PrependAppendType",
+      "required": false,
+      "description": "Creates an input group with element(s) coming before input. It only shows when the `display` is set to `default`.\n`string` | `ReactElement` or an array of these"
+    },
+    "append": {
+      "type": "PrependAppendType",
+      "required": false,
+      "description": "Creates an input group with element(s) coming after input. It only shows when the `display` is set to `default`.\n`string` | `ReactElement` or an array of these"
+    },
+    "showAlpha": {
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": "Whether to render the alpha channel (opacity) value range slider."
+    },
+    "format": {
+      "type": "\"hex\" | \"rgba\"",
+      "required": false,
+      "description": "Will format the text input in the provided format when possible (hue and saturation selection)\nExceptions: Manual text input and swatches will display as-authored\nDefault is to display the last format entered by the user"
+    },
+    "secondaryInputDisplay": {
+      "type": "\"top\" | \"bottom\" | \"none\"",
+      "required": false,
+      "default": "none",
+      "description": "Placement option for a secondary color value input."
+    },
+    "isClearable": {
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": "Add a button to the primary input to clear its value."
+    },
+    "placeholder": {
+      "type": "string",
+      "required": false,
+      "description": "Text to replace the default 'Transparent' placeholder for unset color values."
+    },
+    "color": {
+      "type": "string",
+      "required": false,
+      "description": "hex (string)\nRGB (as comma separated string)\nRGBa (as comma separated string)\nEmpty string will register as 'transparent'"
+    },
+    "onBlur": {
+      "type": "() => void",
+      "required": false
+    },
+    "onChange": {
+      "type": "(text: string, output: EuiColorPickerOutput) => void",
+      "required": true,
+      "description": "text (string, as entered or selected)\nhex (8-digit hex if alpha < 1, otherwise 6-digit hex)\nRGBa (as array; values of NaN if color is invalid)\nisValid (boolean signifying if the input text is a valid color)"
+    },
+    "onFocus": {
+      "type": "() => void",
+      "required": false
+    }
+  },
+  "example": "<EuiColorPicker showAlpha display=\"inline\" mode=\"default\" secondaryInputDisplay=\"top\" />"
+}

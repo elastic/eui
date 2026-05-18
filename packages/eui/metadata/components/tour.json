@@ -1,0 +1,17 @@
+{
+  "name": "EuiTour",
+  "description": "Multi-step guided product tour anchored to specific elements.",
+  "category": "Display",
+  "import": "import { EuiTour } from '@elastic/eui';",
+  "props": {
+    "steps": {
+      "type": "EuiStatelessTourSteps",
+      "required": true
+    },
+    "initialState": {
+      "type": "EuiTourState",
+      "required": true
+    }
+  },
+  "example": "<EuiTour currentTourStep={1} isTourActive tourPopoverWidth={300} tourSubtitle={0} />"
+}

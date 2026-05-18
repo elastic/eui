@@ -1,0 +1,44 @@
+{
+  "name": "EuiStepHorizontal",
+  "description": "",
+  "category": "Navigation",
+  "import": "import { EuiStepHorizontal } from '@elastic/eui';",
+  "props": {
+    "onClick": {
+      "type": "MouseEventHandler<HTMLButtonElement>",
+      "required": true
+    },
+    "disabled": {
+      "type": "boolean",
+      "required": false,
+      "description": "Makes the whole step button disabled."
+    },
+    "step": {
+      "type": "number",
+      "required": false,
+      "default": "1",
+      "description": "The number of the step in the list of steps"
+    },
+    "title": {
+      "type": "string",
+      "required": false
+    },
+    "status": {
+      "type": "\"disabled\" | \"warning\" | \"danger\" | \"loading\" | \"current\" | \"incomplete\" | \"complete\"",
+      "required": false,
+      "default": "incomplete",
+      "description": "Visual representation of the step number indicator.\nMay replace the number provided in props.step with alternate styling.\nThe `disabled` prop will override this."
+    },
+    "size": {
+      "type": "\"s\" | \"xs\" | \"m\"",
+      "required": false,
+      "default": "m"
+    },
+    "aria-label": {
+      "type": "string",
+      "required": false,
+      "description": "Defines a string value that labels the current element.\n@see aria-labelledby."
+    }
+  },
+  "example": "<EuiStepHorizontal title=\"Step 1\">lorem ipsum</EuiStepHorizontal>"
+}

@@ -1,0 +1,42 @@
+{
+  "name": "EuiTabs",
+  "description": "Horizontal tab navigation bar.",
+  "category": "Navigation",
+  "import": "import { EuiTabs } from '@elastic/eui';",
+  "props": {
+    "aria-label": {
+      "type": "string",
+      "required": false,
+      "description": "Defines a string value that labels the current element.\n@see aria-labelledby."
+    },
+    "children": {
+      "type": "ReactNode",
+      "required": false,
+      "description": "ReactNode to render as this component's content"
+    },
+    "expand": {
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": "Evenly stretches each tab to fill the\nhorizontal space"
+    },
+    "bottomBorder": {
+      "type": "boolean",
+      "required": false,
+      "default": "true",
+      "description": "Adds a bottom border to separate it from the content after"
+    },
+    "size": {
+      "type": "\"s\" | \"m\" | \"l\"",
+      "required": false,
+      "default": "m",
+      "description": "Sizes affect both font size and overall size."
+    },
+    "ref": {
+      "type": "LegacyRef<HTMLDivElement>",
+      "required": false,
+      "description": "Allows getting a ref to the component instance.\nOnce the component unmounts, React will set `ref.current` to `null`\n(or call the ref with `null` if you passed a callback ref).\n@see {@link https://react.dev/learn/referencing-values-with-refs#refs-and-the-dom React Docs}"
+    }
+  },
+  "example": "<EuiTabs />"
+}

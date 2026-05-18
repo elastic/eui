@@ -1,0 +1,18 @@
+{
+  "name": "EuiResizeObserver",
+  "description": "",
+  "category": "Utilities",
+  "import": "import { EuiResizeObserver } from '@elastic/eui';",
+  "props": {
+    "children": {
+      "type": "(ref: (e: HTMLElement) => void) => ReactNode",
+      "required": true,
+      "description": "ReactNode to render as this component's content"
+    },
+    "onResize": {
+      "type": "(dimensions: { height: number; width: number; }) => void",
+      "required": true
+    }
+  },
+  "example": "<EuiResizeObserver />"
+}

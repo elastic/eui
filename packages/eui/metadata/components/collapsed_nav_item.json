@@ -1,0 +1,60 @@
+{
+  "name": "EuiCollapsedNavItem",
+  "description": "",
+  "category": "Navigation",
+  "import": "import { EuiCollapsedNavItem } from '@elastic/eui';",
+  "props": {
+    "aria-label": {
+      "type": "string",
+      "required": false,
+      "description": "Defines a string value that labels the current element.\n@see aria-labelledby."
+    },
+    "isSelected": {
+      "type": "boolean",
+      "required": false,
+      "description": "Highlights whether an item is currently selected, e.g.\nif the user is on the same page as the nav link"
+    },
+    "icon": {
+      "type": "IconType",
+      "required": false,
+      "description": "Optional icon to render to the left of title content"
+    },
+    "titleElement": {
+      "type": "\"div\" | \"h2\" | \"h3\" | \"h4\" | \"h5\" | \"h6\" | \"span\"",
+      "required": false,
+      "description": "Allows customizing the title element.\nConsider using a heading element for better accessibility.\nDefaults to an unsemantic `span` or `div`, depending on context."
+    },
+    "iconProps": {
+      "type": "Partial<EuiIconProps>",
+      "required": false,
+      "description": "Optional props to pass to the title icon"
+    },
+    "href": {
+      "type": "string",
+      "required": false,
+      "description": "The nav item link.\n\nIf not included, and no `onClick` is specified, the nav item\nwill render as an non-interactive `<span>`.\n\nShould not be used together with `items`, as the title will\ntrigger the accordion collapse/expand action instead of a link."
+    },
+    "linkProps": {
+      "type": "Partial<(DisambiguateSet<EuiLinkButtonProps, EuiLinkAnchorProps> & EuiLinkAnchorProps) | (DisambiguateSet<...> & EuiLinkButtonProps)>",
+      "required": false,
+      "description": "If a `href` is specified, use this prop to pass any prop that `EuiLink` accepts"
+    },
+    "items": {
+      "type": "((DisambiguateSet<EuiCollapsibleNavItemProps, EuiCollapsibleNavCustomSubItem> & EuiCollapsibleNavCustomSubItem) | (DisambiguateSet<...> & EuiCollapsibleNavItemProps))[]",
+      "required": false,
+      "description": "Will render either an accordion or group of nested child item links.\n\nAccepts any {@link EuiCollapsibleNavItemProps}. Or, to render completely custom\nsubitem content, pass an object with a `renderItem` callback."
+    },
+    "isCollapsible": {
+      "type": "boolean",
+      "required": false,
+      "default": "true",
+      "description": "If set to false, will (visually) render an always-open accordion that cannot\nbe toggled closed. Ignored if `items` is not passed."
+    },
+    "accordionProps": {
+      "type": "Partial<EuiAccordionProps>",
+      "required": false,
+      "description": "If `items` is specified, and `isCollapsible` is not set to false, you may\nuse this prop to pass any prop that `EuiAccordion` accepts, including props\nthat control the toggled state of the accordion (e.g. `initialIsOpen`, `forceState`)"
+    }
+  },
+  "example": "<EuiCollapsedNavItem />"
+}

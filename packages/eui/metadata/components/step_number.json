@@ -1,0 +1,24 @@
+{
+  "name": "EuiStepNumber",
+  "description": "",
+  "category": "Navigation",
+  "import": "import { EuiStepNumber } from '@elastic/eui';",
+  "props": {
+    "status": {
+      "type": "\"disabled\" | \"warning\" | \"danger\" | \"loading\" | \"current\" | \"incomplete\" | \"complete\"",
+      "required": false,
+      "description": "May replace the number provided in props.number with alternate styling"
+    },
+    "number": {
+      "type": "number",
+      "required": false
+    },
+    "titleSize": {
+      "type": "\"s\" | \"xs\" | \"m\" | \"none\"",
+      "required": false,
+      "default": "s",
+      "description": "Title sizing equivalent to EuiTitle, but only `m`, `s`, `xs`.\n`none` indicates no step number should be rendered."
+    }
+  },
+  "example": "<EuiStepNumber number={1} />"
+}

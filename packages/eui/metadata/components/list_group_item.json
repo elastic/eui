@@ -1,0 +1,111 @@
+{
+  "name": "EuiListGroupItem",
+  "description": "Individual item within EuiListGroup.",
+  "category": "Display",
+  "import": "import { EuiListGroupItem } from '@elastic/eui';",
+  "props": {
+    "aria-label": {
+      "type": "string",
+      "required": false,
+      "description": "Defines a string value that labels the current element.\n@see aria-labelledby."
+    },
+    "size": {
+      "type": "\"s\" | \"xs\" | \"m\" | \"l\"",
+      "required": false,
+      "default": "m",
+      "description": "Size of the label text"
+    },
+    "color": {
+      "type": "\"text\" | \"subdued\" | \"primary\"",
+      "required": false,
+      "default": "text",
+      "description": "By default the item will get the color `text`.\nYou can customize the color of the item by passing a color name."
+    },
+    "label": {
+      "type": "ReactNode",
+      "required": true,
+      "description": "Content to be displayed in the list item"
+    },
+    "isActive": {
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": "Apply styles indicating an item is active"
+    },
+    "isDisabled": {
+      "type": "boolean",
+      "required": false,
+      "description": "Apply styles indicating an item is disabled"
+    },
+    "href": {
+      "type": "string",
+      "required": false,
+      "description": "Make the list item label a link.\nWhile permitted, `href` and `onClick` should not be used together in most cases and may create problems."
+    },
+    "rel": {
+      "type": "string",
+      "required": false
+    },
+    "target": {
+      "type": "string",
+      "required": false
+    },
+    "external": {
+      "type": "boolean",
+      "required": false,
+      "description": "Set to true to show an icon indicating that it is an external link;\nDefaults to true if `target=\"_blank\"`"
+    },
+    "iconType": {
+      "type": "IconType",
+      "required": false,
+      "description": "Adds `EuiIcon` of `EuiIcon.type`"
+    },
+    "iconProps": {
+      "type": "Omit<EuiIconProps, \"type\">",
+      "required": false,
+      "description": "Further extend the props applied to EuiIcon"
+    },
+    "icon": {
+      "type": "ReactElement",
+      "required": false,
+      "description": "Custom node to pass as the icon. Cannot be used in conjunction\nwith `iconType` and `iconProps`."
+    },
+    "showToolTip": {
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": "Display tooltip on list item"
+    },
+    "extraAction": {
+      "type": "EuiListGroupItemExtraActionProps",
+      "required": false,
+      "description": "An object of {@link EuiListGroupItemExtraAction} props.\nAdds an `EuiButtonIcon` to the right side of the item; `iconType` is required;\npass `alwaysShow` if you don't want the default behavior of only showing on hover"
+    },
+    "onClick": {
+      "type": "MouseEventHandler<HTMLButtonElement>",
+      "required": false,
+      "description": "Make the list item label a button.\nWhile permitted, `href` and `onClick` should not be used together in most cases and may create problems."
+    },
+    "wrapText": {
+      "type": "boolean",
+      "required": false,
+      "description": "Allow link text to wrap"
+    },
+    "buttonRef": {
+      "type": "React.Ref<HTMLButtonElement>",
+      "required": false,
+      "description": "Pass-through ref reference specifically for targeting\ninstances where the item content is rendered as a `button`"
+    },
+    "toolTipText": {
+      "type": "string",
+      "required": false,
+      "description": "Text to be displayed in the tooltip when `showToolTip` is true.\nBy default the text will be same as the label text."
+    },
+    "toolTipProps": {
+      "type": "Partial<EuiToolTipProps>",
+      "required": false,
+      "description": "Allows customizing the tooltip shown when `showToolTip` is true.\nAccepts any props that [EuiToolTip](/#/display/tooltip) accepts."
+    }
+  },
+  "example": "<EuiListGroupItem label=\"List group item\" />"
+}

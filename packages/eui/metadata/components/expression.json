@@ -1,0 +1,79 @@
+{
+  "name": "EuiExpression",
+  "description": "",
+  "category": "Forms",
+  "import": "import { EuiExpression } from '@elastic/eui';",
+  "props": {
+    "aria-label": {
+      "type": "string",
+      "required": false,
+      "description": "Defines a string value that labels the current element.\n@see aria-labelledby."
+    },
+    "description": {
+      "type": "ReactNode",
+      "required": true,
+      "description": "First part of the expression"
+    },
+    "descriptionProps": {
+      "type": "CommonProps & HTMLAttributes<HTMLSpanElement>",
+      "required": false
+    },
+    "value": {
+      "type": "ReactNode",
+      "required": false,
+      "description": "Second part of the expression"
+    },
+    "valueProps": {
+      "type": "CommonProps & HTMLAttributes<HTMLSpanElement>",
+      "required": false
+    },
+    "color": {
+      "type": "\"subdued\" | \"accent\" | \"primary\" | \"success\" | \"warning\" | \"danger\"",
+      "required": false,
+      "default": "success",
+      "description": "Color of the `description`"
+    },
+    "uppercase": {
+      "type": "boolean",
+      "required": false,
+      "default": "true",
+      "description": "Should the `description` auto-uppercase?"
+    },
+    "isActive": {
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": "Adds an solid border at the bottom"
+    },
+    "onClick": {
+      "type": "MouseEventHandler<HTMLButtonElement> | (MouseEventHandler<HTMLButtonElement> & MouseEventHandler<HTMLSpanElement>)",
+      "required": false,
+      "description": "Turns the component into a button and adds an editable style border at the bottom"
+    },
+    "display": {
+      "type": "\"inline\" | \"columns\"",
+      "required": false,
+      "default": "inline",
+      "description": "Sets the display style for the expression. Defaults to `inline`"
+    },
+    "isInvalid": {
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": "Forces color to display as `danger` and shows an `error` icon"
+    },
+    "descriptionWidth": {
+      "type": "string | number",
+      "required": false,
+      "default": "20%",
+      "description": "Sets a custom width for the description when using the columns layout.\nSet to a number for a custom width in `px`.\nSet to a string for a custom width in custom measurement.\nDefaults to `20%`"
+    },
+    "textWrap": {
+      "type": "\"break-word\" | \"truncate\"",
+      "required": false,
+      "default": "break-word",
+      "description": "Sets how to handle the wrapping of long text."
+    }
+  },
+  "example": "<EuiExpression color=\"success\" display=\"inline\" textWrap=\"break-word\" descriptionWidth=\"20%\" uppercase description=\"Hello\" value=\"World\" />"
+}

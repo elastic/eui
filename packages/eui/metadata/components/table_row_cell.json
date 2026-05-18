@@ -1,0 +1,57 @@
+{
+  "name": "EuiTableRowCell",
+  "description": "",
+  "category": "Tabular Content",
+  "import": "import { EuiTableRowCell } from '@elastic/eui';",
+  "props": {
+    "aria-label": {
+      "type": "string",
+      "required": false,
+      "description": "Defines a string value that labels the current element.\n@see aria-labelledby."
+    },
+    "valign": {
+      "type": "\"top\" | \"bottom\" | \"baseline\" | \"middle\"",
+      "required": false,
+      "default": "middle",
+      "description": "Vertical alignment of the content in the cell"
+    },
+    "setScopeRow": {
+      "type": "boolean",
+      "required": false,
+      "description": "Indicates whether the cell should be marked as the heading for its row"
+    },
+    "hasActions": {
+      "type": "boolean | \"custom\"",
+      "required": false,
+      "description": "Indicates if the cell is dedicated to row actions\n(used for mobile styling and desktop action hover behavior)"
+    },
+    "isExpander": {
+      "type": "boolean",
+      "required": false,
+      "description": "Indicates if the column is dedicated as the expandable row toggle"
+    },
+    "mobileOptions": {
+      "type": "EuiTableRowCellMobileOptionsShape",
+      "required": false,
+      "description": "Mobile options for displaying differently at small screens;\nSee {@link EuiTableRowCellMobileOptionsShape}"
+    },
+    "append": {
+      "type": "ReactNode",
+      "required": false,
+      "description": "Content rendered outside the visible cell content wrapper. Useful for, e.g. screen reader text.\n\nUsed by EuiBasicTable to render hidden copy markers"
+    },
+    "textOnly": {
+      "type": "boolean",
+      "required": false,
+      "default": "true",
+      "description": "Creates a text wrapper around cell content that helps word break or truncate\nlong text correctly."
+    },
+    "truncateText": {
+      "type": "boolean | { lines: number; }",
+      "required": false,
+      "default": "false",
+      "description": "Indicates whether this column should truncate overflowing text content.\n- Set to `true` to enable single-line truncation.\n- To enable multi-line truncation, use a configuration object with `lines`\nset to a number of lines to truncate to."
+    }
+  },
+  "example": "<EuiTableRowCell>row cell content</EuiTableRowCell>"
+}

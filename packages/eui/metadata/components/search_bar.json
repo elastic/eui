@@ -1,0 +1,53 @@
+{
+  "name": "EuiSearchBar",
+  "description": "Structured search input with filter pills and query syntax support.",
+  "category": "Forms",
+  "import": "import { EuiSearchBar } from '@elastic/eui';",
+  "props": {
+    "onChange": {
+      "type": "(args: EuiSearchBarOnChangeArgs) => boolean | void",
+      "required": false
+    },
+    "defaultQuery": {
+      "type": "QueryType",
+      "required": false,
+      "description": "The initial query the bar will hold when first mounted"
+    },
+    "query": {
+      "type": "QueryType",
+      "required": false,
+      "description": "If you wish to use the search bar as a controlled component, continuously pass the query via this prop."
+    },
+    "box": {
+      "type": "EuiFieldSearchProps & { schema?: boolean | SchemaType; }",
+      "required": false,
+      "description": "Configures the search box. Set `placeholder` to change the placeholder text in the box and `incremental` to support incremental (as you type) search."
+    },
+    "filters": {
+      "type": "SearchFilterConfig[]",
+      "required": false,
+      "description": "An array of search filters. See {@link SearchFilterConfig}."
+    },
+    "toolsLeft": {
+      "type": "Tools",
+      "required": false,
+      "description": "Tools which go to the left of the search bar."
+    },
+    "toolsRight": {
+      "type": "Tools",
+      "required": false,
+      "description": "Tools which go to the right of the search bar."
+    },
+    "dateFormat": {
+      "type": "object",
+      "required": false,
+      "description": "Date formatter to use when parsing date values"
+    },
+    "hint": {
+      "type": "{ content: React.ReactNode; popoverProps?: Partial<Pick<EuiInputPopoverProps, \"data-test-subj\" | \"fullWidth\" | \"isOpen\" | \"repositionOnScroll\" | \"closePopover\" | \"panelClassName\" | ... 5 more ... | \"disableFocusTrap\">>; }",
+      "required": false,
+      "description": "Hint to render below the search bar"
+    }
+  },
+  "example": "<EuiSearchBar />"
+}

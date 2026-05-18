@@ -1,0 +1,23 @@
+{
+  "name": "EuiDelayHide",
+  "description": "",
+  "category": "Utilities",
+  "import": "import { EuiDelayHide } from '@elastic/eui';",
+  "props": {
+    "hide": {
+      "type": "boolean",
+      "required": false,
+      "default": "false"
+    },
+    "minimumDuration": {
+      "type": "number",
+      "required": false,
+      "default": "1000"
+    },
+    "render": {
+      "type": "() => ReactNode",
+      "required": true
+    }
+  },
+  "example": "<EuiDelayHide />"
+}

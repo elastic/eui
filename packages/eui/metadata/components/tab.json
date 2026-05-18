@@ -1,0 +1,40 @@
+{
+  "name": "EuiTab",
+  "description": "Individual tab item. Must be a child of EuiTabs.",
+  "category": "Navigation",
+  "import": "import { EuiTab } from '@elastic/eui';",
+  "props": {
+    "href": {
+      "type": "string",
+      "required": false
+    },
+    "isSelected": {
+      "type": "boolean",
+      "required": false
+    },
+    "disabled": {
+      "type": "boolean",
+      "required": false
+    },
+    "prepend": {
+      "type": "ReactNode",
+      "required": false,
+      "description": "Places content before the tab content/children.\nWill be excluded from interactive effects."
+    },
+    "append": {
+      "type": "ReactNode",
+      "required": false,
+      "description": "Places content after the tab content/children.\nWill be excluded from interactive effects."
+    },
+    "aria-label": {
+      "type": "string",
+      "required": false,
+      "description": "Defines a string value that labels the current element.\n@see aria-labelledby."
+    },
+    "onClick": {
+      "type": "MouseEventHandler<HTMLAnchorElement> | MouseEventHandler<HTMLButtonElement>",
+      "required": false
+    }
+  },
+  "example": "<EuiTab>Tab label</EuiTab>"
+}

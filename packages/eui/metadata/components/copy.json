@@ -1,0 +1,35 @@
+{
+  "name": "EuiCopy",
+  "description": "",
+  "category": "Utilities",
+  "import": "import { EuiCopy } from '@elastic/eui';",
+  "props": {
+    "textToCopy": {
+      "type": "string",
+      "required": true,
+      "description": "Text that will be copied to clipboard when copy function is executed."
+    },
+    "beforeMessage": {
+      "type": "ReactNode",
+      "required": false,
+      "description": "Tooltip message displayed before copy function is called."
+    },
+    "afterMessage": {
+      "type": "ReactNode",
+      "required": false,
+      "default": "Copied",
+      "description": "Tooltip message displayed after copy function is called that lets the user know that\n'textToCopy' has been copied to the clipboard."
+    },
+    "children": {
+      "type": "(copy: () => void) => ReactElement<any, string | JSXElementConstructor<any>>",
+      "required": true,
+      "description": "Function that must return a component. First argument is 'copy' function.\nUse your own logic to create the component that users interact with when triggering copy."
+    },
+    "tooltipProps": {
+      "type": "Partial<Omit<EuiToolTipProps, \"children\" | \"content\" | \"onMouseOut\">>",
+      "required": false,
+      "description": "Optional props to pass to the EuiToolTip component."
+    }
+  },
+  "example": "<EuiCopy afterMessage=\"Copied\" textToCopy=\"Hello world\" />"
+}

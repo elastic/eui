@@ -1,0 +1,149 @@
+{
+  "name": "EuiFlyoutResizable",
+  "description": "",
+  "category": "Layout",
+  "import": "import { EuiFlyoutResizable } from '@elastic/eui';",
+  "props": {
+    "size": {
+      "type": "Width<string | number>",
+      "required": false,
+      "default": "m",
+      "description": "Defines the width of the panel.\nPass a predefined size of `s | m | l`, or pass any number/string compatible with the CSS `width` attribute"
+    },
+    "side": {
+      "type": "\"left\" | \"right\"",
+      "required": false,
+      "default": "right",
+      "description": "Which side of the window to attach to.\nThe `left` option should only be used for navigation."
+    },
+    "maxWidth": {
+      "type": "number",
+      "required": false
+    },
+    "aria-label": {
+      "type": "string",
+      "required": false,
+      "description": "Defines a string value that labels the current element.\n@see aria-labelledby."
+    },
+    "minWidth": {
+      "type": "number",
+      "required": false,
+      "description": "Sets the minimum width of the panel.\nEspecially useful when set with `resizable = true`."
+    },
+    "type": {
+      "type": "\"push\" | \"overlay\"",
+      "required": false,
+      "default": "overlay",
+      "description": "How to display the the flyout in relation to the body content;\n`push` keeps it visible, pushing the `<body>` content via padding"
+    },
+    "onResize": {
+      "type": "(width: number) => void",
+      "required": false,
+      "description": "Optional callback that fires when the flyout is resized."
+    },
+    "paddingSize": {
+      "type": "\"s\" | \"m\" | \"l\" | \"none\"",
+      "required": false,
+      "default": "l",
+      "description": "Customize the padding around the content of the flyout header, body and footer"
+    },
+    "closeButtonProps": {
+      "type": "Partial<EuiButtonIconPropsForButton>",
+      "required": false,
+      "description": "Extends EuiButtonIconProps onto the close button"
+    },
+    "onClose": {
+      "type": "(event: EuiFlyoutCloseEvent) => void",
+      "required": true,
+      "description": "A required callback function fired when the flyout is closed."
+    },
+    "ownFocus": {
+      "type": "boolean",
+      "required": false,
+      "default": "true",
+      "description": "Adds an EuiOverlayMask and wraps in an EuiPortal"
+    },
+    "hideCloseButton": {
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": "Hides the default close button. You must provide another close button somewhere within the flyout."
+    },
+    "closeButtonPosition": {
+      "type": "\"inside\" | \"outside\"",
+      "required": false,
+      "default": "inside",
+      "description": "Position of close button.\n`inside`: Floating to just inside the flyout, always top right;\n`outside`: Floating just outside the flyout near the top (side dependent on `side`). Helpful when the close button may cover other interactable content."
+    },
+    "maskProps": {
+      "type": "EuiOverlayMaskProps",
+      "required": false,
+      "description": "Adjustments to the EuiOverlayMask that is added when `ownFocus = true`"
+    },
+    "outsideClickCloses": {
+      "type": "boolean",
+      "required": false,
+      "description": "Forces this interaction on the mask overlay or body content.\nDefaults depend on `ownFocus` and `type` values"
+    },
+    "pushMinBreakpoint": {
+      "type": "string",
+      "required": false,
+      "default": "l",
+      "description": "Named breakpoint (`xs` through `xl`) for customizing the minimum window width to enable the `push` type"
+    },
+    "pushAnimation": {
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": "Enables a slide in animation on push flyouts"
+    },
+    "hasChildBackground": {
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": "When the flyout is used as a child in a managed flyout session, setting `true` gives the shaded background style."
+    },
+    "focusTrapProps": {
+      "type": "Pick<EuiFocusTrapProps, \"returnFocus\" | \"shards\" | \"closeOnMouseup\">",
+      "required": false,
+      "description": "Object of props passed to EuiFocusTrap.\n`shards` specifies an array of elements that will be considered part of the flyout, preventing the flyout from being closed when clicked.\n`closeOnMouseup` will delay the close callback, allowing time for external toggle buttons to handle close behavior.\n`returnFocus` defines the return focus behavior and provides the possibility to check the available target element or opt out of the behavior in favor of manually returning focus"
+    },
+    "includeFixedHeadersInFocusTrap": {
+      "type": "boolean",
+      "required": false,
+      "description": "By default, EuiFlyout will consider any fixed `EuiHeader`s that sit alongside or above the EuiFlyout\nas part of the flyout's focus trap. This prevents focus fighting with interactive elements\nwithin fixed headers.\n\nSet this to `false` if you need to disable this behavior for a specific reason."
+    },
+    "includeSelectorInFocusTrap": {
+      "type": "string | string[]",
+      "required": false,
+      "description": "Specify additional css selectors to include in the focus trap."
+    },
+    "flyoutMenuProps": {
+      "type": "EuiFlyoutMenuProps",
+      "required": false,
+      "description": "Props for the flyout menu to have one rendered in the flyout.\nIf used, the close button will be automatically hidden, as the flyout menu has its own close button."
+    },
+    "as": {
+      "type": "\"div\" | \"nav\"",
+      "required": false,
+      "description": "The HTML element to render as the flyout container."
+    },
+    "session": {
+      "type": "\"inherit\" | \"start\" | \"never\"",
+      "required": false,
+      "default": "undefined (auto-inherit when nested, otherwise 'never')",
+      "description": "Controls the way the session is managed for this flyout.\n- `start`: Creates a new flyout session. Use this for the main flyout.\n- `inherit`: Inherits an existing session if one is active, otherwise functions as a standard flyout.\n- `never`: Disregards session management and always functions as a standard flyout.\n\nWhen the `session` prop is undefined (not set), the flyout will automatically inherit from\na parent flyout if it's nested inside one. Otherwise, it defaults to `never`.\n\nCheck out [EuiFlyout session management](https://eui.elastic.co/docs/components/containers/flyout/session-management)\ndocumentation to learn more."
+    },
+    "onActive": {
+      "type": "() => void",
+      "required": false,
+      "description": "Callback fired when the flyout becomes active/visible, which may happen programmatically from history navigation."
+    },
+    "ref": {
+      "type": "LegacyRef<HTMLElement | HTMLDivElement>",
+      "required": false,
+      "description": "Allows getting a ref to the component instance.\nOnce the component unmounts, React will set `ref.current` to `null`\n(or call the ref with `null` if you passed a callback ref).\n@see {@link https://react.dev/learn/referencing-values-with-refs#refs-and-the-dom React Docs}"
+    }
+  },
+  "example": "<EuiFlyoutResizable minWidth={200} pushMinBreakpoint=\"xs\" hideCloseButton />"
+}

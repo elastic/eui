@@ -1,0 +1,23 @@
+{
+  "name": "EuiTitle",
+  "description": "Styled heading element. Use the size prop to control scale; use as to set the HTML heading level.",
+  "category": "Display",
+  "import": "import { EuiTitle } from '@elastic/eui';",
+  "props": {
+    "children": {
+      "type": "ReactElement<any, string | JSXElementConstructor<any>>",
+      "required": true,
+      "description": "ReactElement to render as this component's content"
+    },
+    "size": {
+      "type": "\"s\" | \"xs\" | \"m\" | \"l\" | \"xxs\" | \"xxxs\"",
+      "required": false,
+      "default": "m"
+    },
+    "textTransform": {
+      "type": "\"uppercase\"",
+      "required": false
+    }
+  },
+  "example": "<EuiTitle />"
+}

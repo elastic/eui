@@ -1,0 +1,19 @@
+{
+  "name": "EuiKeyPadMenu",
+  "description": "Grid of icon+label menu items, typically used in popovers.",
+  "category": "Navigation",
+  "import": "import { EuiKeyPadMenu } from '@elastic/eui';",
+  "props": {
+    "aria-label": {
+      "type": "string",
+      "required": false,
+      "description": "Defines a string value that labels the current element.\n@see aria-labelledby."
+    },
+    "checkable": {
+      "type": "true | (DisambiguateSet<{ legend: ReactNode; legendProps?: Omit<_EuiFormLegendProps, \"type\">; }, { ariaLegend: string; }> & { ...; }) | (DisambiguateSet<...> & { ...; })",
+      "required": false,
+      "description": "Renders the the group as a `fieldset`.\nSet to `true` to customize the labelling, or pass an {@link _EuiKeyPadMenuCheckableProps} object to add a `legend` or `ariaLegend`"
+    }
+  },
+  "example": "<EuiKeyPadMenu />"
+}

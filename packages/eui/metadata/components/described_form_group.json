@@ -1,0 +1,63 @@
+{
+  "name": "EuiDescribedFormGroup",
+  "description": "",
+  "category": "Forms",
+  "import": "import { EuiDescribedFormGroup } from '@elastic/eui';",
+  "props": {
+    "aria-label": {
+      "type": "string",
+      "required": false,
+      "description": "Defines a string value that labels the current element.\n@see aria-labelledby."
+    },
+    "children": {
+      "type": "ReactNode",
+      "required": false,
+      "description": "One or more `EuiFormRow`s."
+    },
+    "gutterSize": {
+      "type": "\"s\" | \"xs\" | \"m\" | \"l\" | \"xl\" | \"none\"",
+      "required": false,
+      "default": "l",
+      "description": "Passed to `EuiFlexGroup`."
+    },
+    "fullWidth": {
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": "Expand to fill 100% of the parent.\nDefaults to `fullWidth` prop of `<EuiForm>`.\nDefault max-width is 800px."
+    },
+    "ratio": {
+      "type": "\"half\" | \"third\" | \"quarter\"",
+      "required": false,
+      "default": "half",
+      "description": "Width ratio of description column compared to field column.\nCan be used in conjunction with `fullWidth` and\nmay require `fullWidth` to be applied to child elements."
+    },
+    "title": {
+      "type": "ReactElement",
+      "required": true,
+      "description": "For better accessibility, it's recommended to use an HTML heading."
+    },
+    "titleSize": {
+      "type": "\"s\" | \"xs\" | \"m\" | \"l\" | \"xxs\" | \"xxxs\"",
+      "required": false,
+      "default": "xs",
+      "description": "Adjust the visual `size` of the EuiTitle that wraps `title`."
+    },
+    "description": {
+      "type": "ReactNode",
+      "required": false,
+      "description": "Added as a child of `EuiText`."
+    },
+    "descriptionFlexItemProps": {
+      "type": "{ children?: ReactNode; } & CommonProps & Omit<any, \"ref\"> & { grow?: boolean | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10; component?: ElementType; } & { ...; }",
+      "required": false,
+      "description": "For customizing the description container. Extended from `EuiFlexItem`."
+    },
+    "fieldFlexItemProps": {
+      "type": "{ children?: ReactNode; } & CommonProps & Omit<any, \"ref\"> & { grow?: boolean | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10; component?: ElementType; } & { ...; }",
+      "required": false,
+      "description": "For customizing the field container. Extended from `EuiFlexItem`."
+    }
+  },
+  "example": "<EuiDescribedFormGroup description=\"Descriptions are wrapped in a small, subdued EuiTextBlock.\" />"
+}

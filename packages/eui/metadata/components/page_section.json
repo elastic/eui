@@ -1,0 +1,59 @@
+{
+  "name": "EuiPageSection",
+  "description": "",
+  "category": "Layout",
+  "import": "import { EuiPageSection } from '@elastic/eui';",
+  "props": {
+    "aria-label": {
+      "type": "string",
+      "required": false,
+      "description": "Defines a string value that labels the current element.\n@see aria-labelledby."
+    },
+    "restrictWidth": {
+      "type": "string | number | boolean",
+      "required": false,
+      "default": "false",
+      "description": "Sets the max-width of the page,\nset to `true` to use the default size of `1200px`,\nset to `false` to not restrict the width,\nset to a number for a custom width in px,\nset to a string for a custom width in custom measurement."
+    },
+    "bottomBorder": {
+      "type": "boolean | \"extended\"",
+      "required": false,
+      "description": "Adds a bottom border to separate it from the content after;\nPassing `extended` will ensure the border touches the sides of the parent container."
+    },
+    "color": {
+      "type": "\"transparent\" | \"plain\" | \"subdued\" | \"highlighted\" | \"accent\" | \"accentSecondary\" | \"primary\" | \"success\" | \"warning\" | \"danger\" | \"neutral\" | \"risk\"",
+      "required": false,
+      "default": "transparent",
+      "description": "Background color of the section;\nUsually a lightened form of the brand colors"
+    },
+    "paddingSize": {
+      "type": "\"s\" | \"xs\" | \"m\" | \"l\" | \"xl\" | \"none\"",
+      "required": false,
+      "default": "l",
+      "description": "Padding for all four sides"
+    },
+    "alignment": {
+      "type": "\"center\" | \"top\" | \"horizontalCenter\"",
+      "required": false,
+      "default": "top",
+      "description": "Horizontal and/or vertical alignment of the section contents"
+    },
+    "grow": {
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": "When true the panel will grow in height to fill container if parent is a flex group"
+    },
+    "contentProps": {
+      "type": "CommonProps & HTMLAttributes<HTMLDivElement>",
+      "required": false,
+      "description": "Passed down to the div wrapper of the section contents"
+    },
+    "component": {
+      "type": "ComponentType | keyof IntrinsicElements",
+      "required": false,
+      "description": "Sets which HTML element to render."
+    }
+  },
+  "example": "<EuiPageSection color=\"plain\" paddingSize=\"l\" alignment=\"top\" component=\"section\" />"
+}

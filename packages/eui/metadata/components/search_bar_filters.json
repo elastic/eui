@@ -1,0 +1,22 @@
+{
+  "name": "EuiSearchBarFilters",
+  "description": "",
+  "category": "Forms",
+  "import": "import { EuiSearchBarFilters } from '@elastic/eui';",
+  "props": {
+    "query": {
+      "type": "Query",
+      "required": true
+    },
+    "onChange": {
+      "type": "(query: Query) => void",
+      "required": true
+    },
+    "filters": {
+      "type": "SearchFilterConfig[]",
+      "required": false,
+      "default": "[]"
+    }
+  },
+  "example": "<EuiSearchBarFilters type=\"field_value_toggle_group\" field=\"status\" value=\"open\" name=\"Open\" />"
+}

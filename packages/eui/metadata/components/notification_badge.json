@@ -1,0 +1,24 @@
+{
+  "name": "EuiNotificationBadge",
+  "description": "",
+  "category": "Display",
+  "import": "import { EuiNotificationBadge } from '@elastic/eui';",
+  "props": {
+    "children": {
+      "type": "ReactNode",
+      "required": true,
+      "description": "ReactNode to render as this component's content"
+    },
+    "size": {
+      "type": "\"s\" | \"m\"",
+      "required": false,
+      "default": "s"
+    },
+    "color": {
+      "type": "\"subdued\" | \"accent\" | \"success\"",
+      "required": false,
+      "default": "accent"
+    }
+  },
+  "example": "<EuiNotificationBadge color=\"accent\" size=\"s\">5</EuiNotificationBadge>"
+}

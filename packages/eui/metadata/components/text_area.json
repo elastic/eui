@@ -1,0 +1,51 @@
+{
+  "name": "EuiTextArea",
+  "description": "",
+  "category": "Forms",
+  "import": "import { EuiTextArea } from '@elastic/eui';",
+  "props": {
+    "aria-label": {
+      "type": "string",
+      "required": false,
+      "description": "Defines a string value that labels the current element.\n@see aria-labelledby."
+    },
+    "icon": {
+      "type": "IconType | IconShape",
+      "required": false
+    },
+    "isLoading": {
+      "type": "boolean",
+      "required": false
+    },
+    "isInvalid": {
+      "type": "boolean",
+      "required": false
+    },
+    "isClearable": {
+      "type": "boolean",
+      "required": false,
+      "description": "Shows a button that allows users to quickly clear the textarea"
+    },
+    "fullWidth": {
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": "Expand to fill 100% of the parent.\nDefaults to `fullWidth` prop of `<EuiForm>`."
+    },
+    "compressed": {
+      "type": "boolean",
+      "required": false
+    },
+    "resize": {
+      "type": "\"both\" | \"horizontal\" | \"vertical\" | \"none\"",
+      "required": false,
+      "default": "vertical",
+      "description": "Which direction, if at all, should the textarea resize"
+    },
+    "inputRef": {
+      "type": "Ref<HTMLTextAreaElement>",
+      "required": false
+    }
+  },
+  "example": "<EuiTextArea type=\"faceHappy\" side=\"right\" color=\"success\" />"
+}

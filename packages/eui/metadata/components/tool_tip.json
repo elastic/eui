@@ -1,0 +1,73 @@
+{
+  "name": "EuiToolTip",
+  "description": "Hover/focus tooltip anchored to a trigger element.",
+  "category": "Display",
+  "import": "import { EuiToolTip } from '@elastic/eui';",
+  "props": {
+    "anchorClassName": {
+      "type": "string",
+      "required": false,
+      "description": "Passes onto the span wrapping the trigger."
+    },
+    "anchorProps": {
+      "type": "CommonProps & HTMLAttributes<HTMLSpanElement>",
+      "required": false,
+      "description": "Passes onto the span wrapping the trigger."
+    },
+    "children": {
+      "type": "ReactElement<any, string | JSXElementConstructor<any>>",
+      "required": true,
+      "description": "The in-view trigger for your tooltip."
+    },
+    "content": {
+      "type": "ReactNode",
+      "required": false,
+      "description": "The main content of your tooltip."
+    },
+    "display": {
+      "type": "\"block\" | \"inlineBlock\"",
+      "required": false,
+      "default": "inlineBlock",
+      "description": "Common display alternatives for the anchor wrapper"
+    },
+    "delay": {
+      "type": "ToolTipDelay",
+      "required": false,
+      "default": "regular",
+      "description": "Delay before showing tooltip. Good for repeatable items."
+    },
+    "title": {
+      "type": "ReactNode",
+      "required": false,
+      "description": "An optional title for your tooltip."
+    },
+    "position": {
+      "type": "ToolTipPositions",
+      "required": false,
+      "default": "top",
+      "description": "Suggested position. If there is not enough room for it this will be changed."
+    },
+    "repositionOnScroll": {
+      "type": "boolean",
+      "required": false,
+      "description": "When `true`, the tooltip's position is re-calculated when the user\nscrolls. This supports having fixed-position tooltip anchors.\n\nWhen nesting an `EuiTooltip` in a scrollable container, `repositionOnScroll` should be `true`"
+    },
+    "disableScreenReaderOutput": {
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": "Disables the tooltip content being read by screen readers when focusing the trigger element.\nDo not use when the trigger `aria-label` and tooltip `content` can be rephrased to be standalone\ninformation (action & additional information).\nEnable this prop only when the trigger has a descriptive label that either duplicates or includes\nthe tooltip content and would result in repetitive output."
+    },
+    "onMouseOut": {
+      "type": "(event: MouseEvent<HTMLSpanElement, MouseEvent>) => void",
+      "required": false,
+      "description": "If supplied, called when mouse movement causes the tool tip to be\nhidden."
+    },
+    "offset": {
+      "type": "number",
+      "required": false,
+      "description": "Offset in pixels from the anchor. Defaults to 16."
+    }
+  },
+  "example": "<EuiToolTip content=\"tooltip content\" />"
+}

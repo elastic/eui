@@ -1,0 +1,23 @@
+{
+  "name": "EuiFlexItem",
+  "description": "Flex child within EuiFlexGroup. Controls grow, shrink, and alignment.",
+  "category": "Layout",
+  "import": "import { EuiFlexItem } from '@elastic/eui';",
+  "props": {
+    "grow": {
+      "type": "boolean | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10",
+      "required": false
+    },
+    "component": {
+      "type": "ElementType",
+      "required": false,
+      "default": "'div' as TComponent",
+      "description": "Customize the component type that is rendered.\n\nIt can be any valid React component type like a tag name string\nsuch as `'div'` or `'span'`, a React component (a function, a class,\nor an exotic component like `memo()`).\n\n`<EuiFlexItem>` accepts and forwards all extra props to the custom\ncomponent.\n@example // Renders a <button> element\n<EuiFlexItem component=\"button\">\n  Submit form\n</EuiFlexItem>"
+    },
+    "ref": {
+      "type": "Ref<TComponentRef>",
+      "required": false
+    }
+  },
+  "example": "<EuiFlexItem grow component=\"div\">Flex item</EuiFlexItem>"
+}

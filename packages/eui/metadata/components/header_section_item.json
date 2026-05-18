@@ -1,0 +1,14 @@
+{
+  "name": "EuiHeaderSectionItem",
+  "description": "Individual section item within the EuiHeader.",
+  "category": "Layout",
+  "import": "import { EuiHeaderSectionItem } from '@elastic/eui';",
+  "props": {
+    "children": {
+      "type": "ReactNode",
+      "required": false,
+      "description": "ReactNode to render as this component's content"
+    }
+  },
+  "example": "<EuiHeaderSectionItem />"
+}

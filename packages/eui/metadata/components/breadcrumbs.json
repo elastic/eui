@@ -1,0 +1,44 @@
+{
+  "name": "EuiBreadcrumbs",
+  "description": "Navigation trail showing the current page location within a hierarchy.",
+  "category": "Navigation",
+  "import": "import { EuiBreadcrumbs } from '@elastic/eui';",
+  "props": {
+    "responsive": {
+      "type": "boolean | EuiBreadcrumbResponsiveMaxCount",
+      "required": false,
+      "default": "{\n  xs: 1,\n  s: 2,\n  m: 4,\n}",
+      "description": "Hides extra (above the max) breadcrumbs under a collapsed item as the window gets smaller.\nPass a custom {@link EuiBreadcrumbResponsiveMaxCount} object to change the number of breadcrumbs to show at the particular breakpoints.\n\nPass `false` to turn this behavior off.\n\nDefault: `{ xs: 1, s: 2, m: 4 }`"
+    },
+    "truncate": {
+      "type": "boolean",
+      "required": false,
+      "default": "true",
+      "description": "Forces all breadcrumbs to single line and\ntruncates each breadcrumb to a particular width,\nexcept for the last item"
+    },
+    "max": {
+      "type": "number",
+      "required": false,
+      "default": "5",
+      "description": "Collapses the inner items past the maximum set here\ninto a single ellipses item.\nOmitting or passing a `0` value will show all breadcrumbs."
+    },
+    "breadcrumbs": {
+      "type": "EuiBreadcrumbProps[]",
+      "required": true,
+      "description": "The array of individual {@link EuiBreadcrumb } items"
+    },
+    "type": {
+      "type": "\"page\" | \"application\"",
+      "required": false,
+      "default": "page",
+      "description": "Determines breadcrumbs appearance, with `page` being the default styling.\nApplication breadcrumbs should only be once per page, in (e.g.) EuiHeader"
+    },
+    "lastBreadcrumbIsCurrentPage": {
+      "type": "boolean",
+      "required": false,
+      "default": "true",
+      "description": "Whether the last breadcrumb should be semantically highlighted as the\ncurrent page. (improves accessibility for screen readers users)\nDefaults to true."
+    }
+  },
+  "example": "<EuiBreadcrumbs type=\"page\" max={5} truncate xs={1} s={2} m={4} text=\"Breadcrumb 1\" href=\"#\" />"
+}

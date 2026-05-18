@@ -1,0 +1,122 @@
+{
+  "name": "EuiRange",
+  "description": "",
+  "category": "Forms",
+  "import": "import { EuiRange } from '@elastic/eui';",
+  "props": {
+    "append": {
+      "type": "PrependAppendType",
+      "required": false,
+      "description": "Only impacts the input rendered by the `showInput` prop.\n`string` | `ReactElement` or an array of these"
+    },
+    "value": {
+      "type": "string | number",
+      "required": true
+    },
+    "prepend": {
+      "type": "PrependAppendType",
+      "required": false,
+      "description": "Only impacts the input rendered by the `showInput` prop.\n`string` | `ReactElement` or an array of these"
+    },
+    "levels": {
+      "type": "EuiRangeLevel[]",
+      "required": false,
+      "description": "Create colored indicators for certain intervals.\nAn array of {@link EuiRangeLevel} objects"
+    },
+    "isLoading": {
+      "type": "boolean",
+      "required": false,
+      "description": "Only impacts inputs rendered when the `showInput` prop is set to `\"inputWithPopover\"`"
+    },
+    "fullWidth": {
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": "Expand to fill 100% of the parent.\nDefaults to `fullWidth` prop of `<EuiForm>`."
+    },
+    "onChange": {
+      "type": "(event: _SingleRangeChangeEvent, isValid: boolean) => void",
+      "required": false
+    },
+    "step": {
+      "type": "number",
+      "required": false,
+      "default": "1",
+      "description": "The number to increment or decrement between each interval"
+    },
+    "max": {
+      "type": "number",
+      "required": true
+    },
+    "min": {
+      "type": "number",
+      "required": true
+    },
+    "compressed": {
+      "type": "boolean",
+      "required": false,
+      "description": "Only impacts ticks rendered by `showTicks` or inputs rendered by `showInput`."
+    },
+    "isInvalid": {
+      "type": "boolean",
+      "required": false,
+      "description": "Only impacts inputs rendered by the `showInput` prop"
+    },
+    "inputPopoverProps": {
+      "type": "Omit<EuiInputPopoverProps, \"input\" | \"fullWidth\" | \"ownFocus\" | \"isOpen\" | \"closePopover\" | \"popoverScreenReaderText\" | \"disableFocusTrap\">",
+      "required": false,
+      "description": "Only impacts input popovers rendered when the `showInput` prop is set to `\"inputWithPopover\"`\n\nAllows customizing the underlying [EuiInputPopover](/#/layout/popover#popover-attached-to-input-element),\nexcept for props controlled by the range component"
+    },
+    "ticks": {
+      "type": "EuiRangeTick[]",
+      "required": false,
+      "description": "Specified ticks at specified values"
+    },
+    "tickInterval": {
+      "type": "number",
+      "required": false,
+      "description": "Modifies the number of tick marks and at what interval"
+    },
+    "showInput": {
+      "type": "boolean | \"inputWithPopover\"",
+      "required": false,
+      "description": "Pass `true` to displays an extra input control for direct manipulation.\nPass `\"inputWithPopover\"` to only show the input but show the range in a dropdown."
+    },
+    "showLabels": {
+      "type": "boolean",
+      "required": false,
+      "description": "Shows static min/max labels on the sides of the range slider"
+    },
+    "showRange": {
+      "type": "boolean",
+      "required": false,
+      "description": "Shows a thick line from min to value"
+    },
+    "showTicks": {
+      "type": "boolean",
+      "required": false,
+      "description": "Shows clickable tick marks and labels at the given interval (`step`/`tickInterval`)"
+    },
+    "showValue": {
+      "type": "boolean",
+      "required": false,
+      "description": "Shows a tooltip styled value"
+    },
+    "valueAppend": {
+      "type": "ReactNode",
+      "required": false,
+      "description": "Appends to the tooltip"
+    },
+    "valuePrepend": {
+      "type": "ReactNode",
+      "required": false,
+      "description": "Prepends to the tooltip"
+    },
+    "ref": {
+      "type": "LegacyRef<unknown>",
+      "required": false,
+      "description": "Allows getting a ref to the component instance.\nOnce the component unmounts, React will set `ref.current` to `null`\n(or call the ref with `null` if you passed a callback ref).\n@see {@link https://react.dev/learn/referencing-values-with-refs#refs-and-the-dom React Docs}"
+    }
+  },
+  "example": "<EuiRange value={50} />"
+}

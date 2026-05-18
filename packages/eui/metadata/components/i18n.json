@@ -1,0 +1,34 @@
+{
+  "name": "EuiI18n",
+  "description": "",
+  "category": "Utilities",
+  "import": "import { EuiI18n } from '@elastic/eui';",
+  "props": {
+    "default": {
+      "type": "Renderable<T>",
+      "required": false
+    },
+    "token": {
+      "type": "string",
+      "required": false
+    },
+    "tokens": {
+      "type": "string[]",
+      "required": false
+    },
+    "defaults": {
+      "type": "any[]",
+      "required": false
+    },
+    "children": {
+      "type": "((x: DEFAULTS[number][]) => ReactNode) | ((x: ResolvedType<DEFAULT>) => ReactNode)",
+      "required": false,
+      "description": "Render function that returns a ReactElement"
+    },
+    "values": {
+      "type": "{} | Record<string, ReactNode>",
+      "required": false
+    }
+  },
+  "example": "<EuiI18n />"
+}

@@ -1,0 +1,63 @@
+{
+  "name": "EuiSelect",
+  "description": "Native select dropdown. Prefer EuiComboBox for searchable or multi-select needs.",
+  "category": "Forms",
+  "import": "import { EuiSelect } from '@elastic/eui';",
+  "props": {
+    "aria-label": {
+      "type": "string",
+      "required": false,
+      "description": "Defines a string value that labels the current element.\n@see aria-labelledby."
+    },
+    "options": {
+      "type": "EuiSelectOption[]",
+      "required": false,
+      "default": "[]"
+    },
+    "isInvalid": {
+      "type": "boolean",
+      "required": false
+    },
+    "fullWidth": {
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": "Expand to fill 100% of the parent.\nDefaults to `fullWidth` prop of `<EuiForm>`."
+    },
+    "isLoading": {
+      "type": "boolean",
+      "required": false
+    },
+    "hasNoInitialSelection": {
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": "Simulates no selection by creating an empty, selected, hidden first option"
+    },
+    "inputRef": {
+      "type": "Ref<HTMLSelectElement>",
+      "required": false
+    },
+    "value": {
+      "type": "string | number",
+      "required": false
+    },
+    "compressed": {
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": "when `true` creates a shorter height input"
+    },
+    "prepend": {
+      "type": "PrependAppendType",
+      "required": false,
+      "description": "Creates an input group with element(s) coming before select.\n`string` | `ReactElement` or an array of these"
+    },
+    "append": {
+      "type": "PrependAppendType",
+      "required": false,
+      "description": "Creates an input group with element(s) coming after select.\n`string` | `ReactElement` or an array of these"
+    }
+  },
+  "example": "<EuiSelect defaultValue=\"option-2\" value=\"option-1\" text=\"Option 1\" />"
+}

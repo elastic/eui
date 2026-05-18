@@ -1,0 +1,34 @@
+{
+  "name": "EuiColorPickerSwatch",
+  "description": "",
+  "category": "Forms",
+  "import": "import { EuiColorPickerSwatch } from '@elastic/eui';",
+  "props": {
+    "aria-label": {
+      "type": "string",
+      "required": false,
+      "description": "Defines a string value that labels the current element.\n@see aria-labelledby."
+    },
+    "color": {
+      "type": "string",
+      "required": false
+    },
+    "showToolTip": {
+      "type": "boolean",
+      "required": false,
+      "default": "true",
+      "description": "renders a tooltip with the color value to provide a visual text alternative"
+    },
+    "toolTipProps": {
+      "type": "Omit<EuiToolTipProps, \"children\" | \"position\" | \"delay\"> & { delay?: ToolTipDelay; position?: ToolTipPositions; }",
+      "required": false,
+      "description": "Additional props for the EuiToolip when `showToolTip={true}`"
+    },
+    "ref": {
+      "type": "LegacyRef<HTMLButtonElement>",
+      "required": false,
+      "description": "Allows getting a ref to the component instance.\nOnce the component unmounts, React will set `ref.current` to `null`\n(or call the ref with `null` if you passed a callback ref).\n@see {@link https://react.dev/learn/referencing-values-with-refs#refs-and-the-dom React Docs}"
+    }
+  },
+  "example": "<EuiColorPickerSwatch autoFocus position=\"right\" />"
+}

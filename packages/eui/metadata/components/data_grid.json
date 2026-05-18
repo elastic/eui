@@ -1,0 +1,144 @@
+{
+  "name": "EuiDataGrid",
+  "description": "High-performance virtualized data grid for large or complex datasets.",
+  "category": "Tabular Content",
+  "import": "import { EuiDataGrid } from '@elastic/eui';",
+  "props": {
+    "width": {
+      "type": "Width<string | number>",
+      "required": false,
+      "description": "Sets the grid's width, forcing it to overflow in a scrollable container with cell virtualization."
+    },
+    "height": {
+      "type": "Height<string | number>",
+      "required": false,
+      "description": "Sets the grid's height, forcing it to overflow in a scrollable container with cell virtualization."
+    },
+    "aria-label": {
+      "type": "string",
+      "required": false,
+      "description": "Defines a string value that labels the current element.\n@see aria-labelledby."
+    },
+    "columns": {
+      "type": "EuiDataGridColumn[]",
+      "required": true,
+      "description": "An array of {@link EuiDataGridColumn} objects. Lists the columns available and the schema and settings tied to it."
+    },
+    "leadingControlColumns": {
+      "type": "EuiDataGridControlColumn[]",
+      "required": false,
+      "description": "An array of {@link EuiDataGridControlColumn} objects. Used to define ancillary columns on the left side of the data grid.\nUseful for adding items like checkboxes and buttons."
+    },
+    "trailingControlColumns": {
+      "type": "EuiDataGridControlColumn[]",
+      "required": false,
+      "description": "An array of {@link EuiDataGridControlColumn} objects. Used to define ancillary columns on the right side of the data grid.\nUseful for adding items like checkboxes and buttons."
+    },
+    "columnVisibility": {
+      "type": "EuiDataGridColumnVisibility",
+      "required": true,
+      "description": "An array of {@link EuiDataGridColumnVisibility} objects.\nDefines which columns are **intitially** visible in the grid and the order they are displayed.\nUsers can still turn their visibility on/off when `toolbarVisibility.showColumnSelector = true` (which is the default)."
+    },
+    "schemaDetectors": {
+      "type": "EuiDataGridSchemaDetector[]",
+      "required": false,
+      "description": "An array of custom {@link EuiDataGridSchemaDetector} objects. You can inject custom schemas to the grid to define the classnames applied."
+    },
+    "rowCount": {
+      "type": "number",
+      "required": true,
+      "description": "The total number of rows in the dataset (used by e.g. pagination to know how many pages to list)."
+    },
+    "renderCellValue": {
+      "type": "RenderCellValue",
+      "required": true,
+      "description": "A function called to render a cell's value. Behind the scenes it is treated as a React component\nallowing hooks, context, and other React concepts to be used. The function receives {@link EuiDataGridCellValueElementProps}\nas its only argument."
+    },
+    "cellContext": {
+      "type": "CellContext",
+      "required": false,
+      "description": "An optional object of props passed to the `renderCellValue` component.\nThis API exists to make it easier to define your `renderCellValue` function\ncomponent statically, and not rerender due to other dependent state."
+    },
+    "renderCellPopover": {
+      "type": "JSXElementConstructor<EuiDataGridCellPopoverElementProps> | ((props: EuiDataGridCellPopoverElementProps) => ReactNode)",
+      "required": false,
+      "description": "An optional function that can be used to completely customize the rendering of cell popovers.\n\nIf not specified, defaults to an `<EuiText>` wrapper around the rendered cell value and an\n`<EuiPopoverFooter>` around the cell actions.\n\nBehind the scenes it is treated as a React component allowing hooks, context, and other React concepts to be used.\nThe function receives {@link EuiDataGridCellPopoverElementProps} as its only argument."
+    },
+    "renderFooterCellValue": {
+      "type": "RenderCellValue",
+      "required": false,
+      "description": "An optional function called to render a footer cell. If not specified, no footer row is rendered.\n\nBehind the scenes it is treated as a React component\nallowing hooks, context, and other React concepts to be used. The function receives {@link EuiDataGridCellValueElementProps}\nas its only argument."
+    },
+    "renderCustomGridBody": {
+      "type": "(args: EuiDataGridCustomBodyProps) => ReactNode",
+      "required": false,
+      "description": "An optional function called to completely customize and control the rendering of\nEuiDataGrid's body and cell placement.  This can be used to, e.g. remove EuiDataGrid's\nvirtualization library, or roll your own.\n\nThis component is **only** meant as an escape hatch for extremely custom use cases.\n\nBehind the scenes, this function is treated as a React component,\nallowing hooks, context, and other React concepts to be used.\nIt receives {@link EuiDataGridCustomBodyProps} as its only argument."
+    },
+    "renderCustomToolbar": {
+      "type": "(props: EuiDataGridCustomToolbarProps) => ReactElement",
+      "required": false,
+      "description": "An optional function called to customize placement of controls in EuiDataGrid's toolbar.\nThis can be used to add custom buttons or reorder existing ones.\n\nBehind the scenes, this function is treated as a React component,\nallowing hooks, context, and other React concepts to be used.\nIt receives {@link EuiDataGridCustomToolbarProps} as its only argument."
+    },
+    "gridStyle": {
+      "type": "EuiDataGridStyle",
+      "required": false,
+      "description": "Defines the initial style of the grid. Accepts a partial {@link EuiDataGridStyle} object.\nSettings provided may be overwritten or merged with user defined preferences if `toolbarVisibility.showDisplaySelector.allowDensity = true` (which is the default)."
+    },
+    "toolbarVisibility": {
+      "type": "boolean | EuiDataGridToolBarVisibilityOptions",
+      "required": false,
+      "description": "Allows you to configure what features the toolbar shows.\n\nAccepts either a boolean or {@link EuiDataGridToolBarVisibilityOptions} object.\nWhen used as a boolean, defines the display of the entire toolbar.\nWhen passed an object allows you to turn off individual controls within the toolbar as well as add additional buttons."
+    },
+    "headerVisibility": {
+      "type": "boolean",
+      "required": false,
+      "default": "true",
+      "description": "Allows you to configure if the header row is rendered."
+    },
+    "inMemory": {
+      "type": "EuiDataGridInMemory",
+      "required": false,
+      "description": "A {@link EuiDataGridInMemory} object to define the level of high order schema-detection and sorting logic to use on your data.\n**Try to set when possible**.\nIf omitted, disables all enhancements and assumes content is flat strings."
+    },
+    "pagination": {
+      "type": "EuiDataGridPaginationProps",
+      "required": false,
+      "description": "A {@link EuiDataGridPaginationProps} object. Omit to disable pagination completely."
+    },
+    "sorting": {
+      "type": "EuiDataGridSorting",
+      "required": false,
+      "description": "A {@link EuiDataGridSorting} object that provides the sorted columns along with their direction. Provides a callback for when it changes.\nOptional, but required when inMemory is set.\nOmit to disable, but you'll likely want to also turn off the user sorting controls through the `toolbarVisibility` prop."
+    },
+    "onColumnResize": {
+      "type": "EuiDataGridOnColumnResizeHandler",
+      "required": false,
+      "description": "A callback for when a column's size changes. Callback receives `{ columnId: string, width: number }`."
+    },
+    "minSizeForControls": {
+      "type": "number",
+      "required": false,
+      "description": "Defines a minimum width for the grid to show all controls in its toolbar."
+    },
+    "virtualizationOptions": {
+      "type": "Pick<VariableSizeGridProps<any>, \"style\" | \"direction\" | \"className\" | \"estimatedRowHeight\" | \"estimatedColumnWidth\" | \"overscanRowCount\" | \"overscanColumnCount\" | ... 4 more ... | \"outerElementType\"> & { ...; }",
+      "required": false,
+      "description": "Allows customizing the underlying [react-window grid](https://react-window.vercel.app/#/api/VariableSizeGrid) props."
+    },
+    "rowHeightsOptions": {
+      "type": "EuiDataGridRowHeightsOptions",
+      "required": false,
+      "description": "A {@link EuiDataGridRowHeightsOptions} object that provides row heights options.\nAllows configuring both default and specific heights of grid rows.\nSettings provided may be overwritten or merged with user defined preferences if `toolbarVisibility.showDisplaySelector.allowRowHeight = true` (which is the default)."
+    },
+    "onFullScreenChange": {
+      "type": "(isFullScreen: boolean) => void",
+      "required": false,
+      "description": "A callback for when the fullscreen state changes. Callback receives `isFullScreen: boolean`."
+    },
+    "ref": {
+      "type": "Ref<EuiDataGridRefProps>",
+      "required": false
+    }
+  },
+  "example": "<EuiDataGrid width=\"300px\" height=\"300px\" />"
+}

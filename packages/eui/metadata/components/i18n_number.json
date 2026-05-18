@@ -1,0 +1,22 @@
+{
+  "name": "EuiI18nNumber",
+  "description": "",
+  "category": "Utilities",
+  "import": "import { EuiI18nNumber } from '@elastic/eui';",
+  "props": {
+    "value": {
+      "type": "number",
+      "required": false
+    },
+    "values": {
+      "type": "number[]",
+      "required": false
+    },
+    "children": {
+      "type": "((x: ReactNode[]) => ReactElement<any, string | JSXElementConstructor<any>>) | ((x: ReactNode) => ReactElement<any, string | JSXElementConstructor<...>>)",
+      "required": false,
+      "description": "ReactNode to render as this component's content"
+    }
+  },
+  "example": "<EuiI18nNumber />"
+}

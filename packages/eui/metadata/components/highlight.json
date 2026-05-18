@@ -1,0 +1,42 @@
+{
+  "name": "EuiHighlight",
+  "description": "Wraps text and highlights a substring match (for search results).",
+  "category": "Utilities",
+  "import": "import { EuiHighlight } from '@elastic/eui';",
+  "props": {
+    "aria-label": {
+      "type": "string",
+      "required": false,
+      "description": "Defines a string value that labels the current element.\n@see aria-labelledby."
+    },
+    "children": {
+      "type": "ReactNode & string",
+      "required": false,
+      "description": "string to highlight as this component's content"
+    },
+    "hasScreenReaderHelpText": {
+      "type": "boolean",
+      "required": false,
+      "default": "true",
+      "description": "Set to `false` to remove the CSS :before and :after\nscreen reader helper text"
+    },
+    "search": {
+      "type": "string | string[]",
+      "required": true,
+      "description": "What to search for.\n\nAllows passing an array of strings (searching by multiple separate\nwords or phrases) **only** if `highlightAll` is also set to `true`."
+    },
+    "strict": {
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": "Should the search be strict or not"
+    },
+    "highlightAll": {
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": "Should highlight all matches"
+    }
+  },
+  "example": "<EuiHighlight hasScreenReaderHelpText search=\"Quick\">The quick brown fox jumped over the lazy dog.</EuiHighlight>"
+}

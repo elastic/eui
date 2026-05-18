@@ -1,0 +1,119 @@
+{
+  "name": "EuiMarkdownEditor",
+  "description": "",
+  "category": "Editors & Syntax",
+  "import": "import { EuiMarkdownEditor } from '@elastic/eui';",
+  "props": {
+    "value": {
+      "type": "string",
+      "required": true,
+      "description": "A markdown content"
+    },
+    "height": {
+      "type": "number | \"full\"",
+      "required": false,
+      "default": "250",
+      "description": "Sets the `height` in pixels of the editor/preview area or pass `full` to allow\nthe EuiMarkdownEditor to fill the height of its container.\nWhen in `full` mode the vertical resize is not allowed."
+    },
+    "onChange": {
+      "type": "(value: string) => void",
+      "required": true,
+      "description": "callback function when markdown content is modified"
+    },
+    "readOnly": {
+      "type": "boolean",
+      "required": false,
+      "description": "Sets the current display mode to a read-only state. All editing gets resctricted."
+    },
+    "placeholder": {
+      "type": "string",
+      "required": false,
+      "description": "Sets the placeholder of the textarea"
+    },
+    "editorId": {
+      "type": "string",
+      "required": false,
+      "description": "a unique ID to attach to the textarea. If one isn't provided, a random one\nwill be generated"
+    },
+    "maxHeight": {
+      "type": "number",
+      "required": false,
+      "default": "500",
+      "description": "Sets the `max-height` in pixels of the editor/preview area.\nIt has no effect when the `height` is set to `full`."
+    },
+    "autoExpandPreview": {
+      "type": "boolean",
+      "required": false,
+      "default": "true",
+      "description": "Automatically adjusts the preview height to fit all the content and avoid a scrollbar."
+    },
+    "parsingPluginList": {
+      "type": "PluggableList",
+      "required": false,
+      "default": "getDefaultEuiMarkdownParsingPlugins()",
+      "description": "plugins to identify new syntax and parse it into an AST node"
+    },
+    "processingPluginList": {
+      "type": "PluggableList",
+      "required": false,
+      "default": "getDefaultEuiMarkdownProcessingPlugins()",
+      "description": "plugins to process the markdown AST nodes into a React nodes"
+    },
+    "uiPlugins": {
+      "type": "EuiMarkdownEditorUiPlugin[]",
+      "required": false,
+      "default": "getDefaultEuiMarkdownUiPlugins()",
+      "description": "defines UI for plugins' buttons in the toolbar as well as any modals or extra UI that provides content to the editor"
+    },
+    "errors": {
+      "type": "EuiMarkdownParseError[]",
+      "required": false,
+      "default": "[]",
+      "description": "errors to bubble up"
+    },
+    "onParse": {
+      "type": "(error: EuiMarkdownParseError, data: { messages: VFileMessage[]; ast: EuiMarkdownAstNode; }) => void",
+      "required": false,
+      "description": "callback triggered when parsing results are available"
+    },
+    "initialViewMode": {
+      "type": "MARKDOWN_MODE",
+      "required": false,
+      "default": "'editing' as const",
+      "description": "initial display mode for the editor"
+    },
+    "dropHandlers": {
+      "type": "EuiMarkdownDropHandler[]",
+      "required": false,
+      "default": "[]",
+      "description": "array defining any drag&drop handlers"
+    },
+    "markdownFormatProps": {
+      "type": "Omit<EuiMarkdownFormatProps, \"children\" | \"parsingPluginList\" | \"processingPluginList\">",
+      "required": false,
+      "description": "Further extend the props applied to EuiMarkdownFormat"
+    },
+    "toolbarProps": {
+      "type": "{ className?: string; right?: React.ReactNode; }",
+      "required": false,
+      "description": "Props to customize the toolbar. `right` replaces the default preview/editor toggle with custom content."
+    },
+    "showFooter": {
+      "type": "boolean",
+      "required": false,
+      "default": "true",
+      "description": "Controls whether the footer is shown"
+    },
+    "aria-label": {
+      "type": "string",
+      "required": false,
+      "description": "Defines a string value that labels the current element.\naria-label OR aria-labelledby must be set\n@see aria-labelledby."
+    },
+    "ref": {
+      "type": "LegacyRef<EuiMarkdownEditorRef>",
+      "required": false,
+      "description": "Allows getting a ref to the component instance.\nOnce the component unmounts, React will set `ref.current` to `null`\n(or call the ref with `null` if you passed a callback ref).\n@see {@link https://react.dev/learn/referencing-values-with-refs#refs-and-the-dom React Docs}"
+    }
+  },
+  "example": "<EuiMarkdownEditor height={250} maxHeight={500} autoExpandPreview />"
+}

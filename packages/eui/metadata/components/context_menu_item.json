@@ -1,0 +1,64 @@
+{
+  "name": "EuiContextMenuItem",
+  "description": "",
+  "category": "Navigation",
+  "import": "import { EuiContextMenuItem } from '@elastic/eui';",
+  "props": {
+    "aria-label": {
+      "type": "string",
+      "required": false,
+      "description": "Defines a string value that labels the current element.\n@see aria-labelledby."
+    },
+    "icon": {
+      "type": "EuiContextMenuItemIcon",
+      "required": false
+    },
+    "hasPanel": {
+      "type": "boolean",
+      "required": false
+    },
+    "disabled": {
+      "type": "boolean",
+      "required": false
+    },
+    "onClick": {
+      "type": "(event: React.MouseEvent) => void",
+      "required": false
+    },
+    "buttonRef": {
+      "type": "Ref<HTMLButtonElement>",
+      "required": false
+    },
+    "toolTipContent": {
+      "type": "ReactNode",
+      "required": false,
+      "description": "Required if using a tooltip. Add an optional tooltip on hover"
+    },
+    "toolTipProps": {
+      "type": "Partial<Omit<EuiToolTipProps, \"children\" | \"content\">>",
+      "required": false,
+      "description": "Optional configuration to pass to the underlying [EuiToolTip](/#/display/tooltip).\nAccepts any prop that EuiToolTip does, except for `content` and `children`."
+    },
+    "href": {
+      "type": "string",
+      "required": false
+    },
+    "target": {
+      "type": "string",
+      "required": false
+    },
+    "layoutAlign": {
+      "type": "EuiContextMenuItemLayoutAlignment",
+      "required": false,
+      "default": "center",
+      "description": "How to align icon with content of button"
+    },
+    "size": {
+      "type": "\"s\" | \"m\"",
+      "required": false,
+      "default": "m",
+      "description": "Reduce the size to `s` when in need of a more compressed menu"
+    }
+  },
+  "example": "<EuiContextMenuItem layoutAlign=\"center\" href={0} icon=\"link\" toolTipContent={0}>Context menu item</EuiContextMenuItem>"
+}

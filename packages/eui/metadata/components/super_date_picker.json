@@ -1,0 +1,170 @@
+{
+  "name": "EuiSuperDatePicker",
+  "description": "",
+  "category": "Forms",
+  "import": "import { EuiSuperDatePicker } from '@elastic/eui';",
+  "props": {
+    "commonlyUsedRanges": {
+      "type": "DurationRange[]",
+      "required": false
+    },
+    "customQuickSelectPanels": {
+      "type": "QuickSelectPanel[]",
+      "required": false
+    },
+    "customQuickSelectRender": {
+      "type": "(options: CustomQuickSelectRenderOptions) => ReactNode",
+      "required": false,
+      "description": "An optional render prop function that allows customizing the display of the Quick Select menu.\nThis function passes all default quick select panels within an object, allowing you to\nre-order panels, omit certain panels entirely, or pass in your own fully custom content."
+    },
+    "dateFormat": {
+      "type": "string",
+      "required": false,
+      "default": "'MMM D, YYYY @ HH:mm:ss.SSS'",
+      "description": "Specifies the formatted used when displaying dates and/or datetimes"
+    },
+    "isAutoRefreshOnly": {
+      "type": "boolean",
+      "required": false,
+      "description": "Set isAutoRefreshOnly to true to limit the component to only display auto refresh content."
+    },
+    "isDisabled": {
+      "type": "boolean | { display: ReactNode; }",
+      "required": false,
+      "description": "Accepts either a true/false boolean or an object configuration.\n\nThe configuration will render the component as disabled, and allow you to\ncustomize the displayed disabled text."
+    },
+    "isLoading": {
+      "type": "boolean",
+      "required": false
+    },
+    "isPaused": {
+      "type": "boolean",
+      "required": false,
+      "default": "true"
+    },
+    "width": {
+      "type": "\"auto\" | \"restricted\" | \"full\"",
+      "required": false,
+      "default": "'restricted'",
+      "description": "Sets the overall width by adding sensible min and max widths.\n- `auto`: fits width to internal content / time string.\n- `restricted`: static width that fits the longest possible time string.\n- `full`: expands to 100% of the container."
+    },
+    "compressed": {
+      "type": "boolean",
+      "required": false,
+      "description": "Reduces overall height to compressed form size"
+    },
+    "locale": {
+      "type": "LocaleSpecifier",
+      "required": false,
+      "description": "Used to localize e.g. month names, passed to `moment`"
+    },
+    "onFocus": {
+      "type": "FocusEventHandler",
+      "required": false,
+      "description": "Triggered whenever the EuiSuperDatePicker's dates are focused"
+    },
+    "onRefresh": {
+      "type": "(props: OnRefreshProps) => void",
+      "required": false,
+      "description": "Callback for when the refresh interval is fired.\nEuiSuperDatePicker will only manage a refresh interval timer when onRefresh callback is supplied\nIf a promise is returned, the next refresh interval will not start until the promise has resolved.\nIf the promise rejects the refresh interval will stop and the error thrown"
+    },
+    "onRefreshChange": {
+      "type": "ApplyRefreshInterval",
+      "required": false,
+      "description": "Callback for when the refresh interval changes.\nSupply onRefreshChange to show refresh interval inputs in quick select popover"
+    },
+    "onTimeChange": {
+      "type": "(props: OnTimeChangeProps) => void",
+      "required": true,
+      "description": "Callback for when the time changes."
+    },
+    "recentlyUsedRanges": {
+      "type": "DurationRange[]",
+      "required": false
+    },
+    "refreshInterval": {
+      "type": "number",
+      "required": false,
+      "default": "1000",
+      "description": "Refresh interval in milliseconds"
+    },
+    "refreshMinInterval": {
+      "type": "number",
+      "required": false,
+      "default": "0",
+      "description": "Minimum refresh interval in milliseconds"
+    },
+    "refreshIntervalUnits": {
+      "type": "\"s\" | \"m\" | \"h\"",
+      "required": false,
+      "description": "By default, refresh interval units will be rounded up to next largest unit of time\n(for example, 90 seconds will become 2m).\n\nIf you do not want this behavior, you will need to store the user-set `intervalUnits`\n(passed by `onRefreshChange`) and manually control it via this prop."
+    },
+    "start": {
+      "type": "string",
+      "required": false,
+      "default": "'now-15m'"
+    },
+    "end": {
+      "type": "string",
+      "required": false,
+      "default": "'now'"
+    },
+    "minDate": {
+      "type": "moment.Moment",
+      "required": false,
+      "description": "Defines min. date accepted as a selection (in moment format)"
+    },
+    "maxDate": {
+      "type": "moment.Moment",
+      "required": false,
+      "description": "Defines max. date accepted as a selection (in moment format)"
+    },
+    "timeFormat": {
+      "type": "string",
+      "required": false,
+      "default": "'HH:mm'",
+      "description": "Specifies the formatted used when displaying times"
+    },
+    "utcOffset": {
+      "type": "number",
+      "required": false
+    },
+    "showUpdateButton": {
+      "type": "boolean | \"iconOnly\"",
+      "required": false,
+      "default": "true",
+      "description": "Set showUpdateButton to false to immediately invoke onTimeChange for all start and end changes."
+    },
+    "showTimeWindowButtons": {
+      "type": "boolean | EuiTimeWindowButtonsConfig",
+      "required": false,
+      "description": "Set to true to display buttons for time shifting and zooming out,\nnext to the top-level control."
+    },
+    "isQuickSelectOnly": {
+      "type": "boolean",
+      "required": false,
+      "description": "Hides the actual input reducing to just the quick select button."
+    },
+    "updateButtonProps": {
+      "type": "EuiSuperUpdateButtonProps",
+      "required": false,
+      "description": "Props passed to the update button {@link EuiSuperUpdateButtonProps}"
+    },
+    "quickSelectButtonProps": {
+      "type": "Partial<Omit<EuiFormAppendPrependButtonProps, \"children\" | \"isDisabled\">>",
+      "required": false,
+      "description": "Props passed to the quick select button {@link EuiQuickSelectButtonProps}"
+    },
+    "canRoundRelativeUnits": {
+      "type": "boolean",
+      "required": false,
+      "description": "By default, relative units will be rounded up to next largest unit of time\n(for example, 90 minutes will become ~ 2 hours).\n\nIf you do not want this behavior and instead wish to keep the exact units\ninput by the user, set this flag to `false`."
+    },
+    "timeZoneDisplayProps": {
+      "type": "EuiTimeZoneDisplayProps",
+      "required": false,
+      "description": "Props passed to the time zone display in the popovers {@link EuiTimeZoneDisplayProps}\n\nSetting `timeZoneDisplayProps.timeZone` with a valid time zone name will make\nthe time zone information be visible below the start and end input fields.\nThis is informational only, it will not affect how date/times are handled."
+    }
+  },
+  "example": "<EuiSuperDatePicker title=\"Custom quick select panel\">Custom quick select panel</EuiSuperDatePicker>"
+}

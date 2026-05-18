@@ -1,0 +1,37 @@
+{
+  "name": "EuiRefreshInterval",
+  "description": "",
+  "category": "Forms",
+  "import": "import { EuiRefreshInterval } from '@elastic/eui';",
+  "props": {
+    "isPaused": {
+      "type": "boolean",
+      "required": false,
+      "default": "true",
+      "description": "Is refresh paused or running."
+    },
+    "refreshInterval": {
+      "type": "number",
+      "required": false,
+      "default": "1000",
+      "description": "Refresh interval in milliseconds."
+    },
+    "minInterval": {
+      "type": "number",
+      "required": false,
+      "default": "0",
+      "description": "Allows specifying a minimum interval in milliseconds"
+    },
+    "intervalUnits": {
+      "type": "\"s\" | \"m\" | \"h\"",
+      "required": false,
+      "description": "By default, refresh interval units will be rounded up to next largest unit of time\n(for example, 90 seconds will become 2m).\n\nIf you do not want this behavior, you can manually control the rendered unit via this prop."
+    },
+    "onRefreshChange": {
+      "type": "ApplyRefreshInterval",
+      "required": true,
+      "description": "Passes back the updated state of `isPaused`, `refreshInterval`, and `intervalUnits`."
+    }
+  },
+  "example": "<EuiRefreshInterval />"
+}

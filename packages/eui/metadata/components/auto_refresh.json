@@ -1,0 +1,80 @@
+{
+  "name": "EuiAutoRefresh",
+  "description": "",
+  "category": "Forms",
+  "import": "import { EuiAutoRefresh } from '@elastic/eui';",
+  "props": {
+    "isPaused": {
+      "type": "boolean",
+      "required": false,
+      "default": "true",
+      "description": "Is refresh paused or running."
+    },
+    "refreshInterval": {
+      "type": "number",
+      "required": false,
+      "default": "1000",
+      "description": "Refresh interval in milliseconds."
+    },
+    "minInterval": {
+      "type": "number",
+      "required": false,
+      "default": "0",
+      "description": "Allows specifying a minimum interval in milliseconds"
+    },
+    "intervalUnits": {
+      "type": "\"s\" | \"m\" | \"h\"",
+      "required": false,
+      "description": "By default, refresh interval units will be rounded up to next largest unit of time\n(for example, 90 seconds will become 2m).\n\nIf you do not want this behavior, you can manually control the rendered unit via this prop."
+    },
+    "onRefreshChange": {
+      "type": "ApplyRefreshInterval",
+      "required": true,
+      "description": "Passes back the updated state of `isPaused`, `refreshInterval`, and `intervalUnits`."
+    },
+    "isDisabled": {
+      "type": "boolean",
+      "required": false
+    },
+    "readOnly": {
+      "type": "boolean",
+      "required": false,
+      "default": "true",
+      "description": "The input is `readOnly` by default because the input value is handled by the popover form."
+    },
+    "append": {
+      "type": "PrependAppendType",
+      "required": false,
+      "description": "Creates an input group with element(s) coming after input.\n`string` | `ReactElement` or an array of these"
+    },
+    "isLoading": {
+      "type": "boolean",
+      "required": false
+    },
+    "aria-label": {
+      "type": "string",
+      "required": false,
+      "description": "Defines a string value that labels the current element.\n@see aria-labelledby."
+    },
+    "fullWidth": {
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": "Expand to fill 100% of the parent.\nDefaults to `fullWidth` prop of `<EuiForm>`."
+    },
+    "compressed": {
+      "type": "boolean",
+      "required": false,
+      "description": "when `true` creates a shorter height input"
+    },
+    "inputRef": {
+      "type": "Ref<HTMLInputElement>",
+      "required": false
+    },
+    "isInvalid": {
+      "type": "boolean",
+      "required": false
+    }
+  },
+  "example": "<EuiAutoRefresh />"
+}

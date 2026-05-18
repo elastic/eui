@@ -1,0 +1,75 @@
+{
+  "name": "EuiPinnableListGroup",
+  "description": "",
+  "category": "Display",
+  "import": "import { EuiPinnableListGroup } from '@elastic/eui';",
+  "props": {
+    "listItems": {
+      "type": "EuiPinnableListGroupItemProps[]",
+      "required": true,
+      "description": "Extends `EuiListGroupItemProps`, at the very least, expecting a `label`.\nSee {@link EuiPinnableListGroupItemProps}"
+    },
+    "onPinClick": {
+      "type": "(item: EuiPinnableListGroupItemProps) => void",
+      "required": true,
+      "description": "Shows the pin icon and calls this function on click.\nReturns `item: EuiPinnableListGroupItemProps`"
+    },
+    "pinTitle": {
+      "type": "(item: EuiPinnableListGroupItemProps) => string",
+      "required": false,
+      "description": "The pin icon needs a title/aria-label for accessibility.\nIt is a function that passes the item back and must return a string `(item) => string`.\nDefault is `\"Pin item\"`"
+    },
+    "unpinTitle": {
+      "type": "(item: EuiPinnableListGroupItemProps) => string",
+      "required": false,
+      "description": "The unpin icon needs a title/aria-label for accessibility.\nIt is a function that passes the item back and must return a string `(item) => string`.\nDefault is `\"Unpin item\"`"
+    },
+    "bordered": {
+      "type": "boolean",
+      "required": false,
+      "description": "Add a border to the list container"
+    },
+    "flush": {
+      "type": "boolean",
+      "required": false,
+      "description": "Remove container padding, stretching list items to the edges"
+    },
+    "gutterSize": {
+      "type": "\"s\" | \"m\" | \"none\"",
+      "required": false,
+      "description": "Spacing between list items"
+    },
+    "color": {
+      "type": "\"text\" | \"subdued\" | \"primary\"",
+      "required": false,
+      "default": "text",
+      "description": "Change the colors of all `listItems` at once"
+    },
+    "size": {
+      "type": "\"s\" | \"xs\" | \"m\" | \"l\"",
+      "required": false,
+      "default": "m",
+      "description": "Change the size of all `listItems` at once"
+    },
+    "maxWidth": {
+      "type": "boolean | MaxWidth<string | number>",
+      "required": false,
+      "description": "Sets the max-width of the page.\nSet to `true` to use the default size,\nset to `false` to not restrict the width,\nor set to a number/string for a custom CSS width/measurement."
+    },
+    "showToolTips": {
+      "type": "boolean",
+      "required": false,
+      "description": "Display tooltips on all list items"
+    },
+    "wrapText": {
+      "type": "boolean",
+      "required": false,
+      "description": "Allow link text to wrap vs truncated"
+    },
+    "ariaLabelledby": {
+      "type": "string",
+      "required": false
+    }
+  },
+  "example": "<EuiPinnableListGroup label=\"First item with pinned: true\" pinned />"
+}

@@ -1,0 +1,13 @@
+{
+  "name": "EuiTableBody",
+  "description": "",
+  "category": "Tabular Content",
+  "import": "import { EuiTableBody } from '@elastic/eui';",
+  "props": {
+    "bodyRef": {
+      "type": "Ref<HTMLTableSectionElement>",
+      "required": false
+    }
+  },
+  "example": "<EuiTableBody />"
+}

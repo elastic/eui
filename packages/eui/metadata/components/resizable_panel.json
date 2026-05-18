@@ -1,0 +1,111 @@
+{
+  "name": "EuiResizablePanel",
+  "description": "",
+  "category": "Layout",
+  "import": "import { EuiResizablePanel } from '@elastic/eui';",
+  "props": {
+    "minSize": {
+      "type": "string",
+      "required": false,
+      "default": "0px",
+      "description": "Specify a desired minimum panel size in pixels or percents,\nfor example \"300px\" or \"30%\"\nThe actual minimum size will be calculated,\nusing the larger of this prop and the panelProps.paddingSize"
+    },
+    "initialSize": {
+      "type": "number",
+      "required": false,
+      "description": "Initial size of the panel in percents\nSpecify this prop if you don't need to handle the panel size from outside"
+    },
+    "size": {
+      "type": "number",
+      "required": false,
+      "description": "Size of the panel in percents.\nSpecify this prop if you want to control the size from outside, the panel will ignore the \"initialSize\""
+    },
+    "scrollable": {
+      "type": "boolean",
+      "required": false,
+      "default": "true",
+      "description": "Add Eui scroll and overflow for the panel"
+    },
+    "mode": {
+      "type": "ModeOptions",
+      "required": false
+    },
+    "children": {
+      "type": "ReactNode",
+      "required": true,
+      "description": "ReactNode to render as this component's content"
+    },
+    "tabIndex": {
+      "type": "number",
+      "required": false,
+      "description": "tabIndex={0} provides full keyboard access when content overflows `<EuiResizablePanel />`"
+    },
+    "wrapperProps": {
+      "type": "CommonProps & HTMLAttributes<HTMLDivElement>",
+      "required": false,
+      "description": "Props to add to the wrapping `.euiResizablePanel` div"
+    },
+    "wrapperPadding": {
+      "type": "\"s\" | \"xs\" | \"m\" | \"l\" | \"xl\" | \"none\"",
+      "required": false,
+      "default": "none",
+      "description": "Padding to add directly to the wrapping `.euiResizablePanel` div\nGives space around the actual panel."
+    },
+    "hasShadow": {
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": "Adds a medium shadow to the panel;\nOnly works when `color=\"plain\"`"
+    },
+    "hasBorder": {
+      "type": "boolean",
+      "required": false,
+      "description": "Adds a slight 1px border on all edges.\nOnly works when `color=\"plain | transparent\"`"
+    },
+    "paddingSize": {
+      "type": "\"s\" | \"xs\" | \"m\" | \"l\" | \"xl\" | \"none\"",
+      "required": false,
+      "default": "m",
+      "description": "Padding for all four sides"
+    },
+    "borderRadius": {
+      "type": "\"m\" | \"none\"",
+      "required": false,
+      "default": "none",
+      "description": "Corner border radius"
+    },
+    "grow": {
+      "type": "boolean",
+      "required": false,
+      "description": "When true the panel will grow in height to match `EuiFlexItem`"
+    },
+    "panelRef": {
+      "type": "Ref<HTMLDivElement>",
+      "required": false
+    },
+    "color": {
+      "type": "PanelColor",
+      "required": false,
+      "default": "transparent",
+      "description": "Background color of the panel;\nUsually a lightened form of the brand colors"
+    },
+    "isHorizontal": {
+      "type": "boolean",
+      "required": false
+    },
+    "registration": {
+      "type": "{ register: (panel: EuiResizablePanelController) => void; deregister: (panelId: string) => void; }",
+      "required": false
+    },
+    "onToggleCollapsed": {
+      "type": "ToggleCollapseCallback",
+      "required": false,
+      "description": "See {@link ToggleCollapseCallback}"
+    },
+    "onToggleCollapsedInternal": {
+      "type": "ToggleCollapseCallback",
+      "required": false
+    }
+  },
+  "example": "<EuiResizablePanel initialSize={50} />"
+}

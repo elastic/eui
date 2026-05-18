@@ -1,0 +1,61 @@
+{
+  "name": "EuiTablePagination",
+  "description": "",
+  "category": "Tabular Content",
+  "import": "import { EuiTablePagination } from '@elastic/eui';",
+  "props": {
+    "showPerPageOptions": {
+      "type": "boolean",
+      "required": false,
+      "default": "true",
+      "description": "Option to completely hide the \"Rows per page\" selector."
+    },
+    "itemsPerPage": {
+      "type": "number",
+      "required": false,
+      "default": "10",
+      "description": "Current selection for \"Rows per page\".\nPass `0` to display the selected \"Show all\" option and hide the pagination."
+    },
+    "itemsPerPageOptions": {
+      "type": "number[]",
+      "required": false,
+      "default": "[10, 25, 50]",
+      "description": "Custom array of options for \"Rows per page\".\nPass `0` as one of the options to create a \"Show all\" option."
+    },
+    "onChangeItemsPerPage": {
+      "type": "ItemsPerPageChangeHandler",
+      "required": false,
+      "description": "Click handler that passes back selected `pageSize` number"
+    },
+    "onChangePage": {
+      "type": "(pageIndex: number) => void",
+      "required": false
+    },
+    "aria-controls": {
+      "type": "string",
+      "required": false,
+      "description": "Requires the `id` of the table being controlled"
+    },
+    "responsive": {
+      "type": "false | string[]",
+      "required": false,
+      "description": "Automatically reduces to the `compressed` version on smaller screens.\nRemove completely with `false` or provide your own list of responsive breakpoints."
+    },
+    "compressed": {
+      "type": "boolean",
+      "required": false,
+      "description": "If true, will only show next/prev arrows and simplified number set."
+    },
+    "pageCount": {
+      "type": "number",
+      "required": false,
+      "description": "The total number of pages.\nPass `0` if total count is unknown."
+    },
+    "activePage": {
+      "type": "number",
+      "required": false,
+      "description": "The current page using a zero based index.\nSo if you set the activePage to 1, it will activate the second page.\nPass `-1` for forcing to last page."
+    }
+  },
+  "example": "<EuiTablePagination pageCount={3} />"
+}

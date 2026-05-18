@@ -1,0 +1,96 @@
+{
+  "name": "EuiFacetButton",
+  "description": "",
+  "category": "Navigation",
+  "import": "import { EuiFacetButton } from '@elastic/eui';",
+  "props": {
+    "buttonRef": {
+      "type": "RefCallback<HTMLButtonElement>",
+      "required": false
+    },
+    "children": {
+      "type": "ReactNode",
+      "required": true,
+      "description": "ReactNode to render as this component's content"
+    },
+    "icon": {
+      "type": "ReactNode",
+      "required": false,
+      "description": "Any node, but preferably a `EuiIcon` or `EuiAvatar`"
+    },
+    "isDisabled": {
+      "type": "boolean",
+      "required": false,
+      "default": "false"
+    },
+    "isLoading": {
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": "Adds/swaps for loading spinner & disables"
+    },
+    "isSelected": {
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": "Changes visual of button to indicate it's currently selected"
+    },
+    "quantity": {
+      "type": "number",
+      "required": false,
+      "description": "Adds a notification indicator for displaying the quantity provided"
+    },
+    "element": {
+      "type": "\"a\" | \"button\" | \"span\"",
+      "required": false
+    },
+    "size": {
+      "type": "\"s\" | \"xs\" | \"m\"",
+      "required": false
+    },
+    "fullWidth": {
+      "type": "boolean",
+      "required": false,
+      "description": "Extends the button to 100% width"
+    },
+    "minWidth": {
+      "type": "false | MinWidth<string | number>",
+      "required": false,
+      "description": "Override the default minimum width"
+    },
+    "contentProps": {
+      "type": "CommonProps & EuiButtonDisplayContentType",
+      "required": false,
+      "description": "Object of props passed to the <span/> wrapping the button's content"
+    },
+    "type": {
+      "type": "\"reset\" | \"submit\" | \"button\"",
+      "required": false
+    },
+    "iconType": {
+      "type": "IconType",
+      "required": false,
+      "description": "Any `type` accepted by EuiIcon"
+    },
+    "iconSide": {
+      "type": "ButtonContentIconSide",
+      "required": false,
+      "description": "Can only be one side `left` or `right`"
+    },
+    "textProps": {
+      "type": "false | (HTMLAttributes<HTMLSpanElement> & CommonProps & { ref?: Ref<HTMLSpanElement>; 'data-text'?: string; })",
+      "required": false,
+      "description": "Object of props passed to the `<span>` wrapping the content's text/children only (not icon)\n\nThis span wrapper can be removed by passing `textProps={false}`."
+    },
+    "iconSize": {
+      "type": "\"s\" | \"m\"",
+      "required": false
+    },
+    "hasAriaDisabled": {
+      "type": "boolean",
+      "required": false,
+      "description": "NOTE: Beta feature, may be changed or removed in the future\n\nChanges the native `disabled` attribute to `aria-disabled` to preserve focusability.\nThis results in a semantically disabled button without the default browser handling of the disabled state.\n\nUse e.g. when a disabled button should have a tooltip."
+    }
+  },
+  "example": "<EuiFacetButton element=\"button\" type=\"button\" size=\"s\" iconSide=\"left\" iconSize=\"m\" quantity={0}>Facet button</EuiFacetButton>"
+}

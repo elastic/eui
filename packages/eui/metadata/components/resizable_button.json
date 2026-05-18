@@ -1,0 +1,41 @@
+{
+  "name": "EuiResizableButton",
+  "description": "",
+  "category": "Layout",
+  "import": "import { EuiResizableButton } from '@elastic/eui';",
+  "props": {
+    "aria-label": {
+      "type": "string",
+      "required": false,
+      "description": "Defines a string value that labels the current element.\n@see aria-labelledby."
+    },
+    "isHorizontal": {
+      "type": "boolean",
+      "required": false,
+      "description": "Defaults to displaying a resizer for vertical (y-axis) resizing.\nSet to `true` to display a resizer for horizontal (x-axis) resizing."
+    },
+    "indicator": {
+      "type": "\"border\" | \"handle\"",
+      "required": false,
+      "default": "handle",
+      "description": "By default, EuiResizableButton will show a grab handle to indicate resizability.\nThis indicator can be optionally hidden to show a plain border instead."
+    },
+    "alignIndicator": {
+      "type": "\"center\" | \"end\" | \"start\"",
+      "required": false,
+      "default": "center",
+      "description": "Allows customizing the alignment of grab `handle` indicators (does nothing for\nborder indicators). Defaults to `center`, but consider using `start` for extremely\ntall content that scrolls off-screen"
+    },
+    "accountForScrollbars": {
+      "type": "\"both\" | \"before\" | \"after\"",
+      "required": false,
+      "description": "By default, EuiResizableButton will overlap into the panels before/after it.\nThis can occasionally occlude interactive elements like scrollbars. To prevent\nthis overlap, use this prop to remove the overlap for the specified side."
+    },
+    "ref": {
+      "type": "LegacyRef<HTMLButtonElement>",
+      "required": false,
+      "description": "Allows getting a ref to the component instance.\nOnce the component unmounts, React will set `ref.current` to `null`\n(or call the ref with `null` if you passed a callback ref).\n@see {@link https://react.dev/learn/referencing-values-with-refs#refs-and-the-dom React Docs}"
+    }
+  },
+  "example": "<EuiResizableButton indicator=\"handle\" alignIndicator=\"center\" />"
+}

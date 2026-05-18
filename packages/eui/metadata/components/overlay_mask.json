@@ -1,0 +1,849 @@
+{
+  "name": "EuiOverlayMask",
+  "description": "",
+  "category": "Utilities",
+  "import": "import { EuiOverlayMask } from '@elastic/eui';",
+  "props": {
+    "slot": {
+      "type": "string",
+      "required": false
+    },
+    "title": {
+      "type": "string",
+      "required": false
+    },
+    "dir": {
+      "type": "string",
+      "required": false
+    },
+    "prefix": {
+      "type": "string",
+      "required": false
+    },
+    "rel": {
+      "type": "string",
+      "required": false
+    },
+    "property": {
+      "type": "string",
+      "required": false
+    },
+    "accessKey": {
+      "type": "string",
+      "required": false
+    },
+    "draggable": {
+      "type": "string",
+      "required": false
+    },
+    "hidden": {
+      "type": "string",
+      "required": false
+    },
+    "lang": {
+      "type": "string",
+      "required": false
+    },
+    "translate": {
+      "type": "string",
+      "required": false
+    },
+    "role": {
+      "type": "string",
+      "required": false
+    },
+    "contentEditable": {
+      "type": "string",
+      "required": false
+    },
+    "inputMode": {
+      "type": "string",
+      "required": false
+    },
+    "nonce": {
+      "type": "string",
+      "required": false
+    },
+    "tabIndex": {
+      "type": "string",
+      "required": false
+    },
+    "onKeyDown": {
+      "type": "string",
+      "required": false
+    },
+    "onKeyUp": {
+      "type": "string",
+      "required": false
+    },
+    "onKeyPress": {
+      "type": "string",
+      "required": false
+    },
+    "color": {
+      "type": "string",
+      "required": false
+    },
+    "content": {
+      "type": "string",
+      "required": false
+    },
+    "onClick": {
+      "type": "string",
+      "required": false
+    },
+    "defaultChecked": {
+      "type": "string",
+      "required": false
+    },
+    "defaultValue": {
+      "type": "string",
+      "required": false
+    },
+    "suppressContentEditableWarning": {
+      "type": "string",
+      "required": false
+    },
+    "suppressHydrationWarning": {
+      "type": "string",
+      "required": false
+    },
+    "autoFocus": {
+      "type": "string",
+      "required": false
+    },
+    "contextMenu": {
+      "type": "string",
+      "required": false
+    },
+    "spellCheck": {
+      "type": "string",
+      "required": false
+    },
+    "radioGroup": {
+      "type": "string",
+      "required": false
+    },
+    "about": {
+      "type": "string",
+      "required": false
+    },
+    "datatype": {
+      "type": "string",
+      "required": false
+    },
+    "inlist": {
+      "type": "string",
+      "required": false
+    },
+    "resource": {
+      "type": "string",
+      "required": false
+    },
+    "rev": {
+      "type": "string",
+      "required": false
+    },
+    "typeof": {
+      "type": "string",
+      "required": false
+    },
+    "vocab": {
+      "type": "string",
+      "required": false
+    },
+    "autoCapitalize": {
+      "type": "string",
+      "required": false
+    },
+    "autoCorrect": {
+      "type": "string",
+      "required": false
+    },
+    "autoSave": {
+      "type": "string",
+      "required": false
+    },
+    "itemProp": {
+      "type": "string",
+      "required": false
+    },
+    "itemScope": {
+      "type": "string",
+      "required": false
+    },
+    "itemType": {
+      "type": "string",
+      "required": false
+    },
+    "itemID": {
+      "type": "string",
+      "required": false
+    },
+    "itemRef": {
+      "type": "string",
+      "required": false
+    },
+    "results": {
+      "type": "string",
+      "required": false
+    },
+    "security": {
+      "type": "string",
+      "required": false
+    },
+    "unselectable": {
+      "type": "string",
+      "required": false
+    },
+    "is": {
+      "type": "string",
+      "required": false
+    },
+    "dangerouslySetInnerHTML": {
+      "type": "string",
+      "required": false
+    },
+    "onCopy": {
+      "type": "string",
+      "required": false
+    },
+    "onCopyCapture": {
+      "type": "string",
+      "required": false
+    },
+    "onCut": {
+      "type": "string",
+      "required": false
+    },
+    "onCutCapture": {
+      "type": "string",
+      "required": false
+    },
+    "onPaste": {
+      "type": "string",
+      "required": false
+    },
+    "onPasteCapture": {
+      "type": "string",
+      "required": false
+    },
+    "onCompositionEnd": {
+      "type": "string",
+      "required": false
+    },
+    "onCompositionEndCapture": {
+      "type": "string",
+      "required": false
+    },
+    "onCompositionStart": {
+      "type": "string",
+      "required": false
+    },
+    "onCompositionStartCapture": {
+      "type": "string",
+      "required": false
+    },
+    "onCompositionUpdate": {
+      "type": "string",
+      "required": false
+    },
+    "onCompositionUpdateCapture": {
+      "type": "string",
+      "required": false
+    },
+    "onFocus": {
+      "type": "string",
+      "required": false
+    },
+    "onFocusCapture": {
+      "type": "string",
+      "required": false
+    },
+    "onBlur": {
+      "type": "string",
+      "required": false
+    },
+    "onBlurCapture": {
+      "type": "string",
+      "required": false
+    },
+    "onChange": {
+      "type": "string",
+      "required": false
+    },
+    "onChangeCapture": {
+      "type": "string",
+      "required": false
+    },
+    "onBeforeInput": {
+      "type": "string",
+      "required": false
+    },
+    "onBeforeInputCapture": {
+      "type": "string",
+      "required": false
+    },
+    "onInput": {
+      "type": "string",
+      "required": false
+    },
+    "onInputCapture": {
+      "type": "string",
+      "required": false
+    },
+    "onReset": {
+      "type": "string",
+      "required": false
+    },
+    "onResetCapture": {
+      "type": "string",
+      "required": false
+    },
+    "onSubmit": {
+      "type": "string",
+      "required": false
+    },
+    "onSubmitCapture": {
+      "type": "string",
+      "required": false
+    },
+    "onInvalid": {
+      "type": "string",
+      "required": false
+    },
+    "onInvalidCapture": {
+      "type": "string",
+      "required": false
+    },
+    "onLoad": {
+      "type": "string",
+      "required": false
+    },
+    "onLoadCapture": {
+      "type": "string",
+      "required": false
+    },
+    "onError": {
+      "type": "string",
+      "required": false
+    },
+    "onErrorCapture": {
+      "type": "string",
+      "required": false
+    },
+    "onKeyDownCapture": {
+      "type": "string",
+      "required": false
+    },
+    "onKeyPressCapture": {
+      "type": "string",
+      "required": false
+    },
+    "onKeyUpCapture": {
+      "type": "string",
+      "required": false
+    },
+    "onAbort": {
+      "type": "string",
+      "required": false
+    },
+    "onAbortCapture": {
+      "type": "string",
+      "required": false
+    },
+    "onCanPlay": {
+      "type": "string",
+      "required": false
+    },
+    "onCanPlayCapture": {
+      "type": "string",
+      "required": false
+    },
+    "onCanPlayThrough": {
+      "type": "string",
+      "required": false
+    },
+    "onCanPlayThroughCapture": {
+      "type": "string",
+      "required": false
+    },
+    "onDurationChange": {
+      "type": "string",
+      "required": false
+    },
+    "onDurationChangeCapture": {
+      "type": "string",
+      "required": false
+    },
+    "onEmptied": {
+      "type": "string",
+      "required": false
+    },
+    "onEmptiedCapture": {
+      "type": "string",
+      "required": false
+    },
+    "onEncrypted": {
+      "type": "string",
+      "required": false
+    },
+    "onEncryptedCapture": {
+      "type": "string",
+      "required": false
+    },
+    "onEnded": {
+      "type": "string",
+      "required": false
+    },
+    "onEndedCapture": {
+      "type": "string",
+      "required": false
+    },
+    "onLoadedData": {
+      "type": "string",
+      "required": false
+    },
+    "onLoadedDataCapture": {
+      "type": "string",
+      "required": false
+    },
+    "onLoadedMetadata": {
+      "type": "string",
+      "required": false
+    },
+    "onLoadedMetadataCapture": {
+      "type": "string",
+      "required": false
+    },
+    "onLoadStart": {
+      "type": "string",
+      "required": false
+    },
+    "onLoadStartCapture": {
+      "type": "string",
+      "required": false
+    },
+    "onPause": {
+      "type": "string",
+      "required": false
+    },
+    "onPauseCapture": {
+      "type": "string",
+      "required": false
+    },
+    "onPlay": {
+      "type": "string",
+      "required": false
+    },
+    "onPlayCapture": {
+      "type": "string",
+      "required": false
+    },
+    "onPlaying": {
+      "type": "string",
+      "required": false
+    },
+    "onPlayingCapture": {
+      "type": "string",
+      "required": false
+    },
+    "onProgress": {
+      "type": "string",
+      "required": false
+    },
+    "onProgressCapture": {
+      "type": "string",
+      "required": false
+    },
+    "onRateChange": {
+      "type": "string",
+      "required": false
+    },
+    "onRateChangeCapture": {
+      "type": "string",
+      "required": false
+    },
+    "onResize": {
+      "type": "string",
+      "required": false
+    },
+    "onResizeCapture": {
+      "type": "string",
+      "required": false
+    },
+    "onSeeked": {
+      "type": "string",
+      "required": false
+    },
+    "onSeekedCapture": {
+      "type": "string",
+      "required": false
+    },
+    "onSeeking": {
+      "type": "string",
+      "required": false
+    },
+    "onSeekingCapture": {
+      "type": "string",
+      "required": false
+    },
+    "onStalled": {
+      "type": "string",
+      "required": false
+    },
+    "onStalledCapture": {
+      "type": "string",
+      "required": false
+    },
+    "onSuspend": {
+      "type": "string",
+      "required": false
+    },
+    "onSuspendCapture": {
+      "type": "string",
+      "required": false
+    },
+    "onTimeUpdate": {
+      "type": "string",
+      "required": false
+    },
+    "onTimeUpdateCapture": {
+      "type": "string",
+      "required": false
+    },
+    "onVolumeChange": {
+      "type": "string",
+      "required": false
+    },
+    "onVolumeChangeCapture": {
+      "type": "string",
+      "required": false
+    },
+    "onWaiting": {
+      "type": "string",
+      "required": false
+    },
+    "onWaitingCapture": {
+      "type": "string",
+      "required": false
+    },
+    "onAuxClick": {
+      "type": "string",
+      "required": false
+    },
+    "onAuxClickCapture": {
+      "type": "string",
+      "required": false
+    },
+    "onClickCapture": {
+      "type": "string",
+      "required": false
+    },
+    "onContextMenu": {
+      "type": "string",
+      "required": false
+    },
+    "onContextMenuCapture": {
+      "type": "string",
+      "required": false
+    },
+    "onDoubleClick": {
+      "type": "string",
+      "required": false
+    },
+    "onDoubleClickCapture": {
+      "type": "string",
+      "required": false
+    },
+    "onDrag": {
+      "type": "string",
+      "required": false
+    },
+    "onDragCapture": {
+      "type": "string",
+      "required": false
+    },
+    "onDragEnd": {
+      "type": "string",
+      "required": false
+    },
+    "onDragEndCapture": {
+      "type": "string",
+      "required": false
+    },
+    "onDragEnter": {
+      "type": "string",
+      "required": false
+    },
+    "onDragEnterCapture": {
+      "type": "string",
+      "required": false
+    },
+    "onDragExit": {
+      "type": "string",
+      "required": false
+    },
+    "onDragExitCapture": {
+      "type": "string",
+      "required": false
+    },
+    "onDragLeave": {
+      "type": "string",
+      "required": false
+    },
+    "onDragLeaveCapture": {
+      "type": "string",
+      "required": false
+    },
+    "onDragOver": {
+      "type": "string",
+      "required": false
+    },
+    "onDragOverCapture": {
+      "type": "string",
+      "required": false
+    },
+    "onDragStart": {
+      "type": "string",
+      "required": false
+    },
+    "onDragStartCapture": {
+      "type": "string",
+      "required": false
+    },
+    "onDrop": {
+      "type": "string",
+      "required": false
+    },
+    "onDropCapture": {
+      "type": "string",
+      "required": false
+    },
+    "onMouseDown": {
+      "type": "string",
+      "required": false
+    },
+    "onMouseDownCapture": {
+      "type": "string",
+      "required": false
+    },
+    "onMouseEnter": {
+      "type": "string",
+      "required": false
+    },
+    "onMouseLeave": {
+      "type": "string",
+      "required": false
+    },
+    "onMouseMove": {
+      "type": "string",
+      "required": false
+    },
+    "onMouseMoveCapture": {
+      "type": "string",
+      "required": false
+    },
+    "onMouseOut": {
+      "type": "string",
+      "required": false
+    },
+    "onMouseOutCapture": {
+      "type": "string",
+      "required": false
+    },
+    "onMouseOver": {
+      "type": "string",
+      "required": false
+    },
+    "onMouseOverCapture": {
+      "type": "string",
+      "required": false
+    },
+    "onMouseUp": {
+      "type": "string",
+      "required": false
+    },
+    "onMouseUpCapture": {
+      "type": "string",
+      "required": false
+    },
+    "onSelect": {
+      "type": "string",
+      "required": false
+    },
+    "onSelectCapture": {
+      "type": "string",
+      "required": false
+    },
+    "onTouchCancel": {
+      "type": "string",
+      "required": false
+    },
+    "onTouchCancelCapture": {
+      "type": "string",
+      "required": false
+    },
+    "onTouchEnd": {
+      "type": "string",
+      "required": false
+    },
+    "onTouchEndCapture": {
+      "type": "string",
+      "required": false
+    },
+    "onTouchMove": {
+      "type": "string",
+      "required": false
+    },
+    "onTouchMoveCapture": {
+      "type": "string",
+      "required": false
+    },
+    "onTouchStart": {
+      "type": "string",
+      "required": false
+    },
+    "onTouchStartCapture": {
+      "type": "string",
+      "required": false
+    },
+    "onPointerDown": {
+      "type": "string",
+      "required": false
+    },
+    "onPointerDownCapture": {
+      "type": "string",
+      "required": false
+    },
+    "onPointerMove": {
+      "type": "string",
+      "required": false
+    },
+    "onPointerMoveCapture": {
+      "type": "string",
+      "required": false
+    },
+    "onPointerUp": {
+      "type": "string",
+      "required": false
+    },
+    "onPointerUpCapture": {
+      "type": "string",
+      "required": false
+    },
+    "onPointerCancel": {
+      "type": "string",
+      "required": false
+    },
+    "onPointerCancelCapture": {
+      "type": "string",
+      "required": false
+    },
+    "onPointerEnter": {
+      "type": "string",
+      "required": false
+    },
+    "onPointerLeave": {
+      "type": "string",
+      "required": false
+    },
+    "onPointerOver": {
+      "type": "string",
+      "required": false
+    },
+    "onPointerOverCapture": {
+      "type": "string",
+      "required": false
+    },
+    "onPointerOut": {
+      "type": "string",
+      "required": false
+    },
+    "onPointerOutCapture": {
+      "type": "string",
+      "required": false
+    },
+    "onGotPointerCapture": {
+      "type": "string",
+      "required": false
+    },
+    "onGotPointerCaptureCapture": {
+      "type": "string",
+      "required": false
+    },
+    "onLostPointerCapture": {
+      "type": "string",
+      "required": false
+    },
+    "onLostPointerCaptureCapture": {
+      "type": "string",
+      "required": false
+    },
+    "onScroll": {
+      "type": "string",
+      "required": false
+    },
+    "onScrollCapture": {
+      "type": "string",
+      "required": false
+    },
+    "onWheel": {
+      "type": "string",
+      "required": false
+    },
+    "onWheelCapture": {
+      "type": "string",
+      "required": false
+    },
+    "onAnimationStart": {
+      "type": "string",
+      "required": false
+    },
+    "onAnimationStartCapture": {
+      "type": "string",
+      "required": false
+    },
+    "onAnimationEnd": {
+      "type": "string",
+      "required": false
+    },
+    "onAnimationEndCapture": {
+      "type": "string",
+      "required": false
+    },
+    "onAnimationIteration": {
+      "type": "string",
+      "required": false
+    },
+    "onAnimationIterationCapture": {
+      "type": "string",
+      "required": false
+    },
+    "onTransitionEnd": {
+      "type": "string",
+      "required": false
+    },
+    "onTransitionEndCapture": {
+      "type": "string",
+      "required": false
+    },
+    "children": {
+      "type": "ReactNode",
+      "required": false,
+      "description": "ReactNode to render as this component's content"
+    },
+    "headerZindexLocation": {
+      "type": "\"above\" | \"below\"",
+      "required": false,
+      "default": "above",
+      "description": "Should the mask visually sit above or below the EuiHeader (controlled by z-index)"
+    },
+    "maskRef": {
+      "type": "Ref<HTMLDivElement> | MutableRefObject<HTMLDivElement>",
+      "required": false,
+      "description": "React ref to be passed to the wrapping container"
+    }
+  },
+  "example": "<EuiOverlayMask headerZindexLocation=\"above\" hasAnimation />"
+}

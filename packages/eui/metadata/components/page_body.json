@@ -1,0 +1,36 @@
+{
+  "name": "EuiPageBody",
+  "description": "",
+  "category": "Layout",
+  "import": "import { EuiPageBody } from '@elastic/eui';",
+  "props": {
+    "restrictWidth": {
+      "type": "string | number | boolean",
+      "required": false,
+      "default": "false",
+      "description": "Sets the max-width of the page,\nset to `true` to use the default size of `1200px`,\nset to `false` to not restrict the width,\nset to a number for a custom width in px,\nset to a string for a custom width in custom measurement."
+    },
+    "component": {
+      "type": "ComponentTypes",
+      "required": false,
+      "description": "Sets the HTML element for `EuiPageBody`."
+    },
+    "panelled": {
+      "type": "boolean",
+      "required": false,
+      "description": "Uses an EuiPanel as the main component instead of a plain div"
+    },
+    "panelProps": {
+      "type": "Omit<(DisambiguateSet<_EuiPanelButtonlike, _EuiPanelDivlike> & _EuiPanelDivlike) | (DisambiguateSet<_EuiPanelDivlike, _EuiPanelButtonlike> & _EuiPanelButtonlike), \"paddingSize\">",
+      "required": false,
+      "description": "Extends any extra EuiPanel props if `panelled=true`"
+    },
+    "paddingSize": {
+      "type": "\"s\" | \"xs\" | \"m\" | \"l\" | \"xl\" | \"none\"",
+      "required": false,
+      "default": "none",
+      "description": "Adjusts the padding"
+    }
+  },
+  "example": "<EuiPageBody paddingSize=\"m\" borderRadius=\"none\" component=\"main\" panelled />"
+}

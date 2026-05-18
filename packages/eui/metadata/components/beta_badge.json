@@ -1,0 +1,80 @@
+{
+  "name": "EuiBetaBadge",
+  "description": "",
+  "category": "Display",
+  "import": "import { EuiBetaBadge } from '@elastic/eui';",
+  "props": {
+    "aria-label": {
+      "type": "string",
+      "required": false,
+      "description": "Defines a string value that labels the current element.\n@see aria-labelledby."
+    },
+    "title": {
+      "type": "string",
+      "required": false,
+      "description": "Optional title will be supplied as tooltip title or title attribute\notherwise the label will be used"
+    },
+    "target": {
+      "type": "string",
+      "required": false
+    },
+    "href": {
+      "type": "string",
+      "required": false
+    },
+    "onClick": {
+      "type": "MouseEventHandler<HTMLButtonElement>",
+      "required": false,
+      "description": "Will apply an onclick to the badge itself"
+    },
+    "onClickAriaLabel": {
+      "type": "string",
+      "required": false,
+      "description": "Aria label applied to the onClick button"
+    },
+    "iconType": {
+      "type": "IconType",
+      "required": false,
+      "description": "Supply an icon type if the badge should just be an icon"
+    },
+    "label": {
+      "type": "string | number | boolean | ReactElement | Iterable<ReactNode> | ReactPortal | (ReactElement<...> & string) | (Iterable<...> & string) | (ReactPortal & string)",
+      "required": true,
+      "description": "One word label like \"Beta\" or \"Lab\""
+    },
+    "tooltipContent": {
+      "type": "ReactNode",
+      "required": false,
+      "description": "Content for the tooltip"
+    },
+    "tooltipPosition": {
+      "type": "ToolTipPositions",
+      "required": false,
+      "default": "top",
+      "description": "Custom position of the tooltip"
+    },
+    "anchorProps": {
+      "type": "CommonProps & HTMLAttributes<HTMLSpanElement>",
+      "required": false,
+      "description": "Passes onto the span wrapping the badge"
+    },
+    "color": {
+      "type": "\"subdued\" | \"accent\" | \"warning\" | \"hollow\"",
+      "required": false,
+      "default": "hollow",
+      "description": "Accepts accent, subdued, hollow and warning."
+    },
+    "size": {
+      "type": "\"s\" | \"m\"",
+      "required": false,
+      "default": "m"
+    },
+    "alignment": {
+      "type": "\"baseline\" | \"middle\"",
+      "required": false,
+      "default": "baseline",
+      "description": "Sets the `vertical-align` CSS property"
+    }
+  },
+  "example": "<EuiBetaBadge color=\"hollow\" size=\"m\" alignment=\"baseline\" tooltipPosition=\"top\" label=\"Beta\" />"
+}

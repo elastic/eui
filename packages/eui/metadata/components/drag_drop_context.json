@@ -1,0 +1,30 @@
+{
+  "name": "EuiDragDropContext",
+  "description": "",
+  "category": "Display",
+  "import": "import { EuiDragDropContext } from '@elastic/eui';",
+  "props": {
+    "dragHandleUsageInstructions": {
+      "type": "string",
+      "required": false
+    },
+    "enableDefaultSensors": {
+      "type": "boolean",
+      "required": false
+    },
+    "nonce": {
+      "type": "string",
+      "required": false
+    },
+    "sensors": {
+      "type": "Sensor[]",
+      "required": false
+    },
+    "autoScrollerOptions": {
+      "type": "RecursivePartial<AutoScrollerOptions>",
+      "required": false,
+      "description": "Customize auto scroller"
+    }
+  },
+  "example": "<EuiDragDropContext />"
+}

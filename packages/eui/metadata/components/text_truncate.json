@@ -1,0 +1,60 @@
+{
+  "name": "EuiTextTruncate",
+  "description": "",
+  "category": "Utilities",
+  "import": "import { EuiTextTruncate } from '@elastic/eui';",
+  "props": {
+    "aria-label": {
+      "type": "string",
+      "required": false,
+      "description": "Defines a string value that labels the current element.\n@see aria-labelledby."
+    },
+    "text": {
+      "type": "string",
+      "required": true,
+      "description": "The full text string to truncate"
+    },
+    "truncation": {
+      "type": "\"end\" | \"start\" | \"middle\" | \"startEnd\"",
+      "required": false,
+      "description": "The truncation type desired. Determines where the ellipses are placed."
+    },
+    "truncationOffset": {
+      "type": "number",
+      "required": false,
+      "description": "This prop **only** applies to the `start` and `end` truncation types.\nIt allows preserving a certain number of characters of either the\nstarting or ending text.\n\nIf the passed offset is greater than the total text length,\nthe offset will be ignored."
+    },
+    "truncationPosition": {
+      "type": "number",
+      "required": false,
+      "description": "This prop **only** applies to the `startEnd` truncation type.\nIt allows customizing the anchor position of the displayed text,\nwhich otherwise defaults to the middle of the text string.\n\nThe primary use case for this prop for is search highlighting - e.g., if\na user searches for a specific word in the text, pass the index of that\nfound word to ensure it is always visible.\n\nThis behavior will intelligently detect when positions are close to the start\nor end of the text, and omit leading or trailing ellipses when necessary.\nIf the passed position is greater than the total text length,\nthe truncation will simply default to `start` instead."
+    },
+    "ellipsis": {
+      "type": "string",
+      "required": false,
+      "default": "…",
+      "description": "Defaults to the horizontal ellipsis character.\nCan be optionally configured to use other punctuation,\ne.g. spaces, brackets, hyphens, asterisks, etc."
+    },
+    "width": {
+      "type": "number",
+      "required": false,
+      "description": "By default, EuiTextTruncate will render a resize observer to detect the\navailable width it has. For performance reasons (e.g. multiple truncated\ntext items within the same container), you may opt to pass in your own\ncontainer width, which will skip initializing a resize observer."
+    },
+    "onResize": {
+      "type": "(width: number) => void",
+      "required": false,
+      "description": "Optional callback that fires when the default resizer observer both mounts and\nregisters a size change. This callback will **not** fire if `width` is passed."
+    },
+    "children": {
+      "type": "(truncatedString: string) => ReactNode",
+      "required": false,
+      "description": "By default, EuiTextTruncate will render the truncated string directly.\nYou can optionally pass a render prop function to the component, which\nallows for more flexible text rendering, e.g. adding custom markup\nor highlighting"
+    },
+    "calculationDelayMs": {
+      "type": "number",
+      "required": false,
+      "description": "For some edge case scenarios, EuiTextTruncate's calculations may be off until\nfonts are done loading or layout is done shifting or settling. Adding a delay\nmay help resolve any rendering issues."
+    }
+  },
+  "example": "<EuiTextTruncate truncation=\"end\" ellipsis=\"…\" width={200} />"
+}

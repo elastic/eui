@@ -1,0 +1,25 @@
+{
+  "name": "EuiToast",
+  "description": "Auto-dismissing notification message shown in the toast list.",
+  "category": "Display",
+  "import": "import { EuiToast } from '@elastic/eui';",
+  "props": {
+    "title": {
+      "type": "ReactNode",
+      "required": false
+    },
+    "color": {
+      "type": "\"primary\" | \"success\" | \"warning\" | \"danger\"",
+      "required": false
+    },
+    "iconType": {
+      "type": "IconType",
+      "required": false
+    },
+    "onClose": {
+      "type": "() => void",
+      "required": false
+    }
+  },
+  "example": "<EuiToast title=\"It's a Toast!\">Toast content</EuiToast>"
+}

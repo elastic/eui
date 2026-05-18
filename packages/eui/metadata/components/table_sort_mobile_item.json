@@ -1,0 +1,28 @@
+{
+  "name": "EuiTableSortMobileItem",
+  "description": "",
+  "category": "Tabular Content",
+  "import": "import { EuiTableSortMobileItem } from '@elastic/eui';",
+  "props": {
+    "onSort": {
+      "type": "() => void",
+      "required": false,
+      "description": "Callback to know when an item has been clicked"
+    },
+    "isSorted": {
+      "type": "boolean",
+      "required": false,
+      "description": "Indicates current option is the sorted on column"
+    },
+    "isSortAscending": {
+      "type": "boolean",
+      "required": false,
+      "description": "Indicates which direction the current column is sorted on"
+    },
+    "ariaLabel": {
+      "type": "string",
+      "required": false
+    }
+  },
+  "example": "<EuiTableSortMobileItem>sort item</EuiTableSortMobileItem>"
+}

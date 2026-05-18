@@ -1,0 +1,394 @@
+{
+  "name": "EuiDatePicker",
+  "description": "Calendar-based date and time input.",
+  "category": "Forms",
+  "import": "import { EuiDatePicker } from '@elastic/eui';",
+  "props": {
+    "dayClassName": {
+      "type": "(date: Moment) => string",
+      "required": false,
+      "description": "Applies classes to the numbered days provided. Check docs for example."
+    },
+    "fullWidth": {
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": "Renders the input as full width"
+    },
+    "compressed": {
+      "type": "boolean",
+      "required": false,
+      "description": "Renders the input with compressed height and sizing"
+    },
+    "inputRef": {
+      "type": "Ref<Component<ReactDatePickerProps, any, any>>",
+      "required": false,
+      "description": "ref for the ReactDatePicker instance"
+    },
+    "isInvalid": {
+      "type": "boolean",
+      "required": false,
+      "description": "Provides styling to the input when invalid"
+    },
+    "isLoading": {
+      "type": "boolean",
+      "required": false,
+      "description": "Provides styling to the input when loading"
+    },
+    "onClear": {
+      "type": "MouseEventHandler<HTMLButtonElement>",
+      "required": false,
+      "description": "What to do when the input is cleared by the x icon"
+    },
+    "openToDate": {
+      "type": "Moment",
+      "required": false,
+      "description": "Opens to this date (in moment format) on first press, regardless of selection"
+    },
+    "placeholder": {
+      "type": "string",
+      "required": false,
+      "description": "Shows only when no date is selected"
+    },
+    "inline": {
+      "type": "boolean",
+      "required": false,
+      "description": "Displays the date picker calendar on directly on the page.\nWill not render `iconType` or `fullWidth`."
+    },
+    "shadow": {
+      "type": "boolean",
+      "required": false,
+      "default": "true",
+      "description": "Allows turning the shadow off if using the `inline` prop"
+    },
+    "showIcon": {
+      "type": "boolean",
+      "required": false,
+      "default": "true",
+      "description": "Show the icon in input"
+    },
+    "iconType": {
+      "type": "IconType | IconShape",
+      "required": false,
+      "description": "Pass an icon type to change the default `calendar` or `clock` icon"
+    },
+    "popoverPlacement": {
+      "type": "\"upCenter\" | \"upLeft\" | \"upRight\" | \"downCenter\" | \"downLeft\" | \"downRight\" | \"leftCenter\" | \"leftUp\" | \"leftDown\" | \"rightCenter\" | \"rightUp\" | \"rightDown\"",
+      "required": false,
+      "default": "downLeft",
+      "description": "Sets the placement of the popover.\n\n**Use [EuiPopover](/#/layout/popover) values**: 'upCenter', 'upLeft', 'upRight', downCenter', 'downLeft', 'downRight', 'leftCenter', 'leftUp', 'leftDown', 'rightCenter', 'rightUp', 'rightDown'."
+    },
+    "append": {
+      "type": "PrependAppendType",
+      "required": false,
+      "description": "Creates an input group with element(s) coming before the input.\n`string` | `ReactElement` or an array of these\n\nIgnored if `inline` or `controlOnly` are true."
+    },
+    "prepend": {
+      "type": "PrependAppendType",
+      "required": false,
+      "description": "Creates an input group with element(s) coming before the input.\n`string` | `ReactElement` or an array of these\n\nIgnored if `inline` or `controlOnly` are true."
+    },
+    "controlOnly": {
+      "type": "boolean",
+      "required": false,
+      "description": "Completely removes form control layout wrapper and ignores\n`iconType`, `prepend`, and `append`.\n\nBest used inside EuiFormControlLayoutDelimited."
+    },
+    "title": {
+      "type": "string",
+      "required": false
+    },
+    "value": {
+      "type": "string",
+      "required": false
+    },
+    "tabIndex": {
+      "type": "number",
+      "required": false
+    },
+    "name": {
+      "type": "string",
+      "required": false
+    },
+    "onKeyDown": {
+      "type": "(event: KeyboardEvent<HTMLDivElement>) => void",
+      "required": false
+    },
+    "disabled": {
+      "type": "boolean",
+      "required": false
+    },
+    "autoFocus": {
+      "type": "boolean",
+      "required": false
+    },
+    "onFocus": {
+      "type": "(event: FocusEvent<HTMLInputElement, Element>) => void",
+      "required": false
+    },
+    "onBlur": {
+      "type": "(event: FocusEvent<HTMLInputElement, Element>) => void",
+      "required": false
+    },
+    "onChange": {
+      "type": "(date: Moment, event?: SyntheticEvent<any, Event>) => void",
+      "required": false,
+      "description": "What to do when the input changes"
+    },
+    "onSelect": {
+      "type": "(date: Moment, event?: SyntheticEvent<any, Event>) => void",
+      "required": false
+    },
+    "readOnly": {
+      "type": "boolean",
+      "required": false
+    },
+    "autoComplete": {
+      "type": "string",
+      "required": false
+    },
+    "required": {
+      "type": "boolean",
+      "required": false
+    },
+    "selected": {
+      "type": "Moment",
+      "required": false,
+      "description": "The selected datetime (in moment format)"
+    },
+    "onClickOutside": {
+      "type": "(event: MouseEvent<HTMLDivElement, MouseEvent>) => void",
+      "required": false
+    },
+    "adjustDateOnChange": {
+      "type": "boolean",
+      "required": false,
+      "default": "true",
+      "description": "Whether changes to Year and Month (via dropdowns) should trigger `onChange`"
+    },
+    "accessibleMode": {
+      "type": "boolean",
+      "required": false
+    },
+    "allowSameDay": {
+      "type": "boolean",
+      "required": false
+    },
+    "calendarClassName": {
+      "type": "string",
+      "required": false,
+      "description": "Optional class added to the calendar portion of datepicker"
+    },
+    "customInput": {
+      "type": "ReactNode",
+      "required": false,
+      "description": "Replaces the input with any node, like a button"
+    },
+    "customInputRef": {
+      "type": "string",
+      "required": false
+    },
+    "dateFormat": {
+      "type": "string | string[]",
+      "required": false,
+      "default": "MM/DD/YYYY",
+      "description": "Accepts any moment format string"
+    },
+    "dateFormatCalendar": {
+      "type": "string",
+      "required": false
+    },
+    "endDate": {
+      "type": "Moment",
+      "required": false
+    },
+    "excludeDates": {
+      "type": "Moment[]",
+      "required": false
+    },
+    "excludeTimes": {
+      "type": "Moment[]",
+      "required": false
+    },
+    "filterDate": {
+      "type": "(date: Moment) => boolean",
+      "required": false
+    },
+    "forceShowMonthNavigation": {
+      "type": "boolean",
+      "required": false
+    },
+    "formatWeekNumber": {
+      "type": "(date: Moment) => string | number",
+      "required": false
+    },
+    "highlightDates": {
+      "type": "Moment[]",
+      "required": false
+    },
+    "includeDates": {
+      "type": "Moment[]",
+      "required": false
+    },
+    "includeTimes": {
+      "type": "Moment[]",
+      "required": false
+    },
+    "injectTimes": {
+      "type": "Moment[]",
+      "required": false,
+      "description": "Adds additional times to the time selector other then :30 increments"
+    },
+    "locale": {
+      "type": "LocaleSpecifier",
+      "required": false,
+      "description": "Switches the locale / display. \"en-us\", \"zn-ch\"...etc"
+    },
+    "maxDate": {
+      "type": "Moment",
+      "required": false,
+      "description": "The max date accepted (in moment format) as a selection"
+    },
+    "maxTime": {
+      "type": "Moment",
+      "required": false,
+      "description": "The max time accepted (in moment format) as a selection"
+    },
+    "minDate": {
+      "type": "Moment",
+      "required": false,
+      "description": "The min date accepted (in moment format) as a selection"
+    },
+    "minTime": {
+      "type": "Moment",
+      "required": false,
+      "description": "The min time accepted (in moment format) as a selection"
+    },
+    "onChangeRaw": {
+      "type": "(event: FocusEvent<HTMLInputElement, Element>) => void",
+      "required": false
+    },
+    "onMonthChange": {
+      "type": "(date: Moment) => void",
+      "required": false
+    },
+    "onWeekSelect": {
+      "type": "(firstDayOfWeek: Moment, weekNumber: string | number, event?: SyntheticEvent<any, Event>) => void",
+      "required": false
+    },
+    "onYearChange": {
+      "type": "(date: Moment) => void",
+      "required": false
+    },
+    "peekNextMonth": {
+      "type": "boolean",
+      "required": false
+    },
+    "placeholderText": {
+      "type": "string",
+      "required": false
+    },
+    "popperClassName": {
+      "type": "string",
+      "required": false,
+      "description": "Class applied to the popup, when inline is false"
+    },
+    "popperContainer": {
+      "type": "(props: { children: ReactNode[]; }) => ReactNode",
+      "required": false
+    },
+    "popperProps": {
+      "type": "Partial<EuiPopoverProps>",
+      "required": false
+    },
+    "preventOpenOnFocus": {
+      "type": "boolean",
+      "required": false
+    },
+    "scrollableMonthYearDropdown": {
+      "type": "boolean",
+      "required": false
+    },
+    "scrollableYearDropdown": {
+      "type": "boolean",
+      "required": false
+    },
+    "selectsEnd": {
+      "type": "boolean",
+      "required": false
+    },
+    "selectsStart": {
+      "type": "boolean",
+      "required": false
+    },
+    "shouldCloseOnSelect": {
+      "type": "boolean",
+      "required": false,
+      "default": "true",
+      "description": "Will close the popup on selection"
+    },
+    "showDisabledMonthNavigation": {
+      "type": "boolean",
+      "required": false
+    },
+    "showMonthDropdown": {
+      "type": "boolean",
+      "required": false
+    },
+    "showTimeSelect": {
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": "Show the time selection alongside the calendar"
+    },
+    "showTimeSelectOnly": {
+      "type": "boolean",
+      "required": false,
+      "description": "Only show the time selector, not the calendar"
+    },
+    "showYearDropdown": {
+      "type": "boolean",
+      "required": false
+    },
+    "startDate": {
+      "type": "Moment",
+      "required": false
+    },
+    "startOpen": {
+      "type": "boolean",
+      "required": false
+    },
+    "strictParsing": {
+      "type": "boolean",
+      "required": false,
+      "description": "Use Moment strict mode, allowing exact format matches only"
+    },
+    "timeFormat": {
+      "type": "string",
+      "required": false,
+      "default": "hh:mm A",
+      "description": "The format of the time within the selector, in moment notation"
+    },
+    "timeIntervals": {
+      "type": "number",
+      "required": false
+    },
+    "useWeekdaysShort": {
+      "type": "boolean",
+      "required": false
+    },
+    "utcOffset": {
+      "type": "number",
+      "required": false
+    },
+    "weekLabel": {
+      "type": "string",
+      "required": false
+    },
+    "yearDropdownItemNumber": {
+      "type": "number",
+      "required": false,
+      "description": "The total number of years to show as options in years selection dropdown"
+    }
+  },
+  "example": "<EuiDatePicker 18={54} />"
+}

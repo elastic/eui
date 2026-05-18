@@ -1,0 +1,38 @@
+{
+  "name": "EuiOutsideClickDetector",
+  "description": "",
+  "category": "Utilities",
+  "import": "import { EuiOutsideClickDetector } from '@elastic/eui';",
+  "props": {
+    "children": {
+      "type": "ReactElement<any, string | JSXElementConstructor<any>>",
+      "required": true,
+      "description": "ReactNode to render as this component's content"
+    },
+    "onOutsideClick": {
+      "type": "(event: Event) => void",
+      "required": true
+    },
+    "isDisabled": {
+      "type": "boolean",
+      "required": false
+    },
+    "onMouseDown": {
+      "type": "(event: MouseEvent<Element, MouseEvent>) => void",
+      "required": false
+    },
+    "onMouseUp": {
+      "type": "(event: MouseEvent<Element, MouseEvent>) => void",
+      "required": false
+    },
+    "onTouchStart": {
+      "type": "(event: MouseEvent<Element, MouseEvent>) => void",
+      "required": false
+    },
+    "onTouchEnd": {
+      "type": "(event: MouseEvent<Element, MouseEvent>) => void",
+      "required": false
+    }
+  },
+  "example": "<EuiOutsideClickDetector />"
+}

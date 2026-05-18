@@ -1,0 +1,53 @@
+{
+  "name": "EuiSkeletonTitle",
+  "description": "",
+  "category": "Display",
+  "import": "import { EuiSkeletonTitle } from '@elastic/eui';",
+  "props": {
+    "aria-label": {
+      "type": "string",
+      "required": false,
+      "description": "Defines a string value that labels the current element.\n@see aria-labelledby."
+    },
+    "isLoading": {
+      "type": "boolean",
+      "required": false,
+      "default": "true",
+      "description": "When true, shows the loading skeleton component.\nWhen false, shows any `children` and announces to screen readers that your content has loaded."
+    },
+    "contentAriaLabel": {
+      "type": "string",
+      "required": false,
+      "description": "Label your loading sections to provide more helpful context to screen readers.\nFor example, pass \"API keys\" to have screen readers read \"Loading API keys\" and \"Loaded API keys\"."
+    },
+    "announceLoadingStatus": {
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": "Makes a live screen reader announcement when `isLoading` is true"
+    },
+    "announceLoadedStatus": {
+      "type": "boolean",
+      "required": false,
+      "default": "true",
+      "description": "Makes a live screen reader announcement when `isLoading` is false"
+    },
+    "ariaLiveProps": {
+      "type": "Partial<EuiScreenReaderLiveProps>",
+      "required": false,
+      "description": "Optional props to pass to the `aria-live` region that announces the loading status to screen readers.\nAccepts any `EuiScreenReaderLive` props."
+    },
+    "ariaWrapperProps": {
+      "type": "HTMLAttributes<HTMLDivElement>",
+      "required": false,
+      "description": "Optional props to pass to the `aria-busy` wrapper around the skeleton content"
+    },
+    "size": {
+      "type": "\"s\" | \"xs\" | \"m\" | \"l\" | \"xxs\" | \"xxxs\"",
+      "required": false,
+      "default": "m",
+      "description": "EuiTitle size to render"
+    }
+  },
+  "example": "<EuiSkeletonTitle contentAriaLabel=\"Example of skeleton content loading\" />"
+}

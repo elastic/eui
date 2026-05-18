@@ -1,0 +1,156 @@
+{
+  "name": "EuiPopover",
+  "description": "Anchored floating panel for contextual menus or content.",
+  "category": "Layout",
+  "import": "import { EuiPopover } from '@elastic/eui';",
+  "props": {
+    "anchorPosition": {
+      "type": "\"upCenter\" | \"upLeft\" | \"upRight\" | \"downCenter\" | \"downLeft\" | \"downRight\" | \"leftCenter\" | \"leftUp\" | \"leftDown\" | \"rightCenter\" | \"rightUp\" | \"rightDown\"",
+      "required": false,
+      "default": "downLeft",
+      "description": "Alignment of the popover and arrow relative to the button"
+    },
+    "attachToAnchor": {
+      "type": "boolean",
+      "required": false,
+      "description": "Style and position alteration for arrow-less attachment.\nIntended for use with inputs as anchors, e.g. EuiInputPopover"
+    },
+    "button": {
+      "type": "NonNullable<ReactNode>",
+      "required": true,
+      "description": "Triggering element for which to align the popover to"
+    },
+    "closePopover": {
+      "type": "NoArgCallback<void>",
+      "required": true,
+      "description": "Callback to handle hiding of the popover"
+    },
+    "container": {
+      "type": "HTMLElement",
+      "required": false,
+      "description": "Restrict the popover's position within this element"
+    },
+    "display": {
+      "type": "Display",
+      "required": false,
+      "default": "inline-block",
+      "description": "CSS display type for both the popover and anchor"
+    },
+    "focusTrapProps": {
+      "type": "Partial<EuiFocusTrapProps>",
+      "required": false,
+      "description": "Object of props passed to EuiFocusTrap"
+    },
+    "hasArrow": {
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": "Show arrow indicating to originating button"
+    },
+    "initialFocus": {
+      "type": "ElementTarget",
+      "required": false,
+      "description": "Specifies what element should initially have focus; Can be a DOM\nnode, or a selector string (which will be passed to\ndocument.querySelector() to find the DOM node), or a function that\nreturns a DOM node.\n\nIf not passed, initial focus defaults to the popover panel."
+    },
+    "insert": {
+      "type": "{ sibling: HTMLElement; position: \"before\" | \"after\"; }",
+      "required": false,
+      "description": "Passed directly to EuiPortal for DOM positioning. Both properties are\nrequired if prop is specified"
+    },
+    "isOpen": {
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": "Visibility state of the popover"
+    },
+    "ownFocus": {
+      "type": "boolean",
+      "required": false,
+      "default": "true",
+      "description": "Traps tab focus within the popover contents"
+    },
+    "panelClassName": {
+      "type": "string",
+      "required": false,
+      "description": "Custom class added to the EuiPanel containing the popover contents"
+    },
+    "panelPaddingSize": {
+      "type": "\"s\" | \"xs\" | \"m\" | \"l\" | \"xl\" | \"none\"",
+      "required": false,
+      "default": "m",
+      "description": "EuiPanel padding on all sides"
+    },
+    "panelStyle": {
+      "type": "CSSProperties",
+      "required": false,
+      "description": "Standard DOM `style` attribute. Passed to the EuiPanel"
+    },
+    "panelProps": {
+      "type": "Omit<_EuiPanelDivlike, \"style\" | \"color\" | \"hasBorder\" | \"hasShadow\">",
+      "required": false,
+      "description": "Object of props passed to EuiPanel. See {@link EuiPopoverPanelProps}"
+    },
+    "panelRef": {
+      "type": "RefCallback<HTMLElement>",
+      "required": false
+    },
+    "popoverScreenReaderText": {
+      "type": "ReactNode",
+      "required": false,
+      "description": "Optional screen reader instructions to announce upon popover open,\nin addition to EUI's default popover instructions for Escape on close.\nUseful for popovers that may have additional keyboard capabilities such as\narrow navigation."
+    },
+    "popoverRef": {
+      "type": "Ref<HTMLDivElement>",
+      "required": false
+    },
+    "repositionOnScroll": {
+      "type": "boolean",
+      "required": false,
+      "description": "When `true`, the popover's position is re-calculated when the user\nscrolls, this supports having fixed-position popover anchors. When nesting\nan `EuiPopover` in a scrollable container, `repositionOnScroll` should be `true`"
+    },
+    "repositionToCrossAxis": {
+      "type": "boolean",
+      "required": false,
+      "default": "true",
+      "description": "By default, popovers will attempt to position themselves along the initial\naxis specified. If there is not enough room either vertically or horizontally\nhowever, the popover will attempt to reposition itself along the secondary\ncross axis if there is room there instead.\n\nIf you do not want this repositioning to occur (and it is acceptable for\nthe popover to appear offscreen), set this to false to disable this behavior."
+    },
+    "zIndex": {
+      "type": "number",
+      "required": false,
+      "description": "By default, popover content inherits the z-index of the anchor\ncomponent; pass `zIndex` to override"
+    },
+    "offset": {
+      "type": "number",
+      "required": false,
+      "default": "4 (0 when `hasArrow=true`)",
+      "description": "Distance away from the anchor that the popover will render"
+    },
+    "buffer": {
+      "type": "number | [number, number, number, number]",
+      "required": false,
+      "default": "16",
+      "description": "Minimum distance between the popover and the bounding container;\nPass an array of 4 values to adjust each side differently: `[top, right, bottom, left]`"
+    },
+    "arrowChildren": {
+      "type": "ReactNode",
+      "required": false,
+      "description": "Element to pass as the child element of the arrow;\nUse case is typically limited to an accompanying `EuiBeacon`"
+    },
+    "aria-label": {
+      "type": "string",
+      "required": false,
+      "description": "Provide a name to the popover panel\nDefines a string value that labels the current element.\n@see aria-labelledby."
+    },
+    "aria-labelledby": {
+      "type": "string",
+      "required": false,
+      "description": "Alternative option to `aria-label` that takes an `id`.\nUsually takes the `id` of the popover title\nIdentifies the element (or elements) that labels the current element.\n@see aria-describedby."
+    },
+    "onPositionChange": {
+      "type": "(position: EuiPopoverPosition) => void",
+      "required": false,
+      "description": "Function callback for when the popover positon changes"
+    }
+  },
+  "example": "<EuiPopover button=\"popover trigger\" isOpen>This is a popover</EuiPopover>"
+}

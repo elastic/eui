@@ -1,0 +1,89 @@
+{
+  "name": "EuiButtonGroup",
+  "description": "Toggle group of mutually exclusive (single) or multi-select button options.",
+  "category": "Navigation",
+  "import": "import { EuiButtonGroup } from '@elastic/eui';",
+  "props": {
+    "aria-label": {
+      "type": "string",
+      "required": false,
+      "description": "Defines a string value that labels the current element.\n@see aria-labelledby."
+    },
+    "isDisabled": {
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": "Controls the disabled behavior via the native `disabled` attribute."
+    },
+    "hasAriaDisabled": {
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": "NOTE: Beta feature, may be changed or removed in the future\n\nChanges the native `disabled` attribute to `aria-disabled` to preserve focusability.\nThis results in a semantically disabled button without the default browser handling of the disabled state.\n\nUse e.g. when a disabled button should have a tooltip."
+    },
+    "buttonSize": {
+      "type": "\"s\" | \"m\" | \"compressed\"",
+      "required": false,
+      "default": "s",
+      "description": "Typical sizing is `s`. Medium `m` size should be reserved for major features.\n`compressed` is meant to be used alongside and within compressed forms."
+    },
+    "isFullWidth": {
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": "Expands the whole group to the full width of the container.\nEach button gets equal widths no matter the content"
+    },
+    "isIconOnly": {
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": "Hides the label to only show the `iconType` provided by the `option`"
+    },
+    "legend": {
+      "type": "string",
+      "required": true,
+      "description": "A hidden group title (required for accessibility)"
+    },
+    "color": {
+      "type": "\"text\" | \"accent\" | \"accentSecondary\" | \"primary\" | \"success\" | \"warning\" | \"danger\"",
+      "required": false,
+      "default": "text",
+      "description": "Any of the named color palette options.\n\nDo not use the following colors for standalone buttons directly,\nthey exist to serve other components:\n - accent\n - warning"
+    },
+    "type": {
+      "type": "\"single\" | \"multi\"",
+      "required": false,
+      "default": "single",
+      "description": "Actual type is `'single' | 'multi'`.\nDetermines how the selection of the group should be handled.\nWith `'single'` only one option can be selected at a time (similar to radio group).\nWith `'multi'` multiple options selected (similar to checkbox group).\nDefault for `type` is single so it can also be excluded"
+    },
+    "options": {
+      "type": "EuiButtonGroupOptionProps[]",
+      "required": false,
+      "default": "[]",
+      "description": "An array of {@link EuiButtonGroupOptionProps}"
+    },
+    "name": {
+      "type": "string",
+      "required": false,
+      "description": "@deprecated No longer needed. You can safely remove this prop entirely\n@deprecated"
+    },
+    "idSelected": {
+      "type": "string",
+      "required": false,
+      "default": "",
+      "description": "Styles the selected option to look selected (usually with `fill`)\nRequired by and only used in `type='single'`."
+    },
+    "onChange": {
+      "type": "((id: string, value?: any) => void) | ((id: string) => void)",
+      "required": true,
+      "description": "Single: Returns the `id` of the clicked option and the `value`\nMulti: Returns the `id` of the clicked option"
+    },
+    "idToSelectedMap": {
+      "type": "{ [id: string]: boolean; }",
+      "required": false,
+      "default": "{}",
+      "description": "A map of `id`s as keys with the selected boolean values.\nRequired by and only used in `type='multi'`."
+    }
+  },
+  "example": "<EuiButtonGroup type=\"single\" buttonSize=\"s\" color=\"text\" />"
+}

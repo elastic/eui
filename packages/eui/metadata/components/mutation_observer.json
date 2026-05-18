@@ -1,0 +1,22 @@
+{
+  "name": "EuiMutationObserver",
+  "description": "",
+  "category": "Utilities",
+  "import": "import { EuiMutationObserver } from '@elastic/eui';",
+  "props": {
+    "children": {
+      "type": "(ref: (e: HTMLElement) => void) => ReactNode",
+      "required": true,
+      "description": "ReactNode to render as this component's content"
+    },
+    "onMutation": {
+      "type": "MutationCallback",
+      "required": true
+    },
+    "observerOptions": {
+      "type": "MutationObserverInit",
+      "required": false
+    }
+  },
+  "example": "<EuiMutationObserver />"
+}

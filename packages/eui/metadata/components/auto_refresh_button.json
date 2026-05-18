@@ -1,0 +1,99 @@
+{
+  "name": "EuiAutoRefreshButton",
+  "description": "",
+  "category": "Forms",
+  "import": "import { EuiAutoRefreshButton } from '@elastic/eui';",
+  "props": {
+    "isPaused": {
+      "type": "boolean",
+      "required": false,
+      "default": "true",
+      "description": "Is refresh paused or running."
+    },
+    "refreshInterval": {
+      "type": "number",
+      "required": false,
+      "default": "1000",
+      "description": "Refresh interval in milliseconds."
+    },
+    "minInterval": {
+      "type": "number",
+      "required": false,
+      "default": "0",
+      "description": "Allows specifying a minimum interval in milliseconds"
+    },
+    "intervalUnits": {
+      "type": "\"s\" | \"m\" | \"h\"",
+      "required": false,
+      "description": "By default, refresh interval units will be rounded up to next largest unit of time\n(for example, 90 seconds will become 2m).\n\nIf you do not want this behavior, you can manually control the rendered unit via this prop."
+    },
+    "onRefreshChange": {
+      "type": "ApplyRefreshInterval",
+      "required": true,
+      "description": "Passes back the updated state of `isPaused`, `refreshInterval`, and `intervalUnits`."
+    },
+    "isDisabled": {
+      "type": "boolean",
+      "required": false
+    },
+    "shortHand": {
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": "Reduces the time unit to a single letter"
+    },
+    "target": {
+      "type": "string",
+      "required": false
+    },
+    "rel": {
+      "type": "string",
+      "required": false
+    },
+    "hasAriaDisabled": {
+      "type": "boolean",
+      "required": false,
+      "description": "NOTE: Beta feature, may be changed or removed in the future\n\nChanges the native `disabled` attribute to `aria-disabled` to preserve focusability.\nThis results in a semantically disabled button without the default browser handling of the disabled state.\n\nUse e.g. when a disabled button should have a tooltip."
+    },
+    "size": {
+      "type": "\"s\" | \"xs\" | \"m\"",
+      "required": false,
+      "default": "s"
+    },
+    "color": {
+      "type": "\"text\" | \"accent\" | \"accentSecondary\" | \"primary\" | \"success\" | \"warning\" | \"danger\" | \"neutral\" | \"risk\"",
+      "required": false,
+      "default": "text",
+      "description": "Any of the named color palette options.\n\nDo not use the following colors for standalone buttons directly,\nthey exist to serve other components:\n - accent\n - warning\n - neutral\n - risk"
+    },
+    "isLoading": {
+      "type": "boolean",
+      "required": false,
+      "description": "Force disables the button and changes the icon to a loading spinner"
+    },
+    "textProps": {
+      "type": "false | (HTMLAttributes<HTMLSpanElement> & CommonProps & { ref?: Ref<HTMLSpanElement>; 'data-text'?: string; })",
+      "required": false,
+      "description": "Object of props passed to the `<span>` wrapping the content's text/children only (not icon)\n\nThis span wrapper can be removed by passing `textProps={false}`."
+    },
+    "contentProps": {
+      "type": "CommonProps & EuiButtonDisplayContentType",
+      "required": false,
+      "description": "Object of props passed to the `<span>` wrapping the button's content"
+    },
+    "href": {
+      "type": "string",
+      "required": false
+    },
+    "buttonRef": {
+      "type": "Ref<HTMLAnchorElement | HTMLButtonElement>",
+      "required": false
+    },
+    "flush": {
+      "type": "\"left\" | \"right\" | \"both\"",
+      "required": false,
+      "description": "Ensure the text of the button sits flush to the left, right, or both sides of its container"
+    }
+  },
+  "example": "<EuiAutoRefreshButton />"
+}

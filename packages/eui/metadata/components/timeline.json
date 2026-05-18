@@ -1,0 +1,26 @@
+{
+  "name": "EuiTimeline",
+  "description": "",
+  "category": "Display",
+  "import": "import { EuiTimeline } from '@elastic/eui';",
+  "props": {
+    "items": {
+      "type": "EuiTimelineItemProps[]",
+      "required": false,
+      "default": "[]",
+      "description": "List of timeline items to render. See {@link EuiTimelineItem}"
+    },
+    "gutterSize": {
+      "type": "\"m\" | \"l\" | \"xl\"",
+      "required": false,
+      "default": "xl",
+      "description": "Sets the size of the vertical space between each timeline item"
+    },
+    "aria-label": {
+      "type": "string",
+      "required": false,
+      "description": "Defines a string value that labels the current element.\n@see aria-labelledby."
+    }
+  },
+  "example": "<EuiTimeline icon=\"pencil\">Project renamed to \"Revenue Dashboard\".</EuiTimeline>"
+}

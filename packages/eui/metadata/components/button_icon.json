@@ -1,0 +1,85 @@
+{
+  "name": "EuiButtonIcon",
+  "description": "Icon-only button. Always requires an aria-label for accessibility.",
+  "category": "Navigation",
+  "import": "import { EuiButtonIcon } from '@elastic/eui';",
+  "props": {
+    "href": {
+      "type": "string",
+      "required": false
+    },
+    "type": {
+      "type": "string",
+      "required": false,
+      "default": "button"
+    },
+    "iconType": {
+      "type": "IconType",
+      "required": true
+    },
+    "color": {
+      "type": "\"text\" | \"accent\" | \"accentSecondary\" | \"primary\" | \"success\" | \"warning\" | \"danger\" | \"neutral\" | \"risk\"",
+      "required": false,
+      "default": "primary",
+      "description": "Any of the named color palette options.\n\nDo not use the following colors for standalone buttons directly,\nthey exist to serve other components:\n - accent\n - warning\n - neutral\n - risk"
+    },
+    "aria-label": {
+      "type": "string",
+      "required": false,
+      "description": "Defines a string value that labels the current element.\n@see aria-labelledby."
+    },
+    "aria-labelledby": {
+      "type": "string",
+      "required": false,
+      "description": "Identifies the element (or elements) that labels the current element.\n@see aria-describedby."
+    },
+    "size": {
+      "type": "\"s\" | \"xs\" | \"m\"",
+      "required": false,
+      "default": "xs",
+      "description": "Overall size of button.\nMatches the sizes of other EuiButtons"
+    },
+    "iconSize": {
+      "type": "\"s\" | \"m\" | \"l\" | \"xl\" | \"xxl\" | \"original\"",
+      "required": false,
+      "default": "m",
+      "description": "Size of the icon only.\nThis will not affect the overall size of the button"
+    },
+    "isSelected": {
+      "type": "boolean",
+      "required": false,
+      "description": "Applies the boolean state as the `aria-pressed` property to create a toggle button.\n*Only use when the readable text does not change between states.*"
+    },
+    "display": {
+      "type": "\"base\" | \"fill\" | \"empty\"",
+      "required": false,
+      "default": "empty",
+      "description": "Sets the display style for matching other EuiButton types.\n`base` is equivalent to a typical EuiButton\n`fill` is equivalent to a filled EuiButton\n`empty` (default) is equivalent to an EuiButtonEmpty"
+    },
+    "isLoading": {
+      "type": "boolean",
+      "required": false,
+      "description": "Disables the button and changes the icon to a loading spinner"
+    },
+    "isDisabled": {
+      "type": "boolean",
+      "required": false,
+      "description": "Controls the disabled behavior via the native `disabled` attribute."
+    },
+    "hasAriaDisabled": {
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": "NOTE: Beta feature, may be changed or removed in the future\n\nChanges the native `disabled` attribute to `aria-disabled` to preserve focusability.\nThis results in a semantically disabled button without the default browser handling of the disabled state.\n\nUse e.g. when a disabled button should have a tooltip."
+    },
+    "onClick": {
+      "type": "MouseEventHandler<HTMLAnchorElement> | MouseEventHandler<HTMLButtonElement>",
+      "required": false
+    },
+    "buttonRef": {
+      "type": "Ref<HTMLAnchorElement> | Ref<HTMLButtonElement>",
+      "required": false
+    }
+  },
+  "example": "<EuiButtonIcon color=\"primary\" display=\"empty\" size=\"xs\" iconSize=\"m\" iconType=\"faceHappy\" />"
+}

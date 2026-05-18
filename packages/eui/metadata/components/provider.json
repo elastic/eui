@@ -1,0 +1,48 @@
+{
+  "name": "EuiProvider",
+  "description": "",
+  "category": "Theming",
+  "import": "import { EuiProvider } from '@elastic/eui';",
+  "props": {
+    "theme": {
+      "type": "EuiThemeSystem",
+      "required": false,
+      "description": "Provide a specific EuiTheme; Defaults to EuiThemeBorealis;\nPass `null` to remove all theming including global reset"
+    },
+    "colorMode": {
+      "type": "EuiThemeColorMode",
+      "required": false,
+      "description": "Allows setting `light` or `dark` mode.\nDefaults to the user's OS/system setting if undefined."
+    },
+    "highContrastMode": {
+      "type": "boolean",
+      "required": false,
+      "description": "Allows enabling a high contrast mode preference for better accessibility.\nDefaults to the user's OS/system setting if undefined.\n\n-\n@see https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-contrast\n-\n@see https://developer.mozilla.org/en-US/docs/Web/CSS/@media/forced-colors (system only, supercedes this prop)"
+    },
+    "globalStyles": {
+      "type": "false | ((params: any) => Element)",
+      "required": false,
+      "description": "Provide global styles via `@emotion/react` `Global` for your custom theme.\nPass `false` to remove the default EUI global styles."
+    },
+    "utilityClasses": {
+      "type": "false | ((params: any) => Element)",
+      "required": false,
+      "description": "Provide utility classes.\nPass `false` to remove the default EUI utility classes."
+    },
+    "cache": {
+      "type": "EmotionCache | { default?: EmotionCache; global?: EmotionCache; utility?: EmotionCache; }",
+      "required": false,
+      "description": "Provide a cache configuration(s) from `@emotion/cache`.\n\n- `default` will encompass all Emotion styles, including consumer defined appliction styles, not handled by nested cache instances.\n- `global` will scope all EUI global and reset styles.\n- `utility` will scope all EUI utility class styles.\n\nA cache instance provided as the sole value will function the same as the `default` cache."
+    },
+    "componentDefaults": {
+      "type": "EuiComponentDefaults",
+      "required": false,
+      "description": "Allows configuring specified component defaults across all usages, overriding\nbaseline EUI component defaults.\n\nNot all components will be supported, and configurable component defaults\nwill be considered on a case-by-case basis.\n\nIndividual component prop usages will always override these defaults."
+    },
+    "modify": {
+      "type": "RecursivePartial<EuiThemeShapeBase & { overrides?: _EuiThemeOverrides; } & T>",
+      "required": false
+    }
+  },
+  "example": "<EuiProvider />"
+}

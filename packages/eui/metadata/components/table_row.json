@@ -1,0 +1,44 @@
+{
+  "name": "EuiTableRow",
+  "description": "",
+  "category": "Tabular Content",
+  "import": "import { EuiTableRow } from '@elastic/eui';",
+  "props": {
+    "aria-label": {
+      "type": "string",
+      "required": false,
+      "description": "Defines a string value that labels the current element.\n@see aria-labelledby."
+    },
+    "hasSelection": {
+      "type": "boolean",
+      "required": false,
+      "description": "Indicates if the table has a single column of checkboxes for selecting\nrows (used for mobile styling)"
+    },
+    "isSelectable": {
+      "type": "boolean",
+      "required": false,
+      "description": "Indicates that the current row's checkbox is selectable / not disabled"
+    },
+    "isSelected": {
+      "type": "boolean",
+      "required": false,
+      "description": "Indicates the current row has been selected"
+    },
+    "hasActions": {
+      "type": "boolean | \"custom\"",
+      "required": false,
+      "description": "Indicates if the table has a dedicated column for actions\n(used for mobile styling and desktop action hover behavior)"
+    },
+    "isExpandable": {
+      "type": "boolean",
+      "required": false,
+      "description": "Indicates if the row will have an expanded row"
+    },
+    "isExpandedRow": {
+      "type": "boolean",
+      "required": false,
+      "description": "Indicates if the row will be the expanded row"
+    }
+  },
+  "example": "<EuiTableRow />"
+}

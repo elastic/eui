@@ -1,0 +1,37 @@
+{
+  "name": "EuiContextMenu",
+  "description": "",
+  "category": "Navigation",
+  "import": "import { EuiContextMenu } from '@elastic/eui';",
+  "props": {
+    "size": {
+      "type": "\"s\" | \"m\"",
+      "required": false,
+      "description": "Alters the size of the items and the title"
+    },
+    "aria-label": {
+      "type": "string",
+      "required": false,
+      "description": "Defines a string value that labels the current element.\n@see aria-labelledby."
+    },
+    "panels": {
+      "type": "EuiContextMenuPanelDescriptor[]",
+      "required": false
+    },
+    "onPanelChange": {
+      "type": "(panelDetails: { panelId: EuiContextMenuPanelId; direction?: EuiContextMenuPanelTransitionDirection; }) => void",
+      "required": false,
+      "description": "Optional callback that fires on every panel change. Passes back\nthe new panel ID and whether its direction was `next` or `previous`."
+    },
+    "initialPanelId": {
+      "type": "EuiContextMenuPanelId",
+      "required": false
+    },
+    "ref": {
+      "type": "LegacyRef<unknown>",
+      "required": false,
+      "description": "Allows getting a ref to the component instance.\nOnce the component unmounts, React will set `ref.current` to `null`\n(or call the ref with `null` if you passed a callback ref).\n@see {@link https://react.dev/learn/referencing-values-with-refs#refs-and-the-dom React Docs}"
+    }
+  },
+  "example": "<EuiContextMenu initialPanelId={0} />"
+}

@@ -1,0 +1,39 @@
+{
+  "name": "EuiHeaderBreadcrumbs",
+  "description": "Breadcrumbs variant styled for use inside EuiHeader.",
+  "category": "Layout",
+  "import": "import { EuiHeaderBreadcrumbs } from '@elastic/eui';",
+  "props": {
+    "responsive": {
+      "type": "boolean | EuiBreadcrumbResponsiveMaxCount",
+      "required": false,
+      "description": "Hides extra (above the max) breadcrumbs under a collapsed item as the window gets smaller.\nPass a custom {@link EuiBreadcrumbResponsiveMaxCount} object to change the number of breadcrumbs to show at the particular breakpoints.\n\nPass `false` to turn this behavior off.\n\nDefault: `{ xs: 1, s: 2, m: 4 }`"
+    },
+    "truncate": {
+      "type": "boolean",
+      "required": false,
+      "description": "Forces all breadcrumbs to single line and\ntruncates each breadcrumb to a particular width,\nexcept for the last item"
+    },
+    "max": {
+      "type": "number",
+      "required": false,
+      "description": "Collapses the inner items past the maximum set here\ninto a single ellipses item.\nOmitting or passing a `0` value will show all breadcrumbs."
+    },
+    "breadcrumbs": {
+      "type": "EuiBreadcrumbProps[]",
+      "required": true,
+      "description": "The array of individual {@link EuiBreadcrumb } items"
+    },
+    "type": {
+      "type": "\"page\" | \"application\"",
+      "required": false,
+      "description": "Determines breadcrumbs appearance, with `page` being the default styling.\nApplication breadcrumbs should only be once per page, in (e.g.) EuiHeader"
+    },
+    "lastBreadcrumbIsCurrentPage": {
+      "type": "boolean",
+      "required": false,
+      "description": "Whether the last breadcrumb should be semantically highlighted as the\ncurrent page. (improves accessibility for screen readers users)\nDefaults to true."
+    }
+  },
+  "example": "<EuiHeaderBreadcrumbs max={4} truncate xs={1} s={2} m={4} text=\"Breadcrumb 1\" href=\"#\" />"
+}

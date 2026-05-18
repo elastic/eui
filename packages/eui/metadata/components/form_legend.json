@@ -1,0 +1,29 @@
+{
+  "name": "EuiFormLegend",
+  "description": "",
+  "category": "Forms",
+  "import": "import { EuiFormLegend } from '@elastic/eui';",
+  "props": {
+    "aria-label": {
+      "type": "string",
+      "required": false,
+      "description": "Defines a string value that labels the current element.\n@see aria-labelledby."
+    },
+    "children": {
+      "type": "ReactNode",
+      "required": false,
+      "description": "ReactNode to render as this component's content"
+    },
+    "display": {
+      "type": "\"hidden\" | \"visible\"",
+      "required": false,
+      "default": "visible",
+      "description": "For a hidden legend that is still visible to the screen reader, set to 'hidden'"
+    },
+    "compressed": {
+      "type": "boolean",
+      "required": false
+    }
+  },
+  "example": "<EuiFormLegend>form legend</EuiFormLegend>"
+}

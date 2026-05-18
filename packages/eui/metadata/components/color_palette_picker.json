@@ -1,0 +1,101 @@
+{
+  "name": "EuiColorPalettePicker",
+  "description": "",
+  "category": "Forms",
+  "import": "import { EuiColorPalettePicker } from '@elastic/eui';",
+  "props": {
+    "append": {
+      "type": "PrependAppendType",
+      "required": false,
+      "description": "Creates an input group with element(s) coming after input.\n`string` | `ReactElement` or an array of these"
+    },
+    "prepend": {
+      "type": "PrependAppendType",
+      "required": false,
+      "description": "Creates an input group with element(s) coming before input.\n`string` | `ReactElement` or an array of these"
+    },
+    "name": {
+      "type": "string",
+      "required": false
+    },
+    "isLoading": {
+      "type": "boolean",
+      "required": false,
+      "default": "false"
+    },
+    "fullWidth": {
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": "Expand to fill 100% of the parent.\nDefaults to `fullWidth` prop of `<EuiForm>`."
+    },
+    "onFocus": {
+      "type": "(event?: FocusEvent<Element, Element>) => void",
+      "required": false
+    },
+    "onBlur": {
+      "type": "(event?: FocusEvent<Element, Element>) => void",
+      "required": false
+    },
+    "onChange": {
+      "type": "(value: string) => void",
+      "required": false,
+      "description": "You must pass an `onChange` function to handle the update of the value"
+    },
+    "buttonRef": {
+      "type": "Ref<HTMLButtonElement>",
+      "required": false
+    },
+    "readOnly": {
+      "type": "boolean",
+      "required": false,
+      "default": "false"
+    },
+    "compressed": {
+      "type": "boolean",
+      "required": false,
+      "default": "false"
+    },
+    "placeholder": {
+      "type": "ReactNode",
+      "required": false,
+      "description": "Placeholder to display when the current selected value is empty."
+    },
+    "isOpen": {
+      "type": "boolean",
+      "required": false,
+      "description": "Controls whether the options are shown. Default: false"
+    },
+    "isInvalid": {
+      "type": "boolean",
+      "required": false,
+      "default": "false"
+    },
+    "valueOfSelected": {
+      "type": "string",
+      "required": false
+    },
+    "itemClassName": {
+      "type": "string",
+      "required": false,
+      "description": "Classes for the context menu item"
+    },
+    "popoverProps": {
+      "type": "Partial<CommonProps & Omit<EuiInputPopoverProps, \"isOpen\">>",
+      "required": false,
+      "description": "Optional props to pass to the underlying [EuiInputPopover](/#/layout/popover#popover-attached-to-input-element).\nAllows fine-grained control of the popover dropdown menu, including\n`repositionOnScroll` for EuiSuperSelects used within scrollable containers,\nand customizing popover panel styling.\n\nDoes not accept a nested `popoverProps.isOpen` property - use the top level\n`isOpen` API instead."
+    },
+    "selectionDisplay": {
+      "type": "\"title\" | \"palette\"",
+      "required": false,
+      "default": "palette",
+      "description": "Specify what should be displayed after a selection: a `palette` or `title`"
+    },
+    "palettes": {
+      "type": "EuiColorPalettePickerPaletteProps[]",
+      "required": true,
+      "description": "An array of one of the following objects: {@link EuiColorPalettePickerPaletteText }, {@link EuiColorPalettePickerPaletteFixed }, {@link EuiColorPalettePickerPaletteGradient }"
+    }
+  },
+  "example": "<EuiColorPalettePicker selectionDisplay=\"palette\" valueOfSelected=\"palette1\" />"
+}

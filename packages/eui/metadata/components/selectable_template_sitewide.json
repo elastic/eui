@@ -1,0 +1,141 @@
+{
+  "name": "EuiSelectableTemplateSitewide",
+  "description": "",
+  "category": "Templates",
+  "import": "import { EuiSelectableTemplateSitewide } from '@elastic/eui';",
+  "props": {
+    "children": {
+      "type": "(list: ReactElement<typeof EuiSelectableList | FunctionComponent<EuiSelectableMessageProps>, string | JSXElementConstructor<any>>, search: ReactElement<...>) => ReactNode",
+      "required": false,
+      "description": "Function that takes the `list` node and then\nthe `search` node (if `searchable` is applied)"
+    },
+    "height": {
+      "type": "number | \"full\"",
+      "required": false,
+      "description": "Sets the max height in pixels or pass `full` to allow\nthe whole group to fill the height of its container and\nallows the list grow as well"
+    },
+    "isLoading": {
+      "type": "boolean",
+      "required": false,
+      "description": "Show an loading indicator while you load and hook up your data"
+    },
+    "aria-label": {
+      "type": "string",
+      "required": false,
+      "description": "Defines a string value that labels the current element.\n@see aria-labelledby."
+    },
+    "onChange": {
+      "type": "(options: ((DisambiguateSet<EuiSelectableGroupLabelOption<{ [key: string]: any; }>, EuiSelectableLIOption<{ [key: string]: any; }>> & CommonProps & { ...; } & HTMLAttributes<...> & { ...; }) | (DisambiguateSet<...> & ... 3 more ... & { ...; }))[], event: EuiSelectableOnChangeEvent, changedOption: (DisambiguateSet<.....",
+      "required": false,
+      "description": "Passes back the altered `options` array with selected options having `checked: 'on'`.\nAlso passes back the React click/keyboard event as a second argument,\nand the option that triggered the onChange event as a third argument."
+    },
+    "renderOption": {
+      "type": "(option: (DisambiguateSet<EuiSelectableGroupLabelOption<{ [key: string]: any; }>, EuiSelectableLIOption<{ [key: string]: any; }>> & CommonProps & { ...; } & HTMLAttributes<...> & { ...; }) | (DisambiguateSet<...> & ... 3 more ... & { ...; }), searchValue: string) => ReactNode",
+      "required": false,
+      "description": "Custom render function for each option.\nReturns `(option, searchValue)`"
+    },
+    "singleSelection": {
+      "type": "boolean | \"always\"",
+      "required": false,
+      "description": "Sets the single selection policy of\n`false`: allows multiple selection\n`true`: only allows one selection\n`always`: can and must have only one selection"
+    },
+    "optionMatcher": {
+      "type": "EuiSelectableOptionMatcher<{ [key: string]: any; }>",
+      "required": false,
+      "description": "Optional custom option matcher function\n@example const exactEqualityMatcher: EuiSelectableOptionMatcher = ({ option, searchValue }) => {\n  return option.label === searchValue;\n}"
+    },
+    "searchable": {
+      "type": "boolean",
+      "required": false,
+      "description": "Hooks up a search box to filter the list (boolean)"
+    },
+    "searchProps": {
+      "type": "Partial<EuiSelectableSearchProps<{ [key: string]: any; }>>",
+      "required": false,
+      "description": "Passes props down to the `EuiFieldSearch`.\n{@link EuiSelectableSearchProps}"
+    },
+    "onActiveOptionChange": {
+      "type": "(option: (DisambiguateSet<EuiSelectableGroupLabelOption<{}>, EuiSelectableLIOption<{}>> & CommonProps & { ...; } & HTMLAttributes<...>) | (DisambiguateSet<...> & ... 2 more ... & { ...; })) => void",
+      "required": false,
+      "description": "Passes back the current active option whenever the user changes the currently\nhighlighted option via keyboard navigation or searching."
+    },
+    "allowExclusions": {
+      "type": "boolean",
+      "required": false,
+      "description": "Allows marking options as `checked='off'` as well as `'on'`"
+    },
+    "listProps": {
+      "type": "EuiSelectableOptionsListPropsWithDefaults",
+      "required": false,
+      "description": "See {@link EuiSelectableOptionsListPropsWithDefaults}"
+    },
+    "loadingMessage": {
+      "type": "string | ReactElement",
+      "required": false,
+      "description": "Customize the loading message. Pass a string to simply change the text,\nor a node to replace the whole content."
+    },
+    "noMatchesMessage": {
+      "type": "string | ReactElement",
+      "required": false,
+      "description": "Customize the no matches message. Pass a string to simply change the text,\nor a node to replace the whole content."
+    },
+    "emptyMessage": {
+      "type": "string | ReactElement",
+      "required": false,
+      "description": "Customize the empty message. Pass a string to simply change the text,\nor a node to replace the whole content."
+    },
+    "errorMessage": {
+      "type": "string | ReactElement",
+      "required": false,
+      "description": "Add an error message.\nThe message will be shown when the value is not `null` or `undefined`.\nPass a string to simply change the text, or a node to replace the whole content.\n\n`errorMessage={hasErrors ? 'My error message' : null}`"
+    },
+    "isPreFiltered": {
+      "type": "boolean | { highlightSearch?: boolean; }",
+      "required": false,
+      "default": "false",
+      "description": "Control whether or not options get filtered internally (i.e., whether filtering is\nhandled by EUI or by you, the consumer).\nIf set to `true`, all passed `options` will be displayed regardless of the user's\nsearch input.\n\nAdditionally allows passing a configuration object which enables turning off\nsearch highlighting if needed."
+    },
+    "selectableScreenReaderText": {
+      "type": "string",
+      "required": false,
+      "description": "Optional screen reader instructions to announce upon focus/interaction. This text is read out\nafter the `EuiSelectable` label and a brief pause, but before the default keyboard instructions for\ninteracting with a selectable are read out."
+    },
+    "options": {
+      "type": "EuiSelectableTemplateSitewideOption[]",
+      "required": true,
+      "description": "Extends the typical EuiSelectable {@link EuiSelectableTemplateSitewideOption} with the addition of pre-composed elements\nsuch as `icon`, `avatar` and `meta`"
+    },
+    "popoverProps": {
+      "type": "Partial<Props> & { width?: Width<string | number>; }",
+      "required": false,
+      "description": "Override some of the EuiPopover props housing the list.\nThe default width is `600`"
+    },
+    "popoverTitle": {
+      "type": "ReactNode",
+      "required": false,
+      "description": "Optionally provide a title for the popover"
+    },
+    "popoverFooter": {
+      "type": "ReactNode",
+      "required": false,
+      "description": "Optionally provide a footer for the popover"
+    },
+    "popoverButton": {
+      "type": "ReactElement",
+      "required": false,
+      "description": "Optionally provide a separate button for toggling the display of the popover."
+    },
+    "popoverButtonBreakpoints": {
+      "type": "string[]",
+      "required": false,
+      "description": "Pass an array of named breakpoints for which to show the `popoverButton`.\nIf `undefined`, the `popoverButton` will always show (if provided)"
+    },
+    "colorModes": {
+      "type": "{ search: EuiSelectableTemplateSitewideTheme; popover: EuiSelectableTemplateSitewideTheme; }",
+      "required": false,
+      "default": "{ search: 'default', popover: 'default' }",
+      "description": "Manually sets the color mode for the search input and popover. It supports the common `colorMode`\nvalues: `light`, `dark`, `inverse` and additionally `default` and `global`.\n\n`default` applies the local (nearest) context `colorMode`.\n`global` applies the global context `colorMode`"
+    }
+  },
+  "example": "<EuiSelectableTemplateSitewide />"
+}

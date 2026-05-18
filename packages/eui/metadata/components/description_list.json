@@ -1,0 +1,68 @@
+{
+  "name": "EuiDescriptionList",
+  "description": "Key-value pair list for displaying metadata or entity attributes.",
+  "category": "Display",
+  "import": "import { EuiDescriptionList } from '@elastic/eui';",
+  "props": {
+    "aria-label": {
+      "type": "string",
+      "required": false,
+      "description": "Defines a string value that labels the current element.\n@see aria-labelledby."
+    },
+    "listItems": {
+      "type": "{ title: NonNullable<ReactNode>; description: NonNullable<ReactNode>; }[]",
+      "required": false
+    },
+    "align": {
+      "type": "\"center\" | \"left\"",
+      "required": false,
+      "default": "left",
+      "description": "Text alignment"
+    },
+    "compressed": {
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": "Smaller text and condensed spacing"
+    },
+    "textStyle": {
+      "type": "\"reverse\" | \"normal\"",
+      "required": false,
+      "default": "normal",
+      "description": "How should the content be styled, by default\nthis will emphasize the title"
+    },
+    "type": {
+      "type": "\"inline\" | \"column\" | \"row\" | \"responsiveColumn\"",
+      "required": false,
+      "description": "How each item should be laid out"
+    },
+    "titleProps": {
+      "type": "HTMLAttributes<HTMLElement> & CommonProps",
+      "required": false,
+      "description": "Props object to be passed to `EuiDescriptionListTitle`"
+    },
+    "descriptionProps": {
+      "type": "HTMLAttributes<HTMLElement> & CommonProps",
+      "required": false,
+      "description": "Props object to be passed to `EuiDescriptionListDescription`"
+    },
+    "rowGutterSize": {
+      "type": "\"s\" | \"m\"",
+      "required": false,
+      "default": "s",
+      "description": "Allows customizing the vertical spacing between rows."
+    },
+    "columnGutterSize": {
+      "type": "\"s\" | \"m\"",
+      "required": false,
+      "default": "s",
+      "description": "Allows customizing the horizontal spacing between columns.\n\nOnly applies to `column` and `responsiveColumn` types."
+    },
+    "columnWidths": {
+      "type": "[string | number, string | number]",
+      "required": false,
+      "description": "Allows customizing specific column widths (e.g. `['100px', '200px']`). The first\narray value applies to the title column, and the second applies to the description column.\n\nPassing numbers instead of CSS width strings will use a ratio of widths.\nFor example, [1, 3] will render a description column 3x the width of the title column.\nIn other words, descriptions will have a width of `75%` and titles will have a width of `25%`.\n\nOnly applies to `column` and `responsiveColumn` types.\n\n_Advanced usage note:_ column width strings also accept [CSS grid special units,\nsizing, keywords, and sizing functions](https://css-tricks.com/snippets/css/complete-guide-grid/#aa-special-units-functions)."
+    }
+  },
+  "example": "<EuiDescriptionList />"
+}

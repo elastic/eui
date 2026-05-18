@@ -1,0 +1,46 @@
+{
+  "name": "EuiStep",
+  "description": "",
+  "category": "Navigation",
+  "import": "import { EuiStep } from '@elastic/eui';",
+  "props": {
+    "aria-label": {
+      "type": "string",
+      "required": false,
+      "description": "Defines a string value that labels the current element.\n@see aria-labelledby."
+    },
+    "children": {
+      "type": "ReactNode",
+      "required": false,
+      "description": "ReactNode to render as this component's content"
+    },
+    "headingElement": {
+      "type": "string",
+      "required": false,
+      "default": "p",
+      "description": "The HTML tag used for the title"
+    },
+    "step": {
+      "type": "number",
+      "required": false,
+      "default": "1",
+      "description": "The number of the step in the list of steps"
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "status": {
+      "type": "\"disabled\" | \"warning\" | \"danger\" | \"loading\" | \"current\" | \"incomplete\" | \"complete\"",
+      "required": false,
+      "description": "May replace the number provided in props.step with alternate styling."
+    },
+    "titleSize": {
+      "type": "\"s\" | \"xs\" | \"m\" | \"xxs\"",
+      "required": false,
+      "default": "s",
+      "description": "Title sizing equivalent to **EuiTitle**, but only `m`, `s`, `xs` font sizes.\nThe `xxs` size reduces the size of the accompanying step indicator, but not the title itself."
+    }
+  },
+  "example": "<EuiStep title=\"Step 1\">lorem ipsum</EuiStep>"
+}
