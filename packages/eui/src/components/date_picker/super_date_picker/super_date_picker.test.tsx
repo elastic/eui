@@ -491,7 +491,7 @@ describe('EuiSuperDatePicker', () => {
           <EuiSuperDatePicker
             {...props}
             start="10/01/2024"
-            minDate={moment('10/01/2024', 'DD/MM/YYYY', true)}
+            minDate={moment('10/01/2024')}
           />
         );
 
