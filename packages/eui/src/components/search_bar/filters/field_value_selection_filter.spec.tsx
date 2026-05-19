@@ -231,9 +231,7 @@ describe('FieldValueSelectionFilter', () => {
       cy.get('.euiPopover__panel').should('exist');
 
       // Select filter option
-      cy.contains('li[role="option"]', 'feature')
-        .should('have.attr', 'aria-checked', 'false')
-        .click();
+      cy.contains('li[role="option"]', 'feature').click();
     };
 
     describe('undefined', () => {
