@@ -141,6 +141,7 @@ export const EuiDatePopoverButton: FunctionComponent<
     <EuiToolTip
       content={title}
       display="block"
+      disableScreenReaderOutput={!isInvalid && !needsUpdating}
       anchorProps={{
         css: css`
           block-size: 100%;
