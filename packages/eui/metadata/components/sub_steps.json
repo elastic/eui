@@ -1,7 +1,7 @@
 {
   "name": "EuiSubSteps",
   "description": "Nested sub-steps inside an EuiSteps item.",
-  "visualDescription": "",
+  "visualDescription": "A compact nested list of sub-items indented inside an EuiSteps step body. Appears as a tighter, lower-prominence stack of numbered or bulleted items below a step's title. No circular badge — uses plain numbering or bullets. NOT a top-level EuiSteps list.",
   "category": "Navigation",
   "import": "import { EuiSubSteps } from '@elastic/eui';",
   "props": {

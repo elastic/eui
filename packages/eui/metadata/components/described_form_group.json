@@ -1,7 +1,7 @@
 {
   "name": "EuiDescribedFormGroup",
   "description": "",
-  "visualDescription": "",
+  "visualDescription": "A two-column form layout: the left column holds a title and descriptive text rendered in a smaller subdued style; the right column holds one or more EuiFormRow fields. On mobile the columns collapse to a single stack. NOT EuiFormRow (EuiDescribedFormGroup adds the description column alongside the input).",
   "category": "Forms",
   "import": "import { EuiDescribedFormGroup } from '@elastic/eui';",
   "props": {

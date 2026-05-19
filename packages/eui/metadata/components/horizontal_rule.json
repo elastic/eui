@@ -1,7 +1,7 @@
 {
   "name": "EuiHorizontalRule",
   "description": "Visual divider line. Use instead of raw <hr>.",
-  "visualDescription": "",
+  "visualDescription": "A thin horizontal line (1px) spanning the full width of its container (or quarter / half width via the size prop). Provides visual separation between sections. Has consistent top and bottom margin (vertical whitespace). NOT EuiSpacer (EuiSpacer is invisible whitespace; EuiHorizontalRule is a visible line).",
   "category": "Layout",
   "import": "import { EuiHorizontalRule } from '@elastic/eui';",
   "props": {

@@ -1,7 +1,7 @@
 {
   "name": "EuiFilterButton",
   "description": "",
-  "visualDescription": "",
+  "visualDescription": "A bordered button styled for use inside a filter bar. It shows a text label and optionally a small numericNotificationBadge indicating how many items match the active filter. An active state changes the button's background. NOT EuiFacetButton (EuiFilterButton lives inside EuiFilterGroup sharing borders; EuiFacetButton is a standalone list item).",
   "category": "Forms",
   "import": "import { EuiFilterButton } from '@elastic/eui';",
   "props": {

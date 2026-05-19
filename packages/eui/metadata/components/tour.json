@@ -1,7 +1,7 @@
 {
   "name": "EuiTour",
   "description": "Multi-step guided product tour anchored to specific elements.",
-  "visualDescription": "",
+  "visualDescription": "An annotating popover panel anchored to a highlighted UI element. Similar in shape to EuiPopover but has an additional header with a step counter (\"Step 1 of 5\"), a subtitle, a title, body content, and a footer row with navigation buttons (End tour / Next). A beacon or highlight outline may appear around the anchor element. NOT a plain EuiPopover (EuiTour includes the step counter and navigation footer).",
   "category": "Display",
   "import": "import { EuiTour } from '@elastic/eui';",
   "props": {

@@ -1,7 +1,7 @@
 {
   "name": "EuiSkeletonRectangle",
   "description": "Placeholder skeleton rectangle shown while content is loading.",
-  "visualDescription": "",
+  "visualDescription": "A single rectangular grey placeholder block with a shimmer animation, used to represent a loading image, chart, or UI block. Width and height are configurable. Has slightly rounded corners by default. NOT EuiSkeletonText (which is multiple thin lines). NOT EuiPanel (which is a visible content container, not a loading placeholder).",
   "category": "Display",
   "import": "import { EuiSkeletonRectangle } from '@elastic/eui';",
   "props": {

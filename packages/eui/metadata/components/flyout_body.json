@@ -1,7 +1,7 @@
 {
   "name": "EuiFlyoutBody",
   "description": "Scrollable body region inside an EuiFlyout.",
-  "visualDescription": "",
+  "visualDescription": "The scrollable content region inside an EuiFlyout. Fills the space between the flyout header and footer. Has internal padding and a scroll indicator when content overflows. Not independently identifiable outside of an EuiFlyout context.",
   "category": "Layout",
   "import": "import { EuiFlyoutBody } from '@elastic/eui';",
   "props": {

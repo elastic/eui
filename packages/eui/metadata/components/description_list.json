@@ -1,7 +1,7 @@
 {
   "name": "EuiDescriptionList",
   "description": "Key-value pair list for displaying metadata or entity attributes.",
-  "visualDescription": "",
+  "visualDescription": "A key-value pair list. Each entry shows a bold or emphasized term (the title) followed by its value (the description). Default layout stacks title above description vertically; column variant places them side by side with the title on the left in a narrower column. NOT a bullet list (no list markers). NOT EuiFormRow (not a form input).",
   "category": "Display",
   "import": "import { EuiDescriptionList } from '@elastic/eui';",
   "props": {

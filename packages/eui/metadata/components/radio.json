@@ -1,7 +1,7 @@
 {
   "name": "EuiRadio",
   "description": "Single radio button. Use EuiRadioGroup for a related set.",
-  "visualDescription": "",
+  "visualDescription": "A circular radio button input (~16px diameter) with a visible ring border. When selected, shows a filled primary-color dot inside the ring. Accompanied by a text label to its right. NOT EuiCheckbox (circular vs square). NOT EuiSwitch (radio is a small circle, switch is a pill-shaped toggle).",
   "category": "Forms",
   "import": "import { EuiRadio } from '@elastic/eui';",
   "props": {

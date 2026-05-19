@@ -1,7 +1,7 @@
 {
   "name": "EuiPagination",
   "description": "Page navigation control for paginated data sets.",
-  "visualDescription": "",
+  "visualDescription": "A horizontal row of numbered page buttons with prev (‹) and next (›) arrow buttons on the ends. The active page number has a filled circular or rectangular background. Shows ellipsis (…) when the total page count is large and intermediate pages are collapsed. NOT EuiSteps (pagination is for navigation between data pages, not a sequential workflow indicator).",
   "category": "Navigation",
   "import": "import { EuiPagination } from '@elastic/eui';",
   "props": {

@@ -1,7 +1,7 @@
 {
   "name": "EuiTreeView",
   "description": "Collapsible tree structure for hierarchical data.",
-  "visualDescription": "",
+  "visualDescription": "A hierarchical list with expand/collapse toggle icons. Each node row shows an optional leading icon (folder/file glyph), a text label, and a right-pointing chevron that rotates down when the node is expanded. Child nodes are indented relative to their parent. NOT EuiSideNav (EuiTreeView is for data hierarchies like file trees; EuiSideNav is for app page navigation). NOT EuiAccordion (EuiTreeView supports unlimited nesting and uses tree-specific icons).",
   "category": "Navigation",
   "import": "import { EuiTreeView } from '@elastic/eui';",
   "props": {

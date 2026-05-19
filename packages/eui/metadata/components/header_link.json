@@ -1,7 +1,7 @@
 {
   "name": "EuiHeaderLink",
   "description": "Navigation link styled for use inside EuiHeader.",
-  "visualDescription": "",
+  "visualDescription": "A text link or label styled to fit inside the EuiHeader bar — same height as the header, horizontally padded, and with the header's text color. Appears as a clickable navigation label in the header. NOT EuiLink (which is an inline text link within body content).",
   "category": "Layout",
   "import": "import { EuiHeaderLink } from '@elastic/eui';",
   "props": {

@@ -1,7 +1,7 @@
 {
   "name": "EuiInlineEditText",
   "description": "",
-  "visualDescription": "",
+  "visualDescription": "A piece of body text that, when clicked, transitions into an inline text input field with Save and Cancel icon buttons appearing to its right. In read mode it looks like regular EuiText. In edit mode it looks like EuiFieldText with two action icons. NOT EuiFieldText alone.",
   "category": "Forms",
   "import": "import { EuiInlineEditText } from '@elastic/eui';",
   "props": {

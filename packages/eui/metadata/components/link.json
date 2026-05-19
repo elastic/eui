@@ -1,7 +1,7 @@
 {
   "name": "EuiLink",
   "description": "Anchor or button styled as a hyperlink.",
-  "visualDescription": "",
+  "visualDescription": "Inline text styled as a hyperlink — primary blue color, underlined on hover. Renders as an anchor (<a>) or a button depending on whether href or onClick is provided. When external, adds a small external-link icon (↗) after the text. NOT EuiButton (no bounding box). NOT EuiButtonEmpty (EuiLink is inline within text, not a standalone control).",
   "category": "Navigation",
   "import": "import { EuiLink } from '@elastic/eui';",
   "props": {

@@ -1,7 +1,7 @@
 {
   "name": "EuiNotificationBadge",
   "description": "",
-  "visualDescription": "",
+  "visualDescription": "A very small (~18px) filled circle or rounded pill containing a bold number. Default color is accent (red-ish); also available in success and subdued. Typically overlaid on or placed adjacent to a button to show a count of notifications or active filters. NOT EuiBadge (EuiNotificationBadge is a compact numeric-only indicator; EuiBadge is a wider text/label tag).",
   "category": "Display",
   "import": "import { EuiNotificationBadge } from '@elastic/eui';",
   "props": {

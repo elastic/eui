@@ -1,7 +1,7 @@
 {
   "name": "EuiFlyoutFooter",
   "description": "Sticky footer region inside an EuiFlyout, typically for action buttons.",
-  "visualDescription": "",
+  "visualDescription": "A sticky bar at the bottom of an EuiFlyout panel, visually separated from the scrollable body above by a thin top border. Contains action buttons (e.g. Save, Cancel) aligned left or right. Similar in appearance to EuiBottomBar but scoped inside a flyout.",
   "category": "Layout",
   "import": "import { EuiFlyoutFooter } from '@elastic/eui';",
   "props": {

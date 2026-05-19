@@ -1,7 +1,7 @@
 {
   "name": "EuiSwitch",
   "description": "Toggle switch for boolean on/off settings.",
-  "visualDescription": "",
+  "visualDescription": "A pill-shaped toggle control (~40px wide, ~20px tall). Has a circular thumb that slides left (off, grey background) or right (on, primary color background). Accompanied by a text label to the right. NOT EuiCheckbox (switch is pill-shaped; checkbox is square). NOT a radio button.",
   "category": "Forms",
   "import": "import { EuiSwitch } from '@elastic/eui';",
   "props": {

@@ -1,7 +1,7 @@
 {
   "name": "EuiHeaderSectionItem",
   "description": "Individual section item within the EuiHeader.",
-  "visualDescription": "",
+  "visualDescription": "An individual cell within the left or right section of EuiHeader. Vertically centers its child (logo, icon button, avatar, etc.) within the header height. Has no visible border or background of its own. Identifies as a flex item in the header bar.",
   "category": "Layout",
   "import": "import { EuiHeaderSectionItem } from '@elastic/eui';",
   "props": {

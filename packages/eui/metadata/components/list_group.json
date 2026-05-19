@@ -1,7 +1,7 @@
 {
   "name": "EuiListGroup",
   "description": "Vertical list of action items or links.",
-  "visualDescription": "",
+  "visualDescription": "A vertical list of action items or links, each in a full-width row with consistent padding. Items may include a leading icon, a text label, and optional trailing action icon buttons. With `bordered=true`, each item has a visible border, creating a bordered list card. NOT EuiSideNav (EuiListGroup has no nesting/tree structure). NOT a description list.",
   "category": "Display",
   "import": "import { EuiListGroup } from '@elastic/eui';",
   "props": {

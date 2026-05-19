@@ -1,7 +1,7 @@
 {
   "name": "EuiPopover",
   "description": "Anchored floating panel for contextual menus or content.",
-  "visualDescription": "",
+  "visualDescription": "A floating panel that appears anchored to a trigger element (button, link, icon). Has a white or themed background, subtle border and shadow, rounded corners, and a small directional arrow pointing to the trigger. The panel can appear above, below, or to the sides of the trigger. NOT EuiToolTip (tooltip is smaller, text-only, appears on hover/focus; popover is triggered by click and can contain rich interactive content).",
   "category": "Layout",
   "import": "import { EuiPopover } from '@elastic/eui';",
   "props": {

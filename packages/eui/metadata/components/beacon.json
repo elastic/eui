@@ -1,7 +1,7 @@
 {
   "name": "EuiBeacon",
   "description": "",
-  "visualDescription": "",
+  "visualDescription": "A small pulsing circle (~8–12px) used as a visual attention indicator or \"live\" dot, similar to a notification dot. It animates with a ripple/pulse effect. Color is typically success-green or accent. NOT EuiHealth (EuiBeacon pulsates; EuiHealth is a static dot).",
   "category": "Utilities",
   "import": "import { EuiBeacon } from '@elastic/eui';",
   "props": {

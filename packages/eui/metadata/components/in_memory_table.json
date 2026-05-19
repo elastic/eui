@@ -1,7 +1,7 @@
 {
   "name": "EuiInMemoryTable",
   "description": "Data table with built-in client-side search, sort, and pagination.",
-  "visualDescription": "",
+  "visualDescription": "Visually identical to EuiBasicTable — a data table with a header row, sortable column labels, and paginated rows. May additionally show a built-in EuiFieldSearch above the table for client-side filtering. The distinction from EuiBasicTable is invisible in a screenshot; both look the same. The search input above the table is a hint it may be EuiInMemoryTable.",
   "category": "Tabular Content",
   "import": "import { EuiInMemoryTable } from '@elastic/eui';",
   "props": {

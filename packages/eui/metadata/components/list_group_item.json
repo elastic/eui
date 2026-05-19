@@ -1,7 +1,7 @@
 {
   "name": "EuiListGroupItem",
   "description": "Individual item within EuiListGroup.",
-  "visualDescription": "",
+  "visualDescription": "A single row item within EuiListGroup. Full-width with horizontal padding. Contains an optional left icon, a text label (primary color when active), and optional right-side extra action buttons. The active item has a highlighted or bold label. Hover shows a light grey background.",
   "category": "Display",
   "import": "import { EuiListGroupItem } from '@elastic/eui';",
   "props": {

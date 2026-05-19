@@ -1,7 +1,7 @@
 {
   "name": "EuiLoadingElastic",
   "description": "Animated Elastic logo loading indicator.",
-  "visualDescription": "",
+  "visualDescription": "An animated version of the Elastic \"E\" logo mark used as a full-page or large-panel loading indicator. The logo pulses or animates in the brand color. Larger than EuiLoadingSpinner (typically 40–64px). NOT EuiLoadingSpinner (which is a plain circular ring). NOT EuiIcon (EuiLoadingElastic is animated).",
   "category": "Display",
   "import": "import { EuiLoadingElastic } from '@elastic/eui';",
   "props": {

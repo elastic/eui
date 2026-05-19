@@ -1,7 +1,7 @@
 {
   "name": "EuiFilePicker",
   "description": "File upload input.",
-  "visualDescription": "",
+  "visualDescription": "A file upload input area. In its large (default) variant it shows a rectangular dashed-border drop zone with an upload icon and a \"Select or drag and drop\" text prompt. In the compressed variant it renders as a standard button-like input that says \"No file selected\" or shows the chosen file name. NOT EuiFieldText (has drag-and-drop affordance).",
   "category": "Forms",
   "import": "import { EuiFilePicker } from '@elastic/eui';",
   "props": {

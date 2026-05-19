@@ -1,7 +1,7 @@
 {
   "name": "EuiKeyPadMenuItem",
   "description": "Individual item within EuiKeyPadMenu.",
-  "visualDescription": "",
+  "visualDescription": "A single square or rectangular tile with a large centered icon (~32px) above a short text label (~12px). Has a visible border, consistent padding, and a hover state that fills the background. Selected state shows a primary color fill or checkmark. Part of a EuiKeyPadMenu grid.",
   "category": "Navigation",
   "import": "import { EuiKeyPadMenuItem } from '@elastic/eui';",
   "props": {

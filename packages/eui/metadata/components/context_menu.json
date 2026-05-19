@@ -1,7 +1,7 @@
 {
   "name": "EuiContextMenu",
   "description": "",
-  "visualDescription": "",
+  "visualDescription": "A multi-level dropdown panel that looks like a card-style menu with rows of labeled items, each optionally preceded by a small icon. Sub-panels slide in from the right with a back-arrow header. Displayed inside an EuiPopover anchored to a trigger button. NOT EuiListGroup (EuiContextMenu supports nested panels and is triggered by a popover).",
   "category": "Navigation",
   "import": "import { EuiContextMenu } from '@elastic/eui';",
   "props": {

@@ -1,7 +1,7 @@
 {
   "name": "EuiForm",
   "description": "Form wrapper providing consistent layout and validation context.",
-  "visualDescription": "",
+  "visualDescription": "A container wrapper with no distinctive visual appearance of its own. Groups EuiFormRow elements vertically with consistent spacing. May show a top-level error message strip when invalid. Infer its presence from a vertical stack of labeled input fields (each being an EuiFormRow). NOT EuiPanel (EuiForm provides form semantics; EuiPanel is a visual surface).",
   "category": "Forms",
   "import": "import { EuiForm } from '@elastic/eui';",
   "props": {

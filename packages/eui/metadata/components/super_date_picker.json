@@ -1,7 +1,7 @@
 {
   "name": "EuiSuperDatePicker",
   "description": "",
-  "visualDescription": "",
+  "visualDescription": "A date-range picker control rendered as a row containing: a quick-select button (clock icon), a \"from\" date input, a dash separator, a \"to\" date input, and a blue \"Refresh\" or \"Update\" button on the right. Clicking the quick-select opens a popover with preset ranges like \"Last 15 minutes\". NOT EuiDatePickerRange (EuiSuperDatePicker includes quick-select presets, datemath support, and a Refresh button).",
   "category": "Forms",
   "import": "import { EuiSuperDatePicker } from '@elastic/eui';",
   "props": {

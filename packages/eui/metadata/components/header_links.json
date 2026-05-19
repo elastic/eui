@@ -1,7 +1,7 @@
 {
   "name": "EuiHeaderLinks",
   "description": "Container for a group of EuiHeaderLink items.",
-  "visualDescription": "",
+  "visualDescription": "A horizontal group of EuiHeaderLink items inside the EuiHeader. Displays as a row of evenly spaced navigation text labels at the top of the page. No visible separator between items (just horizontal padding). NOT EuiHeaderSectionItem (which wraps icon buttons and other non-link header elements).",
   "category": "Layout",
   "import": "import { EuiHeaderLinks } from '@elastic/eui';",
   "props": {

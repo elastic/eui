@@ -1,7 +1,7 @@
 {
   "name": "EuiKeyPadMenu",
   "description": "Grid of icon+label menu items, typically used in popovers.",
-  "visualDescription": "",
+  "visualDescription": "A grid of square or rectangular tile items arranged in rows of three (default). Each tile contains a large icon centered above a short text label. The tiles have a visible border and a hover background. Commonly shown inside a popover as an app launcher or navigation grid. NOT EuiButtonGroup (which is a linear row of adjacent buttons). NOT EuiListGroup (which is a vertical list, not a tile grid).",
   "category": "Navigation",
   "import": "import { EuiKeyPadMenu } from '@elastic/eui';",
   "props": {

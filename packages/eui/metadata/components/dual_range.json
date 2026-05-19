@@ -1,7 +1,7 @@
 {
   "name": "EuiDualRange",
   "description": "",
-  "visualDescription": "",
+  "visualDescription": "A horizontal range slider with two draggable thumbs, one for the minimum value and one for the maximum. The track between the two thumbs is highlighted. Optional min/max labels appear at either end. NOT EuiRange (EuiDualRange has two handles for selecting a value range; EuiRange has a single handle).",
   "category": "Forms",
   "import": "import { EuiDualRange } from '@elastic/eui';",
   "props": {

@@ -1,7 +1,7 @@
 {
   "name": "EuiFieldSearch",
   "description": "Search text input with a magnifier icon.",
-  "visualDescription": "",
+  "visualDescription": "A single-line search input with a magnifier (🔍) icon embedded on the left inside the field. May show an × clear button on the right when text is present. Narrower and simpler than EuiSearchBar — no filter pills or additional controls adjacent to it. NOT EuiSearchBar (which is wider, may have a Filters button, and shows filter chips).",
   "category": "Forms",
   "import": "import { EuiFieldSearch } from '@elastic/eui';",
   "props": {

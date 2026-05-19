@@ -1,7 +1,7 @@
 {
   "name": "EuiColorPaletteDisplay",
   "description": "",
-  "visualDescription": "",
+  "visualDescription": "A thin horizontal bar (~24px tall) that renders a color gradient or series of fixed color blocks side-by-side to preview a palette. It is read-only and purely visual. NOT EuiColorPalettePicker (the display variant shows the palette but does not allow selection).",
   "category": "Forms",
   "import": "import { EuiColorPaletteDisplay } from '@elastic/eui';",
   "props": {

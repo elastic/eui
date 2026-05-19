@@ -1,7 +1,7 @@
 {
   "name": "EuiFlyoutHeader",
   "description": "Header region inside an EuiFlyout, typically contains an EuiTitle.",
-  "visualDescription": "",
+  "visualDescription": "The top section of an EuiFlyout, separated from the body below by a thin bottom border. Typically contains an EuiTitle and sometimes breadcrumbs or a description. The × close button appears in the top-right corner of the flyout, adjacent to this header.",
   "category": "Layout",
   "import": "import { EuiFlyoutHeader } from '@elastic/eui';",
   "props": {

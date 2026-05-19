@@ -1,7 +1,7 @@
 {
   "name": "EuiSkeletonText",
   "description": "Placeholder skeleton lines shown while content is loading.",
-  "visualDescription": "",
+  "visualDescription": "Two to five horizontal grey bars of varying widths, stacked vertically with small gaps, mimicking a block of loading text lines. The bars have a soft, slightly animated shimmer effect. NOT EuiSkeletonRectangle (which is a single solid placeholder block). NOT EuiProgress (which is a thin loading bar, not text-shaped placeholders).",
   "category": "Display",
   "import": "import { EuiSkeletonText } from '@elastic/eui';",
   "props": {

@@ -1,7 +1,7 @@
 {
   "name": "EuiCheckbox",
   "description": "Single boolean checkbox input.",
-  "visualDescription": "",
+  "visualDescription": "A small square checkbox input (~16px) with a visible border. When checked, displays a white checkmark on a blue/primary filled background. An indeterminate state shows a horizontal dash instead of a checkmark. Accompanied by a text label to its right. NOT EuiRadio (square vs circular). NOT EuiSwitch (checkbox is square; switch is a pill-shaped toggle).",
   "category": "Forms",
   "import": "import { EuiCheckbox } from '@elastic/eui';",
   "props": {

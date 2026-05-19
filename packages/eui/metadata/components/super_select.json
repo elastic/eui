@@ -1,7 +1,7 @@
 {
   "name": "EuiSuperSelect",
   "description": "",
-  "visualDescription": "",
+  "visualDescription": "A custom-styled select control that looks like a bordered input button showing the selected option's content (text, icon, or rich node) and a trailing chevron. Clicking opens a popover listbox of options rather than the browser's native select dropdown. NOT EuiSelect (EuiSuperSelect uses a custom popover and supports rich option content; EuiSelect uses the native browser select element).",
   "category": "Forms",
   "import": "import { EuiSuperSelect } from '@elastic/eui';",
   "props": {

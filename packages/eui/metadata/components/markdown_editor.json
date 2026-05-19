@@ -1,7 +1,7 @@
 {
   "name": "EuiMarkdownEditor",
   "description": "",
-  "visualDescription": "",
+  "visualDescription": "A split-pane authoring area with a toolbar of formatting buttons across the top (bold, italic, link, list, etc.), a plain textarea for raw markdown on the left/bottom, and a rendered preview pane toggled by tabs. A drag-and-drop file zone may appear at the bottom. NOT EuiMarkdownFormat (EuiMarkdownEditor is an interactive editor; EuiMarkdownFormat is read-only rendered output).",
   "category": "Editors & Syntax",
   "import": "import { EuiMarkdownEditor } from '@elastic/eui';",
   "props": {

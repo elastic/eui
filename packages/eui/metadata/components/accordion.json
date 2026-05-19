@@ -1,7 +1,7 @@
 {
   "name": "EuiAccordion",
   "description": "Collapsible section that shows/hides content on toggle.",
-  "visualDescription": "",
+  "visualDescription": "A collapsible section with a clickable header row. The header contains a caret/arrow icon (left or right of the label) that rotates when the section is open. The body content slides in below the header with an animated height transition. In its collapsed state it looks like a single horizontal bar with a label and an arrow icon. NOT EuiPanel (which is always fully visible). NOT EuiTabs (which switch between views rather than revealing hidden content).",
   "category": "Layout",
   "import": "import { EuiAccordion } from '@elastic/eui';",
   "props": {

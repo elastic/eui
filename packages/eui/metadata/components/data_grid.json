@@ -1,7 +1,7 @@
 {
   "name": "EuiDataGrid",
   "description": "High-performance virtualized data grid for large or complex datasets.",
-  "visualDescription": "",
+  "visualDescription": "A dense spreadsheet-style data table. Has a toolbar above the grid with column visibility toggles, density controls, and a fullscreen button. Column headers have resize handles (draggable dividers) and sort indicators. Cells are compact and content is truncated with ellipsis; clicking a cell opens a popover. Distinguishable from EuiBasicTable by the toolbar row above it and the column resize handles on the header cells.",
   "category": "Tabular Content",
   "import": "import { EuiDataGrid } from '@elastic/eui';",
   "props": {

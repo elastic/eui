@@ -1,7 +1,7 @@
 {
   "name": "EuiHighlight",
   "description": "Wraps text and highlights a substring match (for search results).",
-  "visualDescription": "",
+  "visualDescription": "Inline text where a matching search substring is visually marked with a yellow or primary-color background highlight spanning just the matched characters. The rest of the text is unstyled. Appears within list items or body copy in search-result contexts. NOT EuiMark (which wraps the entire highlighted span in a semantic <mark> element with the same yellow background).",
   "category": "Utilities",
   "import": "import { EuiHighlight } from '@elastic/eui';",
   "props": {

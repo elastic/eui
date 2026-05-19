@@ -1,7 +1,7 @@
 {
   "name": "EuiFlexGrid",
   "description": "Responsive grid layout that wraps children into equal-width columns.",
-  "visualDescription": "",
+  "visualDescription": "A layout-only container with no visual appearance of its own. Recognizable by its children being arranged in a fixed-column grid (1–4 equal-width columns) that wraps to new rows. Unlike EuiFlexGroup, columns are all the same width. Infer its presence from equal-width blocks arranged in a regular multi-column grid with consistent gaps.",
   "category": "Layout",
   "import": "import { EuiFlexGrid } from '@elastic/eui';",
   "props": {

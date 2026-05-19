@@ -1,7 +1,7 @@
 {
   "name": "EuiImage",
   "description": "Responsive image with optional caption and fullscreen zoom.",
-  "visualDescription": "",
+  "visualDescription": "A responsive image element, optionally framed with a caption below it. May have a subtle shadow (`hasShadow`). When `allowFullScreen` is set, shows a small expand icon overlay in the corner that opens the image in a full-screen modal. NOT a raw <img> (EuiImage adds shadow, sizing, and optional fullscreen behavior).",
   "category": "Display",
   "import": "import { EuiImage } from '@elastic/eui';",
   "props": {

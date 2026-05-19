@@ -1,7 +1,7 @@
 {
   "name": "EuiLoadingChart",
   "description": "",
-  "visualDescription": "",
+  "visualDescription": "An animated placeholder that mimics a bar chart skeleton: three to five vertical bars of varying height that pulse or shimmer to indicate data is loading. NOT EuiLoadingSpinner (EuiLoadingChart suggests chart content is loading; EuiLoadingSpinner is a generic circular spinner). NOT EuiSkeleton (EuiLoadingChart is a fixed bar-chart animation, not a content-shaped skeleton block).",
   "category": "Display",
   "import": "import { EuiLoadingChart } from '@elastic/eui';",
   "props": {

@@ -1,7 +1,7 @@
 {
   "name": "EuiIconTip",
   "description": "",
-  "visualDescription": "",
+  "visualDescription": "A small standalone icon — typically a filled circle-question \"?\" or circle-information \"i\" glyph (~16px) — that displays a tooltip with explanatory text when hovered or focused. No visible label text is shown next to the icon. NOT EuiToolTip (EuiIconTip is a self-contained component that includes the icon; EuiToolTip wraps any arbitrary element).",
   "category": "Display",
   "import": "import { EuiIconTip } from '@elastic/eui';",
   "props": {

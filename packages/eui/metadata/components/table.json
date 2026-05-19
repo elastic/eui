@@ -1,7 +1,7 @@
 {
   "name": "EuiTable",
   "description": "",
-  "visualDescription": "",
+  "visualDescription": "The low-level semantic HTML table wrapper. Visually identical to EuiBasicTable — header row, data rows, horizontal dividers. Use EuiBasicTable or EuiInMemoryTable in preference; EuiTable is the primitive used when full manual control of rows and cells is needed.",
   "category": "Tabular Content",
   "import": "import { EuiTable } from '@elastic/eui';",
   "props": {

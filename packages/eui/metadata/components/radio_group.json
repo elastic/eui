@@ -1,7 +1,7 @@
 {
   "name": "EuiRadioGroup",
   "description": "Group of mutually exclusive radio button options.",
-  "visualDescription": "",
+  "visualDescription": "A vertical stack of EuiRadio items, each with a small circular radio button on the left and a text label to the right. Items are spaced with consistent vertical gaps. Only one item can be selected at a time (filled circle). NOT EuiCheckboxGroup (circular vs square inputs).",
   "category": "Forms",
   "import": "import { EuiRadioGroup } from '@elastic/eui';",
   "props": {

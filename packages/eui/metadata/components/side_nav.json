@@ -1,7 +1,7 @@
 {
   "name": "EuiSideNav",
   "description": "Vertical tree navigation menu for app-level page navigation.",
-  "visualDescription": "",
+  "visualDescription": "A vertical tree navigation menu. Top-level items are bold section headers; child items are indented links with a smaller font weight. The currently selected item is highlighted with a primary-color text or a left accent bar. May include expand/collapse arrows for nested groups. NOT EuiListGroup (which is a flat list with no tree hierarchy or section headers). NOT EuiCollapsibleNav (which is the overlay panel that contains the side nav).",
   "category": "Navigation",
   "import": "import { EuiSideNav } from '@elastic/eui';",
   "props": {

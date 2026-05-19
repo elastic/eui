@@ -1,7 +1,7 @@
 {
   "name": "EuiHeader",
   "description": "Top application header bar. Used for global navigation and branding.",
-  "visualDescription": "",
+  "visualDescription": "A fixed-height (48px) horizontal bar spanning the full viewport width, anchored to the top. Has a dark or light background with the Elastic logo on the left, navigation links in the middle, and user avatar / action icons on the right. May stack multiple header bars. NOT EuiPageHeader (which is inside the content area and has a large page title). NOT EuiTopNavMenu.",
   "category": "Layout",
   "import": "import { EuiHeader } from '@elastic/eui';",
   "props": {

@@ -1,7 +1,7 @@
 {
   "name": "EuiTourStep",
   "description": "",
-  "visualDescription": "",
+  "visualDescription": "A single step in a guided tour: a popover-shaped panel anchored to a highlighted element, containing a step-counter badge, a title, body text, and navigation buttons (Next / End tour). Has a subtle beacon or pulsing highlight around the anchor. NOT EuiPopover (EuiTourStep adds the step counter and navigation footer).",
   "category": "Display",
   "import": "import { EuiTourStep } from '@elastic/eui';",
   "props": {

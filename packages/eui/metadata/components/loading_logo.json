@@ -1,7 +1,7 @@
 {
   "name": "EuiLoadingLogo",
   "description": "",
-  "visualDescription": "",
+  "visualDescription": "An animated Elastic product logo (defaulting to the Elastic mark or a specified product logomark) with a pulsing or fading animation, shown at a large size (xl or xxl). Used on full-page or large-panel loading screens. NOT EuiLoadingSpinner (EuiLoadingLogo shows a product logo; EuiLoadingSpinner shows a generic ring).",
   "category": "Display",
   "import": "import { EuiLoadingLogo } from '@elastic/eui';",
   "props": {

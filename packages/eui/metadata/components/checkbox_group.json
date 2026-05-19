@@ -1,7 +1,7 @@
 {
   "name": "EuiCheckboxGroup",
   "description": "Group of related checkbox options.",
-  "visualDescription": "",
+  "visualDescription": "A vertical stack of EuiCheckbox items, each with a small square checkbox on the left and a text label to the right. Items are spaced with consistent vertical gaps. No outer border or background by default. NOT EuiRadioGroup (checkboxes are square and allow multi-select; radios are circular and single-select).",
   "category": "Forms",
   "import": "import { EuiCheckboxGroup } from '@elastic/eui';",
   "props": {

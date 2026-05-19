@@ -1,7 +1,7 @@
 {
   "name": "EuiBadgeGroup",
   "description": "Wrapping container for a group of EuiBadge items.",
-  "visualDescription": "",
+  "visualDescription": "A flex-wrapping container for multiple EuiBadge pill elements. Visually appears as a row or multi-row cluster of pill-shaped chips with uniform gaps between them. Has no border or background of its own — the individual badges inside it supply the color and shape. NOT a single badge (always contains two or more).",
   "category": "Display",
   "import": "import { EuiBadgeGroup } from '@elastic/eui';",
   "props": {

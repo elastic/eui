@@ -1,7 +1,7 @@
 {
   "name": "EuiConfirmModal",
   "description": "Standardised confirmation dialog for destructive or irreversible actions.",
-  "visualDescription": "",
+  "visualDescription": "A centered modal dialog with a dark full-viewport overlay. Contains: a header with a bold title and an × close button, a body with a short descriptive text paragraph, and a footer with exactly two buttons — a Cancel (empty/outlined) button and a primary action button (often red for destructive actions). Narrower than a general-purpose modal. NOT a multi-step wizard modal (only two footer buttons). NOT EuiFlyout.",
   "category": "Layout",
   "import": "import { EuiConfirmModal } from '@elastic/eui';",
   "props": {

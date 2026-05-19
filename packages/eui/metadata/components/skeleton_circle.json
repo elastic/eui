@@ -1,7 +1,7 @@
 {
   "name": "EuiSkeletonCircle",
   "description": "",
-  "visualDescription": "",
+  "visualDescription": "A circular grey placeholder disc with a shimmer animation, used to represent a loading avatar or icon. Diameter is configurable. NOT EuiSkeletonRectangle (which is rectangular). NOT EuiAvatar (which shows actual content).",
   "category": "Display",
   "import": "import { EuiSkeletonCircle } from '@elastic/eui';",
   "props": {

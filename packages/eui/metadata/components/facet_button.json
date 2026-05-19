@@ -1,7 +1,7 @@
 {
   "name": "EuiFacetButton",
   "description": "",
-  "visualDescription": "",
+  "visualDescription": "A flat text button with a label on the left and a small numeric count badge on the right. An optional leading icon or avatar can precede the label. When selected, the button appears bold/active. NOT EuiFilterButton (EuiFacetButton is used inside facet lists for multi-select filtering; EuiFilterButton appears inside a grouped filter bar).",
   "category": "Navigation",
   "import": "import { EuiFacetButton } from '@elastic/eui';",
   "props": {

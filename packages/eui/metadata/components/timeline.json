@@ -1,7 +1,7 @@
 {
   "name": "EuiTimeline",
   "description": "",
-  "visualDescription": "",
+  "visualDescription": "A vertical list of event items where each row has a circular icon badge on the left (containing an EuiIcon glyph) and free-form content on the right, with items connected by a thin vertical line through the icon column. NOT EuiCommentList (EuiTimeline is a generic icon+content list; EuiCommentList is built on top of it specifically for user comments). NOT EuiSteps (EuiTimeline has no step numbers or progress state).",
   "category": "Display",
   "import": "import { EuiTimeline } from '@elastic/eui';",
   "props": {

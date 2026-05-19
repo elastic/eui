@@ -1,7 +1,7 @@
 {
   "name": "EuiCheckableCard",
   "description": "",
-  "visualDescription": "",
+  "visualDescription": "A bordered rectangular card panel that contains a radio button or checkbox in the top-left corner, a title, and optional child content below. Selecting the card highlights its border. Visually it looks like a larger, more prominent version of a radio/checkbox row. NOT EuiCard (EuiCheckableCard embeds a selection control; plain EuiCard is click-only).",
   "category": "Display",
   "import": "import { EuiCheckableCard } from '@elastic/eui';",
   "props": {

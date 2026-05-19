@@ -1,7 +1,7 @@
 {
   "name": "EuiMark",
   "description": "Highlights text with a background color (like a highlighter marker).",
-  "visualDescription": "",
+  "visualDescription": "Inline text wrapped in a semantic <mark> element with a yellow or highlight-color background that spans just the marked word(s). The surrounding text is unstyled. Visually similar to EuiHighlight — both show highlighted text — but EuiMark wraps static content rather than dynamically matching a search query substring.",
   "category": "Utilities",
   "import": "import { EuiMark } from '@elastic/eui';",
   "props": {

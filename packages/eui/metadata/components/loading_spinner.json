@@ -1,7 +1,7 @@
 {
   "name": "EuiLoadingSpinner",
   "description": "Animated circular loading indicator.",
-  "visualDescription": "",
+  "visualDescription": "A circular ring (~16–40px diameter) that rotates continuously. The ring has a transparent gap that creates the spinning animation effect. Color matches the current theme's primary or subdued palette. NOT EuiLoadingElastic (which shows the animated Elastic logo, not a plain ring). NOT EuiProgress (which is a horizontal bar).",
   "category": "Display",
   "import": "import { EuiLoadingSpinner } from '@elastic/eui';",
   "props": {

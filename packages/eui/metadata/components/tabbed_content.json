@@ -1,7 +1,7 @@
 {
   "name": "EuiTabbedContent",
   "description": "",
-  "visualDescription": "",
+  "visualDescription": "A combined component showing a horizontal tab bar (EuiTabs) at the top with the selected tab's content panel rendered immediately below it. The active tab has an underline indicator. NOT EuiTabs alone (EuiTabbedContent manages the tab bar and the associated content panel together; EuiTabs is only the bar).",
   "category": "Navigation",
   "import": "import { EuiTabbedContent } from '@elastic/eui';",
   "props": {

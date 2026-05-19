@@ -1,7 +1,7 @@
 {
   "name": "EuiBetaBadge",
   "description": "",
-  "visualDescription": "",
+  "visualDescription": "A small pill-shaped badge with a short label such as \"Beta\" or \"Tech preview\". It has a subtle hollow or accent-colored border, optional small icon to the left of the label, and shows a tooltip on hover explaining the pre-GA status. NOT EuiBadge (EuiBetaBadge is specifically for feature-maturity labeling with a tooltip).",
   "category": "Display",
   "import": "import { EuiBetaBadge } from '@elastic/eui';",
   "props": {

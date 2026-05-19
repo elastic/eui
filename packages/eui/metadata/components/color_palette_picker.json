@@ -1,7 +1,7 @@
 {
   "name": "EuiColorPalettePicker",
   "description": "",
-  "visualDescription": "",
+  "visualDescription": "A select-style dropdown button that shows the currently selected palette as a small horizontal color bar inside the button. Opening the dropdown reveals a list of named palettes, each with its color bar preview and label. NOT EuiColorPicker (EuiColorPalettePicker selects a multi-color palette; EuiColorPicker selects a single color).",
   "category": "Forms",
   "import": "import { EuiColorPalettePicker } from '@elastic/eui';",
   "props": {

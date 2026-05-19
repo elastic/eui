@@ -1,7 +1,7 @@
 {
   "name": "EuiComment",
   "description": "",
-  "visualDescription": "",
+  "visualDescription": "A single feed item composed of a circular avatar or icon on the left, a header row with author name, action text, and timestamp, and an optional bordered body panel below. Used inside EuiCommentList to form a conversation thread. NOT EuiTimeline (EuiComment includes user attribution and a collapsible body; EuiTimeline is a generic icon + content row).",
   "category": "Display",
   "import": "import { EuiComment } from '@elastic/eui';",
   "props": {

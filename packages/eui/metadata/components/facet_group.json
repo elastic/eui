@@ -1,7 +1,7 @@
 {
   "name": "EuiFacetGroup",
   "description": "",
-  "visualDescription": "",
+  "visualDescription": "A vertical (or horizontal) list of EuiFacetButton items with consistent spacing and no outer border. It acts as a layout wrapper that aligns the count badges and optional icons across all child facet buttons. NOT EuiFilterGroup (EuiFacetGroup is an ungrouped list; EuiFilterGroup shares borders between buttons like a segmented control).",
   "category": "Navigation",
   "import": "import { EuiFacetGroup } from '@elastic/eui';",
   "props": {

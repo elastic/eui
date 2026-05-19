@@ -1,7 +1,7 @@
 {
   "name": "EuiCodeBlock",
   "description": "Multi-line syntax-highlighted code display with optional copy button.",
-  "visualDescription": "",
+  "visualDescription": "A multi-line rectangular block with a dark or light background, monospace font, and syntax-colored tokens (keywords, strings, etc.). Has a visible container with padding. May show line numbers on the left margin and a copy-to-clipboard button in the top-right corner. NOT EuiCode (which is a short inline snippet without a block container).",
   "category": "Editors & Syntax",
   "import": "import { EuiCodeBlock } from '@elastic/eui';",
   "props": {

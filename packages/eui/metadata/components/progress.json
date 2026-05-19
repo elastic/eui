@@ -1,7 +1,7 @@
 {
   "name": "EuiProgress",
   "description": "Linear determinate or indeterminate progress indicator.",
-  "visualDescription": "",
+  "visualDescription": "A full-width (of its container) thin horizontal bar. In indeterminate mode it shows an animated color sweep moving left-to-right. In determinate mode it shows a solid colored fill proportional to the value vs max. Height variants: xs (2px), s (4px), m (6px), l (8px). NOT EuiLoadingSpinner (horizontal bar vs circular ring). NOT a slider/range input.",
   "category": "Display",
   "import": "import { EuiProgress } from '@elastic/eui';",
   "props": {

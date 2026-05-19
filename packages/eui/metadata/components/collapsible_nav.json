@@ -1,7 +1,7 @@
 {
   "name": "EuiCollapsibleNav",
   "description": "Collapsible side navigation panel for app-level navigation.",
-  "visualDescription": "",
+  "visualDescription": "A slide-in side panel anchored to the left edge of the viewport, used for app-level navigation. Wider than a typical flyout (~240–320px). Contains grouped navigation links, often with section headers and nested items. Can be docked (permanently open, pushing page content) or overlay (covering content). Has a close/hamburger toggle button. NOT EuiFlyout (which slides from the right and is for contextual content, not navigation).",
   "category": "Navigation",
   "import": "import { EuiCollapsibleNav } from '@elastic/eui';",
   "props": {

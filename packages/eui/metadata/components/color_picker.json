@@ -1,7 +1,7 @@
 {
   "name": "EuiColorPicker",
   "description": "",
-  "visualDescription": "",
+  "visualDescription": "A form control composed of a small colored swatch button that, when clicked, opens a popover containing an HSV gradient canvas, a hue slider, optional alpha slider, a hex/RGB text input, and a row of preset color swatches. NOT EuiColorPalettePicker (EuiColorPicker picks a single color; EuiColorPalettePicker picks a named palette).",
   "category": "Forms",
   "import": "import { EuiColorPicker } from '@elastic/eui';",
   "props": {

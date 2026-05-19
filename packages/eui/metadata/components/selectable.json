@@ -1,7 +1,7 @@
 {
   "name": "EuiSelectable",
   "description": "Searchable list with keyboard-accessible single or multi-select.",
-  "visualDescription": "",
+  "visualDescription": "A standalone searchable list panel. Has an optional search input at the top, then a scrollable list of option rows below. Each row shows a text label; selected rows show a checkmark (✓) on the right. Used inside a popover or panel — it is not an inline form input. NOT EuiComboBox (EuiSelectable is a standalone list, not an inline multi-value input field).",
   "category": "Forms",
   "import": "import { EuiSelectable } from '@elastic/eui';",
   "props": {

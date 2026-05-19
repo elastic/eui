@@ -1,7 +1,7 @@
 {
   "name": "EuiAvatar",
   "description": "",
-  "visualDescription": "",
+  "visualDescription": "A circular element displaying up to two initials or an image inside it. The circle has a colored background (drawn from the EUI visualization palette by default) and comes in four sizes: s, m, l, xl. When an imageUrl is provided the initials are replaced by the photo. NOT EuiIcon (EuiAvatar is always circular and represents a person or entity).",
   "category": "Display",
   "import": "import { EuiAvatar } from '@elastic/eui';",
   "props": {

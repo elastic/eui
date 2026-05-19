@@ -1,7 +1,7 @@
 {
   "name": "EuiSelect",
   "description": "Native select dropdown. Prefer EuiComboBox for searchable or multi-select needs.",
-  "visualDescription": "",
+  "visualDescription": "A native HTML select dropdown. Appears as a single-line input-like box with the selected option text and a downward chevron on the right. Clicking opens the browser's native dropdown list. NOT EuiComboBox (which has in-field pill tags and a custom styled dropdown). NOT EuiSuperSelect (which uses a custom-styled popover instead of the native dropdown).",
   "category": "Forms",
   "import": "import { EuiSelect } from '@elastic/eui';",
   "props": {

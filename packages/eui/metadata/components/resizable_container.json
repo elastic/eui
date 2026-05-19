@@ -1,7 +1,7 @@
 {
   "name": "EuiResizableContainer",
   "description": "Two-pane layout with a draggable divider between panels.",
-  "visualDescription": "",
+  "visualDescription": "A two-panel layout with a thin draggable divider bar between the panels. The divider bar is a narrow vertical (or horizontal) strip with a grab handle icon (⠿ or ⋮) at its center. Panels resize as the user drags the divider. NOT EuiSplitPanel (which has a fixed divider with no dragging). NOT EuiFlyout.",
   "category": "Layout",
   "import": "import { EuiResizableContainer } from '@elastic/eui';",
   "props": {

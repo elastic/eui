@@ -1,7 +1,7 @@
 {
   "name": "EuiButtonGroup",
   "description": "Toggle group of mutually exclusive (single) or multi-select button options.",
-  "visualDescription": "",
+  "visualDescription": "A compact row of two or more adjacent buttons with shared borders, creating a segmented control appearance. The selected button has a filled (solid color) background; unselected buttons are outlined or subdued. Buttons are flush with no gap between them. NOT EuiTabs (which use underlines, not filled segments). NOT EuiFlexGroup of separate EuiButtons (those have gaps between them).",
   "category": "Navigation",
   "import": "import { EuiButtonGroup } from '@elastic/eui';",
   "props": {

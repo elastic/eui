@@ -1,7 +1,7 @@
 {
   "name": "EuiCommentList",
   "description": "",
-  "visualDescription": "",
+  "visualDescription": "A vertical feed of EuiComment items connected by a thin vertical line running through their avatar column, giving a timeline appearance. The list container provides spacing and accessibility markup. NOT EuiTimeline (EuiCommentList is specifically for user-authored comments and system events; EuiTimeline is a lower-level building block).",
   "category": "Display",
   "import": "import { EuiCommentList } from '@elastic/eui';",
   "props": {

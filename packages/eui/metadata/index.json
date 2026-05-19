@@ -1,13 +1,28 @@
 {
-  "EuiToken": {
-    "description": "",
-    "category": "Display",
-    "propCount": 12
-  },
   "EuiTreeView": {
     "description": "Collapsible tree structure for hierarchical data.",
     "category": "Navigation",
     "propCount": 9
+  },
+  "EuiTourStepIndicator": {
+    "description": "",
+    "category": "Display",
+    "propCount": 6
+  },
+  "EuiTourStep": {
+    "description": "",
+    "category": "Display",
+    "propCount": 43
+  },
+  "EuiTour": {
+    "description": "Multi-step guided product tour anchored to specific elements.",
+    "category": "Display",
+    "propCount": 2
+  },
+  "EuiToken": {
+    "description": "",
+    "category": "Display",
+    "propCount": 12
   },
   "EuiToolTip": {
     "description": "Hover/focus tooltip anchored to a trigger element.",
@@ -34,31 +49,6 @@
     "category": "Display",
     "propCount": 8
   },
-  "EuiTourStepIndicator": {
-    "description": "",
-    "category": "Display",
-    "propCount": 6
-  },
-  "EuiTourStep": {
-    "description": "",
-    "category": "Display",
-    "propCount": 43
-  },
-  "EuiTour": {
-    "description": "Multi-step guided product tour anchored to specific elements.",
-    "category": "Display",
-    "propCount": 2
-  },
-  "EuiTextTruncate": {
-    "description": "",
-    "category": "Utilities",
-    "propCount": 13
-  },
-  "EuiTextBlockTruncate": {
-    "description": "",
-    "category": "Utilities",
-    "propCount": 6
-  },
   "EuiTimelineItemIcon": {
     "description": "",
     "category": "Display",
@@ -78,6 +68,46 @@
     "description": "",
     "category": "Display",
     "propCount": 6
+  },
+  "EuiTextTruncate": {
+    "description": "",
+    "category": "Utilities",
+    "propCount": 13
+  },
+  "EuiTextBlockTruncate": {
+    "description": "",
+    "category": "Utilities",
+    "propCount": 6
+  },
+  "EuiTextColor": {
+    "description": "",
+    "category": "Display",
+    "propCount": 7
+  },
+  "EuiTextAlign": {
+    "description": "Wrapper that sets text alignment on its children.",
+    "category": "Display",
+    "propCount": 7
+  },
+  "EuiText": {
+    "description": "Semantic wrapper that applies EUI typography styles to arbitrary HTML content.",
+    "category": "Display",
+    "propCount": 9
+  },
+  "EuiTabs": {
+    "description": "Horizontal tab navigation bar.",
+    "category": "Navigation",
+    "propCount": 9
+  },
+  "EuiTab": {
+    "description": "Individual tab item. Must be a child of EuiTabs.",
+    "category": "Navigation",
+    "propCount": 10
+  },
+  "EuiTabbedContent": {
+    "description": "",
+    "category": "Navigation",
+    "propCount": 11
   },
   "EuiTableRowCellCheckbox": {
     "description": "",
@@ -149,36 +179,6 @@
     "category": "Tabular Content",
     "propCount": 8
   },
-  "EuiTextColor": {
-    "description": "",
-    "category": "Display",
-    "propCount": 7
-  },
-  "EuiTextAlign": {
-    "description": "Wrapper that sets text alignment on its children.",
-    "category": "Display",
-    "propCount": 7
-  },
-  "EuiText": {
-    "description": "Semantic wrapper that applies EUI typography styles to arbitrary HTML content.",
-    "category": "Display",
-    "propCount": 9
-  },
-  "EuiTabs": {
-    "description": "Horizontal tab navigation bar.",
-    "category": "Navigation",
-    "propCount": 9
-  },
-  "EuiTab": {
-    "description": "Individual tab item. Must be a child of EuiTabs.",
-    "category": "Navigation",
-    "propCount": 10
-  },
-  "EuiTabbedContent": {
-    "description": "",
-    "category": "Navigation",
-    "propCount": 11
-  },
   "EuiSubSteps": {
     "description": "Nested sub-steps inside an EuiSteps item.",
     "category": "Navigation",
@@ -239,16 +239,6 @@
     "category": "Navigation",
     "propCount": 15
   },
-  "EuiSearchBarFilters": {
-    "description": "",
-    "category": "Forms",
-    "propCount": 3
-  },
-  "EuiSearchBar": {
-    "description": "Structured search input with filter pills and query syntax support.",
-    "category": "Forms",
-    "propCount": 13
-  },
   "EuiSelectable": {
     "description": "Searchable list with keyboard-accessible single or multi-select.",
     "category": "Forms",
@@ -278,6 +268,16 @@
     "description": "",
     "category": "Templates",
     "propCount": 29
+  },
+  "EuiSearchBarFilters": {
+    "description": "",
+    "category": "Forms",
+    "propCount": 3
+  },
+  "EuiSearchBar": {
+    "description": "Structured search input with filter pills and query syntax support.",
+    "category": "Forms",
+    "propCount": 13
   },
   "EuiShowFor": {
     "description": "",
@@ -324,26 +324,6 @@
     "category": "Utilities",
     "propCount": 3
   },
-  "EuiPaginationButtonArrow": {
-    "description": "",
-    "category": "Navigation",
-    "propCount": 20
-  },
-  "EuiPaginationButton": {
-    "description": "",
-    "category": "Navigation",
-    "propCount": 25
-  },
-  "EuiPagination": {
-    "description": "Page navigation control for paginated data sets.",
-    "category": "Navigation",
-    "propCount": 9
-  },
-  "EuiPanel": {
-    "description": "Contained surface with configurable background, border, and padding.",
-    "category": "Layout",
-    "propCount": 12
-  },
   "EuiWrappingPopover": {
     "description": "",
     "category": "Layout",
@@ -369,10 +349,35 @@
     "category": "Layout",
     "propCount": 36
   },
+  "EuiPanel": {
+    "description": "Contained surface with configurable background, border, and padding.",
+    "category": "Layout",
+    "propCount": 12
+  },
+  "EuiPaginationButtonArrow": {
+    "description": "",
+    "category": "Navigation",
+    "propCount": 20
+  },
+  "EuiPaginationButton": {
+    "description": "",
+    "category": "Navigation",
+    "propCount": 25
+  },
+  "EuiPagination": {
+    "description": "Page navigation control for paginated data sets.",
+    "category": "Navigation",
+    "propCount": 9
+  },
   "EuiPageTemplate": {
     "description": "Full-page layout template managing sidebar, header, and content regions.",
     "category": "Templates",
     "propCount": 17
+  },
+  "EuiOverlayMask": {
+    "description": "",
+    "category": "Utilities",
+    "propCount": 266
   },
   "EuiOutsideClickDetector": {
     "description": "",
@@ -413,11 +418,6 @@
     "description": "",
     "category": "Layout",
     "propCount": 9
-  },
-  "EuiOverlayMask": {
-    "description": "",
-    "category": "Utilities",
-    "propCount": 266
   },
   "EuiModalHeaderTitle": {
     "description": "",
@@ -464,21 +464,6 @@
     "category": "Utilities",
     "propCount": 6
   },
-  "EuiListGroupItem": {
-    "description": "Individual item within EuiListGroup.",
-    "category": "Display",
-    "propCount": 23
-  },
-  "EuiListGroup": {
-    "description": "Vertical list of action items or links.",
-    "category": "Display",
-    "propCount": 14
-  },
-  "EuiPinnableListGroup": {
-    "description": "",
-    "category": "Display",
-    "propCount": 17
-  },
   "EuiLoadingSpinner": {
     "description": "Animated circular loading indicator.",
     "category": "Display",
@@ -499,20 +484,20 @@
     "category": "Display",
     "propCount": 5
   },
-  "EuiInnerText": {
-    "description": "",
-    "category": "Utilities",
-    "propCount": 2
+  "EuiListGroupItem": {
+    "description": "Individual item within EuiListGroup.",
+    "category": "Display",
+    "propCount": 23
   },
-  "EuiInlineEditTitle": {
+  "EuiListGroup": {
+    "description": "Vertical list of action items or links.",
+    "category": "Display",
+    "propCount": 14
+  },
+  "EuiPinnableListGroup": {
     "description": "",
-    "category": "Forms",
+    "category": "Display",
     "propCount": 17
-  },
-  "EuiInlineEditText": {
-    "description": "",
-    "category": "Forms",
-    "propCount": 16
   },
   "EuiLink": {
     "description": "Anchor or button styled as a hyperlink.",
@@ -529,6 +514,21 @@
     "category": "Navigation",
     "propCount": 5
   },
+  "EuiInnerText": {
+    "description": "",
+    "category": "Utilities",
+    "propCount": 2
+  },
+  "EuiInlineEditTitle": {
+    "description": "",
+    "category": "Forms",
+    "propCount": 17
+  },
+  "EuiInlineEditText": {
+    "description": "",
+    "category": "Forms",
+    "propCount": 16
+  },
   "EuiImage": {
     "description": "Responsive image with optional caption and fullscreen zoom.",
     "category": "Display",
@@ -538,11 +538,6 @@
     "description": "SVG icon from the EUI icon library. Add aria-label when used standalone.",
     "category": "Display",
     "propCount": 0
-  },
-  "EuiHorizontalRule": {
-    "description": "Visual divider line. Use instead of raw <hr>.",
-    "category": "Layout",
-    "propCount": 6
   },
   "EuiI18n": {
     "description": "",
@@ -554,15 +549,20 @@
     "category": "Utilities",
     "propCount": 3
   },
-  "EuiHealth": {
-    "description": "Small colored status dot with an adjacent text label.",
-    "category": "Display",
+  "EuiHorizontalRule": {
+    "description": "Visual divider line. Use instead of raw <hr>.",
+    "category": "Layout",
     "propCount": 6
   },
   "EuiHighlight": {
     "description": "Wraps text and highlights a substring match (for search results).",
     "category": "Utilities",
     "propCount": 9
+  },
+  "EuiHealth": {
+    "description": "Small colored status dot with an adjacent text label.",
+    "category": "Display",
+    "propCount": 6
   },
   "EuiHeader": {
     "description": "Top application header bar. Used for global navigation and branding.",
@@ -608,6 +608,11 @@
     "description": "",
     "category": "Layout",
     "propCount": 25
+  },
+  "EuiFocusTrap": {
+    "description": "",
+    "category": "Utilities",
+    "propCount": 12
   },
   "EuiCheckbox": {
     "description": "Single boolean checkbox input.",
@@ -754,11 +759,6 @@
     "category": "Forms",
     "propCount": 5
   },
-  "EuiFocusTrap": {
-    "description": "",
-    "category": "Utilities",
-    "propCount": 12
-  },
   "EuiFlyout": {
     "description": "Slide-in overlay panel anchored to the viewport edge.",
     "category": "Layout",
@@ -829,6 +829,16 @@
     "category": "Forms",
     "propCount": 16
   },
+  "EuiEmptyPrompt": {
+    "description": "Placeholder for empty states, error pages, and onboarding flows.",
+    "category": "Display",
+    "propCount": 17
+  },
+  "EuiErrorBoundary": {
+    "description": "",
+    "category": "Utilities",
+    "propCount": 6
+  },
   "EuiDragDropContext": {
     "description": "",
     "category": "Display",
@@ -843,16 +853,6 @@
     "description": "",
     "category": "Display",
     "propCount": 12
-  },
-  "EuiErrorBoundary": {
-    "description": "",
-    "category": "Utilities",
-    "propCount": 6
-  },
-  "EuiEmptyPrompt": {
-    "description": "Placeholder for empty states, error pages, and onboarding flows.",
-    "category": "Display",
-    "propCount": 17
   },
   "EuiDescriptionList": {
     "description": "Key-value pair list for displaying metadata or entity attributes.",
@@ -869,15 +869,20 @@
     "category": "Display",
     "propCount": 4
   },
+  "EuiDelayHide": {
+    "description": "",
+    "category": "Utilities",
+    "propCount": 3
+  },
   "EuiDelayRender": {
     "description": "",
     "category": "Utilities",
     "propCount": 1
   },
-  "EuiDelayHide": {
-    "description": "",
-    "category": "Utilities",
-    "propCount": 3
+  "EuiDataGrid": {
+    "description": "High-performance virtualized data grid for large or complex datasets.",
+    "category": "Tabular Content",
+    "propCount": 30
   },
   "EuiDatePicker": {
     "description": "Calendar-based date and time input.",
@@ -914,10 +919,25 @@
     "category": "Forms",
     "propCount": 5
   },
-  "EuiDataGrid": {
-    "description": "High-performance virtualized data grid for large or complex datasets.",
-    "category": "Tabular Content",
-    "propCount": 30
+  "EuiCopy": {
+    "description": "",
+    "category": "Utilities",
+    "propCount": 9
+  },
+  "EuiContextMenu": {
+    "description": "",
+    "category": "Navigation",
+    "propCount": 9
+  },
+  "EuiContextMenuPanel": {
+    "description": "",
+    "category": "Navigation",
+    "propCount": 17
+  },
+  "EuiContextMenuItem": {
+    "description": "",
+    "category": "Navigation",
+    "propCount": 15
   },
   "EuiContext": {
     "description": "",
@@ -939,25 +959,10 @@
     "category": "Display",
     "propCount": 6
   },
-  "EuiContextMenu": {
-    "description": "",
-    "category": "Navigation",
-    "propCount": 9
-  },
-  "EuiContextMenuPanel": {
-    "description": "",
-    "category": "Navigation",
-    "propCount": 17
-  },
-  "EuiContextMenuItem": {
-    "description": "",
-    "category": "Navigation",
-    "propCount": 15
-  },
-  "EuiCopy": {
-    "description": "",
-    "category": "Utilities",
-    "propCount": 9
+  "EuiComboBox": {
+    "description": "Multi-select or single-select input with search and custom option support.",
+    "category": "Forms",
+    "propCount": 37
   },
   "EuiColorPicker": {
     "description": "",
@@ -992,17 +997,27 @@
   "EuiCollapsibleNavGroup": {
     "description": "",
     "category": "Navigation",
-    "propCount": 8
+    "propCount": 31
   },
   "EuiCollapsibleNav": {
     "description": "Collapsible side navigation panel for app-level navigation.",
     "category": "Navigation",
     "propCount": 36
   },
-  "EuiComboBox": {
-    "description": "Multi-select or single-select input with search and custom option support.",
-    "category": "Forms",
-    "propCount": 37
+  "EuiCode": {
+    "description": "Inline code snippet with monospace styling.",
+    "category": "Editors & Syntax",
+    "propCount": 6
+  },
+  "EuiCodeBlock": {
+    "description": "Multi-line syntax-highlighted code display with optional copy button.",
+    "category": "Editors & Syntax",
+    "propCount": 14
+  },
+  "EuiCallOut": {
+    "description": "Inline alert box for informational, success, warning, or danger messages.",
+    "category": "Display",
+    "propCount": 13
   },
   "EuiCard": {
     "description": "Clickable or informational card with title, description, and optional icon.",
@@ -1011,11 +1026,6 @@
   },
   "EuiCheckableCard": {
     "description": "",
-    "category": "Display",
-    "propCount": 13
-  },
-  "EuiCallOut": {
-    "description": "Inline alert box for informational, success, warning, or danger messages.",
     "category": "Display",
     "propCount": 13
   },
@@ -1044,25 +1054,15 @@
     "category": "Navigation",
     "propCount": 10
   },
-  "EuiCode": {
-    "description": "Inline code snippet with monospace styling.",
-    "category": "Editors & Syntax",
-    "propCount": 6
-  },
-  "EuiCodeBlock": {
-    "description": "Multi-line syntax-highlighted code display with optional copy button.",
-    "category": "Editors & Syntax",
-    "propCount": 14
+  "EuiBreadcrumbs": {
+    "description": "Navigation trail showing the current page location within a hierarchy.",
+    "category": "Navigation",
+    "propCount": 10
   },
   "EuiBottomBar": {
     "description": "Fixed bar anchored to the bottom of the viewport for persistent actions.",
     "category": "Layout",
     "propCount": 15
-  },
-  "EuiBreadcrumbs": {
-    "description": "Navigation trail showing the current page location within a hierarchy.",
-    "category": "Navigation",
-    "propCount": 10
   },
   "EuiBeacon": {
     "description": "",
@@ -1078,6 +1078,16 @@
     "description": "Data table with built-in client-side search, sort, and pagination.",
     "category": "Tabular Content",
     "propCount": 30
+  },
+  "EuiAutoSizer": {
+    "description": "",
+    "category": "Utilities",
+    "propCount": 10
+  },
+  "EuiAvatar": {
+    "description": "",
+    "category": "Display",
+    "propCount": 16
   },
   "EuiBadge": {
     "description": "Colored label for status, category, or count. Supports click handlers.",
@@ -1099,25 +1109,15 @@
     "category": "Display",
     "propCount": 7
   },
-  "EuiAvatar": {
+  "EuiAspectRatio": {
     "description": "",
     "category": "Display",
-    "propCount": 16
-  },
-  "EuiAutoSizer": {
-    "description": "",
-    "category": "Utilities",
-    "propCount": 10
+    "propCount": 7
   },
   "EuiAccordion": {
     "description": "Collapsible section that shows/hides content on toggle.",
     "category": "Layout",
     "propCount": 24
-  },
-  "EuiAspectRatio": {
-    "description": "",
-    "category": "Display",
-    "propCount": 7
   },
   "EuiScreenReaderLive": {
     "description": "",
@@ -1139,15 +1139,15 @@
     "category": "Utilities",
     "propCount": 5
   },
-  "EuiResizeObserver": {
-    "description": "",
-    "category": "Utilities",
-    "propCount": 2
-  },
   "EuiMutationObserver": {
     "description": "",
     "category": "Utilities",
     "propCount": 3
+  },
+  "EuiResizeObserver": {
+    "description": "",
+    "category": "Utilities",
+    "propCount": 2
   },
   "EuiCollapsedNavItem": {
     "description": "",

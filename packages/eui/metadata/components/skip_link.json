@@ -1,7 +1,7 @@
 {
   "name": "EuiSkipLink",
   "description": "",
-  "visualDescription": "",
+  "visualDescription": "A visually hidden anchor link that becomes visible on keyboard focus, typically rendered as a small pill in the top-left corner of the page. Used for keyboard accessibility to jump to main content. Invisible in mouse-driven screenshots.",
   "category": "Utilities",
   "import": "import { EuiSkipLink } from '@elastic/eui';",
   "props": {

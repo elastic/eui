@@ -1,7 +1,7 @@
 {
   "name": "EuiMarkdownFormat",
   "description": "",
-  "visualDescription": "",
+  "visualDescription": "A read-only rendered markdown block: headings, paragraphs, bold/italic text, inline code, fenced code blocks, bullet and numbered lists, horizontal rules, and links, all styled with EUI typography tokens. No editing controls are visible. NOT EuiMarkdownEditor (EuiMarkdownFormat only renders; it has no toolbar or textarea).",
   "category": "Editors & Syntax",
   "import": "import { EuiMarkdownFormat } from '@elastic/eui';",
   "props": {

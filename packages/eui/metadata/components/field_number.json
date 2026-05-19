@@ -1,7 +1,7 @@
 {
   "name": "EuiFieldNumber",
   "description": "Numeric text input field.",
-  "visualDescription": "",
+  "visualDescription": "A single-line rectangular text input styled identically to EuiFieldText but constrained to numeric entry. Browser-native increment/decrement spinner arrows appear on the right inside the field on hover. Has a four-sided border and optional prepend/append elements. NOT EuiFieldText (number spinners are visible on hover). NOT a range slider.",
   "category": "Forms",
   "import": "import { EuiFieldNumber } from '@elastic/eui';",
   "props": {

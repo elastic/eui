@@ -1,7 +1,7 @@
 {
   "name": "EuiToast",
   "description": "Auto-dismissing notification message shown in the toast list.",
-  "visualDescription": "",
+  "visualDescription": "A rectangular notification card (~320px wide) with a white or light background and a subtle left-side colored accent border (blue = info, green = success, yellow = warning, red = danger). Contains a bold title line, optional body text, and an × dismiss button in the top-right corner. Appears in a stack in the bottom-right of the viewport. NOT EuiCallOut (callouts are inline; toasts are floating and positioned).",
   "category": "Display",
   "import": "import { EuiToast } from '@elastic/eui';",
   "props": {

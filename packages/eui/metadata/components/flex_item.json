@@ -1,7 +1,7 @@
 {
   "name": "EuiFlexItem",
   "description": "Flex child within EuiFlexGroup. Controls grow, shrink, and alignment.",
-  "visualDescription": "",
+  "visualDescription": "A layout-only flex child element with no visual appearance of its own. Inside EuiFlexGroup it grows to fill available space by default. Cannot be identified visually in a screenshot — infer its presence from the children of a flex row being evenly or proportionally sized.",
   "category": "Layout",
   "import": "import { EuiFlexItem } from '@elastic/eui';",
   "props": {

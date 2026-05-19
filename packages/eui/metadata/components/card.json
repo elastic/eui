@@ -1,7 +1,7 @@
 {
   "name": "EuiCard",
   "description": "Clickable or informational card with title, description, and optional icon.",
-  "visualDescription": "",
+  "visualDescription": "A rectangular card-shaped panel with consistent internal padding. Typically contains: an icon or image at the top, a bold title below it, and one or two lines of description text. May include a footer with action buttons. Has a border and optional hover shadow when clickable. NOT EuiPanel (which has no fixed title/description/icon structure). NOT EuiStat (which only shows a metric value and label).",
   "category": "Display",
   "import": "import { EuiCard } from '@elastic/eui';",
   "props": {

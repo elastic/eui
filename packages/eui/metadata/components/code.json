@@ -1,7 +1,7 @@
 {
   "name": "EuiCode",
   "description": "Inline code snippet with monospace styling.",
-  "visualDescription": "",
+  "visualDescription": "Inline monospace text with a subtle light-grey background pill around it. Appears within a line of body text, slightly smaller than the surrounding text. No line numbers, no toolbar. NOT EuiCodeBlock (which is a multi-line block with a distinct container, optional copy button, and syntax highlighting).",
   "category": "Editors & Syntax",
   "import": "import { EuiCode } from '@elastic/eui';",
   "props": {

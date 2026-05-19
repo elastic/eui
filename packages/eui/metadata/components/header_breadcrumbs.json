@@ -1,7 +1,7 @@
 {
   "name": "EuiHeaderBreadcrumbs",
   "description": "Breadcrumbs variant styled for use inside EuiHeader.",
-  "visualDescription": "",
+  "visualDescription": "Breadcrumb navigation styled specifically for the EuiHeader bar. Appears as a compact horizontal sequence of text links separated by › chevrons, fitted within the header height. The links are lighter or white-tinted to contrast with the dark header background. NOT standalone EuiBreadcrumbs (which appear below the header in the content area with dark text on a light background).",
   "category": "Layout",
   "import": "import { EuiHeaderBreadcrumbs } from '@elastic/eui';",
   "props": {

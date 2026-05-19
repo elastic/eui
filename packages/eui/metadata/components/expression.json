@@ -1,7 +1,7 @@
 {
   "name": "EuiExpression",
   "description": "",
-  "visualDescription": "",
+  "visualDescription": "An inline clause rendered as two adjacent colored text segments: a subdued label (the \"description\", e.g. \"when\") followed by a bold value (e.g. \"count()\"). The pair can be made clickable, adding a dashed underline. Multiple expressions can be placed in a row to form a query sentence. NOT EuiBadge (EuiExpression is a two-part label+value clause, not a standalone tag).",
   "category": "Forms",
   "import": "import { EuiExpression } from '@elastic/eui';",
   "props": {

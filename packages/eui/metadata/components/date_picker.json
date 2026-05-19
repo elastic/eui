@@ -1,7 +1,7 @@
 {
   "name": "EuiDatePicker",
   "description": "Calendar-based date and time input.",
-  "visualDescription": "",
+  "visualDescription": "A text input field that, when clicked, reveals a calendar popover below it. The input shows a formatted date/time string and a calendar icon on the right. The popover contains a month grid with day numbers, prev/next month navigation arrows, and optional time-picker inputs. NOT a plain EuiFieldText (has the calendar icon and calendar popover). NOT EuiSuperDatePicker (which is a larger date-range control with quick select options).",
   "category": "Forms",
   "import": "import { EuiDatePicker } from '@elastic/eui';",
   "props": {

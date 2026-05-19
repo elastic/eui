@@ -1,7 +1,7 @@
 {
   "name": "EuiTextAlign",
   "description": "Wrapper that sets text alignment on its children.",
-  "visualDescription": "",
+  "visualDescription": "A transparent layout wrapper with no visual appearance of its own. Applies a text-align CSS property (left, center, right) to its children. Cannot be identified in a screenshot except by the resulting alignment of the contained text.",
   "category": "Display",
   "import": "import { EuiTextAlign } from '@elastic/eui';",
   "props": {

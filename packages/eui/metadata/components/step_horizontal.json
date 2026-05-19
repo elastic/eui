@@ -1,7 +1,7 @@
 {
   "name": "EuiStepHorizontal",
   "description": "",
-  "visualDescription": "",
+  "visualDescription": "A horizontal row of numbered step indicators. Each step is a circle containing a number (or checkmark if complete), connected to adjacent steps by a horizontal line. Below each circle sits a short text label. NOT EuiSteps (which is vertical with expanded content per step).",
   "category": "Navigation",
   "import": "import { EuiStepHorizontal } from '@elastic/eui';",
   "props": {

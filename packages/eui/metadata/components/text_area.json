@@ -1,7 +1,7 @@
 {
   "name": "EuiTextArea",
   "description": "",
-  "visualDescription": "",
+  "visualDescription": "A multi-line bordered text input box, visually taller than a single-line EuiFieldText. Renders the HTML textarea element styled with EUI form control tokens — rounded corners, focus ring, and consistent padding. NOT EuiFieldText (EuiTextArea is multi-line; EuiFieldText is single-line). NOT EuiMarkdownEditor (EuiTextArea is a plain text area with no markdown toolbar).",
   "category": "Forms",
   "import": "import { EuiTextArea } from '@elastic/eui';",
   "props": {

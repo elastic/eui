@@ -1,7 +1,7 @@
 {
   "name": "EuiBottomBar",
   "description": "Fixed bar anchored to the bottom of the viewport for persistent actions.",
-  "visualDescription": "",
+  "visualDescription": "A full-width dark-colored (dark grey or navy) horizontal bar fixed to the bottom edge of the viewport. Contains action buttons (typically Save and Cancel) laid out horizontally with standard padding. Sits on top of all page content. NOT EuiHeader (which is at the top). NOT EuiFooter (a generic component); EuiBottomBar is specifically a sticky action bar.",
   "category": "Layout",
   "import": "import { EuiBottomBar } from '@elastic/eui';",
   "props": {

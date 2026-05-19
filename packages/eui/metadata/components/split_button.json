@@ -1,7 +1,7 @@
 {
   "name": "EuiSplitButton",
   "description": "",
-  "visualDescription": "",
+  "visualDescription": "Two buttons joined into one visual unit sharing a border radius: a wider primary action button on the left with a text label, and a narrow chevron-down icon button on the right separated by a thin divider. Clicking the chevron opens a dropdown of secondary actions. NOT EuiButton with append (EuiSplitButton is a distinct two-part component with separate click targets).",
   "category": "Navigation",
   "import": "import { EuiSplitButton } from '@elastic/eui';",
   "props": {

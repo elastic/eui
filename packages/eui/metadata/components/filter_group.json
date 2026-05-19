@@ -1,7 +1,7 @@
 {
   "name": "EuiFilterGroup",
   "description": "",
-  "visualDescription": "",
+  "visualDescription": "A row of EuiFilterButton elements enclosed in a shared rounded-corner border, making them appear as a segmented button group. Adjacent buttons share a single dividing border rather than having separate outlines. NOT EuiButtonGroup (EuiFilterGroup is for search/filter controls and supports notification badges; EuiButtonGroup is a generic option selector).",
   "category": "Forms",
   "import": "import { EuiFilterGroup } from '@elastic/eui';",
   "props": {

@@ -1,7 +1,7 @@
 {
   "name": "EuiTab",
   "description": "Individual tab item. Must be a child of EuiTabs.",
-  "visualDescription": "",
+  "visualDescription": "A single tab item — a text label with generous top/bottom padding and no visible outer border. When active, shows a solid 2–3px underline in the primary color directly below the label. When inactive, the label is subdued. Part of an EuiTabs row. NOT a button (no bounding box visible at rest).",
   "category": "Navigation",
   "import": "import { EuiTab } from '@elastic/eui';",
   "props": {

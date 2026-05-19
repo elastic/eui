@@ -1,7 +1,7 @@
 {
   "name": "EuiDatePickerRange",
   "description": "",
-  "visualDescription": "",
+  "visualDescription": "Two date/time input fields (\"Start date\" and \"End date\") placed side-by-side inside a single bordered form-control container, separated by an em-dash or arrow icon. Each field opens its own calendar popover when focused. NOT EuiSuperDatePicker (EuiDatePickerRange is a simple two-field date range without quick-select presets or a Refresh button).",
   "category": "Forms",
   "import": "import { EuiDatePickerRange } from '@elastic/eui';",
   "props": {

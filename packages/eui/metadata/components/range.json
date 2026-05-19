@@ -1,7 +1,7 @@
 {
   "name": "EuiRange",
   "description": "",
-  "visualDescription": "",
+  "visualDescription": "A horizontal slider control with a single draggable thumb on a track. Optional min/max labels appear at each end; an optional tooltip above the thumb shows the current value. NOT EuiDualRange (EuiRange has one thumb; EuiDualRange has two thumbs for a min/max range). NOT EuiFieldNumber (EuiRange is a slider, not a text input).",
   "category": "Forms",
   "import": "import { EuiRange } from '@elastic/eui';",
   "props": {

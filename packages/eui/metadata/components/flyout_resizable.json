@@ -1,7 +1,7 @@
 {
   "name": "EuiFlyoutResizable",
   "description": "",
-  "visualDescription": "",
+  "visualDescription": "Identical in appearance to EuiFlyout — a full-height overlay panel anchored to the right (or left) viewport edge — but with a visible drag handle on its inner edge that lets users resize the panel width by dragging. NOT EuiFlyout (EuiFlyoutResizable adds the resizable drag handle; prefer EuiFlyout with resizable={true} for new code).",
   "category": "Layout",
   "import": "import { EuiFlyoutResizable } from '@elastic/eui';",
   "props": {

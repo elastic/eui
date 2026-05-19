@@ -1,7 +1,7 @@
 {
   "name": "EuiToolTip",
   "description": "Hover/focus tooltip anchored to a trigger element.",
-  "visualDescription": "",
+  "visualDescription": "A small floating text bubble that appears near (above, below, or beside) an anchor element. Has a dark (near-black) background, white text, and a small directional arrow pointing to the anchor. Appears on hover or focus. Width is constrained (~200–250px). NOT EuiPopover (which has a light background, is triggered by click, and can hold rich content). NOT a browser native title tooltip.",
   "category": "Display",
   "import": "import { EuiToolTip } from '@elastic/eui';",
   "props": {

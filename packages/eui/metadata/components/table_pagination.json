@@ -1,7 +1,7 @@
 {
   "name": "EuiTablePagination",
   "description": "",
-  "visualDescription": "",
+  "visualDescription": "A combined control row sitting below a data table, containing a \"Rows per page\" select dropdown on the left and an EuiPagination page-number control on the right. NOT EuiPagination alone (which has only the page buttons with no rows-per-page control).",
   "category": "Tabular Content",
   "import": "import { EuiTablePagination } from '@elastic/eui';",
   "props": {
