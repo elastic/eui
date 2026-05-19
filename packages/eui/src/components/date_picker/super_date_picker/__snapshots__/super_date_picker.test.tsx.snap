@@ -907,7 +907,7 @@ exports[`EuiSuperDatePicker renders an EuiDatePickerRange 1`] = `
         >
           <span
             class="euiToolTipAnchor  emotion-euiToolTipAnchor-block-css"
-            id="generated-id-wrapper"
+            id="generated-id_euiToolTipAnchor"
           >
             <button
               aria-controls="euiPopover_generated-id_panelId"
@@ -934,7 +934,7 @@ exports[`EuiSuperDatePicker renders an EuiDatePickerRange 1`] = `
         >
           <span
             class="euiToolTipAnchor  emotion-euiToolTipAnchor-block-css"
-            id="generated-id-wrapper"
+            id="generated-id_euiToolTipAnchor"
           >
             <button
               aria-expanded="false"
