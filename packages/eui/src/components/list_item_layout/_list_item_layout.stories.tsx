@@ -356,7 +356,7 @@ export const CustomContent: Story = {
   },
   render: function Render(args: EuiListItemLayoutProps) {
     return (
-      <>
+      <ul>
         <EuiListItemLayout {...args}>
           <EuiFlexGroup alignItems="center" gutterSize="xs">
             <EuiFlexItem grow={false}>
@@ -395,7 +395,7 @@ export const CustomContent: Story = {
             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
           </EuiHealth>
         </EuiListItemLayout>
-      </>
+      </ul>
     );
   },
 };
