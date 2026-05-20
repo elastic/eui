@@ -99,9 +99,8 @@ export const euiListItemLayoutStyles = (euiThemeContext: UseEuiTheme) => {
       ${euiFontSize(euiThemeContext, 's')}
       text-align: start;
 
-      /* Workaround for decent alingment for custom flex wrapper content */
-      > *:only-child,
-      > *:first-child {
+      /* Specific style to ensure alignment as it's a use case in Kibana that's not migrated yet to use the prepend slot */
+      .euiHealth {
         vertical-align: middle;
       }
 
