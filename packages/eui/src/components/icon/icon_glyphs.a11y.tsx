@@ -215,6 +215,7 @@ describe('EuiIcons', () => {
       'sessionViewer',
       'shard',
       'share',
+      'significantEvents',
       'snowflake',
       'sortable',
       'sortAscending',
