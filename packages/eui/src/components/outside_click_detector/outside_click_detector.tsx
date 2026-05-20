@@ -13,6 +13,7 @@ import {
   ReactElement,
   useRef,
   useEffect,
+  forwardRef,
 } from 'react';
 import { useGeneratedHtmlId } from '../../services/accessibility';
 
@@ -33,9 +34,10 @@ export interface EuiOutsideClickDetectorProps {
   onTouchEnd?: (event: ReactMouseEvent) => void;
 }
 
-export const EuiOutsideClickDetector = (
-  props: EuiOutsideClickDetectorProps
-) => {
+export const EuiOutsideClickDetector = forwardRef<
+  HTMLElement,
+  EuiOutsideClickDetectorProps
+>((props, ref) => {
   // the id is used to identify which EuiOutsideClickDetector
   // is the source of a click event; as the click event bubbles
   // up and reaches the click detector's child component the
@@ -119,12 +121,13 @@ export const EuiOutsideClickDetector = (
   const child = Children.only(props.children);
   const childProps = {
     ...props.children.props,
-    ...{
-      onMouseDown: onChildMouseDown,
-      onTouchStart: onChildMouseDown,
-      onMouseUp: onChildMouseUp,
-      onTouchEnd: onChildMouseUp,
-    },
+    onMouseDown: onChildMouseDown,
+    onTouchStart: onChildMouseDown,
+    onMouseUp: onChildMouseUp,
+    onTouchEnd: onChildMouseUp,
+    ...(ref ? { ref } : {}),
   };
   return cloneElement(child, childProps);
-};
+});
+
+EuiOutsideClickDetector.displayName = 'EuiOutsideClickDetector';
