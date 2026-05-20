@@ -18,10 +18,7 @@ import { EuiFlexGroup, EuiFlexItem } from '../../flex';
 import { EuiSelect, EuiFieldNumber, EuiFormLabel, EuiSwitch } from '../../form';
 import { EuiScreenReaderOnly } from '../../accessibility';
 
-import {
-  RenderI18nTimeOptions,
-  TimeOptions,
-} from '../super_date_picker/time_options';
+import { useI18nTimeOptions } from '../super_date_picker/time_options';
 import { EuiQuickSelectPanel } from '../super_date_picker/quick_select_popover/quick_select_panel';
 import {
   Milliseconds,
@@ -127,6 +124,8 @@ export const EuiRefreshInterval = ({
     prefix: 'euiRefreshInterval',
   });
 
+  const { refreshUnitsOptions } = useI18nTimeOptions();
+
   const applyRefreshInterval = (nextState: EuiRefreshIntervalState) => {
     const { units, value } = nextState;
     if (value === '') {
@@ -198,9 +197,7 @@ export const EuiRefreshInterval = ({
     });
   };
 
-  const renderScreenReaderText = (
-    refreshUnitsOptions: TimeOptions['refreshUnitsOptions']
-  ) => {
+  const renderScreenReaderText = () => {
     const { value, units } = state;
 
     const options = refreshUnitsOptions.find(({ value }) => value === units);
@@ -256,62 +253,58 @@ export const EuiRefreshInterval = ({
         valueAriaLabel,
         unitsAriaLabel,
       ]: string[]) => (
-        <RenderI18nTimeOptions>
-          {({ refreshUnitsOptions }) => (
-            <EuiQuickSelectPanel>
-              <EuiFlexGroup
-                alignItems="center"
-                gutterSize="s"
-                responsive={false}
-                wrap
-              >
-                <EuiFlexItem grow={false}>
-                  <EuiSwitch
-                    data-test-subj="superDatePickerToggleRefreshButton"
-                    checked={!isPaused}
-                    onChange={toggleRefresh}
-                    compressed
-                    // The IDs attached to this visible label are unused - we override with our own aria-label
-                    label={<EuiFormLabel>{toggleLabel}</EuiFormLabel>}
-                    aria-label={toggleAriaLabel}
-                    aria-labelledby={undefined}
-                    aria-describedby={refreshSelectionId}
-                  />
-                </EuiFlexItem>
-                <EuiFlexItem style={{ minWidth: 60 }}>
-                  <EuiFieldNumber
-                    compressed
-                    fullWidth
-                    value={value}
-                    min={min}
-                    onChange={onValueChange}
-                    onKeyDown={handleKeyDown}
-                    isInvalid={!isPaused && (value === '' || value <= 0)}
-                    disabled={isPaused}
-                    aria-label={valueAriaLabel}
-                    aria-describedby={refreshSelectionId}
-                    data-test-subj="superDatePickerRefreshIntervalInput"
-                  />
-                </EuiFlexItem>
-                <EuiFlexItem style={{ minWidth: 100 }} grow={2}>
-                  <EuiSelect
-                    compressed
-                    fullWidth
-                    aria-label={unitsAriaLabel}
-                    aria-describedby={refreshSelectionId}
-                    value={units}
-                    disabled={isPaused}
-                    options={refreshUnitsOptions}
-                    onChange={onUnitsChange}
-                    onKeyDown={handleKeyDown}
-                    data-test-subj="superDatePickerRefreshIntervalUnitsSelect"
-                  />
-                </EuiFlexItem>
-              </EuiFlexGroup>
-              {renderScreenReaderText(refreshUnitsOptions)}
-            </EuiQuickSelectPanel>
-          )}
-        </RenderI18nTimeOptions>
+        <EuiQuickSelectPanel>
+          <EuiFlexGroup
+            alignItems="center"
+            gutterSize="s"
+            responsive={false}
+            wrap
+          >
+            <EuiFlexItem grow={false}>
+              <EuiSwitch
+                data-test-subj="superDatePickerToggleRefreshButton"
+                checked={!isPaused}
+                onChange={toggleRefresh}
+                compressed
+                // The IDs attached to this visible label are unused - we override with our own aria-label
+                label={<EuiFormLabel>{toggleLabel}</EuiFormLabel>}
+                aria-label={toggleAriaLabel}
+                aria-labelledby={undefined}
+                aria-describedby={refreshSelectionId}
+              />
+            </EuiFlexItem>
+            <EuiFlexItem style={{ minWidth: 60 }}>
+              <EuiFieldNumber
+                compressed
+                fullWidth
+                value={value}
+                min={min}
+                onChange={onValueChange}
+                onKeyDown={handleKeyDown}
+                isInvalid={!isPaused && (value === '' || value <= 0)}
+                disabled={isPaused}
+                aria-label={valueAriaLabel}
+                aria-describedby={refreshSelectionId}
+                data-test-subj="superDatePickerRefreshIntervalInput"
+              />
+            </EuiFlexItem>
+            <EuiFlexItem style={{ minWidth: 100 }} grow={2}>
+              <EuiSelect
+                compressed
+                fullWidth
+                aria-label={unitsAriaLabel}
+                aria-describedby={refreshSelectionId}
+                value={units}
+                disabled={isPaused}
+                options={refreshUnitsOptions}
+                onChange={onUnitsChange}
+                onKeyDown={handleKeyDown}
+                data-test-subj="superDatePickerRefreshIntervalUnitsSelect"
+              />
+            </EuiFlexItem>
+          </EuiFlexGroup>
+          {renderScreenReaderText()}
+        </EuiQuickSelectPanel>
       )}
     </EuiI18n>
   );
