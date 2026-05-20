@@ -26,6 +26,7 @@ import {
   type EuiListItemLayoutAsButton,
   type EuiListItemLayoutAsAnchor,
 } from './_list_item_layout';
+import { EuiHealth } from '../health';
 
 type EuiListItemLayoutStoryProps = EuiListItemLayoutProps & {
   checkedSingle: 'on' | undefined;
@@ -344,6 +345,59 @@ export const TextWrap: Story = {
       <StoryRender {...(args as EuiListItemLayoutStoryProps)} />
     </div>
   ),
+};
+
+export const CustomContent: Story = {
+  tags: ['vrt-only'],
+  parameters: {
+    controls: {
+      include: [],
+    },
+  },
+  render: function Render(args: EuiListItemLayoutProps) {
+    return (
+      <>
+        <EuiListItemLayout {...args}>
+          <EuiFlexGroup alignItems="center" gutterSize="xs">
+            <EuiFlexItem grow={false}>
+              <EuiIcon type="alert" color="warning" />
+            </EuiFlexItem>
+            <EuiFlexItem>
+              Lorem ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing
+              elit.
+            </EuiFlexItem>
+          </EuiFlexGroup>
+        </EuiListItemLayout>
+
+        <EuiListItemLayout {...args}>
+          <EuiText>
+            <mark>Lorem ipsum.</mark> Lorem ipsum dolor sit amet, consectetur
+            adipiscing elit.
+          </EuiText>
+        </EuiListItemLayout>
+
+        <EuiListItemLayout {...args}>
+          <>
+            <mark>Lorem ipsum.</mark> Lorem ipsum dolor sit amet, consectetur
+            adipiscing elit.
+          </>
+        </EuiListItemLayout>
+
+        <EuiListItemLayout {...args}>
+          <>
+            <small>Lorem ipsum.</small> Lorem ipsum dolor sit amet, consectetur
+            adipiscing elit.
+          </>
+        </EuiListItemLayout>
+
+        <EuiListItemLayout {...args}>
+          <EuiHealth color="success">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          </EuiHealth>
+        </EuiListItemLayout>
+      </>
+    );
+  },
 };
 
 export const KitchenSink: Story = {
