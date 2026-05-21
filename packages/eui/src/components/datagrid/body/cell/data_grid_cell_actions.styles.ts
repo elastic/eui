@@ -112,15 +112,18 @@ export const euiDataGridCellActionsStyles = (euiThemeContext: UseEuiTheme) => {
       )}
       border-radius: 0;
 
-      /* Force all cell action buttons to match EUI colors */
-      /* stylelint-disable declaration-no-important */
-      &,
-      svg {
-        background-color: transparent !important;
-        color: currentColor !important;
-        fill: currentColor !important;
+      &:not(:disabled),
+      &:not(:disabled) svg {
+        /* Force all cell action buttons to match EUI colors */
+        /* stylelint-disable declaration-no-important */
+        &,
+        svg {
+          background-color: transparent !important;
+          color: currentColor !important;
+          fill: currentColor !important;
+        }
+        /* stylelint-enable declaration-no-important */
       }
-      /* stylelint-enable declaration-no-important */
 
       /* Remove button borders in high contrast mode */
       ${highContrastModeStyles(euiThemeContext, {
