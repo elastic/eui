@@ -126,22 +126,33 @@ export const EuiTableStickyScrollbar = ({
 
     element.addEventListener('scroll', handleScroll, { passive: true });
 
-    const resizeObserver = new ResizeObserver(handleResize);
-    resizeObserver.observe(element);
+    // ResizeObserver is available in all supported browsers,
+    // but jsdom and jest don't provide a polyfill for it.
+    let resizeObserver: ResizeObserver | undefined;
+    if (typeof window.ResizeObserver !== 'undefined') {
+      resizeObserver = new ResizeObserver(handleResize);
+      resizeObserver.observe(element);
+    }
 
-    const intersectionObserver = new IntersectionObserver(
-      handleBottomCornerIntersection,
-      {
-        threshold: 0,
-        rootMargin: '-100% 0px 0px 0px',
-      }
-    );
-    intersectionObserver.observe(element);
+    // IntersectionOserver is available in all supported browsers,
+    // but jsdom and jest don't provide a polyfill for it.
+    let intersectionObserver: IntersectionObserver | undefined;
+    if (typeof window.IntersectionObserver !== 'undefined') {
+      intersectionObserver = new IntersectionObserver(
+        handleBottomCornerIntersection,
+        {
+          threshold: 0,
+          rootMargin: '-100% 0px 0px 0px',
+        }
+      );
+      intersectionObserver.observe(element);
+    }
 
     return () => {
       element.removeEventListener('scroll', handleScroll);
-      resizeObserver.disconnect();
-      intersectionObserver.disconnect();
+
+      resizeObserver?.disconnect();
+      intersectionObserver?.disconnect();
     };
   }, [
     tableWrapperRef,
