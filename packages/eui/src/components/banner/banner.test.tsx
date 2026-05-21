@@ -99,9 +99,9 @@ describe('EuiBanner', () => {
 
   describe('onDismiss button', () => {
     it('does not render the dismiss button when onDismiss is omitted', () => {
-      const { queryByTestId } = render(<EuiBanner {...requiredProps} />);
+      const { queryByTestSubject } = render(<EuiBanner {...requiredProps} />);
 
-      expect(queryByTestId('euiBanner-dismiss')).toBeNull();
+      expect(queryByTestSubject('euiBanner-dismiss')).toBeNull();
     });
 
     it('fires onDismiss when the dismiss button is clicked', () => {
@@ -156,7 +156,7 @@ describe('EuiBanner', () => {
     });
 
     it('does not render a standalone secondary action button', () => {
-      const { queryByTestId } = render(
+      const { queryByTestSubject } = render(
         <EuiBanner
           {...requiredProps}
           actionProps={{
@@ -165,9 +165,9 @@ describe('EuiBanner', () => {
         />
       );
 
-      expect(queryByTestId('euiBanner-actions')).not.toBeInTheDocument();
+      expect(queryByTestSubject('euiBanner-actions')).not.toBeInTheDocument();
       expect(
-        queryByTestId('euiBanner-secondaryAction')
+        queryByTestSubject('euiBanner-secondaryAction')
       ).not.toBeInTheDocument();
     });
 
