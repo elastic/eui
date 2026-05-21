@@ -170,7 +170,7 @@ export const EuiBanner = forwardRef<HTMLDivElement, EuiBannerProps>(
                   aria-label={dismissAriaLabel}
                   data-test-subj={`${dataTestSubj}-dismiss`}
                   {...dismissButtonProps}
-                  css={styles.dismiss}
+                  css={[styles.dismiss, dismissButtonProps?.css]}
                   onClick={onDismiss}
                 />
               ) : null}

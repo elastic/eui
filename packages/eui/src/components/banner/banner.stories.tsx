@@ -52,7 +52,7 @@ const Illustration = ({ size }: { size: EuiBannerProps['size'] }) => {
 };
 
 const buildBannerProps = (args: EuiBannerProps): EuiBannerProps => {
-  const { media, onDismiss, size, ...rest } = args;
+  const { onDismiss, size, ...rest } = args;
   return {
     ...rest,
     size,
