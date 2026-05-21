@@ -12,16 +12,8 @@ import React, {
   HTMLAttributes,
   ReactNode,
   ContextType,
-  createRef,
-  useState,
-  RefObject,
-  useEffect,
-  useCallback,
-  useRef,
-  PointerEventHandler,
 } from 'react';
 import classNames from 'classnames';
-import { css } from '@emotion/react';
 import moment from 'moment';
 import {
   Direction,
@@ -36,9 +28,6 @@ import {
   RenderWithEuiTheme,
   OverrideCopiedTabularContent,
   tabularCopyMarkers,
-  UseEuiTheme,
-  useEuiMemoizedStyles,
-  transparentize,
 } from '../../services';
 import { CommonProps } from '../common';
 import { isFunction } from '../../services/predicate';
@@ -320,152 +309,6 @@ function hasPagination<T extends object>(
   return x.hasOwnProperty('pagination') && !!x.pagination;
 }
 
-const getMiniMapStyles = (_euiTheme: UseEuiTheme) => {
-  const { euiTheme } = _euiTheme;
-
-  return {
-    wrapper: css`
-      block-size: ${euiTheme.size.base};
-      background: ${euiTheme.colors.backgroundBaseDisabled};
-      padding: ${euiTheme.size.xs};
-      position: sticky;
-      inset-block-end: var(--euiBasicTableVirtualScrollOffsetBottom, 0);
-      z-index: var(--euiBasicTableVirtualScrollZIndex, 0);
-    `,
-    marker: css`
-      block-size: 100%;
-      background: ${transparentize(euiTheme.colors.darkShade, 0.5)};
-      border-radius: ${euiTheme.border.radius.small};
-    `,
-  };
-};
-
-const MiniMap = ({
-  wrapperElementRef,
-}: {
-  wrapperElementRef: RefObject<HTMLDivElement>;
-}) => {
-  const styles = useEuiMemoizedStyles(getMiniMapStyles);
-  const trackElementRef = useRef<HTMLDivElement>(null);
-  const rafPending = useRef(false);
-  const [active, setActive] = useState(false);
-
-  const updateTrack = useCallback((element: HTMLDivElement) => {
-    const { clientWidth, scrollWidth, scrollLeft } = element;
-
-    if (!rafPending.current) {
-      rafPending.current = true;
-
-      requestAnimationFrame(() => {
-        const el = trackElementRef.current;
-        if (el) {
-          el.style.inlineSize = `${(clientWidth / scrollWidth) * 100}%`;
-          el.style.marginInlineStart = `${(scrollLeft / scrollWidth) * 100}%`;
-        }
-
-        rafPending.current = false;
-      });
-    }
-  }, []);
-
-  const handleScroll = useCallback(
-    (event: Event) => {
-      if (event.target) {
-        updateTrack(event.target as HTMLDivElement);
-      }
-    },
-    [updateTrack]
-  );
-
-  const handleResize = useCallback<ResizeObserverCallback>(
-    (entries) => {
-      if (entries.length === 0) {
-        return;
-      }
-
-      const element = entries[0].target;
-      updateTrack(element as HTMLDivElement);
-
-      if (element.clientWidth < element.scrollWidth) {
-        setActive(true);
-      } else {
-        setActive(false);
-      }
-    },
-    [updateTrack]
-  );
-
-  useEffect(() => {
-    const element = wrapperElementRef.current;
-
-    if (element == null) {
-      return;
-    }
-
-    updateTrack(element);
-    element.addEventListener('scroll', handleScroll, { passive: true });
-
-    const resizeObserver = new ResizeObserver(handleResize);
-    resizeObserver.observe(element);
-
-    return () => {
-      element.removeEventListener('scroll', handleScroll);
-      resizeObserver.disconnect();
-    };
-  }, [wrapperElementRef, updateTrack, handleScroll, handleResize]);
-
-  const dragStartRef = useRef<{ x: number; scrollLeft: number } | null>(null);
-
-  const handlePointerDown = useCallback<PointerEventHandler<HTMLDivElement>>(
-    (event) => {
-      const el = wrapperElementRef.current;
-      dragStartRef.current = {
-        x: event.clientX,
-        scrollLeft: el?.scrollLeft ?? 0,
-      };
-
-      event.currentTarget.setPointerCapture(event.pointerId);
-    },
-    [wrapperElementRef]
-  );
-
-  const handlePointerUp = useCallback(() => {
-    dragStartRef.current = null;
-  }, [dragStartRef]);
-
-  const handlePointerMove = useCallback<PointerEventHandler<HTMLDivElement>>(
-    (event) => {
-      const el = wrapperElementRef.current;
-
-      if (!dragStartRef.current || !el) {
-        return;
-      }
-
-      const diff = event.clientX - dragStartRef.current.x;
-      const ratio = el.scrollWidth / el.clientWidth;
-
-      el.scrollLeft = dragStartRef.current.scrollLeft + diff * ratio;
-    },
-    [wrapperElementRef]
-  );
-
-  if (!active) {
-    return null;
-  }
-
-  return (
-    <div css={styles.wrapper}>
-      <div
-        ref={trackElementRef}
-        css={styles.marker}
-        onPointerDown={handlePointerDown}
-        onPointerMove={handlePointerMove}
-        onPointerUp={handlePointerUp}
-      />
-    </div>
-  );
-};
-
 export class EuiBasicTable<T extends object = any> extends Component<
   EuiBasicTableProps<T>,
   State<T>
@@ -479,8 +322,6 @@ export class EuiBasicTable<T extends object = any> extends Component<
       <EuiI18n token="euiBasicTable.noItemsMessage" default="No items found" />
     ),
   };
-
-  private tableWrapperElementRef = createRef<HTMLDivElement>();
 
   static getDerivedStateFromProps<T extends object>(
     nextProps: EuiBasicTableProps<T>,
@@ -697,7 +538,6 @@ export class EuiBasicTable<T extends object = any> extends Component<
     return (
       <div className={classes} {...rest}>
         {table}
-        <MiniMap wrapperElementRef={this.tableWrapperElementRef} />
         {paginationBar}
       </div>
     );
@@ -721,7 +561,6 @@ export class EuiBasicTable<T extends object = any> extends Component<
         </EuiTableHeaderMobile>
         <OverrideCopiedTabularContent>
           <EuiTable
-            tableWrapperElementRef={this.tableWrapperElementRef}
             id={this.tableId}
             tableLayout={tableLayout}
             responsiveBreakpoint={responsiveBreakpoint}
