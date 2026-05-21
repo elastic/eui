@@ -21,7 +21,7 @@ import { euiTableStyles } from './table.styles';
 import { usePropsWithComponentDefaults } from '../provider/component_defaults';
 import { euiContainerCSS } from '../../global_styling';
 import { EUI_TABLE_CSS_CONTAINER_NAME } from './const';
-import { EuiTableStickyScrollbar } from './sticky_scrollbar/sticky_scrollbar';
+import { EuiTableStickyScrollbar } from './sticky_scrollbar';
 
 export interface EuiTableProps
   extends CommonProps,
