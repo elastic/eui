@@ -121,11 +121,8 @@ export const euiDataGridCellActionsStyles = (euiThemeContext: UseEuiTheme) => {
       /* Force all cell action buttons to match EUI colors unless disabled */
       &:not(:disabled),
       &:not(:disabled) svg {
-        &,
-        svg {
-          color: currentColor !important;
-          fill: currentColor !important;
-        }
+        color: currentColor !important;
+        fill: currentColor !important;
       }
       /* stylelint-enable declaration-no-important */
 
