@@ -17,18 +17,15 @@ The component requires a `title` and a `media` element. All other props are opti
 
 ```tsx interactive
 import React from 'react';
-import { EuiBanner, useEuiTheme } from '@elastic/eui';
+import { EuiBanner } from '@elastic/eui';
 
-const Illustration = () => {
-  const { euiTheme } = useEuiTheme();
-  return (
-    <img
-      src="https://placehold.co/80x80"
-      alt=""
-      aria-hidden="true"
-    />
-  );
-};
+const Illustration = () => (
+  <img
+    src="https://placehold.co/80x80"
+    alt=""
+    aria-hidden="true"
+  />
+);
 
 export default () => (
   <EuiBanner
@@ -48,18 +45,15 @@ You can use the `fill` prop on the primary action to opt in to a filled style fo
 
 ```tsx interactive
 import React from 'react';
-import { EuiBanner, useEuiTheme } from '@elastic/eui';
+import { EuiBanner } from '@elastic/eui';
 
-const Illustration = () => {
-  const { euiTheme } = useEuiTheme();
-  return (
-    <img
-      src="https://placehold.co/80x80"
-      alt=""
-      aria-hidden="true"
-    />
-  );
-};
+const Illustration = () => (
+  <img
+    src="https://placehold.co/80x80"
+    alt=""
+    aria-hidden="true"
+  />
+);
 
 export default () => (
   <EuiBanner
@@ -80,18 +74,15 @@ Pass an `onDismiss` callback to render a dismiss button in the top-right corner 
 
 ```tsx interactive
 import React, { useState } from 'react';
-import { EuiBanner, EuiButtonEmpty, useEuiTheme } from '@elastic/eui';
+import { EuiBanner, EuiButtonEmpty } from '@elastic/eui';
 
-const Illustration = () => {
-  const { euiTheme } = useEuiTheme();
-  return (
-    <img
-      src="https://placehold.co/80x80"
-      alt=""
-      aria-hidden="true"
-    />
-  );
-};
+const Illustration = () => (
+  <img
+    src="https://placehold.co/80x80"
+    alt=""
+    aria-hidden="true"
+  />
+);
 
 export default () => {
   const [isVisible, setIsVisible] = useState(true);
@@ -119,18 +110,15 @@ The `color` prop controls the background of the banner. Choose `color` depending
 
 ```tsx interactive
 import React from 'react';
-import { EuiBanner, EuiSpacer, useEuiTheme } from '@elastic/eui';
+import { EuiBanner, EuiSpacer } from '@elastic/eui';
 
-const Illustration = ({ size }: { size?: 's' | 'm' }) => {
-  const { euiTheme } = useEuiTheme();
-  return (
-    <img
-      src={size === 's' ? 'https://placehold.co/32x32' : 'https://placehold.co/80x80'}
-      alt=""
-      aria-hidden="true"
-    />
-  );
-};
+const Illustration = ({ size }: { size?: 's' | 'm' }) => (
+  <img
+    src={size === 's' ? 'https://placehold.co/32x32' : 'https://placehold.co/80x80'}
+    alt=""
+    aria-hidden="true"
+  />
+);
 
 export default () => (
   <>
