@@ -7,6 +7,7 @@
  */
 
 import React, { forwardRef, ReactNode } from 'react';
+import classNames from 'classnames';
 
 import { useEuiMemoizedStyles } from '../../services';
 import { useEuiBackgroundColorCSS } from '../../global_styling';
@@ -25,7 +26,6 @@ import { EuiText } from '../text';
 import { EuiLiveAnnouncer } from '../accessibility';
 
 import { EuiBannerSize, euiBannerStyles } from './banner.styles';
-import classNames from 'classnames';
 
 export type EuiBannerActionPrimaryProps = DistributiveOmit<
   EuiButtonProps,
@@ -117,7 +117,7 @@ export const EuiBanner = forwardRef<HTMLDivElement, EuiBannerProps>(
     );
 
     const Heading = headingElement;
-    const headingSize = size === 's' ? 'xxs' : size === 'm' ? 'xs' : 's';
+    const headingSize = size === 's' ? 'xxs' : 'xs';
 
     const primaryActionProps = actionProps?.primary;
     const secondaryActionProps = actionProps?.secondary;

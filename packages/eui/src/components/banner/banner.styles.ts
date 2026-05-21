@@ -11,15 +11,13 @@ import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../services';
 
 export type EuiBannerSize = 's' | 'm';
-type _EuiBannerSize = EuiBannerSize | 'l';
 type EuiBannerLayouts = (typeof CQC_LAYOUTS)[number];
 
 const CONTAINER_NAME = 'euiBanner';
 
 const CQC_LAYOUTS = ['superNarrow', 'narrow', 'wide'] as const;
 const CQC_BREAKPOINTS: Record<
-  // manually adds 'l' while it's still hidden from public API
-  _EuiBannerSize,
+  EuiBannerSize,
   Record<EuiBannerLayouts, string>
 > = {
   s: {
@@ -31,11 +29,6 @@ const CQC_BREAKPOINTS: Record<
     superNarrow: '(max-width: 600px)',
     narrow: '(min-width: 601px)',
     wide: '(min-width: 1000px)',
-  },
-  l: {
-    superNarrow: '(max-width: 800px)',
-    narrow: '(min-width: 801px)',
-    wide: '(min-width: 1200px)',
   },
 };
 
@@ -53,7 +46,7 @@ const withContainerQuery = ({
     .map(
       (sizeKey) => `
         @container ${CONTAINER_NAME}--${sizeKey} ${
-        CQC_BREAKPOINTS[sizeKey as _EuiBannerSize][layout]
+        CQC_BREAKPOINTS[sizeKey as EuiBannerSize][layout]
       } {
           ${styles}
         }
@@ -76,10 +69,6 @@ export const euiBannerStyles = ({ euiTheme }: UseEuiTheme) => ({
 
     &[data-size='m'] {
       container-name: ${CONTAINER_NAME} ${CONTAINER_NAME}--m;
-    }
-
-    &[data-size='l'] {
-      container-name: ${CONTAINER_NAME} ${CONTAINER_NAME}--l;
     }
   `,
   container: css`
@@ -114,10 +103,6 @@ export const euiBannerStyles = ({ euiTheme }: UseEuiTheme) => ({
     inline-size: var(--euiBannerMediaSize);
     block-size: var(--euiBannerMediaSize);
     aspect-ratio: 1 / 1;
-
-    [data-size='l'] & {
-      --euiBannerMediaSize: ${`calc(${euiTheme.size.base} * 7.5)`};
-    }
 
     [data-size='s'] & {
       --euiBannerMediaSize: ${`calc(${euiTheme.size.base} * 2)`};
