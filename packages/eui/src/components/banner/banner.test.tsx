@@ -7,10 +7,10 @@
  */
 
 import React from 'react';
-import { fireEvent, renderHook, waitFor } from '@testing-library/react';
+import { fireEvent, waitFor } from '@testing-library/react';
 
 import { useEuiTheme } from '../../services';
-import { render } from '../../test/rtl';
+import { render, renderHook } from '../../test/rtl';
 
 import { EuiBanner } from './banner';
 
