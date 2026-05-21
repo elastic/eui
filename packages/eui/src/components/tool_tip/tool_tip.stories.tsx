@@ -6,12 +6,11 @@
  * Side Public License, v 1.
  */
 
-import React, { useState } from 'react';
+import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { enableFunctionToggleControls } from '../../../.storybook/utils';
-import { LOKI_SELECTORS, lokiPlayDecorator } from '../../../.storybook/loki';
-import { sleep } from '../../test';
+import { VRT_SELECTORS } from '../../../.storybook/vrt';
 import { EuiButton } from '../button';
 import { EuiFlexGroup } from '../flex';
 import {
@@ -19,15 +18,14 @@ import {
   EuiToolTipProps,
   DEFAULT_TOOLTIP_OFFSET,
 } from './tool_tip';
-import { EuiIconTip } from './icon_tip';
 
 const meta: Meta<EuiToolTipProps> = {
   title: 'Display/EuiToolTip',
   component: EuiToolTip,
   parameters: {
     layout: 'fullscreen',
-    loki: {
-      chromeSelector: LOKI_SELECTORS.portal,
+    vrt: {
+      selector: VRT_SELECTORS.portal,
     },
   },
   decorators: [
@@ -61,15 +59,10 @@ type Story = StoryObj<EuiToolTipProps>;
 
 export const Playground: Story = {
   args: {
-    // using autoFocus here as small trick to ensure showing the tooltip on load (e.g. for VRT)
-    // TODO: uncomment loki play() interactions and remove autoFocus once #7747 is merged
+    // `autoFocus` opens the tooltip immediately on load without needing an interaction
     children: <EuiButton autoFocus>Tooltip trigger</EuiButton>,
     content: 'tooltip content',
   },
-  play: lokiPlayDecorator(async () => {
-    // Reduce VRT flakiness/screenshots before tooltip is fully visible
-    await sleep(300);
-  }),
 };
 
 /**
@@ -94,60 +87,4 @@ export const HighContrastMode: Story = {
     ...Playground.args,
     position: 'left',
   },
-};
-
-/**
- * TODO: REMOVE BEFORE MERGE
- *
- * Regression stories
- */
-
-/**
- * Reproduces the `pointer-events` regression: before the fix, the visible tooltip
- * popover had no `pointer-events: none` and could intercept clicks on the trigger.
- *
- * Hover over the button to show the tooltip, then click. The counter should increment.
- */
-const PointerEventsNoneStory = () => {
-  const [count, setCount] = useState(0);
-
-  return (
-    <EuiToolTip content="The tooltip should not block the button click — hover and then click">
-      <EuiButton onClick={() => setCount((c) => c + 1)}>
-        Clicked {count} {count === 1 ? 'time' : 'times'}
-      </EuiButton>
-    </EuiToolTip>
-  );
-};
-
-export const PointerEventsNone: Story = {
-  render: () => {
-    return <PointerEventsNoneStory />;
-  },
-};
-
-/**
- * Reproduces the nested-tooltip regression: `EuiTableHeaderCell` wraps every sortable
- * column's sort button in an `EuiToolTip` with no content. Before the fix, hovering the
- * inner `EuiIconTip` caused the outer empty tooltip to call `toolTipManager.registerTooltip()`,
- * which immediately hid the inner tooltip.
- *
- * Hover the info icon. The inner tooltip should remain visible.
- */
-export const NestedEmptyTooltip: Story = {
-  render: () => (
-    <EuiToolTip display="block">
-      <button
-        type="button"
-        style={{ display: 'inline-flex', alignItems: 'center', gap: 4 }}
-      >
-        <span>Duration</span>
-        <EuiIconTip
-          content="The length of time it took for the rule to run (mm:ss)."
-          type="iInCircle"
-          size="s"
-        />
-      </button>
-    </EuiToolTip>
-  ),
 };

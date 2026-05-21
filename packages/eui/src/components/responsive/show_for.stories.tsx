@@ -14,8 +14,8 @@ const meta: Meta<EuiShowForProps> = {
   title: 'Utilities/EuiShowFor',
   component: EuiShowFor,
   parameters: {
-    loki: {
-      // EuiShowFor may render null resulting in Loki failing
+    vrt: {
+      // EuiShowFor may render null resulting in VRT failing
       // to find an element to snapshot
       skip: true,
     },

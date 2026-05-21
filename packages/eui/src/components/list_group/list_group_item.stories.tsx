@@ -12,7 +12,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
 import { disableStorybookControls } from '../../../.storybook/utils';
-import { LOKI_SELECTORS, lokiPlayDecorator } from '../../../.storybook/loki';
+import { VRT_SELECTORS, playDecorator } from '../../../.storybook/vrt';
 import { sleep } from '../../test';
 import { EuiListGroupItem, EuiListGroupItemProps } from './list_group_item';
 
@@ -93,8 +93,8 @@ export const Tooltip: Story = {
     controls: {
       include: ['showToolTip', 'toolTipText', 'toolTipProps'],
     },
-    loki: {
-      chromeSelector: LOKI_SELECTORS.portal,
+    vrt: {
+      selector: VRT_SELECTORS.portal,
     },
   },
   args: {
@@ -107,7 +107,7 @@ export const Tooltip: Story = {
       position: 'bottom',
     },
   },
-  play: lokiPlayDecorator(async () => {
+  play: playDecorator(async () => {
     // Reduce VRT flakiness/screenshots before tooltip is fully visible
     await sleep(300);
   }),
@@ -133,7 +133,7 @@ export const TooltipAndExtraAction: Story = {
       position: 'bottom',
     },
   },
-  play: lokiPlayDecorator(async () => {
+  play: playDecorator(async () => {
     // Reduce VRT flakiness/screenshots before tooltip is fully visible
     await sleep(300);
   }),
