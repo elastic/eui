@@ -57,6 +57,16 @@ export interface EuiTableProps
    * @default false
    */
   scrollableInline?: boolean;
+  /**
+   * Make the horizontal scrollbar visible even if the table is larger
+   * than the viewport height. Useful for long tables when the native browser
+   * scrollbar is at the bottom of the table and hard to reach.
+   *
+   * This prop requires [`scrollableInline`](#scrollableInline) to be `true`.
+   * @beta
+   * @default false
+   */
+  stickyScrollbar?: boolean;
 }
 
 /**
@@ -78,6 +88,7 @@ export const EuiTable: FunctionComponent<EuiTableProps> = (originalProps) => {
     hasBackground = true,
     responsiveBreakpoint,
     scrollableInline = false,
+    stickyScrollbar = false,
     ...rest
   } = usePropsWithComponentDefaults('EuiTable', originalProps);
   const tableWrapperRef = useRef<HTMLDivElement>(null);
@@ -111,7 +122,9 @@ export const EuiTable: FunctionComponent<EuiTableProps> = (originalProps) => {
           </EuiTableIsResponsiveContext.Provider>
         </table>
       </div>
-      <EuiTableStickyScrollbar tableWrapperRef={tableWrapperRef} />
+      {scrollableInline && stickyScrollbar && (
+        <EuiTableStickyScrollbar tableWrapperRef={tableWrapperRef} />
+      )}
     </>
   );
 };
