@@ -1,0 +1,192 @@
+---
+keywords: [EuiBanner]
+---
+
+# Banner
+
+**EuiBanner** is a full-width announcement component used to surface promotional or informational messages.
+
+:::note EuiBanner vs EuiCallOut
+- Use **EuiBanner** for broad, product-level announcements such as new features, promotions, or onboarding nudges.
+- Use [**EuiCallOut**](./callout.mdx) for inline, contextual feedback that is directly related to the content on the page, such as warnings, errors, or confirmation messages.
+:::
+
+## Component
+
+The component requires a `title` and a `media` element. All other props are optional.
+
+```tsx interactive
+import React from 'react';
+import { EuiBanner, useEuiTheme } from '@elastic/eui';
+
+const Illustration = () => {
+  const { euiTheme } = useEuiTheme();
+  return (
+    <img
+      src="https://placehold.co/80x80"
+      alt=""
+      aria-hidden="true"
+    />
+  );
+};
+
+export default () => (
+  <EuiBanner
+    title="Introducing a new feature"
+    text="Get more done with the latest improvements to your workspace. Explore what's new and start using it today."
+    media={<Illustration />}
+  />
+);
+```
+
+## Usage
+
+### With actions
+
+Use `actionProps.primary` and `actionProps.secondary` to render call-to-action buttons. A secondary action (rendered as an `EuiButtonEmpty`) is only shown when a primary action is also defined.
+You can use the `fill` prop on the primary action to opt in to a filled style for extra emphasis.
+
+```tsx interactive
+import React from 'react';
+import { EuiBanner, useEuiTheme } from '@elastic/eui';
+
+const Illustration = () => {
+  const { euiTheme } = useEuiTheme();
+  return (
+    <img
+      src="https://placehold.co/80x80"
+      alt=""
+      aria-hidden="true"
+    />
+  );
+};
+
+export default () => (
+  <EuiBanner
+    title="Upgrade your plan"
+    text="Unlock advanced capabilities and get priority support with a higher-tier subscription."
+    media={<Illustration />}
+    actionProps={{
+      primary: { children: 'Upgrade now', onClick: () => {} },
+      secondary: { children: 'Learn more', onClick: () => {} },
+    }}
+  />
+);
+```
+
+### Dismissible
+
+Pass an `onDismiss` callback to render a dismiss button in the top-right corner to allow users to close the banner.
+
+```tsx interactive
+import React, { useState } from 'react';
+import { EuiBanner, EuiButtonEmpty, useEuiTheme } from '@elastic/eui';
+
+const Illustration = () => {
+  const { euiTheme } = useEuiTheme();
+  return (
+    <img
+      src="https://placehold.co/80x80"
+      alt=""
+      aria-hidden="true"
+    />
+  );
+};
+
+export default () => {
+  const [isVisible, setIsVisible] = useState(true);
+
+  return isVisible ? (
+    <EuiBanner
+      title="You have unread notifications"
+      text="Check your inbox for important updates from your team."
+      media={<Illustration />}
+      onDismiss={() => setIsVisible(false)}
+    />
+  ) : (
+    <EuiButtonEmpty onClick={() => setIsVisible(true)}>
+      The banner has been dismissed. Click to reset.
+    </EuiButtonEmpty>
+  );
+};
+```
+
+### Size and color
+
+Use the `size` prop to control the visual density. The `'s'` variant uses a more compact layout and expects a smaller media element.
+
+The `color` prop controls the background of the banner. Choose `color` depending on the surrounding content and the level of emphasis you want the banner to have. 
+
+```tsx interactive
+import React from 'react';
+import { EuiBanner, EuiSpacer, useEuiTheme } from '@elastic/eui';
+
+const Illustration = ({ size }: { size?: 's' | 'm' }) => {
+  const { euiTheme } = useEuiTheme();
+  return (
+    <img
+      src={size === 's' ? 'https://placehold.co/32x32' : 'https://placehold.co/80x80'}
+      alt=""
+      aria-hidden="true"
+    />
+  );
+};
+
+export default () => (
+  <>
+    <EuiBanner
+      title="Default size, highlighted"
+      text="The default medium banner on a highlighted background. Use when the announcement should stand out."
+      media={<Illustration size="m" />}
+      actionProps={{ primary: { children: 'Get started', onClick: () => {} } }}
+    />
+    <EuiSpacer size="m" />
+    <EuiBanner
+      title="Default size, plain"
+      text="A medium banner on a plain background. Use when the banner sits on an already-tinted surface."
+      media={<Illustration size="m" />}
+      color="plain"
+      actionProps={{ primary: { children: 'Get started', onClick: () => {} } }}
+    />
+    <EuiSpacer size="m" />
+    <EuiBanner
+      size="s"
+      title="Small size, highlighted"
+      text="A compact banner for persistent but less prominent messages."
+      media={<Illustration size="s" />}
+      actionProps={{ primary: { children: 'Get started', onClick: () => {} } }}
+    />
+    <EuiSpacer size="m" />
+    <EuiBanner
+      size="s"
+      color="plain"
+      title="Small size, plain"
+      text="A compact banner on a plain background."
+      media={<Illustration size="s" />}
+      actionProps={{ primary: { children: 'Get started', onClick: () => {} } }}
+    />
+  </>
+);
+```
+
+## Guidelines
+
+**Placement and priority**
+
+- Show no more than one banner on a page at a time. If multiple announcements compete, decide which has the highest priority and show only that one.
+- Use **EuiBanner** for product-level announcements such as new features, promotions, or onboarding nudges — not for error messages or validation feedback.
+
+**Actions**
+
+- A banner supports at most two action buttons: one primary and one secondary. A secondary action is only rendered when a primary action is also present.
+- The primary button can be rendered as non-filled (default) or filled (`fill`) style. Use the filled style sparingly, as an opt-in emphasis.
+
+**Media**
+
+- Every banner requires a `media` element. The banner stretches the media to fill the slot, so a custom image that is too small will appear blurry.
+
+## Props
+
+import docgen from '@elastic/eui-docgen/dist/components/banner';
+
+<PropTable definition={docgen.EuiBanner} />
