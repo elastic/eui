@@ -129,10 +129,6 @@ export const euiBannerStyles = ({ euiTheme }: UseEuiTheme) => ({
     align-self: center;
     gap: ${euiTheme.size.m};
 
-    [data-size='s'] & {
-      gap: ${euiTheme.size.s};
-    }
-
     ${withContainerQuery({
       layout: 'superNarrow',
       styles: `
@@ -149,7 +145,7 @@ export const euiBannerStyles = ({ euiTheme }: UseEuiTheme) => ({
         /* stretch to match the media's height so align-items has space to work */
         align-self: stretch;
         justify-content: space-between;
-        gap: ${euiTheme.size.l};
+        gap: ${euiTheme.size.xxl};
       `,
     })}
   `,
