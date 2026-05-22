@@ -10,6 +10,9 @@ import { act } from '@testing-library/react';
 
 /**
  * Create a mock ResizeObserver for testing.
+ * This mock doesn't provide a real ResizeObserver implementation
+ * and should only be used for simple assertions.
+ * Use Cypress to test more complex scenarios end to end.
  *
  * @example
  * const resizeObserverMock = createResizeObserverMock();
@@ -55,13 +58,15 @@ export const createResizeObserverMock = () => {
  * Create a mock ResizeObserverEntry for testing ResizeObserver events
  *
  * @param target - The element being observed
+ * @param contentRect - Customize values in the returned `contentRect` object
  * @returns A mock ResizeObserverEntry object
  * @internal
  */
 export const createMockResizeObserverEntry = (
-  target: Element
+  target: Element,
+  contentRect: Partial<ResizeObserverEntry['contentRect']> = {}
 ): ResizeObserverEntry => {
-  const contentRect = {
+  const _contentRect = {
     x: 0,
     y: 0,
     width: 500,
@@ -71,11 +76,12 @@ export const createMockResizeObserverEntry = (
     bottom: 100,
     left: 0,
     toJSON: () => ({}),
+    ...contentRect,
   };
 
   return {
     target,
-    contentRect,
+    contentRect: _contentRect,
     borderBoxSize: [] as any,
     contentBoxSize: [] as any,
     devicePixelContentBoxSize: [] as any,

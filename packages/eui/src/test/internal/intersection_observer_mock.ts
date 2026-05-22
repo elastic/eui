@@ -10,6 +10,9 @@ import { act } from '@testing-library/react';
 
 /**
  * Create a mock IntersectionObserver for testing.
+ * This mock doesn't provide a real IntersectionObserver implementation
+ * and should only be used for simple assertions.
+ * Use Cypress to test more complex scenarios end to end.
  *
  * @example
  * const intersectionObserverMock = createIntersectionObserverMock();
@@ -62,14 +65,18 @@ export const createIntersectionObserverMock = () => {
  *
  * @param target - The element being observed
  * @param isIntersecting - Whether the element is intersecting
+ * @param boundingClientRect - Customize values in the returned `boundingClientRect` and `intersectionRect` objects
  * @returns A mock IntersectionObserverEntry object
  * @internal
  */
 export const createMockIntersectionObserverEntry = (
   target: Element,
-  isIntersecting: boolean
+  isIntersecting: boolean,
+  boundingClientRect: Partial<
+    IntersectionObserverEntry['boundingClientRect']
+  > = {}
 ): IntersectionObserverEntry => {
-  const boundingClientRect = {
+  const _boundingClientRect = {
     x: 0,
     y: 0,
     width: 500,
@@ -79,13 +86,14 @@ export const createMockIntersectionObserverEntry = (
     bottom: 100,
     left: 0,
     toJSON: () => ({}),
+    ...boundingClientRect,
   };
 
   return {
     target,
     isIntersecting,
-    boundingClientRect,
-    intersectionRect: boundingClientRect,
+    boundingClientRect: _boundingClientRect,
+    intersectionRect: _boundingClientRect,
     rootBounds: null,
     intersectionRatio: isIntersecting ? 1 : 0,
     time: Date.now(),
