@@ -6,45 +6,71 @@
  * Side Public License, v 1.
  */
 
-import React, { createRef } from 'react';
-import { render } from '../../../test/rtl';
-import { act, fireEvent, waitFor } from '@testing-library/react';
+import React, { useRef } from 'react';
+import { fireEvent, waitFor } from '@testing-library/react';
+import { render, screen } from '../../../test/rtl';
+import {
+  createResizeObserverMock,
+  createMockResizeObserverEntry,
+  createIntersectionObserverMock,
+  createMockIntersectionObserverEntry,
+} from '../../../test/internal';
 
 import { EuiTableStickyScrollbar } from './sticky_scrollbar';
 
+const createMockTableWrapper = (overrides?: {
+  clientWidth?: number;
+  scrollWidth?: number;
+  scrollLeft?: number;
+}): HTMLDivElement => {
+  const div = document.createElement('div');
+  Object.defineProperty(div, 'clientWidth', {
+    configurable: true,
+    value: overrides?.clientWidth ?? 500,
+  });
+  Object.defineProperty(div, 'scrollWidth', {
+    configurable: true,
+    value: overrides?.scrollWidth ?? 1000,
+  });
+  Object.defineProperty(div, 'scrollLeft', {
+    configurable: true,
+    writable: true,
+    value: overrides?.scrollLeft ?? 0,
+  });
+  return div;
+};
+
+const renderComponent = (overrides?: {
+  clientWidth?: number;
+  scrollWidth?: number;
+  scrollLeft?: number;
+}) => {
+  const wrapperElement = createMockTableWrapper(overrides);
+
+  const Component = () => {
+    const tableWrapperRef = useRef<HTMLDivElement>(wrapperElement);
+    return <EuiTableStickyScrollbar tableWrapperRef={tableWrapperRef} />;
+  };
+
+  const { unmount } = render(<Component />);
+
+  return { wrapperElement, unmount };
+};
+
 describe('EuiTableStickyScrollbar', () => {
-  let mockResizeObserver: jest.Mock;
-  let mockIntersectionObserver: jest.Mock;
-  let resizeObserverCallback: ResizeObserverCallback;
-  let intersectionObserverCallback: IntersectionObserverCallback;
+  let resizeObserverMock: ReturnType<typeof createResizeObserverMock>;
+  let intersectionObserverMock: ReturnType<
+    typeof createIntersectionObserverMock
+  >;
 
   beforeEach(() => {
     jest.clearAllMocks();
 
-    mockResizeObserver = jest.fn((callback) => {
-      resizeObserverCallback = callback;
-      return {
-        observe: jest.fn(),
-        disconnect: jest.fn(),
-        unobserve: jest.fn(),
-      };
-    });
+    resizeObserverMock = createResizeObserverMock();
+    intersectionObserverMock = createIntersectionObserverMock();
 
-    mockIntersectionObserver = jest.fn((callback) => {
-      intersectionObserverCallback = callback;
-      return {
-        observe: jest.fn(),
-        disconnect: jest.fn(),
-        unobserve: jest.fn(),
-        root: null,
-        rootMargin: '',
-        thresholds: [],
-        takeRecords: jest.fn(),
-      };
-    });
-
-    global.ResizeObserver = mockResizeObserver as any;
-    global.IntersectionObserver = mockIntersectionObserver as any;
+    global.ResizeObserver = resizeObserverMock.ResizeObserver;
+    global.IntersectionObserver = intersectionObserverMock.IntersectionObserver;
 
     jest.spyOn(window, 'requestAnimationFrame').mockImplementation((cb) => {
       cb(0);
@@ -56,166 +82,58 @@ describe('EuiTableStickyScrollbar', () => {
     jest.restoreAllMocks();
   });
 
-  const createMockTableWrapper = (overrides?: {
-    clientWidth?: number;
-    scrollWidth?: number;
-    scrollLeft?: number;
-  }): HTMLDivElement => {
-    const div = document.createElement('div');
-    Object.defineProperty(div, 'clientWidth', {
-      configurable: true,
-      value: overrides?.clientWidth ?? 500,
-    });
-    Object.defineProperty(div, 'scrollWidth', {
-      configurable: true,
-      value: overrides?.scrollWidth ?? 1000,
-    });
-    Object.defineProperty(div, 'scrollLeft', {
-      configurable: true,
-      writable: true,
-      value: overrides?.scrollLeft ?? 0,
-    });
-    return div;
-  };
-
-  const createMockResizeObserverEntry = (
-    target: Element
-  ): ResizeObserverEntry => {
-    const contentRect = {
-      x: 0,
-      y: 0,
-      width: 500,
-      height: 100,
-      top: 0,
-      right: 500,
-      bottom: 100,
-      left: 0,
-      toJSON: () => ({}),
-    };
-
-    return {
-      target,
-      contentRect,
-      borderBoxSize: [] as any,
-      contentBoxSize: [] as any,
-      devicePixelContentBoxSize: [] as any,
-    };
-  };
-
-  const createMockIntersectionObserverEntry = (
-    target: Element,
-    isIntersecting: boolean
-  ): IntersectionObserverEntry => {
-    const boundingClientRect = {
-      x: 0,
-      y: 0,
-      width: 500,
-      height: 100,
-      top: 0,
-      right: 500,
-      bottom: 100,
-      left: 0,
-      toJSON: () => ({}),
-    };
-
-    return {
-      target,
-      isIntersecting,
-      boundingClientRect,
-      intersectionRect: boundingClientRect,
-      rootBounds: null,
-      intersectionRatio: isIntersecting ? 1 : 0,
-      time: Date.now(),
-    };
-  };
-
   it('renders the scrollbar when content is scrollable', () => {
-    const tableWrapperRef = createRef<HTMLDivElement>();
-    const mockElement = createMockTableWrapper();
+    const { wrapperElement } = renderComponent();
 
-    (tableWrapperRef as any).current = mockElement;
-
-    const { getByTestSubject } = render(
-      <EuiTableStickyScrollbar tableWrapperRef={tableWrapperRef} />
-    );
-
-    const resizeObserver = mockResizeObserver.mock.results[0].value;
-    act(() => {
-      resizeObserverCallback(
-        [createMockResizeObserverEntry(mockElement)],
-        resizeObserver
-      );
-    });
+    resizeObserverMock.triggerCallback([
+      createMockResizeObserverEntry(wrapperElement),
+    ]);
 
     waitFor(() => {
-      expect(getByTestSubject('euiTableStickyScrollbar')).toBeInTheDocument();
+      expect(
+        screen.getByTestSubject('euiTableStickyScrollbar')
+      ).toBeInTheDocument();
     });
   });
 
   it('does not render when content does not need scrolling', () => {
-    const tableWrapperRef = createRef<HTMLDivElement>();
-    const mockElement = createMockTableWrapper({
+    const { wrapperElement } = renderComponent({
       clientWidth: 1000,
       scrollWidth: 1000,
     });
 
-    (tableWrapperRef as any).current = mockElement;
-
-    const { queryByTestSubject } = render(
-      <EuiTableStickyScrollbar tableWrapperRef={tableWrapperRef} />
-    );
-
-    const resizeObserver = mockResizeObserver.mock.results[0].value;
-    act(() => {
-      resizeObserverCallback(
-        [createMockResizeObserverEntry(mockElement)],
-        resizeObserver
-      );
-    });
+    resizeObserverMock.triggerCallback([
+      createMockResizeObserverEntry(wrapperElement),
+    ]);
 
     expect(
-      queryByTestSubject('euiTableStickyScrollbar')
+      screen.queryByTestSubject('euiTableStickyScrollbar')
     ).not.toBeInTheDocument();
   });
 
   it('returns null early if tableWrapperRef.current is null', () => {
-    const tableWrapperRef = createRef<HTMLDivElement>();
+    const Component = () => {
+      const tableWrapperRef = useRef<HTMLDivElement>(null);
+      return <EuiTableStickyScrollbar tableWrapperRef={tableWrapperRef} />;
+    };
 
-    const { container } = render(
-      <EuiTableStickyScrollbar tableWrapperRef={tableWrapperRef} />
-    );
+    const { container } = render(<Component />);
 
     expect(container.firstChild).toBeNull();
   });
 
   it('updates track position on scroll', () => {
-    const tableWrapperRef = createRef<HTMLDivElement>();
-    const mockElement = createMockTableWrapper();
+    const { wrapperElement } = renderComponent({});
 
-    (tableWrapperRef as any).current = mockElement;
+    resizeObserverMock.triggerCallback([
+      createMockResizeObserverEntry(wrapperElement),
+    ]);
 
-    const { getByTestSubject } = render(
-      <EuiTableStickyScrollbar tableWrapperRef={tableWrapperRef} />
-    );
-
-    const resizeObserver = mockResizeObserver.mock.results[0].value;
-    act(() => {
-      resizeObserverCallback(
-        [createMockResizeObserverEntry(mockElement)],
-        resizeObserver
-      );
-    });
-
-    Object.defineProperty(mockElement, 'scrollLeft', {
-      configurable: true,
-      writable: true,
-      value: 250,
-    });
-
-    fireEvent.scroll(mockElement);
+    wrapperElement.scrollLeft = 250;
+    fireEvent.scroll(wrapperElement);
 
     waitFor(() => {
-      const track = getByTestSubject('euiTableStickyScrollbarTrack');
+      const track = screen.getByTestSubject('euiTableStickyScrollbarTrack');
       expect(track).toHaveStyle({
         inlineSize: '50%',
         marginInlineStart: '25%',
@@ -224,31 +142,20 @@ describe('EuiTableStickyScrollbar', () => {
   });
 
   it('updates track size on resize', () => {
-    const tableWrapperRef = createRef<HTMLDivElement>();
-    const mockElement = createMockTableWrapper();
+    const { wrapperElement } = renderComponent();
 
-    (tableWrapperRef as any).current = mockElement;
-
-    const { getByTestSubject } = render(
-      <EuiTableStickyScrollbar tableWrapperRef={tableWrapperRef} />
-    );
-
-    const resizeObserver = mockResizeObserver.mock.results[0].value;
-
-    Object.defineProperty(mockElement, 'clientWidth', {
+    // clientWidth is readonly
+    Object.defineProperty(wrapperElement, 'clientWidth', {
       configurable: true,
       value: 400,
     });
 
-    act(() => {
-      resizeObserverCallback(
-        [createMockResizeObserverEntry(mockElement)],
-        resizeObserver
-      );
-    });
+    resizeObserverMock.triggerCallback([
+      createMockResizeObserverEntry(wrapperElement),
+    ]);
 
     waitFor(() => {
-      const track = getByTestSubject('euiTableStickyScrollbarTrack');
+      const track = screen.getByTestSubject('euiTableStickyScrollbarTrack');
       expect(track).toHaveStyle({
         inlineSize: '40%',
       });
@@ -256,92 +163,51 @@ describe('EuiTableStickyScrollbar', () => {
   });
 
   it('hides scrollbar when not intersecting', () => {
-    const tableWrapperRef = createRef<HTMLDivElement>();
-    const mockElement = createMockTableWrapper();
+    const { wrapperElement } = renderComponent();
 
-    (tableWrapperRef as any).current = mockElement;
+    resizeObserverMock.triggerCallback([
+      createMockResizeObserverEntry(wrapperElement),
+    ]);
 
-    const { getByTestSubject } = render(
-      <EuiTableStickyScrollbar tableWrapperRef={tableWrapperRef} />
-    );
-
-    const resizeObserver = mockResizeObserver.mock.results[0].value;
-    act(() => {
-      resizeObserverCallback(
-        [createMockResizeObserverEntry(mockElement)],
-        resizeObserver
-      );
-    });
-
-    const intersectionObserver = mockIntersectionObserver.mock.results[0].value;
-    act(() => {
-      intersectionObserverCallback(
-        [createMockIntersectionObserverEntry(mockElement, false)],
-        intersectionObserver
-      );
-    });
+    intersectionObserverMock.triggerCallback([
+      createMockIntersectionObserverEntry(wrapperElement, false),
+    ]);
 
     waitFor(() => {
-      expect(getByTestSubject('euiTableStickyScrollbar')).toHaveAttribute(
-        'hidden'
-      );
+      expect(
+        screen.getByTestSubject('euiTableStickyScrollbar')
+      ).toHaveAttribute('hidden');
     });
   });
 
   it('shows scrollbar when intersecting', () => {
-    const tableWrapperRef = createRef<HTMLDivElement>();
-    const mockElement = createMockTableWrapper();
+    const { wrapperElement } = renderComponent();
 
-    (tableWrapperRef as any).current = mockElement;
+    resizeObserverMock.triggerCallback([
+      createMockResizeObserverEntry(wrapperElement),
+    ]);
 
-    const { getByTestSubject } = render(
-      <EuiTableStickyScrollbar tableWrapperRef={tableWrapperRef} />
-    );
-
-    const resizeObserver = mockResizeObserver.mock.results[0].value;
-    act(() => {
-      resizeObserverCallback(
-        [createMockResizeObserverEntry(mockElement)],
-        resizeObserver
-      );
-    });
-
-    const intersectionObserver = mockIntersectionObserver.mock.results[0].value;
-    act(() => {
-      intersectionObserverCallback(
-        [createMockIntersectionObserverEntry(mockElement, true)],
-        intersectionObserver
-      );
-    });
+    intersectionObserverMock.triggerCallback([
+      createMockIntersectionObserverEntry(wrapperElement, true),
+    ]);
 
     waitFor(() => {
-      expect(getByTestSubject('euiTableStickyScrollbar')).not.toHaveAttribute(
-        'hidden'
-      );
+      expect(
+        screen.getByTestSubject('euiTableStickyScrollbar')
+      ).not.toHaveAttribute('hidden');
     });
   });
 
-  describe('pointer drag functionality', () => {
+  describe('track dragging', () => {
     it('handles pointer down event', () => {
-      const tableWrapperRef = createRef<HTMLDivElement>();
-      const mockElement = createMockTableWrapper();
+      const { wrapperElement } = renderComponent();
 
-      (tableWrapperRef as any).current = mockElement;
-
-      const { getByTestSubject } = render(
-        <EuiTableStickyScrollbar tableWrapperRef={tableWrapperRef} />
-      );
-
-      const resizeObserver = mockResizeObserver.mock.results[0].value;
-      act(() => {
-        resizeObserverCallback(
-          [createMockResizeObserverEntry(mockElement)],
-          resizeObserver
-        );
-      });
+      resizeObserverMock.triggerCallback([
+        createMockResizeObserverEntry(wrapperElement),
+      ]);
 
       waitFor(() => {
-        const track = getByTestSubject('euiTableStickyScrollbarTrack');
+        const track = screen.getByTestSubject('euiTableStickyScrollbarTrack');
         const mockPointerEvent = {
           clientX: 100,
           pointerId: 1,
@@ -359,25 +225,14 @@ describe('EuiTableStickyScrollbar', () => {
     });
 
     it('handles pointer move to scroll table', () => {
-      const tableWrapperRef = createRef<HTMLDivElement>();
-      const mockElement = createMockTableWrapper();
+      const { wrapperElement } = renderComponent();
 
-      (tableWrapperRef as any).current = mockElement;
-
-      const { getByTestSubject } = render(
-        <EuiTableStickyScrollbar tableWrapperRef={tableWrapperRef} />
-      );
-
-      const resizeObserver = mockResizeObserver.mock.results[0].value;
-      act(() => {
-        resizeObserverCallback(
-          [createMockResizeObserverEntry(mockElement)],
-          resizeObserver
-        );
-      });
+      resizeObserverMock.triggerCallback([
+        createMockResizeObserverEntry(wrapperElement),
+      ]);
 
       waitFor(() => {
-        const track = getByTestSubject('euiTableStickyScrollbarTrack');
+        const track = screen.getByTestSubject('euiTableStickyScrollbarTrack');
 
         fireEvent.pointerDown(track, {
           clientX: 100,
@@ -389,59 +244,37 @@ describe('EuiTableStickyScrollbar', () => {
           clientX: 150,
         });
 
-        expect(mockElement.scrollLeft).toBe(100);
+        expect(wrapperElement.scrollLeft).toBe(100);
       });
     });
 
     it('does not scroll when pointer not captured', () => {
-      const tableWrapperRef = createRef<HTMLDivElement>();
-      const mockElement = createMockTableWrapper();
+      const { wrapperElement } = renderComponent();
 
-      (tableWrapperRef as any).current = mockElement;
-
-      const { getByTestSubject } = render(
-        <EuiTableStickyScrollbar tableWrapperRef={tableWrapperRef} />
-      );
-
-      const resizeObserver = mockResizeObserver.mock.results[0].value;
-      act(() => {
-        resizeObserverCallback(
-          [createMockResizeObserverEntry(mockElement)],
-          resizeObserver
-        );
-      });
+      resizeObserverMock.triggerCallback([
+        createMockResizeObserverEntry(wrapperElement),
+      ]);
 
       waitFor(() => {
-        const track = getByTestSubject('euiTableStickyScrollbarTrack');
+        const track = screen.getByTestSubject('euiTableStickyScrollbarTrack');
 
         fireEvent.pointerMove(track, {
           clientX: 150,
         });
 
-        expect(mockElement.scrollLeft).toBe(0);
+        expect(wrapperElement.scrollLeft).toBe(0);
       });
     });
 
     it('handles pointer up to release capture', () => {
-      const tableWrapperRef = createRef<HTMLDivElement>();
-      const mockElement = createMockTableWrapper();
+      const { wrapperElement } = renderComponent();
 
-      (tableWrapperRef as any).current = mockElement;
-
-      const { getByTestSubject } = render(
-        <EuiTableStickyScrollbar tableWrapperRef={tableWrapperRef} />
-      );
-
-      const resizeObserver = mockResizeObserver.mock.results[0].value;
-      act(() => {
-        resizeObserverCallback(
-          [createMockResizeObserverEntry(mockElement)],
-          resizeObserver
-        );
-      });
+      resizeObserverMock.triggerCallback([
+        createMockResizeObserverEntry(wrapperElement),
+      ]);
 
       waitFor(() => {
-        const track = getByTestSubject('euiTableStickyScrollbarTrack');
+        const track = screen.getByTestSubject('euiTableStickyScrollbarTrack');
 
         fireEvent.pointerDown(track, {
           clientX: 100,
@@ -455,24 +288,17 @@ describe('EuiTableStickyScrollbar', () => {
           clientX: 150,
         });
 
-        expect(mockElement.scrollLeft).toBe(0);
+        expect(wrapperElement.scrollLeft).toBe(0);
       });
     });
   });
 
   describe('cleanup', () => {
     it('removes event listeners on unmount', () => {
-      const tableWrapperRef = createRef<HTMLDivElement>();
-      const mockElement = createMockTableWrapper();
+      const { wrapperElement, unmount } = renderComponent();
       const removeEventListenerSpy = jest.spyOn(
-        mockElement,
+        wrapperElement,
         'removeEventListener'
-      );
-
-      (tableWrapperRef as any).current = mockElement;
-
-      const { unmount } = render(
-        <EuiTableStickyScrollbar tableWrapperRef={tableWrapperRef} />
       );
 
       unmount();
@@ -484,18 +310,12 @@ describe('EuiTableStickyScrollbar', () => {
     });
 
     it('disconnects observers on unmount', () => {
-      const tableWrapperRef = createRef<HTMLDivElement>();
-      const mockElement = createMockTableWrapper();
+      const { unmount } = renderComponent();
 
-      (tableWrapperRef as any).current = mockElement;
-
-      const { unmount } = render(
-        <EuiTableStickyScrollbar tableWrapperRef={tableWrapperRef} />
-      );
-
-      const resizeObserver = mockResizeObserver.mock.results[0].value;
+      const resizeObserver =
+        resizeObserverMock.ResizeObserver.mock.results[0].value;
       const intersectionObserver =
-        mockIntersectionObserver.mock.results[0].value;
+        intersectionObserverMock.IntersectionObserver.mock.results[0].value;
 
       unmount();
 
@@ -505,30 +325,20 @@ describe('EuiTableStickyScrollbar', () => {
   });
 
   describe('requestAnimationFrame throttling', () => {
-    it('throttles multiple scroll updates using RAF', () => {
-      const tableWrapperRef = createRef<HTMLDivElement>();
-      const mockElement = createMockTableWrapper();
+    it('throttles multiple scroll updates happening during a single frame', () => {
+      const { wrapperElement } = renderComponent();
 
-      (tableWrapperRef as any).current = mockElement;
-
-      render(<EuiTableStickyScrollbar tableWrapperRef={tableWrapperRef} />);
-
-      const resizeObserver = mockResizeObserver.mock.results[0].value;
-
-      act(() => {
-        resizeObserverCallback(
-          [createMockResizeObserverEntry(mockElement)],
-          resizeObserver
-        );
-      });
+      resizeObserverMock.triggerCallback([
+        createMockResizeObserverEntry(wrapperElement),
+      ]);
 
       const rafSpy = window.requestAnimationFrame as jest.Mock;
       rafSpy.mockClear();
       rafSpy.mockImplementation(() => 0);
 
-      fireEvent.scroll(mockElement);
-      fireEvent.scroll(mockElement);
-      fireEvent.scroll(mockElement);
+      fireEvent.scroll(wrapperElement);
+      fireEvent.scroll(wrapperElement);
+      fireEvent.scroll(wrapperElement);
 
       expect(rafSpy).toHaveBeenCalledTimes(1);
     });
