@@ -26,11 +26,11 @@ export const createResizeObserverMock = () => {
   const callbackMap = new WeakMap<ResizeObserver, ResizeObserverCallback>();
 
   const mockConstructor = jest.fn((cb: ResizeObserverCallback) => {
-    const observer = {
+    const observer: ResizeObserver = {
       observe: jest.fn(),
       disconnect: jest.fn(),
       unobserve: jest.fn(),
-    } as ResizeObserver;
+    };
 
     callbackMap.set(observer, cb);
 
