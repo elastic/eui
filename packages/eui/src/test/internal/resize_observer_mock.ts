@@ -23,15 +23,18 @@ import { act } from '@testing-library/react';
  * @internal
  */
 export const createResizeObserverMock = () => {
-  let callback: ResizeObserverCallback;
+  const callbackMap = new WeakMap<ResizeObserver, ResizeObserverCallback>();
 
   const mockConstructor = jest.fn((cb: ResizeObserverCallback) => {
-    callback = cb;
-    return {
+    const observer = {
       observe: jest.fn(),
       disconnect: jest.fn(),
       unobserve: jest.fn(),
     } as ResizeObserver;
+
+    callbackMap.set(observer, cb);
+
+    return observer;
   }) as jest.MockedClass<typeof ResizeObserver>;
 
   return {
@@ -47,6 +50,14 @@ export const createResizeObserverMock = () => {
       observer?: ResizeObserver
     ) => {
       const obs = observer || mockConstructor.mock.results[0]?.value;
+      const callback = callbackMap.get(obs);
+
+      if (!callback) {
+        throw new Error(
+          'No callback found for observer. Make sure the observer was created by this mock.'
+        );
+      }
+
       act(() => {
         callback(entries, obs);
       });
