@@ -25,11 +25,13 @@ import { act } from '@testing-library/react';
  * @internal
  */
 export const createIntersectionObserverMock = () => {
-  let callback: IntersectionObserverCallback;
+  const callbackMap = new WeakMap<
+    IntersectionObserver,
+    IntersectionObserverCallback
+  >();
 
   const mockConstructor = jest.fn((cb: IntersectionObserverCallback) => {
-    callback = cb;
-    return {
+    const observer: IntersectionObserver = {
       observe: jest.fn(),
       disconnect: jest.fn(),
       unobserve: jest.fn(),
@@ -38,6 +40,10 @@ export const createIntersectionObserverMock = () => {
       thresholds: [],
       takeRecords: jest.fn(),
     };
+
+    callbackMap.set(observer, cb);
+
+    return observer;
   }) as jest.MockedClass<typeof IntersectionObserver>;
 
   return {
@@ -53,6 +59,14 @@ export const createIntersectionObserverMock = () => {
       observer?: IntersectionObserver
     ) => {
       const obs = observer || mockConstructor.mock.results[0]?.value;
+      const callback = callbackMap.get(obs);
+
+      if (!callback) {
+        throw new Error(
+          'No callback found for observer. Make sure the observer was created by this mock.'
+        );
+      }
+
       act(() => {
         callback(entries, obs);
       });
