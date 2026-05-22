@@ -198,7 +198,7 @@ describe('EuiTableStickyScrollbar', () => {
     await waitFor(() => {
       expect(
         screen.getByTestSubject('euiTableStickyScrollbar')
-      ).toHaveAttribute('hidden');
+      ).not.toBeVisible();
     });
   });
 
@@ -220,9 +220,7 @@ describe('EuiTableStickyScrollbar', () => {
     ]);
 
     await waitFor(() => {
-      expect(
-        screen.getByTestSubject('euiTableStickyScrollbar')
-      ).not.toHaveAttribute('hidden');
+      expect(screen.getByTestSubject('euiTableStickyScrollbar')).toBeVisible();
     });
   });
 

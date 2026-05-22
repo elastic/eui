@@ -18,6 +18,9 @@ export const euiTableStickyScrollbarStyles = ({ euiTheme }: UseEuiTheme) => ({
     inset-block-end: var(--euiTableStickyScrollbarOffsetBottom, 0);
     z-index: var(--euiTableStickyScrollbarZIndex, 0);
   `,
+  wrapperHidden: css`
+    display: none;
+  `,
   track: css`
     block-size: 100%;
     background: ${transparentize(euiTheme.colors.darkShade, 0.5)};

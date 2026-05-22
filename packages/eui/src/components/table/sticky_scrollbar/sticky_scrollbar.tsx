@@ -168,8 +168,7 @@ export const EuiTableStickyScrollbar = ({
 
   return (
     <div
-      css={styles.wrapper}
-      hidden={isHidden}
+      css={[styles.wrapper, isHidden && styles.wrapperHidden]}
       data-test-subj="euiTableStickyScrollbar"
       aria-hidden
     >
