@@ -82,14 +82,14 @@ describe('EuiTableStickyScrollbar', () => {
     jest.restoreAllMocks();
   });
 
-  it('renders the scrollbar when content is scrollable', () => {
+  it('renders the scrollbar when content is scrollable', async () => {
     const { wrapperElement } = renderComponent();
 
     resizeObserverMock.triggerCallback([
       createMockResizeObserverEntry(wrapperElement),
     ]);
 
-    waitFor(() => {
+    await waitFor(() => {
       expect(
         screen.getByTestSubject('euiTableStickyScrollbar')
       ).toBeInTheDocument();
@@ -122,17 +122,23 @@ describe('EuiTableStickyScrollbar', () => {
     expect(container.firstChild).toBeNull();
   });
 
-  it('updates track position on scroll', () => {
+  it('updates track position on scroll', async () => {
     const { wrapperElement } = renderComponent({});
 
     resizeObserverMock.triggerCallback([
       createMockResizeObserverEntry(wrapperElement),
     ]);
 
+    await waitFor(() => {
+      expect(
+        screen.getByTestSubject('euiTableStickyScrollbarTrack')
+      ).toBeInTheDocument();
+    });
+
     wrapperElement.scrollLeft = 250;
     fireEvent.scroll(wrapperElement);
 
-    waitFor(() => {
+    await waitFor(() => {
       const track = screen.getByTestSubject('euiTableStickyScrollbarTrack');
       expect(track).toHaveStyle({
         inlineSize: '50%',
@@ -141,8 +147,18 @@ describe('EuiTableStickyScrollbar', () => {
     });
   });
 
-  it('updates track size on resize', () => {
+  it('updates track size on resize', async () => {
     const { wrapperElement } = renderComponent();
+
+    resizeObserverMock.triggerCallback([
+      createMockResizeObserverEntry(wrapperElement),
+    ]);
+
+    await waitFor(() => {
+      expect(
+        screen.getByTestSubject('euiTableStickyScrollbarTrack')
+      ).toBeInTheDocument();
+    });
 
     // clientWidth is readonly
     Object.defineProperty(wrapperElement, 'clientWidth', {
@@ -154,7 +170,7 @@ describe('EuiTableStickyScrollbar', () => {
       createMockResizeObserverEntry(wrapperElement),
     ]);
 
-    waitFor(() => {
+    await waitFor(() => {
       const track = screen.getByTestSubject('euiTableStickyScrollbarTrack');
       expect(track).toHaveStyle({
         inlineSize: '40%',
@@ -162,36 +178,48 @@ describe('EuiTableStickyScrollbar', () => {
     });
   });
 
-  it('hides scrollbar when not intersecting', () => {
+  it('hides scrollbar when not intersecting', async () => {
     const { wrapperElement } = renderComponent();
 
     resizeObserverMock.triggerCallback([
       createMockResizeObserverEntry(wrapperElement),
     ]);
 
+    await waitFor(() => {
+      expect(
+        screen.getByTestSubject('euiTableStickyScrollbar')
+      ).toBeInTheDocument();
+    });
+
     intersectionObserverMock.triggerCallback([
       createMockIntersectionObserverEntry(wrapperElement, false),
     ]);
 
-    waitFor(() => {
+    await waitFor(() => {
       expect(
         screen.getByTestSubject('euiTableStickyScrollbar')
       ).toHaveAttribute('hidden');
     });
   });
 
-  it('shows scrollbar when intersecting', () => {
+  it('shows scrollbar when intersecting', async () => {
     const { wrapperElement } = renderComponent();
 
     resizeObserverMock.triggerCallback([
       createMockResizeObserverEntry(wrapperElement),
     ]);
 
+    await waitFor(() => {
+      expect(
+        screen.getByTestSubject('euiTableStickyScrollbar')
+      ).toBeInTheDocument();
+    });
+
     intersectionObserverMock.triggerCallback([
       createMockIntersectionObserverEntry(wrapperElement, true),
     ]);
 
-    waitFor(() => {
+    await waitFor(() => {
       expect(
         screen.getByTestSubject('euiTableStickyScrollbar')
       ).not.toHaveAttribute('hidden');
@@ -199,97 +227,143 @@ describe('EuiTableStickyScrollbar', () => {
   });
 
   describe('track dragging', () => {
-    it('handles pointer down event', () => {
+    it('handles pointer down event', async () => {
       const { wrapperElement } = renderComponent();
 
       resizeObserverMock.triggerCallback([
         createMockResizeObserverEntry(wrapperElement),
       ]);
 
-      waitFor(() => {
-        const track = screen.getByTestSubject('euiTableStickyScrollbarTrack');
-        const mockPointerEvent = {
-          clientX: 100,
-          pointerId: 1,
-          currentTarget: {
-            setPointerCapture: jest.fn(),
-          },
-        };
-
-        fireEvent.pointerDown(track, mockPointerEvent);
-
+      await waitFor(() => {
         expect(
-          mockPointerEvent.currentTarget.setPointerCapture
-        ).toHaveBeenCalledWith(1);
+          screen.getByTestSubject('euiTableStickyScrollbarTrack')
+        ).toBeInTheDocument();
       });
+
+      const track = screen.getByTestSubject('euiTableStickyScrollbarTrack');
+      const setPointerCaptureSpy = jest.fn();
+      track.setPointerCapture = setPointerCaptureSpy;
+
+      const pointerEvent = new MouseEvent('pointerdown', {
+        bubbles: true,
+        cancelable: true,
+        clientX: 100,
+      });
+      Object.defineProperty(pointerEvent, 'pointerId', {
+        value: 1,
+        writable: false,
+      });
+
+      fireEvent(track, pointerEvent);
+
+      expect(setPointerCaptureSpy).toHaveBeenCalledWith(1);
     });
 
-    it('handles pointer move to scroll table', () => {
+    it('handles pointer move to scroll table', async () => {
       const { wrapperElement } = renderComponent();
 
       resizeObserverMock.triggerCallback([
         createMockResizeObserverEntry(wrapperElement),
       ]);
 
-      waitFor(() => {
-        const track = screen.getByTestSubject('euiTableStickyScrollbarTrack');
-
-        fireEvent.pointerDown(track, {
-          clientX: 100,
-          pointerId: 1,
-          currentTarget: { setPointerCapture: jest.fn() },
-        });
-
-        fireEvent.pointerMove(track, {
-          clientX: 150,
-        });
-
-        expect(wrapperElement.scrollLeft).toBe(100);
+      await waitFor(() => {
+        expect(
+          screen.getByTestSubject('euiTableStickyScrollbarTrack')
+        ).toBeInTheDocument();
       });
+
+      const track = screen.getByTestSubject('euiTableStickyScrollbarTrack');
+      track.setPointerCapture = jest.fn();
+
+      const pointerDownEvent = new MouseEvent('pointerdown', {
+        bubbles: true,
+        cancelable: true,
+        clientX: 100,
+      });
+      Object.defineProperty(pointerDownEvent, 'pointerId', {
+        value: 1,
+        writable: false,
+      });
+
+      fireEvent(track, pointerDownEvent);
+
+      const pointerMoveEvent = new MouseEvent('pointermove', {
+        bubbles: true,
+        cancelable: true,
+        clientX: 150,
+      });
+
+      fireEvent(track, pointerMoveEvent);
+
+      expect(wrapperElement.scrollLeft).toBe(100);
     });
 
-    it('does not scroll when pointer not captured', () => {
+    it('does not scroll when pointer not captured', async () => {
       const { wrapperElement } = renderComponent();
 
       resizeObserverMock.triggerCallback([
         createMockResizeObserverEntry(wrapperElement),
       ]);
 
-      waitFor(() => {
-        const track = screen.getByTestSubject('euiTableStickyScrollbarTrack');
-
-        fireEvent.pointerMove(track, {
-          clientX: 150,
-        });
-
-        expect(wrapperElement.scrollLeft).toBe(0);
+      await waitFor(() => {
+        expect(
+          screen.getByTestSubject('euiTableStickyScrollbarTrack')
+        ).toBeInTheDocument();
       });
+
+      const track = screen.getByTestSubject('euiTableStickyScrollbarTrack');
+
+      fireEvent.pointerMove(track, {
+        clientX: 150,
+      });
+
+      expect(wrapperElement.scrollLeft).toBe(0);
     });
 
-    it('handles pointer up to release capture', () => {
+    it('handles pointer up to release capture', async () => {
       const { wrapperElement } = renderComponent();
 
       resizeObserverMock.triggerCallback([
         createMockResizeObserverEntry(wrapperElement),
       ]);
 
-      waitFor(() => {
-        const track = screen.getByTestSubject('euiTableStickyScrollbarTrack');
-
-        fireEvent.pointerDown(track, {
-          clientX: 100,
-          pointerId: 1,
-          currentTarget: { setPointerCapture: jest.fn() },
-        });
-
-        fireEvent.pointerUp(track);
-
-        fireEvent.pointerMove(track, {
-          clientX: 150,
-        });
-
-        expect(wrapperElement.scrollLeft).toBe(0);
+      await waitFor(() => {
+        expect(
+          screen.getByTestSubject('euiTableStickyScrollbarTrack')
+        ).toBeInTheDocument();
       });
+
+      const track = screen.getByTestSubject('euiTableStickyScrollbarTrack');
+      track.setPointerCapture = jest.fn();
+
+      const pointerDownEvent = new MouseEvent('pointerdown', {
+        bubbles: true,
+        cancelable: true,
+        clientX: 100,
+      });
+      Object.defineProperty(pointerDownEvent, 'pointerId', {
+        value: 1,
+        writable: false,
+      });
+
+      fireEvent(track, pointerDownEvent);
+
+      const pointerUpEvent = new MouseEvent('pointerup', {
+        bubbles: true,
+        cancelable: true,
+      });
+
+      fireEvent(track, pointerUpEvent);
+
+      const pointerMoveEvent = new MouseEvent('pointermove', {
+        bubbles: true,
+        cancelable: true,
+        clientX: 150,
+      });
+
+      fireEvent(track, pointerMoveEvent);
+
+      expect(wrapperElement.scrollLeft).toBe(0);
     });
   });
 
