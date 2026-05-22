@@ -116,36 +116,75 @@ If you would like to contribute to our growing list of glyphs, you can follow [t
 
 import { iconTypes } from './icon_types';
 import iconTypesSource from '!raw-loader!./icon_types';
+import { filterIconTypes } from './icon_filter';
+import iconFilterSource from '!raw-loader!./icon_filter';
+import { iconSynonyms } from './icon_synonyms';
+import iconSynonymsSource from '!raw-loader!./icon_synonyms';
 
-<Demo scope={{ iconTypes }} extraFiles={{ 'icon_types.ts': iconTypesSource }}>
+<Demo scope={{ iconTypes, filterIconTypes, iconSynonyms }} extraFiles={{ 'icon_types.ts': iconTypesSource, 'icon_filter.ts': iconFilterSource, 'icon_synonyms.ts': iconSynonymsSource }}>
   ```tsx
-  import React from 'react';
+  import React, { useMemo, useState } from 'react';
   import { css } from '@emotion/react';
-  import { EuiCodeBlock, EuiSpacer, EuiFlexGrid, EuiFlexItem, EuiCopy, EuiPanel, EuiIcon } from '@elastic/eui';
+  import {
+    EuiCodeBlock,
+    EuiSpacer,
+    EuiFlexGrid,
+    EuiFlexItem,
+    EuiCopy,
+    EuiPanel,
+    EuiIcon,
+    EuiFieldSearch,
+    EuiText,
+  } from '@elastic/eui';
   import { iconTypes } from './icon_types';
+  import { filterIconTypes } from './icon_filter';
+  import { iconSynonyms } from './icon_synonyms';
 
-  export default () => (
-    <div css={css`height: fit-content;`}>
-      <EuiCodeBlock language="tsx" isCopyable paddingSize="m">
-        {'<EuiIcon type="warning" />'}
-      </EuiCodeBlock>
-      <EuiSpacer />
-      <EuiFlexGrid direction="row" columns={3}>
-        {iconTypes.map((iconType) => (
-          <EuiFlexItem key={iconType}>
-            <EuiCopy textToCopy={iconType} afterMessage={`${iconType} copied`} tooltipProps={{ display: 'block' }}>
-              {(copy) => (
-                <EuiPanel hasShadow={false} hasBorder={false} onClick={copy} paddingSize="s">
-                  <EuiIcon className="eui-alignMiddle" type={iconType} /> &emsp;{' '}
-                  <small>{iconType}</small>
-                </EuiPanel>
-              )}
-            </EuiCopy>
-          </EuiFlexItem>
-        ))}
-      </EuiFlexGrid>
-    </div>
-  );
+  export default () => {
+    const [searchValue, setSearchValue] = useState('');
+    const filteredIconTypes = useMemo(
+      () => filterIconTypes(iconTypes, searchValue, iconSynonyms),
+      [searchValue]
+    );
+
+    return (
+      <div css={css`height: fit-content;`}>
+        <EuiFieldSearch
+          placeholder="Search icons"
+          aria-label="Search icons"
+          onSearch={setSearchValue}
+          incremental
+          isClearable
+          fullWidth
+        />
+        <EuiSpacer />
+        <EuiCodeBlock language="tsx" isCopyable paddingSize="m">
+          {'<EuiIcon type="warning" />'}
+        </EuiCodeBlock>
+        <EuiSpacer />
+        {filteredIconTypes.length === 0 ? (
+          <EuiText size="s" color="subdued">
+            <p>No icons match &ldquo;{searchValue}&rdquo;.</p>
+          </EuiText>
+        ) : (
+          <EuiFlexGrid direction="row" columns={3}>
+            {filteredIconTypes.map((iconType) => (
+              <EuiFlexItem key={iconType}>
+                <EuiCopy textToCopy={iconType} afterMessage={`${iconType} copied`} tooltipProps={{ display: 'block' }}>
+                  {(copy) => (
+                    <EuiPanel hasShadow={false} hasBorder={false} onClick={copy} paddingSize="s">
+                      <EuiIcon className="eui-alignMiddle" type={iconType} /> &emsp;{' '}
+                      <small>{iconType}</small>
+                    </EuiPanel>
+                  )}
+                </EuiCopy>
+              </EuiFlexItem>
+            ))}
+          </EuiFlexGrid>
+        )}
+      </div>
+    );
+  };
   ```
 </Demo>
 
