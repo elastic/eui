@@ -995,8 +995,7 @@ export class EuiBasicTable<T extends object = any> extends Component<
           colSpan={colSpan}
           mobileOptions={{ width: '100%' }}
         >
-          <EuiIcon type="minusCircle" color="danger" aria-hidden={true} />{' '}
-          {error}
+          <EuiIcon type="minusCircle" color="danger" /> {error}
         </EuiTableRowCell>
       </EuiTableRow>
     );
