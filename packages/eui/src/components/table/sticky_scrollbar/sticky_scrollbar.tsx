@@ -167,13 +167,19 @@ export const EuiTableStickyScrollbar = ({
   }
 
   return (
-    <div css={styles.wrapper} hidden={isHidden}>
+    <div
+      css={styles.wrapper}
+      hidden={isHidden}
+      data-test-subj="euiTableStickyScrollbar"
+      aria-hidden
+    >
       <div
         css={styles.track}
         ref={trackElementRef}
         onPointerDown={handlePointerDown}
         onPointerMove={handlePointerMove}
         onPointerUp={handlePointerUp}
+        data-test-subj="euiTableStickyScrollbarTrack"
       />
     </div>
   );
