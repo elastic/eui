@@ -32,3 +32,7 @@ export type { EuiTableRowCellProps } from './table_row_cell';
 export { EuiTableRowCell } from './table_row_cell';
 export { EuiTableRowCellCheckbox } from './table_row_cell_checkbox';
 export { EUI_TABLE_CSS_CONTAINER_NAME } from './const';
+export type {
+  HeaderCellRegistration,
+  HeaderCellRegistry,
+} from './sticky_header';
