@@ -99,7 +99,7 @@ export const euiListItemLayoutStyles = (euiThemeContext: UseEuiTheme) => {
       ${euiFontSize(euiThemeContext, 's')}
       text-align: start;
 
-      /* Specific style to ensure alignment as it's a use case in Kibana that's not migrated yet to use the prepend slot */
+      /* A specific style is needed for alignment since this Kibana use case hasn't been migrated to use the prepend slot yet */
       .euiHealth {
         vertical-align: middle;
       }
