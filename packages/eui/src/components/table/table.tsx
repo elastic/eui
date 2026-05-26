@@ -6,14 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, {
-  FunctionComponent,
-  TableHTMLAttributes,
-  useRef,
-  useState,
-  useMemo,
-  useCallback,
-} from 'react';
+import React, { FunctionComponent, TableHTMLAttributes, useRef } from 'react';
 import classNames from 'classnames';
 
 import { useEuiMemoizedStyles, type EuiBreakpointSize } from '../../services';
@@ -29,12 +22,8 @@ import { usePropsWithComponentDefaults } from '../provider/component_defaults';
 import { euiContainerCSS } from '../../global_styling';
 import { EUI_TABLE_CSS_CONTAINER_NAME } from './const';
 import { EuiTableStickyScrollbar } from './sticky_scrollbar';
-import {
-  EuiTableStickyHeaderContextProvider,
-  EuiTableStickyHeaderRenderer,
-  type HeaderCellRegistration,
-} from './sticky_header';
-import { euiTableStickyHeaderStyles } from './sticky_header/sticky_header.styles';
+import { EuiTableStickyHeader } from './sticky_header/sticky_header';
+import { EuiTableStoreProvider } from './store/provider';
 
 export interface EuiTableProps
   extends CommonProps,
@@ -118,79 +107,16 @@ export const EuiTable: FunctionComponent<EuiTableProps> = (originalProps) => {
     responsiveBreakpoint,
     scrollableInline = false,
     stickyScrollbar = false,
-    stickyHeader = false,
-    stickyHeaderOffset = 0,
+    // TODO: Change to false
+    stickyHeader = true,
     ...rest
   } = usePropsWithComponentDefaults('EuiTable', originalProps);
   const tableWrapperRef = useRef<HTMLDivElement>(null);
-  const tableRef = useRef<HTMLTableElement>(null);
   const isResponsive = useIsEuiTableResponsive(responsiveBreakpoint);
-
-  // Sticky header registry state
-  const [headerRegistry, setHeaderRegistry] = useState<
-    Map<string, HeaderCellRegistration>
-  >(new Map());
-
-  // Stable callbacks for header cell registration
-  const register = useCallback(
-    (id: string, order: number, props: any, children?: React.ReactNode) => {
-      setHeaderRegistry((prev) => {
-        // Bail out if content is unchanged to prevent unnecessary updates
-        const existing = prev.get(id);
-        if (
-          existing &&
-          existing.order === order &&
-          existing.props === props &&
-          existing.children === children
-        ) {
-          return prev;
-        }
-        const next = new Map(prev);
-        next.set(id, { id, order, props, children });
-        return next;
-      });
-    },
-    []
-  );
-
-  const deregister = useCallback((id: string) => {
-    setHeaderRegistry((prev) => {
-      if (!prev.has(id)) return prev; // Bail out if not in registry
-      const next = new Map(prev);
-      next.delete(id);
-      return next;
-    });
-  }, []);
-
-  // Create context value with stable registry API
-  const stickyHeaderContext = useMemo(() => {
-    if (!stickyHeader || isResponsive) {
-      // Don't provide context if sticky header is disabled or in responsive mode
-      return undefined;
-    }
-    return {
-      registry: {
-        headerCells: Array.from(headerRegistry.values()).sort(
-          (a, b) => a.order - b.order
-        ),
-        register,
-        deregister,
-      },
-      stickyHeaderOffset,
-    };
-  }, [
-    stickyHeader,
-    isResponsive,
-    headerRegistry,
-    register,
-    deregister,
-    stickyHeaderOffset,
-  ]);
 
   const classes = classNames('euiTable', className);
 
   const styles = useEuiMemoizedStyles(euiTableStyles);
-  const stickyHeaderStyles = useEuiMemoizedStyles(euiTableStickyHeaderStyles);
   const tableStyles = [
     styles.euiTable,
     scrollableInline && styles.euiTableScrollableInline,
@@ -199,7 +125,6 @@ export const EuiTable: FunctionComponent<EuiTableProps> = (originalProps) => {
     compressed && !isResponsive && styles.compressed,
     hasBackground && styles.hasBackground,
     isResponsive ? styles.mobile : styles.desktop,
-    stickyHeader && !isResponsive && stickyHeaderStyles.hiddenOriginalHeader,
   ];
   const cssStyles = [
     euiContainerCSS('normal', EUI_TABLE_CSS_CONTAINER_NAME, true),
@@ -207,35 +132,20 @@ export const EuiTable: FunctionComponent<EuiTableProps> = (originalProps) => {
   ];
 
   return (
-    <>
+    <EuiTableStoreProvider>
+      {stickyHeader && <EuiTableStickyHeader />}
       <div css={cssStyles} ref={tableWrapperRef}>
-        <EuiTableStickyHeaderContextProvider {...stickyHeaderContext}>
-          {stickyHeader && !isResponsive && (
-            <EuiTableStickyHeaderRenderer
-              tableRef={tableRef}
-              tableLayout={tableLayout}
-              hasBackground={hasBackground}
-              compressed={compressed}
-            />
-          )}
-          <table
-            ref={tableRef}
-            tabIndex={-1}
-            css={tableStyles}
-            className={classes}
-            {...rest}
-          >
-            <EuiTableIsResponsiveContext.Provider value={isResponsive}>
-              <EuiTableVariantContext.Provider value={{ hasBackground }}>
-                {children}
-              </EuiTableVariantContext.Provider>
-            </EuiTableIsResponsiveContext.Provider>
-          </table>
-        </EuiTableStickyHeaderContextProvider>
+        <table tabIndex={-1} css={tableStyles} className={classes} {...rest}>
+          <EuiTableIsResponsiveContext.Provider value={isResponsive}>
+            <EuiTableVariantContext.Provider value={{ hasBackground }}>
+              {children}
+            </EuiTableVariantContext.Provider>
+          </EuiTableIsResponsiveContext.Provider>
+        </table>
       </div>
       {scrollableInline && stickyScrollbar && (
         <EuiTableStickyScrollbar tableWrapperRef={tableWrapperRef} />
       )}
-    </>
+    </EuiTableStoreProvider>
   );
 };

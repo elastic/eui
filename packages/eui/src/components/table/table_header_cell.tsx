@@ -12,7 +12,7 @@ import React, {
   ThHTMLAttributes,
   ReactNode,
   useEffect,
-  useRef,
+  useCallback, useRef,
 } from 'react';
 import classNames from 'classnames';
 
@@ -20,6 +20,7 @@ import {
   useEuiMemoizedStyles,
   HorizontalAlignment,
   LEFT_ALIGNMENT,
+  useGeneratedHtmlId,
 } from '../../services';
 import { EuiI18n } from '../i18n';
 import { EuiScreenReaderOnly } from '../accessibility';
@@ -42,10 +43,8 @@ import type {
   EuiTableSharedWidthProps,
   EuiTableStickyCellOptions,
 } from './types';
-import { useEuiTableStickyHeaderContext } from './sticky_header';
-
-// Counter for generating unique cell IDs
-let cellIdCounter = 0;
+import { useEuiTableColumnDataStore } from './store/provider';
+import { useEuiTableWithinStickyHeader } from './sticky_header';
 
 export type TableHeaderCellScope = (typeof HEADER_CELL_SCOPE)[number];
 
@@ -183,26 +182,35 @@ const CellContents = ({
   );
 };
 
-export const EuiTableHeaderCell: FunctionComponent<EuiTableHeaderCellProps> = ({
-  children,
-  align = LEFT_ALIGNMENT,
-  onSort,
-  isSorted,
-  isSortAscending,
-  className,
-  scope,
-  mobileOptions,
-  width,
-  minWidth,
-  maxWidth,
-  style: _style,
-  readOnly,
-  tooltipProps,
-  description,
-  append,
-  sticky,
-  ...rest
-}) => {
+export const EuiTableHeaderCell: FunctionComponent<EuiTableHeaderCellProps> = (
+  props
+) => {
+  const {
+    children,
+    align = LEFT_ALIGNMENT,
+    onSort,
+    isSorted,
+    isSortAscending,
+    className,
+    scope,
+    mobileOptions,
+    width,
+    minWidth,
+    maxWidth,
+    style: _style,
+    readOnly,
+    tooltipProps,
+    description,
+    append,
+    sticky,
+    ...rest
+  } = props;
+
+  const ref = useRef<HTMLTableCellElement>(null);
+  const internalCellId = useGeneratedHtmlId();
+  const store = useEuiTableColumnDataStore();
+  const isWithinStickyHeader = useEuiTableWithinStickyHeader();
+
   const styles = useEuiMemoizedStyles(euiTableHeaderFooterCellStyles);
   const stickyStyles = _useEuiTableStickyCellStyles(sticky);
 
@@ -210,80 +218,42 @@ export const EuiTableHeaderCell: FunctionComponent<EuiTableHeaderCellProps> = ({
   const hideForDesktop = !isResponsive && mobileOptions?.only;
   const hideForMobile = isResponsive && mobileOptions?.show === false;
 
-  // Generate stable unique ID for this cell (only once on mount)
-  const cellIdRef = useRef<string>();
-  if (!cellIdRef.current) {
-    cellIdRef.current = `eui-table-header-cell-${cellIdCounter++}`;
-  }
-  const orderRef = useRef<number>(cellIdCounter);
+  const handleResize = useCallback<ResizeObserverCallback>(
+    (entries) => {
+      const entry = entries[0];
+      if (!entry) {
+        return;
+      }
 
-  // Access sticky header context (will be undefined if sticky header is not enabled)
-  const stickyHeaderContext = useEuiTableStickyHeaderContext();
-
-  // Store register/deregister in refs to avoid depending on context object
-  const registerRef = useRef(stickyHeaderContext?.registry?.register);
-  const deregisterRef = useRef(stickyHeaderContext?.registry?.deregister);
-  const isInStickyRendererRef = useRef(
-    stickyHeaderContext?._isInStickyRenderer
+      requestAnimationFrame(() => {
+        console.log(entry.contentRect.width);
+        store.updateColumn(internalCellId, {
+          ...props,
+          currentWidth: entry.contentRect.width,
+        });
+      });
+    },
+    [store, internalCellId]
   );
 
-  // Update refs when context changes
-  registerRef.current = stickyHeaderContext?.registry?.register;
-  deregisterRef.current = stickyHeaderContext?.registry?.deregister;
-  isInStickyRendererRef.current = stickyHeaderContext?._isInStickyRenderer;
-
-  // Register this cell with the sticky header context
   useEffect(() => {
-    const register = registerRef.current;
-    const deregister = deregisterRef.current;
-    const isInStickyRenderer = isInStickyRendererRef.current;
+    // Don't register the column inside the sticky header as the original
+    // column is already registered. This would cause an infinite loop.
+    if (isWithinStickyHeader || !ref.current) {
+      return;
+    }
 
-    if (!register || !deregister) return;
-    if (isInStickyRenderer) return; // Don't register if we're inside sticky renderer
-    if (hideForDesktop || hideForMobile) return; // Don't register hidden cells
+    const unregisterColumn = store.registerColumn(internalCellId, props);
 
-    // Gather all props needed to reconstruct this cell
-    const cellProps = {
-      align,
-      onSort,
-      isSorted,
-      isSortAscending,
-      className,
-      scope,
-      mobileOptions,
-      width,
-      minWidth,
-      maxWidth,
-      style: _style,
-      readOnly,
-      tooltipProps,
-      description,
-      append,
-      sticky,
-      ...rest,
-    };
-
-    register(cellIdRef.current!, orderRef.current, cellProps, children);
+    const resizeObserver = new ResizeObserver(handleResize);
+    resizeObserver.observe(ref.current);
 
     return () => {
-      deregister(cellIdRef.current!);
+      unregisterColumn();
+      resizeObserver.disconnect();
     };
-    // Only re-register if children or key display props change
-    // Don't depend on stickyHeaderContext to avoid feedback loops
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [
-    children,
-    align,
-    isSorted,
-    isSortAscending,
-    className,
-    width,
-    minWidth,
-    maxWidth,
-    readOnly,
-    hideForDesktop,
-    hideForMobile,
-  ]);
+  }, [store, internalCellId, isWithinStickyHeader]);
 
   if (hideForDesktop || hideForMobile) return null;
 
@@ -319,6 +289,7 @@ export const EuiTableHeaderCell: FunctionComponent<EuiTableHeaderCellProps> = ({
 
   return (
     <CellComponent
+      ref={ref}
       css={cssStyles}
       className={classes}
       scope={cellScope}

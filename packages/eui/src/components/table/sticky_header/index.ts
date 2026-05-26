@@ -6,6 +6,5 @@
  * Side Public License, v 1.
  */
 
-export { EuiTableStickyHeaderContextProvider, useEuiTableStickyHeaderContext } from './context';
-export type { HeaderCellRegistration, HeaderCellRegistry } from './types';
-export { EuiTableStickyHeaderRenderer } from './sticky_header_renderer';
+export { EuiTableStickyHeader } from './sticky_header';
+export { useEuiTableWithinStickyHeader } from './context';
