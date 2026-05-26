@@ -124,7 +124,8 @@ export const EuiBanner = forwardRef<HTMLDivElement, EuiBannerProps>(
     // a standalone secondary action is not supported
     const hasActions = Boolean(primaryActionProps);
 
-    const classes = classNames('euiBanner', className);
+    const componentClass = 'euiBanner';
+    const classes = classNames(componentClass, className);
 
     const backgroundColorStyles = useEuiBackgroundColorCSS()[color];
     const cssStyles = [styles.euiBanner, backgroundColorStyles];
@@ -143,15 +144,22 @@ export const EuiBanner = forwardRef<HTMLDivElement, EuiBannerProps>(
         data-test-subj={dataTestSubj}
         {...rest}
       >
-        <div css={containerCssStyles}>
+        <div
+          className={`${componentClass}__container`}
+          css={containerCssStyles}
+        >
           {media ? (
-            <div css={styles.media} data-test-subj={`${dataTestSubj}-media`}>
+            <div
+              className={`${componentClass}__media`}
+              css={styles.media}
+              data-test-subj={`${dataTestSubj}-media`}
+            >
               {media}
             </div>
           ) : null}
 
-          <div css={styles.body}>
-            <div css={styles.content}>
+          <div className={`${componentClass}__body`} css={styles.body}>
+            <div className={`${componentClass}__content`} css={styles.content}>
               <EuiTitle size={headingSize}>
                 <Heading
                   css={styles.title}
@@ -190,6 +198,7 @@ export const EuiBanner = forwardRef<HTMLDivElement, EuiBannerProps>(
 
             {hasActions ? (
               <div
+                className={`${componentClass}__actions`}
                 css={styles.actions}
                 data-test-subj={`${dataTestSubj}-actions`}
               >
