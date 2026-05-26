@@ -1,3 +1,17 @@
+## [`v116.2.0`](https://github.com/elastic/eui/releases/v116.2.0)
+
+- Added experimental support for always-visible sticky horizontal scrollbars in `EuiTable`, `EuiBasicTable` and `EuiInMemoryTable` useful for dense tables that exceed the height of the viewport. This feature is currently opt-in and can be enabled by setting `stickyScrollbar: true`. ([#9674](https://github.com/elastic/eui/pull/9674))
+- Added `significantEvents` glyph to `EuiIcon` ([#9665](https://github.com/elastic/eui/pull/9665))
+
+**Bug fixes**
+
+- Fixed `EuiDataGrid` incorrectly styling disabled `cellActions` icon buttons and making them look like they were not disabled ([#9672](https://github.com/elastic/eui/pull/9672))
+- Fixed a visual misalignment on `EuiSelectableTemplateSitewide` list items when search terms are highlighted ([#9669](https://github.com/elastic/eui/pull/9669))
+
+**Dependency updates**
+
+- Updated `uuid` to v14.0.0 ([#9663](https://github.com/elastic/eui/pull/9663))
+
 ## [`v116.1.0`](https://github.com/elastic/eui/releases/v116.1.0)
 
 - Updates the guard condition in `EuiContextMenuPanel`'s update lifecycle method to use input props instead of internal state to reduce unnecessary re-renders. ([#9656](https://github.com/elastic/eui/pull/9656))
