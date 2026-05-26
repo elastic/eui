@@ -133,7 +133,7 @@ describe('FieldValueSelectionFilter', () => {
     cy.get('button').click();
     cy.get('[data-test-subj="euiSelectableList"] li')
       .eq(2)
-      .should('contain.text', 'Bug');
+      .should('contain.text', 'bug');
   });
 
   it('allows all configurations', () => {
@@ -178,11 +178,11 @@ describe('FieldValueSelectionFilter', () => {
         'true'
       );
       // Popover should still be open when multiselect is true/or
-      cy.contains('li[role="option"]', 'Bug')
+      cy.contains('li[role="option"]', 'bug')
         .should('have.attr', 'aria-checked', 'false')
         .click();
       cy.get('.euiNotificationBadge').should('have.text', '2');
-      cy.contains('li[role="option"]', 'Bug').should(
+      cy.contains('li[role="option"]', 'bug').should(
         'have.attr',
         'aria-checked',
         'true'
@@ -205,12 +205,12 @@ describe('FieldValueSelectionFilter', () => {
 
       // Multiselect false should close the popover, so we need to re-open it
       cy.get('button').click();
-      cy.contains('li[role="option"]', 'Bug')
+      cy.contains('li[role="option"]', 'bug')
         .should('have.attr', 'aria-selected', 'false')
         .click();
       // Filter count should have remained at 1
       cy.get('.euiNotificationBadge').should('have.text', '1');
-      cy.contains('li[role="option"]', 'Bug').should(
+      cy.contains('li[role="option"]', 'bug').should(
         'have.attr',
         'aria-selected',
         'true'
@@ -316,13 +316,15 @@ describe('FieldValueSelectionFilter', () => {
       cy.get('button').click();
       getOptions().should('have.length', 3);
 
-      getOptions().last().should('contain.text', 'Bug').click();
+      getOptions().last().should('contain.text', 'bug').click();
       // Should have moved to the top of the list and retained active focus
       getOptions()
         .first()
-        .should('contain.text', 'Bug')
-        .should('have.attr', 'aria-checked', 'true')
-        .should('have.attr', 'aria-selected', 'true');
+        .should('contain.text', 'bug')
+        .should('have.attr', 'aria-checked', 'true');
+      cy.get('ul[role="listbox"]')
+        .should('have.attr', 'aria-activedescendant')
+        .should('include', 'option-0');
     });
 
     it('does not sort selected options to the top when set to false', () => {
@@ -330,12 +332,14 @@ describe('FieldValueSelectionFilter', () => {
       cy.get('button').click();
       getOptions().should('have.length', 3);
 
-      getOptions().last().should('contain.text', 'Bug').click();
+      getOptions().last().should('contain.text', 'bug').click();
       getOptions()
         .last()
-        .should('contain.text', 'Bug')
-        .should('have.attr', 'aria-checked', 'true')
-        .should('have.attr', 'aria-selected', 'true');
+        .should('contain.text', 'bug')
+        .should('have.attr', 'aria-checked', 'true');
+      cy.get('ul[role="listbox"]')
+        .should('have.attr', 'aria-activedescendant')
+        .should('include', 'option-2');
     });
   });
 
@@ -379,7 +383,7 @@ describe('FieldValueSelectionFilter', () => {
     cy.get('.euiNotificationBadge').should('not.be.undefined');
     cy.get('[data-test-subj="euiSelectableList"] li')
       .first()
-      .should('contain.text', 'Bug');
+      .should('contain.text', 'bug');
   });
 
   it('has inactive filters, fields in options', () => {
@@ -415,7 +419,7 @@ describe('FieldValueSelectionFilter', () => {
     cy.get('button').click();
     cy.get('[data-test-subj="euiSelectableList"] li')
       .eq(2)
-      .should('contain.text', 'Bug');
+      .should('contain.text', 'bug');
   });
 
   it('has active filters, fields in options', () => {
@@ -452,7 +456,7 @@ describe('FieldValueSelectionFilter', () => {
     cy.get('.euiNotificationBadge').should('not.be.undefined');
     cy.get('[data-test-subj="euiSelectableList"] li')
       .eq(0)
-      .should('contain.text', 'Bug');
+      .should('contain.text', 'bug');
   });
 
   it('caches options if options is a function and config.cache is set', () => {

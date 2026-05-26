@@ -283,6 +283,28 @@ export class EuiSearchBar extends Component<EuiSearchBarProps, State> {
 
     const isHintVisible = hint?.popoverProps?.isOpen ?? isHintVisibleState;
 
+    const searchBox = (
+      <EuiSearchBox
+        {...box}
+        query={queryText}
+        onSearch={this.onSearch}
+        isInvalid={error != null}
+        aria-describedby={isHintVisible ? `${this.hintId}` : undefined}
+        hint={
+          hint
+            ? {
+                isVisible: isHintVisible,
+                setIsVisible: (isVisible: boolean) => {
+                  this.setState({ isHintVisible: isVisible });
+                },
+                id: this.hintId,
+                ...hint,
+              }
+            : undefined
+        }
+      />
+    );
+
     return (
       <RenderWithEuiTheme>
         {(euiTheme) => (
@@ -293,39 +315,9 @@ export class EuiSearchBar extends Component<EuiSearchBarProps, State> {
               css={euiSearchBar__searchHolder(euiTheme)}
               grow={true}
             >
-              {(() => {
-                const searchBox = (
-                  <EuiSearchBox
-                    {...box}
-                    query={queryText}
-                    onSearch={this.onSearch}
-                    isInvalid={error != null}
-                    aria-describedby={
-                      isHintVisible ? `${this.hintId}` : undefined
-                    }
-                    hint={
-                      hint
-                        ? {
-                            isVisible: isHintVisible,
-                            setIsVisible: (isVisible: boolean) => {
-                              this.setState({ isHintVisible: isVisible });
-                            },
-                            id: this.hintId,
-                            ...hint,
-                          }
-                        : undefined
-                    }
-                  />
-                );
-
-                return error ? (
-                  <EuiToolTip content={error.message} display="block">
-                    {searchBox}
-                  </EuiToolTip>
-                ) : (
-                  searchBox
-                );
-              })()}
+              <EuiToolTip content={error?.message} display="block">
+                {searchBox}
+              </EuiToolTip>
             </EuiFlexItem>
             {filters && (
               <EuiFlexItem

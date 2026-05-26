@@ -906,7 +906,7 @@ exports[`EuiSuperDatePicker renders an EuiDatePickerRange 1`] = `
           class="euiPopover euiPopover-isOpen euiSuperDatePicker__startPopoverButton euiFormControlLayoutDelimited__input emotion-euiPopover-block-euiFormControlLayoutDelimited__input-euiSuperDatePicker__rangeInput"
         >
           <span
-            class="euiToolTipAnchor  emotion-euiToolTipAnchor-block-css"
+            class="euiToolTipAnchor  emotion-euiToolTipAnchor-block-tooltipAnchor"
             id="generated-id_euiToolTipAnchor"
           >
             <button
@@ -933,7 +933,7 @@ exports[`EuiSuperDatePicker renders an EuiDatePickerRange 1`] = `
           class="euiPopover euiFormControlLayoutDelimited__input emotion-euiPopover-block-now-euiFormControlLayoutDelimited__input-euiSuperDatePicker__rangeInput"
         >
           <span
-            class="euiToolTipAnchor  emotion-euiToolTipAnchor-block-css"
+            class="euiToolTipAnchor  emotion-euiToolTipAnchor-block-tooltipAnchor"
             id="generated-id_euiToolTipAnchor"
           >
             <button

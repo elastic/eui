@@ -10,22 +10,17 @@ exports[`EuiTimelineItem is rendered 1`] = `
     <div
       class="emotion-euiTimelineItemIcon__content"
     >
-      <span
-        class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
-        id="generated-id_euiToolTipAnchor"
+      <div
+        aria-label=""
+        class="euiAvatar euiAvatar--m euiAvatar--user emotion-euiAvatar-user-m-uppercase-subdued"
+        role="img"
       >
-        <div
-          aria-label=""
-          class="euiAvatar euiAvatar--m euiAvatar--user emotion-euiAvatar-user-m-uppercase-subdued"
-          role="img"
-        >
-          <span
-            aria-hidden="true"
-            class="euiAvatar__icon"
-            data-euiicon-type="dot"
-          />
-        </div>
-      </span>
+        <span
+          aria-hidden="true"
+          class="euiAvatar__icon"
+          data-euiicon-type="dot"
+        />
+      </div>
     </div>
   </div>
   <div
@@ -124,22 +119,17 @@ exports[`EuiTimelineItem props verticalAlign center is rendered 1`] = `
     <div
       class="emotion-euiTimelineItemIcon__content"
     >
-      <span
-        class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
-        id="generated-id_euiToolTipAnchor"
+      <div
+        aria-label=""
+        class="euiAvatar euiAvatar--m euiAvatar--user emotion-euiAvatar-user-m-uppercase-subdued"
+        role="img"
       >
-        <div
-          aria-label=""
-          class="euiAvatar euiAvatar--m euiAvatar--user emotion-euiAvatar-user-m-uppercase-subdued"
-          role="img"
-        >
-          <span
-            aria-hidden="true"
-            class="euiAvatar__icon"
-            data-euiicon-type="dot"
-          />
-        </div>
-      </span>
+        <span
+          aria-hidden="true"
+          class="euiAvatar__icon"
+          data-euiicon-type="dot"
+        />
+      </div>
     </div>
   </div>
   <div
@@ -162,22 +152,17 @@ exports[`EuiTimelineItem props verticalAlign top is rendered 1`] = `
     <div
       class="emotion-euiTimelineItemIcon__content"
     >
-      <span
-        class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
-        id="generated-id_euiToolTipAnchor"
+      <div
+        aria-label=""
+        class="euiAvatar euiAvatar--m euiAvatar--user emotion-euiAvatar-user-m-uppercase-subdued"
+        role="img"
       >
-        <div
-          aria-label=""
-          class="euiAvatar euiAvatar--m euiAvatar--user emotion-euiAvatar-user-m-uppercase-subdued"
-          role="img"
-        >
-          <span
-            aria-hidden="true"
-            class="euiAvatar__icon"
-            data-euiicon-type="dot"
-          />
-        </div>
-      </span>
+        <span
+          aria-hidden="true"
+          class="euiAvatar__icon"
+          data-euiicon-type="dot"
+        />
+      </div>
     </div>
   </div>
   <div

@@ -219,7 +219,6 @@ const EuiTextTruncateWithWidth: FunctionComponent<
 
   const content = (
     <div
-      tabIndex={isTruncating ? 0 : undefined}
       className={classNames('euiTextTruncate', className)}
       css={styles.euiTextTruncate}
       ref={refs}

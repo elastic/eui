@@ -11,7 +11,6 @@ import React, {
   ButtonHTMLAttributes,
   MouseEventHandler,
 } from 'react';
-import { css } from '@emotion/react';
 import classNames from 'classnames';
 import { LocaleSpecifier, Moment } from 'moment'; // eslint-disable-line import/named
 
@@ -142,12 +141,7 @@ export const EuiDatePopoverButton: FunctionComponent<
       content={title}
       display="block"
       disableScreenReaderOutput={!isInvalid && !needsUpdating}
-      anchorProps={{
-        css: css`
-          block-size: 100%;
-          inline-size: 100%;
-        `,
-      }}
+      anchorProps={{ css: styles.tooltipAnchor }}
     >
       {rawButton}
     </EuiToolTip>

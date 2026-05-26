@@ -21,7 +21,7 @@ exports[`EuiBreadcrumbCollapsed renders a ... breadcrumb with collapsed content 
       >
         <span
           class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
-          id="generated-id_euiToolTipAnchor"
+          id="generated-id-wrapper"
         >
           <button
             aria-controls="euiPopover_generated-id_panelId"

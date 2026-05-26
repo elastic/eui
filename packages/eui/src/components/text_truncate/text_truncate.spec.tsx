@@ -36,7 +36,6 @@ describe('EuiTextTruncate', () => {
 
   it('renders truncated text and a tooltip when truncation is needed', () => {
     cy.mount(<EuiTextTruncate {...props} />);
-    cy.get('#text').should('have.attr', 'tabindex', '0');
     cy.get('#text').parent().should('have.class', 'euiToolTipAnchor');
     cy.get('#text [data-test-subj="fullText"]').should('have.text', props.text);
     getTruncatedText().should('exist');
@@ -297,12 +296,14 @@ describe('EuiTextTruncate', () => {
       getTruncatedText('#text1').should('have.text', '');
       getTruncatedText('#text2').should('have.text', '');
 
-      cy.get('@spyConsoleError')
-        .should(
-          'be.calledWith',
+      // The error should be logged at least once per component. The wrapping
+      // `EuiToolTip` can cause extra renders so we don't assert an exact count.
+      cy.get('@spyConsoleError').should((spy: any) => {
+        expect(spy).to.have.been.calledWith(
           'The truncation ellipsis is larger than the available width. No text can be rendered.'
-        )
-        .should('be.calledTwice');
+        );
+        expect(spy.callCount).to.be.at.least(2);
+      });
     });
   });
 

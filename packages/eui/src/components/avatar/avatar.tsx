@@ -202,35 +202,40 @@ export const EuiAvatar: FunctionComponent<EuiAvatarProps> = ({
     return avatarStyle?.color;
   }, [iconColor, avatarStyle?.color, isForcedColors, euiTheme]);
 
-  return (
+  const avatarNode = (
+    <div
+      css={cssStyles}
+      className={classes}
+      style={{ ...style, ...avatarStyle, ...highContrastBorder }}
+      aria-label={isDisabled ? undefined : name}
+      role={isDisabled ? 'presentation' : 'img'}
+      {...rest}
+    >
+      {!imageUrl &&
+        (iconType ? (
+          <EuiIcon
+            className="euiAvatar__icon"
+            size={iconSize || size}
+            type={iconType}
+            color={iconCustomColor}
+            aria-hidden={true}
+          />
+        ) : (
+          <span aria-hidden="true">
+            {toInitials(name, initialsLength, initials)}
+          </span>
+        ))}
+    </div>
+  );
+
+  // `EuiAvatar` is not interactive so we don't need to add a `tabIndex`.
+  // It already has `aria-label`, the tooltip is only visual.
+  return name ? (
     <EuiToolTip content={name} disableScreenReaderOutput>
-      {/* `EuiAvatar` is not interactive so we don't need to add a `tabIndex`.
-      It already has `aria-label`, the tooltip is only visual. */}
-      {/* eslint-disable-next-line @elastic/eui/tooltip-focusable-anchor */}
-      <div
-        css={cssStyles}
-        className={classes}
-        style={{ ...style, ...avatarStyle, ...highContrastBorder }}
-        aria-label={isDisabled ? undefined : name}
-        role={isDisabled ? 'presentation' : 'img'}
-        {...rest}
-      >
-        {!imageUrl &&
-          (iconType ? (
-            <EuiIcon
-              className="euiAvatar__icon"
-              size={iconSize || size}
-              type={iconType}
-              color={iconCustomColor}
-              aria-hidden={true}
-            />
-          ) : (
-            <span aria-hidden="true">
-              {toInitials(name, initialsLength, initials)}
-            </span>
-          ))}
-      </div>
+      {avatarNode}
     </EuiToolTip>
+  ) : (
+    avatarNode
   );
 };
 

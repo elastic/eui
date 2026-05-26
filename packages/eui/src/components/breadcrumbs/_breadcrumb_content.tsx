@@ -86,6 +86,8 @@ export const EuiBreadcrumbContent: FunctionComponent<
     !isApplication &&
     styles.isInteractive;
 
+  const hasExplicitTitle = propTitle != null && propTitle !== '';
+
   return (
     <EuiInnerText>
       {(ref, innerText) => {
@@ -104,6 +106,7 @@ export const EuiBreadcrumbContent: FunctionComponent<
             <EuiBreadcrumbPopover
               {...popoverButtonProps}
               title={title}
+              hasExplicitTitle={hasExplicitTitle}
               breadcrumbCss={[...cssStyles, interactionStyles]}
               truncationCss={truncationStyles}
               isLastBreadcrumb={isLastBreadcrumb}
@@ -146,6 +149,7 @@ type EuiBreadcrumbPopoverProps = HTMLAttributes<HTMLElement> &
   Pick<_EuiBreadcrumbProps, 'type' | 'isLastBreadcrumb'> & {
     breadcrumbCss: ArrayCSSInterpolation;
     truncationCss: ArrayCSSInterpolation;
+    hasExplicitTitle: boolean;
   };
 const EuiBreadcrumbPopover = forwardRef<
   HTMLButtonElement,
@@ -158,6 +162,7 @@ const EuiBreadcrumbPopover = forwardRef<
       color,
       type,
       title,
+      hasExplicitTitle,
       'aria-current': ariaCurrent,
       className,
       isLastBreadcrumb,
@@ -197,6 +202,25 @@ const EuiBreadcrumbPopover = forwardRef<
       ...truncationCss,
     ];
 
+    const linkButton = (
+      <EuiLink
+        ref={ref}
+        aria-current={ariaCurrent}
+        className={className}
+        css={buttonStyles}
+        color={color}
+        onClick={togglePopover}
+        {...rest}
+      >
+        <span css={truncationStyles}>{children}</span>
+        <EuiIcon
+          type="chevronSingleDown"
+          size="s"
+          aria-label={` - ${popoverAriaLabel}`}
+        />
+      </EuiLink>
+    );
+
     return (
       <EuiPopover
         {...popoverProps}
@@ -205,41 +229,14 @@ const EuiBreadcrumbPopover = forwardRef<
         css={wrapperStyles}
         button={
           title ? (
-            <EuiToolTip content={title} disableScreenReaderOutput>
-              <EuiLink
-                ref={ref}
-                aria-current={ariaCurrent}
-                className={className}
-                css={buttonStyles}
-                color={color}
-                onClick={togglePopover}
-                {...rest}
-              >
-                <span css={truncationStyles}>{children}</span>
-                <EuiIcon
-                  type="chevronSingleDown"
-                  size="s"
-                  aria-label={` - ${popoverAriaLabel}`}
-                />
-              </EuiLink>
+            <EuiToolTip
+              content={title}
+              disableScreenReaderOutput={!hasExplicitTitle}
+            >
+              {linkButton}
             </EuiToolTip>
           ) : (
-            <EuiLink
-              ref={ref}
-              aria-current={ariaCurrent}
-              className={className}
-              css={buttonStyles}
-              color={color}
-              onClick={togglePopover}
-              {...rest}
-            >
-              <span css={truncationStyles}>{children}</span>
-              <EuiIcon
-                type="chevronSingleDown"
-                size="s"
-                aria-label={` - ${popoverAriaLabel}`}
-              />
-            </EuiLink>
+            linkButton
           )
         }
       >

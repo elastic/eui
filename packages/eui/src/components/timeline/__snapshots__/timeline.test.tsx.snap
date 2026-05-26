@@ -52,22 +52,17 @@ exports[`EuiTimeline is rendered with items 1`] = `
       <div
         class="emotion-euiTimelineItemIcon__content"
       >
-        <span
-          class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
-          id="generated-id_euiToolTipAnchor"
+        <div
+          aria-label=""
+          class="euiAvatar euiAvatar--m euiAvatar--user emotion-euiAvatar-user-m-uppercase-subdued"
+          role="img"
         >
-          <div
-            aria-label=""
-            class="euiAvatar euiAvatar--m euiAvatar--user emotion-euiAvatar-user-m-uppercase-subdued"
-            role="img"
-          >
-            <span
-              aria-hidden="true"
-              class="euiAvatar__icon"
-              data-euiicon-type="bolt"
-            />
-          </div>
-        </span>
+          <span
+            aria-hidden="true"
+            class="euiAvatar__icon"
+            data-euiicon-type="bolt"
+          />
+        </div>
       </div>
     </div>
     <div
@@ -136,22 +131,17 @@ exports[`EuiTimeline props gutterSize l is rendered 1`] = `
       <div
         class="emotion-euiTimelineItemIcon__content"
       >
-        <span
-          class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
-          id="generated-id_euiToolTipAnchor"
+        <div
+          aria-label=""
+          class="euiAvatar euiAvatar--m euiAvatar--user emotion-euiAvatar-user-m-uppercase-subdued"
+          role="img"
         >
-          <div
-            aria-label=""
-            class="euiAvatar euiAvatar--m euiAvatar--user emotion-euiAvatar-user-m-uppercase-subdued"
-            role="img"
-          >
-            <span
-              aria-hidden="true"
-              class="euiAvatar__icon"
-              data-euiicon-type="bolt"
-            />
-          </div>
-        </span>
+          <span
+            aria-hidden="true"
+            class="euiAvatar__icon"
+            data-euiicon-type="bolt"
+          />
+        </div>
       </div>
     </div>
     <div
@@ -220,22 +210,17 @@ exports[`EuiTimeline props gutterSize m is rendered 1`] = `
       <div
         class="emotion-euiTimelineItemIcon__content"
       >
-        <span
-          class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
-          id="generated-id_euiToolTipAnchor"
+        <div
+          aria-label=""
+          class="euiAvatar euiAvatar--m euiAvatar--user emotion-euiAvatar-user-m-uppercase-subdued"
+          role="img"
         >
-          <div
-            aria-label=""
-            class="euiAvatar euiAvatar--m euiAvatar--user emotion-euiAvatar-user-m-uppercase-subdued"
-            role="img"
-          >
-            <span
-              aria-hidden="true"
-              class="euiAvatar__icon"
-              data-euiicon-type="bolt"
-            />
-          </div>
-        </span>
+          <span
+            aria-hidden="true"
+            class="euiAvatar__icon"
+            data-euiicon-type="bolt"
+          />
+        </div>
       </div>
     </div>
     <div
@@ -304,22 +289,17 @@ exports[`EuiTimeline props gutterSize xl is rendered 1`] = `
       <div
         class="emotion-euiTimelineItemIcon__content"
       >
-        <span
-          class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
-          id="generated-id_euiToolTipAnchor"
+        <div
+          aria-label=""
+          class="euiAvatar euiAvatar--m euiAvatar--user emotion-euiAvatar-user-m-uppercase-subdued"
+          role="img"
         >
-          <div
-            aria-label=""
-            class="euiAvatar euiAvatar--m euiAvatar--user emotion-euiAvatar-user-m-uppercase-subdued"
-            role="img"
-          >
-            <span
-              aria-hidden="true"
-              class="euiAvatar__icon"
-              data-euiicon-type="bolt"
-            />
-          </div>
-        </span>
+          <span
+            aria-hidden="true"
+            class="euiAvatar__icon"
+            data-euiicon-type="bolt"
+          />
+        </div>
       </div>
     </div>
     <div

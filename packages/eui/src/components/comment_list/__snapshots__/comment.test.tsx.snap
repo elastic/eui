@@ -12,22 +12,17 @@ exports[`EuiComment is rendered 1`] = `
     <div
       class="emotion-euiTimelineItemIcon__content"
     >
-      <span
-        class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
-        id="generated-id_euiToolTipAnchor"
+      <div
+        aria-label=""
+        class="euiAvatar euiAvatar--m euiAvatar--user euiCommentAvatar emotion-euiAvatar-user-m-uppercase-subdued"
+        role="img"
       >
-        <div
-          aria-label=""
-          class="euiAvatar euiAvatar--m euiAvatar--user euiCommentAvatar emotion-euiAvatar-user-m-uppercase-subdued"
-          role="img"
-        >
-          <span
-            aria-hidden="true"
-            class="euiAvatar__icon"
-            data-euiicon-type="user"
-          />
-        </div>
-      </span>
+        <span
+          aria-hidden="true"
+          class="euiAvatar__icon"
+          data-euiicon-type="user"
+        />
+      </div>
     </div>
   </div>
   <div
@@ -51,22 +46,17 @@ exports[`EuiComment props event is rendered 1`] = `
     <div
       class="emotion-euiTimelineItemIcon__content"
     >
-      <span
-        class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
-        id="generated-id_euiToolTipAnchor"
+      <div
+        aria-label=""
+        class="euiAvatar euiAvatar--m euiAvatar--user euiCommentAvatar emotion-euiAvatar-user-m-uppercase-subdued"
+        role="img"
       >
-        <div
-          aria-label=""
-          class="euiAvatar euiAvatar--m euiAvatar--user euiCommentAvatar emotion-euiAvatar-user-m-uppercase-subdued"
-          role="img"
-        >
-          <span
-            aria-hidden="true"
-            class="euiAvatar__icon"
-            data-euiicon-type="user"
-          />
-        </div>
-      </span>
+        <span
+          aria-hidden="true"
+          class="euiAvatar__icon"
+          data-euiicon-type="user"
+        />
+      </div>
     </div>
   </div>
   <div
@@ -117,22 +107,17 @@ exports[`EuiComment props timestamp is rendered 1`] = `
     <div
       class="emotion-euiTimelineItemIcon__content"
     >
-      <span
-        class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
-        id="generated-id_euiToolTipAnchor"
+      <div
+        aria-label=""
+        class="euiAvatar euiAvatar--m euiAvatar--user euiCommentAvatar emotion-euiAvatar-user-m-uppercase-subdued"
+        role="img"
       >
-        <div
-          aria-label=""
-          class="euiAvatar euiAvatar--m euiAvatar--user euiCommentAvatar emotion-euiAvatar-user-m-uppercase-subdued"
-          role="img"
-        >
-          <span
-            aria-hidden="true"
-            class="euiAvatar__icon"
-            data-euiicon-type="user"
-          />
-        </div>
-      </span>
+        <span
+          aria-hidden="true"
+          class="euiAvatar__icon"
+          data-euiicon-type="user"
+        />
+      </div>
     </div>
   </div>
   <div
@@ -185,22 +170,17 @@ exports[`EuiComment renders a body 1`] = `
     <div
       class="emotion-euiTimelineItemIcon__content"
     >
-      <span
-        class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
-        id="generated-id_euiToolTipAnchor"
+      <div
+        aria-label=""
+        class="euiAvatar euiAvatar--m euiAvatar--user euiCommentAvatar emotion-euiAvatar-user-m-uppercase-subdued"
+        role="img"
       >
-        <div
-          aria-label=""
-          class="euiAvatar euiAvatar--m euiAvatar--user euiCommentAvatar emotion-euiAvatar-user-m-uppercase-subdued"
-          role="img"
-        >
-          <span
-            aria-hidden="true"
-            class="euiAvatar__icon"
-            data-euiicon-type="user"
-          />
-        </div>
-      </span>
+        <span
+          aria-hidden="true"
+          class="euiAvatar__icon"
+          data-euiicon-type="user"
+        />
+      </div>
     </div>
   </div>
   <div
@@ -232,22 +212,17 @@ exports[`EuiComment renders a timeline icon 1`] = `
     <div
       class="emotion-euiTimelineItemIcon__content"
     >
-      <span
-        class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
-        id="generated-id_euiToolTipAnchor"
+      <div
+        aria-label=""
+        class="euiAvatar euiAvatar--m euiAvatar--user euiCommentAvatar emotion-euiAvatar-user-m-uppercase-subdued"
+        role="img"
       >
-        <div
-          aria-label=""
-          class="euiAvatar euiAvatar--m euiAvatar--user euiCommentAvatar emotion-euiAvatar-user-m-uppercase-subdued"
-          role="img"
-        >
-          <span
-            aria-hidden="true"
-            class="euiAvatar__icon"
-            data-euiicon-type="dot"
-          />
-        </div>
-      </span>
+        <span
+          aria-hidden="true"
+          class="euiAvatar__icon"
+          data-euiicon-type="dot"
+        />
+      </div>
     </div>
   </div>
   <div

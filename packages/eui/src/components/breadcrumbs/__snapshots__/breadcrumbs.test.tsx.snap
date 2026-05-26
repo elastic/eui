@@ -43,7 +43,7 @@ exports[`EuiBreadcrumbs is rendered 1`] = `
       >
         <span
           class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
-          id="generated-id_euiToolTipAnchor"
+          id="generated-id-wrapper"
         >
           <button
             aria-expanded="false"
@@ -152,7 +152,7 @@ exports[`EuiBreadcrumbs is rendered with final item as link 1`] = `
       >
         <span
           class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
-          id="generated-id_euiToolTipAnchor"
+          id="generated-id-wrapper"
         >
           <button
             aria-expanded="false"
@@ -343,7 +343,7 @@ exports[`EuiBreadcrumbs props max renders 1 item 1`] = `
       >
         <span
           class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
-          id="generated-id_euiToolTipAnchor"
+          id="generated-id-wrapper"
         >
           <button
             aria-expanded="false"
@@ -533,7 +533,7 @@ exports[`EuiBreadcrumbs props responsive is rendered 1`] = `
       >
         <span
           class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
-          id="generated-id_euiToolTipAnchor"
+          id="generated-id-wrapper"
         >
           <button
             aria-expanded="false"
@@ -641,7 +641,7 @@ exports[`EuiBreadcrumbs props responsive is rendered as false 1`] = `
       >
         <span
           class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
-          id="generated-id_euiToolTipAnchor"
+          id="generated-id-wrapper"
         >
           <button
             aria-expanded="false"
@@ -724,7 +724,7 @@ exports[`EuiBreadcrumbs props responsive is rendered with custom breakpoints 1`]
       >
         <span
           class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
-          id="generated-id_euiToolTipAnchor"
+          id="generated-id-wrapper"
         >
           <button
             aria-expanded="false"
