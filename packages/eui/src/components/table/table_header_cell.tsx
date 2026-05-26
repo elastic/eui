@@ -12,7 +12,8 @@ import React, {
   ThHTMLAttributes,
   ReactNode,
   useEffect,
-  useCallback, useRef,
+  useCallback,
+  useRef,
 } from 'react';
 import classNames from 'classnames';
 
@@ -45,6 +46,7 @@ import type {
 } from './types';
 import { useEuiTableColumnDataStore } from './store/provider';
 import { useEuiTableWithinStickyHeader } from './sticky_header';
+import { EuiTableStoreRenderHeaderCell } from './store/store';
 
 export type TableHeaderCellScope = (typeof HEADER_CELL_SCOPE)[number];
 
@@ -218,6 +220,81 @@ export const EuiTableHeaderCell: FunctionComponent<EuiTableHeaderCellProps> = (
   const hideForDesktop = !isResponsive && mobileOptions?.only;
   const hideForMobile = isResponsive && mobileOptions?.show === false;
 
+  const renderHeaderCellRef = useRef<EuiTableStoreRenderHeaderCell>();
+  renderHeaderCellRef.current = (extraProps) => {
+    if (hideForDesktop || hideForMobile) return null;
+
+    const classes = classNames('euiTableHeaderCell', className);
+    const cssStyles = [
+      styles.euiTableHeaderCell,
+      !isResponsive && stickyStyles,
+    ];
+    const inlineWidthStyles = resolveWidthPropsAsStyle(_style, {
+      width,
+      minWidth,
+      maxWidth,
+    });
+
+    const CellComponent = children ? 'th' : 'td';
+    const cellScope = CellComponent === 'th' ? scope ?? 'col' : undefined; // `scope` is only valid on `th` elements
+
+    const canSort = !!(onSort && !readOnly);
+    let ariaSortValue: HTMLAttributes<HTMLTableCellElement>['aria-sort'];
+    if (isSorted) {
+      ariaSortValue = isSortAscending ? 'ascending' : 'descending';
+    } else if (canSort) {
+      ariaSortValue = 'none';
+    }
+
+    const cellContentsProps = {
+      css: styles.euiTableHeaderCell__content,
+      align,
+      tooltipProps,
+      description,
+      canSort,
+      isSorted,
+      isSortAscending,
+      children,
+    };
+
+    return (
+      <CellComponent
+        css={cssStyles}
+        className={classes}
+        scope={cellScope}
+        role="columnheader"
+        aria-sort={ariaSortValue}
+        data-sticky={(!isResponsive && sticky?.side) || undefined}
+        style={{ ..._style, ...inlineWidthStyles }}
+        {...rest}
+        {...extraProps}
+      >
+        {canSort ? (
+          <EuiToolTip
+            content={tooltipProps?.content}
+            {...tooltipProps?.tooltipProps}
+            display="block"
+          >
+            <button
+              type="button"
+              css={styles.euiTableHeaderCell__button}
+              className={classNames('euiTableHeaderButton', {
+                'euiTableHeaderButton-isSorted': isSorted,
+              })}
+              onClick={onSort}
+              data-test-subj="tableHeaderSortButton"
+            >
+              <CellContents {...cellContentsProps} />
+            </button>
+          </EuiToolTip>
+        ) : (
+          <CellContents {...cellContentsProps} />
+        )}
+        {append}
+      </CellComponent>
+    );
+  };
+
   const handleResize = useCallback<ResizeObserverCallback>(
     (entries) => {
       const entry = entries[0];
@@ -225,13 +302,7 @@ export const EuiTableHeaderCell: FunctionComponent<EuiTableHeaderCellProps> = (
         return;
       }
 
-      requestAnimationFrame(() => {
-        console.log(entry.contentRect.width);
-        store.updateColumn(internalCellId, {
-          ...props,
-          currentWidth: entry.contentRect.width,
-        });
-      });
+      store.updateColumnWidth(internalCellId, entry.contentRect.width);
     },
     [store, internalCellId]
   );
@@ -239,11 +310,13 @@ export const EuiTableHeaderCell: FunctionComponent<EuiTableHeaderCellProps> = (
   useEffect(() => {
     // Don't register the column inside the sticky header as the original
     // column is already registered. This would cause an infinite loop.
-    if (isWithinStickyHeader || !ref.current) {
+    if (isWithinStickyHeader || !ref.current || !renderHeaderCellRef.current) {
       return;
     }
 
-    const unregisterColumn = store.registerColumn(internalCellId, props);
+    const unregisterColumn = store.registerColumn(internalCellId, {
+      renderHeaderCellRef,
+    });
 
     const resizeObserver = new ResizeObserver(handleResize);
     resizeObserver.observe(ref.current);
@@ -255,72 +328,5 @@ export const EuiTableHeaderCell: FunctionComponent<EuiTableHeaderCellProps> = (
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [store, internalCellId, isWithinStickyHeader]);
 
-  if (hideForDesktop || hideForMobile) return null;
-
-  const classes = classNames('euiTableHeaderCell', className);
-  const cssStyles = [styles.euiTableHeaderCell, !isResponsive && stickyStyles];
-  const inlineWidthStyles = resolveWidthPropsAsStyle(_style, {
-    width,
-    minWidth,
-    maxWidth,
-  });
-
-  const CellComponent = children ? 'th' : 'td';
-  const cellScope = CellComponent === 'th' ? scope ?? 'col' : undefined; // `scope` is only valid on `th` elements
-
-  const canSort = !!(onSort && !readOnly);
-  let ariaSortValue: HTMLAttributes<HTMLTableCellElement>['aria-sort'];
-  if (isSorted) {
-    ariaSortValue = isSortAscending ? 'ascending' : 'descending';
-  } else if (canSort) {
-    ariaSortValue = 'none';
-  }
-
-  const cellContentsProps = {
-    css: styles.euiTableHeaderCell__content,
-    align,
-    tooltipProps,
-    description,
-    canSort,
-    isSorted,
-    isSortAscending,
-    children,
-  };
-
-  return (
-    <CellComponent
-      ref={ref}
-      css={cssStyles}
-      className={classes}
-      scope={cellScope}
-      role="columnheader"
-      aria-sort={ariaSortValue}
-      data-sticky={(!isResponsive && sticky?.side) || undefined}
-      style={{ ..._style, ...inlineWidthStyles }}
-      {...rest}
-    >
-      {canSort ? (
-        <EuiToolTip
-          content={tooltipProps?.content}
-          {...tooltipProps?.tooltipProps}
-          display="block"
-        >
-          <button
-            type="button"
-            css={styles.euiTableHeaderCell__button}
-            className={classNames('euiTableHeaderButton', {
-              'euiTableHeaderButton-isSorted': isSorted,
-            })}
-            onClick={onSort}
-            data-test-subj="tableHeaderSortButton"
-          >
-            <CellContents {...cellContentsProps} />
-          </button>
-        </EuiToolTip>
-      ) : (
-        <CellContents {...cellContentsProps} />
-      )}
-      {append}
-    </CellComponent>
-  );
+  return renderHeaderCellRef.current({ ref });
 };

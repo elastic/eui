@@ -6,58 +6,56 @@
  * Side Public License, v 1.
  */
 
-import React, { ReactNode, useEffect, useMemo, useState } from 'react';
+import React, {
+  createRef,
+  RefObject,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import { css } from '@emotion/react';
 import { useEuiTableColumnDataStore } from '../store/provider';
 import { EuiTableHeader } from '../table_header';
-import {
-  EuiTableHeaderCell,
-  EuiTableHeaderCellProps,
-} from '../table_header_cell';
-import { EuiTableStoreColumnData } from '../store/store';
 import { EuiTableWithinStickyHeaderProvider } from './context';
 import { useEuiMemoizedStyles } from '../../../services';
 import { euiTableStyles } from '../table.styles';
 
 export const EuiTableStickyHeader = () => {
   const store = useEuiTableColumnDataStore();
-  const [columns, setColumns] = useState<EuiTableStoreColumnData[]>(() => [
-    ...store.getColumns().values(),
-  ]);
+  const [columns, setColumns] = useState(() =>
+    Array.from(store.getColumns().entries())
+  );
+  const columnRefs = useRef(new Map<string, RefObject<HTMLTableCellElement>>());
 
   const styles = useEuiMemoizedStyles(euiTableStyles);
 
   useEffect(() => {
-    return store.subscribe((columns) => {
-      setColumns([...columns.values()]);
+    const unsubscribe = store.subscribe((columns) => {
+      setColumns(Array.from(columns.entries()));
+
+      columns.forEach((_, key) => {
+        columnRefs.current.set(key, createRef<HTMLTableCellElement>());
+      });
     });
+
+    const unsubscribeColumnWidths = store.subscribeToColumnWidths((columns) => {
+      columns.forEach((width, name) => {
+        const ref = columnRefs.current.get(name);
+        if (ref?.current) {
+          ref.current.style.width = `${width}px`;
+        }
+      });
+    });
+
+    return () => {
+      unsubscribe();
+      unsubscribeColumnWidths();
+    };
   }, [store]);
-
-  const headerCells = useMemo(() => {
-    console.log('useMemo', columns);
-
-    const cells: ReactNode[] = [];
-
-    columns.forEach((columnData) => {
-      const { currentWidth, ..._props } = columnData;
-      const props: EuiTableHeaderCellProps = {
-        ..._props,
-      };
-
-      if (currentWidth !== undefined) {
-        props.width = columnData.currentWidth;
-        props.minWidth = columnData.currentWidth;
-        props.maxWidth = columnData.currentWidth;
-      }
-
-      cells.push(<EuiTableHeaderCell {...props} />);
-    });
-    return cells;
-  }, [columns]);
 
   const tableStyles = [
     css`
-      position: fixed;
+      position: sticky;
       top: 0;
       z-index: 1;
     `,
@@ -70,7 +68,14 @@ export const EuiTableStickyHeader = () => {
   return (
     <EuiTableWithinStickyHeaderProvider>
       <table css={tableStyles}>
-        <EuiTableHeader>{headerCells}</EuiTableHeader>
+        <EuiTableHeader>
+          {columns.map(([name, data], index) =>
+            data.renderHeaderCellRef.current?.({
+              ref: columnRefs.current.get(name),
+              key: `${name}-${index}`,
+            })
+          )}
+        </EuiTableHeader>
       </table>
     </EuiTableWithinStickyHeaderProvider>
   );
