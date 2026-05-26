@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, TableHTMLAttributes } from 'react';
+import React, { FunctionComponent, TableHTMLAttributes, useRef } from 'react';
 import classNames from 'classnames';
 
 import { useEuiMemoizedStyles, type EuiBreakpointSize } from '../../services';
@@ -21,6 +21,7 @@ import { euiTableStyles } from './table.styles';
 import { usePropsWithComponentDefaults } from '../provider/component_defaults';
 import { euiContainerCSS } from '../../global_styling';
 import { EUI_TABLE_CSS_CONTAINER_NAME } from './const';
+import { EuiTableStickyScrollbar } from './sticky_scrollbar';
 
 export interface EuiTableProps
   extends CommonProps,
@@ -56,6 +57,16 @@ export interface EuiTableProps
    * @default false
    */
   scrollableInline?: boolean;
+  /**
+   * Make the horizontal scrollbar visible even if the table is larger
+   * than the viewport height. Useful for long tables when the native browser
+   * scrollbar is at the bottom of the table and hard to reach.
+   *
+   * This prop requires [`scrollableInline`](#scrollableInline) to be `true`.
+   * @beta
+   * @default false
+   */
+  stickyScrollbar?: boolean;
 }
 
 /**
@@ -77,8 +88,10 @@ export const EuiTable: FunctionComponent<EuiTableProps> = (originalProps) => {
     hasBackground = true,
     responsiveBreakpoint,
     scrollableInline = false,
+    stickyScrollbar = false,
     ...rest
   } = usePropsWithComponentDefaults('EuiTable', originalProps);
+  const tableWrapperRef = useRef<HTMLDivElement>(null);
   const isResponsive = useIsEuiTableResponsive(responsiveBreakpoint);
 
   const classes = classNames('euiTable', className);
@@ -99,14 +112,19 @@ export const EuiTable: FunctionComponent<EuiTableProps> = (originalProps) => {
   ];
 
   return (
-    <div css={cssStyles}>
-      <table tabIndex={-1} css={tableStyles} className={classes} {...rest}>
-        <EuiTableIsResponsiveContext.Provider value={isResponsive}>
-          <EuiTableVariantContext.Provider value={{ hasBackground }}>
-            {children}
-          </EuiTableVariantContext.Provider>
-        </EuiTableIsResponsiveContext.Provider>
-      </table>
-    </div>
+    <>
+      <div css={cssStyles} ref={tableWrapperRef}>
+        <table tabIndex={-1} css={tableStyles} className={classes} {...rest}>
+          <EuiTableIsResponsiveContext.Provider value={isResponsive}>
+            <EuiTableVariantContext.Provider value={{ hasBackground }}>
+              {children}
+            </EuiTableVariantContext.Provider>
+          </EuiTableIsResponsiveContext.Provider>
+        </table>
+      </div>
+      {scrollableInline && stickyScrollbar && (
+        <EuiTableStickyScrollbar tableWrapperRef={tableWrapperRef} />
+      )}
+    </>
   );
 };
