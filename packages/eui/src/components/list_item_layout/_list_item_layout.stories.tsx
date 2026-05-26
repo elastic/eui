@@ -26,6 +26,7 @@ import {
   type EuiListItemLayoutAsButton,
   type EuiListItemLayoutAsAnchor,
 } from './_list_item_layout';
+import { EuiHealth } from '../health';
 
 type EuiListItemLayoutStoryProps = EuiListItemLayoutProps & {
   checkedSingle: 'on' | undefined;
@@ -346,6 +347,59 @@ export const TextWrap: Story = {
   ),
 };
 
+export const CustomContent: Story = {
+  tags: ['vrt-only'],
+  parameters: {
+    controls: {
+      include: [],
+    },
+  },
+  render: function Render(args: EuiListItemLayoutProps) {
+    return (
+      <ul>
+        <EuiListItemLayout {...args}>
+          <EuiFlexGroup alignItems="center" gutterSize="xs">
+            <EuiFlexItem grow={false}>
+              <EuiIcon type="alert" color="warning" />
+            </EuiFlexItem>
+            <EuiFlexItem>
+              Lorem ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing
+              elit.
+            </EuiFlexItem>
+          </EuiFlexGroup>
+        </EuiListItemLayout>
+
+        <EuiListItemLayout {...args}>
+          <EuiText>
+            <mark>Lorem ipsum.</mark> Lorem ipsum dolor sit amet, consectetur
+            adipiscing elit.
+          </EuiText>
+        </EuiListItemLayout>
+
+        <EuiListItemLayout {...args}>
+          <>
+            <mark>Lorem ipsum.</mark> Lorem ipsum dolor sit amet, consectetur
+            adipiscing elit.
+          </>
+        </EuiListItemLayout>
+
+        <EuiListItemLayout {...args}>
+          <>
+            <small>Lorem ipsum.</small> Lorem ipsum dolor sit amet, consectetur
+            adipiscing elit.
+          </>
+        </EuiListItemLayout>
+
+        <EuiListItemLayout {...args}>
+          <EuiHealth color="success">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          </EuiHealth>
+        </EuiListItemLayout>
+      </ul>
+    );
+  },
+};
+
 export const KitchenSink: Story = {
   tags: ['vrt-only'],
   parameters: {
@@ -428,41 +482,41 @@ const renderKitchenSink = (args: EuiListItemLayoutProps) => {
 
       <EuiFlexGroup component="ul" direction="column" gutterSize="none">
         <EuiListItemLayout {...args}>
-          {children} <small>(default)</small>
+          {children} <span>(default)</span>
         </EuiListItemLayout>
         <EuiListItemLayout {...args} prepend={_prepend}>
-          {children} <small>(prepend)</small>
+          {children} <span>(prepend)</span>
         </EuiListItemLayout>
 
         <EuiListItemLayout {...args} checked="on">
-          {children} <small>(checked=on)</small>
+          {children} <span>(checked=on)</span>
         </EuiListItemLayout>
         <EuiListItemLayout {...args}>
-          {children} <small>(checked=undefined)</small>
+          {children} <span>(checked=undefined)</span>
         </EuiListItemLayout>
         <EuiListItemLayout {...args} checked="mixed">
-          {children} <small>(checked=mixed)</small>
+          {children} <span>(checked=mixed)</span>
         </EuiListItemLayout>
         <EuiListItemLayout {...args} checked="off">
-          {children} <small>(checked=off)</small>
+          {children} <span>(checked=off)</span>
         </EuiListItemLayout>
 
         <EuiListItemLayout {...args} isSingleSelection checked="on">
-          {children} <small>(isSingleSelection & checked=on)</small>
+          {children} <span>(isSingleSelection & checked=on)</span>
         </EuiListItemLayout>
         <EuiListItemLayout {...args} isSingleSelection>
-          {children} <small>(isSingleSelection & checked=undefined)</small>
+          {children} <span>(isSingleSelection & checked=undefined)</span>
         </EuiListItemLayout>
 
         <EuiListItemLayout {...args} append={_append}>
-          {children} <small>(append)</small>
+          {children} <span>(append)</span>
         </EuiListItemLayout>
         <EuiListItemLayout
           {...args}
           append={_append}
           extraAction={_extraAction}
         >
-          {children} <small>(append & extraAction)</small>
+          {children} <span>(append & extraAction)</span>
         </EuiListItemLayout>
         <EuiListItemLayout
           {...args}
@@ -471,8 +525,7 @@ const renderKitchenSink = (args: EuiListItemLayoutProps) => {
           append={_append}
           extraAction={_extraAction}
         >
-          {children}{' '}
-          <small>(checked=on & prepend & append & extraAction)</small>
+          {children} <span>(checked=on & prepend & append & extraAction)</span>
         </EuiListItemLayout>
 
         <EuiListItemLayout
@@ -482,7 +535,7 @@ const renderKitchenSink = (args: EuiListItemLayoutProps) => {
             position: 'bottom',
           }}
         >
-          {children} <small>(tooltipProps)</small>
+          {children} <span>(tooltipProps)</span>
         </EuiListItemLayout>
         <EuiListItemLayout
           {...args}
@@ -492,29 +545,27 @@ const renderKitchenSink = (args: EuiListItemLayoutProps) => {
             position: 'bottom',
           }}
         >
-          {children} <small>(wrapperElement & tooltipProps)</small>
+          {children} <span>(wrapperElement & tooltipProps)</span>
         </EuiListItemLayout>
 
         <EuiListItemLayout {...args} isFocused>
-          {children} <small>(isFocused=true)</small>
+          {children} <span>(isFocused=true)</span>
         </EuiListItemLayout>
 
         <EuiListItemLayout {...args} checked="on" isSelected>
           {children}{' '}
-          <small>
-            (checked=on & isSingleSelection=false & isSelected=true)
-          </small>
+          <span>(checked=on & isSingleSelection=false & isSelected=true)</span>
         </EuiListItemLayout>
         <EuiListItemLayout {...args} checked="on" isSingleSelection isSelected>
           {children}{' '}
-          <small>(checked=on & isSingleSelection & isSelected=true)</small>
+          <span>(checked=on & isSingleSelection & isSelected=true)</span>
         </EuiListItemLayout>
 
         <EuiListItemLayout {...args} showIndicator={false}>
-          {children} <small>(showIndicator=false)</small>
+          {children} <span>(showIndicator=false)</span>
         </EuiListItemLayout>
         <EuiListItemLayout {...args} isSelected showIndicator={false}>
-          {children} <small>(showIndicator=false & isSelected=true)</small>
+          {children} <span>(showIndicator=false & isSelected=true)</span>
         </EuiListItemLayout>
       </EuiFlexGroup>
     </>
