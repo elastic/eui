@@ -11,6 +11,7 @@ import { css, keyframes } from '@emotion/react';
 import { UseEuiTheme } from '../../../../services';
 import {
   euiCanAnimate,
+  euiDisabledSelector,
   logicalCSS,
   logicalSizeCSS,
   mathWithUnits,
@@ -119,8 +120,8 @@ export const euiDataGridCellActionsStyles = (euiThemeContext: UseEuiTheme) => {
       }
 
       /* Force all cell action buttons to match EUI colors unless disabled */
-      &:not(:disabled),
-      &:not(:disabled) svg {
+      &:not(${euiDisabledSelector}),
+      &:not(${euiDisabledSelector}) svg {
         color: currentColor !important;
         fill: currentColor !important;
       }
