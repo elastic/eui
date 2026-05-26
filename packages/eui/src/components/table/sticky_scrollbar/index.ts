@@ -6,13 +6,4 @@
  * Side Public License, v 1.
  */
 
-export * from './render_custom_styles';
-export * from './react_version';
-export {
-  createResizeObserverMock,
-  createMockResizeObserverEntry,
-} from './resize_observer_mock';
-export {
-  createIntersectionObserverMock,
-  createMockIntersectionObserverEntry,
-} from './intersection_observer_mock';
+export { EuiTableStickyScrollbar } from './sticky_scrollbar';

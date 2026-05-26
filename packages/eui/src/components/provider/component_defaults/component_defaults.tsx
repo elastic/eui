@@ -47,7 +47,10 @@ export type EuiComponentDefaults = {
    */
   EuiTable?: Pick<
     EuiTableProps,
-    'responsiveBreakpoint' | 'scrollableInline' | 'tableLayout'
+    | 'responsiveBreakpoint'
+    | 'scrollableInline'
+    | 'tableLayout'
+    | 'stickyScrollbar'
   >;
 
   /**
