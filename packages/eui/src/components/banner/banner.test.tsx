@@ -11,6 +11,7 @@ import { fireEvent, waitFor } from '@testing-library/react';
 
 import { useEuiTheme } from '../../services';
 import { render, renderHook } from '../../test/rtl';
+import { shouldRenderCustomStyles } from '../../test/internal';
 
 import { EuiBanner } from './banner';
 
@@ -21,6 +22,23 @@ const requiredProps = {
 };
 
 describe('EuiBanner', () => {
+  shouldRenderCustomStyles(<EuiBanner {...requiredProps} />);
+  // Test the dismissButtonProps separately as emotion css class order isn't
+  // guaranteed to be consistent between the banner and the button
+  shouldRenderCustomStyles(
+    <EuiBanner {...requiredProps} onDismiss={() => {}} />,
+    {
+      childProps: ['dismissButtonProps'],
+      skip: { parentTest: true, css: true },
+    }
+  );
+
+  test('is rendered', () => {
+    const { container } = render(<EuiBanner {...requiredProps} />);
+
+    expect(container.firstChild).toMatchSnapshot();
+  });
+
   it('renders the title', () => {
     const { getByTestSubject } = render(<EuiBanner {...requiredProps} />);
 

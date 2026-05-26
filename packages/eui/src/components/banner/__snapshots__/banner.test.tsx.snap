@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiBanner is rendered 1`] = `
+<div
+  class="euiBanner emotion-euiBanner-highlighted"
+  data-color="highlighted"
+  data-size="m"
+  data-test-subj="euiBanner"
+>
+  <div
+    class="euiBanner__container css-oizb8n-container"
+  >
+    <div
+      class="euiBanner__media css-hirmf3-media"
+      data-test-subj="euiBanner-media"
+    >
+      <img
+        alt="'"
+        src=""
+      />
+    </div>
+    <div
+      class="euiBanner__body css-180zgv0-body"
+    >
+      <div
+        class="euiBanner__content css-q4247d-content"
+      >
+        <h2
+          class="euiTitle css-ez55zg-title-euiTitle-xs"
+          data-test-subj="euiBanner-title"
+        >
+          Title
+        </h2>
+      </div>
+    </div>
+  </div>
+</div>
+`;
