@@ -67,24 +67,6 @@ export interface EuiTableStore {
   getColumns: () => EuiTableStoreColumnsMap;
 }
 
-/**
- * Check whether two column data objects are equal.
- */
-const isColumnDataEqual = (
-  a: EuiTableStoreColumnData,
-  b: EuiTableStoreColumnData
-): boolean => {
-  if (a === b) {
-    return true;
-  }
-
-  // TODO: Replace with a loop-based solution if the data object grows significantly
-  return (
-    a.currentWidth === b.currentWidth &&
-    a.renderHeaderCellRef === b.renderHeaderCellRef
-  );
-};
-
 export const createEuiTableStore = (): EuiTableStore => {
   const columns = new Map<string, EuiTableStoreColumnData>();
   const columnWidths = new Map<string, number>();
@@ -124,11 +106,6 @@ export const createEuiTableStore = (): EuiTableStore => {
     const currentData = columns.get(id);
     if (!currentData) {
       throw new Error(`[EuiTableStore] Column '${id}' not found`);
-    }
-
-    if (isColumnDataEqual(currentData, data)) {
-      // Nothing to update or notify subscribers about
-      return;
     }
 
     columns.set(id, data);

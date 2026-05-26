@@ -59,6 +59,7 @@ export const EuiTableHeaderCellCheckbox: FunctionComponent<
   const styles = useEuiMemoizedStyles(euiTableCellCheckboxStyles);
 
   const renderHeaderCellRef = useRef<EuiTableStoreRenderHeaderCell>();
+
   renderHeaderCellRef.current = (extraProps) => {
     const classes = classNames('euiTableHeaderCellCheckbox', className);
     const style = resolveWidthPropsAsStyle(_style, {
@@ -98,6 +99,18 @@ export const EuiTableHeaderCellCheckbox: FunctionComponent<
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [store, internalCellId, isWithinStickyHeader]);
+
+  useEffect(() => {
+    // Notify the store on every render so the sticky header stays in sync.
+    // React's reconciliation will efficiently handle any duplicate renders.
+    if (isWithinStickyHeader || !store.getColumns().has(internalCellId)) {
+      return;
+    }
+
+    store.updateColumn(internalCellId, {
+      renderHeaderCellRef,
+    });
+  });
 
   return renderHeaderCellRef.current({});
 };
