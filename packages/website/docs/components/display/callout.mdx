@@ -150,7 +150,7 @@ export default () => (
   <>
     <EuiCallOut
       title="Your index needs to be updated"
-      type="warning"
+      color="warning"
       text="This operation may take a few minutes. You can continue using the app while it runs."
       actionProps={{
         primary: { children: 'Update now', onClick: () => {} },
@@ -288,7 +288,7 @@ export default () => {
 *   If the callout has a permanent spot in the UI, but needs to be less obstructive, set the `size` property to `s` (small).
 *   Always provide a `title` for the callout.
 *   Prefer `title` and `text` for callout content. `children` is supported for backwards compatibility, but `title` and `text` should cover most use cases.
-*   Use a custom `iconType` only if it adds context. Ensure it fits the the callout's `color`
+*   Use a custom `iconType` only if it adds context. Ensure it fits the callout's `color`.
 
 ## Props
 

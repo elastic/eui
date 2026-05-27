@@ -145,7 +145,7 @@ export const WithCustomChildren: Story = {
 export const KitchenSink: Story = {
   parameters: {
     controls: {
-      include: ['type', 'onDismiss'],
+      include: [],
     },
   },
   render: function Render(args) {
@@ -248,7 +248,7 @@ export const KitchenSink: Story = {
 export const KitchenSinkHighContrast: Story = {
   parameters: {
     controls: {
-      include: ['type', 'onDismiss'],
+      include: [],
     },
   },
   globals: { highContrastMode: true },
