@@ -7,6 +7,10 @@
  */
 
 import { MutableRefObject, ReactNode, RefAttributes } from 'react';
+import {
+  createPublisher,
+  type PublisherSubscribeFunc,
+} from '../../../utils/publisher';
 
 /**
  * @internal
@@ -27,92 +31,91 @@ export interface EuiTableStoreColumnData {
 
 type EuiTableStoreColumnsMap = ReadonlyMap<string, EuiTableStoreColumnData>;
 
-type EuiTableStoreUnregisterColumnFunc = () => void;
-
-type EuiTableStoreRegisterColumnFunc = (
-  id: string,
-  data: EuiTableStoreColumnData
-) => EuiTableStoreUnregisterColumnFunc;
-
-type EuiTableStoreSubscriber = (columns: EuiTableStoreColumnsMap) => void;
-
-type EuiTableStoreUnsubscribeFunc = () => void;
-
-type EuiTableStoreSubscribeFunc = (
-  subscriber: EuiTableStoreSubscriber
-) => EuiTableStoreUnsubscribeFunc;
-
-type EuiTableStoreUpdateColumnFunc = (
-  id: string,
-  data: EuiTableStoreColumnData
-) => void;
-
-type EuiTableStoreColumnWidthsSubscriber = (
-  columnWidths: ReadonlyMap<string, number>
-) => void;
-
-type EuiTableStoreSubscribeToColumnWidthsFunc = (
-  subscriber: EuiTableStoreColumnWidthsSubscriber
-) => EuiTableStoreUnsubscribeFunc;
+type EuiTableStoreColumnWidthsMap = ReadonlyMap<string, number>;
 
 /**
  * @internal
  */
 export interface EuiTableStore {
-  registerColumn: EuiTableStoreRegisterColumnFunc;
-  updateColumn: EuiTableStoreUpdateColumnFunc;
+  /**
+   * Register a table column with the store.
+   * Registration must be performed on the first render of the column
+   * to keep things in sync.
+   *
+   * @returns {Function} A function that unregisters the column from the store.
+   */
+  registerColumn: (id: string, data: EuiTableStoreColumnData) => () => void;
+
+  /**
+   * Update a table column with new data.
+   */
+  updateColumn: (id: string, data: EuiTableStoreColumnData) => void;
+
+  /**
+   * Update the current width of a column.
+   */
   updateColumnWidth: (id: string, width: number) => void;
-  subscribe: EuiTableStoreSubscribeFunc;
-  subscribeToColumnWidths: EuiTableStoreSubscribeToColumnWidthsFunc;
+
+  /**
+   * Subscribe to changes in table columns.
+   *
+   * @returns {Function} A function that unsubscribes the subscriber from the store.
+   */
+  subscribe: PublisherSubscribeFunc<EuiTableStoreColumnsMap>;
+
+  /**
+   * Subscribe to changes in table column widths.
+   *
+   * @returns {Function} A function that unsubscribes the subscriber from the store.
+   */
+  subscribeToColumnWidths: PublisherSubscribeFunc<EuiTableStoreColumnWidthsMap>;
+
+  /**
+   * Get all registered columns as a readonly map.
+   */
   getColumns: () => EuiTableStoreColumnsMap;
 }
 
 export const createEuiTableStore = (): EuiTableStore => {
   const columns = new Map<string, EuiTableStoreColumnData>();
+  const columnsPublisher = createPublisher<EuiTableStoreColumnsMap>();
+
   const columnWidths = new Map<string, number>();
-  const columnsSubscribers = new Set<EuiTableStoreSubscriber>();
-  const columnWidthsSubscribers =
-    new Set<EuiTableStoreColumnWidthsSubscriber>();
+  const columnWidthsPublisher = createPublisher<EuiTableStoreColumnWidthsMap>();
 
-  const notifyColumnsSubscribers = () => {
-    for (const subscriber of columnsSubscribers) {
-      subscriber(columns);
-    }
-  };
-
-  const notifyColumnWidthsSubscribers = () => {
-    for (const subscriber of columnWidthsSubscribers) {
-      subscriber(columnWidths);
-    }
-  };
-
-  const registerColumn: EuiTableStoreRegisterColumnFunc = (id, data) => {
+  const registerColumn: EuiTableStore['registerColumn'] = (id, data) => {
     if (columns.has(id)) {
       throw new Error(`[EuiTableStore] Column '${id}' already registered`);
     }
 
     columns.set(id, data);
+    // Initialize column in the columnWidths map to keep both maps in sync
     columnWidths.set(id, data.currentWidth ?? 0);
-    notifyColumnsSubscribers();
+
+    columnsPublisher.notify(columns);
 
     return () => {
       columns.delete(id);
       columnWidths.delete(id);
-      notifyColumnsSubscribers();
+
+      columnsPublisher.notify(columns);
     };
   };
 
-  const updateColumn: EuiTableStoreUpdateColumnFunc = (id, data) => {
+  const updateColumn: EuiTableStore['updateColumn'] = (id, data) => {
     const currentData = columns.get(id);
     if (!currentData) {
       throw new Error(`[EuiTableStore] Column '${id}' not found`);
     }
 
     columns.set(id, data);
-    notifyColumnsSubscribers();
+    columnsPublisher.notify(columns);
   };
 
-  const updateColumnWidth = (id: string, width: number) => {
+  const updateColumnWidth: EuiTableStore['updateColumnWidth'] = (
+    id: string,
+    width: number
+  ) => {
     const currentWidth = columnWidths.get(id);
     if (currentWidth === undefined) {
       throw new Error(`[EuiTableStore] No width stored for column '${id}'`);
@@ -123,31 +126,15 @@ export const createEuiTableStore = (): EuiTableStore => {
     }
 
     columnWidths.set(id, width);
-    notifyColumnWidthsSubscribers();
-  };
-
-  const subscribe: EuiTableStoreSubscribeFunc = (subscriber) => {
-    columnsSubscribers.add(subscriber);
-
-    return () => {
-      columnsSubscribers.delete(subscriber);
-    };
-  };
-
-  const subscribeToColumnWidths: EuiTableStoreSubscribeToColumnWidthsFunc = (
-    subscriber: EuiTableStoreColumnWidthsSubscriber
-  ) => {
-    columnWidthsSubscribers.add(subscriber);
-
-    return () => columnWidthsSubscribers.delete(subscriber);
+    columnWidthsPublisher.notify(columnWidths);
   };
 
   return {
-    getColumns: () => columns,
     registerColumn,
     updateColumn,
     updateColumnWidth,
-    subscribe,
-    subscribeToColumnWidths,
+    subscribe: columnsPublisher.subscribe,
+    subscribeToColumnWidths: columnWidthsPublisher.subscribe,
+    getColumns: () => columns,
   };
 };
