@@ -14,7 +14,6 @@ import { getAllByTestSubject, render } from '../../test/rtl';
 import { shouldRenderCustomStyles } from '../../test/internal';
 import { keys } from '../../services';
 
-import { EuiDataGridColumnResizer } from './body/header/column_resizer';
 import type { EuiDataGridProps, RenderCellValue } from './data_grid_types';
 import { EuiDataGrid } from './';
 
@@ -106,19 +105,32 @@ function resizeColumn(
   const widths = extractColumnWidths(datagrid);
   const originalWidth = widths[columnId];
 
-  const firstResizer = datagrid
-    .find(`EuiDataGridColumnResizer[columnId="${columnId}"]`)
-    .instance() as EuiDataGridColumnResizer;
+  // Find the resizer div within the specific column header
+  const resizer = datagrid
+    .find(`[data-test-subj="dataGridHeaderCell-${columnId}"]`)
+    .find('[data-test-subj="dataGridColumnResizer"]')
+    .hostNodes()
+    .first();
 
   act(() => {
-    firstResizer.onMouseDown({
+    resizer.simulate('mousedown', {
       pageX: originalWidth,
-      stopPropagation: () => {},
       preventDefault: () => {},
-    } as React.MouseEvent<HTMLDivElement>);
+    });
   });
-  act(() => firstResizer.onMouseMove({ pageX: columnWidth }));
-  act(() => firstResizer.onMouseUp());
+
+  act(() => {
+    const moveEvent = new MouseEvent('mousemove', {
+      bubbles: true,
+      cancelable: true,
+    });
+    Object.defineProperty(moveEvent, 'pageX', { value: columnWidth });
+    window.dispatchEvent(moveEvent);
+  });
+
+  act(() => {
+    window.dispatchEvent(new MouseEvent('mouseup', { bubbles: true }));
+  });
 
   datagrid.update();
 }
