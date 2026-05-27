@@ -116,13 +116,16 @@ export const EuiTableStickyHeader = ({
     scrollableInline && originalStyles.euiTableScrollableInline,
     (!compressed || isResponsive) && originalStyles.uncompressed,
     compressed && !isResponsive && originalStyles.compressed,
-    isResponsive ? originalStyles.mobile : originalStyles.desktop,
     // Forced fixed layout since all column widths come synced from the main table
     originalStyles.layout.fixed,
     originalStyles.hasBackground,
   ];
 
   const styles = useEuiMemoizedStyles(euiTableStickyHeaderStyles);
+
+  if (isResponsive) {
+    return null;
+  }
 
   return (
     <EuiTableWithinStickyHeaderProvider>
