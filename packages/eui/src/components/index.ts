@@ -18,6 +18,8 @@ export * from './avatar';
 
 export * from './badge';
 
+export * from './banner';
+
 export * from './beacon';
 
 export * from './bottom_bar';
