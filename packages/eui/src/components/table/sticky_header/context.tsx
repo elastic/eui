@@ -11,6 +11,8 @@ import React, { createContext, PropsWithChildren, useContext } from 'react';
 const EuiTableWithinStickyHeaderContext = createContext<boolean>(false);
 
 /**
+ * React context provider to detect whether a component is rendered
+ * inside <EuiTableStickyHeader> to prevent duplicated header cell renders.
  * @internal
  */
 export const EuiTableWithinStickyHeaderProvider = ({
@@ -22,6 +24,8 @@ export const EuiTableWithinStickyHeaderProvider = ({
 );
 
 /**
+ * Returns true if the component (usually the EuiTableHeaderCell or EuiTableHeaderCellCheckbox)
+ * is rendered inside EuiTableStickyHeader.
  * @internal
  */
 export const useEuiTableWithinStickyHeader = () => {
