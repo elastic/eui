@@ -89,9 +89,7 @@ export const Playground: Story = {
     pageTitle: 'Page title',
     iconType: 'logoKibana',
     description: 'Example of a description.',
-    children: (
-      <EuiCallOut size="s" iconType="info" title="Example of custom children" />
-    ),
+    children: <EuiCallOut size="s" title="Example of custom children" />,
     rightSideItems: [
       <EuiButton fill>Add something</EuiButton>,
       <EuiButton>Do something</EuiButton>,
@@ -130,11 +128,7 @@ export const LegacyChildrenOnly: Story = {
             <EuiSpacer size="l" />
             <EuiText size="m">Example of a description.</EuiText>
             <EuiSpacer size="l" />
-            <EuiCallOut
-              size="s"
-              iconType="info"
-              title="Example of custom children"
-            />
+            <EuiCallOut size="s" title="Example of custom children" />
           </EuiFlexItem>
           <EuiFlexGroup
             gutterSize="m"
