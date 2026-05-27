@@ -107,8 +107,7 @@ export const EuiTable: FunctionComponent<EuiTableProps> = (originalProps) => {
     responsiveBreakpoint,
     scrollableInline = false,
     stickyScrollbar = false,
-    // TODO: Change to false
-    stickyHeader = true,
+    stickyHeader = false,
     ...rest
   } = usePropsWithComponentDefaults('EuiTable', originalProps);
   const tableWrapperRef = useRef<HTMLDivElement>(null);
