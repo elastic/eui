@@ -22,7 +22,7 @@ import {
   EuiSelectableOnChangeEvent,
   EuiSelectableProps,
 } from './selectable';
-import { EuiLink } from '../link/link';
+import { EuiLink } from '../link';
 
 const toolTipProps = {
   toolTipContent: 'This is a tooltip!',
