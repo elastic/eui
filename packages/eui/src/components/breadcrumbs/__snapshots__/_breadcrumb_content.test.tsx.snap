@@ -7,25 +7,29 @@ exports[`EuiBreadcrumbContent breadcrumbs with popovers renders with \`popoverCo
       class="euiPopover euiPopover-isOpen emotion-euiPopover-inline-block-euiBreadcrumb__popoverWrapper-page"
       data-test-subj="popover"
     >
-      <button
-        aria-controls="euiPopover_generated-id_panelId"
-        aria-expanded="true"
-        class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__popoverButton-euiBreadcrumb__content-page-isInteractive"
-        data-test-subj="popoverToggle"
-        title="Toggles a popover - Clicking this button will toggle a popover dialog."
-        type="button"
+      <span
+        class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+        id="generated-id_euiToolTipAnchor"
       >
-        <span
-          class="emotion-euiBreadcrumb__popoverTruncation"
+        <button
+          aria-controls="euiPopover_generated-id_panelId"
+          aria-expanded="true"
+          class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__popoverButton-euiBreadcrumb__content-page-isInteractive"
+          data-test-subj="popoverToggle"
+          type="button"
         >
-          Toggles a popover
-        </span>
-        <span
-          data-euiicon-type="chevronSingleDown"
-        >
-           - Clicking this button will toggle a popover dialog.
-        </span>
-      </button>
+          <span
+            class="emotion-euiBreadcrumb__popoverTruncation"
+          >
+            Toggles a popover
+          </span>
+          <span
+            data-euiicon-type="chevronSingleDown"
+          >
+             - Clicking this button will toggle a popover dialog.
+          </span>
+        </button>
+      </span>
     </div>
   </div>
   <div

@@ -102,4 +102,7 @@ export const euiToolTipAnchorStyles = () => ({
   inlineBlock: css`
     display: inline-block;
   `,
+  flex: css`
+    display: flex;
+  `,
 });

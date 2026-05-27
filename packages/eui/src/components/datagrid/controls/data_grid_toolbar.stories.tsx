@@ -156,7 +156,7 @@ export const AdditionalControlsOptions: StoryObj<EuiDataGridToolBarAdditionalCon
               iconType="refresh"
             />
           </EuiToolTip>
-          <EuiToolTip content="Inspect grid data">
+          <EuiToolTip content="Inspect grid data" disableScreenReaderOutput>
             <EuiButtonIcon
               aria-label="Inspect grid data"
               size="xs"

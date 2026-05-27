@@ -14,9 +14,9 @@ exports[`EuiTimelineItem is rendered 1`] = `
         aria-label=""
         class="euiAvatar euiAvatar--m euiAvatar--user emotion-euiAvatar-user-m-uppercase-subdued"
         role="img"
-        title=""
       >
         <span
+          aria-hidden="true"
           class="euiAvatar__icon"
           data-euiicon-type="dot"
         />
@@ -43,17 +43,22 @@ exports[`EuiTimelineItem props EuiAvatar is passed as an icon 1`] = `
     <div
       class="emotion-euiTimelineItemIcon__content"
     >
-      <div
-        aria-label="dot"
-        class="euiAvatar euiAvatar--m euiAvatar--user emotion-euiAvatar-user-m-uppercase-subdued"
-        role="img"
-        title="dot"
+      <span
+        class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+        id="generated-id_euiToolTipAnchor"
       >
-        <span
-          class="euiAvatar__icon"
-          data-euiicon-type="dot"
-        />
-      </div>
+        <div
+          aria-label="dot"
+          class="euiAvatar euiAvatar--m euiAvatar--user emotion-euiAvatar-user-m-uppercase-subdued"
+          role="img"
+        >
+          <span
+            aria-hidden="true"
+            class="euiAvatar__icon"
+            data-euiicon-type="dot"
+          />
+        </div>
+      </span>
     </div>
   </div>
   <div
@@ -76,17 +81,22 @@ exports[`EuiTimelineItem props iconAriaLabel is rendered 1`] = `
     <div
       class="emotion-euiTimelineItemIcon__content"
     >
-      <div
-        aria-label="icon aria label"
-        class="euiAvatar euiAvatar--m euiAvatar--user emotion-euiAvatar-user-m-uppercase-subdued"
-        role="img"
-        title="icon aria label"
+      <span
+        class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+        id="generated-id_euiToolTipAnchor"
       >
-        <span
-          class="euiAvatar__icon"
-          data-euiicon-type="dot"
-        />
-      </div>
+        <div
+          aria-label="icon aria label"
+          class="euiAvatar euiAvatar--m euiAvatar--user emotion-euiAvatar-user-m-uppercase-subdued"
+          role="img"
+        >
+          <span
+            aria-hidden="true"
+            class="euiAvatar__icon"
+            data-euiicon-type="dot"
+          />
+        </div>
+      </span>
     </div>
   </div>
   <div
@@ -113,9 +123,9 @@ exports[`EuiTimelineItem props verticalAlign center is rendered 1`] = `
         aria-label=""
         class="euiAvatar euiAvatar--m euiAvatar--user emotion-euiAvatar-user-m-uppercase-subdued"
         role="img"
-        title=""
       >
         <span
+          aria-hidden="true"
           class="euiAvatar__icon"
           data-euiicon-type="dot"
         />
@@ -146,9 +156,9 @@ exports[`EuiTimelineItem props verticalAlign top is rendered 1`] = `
         aria-label=""
         class="euiAvatar euiAvatar--m euiAvatar--user emotion-euiAvatar-user-m-uppercase-subdued"
         role="img"
-        title=""
       >
         <span
+          aria-hidden="true"
           class="euiAvatar__icon"
           data-euiicon-type="dot"
         />
