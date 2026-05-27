@@ -15,22 +15,21 @@ type EuiBannerLayouts = (typeof CQC_LAYOUTS)[number];
 
 const CONTAINER_NAME = 'euiBanner';
 
-const CQC_LAYOUTS = ['superNarrow', 'narrow', 'wide'] as const;
+const CQC_LAYOUTS = ['narrow', 'wide'] as const;
 const CQC_BREAKPOINTS: Record<
   EuiBannerSize,
   Record<EuiBannerLayouts, string>
 > = {
   s: {
-    superNarrow: '(max-width: 400px)',
     narrow: '(min-width: 401px)',
     wide: '(min-width: 800px)',
   },
   m: {
-    superNarrow: '(max-width: 600px)',
     narrow: '(min-width: 601px)',
     wide: '(min-width: 1000px)',
   },
 };
+const CQC_BREAKPOINTS_SUPER_NARROW = '(max-width: 400px)';
 
 /** Maximum reading width for `text` and `children` slots. */
 const TEXT_MAX_WIDTH = 1200;
@@ -73,9 +72,9 @@ export const euiBannerStyles = ({ euiTheme }: UseEuiTheme) => ({
   `,
   container: css`
     display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    gap: ${euiTheme.size.base};
+    flex-direction: column;
+    align-items: stretch;
+    gap: ${euiTheme.size.m};
     padding-inline-start: ${euiTheme.size.base};
     padding-inline-end: ${euiTheme.size.base};
 
@@ -88,11 +87,11 @@ export const euiBannerStyles = ({ euiTheme }: UseEuiTheme) => ({
     }
 
     ${withContainerQuery({
-      layout: 'superNarrow',
+      layout: 'narrow',
       styles: `
-        flex-direction: column;
-        align-items: stretch;
-        gap: ${euiTheme.size.m};
+        flex-direction: row;
+        align-items: flex-start;
+        gap: ${euiTheme.size.base};
       `,
     })}
   `,
@@ -126,14 +125,15 @@ export const euiBannerStyles = ({ euiTheme }: UseEuiTheme) => ({
     min-inline-size: 0;
     display: flex;
     flex-direction: column;
-    align-self: center;
+    align-self: flex-start;
+    inline-size: 100%;
     gap: ${euiTheme.size.m};
 
     ${withContainerQuery({
-      layout: 'superNarrow',
+      layout: 'narrow',
       styles: `
-        align-self: flex-start;
-        inline-size: 100%;
+        align-self: center;
+        inline-size: auto;
       `,
     })}
 
@@ -190,13 +190,13 @@ export const euiBannerStyles = ({ euiTheme }: UseEuiTheme) => ({
     display: flex;
     flex-direction: row;
     align-items: center;
+    flex-wrap: nowrap;
     gap: ${euiTheme.size.s};
 
-    /* uses container query directly as it should apply generically independent of size */
-    @container ${CONTAINER_NAME} ${CQC_BREAKPOINTS.s.superNarrow} {
+    /* Keep full-width actions limited to small containers. */
+    @container ${CONTAINER_NAME} ${CQC_BREAKPOINTS_SUPER_NARROW} {
       flex-wrap: wrap;
 
-      /* use full width actions */
       > * {
         inline-size: 100%;
       }

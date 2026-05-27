@@ -8,7 +8,7 @@ exports[`EuiBanner is rendered 1`] = `
   data-test-subj="euiBanner"
 >
   <div
-    class="euiBanner__container css-oizb8n-container"
+    class="euiBanner__container css-1tmotsi-container"
   >
     <div
       class="euiBanner__media css-hirmf3-media"
@@ -20,7 +20,7 @@ exports[`EuiBanner is rendered 1`] = `
       />
     </div>
     <div
-      class="euiBanner__body css-180zgv0-body"
+      class="euiBanner__body css-138sqoe-body"
     >
       <div
         class="euiBanner__content css-q4247d-content"
