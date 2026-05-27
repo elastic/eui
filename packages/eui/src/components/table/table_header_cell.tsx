@@ -317,8 +317,13 @@ export const EuiTableHeaderCell: FunctionComponent<EuiTableHeaderCellProps> = ({
 
     const unregisterColumn = store.registerColumn(internalCellId, {
       renderHeaderCellRef,
+      // getBoundingClientRect is not the cheapest, but we call it only once
+      currentWidth: selfRef.current.getBoundingClientRect().width,
     });
 
+    // Note: This _could_ be optimized by using a single ResizeObserver
+    // for the whole EuiTable, but it would need to be changed back to this
+    // if/when we implement resizable columns
     const resizeObserver = new ResizeObserver(handleResize);
     resizeObserver.observe(selfRef.current);
 
@@ -332,7 +337,7 @@ export const EuiTableHeaderCell: FunctionComponent<EuiTableHeaderCellProps> = ({
   useEffect(() => {
     // Notify the store on every render so the sticky header stays in sync.
     // React's reconciliation will efficiently handle any duplicate renders.
-    if (isWithinStickyHeader || !store.getColumns().has(internalCellId)) {
+    if (isWithinStickyHeader) {
       return;
     }
 
