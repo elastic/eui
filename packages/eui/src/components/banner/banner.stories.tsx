@@ -127,3 +127,17 @@ export const ContainerSizes: Story = {
   },
   render: (args) => <ContainerSizesRender {...args} />,
 };
+
+/* Vrt-only */
+
+export const WithChildren: Story = {
+  args: {
+    title,
+    text,
+    children: (
+      <div>
+        <i>Additional content</i>
+      </div>
+    ),
+  },
+};
