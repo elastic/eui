@@ -13,34 +13,25 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import { css } from '@emotion/react';
 import { useEuiTableColumnDataStore } from '../store/provider';
 import { EuiTableHeader } from '../table_header';
 import { EuiTableWithinStickyHeaderProvider } from './context';
-import { useEuiMemoizedStyles, UseEuiTheme } from '../../../services';
+import { useEuiMemoizedStyles } from '../../../services';
 import { euiTableStyles } from '../table.styles';
+import type { EuiTableProps } from '../table';
+import { euiTableStickyHeaderStyles } from './sticky_header.styles';
 
-interface EuiTableStickyHeaderProps {
-  scrollableInline?: boolean;
+interface EuiTableStickyHeaderProps
+  extends Pick<EuiTableProps, 'scrollableInline' | 'compressed'> {
   tableWrapperRef: RefObject<HTMLDivElement>;
+  isResponsive: boolean;
 }
 
-const getEuiTableStickyHeaderStyles = ({ euiTheme }: UseEuiTheme) => ({
-  header: css`
-    &::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      width: 100%;
-      height: ${euiTheme.border.width.thin};
-      background-color: ${euiTheme.border.color};
-    }
-  `,
-});
-
 export const EuiTableStickyHeader = ({
-  scrollableInline,
   tableWrapperRef,
+  compressed,
+  scrollableInline,
+  isResponsive,
 }: EuiTableStickyHeaderProps) => {
   const store = useEuiTableColumnDataStore();
   const [columns, setColumns] = useState(() =>
@@ -49,7 +40,7 @@ export const EuiTableStickyHeader = ({
   const columnRefs = useRef(new Map<string, RefObject<HTMLTableCellElement>>());
   const stickyHeaderWrapperRef = useRef<HTMLDivElement>(null);
 
-  const styles = useEuiMemoizedStyles(euiTableStyles);
+  const originalStyles = useEuiMemoizedStyles(euiTableStyles);
 
   useEffect(() => {
     const unsubscribe = store.subscribe((columns) => {
@@ -120,28 +111,24 @@ export const EuiTableStickyHeader = ({
     };
   }, [scrollableInline, tableWrapperRef]);
 
-  const wrapperStyles = css`
-    position: sticky;
-    top: 0;
-    z-index: 1;
-    overflow-x: ${scrollableInline ? 'hidden' : 'visible'};
-  `;
-
   const tableStyles = [
-    styles.euiTable,
-    scrollableInline && styles.euiTableScrollableInline,
-    styles.layout.fixed,
-    styles.uncompressed,
-    styles.hasBackground,
+    originalStyles.euiTable,
+    scrollableInline && originalStyles.euiTableScrollableInline,
+    (!compressed || isResponsive) && originalStyles.uncompressed,
+    compressed && !isResponsive && originalStyles.compressed,
+    isResponsive ? originalStyles.mobile : originalStyles.desktop,
+    // Forced fixed layout since all column widths come synced from the main table
+    originalStyles.layout.fixed,
+    originalStyles.hasBackground,
   ];
 
-  const styles2 = useEuiMemoizedStyles(getEuiTableStickyHeaderStyles);
+  const styles = useEuiMemoizedStyles(euiTableStickyHeaderStyles);
 
   return (
     <EuiTableWithinStickyHeaderProvider>
-      <div css={wrapperStyles} ref={stickyHeaderWrapperRef}>
+      <div css={styles.wrapper} ref={stickyHeaderWrapperRef}>
         <table css={tableStyles}>
-          <EuiTableHeader css={styles2.header}>
+          <EuiTableHeader css={styles.header}>
             {columns.map(([name, data], index) =>
               data.renderHeaderCellRef.current?.({
                 ref: columnRefs.current.get(name),

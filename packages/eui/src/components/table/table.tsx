@@ -137,6 +137,8 @@ export const EuiTable: FunctionComponent<EuiTableProps> = (originalProps) => {
         <EuiTableStickyHeader
           scrollableInline={scrollableInline}
           tableWrapperRef={tableWrapperRef}
+          compressed={compressed}
+          isResponsive={isResponsive}
         />
       )}
       <div css={cssStyles} ref={tableWrapperRef}>
