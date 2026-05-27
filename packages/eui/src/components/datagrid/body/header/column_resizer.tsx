@@ -48,10 +48,7 @@ export const EuiDataGridColumnResizer = ({
   const onMouseUp = useCallback(() => {
     setColumnWidthRef.current(
       columnIdRef.current,
-      Math.max(
-        MINIMUM_COLUMN_WIDTH,
-        columnWidthRef.current + offsetRef.current
-      )
+      Math.max(MINIMUM_COLUMN_WIDTH, columnWidthRef.current + offsetRef.current)
     );
 
     offsetRef.current = 0;
@@ -91,9 +88,7 @@ export const EuiDataGridColumnResizer = ({
             className="euiDataGridColumnResizer"
             data-test-subj="dataGridColumnResizer"
             style={
-              offset
-                ? logicalStyle('margin-right', `${-offset}px`)
-                : undefined
+              offset ? logicalStyle('margin-right', `${-offset}px`) : undefined
             }
             onMouseDown={onMouseDown}
           >
