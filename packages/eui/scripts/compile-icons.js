@@ -23,7 +23,7 @@ const iconDirectories = [
       'notification_icon',
       'assets'
     ),
-    servicesImportPath: '../../services',
+    servicesImportPath: '../../../services',
   },
 ];
 
