@@ -29,7 +29,7 @@ const CQC_BREAKPOINTS: Record<
     wide: '(min-width: 1000px)',
   },
 };
-const CQC_BREAKPOINTS_SUPER_NARROW = '(max-width: 400px)';
+const CQC_BREAKPOINT_NARROWEST = '(max-width: 400px)';
 
 /** Maximum reading width for `text` and `children` slots. */
 const TEXT_MAX_WIDTH = 1200;
@@ -194,7 +194,7 @@ export const euiBannerStyles = ({ euiTheme }: UseEuiTheme) => ({
     gap: ${euiTheme.size.s};
 
     /* Keep full-width actions limited to small containers. */
-    @container ${CONTAINER_NAME} ${CQC_BREAKPOINTS_SUPER_NARROW} {
+    @container ${CONTAINER_NAME} ${CQC_BREAKPOINT_NARROWEST} {
       flex-wrap: wrap;
 
       > * {
