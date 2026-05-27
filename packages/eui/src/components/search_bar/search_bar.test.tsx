@@ -79,10 +79,10 @@ describe('SearchBar', () => {
       onChange: () => {},
     };
 
-    const { container, findByTitle } = render(<EuiSearchBar {...props} />);
+    const { container, findByText } = render(<EuiSearchBar {...props} />);
 
     // Wait for FieldValueSelectionFilter to finish updating its state on init
-    await findByTitle('Tag');
+    await findByText('Tag');
 
     expect(container.firstChild).toMatchSnapshot();
   });

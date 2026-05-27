@@ -82,6 +82,7 @@ import {
   euiBasicTableBodyLoading,
   safariLoadingWorkaround,
 } from './basic_table.styles';
+import { EuiToolTip } from '../tool_tip';
 
 type DataTypeProfiles = Record<
   EuiTableDataType,
@@ -746,17 +747,24 @@ export class EuiBasicTable<T extends object = any> extends Component<
         defaults={['Select all rows', 'Deselect rows']}
       >
         {([selectAllRows, deselectRows]: string[]) => (
-          <EuiCheckbox
-            id={this.selectAllIdGenerator()}
-            checked={checked}
-            indeterminate={indeterminate}
-            disabled={disabled}
-            onChange={onChange}
-            data-test-subj="checkboxSelectAll"
-            aria-label={checked || indeterminate ? deselectRows : selectAllRows}
-            title={checked || indeterminate ? deselectRows : selectAllRows}
-            label={isMobile ? selectAllRows : null}
-          />
+          <EuiToolTip
+            content={checked || indeterminate ? deselectRows : selectAllRows}
+            display="block"
+            disableScreenReaderOutput
+          >
+            <EuiCheckbox
+              id={this.selectAllIdGenerator()}
+              checked={checked}
+              indeterminate={indeterminate}
+              disabled={disabled}
+              onChange={onChange}
+              data-test-subj="checkboxSelectAll"
+              aria-label={
+                checked || indeterminate ? deselectRows : selectAllRows
+              }
+              label={isMobile ? selectAllRows : null}
+            />
+          </EuiToolTip>
         )}
       </EuiI18n>
     );
@@ -998,7 +1006,8 @@ export class EuiBasicTable<T extends object = any> extends Component<
           colSpan={colSpan}
           mobileOptions={{ width: '100%' }}
         >
-          <EuiIcon type="minusCircle" color="danger" /> {error}
+          <EuiIcon type="minusCircle" color="danger" aria-hidden={true} />{' '}
+          {error}
         </EuiTableRowCell>
       </EuiTableRow>
     );
@@ -1187,15 +1196,20 @@ export class EuiBasicTable<T extends object = any> extends Component<
           values={{ index: displayedRowIndex + 1 }}
         >
           {(selectThisRow: string) => (
-            <EuiCheckbox
-              id={`${this.tableId}${key}-checkbox`}
-              disabled={disabled}
-              checked={checked}
-              onChange={onChange}
-              title={title || selectThisRow}
-              aria-label={title || selectThisRow}
-              data-test-subj={`checkboxSelectRow-${itemId}`}
-            />
+            <EuiToolTip
+              content={title || selectThisRow}
+              display="block"
+              disableScreenReaderOutput
+            >
+              <EuiCheckbox
+                id={`${this.tableId}${key}-checkbox`}
+                disabled={disabled}
+                checked={checked}
+                onChange={onChange}
+                aria-label={title || selectThisRow}
+                data-test-subj={`checkboxSelectRow-${itemId}`}
+              />
+            </EuiToolTip>
           )}
         </EuiI18n>
       </EuiTableRowCellCheckbox>,

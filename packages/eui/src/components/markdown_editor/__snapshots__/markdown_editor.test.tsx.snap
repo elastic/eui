@@ -229,7 +229,7 @@ exports[`EuiMarkdownEditor is rendered 1`] = `
         />
         <span
           class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
-          id="generated-id-wrapper"
+          id="generated-id_euiToolTipAnchor"
         >
           <button
             aria-label="Show markdown help"
@@ -485,7 +485,7 @@ exports[`EuiMarkdownEditor props autoExpandPreview is rendered with false 1`] = 
         />
         <span
           class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
-          id="generated-id-wrapper"
+          id="generated-id_euiToolTipAnchor"
         >
           <button
             aria-label="Show markdown help"
@@ -741,7 +741,7 @@ exports[`EuiMarkdownEditor props height is rendered in full mode 1`] = `
         />
         <span
           class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
-          id="generated-id-wrapper"
+          id="generated-id_euiToolTipAnchor"
         >
           <button
             aria-label="Show markdown help"
@@ -997,7 +997,7 @@ exports[`EuiMarkdownEditor props height is rendered with a custom size 1`] = `
         />
         <span
           class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
-          id="generated-id-wrapper"
+          id="generated-id_euiToolTipAnchor"
         >
           <button
             aria-label="Show markdown help"
@@ -1253,7 +1253,7 @@ exports[`EuiMarkdownEditor props maxHeight is rendered with a custom size 1`] = 
         />
         <span
           class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
-          id="generated-id-wrapper"
+          id="generated-id_euiToolTipAnchor"
         >
           <button
             aria-label="Show markdown help"
@@ -1520,7 +1520,7 @@ exports[`EuiMarkdownEditor props readOnly is set to true 1`] = `
         />
         <span
           class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
-          id="generated-id-wrapper"
+          id="generated-id_euiToolTipAnchor"
         >
           <button
             aria-label="Show markdown help"

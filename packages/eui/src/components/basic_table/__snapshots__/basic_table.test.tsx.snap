@@ -237,31 +237,35 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
             <div
               class="euiTableCellContent"
             >
-              <div
-                class="euiCheckbox emotion-euiCheckbox"
+              <span
+                class="euiToolTipAnchor emotion-euiToolTipAnchor-block"
+                id="generated-id_euiToolTipAnchor"
               >
                 <div
-                  class="euiCheckbox__square emotion-euiCheckbox__square"
+                  class="euiCheckbox emotion-euiCheckbox"
                 >
-                  <span
-                    class="euiCheckboxControl emotion-euiCheckboxControl-unselected"
+                  <div
+                    class="euiCheckbox__square emotion-euiCheckbox__square"
                   >
                     <span
-                      class="emotion-euiCheckbox__icon-check"
-                      data-euiicon-type="empty"
-                      role="presentation"
+                      class="euiCheckboxControl emotion-euiCheckboxControl-unselected"
+                    >
+                      <span
+                        class="emotion-euiCheckbox__icon-check"
+                        data-euiicon-type="empty"
+                        role="presentation"
+                      />
+                    </span>
+                    <input
+                      aria-label="Select all rows"
+                      class="euiCheckbox__input emotion-euiCheckbox__input"
+                      data-test-subj="checkboxSelectAll"
+                      id="_selection_column-checkbox_generated-id"
+                      type="checkbox"
                     />
-                  </span>
-                  <input
-                    aria-label="Select all rows"
-                    class="euiCheckbox__input emotion-euiCheckbox__input"
-                    data-test-subj="checkboxSelectAll"
-                    id="_selection_column-checkbox_generated-id"
-                    title="Select all rows"
-                    type="checkbox"
-                  />
+                  </div>
                 </div>
-              </div>
+              </span>
             </div>
             <span
               aria-hidden="true"
@@ -411,31 +415,35 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
             <div
               class="euiTableCellContent"
             >
-              <div
-                class="euiCheckbox emotion-euiCheckbox"
+              <span
+                class="euiToolTipAnchor emotion-euiToolTipAnchor-block"
+                id="generated-id_euiToolTipAnchor"
               >
                 <div
-                  class="euiCheckbox__square emotion-euiCheckbox__square"
+                  class="euiCheckbox emotion-euiCheckbox"
                 >
-                  <span
-                    class="euiCheckboxControl emotion-euiCheckboxControl-unselected"
+                  <div
+                    class="euiCheckbox__square emotion-euiCheckbox__square"
                   >
                     <span
-                      class="emotion-euiCheckbox__icon-check"
-                      data-euiicon-type="empty"
-                      role="presentation"
+                      class="euiCheckboxControl emotion-euiCheckboxControl-unselected"
+                    >
+                      <span
+                        class="emotion-euiCheckbox__icon-check"
+                        data-euiicon-type="empty"
+                        role="presentation"
+                      />
+                    </span>
+                    <input
+                      aria-label="Select row 1"
+                      class="euiCheckbox__input emotion-euiCheckbox__input"
+                      data-test-subj="checkboxSelectRow-1"
+                      id="__table_generated-id_selection_column_1-checkbox"
+                      type="checkbox"
                     />
-                  </span>
-                  <input
-                    aria-label="Select row 1"
-                    class="euiCheckbox__input emotion-euiCheckbox__input"
-                    data-test-subj="checkboxSelectRow-1"
-                    id="__table_generated-id_selection_column_1-checkbox"
-                    title="Select row 1"
-                    type="checkbox"
-                  />
+                  </div>
                 </div>
-              </div>
+              </span>
             </div>
             <span
               aria-hidden="true"
@@ -564,31 +572,35 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
             <div
               class="euiTableCellContent"
             >
-              <div
-                class="euiCheckbox emotion-euiCheckbox"
+              <span
+                class="euiToolTipAnchor emotion-euiToolTipAnchor-block"
+                id="generated-id_euiToolTipAnchor"
               >
                 <div
-                  class="euiCheckbox__square emotion-euiCheckbox__square"
+                  class="euiCheckbox emotion-euiCheckbox"
                 >
-                  <span
-                    class="euiCheckboxControl emotion-euiCheckboxControl-unselected"
+                  <div
+                    class="euiCheckbox__square emotion-euiCheckbox__square"
                   >
                     <span
-                      class="emotion-euiCheckbox__icon-check"
-                      data-euiicon-type="empty"
-                      role="presentation"
+                      class="euiCheckboxControl emotion-euiCheckboxControl-unselected"
+                    >
+                      <span
+                        class="emotion-euiCheckbox__icon-check"
+                        data-euiicon-type="empty"
+                        role="presentation"
+                      />
+                    </span>
+                    <input
+                      aria-label="Select row 2"
+                      class="euiCheckbox__input emotion-euiCheckbox__input"
+                      data-test-subj="checkboxSelectRow-2"
+                      id="__table_generated-id_selection_column_2-checkbox"
+                      type="checkbox"
                     />
-                  </span>
-                  <input
-                    aria-label="Select row 2"
-                    class="euiCheckbox__input emotion-euiCheckbox__input"
-                    data-test-subj="checkboxSelectRow-2"
-                    id="__table_generated-id_selection_column_2-checkbox"
-                    title="Select row 2"
-                    type="checkbox"
-                  />
+                  </div>
                 </div>
-              </div>
+              </span>
             </div>
             <span
               aria-hidden="true"
@@ -717,31 +729,35 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
             <div
               class="euiTableCellContent"
             >
-              <div
-                class="euiCheckbox emotion-euiCheckbox"
+              <span
+                class="euiToolTipAnchor emotion-euiToolTipAnchor-block"
+                id="generated-id_euiToolTipAnchor"
               >
                 <div
-                  class="euiCheckbox__square emotion-euiCheckbox__square"
+                  class="euiCheckbox emotion-euiCheckbox"
                 >
-                  <span
-                    class="euiCheckboxControl emotion-euiCheckboxControl-unselected"
+                  <div
+                    class="euiCheckbox__square emotion-euiCheckbox__square"
                   >
                     <span
-                      class="emotion-euiCheckbox__icon-check"
-                      data-euiicon-type="empty"
-                      role="presentation"
+                      class="euiCheckboxControl emotion-euiCheckboxControl-unselected"
+                    >
+                      <span
+                        class="emotion-euiCheckbox__icon-check"
+                        data-euiicon-type="empty"
+                        role="presentation"
+                      />
+                    </span>
+                    <input
+                      aria-label="Select row 3"
+                      class="euiCheckbox__input emotion-euiCheckbox__input"
+                      data-test-subj="checkboxSelectRow-3"
+                      id="__table_generated-id_selection_column_3-checkbox"
+                      type="checkbox"
                     />
-                  </span>
-                  <input
-                    aria-label="Select row 3"
-                    class="euiCheckbox__input emotion-euiCheckbox__input"
-                    data-test-subj="checkboxSelectRow-3"
-                    id="__table_generated-id_selection_column_3-checkbox"
-                    title="Select row 3"
-                    type="checkbox"
-                  />
+                  </div>
                 </div>
-              </div>
+              </span>
             </div>
             <span
               aria-hidden="true"
@@ -1050,22 +1066,26 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
               </a>
             </li>
           </ul>
-          <a
-            aria-controls="__table_generated-id"
-            aria-label="Next page"
-            class="euiButtonIcon euiPaginationArrowButton emotion-euiButtonIcon-xs-empty-text-euiPaginationButton"
-            data-test-subj="pagination-button-next"
-            href="#__table_generated-id"
-            rel="noreferrer"
-            title="Next page"
+          <span
+            class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+            id="generated-id_euiToolTipAnchor"
           >
-            <span
-              aria-hidden="true"
-              class="euiButtonIcon__icon"
-              color="inherit"
-              data-euiicon-type="chevronSingleRight"
-            />
-          </a>
+            <a
+              aria-controls="__table_generated-id"
+              aria-label="Next page"
+              class="euiButtonIcon euiPaginationArrowButton emotion-euiButtonIcon-xs-empty-text-euiPaginationButton"
+              data-test-subj="pagination-button-next"
+              href="#__table_generated-id"
+              rel="noreferrer"
+            >
+              <span
+                aria-hidden="true"
+                class="euiButtonIcon__icon"
+                color="inherit"
+                data-euiicon-type="chevronSingleRight"
+              />
+            </a>
+          </span>
         </nav>
       </div>
     </div>
