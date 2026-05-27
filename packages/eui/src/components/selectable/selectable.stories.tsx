@@ -22,6 +22,7 @@ import {
   EuiSelectableOnChangeEvent,
   EuiSelectableProps,
 } from './selectable';
+import { EuiLink } from '../link/link';
 
 const toolTipProps = {
   toolTipContent: 'This is a tooltip!',
@@ -157,7 +158,9 @@ export const WithSearchAndGroups: Story = {
         isGroupLabel: true,
         prepend: <EuiIcon type="warning" />,
         append: (
-          <EuiFlexItem css={{ alignItems: 'flex-end' }}>(append)</EuiFlexItem>
+          <EuiFlexItem css={{ alignItems: 'flex-end' }}>
+            <EuiLink>append</EuiLink>
+          </EuiFlexItem>
         ),
       },
       ...[...options].splice(4, options.length),

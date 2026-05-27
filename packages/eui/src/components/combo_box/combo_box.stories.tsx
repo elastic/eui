@@ -17,6 +17,7 @@ import {
 import { LOKI_SELECTORS, lokiPlayDecorator } from '../../../.storybook/loki';
 import { EuiCode } from '../code';
 import { EuiFlexItem } from '../flex';
+import { EuiLink } from '../link';
 
 import { EuiComboBoxOptionMatcher } from './types';
 import { EuiComboBox, EuiComboBoxProps } from './combo_box';
@@ -244,7 +245,9 @@ export const Groups: Story = {
         isGroupLabelOption: true,
         prepend: '#prepend ',
         append: (
-          <EuiFlexItem css={{ alignItems: 'flex-end' }}>(append)</EuiFlexItem>
+          <EuiFlexItem css={{ alignItems: 'flex-end' }}>
+            <EuiLink>(append)</EuiLink>
+          </EuiFlexItem>
         ),
       },
       ...[...options].splice(3, options.length),
@@ -275,7 +278,9 @@ export const NestedOptionsGroups: Story = {
         isGroupLabelOption: true,
         prepend: '#prepend ',
         append: (
-          <EuiFlexItem css={{ alignItems: 'flex-end' }}>(append)</EuiFlexItem>
+          <EuiFlexItem css={{ alignItems: 'flex-end' }}>
+            <EuiLink>(append)</EuiLink>
+          </EuiFlexItem>
         ),
         options: [...options].splice(3, options.length),
       },
