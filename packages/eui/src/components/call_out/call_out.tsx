@@ -7,45 +7,80 @@
  */
 
 import React, { forwardRef, HTMLAttributes, ReactNode, useMemo } from 'react';
-
 import classNames from 'classnames';
+import {
+  _EuiThemeBackgroundColors,
+  getTokenName,
+} from '@elastic/eui-theme-common';
 
-import { useEuiMemoizedStyles } from '../../services';
+import { useEuiMemoizedStyles, useEuiTheme } from '../../services';
+import { useEuiBorderColorCSS } from '../../global_styling';
 import { CommonProps, DataAttributeProps } from '../common';
-import { IconType, EuiIcon } from '../icon';
+import { EuiIcon, IconType } from '../icon';
 import { EuiButtonIcon } from '../button';
 import { type EuiButtonIconPropsForButton } from '../button/button_icon/button_icon';
 import { EuiText } from '../text';
 import { EuiPanel } from '../panel';
-import { EuiSpacer } from '../spacer';
 import { EuiTitle } from '../title';
 import { EuiI18n } from '../i18n';
 import { EuiLiveAnnouncer } from '../accessibility/live_announcer';
+import {
+  EuiNotificationIcon,
+  type EuiNotificationIconType,
+} from '../notification_icon/notification_icon';
 
+import {
+  EuiCallOutAction,
+  EuiCallOutActionPrimaryProps,
+  EuiCallOutActionSecondaryProps,
+} from './call_out_action';
 import { euiCallOutStyles, euiCallOutHeaderStyles } from './call_out.styles';
+import { EuiCalloutColor, EuiCallOutHeading, EuiCallOutSize } from './types';
+import { euiNotificationIconStyles } from '../notification_icon/notification_icon.styles';
 
-export const COLORS = [
-  'primary',
-  'success',
-  'warning',
-  'danger',
-  'accent',
-] as const;
-export type Color = (typeof COLORS)[number];
+export const COLOR_TO_NOTIFICATION_ICON_MAP: Record<
+  EuiCalloutColor,
+  EuiNotificationIconType
+> = {
+  primary: 'info',
+  success: 'success',
+  warning: 'warning',
+  danger: 'error',
+};
 
-export const HEADINGS = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p'] as const;
-export type Heading = (typeof HEADINGS)[number];
-
-export const SIZES = ['s', 'm'] as const;
-export type Size = (typeof SIZES)[number];
+/** Get correct color with fallback */
+const getCallOutColor = (color: unknown): EuiCalloutColor => {
+  return typeof color === 'string' && color in COLOR_TO_NOTIFICATION_ICON_MAP
+    ? (color as EuiCalloutColor)
+    : 'primary';
+};
 
 export type EuiCallOutProps = CommonProps &
   Omit<HTMLAttributes<HTMLDivElement>, 'title' | 'color'> & {
+    /**
+     * Title of the callout. Should be used with text only. Do not pass complex content or custom components.
+     * Ensure to always pass a title. It's currently marked as optional for backwards compatibility.
+     * In a future major release, this will be required.
+     */
     title?: ReactNode;
+    /**
+     * Main component text. Accepts text, text block elements such as `<p>`, and inline elements such as `<span>`, `<strong>`, `<em>` or `<EuiLink>`.
+     * Avoid passing complex layouts or custom components. Use `children` instead.
+     */
+    text?: ReactNode;
+    /**
+     * Can be used for additional, non-inline content. Use sparingly, as callouts are not meant to have complex content.
+     * Where possible, use `text` and `actionProps` instead to display text and actions.
+     */
+    children?: ReactNode;
+    /**
+     * Defines a custom icon to be displayed.
+     * When no `iconType` is set, a default icon will be used based on the `color` of the callout.
+     */
     iconType?: IconType;
-    color?: Color;
-    size?: Size;
-    heading?: Heading;
+    color?: EuiCalloutColor;
+    size?: EuiCallOutSize;
+    heading?: EuiCallOutHeading;
     /**
      * Passing an `onDismiss` callback will render a cross in the top right hand corner
      * of the callout.
@@ -68,31 +103,59 @@ export type EuiCallOutProps = CommonProps &
      * @default false
      */
     announceOnMount?: boolean;
+    /**
+     * Props for primary and secondary actions within the callout.
+     * Secondary actions will only be rendered in combination with a primary action.
+     */
+    actionProps?: {
+      primary?: EuiCallOutActionPrimaryProps;
+      secondary?: EuiCallOutActionSecondaryProps;
+    };
   };
 
 export const EuiCallOut = forwardRef<HTMLDivElement, EuiCallOutProps>(
   (
     {
       title,
-      color = 'primary',
+      text,
+      color: _color = 'primary',
       size = 'm',
       iconType,
       children,
+      actionProps,
       className,
       heading = 'p',
       onDismiss,
       dismissButtonProps,
       announceOnMount = false,
+      style,
       ...rest
     },
     ref
   ) => {
+    const { euiTheme } = useEuiTheme();
+    const color = getCallOutColor(_color);
+
+    const borderColors = useEuiBorderColorCSS();
     const styles = useEuiMemoizedStyles(euiCallOutStyles);
     const cssStyles = [
       styles.euiCallOut,
-      onDismiss && styles.hasDismissButton.hasDimissButton,
-      onDismiss && styles.hasDismissButton[size],
+      borderColors[color],
+      onDismiss && styles.hasDismissButton,
     ];
+
+    const highlightColorToken = getTokenName(
+      'borderStrong',
+      color
+    ) as keyof _EuiThemeBackgroundColors;
+    const typeColor = euiTheme.colors[highlightColorToken];
+
+    const cssVariables = useMemo(
+      () => ({
+        '--euiCallOutTypeColor': typeColor,
+      }),
+      [typeColor]
+    );
 
     const classes = classNames(
       'euiCallOut',
@@ -105,10 +168,7 @@ export const EuiCallOut = forwardRef<HTMLDivElement, EuiCallOutProps>(
     const dismissButton = useMemo(() => {
       if (!onDismiss) return;
 
-      const cssStyles = [
-        styles.dismissButton.euiCallOut__dismissButton,
-        styles.dismissButton[size],
-      ];
+      const cssStyles = [styles.dismissButton.euiCallOut__dismissButton];
 
       return (
         <EuiI18n
@@ -123,79 +183,159 @@ export const EuiCallOut = forwardRef<HTMLDivElement, EuiCallOutProps>(
               {...dismissButtonProps}
               iconType="cross"
               color={color}
+              size="xs"
               onClick={onDismiss}
             />
           )}
         </EuiI18n>
       );
-    }, [onDismiss, styles, color, size]);
+    }, [onDismiss, styles, color, dismissButtonProps]);
 
     const headerStyles = useEuiMemoizedStyles(euiCallOutHeaderStyles);
+    const iconStyles = useEuiMemoizedStyles(euiNotificationIconStyles);
     const header = useMemo(() => {
       if (!title) return;
 
-      const H: Heading = heading;
-      const cssStyles = [headerStyles.euiCallOutHeader, headerStyles[color]];
+      const H: EuiCallOutHeading = heading;
+      const cssStyles = [headerStyles.euiCallOutHeader];
 
       return (
         <EuiTitle size={size === 's' ? 'xxs' : 'xs'} css={cssStyles}>
-          <H className="euiCallOutHeader__title">
-            {iconType && (
-              <EuiIcon
-                css={headerStyles.euiCallOut__icon}
-                type={iconType}
-                size="m"
-                aria-hidden="true"
-                color="inherit"
-              />
-            )}
-            {title}
-          </H>
+          <H className="euiCallOutHeader__title">{title}</H>
         </EuiTitle>
       );
-    }, [title, heading, iconType, size, color, headerStyles]);
+    }, [title, heading, size, headerStyles]);
 
-    const optionalChildren = children && (
-      <EuiText size={size === 's' ? 'xs' : 's'} color="default">
-        {children}
-      </EuiText>
+    const icon = useMemo(() => {
+      if (!iconType) {
+        const iconType = COLOR_TO_NOTIFICATION_ICON_MAP[color];
+
+        return (
+          <EuiNotificationIcon
+            css={styles.icon}
+            type={iconType}
+            size={size === 's' ? 'm' : 'l'}
+          />
+        );
+      }
+
+      return (
+        <EuiIcon
+          css={[styles.icon, size === 'm' && iconStyles.size.l]}
+          type={iconType}
+          size={size === 's' ? 'm' : 'l'}
+          aria-hidden="true"
+          color={typeColor}
+        />
+      );
+    }, [iconType, color, size, typeColor, styles, iconStyles]);
+
+    const optionalChildren = (
+      <>
+        {text && (
+          <EuiText size="s" color="default" className="euiCallOut__text">
+            {text}
+          </EuiText>
+        )}
+        {children && (
+          <EuiText
+            className="euiCallOut__additionalContent"
+            size={size === 's' ? 'xs' : 's'}
+            color="default"
+          >
+            {children}
+          </EuiText>
+        )}
+      </>
     );
+
+    const actionControls = useMemo(() => {
+      const actionPrimaryProps = {
+        ...actionProps?.primary,
+        color: color,
+      };
+      const actionSecondaryProps = {
+        ...actionProps?.secondary,
+        color: color,
+      };
+      const hasActionPrimary = Boolean(actionProps?.primary);
+      const hasActionSecondary = Boolean(actionProps?.secondary);
+      // a standalone secondary action is not supported
+      const hasActions = hasActionPrimary;
+
+      if (!hasActions) return null;
+
+      const actionPrimary = hasActionPrimary && (
+        <EuiCallOutAction actionType="primary" {...actionPrimaryProps} />
+      );
+
+      const actionSecondary = hasActionSecondary && (
+        <EuiCallOutAction actionType="secondary" {...actionSecondaryProps} />
+      );
+
+      return (
+        <div css={styles.actions}>
+          {actionPrimary}
+          {actionSecondary}
+        </div>
+      );
+    }, [actionProps, color, styles]);
+
+    const announcement = useMemo(() => {
+      if (!announceOnMount || !(title || text || children)) return null;
+
+      return (
+        <EuiLiveAnnouncer>
+          {title && title}
+          {title && text && ',\u00A0'}
+          {text && text}
+          {(title || text) && children && ',\u00A0'}
+          {children && children}
+        </EuiLiveAnnouncer>
+      );
+    }, [announceOnMount, title, text, children]);
 
     return (
       <EuiPanel
         borderRadius="none"
         color={color}
         css={cssStyles}
-        paddingSize={size === 's' ? 's' : 'm'}
+        // uses custom padding
+        paddingSize="none"
         className={classes}
         panelRef={ref}
         grow={false}
+        style={{ ...cssVariables, ...style }}
+        data-size={size}
         {...rest}
       >
-        {
-          // Note: the DOM position of the dismiss button matters to screen reader users.
-          // We generally want them to have some context of _what_ they're dismissing,
-          // instead of navigating to the dismiss button first before the callout content
-          header && optionalChildren ? (
-            <>
-              {header}
-              {dismissButton}
-              <EuiSpacer size="s" />
-              {optionalChildren}
-            </>
-          ) : (
-            <>
-              {header || optionalChildren}
-              {dismissButton}
-            </>
-          )
-        }
-        {announceOnMount && (title || children) && (
-          <EuiLiveAnnouncer>
-            {title && `${title}, `}
-            {children}
-          </EuiLiveAnnouncer>
-        )}
+        <div css={styles.wrapper}>
+          <div css={styles.body}>
+            {icon}
+            <div css={styles.content}>
+              {
+                // Note: the DOM position of the dismiss button matters to screen reader users.
+                // We generally want them to have some context of _what_ they're dismissing,
+                // instead of navigating to the dismiss button first before the callout content
+                header && optionalChildren ? (
+                  <>
+                    {header}
+                    {dismissButton}
+                    {optionalChildren}
+                  </>
+                ) : (
+                  <>
+                    {header || optionalChildren}
+                    {dismissButton}
+                  </>
+                )
+              }
+            </div>
+          </div>
+
+          {actionControls}
+          {announcement}
+        </div>
       </EuiPanel>
     );
   }
