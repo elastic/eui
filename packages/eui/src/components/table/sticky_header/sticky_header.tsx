@@ -20,6 +20,8 @@ import { useEuiMemoizedStyles } from '../../../services';
 import { euiTableStyles } from '../table.styles';
 import type { EuiTableProps } from '../table';
 import { euiTableStickyHeaderStyles } from './sticky_header.styles';
+import { euiContainerCSS } from '../../../global_styling';
+import { EUI_TABLE_CSS_CONTAINER_NAME } from '../const';
 
 interface EuiTableStickyHeaderProps
   extends Pick<EuiTableProps, 'scrollableInline' | 'compressed'> {
@@ -134,7 +136,13 @@ export const EuiTableStickyHeader = ({
 
   return (
     <EuiTableWithinStickyHeaderProvider>
-      <div css={styles.wrapper} ref={stickyTableWrapperRef}>
+      <div
+        css={[
+          euiContainerCSS('normal', EUI_TABLE_CSS_CONTAINER_NAME, true),
+          styles.wrapper,
+        ]}
+        ref={stickyTableWrapperRef}
+      >
         <table css={tableStyles} ref={stickyTableRef}>
           <EuiTableHeader css={styles.header}>
             {columns.map(([name, data], index) =>
