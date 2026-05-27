@@ -184,31 +184,28 @@ const CellContents = ({
   );
 };
 
-export const EuiTableHeaderCell: FunctionComponent<EuiTableHeaderCellProps> = (
-  props
-) => {
-  const {
-    children,
-    align = LEFT_ALIGNMENT,
-    onSort,
-    isSorted,
-    isSortAscending,
-    className,
-    scope,
-    mobileOptions,
-    width,
-    minWidth,
-    maxWidth,
-    style: _style,
-    readOnly,
-    tooltipProps,
-    description,
-    append,
-    sticky,
-    ...rest
-  } = props;
+export const EuiTableHeaderCell: FunctionComponent<EuiTableHeaderCellProps> = ({
+  children,
+  align = LEFT_ALIGNMENT,
+  onSort,
+  isSorted,
+  isSortAscending,
+  className,
+  scope,
+  mobileOptions,
+  width,
+  minWidth,
+  maxWidth,
+  style: _style,
+  readOnly,
+  tooltipProps,
+  description,
+  append,
+  sticky,
+  ...rest
+}) => {
+  const selfRef = useRef<HTMLTableCellElement>(null);
 
-  const ref = useRef<HTMLTableCellElement>(null);
   const internalCellId = useGeneratedHtmlId();
   const store = useEuiTableColumnDataStore();
   const isWithinStickyHeader = useEuiTableWithinStickyHeader();
@@ -310,7 +307,11 @@ export const EuiTableHeaderCell: FunctionComponent<EuiTableHeaderCellProps> = (
   useEffect(() => {
     // Don't register the column inside the sticky header as the original
     // column is already registered. This would cause an infinite loop.
-    if (isWithinStickyHeader || !ref.current || !renderHeaderCellRef.current) {
+    if (
+      isWithinStickyHeader ||
+      !selfRef.current ||
+      !renderHeaderCellRef.current
+    ) {
       return;
     }
 
@@ -319,7 +320,7 @@ export const EuiTableHeaderCell: FunctionComponent<EuiTableHeaderCellProps> = (
     });
 
     const resizeObserver = new ResizeObserver(handleResize);
-    resizeObserver.observe(ref.current);
+    resizeObserver.observe(selfRef.current);
 
     return () => {
       unregisterColumn();
@@ -340,5 +341,5 @@ export const EuiTableHeaderCell: FunctionComponent<EuiTableHeaderCellProps> = (
     });
   });
 
-  return renderHeaderCellRef.current({ ref });
+  return renderHeaderCellRef.current({ ref: selfRef });
 };
