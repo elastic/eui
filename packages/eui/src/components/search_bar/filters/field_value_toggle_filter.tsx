@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { FC } from 'react';
+import React, { FunctionComponent } from 'react';
 import { EuiFilterButton } from '../../filter_group';
 import { isNil } from '../../../services/predicate';
 import { Query } from '../query';
@@ -29,11 +29,14 @@ export interface FieldValueToggleFilterProps {
   onChange: (value: Query) => void;
 }
 
-export const FieldValueToggleFilter: FC<FieldValueToggleFilterProps> = (
-  props
-) => {
+export const FieldValueToggleFilter: FunctionComponent<
+  FieldValueToggleFilterProps
+> = ({ config, query, onChange }) => {
+  const clause = query.getSimpleFieldClause(config.field, config.value);
+  const checked = !isNil(clause);
+
   const resolveDisplay = (clause: Clause | undefined) => {
-    const { name, negatedName } = props.config;
+    const { name, negatedName } = config;
     if (isNil(clause)) {
       return { hasActiveFilters: false, name };
     }
@@ -45,20 +48,14 @@ export const FieldValueToggleFilter: FC<FieldValueToggleFilterProps> = (
         };
   };
 
-  const valueChanged = (checked: boolean) => {
-    const { field, value, operator } = props.config;
-    const query = checked
-      ? props.query.removeSimpleFieldValue(field, value)
-      : props.query.addSimpleFieldValue(field, value, true, operator);
-    props.onChange(query);
-  };
-
-  const { query, config } = props;
-  const clause = query.getSimpleFieldClause(config.field, config.value);
-  const checked = !isNil(clause);
   const { hasActiveFilters, name } = resolveDisplay(clause);
+
   const onClick = () => {
-    valueChanged(checked);
+    const { field, value, operator } = config;
+    const newQuery = checked
+      ? query.removeSimpleFieldValue(field, value)
+      : query.addSimpleFieldValue(field, value, true, operator);
+    onChange(newQuery);
   };
 
   return (
@@ -73,3 +70,5 @@ export const FieldValueToggleFilter: FC<FieldValueToggleFilterProps> = (
     </EuiFilterButton>
   );
 };
+
+FieldValueToggleFilter.displayName = 'FieldValueToggleFilter';
