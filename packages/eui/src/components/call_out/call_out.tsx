@@ -230,7 +230,7 @@ export const EuiCallOut = forwardRef<HTMLDivElement, EuiCallOutProps>(
       );
     }, [iconType, color, size, typeColor, styles, iconStyles]);
 
-    const optionalChildren = (
+    const optionalChildren = (text || children) && (
       <>
         {text && (
           <EuiText size="s" color="default" className="euiCallOut__text">
