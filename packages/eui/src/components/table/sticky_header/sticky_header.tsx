@@ -23,24 +23,26 @@ import { euiTableStickyHeaderStyles } from './sticky_header.styles';
 
 interface EuiTableStickyHeaderProps
   extends Pick<EuiTableProps, 'scrollableInline' | 'compressed'> {
+  tableRef: RefObject<HTMLTableElement>;
   tableWrapperRef: RefObject<HTMLDivElement>;
   isResponsive: boolean;
 }
 
 export const EuiTableStickyHeader = ({
+  tableRef,
   tableWrapperRef,
   compressed,
   scrollableInline,
   isResponsive,
 }: EuiTableStickyHeaderProps) => {
   const store = useEuiTableColumnDataStore();
+  const originalStyles = useEuiMemoizedStyles(euiTableStyles);
+  const columnRefs = useRef(new Map<string, RefObject<HTMLTableCellElement>>());
+  const stickyTableWrapperRef = useRef<HTMLDivElement>(null);
+  const stickyTableRef = useRef<HTMLTableElement>(null);
   const [columns, setColumns] = useState(() =>
     Array.from(store.getColumns().entries())
   );
-  const columnRefs = useRef(new Map<string, RefObject<HTMLTableCellElement>>());
-  const stickyHeaderWrapperRef = useRef<HTMLDivElement>(null);
-
-  const originalStyles = useEuiMemoizedStyles(euiTableStyles);
 
   useEffect(() => {
     const unsubscribe = store.subscribe((columns) => {
@@ -70,46 +72,49 @@ export const EuiTableStickyHeader = ({
     if (
       !scrollableInline ||
       !tableWrapperRef.current ||
-      !stickyHeaderWrapperRef.current
+      !stickyTableRef.current ||
+      !tableRef.current
     ) {
       return;
     }
 
     const tableWrapper = tableWrapperRef.current;
-    const stickyWrapper = stickyHeaderWrapperRef.current;
-    const mainTable = tableWrapper.querySelector('table');
-    const stickyTable = stickyWrapper.querySelector('table');
 
-    const syncScrollPosition = () => {
-      stickyWrapper.scrollLeft = tableWrapper.scrollLeft;
-    };
-
-    const syncTableWidth = () => {
-      if (mainTable && stickyTable) {
-        // Match the sticky table's width to the main table's actual width
-        const tableWidth = mainTable.getBoundingClientRect().width;
-        stickyTable.style.minWidth = `${tableWidth}px`;
+    const handleScroll = () => {
+      if (stickyTableWrapperRef.current) {
+        stickyTableWrapperRef.current.scrollLeft = tableWrapper.scrollLeft;
       }
     };
 
-    // Sync table width initially and when it resizes
-    syncTableWidth();
+    const handleResize: ResizeObserverCallback = (entries) => {
+      const element = entries[0].target;
+      if (!element) {
+        return;
+      }
+
+      if (stickyTableRef.current) {
+        stickyTableRef.current.style.minWidth = `${element.clientWidth}px`;
+      }
+    };
+
+    // Initial width sync
+    stickyTableRef.current.style.minWidth = `${
+      tableRef.current.getBoundingClientRect().width
+    }px`;
 
     // Use ResizeObserver to keep table width in sync
-    const resizeObserver = new ResizeObserver(syncTableWidth);
-    if (mainTable) {
-      resizeObserver.observe(mainTable);
-    }
+    const resizeObserver = new ResizeObserver(handleResize);
+    resizeObserver.observe(tableRef.current);
 
-    tableWrapper.addEventListener('scroll', syncScrollPosition, {
+    tableWrapper.addEventListener('scroll', handleScroll, {
       passive: true,
     });
 
     return () => {
-      tableWrapper.removeEventListener('scroll', syncScrollPosition);
+      tableWrapper.removeEventListener('scroll', handleScroll);
       resizeObserver.disconnect();
     };
-  }, [scrollableInline, tableWrapperRef]);
+  }, [scrollableInline, tableRef, tableWrapperRef]);
 
   const tableStyles = [
     originalStyles.euiTable,
@@ -129,8 +134,8 @@ export const EuiTableStickyHeader = ({
 
   return (
     <EuiTableWithinStickyHeaderProvider>
-      <div css={styles.wrapper} ref={stickyHeaderWrapperRef}>
-        <table css={tableStyles}>
+      <div css={styles.wrapper} ref={stickyTableWrapperRef}>
+        <table css={tableStyles} ref={stickyTableRef}>
           <EuiTableHeader css={styles.header}>
             {columns.map(([name, data], index) =>
               data.renderHeaderCellRef.current?.({

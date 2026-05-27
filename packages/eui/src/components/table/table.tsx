@@ -112,6 +112,7 @@ export const EuiTable: FunctionComponent<EuiTableProps> = (originalProps) => {
     ...rest
   } = usePropsWithComponentDefaults('EuiTable', originalProps);
   const tableWrapperRef = useRef<HTMLDivElement>(null);
+  const tableRef = useRef<HTMLTableElement>(null);
   const isResponsive = useIsEuiTableResponsive(responsiveBreakpoint);
 
   const classes = classNames('euiTable', className);
@@ -136,13 +137,20 @@ export const EuiTable: FunctionComponent<EuiTableProps> = (originalProps) => {
       {stickyHeader && (
         <EuiTableStickyHeader
           scrollableInline={scrollableInline}
+          tableRef={tableRef}
           tableWrapperRef={tableWrapperRef}
           compressed={compressed}
           isResponsive={isResponsive}
         />
       )}
       <div css={cssStyles} ref={tableWrapperRef}>
-        <table tabIndex={-1} css={tableStyles} className={classes} {...rest}>
+        <table
+          tabIndex={-1}
+          css={tableStyles}
+          className={classes}
+          ref={tableRef}
+          {...rest}
+        >
           <EuiTableIsResponsiveContext.Provider value={isResponsive}>
             <EuiTableVariantContext.Provider value={{ hasBackground }}>
               {children}
