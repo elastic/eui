@@ -133,7 +133,12 @@ export const EuiTable: FunctionComponent<EuiTableProps> = (originalProps) => {
 
   return (
     <EuiTableStoreProvider>
-      {stickyHeader && <EuiTableStickyHeader />}
+      {stickyHeader && (
+        <EuiTableStickyHeader
+          scrollableInline={scrollableInline}
+          tableWrapperRef={tableWrapperRef}
+        />
+      )}
       <div css={cssStyles} ref={tableWrapperRef}>
         <table tabIndex={-1} css={tableStyles} className={classes} {...rest}>
           <EuiTableIsResponsiveContext.Provider value={isResponsive}>
