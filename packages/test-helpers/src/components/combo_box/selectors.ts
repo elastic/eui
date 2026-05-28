@@ -12,9 +12,9 @@
  */
 export const EuiComboBoxSelectors = {
   /**
-   * `data-test-subj` identifier of the outer (main) element
+   * `data-test-subj` identifier of the inner input wrapper element
    */
-  TEST_SUBJ: 'comboBoxInput',
+  INPUT_WRAPPER_TEST_SUBJ: 'comboBoxInput',
 
   /**
    * `data-test-subj` identifier of the search input field
@@ -37,36 +37,56 @@ export const EuiComboBoxSelectors = {
   CLEAR_BUTTON_TEST_SUBJ: 'comboBoxClearButton',
 
   /**
-   * `data-test-subj` identifier of all selected options (pills)
+   * CSS selector for the input wrapper in `singleSelection={{ asPlainText: true }}` mode.
+   * Present when the combo renders the selection inside the input instead of as pills.
    */
-  SELECTED_OPTIONS_TEST_SUBJ: 'euiComboBoxPill',
+  PLAIN_TEXT_INPUT_WRAP_SELECTOR: '.euiComboBox__inputWrap--plainText',
 
   /**
-   * CSS selector for options in a specific combo box's dropdown — all
-   * options if `label` is omitted, or the option matching that label.
+   * `data-test-subj` identifier of selected option pills.
+   * Only present in non-`asPlainText` mode — in `asPlainText` mode the
+   * selection is shown inside the input, not as pills.
+   */
+  PILL_TEST_SUBJ: 'euiComboBoxPill',
+
+  /**
+   * CSS selector for all options in a specific combo box's dropdown.
    *
    * `testSubj` is the consumer's `data-test-subj` on `<EuiComboBox>`. EUI
    * propagates this to the options list as `${testSubj}-optionsList`,
    * letting us disambiguate when multiple combo boxes coexist on one page.
    *
-   * `title` is set by EUI to the exact label string and avoids
-   * accessible-name mismatches caused by option icons.
+   * To target a specific option by label, compose with Playwright's
+   * `getByTitle` to avoid CSS-injection issues with labels that contain
+   * special characters (`"`, `]`, `\`):
+   *
+   * ```ts
+   * page
+   *   .locator(EuiComboBoxSelectors.optionFor(testSubj))
+   *   .and(page.getByTitle(label, { exact: true }))
+   * ```
    *
    * Note: the list may be virtualized — type the search string into the
    * input before asserting on a specific option to ensure it is in DOM.
    */
-  optionFor: (testSubj: string, label?: string): string => {
-    const base = `[data-test-subj~="${testSubj}-optionsList"] button[role="option"]`;
-    return label ? `${base}[title="${label}"]` : base;
-  },
+  optionFor: (testSubj: string): string =>
+    `[data-test-subj~="${testSubj}-optionsList"] [role="option"]`,
 
   /**
-   * CSS selector for selected options in a specific combo box's dropdown —
-   * all selected if `label` is omitted, or the selected option matching
-   * that label. See `optionFor` for `testSubj` and `title` rationale.
+   * CSS selector for all selected options in a specific combo box's dropdown.
+   * See `optionFor` for `testSubj` rationale and label-targeting guidance.
    */
-  selectedOptionFor: (testSubj: string, label?: string): string => {
-    const base = `[data-test-subj~="${testSubj}-optionsList"] button[role="option"][aria-selected="true"]`;
-    return label ? `${base}[title="${label}"]` : base;
-  },
+  selectedOptionFor: (testSubj: string): string =>
+    `[data-test-subj~="${testSubj}-optionsList"] [role="option"][aria-selected="true"]`,
+
+  /**
+   * CSS selector for a specific combo box's options list container (the
+   * dropdown portal). Matches whether the list has regular options or an
+   * empty-state entry (e.g. "Add X as a custom option" for `onCreateOption`).
+   *
+   * Use this when you only need to wait for the dropdown to open, not when
+   * you need to target a specific option inside it.
+   */
+  optionsListFor: (testSubj: string): string =>
+    `[data-test-subj~="${testSubj}-optionsList"]`,
 };

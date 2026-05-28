@@ -69,4 +69,11 @@ test.describe('EuiComboBoxObject', () => {
     expect(await combo.getSelectedOptions()).toEqual([]);
   });
 
+  test('setSelectedOptions([]) clears the selection', async () => {
+    await combo.setSelectedOptions(['Item 1', 'Item 2']);
+
+    await combo.setSelectedOptions([]);
+
+    expect(await combo.getSelectedOptions()).toEqual([]);
+  });
 });

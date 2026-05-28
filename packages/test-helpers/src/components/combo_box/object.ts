@@ -73,60 +73,179 @@ export class EuiComboBoxObject extends BaseObject {
 
   /**
    * Clear all selected options. No-op if nothing is selected.
+   *
+   * Auto-detects the combo box configuration and uses the appropriate strategy:
+   * - Pills present → {@link clickPillClearButtons}
+   * - `asPlainText` with a confirmed input selection → {@link deleteSearchInput}
+   * - Otherwise → {@link deselectAllFromDropdown}
+   *
+   * Use the explicit methods directly when you need full control over the
+   * clearing strategy (e.g. `onCreateOption` with selections not in the
+   * options list).
    */
   async clear(): Promise<void> {
     if ((await this.getSelectedOptions()).length === 0) {
       return;
     }
-    await this.clearButton.click();
-    await expect
-      .poll(() => this.getSelectedOptions(), {
-        message: 'EuiComboBox: clear button was clicked but selected options remain',
-      })
-      .toEqual([]);
+
+    if (await this.hasPills()) {
+      await this.clickPillClearButtons();
+      return;
+    }
+
+    if (await this.hasConfirmedInputSelection()) {
+      await this.deleteSearchInput();
+      return;
+    }
+
+    await this.deselectAllFromDropdown();
   }
 
   /**
-   * Currently selected option labels — pill texts in multi-select, the input
-   * value wrapped in an array in single-select, `[]` if nothing is selected.
+   * Currently selected option labels.
+   *
+   * - Multi-select / `singleSelection=true` → pill texts.
+   * - `singleSelection={{ asPlainText: true }}` → the input value. EUI
+   *   renders no pills in this mode; the input IS the selection display.
+   *   Works correctly with both `isClearable=true` (default) and
+   *   `isClearable=false`.
+   * - Nothing selected → `[]`.
    */
   async getSelectedOptions(): Promise<string[]> {
-    const pillCount = await this.pills.count();
-    if (pillCount > 0) {
+    if (await this.hasPills()) {
       return this.pills.allInnerTexts();
     }
-    const inputValue = await this.searchInput.inputValue();
-    return inputValue ? [inputValue] : [];
+    if (await this.hasConfirmedInputSelection()) {
+      return [await this.searchInput.inputValue()];
+    }
+    return [];
+  }
+
+  private async hasPills(): Promise<boolean> {
+    return (await this.pills.count()) > 0;
+  }
+
+  /**
+   * Clicks the `×` button on each selected pill individually.
+   * Works regardless of `isClearable` — pill close buttons are always present.
+   * No-op if no pills are rendered.
+   */
+  private async clickPillClearButtons(): Promise<void> {
+    while (await this.hasPills()) {
+      const countBefore = await this.pills.count();
+      await this.pills.first().locator('button').click();
+      await expect(this.pills).not.toHaveCount(countBefore);
+    }
+  }
+
+  /**
+   * Opens the dropdown and clicks each `aria-selected="true"` option to
+   * deselect it. Works for all `isClearable` and `singleSelection`
+   * configurations when the selected options are present in the options list.
+   *
+   * Does not work when the selection was created via `onCreateOption` and the
+   * created option was not added back to the `options` array — use
+   * {@link clickPillClearButtons} instead.
+   */
+  private async deselectAllFromDropdown(): Promise<void> {
+    await this.input.click();
+
+    const selected = this.root
+      .page()
+      .locator(EuiComboBoxSelectors.selectedOptionFor(this.testSubj));
+
+    while ((await selected.count()) > 0) {
+      const countBefore = await selected.count();
+      await selected.first().click();
+      await expect(selected).not.toHaveCount(countBefore);
+    }
+
+    await this.searchInput.blur();
   }
 
   private async addOption(label: string): Promise<void> {
     // Clicking the outer wrapper does not reliably open the dropdown; the
     // inner `comboBoxInput` element does.
     await this.input.click();
-    await this.searchInput.pressSequentially(label, { delay: 50 });
+    // fill() atomically clears and sets the value — avoids issues with
+    // React re-renders resetting cursor position mid-typing (e.g. in
+    // asPlainText mode where the input already shows a selected label).
+    await this.searchInput.fill(label);
 
     // Options list is rendered in a portal outside `this.root`, so locate
-    // from page level.
+    // from page level. Use .and(getByTitle) rather than embedding the label
+    // in the CSS string — CSS attribute selectors break on labels containing
+    // quotes, brackets, or backslashes. getByTitle alone would search
+    // descendants; .and() intersects so it matches the option element itself.
     const option = this.root
       .page()
-      .locator(EuiComboBoxSelectors.optionFor(this.testSubj, label));
+      .locator(EuiComboBoxSelectors.optionFor(this.testSubj))
+      .and(this.root.page().getByTitle(label, { exact: true }));
     await option.waitFor({ state: 'visible' });
     await option.click();
   }
 
+  /**
+   * Focuses the search input and presses Backspace to clear the selection.
+   * Only valid in `singleSelection={{ asPlainText: true }}` mode where
+   * {@link hasConfirmedInputSelection} is true — EUI's `onKeyDown` handler
+   * fires `onRemoveOption` when Backspace is pressed with an empty `searchValue`.
+   */
+  private async deleteSearchInput(): Promise<void> {
+    await this.searchInput.press('Backspace');
+    // Backspace triggers onRemoveOption (removes the selection) but the
+    // browser also fires a native input event that sets searchValue to a
+    // partial label string. fill('') cleans that up without restoring the
+    // selection (selectedOptions is already empty at this point).
+    await this.searchInput.fill('');
+    await expect
+      .poll(() => this.getSelectedOptions(), {
+        message: 'EuiComboBox: Backspace did not clear the asPlainText selection',
+      })
+      .toEqual([]);
+  }
+
+  /**
+   * Returns true when the combo is in `asPlainText` mode and the input
+   * contains a *confirmed* selection (not unconfirmed typed text).
+   *
+   * In `asPlainText` mode the input IS the selection display: EUI renders
+   * the selected option's label directly in the input (no pills). An empty
+   * input means nothing is selected.
+   *
+   * When the user types text that matches no option and blurs (without
+   * `onCreateOption`), EUI marks the combo box invalid by adding
+   * `euiComboBox-isInvalid` to the root element. An invalid combo with a
+   * non-empty input has unconfirmed text, not a confirmed selection.
+   */
+  private async hasConfirmedInputSelection(): Promise<boolean> {
+    if (!(await this.isPlainText())) return false;
+    if (!(await this.searchInput.inputValue())) return false;
+    return !(await this.isMarkedInvalid());
+  }
+
+  private async isMarkedInvalid(): Promise<boolean> {
+    const classes = await this.root.getAttribute('class');
+    return classes?.includes('euiComboBox-isInvalid') ?? false;
+  }
+
   private get input(): Locator {
-    return this.root.getByTestId(EuiComboBoxSelectors.TEST_SUBJ);
+    return this.root.getByTestId(EuiComboBoxSelectors.INPUT_WRAPPER_TEST_SUBJ);
   }
 
   private get searchInput(): Locator {
     return this.root.getByTestId(EuiComboBoxSelectors.SEARCH_INPUT_TEST_SUBJ);
   }
 
-  private get clearButton(): Locator {
-    return this.root.getByTestId(EuiComboBoxSelectors.CLEAR_BUTTON_TEST_SUBJ);
+  private get pills(): Locator {
+    return this.root.getByTestId(EuiComboBoxSelectors.PILL_TEST_SUBJ);
   }
 
-  private get pills(): Locator {
-    return this.root.getByTestId(EuiComboBoxSelectors.SELECTED_OPTIONS_TEST_SUBJ);
+  private async isPlainText(): Promise<boolean> {
+    return (
+      (await this.root
+        .locator(EuiComboBoxSelectors.PLAIN_TEXT_INPUT_WRAP_SELECTOR)
+        .count()) > 0
+    );
   }
 }
