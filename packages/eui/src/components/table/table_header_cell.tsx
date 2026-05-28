@@ -21,8 +21,8 @@ import {
   useEuiMemoizedStyles,
   HorizontalAlignment,
   LEFT_ALIGNMENT,
-  useGeneratedHtmlId,
 } from '../../services';
+import { useGeneratedHtmlId } from '../../services/accessibility/html_id_generator';
 import { EuiI18n } from '../i18n';
 import { EuiScreenReaderOnly } from '../accessibility';
 import { CommonProps, NoArgCallback } from '../common';

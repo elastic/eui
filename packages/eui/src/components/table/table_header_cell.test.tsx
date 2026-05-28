@@ -6,6 +6,11 @@
  * Side Public License, v 1.
  */
 
+let mockIdCounter = 0;
+jest.mock('../../services/accessibility/html_id_generator', () => ({
+  useGeneratedHtmlId: () => `unique-id-${mockIdCounter++}`,
+}));
+
 import React, { PropsWithChildren, ReactElement } from 'react';
 import { requiredProps } from '../../test/required_props';
 import { render } from '../../test/rtl';
@@ -45,6 +50,10 @@ const renderInTableHeader = (cell: ReactElement) => {
 };
 
 describe('EuiTableHeaderCell', () => {
+  beforeEach(() => {
+    mockIdCounter = 0;
+  });
+
   it('renders', () => {
     const { getByRole } = renderInTableHeader(
       <EuiTableHeaderCell {...requiredProps}>children</EuiTableHeaderCell>

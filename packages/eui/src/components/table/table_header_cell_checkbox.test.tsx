@@ -6,6 +6,11 @@
  * Side Public License, v 1.
  */
 
+let mockIdCounter = 0;
+jest.mock('../../services/accessibility/html_id_generator', () => ({
+  useGeneratedHtmlId: () => `unique-id-${mockIdCounter++}`,
+}));
+
 import React from 'react';
 import { requiredProps } from '../../test';
 import { render } from '../../test/rtl';
@@ -32,6 +37,10 @@ const renderInTableHeader = (cell: React.ReactElement) =>
   );
 
 describe('EuiTableHeaderCellCheckbox', () => {
+  beforeEach(() => {
+    mockIdCounter = 0;
+  });
+
   test('is rendered', () => {
     const { container } = renderInTableHeader(
       <EuiTableHeaderCellCheckbox {...requiredProps} />
