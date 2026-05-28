@@ -16,6 +16,9 @@ export const euiTableStickyHeaderStyles = ({ euiTheme }: UseEuiTheme) => ({
     z-index: var(--euiTableStickyHeaderZIndex, 1);
     overflow-inline: hidden;
   `,
+  wrapperHidden: css`
+    display: none;
+  `,
   header: css`
     th::after {
       content: '';
