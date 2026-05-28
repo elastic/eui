@@ -321,15 +321,22 @@ export const EuiTableHeaderCell: FunctionComponent<EuiTableHeaderCellProps> = ({
       currentWidth: selfRef.current.getBoundingClientRect().width,
     });
 
-    // Note: This _could_ be optimized by using a single ResizeObserver
-    // for the whole EuiTable, but it would need to be changed back to this
-    // if/when we implement resizable columns
-    const resizeObserver = new ResizeObserver(handleResize);
-    resizeObserver.observe(selfRef.current);
+    // ResizeObserver is available in all supported browsers,
+    // but jsdom and jest don't provide a polyfill for it.
+    let resizeObserver: ResizeObserver | undefined;
+    if (typeof window.ResizeObserver !== 'undefined') {
+      resizeObserver = new ResizeObserver(handleResize);
+
+      // Note: This _could_ be optimized by using a single ResizeObserver
+      // for the whole EuiTable, but it would need to be changed back to this
+      // if/when we implement resizable columns
+      resizeObserver.observe(selfRef.current);
+    }
 
     return () => {
       unregisterColumn();
-      resizeObserver.disconnect();
+
+      resizeObserver?.disconnect();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [store, internalCellId, isWithinStickyHeader]);
