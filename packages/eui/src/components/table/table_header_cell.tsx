@@ -341,10 +341,17 @@ export const EuiTableHeaderCell: FunctionComponent<EuiTableHeaderCellProps> = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [store, internalCellId, isWithinStickyHeader]);
 
+  // Notify the store on every render so the sticky header stays in sync.
+  // React's reconciliation will efficiently handle any duplicate renders.
   useEffect(() => {
-    // Notify the store on every render so the sticky header stays in sync.
-    // React's reconciliation will efficiently handle any duplicate renders.
+    // Don't update the store if the component is rendered within EuiTableStickyHeader
     if (isWithinStickyHeader) {
+      return;
+    }
+
+    // Don't update the store if the element doesn't exist. The render function
+    // in `renderHeaderCellRef` sometimes renders null - e.g., in mobile layout
+    if (!selfRef.current) {
       return;
     }
 
