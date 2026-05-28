@@ -62,7 +62,7 @@ export const Playground: Story = {
 export const OnDismiss: Story = {
   parameters: {
     controls: {
-      include: ['children', 'onDismiss', 'dismissButtonProps'],
+      include: ['title', 'text', 'color', 'onDismiss', 'dismissButtonProps'],
     },
   },
   args: {
@@ -78,7 +78,7 @@ export const OnDismiss: Story = {
 export const WithActions: Story = {
   parameters: {
     controls: {
-      include: ['children', 'onDismiss', 'dismissButtonProps', 'size'],
+      include: ['title', 'text', 'onDismiss', 'dismissButtonProps', 'size'],
     },
   },
   args: {
@@ -100,7 +100,7 @@ export const WithActions: Story = {
 export const AnnounceOnMount: Story = {
   parameters: {
     controls: {
-      include: ['children', 'announceOnMount'],
+      include: ['title', 'text', 'announceOnMount'],
     },
     loki: {
       skip: true,

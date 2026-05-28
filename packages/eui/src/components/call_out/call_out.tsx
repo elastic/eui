@@ -8,10 +8,7 @@
 
 import React, { forwardRef, HTMLAttributes, ReactNode, useMemo } from 'react';
 import classNames from 'classnames';
-import {
-  _EuiThemeBackgroundColors,
-  getTokenName,
-} from '@elastic/eui-theme-common';
+import { _EuiThemeBorderColors, getTokenName } from '@elastic/eui-theme-common';
 
 import { useEuiMemoizedStyles, useEuiTheme } from '../../services';
 import { useEuiBorderColorCSS } from '../../global_styling';
@@ -147,7 +144,7 @@ export const EuiCallOut = forwardRef<HTMLDivElement, EuiCallOutProps>(
     const highlightColorToken = getTokenName(
       'borderStrong',
       color
-    ) as keyof _EuiThemeBackgroundColors;
+    ) as keyof _EuiThemeBorderColors;
     const typeColor = euiTheme.colors[highlightColorToken];
 
     const cssVariables = useMemo(
