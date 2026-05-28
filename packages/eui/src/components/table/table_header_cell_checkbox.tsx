@@ -103,7 +103,7 @@ export const EuiTableHeaderCellCheckbox: FunctionComponent<
   useEffect(() => {
     // Notify the store on every render so the sticky header stays in sync.
     // React's reconciliation will efficiently handle any duplicate renders.
-    if (isWithinStickyHeader || !store.getColumns().has(internalCellId)) {
+    if (isWithinStickyHeader) {
       return;
     }
 
