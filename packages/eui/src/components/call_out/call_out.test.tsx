@@ -18,7 +18,7 @@ import { NOTIFICATION_ICONS_MAP } from '../notification_icon/notification_icon';
 describe('EuiCallOut', () => {
   test('is rendered', () => {
     const { container } = render(
-      <EuiCallOut {...requiredProps}>Content</EuiCallOut>
+      <EuiCallOut title="Callout title" {...requiredProps} text="content" />
     );
 
     expect(container.firstChild).toMatchSnapshot();
@@ -29,9 +29,7 @@ describe('EuiCallOut', () => {
       it('is rendered', () => {
         const title = 'Callout title';
         const { getByTestSubject } = render(
-          <EuiCallOut title={title} data-test-subj="euiCallout">
-            Content
-          </EuiCallOut>
+          <EuiCallOut title={title} data-test-subj="euiCallout" />
         );
 
         expect(getByTestSubject('euiCallout')).toHaveTextContent(title);
@@ -42,9 +40,11 @@ describe('EuiCallOut', () => {
       it('is rendered', () => {
         const text = 'Callout body text';
         const { getByTestSubject } = render(
-          <EuiCallOut text={text} data-test-subj="euiCallout">
-            Content
-          </EuiCallOut>
+          <EuiCallOut
+            title="Callout title"
+            text={text}
+            data-test-subj="euiCallout"
+          />
         );
 
         expect(getByTestSubject('euiCallout')).toHaveTextContent(text);
@@ -54,7 +54,9 @@ describe('EuiCallOut', () => {
     describe('color', () => {
       COLORS.forEach((color) => {
         test(`${color} is rendered`, () => {
-          const { container } = render(<EuiCallOut color={color} />);
+          const { container } = render(
+            <EuiCallOut title="Callout title" color={color} />
+          );
 
           expect(container.firstChild).toHaveClass(`euiCallOut--${color}`);
         });
@@ -62,7 +64,10 @@ describe('EuiCallOut', () => {
 
       it('normalizes legacy accent runtime values to primary', () => {
         const { container } = render(
-          <EuiCallOut color={'accent' as unknown as any} />
+          <EuiCallOut
+            title="Callout title"
+            color={'accent' as unknown as any}
+          />
         );
 
         expect(container.firstChild).toHaveClass('euiCallOut--primary');
@@ -76,7 +81,9 @@ describe('EuiCallOut', () => {
 
     describe('iconType', () => {
       it('renders', () => {
-        const { container } = render(<EuiCallOut iconType="user" />);
+        const { container } = render(
+          <EuiCallOut title="Callout title" iconType="user" />
+        );
 
         expect(
           container.querySelector(`[data-euiicon-type="user"]`)
@@ -84,7 +91,7 @@ describe('EuiCallOut', () => {
       });
 
       it('renders default notification icons if not passed', () => {
-        const { container } = render(<EuiCallOut />);
+        const { container } = render(<EuiCallOut title="Callout title" />);
 
         expect(
           container.querySelector(
@@ -99,6 +106,7 @@ describe('EuiCallOut', () => {
         test(`${size} is rendered`, () => {
           const { getByTestSubject } = render(
             <EuiCallOut
+              title="Callout title"
               size={size as EuiCallOutSize}
               data-test-subj="euiCallout"
             />
@@ -114,7 +122,9 @@ describe('EuiCallOut', () => {
     describe('heading', () => {
       HEADINGS.forEach((heading) => {
         test(`${heading} is rendered`, () => {
-          const { container } = render(<EuiCallOut heading={heading} />);
+          const { container } = render(
+            <EuiCallOut title="Callout title" heading={heading} />
+          );
 
           expect(container.firstChild).toMatchSnapshot();
         });
@@ -125,6 +135,7 @@ describe('EuiCallOut', () => {
       it('renders a primary action button', () => {
         const { getByTestSubject } = render(
           <EuiCallOut
+            title="Callout title"
             actionProps={{
               primary: {
                 children: 'Primary action',
@@ -140,6 +151,7 @@ describe('EuiCallOut', () => {
       it('renders a primary and secondary action button', () => {
         const { getByTestSubject } = render(
           <EuiCallOut
+            title="Callout title"
             actionProps={{
               primary: {
                 children: 'Primary action',
@@ -160,6 +172,7 @@ describe('EuiCallOut', () => {
       it('does not render a standalone secondary action button', () => {
         const { container } = render(
           <EuiCallOut
+            title="Callout title"
             actionProps={{
               secondary: {
                 children: 'Secondary action',
@@ -179,7 +192,11 @@ describe('EuiCallOut', () => {
       it('renders dismiss button and fires callback', () => {
         const onDismiss = jest.fn();
         const { getByTestSubject } = render(
-          <EuiCallOut onDismiss={onDismiss}>Content</EuiCallOut>
+          <EuiCallOut
+            title="Callout title"
+            text="Content"
+            onDismiss={onDismiss}
+          />
         );
 
         fireEvent.click(getByTestSubject('euiDismissCalloutButton'));
@@ -189,7 +206,11 @@ describe('EuiCallOut', () => {
       it('dismiss button has aria-label', () => {
         const onDismiss = jest.fn();
         const { getByTestSubject } = render(
-          <EuiCallOut onDismiss={onDismiss}>Content</EuiCallOut>
+          <EuiCallOut
+            title="Callout title"
+            text="Content"
+            onDismiss={onDismiss}
+          />
         );
 
         expect(getByTestSubject('euiDismissCalloutButton')).toHaveAttribute(
@@ -202,14 +223,14 @@ describe('EuiCallOut', () => {
         const onDismiss = () => {};
         const { getByTestSubject } = render(
           <EuiCallOut
+            title="Callout title"
+            text="Content"
             onDismiss={onDismiss}
             dismissButtonProps={{
               'aria-label': 'Custom label',
               'data-example': 'value',
             }}
-          >
-            Content
-          </EuiCallOut>
+          />
         );
 
         expect(getByTestSubject('euiDismissCalloutButton')).toHaveAttribute(
@@ -236,7 +257,7 @@ describe('EuiCallOut', () => {
             announceOnMount
             title="Announcement title"
             text="Announcement content"
-          ></EuiCallOut>
+          />
         );
 
         act(() => {
@@ -256,7 +277,7 @@ describe('EuiCallOut', () => {
             announceOnMount
             title="Announcement title"
             text="Announcement content"
-          ></EuiCallOut>
+          />
         );
 
         act(() => {
