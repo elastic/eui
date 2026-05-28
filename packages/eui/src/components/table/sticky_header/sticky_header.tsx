@@ -7,8 +7,9 @@
  */
 
 import React, {
-  createRef,
-  RefObject,
+  RefCallback,
+  type RefObject,
+  useCallback,
   useEffect,
   useLayoutEffect,
   useRef,
@@ -24,7 +25,10 @@ import { euiTableStickyHeaderStyles } from './sticky_header.styles';
 import { euiContainerCSS } from '../../../global_styling';
 import { EUI_TABLE_CSS_CONTAINER_NAME } from '../const';
 
-interface EuiTableStickyHeaderProps
+/**
+ * @internal
+ */
+export interface EuiTableStickyHeaderProps
   extends Pick<EuiTableProps, 'scrollableInline' | 'compressed'> {
   tableRef: RefObject<HTMLTableElement>;
   tableWrapperRef: RefObject<HTMLDivElement>;
@@ -40,7 +44,7 @@ export const EuiTableStickyHeader = ({
 }: EuiTableStickyHeaderProps) => {
   const store = useEuiTableColumnDataStore();
   const originalStyles = useEuiMemoizedStyles(euiTableStyles);
-  const columnRefs = useRef(new Map<string, RefObject<HTMLTableCellElement>>());
+  const columnElements = useRef(new Map<string, HTMLTableCellElement>());
   const stickyTableWrapperRef = useRef<HTMLDivElement>(null);
   const stickyTableRef = useRef<HTMLTableElement>(null);
   const [columns, setColumns] = useState(() =>
@@ -48,21 +52,31 @@ export const EuiTableStickyHeader = ({
   );
   const [isHidden, setIsHidden] = useState(true);
 
+  /**
+   * Get a callback ref to handle the column element ref
+   */
+  const getColumnRef = useCallback<
+    (id: string) => RefCallback<HTMLTableCellElement>
+  >((id) => {
+    return (element) => {
+      if (element) {
+        columnElements.current.set(id, element);
+      } else {
+        columnElements.current.delete(id);
+      }
+    };
+  }, []);
+
   useEffect(() => {
     const unsubscribe = store.subscribe((columns) => {
       setColumns(Array.from(columns.entries()));
-
-      // Create column refs for all columns received
-      columns.forEach((_, key) => {
-        columnRefs.current.set(key, createRef<HTMLTableCellElement>());
-      });
     });
 
     const unsubscribeColumnWidths = store.subscribeToColumnWidths((columns) => {
       columns.forEach((width, name) => {
-        const ref = columnRefs.current.get(name);
-        if (ref?.current) {
-          ref.current.style.width = `${width}px`;
+        const element = columnElements.current.get(name);
+        if (element) {
+          element.style.width = `${width}px`;
         }
       });
     });
@@ -76,9 +90,9 @@ export const EuiTableStickyHeader = ({
   // When columns change, apply column widths after render
   useLayoutEffect(() => {
     store.getColumnWidths().forEach((width, name) => {
-      const ref = columnRefs.current.get(name);
-      if (ref?.current) {
-        ref.current.style.width = `${width}px`;
+      const element = columnElements.current.get(name);
+      if (element) {
+        element.style.width = `${width}px`;
       }
     });
   }, [store, columns]);
@@ -193,7 +207,7 @@ export const EuiTableStickyHeader = ({
           <EuiTableHeader css={styles.header}>
             {columns.map(([name, data], index) =>
               data.renderHeaderCellRef.current?.({
-                ref: columnRefs.current.get(name),
+                ref: getColumnRef(name),
                 key: `${name}-${index}`,
               })
             )}
