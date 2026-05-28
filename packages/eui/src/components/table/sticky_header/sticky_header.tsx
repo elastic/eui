@@ -10,6 +10,7 @@ import React, {
   createRef,
   RefObject,
   useEffect,
+  useLayoutEffect,
   useRef,
   useState,
 } from 'react';
@@ -50,6 +51,7 @@ export const EuiTableStickyHeader = ({
     const unsubscribe = store.subscribe((columns) => {
       setColumns(Array.from(columns.entries()));
 
+      // Create column refs for all columns received
       columns.forEach((_, key) => {
         columnRefs.current.set(key, createRef<HTMLTableCellElement>());
       });
@@ -69,6 +71,16 @@ export const EuiTableStickyHeader = ({
       unsubscribeColumnWidths();
     };
   }, [store]);
+
+  // When columns change, apply column widths after render
+  useLayoutEffect(() => {
+    store.getColumnWidths().forEach((width, name) => {
+      const ref = columnRefs.current.get(name);
+      if (ref?.current) {
+        ref.current.style.width = `${width}px`;
+      }
+    });
+  }, [store, columns]);
 
   useEffect(() => {
     if (

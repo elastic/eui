@@ -74,6 +74,11 @@ export interface EuiTableStore {
    * Get all registered columns as a readonly map.
    */
   getColumns: () => EuiTableStoreColumnsMap;
+
+  /**
+   * Get all column widths as a readonly map.
+   */
+  getColumnWidths: () => EuiTableStoreColumnWidthsMap;
 }
 
 export const createEuiTableStore = (): EuiTableStore => {
@@ -136,5 +141,6 @@ export const createEuiTableStore = (): EuiTableStore => {
     subscribe: columnsPublisher.subscribe,
     subscribeToColumnWidths: columnWidthsPublisher.subscribe,
     getColumns: () => columns,
+    getColumnWidths: () => columnWidths,
   };
 };
