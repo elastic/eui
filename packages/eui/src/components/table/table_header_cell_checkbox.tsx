@@ -15,7 +15,8 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 
-import { useEuiMemoizedStyles, useGeneratedHtmlId } from '../../services';
+import { useEuiMemoizedStyles } from '../../services';
+import { useGeneratedHtmlId } from '../../services/accessibility/html_id_generator';
 import { CommonProps } from '../common';
 
 import { resolveWidthPropsAsStyle } from './utils';
