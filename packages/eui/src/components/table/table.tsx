@@ -77,14 +77,6 @@ export interface EuiTableProps
    * @default false
    */
   stickyHeader?: boolean;
-  /**
-   * Offset from the top of the viewport for the sticky header.
-   * Useful when there are other fixed/sticky elements above the table.
-   *
-   * @beta
-   * @default 0
-   */
-  stickyHeaderOffset?: number;
 }
 
 /**
