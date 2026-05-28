@@ -6,6 +6,11 @@
  * Side Public License, v 1.
  */
 
+import {
+  createMockResizeObserverEntry,
+  createResizeObserverMock,
+} from '../../test/internal';
+
 let mockIdCounter = 0;
 jest.mock('../../services/accessibility/html_id_generator', () => ({
   useGeneratedHtmlId: () => `unique-id-${mockIdCounter++}`,
@@ -25,9 +30,16 @@ import {
 } from './utils';
 import { EuiTableIsResponsiveContext } from './mobile/responsive_context';
 import { EuiTableStoreProvider } from './store/provider';
+import { EuiTableWithinStickyHeaderProvider } from './sticky_header/context';
 
 import { EuiTableHeaderCell } from './table_header_cell';
 import type { EuiTableSharedWidthProps } from './types';
+import * as storeProviderModule from './store/provider';
+import {
+  createEuiTableStore,
+  EuiTableStore,
+  EuiTableStoreColumnData,
+} from './store/store';
 
 const renderInTableHeader = (cell: ReactElement) => {
   const Wrapper = ({ children }: PropsWithChildren) => (
@@ -420,6 +432,140 @@ describe('EuiTableHeaderCell', () => {
       expect(element).not.toHaveStyleRule('position', 'sticky');
       expect(element).not.toHaveStyleRule('inset-inline-start');
       expect(element).not.toHaveStyleRule('inset-inline-end');
+    });
+  });
+
+  describe('store integration', () => {
+    let resizeObserverMock: ReturnType<typeof createResizeObserverMock>;
+    let useEuiTableColumnDataStoreMock: jest.SpyInstance<EuiTableStore>;
+
+    beforeEach(() => {
+      resizeObserverMock = createResizeObserverMock();
+      global.ResizeObserver = resizeObserverMock.ResizeObserver;
+
+      useEuiTableColumnDataStoreMock = jest.spyOn(
+        storeProviderModule,
+        'useEuiTableColumnDataStore'
+      );
+    });
+
+    it('registers column in the store on mount', () => {
+      const testStore = createEuiTableStore();
+      useEuiTableColumnDataStoreMock.mockReturnValue(testStore);
+
+      const registerColumn = jest.spyOn(testStore, 'registerColumn');
+
+      renderInTableHeader(<EuiTableHeaderCell>Test</EuiTableHeaderCell>);
+
+      expect(registerColumn).toHaveBeenCalledWith(
+        'unique-id-0',
+        expect.objectContaining<EuiTableStoreColumnData>({
+          renderHeaderCellRef: expect.objectContaining({
+            current: expect.any(Function),
+          }),
+          currentWidth: 0,
+        })
+      );
+    });
+
+    it('unregisters column on unmount', () => {
+      const testStore = createEuiTableStore();
+      useEuiTableColumnDataStoreMock.mockReturnValue(testStore);
+
+      const registerColumn = jest.spyOn(testStore, 'registerColumn');
+
+      const { unmount } = renderInTableHeader(
+        <EuiTableHeaderCell>Test</EuiTableHeaderCell>
+      );
+
+      expect(registerColumn).toHaveBeenCalledTimes(1);
+      expect(testStore.getColumns().size).toBe(1);
+      expect(testStore.getColumns().has('unique-id-0')).toBe(true);
+
+      unmount();
+
+      // Rather than testing whether the unregister function returned by
+      // registerColumn() was called, which is tricky to mock, we just assert
+      // on the store
+      expect(testStore.getColumns().size).toBe(0);
+      expect(testStore.getColumns().has('unique-id-0')).toBe(false);
+    });
+
+    it('does not register or update widths when within sticky header', () => {
+      const testStore = createEuiTableStore();
+      useEuiTableColumnDataStoreMock.mockReturnValue(testStore);
+
+      const registerColumn = jest.spyOn(testStore, 'registerColumn');
+      const updateColumnWidth = jest.spyOn(testStore, 'updateColumnWidth');
+
+      render(
+        <EuiTableStoreProvider>
+          <EuiTableWithinStickyHeaderProvider>
+            <table>
+              <thead>
+                <tr>
+                  <EuiTableHeaderCell>Test</EuiTableHeaderCell>
+                </tr>
+              </thead>
+            </table>
+          </EuiTableWithinStickyHeaderProvider>
+        </EuiTableStoreProvider>
+      );
+
+      expect(registerColumn).not.toHaveBeenCalled();
+      expect(updateColumnWidth).not.toHaveBeenCalled();
+    });
+
+    it('updates column width when resizing', () => {
+      const testStore = createEuiTableStore();
+      useEuiTableColumnDataStoreMock.mockReturnValue(testStore);
+
+      const updateColumnWidth = jest.spyOn(testStore, 'updateColumnWidth');
+
+      const { getByRole } = renderInTableHeader(
+        <EuiTableHeaderCell>Test</EuiTableHeaderCell>
+      );
+
+      resizeObserverMock.triggerCallback([
+        createMockResizeObserverEntry(getByRole('columnheader')),
+      ]);
+
+      expect(updateColumnWidth).toHaveBeenCalledWith('unique-id-0', 500);
+    });
+
+    it('updates column on every render', () => {
+      const testStore = createEuiTableStore();
+      useEuiTableColumnDataStoreMock.mockReturnValue(testStore);
+
+      const updateColumn = jest.spyOn(testStore, 'updateColumn');
+
+      const { rerender } = renderInTableHeader(
+        <EuiTableHeaderCell>Test</EuiTableHeaderCell>
+      );
+
+      expect(updateColumn).toHaveBeenCalledWith(
+        'unique-id-0',
+        expect.objectContaining<EuiTableStoreColumnData>({
+          renderHeaderCellRef: expect.objectContaining({
+            current: expect.any(Function),
+          }),
+        })
+      );
+
+      const { renderHeaderCellRef } = updateColumn.mock.lastCall![1];
+
+      updateColumn.mockClear();
+
+      rerender(<EuiTableHeaderCell>Test</EuiTableHeaderCell>);
+
+      expect(updateColumn).toHaveBeenCalledWith(
+        // The ID is stable between rerenders, but the simple number increment
+        // from the used mock shows something different
+        'unique-id-1',
+        expect.objectContaining<EuiTableStoreColumnData>({
+          renderHeaderCellRef,
+        })
+      );
     });
   });
 });
