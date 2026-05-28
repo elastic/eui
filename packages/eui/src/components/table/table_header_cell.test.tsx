@@ -19,17 +19,20 @@ import {
   WARNING_MESSAGE_NOT_RECOMMENDED_UNIT,
 } from './utils';
 import { EuiTableIsResponsiveContext } from './mobile/responsive_context';
+import { EuiTableStoreProvider } from './store/provider';
 
 import { EuiTableHeaderCell } from './table_header_cell';
 import type { EuiTableSharedWidthProps } from './types';
 
 const renderInTableHeader = (cell: ReactElement) => {
   const Wrapper = ({ children }: PropsWithChildren) => (
-    <table>
-      <thead>
-        <tr>{children}</tr>
-      </thead>
-    </table>
+    <EuiTableStoreProvider>
+      <table>
+        <thead>
+          <tr>{children}</tr>
+        </thead>
+      </table>
+    </EuiTableStoreProvider>
   );
 
   const result = render(<Wrapper>{cell}</Wrapper>);

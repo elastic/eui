@@ -18,14 +18,17 @@ import {
   WARNING_MESSAGE_NOT_RECOMMENDED_UNIT,
 } from './utils';
 import type { EuiTableSharedWidthProps } from './types';
+import { EuiTableStoreProvider } from './store/provider';
 
 const renderInTableHeader = (cell: React.ReactElement) =>
   render(
-    <table>
-      <thead>
-        <tr>{cell}</tr>
-      </thead>
-    </table>
+    <EuiTableStoreProvider>
+      <table>
+        <thead>
+          <tr>{cell}</tr>
+        </thead>
+      </table>
+    </EuiTableStoreProvider>
   );
 
 describe('EuiTableHeaderCellCheckbox', () => {
