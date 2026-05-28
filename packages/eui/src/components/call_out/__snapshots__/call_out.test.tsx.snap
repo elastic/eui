@@ -19,7 +19,7 @@ exports[`EuiCallOut is rendered 1`] = `
         data-euiicon-type="infoFill"
       />
       <div
-        class="css-mvolbh-content"
+        class="css-134hxxp-content"
       >
         <div
           class="euiText euiCallOut__additionalContent emotion-euiText-s-euiTextColor-default"
@@ -49,7 +49,7 @@ exports[`EuiCallOut props heading h1 is rendered 1`] = `
         data-euiicon-type="infoFill"
       />
       <div
-        class="css-mvolbh-content"
+        class="css-134hxxp-content"
       />
     </div>
   </div>
@@ -73,7 +73,7 @@ exports[`EuiCallOut props heading h2 is rendered 1`] = `
         data-euiicon-type="infoFill"
       />
       <div
-        class="css-mvolbh-content"
+        class="css-134hxxp-content"
       />
     </div>
   </div>
@@ -97,7 +97,7 @@ exports[`EuiCallOut props heading h3 is rendered 1`] = `
         data-euiicon-type="infoFill"
       />
       <div
-        class="css-mvolbh-content"
+        class="css-134hxxp-content"
       />
     </div>
   </div>
@@ -121,7 +121,7 @@ exports[`EuiCallOut props heading h4 is rendered 1`] = `
         data-euiicon-type="infoFill"
       />
       <div
-        class="css-mvolbh-content"
+        class="css-134hxxp-content"
       />
     </div>
   </div>
@@ -145,7 +145,7 @@ exports[`EuiCallOut props heading h5 is rendered 1`] = `
         data-euiicon-type="infoFill"
       />
       <div
-        class="css-mvolbh-content"
+        class="css-134hxxp-content"
       />
     </div>
   </div>
@@ -169,7 +169,7 @@ exports[`EuiCallOut props heading h6 is rendered 1`] = `
         data-euiicon-type="infoFill"
       />
       <div
-        class="css-mvolbh-content"
+        class="css-134hxxp-content"
       />
     </div>
   </div>
@@ -193,7 +193,7 @@ exports[`EuiCallOut props heading p is rendered 1`] = `
         data-euiicon-type="infoFill"
       />
       <div
-        class="css-mvolbh-content"
+        class="css-134hxxp-content"
       />
     </div>
   </div>

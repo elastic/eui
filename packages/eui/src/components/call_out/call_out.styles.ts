@@ -162,7 +162,7 @@ export const euiCallOutStyles = (euiThemeContext: UseEuiTheme) => {
         > .euiCallOut__text {
           display: inline;
 
-          > * {
+          * {
             display: inline;
           }
 
