@@ -7,4 +7,4 @@
  */
 
 export { BaseObject, type ObjectScope } from './playwright/base_object';
-export { EuiComboBoxObject } from './components/combo_box/object';
+export { EuiComboBoxObject } from './playwright/components/combo_box/object';

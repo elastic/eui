@@ -77,6 +77,9 @@ Scope every locator to `this.root`, never to `page`. For portal elements, use th
 ### Keyboard events scoped to the element
 Use `locator.press()` not `page.keyboard.press()`. Avoid `Escape` — it bubbles to page-level handlers (modals, flyouts). Prefer clicking the toggle button or calling `locator.blur()` to close dropdowns.
 
+### Subclassing readiness
+Declare internal getters `protected` rather than `private` so that subclasses can access them without duplication. EUI's own component hierarchy makes this relevant — `EuiInMemoryTable` builds on `EuiBasicTable` which builds on `EuiTable`; `EuiBetaBadge` builds on `EuiBadge`. A future `EuiInMemoryTableObject` should be able to extend `EuiBasicTableObject` and reuse its locators.
+
 ---
 
 ## Adding a new Component Object

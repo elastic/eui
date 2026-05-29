@@ -10,8 +10,8 @@ import type { Page } from '@playwright/test';
 import { test, expect } from '@playwright/test';
 
 import { EuiComboBoxObject } from './object';
-import { EuiComboBoxSelectors } from './selectors';
-import { storyUrl } from '../../storybook';
+import { EuiComboBoxSelectors } from '../../../components/combo_box/selectors';
+import { storyUrl } from '../../../storybook';
 
 /**
  * Validates `EuiComboBoxObject` against non-default EuiComboBox prop

@@ -9,8 +9,8 @@
 import type { Locator } from '@playwright/test';
 import { expect } from '@playwright/test';
 
-import { BaseObject } from '../../playwright/base_object';
-import { EuiComboBoxSelectors } from './selectors';
+import { BaseObject } from '../../base_object';
+import { EuiComboBoxSelectors } from '../../../components/combo_box/selectors';
 
 /**
  * Playwright Component Object for {@link

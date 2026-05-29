@@ -9,7 +9,7 @@
 import { test, expect } from '@playwright/test';
 
 import { EuiComboBoxObject } from './object';
-import { storyUrl } from '../../storybook';
+import { storyUrl } from '../../../storybook';
 
 /**
  * Validates `EuiComboBoxObject` against the live component in EUI Storybook.
