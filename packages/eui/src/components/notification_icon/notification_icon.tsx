@@ -8,8 +8,12 @@
 
 import React, { FunctionComponent } from 'react';
 import classNames from 'classnames';
+import {
+  _EuiThemeBackgroundColors,
+  getTokenName,
+} from '@elastic/eui-theme-common';
 
-import { useEuiMemoizedStyles } from '../../services';
+import { useEuiMemoizedStyles, useEuiTheme } from '../../services';
 import { CommonProps } from '../common';
 import { EuiIcon, IconType } from '../icon/icon';
 import { icon as EuiIconErrorFill } from '../icon/assets/error_fill';
@@ -49,6 +53,8 @@ export type EuiNotificationIconProps = CommonProps & {
 export const EuiNotificationIcon: FunctionComponent<
   EuiNotificationIconProps
 > = ({ className, type, size = 'm' }) => {
+  const { euiTheme } = useEuiTheme();
+
   const Icon = ICON_TYPES_MAP[type];
 
   const classes = classNames('EuiNotificationIcon', className);
@@ -58,12 +64,17 @@ export const EuiNotificationIcon: FunctionComponent<
     size === 'l' && styles.size[size],
   ];
 
+  const backgroundToken = getTokenName(
+    'backgroundFilled',
+    Icon.color
+  ) as keyof _EuiThemeBackgroundColors;
+
   return (
     <EuiIcon
       className={classes}
       css={cssStyles}
       type={Icon.icon}
-      color={Icon.color}
+      color={euiTheme.colors[backgroundToken]}
       aria-hidden="true"
       size={size}
     />
