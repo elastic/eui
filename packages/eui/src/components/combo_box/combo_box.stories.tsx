@@ -83,6 +83,7 @@ export const Playground: Story = {
 };
 
 export const MultipleInstances: Story = {
+  tags: ['vrt-only'],
   parameters: { loki: { skip: true } },
   render: () => (
     <>

@@ -9,7 +9,7 @@
 import type { Locator } from '@playwright/test';
 import { expect } from '@playwright/test';
 
-import { BaseObject } from '../base_object';
+import { BaseObject } from '../../playwright/base_object';
 import { EuiComboBoxSelectors } from './selectors';
 
 /**
@@ -61,6 +61,8 @@ export class EuiComboBoxObject extends BaseObject {
       await this.searchInput.blur();
     }
 
+    // Poll because React's state update after the last addOption click is
+    // async — the DOM may not reflect the final selection synchronously.
     await expect
       .poll(
         async () => [...(await this.getSelectedOptions())].sort(),

@@ -6,5 +6,5 @@
  * Side Public License, v 1.
  */
 
-export { BaseObject, type ObjectScope } from './components/base_object';
+export { BaseObject, type ObjectScope } from './playwright/base_object';
 export { EuiComboBoxObject } from './components/combo_box/object';
