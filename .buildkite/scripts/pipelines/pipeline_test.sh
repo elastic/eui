@@ -7,6 +7,40 @@ source .buildkite/scripts/common/utils.sh
 
 buildkite_analytics_vault="secret/ci/elastic-eui/buildkite-test-analytics"
 
+# Paths that don't affect the EUI test suite.
+# When a PR's diff is contained entirely within these paths,
+# the heavy EUI jobs (lint, unit:*, cypress:*) exit early below.
+# The lightweight per-package jobs always run.
+NON_EUI_PATHS_REGEXP='^(\.github/|wiki/|packages/(website|docusaurus-[^/]+|eslint-plugin)/)'
+
+is_eui_test_type() {
+  case "$1" in
+    lint|unit:ts|unit:tsx|unit:tsx:17|cypress:17|cypress:18|cypress:a11y) return 0 ;;
+    *) return 1 ;;
+  esac
+}
+
+should_skip_eui_tests() {
+  local base_branch="${BUILDKITE_PULL_REQUEST_BASE_BRANCH:-main}"
+  git fetch --no-tags --quiet origin "$base_branch" 2>/dev/null || return 1
+
+  local merge_base
+  merge_base=$(git merge-base "origin/$base_branch" HEAD 2>/dev/null) || return 1
+
+  local changed
+  changed=$(git diff --name-only "$merge_base" HEAD 2>/dev/null) || return 1
+
+  [[ -n "$changed" ]] || return 1
+  echo "$changed" | grep -qvE "$NON_EUI_PATHS_REGEXP" && return 1
+
+  return 0
+}
+
+if is_eui_test_type "$TEST_TYPE" && should_skip_eui_tests; then
+  echo "[SKIP]: Only non-EUI paths changed; skipping ${TEST_TYPE}"
+  exit 0
+fi
+
 DOCKER_OPTIONS=(
   -i --rm
   --env GIT_COMMITTER_NAME=test
@@ -65,6 +99,31 @@ case $TEST_TYPE in
   cypress:a11y)
     echo "[TASK]: Running Cypress accessibility tests against React 18"
     COMMAND="/opt/yarn*/bin/yarn --cwd packages/eui && yarn --cwd packages/eui build:workspaces && yarn --cwd packages/eui cypress install && yarn --cwd packages/eui run test-cypress-a11y --node-options=--max_old_space_size=2048"
+    ;;
+
+  pkg:eslint-plugin:test)
+    echo "[TASK]: Running @elastic/eslint-plugin-eui unit tests"
+    COMMAND="/opt/yarn*/bin/yarn && yarn workspace @elastic/eslint-plugin-eui test-unit"
+    ;;
+
+  pkg:eui-theme-common:lint)
+    echo "[TASK]: Linting @elastic/eui-theme-common"
+    COMMAND="/opt/yarn*/bin/yarn && yarn workspace @elastic/eui-theme-common lint"
+    ;;
+
+  pkg:eui-theme-common:test)
+    echo "[TASK]: Running @elastic/eui-theme-common unit tests"
+    COMMAND="/opt/yarn*/bin/yarn && yarn workspace @elastic/eui-theme-common test-unit"
+    ;;
+
+  pkg:eui-theme-borealis:lint)
+    echo "[TASK]: Linting @elastic/eui-theme-borealis"
+    COMMAND="/opt/yarn*/bin/yarn && yarn workspace @elastic/eui-theme-borealis build:workspaces && yarn workspace @elastic/eui-theme-borealis lint"
+    ;;
+
+  pkg:eui-theme-borealis:test)
+    echo "[TASK]: Running @elastic/eui-theme-borealis unit tests"
+    COMMAND="/opt/yarn*/bin/yarn && yarn workspace @elastic/eui-theme-borealis build:workspaces && yarn workspace @elastic/eui-theme-borealis test-unit"
     ;;
 
   *)

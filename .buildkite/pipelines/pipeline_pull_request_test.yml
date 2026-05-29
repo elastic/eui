@@ -77,3 +77,38 @@ steps:
       - "cypress/videos/**/*.mp4"
     timeout_in_minutes: 45
     retry: *retry_policy
+
+  - command: .buildkite/scripts/pipelines/pipeline_test.sh
+    label: ":jest: eslint-plugin unit tests"
+    env:
+      TEST_TYPE: 'pkg:eslint-plugin:test'
+    if: build.branch != "main"
+    retry: *retry_policy
+
+  - command: .buildkite/scripts/pipelines/pipeline_test.sh
+    label: ":typescript: eui-theme-common linting"
+    env:
+      TEST_TYPE: 'pkg:eui-theme-common:lint'
+    if: build.branch != "main"
+    retry: *retry_policy
+
+  - command: .buildkite/scripts/pipelines/pipeline_test.sh
+    label: ":jest: eui-theme-common unit tests"
+    env:
+      TEST_TYPE: 'pkg:eui-theme-common:test'
+    if: build.branch != "main"
+    retry: *retry_policy
+
+  - command: .buildkite/scripts/pipelines/pipeline_test.sh
+    label: ":typescript: eui-theme-borealis linting"
+    env:
+      TEST_TYPE: 'pkg:eui-theme-borealis:lint'
+    if: build.branch != "main"
+    retry: *retry_policy
+
+  - command: .buildkite/scripts/pipelines/pipeline_test.sh
+    label: ":jest: eui-theme-borealis unit tests"
+    env:
+      TEST_TYPE: 'pkg:eui-theme-borealis:test'
+    if: build.branch != "main"
+    retry: *retry_policy

@@ -12,7 +12,7 @@
       "always_trigger_comment_regex": "^(?:(?:buildkite\\W+)?(?:build|test)\\W+(?:this|it))",
       "set_commit_status": true,
       "skip_ci_on_only_changed": [
-        "^.github/",
+        "^\\.github/",
         "^wiki/",
         "^packages/website/",
         "^packages/docusaurus-"
