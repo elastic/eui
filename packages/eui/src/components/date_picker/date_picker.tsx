@@ -244,7 +244,7 @@ export const EuiDatePicker: FunctionComponent<EuiDatePickerProps> = ({
     fullDateFormat = `${dateFormat} ${timeFormat}`;
   }
 
-  // Set an internal ref on ReactDatePicker's `input` so we can set its :invalid state via useEuiValidatableControl
+  // Set an internal ref on ReactDatePicker's `input` so we can set its `aria-invalid` state via useEuiValidatableControl
   const [inputValidityRef, _setInputValidityRef] =
     useState<HTMLInputElement | null>(null);
   const setInputValidityRef = useCallback<
