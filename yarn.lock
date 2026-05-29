@@ -7130,6 +7130,9 @@ __metadata:
     typescript: "npm:^5.7.3"
   peerDependencies:
     "@playwright/test": ^1.50.0
+  peerDependenciesMeta:
+    "@playwright/test":
+      optional: true
   languageName: unknown
   linkType: soft
 

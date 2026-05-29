@@ -124,9 +124,7 @@ export const WithOnCreateOption: Story = {
   args: {
     selectedOptions: [],
   },
-  render: (args) => (
-    <StatefulComboBox {...args} onCreateOption={() => {}} />
-  ),
+  render: (args) => <StatefulComboBox {...args} onCreateOption={() => {}} />,
 };
 
 export const WithCustomOptionIds: Story = {
