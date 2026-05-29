@@ -101,6 +101,7 @@ export const MultipleInstances: Story = {
  * proper asPlainText testing impossible via URL args alone.
  */
 export const AsPlainText: Story = {
+  tags: ['vrt-only'],
   parameters: { loki: { skip: true } },
   args: {
     isClearable: true,
@@ -120,6 +121,7 @@ export const AsPlainText: Story = {
  * options created via `onCreateOption` (not present in the `options` array).
  */
 export const WithOnCreateOption: Story = {
+  tags: ['vrt-only'],
   parameters: { loki: { skip: true } },
   args: {
     selectedOptions: [],
