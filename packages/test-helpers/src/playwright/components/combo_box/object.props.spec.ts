@@ -38,33 +38,33 @@ const ON_CREATE_OPTION_STORY_URL = storyUrl(
 // ---------------------------------------------------------------------------
 
 test.describe('EuiComboBoxObject — singleSelection=true', () => {
-  let combo: EuiComboBoxObject;
+  let comboBox: EuiComboBoxObject;
 
   test.beforeEach(async ({ page }) => {
     await page.goto(playgroundUrl('singleSelection:true'));
     await page.getByTestId(TEST_SUBJ).waitFor({ state: 'visible' });
-    combo = new EuiComboBoxObject(page, TEST_SUBJ);
-    await combo.clear();
+    comboBox = new EuiComboBoxObject(page, TEST_SUBJ);
+    await comboBox.clear();
   });
 
   test('setSelectedOptions selects a single option', async () => {
-    await combo.setSelectedOptions(['Item 2']);
+    await comboBox.setSelectedOptions(['Item 2']);
 
-    expect(await combo.getSelectedOptions()).toEqual(['Item 2']);
+    expect(await comboBox.getSelectedOptions()).toEqual(['Item 2']);
   });
 
   test('setSelectedOptions replaces the existing single selection', async () => {
-    await combo.setSelectedOptions(['Item 2']);
-    await combo.setSelectedOptions(['Item 3']);
+    await comboBox.setSelectedOptions(['Item 2']);
+    await comboBox.setSelectedOptions(['Item 3']);
 
-    expect(await combo.getSelectedOptions()).toEqual(['Item 3']);
+    expect(await comboBox.getSelectedOptions()).toEqual(['Item 3']);
   });
 
   test('clear removes the single selection', async () => {
-    await combo.setSelectedOptions(['Item 2']);
-    await combo.clear();
+    await comboBox.setSelectedOptions(['Item 2']);
+    await comboBox.clear();
 
-    expect(await combo.getSelectedOptions()).toEqual([]);
+    expect(await comboBox.getSelectedOptions()).toEqual([]);
   });
 });
 
@@ -73,38 +73,38 @@ test.describe('EuiComboBoxObject — singleSelection=true', () => {
 // ---------------------------------------------------------------------------
 
 test.describe('EuiComboBoxObject — singleSelection=asPlainText', () => {
-  let combo: EuiComboBoxObject;
+  let comboBox: EuiComboBoxObject;
 
   test.beforeEach(async ({ page }) => {
     await page.goto(PLAIN_TEXT_STORY_URL);
     await page.getByTestId(TEST_SUBJ).waitFor({ state: 'visible' });
-    combo = new EuiComboBoxObject(page, TEST_SUBJ);
-    await combo.clear();
+    comboBox = new EuiComboBoxObject(page, TEST_SUBJ);
+    await comboBox.clear();
   });
 
   test('getSelectedOptions reads the input value when no pills are rendered', async () => {
-    await combo.setSelectedOptions(['Item 2']);
+    await comboBox.setSelectedOptions(['Item 2']);
 
     // asPlainText renders no pills — the input value IS the selection.
-    expect(await combo.getSelectedOptions()).toEqual(['Item 2']);
+    expect(await comboBox.getSelectedOptions()).toEqual(['Item 2']);
   });
 
   test('setSelectedOptions replaces the existing plain-text selection', async () => {
-    await combo.setSelectedOptions(['Item 2']);
-    await combo.setSelectedOptions(['Item 3']);
+    await comboBox.setSelectedOptions(['Item 2']);
+    await comboBox.setSelectedOptions(['Item 3']);
 
-    expect(await combo.getSelectedOptions()).toEqual(['Item 3']);
+    expect(await comboBox.getSelectedOptions()).toEqual(['Item 3']);
   });
 
   test('clear removes the plain-text selection', async () => {
-    await combo.setSelectedOptions(['Item 2']);
-    await combo.clear();
+    await comboBox.setSelectedOptions(['Item 2']);
+    await comboBox.clear();
 
-    expect(await combo.getSelectedOptions()).toEqual([]);
+    expect(await comboBox.getSelectedOptions()).toEqual([]);
   });
 
   test('getSelectedOptions returns [] when nothing is selected', async () => {
-    expect(await combo.getSelectedOptions()).toEqual([]);
+    expect(await comboBox.getSelectedOptions()).toEqual([]);
   });
 
   test('getSelectedOptions returns [] when text is typed but not confirmed', async ({
@@ -120,7 +120,7 @@ test.describe('EuiComboBoxObject — singleSelection=asPlainText', () => {
       .getByTestId(EuiComboBoxSelectors.OPTIONS_LIST_TOGGLE_BUTTON_TEST_SUBJ)
       .click();
     await expect
-      .poll(() => combo.getSelectedOptions(), {
+      .poll(() => comboBox.getSelectedOptions(), {
         message:
           'EuiComboBox: getSelectedOptions should return [] for unconfirmed typed text',
       })
@@ -133,27 +133,27 @@ test.describe('EuiComboBoxObject — singleSelection=asPlainText', () => {
 // ---------------------------------------------------------------------------
 
 test.describe('EuiComboBoxObject — isClearable=false', () => {
-  let combo: EuiComboBoxObject;
+  let comboBox: EuiComboBoxObject;
 
   test.beforeEach(async ({ page }) => {
     await page.goto(playgroundUrl('isClearable:!false'));
     await page.getByTestId(TEST_SUBJ).waitFor({ state: 'visible' });
-    combo = new EuiComboBoxObject(page, TEST_SUBJ);
-    await combo.clear();
+    comboBox = new EuiComboBoxObject(page, TEST_SUBJ);
+    await comboBox.clear();
   });
 
   test('clear removes the selection', async () => {
-    await combo.setSelectedOptions(['Item 2']);
-    await combo.clear();
+    await comboBox.setSelectedOptions(['Item 2']);
+    await comboBox.clear();
 
-    expect(await combo.getSelectedOptions()).toEqual([]);
+    expect(await comboBox.getSelectedOptions()).toEqual([]);
   });
 
   test('setSelectedOptions replaces the existing selection', async () => {
-    await combo.setSelectedOptions(['Item 2']);
-    await combo.setSelectedOptions(['Item 3']);
+    await comboBox.setSelectedOptions(['Item 2']);
+    await comboBox.setSelectedOptions(['Item 3']);
 
-    expect(await combo.getSelectedOptions()).toEqual(['Item 3']);
+    expect(await comboBox.getSelectedOptions()).toEqual(['Item 3']);
   });
 });
 
@@ -163,50 +163,50 @@ test.describe('EuiComboBoxObject — isClearable=false', () => {
 // ---------------------------------------------------------------------------
 
 test.describe('EuiComboBoxObject — singleSelection=asPlainText + isClearable=false', () => {
-  let combo: EuiComboBoxObject;
+  let comboBox: EuiComboBoxObject;
 
   test.beforeEach(async ({ page }) => {
     await page.goto(`${PLAIN_TEXT_STORY_URL}&args=isClearable:!false`);
     await page.getByTestId(TEST_SUBJ).waitFor({ state: 'visible' });
-    combo = new EuiComboBoxObject(page, TEST_SUBJ);
-    await combo.clear();
+    comboBox = new EuiComboBoxObject(page, TEST_SUBJ);
+    await comboBox.clear();
   });
 
   test('getSelectedOptions returns [] when nothing is selected', async () => {
-    expect(await combo.getSelectedOptions()).toEqual([]);
+    expect(await comboBox.getSelectedOptions()).toEqual([]);
   });
 
   test('getSelectedOptions returns the selected value', async () => {
-    await combo.setSelectedOptions(['Item 2']);
+    await comboBox.setSelectedOptions(['Item 2']);
 
-    expect(await combo.getSelectedOptions()).toEqual(['Item 2']);
+    expect(await comboBox.getSelectedOptions()).toEqual(['Item 2']);
   });
 
   test('setSelectedOptions selects an option', async () => {
-    await combo.setSelectedOptions(['Item 2']);
+    await comboBox.setSelectedOptions(['Item 2']);
 
-    expect(await combo.getSelectedOptions()).toEqual(['Item 2']);
+    expect(await comboBox.getSelectedOptions()).toEqual(['Item 2']);
   });
 
   test('setSelectedOptions replaces the existing selection', async () => {
-    await combo.setSelectedOptions(['Item 2']);
-    await combo.setSelectedOptions(['Item 3']);
+    await comboBox.setSelectedOptions(['Item 2']);
+    await comboBox.setSelectedOptions(['Item 3']);
 
-    expect(await combo.getSelectedOptions()).toEqual(['Item 3']);
+    expect(await comboBox.getSelectedOptions()).toEqual(['Item 3']);
   });
 
   test('setSelectedOptions is a no-op when the selection already matches', async () => {
-    await combo.setSelectedOptions(['Item 2']);
-    await combo.setSelectedOptions(['Item 2']);
+    await comboBox.setSelectedOptions(['Item 2']);
+    await comboBox.setSelectedOptions(['Item 2']);
 
-    expect(await combo.getSelectedOptions()).toEqual(['Item 2']);
+    expect(await comboBox.getSelectedOptions()).toEqual(['Item 2']);
   });
 
   test('clear removes the selection', async () => {
-    await combo.setSelectedOptions(['Item 2']);
-    await combo.clear();
+    await comboBox.setSelectedOptions(['Item 2']);
+    await comboBox.clear();
 
-    expect(await combo.getSelectedOptions()).toEqual([]);
+    expect(await comboBox.getSelectedOptions()).toEqual([]);
   });
 });
 
@@ -216,13 +216,13 @@ test.describe('EuiComboBoxObject — singleSelection=asPlainText + isClearable=f
 // ---------------------------------------------------------------------------
 
 test.describe('EuiComboBoxObject — onCreateOption', () => {
-  let combo: EuiComboBoxObject;
+  let comboBox: EuiComboBoxObject;
 
   test.beforeEach(async ({ page }) => {
     await page.goto(ON_CREATE_OPTION_STORY_URL);
     await page.getByTestId(TEST_SUBJ).waitFor({ state: 'visible' });
-    combo = new EuiComboBoxObject(page, TEST_SUBJ);
-    await combo.clear();
+    comboBox = new EuiComboBoxObject(page, TEST_SUBJ);
+    await comboBox.clear();
   });
 
   test('getSelectedOptions returns the created option label', async ({
@@ -230,23 +230,23 @@ test.describe('EuiComboBoxObject — onCreateOption', () => {
   }) => {
     await createCustomOption(page, TEST_SUBJ, 'Brand new');
 
-    expect(await combo.getSelectedOptions()).toContain('Brand new');
+    expect(await comboBox.getSelectedOptions()).toContain('Brand new');
   });
 
   test('clear removes a created option', async ({ page }) => {
     await createCustomOption(page, TEST_SUBJ, 'Brand new');
-    await combo.clear();
+    await comboBox.clear();
 
-    expect(await combo.getSelectedOptions()).toEqual([]);
+    expect(await comboBox.getSelectedOptions()).toEqual([]);
   });
 
   test('setSelectedOptions replaces a created option with a regular one', async ({
     page,
   }) => {
     await createCustomOption(page, TEST_SUBJ, 'Brand new');
-    await combo.setSelectedOptions(['Item 3']);
+    await comboBox.setSelectedOptions(['Item 3']);
 
-    expect(await combo.getSelectedOptions()).toEqual(['Item 3']);
+    expect(await comboBox.getSelectedOptions()).toEqual(['Item 3']);
   });
 });
 
@@ -256,12 +256,12 @@ test.describe('EuiComboBoxObject — onCreateOption', () => {
 // ---------------------------------------------------------------------------
 
 test.describe('EuiComboBoxObject — onCreateOption + asPlainText', () => {
-  let combo: EuiComboBoxObject;
+  let comboBox: EuiComboBoxObject;
 
   test.beforeEach(async ({ page }) => {
     await page.goto(`${PLAIN_TEXT_STORY_URL}&args=onCreateOption:!true`);
     await page.getByTestId(TEST_SUBJ).waitFor({ state: 'visible' });
-    combo = new EuiComboBoxObject(page, TEST_SUBJ);
+    comboBox = new EuiComboBoxObject(page, TEST_SUBJ);
   });
 
   test('getSelectedOptions returns the created option label', async ({
@@ -269,23 +269,23 @@ test.describe('EuiComboBoxObject — onCreateOption + asPlainText', () => {
   }) => {
     await createCustomOption(page, TEST_SUBJ, 'Brand new');
 
-    expect(await combo.getSelectedOptions()).toEqual(['Brand new']);
+    expect(await comboBox.getSelectedOptions()).toEqual(['Brand new']);
   });
 
   test('clear removes a created option', async ({ page }) => {
     await createCustomOption(page, TEST_SUBJ, 'Brand new');
-    await combo.clear();
+    await comboBox.clear();
 
-    expect(await combo.getSelectedOptions()).toEqual([]);
+    expect(await comboBox.getSelectedOptions()).toEqual([]);
   });
 
   test('setSelectedOptions replaces a created option with a regular one', async ({
     page,
   }) => {
     await createCustomOption(page, TEST_SUBJ, 'Brand new');
-    await combo.setSelectedOptions(['Item 3']);
+    await comboBox.setSelectedOptions(['Item 3']);
 
-    expect(await combo.getSelectedOptions()).toEqual(['Item 3']);
+    expect(await comboBox.getSelectedOptions()).toEqual(['Item 3']);
   });
 });
 
