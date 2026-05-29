@@ -11,7 +11,12 @@
       "trigger_comment_regex": "^(?:(?:buildkite\\W+)?(?:build|test)\\W+(?:this|it))",
       "always_trigger_comment_regex": "^(?:(?:buildkite\\W+)?(?:build|test)\\W+(?:this|it))",
       "set_commit_status": true,
-      "skip_ci_on_only_changed": ["^.github/", "^wiki/"]
+      "skip_ci_on_only_changed": [
+        "^.github/",
+        "^wiki/",
+        "^packages/website/",
+        "^packages/docusaurus-"
+      ]
     },
     {
       "enabled": true,
