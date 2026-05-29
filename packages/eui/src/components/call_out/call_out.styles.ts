@@ -118,8 +118,15 @@ export const euiCallOutStyles = (euiThemeContext: UseEuiTheme) => {
     wrapper: css`
       display: flex;
       flex-direction: column;
-      gap: ${euiTheme.size.m};
       inline-size: 100%;
+
+      &:where([data-size='s'] &) {
+        gap: ${euiTheme.size.s};
+      }
+
+      &:where([data-size='m'] &) {
+        gap: ${euiTheme.size.m};
+      }
 
       ${withContainerQuery({
         layout: 'wide',
