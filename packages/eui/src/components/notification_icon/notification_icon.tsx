@@ -57,7 +57,7 @@ export const EuiNotificationIcon: FunctionComponent<
 
   const Icon = ICON_TYPES_MAP[type];
 
-  const classes = classNames('EuiNotificationIcon', className);
+  const classes = classNames('euiNotificationIcon', className);
   const styles = useEuiMemoizedStyles(euiNotificationIconStyles);
   const cssStyles = [
     styles.euiNotificationIcon,

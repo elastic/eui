@@ -205,7 +205,7 @@ export const EuiCallOut = forwardRef<HTMLDivElement, EuiCallOutProps>(
 
     const icon = useMemo(() => {
       if (!iconType) {
-        const iconType = COLOR_TO_NOTIFICATION_ICON_MAP[color];
+        const iconType = COLOR_TO_NOTIFICATION_ICON_MAP[color] ?? 'info';
 
         return (
           <EuiNotificationIcon
