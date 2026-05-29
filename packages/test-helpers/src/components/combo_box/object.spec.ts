@@ -9,6 +9,7 @@
 import { test, expect } from '@playwright/test';
 
 import { EuiComboBoxObject } from './object';
+import { storyUrl } from '../../storybook';
 
 /**
  * Validates `EuiComboBoxObject` against the live component in EUI Storybook.
@@ -19,61 +20,68 @@ import { EuiComboBoxObject } from './object';
  */
 
 const TEST_SUBJ = 'testComboBox';
-const PLAYGROUND_STORY_URL =
-  `/iframe.html?id=forms-euicombobox--playground&viewMode=story&args=data-test-subj:${TEST_SUBJ}`;
+
+const PLAYGROUND_URL = storyUrl(
+  'forms-euicombobox--playground',
+  `data-test-subj:${TEST_SUBJ}`
+);
 
 test.describe('EuiComboBoxObject', () => {
-  let combo: EuiComboBoxObject;
+  let comboBox: EuiComboBoxObject;
 
   test.beforeEach(async ({ page }) => {
-    await page.goto(PLAYGROUND_STORY_URL);
+    await page.goto(PLAYGROUND_URL);
     await page.getByTestId(TEST_SUBJ).waitFor({ state: 'visible' });
-    combo = new EuiComboBoxObject(page, TEST_SUBJ);
-    await combo.clear();
+    comboBox = new EuiComboBoxObject(page, TEST_SUBJ);
+    await comboBox.clear();
   });
 
-  test('setSelectedOptions sets the selection to the provided labels', async () => {
-    await combo.setSelectedOptions(['Item 2']);
+  test.describe('setSelectedOptions', () => {
+    test('sets the selection to the provided labels', async () => {
+      await comboBox.setSelectedOptions(['Item 2']);
 
-    expect(await combo.getSelectedOptions()).toEqual(['Item 2']);
+      expect(await comboBox.getSelectedOptions()).toEqual(['Item 2']);
+    });
+
+    test('replaces the existing selection', async () => {
+      await comboBox.setSelectedOptions(['Item 1', 'Item 2']);
+      expect(await comboBox.getSelectedOptions()).toEqual(['Item 1', 'Item 2']);
+
+      // Replace, don't add.
+      await comboBox.setSelectedOptions(['Item 3']);
+      expect(await comboBox.getSelectedOptions()).toEqual(['Item 3']);
+    });
+
+    test('is idempotent when the selection already matches', async () => {
+      await comboBox.setSelectedOptions(['Item 1', 'Item 2']);
+
+      await expect(
+        comboBox.setSelectedOptions(['Item 1', 'Item 2'])
+      ).resolves.not.toThrow();
+      expect(await comboBox.getSelectedOptions()).toEqual(['Item 1', 'Item 2']);
+    });
+
+    test('setSelectedOptions([]) clears the selection', async () => {
+      await comboBox.setSelectedOptions(['Item 1', 'Item 2']);
+
+      await comboBox.setSelectedOptions([]);
+
+      expect(await comboBox.getSelectedOptions()).toEqual([]);
+    });
   });
 
-  test('setSelectedOptions replaces the existing selection', async () => {
-    await combo.setSelectedOptions(['Item 1', 'Item 2']);
-    expect(await combo.getSelectedOptions()).toEqual(['Item 1', 'Item 2']);
+  test.describe('clear', () => {
+    test('removes all selected options', async () => {
+      await comboBox.setSelectedOptions(['Item 1', 'Item 2']);
 
-    // Replace, don't add.
-    await combo.setSelectedOptions(['Item 3']);
-    expect(await combo.getSelectedOptions()).toEqual(['Item 3']);
-  });
+      await comboBox.clear();
 
-  test('setSelectedOptions is idempotent when the selection already matches', async () => {
-    await combo.setSelectedOptions(['Item 1', 'Item 2']);
+      expect(await comboBox.getSelectedOptions()).toEqual([]);
+    });
 
-    await expect(
-      combo.setSelectedOptions(['Item 1', 'Item 2'])
-    ).resolves.not.toThrow();
-    expect(await combo.getSelectedOptions()).toEqual(['Item 1', 'Item 2']);
-  });
-
-  test('clear removes all selected options', async () => {
-    await combo.setSelectedOptions(['Item 1', 'Item 2']);
-
-    await combo.clear();
-
-    expect(await combo.getSelectedOptions()).toEqual([]);
-  });
-
-  test('clear is a no-op when nothing is selected', async () => {
-    await expect(combo.clear()).resolves.not.toThrow();
-    expect(await combo.getSelectedOptions()).toEqual([]);
-  });
-
-  test('setSelectedOptions([]) clears the selection', async () => {
-    await combo.setSelectedOptions(['Item 1', 'Item 2']);
-
-    await combo.setSelectedOptions([]);
-
-    expect(await combo.getSelectedOptions()).toEqual([]);
+    test('is a no-op when nothing is selected', async () => {
+      await expect(comboBox.clear()).resolves.not.toThrow();
+      expect(await comboBox.getSelectedOptions()).toEqual([]);
+    });
   });
 });

@@ -11,6 +11,7 @@ import { test, expect } from '@playwright/test';
 
 import { EuiComboBoxObject } from './object';
 import { EuiComboBoxSelectors } from './selectors';
+import { storyUrl } from '../../storybook';
 
 /**
  * Validates `EuiComboBoxObject` against non-default EuiComboBox prop
@@ -24,10 +25,13 @@ import { EuiComboBoxSelectors } from './selectors';
 const TEST_SUBJ = 'testComboBox';
 
 const playgroundUrl = (extraArgs: string) =>
-  `/iframe.html?id=forms-euicombobox--playground&viewMode=story&args=data-test-subj:${TEST_SUBJ};${extraArgs}`;
+  storyUrl('forms-euicombobox--playground', `data-test-subj:${TEST_SUBJ};${extraArgs}`);
 
-const PLAIN_TEXT_STORY_URL = `/iframe.html?id=forms-euicombobox--as-plain-text&viewMode=story`;
-const ON_CREATE_OPTION_STORY_URL = `/iframe.html?id=forms-euicombobox--with-on-create-option&viewMode=story&args=data-test-subj:${TEST_SUBJ}`;
+const PLAIN_TEXT_STORY_URL = storyUrl('forms-euicombobox--as-plain-text');
+const ON_CREATE_OPTION_STORY_URL = storyUrl(
+  'forms-euicombobox--with-on-create-option',
+  `data-test-subj:${TEST_SUBJ}`
+);
 
 // ---------------------------------------------------------------------------
 // singleSelection={true}  — one pill, no multi-select

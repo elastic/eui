@@ -9,6 +9,7 @@
 import { test, expect } from '@playwright/test';
 
 import { EuiComboBoxObject } from './object';
+import { storyUrl } from '../../storybook';
 
 /**
  * Validates that `EuiComboBoxObject` correctly scopes all locators when
@@ -23,7 +24,7 @@ test.describe('EuiComboBoxObject — multiple instances', () => {
   let combo2: EuiComboBoxObject;
 
   test.beforeEach(async ({ page }) => {
-    await page.goto('/iframe.html?id=forms-euicombobox--multiple-instances');
+    await page.goto(storyUrl('forms-euicombobox--multiple-instances'));
     combo1 = new EuiComboBoxObject(page, 'combo1');
     combo2 = new EuiComboBoxObject(page, 'combo2');
     await combo1.clear();
