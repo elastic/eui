@@ -61,16 +61,7 @@ export class EuiComboBoxObject extends BaseObject {
       await this.searchInput.blur();
     }
 
-    // Poll because React's state update after the last addOption click is
-    // async — the DOM may not reflect the final selection synchronously.
-    await expect
-      .poll(
-        async () => [...(await this.getSelectedOptions())].sort(),
-        {
-          message: `EuiComboBox: selection did not match after setSelectedOptions(${JSON.stringify(labels)})`,
-        }
-      )
-      .toEqual(sortedTarget);
+    expect([...(await this.getSelectedOptions())].sort()).toEqual(sortedTarget);
   }
 
   /**
@@ -200,11 +191,7 @@ export class EuiComboBoxObject extends BaseObject {
     // partial label string. fill('') cleans that up without restoring the
     // selection (selectedOptions is already empty at this point).
     await this.searchInput.fill('');
-    await expect
-      .poll(() => this.getSelectedOptions(), {
-        message: 'EuiComboBox: Backspace did not clear the asPlainText selection',
-      })
-      .toEqual([]);
+    await expect(this.searchInput).toHaveValue('');
   }
 
   /**

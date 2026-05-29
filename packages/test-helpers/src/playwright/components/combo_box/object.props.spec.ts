@@ -119,12 +119,9 @@ test.describe('EuiComboBoxObject — singleSelection=asPlainText', () => {
     await page
       .getByTestId(EuiComboBoxSelectors.OPTIONS_LIST_TOGGLE_BUTTON_TEST_SUBJ)
       .click();
-    await expect
-      .poll(() => comboBox.getSelectedOptions(), {
-        message:
-          'EuiComboBox: getSelectedOptions should return [] for unconfirmed typed text',
-      })
-      .toEqual([]);
+    // Waits for React to process the toggle click before reading selection state.
+    await expect(page.getByTestId(TEST_SUBJ)).toHaveClass(/euiComboBox-isInvalid/);
+    expect(await comboBox.getSelectedOptions()).toEqual([]);
   });
 });
 
