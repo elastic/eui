@@ -9,7 +9,7 @@ exports[`EuiCallOut is rendered 1`] = `
   style="--euiCallOutTypeColor: #0B64DD;"
 >
   <div
-    class="css-1lj626z-wrapper"
+    class="css-4ee039-wrapper"
   >
     <div
       class="css-wlziyu-body"
@@ -44,7 +44,7 @@ exports[`EuiCallOut props heading h1 is rendered 1`] = `
   style="--euiCallOutTypeColor: #0B64DD;"
 >
   <div
-    class="css-1lj626z-wrapper"
+    class="css-4ee039-wrapper"
   >
     <div
       class="css-wlziyu-body"
@@ -74,7 +74,7 @@ exports[`EuiCallOut props heading h2 is rendered 1`] = `
   style="--euiCallOutTypeColor: #0B64DD;"
 >
   <div
-    class="css-1lj626z-wrapper"
+    class="css-4ee039-wrapper"
   >
     <div
       class="css-wlziyu-body"
@@ -104,7 +104,7 @@ exports[`EuiCallOut props heading h3 is rendered 1`] = `
   style="--euiCallOutTypeColor: #0B64DD;"
 >
   <div
-    class="css-1lj626z-wrapper"
+    class="css-4ee039-wrapper"
   >
     <div
       class="css-wlziyu-body"
@@ -134,7 +134,7 @@ exports[`EuiCallOut props heading h4 is rendered 1`] = `
   style="--euiCallOutTypeColor: #0B64DD;"
 >
   <div
-    class="css-1lj626z-wrapper"
+    class="css-4ee039-wrapper"
   >
     <div
       class="css-wlziyu-body"
@@ -164,7 +164,7 @@ exports[`EuiCallOut props heading h5 is rendered 1`] = `
   style="--euiCallOutTypeColor: #0B64DD;"
 >
   <div
-    class="css-1lj626z-wrapper"
+    class="css-4ee039-wrapper"
   >
     <div
       class="css-wlziyu-body"
@@ -194,7 +194,7 @@ exports[`EuiCallOut props heading h6 is rendered 1`] = `
   style="--euiCallOutTypeColor: #0B64DD;"
 >
   <div
-    class="css-1lj626z-wrapper"
+    class="css-4ee039-wrapper"
   >
     <div
       class="css-wlziyu-body"
@@ -224,7 +224,7 @@ exports[`EuiCallOut props heading p is rendered 1`] = `
   style="--euiCallOutTypeColor: #0B64DD;"
 >
   <div
-    class="css-1lj626z-wrapper"
+    class="css-4ee039-wrapper"
   >
     <div
       class="css-wlziyu-body"
