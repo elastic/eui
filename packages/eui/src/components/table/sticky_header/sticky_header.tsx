@@ -43,14 +43,15 @@ export const EuiTableStickyHeader = ({
   isResponsive,
 }: EuiTableStickyHeaderProps) => {
   const store = useEuiTableColumnDataStore();
-  const originalStyles = useEuiMemoizedStyles(euiTableStyles);
   const columnElements = useRef(new Map<string, HTMLTableCellElement>());
   const stickyTableWrapperRef = useRef<HTMLDivElement>(null);
   const stickyTableRef = useRef<HTMLTableElement>(null);
   const [columns, setColumns] = useState(() =>
     Array.from(store.getColumns().entries())
   );
-  const [isHidden, setIsHidden] = useState(true);
+
+  const originalStyles = useEuiMemoizedStyles(euiTableStyles);
+  const styles = useEuiMemoizedStyles(euiTableStickyHeaderStyles);
 
   /**
    * Get a callback ref to handle the column element ref
@@ -96,36 +97,6 @@ export const EuiTableStickyHeader = ({
       }
     });
   }, [store, columns]);
-
-  // Show sticky header only when the table is intersecting to
-  // prevent duplicated headers
-  useEffect(() => {
-    if (!tableWrapperRef.current) {
-      return;
-    }
-
-    const handleTopCornerIntersection: IntersectionObserverCallback = ([
-      entry,
-    ]) => {
-      setIsHidden(!entry.isIntersecting);
-    };
-
-    // IntersectionOserver is available in all supported browsers,
-    // but jsdom and jest don't provide a polyfill for it.
-    let observer: IntersectionObserver | undefined;
-    if (typeof IntersectionObserver !== 'undefined') {
-      observer = new IntersectionObserver(handleTopCornerIntersection, {
-        threshold: 0,
-        rootMargin: '0px 0px -100% 0px',
-      });
-
-      observer.observe(tableWrapperRef.current);
-    }
-
-    return () => {
-      observer?.disconnect();
-    };
-  }, [tableRef, tableWrapperRef]);
 
   useEffect(() => {
     if (
@@ -183,9 +154,8 @@ export const EuiTableStickyHeader = ({
     // Forced fixed layout since all column widths come synced from the main table
     originalStyles.layout.fixed,
     originalStyles.hasBackground,
+    styles.table,
   ];
-
-  const styles = useEuiMemoizedStyles(euiTableStickyHeaderStyles);
 
   if (isResponsive) {
     return null;
@@ -193,26 +163,27 @@ export const EuiTableStickyHeader = ({
 
   return (
     <EuiTableWithinStickyHeaderProvider>
-      <div
-        css={[
-          // This CSS container is needed to feed `<EuiTableHeaderCell>`
-          // with `sticky` prop set the necessary scroll state
-          euiContainerCSS('normal', EUI_TABLE_CSS_CONTAINER_NAME, true),
-          styles.wrapper,
-          isHidden && styles.wrapperHidden,
-        ]}
-        ref={stickyTableWrapperRef}
-      >
-        <table css={tableStyles} ref={stickyTableRef}>
-          <EuiTableHeader css={styles.header}>
-            {columns.map(([name, data], index) =>
-              data.renderHeaderCellRef.current?.({
-                ref: getColumnRef(name),
-                key: `${name}-${index}`,
-              })
-            )}
-          </EuiTableHeader>
-        </table>
+      <div css={styles.wrapper} aria-hidden="true">
+        <div
+          css={[
+            // This CSS container is needed to feed `<EuiTableHeaderCell>`
+            // with `sticky` prop set the necessary scroll state
+            euiContainerCSS('normal', EUI_TABLE_CSS_CONTAINER_NAME, true),
+            styles.innerWrapper,
+          ]}
+          ref={stickyTableWrapperRef}
+        >
+          <table css={tableStyles} ref={stickyTableRef}>
+            <EuiTableHeader css={styles.header}>
+              {columns.map(([name, data], index) =>
+                data.renderHeaderCellRef.current?.({
+                  ref: getColumnRef(name),
+                  key: `${name}-${index}`,
+                })
+              )}
+            </EuiTableHeader>
+          </table>
+        </div>
       </div>
     </EuiTableWithinStickyHeaderProvider>
   );

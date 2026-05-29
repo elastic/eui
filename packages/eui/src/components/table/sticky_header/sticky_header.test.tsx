@@ -12,8 +12,6 @@ import { render } from '../../../test/rtl';
 import {
   createResizeObserverMock,
   createMockResizeObserverEntry,
-  createIntersectionObserverMock,
-  createMockIntersectionObserverEntry,
 } from '../../../test/internal';
 
 import {
@@ -61,17 +59,11 @@ const createMockTableWrapper = (overrides?: {
 
 describe('EuiTableStickyHeader', () => {
   let resizeObserverMock: ReturnType<typeof createResizeObserverMock>;
-  let intersectionObserverMock: ReturnType<
-    typeof createIntersectionObserverMock
-  >;
   let useEuiTableColumnDataStoreMock: jest.SpyInstance<EuiTableStore>;
 
   beforeEach(() => {
     resizeObserverMock = createResizeObserverMock();
     global.ResizeObserver = resizeObserverMock.ResizeObserver;
-
-    intersectionObserverMock = createIntersectionObserverMock();
-    global.IntersectionObserver = intersectionObserverMock.IntersectionObserver;
 
     useEuiTableColumnDataStoreMock = jest.spyOn(
       storeProviderModule,
@@ -209,37 +201,6 @@ describe('EuiTableStickyHeader', () => {
       ).toHaveStyle({
         width: '250px',
       });
-    });
-  });
-
-  describe('intersection visibility', () => {
-    it('toggles visibility based on table intersection', async () => {
-      const { container, tableWrapperElement } = renderComponent();
-      const wrapper = container.firstChild as HTMLElement;
-
-      intersectionObserverMock.triggerCallback([
-        createMockIntersectionObserverEntry(tableWrapperElement, false),
-      ]);
-
-      expect(wrapper).toHaveStyleRule('display', 'none');
-      expect(wrapper).not.toBeVisible();
-
-      intersectionObserverMock.triggerCallback([
-        createMockIntersectionObserverEntry(tableWrapperElement, true),
-      ]);
-
-      expect(wrapper).not.toHaveStyleRule('display', 'none');
-      expect(wrapper).toBeVisible();
-    });
-
-    it('disconnects the IntersectionObserver on unmount', () => {
-      const { unmount } = renderComponent();
-      unmount();
-
-      expect(
-        intersectionObserverMock.IntersectionObserver.mock.results[0].value
-          .disconnect
-      ).toHaveBeenCalled();
     });
   });
 

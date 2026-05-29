@@ -7,17 +7,29 @@
  */
 
 import { css } from '@emotion/react';
-import { UseEuiTheme } from '../../../services';
+import type { UseEuiTheme } from '../../../services';
 
 export const euiTableStickyHeaderStyles = ({ euiTheme }: UseEuiTheme) => ({
   wrapper: css`
     position: sticky;
     inset-block-start: var(--euiTableStickyHeaderOffsetTop, 0);
     z-index: var(--euiTableStickyHeaderZIndex, 1);
+
+    /* Remove from document flow by setting height to zero and allowing overflow.
+       This addresses the issue of having duplicated headers or having
+       to switch styles during scrolling, which often leads to a slight flicker
+       due to imperfect scroll timing synchronization, and comes with
+       added performance cost. */
+    block-size: 0;
+    overflow-block: visible;
+  `,
+  innerWrapper: css`
+    /* Setting position: sticky and overflow properties on the same element
+       causes the stickiness to break */
     overflow-inline: hidden;
   `,
-  wrapperHidden: css`
-    display: none;
+  table: css`
+    pointer-events: auto;
   `,
   header: css`
     th::after {
