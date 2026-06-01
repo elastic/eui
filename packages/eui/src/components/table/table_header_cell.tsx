@@ -301,7 +301,7 @@ export const EuiTableHeaderCell: FunctionComponent<EuiTableHeaderCellProps> = ({
 
       store.updateColumnWidth(storeCellIdRef.current, entry.contentRect.width);
     },
-    [store, storeCellIdRef]
+    [store]
   );
 
   useEffect(() => {
@@ -338,8 +338,7 @@ export const EuiTableHeaderCell: FunctionComponent<EuiTableHeaderCellProps> = ({
 
       resizeObserver?.disconnect();
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [store, storeCellIdRef, isWithinStickyHeader]);
+  }, [store, isWithinStickyHeader, handleResize]);
 
   // Notify the store on every render so the sticky header stays in sync.
   // React's reconciliation will efficiently handle any duplicate renders.
