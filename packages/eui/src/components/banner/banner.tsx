@@ -193,6 +193,7 @@ export const EuiBanner = forwardRef<HTMLDivElement, EuiBannerProps>(
                   {text}
                 </EuiText>
               ) : null}
+
               {children && children}
             </div>
 
