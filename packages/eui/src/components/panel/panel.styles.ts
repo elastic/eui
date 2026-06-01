@@ -16,7 +16,6 @@ import {
 import { UseEuiTheme } from '../../services';
 import {
   euiCanAnimate,
-  euiFontSize,
   logicalCSS,
   logicalTextAlignCSS,
 } from '../../global_styling';
@@ -56,7 +55,7 @@ export const euiPanelStyles = (euiThemeContext: UseEuiTheme) => {
       flex-grow: 0;
       /* Set a fixed base line-height to ensure consistency between interactive and non-interactive panels.
       Otherwise the browser defaults between div and button might be different. */
-      line-height: ${euiFontSize(euiThemeContext, 'xs').lineHeight};
+      line-height: inherit;
     `,
 
     grow: css`
