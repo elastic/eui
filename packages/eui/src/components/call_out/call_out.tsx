@@ -32,11 +32,11 @@ import {
   EuiCallOutActionSecondaryProps,
 } from './call_out_action';
 import { euiCallOutStyles, euiCallOutHeaderStyles } from './call_out.styles';
-import { EuiCalloutColor, EuiCallOutHeading, EuiCallOutSize } from './types';
+import { EuiCallOutColor, EuiCallOutHeading, EuiCallOutSize } from './types';
 import { euiNotificationIconStyles } from '../notification_icon/notification_icon.styles';
 
 export const COLOR_TO_NOTIFICATION_ICON_MAP: Record<
-  EuiCalloutColor,
+  EuiCallOutColor,
   EuiNotificationIconType
 > = {
   primary: 'info',
@@ -46,9 +46,9 @@ export const COLOR_TO_NOTIFICATION_ICON_MAP: Record<
 };
 
 /** Get correct color with fallback */
-const getCallOutColor = (color: unknown): EuiCalloutColor => {
+const getCallOutColor = (color: unknown): EuiCallOutColor => {
   return typeof color === 'string' && color in COLOR_TO_NOTIFICATION_ICON_MAP
-    ? (color as EuiCalloutColor)
+    ? (color as EuiCallOutColor)
     : 'primary';
 };
 
@@ -75,7 +75,7 @@ export type EuiCallOutProps = CommonProps &
      * When no `iconType` is set, a default icon will be used based on the `color` of the callout.
      */
     iconType?: IconType;
-    color?: EuiCalloutColor;
+    color?: EuiCallOutColor;
     size?: EuiCallOutSize;
     heading?: EuiCallOutHeading;
     /**

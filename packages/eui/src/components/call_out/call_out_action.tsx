@@ -11,7 +11,7 @@ import React from 'react';
 import { ExclusiveUnion } from '../common';
 import { EuiButton, EuiButtonEmpty, EuiButtonEmptyProps } from '../button';
 import { Props as EuiButtonProps } from '../button/button';
-import { EuiCalloutColor } from './types';
+import { EuiCallOutColor } from './types';
 
 export type EuiCallOutActionPrimaryProps = Omit<
   EuiButtonProps,
@@ -42,7 +42,7 @@ export const EuiCallOutAction = ({
   color = 'primary',
   ...rest
 }: EuiCallOutActionProps & {
-  color?: EuiCalloutColor;
+  color?: EuiCallOutColor;
 }) => {
   if (actionType === 'primary') {
     return (

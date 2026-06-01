@@ -7,7 +7,7 @@
  */
 
 export const COLORS = ['primary', 'success', 'warning', 'danger'] as const;
-export type EuiCalloutColor = (typeof COLORS)[number];
+export type EuiCallOutColor = (typeof COLORS)[number];
 
 export const SIZES = ['s', 'm'] as const;
 export type EuiCallOutSize = (typeof SIZES)[number];
