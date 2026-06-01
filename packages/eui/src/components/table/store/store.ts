@@ -34,6 +34,13 @@ type EuiTableStoreColumnsMap = ReadonlyMap<string, EuiTableStoreColumnData>;
 type EuiTableStoreColumnWidthsMap = ReadonlyMap<string, number>;
 
 /**
+ * EuiTable store that helps with column and width synchronization between
+ * the original table and the "virtual" sticky header table.
+ *
+ * This store is currently only used for these synchronization purposes, but
+ * that may extend as we implement resizable columns.
+ * If that's not implemented by the time per-axis `position: sticky`
+ * is supported in all browsers natively, this can be removed.
  * @internal
  */
 export interface EuiTableStore {
