@@ -19,7 +19,7 @@ exports[`EuiCallOut is rendered 1`] = `
         data-euiicon-type="infoFill"
       />
       <div
-        class="css-134hxxp-content"
+        class="css-ak2bmi-content"
       >
         <p
           class="euiTitle euiCallOutHeader__title emotion-euiTitle-xs-euiCallOutHeader"
@@ -54,7 +54,7 @@ exports[`EuiCallOut props heading h1 is rendered 1`] = `
         data-euiicon-type="infoFill"
       />
       <div
-        class="css-134hxxp-content"
+        class="css-ak2bmi-content"
       >
         <h1
           class="euiTitle euiCallOutHeader__title emotion-euiTitle-xs-euiCallOutHeader"
@@ -84,7 +84,7 @@ exports[`EuiCallOut props heading h2 is rendered 1`] = `
         data-euiicon-type="infoFill"
       />
       <div
-        class="css-134hxxp-content"
+        class="css-ak2bmi-content"
       >
         <h2
           class="euiTitle euiCallOutHeader__title emotion-euiTitle-xs-euiCallOutHeader"
@@ -114,7 +114,7 @@ exports[`EuiCallOut props heading h3 is rendered 1`] = `
         data-euiicon-type="infoFill"
       />
       <div
-        class="css-134hxxp-content"
+        class="css-ak2bmi-content"
       >
         <h3
           class="euiTitle euiCallOutHeader__title emotion-euiTitle-xs-euiCallOutHeader"
@@ -144,7 +144,7 @@ exports[`EuiCallOut props heading h4 is rendered 1`] = `
         data-euiicon-type="infoFill"
       />
       <div
-        class="css-134hxxp-content"
+        class="css-ak2bmi-content"
       >
         <h4
           class="euiTitle euiCallOutHeader__title emotion-euiTitle-xs-euiCallOutHeader"
@@ -174,7 +174,7 @@ exports[`EuiCallOut props heading h5 is rendered 1`] = `
         data-euiicon-type="infoFill"
       />
       <div
-        class="css-134hxxp-content"
+        class="css-ak2bmi-content"
       >
         <h5
           class="euiTitle euiCallOutHeader__title emotion-euiTitle-xs-euiCallOutHeader"
@@ -204,7 +204,7 @@ exports[`EuiCallOut props heading h6 is rendered 1`] = `
         data-euiicon-type="infoFill"
       />
       <div
-        class="css-134hxxp-content"
+        class="css-ak2bmi-content"
       >
         <h6
           class="euiTitle euiCallOutHeader__title emotion-euiTitle-xs-euiCallOutHeader"
@@ -234,7 +234,7 @@ exports[`EuiCallOut props heading p is rendered 1`] = `
         data-euiicon-type="infoFill"
       />
       <div
-        class="css-134hxxp-content"
+        class="css-ak2bmi-content"
       >
         <p
           class="euiTitle euiCallOutHeader__title emotion-euiTitle-xs-euiCallOutHeader"

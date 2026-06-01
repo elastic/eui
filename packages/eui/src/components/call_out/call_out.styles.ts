@@ -194,6 +194,10 @@ export const euiCallOutStyles = (euiThemeContext: UseEuiTheme) => {
         display: flex;
         flex-direction: column;
         gap: ${euiTheme.size.xs};
+
+        .euiCallOut__text + .euiCallOut__additionalContent {
+          ${logicalCSS('margin-top', euiTheme.size.s)}
+        }
       }
     `,
     hasDismissButton: css`
@@ -246,6 +250,11 @@ export const euiCallOutStyles = (euiThemeContext: UseEuiTheme) => {
             flex-direction: row-reverse;
           `,
       })}
+    `,
+    additionalContent: css`
+      &:not(:first-child) {
+        ${logicalCSS('margin-top', euiTheme.size.s)}
+      }
     `,
   };
 };

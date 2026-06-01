@@ -254,3 +254,40 @@ export const KitchenSinkHighContrast: Story = {
   globals: { highContrastMode: true },
   ...KitchenSink,
 };
+
+export const KitchenSinkCustomChildren: Story = {
+  tags: ['vrt-only'],
+  args: {
+    title,
+    text: textLong,
+    children: (
+      <ul>
+        <li>First item</li>
+        <li>Second item</li>
+      </ul>
+    ),
+    actionProps: {
+      primary: {
+        children: 'Primary action',
+        onClick: action('primary onClick'),
+      },
+      secondary: {
+        children: 'Secondary action',
+        onClick: action('secondary onClick'),
+      },
+    },
+  },
+  render: (_args) => {
+    return (
+      <>
+        <EuiCallOut {..._args} actionProps={{}} />
+        <br />
+        <EuiCallOut {..._args} />
+        <br />
+        <EuiCallOut {..._args} actionProps={{}} text="" />
+        <br />
+        <EuiCallOut {..._args} text="" />
+      </>
+    );
+  },
+};
