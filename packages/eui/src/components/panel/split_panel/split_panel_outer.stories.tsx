@@ -9,6 +9,7 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
+import { enableFunctionToggleControls } from '../../../../.storybook/utils';
 import { EuiSplitPanel, _EuiSplitPanelOuterProps } from './split_panel';
 
 const meta: Meta<_EuiSplitPanelOuterProps> = {
@@ -23,10 +24,9 @@ const meta: Meta<_EuiSplitPanelOuterProps> = {
     // Component defaults
     direction: 'column',
     responsive: ['xs', 's'],
-    // @ts-expect-error - set to boolean for testing convenience
-    onClick: false,
   },
 };
+enableFunctionToggleControls(meta, ['onClick'], false);
 
 export default meta;
 type Story = StoryObj<_EuiSplitPanelOuterProps>;

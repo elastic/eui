@@ -100,7 +100,8 @@ export const moveStorybookControlsToCategory = <Props>(
  */
 export const enableFunctionToggleControls = <Props>(
   config: StorybookConfig<Props>,
-  propNames: Array<keyof Props>
+  propNames: Array<keyof Props>,
+  defaultValue = true
 ) => {
   const setAction = (propName: string | number) => ({
     true: action(propName.toString()),
@@ -114,7 +115,7 @@ export const enableFunctionToggleControls = <Props>(
   config.args = propNames.reduce(
     (acc, propName) => ({
       ...acc,
-      [propName]: true,
+      [propName]: defaultValue,
     }),
     config.args
   );
