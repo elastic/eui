@@ -14,7 +14,6 @@ import React, {
   useRef,
 } from 'react';
 import classNames from 'classnames';
-import { v4 as uuidv4 } from 'uuid';
 
 import { useEuiMemoizedStyles } from '../../services';
 import { CommonProps } from '../common';
@@ -26,6 +25,7 @@ import type { EuiTableSharedWidthProps } from './types';
 import { useEuiTableColumnDataStore } from './store/provider';
 import { useEuiTableWithinStickyHeader } from './sticky_header';
 import { EuiTableStoreRenderHeaderCell } from './store/store';
+import { useEuiTableStoreUniqueColumnId } from './store/use_unique_column_id';
 
 export type EuiTableHeaderCellCheckboxScope =
   (typeof HEADER_CELL_SCOPE)[number];
@@ -53,7 +53,7 @@ export const EuiTableHeaderCellCheckbox: FunctionComponent<
     ...rest
   } = props;
 
-  const storeCellIdRef = useRef(uuidv4());
+  const storeCellId = useEuiTableStoreUniqueColumnId();
   const store = useEuiTableColumnDataStore();
   const isWithinStickyHeader = useEuiTableWithinStickyHeader();
 
@@ -91,14 +91,14 @@ export const EuiTableHeaderCellCheckbox: FunctionComponent<
       return;
     }
 
-    const unregisterColumn = store.registerColumn(storeCellIdRef.current, {
+    const unregisterColumn = store.registerColumn(storeCellId, {
       renderHeaderCellRef,
     });
 
     return () => {
       unregisterColumn();
     };
-  }, [store, isWithinStickyHeader]);
+  }, [store, isWithinStickyHeader, storeCellId]);
 
   useEffect(() => {
     // Notify the store on every render so the sticky header stays in sync.
@@ -107,7 +107,7 @@ export const EuiTableHeaderCellCheckbox: FunctionComponent<
       return;
     }
 
-    store.updateColumn(storeCellIdRef.current, {
+    store.updateColumn(storeCellId, {
       renderHeaderCellRef,
     });
   });

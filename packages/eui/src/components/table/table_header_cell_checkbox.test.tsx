@@ -6,14 +6,7 @@
  * Side Public License, v 1.
  */
 
-jest.mock('uuid', () => ({
-  v4: jest.fn(() => {
-    return jest.requireActual('uuid').v4();
-  }),
-}));
-
 import React, { PropsWithChildren, ReactElement } from 'react';
-import { v4 as uuidv4 } from 'uuid';
 import { requiredProps } from '../../test';
 import { render } from '../../test/rtl';
 
@@ -32,6 +25,7 @@ import {
   EuiTableStoreColumnData,
 } from './store/store';
 import * as storeProviderModule from './store/provider';
+import * as useEuiTableStoreUniqueColumnIdModule from './store/use_unique_column_id';
 import { EuiTableWithinStickyHeaderProvider } from './sticky_header/context';
 
 const renderInTableHeader = (cell: React.ReactElement) => {
@@ -171,6 +165,7 @@ describe('EuiTableHeaderCellCheckbox', () => {
   });
 
   describe('store integration', () => {
+    let useEuiTableStoreUniqueColumnIdSpy: jest.SpyInstance<string>;
     let useEuiTableColumnDataStoreMock: jest.SpyInstance<EuiTableStore>;
 
     beforeEach(() => {
@@ -178,12 +173,15 @@ describe('EuiTableHeaderCellCheckbox', () => {
         storeProviderModule,
         'useEuiTableColumnDataStore'
       );
+
+      useEuiTableStoreUniqueColumnIdSpy = jest.spyOn(
+        useEuiTableStoreUniqueColumnIdModule,
+        'useEuiTableStoreUniqueColumnId'
+      );
     });
 
     it('registers column in the store on mount', () => {
-      (uuidv4 as jest.MockedFunction<() => string>).mockReturnValue(
-        'unique-id'
-      );
+      useEuiTableStoreUniqueColumnIdSpy.mockReturnValue('unique-id');
 
       const testStore = createEuiTableStore();
       useEuiTableColumnDataStoreMock.mockReturnValue(testStore);

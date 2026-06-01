@@ -6,14 +6,6 @@
  * Side Public License, v 1.
  */
 
-import { v4 as uuidv4 } from 'uuid';
-
-jest.mock('uuid', () => ({
-  v4: jest.fn(() => {
-    return jest.requireActual('uuid').v4();
-  }),
-}));
-
 import {
   createMockResizeObserverEntry,
   createResizeObserverMock,
@@ -38,6 +30,7 @@ import { EuiTableWithinStickyHeaderProvider } from './sticky_header/context';
 import { EuiTableHeaderCell } from './table_header_cell';
 import type { EuiTableSharedWidthProps } from './types';
 import * as storeProviderModule from './store/provider';
+import * as useEuiTableStoreUniqueColumnIdModule from './store/use_unique_column_id';
 import {
   createEuiTableStore,
   EuiTableStore,
@@ -65,6 +58,15 @@ const renderInTableHeader = (cell: ReactElement) => {
 };
 
 describe('EuiTableHeaderCell', () => {
+  let useEuiTableStoreUniqueColumnIdSpy: jest.SpyInstance<string>;
+
+  beforeAll(() => {
+    useEuiTableStoreUniqueColumnIdSpy = jest.spyOn(
+      useEuiTableStoreUniqueColumnIdModule,
+      'useEuiTableStoreUniqueColumnId'
+    );
+  });
+
   it('renders', () => {
     const { getByRole } = renderInTableHeader(
       <EuiTableHeaderCell {...requiredProps}>children</EuiTableHeaderCell>
@@ -449,9 +451,7 @@ describe('EuiTableHeaderCell', () => {
     });
 
     it('registers column in the store on mount', () => {
-      (uuidv4 as jest.MockedFunction<() => string>).mockReturnValue(
-        'unique-id'
-      );
+      useEuiTableStoreUniqueColumnIdSpy.mockReturnValue('unique-id');
 
       const testStore = createEuiTableStore();
       useEuiTableColumnDataStoreMock.mockReturnValue(testStore);
