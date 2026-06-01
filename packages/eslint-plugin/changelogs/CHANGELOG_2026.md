@@ -1,3 +1,7 @@
+## [`v2.14.0`](https://github.com/elastic/eui/releases/v2.14.0)
+
+- Removed auto-fix from `tooltip-button-icon-wrap` rule ([#9695](https://github.com/elastic/eui/pull/9695))
+
 ## [`v2.13.0`](https://github.com/elastic/eui/releases/v2.13.0)
 
 - Added `tooltip-button-icon-wrap` rule  ([#9635](https://github.com/elastic/eui/pull/9635))

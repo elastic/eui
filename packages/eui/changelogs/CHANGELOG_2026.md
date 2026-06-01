@@ -1,3 +1,30 @@
+## [`v116.3.0`](https://github.com/elastic/eui/releases/v116.3.0)
+
+- Added `EuiBanner` component ([#9673](https://github.com/elastic/eui/pull/9673))
+- Replaced native browser `title` attributes with `EuiToolTip` across the following components for consistent tooltips: ([#9643](https://github.com/elastic/eui/pull/9643))
+  - `EuiAvatar`
+  - `EuiBasicTable`
+  - `EuiBreadcrumbs`
+  - `EuiComboBox`
+  - `EuiDataGrid`
+  - `EuiAutoRefresh`
+  - `EuiSuperDatePicker`
+  - `EuiFieldPassword`
+  - `EuiMarkdownEditor`
+  - `EuiPagination`
+  - `EuiSearchBar`
+  - `EuiSelectable`
+  - `EuiTextTruncate`
+- Extended `EuiToolTip`'s `display` prop to support `"flex"` ([#9643](https://github.com/elastic/eui/pull/9643))
+- Added experimental support for sticky headers in `EuiTable`, `EuiBasicTable` and `EuiInMemoryTable` ([#9682](https://github.com/elastic/eui/pull/9682))
+
+**Bug fixes**
+
+- Fixed `direction="row"` not applying on `EuiSplitPanel.Outer` when `onClick` was set. ([#9693](https://github.com/elastic/eui/pull/9693))
+- Fixed `EuiDatePicker` firing `onChange` with an out-of-bounds date when navigating to a month or year via the dropdowns while `minDate` or `maxDate` is set ([#9685](https://github.com/elastic/eui/pull/9685))
+- Fixed a visual issue on `EuiPanel` where panels with `onClick` would render with a `height` difference of `1px`. ([#9694](https://github.com/elastic/eui/pull/9694))
+- Fixed an issue in `EuiSelectable` and `EuiComboBox` where interactive content in group labels wasn't clickable due to overlapping content. ([#9678](https://github.com/elastic/eui/pull/9678))
+
 ## [`v116.2.0`](https://github.com/elastic/eui/releases/v116.2.0)
 
 - Added experimental support for always-visible sticky horizontal scrollbars in `EuiTable`, `EuiBasicTable` and `EuiInMemoryTable` useful for dense tables that exceed the height of the viewport. This feature is currently opt-in and can be enabled by setting `stickyScrollbar: true`. ([#9674](https://github.com/elastic/eui/pull/9674))
