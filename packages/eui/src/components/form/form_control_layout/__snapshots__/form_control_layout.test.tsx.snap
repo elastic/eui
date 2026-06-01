@@ -227,6 +227,7 @@ exports[`EuiFormControlLayout props iconsPosition 1`] = `
         role="progressbar"
       />
       <span
+        aria-hidden="true"
         color="danger"
         data-euiicon-type="warning"
       />
@@ -272,6 +273,7 @@ exports[`EuiFormControlLayout props isInvalid is rendered 1`] = `
       class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-right"
     >
       <span
+        aria-hidden="true"
         color="danger"
         data-euiicon-type="warning"
       />

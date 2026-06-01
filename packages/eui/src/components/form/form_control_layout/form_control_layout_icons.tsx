@@ -6,9 +6,9 @@
  * Side Public License, v 1.
  */
 
-import React, { Component } from 'react';
+import React, { FunctionComponent, ReactNode } from 'react';
 
-import { RenderWithEuiStylesMemoizer } from '../../../services';
+import { useEuiMemoizedStyles } from '../../../services';
 import { DistributiveOmit } from '../../common';
 import { EuiIcon, IconColor, IconType } from '../../icon';
 import { EuiLoadingSpinner } from '../../loading';
@@ -53,130 +53,128 @@ export interface EuiFormControlLayoutIconsProps {
   isDisabled?: boolean;
 }
 
-export class EuiFormControlLayoutIcons extends Component<EuiFormControlLayoutIconsProps> {
-  render() {
-    const {
-      side = 'left',
-      iconsPosition = 'absolute',
-      compressed,
-      isDisabled,
-    } = this.props;
-
-    const customIcon = this.renderCustomIcon();
-    const loadingSpinner = this.renderLoadingSpinner();
-    const clearButton = this.renderClearButton();
-    const invalidIcon = this.renderInvalidIcon();
-    const dropdownIcon = this.renderDropdownIcon();
-
-    return (
-      <RenderWithEuiStylesMemoizer>
-        {(stylesMemoizer) => {
-          const styles = stylesMemoizer(euiFormControlLayoutIconsStyles);
-          const cssStyles = [
-            styles.euiFormControlLayoutIcons,
-            compressed ? styles.compressed : styles.uncompressed,
-            ...(iconsPosition === 'absolute'
-              ? [
-                  styles.position.absolute.absolute,
-                  compressed
-                    ? styles.position.absolute.compressed[side]
-                    : styles.position.absolute.uncompressed[side],
-                ]
-              : [
-                  styles.position.static.static,
-                  compressed
-                    ? styles.position.static.compressed
-                    : styles.position.static.uncompressed,
-                ]),
-            isDisabled && styles.disabled,
-          ];
-          return (
-            <div css={cssStyles} className="euiFormControlLayoutIcons">
-              {clearButton}
-              {loadingSpinner}
-              {invalidIcon}
-              {customIcon}
-              {dropdownIcon}
-            </div>
-          );
-        }}
-      </RenderWithEuiStylesMemoizer>
-    );
+const renderCustomIcon = (
+  icon: EuiFormControlLayoutIconsProps['icon'],
+  isDisabled?: boolean
+): ReactNode => {
+  if (!icon) {
+    return null;
   }
 
-  renderCustomIcon() {
-    const { icon, isDisabled } = this.props;
+  const iconProps: IconShape = isIconShape(icon)
+    ? icon
+    : {
+        type: icon,
+      };
+  const { ref: iconRef, side, ...iconRest } = iconProps;
 
-    if (!icon) {
-      return null;
-    }
+  return (
+    <EuiFormControlLayoutCustomIcon
+      size="m"
+      disabled={isDisabled}
+      iconRef={iconRef}
+      {...iconRest}
+    />
+  );
+};
 
-    // Normalize the icon to an object if it's a string.
-    const iconProps: IconShape = isIconShape(icon)
-      ? icon
-      : {
-          type: icon,
-        };
-    const { ref: iconRef, side, ...iconRest } = iconProps;
-
-    return (
-      <EuiFormControlLayoutCustomIcon
-        size="m"
-        disabled={isDisabled}
-        iconRef={iconRef}
-        {...iconRest}
-      />
-    );
+const renderDropdownIcon = (
+  isDropdown?: boolean,
+  isDisabled?: boolean
+): ReactNode => {
+  if (!isDropdown) {
+    return null;
   }
 
-  renderDropdownIcon() {
-    const { isDropdown, isDisabled } = this.props;
+  return (
+    <EuiFormControlLayoutCustomIcon
+      size="m"
+      disabled={isDisabled}
+      type="chevronSingleDown"
+    />
+  );
+};
 
-    if (!isDropdown) {
-      return null;
-    }
-
-    return (
-      <EuiFormControlLayoutCustomIcon
-        size="m"
-        disabled={isDisabled}
-        type="chevronSingleDown"
-      />
-    );
+const renderLoadingSpinner = (isLoading?: boolean): ReactNode => {
+  if (!isLoading) {
+    return null;
   }
 
-  renderLoadingSpinner() {
-    const { isLoading } = this.props;
+  return <EuiLoadingSpinner size="m" />;
+};
 
-    if (!isLoading) {
-      return null;
-    }
-
-    return <EuiLoadingSpinner size="m" />;
+const renderClearButton = (
+  clear?: EuiFormControlLayoutClearButtonProps,
+  isDisabled?: boolean
+): ReactNode => {
+  if (!clear) {
+    return null;
   }
 
-  renderClearButton() {
-    const { clear, isDisabled } = this.props;
-    if (!clear) {
-      return null;
-    }
+  return (
+    <EuiFormControlLayoutClearButton
+      size="m"
+      disabled={isDisabled}
+      {...clear}
+    />
+  );
+};
 
-    return (
-      <EuiFormControlLayoutClearButton
-        size="m"
-        disabled={isDisabled}
-        {...clear}
-      />
-    );
+const renderInvalidIcon = (isInvalid?: boolean): ReactNode => {
+  if (!isInvalid) {
+    return null;
   }
 
-  renderInvalidIcon() {
-    const { isInvalid } = this.props;
+  return <EuiIcon size="m" color="danger" type="warning" aria-hidden={true} />;
+};
 
-    if (!isInvalid) {
-      return null;
-    }
+export const EuiFormControlLayoutIcons: FunctionComponent<
+  EuiFormControlLayoutIconsProps
+> = (props) => {
+  const {
+    side = 'left',
+    iconsPosition = 'absolute',
+    compressed,
+    isDisabled,
+    icon,
+    isLoading,
+    isInvalid,
+    isDropdown,
+  } = props;
 
-    return <EuiIcon size="m" color="danger" type="warning" />;
-  }
-}
+  const customIcon = renderCustomIcon(icon, isDisabled);
+  const loadingSpinner = renderLoadingSpinner(isLoading);
+  const clearButton = renderClearButton(props.clear, isDisabled);
+  const invalidIcon = renderInvalidIcon(isInvalid);
+  const dropdownIcon = renderDropdownIcon(isDropdown, isDisabled);
+
+  const styles = useEuiMemoizedStyles(euiFormControlLayoutIconsStyles);
+  const cssStyles = [
+    styles.euiFormControlLayoutIcons,
+    compressed ? styles.compressed : styles.uncompressed,
+    ...(iconsPosition === 'absolute'
+      ? [
+          styles.position.absolute.absolute,
+          compressed
+            ? styles.position.absolute.compressed[side]
+            : styles.position.absolute.uncompressed[side],
+        ]
+      : [
+          styles.position.static.static,
+          compressed
+            ? styles.position.static.compressed
+            : styles.position.static.uncompressed,
+        ]),
+    isDisabled && styles.disabled,
+  ];
+
+  return (
+    <div css={cssStyles} className="euiFormControlLayoutIcons">
+      {clearButton}
+      {loadingSpinner}
+      {invalidIcon}
+      {customIcon}
+      {dropdownIcon}
+    </div>
+  );
+};
