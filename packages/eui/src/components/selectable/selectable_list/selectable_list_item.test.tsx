@@ -13,6 +13,7 @@ import { requiredProps } from '../../../test/required_props';
 
 import { EuiSelectableListItem } from './selectable_list_item';
 import { fireEvent } from '@testing-library/react';
+import { toolTipManager } from '../../tool_tip/tool_tip_manager';
 
 describe('EuiSelectableListItem', () => {
   shouldRenderCustomStyles(<EuiSelectableListItem />);
@@ -24,6 +25,14 @@ describe('EuiSelectableListItem', () => {
   });
 
   describe('props', () => {
+    // The tooltip manager is a module-level singleton that remembers when the
+    // last tooltip closed (to skip the entry animation for grouped tooltips).
+    // Reset it between tests so a tooltip shown by one test doesn't make a
+    // following test's tooltip render with `animation: none`.
+    beforeEach(() => {
+      toolTipManager.reset();
+    });
+
     describe('checked', () => {
       const checkedValues = ['on', 'mixed', undefined] as const;
 

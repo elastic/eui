@@ -58,6 +58,7 @@ interface ToolTipStyles {
   right?: number | 'auto';
   opacity?: number;
   visibility?: 'hidden';
+  animation?: 'none';
 }
 
 const DEFAULT_TOOLTIP_STYLES: ToolTipStyles = {
@@ -173,6 +174,7 @@ export const EuiToolTip = forwardRef<EuiToolTipRef, EuiToolTipProps>(
     const componentDefaultsContext = useContext(EuiComponentDefaultsContext);
 
     const [visible, setVisible] = useState(false);
+    const [skipAnimation, setSkipAnimation] = useState(false);
     const [hasFocus, setHasFocus] = useState(false);
     const [calculatedPosition, setCalculatedPosition] =
       useState<ToolTipPositions>(positionProp);
@@ -247,10 +249,22 @@ export const EuiToolTip = forwardRef<EuiToolTipRef, EuiToolTipProps>(
       toolTipManager.deregisterToolTip(hideToolTip);
     }, []);
 
+    /**
+     * Show the tooltip.
+     *
+     * If the tooltip is already visible, skip the state updates.
+     * If the tooltip is not visible, set the state to visible and
+     * set the skip animation to the value returned from the `toolTipManager`.
+     */
     const showToolTip = useCallback(() => {
       if (!content && !title) return;
+      if (toolTipManager.toolTipsToHide.has(hideToolTip)) return;
+
+      const { skipAnimation: skip } =
+        toolTipManager.registerTooltip(hideToolTip);
+
+      setSkipAnimation(skip);
       setVisible(true);
-      toolTipManager.registerTooltip(hideToolTip);
     }, [content, title, hideToolTip]);
 
     useImperativeHandle(ref, () => ({ showToolTip, hideToolTip, id }), [
@@ -351,23 +365,17 @@ export const EuiToolTip = forwardRef<EuiToolTipRef, EuiToolTipProps>(
       [disableScreenReaderOutput, visible, hideToolTip]
     );
 
-    const onMouseOut = useCallback(
+    /**
+     * Hide the tooltip if the mouse is not over the trigger.
+     *
+     * `mouseleave` doesn't bubble, so we don't need to filter out events
+     * fired by descendant children, only the cursor truly leaving the
+     * anchor triggers this.
+     */
+    const onMouseLeave = useCallback(
       (event: ReactMouseEvent<HTMLSpanElement, MouseEvent>) => {
-        // Prevent mousing over children from hiding the tooltip by testing for whether the mouse has
-        // left the anchor for a non-child.
-        if (
-          anchorRef.current === event.relatedTarget ||
-          (anchorRef.current != null &&
-            !anchorRef.current.contains(event.relatedTarget as Node))
-        ) {
-          if (!hasFocus) {
-            hideToolTip();
-          }
-        }
-
-        if (onMouseOutProp) {
-          onMouseOutProp(event);
-        }
+        if (!hasFocus) hideToolTip();
+        onMouseOutProp?.(event);
       },
       [hasFocus, hideToolTip, onMouseOutProp]
     );
@@ -383,8 +391,8 @@ export const EuiToolTip = forwardRef<EuiToolTipRef, EuiToolTipProps>(
           onBlur={onBlur}
           onFocus={onFocus}
           onKeyDown={onEscapeKey}
-          onMouseOver={showToolTip}
-          onMouseOut={onMouseOut}
+          onMouseEnter={showToolTip}
+          onMouseLeave={onMouseLeave}
           // `id` defines if the trigger and tooltip are automatically linked via `aria-describedby`.
           id={!disableScreenReaderOutput ? id : undefined}
           className={anchorClasses}
@@ -397,7 +405,13 @@ export const EuiToolTip = forwardRef<EuiToolTipRef, EuiToolTipProps>(
           <EuiPortal>
             <EuiToolTipPopover
               className={classes}
-              style={toolTipStyles}
+              style={{
+                ...toolTipStyles,
+                // Inline `animation: none` overrides the keyframes fade-in
+                // shorthand on the base `.euiToolTip` class, so a tooltip
+                // shown right after another closes appears instantly.
+                animation: skipAnimation ? 'none' : undefined,
+              }}
               positionToolTip={positionToolTip}
               popoverRef={setPopoverRef}
               title={title}

@@ -14,6 +14,8 @@ import { LOKI_SELECTORS, lokiPlayDecorator } from '../../../.storybook/loki';
 import { sleep } from '../../test';
 import { EuiButton } from '../button';
 import { EuiFlexGroup } from '../flex';
+import { useEuiTheme } from '../../services';
+
 import {
   EuiToolTip,
   EuiToolTipProps,
@@ -70,6 +72,31 @@ export const Playground: Story = {
     // Reduce VRT flakiness/screenshots before tooltip is fully visible
     await sleep(300);
   }),
+};
+
+const TooltipGroupStory = () => {
+  const { euiTheme } = useEuiTheme();
+
+  return (
+    <EuiFlexGroup
+      gutterSize="s"
+      css={{
+        alignSelf: 'flex-start',
+        padding: euiTheme.size.m,
+        inlineSize: '100%',
+      }}
+    >
+      {['Alpha', 'Bravo', 'Charlie', 'Delta', 'Echo'].map((label) => (
+        <EuiToolTip key={label} content={`Tooltip for ${label}`}>
+          <EuiButton>{label}</EuiButton>
+        </EuiToolTip>
+      ))}
+    </EuiFlexGroup>
+  );
+};
+
+export const TooltipGroup: Story = {
+  render: () => <TooltipGroupStory />,
 };
 
 /**
