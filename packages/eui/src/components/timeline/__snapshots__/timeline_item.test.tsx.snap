@@ -44,7 +44,7 @@ exports[`EuiTimelineItem props EuiAvatar is passed as an icon 1`] = `
       class="emotion-euiTimelineItemIcon__content"
     >
       <span
-        class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+        class="euiToolTipAnchor  emotion-euiToolTipAnchor-inlineBlock-user"
         id="generated-id_euiToolTipAnchor"
       >
         <div
@@ -82,7 +82,7 @@ exports[`EuiTimelineItem props iconAriaLabel is rendered 1`] = `
       class="emotion-euiTimelineItemIcon__content"
     >
       <span
-        class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+        class="euiToolTipAnchor  emotion-euiToolTipAnchor-inlineBlock-user"
         id="generated-id_euiToolTipAnchor"
       >
         <div

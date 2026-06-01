@@ -74,7 +74,7 @@ exports[`EuiCommentEvent props eventIcon and eventIconAriaLabel are rendered 1`]
           class="euiCommentEvent__headerData emotion-euiCommentEvent__headerData"
         >
           <span
-            class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+            class="euiToolTipAnchor  emotion-euiToolTipAnchor-inlineBlock-user"
             id="generated-id_euiToolTipAnchor"
           >
             <div
