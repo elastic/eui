@@ -14,9 +14,9 @@ import React, {
   useRef,
 } from 'react';
 import classNames from 'classnames';
+import { v4 as uuidv4 } from 'uuid';
 
 import { useEuiMemoizedStyles } from '../../services';
-import { useGeneratedHtmlId } from '../../services/accessibility/html_id_generator';
 import { CommonProps } from '../common';
 
 import { resolveWidthPropsAsStyle } from './utils';
@@ -53,7 +53,7 @@ export const EuiTableHeaderCellCheckbox: FunctionComponent<
     ...rest
   } = props;
 
-  const internalCellId = useGeneratedHtmlId();
+  const storeCellIdRef = useRef(uuidv4());
   const store = useEuiTableColumnDataStore();
   const isWithinStickyHeader = useEuiTableWithinStickyHeader();
 
@@ -91,15 +91,14 @@ export const EuiTableHeaderCellCheckbox: FunctionComponent<
       return;
     }
 
-    const unregisterColumn = store.registerColumn(internalCellId, {
+    const unregisterColumn = store.registerColumn(storeCellIdRef.current, {
       renderHeaderCellRef,
     });
 
     return () => {
       unregisterColumn();
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [store, internalCellId, isWithinStickyHeader]);
+  }, [store, isWithinStickyHeader]);
 
   useEffect(() => {
     // Notify the store on every render so the sticky header stays in sync.
@@ -108,7 +107,7 @@ export const EuiTableHeaderCellCheckbox: FunctionComponent<
       return;
     }
 
-    store.updateColumn(internalCellId, {
+    store.updateColumn(storeCellIdRef.current, {
       renderHeaderCellRef,
     });
   });

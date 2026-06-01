@@ -6,15 +6,18 @@
  * Side Public License, v 1.
  */
 
+import { v4 as uuidv4 } from 'uuid';
+
+jest.mock('uuid', () => ({
+  v4: jest.fn(() => {
+    return jest.requireActual('uuid').v4();
+  }),
+}));
+
 import {
   createMockResizeObserverEntry,
   createResizeObserverMock,
 } from '../../test/internal';
-
-let mockIdCounter = 0;
-jest.mock('../../services/accessibility/html_id_generator', () => ({
-  useGeneratedHtmlId: () => `unique-id-${mockIdCounter++}`,
-}));
 
 import React, { PropsWithChildren, ReactElement } from 'react';
 import { requiredProps } from '../../test/required_props';
@@ -62,10 +65,6 @@ const renderInTableHeader = (cell: ReactElement) => {
 };
 
 describe('EuiTableHeaderCell', () => {
-  beforeEach(() => {
-    mockIdCounter = 0;
-  });
-
   it('renders', () => {
     const { getByRole } = renderInTableHeader(
       <EuiTableHeaderCell {...requiredProps}>children</EuiTableHeaderCell>
@@ -450,6 +449,10 @@ describe('EuiTableHeaderCell', () => {
     });
 
     it('registers column in the store on mount', () => {
+      (uuidv4 as jest.MockedFunction<() => string>).mockReturnValue(
+        'unique-id'
+      );
+
       const testStore = createEuiTableStore();
       useEuiTableColumnDataStoreMock.mockReturnValue(testStore);
 
@@ -458,7 +461,7 @@ describe('EuiTableHeaderCell', () => {
       renderInTableHeader(<EuiTableHeaderCell>Test</EuiTableHeaderCell>);
 
       expect(registerColumn).toHaveBeenCalledWith(
-        'unique-id-0',
+        'unique-id',
         expect.objectContaining<EuiTableStoreColumnData>({
           renderHeaderCellRef: expect.objectContaining({
             current: expect.any(Function),
@@ -478,9 +481,11 @@ describe('EuiTableHeaderCell', () => {
         <EuiTableHeaderCell>Test</EuiTableHeaderCell>
       );
 
+      const id = registerColumn.mock.lastCall![0];
+
       expect(registerColumn).toHaveBeenCalledTimes(1);
       expect(testStore.getColumns().size).toBe(1);
-      expect(testStore.getColumns().has('unique-id-0')).toBe(true);
+      expect(testStore.getColumns().has(id)).toBe(true);
 
       unmount();
 
@@ -488,7 +493,7 @@ describe('EuiTableHeaderCell', () => {
       // registerColumn() was called, which is tricky to mock, we just assert
       // on the store
       expect(testStore.getColumns().size).toBe(0);
-      expect(testStore.getColumns().has('unique-id-0')).toBe(false);
+      expect(testStore.getColumns().has(id)).toBe(false);
     });
 
     it('does not register or update widths when within sticky header', () => {
@@ -520,31 +525,37 @@ describe('EuiTableHeaderCell', () => {
       const testStore = createEuiTableStore();
       useEuiTableColumnDataStoreMock.mockReturnValue(testStore);
 
+      const registerColumn = jest.spyOn(testStore, 'registerColumn');
       const updateColumnWidth = jest.spyOn(testStore, 'updateColumnWidth');
 
       const { getByRole } = renderInTableHeader(
         <EuiTableHeaderCell>Test</EuiTableHeaderCell>
       );
 
+      const id = registerColumn.mock.lastCall![0];
+
       resizeObserverMock.triggerCallback([
         createMockResizeObserverEntry(getByRole('columnheader')),
       ]);
 
-      expect(updateColumnWidth).toHaveBeenCalledWith('unique-id-0', 500);
+      expect(updateColumnWidth).toHaveBeenCalledWith(id, 500);
     });
 
     it('updates column on every render', () => {
       const testStore = createEuiTableStore();
       useEuiTableColumnDataStoreMock.mockReturnValue(testStore);
 
+      const registerColumn = jest.spyOn(testStore, 'registerColumn');
       const updateColumn = jest.spyOn(testStore, 'updateColumn');
 
       const { rerender } = renderInTableHeader(
         <EuiTableHeaderCell>Test</EuiTableHeaderCell>
       );
 
+      const id = registerColumn.mock.lastCall![0];
+
       expect(updateColumn).toHaveBeenCalledWith(
-        'unique-id-0',
+        id,
         expect.objectContaining<EuiTableStoreColumnData>({
           renderHeaderCellRef: expect.objectContaining({
             current: expect.any(Function),
@@ -559,9 +570,7 @@ describe('EuiTableHeaderCell', () => {
       rerender(<EuiTableHeaderCell>Test</EuiTableHeaderCell>);
 
       expect(updateColumn).toHaveBeenCalledWith(
-        // The ID is stable between rerenders, but the simple number increment
-        // from the used mock shows something different
-        'unique-id-1',
+        id,
         expect.objectContaining<EuiTableStoreColumnData>({
           renderHeaderCellRef,
         })
