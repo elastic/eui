@@ -109,7 +109,7 @@ export const enableFunctionToggleControls = <Props>(
   });
 
   /* Sets the default value for the passed function prop.
-  This is needed to ensure the coolean control is set and
+  This is needed to ensure the boolean control is set and
   to prevent additional clicks.
   NOTE: This has to happen before the argTypes are updated */
   config.args = propNames.reduce(
