@@ -8,7 +8,6 @@
 
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
 
 import { enableFunctionToggleControls } from '../../../../.storybook/utils';
 import { EuiSplitPanel, _EuiSplitPanelOuterProps } from './split_panel';
