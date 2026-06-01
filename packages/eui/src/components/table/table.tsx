@@ -70,8 +70,13 @@ export interface EuiTableProps
    */
   stickyScrollbar?: boolean;
   /**
-   * Enable sticky table header that remains visible when scrolling.
-   * The header row will be duplicated and positioned with `position: sticky`.
+   * When enabled, the table header will stick to the top of the viewport as users
+   * scroll through long tables. This enhances usability by maintaining column
+   * context during vertical scrolling and unifies the scrolling experience
+   * between EuiTable components and EuiDataGrid.
+   *
+   * This feature should be used in places where it's possible for the table
+   * to grow longer than the viewport.
    *
    * @beta
    * @default false
