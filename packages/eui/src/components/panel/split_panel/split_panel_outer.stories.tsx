@@ -8,6 +8,7 @@
 
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
 
 import { enableFunctionToggleControls } from '../../../../.storybook/utils';
 import { EuiSplitPanel, _EuiSplitPanelOuterProps } from './split_panel';
@@ -32,6 +33,23 @@ export default meta;
 type Story = StoryObj<_EuiSplitPanelOuterProps>;
 
 export const SplitPanelOuter: Story = {
+  render: ({ ...args }) => (
+    <EuiSplitPanel.Outer {...args}>
+      <EuiSplitPanel.Inner>Top or left panel</EuiSplitPanel.Inner>
+      <EuiSplitPanel.Inner color="subdued">
+        Bottom or right panel
+      </EuiSplitPanel.Inner>
+    </EuiSplitPanel.Outer>
+  ),
+};
+
+export const SplitPanelOuterClickable: Story = {
+  tags: ['vrt-only'],
+  args: {
+    // @ts-expect-error - using story specific types
+    onClick: true,
+    direction: 'row',
+  },
   render: ({ ...args }) => (
     <EuiSplitPanel.Outer {...args}>
       <EuiSplitPanel.Inner>Top or left panel</EuiSplitPanel.Inner>
