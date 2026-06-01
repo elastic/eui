@@ -83,8 +83,7 @@ export const euiPanelStyles = (euiThemeContext: UseEuiTheme) => {
     isClickable: css`
       ${euiCanAnimate} {
         transition: box-shadow ${euiTheme.animation.fast}
-            ${euiTheme.animation.resistance},
-          transform ${euiTheme.animation.fast} ${euiTheme.animation.resistance};
+          ${euiTheme.animation.resistance};
       }
 
       &:enabled {
@@ -106,7 +105,6 @@ export const euiPanelStyles = (euiThemeContext: UseEuiTheme) => {
             }
           `,
         })}
-        transform: translateY(-2px);
         cursor: pointer;
       }
     `,
