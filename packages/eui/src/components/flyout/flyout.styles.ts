@@ -329,10 +329,6 @@ const composeFlyoutPadding = (
       padding: ${paddingModifierMap[paddingSize]};
     }
 
-    .euiFlyoutBody__banner .euiCallOut {
-      ${logicalCSS('padding-horizontal', paddingModifierMap[paddingSize])}
-    }
-
     .euiFlyoutFooter {
       padding: ${footerPaddingSizes[paddingSize]};
     }

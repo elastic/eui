@@ -11,7 +11,9 @@ import { act, fireEvent } from '@testing-library/react';
 import { requiredProps } from '../../test/required_props';
 import { render, screen } from '../../test/rtl';
 
-import { EuiCallOut, COLORS, HEADINGS } from './call_out';
+import { EuiCallOut } from './call_out';
+import { COLORS, EuiCallOutSize, HEADINGS, SIZES } from './types';
+import { NOTIFICATION_ICONS_MAP } from '../notification_icon/notification_icon';
 
 describe('EuiCallOut', () => {
   test('is rendered', () => {
@@ -25,19 +27,27 @@ describe('EuiCallOut', () => {
   describe('props', () => {
     describe('title', () => {
       it('is rendered', () => {
-        const { container } = render(
-          <EuiCallOut title="Title">Content</EuiCallOut>
+        const title = 'Callout title';
+        const { getByTestSubject } = render(
+          <EuiCallOut title={title} data-test-subj="euiCallout">
+            Content
+          </EuiCallOut>
         );
 
-        expect(container.firstChild).toMatchSnapshot();
+        expect(getByTestSubject('euiCallout')).toHaveTextContent(title);
       });
     });
 
-    describe('iconType', () => {
+    describe('text', () => {
       it('is rendered', () => {
-        const { container } = render(<EuiCallOut iconType="user" />);
+        const text = 'Callout body text';
+        const { getByTestSubject } = render(
+          <EuiCallOut text={text} data-test-subj="euiCallout">
+            Content
+          </EuiCallOut>
+        );
 
-        expect(container.firstChild).toMatchSnapshot();
+        expect(getByTestSubject('euiCallout')).toHaveTextContent(text);
       });
     });
 
@@ -46,7 +56,57 @@ describe('EuiCallOut', () => {
         test(`${color} is rendered`, () => {
           const { container } = render(<EuiCallOut color={color} />);
 
-          expect(container.firstChild).toMatchSnapshot();
+          expect(container.firstChild).toHaveClass(`euiCallOut--${color}`);
+        });
+      });
+
+      it('normalizes legacy accent runtime values to primary', () => {
+        const { container } = render(
+          <EuiCallOut color={'accent' as unknown as any} />
+        );
+
+        expect(container.firstChild).toHaveClass('euiCallOut--primary');
+        expect(
+          container.querySelector(
+            `[data-euiicon-type="${NOTIFICATION_ICONS_MAP.info.name}"]`
+          )
+        ).toBeInTheDocument();
+      });
+    });
+
+    describe('iconType', () => {
+      it('renders', () => {
+        const { container } = render(<EuiCallOut iconType="user" />);
+
+        expect(
+          container.querySelector(`[data-euiicon-type="user"]`)
+        ).toBeInTheDocument();
+      });
+
+      it('renders default notification icons if not passed', () => {
+        const { container } = render(<EuiCallOut />);
+
+        expect(
+          container.querySelector(
+            `[data-euiicon-type="${NOTIFICATION_ICONS_MAP.info.name}"]`
+          )
+        ).toBeInTheDocument();
+      });
+    });
+
+    describe('size', () => {
+      SIZES.forEach((size) => {
+        test(`${size} is rendered`, () => {
+          const { getByTestSubject } = render(
+            <EuiCallOut
+              size={size as EuiCallOutSize}
+              data-test-subj="euiCallout"
+            />
+          );
+
+          const callout = getByTestSubject('euiCallout');
+
+          expect(callout).toHaveAttribute('data-size', size);
         });
       });
     });
@@ -58,6 +118,60 @@ describe('EuiCallOut', () => {
 
           expect(container.firstChild).toMatchSnapshot();
         });
+      });
+    });
+
+    describe('actionProps', () => {
+      it('renders a primary action button', () => {
+        const { getByTestSubject } = render(
+          <EuiCallOut
+            actionProps={{
+              primary: {
+                children: 'Primary action',
+                'data-test-subj': 'primaryAction',
+              },
+            }}
+          />
+        );
+
+        expect(getByTestSubject('primaryAction')).toBeInTheDocument();
+      });
+
+      it('renders a primary and secondary action button', () => {
+        const { getByTestSubject } = render(
+          <EuiCallOut
+            actionProps={{
+              primary: {
+                children: 'Primary action',
+                'data-test-subj': 'primaryAction',
+              },
+              secondary: {
+                children: 'Secondary action',
+                'data-test-subj': 'secondaryAction',
+              },
+            }}
+          />
+        );
+
+        expect(getByTestSubject('primaryAction')).toBeInTheDocument();
+        expect(getByTestSubject('secondaryAction')).toBeInTheDocument();
+      });
+
+      it('does not render a standalone secondary action button', () => {
+        const { container } = render(
+          <EuiCallOut
+            actionProps={{
+              secondary: {
+                children: 'Secondary action',
+                'data-test-subj': 'secondaryAction',
+              },
+            }}
+          />
+        );
+
+        expect(
+          container.querySelector('[data-test-subj="secondaryAction"]')
+        ).not.toBeInTheDocument();
       });
     });
 
@@ -118,9 +232,11 @@ describe('EuiCallOut', () => {
 
       it('announces the callout content in an aria-live region when announceOnMount is true', () => {
         render(
-          <EuiCallOut announceOnMount title="Announcement title">
-            Announcement content
-          </EuiCallOut>
+          <EuiCallOut
+            announceOnMount
+            title="Announcement title"
+            text="Announcement content"
+          ></EuiCallOut>
         );
 
         act(() => {
@@ -136,9 +252,11 @@ describe('EuiCallOut', () => {
 
       it('clears the announcement after 2000ms', () => {
         render(
-          <EuiCallOut announceOnMount title="Announcement title">
-            Announcement content
-          </EuiCallOut>
+          <EuiCallOut
+            announceOnMount
+            title="Announcement title"
+            text="Announcement content"
+          ></EuiCallOut>
         );
 
         act(() => {
