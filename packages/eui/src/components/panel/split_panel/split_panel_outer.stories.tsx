@@ -14,10 +14,17 @@ import { EuiSplitPanel, _EuiSplitPanelOuterProps } from './split_panel';
 const meta: Meta<_EuiSplitPanelOuterProps> = {
   title: 'Layout/EuiSplitPanel',
   component: EuiSplitPanel.Outer,
+  argTypes: {
+    onClick: {
+      control: 'boolean', // for testing convenience
+    },
+  },
   args: {
     // Component defaults
     direction: 'column',
     responsive: ['xs', 's'],
+    // @ts-expect-error - set to boolean for testing convenience
+    onClick: false,
   },
 };
 
@@ -51,7 +58,12 @@ export const SplitPanelOuterDark: Story = {
 export const HighContrast: Story = {
   tags: ['vrt-only'],
   globals: { highContrastMode: true },
-  render: () => (
+  parameters: {
+    controls: {
+      exclude: ['onClick'],
+    },
+  },
+  render: (_args) => (
     <>
       <EuiSplitPanel.Outer direction="row">
         <EuiSplitPanel.Inner>
