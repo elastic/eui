@@ -6,7 +6,12 @@
  * Side Public License, v 1.
  */
 
-import React from 'react';
+let mockIdCounter = 0;
+jest.mock('../../services/accessibility/html_id_generator', () => ({
+  useGeneratedHtmlId: () => `unique-id-${mockIdCounter++}`,
+}));
+
+import React, { PropsWithChildren, ReactElement } from 'react';
 import { requiredProps } from '../../test';
 import { render } from '../../test/rtl';
 
@@ -18,17 +23,40 @@ import {
   WARNING_MESSAGE_NOT_RECOMMENDED_UNIT,
 } from './utils';
 import type { EuiTableSharedWidthProps } from './types';
+import { EuiTableStoreProvider } from './store/provider';
+import {
+  createEuiTableStore,
+  EuiTableStore,
+  EuiTableStoreColumnData,
+} from './store/store';
+import * as storeProviderModule from './store/provider';
+import { EuiTableWithinStickyHeaderProvider } from './sticky_header/context';
 
-const renderInTableHeader = (cell: React.ReactElement) =>
-  render(
-    <table>
-      <thead>
-        <tr>{cell}</tr>
-      </thead>
-    </table>
+const renderInTableHeader = (cell: React.ReactElement) => {
+  const Wrapper = ({ children }: PropsWithChildren) => (
+    <EuiTableStoreProvider>
+      <table>
+        <thead>
+          <tr>{children}</tr>
+        </thead>
+      </table>
+    </EuiTableStoreProvider>
   );
 
+  const result = render(<Wrapper>{cell}</Wrapper>);
+
+  return {
+    ...result,
+    rerender: (cell: ReactElement) =>
+      result.rerender(<Wrapper>{cell}</Wrapper>),
+  };
+};
+
 describe('EuiTableHeaderCellCheckbox', () => {
+  beforeEach(() => {
+    mockIdCounter = 0;
+  });
+
   test('is rendered', () => {
     const { container } = renderInTableHeader(
       <EuiTableHeaderCellCheckbox {...requiredProps} />
@@ -142,5 +170,119 @@ describe('EuiTableHeaderCellCheckbox', () => {
     describe('minWidth', testProp('minWidth', WARNING_MESSAGE_MIN_WIDTH));
 
     describe('maxWidth', testProp('maxWidth', WARNING_MESSAGE_MAX_WIDTH));
+  });
+
+  describe('store integration', () => {
+    let useEuiTableColumnDataStoreMock: jest.SpyInstance<EuiTableStore>;
+
+    beforeEach(() => {
+      useEuiTableColumnDataStoreMock = jest.spyOn(
+        storeProviderModule,
+        'useEuiTableColumnDataStore'
+      );
+    });
+
+    it('registers column in the store on mount', () => {
+      const testStore = createEuiTableStore();
+      useEuiTableColumnDataStoreMock.mockReturnValue(testStore);
+
+      const registerColumn = jest.spyOn(testStore, 'registerColumn');
+
+      renderInTableHeader(
+        <EuiTableHeaderCellCheckbox>Test</EuiTableHeaderCellCheckbox>
+      );
+
+      expect(registerColumn).toHaveBeenCalledWith(
+        'unique-id-0',
+        expect.objectContaining<EuiTableStoreColumnData>({
+          renderHeaderCellRef: expect.objectContaining({
+            current: expect.any(Function),
+          }),
+        })
+      );
+    });
+
+    it('unregisters column on unmount', () => {
+      const testStore = createEuiTableStore();
+      useEuiTableColumnDataStoreMock.mockReturnValue(testStore);
+
+      const registerColumn = jest.spyOn(testStore, 'registerColumn');
+
+      const { unmount } = renderInTableHeader(
+        <EuiTableHeaderCellCheckbox>Test</EuiTableHeaderCellCheckbox>
+      );
+
+      expect(registerColumn).toHaveBeenCalledTimes(1);
+      expect(testStore.getColumns().size).toBe(1);
+      expect(testStore.getColumns().has('unique-id-0')).toBe(true);
+
+      unmount();
+
+      // Rather than testing whether the unregister function returned by
+      // registerColumn() was called, which is tricky to mock, we just assert
+      // on the store
+      expect(testStore.getColumns().size).toBe(0);
+      expect(testStore.getColumns().has('unique-id-0')).toBe(false);
+    });
+
+    it('does not register or update widths when within sticky header', () => {
+      const testStore = createEuiTableStore();
+      useEuiTableColumnDataStoreMock.mockReturnValue(testStore);
+
+      const registerColumn = jest.spyOn(testStore, 'registerColumn');
+      const updateColumnWidth = jest.spyOn(testStore, 'updateColumnWidth');
+
+      render(
+        <EuiTableStoreProvider>
+          <EuiTableWithinStickyHeaderProvider>
+            <table>
+              <thead>
+                <tr>
+                  <EuiTableHeaderCellCheckbox>Test</EuiTableHeaderCellCheckbox>
+                </tr>
+              </thead>
+            </table>
+          </EuiTableWithinStickyHeaderProvider>
+        </EuiTableStoreProvider>
+      );
+
+      expect(registerColumn).not.toHaveBeenCalled();
+      expect(updateColumnWidth).not.toHaveBeenCalled();
+    });
+
+    it('updates column on every render', () => {
+      const testStore = createEuiTableStore();
+      useEuiTableColumnDataStoreMock.mockReturnValue(testStore);
+
+      const updateColumn = jest.spyOn(testStore, 'updateColumn');
+
+      const { rerender } = renderInTableHeader(
+        <EuiTableHeaderCellCheckbox>Test</EuiTableHeaderCellCheckbox>
+      );
+
+      expect(updateColumn).toHaveBeenCalledWith(
+        'unique-id-0',
+        expect.objectContaining<EuiTableStoreColumnData>({
+          renderHeaderCellRef: expect.objectContaining({
+            current: expect.any(Function),
+          }),
+        })
+      );
+
+      const { renderHeaderCellRef } = updateColumn.mock.lastCall![1];
+
+      updateColumn.mockClear();
+
+      rerender(<EuiTableHeaderCellCheckbox>Test</EuiTableHeaderCellCheckbox>);
+
+      expect(updateColumn).toHaveBeenCalledWith(
+        // The ID is stable between rerenders, but the simple number increment
+        // from the used mock shows something different
+        'unique-id-1',
+        expect.objectContaining<EuiTableStoreColumnData>({
+          renderHeaderCellRef,
+        })
+      );
+    });
   });
 });

@@ -11,6 +11,9 @@ import React, {
   HTMLAttributes,
   ThHTMLAttributes,
   ReactNode,
+  useEffect,
+  useCallback,
+  useRef,
 } from 'react';
 import classNames from 'classnames';
 
@@ -19,6 +22,7 @@ import {
   HorizontalAlignment,
   LEFT_ALIGNMENT,
 } from '../../services';
+import { useGeneratedHtmlId } from '../../services/accessibility/html_id_generator';
 import { EuiI18n } from '../i18n';
 import { EuiScreenReaderOnly } from '../accessibility';
 import { CommonProps, NoArgCallback } from '../common';
@@ -40,6 +44,9 @@ import type {
   EuiTableSharedWidthProps,
   EuiTableStickyCellOptions,
 } from './types';
+import { useEuiTableColumnDataStore } from './store/provider';
+import { useEuiTableWithinStickyHeader } from './sticky_header';
+import { EuiTableStoreRenderHeaderCell } from './store/store';
 
 export type TableHeaderCellScope = (typeof HEADER_CELL_SCOPE)[number];
 
@@ -197,77 +204,161 @@ export const EuiTableHeaderCell: FunctionComponent<EuiTableHeaderCellProps> = ({
   sticky,
   ...rest
 }) => {
+  const selfRef = useRef<HTMLTableCellElement>(null);
+
+  const internalCellId = useGeneratedHtmlId();
+  const store = useEuiTableColumnDataStore();
+  const isWithinStickyHeader = useEuiTableWithinStickyHeader();
+
   const styles = useEuiMemoizedStyles(euiTableHeaderFooterCellStyles);
   const stickyStyles = _useEuiTableStickyCellStyles(sticky);
 
   const isResponsive = useEuiTableIsResponsive();
   const hideForDesktop = !isResponsive && mobileOptions?.only;
   const hideForMobile = isResponsive && mobileOptions?.show === false;
-  if (hideForDesktop || hideForMobile) return null;
 
-  const classes = classNames('euiTableHeaderCell', className);
-  const cssStyles = [styles.euiTableHeaderCell, !isResponsive && stickyStyles];
-  const inlineWidthStyles = resolveWidthPropsAsStyle(_style, {
-    width,
-    minWidth,
-    maxWidth,
-  });
+  const renderHeaderCellRef = useRef<EuiTableStoreRenderHeaderCell>();
+  renderHeaderCellRef.current = (extraProps) => {
+    if (hideForDesktop || hideForMobile) return null;
 
-  const CellComponent = children ? 'th' : 'td';
-  const cellScope = CellComponent === 'th' ? scope ?? 'col' : undefined; // `scope` is only valid on `th` elements
+    const classes = classNames('euiTableHeaderCell', className);
+    const cssStyles = [
+      styles.euiTableHeaderCell,
+      !isResponsive && stickyStyles,
+    ];
+    const inlineWidthStyles = resolveWidthPropsAsStyle(_style, {
+      width,
+      minWidth,
+      maxWidth,
+    });
 
-  const canSort = !!(onSort && !readOnly);
-  let ariaSortValue: HTMLAttributes<HTMLTableCellElement>['aria-sort'];
-  if (isSorted) {
-    ariaSortValue = isSortAscending ? 'ascending' : 'descending';
-  } else if (canSort) {
-    ariaSortValue = 'none';
-  }
+    const CellComponent = children ? 'th' : 'td';
+    const cellScope = CellComponent === 'th' ? scope ?? 'col' : undefined; // `scope` is only valid on `th` elements
 
-  const cellContentsProps = {
-    css: styles.euiTableHeaderCell__content,
-    align,
-    tooltipProps,
-    description,
-    canSort,
-    isSorted,
-    isSortAscending,
-    children,
+    const canSort = !!(onSort && !readOnly);
+    let ariaSortValue: HTMLAttributes<HTMLTableCellElement>['aria-sort'];
+    if (isSorted) {
+      ariaSortValue = isSortAscending ? 'ascending' : 'descending';
+    } else if (canSort) {
+      ariaSortValue = 'none';
+    }
+
+    const cellContentsProps = {
+      css: styles.euiTableHeaderCell__content,
+      align,
+      tooltipProps,
+      description,
+      canSort,
+      isSorted,
+      isSortAscending,
+      children,
+    };
+
+    return (
+      <CellComponent
+        css={cssStyles}
+        className={classes}
+        scope={cellScope}
+        role="columnheader"
+        aria-sort={ariaSortValue}
+        data-sticky={(!isResponsive && sticky?.side) || undefined}
+        style={{ ..._style, ...inlineWidthStyles }}
+        {...rest}
+        {...extraProps}
+      >
+        {canSort ? (
+          <EuiToolTip
+            content={tooltipProps?.content}
+            {...tooltipProps?.tooltipProps}
+            display="block"
+          >
+            <button
+              type="button"
+              css={styles.euiTableHeaderCell__button}
+              className={classNames('euiTableHeaderButton', {
+                'euiTableHeaderButton-isSorted': isSorted,
+              })}
+              onClick={onSort}
+              data-test-subj="tableHeaderSortButton"
+            >
+              <CellContents {...cellContentsProps} />
+            </button>
+          </EuiToolTip>
+        ) : (
+          <CellContents {...cellContentsProps} />
+        )}
+        {append}
+      </CellComponent>
+    );
   };
 
-  return (
-    <CellComponent
-      css={cssStyles}
-      className={classes}
-      scope={cellScope}
-      role="columnheader"
-      aria-sort={ariaSortValue}
-      data-sticky={(!isResponsive && sticky?.side) || undefined}
-      style={{ ..._style, ...inlineWidthStyles }}
-      {...rest}
-    >
-      {canSort ? (
-        <EuiToolTip
-          content={tooltipProps?.content}
-          {...tooltipProps?.tooltipProps}
-          display="block"
-        >
-          <button
-            type="button"
-            css={styles.euiTableHeaderCell__button}
-            className={classNames('euiTableHeaderButton', {
-              'euiTableHeaderButton-isSorted': isSorted,
-            })}
-            onClick={onSort}
-            data-test-subj="tableHeaderSortButton"
-          >
-            <CellContents {...cellContentsProps} />
-          </button>
-        </EuiToolTip>
-      ) : (
-        <CellContents {...cellContentsProps} />
-      )}
-      {append}
-    </CellComponent>
+  const handleResize = useCallback<ResizeObserverCallback>(
+    (entries) => {
+      const entry = entries[0];
+      if (!entry) {
+        return;
+      }
+
+      store.updateColumnWidth(internalCellId, entry.contentRect.width);
+    },
+    [store, internalCellId]
   );
+
+  useEffect(() => {
+    // Don't register the column inside the sticky header as the original
+    // column is already registered. This would cause an infinite loop.
+    if (
+      isWithinStickyHeader ||
+      !selfRef.current ||
+      !renderHeaderCellRef.current
+    ) {
+      return;
+    }
+
+    const unregisterColumn = store.registerColumn(internalCellId, {
+      renderHeaderCellRef,
+      // getBoundingClientRect is not the cheapest, but we call it only once
+      currentWidth: selfRef.current.getBoundingClientRect().width,
+    });
+
+    // ResizeObserver is available in all supported browsers,
+    // but jsdom and jest don't provide a polyfill for it.
+    let resizeObserver: ResizeObserver | undefined;
+    if (typeof window.ResizeObserver !== 'undefined') {
+      resizeObserver = new ResizeObserver(handleResize);
+
+      // Note: This _could_ be optimized by using a single ResizeObserver
+      // for the whole EuiTable, but it would need to be changed back to this
+      // if/when we implement resizable columns
+      resizeObserver.observe(selfRef.current);
+    }
+
+    return () => {
+      unregisterColumn();
+
+      resizeObserver?.disconnect();
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [store, internalCellId, isWithinStickyHeader]);
+
+  // Notify the store on every render so the sticky header stays in sync.
+  // React's reconciliation will efficiently handle any duplicate renders.
+  useEffect(() => {
+    // Don't update the store if the component is rendered within EuiTableStickyHeader
+    if (isWithinStickyHeader) {
+      return;
+    }
+
+    // Don't update the store if the element doesn't exist. The render function
+    // in `renderHeaderCellRef` sometimes renders null - e.g., in mobile layout
+    if (!selfRef.current) {
+      return;
+    }
+
+    store.updateColumn(internalCellId, {
+      renderHeaderCellRef,
+    });
+  });
+
+  return renderHeaderCellRef.current({ ref: selfRef });
 };

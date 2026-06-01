@@ -610,6 +610,7 @@ export const Scrollable: Story = {
     ...Playground.args,
     scrollableInline: true,
     stickyScrollbar: true,
+    stickyHeader: true,
     responsiveBreakpoint: false,
     tableLayout: 'auto',
     columns: scrollableColumns,

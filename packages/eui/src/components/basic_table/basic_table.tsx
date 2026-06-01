@@ -525,6 +525,7 @@ export class EuiBasicTable<T extends object = any> extends Component<
       hasBackground,
       scrollableInline,
       stickyScrollbar,
+      stickyHeader,
       ...rest
     } = this.props;
 
@@ -554,6 +555,7 @@ export class EuiBasicTable<T extends object = any> extends Component<
       loading,
       scrollableInline,
       stickyScrollbar,
+      stickyHeader,
     } = this.props;
 
     return (
@@ -571,6 +573,7 @@ export class EuiBasicTable<T extends object = any> extends Component<
             hasBackground={hasBackground}
             scrollableInline={scrollableInline}
             stickyScrollbar={stickyScrollbar}
+            stickyHeader={stickyHeader}
             css={loading && safariLoadingWorkaround}
           >
             {this.renderTableCaption()}
