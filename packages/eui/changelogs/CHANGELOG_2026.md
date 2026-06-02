@@ -1,3 +1,10 @@
+## [`v116.3.1`](https://github.com/elastic/eui/releases/v116.3.1)
+
+**Bug fixes**
+
+- Fixed `EuiTableHeaderCell` and `EuiTableHeaderCellCheckbox` throwing an error in Jest test environments due to static mocking of `useGeneratedHtmlId` by generating a stable, unique key with `uuidv4` ([#9698](https://github.com/elastic/eui/pull/9698))
+- Fixed an issue where the tooltip anchor wrapper in `EuiAvatar` did not have the same `border-radius` applied as the avatar itself. ([#9697](https://github.com/elastic/eui/pull/9697))
+
 ## [`v116.3.0`](https://github.com/elastic/eui/releases/v116.3.0)
 
 - Added `EuiBanner` component ([#9673](https://github.com/elastic/eui/pull/9673))
