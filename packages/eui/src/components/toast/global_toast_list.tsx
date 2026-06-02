@@ -26,6 +26,7 @@ import { EuiToast, EuiToastProps } from './toast';
 import { euiGlobalToastListStyles } from './global_toast_list.styles';
 import { EuiButton } from '../button';
 import { EuiI18n } from '../i18n';
+import { EuiNotificationBadge } from '../badge';
 
 type ToastSide = 'right' | 'left';
 
@@ -75,6 +76,12 @@ export interface EuiGlobalToastListProps extends CommonProps {
    * @default log
    */
   role?: HTMLAttributes<HTMLElement>['role'];
+  /**
+   * Renders a notification badge indicating the amount of toasts in the list.
+   *
+   * @default false
+   */
+  showNotificationBadge?: boolean;
 }
 
 export const EuiGlobalToastList: FunctionComponent<EuiGlobalToastListProps> = ({
@@ -85,6 +92,7 @@ export const EuiGlobalToastList: FunctionComponent<EuiGlobalToastListProps> = ({
   onClearAllToasts,
   side = 'right',
   showClearAllButtonAt = CLEAR_ALL_TOASTS_THRESHOLD_DEFAULT,
+  showNotificationBadge = false,
   ...rest
 }) => {
   const [toastIdToDismissedMap, setToastIdToDismissedMap] = useState<{
@@ -291,7 +299,8 @@ export const EuiGlobalToastList: FunctionComponent<EuiGlobalToastListProps> = ({
   const renderedToasts = useMemo(
     () =>
       toasts.map((toast) => {
-        const { text, toastLifeTimeMs, ...rest } = toast;
+        const { text, toastLifeTimeMs: perToastLifeTimeMs, ...rest } = toast;
+        const effectiveLifeTimeMs = perToastLifeTimeMs ?? toastLifeTimeMs;
         const onClose = () => dismissToast(toast);
 
         return (
@@ -304,13 +313,20 @@ export const EuiGlobalToastList: FunctionComponent<EuiGlobalToastListProps> = ({
               onFocus={onMouseEnter}
               onBlur={onMouseLeave}
               {...rest}
-            >
-              {text}
-            </EuiToast>
+              animationMs={effectiveLifeTimeMs}
+              text={text}
+            />
           </EuiGlobalToastListItem>
         );
       }),
-    [toasts, toastIdToDismissedMap, dismissToast, onMouseEnter, onMouseLeave]
+    [
+      toasts,
+      toastIdToDismissedMap,
+      dismissToast,
+      onMouseEnter,
+      onMouseLeave,
+      toastLifeTimeMs,
+    ]
   );
 
   const clearAllButton = useMemo(() => {
@@ -334,7 +350,8 @@ export const EuiGlobalToastList: FunctionComponent<EuiGlobalToastListProps> = ({
           ]: string[]) => (
             <EuiGlobalToastListItem isDismissed={false}>
               <EuiButton
-                fill
+                fullWidth
+                size="s"
                 color="text"
                 onClick={() => {
                   toasts.forEach((toast) => dismissToastProp(toast));
@@ -361,6 +378,29 @@ export const EuiGlobalToastList: FunctionComponent<EuiGlobalToastListProps> = ({
 
   const classes = classNames('euiGlobalToastList', className);
 
+  const notificationBadge = useMemo(() => {
+    const toastWasDismissed = toastIdToDismissedMap[toasts[0]?.id] ?? false;
+    const isListEmpty = toasts.every((t) => toastIdToDismissedMap[t.id]);
+
+    return (
+      showNotificationBadge &&
+      toasts.length > 0 && (
+        <EuiNotificationBadge
+          className="euiGlobalToastList__countBadge"
+          css={[
+            styles.notificationBadge.notificationBadge,
+            toastWasDismissed && styles.notificationBadge.hasFadeOut,
+            isListEmpty && styles.notificationBadge.hasFadeOut,
+          ]}
+          size="m"
+          color="subdued"
+        >
+          {toasts.length}
+        </EuiNotificationBadge>
+      )
+    );
+  }, [showNotificationBadge, toasts, toastIdToDismissedMap, styles]);
+
   return (
     <div
       aria-live="polite"
@@ -370,8 +410,11 @@ export const EuiGlobalToastList: FunctionComponent<EuiGlobalToastListProps> = ({
       className={classes}
       {...rest}
     >
-      {renderedToasts}
-      {clearAllButton}
+      <div css={styles.content}>
+        {notificationBadge}
+        {renderedToasts}
+        {clearAllButton}
+      </div>
     </div>
   );
 };

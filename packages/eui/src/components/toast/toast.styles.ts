@@ -6,122 +6,157 @@
  * Side Public License, v 1.
  */
 
-import { CSSProperties } from 'react';
-import { css } from '@emotion/react';
-import { euiShadowLarge, mathWithUnits } from '@elastic/eui-theme-common';
+import { css, keyframes } from '@emotion/react';
+import {
+  euiCanAnimate,
+  euiShadowLarge,
+  mathWithUnits,
+} from '@elastic/eui-theme-common';
 
 import { euiTextBreakWord, logicalCSS } from '../../global_styling';
-import {
-  highContrastModeStyles,
-  preventForcedColors,
-} from '../../global_styling/functions/high_contrast';
+import { preventForcedColors } from '../../global_styling/functions/high_contrast';
 import { UseEuiTheme } from '../../services';
 import { euiTitle } from '../title/title.styles';
 import { euiPanelBorderStyles } from '../panel/panel.styles';
 
-export const euiToastStyles = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme, highContrastMode } = euiThemeContext;
+const TEXT_MAX_WIDTH = 1200;
+const CONTAINER_NAME = 'euiToast';
+const CQC_BREAKPOINT_NARROWEST = '(max-width: 320px)';
 
-  const highlightStyles = (
-    color: string,
-    width?: CSSProperties['borderWidth']
-  ) => `
-    &:before {
-      content: '';
-      position: absolute;
-      /* ensure highlight border is on top of panel border */
-      z-index: 1;
-      inset: 0;
-      border-radius: inherit;
-      ${logicalCSS('border-top', `${width} solid ${color}`)}
-      pointer-events: none;
-    }
-  `;
+const euiToastAnimation = keyframes`
+  from {
+    transform: scaleX(1);
+  }
+  to {
+    transform: scaleX(0);
+  }
+`;
+
+export const euiToastStyles = (euiThemeContext: UseEuiTheme) => {
+  const { euiTheme } = euiThemeContext;
+
+  const highlightSize = mathWithUnits(
+    [euiTheme.border.width.thin, euiTheme.border.width.thick],
+    (x, y) => x + y
+  );
+  const paddingTop = mathWithUnits(
+    [euiTheme.size.base, highlightSize],
+    (x, y) => x + y
+  );
+  const offsetTop = mathWithUnits(
+    [euiTheme.size.s, highlightSize],
+    (x, y) => x + y
+  );
 
   return {
     // Base
     euiToast: css`
+      container-type: inline-size;
+      container-name: ${CONTAINER_NAME};
+      position: relative;
+      overflow: hidden;
       border-radius: ${euiTheme.border.radius.medium};
       ${euiShadowLarge(euiThemeContext, { borderAllInHighContrastMode: true })}
 
-      position: relative;
+      ${logicalCSS('padding-top', paddingTop)}
+      ${logicalCSS('padding-bottom', euiTheme.size.base)}
       ${logicalCSS('padding-horizontal', euiTheme.size.base)}
-      ${logicalCSS('padding-vertical', euiTheme.size.base)}
-      background-color: ${euiTheme.colors.emptyShade};
+      background-color: ${euiTheme.colors.backgroundBasePlain};
       ${logicalCSS('width', '100%')}
 
       ${euiTextBreakWord()} /* Prevent long lines from overflowing */
-
       ${euiPanelBorderStyles(euiThemeContext)}
+    `,
+    decor: css`
+      position: absolute;
+      inset-block-start: 0;
+      inset-inline: 0;
+      ${logicalCSS('height', highlightSize)}
+      background-color: var(--euiToastTypeBackgroundColor);
 
-      &:hover,
-      &:focus {
-        [class*='euiToast__closeButton'] {
-          opacity: 1;
+      ${preventForcedColors(euiThemeContext)}
+
+      &::before {
+        content: '';
+        position: absolute;
+        /* ensure highlight is on top of panel border */
+        z-index: ${euiTheme.levels.content};
+        inset-block-start: 0;
+        inset-inline: 0;
+        ${logicalCSS('height', '100%')}
+        background-color: var(--euiToastTypeColor);
+        pointer-events: none;
+        ${preventForcedColors(euiThemeContext)}
+        transform-origin: left center;
+
+        [dir='rtl'] & {
+          transform-origin: right center;
         }
       }
     `,
-    // Elements
-    euiToast__closeButton: css`
-      position: absolute;
-      ${logicalCSS('top', euiTheme.size.base)}
-      ${logicalCSS('right', euiTheme.size.base)}
+    // handles content + actions layout
+    wrapper: css`
+      display: flex;
+      flex-direction: column;
+      gap: ${euiTheme.size.m};
+      inline-size: 100%;
     `,
-    // Variants
-    colors: {
-      _getStyles: (color: string) => {
-        // Increase color/border thickness for all high contrast modes
-        const borderWidth = highContrastMode
-          ? mathWithUnits(euiTheme.border.width.thick, (x) => x * 2)
-          : euiTheme.border.width.thick;
+    // handles icon + text layout
+    body: css`
+      display: flex;
+      flex-direction: row;
+      align-self: center;
+      gap: ${euiTheme.size.m};
+      inline-size: 100%;
+    `,
+    // handles text layout
+    content: css`
+      display: flex;
+      flex-direction: column;
+      gap: ${euiTheme.size.xs};
+      align-self: center;
+      inline-size: 100%;
+      max-inline-size: ${TEXT_MAX_WIDTH}px;
 
-        return highContrastModeStyles(euiThemeContext, {
-          none: highlightStyles(color, borderWidth),
-          preferred: `
-            ${highlightStyles(color, borderWidth)}
-            
-            &::before {
-              ${logicalCSS(
-                'width',
-                `calc(100% + ${mathWithUnits(
-                  euiTheme.border.width.thin,
-                  (x) => x * 2
-                )})`
-              )}
-              ${logicalCSS('margin-top', `-${euiTheme.border.width.thin}`)}
-              ${logicalCSS('margin-left', `-${euiTheme.border.width.thin}`)}
-            }
-          `,
-          // Windows high contrast mode ignores/overrides border colors, which have semantic meaning here. To get around this, we'll use a pseudo element that ignores forced colors
-          forced: `
-            overflow: hidden;
+      .euiToast__text + .euiToast__additionalContent {
+        ${logicalCSS('margin-top', euiTheme.size.s)}
+      }
+    `,
+    icon: css`
+      grid-area: icon;
+      position: relative;
+      ${logicalCSS('margin-vertical', euiTheme.size.xxs)}
+    `,
+    actions: css`
+      grid-area: actions;
+      display: flex;
+      gap: ${euiTheme.size.s};
+      ${logicalCSS('margin-left', euiTheme.size.xl)}
 
-            &::before {
-              content: '';
-              position: absolute;
-              ${logicalCSS('top', 0)}
-              ${logicalCSS('horizontal', 0)}
-              ${logicalCSS('height', borderWidth)}
-              background-color: ${color};
-              ${preventForcedColors(euiThemeContext)}
-              pointer-events: none;
-            }
-          `,
-        });
-      },
-      get primary() {
-        return css(this._getStyles(euiTheme.colors.primary));
-      },
-      get success() {
-        return css(this._getStyles(euiTheme.colors.success));
-      },
-      get warning() {
-        return css(this._getStyles(euiTheme.colors.warning));
-      },
-      get danger() {
-        return css(this._getStyles(euiTheme.colors.danger));
-      },
-    },
+      /* uses container query directly as it should apply generically independent of size */
+      @container ${CONTAINER_NAME} ${CQC_BREAKPOINT_NARROWEST} {
+        flex-wrap: wrap;
+
+        /* use full width actions */
+        > * {
+          inline-size: 100%;
+        }
+      }
+    `,
+    dismissButton: css`
+      position: absolute;
+      ${logicalCSS('top', offsetTop)};
+      ${logicalCSS('right', euiTheme.size.s)}
+    `,
+
+    hasAnimation: css`
+      &::before {
+        ${euiCanAnimate} {
+          animation: ${euiToastAnimation} var(--euiToastAnimationMs) linear
+            forwards;
+        }
+      }
+    `,
   };
 };
 
@@ -133,29 +168,11 @@ export const euiToastHeaderStyles = (euiThemeContext: UseEuiTheme) => {
       display: flex;
       /* Align icon with first line of title text if it wraps */
       align-items: baseline;
-      /* Account for close button */
-      ${logicalCSS('padding-right', euiTheme.size.l)}
-
-      > * + * {
-        /* Apply margin to all but last item in the flex */
-        ${logicalCSS('margin-left', euiTheme.size.s)}
-      }
-    `,
-    // Elements
-    euiToastHeader__icon: css`
-      flex: 0 0 auto;
-      fill: ${euiTheme.colors.textHeading};
-
-      /* Vertically center icon with first line of title */
-      transform: translateY(2px);
-    `,
-    euiToastHeader__title: css`
       ${euiTitle(euiThemeContext, 'xs')}
       font-weight: ${euiTheme.font.weight.bold};
     `,
-    // Variants
-    withBody: css`
-      ${logicalCSS('margin-bottom', euiTheme.size.s)}
+    hasDismissButton: css`
+      padding-inline-end: ${euiTheme.size.l};
     `,
   };
 };

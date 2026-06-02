@@ -6,10 +6,20 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, HTMLAttributes, ReactNode } from 'react';
+import React, {
+  FunctionComponent,
+  HTMLAttributes,
+  ReactNode,
+  useMemo,
+} from 'react';
 import classNames from 'classnames';
+import {
+  _EuiThemeBackgroundColors,
+  _EuiThemeBorderColors,
+  getTokenName,
+} from '@elastic/eui-theme-common';
 
-import { useEuiMemoizedStyles } from '../../services';
+import { useEuiMemoizedStyles, useEuiTheme } from '../../services';
 import { CommonProps } from '../common';
 import { EuiScreenReaderOnly } from '../accessibility';
 import { EuiButtonIcon } from '../button';
@@ -18,41 +28,248 @@ import { IconType, EuiIcon } from '../icon';
 import { EuiText } from '../text';
 
 import { euiToastStyles, euiToastHeaderStyles } from './toast.styles';
+import {
+  EuiNotificationIcon,
+  type EuiNotificationIconType,
+} from '../notification_icon/notification_icon';
+import { euiNotificationIconStyles } from '../notification_icon/notification_icon.styles';
+import {
+  EuiToastAction,
+  EuiToastActionPrimaryProps,
+  EuiToastActionSecondaryProps,
+} from './toast_action';
+import { EuiToastColor } from './types';
+import { EuiTitle } from '../title';
 
-export const COLORS = ['primary', 'success', 'warning', 'danger'] as const;
-
-type ToastColor = (typeof COLORS)[number];
+export const COLOR_TO_NOTIFICATION_ICON_MAP: Record<
+  EuiToastColor,
+  EuiNotificationIconType
+> = {
+  primary: 'info',
+  success: 'success',
+  warning: 'warning',
+  danger: 'error',
+};
 
 export interface EuiToastProps
   extends CommonProps,
     Omit<HTMLAttributes<HTMLDivElement>, 'title'> {
+  /**
+   * Title of the toast. Should be used with text only. Do not pass complex content or custom components.
+   * Ensure to always pass a title. It's currently marked as optional for backwards compatibility.
+   * In a future major release, this will be required.
+   */
   title?: ReactNode;
-  color?: ToastColor;
+  /**
+   * Main component text. Accepts text, text block elements such as `<p>`, and inline elements such as `<span>`, `<strong>`, `<em>` or `<EuiLink>`.
+   * Avoid passing complex layouts or custom components. Use `children` instead.
+   */
+  text?: ReactNode;
+  /**
+   * Can be used for additional, non-inline content. Use sparingly, as toasts are not meant to have complex content.
+   * Where possible, use `text` and `actionProps` instead to display text and actions.
+   */
+  children?: ReactNode;
+  color?: EuiToastColor;
+  /**
+   * Defines a custom icon to be displayed.
+   * When no `iconType` is set, a default icon will be used based on the `color` of the toast.
+   */
   iconType?: IconType;
   onClose?: () => void;
+  /**
+   * Duration in milliseconds that drives a countdown animation on the toast's decor bar.
+   * When not set the bar is static at full width.
+   */
+  animationMs?: number;
+  /**
+   * Props for primary and secondary actions within the toast.
+   * Secondary actions will only be rendered in combination with a primary action.
+   */
+  actionProps?: {
+    primary?: EuiToastActionPrimaryProps;
+    secondary?: EuiToastActionSecondaryProps;
+  };
 }
 
 export const EuiToast: FunctionComponent<EuiToastProps> = ({
   title,
-  color,
+  text,
+  color = 'primary',
   iconType,
-  onClose,
   children,
   className,
+  actionProps,
+  style,
+  onClose,
+  animationMs,
   ...rest
 }) => {
-  const baseStyles = useEuiMemoizedStyles(euiToastStyles);
-  const baseCss = [baseStyles.euiToast, color && baseStyles.colors[color]];
+  const { euiTheme } = useEuiTheme();
+
+  const styles = useEuiMemoizedStyles(euiToastStyles);
+  const iconStyles = useEuiMemoizedStyles(euiNotificationIconStyles);
   const headerStyles = useEuiMemoizedStyles(euiToastHeaderStyles);
-  const headerCss = [
-    headerStyles.euiToastHeader,
-    children && headerStyles.withBody,
-  ];
+
+  const cssStyles = [styles.euiToast];
+  const decorCssStyles = [styles.decor, animationMs && styles.hasAnimation];
 
   const classes = classNames('euiToast', className);
 
+  const highlightColorToken = getTokenName(
+    'borderStrong',
+    color
+  ) as keyof _EuiThemeBorderColors;
+  const typeColor = euiTheme.colors[highlightColorToken];
+  const backgroundLightToken = getTokenName(
+    'backgroundLight',
+    color
+  ) as keyof _EuiThemeBackgroundColors;
+  const backgroundLightColor = euiTheme.colors[backgroundLightToken];
+
+  const cssVariables = useMemo(
+    () => ({
+      '--euiToastTypeColor': typeColor,
+      '--euiToastTypeBackgroundColor': backgroundLightColor,
+      ...(animationMs && {
+        '--euiToastAnimationMs': `${animationMs}ms`,
+      }),
+    }),
+    [typeColor, backgroundLightColor, animationMs]
+  );
+
+  const dismissButton = useMemo(() => {
+    if (!onClose) return;
+
+    return (
+      <EuiI18n token="euiToast.dismissToast" default="Dismiss toast">
+        {(dismissToast: string) => (
+          <EuiButtonIcon
+            css={styles.dismissButton}
+            iconType="cross"
+            color="text"
+            size="xs"
+            aria-label={dismissToast}
+            onClick={onClose}
+            data-test-subj="toastCloseButton"
+          />
+        )}
+      </EuiI18n>
+    );
+  }, [onClose, styles]);
+
+  const header = useMemo(() => {
+    if (!title) return;
+
+    const headerCssStyles = [
+      headerStyles.euiToastHeader,
+      onClose && headerStyles.hasDismissButton,
+    ];
+
+    return (
+      <EuiTitle
+        size="xs"
+        css={headerCssStyles}
+        data-test-subj="euiToastHeader__title"
+      >
+        <p>{title}</p>
+      </EuiTitle>
+    );
+  }, [title, headerStyles, onClose]);
+
+  const icon = useMemo(() => {
+    if (!iconType) {
+      const defaultIconType = COLOR_TO_NOTIFICATION_ICON_MAP[color] ?? 'info';
+
+      return (
+        <EuiNotificationIcon
+          css={styles.icon}
+          type={defaultIconType}
+          size="l"
+        />
+      );
+    }
+
+    return (
+      <EuiIcon
+        css={[styles.icon, iconStyles.size.l]}
+        type={iconType}
+        size="l"
+        aria-hidden="true"
+        color={typeColor}
+      />
+    );
+  }, [iconType, color, typeColor, styles, iconStyles]);
+
+  const optionalChildren = useMemo(() => {
+    if (!text && !children) return null;
+
+    return (
+      <>
+        {text && (
+          <EuiText
+            size="s"
+            color="default"
+            className="euiToast__text"
+            data-test-subj="euiToastText"
+          >
+            {text}
+          </EuiText>
+        )}
+        {children && (
+          <EuiText
+            className="euiToast__additionalContent"
+            size="s"
+            color="default"
+            data-test-subj="euiToastAdditionalContent"
+          >
+            {children}
+          </EuiText>
+        )}
+      </>
+    );
+  }, [text, children]);
+
+  const actionControls = useMemo(() => {
+    const actionPrimaryProps = {
+      ...actionProps?.primary,
+      color: color,
+    };
+    const actionSecondaryProps = {
+      ...actionProps?.secondary,
+      color: color,
+    };
+    const hasActionPrimary = Boolean(actionProps?.primary);
+    const hasActionSecondary = Boolean(actionProps?.secondary);
+    // a standalone secondary action is not supported
+    const hasActions = hasActionPrimary;
+
+    if (!hasActions) return null;
+
+    const actionPrimary = hasActionPrimary && (
+      <EuiToastAction actionType="primary" {...actionPrimaryProps} />
+    );
+
+    const actionSecondary = hasActionSecondary && (
+      <EuiToastAction actionType="secondary" {...actionSecondaryProps} />
+    );
+
+    return (
+      <div css={styles.actions}>
+        {actionPrimary}
+        {actionSecondary}
+      </div>
+    );
+  }, [actionProps, color, styles]);
+
   return (
-    <div css={baseCss} className={classes} {...rest}>
+    <div
+      css={cssStyles}
+      className={classes}
+      style={{ ...cssVariables, ...style }}
+      {...rest}
+    >
+      <div className="euiToastDecor" css={decorCssStyles} role="presentation" />
       {/* Screen reader announcement */}
       <EuiScreenReaderOnly>
         <p>
@@ -62,57 +279,32 @@ export const EuiToast: FunctionComponent<EuiToastProps> = ({
           />
         </p>
       </EuiScreenReaderOnly>
+      <div css={styles.wrapper}>
+        <div css={styles.body} data-test-subj="euiToastBody">
+          {icon}
 
-      {/* Header */}
-      <EuiI18n token="euiToast.notification" default="Notification">
-        {(notification: string) => (
-          <div
-            css={headerCss}
-            aria-label={notification}
-            data-test-subj="euiToastHeader"
-          >
-            {iconType && (
-              <EuiIcon
-                css={headerStyles.euiToastHeader__icon}
-                type={iconType}
-                size="m"
-                aria-hidden="true"
-              />
-            )}
-
-            <span
-              css={headerStyles.euiToastHeader__title}
-              data-test-subj="euiToastHeader__title"
-            >
-              {title}
-            </span>
+          <div css={styles.content}>
+            {
+              // Note: the DOM position of the dismiss button matters to screen reader users.
+              // We generally want them to have some context of _what_ they're dismissing,
+              // instead of navigating to the dismiss button first before the content
+              header && optionalChildren ? (
+                <>
+                  {header}
+                  {dismissButton}
+                  {optionalChildren}
+                </>
+              ) : (
+                <>
+                  {header || optionalChildren}
+                  {dismissButton}
+                </>
+              )
+            }
           </div>
-        )}
-      </EuiI18n>
-
-      {/* Close button */}
-      {onClose && (
-        <EuiI18n token="euiToast.dismissToast" default="Dismiss toast">
-          {(dismissToast: string) => (
-            <EuiButtonIcon
-              css={baseStyles.euiToast__closeButton}
-              iconType="cross"
-              color="text"
-              size="xs"
-              aria-label={dismissToast}
-              onClick={onClose}
-              data-test-subj="toastCloseButton"
-            />
-          )}
-        </EuiI18n>
-      )}
-
-      {/* Body */}
-      {children && (
-        <EuiText size="s" data-test-subj="euiToastBody">
-          {children}
-        </EuiText>
-      )}
+        </div>
+        {actionControls}
+      </div>
     </div>
   );
 };
