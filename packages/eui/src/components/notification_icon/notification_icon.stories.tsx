@@ -38,7 +38,7 @@ export const KitchenSink: Story = {
   tags: ['vrt-only'],
   parameters: {
     controls: {
-      include: [],
+      disable: true,
     },
   },
   render: function Render(_args) {

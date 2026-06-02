@@ -145,7 +145,7 @@ export const WithCustomChildren: Story = {
 export const KitchenSink: Story = {
   parameters: {
     controls: {
-      include: [],
+      disable: true,
     },
   },
   render: function Render(args) {
@@ -246,16 +246,16 @@ export const KitchenSink: Story = {
 };
 
 export const KitchenSinkHighContrast: Story = {
-  parameters: {
-    controls: {
-      include: [],
-    },
-  },
   globals: { highContrastMode: true },
   ...KitchenSink,
 };
 
 export const KitchenSinkCustomChildren: Story = {
+  parameters: {
+    controls: {
+      disable: true,
+    },
+  },
   tags: ['vrt-only'],
   args: {
     title,
