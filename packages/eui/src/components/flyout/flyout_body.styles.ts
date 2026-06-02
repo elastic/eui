@@ -32,12 +32,19 @@ export const euiFlyoutBodyStyles = (euiThemeContext: UseEuiTheme) => {
       `,
     },
     euiFlyoutBody__banner: css`
-      ${logicalCSSWithFallback('overflow-x', 'hidden')}
+      overflow: hidden;
 
       .euiCallOut {
         ${logicalCSS('margin-top', `${euiTheme.size.s}`)}
         ${logicalCSS('margin-left', `${euiTheme.size.l}`)}
-        ${logicalCSS('margin-right', `${euiTheme.size.xl}`)}
+        ${logicalCSS('margin-right', `${euiTheme.size.l}`)}
+      }
+
+      .euiFlyout:not(:has(.euiFlyoutHeader)) & {
+        /* Adds more spacing on the right to account for the close button */
+        .euiCallOut {
+          ${logicalCSS('margin-right', `${euiTheme.size.xxl}`)}
+        }
       }
     `,
   };
