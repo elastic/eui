@@ -3,111 +3,246 @@
 exports[`EuiCallOut is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiPanel euiPanel--primary euiPanel--paddingMedium euiCallOut euiCallOut--primary testClass1 testClass2 emotion-euiPanel-none-m-primary-euiCallOut-euiTestCss"
+  class="euiPanel euiPanel--primary euiCallOut euiCallOut--primary testClass1 testClass2 emotion-euiPanel-none-primary-euiCallOut-primary-euiTestCss"
+  data-size="m"
   data-test-subj="test subject string"
+  style="--euiCallOutTypeColor: #0B64DD;"
 >
   <div
-    class="euiText emotion-euiText-s-euiTextColor-default"
+    class="css-4ee039-wrapper"
   >
-    Content
+    <div
+      class="css-wlziyu-body"
+    >
+      <span
+        class="css-19b7t2f-icon"
+        data-euiicon-type="infoFill"
+      />
+      <div
+        class="css-ak2bmi-content"
+      >
+        <p
+          class="euiTitle euiCallOutHeader__title emotion-euiTitle-xs-euiCallOutHeader"
+        >
+          Callout title
+        </p>
+        <div
+          class="euiText euiCallOut__text emotion-euiText-s-euiTextColor-default"
+        >
+          content
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 `;
 
-exports[`EuiCallOut props color accent is rendered 1`] = `
-<div
-  class="euiPanel euiPanel--accent euiPanel--paddingMedium euiCallOut euiCallOut--accent emotion-euiPanel-none-m-accent-euiCallOut"
-/>
-`;
-
-exports[`EuiCallOut props color danger is rendered 1`] = `
-<div
-  class="euiPanel euiPanel--danger euiPanel--paddingMedium euiCallOut euiCallOut--danger emotion-euiPanel-none-m-danger-euiCallOut"
-/>
-`;
-
-exports[`EuiCallOut props color primary is rendered 1`] = `
-<div
-  class="euiPanel euiPanel--primary euiPanel--paddingMedium euiCallOut euiCallOut--primary emotion-euiPanel-none-m-primary-euiCallOut"
-/>
-`;
-
-exports[`EuiCallOut props color success is rendered 1`] = `
-<div
-  class="euiPanel euiPanel--success euiPanel--paddingMedium euiCallOut euiCallOut--success emotion-euiPanel-none-m-success-euiCallOut"
-/>
-`;
-
-exports[`EuiCallOut props color warning is rendered 1`] = `
-<div
-  class="euiPanel euiPanel--warning euiPanel--paddingMedium euiCallOut euiCallOut--warning emotion-euiPanel-none-m-warning-euiCallOut"
-/>
-`;
-
 exports[`EuiCallOut props heading h1 is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--primary euiPanel--paddingMedium euiCallOut euiCallOut--primary emotion-euiPanel-none-m-primary-euiCallOut"
-/>
+  class="euiPanel euiPanel--primary euiCallOut euiCallOut--primary emotion-euiPanel-none-primary-euiCallOut-primary"
+  data-size="m"
+  style="--euiCallOutTypeColor: #0B64DD;"
+>
+  <div
+    class="css-4ee039-wrapper"
+  >
+    <div
+      class="css-wlziyu-body"
+    >
+      <span
+        class="css-19b7t2f-icon"
+        data-euiicon-type="infoFill"
+      />
+      <div
+        class="css-ak2bmi-content"
+      >
+        <h1
+          class="euiTitle euiCallOutHeader__title emotion-euiTitle-xs-euiCallOutHeader"
+        >
+          Callout title
+        </h1>
+      </div>
+    </div>
+  </div>
+</div>
 `;
 
 exports[`EuiCallOut props heading h2 is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--primary euiPanel--paddingMedium euiCallOut euiCallOut--primary emotion-euiPanel-none-m-primary-euiCallOut"
-/>
+  class="euiPanel euiPanel--primary euiCallOut euiCallOut--primary emotion-euiPanel-none-primary-euiCallOut-primary"
+  data-size="m"
+  style="--euiCallOutTypeColor: #0B64DD;"
+>
+  <div
+    class="css-4ee039-wrapper"
+  >
+    <div
+      class="css-wlziyu-body"
+    >
+      <span
+        class="css-19b7t2f-icon"
+        data-euiicon-type="infoFill"
+      />
+      <div
+        class="css-ak2bmi-content"
+      >
+        <h2
+          class="euiTitle euiCallOutHeader__title emotion-euiTitle-xs-euiCallOutHeader"
+        >
+          Callout title
+        </h2>
+      </div>
+    </div>
+  </div>
+</div>
 `;
 
 exports[`EuiCallOut props heading h3 is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--primary euiPanel--paddingMedium euiCallOut euiCallOut--primary emotion-euiPanel-none-m-primary-euiCallOut"
-/>
+  class="euiPanel euiPanel--primary euiCallOut euiCallOut--primary emotion-euiPanel-none-primary-euiCallOut-primary"
+  data-size="m"
+  style="--euiCallOutTypeColor: #0B64DD;"
+>
+  <div
+    class="css-4ee039-wrapper"
+  >
+    <div
+      class="css-wlziyu-body"
+    >
+      <span
+        class="css-19b7t2f-icon"
+        data-euiicon-type="infoFill"
+      />
+      <div
+        class="css-ak2bmi-content"
+      >
+        <h3
+          class="euiTitle euiCallOutHeader__title emotion-euiTitle-xs-euiCallOutHeader"
+        >
+          Callout title
+        </h3>
+      </div>
+    </div>
+  </div>
+</div>
 `;
 
 exports[`EuiCallOut props heading h4 is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--primary euiPanel--paddingMedium euiCallOut euiCallOut--primary emotion-euiPanel-none-m-primary-euiCallOut"
-/>
+  class="euiPanel euiPanel--primary euiCallOut euiCallOut--primary emotion-euiPanel-none-primary-euiCallOut-primary"
+  data-size="m"
+  style="--euiCallOutTypeColor: #0B64DD;"
+>
+  <div
+    class="css-4ee039-wrapper"
+  >
+    <div
+      class="css-wlziyu-body"
+    >
+      <span
+        class="css-19b7t2f-icon"
+        data-euiicon-type="infoFill"
+      />
+      <div
+        class="css-ak2bmi-content"
+      >
+        <h4
+          class="euiTitle euiCallOutHeader__title emotion-euiTitle-xs-euiCallOutHeader"
+        >
+          Callout title
+        </h4>
+      </div>
+    </div>
+  </div>
+</div>
 `;
 
 exports[`EuiCallOut props heading h5 is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--primary euiPanel--paddingMedium euiCallOut euiCallOut--primary emotion-euiPanel-none-m-primary-euiCallOut"
-/>
+  class="euiPanel euiPanel--primary euiCallOut euiCallOut--primary emotion-euiPanel-none-primary-euiCallOut-primary"
+  data-size="m"
+  style="--euiCallOutTypeColor: #0B64DD;"
+>
+  <div
+    class="css-4ee039-wrapper"
+  >
+    <div
+      class="css-wlziyu-body"
+    >
+      <span
+        class="css-19b7t2f-icon"
+        data-euiicon-type="infoFill"
+      />
+      <div
+        class="css-ak2bmi-content"
+      >
+        <h5
+          class="euiTitle euiCallOutHeader__title emotion-euiTitle-xs-euiCallOutHeader"
+        >
+          Callout title
+        </h5>
+      </div>
+    </div>
+  </div>
+</div>
 `;
 
 exports[`EuiCallOut props heading h6 is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--primary euiPanel--paddingMedium euiCallOut euiCallOut--primary emotion-euiPanel-none-m-primary-euiCallOut"
-/>
+  class="euiPanel euiPanel--primary euiCallOut euiCallOut--primary emotion-euiPanel-none-primary-euiCallOut-primary"
+  data-size="m"
+  style="--euiCallOutTypeColor: #0B64DD;"
+>
+  <div
+    class="css-4ee039-wrapper"
+  >
+    <div
+      class="css-wlziyu-body"
+    >
+      <span
+        class="css-19b7t2f-icon"
+        data-euiicon-type="infoFill"
+      />
+      <div
+        class="css-ak2bmi-content"
+      >
+        <h6
+          class="euiTitle euiCallOutHeader__title emotion-euiTitle-xs-euiCallOutHeader"
+        >
+          Callout title
+        </h6>
+      </div>
+    </div>
+  </div>
+</div>
 `;
 
 exports[`EuiCallOut props heading p is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--primary euiPanel--paddingMedium euiCallOut euiCallOut--primary emotion-euiPanel-none-m-primary-euiCallOut"
-/>
-`;
-
-exports[`EuiCallOut props iconType is rendered 1`] = `
-<div
-  class="euiPanel euiPanel--primary euiPanel--paddingMedium euiCallOut euiCallOut--primary emotion-euiPanel-none-m-primary-euiCallOut"
-/>
-`;
-
-exports[`EuiCallOut props title is rendered 1`] = `
-<div
-  class="euiPanel euiPanel--primary euiPanel--paddingMedium euiCallOut euiCallOut--primary emotion-euiPanel-none-m-primary-euiCallOut"
+  class="euiPanel euiPanel--primary euiCallOut euiCallOut--primary emotion-euiPanel-none-primary-euiCallOut-primary"
+  data-size="m"
+  style="--euiCallOutTypeColor: #0B64DD;"
 >
-  <p
-    class="euiTitle euiCallOutHeader__title emotion-euiTitle-xs-euiCallOutHeader-primary"
-  >
-    Title
-  </p>
   <div
-    class="euiSpacer euiSpacer--s emotion-euiSpacer-s"
-  />
-  <div
-    class="euiText emotion-euiText-s-euiTextColor-default"
+    class="css-4ee039-wrapper"
   >
-    Content
+    <div
+      class="css-wlziyu-body"
+    >
+      <span
+        class="css-19b7t2f-icon"
+        data-euiicon-type="infoFill"
+      />
+      <div
+        class="css-ak2bmi-content"
+      >
+        <p
+          class="euiTitle euiCallOutHeader__title emotion-euiTitle-xs-euiCallOutHeader"
+        >
+          Callout title
+        </p>
+      </div>
+    </div>
   </div>
 </div>
 `;

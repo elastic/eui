@@ -13,10 +13,10 @@ import {
   logicalCSSWithFallback,
   euiYScrollWithShadows,
 } from '../../global_styling';
-import { highContrastModeStyles } from '../../global_styling/functions/high_contrast';
 
 export const euiFlyoutBodyStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
+
   return {
     euiFlyoutBody: css`
       ${logicalCSSWithFallback('overflow-y', 'hidden')}
@@ -32,10 +32,20 @@ export const euiFlyoutBodyStyles = (euiThemeContext: UseEuiTheme) => {
       `,
     },
     euiFlyoutBody__banner: css`
-      ${logicalCSSWithFallback('overflow-x', 'hidden')}
-      ${highContrastModeStyles(euiThemeContext, {
-        preferred: logicalCSS('border-bottom', euiTheme.border.thin),
-      })}
+      overflow: hidden;
+
+      .euiCallOut {
+        ${logicalCSS('margin-top', `${euiTheme.size.s}`)}
+        ${logicalCSS('margin-left', `${euiTheme.size.l}`)}
+        ${logicalCSS('margin-right', `${euiTheme.size.l}`)}
+      }
+
+      .euiFlyout:not(:has(.euiFlyoutHeader)) & {
+        /* Adds more spacing on the right to account for the close button */
+        .euiCallOut {
+          ${logicalCSS('margin-right', `${euiTheme.size.xxl}`)}
+        }
+      }
     `,
   };
 };
