@@ -168,7 +168,7 @@ export const euiBannerStyles = ({ euiTheme }: UseEuiTheme) => ({
     }
 
     [data-size='m'] & {
-      .euiText + * {
+      > .euiText + * {
         margin-block-start: ${euiTheme.size.s};
       }
     }
