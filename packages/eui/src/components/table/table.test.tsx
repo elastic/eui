@@ -6,11 +6,6 @@
  * Side Public License, v 1.
  */
 
-let mockIdCounter = 0;
-jest.mock('../../services/accessibility/html_id_generator', () => ({
-  useGeneratedHtmlId: () => `unique-id-${mockIdCounter++}`,
-}));
-
 import React from 'react';
 import { requiredProps } from '../../test/required_props';
 import { render } from '../../test/rtl';
@@ -25,10 +20,6 @@ import { EuiTableHeaderCell } from './table_header_cell';
 import { EUI_TABLE_CSS_CONTAINER_NAME } from './const';
 
 describe('EuiTable', () => {
-  beforeEach(() => {
-    mockIdCounter = 0;
-  });
-
   it('renders', () => {
     const { container } = render(
       <EuiTable {...requiredProps}>

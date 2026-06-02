@@ -22,7 +22,6 @@ import {
   HorizontalAlignment,
   LEFT_ALIGNMENT,
 } from '../../services';
-import { useGeneratedHtmlId } from '../../services/accessibility/html_id_generator';
 import { EuiI18n } from '../i18n';
 import { EuiScreenReaderOnly } from '../accessibility';
 import { CommonProps, NoArgCallback } from '../common';
@@ -47,6 +46,7 @@ import type {
 import { useEuiTableColumnDataStore } from './store/provider';
 import { useEuiTableWithinStickyHeader } from './sticky_header';
 import { EuiTableStoreRenderHeaderCell } from './store/store';
+import { useEuiTableStoreUniqueColumnId } from './store/use_unique_column_id';
 
 export type TableHeaderCellScope = (typeof HEADER_CELL_SCOPE)[number];
 
@@ -206,7 +206,7 @@ export const EuiTableHeaderCell: FunctionComponent<EuiTableHeaderCellProps> = ({
 }) => {
   const selfRef = useRef<HTMLTableCellElement>(null);
 
-  const internalCellId = useGeneratedHtmlId();
+  const storeCellId = useEuiTableStoreUniqueColumnId();
   const store = useEuiTableColumnDataStore();
   const isWithinStickyHeader = useEuiTableWithinStickyHeader();
 
@@ -299,9 +299,9 @@ export const EuiTableHeaderCell: FunctionComponent<EuiTableHeaderCellProps> = ({
         return;
       }
 
-      store.updateColumnWidth(internalCellId, entry.contentRect.width);
+      store.updateColumnWidth(storeCellId, entry.contentRect.width);
     },
-    [store, internalCellId]
+    [store, storeCellId]
   );
 
   useEffect(() => {
@@ -315,7 +315,7 @@ export const EuiTableHeaderCell: FunctionComponent<EuiTableHeaderCellProps> = ({
       return;
     }
 
-    const unregisterColumn = store.registerColumn(internalCellId, {
+    const unregisterColumn = store.registerColumn(storeCellId, {
       renderHeaderCellRef,
       // getBoundingClientRect is not the cheapest, but we call it only once
       currentWidth: selfRef.current.getBoundingClientRect().width,
@@ -338,8 +338,7 @@ export const EuiTableHeaderCell: FunctionComponent<EuiTableHeaderCellProps> = ({
 
       resizeObserver?.disconnect();
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [store, internalCellId, isWithinStickyHeader]);
+  }, [store, isWithinStickyHeader, handleResize, storeCellId]);
 
   // Notify the store on every render so the sticky header stays in sync.
   // React's reconciliation will efficiently handle any duplicate renders.
@@ -355,7 +354,7 @@ export const EuiTableHeaderCell: FunctionComponent<EuiTableHeaderCellProps> = ({
       return;
     }
 
-    store.updateColumn(internalCellId, {
+    store.updateColumn(storeCellId, {
       renderHeaderCellRef,
     });
   });

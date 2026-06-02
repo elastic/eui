@@ -16,7 +16,6 @@ import React, {
 import classNames from 'classnames';
 
 import { useEuiMemoizedStyles } from '../../services';
-import { useGeneratedHtmlId } from '../../services/accessibility/html_id_generator';
 import { CommonProps } from '../common';
 
 import { resolveWidthPropsAsStyle } from './utils';
@@ -26,6 +25,7 @@ import type { EuiTableSharedWidthProps } from './types';
 import { useEuiTableColumnDataStore } from './store/provider';
 import { useEuiTableWithinStickyHeader } from './sticky_header';
 import { EuiTableStoreRenderHeaderCell } from './store/store';
+import { useEuiTableStoreUniqueColumnId } from './store/use_unique_column_id';
 
 export type EuiTableHeaderCellCheckboxScope =
   (typeof HEADER_CELL_SCOPE)[number];
@@ -53,7 +53,7 @@ export const EuiTableHeaderCellCheckbox: FunctionComponent<
     ...rest
   } = props;
 
-  const internalCellId = useGeneratedHtmlId();
+  const storeCellId = useEuiTableStoreUniqueColumnId();
   const store = useEuiTableColumnDataStore();
   const isWithinStickyHeader = useEuiTableWithinStickyHeader();
 
@@ -91,15 +91,14 @@ export const EuiTableHeaderCellCheckbox: FunctionComponent<
       return;
     }
 
-    const unregisterColumn = store.registerColumn(internalCellId, {
+    const unregisterColumn = store.registerColumn(storeCellId, {
       renderHeaderCellRef,
     });
 
     return () => {
       unregisterColumn();
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [store, internalCellId, isWithinStickyHeader]);
+  }, [store, isWithinStickyHeader, storeCellId]);
 
   useEffect(() => {
     // Notify the store on every render so the sticky header stays in sync.
@@ -108,7 +107,7 @@ export const EuiTableHeaderCellCheckbox: FunctionComponent<
       return;
     }
 
-    store.updateColumn(internalCellId, {
+    store.updateColumn(storeCellId, {
       renderHeaderCellRef,
     });
   });
