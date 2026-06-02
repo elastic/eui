@@ -251,11 +251,6 @@ export const euiCallOutStyles = (euiThemeContext: UseEuiTheme) => {
           `,
       })}
     `,
-    additionalContent: css`
-      &:not(:first-child) {
-        ${logicalCSS('margin-top', euiTheme.size.s)}
-      }
-    `,
   };
 };
 
