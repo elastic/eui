@@ -1,184 +1,49 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EuiToast Props color danger is rendered 1`] = `
-<div
-  class="euiToast emotion-euiToast-danger"
->
-  <p
-    class="emotion-euiScreenReaderOnly"
-  >
-    A new notification appears
-  </p>
-  <div
-    aria-label="Notification"
-    class="emotion-euiToastHeader"
-    data-test-subj="euiToastHeader"
-  >
-    <span
-      class="emotion-euiToastHeader__title"
-      data-test-subj="euiToastHeader__title"
-    >
-      test title
-    </span>
-  </div>
-</div>
-`;
-
-exports[`EuiToast Props color primary is rendered 1`] = `
-<div
-  class="euiToast emotion-euiToast-primary"
->
-  <p
-    class="emotion-euiScreenReaderOnly"
-  >
-    A new notification appears
-  </p>
-  <div
-    aria-label="Notification"
-    class="emotion-euiToastHeader"
-    data-test-subj="euiToastHeader"
-  >
-    <span
-      class="emotion-euiToastHeader__title"
-      data-test-subj="euiToastHeader__title"
-    >
-      test title
-    </span>
-  </div>
-</div>
-`;
-
-exports[`EuiToast Props color success is rendered 1`] = `
-<div
-  class="euiToast emotion-euiToast-success"
->
-  <p
-    class="emotion-euiScreenReaderOnly"
-  >
-    A new notification appears
-  </p>
-  <div
-    aria-label="Notification"
-    class="emotion-euiToastHeader"
-    data-test-subj="euiToastHeader"
-  >
-    <span
-      class="emotion-euiToastHeader__title"
-      data-test-subj="euiToastHeader__title"
-    >
-      test title
-    </span>
-  </div>
-</div>
-`;
-
-exports[`EuiToast Props color warning is rendered 1`] = `
-<div
-  class="euiToast emotion-euiToast-warning"
->
-  <p
-    class="emotion-euiScreenReaderOnly"
-  >
-    A new notification appears
-  </p>
-  <div
-    aria-label="Notification"
-    class="emotion-euiToastHeader"
-    data-test-subj="euiToastHeader"
-  >
-    <span
-      class="emotion-euiToastHeader__title"
-      data-test-subj="euiToastHeader__title"
-    >
-      test title
-    </span>
-  </div>
-</div>
-`;
-
-exports[`EuiToast Props iconType is rendered 1`] = `
-<div
-  class="euiToast emotion-euiToast"
->
-  <p
-    class="emotion-euiScreenReaderOnly"
-  >
-    A new notification appears
-  </p>
-  <div
-    aria-label="Notification"
-    class="emotion-euiToastHeader"
-    data-test-subj="euiToastHeader"
-  >
-    <span
-      aria-hidden="true"
-      class="emotion-euiToastHeader__icon"
-      data-euiicon-type="user"
-    />
-    <span
-      class="emotion-euiToastHeader__title"
-      data-test-subj="euiToastHeader__title"
-    >
-      test title
-    </span>
-  </div>
-</div>
-`;
-
-exports[`EuiToast Props title is rendered 1`] = `
-<div
-  class="euiToast emotion-euiToast"
->
-  <p
-    class="emotion-euiScreenReaderOnly"
-  >
-    A new notification appears
-  </p>
-  <div
-    aria-label="Notification"
-    class="emotion-euiToastHeader"
-    data-test-subj="euiToastHeader"
-  >
-    <span
-      class="emotion-euiToastHeader__title"
-      data-test-subj="euiToastHeader__title"
-    >
-      toast title
-    </span>
-  </div>
-</div>
-`;
-
 exports[`EuiToast is rendered 1`] = `
 <div
   aria-label="aria-label"
   class="euiToast testClass1 testClass2 emotion-euiToast-euiTestCss"
   data-test-subj="test subject string"
+  style="--euiToastTypeColor: #0B64DD; --euiToastTypeBackgroundColor: #D9E8FF;"
 >
+  <div
+    class="euiToastDecor css-1bqhuxw-decor"
+    role="presentation"
+  />
   <p
     class="emotion-euiScreenReaderOnly"
   >
     A new notification appears
   </p>
   <div
-    aria-label="Notification"
-    class="emotion-euiToastHeader-withBody"
-    data-test-subj="euiToastHeader"
+    class="css-p34pdn-wrapper"
   >
-    <span
-      class="emotion-euiToastHeader__title"
-      data-test-subj="euiToastHeader__title"
+    <div
+      class="css-m4ni6e-body"
+      data-test-subj="euiToastBody"
     >
-      test title
-    </span>
-  </div>
-  <div
-    class="euiText emotion-euiText-s"
-    data-test-subj="euiToastBody"
-  >
-    <p>
-      Hi
-    </p>
+      <span
+        class="css-19b7t2f-icon"
+        data-euiicon-type="infoFill"
+      />
+      <div
+        class="css-1nzpgtc-content"
+      >
+        <p
+          class="euiTitle emotion-euiTitle-xs-euiToastHeader"
+          data-test-subj="euiToastHeader__title"
+        >
+          Toast title
+        </p>
+        <div
+          class="euiText euiToast__text emotion-euiText-s-euiTextColor-default"
+          data-test-subj="euiToastText"
+        >
+          Toast body text
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 `;
