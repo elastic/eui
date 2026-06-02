@@ -8,26 +8,23 @@ keywords: [EuiCallOut]
 
 ## Component
 
-Default settings produce a basic, primary-colored callout.
+Default settings produce a basic, primary-colored callout with a preset icon.
 
 ```tsx interactive
 import React from 'react';
-import { EuiCallOut, EuiLink } from '@elastic/eui';
+import { EuiCallOut } from '@elastic/eui';
 
 export default () => (
   <EuiCallOut
     title="Callout title"
-  >
-    <p>
-      Description text goes here.
-    </p>
-  </EuiCallOut>
+    text="Description text goes here."
+  />
 );
 ```
 
 ## Usage
 
-Most often, callouts are configured to convey semantic meaning such as important information, confirmation, warnings, errors, and highlights. In addition to color, they may contina icons, links, and buttons.
+Most often, callouts are configured to convey semantic meaning such as important information, confirmation, warnings, errors, and highlights. 
 
 ### Info
 
@@ -41,24 +38,25 @@ export default () => (
   <div>
     <EuiCallOut
       title="Check it out, here's a really long title that will wrap within a narrower browser"
-      iconType="magnify"
-    >
-      <p>
-        Here&rsquo;s some stuff that you need to know. We can make this text
-        really long so that, when viewed within a browser that&rsquo;s fairly
-        narrow, it will wrap, too.
-      </p>
-      <p>
-        And some other stuff on another line, just for kicks. And{' '}
-        <EuiLink href="#">here&rsquo;s a link</EuiLink>.
-      </p>
-    </EuiCallOut>
+      text={
+        <>
+          <p>
+            Here&rsquo;s some stuff that you need to know. We can make this text
+            really long so that, when viewed within a browser that&rsquo;s fairly
+            narrow, it will wrap, too.
+          </p>
+          <p>
+            And some other stuff on another line, just for kicks. And{' '}
+            <EuiLink href="#">here&rsquo;s a link</EuiLink>.
+          </p>
+        </>
+      }
+    />
 
     <EuiSpacer size="m" />
 
     <EuiCallOut
-      title="Callouts can exist as just a title. Simply omit the child content."
-      iconType="lensApp"
+      title="Callouts can have only a title."
     />
 
     <EuiSpacer size="m" />
@@ -66,7 +64,6 @@ export default () => (
     <EuiCallOut
       size="s"
       title="This is a small callout for more non-intrusive but constant messages."
-      iconType="pin"
     />
   </div>
 );
@@ -81,12 +78,16 @@ import React from 'react';
 import { EuiCallOut, EuiLink } from '@elastic/eui';
 
 export default () => (
-  <EuiCallOut title="Good news, everyone!" color="success" iconType="user">
-    <p>
-      I have no news. Which is good! And{' '}
-      <EuiLink href="#">here&rsquo;s a link</EuiLink>.
-    </p>
-  </EuiCallOut>
+  <EuiCallOut
+    title="Good news, everyone!"
+    text={
+      <p>
+        I have no news. Which is good! And{' '}
+        <EuiLink href="#">here&rsquo;s a link</EuiLink>.
+      </p>
+    }
+    color="success"
+  />
 );
 ```
 
@@ -96,18 +97,19 @@ Use this callout to warn the user against decisions they might regret. You shoul
 
 ```tsx interactive
 import React from 'react';
-import { EuiCallOut, EuiLink, EuiButton } from '@elastic/eui';
+import { EuiCallOut, EuiLink } from '@elastic/eui';
 
 export default () => (
-  <EuiCallOut title="Proceed with caution!" color="warning" iconType="warning">
-    <p>
-      Here be dragons. Don&rsquo;t wanna mess with no dragons. And{' '}
-      <EuiLink href="#">here&rsquo;s a link</EuiLink>.
-    </p>
-    <EuiButton href="#" color="warning" fill>
-      Link button
-    </EuiButton>
-  </EuiCallOut>
+  <EuiCallOut
+    title="Proceed with caution!"
+    text={
+      <p>
+        Here be dragons. Don&rsquo;t wanna mess with no dragons. And{' '}
+        <EuiLink href="#">here&rsquo;s a link</EuiLink>.
+      </p>
+    }
+    color="warning"
+  />
 );
 ```
 
@@ -120,32 +122,52 @@ import React from 'react';
 import { EuiCallOut, EuiLink } from '@elastic/eui';
 
 export default () => (
-  <EuiCallOut title="Sorry, there was an error" color="danger" iconType="error">
-    <p>
-      Now you have to fix it, but maybe{' '}
-      <EuiLink href="#">this link can help</EuiLink>.
-    </p>
-  </EuiCallOut>
+  <EuiCallOut
+    title="Sorry, there was an error"
+    text={
+      <p>
+        Now you have to fix it, but maybe{' '}
+        <EuiLink href="#">this link can help</EuiLink>.
+      </p>
+    }
+    color="danger"
+  />
 );
 ```
 
-### Accent
+### Actions
 
-Use this callout to announce new capabilities. For example if you want to highlight a feature.
+Use `actionProps` to add up to two actions to a callout. The `primary` action renders as an [`EuiButton`](#/navigation/button) and the `secondary` action renders as an [`EuiButtonEmpty`](#/navigation/button).
+Color and size are automatically matched to the callout and can't be customized.
+
+A secondary action is only rendered when a primary action is also provided.
 
 ```tsx interactive
 import React from 'react';
-import { EuiCallOut, EuiLink } from '@elastic/eui';
+import { EuiCallOut, EuiSpacer } from '@elastic/eui';
 
 export default () => (
-  <EuiCallOut title="Shiny new thing has arrived" color="accent" iconType="popper">
-    <p>
-      Dull thing can now be forgotten.{' '}
-      <EuiLink external href="#">
-        Learn more
-      </EuiLink>.
-    </p>
-  </EuiCallOut>
+  <>
+    <EuiCallOut
+      title="Your index needs to be updated"
+      color="warning"
+      text="This operation may take a few minutes. You can continue using the app while it runs."
+      actionProps={{
+        primary: { children: 'Update now', onClick: () => {} },
+        secondary: { children: 'Learn more', href: '#' },
+      }}
+    />
+
+    <EuiSpacer />
+
+    <EuiCallOut
+      title="Your session is about to expire"
+      color="danger"
+      actionProps={{
+        primary: { children: 'Stay signed in', onClick: () => {} },
+      }}
+    />
+  </>
 );
 ```
 
@@ -177,23 +199,16 @@ export default () => {
   };
 
   // UI toggles
-  const [showTitle, setShowTitle] = useState(true);
-  const [showChildren, setShowChildren] = useState(true);
+  const [showText, setShowText] = useState(true);
   const [smallSize, setSmallSize] = useState(false);
 
   return (
     <div css={{ maxInlineSize: 500 }}>
       <EuiFlexGroup>
         <EuiSwitch
-          label="Show title"
-          checked={showTitle}
-          onChange={(e) => setShowTitle(e.target.checked)}
-          compressed
-        />
-        <EuiSwitch
-          label="Show children"
-          checked={showChildren}
-          onChange={(e) => setShowChildren(e.target.checked)}
+          label="Show text"
+          checked={showText}
+          onChange={(e) => setShowText(e.target.checked)}
           compressed
         />
         <EuiSwitch
@@ -207,30 +222,16 @@ export default () => {
       {showCallOut ? (
         <EuiCallOut
           onDismiss={onDismiss}
-          iconType="info"
-          title={
-            showTitle
-              ? 'You can dismiss this callout by clicking the Close button in the top right corner'
-              : ''
-          }
+          title="You can dismiss this callout by clicking the Close button in the top right corner"
           size={smallSize ? 's' : 'm'}
-        >
-          {showChildren && (
-            <>
-              <p>
-                Here’s more some stuff users need to know. But maybe users don't
-                need to know it on every page refresh, so you could remember
-                whether or not to display this callout in local storage.
-              </p>
-              {!showTitle && (
-                <p>
-                  This second paragraph is here to demonstrate that only the
-                  first one needs to account for the dismiss button in width.
-                </p>
-              )}
-            </>
+          text={showText && (
+            <p>
+              Here’s more some stuff users need to know. But maybe users don't
+              need to know it on every page refresh, so you could remember
+              whether or not to display this callout in local storage.
+            </p>
           )}
-        </EuiCallOut>
+        />
       ) : (
         <EuiButtonEmpty onClick={resetDemo}>
           The callout has been dismissed. Click to reset the demo
@@ -267,11 +268,9 @@ export default () => {
       {isShown && (
         <EuiCallOut
           title="Important notification!"
-          color="accent"
+          text="This content will be announced to screen readers when it appears."
           announceOnMount
-        >
-          <p>This content will be announced to screen readers when it appears.</p>
-        </EuiCallOut>
+        />
       )}
     </>
   );
@@ -285,9 +284,11 @@ export default () => {
 
 *   Minimize the number of callouts per page.
 *   Stack callouts in the order in which they require users' attention: error, warning, info, and then success.
-*   Offer only one action per callout and ensure it's an action users can perform quickly.
+*   Limit callouts to one primary action. Add a secondary action only when a supporting option is needed.
 *   If the callout has a permanent spot in the UI, but needs to be less obstructive, set the `size` property to `s` (small).
-*   Use an `iconType` if it adds context.
+*   Always provide a `title` for the callout.
+*   Prefer `title` and `text` for callout content. `children` is supported for backwards compatibility, but `title` and `text` should cover most use cases.
+*   Use a custom `iconType` only if it adds context. Ensure it fits the callout's `color`.
 
 ## Props
 

@@ -21,6 +21,7 @@ import {
   UseEuiTheme,
   useEuiTheme,
   EuiPaddingSize,
+  EuiThemeProvider,
   euiPaddingSize,
 } from '@elastic/eui';
 
@@ -65,9 +66,15 @@ export const DemoPreview = ({
             )}
           >
             <div css={styles.previewWrapper} style={style}>
-              <WrapperComponent>
-                <LivePreview />
-              </WrapperComponent>
+              {/* Neutralize the docs-specific lineHeightMultiplier override (1.75)
+                  so component examples render with the theme's actual default (1.5) */}
+              <EuiThemeProvider
+                modify={{ font: { lineHeightMultiplier: 1.5 } }}
+              >
+                <WrapperComponent>
+                  <LivePreview />
+                </WrapperComponent>
+              </EuiThemeProvider>
             </div>
           </ErrorBoundary>
         </>
