@@ -46,6 +46,7 @@ const meta: Meta<EuiGlobalToastListProps> = {
     showClearAllButtonAt: 3,
     // stub for testing/QA
     dismissToast: () => {},
+    showNotificationBadge: false,
   },
 };
 enableFunctionToggleControls(meta, ['onClearAllToasts']);
