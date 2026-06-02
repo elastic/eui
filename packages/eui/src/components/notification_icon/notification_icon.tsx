@@ -8,10 +8,7 @@
 
 import React, { FunctionComponent } from 'react';
 import classNames from 'classnames';
-import {
-  _EuiThemeBackgroundColors,
-  getTokenName,
-} from '@elastic/eui-theme-common';
+import { _EuiThemeBackgroundColors } from '@elastic/eui-theme-common';
 
 import { useEuiMemoizedStyles, useEuiTheme } from '../../services';
 import { CommonProps } from '../common';
@@ -27,22 +24,28 @@ export type EuiNotificationIconType = (typeof TYPES)[number];
 
 export const NOTIFICATION_ICONS_MAP: Record<
   EuiNotificationIconType,
-  { name: string; icon: IconType }
+  { name: string; icon: IconType; color?: string }
 > = {
-  info: { name: 'infoFill', icon: EuiIconInfoFill },
-  success: { name: 'checkCircleFill', icon: EuiIconCheckCircleFill },
-  warning: { name: 'warningStatic', icon: EuiIconWarningStatic },
-  error: { name: 'errorFill', icon: EuiIconErrorFill },
-};
-
-const ICON_TYPES_MAP: Record<
-  EuiNotificationIconType,
-  { icon: IconType; color?: string }
-> = {
-  info: { icon: NOTIFICATION_ICONS_MAP.info.icon, color: 'primary' },
-  success: { icon: NOTIFICATION_ICONS_MAP.success.icon, color: 'success' },
-  warning: { icon: NOTIFICATION_ICONS_MAP.warning.icon },
-  error: { icon: NOTIFICATION_ICONS_MAP.error.icon, color: 'danger' },
+  info: {
+    name: 'infoFill',
+    icon: EuiIconInfoFill,
+    color: 'backgroundFilledPrimary',
+  },
+  success: {
+    name: 'checkCircleFill',
+    icon: EuiIconCheckCircleFill,
+    color: 'backgroundFilledSuccess',
+  },
+  warning: {
+    name: 'warningStatic',
+    icon: EuiIconWarningStatic,
+    color: 'backgroundFilledWarning',
+  },
+  error: {
+    name: 'errorFill',
+    icon: EuiIconErrorFill,
+    color: 'backgroundFilledDanger',
+  },
 };
 
 export type EuiNotificationIconProps = CommonProps & {
@@ -55,7 +58,7 @@ export const EuiNotificationIcon: FunctionComponent<
 > = ({ className, type, size = 'm' }) => {
   const { euiTheme } = useEuiTheme();
 
-  const Icon = ICON_TYPES_MAP[type];
+  const Icon = NOTIFICATION_ICONS_MAP[type];
 
   const classes = classNames('euiNotificationIcon', className);
   const styles = useEuiMemoizedStyles(euiNotificationIconStyles);
@@ -64,17 +67,12 @@ export const EuiNotificationIcon: FunctionComponent<
     size === 'l' && styles.size[size],
   ];
 
-  const backgroundToken = getTokenName(
-    'backgroundFilled',
-    Icon.color
-  ) as keyof _EuiThemeBackgroundColors;
-
   return (
     <EuiIcon
       className={classes}
       css={cssStyles}
       type={Icon.icon}
-      color={euiTheme.colors[backgroundToken]}
+      color={euiTheme.colors[Icon.color as keyof _EuiThemeBackgroundColors]}
       aria-hidden="true"
       size={size}
     />
