@@ -7,6 +7,7 @@
  */
 
 import React from 'react';
+import classNames from 'classnames';
 
 import { ExclusiveUnion } from '../common';
 import { EuiButton, EuiButtonEmpty, EuiButtonEmptyProps } from '../button';
@@ -51,11 +52,12 @@ export const EuiCallOutAction = ({
   color = 'primary',
   tooltipProps,
   popoverProps,
+  className,
   ...rest
 }: EuiCallOutActionProps & {
   color?: EuiCallOutColor;
 }) => {
-  const classes = 'euiCallOutAction';
+  const classes = classNames('euiCallOutAction', className);
 
   if (actionType === 'primary') {
     const button = (
