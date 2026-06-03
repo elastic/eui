@@ -17,7 +17,6 @@ import { CommonProps } from '../common';
 
 import { useEuiMemoizedStyles } from '../../services';
 import { EuiTitle } from '../title';
-import { EuiCodeBlock } from '../code';
 import { EuiI18n } from '../i18n';
 
 import { euiErrorBoundaryStyles } from './error_boundary.styles';
@@ -103,14 +102,14 @@ export const EuiErrorMessage: FunctionComponent<
       data-test-subj={classNames('euiErrorBoundary', dataTestSubj)}
       {...rest}
     >
-      <EuiCodeBlock>
+      <div css={styles.errorBlock}>
         <EuiTitle size="xs">
           <p>
             <EuiI18n token="euiErrorBoundary.error" default="Error" />
           </p>
         </EuiTitle>
-        {errorMessage}
-      </EuiCodeBlock>
+        <pre css={styles.errorPre}>{errorMessage}</pre>
+      </div>
     </div>
   );
 };

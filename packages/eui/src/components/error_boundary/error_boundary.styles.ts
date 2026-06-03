@@ -47,5 +47,17 @@ export const euiErrorBoundaryStyles = (euiThemeContext: UseEuiTheme) => {
         `,
       })}
     `,
+    errorBlock: css`
+      white-space: pre-wrap;
+    `,
+    errorPre: css`
+      ${logicalCSS('margin-top', euiTheme.size.xs)}
+      ${logicalCSS('margin-bottom', 0)}
+      font-family: ${euiTheme.font.familyCode};
+      font-size: ${euiTheme.font.scale.s};
+      line-height: ${euiTheme.font.lineHeightMultiplier};
+      white-space: pre-wrap;
+      word-break: break-all;
+    `,
   };
 };
