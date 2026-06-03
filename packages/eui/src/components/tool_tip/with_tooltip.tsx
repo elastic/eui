@@ -13,6 +13,6 @@ export type WithEuiToolTipProps = Omit<EuiToolTipProps, 'children'>;
 
 export const withEuiToolTip = (
   element: React.ReactElement,
-  tooltipProps?: WithEuiToolTipProps | undefined
+  tooltipProps?: WithEuiToolTipProps
 ) =>
   tooltipProps ? <EuiToolTip {...tooltipProps}>{element}</EuiToolTip> : element;

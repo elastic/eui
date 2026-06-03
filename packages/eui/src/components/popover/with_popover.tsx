@@ -13,6 +13,6 @@ export type WithEuiPopoverProps = Omit<EuiPopoverProps, 'button'>;
 
 export const withEuiPopover = (
   element: React.ReactElement,
-  popoverProps?: WithEuiPopoverProps | undefined
+  popoverProps?: WithEuiPopoverProps
 ) =>
   popoverProps ? <EuiPopover {...popoverProps} button={element} /> : element;

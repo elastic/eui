@@ -142,9 +142,6 @@ export const WithPopover: Story = {
       primary: {
         children: 'Primary action',
         onClick: action('primary onClick'),
-        tooltipProps: {
-          content: 'Tooltip for primary action',
-        },
         popoverProps: {
           isOpen: true,
           closePopover: () => {},
@@ -172,7 +169,7 @@ export const WithPopover: Story = {
     return <EuiCallOut {...rest} actionProps={actionProps} />;
   },
 };
-disableStorybookControls(WithTooltips, ['onDismiss']);
+disableStorybookControls(WithPopover, ['onDismiss']);
 
 export const AnnounceOnMount: Story = {
   parameters: {
