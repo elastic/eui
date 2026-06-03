@@ -122,7 +122,7 @@ export const EuiFilterButton: FunctionComponent<EuiFilterButtonProps> = ({
   // assumption about type of usage based on icon usage
   // requires manual override to apply correct aria attributes for more custom usages
   const isCollapsible = !isToggle && iconType === 'chevronSingleDown';
-  const isExpanded = isCollapsible && (isSelected ?? hasActiveFilters);
+  const isExpanded = isCollapsible && isSelected;
 
   const styles = useEuiMemoizedStyles(euiFilterButtonStyles);
   const focusColorStyles = useEuiMemoizedStyles(_compressedButtonFocusColors);
