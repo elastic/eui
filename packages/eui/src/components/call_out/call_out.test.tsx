@@ -297,6 +297,33 @@ describe('EuiCallOut', () => {
           expect(queryByText('Secondary popover content')).toBeInTheDocument();
         });
       });
+
+      it('renders an action with tooltip and popover', () => {
+        const { getByTestSubject, queryByRole, queryByText } = render(
+          <EuiCallOut
+            title="Callout title"
+            actionProps={{
+              primary: {
+                children: 'Primary action',
+                'data-test-subj': 'primaryAction',
+                tooltipProps: { content: 'Tooltip content' },
+                popoverProps: {
+                  isOpen: true,
+                  closePopover: () => {},
+                  children: <span>Popover content</span>,
+                },
+              },
+            }}
+          />
+        );
+        expect(queryByText('Popover content')).toBeInTheDocument();
+        expect(queryByRole('tooltip')).not.toBeInTheDocument();
+
+        fireEvent.mouseOver(getByTestSubject('primaryAction'));
+
+        expect(queryByRole('tooltip')).toBeInTheDocument();
+        expect(queryByRole('tooltip')).toHaveTextContent('Tooltip content');
+      });
     });
 
     describe('onDismiss', () => {
