@@ -80,6 +80,7 @@ export const euiCallOutStyles = (euiThemeContext: UseEuiTheme) => {
       container-name: ${CONTAINER_NAME};
       position: relative;
       display: flex;
+      inline-size: 100%;
       align-items: center;
       border: ${euiTheme.border.width.thin} solid;
       border-radius: ${borderRadius};
@@ -236,7 +237,7 @@ export const euiCallOutStyles = (euiThemeContext: UseEuiTheme) => {
         flex-wrap: wrap;
 
         /* use full width actions */
-        > * {
+        .euiCallOutAction {
           inline-size: 100%;
         }
       }

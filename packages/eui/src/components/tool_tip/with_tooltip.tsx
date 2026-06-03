@@ -6,11 +6,13 @@
  * Side Public License, v 1.
  */
 
-export type { ToolTipPositions } from './tool_tip_popover';
-export type { EuiToolTipProps, EuiToolTipRef } from './tool_tip';
-export { EuiToolTip } from './tool_tip';
+import React from 'react';
+import { EuiToolTip, EuiToolTipProps } from './tool_tip';
 
-export type { EuiIconTipProps } from './icon_tip';
-export { EuiIconTip } from './icon_tip';
+export type WithEuiToolTipProps = Omit<EuiToolTipProps, 'children'>;
 
-export { withEuiToolTip, type WithEuiToolTipProps } from './with_tooltip';
+export const withEuiToolTip = (
+  element: React.ReactElement,
+  tooltipProps?: WithEuiToolTipProps | undefined
+) =>
+  tooltipProps ? <EuiToolTip {...tooltipProps}>{element}</EuiToolTip> : element;
