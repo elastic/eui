@@ -106,24 +106,24 @@ buildkite-agent pipeline upload << 'PIPELINE'
 steps:
   - label: ":docusaurus: Build and deploy website"
     key: "build-website"
-    command: ".buildkite/scripts/pipelines/pipeline_build_website.sh"
+    command: ".buildkite/scripts/deploy_docs/step_build_website.sh"
 
   - label: ":book: Build and deploy Storybook"
     key: "build-storybook"
-    command: ".buildkite/scripts/pipelines/pipeline_build_storybook.sh"
+    command: ".buildkite/scripts/deploy_docs/step_build_storybook.sh"
 
   - label: ":camera: Test visual regression"
     key: "vrt"
     depends_on: "build-storybook"
     if: "build.pull_request.id != null"
     timeout_in_minutes: 30
-    command: ".buildkite/scripts/pipelines/pipeline_vrt.sh"
+    command: ".buildkite/scripts/deploy_docs/step_vrt.sh"
     artifact_paths:
       - "packages/eui/.vrt/diff/**/*.png"
       - "packages/eui/.vrt/current/**/*-received.png"
 
   # The "Approve visual changes" block step and "Update VRT baselines" step are
-  # injected dynamically by pipeline_vrt.sh only when differences are found.
+  # injected dynamically by step_vrt.sh only when differences are found.
 
   - label: ":loudspeaker: Notify"
     key: "notify"
@@ -135,5 +135,5 @@ steps:
       - step: "vrt"
         allow_failure: true
     allow_dependency_failure: true
-    command: ".buildkite/scripts/pipelines/pipeline_notify.sh"
+    command: ".buildkite/scripts/deploy_docs/step_notify.sh"
 PIPELINE

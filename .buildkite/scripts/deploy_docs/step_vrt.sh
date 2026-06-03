@@ -248,7 +248,7 @@ steps:
   - label: "Update VRT baselines"
     key: "update-baselines"
     depends_on: "approve-vrt"
-    command: ".buildkite/scripts/pipelines/pipeline_vrt_update.sh"
+    command: ".buildkite/scripts/deploy_docs/step_vrt_update.sh"
 APPROVAL_PIPELINE
 
 exit 1
