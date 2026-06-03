@@ -237,6 +237,7 @@ export const euiCallOutStyles = (euiThemeContext: UseEuiTheme) => {
         flex-wrap: wrap;
 
         /* use full width actions */
+        *:has(.euiCallOutAction),
         .euiCallOutAction {
           inline-size: 100%;
         }
