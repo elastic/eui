@@ -10,7 +10,11 @@ import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
-import { enableFunctionToggleControls } from '../../../.storybook/utils';
+import {
+  enableFunctionToggleControls,
+  disableStorybookControls,
+} from '../../../.storybook/utils';
+import { LOKI_SELECTORS } from '../../../.storybook/loki';
 import { EuiButton } from '../button';
 import { EuiCallOut, EuiCallOutProps } from './call_out';
 import { EuiFlexGroup } from '../flex';
@@ -96,6 +100,79 @@ export const WithActions: Story = {
     },
   },
 };
+
+export const WithTooltips: Story = {
+  parameters: {
+    controls: {
+      include: ['actionProps'],
+    },
+    loki: {
+      chromeSelector: LOKI_SELECTORS.portal,
+    },
+  },
+  args: {
+    title,
+    onDismiss: undefined,
+    actionProps: {
+      primary: {
+        children: 'Primary action',
+        onClick: action('primary onClick'),
+        tooltipProps: {
+          content: 'Tooltip for primary action',
+        },
+        autoFocus: true,
+      },
+    },
+  },
+};
+disableStorybookControls(WithTooltips, ['onDismiss']);
+
+export const WithPopover: Story = {
+  parameters: {
+    controls: {
+      include: ['actionProps'],
+    },
+    loki: {
+      chromeSelector: LOKI_SELECTORS.portal,
+    },
+  },
+  args: {
+    title,
+    actionProps: {
+      primary: {
+        children: 'Primary action',
+        onClick: action('primary onClick'),
+        tooltipProps: {
+          content: 'Tooltip for primary action',
+        },
+        popoverProps: {
+          isOpen: true,
+          closePopover: () => {},
+          children: 'Popover content',
+        },
+      },
+    },
+  },
+  render: function Render(args) {
+    const { actionProps: _actionProps, ...rest } = args;
+    const [isPopoverOpen, setPopoverOpen] = useState(true);
+
+    const actionProps = {
+      primary: {
+        ..._actionProps?.primary,
+        onClick: () => setPopoverOpen(!isPopoverOpen),
+        popoverProps: {
+          ..._actionProps?.primary?.popoverProps,
+          isOpen: isPopoverOpen,
+          closePopover: () => setPopoverOpen(false),
+        },
+      },
+    };
+
+    return <EuiCallOut {...rest} actionProps={actionProps} />;
+  },
+};
+disableStorybookControls(WithTooltips, ['onDismiss']);
 
 export const AnnounceOnMount: Story = {
   parameters: {
