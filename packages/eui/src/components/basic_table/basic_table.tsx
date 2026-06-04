@@ -57,7 +57,10 @@ import { euiTableCaptionStyles } from '../table/table.styles';
 import { CollapsedItemActions } from './collapsed_item_actions';
 import { ExpandedItemActions } from './expanded_item_actions';
 
-import { Pagination, PaginationBar } from './pagination_bar';
+import {
+  EuiBasicTablePaginationBar,
+  type EuiBasicTablePaginationBarPagination,
+} from './pagination_bar';
 import { EuiIcon } from '../icon';
 import { EuiScreenReaderOnly } from '../accessibility';
 import { EuiI18n } from '../i18n';
@@ -293,7 +296,7 @@ type BasicTableWithPaginationProps<T extends object> = Omit<
   BasicTableProps<T>,
   'pagination' | 'onChange'
 > & {
-  pagination: Pagination;
+  pagination: EuiBasicTablePaginationBarPagination;
   onChange?: (criteria: CriteriaWithPagination<T>) => void;
 };
 
@@ -1453,7 +1456,14 @@ export class EuiBasicTable<T extends object = any> extends Component<
   }
 
   renderPaginationBar() {
-    const { error, pagination, tableCaption, onChange } = this.props;
+    const {
+      error,
+      pagination,
+      tableCaption,
+      onChange,
+      panelled,
+      responsiveBreakpoint,
+    } = this.props;
     if (!error && pagination && pagination.totalItemCount > 0) {
       if (!onChange) {
         throw new Error(`The Basic Table is configured with pagination but [onChange] is
@@ -1467,8 +1477,10 @@ export class EuiBasicTable<T extends object = any> extends Component<
           values={{ tableCaption }}
         >
           {(tablePagination: string) => (
-            <PaginationBar
+            <EuiBasicTablePaginationBar
               pagination={pagination}
+              panelled={panelled}
+              responsiveBreakpoint={responsiveBreakpoint}
               onPageSizeChange={this.onPageSizeChange.bind(this)}
               onPageChange={this.onPageChange.bind(this)}
               aria-controls={this.tableId}

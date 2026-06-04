@@ -20,7 +20,7 @@ import {
   EuiTableSortingType,
 } from './table_types';
 import { PropertySort } from '../../services';
-import { Pagination as PaginationBarType } from './pagination_bar';
+import type { EuiBasicTablePaginationBarPagination } from './pagination_bar';
 import { isString } from '../../services/predicate';
 import { Comparators, Direction } from '../../services/sort';
 import {
@@ -769,15 +769,16 @@ export class EuiInMemoryTable<T extends object = object> extends Component<
 
     const { items, totalItemCount } = this.getItems();
 
-    const pagination: PaginationBarType | undefined = !hasPagination
-      ? undefined
-      : {
-          pageIndex,
-          pageSize: pageSize ?? 1,
-          pageSizeOptions,
-          totalItemCount,
-          showPerPageOptions,
-        };
+    const pagination: EuiBasicTablePaginationBarPagination | undefined =
+      !hasPagination
+        ? undefined
+        : {
+            pageIndex,
+            pageSize: pageSize ?? 1,
+            pageSizeOptions,
+            totalItemCount,
+            showPerPageOptions,
+          };
 
     // Data loaded from a server can have a default sort order which is meaningful to the
     // user, but can't be reproduced with client-side sort logic. So we allow the table to display

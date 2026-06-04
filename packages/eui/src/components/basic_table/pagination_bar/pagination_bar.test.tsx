@@ -8,14 +8,14 @@
 
 import React from 'react';
 import { fireEvent } from '@testing-library/react';
-import { render } from '../../test/rtl';
-import { requiredProps } from '../../test';
+import { render } from '../../../test/rtl';
+import { requiredProps } from '../../../test';
 
-import { EuiProvider } from '../provider';
+import { EuiProvider } from '../../provider';
 
-import { PaginationBar } from './pagination_bar';
+import { EuiBasicTablePaginationBar } from './pagination_bar';
 
-describe('PaginationBar', () => {
+describe('EuiBasicTablePaginationBar', () => {
   const props = {
     ...requiredProps,
     pagination: {
@@ -25,10 +25,11 @@ describe('PaginationBar', () => {
     },
     onPageSizeChange: () => {},
     onPageChange: () => {},
+    panelled: false,
   };
 
   it('renders', () => {
-    const { container } = render(<PaginationBar {...props} />);
+    const { container } = render(<EuiBasicTablePaginationBar {...props} />);
 
     expect(container.firstChild).toMatchSnapshot();
   });
@@ -36,7 +37,7 @@ describe('PaginationBar', () => {
   it('calls onPageChange with the correct off-by-one offset', () => {
     const onPageChange = jest.fn();
     const { getByLabelText } = render(
-      <PaginationBar
+      <EuiBasicTablePaginationBar
         {...props}
         pagination={{
           ...props.pagination,
@@ -53,7 +54,7 @@ describe('PaginationBar', () => {
   describe('EuiTablePagination component defaults', () => {
     it('falls back to EuiTablePagination defaults', () => {
       const { getByText, getByTestSubject } = render(
-        <PaginationBar
+        <EuiBasicTablePaginationBar
           {...props}
           pagination={{ pageIndex: 1, totalItemCount: 100 }}
         />
@@ -76,7 +77,7 @@ describe('PaginationBar', () => {
             },
           }}
         >
-          <PaginationBar
+          <EuiBasicTablePaginationBar
             {...props}
             pagination={{ pageIndex: 1, totalItemCount: 100 }}
           />
@@ -92,7 +93,7 @@ describe('PaginationBar', () => {
 
     it('correctly overrides all defaults', () => {
       const { getByText, getByTestSubject } = render(
-        <PaginationBar
+        <EuiBasicTablePaginationBar
           {...props}
           pagination={{
             pageIndex: 3,
