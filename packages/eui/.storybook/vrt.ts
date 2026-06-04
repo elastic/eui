@@ -34,9 +34,6 @@ export const VRT_SELECTORS = {
  *
  * - skips the play body when `parameters.vrt.skip` is set,
  * - runs only under Playwright (gated by `navigator.webdriver`) unless `vrtOnly=false`,
- * - waits for the document to be ready before the play body runs,
- * - re-enables `pointer-events: auto` globally (Playwright's animation-disabled mode
- * can leave elements with `pointer-events: none`),
  * - exposes `bodyElement` (`document.body`) in the context so play functions can query
  * portalled DOM (flyouts, popovers, tooltips, modals).
  *
@@ -59,12 +56,6 @@ export const playDecorator = (
 
     if (vrtOnly && !isVrtRunning) return;
 
-    if (isVrtRunning) {
-      await waitForDocumentLoaded();
-
-      enablePointerEvents();
-    }
-
     // using `ownerDocument.body` over `parentElement` to ensure element is always available
     // related: https://github.com/storybookjs/storybook/issues/16971#issue-1076103727
     const body = context.canvasElement.ownerDocument.body;
@@ -81,20 +72,4 @@ export const playDecorator = (
 
     await target(enhancedContext);
   };
-};
-
-const waitForDocumentLoaded = (): Promise<void> => {
-  if (document.readyState === 'loading') {
-    return new Promise((resolve) => {
-      document.addEventListener('DOMContentLoaded', () => resolve());
-    });
-  }
-
-  return Promise.resolve();
-};
-
-const enablePointerEvents = (): void => {
-  const styleElement = document.createElement('style');
-  document.head.appendChild(styleElement);
-  styleElement.sheet?.insertRule('* {pointer-events: auto !important}');
 };
