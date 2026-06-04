@@ -84,7 +84,6 @@ export interface EuiToastProps
   animationMs?: number;
   /**
    * Props for primary and secondary actions within the toast.
-   * Secondary actions will only be rendered in combination with a primary action.
    */
   actionProps?: {
     primary?: EuiToastActionPrimaryProps;
