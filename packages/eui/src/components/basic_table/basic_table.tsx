@@ -57,10 +57,7 @@ import { euiTableCaptionStyles } from '../table/table.styles';
 import { CollapsedItemActions } from './collapsed_item_actions';
 import { ExpandedItemActions } from './expanded_item_actions';
 
-import {
-  EuiBasicTablePaginationBar,
-  type EuiBasicTablePaginationBarPagination,
-} from './pagination_bar';
+import { PaginationBar, type Pagination } from './pagination_bar';
 import { EuiIcon } from '../icon';
 import { EuiScreenReaderOnly } from '../accessibility';
 import { EuiI18n } from '../i18n';
@@ -296,7 +293,7 @@ type BasicTableWithPaginationProps<T extends object> = Omit<
   BasicTableProps<T>,
   'pagination' | 'onChange'
 > & {
-  pagination: EuiBasicTablePaginationBarPagination;
+  pagination: Pagination;
   onChange?: (criteria: CriteriaWithPagination<T>) => void;
 };
 
@@ -1477,7 +1474,7 @@ export class EuiBasicTable<T extends object = any> extends Component<
           values={{ tableCaption }}
         >
           {(tablePagination: string) => (
-            <EuiBasicTablePaginationBar
+            <PaginationBar
               pagination={pagination}
               panelled={panelled}
               responsiveBreakpoint={responsiveBreakpoint}

@@ -8,19 +8,19 @@
 
 import React, { useEffect } from 'react';
 
-import { EuiBreakpointSize, useEuiMemoizedStyles } from '../../../services';
+import { EuiBreakpointSize, useEuiMemoizedStyles } from '../../services';
 import {
   EuiTablePagination,
   useEuiTablePaginationDefaults,
-} from '../../table/table_pagination';
+} from '../table/table_pagination';
 import type {
   ItemsPerPageChangeHandler,
   PageChangeHandler,
-} from '../../table/table_pagination/table_pagination';
-import { useIsEuiTableResponsive } from '../../table/mobile/responsive_context';
+} from '../table/table_pagination/table_pagination';
+import { useIsEuiTableResponsive } from '../table/mobile/responsive_context';
 import { euiBasicTablePaginationBarStyles } from './pagination_bar.styles';
 
-export interface EuiBasicTablePaginationBarPagination {
+export interface Pagination {
   /**
    * The current page (zero-based) index
    */
@@ -54,8 +54,8 @@ export interface EuiBasicTablePaginationBarPagination {
 /**
  * @internal
  */
-interface EuiBasicTablePaginationBarProps {
-  pagination: EuiBasicTablePaginationBarPagination;
+interface PaginationBarProps {
+  pagination: Pagination;
   /**
    * Enable the panelled style.
    *
@@ -80,7 +80,7 @@ interface EuiBasicTablePaginationBarProps {
  * proper configuration and handles the `panelled` styles.
  * @internal
  */
-export const EuiBasicTablePaginationBar = ({
+export const PaginationBar = ({
   pagination,
   panelled,
   responsiveBreakpoint,
@@ -88,7 +88,7 @@ export const EuiBasicTablePaginationBar = ({
   onPageChange,
   'aria-controls': ariaControls,
   'aria-label': ariaLabel,
-}: EuiBasicTablePaginationBarProps) => {
+}: PaginationBarProps) => {
   const defaults = useEuiTablePaginationDefaults();
   const {
     pageIndex,

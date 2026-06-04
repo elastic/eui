@@ -7,8 +7,8 @@
  */
 
 import { css } from '@emotion/react';
-import { UseEuiTheme } from '../../../services';
-import { logicalShorthandCSS } from '../../../global_styling';
+import { UseEuiTheme } from '../../services';
+import { logicalShorthandCSS } from '../../global_styling';
 
 /**
  * @internal
