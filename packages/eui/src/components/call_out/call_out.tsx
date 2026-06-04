@@ -257,10 +257,8 @@ export const EuiCallOut = forwardRef<HTMLDivElement, EuiCallOutProps>(
       };
       const hasActionPrimary = Boolean(actionProps?.primary);
       const hasActionSecondary = Boolean(actionProps?.secondary);
-      // a standalone secondary action is not supported
-      const hasActions = hasActionPrimary;
 
-      if (!hasActions) return null;
+      if (!hasActionPrimary && !hasActionSecondary) return null;
 
       const actionPrimary = hasActionPrimary && (
         <EuiCallOutAction actionType="primary" {...actionPrimaryProps} />

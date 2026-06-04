@@ -169,7 +169,7 @@ describe('EuiCallOut', () => {
         expect(getByTestSubject('secondaryAction')).toBeInTheDocument();
       });
 
-      it('does not render a standalone secondary action button', () => {
+      it('renders a standalone secondary action button', () => {
         const { container } = render(
           <EuiCallOut
             title="Callout title"
@@ -184,7 +184,7 @@ describe('EuiCallOut', () => {
 
         expect(
           container.querySelector('[data-test-subj="secondaryAction"]')
-        ).not.toBeInTheDocument();
+        ).toBeInTheDocument();
       });
 
       describe('tooltipProps', () => {
