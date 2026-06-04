@@ -3,7 +3,9 @@
 #
 # On success: commits any newly-created reference screenshots (first-run baseline generation).
 # On failure: uploads diff artifacts, posts a Buildkite annotation and a GitHub PR comment with a
-# Before/After/Diff table, and injects the approval block step into the pipeline.
+# Before/After/Diff table, and dynamically appends an approval block step plus a baseline-update
+# step. (Those two steps can't live in deploy_docs.yml because Buildkite's `if:`
+# expressions don't support runtime meta-data lookups.)
 
 set -eo pipefail
 
@@ -232,7 +234,10 @@ else
   echo "Failed to post PR comment (GH_TOKEN missing or gh CLI error); skipping"
 fi
 
-# Inject the approval block step and baseline-update step into the pipeline.
+# Append the approval block and baseline-update step. These are uploaded here
+# (rather than declared in deploy_docs.yml) because they are only relevant when
+# this step has found visual differences, and Buildkite's `if:` expressions
+# can't read runtime meta-data such as `vrt_passed`.
 buildkite-agent pipeline upload << 'APPROVAL_PIPELINE'
 steps:
   - block: "Approve visual changes"

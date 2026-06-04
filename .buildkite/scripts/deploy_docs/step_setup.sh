@@ -1,6 +1,6 @@
 #!/bin/bash
-# Setup: calculate deployment paths, store shared config, and upload the pipeline.
-# Actual build/deploy/test work is done by the individual step scripts.
+# Setup: calculate deployment paths and store shared config in build meta-data
+# for the subsequent steps in `.buildkite/pipelines/deploy_docs.yml`.
 
 set -eo pipefail
 
@@ -51,7 +51,7 @@ is_pipeline_trigger_branch() {
 }
 
 ############################################################
-#         Step 1 - Calculate paths and directories         #
+#            Calculate paths and directories               #
 ############################################################
 
 # Default Storybook URL (overridden for PRs)
@@ -88,52 +88,10 @@ if [[ -z "${bucket_directory}" ]] && [[ "${copy_to_root_directory}" != true ]]; 
 fi
 
 ############################################################
-#          Step 2 - Share config with pipeline steps       #
+#            Share config with subsequent steps            #
 ############################################################
 
 buildkite-agent meta-data set bucket_directory "${bucket_directory}"
 buildkite-agent meta-data set storybook_base_url "${STORYBOOK_BASE_URL}"
 buildkite-agent meta-data set copy_to_root_directory "${copy_to_root_directory}"
 buildkite-agent meta-data set gcloud_bucket_full "${GCLOUD_BUCKET_FULL}"
-
-############################################################
-#              Step 3 - Upload the pipeline                #
-############################################################
-
-echo "Uploading pipeline for ${bucket_directory}..."
-
-buildkite-agent pipeline upload << 'PIPELINE'
-steps:
-  - label: ":docusaurus: Build and deploy website"
-    key: "build-website"
-    command: ".buildkite/scripts/deploy_docs/step_build_website.sh"
-
-  - label: ":book: Build and deploy Storybook"
-    key: "build-storybook"
-    command: ".buildkite/scripts/deploy_docs/step_build_storybook.sh"
-
-  - label: ":camera: Test visual regression"
-    key: "vrt"
-    depends_on: "build-storybook"
-    if: "build.pull_request.id != null"
-    timeout_in_minutes: 30
-    command: ".buildkite/scripts/deploy_docs/step_vrt.sh"
-    artifact_paths:
-      - "packages/eui/.vrt/diff/**/*.png"
-      - "packages/eui/.vrt/current/**/*-received.png"
-
-  # The "Approve visual changes" block step and "Update VRT baselines" step are
-  # injected dynamically by step_vrt.sh only when differences are found.
-
-  - label: ":loudspeaker: Notify"
-    key: "notify"
-    depends_on:
-      - step: "build-website"
-        allow_failure: true
-      - step: "build-storybook"
-        allow_failure: true
-      - step: "vrt"
-        allow_failure: true
-    allow_dependency_failure: true
-    command: ".buildkite/scripts/deploy_docs/step_notify.sh"
-PIPELINE
