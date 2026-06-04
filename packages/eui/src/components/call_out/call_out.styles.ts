@@ -265,6 +265,11 @@ export const euiCallOutHeaderStyles = ({ euiTheme }: UseEuiTheme) => {
         '0 !important'
         // In case it's nested inside EuiText
       )}
+
+      /* increase specificity to prevent accidental inheritance overrides */
+      && {
+        color: ${euiTheme.colors.textHeading};
+      }
     `,
   };
 };
