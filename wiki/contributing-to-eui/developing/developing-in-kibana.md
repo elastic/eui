@@ -2,6 +2,9 @@
 
 This guide explains how to develop EUI library locally while seeing changes reflected in a local Kibana instance.
 
+> [!TIP]
+> This is the workflow for **rapid local development** — a custom watcher rebuilds EUI packages and syncs them into your local Kibana's `node_modules` as you edit. To validate your EUI changes against **Kibana CI** (in a Kibana draft PR), use `yarn build-pack` instead — see [Testing EUI features in Kibana](../testing/testing-in-kibana.md).
+
 ## Prerequisites
 
 - You have this repository forked and cloned:
@@ -29,10 +32,9 @@ This guide explains how to develop EUI library locally while seeing changes refl
 
 ### In Kibana
 
-In the [Kibana](https://github.com/elastic/kibana) repository root, open terminal and run:
+In the [Kibana](https://github.com/elastic/kibana) repository root, open terminal and start Elasticsearch:
 
 ```bash
-yarn kbn bootstrap
 yarn es snapshot --license trial
 ```
 

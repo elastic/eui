@@ -1,6 +1,6 @@
 # Testing EUI features in Kibana ahead of time
 
-Most PRs should be tested in Kibana before merging into EUI main. Test a built version of EUI against Kibana and considering staging the integration [staging the integration](#staging-integrations) to ensure the upgrade process is as painless as possible.
+Most PRs should be tested in Kibana before merging into EUI main. Test a built version of EUI against Kibana and consider [staging the integration](#staging-integrations) to ensure the upgrade process is as painless as possible.
 
 ## Staging Integrations
 
@@ -33,7 +33,10 @@ Keep staged commits atomic to simplify cherry-picking for the upgrader:
 
 ## Testing local EUI in local Kibana
 
-Note that `yarn link` currently does not work with Kibana. You'll need to manually pack and insert it into Kibana to test locally.
+`yarn link` doesn't work between EUI and Kibana — Kibana is on Yarn v1 while EUI is on Yarn v4, and the two are not interoperable. Instead, you have two options depending on your goal:
+
+- For **local development** against a Kibana instance running on your machine, use the [`yarn watch --kibana`](../developing/developing-in-kibana.md) watcher.
+- For **CI validation** — opening a Kibana draft PR so Kibana's CI runs against your EUI changes — use `yarn build-pack` (described below) to produce a `.tgz` that you commit to the Kibana PR.
 
 ### In EUI:
 
