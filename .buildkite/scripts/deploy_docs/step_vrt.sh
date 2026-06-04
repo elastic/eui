@@ -226,13 +226,12 @@ if [[ "${#vrt_comment_body}" -gt 60000 ]]; then
   vrt_comment_body="${vrt_comment_body:0:60000}"$'\n\n_Table truncated - see the [Buildkite annotation]('"${BUILDKITE_BUILD_URL}"') for the full diff._'
 fi
 
-if vrt_comment_url="$(gh api "repos/elastic/eui/issues/${BUILDKITE_PULL_REQUEST}/comments" \
-  --method POST \
-  -f "body=${vrt_comment_body}" \
-  --jq '.html_url' 2>/dev/null)"; then
+if vrt_comment_url="$(gh pr comment "${BUILDKITE_PULL_REQUEST}" \
+  --repo elastic/eui \
+  --body-file <(printf '%s' "${vrt_comment_body}") 2>/dev/null)"; then
   buildkite-agent meta-data set vrt_comment_url "${vrt_comment_url}"
 else
-  echo "Failed to post PR comment (GH_TOKEN missing or API error); skipping"
+  echo "Failed to post PR comment (GH_TOKEN missing or gh CLI error); skipping"
 fi
 
 # Inject the approval block step and baseline-update step into the pipeline.
