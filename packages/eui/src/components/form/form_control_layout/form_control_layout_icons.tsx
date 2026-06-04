@@ -8,7 +8,7 @@
 
 import React from 'react';
 
-import { RenderWithEuiStylesMemoizer } from '../../../services';
+import { useEuiTheme } from '../../../services';
 import { DistributiveOmit } from '../../common';
 import { EuiIcon, IconColor, IconType } from '../../icon';
 import { EuiLoadingSpinner } from '../../loading';
@@ -64,39 +64,34 @@ export const EuiFormControlLayoutIcons = ({
   isInvalid,
   isDropdown,
 }: EuiFormControlLayoutIconsProps) => {
+  const euiThemeContext = useEuiTheme();
+  const styles = euiFormControlLayoutIconsStyles(euiThemeContext);
+  const cssStyles = [
+    styles.euiFormControlLayoutIcons,
+    compressed ? styles.compressed : styles.uncompressed,
+    ...(iconsPosition === 'absolute'
+      ? [
+          styles.position.absolute.absolute,
+          compressed
+            ? styles.position.absolute.compressed[side]
+            : styles.position.absolute.uncompressed[side],
+        ]
+      : [
+          styles.position.static.static,
+          compressed
+            ? styles.position.static.compressed
+            : styles.position.static.uncompressed,
+        ]),
+    isDisabled && styles.disabled,
+  ];
   return (
-    <RenderWithEuiStylesMemoizer>
-      {(stylesMemoizer) => {
-        const styles = stylesMemoizer(euiFormControlLayoutIconsStyles);
-        const cssStyles = [
-          styles.euiFormControlLayoutIcons,
-          compressed ? styles.compressed : styles.uncompressed,
-          ...(iconsPosition === 'absolute'
-            ? [
-                styles.position.absolute.absolute,
-                compressed
-                  ? styles.position.absolute.compressed[side]
-                  : styles.position.absolute.uncompressed[side],
-              ]
-            : [
-                styles.position.static.static,
-                compressed
-                  ? styles.position.static.compressed
-                  : styles.position.static.uncompressed,
-              ]),
-          isDisabled && styles.disabled,
-        ];
-        return (
-          <div css={cssStyles} className="euiFormControlLayoutIcons">
-            <ClearButton clear={clear} isDisabled={isDisabled} />
-            <LoadingSpinner isLoading={isLoading} />
-            <InvalidIcon isInvalid={isInvalid} />
-            <CustomIcon icon={icon} isDisabled={isDisabled} />
-            <DropdownIcon isDropdown={isDropdown} isDisabled={isDisabled} />
-          </div>
-        );
-      }}
-    </RenderWithEuiStylesMemoizer>
+    <div css={cssStyles} className="euiFormControlLayoutIcons">
+      <ClearButton clear={clear} isDisabled={isDisabled} />
+      <LoadingSpinner isLoading={isLoading} />
+      <InvalidIcon isInvalid={isInvalid} />
+      <CustomIcon icon={icon} isDisabled={isDisabled} />
+      <DropdownIcon isDropdown={isDropdown} isDisabled={isDisabled} />
+    </div>
   );
 };
 
