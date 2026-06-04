@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React from 'react';
+import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { faker } from '@faker-js/faker';
 import { moveStorybookControlsToCategory } from '../../../.storybook/utils';
@@ -16,6 +16,11 @@ import { EuiHealth } from '../health';
 import type { EuiBasicTableColumn } from './basic_table';
 
 import { EuiInMemoryTable, EuiInMemoryTableProps } from './in_memory_table';
+import { useEuiBasicTablePanelProps } from './use_panel_props';
+import { EuiSwitch } from '../form';
+import { EuiFlexGroup } from '../flex';
+import { EuiSpacer } from '../spacer';
+import { EuiButton } from '../button';
 
 // Set static seed so that the generated faker data is consistent between page loads
 faker.seed(8_02_2010);
@@ -250,5 +255,79 @@ export const KitchenSink: Story = {
   // or the automatic uncontrolled pagination & sorting won't work
   render: ({ onChange, ...args }: EuiInMemoryTableProps<User>) => (
     <EuiInMemoryTable {...args} />
+  ),
+};
+
+const Toolbar = () => {
+  const [showTwo, setShowTwo] = useState(false);
+  const panelProps = useEuiBasicTablePanelProps();
+
+  return (
+    <>
+      <div {...panelProps} style={{ padding: '12px 8px' }}>
+        Hello, World! This is supposed to resemble a custom table toolbar.{' '}
+        <EuiButton
+          color="text"
+          size="s"
+          onClick={() => setShowTwo((value) => !value)}
+        >
+          {showTwo ? 'Show one' : 'Show two'}
+        </EuiButton>
+      </div>
+      {showTwo && (
+        <div {...panelProps} style={{ padding: '12px 8px' }}>
+          <span role="img" aria-label="Waving hand">
+            👋
+          </span>{' '}
+          Second panel
+        </div>
+      )}
+    </>
+  );
+};
+
+const PanelledDemo = (props: EuiInMemoryTableProps<User>) => {
+  const [panelled, setPanelled] = useState(true);
+  const [toolbarPanelVisible, setToolbarPanelVisible] = useState(false);
+  const [paginationEnabled, setPaginationEnabled] = useState(true);
+
+  return (
+    <>
+      <EuiFlexGroup gutterSize="m">
+        <EuiSwitch
+          label="Panelled"
+          checked={panelled}
+          onChange={() => setPanelled((value) => !value)}
+        />
+        <EuiSwitch
+          label="Toolbar panel"
+          disabled={!panelled}
+          checked={toolbarPanelVisible}
+          onChange={() => setToolbarPanelVisible((value) => !value)}
+        />
+        <EuiSwitch
+          label="Pagination enabled"
+          disabled={!panelled}
+          checked={paginationEnabled}
+          onChange={() => setPaginationEnabled((value) => !value)}
+        />
+      </EuiFlexGroup>
+      <EuiSpacer />
+      <EuiInMemoryTable
+        {...props}
+        panelled={panelled}
+        childrenBetween={toolbarPanelVisible && <Toolbar />}
+        pagination={paginationEnabled ? props.pagination! : false}
+      />
+    </>
+  );
+};
+
+export const Panelled: Story = {
+  ...KitchenSink,
+  // Don't pass the default Storybook action listener for `onChange`,
+  // or the automatic uncontrolled pagination & sorting won't work
+  render: ({ onChange, ...props }: EuiInMemoryTableProps<User>) => (
+    <PanelledDemo {...props} />
   ),
 };
