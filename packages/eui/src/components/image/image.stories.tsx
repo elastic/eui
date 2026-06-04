@@ -28,6 +28,10 @@ export default meta;
 type Story = StoryObj<EuiImageProps>;
 
 export const Playground: Story = {
+  parameters: {
+    // `src` points to a remote JPEG that is not byte-stable causing VRT flake.
+    vrt: { skip: true },
+  },
   args: {
     src: 'https://images.unsplash.com/photo-1650253618249-fb0d32d3865c?w=900&h=400&fit=crop&q=60',
   },
