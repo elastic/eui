@@ -25,7 +25,7 @@ import {
 } from '../flyout.component';
 import { EuiFlyoutMenuProps } from '../flyout_menu';
 import { EuiFlyoutMenuContext } from '../flyout_menu_context';
-import type { EuiFlyoutCloseEvent } from '../types';
+import type { EuiFlyoutCloseEvent, EuiFlyoutCloseMeta } from '../types';
 import { useFlyoutActivityStage } from './activity_stage';
 import {
   LAYOUT_MODE_SIDE_BY_SIDE,
@@ -189,12 +189,12 @@ export const EuiManagedFlyout = forwardRef<HTMLElement, EuiManagedFlyoutProps>(
 
     // Stabilize the onClose callback
     const onCloseCallbackRef = useRef<
-      ((e?: EuiFlyoutCloseEvent) => void) | undefined
+      ((e?: EuiFlyoutCloseEvent, meta?: EuiFlyoutCloseMeta) => void) | undefined
     >();
-    onCloseCallbackRef.current = (e) => {
+    onCloseCallbackRef.current = (e, meta) => {
       if (onCloseProp) {
         const event = e || new MouseEvent('click');
-        onCloseProp(event);
+        onCloseProp(event, meta);
       }
     };
 
@@ -238,7 +238,9 @@ export const EuiManagedFlyout = forwardRef<HTMLElement, EuiManagedFlyoutProps>(
           level === LEVEL_MAIN ? closeAllFlyouts() : closeFlyout(flyoutId);
         } else if (wasRegisteredRef.current) {
           // Cascade close: was registered but removed externally (e.g. main closed)
-          onCloseCallbackRef.current?.(new MouseEvent('navigation'));
+          onCloseCallbackRef.current?.(new MouseEvent('navigation'), {
+            reason: 'navigation-cascade',
+          });
         }
         wasRegisteredRef.current = false;
       };
@@ -265,7 +267,9 @@ export const EuiManagedFlyout = forwardRef<HTMLElement, EuiManagedFlyoutProps>(
       // If flyout was previously registered, is marked as open, but no longer exists in manager state,
       // it was removed via navigation (Back button) - trigger close callback
       if (wasRegisteredRef.current && !flyoutExistsInManager) {
-        onCloseCallbackRef.current?.(new MouseEvent('navigation'));
+        onCloseCallbackRef.current?.(new MouseEvent('navigation'), {
+          reason: 'navigation-back',
+        });
         wasRegisteredRef.current = false; // Reset to avoid repeated calls
       }
     }, [flyoutExistsInManager, flyoutId]);
@@ -291,7 +295,7 @@ export const EuiManagedFlyout = forwardRef<HTMLElement, EuiManagedFlyoutProps>(
     const { width } = useResizeObserver(isActive ? flyoutRef : null, 'width');
 
     // Pass the stabilized onClose callback to the flyout menu context
-    const onClose = (e?: EuiFlyoutCloseEvent) => {
+    const onClose = (e?: EuiFlyoutCloseEvent, meta?: EuiFlyoutCloseMeta) => {
       // CRITICAL: Update manager state FIRST before allowing React to unmount
       // This prevents race conditions during portal → inline DOM transitions
       // and ensures cascade close logic runs before DOM cleanup begins
@@ -303,7 +307,7 @@ export const EuiManagedFlyout = forwardRef<HTMLElement, EuiManagedFlyoutProps>(
       wasRegisteredRef.current = false; // Prevent cleanup from double-firing onClose
       if (onCloseCallbackRef.current) {
         const event = e || new MouseEvent('click');
-        onCloseCallbackRef.current(event);
+        onCloseCallbackRef.current(event, meta);
       }
     };
 

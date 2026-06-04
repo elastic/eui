@@ -651,6 +651,47 @@ describe('EuiManagedFlyout', () => {
       );
 
       expect(onCloseChild).toHaveBeenCalledTimes(1);
+      expect(onCloseChild).toHaveBeenCalledWith(expect.anything(), {
+        reason: 'navigation-cascade',
+      });
+
+      selectors.useIsFlyoutRegistered.mockReturnValue(false);
+    });
+
+    it("calls onClose with reason 'navigation-back' when removed from the manager while still mounted (Back button)", () => {
+      const onClose = jest.fn();
+      const selectors = jest.requireMock('./selectors');
+      // Flyout is registered in the manager on mount
+      selectors.useIsFlyoutRegistered.mockReturnValue(true);
+
+      const { rerender } = renderInProvider(
+        <EuiManagedFlyout
+          id="back-test"
+          level={LEVEL_MAIN}
+          onClose={onClose}
+          flyoutMenuProps={{ title: 'Back Flyout' }}
+        />
+      );
+
+      expect(onClose).not.toHaveBeenCalled();
+
+      // The flyout disappears from the manager state (e.g. via the Back button)
+      // while the component itself stays mounted.
+      selectors.useIsFlyoutRegistered.mockReturnValue(false);
+      rerender(
+        <EuiFlyoutManager>
+          <EuiManagedFlyout
+            id="back-test"
+            level={LEVEL_MAIN}
+            onClose={onClose}
+            flyoutMenuProps={{ title: 'Back Flyout' }}
+          />
+        </EuiFlyoutManager>
+      );
+
+      expect(onClose).toHaveBeenCalledWith(expect.anything(), {
+        reason: 'navigation-back',
+      });
 
       selectors.useIsFlyoutRegistered.mockReturnValue(false);
     });
