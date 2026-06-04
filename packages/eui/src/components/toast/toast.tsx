@@ -241,10 +241,8 @@ export const EuiToast: FunctionComponent<EuiToastProps> = ({
     };
     const hasActionPrimary = Boolean(actionProps?.primary);
     const hasActionSecondary = Boolean(actionProps?.secondary);
-    // a standalone secondary action is not supported
-    const hasActions = hasActionPrimary;
 
-    if (!hasActions) return null;
+    if (!hasActionPrimary && !hasActionSecondary) return null;
 
     const actionPrimary = hasActionPrimary && (
       <EuiToastAction actionType="primary" {...actionPrimaryProps} />

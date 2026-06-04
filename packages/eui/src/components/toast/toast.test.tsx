@@ -121,7 +121,7 @@ describe('EuiToast', () => {
         expect(getByTestSubject('secondaryAction')).toBeInTheDocument();
       });
 
-      it('does not render a standalone secondary action button', () => {
+      it('renders a standalone secondary action button', () => {
         const { container } = render(
           <EuiToast
             title="Toast title"
@@ -136,7 +136,7 @@ describe('EuiToast', () => {
 
         expect(
           container.querySelector('[data-test-subj="secondaryAction"]')
-        ).not.toBeInTheDocument();
+        ).toBeInTheDocument();
       });
     });
 
