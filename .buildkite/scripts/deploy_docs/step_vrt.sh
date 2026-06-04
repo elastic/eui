@@ -31,12 +31,10 @@ export GH_TOKEN="${VAULT_GITHUB_TOKEN}"
 #            Skip check (`skip-vrt` PR label)              #
 ############################################################
 
-if [[ -n "${GH_TOKEN}" && -n "${BUILDKITE_PULL_REQUEST}" && "${BUILDKITE_PULL_REQUEST}" != "false" ]]; then
-  if gh api "repos/elastic/eui/issues/${BUILDKITE_PULL_REQUEST}/labels" --jq '.[].name' 2>/dev/null | grep -q "^skip-vrt$"; then
-    echo "PR #${BUILDKITE_PULL_REQUEST} has 'skip-vrt' label - skipping visual regression tests"
-    buildkite-agent meta-data set vrt_passed "skipped"
-    exit 0
-  fi
+if [[ ",${GITHUB_PR_LABELS:-}," == *",skip-vrt,"* ]]; then
+  echo "PR #${BUILDKITE_PULL_REQUEST} has 'skip-vrt' label - skipping visual regression tests"
+  buildkite-agent meta-data set vrt_passed "skipped"
+  exit 0
 fi
 
 ############################################################
