@@ -1,11 +1,12 @@
 #!/bin/bash
 # Run visual regression tests against the deployed Storybook.
 #
-# On success: commits any newly-created reference screenshots (first-run baseline generation).
-# On failure: uploads diff artifacts, posts a Buildkite annotation and a GitHub PR comment with a
-# Before/After/Diff table, and dynamically appends an approval block step plus a baseline-update
-# step. (Those two steps can't live in deploy_docs.yml because Buildkite's `if:`
-# expressions don't support runtime meta-data lookups.)
+# On success: commits any newly created reference screenshots (first-run baseline generation),
+# sets `vrt_passed=true` meta-data so the static update-baselines step short-circuits.
+#
+# On failure: uploads diff artifacts, posts a Buildkite annotation and a GitHub PR comment with
+# a Before/After/Diff table, sets `vrt_passed=false` so the static `update-baselines` step
+# (after the user approves the block step) actually updates the baselines.
 
 set -eo pipefail
 
@@ -234,23 +235,7 @@ else
   echo "Failed to post PR comment (GH_TOKEN missing or gh CLI error); skipping"
 fi
 
-# Append the approval block and baseline-update step. These are uploaded here
-# (rather than declared in deploy_docs.yml) because they are only relevant when
-# this step has found visual differences, and Buildkite's `if:` expressions
-# can't read runtime meta-data such as `vrt_passed`.
-buildkite-agent pipeline upload << 'APPROVAL_PIPELINE'
-steps:
-  - block: "Approve visual changes"
-    key: "approve-vrt"
-    prompt: "Review the diff annotation in this build, then click Approve to update the baselines on this branch."
-    depends_on: "vrt"
-    allow_dependency_failure: true
-    allowed_teams: "eui-team"
-
-  - label: "Update VRT baselines"
-    key: "update-baselines"
-    depends_on: "approve-vrt"
-    command: ".buildkite/scripts/deploy_docs/step_vrt_update.sh"
-APPROVAL_PIPELINE
-
+# Fail the step. The "Approve visual changes" block + "Update VRT baselines"
+# steps are declared statically in deploy_docs.yml; step_vrt_update.sh gates
+# itself on the `vrt_passed=false` meta-data set above.
 exit 1
