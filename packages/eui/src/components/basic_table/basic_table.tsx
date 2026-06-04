@@ -80,6 +80,7 @@ import { EuiTableSortMobileProps } from '../table/mobile/table_sort_mobile';
 
 import {
   euiBasicTableBodyLoading,
+  euiBasicTableWrapperPanelledStyles,
   safariLoadingWorkaround,
 } from './basic_table.styles';
 import { EuiToolTip } from '../tool_tip';
@@ -248,6 +249,15 @@ interface BasicTableProps<T extends object>
    * Provides an infinite loading indicator
    */
   loading?: boolean;
+  /**
+   * Enable the panelled style of the table.
+   *
+   * Panelled style adds contrast between the table navigation controls
+   * and table content itself. It should be used in tables rendered outside
+   * EUI containers like `<EuiPanel>` or `<EuiFlyout>`.
+   * @default false
+   */
+  panelled?: boolean;
   /**
    * Message to display if table is empty
    */
@@ -526,6 +536,7 @@ export class EuiBasicTable<T extends object = any> extends Component<
       scrollableInline,
       stickyScrollbar,
       stickyHeader,
+      panelled,
       ...rest
     } = this.props;
 
@@ -556,10 +567,15 @@ export class EuiBasicTable<T extends object = any> extends Component<
       scrollableInline,
       stickyScrollbar,
       stickyHeader,
+      panelled,
     } = this.props;
 
     return (
-      <>
+      <div
+        css={
+          panelled && euiBasicTableWrapperPanelledStyles(responsiveBreakpoint)
+        }
+      >
         <EuiTableHeaderMobile responsiveBreakpoint={responsiveBreakpoint}>
           {this.renderSelectAll(true)}
           {this.renderTableMobileSort()}
@@ -582,7 +598,7 @@ export class EuiBasicTable<T extends object = any> extends Component<
             {this.renderTableFooter()}
           </EuiTable>
         </OverrideCopiedTabularContent>
-      </>
+      </div>
     );
   }
 
