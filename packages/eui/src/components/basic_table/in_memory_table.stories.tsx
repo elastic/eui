@@ -42,6 +42,7 @@ const meta: Meta<EuiInMemoryTableProps> = {
     tableLayout: 'fixed',
     hasBackground: true,
     scrollableInline: false,
+    panelled: false,
   },
 };
 moveStorybookControlsToCategory(

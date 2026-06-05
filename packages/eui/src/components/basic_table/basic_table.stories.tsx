@@ -52,6 +52,7 @@ const meta: Meta<EuiBasicTableProps<User>> = {
     noItemsMessage: '',
     scrollableInline: false,
     stickyScrollbar: false,
+    panelled: false,
   },
 };
 moveStorybookControlsToCategory(
