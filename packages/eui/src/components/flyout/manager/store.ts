@@ -262,17 +262,19 @@ function createStore(
     setContainerElement: (element) =>
       dispatch(setContainerElementAction(element)),
     goBack: () => {
-      // Capture which flyouts goBack removes so they report `navigation-back`
-      // (vs. the default `navigation-cascade`). dispatch updates state
-      // synchronously, so a before/after diff reliably identifies them.
-      const removedBefore = currentState.flyouts.map((f) => f.flyoutId);
-      dispatch(goBackAction());
-      const remaining = new Set(currentState.flyouts.map((f) => f.flyoutId));
-      removedBefore.forEach((flyoutId) => {
-        if (!remaining.has(flyoutId)) {
-          pendingCloseMeta.set(flyoutId, { reason: 'navigation-back' });
+      // Stamp the flyouts goBack removes as `navigation-back` (vs. the default
+      // `navigation-cascade`) BEFORE dispatching. dispatch synchronously flushes
+      // subscribers, which can consume the meta during unmount, so peek the pure
+      // reducer to learn which flyouts go away and stamp them first.
+      const action = goBackAction();
+      const nextState = flyoutManagerReducer(currentState, action);
+      const remaining = new Set(nextState.flyouts.map((f) => f.flyoutId));
+      currentState.flyouts.forEach((f) => {
+        if (!remaining.has(f.flyoutId)) {
+          pendingCloseMeta.set(f.flyoutId, { reason: 'navigation-back' });
         }
       });
+      dispatch(action);
     },
     goToFlyout: (flyoutId, level) =>
       dispatch(goToFlyoutAction(flyoutId, level)),
