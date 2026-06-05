@@ -570,12 +570,8 @@ export class EuiBasicTable<T extends object = any> extends Component<
       panelled,
     } = this.props;
 
-    return (
-      <div
-        css={
-          panelled && euiBasicTableWrapperPanelledStyles(responsiveBreakpoint)
-        }
-      >
+    const content = (
+      <>
         <EuiTableHeaderMobile responsiveBreakpoint={responsiveBreakpoint}>
           {this.renderSelectAll(true)}
           {this.renderTableMobileSort()}
@@ -598,8 +594,22 @@ export class EuiBasicTable<T extends object = any> extends Component<
             {this.renderTableFooter()}
           </EuiTable>
         </OverrideCopiedTabularContent>
-      </div>
+      </>
     );
+
+    if (panelled) {
+      return (
+        <div
+          css={
+            panelled && euiBasicTableWrapperPanelledStyles(responsiveBreakpoint)
+          }
+        >
+          {content}
+        </div>
+      );
+    }
+
+    return content;
   }
 
   renderTableMobileSort() {
