@@ -603,6 +603,7 @@ export class EuiBasicTable<T extends object = any> extends Component<
           css={
             panelled && euiBasicTableWrapperPanelledStyles(responsiveBreakpoint)
           }
+          data-test-subj="euiBasicTablePanelledWrapper"
         >
           {content}
         </div>
