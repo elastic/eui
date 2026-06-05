@@ -249,11 +249,12 @@ export const EuiToolTip = forwardRef<EuiToolTipRef, EuiToolTipProps>(
       toolTipManager.deregisterToolTip(hideToolTip);
     }, []);
 
-    /**
-     * Show the tooltip.
-     *
-     * If the tooltip is already registered with the manager, skip the entry animation.
-     */
+/**
+ * Show the tooltip.
+ *
+ * Uses the tooltip manager's `skipAnimation` signal to optionally skip the entry
+ * animation when another tooltip is already open or was just closed.
+ */
     const showToolTip = useCallback(() => {
       if (!content && !title) return;
 
