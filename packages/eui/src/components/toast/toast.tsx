@@ -277,10 +277,10 @@ export const EuiToast: FunctionComponent<EuiToastProps> = ({
         </p>
       </EuiScreenReaderOnly>
       <div css={styles.wrapper}>
-        <div css={styles.body} data-test-subj="euiToastBody">
+        <div css={styles.body}>
           {icon}
 
-          <div css={styles.content}>
+          <div css={styles.content} data-test-subj="euiToastBody">
             {
               // Note: the DOM position of the dismiss button matters to screen reader users.
               // We generally want them to have some context of _what_ they're dismissing,
