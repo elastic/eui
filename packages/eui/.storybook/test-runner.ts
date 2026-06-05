@@ -21,7 +21,17 @@ import { VRT_SELECTORS } from './vrt';
  */
 const SCREENSHOT_OPTIONS = { animations: 'disabled' } as const;
 
-const MOBILE_VIEWPORT_WIDTH = 390;
+/**
+ * Variants each story is snapshotted under. Each variant's `name` becomes the
+ * suffix on the saved baseline (e.g. `${context.id}-desktop.png`) and is what
+ * stories pass to `parameters.vrt.skipVariants` to opt out of a specific one.
+ */
+const VARIANTS = [
+  { name: 'desktop', viewport: { width: 1440, height: 900 } },
+  { name: 'mobile', viewport: { width: 390, height: 844 } },
+] as const;
+
+type VariantName = (typeof VARIANTS)[number]['name'];
 
 /**
  * Ensures all `<img>` elements are fully loaded before taking a screenshot.
@@ -59,41 +69,46 @@ const config: TestRunnerConfig = {
 
     if (storyContext.parameters?.vrt?.skip) return;
 
-    await waitForPageReady(page);
-    await waitForImagesToLoad(page);
-
     const selector =
       storyContext.parameters?.vrt?.selector ?? VRT_SELECTORS.default;
-    const viewport = page.viewportSize();
-    const project =
-      viewport?.width === MOBILE_VIEWPORT_WIDTH ? 'mobile' : 'desktop';
-    const image =
-      selector === 'page'
-        ? await page.screenshot(SCREENSHOT_OPTIONS)
-        : await page.locator(selector).first().screenshot(SCREENSHOT_OPTIONS);
+    const skipVariants: VariantName[] =
+      storyContext.parameters?.vrt?.skipVariants ?? [];
 
-    const snapshotId = `${context.id}-${project}`;
-    const snapshotPath = path.join(
-      __dirname,
-      '..',
-      '.vrt',
-      'reference',
-      `${snapshotId}.png`
-    );
+    for (const variant of VARIANTS) {
+      if (skipVariants.includes(variant.name)) continue;
 
-    if (!fs.existsSync(snapshotPath)) {
-      // No baseline exists yet, write it directly so Jest's CI mode doesn't
-      // block first-run baseline generation.
-      fs.mkdirSync(path.dirname(snapshotPath), { recursive: true });
-      fs.writeFileSync(snapshotPath, new Uint8Array(image));
-    } else {
-      expect(image).toMatchImageSnapshot({
-        customSnapshotsDir: path.join(__dirname, '..', '.vrt', 'reference'),
-        customDiffDir: path.join(__dirname, '..', '.vrt', 'diff'),
-        customReceivedDir: path.join(__dirname, '..', '.vrt', 'current'),
-        storeReceivedOnFailure: true,
-        customSnapshotIdentifier: snapshotId,
-      });
+      await page.setViewportSize(variant.viewport);
+      await waitForPageReady(page);
+      await waitForImagesToLoad(page);
+
+      const image =
+        selector === 'page'
+          ? await page.screenshot(SCREENSHOT_OPTIONS)
+          : await page.locator(selector).first().screenshot(SCREENSHOT_OPTIONS);
+
+      const snapshotId = `${context.id}-${variant.name}`;
+      const snapshotPath = path.join(
+        __dirname,
+        '..',
+        '.vrt',
+        'reference',
+        `${snapshotId}.png`
+      );
+
+      if (!fs.existsSync(snapshotPath)) {
+        // No baseline exists yet, write it directly so Jest's CI mode doesn't
+        // block first-run baseline generation.
+        fs.mkdirSync(path.dirname(snapshotPath), { recursive: true });
+        fs.writeFileSync(snapshotPath, new Uint8Array(image));
+      } else {
+        expect(image).toMatchImageSnapshot({
+          customSnapshotsDir: path.join(__dirname, '..', '.vrt', 'reference'),
+          customDiffDir: path.join(__dirname, '..', '.vrt', 'diff'),
+          customReceivedDir: path.join(__dirname, '..', '.vrt', 'current'),
+          storeReceivedOnFailure: true,
+          customSnapshotIdentifier: snapshotId,
+        });
+      }
     }
   },
 };

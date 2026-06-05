@@ -38,6 +38,39 @@ yarn workspace @elastic/eui test-visual-regression update -- --url https://eui.e
 
 Reference images are stored in `packages/eui/.vrt/reference/`.
 
+## Variants
+
+Each story is snapshotted under multiple **variants** to catch e.g. responsive-layout regressions. Every variant produces its own baseline file, suffixed with the variant name:
+
+    packages/eui/.vrt/reference/
+      navigation-euibutton--playground-desktop.png
+      navigation-euibutton--playground-mobile.png
+
+Current variants (defined in [`.storybook/test-runner.ts`](https://github.com/elastic/eui/tree/main/packages/eui/.storybook/test-runner.ts)):
+
+| Variant | Viewport |
+|---|---|
+| `desktop` | 1440 × 900 |
+| `mobile` | 390 × 844 |
+
+### Skipping specific variants
+
+If a story can't render correctly under a particular variant, opt out of that variant with `parameters.vrt.skipVariants`. The story still runs under the remaining variants.
+
+```tsx
+export const Story: Story = {
+  parameters: {
+    vrt: {
+      skipVariants: ['mobile'],
+    },
+  },
+};
+```
+
+Use `vrt.skip` (see below) if a story should be skipped under *all* variants.
+
+When you add `vrt.skipVariants` to a story that previously had a baseline for that variant, manually delete the corresponding snapshot file from `packages/eui/.vrt/reference/`.
+
 ## Filtering stories
 
 Pass any [`test-storybook`](https://storybook.js.org/docs/writing-tests/test-runner) flags after `--`:
@@ -151,7 +184,14 @@ flowchart TD
     WS --> N
 ```
 
-When VRT finds new stories without baselines, or when the team approves visual changes, **CI commits the updated reference screenshots directly to the PR branch**.
+When VRT generates or regenerates reference screenshots, **CI commits them directly to the PR branch** under one of two messages:
+
+| Commit message | When it happens |
+|---|---|
+| `chore(eui): add VRT baseline screenshots` | VRT passes AND the PR adds new stories. The new baselines are committed automatically, no human approval needed. |
+| `chore(eui): update VRT baseline screenshots` | VRT fails (visual diffs found) AND a team member approves the *Approve visual changes* block step in Buildkite. The approved baselines are committed. Includes new stories. |
+
+Either commit auto-triggers CI.
 
 ### Skipping in a PR
 
