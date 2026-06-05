@@ -51,6 +51,8 @@ moveStorybookControlsToCategory(
   'EuiTable props'
 );
 
+moveStorybookControlsToCategory(meta, ['panelled'], 'EuiBasicTable props');
+
 export default meta;
 type Story = StoryObj<EuiInMemoryTableProps<User>>;
 
