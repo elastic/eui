@@ -617,3 +617,10 @@ export const Scrollable: Story = {
     columns: scrollableColumns,
   },
 };
+
+export const Panelled: Story = {
+  args: {
+    ...Playground.args,
+    panelled: true,
+  },
+};
