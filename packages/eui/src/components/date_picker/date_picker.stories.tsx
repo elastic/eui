@@ -11,7 +11,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import moment from 'moment';
 import { fireEvent, waitFor } from '@storybook/test';
 import { within } from '../../../.storybook/test';
-import { LOKI_SELECTORS } from '../../../.storybook/loki';
+import { VRT_SELECTORS } from '../../../.storybook/vrt';
 import {
   disableStorybookControls,
   enableFunctionToggleControls,
@@ -28,8 +28,8 @@ const meta: Meta<EuiDatePickerProps> = {
   title: 'Forms/EuiDatePicker',
   component: EuiDatePicker,
   parameters: {
-    loki: {
-      chromeSelector: LOKI_SELECTORS.portal,
+    vrt: {
+      selector: VRT_SELECTORS.portal,
     },
   },
   argTypes: {
@@ -122,7 +122,7 @@ const meta: Meta<EuiDatePickerProps> = {
     utcOffset: undefined,
     'data-test-subj': 'my-date-picker',
   },
-  // Open the datepicker automatically for Loki VRT
+  // Open the datepicker automatically for VRT
   play: async ({ canvasElement, step }) => {
     const canvas = within(canvasElement);
     await step('show popover on click', async () => {

@@ -24,7 +24,8 @@ type Story = StoryObj<EuiThemeProviderProps<{}>>;
 
 export const WrapperCloneElement: Story = {
   parameters: {
-    loki: { skip: true },
+    // `cloneElement` produces visually identical output to the default wrapper
+    vrt: { skip: true },
   },
   args: {
     wrapperProps: {

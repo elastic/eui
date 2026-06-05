@@ -13,7 +13,7 @@ import {
   disableStorybookControls,
   enableFunctionToggleControls,
 } from '../../../../.storybook/utils';
-import { LOKI_SELECTORS } from '../../../../.storybook/loki';
+import { VRT_SELECTORS } from '../../../../.storybook/vrt';
 import { EuiText } from '../../text';
 
 import { EuiSuperSelect, EuiSuperSelectProps } from './super_select';
@@ -130,8 +130,8 @@ export const Open: Story = {
   tags: ['vrt-only'],
   ...Playground,
   parameters: {
-    loki: {
-      chromeSelector: LOKI_SELECTORS.portal,
+    vrt: {
+      selector: VRT_SELECTORS.portal,
     },
   },
   args: {

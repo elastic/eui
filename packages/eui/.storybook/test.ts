@@ -26,8 +26,9 @@ const customWithin = (canvasElement: HTMLElement) => {
     ...canvas,
 
     /**
-     * 1. Loki doesn't like userEvent, only fireEvent
-     * 2. Storybook fires fireEvents too early (esp. on page load), so we add a waitFor
+     * Waits for an element matched by `data-test-subj` to be in the document,
+     * then clicks it using `fireEvent.click`. Useful inside Storybook play functions
+     * where the target element may not have mounted yet.
      */
     waitForAndClick: async (testSubject: string) => {
       await waitFor(() =>

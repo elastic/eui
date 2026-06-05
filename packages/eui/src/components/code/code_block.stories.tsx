@@ -12,11 +12,11 @@ import type { PlayFunctionContext } from '@storybook/csf';
 import { css } from '@emotion/react';
 
 import { within } from '../../../.storybook/test';
-import { LOKI_SELECTORS } from '../../../.storybook/loki';
+import { VRT_SELECTORS, playDecorator } from '../../../.storybook/vrt';
 import { mathWithUnits } from '../../global_styling';
 
 import { EuiCodeBlock, EuiCodeBlockProps } from './code_block';
-import { expect, userEvent } from '@storybook/test';
+import { expect, userEvent, waitFor } from '@storybook/test';
 import { EuiButton } from '../button';
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
 
@@ -92,7 +92,7 @@ export const Annotations: Story = {
     lineNumbers: { table: { disable: true } },
   },
   parameters: {
-    loki: { chromeSelector: LOKI_SELECTORS.portal },
+    vrt: { selector: VRT_SELECTORS.portal },
   },
   play: async ({ canvasElement }: PlayFunctionContext<ReactRenderer>) => {
     const canvas = within(canvasElement);
@@ -158,14 +158,24 @@ rendered correctly and not cut-off after scrolling */
 export const VirtualizedCodeBlockScrolling: Story = {
   tags: ['vrt-only'],
   parameters: {
-    loki: {
-      chromeSelector: LOKI_SELECTORS.portal,
+    vrt: {
+      selector: VRT_SELECTORS.portal,
     },
     codeSnippet: {
       skip: true,
     },
   },
-  // use dark mode to better visualize container boundaries
+  play: playDecorator(async ({ canvasElement }) => {
+    // Wait for the virtualized code block to render the content.
+    await waitFor(
+      () =>
+        expect(
+          canvasElement.querySelector('.euiCodeBlock__pre')?.textContent
+        ).toContain('Post title'),
+      { timeout: 5000 }
+    );
+  }),
+  // Use dark mode to better visualize container boundaries
   globals: { colorMode: 'dark' },
   render: function Render() {
     const [response, setResponse] = useState('{}');
@@ -173,20 +183,20 @@ export const VirtualizedCodeBlockScrolling: Story = {
 
     const handleSubmit = async () => {
       setIsLoading(true);
+      const data = Array.from({ length: 100 }, (_, i) => ({
+        userId: Math.floor(i / 10) + 1,
+        id: i + 1,
+        title: `Post title ${i + 1}`,
+        body: `This is the body of post ${
+          i + 1
+        }. It contains enough text to make the code block tall enough to require virtualization and scrolling.`,
+      }));
 
-      try {
-        const res = await fetch('https://jsonplaceholder.typicode.com/posts');
-        const data = await res.json();
-
+      // Delay to keep VRT images more stable
+      setTimeout(() => {
         setResponse(JSON.stringify(data, null, 2));
-      } catch (error) {
-        console.error(error);
-      } finally {
-        // delay to keep VRT images more stable
-        setTimeout(() => {
-          setIsLoading(false);
-        }, 75);
-      }
+        setIsLoading(false);
+      }, 75);
     };
 
     useEffect(() => {
@@ -194,15 +204,15 @@ export const VirtualizedCodeBlockScrolling: Story = {
     }, []);
 
     useEffect(() => {
-      // scroll the code block after response updates to test if virtualization
-      // calculates the scroll height and position correctly
+      // Scroll the code block after response updates to test if virtualization
+      // Calculates the scroll height and position correctly
       const pre = document.querySelector('.euiCodeBlock__pre');
       if (pre) {
         pre.scrollBy({
           top: 75,
         });
 
-        // trigger a second load after scroll to simulate potential issues
+        // Trigger a second load after scroll to simulate potential issues
         setTimeout(() => {
           handleSubmit();
         }, 10);

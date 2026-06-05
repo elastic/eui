@@ -10,6 +10,9 @@ import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { css } from '@emotion/css';
 import { enableFunctionToggleControls } from '../../../.storybook/utils';
+import { VRT_SELECTORS, playDecorator } from '../../../.storybook/vrt';
+import { waitFor, expect } from '@storybook/test';
+import { within } from '../../../.storybook/test';
 
 import {
   StatefulDataGrid,
@@ -21,6 +24,9 @@ import type { EuiDataGridStyle } from './data_grid_types';
 const meta: Meta = {
   title: 'Tabular Content/EuiDataGrid/gridStyle (prop)',
   component: Component,
+  parameters: {
+    vrt: { selector: VRT_SELECTORS.portal },
+  },
 };
 
 export default meta;
@@ -129,6 +135,12 @@ export const Compact: Story = {
   render: (gridStyle) => (
     <StatefulDataGrid {...storyArgs} gridStyle={gridStyle} />
   ),
+  play: playDecorator(async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await waitFor(() =>
+      expect(canvas.getAllByRole('gridcell').length).toBeGreaterThan(0)
+    );
+  }),
 };
 
 export const Expanded: Story = {

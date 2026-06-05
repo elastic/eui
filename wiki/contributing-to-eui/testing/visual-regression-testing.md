@@ -1,123 +1,160 @@
 # Visual regression testing
 
-EUI uses [Loki](https://loki.js.org/) for component visual regression testing.
-Loki compares snapshots of previously approved against current Storybook
-stories and ensures there are no unexpected differences.
+EUI uses [Playwright Test Runner](https://playwright.dev/) with [`jest-image-snapshot`](https://github.com/americanexpress/jest-image-snapshot) for component visual regression testing. Tests run against a live Storybook instance and compare screenshots of stories against previously approved reference images.
 
-Visual regression tests are currently not being run automatically on every pull request. Please remember to update screenshots if relevant stories are modified.
+Visual regression tests run automatically on every pull request against the deployed Storybook preview. When differences are found, a diff table is posted as a PR comment and a Buildkite block step appears for human approval before baselines are updated.
 
-## Running Loki locally
+## Running VRT locally
 
-Loki uses a Docker container running Chrome as a stable way to take screenshots.
-Please make sure you have [Docker](https://docs.docker.com/get-docker/)
-installed and running locally.
+Make sure you have [Docker](https://docs.docker.com/get-docker/) installed and running. It's used to take screenshots in a Linux environment matching CI.
 
-Before running Loki you need to start a local Storybook server in either
-development or production mode:
+Start a local Storybook server:
 
 ```shell
 yarn storybook --no-open
 ```
 
-Now you can run Loki to test for visual regressions:
+Run the visual regression tests:
 
 ```shell
-yarn test-visual-regression
+yarn workspace @elastic/eui test-visual-regression
 ```
 
-You can also run the test for specific stories only by using `--storiesFilter`:
+To test against a specific URL (e.g. a deployed PR preview):
 
 ```shell
-yarn test-visual-regression --storiesFilter EuiComboBox
+yarn workspace @elastic/eui test-visual-regression -- --url https://eui.elastic.co/pr_1234/storybook
 ```
 
-To add baseline reference images run:
+## Updating baseline screenshots
 
 ```shell
-# all components
-yarn test-visual-regression update
+# Update all baselines
+yarn workspace @elastic/eui test-visual-regression update
 
-# specific component
-yarn test-visual-regression update --storiesFilter EuiComboBox
+# Update baselines against a specific URL
+yarn workspace @elastic/eui test-visual-regression update -- --url https://eui.elastic.co/pr_1234/storybook
 ```
 
+Reference images are stored in `packages/eui/.vrt/reference/`.
+
+## Filtering stories
+
+Pass any [`test-storybook`](https://storybook.js.org/docs/writing-tests/test-runner) flags after `--`:
+
+```shell
+# Only run stories with a specific tag
+yarn workspace @elastic/eui test-visual-regression -- --includeTags vrt-only
+
+# Exclude stories with a tag
+yarn workspace @elastic/eui test-visual-regression -- --excludeTags skip-vrt
+```
 
 ## Skipping stories
 
-Some stories cannot be tested for various reasons. You can set
-`{ loki: { skip: true } }` to the Story object to skip them.
-Please leave a comment explaining why the story is skipped for future context.
-
-**Example:**
+Set `parameters.vrt.skip` to skip a story. Leave a comment explaining why.
 
 ```tsx
-const meta: Meta<MyComponentProps> = {
-  component: MyComponent,
+export const MyStory: Story = {
   parameters: {
-    loki: {
+    vrt: {
+      // Skipped: this story is interaction-only, not a visual state
       skip: true,
     },
   },
 };
 ```
 
+When you add `vrt.skip` to a story that previously had a baseline, manually delete its snapshot files from `packages/eui/.vrt/reference/`.
+
 ## Using non-default selectors
 
-Stories of components that render text nodes or portalled elements need
-to specify a custom Loki selector to tell it what we want to take
-a screenshot of using the `chromeSelector` property.
+By default the test runner screenshots `#story-wrapper > *`. For components that render outside the story wrapper (portals, popovers, dropdowns) specify a custom selector in `parameters.vrt.selector`.
 
-We provide a few predefined Loki selectors in the 
-[.storybook/loki.ts](https://github.com/elastic/eui/tree/main/.storybook/loki.ts)
-file.
+Predefined selectors are exported from [`.storybook/vrt.ts`](https://github.com/elastic/eui/tree/main/packages/eui/.storybook/vrt.ts):
 
-**Example:**
 ```tsx
-const meta: Meta<MyComponentProps> = {
-  component: MyComponent,
+import { VRT_SELECTORS } from '../../../.storybook/vrt';
+
+export const Open: Story = {
   parameters: {
-    loki: {
-      // LOKI_SELECTORS can be imported from .storybook/loki.ts
-      chromeSelector: LOKI_SELECTORS.portal,
+    vrt: {
+      selector: VRT_SELECTORS.portal,
     },
   },
 };
 ```
 
-## Using storybook interactions for specific interaction states
+Available selectors:
 
-You can use storybooks [`interactions`](https://storybook.js.org/docs/essentials/interactions) to run VRT testing on specific component states after user interaction.
+| Selector | Value | Use case |
+|---|---|---|
+| `VRT_SELECTORS.default` | `#story-wrapper > *` | Default (no need to set) |
+| `VRT_SELECTORS.textOnly` | `#story-wrapper` | Components rendering a text node |
+| `VRT_SELECTORS.portal` | `page` | Portalled elements (popover, tooltip, dropdown); takes a full-page screenshot |
 
-Use `lokiPlayDecorator` function to ensure VRT testing runs 
-- a) as defined (VRT only vs storybook & VRT)
-- b) after interactions were run
+## Using interactions for specific states
+
+Wrap play functions with `playDecorator` when they need to reach elements outside the story wrapper (e.g. portals). It injects `bodyElement` (`document.body`) into the context so `within(bodyElement)` can query portal content.
 
 ```tsx
 import { userEvent, waitFor, within, expect } from '@storybook/test';
-import { lokiPlayDecorator } from '/.storybook/loki'
+import { VRT_SELECTORS, playDecorator } from '../../../.storybook/vrt';
 
+export const OpenDropdown: Story = {
+  parameters: {
+    vrt: { selector: VRT_SELECTORS.portal },
+  },
+  play: playDecorator(async (context) => {
+    const { canvasElement, bodyElement } = context;
 
-const Playground = {
-  play: lokiPlayDecorator(async (context) => {
-    const { bodyElement, canvasElement, step } = context;
-
-    // for any content inside the story wrapper use canvasElement
+    // canvasElement: content inside the story wrapper
     const canvas = within(canvasElement);
-    // any content outside the story wrapper (e.g. added via portals) use bodyElement
-    const canvas = within(bodyElement);
+    // bodyElement: use this to reach portalled elements
+    const body = within(bodyElement);
 
-    /* NOTE: multi-steps breaks on going through steps on not found elements
-    for show/hide actions. It seems more reliable to use a single step for
-    these interactions as they are used for VRT only (so far). */
-    await step('show popover on click', async () => {
-        await userEvent.click(canvas.getByRole('combobox'));
-
-        await waitFor(() => {
-          expect(canvas.getByRole('listbox')).toBeVisible();
-        })
-      }
-    );
-  })
-}
+    await userEvent.click(canvas.getByRole('combobox'));
+    await waitFor(() => {
+      expect(body.getByRole('listbox')).toBeVisible();
+    });
+  }),
+};
 ```
 
+By default the play function is skipped when not running under Playwright (i.e. in the Storybook UI). Pass `false` as the second argument to run it everywhere:
+
+```tsx
+play: playDecorator(async (context) => { ... }, false)
+```
+
+## CI pipeline architecture
+
+VRT runs automatically on every pull request as part of the `eui-deploy-docs` Buildkite pipeline.
+
+```mermaid
+flowchart TD
+    PR[Pull request] --> WS[Build and deploy website]
+    PR --> SB[Build and deploy Storybook]
+    SB --> VRT[Test visual regression]
+
+    VRT -->|skip-vrt label| N[Notify]
+    VRT -->|Pass, new stories| C1[Commit baselines\nto PR branch]
+    VRT -->|Pass, no changes| N
+    VRT -->|Fail, infrastructure error| N
+
+    VRT -->|Fail, visual diffs found| D[Post diff table\nto PR comment]
+    D --> B[Approve visual changes]
+    B --> U[Update VRT baselines]
+    U --> N
+
+    C1 --> N
+    WS --> N
+```
+
+When VRT finds new stories without baselines, or when the team approves visual changes, **CI commits the updated reference screenshots directly to the PR branch**.
+
+### Skipping in a PR
+
+If VRT itself is broken and blocking merges, add the `skip-vrt` label to the GitHub PR. The VRT step will detect the label, exit without running any tests and the notify comment will clearly state that VRT was skipped.
+
+Remove the label once the underlying issue is resolved.

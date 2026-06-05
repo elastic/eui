@@ -9,7 +9,9 @@
 import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { LOKI_SELECTORS } from '../../../.storybook/loki';
+import { userEvent, waitFor, within, expect } from '@storybook/test';
+
+import { VRT_SELECTORS, playDecorator } from '../../../.storybook/vrt';
 import {
   EuiAvatar,
   EuiBadge,
@@ -104,7 +106,7 @@ export const DarkThemeWithSitewideSearch: Story = {
   parameters: {
     layout: 'fullscreen',
     controls: { include: ['theme'] },
-    loki: { chromeSelector: LOKI_SELECTORS.portal }, // Required to capture the open popover
+    vrt: { selector: VRT_SELECTORS.portal }, // Required to capture the open popover
   },
   args: {
     theme: 'dark',
@@ -245,8 +247,21 @@ export const MultipleFixedHeaders: Story = {
     codeSnippet: {
       resolveChildren: true,
     },
+    vrt: { selector: VRT_SELECTORS.portal },
   },
   render: (args) => <MultipleFixedHeadersExample {...args} />,
+  play: playDecorator(async ({ bodyElement }) => {
+    const body = within(bodyElement);
+    await userEvent.click(
+      body.getAllByRole('button', { name: 'Toggle flyout' })[0]
+    );
+    await waitFor(() => expect(body.getByRole('dialog')).toBeVisible());
+    await waitFor(() =>
+      expect(
+        body.getByText(/flyout position and mask should automatically adjust/i)
+      ).toBeVisible()
+    );
+  }),
 };
 
 /**
@@ -584,6 +599,19 @@ export const ElasticNavigationPattern: Story = {
     codeSnippet: {
       resolveChildren: true,
     },
+    vrt: { selector: VRT_SELECTORS.portal },
   },
   render: (args) => <ElasticNavigationPatternExample {...args} />,
+  play: playDecorator(async ({ bodyElement }) => {
+    const body = within(bodyElement);
+    await userEvent.click(
+      body.getByRole('button', { name: /Notifications: Updates available/i })
+    );
+    await waitFor(() => expect(body.getByRole('dialog')).toBeVisible());
+    await waitFor(() =>
+      expect(
+        body.getByRole('heading', { name: 'EuiHeaderAlert' })
+      ).toBeVisible()
+    );
+  }),
 };

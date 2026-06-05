@@ -174,6 +174,23 @@ describe('EuiToolTip', () => {
 
       expect(getByRole('tooltip')).toHaveTextContent('Tooltip title');
     });
+
+    it('does not block clicks on the trigger while the tooltip is visible', () => {
+      const onClick = jest.fn();
+      const { getByTestSubject, getByRole } = render(
+        <EuiToolTip content="tooltip content">
+          <button data-test-subj="trigger" onClick={onClick}>
+            Trigger
+          </button>
+        </EuiToolTip>
+      );
+
+      fireEvent.mouseOver(getByTestSubject('trigger'));
+      expect(getByRole('tooltip')).toBeInTheDocument();
+
+      fireEvent.click(getByTestSubject('trigger'));
+      expect(onClick).toHaveBeenCalledTimes(1);
+    });
   });
 
   describe('props', () => {
