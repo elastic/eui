@@ -18,13 +18,15 @@ export type EuiFlyoutCloseEvent = MouseEvent | TouchEvent | KeyboardEvent;
  * - `navigation-back`: a managed flyout closed because the user pressed Back
  * - `navigation-cascade`: a managed flyout closed because a parent navigated
  *   away or the main flyout closed (e.g. a tab switch)
+ * - `unknown`: the source could not be determined (fallback)
  */
 export type EuiFlyoutCloseReason =
   | 'close-button'
   | 'escape'
   | 'outside-click'
   | 'navigation-back'
-  | 'navigation-cascade';
+  | 'navigation-cascade'
+  | 'unknown';
 
 /**
  * Optional metadata passed as the second argument to a flyout's `onClose`

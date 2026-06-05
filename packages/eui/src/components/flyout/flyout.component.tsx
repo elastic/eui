@@ -728,7 +728,7 @@ export const EuiFlyoutComponent = forwardRef(
     const handleClose = useCallback(
       (
         event: EuiFlyoutCloseEvent,
-        reason: EuiFlyoutCloseReason = 'close-button'
+        reason: EuiFlyoutCloseReason = 'unknown'
       ) => {
         onClose(event, { reason });
       },
