@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { css } from '@emotion/react';
@@ -113,13 +113,17 @@ export const WithAnimation: Story = {
       undefined
     );
 
+    useEffect(() => {
+      setAnimationMs(_animationMs);
+    }, [_animationMs]);
+
     return (
       <EuiFlexGroup direction="column" gutterSize="m">
         <EuiButton
           css={css`
             max-inline-size: max-content;
           `}
-          onClick={() => setAnimationMs(animationMs ? undefined : 3000)}
+          onClick={() => setAnimationMs(animationMs ? undefined : _animationMs)}
         >
           {animationMs != null ? 'Reset animation' : 'Start animation'}
         </EuiButton>
