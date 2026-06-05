@@ -13,7 +13,7 @@ import { EuiButton } from '../button';
 import { EuiFlyout } from './flyout';
 import { EuiFlyoutBody } from './flyout_body';
 import { EuiFlyoutFooter, EuiFlyoutFooterProps } from './flyout_footer';
-import { LOKI_SELECTORS } from '../../../.storybook/loki';
+import { VRT_SELECTORS } from '../../../.storybook/vrt';
 
 const meta: Meta<EuiFlyoutFooterProps> = {
   title: 'Layout/EuiFlyout/EuiFlyoutFooter',
@@ -22,9 +22,9 @@ const meta: Meta<EuiFlyoutFooterProps> = {
     // TODO: editable children
   },
   parameters: {
-    loki: {
+    vrt: {
       // Flyout content is rendered in a portal
-      chromeSelector: LOKI_SELECTORS.portal,
+      selector: VRT_SELECTORS.portal,
     },
   },
 };

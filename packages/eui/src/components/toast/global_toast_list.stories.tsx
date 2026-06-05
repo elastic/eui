@@ -10,6 +10,7 @@ import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { enableFunctionToggleControls } from '../../../.storybook/utils';
+import { VRT_SELECTORS } from '../../../.storybook/vrt';
 import { EuiButton } from '../button';
 import {
   EuiGlobalToastList,
@@ -46,6 +47,11 @@ const meta: Meta<EuiGlobalToastListProps> = {
     showClearAllButtonAt: 3,
     // stub for testing/QA
     dismissToast: () => {},
+  },
+  parameters: {
+    vrt: {
+      selector: VRT_SELECTORS.portal,
+    },
   },
 };
 enableFunctionToggleControls(meta, ['onClearAllToasts']);

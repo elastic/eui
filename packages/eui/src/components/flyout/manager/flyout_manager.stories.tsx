@@ -180,9 +180,9 @@ const meta: Meta<FlyoutChildStoryArgs> = {
     showChildCustomActions: true,
   },
   parameters: {
-    // Skipping visual regression testing with Loki
+    // Skipping visual regression testing
     // This is a playground for Flyout Manager and doesn't show anything testable on page load
-    loki: { skip: true },
+    vrt: { skip: true },
   },
 };
 

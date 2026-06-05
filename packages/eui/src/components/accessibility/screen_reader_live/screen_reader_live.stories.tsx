@@ -29,7 +29,7 @@ const meta: Meta<EuiScreenReaderLiveProps> = {
     focusRegionOnTextChange: false,
   },
   parameters: {
-    loki: {
+    vrt: {
       // There are no visual elements to test
       skip: true,
     },

@@ -121,8 +121,8 @@ export const EuiBanner = forwardRef<HTMLDivElement, EuiBannerProps>(
 
     const primaryActionProps = actionProps?.primary;
     const secondaryActionProps = actionProps?.secondary;
-    // a standalone secondary action is not supported
-    const hasActions = Boolean(primaryActionProps);
+    const hasActions =
+      Boolean(primaryActionProps) || Boolean(secondaryActionProps);
 
     const componentClass = 'euiBanner';
     const classes = classNames(componentClass, className);
@@ -193,6 +193,7 @@ export const EuiBanner = forwardRef<HTMLDivElement, EuiBannerProps>(
                   {text}
                 </EuiText>
               ) : null}
+
               {children && children}
             </div>
 

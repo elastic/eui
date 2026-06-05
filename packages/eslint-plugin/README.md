@@ -200,18 +200,18 @@ Browser-native tooltips (the `title` prop) are unstyled, have no delay control, 
 
 The rule reports two situations:
 
-- **`title` prop is present** - remove it and use `<EuiToolTip content={…}>` instead. The rule auto-fixes by removing `title` and wrapping the button with `EuiToolTip` (or only removing `title` when the button is already wrapped).
-- **No `EuiToolTip` wrapper** - the button icon has no visible tooltip. The rule auto-fixes by wrapping the button with `<EuiToolTip content={ariaLabel}>` when `aria-label` is a static string or expression.
+- **`title` prop is present** - remove it and use `<EuiToolTip content={…}>` instead.
+- **No `EuiToolTip` wrapper** - the button icon has no visible tooltip. Wrap it with `<EuiToolTip content={ariaLabel}>`.
 
 Buttons with spread props (`{...props}`) are intentionally skipped when no `title` prop is explicitly present because their final prop set cannot be statically determined.
 
 #### Examples
 
 ```tsx
-// ✗ Bad - browser tooltip, not keyboard-accessible
+// ✗ Bad - browser tooltip
 <EuiButtonIcon title="Edit item" aria-label="Edit item" iconType="pencil" />
 
-// ✓ Fixed automatically
+// ✓ Good
 <EuiToolTip content="Edit item">
   <EuiButtonIcon aria-label="Edit item" iconType="pencil" />
 </EuiToolTip>
@@ -221,7 +221,7 @@ Buttons with spread props (`{...props}`) are intentionally skipped when no `titl
 // ✗ Bad - no tooltip for sighted users
 <EuiButtonIcon aria-label="Delete" iconType="trash" />
 
-// ✓ Fixed automatically
+// ✓ Good
 <EuiToolTip content="Delete">
   <EuiButtonIcon aria-label="Delete" iconType="trash" />
 </EuiToolTip>

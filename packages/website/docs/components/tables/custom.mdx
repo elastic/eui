@@ -861,6 +861,16 @@ export default class extends Component<{}, State> {
 import { EuiBetaBadge } from '@elastic/eui';
 ```
 
+### Sticky headers <EuiBetaBadge size="s" label="Beta" color="accent" /> {#sticky-headers}
+
+The [`stickyHeader`](#EuiTable-prop-stickyHeader) prop keeps the table header
+fixed at the top of the viewport as users scroll through long tables.
+This enhances usability by maintaining column context during vertical scrolling
+and unifies the scrolling experience between **EuiTable** components and **EuiDataGrid**.
+
+This feature should be used in places where it's possible for the table to grow
+longer than the viewport.
+
 ### Sticky horizontal scrollbar <EuiBetaBadge size="s" label="Beta" color="accent" /> {#sticky-horizontal-scrollbar}
 
 When a table is taller than the viewport, the horizontal scrollbar at the bottom becomes hard to reach.

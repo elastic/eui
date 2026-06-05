@@ -36,7 +36,7 @@ const meta: Meta<EuiFocusTrapProps> = {
     scrollLock: false,
   },
   parameters: {
-    loki: {
+    vrt: {
       // There are no visual elements to test
       skip: true,
     },

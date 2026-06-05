@@ -23,7 +23,7 @@ const meta: Meta<EuiSkipLinkProps> = {
     overrideLinkBehavior: true,
   },
   parameters: {
-    loki: {
+    vrt: {
       // There are no visual elements to test
       skip: true,
     },

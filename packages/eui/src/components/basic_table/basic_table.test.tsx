@@ -8,7 +8,7 @@
 
 import React from 'react';
 import { fireEvent } from '@testing-library/react';
-import { render, screen } from '../../test/rtl';
+import { render, renderHook, screen } from '../../test/rtl';
 import { requiredProps } from '../../test';
 import { shouldRenderCustomStyles } from '../../test/internal';
 
@@ -19,7 +19,7 @@ import {
   getItemId,
 } from './basic_table';
 
-import { SortDirection } from '../../services';
+import { SortDirection, useEuiTheme } from '../../services';
 import {
   EuiTableFieldDataColumnType,
   EuiTableActionsColumnType,
@@ -1001,5 +1001,38 @@ describe('EuiBasicTable', () => {
     const { container } = render(<EuiBasicTable {...props} />);
 
     expect(container.firstChild).toMatchSnapshot();
+  });
+
+  describe('panelled', () => {
+    it('renders the panelled wrapper when `panelled = true`', () => {
+      const props = {
+        ...requiredProps,
+        items: basicItems,
+        columns: basicColumns,
+        panelled: true,
+      };
+      const { getByTestSubject } = render(<EuiBasicTable {...props} />);
+      const { euiTheme } = renderHook(useEuiTheme).result.current;
+
+      const wrapper = getByTestSubject('euiBasicTablePanelledWrapper');
+      expect(wrapper).toBeInTheDocument();
+
+      expect(wrapper).toHaveStyleRule('border', euiTheme.border.thin);
+      expect(wrapper).toHaveStyleRule(
+        'border-radius',
+        euiTheme.border.radius.medium
+      );
+    });
+
+    it('defaults to `panelled = false`', () => {
+      const props = {
+        ...requiredProps,
+        items: basicItems,
+        columns: basicColumns,
+      };
+
+      const { queryByTestSubject } = render(<EuiBasicTable {...props} />);
+      expect(queryByTestSubject('euiBasicTablePanelledWrapper')).toBeNull();
+    });
   });
 });

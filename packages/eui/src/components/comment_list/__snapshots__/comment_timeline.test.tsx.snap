@@ -16,7 +16,7 @@ exports[`EuiCommentTimeline props timelineAvatar defaults to an avatar with a \`
 
 exports[`EuiCommentTimeline props timelineAvatar is rendered with a ReactNode 1`] = `
 <span
-  class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+  class="euiToolTipAnchor  emotion-euiToolTipAnchor-inlineBlock-user"
   id="generated-id_euiToolTipAnchor"
 >
   <div
@@ -49,7 +49,7 @@ exports[`EuiCommentTimeline props timelineAvatar is rendered with a string 1`] =
 
 exports[`EuiCommentTimeline props timelineAvatar is rendered with timelineAvatarAriaLabel 1`] = `
 <span
-  class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+  class="euiToolTipAnchor  emotion-euiToolTipAnchor-inlineBlock-user"
   id="generated-id_euiToolTipAnchor"
 >
   <div

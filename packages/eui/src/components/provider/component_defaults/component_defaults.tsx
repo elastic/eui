@@ -51,6 +51,7 @@ export type EuiComponentDefaults = {
     | 'scrollableInline'
     | 'tableLayout'
     | 'stickyScrollbar'
+    | 'stickyHeader'
   >;
 
   /**
