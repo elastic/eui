@@ -1069,7 +1069,7 @@ describe('EuiFlyout', () => {
       const onClose = jest.fn();
       render(<EuiFlyout onClose={onClose} />);
 
-      fireEvent.keyDown(document, { key: 'Escape' });
+      fireEvent.keyDown(window, { key: 'Escape' });
 
       expect(onClose).toHaveBeenCalledWith(expect.anything(), {
         reason: 'escape',

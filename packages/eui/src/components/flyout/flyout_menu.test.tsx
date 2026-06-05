@@ -135,6 +135,9 @@ describe('EuiFlyoutMenu', () => {
       closeButton?.dispatchEvent(new MouseEvent('click', { bubbles: true }));
 
       expect(onClose).toHaveBeenCalledTimes(1);
+      expect(onClose).toHaveBeenCalledWith(expect.anything(), {
+        reason: 'close-button',
+      });
     });
   });
 
