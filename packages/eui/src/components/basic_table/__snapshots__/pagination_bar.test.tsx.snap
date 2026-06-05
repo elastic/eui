@@ -1,9 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`PaginationBar renders 1`] = `
-<div
-  class="css-1gb0nlc-root-PaginationBar"
->
+<div>
+  <div
+    class="euiSpacer euiSpacer--m emotion-euiSpacer-m"
+  />
   <div
     class="euiFlexGroup eui-xScroll emotion-euiFlexGroup-wrap-s-spaceBetween-center-row"
   >

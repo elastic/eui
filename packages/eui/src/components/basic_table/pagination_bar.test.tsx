@@ -25,7 +25,6 @@ describe('PaginationBar', () => {
     },
     onPageSizeChange: () => {},
     onPageChange: () => {},
-    panelled: false,
   };
 
   it('renders', () => {

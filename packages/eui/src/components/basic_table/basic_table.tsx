@@ -57,7 +57,7 @@ import { euiTableCaptionStyles } from '../table/table.styles';
 import { CollapsedItemActions } from './collapsed_item_actions';
 import { ExpandedItemActions } from './expanded_item_actions';
 
-import { PaginationBar, type Pagination } from './pagination_bar';
+import { Pagination, PaginationBar } from './pagination_bar';
 import { EuiIcon } from '../icon';
 import { EuiScreenReaderOnly } from '../accessibility';
 import { EuiI18n } from '../i18n';
@@ -80,7 +80,6 @@ import { EuiTableSortMobileProps } from '../table/mobile/table_sort_mobile';
 
 import {
   euiBasicTableBodyLoading,
-  euiBasicTableWrapperPanelledStyles,
   safariLoadingWorkaround,
 } from './basic_table.styles';
 import { EuiToolTip } from '../tool_tip';
@@ -249,15 +248,6 @@ interface BasicTableProps<T extends object>
    * Provides an infinite loading indicator
    */
   loading?: boolean;
-  /**
-   * Enable the panelled style of the table.
-   *
-   * Panelled style adds contrast between the table navigation controls
-   * and table content itself. It should be used in tables rendered outside
-   * EUI containers like `<EuiPanel>` or `<EuiFlyout>`.
-   * @default false
-   */
-  panelled?: boolean;
   /**
    * Message to display if table is empty
    */
@@ -536,7 +526,6 @@ export class EuiBasicTable<T extends object = any> extends Component<
       scrollableInline,
       stickyScrollbar,
       stickyHeader,
-      panelled,
       ...rest
     } = this.props;
 
@@ -567,10 +556,9 @@ export class EuiBasicTable<T extends object = any> extends Component<
       scrollableInline,
       stickyScrollbar,
       stickyHeader,
-      panelled,
     } = this.props;
 
-    const content = (
+    return (
       <>
         <EuiTableHeaderMobile responsiveBreakpoint={responsiveBreakpoint}>
           {this.renderSelectAll(true)}
@@ -596,21 +584,6 @@ export class EuiBasicTable<T extends object = any> extends Component<
         </OverrideCopiedTabularContent>
       </>
     );
-
-    if (panelled) {
-      return (
-        <div
-          css={
-            panelled && euiBasicTableWrapperPanelledStyles(responsiveBreakpoint)
-          }
-          data-test-subj="euiBasicTablePanelledWrapper"
-        >
-          {content}
-        </div>
-      );
-    }
-
-    return content;
   }
 
   renderTableMobileSort() {
@@ -1464,14 +1437,7 @@ export class EuiBasicTable<T extends object = any> extends Component<
   }
 
   renderPaginationBar() {
-    const {
-      error,
-      pagination,
-      tableCaption,
-      onChange,
-      panelled,
-      responsiveBreakpoint,
-    } = this.props;
+    const { error, pagination, tableCaption, onChange } = this.props;
     if (!error && pagination && pagination.totalItemCount > 0) {
       if (!onChange) {
         throw new Error(`The Basic Table is configured with pagination but [onChange] is
@@ -1487,8 +1453,6 @@ export class EuiBasicTable<T extends object = any> extends Component<
           {(tablePagination: string) => (
             <PaginationBar
               pagination={pagination}
-              panelled={panelled}
-              responsiveBreakpoint={responsiveBreakpoint}
               onPageSizeChange={this.onPageSizeChange.bind(this)}
               onPageChange={this.onPageChange.bind(this)}
               aria-controls={this.tableId}

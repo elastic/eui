@@ -8,17 +8,15 @@
 
 import React, { useEffect } from 'react';
 
-import { EuiBreakpointSize, useEuiMemoizedStyles } from '../../services';
+import { EuiSpacer } from '../spacer';
 import {
   EuiTablePagination,
   useEuiTablePaginationDefaults,
 } from '../table/table_pagination';
-import type {
+import {
   ItemsPerPageChangeHandler,
   PageChangeHandler,
 } from '../table/table_pagination/table_pagination';
-import { useIsEuiTableResponsive } from '../table/mobile/responsive_context';
-import { euiBasicTablePaginationBarStyles } from './pagination_bar.styles';
 
 export interface Pagination {
   /**
@@ -51,21 +49,8 @@ export interface Pagination {
   showPerPageOptions?: boolean;
 }
 
-/**
- * @internal
- */
-interface PaginationBarProps {
+export interface PaginationBarProps {
   pagination: Pagination;
-  /**
-   * Enable the panelled style.
-   *
-   * Panelled style adds contrast between the table navigation controls
-   * and table content itself. It should be used in tables rendered outside
-   * EUI containers like `<EuiPanel>` or `<EuiFlyout>`.
-   * @default false
-   */
-  panelled?: boolean;
-  responsiveBreakpoint?: EuiBreakpointSize | boolean;
   onPageSizeChange: ItemsPerPageChangeHandler;
   onPageChange: PageChangeHandler;
   /**
@@ -75,15 +60,8 @@ interface PaginationBarProps {
   'aria-label'?: string;
 }
 
-/**
- * An internal utility component that renders EuiTablePagination with
- * proper configuration and handles the `panelled` styles.
- * @internal
- */
 export const PaginationBar = ({
   pagination,
-  panelled,
-  responsiveBreakpoint,
   onPageSizeChange,
   onPageChange,
   'aria-controls': ariaControls,
@@ -100,9 +78,6 @@ export const PaginationBar = ({
 
   const pageCount = pageSize ? Math.ceil(totalItemCount / pageSize) : 1;
 
-  const styles = useEuiMemoizedStyles(euiBasicTablePaginationBarStyles);
-  const isResponsive = useIsEuiTableResponsive(responsiveBreakpoint);
-
   useEffect(() => {
     if (pageCount < pageIndex + 1) {
       onPageChange?.(pageCount - 1);
@@ -110,7 +85,8 @@ export const PaginationBar = ({
   }, [pageCount, onPageChange, pageIndex]);
 
   return (
-    <div css={[styles.root, !isResponsive && panelled && styles.panelled]}>
+    <div>
+      <EuiSpacer size="m" />
       <EuiTablePagination
         activePage={pageIndex}
         showPerPageOptions={showPerPageOptions}

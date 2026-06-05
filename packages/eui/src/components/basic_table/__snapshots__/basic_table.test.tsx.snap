@@ -951,9 +951,10 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
   >
     𐘂𐘂
   </span>
-  <div
-    class="css-1gb0nlc-root-PaginationBar"
-  >
+  <div>
+    <div
+      class="euiSpacer euiSpacer--m emotion-euiSpacer-m"
+    />
     <div
       class="euiFlexGroup eui-xScroll emotion-euiFlexGroup-wrap-s-spaceBetween-center-row"
     >
