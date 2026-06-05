@@ -228,19 +228,21 @@ export const EuiManagedFlyout = forwardRef<HTMLElement, EuiManagedFlyoutProps>(
       );
 
       return () => {
-        const currentStoreState = getFlyoutManagerStore().getState();
-        const stillInStore = currentStoreState.flyouts.some(
-          (f) => f.flyoutId === flyoutId
-        );
+        const store = getFlyoutManagerStore();
+        const stillInStore = store
+          .getState()
+          .flyouts.some((f) => f.flyoutId === flyoutId);
 
         if (stillInStore) {
           // Normal cleanup (deps changed or explicit close via isOpen=false)
           level === LEVEL_MAIN ? closeAllFlyouts() : closeFlyout(flyoutId);
         } else if (wasRegisteredRef.current) {
-          // Cascade close: was registered but removed externally (e.g. main closed)
-          onCloseCallbackRef.current?.(new MouseEvent('navigation'), {
-            reason: 'navigation-cascade',
-          });
+          // Removed externally while mounted: forward the store-stamped reason
+          // (e.g. `navigation-back` from goBack), defaulting to cascade.
+          onCloseCallbackRef.current?.(
+            new MouseEvent('navigation'),
+            store.consumeCloseMeta(flyoutId) ?? { reason: 'navigation-cascade' }
+          );
         }
         wasRegisteredRef.current = false;
       };
@@ -264,12 +266,18 @@ export const EuiManagedFlyout = forwardRef<HTMLElement, EuiManagedFlyoutProps>(
         wasRegisteredRef.current = true;
       }
 
-      // If flyout was previously registered, is marked as open, but no longer exists in manager state,
-      // it was removed via navigation (Back button) - trigger close callback
+      // If flyout was previously registered, is marked as open, but no longer
+      // exists in manager state, it was removed externally while still mounted.
+      // Forward the store-stamped reason (e.g. `navigation-back` from goBack);
+      // any other removal (e.g. a closeAllFlyouts cascade reaching a backgrounded
+      // flyout) defaults to `navigation-cascade`.
       if (wasRegisteredRef.current && !flyoutExistsInManager) {
-        onCloseCallbackRef.current?.(new MouseEvent('navigation'), {
-          reason: 'navigation-back',
-        });
+        onCloseCallbackRef.current?.(
+          new MouseEvent('navigation'),
+          getFlyoutManagerStore().consumeCloseMeta(flyoutId) ?? {
+            reason: 'navigation-cascade',
+          }
+        );
         wasRegisteredRef.current = false; // Reset to avoid repeated calls
       }
     }, [flyoutExistsInManager, flyoutId]);
