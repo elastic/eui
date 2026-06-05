@@ -378,6 +378,7 @@ export const EuiGlobalToastList: FunctionComponent<EuiGlobalToastListProps> = ({
 
   const classes = classNames('euiGlobalToastList', className);
 
+  const hasContent = renderedToasts.length > 0 || clearAllButton != null;
   const notificationBadge = useMemo(() => {
     const toastWasDismissed = toastIdToDismissedMap[toasts[0]?.id] ?? false;
     const isListEmpty = toasts.every((t) => toastIdToDismissedMap[t.id]);
@@ -411,11 +412,13 @@ export const EuiGlobalToastList: FunctionComponent<EuiGlobalToastListProps> = ({
       className={classes}
       {...rest}
     >
-      <div css={styles.content}>
-        {notificationBadge}
-        {renderedToasts}
-        {clearAllButton}
-      </div>
+      {hasContent && (
+        <div css={styles.content}>
+          {notificationBadge}
+          {renderedToasts}
+          {clearAllButton}
+        </div>
+      )}
     </div>
   );
 };

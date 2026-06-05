@@ -7,11 +7,7 @@ exports[`EuiGlobalToastList is rendered 1`] = `
   class="euiGlobalToastList testClass1 testClass2 emotion-euiGlobalToastList-right-euiTestCss"
   data-test-subj="test subject string"
   role="log"
->
-  <div
-    class="css-19mjubd-content"
-  />
-</div>
+/>
 `;
 
 exports[`EuiGlobalToastList props side can be changed to left 1`] = `
@@ -43,7 +39,6 @@ exports[`EuiGlobalToastList props side can be changed to left 1`] = `
       >
         <div
           class="css-m4ni6e-body"
-          data-test-subj="euiToastBody"
         >
           <span
             aria-hidden="true"
@@ -53,6 +48,7 @@ exports[`EuiGlobalToastList props side can be changed to left 1`] = `
           />
           <div
             class="css-1nzpgtc-content"
+            data-test-subj="euiToastBody"
           >
             <p
               class="euiTitle emotion-euiTitle-xs-euiToastHeader-hasDismissButton"
@@ -103,7 +99,6 @@ exports[`EuiGlobalToastList props side can be changed to left 1`] = `
       >
         <div
           class="css-m4ni6e-body"
-          data-test-subj="euiToastBody"
         >
           <span
             aria-hidden="true"
@@ -113,6 +108,7 @@ exports[`EuiGlobalToastList props side can be changed to left 1`] = `
           />
           <div
             class="css-1nzpgtc-content"
+            data-test-subj="euiToastBody"
           >
             <p
               class="euiTitle emotion-euiTitle-xs-euiToastHeader-hasDismissButton"
@@ -176,7 +172,6 @@ exports[`EuiGlobalToastList props toasts is rendered 1`] = `
       >
         <div
           class="css-m4ni6e-body"
-          data-test-subj="euiToastBody"
         >
           <span
             aria-hidden="true"
@@ -186,6 +181,7 @@ exports[`EuiGlobalToastList props toasts is rendered 1`] = `
           />
           <div
             class="css-1nzpgtc-content"
+            data-test-subj="euiToastBody"
           >
             <p
               class="euiTitle emotion-euiTitle-xs-euiToastHeader-hasDismissButton"
@@ -236,7 +232,6 @@ exports[`EuiGlobalToastList props toasts is rendered 1`] = `
       >
         <div
           class="css-m4ni6e-body"
-          data-test-subj="euiToastBody"
         >
           <span
             aria-hidden="true"
@@ -246,6 +241,7 @@ exports[`EuiGlobalToastList props toasts is rendered 1`] = `
           />
           <div
             class="css-1nzpgtc-content"
+            data-test-subj="euiToastBody"
           >
             <p
               class="euiTitle emotion-euiTitle-xs-euiToastHeader-hasDismissButton"

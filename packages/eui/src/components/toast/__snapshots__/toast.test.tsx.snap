@@ -21,7 +21,6 @@ exports[`EuiToast is rendered 1`] = `
   >
     <div
       class="css-m4ni6e-body"
-      data-test-subj="euiToastBody"
     >
       <span
         class="css-19b7t2f-icon"
@@ -29,6 +28,7 @@ exports[`EuiToast is rendered 1`] = `
       />
       <div
         class="css-1nzpgtc-content"
+        data-test-subj="euiToastBody"
       >
         <p
           class="euiTitle emotion-euiTitle-xs-euiToastHeader"
