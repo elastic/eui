@@ -185,7 +185,7 @@ describe('EuiToolTip', () => {
         </EuiToolTip>
       );
 
-      fireEvent.mouseOver(getByTestSubject('trigger'));
+      fireEvent.mouseEnter(getByTestSubject('trigger'));
       expect(getByRole('tooltip')).toBeInTheDocument();
 
       fireEvent.click(getByTestSubject('trigger'));
