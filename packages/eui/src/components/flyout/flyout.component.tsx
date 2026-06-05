@@ -726,11 +726,8 @@ export const EuiFlyoutComponent = forwardRef(
     }, [isInManagedContext, hasChildFlyout, isChildFlyout]);
 
     const handleClose = useCallback(
-      (
-        event: EuiFlyoutCloseEvent,
-        reason: EuiFlyoutCloseReason = 'unknown'
-      ) => {
-        onClose(event, { reason });
+      (event: EuiFlyoutCloseEvent, reason?: EuiFlyoutCloseReason) => {
+        onClose(event, reason ? { reason } : undefined);
       },
       [onClose]
     );
