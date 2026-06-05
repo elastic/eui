@@ -272,7 +272,7 @@ describe('EuiGlobalToastList', () => {
     });
 
     describe('showNotificationBadge', () => {
-      const badgeSelector = '.euiGlobalToastList__countBadge';
+      const badgeSelector = 'euiGlobalToastListNotificationBadge';
 
       const toasts: Toast[] = [
         { id: 'a', 'data-test-subj': 'toast-a' },
@@ -280,7 +280,7 @@ describe('EuiGlobalToastList', () => {
       ];
 
       it('is not rendered by default', () => {
-        const { container } = render(
+        const { queryByTestSubject } = render(
           <EuiGlobalToastList
             toasts={toasts}
             dismissToast={() => {}}
@@ -288,11 +288,11 @@ describe('EuiGlobalToastList', () => {
           />
         );
 
-        expect(container.querySelector(badgeSelector)).not.toBeInTheDocument();
+        expect(queryByTestSubject(badgeSelector)).not.toBeInTheDocument();
       });
 
       it('renders when showNotificationBadge is true and toasts are present', () => {
-        const { container } = render(
+        const { queryByTestSubject } = render(
           <EuiGlobalToastList
             toasts={toasts}
             dismissToast={() => {}}
@@ -301,11 +301,11 @@ describe('EuiGlobalToastList', () => {
           />
         );
 
-        expect(container.querySelector(badgeSelector)).toBeInTheDocument();
+        expect(queryByTestSubject(badgeSelector)).toBeInTheDocument();
       });
 
       it('displays the number of toasts', () => {
-        const { container } = render(
+        const { getByTestSubject } = render(
           <EuiGlobalToastList
             toasts={toasts}
             dismissToast={() => {}}
@@ -314,13 +314,13 @@ describe('EuiGlobalToastList', () => {
           />
         );
 
-        expect(container.querySelector(badgeSelector)).toHaveTextContent(
+        expect(getByTestSubject(badgeSelector)).toHaveTextContent(
           String(toasts.length)
         );
       });
 
       it('is not rendered when there are no toasts', () => {
-        const { container } = render(
+        const { queryByTestSubject } = render(
           <EuiGlobalToastList
             toasts={[]}
             dismissToast={() => {}}
@@ -328,11 +328,11 @@ describe('EuiGlobalToastList', () => {
           />
         );
 
-        expect(container.querySelector(badgeSelector)).not.toBeInTheDocument();
+        expect(queryByTestSubject(badgeSelector)).not.toBeInTheDocument();
       });
 
       it('is not rendered when showNotificationBadge is false', () => {
-        const { container } = render(
+        const { queryByTestSubject } = render(
           <EuiGlobalToastList
             toasts={toasts}
             dismissToast={() => {}}
@@ -341,12 +341,12 @@ describe('EuiGlobalToastList', () => {
           />
         );
 
-        expect(container.querySelector(badgeSelector)).not.toBeInTheDocument();
+        expect(queryByTestSubject(badgeSelector)).not.toBeInTheDocument();
       });
 
       it('is removed from the DOM once all toasts are dismissed', () => {
         const dismissToast = jest.fn();
-        const { container, getByTestSubject, rerender } = render(
+        const { queryByTestSubject, getByTestSubject, rerender } = render(
           <EuiGlobalToastList
             toasts={[{ id: 'a', 'data-test-subj': 'toast-a' }]}
             dismissToast={dismissToast}
@@ -355,7 +355,7 @@ describe('EuiGlobalToastList', () => {
           />
         );
 
-        expect(container.querySelector(badgeSelector)).toBeInTheDocument();
+        expect(queryByTestSubject(badgeSelector)).toBeInTheDocument();
 
         fireEvent.click(
           within(getByTestSubject('toast-a')).getByTestSubject(
@@ -376,7 +376,7 @@ describe('EuiGlobalToastList', () => {
           />
         );
 
-        expect(container.querySelector(badgeSelector)).not.toBeInTheDocument();
+        expect(queryByTestSubject(badgeSelector)).not.toBeInTheDocument();
       });
     });
 

@@ -394,6 +394,7 @@ export const EuiGlobalToastList: FunctionComponent<EuiGlobalToastListProps> = ({
           ]}
           size="m"
           color="subdued"
+          data-test-subj="euiGlobalToastListNotificationBadge"
         >
           {toasts.length}
         </EuiNotificationBadge>
