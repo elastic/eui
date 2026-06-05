@@ -252,18 +252,15 @@ export const EuiToolTip = forwardRef<EuiToolTipRef, EuiToolTipProps>(
     /**
      * Show the tooltip.
      *
-     * If the tooltip is already visible, skip the state updates.
-     * If the tooltip is not visible, set the state to visible and
-     * set the skip animation to the value returned from the `toolTipManager`.
+     * If the tooltip is already registered with the manager, skip the entry animation.
      */
     const showToolTip = useCallback(() => {
       if (!content && !title) return;
-      if (toolTipManager.toolTipsToHide.has(hideToolTip)) return;
 
-      const { skipAnimation: skip } =
-        toolTipManager.registerTooltip(hideToolTip);
+      const result = toolTipManager.registerTooltip(hideToolTip);
+      if (!result) return;
 
-      setSkipAnimation(skip);
+      setSkipAnimation(result.skipAnimation);
       setVisible(true);
     }, [content, title, hideToolTip]);
 
@@ -372,13 +369,9 @@ export const EuiToolTip = forwardRef<EuiToolTipRef, EuiToolTipProps>(
      * fired by descendant children, only the cursor truly leaving the
      * anchor triggers this.
      */
-    const onMouseLeave = useCallback(
-      (event: ReactMouseEvent<HTMLSpanElement, MouseEvent>) => {
-        if (!hasFocus) hideToolTip();
-        onMouseOutProp?.(event);
-      },
-      [hasFocus, hideToolTip, onMouseOutProp]
-    );
+    const onMouseLeave = useCallback(() => {
+      if (!hasFocus) hideToolTip();
+    }, [hasFocus, hideToolTip]);
 
     const classes = classNames('euiToolTip', className);
     const anchorClasses = classNames(anchorClassName, anchorProps?.className);
@@ -393,6 +386,7 @@ export const EuiToolTip = forwardRef<EuiToolTipRef, EuiToolTipProps>(
           onKeyDown={onEscapeKey}
           onMouseEnter={showToolTip}
           onMouseLeave={onMouseLeave}
+          onMouseOut={onMouseOutProp}
           // `id` defines if the trigger and tooltip are automatically linked via `aria-describedby`.
           id={!disableScreenReaderOutput ? id : undefined}
           className={anchorClasses}

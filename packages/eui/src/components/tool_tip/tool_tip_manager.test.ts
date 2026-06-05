@@ -96,13 +96,11 @@ describe('ToolTipManager', () => {
       });
     });
 
-    it('returns skipAnimation: false when re-registering the same tooltip', () => {
+    it('returns null when re-registering the same tooltip', () => {
       const hide = jest.fn();
       toolTipManager.registerTooltip(hide);
 
-      expect(toolTipManager.registerTooltip(hide)).toEqual({
-        skipAnimation: false,
-      });
+      expect(toolTipManager.registerTooltip(hide)).toBeNull();
     });
   });
 

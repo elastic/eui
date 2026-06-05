@@ -29,8 +29,10 @@ class ToolTipManager {
   // Timestamp of the last hide; `null` means no tooltip has closed yet.
   lastHiddenAt: number | null = null;
 
-  registerTooltip = (hideCallback: Function): { skipAnimation: boolean } => {
-    if (this.toolTipsToHide.has(hideCallback)) return { skipAnimation: false };
+  registerTooltip = (
+    hideCallback: Function
+  ): { skipAnimation: boolean } | null => {
+    if (this.toolTipsToHide.has(hideCallback)) return null;
 
     const hadOpen = this.toolTipsToHide.size > 0;
     const recentlyClosed =
