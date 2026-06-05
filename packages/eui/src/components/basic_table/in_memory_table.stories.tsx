@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { faker } from '@faker-js/faker';
 import { moveStorybookControlsToCategory } from '../../../.storybook/utils';
@@ -287,10 +287,17 @@ const Toolbar = () => {
   );
 };
 
-const PanelledDemo = (props: EuiInMemoryTableProps<User>) => {
-  const [panelled, setPanelled] = useState(true);
+const PanelledDemo = ({
+  panelled: panelledProp,
+  ...rest
+}: EuiInMemoryTableProps<User>) => {
+  const [panelled, setPanelled] = useState<boolean>(panelledProp ?? false);
   const [toolbarPanelVisible, setToolbarPanelVisible] = useState(false);
   const [paginationEnabled, setPaginationEnabled] = useState(true);
+
+  useEffect(() => {
+    setPanelled(panelledProp ?? false);
+  }, [panelledProp]);
 
   return (
     <>
@@ -315,10 +322,10 @@ const PanelledDemo = (props: EuiInMemoryTableProps<User>) => {
       </EuiFlexGroup>
       <EuiSpacer />
       <EuiInMemoryTable
-        {...props}
+        {...rest}
         panelled={panelled}
         childrenBetween={toolbarPanelVisible && <Toolbar />}
-        pagination={paginationEnabled ? props.pagination! : false}
+        pagination={paginationEnabled ? rest.pagination! : false}
       />
     </>
   );
@@ -326,6 +333,10 @@ const PanelledDemo = (props: EuiInMemoryTableProps<User>) => {
 
 export const Panelled: Story = {
   ...KitchenSink,
+  args: {
+    ...KitchenSink.args,
+    panelled: true,
+  },
   // Don't pass the default Storybook action listener for `onChange`,
   // or the automatic uncontrolled pagination & sorting won't work
   render: ({ onChange, ...props }: EuiInMemoryTableProps<User>) => (
