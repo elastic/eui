@@ -165,7 +165,9 @@ const FlyoutSession: React.FC<FlyoutSessionProps> = (props) => {
 
   const mainFlyoutOnClose = useCallback(
     (_: unknown, meta?: EuiFlyoutCloseMeta) => {
-      action('close main flyout')(`${title} (reason: ${meta?.reason ?? 'n/a'})`);
+      action('close main flyout')(
+        `${title} (reason: ${meta?.reason ?? 'n/a'})`
+      );
       setIsFlyoutVisible(false);
     },
     [title]

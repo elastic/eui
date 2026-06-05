@@ -221,7 +221,9 @@ const StatefulFlyout: React.FC<FlyoutChildStoryArgs> = ({
   const closeMain = (_: unknown, meta?: EuiFlyoutCloseMeta) => {
     setIsMainOpen(false);
     setIsChildOpen(false);
-    playgroundActions.log(`Parent flyout closed (reason: ${meta?.reason ?? 'n/a'})`);
+    playgroundActions.log(
+      `Parent flyout closed (reason: ${meta?.reason ?? 'n/a'})`
+    );
   };
   const openChild = () => {
     setIsChildOpen(true);
@@ -229,7 +231,9 @@ const StatefulFlyout: React.FC<FlyoutChildStoryArgs> = ({
   };
   const closeChild = (_: unknown, meta?: EuiFlyoutCloseMeta) => {
     setIsChildOpen(false);
-    playgroundActions.log(`Child flyout closed (reason: ${meta?.reason ?? 'n/a'})`);
+    playgroundActions.log(
+      `Child flyout closed (reason: ${meta?.reason ?? 'n/a'})`
+    );
   };
 
   const layoutMode = useFlyoutLayoutMode();

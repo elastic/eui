@@ -215,7 +215,9 @@ const ContainerDemoComponent: React.FC<FlyoutChildStoryArgs> = ({
   const closeAppFlyout = (_: unknown, meta?: EuiFlyoutCloseMeta) => {
     setIsAppFlyoutOpen(false);
     setIsChildOpen(false);
-    playgroundActions.log(`App flyout closed (reason: ${meta?.reason ?? 'n/a'})`);
+    playgroundActions.log(
+      `App flyout closed (reason: ${meta?.reason ?? 'n/a'})`
+    );
   };
   const openChild = () => {
     setIsChildOpen(true);
@@ -223,7 +225,9 @@ const ContainerDemoComponent: React.FC<FlyoutChildStoryArgs> = ({
   };
   const closeChild = (_: unknown, meta?: EuiFlyoutCloseMeta) => {
     setIsChildOpen(false);
-    playgroundActions.log(`Child flyout closed (reason: ${meta?.reason ?? 'n/a'})`);
+    playgroundActions.log(
+      `Child flyout closed (reason: ${meta?.reason ?? 'n/a'})`
+    );
   };
   const openGlobalFlyout = () => {
     setIsGlobalFlyoutOpen(true);
@@ -231,7 +235,9 @@ const ContainerDemoComponent: React.FC<FlyoutChildStoryArgs> = ({
   };
   const closeGlobalFlyout = (_: unknown, meta?: EuiFlyoutCloseMeta) => {
     setIsGlobalFlyoutOpen(false);
-    playgroundActions.log(`Global flyout closed (reason: ${meta?.reason ?? 'n/a'})`);
+    playgroundActions.log(
+      `Global flyout closed (reason: ${meta?.reason ?? 'n/a'})`
+    );
   };
 
   const layoutMode = useFlyoutLayoutMode();
