@@ -296,6 +296,11 @@ export const EuiManagedFlyout = forwardRef<HTMLElement, EuiManagedFlyoutProps>(
 
     // Pass the stabilized onClose callback to the flyout menu context
     const onClose = (e?: EuiFlyoutCloseEvent, meta?: EuiFlyoutCloseMeta) => {
+      // Clear before flushSync so that effects flushed synchronously inside it
+      // (the navigation-back detector) see wasRegisteredRef = false and do not
+      // misidentify this user-initiated close as a Back-button navigation.
+      wasRegisteredRef.current = false;
+
       // CRITICAL: Update manager state FIRST before allowing React to unmount
       // This prevents race conditions during portal → inline DOM transitions
       // and ensures cascade close logic runs before DOM cleanup begins
@@ -304,7 +309,6 @@ export const EuiManagedFlyout = forwardRef<HTMLElement, EuiManagedFlyoutProps>(
         level === LEVEL_MAIN ? closeAllFlyouts() : closeFlyout(flyoutId);
       });
 
-      wasRegisteredRef.current = false; // Prevent cleanup from double-firing onClose
       if (onCloseCallbackRef.current) {
         const event = e || new MouseEvent('click');
         onCloseCallbackRef.current(event, meta);
