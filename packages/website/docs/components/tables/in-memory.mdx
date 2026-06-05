@@ -1107,6 +1107,117 @@ It is possible to create your own supporting panels for toolbars and other
 features by using the `useEuiBasicTablePanelProps` hook. Panels should be passed
 to the [`childrenBetween`](#EuiInMemoryTable-prop-childrenBetween) prop.
 
+```tsx interactive
+import React from 'react';
+import {
+  formatDate,
+  EuiCode,
+  EuiInMemoryTable,
+  EuiBasicTableColumn,
+  useEuiBasicTablePanelProps,
+  useEuiPaddingCSS,
+} from '@elastic/eui';
+import { faker } from '@faker-js/faker';
+
+type User = {
+  id: number;
+  firstName: string | null | undefined;
+  lastName: string;
+  dateOfBirth: Date;
+};
+
+const users: User[] = [];
+
+for (let i = 0; i < 5; i++) {
+  users.push({
+    id: i + 1,
+    firstName: faker.person.firstName(),
+    lastName: faker.person.lastName(),
+    dateOfBirth: faker.date.past(),
+  });
+}
+
+const columns: Array<EuiBasicTableColumn<User>> = [
+  {
+    field: 'firstName',
+    name: 'First Name',
+    sortable: true,
+    truncateText: true,
+  },
+  {
+    field: 'lastName',
+    name: 'Last Name',
+    truncateText: true,
+  },
+  {
+    field: 'dateOfBirth',
+    name: 'Date of Birth',
+    nameTooltip: {
+      content: "Colloquially known as a 'birthday'",
+    },
+    dataType: 'date',
+    render: (dateOfBirth: User['dateOfBirth']) =>
+      formatDate(dateOfBirth, 'dobLong'),
+    sortable: true,
+  },
+];
+
+const Panel = () => {
+  const panelProps = useEuiBasicTablePanelProps();
+
+  return (
+    <div {...panelProps} css={[panelProps.css, useEuiPaddingCSS().m]}>
+      A custom panel styled with <EuiCode>useEuiBasicTablePanelProps</EuiCode>
+    </div>
+  );
+};
+
+export default () => {
+  const [items, setItems] = useState(users);
+  const [pagination, setPagination] = useState({ pageIndex: 0 });
+
+  const onTableChange = ({ page: { index } }: CriteriaWithPagination<User>) => {
+    setPagination({ pageIndex: index });
+  };
+
+  const onQueryChange: EuiSearchBarProps['onChange'] = ({ query }) => {
+    const items = users.filter((user) => {
+      const normalizedName =
+        `${user.firstName} ${user.lastName}`.toLowerCase();
+      const normalizedQuery = query?.text.toLowerCase() || '';
+      return normalizedName.indexOf(normalizedQuery) !== -1;
+    });
+    setItems(items);
+  };
+
+  const search: EuiSearchBarProps = {
+    onChange: onQueryChange,
+    box: {
+      incremental: true,
+    },
+  };
+
+  return (
+    <EuiInMemoryTable
+      tableCaption="Demo of EuiInMemoryTable"
+      responsiveBreakpoint={false}
+      scrollableInline
+      items={items}
+      columns={columns}
+      pagination={{
+        ...pagination,
+        pageSizeOptions: [5],
+        pageSize: 5,
+      }}
+      search={search}
+      onTableChange={onTableChange}
+      panelled
+      childrenBetween={<Panel />}
+    />
+  );
+};
+```
+
 ## Props
 
 import docgen from '@elastic/eui-docgen/dist/components/basic_table';
