@@ -20,7 +20,7 @@ exports[`EuiGlobalToastList props side can be changed to left 1`] = `
     class="css-19mjubd-content"
   >
     <div
-      class="euiToast euiGlobalToastListItem emotion-euiToast-euiGlobalToastListItem"
+      class="euiToast euiGlobalToastListItem euiToast--success emotion-euiToast-euiGlobalToastListItem"
       data-test-subj="a"
       id="a"
       style="--euiToastTypeColor: #008A5E; --euiToastTypeBackgroundColor: #C9F3E3; --euiToastAnimationMs: 5ms;"
@@ -48,7 +48,6 @@ exports[`EuiGlobalToastList props side can be changed to left 1`] = `
           />
           <div
             class="css-1nzpgtc-content"
-            data-test-subj="euiToastBody"
           >
             <p
               class="euiTitle emotion-euiTitle-xs-euiToastHeader-hasDismissButton"
@@ -70,17 +69,22 @@ exports[`EuiGlobalToastList props side can be changed to left 1`] = `
               />
             </button>
             <div
-              class="euiText euiToast__text emotion-euiText-s-euiTextColor-default"
-              data-test-subj="euiToastText"
+              class="css-8nqosq-text"
+              data-test-subj="euiToastBody"
             >
-              a
+              <div
+                class="euiText euiToast__text emotion-euiText-s-euiTextColor-default"
+                data-test-subj="euiToastText"
+              >
+                a
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
     <div
-      class="euiToast euiGlobalToastListItem emotion-euiToast-euiGlobalToastListItem"
+      class="euiToast euiGlobalToastListItem euiToast--danger emotion-euiToast-euiGlobalToastListItem"
       data-test-subj="b"
       id="b"
       style="--euiToastTypeColor: #C61E25; --euiToastTypeBackgroundColor: #FDDDD8; --euiToastAnimationMs: 5ms;"
@@ -108,7 +112,6 @@ exports[`EuiGlobalToastList props side can be changed to left 1`] = `
           />
           <div
             class="css-1nzpgtc-content"
-            data-test-subj="euiToastBody"
           >
             <p
               class="euiTitle emotion-euiTitle-xs-euiToastHeader-hasDismissButton"
@@ -130,10 +133,15 @@ exports[`EuiGlobalToastList props side can be changed to left 1`] = `
               />
             </button>
             <div
-              class="euiText euiToast__text emotion-euiText-s-euiTextColor-default"
-              data-test-subj="euiToastText"
+              class="css-8nqosq-text"
+              data-test-subj="euiToastBody"
             >
-              b
+              <div
+                class="euiText euiToast__text emotion-euiText-s-euiTextColor-default"
+                data-test-subj="euiToastText"
+              >
+                b
+              </div>
             </div>
           </div>
         </div>
@@ -153,7 +161,7 @@ exports[`EuiGlobalToastList props toasts is rendered 1`] = `
     class="css-19mjubd-content"
   >
     <div
-      class="euiToast euiGlobalToastListItem emotion-euiToast-euiGlobalToastListItem"
+      class="euiToast euiGlobalToastListItem euiToast--success emotion-euiToast-euiGlobalToastListItem"
       data-test-subj="a"
       id="a"
       style="--euiToastTypeColor: #008A5E; --euiToastTypeBackgroundColor: #C9F3E3; --euiToastAnimationMs: 5ms;"
@@ -181,7 +189,6 @@ exports[`EuiGlobalToastList props toasts is rendered 1`] = `
           />
           <div
             class="css-1nzpgtc-content"
-            data-test-subj="euiToastBody"
           >
             <p
               class="euiTitle emotion-euiTitle-xs-euiToastHeader-hasDismissButton"
@@ -203,17 +210,22 @@ exports[`EuiGlobalToastList props toasts is rendered 1`] = `
               />
             </button>
             <div
-              class="euiText euiToast__text emotion-euiText-s-euiTextColor-default"
-              data-test-subj="euiToastText"
+              class="css-8nqosq-text"
+              data-test-subj="euiToastBody"
             >
-              a
+              <div
+                class="euiText euiToast__text emotion-euiText-s-euiTextColor-default"
+                data-test-subj="euiToastText"
+              >
+                a
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
     <div
-      class="euiToast euiGlobalToastListItem emotion-euiToast-euiGlobalToastListItem"
+      class="euiToast euiGlobalToastListItem euiToast--danger emotion-euiToast-euiGlobalToastListItem"
       data-test-subj="b"
       id="b"
       style="--euiToastTypeColor: #C61E25; --euiToastTypeBackgroundColor: #FDDDD8; --euiToastAnimationMs: 5ms;"
@@ -241,7 +253,6 @@ exports[`EuiGlobalToastList props toasts is rendered 1`] = `
           />
           <div
             class="css-1nzpgtc-content"
-            data-test-subj="euiToastBody"
           >
             <p
               class="euiTitle emotion-euiTitle-xs-euiToastHeader-hasDismissButton"
@@ -263,10 +274,15 @@ exports[`EuiGlobalToastList props toasts is rendered 1`] = `
               />
             </button>
             <div
-              class="euiText euiToast__text emotion-euiText-s-euiTextColor-default"
-              data-test-subj="euiToastText"
+              class="css-8nqosq-text"
+              data-test-subj="euiToastBody"
             >
-              b
+              <div
+                class="euiText euiToast__text emotion-euiText-s-euiTextColor-default"
+                data-test-subj="euiToastText"
+              >
+                b
+              </div>
             </div>
           </div>
         </div>

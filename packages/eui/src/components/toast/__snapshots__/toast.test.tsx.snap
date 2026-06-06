@@ -3,7 +3,7 @@
 exports[`EuiToast is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiToast testClass1 testClass2 emotion-euiToast-euiTestCss"
+  class="euiToast testClass1 testClass2 euiToast--primary emotion-euiToast-euiTestCss"
   data-test-subj="test subject string"
   style="--euiToastTypeColor: #0B64DD; --euiToastTypeBackgroundColor: #D9E8FF;"
 >
@@ -28,7 +28,6 @@ exports[`EuiToast is rendered 1`] = `
       />
       <div
         class="css-1nzpgtc-content"
-        data-test-subj="euiToastBody"
       >
         <p
           class="euiTitle emotion-euiTitle-xs-euiToastHeader"
@@ -37,10 +36,15 @@ exports[`EuiToast is rendered 1`] = `
           Toast title
         </p>
         <div
-          class="euiText euiToast__text emotion-euiText-s-euiTextColor-default"
-          data-test-subj="euiToastText"
+          class="css-8nqosq-text"
+          data-test-subj="euiToastBody"
         >
-          Toast body text
+          <div
+            class="euiText euiToast__text emotion-euiText-s-euiTextColor-default"
+            data-test-subj="euiToastText"
+          >
+            Toast body text
+          </div>
         </div>
       </div>
     </div>

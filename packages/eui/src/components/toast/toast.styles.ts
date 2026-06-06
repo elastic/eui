@@ -122,6 +122,11 @@ export const euiToastStyles = (euiThemeContext: UseEuiTheme) => {
         ${logicalCSS('margin-top', euiTheme.size.s)}
       }
     `,
+    text: css`
+      display: flex;
+      flex-direction: column;
+      gap: ${euiTheme.size.xs};
+    `,
     icon: css`
       grid-area: icon;
       position: relative;

@@ -113,7 +113,9 @@ export const EuiToast: FunctionComponent<EuiToastProps> = ({
   const cssStyles = [styles.euiToast];
   const decorCssStyles = [styles.decor, animationMs && styles.hasAnimation];
 
-  const classes = classNames('euiToast', className);
+  const classes = classNames('euiToast', className, {
+    [`euiToast--${color}`]: color,
+  });
 
   const highlightColorToken = getTokenName(
     'borderStrong',
@@ -204,7 +206,7 @@ export const EuiToast: FunctionComponent<EuiToastProps> = ({
     if (!text && !children) return null;
 
     return (
-      <>
+      <div css={styles.text} data-test-subj="euiToastBody">
         {text && (
           <EuiText
             size="s"
@@ -225,9 +227,9 @@ export const EuiToast: FunctionComponent<EuiToastProps> = ({
             {children}
           </EuiText>
         )}
-      </>
+      </div>
     );
-  }, [text, children]);
+  }, [text, children, styles]);
 
   const actionControls = useMemo(() => {
     const actionPrimaryProps = {
@@ -280,7 +282,7 @@ export const EuiToast: FunctionComponent<EuiToastProps> = ({
         <div css={styles.body}>
           {icon}
 
-          <div css={styles.content} data-test-subj="euiToastBody">
+          <div css={styles.content}>
             {
               // Note: the DOM position of the dismiss button matters to screen reader users.
               // We generally want them to have some context of _what_ they're dismissing,
