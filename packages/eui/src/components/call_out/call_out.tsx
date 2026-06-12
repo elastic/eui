@@ -125,6 +125,7 @@ export const EuiCallOut = forwardRef<HTMLDivElement, EuiCallOutProps>(
       dismissButtonProps,
       announceOnMount = false,
       style,
+      'data-test-subj': dataTestSubj,
       ...rest
     },
     ref
@@ -229,7 +230,12 @@ export const EuiCallOut = forwardRef<HTMLDivElement, EuiCallOutProps>(
     const optionalChildren = (text || children) && (
       <>
         {text && (
-          <EuiText size="s" color="default" className="euiCallOut__text">
+          <EuiText
+            size="s"
+            color="default"
+            className="euiCallOut__text"
+            data-test-subj={dataTestSubj && `${dataTestSubj}__message`}
+          >
             {text}
           </EuiText>
         )}
@@ -238,6 +244,7 @@ export const EuiCallOut = forwardRef<HTMLDivElement, EuiCallOutProps>(
             className="euiCallOut__additionalContent"
             size={size === 's' ? 'xs' : 's'}
             color="default"
+            data-test-subj={dataTestSubj && `${dataTestSubj}__content`}
           >
             {children}
           </EuiText>
@@ -268,12 +275,15 @@ export const EuiCallOut = forwardRef<HTMLDivElement, EuiCallOutProps>(
       );
 
       return (
-        <div css={styles.actions}>
+        <div
+          css={styles.actions}
+          data-test-subj={dataTestSubj && `${dataTestSubj}__actions`}
+        >
           {actionPrimary}
           {actionSecondary}
         </div>
       );
-    }, [actionProps, color, styles]);
+    }, [actionProps, color, styles, dataTestSubj]);
 
     const announcement = useMemo(() => {
       if (!announceOnMount || !(title || text || children)) return null;
@@ -301,6 +311,7 @@ export const EuiCallOut = forwardRef<HTMLDivElement, EuiCallOutProps>(
         grow={false}
         style={{ ...cssVariables, ...style }}
         data-size={size}
+        data-test-subj={dataTestSubj}
         {...rest}
       >
         <div css={styles.wrapper}>
