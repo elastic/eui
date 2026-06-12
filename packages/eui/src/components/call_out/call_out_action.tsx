@@ -9,14 +9,14 @@
 import React from 'react';
 import classNames from 'classnames';
 
-import { ExclusiveUnion } from '../common';
+import { DataAttributeProps, ExclusiveUnion } from '../common';
 import { EuiButton, EuiButtonEmpty, EuiButtonEmptyProps } from '../button';
 import { Props as EuiButtonProps } from '../button/button';
 import { withEuiPopover, WithEuiPopoverProps } from '../popover';
 import { withEuiToolTip, WithEuiToolTipProps } from '../tool_tip';
 import { EuiCallOutColor } from './types';
 
-type EuiCallOutActionCommonProps = {
+type EuiCallOutActionCommonProps = DataAttributeProps & {
   tooltipProps?: WithEuiToolTipProps;
   popoverProps?: WithEuiPopoverProps;
 };
