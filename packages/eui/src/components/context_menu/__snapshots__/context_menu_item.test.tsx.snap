@@ -131,7 +131,7 @@ exports[`EuiContextMenuItem tooltip behavior 1`] = `
       data-position="right"
       id="generated-id"
       role="tooltip"
-      style="top: -10px; left: 16px;"
+      style="top: -10px; left: 16px; animation: none;"
     >
       <div
         class="euiToolTip__title emotion-euiToolTip__title"
