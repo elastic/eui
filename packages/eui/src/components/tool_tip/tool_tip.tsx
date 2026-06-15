@@ -249,12 +249,12 @@ export const EuiToolTip = forwardRef<EuiToolTipRef, EuiToolTipProps>(
       toolTipManager.deregisterToolTip(hideToolTip);
     }, []);
 
-/**
- * Show the tooltip.
- *
- * Uses the tooltip manager's `skipAnimation` signal to optionally skip the entry
- * animation when another tooltip is already open or was just closed.
- */
+    /**
+     * Show the tooltip.
+     *
+     * Uses the tooltip manager's `skipAnimation` signal to optionally skip the entry
+     * animation when another tooltip is already open or was just closed.
+     */
     const showToolTip = useCallback(() => {
       if (!content && !title) return;
 
@@ -364,15 +364,26 @@ export const EuiToolTip = forwardRef<EuiToolTipRef, EuiToolTipProps>(
     );
 
     /**
-     * Hide the tooltip if the mouse is not over the trigger.
-     *
-     * `mouseleave` doesn't bubble, so we don't need to filter out events
-     * fired by descendant children, only the cursor truly leaving the
-     * anchor triggers this.
+     * Show the tooltip on enter.
      */
-    const onMouseLeave = useCallback(() => {
-      if (!hasFocus) hideToolTip();
-    }, [hasFocus, hideToolTip]);
+    const onMouseEnter = useCallback(
+      (event: ReactMouseEvent<HTMLSpanElement, MouseEvent>) => {
+        showToolTip();
+        anchorProps?.onMouseEnter?.(event);
+      },
+      [showToolTip, anchorProps?.onMouseEnter]
+    );
+
+    /**
+     * Hide the tooltip if the mouse is not over the trigger.
+     */
+    const onMouseLeave = useCallback(
+      (event: ReactMouseEvent<HTMLSpanElement, MouseEvent>) => {
+        if (!hasFocus) hideToolTip();
+        anchorProps?.onMouseLeave?.(event);
+      },
+      [hasFocus, hideToolTip, anchorProps?.onMouseLeave]
+    );
 
     const classes = classNames('euiToolTip', className);
     const anchorClasses = classNames(anchorClassName, anchorProps?.className);
@@ -385,7 +396,7 @@ export const EuiToolTip = forwardRef<EuiToolTipRef, EuiToolTipProps>(
           onBlur={onBlur}
           onFocus={onFocus}
           onKeyDown={onEscapeKey}
-          onMouseEnter={showToolTip}
+          onMouseEnter={onMouseEnter}
           onMouseLeave={onMouseLeave}
           onMouseOut={onMouseOutProp}
           // `id` defines if the trigger and tooltip are automatically linked via `aria-describedby`.
