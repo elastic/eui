@@ -36,8 +36,8 @@ export const EuiToolTipAnchor = forwardRef<
     {
       onBlur,
       onFocus,
-      onMouseOver,
-      onMouseOut,
+      onMouseEnter,
+      onMouseLeave,
       id,
       className,
       children,
@@ -67,8 +67,8 @@ export const EuiToolTipAnchor = forwardRef<
         id={anchorId}
         {...rest}
         className={classes}
-        onMouseOver={onMouseOver}
-        onMouseOut={onMouseOut}
+        onMouseEnter={onMouseEnter}
+        onMouseLeave={onMouseLeave}
       >
         {/**
          * Re: jsx-a11y/mouse-events-have-key-events
