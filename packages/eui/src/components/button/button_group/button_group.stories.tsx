@@ -10,7 +10,7 @@ import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { disableStorybookControls } from '../../../../.storybook/utils';
 
-import { LOKI_SELECTORS } from '../../../../.storybook/loki';
+import { VRT_SELECTORS } from '../../../../.storybook/vrt';
 import { EuiSpacer } from '../../spacer';
 import {
   EuiButtonGroup,
@@ -125,8 +125,8 @@ export const MultiSelection: Story = {
 
 export const WithTooltips: Story = {
   parameters: {
-    loki: {
-      chromeSelector: LOKI_SELECTORS.portal,
+    vrt: {
+      selector: VRT_SELECTORS.portal,
     },
   },
   args: {

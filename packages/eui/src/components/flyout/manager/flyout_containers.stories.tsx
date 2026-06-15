@@ -157,7 +157,8 @@ const meta: Meta<FlyoutChildStoryArgs> = {
   },
   parameters: {
     layout: 'fullscreen',
-    loki: { skip: true },
+    // Playground for Flyout Manager; nothing testable on page load
+    vrt: { skip: true },
   },
 };
 

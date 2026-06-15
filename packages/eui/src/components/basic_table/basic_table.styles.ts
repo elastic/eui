@@ -13,8 +13,11 @@ import {
   euiCantAnimate,
   highContrastModeStyles,
   preventForcedColors,
+  euiMinBreakpoint,
 } from '../../global_styling';
-import { UseEuiTheme } from '../../services';
+import type { UseEuiTheme } from '../../services';
+import type { EuiTableProps } from '../table';
+import { EUI_BASIC_TABLE_PANEL_CLASS_NAME } from './use_panel_props';
 
 const tableLoadingLine = keyframes`
   from {
@@ -72,6 +75,66 @@ export const euiBasicTableBodyLoading = (euiThemeContext: UseEuiTheme) => {
     }
   `;
 };
+
+/**
+ * @internal
+ */
+export const euiBasicTableWrapperPanelledStyles =
+  (responsiveBreakpoint: EuiTableProps['responsiveBreakpoint']) =>
+  (theme: UseEuiTheme) => {
+    const { euiTheme } = theme;
+
+    const styles = css`
+      border: ${euiTheme.border.thin};
+      border-block-end-width: 0;
+      /* Offset for the wrapper border to be rendered without being obstructed
+       * by the child EuiTable's border */
+      padding-block-start: ${euiTheme.border.width.thin};
+      border-radius: ${euiTheme.border.radius.medium};
+
+      .euiTable {
+        border-radius: ${euiTheme.border.radius.medium};
+      }
+
+      /* Reset top border radius when there are panels above. */
+      .${EUI_BASIC_TABLE_PANEL_CLASS_NAME} + .euiBasicTable & {
+        border-start-start-radius: 0;
+        border-start-end-radius: 0;
+
+        .euiTable {
+          border-start-start-radius: 0;
+          border-start-end-radius: 0;
+        }
+      }
+
+      /* Reset bottom border radius when there are panels below.
+       * &:not(:last-child) detects whether the pagination bar is displayed */
+      &:not(:last-child),
+      &:has(+ .${EUI_BASIC_TABLE_PANEL_CLASS_NAME}) {
+        border-end-start-radius: 0;
+        border-end-end-radius: 0;
+
+        .euiTable {
+          border-end-start-radius: 0;
+          border-end-end-radius: 0;
+        }
+      }
+    `;
+
+    if (responsiveBreakpoint === true) {
+      return null;
+    }
+
+    if (!responsiveBreakpoint) {
+      return styles;
+    }
+
+    return css`
+      ${euiMinBreakpoint(theme, responsiveBreakpoint)} {
+        ${styles}
+      }
+    `;
+  };
 
 // Fix to make the loading indicator position correctly in Safari
 // For whatever annoying reason, Safari doesn't respect `position: relative;`

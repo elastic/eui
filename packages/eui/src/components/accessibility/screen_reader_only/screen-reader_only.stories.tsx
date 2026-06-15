@@ -22,7 +22,7 @@ const meta: Meta<EuiScreenReaderOnlyProps> = {
     showOnFocus: false,
   },
   parameters: {
-    loki: {
+    vrt: {
       // There are no visual elements to test
       skip: true,
     },
