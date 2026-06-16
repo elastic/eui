@@ -72,6 +72,7 @@ jest.mock('./hooks', () => ({
   useFlyoutLayoutMode: () => 'side-by-side',
   useFlyoutId: (id?: string) => id ?? 'generated-id',
   useCurrentSession: () => null,
+  useFlyoutPagination: () => undefined,
 }));
 
 jest.mock('./selectors', () => ({
