@@ -1692,6 +1692,78 @@
     "filepath": "src/components/flyout/flyout_menu.tsx"
   },
   {
+    "token": "euiFlyoutMenu.pagination.previous",
+    "defString": "Previous",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 223,
+        "column": 20,
+        "index": 6282
+      },
+      "end": {
+        "line": 223,
+        "column": 79,
+        "index": 6341
+      }
+    },
+    "filepath": "src/components/flyout/flyout_menu.tsx"
+  },
+  {
+    "token": "euiFlyoutMenu.pagination.next",
+    "defString": "Next",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 224,
+        "column": 20,
+        "index": 6363
+      },
+      "end": {
+        "line": 224,
+        "column": 71,
+        "index": 6414
+      }
+    },
+    "filepath": "src/components/flyout/flyout_menu.tsx"
+  },
+  {
+    "token": "euiFlyoutMenu.pagination.counter",
+    "defString": "{position} of {total}",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 271,
+        "column": 12,
+        "index": 7612
+      },
+      "end": {
+        "line": 275,
+        "column": 14,
+        "index": 7797
+      }
+    },
+    "filepath": "src/components/flyout/flyout_menu.tsx"
+  },
+  {
+    "token": "euiFlyoutMenu.pagination.counter",
+    "defString": "{position} of {total}",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 278,
+        "column": 12,
+        "index": 7863
+      },
+      "end": {
+        "line": 282,
+        "column": 14,
+        "index": 8048
+      }
+    },
+    "filepath": "src/components/flyout/flyout_menu.tsx"
+  },
+  {
     "token": "euiFlyout.screenReaderModalDialog",
     "defString": "You are in a modal dialog. Press Escape or tap/click outside the dialog on the shadowed overlay to close.",
     "highlighting": "string",
