@@ -151,6 +151,8 @@ export type EuiFlyoutMenuProps = CommonProps &
     customActions?: EuiFlyoutMenuCustomAction[];
     /**
      * Enables Prev/Next navigation controls and a position counter in the menu bar.
+     * When `total > 1`, the back button and history popover are hidden — pagination
+     * and back-button navigation are mutually exclusive in the left menu slot.
      */
     pagination?: EuiFlyoutMenuPagination;
   };
@@ -226,9 +228,9 @@ const PaginationControls: React.FC<{
 
   const prevButton = (
     <EuiButtonIcon
-      iconType="arrowUp"
+      iconType="chevronSingleUp"
       color="text"
-      size="s"
+      size="xs"
       aria-label={prevLabel}
       onClick={onPrevious}
       isDisabled={isPrevDisabled}
@@ -238,9 +240,9 @@ const PaginationControls: React.FC<{
 
   const nextButton = (
     <EuiButtonIcon
-      iconType="arrowDown"
+      iconType="chevronSingleDown"
       color="text"
-      size="s"
+      size="xs"
       aria-label={nextLabel}
       onClick={onNext}
       isDisabled={isNextDisabled}
@@ -249,46 +251,48 @@ const PaginationControls: React.FC<{
   );
 
   return (
-    <>
-      <EuiFlexItem grow={false}>
-        {isPrevDisabled ? (
-          prevButton
-        ) : (
-          <EuiToolTip content={prevLabel} disableScreenReaderOutput>
-            {prevButton}
-          </EuiToolTip>
-        )}
-      </EuiFlexItem>
-      <EuiFlexItem grow={false}>
-        <EuiText
-          size="s"
-          css={styles.euiFlyoutMenu__paginationCounter}
-          aria-hidden="true"
-        >
-          <EuiI18n
-            token="euiFlyoutMenu.pagination.counter"
-            default="{position} of {total}"
-            values={{ position: currentIndex + 1, total }}
-          />
-        </EuiText>
-        <EuiScreenReaderLive>
-          <EuiI18n
-            token="euiFlyoutMenu.pagination.counter"
-            default="{position} of {total}"
-            values={{ position: currentIndex + 1, total }}
-          />
-        </EuiScreenReaderLive>
-      </EuiFlexItem>
-      <EuiFlexItem grow={false}>
-        {isNextDisabled ? (
-          nextButton
-        ) : (
-          <EuiToolTip content={nextLabel} disableScreenReaderOutput>
-            {nextButton}
-          </EuiToolTip>
-        )}
-      </EuiFlexItem>
-    </>
+    <EuiFlexItem grow={false}>
+      <EuiFlexGroup gutterSize="xs" alignItems="center" responsive={false}>
+        <EuiFlexItem grow={false}>
+          {isPrevDisabled ? (
+            prevButton
+          ) : (
+            <EuiToolTip content={prevLabel} disableScreenReaderOutput>
+              {prevButton}
+            </EuiToolTip>
+          )}
+        </EuiFlexItem>
+        <EuiFlexItem grow={false}>
+          <EuiText
+            size="s"
+            css={styles.euiFlyoutMenu__paginationCounter}
+            aria-hidden="true"
+          >
+            <EuiI18n
+              token="euiFlyoutMenu.pagination.counter"
+              default="{position} of {total}"
+              values={{ position: currentIndex + 1, total }}
+            />
+          </EuiText>
+          <EuiScreenReaderLive>
+            <EuiI18n
+              token="euiFlyoutMenu.pagination.counter"
+              default="{position} of {total}"
+              values={{ position: currentIndex + 1, total }}
+            />
+          </EuiScreenReaderLive>
+        </EuiFlexItem>
+        <EuiFlexItem grow={false}>
+          {isNextDisabled ? (
+            nextButton
+          ) : (
+            <EuiToolTip content={nextLabel} disableScreenReaderOutput>
+              {nextButton}
+            </EuiToolTip>
+          )}
+        </EuiFlexItem>
+      </EuiFlexGroup>
+    </EuiFlexItem>
   );
 };
 

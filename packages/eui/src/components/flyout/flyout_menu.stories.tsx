@@ -182,7 +182,7 @@ const PaginationFlyout = () => {
           onClose={() => setIsFlyoutOpen(false)}
           size="m"
           type="overlay"
-          aria-label="Alert details"
+          aria-label="Item details"
           flyoutMenuProps={{
             pagination: {
               currentIndex,

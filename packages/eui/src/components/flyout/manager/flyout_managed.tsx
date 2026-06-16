@@ -16,11 +16,7 @@ import React, {
 } from 'react';
 import { css } from '@emotion/react';
 import { flushSync } from 'react-dom';
-import {
-  useCombinedRefs,
-  useEuiMemoizedStyles,
-  warnOnce,
-} from '../../../services';
+import { useCombinedRefs, useEuiMemoizedStyles } from '../../../services';
 import { useEuiI18n } from '../../i18n';
 import { useResizeObserver } from '../../observer/resize_observer';
 import {
@@ -347,7 +343,7 @@ export const EuiManagedFlyout = forwardRef<HTMLElement, EuiManagedFlyoutProps>(
     const propPagination = _flyoutMenuProps?.pagination;
 
     if (storePagination != null && propPagination != null) {
-      warnOnce(
+      console.warn(
         `flyout-pagination-dual-source-${flyoutId}`,
         `[EuiFlyoutManager] flyout "${flyoutId}" has pagination set both via the store (setPagination) ` +
           'and via flyoutMenuProps.pagination. The store value will be used. Remove one source to avoid confusion.'

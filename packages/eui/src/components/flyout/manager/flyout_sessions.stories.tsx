@@ -15,6 +15,7 @@ import React, {
   useRef,
   useState,
 } from 'react';
+import { useEuiTheme } from '../../../services';
 import type { Root } from 'react-dom/client';
 import { createRoot } from 'react-dom/client';
 
@@ -827,38 +828,28 @@ export const MultiRootSyncExample: StoryObj<typeof EuiFlyout> = {
 // ---------------------------------------------------------------------------
 
 const CROSS_ROOT_PAGINATION_FLYOUT_ID = 'pagination-cross-root-demo';
-const CROSS_ROOT_PAGINATION_ALERTS = [
-  {
-    title: 'CPU usage spike',
-    body: 'CPU exceeded 95% for 5 min on prod-web-01.',
-  },
-  {
-    title: 'Disk space low',
-    body: 'Disk space on /var/log below 10% on prod-db-02.',
-  },
-  { title: 'Memory pressure', body: 'JVM heap at 92% on es-data-03.' },
-  {
-    title: 'Network latency',
-    body: 'P99 latency exceeded 2s on the payments API.',
-  },
-  {
-    title: 'Cluster yellow',
-    body: 'Elasticsearch cluster has 3 unassigned replica shards.',
-  },
+const CROSS_ROOT_PAGINATION_ITEMS = [
+  { title: 'Item 1', body: 'Details for item 1.' },
+  { title: 'Item 2', body: 'Details for item 2.' },
+  { title: 'Item 3', body: 'Details for item 3.' },
+  { title: 'Item 4', body: 'Details for item 4.' },
+  { title: 'Item 5', body: 'Details for item 5.' },
 ];
 
 /**
- * Rendered in a separate React root — simulates a Kibana data grid pushing
+ * Rendered in a separate React root — simulates a data grid pushing
  * row selection into the flyout menu bar via the singleton store.
  */
 const DataGridInExternalRoot: React.FC<{
   flyoutId: string;
-  alerts: Array<{ title: string; body: string }>;
-}> = ({ flyoutId, alerts }) => {
+  items: Array<{ title: string; body: string }>;
+  isFlyoutOpen: boolean;
+}> = ({ flyoutId, items, isFlyoutOpen }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const total = alerts.length;
+  const total = items.length;
 
   useEffect(() => {
+    if (!isFlyoutOpen) return;
     const store = getFlyoutManagerStore();
     store.setPagination(flyoutId, {
       currentIndex,
@@ -869,7 +860,7 @@ const DataGridInExternalRoot: React.FC<{
     return () => {
       store.setPagination(flyoutId, undefined);
     };
-  }, [flyoutId, currentIndex, total]);
+  }, [flyoutId, currentIndex, total, isFlyoutOpen]);
 
   return (
     <EuiFlexGroup direction="column" gutterSize="xs" alignItems="flexStart">
@@ -884,14 +875,14 @@ const DataGridInExternalRoot: React.FC<{
           </p>
         </EuiText>
       </EuiFlexItem>
-      {alerts.map((alert, i) => (
-        <EuiFlexItem key={alert.title} grow={false}>
+      {items.map((item, i) => (
+        <EuiFlexItem key={item.title} grow={false}>
           <EuiButton
             size="s"
             color={i === currentIndex ? 'primary' : 'text'}
             onClick={() => setCurrentIndex(i)}
           >
-            Row {i + 1}: {alert.title}
+            Row {i + 1}: {item.title}
           </EuiButton>
         </EuiFlexItem>
       ))}
@@ -901,31 +892,37 @@ const DataGridInExternalRoot: React.FC<{
 
 const CrossRootPaginationDemo: React.FC = () => {
   const [isOpen, setIsOpen] = useState(true);
+  const { colorMode } = useEuiTheme();
   const dataGridContainerRef = useRef<HTMLDivElement | null>(null);
   const dataGridRootRef = useRef<Root | null>(null);
 
+  // Create the root once
   useLayoutEffect(() => {
-    if (!dataGridContainerRef.current || dataGridRootRef.current) return;
-
+    if (!dataGridContainerRef.current) return;
     const root = createRoot(dataGridContainerRef.current);
-    root.render(
-      <EuiProvider>
-        <DataGridInExternalRoot
-          flyoutId={CROSS_ROOT_PAGINATION_FLYOUT_ID}
-          alerts={CROSS_ROOT_PAGINATION_ALERTS}
-        />
-      </EuiProvider>
-    );
     dataGridRootRef.current = root;
-
     return () => {
       root.unmount();
       dataGridRootRef.current = null;
     };
   }, []);
 
+  // Re-render into the existing root whenever colorMode or isOpen changes
+  useLayoutEffect(() => {
+    if (!dataGridRootRef.current) return;
+    dataGridRootRef.current.render(
+      <EuiProvider colorMode={colorMode}>
+        <DataGridInExternalRoot
+          flyoutId={CROSS_ROOT_PAGINATION_FLYOUT_ID}
+          items={CROSS_ROOT_PAGINATION_ITEMS}
+          isFlyoutOpen={isOpen}
+        />
+      </EuiProvider>
+    );
+  }, [colorMode, isOpen]);
+
   const pagination = useFlyoutPagination(CROSS_ROOT_PAGINATION_FLYOUT_ID);
-  const alert = CROSS_ROOT_PAGINATION_ALERTS[pagination?.currentIndex ?? 0];
+  const item = CROSS_ROOT_PAGINATION_ITEMS[pagination?.currentIndex ?? 0];
 
   return (
     <>
@@ -935,41 +932,38 @@ const CrossRootPaginationDemo: React.FC = () => {
       <EuiSpacer size="s" />
       <EuiText size="s" color="subdued">
         <p>
-          The data grid below is rendered in a separate React root. Selecting a
-          row calls <EuiCode>getFlyoutManagerStore().setPagination()</EuiCode>{' '}
-          to drive the flyout menu bar — the primary use case in Kibana.
+          The data grid below is rendered in a{' '}
+          <strong>separate React root</strong>. Clicking a row calls{' '}
+          <EuiCode>getFlyoutManagerStore().setPagination()</EuiCode> to drive
+          the flyout menu bar — the primary Kibana use case.
         </p>
       </EuiText>
       <EuiSpacer size="m" />
-      <EuiFlexGroup gutterSize="l" alignItems="flexStart">
-        <EuiFlexItem grow={false}>
-          {/* Container for the data-grid React root */}
-          <div ref={dataGridContainerRef} />
-        </EuiFlexItem>
-        <EuiFlexItem grow={false}>
-          <EuiButton size="s" onClick={() => setIsOpen(true)} disabled={isOpen}>
-            Re-open flyout
-          </EuiButton>
-        </EuiFlexItem>
-      </EuiFlexGroup>
+      {/* Container for the data-grid React root */}
+      <div ref={dataGridContainerRef} />
+      <EuiSpacer size="m" />
+      <EuiButton size="s" onClick={() => setIsOpen(true)} disabled={isOpen}>
+        Re-open flyout
+      </EuiButton>
 
       {isOpen && (
         <EuiFlyout
           id={CROSS_ROOT_PAGINATION_FLYOUT_ID}
           session="start"
+          flyoutMenuDisplayMode="always"
           size="m"
           ownFocus={false}
-          aria-label="Alert details"
+          aria-label="Item details"
           onClose={() => setIsOpen(false)}
         >
           <EuiFlyoutHeader hasBorder>
             <EuiTitle size="m">
-              <h2>{alert.title}</h2>
+              <h2>{item.title}</h2>
             </EuiTitle>
           </EuiFlyoutHeader>
           <EuiFlyoutBody>
             <EuiText>
-              <p>{alert.body}</p>
+              <p>{item.body}</p>
             </EuiText>
           </EuiFlyoutBody>
         </EuiFlyout>
