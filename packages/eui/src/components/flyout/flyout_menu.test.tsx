@@ -275,6 +275,93 @@ describe('EuiFlyoutMenu', () => {
     });
   });
 
+  describe('pagination', () => {
+    const pagination = {
+      currentIndex: 1,
+      total: 5,
+      onPrev: jest.fn(),
+      onNext: jest.fn(),
+    };
+
+    beforeEach(() => {
+      pagination.onPrev.mockClear();
+      pagination.onNext.mockClear();
+    });
+
+    it('displays the correct counter text', () => {
+      const { getAllByText } = renderWithContext(
+        <EuiFlyoutMenu
+          pagination={{ ...pagination, currentIndex: 1, total: 5 }}
+        />
+      );
+
+      expect(getAllByText('2 of 5').length).toBeGreaterThanOrEqual(1);
+    });
+
+    it('disables Prev button when currentIndex is 0', () => {
+      const { container } = renderWithContext(
+        <EuiFlyoutMenu pagination={{ ...pagination, currentIndex: 0 }} />
+      );
+
+      expect(
+        container.querySelector(
+          '[data-test-subj="euiFlyoutMenuPaginationPrev"]'
+        )
+      ).toBeDisabled();
+    });
+
+    it('disables Next button when currentIndex is total - 1', () => {
+      const { container } = renderWithContext(
+        <EuiFlyoutMenu
+          pagination={{ ...pagination, currentIndex: 4, total: 5 }}
+        />
+      );
+
+      expect(
+        container.querySelector(
+          '[data-test-subj="euiFlyoutMenuPaginationNext"]'
+        )
+      ).toBeDisabled();
+    });
+
+    it('calls onPrev when Prev button is clicked', () => {
+      const { container } = renderWithContext(
+        <EuiFlyoutMenu pagination={pagination} />
+      );
+
+      const prevButton = container.querySelector(
+        '[data-test-subj="euiFlyoutMenuPaginationPrev"]'
+      ) as HTMLElement;
+      fireEvent.click(prevButton);
+
+      expect(pagination.onPrev).toHaveBeenCalledTimes(1);
+    });
+
+    it('calls onNext when Next button is clicked', () => {
+      const { container } = renderWithContext(
+        <EuiFlyoutMenu pagination={pagination} />
+      );
+
+      const nextButton = container.querySelector(
+        '[data-test-subj="euiFlyoutMenuPaginationNext"]'
+      ) as HTMLElement;
+      fireEvent.click(nextButton);
+
+      expect(pagination.onNext).toHaveBeenCalledTimes(1);
+    });
+
+    it('hides the back button when pagination is provided (pagination replaces navigation per design spec)', () => {
+      const { queryByText } = renderWithContext(
+        <EuiFlyoutMenu pagination={pagination} showBackButton={true} />
+      );
+
+      // Design spec: left slot holds either back-button+history OR pagination.
+      // See the TODO in flyout_menu.tsx for the open design question around
+      // drilldown history being silently suppressed when pagination is active.
+      expect(queryByText('Back')).not.toBeInTheDocument();
+    });
+  });
+
   describe('accessibility', () => {
     it('title is accessible even when hidden', () => {
       const { container } = renderWithContext(

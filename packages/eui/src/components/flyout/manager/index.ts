@@ -15,6 +15,7 @@ export {
   closeAllFlyouts as closeAllFlyoutsAction,
   setActiveFlyout as setActiveFlyoutAction,
   setFlyoutWidth as setFlyoutWidthAction,
+  setPagination as setPaginationAction,
   setPushPadding as setPushPaddingAction,
   setActivityStage as setActivityStageAction,
 } from './actions';
@@ -46,6 +47,7 @@ export {
   useFlyoutId,
   useFlyoutLayoutMode,
   useFlyoutManager,
+  useFlyoutPagination,
   useFlyoutWidth,
   useHasChildFlyout,
   useIsFlyoutActive,

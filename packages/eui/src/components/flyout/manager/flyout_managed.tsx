@@ -16,7 +16,11 @@ import React, {
 } from 'react';
 import { css } from '@emotion/react';
 import { flushSync } from 'react-dom';
-import { useCombinedRefs, useEuiMemoizedStyles } from '../../../services';
+import {
+  useCombinedRefs,
+  useEuiMemoizedStyles,
+  warnOnce,
+} from '../../../services';
 import { useEuiI18n } from '../../i18n';
 import { useResizeObserver } from '../../observer/resize_observer';
 import {
@@ -37,7 +41,11 @@ import {
 } from './const';
 import { EuiFlyoutIsManagedProvider } from './context';
 import { euiManagedFlyoutStyles } from './flyout_managed.styles';
-import { useFlyoutManager as _useFlyoutManager, useFlyoutId } from './hooks';
+import {
+  useFlyoutManager as _useFlyoutManager,
+  useFlyoutId,
+  useFlyoutPagination,
+} from './hooks';
 import { useIsFlyoutRegistered } from './selectors';
 import { getFlyoutManagerStore } from './store';
 import type { EuiFlyoutLevel } from './types';
@@ -332,12 +340,29 @@ export const EuiManagedFlyout = forwardRef<HTMLElement, EuiManagedFlyoutProps>(
 
     const showBackButton = historyItems ? historyItems.length > 0 : false;
 
+    // When the store has a defined pagination value it takes precedence; the
+    // prop acts as a fallback for callers that don't use the cross-root store.
+    // Using both simultaneously is not supported and will log a warning in dev.
+    const storePagination = useFlyoutPagination(flyoutId);
+    const propPagination = _flyoutMenuProps?.pagination;
+
+    if (storePagination != null && propPagination != null) {
+      warnOnce(
+        `flyout-pagination-dual-source-${flyoutId}`,
+        `[EuiFlyoutManager] flyout "${flyoutId}" has pagination set both via the store (setPagination) ` +
+          'and via flyoutMenuProps.pagination. The store value will be used. Remove one source to avoid confusion.'
+      );
+    }
+
+    const pagination = storePagination ?? propPagination;
+
     const flyoutMenuProps = {
       ..._flyoutMenuProps,
       historyItems,
       showBackButton,
       backButtonProps,
       title,
+      pagination,
     };
 
     return (

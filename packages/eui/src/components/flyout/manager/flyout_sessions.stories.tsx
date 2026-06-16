@@ -35,7 +35,12 @@ import {
   EuiTitle,
 } from '../..';
 import { EuiFlyout } from '../flyout';
-import { useCurrentSession, useFlyoutManager } from './hooks';
+import {
+  useCurrentSession,
+  useFlyoutManager,
+  useFlyoutPagination,
+} from './hooks';
+import { getFlyoutManagerStore } from './store';
 
 const meta: Meta<typeof EuiFlyout> = {
   title: 'Layout/EuiFlyout/Flyout Manager',
@@ -815,4 +820,165 @@ const MultiRootFlyoutDemo: React.FC = () => {
 export const MultiRootSyncExample: StoryObj<typeof EuiFlyout> = {
   name: 'Multi-root sync',
   render: () => <MultiRootFlyoutDemo />,
+};
+
+// ---------------------------------------------------------------------------
+// Cross-root pagination
+// ---------------------------------------------------------------------------
+
+const CROSS_ROOT_PAGINATION_FLYOUT_ID = 'pagination-cross-root-demo';
+const CROSS_ROOT_PAGINATION_ALERTS = [
+  {
+    title: 'CPU usage spike',
+    body: 'CPU exceeded 95% for 5 min on prod-web-01.',
+  },
+  {
+    title: 'Disk space low',
+    body: 'Disk space on /var/log below 10% on prod-db-02.',
+  },
+  { title: 'Memory pressure', body: 'JVM heap at 92% on es-data-03.' },
+  {
+    title: 'Network latency',
+    body: 'P99 latency exceeded 2s on the payments API.',
+  },
+  {
+    title: 'Cluster yellow',
+    body: 'Elasticsearch cluster has 3 unassigned replica shards.',
+  },
+];
+
+/**
+ * Rendered in a separate React root — simulates a Kibana data grid pushing
+ * row selection into the flyout menu bar via the singleton store.
+ */
+const DataGridInExternalRoot: React.FC<{
+  flyoutId: string;
+  alerts: Array<{ title: string; body: string }>;
+}> = ({ flyoutId, alerts }) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const total = alerts.length;
+
+  useEffect(() => {
+    const store = getFlyoutManagerStore();
+    store.setPagination(flyoutId, {
+      currentIndex,
+      total,
+      onPrev: () => setCurrentIndex((i) => Math.max(0, i - 1)),
+      onNext: () => setCurrentIndex((i) => Math.min(total - 1, i + 1)),
+    });
+    return () => {
+      store.setPagination(flyoutId, undefined);
+    };
+  }, [flyoutId, currentIndex, total]);
+
+  return (
+    <EuiFlexGroup direction="column" gutterSize="xs" alignItems="flexStart">
+      <EuiFlexItem>
+        <EuiText size="s">
+          <strong>Data grid (separate React root)</strong>
+        </EuiText>
+        <EuiText size="xs" color="subdued">
+          <p>
+            Clicking a row calls{' '}
+            <EuiCode>getFlyoutManagerStore().setPagination()</EuiCode>
+          </p>
+        </EuiText>
+      </EuiFlexItem>
+      {alerts.map((alert, i) => (
+        <EuiFlexItem key={alert.title} grow={false}>
+          <EuiButton
+            size="s"
+            color={i === currentIndex ? 'primary' : 'text'}
+            onClick={() => setCurrentIndex(i)}
+          >
+            Row {i + 1}: {alert.title}
+          </EuiButton>
+        </EuiFlexItem>
+      ))}
+    </EuiFlexGroup>
+  );
+};
+
+const CrossRootPaginationDemo: React.FC = () => {
+  const [isOpen, setIsOpen] = useState(true);
+  const dataGridContainerRef = useRef<HTMLDivElement | null>(null);
+  const dataGridRootRef = useRef<Root | null>(null);
+
+  useLayoutEffect(() => {
+    if (!dataGridContainerRef.current || dataGridRootRef.current) return;
+
+    const root = createRoot(dataGridContainerRef.current);
+    root.render(
+      <EuiProvider>
+        <DataGridInExternalRoot
+          flyoutId={CROSS_ROOT_PAGINATION_FLYOUT_ID}
+          alerts={CROSS_ROOT_PAGINATION_ALERTS}
+        />
+      </EuiProvider>
+    );
+    dataGridRootRef.current = root;
+
+    return () => {
+      root.unmount();
+      dataGridRootRef.current = null;
+    };
+  }, []);
+
+  const pagination = useFlyoutPagination(CROSS_ROOT_PAGINATION_FLYOUT_ID);
+  const alert = CROSS_ROOT_PAGINATION_ALERTS[pagination?.currentIndex ?? 0];
+
+  return (
+    <>
+      <EuiTitle size="s">
+        <h3>Cross-root pagination</h3>
+      </EuiTitle>
+      <EuiSpacer size="s" />
+      <EuiText size="s" color="subdued">
+        <p>
+          The data grid below is rendered in a separate React root. Selecting a
+          row calls <EuiCode>getFlyoutManagerStore().setPagination()</EuiCode>{' '}
+          to drive the flyout menu bar — the primary use case in Kibana.
+        </p>
+      </EuiText>
+      <EuiSpacer size="m" />
+      <EuiFlexGroup gutterSize="l" alignItems="flexStart">
+        <EuiFlexItem grow={false}>
+          {/* Container for the data-grid React root */}
+          <div ref={dataGridContainerRef} />
+        </EuiFlexItem>
+        <EuiFlexItem grow={false}>
+          <EuiButton size="s" onClick={() => setIsOpen(true)} disabled={isOpen}>
+            Re-open flyout
+          </EuiButton>
+        </EuiFlexItem>
+      </EuiFlexGroup>
+
+      {isOpen && (
+        <EuiFlyout
+          id={CROSS_ROOT_PAGINATION_FLYOUT_ID}
+          session="start"
+          size="m"
+          ownFocus={false}
+          aria-label="Alert details"
+          onClose={() => setIsOpen(false)}
+        >
+          <EuiFlyoutHeader hasBorder>
+            <EuiTitle size="m">
+              <h2>{alert.title}</h2>
+            </EuiTitle>
+          </EuiFlyoutHeader>
+          <EuiFlyoutBody>
+            <EuiText>
+              <p>{alert.body}</p>
+            </EuiText>
+          </EuiFlyoutBody>
+        </EuiFlyout>
+      )}
+    </>
+  );
+};
+
+export const CrossRootPaginationExample: StoryObj<typeof EuiFlyout> = {
+  name: 'Cross-root pagination',
+  render: () => <CrossRootPaginationDemo />,
 };
