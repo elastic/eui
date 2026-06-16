@@ -536,7 +536,7 @@ describe('Flyout Manager Store', () => {
     const pagination = {
       currentIndex: 0,
       total: 3,
-      onPrev: () => {},
+      onPrevious: () => {},
       onNext: () => {},
     };
 

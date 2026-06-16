@@ -69,7 +69,7 @@ export interface EuiFlyoutMenuPagination {
   /**
    * Called when the user clicks the Previous button
    */
-  onPrev: () => void;
+  onPrevious: () => void;
   /**
    * Called when the user clicks the Next button
    */
@@ -217,7 +217,7 @@ const PaginationControls: React.FC<{
   pagination: EuiFlyoutMenuPagination;
   styles: ReturnType<typeof euiFlyoutMenuStyles>;
 }> = ({ pagination, styles }) => {
-  const { currentIndex, total, onPrev, onNext } = pagination;
+  const { currentIndex, total, onPrevious, onNext } = pagination;
   const prevLabel = useEuiI18n('euiFlyoutMenu.pagination.previous', 'Previous');
   const nextLabel = useEuiI18n('euiFlyoutMenu.pagination.next', 'Next');
 
@@ -230,7 +230,7 @@ const PaginationControls: React.FC<{
       color="text"
       size="s"
       aria-label={prevLabel}
-      onClick={onPrev}
+      onClick={onPrevious}
       isDisabled={isPrevDisabled}
       data-test-subj="euiFlyoutMenuPaginationPrev"
     />

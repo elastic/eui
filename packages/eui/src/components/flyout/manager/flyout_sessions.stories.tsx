@@ -863,7 +863,7 @@ const DataGridInExternalRoot: React.FC<{
     store.setPagination(flyoutId, {
       currentIndex,
       total,
-      onPrev: () => setCurrentIndex((i) => Math.max(0, i - 1)),
+      onPrevious: () => setCurrentIndex((i) => Math.max(0, i - 1)),
       onNext: () => setCurrentIndex((i) => Math.min(total - 1, i + 1)),
     });
     return () => {

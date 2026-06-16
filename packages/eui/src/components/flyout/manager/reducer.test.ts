@@ -581,7 +581,7 @@ describe('flyoutManagerReducer', () => {
     const pagination = {
       currentIndex: 1,
       total: 5,
-      onPrev: () => {},
+      onPrevious: () => {},
       onNext: () => {},
     };
 

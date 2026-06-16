@@ -279,12 +279,12 @@ describe('EuiFlyoutMenu', () => {
     const pagination = {
       currentIndex: 1,
       total: 5,
-      onPrev: jest.fn(),
+      onPrevious: jest.fn(),
       onNext: jest.fn(),
     };
 
     beforeEach(() => {
-      pagination.onPrev.mockClear();
+      pagination.onPrevious.mockClear();
       pagination.onNext.mockClear();
     });
 
@@ -324,7 +324,7 @@ describe('EuiFlyoutMenu', () => {
       ).toBeDisabled();
     });
 
-    it('calls onPrev when Prev button is clicked', () => {
+    it('calls onPrevious when Prev button is clicked', () => {
       const { container } = renderWithContext(
         <EuiFlyoutMenu pagination={pagination} />
       );
@@ -334,7 +334,7 @@ describe('EuiFlyoutMenu', () => {
       ) as HTMLElement;
       fireEvent.click(prevButton);
 
-      expect(pagination.onPrev).toHaveBeenCalledTimes(1);
+      expect(pagination.onPrevious).toHaveBeenCalledTimes(1);
     });
 
     it('calls onNext when Next button is clicked', () => {

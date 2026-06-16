@@ -187,7 +187,7 @@ const PaginationFlyout = () => {
             pagination: {
               currentIndex,
               total,
-              onPrev: () => setCurrentIndex((i) => Math.max(0, i - 1)),
+              onPrevious: () => setCurrentIndex((i) => Math.max(0, i - 1)),
               onNext: () => setCurrentIndex((i) => Math.min(total - 1, i + 1)),
             },
           }}
