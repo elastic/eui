@@ -151,8 +151,7 @@ export type EuiFlyoutMenuProps = CommonProps &
     customActions?: EuiFlyoutMenuCustomAction[];
     /**
      * Enables Prev/Next navigation controls and a position counter in the menu bar.
-     * When `total > 1`, the back button and history popover are hidden — pagination
-     * and back-button navigation are mutually exclusive in the left menu slot.
+     * Pagination replaces back/history navigation in the left menu slot.
      */
     pagination?: EuiFlyoutMenuPagination;
   };
@@ -323,6 +322,7 @@ export const EuiFlyoutMenu: FunctionComponent<EuiFlyoutMenuProps> = ({
 
   const styles = useEuiMemoizedStyles(euiFlyoutMenuStyles);
   const classes = classNames('euiFlyoutMenu', className);
+  const showPaginationControls = pagination != null && pagination.total > 1;
 
   let titleNode;
   if (title) {
@@ -358,20 +358,21 @@ export const EuiFlyoutMenu: FunctionComponent<EuiFlyoutMenuProps> = ({
         gutterSize="none"
         responsive={false}
       >
-        {pagination && pagination.total > 1 ? (
+        {showPaginationControls ? (
           <PaginationControls pagination={pagination} styles={styles} />
         ) : (
-          showBackButton && (
-            <EuiFlexItem grow={false}>
-              <BackButton {...backButtonProps} />
-            </EuiFlexItem>
-          )
-        )}
-
-        {historyItems.length > 0 && (
-          <EuiFlexItem grow={false}>
-            <HistoryPopover items={historyItems} />
-          </EuiFlexItem>
+          <>
+            {showBackButton && (
+              <EuiFlexItem grow={false}>
+                <BackButton {...backButtonProps} />
+              </EuiFlexItem>
+            )}
+            {historyItems.length > 0 && (
+              <EuiFlexItem grow={false}>
+                <HistoryPopover items={historyItems} />
+              </EuiFlexItem>
+            )}
+          </>
         )}
 
         {titleNode && <EuiFlexItem grow={false}>{titleNode}</EuiFlexItem>}

@@ -354,10 +354,6 @@ describe('EuiFlyoutMenu', () => {
       const { queryByText } = renderWithContext(
         <EuiFlyoutMenu pagination={pagination} showBackButton={true} />
       );
-
-      // Design spec: left slot holds either back-button+history OR pagination.
-      // See the TODO in flyout_menu.tsx for the open design question around
-      // drilldown history being silently suppressed when pagination is active.
       expect(queryByText('Back')).not.toBeInTheDocument();
     });
   });

@@ -351,11 +351,12 @@ export const EuiManagedFlyout = forwardRef<HTMLElement, EuiManagedFlyoutProps>(
     }
 
     const pagination = storePagination ?? propPagination;
+    const showPaginationControls = pagination != null && pagination.total > 1;
 
     const flyoutMenuProps = {
       ..._flyoutMenuProps,
-      historyItems,
-      showBackButton,
+      historyItems: showPaginationControls ? [] : historyItems,
+      showBackButton: showPaginationControls ? false : showBackButton,
       backButtonProps,
       title,
       pagination,
