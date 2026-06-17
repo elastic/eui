@@ -145,7 +145,14 @@ jobs:
           BRANCH_NAME: ${{ steps.git_branch.outputs.BRANCH_NAME }}
         # language=bash
         run: |
-          gh workflow run update_kibana_dependencies__open_pr.yml \
+          workflow_url=$(gh workflow run update_kibana_dependencies__open_pr.yml \
             -f pr_title="$PR_TITLE" \
             -f pr_body="$PR_BODY" \
-            -f pr_head="$BRANCH_NAME"
+            -f pr_head="$BRANCH_NAME")
+
+          {
+            echo "### Success :rocket:"
+            echo ""
+            echo "* Changes are prepared and pushed: https://github.com/elastic/eui-kibana/tree/$BRANCH_NAME"
+            echo "* Pull request creation workflow triggered: $workflow_url"
+          } >> "$GITHUB_STEP_SUMMARY"
