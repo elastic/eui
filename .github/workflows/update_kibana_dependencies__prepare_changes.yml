@@ -1,3 +1,15 @@
+################################################################################
+# This workflow file is part of the chain of workflows focused on testing
+# EUI changes in Kibana as part of our regression integration testing.
+#
+# This workflow is triggered from the `update_kibana_dependencies.yml`
+# workflow and should not be run manually.
+#
+# Due to technical limitations and security rules, steps had to be divided
+# into multiple subworkflows that must be triggered through
+# `workflow_dispatch` and not the usual `workflow_call`.
+################################################################################
+
 name: 'Update Kibana dependencies - Prepare changes'
 
 on:
@@ -7,12 +19,30 @@ on:
         description: JSON-serialized map of dependencies to update
         type: string
         required: true
+      # Passed through to `update_kibana_dependencies__open_pr.yml` workflow
+      pr_title:
+        description: PR title
+        required: true
+        type: string
+      pr_body:
+        description: PR body
+        required: true
+        type: string
   workflow_call:
     inputs:
       dependencies:
         description: JSON-serialized map of dependencies to update
         type: string
         required: true
+      # Passed through to `update_kibana_dependencies__open_pr.yml` workflow
+      pr_title:
+        description: PR title
+        required: true
+        type: string
+      pr_body:
+        description: PR body
+        required: true
+        type: string
     outputs:
       branch_name:
         description: Name of the branch created in the elastic/eui-kibana repository
@@ -107,3 +137,15 @@ jobs:
           BRANCH_NAME: ${{ steps.git_branch.outputs.BRANCH_NAME }}
         # language=bash
         run: git push -u fork "$BRANCH_NAME"
+      - name: Trigger workflow to open PR
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_TITLE: ${{ inputs.pr_title }}
+          PR_BODY: ${{ inputs.pr_body }}
+          BRANCH_NAME: ${{ steps.git_branch.outputs.BRANCH_NAME }}
+        # language=bash
+        run: |
+          gh workflow run update_kibana_dependencies__open_pr.yml \
+            -f pr_title="$PR_TITLE" \
+            -f pr_body="$PR_BODY" \
+            -f pr_head="$BRANCH_NAME"
