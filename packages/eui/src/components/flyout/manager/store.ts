@@ -7,6 +7,7 @@
  */
 
 import type { IconType } from '../../icon';
+import type { EuiFlyoutCloseMeta } from '../types';
 import type {
   EuiFlyoutLevel,
   EuiFlyoutManagerState,
@@ -65,6 +66,13 @@ export interface FlyoutManagerStore {
   goToFlyout: (flyoutId: string, level?: EuiFlyoutLevel) => void;
   addUnmanagedFlyout: (flyoutId: string) => void;
   closeUnmanagedFlyout: (flyoutId: string) => void;
+  /**
+   * Reads and clears any close `meta` previously stashed for `flyoutId` (e.g.
+   * `goBack` stamps the flyouts it removes with `navigation-back`). Used
+   * internally by managed flyouts to report the correct close reason; defaults
+   * to `navigation-cascade` when nothing was stashed.
+   */
+  consumeCloseMeta: (flyoutId: string) => EuiFlyoutCloseMeta | undefined;
   historyItems: Array<{
     title: string;
     iconType?: IconType;
@@ -78,6 +86,13 @@ function createStore(
   let currentState: EuiFlyoutManagerState = initial;
   const listeners = new Set<Listener>();
   const eventListeners = new Set<EventListener>();
+
+  // Transient, one-shot close annotations keyed by flyoutId. `goBack` stamps the
+  // flyouts it removes so the managed flyout can report `navigation-back`; any
+  // other removal (e.g. closeAllFlyouts cascade) leaves no stamp and defaults to
+  // `navigation-cascade`. Kept off reducer state because it is a per-close
+  // annotation, not persistent state.
+  const pendingCloseMeta = new Map<string, EuiFlyoutCloseMeta>();
 
   const getState = () => currentState;
 
@@ -246,13 +261,34 @@ function createStore(
       dispatch(setPushPaddingAction(side, width)),
     setContainerElement: (element) =>
       dispatch(setContainerElementAction(element)),
-    goBack: () => dispatch(goBackAction()),
+    goBack: () => {
+      // Stamp the flyouts goBack removes as `navigation-back` (vs. the default
+      // `navigation-cascade`) BEFORE dispatching. dispatch synchronously flushes
+      // subscribers, which can consume the meta during unmount, so peek the pure
+      // reducer to learn which flyouts go away and stamp them first.
+      const action = goBackAction();
+      const nextState = flyoutManagerReducer(currentState, action);
+      const remaining = new Set(nextState.flyouts.map((f) => f.flyoutId));
+      currentState.flyouts.forEach((f) => {
+        if (!remaining.has(f.flyoutId)) {
+          pendingCloseMeta.set(f.flyoutId, { reason: 'navigation-back' });
+        }
+      });
+      dispatch(action);
+    },
     goToFlyout: (flyoutId, level) =>
       dispatch(goToFlyoutAction(flyoutId, level)),
     addUnmanagedFlyout: (flyoutId) =>
       dispatch(addUnmanagedFlyoutAction(flyoutId)),
     closeUnmanagedFlyout: (flyoutId) =>
       dispatch(closeUnmanagedFlyoutAction(flyoutId)),
+    consumeCloseMeta: (flyoutId) => {
+      const meta = pendingCloseMeta.get(flyoutId);
+      if (meta) {
+        pendingCloseMeta.delete(flyoutId);
+      }
+      return meta;
+    },
     historyItems: computeHistoryItems(dispatch), // Initialize with current state
   };
 
