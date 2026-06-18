@@ -169,7 +169,7 @@ describe('EuiCallOut', () => {
         expect(getByTestSubject('secondaryAction')).toBeInTheDocument();
       });
 
-      it('does not render a standalone secondary action button', () => {
+      it('renders a standalone secondary action button', () => {
         const { container } = render(
           <EuiCallOut
             title="Callout title"
@@ -184,7 +184,145 @@ describe('EuiCallOut', () => {
 
         expect(
           container.querySelector('[data-test-subj="secondaryAction"]')
-        ).not.toBeInTheDocument();
+        ).toBeInTheDocument();
+      });
+
+      describe('tooltipProps', () => {
+        it('renders the primary action with a tooltip', () => {
+          const { getByTestSubject, queryByRole } = render(
+            <EuiCallOut
+              title="Callout title"
+              actionProps={{
+                primary: {
+                  children: 'Primary action',
+                  'data-test-subj': 'primaryAction',
+                  tooltipProps: { content: 'Tooltip content' },
+                },
+              }}
+            />
+          );
+
+          expect(queryByRole('tooltip')).not.toBeInTheDocument();
+
+          fireEvent.mouseOver(getByTestSubject('primaryAction'));
+          expect(queryByRole('tooltip')).toBeInTheDocument();
+          expect(queryByRole('tooltip')).toHaveTextContent('Tooltip content');
+
+          fireEvent.mouseOut(getByTestSubject('primaryAction'));
+          expect(queryByRole('tooltip')).not.toBeInTheDocument();
+        });
+
+        it('renders the secondary action with a tooltip', () => {
+          const { getByTestSubject, queryByRole } = render(
+            <EuiCallOut
+              title="Callout title"
+              actionProps={{
+                primary: { children: 'Primary action' },
+                secondary: {
+                  children: 'Secondary action',
+                  'data-test-subj': 'secondaryAction',
+                  tooltipProps: { content: 'Secondary tooltip' },
+                },
+              }}
+            />
+          );
+
+          expect(queryByRole('tooltip')).not.toBeInTheDocument();
+
+          fireEvent.mouseOver(getByTestSubject('secondaryAction'));
+          expect(queryByRole('tooltip')).toBeInTheDocument();
+          expect(queryByRole('tooltip')).toHaveTextContent('Secondary tooltip');
+        });
+      });
+
+      describe('popoverProps', () => {
+        it('does not render popover content when isOpen is false', () => {
+          const { queryByText } = render(
+            <EuiCallOut
+              title="Callout title"
+              actionProps={{
+                primary: {
+                  children: 'Primary action',
+                  popoverProps: {
+                    isOpen: false,
+                    closePopover: () => {},
+                    children: <span>Popover content</span>,
+                  },
+                },
+              }}
+            />
+          );
+
+          expect(queryByText('Popover content')).not.toBeInTheDocument();
+        });
+
+        it('renders popover content for the primary action when isOpen is true', () => {
+          const { queryByText } = render(
+            <EuiCallOut
+              title="Callout title"
+              actionProps={{
+                primary: {
+                  children: 'Primary action',
+                  popoverProps: {
+                    isOpen: true,
+                    closePopover: () => {},
+                    children: <span>Popover content</span>,
+                  },
+                },
+              }}
+            />
+          );
+
+          expect(queryByText('Popover content')).toBeInTheDocument();
+        });
+
+        it('renders popover content for the secondary action when isOpen is true', () => {
+          const { queryByText } = render(
+            <EuiCallOut
+              title="Callout title"
+              actionProps={{
+                primary: { children: 'Primary action' },
+                secondary: {
+                  children: 'Secondary action',
+                  popoverProps: {
+                    isOpen: true,
+                    closePopover: () => {},
+                    children: <span>Secondary popover content</span>,
+                  },
+                },
+              }}
+            />
+          );
+
+          expect(queryByText('Secondary popover content')).toBeInTheDocument();
+        });
+      });
+
+      it('renders an action with tooltip and popover', () => {
+        const { getByTestSubject, queryByRole, queryByText } = render(
+          <EuiCallOut
+            title="Callout title"
+            actionProps={{
+              primary: {
+                children: 'Primary action',
+                'data-test-subj': 'primaryAction',
+                tooltipProps: { content: 'Tooltip content' },
+                popoverProps: {
+                  isOpen: true,
+                  closePopover: () => {},
+                  children: <span>Popover content</span>,
+                },
+              },
+            }}
+          />
+        );
+        expect(queryByText('Popover content')).toBeInTheDocument();
+        expect(queryByRole('tooltip')).not.toBeInTheDocument();
+
+        fireEvent.mouseOver(getByTestSubject('primaryAction'));
+
+        expect(queryByRole('tooltip')).toBeInTheDocument();
+        expect(queryByRole('tooltip')).toHaveTextContent('Tooltip content');
       });
     });
 

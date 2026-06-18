@@ -28,6 +28,7 @@ exports[`EuiCallOut is rendered 1`] = `
         </p>
         <div
           class="euiText euiCallOut__text emotion-euiText-s-euiTextColor-default"
+          data-test-subj="test subject string__message"
         >
           content
         </div>
