@@ -142,3 +142,8 @@ jobs:
           if [[ -n "${PR_LABELS:-}" ]]; then
             gh pr edit "$PR_URL" --add-label "$PR_LABELS"
           fi
+      - name: Trigger CI
+        env:
+          PR_URL: ${{ needs.open_pr.outputs.pr_url }}
+        # language=bash
+        run: gh pr comment "$PR_URL" --body "/ci"
