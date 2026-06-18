@@ -132,6 +132,13 @@ jobs:
     environment: delayed-1m
     needs: [open_pr]
     steps:
+      # Token cannot be reused in this job because it's short-lived
+      - name: Fetch GitHub token
+        id: ephemeral_token
+        uses: elastic/ci-gh-actions/fetch-github-token@v1.5.0
+        with:
+          vault-instance: ci-prod
+          vault-role: token-policy-6becee3e5a43
       - name: Add labels
         env:
           GH_TOKEN: ${{ steps.ephemeral_token.outputs.token }}
@@ -144,6 +151,7 @@ jobs:
           fi
       - name: Trigger CI
         env:
+          GH_TOKEN: ${{ steps.ephemeral_token.outputs.token }}
           PR_URL: ${{ needs.open_pr.outputs.pr_url }}
         # language=bash
         run: gh pr comment "$PR_URL" --body "/ci"
