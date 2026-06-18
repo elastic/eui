@@ -8,12 +8,13 @@
 
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
+import { userEvent, waitFor, within, expect } from '@storybook/test';
 
 import {
   enableFunctionToggleControls,
   moveStorybookControlsToCategory,
 } from '../../../.storybook/utils';
-import { LOKI_SELECTORS } from '../../../.storybook/loki';
+import { VRT_SELECTORS, playDecorator } from '../../../.storybook/vrt';
 import { EuiFlexGroup } from '../flex';
 import { EuiIconTip, EuiIconTipProps } from './icon_tip';
 
@@ -22,8 +23,8 @@ const meta: Meta<EuiIconTipProps> = {
   component: EuiIconTip,
   parameters: {
     layout: 'fullscreen',
-    loki: {
-      chromeSelector: LOKI_SELECTORS.portal,
+    vrt: {
+      selector: VRT_SELECTORS.portal,
     },
   },
   decorators: [
@@ -71,11 +72,14 @@ type Story = StoryObj<EuiIconTipProps>;
 export const Playground: Story = {
   args: {
     content: 'tooltip content',
-    iconProps: {
-      // using autoFocus here as small trick to ensure showing the tooltip on load (e.g. for VRT)
-      // TODO: exchange for loki play() interactions once #7735 is merged
-      // @ts-ignore - temp. solution for storybook VRT testing
-      autofocus: 'true',
-    },
   },
+  play: playDecorator(async ({ canvasElement, bodyElement }) => {
+    const icon = canvasElement.querySelector('svg');
+    if (icon) {
+      await userEvent.hover(icon);
+      await waitFor(() =>
+        expect(within(bodyElement).getByRole('tooltip')).toBeVisible()
+      );
+    }
+  }),
 };

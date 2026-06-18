@@ -8,11 +8,13 @@
 
 import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
+import { userEvent, waitFor, within, expect } from '@storybook/test';
 
 import {
   enableFunctionToggleControls,
   hideStorybookControls,
 } from '../../../.storybook/utils';
+import { VRT_SELECTORS, playDecorator } from '../../../.storybook/vrt';
 
 import { EuiFlexItem } from '../flex';
 import { EuiIcon } from '../icon';
@@ -22,6 +24,7 @@ import {
   EuiSelectableOnChangeEvent,
   EuiSelectableProps,
 } from './selectable';
+import { EuiLink } from '../link';
 
 const toolTipProps = {
   toolTipContent: 'This is a tooltip!',
@@ -129,6 +132,7 @@ export const WithTooltip: Story = {
     controls: {
       include: ['options', 'singleSelection', 'searchable'],
     },
+    vrt: { selector: VRT_SELECTORS.portal },
   },
   args: {
     options: options.map((option, idx) => ({
@@ -139,6 +143,15 @@ export const WithTooltip: Story = {
     searchable: false,
   },
   render: ({ ...args }: EuiSelectableProps) => <StatefulSelectable {...args} />,
+  play: playDecorator(async ({ bodyElement }) => {
+    const body = within(bodyElement);
+    const options = body.getAllByRole('option');
+    const tooltipTarget = (options[0].firstElementChild ??
+      options[0]) as HTMLElement;
+    await userEvent.hover(tooltipTarget);
+
+    await waitFor(() => expect(body.getByRole('tooltip')).toBeVisible());
+  }),
 };
 
 export const WithSearchAndGroups: Story = {
@@ -157,7 +170,9 @@ export const WithSearchAndGroups: Story = {
         isGroupLabel: true,
         prepend: <EuiIcon type="warning" />,
         append: (
-          <EuiFlexItem css={{ alignItems: 'flex-end' }}>(append)</EuiFlexItem>
+          <EuiFlexItem css={{ alignItems: 'flex-end' }}>
+            <EuiLink>append</EuiLink>
+          </EuiFlexItem>
         ),
       },
       ...[...options].splice(4, options.length),

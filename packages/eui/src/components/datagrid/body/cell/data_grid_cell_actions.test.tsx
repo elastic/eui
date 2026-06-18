@@ -40,7 +40,6 @@ describe('EuiDataGridCellActions', () => {
         class="euiButtonIcon euiDataGridRowCell__actionButtonIcon euiDataGridRowCell__expandCell emotion-euiButtonIcon-xs-fill-primary-euiDataGridRowCell__actionButtonIcon"
         data-test-subj="euiDataGridCellExpandButton"
         tabindex="-1"
-        title="Click or hit enter to interact with cell content"
         type="button"
       >
         <span

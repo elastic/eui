@@ -10,7 +10,7 @@ import React, { useState } from 'react';
 import { fireEvent, waitFor, within } from '@storybook/test';
 import type { Meta, StoryObj, ReactRenderer } from '@storybook/react';
 import type { PlayFunctionContext } from '@storybook/csf';
-import { LOKI_SELECTORS } from '../../../../.storybook/loki';
+import { VRT_SELECTORS } from '../../../../.storybook/vrt';
 
 import { EuiHeader } from '../../header';
 import { EuiPageTemplate } from '../../page_template';
@@ -47,7 +47,7 @@ const dataGridProps: EuiDataGridProps = {
 export const FullScreenWithHeader: Story = {
   tags: ['vrt-only'],
   parameters: {
-    loki: { chromeSelector: LOKI_SELECTORS.portal },
+    vrt: { selector: VRT_SELECTORS.portal },
   },
   render: () => (
     <>

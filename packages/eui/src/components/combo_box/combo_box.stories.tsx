@@ -14,9 +14,10 @@ import {
   enableFunctionToggleControls,
   hideStorybookControls,
 } from '../../../.storybook/utils';
-import { LOKI_SELECTORS, lokiPlayDecorator } from '../../../.storybook/loki';
+import { VRT_SELECTORS, playDecorator } from '../../../.storybook/vrt';
 import { EuiCode } from '../code';
 import { EuiFlexItem } from '../flex';
+import { EuiLink } from '../link';
 
 import { EuiComboBoxOptionMatcher } from './types';
 import { EuiComboBox, EuiComboBoxProps } from './combo_box';
@@ -135,7 +136,7 @@ export const WithCustomOptionIds: Story = {
       include: ['options', 'selectedOptions', 'onChange'],
     },
     // This story is visually effectively the same as Playground
-    loki: { skip: true },
+    vrt: { skip: true },
   },
   args: {
     options: [
@@ -159,8 +160,8 @@ export const RowHeightAuto: Story = {
     controls: {
       include: ['rowHeight', 'singleSelection', 'options', 'onChange'],
     },
-    loki: {
-      chromeSelector: LOKI_SELECTORS.portal,
+    vrt: {
+      selector: VRT_SELECTORS.portal,
     },
   },
   args: {
@@ -220,8 +221,7 @@ export const WithTooltip: Story = {
     controls: {
       include: ['fullWidth', 'options', 'selectedOptions', 'onChange'],
     },
-    // This story is flaky in VRT and always takes a new screenshot - skipping it
-    loki: { skip: true },
+    vrt: { selector: VRT_SELECTORS.portal },
   },
   args: {
     options: options.map((option, idx) => ({
@@ -235,7 +235,7 @@ export const WithTooltip: Story = {
     })),
   },
   render: (args) => <StatefulComboBox {...args} />,
-  play: lokiPlayDecorator(async (context) => {
+  play: playDecorator(async (context) => {
     const { bodyElement, step } = context;
 
     const canvas = within(bodyElement);
@@ -250,12 +250,10 @@ export const WithTooltip: Story = {
 
         const options = canvas.getAllByRole('option');
 
-        await userEvent.hover(options[0]);
-        await waitFor(() =>
-          expect(
-            document.querySelectorAll('[data-test-subj="tooltip"]')[0]
-          ).toBeVisible()
-        );
+        // The tooltip anchor is a child of the option li. Hovering the li itself
+        // won't trigger its onMouseOver — we must hover an element inside it.
+        await userEvent.hover(options[0].firstElementChild ?? options[0]);
+        await waitFor(() => expect(canvas.getByRole('tooltip')).toBeVisible());
       }
     );
   }),
@@ -278,8 +276,8 @@ export const Groups: Story = {
     controls: {
       include: ['options'],
     },
-    loki: {
-      chromeSelector: LOKI_SELECTORS.portal,
+    vrt: {
+      selector: VRT_SELECTORS.portal,
     },
   },
   args: {
@@ -291,7 +289,9 @@ export const Groups: Story = {
         isGroupLabelOption: true,
         prepend: '#prepend ',
         append: (
-          <EuiFlexItem css={{ alignItems: 'flex-end' }}>(append)</EuiFlexItem>
+          <EuiFlexItem css={{ alignItems: 'flex-end' }}>
+            <EuiLink>(append)</EuiLink>
+          </EuiFlexItem>
         ),
       },
       ...[...options].splice(3, options.length),
@@ -306,8 +306,8 @@ export const NestedOptionsGroups: Story = {
     controls: {
       include: ['options'],
     },
-    loki: {
-      chromeSelector: LOKI_SELECTORS.portal,
+    vrt: {
+      selector: VRT_SELECTORS.portal,
     },
   },
   args: {
@@ -322,7 +322,9 @@ export const NestedOptionsGroups: Story = {
         isGroupLabelOption: true,
         prepend: '#prepend ',
         append: (
-          <EuiFlexItem css={{ alignItems: 'flex-end' }}>(append)</EuiFlexItem>
+          <EuiFlexItem css={{ alignItems: 'flex-end' }}>
+            <EuiLink>(append)</EuiLink>
+          </EuiFlexItem>
         ),
         options: [...options].splice(3, options.length),
       },
@@ -338,8 +340,8 @@ export const CustomTruncation: Story = {
     controls: {
       include: ['options', 'truncationProps'],
     },
-    loki: {
-      chromeSelector: LOKI_SELECTORS.portal,
+    vrt: {
+      selector: VRT_SELECTORS.portal,
     },
   },
   args: {
@@ -368,8 +370,8 @@ export const CustomTruncation: Story = {
 export const DefaultTruncation: Story = {
   tags: ['vrt-only'],
   parameters: {
-    loki: {
-      chromeSelector: LOKI_SELECTORS.portal,
+    vrt: {
+      selector: VRT_SELECTORS.portal,
     },
   },
   args: {

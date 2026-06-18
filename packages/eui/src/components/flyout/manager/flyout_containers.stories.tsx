@@ -18,6 +18,7 @@ import { EuiFlexGroup, EuiFlexItem } from '../../flex';
 import { EuiSpacer } from '../../spacer';
 import { EuiText } from '../../text';
 import { EuiFlyout, FLYOUT_TYPES } from '../flyout';
+import type { EuiFlyoutCloseMeta } from '../types';
 import { EuiFlyoutBody } from '../flyout_body';
 import { EuiFlyoutFooter } from '../flyout_footer';
 import { EuiFlyoutHeader } from '../flyout_header';
@@ -156,7 +157,8 @@ const meta: Meta<FlyoutChildStoryArgs> = {
   },
   parameters: {
     layout: 'fullscreen',
-    loki: { skip: true },
+    // Playground for Flyout Manager; nothing testable on page load
+    vrt: { skip: true },
   },
 };
 
@@ -211,26 +213,32 @@ const ContainerDemoComponent: React.FC<FlyoutChildStoryArgs> = ({
     setIsAppFlyoutOpen(true);
     playgroundActions.log('App flyout opened');
   };
-  const closeAppFlyout = () => {
+  const closeAppFlyout = (_: unknown, meta?: EuiFlyoutCloseMeta) => {
     setIsAppFlyoutOpen(false);
     setIsChildOpen(false);
-    playgroundActions.log('App flyout closed');
+    playgroundActions.log(
+      `App flyout closed (reason: ${meta?.reason ?? 'n/a'})`
+    );
   };
   const openChild = () => {
     setIsChildOpen(true);
     playgroundActions.log('Child flyout opened');
   };
-  const closeChild = () => {
+  const closeChild = (_: unknown, meta?: EuiFlyoutCloseMeta) => {
     setIsChildOpen(false);
-    playgroundActions.log('Child flyout closed');
+    playgroundActions.log(
+      `Child flyout closed (reason: ${meta?.reason ?? 'n/a'})`
+    );
   };
   const openGlobalFlyout = () => {
     setIsGlobalFlyoutOpen(true);
     playgroundActions.log('Global flyout opened');
   };
-  const closeGlobalFlyout = () => {
+  const closeGlobalFlyout = (_: unknown, meta?: EuiFlyoutCloseMeta) => {
     setIsGlobalFlyoutOpen(false);
-    playgroundActions.log('Global flyout closed');
+    playgroundActions.log(
+      `Global flyout closed (reason: ${meta?.reason ?? 'n/a'})`
+    );
   };
 
   const layoutMode = useFlyoutLayoutMode();

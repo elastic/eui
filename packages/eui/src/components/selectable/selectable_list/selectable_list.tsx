@@ -493,7 +493,11 @@ export class EuiSelectableList<T> extends Component<
           this.onAddOrRemoveOption(option, event);
         }}
         isFocused={isFocused}
-        title={searchableLabel || label}
+        title={
+          !truncationProps && !option.toolTipContent
+            ? searchableLabel || label
+            : undefined
+        }
         checked={checked}
         disabled={disabled}
         prepend={prepend}

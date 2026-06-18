@@ -531,4 +531,33 @@ describe('Flyout Manager Store', () => {
       unsubscribe();
     });
   });
+
+  describe('goBack close meta', () => {
+    it('stamps flyouts removed by goBack with navigation-back (consumed once)', () => {
+      const store = getFlyoutManagerStore();
+      const historyKey = Symbol();
+      store.addFlyout('main-1', 'First', LEVEL_MAIN, undefined, historyKey);
+      store.addFlyout('main-2', 'Second', LEVEL_MAIN, undefined, historyKey);
+
+      // main-2 is the current (top) session; goBack pops it.
+      store.goBack();
+
+      expect(store.consumeCloseMeta('main-2')).toEqual({
+        reason: 'navigation-back',
+      });
+      // One-shot: a second read returns undefined.
+      expect(store.consumeCloseMeta('main-2')).toBeUndefined();
+      // main-1 remained open, so it was never stamped.
+      expect(store.consumeCloseMeta('main-1')).toBeUndefined();
+    });
+
+    it('does not stamp flyouts removed by closeAllFlyouts (defaults to cascade)', () => {
+      const store = getFlyoutManagerStore();
+      store.addFlyout('main-1', 'First', LEVEL_MAIN);
+
+      store.closeAllFlyouts();
+
+      expect(store.consumeCloseMeta('main-1')).toBeUndefined();
+    });
+  });
 });

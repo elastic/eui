@@ -15,6 +15,7 @@ import { EuiButton } from '../../button';
 import { EuiSpacer } from '../../spacer';
 import { EuiText } from '../../text';
 import { FLYOUT_TYPES, EuiFlyout } from '../flyout';
+import type { EuiFlyoutCloseMeta } from '../types';
 import { EuiFlyoutBody } from '../flyout_body';
 import { EuiFlyoutFooter } from '../flyout_footer';
 import { EuiFlyoutChild, EuiFlyoutChildProps } from './flyout_child';
@@ -180,9 +181,9 @@ const meta: Meta<FlyoutChildStoryArgs> = {
     showChildCustomActions: true,
   },
   parameters: {
-    // Skipping visual regression testing with Loki
+    // Skipping visual regression testing
     // This is a playground for Flyout Manager and doesn't show anything testable on page load
-    loki: { skip: true },
+    vrt: { skip: true },
   },
 };
 
@@ -217,18 +218,22 @@ const StatefulFlyout: React.FC<FlyoutChildStoryArgs> = ({
     setIsMainOpen(true);
     playgroundActions.log('Parent flyout opened');
   };
-  const closeMain = () => {
+  const closeMain = (_: unknown, meta?: EuiFlyoutCloseMeta) => {
     setIsMainOpen(false);
     setIsChildOpen(false);
-    playgroundActions.log('Parent flyout closed');
+    playgroundActions.log(
+      `Parent flyout closed (reason: ${meta?.reason ?? 'n/a'})`
+    );
   };
   const openChild = () => {
     setIsChildOpen(true);
     playgroundActions.log('Child flyout opened');
   };
-  const closeChild = () => {
+  const closeChild = (_: unknown, meta?: EuiFlyoutCloseMeta) => {
     setIsChildOpen(false);
-    playgroundActions.log('Child flyout closed');
+    playgroundActions.log(
+      `Child flyout closed (reason: ${meta?.reason ?? 'n/a'})`
+    );
   };
 
   const layoutMode = useFlyoutLayoutMode();

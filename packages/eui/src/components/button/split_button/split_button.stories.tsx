@@ -10,7 +10,7 @@ import React, { useEffect, useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { css } from '@emotion/react';
 
-import { LOKI_SELECTORS } from '../../../../.storybook/loki';
+import { VRT_SELECTORS } from '../../../../.storybook/vrt';
 import { BUTTON_COLORS } from '../../../global_styling';
 import { EuiSpacer } from '../../spacer';
 import { EuiFlexGroup } from '../../flex';
@@ -73,8 +73,8 @@ export const SingleSecondaryAction: Story = {
 
 export const WithTooltip: Story = {
   parameters: {
-    loki: {
-      chromeSelector: LOKI_SELECTORS.portal,
+    vrt: {
+      selector: VRT_SELECTORS.portal,
     },
   },
   args: {
@@ -99,8 +99,8 @@ export const WithTooltip: Story = {
 export const WithPopover: Story = {
   decorators,
   parameters: {
-    loki: {
-      chromeSelector: LOKI_SELECTORS.portal,
+    vrt: {
+      selector: VRT_SELECTORS.portal,
     },
   },
   args: {
@@ -178,8 +178,8 @@ export const WithPopover: Story = {
 export const WithWrappingPopover: Story = {
   decorators,
   parameters: {
-    loki: {
-      chromeSelector: LOKI_SELECTORS.portal,
+    vrt: {
+      selector: VRT_SELECTORS.portal,
     },
     codeSnippet: {
       skip: true,

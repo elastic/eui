@@ -37,6 +37,7 @@ import {
   mockCloseAllFlyouts,
   mockCloseFlyout,
 } from './__mocks__';
+import { getFlyoutManagerStore, _resetFlyoutManagerStore } from './store';
 
 const mockFlushSync: jest.Mock = jest.mocked(ReactDOM.flushSync);
 
@@ -116,6 +117,12 @@ describe('EuiManagedFlyout', () => {
 
   beforeEach(() => {
     jest.clearAllMocks();
+    _resetFlyoutManagerStore();
+  });
+
+  afterEach(() => {
+    jest.restoreAllMocks();
+    _resetFlyoutManagerStore();
   });
 
   it('renders and sets managed data attributes', () => {
@@ -651,6 +658,88 @@ describe('EuiManagedFlyout', () => {
       );
 
       expect(onCloseChild).toHaveBeenCalledTimes(1);
+      expect(onCloseChild).toHaveBeenCalledWith(expect.anything(), {
+        reason: 'navigation-cascade',
+      });
+
+      selectors.useIsFlyoutRegistered.mockReturnValue(false);
+    });
+
+    it("defaults to reason 'navigation-cascade' when removed from the manager while still mounted with no stamped reason (e.g. cascade reaching a backgrounded flyout)", () => {
+      const onClose = jest.fn();
+      const selectors = jest.requireMock('./selectors');
+      // Flyout is registered in the manager on mount
+      selectors.useIsFlyoutRegistered.mockReturnValue(true);
+
+      const { rerender } = renderInProvider(
+        <EuiManagedFlyout
+          id="cascade-mounted-test"
+          level={LEVEL_MAIN}
+          onClose={onClose}
+          flyoutMenuProps={{ title: 'Cascade Flyout' }}
+        />
+      );
+
+      expect(onClose).not.toHaveBeenCalled();
+
+      // The flyout disappears from the manager state while still mounted, but the
+      // store did not stamp a reason (e.g. it was swept up by a closeAllFlyouts
+      // cascade rather than a goBack). It should default to navigation-cascade.
+      selectors.useIsFlyoutRegistered.mockReturnValue(false);
+      rerender(
+        <EuiFlyoutManager>
+          <EuiManagedFlyout
+            id="cascade-mounted-test"
+            level={LEVEL_MAIN}
+            onClose={onClose}
+            flyoutMenuProps={{ title: 'Cascade Flyout' }}
+          />
+        </EuiFlyoutManager>
+      );
+
+      expect(onClose).toHaveBeenCalledWith(expect.anything(), {
+        reason: 'navigation-cascade',
+      });
+
+      selectors.useIsFlyoutRegistered.mockReturnValue(false);
+    });
+
+    it("forwards reason 'navigation-back' when the store stamped the removed flyout (Back button)", () => {
+      const onClose = jest.fn();
+      const selectors = jest.requireMock('./selectors');
+      selectors.useIsFlyoutRegistered.mockReturnValue(true);
+
+      // Simulate goBack having stamped this flyout with navigation-back.
+      jest
+        .spyOn(getFlyoutManagerStore(), 'consumeCloseMeta')
+        .mockReturnValue({ reason: 'navigation-back' });
+
+      const { rerender } = renderInProvider(
+        <EuiManagedFlyout
+          id="back-test"
+          level={LEVEL_MAIN}
+          onClose={onClose}
+          flyoutMenuProps={{ title: 'Back Flyout' }}
+        />
+      );
+
+      expect(onClose).not.toHaveBeenCalled();
+
+      selectors.useIsFlyoutRegistered.mockReturnValue(false);
+      rerender(
+        <EuiFlyoutManager>
+          <EuiManagedFlyout
+            id="back-test"
+            level={LEVEL_MAIN}
+            onClose={onClose}
+            flyoutMenuProps={{ title: 'Back Flyout' }}
+          />
+        </EuiFlyoutManager>
+      );
+
+      expect(onClose).toHaveBeenCalledWith(expect.anything(), {
+        reason: 'navigation-back',
+      });
 
       selectors.useIsFlyoutRegistered.mockReturnValue(false);
     });

@@ -522,6 +522,7 @@ export const typeToPathMap = {
   sessionViewer: () => import('./assets/session_viewer'),
   shard: () => import('./assets/shard'),
   share: () => import('./assets/share'),
+  significantEvents: () => import('./assets/significant_events'),
   singleMetricViewer: () => import('./assets/single_metric_viewer'),
   snowflake: () => import('./assets/snowflake'),
   sortAscending: () => import('./assets/sort_ascending'),

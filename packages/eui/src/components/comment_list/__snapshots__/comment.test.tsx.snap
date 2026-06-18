@@ -16,9 +16,9 @@ exports[`EuiComment is rendered 1`] = `
         aria-label=""
         class="euiAvatar euiAvatar--m euiAvatar--user euiCommentAvatar emotion-euiAvatar-user-m-uppercase-subdued"
         role="img"
-        title=""
       >
         <span
+          aria-hidden="true"
           class="euiAvatar__icon"
           data-euiicon-type="user"
         />
@@ -50,9 +50,9 @@ exports[`EuiComment props event is rendered 1`] = `
         aria-label=""
         class="euiAvatar euiAvatar--m euiAvatar--user euiCommentAvatar emotion-euiAvatar-user-m-uppercase-subdued"
         role="img"
-        title=""
       >
         <span
+          aria-hidden="true"
           class="euiAvatar__icon"
           data-euiicon-type="user"
         />
@@ -111,9 +111,9 @@ exports[`EuiComment props timestamp is rendered 1`] = `
         aria-label=""
         class="euiAvatar euiAvatar--m euiAvatar--user euiCommentAvatar emotion-euiAvatar-user-m-uppercase-subdued"
         role="img"
-        title=""
       >
         <span
+          aria-hidden="true"
           class="euiAvatar__icon"
           data-euiicon-type="user"
         />
@@ -174,9 +174,9 @@ exports[`EuiComment renders a body 1`] = `
         aria-label=""
         class="euiAvatar euiAvatar--m euiAvatar--user euiCommentAvatar emotion-euiAvatar-user-m-uppercase-subdued"
         role="img"
-        title=""
       >
         <span
+          aria-hidden="true"
           class="euiAvatar__icon"
           data-euiicon-type="user"
         />
@@ -216,9 +216,9 @@ exports[`EuiComment renders a timeline icon 1`] = `
         aria-label=""
         class="euiAvatar euiAvatar--m euiAvatar--user euiCommentAvatar emotion-euiAvatar-user-m-uppercase-subdued"
         role="img"
-        title=""
       >
         <span
+          aria-hidden="true"
           class="euiAvatar__icon"
           data-euiicon-type="dot"
         />

@@ -57,7 +57,7 @@ import { euiTableCaptionStyles } from '../table/table.styles';
 import { CollapsedItemActions } from './collapsed_item_actions';
 import { ExpandedItemActions } from './expanded_item_actions';
 
-import { Pagination, PaginationBar } from './pagination_bar';
+import { PaginationBar, type Pagination } from './pagination_bar';
 import { EuiIcon } from '../icon';
 import { EuiScreenReaderOnly } from '../accessibility';
 import { EuiI18n } from '../i18n';
@@ -80,8 +80,10 @@ import { EuiTableSortMobileProps } from '../table/mobile/table_sort_mobile';
 
 import {
   euiBasicTableBodyLoading,
+  euiBasicTableWrapperPanelledStyles,
   safariLoadingWorkaround,
 } from './basic_table.styles';
+import { EuiToolTip } from '../tool_tip';
 
 type DataTypeProfiles = Record<
   EuiTableDataType,
@@ -247,6 +249,15 @@ interface BasicTableProps<T extends object>
    * Provides an infinite loading indicator
    */
   loading?: boolean;
+  /**
+   * Enable the panelled style of the table.
+   *
+   * Panelled style adds contrast between the table navigation controls
+   * and table content itself. It should be used in tables rendered outside
+   * EUI containers like `<EuiPanel>` or `<EuiFlyout>`.
+   * @default false
+   */
+  panelled?: boolean;
   /**
    * Message to display if table is empty
    */
@@ -523,6 +534,9 @@ export class EuiBasicTable<T extends object = any> extends Component<
       tableLayout,
       hasBackground,
       scrollableInline,
+      stickyScrollbar,
+      stickyHeader,
+      panelled,
       ...rest
     } = this.props;
 
@@ -551,9 +565,12 @@ export class EuiBasicTable<T extends object = any> extends Component<
       hasBackground,
       loading,
       scrollableInline,
+      stickyScrollbar,
+      stickyHeader,
+      panelled,
     } = this.props;
 
-    return (
+    const content = (
       <>
         <EuiTableHeaderMobile responsiveBreakpoint={responsiveBreakpoint}>
           {this.renderSelectAll(true)}
@@ -567,6 +584,8 @@ export class EuiBasicTable<T extends object = any> extends Component<
             compressed={compressed}
             hasBackground={hasBackground}
             scrollableInline={scrollableInline}
+            stickyScrollbar={stickyScrollbar}
+            stickyHeader={stickyHeader}
             css={loading && safariLoadingWorkaround}
           >
             {this.renderTableCaption()}
@@ -577,6 +596,21 @@ export class EuiBasicTable<T extends object = any> extends Component<
         </OverrideCopiedTabularContent>
       </>
     );
+
+    if (panelled) {
+      return (
+        <div
+          css={
+            panelled && euiBasicTableWrapperPanelledStyles(responsiveBreakpoint)
+          }
+          data-test-subj="euiBasicTablePanelledWrapper"
+        >
+          {content}
+        </div>
+      );
+    }
+
+    return content;
   }
 
   renderTableMobileSort() {
@@ -740,17 +774,24 @@ export class EuiBasicTable<T extends object = any> extends Component<
         defaults={['Select all rows', 'Deselect rows']}
       >
         {([selectAllRows, deselectRows]: string[]) => (
-          <EuiCheckbox
-            id={this.selectAllIdGenerator()}
-            checked={checked}
-            indeterminate={indeterminate}
-            disabled={disabled}
-            onChange={onChange}
-            data-test-subj="checkboxSelectAll"
-            aria-label={checked || indeterminate ? deselectRows : selectAllRows}
-            title={checked || indeterminate ? deselectRows : selectAllRows}
-            label={isMobile ? selectAllRows : null}
-          />
+          <EuiToolTip
+            content={checked || indeterminate ? deselectRows : selectAllRows}
+            display="block"
+            disableScreenReaderOutput
+          >
+            <EuiCheckbox
+              id={this.selectAllIdGenerator()}
+              checked={checked}
+              indeterminate={indeterminate}
+              disabled={disabled}
+              onChange={onChange}
+              data-test-subj="checkboxSelectAll"
+              aria-label={
+                checked || indeterminate ? deselectRows : selectAllRows
+              }
+              label={isMobile ? selectAllRows : null}
+            />
+          </EuiToolTip>
         )}
       </EuiI18n>
     );
@@ -992,7 +1033,8 @@ export class EuiBasicTable<T extends object = any> extends Component<
           colSpan={colSpan}
           mobileOptions={{ width: '100%' }}
         >
-          <EuiIcon type="minusCircle" color="danger" /> {error}
+          <EuiIcon type="minusCircle" color="danger" aria-hidden={true} />{' '}
+          {error}
         </EuiTableRowCell>
       </EuiTableRow>
     );
@@ -1181,15 +1223,20 @@ export class EuiBasicTable<T extends object = any> extends Component<
           values={{ index: displayedRowIndex + 1 }}
         >
           {(selectThisRow: string) => (
-            <EuiCheckbox
-              id={`${this.tableId}${key}-checkbox`}
-              disabled={disabled}
-              checked={checked}
-              onChange={onChange}
-              title={title || selectThisRow}
-              aria-label={title || selectThisRow}
-              data-test-subj={`checkboxSelectRow-${itemId}`}
-            />
+            <EuiToolTip
+              content={title || selectThisRow}
+              display="block"
+              disableScreenReaderOutput
+            >
+              <EuiCheckbox
+                id={`${this.tableId}${key}-checkbox`}
+                disabled={disabled}
+                checked={checked}
+                onChange={onChange}
+                aria-label={title || selectThisRow}
+                data-test-subj={`checkboxSelectRow-${itemId}`}
+              />
+            </EuiToolTip>
           )}
         </EuiI18n>
       </EuiTableRowCellCheckbox>,
@@ -1417,7 +1464,14 @@ export class EuiBasicTable<T extends object = any> extends Component<
   }
 
   renderPaginationBar() {
-    const { error, pagination, tableCaption, onChange } = this.props;
+    const {
+      error,
+      pagination,
+      tableCaption,
+      onChange,
+      panelled,
+      responsiveBreakpoint,
+    } = this.props;
     if (!error && pagination && pagination.totalItemCount > 0) {
       if (!onChange) {
         throw new Error(`The Basic Table is configured with pagination but [onChange] is
@@ -1433,6 +1487,8 @@ export class EuiBasicTable<T extends object = any> extends Component<
           {(tablePagination: string) => (
             <PaginationBar
               pagination={pagination}
+              panelled={panelled}
+              responsiveBreakpoint={responsiveBreakpoint}
               onPageSizeChange={this.onPageSizeChange.bind(this)}
               onPageChange={this.onPageChange.bind(this)}
               aria-controls={this.tableId}

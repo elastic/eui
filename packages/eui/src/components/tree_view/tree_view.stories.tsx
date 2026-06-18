@@ -17,6 +17,14 @@ import { EuiTreeView, EuiTreeViewProps } from './tree_view';
 const meta: Meta<EuiTreeViewProps> = {
   title: 'Navigation/EuiTreeView/EuiTreeView',
   component: EuiTreeView,
+  decorators: [
+    (Story) => (
+      // Wrap in a fixed-width container to ensure a clear VRT snapshot
+      <div style={{ minWidth: 320 }}>
+        <Story />
+      </div>
+    ),
+  ],
   argTypes: {
     'aria-label': {
       type: {

@@ -8,7 +8,7 @@
 
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { LOKI_SELECTORS } from '../../../../.storybook/loki';
+import { VRT_SELECTORS } from '../../../../.storybook/vrt';
 
 import { EuiButton } from '../../button';
 import {
@@ -116,7 +116,7 @@ export const Playground: Story = {
 export const Scrollable: Story = {
   parameters: {
     // the options is rendered in an options portal
-    loki: { chromeSelector: LOKI_SELECTORS.portal },
+    vrt: { selector: VRT_SELECTORS.portal },
   },
   args: {
     options: [...options, ...options],
@@ -138,6 +138,6 @@ export const VRT: Story = {
   },
   parameters: {
     // the options is rendered in an options portal
-    loki: { chromeSelector: LOKI_SELECTORS.portal },
+    vrt: { selector: VRT_SELECTORS.portal },
   },
 };

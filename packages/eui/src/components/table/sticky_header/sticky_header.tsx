@@ -1,0 +1,190 @@
+/*
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
+ */
+
+import React, {
+  RefCallback,
+  type RefObject,
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from 'react';
+import { useEuiTableColumnDataStore } from '../store/provider';
+import { EuiTableHeader } from '../table_header';
+import { EuiTableWithinStickyHeaderProvider } from './context';
+import { useEuiMemoizedStyles } from '../../../services';
+import { euiTableStyles } from '../table.styles';
+import type { EuiTableProps } from '../table';
+import { euiTableStickyHeaderStyles } from './sticky_header.styles';
+import { euiContainerCSS } from '../../../global_styling';
+import { EUI_TABLE_CSS_CONTAINER_NAME } from '../const';
+
+/**
+ * @internal
+ */
+export interface EuiTableStickyHeaderProps
+  extends Pick<EuiTableProps, 'scrollableInline' | 'compressed'> {
+  tableRef: RefObject<HTMLTableElement>;
+  tableWrapperRef: RefObject<HTMLDivElement>;
+  isResponsive: boolean;
+}
+
+export const EuiTableStickyHeader = ({
+  tableRef,
+  tableWrapperRef,
+  compressed,
+  scrollableInline,
+  isResponsive,
+}: EuiTableStickyHeaderProps) => {
+  const store = useEuiTableColumnDataStore();
+  const columnElements = useRef(new Map<string, HTMLTableCellElement>());
+  const stickyTableWrapperRef = useRef<HTMLDivElement>(null);
+  const stickyTableRef = useRef<HTMLTableElement>(null);
+  const [columns, setColumns] = useState(() =>
+    Array.from(store.getColumns().entries())
+  );
+
+  const originalStyles = useEuiMemoizedStyles(euiTableStyles);
+  const styles = useEuiMemoizedStyles(euiTableStickyHeaderStyles);
+
+  /**
+   * Get a callback ref to handle the column element ref
+   */
+  const getColumnRef = useCallback<
+    (id: string) => RefCallback<HTMLTableCellElement>
+  >((id) => {
+    return (element) => {
+      if (element) {
+        columnElements.current.set(id, element);
+      } else {
+        columnElements.current.delete(id);
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    const unsubscribe = store.subscribe((columns) => {
+      setColumns(Array.from(columns.entries()));
+    });
+
+    const unsubscribeColumnWidths = store.subscribeToColumnWidths((columns) => {
+      columns.forEach((width, name) => {
+        const element = columnElements.current.get(name);
+        if (element) {
+          element.style.width = `${width}px`;
+        }
+      });
+    });
+
+    return () => {
+      unsubscribe();
+      unsubscribeColumnWidths();
+    };
+  }, [store]);
+
+  // When columns change, apply column widths after render
+  useLayoutEffect(() => {
+    store.getColumnWidths().forEach((width, name) => {
+      const element = columnElements.current.get(name);
+      if (element) {
+        element.style.width = `${width}px`;
+      }
+    });
+  }, [store, columns]);
+
+  useEffect(() => {
+    if (
+      !scrollableInline ||
+      !tableWrapperRef.current ||
+      !stickyTableRef.current ||
+      !tableRef.current
+    ) {
+      return;
+    }
+
+    const tableWrapper = tableWrapperRef.current;
+
+    const handleScroll = () => {
+      if (stickyTableWrapperRef.current) {
+        stickyTableWrapperRef.current.scrollLeft = tableWrapper.scrollLeft;
+      }
+    };
+
+    const handleResize: ResizeObserverCallback = (entries) => {
+      const element = entries[0].target;
+      if (!element) {
+        return;
+      }
+
+      if (stickyTableRef.current) {
+        stickyTableRef.current.style.minWidth = `${element.clientWidth}px`;
+      }
+    };
+
+    // Initial width sync
+    stickyTableRef.current.style.minWidth = `${
+      tableRef.current.getBoundingClientRect().width
+    }px`;
+
+    // Use ResizeObserver to keep table width in sync
+    const resizeObserver = new ResizeObserver(handleResize);
+    resizeObserver.observe(tableRef.current);
+
+    tableWrapper.addEventListener('scroll', handleScroll, {
+      passive: true,
+    });
+
+    return () => {
+      tableWrapper.removeEventListener('scroll', handleScroll);
+      resizeObserver.disconnect();
+    };
+  }, [scrollableInline, tableRef, tableWrapperRef]);
+
+  const tableStyles = [
+    originalStyles.euiTable,
+    scrollableInline && originalStyles.euiTableScrollableInline,
+    (!compressed || isResponsive) && originalStyles.uncompressed,
+    compressed && !isResponsive && originalStyles.compressed,
+    // Forced fixed layout since all column widths come synced from the main table
+    originalStyles.layout.fixed,
+    originalStyles.hasBackground,
+    styles.table,
+  ];
+
+  if (isResponsive) {
+    return null;
+  }
+
+  return (
+    <EuiTableWithinStickyHeaderProvider>
+      <div css={styles.wrapper} aria-hidden="true">
+        <div
+          css={[
+            // This CSS container is needed to feed `<EuiTableHeaderCell>`
+            // with `sticky` prop set the necessary scroll state
+            euiContainerCSS('normal', EUI_TABLE_CSS_CONTAINER_NAME, true),
+            styles.innerWrapper,
+          ]}
+          ref={stickyTableWrapperRef}
+        >
+          <table css={tableStyles} ref={stickyTableRef}>
+            <EuiTableHeader css={styles.header}>
+              {columns.map(([name, data], index) =>
+                data.renderHeaderCellRef.current?.({
+                  ref: getColumnRef(name),
+                  key: `${name}-${index}`,
+                })
+              )}
+            </EuiTableHeader>
+          </table>
+        </div>
+      </div>
+    </EuiTableWithinStickyHeaderProvider>
+  );
+};
