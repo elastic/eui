@@ -47,10 +47,11 @@ export const useEuiFlyoutMenu = ({
   }, [hasMenu, _titleId, generatedMenuId]);
 
   // Determine if the menu has any content
-  // hasBackButton or hasHistory or hasCustomActions or hasVisibleTitle
+  // hasMenuBarSlot or hasBackButton or hasHistory or hasCustomActions or hasVisibleTitle
   const menuHasContent =
     hasMenu &&
-    (!!flyoutMenuProps.showBackButton ||
+    (!!flyoutMenuProps.menuBarSlot ||
+      !!flyoutMenuProps.showBackButton ||
       (flyoutMenuProps.historyItems?.length ?? 0) > 0 ||
       (flyoutMenuProps.customActions?.length ?? 0) > 0 ||
       // Component defaults to hiding the title, so only explicit false means the title will be visible

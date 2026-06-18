@@ -33,10 +33,28 @@ type Listener = () => void;
 /**
  * Events emitted by the flyout manager store for external consumers.
  */
-export type FlyoutManagerEvent = {
-  type: 'CLOSE_SESSION';
-  session: FlyoutSession;
-};
+export type FlyoutManagerEvent =
+  | {
+      /** Fired when a new main flyout session is added to the stack. */
+      type: 'SESSION_START';
+      session: FlyoutSession;
+    }
+  | {
+      /** Fired when a session's main flyout is removed from the stack. */
+      type: 'CLOSE_SESSION';
+      session: FlyoutSession;
+    }
+  | {
+      /**
+       * Fired when the child flyout of an existing session changes (opens,
+       * closes, or swaps). Use this instead of `store.subscribe()` to avoid
+       * the sync gap that arises from a dual subscription.
+       */
+      type: 'CHILD_CHANGED';
+      sessionId: string;
+      previousChildId: string | null;
+      newChildId: string | null;
+    };
 
 type EventListener = (event: FlyoutManagerEvent) => void;
 
@@ -61,10 +79,22 @@ export interface FlyoutManagerStore {
   setFlyoutWidth: (flyoutId: string, width: number) => void;
   setPushPadding: (side: 'left' | 'right', width: number) => void;
   setContainerElement: (element: HTMLElement | null) => void;
+  /**
+   * @deprecated Subscribe to `SESSION_START` / `CLOSE_SESSION` / `CHILD_CHANGED` events via
+   * `subscribeToEvents` and maintain your own history state. Will be removed in a future major version.
+   */
   goBack: () => void;
+  /**
+   * @deprecated Subscribe to `SESSION_START` / `CLOSE_SESSION` / `CHILD_CHANGED` events via
+   * `subscribeToEvents` and maintain your own history state. Will be removed in a future major version.
+   */
   goToFlyout: (flyoutId: string, level?: EuiFlyoutLevel) => void;
   addUnmanagedFlyout: (flyoutId: string) => void;
   closeUnmanagedFlyout: (flyoutId: string) => void;
+  /**
+   * @deprecated Subscribe to `SESSION_START` / `CLOSE_SESSION` / `CHILD_CHANGED` events via
+   * `subscribeToEvents` and maintain your own history state. Will be removed in a future major version.
+   */
   historyItems: Array<{
     title: string;
     iconType?: IconType;
@@ -200,15 +230,41 @@ function createStore(
       if (nextState.sessions !== previousSessions) {
         store.historyItems = computeHistoryItems(dispatch);
 
-        // Detect removed sessions and emit CLOSE_SESSION events
+        const previousSessionIds = new Set(
+          previousSessions.map((s) => s.mainFlyoutId)
+        );
         const nextSessionIds = new Set(
           nextState.sessions.map((s) => s.mainFlyoutId)
         );
+
+        // Detect removed sessions → CLOSE_SESSION
         previousSessions.forEach((session) => {
           if (!nextSessionIds.has(session.mainFlyoutId)) {
+            emitEvent({ type: 'CLOSE_SESSION', session });
+          }
+        });
+
+        // Detect new sessions → SESSION_START
+        nextState.sessions.forEach((session) => {
+          if (!previousSessionIds.has(session.mainFlyoutId)) {
+            emitEvent({ type: 'SESSION_START', session });
+          }
+        });
+
+        // Detect child flyout changes → CHILD_CHANGED
+        nextState.sessions.forEach((session) => {
+          const prevSession = previousSessions.find(
+            (s) => s.mainFlyoutId === session.mainFlyoutId
+          );
+          if (
+            prevSession &&
+            prevSession.childFlyoutId !== session.childFlyoutId
+          ) {
             emitEvent({
-              type: 'CLOSE_SESSION',
-              session,
+              type: 'CHILD_CHANGED',
+              sessionId: session.mainFlyoutId,
+              previousChildId: prevSession.childFlyoutId,
+              newChildId: session.childFlyoutId,
             });
           }
         });

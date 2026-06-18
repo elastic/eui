@@ -41,4 +41,6 @@ export {
   type FlyoutManagerEvent,
   type EuiFlyoutManagerState,
   type FlyoutSession,
+  type EuiFlyoutPluginContextValue,
+  EuiFlyoutPluginContext,
 } from './manager';

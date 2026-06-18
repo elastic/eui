@@ -61,3 +61,12 @@ export { EuiFlyoutMain, type EuiFlyoutMainProps } from './flyout_main';
 
 /** Utility functions for flyout sizing and layout. */
 export { getWidthFromSize } from './layout_mode';
+
+/**
+ * Contexts for external packages to integrate with the flyout manager
+ * without coupling to internal history implementation details.
+ */
+export {
+  EuiFlyoutPluginContext,
+  type EuiFlyoutPluginContextValue,
+} from './flyout_plugin';

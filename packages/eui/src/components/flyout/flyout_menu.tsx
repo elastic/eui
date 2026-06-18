@@ -20,6 +20,7 @@ import { CommonProps, PropsForAnchor } from '../common';
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
 import { EuiListGroup, EuiListGroupItem } from '../list_group';
 import { EuiPopover } from '../popover';
+import { EuiToolTip } from '../tool_tip';
 import { EuiTitle } from '../title';
 import { EuiFlyoutCloseButton } from './_flyout_close_button';
 import { euiFlyoutMenuStyles } from './flyout_menu.styles';
@@ -108,16 +109,31 @@ export type EuiFlyoutMenuProps = CommonProps &
      */
     hideCloseButton?: boolean;
     /**
+     * A self-contained component to render in place of the built-in Back button
+     * and history popover. When provided, `showBackButton`, `backButtonProps`,
+     * and `historyItems` are ignored.
+     *
+     * Set via `EuiFlyoutMenuBarSlot` context — provided by `FlyoutHistoryProvider`
+     * from `@kbn/flyout-history`.
+     */
+    menuBarSlot?: React.ReactNode;
+    /**
      * Shows a back button in the menu component
      * @default false
+     * @deprecated Use `EuiFlyoutMenuBarSlot` context to inject a `menuBarSlot` instead.
+     * Will be removed in a future major version.
      */
     showBackButton?: boolean;
     /**
      * Props to pass to the back button, such as `onClick` handler
+     * @deprecated Use `EuiFlyoutMenuBarSlot` context to inject a `menuBarSlot` instead.
+     * Will be removed in a future major version.
      */
     backButtonProps?: EuiFlyoutMenuBackButtonProps;
     /**
      * List of history items for the history popover
+     * @deprecated Use `EuiFlyoutMenuBarSlot` context to inject a `menuBarSlot` instead.
+     * Will be removed in a future major version.
      */
     historyItems?: EuiFlyoutHistoryItem[];
     /**
@@ -144,20 +160,26 @@ const HistoryPopover: React.FC<{
   items: EuiFlyoutHistoryItem[];
 }> = ({ items }) => {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+  const historyLabel = useEuiI18n('euiFlyoutMenu.history', 'History');
   const handlePopoverButtonClick = () => {
     setIsPopoverOpen(!isPopoverOpen);
   };
 
+  const historyButton = (
+    <EuiToolTip content={historyLabel} disableScreenReaderOutput>
+      <EuiButtonIcon
+        iconType="chevronSingleDown"
+        color="text"
+        aria-label={historyLabel}
+        data-test-subj="euiFlyoutMenuHistoryButton"
+      />
+    </EuiToolTip>
+  );
+
   return (
     <EuiPopover
-      button={
-        <EuiButtonIcon
-          iconType="chevronSingleDown"
-          color="text"
-          aria-label={useEuiI18n('euiFlyoutMenu.history', 'History')}
-          data-test-subj="euiFlyoutMenuHistoryButton"
-        />
-      }
+      aria-label={historyLabel}
+      button={historyButton}
       isOpen={isPopoverOpen}
       onClick={handlePopoverButtonClick}
       closePopover={() => setIsPopoverOpen(false)}
@@ -199,6 +221,7 @@ export const EuiFlyoutMenu: FunctionComponent<EuiFlyoutMenuProps> = ({
   titleId,
   hideTitle = true,
   hideCloseButton,
+  menuBarSlot,
   historyItems = [],
   showBackButton,
   backButtonProps,
@@ -245,16 +268,21 @@ export const EuiFlyoutMenu: FunctionComponent<EuiFlyoutMenuProps> = ({
         gutterSize="none"
         responsive={false}
       >
-        {showBackButton && (
-          <EuiFlexItem grow={false}>
-            <BackButton {...backButtonProps} />
-          </EuiFlexItem>
-        )}
-
-        {historyItems.length > 0 && (
-          <EuiFlexItem grow={false}>
-            <HistoryPopover items={historyItems} />
-          </EuiFlexItem>
+        {menuBarSlot ? (
+          <EuiFlexItem grow={false}>{menuBarSlot}</EuiFlexItem>
+        ) : (
+          <>
+            {showBackButton && (
+              <EuiFlexItem grow={false}>
+                <BackButton {...backButtonProps} />
+              </EuiFlexItem>
+            )}
+            {historyItems.length > 0 && (
+              <EuiFlexItem grow={false}>
+                <HistoryPopover items={historyItems} />
+              </EuiFlexItem>
+            )}
+          </>
         )}
 
         {titleNode && <EuiFlexItem grow={false}>{titleNode}</EuiFlexItem>}
@@ -268,14 +296,19 @@ export const EuiFlyoutMenu: FunctionComponent<EuiFlyoutMenuProps> = ({
               key={`action-index-flex-item-${actionIndex}`}
               css={styles.euiFlyoutMenu__actions}
             >
-              <EuiButtonIcon
-                key={`action-index-icon-${actionIndex}`}
-                aria-label={action['aria-label']}
-                iconType={action.iconType}
-                onClick={action.onClick}
-                color="text"
-                size="s"
-              />
+              <EuiToolTip
+                content={action['aria-label']}
+                disableScreenReaderOutput
+              >
+                <EuiButtonIcon
+                  key={`action-index-icon-${actionIndex}`}
+                  aria-label={action['aria-label']}
+                  iconType={action.iconType}
+                  onClick={action.onClick}
+                  color="text"
+                  size="s"
+                />
+              </EuiToolTip>
             </EuiFlexItem>
           ))}
 

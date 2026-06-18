@@ -7,6 +7,7 @@
  */
 
 import React, {
+  useContext,
   useEffect,
   useLayoutEffect,
   useMemo,
@@ -37,6 +38,7 @@ import {
 } from './const';
 import { EuiFlyoutIsManagedProvider } from './context';
 import { euiManagedFlyoutStyles } from './flyout_managed.styles';
+import { EuiFlyoutPluginContext } from './flyout_plugin';
 import { useFlyoutManager as _useFlyoutManager, useFlyoutId } from './hooks';
 import { useIsFlyoutRegistered } from './selectors';
 import { getFlyoutManagerStore } from './store';
@@ -55,8 +57,17 @@ import {
  */
 export interface EuiManagedFlyoutProps extends EuiFlyoutComponentProps {
   level: EuiFlyoutLevel;
+  /**
+   * Symbol that groups this session into a named history group.
+   *
+   * @deprecated Provide `historyKey` via `EuiFlyoutPluginContext` instead.
+   * The prop is still honored as an override; will be removed in a future major version.
+   */
   historyKey?: symbol;
-  flyoutMenuProps?: Omit<EuiFlyoutMenuProps, 'historyItems' | 'showBackButton'>;
+  flyoutMenuProps?: Omit<
+    EuiFlyoutMenuProps,
+    'historyItems' | 'showBackButton' | 'backButtonProps' | 'menuBarSlot'
+  >;
   onActive?: () => void;
 }
 
@@ -185,6 +196,10 @@ export const EuiManagedFlyout = forwardRef<HTMLElement, EuiManagedFlyoutProps>(
       title = defaultTitle;
     }
 
+    const { historyKey: contextHistoryKey, MenuBarSlot: MenuBarSlotComponent } =
+      useContext(EuiFlyoutPluginContext);
+    const resolvedHistoryKey = historyKey ?? contextHistoryKey;
+
     const flyoutExistsInManager = useIsFlyoutRegistered(flyoutId);
 
     // Stabilize the onClose callback
@@ -222,7 +237,7 @@ export const EuiManagedFlyout = forwardRef<HTMLElement, EuiManagedFlyoutProps>(
         title!,
         level,
         size as string,
-        level === LEVEL_MAIN ? historyKey : undefined,
+        level === LEVEL_MAIN ? resolvedHistoryKey : undefined,
         _flyoutMenuProps?.iconType,
         typeof minWidth === 'number' ? minWidth : undefined
       );
@@ -248,7 +263,7 @@ export const EuiManagedFlyout = forwardRef<HTMLElement, EuiManagedFlyoutProps>(
       level,
       size,
       minWidth,
-      historyKey,
+      resolvedHistoryKey,
       _flyoutMenuProps?.iconType,
       addFlyout,
       closeFlyout,
@@ -320,23 +335,25 @@ export const EuiManagedFlyout = forwardRef<HTMLElement, EuiManagedFlyoutProps>(
       shouldAnimate: false,
     });
 
-    // Note: history controls are only relevant for main flyouts
+    // History controls are only relevant for main flyouts.
+    // When MenuBarSlotComponent is provided, it fully replaces the built-in controls.
     const historyItems = useMemo(() => {
-      const result = level === LEVEL_MAIN ? _historyItems : undefined;
-      return result;
-    }, [level, _historyItems]);
+      if (level !== LEVEL_MAIN || MenuBarSlotComponent) return undefined;
+      return _historyItems;
+    }, [level, MenuBarSlotComponent, _historyItems]);
 
     const backButtonProps = useMemo(() => {
-      return level === LEVEL_MAIN ? { onClick: goBack } : undefined;
-    }, [level, goBack]);
+      if (level !== LEVEL_MAIN || MenuBarSlotComponent) return undefined;
+      return { onClick: goBack };
+    }, [level, MenuBarSlotComponent, goBack]);
 
     const showBackButton = historyItems ? historyItems.length > 0 : false;
 
     const flyoutMenuProps = {
       ..._flyoutMenuProps,
-      historyItems,
-      showBackButton,
-      backButtonProps,
+      ...(MenuBarSlotComponent && level === LEVEL_MAIN
+        ? { menuBarSlot: <MenuBarSlotComponent /> }
+        : { historyItems, showBackButton, backButtonProps }),
       title,
     };
 

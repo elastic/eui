@@ -123,10 +123,25 @@ export interface FlyoutManagerApi {
   setFlyoutWidth: (flyoutId: string, width: number) => void;
   setPushPadding: (side: 'left' | 'right', width: number) => void;
   setContainerElement: (element: HTMLElement | null) => void;
+  /**
+   * @deprecated Subscribe to `SESSION_START` / `CLOSE_SESSION` / `CHILD_CHANGED` events via
+   * `getFlyoutManagerStore().subscribeToEvents` and maintain your own history state.
+   * Will be removed in a future major version.
+   */
   goBack: () => void;
+  /**
+   * @deprecated Subscribe to `SESSION_START` / `CLOSE_SESSION` / `CHILD_CHANGED` events via
+   * `getFlyoutManagerStore().subscribeToEvents` and maintain your own history state.
+   * Will be removed in a future major version.
+   */
   goToFlyout: (flyoutId: string, level?: EuiFlyoutLevel) => void;
   addUnmanagedFlyout: (flyoutId: string) => void;
   closeUnmanagedFlyout: (flyoutId: string) => void;
+  /**
+   * @deprecated Subscribe to `SESSION_START` / `CLOSE_SESSION` / `CHILD_CHANGED` events via
+   * `getFlyoutManagerStore().subscribeToEvents` and maintain your own history state.
+   * Will be removed in a future major version.
+   */
   historyItems: Array<{
     title: string;
     iconType?: IconType;
