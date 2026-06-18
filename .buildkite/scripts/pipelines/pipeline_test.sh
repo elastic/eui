@@ -112,13 +112,10 @@ case $TEST_TYPE in
 
   pkg:unit)
     echo "[TASK]: Running unit tests for all workspaces except @elastic/eui"
-    # @elastic/eui-test-helpers runs Playwright via its test-unit script and
-    # needs browsers that aren't installed in this image. Belongs in its own step.
     COMMAND="/opt/yarn*/bin/yarn && yarn workspace @elastic/eui build:workspaces && \
       yarn workspaces foreach -A -pi \
         --exclude '@elastic/eui' \
         --exclude '@elastic/eui-monorepo' \
-        --exclude '@elastic/eui-test-helpers' \
         run test-unit"
     ;;
 
