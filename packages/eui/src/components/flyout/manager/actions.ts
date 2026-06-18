@@ -234,9 +234,8 @@ export const setFlyoutWidth = (
  * overrides any pagination passed via `flyoutMenuProps.pagination` on the
  * flyout itself, allowing reactive updates from a different React root.
  *
- * Only works for managed flyouts registered with the store. Calling this for
- * an overlay (unmanaged) flyout is a silent no-op — overlay flyouts must
- * receive pagination via the `flyoutMenuProps.pagination` prop instead.
+ * Only works for managed flyouts. Unmanaged flyouts (session={false}) must use
+ * the `flyoutMenuProps.pagination` prop instead.
  */
 export const setPagination = (
   flyoutId: string,
