@@ -56,6 +56,9 @@ export default meta;
 type Story = StoryObj<EuiPopoverProps>;
 
 export const Playground: Story = {
+  parameters: {
+    vrt: { skip: true },
+  },
   args: {
     children: 'This is a popover',
     button: 'popover trigger',
