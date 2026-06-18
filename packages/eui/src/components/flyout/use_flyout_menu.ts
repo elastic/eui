@@ -47,15 +47,14 @@ export const useEuiFlyoutMenu = ({
   }, [hasMenu, _titleId, generatedMenuId]);
 
   // Determine if the menu has any content
-  // hasBackButton or hasHistory or hasCustomActions or hasVisibleTitle or hasPagination
+  // hasBackButton or hasHistory or hasCustomActions or hasVisibleTitle
   const menuHasContent =
     hasMenu &&
     (!!flyoutMenuProps.showBackButton ||
       (flyoutMenuProps.historyItems?.length ?? 0) > 0 ||
       (flyoutMenuProps.customActions?.length ?? 0) > 0 ||
       // Component defaults to hiding the title, so only explicit false means the title will be visible
-      !!(flyoutMenuProps.title && flyoutMenuProps.hideTitle === false) ||
-      !!(flyoutMenuProps.pagination && flyoutMenuProps.pagination.total > 1));
+      !!(flyoutMenuProps.title && flyoutMenuProps.hideTitle === false));
 
   // Determine if the menu should be rendered based on the display mode and menu content
   const shouldRenderMenu = useMemo(() => {

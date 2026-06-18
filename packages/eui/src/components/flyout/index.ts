@@ -33,7 +33,6 @@ export type {
   EuiFlyoutMenuProps,
   EuiFlyoutHistoryItem,
   EuiFlyoutMenuCustomAction,
-  EuiFlyoutMenuPagination,
 } from './flyout_menu';
 export { EuiFlyoutMenu } from './flyout_menu';
 
