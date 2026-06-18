@@ -76,10 +76,6 @@ export const useCurrentChildFlyout = () => {
 export const useFlyoutWidth = (flyoutId?: string | null) =>
   useFlyout(flyoutId)?.width;
 
-/** Returns the store pagination override for a flyout, if set. */
-export const useFlyoutPagination = (flyoutId?: string | null) =>
-  useFlyout(flyoutId)?.pagination;
-
 /** The configured minWidth (px) of the specified flyout, or `undefined` if not set. */
 export const useFlyoutMinWidth = (flyoutId?: string | null) =>
   useFlyout(flyoutId)?.minWidth;

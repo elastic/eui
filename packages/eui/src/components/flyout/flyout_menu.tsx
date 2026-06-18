@@ -20,10 +20,7 @@ import { CommonProps, PropsForAnchor } from '../common';
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
 import { EuiListGroup, EuiListGroupItem } from '../list_group';
 import { EuiPopover } from '../popover';
-import { EuiScreenReaderLive } from '../accessibility';
-import { EuiText } from '../text';
 import { EuiTitle } from '../title';
-import { EuiToolTip } from '../tool_tip';
 import { EuiFlyoutCloseButton } from './_flyout_close_button';
 import { euiFlyoutMenuStyles } from './flyout_menu.styles';
 import { EuiFlyoutMenuContext } from './flyout_menu_context';
@@ -52,28 +49,6 @@ export interface EuiFlyoutHistoryItem {
    * onClick handler for the history item
    */
   onClick: () => void;
-}
-
-/**
- * Pagination configuration for the flyout menu
- */
-export interface EuiFlyoutMenuPagination {
-  /**
-   * Zero-based index of the currently displayed item
-   */
-  currentIndex: number;
-  /**
-   * Total number of items
-   */
-  total: number;
-  /**
-   * Called when the user clicks the Previous button
-   */
-  onPrevious: () => void;
-  /**
-   * Called when the user clicks the Next button
-   */
-  onNext: () => void;
 }
 
 /**
@@ -149,11 +124,6 @@ export type EuiFlyoutMenuProps = CommonProps &
      * List of custom action items for the menu component
      */
     customActions?: EuiFlyoutMenuCustomAction[];
-    /**
-     * Enables Prev/Next navigation controls and a position counter in the menu bar.
-     * Pagination replaces back/history navigation in the left menu slot.
-     */
-    pagination?: EuiFlyoutMenuPagination;
   };
 
 const BackButton: React.FC<EuiFlyoutMenuBackButtonProps> = (props) => {
@@ -214,87 +184,6 @@ const HistoryPopover: React.FC<{
   );
 };
 
-const PaginationControls: React.FC<{
-  pagination: EuiFlyoutMenuPagination;
-  styles: ReturnType<typeof euiFlyoutMenuStyles>;
-}> = ({ pagination, styles }) => {
-  const { currentIndex, total, onPrevious, onNext } = pagination;
-  const prevLabel = useEuiI18n('euiFlyoutMenu.pagination.previous', 'Previous');
-  const nextLabel = useEuiI18n('euiFlyoutMenu.pagination.next', 'Next');
-
-  const isPrevDisabled = currentIndex === 0;
-  const isNextDisabled = currentIndex === total - 1;
-
-  const prevButton = (
-    <EuiButtonIcon
-      iconType="chevronSingleUp"
-      color="text"
-      size="xs"
-      aria-label={prevLabel}
-      onClick={onPrevious}
-      isDisabled={isPrevDisabled}
-      data-test-subj="euiFlyoutMenuPaginationPrev"
-    />
-  );
-
-  const nextButton = (
-    <EuiButtonIcon
-      iconType="chevronSingleDown"
-      color="text"
-      size="xs"
-      aria-label={nextLabel}
-      onClick={onNext}
-      isDisabled={isNextDisabled}
-      data-test-subj="euiFlyoutMenuPaginationNext"
-    />
-  );
-
-  return (
-    <EuiFlexItem grow={false}>
-      <EuiFlexGroup gutterSize="xs" alignItems="center" responsive={false}>
-        <EuiFlexItem grow={false}>
-          {isPrevDisabled ? (
-            prevButton
-          ) : (
-            <EuiToolTip content={prevLabel} disableScreenReaderOutput>
-              {prevButton}
-            </EuiToolTip>
-          )}
-        </EuiFlexItem>
-        <EuiFlexItem grow={false}>
-          <EuiText
-            size="s"
-            css={styles.euiFlyoutMenu__paginationCounter}
-            aria-hidden="true"
-          >
-            <EuiI18n
-              token="euiFlyoutMenu.pagination.counter"
-              default="{position} of {total}"
-              values={{ position: currentIndex + 1, total }}
-            />
-          </EuiText>
-          <EuiScreenReaderLive>
-            <EuiI18n
-              token="euiFlyoutMenu.pagination.counter"
-              default="{position} of {total}"
-              values={{ position: currentIndex + 1, total }}
-            />
-          </EuiScreenReaderLive>
-        </EuiFlexItem>
-        <EuiFlexItem grow={false}>
-          {isNextDisabled ? (
-            nextButton
-          ) : (
-            <EuiToolTip content={nextLabel} disableScreenReaderOutput>
-              {nextButton}
-            </EuiToolTip>
-          )}
-        </EuiFlexItem>
-      </EuiFlexGroup>
-    </EuiFlexItem>
-  );
-};
-
 /**
  * The component for the top menu bar inside a flyout. Since this is a private
  * component, rendering is controlled using the `flyoutMenuProps` prop on
@@ -315,14 +204,12 @@ export const EuiFlyoutMenu: FunctionComponent<EuiFlyoutMenuProps> = ({
   backButtonProps,
   customActions,
   iconType: _iconType,
-  pagination,
   ...rest
 }) => {
   const { onClose } = useContext(EuiFlyoutMenuContext);
 
   const styles = useEuiMemoizedStyles(euiFlyoutMenuStyles);
   const classes = classNames('euiFlyoutMenu', className);
-  const showPaginationControls = pagination != null && pagination.total > 1;
 
   let titleNode;
   if (title) {
@@ -358,21 +245,16 @@ export const EuiFlyoutMenu: FunctionComponent<EuiFlyoutMenuProps> = ({
         gutterSize="none"
         responsive={false}
       >
-        {showPaginationControls ? (
-          <PaginationControls pagination={pagination} styles={styles} />
-        ) : (
-          <>
-            {showBackButton && (
-              <EuiFlexItem grow={false}>
-                <BackButton {...backButtonProps} />
-              </EuiFlexItem>
-            )}
-            {historyItems.length > 0 && (
-              <EuiFlexItem grow={false}>
-                <HistoryPopover items={historyItems} />
-              </EuiFlexItem>
-            )}
-          </>
+        {showBackButton && (
+          <EuiFlexItem grow={false}>
+            <BackButton {...backButtonProps} />
+          </EuiFlexItem>
+        )}
+
+        {historyItems.length > 0 && (
+          <EuiFlexItem grow={false}>
+            <HistoryPopover items={historyItems} />
+          </EuiFlexItem>
         )}
 
         {titleNode && <EuiFlexItem grow={false}>{titleNode}</EuiFlexItem>}

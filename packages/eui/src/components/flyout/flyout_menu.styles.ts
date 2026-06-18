@@ -35,9 +35,5 @@ export const euiFlyoutMenuStyles = (euiThemeContext: UseEuiTheme) => {
     euiFlyoutMenu__hiddenTitle: css`
       ${euiScreenReaderOnly()}
     `,
-    euiFlyoutMenu__paginationCounter: css`
-      color: ${euiTheme.colors.textSubdued};
-      white-space: nowrap;
-    `,
   };
 };
