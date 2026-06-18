@@ -101,29 +101,22 @@ case $TEST_TYPE in
     COMMAND="/opt/yarn*/bin/yarn --cwd packages/eui && yarn --cwd packages/eui build:workspaces && yarn --cwd packages/eui cypress install && yarn --cwd packages/eui run test-cypress-a11y --node-options=--max_old_space_size=2048"
     ;;
 
-  pkg:eslint-plugin:test)
-    echo "[TASK]: Running @elastic/eslint-plugin-eui unit tests"
-    COMMAND="/opt/yarn*/bin/yarn && yarn workspace @elastic/eslint-plugin-eui test-unit"
+  pkg:lint)
+    echo "[TASK]: Linting all workspaces except @elastic/eui"
+    COMMAND="/opt/yarn*/bin/yarn && yarn workspace @elastic/eui build:workspaces && \
+      yarn workspaces foreach -A -pi \
+        --exclude '@elastic/eui' \
+        --exclude '@elastic/eui-monorepo' \
+        run lint"
     ;;
 
-  pkg:eui-theme-common:lint)
-    echo "[TASK]: Linting @elastic/eui-theme-common"
-    COMMAND="/opt/yarn*/bin/yarn && yarn workspace @elastic/eui-theme-common lint"
-    ;;
-
-  pkg:eui-theme-common:test)
-    echo "[TASK]: Running @elastic/eui-theme-common unit tests"
-    COMMAND="/opt/yarn*/bin/yarn && yarn workspace @elastic/eui-theme-common test-unit"
-    ;;
-
-  pkg:eui-theme-borealis:lint)
-    echo "[TASK]: Linting @elastic/eui-theme-borealis"
-    COMMAND="/opt/yarn*/bin/yarn && yarn workspace @elastic/eui-theme-borealis build:workspaces && yarn workspace @elastic/eui-theme-borealis lint"
-    ;;
-
-  pkg:eui-theme-borealis:test)
-    echo "[TASK]: Running @elastic/eui-theme-borealis unit tests"
-    COMMAND="/opt/yarn*/bin/yarn && yarn workspace @elastic/eui-theme-borealis build:workspaces && yarn workspace @elastic/eui-theme-borealis test-unit"
+  pkg:unit)
+    echo "[TASK]: Running unit tests for all workspaces except @elastic/eui"
+    COMMAND="/opt/yarn*/bin/yarn && yarn workspace @elastic/eui build:workspaces && \
+      yarn workspaces foreach -A -pi \
+        --exclude '@elastic/eui' \
+        --exclude '@elastic/eui-monorepo' \
+        run test-unit"
     ;;
 
   *)

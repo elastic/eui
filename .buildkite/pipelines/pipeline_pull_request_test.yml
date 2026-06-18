@@ -79,36 +79,15 @@ steps:
     retry: *retry_policy
 
   - command: .buildkite/scripts/pipelines/pipeline_test.sh
-    label: ":jest: eslint-plugin unit tests"
+    label: ":typescript: Workspace linting"
     env:
-      TEST_TYPE: 'pkg:eslint-plugin:test'
+      TEST_TYPE: 'pkg:lint'
     if: build.branch != "main"
     retry: *retry_policy
 
   - command: .buildkite/scripts/pipelines/pipeline_test.sh
-    label: ":typescript: eui-theme-common linting"
+    label: ":jest: Workspace unit tests"
     env:
-      TEST_TYPE: 'pkg:eui-theme-common:lint'
-    if: build.branch != "main"
-    retry: *retry_policy
-
-  - command: .buildkite/scripts/pipelines/pipeline_test.sh
-    label: ":jest: eui-theme-common unit tests"
-    env:
-      TEST_TYPE: 'pkg:eui-theme-common:test'
-    if: build.branch != "main"
-    retry: *retry_policy
-
-  - command: .buildkite/scripts/pipelines/pipeline_test.sh
-    label: ":typescript: eui-theme-borealis linting"
-    env:
-      TEST_TYPE: 'pkg:eui-theme-borealis:lint'
-    if: build.branch != "main"
-    retry: *retry_policy
-
-  - command: .buildkite/scripts/pipelines/pipeline_test.sh
-    label: ":jest: eui-theme-borealis unit tests"
-    env:
-      TEST_TYPE: 'pkg:eui-theme-borealis:test'
+      TEST_TYPE: 'pkg:unit'
     if: build.branch != "main"
     retry: *retry_policy
