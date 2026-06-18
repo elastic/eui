@@ -157,4 +157,9 @@ When VRT finds new stories without baselines, or when the team approves visual c
 
 If VRT itself is broken and blocking merges, add the `skip-vrt` label to the GitHub PR. The VRT step will detect the label, exit without running any tests and the notify comment will clearly state that VRT was skipped.
 
-Remove the label once the underlying issue is resolved.
+The label is captured at build-trigger time. To affect an existing build, trigger a fresh one:
+
+- Comment `buildkite test it` on the PR
+- Push any new commit
+- Close and reopen the PR
+- Buildkite UI: click **New Build** (not "Rebuild", which reuses the original env)
