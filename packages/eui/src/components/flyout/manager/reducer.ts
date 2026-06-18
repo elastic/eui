@@ -13,7 +13,6 @@ import {
   ACTION_SET_ACTIVE,
   ACTION_SET_LAYOUT_MODE,
   ACTION_SET_WIDTH,
-  ACTION_SET_PAGINATION,
   ACTION_SET_ACTIVITY_STAGE,
   ACTION_GO_BACK,
   ACTION_GO_TO_FLYOUT,
@@ -383,22 +382,6 @@ export function flyoutManagerReducer(
       const { flyoutId, width } = action;
       const updatedFlyouts = state.flyouts.map((flyout) =>
         flyout.flyoutId === flyoutId ? { ...flyout, width } : flyout
-      );
-      return { ...state, flyouts: updatedFlyouts };
-    }
-
-    // Update a flyout's menu pagination. No-op if unchanged or missing.
-    case ACTION_SET_PAGINATION: {
-      const { flyoutId, pagination } = action;
-      const target = state.flyouts.find((f) => f.flyoutId === flyoutId);
-      if (!target) {
-        return state;
-      }
-      if (target.pagination === pagination) {
-        return state;
-      }
-      const updatedFlyouts = state.flyouts.map((flyout) =>
-        flyout.flyoutId === flyoutId ? { ...flyout, pagination } : flyout
       );
       return { ...state, flyouts: updatedFlyouts };
     }
