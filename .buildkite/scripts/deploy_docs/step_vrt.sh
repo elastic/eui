@@ -34,7 +34,11 @@ export GH_TOKEN="${VAULT_GITHUB_TOKEN}"
 #            Skip check (`skip-vrt` PR label)              #
 ############################################################
 
-if [[ ",${GITHUB_PR_LABELS:-}," == *",skip-vrt,"* ]]; then
+# Builds can be triggered by either Buildkite's native GitHub App (sets
+# BUILDKITE_PULL_REQUEST_LABELS) or buildkite-pr-bot (sets GITHUB_PR_LABELS).
+# Only one is populated per build, so check both.
+pr_labels=",${BUILDKITE_PULL_REQUEST_LABELS:-},${GITHUB_PR_LABELS:-},"
+if [[ "${pr_labels}" == *",skip-vrt,"* ]]; then
   echo "PR #${BUILDKITE_PULL_REQUEST} has 'skip-vrt' label - skipping visual regression tests"
   buildkite-agent meta-data set vrt_passed "skipped"
   exit 0
