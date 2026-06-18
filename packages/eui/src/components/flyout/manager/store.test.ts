@@ -532,6 +532,48 @@ describe('Flyout Manager Store', () => {
     });
   });
 
+  describe('setPagination', () => {
+    const pagination = {
+      currentIndex: 0,
+      total: 3,
+      onPrevious: () => {},
+      onNext: () => {},
+    };
+
+    it('updates the pagination on a registered flyout and notifies subscribers', () => {
+      const store = getFlyoutManagerStore();
+      const listener = jest.fn();
+
+      store.addFlyout('flyout-1', 'Flyout 1', LEVEL_MAIN);
+      const unsubscribe = store.subscribe(listener);
+
+      store.setPagination('flyout-1', pagination);
+
+      expect(listener).toHaveBeenCalledTimes(1);
+      const flyout = store
+        .getState()
+        .flyouts.find((f) => f.flyoutId === 'flyout-1');
+      expect(flyout?.pagination).toBe(pagination);
+
+      unsubscribe();
+    });
+
+    it('does not notify when the value is unchanged (referentially)', () => {
+      const store = getFlyoutManagerStore();
+
+      store.addFlyout('flyout-1', 'Flyout 1', LEVEL_MAIN);
+      store.setPagination('flyout-1', pagination);
+
+      const listener = jest.fn();
+      const unsubscribe = store.subscribe(listener);
+
+      store.setPagination('flyout-1', pagination);
+
+      expect(listener).not.toHaveBeenCalled();
+      unsubscribe();
+    });
+  });
+
   describe('goBack close meta', () => {
     it('stamps flyouts removed by goBack with navigation-back (consumed once)', () => {
       const store = getFlyoutManagerStore();

@@ -37,7 +37,11 @@ import {
 } from './const';
 import { EuiFlyoutIsManagedProvider } from './context';
 import { euiManagedFlyoutStyles } from './flyout_managed.styles';
-import { useFlyoutManager as _useFlyoutManager, useFlyoutId } from './hooks';
+import {
+  useFlyoutManager as _useFlyoutManager,
+  useFlyoutId,
+  useFlyoutPagination,
+} from './hooks';
 import { useIsFlyoutRegistered } from './selectors';
 import { getFlyoutManagerStore } from './store';
 import type { EuiFlyoutLevel } from './types';
@@ -348,12 +352,30 @@ export const EuiManagedFlyout = forwardRef<HTMLElement, EuiManagedFlyoutProps>(
 
     const showBackButton = historyItems ? historyItems.length > 0 : false;
 
+    // When the store has a defined pagination value it takes precedence; the
+    // prop acts as a fallback for callers that don't use the cross-root store.
+    // Using both simultaneously is not supported and will log a warning in dev.
+    const storePagination = useFlyoutPagination(flyoutId);
+    const propPagination = _flyoutMenuProps?.pagination;
+
+    if (storePagination != null && propPagination != null) {
+      console.warn(
+        `flyout-pagination-dual-source-${flyoutId}`,
+        `[EuiFlyoutManager] flyout "${flyoutId}" has pagination set both via the store (setPagination) ` +
+          'and via flyoutMenuProps.pagination. The store value will be used. Remove one source to avoid confusion.'
+      );
+    }
+
+    const pagination = storePagination ?? propPagination;
+    const showPaginationControls = pagination != null && pagination.total > 1;
+
     const flyoutMenuProps = {
       ..._flyoutMenuProps,
-      historyItems,
-      showBackButton,
+      historyItems: showPaginationControls ? [] : historyItems,
+      showBackButton: showPaginationControls ? false : showBackButton,
       backButtonProps,
       title,
+      pagination,
     };
 
     return (

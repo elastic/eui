@@ -7,6 +7,7 @@
  */
 
 import type { IconType } from '../../icon';
+import type { EuiFlyoutMenuPagination } from '../flyout_menu';
 import type { EuiFlyoutCloseMeta } from '../types';
 import type {
   EuiFlyoutLevel,
@@ -20,6 +21,7 @@ import {
   closeAllFlyouts as closeAllFlyoutsAction,
   setActiveFlyout as setActiveFlyoutAction,
   setFlyoutWidth as setFlyoutWidthAction,
+  setPagination as setPaginationAction,
   setPushPadding as setPushPaddingAction,
   goBack as goBackAction,
   goToFlyout as goToFlyoutAction,
@@ -60,6 +62,10 @@ export interface FlyoutManagerStore {
   closeAllFlyouts: () => void;
   setActiveFlyout: (flyoutId: string | null) => void;
   setFlyoutWidth: (flyoutId: string, width: number) => void;
+  setPagination: (
+    flyoutId: string,
+    pagination: EuiFlyoutMenuPagination | undefined
+  ) => void;
   setPushPadding: (side: 'left' | 'right', width: number) => void;
   setContainerElement: (element: HTMLElement | null) => void;
   goBack: () => void;
@@ -257,6 +263,8 @@ function createStore(
     setActiveFlyout: (flyoutId) => dispatch(setActiveFlyoutAction(flyoutId)),
     setFlyoutWidth: (flyoutId, width) =>
       dispatch(setFlyoutWidthAction(flyoutId, width)),
+    setPagination: (flyoutId, pagination) =>
+      dispatch(setPaginationAction(flyoutId, pagination)),
     setPushPadding: (side, width) =>
       dispatch(setPushPaddingAction(side, width)),
     setContainerElement: (element) =>
