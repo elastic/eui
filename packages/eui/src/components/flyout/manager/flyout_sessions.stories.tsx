@@ -7,6 +7,7 @@
  */
 
 import { action } from '@storybook/addon-actions';
+import type { EuiFlyoutCloseMeta } from '../types';
 import { Meta, StoryObj } from '@storybook/react';
 import React, {
   useCallback,
@@ -96,7 +97,7 @@ const SessionChildFlyout: React.FC<{
   flyoutTitle: string;
   size: 's' | 'm' | 'fill';
   maxWidth?: number;
-  onClose: () => void;
+  onClose: (event: unknown, meta?: EuiFlyoutCloseMeta) => void;
   onActive: () => void;
   children: React.ReactNode;
 }> = ({ id, flyoutTitle, size, maxWidth, onClose, onActive, children }) => (
@@ -168,20 +169,35 @@ const FlyoutSession: React.FC<FlyoutSessionProps> = (props) => {
     [title]
   );
 
-  const mainFlyoutOnClose = useCallback(() => {
-    action('close main flyout')(title);
-    setIsFlyoutVisible(false);
-  }, [title]);
+  const mainFlyoutOnClose = useCallback(
+    (_: unknown, meta?: EuiFlyoutCloseMeta) => {
+      action('close main flyout')(
+        `${title} (reason: ${meta?.reason ?? 'n/a'})`
+      );
+      setIsFlyoutVisible(false);
+    },
+    [title]
+  );
 
-  const child1FlyoutOnClose = useCallback(() => {
-    action('close child flyout')(`${title} - Child 1`);
-    setIsChild1FlyoutVisible(false);
-  }, [title]);
+  const child1FlyoutOnClose = useCallback(
+    (_: unknown, meta?: EuiFlyoutCloseMeta) => {
+      action('close child flyout')(
+        `${title} - Child 1 (reason: ${meta?.reason ?? 'n/a'})`
+      );
+      setIsChild1FlyoutVisible(false);
+    },
+    [title]
+  );
 
-  const child2FlyoutOnClose = useCallback(() => {
-    action('close child flyout')(`${title} - Child 2`);
-    setIsChild2FlyoutVisible(false);
-  }, [title]);
+  const child2FlyoutOnClose = useCallback(
+    (_: unknown, meta?: EuiFlyoutCloseMeta) => {
+      action('close child flyout')(
+        `${title} - Child 2 (reason: ${meta?.reason ?? 'n/a'})`
+      );
+      setIsChild2FlyoutVisible(false);
+    },
+    [title]
+  );
 
   return (
     <>
@@ -359,8 +375,8 @@ const NonSessionFlyout: React.FC<{ size: string }> = ({ size }) => {
     setIsFlyoutVisible(true);
   };
 
-  const flyoutOnClose = useCallback(() => {
-    action('close non-session flyout')();
+  const flyoutOnClose = useCallback((_: unknown, meta?: EuiFlyoutCloseMeta) => {
+    action('close non-session flyout')(`reason: ${meta?.reason ?? 'n/a'}`);
     setIsFlyoutVisible(false);
   }, []);
 

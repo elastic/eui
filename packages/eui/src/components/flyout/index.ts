@@ -9,6 +9,12 @@
 export type { EuiFlyoutProps, EuiFlyoutSize } from './flyout';
 export { EuiFlyout } from './flyout';
 
+export type {
+  EuiFlyoutCloseEvent,
+  EuiFlyoutCloseReason,
+  EuiFlyoutCloseMeta,
+} from './types';
+
 export type { EuiFlyoutBodyProps } from './flyout_body';
 export { EuiFlyoutBody } from './flyout_body';
 
