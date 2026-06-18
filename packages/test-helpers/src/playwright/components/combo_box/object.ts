@@ -160,11 +160,12 @@ export class EuiComboBoxObject extends BaseObject {
     // Clicking the outer wrapper does not reliably open the dropdown; the
     // inner `comboBoxInput` element does.
     await this.input.click();
-    // fill() atomically clears and sets the value — avoids issues with
-    // React re-renders resetting cursor position mid-typing (e.g. in
-    // asPlainText mode where the input already shows a selected label).
-    await this.searchInput.fill(label);
 
+    // Don't type to filter: EUI only sets an option's `title` while the input
+    // is empty, and the getByTitle match below relies on it. setSelectedOptions
+    // clears the selection first, so the list is unfiltered and every option
+    // renders its title.
+    //
     // Options list is rendered in a portal outside `this.root`, so locate
     // from page level. Use .and(getByTitle) rather than embedding the label
     // in the CSS string — CSS attribute selectors break on labels containing
