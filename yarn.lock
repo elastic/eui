@@ -7133,6 +7133,14 @@ __metadata:
 "@elastic/eui-test-helpers@workspace:packages/test-helpers":
   version: 0.0.0-use.local
   resolution: "@elastic/eui-test-helpers@workspace:packages/test-helpers"
+  dependencies:
+    "@playwright/test": "npm:1.59.1"
+    typescript: "npm:^5.7.3"
+  peerDependencies:
+    "@playwright/test": ^1.50.0
+  peerDependenciesMeta:
+    "@playwright/test":
+      optional: true
   languageName: unknown
   linkType: soft
 
@@ -8974,7 +8982,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@playwright/test@npm:^1.44.0":
+"@playwright/test@npm:1.59.1, @playwright/test@npm:^1.44.0":
   version: 1.59.1
   resolution: "@playwright/test@npm:1.59.1"
   dependencies:

@@ -83,6 +83,53 @@ export const Playground: Story = {
   render: (args) => <StatefulComboBox {...args} />,
 };
 
+export const MultipleInstances: Story = {
+  tags: ['vrt-only'],
+  parameters: { loki: { skip: true } },
+  render: () => (
+    <>
+      <StatefulComboBox data-test-subj="combo1" options={options} />
+      <StatefulComboBox data-test-subj="combo2" options={options} />
+    </>
+  ),
+};
+
+/**
+ * Used by `@elastic/eui-test-helpers` validation tests to verify
+ * `EuiComboBoxObject` in `singleSelection={{ asPlainText: true }}` mode.
+ * A dedicated story is required because Storybook coerces the URL arg
+ * `singleSelection:asPlainText` to boolean `true` (pill mode), making
+ * proper asPlainText testing impossible via URL args alone.
+ */
+export const AsPlainText: Story = {
+  tags: ['vrt-only'],
+  parameters: { loki: { skip: true } },
+  args: {
+    isClearable: true,
+    selectedOptions: [],
+  },
+  render: ({ isClearable, onCreateOption }) => (
+    <AsPlainTextStatefulWrapper
+      isClearable={isClearable}
+      onCreateOption={onCreateOption}
+    />
+  ),
+};
+
+/**
+ * Used by `@elastic/eui-test-helpers` validation tests to verify that
+ * `clear()` and `setSelectedOptions()` work when the selection contains
+ * options created via `onCreateOption` (not present in the `options` array).
+ */
+export const WithOnCreateOption: Story = {
+  tags: ['vrt-only'],
+  parameters: { loki: { skip: true } },
+  args: {
+    selectedOptions: [],
+  },
+  render: (args) => <StatefulComboBox {...args} onCreateOption={() => {}} />,
+};
+
 export const WithCustomOptionIds: Story = {
   parameters: {
     controls: {
@@ -389,6 +436,32 @@ const StatefulComboBox = ({
       selectedOptions={selectedOptions}
       onChange={handleOnChange}
       onCreateOption={onCreateOption ? _onCreateOption : undefined}
+    />
+  );
+};
+
+const AsPlainTextStatefulWrapper = ({
+  isClearable,
+  onCreateOption,
+}: Pick<EuiComboBoxProps<{}>, 'isClearable' | 'onCreateOption'>) => {
+  const [selectedOptions, setSelectedOptions] = useState(
+    [] as NonNullable<EuiComboBoxProps<{}>['selectedOptions']>
+  );
+  const _onCreateOption: EuiComboBoxProps<{}>['onCreateOption'] = (
+    searchValue
+  ) => {
+    setSelectedOptions([{ label: searchValue }]);
+  };
+  return (
+    <EuiComboBox
+      singleSelection={{ asPlainText: true }}
+      options={options}
+      selectedOptions={selectedOptions}
+      onChange={(opts) => setSelectedOptions(opts)}
+      onCreateOption={onCreateOption ? _onCreateOption : undefined}
+      isClearable={isClearable}
+      aria-label="Select an item"
+      data-test-subj="testComboBox"
     />
   );
 };
