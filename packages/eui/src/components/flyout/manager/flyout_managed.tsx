@@ -358,7 +358,11 @@ export const EuiManagedFlyout = forwardRef<HTMLElement, EuiManagedFlyoutProps>(
     const storePagination = useFlyoutPagination(flyoutId);
     const propPagination = _flyoutMenuProps?.pagination;
 
-    if (storePagination != null && propPagination != null) {
+    if (
+      process.env.NODE_ENV === 'development' &&
+      storePagination != null &&
+      propPagination != null
+    ) {
       console.warn(
         `flyout-pagination-dual-source-${flyoutId}`,
         `[EuiFlyoutManager] flyout "${flyoutId}" has pagination set both via the store (setPagination) ` +
