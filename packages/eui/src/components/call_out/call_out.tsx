@@ -26,6 +26,7 @@ import {
   type EuiNotificationIconType,
 } from '../notification_icon/notification_icon';
 
+import { useLayoutObserver } from './use_layout_observer';
 import {
   EuiCallOutAction,
   EuiCallOutActionPrimaryProps,
@@ -132,6 +133,11 @@ export const EuiCallOut = forwardRef<HTMLDivElement, EuiCallOutProps>(
   ) => {
     const { euiTheme } = useEuiTheme();
     const color = getCallOutColor(_color);
+
+    /* Uses resize observer to determine the container width/layout instead of native container queries,
+    because callouts can be placed in containers without defined size (absolute positioned, no-grow flex layout etc.)
+    where container queries would collapse by design instead of adjusting to the content dimensions. */
+    const panelRef = useLayoutObserver(size, ref);
 
     const borderColors = useEuiBorderColorCSS();
     const styles = useEuiMemoizedStyles(euiCallOutStyles);
@@ -307,7 +313,7 @@ export const EuiCallOut = forwardRef<HTMLDivElement, EuiCallOutProps>(
         // uses custom padding
         paddingSize="none"
         className={classes}
-        panelRef={ref}
+        panelRef={panelRef}
         grow={false}
         style={{ ...cssVariables, ...style }}
         data-size={size}
