@@ -7,21 +7,31 @@
  */
 
 import React from 'react';
+import classNames from 'classnames';
 
-import { ExclusiveUnion } from '../common';
+import { DataAttributeProps, ExclusiveUnion } from '../common';
 import { EuiButton, EuiButtonEmpty, EuiButtonEmptyProps } from '../button';
 import { Props as EuiButtonProps } from '../button/button';
+import { withEuiPopover, WithEuiPopoverProps } from '../popover';
+import { withEuiToolTip, WithEuiToolTipProps } from '../tool_tip';
 import { EuiCallOutColor } from './types';
+
+type EuiCallOutActionCommonProps = DataAttributeProps & {
+  tooltipProps?: WithEuiToolTipProps;
+  popoverProps?: WithEuiPopoverProps;
+};
 
 export type EuiCallOutActionPrimaryProps = Omit<
   EuiButtonProps,
   'color' | 'size' | 'fill'
->;
+> &
+  EuiCallOutActionCommonProps;
 
 export type EuiCallOutActionSecondaryProps = Omit<
   EuiButtonEmptyProps,
   'color' | 'size' | 'flush'
->;
+> &
+  EuiCallOutActionCommonProps;
 
 type EuiCallOutActionPrimary = EuiCallOutActionPrimaryProps & {
   actionType: 'primary';
@@ -40,21 +50,40 @@ export const EuiCallOutAction = ({
   children,
   actionType = 'primary',
   color = 'primary',
+  tooltipProps,
+  popoverProps,
+  className,
   ...rest
 }: EuiCallOutActionProps & {
   color?: EuiCallOutColor;
 }) => {
+  const classes = classNames('euiCallOutAction', className);
+
   if (actionType === 'primary') {
-    return (
-      <EuiButton size="s" color={color} {...(rest as EuiButtonProps)}>
+    const button = (
+      <EuiButton
+        className={classes}
+        size="s"
+        color={color}
+        {...(rest as EuiButtonProps)}
+      >
         {children}
       </EuiButton>
     );
+
+    return withEuiPopover(withEuiToolTip(button, tooltipProps), popoverProps);
   } else {
-    return (
-      <EuiButtonEmpty size="s" color={color} {...(rest as EuiButtonEmptyProps)}>
+    const button = (
+      <EuiButtonEmpty
+        className={classes}
+        size="s"
+        color={color}
+        {...(rest as EuiButtonEmptyProps)}
+      >
         {children}
       </EuiButtonEmpty>
     );
+
+    return withEuiPopover(withEuiToolTip(button, tooltipProps), popoverProps);
   }
 };

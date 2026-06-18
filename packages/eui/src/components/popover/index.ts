@@ -16,3 +16,4 @@ export type { EuiPopoverFooterProps } from './popover_footer';
 export { EuiPopoverFooter } from './popover_footer';
 export type { EuiWrappingPopoverProps } from './wrapping_popover';
 export { EuiWrappingPopover } from './wrapping_popover';
+export { withEuiPopover, type WithEuiPopoverProps } from './with_popover';
