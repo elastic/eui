@@ -69,7 +69,6 @@ jobs:
           PR_TITLE: ${{ inputs.pr_title }}
           PR_BODY: ${{ inputs.pr_body }}
           PR_DRAFT: ${{ inputs.pr_draft }}
-          PR_LABELS: ${{ inputs.pr_labels }}
         # language=bash
         run: |
           set -euo pipefail
@@ -119,14 +118,27 @@ jobs:
             exit 1
           fi
 
-          # Add labels to the PR
-          if [[ -n "${PR_LABELS:-}" ]]; then
-            gh pr edit "$pr_number" -R "$base_repo" --add-label "$PR_LABELS"
-          fi
-
           echo "pr_url=$pr_url" >> "$GITHUB_OUTPUT"
+
           {
             echo "### Pull request created"
             echo ""
             echo "$pr_url"
           } >> "$GITHUB_STEP_SUMMARY"
+  post_open_pr:
+    name: Post open PR
+    runs-on: ubuntu-slim
+    # This job needs to be delayed so that GitHub can process the PR creation internally
+    environment: delayed-1m
+    needs: [open_pr]
+    steps:
+      - name: Add labels
+        env:
+          GH_TOKEN: ${{ steps.ephemeral_token.outputs.token }}
+          PR_LABELS: ${{ inputs.pr_labels }}
+          PR_URL: ${{ needs.open_pr.outputs.pr_url }}
+        # language=bash
+        run: |
+          if [[ -n "${PR_LABELS:-}" ]]; then
+            gh pr edit "$PR_URL" --add-label "$PR_LABELS"
+          fi
