@@ -1,0 +1,64 @@
+#### Pagination
+
+Pass a `pagination` object to `flyoutMenuProps` to render Prev/Next navigation controls and a position counter in the flyout menu bar. This is useful when the flyout displays one item from an ordered list (e.g. a data table or search results) and the user should be able to step through items without closing the flyout.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiFlyout,
+  EuiFlyoutBody,
+  EuiFlyoutHeader,
+  EuiButton,
+  EuiText,
+  EuiTitle,
+} from '@elastic/eui';
+
+const ITEMS = [
+  { title: 'Item 1', body: 'Details for item 1.' },
+  { title: 'Item 2', body: 'Details for item 2.' },
+  { title: 'Item 3', body: 'Details for item 3.' },
+  { title: 'Item 4', body: 'Details for item 4.' },
+  { title: 'Item 5', body: 'Details for item 5.' },
+];
+
+export default () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const item = ITEMS[currentIndex];
+
+  return (
+    <>
+      <EuiButton onClick={() => setIsOpen(true)} disabled={isOpen}>
+        Open flyout
+      </EuiButton>
+
+      {isOpen && (
+        <EuiFlyout
+          onClose={() => setIsOpen(false)}
+          aria-label="Item details"
+          flyoutMenuProps={{
+            pagination: {
+              currentIndex,
+              total: ITEMS.length,
+              onPrevious: () => setCurrentIndex((i) => Math.max(0, i - 1)),
+              onNext: () =>
+                setCurrentIndex((i) => Math.min(ITEMS.length - 1, i + 1)),
+            },
+          }}
+        >
+          <EuiFlyoutHeader hasBorder>
+            <EuiTitle size="m">
+              <h2>{item.title}</h2>
+            </EuiTitle>
+          </EuiFlyoutHeader>
+          <EuiFlyoutBody>
+            <EuiText>
+              <p>{item.body}</p>
+            </EuiText>
+          </EuiFlyoutBody>
+        </EuiFlyout>
+      )}
+    </>
+  );
+};
