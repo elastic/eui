@@ -28,6 +28,9 @@ on:
         description: PR body
         required: true
         type: string
+      source_pr_number:
+        description: Source PR number that triggered this workflow
+        type: number
   workflow_call:
     inputs:
       dependencies:
@@ -143,12 +146,14 @@ jobs:
           PR_TITLE: ${{ inputs.pr_title }}
           PR_BODY: ${{ inputs.pr_body }}
           BRANCH_NAME: ${{ steps.git_branch.outputs.BRANCH_NAME }}
+          SOURCE_PR_NUMBER: ${{ inputs.source_pr_number }}
         # language=bash
         run: |
           workflow_url=$(gh workflow run update_kibana_dependencies__open_pr.yml \
             -f pr_title="$PR_TITLE" \
             -f pr_body="$PR_BODY" \
-            -f pr_head="$BRANCH_NAME")
+            -f pr_head="$BRANCH_NAME" \
+            -f source_pr_number="$SOURCE_PR_NUMBER")
 
           {
             echo "### Success :rocket:"
