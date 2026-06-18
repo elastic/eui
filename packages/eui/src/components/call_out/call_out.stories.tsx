@@ -17,14 +17,27 @@ import {
 import { LOKI_SELECTORS } from '../../../.storybook/loki';
 import { EuiButton } from '../button';
 import { EuiCallOut, EuiCallOutProps } from './call_out';
-import { EuiFlexGroup } from '../flex';
+import { EuiFlexGroup, EuiFlexItem } from '../flex';
 import { EuiSpacer } from '../spacer';
 import { EuiText } from '../text';
+import { EuiPanel } from '../panel';
+import { EuiPopover } from '../popover';
+import { EuiTitle } from '../title';
 
 const title = 'Callout title';
 const text = 'A short callout text';
 const textLong =
   'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.';
+const defaultActionProps = {
+  primary: {
+    children: 'Primary action',
+    onClick: action('primary onClick'),
+  },
+  secondary: {
+    children: 'Secondary action',
+    onClick: action('secondary onClick'),
+  },
+};
 
 const meta: Meta<EuiCallOutProps> = {
   title: 'Display/EuiCallOut',
@@ -88,16 +101,7 @@ export const WithActions: Story = {
   args: {
     title,
     text,
-    actionProps: {
-      primary: {
-        children: 'Primary action',
-        onClick: action('primary onClick'),
-      },
-      secondary: {
-        children: 'Secondary action',
-        onClick: action('secondary onClick'),
-      },
-    },
+    actionProps: defaultActionProps,
   },
 };
 
@@ -362,6 +366,106 @@ export const KitchenSinkCustomChildren: Story = {
         <br />
         <EuiCallOut {..._args} text="" />
       </>
+    );
+  },
+};
+
+export const WrapperKitchenSink: Story = {
+  tags: ['vrt-only'],
+  render: function Render() {
+    return (
+      <div>
+        <EuiTitle size="s">
+          <p>within EuiPanel</p>
+        </EuiTitle>
+
+        <EuiPanel>
+          <EuiCallOut
+            title={title}
+            text={textLong}
+            actionProps={defaultActionProps}
+          />
+        </EuiPanel>
+
+        <EuiSpacer size="xxl" />
+
+        <EuiTitle size="s">
+          <p>within EuiPopover</p>
+        </EuiTitle>
+
+        <EuiPopover
+          button={<EuiButton>Show popover</EuiButton>}
+          isOpen
+          anchorPosition="downCenter"
+          closePopover={() => {}}
+          aria-label="Popover containing a CallOut"
+        >
+          <EuiCallOut
+            title={title}
+            text={textLong}
+            actionProps={defaultActionProps}
+          />
+          <p>{textLong}</p>
+        </EuiPopover>
+
+        <div style={{ height: 250 }} />
+
+        <EuiPopover
+          button={<EuiButton>Show popover</EuiButton>}
+          isOpen
+          anchorPosition="downCenter"
+          closePopover={() => {}}
+          aria-label="Popover containing a CallOut"
+        >
+          <EuiCallOut
+            title={title}
+            text={textLong}
+            actionProps={defaultActionProps}
+          />
+        </EuiPopover>
+
+        <div style={{ height: 250 }} />
+
+        <EuiTitle size="s">
+          <p>within EuiFlexGroup</p>
+        </EuiTitle>
+
+        <EuiFlexGroup>
+          <EuiFlexItem grow={false}>
+            <EuiCallOut
+              title={title}
+              text={textLong}
+              actionProps={defaultActionProps}
+            />
+          </EuiFlexItem>
+          <EuiFlexItem grow={false}>
+            <EuiCallOut
+              title={title}
+              text={textLong}
+              actionProps={defaultActionProps}
+            />
+          </EuiFlexItem>
+        </EuiFlexGroup>
+
+        <EuiSpacer size="xxl" />
+
+        <EuiFlexGroup>
+          <EuiFlexItem>
+            <EuiCallOut
+              title={title}
+              text={textLong}
+              actionProps={defaultActionProps}
+            />
+          </EuiFlexItem>
+          <EuiFlexItem>
+            <EuiCallOut
+              title={title}
+              text={textLong}
+              actionProps={defaultActionProps}
+            />
+          </EuiFlexItem>
+        </EuiFlexGroup>
+      </div>
     );
   },
 };
