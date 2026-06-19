@@ -85,7 +85,7 @@ export const Playground: Story = {
 
 export const MultipleInstances: Story = {
   tags: ['vrt-only'],
-  parameters: { loki: { skip: true } },
+  parameters: { vrt: { skip: true } },
   render: () => (
     <>
       <StatefulComboBox data-test-subj="combo1" options={options} />
@@ -103,7 +103,7 @@ export const MultipleInstances: Story = {
  */
 export const AsPlainText: Story = {
   tags: ['vrt-only'],
-  parameters: { loki: { skip: true } },
+  parameters: { vrt: { skip: true } },
   args: {
     isClearable: true,
     selectedOptions: [],
@@ -123,7 +123,7 @@ export const AsPlainText: Story = {
  */
 export const WithOnCreateOption: Story = {
   tags: ['vrt-only'],
-  parameters: { loki: { skip: true } },
+  parameters: { vrt: { skip: true } },
   args: {
     selectedOptions: [],
   },
