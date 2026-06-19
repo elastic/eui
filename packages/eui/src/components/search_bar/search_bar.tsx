@@ -11,6 +11,7 @@ import React, { Component, ReactElement } from 'react';
 import { RenderWithEuiTheme, htmlIdGenerator } from '../../services';
 import { isString } from '../../services/predicate';
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
+import { EuiToolTip } from '../tool_tip';
 import { EuiSearchBox } from './search_box';
 import { EuiSearchBarFilters, SearchFilterConfig } from './search_filters';
 import { Query } from './query';
@@ -282,6 +283,28 @@ export class EuiSearchBar extends Component<EuiSearchBarProps, State> {
 
     const isHintVisible = hint?.popoverProps?.isOpen ?? isHintVisibleState;
 
+    const searchBox = (
+      <EuiSearchBox
+        {...box}
+        query={queryText}
+        onSearch={this.onSearch}
+        isInvalid={error != null}
+        aria-describedby={isHintVisible ? `${this.hintId}` : undefined}
+        hint={
+          hint
+            ? {
+                isVisible: isHintVisible,
+                setIsVisible: (isVisible: boolean) => {
+                  this.setState({ isHintVisible: isVisible });
+                },
+                id: this.hintId,
+                ...hint,
+              }
+            : undefined
+        }
+      />
+    );
+
     return (
       <RenderWithEuiTheme>
         {(euiTheme) => (
@@ -292,26 +315,9 @@ export class EuiSearchBar extends Component<EuiSearchBarProps, State> {
               css={euiSearchBar__searchHolder(euiTheme)}
               grow={true}
             >
-              <EuiSearchBox
-                {...box}
-                query={queryText}
-                onSearch={this.onSearch}
-                isInvalid={error != null}
-                title={error ? error.message : undefined}
-                aria-describedby={isHintVisible ? `${this.hintId}` : undefined}
-                hint={
-                  hint
-                    ? {
-                        isVisible: isHintVisible,
-                        setIsVisible: (isVisible: boolean) => {
-                          this.setState({ isHintVisible: isVisible });
-                        },
-                        id: this.hintId,
-                        ...hint,
-                      }
-                    : undefined
-                }
-              />
+              <EuiToolTip content={error?.message} display="block">
+                {searchBox}
+              </EuiToolTip>
             </EuiFlexItem>
             {filters && (
               <EuiFlexItem

@@ -10,9 +10,10 @@ A general knowledge of writing CSS is enough in most cases, but there are some J
 import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../services';
 
+// Always start the object with the first key being the name of the component
 export const euiComponentNameStyles = ({ euiTheme }: UseEuiTheme) => {
   return {
-    euiComponentName: css` // Always start the object with the first key being the name of the component
+    euiComponentName: css`
       color: ${euiTheme.colors.textPrimary};
     `,
   };

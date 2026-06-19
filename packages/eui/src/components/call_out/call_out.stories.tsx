@@ -42,7 +42,8 @@ export const AnnounceOnMount: Story = {
     controls: {
       include: ['children', 'announceOnMount'],
     },
-    loki: {
+    vrt: {
+      // Toggle interaction needed to render the callout, not a visual state
       skip: true,
     },
   },
@@ -72,7 +73,8 @@ export const OnDismiss: Story = {
     controls: {
       include: ['children', 'onDismiss', 'dismissButtonProps'],
     },
-    loki: {
+    vrt: {
+      // Dismiss interaction is the test target; visual state is the same as Playground
       skip: true,
     },
   },

@@ -11,7 +11,7 @@ exports[`CollapsedItemActions custom actions 1`] = `
     >
       <span
         class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
-        id="generated-id-wrapper"
+        id="generated-id_euiToolTipAnchor"
       >
         <button
           aria-controls="euiPopover_generated-id_panelId"
@@ -137,7 +137,7 @@ exports[`CollapsedItemActions default actions - renders color on EuiContextMenuI
     >
       <span
         class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
-        id="generated-id-wrapper"
+        id="generated-id_euiToolTipAnchor"
       >
         <button
           aria-controls="euiPopover_generated-id_panelId"
@@ -282,7 +282,7 @@ exports[`CollapsedItemActions default actions 1`] = `
     >
       <span
         class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
-        id="generated-id-wrapper"
+        id="generated-id_euiToolTipAnchor"
       >
         <button
           aria-controls="euiPopover_generated-id_panelId"
@@ -416,7 +416,7 @@ exports[`CollapsedItemActions renders 1`] = `
 >
   <span
     class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
-    id="generated-id-wrapper"
+    id="generated-id_euiToolTipAnchor"
   >
     <button
       aria-expanded="false"

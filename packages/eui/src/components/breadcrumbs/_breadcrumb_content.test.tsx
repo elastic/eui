@@ -75,6 +75,39 @@ describe('EuiBreadcrumbContent', () => {
       fireEvent.click(getByTestSubject('popoverClose'));
       await waitForEuiPopoverClose();
     });
+
+    it('exposes the tooltip to screen readers only when an explicit `title` is passed', () => {
+      const { getByTestSubject, rerender } = render(
+        <EuiBreadcrumbContent
+          type="page"
+          text="Breadcrumb"
+          data-test-subj="popoverToggle"
+          popoverContent="Hello popover world"
+        />
+      );
+
+      // Without explicit `title` prop, the tooltip uses the visible text and SR output is suppressed
+      fireEvent.mouseOver(getByTestSubject('popoverToggle'));
+      expect(getByTestSubject('popoverToggle')).not.toHaveAttribute(
+        'aria-describedby'
+      );
+
+      rerender(
+        <EuiBreadcrumbContent
+          type="page"
+          text="Breadcrumb"
+          title="Additional context for screen readers"
+          data-test-subj="popoverToggle"
+          popoverContent="Hello popover world"
+        />
+      );
+
+      // With an explicit `title` prop, the tooltip is announced with `aria-describedby`
+      fireEvent.mouseOver(getByTestSubject('popoverToggle'));
+      expect(getByTestSubject('popoverToggle')).toHaveAttribute(
+        'aria-describedby'
+      );
+    });
   });
 
   describe('highlightLastBreadcrumb', () => {

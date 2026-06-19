@@ -51,6 +51,8 @@ const meta: Meta<EuiBasicTableProps<User>> = {
     },
     noItemsMessage: '',
     scrollableInline: false,
+    stickyScrollbar: false,
+    panelled: false,
   },
 };
 moveStorybookControlsToCategory(
@@ -75,7 +77,7 @@ type User = {
 
 const users: User[] = [];
 
-for (let i = 0; i < 5; i++) {
+for (let i = 0; i < 75; i++) {
   users.push({
     id: i + 1,
     firstName: faker.person.firstName(),
@@ -608,8 +610,17 @@ export const Scrollable: Story = {
   args: {
     ...Playground.args,
     scrollableInline: true,
+    stickyScrollbar: true,
+    stickyHeader: true,
     responsiveBreakpoint: false,
     tableLayout: 'auto',
     columns: scrollableColumns,
+  },
+};
+
+export const Panelled: Story = {
+  args: {
+    ...Playground.args,
+    panelled: true,
   },
 };
