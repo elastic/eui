@@ -184,18 +184,19 @@ flowchart TD
     WS --> N
 ```
 
-When VRT generates or regenerates reference screenshots, **CI commits them directly to the PR branch** under one of two messages:
+CI commits baselines directly to the PR branch:
 
-| Commit message | When it happens |
-|---|---|
-| `chore(eui): add VRT baseline screenshots` | VRT passes AND the PR adds new stories. The new baselines are committed automatically, no human approval needed. |
-| `chore(eui): update VRT baseline screenshots` | VRT fails (visual diffs found) AND a team member approves the *Approve visual changes* block step in Buildkite. The approved baselines are committed. Includes new stories. |
+- `chore(eui): add VRT baseline screenshots` - the PR adds new stories. Automatic, regardless of pass/fail.
+- `chore(eui): update VRT baseline screenshots` - after approving the *Approve visual changes* block step in Buildkite.
 
-Either commit auto-triggers CI.
+A PR with both new and changed stories gets both commits, `add` first. Either commit retriggers CI.
 
 ### Skipping in a PR
 
 If VRT itself is broken and blocking merges, add the `skip-vrt` label to the GitHub PR. The VRT step will detect the label, exit without running any tests and the notify comment will clearly state that VRT was skipped.
+
+> [!WARNING]
+> `skip-vrt` doesn't run the test runner, so new stories don't get baselines. Be especially careful if you're adding it on your PR that introduces visual changes.
 
 The label is captured at build-trigger time. To affect an existing build, trigger a fresh one:
 
