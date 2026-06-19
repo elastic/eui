@@ -85,9 +85,7 @@ describe('EuiSelectable', () => {
         .realClick()
         .realType('enc')
         .then(() => {
-          cy.get('li[role=option]')
-            .first()
-            .should('have.attr', 'title', 'Enceladus');
+          cy.get('li[role=option]').first().should('contain.text', 'Enceladus');
         });
     });
 
@@ -99,9 +97,7 @@ describe('EuiSelectable', () => {
         .realClick()
         .realType('enc')
         .then(() => {
-          cy.get('li[role=option]')
-            .first()
-            .should('have.attr', 'title', 'Enceladus');
+          cy.get('li[role=option]').first().should('contain.text', 'Enceladus');
         });
 
       // Clear search using ENTER
@@ -109,9 +105,7 @@ describe('EuiSelectable', () => {
         .focus()
         .realPress('{enter}')
         .then(() => {
-          cy.get('li[role=option]')
-            .first()
-            .should('have.attr', 'title', 'Titan');
+          cy.get('li[role=option]').first().should('contain.text', 'Titan');
         });
 
       // Search/filter again
@@ -119,9 +113,7 @@ describe('EuiSelectable', () => {
         .realClick()
         .realType('enc')
         .then(() => {
-          cy.get('li[role=option]')
-            .first()
-            .should('have.attr', 'title', 'Enceladus');
+          cy.get('li[role=option]').first().should('contain.text', 'Enceladus');
         });
 
       // Clear search using SPACE
@@ -129,9 +121,7 @@ describe('EuiSelectable', () => {
         .focus()
         .realPress('Space')
         .then(() => {
-          cy.get('li[role=option]')
-            .first()
-            .should('have.attr', 'title', 'Titan');
+          cy.get('li[role=option]').first().should('contain.text', 'Titan');
         });
 
       // Ensure the clear button does not respond to up/down arrow keys
@@ -139,23 +129,17 @@ describe('EuiSelectable', () => {
         .realClick()
         .realType('titan')
         .then(() => {
-          cy.get('li[role=option]')
-            .first()
-            .should('have.attr', 'title', 'Titan');
+          cy.get('li[role=option]').first().should('contain.text', 'Titan');
         });
       cy.get('[data-test-subj="clearSearchButton"]')
         .focus()
         .realPress('ArrowDown')
         .then(() => {
-          cy.get('li[role=option]')
-            .first()
-            .should('have.attr', 'title', 'Titan');
+          cy.get('li[role=option]').first().should('contain.text', 'Titan');
         })
         .realPress('ArrowUp')
         .then(() => {
-          cy.get('li[role=option]')
-            .first()
-            .should('have.attr', 'title', 'Titan');
+          cy.get('li[role=option]').first().should('contain.text', 'Titan');
         });
     });
 

@@ -8,3 +8,11 @@
 
 export * from './render_custom_styles';
 export * from './react_version';
+export {
+  createResizeObserverMock,
+  createMockResizeObserverEntry,
+} from './resize_observer_mock';
+export {
+  createIntersectionObserverMock,
+  createMockIntersectionObserverEntry,
+} from './intersection_observer_mock';

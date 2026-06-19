@@ -17,7 +17,7 @@ exports[`EuiSelectableListItem group labels handles updating aria attrs correctl
       tabindex="0"
     >
       <li
-        class="euiSelectableList__groupLabel css-1ku7zw3-groupLabel-EuiSelectableList"
+        class="euiSelectableList__groupLabel css-rtav68-groupLabel-EuiSelectableList"
         role="presentation"
       >
         Moons
@@ -73,7 +73,7 @@ exports[`EuiSelectableListItem group labels handles updating aria attrs correctl
         </span>
       </li>
       <li
-        class="euiSelectableList__groupLabel css-1ku7zw3-groupLabel-EuiSelectableList"
+        class="euiSelectableList__groupLabel css-rtav68-groupLabel-EuiSelectableList"
         role="presentation"
       >
         Planets
@@ -129,7 +129,7 @@ exports[`EuiSelectableListItem group labels handles updating aria attrs correctl
         </span>
       </li>
       <li
-        class="euiSelectableList__groupLabel css-1ku7zw3-groupLabel-EuiSelectableList"
+        class="euiSelectableList__groupLabel css-rtav68-groupLabel-EuiSelectableList"
         role="presentation"
       >
         Suns
@@ -212,7 +212,7 @@ exports[`EuiSelectableListItem group labels renders with correct aria-setsize an
           </span>
         </li>
         <li
-          class="euiSelectableList__groupLabel css-1ku7zw3-groupLabel-EuiSelectableList"
+          class="euiSelectableList__groupLabel css-rtav68-groupLabel-EuiSelectableList"
           role="presentation"
           style="position: absolute; left: 0px; top: 32px; height: 48px; width: 100%;"
         >
@@ -271,7 +271,7 @@ exports[`EuiSelectableListItem group labels renders with correct aria-setsize an
           </span>
         </li>
         <li
-          class="euiSelectableList__groupLabel css-1ku7zw3-groupLabel-EuiSelectableList"
+          class="euiSelectableList__groupLabel css-rtav68-groupLabel-EuiSelectableList"
           role="presentation"
           style="position: absolute; left: 0px; top: 144px; height: 48px; width: 100%;"
         >
@@ -330,7 +330,7 @@ exports[`EuiSelectableListItem group labels renders with correct aria-setsize an
           </span>
         </li>
         <li
-          class="euiSelectableList__groupLabel css-1ku7zw3-groupLabel-EuiSelectableList"
+          class="euiSelectableList__groupLabel css-rtav68-groupLabel-EuiSelectableList"
           role="presentation"
           style="position: absolute; left: 0px; top: 256px; height: 48px; width: 100%;"
         >

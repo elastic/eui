@@ -1399,6 +1399,9 @@ relative length units (e.g., `%`, `vw` or `cqw`/`cqi`).
 Enabling inline scrolling automatically switches `tableLayout` to `auto`
 because in that configuration the table's width is dependent on its cell widths.
 
+Consider turning on the [`stickyScrollbar`](./custom.mdx#sticky-horizontal-scrollbar) prop together with inline
+scrolling for best results across all devices.
+
 ## Manual pagination and sorting
 
 **EuiBasicTable**'s `pagination` and `sorting` properties _only_ control the UI displayed on the table (like showing sorting arrows or pagination numbers). They don't actually handle paginating or sorting your `items` data.

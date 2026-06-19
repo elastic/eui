@@ -10,12 +10,17 @@ import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { disableStorybookControls } from '../../../.storybook/utils';
+import { VRT_SELECTORS } from '../../../.storybook/vrt';
 import { EuiOverlayMask, EuiOverlayMaskProps } from './overlay_mask';
 import { EuiHeader } from '../header';
 
 const meta: Meta<EuiOverlayMaskProps> = {
   title: 'Utilities/EuiOverlayMask',
   component: EuiOverlayMask,
+  parameters: {
+    layout: 'fullscreen',
+    vrt: { selector: VRT_SELECTORS.portal },
+  },
   argTypes: {
     children: { control: { type: 'text' } },
   },

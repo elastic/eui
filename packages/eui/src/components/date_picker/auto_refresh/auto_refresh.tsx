@@ -14,6 +14,7 @@ import {
   CommonEuiButtonEmptyProps,
 } from '../../button/button_empty/button_empty';
 import { EuiInputPopover, EuiPopover } from '../../popover';
+import { EuiToolTip } from '../../tool_tip';
 import { useEuiI18n } from '../../i18n';
 
 import { usePrettyInterval } from '../super_date_picker/pretty_interval';
@@ -139,21 +140,23 @@ export const EuiAutoRefreshButton: FunctionComponent<
   return (
     <EuiPopover
       button={
-        <EuiButtonEmpty
-          onClick={() => setIsPopoverOpen((isOpen) => !isOpen)}
-          className={classes}
-          size={size}
-          color={color}
-          iconType="refreshTime"
-          title={isPaused ? autoRefeshLabelOff : autoRefeshLabelOn}
-          isDisabled={isDisabled}
-          {...rest}
-        >
-          {usePrettyInterval(Boolean(isPaused), refreshInterval, {
-            shortHand,
-            unit: intervalUnits,
-          })}
-        </EuiButtonEmpty>
+        <EuiToolTip content={isPaused ? autoRefeshLabelOff : autoRefeshLabelOn}>
+          <EuiButtonEmpty
+            onClick={() => setIsPopoverOpen((isOpen) => !isOpen)}
+            className={classes}
+            size={size}
+            color={color}
+            iconType="refreshTime"
+            isDisabled={isDisabled}
+            hasAriaDisabled={isDisabled}
+            {...rest}
+          >
+            {usePrettyInterval(Boolean(isPaused), refreshInterval, {
+              shortHand,
+              unit: intervalUnits,
+            })}
+          </EuiButtonEmpty>
+        </EuiToolTip>
       }
       isOpen={isPopoverOpen}
       closePopover={() => {

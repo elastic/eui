@@ -7,6 +7,7 @@
  */
 
 import { action } from '@storybook/addon-actions';
+import type { EuiFlyoutCloseMeta } from '../types';
 import { Meta, StoryObj } from '@storybook/react';
 import React, {
   useCallback,
@@ -15,6 +16,7 @@ import React, {
   useRef,
   useState,
 } from 'react';
+import { useEuiTheme } from '../../../services';
 import type { Root } from 'react-dom/client';
 import { createRoot } from 'react-dom/client';
 
@@ -35,15 +37,20 @@ import {
   EuiTitle,
 } from '../..';
 import { EuiFlyout } from '../flyout';
-import { useCurrentSession, useFlyoutManager } from './hooks';
+import {
+  useCurrentSession,
+  useFlyoutManager,
+  useFlyoutPagination,
+} from './hooks';
+import { getFlyoutManagerStore } from './store';
 
 const meta: Meta<typeof EuiFlyout> = {
   title: 'Layout/EuiFlyout/Flyout Manager',
   component: EuiFlyout,
   parameters: {
-    // Skipping visual regression testing with Loki
+    // Skipping visual regression testing
     // This is a playground for Flyout Manager and doesn't show anything testable on page load
-    loki: { skip: true },
+    vrt: { skip: true },
   },
 };
 
@@ -90,7 +97,7 @@ const SessionChildFlyout: React.FC<{
   flyoutTitle: string;
   size: 's' | 'm' | 'fill';
   maxWidth?: number;
-  onClose: () => void;
+  onClose: (event: unknown, meta?: EuiFlyoutCloseMeta) => void;
   onActive: () => void;
   children: React.ReactNode;
 }> = ({ id, flyoutTitle, size, maxWidth, onClose, onActive, children }) => (
@@ -162,20 +169,35 @@ const FlyoutSession: React.FC<FlyoutSessionProps> = (props) => {
     [title]
   );
 
-  const mainFlyoutOnClose = useCallback(() => {
-    action('close main flyout')(title);
-    setIsFlyoutVisible(false);
-  }, [title]);
+  const mainFlyoutOnClose = useCallback(
+    (_: unknown, meta?: EuiFlyoutCloseMeta) => {
+      action('close main flyout')(
+        `${title} (reason: ${meta?.reason ?? 'n/a'})`
+      );
+      setIsFlyoutVisible(false);
+    },
+    [title]
+  );
 
-  const child1FlyoutOnClose = useCallback(() => {
-    action('close child flyout')(`${title} - Child 1`);
-    setIsChild1FlyoutVisible(false);
-  }, [title]);
+  const child1FlyoutOnClose = useCallback(
+    (_: unknown, meta?: EuiFlyoutCloseMeta) => {
+      action('close child flyout')(
+        `${title} - Child 1 (reason: ${meta?.reason ?? 'n/a'})`
+      );
+      setIsChild1FlyoutVisible(false);
+    },
+    [title]
+  );
 
-  const child2FlyoutOnClose = useCallback(() => {
-    action('close child flyout')(`${title} - Child 2`);
-    setIsChild2FlyoutVisible(false);
-  }, [title]);
+  const child2FlyoutOnClose = useCallback(
+    (_: unknown, meta?: EuiFlyoutCloseMeta) => {
+      action('close child flyout')(
+        `${title} - Child 2 (reason: ${meta?.reason ?? 'n/a'})`
+      );
+      setIsChild2FlyoutVisible(false);
+    },
+    [title]
+  );
 
   return (
     <>
@@ -353,8 +375,8 @@ const NonSessionFlyout: React.FC<{ size: string }> = ({ size }) => {
     setIsFlyoutVisible(true);
   };
 
-  const flyoutOnClose = useCallback(() => {
-    action('close non-session flyout')();
+  const flyoutOnClose = useCallback((_: unknown, meta?: EuiFlyoutCloseMeta) => {
+    action('close non-session flyout')(`reason: ${meta?.reason ?? 'n/a'}`);
     setIsFlyoutVisible(false);
   }, []);
 
@@ -815,4 +837,158 @@ const MultiRootFlyoutDemo: React.FC = () => {
 export const MultiRootSyncExample: StoryObj<typeof EuiFlyout> = {
   name: 'Multi-root sync',
   render: () => <MultiRootFlyoutDemo />,
+};
+
+// ---------------------------------------------------------------------------
+// Cross-root pagination
+// ---------------------------------------------------------------------------
+
+const CROSS_ROOT_PAGINATION_FLYOUT_ID = 'pagination-cross-root-demo';
+const CROSS_ROOT_PAGINATION_ITEMS = [
+  { title: 'Item 1', body: 'Details for item 1.' },
+  { title: 'Item 2', body: 'Details for item 2.' },
+  { title: 'Item 3', body: 'Details for item 3.' },
+  { title: 'Item 4', body: 'Details for item 4.' },
+  { title: 'Item 5', body: 'Details for item 5.' },
+];
+
+/**
+ * Rendered in a separate React root — simulates a data grid pushing
+ * row selection into the flyout menu bar via the singleton store.
+ */
+const DataGridInExternalRoot: React.FC<{
+  flyoutId: string;
+  items: Array<{ title: string; body: string }>;
+  isFlyoutOpen: boolean;
+}> = ({ flyoutId, items, isFlyoutOpen }) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const total = items.length;
+
+  useEffect(() => {
+    if (!isFlyoutOpen) return;
+    const store = getFlyoutManagerStore();
+    store.setPagination(flyoutId, {
+      currentIndex,
+      total,
+      onPrevious: () => setCurrentIndex((i) => Math.max(0, i - 1)),
+      onNext: () => setCurrentIndex((i) => Math.min(total - 1, i + 1)),
+    });
+    return () => {
+      store.setPagination(flyoutId, undefined);
+    };
+  }, [flyoutId, currentIndex, total, isFlyoutOpen]);
+
+  return (
+    <EuiFlexGroup direction="column" gutterSize="xs" alignItems="flexStart">
+      <EuiFlexItem>
+        <EuiText size="s">
+          <strong>Data grid (separate React root)</strong>
+        </EuiText>
+        <EuiText size="xs" color="subdued">
+          <p>
+            Clicking a row calls{' '}
+            <EuiCode>getFlyoutManagerStore().setPagination()</EuiCode>
+          </p>
+        </EuiText>
+      </EuiFlexItem>
+      {items.map((item, i) => (
+        <EuiFlexItem key={item.title} grow={false}>
+          <EuiButton
+            size="s"
+            color={i === currentIndex ? 'primary' : 'text'}
+            onClick={() => setCurrentIndex(i)}
+          >
+            Row {i + 1}: {item.title}
+          </EuiButton>
+        </EuiFlexItem>
+      ))}
+    </EuiFlexGroup>
+  );
+};
+
+const CrossRootPaginationDemo: React.FC = () => {
+  const [isOpen, setIsOpen] = useState(true);
+  const { colorMode } = useEuiTheme();
+  const dataGridContainerRef = useRef<HTMLDivElement | null>(null);
+  const dataGridRootRef = useRef<Root | null>(null);
+
+  // Create the root once
+  useLayoutEffect(() => {
+    if (!dataGridContainerRef.current) return;
+    const root = createRoot(dataGridContainerRef.current);
+    dataGridRootRef.current = root;
+    return () => {
+      root.unmount();
+      dataGridRootRef.current = null;
+    };
+  }, []);
+
+  // Re-render into the existing root whenever colorMode or isOpen changes
+  useLayoutEffect(() => {
+    if (!dataGridRootRef.current) return;
+    dataGridRootRef.current.render(
+      <EuiProvider colorMode={colorMode}>
+        <DataGridInExternalRoot
+          flyoutId={CROSS_ROOT_PAGINATION_FLYOUT_ID}
+          items={CROSS_ROOT_PAGINATION_ITEMS}
+          isFlyoutOpen={isOpen}
+        />
+      </EuiProvider>
+    );
+  }, [colorMode, isOpen]);
+
+  const pagination = useFlyoutPagination(CROSS_ROOT_PAGINATION_FLYOUT_ID);
+  const item = CROSS_ROOT_PAGINATION_ITEMS[pagination?.currentIndex ?? 0];
+
+  return (
+    <>
+      <EuiTitle size="s">
+        <h3>Cross-root pagination</h3>
+      </EuiTitle>
+      <EuiSpacer size="s" />
+      <EuiText size="s" color="subdued">
+        <p>
+          The data grid below is rendered in a{' '}
+          <strong>separate React root</strong>. Clicking a row calls{' '}
+          <EuiCode>getFlyoutManagerStore().setPagination()</EuiCode> to drive
+          the flyout menu bar — the primary Kibana use case.
+        </p>
+      </EuiText>
+      <EuiSpacer size="m" />
+      {/* Container for the data-grid React root */}
+      <div ref={dataGridContainerRef} />
+      <EuiSpacer size="m" />
+      <EuiButton size="s" onClick={() => setIsOpen(true)} disabled={isOpen}>
+        Re-open flyout
+      </EuiButton>
+
+      {isOpen && (
+        <EuiFlyout
+          id={CROSS_ROOT_PAGINATION_FLYOUT_ID}
+          session="start"
+          flyoutMenuDisplayMode="always"
+          size="m"
+          ownFocus={false}
+          aria-label="Item details"
+          onClose={() => setIsOpen(false)}
+        >
+          <EuiFlyoutHeader hasBorder>
+            <EuiTitle size="m">
+              <h2>{item.title}</h2>
+            </EuiTitle>
+          </EuiFlyoutHeader>
+          <EuiFlyoutBody>
+            <EuiText>
+              <p>{item.body}</p>
+            </EuiText>
+          </EuiFlyoutBody>
+        </EuiFlyout>
+      )}
+    </>
+  );
+};
+
+export const CrossRootPaginationExample: StoryObj<typeof EuiFlyout> = {
+  name: 'Cross-root pagination',
+  render: () => <CrossRootPaginationDemo />,
 };

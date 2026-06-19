@@ -12,7 +12,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { EuiTitle } from '../title';
 import { EuiFlyout } from './flyout';
 import { EuiFlyoutHeader, EuiFlyoutHeaderProps } from './flyout_header';
-import { LOKI_SELECTORS } from '../../../.storybook/loki';
+import { VRT_SELECTORS } from '../../../.storybook/vrt';
 
 const meta: Meta<EuiFlyoutHeaderProps> = {
   title: 'Layout/EuiFlyout/EuiFlyoutHeader',
@@ -25,9 +25,9 @@ const meta: Meta<EuiFlyoutHeaderProps> = {
     hasBorder: false,
   },
   parameters: {
-    loki: {
+    vrt: {
       // Flyout content is rendered in a portal
-      chromeSelector: LOKI_SELECTORS.portal,
+      selector: VRT_SELECTORS.portal,
     },
   },
 };

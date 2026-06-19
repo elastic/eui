@@ -21,6 +21,7 @@ import { EuiIcon } from '../../icon';
 import { EuiText } from '../../text';
 import { EuiBadge } from '../../badge';
 import { EuiSelectableOption } from '../selectable_option';
+import { EuiLink } from '../../link';
 
 import { EuiSelectableList, EuiSelectableListProps } from './selectable_list';
 
@@ -168,7 +169,9 @@ export const Groups: Story = {
         isGroupLabel: true,
         prepend: <EuiIcon type="warning" />,
         append: (
-          <EuiFlexItem css={{ alignItems: 'flex-end' }}>(append)</EuiFlexItem>
+          <EuiFlexItem css={{ alignItems: 'flex-end' }}>
+            <EuiLink>(append)</EuiLink>
+          </EuiFlexItem>
         ),
       },
       ...[...options].splice(4, options.length),

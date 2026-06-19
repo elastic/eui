@@ -10,6 +10,7 @@ import { AccessibleInteractiveElements } from './rules/a11y/accessible_interacti
 import { CallOutAnnounceOnMount } from './rules/a11y/callout_announce_on_mount';
 import { ConsistentIsInvalidProps } from './rules/a11y/consistent_is_invalid_props';
 import { HrefOnClick } from './rules/href_or_on_click';
+import { RequireHrefForLink } from './rules/require_href_for_link';
 import { NoCssColor } from './rules/no_css_color';
 import { NoRestrictedEuiImports } from './rules/no_restricted_eui_imports';
 import { NoStaticZIndex } from './rules/no_static_z_index';
@@ -23,6 +24,8 @@ import { TooltipFocusableAnchor } from './rules/a11y/tooltip_focusable_anchor';
 import { PreferTooltipTriggerFocusTestUtility } from './rules/prefer_tooltip_trigger_focus_test_utility';
 import { EuiBadgeAccessibilityRules } from './rules/a11y/badge_accessibility_rules';
 import { EuiIconAccessibilityRules } from './rules/a11y/icon_accessibility_rules';
+import { TooltipNoInteractiveContent } from './rules/a11y/tooltip_no_interactive_content';
+import { TooltipButtonIconWrap } from './rules/a11y/tooltip_button_icon_wrap';
 
 const config = {
   rules: {
@@ -44,6 +47,9 @@ const config = {
       PreferTooltipTriggerFocusTestUtility,
     'badge-accessibility-rules': EuiBadgeAccessibilityRules,
     'icon-accessibility-rules': EuiIconAccessibilityRules,
+    'require-href-for-link': RequireHrefForLink,
+    'tooltip-no-interactive-content': TooltipNoInteractiveContent,
+    'tooltip-button-icon-wrap': TooltipButtonIconWrap,
   },
   configs: {
     recommended: {
@@ -66,6 +72,9 @@ const config = {
         '@elastic/eui/prefer-tooltip-trigger-focus-test-utility': 'warn',
         '@elastic/eui/badge-accessibility-rules': 'warn',
         '@elastic/eui/icon-accessibility-rules': 'warn',
+        '@elastic/eui/require-href-for-link': 'warn',
+        '@elastic/eui/tooltip-no-interactive-content': 'warn',
+        '@elastic/eui/tooltip-button-icon-wrap': 'warn',
       },
     },
   },

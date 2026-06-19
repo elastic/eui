@@ -32,6 +32,7 @@ import {
 } from '../list_group';
 import { EuiText } from '../text';
 import { disableStorybookControls } from '../../../.storybook/utils';
+import { VRT_SELECTORS } from '../../../.storybook/vrt';
 import { logicalCSSWithFallback } from '../../global_styling/functions';
 import { useGeneratedHtmlId } from '../../services';
 import { EuiCode } from '../code';
@@ -416,5 +417,9 @@ const FullHeaderPatternExample = () => {
 };
 
 export const FullHeaderPattern: Story = {
+  parameters: {
+    layout: 'fullscreen',
+    vrt: { selector: VRT_SELECTORS.portal },
+  },
   render: ({ ...args }) => <FullHeaderPatternExample {...args} />,
 };

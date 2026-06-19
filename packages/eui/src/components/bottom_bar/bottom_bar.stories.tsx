@@ -8,7 +8,7 @@
 
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { LOKI_SELECTORS } from '../../../.storybook/loki';
+import { VRT_SELECTORS } from '../../../.storybook/vrt';
 import { EuiBottomBar, EuiBottomBarProps } from './bottom_bar';
 
 const meta: Meta<EuiBottomBarProps> = {
@@ -28,9 +28,9 @@ const meta: Meta<EuiBottomBarProps> = {
     affordForDisplacement: true,
   },
   parameters: {
-    loki: {
+    vrt: {
       // Bottom bar content is rendered in a portal
-      chromeSelector: LOKI_SELECTORS.portal,
+      selector: VRT_SELECTORS.portal,
     },
   },
 };

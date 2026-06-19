@@ -96,18 +96,5 @@ ruleTester.run('href-or-on-click', HrefOnClick, {
         },
       ],
     },
-    {
-      code: dedent`
-        module.export = () => (
-          <EuiLink href="/" onClick={fooBar} />
-        )
-      `,
-      languageOptions,
-      errors: [
-        {
-          messageId: 'hrefOrOnClick',
-        },
-      ],
-    },
   ],
 });

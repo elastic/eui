@@ -1,3 +1,65 @@
+## [`v116.3.1`](https://github.com/elastic/eui/releases/v116.3.1)
+
+**Bug fixes**
+
+- Fixed `EuiTableHeaderCell` and `EuiTableHeaderCellCheckbox` throwing an error in Jest test environments due to static mocking of `useGeneratedHtmlId` by generating a stable, unique key with `uuidv4` ([#9698](https://github.com/elastic/eui/pull/9698))
+- Fixed an issue where the tooltip anchor wrapper in `EuiAvatar` did not have the same `border-radius` applied as the avatar itself. ([#9697](https://github.com/elastic/eui/pull/9697))
+
+## [`v116.3.0`](https://github.com/elastic/eui/releases/v116.3.0)
+
+- Added `EuiBanner` component ([#9673](https://github.com/elastic/eui/pull/9673))
+- Replaced native browser `title` attributes with `EuiToolTip` across the following components for consistent tooltips: ([#9643](https://github.com/elastic/eui/pull/9643))
+  - `EuiAvatar`
+  - `EuiBasicTable`
+  - `EuiBreadcrumbs`
+  - `EuiComboBox`
+  - `EuiDataGrid`
+  - `EuiAutoRefresh`
+  - `EuiSuperDatePicker`
+  - `EuiFieldPassword`
+  - `EuiMarkdownEditor`
+  - `EuiPagination`
+  - `EuiSearchBar`
+  - `EuiSelectable`
+  - `EuiTextTruncate`
+- Extended `EuiToolTip`'s `display` prop to support `"flex"` ([#9643](https://github.com/elastic/eui/pull/9643))
+- Added experimental support for sticky headers in `EuiTable`, `EuiBasicTable` and `EuiInMemoryTable` ([#9682](https://github.com/elastic/eui/pull/9682))
+
+**Bug fixes**
+
+- Fixed `direction="row"` not applying on `EuiSplitPanel.Outer` when `onClick` was set. ([#9693](https://github.com/elastic/eui/pull/9693))
+- Fixed `EuiDatePicker` firing `onChange` with an out-of-bounds date when navigating to a month or year via the dropdowns while `minDate` or `maxDate` is set ([#9685](https://github.com/elastic/eui/pull/9685))
+- Fixed a visual issue on `EuiPanel` where panels with `onClick` would render with a `height` difference of `1px`. ([#9694](https://github.com/elastic/eui/pull/9694))
+- Fixed an issue in `EuiSelectable` and `EuiComboBox` where interactive content in group labels wasn't clickable due to overlapping content. ([#9678](https://github.com/elastic/eui/pull/9678))
+
+## [`v116.2.0`](https://github.com/elastic/eui/releases/v116.2.0)
+
+- Added experimental support for always-visible sticky horizontal scrollbars in `EuiTable`, `EuiBasicTable` and `EuiInMemoryTable` useful for dense tables that exceed the height of the viewport. This feature is currently opt-in and can be enabled by setting `stickyScrollbar: true`. ([#9674](https://github.com/elastic/eui/pull/9674))
+- Added `significantEvents` glyph to `EuiIcon` ([#9665](https://github.com/elastic/eui/pull/9665))
+
+**Bug fixes**
+
+- Fixed `EuiDataGrid` incorrectly styling disabled `cellActions` icon buttons and making them look like they were not disabled ([#9672](https://github.com/elastic/eui/pull/9672))
+- Fixed a visual misalignment on `EuiSelectableTemplateSitewide` list items when search terms are highlighted ([#9669](https://github.com/elastic/eui/pull/9669))
+
+**Dependency updates**
+
+- Updated `uuid` to v14.0.0 ([#9663](https://github.com/elastic/eui/pull/9663))
+
+## [`v116.1.0`](https://github.com/elastic/eui/releases/v116.1.0)
+
+- Updates the guard condition in `EuiContextMenuPanel`'s update lifecycle method to use input props instead of internal state to reduce unnecessary re-renders. ([#9656](https://github.com/elastic/eui/pull/9656))
+- Replaced `EuiObserver` abstract base class with a `useObserver` hook ([#9511](https://github.com/elastic/eui/pull/9511))
+
+**Bug fixes**
+
+- Fixed `EuiCopy` not showing the `afterMessage` tooltip after a successful copy when the user had already hovered or focused the trigger before clicking ([#9650](https://github.com/elastic/eui/pull/9650))
+- Fixed `EuiDataGrid` cell expansion popovers being hidden behind sibling or nested `EuiFlyout`s. The cell popover now derives its `z-index` from its anchor's stacking context (matching default `EuiPopover` behavior) instead of being pinned to `levels.header`. ([#9630](https://github.com/elastic/eui/pull/9630))
+
+**Accessibility**
+
+- Added a screen reader live region to `EuiCopy` so the copy confirmation is announced reliably, independent of the tooltip and focus location ([#9650](https://github.com/elastic/eui/pull/9650))
+
 ## [`v116.0.0`](https://github.com/elastic/eui/releases/v116.0.0)
 
 - Updated `EuiSuperSelect` to not open the listbox if no `options` are passed. ([#9645](https://github.com/elastic/eui/pull/9645))

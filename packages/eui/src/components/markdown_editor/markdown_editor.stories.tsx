@@ -90,10 +90,20 @@ export const CustomToolbarContent: Story = {
   },
 };
 
+export const NoPlugins: Story = {
+  parameters: {
+    controls: { include: ['value'] },
+  },
+  args: {
+    value: initialContent,
+    uiPlugins: [],
+  },
+};
+
 export const DropZone: Story = {
   parameters: {
     controls: { include: ['dropHandlers', 'value'] },
-    loki: {
+    vrt: {
       // functional test story only
       skip: true,
     },

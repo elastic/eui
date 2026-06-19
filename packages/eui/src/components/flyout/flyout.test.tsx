@@ -7,6 +7,7 @@
  */
 
 import React from 'react';
+import { fireEvent } from '@testing-library/react';
 import { render } from '../../test/rtl';
 import { requiredProps } from '../../test';
 import { shouldRenderCustomStyles } from '../../test/internal';
@@ -1049,6 +1050,30 @@ describe('EuiFlyout', () => {
       // Child defers to main (side-by-side mode is default)
       expect(childFlyout).not.toHaveAttribute('role', 'dialog');
       expect(childFlyout).not.toHaveAttribute('aria-modal');
+    });
+  });
+
+  describe('onClose reason', () => {
+    it("passes reason 'close-button' when the close button is clicked", () => {
+      const onClose = jest.fn();
+      const { getByTestSubject } = render(<EuiFlyout onClose={onClose} />);
+
+      fireEvent.click(getByTestSubject('euiFlyoutCloseButton'));
+
+      expect(onClose).toHaveBeenCalledWith(expect.anything(), {
+        reason: 'close-button',
+      });
+    });
+
+    it("passes reason 'escape' when the Escape key is pressed", () => {
+      const onClose = jest.fn();
+      render(<EuiFlyout onClose={onClose} />);
+
+      fireEvent.keyDown(window, { key: 'Escape' });
+
+      expect(onClose).toHaveBeenCalledWith(expect.anything(), {
+        reason: 'escape',
+      });
     });
   });
 });
