@@ -69,7 +69,6 @@ jobs:
           PR_TITLE: ${{ inputs.pr_title }}
           PR_BODY: ${{ inputs.pr_body }}
           PR_DRAFT: ${{ inputs.pr_draft }}
-          PR_LABELS: ${{ inputs.pr_labels }}
         # language=bash
         run: |
           set -euo pipefail
@@ -119,14 +118,125 @@ jobs:
             exit 1
           fi
 
-          # Add labels to the PR
-          if [[ -n "${PR_LABELS:-}" ]]; then
-            gh pr edit "$pr_number" -R "$base_repo" --add-label "$PR_LABELS"
-          fi
-
           echo "pr_url=$pr_url" >> "$GITHUB_OUTPUT"
+
           {
             echo "### Pull request created"
             echo ""
             echo "$pr_url"
           } >> "$GITHUB_STEP_SUMMARY"
+  post_open_pr:
+    name: Post open PR
+    runs-on: ubuntu-slim
+    # This job needs to be delayed so that GitHub can process the PR creation internally
+    environment: delayed-1m
+    needs: [open_pr]
+    steps:
+      # Token cannot be reused in this job because it's short-lived
+      - name: Fetch GitHub token
+        id: ephemeral_token
+        uses: elastic/ci-gh-actions/fetch-github-token@v1.5.0
+        with:
+          vault-instance: ci-prod
+          vault-role: token-policy-6becee3e5a43
+      - name: Add labels
+        env:
+          GH_TOKEN: ${{ steps.ephemeral_token.outputs.token }}
+          PR_LABELS: ${{ inputs.pr_labels }}
+          PR_URL: ${{ needs.open_pr.outputs.pr_url }}
+        # language=bash
+        run: |
+          if [[ -n "${PR_LABELS:-}" ]]; then
+            gh pr edit "$PR_URL" --add-label "$PR_LABELS"
+          fi
+      - name: Trigger CI
+        env:
+          GH_TOKEN: ${{ steps.ephemeral_token.outputs.token }}
+          PR_URL: ${{ needs.open_pr.outputs.pr_url }}
+        # language=bash
+        run: gh pr comment "$PR_URL" --body "/ci"
+  check_ci_status_1:
+    name: Check CI status - attempt 1/2
+    runs-on: ubuntu-slim
+    environment: delayed-2h
+    needs: [open_pr, post_open_pr]
+    outputs:
+      pending: ${{ steps.check_status.outputs.pending }}
+    steps:
+      # Token cannot be reused in this job because it's short-lived
+      - name: Fetch GitHub token
+        id: ephemeral_token
+        uses: elastic/ci-gh-actions/fetch-github-token@v1.5.0
+        with:
+          vault-instance: ci-prod
+          vault-role: token-policy-6becee3e5a43
+      - name: Check status
+        id: check_status
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_URL: ${{ needs.open_pr.outputs.pr_url }}
+        # language=bash
+        run: |
+          status_json="$(gh pr checks "$PR_URL" --required --json name,link,bucket)"
+          all_num="$(echo $status_json | jq length)"
+          pending_json="$(echo $status_json | jq 'map(select(.bucket == "pending"))')"
+          pending_num="$(echo $pending_json | jq length)"
+          fail_json="$(echo $status_json | jq 'map(select(.bucket | test("fail|cancel")))')"
+          fail_num="$(echo $fail_json | jq length)"
+
+          if [[ "$fail_num" -gt 0 ]]; then
+            echo "Some CI checks failed. Please check the logs for details."
+            echo "Some CI checks failed. Please check the logs for details." >> $GITHUB_STEP_SUMMARY
+            exit 1
+          fi
+
+          if [[ "$pending_num" -gt 0 ]]; then
+            echo "pending=true" >> "$GITHUB_OUTPUT"
+            echo "$pending_num/$all_num CI checks are pending. Retrying later..."
+            echo "$pending_num/$all_num CI checks are pending. Retrying later..." >> $GITHUB_STEP_SUMMARY
+            exit 0
+          fi
+
+          echo "CI checks passed!"
+          echo "CI checks passed! :tada:" >> $GITHUB_STEP_SUMMARY
+  check_ci_status_2:
+    name: Check CI status - attempt 2/2
+    runs-on: ubuntu-slim
+    environment: delayed-2h
+    needs: [open_pr, check_ci_status_1]
+    if: ${{ needs.check_ci_status_1.outputs.pending == 'true' }}
+    steps:
+      # Token cannot be reused in this job because it's short-lived
+      - name: Fetch GitHub token
+        id: ephemeral_token
+        uses: elastic/ci-gh-actions/fetch-github-token@v1.5.0
+        with:
+          vault-instance: ci-prod
+          vault-role: token-policy-6becee3e5a43
+      - name: Check status
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_URL: ${{ needs.open_pr.outputs.pr_url }}
+        # language=bash
+        run: |
+          status_json="$(gh pr checks "$PR_URL" --required --json name,link,bucket)"
+          all_num="$(echo $status_json | jq length)"
+          pending_json="$(echo $status_json | jq 'map(select(.bucket == "pending"))')"
+          pending_num="$(echo $pending_json | jq length)"
+          fail_json="$(echo $status_json | jq 'map(select(.bucket | test("fail|cancel")))')"
+          fail_num="$(echo $fail_json | jq length)"
+
+          if [[ "$fail_num" -gt 0 ]]; then
+            echo "Some CI checks failed. Please check the logs for details."
+            echo "Some CI checks failed. Please check the logs for details." >> $GITHUB_STEP_SUMMARY
+            exit 1
+          fi
+
+          if [[ "$pending_num" -gt 0 ]]; then
+            echo "$pending_num/$all_num CI checks are still pending. This is unexpected."
+            echo "$pending_num/$all_num CI checks are still pending. This is unexpected." >> $GITHUB_STEP_SUMMARY
+            exit 1
+          fi
+
+          echo "CI checks passed!"
+          echo "CI checks passed! :tada:" >> $GITHUB_STEP_SUMMARY
