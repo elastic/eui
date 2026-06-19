@@ -98,80 +98,52 @@ ruleTester.run('tooltip-button-icon-wrap', TooltipButtonIconWrap, {
   ],
   invalid: [
     {
-      name: 'standalone with aria-label — auto-wrap with string literal',
+      name: 'standalone with aria-label',
       code: dedent`
         <EuiButtonIcon aria-label="Edit item" iconType="pencil" />
-      `,
-      output: dedent`
-        <EuiToolTip content="Edit item">
-          <EuiButtonIcon aria-label="Edit item" iconType="pencil" />
-        </EuiToolTip>
       `,
       languageOptions,
       errors: [{ messageId: 'wrapWithEuiToolTip' }],
     },
     {
-      name: 'standalone with aria-label as expression — auto-wrap',
+      name: 'standalone with aria-label as expression',
       code: dedent`
         const label = "Delete";
         <EuiButtonIcon aria-label={label} iconType="trash" />
       `,
-      output: dedent`
-        const label = "Delete";
-        <EuiToolTip content={label}>
-          <EuiButtonIcon aria-label={label} iconType="trash" />
-        </EuiToolTip>
-      `,
       languageOptions,
       errors: [{ messageId: 'wrapWithEuiToolTip' }],
     },
     {
-      name: 'standalone without aria-label — warn only, no fix',
+      name: 'standalone without aria-label',
       code: dedent`
         <EuiButtonIcon iconType="pencil" />
       `,
-      output: null,
       languageOptions,
       errors: [{ messageId: 'wrapWithEuiToolTip' }],
     },
     {
-      name: 'title prop with string — remove title, wrap with EuiToolTip',
+      name: 'title prop with string',
       code: dedent`
         <EuiButtonIcon title="Edit item" aria-label="Edit item" iconType="pencil" />
-      `,
-      output: dedent`
-        <EuiToolTip content="Edit item">
-          <EuiButtonIcon aria-label="Edit item" iconType="pencil" />
-        </EuiToolTip>
       `,
       languageOptions,
       errors: [{ messageId: 'useEuiToolTipInsteadOfTitle' }],
     },
     {
-      name: 'title prop with expression — remove title, wrap with EuiToolTip',
+      name: 'title prop with expression',
       code: dedent`
         const label = "Edit item";
         <EuiButtonIcon title={label} aria-label={label} iconType="pencil" />
       `,
-      output: dedent`
-        const label = "Edit item";
-        <EuiToolTip content={label}>
-          <EuiButtonIcon aria-label={label} iconType="pencil" />
-        </EuiToolTip>
-      `,
       languageOptions,
       errors: [{ messageId: 'useEuiToolTipInsteadOfTitle' }],
     },
     {
-      name: 'title prop already wrapped — only remove title, no double wrap',
+      name: 'title prop already wrapped',
       code: dedent`
         <EuiToolTip content="Edit">
           <EuiButtonIcon title="Edit" aria-label="Edit" iconType="pencil" />
-        </EuiToolTip>
-      `,
-      output: dedent`
-        <EuiToolTip content="Edit">
-          <EuiButtonIcon aria-label="Edit" iconType="pencil" />
         </EuiToolTip>
       `,
       languageOptions,
@@ -182,11 +154,6 @@ ruleTester.run('tooltip-button-icon-wrap', TooltipButtonIconWrap, {
       code: dedent`
         <EuiButtonIcon {...props} title="Edit" iconType="pencil" />
       `,
-      output: dedent`
-        <EuiToolTip content="Edit">
-          <EuiButtonIcon {...props} iconType="pencil" />
-        </EuiToolTip>
-      `,
       languageOptions,
       errors: [{ messageId: 'useEuiToolTipInsteadOfTitle' }],
     },
@@ -194,11 +161,6 @@ ruleTester.run('tooltip-button-icon-wrap', TooltipButtonIconWrap, {
       name: 'title takes priority — does not also report wrapWithEuiToolTip',
       code: dedent`
         <EuiButtonIcon title="Delete" iconType="trash" />
-      `,
-      output: dedent`
-        <EuiToolTip content="Delete">
-          <EuiButtonIcon iconType="trash" />
-        </EuiToolTip>
       `,
       languageOptions,
       errors: [{ messageId: 'useEuiToolTipInsteadOfTitle' }],

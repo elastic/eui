@@ -118,9 +118,9 @@ export const release = async (options: ReleaseOptions) => {
 
   await stepInitChecks(options);
 
-  await stepBuildPackages(options);
-
   const changedWorkspaces = await stepUpdateVersions(options, currentWorkspaces);
+
+  await stepBuildPackages(options);
 
   await stepRunPreScripts(options);
 

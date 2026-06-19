@@ -1,26 +1,17 @@
 # Testing EUI components
 
-All components should have, at minimum, unit tests for each prop. Please see the [Jest unit test documentation](./unit-testing.md) for guidelines on testing best practices.
+All components should have, at minimum, unit tests for each prop.
 
-[Cypress tests](./cypress-testing.md) are optional and typically only written for more complex components, or where real-browser DOM and interactions are needed.
+## Test stack at a glance
 
-## Future tooling plans for EUI tests
-
-### Enzyme to RTL migration
-
-EUI is currently in the process of converting our Jest tests from [Enzyme](https://enzymejs.github.io/enzyme/) to [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/), as Enzyme appears to have no intention of supporting React 17+.
-
-### Storybook
-
-EUI currently does not **yet** use Storybook to generate either snapshots or visual QA testing. However, plans are in the works to convert our current props snapshot tests to Storybook.
-
-### Visual diffing
-
-EUI currently does not use visual snapshots/screenshot regression testing or plans to implement visual diffing.
+- **[Jest unit tests](./unit-testing.md)** — required for every component. New tests should be written with [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/); legacy [Enzyme](https://enzymejs.github.io/enzyme/) tests still exist and are being migrated.
+- **[Cypress component tests](./cypress-testing.md)** — optional, used for complex components or where real-browser DOM and interactions are needed.
+- **Storybook** — the component development environment and the source of stories used by visual regression testing.
+- **[Visual regression tests](./visual-regression-testing.md)** — Playwright + `jest-image-snapshot` against Storybook stories, run on every pull request.
 
 ## Code coverage
 
-Code coverage is a tool intended to help devs quickly find lines/branches that still need to be covered and determine test cases to write. Currently, EUI does not **yet** use code coverage %s in CI for automated checks or reports.
+Code coverage is a tool intended to help devs quickly find lines/branches that still need to be covered and determine test cases to write. EUI does not enforce a code coverage threshold in CI; reports are generated on demand for local inspection.
 
 ### Jest coverage reports
 

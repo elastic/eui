@@ -9,7 +9,7 @@
 import React, { cloneElement, isValidElement } from 'react';
 import { css } from '@emotion/react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { LOKI_SELECTORS } from '../../../.storybook/loki';
+import { VRT_SELECTORS } from '../../../.storybook/vrt';
 
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
 import { EuiIcon } from '../icon';
@@ -52,11 +52,6 @@ const StoryRender = ({
 const meta: Meta<EuiListItemLayoutProps> = {
   title: 'Internal/EuiListItemLayout',
   component: EuiListItemLayout,
-  parameters: {
-    loki: {
-      chromeSelector: LOKI_SELECTORS.portal,
-    },
-  },
   argTypes: {
     element: {
       control: 'radio',
@@ -185,7 +180,7 @@ export const Playground: Story = {
 export const Interactive: Story = {
   tags: ['vrt-only'], // remove story from sidebar in production
   parameters: {
-    loki: {
+    vrt: {
       // VRT looks the same as the Playground story
       skip: true,
     },
@@ -261,6 +256,7 @@ export const TooltipProps: Story = {
         'hasAriaDisabled',
       ],
     },
+    vrt: { selector: VRT_SELECTORS.portal },
   },
   args: {
     children: 'List item',
@@ -287,6 +283,7 @@ export const ExtraActionAndTooltipProps: Story = {
         'children',
       ],
     },
+    vrt: { selector: VRT_SELECTORS.portal },
   },
   args: {
     children: 'List item',

@@ -14,6 +14,8 @@ import {
   disableStorybookControls,
   enableFunctionToggleControls,
 } from '../../../.storybook/utils';
+import { within } from '../../../.storybook/test';
+import { playDecorator } from '../../../.storybook/vrt';
 import { EuiButton } from '../button';
 import { EuiFlexGroup } from '../flex';
 import { EuiText } from '../text';
@@ -60,6 +62,10 @@ export const Playground: Story = {
     isOpen: true,
   },
   render: (args) => <StatefulPopover {...args} />,
+  play: playDecorator(async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await canvas.waitForEuiPopoverVisible();
+  }),
 };
 enableFunctionToggleControls(Playground, ['onPositionChange']);
 

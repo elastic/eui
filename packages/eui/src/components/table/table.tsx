@@ -22,6 +22,8 @@ import { usePropsWithComponentDefaults } from '../provider/component_defaults';
 import { euiContainerCSS } from '../../global_styling';
 import { EUI_TABLE_CSS_CONTAINER_NAME } from './const';
 import { EuiTableStickyScrollbar } from './sticky_scrollbar';
+import { EuiTableStickyHeader } from './sticky_header/sticky_header';
+import { EuiTableStoreProvider } from './store/provider';
 
 export interface EuiTableProps
   extends CommonProps,
@@ -67,6 +69,19 @@ export interface EuiTableProps
    * @default false
    */
   stickyScrollbar?: boolean;
+  /**
+   * When enabled, the table header will stick to the top of the viewport as users
+   * scroll through long tables. This enhances usability by maintaining column
+   * context during vertical scrolling and unifies the scrolling experience
+   * between EuiTable components and EuiDataGrid.
+   *
+   * This feature should be used in places where it's possible for the table
+   * to grow longer than the viewport.
+   *
+   * @beta
+   * @default false
+   */
+  stickyHeader?: boolean;
 }
 
 /**
@@ -89,9 +104,11 @@ export const EuiTable: FunctionComponent<EuiTableProps> = (originalProps) => {
     responsiveBreakpoint,
     scrollableInline = false,
     stickyScrollbar = false,
+    stickyHeader = false,
     ...rest
   } = usePropsWithComponentDefaults('EuiTable', originalProps);
   const tableWrapperRef = useRef<HTMLDivElement>(null);
+  const tableRef = useRef<HTMLTableElement>(null);
   const isResponsive = useIsEuiTableResponsive(responsiveBreakpoint);
 
   const classes = classNames('euiTable', className);
@@ -112,9 +129,24 @@ export const EuiTable: FunctionComponent<EuiTableProps> = (originalProps) => {
   ];
 
   return (
-    <>
+    <EuiTableStoreProvider>
+      {stickyHeader && (
+        <EuiTableStickyHeader
+          scrollableInline={scrollableInline}
+          tableRef={tableRef}
+          tableWrapperRef={tableWrapperRef}
+          compressed={compressed}
+          isResponsive={isResponsive}
+        />
+      )}
       <div css={cssStyles} ref={tableWrapperRef}>
-        <table tabIndex={-1} css={tableStyles} className={classes} {...rest}>
+        <table
+          tabIndex={-1}
+          css={tableStyles}
+          className={classes}
+          ref={tableRef}
+          {...rest}
+        >
           <EuiTableIsResponsiveContext.Provider value={isResponsive}>
             <EuiTableVariantContext.Provider value={{ hasBackground }}>
               {children}
@@ -125,6 +157,6 @@ export const EuiTable: FunctionComponent<EuiTableProps> = (originalProps) => {
       {scrollableInline && stickyScrollbar && (
         <EuiTableStickyScrollbar tableWrapperRef={tableWrapperRef} />
       )}
-    </>
+    </EuiTableStoreProvider>
   );
 };

@@ -12,11 +12,15 @@ import React from 'react';
 import type { Preview } from '@storybook/react';
 import { MINIMAL_VIEWPORTS } from '@storybook/addon-viewport';
 
-/**
- * Ensure that any provider errors throw & warn us early
- */
 import { setEuiDevProviderWarning } from '../src/services';
-setEuiDevProviderWarning('error');
+
+/**
+ * Ensure that any provider errors throw & warn us early.
+ *
+ * For VRT, we set the warning level to `'warn'` so that stories which
+ * intentionally nest EuiProvider (e.g. `componentDefaults` stories) don't fail.
+ */
+setEuiDevProviderWarning(navigator.webdriver ? 'warn' : 'error');
 
 /**
  * Custom global decorators

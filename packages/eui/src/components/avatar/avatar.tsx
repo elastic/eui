@@ -161,6 +161,7 @@ export const EuiAvatar: FunctionComponent<EuiAvatarProps> = ({
     isSubdued && styles.subdued,
     isDisabled && styles.isDisabled,
   ];
+  const tooltipCssStyles = [styles.tooltip[type]];
 
   const avatarStyle = useMemo(() => {
     if (imageUrl) {
@@ -231,7 +232,11 @@ export const EuiAvatar: FunctionComponent<EuiAvatarProps> = ({
   // `EuiAvatar` is not interactive so we don't need to add a `tabIndex`.
   // It already has `aria-label`, the tooltip is only visual.
   return name ? (
-    <EuiToolTip content={name} disableScreenReaderOutput>
+    <EuiToolTip
+      content={name}
+      anchorProps={{ css: tooltipCssStyles }}
+      disableScreenReaderOutput
+    >
       {avatarNode}
     </EuiToolTip>
   ) : (

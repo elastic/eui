@@ -63,7 +63,7 @@ The path to the directory where the files should live. Defaults to the last dire
 
 If you want Yeoman to automatically generate a directory to organize the files, that directory will be created inside of the location you specify (see next prompt).
 
-### "Does it need its own directory?""
+### "Does it need its own directory?"
 
 This will automatically generate a directory with the same name as the file, but without a "eui" prefix. This defaults to `YES`.
 

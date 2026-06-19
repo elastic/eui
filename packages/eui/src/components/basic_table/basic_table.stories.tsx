@@ -52,6 +52,7 @@ const meta: Meta<EuiBasicTableProps<User>> = {
     noItemsMessage: '',
     scrollableInline: false,
     stickyScrollbar: false,
+    panelled: false,
   },
 };
 moveStorybookControlsToCategory(
@@ -610,8 +611,16 @@ export const Scrollable: Story = {
     ...Playground.args,
     scrollableInline: true,
     stickyScrollbar: true,
+    stickyHeader: true,
     responsiveBreakpoint: false,
     tableLayout: 'auto',
     columns: scrollableColumns,
+  },
+};
+
+export const Panelled: Story = {
+  args: {
+    ...Playground.args,
+    panelled: true,
   },
 };

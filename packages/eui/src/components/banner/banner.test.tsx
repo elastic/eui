@@ -173,7 +173,7 @@ describe('EuiBanner', () => {
       );
     });
 
-    it('does not render a standalone secondary action button', () => {
+    it('renders a standalone secondary action button', () => {
       const { queryByTestSubject } = render(
         <EuiBanner
           {...requiredProps}
@@ -183,10 +183,9 @@ describe('EuiBanner', () => {
         />
       );
 
-      expect(queryByTestSubject('euiBanner-actions')).not.toBeInTheDocument();
       expect(
         queryByTestSubject('euiBanner-secondaryAction')
-      ).not.toBeInTheDocument();
+      ).toBeInTheDocument();
     });
 
     it('fires primary and secondary onClick', () => {

@@ -88,6 +88,7 @@ You probably don't need this section in a public Epic.
 - [ ] EUI Beta issue created (if applicable)
   - Link: {link}
 - [ ] EUI [Deprecation schedule]([url](https://github.com/elastic/eui/issues/1469)) updated (if applicable)
+- [ ] Set up a Demo and Review session to recap and close out the project (with PM present)
 
 ### Useful Links
 

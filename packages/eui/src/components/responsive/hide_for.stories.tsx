@@ -14,8 +14,8 @@ const meta: Meta<EuiHideForProps> = {
   title: 'Utilities/EuiHideFor',
   component: EuiHideFor,
   parameters: {
-    loki: {
-      // EuiHideFor may render null resulting in Loki failing
+    vrt: {
+      // EuiHideFor may render null resulting in VRT failing
       // to find an element to snapshot
       skip: true,
     },

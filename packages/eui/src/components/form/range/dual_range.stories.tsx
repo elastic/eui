@@ -9,7 +9,7 @@
 import React, { useEffect, useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { LOKI_SELECTORS } from '../../../../.storybook/loki';
+import { VRT_SELECTORS } from '../../../../.storybook/vrt';
 import {
   enableFunctionToggleControls,
   moveStorybookControlsToCategory,
@@ -202,7 +202,7 @@ const StatefulPlayground = ({
 export const InputWithPopover: Story = {
   tags: ['vrt-only'],
   parameters: {
-    loki: { chromeSelector: LOKI_SELECTORS.portal },
+    vrt: { selector: VRT_SELECTORS.portal },
   },
   args: {
     showInput: 'inputWithPopover',

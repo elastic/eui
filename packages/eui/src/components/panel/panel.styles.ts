@@ -53,6 +53,9 @@ export const euiPanelStyles = (euiThemeContext: UseEuiTheme) => {
     euiPanel: css`
       position: relative;
       flex-grow: 0;
+      /* Set a fixed base line-height to ensure consistency between interactive and non-interactive panels.
+      Otherwise the browser defaults between div and button might be different. */
+      line-height: inherit;
     `,
 
     grow: css`

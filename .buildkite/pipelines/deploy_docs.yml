@@ -7,6 +7,53 @@ agents:
   preemptible: false
 
 steps:
-  - label: ':docusaurus: Build and deploy documentation website'
-    timeout_in_minutes: 90
-    command: .buildkite/scripts/pipelines/pipeline_deploy_new_docs.sh
+  - label: ":gear: Setup"
+    key: "setup"
+    command: .buildkite/scripts/deploy_docs/step_setup.sh
+
+  - label: ":docusaurus: Build and deploy website"
+    key: "build-website"
+    depends_on: "setup"
+    command: .buildkite/scripts/deploy_docs/step_build_website.sh
+
+  - label: ":book: Build and deploy Storybook"
+    key: "build-storybook"
+    depends_on: "setup"
+    command: .buildkite/scripts/deploy_docs/step_build_storybook.sh
+
+  - label: ":camera: Test visual regression"
+    key: "vrt"
+    depends_on: "build-storybook"
+    if: build.pull_request.id != null
+    timeout_in_minutes: 30
+    command: .buildkite/scripts/deploy_docs/step_vrt.sh
+    artifact_paths:
+      - "packages/eui/.vrt/diff/**/*.png"
+      - "packages/eui/.vrt/current/**/*-received.png"
+  
+  - label: ":loudspeaker: Notify"
+    key: "notify"
+    depends_on: "vrt"
+    allow_dependency_failure: true
+    command: .buildkite/scripts/deploy_docs/step_notify.sh
+
+  # The "Approve visual changes" block + "Update VRT baselines" steps are
+  # always present on PR builds. They are gated inside `step_vrt_update.sh`,
+  # which short-circuits when `vrt_passed` meta-data shows VRT did not fail.
+  #
+  # Buildkite's `if:` expressions can't read runtime meta-data, so we can't
+  # condition these steps themselves on the VRT outcome.
+
+  - block: "Approve visual changes"
+    key: "approve-vrt"
+    prompt: "Review the diff annotation in this build, then click Approve to update the baselines on this branch."
+    depends_on: "vrt"
+    allow_dependency_failure: true
+    allowed_teams: "eui-team"
+    if: build.pull_request.id != null
+
+  - label: "Update VRT baselines"
+    key: "update-baselines"
+    depends_on: "approve-vrt"
+    command: .buildkite/scripts/deploy_docs/step_vrt_update.sh
+    if: build.pull_request.id != null

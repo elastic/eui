@@ -128,8 +128,6 @@ export const ContainerSizes: Story = {
   render: (args) => <ContainerSizesRender {...args} />,
 };
 
-/* Vrt-only */
-
 export const WithChildren: Story = {
   args: {
     title,
@@ -139,5 +137,43 @@ export const WithChildren: Story = {
         <i>Additional content</i>
       </div>
     ),
+  },
+};
+
+/* Vrt-only */
+
+export const KitchenSinkCustomChildren: Story = {
+  tags: ['vrt-only'],
+  args: {
+    title,
+    text,
+    children: (
+      <div>
+        <i>Additional content</i>
+      </div>
+    ),
+    actionProps: {
+      primary: {
+        children: 'Primary action',
+        onClick: action('primary onClick'),
+      },
+      secondary: {
+        children: 'Secondary action',
+        onClick: action('secondary onClick'),
+      },
+    },
+  },
+  render: (_args) => {
+    return (
+      <>
+        <EuiBanner {..._args} actionProps={{}} />
+        <br />
+        <EuiBanner {..._args} />
+        <br />
+        <EuiBanner {..._args} actionProps={{}} text="" />
+        <br />
+        <EuiBanner {..._args} text="" />
+      </>
+    );
   },
 };

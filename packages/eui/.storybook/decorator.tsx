@@ -39,7 +39,7 @@ export const EuiProviderDecorator: FunctionComponent<
   }
 > = ({ children, writingMode, themeName, theme, ...euiProviderProps }) => {
   // Append portals into Storybook's root div (rather than <body>)
-  // so that loki correctly captures them for VRT screenshots
+  // so that VRT screenshots correctly capture them
   const [sibling, setPortalSibling] = useState<HTMLElement | null>(null);
   const portalInsert = useMemo(() => {
     if (sibling) {

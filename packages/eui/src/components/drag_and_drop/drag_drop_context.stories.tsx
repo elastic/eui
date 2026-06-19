@@ -14,7 +14,7 @@ import type { DragDropContextProps } from '@hello-pangea/dnd';
 
 import { enableFunctionToggleControls } from '../../../.storybook/utils';
 import { within } from '../../../.storybook/test';
-import { LOKI_SELECTORS } from '../../../.storybook/loki';
+import { VRT_SELECTORS } from '../../../.storybook/vrt';
 import { sleep } from '../../test';
 
 import { EuiPanel } from '../panel';
@@ -30,13 +30,13 @@ const meta: Meta<DragDropContextProps> = {
   title: 'Display/EuiDragDropContext',
   component: EuiDragDropContext,
   parameters: {
-    loki: {
+    vrt: {
       // EuiDragDropContext doesn't do anything visual, we're testing the
       // visual parts with the Drag and Drop components separately
       skip: true,
-      codeSnippet: {
-        resolveStoryElementOnly: true,
-      },
+    },
+    codeSnippet: {
+      resolveStoryElementOnly: true,
     },
   },
 };
@@ -76,9 +76,8 @@ export const Playground: Story = {
 export const WithinFlyouts: Story = {
   tags: ['vrt-only'],
   parameters: {
-    loki: {
-      skip: false,
-      chromeSelector: LOKI_SELECTORS.portal,
+    vrt: {
+      selector: VRT_SELECTORS.portal,
     },
   },
   args: {

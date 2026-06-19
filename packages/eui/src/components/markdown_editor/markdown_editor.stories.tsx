@@ -103,7 +103,7 @@ export const NoPlugins: Story = {
 export const DropZone: Story = {
   parameters: {
     controls: { include: ['dropHandlers', 'value'] },
-    loki: {
+    vrt: {
       // functional test story only
       skip: true,
     },

@@ -208,7 +208,7 @@ exports[`EuiCard props an avatar icon 1`] = `
       class="euiCard__top emotion-euiCard__top-vertical"
     >
       <span
-        class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+        class="euiToolTipAnchor  emotion-euiToolTipAnchor-inlineBlock-user"
         id="generated-id_euiToolTipAnchor"
       >
         <div

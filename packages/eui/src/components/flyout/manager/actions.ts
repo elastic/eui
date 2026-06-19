@@ -7,6 +7,7 @@
  */
 
 import type { IconType } from '../../icon';
+import type { EuiFlyoutMenuPagination } from '../flyout_menu';
 import { LEVEL_MAIN } from './const';
 import {
   EuiFlyoutActivityStage,
@@ -30,6 +31,8 @@ export const ACTION_CLOSE_ALL = `${PREFIX}/closeAll` as const;
 export const ACTION_SET_ACTIVE = `${PREFIX}/setActive` as const;
 /** Dispatched when an active flyout's pixel width changes (for responsive layout). */
 export const ACTION_SET_WIDTH = `${PREFIX}/setWidth` as const;
+/** Dispatched to set a flyout's menu pagination. */
+export const ACTION_SET_PAGINATION = `${PREFIX}/setPagination` as const;
 /** Dispatched to switch layout mode between `side-by-side` and `stacked`. */
 export const ACTION_SET_LAYOUT_MODE = `${PREFIX}/setLayoutMode` as const;
 /** Dispatched to update a flyout's activity stage (e.g., opening -> active). */
@@ -88,6 +91,13 @@ export interface SetWidthAction extends BaseAction {
   type: typeof ACTION_SET_WIDTH;
   flyoutId: string;
   width: number;
+}
+
+/** Set the manager pagination value for a flyout. */
+export interface SetPaginationAction extends BaseAction {
+  type: typeof ACTION_SET_PAGINATION;
+  flyoutId: string;
+  pagination: EuiFlyoutMenuPagination | undefined;
 }
 
 /** Change how flyouts are arranged: `side-by-side` or `stacked`. */
@@ -152,6 +162,7 @@ export type Action =
   | CloseAllFlyoutsAction
   | SetActiveFlyoutAction
   | SetWidthAction
+  | SetPaginationAction
   | SetLayoutModeAction
   | SetActivityStageAction
   | GoBackAction
@@ -216,6 +227,23 @@ export const setFlyoutWidth = (
   type: ACTION_SET_WIDTH,
   flyoutId,
   width,
+});
+
+/**
+ * Set (or clear) the menu pagination config for a flyout. When set, this
+ * overrides any pagination passed via `flyoutMenuProps.pagination` on the
+ * flyout itself, allowing reactive updates from a different React root.
+ *
+ * Only works for managed flyouts. Unmanaged flyouts (session={false}) must use
+ * the `flyoutMenuProps.pagination` prop instead.
+ */
+export const setPagination = (
+  flyoutId: string,
+  pagination: EuiFlyoutMenuPagination | undefined
+): SetPaginationAction => ({
+  type: ACTION_SET_PAGINATION,
+  flyoutId,
+  pagination,
 });
 
 /** Switch layout mode between `side-by-side` and `stacked`. */
