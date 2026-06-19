@@ -103,7 +103,7 @@ describe('euiFormControlStyles', () => {
               --euiFormControlStateAutofillWidth: 2px;
             }
 
-            &:invalid {
+            &:is(:invalid, [aria-invalid='true']) {
               --euiFormControlStateAutofillColor: #C61E25;
 
               &:hover {
