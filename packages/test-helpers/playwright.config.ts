@@ -24,7 +24,9 @@ export default defineConfig({
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
   retries: 0,
-  reporter: process.env.CI ? 'github' : [['list'], ['html', { open: 'never' }]],
+  reporter: process.env.CI
+    ? [['github'], ['html', { open: 'never' }]]
+    : [['list'], ['html', { open: 'never' }]],
   timeout: 60_000,
   expect: { timeout: 10_000 },
   use: {
@@ -32,11 +34,12 @@ export default defineConfig({
     testIdAttribute: 'data-test-subj',
     actionTimeout: 10_000,
     navigationTimeout: 20_000,
-    trace: 'on-first-retry',
+    // retries are 0, so 'on-first-retry' would never capture; retain on failure in CI.
+    trace: process.env.CI ? 'retain-on-failure' : 'on-first-retry',
     screenshot: 'only-on-failure',
   },
   webServer: {
-    command: `npx http-server ${STORYBOOK_STATIC_DIR} --port ${STORYBOOK_PORT} --silent`,
+    command: `npx --no-install http-server ${STORYBOOK_STATIC_DIR} --port ${STORYBOOK_PORT} --silent`,
     url: STORYBOOK_URL,
     timeout: 120_000,
     reuseExistingServer: !process.env.CI,
