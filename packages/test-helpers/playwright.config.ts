@@ -10,11 +10,13 @@ import { defineConfig, devices } from '@playwright/test';
 
 const STORYBOOK_PORT = 6006;
 const STORYBOOK_URL = `http://localhost:${STORYBOOK_PORT}`;
+const STORYBOOK_STATIC_DIR = '../eui/storybook-static';
 
 /**
- * Tests expect Storybook to already be running on `STORYBOOK_PORT`; see the
- * package README for the local workflow. Defaults track kbn-scout's config
- * (test-id attribute, timeouts, no auto-retries) for cross-team consistency.
+ * Locally, `webServer` reuses the already-running Storybook dev server; in CI it
+ * serves the prebuilt static Storybook (see the package README). Defaults track
+ * kbn-scout's config (test-id attribute, timeouts, no auto-retries) for
+ * cross-team consistency.
  */
 export default defineConfig({
   testDir: './src',
@@ -32,6 +34,12 @@ export default defineConfig({
     navigationTimeout: 20_000,
     trace: 'on-first-retry',
     screenshot: 'only-on-failure',
+  },
+  webServer: {
+    command: `npx http-server ${STORYBOOK_STATIC_DIR} --port ${STORYBOOK_PORT} --silent`,
+    url: STORYBOOK_URL,
+    timeout: 120_000,
+    reuseExistingServer: !process.env.CI,
   },
   projects: [{ name: 'chromium', use: { ...devices['Desktop Chrome'] } }],
 });

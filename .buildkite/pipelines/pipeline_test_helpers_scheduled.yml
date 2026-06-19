@@ -1,0 +1,30 @@
+# 🏠/.buildkite/pipelines/pipeline_test_helpers_scheduled.yml
+
+agents:
+  provider: gcp
+  machineType: c4d-standard-4
+  preemptible: true
+  diskType: hyperdisk-balanced
+  diskSizeGb: 30
+  spotZones: us-central1-a,us-central1-b,us-central1-c
+
+retry_policy: &retry_policy
+  automatic:
+    - exit_status: -1 # agent loss
+      limit: 3
+
+steps:
+  - command: .buildkite/scripts/pipelines/pipeline_test.sh
+    label: ":playwright: Scheduled flake detection (all helpers, 5×)"
+    env:
+      TEST_TYPE: 'test-helpers'
+      PLAYWRIGHT_ARGS: '--repeat-each=5'
+    artifact_paths:
+      - "packages/test-helpers/playwright-report/**/*"
+      - "packages/test-helpers/test-results/**/*"
+    timeout_in_minutes: 60
+    retry: *retry_policy
+
+notify:
+  - slack: "#appex-qa"
+    if: build.state == "failed"
