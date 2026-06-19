@@ -48,18 +48,20 @@ export type EuiNotificationIconProps = CommonProps & {
 
 export const EuiNotificationIcon: FunctionComponent<
   EuiNotificationIconProps
-> = ({ className, type, size = 'm' }) => {
+> = ({ className, type, size = 'm', css, ...rest }) => {
   const Icon = ICON_TYPES_MAP[type];
 
-  const classes = classNames('EuiNotificationIcon', className);
+  const classes = classNames('euiNotificationIcon', className);
   const styles = useEuiMemoizedStyles(euiNotificationIconStyles);
   const cssStyles = [
     styles.euiNotificationIcon,
     size === 'l' && styles.size[size],
+    css,
   ];
 
   return (
     <EuiIcon
+      {...rest}
       className={classes}
       css={cssStyles}
       type={Icon.icon}
