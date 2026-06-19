@@ -6,7 +6,8 @@
  * Side Public License, v 1.
  */
 
-import { type ReactNode } from 'react';
+import { type ReactNode, useEffect } from 'react';
+import { useWindowSize } from '@docusaurus/theme-common';
 import {
   useLockBodyScroll,
   useNavbarMobileSidebar,
@@ -17,6 +18,7 @@ import NavbarMobileSidebarPrimaryMenu from '@theme-original/Navbar/MobileSidebar
 import NavbarMobileSidebarSecondaryMenu from '@theme-original/Navbar/MobileSidebar/SecondaryMenu';
 
 import { VersionSwitcherProps } from '../../../components/version_switcher';
+import { NAVBAR_MOBILE_BREAKPOINT } from '../breakpoint';
 
 type Props = {
   versionSwitcherOptions?: VersionSwitcherProps;
@@ -26,9 +28,27 @@ export default function NavbarMobileSidebar({
   versionSwitcherOptions,
 }: Props): ReactNode {
   const mobileSidebar = useNavbarMobileSidebar();
-  useLockBodyScroll(mobileSidebar.shown);
+  const {
+    disabled,
+    shouldRender: shouldRenderDefault,
+    shown,
+    toggle,
+  } = mobileSidebar;
+  const windowSize = useWindowSize({
+    desktopBreakpoint: NAVBAR_MOBILE_BREAKPOINT,
+  });
+  const shouldRender =
+    shouldRenderDefault || (!disabled && windowSize === 'mobile');
 
-  if (!mobileSidebar.shouldRender) {
+  useLockBodyScroll(shown);
+
+  useEffect(() => {
+    if (windowSize === 'desktop' && shown) {
+      toggle();
+    }
+  }, [shown, toggle, windowSize]);
+
+  if (!shouldRender) {
     return null;
   }
 

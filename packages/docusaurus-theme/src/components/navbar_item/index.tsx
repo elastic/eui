@@ -22,6 +22,7 @@ import {
 } from '@elastic/eui';
 
 import { AppThemeContext } from '../theme_context';
+import { NAVBAR_DESKTOP_MEDIA_QUERY } from '../../theme/Navbar/breakpoint';
 
 type SharedProps = {
   icon: IconType;
@@ -60,7 +61,7 @@ export const getStyles = ({ euiTheme }: UseEuiTheme) => ({
     justify-content: flex-start;
     gap: ${euiTheme.size.s};
 
-    @media (min-width: 997px) {
+    ${NAVBAR_DESKTOP_MEDIA_QUERY} {
       justify-content: center;
       width: ${euiTheme.size.xl};
       height: ${euiTheme.size.xl};
@@ -80,7 +81,7 @@ export const getStyles = ({ euiTheme }: UseEuiTheme) => ({
     color: ${euiTheme.colors.textInverse};
   `,
   title: css`
-    @media (min-width: 997px) {
+    ${NAVBAR_DESKTOP_MEDIA_QUERY} {
       display: none;
     }
   `,

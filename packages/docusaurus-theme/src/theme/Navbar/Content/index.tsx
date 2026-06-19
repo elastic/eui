@@ -40,6 +40,10 @@ import {
   VersionSwitcherProps,
 } from '../../../components/version_switcher';
 import { HighContrastModeToggle } from '../../../components/high_contrast_mode_toggle';
+import {
+  NAVBAR_DESKTOP_MEDIA_QUERY,
+  NAVBAR_MOBILE_MEDIA_QUERY,
+} from '../breakpoint';
 
 const DOCS_PATH = '/docs';
 
@@ -62,7 +66,7 @@ const getStyles = (euiThemeContext: UseEuiTheme) => {
 
       .navbar__item,
       [class*='colorModeToggle'] {
-        @media (max-width: 996px) {
+        ${NAVBAR_MOBILE_MEDIA_QUERY} {
           display: none;
         }
       }
@@ -74,12 +78,16 @@ const getStyles = (euiThemeContext: UseEuiTheme) => {
           background-color: var(--ifm-color-emphasis-200);
           color: currentColor;
         }
+
+        ${NAVBAR_MOBILE_MEDIA_QUERY} {
+          display: inherit;
+        }
       }
     `,
     navbarItemsLeft: css`
       gap: ${euiTheme.size.s};
 
-      @media (min-width: 997px) {
+      ${NAVBAR_DESKTOP_MEDIA_QUERY} {
         gap: ${euiTheme.size.l};
       }
 
@@ -91,7 +99,7 @@ const getStyles = (euiThemeContext: UseEuiTheme) => {
       gap: ${euiTheme.size.s};
     `,
     actions: css`
-      @media (max-width: 996px) {
+      ${NAVBAR_MOBILE_MEDIA_QUERY} {
         display: none;
       }
     `,
@@ -130,7 +138,7 @@ const getStyles = (euiThemeContext: UseEuiTheme) => {
           max-inline-size: 25rem;
         }
 
-        @media (min-width: 997px) {
+        ${NAVBAR_DESKTOP_MEDIA_QUERY} {
           min-inline-size: 15rem;
         }
 
@@ -140,12 +148,12 @@ const getStyles = (euiThemeContext: UseEuiTheme) => {
       }
     `,
     versionSwitcher: css`
-      @media (max-width: 996px) {
+      ${NAVBAR_MOBILE_MEDIA_QUERY} {
         display: none;
       }
     `,
     themeSwitcher: css`
-      @media (max-width: 996px) {
+      ${NAVBAR_MOBILE_MEDIA_QUERY} {
         display: none;
       }
     `,
