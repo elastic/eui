@@ -40,10 +40,7 @@ import {
   VersionSwitcherProps,
 } from '../../../components/version_switcher';
 import { HighContrastModeToggle } from '../../../components/high_contrast_mode_toggle';
-import {
-  NAVBAR_DESKTOP_MEDIA_QUERY,
-  NAVBAR_MOBILE_MEDIA_QUERY,
-} from '../breakpoint';
+import { getNavbarBreakpoint } from '../breakpoint';
 
 const DOCS_PATH = '/docs';
 
@@ -58,6 +55,8 @@ const getStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
   const form = euiFormVariables(euiThemeContext);
   const iconColor = encodeURIComponent(euiTheme.colors.text);
+  const { desktopMediaQuery, mobileMediaQuery } =
+    getNavbarBreakpoint(euiThemeContext);
 
   return {
     navbarItems: css`
@@ -66,7 +65,7 @@ const getStyles = (euiThemeContext: UseEuiTheme) => {
 
       .navbar__item,
       [class*='colorModeToggle'] {
-        ${NAVBAR_MOBILE_MEDIA_QUERY} {
+        ${mobileMediaQuery} {
           display: none;
         }
       }
@@ -79,7 +78,7 @@ const getStyles = (euiThemeContext: UseEuiTheme) => {
           color: currentColor;
         }
 
-        ${NAVBAR_MOBILE_MEDIA_QUERY} {
+        ${mobileMediaQuery} {
           display: inherit;
         }
       }
@@ -87,7 +86,7 @@ const getStyles = (euiThemeContext: UseEuiTheme) => {
     navbarItemsLeft: css`
       gap: ${euiTheme.size.s};
 
-      ${NAVBAR_DESKTOP_MEDIA_QUERY} {
+      ${desktopMediaQuery} {
         gap: ${euiTheme.size.l};
       }
 
@@ -99,7 +98,7 @@ const getStyles = (euiThemeContext: UseEuiTheme) => {
       gap: ${euiTheme.size.s};
     `,
     actions: css`
-      ${NAVBAR_MOBILE_MEDIA_QUERY} {
+      ${mobileMediaQuery} {
         display: none;
       }
     `,
@@ -138,22 +137,18 @@ const getStyles = (euiThemeContext: UseEuiTheme) => {
           max-inline-size: 25rem;
         }
 
-        ${NAVBAR_DESKTOP_MEDIA_QUERY} {
+        ${desktopMediaQuery} {
           min-inline-size: 15rem;
-        }
-
-        @media (min-width: 1200px) {
-          min-inline-size: 25rem;
         }
       }
     `,
     versionSwitcher: css`
-      ${NAVBAR_MOBILE_MEDIA_QUERY} {
+      ${mobileMediaQuery} {
         display: none;
       }
     `,
     themeSwitcher: css`
-      ${NAVBAR_MOBILE_MEDIA_QUERY} {
+      ${mobileMediaQuery} {
         display: none;
       }
     `,

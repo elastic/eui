@@ -16,9 +16,10 @@ import NavbarMobileSidebarLayout from '@theme-original/Navbar/MobileSidebar/Layo
 import NavbarMobileSidebarHeader from './Header';
 import NavbarMobileSidebarPrimaryMenu from '@theme-original/Navbar/MobileSidebar/PrimaryMenu';
 import NavbarMobileSidebarSecondaryMenu from '@theme-original/Navbar/MobileSidebar/SecondaryMenu';
+import { useEuiTheme } from '@elastic/eui';
 
 import { VersionSwitcherProps } from '../../../components/version_switcher';
-import { NAVBAR_MOBILE_BREAKPOINT } from '../breakpoint';
+import { getNavbarBreakpoint } from '../breakpoint';
 
 type Props = {
   versionSwitcherOptions?: VersionSwitcherProps;
@@ -34,13 +35,15 @@ export default function NavbarMobileSidebar({
     shown,
     toggle,
   } = mobileSidebar;
+  const euiThemeContext = useEuiTheme();
+  const { mobileBreakpoint } = getNavbarBreakpoint(euiThemeContext);
   const windowSize = useWindowSize({
-    desktopBreakpoint: NAVBAR_MOBILE_BREAKPOINT,
+    desktopBreakpoint: mobileBreakpoint,
   });
   const shouldRender =
     shouldRenderDefault || (!disabled && windowSize === 'mobile');
 
-  useLockBodyScroll(shown);
+  useLockBodyScroll(shouldRender && shown);
 
   useEffect(() => {
     if (windowSize === 'desktop' && shown) {

@@ -22,7 +22,7 @@ import {
 } from '@elastic/eui';
 
 import { AppThemeContext } from '../theme_context';
-import { NAVBAR_DESKTOP_MEDIA_QUERY } from '../../theme/Navbar/breakpoint';
+import { getNavbarBreakpoint } from '../../theme/Navbar/breakpoint';
 
 type SharedProps = {
   icon: IconType;
@@ -37,55 +37,60 @@ type Props = ExclusiveUnion<
 >;
 
 // converted from css modules to Emotion
-export const getStyles = ({ euiTheme }: UseEuiTheme) => ({
-  item: css`
-    display: flex;
-    align-items: center;
-    flex-shrink: 0;
+export const getStyles = (euiThemeContext: UseEuiTheme) => {
+  const { euiTheme } = euiThemeContext;
+  const { desktopMediaQuery } = getNavbarBreakpoint(euiThemeContext);
 
-    -webkit-tap-highlight-color: transparent;
-    transition: background var(--ifm-transition-fast);
+  return {
+    item: css`
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
 
-    &:hover {
-      background-color: ${euiTheme.components.buttons.backgroundTextHover};
-      color: currentColor;
-    }
-  `,
-  navItem: css`
-    justify-content: center;
-    width: ${euiTheme.size.xl};
-    height: ${euiTheme.size.xl};
-    border-radius: 50%;
-  `,
-  menuItem: css`
-    justify-content: flex-start;
-    gap: ${euiTheme.size.s};
+      -webkit-tap-highlight-color: transparent;
+      transition: background var(--ifm-transition-fast);
 
-    ${NAVBAR_DESKTOP_MEDIA_QUERY} {
+      &:hover {
+        background-color: ${euiTheme.components.buttons.backgroundTextHover};
+        color: currentColor;
+      }
+    `,
+    navItem: css`
       justify-content: center;
       width: ${euiTheme.size.xl};
       height: ${euiTheme.size.xl};
       border-radius: 50%;
-    }
-  `,
-  darkMode: css`
-    &:hover {
-      color: currentColor;
-    }
-  `,
-  disabled: css`
-    cursor: not-allowed;
-  `,
-  selected: css`
-    background-color: ${euiTheme.colors.backgroundFilledText};
-    color: ${euiTheme.colors.textInverse};
-  `,
-  title: css`
-    ${NAVBAR_DESKTOP_MEDIA_QUERY} {
-      display: none;
-    }
-  `,
-});
+    `,
+    menuItem: css`
+      justify-content: flex-start;
+      gap: ${euiTheme.size.s};
+
+      ${desktopMediaQuery} {
+        justify-content: center;
+        width: ${euiTheme.size.xl};
+        height: ${euiTheme.size.xl};
+        border-radius: 50%;
+      }
+    `,
+    darkMode: css`
+      &:hover {
+        color: currentColor;
+      }
+    `,
+    disabled: css`
+      cursor: not-allowed;
+    `,
+    selected: css`
+      background-color: ${euiTheme.colors.backgroundFilledText};
+      color: ${euiTheme.colors.textInverse};
+    `,
+    title: css`
+      ${desktopMediaQuery} {
+        display: none;
+      }
+    `,
+  };
+};
 
 // using a type guard to ensure proper typing from ExclusiveUnion
 const isAnchorClick = (

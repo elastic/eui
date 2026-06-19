@@ -6,8 +6,18 @@
  * Side Public License, v 1.
  */
 
-export const NAVBAR_MOBILE_BREAKPOINT = 1200;
-export const NAVBAR_DESKTOP_BREAKPOINT = NAVBAR_MOBILE_BREAKPOINT + 1;
+import type { UseEuiTheme } from '@elastic/eui';
 
-export const NAVBAR_MOBILE_MEDIA_QUERY = `@media (max-width: ${NAVBAR_MOBILE_BREAKPOINT}px)`;
-export const NAVBAR_DESKTOP_MEDIA_QUERY = `@media (min-width: ${NAVBAR_DESKTOP_BREAKPOINT}px)`;
+const NAVBAR_MOBILE_BREAKPOINT_KEY = 'xl';
+
+export const getNavbarBreakpoint = ({ euiTheme }: UseEuiTheme) => {
+  const mobileBreakpoint = euiTheme.breakpoint[NAVBAR_MOBILE_BREAKPOINT_KEY];
+  const desktopBreakpoint = mobileBreakpoint + 1;
+
+  return {
+    desktopBreakpoint,
+    desktopMediaQuery: `@media (min-width: ${desktopBreakpoint}px)`,
+    mobileBreakpoint,
+    mobileMediaQuery: `@media (max-width: ${mobileBreakpoint}px)`,
+  };
+};
