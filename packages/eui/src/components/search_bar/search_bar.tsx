@@ -270,7 +270,7 @@ export class EuiSearchBar extends Component<EuiSearchBarProps, State> {
       isHintVisible: isHintVisibleState,
     } = this.state;
     const {
-      box: { schema, ...box } = { schema: '' }, // strip `schema` out to prevent passing it to EuiSearchBox
+      box: { schema, compressed, ...box } = { schema: '', compressed: false }, // strip `schema` out to prevent passing it to EuiSearchBox
       filters,
       toolsLeft,
       toolsRight,
@@ -286,6 +286,7 @@ export class EuiSearchBar extends Component<EuiSearchBarProps, State> {
     const searchBox = (
       <EuiSearchBox
         {...box}
+        compressed={compressed}
         query={queryText}
         onSearch={this.onSearch}
         isInvalid={error != null}
@@ -329,6 +330,7 @@ export class EuiSearchBar extends Component<EuiSearchBarProps, State> {
                   filters={filters}
                   query={query}
                   onChange={this.onFiltersChange}
+                  compressed={compressed}
                 />
               </EuiFlexItem>
             )}
