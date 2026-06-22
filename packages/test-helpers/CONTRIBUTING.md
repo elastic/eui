@@ -99,6 +99,6 @@ yarn workspace @elastic/eui-test-helpers show-report
 
 ## CI integration
 
-These tests run in EUI's Buildkite CI on every PR, with flake detection when a component changes, plus a scheduled run. See [Testing → EUI test helpers](../../wiki/contributing-to-eui/testing/eui-test-helpers.md) in the wiki.
+These tests run in EUI's Buildkite CI on every PR, with flake detection when a component changes. See [Testing → EUI test helpers](../../wiki/contributing-to-eui/testing/eui-test-helpers.md) in the wiki.
 
 Flake detection correlates a component to its helper **by directory name**: a change under `packages/eui/src/components/<name>` re-runs the specs in `src/playwright/components/<name>`. Keep that directory parity when adding a Component Object and no extra wiring is needed.
