@@ -83,7 +83,7 @@ Wait until Storybook finishes compiling. Then, from the repository root:
 yarn workspace @elastic/eui-test-helpers test
 ```
 
-This runs `tsc --noEmit` (type-check) followed by `playwright test`. To run only the Playwright tests, use `test-unit`. On a fresh checkout, install Playwright's browsers once:
+This runs `tsc --noEmit` (type-check) followed by `playwright test`. To run only the Playwright tests, use `test-e2e`. On a fresh checkout, install Playwright's browsers once:
 
 ```shell
 yarn workspace @elastic/eui-test-helpers exec playwright install chromium

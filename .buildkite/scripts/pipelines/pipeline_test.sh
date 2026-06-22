@@ -7,6 +7,40 @@ source .buildkite/scripts/common/utils.sh
 
 buildkite_analytics_vault="secret/ci/elastic-eui/buildkite-test-analytics"
 
+# Paths that don't affect the EUI test suite.
+# When a PR's diff is contained entirely within these paths,
+# the heavy EUI jobs (lint, unit:*, cypress:*) exit early below.
+# The lightweight per-package jobs always run.
+NON_EUI_PATHS_REGEXP='^(\.github/|wiki/|packages/(website|docusaurus-[^/]+|eslint-plugin)/)'
+
+is_eui_test_type() {
+  case "$1" in
+    lint|unit:ts|unit:tsx|unit:tsx:17|cypress:17|cypress:18|cypress:a11y) return 0 ;;
+    *) return 1 ;;
+  esac
+}
+
+should_skip_eui_tests() {
+  local base_branch="${BUILDKITE_PULL_REQUEST_BASE_BRANCH:-main}"
+  git fetch --no-tags --quiet origin "$base_branch" 2>/dev/null || return 1
+
+  local merge_base
+  merge_base=$(git merge-base "origin/$base_branch" HEAD 2>/dev/null) || return 1
+
+  local changed
+  changed=$(git diff --name-only "$merge_base" HEAD 2>/dev/null) || return 1
+
+  [[ -n "$changed" ]] || return 1
+  echo "$changed" | grep -qvE "$NON_EUI_PATHS_REGEXP" && return 1
+
+  return 0
+}
+
+if is_eui_test_type "$TEST_TYPE" && should_skip_eui_tests; then
+  echo "[SKIP]: Only non-EUI paths changed; skipping ${TEST_TYPE}"
+  exit 0
+fi
+
 DOCKER_OPTIONS=(
   -i --rm
   --env GIT_COMMITTER_NAME=test
@@ -71,6 +105,24 @@ case $TEST_TYPE in
   test-helpers)
     echo "[TASK]: Running EUI test-helpers validation tests"
     COMMAND="/opt/yarn*/bin/yarn && yarn workspace @elastic/eui build:workspaces && yarn workspace @elastic/eui build-storybook && yarn workspace @elastic/eui-test-helpers exec playwright install chromium && yarn workspace @elastic/eui-test-helpers exec playwright test ${PLAYWRIGHT_ARGS:-}"
+    ;;
+
+  pkg:lint)
+    echo "[TASK]: Linting all workspaces except @elastic/eui"
+    COMMAND="/opt/yarn*/bin/yarn && yarn workspace @elastic/eui build:workspaces && \
+      yarn workspaces foreach -A -pi \
+        --exclude '@elastic/eui' \
+        --exclude '@elastic/eui-monorepo' \
+        run lint"
+    ;;
+
+  pkg:unit)
+    echo "[TASK]: Running unit tests for all workspaces except @elastic/eui"
+    COMMAND="/opt/yarn*/bin/yarn && yarn workspace @elastic/eui build:workspaces && \
+      yarn workspaces foreach -A -pi \
+        --exclude '@elastic/eui' \
+        --exclude '@elastic/eui-monorepo' \
+        run test-unit"
     ;;
 
   *)
