@@ -9,8 +9,8 @@
   "private": true,
   "scripts": {
     "lint": "tsc --noEmit",
-    "test": "yarn lint && yarn test-unit",
-    "test-unit": "playwright test",
+    "test": "yarn lint && yarn test-e2e",
+    "test-e2e": "playwright test",
     "show-report": "playwright show-report"
   },
   "peerDependencies": {
