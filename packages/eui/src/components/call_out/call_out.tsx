@@ -10,7 +10,11 @@ import React, { forwardRef, HTMLAttributes, ReactNode, useMemo } from 'react';
 import classNames from 'classnames';
 import { _EuiThemeBorderColors, getTokenName } from '@elastic/eui-theme-common';
 
-import { useEuiMemoizedStyles, useEuiTheme } from '../../services';
+import {
+  useCombinedRefs,
+  useEuiMemoizedStyles,
+  useEuiTheme,
+} from '../../services';
 import { useEuiBorderColorCSS } from '../../global_styling';
 import { CommonProps, DataAttributeProps } from '../common';
 import { EuiIcon, IconType } from '../icon';
@@ -137,7 +141,8 @@ export const EuiCallOut = forwardRef<HTMLDivElement, EuiCallOutProps>(
     /* Uses resize observer to determine the container width/layout instead of native container queries,
     because callouts can be placed in containers without defined size (absolute positioned, no-grow flex layout etc.)
     where container queries would collapse by design instead of adjusting to the content dimensions. */
-    const panelRef = useLayoutObserver(size, ref);
+    const layoutRef = useLayoutObserver(size);
+    const panelRef = useCombinedRefs([layoutRef, ref]);
 
     const borderColors = useEuiBorderColorCSS();
     const styles = useEuiMemoizedStyles(euiCallOutStyles);

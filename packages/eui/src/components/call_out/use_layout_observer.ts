@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { useCallback, useEffect, useRef } from 'react';
+import { RefObject, useEffect, useRef } from 'react';
 
 import { hasResizeObserver } from '../observer/resize_observer/resize_observer';
 import { EuiCallOutSize } from './types';
@@ -25,25 +25,13 @@ const WIDE_BREAKPOINTS: Record<EuiCallOutSize, number> = {
  * container queries would collapse if the element is placed inside a container without a defined size.
  */
 export const useLayoutObserver = (
-  size: EuiCallOutSize,
-  ref: React.ForwardedRef<HTMLDivElement>
-): ((node: HTMLDivElement | null) => void) => {
-  const elementRef = useRef<HTMLDivElement | null>(null);
-  const forwardedRefRef = useRef(ref);
-  forwardedRefRef.current = ref;
-
-  const panelRef = useCallback((node: HTMLDivElement | null) => {
-    elementRef.current = node;
-    const fRef = forwardedRefRef.current;
-    if (typeof fRef === 'function') {
-      fRef(node);
-    } else if (fRef) {
-      (fRef as React.MutableRefObject<HTMLDivElement | null>).current = node;
-    }
-  }, []);
+  size: EuiCallOutSize
+): RefObject<HTMLDivElement> => {
+  const elementRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const element = elementRef.current;
+
     if (!element || !hasResizeObserver) return;
 
     const wide = WIDE_BREAKPOINTS[size];
@@ -61,8 +49,9 @@ export const useLayoutObserver = (
     });
 
     observer.observe(element);
+
     return () => observer.disconnect();
   }, [size]);
 
-  return panelRef;
+  return elementRef;
 };
