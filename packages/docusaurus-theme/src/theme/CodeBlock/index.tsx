@@ -40,11 +40,15 @@ export default function CodeBlock({
     return <Demo {...props}>{children}</Demo>;
   }
 
+  // Don't show the fullscreen button for single-line snippets
+  const isOneLiner =
+    typeof children === 'string' && !children.trim().includes('\n');
+
   return (
     <EuiCodeBlock
       {...props}
       fontSize="m"
-      overflowHeight={450}
+      overflowHeight={isOneLiner ? undefined : 450}
       language={language}
       isCopyable
       css={css`
