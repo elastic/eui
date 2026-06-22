@@ -10,7 +10,11 @@ import React, { forwardRef, HTMLAttributes, ReactNode, useMemo } from 'react';
 import classNames from 'classnames';
 import { _EuiThemeBorderColors, getTokenName } from '@elastic/eui-theme-common';
 
-import { useEuiMemoizedStyles, useEuiTheme } from '../../services';
+import {
+  useCombinedRefs,
+  useEuiMemoizedStyles,
+  useEuiTheme,
+} from '../../services';
 import { useEuiBorderColorCSS } from '../../global_styling';
 import { CommonProps, DataAttributeProps } from '../common';
 import { EuiIcon, IconType } from '../icon';
@@ -26,6 +30,7 @@ import {
   type EuiNotificationIconType,
 } from '../notification_icon/notification_icon';
 
+import { useLayoutObserver } from './use_layout_observer';
 import {
   EuiCallOutAction,
   EuiCallOutActionPrimaryProps,
@@ -132,6 +137,12 @@ export const EuiCallOut = forwardRef<HTMLDivElement, EuiCallOutProps>(
   ) => {
     const { euiTheme } = useEuiTheme();
     const color = getCallOutColor(_color);
+
+    /* Uses resize observer to determine the container width/layout instead of native container queries,
+    because callouts can be placed in containers without defined size (absolute positioned, no-grow flex layout etc.)
+    where container queries would collapse by design instead of adjusting to the content dimensions. */
+    const layoutRef = useLayoutObserver(size);
+    const panelRef = useCombinedRefs([layoutRef, ref]);
 
     const borderColors = useEuiBorderColorCSS();
     const styles = useEuiMemoizedStyles(euiCallOutStyles);
@@ -307,7 +318,7 @@ export const EuiCallOut = forwardRef<HTMLDivElement, EuiCallOutProps>(
         // uses custom padding
         paddingSize="none"
         className={classes}
-        panelRef={ref}
+        panelRef={panelRef}
         grow={false}
         style={{ ...cssVariables, ...style }}
         data-size={size}

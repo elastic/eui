@@ -14,46 +14,9 @@ import {
   preventForcedColors,
 } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
-import { EuiCallOutSize } from './types';
 
 /** Maximum reading width for `text` and `children` slots. */
 const TEXT_MAX_WIDTH = 1200;
-const CONTAINER_NAME = 'euiCallOut';
-const CQC_LAYOUTS = ['superNarrow', 'wide'] as const;
-type EuiCallOutLayouts = (typeof CQC_LAYOUTS)[number];
-const CQC_BREAKPOINTS: Record<
-  EuiCallOutSize,
-  Record<EuiCallOutLayouts, string>
-> = {
-  s: {
-    superNarrow: '(max-width: 400px)',
-    wide: '(min-width: 800px)',
-  },
-  m: {
-    superNarrow: '(max-width: 600px)',
-    wide: '(min-width: 1000px)',
-  },
-};
-
-const withContainerQuery = ({
-  layout,
-  styles,
-}: {
-  layout: EuiCallOutLayouts;
-  styles: string;
-}) => {
-  return Object.keys(CQC_BREAKPOINTS)
-    .map(
-      (sizeKey) => `
-        @container ${CONTAINER_NAME}--${sizeKey} ${
-        CQC_BREAKPOINTS[sizeKey as EuiCallOutSize][layout]
-      } {
-          ${styles}
-        }
-      `
-    )
-    .join('\n');
-};
 
 export const euiCallOutStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
@@ -76,11 +39,9 @@ export const euiCallOutStyles = (euiThemeContext: UseEuiTheme) => {
 
   return {
     euiCallOut: css`
-      container-type: inline-size;
-      container-name: ${CONTAINER_NAME};
       position: relative;
       display: flex;
-      inline-size: 100%;
+      max-inline-size: 100%;
       align-items: center;
       border: ${euiTheme.border.width.thin} solid;
       border-radius: ${borderRadius};
@@ -104,14 +65,10 @@ export const euiCallOutStyles = (euiThemeContext: UseEuiTheme) => {
       }
 
       &:where([data-size='s']) {
-        container-name: ${CONTAINER_NAME} ${CONTAINER_NAME}--s;
-
         ${logicalShorthandCSS('padding', `${paddingSizes.s} ${paddingSizes.m}`)}
       }
 
       &:where([data-size='m']) {
-        container-name: ${CONTAINER_NAME} ${CONTAINER_NAME}--m;
-
         padding: ${paddingSizes.m};
       }
     `,
@@ -129,13 +86,10 @@ export const euiCallOutStyles = (euiThemeContext: UseEuiTheme) => {
         gap: ${euiTheme.size.m};
       }
 
-      ${withContainerQuery({
-        layout: 'wide',
-        styles: `
-            flex-direction: row;
-            gap: ${euiTheme.size.xxl};
-          `,
-      })}
+      &:where([data-layout='wide'] &) {
+        flex-direction: row;
+        gap: ${euiTheme.size.xxl};
+      }
     `,
     // handles icon + text layout
     body: css`
@@ -232,8 +186,7 @@ export const euiCallOutStyles = (euiThemeContext: UseEuiTheme) => {
         ${logicalCSS('margin-left', euiTheme.size.xl)}
       }
 
-      /* uses container query directly as it should apply generically independent of size */
-      @container ${CONTAINER_NAME} ${CQC_BREAKPOINTS.s.superNarrow} {
+      &:where([data-layout='superNarrow'] &) {
         flex-wrap: wrap;
 
         /* use full width actions */
@@ -243,15 +196,12 @@ export const euiCallOutStyles = (euiThemeContext: UseEuiTheme) => {
         }
       }
 
-      ${withContainerQuery({
-        layout: 'wide',
-        styles: `
-            ${logicalCSS('margin-left', '0')}
-            align-self: center;
-            flex-shrink: 0;
-            flex-direction: row-reverse;
-          `,
-      })}
+      &:where([data-layout='wide'] &) {
+        ${logicalCSS('margin-left', '0')}
+        align-self: center;
+        flex-shrink: 0;
+        flex-direction: row-reverse;
+      }
     `,
   };
 };
