@@ -31,7 +31,7 @@ exports[`EuiForm renders with error callout when isInvalid is "true" 1`] = `
     tabindex="-1"
   >
     <div
-      class="css-4ee039-wrapper"
+      class="css-1slkmya-wrapper"
     >
       <div
         class="css-wlziyu-body"
@@ -73,7 +73,7 @@ exports[`EuiForm renders with error callout when isInvalid is "true" and has mul
     tabindex="-1"
   >
     <div
-      class="css-4ee039-wrapper"
+      class="css-1slkmya-wrapper"
     >
       <div
         class="css-wlziyu-body"
@@ -135,7 +135,7 @@ exports[`EuiForm renders with error callout when isInvalid is "true" and has one
     tabindex="-1"
   >
     <div
-      class="css-4ee039-wrapper"
+      class="css-1slkmya-wrapper"
     >
       <div
         class="css-wlziyu-body"
