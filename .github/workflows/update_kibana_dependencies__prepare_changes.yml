@@ -86,7 +86,7 @@ jobs:
           package-manager-cache: false # Don't cache anything as it's a different repository
       - name: Fetch ephemeral GitHub token
         id: fetch_ephemeral_token
-        uses: elastic/ci-gh-actions/fetch-github-token@v1.5.0
+        uses: elastic/ci-gh-actions/fetch-github-token@v1.5.3
         with:
           vault-instance: ci-prod
           vault-role: token-policy-4fabc48bd03f
