@@ -15,7 +15,7 @@ import {
 import {
   euiFormVariables,
   // @ts-ignore - reusing form styles as we don't have access to the plugin component yet
-} from '@elastic/eui/lib/components/form/form.styles';
+} from '@elastic/eui/es/components/form/form.styles';
 
 import { HomepageContainer } from '../layout';
 import { DecorRight } from './decor_right';
