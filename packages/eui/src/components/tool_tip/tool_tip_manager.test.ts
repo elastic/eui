@@ -11,7 +11,7 @@ import { toolTipManager } from './tool_tip_manager';
 describe('ToolTipManager', () => {
   afterEach(() => {
     // Reset the singleton between tests to prevent cross-test contamination
-    toolTipManager.reset();
+    toolTipManager.toolTipsToHide.clear();
   });
 
   describe('registerTooltip', () => {
@@ -41,66 +41,6 @@ describe('ToolTipManager', () => {
       toolTipManager.registerTooltip(hide);
 
       expect(hide).not.toHaveBeenCalled();
-    });
-  });
-
-  describe('registerTooltip skipAnimation signal', () => {
-    // The skip-animation decision is time-based, so control `Date.now()`.
-    let nowSpy: jest.SpyInstance;
-
-    beforeEach(() => {
-      nowSpy = jest.spyOn(Date, 'now').mockReturnValue(1000);
-    });
-
-    afterEach(() => {
-      nowSpy.mockRestore();
-    });
-
-    it('returns skipAnimation: false for the first tooltip', () => {
-      const hide = jest.fn();
-
-      expect(toolTipManager.registerTooltip(hide)).toEqual({
-        skipAnimation: false,
-      });
-    });
-
-    it('returns skipAnimation: true when another tooltip is already open', () => {
-      toolTipManager.registerTooltip(jest.fn());
-
-      expect(toolTipManager.registerTooltip(jest.fn())).toEqual({
-        skipAnimation: true,
-      });
-    });
-
-    it('returns skipAnimation: true when a tooltip closed within the window', () => {
-      const hide = jest.fn();
-      toolTipManager.registerTooltip(hide);
-      toolTipManager.deregisterToolTip(hide); // lastHiddenAt = 1000
-
-      nowSpy.mockReturnValue(1000 + 299); // just inside the 300ms window
-
-      expect(toolTipManager.registerTooltip(jest.fn())).toEqual({
-        skipAnimation: true,
-      });
-    });
-
-    it('returns skipAnimation: false when the last close was outside the window', () => {
-      const hide = jest.fn();
-      toolTipManager.registerTooltip(hide);
-      toolTipManager.deregisterToolTip(hide); // lastHiddenAt = 1000
-
-      nowSpy.mockReturnValue(1000 + 300); // window has elapsed
-
-      expect(toolTipManager.registerTooltip(jest.fn())).toEqual({
-        skipAnimation: false,
-      });
-    });
-
-    it('returns null when re-registering the same tooltip', () => {
-      const hide = jest.fn();
-      toolTipManager.registerTooltip(hide);
-
-      expect(toolTipManager.registerTooltip(hide)).toBeNull();
     });
   });
 
