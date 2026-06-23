@@ -42,11 +42,11 @@ import {
 
 ### Test
 
-Test utilities are published from the `lib/test` directory.
+Test utilities are published from the `test-env/test` directory (Jest) and `es/test` (ESM).
 
 ```js
-import { findTestSubject } from '@elastic/eui/lib/test'; // Enzyme
-import { findByTestSubject, render, screen } from '@elastic/eui/lib/test/rtl'; // React Testing Library
+import { findTestSubject } from '@elastic/eui/test-env/test'; // Enzyme
+import { findByTestSubject, render, screen } from '@elastic/eui/test-env/test/rtl'; // React Testing Library
 ```
 
 ### Custom styles
@@ -96,19 +96,21 @@ export default () => {
 
 ### "Module build failed" or "Module parse failed: Unexpected token" error
 
-If you get an error when importing a React component, you might need to configure Webpack's `resolve.mainFields` to `['webpack', 'browser', 'main']` to import the components from `lib` instead of `src`. See the [Webpack docs](https://webpack.js.org/configuration/resolve/#resolve-mainfields) for more info.
+If you get an error when importing a React component, ensure your bundler resolves `@elastic/eui` to the compiled **`es/`** output (via the `module` or `main` field), not `src/`. Most bundlers do this automatically. If needed, set Webpack's `resolve.mainFields` to `['browser', 'module', 'main']`. See the [Webpack docs](https://webpack.js.org/configuration/resolve/#resolve-mainfields) for more info.
 
 ## Using the `test-env` build
 
-EUI provides a separate babel-transformed and partially mocked commonjs build for testing environments in consuming projects. The output is identical to that of `lib/`, but has transformed async functions and dynamic import statements, and also applies some useful mocks. This build mainly targets Kibana's Jest environment, but may be helpful for testing environments in other projects.
+EUI provides a separate babel-transformed and partially mocked CommonJS build for testing environments in consuming projects (`test-env/`). The output mirrors the ESM build, but has transformed async functions and dynamic import statements, and also applies some useful mocks. This build mainly targets Kibana's Jest environment, but may be helpful for testing environments in other projects.
 
 ### Mapping to the `test-env` directory
 
-In Kibana's Jest configuration, the `moduleNameMapper` option is used to resolve standard EUI import statements with `test-env` aliases.
+In Jest, map `@elastic/eui` and `es/` deep imports to `test-env`:
 
 ```js
 moduleNameMapper: {
-  '@elastic/eui$': '<rootDir>/node_modules/@elastic/eui/test-env'
+  '^@elastic/eui$': '<rootDir>/node_modules/@elastic/eui/test-env',
+  '^@elastic/eui/es/(.*)$':
+    '<rootDir>/node_modules/@elastic/eui/test-env/$1',
 }
 ```
 
@@ -127,7 +129,7 @@ When compiling with webpack, use the `resolve.alias` configuration to target the
 ```json
 resolve: {
   alias: {
-    '@elastic/eui$': '@elastic/eui/optimize/lib'
+    '@elastic/eui$': '@elastic/eui/optimize/es'
   }
 }
 ```
