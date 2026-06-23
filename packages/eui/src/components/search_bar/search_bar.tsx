@@ -132,6 +132,11 @@ export interface EuiSearchBarProps extends CommonProps {
     content: React.ReactNode;
     popoverProps?: HintPopOverProps;
   };
+
+  /**
+   * When `true`, creates a shorter height search bar and filters
+   */
+  compressed?: boolean;
 }
 
 const parseQuery = (
@@ -270,11 +275,12 @@ export class EuiSearchBar extends Component<EuiSearchBarProps, State> {
       isHintVisible: isHintVisibleState,
     } = this.state;
     const {
-      box: { schema, compressed, ...box } = { schema: '', compressed: false }, // strip `schema` out to prevent passing it to EuiSearchBox
+      box: { schema, ...box } = { schema: '' }, // strip `schema` out to prevent passing it to EuiSearchBox
       filters,
       toolsLeft,
       toolsRight,
       hint,
+      compressed,
     } = this.props;
 
     const toolsLeftEl = this.renderTools(toolsLeft);

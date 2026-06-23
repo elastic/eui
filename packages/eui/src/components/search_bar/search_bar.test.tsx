@@ -57,6 +57,18 @@ describe('SearchBar', () => {
     expect(container.firstChild).toMatchSnapshot();
   });
 
+  test('render - compressed', () => {
+    const props = {
+      ...requiredProps,
+      compressed: true,
+      onChange: () => {},
+    };
+
+    const { container } = render(<EuiSearchBar {...props} />);
+
+    expect(container.firstChild).toMatchSnapshot();
+  });
+
   test('render - provided query, filters', async () => {
     const filters: SearchFilterConfig[] = [
       {
