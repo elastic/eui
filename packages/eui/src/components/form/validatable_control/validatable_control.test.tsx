@@ -186,11 +186,13 @@ describe('EuiValidatableControl', () => {
 describe('useEuiValidatableControl', () => {
   const controlEl = document.createElement('input');
 
-  it('sets the validity of the passed control element', () => {
+  it('does not alter the native constraint validity of the passed control element', () => {
     const { rerender } = renderHook(useEuiValidatableControl, {
       initialProps: { isInvalid: true, controlEl },
     });
-    expect(controlEl.validity.valid).toEqual(false);
+    // `isInvalid` is presentational only - it must not flip native validity
+    // (which would block native form submission / show a native error tooltip)
+    expect(controlEl.validity.valid).toEqual(true);
 
     rerender({ isInvalid: false, controlEl });
     expect(controlEl.validity.valid).toEqual(true);

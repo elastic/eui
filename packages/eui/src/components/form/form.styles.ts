@@ -424,7 +424,7 @@ export const euiFormControlAutoFillStyles = (euiThemeContext: UseEuiTheme) => {
         --euiFormControlStateAutofillWidth: ${euiTheme.border.width.thick};
       }
 
-      &:invalid {
+      &:is(:invalid, [aria-invalid='true']) {
         --euiFormControlStateAutofillColor: ${borderInvalid};
 
         &:hover {

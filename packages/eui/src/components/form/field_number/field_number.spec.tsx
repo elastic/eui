@@ -41,6 +41,18 @@ describe('EuiFieldNumber', () => {
         .should('exist');
     };
 
+    // The `isInvalid` prop is presentational: it sets `aria-invalid` and shows
+    // the invalid icon, independently of the control's native constraint
+    // validity (which it intentionally no longer touches - that guarantee is
+    // asserted in validatable_control.test.tsx).
+    const checkIsInvalidByProp = (selector = 'input') => {
+      cy.get(selector).should('have.attr', 'aria-invalid', 'true');
+      cy.get(selector)
+        .parent()
+        .find('.euiFormControlLayoutIcons')
+        .should('exist');
+    };
+
     it('when the value is not a valid number', () => {
       cy.mount(<EuiFieldNumber />);
       checkIsValid();
@@ -248,7 +260,7 @@ describe('EuiFieldNumber', () => {
         cy.get(value2Selector).clear();
         cy.get(value2Selector).focus().realType('6');
         checkIsValid(value1Selector);
-        checkIsInvalid(value2Selector);
+        checkIsInvalidByProp(value2Selector);
 
         // Set `value1` to a value greater than `value2` (6 > 5) => valid
         cy.get(value1Selector).clear();
