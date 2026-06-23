@@ -272,28 +272,22 @@ If your application doesn't allow grabbing the font assets from a CDN, you'll ne
 
 ## Components, Services and Testing imports
 
-You can import React components from the top-level EUI module.
+You can import React components and services from the top-level EUI module.
 
 ```tsx
 import {
-  EuiButton,
-  EuiCallOut,
-  EuiPanel,
+  EuiPanel, // component
+  keys, // service
 } from '@elastic/eui';
 ```
 
-Most services are published from the `lib/services` directory. Some are published from their module directories in this directory.
+Try avoiding direct imports from the build directories. They may break when EUI is updated.
+
+Test utilities are published from `test-env/test` (Jest) and `es/test` (ESM).
 
 ```tsx
-import { keys } from '@elastic/eui/lib/services';
-import { Timer } from '@elastic/eui/lib/services/time';
-```
-
-Test utilities are published from the `lib/test` directory.
-
-```tsx
-import { findTestSubject } from '@elastic/eui/lib/test'; // Enzyme
-import { findByTestSubject, render, screen } from '@elastic/eui/lib/test/rtl'; // React Testing Library
+import { findTestSubject } from '@elastic/eui/test-env/test'; // Enzyme (Jest)
+import { findByTestSubject, render, screen } from '@elastic/eui/test-env/test/rtl'; // React Testing Library (Jest)
 ```
 
 ## Customizing component defaults
