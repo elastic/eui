@@ -47,6 +47,7 @@ const meta: Meta<EuiGlobalToastListProps> = {
     showClearAllButtonAt: 3,
     // stub for testing/QA
     dismissToast: () => {},
+    showNotificationBadge: false,
   },
   parameters: {
     vrt: {
