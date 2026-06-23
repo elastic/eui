@@ -3,9 +3,21 @@
   "description": "Elastic UI Component Library",
   "version": "116.3.1",
   "license": "SEE LICENSE IN LICENSE.txt",
-  "main": "lib",
-  "module": "es",
+  "main": "es/index.js",
+  "module": "es/index.js",
   "types": "eui.d.ts",
+  "exports": {
+    ".": {
+      "types": "./eui.d.ts",
+      "import": "./es/index.js",
+      "default": "./es/index.js"
+    },
+    "./es/*": "./es/*",
+    "./optimize/es": "./optimize/es/index.js",
+    "./optimize/es/*": "./optimize/es/*",
+    "./test-env": "./test-env/index.js",
+    "./test-env/*": "./test-env/*"
+  },
   "docker_image": "20.15.1",
   "engines": {
     "node": "16.x || 18.x || >=20.x"
@@ -17,7 +29,7 @@
   "scripts": {
     "start": "yarn storybook",
     "build:workspaces": "yarn workspaces foreach -Rti --from @elastic/eui-theme-common run build && yarn workspaces foreach -Rti --from @elastic/eui --exclude @elastic/eui --exclude @elastic/eui-theme-common run build",
-    "build:clean": "rimraf dist lib es optimize test-env eui.d.ts",
+    "build:clean": "rimraf dist es optimize test-env eui.d.ts",
     "build:i18ntokens": "node ./scripts/build_i18ntokens.mjs",
     "build": "yarn build:clean && yarn build:i18ntokens && node ./scripts/compile-eui.js",
     "build-pack": "yarn build && yarn pack",
@@ -263,7 +275,6 @@
   "files": [
     "dist",
     "es",
-    "lib",
     "licenses",
     "optimize",
     "src/**/*.scss",
