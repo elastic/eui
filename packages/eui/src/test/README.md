@@ -1,6 +1,6 @@
 # Testing-related utilities
 
-EUI uses many of the utilities in this directory in its own Jest tests and, in case they are useful for consuming apps, exports them from `@elastic/eui/lib/test` (commonjs) and `@elastic/eui/es/test` (esm)
+EUI uses many of the utilities in this directory in its own Jest tests and, in case they are useful for consuming apps, exports them from `@elastic/eui/test-env/test` (Jest) and `@elastic/eui/es/test` (ESM).
 
 ### findTestSubject
 
