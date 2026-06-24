@@ -292,7 +292,7 @@ export class EuiSearchBar extends Component<EuiSearchBarProps, State> {
     const searchBox = (
       <EuiSearchBox
         {...box}
-        compressed={compressed}
+        compressed={compressed ?? this.props.box?.compressed}
         query={queryText}
         onSearch={this.onSearch}
         isInvalid={error != null}

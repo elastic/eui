@@ -57,10 +57,50 @@ describe('SearchBar', () => {
     expect(container.firstChild).toMatchSnapshot();
   });
 
-  test('render - compressed', () => {
+  test('render - compressed top-level only', () => {
     const props = {
       ...requiredProps,
       compressed: true,
+      onChange: () => {},
+    };
+
+    const { container } = render(<EuiSearchBar {...props} />);
+
+    expect(container.firstChild).toMatchSnapshot();
+  });
+
+  test('render - box.compressed only', () => {
+    const props = {
+      ...requiredProps,
+      box: {
+        compressed: true,
+      },
+      onChange: () => {},
+    };
+
+    const { container } = render(<EuiSearchBar {...props} />);
+
+    expect(container.firstChild).toMatchSnapshot();
+  });
+
+  test('render - both set, top-level compressed wins', () => {
+    const props = {
+      ...requiredProps,
+      compressed: true,
+      box: {
+        compressed: false,
+      },
+      onChange: () => {},
+    };
+
+    const { container } = render(<EuiSearchBar {...props} />);
+
+    expect(container.firstChild).toMatchSnapshot();
+  });
+
+  test('render - both undefined, defaults to non-compressed', () => {
+    const props = {
+      ...requiredProps,
       onChange: () => {},
     };
 
