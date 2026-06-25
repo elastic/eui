@@ -20,7 +20,7 @@ export const euiSelectStyles = (euiThemeContext: UseEuiTheme) => {
       appearance: none;
       ${formStyles.shared}
 
-      &:is(:invalid, [aria-invalid='true']) {
+      &:invalid {
         ${formStyles.invalid}
       }
 

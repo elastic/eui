@@ -29,7 +29,7 @@ export const euiTextAreaStyles = (euiThemeContext: UseEuiTheme) => {
        * @see https://stackoverflow.com/a/27536461/4294462 */
       display: block;
 
-      &:is(:invalid, [aria-invalid='true']) {
+      &:invalid {
         ${formStyles.invalid}
       }
 

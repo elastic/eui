@@ -28,7 +28,7 @@ export const euiFieldSearchStyles = (euiThemeContext: UseEuiTheme) => {
 
       ${formStyles.shared}
 
-      &:is(:invalid, [aria-invalid='true']) {
+      &:invalid {
         ${formStyles.invalid}
       }
 
