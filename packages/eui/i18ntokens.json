@@ -1746,24 +1746,6 @@
     "filepath": "src/components/flyout/flyout_menu.tsx"
   },
   {
-    "token": "euiFlyoutMenu.pagination.counter",
-    "defString": "{position} of {total}",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 277,
-        "column": 12,
-        "index": 7772
-      },
-      "end": {
-        "line": 281,
-        "column": 14,
-        "index": 7957
-      }
-    },
-    "filepath": "src/components/flyout/flyout_menu.tsx"
-  },
-  {
     "token": "euiFlyout.screenReaderModalDialog",
     "defString": "You are in a modal dialog. Press Escape or tap/click outside the dialog on the shadowed overlay to close.",
     "highlighting": "string",
