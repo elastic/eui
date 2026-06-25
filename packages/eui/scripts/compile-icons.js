@@ -38,7 +38,10 @@ function compileIcons({ svgsDir, outputDir, servicesImportPath }) {
 
   iconFiles.forEach((filePath) => {
     const fileName = path.basename(filePath, '.svg');
-    const svgSource = fs.readFileSync(path.join(svgsDir, filePath));
+    const resolvedPath = path.isAbsolute(filePath)
+      ? filePath
+      : path.join(svgsDir, filePath);
+    const svgSource = fs.readFileSync(resolvedPath);
     const svgString = svgSource.toString();
 
     try {
