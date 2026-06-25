@@ -1,5 +1,29 @@
 [
   {
+    "version": "116.4.0",
+    "changes": [
+      {
+        "token": "euiToast.notification",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiFlyoutMenu.pagination.previous",
+        "changeType": "added",
+        "value": "Previous"
+      },
+      {
+        "token": "euiFlyoutMenu.pagination.next",
+        "changeType": "added",
+        "value": "Next"
+      },
+      {
+        "token": "euiFlyoutMenu.pagination.counter",
+        "changeType": "added",
+        "value": "{position} of {total}"
+      }
+    ]
+  },
+  {
     "version": "116.0.0",
     "changes": [
       {
