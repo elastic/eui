@@ -9,10 +9,13 @@
 import {
   Children,
   cloneElement,
+  MutableRefObject,
   ReactElement,
   Ref,
   FunctionComponent,
+  useState,
   useEffect,
+  useCallback,
 } from 'react';
 import { CommonProps } from '../../common';
 
@@ -24,15 +27,15 @@ export interface ReactElementWithRef extends ReactElement {
   ref?: Ref<HTMLConstraintValidityElement>;
 }
 
+function isMutableRef(
+  ref?: Ref<HTMLConstraintValidityElement>
+): ref is MutableRefObject<HTMLConstraintValidityElement> {
+  return ref != null && ref.hasOwnProperty('current');
+}
+
 /**
  * The `EuiValidatableControl` component should be used in scenarios where
  * we can render the validated `<input>` as its direct child.
- *
- * It flags the underlying control as invalid via `aria-invalid`, which EUI form
- * controls use to render their invalid styling. Note that it intentionally does
- * *not* hook into the native constraint validation API (`setCustomValidity`) -
- * `isInvalid` is a presentational prop, and tying it to native validity would
- * block native form submission and surface a non-localized native error tooltip.
  */
 export interface EuiValidatableControlProps {
   isInvalid?: boolean;
@@ -42,9 +45,32 @@ export interface EuiValidatableControlProps {
 export const EuiValidatableControl: FunctionComponent<
   CommonProps & EuiValidatableControlProps
 > = ({ isInvalid, children }) => {
+  // Note that this must be state and not a ref to cause a rerender/set invalid state on initial mount
+  const [control, setControl] = useState<HTMLConstraintValidityElement | null>(
+    null
+  );
+
   const child = Children.only(children);
+  const childRef = child.ref;
+
+  const replacedRef = useCallback(
+    (element: HTMLConstraintValidityElement) => {
+      setControl(element);
+
+      // Call the original ref, if any
+      if (typeof childRef === 'function') {
+        childRef(element);
+      } else if (isMutableRef(childRef)) {
+        childRef.current = element;
+      }
+    },
+    [childRef]
+  );
+
+  useSetControlValidity({ controlEl: control, isInvalid });
 
   return cloneElement(child, {
+    ref: replacedRef,
     'aria-invalid': isInvalid || child.props['aria-invalid'],
   });
 };
@@ -63,6 +89,8 @@ export const useEuiValidatableControl = ({
   isInvalid,
   controlEl,
 }: UseEuiValidatableControlProps) => {
+  useSetControlValidity({ controlEl, isInvalid });
+
   useEffect(() => {
     if (!controlEl) return;
 
@@ -70,6 +98,29 @@ export const useEuiValidatableControl = ({
       controlEl.setAttribute('aria-invalid', String(isInvalid));
     } else {
       controlEl.removeAttribute('aria-invalid');
+    }
+  }, [isInvalid, controlEl]);
+};
+
+/**
+ * Internal `setCustomValidity` helper
+ */
+const useSetControlValidity = ({
+  controlEl,
+  isInvalid,
+}: UseEuiValidatableControlProps) => {
+  useEffect(() => {
+    if (
+      controlEl == null ||
+      typeof controlEl.setCustomValidity !== 'function'
+    ) {
+      return;
+    }
+
+    if (isInvalid) {
+      controlEl.setCustomValidity('Invalid');
+    } else {
+      controlEl.setCustomValidity('');
     }
   }, [isInvalid, controlEl]);
 };
