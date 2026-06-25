@@ -22,7 +22,7 @@ const iconLoading = keyframes`
   }
 `;
 
-export const euiIconStyles = ({ euiTheme }: UseEuiTheme) => ({
+export const euiIconStyles = ({ euiTheme, colorMode }: UseEuiTheme) => ({
   // Base
   euiIcon: css`
     flex-shrink: 0; /* Ensures it never scales down below its intended size */
@@ -37,6 +37,12 @@ export const euiIconStyles = ({ euiTheme }: UseEuiTheme) => ({
          of the icon to light and dark compatible modes. You can see this
          in use on the Elastic logo icons. */
       fill: ${euiTheme.colors.darkestShade};
+    }
+
+    &[data-type='logoVectorDB'] .euiIcon__fillNegative {
+      fill: ${colorMode === 'DARK'
+        ? euiTheme.colors.fullShade
+        : euiTheme.colors.darkestShade};
     }
   `,
   // Colors
