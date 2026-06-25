@@ -221,6 +221,11 @@ const PaginationControls: React.FC<{
   const { currentIndex, total, onPrevious, onNext } = pagination;
   const prevLabel = useEuiI18n('euiFlyoutMenu.pagination.previous', 'Previous');
   const nextLabel = useEuiI18n('euiFlyoutMenu.pagination.next', 'Next');
+  const counterLabel = useEuiI18n(
+    'euiFlyoutMenu.pagination.counter',
+    '{position} of {total}',
+    { position: currentIndex + 1, total }
+  );
 
   const isPrevDisabled = currentIndex === 0;
   const isNextDisabled = currentIndex === total - 1;
@@ -267,19 +272,9 @@ const PaginationControls: React.FC<{
             css={styles.euiFlyoutMenu__paginationCounter}
             aria-hidden="true"
           >
-            <EuiI18n
-              token="euiFlyoutMenu.pagination.counter"
-              default="{position} of {total}"
-              values={{ position: currentIndex + 1, total }}
-            />
+            {counterLabel}
           </EuiText>
-          <EuiScreenReaderLive>
-            <EuiI18n
-              token="euiFlyoutMenu.pagination.counter"
-              default="{position} of {total}"
-              values={{ position: currentIndex + 1, total }}
-            />
-          </EuiScreenReaderLive>
+          <EuiScreenReaderLive>{counterLabel}</EuiScreenReaderLive>
         </EuiFlexItem>
         <EuiFlexItem grow={false}>
           {isNextDisabled ? (
