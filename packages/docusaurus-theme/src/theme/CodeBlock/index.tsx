@@ -48,6 +48,7 @@ export default function CodeBlock({
       language={language}
       isCopyable
       css={css`
+        margin-block: var(--eui-theme-content-vertical-spacing);
         word-break: break-word;
       `}
     >
