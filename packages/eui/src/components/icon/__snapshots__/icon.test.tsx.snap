@@ -9202,6 +9202,34 @@ exports[`EuiIcon props type logoUptime is rendered 1`] = `
 </svg>
 `;
 
+exports[`EuiIcon props type logoVectorDB is rendered 1`] = `
+<svg
+  class="euiIcon emotion-euiIcon-m-isLoaded"
+  data-icon-type="logoVectorDB"
+  data-is-loaded="true"
+  data-type="logoVectorDB"
+  fill="none"
+  height="32"
+  role="presentation"
+  viewBox="0 0 32 32"
+  width="32"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M16.875 9.96C19.48 5.09 25.54 3.252 30.41 5.857l-8.863 16.57a7.559 7.559 0 0 0-.478-1.051l-5.23-9.48 1.037-1.938Z"
+    fill="#02BCB7"
+  />
+  <path
+    d="M4.084 6.122a5 5 0 0 1 6.794 1.962l3.554 6.442-4.34 8.116a4.995 4.995 0 0 0 .047 4.803l-.017-.03-8-14.5a5 5 0 0 1 1.962-6.793Z"
+    fill="#FEC514"
+  />
+  <path
+    class="euiIcon__fillNegative"
+    d="M18.878 22.584a5 5 0 1 1-8.786.058l4.34-8.116 4.446 8.058Z"
+  />
+</svg>
+`;
+
 exports[`EuiIcon props type logoVulnerabilityManagement is rendered 1`] = `
 <svg
   class="euiIcon emotion-euiIcon-m-isLoaded"
