@@ -249,6 +249,28 @@ describe('EuiSelectableListItem', () => {
       expect(container.firstChild).toMatchSnapshot();
     });
 
+    test('isInvalid', () => {
+      const { getByRole, rerender } = render(
+        <EuiSelectableList
+          options={options}
+          isInvalid
+          {...selectableListRequiredProps}
+        />
+      );
+
+      expect(getByRole('listbox')).toHaveAttribute('aria-invalid', 'true');
+
+      rerender(
+        <EuiSelectableList
+          options={options}
+          isInvalid={false}
+          {...selectableListRequiredProps}
+        />
+      );
+
+      expect(getByRole('listbox')).not.toHaveAttribute('aria-invalid');
+    });
+
     describe('isVirtualized={false}', () => {
       it('renders', () => {
         const { container } = render(

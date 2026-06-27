@@ -119,6 +119,10 @@ export type EuiSelectableOptionsListProps = CommonProps &
      * text will always take precedence.
      */
     truncationProps?: EuiSelectableOption['truncationProps'];
+    /**
+     * Marks the options list as invalid for assistive technologies.
+     */
+    isInvalid?: boolean;
   } & EuiSelectableOptionsListVirtualizedProps;
 
 export type EuiSelectableListProps<T> = EuiSelectableOptionsListProps & {
@@ -240,6 +244,7 @@ export class EuiSelectableList<T> extends Component<
       searchable,
       singleSelection,
       autoFocus,
+      isInvalid,
       'aria-label': ariaLabel,
       'aria-labelledby': ariaLabelledby,
       'aria-describedby': ariaDescribedby,
@@ -272,6 +277,18 @@ export class EuiSelectableList<T> extends Component<
         // use last stack execution to prevent potential focus order issues
         setTimeout(() => ref.focus());
       }
+
+      this.setListBoxInvalidState(isInvalid);
+    }
+  };
+
+  setListBoxInvalidState = (isInvalid = this.props.isInvalid) => {
+    if (!this.listBoxRef) return;
+
+    if (isInvalid) {
+      this.listBoxRef.setAttribute('aria-invalid', 'true');
+    } else {
+      this.listBoxRef.removeAttribute('aria-invalid');
     }
   };
 
@@ -318,7 +335,12 @@ export class EuiSelectableList<T> extends Component<
       onFocusBadge,
       searchable,
       singleSelection,
+      isInvalid,
     } = this.props;
+
+    if (prevProps.isInvalid !== isInvalid) {
+      this.setListBoxInvalidState(isInvalid);
+    }
 
     if (prevProps.activeOptionIndex !== activeOptionIndex) {
       const { makeOptionId } = this.props;
@@ -755,6 +777,7 @@ export class EuiSelectableList<T> extends Component<
       textWrap,
       truncationProps,
       autoFocus,
+      isInvalid,
       ...rest
     } = this.props;
 
