@@ -40,9 +40,7 @@ export const euiSplitPanelInnerStyles = (euiThemeContext: UseEuiTheme) => {
       /* Make sure they're evenly split */
       flex-basis: 0%;
 
-      /* Ensure no movement if they have click handlers */
       /* stylelint-disable declaration-no-important */
-      transform: none !important;
       box-shadow: none !important;
     `,
 
