@@ -1,12 +1,8 @@
 {
-    "extends": "./tsconfig.cjs.json",
-    "compilerOptions": {
-        "outDir": "lib/cjs",
-        "declaration": true,
-        "isolatedModules": false,
-        "noEmit": false,
-        "allowJs": false,
-        "emitDeclarationOnly": true
-    },
-    "exclude": ["node_modules", "**/*.test.ts"]
+  "extends": "./tsconfig.cjs.json",
+  "compilerOptions": {
+    "isolatedModules": false,
+    "emitDeclarationOnly": true
+  },
+  "exclude": ["node_modules", "**/*.test.ts"]
 }

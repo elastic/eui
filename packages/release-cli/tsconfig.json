@@ -1,13 +1,12 @@
 {
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "extends": "@elastic/eui-config-tsconfig",
   "compilerOptions": {
     "target": "es2016",
     "module": "commonjs",
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "strict": true,
-    "skipLibCheck": false,
     "outDir": "dist",
     "strictBuiltinIteratorReturn": false,
+    "noUnusedLocals": false
   },
   "include": [
     "src"
