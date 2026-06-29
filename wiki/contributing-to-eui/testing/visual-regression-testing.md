@@ -57,21 +57,7 @@ Current variants:
 
 ### Skipping specific variants
 
-If a story can't render correctly under a particular variant, opt out of that variant with `parameters.vrt.skipVariants`. The story still runs under the remaining variants.
-
-```tsx
-export const Story: Story = {
-  parameters: {
-    vrt: {
-      skipVariants: ['mobile'],
-    },
-  },
-};
-```
-
-Use `vrt.skip` (see below) if a story should be skipped under *all* variants.
-
-When you add `vrt.skipVariants` to a story that previously had a baseline for that variant, manually delete the corresponding snapshot file from `packages/eui/.vrt/reference/`.
+If a story can't render correctly under a particular variant, opt out of just that variant by passing an array to `parameters.vrt.skip` (see [Skipping stories](#skipping-stories)). The story still runs under the remaining variants.
 
 ## Filtering stories
 
@@ -87,7 +73,10 @@ yarn workspace @elastic/eui test-visual-regression -- --excludeTags skip-vrt
 
 ## Skipping stories
 
-Set `parameters.vrt.skip` to skip a story. Leave a comment explaining why.
+Set `parameters.vrt.skip` to opt a story out of VRT. Leave a comment explaining why.
+
+- `skip: true` skips the story under **all** variants.
+- `skip: ['mobile']` skips only the listed variants; the story still runs under the rest.
 
 ```tsx
 export const MyStory: Story = {
@@ -98,9 +87,20 @@ export const MyStory: Story = {
     },
   },
 };
+
+export const MobileUnsupported: Story = {
+  parameters: {
+    vrt: {
+      // Skipped on mobile: the toolbar control is hidden below this breakpoint
+      skip: ['mobile'],
+    },
+  },
+};
 ```
 
-When you add `vrt.skip` to a story that previously had a baseline, manually delete its snapshot files from `packages/eui/.vrt/reference/`.
+Skipping a variant also skips the story's `play` body for that variant, so interactions don't run at a viewport the story isn't built for.
+
+When you add `vrt.skip` to a story that previously had a baseline, manually delete the affected snapshot files from `packages/eui/.vrt/reference/` (all variants for `true` or just the listed ones for an array).
 
 ## Using non-default selectors
 
