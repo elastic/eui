@@ -2,6 +2,7 @@ import { IconType } from '@elastic/eui';
 
 export const iconTypes: Array<IconType> = [
   'accessibility',
+  'addToChat',
   'addToDashboard',
   'aggregate',
   'alignBottom',
