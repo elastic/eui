@@ -9,6 +9,21 @@
 import type { PlayFunction } from '@storybook/csf';
 import type { ReactRenderer } from '@storybook/react';
 
+/**
+ * Viewport variants every story is screenshotted under. The test-runner is
+ * invoked once per variant (see `scripts/test-visual-regression.js`) using the
+ * `VRT_VARIANT` env var.
+ *
+ * Keys are the variant names, used both as the baseline suffix
+ * (e.g. `${context.id}-desktop.png`) and in `parameters.vrt.skipVariants`.
+ */
+export const VARIANTS = {
+  desktop: { name: 'desktop', viewport: { width: 1440, height: 900 } },
+  mobile: { name: 'mobile', viewport: { width: 390, height: 844 } },
+} as const;
+
+export type VariantName = keyof typeof VARIANTS;
+
 export const VRT_SELECTORS = {
   /**
    * Default story selector

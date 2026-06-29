@@ -46,7 +46,9 @@ Each story is snapshotted under multiple **variants** to catch e.g. responsive-l
       navigation-euibutton--playground-desktop.png
       navigation-euibutton--playground-mobile.png
 
-Current variants (defined in [`.storybook/test-runner.ts`](https://github.com/elastic/eui/tree/main/packages/eui/.storybook/test-runner.ts)):
+The test-runner is invoked once per variant (similar to [Playwright projects](https://playwright.dev/docs/test-projects)), so each variant runs in its own process and browser context with the viewport applied before the story renders. Variants are defined in the `VARIANTS` map in [`.storybook/vrt.ts`](https://github.com/elastic/eui/tree/main/packages/eui/.storybook/vrt.ts); [`scripts/test-visual-regression.js`](https://github.com/elastic/eui/tree/main/packages/eui/scripts/test-visual-regression.js) selects the active one per run using the `VRT_VARIANT` environment variable.
+
+Current variants:
 
 | Variant | Viewport |
 |---|---|
