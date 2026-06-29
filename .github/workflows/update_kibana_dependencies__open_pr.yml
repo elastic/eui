@@ -269,6 +269,7 @@ jobs:
       inputs.source_pr_number &&
       (
         (needs.check_ci_status_1.result == 'success' && needs.check_ci_status_2.result == 'skipped') ||
+        (needs.check_ci_status_1.result == 'failure' && needs.check_ci_status_2.result == 'skipped') ||
         (needs.check_ci_status_2.result != 'skipped')
       )
     steps:
