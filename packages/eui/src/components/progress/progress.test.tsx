@@ -137,6 +137,66 @@ describe('EuiProgress', () => {
         expect(container.firstChild).toMatchSnapshot();
       });
     });
+
+    describe('gradient', () => {
+      const gradient =
+        'linear-gradient(90deg, #00BFB3, #FEC514, #BD271E)';
+
+      test('determinate progress renders a gradient color', () => {
+        const { container } = render(
+          <EuiProgress color={gradient} value={50} max={100} />
+        );
+
+        const progress = container.querySelector('progress');
+        expect(progress).toBeInTheDocument();
+        // Gradients are applied via background-image on pseudo-elements,
+        // so no inline `color` style should be set (that path is for solid
+        // custom colors that flow through `currentColor`).
+        expect(progress?.getAttribute('style') ?? '').not.toContain('color');
+        // The gradient style branch (not customColor) should be applied.
+        expect(progress?.getAttribute('class') ?? '').toContain(
+          'euiProgressGradientStyles'
+        );
+        expect(progress?.getAttribute('class') ?? '').not.toContain(
+          'customColor'
+        );
+        expect(progress).toMatchSnapshot();
+      });
+
+      test('indeterminate progress renders a gradient color', () => {
+        const { container } = render(<EuiProgress color={gradient} />);
+
+        const indeterminate = container.querySelector('div.euiProgress');
+        expect(indeterminate).toBeInTheDocument();
+        expect(indeterminate?.getAttribute('style') ?? '').not.toContain(
+          'color'
+        );
+        expect(indeterminate?.getAttribute('class') ?? '').toContain(
+          'euiProgressGradientStyles'
+        );
+        expect(indeterminate?.getAttribute('class') ?? '').not.toContain(
+          'customColor'
+        );
+        expect(indeterminate).toMatchSnapshot();
+      });
+
+      test('does not derive a custom text color from a gradient', () => {
+        const { container } = render(
+          <EuiProgress
+            color={gradient}
+            value={50}
+            max={100}
+            valueText="50%"
+          />
+        );
+
+        const valueText = container.querySelector('.euiProgress__valueText');
+        expect(valueText).toBeInTheDocument();
+        // makeHighContrastColor would throw on a gradient string; guarding
+        // against that means no inline color style here either.
+        expect(valueText?.getAttribute('style') ?? '').not.toContain('color');
+      });
+    });
   });
 
   describe('size', () => {

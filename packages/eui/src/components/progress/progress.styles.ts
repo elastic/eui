@@ -353,6 +353,27 @@ export const euiProgressStyles = (
 };
 
 /**
+ * Applies a CSS gradient (e.g. `linear-gradient(...)`) to the progress fill.
+ * Targets the same cross-browser pseudo-elements as solid colors, but uses
+ * `background-image` so multi-stop values render correctly. The track keeps
+ * its default theme background.
+ */
+export const euiProgressGradientStyles = (
+  gradient: string,
+  isNative: boolean
+) => {
+  const selectors = isNative
+    ? crossBrowserProgressValue
+    : indeterminateProgressValue;
+  return css`
+    ${selectors(`
+      background-color: transparent;
+      background-image: ${gradient};
+    `)}
+  `;
+};
+
+/**
  * Data styles
  */
 export const euiProgressDataStyles = (euiThemeContext: UseEuiTheme) => ({

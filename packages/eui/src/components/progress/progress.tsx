@@ -29,7 +29,12 @@ import {
   euiProgressDataStyles,
   euiProgressLabelStyles,
   euiProgressValueTextStyles,
+  euiProgressGradientStyles,
 } from './progress.styles';
+
+const GRADIENT_FUNCTION_REGEX = /\bgradient\s*\(/;
+const isGradientColor = (color: unknown): color is string =>
+  typeof color === 'string' && GRADIENT_FUNCTION_REGEX.test(color);
 
 export const SIZES = ['xs', 's', 'm', 'l'] as const;
 export type EuiProgressSize = (typeof SIZES)[number];
@@ -61,7 +66,9 @@ export type EuiProgressPosition = (typeof POSITIONS)[number];
 export type EuiProgressProps = CommonProps & {
   size?: EuiProgressSize;
   /**
-   * One of EUI's color palette, vis colors or a valid CSS color value https://developer.mozilla.org/en-US/docs/Web/CSS/color_value
+   * One of EUI's color palette, vis colors, a valid CSS color value (https://developer.mozilla.org/en-US/docs/Web/CSS/color_value),
+   * or a CSS gradient string (e.g. `linear-gradient(90deg, #00BFB3, #FEC514, #BD271E)`).
+   * When a gradient is passed, it is applied as the bar's `background-image`.
    */
   color?: EuiProgressColor | CSSProperties['color'];
   position?: EuiProgressPosition;
@@ -110,21 +117,32 @@ export const EuiProgress: FunctionComponent<
 
   const determinate = !isNil(max);
   const isNamedColor = COLORS.includes(color as EuiProgressColor);
+  const isGradient = !isNamedColor && isGradientColor(color);
+  // Solid custom CSS colors flow through `currentColor` via inline `style`.
+  // Gradients can't go through `currentColor`, so they're applied directly
+  // as `background-image` via the gradient style branch.
+  const isCustomSolidColor = !isNamedColor && !isGradient;
 
   const euiTheme = useEuiTheme();
-  const customColorStyles = !isNamedColor ? { color } : {};
-  const customTextColorStyles = !isNamedColor
-    ? { color: makeHighContrastColor(color)(euiTheme.euiTheme) }
+  const customColorStyles = isCustomSolidColor ? { color } : {};
+  const customTextColorStyles = isCustomSolidColor
+    ? { color: makeHighContrastColor(color!)(euiTheme.euiTheme) }
     : {};
 
   const styles = euiProgressStyles(euiTheme, determinate);
+  const colorStyle = isNamedColor
+    ? styles[color as EuiProgressColor]
+    : isGradient
+    ? euiProgressGradientStyles(color as string, determinate)
+    : styles.customColor;
+
   const cssStyles = [
     styles.euiProgress,
     determinate && styles.native,
     !determinate && styles.indeterminate,
     styles[size],
     styles[position],
-    isNamedColor ? styles[color as EuiProgressColor] : styles.customColor,
+    colorStyle,
   ];
 
   const dataStyles = euiProgressDataStyles(euiTheme);
@@ -141,7 +159,9 @@ export const EuiProgress: FunctionComponent<
     valueTextStyles.euiProgress__valueText,
     isNamedColor
       ? valueTextStyles[color as EuiProgressColor]
-      : styles.customColor,
+      : isCustomSolidColor
+      ? styles.customColor
+      : null,
   ];
 
   const classes = classNames('euiProgress', className);
