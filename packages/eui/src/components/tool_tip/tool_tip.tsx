@@ -58,7 +58,6 @@ interface ToolTipStyles {
   right?: number | 'auto';
   opacity?: number;
   visibility?: 'hidden';
-  animation?: 'none';
 }
 
 const DEFAULT_TOOLTIP_STYLES: ToolTipStyles = {
@@ -174,7 +173,6 @@ export const EuiToolTip = forwardRef<EuiToolTipRef, EuiToolTipProps>(
     const componentDefaultsContext = useContext(EuiComponentDefaultsContext);
 
     const [visible, setVisible] = useState(false);
-    const [skipAnimation, setSkipAnimation] = useState(false);
     const [hasFocus, setHasFocus] = useState(false);
     const [calculatedPosition, setCalculatedPosition] =
       useState<ToolTipPositions>(positionProp);
@@ -249,20 +247,10 @@ export const EuiToolTip = forwardRef<EuiToolTipRef, EuiToolTipProps>(
       toolTipManager.deregisterToolTip(hideToolTip);
     }, []);
 
-    /**
-     * Show the tooltip.
-     *
-     * Uses the tooltip manager's `skipAnimation` signal to optionally skip the entry
-     * animation when another tooltip is already open or was just closed.
-     */
     const showToolTip = useCallback(() => {
       if (!content && !title) return;
-
-      const result = toolTipManager.registerTooltip(hideToolTip);
-      if (!result) return;
-
-      setSkipAnimation(result.skipAnimation);
       setVisible(true);
+      toolTipManager.registerTooltip(hideToolTip);
     }, [content, title, hideToolTip]);
 
     useImperativeHandle(ref, () => ({ showToolTip, hideToolTip, id }), [
@@ -363,26 +351,25 @@ export const EuiToolTip = forwardRef<EuiToolTipRef, EuiToolTipProps>(
       [disableScreenReaderOutput, visible, hideToolTip]
     );
 
-    /**
-     * Show the tooltip on enter.
-     */
-    const onMouseEnter = useCallback(
+    const onMouseOut = useCallback(
       (event: ReactMouseEvent<HTMLSpanElement, MouseEvent>) => {
-        showToolTip();
-        anchorProps?.onMouseEnter?.(event);
-      },
-      [showToolTip, anchorProps?.onMouseEnter]
-    );
+        // Prevent mousing over children from hiding the tooltip by testing for whether the mouse has
+        // left the anchor for a non-child.
+        if (
+          anchorRef.current === event.relatedTarget ||
+          (anchorRef.current != null &&
+            !anchorRef.current.contains(event.relatedTarget as Node))
+        ) {
+          if (!hasFocus) {
+            hideToolTip();
+          }
+        }
 
-    /**
-     * Hide the tooltip if the mouse is not over the trigger.
-     */
-    const onMouseLeave = useCallback(
-      (event: ReactMouseEvent<HTMLSpanElement, MouseEvent>) => {
-        if (!hasFocus) hideToolTip();
-        anchorProps?.onMouseLeave?.(event);
+        if (onMouseOutProp) {
+          onMouseOutProp(event);
+        }
       },
-      [hasFocus, hideToolTip, anchorProps?.onMouseLeave]
+      [hasFocus, hideToolTip, onMouseOutProp]
     );
 
     const classes = classNames('euiToolTip', className);
@@ -396,9 +383,8 @@ export const EuiToolTip = forwardRef<EuiToolTipRef, EuiToolTipProps>(
           onBlur={onBlur}
           onFocus={onFocus}
           onKeyDown={onEscapeKey}
-          onMouseEnter={onMouseEnter}
-          onMouseLeave={onMouseLeave}
-          onMouseOut={onMouseOutProp}
+          onMouseOver={showToolTip}
+          onMouseOut={onMouseOut}
           // `id` defines if the trigger and tooltip are automatically linked via `aria-describedby`.
           id={!disableScreenReaderOutput ? id : undefined}
           className={anchorClasses}
@@ -411,13 +397,7 @@ export const EuiToolTip = forwardRef<EuiToolTipRef, EuiToolTipProps>(
           <EuiPortal>
             <EuiToolTipPopover
               className={classes}
-              style={{
-                ...toolTipStyles,
-                // Inline `animation: none` overrides the keyframes fade-in
-                // shorthand on the base `.euiToolTip` class, so a tooltip
-                // shown right after another closes appears instantly.
-                animation: skipAnimation ? 'none' : undefined,
-              }}
+              style={toolTipStyles}
               positionToolTip={positionToolTip}
               popoverRef={setPopoverRef}
               title={title}

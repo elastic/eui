@@ -77,3 +77,33 @@ steps:
       - "cypress/videos/**/*.mp4"
     timeout_in_minutes: 45
     retry: *retry_policy
+
+  - command: .buildkite/scripts/pipelines/pipeline_test.sh
+    label: ":typescript: Workspace linting"
+    env:
+      TEST_TYPE: 'pkg:lint'
+    if: build.branch != "main"
+    retry: *retry_policy
+
+  - command: .buildkite/scripts/pipelines/pipeline_test.sh
+    label: ":jest: Workspace unit tests"
+    env:
+      TEST_TYPE: 'pkg:unit'
+    if: build.branch != "main"
+    retry: *retry_policy
+
+  - command: .buildkite/scripts/pipelines/pipeline_test.sh
+    label: ":playwright: EUI test-helpers validation tests"
+    env:
+      TEST_TYPE: 'test-helpers'
+    if: build.branch != "main"
+    artifact_paths:
+      - "packages/test-helpers/playwright-report/**/*"
+      - "packages/test-helpers/test-results/**/*"
+    timeout_in_minutes: 30
+    retry: *retry_policy
+
+  - command: .buildkite/scripts/pipelines/pipeline_test_helpers_flaky.sh
+    label: ":playwright: Detect flaky test-helpers (changed components)"
+    if: build.branch != "main"
+    retry: *retry_policy

@@ -23,6 +23,10 @@ on:
         description: Dry run (do not publish the packages)
         required: true
         type: boolean
+      skip_tests:
+        description: Skip tests (snapshots only)
+        default: false
+        type: boolean
       npm_tag:
         description: "[Custom releases only] npm tag to use"
         required: false
@@ -45,6 +49,10 @@ on:
         description: Dry run (do not publish the packages)
         required: true
         type: boolean
+      skip_tests:
+        description: Skip tests (snapshots only)
+        default: false
+        type: boolean
       npm_tag:
         description: "[Custom releases only] npm tag to use"
         required: false
@@ -62,6 +70,7 @@ jobs:
   lint_and_unit_tests:
     name: Run lint and unit tests
     runs-on: ubuntu-latest
+    if: ${{ !(inputs.type == 'snapshot' && inputs.skip_tests) }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -72,7 +81,7 @@ jobs:
           node-version-file: .nvmrc
           cache: yarn
       - name: Install dependencies
-        run: yarn install --immutable
+        run: yarn install --immutable && yarn workspace @elastic/eui-test-helpers playwright install chromium
       - name: Build local packages
         run: yarn workspaces foreach --all --parallel --topological-dev --exclude @elastic/eui-website --exclude @elastic/eui-monorepo --exclude @elastic/eui-docgen run build
       - name: Lint
@@ -82,6 +91,7 @@ jobs:
   cypress_tests:
     name: Run cypress tests
     runs-on: ubuntu-latest
+    if: ${{ !(inputs.type == 'snapshot' && inputs.skip_tests) }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -100,7 +110,11 @@ jobs:
   release_snapshot:
     name: Create a snapshot release
     runs-on: ubuntu-latest
-    if: ${{ inputs.type == 'snapshot' }}
+    if: |
+      always() &&
+      inputs.type == 'snapshot' &&
+      (needs.lint_and_unit_tests.result == 'success' || needs.lint_and_unit_tests.result == 'skipped') &&
+      (needs.cypress_tests.result == 'success' || needs.cypress_tests.result == 'skipped')
     needs: [ lint_and_unit_tests, cypress_tests ]
     outputs:
       published_packages_json: ${{ steps.published_packages_info.outputs.json }}
@@ -169,7 +183,10 @@ jobs:
   release_official:
     name: Create an official release
     runs-on: ubuntu-latest
-    if: ${{ inputs.type == 'official' }}
+    if: |
+      inputs.type == 'official' &&
+      needs.lint_and_unit_tests.result == 'success' &&
+      needs.cypress_tests.result == 'success'
     needs: [ lint_and_unit_tests, cypress_tests ]
     outputs:
       published_packages_json: ${{ steps.published_packages_info.outputs.json }}

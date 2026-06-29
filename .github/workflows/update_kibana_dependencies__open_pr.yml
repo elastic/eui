@@ -21,6 +21,9 @@ on:
         description: Comma-separated list of labels to add to the PR
         type: string
         default: 'EUI,backport:skip,release_note:skip'
+      source_pr_number:
+        description: Source PR number that triggered this workflow
+        type: number
   workflow_call:
     inputs:
       pr_head:
@@ -57,7 +60,7 @@ jobs:
     steps:
       - name: Fetch GitHub token
         id: ephemeral_token
-        uses: elastic/ci-gh-actions/fetch-github-token@v1.5.0
+        uses: elastic/ci-gh-actions/fetch-github-token@v1.5.3
         with:
           vault-instance: ci-prod
           vault-role: token-policy-6becee3e5a43
@@ -132,10 +135,14 @@ jobs:
     environment: delayed-1m
     needs: [open_pr]
     steps:
+      - name: Checkout repository
+        # Checkout is needed to access the pr_bot_comment action
+        if: ${{ inputs.source_pr_number }}
+        uses: actions/checkout@v6
       # Token cannot be reused in this job because it's short-lived
       - name: Fetch GitHub token
         id: ephemeral_token
-        uses: elastic/ci-gh-actions/fetch-github-token@v1.5.0
+        uses: elastic/ci-gh-actions/fetch-github-token@v1.5.3
         with:
           vault-instance: ci-prod
           vault-role: token-policy-6becee3e5a43
@@ -155,6 +162,19 @@ jobs:
           PR_URL: ${{ needs.open_pr.outputs.pr_url }}
         # language=bash
         run: gh pr comment "$PR_URL" --body "/ci"
+      - name: Add a comment
+        if: ${{ inputs.source_pr_number }}
+        uses: ./.github/actions/pr_bot_comment
+        with:
+          gh_token: ${{ steps.ephemeral_token.outputs.token }}
+          pr_number: ${{ inputs.source_pr_number }}
+          marker: 'kibana-regression-integration-test'
+          comment_body: |
+            ## Kibana Regression Integration Test
+
+            **Status:** :eyes: Waiting for Kibana CI
+            **Branch:** `${{ inputs.pr_head }}`
+            **Kibana PR:** ${{ needs.open_pr.outputs.pr_url }}
   check_ci_status_1:
     name: Check CI status - attempt 1/2
     runs-on: ubuntu-slim
@@ -166,7 +186,7 @@ jobs:
       # Token cannot be reused in this job because it's short-lived
       - name: Fetch GitHub token
         id: ephemeral_token
-        uses: elastic/ci-gh-actions/fetch-github-token@v1.5.0
+        uses: elastic/ci-gh-actions/fetch-github-token@v1.5.3
         with:
           vault-instance: ci-prod
           vault-role: token-policy-6becee3e5a43
@@ -209,7 +229,7 @@ jobs:
       # Token cannot be reused in this job because it's short-lived
       - name: Fetch GitHub token
         id: ephemeral_token
-        uses: elastic/ci-gh-actions/fetch-github-token@v1.5.0
+        uses: elastic/ci-gh-actions/fetch-github-token@v1.5.3
         with:
           vault-instance: ci-prod
           vault-role: token-policy-6becee3e5a43
@@ -240,3 +260,63 @@ jobs:
 
           echo "CI checks passed!"
           echo "CI checks passed! :tada:" >> $GITHUB_STEP_SUMMARY
+  report_status:
+    name: Report CI status
+    runs-on: ubuntu-slim
+    needs: [open_pr, check_ci_status_1, check_ci_status_2]
+    if: |
+      always() &&
+      inputs.source_pr_number &&
+      (
+        (needs.check_ci_status_1.result == 'success' && needs.check_ci_status_2.result == 'skipped') ||
+        (needs.check_ci_status_1.result == 'failure' && needs.check_ci_status_2.result == 'skipped') ||
+        (needs.check_ci_status_2.result != 'skipped')
+      )
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+      - name: Fetch GitHub token
+        id: ephemeral_token
+        uses: elastic/ci-gh-actions/fetch-github-token@v1.5.3
+        with:
+          vault-instance: ci-prod
+          vault-role: token-policy-6becee3e5a43
+      - name: Compose comment body
+        id: compose_comment_body
+        env:
+          GH_TOKEN: ${{ steps.ephemeral_token.outputs.token }}
+          KIBANA_PR_URL: ${{ needs.open_pr.outputs.pr_url }}
+          PR_HEAD: ${{ inputs.pr_head }}
+          CHECK_1_RESULT: ${{ needs.check_ci_status_1.result }}
+          CHECK_2_RESULT: ${{ needs.check_ci_status_2.result }}
+        # language=bash
+        run: |
+          if [[ "$CHECK_2_RESULT" == "skipped" && "$CHECK_1_RESULT" != "success" ]] || [[ "$CHECK_2_RESULT" != "success" && "$CHECK_2_RESULT" != "skipped" ]]; then
+            status=':broken_heart: Kibana CI failed'
+            details='Please check Kibana CI logs for details.'
+          else
+            status=':green_heart: Kibana CI passed'
+            details=''
+          fi
+
+          # Lines must be flush-left so GitHub Actions can parse the multiline output key.
+          {
+            echo 'comment_body<<COMMENT_DELIMITER'
+            echo '## Kibana Regression Integration Test'
+            echo ''
+            echo "**Status:** $status"
+            echo "**Branch:** \`$PR_HEAD\`"
+            echo "**Kibana PR:** $KIBANA_PR_URL"
+            if [[ -n "$details" ]]; then
+              echo ''
+              echo "$details"
+            fi
+            echo 'COMMENT_DELIMITER'
+          } >> "$GITHUB_OUTPUT"
+      - name: Add a comment
+        uses: ./.github/actions/pr_bot_comment
+        with:
+          gh_token: ${{ steps.ephemeral_token.outputs.token }}
+          pr_number: ${{ inputs.source_pr_number }}
+          marker: 'kibana-regression-integration-test'
+          comment_body: ${{ steps.compose_comment_body.outputs.comment_body }}

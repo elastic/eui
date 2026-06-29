@@ -9,8 +9,8 @@
   "private": true,
   "scripts": {
     "lint": "tsc --noEmit",
-    "test": "yarn lint && yarn test-unit",
-    "test-unit": "playwright test",
+    "test": "yarn lint && yarn test-e2e",
+    "test-e2e": "playwright test",
     "show-report": "playwright show-report"
   },
   "peerDependencies": {
@@ -23,6 +23,7 @@
   },
   "devDependencies": {
     "@playwright/test": "1.59.1",
+    "http-server": "^14.1.1",
     "typescript": "^5.7.3"
   }
 }

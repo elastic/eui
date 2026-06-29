@@ -1,3 +1,24 @@
+## [`v116.5.0`](https://github.com/elastic/eui/releases/v116.5.0)
+
+- Added `logoVectorDB` icon glyph ([#9758](https://github.com/elastic/eui/pull/9758))
+- Updated logo glyphs to use pure white in dark mode ([#9758](https://github.com/elastic/eui/pull/9758))
+
+## [`v116.4.0`](https://github.com/elastic/eui/releases/v116.4.0)
+
+- Added `pagination` prop to `EuiFlyoutMenuProps` (`EuiFlyoutMenuPagination`) that renders Previous/Next navigation buttons and a position counter in the flyout menu bar. When provided, the back button is hidden — pagination and back button are mutually exclusive. ([#9726](https://github.com/elastic/eui/pull/9726))
+- Added `setPagination(flyoutId, pagination)` to the flyout manager store (`getFlyoutManagerStore()`) and `setPaginationAction` action creator. Calling `setPagination` overrides any declarative `flyoutMenuProps.pagination` and re-renders the menu bar reactively across React roots — useful for imperatively opened flyouts that mount in a separate root and can't update props through normal React reconciliation. ([#9726](https://github.com/elastic/eui/pull/9726))
+- Added `useFlyoutPagination(flyoutId)` selector hook that returns the manager-level pagination override for a flyout, if any. ([#9726](https://github.com/elastic/eui/pull/9726))
+- Added a new optional `panelled` prop (boolean, defaults to `false`) to `EuiInMemoryTable` and `EuiBasicTable` that enables the panelled layout ([#9717](https://github.com/elastic/eui/pull/9717))
+- Added `useEuiBasicTablePanelProps` utility hook that provides props and styles necessary to create custom table panels such as toolbars ([#9717](https://github.com/elastic/eui/pull/9717))
+- Added an optional `meta` argument to `EuiFlyout`'s `onClose` callback (`onClose(event, { reason })`) describing why the flyout closed: `'close-button'`, `'escape'`, `'outside-click'`, and, for managed flyouts, `'navigation-back'` (Back button) or `'navigation-cascade'` (parent navigated away / main flyout closed) ([#9716](https://github.com/elastic/eui/pull/9716))
+- Updated `EuiBanner` by removing the render condition for secondary actions ([#9713](https://github.com/elastic/eui/pull/9713))
+- Updated `EuiBanner` to adjust spacing for content passed via the `children` prop ([#9700](https://github.com/elastic/eui/pull/9700))
+- Updated `EuiToast` styles ([#9688](https://github.com/elastic/eui/pull/9688))
+- Added `text` prop on `EuiToast` which renders the main text. Use this instead of `children` where possible. ([#9688](https://github.com/elastic/eui/pull/9688))
+- Added `actionProps` prop on `EuiToast` which renders primary and secondary action buttons. ([#9688](https://github.com/elastic/eui/pull/9688))
+- Added `animationMs` prop on `EuiToast`. If set it'll render a reverse loading bar. ([#9688](https://github.com/elastic/eui/pull/9688))
+- Added `showNotificationBadge` prop on `EuiGlobalToastList` to optionally show a badge indicating the toast list length. ([#9688](https://github.com/elastic/eui/pull/9688))
+
 ## [`v116.3.1`](https://github.com/elastic/eui/releases/v116.3.1)
 
 **Bug fixes**
