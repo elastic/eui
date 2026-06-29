@@ -73,6 +73,8 @@ describe('EuiSearchBarFilters', () => {
 
     const { container } = render(<EuiSearchBarFilters {...props} />);
 
-    expect(container.firstChild).toMatchSnapshot();
+    expect(container.querySelector('.euiFilterGroup')!.className).toContain(
+      'euiFilterGroup-compressed'
+    );
   });
 });
