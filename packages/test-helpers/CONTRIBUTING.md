@@ -95,7 +95,7 @@ After a failed run, open the HTML report (with traces, screenshots, and the full
 yarn workspace @elastic/eui-test-helpers show-report
 ```
 
-> The local workflow above is unchanged: Playwright's `webServer` is configured with `reuseExistingServer` (off in CI), so when you already have the dev server on `:6006` it is reused. In CI — where no dev server runs — `webServer` serves EUI's prebuilt static Storybook (`packages/eui/storybook-static`) instead.
+> The local workflow above is unchanged: Playwright's `webServer` is configured with `reuseExistingServer` (off in CI), so when you already have the dev server on `:6006` it is reused. In CI — where no dev server runs — `webServer` serves EUI's prebuilt static Storybook from `packages/eui/storybook-static`. That directory is a gitignored build artifact, so it must be produced first with `yarn workspace @elastic/eui build-storybook` (the `test-helpers` CI task does this automatically).
 
 ## CI integration
 

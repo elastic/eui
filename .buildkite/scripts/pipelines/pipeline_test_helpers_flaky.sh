@@ -10,6 +10,8 @@ FLAKY_REPEAT="${FLAKY_REPEAT:-25}"
 BASE_BRANCH="${BUILDKITE_PULL_REQUEST_BASE_BRANCH:-main}"
 HELPERS_DIR="packages/test-helpers/src/playwright/components"
 COMPONENTS_DIR="packages/eui/src/components"
+# Shared files every helper depends on — a change here affects all specs.
+SHARED_REGEXP='^packages/test-helpers/(playwright\.config\.ts|package\.json|src/(index|selectors|storybook)\.ts|src/playwright/base_object\.ts)$'
 
 echo "+++ Determining components changed against ${BASE_BRANCH}"
 retry 3 git fetch -q origin "${BASE_BRANCH}"
@@ -29,20 +31,26 @@ fi
 
 changed_files="$(git diff --name-only "${base_sha}" HEAD)"
 
-# A helper is affected when this PR touched its component source or its own
-# specs. Correlation is by directory name: <helper>/<name> maps to
+# A shared file affects every helper, so run the whole suite. Otherwise a helper
+# is affected when this PR touched its component source or its own specs —
+# correlated by directory name: <helper>/<name> maps to
 # packages/eui/src/components/<name>.
-affected=""
-for helper_path in "${HELPERS_DIR}"/*/; do
-  [[ -d "${helper_path}" ]] || continue
-  name="$(basename "${helper_path}")"
-  helper_specs="${helper_path%/}"
-  if grep -qE "^(${COMPONENTS_DIR}/${name}|${helper_specs})/" <<< "${changed_files}"; then
-    # Playwright filters are resolved from the package dir, so strip the prefix.
-    affected+="${helper_specs#packages/test-helpers/} "
-  fi
-done
-affected="$(echo "${affected}" | xargs)"
+if grep -qE "${SHARED_REGEXP}" <<< "${changed_files}"; then
+  echo "Shared test-helpers file changed — running all helper specs."
+  affected="src/playwright/components"
+else
+  affected=""
+  for helper_path in "${HELPERS_DIR}"/*/; do
+    [[ -d "${helper_path}" ]] || continue
+    name="$(basename "${helper_path}")"
+    helper_specs="${helper_path%/}"
+    if grep -qE "^(${COMPONENTS_DIR}/${name}|${helper_specs})/" <<< "${changed_files}"; then
+      # Playwright filters are resolved from the package dir, so strip the prefix.
+      affected+="${helper_specs#packages/test-helpers/} "
+    fi
+  done
+  affected="$(echo "${affected}" | xargs)"
+fi
 
 if [[ -z "${affected}" ]]; then
   echo "No changed EUI components have correlated test helpers — skipping flake detection."

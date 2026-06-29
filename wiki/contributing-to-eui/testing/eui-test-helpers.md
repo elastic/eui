@@ -1,6 +1,20 @@
 # EUI test helpers
 
-[`@elastic/eui-test-helpers`](../../../packages/test-helpers) ships Playwright Component Objects used by downstream end-to-end tests (Kibana Scout). Each helper has validation tests that run its public API against the real component in Storybook. This page covers how those tests run in CI; for the package itself (directory layout, adding a Component Object, running locally) see the package [CONTRIBUTING](../../../packages/test-helpers/CONTRIBUTING.md).
+[`@elastic/eui-test-helpers`](../../../packages/test-helpers) ships Playwright Component Objects used by downstream end-to-end tests (Kibana Scout). Each helper has validation tests that run its public API against the real component in Storybook. This page covers how those tests run in CI; for the package itself (directory layout, adding a Component Object) see the package [CONTRIBUTING](../../../packages/test-helpers/CONTRIBUTING.md).
+
+## Running locally
+
+Start Storybook, then run the suite (it attaches to the running dev server):
+
+```shell
+yarn workspace @elastic/eui build:workspaces   # one-time
+yarn workspace @elastic/eui start              # Storybook on http://localhost:6006
+# in another terminal:
+yarn workspace @elastic/eui-test-helpers exec playwright install chromium   # one-time
+yarn workspace @elastic/eui-test-helpers test
+```
+
+See the package [CONTRIBUTING](../../../packages/test-helpers/CONTRIBUTING.md) for the full local workflow and the HTML report.
 
 ## On every pull request
 

@@ -15,7 +15,7 @@ NON_EUI_PATHS_REGEXP='^(\.github/|wiki/|packages/(website|docusaurus-[^/]+|eslin
 
 is_eui_test_type() {
   case "$1" in
-    lint|unit:ts|unit:tsx|unit:tsx:17|cypress:17|cypress:18|cypress:a11y) return 0 ;;
+    lint|unit:ts|unit:tsx|unit:tsx:17|cypress:17|cypress:18|cypress:a11y|test-helpers) return 0 ;;
     *) return 1 ;;
   esac
 }
