@@ -64,14 +64,14 @@
     "react": "^17.0 || ^18.0",
     "react-dom": "^17.0 || ^18.0"
   },
-  "main": "lib/cjs/index.js",
+  "main": "lib/esm/index.js",
   "exports": {
     "./lib/*": "./lib/*",
     "./scripts/*": "./scripts/*",
     ".": {
-      "require": "./lib/cjs/index.js",
       "import": "./lib/esm/index.js",
-      "default": "./lib/cjs/index.js"
+      "require": "./lib/cjs/index.js",
+      "default": "./lib/esm/index.js"
     }
   },
   "files": [

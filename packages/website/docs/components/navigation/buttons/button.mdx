@@ -697,7 +697,7 @@ Use `.toBeEuiDisabled()` instead of `.toBeDisabled()`.
 <Example.Snippet>
   ```tsx
     // setup file
-    import { setupEuiMatchers } from '@elastic/eui/lib/test/rtl/matchers';
+    import { setupEuiMatchers } from '@elastic/eui/test-env/test/rtl/matchers';
 
     setupEuiMatchers();
 
@@ -720,7 +720,7 @@ Use `.should('be.euiDisabled')` instead of `.should('be.disabled')`.
 <Example.Snippet>
   ```tsx
     // setup file
-    import { setupEuiCypressMatchers } from '@elastic/eui/lib/test/cypress/matchers';
+    import { setupEuiCypressMatchers } from '@elastic/eui/test-env/test/cypress/matchers';
 
     setupEuiCypressMatchers();
 
@@ -738,12 +738,12 @@ Use `.hasEuiDisabledProp()` instead of `.props().disabled`.
 <Example.Snippet>
   ```tsx
     // setup file
-    import { setupEuiEnzymeMatchers } from '@elastic/eui/lib/test/enzyme/enzyme_matchers';
+    import { setupEuiEnzymeMatchers } from '@elastic/eui/test-env/test/enzyme/enzyme_matchers';
 
     setupEuiEnzymeMatchers();
 
     // usage
-    import { findTestSubject } from '@elastic/eui/lib/test';
+    import { findTestSubject } from '@elastic/eui/test-env/test';
 
     const component = mount(<EuiButton isDisabled hasAriaDisabled data-test-subj="button" />);
 

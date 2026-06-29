@@ -14,7 +14,7 @@ import {
   useEuiMemoizedStyles,
 } from '@elastic/eui';
 import { useThemeConfig } from '@docusaurus/theme-common';
-import { euiLinkStyles } from '@elastic/eui/es/components/link/link.styles';
+import { euiLinkStyles } from '@elastic/eui/es/components/link/link.styles.js';
 
 const getFooterStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;

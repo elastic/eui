@@ -14,7 +14,7 @@ const {
 
 const packageRootDir = path.resolve(__dirname, '..');
 const srcDir = path.join(packageRootDir, 'src');
-const buildDirs = ['lib', 'es', 'dist', 'optimize', 'test-env'];
+const buildDirs = ['es', 'dist', 'optimize', 'test-env'];
 
 const CLEANUP_RETRY_DELAY_MS = 150;
 const CLEANUP_MAX_RETRIES = 10;
@@ -66,18 +66,14 @@ async function copyJsonFiles() {
     realpath: true,
   });
 
-  const destinationDirs = [
-    'es',
-    'optimize/es',
-    'optimize/lib',
-    'lib',
-    'test-env',
-  ].map((dir) => path.join(packageRootDir, dir));
+  const destinationDirs = ['es', 'optimize/es', 'test-env'].map((dir) =>
+    path.join(packageRootDir, dir)
+  );
 
   const count = await copyFilesToDestinationDirs(files, destinationDirs);
 
   console.log(
-    `Successfully copied ${count} JSON files from src/ to es/, optimize/es, optimize/lib, lib/ and test-env/`
+    `Successfully copied ${count} JSON files from src/ to es/, optimize/es/ and test-env/`
   );
 }
 
@@ -87,14 +83,14 @@ async function copySvgFiles() {
     realpath: true,
   });
 
-  const destinationDirs = ['optimize/lib', 'lib'].map((dir) =>
+  const destinationDirs = ['es', 'optimize/es'].map((dir) =>
     path.join(packageRootDir, dir)
   );
 
   const count = await copyFilesToDestinationDirs(files, destinationDirs);
 
   console.log(
-    `Successfully copied ${count} SVG files from src/ to lib/ and optimize/lib/`
+    `Successfully copied ${count} SVG files from src/ to es/ and optimize/es/`
   );
 }
 
@@ -132,9 +128,9 @@ function runBabel({ outDir, ignore, configFile, env = {} }) {
 }
 
 async function compileLib() {
-  shell.mkdir('-p', 'lib/services', 'lib/test');
+  shell.mkdir('-p', 'es/test', 'test-env/test');
 
-  console.log('Compiling src/ to es/, lib/, optimize/, and test-env/');
+  console.log('Compiling src/ to es/, optimize/es/, and test-env/');
 
   // Run all code (com|trans)pilation through babel (ESNext JS & TypeScript)
 
@@ -160,26 +156,11 @@ async function compileLib() {
       },
     },
     {
-      outDir: 'lib',
-      ignore: defaultIgnore,
-      env: {
-        NO_COREJS_POLYFILL: true,
-      },
-    },
-    {
       outDir: 'optimize/es',
       ignore: defaultIgnore,
       configFile: './.babelrc-optimize.js',
       env: {
         BABEL_MODULES: false,
-        NO_COREJS_POLYFILL: true,
-      },
-    },
-    {
-      outDir: 'optimize/lib',
-      ignore: defaultIgnore,
-      configFile: './.babelrc-optimize.js',
-      env: {
         NO_COREJS_POLYFILL: true,
       },
     },
@@ -240,12 +221,9 @@ async function compileBundle() {
   } else {
     console.log('Building test utils .d.ts files...');
 
-    const destinationDirs = [
-      'lib/test',
-      'es/test',
-      'optimize/lib/test',
-      'optimize/es/test',
-    ].map((dir) => path.join(packageRootDir, dir));
+    const destinationDirs = ['es/test', 'optimize/es/test', 'test-env/test'].map(
+      (dir) => path.join(packageRootDir, dir)
+    );
 
     const testDirectories = ['rtl', 'enzyme'];
     const testDTSFiles = new glob.Glob('test/**/*.d.ts', {
