@@ -1,3 +1,8 @@
+## [`v116.5.0`](https://github.com/elastic/eui/releases/v116.5.0)
+
+- Added `logoVectorDB` icon glyph ([#9758](https://github.com/elastic/eui/pull/9758))
+- Updated logo glyphs to use pure white in dark mode ([#9758](https://github.com/elastic/eui/pull/9758))
+
 ## [`v116.4.0`](https://github.com/elastic/eui/releases/v116.4.0)
 
 - Added `pagination` prop to `EuiFlyoutMenuProps` (`EuiFlyoutMenuPagination`) that renders Previous/Next navigation buttons and a position counter in the flyout menu bar. When provided, the back button is hidden — pagination and back button are mutually exclusive. ([#9726](https://github.com/elastic/eui/pull/9726))
