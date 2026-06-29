@@ -19,6 +19,7 @@ export const iconTypesLogos: Array<IconType> = [
   'logoSecurity',
   'logoSiteSearch',
   'logoUptime',
+  'logoVectorDB',
   'logoVulnerabilityManagement',
   'logoWorkplaceSearch',
 ];

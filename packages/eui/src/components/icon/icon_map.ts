@@ -399,6 +399,7 @@ export const typeToPathMap = {
   logoSketch: () => import('./assets/logo_sketch'),
   logoSlack: () => import('./assets/logo_slack'),
   logoUptime: () => import('./assets/logo_uptime'),
+  logoVectorDB: () => import('./assets/logo_vector_db'),
   logoVulnerabilityManagement: () =>
     import('./assets/logo_vulnerability_management'),
   logoWebhook: () => import('./assets/logo_webhook'),

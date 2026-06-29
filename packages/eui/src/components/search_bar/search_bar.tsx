@@ -6,9 +6,9 @@
  * Side Public License, v 1.
  */
 
-import React, { Component, ReactElement } from 'react';
+import React, { ReactElement, useState } from 'react';
 
-import { RenderWithEuiTheme, htmlIdGenerator } from '../../services';
+import { useEuiTheme, useGeneratedHtmlId } from '../../services';
 import { isString } from '../../services/predicate';
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
 import { EuiToolTip } from '../tool_tip';
@@ -161,181 +161,178 @@ type NotifyControllingParent = Pick<State, 'queryText' | 'error'> & {
   query: Query | null; // `state.query` is never null, but can be passed as `null` when an error is present
 };
 
-export class EuiSearchBar extends Component<EuiSearchBarProps, State> {
-  static Query = Query;
-  hintId = htmlIdGenerator('__hint')();
-
-  constructor(props: EuiSearchBarProps) {
-    super(props);
-    const query = parseQuery(props.defaultQuery || props.query, props);
-    this.state = {
-      query,
-      queryText: query.text,
-      error: null,
-      isHintVisible: false,
-    };
+function renderTools(tools?: Tools) {
+  if (!tools) {
+    return undefined;
   }
 
-  static getDerivedStateFromProps(
-    nextProps: EuiSearchBarProps,
-    prevState: State
-  ): State | null {
-    if (
-      (nextProps.query || nextProps.query === '') &&
-      (!prevState.query ||
-        (typeof nextProps.query !== 'string' &&
-          nextProps.query.text !== prevState.query.text) ||
-        (typeof nextProps.query === 'string' &&
-          nextProps.query !== prevState.query.text))
-    ) {
-      const query = parseQuery(nextProps.query, nextProps);
-      return {
-        query,
-        queryText: query.text,
-        error: null,
-        isHintVisible: prevState.isHintVisible,
-      };
-    }
-    return null;
+  if (Array.isArray(tools)) {
+    return tools.map((tool) => (
+      <EuiFlexItem grow={false} key={tool.key == null ? undefined : tool.key}>
+        {tool}
+      </EuiFlexItem>
+    ));
   }
 
-  notifyControllingParent(newState: NotifyControllingParent) {
-    const { onChange } = this.props;
-    if (!onChange) {
-      return;
+  return <EuiFlexItem grow={false}>{tools}</EuiFlexItem>;
+}
+
+function notifyControllingParent(
+  oldState: NotifyControllingParent,
+  newState: NotifyControllingParent,
+  onChange?: EuiSearchBarProps['onChange']
+) {
+  if (!onChange) {
+    return;
+  }
+  const { query, queryText, error } = newState;
+
+  const isQueryDifferent = oldState.queryText !== queryText;
+
+  const oldError = oldState.error ? oldState.error.message : null;
+  const newError = error ? error.message : null;
+  const isErrorDifferent = oldError !== newError;
+
+  if (isQueryDifferent || isErrorDifferent) {
+    if (error == null) {
+      onChange({ query: query!, queryText, error });
+    } else {
+      onChange({ query: null, queryText, error });
     }
-    const oldState = this.state;
-    const { query, queryText, error } = newState;
+  }
+}
 
-    const isQueryDifferent = oldState.queryText !== queryText;
+export const EuiSearchBar = (props: EuiSearchBarProps) => {
+  const {
+    box: { schema, ...box } = { schema: '' }, // strip `schema` out to prevent passing it to EuiSearchBox
+    filters,
+    toolsLeft,
+    toolsRight,
+    hint,
+  } = props;
 
-    const oldError = oldState.error ? oldState.error.message : null;
-    const newError = error ? error.message : null;
-    const isErrorDifferent = oldError !== newError;
+  const theme = useEuiTheme();
+  const hintId = useGeneratedHtmlId({ prefix: '__hint' });
+  const [query, setQuery] = useState<Query>(() =>
+    parseQuery(props.defaultQuery || props.query, props)
+  );
+  const [queryText, setQueryText] = useState<string>(query.text);
+  const [error, setError] = useState<null | Error>(null);
+  const [isHintVisibleState, setIsHintVisibleState] = useState<boolean>(false);
+  const [prevPropsQuery, setPrevPropsQuery] = useState(props.query);
 
-    if (isQueryDifferent || isErrorDifferent) {
-      if (error == null) {
-        onChange({ query: query!, queryText, error });
-      } else {
-        onChange({ query: null, queryText, error });
-      }
+  if (props.query !== prevPropsQuery) {
+    const nextQuery = props.query;
+    const prevQuery = query;
+
+    const shouldUpdate =
+      (nextQuery || nextQuery === '') &&
+      ((typeof nextQuery !== 'string' && nextQuery.text !== prevQuery.text) ||
+        (typeof nextQuery === 'string' && nextQuery !== prevQuery.text));
+
+    if (shouldUpdate) {
+      setPrevPropsQuery(props.query);
+      const parsedQuery = parseQuery(nextQuery, props);
+      setQuery(parsedQuery);
+      setQueryText(parsedQuery.text);
+      setError(null);
     }
   }
 
-  onSearch = (queryText: string) => {
+  function onSearch(newQueryText: string) {
+    const oldState: NotifyControllingParent = { query, queryText, error };
+
     try {
-      const query = parseQuery(queryText, this.props);
-      this.notifyControllingParent({ query, queryText, error: null });
-      this.setState({ query, queryText, error: null });
+      const newQuery = parseQuery(newQueryText, props);
+
+      notifyControllingParent(
+        oldState,
+        { query: newQuery, queryText: newQueryText, error: null },
+        props.onChange
+      );
+      setQuery(newQuery);
+      setQueryText(newQuery.text);
+      setError(null);
     } catch (e) {
       const error: Error =
         e instanceof Error
           ? { name: e.name, message: e.message }
           : { name: 'Unexpected error', message: String(e) };
-      this.notifyControllingParent({ query: null, queryText, error });
-      this.setState({ queryText, error });
+      notifyControllingParent(
+        oldState,
+        { query: null, queryText: newQueryText, error },
+        props.onChange
+      );
+      setQueryText(newQueryText);
+      setError(error);
     }
-  };
+  }
 
-  onFiltersChange = (query: Query) => {
-    this.notifyControllingParent({ query, queryText: query.text, error: null });
-    this.setState({
-      query,
-      queryText: query.text,
-      error: null,
-    });
-  };
+  function onFiltersChange(newQuery: Query) {
+    notifyControllingParent(
+      { query, queryText, error },
+      { query: newQuery, queryText: newQuery.text, error: null },
+      props.onChange
+    );
+    setQuery(newQuery);
+    setQueryText(newQuery.text);
+    setError(null);
+  }
 
-  renderTools(tools?: Tools) {
-    if (!tools) {
-      return undefined;
-    }
+  const isHintVisible = hint?.popoverProps?.isOpen ?? isHintVisibleState;
+  const toolsLeftEl = renderTools(toolsLeft);
+  const toolsRightEl = renderTools(toolsRight);
 
-    if (Array.isArray(tools)) {
-      return tools.map((tool) => (
-        <EuiFlexItem grow={false} key={tool.key == null ? undefined : tool.key}>
-          {tool}
+  const searchBox = (
+    <EuiSearchBox
+      {...box}
+      query={queryText}
+      onSearch={onSearch}
+      isInvalid={error != null}
+      aria-describedby={isHintVisible ? `${hintId}` : undefined}
+      hint={
+        hint
+          ? {
+              isVisible: isHintVisible,
+              setIsVisible: (isVisible: boolean) => {
+                setIsHintVisibleState(isVisible);
+              },
+              id: hintId,
+              ...hint,
+            }
+          : undefined
+      }
+    />
+  );
+
+  return (
+    <EuiFlexGroup gutterSize="s" alignItems="center" wrap>
+      {toolsLeftEl}
+      <EuiFlexItem
+        className="euiSearchBar__searchHolder"
+        css={euiSearchBar__searchHolder(theme)}
+        grow={true}
+      >
+        <EuiToolTip content={error?.message} display="block">
+          {searchBox}
+        </EuiToolTip>
+      </EuiFlexItem>
+      {filters && (
+        <EuiFlexItem
+          className="euiSearchBar__filtersHolder"
+          css={euiSearchBar__filtersHolder(theme)}
+          grow={false}
+        >
+          <EuiSearchBarFilters
+            filters={filters}
+            query={query}
+            onChange={onFiltersChange}
+          />
         </EuiFlexItem>
-      ));
-    }
+      )}
+      {toolsRightEl}
+    </EuiFlexGroup>
+  );
+};
 
-    return <EuiFlexItem grow={false}>{tools}</EuiFlexItem>;
-  }
-
-  render() {
-    const {
-      query,
-      queryText,
-      error,
-      isHintVisible: isHintVisibleState,
-    } = this.state;
-    const {
-      box: { schema, ...box } = { schema: '' }, // strip `schema` out to prevent passing it to EuiSearchBox
-      filters,
-      toolsLeft,
-      toolsRight,
-      hint,
-    } = this.props;
-
-    const toolsLeftEl = this.renderTools(toolsLeft);
-
-    const toolsRightEl = this.renderTools(toolsRight);
-
-    const isHintVisible = hint?.popoverProps?.isOpen ?? isHintVisibleState;
-
-    const searchBox = (
-      <EuiSearchBox
-        {...box}
-        query={queryText}
-        onSearch={this.onSearch}
-        isInvalid={error != null}
-        aria-describedby={isHintVisible ? `${this.hintId}` : undefined}
-        hint={
-          hint
-            ? {
-                isVisible: isHintVisible,
-                setIsVisible: (isVisible: boolean) => {
-                  this.setState({ isHintVisible: isVisible });
-                },
-                id: this.hintId,
-                ...hint,
-              }
-            : undefined
-        }
-      />
-    );
-
-    return (
-      <RenderWithEuiTheme>
-        {(euiTheme) => (
-          <EuiFlexGroup gutterSize="s" alignItems="center" wrap>
-            {toolsLeftEl}
-            <EuiFlexItem
-              className="euiSearchBar__searchHolder"
-              css={euiSearchBar__searchHolder(euiTheme)}
-              grow={true}
-            >
-              <EuiToolTip content={error?.message} display="block">
-                {searchBox}
-              </EuiToolTip>
-            </EuiFlexItem>
-            {filters && (
-              <EuiFlexItem
-                className="euiSearchBar__filtersHolder"
-                css={euiSearchBar__filtersHolder(euiTheme)}
-                grow={false}
-              >
-                <EuiSearchBarFilters
-                  filters={filters}
-                  query={query}
-                  onChange={this.onFiltersChange}
-                />
-              </EuiFlexItem>
-            )}
-            {toolsRightEl}
-          </EuiFlexGroup>
-        )}
-      </RenderWithEuiTheme>
-    );
-  }
-}
+EuiSearchBar.Query = Query;
