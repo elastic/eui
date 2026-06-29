@@ -166,6 +166,7 @@ jobs:
         if: ${{ inputs.source_pr_number }}
         uses: ./.github/actions/pr_bot_comment
         with:
+          gh_token: ${{ steps.ephemeral_token.outputs.token }}
           pr_number: ${{ inputs.source_pr_number }}
           marker: 'kibana-regression-integration-test'
           comment_body: |
@@ -290,31 +291,31 @@ jobs:
         # language=bash
         run: |
           if [[ "$CHECK_2_RESULT" == "skipped" && "$CHECK_1_RESULT" != "success" ]] || [[ "$CHECK_2_RESULT" != "success" && "$CHECK_2_RESULT" != "skipped" ]]; then
-            cat << EOF >> "$GITHUB_OUTPUT"
-            comment_body<<COMMENT_DELIMITER
-            ## Kibana Regression Integration Test
-
-            **Status:** :broken_heart: Kibana CI failed
-            **Branch:** \`$PR_HEAD\`
-            **Kibana PR:** $KIBANA_PR_URL
-
-            Please check Kibana CI logs for details.
-            COMMENT_DELIMITER
-            EOF
+            status=':broken_heart: Kibana CI failed'
+            details='Please check Kibana CI logs for details.'
           else
-            cat << EOF >> "$GITHUB_OUTPUT"
-            comment_body<<COMMENT_DELIMITER
-            ## Kibana Regression Integration Test
-
-            **Status:** :green_heart: Kibana CI passed
-            **Branch:** \`$PR_HEAD\`
-            **Kibana PR:** $KIBANA_PR_URL
-            COMMENT_DELIMITER
-            EOF
+            status=':green_heart: Kibana CI passed'
+            details=''
           fi
+
+          # Lines must be flush-left so GitHub Actions can parse the multiline output key.
+          {
+            echo 'comment_body<<COMMENT_DELIMITER'
+            echo '## Kibana Regression Integration Test'
+            echo ''
+            echo "**Status:** $status"
+            echo "**Branch:** \`$PR_HEAD\`"
+            echo "**Kibana PR:** $KIBANA_PR_URL"
+            if [[ -n "$details" ]]; then
+              echo ''
+              echo "$details"
+            fi
+            echo 'COMMENT_DELIMITER'
+          } >> "$GITHUB_OUTPUT"
       - name: Add a comment
         uses: ./.github/actions/pr_bot_comment
         with:
+          gh_token: ${{ steps.ephemeral_token.outputs.token }}
           pr_number: ${{ inputs.source_pr_number }}
           marker: 'kibana-regression-integration-test'
           comment_body: ${{ steps.compose_comment_body.outputs.comment_body }}
