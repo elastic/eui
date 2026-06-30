@@ -20,6 +20,7 @@ import {
   useEuiMemoizedStyles,
   copyToClipboard,
   UseEuiTheme,
+  useIsDarkMode,
 } from '@elastic/eui';
 import { css } from '@emotion/react';
 import { demoDefaultScope } from '@theme/Demo/default_scope';
@@ -104,9 +105,11 @@ export const Demo = ({
   previewWrapperSource,
 }: DemoProps) => {
   const styles = useEuiMemoizedStyles(getDemoStyles);
+  const isDarkMode = useIsDarkMode();
   const [sources, setSources] = useState<DemoSourceMeta[]>([]);
   const [isSourceOpen, setIsSourceOpen] = useState<boolean>(_isSourceOpen);
   const activeSource = sources[0] || null;
+  const prismTheme = isDarkMode ? prismThemes.dracula : prismThemes.github;
 
   // liveProviderKey restarts the demo to its initial state
   const [liveProviderKey, setLiveProviderKey] = useState<number>(0);
@@ -142,7 +145,7 @@ export const Demo = ({
           key={liveProviderKey}
           code={activeSource?.code || ''}
           transformCode={demoCodeTransformer}
-          theme={prismThemes.dracula}
+          theme={prismTheme}
           scope={finalScope}
         >
           <DemoPreview
