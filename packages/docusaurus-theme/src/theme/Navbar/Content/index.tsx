@@ -40,6 +40,7 @@ import {
   VersionSwitcherProps,
 } from '../../../components/version_switcher';
 import { HighContrastModeToggle } from '../../../components/high_contrast_mode_toggle';
+import { getNavbarBreakpoint } from '../breakpoint';
 
 const DOCS_PATH = '/docs';
 
@@ -54,6 +55,8 @@ const getStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
   const form = euiFormVariables(euiThemeContext);
   const iconColor = encodeURIComponent(euiTheme.colors.text);
+  const { desktopMediaQuery, mobileMediaQuery } =
+    getNavbarBreakpoint(euiThemeContext);
 
   return {
     navbarItems: css`
@@ -62,7 +65,7 @@ const getStyles = (euiThemeContext: UseEuiTheme) => {
 
       .navbar__item,
       [class*='colorModeToggle'] {
-        @media (max-width: 996px) {
+        ${mobileMediaQuery} {
           display: none;
         }
       }
@@ -74,12 +77,16 @@ const getStyles = (euiThemeContext: UseEuiTheme) => {
           background-color: var(--ifm-color-emphasis-200);
           color: currentColor;
         }
+
+        ${mobileMediaQuery} {
+          display: inherit;
+        }
       }
     `,
     navbarItemsLeft: css`
       gap: ${euiTheme.size.s};
 
-      @media (min-width: 997px) {
+      ${desktopMediaQuery} {
         gap: ${euiTheme.size.l};
       }
 
@@ -91,7 +98,7 @@ const getStyles = (euiThemeContext: UseEuiTheme) => {
       gap: ${euiTheme.size.s};
     `,
     actions: css`
-      @media (max-width: 996px) {
+      ${mobileMediaQuery} {
         display: none;
       }
     `,
@@ -130,22 +137,18 @@ const getStyles = (euiThemeContext: UseEuiTheme) => {
           max-inline-size: 25rem;
         }
 
-        @media (min-width: 997px) {
+        ${desktopMediaQuery} {
           min-inline-size: 15rem;
-        }
-
-        @media (min-width: 1200px) {
-          min-inline-size: 25rem;
         }
       }
     `,
     versionSwitcher: css`
-      @media (max-width: 996px) {
+      ${mobileMediaQuery} {
         display: none;
       }
     `,
     themeSwitcher: css`
-      @media (max-width: 996px) {
+      ${mobileMediaQuery} {
         display: none;
       }
     `,
