@@ -206,6 +206,36 @@ describe('EuiSelectable', () => {
           ]);
         });
     });
+
+    describe('with groups', () => {
+      it('renders filtered options with the correct height after searching', () => {
+        const groupOptions = [
+          { label: 'Group 1', isGroupLabel: true },
+          { label: 'Option A' },
+          { label: 'Group 2', isGroupLabel: true },
+          { label: 'Option B' },
+          { label: 'Option C' },
+        ];
+
+        cy.realMount(
+          <EuiSelectable searchable options={groupOptions}>
+            {(list, search) => (
+              <>
+                {search}
+                {list}
+              </>
+            )}
+          </EuiSelectable>
+        );
+
+        cy.get('input').realClick().realType('Option');
+
+        cy.get('li[role=option]').should('have.length', 3);
+        cy.get('li[role=option]').eq(0).invoke('outerHeight').should('eq', 32);
+        cy.get('li[role=option]').eq(1).invoke('outerHeight').should('eq', 32);
+        cy.get('li[role=option]').eq(2).invoke('outerHeight').should('eq', 32);
+      });
+    });
   });
 
   describe('without a `searchable` configuration', () => {
