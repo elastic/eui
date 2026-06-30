@@ -230,7 +230,6 @@ describe('EuiSelectable', () => {
 
         cy.get('input').realClick().realType('Option');
 
-        cy.get('li[role=option]').should('have.length', 3);
         cy.get('li[role=option]')
           .should('have.length', 3)
           .then(($options) => {
