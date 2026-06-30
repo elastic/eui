@@ -1,17 +1,35 @@
 {
   "name": "@elastic/eui-test-helpers",
-  "version": "114.2.0",
+  "version": "116.3.1",
   "description": "A library of EUI test helpers for RTL, Cypress and Scout",
+  "license": "SEE LICENSE IN LICENSE.txt",
   "repository": {
     "type": "git",
-    "url": "https://github.com/elastic/eui.git"
+    "url": "https://github.com/elastic/eui.git",
+    "directory": "packages/test-helpers"
   },
-  "private": true,
+  "homepage": "https://github.com/elastic/eui/blob/main/packages/test-helpers",
+  "main": "lib/cjs/index.js",
+  "module": "lib/esm/index.js",
+  "types": "lib/cjs/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./lib/cjs/index.d.ts",
+      "import": "./lib/esm/index.js",
+      "require": "./lib/cjs/index.js",
+      "default": "./lib/cjs/index.js"
+    }
+  },
   "scripts": {
     "lint": "tsc --noEmit",
     "test": "yarn lint && yarn test-e2e",
     "test-e2e": "playwright test",
-    "show-report": "playwright show-report"
+    "show-report": "playwright show-report",
+    "build": "yarn build:clean && yarn build:compile && yarn build:compile:esm && yarn build:types",
+    "build:clean": "rimraf lib/",
+    "build:compile": "NODE_ENV=production babel src --out-dir=lib/cjs --extensions .ts --ignore \"**/*.spec.ts\"",
+    "build:compile:esm": "tsc --project ./tsconfig.esm.json",
+    "build:types": "NODE_ENV=production tsc --project tsconfig.types.json"
   },
   "peerDependencies": {
     "@playwright/test": "^1.50.0"
@@ -22,8 +40,22 @@
     }
   },
   "devDependencies": {
+    "@babel/cli": "^7.26.4",
+    "@babel/core": "^7.26.9",
+    "@babel/preset-env": "^7.26.9",
+    "@babel/preset-typescript": "^7.26.0",
     "@playwright/test": "1.59.1",
     "http-server": "^14.1.1",
+    "rimraf": "^6.0.1",
     "typescript": "^5.7.3"
-  }
+  },
+  "files": [
+    "lib",
+    "!**/*.tsbuildinfo",
+    "!**/*.spec.js",
+    "!**/*.spec.d.ts",
+    "!**/*.spec.js.map",
+    "README.md",
+    "licenses"
+  ]
 }
