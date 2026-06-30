@@ -7,9 +7,9 @@
  */
 
 import React, { useState } from 'react';
-import { fireEvent, act, renderHook } from '@testing-library/react';
+import { fireEvent, act } from '@testing-library/react';
 
-import { render } from '../../test/rtl';
+import { render, renderHook } from '../../test/rtl';
 import { requiredProps } from '../../test';
 import { keys } from '../../services';
 import { useEuiTheme } from '../../services/theme';
@@ -76,7 +76,11 @@ describe('SearchBar', () => {
     it('renders search as compressed', () => {
       const { result } = renderHook(() => useEuiTheme());
       const { getByRole } = render(
-        <EuiSearchBar {...requiredProps} compressed={true} onChange={() => {}} />
+        <EuiSearchBar
+          {...requiredProps}
+          compressed={true}
+          onChange={() => {}}
+        />
       );
       const searchbox = getByRole('searchbox');
 
