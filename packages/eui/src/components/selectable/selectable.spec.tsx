@@ -231,9 +231,15 @@ describe('EuiSelectable', () => {
         cy.get('input').realClick().realType('Option');
 
         cy.get('li[role=option]').should('have.length', 3);
-        cy.get('li[role=option]').eq(0).invoke('outerHeight').should('eq', 32);
-        cy.get('li[role=option]').eq(1).invoke('outerHeight').should('eq', 32);
-        cy.get('li[role=option]').eq(2).invoke('outerHeight').should('eq', 32);
+        cy.get('li[role=option]')
+          .should('have.length', 3)
+          .then(($options) => {
+            const firstHeight = $options.eq(0).outerHeight();
+
+            $options.each((_, el) => {
+              expect(Cypress.$(el).outerHeight()).to.eq(firstHeight);
+            });
+          });
       });
     });
   });
