@@ -8,6 +8,7 @@
 
 import React, { useState } from 'react';
 import { fireEvent, act } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 import { render, renderHook } from '../../test/rtl';
 import { requiredProps } from '../../test';
@@ -264,20 +265,40 @@ describe('SearchBar', () => {
     });
   });
   describe('error tooltip', () => {
-    test('does not render an error tooltip when isInvalidTooltipDisabled is true', () => {
+    test('renders an error tooltip by default on parse error', async () => {
+      const { getByTestSubject, container } = render(
+        <EuiSearchBar box={{ 'data-test-subj': 'searchbar' }} />
+      );
+
+      await userEvent.type(
+        getByTestSubject('searchbar'),
+        'tag:value OR{enter}'
+      );
+
+      expect(getByTestSubject('searchbar')).toHaveAttribute(
+        'aria-invalid',
+        'true'
+      );
+      expect(container.querySelector('.euiToolTipAnchor')).toBeInTheDocument();
+    });
+
+    test('does not render an error tooltip when showErrorTooltip is false', async () => {
       const { getByTestSubject, container } = render(
         <EuiSearchBar
           box={{ 'data-test-subj': 'searchbar' }}
-          isInvalidTooltipDisabled={true}
+          showErrorTooltip={false}
         />
       );
 
-      // Trigger a search with a syntax error to set the internal error state
-      fireEvent.keyUp(getByTestSubject('searchbar'), {
-        key: keys.ENTER,
-        target: { value: 'tag:value OR' },
-      });
+      await userEvent.type(
+        getByTestSubject('searchbar'),
+        'tag:value OR{enter}'
+      );
 
+      expect(getByTestSubject('searchbar')).toHaveAttribute(
+        'aria-invalid',
+        'true'
+      );
       expect(container.querySelector('.euiToolTipAnchor')).toBeNull();
     });
   });

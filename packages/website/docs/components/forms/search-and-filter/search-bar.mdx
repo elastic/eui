@@ -388,6 +388,51 @@ export default () => {
 };
 ```
 
+## Validation error
+
+By default, an **EuiSearchBar** displays a built-in tooltip when an invalid query is typed. This tooltip informs sighted users (if no other error UI is provided by the consumer) as well as screen reader users.
+
+If you prefer to provide your own error UI (for instance, by wrapping the search bar in an **EuiFormRow**), you can use the `showErrorTooltip={false}` prop to hide the built-in tooltip. 
+
+**Important:** If you choose to hide the built-in tooltip, you *must* ensure that screen readers can still announce the validation error using an alternative method, such as the **EuiFormRow** example below.
+
+```tsx interactive
+import React, { useState } from 'react';
+import { EuiSearchBar, EuiFormRow } from '@elastic/eui';
+
+export default () => {
+  const [error, setError] = useState(null);
+
+  const onChange = ({ error }) => {
+    setError(error);
+  };
+
+  const schema = {
+    strict: true,
+    fields: {
+      status: { type: 'string' }
+    }
+  };
+
+  return (
+    <EuiFormRow 
+      error={error ? `Invalid search: ${error.message}` : null} 
+      isInvalid={!!error}
+      fullWidth
+    >
+      <EuiSearchBar
+        box={{
+          schema,
+          placeholder: 'Type an invalid query like "status: "',
+        }}
+        onChange={onChange}
+        showErrorTooltip={false}
+      />
+    </EuiFormRow>
+  );
+};
+```
+
 ## Controlled search bar
 
 An **EuiSearchBar** can have its query controlled by a parent component by passing the `query` prop. Changes to the query will be passed back up through the `onChange` callback where the new query must be stored in state and passed back into the search bar.
