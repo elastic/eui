@@ -265,12 +265,12 @@ describe('SearchBar', () => {
     });
   });
   describe('error tooltip', () => {
-    test('renders an error tooltip by default on parse error', async () => {
+    test('renders an error tooltip by default on parse error', () => {
       const { getByTestSubject, container } = render(
         <EuiSearchBar box={{ 'data-test-subj': 'searchbar' }} />
       );
 
-      await userEvent.type(
+      userEvent.type(
         getByTestSubject('searchbar'),
         'tag:value OR{enter}'
       );
@@ -282,7 +282,7 @@ describe('SearchBar', () => {
       expect(container.querySelector('.euiToolTipAnchor')).toBeInTheDocument();
     });
 
-    test('does not render an error tooltip when showErrorTooltip is false', async () => {
+    test('does not render an error tooltip when showErrorTooltip is false', () => {
       const { getByTestSubject, container } = render(
         <EuiSearchBar
           box={{ 'data-test-subj': 'searchbar' }}
@@ -290,7 +290,7 @@ describe('SearchBar', () => {
         />
       );
 
-      await userEvent.type(
+      userEvent.type(
         getByTestSubject('searchbar'),
         'tag:value OR{enter}'
       );
