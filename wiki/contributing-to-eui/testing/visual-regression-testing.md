@@ -98,7 +98,7 @@ export const MobileUnsupported: Story = {
 };
 ```
 
-Skipping a variant also skips the story's `play` body for that variant, so interactions don't run at a viewport the story isn't built for.
+Skipping a variant also skips the story's `play` body for that variant, so e.g. interactions don't run at a viewport the story isn't built for.
 
 When you add `vrt.skip` to a story that previously had a baseline, manually delete the affected snapshot files from `packages/eui/.vrt/reference/` (all variants for `true` or just the listed ones for an array).
 
