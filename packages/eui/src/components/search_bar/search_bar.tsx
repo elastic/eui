@@ -215,7 +215,9 @@ function notifyControllingParent(
 
 export const EuiSearchBar = (props: EuiSearchBarProps) => {
   const {
-    box: { schema, ...box } = { schema: '' }, // strip `schema` out to prevent passing it to EuiSearchBox
+    box: { schema, 'aria-describedby': boxAriaDescribedBy, ...box } = {
+      schema: '',
+    }, // strip `schema` out to prevent passing it to EuiSearchBox
     filters,
     toolsLeft,
     toolsRight,
@@ -296,6 +298,13 @@ export const EuiSearchBar = (props: EuiSearchBarProps) => {
   const toolsLeftEl = renderTools(toolsLeft);
   const toolsRightEl = renderTools(toolsRight);
 
+  const describedByIds = [
+    boxAriaDescribedBy,
+    isHintVisible ? hintId : undefined,
+  ]
+    .filter(Boolean)
+    .join(' ');
+
   const searchBox = (
     <EuiSearchBox
       compressed={compressed}
@@ -303,7 +312,7 @@ export const EuiSearchBar = (props: EuiSearchBarProps) => {
       query={queryText}
       onSearch={onSearch}
       isInvalid={error != null}
-      aria-describedby={isHintVisible ? `${hintId}` : undefined}
+      aria-describedby={describedByIds || undefined}
       hint={
         hint
           ? {

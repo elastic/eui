@@ -266,40 +266,46 @@ describe('SearchBar', () => {
   });
   describe('error tooltip', () => {
     test('renders an error tooltip by default on parse error', () => {
-      const { getByTestSubject, container } = render(
+      const { getByTestSubject, queryByRole } = render(
         <EuiSearchBar box={{ 'data-test-subj': 'searchbar' }} />
       );
 
-      userEvent.type(
-        getByTestSubject('searchbar'),
-        'tag:value OR{enter}'
-      );
+      act(() => {
+        userEvent.type(getByTestSubject('searchbar'), 'tag:value OR{enter}');
+      });
 
       expect(getByTestSubject('searchbar')).toHaveAttribute(
         'aria-invalid',
         'true'
       );
-      expect(container.querySelector('.euiToolTipAnchor')).toBeInTheDocument();
+
+      // The tooltip only renders its content on hover/focus-visible, so
+      // trigger a hover to confirm the error tooltip is present
+      fireEvent.mouseOver(getByTestSubject('searchbar'));
+
+      expect(queryByRole('tooltip')).toBeInTheDocument();
     });
 
     test('does not render an error tooltip when showErrorTooltip is false', () => {
-      const { getByTestSubject, container } = render(
+      const { getByTestSubject, queryByRole } = render(
         <EuiSearchBar
           box={{ 'data-test-subj': 'searchbar' }}
           showErrorTooltip={false}
         />
       );
 
-      userEvent.type(
-        getByTestSubject('searchbar'),
-        'tag:value OR{enter}'
-      );
+      act(() => {
+        userEvent.type(getByTestSubject('searchbar'), 'tag:value OR{enter}');
+      });
 
       expect(getByTestSubject('searchbar')).toHaveAttribute(
         'aria-invalid',
         'true'
       );
-      expect(container.querySelector('.euiToolTipAnchor')).toBeNull();
+
+      fireEvent.mouseOver(getByTestSubject('searchbar'));
+
+      expect(queryByRole('tooltip')).toBeNull();
     });
   });
 });

@@ -392,43 +392,45 @@ export default () => {
 
 By default, an **EuiSearchBar** displays a built-in tooltip when an invalid query is typed. This tooltip informs sighted users (if no other error UI is provided by the consumer) as well as screen reader users.
 
-If you prefer to provide your own error UI (for instance, by wrapping the search bar in an **EuiFormRow**), you can use the `showErrorTooltip={false}` prop to hide the built-in tooltip. 
+If you prefer to provide your own error UI, you can use the `showErrorTooltip={false}` prop to hide the built-in tooltip.
 
-**Important:** If you choose to hide the built-in tooltip, you *must* ensure that screen readers can still announce the validation error using an alternative method, such as the **EuiFormRow** example below.
+**Important:** If you choose to hide the built-in tooltip, you *must* ensure that screen readers can still announce the validation error. Wrapping the search bar in an **EuiFormRow** does not do this automatically &mdash; **EuiSearchBar** is not a form control itself, so **EuiFormRow** cannot clone its `aria-describedby`/`id` props onto the underlying search input. Instead, pass `aria-describedby` directly via the `box` prop, pointing at the `id` of your own error message, as shown below.
 
 ```tsx interactive
 import React, { useState } from 'react';
-import { EuiSearchBar, EuiFormRow } from '@elastic/eui';
+import { EuiSearchBar, EuiCallOut, EuiSpacer, useGeneratedHtmlId } from '@elastic/eui';
 
 export default () => {
   const [error, setError] = useState(null);
+  const errorId = useGeneratedHtmlId();
 
   const onChange = ({ error }) => {
     setError(error);
   };
 
-  const schema = {
-    strict: true,
-    fields: {
-      status: { type: 'string' }
-    }
-  };
-
   return (
-    <EuiFormRow 
-      error={error ? `Invalid search: ${error.message}` : null} 
-      isInvalid={!!error}
-      fullWidth
-    >
+    <>
       <EuiSearchBar
         box={{
-          schema,
-          placeholder: 'Type an invalid query like "status: "',
+          placeholder: 'Type an invalid query like "tag:value OR"',
+          'aria-describedby': error ? errorId : undefined,
         }}
         onChange={onChange}
         showErrorTooltip={false}
       />
-    </EuiFormRow>
+      {error && (
+        <>
+          <EuiSpacer size="s" />
+          <EuiCallOut
+            id={errorId}
+            iconType="faceSad"
+            color="danger"
+            size="s"
+            title={`Invalid search: ${error.message}`}
+          />
+        </>
+      )}
+    </>
   );
 };
 ```
