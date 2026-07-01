@@ -263,4 +263,22 @@ describe('SearchBar', () => {
       expect(queryByTestSubject('myHint')).toHaveTextContent('Hello from hint');
     });
   });
+  describe('error tooltip', () => {
+    test('does not render an error tooltip when isInvalidTooltipDisabled is true', () => {
+      const { getByTestSubject, container } = render(
+        <EuiSearchBar
+          box={{ 'data-test-subj': 'searchbar' }}
+          isInvalidTooltipDisabled={true}
+        />
+      );
+
+      // Trigger a search with a syntax error to set the internal error state
+      fireEvent.keyUp(getByTestSubject('searchbar'), {
+        key: keys.ENTER,
+        target: { value: 'tag:value OR' },
+      });
+
+      expect(container.querySelector('.euiToolTipAnchor')).toBeNull();
+    });
+  });
 });

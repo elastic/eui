@@ -137,6 +137,12 @@ export interface EuiSearchBarProps extends CommonProps {
    * When `true`, creates a shorter height search bar and filters
    */
   compressed?: boolean;
+
+  /**
+   * Disables the built-in tooltip that appears when an invalid query is typed.
+   * Useful when consumers render their own custom error UI.
+   */
+  isInvalidTooltipDisabled?: boolean;
 }
 
 const parseQuery = (
@@ -215,6 +221,7 @@ export const EuiSearchBar = (props: EuiSearchBarProps) => {
     toolsRight,
     hint,
     compressed,
+    isInvalidTooltipDisabled = false,
   } = props;
 
   const theme = useEuiTheme();
@@ -320,9 +327,13 @@ export const EuiSearchBar = (props: EuiSearchBarProps) => {
         css={euiSearchBar__searchHolder(theme)}
         grow={true}
       >
-        <EuiToolTip content={error?.message} display="block">
-          {searchBox}
-        </EuiToolTip>
+        {isInvalidTooltipDisabled ? (
+          searchBox
+        ) : (
+          <EuiToolTip content={error?.message} display="block">
+            {searchBox}
+          </EuiToolTip>
+        )}
       </EuiFlexItem>
       {filters && (
         <EuiFlexItem
