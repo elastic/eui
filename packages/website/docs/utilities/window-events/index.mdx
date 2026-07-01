@@ -7,7 +7,8 @@ import modalExampleSource from '!raw-loader!./modal_example';
 
 Use an **EuiWindowEvent** to safely and declaratively manage adding and auto-removing event listeners to the `window`. This is preferable to setting up your own window event listeners because it will remove old listeners when your component unmounts, preventing you from accidentally leaving them around forever.
 
-This modal example registers a listener on the `keydown` event and listens for ESC key presses, which closes the open modal.
+This modal example registers a listener on the `keydown` event and listens for ESC key presses, which closes the open modal. The `event` prop accepts any
+[`WindowEventMap`](https://developer.mozilla.org/en-US/docs/Web/API/WindowEventMap) event name.
 
 <Demo scope={{ ModalExample }} extraFiles={{ 'modal_example.tsx': modalExampleSource }}>
 ```tsx interactive
