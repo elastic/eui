@@ -14,7 +14,7 @@ methods for testing simple, native-like components that are provided by your tes
 
 ## Installation
 
-This library's versioning is following `@elastic/eui` and must be kept in sync to ensure correct functionality.
+This library is versioned independently from `@elastic/eui`. Because the helpers target EUI's component DOM and `data-test-subj`s, pick a version compatible with the `@elastic/eui` version you're testing against.
 
 ```shell
 yarn add --dev @elastic/eui-test-helpers
