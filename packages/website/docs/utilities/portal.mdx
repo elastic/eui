@@ -119,6 +119,7 @@ import {
   EuiTitle,
   EuiOverlayMask,
   EuiButtonIcon,
+  EuiToolTip,
   EuiText,
   EuiTextColor,
   EuiEmptyPrompt,
@@ -169,6 +170,7 @@ export default () => {
   let customFlyout;
 
   if (isCustomFlyoutVisible) {
+    const closeModalLabel = 'Close modal';
     customFlyout = (
       <EuiPortal>
         <EuiOverlayMask>
@@ -209,18 +211,20 @@ export default () => {
                   <EuiTitle size="m">
                     <h2 id={customFlyoutTitleId}>Let&apos;s get started!</h2>
                   </EuiTitle>
-                  <EuiButtonIcon
-                    iconType="cross"
-                    aria-label="Close modal"
-                    onClick={closeCustomFlyout}
-                    onKeyDown={onKeyDown}
-                    color="text"
-                    css={css`
-                      position: absolute;
-                      inset-block-start: ${euiTheme.size.base};
-                      inset-inline-end: ${euiTheme.size.base};
-                    `}
-                  />
+                  <EuiToolTip content={closeModalLabel} disableScreenReaderOutput>
+                    <EuiButtonIcon
+                      iconType="cross"
+                      aria-label={closeModalLabel}
+                      onClick={closeCustomFlyout}
+                      onKeyDown={onKeyDown}
+                      color="text"
+                      css={css`
+                        position: absolute;
+                        inset-block-start: ${euiTheme.size.base};
+                        inset-inline-end: ${euiTheme.size.base};
+                      `}
+                    />
+                  </EuiToolTip>
                   <EuiHorizontalRule />
                 </div>
                 {/* Flyout Body */}

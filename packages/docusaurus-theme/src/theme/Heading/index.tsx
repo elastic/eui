@@ -11,6 +11,7 @@ import { Props as HeadingProps } from '@theme/Heading';
 import {
   EuiTitle,
   EuiButtonIcon,
+  EuiToolTip,
   UseEuiTheme,
   EuiTitleProps,
   useEuiMemoizedStyles,
@@ -76,15 +77,16 @@ const Heading = ({
       >
         {children}
         {shouldShowSectionLink && (
-          <EuiButtonIcon
-            css={styles.anchor}
-            href={`#${id}`}
-            aria-label={anchorTitle}
-            title={anchorTitle}
-            iconType="link"
-            color="text"
-            size="xs"
-          />
+          <EuiToolTip content={anchorTitle} disableScreenReaderOutput>
+            <EuiButtonIcon
+              css={styles.anchor}
+              href={`#${id}`}
+              aria-label={anchorTitle}
+              iconType="link"
+              color="text"
+              size="xs"
+            />
+          </EuiToolTip>
         )}
       </Component>
     </EuiTitle>

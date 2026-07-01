@@ -145,6 +145,8 @@ export const createOpenInCodeSandboxAction =
       } as any);
     }, [activeSource, extraFiles, previewWrapperSource]);
 
+    const openInCodeSandboxLabel = 'Open in CodeSandbox';
+
     return (
       <form
         action="https://codesandbox.io/api/v1/sandboxes/define"
@@ -157,13 +159,13 @@ export const createOpenInCodeSandboxAction =
           name="query"
           value={`module=/demo.tsx&view=split`}
         />
-        <EuiToolTip content="Open in CodeSandbox">
+        <EuiToolTip content={openInCodeSandboxLabel} disableScreenReaderOutput>
           <EuiButtonIcon
             type="submit"
             size="s"
             iconType={CodeSandboxIcon}
             color="text"
-            aria-label="Open in CodeSandbox"
+            aria-label={openInCodeSandboxLabel}
           />
         </EuiToolTip>
       </form>

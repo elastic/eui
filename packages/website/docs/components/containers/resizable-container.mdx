@@ -832,6 +832,7 @@ For consistency, we recommend the usage of the `menuLeft`, `menuRight`, etc, ico
     EuiSpacer,
     EuiButtonGroup,
     EuiButtonIcon,
+    EuiToolTip,
     EuiFlexGroup,
     EuiFlexItem,
     EuiText,
@@ -891,6 +892,8 @@ For consistency, we recommend the usage of the `menuLeft`, `menuRight`, etc, ico
               direction: 'left' | 'right' = 'left'
             ) => togglePanel?.(id, { direction });
 
+            const togglePanel3Label = 'Toggle panel 3';
+
             return (
               <>
                 <EuiResizablePanel id="panel1" initialSize={30} minSize="10%">
@@ -930,12 +933,14 @@ For consistency, we recommend the usage of the `menuLeft`, `menuRight`, etc, ico
                         </EuiTitle>
                       </EuiFlexItem>
                       <EuiFlexItem grow={false}>
-                        <EuiButtonIcon
-                          color="text"
-                          aria-label={'Toggle panel 3'}
-                          iconType="menuRight"
-                          onClick={() => onChange('3')}
-                        />
+                        <EuiToolTip content={togglePanel3Label} disableScreenReaderOutput>
+                          <EuiButtonIcon
+                            color="text"
+                            aria-label={togglePanel3Label}
+                            iconType="menuRight"
+                            onClick={() => onChange('3')}
+                          />
+                        </EuiToolTip>
                       </EuiFlexItem>
                     </EuiFlexGroup>
                     <EuiSpacer />

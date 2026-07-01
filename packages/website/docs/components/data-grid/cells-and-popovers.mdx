@@ -729,6 +729,7 @@ import {
   EuiFlexGroup,
   EuiFlexItem,
   EuiTextColor,
+  EuiToolTip,
 } from '@elastic/eui';
 import { faker } from '@faker-js/faker';
 
@@ -774,6 +775,8 @@ for (let i = 0; i < 10; i++) {
 }
 
 export default () => {
+  const columnSettingsLabel = 'Column settings';
+
   const columns = [
     {
       id: 'no-interactives not expandable',
@@ -806,11 +809,13 @@ export default () => {
       id: 'one-interactive not expandable',
       display: (
         <EuiFlexGroup alignItems="center" gutterSize="xs" responsive={false}>
-          <EuiButtonIcon
-            aria-label="column settings"
-            iconType="gear"
-            onClick={() => {}}
-          />
+          <EuiToolTip content={columnSettingsLabel} disableScreenReaderOutput>
+            <EuiButtonIcon
+              aria-label={columnSettingsLabel}
+              iconType="gear"
+              onClick={() => {}}
+            />
+          </EuiToolTip>
           <EuiBadge>1 interactive</EuiBadge>
         </EuiFlexGroup>
       ),
@@ -842,16 +847,20 @@ export default () => {
       id: 'two-interactives not expandable',
       display: (
         <EuiFlexGroup alignItems="center" gutterSize="xs" responsive={false}>
-          <EuiButtonIcon
-            aria-label="column settings"
-            iconType="gear"
-            onClick={() => {}}
-          />
-          <EuiButtonIcon
-            aria-label="column settings"
-            iconType="gear"
-            onClick={() => {}}
-          />
+          <EuiToolTip content={columnSettingsLabel} disableScreenReaderOutput>
+            <EuiButtonIcon
+              aria-label={columnSettingsLabel}
+              iconType="gear"
+              onClick={() => {}}
+            />
+          </EuiToolTip>
+          <EuiToolTip content={columnSettingsLabel} disableScreenReaderOutput>
+            <EuiButtonIcon
+              aria-label={columnSettingsLabel}
+              iconType="gear"
+              onClick={() => {}}
+            />
+          </EuiToolTip>
           <EuiBadge>2 interactive</EuiBadge>
         </EuiFlexGroup>
       ),

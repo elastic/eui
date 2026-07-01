@@ -169,6 +169,7 @@ import {
   EuiSpacer,
   EuiButton,
   EuiButtonIcon,
+  EuiToolTip,
   EuiLink,
 } from '@elastic/eui';
 
@@ -227,6 +228,8 @@ const DeploymentsGroup = (
   </EuiCollapsibleNavGroup>
 );
 
+const hideAndNeverShowAgainLabel = 'Hide and never show again';
+
 const SecurityGroup = (
   <EuiCollapsibleNavGroup
     background="light"
@@ -236,11 +239,12 @@ const SecurityGroup = (
     initialIsOpen={true}
     arrowDisplay="none"
     extraAction={
-      <EuiButtonIcon
-        aria-label="Hide and never show again"
-        title="Hide and never show again"
-        iconType="cross"
-      />
+      <EuiToolTip content={hideAndNeverShowAgainLabel} disableScreenReaderOutput>
+        <EuiButtonIcon
+          aria-label={hideAndNeverShowAgainLabel}
+          iconType="cross"
+        />
+      </EuiToolTip>
     }
   >
     <EuiText size="s" color="subdued" style={{ padding: '0 8px 8px' }}>
