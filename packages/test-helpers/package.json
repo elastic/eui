@@ -1,6 +1,6 @@
 {
   "name": "@elastic/eui-test-helpers",
-  "version": "116.3.1",
+  "version": "114.2.0",
   "description": "A library of EUI test helpers for RTL, Cypress and Scout",
   "license": "SEE LICENSE IN LICENSE.txt",
   "repository": {
