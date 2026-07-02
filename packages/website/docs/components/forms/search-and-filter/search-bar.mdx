@@ -400,7 +400,7 @@ If you choose to hide the built-in tooltip, you *must* ensure that screen reader
 
 ```tsx interactive
 import React, { useState } from 'react';
-import { EuiSearchBar, EuiCallOut, EuiSpacer, useGeneratedHtmlId } from '@elastic/eui';
+import { EuiSearchBar, EuiFormErrorText, EuiSpacer, useGeneratedHtmlId } from '@elastic/eui';
 
 export default () => {
   const [error, setError] = useState(null);
@@ -423,13 +423,9 @@ export default () => {
       {error && (
         <>
           <EuiSpacer size="s" />
-          <EuiCallOut
-            id={errorId}
-            iconType="faceSad"
-            color="danger"
-            size="s"
-            title={`Invalid search: ${error.message}`}
-          />
+          <EuiFormErrorText id={errorId}>
+            {`Invalid search: ${error.message}`}
+          </EuiFormErrorText>
         </>
       )}
     </>
