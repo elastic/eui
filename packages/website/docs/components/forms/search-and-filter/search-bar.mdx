@@ -394,7 +394,9 @@ By default, an **EuiSearchBar** displays a built-in tooltip when an invalid quer
 
 If you prefer to provide your own error UI, you can use the `showErrorTooltip={false}` prop to hide the built-in tooltip.
 
-**Important:** If you choose to hide the built-in tooltip, you *must* ensure that screen readers can still announce the validation error. Wrapping the search bar in an **EuiFormRow** does not do this automatically &mdash; **EuiSearchBar** is not a form control itself, so **EuiFormRow** cannot clone its `aria-describedby`/`id` props onto the underlying search input. Instead, pass `aria-describedby` directly via the `box` prop, pointing at the `id` of your own error message, as shown below.
+:::accessibility Use `aria-describedby` with `showErrorTooltip={false}`
+If you choose to hide the built-in tooltip, you *must* ensure that screen readers can still announce the validation error. Wrapping the search bar in an **EuiFormRow** does not do this automatically because **EuiSearchBar** is not a form control itself. Instead, pass `aria-describedby` directly via the `box` prop, pointing at the `id` of your own error message, as shown below.
+:::
 
 ```tsx interactive
 import React, { useState } from 'react';

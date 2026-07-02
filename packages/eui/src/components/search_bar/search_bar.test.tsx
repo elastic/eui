@@ -281,7 +281,9 @@ describe('SearchBar', () => {
 
       // The tooltip only renders its content on hover/focus-visible, so
       // trigger a hover to confirm the error tooltip is present
-      fireEvent.mouseOver(getByTestSubject('searchbar'));
+      act(() => {
+        userEvent.hover(getByTestSubject('searchbar'));
+      });
 
       expect(queryByRole('tooltip')).toBeInTheDocument();
     });
@@ -303,7 +305,9 @@ describe('SearchBar', () => {
         'true'
       );
 
-      fireEvent.mouseOver(getByTestSubject('searchbar'));
+      act(() => {
+        userEvent.hover(getByTestSubject('searchbar'));
+      });
 
       expect(queryByRole('tooltip')).toBeNull();
     });
