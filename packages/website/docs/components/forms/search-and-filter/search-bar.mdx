@@ -388,6 +388,51 @@ export default () => {
 };
 ```
 
+## Validation error
+
+By default, an **EuiSearchBar** displays a built-in tooltip when an invalid query is typed. This tooltip informs sighted users (if no other error UI is provided by the consumer) as well as screen reader users.
+
+If you prefer to provide your own error UI, you can use the `showErrorTooltip={false}` prop to hide the built-in tooltip.
+
+:::accessibility Use `aria-describedby` with `showErrorTooltip={false}`
+If you choose to hide the built-in tooltip, you *must* ensure that screen readers can still announce the validation error. Wrapping the search bar in an **EuiFormRow** does not do this automatically because **EuiSearchBar** is not a form control itself. Instead, pass `aria-describedby` directly via the `box` prop, pointing at the `id` of your own error message, as shown below.
+:::
+
+```tsx interactive
+import React, { useState } from 'react';
+import { EuiSearchBar, EuiFormErrorText, EuiSpacer, useGeneratedHtmlId } from '@elastic/eui';
+
+export default () => {
+  const [error, setError] = useState(null);
+  const errorId = useGeneratedHtmlId();
+
+  const onChange = ({ error }) => {
+    setError(error);
+  };
+
+  return (
+    <>
+      <EuiSearchBar
+        box={{
+          placeholder: 'Type an invalid query like "tag:value OR"',
+          'aria-describedby': error ? errorId : undefined,
+        }}
+        onChange={onChange}
+        showErrorTooltip={false}
+      />
+      {error && (
+        <>
+          <EuiSpacer size="s" />
+          <EuiFormErrorText id={errorId}>
+            {`Invalid search: ${error.message}`}
+          </EuiFormErrorText>
+        </>
+      )}
+    </>
+  );
+};
+```
+
 ## Controlled search bar
 
 An **EuiSearchBar** can have its query controlled by a parent component by passing the `query` prop. Changes to the query will be passed back up through the `onChange` callback where the new query must be stored in state and passed back into the search bar.

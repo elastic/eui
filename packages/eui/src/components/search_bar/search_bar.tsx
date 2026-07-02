@@ -137,6 +137,12 @@ export interface EuiSearchBarProps extends CommonProps {
    * When `true`, creates a shorter height search bar and filters
    */
   compressed?: boolean;
+
+  /**
+   * Shows a built-in tooltip when an invalid query is typed.
+   * If set to `false`, consumers should provide an alternative way to surface and announce parse errors.
+   */
+  showErrorTooltip?: boolean;
 }
 
 const parseQuery = (
@@ -209,12 +215,15 @@ function notifyControllingParent(
 
 export const EuiSearchBar = (props: EuiSearchBarProps) => {
   const {
-    box: { schema, ...box } = { schema: '' }, // strip `schema` out to prevent passing it to EuiSearchBox
+    box: { schema, 'aria-describedby': boxAriaDescribedBy, ...box } = {
+      schema: '',
+    }, // strip `schema` out to prevent passing it to EuiSearchBox
     filters,
     toolsLeft,
     toolsRight,
     hint,
     compressed,
+    showErrorTooltip = true,
   } = props;
 
   const theme = useEuiTheme();
@@ -289,6 +298,13 @@ export const EuiSearchBar = (props: EuiSearchBarProps) => {
   const toolsLeftEl = renderTools(toolsLeft);
   const toolsRightEl = renderTools(toolsRight);
 
+  const describedByIds = [
+    boxAriaDescribedBy,
+    isHintVisible ? hintId : undefined,
+  ]
+    .filter(Boolean)
+    .join(' ');
+
   const searchBox = (
     <EuiSearchBox
       compressed={compressed}
@@ -296,7 +312,7 @@ export const EuiSearchBar = (props: EuiSearchBarProps) => {
       query={queryText}
       onSearch={onSearch}
       isInvalid={error != null}
-      aria-describedby={isHintVisible ? `${hintId}` : undefined}
+      aria-describedby={describedByIds || undefined}
       hint={
         hint
           ? {
@@ -320,9 +336,13 @@ export const EuiSearchBar = (props: EuiSearchBarProps) => {
         css={euiSearchBar__searchHolder(theme)}
         grow={true}
       >
-        <EuiToolTip content={error?.message} display="block">
-          {searchBox}
-        </EuiToolTip>
+        {showErrorTooltip ? (
+          <EuiToolTip content={error?.message} display="block">
+            {searchBox}
+          </EuiToolTip>
+        ) : (
+          searchBox
+        )}
       </EuiFlexItem>
       {filters && (
         <EuiFlexItem
