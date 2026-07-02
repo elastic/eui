@@ -1,6 +1,8 @@
 name: Update Kibana dependencies
 
 on:
+  schedule:
+    - cron: '0 3 * * 1-5'
   pull_request:
     types: [labeled]
   workflow_dispatch:
@@ -35,10 +37,12 @@ on:
 jobs:
   release:
     name: Create snapshot release
-    if: ${{ github.event_name != 'pull_request' || github.event.label.name == 'ci:regression-integration-test-kibana' }}
+    if: >-
+      (github.event_name != 'pull_request' || github.event.label.name == 'ci:regression-integration-test-kibana') &&
+      (github.event_name != 'schedule' || github.repository == 'elastic/eui')
     uses: ./.github/workflows/release.yml
     with:
-      release_ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || inputs.release_ref }}
+      release_ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || inputs.release_ref || github.sha }}
       type: snapshot
       dry_run: false
 

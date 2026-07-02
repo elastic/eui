@@ -82,6 +82,20 @@ jobs:
           base_repo='elastic/kibana'
           head_repo='elastic/eui-kibana'
 
+          # Reuse an existing open PR for this head branch if one exists. Nightly
+          # runs push to a fixed branch, so the PR should be updated (via the
+          # force-push), not duplicated.
+          existing_pr_url="$(gh api "repos/$base_repo/pulls?state=open&head=elastic:$PR_HEAD" --jq '.[0].html_url // ""')"
+          if [[ -n "$existing_pr_url" ]]; then
+            echo "pr_url=$existing_pr_url" >> "$GITHUB_OUTPUT"
+            {
+              echo "### Pull request updated"
+              echo ""
+              echo "$existing_pr_url"
+            } >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+
           base_repo_id="$(gh api "repos/$base_repo" --jq .node_id)"
           head_repo_id="$(gh api "repos/$head_repo" --jq .node_id)"
 
@@ -266,7 +280,6 @@ jobs:
     needs: [open_pr, check_ci_status_1, check_ci_status_2]
     if: |
       always() &&
-      inputs.source_pr_number &&
       (
         (needs.check_ci_status_1.result == 'success' && needs.check_ci_status_2.result == 'skipped') ||
         (needs.check_ci_status_1.result == 'failure' && needs.check_ci_status_2.result == 'skipped') ||
@@ -313,10 +326,35 @@ jobs:
             fi
             echo 'COMMENT_DELIMITER'
           } >> "$GITHUB_OUTPUT"
+
+          # Plain-text variant for the Slack notification (nightly runs).
+          slack_text="*Kibana Regression Integration Test*"$'\n'"Status: $status"$'\n'"Branch: \`$PR_HEAD\`"$'\n'"Kibana PR: $KIBANA_PR_URL"
+          {
+            echo 'slack_text<<SLACK_DELIMITER'
+            echo "$slack_text"
+            echo 'SLACK_DELIMITER'
+          } >> "$GITHUB_OUTPUT"
       - name: Add a comment
+        # Source-PR runs report back on the originating EUI PR.
+        if: ${{ inputs.source_pr_number }}
         uses: ./.github/actions/pr_bot_comment
         with:
           gh_token: ${{ steps.ephemeral_token.outputs.token }}
           pr_number: ${{ inputs.source_pr_number }}
           marker: 'kibana-regression-integration-test'
           comment_body: ${{ steps.compose_comment_body.outputs.comment_body }}
+      - name: Notify Slack
+        # Nightly runs have no source PR, so report to Slack instead.
+        if: ${{ !inputs.source_pr_number }}
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.KIBANA_NIGHTLY_SLACK_WEBHOOK }}
+          SLACK_TEXT: ${{ steps.compose_comment_body.outputs.slack_text }}
+        # language=bash
+        run: |
+          set -euo pipefail
+          if [[ -z "${SLACK_WEBHOOK_URL:-}" ]]; then
+            echo "::warning::KIBANA_NIGHTLY_SLACK_WEBHOOK is not set; skipping Slack notification"
+            exit 0
+          fi
+          payload="$(jq -n --arg text "$SLACK_TEXT" '{ text: $text }')"
+          curl -fsSL -X POST -H 'Content-type: application/json' --data "$payload" "$SLACK_WEBHOOK_URL"

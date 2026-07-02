@@ -104,9 +104,17 @@ jobs:
           git remote add fork https://github.com/elastic/eui-kibana.git
       - name: Create new branch
         id: git_branch
+        env:
+          SOURCE_PR_NUMBER: ${{ inputs.source_pr_number }}
         # language=bash
         run: |
-          branch_name="update-dependencies/$(date +%s)"
+          # Nightly runs (no source PR) reuse a single fixed branch so they don't
+          # accumulate stale branches/PRs. Per-PR runs keep a unique branch name.
+          if [[ -n "$SOURCE_PR_NUMBER" ]]; then
+            branch_name="update-dependencies/$(date +%s)"
+          else
+            branch_name="nightly/update-dependencies"
+          fi
           git checkout -b "$branch_name"
           echo "BRANCH_NAME=$branch_name" >> "$GITHUB_OUTPUT"
           echo "::debug::Created branch '$branch_name'"
@@ -139,7 +147,9 @@ jobs:
           GH_TOKEN: ${{ steps.fetch_ephemeral_token.outputs.token }}
           BRANCH_NAME: ${{ steps.git_branch.outputs.BRANCH_NAME }}
         # language=bash
-        run: git push -u fork "$BRANCH_NAME"
+        # Force-push so nightly runs can reuse the fixed branch. Per-PR runs use
+        # unique branch names, so the force flag is a no-op for them.
+        run: git push -u --force fork "$BRANCH_NAME"
       - name: Trigger workflow to open PR
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
