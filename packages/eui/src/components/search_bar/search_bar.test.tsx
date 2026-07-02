@@ -9,9 +9,10 @@
 import React, { useState } from 'react';
 import { fireEvent, act } from '@testing-library/react';
 
-import { render } from '../../test/rtl';
+import { render, renderHook } from '../../test/rtl';
 import { requiredProps } from '../../test';
 import { keys } from '../../services';
+import { useEuiTheme } from '../../services/theme';
 
 import { EuiSearchBar } from './search_bar';
 import { Query } from './query';
@@ -55,6 +56,92 @@ describe('SearchBar', () => {
     const { container } = render(<EuiSearchBar {...props} />);
 
     expect(container.firstChild).toMatchSnapshot();
+  });
+
+  describe('compressed', () => {
+    it('renders non compressed if compressed is not set', () => {
+      const { result } = renderHook(() => useEuiTheme());
+      const { getByRole } = render(
+        <EuiSearchBar {...requiredProps} onChange={() => {}} />
+      );
+      const searchbox = getByRole('searchbox');
+
+      expect(searchbox.className).not.toContain('euiFieldSearch-compressed');
+      expect(searchbox).toHaveStyleRule(
+        'block-size',
+        result.current.euiTheme.size.xxl
+      );
+    });
+
+    it('renders search as compressed', () => {
+      const { result } = renderHook(() => useEuiTheme());
+      const { getByRole } = render(
+        <EuiSearchBar
+          {...requiredProps}
+          compressed={true}
+          onChange={() => {}}
+        />
+      );
+      const searchbox = getByRole('searchbox');
+
+      expect(searchbox.className).toContain('euiFieldSearch-compressed');
+      expect(searchbox).toHaveStyleRule(
+        'block-size',
+        result.current.euiTheme.size.xl
+      );
+    });
+
+    it('renders search as compressed when box.compressed is set', () => {
+      const { result } = renderHook(() => useEuiTheme());
+      const { getByRole } = render(
+        <EuiSearchBar
+          {...requiredProps}
+          box={{ compressed: true }}
+          onChange={() => {}}
+        />
+      );
+      const searchbox = getByRole('searchbox');
+
+      expect(searchbox.className).toContain('euiFieldSearch-compressed');
+      expect(searchbox).toHaveStyleRule(
+        'block-size',
+        result.current.euiTheme.size.xl
+      );
+    });
+
+    it('can be overridden with box.compressed', () => {
+      const filters: SearchFilterConfig[] = [
+        {
+          type: 'is',
+          field: 'open',
+          name: 'Open',
+        },
+      ];
+
+      const { result } = renderHook(() => useEuiTheme());
+      const { getByRole, container } = render(
+        <EuiSearchBar
+          {...requiredProps}
+          compressed={true}
+          box={{ compressed: false }}
+          filters={filters}
+          onChange={() => {}}
+        />
+      );
+      const searchbox = getByRole('searchbox');
+
+      // Search box should NOT be compressed (overridden by box.compressed)
+      expect(searchbox.className).not.toContain('euiFieldSearch-compressed');
+      expect(searchbox).toHaveStyleRule(
+        'block-size',
+        result.current.euiTheme.size.xxl
+      );
+
+      // Filters SHOULD be compressed (uses top-level compressed)
+      expect(container.querySelector('.euiFilterGroup')!.className).toContain(
+        'euiFilterGroup-compressed'
+      );
+    });
   });
 
   test('render - provided query, filters', async () => {

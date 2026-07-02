@@ -132,6 +132,11 @@ export interface EuiSearchBarProps extends CommonProps {
     content: React.ReactNode;
     popoverProps?: HintPopOverProps;
   };
+
+  /**
+   * When `true`, creates a shorter height search bar and filters
+   */
+  compressed?: boolean;
 }
 
 const parseQuery = (
@@ -209,6 +214,7 @@ export const EuiSearchBar = (props: EuiSearchBarProps) => {
     toolsLeft,
     toolsRight,
     hint,
+    compressed,
   } = props;
 
   const theme = useEuiTheme();
@@ -285,6 +291,7 @@ export const EuiSearchBar = (props: EuiSearchBarProps) => {
 
   const searchBox = (
     <EuiSearchBox
+      compressed={compressed}
       {...box}
       query={queryText}
       onSearch={onSearch}
@@ -327,6 +334,7 @@ export const EuiSearchBar = (props: EuiSearchBarProps) => {
             filters={filters}
             query={query}
             onChange={onFiltersChange}
+            compressed={compressed}
           />
         </EuiFlexItem>
       )}

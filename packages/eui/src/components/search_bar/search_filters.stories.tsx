@@ -28,6 +28,9 @@ const tags = [
 const meta: Meta<EuiSearchBarFiltersProps> = {
   title: 'Forms/EuiSearchBar/EuiSearchBarFilters',
   component: EuiSearchBarFilters,
+  args: {
+    compressed: false,
+  },
 };
 enableFunctionToggleControls(meta, ['onChange']);
 

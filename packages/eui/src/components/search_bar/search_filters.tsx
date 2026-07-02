@@ -17,11 +17,15 @@ export interface EuiSearchBarFiltersProps {
   query: Query;
   onChange: (query: Query) => void;
   filters: SearchFilterConfig[];
+  /**
+   * When `true`, creates a shorter height filter group
+   */
+  compressed?: boolean;
 }
 
 export const EuiSearchBarFilters: FunctionComponent<
   EuiSearchBarFiltersProps
-> = ({ filters = [], query, onChange }) => {
+> = ({ filters = [], query, onChange, compressed }) => {
   const items = filters.reduce<ReactElement[]>((acc, filterConfig, index) => {
     if (filterConfig.available && !filterConfig.available()) {
       return acc;
@@ -32,5 +36,5 @@ export const EuiSearchBarFilters: FunctionComponent<
     return acc;
   }, []);
 
-  return <EuiFilterGroup>{items}</EuiFilterGroup>;
+  return <EuiFilterGroup compressed={compressed}>{items}</EuiFilterGroup>;
 };
