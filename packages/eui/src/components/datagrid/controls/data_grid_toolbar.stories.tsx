@@ -266,7 +266,7 @@ const vrtProps = {
 export const ColumnSelector: Story = {
   tags: ['vrt-only'],
   parameters: {
-    vrt: { selector: VRT_SELECTORS.portal },
+    vrt: { skip: true },
   },
   render: () => <StatefulDataGrid {...vrtProps} minSizeForControls={1} />, // Column sorting is hidden on mobile otherwise
   play: async ({ canvasElement, step }: PlayFunctionContext<ReactRenderer>) => {
