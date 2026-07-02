@@ -8,10 +8,17 @@
 
 import React, { isValidElement, type ReactNode, JSX } from 'react';
 import { css } from '@emotion/react';
-import { EuiCodeBlock } from '@elastic/eui';
+import { EuiCodeBlock, useEuiMemoizedStyles, UseEuiTheme } from '@elastic/eui';
 import type { Props } from '@theme/CodeBlock';
 
 import { Demo } from '../../components/demo';
+
+const getStyles = ({ euiTheme }: UseEuiTheme) => ({
+  codeBlock: css`
+    margin-block: ${euiTheme.size.base};
+    word-break: break-word;
+  `,
+});
 
 /**
  * Best attempt to make the children a plain string so it is copyable. If there
@@ -35,6 +42,7 @@ export default function CodeBlock({
 }: Props): JSX.Element {
   const children = maybeStringifyChildren(rawChildren);
   const language = className?.replace('language-', '') || undefined;
+  const styles = useEuiMemoizedStyles(getStyles);
 
   if (metastring?.startsWith('interactive')) {
     return <Demo {...props}>{children}</Demo>;
@@ -47,9 +55,7 @@ export default function CodeBlock({
       overflowHeight={450}
       language={language}
       isCopyable
-      css={css`
-        word-break: break-word;
-      `}
+      css={styles.codeBlock}
     >
       {children}
     </EuiCodeBlock>
