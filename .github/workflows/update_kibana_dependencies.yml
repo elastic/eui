@@ -36,6 +36,9 @@ jobs:
   release:
     name: Create snapshot release
     if: ${{ github.event_name != 'pull_request' || github.event.label.name == 'ci:regression-integration-test-kibana' }}
+    permissions:
+      id-token: write
+      contents: read
     uses: ./.github/workflows/release.yml
     with:
       release_ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || inputs.release_ref }}
