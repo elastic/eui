@@ -8,16 +8,7 @@
 
 import { get } from '../../../services/objects';
 import { isString, isArray } from '../../../services/predicate';
-import {
-  ClauseValue,
-  eq,
-  exact,
-  FieldValue,
-  gt,
-  gte,
-  lt,
-  lte,
-} from './operators';
+import { eq, exact, gt, gte, lt, lte } from './operators';
 import {
   _AST,
   AST,
@@ -73,19 +64,18 @@ const fieldClauseMatcher = <T extends object>(
 ) => {
   return clauses.every((clause) => {
     const { type, value, match } = clause;
-    let operator = nameToOperatorMap[clause.operator];
+    const operator = nameToOperatorMap[clause.operator];
     if (!operator) {
       // unknown matcher
       return true;
     }
-    if (!AST.Match.isMust(match)) {
-      operator = (value: FieldValue, token: ClauseValue) =>
-        !nameToOperatorMap[clause.operator](value, token);
-    }
     const itemValue = get(item, field);
-    const hit = isArray(value)
+    const positiveHit = isArray(value)
       ? value.some((v) => operator(itemValue, v))
       : operator(itemValue, value);
+    // For must_not clauses, negate the aggregate result so that
+    // `-field:(a or b)` means "not a AND not b", not "not a OR not b".
+    const hit = AST.Match.isMust(match) ? positiveHit : !positiveHit;
     if (explain && hit) {
       explain.push({ hit, type, field, value, match, operator });
     }
