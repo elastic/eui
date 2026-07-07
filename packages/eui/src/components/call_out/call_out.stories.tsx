@@ -14,7 +14,7 @@ import {
   enableFunctionToggleControls,
   disableStorybookControls,
 } from '../../../.storybook/utils';
-import { LOKI_SELECTORS } from '../../../.storybook/loki';
+import { VRT_SELECTORS } from '../../../.storybook/vrt';
 import { EuiButton } from '../button';
 import { EuiCallOut, EuiCallOutProps } from './call_out';
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
@@ -94,8 +94,8 @@ export const WithTooltips: Story = {
     controls: {
       include: ['actionProps'],
     },
-    loki: {
-      chromeSelector: LOKI_SELECTORS.portal,
+    vrt: {
+      chromeSelector: VRT_SELECTORS.portal,
     },
   },
   args: {
@@ -120,8 +120,8 @@ export const WithPopover: Story = {
     controls: {
       include: ['actionProps'],
     },
-    loki: {
-      chromeSelector: LOKI_SELECTORS.portal,
+    vrt: {
+      chromeSelector: VRT_SELECTORS.portal,
     },
   },
   args: {
