@@ -349,7 +349,6 @@ export const EuiFlyoutComponent = forwardRef(
     const hasAnimationDefault = type === 'overlay';
     const hasAnimation = _hasAnimation ?? hasAnimationDefault;
 
-    const { euiTheme } = useEuiTheme();
     const { setGlobalCSSVariables } = useEuiThemeCSSVariables();
 
     const Element = as || defaultElement;
@@ -758,6 +757,8 @@ export const EuiFlyoutComponent = forwardRef(
       managedFlyoutIndex,
       isChildFlyout: isChildFlyout,
     });
+
+    const { euiTheme } = useEuiTheme();
 
     /**
      * Inline styles position the flyout inside the reference container's
