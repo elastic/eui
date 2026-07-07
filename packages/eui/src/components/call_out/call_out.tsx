@@ -142,7 +142,9 @@ export const EuiCallOut = forwardRef<HTMLDivElement, EuiCallOutProps>(
     because callouts can be placed in containers without defined size (absolute positioned, no-grow flex layout etc.)
     where container queries would collapse by design instead of adjusting to the content dimensions. */
     const layoutRef = useLayoutObserver(size);
-    const panelRef = useCombinedRefs([layoutRef, ref]);
+    // Memoize the refs array so `useCombinedRefs` returns a stable callback-ref across renders
+    const combinedRefs = useMemo(() => [layoutRef, ref], [layoutRef, ref]);
+    const panelRef = useCombinedRefs(combinedRefs);
 
     const borderColors = useEuiBorderColorCSS();
     const styles = useEuiMemoizedStyles(euiCallOutStyles);
