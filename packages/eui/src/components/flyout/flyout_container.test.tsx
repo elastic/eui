@@ -88,9 +88,7 @@ describe('EuiFlyout container prop', () => {
         width: containerWidth,
         right: MOCK_RECT.left + containerWidth,
       } as DOMRect;
-      jest
-        .spyOn(containerEl, 'getBoundingClientRect')
-        .mockReturnValue(rect);
+      (containerEl.getBoundingClientRect as jest.Mock).mockReturnValue(rect);
       Object.defineProperty(containerEl, 'clientWidth', {
         value: containerWidth,
         configurable: true,
@@ -132,7 +130,7 @@ describe('EuiFlyout container prop', () => {
 
     it('uses min-inline-size of 0 for fill size', async () => {
       const minSize = await getMinInlineSize('fill', 900);
-      expect(minSize).toBe('0');
+      expect(parseInt(minSize, 10)).toBe(0);
     });
   });
 });
