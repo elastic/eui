@@ -32,6 +32,7 @@ import {
   EuiHealth,
   EuiButton,
   EuiButtonIcon,
+  EuiToolTip,
   EuiCheckbox,
   EuiContextMenuItem,
   EuiContextMenuPanel,
@@ -603,6 +604,7 @@ export default class extends Component<{}, State> {
         }
 
         if (column.isActionsPopover) {
+          const actionsLabel = 'Actions';
           return (
             <EuiTableRowCell
               key={column.id}
@@ -614,13 +616,15 @@ export default class extends Component<{}, State> {
               <EuiPopover
                 id={`${item.id}-actions`}
                 button={
-                  <EuiButtonIcon
-                    aria-label="Actions"
-                    iconType="gear"
-                    size="s"
-                    color="text"
-                    onClick={() => this.togglePopover(item.id)}
-                  />
+                  <EuiToolTip content={actionsLabel} disableScreenReaderOutput>
+                    <EuiButtonIcon
+                      aria-label={actionsLabel}
+                      iconType="gear"
+                      size="s"
+                      color="text"
+                      onClick={() => this.togglePopover(item.id)}
+                    />
+                  </EuiToolTip>
                 }
                 isOpen={this.isPopoverOpen(item.id)}
                 closePopover={() => this.closePopover(item.id)}

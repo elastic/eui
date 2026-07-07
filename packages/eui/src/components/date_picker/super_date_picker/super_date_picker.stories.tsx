@@ -149,7 +149,9 @@ export const QuickSelectOnly: Story = {
     vrt: { selector: VRT_SELECTORS.portal },
   },
   args: {
-    start: '2025-01-01T00:00:00',
+    // Use a fixed absolute (strict ISO) start so the button renders a stable
+    // formatted date instead of a drifting relative "~ N years ago" label
+    start: '2025-01-01T00:00:00.000Z',
     end: 'now',
     isQuickSelectOnly: false,
   },
@@ -227,7 +229,9 @@ export const CustomTimeZoneDisplay: Story = {
     },
   },
   args: {
-    start: 'Jan-01-2025',
+    // Use a strict ISO start so the button renders a stable formatted date
+    // instead of a drifting relative "~ N years ago" label
+    start: '2025-01-01T00:00:00.000Z',
     timeZoneDisplayProps: {
       timeZone: 'America/Los_Angeles',
       customRender: ({ nameDisplay }) => (
@@ -272,7 +276,9 @@ export const CollapsedQuickSelectOnly: Story = {
     vrt: { selector: VRT_SELECTORS.portal },
   },
   args: {
-    start: '2025-01-01T00:00:00',
+    // Use a strict ISO start so the button renders a stable formatted date
+    // instead of a drifting relative "~ N years ago" label
+    start: '2025-01-01T00:00:00.000Z',
     end: 'now',
     isQuickSelectOnly: false,
   },
@@ -317,7 +323,9 @@ export const CollapsedQuickSelectOnly: Story = {
 
 export const OverflowingChildren: Story = {
   tags: ['vrt-only'],
-  args: { start: 'Dec 31, 1999' },
+  // Use a strict ISO start so the button renders a stable formatted date
+  // instead of a drifting relative "~ N years ago" label
+  args: { start: '1999-12-31T00:00:00.000Z' },
   decorators: [
     (Story) => (
       <div style={{ maxWidth: 400 }}>
