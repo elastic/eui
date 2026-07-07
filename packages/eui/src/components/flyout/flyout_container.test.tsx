@@ -95,7 +95,11 @@ describe('EuiFlyout container prop', () => {
       });
 
       const { container } = render(
-        <EuiFlyout onClose={() => {}} container={containerEl} size={size as any} />
+        <EuiFlyout
+          onClose={() => {}}
+          container={containerEl}
+          size={size as any}
+        />
       );
 
       let flyout: HTMLElement | null = null;
