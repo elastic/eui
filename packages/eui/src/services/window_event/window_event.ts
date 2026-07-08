@@ -12,7 +12,7 @@ type EventNames = keyof WindowEventMap;
 
 interface Props<Ev extends EventNames> {
   /**
-   * The window event to listen for. Accepts any event name from TypeScript's WindowEventMap.
+   * The window event to listen for. Accepts any event name from TypeScript's {@link https://github.com/microsoft/TypeScript/blob/68cead182cc24afdc3f1ce7c8ff5853aba14b65a/lib/lib.dom.d.ts#L26898-L26906|WindowEventMap}.
    */
   event: Ev;
   handler: (this: Window, ev: WindowEventMap[Ev]) => any;
