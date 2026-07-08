@@ -29,6 +29,7 @@ import {
   EuiButton,
   EuiButtonEmpty,
   EuiButtonIcon,
+  EuiToolTip,
   EuiCode,
   EuiContextMenuItem,
   EuiContextMenuPanel,
@@ -357,6 +358,8 @@ const trailingControlColumns = [
         </EuiContextMenuItem>,
       ];
 
+      const showActionsLabel = 'Show actions';
+
       return (
         <>
           <EuiPopover
@@ -364,12 +367,14 @@ const trailingControlColumns = [
             panelPaddingSize="none"
             anchorPosition="upCenter"
             button={
-              <EuiButtonIcon
-                aria-label="Show actions"
-                iconType="boxesVertical"
-                color="text"
-                onClick={() => setIsPopoverVisible(!isPopoverVisible)}
-              />
+              <EuiToolTip content={showActionsLabel} disableScreenReaderOutput>
+                <EuiButtonIcon
+                  aria-label={showActionsLabel}
+                  iconType="boxesVertical"
+                  color="text"
+                  onClick={() => setIsPopoverVisible(!isPopoverVisible)}
+                />
+              </EuiToolTip>
             }
             closePopover={closePopover}
           >

@@ -38,21 +38,54 @@ yarn workspace @elastic/eui test-visual-regression update -- --url https://eui.e
 
 Reference images are stored in `packages/eui/.vrt/reference/`.
 
+## Variants
+
+Each story is snapshotted under multiple **variants** to catch e.g. responsive-layout regressions. Every variant produces its own baseline file, suffixed with the variant name:
+
+    packages/eui/.vrt/reference/
+      navigation-euibutton--playground-desktop.png
+      navigation-euibutton--playground-mobile.png
+
+The test-runner is invoked once per variant (similar to [Playwright projects](https://playwright.dev/docs/test-projects)), so each variant runs in its own process and browser context with the viewport applied before the story renders. Variants are defined in the `VARIANTS` map in [`.storybook/vrt.ts`](https://github.com/elastic/eui/tree/main/packages/eui/.storybook/vrt.ts); [`scripts/test-visual-regression.js`](https://github.com/elastic/eui/tree/main/packages/eui/scripts/test-visual-regression.js) selects the active one per run using the `VRT_VARIANT` environment variable.
+
+Current variants:
+
+| Variant | Viewport |
+|---|---|
+| `desktop` | 1440 × 900 |
+| `mobile` | 390 × 844 |
+
+### Skipping specific variants
+
+If a story can't render correctly under a particular variant, opt out of just that variant by passing an array to `parameters.vrt.skip` (see [Skipping stories](#skipping-stories)). The story still runs under the remaining variants.
+
 ## Filtering stories
 
-Pass any [`test-storybook`](https://storybook.js.org/docs/writing-tests/test-runner) flags after `--`:
+Pass any [`test-storybook`](https://storybook.js.org/docs/writing-tests/test-runner) flags after `--`. Jest path filters need `--` before the pattern:
 
 ```shell
-# Only run stories with a specific tag
-yarn workspace @elastic/eui test-visual-regression -- --includeTags vrt-only
+# By story name
+yarn workspace @elastic/eui test-visual-regression -- -- euibutton
+# By story file
+yarn workspace @elastic/eui test-visual-regression -- -- --testPathPattern=button.stories
 
-# Exclude stories with a tag
+# By tag
+yarn workspace @elastic/eui test-visual-regression -- --includeTags vrt-only
 yarn workspace @elastic/eui test-visual-regression -- --excludeTags skip-vrt
+```
+
+The wrapper runs both variants. For one variant only:
+
+```shell
+VRT_VARIANT=desktop yarn workspace @elastic/eui test-storybook -- euibutton
 ```
 
 ## Skipping stories
 
-Set `parameters.vrt.skip` to skip a story. Leave a comment explaining why.
+Set `parameters.vrt.skip` to opt a story out of VRT. Leave a comment explaining why.
+
+- `skip: true` skips the story under **all** variants.
+- `skip: ['mobile']` skips only the listed variants; the story still runs under the rest.
 
 ```tsx
 export const MyStory: Story = {
@@ -63,9 +96,20 @@ export const MyStory: Story = {
     },
   },
 };
+
+export const MobileUnsupported: Story = {
+  parameters: {
+    vrt: {
+      // Skipped on mobile: the toolbar control is hidden below this breakpoint
+      skip: ['mobile'],
+    },
+  },
+};
 ```
 
-When you add `vrt.skip` to a story that previously had a baseline, manually delete its snapshot files from `packages/eui/.vrt/reference/`.
+Skipping a variant also skips the story's `play` body for that variant, so e.g. interactions don't run at a viewport the story isn't built for.
+
+When you add `vrt.skip` to a story that previously had a baseline, manually delete the affected snapshot files from `packages/eui/.vrt/reference/` (all variants for `true` or just the listed ones for an array).
 
 ## Using non-default selectors
 
@@ -151,11 +195,19 @@ flowchart TD
     WS --> N
 ```
 
-When VRT finds new stories without baselines, or when the team approves visual changes, **CI commits the updated reference screenshots directly to the PR branch**.
+CI commits baselines directly to the PR branch:
+
+- `chore(eui): add VRT baseline screenshots` - the PR adds new stories. Automatic, regardless of pass/fail.
+- `chore(eui): update VRT baseline screenshots` - after approving the *Approve visual changes* block step in Buildkite.
+
+A PR with both new and changed stories gets both commits, `add` first. Either commit retriggers CI.
 
 ### Skipping in a PR
 
 If VRT itself is broken and blocking merges, add the `skip-vrt` label to the GitHub PR. The VRT step will detect the label, exit without running any tests and the notify comment will clearly state that VRT was skipped.
+
+> [!WARNING]
+> `skip-vrt` doesn't run the test runner, so new stories don't get baselines. Be especially careful if you're adding it on your PR that introduces visual changes.
 
 The label is captured at build-trigger time. To affect an existing build, trigger a fresh one:
 
