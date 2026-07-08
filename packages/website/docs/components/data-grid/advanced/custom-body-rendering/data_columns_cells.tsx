@@ -7,6 +7,7 @@ import {
   EuiCallOut,
   EuiButton,
   EuiButtonIcon,
+  EuiToolTip,
 } from '@elastic/eui';
 import { faker } from '@faker-js/faker';
 
@@ -141,12 +142,17 @@ export const trailingControlColumns: EuiDataGridProps['trailingControlColumns'] 
           <span>Actions</span>
         </EuiScreenReaderOnly>
       ),
-      rowCellRender: () => (
-        <EuiButtonIcon
-          iconType="boxes_vertical"
-          aria-label="See row actions"
-        />
-      ),
+      rowCellRender: () => {
+        const seeRowActionsLabel = 'See row actions';
+        return (
+          <EuiToolTip content={seeRowActionsLabel} disableScreenReaderOutput>
+            <EuiButtonIcon
+              iconType="boxes_vertical"
+              aria-label={seeRowActionsLabel}
+            />
+          </EuiToolTip>
+        );
+      },
     },
     // The custom row details is actually a trailing control column cell with
     // a hidden header. This is important for accessibility and markup reasons

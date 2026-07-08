@@ -83,7 +83,7 @@ Wait until Storybook finishes compiling. Then, from the repository root:
 yarn workspace @elastic/eui-test-helpers test
 ```
 
-This runs `tsc --noEmit` (type-check) followed by `playwright test`. To run only the Playwright tests, use `test-unit`. On a fresh checkout, install Playwright's browsers once:
+This runs `tsc --noEmit` (type-check) followed by `playwright test`. To run only the Playwright tests, use `test-e2e`. On a fresh checkout, install Playwright's browsers once:
 
 ```shell
 yarn workspace @elastic/eui-test-helpers exec playwright install chromium
@@ -94,3 +94,11 @@ After a failed run, open the HTML report (with traces, screenshots, and the full
 ```shell
 yarn workspace @elastic/eui-test-helpers show-report
 ```
+
+> The local workflow above is unchanged: Playwright's `webServer` is configured with `reuseExistingServer` (off in CI), so when you already have the dev server on `:6006` it is reused. In CI — where no dev server runs — `webServer` serves EUI's prebuilt static Storybook from `packages/eui/storybook-static`. That directory is a gitignored build artifact, so it must be produced first with `yarn workspace @elastic/eui build-storybook` (the `test-helpers` CI task does this automatically).
+
+## CI integration
+
+These tests run in EUI's Buildkite CI on every PR, with flake detection when a component changes. See [Testing → EUI test helpers](../../wiki/contributing-to-eui/testing/eui-test-helpers.md) in the wiki.
+
+Flake detection correlates a component to its helper **by directory name**: a change under `packages/eui/src/components/<name>` re-runs the specs in `src/playwright/components/<name>`. Keep that directory parity when adding a Component Object and no extra wiring is needed.

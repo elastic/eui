@@ -51,6 +51,7 @@ type Story = StoryObj<EuiSearchBarProps>;
 export const Playground: Story = {
   args: {
     // setting up props for easier testing/QA
+    compressed: false,
     dateFormat: {},
     defaultQuery: '',
     query: '',

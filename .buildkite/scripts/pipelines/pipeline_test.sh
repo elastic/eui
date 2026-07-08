@@ -15,7 +15,7 @@ NON_EUI_PATHS_REGEXP='^(\.github/|wiki/|packages/(website|docusaurus-[^/]+|eslin
 
 is_eui_test_type() {
   case "$1" in
-    lint|unit:ts|unit:tsx|unit:tsx:17|cypress:17|cypress:18|cypress:a11y) return 0 ;;
+    lint|unit:ts|unit:tsx|unit:tsx:17|cypress:17|cypress:18|cypress:a11y|test-helpers) return 0 ;;
     *) return 1 ;;
   esac
 }
@@ -54,6 +54,7 @@ DOCKER_OPTIONS=(
   --env BUILDKITE_JOB_ID
   --env BUILDKITE_MESSAGE
   --env CI=true
+  --env PLAYWRIGHT_ARGS="${PLAYWRIGHT_ARGS:-}"
   --user="$(id -u):$(id -g)"
   --volume="$(pwd):/app"
   --workdir=/app
@@ -99,6 +100,11 @@ case $TEST_TYPE in
   cypress:a11y)
     echo "[TASK]: Running Cypress accessibility tests against React 18"
     COMMAND="/opt/yarn*/bin/yarn --cwd packages/eui && yarn --cwd packages/eui build:workspaces && yarn --cwd packages/eui cypress install && yarn --cwd packages/eui run test-cypress-a11y --node-options=--max_old_space_size=2048"
+    ;;
+
+  test-helpers)
+    echo "[TASK]: Running EUI test-helpers validation tests"
+    COMMAND="/opt/yarn*/bin/yarn && yarn workspace @elastic/eui build:workspaces && yarn workspace @elastic/eui build-storybook && yarn workspace @elastic/eui-test-helpers exec playwright install chromium && yarn workspace @elastic/eui-test-helpers exec playwright test ${PLAYWRIGHT_ARGS:-}"
     ;;
 
   pkg:lint)

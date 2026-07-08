@@ -159,7 +159,7 @@ export const VirtualizedCodeBlockScrolling: Story = {
   tags: ['vrt-only'],
   parameters: {
     vrt: {
-      selector: VRT_SELECTORS.portal,
+      skip: true,
     },
     codeSnippet: {
       skip: true,

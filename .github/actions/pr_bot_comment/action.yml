@@ -1,0 +1,69 @@
+name: Create or update a PR comment
+description: Creates or updates a PR comment added by the bot. It marks comments with hidden marker strings to update the right one (e.g., on status change).
+inputs:
+  gh_token:
+    description: GitHub token for authentication
+    default: ${{ github.token }}
+  repository:
+    description: Repository in owner/repo format
+    default: ${{ github.repository }}
+  pr_number:
+    description: PR number to comment on
+    required: true
+  marker:
+    description: Unique marker string to identify this comment and allow updating it programmatically
+    required: true
+  comment_body:
+    description: The comment body content (marker will be prepended automatically)
+    required: true
+outputs:
+  comment_id:
+    description: ID of the created or updated comment
+    value: ${{ steps.upsert.outputs.comment_id }}
+runs:
+  using: composite
+  steps:
+    - name: Create or update comment
+      id: upsert
+      shell: bash
+      env:
+        GH_TOKEN: ${{ inputs.gh_token }}
+        REPOSITORY: ${{ inputs.repository }}
+        PR_NUMBER: ${{ inputs.pr_number }}
+        MARKER: ${{ inputs.marker }}
+        COMMENT_BODY: ${{ inputs.comment_body }}
+      # language=bash
+      run: |
+        # Get bot user name
+        user=$(gh api user --jq '.login')
+
+        # Prepend magic marker to comment body
+        marker_str="<!-- comment-marker: $MARKER -->"
+        full_comment_body=$(printf "%s\n%s" "$marker_str" "$COMMENT_BODY")
+
+        # Go through PR comments and see if there's an existing comment
+        # with the same marker string.
+        existing_comment_id=$(
+          gh api "repos/$REPOSITORY/issues/$PR_NUMBER/comments" \
+          | jq --arg user "$user" --arg marker_str "$marker_str" \
+          '.[] | select(.user.login == $user and (.body | startswith("\($marker_str)"))) | .id' \
+          | head -n 1
+        )
+
+        if [[ -n "$existing_comment_id" ]]; then
+          # Editing a specific comment is not supported by `gh issue comment` yet.
+          gh api "repos/$REPOSITORY/issues/comments/$existing_comment_id" \
+            -X PATCH \
+            -f body="$full_comment_body"
+
+          echo "comment_id=$existing_comment_id" >> "$GITHUB_OUTPUT"
+          echo "Updated existing comment with ID $existing_comment_id"
+        else
+          comment_id=$(gh api "repos/$REPOSITORY/issues/$PR_NUMBER/comments" \
+            -X POST \
+            -f body="$full_comment_body" \
+            --jq '.id')
+
+          echo "comment_id=$comment_id" >> "$GITHUB_OUTPUT"
+          echo "Created new comment with ID $comment_id"
+        fi

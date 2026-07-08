@@ -66,27 +66,32 @@ yarn workspace @elastic/eui test-visual-regression -- --url "${STORYBOOK_URL}" 2
   || VRT_PASSED=false
 
 ############################################################
-#            On pass: commit any new baselines             #
+#          Commit any new baselines (first run)            #
+############################################################
+
+# `test-runner.ts` writes a baseline directly to disk the first time it
+# encounters a story without one. Commit those net-new baselines now,
+# *regardless* of whether VRT overall passed or failed.
+new_files="$(git ls-files --others --exclude-standard -- "${REF_DIR}")"
+if [[ -n "${new_files}" ]]; then
+  echo "+++ Committing new VRT baseline screenshots (first run)"
+
+  github_user_vault="secret/ci/elastic-eui/github_machine_user"
+  git config --local user.name "$(retry 5 vault read -field=name "${github_user_vault}")"
+  git config --local user.email "$(retry 5 vault read -field=email "${github_user_vault}")"
+  gh auth setup-git
+  git add -- ${new_files}
+  git commit -m "chore(eui): add VRT baseline screenshots" --no-verify
+  git_push_to_pr_branch
+  echo "New VRT baseline screenshots committed and pushed"
+fi
+
+############################################################
+#                 On pass: nothing more to do              #
 ############################################################
 
 if [[ "${VRT_PASSED}" == "true" ]]; then
   buildkite-agent meta-data set vrt_passed "true"
-
-  if [[ -n "$(git status --porcelain -- "${REF_DIR}")" ]]; then
-    echo "+++ Committing new VRT baseline screenshots (first run)"
-
-    github_user_vault="secret/ci/elastic-eui/github_machine_user"
-    git config --local user.name "$(retry 5 vault read -field=name "${github_user_vault}")"
-    git config --local user.email "$(retry 5 vault read -field=email "${github_user_vault}")"
-    gh auth setup-git
-    git add "${REF_DIR}"
-    git commit -m "chore(eui): add VRT baseline screenshots" --no-verify
-    git_push_to_pr_branch
-    echo "New VRT baseline screenshots committed and pushed"
-  else
-    echo "Visual regression tests passed with no new VRT baseline screenshots"
-  fi
-
   exit 0
 fi
 

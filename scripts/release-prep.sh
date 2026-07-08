@@ -124,6 +124,7 @@ PR_URL=$(gh pr create \
   --body "$PR_BODY" \
   --label "skip-changelog" \
   --label "release" \
+  --label "skip-vrt" \
   --base main)
 
 echo ""

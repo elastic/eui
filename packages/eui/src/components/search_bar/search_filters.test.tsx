@@ -53,4 +53,28 @@ describe('EuiSearchBarFilters', () => {
 
     expect(container.firstChild).toMatchSnapshot();
   });
+
+  test('render - compressed', () => {
+    const filters: SearchFilterConfig[] = [
+      {
+        type: 'is',
+        field: 'open',
+        name: 'Open',
+      },
+    ];
+
+    const props = {
+      ...requiredProps,
+      onChange: () => {},
+      query: Query.parse(''),
+      filters,
+      compressed: true,
+    };
+
+    const { container } = render(<EuiSearchBarFilters {...props} />);
+
+    expect(container.querySelector('.euiFilterGroup')!.className).toContain(
+      'euiFilterGroup-compressed'
+    );
+  });
 });

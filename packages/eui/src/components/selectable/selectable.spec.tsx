@@ -206,6 +206,41 @@ describe('EuiSelectable', () => {
           ]);
         });
     });
+
+    describe('with groups', () => {
+      it('renders filtered options with the correct height after searching', () => {
+        const groupOptions = [
+          { label: 'Group 1', isGroupLabel: true },
+          { label: 'Option A' },
+          { label: 'Group 2', isGroupLabel: true },
+          { label: 'Option B' },
+          { label: 'Option C' },
+        ];
+
+        cy.realMount(
+          <EuiSelectable searchable options={groupOptions}>
+            {(list, search) => (
+              <>
+                {search}
+                {list}
+              </>
+            )}
+          </EuiSelectable>
+        );
+
+        cy.get('input').realClick().realType('Option');
+
+        cy.get('li[role=option]')
+          .should('have.length', 3)
+          .then(($options) => {
+            const firstHeight = $options.eq(0).outerHeight();
+
+            $options.each((_, el) => {
+              expect(Cypress.$(el).outerHeight()).to.eq(firstHeight);
+            });
+          });
+      });
+    });
   });
 
   describe('without a `searchable` configuration', () => {

@@ -8,6 +8,7 @@ All components should have, at minimum, unit tests for each prop.
 - **[Cypress component tests](./cypress-testing.md)** — optional, used for complex components or where real-browser DOM and interactions are needed.
 - **Storybook** — the component development environment and the source of stories used by visual regression testing.
 - **[Visual regression tests](./visual-regression-testing.md)** — Playwright + `jest-image-snapshot` against Storybook stories, run on every pull request.
+- **[EUI test helpers](./eui-test-helpers.md)** — Playwright validation tests for `@elastic/eui-test-helpers`, run on every pull request with flake detection when a component changes.
 
 ## Code coverage
 
