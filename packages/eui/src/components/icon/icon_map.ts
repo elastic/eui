@@ -8,17 +8,26 @@
 
 type IconImportLoader = () => Promise<unknown>;
 
-type IconImportLoaderWithSynonyms = IconImportLoader & { synonyms?: string[] };
+export type IconCategory = 'glyph' | 'app' | 'logo' | 'ml' | 'token';
 
-const withSynonyms = (
+type IconMetadata = {
+  category: IconCategory;
+  synonyms?: string[];
+};
+
+type IconImportLoaderWithMetadata = IconImportLoader & {
+  metadata?: IconMetadata;
+};
+
+const withMetadata = (
   loader: IconImportLoader,
-  synonyms: string[]
-): IconImportLoaderWithSynonyms => Object.assign(loader, { synonyms });
+  metadata: IconMetadata
+): IconImportLoaderWithMetadata => Object.assign(loader, { metadata });
 
 export const typeToPathMap = {
-  accessibility: withSynonyms(
-    () => import('./assets/accessibility'),
-    [
+  accessibility: withMetadata(() => import('./assets/accessibility'), {
+    category: 'glyph',
+    synonyms: [
       'a11y',
       'inclusive',
       'disability',
@@ -26,141 +35,253 @@ export const typeToPathMap = {
       'assistive',
       'screen reader',
       'universal design',
-    ]
-  ),
-  addDataApp: () => import('./assets/app_add_data'),
+    ],
+  }),
+  addDataApp: withMetadata(() => import('./assets/app_add_data'), {
+    category: 'app',
+  }),
   addToChat: () => import('./assets/add_to_chat'),
-  addToDashboard: withSynonyms(
-    () => import('./assets/add_to_dashboard'),
-    ['dashboard', 'add', 'pin', 'widget', 'panel', 'insert', 'save view']
+  addToDashboard: withMetadata(() => import('./assets/add_to_dashboard'), {
+    category: 'glyph',
+    synonyms: [
+      'dashboard',
+      'add',
+      'pin',
+      'widget',
+      'panel',
+      'insert',
+      'save view',
+    ],
+  }),
+  advancedSettingsApp: withMetadata(
+    () => import('./assets/app_advanced_settings'),
+    { category: 'app' }
   ),
-  advancedSettingsApp: () => import('./assets/app_advanced_settings'),
-  agentApp: () => import('./assets/app_fleet'),
-  aggregate: withSynonyms(
-    () => import('./assets/aggregate'),
-    ['combine', 'sum', 'group', 'collection', 'merge', 'total', 'rollup']
-  ),
-  alignBottom: withSynonyms(
-    () => import('./assets/align_bottom'),
-    ['align', 'bottom', 'vertical', 'position', 'layout', 'dock']
-  ),
-  alignBottomLeft: withSynonyms(
-    () => import('./assets/align_bottom_left'),
-    ['align', 'bottom', 'left', 'corner', 'position', 'layout']
-  ),
-  alignBottomRight: withSynonyms(
-    () => import('./assets/align_bottom_right'),
-    ['align', 'bottom', 'right', 'corner', 'position', 'layout']
-  ),
-  alignCenterHorizontal: withSynonyms(
+  agentApp: withMetadata(() => import('./assets/app_fleet'), {
+    category: 'app',
+  }),
+  aggregate: withMetadata(() => import('./assets/aggregate'), {
+    category: 'glyph',
+    synonyms: [
+      'combine',
+      'sum',
+      'group',
+      'collection',
+      'merge',
+      'total',
+      'rollup',
+    ],
+  }),
+  alignBottom: withMetadata(() => import('./assets/align_bottom'), {
+    category: 'glyph',
+    synonyms: ['align', 'bottom', 'vertical', 'position', 'layout', 'dock'],
+  }),
+  alignBottomLeft: withMetadata(() => import('./assets/align_bottom_left'), {
+    category: 'glyph',
+    synonyms: ['align', 'bottom', 'left', 'corner', 'position', 'layout'],
+  }),
+  alignBottomRight: withMetadata(() => import('./assets/align_bottom_right'), {
+    category: 'glyph',
+    synonyms: ['align', 'bottom', 'right', 'corner', 'position', 'layout'],
+  }),
+  alignCenterHorizontal: withMetadata(
     () => import('./assets/align_center_horizontal'),
-    ['align', 'center', 'horizontal', 'middle', 'position', 'layout']
+    {
+      category: 'glyph',
+      synonyms: [
+        'align',
+        'center',
+        'horizontal',
+        'middle',
+        'position',
+        'layout',
+      ],
+    }
   ),
-  alignCenterVertical: withSynonyms(
+  alignCenterVertical: withMetadata(
     () => import('./assets/align_center_vertical'),
-    ['align', 'center', 'vertical', 'middle', 'position', 'layout']
+    {
+      category: 'glyph',
+      synonyms: ['align', 'center', 'vertical', 'middle', 'position', 'layout'],
+    }
   ),
-  alignLeft: withSynonyms(
-    () => import('./assets/align_left'),
-    ['align', 'left', 'horizontal', 'position', 'layout', 'flush']
-  ),
-  alignRight: withSynonyms(
-    () => import('./assets/align_right'),
-    ['align', 'right', 'horizontal', 'position', 'layout', 'flush']
-  ),
-  alignTop: withSynonyms(
-    () => import('./assets/align_top'),
-    ['align', 'top', 'vertical', 'position', 'layout', 'dock']
-  ),
-  alignTopLeft: withSynonyms(
-    () => import('./assets/align_top_left'),
-    ['align', 'top', 'left', 'corner', 'position', 'layout']
-  ),
-  alignTopRight: withSynonyms(
-    () => import('./assets/align_top_right'),
-    ['align', 'top', 'right', 'corner', 'position', 'layout']
-  ),
+  alignLeft: withMetadata(() => import('./assets/align_left'), {
+    category: 'glyph',
+    synonyms: ['align', 'left', 'horizontal', 'position', 'layout', 'flush'],
+  }),
+  alignRight: withMetadata(() => import('./assets/align_right'), {
+    category: 'glyph',
+    synonyms: ['align', 'right', 'horizontal', 'position', 'layout', 'flush'],
+  }),
+  alignTop: withMetadata(() => import('./assets/align_top'), {
+    category: 'glyph',
+    synonyms: ['align', 'top', 'vertical', 'position', 'layout', 'dock'],
+  }),
+  alignTopLeft: withMetadata(() => import('./assets/align_top_left'), {
+    category: 'glyph',
+    synonyms: ['align', 'top', 'left', 'corner', 'position', 'layout'],
+  }),
+  alignTopRight: withMetadata(() => import('./assets/align_top_right'), {
+    category: 'glyph',
+    synonyms: ['align', 'top', 'right', 'corner', 'position', 'layout'],
+  }),
   alert: () => import('./assets/warning'), // NOTE: To be deprecated in favor of `warning`
-  analyzeEvent: () => import('./assets/analyze_event'),
-  annotation: () => import('./assets/annotation'),
+  analyzeEvent: withMetadata(() => import('./assets/analyze_event'), {
+    category: 'glyph',
+  }),
+  annotation: withMetadata(() => import('./assets/annotation'), {
+    category: 'glyph',
+  }),
   anomalyChart: () => import('./assets/chart_anomaly'), // NOTE: To be deprecated in favor of chartAnomaly
-  chartAnomaly: withSynonyms(
-    () => import('./assets/chart_anomaly'),
-    ['anomaly', 'chart', 'outlier', 'detection', 'spike', 'unusual']
-  ),
-  anomalySwimLane: () => import('./assets/anomaly_swim_lane'),
-  apmApp: () => import('./assets/app_apm'),
+  chartAnomaly: withMetadata(() => import('./assets/chart_anomaly'), {
+    category: 'glyph',
+    synonyms: ['anomaly', 'chart', 'outlier', 'detection', 'spike', 'unusual'],
+  }),
+  anomalySwimLane: withMetadata(() => import('./assets/anomaly_swim_lane'), {
+    category: 'glyph',
+  }),
+  apmApp: withMetadata(() => import('./assets/app_apm'), { category: 'app' }),
   apmTrace: () => import('./assets/chart_waterfall'), // NOTE: To be deprecated in favor of chartWaterfall
-  chartWaterfall: withSynonyms(
-    () => import('./assets/chart_waterfall'),
-    ['waterfall chart', 'cascade', 'steps', 'bridge', 'cumulative', 'breakdown']
-  ),
-  appSearchApp: () => import('./assets/app_app_search'),
-  apps: () => import('./assets/apps'),
+  chartWaterfall: withMetadata(() => import('./assets/chart_waterfall'), {
+    category: 'glyph',
+    synonyms: [
+      'waterfall chart',
+      'cascade',
+      'steps',
+      'bridge',
+      'cumulative',
+      'breakdown',
+    ],
+  }),
+  appSearchApp: withMetadata(() => import('./assets/app_app_search'), {
+    category: 'app',
+  }),
+  apps: withMetadata(() => import('./assets/apps'), { category: 'glyph' }),
   arrowDown: () => import('./assets/chevron_single_down'), // NOTE: To be deprecated in favor of chevronSingleDown
-  chevronSingleDown: withSynonyms(
+  chevronSingleDown: withMetadata(
     () => import('./assets/chevron_single_down'),
-    ['chevron', 'down', 'dropdown', 'expand', 'arrow', 'caret']
+    {
+      category: 'glyph',
+      synonyms: ['chevron', 'down', 'dropdown', 'expand', 'arrow', 'caret'],
+    }
   ),
   arrowLeft: () => import('./assets/chevron_single_left'), // NOTE: To be deprecated in favor of chevronSingleLeft
-  chevronSingleLeft: withSynonyms(
+  chevronSingleLeft: withMetadata(
     () => import('./assets/chevron_single_left'),
-    ['chevron', 'left', 'back', 'previous', 'arrow', 'caret']
+    {
+      category: 'glyph',
+      synonyms: ['chevron', 'left', 'back', 'previous', 'arrow', 'caret'],
+    }
   ),
   arrowRight: () => import('./assets/chevron_single_right'), // NOTE: To be deprecated in favor of chevronSinglRight
-  chevronSingleRight: withSynonyms(
+  chevronSingleRight: withMetadata(
     () => import('./assets/chevron_single_right'),
-    ['chevron', 'right', 'next', 'forward', 'arrow', 'caret']
+    {
+      category: 'glyph',
+      synonyms: ['chevron', 'right', 'next', 'forward', 'arrow', 'caret'],
+    }
   ),
   arrowUp: () => import('./assets/chevron_single_up'), // NOTE: To be deprecated in favor of chevronSingleUp
-  chevronSingleUp: withSynonyms(
-    () => import('./assets/chevron_single_up'),
-    ['chevron', 'up', 'collapse', 'arrow', 'caret']
-  ),
+  chevronSingleUp: withMetadata(() => import('./assets/chevron_single_up'), {
+    category: 'glyph',
+    synonyms: ['chevron', 'up', 'collapse', 'arrow', 'caret'],
+  }),
   arrowStart: () => import('./assets/chevron_limit_left'), // NOTE: To be deprecated in favor of chevronLimitLeft
-  chevronLimitLeft: withSynonyms(
-    () => import('./assets/chevron_limit_left'),
-    ['chevron', 'limit', 'first', 'start', 'beginning', 'jump', 'skip']
-  ),
+  chevronLimitLeft: withMetadata(() => import('./assets/chevron_limit_left'), {
+    category: 'glyph',
+    synonyms: [
+      'chevron',
+      'limit',
+      'first',
+      'start',
+      'beginning',
+      'jump',
+      'skip',
+    ],
+  }),
   arrowEnd: () => import('./assets/chevron_limit_right'), // NOTE: To be deprecated in favor of chevronLimitRight
-  chevronLimitRight: withSynonyms(
+  chevronLimitRight: withMetadata(
     () => import('./assets/chevron_limit_right'),
-    ['chevron', 'limit', 'last', 'end', 'final', 'jump', 'skip']
+    {
+      category: 'glyph',
+      synonyms: ['chevron', 'limit', 'last', 'end', 'final', 'jump', 'skip'],
+    }
   ),
-  article: () => import('./assets/article'),
-  asterisk: withSynonyms(
-    () => import('./assets/asterisk'),
-    ['star', 'wildcard', 'required', 'multiply', 'reference', 'footnote']
-  ),
-  at: withSynonyms(
-    () => import('./assets/at'),
-    ['email', 'mention', 'address', 'symbol', 'contact', 'handle']
-  ),
-  archive: withSynonyms(
-    () => import('./assets/archive'),
-    ['storage', 'box', 'store', 'backup', 'file away', 'saved', 'repository']
-  ),
-  axisX: withSynonyms(
-    () => import('./assets/axis_x'),
-    ['x axis', 'horizontal axis', 'chart', 'graph', 'dimension', 'abscissa']
-  ),
-  axisYLeft: withSynonyms(
-    () => import('./assets/axis_y_left'),
-    ['y axis', 'left', 'vertical axis', 'chart', 'graph', 'ordinate']
-  ),
-  axisYRight: withSynonyms(
-    () => import('./assets/axis_y_right'),
-    ['y axis', 'right', 'vertical axis', 'chart', 'graph', 'ordinate']
-  ),
-  auditbeatApp: () => import('./assets/app_auditbeat'),
-  backgroundTask: withSynonyms(
-    () => import('./assets/background_task'),
-    ['background', 'async', 'job', 'task', 'process', 'worker', 'queue']
-  ),
+  article: withMetadata(() => import('./assets/article'), {
+    category: 'glyph',
+  }),
+  asterisk: withMetadata(() => import('./assets/asterisk'), {
+    category: 'glyph',
+    synonyms: [
+      'star',
+      'wildcard',
+      'required',
+      'multiply',
+      'reference',
+      'footnote',
+    ],
+  }),
+  at: withMetadata(() => import('./assets/at'), {
+    category: 'glyph',
+    synonyms: ['email', 'mention', 'address', 'symbol', 'contact', 'handle'],
+  }),
+  archive: withMetadata(() => import('./assets/archive'), {
+    category: 'glyph',
+    synonyms: [
+      'storage',
+      'box',
+      'store',
+      'backup',
+      'file away',
+      'saved',
+      'repository',
+    ],
+  }),
+  axisX: withMetadata(() => import('./assets/axis_x'), {
+    category: 'glyph',
+    synonyms: [
+      'x axis',
+      'horizontal axis',
+      'chart',
+      'graph',
+      'dimension',
+      'abscissa',
+    ],
+  }),
+  axisYLeft: withMetadata(() => import('./assets/axis_y_left'), {
+    category: 'glyph',
+    synonyms: ['y axis', 'left', 'vertical axis', 'chart', 'graph', 'ordinate'],
+  }),
+  axisYRight: withMetadata(() => import('./assets/axis_y_right'), {
+    category: 'glyph',
+    synonyms: [
+      'y axis',
+      'right',
+      'vertical axis',
+      'chart',
+      'graph',
+      'ordinate',
+    ],
+  }),
+  auditbeatApp: withMetadata(() => import('./assets/app_auditbeat'), {
+    category: 'app',
+  }),
+  backgroundTask: withMetadata(() => import('./assets/background_task'), {
+    category: 'glyph',
+    synonyms: [
+      'background',
+      'async',
+      'job',
+      'task',
+      'process',
+      'worker',
+      'queue',
+    ],
+  }),
   beaker: () => import('./assets/flask'), // NOTE: To be deprecated in favor of `flask`
-  bell: withSynonyms(
-    () => import('./assets/bell'),
-    [
+  bell: withMetadata(() => import('./assets/bell'), {
+    category: 'glyph',
+    synonyms: [
       'notification',
       'alert',
       'alarm',
@@ -168,57 +289,59 @@ export const typeToPathMap = {
       'ring',
       'reminder',
       'announcements',
-    ]
-  ),
-  bellSlash: withSynonyms(
-    () => import('./assets/bell_slash'),
-    [
+    ],
+  }),
+  bellSlash: withMetadata(() => import('./assets/bell_slash'), {
+    category: 'glyph',
+    synonyms: [
       'mute',
       'notification off',
       'silence',
       'bell disabled',
       'alerts off',
       'quiet',
-    ]
-  ),
-  beta: withSynonyms(
-    () => import('./assets/beta'),
-    ['greek', 'test', 'experimental', 'preview', 'version', 'letter']
-  ),
-  bolt: withSynonyms(
-    () => import('./assets/bolt'),
-    ['lightning', 'fast', 'power', 'electric', 'speed', 'energy']
-  ),
+    ],
+  }),
+  beta: withMetadata(() => import('./assets/beta'), {
+    category: 'glyph',
+    synonyms: ['greek', 'test', 'experimental', 'preview', 'version', 'letter'],
+  }),
+  bolt: withMetadata(() => import('./assets/bolt'), {
+    category: 'glyph',
+    synonyms: ['lightning', 'fast', 'power', 'electric', 'speed', 'energy'],
+  }),
   boxesHorizontal: () => import('./assets/boxes_vertical'), // NOTE: To be deprecated in favor of `boxes_vertical`
   boxesVertical: () => import('./assets/boxes_vertical'),
-  branch: withSynonyms(
-    () => import('./assets/branch'),
-    ['git', 'version control', 'fork', 'tree', 'split', 'divergence']
-  ),
-  briefcase: withSynonyms(
-    () => import('./assets/briefcase'),
-    ['work', 'business', 'job', 'portfolio', 'office', 'career']
-  ),
-  branchUser: () => import('./assets/branch_user'),
-  broom: withSynonyms(
-    () => import('./assets/broom'),
-    ['clean', 'sweep', 'clear', 'tidy', 'wipe', 'brush off']
-  ),
-  brush: withSynonyms(
-    () => import('./assets/brush'),
-    ['paint', 'draw', 'art', 'design', 'stroke', 'brush tool']
-  ),
-  bug: withSynonyms(
-    () => import('./assets/bug'),
-    ['insect', 'defect', 'issue', 'error', 'debug', 'glitch']
-  ),
-  bulb: withSynonyms(
-    () => import('./assets/bulb'),
-    ['light', 'idea', 'lamp', 'insight', 'bright', 'hint']
-  ),
-  bullseye: withSynonyms(
-    () => import('./assets/bullseye'),
-    [
+  branch: withMetadata(() => import('./assets/branch'), {
+    category: 'glyph',
+    synonyms: ['git', 'version control', 'fork', 'tree', 'split', 'divergence'],
+  }),
+  briefcase: withMetadata(() => import('./assets/briefcase'), {
+    category: 'glyph',
+    synonyms: ['work', 'business', 'job', 'portfolio', 'office', 'career'],
+  }),
+  branchUser: withMetadata(() => import('./assets/branch_user'), {
+    category: 'glyph',
+  }),
+  broom: withMetadata(() => import('./assets/broom'), {
+    category: 'glyph',
+    synonyms: ['clean', 'sweep', 'clear', 'tidy', 'wipe', 'brush off'],
+  }),
+  brush: withMetadata(() => import('./assets/brush'), {
+    category: 'glyph',
+    synonyms: ['paint', 'draw', 'art', 'design', 'stroke', 'brush tool'],
+  }),
+  bug: withMetadata(() => import('./assets/bug'), {
+    category: 'glyph',
+    synonyms: ['insect', 'defect', 'issue', 'error', 'debug', 'glitch'],
+  }),
+  bulb: withMetadata(() => import('./assets/bulb'), {
+    category: 'glyph',
+    synonyms: ['light', 'idea', 'lamp', 'insight', 'bright', 'hint'],
+  }),
+  bullseye: withMetadata(() => import('./assets/bullseye'), {
+    category: 'glyph',
+    synonyms: [
       'findings',
       'target',
       'aim',
@@ -227,232 +350,413 @@ export const typeToPathMap = {
       'dartboard',
       'precision',
       'center',
-    ]
-  ),
-  calendar: withSynonyms(
-    () => import('./assets/calendar'),
-    ['date', 'schedule', 'event', 'day', 'month', 'time']
-  ),
-  canvasApp: () => import('./assets/app_canvas'),
-  casesApp: () => import('./assets/app_cases'),
+    ],
+  }),
+  calendar: withMetadata(() => import('./assets/calendar'), {
+    category: 'glyph',
+    synonyms: ['date', 'schedule', 'event', 'day', 'month', 'time'],
+  }),
+  canvasApp: withMetadata(() => import('./assets/app_canvas'), {
+    category: 'app',
+  }),
+  casesApp: withMetadata(() => import('./assets/app_cases'), {
+    category: 'app',
+  }),
   changePointDetection: () => import('./assets/chart_change_point'), // NOTE: To be deprecated in favor of chartChangePoint
-  chartChangePoint: withSynonyms(
-    () => import('./assets/chart_change_point'),
-    ['change point', 'chart', 'breakpoint', 'shift', 'detection', 'regime']
-  ),
-  chartArea: withSynonyms(
-    () => import('./assets/chart_area'),
-    ['area chart', 'graph', 'visualization', 'filled', 'trend', 'plot']
-  ),
-  chartAreaStack: withSynonyms(
-    () => import('./assets/chart_area_stack'),
-    ['stacked area', 'chart', 'graph', 'layers', 'visualization', 'plot']
-  ),
-  chartBarHorizontal: withSynonyms(
+  chartChangePoint: withMetadata(() => import('./assets/chart_change_point'), {
+    category: 'glyph',
+    synonyms: [
+      'change point',
+      'chart',
+      'breakpoint',
+      'shift',
+      'detection',
+      'regime',
+    ],
+  }),
+  chartArea: withMetadata(() => import('./assets/chart_area'), {
+    category: 'glyph',
+    synonyms: [
+      'area chart',
+      'graph',
+      'visualization',
+      'filled',
+      'trend',
+      'plot',
+    ],
+  }),
+  chartAreaStack: withMetadata(() => import('./assets/chart_area_stack'), {
+    category: 'glyph',
+    synonyms: [
+      'stacked area',
+      'chart',
+      'graph',
+      'layers',
+      'visualization',
+      'plot',
+    ],
+  }),
+  chartBarHorizontal: withMetadata(
     () => import('./assets/chart_bar_horizontal'),
-    ['bar chart', 'horizontal', 'graph', 'bars', 'visualization', 'plot']
+    {
+      category: 'glyph',
+      synonyms: [
+        'bar chart',
+        'horizontal',
+        'graph',
+        'bars',
+        'visualization',
+        'plot',
+      ],
+    }
   ),
-  chartBarHorizontalStack: withSynonyms(
+  chartBarHorizontalStack: withMetadata(
     () => import('./assets/chart_bar_horizontal_stack'),
-    ['stacked bar', 'horizontal', 'chart', 'graph', 'grouped', 'plot']
+    {
+      category: 'glyph',
+      synonyms: [
+        'stacked bar',
+        'horizontal',
+        'chart',
+        'graph',
+        'grouped',
+        'plot',
+      ],
+    }
   ),
-  chartBarVertical: withSynonyms(
-    () => import('./assets/chart_bar_vertical'),
-    ['bar chart', 'vertical', 'graph', 'columns', 'visualization', 'plot']
-  ),
-  chartBarVerticalStack: withSynonyms(
+  chartBarVertical: withMetadata(() => import('./assets/chart_bar_vertical'), {
+    category: 'glyph',
+    synonyms: [
+      'bar chart',
+      'vertical',
+      'graph',
+      'columns',
+      'visualization',
+      'plot',
+    ],
+  }),
+  chartBarVerticalStack: withMetadata(
     () => import('./assets/chart_bar_vertical_stack'),
-    ['stacked bar', 'vertical', 'chart', 'graph', 'grouped', 'plot']
+    {
+      category: 'glyph',
+      synonyms: [
+        'stacked bar',
+        'vertical',
+        'chart',
+        'graph',
+        'grouped',
+        'plot',
+      ],
+    }
   ),
-  chartGauge: withSynonyms(
-    () => import('./assets/chart_gauge'),
-    ['gauge', 'meter', 'dial', 'chart', 'metric', 'speedometer']
-  ),
-  chartHeatmap: withSynonyms(
-    () => import('./assets/chart_heatmap'),
-    ['heatmap', 'matrix', 'density', 'chart', 'grid', 'correlation']
-  ),
-  chartLine: withSynonyms(
-    () => import('./assets/chart_line'),
-    ['line chart', 'graph', 'trend', 'visualization', 'plot', 'time series']
-  ),
-  chartPie: withSynonyms(
-    () => import('./assets/chart_pie'),
-    ['pie chart', 'donut', 'proportion', 'circle', 'segments', 'share']
-  ),
-  chartTagCloud: withSynonyms(
-    () => import('./assets/chart_tag_cloud'),
-    ['tag cloud', 'word cloud', 'text', 'chart', 'keywords', 'frequency']
-  ),
-  chartThreshold: withSynonyms(
-    () => import('./assets/chart_threshold'),
-    ['threshold', 'limit', 'chart', 'boundary', 'alert line', 'cutoff']
-  ),
-  check: withSynonyms(
-    () => import('./assets/check'),
-    ['tick', 'confirm', 'done', 'yes', 'approve', 'mark']
-  ),
-  checkCircle: withSynonyms(
-    () => import('./assets/check_circle'),
-    ['check', 'circle', 'success', 'confirm', 'complete', 'ok']
-  ),
+  chartGauge: withMetadata(() => import('./assets/chart_gauge'), {
+    category: 'glyph',
+    synonyms: ['gauge', 'meter', 'dial', 'chart', 'metric', 'speedometer'],
+  }),
+  chartHeatmap: withMetadata(() => import('./assets/chart_heatmap'), {
+    category: 'glyph',
+    synonyms: ['heatmap', 'matrix', 'density', 'chart', 'grid', 'correlation'],
+  }),
+  chartLine: withMetadata(() => import('./assets/chart_line'), {
+    category: 'glyph',
+    synonyms: [
+      'line chart',
+      'graph',
+      'trend',
+      'visualization',
+      'plot',
+      'time series',
+    ],
+  }),
+  chartPie: withMetadata(() => import('./assets/chart_pie'), {
+    category: 'glyph',
+    synonyms: [
+      'pie chart',
+      'donut',
+      'proportion',
+      'circle',
+      'segments',
+      'share',
+    ],
+  }),
+  chartTagCloud: withMetadata(() => import('./assets/chart_tag_cloud'), {
+    category: 'glyph',
+    synonyms: [
+      'tag cloud',
+      'word cloud',
+      'text',
+      'chart',
+      'keywords',
+      'frequency',
+    ],
+  }),
+  chartThreshold: withMetadata(() => import('./assets/chart_threshold'), {
+    category: 'glyph',
+    synonyms: [
+      'threshold',
+      'limit',
+      'chart',
+      'boundary',
+      'alert line',
+      'cutoff',
+    ],
+  }),
+  check: withMetadata(() => import('./assets/check'), {
+    category: 'glyph',
+    synonyms: ['tick', 'confirm', 'done', 'yes', 'approve', 'mark'],
+  }),
+  checkCircle: withMetadata(() => import('./assets/check_circle'), {
+    category: 'glyph',
+    synonyms: ['check', 'circle', 'success', 'confirm', 'complete', 'ok'],
+  }),
   checkInCircleFilled: () => import('./assets/check_circle_fill'), // NOTE: To be deprecated in favor of checkCircleFill
-  checkCircleFill: withSynonyms(
-    () => import('./assets/check_circle_fill'),
-    ['check', 'filled', 'success', 'confirm', 'complete', 'ok']
-  ),
+  checkCircleFill: withMetadata(() => import('./assets/check_circle_fill'), {
+    category: 'glyph',
+    synonyms: ['check', 'filled', 'success', 'confirm', 'complete', 'ok'],
+  }),
   cheer: () => import('./assets/popper'), // NOTE: To be deprecated in favor of popper
-  popper: withSynonyms(
-    () => import('./assets/popper'),
-    ['popper', 'tooltip', 'overlay', 'popup', 'floating']
+  popper: withMetadata(() => import('./assets/popper'), {
+    category: 'glyph',
+    synonyms: ['popper', 'tooltip', 'overlay', 'popup', 'floating'],
+  }),
+  classificationJob: withMetadata(
+    () => import('./assets/ml_classification_job'),
+    { category: 'ml' }
   ),
-  classificationJob: () => import('./assets/ml_classification_job'),
-  clickLeft: withSynonyms(
-    () => import('./assets/click_left'),
-    ['click', 'left', 'mouse', 'pointer', 'button', 'tap']
-  ),
-  clickRight: withSynonyms(
-    () => import('./assets/click_right'),
-    ['click', 'right', 'mouse', 'context', 'button', 'tap']
-  ),
-  clock: withSynonyms(() => import('./assets/clock'), ['clock']),
-  clockCounter: withSynonyms(
-    () => import('./assets/clock_counter'),
-    ['clock', 'counter', 'countdown', 'timer', 'time', 'elapsed']
-  ),
-  clockControl: withSynonyms(
-    () => import('./assets/clock_control'),
-    ['clock', 'control', 'time', 'schedule', 'timer', 'settings']
-  ),
-  cloud: withSynonyms(
-    () => import('./assets/cloud'),
-    ['cloud', 'online', 'hosting', 'saas', 'remote']
-  ),
-  cloudDrizzle: () => import('./assets/cloud_drizzle'),
-  cloudStormy: () => import('./assets/cloud_stormy'),
-  cloudSunny: () => import('./assets/cloud_sunny'),
-  cluster: withSynonyms(
-    () => import('./assets/cluster'),
-    ['cluster', 'nodes', 'group', 'collection', 'distributed']
-  ),
-  code: withSynonyms(
-    () => import('./assets/code'),
-    ['code', 'developer', 'programming', 'script', 'source']
-  ),
-  codeApp: () => import('./assets/app_code'),
+  clickLeft: withMetadata(() => import('./assets/click_left'), {
+    category: 'glyph',
+    synonyms: ['click', 'left', 'mouse', 'pointer', 'button', 'tap'],
+  }),
+  clickRight: withMetadata(() => import('./assets/click_right'), {
+    category: 'glyph',
+    synonyms: ['click', 'right', 'mouse', 'context', 'button', 'tap'],
+  }),
+  clock: withMetadata(() => import('./assets/clock'), {
+    category: 'glyph',
+    synonyms: ['clock'],
+  }),
+  clockCounter: withMetadata(() => import('./assets/clock_counter'), {
+    category: 'glyph',
+    synonyms: ['clock', 'counter', 'countdown', 'timer', 'time', 'elapsed'],
+  }),
+  clockControl: withMetadata(() => import('./assets/clock_control'), {
+    category: 'glyph',
+    synonyms: ['clock', 'control', 'time', 'schedule', 'timer', 'settings'],
+  }),
+  cloud: withMetadata(() => import('./assets/cloud'), {
+    category: 'glyph',
+    synonyms: ['cloud', 'online', 'hosting', 'saas', 'remote'],
+  }),
+  cloudDrizzle: withMetadata(() => import('./assets/cloud_drizzle'), {
+    category: 'glyph',
+  }),
+  cloudStormy: withMetadata(() => import('./assets/cloud_stormy'), {
+    category: 'glyph',
+  }),
+  cloudSunny: withMetadata(() => import('./assets/cloud_sunny'), {
+    category: 'glyph',
+  }),
+  cluster: withMetadata(() => import('./assets/cluster'), {
+    category: 'glyph',
+    synonyms: ['cluster', 'nodes', 'group', 'collection', 'distributed'],
+  }),
+  code: withMetadata(() => import('./assets/code'), {
+    category: 'glyph',
+    synonyms: ['code', 'developer', 'programming', 'script', 'source'],
+  }),
+  codeApp: withMetadata(() => import('./assets/app_code'), { category: 'app' }),
   color: () => import('./assets/paint_bucket'), // NOTE: To be deprecated in favor of paintBucket
-  paintBucket: withSynonyms(
-    () => import('./assets/paint_bucket'),
-    ['paint', 'fill', 'bucket', 'color', 'flood fill']
-  ),
-  commandLine: withSynonyms(
-    () => import('./assets/command_line'),
-    ['terminal', 'cli', 'console', 'shell', 'command', 'prompt']
-  ),
-  comment: withSynonyms(
-    () => import('./assets/comment'),
-    ['comment', 'chat', 'message', 'feedback', 'discussion']
-  ),
-  compare: withSynonyms(
-    () => import('./assets/compare'),
-    ['compare', 'diff', 'versus', 'side by side']
-  ),
+  paintBucket: withMetadata(() => import('./assets/paint_bucket'), {
+    category: 'glyph',
+    synonyms: ['paint', 'fill', 'bucket', 'color', 'flood fill'],
+  }),
+  commandLine: withMetadata(() => import('./assets/command_line'), {
+    category: 'glyph',
+    synonyms: ['terminal', 'cli', 'console', 'shell', 'command', 'prompt'],
+  }),
+  comment: withMetadata(() => import('./assets/comment'), {
+    category: 'glyph',
+    synonyms: ['comment', 'chat', 'message', 'feedback', 'discussion'],
+  }),
+  compare: withMetadata(() => import('./assets/compare'), {
+    category: 'glyph',
+    synonyms: ['compare', 'diff', 'versus', 'side by side'],
+  }),
   compute: () => import('./assets/processor'), // NOTE: To be deprecated in favor of processor
-  processor: withSynonyms(
-    () => import('./assets/processor'),
-    ['processor', 'compute', 'cpu', 'transform', 'ingest']
-  ),
+  processor: withMetadata(() => import('./assets/processor'), {
+    category: 'glyph',
+    synonyms: ['processor', 'compute', 'cpu', 'transform', 'ingest'],
+  }),
   console: () => import('./assets/command_line'), // NOTE: To be deprecated in favor of commandLine
-  consoleApp: () => import('./assets/app_console'),
-  container: () => import('./assets/container'),
-  continuityAbove: () => import('./assets/continuity_above'),
-  continuityAboveBelow: () => import('./assets/continuity_above_below'),
-  continuityBelow: () => import('./assets/continuity_below'),
-  continuityWithin: () => import('./assets/continuity_within'),
-  contrast: withSynonyms(
-    () => import('./assets/contrast'),
-    ['contrast', 'accessibility', 'visibility', 'a11y']
+  consoleApp: withMetadata(() => import('./assets/app_console'), {
+    category: 'app',
+  }),
+  container: withMetadata(() => import('./assets/container'), {
+    category: 'glyph',
+  }),
+  continuityAbove: withMetadata(() => import('./assets/continuity_above'), {
+    category: 'glyph',
+  }),
+  continuityAboveBelow: withMetadata(
+    () => import('./assets/continuity_above_below'),
+    { category: 'glyph' }
   ),
+  continuityBelow: withMetadata(() => import('./assets/continuity_below'), {
+    category: 'glyph',
+  }),
+  continuityWithin: withMetadata(() => import('./assets/continuity_within'), {
+    category: 'glyph',
+  }),
+  contrast: withMetadata(() => import('./assets/contrast'), {
+    category: 'glyph',
+    synonyms: ['contrast', 'accessibility', 'visibility', 'a11y'],
+  }),
   contrastHigh: () => import('./assets/contrast_fill'), // NOTE: To be deprecated in favor of contrastFill
-  contrastFill: withSynonyms(
-    () => import('./assets/contrast_fill'),
-    ['contrast', 'filled', 'accessibility', 'visibility', 'a11y', 'display']
-  ),
-  controls: withSynonyms(
-    () => import('./assets/controls'),
-    ['controls', 'sliders', 'settings', 'adjust', 'panel']
-  ),
+  contrastFill: withMetadata(() => import('./assets/contrast_fill'), {
+    category: 'glyph',
+    synonyms: [
+      'contrast',
+      'filled',
+      'accessibility',
+      'visibility',
+      'a11y',
+      'display',
+    ],
+  }),
+  controls: withMetadata(() => import('./assets/controls'), {
+    category: 'glyph',
+    synonyms: ['controls', 'sliders', 'settings', 'adjust', 'panel'],
+  }),
   controlsHorizontal: () => import('./assets/controls'), // NOTE: To be deprecated in favor of `controls`
   controlsVertical: () => import('./assets/controls'), // NOTE: To be deprecated in favor of `controls`
-  copy: withSynonyms(
-    () => import('./assets/copy'),
-    ['duplicate', 'clone', 'clipboard', 'replicate', 'paste']
-  ),
+  copy: withMetadata(() => import('./assets/copy'), {
+    category: 'glyph',
+    synonyms: ['duplicate', 'clone', 'clipboard', 'replicate', 'paste'],
+  }),
   copyClipboard: () => import('./assets/copy'), // NOTE: To be deprecated in favor of `copy`
-  crossProjectSearch: withSynonyms(
+  crossProjectSearch: withMetadata(
     () => import('./assets/cross_project_search'),
-    ['search', 'cross project', 'global', 'find', 'lookup', 'explore']
+    {
+      category: 'glyph',
+      synonyms: [
+        'search',
+        'cross project',
+        'global',
+        'find',
+        'lookup',
+        'explore',
+      ],
+    }
   ),
-  createAdvancedJob: () => import('./assets/ml_create_advanced_job'),
-  createGenericJob: () => import('./assets/ml_create_generic_job'),
-  createGeoJob: () => import('./assets/ml_create_geo_job'),
-  createMultiMetricJob: () => import('./assets/ml_create_multi_metric_job'),
-  createPopulationJob: () => import('./assets/ml_create_population_job'),
-  createSingleMetricJob: () => import('./assets/ml_create_single_metric_job'),
-  cross: withSynonyms(
-    () => import('./assets/cross'),
-    ['cross', 'close', 'cancel', 'delete']
+  createAdvancedJob: withMetadata(
+    () => import('./assets/ml_create_advanced_job'),
+    { category: 'ml' }
   ),
-  crossClusterReplicationApp: () =>
-    import('./assets/app_cross_cluster_replication'),
+  createGenericJob: withMetadata(
+    () => import('./assets/ml_create_generic_job'),
+    { category: 'ml' }
+  ),
+  createGeoJob: withMetadata(() => import('./assets/ml_create_geo_job'), {
+    category: 'ml',
+  }),
+  createMultiMetricJob: withMetadata(
+    () => import('./assets/ml_create_multi_metric_job'),
+    { category: 'ml' }
+  ),
+  createPopulationJob: withMetadata(
+    () => import('./assets/ml_create_population_job'),
+    { category: 'ml' }
+  ),
+  createSingleMetricJob: withMetadata(
+    () => import('./assets/ml_create_single_metric_job'),
+    { category: 'ml' }
+  ),
+  cross: withMetadata(() => import('./assets/cross'), {
+    category: 'glyph',
+    synonyms: ['cross', 'close', 'cancel', 'delete'],
+  }),
+  crossClusterReplicationApp: withMetadata(
+    () => import('./assets/app_cross_cluster_replication'),
+    { category: 'app' }
+  ),
   crossInCircle: () => import('./assets/cross_circle'), // NOTE: To be deprecated in favor of crossCircle
-  crossCircle: withSynonyms(
-    () => import('./assets/cross_circle'),
-    ['cross circle', 'cross', 'close', 'cancel', 'delete', 'circle']
-  ),
-  crosshair: withSynonyms(() => import('./assets/crosshair'), ['crosshair']),
+  crossCircle: withMetadata(() => import('./assets/cross_circle'), {
+    category: 'glyph',
+    synonyms: ['cross circle', 'cross', 'close', 'cancel', 'delete', 'circle'],
+  }),
+  crosshair: withMetadata(() => import('./assets/crosshair'), {
+    category: 'glyph',
+    synonyms: ['crosshair'],
+  }),
   crosshairs: () => import('./assets/crosshair'), // NOTE: To be deprecated in favor of crosshair
   currency: () => import('./assets/money'), // NOTE: To be deprecated in favor of money
-  money: withSynonyms(
-    () => import('./assets/money'),
-    ['money', 'payment', 'billing', 'cost', 'finance']
-  ),
+  money: withMetadata(() => import('./assets/money'), {
+    category: 'glyph',
+    synonyms: ['money', 'payment', 'billing', 'cost', 'finance'],
+  }),
   cut: () => import('./assets/scissors'), // NOTE: To be deprecated in favor of scissors
-  scissors: withSynonyms(() => import('./assets/scissors'), ['scissors']),
-  dashboardApp: () => import('./assets/app_dashboard'),
-  dashedCircle: withSynonyms(
-    () => import('./assets/dashed_circle'),
-    ['dashed', 'circle', 'pending', 'incomplete', 'outline', 'status']
-  ),
-  dataVisualizer: () => import('./assets/ml_data_visualizer'),
-  database: withSynonyms(
-    () => import('./assets/database'),
-    ['database', 'data', 'storage', 'sql', 'records']
-  ),
+  scissors: withMetadata(() => import('./assets/scissors'), {
+    category: 'glyph',
+    synonyms: ['scissors'],
+  }),
+  dashboardApp: withMetadata(() => import('./assets/app_dashboard'), {
+    category: 'app',
+  }),
+  dashedCircle: withMetadata(() => import('./assets/dashed_circle'), {
+    category: 'glyph',
+    synonyms: [
+      'dashed',
+      'circle',
+      'pending',
+      'incomplete',
+      'outline',
+      'status',
+    ],
+  }),
+  dataVisualizer: withMetadata(() => import('./assets/ml_data_visualizer'), {
+    category: 'ml',
+  }),
+  database: withMetadata(() => import('./assets/database'), {
+    category: 'glyph',
+    synonyms: ['database', 'data', 'storage', 'sql', 'records'],
+  }),
   desktop: () => import('./assets/display'), // NOTE: To be deprecated in favor of display
-  display: withSynonyms(() => import('./assets/display'), ['display']),
-  devToolsApp: () => import('./assets/app_devtools'),
+  display: withMetadata(() => import('./assets/display'), {
+    category: 'glyph',
+    synonyms: ['display'],
+  }),
+  devToolsApp: withMetadata(() => import('./assets/app_devtools'), {
+    category: 'app',
+  }),
   diff: () => import('./assets/compare'), // NOTE: To be deprecated in favor of compare
-  discoverApp: () => import('./assets/app_discover'),
-  distributeHorizontal: withSynonyms(
+  discoverApp: withMetadata(() => import('./assets/app_discover'), {
+    category: 'app',
+  }),
+  distributeHorizontal: withMetadata(
     () => import('./assets/distribute_horizontal'),
-    ['distribute horizontal', 'distribute', 'horizontal']
+    {
+      category: 'glyph',
+      synonyms: ['distribute horizontal', 'distribute', 'horizontal'],
+    }
   ),
-  distributeVertical: withSynonyms(
+  distributeVertical: withMetadata(
     () => import('./assets/distribute_vertical'),
-    ['distribute vertical', 'distribute', 'vertical']
+    {
+      category: 'glyph',
+      synonyms: ['distribute vertical', 'distribute', 'vertical'],
+    }
   ),
-  download: withSynonyms(
-    () => import('./assets/download'),
-    ['save', 'export', 'retrieve', 'get file', 'arrow down', 'pull']
-  ),
-  drag: withSynonyms(
-    () => import('./assets/drag'),
-    ['drag', 'move', 'grab', 'reorder', 'handle']
-  ),
-  dragHorizontal: withSynonyms(
-    () => import('./assets/drag_horizontal'),
-    [
+  download: withMetadata(() => import('./assets/download'), {
+    category: 'glyph',
+    synonyms: ['save', 'export', 'retrieve', 'get file', 'arrow down', 'pull'],
+  }),
+  drag: withMetadata(() => import('./assets/drag'), {
+    category: 'glyph',
+    synonyms: ['drag', 'move', 'grab', 'reorder', 'handle'],
+  }),
+  dragHorizontal: withMetadata(() => import('./assets/drag_horizontal'), {
+    category: 'glyph',
+    synonyms: [
       'drag horizontal',
       'drag',
       'move',
@@ -460,69 +764,85 @@ export const typeToPathMap = {
       'reorder',
       'handle',
       'horizontal',
-    ]
-  ),
-  dragVertical: withSynonyms(
-    () => import('./assets/drag_vertical'),
-    ['drag vertical', 'drag', 'move', 'grab', 'reorder', 'handle', 'vertical']
-  ),
+    ],
+  }),
+  dragVertical: withMetadata(() => import('./assets/drag_vertical'), {
+    category: 'glyph',
+    synonyms: [
+      'drag vertical',
+      'drag',
+      'move',
+      'grab',
+      'reorder',
+      'handle',
+      'vertical',
+    ],
+  }),
   discuss: () => import('./assets/comment'), // NOTE: To be deprecated in favor of `comment`
-  document: withSynonyms(
-    () => import('./assets/document'),
-    ['document', 'file', 'page', 'paper', 'doc']
-  ),
+  document: withMetadata(() => import('./assets/document'), {
+    category: 'glyph',
+    synonyms: ['document', 'file', 'page', 'paper', 'doc'],
+  }),
   documentEdit: () => import('./assets/document_edit'), // NOTE: To be deprecated in favor of pencil
-  documentation: withSynonyms(
-    () => import('./assets/documentation'),
-    ['documentation', 'docs', 'help', 'guide', 'manual']
-  ),
-  documents: withSynonyms(
-    () => import('./assets/documents'),
-    ['documents', 'files', 'pages', 'papers', 'library']
-  ),
-  dot: withSynonyms(
-    () => import('./assets/dot'),
-    ['dot', 'point', 'bullet', 'period', 'circle']
-  ),
-  dotInCircle: () => import('./assets/dot_in_circle'),
+  documentation: withMetadata(() => import('./assets/documentation'), {
+    category: 'glyph',
+    synonyms: ['documentation', 'docs', 'help', 'guide', 'manual'],
+  }),
+  documents: withMetadata(() => import('./assets/documents'), {
+    category: 'glyph',
+    synonyms: ['documents', 'files', 'pages', 'papers', 'library'],
+  }),
+  dot: withMetadata(() => import('./assets/dot'), {
+    category: 'glyph',
+    synonyms: ['dot', 'point', 'bullet', 'period', 'circle'],
+  }),
+  dotInCircle: withMetadata(() => import('./assets/dot_in_circle'), {
+    category: 'glyph',
+  }),
   doubleArrowLeft: () => import('./assets/chevron_double_left'), // NOTE: To be deprecated in favor of chevronDoubleLeft
-  chevronDoubleLeft: withSynonyms(
+  chevronDoubleLeft: withMetadata(
     () => import('./assets/chevron_double_left'),
-    ['chevron', 'double', 'left', 'rewind', 'back', 'previous']
+    {
+      category: 'glyph',
+      synonyms: ['chevron', 'double', 'left', 'rewind', 'back', 'previous'],
+    }
   ),
   doubleArrowRight: () => import('./assets/chevron_double_right'), // NOTE: To be deprecated in favor of chevronDoubleRight
-  chevronDoubleRight: withSynonyms(
+  chevronDoubleRight: withMetadata(
     () => import('./assets/chevron_double_right'),
-    ['chevron', 'double', 'right', 'forward', 'skip', 'next']
+    {
+      category: 'glyph',
+      synonyms: ['chevron', 'double', 'right', 'forward', 'skip', 'next'],
+    }
   ),
-  ellipsis: withSynonyms(
-    () => import('./assets/ellipsis'),
-    ['ellipsis', 'more', 'menu', 'overflow', 'dots']
-  ),
+  ellipsis: withMetadata(() => import('./assets/ellipsis'), {
+    category: 'glyph',
+    synonyms: ['ellipsis', 'more', 'menu', 'overflow', 'dots'],
+  }),
   editorAlignCenter: () => import('./assets/text_align_center'), // NOTE: To be deprecated in favor of textAlignCenter
-  textAlignCenter: withSynonyms(
-    () => import('./assets/text_align_center'),
-    ['text', 'align', 'center', 'middle', 'typography']
-  ),
+  textAlignCenter: withMetadata(() => import('./assets/text_align_center'), {
+    category: 'glyph',
+    synonyms: ['text', 'align', 'center', 'middle', 'typography'],
+  }),
   editorAlignLeft: () => import('./assets/text_align_left'), // NOTE: To be deprecated in favor of textAlignLeft
-  textAlignLeft: withSynonyms(
-    () => import('./assets/text_align_left'),
-    ['text', 'align', 'left', 'typography', 'paragraph']
-  ),
+  textAlignLeft: withMetadata(() => import('./assets/text_align_left'), {
+    category: 'glyph',
+    synonyms: ['text', 'align', 'left', 'typography', 'paragraph'],
+  }),
   editorAlignRight: () => import('./assets/text_align_right'), // NOTE: To be deprecated in favor of textAlignRight
-  textAlignRight: withSynonyms(
-    () => import('./assets/text_align_right'),
-    ['text', 'align', 'right', 'typography', 'paragraph']
-  ),
+  textAlignRight: withMetadata(() => import('./assets/text_align_right'), {
+    category: 'glyph',
+    synonyms: ['text', 'align', 'right', 'typography', 'paragraph'],
+  }),
   editorBold: () => import('./assets/text_bold'), // NOTE: To be deprecated in favor of textBold
-  textBold: withSynonyms(
-    () => import('./assets/text_bold'),
-    ['text bold', 'text', 'bold', 'typography', 'formatting']
-  ),
+  textBold: withMetadata(() => import('./assets/text_bold'), {
+    category: 'glyph',
+    synonyms: ['text bold', 'text', 'bold', 'typography', 'formatting'],
+  }),
   editorChecklist: () => import('./assets/list_check'), // NOTE: To be deprecated in favor of listCheck
-  listCheck: withSynonyms(
-    () => import('./assets/list_check'),
-    [
+  listCheck: withMetadata(() => import('./assets/list_check'), {
+    category: 'glyph',
+    synonyms: [
       'list check',
       'list',
       'bullet',
@@ -531,23 +851,23 @@ export const typeToPathMap = {
       'check',
       'tick',
       'confirm',
-    ]
-  ),
+    ],
+  }),
   editorCodeBlock: () => import('./assets/code'), // NOTE: To be deprecated in favor of `code`
   editorComment: () => import('./assets/comment'), // NOTE: To be deprecated in favor of `comment`
   editorDistributeHorizontal: () =>
     import('./assets/editor_distribute_horizontal'), // NOTE: To be deprecated in favor of distributeHorizontal
   editorDistributeVertical: () => import('./assets/editor_distribute_vertical'), // NOTE: To be deprecated in favor of distributeVertical
   editorHeading: () => import('./assets/text_heading'), // NOTE: To be deprecated in favor of textHeading
-  textHeading: withSynonyms(
-    () => import('./assets/text_heading'),
-    ['text', 'heading', 'title', 'h1', 'typography', 'header']
-  ),
+  textHeading: withMetadata(() => import('./assets/text_heading'), {
+    category: 'glyph',
+    synonyms: ['text', 'heading', 'title', 'h1', 'typography', 'header'],
+  }),
   editorItalic: () => import('./assets/text_italic'), // NOTE: To be deprecated in favor of textItalic
-  textItalic: withSynonyms(
-    () => import('./assets/text_italic'),
-    ['text italic', 'text', 'italic', 'typography', 'formatting']
-  ),
+  textItalic: withMetadata(() => import('./assets/text_italic'), {
+    category: 'glyph',
+    synonyms: ['text italic', 'text', 'italic', 'typography', 'formatting'],
+  }),
   editorItemAlignBottom: () => import('./assets/editor_item_align_bottom'), // NOTE: To be deprecated in favor of alignBottom
   editorItemAlignCenter: () => import('./assets/editor_item_align_center'), // NOTE: To be deprecated in favor of alignCenterHorizontal
   editorItemAlignLeft: () => import('./assets/editor_item_align_left'), // NOTE: To be deprecated in favor of alignLeft
@@ -556,9 +876,9 @@ export const typeToPathMap = {
   editorItemAlignTop: () => import('./assets/editor_item_align_top'), // NOTE: To be deprecated in favor of alignTop,
   editorLink: () => import('./assets/link'), // NOTE: To be deprecated in favor of `link`
   editorOrderedList: () => import('./assets/list_number'), // NOTE: To be deprecated in favor of listNumber
-  listNumber: withSynonyms(
-    () => import('./assets/list_number'),
-    [
+  listNumber: withMetadata(() => import('./assets/list_number'), {
+    category: 'glyph',
+    synonyms: [
       'list number',
       'list',
       'bullet',
@@ -567,8 +887,8 @@ export const typeToPathMap = {
       'number',
       'digit',
       'numeric',
-    ]
-  ),
+    ],
+  }),
   editorPositionBottomLeft: () =>
     import('./assets/editor_position_bottom_left'), // NOTE: To be deprecated in favor of alignBottomLeft
   editorPositionBottomRight: () =>
@@ -576,63 +896,72 @@ export const typeToPathMap = {
   editorPositionTopLeft: () => import('./assets/editor_position_top_left'), // NOTE: To be deprecated in favor of alignTopLeft
   editorPositionTopRight: () => import('./assets/editor_position_top_right'), // NOTE: To be deprecated in favor of alignTopRight
   editorRedo: () => import('./assets/redo'), // NOTE: To be deprecated in favor of redo
-  redo: withSynonyms(
-    () => import('./assets/redo'),
-    ['redo', 'repeat', 'forward', 'again']
-  ),
+  redo: withMetadata(() => import('./assets/redo'), {
+    category: 'glyph',
+    synonyms: ['redo', 'repeat', 'forward', 'again'],
+  }),
   editorStrike: () => import('./assets/text_strike'), // NOTE: To be deprecated in favor of textStrike
-  textStrike: withSynonyms(
-    () => import('./assets/text_strike'),
-    ['text', 'strikethrough', 'strike', 'delete', 'typography']
-  ),
+  textStrike: withMetadata(() => import('./assets/text_strike'), {
+    category: 'glyph',
+    synonyms: ['text', 'strikethrough', 'strike', 'delete', 'typography'],
+  }),
   editorTable: () => import('./assets/table'), // NOTE: To be deprecated in favor of table
-  table: withSynonyms(() => import('./assets/table'), ['table']),
+  table: withMetadata(() => import('./assets/table'), {
+    category: 'glyph',
+    synonyms: ['table'],
+  }),
   editorUnderline: () => import('./assets/text_underline'), // NOTE: To be deprecated in favor of textUnderline
-  textUnderline: withSynonyms(
-    () => import('./assets/text_underline'),
-    ['text underline', 'text', 'underline', 'typography', 'formatting']
-  ),
+  textUnderline: withMetadata(() => import('./assets/text_underline'), {
+    category: 'glyph',
+    synonyms: [
+      'text underline',
+      'text',
+      'underline',
+      'typography',
+      'formatting',
+    ],
+  }),
   editorUndo: () => import('./assets/undo'), // NOTE: To be deprecated in favor of undo
-  undo: withSynonyms(
-    () => import('./assets/undo'),
-    ['undo', 'revert', 'back', 'previous action']
-  ),
+  undo: withMetadata(() => import('./assets/undo'), {
+    category: 'glyph',
+    synonyms: ['undo', 'revert', 'back', 'previous action'],
+  }),
   editorUnorderedList: () => import('./assets/list_bullet'), // NOTE: To be deprecated in favor of listBullet
-  listBullet: withSynonyms(
-    () => import('./assets/list_bullet'),
-    ['list bullet', 'list', 'bullet', 'items', 'rows']
-  ),
+  listBullet: withMetadata(() => import('./assets/list_bullet'), {
+    category: 'glyph',
+    synonyms: ['list bullet', 'list', 'bullet', 'items', 'rows'],
+  }),
   email: () => import('./assets/mail'), // NOTE: To be deprecated in favor of mail
-  mail: withSynonyms(
-    () => import('./assets/mail'),
-    ['mail', 'email', 'envelope', 'message', 'inbox']
-  ),
-  empty: withSynonyms(
-    () => import('./assets/empty'),
-    ['empty', 'blank', 'none', 'placeholder', 'void']
-  ),
-  emsApp: () => import('./assets/app_ems'),
-  endpoint: withSynonyms(
-    () => import('./assets/endpoint'),
-    ['endpoint', 'api', 'url', 'connection', 'target']
-  ),
+  mail: withMetadata(() => import('./assets/mail'), {
+    category: 'glyph',
+    synonyms: ['mail', 'email', 'envelope', 'message', 'inbox'],
+  }),
+  empty: withMetadata(() => import('./assets/empty'), {
+    category: 'glyph',
+    synonyms: ['empty', 'blank', 'none', 'placeholder', 'void'],
+  }),
+  emsApp: withMetadata(() => import('./assets/app_ems'), { category: 'app' }),
+  endpoint: withMetadata(() => import('./assets/endpoint'), {
+    category: 'glyph',
+    synonyms: ['endpoint', 'api', 'url', 'connection', 'target'],
+  }),
   eql: () => import('./assets/query'), // NOTE: To be deprecated in favor of query
-  query: withSynonyms(
-    () => import('./assets/query'),
-    ['query', 'search', 'sql', 'lucene', 'filter']
-  ),
-  eraser: withSynonyms(
-    () => import('./assets/eraser'),
-    ['eraser', 'clear', 'remove', 'delete', 'rubber']
-  ),
-  error: withSynonyms(
-    () => import('./assets/error'),
-    ['error', 'failure', 'problem', 'invalid', 'cross']
-  ),
+  query: withMetadata(() => import('./assets/query'), {
+    category: 'glyph',
+    synonyms: ['query', 'search', 'sql', 'lucene', 'filter'],
+  }),
+  eraser: withMetadata(() => import('./assets/eraser'), {
+    category: 'glyph',
+    synonyms: ['eraser', 'clear', 'remove', 'delete', 'rubber'],
+  }),
+  error: withMetadata(() => import('./assets/error'), {
+    category: 'glyph',
+    synonyms: ['error', 'failure', 'problem', 'invalid', 'cross'],
+  }),
   errorFilled: () => import('./assets/error_fill'), // NOTE: To be deprecated in favor of errorFill
-  errorFill: withSynonyms(
-    () => import('./assets/error_fill'),
-    [
+  errorFill: withMetadata(() => import('./assets/error_fill'), {
+    category: 'glyph',
+    synonyms: [
       'error fill',
       'error',
       'failure',
@@ -641,108 +970,150 @@ export const typeToPathMap = {
       'cross',
       'fill',
       'filled',
-    ]
-  ),
-  esqlVis: () => import('./assets/esql_vis'),
+    ],
+  }),
+  esqlVis: withMetadata(() => import('./assets/esql_vis'), {
+    category: 'glyph',
+  }),
   exit: () => import('./assets/log_out'), // NOTE: To be deprecated in favor of logOut
-  logOut: withSynonyms(
-    () => import('./assets/log_out'),
-    ['log out', 'log', 'out']
-  ),
+  logOut: withMetadata(() => import('./assets/log_out'), {
+    category: 'glyph',
+    synonyms: ['log out', 'log', 'out'],
+  }),
   expand: () => import('./assets/maximize'), // NOTE: To be deprecated in favor of maximize
-  maximize: withSynonyms(() => import('./assets/maximize'), ['maximize']),
+  maximize: withMetadata(() => import('./assets/maximize'), {
+    category: 'glyph',
+    synonyms: ['maximize'],
+  }),
   expandMini: () => import('./assets/maximize'), // NOTE: To be deprecated in favor of maximize
   export: () => import('./assets/upload'),
   exportAction: () => import('./assets/upload'), // NOTE: To be deprecated in favor of upload
-  upload: withSynonyms(
-    () => import('./assets/upload'),
-    ['upload', 'import', 'send', 'cloud', 'arrow up']
-  ),
-  external: withSynonyms(
-    () => import('./assets/external'),
-    ['external', 'open new', 'link out', 'outside']
-  ),
-  eye: withSynonyms(
-    () => import('./assets/eye'),
-    ['eye', 'view', 'visible', 'show', 'preview', 'watch']
-  ),
+  upload: withMetadata(() => import('./assets/upload'), {
+    category: 'glyph',
+    synonyms: ['upload', 'import', 'send', 'cloud', 'arrow up'],
+  }),
+  external: withMetadata(() => import('./assets/external'), {
+    category: 'glyph',
+    synonyms: ['external', 'open new', 'link out', 'outside'],
+  }),
+  eye: withMetadata(() => import('./assets/eye'), {
+    category: 'glyph',
+    synonyms: ['eye', 'view', 'visible', 'show', 'preview', 'watch'],
+  }),
   eyeClosed: () => import('./assets/eye_slash'), // NOTE: To be deprecated in favor of eyeSlash
-  eyeSlash: withSynonyms(
-    () => import('./assets/eye_slash'),
-    ['eye slash', 'eye', 'view', 'visible', 'show', 'preview', 'watch', 'slash']
-  ),
-  faceHappy: withSynonyms(
-    () => import('./assets/face_happy'),
-    ['smile', 'happy', 'emoji', 'positive', 'grin', 'satisfied', 'mood']
-  ),
-  faceNeutral: withSynonyms(
-    () => import('./assets/face_neutral'),
-    ['face neutral', 'face', 'neutral']
-  ),
-  faceSad: withSynonyms(
-    () => import('./assets/face_sad'),
-    ['face sad', 'face', 'sad']
-  ),
+  eyeSlash: withMetadata(() => import('./assets/eye_slash'), {
+    category: 'glyph',
+    synonyms: [
+      'eye slash',
+      'eye',
+      'view',
+      'visible',
+      'show',
+      'preview',
+      'watch',
+      'slash',
+    ],
+  }),
+  faceHappy: withMetadata(() => import('./assets/face_happy'), {
+    category: 'glyph',
+    synonyms: [
+      'smile',
+      'happy',
+      'emoji',
+      'positive',
+      'grin',
+      'satisfied',
+      'mood',
+    ],
+  }),
+  faceNeutral: withMetadata(() => import('./assets/face_neutral'), {
+    category: 'glyph',
+    synonyms: ['face neutral', 'face', 'neutral'],
+  }),
+  faceSad: withMetadata(() => import('./assets/face_sad'), {
+    category: 'glyph',
+    synonyms: ['face sad', 'face', 'sad'],
+  }),
   fieldStatistics: () => import('./assets/table_info'), // NOTE: To be deprecated in favor of tableInfo
-  tableInfo: withSynonyms(
-    () => import('./assets/table_info'),
-    ['table', 'info', 'metadata', 'details', 'schema', 'columns']
-  ),
-  filebeatApp: () => import('./assets/app_filebeat'),
-  filter: withSynonyms(
-    () => import('./assets/filter'),
-    ['funnel', 'refine', 'narrow', 'sort', 'subset', 'sieve', 'criteria']
-  ),
-  filterExclude: withSynonyms(
-    () => import('./assets/filter_exclude'),
-    ['filter', 'exclude', 'remove', 'minus', 'refine', 'narrow']
-  ),
-  filterIgnore: withSynonyms(
-    () => import('./assets/filter_ignore'),
-    ['filter', 'ignore', 'skip', 'exclude', 'omit', 'hide']
-  ),
-  filterInclude: withSynonyms(
-    () => import('./assets/filter_include'),
-    ['filter', 'include', 'add', 'refine', 'narrow', 'select']
-  ),
+  tableInfo: withMetadata(() => import('./assets/table_info'), {
+    category: 'glyph',
+    synonyms: ['table', 'info', 'metadata', 'details', 'schema', 'columns'],
+  }),
+  filebeatApp: withMetadata(() => import('./assets/app_filebeat'), {
+    category: 'app',
+  }),
+  filter: withMetadata(() => import('./assets/filter'), {
+    category: 'glyph',
+    synonyms: [
+      'funnel',
+      'refine',
+      'narrow',
+      'sort',
+      'subset',
+      'sieve',
+      'criteria',
+    ],
+  }),
+  filterExclude: withMetadata(() => import('./assets/filter_exclude'), {
+    category: 'glyph',
+    synonyms: ['filter', 'exclude', 'remove', 'minus', 'refine', 'narrow'],
+  }),
+  filterIgnore: withMetadata(() => import('./assets/filter_ignore'), {
+    category: 'glyph',
+    synonyms: ['filter', 'ignore', 'skip', 'exclude', 'omit', 'hide'],
+  }),
+  filterInclude: withMetadata(() => import('./assets/filter_include'), {
+    category: 'glyph',
+    synonyms: ['filter', 'include', 'add', 'refine', 'narrow', 'select'],
+  }),
   filterInCircle: () => import('./assets/filter_in_circle'), // NOTE: To be deprecated in favor of filter
-  flask: withSynonyms(
-    () => import('./assets/flask'),
-    ['flask', 'experiment', 'lab', 'science', 'test']
-  ),
-  flag: withSynonyms(
-    () => import('./assets/flag'),
-    ['flag', 'mark', 'report', 'bookmark', 'priority']
-  ),
-  fleetApp: () => import('./assets/app_agent'),
-  fold: () => import('./assets/fold'),
+  flask: withMetadata(() => import('./assets/flask'), {
+    category: 'glyph',
+    synonyms: ['flask', 'experiment', 'lab', 'science', 'test'],
+  }),
+  flag: withMetadata(() => import('./assets/flag'), {
+    category: 'glyph',
+    synonyms: ['flag', 'mark', 'report', 'bookmark', 'priority'],
+  }),
+  fleetApp: withMetadata(() => import('./assets/app_agent'), {
+    category: 'app',
+  }),
+  fold: withMetadata(() => import('./assets/fold'), { category: 'glyph' }),
   folder: () => import('./assets/folder_close'),
   folderClosed: () => import('./assets/folder_close'),
-  folderClose: withSynonyms(
-    () => import('./assets/folder_close'),
-    ['folder', 'closed', 'collapse', 'directory', 'archive']
-  ),
+  folderClose: withMetadata(() => import('./assets/folder_close'), {
+    category: 'glyph',
+    synonyms: ['folder', 'closed', 'collapse', 'directory', 'archive'],
+  }),
   folderCheck: () => import('./assets/folder_check'),
-  folderExclamation: () => import('./assets/folder_exclamation'),
-  folderOpen: withSynonyms(
-    () => import('./assets/folder_open'),
-    ['folder', 'open', 'expand', 'directory', 'browse']
-  ),
+  folderExclamation: withMetadata(() => import('./assets/folder_exclamation'), {
+    category: 'glyph',
+  }),
+  folderOpen: withMetadata(() => import('./assets/folder_open'), {
+    category: 'glyph',
+    synonyms: ['folder', 'open', 'expand', 'directory', 'browse'],
+  }),
   folderOpened: () => import('./assets/folder_open'),
-  frameNext: () => import('./assets/frame_next'),
-  framePrevious: () => import('./assets/frame_previous'),
-  fullScreen: withSynonyms(
-    () => import('./assets/full_screen'),
-    ['fullscreen']
-  ),
-  fullScreenExit: withSynonyms(
-    () => import('./assets/full_screen_exit'),
-    ['fullscreen', 'exit', 'minimize', 'window', 'restore', 'shrink']
-  ),
-  function: () => import('./assets/function'),
-  gear: withSynonyms(
-    () => import('./assets/gear'),
-    [
+  frameNext: withMetadata(() => import('./assets/frame_next'), {
+    category: 'glyph',
+  }),
+  framePrevious: withMetadata(() => import('./assets/frame_previous'), {
+    category: 'glyph',
+  }),
+  fullScreen: withMetadata(() => import('./assets/full_screen'), {
+    category: 'glyph',
+    synonyms: ['fullscreen'],
+  }),
+  fullScreenExit: withMetadata(() => import('./assets/full_screen_exit'), {
+    category: 'glyph',
+    synonyms: ['fullscreen', 'exit', 'minimize', 'window', 'restore', 'shrink'],
+  }),
+  function: withMetadata(() => import('./assets/function'), {
+    category: 'glyph',
+  }),
+  gear: withMetadata(() => import('./assets/gear'), {
+    category: 'glyph',
+    synonyms: [
       'settings',
       'configure',
       'configuration',
@@ -752,211 +1123,287 @@ export const typeToPathMap = {
       'setup',
       'admin',
       'wrench',
-    ]
-  ),
-  gisApp: () => import('./assets/app_gis'),
+    ],
+  }),
+  gisApp: withMetadata(() => import('./assets/app_gis'), { category: 'app' }),
   glasses: () => import('./assets/read_only'), // NOTE: To be deprecated in favor of `readOnly`
-  globe: withSynonyms(
-    () => import('./assets/globe'),
-    ['globe', 'world', 'web', 'internet', 'international']
-  ),
+  globe: withMetadata(() => import('./assets/globe'), {
+    category: 'glyph',
+    synonyms: ['globe', 'world', 'web', 'internet', 'international'],
+  }),
   grab: () => import('./assets/drag_vertical'), // NOTE: To be deprecated in favor of dragVertical
   grabHorizontal: () => import('./assets/drag_horizontal'), // NOTE: To be deprecated in favor of dragHorizontal
   grabOmnidirectional: () => import('./assets/grab_omnidirectional'), // NOTE: To be deprecated in favor of drag,
-  gradient: withSynonyms(
-    () => import('./assets/gradient'),
-    ['gradient', 'blend', 'fade', 'color transition']
-  ),
-  graphApp: () => import('./assets/app_graph'),
-  grid: withSynonyms(
-    () => import('./assets/grid'),
-    ['grid', 'table', 'layout', 'matrix', 'cells']
-  ),
-  grokApp: () => import('./assets/app_grok'),
-  heart: withSynonyms(
-    () => import('./assets/heart'),
-    ['heart', 'favorite', 'like', 'love', 'bookmark']
-  ),
-  heartbeatApp: () => import('./assets/app_heartbeat'),
+  gradient: withMetadata(() => import('./assets/gradient'), {
+    category: 'glyph',
+    synonyms: ['gradient', 'blend', 'fade', 'color transition'],
+  }),
+  graphApp: withMetadata(() => import('./assets/app_graph'), {
+    category: 'app',
+  }),
+  grid: withMetadata(() => import('./assets/grid'), {
+    category: 'glyph',
+    synonyms: ['grid', 'table', 'layout', 'matrix', 'cells'],
+  }),
+  grokApp: withMetadata(() => import('./assets/app_grok'), { category: 'app' }),
+  heart: withMetadata(() => import('./assets/heart'), {
+    category: 'glyph',
+    synonyms: ['heart', 'favorite', 'like', 'love', 'bookmark'],
+  }),
+  heartbeatApp: withMetadata(() => import('./assets/app_heartbeat'), {
+    category: 'app',
+  }),
   heatmap: () => import('./assets/chart_heatmap'), // NOTE: To be deprecated in favor of chartHeatmap
-  help: () => import('./assets/help'), // NOTE: Might be deprecated later (not recommended in Kibana)
-  home: withSynonyms(
-    () => import('./assets/home'),
-    ['home', 'house', 'main', 'start', 'dashboard']
-  ),
-  hourglass: withSynonyms(
-    () => import('./assets/hourglass'),
-    ['hourglass', 'waiting', 'loading', 'time', 'pending']
-  ),
-  if: withSynonyms(
-    () => import('./assets/if'),
-    ['if', 'condition', 'logic', 'branch', 'rule']
-  ),
-  info: withSynonyms(
-    () => import('./assets/info'),
-    ['info', 'information', 'help', 'about', 'details']
-  ),
-  image: withSynonyms(
-    () => import('./assets/image'),
-    ['image', 'picture', 'photo', 'media', 'graphic']
-  ),
+  help: withMetadata(() => import('./assets/help'), { category: 'glyph' }), // NOTE: Might be deprecated later (not recommended in Kibana)
+  home: withMetadata(() => import('./assets/home'), {
+    category: 'glyph',
+    synonyms: ['home', 'house', 'main', 'start', 'dashboard'],
+  }),
+  hourglass: withMetadata(() => import('./assets/hourglass'), {
+    category: 'glyph',
+    synonyms: ['hourglass', 'waiting', 'loading', 'time', 'pending'],
+  }),
+  if: withMetadata(() => import('./assets/if'), {
+    category: 'glyph',
+    synonyms: ['if', 'condition', 'logic', 'branch', 'rule'],
+  }),
+  info: withMetadata(() => import('./assets/info'), {
+    category: 'glyph',
+    synonyms: ['info', 'information', 'help', 'about', 'details'],
+  }),
+  image: withMetadata(() => import('./assets/image'), {
+    category: 'glyph',
+    synonyms: ['image', 'picture', 'photo', 'media', 'graphic'],
+  }),
   importAction: () => import('./assets/download'), // NOTE: To be deprecated in favor of download
-  index: () => import('./assets/index'),
-  indexClose: withSynonyms(
-    () => import('./assets/index_close'),
-    ['index', 'close', 'elasticsearch', 'dataset', 'remove']
-  ),
-  indexEdit: withSynonyms(
-    () => import('./assets/index_edit'),
-    ['index', 'edit', 'elasticsearch', 'dataset', 'modify', 'settings']
-  ),
+  index: withMetadata(() => import('./assets/index'), { category: 'glyph' }),
+  indexClose: withMetadata(() => import('./assets/index_close'), {
+    category: 'glyph',
+    synonyms: ['index', 'close', 'elasticsearch', 'dataset', 'remove'],
+  }),
+  indexEdit: withMetadata(() => import('./assets/index_edit'), {
+    category: 'glyph',
+    synonyms: [
+      'index',
+      'edit',
+      'elasticsearch',
+      'dataset',
+      'modify',
+      'settings',
+    ],
+  }),
   indexFlush: () => import('./assets/chart_threshold'), // NOTE: To be deprecated in favor of chartThreshold
-  indexManagementApp: () => import('./assets/app_index_management'),
+  indexManagementApp: withMetadata(
+    () => import('./assets/app_index_management'),
+    { category: 'app' }
+  ),
   indexMapping: () => import('./assets/mapping'), // NOTE: To be deprecated in favor of mapping
-  mapping: withSynonyms(() => import('./assets/mapping'), ['mapping']),
-  indexOpen: withSynonyms(
-    () => import('./assets/index_open'),
-    ['index', 'open', 'elasticsearch', 'dataset', 'browse']
-  ),
-  indexPatternApp: () => import('./assets/app_index_pattern'),
-  indexRollupApp: () => import('./assets/app_index_rollup'),
-  indexRuntime: withSynonyms(
-    () => import('./assets/index_runtime'),
-    ['index', 'runtime', 'elasticsearch', 'live', 'execution']
-  ),
-  indexSettings: withSynonyms(
-    () => import('./assets/index_settings'),
-    ['index', 'settings', 'elasticsearch', 'configure', 'options']
-  ),
+  mapping: withMetadata(() => import('./assets/mapping'), {
+    category: 'glyph',
+    synonyms: ['mapping'],
+  }),
+  indexOpen: withMetadata(() => import('./assets/index_open'), {
+    category: 'glyph',
+    synonyms: ['index', 'open', 'elasticsearch', 'dataset', 'browse'],
+  }),
+  indexPatternApp: withMetadata(() => import('./assets/app_index_pattern'), {
+    category: 'app',
+  }),
+  indexRollupApp: withMetadata(() => import('./assets/app_index_rollup'), {
+    category: 'app',
+  }),
+  indexRuntime: withMetadata(() => import('./assets/index_runtime'), {
+    category: 'glyph',
+    synonyms: ['index', 'runtime', 'elasticsearch', 'live', 'execution'],
+  }),
+  indexSettings: withMetadata(() => import('./assets/index_settings'), {
+    category: 'glyph',
+    synonyms: ['index', 'settings', 'elasticsearch', 'configure', 'options'],
+  }),
   indexTemporary: () => import('./assets/table_time'), // NOTE: To be deprecated in favor of tableTime
-  tableTime: withSynonyms(
-    () => import('./assets/table_time'),
-    ['table', 'time', 'temporal', 'date', 'timeline', 'history']
-  ),
-  infinity: withSynonyms(
-    () => import('./assets/infinity'),
-    ['infinity', 'unlimited', 'forever', 'loop', 'endless']
-  ),
-  inputOutput: withSynonyms(
-    () => import('./assets/input_output'),
-    ['input', 'output', 'io', 'data flow', 'pipeline', 'stream']
-  ),
-  inspect: withSynonyms(
-    () => import('./assets/inspect'),
-    ['inspect', 'investigate', 'examine', 'analyze', 'look']
-  ),
+  tableTime: withMetadata(() => import('./assets/table_time'), {
+    category: 'glyph',
+    synonyms: ['table', 'time', 'temporal', 'date', 'timeline', 'history'],
+  }),
+  infinity: withMetadata(() => import('./assets/infinity'), {
+    category: 'glyph',
+    synonyms: ['infinity', 'unlimited', 'forever', 'loop', 'endless'],
+  }),
+  inputOutput: withMetadata(() => import('./assets/input_output'), {
+    category: 'glyph',
+    synonyms: ['input', 'output', 'io', 'data flow', 'pipeline', 'stream'],
+  }),
+  inspect: withMetadata(() => import('./assets/inspect'), {
+    category: 'glyph',
+    synonyms: ['inspect', 'investigate', 'examine', 'analyze', 'look'],
+  }),
   invert: () => import('./assets/contrast'), // NOTE: To be deprecated in favor of contrast
-  ip: () => import('./assets/ip'),
-  key: withSynonyms(
-    () => import('./assets/key'),
-    ['key', 'password', 'credential', 'access', 'security']
-  ),
-  keyboard: withSynonyms(
-    () => import('./assets/keyboard'),
-    ['keyboard', 'typing', 'input', 'shortcut', 'keys']
-  ),
+  ip: withMetadata(() => import('./assets/ip'), { category: 'glyph' }),
+  key: withMetadata(() => import('./assets/key'), {
+    category: 'glyph',
+    synonyms: ['key', 'password', 'credential', 'access', 'security'],
+  }),
+  keyboard: withMetadata(() => import('./assets/keyboard'), {
+    category: 'glyph',
+    synonyms: ['keyboard', 'typing', 'input', 'shortcut', 'keys'],
+  }),
   kqlField: () => import('./assets/query_field'), // NOTE: To be deprecated in favor of queryField
-  queryField: withSynonyms(
-    () => import('./assets/query_field'),
-    ['query', 'field', 'filter', 'column', 'attribute', 'selector']
-  ),
-  kqlFunction: () => import('./assets/kql_function'),
+  queryField: withMetadata(() => import('./assets/query_field'), {
+    category: 'glyph',
+    synonyms: ['query', 'field', 'filter', 'column', 'attribute', 'selector'],
+  }),
+  kqlFunction: withMetadata(() => import('./assets/kql_function'), {
+    category: 'glyph',
+  }),
   kqlOperand: () => import('./assets/query_operand'), // NOTE: To be deprecated in favor of queryOperand
-  queryOperand: withSynonyms(
-    () => import('./assets/query_operand'),
-    ['query', 'operand', 'operator', 'logic', 'condition', 'rule']
-  ),
+  queryOperand: withMetadata(() => import('./assets/query_operand'), {
+    category: 'glyph',
+    synonyms: ['query', 'operand', 'operator', 'logic', 'condition', 'rule'],
+  }),
   kqlSelector: () => import('./assets/query_selector'), // NOTE: To be deprecated in favor of querySelector
-  querySelector: withSynonyms(
-    () => import('./assets/query_selector'),
-    ['query', 'selector', 'pick', 'choose', 'field', 'filter']
-  ),
+  querySelector: withMetadata(() => import('./assets/query_selector'), {
+    category: 'glyph',
+    synonyms: ['query', 'selector', 'pick', 'choose', 'field', 'filter'],
+  }),
   kqlValue: () => import('./assets/query_value'), // NOTE: To be deprecated in favor of queryValue
-  queryValue: withSynonyms(
-    () => import('./assets/query_value'),
-    ['query', 'value', 'literal', 'data', 'input', 'filter']
-  ),
-  kubernetesNode: () => import('./assets/kubernetes_node'),
-  kubernetesPod: withSynonyms(
-    () => import('./assets/kubernetes_pod'),
-    ['kubernetes', 'pod', 'k8s', 'container', 'cluster', 'orchestration']
-  ),
+  queryValue: withMetadata(() => import('./assets/query_value'), {
+    category: 'glyph',
+    synonyms: ['query', 'value', 'literal', 'data', 'input', 'filter'],
+  }),
+  kubernetesNode: withMetadata(() => import('./assets/kubernetes_node'), {
+    category: 'glyph',
+  }),
+  kubernetesPod: withMetadata(() => import('./assets/kubernetes_pod'), {
+    category: 'glyph',
+    synonyms: [
+      'kubernetes',
+      'pod',
+      'k8s',
+      'container',
+      'cluster',
+      'orchestration',
+    ],
+  }),
   launch: () => import('./assets/rocket'), // NOTE: To be deprecated in favor of rocket
-  rocket: withSynonyms(
-    () => import('./assets/rocket'),
-    ['rocket', 'launch', 'deploy', 'fast', 'startup']
-  ),
-  layers: withSynonyms(() => import('./assets/layers'), ['layers']),
-  lensApp: () => import('./assets/app_lens'),
+  rocket: withMetadata(() => import('./assets/rocket'), {
+    category: 'glyph',
+    synonyms: ['rocket', 'launch', 'deploy', 'fast', 'startup'],
+  }),
+  layers: withMetadata(() => import('./assets/layers'), {
+    category: 'glyph',
+    synonyms: ['layers'],
+  }),
+  lensApp: withMetadata(() => import('./assets/app_lens'), { category: 'app' }),
   lettering: () => import('./assets/text'), // NOTE: To be deprecated in favor of text
-  text: withSynonyms(() => import('./assets/text'), ['text']),
-  lineBreak: withSynonyms(
-    () => import('./assets/line_break'),
-    ['line break', 'newline', 'paragraph', 'text', 'wrap', 'return']
-  ),
-  lineBreakSlash: withSynonyms(
-    () => import('./assets/line_break_slash'),
-    ['line break', 'slash', 'text', 'separator', 'paragraph']
-  ),
-  lineDash: withSynonyms(
-    () => import('./assets/line_dash'),
-    ['line dash', 'line', 'dash']
-  ),
+  text: withMetadata(() => import('./assets/text'), {
+    category: 'glyph',
+    synonyms: ['text'],
+  }),
+  lineBreak: withMetadata(() => import('./assets/line_break'), {
+    category: 'glyph',
+    synonyms: ['line break', 'newline', 'paragraph', 'text', 'wrap', 'return'],
+  }),
+  lineBreakSlash: withMetadata(() => import('./assets/line_break_slash'), {
+    category: 'glyph',
+    synonyms: ['line break', 'slash', 'text', 'separator', 'paragraph'],
+  }),
+  lineDash: withMetadata(() => import('./assets/line_dash'), {
+    category: 'glyph',
+    synonyms: ['line dash', 'line', 'dash'],
+  }),
   lineDashed: () => import('./assets/line_dash'), // NOTE: To be deprecated in favor of lineDash
-  lineDot: withSynonyms(
-    () => import('./assets/line_dot'),
-    ['line dot', 'line', 'dot', 'point', 'bullet', 'period', 'circle']
-  ),
+  lineDot: withMetadata(() => import('./assets/line_dot'), {
+    category: 'glyph',
+    synonyms: [
+      'line dot',
+      'line',
+      'dot',
+      'point',
+      'bullet',
+      'period',
+      'circle',
+    ],
+  }),
   lineDotted: () => import('./assets/line_dot'), // NOTE: To be deprecated in favor of lineDot
-  lineSolid: withSynonyms(
-    () => import('./assets/line_solid'),
-    ['line solid', 'line', 'solid']
-  ),
-  link: withSynonyms(
-    () => import('./assets/link'),
-    ['link', 'url', 'chain', 'connect', 'hyperlink']
-  ),
-  linkSlash: withSynonyms(
-    () => import('./assets/link_slash'),
-    ['unlink', 'broken link', 'remove link', 'disconnect', 'url']
-  ),
+  lineSolid: withMetadata(() => import('./assets/line_solid'), {
+    category: 'glyph',
+    synonyms: ['line solid', 'line', 'solid'],
+  }),
+  link: withMetadata(() => import('./assets/link'), {
+    category: 'glyph',
+    synonyms: ['link', 'url', 'chain', 'connect', 'hyperlink'],
+  }),
+  linkSlash: withMetadata(() => import('./assets/link_slash'), {
+    category: 'glyph',
+    synonyms: ['unlink', 'broken link', 'remove link', 'disconnect', 'url'],
+  }),
   list: () => import('./assets/list_bullet'), // NOTE: To be deprecated in favor of listBullet,
   listAdd: () => import('./assets/plus_circle'), // NOTE: To be deprecated in favor of `plus_circle`
-  lock: withSynonyms(
-    () => import('./assets/lock'),
-    ['lock', 'secure', 'private', 'protected', 'password']
-  ),
-  lockOpen: withSynonyms(
-    () => import('./assets/lock_open'),
-    ['lock open', 'lock', 'secure', 'private', 'protected', 'password', 'open']
-  ),
+  lock: withMetadata(() => import('./assets/lock'), {
+    category: 'glyph',
+    synonyms: ['lock', 'secure', 'private', 'protected', 'password'],
+  }),
+  lockOpen: withMetadata(() => import('./assets/lock_open'), {
+    category: 'glyph',
+    synonyms: [
+      'lock open',
+      'lock',
+      'secure',
+      'private',
+      'protected',
+      'password',
+      'open',
+    ],
+  }),
   logPatternAnalysis: () => import('./assets/pattern'), // NOTE: To be deprecated in favor of pattern
-  pattern: withSynonyms(
-    () => import('./assets/pattern'),
-    ['pattern', 'texture', 'repeat', 'design', 'fill']
-  ),
-  logRateAnalysis: () => import('./assets/log_rate_analysis'),
+  pattern: withMetadata(() => import('./assets/pattern'), {
+    category: 'glyph',
+    synonyms: ['pattern', 'texture', 'repeat', 'design', 'fill'],
+  }),
+  logRateAnalysis: withMetadata(() => import('./assets/log_rate_analysis'), {
+    category: 'glyph',
+  }),
   logoAWS: () => import('./assets/logo_aws'),
   logoAWSMono: () => import('./assets/logo_aws_mono'),
   logoAerospike: () => import('./assets/logo_aerospike'),
   logoApache: () => import('./assets/logo_apache'),
-  logoAppSearch: () => import('./assets/logo_app_search'),
+  logoAppSearch: withMetadata(() => import('./assets/logo_app_search'), {
+    category: 'logo',
+  }),
   logoAzure: () => import('./assets/logo_azure'),
   logoAzureMono: () => import('./assets/logo_azure_mono'),
-  logoBeats: () => import('./assets/logo_beats'),
-  logoBusinessAnalytics: () => import('./assets/logo_business_analytics'),
+  logoBeats: withMetadata(() => import('./assets/logo_beats'), {
+    category: 'logo',
+  }),
+  logoBusinessAnalytics: withMetadata(
+    () => import('./assets/logo_business_analytics'),
+    { category: 'logo' }
+  ),
   logoCeph: () => import('./assets/logo_ceph'),
-  logoCloud: () => import('./assets/logo_cloud'),
-  logoCloudEnterprise: () => import('./assets/logo_cloud_ece'),
+  logoCloud: withMetadata(() => import('./assets/logo_cloud'), {
+    category: 'logo',
+  }),
+  logoCloudEnterprise: withMetadata(() => import('./assets/logo_cloud_ece'), {
+    category: 'logo',
+  }),
   logoCode: () => import('./assets/logo_code'),
   logoCodesandbox: () => import('./assets/logo_codesandbox'),
   logoCouchbase: () => import('./assets/logo_couchbase'),
   logoDocker: () => import('./assets/logo_docker'),
   logoDropwizard: () => import('./assets/logo_dropwizard'),
-  logoElastic: () => import('./assets/logo_elastic'),
-  logoElasticStack: () => import('./assets/logo_elastic_stack'),
-  logoElasticsearch: () => import('./assets/logo_elasticsearch'),
-  logoEnterpriseSearch: () => import('./assets/logo_enterprise_search'),
+  logoElastic: withMetadata(() => import('./assets/logo_elastic'), {
+    category: 'logo',
+  }),
+  logoElasticStack: withMetadata(() => import('./assets/logo_elastic_stack'), {
+    category: 'logo',
+  }),
+  logoElasticsearch: withMetadata(() => import('./assets/logo_elasticsearch'), {
+    category: 'logo',
+  }),
+  logoEnterpriseSearch: withMetadata(
+    () => import('./assets/logo_enterprise_search'),
+    { category: 'logo' }
+  ),
   logoEtcd: () => import('./assets/logo_etcd'),
   logoGCP: () => import('./assets/logo_gcp'),
   logoGCPMono: () => import('./assets/logo_gcp_mono'),
@@ -968,92 +1415,148 @@ export const typeToPathMap = {
   logoIBM: () => import('./assets/logo_ibm'),
   logoIBMMono: () => import('./assets/logo_ibm_mono'),
   logoKafka: () => import('./assets/logo_kafka'),
-  logoKibana: () => import('./assets/logo_kibana'),
+  logoKibana: withMetadata(() => import('./assets/logo_kibana'), {
+    category: 'logo',
+  }),
   logoKubernetes: () => import('./assets/logo_kubernetes'),
-  logoLogging: () => import('./assets/logo_logging'),
-  logoLogstash: () => import('./assets/logo_logstash'),
-  logoMaps: () => import('./assets/logo_maps'),
+  logoLogging: withMetadata(() => import('./assets/logo_logging'), {
+    category: 'logo',
+  }),
+  logoLogstash: withMetadata(() => import('./assets/logo_logstash'), {
+    category: 'logo',
+  }),
+  logoMaps: withMetadata(() => import('./assets/logo_maps'), {
+    category: 'logo',
+  }),
   logoMemcached: () => import('./assets/logo_memcached'),
-  logoMetrics: () => import('./assets/logo_metrics'),
+  logoMetrics: withMetadata(() => import('./assets/logo_metrics'), {
+    category: 'logo',
+  }),
   logoMongodb: () => import('./assets/logo_mongodb'),
   logoMySQL: () => import('./assets/logo_mysql'),
   logoNginx: () => import('./assets/logo_nginx'),
-  logoObservability: () => import('./assets/logo_observability'),
+  logoObservability: withMetadata(() => import('./assets/logo_observability'), {
+    category: 'logo',
+  }),
   logoOsquery: () => import('./assets/logo_osquery'),
   logoPhp: () => import('./assets/logo_php'),
   logoPostgres: () => import('./assets/logo_postgres'),
   logoPrometheus: () => import('./assets/logo_prometheus'),
   logoRabbitmq: () => import('./assets/logo_rabbitmq'),
   logoRedis: () => import('./assets/logo_redis'),
-  logoSecurity: () => import('./assets/logo_security'),
-  logoSiteSearch: () => import('./assets/logo_site_search'),
+  logoSecurity: withMetadata(() => import('./assets/logo_security'), {
+    category: 'logo',
+  }),
+  logoSiteSearch: withMetadata(() => import('./assets/logo_site_search'), {
+    category: 'logo',
+  }),
   logoSketch: () => import('./assets/logo_sketch'),
   logoSlack: () => import('./assets/logo_slack'),
-  logoUptime: () => import('./assets/logo_uptime'),
-  logoVectorDB: () => import('./assets/logo_vector_db'),
-  logoVulnerabilityManagement: () =>
-    import('./assets/logo_vulnerability_management'),
+  logoUptime: withMetadata(() => import('./assets/logo_uptime'), {
+    category: 'logo',
+  }),
+  logoVectorDB: withMetadata(() => import('./assets/logo_vector_db'), {
+    category: 'logo',
+  }),
+  logoVulnerabilityManagement: withMetadata(
+    () => import('./assets/logo_vulnerability_management'),
+    { category: 'logo' }
+  ),
   logoWebhook: () => import('./assets/logo_webhook'),
   logoWindows: () => import('./assets/logo_windows'),
-  logoWorkplaceSearch: () => import('./assets/logo_workplace_search'),
-  logsApp: () => import('./assets/app_logs'),
-  logstashFilter: () => import('./assets/logstash_filter'),
+  logoWorkplaceSearch: withMetadata(
+    () => import('./assets/logo_workplace_search'),
+    { category: 'logo' }
+  ),
+  logsApp: withMetadata(() => import('./assets/app_logs'), { category: 'app' }),
+  logstashFilter: withMetadata(() => import('./assets/logstash_filter'), {
+    category: 'glyph',
+  }),
   logstashIf: () => import('./assets/if'), // NOTE: To be deprecated in favor of if
-  logstashInput: () => import('./assets/logstash_input'),
-  logstashOutput: () => import('./assets/logstash_output'),
+  logstashInput: withMetadata(() => import('./assets/logstash_input'), {
+    category: 'glyph',
+  }),
+  logstashOutput: withMetadata(() => import('./assets/logstash_output'), {
+    category: 'glyph',
+  }),
   logstashQueue: () => import('./assets/queue'), // NOTE: To be deprecated in favor of queue
-  queue: withSynonyms(
-    () => import('./assets/queue'),
-    ['queue', 'line', 'buffer', 'waiting', 'jobs']
-  ),
-  machineLearningApp: () => import('./assets/app_ml'),
-  magnet: () => import('./assets/magnet'),
-  magnify: withSynonyms(
-    () => import('./assets/magnify'),
-    ['search', 'find', 'zoom', 'lookup', 'query', 'discover', 'glass']
-  ),
-  magnifyExclamation: withSynonyms(
+  queue: withMetadata(() => import('./assets/queue'), {
+    category: 'glyph',
+    synonyms: ['queue', 'line', 'buffer', 'waiting', 'jobs'],
+  }),
+  machineLearningApp: withMetadata(() => import('./assets/app_ml'), {
+    category: 'app',
+  }),
+  magnet: withMetadata(() => import('./assets/magnet'), { category: 'glyph' }),
+  magnify: withMetadata(() => import('./assets/magnify'), {
+    category: 'glyph',
+    synonyms: [
+      'search',
+      'find',
+      'zoom',
+      'lookup',
+      'query',
+      'discover',
+      'glass',
+    ],
+  }),
+  magnifyExclamation: withMetadata(
     () => import('./assets/magnify_exclamation'),
-    ['search', 'alert', 'warning', 'find', 'magnify', 'important']
+    {
+      category: 'glyph',
+      synonyms: ['search', 'alert', 'warning', 'find', 'magnify', 'important'],
+    }
   ),
-  magnifyMinus: withSynonyms(
-    () => import('./assets/magnify_minus'),
-    ['zoom out', 'search', 'minus', 'shrink', 'magnify']
-  ),
-  magnifyPlus: withSynonyms(
-    () => import('./assets/magnify_plus'),
-    ['zoom in', 'search', 'plus', 'enlarge', 'magnify']
-  ),
+  magnifyMinus: withMetadata(() => import('./assets/magnify_minus'), {
+    category: 'glyph',
+    synonyms: ['zoom out', 'search', 'minus', 'shrink', 'magnify'],
+  }),
+  magnifyPlus: withMetadata(() => import('./assets/magnify_plus'), {
+    category: 'glyph',
+    synonyms: ['zoom in', 'search', 'plus', 'enlarge', 'magnify'],
+  }),
   magnifyWithExclamation: () => import('./assets/magnify_with_exclamation'), // NOTE: To be deprecated in favor of magnifyExclamation
   magnifyWithMinus: () => import('./assets/magnify_with_minus'), // NOTE: To be deprecated in favor of magnifyMinus
   magnifyWithPlus: () => import('./assets/magnify_with_plus'), // NOTE: To be deprecated in favor of magnifyPlus,
-  managementApp: () => import('./assets/app_management'),
-  map: withSynonyms(
-    () => import('./assets/map'),
-    ['map', 'location', 'geo', 'geography', 'region']
-  ),
+  managementApp: withMetadata(() => import('./assets/app_management'), {
+    category: 'app',
+  }),
+  map: withMetadata(() => import('./assets/map'), {
+    category: 'glyph',
+    synonyms: ['map', 'location', 'geo', 'geography', 'region'],
+  }),
   mapMarker: () => import('./assets/waypoint'), // NOTE: To be deprecated in favor of waypoint
-  waypoint: withSynonyms(
-    () => import('./assets/waypoint'),
-    ['waypoint', 'marker', 'step', 'node', 'path']
-  ),
-  megaphone: withSynonyms(
-    () => import('./assets/megaphone'),
-    ['megaphone', 'announce', 'broadcast', 'marketing', 'loud']
-  ),
-  memory: () => import('./assets/memory'),
-  menu: withSynonyms(
-    () => import('./assets/menu'),
-    ['menu', 'hamburger', 'navigation', 'options', 'bars']
-  ),
-  menuDown: () => import('./assets/menu_down'),
-  menuLeft: withSynonyms(
-    () => import('./assets/menu_left'),
-    ['menu left', 'menu', 'hamburger', 'navigation', 'options', 'bars', 'left']
-  ),
-  menuRight: withSynonyms(
-    () => import('./assets/menu_right'),
-    [
+  waypoint: withMetadata(() => import('./assets/waypoint'), {
+    category: 'glyph',
+    synonyms: ['waypoint', 'marker', 'step', 'node', 'path'],
+  }),
+  megaphone: withMetadata(() => import('./assets/megaphone'), {
+    category: 'glyph',
+    synonyms: ['megaphone', 'announce', 'broadcast', 'marketing', 'loud'],
+  }),
+  memory: withMetadata(() => import('./assets/memory'), { category: 'glyph' }),
+  menu: withMetadata(() => import('./assets/menu'), {
+    category: 'glyph',
+    synonyms: ['menu', 'hamburger', 'navigation', 'options', 'bars'],
+  }),
+  menuDown: withMetadata(() => import('./assets/menu_down'), {
+    category: 'glyph',
+  }),
+  menuLeft: withMetadata(() => import('./assets/menu_left'), {
+    category: 'glyph',
+    synonyms: [
+      'menu left',
+      'menu',
+      'hamburger',
+      'navigation',
+      'options',
+      'bars',
+      'left',
+    ],
+  }),
+  menuRight: withMetadata(() => import('./assets/menu_right'), {
+    category: 'glyph',
+    synonyms: [
       'menu right',
       'menu',
       'hamburger',
@@ -1061,294 +1564,395 @@ export const typeToPathMap = {
       'options',
       'bars',
       'right',
-    ]
-  ),
-  menuUp: () => import('./assets/menu_up'),
-  merge: withSynonyms(
-    () => import('./assets/merge'),
-    ['merge', 'combine', 'join', 'unite', 'git']
-  ),
-  metricbeatApp: () => import('./assets/app_metricbeat'),
-  metricsApp: () => import('./assets/app_metrics'),
-  minimize: withSynonyms(() => import('./assets/minimize'), ['minimize']),
-  minus: withSynonyms(
-    () => import('./assets/minus'),
-    ['minus', 'remove', 'subtract', 'decrement']
-  ),
-  minusCircle: withSynonyms(
-    () => import('./assets/minus_circle'),
-    ['minus circle', 'minus', 'remove', 'subtract', 'decrement', 'circle']
-  ),
+    ],
+  }),
+  menuUp: withMetadata(() => import('./assets/menu_up'), { category: 'glyph' }),
+  merge: withMetadata(() => import('./assets/merge'), {
+    category: 'glyph',
+    synonyms: ['merge', 'combine', 'join', 'unite', 'git'],
+  }),
+  metricbeatApp: withMetadata(() => import('./assets/app_metricbeat'), {
+    category: 'app',
+  }),
+  metricsApp: withMetadata(() => import('./assets/app_metrics'), {
+    category: 'app',
+  }),
+  minimize: withMetadata(() => import('./assets/minimize'), {
+    category: 'glyph',
+    synonyms: ['minimize'],
+  }),
+  minus: withMetadata(() => import('./assets/minus'), {
+    category: 'glyph',
+    synonyms: ['minus', 'remove', 'subtract', 'decrement'],
+  }),
+  minusCircle: withMetadata(() => import('./assets/minus_circle'), {
+    category: 'glyph',
+    synonyms: [
+      'minus circle',
+      'minus',
+      'remove',
+      'subtract',
+      'decrement',
+      'circle',
+    ],
+  }),
   minusInCircle: () => import('./assets/minus_circle'), // NOTE: To be deprecated in favor of minusCircle
   minusInCircleFilled: () => import('./assets/minus_circle'), // NOTE: To be deprecated in favor of minusCircle
   minusInSquare: () => import('./assets/minus_square'), // NOTE: To be deprecated in favor of minusSquare
-  minusSquare: withSynonyms(
-    () => import('./assets/minus_square'),
-    ['minus', 'square', 'remove', 'collapse', 'decrement']
-  ),
-  mobile: () => import('./assets/mobile'),
-  monitoringApp: () => import('./assets/app_monitoring'),
-  moon: withSynonyms(
-    () => import('./assets/moon'),
-    ['moon', 'dark', 'night', 'theme']
-  ),
-  move: withSynonyms(
-    () => import('./assets/move'),
-    ['move', 'relocate', 'drag', 'position', 'transfer']
-  ),
-  namespace: () => import('./assets/namespace'),
-  nested: withSynonyms(
-    () => import('./assets/nested'),
-    ['nested', 'hierarchy', 'tree', 'child', 'indent']
-  ),
+  minusSquare: withMetadata(() => import('./assets/minus_square'), {
+    category: 'glyph',
+    synonyms: ['minus', 'square', 'remove', 'collapse', 'decrement'],
+  }),
+  mobile: withMetadata(() => import('./assets/mobile'), { category: 'glyph' }),
+  monitoringApp: withMetadata(() => import('./assets/app_monitoring'), {
+    category: 'app',
+  }),
+  moon: withMetadata(() => import('./assets/moon'), {
+    category: 'glyph',
+    synonyms: ['moon', 'dark', 'night', 'theme'],
+  }),
+  move: withMetadata(() => import('./assets/move'), {
+    category: 'glyph',
+    synonyms: ['move', 'relocate', 'drag', 'position', 'transfer'],
+  }),
+  namespace: withMetadata(() => import('./assets/namespace'), {
+    category: 'glyph',
+  }),
+  nested: withMetadata(() => import('./assets/nested'), {
+    category: 'glyph',
+    synonyms: ['nested', 'hierarchy', 'tree', 'child', 'indent'],
+  }),
   newChat: () => import('./assets/plus_circle'), // NOTE: To be deprecated in favor of plusCircle
   node: () => import('./assets/vector_triangle'), // NOTE: To be deprecated in favor of vectorTriangle
-  vectorTriangle: withSynonyms(
-    () => import('./assets/vector_triangle'),
-    ['vector', 'triangle', 'shape', 'geometry', 'delta']
-  ),
-  notebookApp: () => import('./assets/app_notebook'),
-  number: withSynonyms(
-    () => import('./assets/number'),
-    ['number', 'digit', 'numeric', 'count', 'hash']
-  ),
+  vectorTriangle: withMetadata(() => import('./assets/vector_triangle'), {
+    category: 'glyph',
+    synonyms: ['vector', 'triangle', 'shape', 'geometry', 'delta'],
+  }),
+  notebookApp: withMetadata(() => import('./assets/app_notebook'), {
+    category: 'app',
+  }),
+  number: withMetadata(() => import('./assets/number'), {
+    category: 'glyph',
+    synonyms: ['number', 'digit', 'numeric', 'count', 'hash'],
+  }),
   offline: () => import('./assets/wifi_slash'), // NOTE: To be deprecated in favor of wifiSlash
-  wifiSlash: withSynonyms(
-    () => import('./assets/wifi_slash'),
-    ['wifi', 'off', 'disconnected', 'network', 'wireless', 'no signal']
-  ),
+  wifiSlash: withMetadata(() => import('./assets/wifi_slash'), {
+    category: 'glyph',
+    synonyms: [
+      'wifi',
+      'off',
+      'disconnected',
+      'network',
+      'wireless',
+      'no signal',
+    ],
+  }),
   online: () => import('./assets/wifi'), // NOTE: To be deprecated in favor of wifi
-  wifi: withSynonyms(
-    () => import('./assets/wifi'),
-    ['wifi', 'wireless', 'network', 'internet', 'connection']
+  wifi: withMetadata(() => import('./assets/wifi'), {
+    category: 'glyph',
+    synonyms: ['wifi', 'wireless', 'network', 'internet', 'connection'],
+  }),
+  outlierDetectionJob: withMetadata(
+    () => import('./assets/ml_outlier_detection_job'),
+    { category: 'ml' }
   ),
-  outlierDetectionJob: () => import('./assets/ml_outlier_detection_job'),
-  package: withSynonyms(
-    () => import('./assets/package'),
-    ['package', 'box', 'bundle', 'npm', 'module']
-  ),
-  packetbeatApp: () => import('./assets/app_packetbeat'),
-  pageSelect: () => import('./assets/page_select'),
-  pagesSelect: withSynonyms(
-    () => import('./assets/pages_select'),
-    ['pages', 'select', 'pagination', 'choose', 'document']
-  ),
-  palette: withSynonyms(
-    () => import('./assets/palette'),
-    ['palette', 'colors', 'theme', 'design', 'swatch']
-  ),
-  paperClip: withSynonyms(
-    () => import('./assets/paper_clip'),
-    ['attachment', 'clip', 'file', 'attach', 'paperclip']
-  ),
-  partial: withSynonyms(
-    () => import('./assets/partial'),
-    ['partial', 'incomplete', 'fragment', 'section']
-  ),
-  pause: withSynonyms(
-    () => import('./assets/pause'),
-    ['pause', 'hold', 'stop temporary', 'wait']
-  ),
-  payment: () => import('./assets/payment'),
-  pencil: withSynonyms(
-    () => import('./assets/pencil'),
-    ['pencil', 'edit', 'write', 'modify', 'pen']
-  ),
-  percent: withSynonyms(
-    () => import('./assets/percent'),
-    ['percent', 'percentage', 'ratio', 'rate']
-  ),
-  pin: withSynonyms(
-    () => import('./assets/pin'),
-    ['pin', 'anchor', 'stick', 'fixed', 'bookmark']
-  ),
-  pinFill: withSynonyms(
-    () => import('./assets/pin_fill'),
-    ['pin', 'filled', 'stick', 'anchor', 'fixed', 'bookmark']
-  ),
+  package: withMetadata(() => import('./assets/package'), {
+    category: 'glyph',
+    synonyms: ['package', 'box', 'bundle', 'npm', 'module'],
+  }),
+  packetbeatApp: withMetadata(() => import('./assets/app_packetbeat'), {
+    category: 'app',
+  }),
+  pageSelect: withMetadata(() => import('./assets/page_select'), {
+    category: 'glyph',
+  }),
+  pagesSelect: withMetadata(() => import('./assets/pages_select'), {
+    category: 'glyph',
+    synonyms: ['pages', 'select', 'pagination', 'choose', 'document'],
+  }),
+  palette: withMetadata(() => import('./assets/palette'), {
+    category: 'glyph',
+    synonyms: ['palette', 'colors', 'theme', 'design', 'swatch'],
+  }),
+  paperClip: withMetadata(() => import('./assets/paper_clip'), {
+    category: 'glyph',
+    synonyms: ['attachment', 'clip', 'file', 'attach', 'paperclip'],
+  }),
+  partial: withMetadata(() => import('./assets/partial'), {
+    category: 'glyph',
+    synonyms: ['partial', 'incomplete', 'fragment', 'section'],
+  }),
+  pause: withMetadata(() => import('./assets/pause'), {
+    category: 'glyph',
+    synonyms: ['pause', 'hold', 'stop temporary', 'wait'],
+  }),
+  payment: withMetadata(() => import('./assets/payment'), {
+    category: 'glyph',
+  }),
+  pencil: withMetadata(() => import('./assets/pencil'), {
+    category: 'glyph',
+    synonyms: ['pencil', 'edit', 'write', 'modify', 'pen'],
+  }),
+  percent: withMetadata(() => import('./assets/percent'), {
+    category: 'glyph',
+    synonyms: ['percent', 'percentage', 'ratio', 'rate'],
+  }),
+  pin: withMetadata(() => import('./assets/pin'), {
+    category: 'glyph',
+    synonyms: ['pin', 'anchor', 'stick', 'fixed', 'bookmark'],
+  }),
+  pinFill: withMetadata(() => import('./assets/pin_fill'), {
+    category: 'glyph',
+    synonyms: ['pin', 'filled', 'stick', 'anchor', 'fixed', 'bookmark'],
+  }),
   pinFilled: () => import('./assets/pin_fill'), // NOTE: To be deprecated in favor of pinFill
   pipeBreaks: () => import('./assets/line_break'), // NOTE: To be deprecated in favor of lineBreak
-  pipelineApp: () => import('./assets/app_pipeline'),
+  pipelineApp: withMetadata(() => import('./assets/app_pipeline'), {
+    category: 'app',
+  }),
   pipeNoBreaks: () => import('./assets/line_break_slash'), // NOTE: To be deprecated in favor of lineBreakSlash
-  pivot: withSynonyms(
-    () => import('./assets/pivot'),
-    ['pivot', 'table', 'transform', 'rotate', 'analytics']
-  ),
-  play: withSynonyms(
-    () => import('./assets/play'),
-    ['play', 'start', 'run', 'media', 'video']
-  ),
+  pivot: withMetadata(() => import('./assets/pivot'), {
+    category: 'glyph',
+    synonyms: ['pivot', 'table', 'transform', 'rotate', 'analytics'],
+  }),
+  play: withMetadata(() => import('./assets/play'), {
+    category: 'glyph',
+    synonyms: ['play', 'start', 'run', 'media', 'video'],
+  }),
   playFilled: () => import('./assets/play_filled'), // NOTE: To be deprecated in favor of play
-  plugs: () => import('./assets/plugs'),
-  plus: withSynonyms(
-    () => import('./assets/plus'),
-    ['plus', 'add', 'new', 'create', 'increment']
-  ),
-  plusCircle: withSynonyms(
-    () => import('./assets/plus_circle'),
-    ['plus circle', 'plus', 'add', 'new', 'create', 'increment', 'circle']
-  ),
+  plugs: withMetadata(() => import('./assets/plugs'), { category: 'glyph' }),
+  plus: withMetadata(() => import('./assets/plus'), {
+    category: 'glyph',
+    synonyms: ['plus', 'add', 'new', 'create', 'increment'],
+  }),
+  plusCircle: withMetadata(() => import('./assets/plus_circle'), {
+    category: 'glyph',
+    synonyms: [
+      'plus circle',
+      'plus',
+      'add',
+      'new',
+      'create',
+      'increment',
+      'circle',
+    ],
+  }),
   plusInCircle: () => import('./assets/plus_circle'), // NOTE: To be deprecated in favor of plusCircle
   plusInCircleFilled: () => import('./assets/plus_circle'), // NOTE: To be deprecated in favor of plusCircle
   plusInSquare: () => import('./assets/plus_square'), // NOTE: To be deprecated in favor of plusSquare
-  plusSquare: withSynonyms(
-    () => import('./assets/plus_square'),
-    ['plus', 'square', 'add', 'expand', 'increment']
-  ),
+  plusSquare: withMetadata(() => import('./assets/plus_square'), {
+    category: 'glyph',
+    synonyms: ['plus', 'square', 'add', 'expand', 'increment'],
+  }),
   popout: () => import('./assets/external'), // NOTE: To be deprecated in favor of external
-  presentation: withSynonyms(
-    () => import('./assets/presentation'),
-    ['presentation', 'slides', 'deck', 'display', 'show']
-  ),
+  presentation: withMetadata(() => import('./assets/presentation'), {
+    category: 'glyph',
+    synonyms: ['presentation', 'slides', 'deck', 'display', 'show'],
+  }),
   productRobot: () => import('./assets/product_agent'), // NOTE: To be deprecated in favor of productAgent
-  productAgent: withSynonyms(
-    () => import('./assets/product_agent'),
-    ['agent', 'product', 'elastic agent', 'fleet', 'monitoring']
-  ),
-  productCloudInfra: withSynonyms(
+  productAgent: withMetadata(() => import('./assets/product_agent'), {
+    category: 'glyph',
+    synonyms: ['agent', 'product', 'elastic agent', 'fleet', 'monitoring'],
+  }),
+  productCloudInfra: withMetadata(
     () => import('./assets/product_cloud_infra'),
-    ['cloud', 'infrastructure', 'product', 'hosting', 'platform']
+    {
+      category: 'glyph',
+      synonyms: ['cloud', 'infrastructure', 'product', 'hosting', 'platform'],
+    }
   ),
-  productDashboard: withSynonyms(
-    () => import('./assets/product_dashboard'),
-    ['dashboard', 'product', 'kibana', 'analytics', 'panel']
-  ),
-  productDiscover: withSynonyms(
-    () => import('./assets/product_discover'),
-    ['discover', 'product', 'explore', 'data', 'search', 'kibana']
-  ),
-  productML: withSynonyms(
-    () => import('./assets/product_ml'),
-    ['machine learning', 'ml', 'product', 'model', 'ai']
-  ),
-  productStreamsClassic: withSynonyms(
+  productDashboard: withMetadata(() => import('./assets/product_dashboard'), {
+    category: 'glyph',
+    synonyms: ['dashboard', 'product', 'kibana', 'analytics', 'panel'],
+  }),
+  productDiscover: withMetadata(() => import('./assets/product_discover'), {
+    category: 'glyph',
+    synonyms: ['discover', 'product', 'explore', 'data', 'search', 'kibana'],
+  }),
+  productML: withMetadata(() => import('./assets/product_ml'), {
+    category: 'glyph',
+    synonyms: ['machine learning', 'ml', 'product', 'model', 'ai'],
+  }),
+  productStreamsClassic: withMetadata(
     () => import('./assets/product_streams_classic'),
-    ['streams', 'classic', 'product', 'data', 'pipeline']
+    {
+      category: 'glyph',
+      synonyms: ['streams', 'classic', 'product', 'data', 'pipeline'],
+    }
   ),
-  productStreamsWired: withSynonyms(
+  productStreamsWired: withMetadata(
     () => import('./assets/product_streams_wired'),
-    ['streams', 'wired', 'product', 'data', 'pipeline', 'connected']
+    {
+      category: 'glyph',
+      synonyms: [
+        'streams',
+        'wired',
+        'product',
+        'data',
+        'pipeline',
+        'connected',
+      ],
+    }
   ),
-  push: () => import('./assets/send'), // NOTE: To be deprecated in favor of send
-  send: withSynonyms(
-    () => import('./assets/send'),
-    ['send', 'submit', 'dispatch', 'arrow', 'share']
+  push: withMetadata(() => import('./assets/send'), { category: 'glyph' }), // NOTE: To be deprecated in favor of send
+  send: withMetadata(() => import('./assets/send'), {
+    category: 'glyph',
+    synonyms: ['send', 'submit', 'dispatch', 'arrow', 'share'],
+  }),
+  question: withMetadata(() => import('./assets/question'), {
+    category: 'glyph',
+    synonyms: ['question', 'help', 'unknown', 'faq', 'ask'],
+  }),
+  quote: withMetadata(() => import('./assets/quote'), {
+    category: 'glyph',
+    synonyms: ['quote', 'citation', 'blockquote', 'text'],
+  }),
+  radar: withMetadata(() => import('./assets/radar'), {
+    category: 'glyph',
+    synonyms: ['radar', 'scan', 'detect', 'monitor', 'signal'],
+  }),
+  readOnly: withMetadata(() => import('./assets/read_only'), {
+    category: 'glyph',
+    synonyms: ['read only', 'locked', 'view', 'permission', 'restrict'],
+  }),
+  recentlyViewedApp: withMetadata(
+    () => import('./assets/app_recently_viewed'),
+    { category: 'app' }
   ),
-  question: withSynonyms(
-    () => import('./assets/question'),
-    ['question', 'help', 'unknown', 'faq', 'ask']
-  ),
-  quote: withSynonyms(
-    () => import('./assets/quote'),
-    ['quote', 'citation', 'blockquote', 'text']
-  ),
-  radar: withSynonyms(
-    () => import('./assets/radar'),
-    ['radar', 'scan', 'detect', 'monitor', 'signal']
-  ),
-  readOnly: withSynonyms(
-    () => import('./assets/read_only'),
-    ['read only', 'locked', 'view', 'permission', 'restrict']
-  ),
-  recentlyViewedApp: () => import('./assets/app_recently_viewed'),
-  refresh: withSynonyms(
-    () => import('./assets/refresh'),
-    ['refresh', 'reload', 'sync', 'update', 'rotate']
-  ),
-  regressionJob: () => import('./assets/ml_regression_job'),
-  reporter: withSynonyms(
-    () => import('./assets/reporter'),
-    ['reporter', 'report', 'export', 'document', 'output']
-  ),
-  reportingApp: () => import('./assets/app_reporting'),
-  return: withSynonyms(
-    () => import('./assets/return'),
-    ['return', 'enter', 'keyboard', 'submit', 'back', 'revert']
-  ),
+  refresh: withMetadata(() => import('./assets/refresh'), {
+    category: 'glyph',
+    synonyms: ['refresh', 'reload', 'sync', 'update', 'rotate'],
+  }),
+  regressionJob: withMetadata(() => import('./assets/ml_regression_job'), {
+    category: 'ml',
+  }),
+  reporter: withMetadata(() => import('./assets/reporter'), {
+    category: 'glyph',
+    synonyms: ['reporter', 'report', 'export', 'document', 'output'],
+  }),
+  reportingApp: withMetadata(() => import('./assets/app_reporting'), {
+    category: 'app',
+  }),
+  return: withMetadata(() => import('./assets/return'), {
+    category: 'glyph',
+    synonyms: ['return', 'enter', 'keyboard', 'submit', 'back', 'revert'],
+  }),
   returnKey: () => import('./assets/return'), // NOTE: To be deprecated in favor of return
-  save: withSynonyms(
-    () => import('./assets/save'),
-    ['save', 'store', 'disk', 'persist', 'keep']
-  ),
-  savedObjectsApp: () => import('./assets/app_saved_objects'),
-  scale: () => import('./assets/scale'),
+  save: withMetadata(() => import('./assets/save'), {
+    category: 'glyph',
+    synonyms: ['save', 'store', 'disk', 'persist', 'keep'],
+  }),
+  savedObjectsApp: withMetadata(() => import('./assets/app_saved_objects'), {
+    category: 'app',
+  }),
+  scale: withMetadata(() => import('./assets/scale'), { category: 'glyph' }),
   search: () => import('./assets/magnify'), // NOTE: To be deprecated in favor of magnify
-  searchProfilerApp: () => import('./assets/app_search_profiler'),
-  section: withSynonyms(
-    () => import('./assets/section'),
-    ['section', 'region', 'block', 'area', 'group']
+  searchProfilerApp: withMetadata(
+    () => import('./assets/app_search_profiler'),
+    { category: 'app' }
   ),
-  securityAnalyticsApp: () => import('./assets/app_security_analytics'),
-  securityApp: () => import('./assets/app_security'),
+  section: withMetadata(() => import('./assets/section'), {
+    category: 'glyph',
+    synonyms: ['section', 'region', 'block', 'area', 'group'],
+  }),
+  securityAnalyticsApp: withMetadata(
+    () => import('./assets/app_security_analytics'),
+    { category: 'app' }
+  ),
+  securityApp: withMetadata(() => import('./assets/app_security'), {
+    category: 'app',
+  }),
   securitySignal: () => import('./assets/security_signal'), // NOTE: To be deprecated in favor of radar
-  securitySignalDetected: () => import('./assets/security_signal_detected'),
-  securitySignalResolved: () => import('./assets/security_signal_resolved'),
-  server: withSynonyms(
-    () => import('./assets/server'),
-    ['server', 'host', 'machine', 'infrastructure', 'backend']
+  securitySignalDetected: withMetadata(
+    () => import('./assets/security_signal_detected'),
+    { category: 'glyph' }
   ),
-  sessionViewer: () => import('./assets/session_viewer'),
-  shard: withSynonyms(
-    () => import('./assets/shard'),
-    ['shard', 'partition', 'segment', 'elastic', 'index']
+  securitySignalResolved: withMetadata(
+    () => import('./assets/security_signal_resolved'),
+    { category: 'glyph' }
   ),
-  share: withSynonyms(
-    () => import('./assets/share'),
-    ['share', 'send', 'distribute', 'social', 'export']
+  server: withMetadata(() => import('./assets/server'), {
+    category: 'glyph',
+    synonyms: ['server', 'host', 'machine', 'infrastructure', 'backend'],
+  }),
+  sessionViewer: withMetadata(() => import('./assets/session_viewer'), {
+    category: 'glyph',
+  }),
+  shard: withMetadata(() => import('./assets/shard'), {
+    category: 'glyph',
+    synonyms: ['shard', 'partition', 'segment', 'elastic', 'index'],
+  }),
+  share: withMetadata(() => import('./assets/share'), {
+    category: 'glyph',
+    synonyms: ['share', 'send', 'distribute', 'social', 'export'],
+  }),
+  significantEvents: withMetadata(() => import('./assets/significant_events'), {
+    category: 'glyph',
+    synonyms: [
+      'events',
+      'significant',
+      'anomaly',
+      'alert',
+      'notable',
+      'timeline',
+    ],
+  }),
+  singleMetricViewer: withMetadata(
+    () => import('./assets/single_metric_viewer'),
+    { category: 'glyph' }
   ),
-  significantEvents: withSynonyms(
-    () => import('./assets/significant_events'),
-    ['events', 'significant', 'anomaly', 'alert', 'notable', 'timeline']
-  ),
-  singleMetricViewer: () => import('./assets/single_metric_viewer'),
-  snowflake: withSynonyms(
-    () => import('./assets/snowflake'),
-    ['snowflake', 'unique', 'id', 'data warehouse']
-  ),
-  sortAscending: withSynonyms(
-    () => import('./assets/sort_ascending'),
-    ['sort', 'ascending', 'up', 'order', 'rank', 'increase']
-  ),
-  sortDescending: withSynonyms(
-    () => import('./assets/sort_descending'),
-    ['sort', 'descending', 'down', 'order', 'rank', 'decrease']
-  ),
-  sortDown: withSynonyms(
-    () => import('./assets/sort_down'),
-    ['sort down', 'sort', 'order', 'rank', 'arrange', 'down']
-  ),
-  sortLeft: withSynonyms(
-    () => import('./assets/sort_left'),
-    ['sort left', 'sort', 'order', 'rank', 'arrange', 'left']
-  ),
-  sortRight: withSynonyms(
-    () => import('./assets/sort_right'),
-    ['sort right', 'sort', 'order', 'rank', 'arrange', 'right']
-  ),
-  sortUp: withSynonyms(
-    () => import('./assets/sort_up'),
-    ['sort up', 'sort', 'order', 'rank', 'arrange', 'up']
-  ),
-  sortable: withSynonyms(
-    () => import('./assets/sortable'),
-    ['sortable', 'sort', 'order']
-  ),
-  spaces: () => import('./assets/spaces'),
-  spacesApp: () => import('./assets/app_spaces'),
-  sparkles: withSynonyms(
-    () => import('./assets/sparkles'),
-    ['sparkles', 'ai', 'magic', 'new', 'enhance', 'auto']
-  ),
-  sqlApp: () => import('./assets/app_sql'),
-  star: withSynonyms(
-    () => import('./assets/star'),
-    ['star', 'favorite', 'rating', 'bookmark']
-  ),
+  snowflake: withMetadata(() => import('./assets/snowflake'), {
+    category: 'glyph',
+    synonyms: ['snowflake', 'unique', 'id', 'data warehouse'],
+  }),
+  sortAscending: withMetadata(() => import('./assets/sort_ascending'), {
+    category: 'glyph',
+    synonyms: ['sort', 'ascending', 'up', 'order', 'rank', 'increase'],
+  }),
+  sortDescending: withMetadata(() => import('./assets/sort_descending'), {
+    category: 'glyph',
+    synonyms: ['sort', 'descending', 'down', 'order', 'rank', 'decrease'],
+  }),
+  sortDown: withMetadata(() => import('./assets/sort_down'), {
+    category: 'glyph',
+    synonyms: ['sort down', 'sort', 'order', 'rank', 'arrange', 'down'],
+  }),
+  sortLeft: withMetadata(() => import('./assets/sort_left'), {
+    category: 'glyph',
+    synonyms: ['sort left', 'sort', 'order', 'rank', 'arrange', 'left'],
+  }),
+  sortRight: withMetadata(() => import('./assets/sort_right'), {
+    category: 'glyph',
+    synonyms: ['sort right', 'sort', 'order', 'rank', 'arrange', 'right'],
+  }),
+  sortUp: withMetadata(() => import('./assets/sort_up'), {
+    category: 'glyph',
+    synonyms: ['sort up', 'sort', 'order', 'rank', 'arrange', 'up'],
+  }),
+  sortable: withMetadata(() => import('./assets/sortable'), {
+    category: 'glyph',
+    synonyms: ['sortable', 'sort', 'order'],
+  }),
+  spaces: withMetadata(() => import('./assets/spaces'), { category: 'glyph' }),
+  spacesApp: withMetadata(() => import('./assets/app_spaces'), {
+    category: 'app',
+  }),
+  sparkles: withMetadata(() => import('./assets/sparkles'), {
+    category: 'glyph',
+    synonyms: ['sparkles', 'ai', 'magic', 'new', 'enhance', 'auto'],
+  }),
+  sqlApp: withMetadata(() => import('./assets/app_sql'), { category: 'app' }),
+  star: withMetadata(() => import('./assets/star'), {
+    category: 'glyph',
+    synonyms: ['star', 'favorite', 'rating', 'bookmark'],
+  }),
   starEmpty: () => import('./assets/star'), // NOTE: To be deprecated in favor of star
-  starEmptySpace: () => import('./assets/star_empty_space'),
-  starFill: withSynonyms(
-    () => import('./assets/star_fill'),
-    [
+  starEmptySpace: withMetadata(() => import('./assets/star_empty_space'), {
+    category: 'glyph',
+  }),
+  starFill: withMetadata(() => import('./assets/star_fill'), {
+    category: 'glyph',
+    synonyms: [
       'star fill',
       'star',
       'favorite',
@@ -1357,143 +1961,180 @@ export const typeToPathMap = {
       'fill',
       'filled',
       'solid',
-    ]
-  ),
+    ],
+  }),
   starFilled: () => import('./assets/star_fill'), // NOTE: To be deprecated in favor of starFill,
-  starFillSpace: () => import('./assets/star_fill_space'),
+  starFillSpace: withMetadata(() => import('./assets/star_fill_space'), {
+    category: 'glyph',
+  }),
   starFilledSpace: () => import('./assets/star_fill_space'), // NOTE: To be deprecated in favor of starFillSpace
-  starMinusEmpty: () => import('./assets/star_minus_empty'),
-  starMinusFill: () => import('./assets/star_minus_fill'),
+  starMinusEmpty: withMetadata(() => import('./assets/star_minus_empty'), {
+    category: 'glyph',
+  }),
+  starMinusFill: withMetadata(() => import('./assets/star_minus_fill'), {
+    category: 'glyph',
+  }),
   starMinusFilled: () => import('./assets/star_minus_fill'), // NOTE: To be deprecated in favor of starMinusFill
-  starPlusEmpty: () => import('./assets/star_plus_empty'),
-  starPlusFill: () => import('./assets/star_plus_fill'),
+  starPlusEmpty: withMetadata(() => import('./assets/star_plus_empty'), {
+    category: 'glyph',
+  }),
+  starPlusFill: withMetadata(() => import('./assets/star_plus_fill'), {
+    category: 'glyph',
+  }),
   starPlusFilled: () => import('./assets/star_plus_fill'), // NOTE: To be deprecated in favor of starPlusFill
-  stats: () => import('./assets/stats'),
-  stop: withSynonyms(
-    () => import('./assets/stop'),
-    ['stop', 'halt', 'end', 'terminate', 'square']
-  ),
-  stopFill: () => import('./assets/stop_fill'),
+  stats: withMetadata(() => import('./assets/stats'), { category: 'glyph' }),
+  stop: withMetadata(() => import('./assets/stop'), {
+    category: 'glyph',
+    synonyms: ['stop', 'halt', 'end', 'terminate', 'square'],
+  }),
+  stopFill: withMetadata(() => import('./assets/stop_fill'), {
+    category: 'glyph',
+  }),
   stopFilled: () => import('./assets/stop_fill'), // NOTE: To be deprecated in favor of stopFill
-  stopSlash: () => import('./assets/stop_slash'),
-  storage: withSynonyms(
-    () => import('./assets/storage'),
-    ['storage', 'disk', 'drive', 'save', 'data store']
-  ),
+  stopSlash: withMetadata(() => import('./assets/stop_slash'), {
+    category: 'glyph',
+  }),
+  storage: withMetadata(() => import('./assets/storage'), {
+    category: 'glyph',
+    synonyms: ['storage', 'disk', 'drive', 'save', 'data store'],
+  }),
   streamsClassic: () => import('./assets/product_streams_classic'), // NOTE: To be deprecated in favor of productStreamsClassic
   streamsWired: () => import('./assets/product_streams_wired'), // NOTE: To be deprecated in favor of productStreamsWired
-  string: () => import('./assets/string'),
+  string: withMetadata(() => import('./assets/string'), { category: 'glyph' }),
   submodule: () => import('./assets/merge'), // NOTE: To be deprecated in favor of `merge`
-  sun: withSynonyms(
-    () => import('./assets/sun'),
-    ['sun', 'light', 'day', 'theme', 'bright']
-  ),
+  sun: withMetadata(() => import('./assets/sun'), {
+    category: 'glyph',
+    synonyms: ['sun', 'light', 'day', 'theme', 'bright'],
+  }),
   swatchInput: () => import('./assets/swatch_input'), // Undocumented on purpose. Has an extra stroke for EuiColorPicker
-  symlink: withSynonyms(
-    () => import('./assets/symlink'),
-    ['symlink', 'shortcut', 'alias', 'link', 'reference']
-  ),
+  symlink: withMetadata(() => import('./assets/symlink'), {
+    category: 'glyph',
+    synonyms: ['symlink', 'shortcut', 'alias', 'link', 'reference'],
+  }),
   tableDensityCompact: () => import('./assets/table_density_high'), // NOTE: To be deprecated in favor of tableDensityHigh
-  tableDensityHigh: withSynonyms(
-    () => import('./assets/table_density_high'),
-    ['table', 'density', 'compact', 'tight', 'rows', 'spacing']
-  ),
+  tableDensityHigh: withMetadata(() => import('./assets/table_density_high'), {
+    category: 'glyph',
+    synonyms: ['table', 'density', 'compact', 'tight', 'rows', 'spacing'],
+  }),
   tableDensityExpanded: () => import('./assets/table_density_low'), // NOTE: To be deprecated in favor of tableDensityLow
-  tableDensityLow: withSynonyms(
-    () => import('./assets/table_density_low'),
-    ['table', 'density', 'spacious', 'loose', 'rows', 'spacing']
-  ),
+  tableDensityLow: withMetadata(() => import('./assets/table_density_low'), {
+    category: 'glyph',
+    synonyms: ['table', 'density', 'spacious', 'loose', 'rows', 'spacing'],
+  }),
   tableDensityNormal: () => import('./assets/table'), // NOTE: To be deprecated in favor of table
-  tableOfContents: () => import('./assets/table_of_contents'),
-  tag: withSynonyms(
-    () => import('./assets/tag'),
-    ['tag', 'label', 'category', 'keyword', 'badge']
-  ),
-  tear: () => import('./assets/tear'),
+  tableOfContents: withMetadata(() => import('./assets/table_of_contents'), {
+    category: 'glyph',
+  }),
+  tag: withMetadata(() => import('./assets/tag'), {
+    category: 'glyph',
+    synonyms: ['tag', 'label', 'category', 'keyword', 'badge'],
+  }),
+  tear: withMetadata(() => import('./assets/tear'), { category: 'glyph' }),
   temperature: () => import('./assets/thermometer'), // NOTE: To be deprecated in favor of thermometer
-  thermometer: withSynonyms(
-    () => import('./assets/thermometer'),
-    ['thermometer', 'temperature', 'heat', 'metric', 'gauge']
-  ),
-  thumbDown: withSynonyms(
-    () => import('./assets/thumb_down'),
-    ['thumbs down', 'dislike', 'negative', 'vote', 'feedback', 'bad']
-  ),
-  thumbUp: withSynonyms(
-    () => import('./assets/thumb_up'),
-    ['thumbs up', 'like', 'positive', 'vote', 'feedback', 'good']
-  ),
-  timeline: withSynonyms(
-    () => import('./assets/timeline'),
-    ['timeline', 'history', 'events', 'chronological', 'sequence']
-  ),
-  timelineWithArrow: withSynonyms(
+  thermometer: withMetadata(() => import('./assets/thermometer'), {
+    category: 'glyph',
+    synonyms: ['thermometer', 'temperature', 'heat', 'metric', 'gauge'],
+  }),
+  thumbDown: withMetadata(() => import('./assets/thumb_down'), {
+    category: 'glyph',
+    synonyms: ['thumbs down', 'dislike', 'negative', 'vote', 'feedback', 'bad'],
+  }),
+  thumbUp: withMetadata(() => import('./assets/thumb_up'), {
+    category: 'glyph',
+    synonyms: ['thumbs up', 'like', 'positive', 'vote', 'feedback', 'good'],
+  }),
+  timeline: withMetadata(() => import('./assets/timeline'), {
+    category: 'glyph',
+    synonyms: ['timeline', 'history', 'events', 'chronological', 'sequence'],
+  }),
+  timelineWithArrow: withMetadata(
     () => import('./assets/timeline_with_arrow'),
-    ['timeline', 'arrow', 'history', 'sequence', 'flow', 'events']
+    {
+      category: 'glyph',
+      synonyms: ['timeline', 'arrow', 'history', 'sequence', 'flow', 'events'],
+    }
   ),
-  timelionApp: () => import('./assets/app_timelion'),
+  timelionApp: withMetadata(() => import('./assets/app_timelion'), {
+    category: 'app',
+  }),
   timeRefresh: () => import('./assets/refresh_time'), // NOTE: To be deprecated in favor of refreshTime
-  refreshTime: withSynonyms(
-    () => import('./assets/refresh_time'),
-    ['refresh', 'time', 'reload', 'schedule', 'sync', 'clock']
-  ),
+  refreshTime: withMetadata(() => import('./assets/refresh_time'), {
+    category: 'glyph',
+    synonyms: ['refresh', 'time', 'reload', 'schedule', 'sync', 'clock'],
+  }),
   timeslider: () => import('./assets/clock_control'), // NOTE: To be deprecated in favor of clockControl
   training: () => import('./assets/presentation'), // NOTE: To be deprecated in favor of presentation,
-  transitionBottomIn: withSynonyms(
+  transitionBottomIn: withMetadata(
     () => import('./assets/transition_bottom_in'),
-    ['transition', 'bottom', 'in', 'animate', 'enter', 'motion']
+    {
+      category: 'glyph',
+      synonyms: ['transition', 'bottom', 'in', 'animate', 'enter', 'motion'],
+    }
   ),
-  transitionBottomOut: withSynonyms(
+  transitionBottomOut: withMetadata(
     () => import('./assets/transition_bottom_out'),
-    ['transition', 'bottom', 'out', 'animate', 'exit', 'motion']
+    {
+      category: 'glyph',
+      synonyms: ['transition', 'bottom', 'out', 'animate', 'exit', 'motion'],
+    }
   ),
-  transitionLeftIn: withSynonyms(
-    () => import('./assets/transition_left_in'),
-    ['transition', 'left', 'in', 'animate', 'enter', 'motion']
-  ),
-  transitionLeftOut: withSynonyms(
+  transitionLeftIn: withMetadata(() => import('./assets/transition_left_in'), {
+    category: 'glyph',
+    synonyms: ['transition', 'left', 'in', 'animate', 'enter', 'motion'],
+  }),
+  transitionLeftOut: withMetadata(
     () => import('./assets/transition_left_out'),
-    ['transition', 'left', 'out', 'animate', 'exit', 'motion']
+    {
+      category: 'glyph',
+      synonyms: ['transition', 'left', 'out', 'animate', 'exit', 'motion'],
+    }
   ),
-  transitionTopIn: withSynonyms(
-    () => import('./assets/transition_top_in'),
-    ['transition', 'top', 'in', 'animate', 'enter', 'motion']
-  ),
-  transitionTopOut: withSynonyms(
-    () => import('./assets/transition_top_out'),
-    ['transition', 'top', 'out', 'animate', 'exit', 'motion']
-  ),
-  trash: withSynonyms(
-    () => import('./assets/trash'),
-    ['trash', 'delete', 'remove', 'bin', 'garbage', 'discard']
-  ),
-  unfold: () => import('./assets/unfold'),
+  transitionTopIn: withMetadata(() => import('./assets/transition_top_in'), {
+    category: 'glyph',
+    synonyms: ['transition', 'top', 'in', 'animate', 'enter', 'motion'],
+  }),
+  transitionTopOut: withMetadata(() => import('./assets/transition_top_out'), {
+    category: 'glyph',
+    synonyms: ['transition', 'top', 'out', 'animate', 'exit', 'motion'],
+  }),
+  trash: withMetadata(() => import('./assets/trash'), {
+    category: 'glyph',
+    synonyms: ['trash', 'delete', 'remove', 'bin', 'garbage', 'discard'],
+  }),
+  unfold: withMetadata(() => import('./assets/unfold'), { category: 'glyph' }),
   unlink: () => import('./assets/link_slash'), // NOTE: To be deprecated in favor of linkSlash
-  upgradeAssistantApp: () => import('./assets/app_upgrade_assistant'),
-  uptimeApp: () => import('./assets/app_uptime'),
-  user: withSynonyms(
-    () => import('./assets/user'),
-    ['user', 'person', 'account', 'profile', 'avatar']
+  upgradeAssistantApp: withMetadata(
+    () => import('./assets/app_upgrade_assistant'),
+    { category: 'app' }
   ),
+  uptimeApp: withMetadata(() => import('./assets/app_uptime'), {
+    category: 'app',
+  }),
+  user: withMetadata(() => import('./assets/user'), {
+    category: 'glyph',
+    synonyms: ['user', 'person', 'account', 'profile', 'avatar'],
+  }),
   userAvatar: () => import('./assets/user'), // NOTE: To be deprecated in favor of `user`
-  users: withSynonyms(
-    () => import('./assets/users'),
-    ['users', 'people', 'team', 'group', 'accounts']
-  ),
-  usersRolesApp: () => import('./assets/app_users_roles'),
-  unarchive: withSynonyms(
-    () => import('./assets/unarchive'),
-    ['unarchive', 'restore', 'extract', 'retrieve', 'unpack']
-  ),
+  users: withMetadata(() => import('./assets/users'), {
+    category: 'glyph',
+    synonyms: ['users', 'people', 'team', 'group', 'accounts'],
+  }),
+  usersRolesApp: withMetadata(() => import('./assets/app_users_roles'), {
+    category: 'app',
+  }),
+  unarchive: withMetadata(() => import('./assets/unarchive'), {
+    category: 'glyph',
+    synonyms: ['unarchive', 'restore', 'extract', 'retrieve', 'unpack'],
+  }),
   vector: () => import('./assets/vector_square'), // NOTE: To be deprecated in favor of vectorSquare
-  vectorSquare: withSynonyms(
-    () => import('./assets/vector_square'),
-    ['vector', 'square', 'shape', 'geometry', 'box', 'region']
-  ),
-  videoPlayer: withSynonyms(
-    () => import('./assets/video_player'),
-    ['video', 'player', 'play', 'media', 'film', 'watch']
-  ),
+  vectorSquare: withMetadata(() => import('./assets/vector_square'), {
+    category: 'glyph',
+    synonyms: ['vector', 'square', 'shape', 'geometry', 'box', 'region'],
+  }),
+  videoPlayer: withMetadata(() => import('./assets/video_player'), {
+    category: 'glyph',
+    synonyms: ['video', 'player', 'play', 'media', 'film', 'watch'],
+  }),
   visArea: () => import('./assets/chart_area'), // NOTE: To be deprecated in favor of chartArea
   visAreaStacked: () => import('./assets/chart_area_stack'), // NOTE: To be deprecated in favor of chartAreaStack
   visBarHorizontal: () => import('./assets/chart_bar_horizontal'), // NOTE: To be deprecated in favor of chartBarHorizontal
@@ -1501,33 +2142,43 @@ export const typeToPathMap = {
   visBarVertical: () => import('./assets/chart_bar_vertical'), // NOTE: To be deprecated in favor of chartBarVertical
   visBarVerticalStacked: () => import('./assets/chart_bar_vertical_stack'), // NOTE: To be deprecated in favor of chartBarVerticalStack
   visGauge: () => import('./assets/chart_gauge'), // NOTE: To be deprecated in favor of chartGauge
-  visGoal: () => import('./assets/vis_goal'),
+  visGoal: withMetadata(() => import('./assets/vis_goal'), {
+    category: 'glyph',
+  }),
   visLine: () => import('./assets/chart_line'), // NOTE: To be deprecated in favor of chartLine
   visMapCoordinate: () => import('./assets/waypoint'), // NOTE: To be deprecated in favor of waypoint
   visMapRegion: () => import('./assets/map'), // NOTE: To be deprecated in favor of map
   visMetric: () => import('./assets/chart_metric'), // NOTE: To be deprecated in favor of chartMetric
-  chartMetric: withSynonyms(
-    () => import('./assets/chart_metric'),
-    ['metric', 'chart', 'kpi', 'measurement', 'stat', 'indicator']
-  ),
+  chartMetric: withMetadata(() => import('./assets/chart_metric'), {
+    category: 'glyph',
+    synonyms: ['metric', 'chart', 'kpi', 'measurement', 'stat', 'indicator'],
+  }),
   visPie: () => import('./assets/chart_pie'), // NOTE: To be deprecated in favor of chartPie
   visTable: () => import('./assets/table'), // NOTE: To be deprecated in favor of table
   visTagCloud: () => import('./assets/chart_tag_cloud'), // NOTE: To be deprecated in favor of chartTagCloud
   visText: () => import('./assets/text'), // NOTE: To be deprecated in favor of text,
-  visTimelion: () => import('./assets/vis_timelion'),
+  visTimelion: withMetadata(() => import('./assets/vis_timelion'), {
+    category: 'glyph',
+  }),
   visVega: () => import('./assets/code'), // NOTE: To be deprecated in favor of `code`
-  visVisualBuilder: () => import('./assets/vis_visual_builder'),
-  visualizeApp: () => import('./assets/app_visualize'),
-  vulnerabilityManagementApp: () =>
-    import('./assets/app_vulnerability_management'),
-  warning: withSynonyms(
-    () => import('./assets/warning'),
-    ['warning', 'alert', 'caution', 'danger', 'issue']
+  visVisualBuilder: withMetadata(() => import('./assets/vis_visual_builder'), {
+    category: 'glyph',
+  }),
+  visualizeApp: withMetadata(() => import('./assets/app_visualize'), {
+    category: 'app',
+  }),
+  vulnerabilityManagementApp: withMetadata(
+    () => import('./assets/app_vulnerability_management'),
+    { category: 'app' }
   ),
+  warning: withMetadata(() => import('./assets/warning'), {
+    category: 'glyph',
+    synonyms: ['warning', 'alert', 'caution', 'danger', 'issue'],
+  }),
   warningFilled: () => import('./assets/warning_fill'), // NOTE: To be deprecated in favor of warningFill
-  warningFill: withSynonyms(
-    () => import('./assets/warning_fill'),
-    [
+  warningFill: withMetadata(() => import('./assets/warning_fill'), {
+    category: 'glyph',
+    synonyms: [
       'warning fill',
       'warning',
       'alert',
@@ -1536,81 +2187,241 @@ export const typeToPathMap = {
       'issue',
       'fill',
       'filled',
-    ]
+    ],
+  }),
+  watchesApp: withMetadata(() => import('./assets/app_watches'), {
+    category: 'app',
+  }),
+  web: withMetadata(() => import('./assets/web'), { category: 'glyph' }),
+  wordWrap: withMetadata(() => import('./assets/word_wrap'), {
+    category: 'glyph',
+  }),
+  wordWrapDisabled: withMetadata(() => import('./assets/word_wrap_disabled'), {
+    category: 'glyph',
+  }),
+  workflowsApp: withMetadata(() => import('./assets/app_workflows'), {
+    category: 'app',
+  }),
+  workflow: withMetadata(() => import('./assets/workflow'), {
+    category: 'glyph',
+    synonyms: ['workflow', 'automation', 'pipeline', 'process', 'flow'],
+  }),
+  workplaceSearchApp: withMetadata(
+    () => import('./assets/app_workplace_search'),
+    { category: 'app' }
   ),
-  watchesApp: () => import('./assets/app_watches'),
-  web: () => import('./assets/web'),
-  wordWrap: () => import('./assets/word_wrap'),
-  wordWrapDisabled: () => import('./assets/word_wrap_disabled'),
-  workflowsApp: () => import('./assets/app_workflows'),
-  workflow: withSynonyms(
-    () => import('./assets/workflow'),
-    ['workflow', 'automation', 'pipeline', 'process', 'flow']
-  ),
-  workplaceSearchApp: () => import('./assets/app_workplace_search'),
-  wrench: withSynonyms(
-    () => import('./assets/wrench'),
-    ['wrench', 'tool', 'fix', 'settings', 'repair']
-  ),
+  wrench: withMetadata(() => import('./assets/wrench'), {
+    category: 'glyph',
+    synonyms: ['wrench', 'tool', 'fix', 'settings', 'repair'],
+  }),
   // Token Icon Imports
-  tokenAlias: () => import('./assets/token_alias'),
-  tokenAnnotation: () => import('./assets/token_annotation'),
-  tokenArray: () => import('./assets/token_array'),
-  tokenBinary: () => import('./assets/token_binary'),
-  tokenBoolean: () => import('./assets/token_boolean'),
-  tokenClass: () => import('./assets/token_class'),
-  tokenCompletionSuggester: () => import('./assets/token_completion_suggester'),
-  tokenConstant: () => import('./assets/token_constant'),
-  tokenDate: () => import('./assets/token_date'),
-  tokenDimension: () => import('./assets/token_dimension'),
-  tokenElement: () => import('./assets/token_element'),
-  tokenEnum: () => import('./assets/token_enum'),
-  tokenEnumMember: () => import('./assets/token_enum_member'),
-  tokenEvent: () => import('./assets/token_event'),
-  tokenException: () => import('./assets/token_exception'),
-  tokenField: () => import('./assets/token_field'),
-  tokenFile: () => import('./assets/token_file'),
-  tokenFlattened: () => import('./assets/token_flattened'),
-  tokenFunction: () => import('./assets/token_function'),
-  tokenGeo: () => import('./assets/token_geo'),
-  tokenHistogram: () => import('./assets/token_histogram'),
-  tokenInterface: () => import('./assets/token_interface'),
-  tokenIP: () => import('./assets/token_ip'),
-  tokenJoin: () => import('./assets/token_join'),
-  tokenKey: () => import('./assets/token_key'),
-  tokenKeyword: () => import('./assets/token_keyword'),
-  tokenMethod: () => import('./assets/token_method'),
-  tokenMetricCounter: () => import('./assets/token_metric_counter'),
-  tokenMetricGauge: () => import('./assets/token_metric_gauge'),
-  tokenModule: () => import('./assets/token_module'),
-  tokenNamespace: () => import('./assets/token_namespace'),
-  tokenNested: () => import('./assets/token_nested'),
-  tokenNull: () => import('./assets/token_null'),
-  tokenNumber: () => import('./assets/token_number'),
-  tokenObject: () => import('./assets/token_object'),
-  tokenOperator: () => import('./assets/token_operator'),
-  tokenPackage: () => import('./assets/token_package'),
-  tokenParameter: () => import('./assets/token_parameter'),
-  tokenPercolator: () => import('./assets/token_percolator'),
-  tokenProperty: () => import('./assets/token_property'),
-  tokenRange: () => import('./assets/token_range'),
-  tokenRankFeature: () => import('./assets/token_rank_feature'),
-  tokenRankFeatures: () => import('./assets/token_rank_features'),
-  tokenRepo: () => import('./assets/token_repo'),
-  tokenSearchType: () => import('./assets/token_search_type'),
-  tokenSemanticText: () => import('./assets/token_semantic_text'),
-  tokenShape: () => import('./assets/token_shape'),
-  tokenString: () => import('./assets/token_string'),
-  tokenStruct: () => import('./assets/token_struct'),
-  tokenSymbol: () => import('./assets/token_symbol'),
-  tokenTag: () => import('./assets/token_tag'),
-  tokenText: () => import('./assets/token_text'),
-  tokenTokenCount: () => import('./assets/token_token_count'),
-  tokenVariable: () => import('./assets/token_variable'),
-  tokenVectorDense: () => import('./assets/token_vector_dense'),
-  tokenDenseVector: () => import('./assets/token_vector_dense'), // NOTE: This is an undocumented alias for `tokenVectorDense`, added for legacy compatability
-  tokenVectorSparse: () => import('./assets/token_vector_sparse'),
+  tokenAlias: withMetadata(() => import('./assets/token_alias'), {
+    category: 'token',
+  }),
+  tokenAnnotation: withMetadata(() => import('./assets/token_annotation'), {
+    category: 'token',
+  }),
+  tokenArray: withMetadata(() => import('./assets/token_array'), {
+    category: 'token',
+  }),
+  tokenBinary: withMetadata(() => import('./assets/token_binary'), {
+    category: 'token',
+  }),
+  tokenBoolean: withMetadata(() => import('./assets/token_boolean'), {
+    category: 'token',
+  }),
+  tokenClass: withMetadata(() => import('./assets/token_class'), {
+    category: 'token',
+  }),
+  tokenCompletionSuggester: withMetadata(
+    () => import('./assets/token_completion_suggester'),
+    { category: 'token' }
+  ),
+  tokenConstant: withMetadata(() => import('./assets/token_constant'), {
+    category: 'token',
+  }),
+  tokenDate: withMetadata(() => import('./assets/token_date'), {
+    category: 'token',
+  }),
+  tokenDimension: withMetadata(() => import('./assets/token_dimension'), {
+    category: 'token',
+  }),
+  tokenElement: withMetadata(() => import('./assets/token_element'), {
+    category: 'token',
+  }),
+  tokenEnum: withMetadata(() => import('./assets/token_enum'), {
+    category: 'token',
+  }),
+  tokenEnumMember: withMetadata(() => import('./assets/token_enum_member'), {
+    category: 'token',
+  }),
+  tokenEvent: withMetadata(() => import('./assets/token_event'), {
+    category: 'token',
+  }),
+  tokenException: withMetadata(() => import('./assets/token_exception'), {
+    category: 'token',
+  }),
+  tokenField: withMetadata(() => import('./assets/token_field'), {
+    category: 'token',
+  }),
+  tokenFile: withMetadata(() => import('./assets/token_file'), {
+    category: 'token',
+  }),
+  tokenFlattened: withMetadata(() => import('./assets/token_flattened'), {
+    category: 'token',
+  }),
+  tokenFunction: withMetadata(() => import('./assets/token_function'), {
+    category: 'token',
+  }),
+  tokenGeo: withMetadata(() => import('./assets/token_geo'), {
+    category: 'token',
+  }),
+  tokenHistogram: withMetadata(() => import('./assets/token_histogram'), {
+    category: 'token',
+  }),
+  tokenInterface: withMetadata(() => import('./assets/token_interface'), {
+    category: 'token',
+  }),
+  tokenIP: withMetadata(() => import('./assets/token_ip'), {
+    category: 'token',
+  }),
+  tokenJoin: withMetadata(() => import('./assets/token_join'), {
+    category: 'token',
+  }),
+  tokenKey: withMetadata(() => import('./assets/token_key'), {
+    category: 'token',
+  }),
+  tokenKeyword: withMetadata(() => import('./assets/token_keyword'), {
+    category: 'token',
+  }),
+  tokenMethod: withMetadata(() => import('./assets/token_method'), {
+    category: 'token',
+  }),
+  tokenMetricCounter: withMetadata(
+    () => import('./assets/token_metric_counter'),
+    { category: 'token' }
+  ),
+  tokenMetricGauge: withMetadata(() => import('./assets/token_metric_gauge'), {
+    category: 'token',
+  }),
+  tokenModule: withMetadata(() => import('./assets/token_module'), {
+    category: 'token',
+  }),
+  tokenNamespace: withMetadata(() => import('./assets/token_namespace'), {
+    category: 'token',
+  }),
+  tokenNested: withMetadata(() => import('./assets/token_nested'), {
+    category: 'token',
+  }),
+  tokenNull: withMetadata(() => import('./assets/token_null'), {
+    category: 'token',
+  }),
+  tokenNumber: withMetadata(() => import('./assets/token_number'), {
+    category: 'token',
+  }),
+  tokenObject: withMetadata(() => import('./assets/token_object'), {
+    category: 'token',
+  }),
+  tokenOperator: withMetadata(() => import('./assets/token_operator'), {
+    category: 'token',
+  }),
+  tokenPackage: withMetadata(() => import('./assets/token_package'), {
+    category: 'token',
+  }),
+  tokenParameter: withMetadata(() => import('./assets/token_parameter'), {
+    category: 'token',
+  }),
+  tokenPercolator: withMetadata(() => import('./assets/token_percolator'), {
+    category: 'token',
+  }),
+  tokenProperty: withMetadata(() => import('./assets/token_property'), {
+    category: 'token',
+  }),
+  tokenRange: withMetadata(() => import('./assets/token_range'), {
+    category: 'token',
+  }),
+  tokenRankFeature: withMetadata(() => import('./assets/token_rank_feature'), {
+    category: 'token',
+  }),
+  tokenRankFeatures: withMetadata(
+    () => import('./assets/token_rank_features'),
+    { category: 'token' }
+  ),
+  tokenRepo: withMetadata(() => import('./assets/token_repo'), {
+    category: 'token',
+  }),
+  tokenSearchType: withMetadata(() => import('./assets/token_search_type'), {
+    category: 'token',
+  }),
+  tokenSemanticText: withMetadata(
+    () => import('./assets/token_semantic_text'),
+    { category: 'token' }
+  ),
+  tokenShape: withMetadata(() => import('./assets/token_shape'), {
+    category: 'token',
+  }),
+  tokenString: withMetadata(() => import('./assets/token_string'), {
+    category: 'token',
+  }),
+  tokenStruct: withMetadata(() => import('./assets/token_struct'), {
+    category: 'token',
+  }),
+  tokenSymbol: withMetadata(() => import('./assets/token_symbol'), {
+    category: 'token',
+  }),
+  tokenTag: withMetadata(() => import('./assets/token_tag'), {
+    category: 'token',
+  }),
+  tokenText: withMetadata(() => import('./assets/token_text'), {
+    category: 'token',
+  }),
+  tokenTokenCount: withMetadata(() => import('./assets/token_token_count'), {
+    category: 'token',
+  }),
+  tokenVariable: withMetadata(() => import('./assets/token_variable'), {
+    category: 'token',
+  }),
+  tokenVectorDense: withMetadata(() => import('./assets/token_vector_dense'), {
+    category: 'token',
+  }),
+  tokenDenseVector: withMetadata(() => import('./assets/token_vector_dense'), {
+    category: 'token',
+  }), // NOTE: This is an undocumented alias for `tokenVectorDense`, added for legacy compatability
+  tokenVectorSparse: withMetadata(
+    () => import('./assets/token_vector_sparse'),
+    { category: 'token' }
+  ),
 };
+
+type TypeToPathMapLoader = (typeof typeToPathMap)[keyof typeof typeToPathMap];
+
+type TypeToPathMapMetadata = IconMetadata;
+
+const getTypeToPathMapMetadata = (
+  loader: TypeToPathMapLoader
+): TypeToPathMapMetadata | undefined =>
+  (loader as { metadata?: TypeToPathMapMetadata }).metadata;
+
+const getTypeToPathMapCategoryIconTypes = (category: IconCategory) =>
+  Object.entries(typeToPathMap)
+    .filter(
+      ([, loader]) => getTypeToPathMapMetadata(loader)?.category === category
+    )
+    .map(([iconType]) => iconType as keyof typeof typeToPathMap);
+
+export const typeToPathMapIconTypes =
+  getTypeToPathMapCategoryIconTypes('glyph');
+
+export const typeToPathMapAppIconTypes =
+  getTypeToPathMapCategoryIconTypes('app');
+
+export const typeToPathMapLogoIconTypes =
+  getTypeToPathMapCategoryIconTypes('logo');
+
+export const typeToPathMapMlIconTypes = getTypeToPathMapCategoryIconTypes('ml');
+
+export const typeToPathMapTokenIconTypes =
+  getTypeToPathMapCategoryIconTypes('token');
 
 export type TypeToPathMapSynonyms = Partial<
   Record<keyof typeof typeToPathMap, string[]>
@@ -1618,7 +2429,7 @@ export type TypeToPathMapSynonyms = Partial<
 
 export const typeToPathMapSynonyms: TypeToPathMapSynonyms = Object.fromEntries(
   Object.entries(typeToPathMap).flatMap(([iconType, loader]) => {
-    const synonyms = (loader as { synonyms?: string[] }).synonyms;
+    const synonyms = getTypeToPathMapMetadata(loader)?.synonyms;
 
     return synonyms ? [[iconType, synonyms]] : [];
   })

@@ -126,10 +126,10 @@ Create a new feature branch against this repo and make the following changes:
 
 _1. Add your glyph to the `EuiIcon` component_
 - Add your SVG file to the `/packages/eui/src/components/icon/svgs` folder
-- Add a reference in the `/packages/eui/src/components/icon/icon_map.ts` file (in alphabetical order)
+- Add the mandatory import SVG reference `import('./assets/your_icon_asset')` (in alphabetical order) and optional metadata entry in `/packages/eui/src/components/icon/icon_map.ts`  `withMetadata(..., { category: 'glyph' | 'app' | 'logo' | 'ml' | 'token', synonyms: ['synonym 1', 'synonym 2'... ] })`
 
 _2. Display the icon in the docs_
-- Add the icon name to `/packages/website/docs/components/display/icons/icon_types.ts` *
+- The docs icon list is generated from icon metadata, so icons with `category: 'glyph'` are shown automatically *
 
 _3. Compile and test_
 - Go to the `packages/eui` directory
