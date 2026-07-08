@@ -118,10 +118,9 @@ import { iconTypes } from './icon_types';
 import iconTypesSource from '!raw-loader!./icon_types';
 import { filterIconTypes } from './icon_filter';
 import iconFilterSource from '!raw-loader!./icon_filter';
-import { iconSynonyms } from './icon_synonyms';
-import iconSynonymsSource from '!raw-loader!./icon_synonyms';
+import { typeToPathMapSynonyms as iconSynonyms } from '../../../../../eui/src/components/icon/icon_map';
 
-<Demo scope={{ iconTypes, filterIconTypes, iconSynonyms }} extraFiles={{ 'icon_types.ts': iconTypesSource, 'icon_filter.ts': iconFilterSource, 'icon_synonyms.ts': iconSynonymsSource }}>
+<Demo scope={{ iconTypes, filterIconTypes, iconSynonyms }} extraFiles={{ 'icon_types.ts': iconTypesSource, 'icon_filter.ts': iconFilterSource }}>
   ```tsx
   import React, { useMemo, useState } from 'react';
   import { css } from '@emotion/react';
@@ -138,7 +137,7 @@ import iconSynonymsSource from '!raw-loader!./icon_synonyms';
   } from '@elastic/eui';
   import { iconTypes } from './icon_types';
   import { filterIconTypes } from './icon_filter';
-  import { iconSynonyms } from './icon_synonyms';
+  import { typeToPathMapSynonyms as iconSynonyms } from '../../../../../eui/src/components/icon/icon_map';
 
   export default () => {
     const [searchValue, setSearchValue] = useState('');
