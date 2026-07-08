@@ -7,7 +7,7 @@
  */
 
 import { useMemo } from 'react';
-import { getParameters } from 'codesandbox/lib/api/define';
+import { getParameters } from './get_parameters';
 import dedent from 'dedent';
 import { EuiButtonIcon, EuiToolTip } from '@elastic/eui';
 import type { ActionComponent } from '../../../theme/Demo/actions';
@@ -142,7 +142,7 @@ export const createOpenInCodeSandboxAction =
           },
           ...codeSandboxFiles,
         },
-      } as any);
+      });
     }, [activeSource, extraFiles, previewWrapperSource]);
 
     const openInCodeSandboxLabel = 'Open in CodeSandbox';

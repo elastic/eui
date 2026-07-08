@@ -170,7 +170,6 @@
     "buildkite-test-collector": "^1.7.2",
     "cache-loader": "^4.1.0",
     "circular-dependency-plugin": "^5.2.2",
-    "codesandbox": "^2.1.16",
     "core-js": "^3.6.5",
     "cross-env": "^7.0.2",
     "css-loader": "^6.7.1",
