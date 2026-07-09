@@ -125,11 +125,21 @@ _**Note**: Figma users can use the [SVG Export plugin][svg-plugin] to optimize S
 Create a new feature branch against this repo and make the following changes:
 
 _1. Add your glyph to the `EuiIcon` component_
-- Add your SVG file to the `/packages/eui/src/components/icon/svgs` folder
-- Add a reference in the `/packages/eui/src/components/icon/icon_map.ts` file (in alphabetical order)
+- Add your SVG file to the `/packages/eui/src/components/icon/svgs` folder.
+- Add a reference to the SVG import in `/packages/eui/src/components/icon/icon_map.ts` in alphabetical order.
 
-_2. Display the icon in the docs_
-- Add the icon name to the `typeToPathMapIconTypes` export in `/packages/eui/src/components/icon/icon_map.ts` *
+_2. Add metadata to the icon loader_ _(optional)_
+- If you want the icon to participate in docs search or be grouped into a specific set, attach metadata next to the import.
+- Example:
+
+```ts
+myIcon: withMetadata(() => import('./assets/my_icon'), {
+  category: 'glyph',
+  synonyms: ['my icon', 'alias'],
+}),
+```
+
+- `category` and `synonyms` are optional, but useful when the icon should appear in the docs search experience.
 
 _3. Compile and test_
 - Go to the `packages/eui` directory

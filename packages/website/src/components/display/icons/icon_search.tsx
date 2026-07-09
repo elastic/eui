@@ -167,12 +167,13 @@ type IconSearchProps = {
 export const IconSearch = ({
   iconTypes,
   iconSynonyms,
-  placeholder = 'Search icons',
+  placeholder = 'Search glyph icons',
   iconSize = 'm',
   renderIcon,
   resultThemeMode,
 }: IconSearchProps) => {
   const [searchValue, setSearchValue] = useState('');
+  const placeholderText = `${placeholder} (${iconTypes.length})`;
 
   const filteredIconTypes = useMemo(
     () => filterIconTypes(iconTypes, searchValue, iconSynonyms),
@@ -182,8 +183,8 @@ export const IconSearch = ({
   return (
     <>
       <EuiFieldSearch
-        placeholder={placeholder}
-        aria-label={placeholder}
+        placeholder={placeholderText}
+        aria-label={placeholderText}
         onSearch={setSearchValue}
         incremental
         isClearable
