@@ -1,0 +1,7 @@
+{
+  "description": "Single source of truth for packages released independently from `@elastic/eui`. Each gets its own namespaced git tag (`<name>@<version>`) and GitHub Release.",
+  "packages": [
+    "@elastic/eui-illustrations",
+    "@elastic/eslint-plugin-eui"
+  ]
+}

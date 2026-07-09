@@ -61,6 +61,8 @@ export const DemoActionsBar = ({
   onClickCopyToClipboard,
 }: DemoActionsBarProps) => {
   const styles = useEuiMemoizedStyles(getDemoActionsBarStyles);
+  const copyToClipboardLabel = 'Copy to clipboard';
+  const reloadExampleLabel = 'Reload example';
 
   return (
     <EuiFlexGroup alignItems="center" css={styles.actionsBar} gutterSize="s">
@@ -82,22 +84,22 @@ export const DemoActionsBar = ({
           activeSource={activeSource}
         />
       ))}
-      <EuiToolTip content="Copy to clipboard">
+      <EuiToolTip content={copyToClipboardLabel} disableScreenReaderOutput>
         <EuiButtonIcon
           size="s"
           iconType="copy"
           color="text"
           onClick={onClickCopyToClipboard}
-          aria-label="Copy code to clipboard"
+          aria-label={copyToClipboardLabel}
         />
       </EuiToolTip>
-      <EuiToolTip content="Reload example">
+      <EuiToolTip content={reloadExampleLabel} disableScreenReaderOutput>
         <EuiButtonIcon
           size="s"
           iconType="refresh"
           color="text"
           onClick={onClickReloadExample}
-          aria-label="Reload example"
+          aria-label={reloadExampleLabel}
         />
       </EuiToolTip>
     </EuiFlexGroup>

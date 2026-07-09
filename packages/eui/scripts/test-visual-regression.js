@@ -13,6 +13,12 @@ function findRepoRoot(start) {
   return start;
 }
 
+/**
+ * The test-runner is invoked once per variant.
+ * These names must match the keys of the `VARIANTS` map in `.storybook/vrt.ts`.
+ */
+const VARIANTS = ['desktop', 'mobile'];
+
 const { argv } = yargs(hideBin(process.argv))
   .parserConfiguration({
     // @see https://github.com/yargs/yargs-parser#configuration
@@ -71,29 +77,51 @@ if (useDocker) {
     .readFileSync(path.join(repoRoot, '.nvmrc'), 'utf8')
     .trim();
 
-  const innerCmd = [
-    `npm install -g n && n ${nodeVersion} && hash -r`,
+  const argsSuffix = testStorybookArgs.length
+    ? ' ' + testStorybookArgs.join(' ')
+    : '';
+
+  const setup = [
+    `npm install -g n`,
+    `n ${nodeVersion}`,
+    `hash -r`,
     'corepack enable',
     'yarn',
     `cd ${workspaceDir}`,
     'yarn playwright install chromium',
-    `yarn test-storybook${
-      testStorybookArgs.length ? ' ' + testStorybookArgs.join(' ') : ''
-    }`,
   ].join(' && ');
 
   // `--network=host` lets containers reach host services on Linux;
   // Docker Desktop on macOS handles `host.docker.internal` automatically
   const networkFlag = process.platform === 'linux' ? '--network=host ' : '';
 
-  console.log(`Running visual regression tests in Docker (${dockerImage})`);
-  execSync(
+  const dockerRun = (innerCmd) =>
     `docker run --rm -i --platform linux/amd64 ${networkFlag}-v "${repoRoot}:/work" -w /work ${dockerImage} bash -c ${JSON.stringify(
       innerCmd
-    )}`,
-    { stdio: 'inherit' }
-  );
-  process.exit(0);
+    )}`;
+
+  console.log(`Running visual regression tests in Docker (${dockerImage})`);
+
+  // Run each variant in its OWN container. Sharing a single container let the
+  // first variant leak Chromium processes/memory that starve the next one under
+  // amd64 emulation, tripping the per-test timeout on the second variant.
+  // `--testTimeout` adds headroom for the slower emulated environment. All
+  // variants run even if an earlier one fails, so we still generate every
+  // baseline/diff; a non-zero exit is propagated if any variant reported diffs.
+
+  let failed = false;
+
+  for (const variant of VARIANTS) {
+    console.log(`\n--- Variant: ${variant}`);
+    const innerCmd = `set -e; ${setup}; VRT_VARIANT=${variant} yarn test-storybook --testTimeout=30000${argsSuffix}`;
+
+    try {
+      execSync(dockerRun(innerCmd), { stdio: 'inherit' });
+    } catch {
+      failed = true;
+    }
+  }
+  process.exit(failed ? 1 : 0);
 }
 
 // Safe-guard to ensure the browser is installed before running the tests
@@ -101,11 +129,30 @@ execSync('yarn playwright install chromium', { stdio: 'inherit' });
 
 console.log('Running visual regression tests');
 
-const cmd = [
+const baseCmd = [
   'yarn test-storybook',
   isUpdate && '--updateSnapshot',
   argv.url && `--url ${argv.url}`,
   ...extraArgs,
-];
+]
+  .filter(Boolean)
+  .join(' ');
 
-execSync(cmd.filter(Boolean).join(' '), { stdio: 'inherit' });
+// Run each variant in its own test-runner process (clean slate per variant).
+// Run all variants even if one fails, then exit non-zero if any reported diffs.
+let failed = false;
+
+for (const variant of VARIANTS) {
+  console.log(`\n--- Variant: ${variant}`);
+
+  try {
+    execSync(baseCmd, {
+      stdio: 'inherit',
+      env: { ...process.env, VRT_VARIANT: variant },
+    });
+  } catch {
+    failed = true;
+  }
+}
+
+process.exit(failed ? 1 : 0);

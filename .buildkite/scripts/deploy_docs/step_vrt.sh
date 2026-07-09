@@ -31,17 +31,48 @@ CURRENT_DIR="${VRT_DIR}/current"
 export GH_TOKEN="${VAULT_GITHUB_TOKEN}"
 
 ############################################################
-#            Skip check (`skip-vrt` PR label)              #
+#                       Skip checks                        #
 ############################################################
 
+# VRT is skipped (allowing Storybook and the website to build & deploy) when any of
+# the following apply:
+# - The PR has the `skip-vrt` label.
+# - The PR's diff is contained entirely within `VRT_SKIP_PATHS` - paths that can't affect EUI's visual output.
+#
+# To extend the path-based skip, add anchored regexps to `VRT_SKIP_PATHS`.
+VRT_SKIP_PATHS=(
+  '^packages/illustrations/'
+  '^packages/test-helpers/'
+)
+
+# Sets the meta-data the downstream update-baselines step reads, then exits.
+# $1: human-readable reason for the build log.
+skip_vrt() {
+  echo "$1 - skipping visual regression tests"
+  buildkite-agent meta-data set vrt_passed "skipped"
+  exit 0
+}
+
+# Skip: `skip-vrt` PR label.
 # Builds can be triggered by either Buildkite's native GitHub App (sets
 # BUILDKITE_PULL_REQUEST_LABELS) or buildkite-pr-bot (sets GITHUB_PR_LABELS).
 # Only one is populated per build, so check both.
 pr_labels=",${BUILDKITE_PULL_REQUEST_LABELS:-},${GITHUB_PR_LABELS:-},"
+
 if [[ "${pr_labels}" == *",skip-vrt,"* ]]; then
-  echo "PR #${BUILDKITE_PULL_REQUEST} has 'skip-vrt' label - skipping visual regression tests"
-  buildkite-agent meta-data set vrt_passed "skipped"
-  exit 0
+  skip_vrt "PR #${BUILDKITE_PULL_REQUEST} has 'skip-vrt' label"
+fi
+
+# Skip: diff contained entirely within `VRT_SKIP_PATHS`.
+skip_paths_regexp="$(IFS='|'; echo "${VRT_SKIP_PATHS[*]}")"
+base_branch="${BUILDKITE_PULL_REQUEST_BASE_BRANCH:-main}"
+
+if git fetch --no-tags --quiet origin "${base_branch}" 2>/dev/null \
+  && merge_base="$(git merge-base "origin/${base_branch}" HEAD 2>/dev/null)" \
+  && changed="$(git diff --name-only "${merge_base}" HEAD 2>/dev/null)" \
+  && [[ -n "${changed}" ]] \
+  && ! echo "${changed}" | grep -qvE "${skip_paths_regexp}"; then
+  skip_vrt "Only VRT-skippable paths changed"
 fi
 
 ############################################################
@@ -66,27 +97,32 @@ yarn workspace @elastic/eui test-visual-regression -- --url "${STORYBOOK_URL}" 2
   || VRT_PASSED=false
 
 ############################################################
-#            On pass: commit any new baselines             #
+#          Commit any new baselines (first run)            #
+############################################################
+
+# `test-runner.ts` writes a baseline directly to disk the first time it
+# encounters a story without one. Commit those net-new baselines now,
+# *regardless* of whether VRT overall passed or failed.
+new_files="$(git ls-files --others --exclude-standard -- "${REF_DIR}")"
+if [[ -n "${new_files}" ]]; then
+  echo "+++ Committing new VRT baseline screenshots (first run)"
+
+  github_user_vault="secret/ci/elastic-eui/github_machine_user"
+  git config --local user.name "$(retry 5 vault read -field=name "${github_user_vault}")"
+  git config --local user.email "$(retry 5 vault read -field=email "${github_user_vault}")"
+  gh auth setup-git
+  git add -- ${new_files}
+  git commit -m "chore(eui): add VRT baseline screenshots" --no-verify
+  git_push_to_pr_branch
+  echo "New VRT baseline screenshots committed and pushed"
+fi
+
+############################################################
+#                 On pass: nothing more to do              #
 ############################################################
 
 if [[ "${VRT_PASSED}" == "true" ]]; then
   buildkite-agent meta-data set vrt_passed "true"
-
-  if [[ -n "$(git status --porcelain -- "${REF_DIR}")" ]]; then
-    echo "+++ Committing new VRT baseline screenshots (first run)"
-
-    github_user_vault="secret/ci/elastic-eui/github_machine_user"
-    git config --local user.name "$(retry 5 vault read -field=name "${github_user_vault}")"
-    git config --local user.email "$(retry 5 vault read -field=email "${github_user_vault}")"
-    gh auth setup-git
-    git add "${REF_DIR}"
-    git commit -m "chore(eui): add VRT baseline screenshots" --no-verify
-    git_push_to_pr_branch
-    echo "New VRT baseline screenshots committed and pushed"
-  else
-    echo "Visual regression tests passed with no new VRT baseline screenshots"
-  fi
-
   exit 0
 fi
 
