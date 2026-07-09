@@ -31,18 +31,24 @@ If you would like to contribute to our growing list of glyphs, you can follow [t
 
 import { IconSearch } from '@site/src/components/display/icons';
 import {
-  typeToPathMapIconTypes as iconTypes,
+  typeToPathMapDocsGlyphIconTypes as iconTypes,
   typeToPathMapSynonyms as iconSynonyms,
 } from '../../../../../eui/src/components/icon/icon_map';
 
-<Demo scope={{ iconTypes, iconSynonyms, IconSearch }}>
+<Demo
+  scope={{
+    iconTypes,
+    iconSynonyms,
+    IconSearch,
+  }}
+>
   ```tsx
   import React from 'react';
   import { css } from '@emotion/react';
   import { EuiCodeBlock, EuiSpacer } from '@elastic/eui';
   import { IconSearch } from '@site/src/components/display/icons';
   import {
-    typeToPathMapIconTypes as iconTypes,
+    typeToPathMapDocsGlyphIconTypes as iconTypes,
     typeToPathMapSynonyms as iconSynonyms,
   } from '../../../../../eui/src/components/icon/icon_map';
 
@@ -62,7 +68,7 @@ import {
 
 These logos are restricted in use to Elastic products or when referencing Elastic products. They are multi-color with some internal paths having a class of `.euiIcon__fillNegative` to handle flipping colors for dark mode. The only other colors most of them support are ghost and text which turn them into a solid shape.
 
-import { typeToPathMapLogoIconTypes as iconTypesLogos } from '../../../../../eui/src/components/icon/icon_map';
+import { typeToPathMapDocsLogoIconTypes as iconTypesLogos } from '../../../../../eui/src/components/icon/icon_map';
 
 <Demo scope={{ iconTypes: iconTypesLogos, IconSearch }} previewPadding="none">
   ```tsx
@@ -70,7 +76,7 @@ import { typeToPathMapLogoIconTypes as iconTypesLogos } from '../../../../../eui
   import { css } from '@emotion/react';
   import { EuiButtonGroup, EuiSplitPanel, EuiCodeBlock, EuiSpacer, EuiIcon } from '@elastic/eui';
   import { IconSearch } from '@site/src/components/display/icons';
-  import { typeToPathMapLogoIconTypes as iconTypes } from '../../../../../eui/src/components/icon/icon_map';
+  import { typeToPathMapDocsLogoIconTypes as iconTypes } from '../../../../../eui/src/components/icon/icon_map';
 
   const allowedColors = ['multi', 'ghost', 'text'];
 
@@ -130,7 +136,7 @@ App logos are logos for Elastic Apps, and can contain multiple colors. Normally 
 
 Our set of App Icons are a subset of what the [Elastic Design team provides](https://brand.elastic.co/302f66895/p/031452-icons). If you require an icon from that set which EUI does not currently provide, please open a [Feature Request](https://github.com/elastic/eui/issues) for the EUI team to add it.
 
-import { typeToPathMapAppIconTypes as iconTypesApps } from '../../../../../eui/src/components/icon/icon_map';
+import { typeToPathMapDocsAppIconTypes as iconTypesApps } from '../../../../../eui/src/components/icon/icon_map';
 
 <Demo scope={{ iconTypes: iconTypesApps, IconSearch }}>
   ```tsx
@@ -138,7 +144,7 @@ import { typeToPathMapAppIconTypes as iconTypesApps } from '../../../../../eui/s
   import { css } from '@emotion/react';
   import { EuiCodeBlock, EuiSpacer } from '@elastic/eui';
   import { IconSearch } from '@site/src/components/display/icons';
-  import { typeToPathMapAppIconTypes as iconTypes } from '../../../../../eui/src/components/icon/icon_map';
+  import { typeToPathMapDocsAppIconTypes as iconTypes } from '../../../../../eui/src/components/icon/icon_map';
 
   export default () => (
     <div css={css`height: fit-content;`}>
@@ -156,7 +162,7 @@ import { typeToPathMapAppIconTypes as iconTypesApps } from '../../../../../eui/s
 
 Machine learning has some specific icons for job creation. Again, these are made for `32x32`.
 
-import { typeToPathMapMlIconTypes as iconTypesML } from '../../../../../eui/src/components/icon/icon_map';
+import { typeToPathMapDocsMlIconTypes as iconTypesML } from '../../../../../eui/src/components/icon/icon_map';
 
 <Demo scope={{ iconTypes: iconTypesML, IconSearch }}>
   ```tsx
@@ -164,7 +170,7 @@ import { typeToPathMapMlIconTypes as iconTypesML } from '../../../../../eui/src/
   import { css } from '@emotion/react';
   import { EuiCodeBlock, EuiSpacer } from '@elastic/eui';
   import { IconSearch } from '@site/src/components/display/icons';
-  import { typeToPathMapMlIconTypes as iconTypes } from '../../../../../eui/src/components/icon/icon_map';
+  import { typeToPathMapDocsMlIconTypes as iconTypes } from '../../../../../eui/src/components/icon/icon_map';
 
   export default () => (
     <div css={css`height: fit-content;`}>
@@ -423,7 +429,7 @@ EUI only lets you use icons by referring to their names in components (like `<Eu
 
 Tokens are most commonly used to visually signify field or code types. An **EuiToken** accepts any valid **EuiIcon** as its `iconType` property. However, icons designed specifically for use in the **EuiToken** are prefixed with "token" in their name and have pre-defined styles.
 
-import { typeToPathMapTokenIconTypes as iconTypesTokens } from '../../../../../eui/src/components/icon/icon_map';
+import { typeToPathMapDocsTokenIconTypes as iconTypesTokens } from '../../../../../eui/src/components/icon/icon_map';
 
 <Demo scope={{ iconTypes: iconTypesTokens, IconSearch }}>
   ```tsx
@@ -431,7 +437,7 @@ import { typeToPathMapTokenIconTypes as iconTypesTokens } from '../../../../../e
   import { css } from '@emotion/react';
   import { EuiCodeBlock, EuiSpacer, EuiToken } from '@elastic/eui';
   import { IconSearch } from '@site/src/components/display/icons';
-  import { typeToPathMapTokenIconTypes as iconTypes } from '../../../../../eui/src/components/icon/icon_map';
+  import { typeToPathMapDocsTokenIconTypes as iconTypes } from '../../../../../eui/src/components/icon/icon_map';
 
   export default () => (
     <div css={css`height: fit-content;`}>
