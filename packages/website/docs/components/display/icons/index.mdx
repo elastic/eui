@@ -114,79 +114,32 @@ Glyphs are small, monochromatic icons that typically should always use the defau
 
 If you would like to contribute to our growing list of glyphs, you can follow [these guidelines](https://github.com/elastic/eui/blob/main/wiki/contributing-to-eui/developing/creating-icons.md).
 
-import { filterIconTypes } from './icon_filter';
-import iconFilterSource from '!raw-loader!./icon_filter';
+import { IconSearch } from '@site/src/components/display/icons';
 import {
   typeToPathMapIconTypes as iconTypes,
   typeToPathMapSynonyms as iconSynonyms,
 } from '../../../../../eui/src/components/icon/icon_map';
 
-<Demo scope={{ iconTypes, filterIconTypes, iconSynonyms }} extraFiles={{ 'icon_filter.ts': iconFilterSource }}>
+<Demo scope={{ iconTypes, iconSynonyms, IconSearch }}>
   ```tsx
-  import React, { useMemo, useState } from 'react';
+  import React from 'react';
   import { css } from '@emotion/react';
-  import {
-    EuiCodeBlock,
-    EuiSpacer,
-    EuiFlexGrid,
-    EuiFlexItem,
-    EuiCopy,
-    EuiPanel,
-    EuiIcon,
-    EuiFieldSearch,
-    EuiText,
-  } from '@elastic/eui';
-  import { filterIconTypes } from './icon_filter';
+  import { EuiCodeBlock, EuiSpacer } from '@elastic/eui';
+  import { IconSearch } from '@site/src/components/display/icons';
   import {
     typeToPathMapIconTypes as iconTypes,
     typeToPathMapSynonyms as iconSynonyms,
   } from '../../../../../eui/src/components/icon/icon_map';
 
-  export default () => {
-    const [searchValue, setSearchValue] = useState('');
-    const filteredIconTypes = useMemo(
-      () => filterIconTypes(iconTypes, searchValue, iconSynonyms),
-      [searchValue]
-    );
-
-    return (
-      <div css={css`height: fit-content;`}>
-        <EuiFieldSearch
-          placeholder="Search icons"
-          aria-label="Search icons"
-          onSearch={setSearchValue}
-          incremental
-          isClearable
-          fullWidth
-        />
-        <EuiSpacer />
-        <EuiCodeBlock language="tsx" isCopyable paddingSize="m">
-          {'<EuiIcon type="warning" />'}
-        </EuiCodeBlock>
-        <EuiSpacer />
-        {filteredIconTypes.length === 0 ? (
-          <EuiText size="s" color="subdued">
-            <p>No icons match &ldquo;{searchValue}&rdquo;.</p>
-          </EuiText>
-        ) : (
-          <EuiFlexGrid direction="row" columns={3}>
-            {filteredIconTypes.map((iconType) => (
-              <EuiFlexItem key={iconType}>
-                <EuiCopy textToCopy={iconType} afterMessage={`${iconType} copied`} tooltipProps={{ display: 'block' }}>
-                  {(copy) => (
-                    <EuiPanel hasShadow={false} hasBorder={false} onClick={copy} paddingSize="s">
-                      <EuiIcon className="eui-alignMiddle" type={iconType} /> &emsp;{' '}
-                      <small>{iconType}</small>
-                    </EuiPanel>
-                  )}
-                </EuiCopy>
-              </EuiFlexItem>
-            ))}
-          </EuiFlexGrid>
-        )}
-      </div>
-    );
-  };
+  export default () => (
+    <div css={css`height: fit-content;`}>
+      <EuiCodeBlock language="tsx" isCopyable paddingSize="m">
+        {'<EuiIcon type="warning" />'}
+      </EuiCodeBlock>
+      <EuiSpacer />
+      <IconSearch iconTypes={iconTypes} iconSynonyms={iconSynonyms} />
+    </div>
+  );
   ```
 </Demo>
 
@@ -196,11 +149,12 @@ These logos are restricted in use to Elastic products or when referencing Elasti
 
 import { typeToPathMapLogoIconTypes as iconTypesLogos } from '../../../../../eui/src/components/icon/icon_map';
 
-<Demo scope={{ iconTypes: iconTypesLogos }} previewPadding="none">
+<Demo scope={{ iconTypes: iconTypesLogos, IconSearch }} previewPadding="none">
   ```tsx
   import React, { useState } from 'react';
   import { css } from '@emotion/react';
-  import { EuiButtonGroup, EuiSplitPanel, EuiCodeBlock, EuiSpacer, EuiFlexGrid, EuiFlexItem, EuiCopy, EuiPanel, EuiIcon, UseEuiTheme, useEuiMemoizedStyles } from '@elastic/eui';
+  import { EuiButtonGroup, EuiSplitPanel, EuiCodeBlock, EuiSpacer, UseEuiTheme, useEuiMemoizedStyles } from '@elastic/eui';
+  import { IconSearch } from '@site/src/components/display/icons';
   import { typeToPathMapLogoIconTypes as iconTypes } from '../../../../../eui/src/components/icon/icon_map';
 
   const allowedColors = ['multi', 'ghost', 'text'];
@@ -239,25 +193,10 @@ import { typeToPathMapLogoIconTypes as iconTypesLogos } from '../../../../../eui
             }
           </EuiCodeBlock>
           <EuiSpacer />
-          <EuiFlexGrid direction="row" columns={3}>
-            {iconTypes.map((iconType) => (
-              <EuiFlexItem key={iconType}>
-                <EuiCopy textToCopy={iconType} afterMessage={`${iconType} copied`} tooltipProps={{ display: 'block' }}>
-                  {(copy) => (
-                    <EuiPanel hasShadow={false} hasBorder={false} onClick={copy} paddingSize="s" color="transparent">
-                      <EuiIcon
-                        className="eui-alignMiddle"
-                        type={iconType}
-                        size="xl"
-                        color={iconColor === 'multi' ? undefined : iconColor}
-                      /> &emsp;{' '}
-                      <small>{iconType}</small>
-                    </EuiPanel>
-                  )}
-                </EuiCopy>
-              </EuiFlexItem>
-            ))}
-          </EuiFlexGrid>
+          <IconSearch
+            iconTypes={iconTypes}
+            placeholder="Search Elastic logos"
+          />
         </EuiSplitPanel.Inner>
       </EuiSplitPanel.Outer>
     );
@@ -273,11 +212,12 @@ Our set of App Icons are a subset of what the [Elastic Design team provides](htt
 
 import { typeToPathMapAppIconTypes as iconTypesApps } from '../../../../../eui/src/components/icon/icon_map';
 
-<Demo scope={{ iconTypes: iconTypesApps }}>
+<Demo scope={{ iconTypes: iconTypesApps, IconSearch }}>
   ```tsx
   import React from 'react';
   import { css } from '@emotion/react';
-  import { EuiCodeBlock, EuiSpacer, EuiFlexGrid, EuiFlexItem, EuiCopy, EuiPanel, EuiIcon } from '@elastic/eui';
+  import { EuiCodeBlock, EuiSpacer } from '@elastic/eui';
+  import { IconSearch } from '@site/src/components/display/icons';
   import { typeToPathMapAppIconTypes as iconTypes } from '../../../../../eui/src/components/icon/icon_map';
 
   export default () => (
@@ -286,20 +226,7 @@ import { typeToPathMapAppIconTypes as iconTypesApps } from '../../../../../eui/s
         {'<EuiIcon type="addDataApp" size="xl" />'}
       </EuiCodeBlock>
       <EuiSpacer />
-      <EuiFlexGrid direction="row" columns={3}>
-        {iconTypes.map((iconType) => (
-          <EuiFlexItem key={iconType}>
-            <EuiCopy textToCopy={iconType} afterMessage={`${iconType} copied`} tooltipProps={{ display: 'block' }}>
-              {(copy) => (
-                <EuiPanel hasShadow={false} hasBorder={false} onClick={copy} paddingSize="s">
-                  <EuiIcon className="eui-alignMiddle" type={iconType} size="xl" /> &emsp;{' '}
-                  <small>{iconType}</small>
-                </EuiPanel>
-              )}
-            </EuiCopy>
-          </EuiFlexItem>
-        ))}
-      </EuiFlexGrid>
+      <IconSearch iconTypes={iconTypes} placeholder="Search app logos" />
     </div>
   );
   ```
@@ -311,11 +238,12 @@ Machine learning has some specific icons for job creation. Again, these are made
 
 import { typeToPathMapMlIconTypes as iconTypesML } from '../../../../../eui/src/components/icon/icon_map';
 
-<Demo scope={{ iconTypes: iconTypesML }}>
+<Demo scope={{ iconTypes: iconTypesML, IconSearch }}>
   ```tsx
   import React from 'react';
   import { css } from '@emotion/react';
-  import { EuiCodeBlock, EuiSpacer, EuiFlexGrid, EuiFlexItem, EuiCopy, EuiPanel, EuiIcon } from '@elastic/eui';
+  import { EuiCodeBlock, EuiSpacer } from '@elastic/eui';
+  import { IconSearch } from '@site/src/components/display/icons';
   import { typeToPathMapMlIconTypes as iconTypes } from '../../../../../eui/src/components/icon/icon_map';
 
   export default () => (
@@ -324,20 +252,10 @@ import { typeToPathMapMlIconTypes as iconTypesML } from '../../../../../eui/src/
         {'<EuiIcon type="addDataApp" size="xl" />'}
       </EuiCodeBlock>
       <EuiSpacer />
-      <EuiFlexGrid direction="row" columns={3}>
-        {iconTypes.map((iconType) => (
-          <EuiFlexItem key={iconType}>
-            <EuiCopy textToCopy={iconType} afterMessage={`${iconType} copied`} tooltipProps={{ display: 'block' }}>
-              {(copy) => (
-                <EuiPanel hasShadow={false} hasBorder={false} onClick={copy} paddingSize="s">
-                  <EuiIcon className="eui-alignMiddle" type={iconType} size="xl" /> &emsp;{' '}
-                  <small>{iconType}</small>
-                </EuiPanel>
-              )}
-            </EuiCopy>
-          </EuiFlexItem>
-        ))}
-      </EuiFlexGrid>
+      <IconSearch
+        iconTypes={iconTypes}
+        placeholder="Search machine learning app logos"
+      />
     </div>
   );
   ```
@@ -349,11 +267,12 @@ Tokens are most commonly used to visually signify field or code types. An **EuiT
 
 import { typeToPathMapTokenIconTypes as iconTypesTokens } from '../../../../../eui/src/components/icon/icon_map';
 
-<Demo scope={{ iconTypes: iconTypesTokens }}>
+<Demo scope={{ iconTypes: iconTypesTokens, IconSearch }}>
   ```tsx
   import React from 'react';
   import { css } from '@emotion/react';
-  import { EuiCodeBlock, EuiSpacer, EuiFlexGrid, EuiFlexItem, EuiCopy, EuiPanel, EuiToken } from '@elastic/eui';
+  import { EuiCodeBlock, EuiSpacer, EuiToken } from '@elastic/eui';
+  import { IconSearch } from '@site/src/components/display/icons';
   import { typeToPathMapTokenIconTypes as iconTypes } from '../../../../../eui/src/components/icon/icon_map';
 
   export default () => (
@@ -362,20 +281,13 @@ import { typeToPathMapTokenIconTypes as iconTypesTokens } from '../../../../../e
         {'<EuiToken iconType="tokenAlias" />'}
       </EuiCodeBlock>
       <EuiSpacer />
-      <EuiFlexGrid direction="row" columns={3}>
-        {iconTypes.map((iconType) => (
-          <EuiFlexItem key={iconType}>
-            <EuiCopy textToCopy={iconType} afterMessage={`${iconType} copied`} tooltipProps={{ display: 'block' }}>
-              {(copy) => (
-                <EuiPanel hasShadow={false} hasBorder={false} onClick={copy} paddingSize="s">
-                  <EuiToken className="eui-alignMiddle" iconType={iconType} /> &emsp;{' '}
-                  <small>{iconType}</small>
-                </EuiPanel>
-              )}
-            </EuiCopy>
-          </EuiFlexItem>
-        ))}
-      </EuiFlexGrid>
+      <IconSearch
+        iconTypes={iconTypes}
+        placeholder="Search token icons"
+        renderIcon={(iconType) => (
+          <EuiToken className="eui-alignMiddle" iconType={iconType} />
+        )}
+      />
     </div>
   );
   ```
