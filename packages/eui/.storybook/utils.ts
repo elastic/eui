@@ -150,7 +150,11 @@ export const enableFunctionToggleControls = <Props>(
  */
 
 /**
- * Will hide all props/controls. Pass to `parameters`
+ * Will hide all props/controls. Pass to `parameters`.
+ *
+ * NOTE: The story's `render` must declare an args param
+ * (`render: (args) => ...` or `render: (_args) => ...`).
+ * Otherwise, Storybook skips control filtering entirely.
  *
  * TODO: Figure out some way to not show Storybook's "setup" text?
  */

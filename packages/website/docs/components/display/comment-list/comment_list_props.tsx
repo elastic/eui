@@ -2,8 +2,8 @@ import React, { ReactNode } from 'react';
 import { css } from '@emotion/react';
 
 import {
-  EuiPanel,
   EuiButtonIcon,
+  EuiToolTip,
   EuiCommentList,
   EuiComment,
   useEuiTheme,
@@ -111,11 +111,13 @@ export const CommentListProps = ({ snippet }: { snippet: ReactNode }) => {
 
               <HighlightedArea>
                 <CircleIndicator name="6" />
-                <EuiButtonIcon
-                  aria-hidden="true"
-                  iconType="boxesVertical"
-                  color="text"
-                />
+                <EuiToolTip content="actions" disableScreenReaderOutput>
+                  <EuiButtonIcon
+                    aria-hidden="true"
+                    iconType="boxesVertical"
+                    color="text"
+                  />
+                </EuiToolTip>
               </HighlightedArea>
             </div>
             <div

@@ -83,7 +83,8 @@ export const stepUpdateVersions = async (
       const updatedYearChangelogPath = await updateChangelogContent(
         workspaceDir,
         changelog,
-        newVersion
+        newVersion,
+        workspace.name
       );
       await deleteObsoleteChangelogs(processedChangelogFiles);
 

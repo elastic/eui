@@ -162,6 +162,7 @@ import {
   EuiFlexItem,
   EuiPanel,
   EuiButtonIcon,
+  EuiToolTip,
   EuiText,
 } from '@elastic/eui';
 
@@ -291,7 +292,14 @@ export default () => {
                   )
                 }
               >
-                <EuiButtonIcon size="m" iconType={step.iconType} color="text" />
+                <EuiToolTip content={step.title} disableScreenReaderOutput>
+                  <EuiButtonIcon
+                    size="m"
+                    iconType={step.iconType}
+                    color="text"
+                    aria-label={step.title}
+                  />
+                </EuiToolTip>
               </EuiTourStep>
             </EuiFlexItem>
           ))}

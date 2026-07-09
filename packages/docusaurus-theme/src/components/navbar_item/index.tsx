@@ -12,9 +12,9 @@ import useIsBrowser from '@docusaurus/useIsBrowser';
 import {
   CommonProps,
   EuiIcon,
+  EuiToolTip,
   ExclusiveUnion,
   IconType,
-  mathWithUnits,
   PropsForAnchor,
   PropsForButton,
   useEuiMemoizedStyles,
@@ -89,6 +89,9 @@ export const getStyles = (euiThemeContext: UseEuiTheme) => {
         display: none;
       }
     `,
+    tooltipAnchor: css`
+      display: inline-flex;
+    `,
   };
 };
 
@@ -124,6 +127,7 @@ export const NavbarItem = (props: Props) => {
     !isBrowser && styles.disabled,
     isSelected && styles.selected,
     isDarkMode && styles.darkMode,
+    css,
   ];
 
   const content = showLabel ? (
@@ -135,36 +139,45 @@ export const NavbarItem = (props: Props) => {
     <EuiIcon type={icon} />
   );
 
-  if (isAnchorClick(onClick, href)) {
-    return (
-      <a
-        href={href}
-        target={target ?? '_blank'}
-        title={title}
-        className={className}
-        css={cssStyles}
-        onClick={onClick}
-        aria-label={title}
-        aria-live="polite"
-      >
-        {content}
-      </a>
-    );
-  }
-
-  return (
+  const control = isAnchorClick(onClick, href) ? (
+    <a
+      href={href}
+      target={target ?? '_blank'}
+      className={className}
+      css={cssStyles}
+      onClick={onClick}
+      aria-label={title}
+      aria-live="polite"
+    >
+      {content}
+    </a>
+  ) : (
     <button
       type="button"
       disabled={!isBrowser}
       className={className}
       css={cssStyles}
       onClick={onClick}
-      title={title}
       aria-label={title}
       aria-live="polite"
       aria-pressed={isSelected != null ? isSelected : undefined}
     >
       {content}
     </button>
+  );
+
+  if (!title) {
+    return control;
+  }
+
+  return (
+    <EuiToolTip
+      content={title}
+      disableScreenReaderOutput
+      repositionOnScroll
+      anchorProps={{ css: styles.tooltipAnchor }}
+    >
+      {control}
+    </EuiToolTip>
   );
 };

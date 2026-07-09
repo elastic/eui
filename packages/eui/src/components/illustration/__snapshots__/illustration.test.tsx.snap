@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiIllustration is rendered 1`] = `
+<span
+  aria-label="aria-label"
+  class="euiIllustration testClass1 testClass2 emotion-euiIllustration-fullWidth-euiTestCss"
+  data-test-subj="test subject string"
+  role="img"
+>
+  <svg
+    viewBox="0 0 10 10"
+  >
+    <rect
+      data-mode="light"
+    />
+  </svg>
+</span>
+`;
