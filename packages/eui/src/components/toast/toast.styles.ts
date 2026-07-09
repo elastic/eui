@@ -86,7 +86,7 @@ export const euiToastStyles = (euiThemeContext: UseEuiTheme) => {
         inset-block-start: 0;
         inset-inline: 0;
         ${logicalCSS('height', '100%')}
-        border-radius: ${euiTheme.border.width.thin};
+        border-radius: 1px;
         border-end-start-radius: 0;
         background-color: var(--euiToastTypeColor);
         pointer-events: none;
@@ -95,6 +95,8 @@ export const euiToastStyles = (euiThemeContext: UseEuiTheme) => {
 
         [dir='rtl'] & {
           transform-origin: right center;
+          border-end-start-radius: 1px;
+          border-end-end-radius: 0;
         }
       }
     `,
