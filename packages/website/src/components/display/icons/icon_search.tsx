@@ -17,6 +17,7 @@ import {
   EuiPanel,
   EuiSpacer,
   EuiText,
+  EuiThemeProvider,
 } from '@elastic/eui';
 
 export type IconSearchSynonyms<TIconType extends string = string> = Partial<
@@ -158,14 +159,18 @@ type IconSearchProps = {
   iconTypes: string[];
   iconSynonyms?: IconSearchSynonyms;
   placeholder?: string;
+  iconSize?: React.ComponentProps<typeof EuiIcon>['size'];
   renderIcon?: (iconType: string) => ReactNode;
+  resultThemeMode?: React.ComponentProps<typeof EuiThemeProvider>['colorMode'];
 };
 
 export const IconSearch = ({
   iconTypes,
   iconSynonyms,
   placeholder = 'Search icons',
+  iconSize = 'm',
   renderIcon,
+  resultThemeMode,
 }: IconSearchProps) => {
   const [searchValue, setSearchValue] = useState('');
 
@@ -199,19 +204,25 @@ export const IconSearch = ({
                 tooltipProps={{ display: 'block' }}
               >
                 {(copy) => (
-                  <EuiPanel
-                    hasShadow={false}
-                    hasBorder={false}
-                    onClick={copy}
-                    paddingSize="s"
-                  >
-                    {renderIcon ? (
-                      renderIcon(iconType)
-                    ) : (
-                      <EuiIcon className="eui-alignMiddle" type={iconType} />
-                    )}
-                    {'\u2003'} <small>{iconType}</small>
-                  </EuiPanel>
+                  <EuiThemeProvider colorMode={resultThemeMode}>
+                    <EuiPanel
+                      hasShadow={false}
+                      hasBorder={false}
+                      onClick={copy}
+                      paddingSize="s"
+                    >
+                      {renderIcon ? (
+                        renderIcon(iconType)
+                      ) : (
+                        <EuiIcon
+                          className="eui-alignMiddle"
+                          type={iconType}
+                          size={iconSize}
+                        />
+                      )}
+                      {'\u2003'} <small>{iconType}</small>
+                    </EuiPanel>
+                  </EuiThemeProvider>
                 )}
               </EuiCopy>
             </EuiFlexItem>
