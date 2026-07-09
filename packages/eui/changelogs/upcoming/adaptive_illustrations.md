@@ -1,0 +1,1 @@
+- Updated `EuiIllustration` to render the color-mode-adaptive SVG when an asset provides one, setting `color-scheme` from the active theme so its colors resolve via CSS `light-dark()`. It falls back to the discrete `light`/`dark` markup otherwise.

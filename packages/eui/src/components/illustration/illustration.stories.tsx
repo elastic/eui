@@ -16,6 +16,10 @@ import { hideAllStorybookControls } from '../../../.storybook/utils';
 import { useEuiTheme } from '../../services';
 import { EuiButton } from '../button';
 import { EuiEmptyPrompt } from '../empty_prompt';
+import { EuiFlexGroup, EuiFlexItem } from '../flex';
+import { EuiPanel } from '../panel';
+import { EuiSpacer } from '../spacer';
+import { EuiText } from '../text';
 import {
   EuiIllustration,
   EuiIllustrationProps,
@@ -59,7 +63,7 @@ export const Playground: Story = {
         if (fullWidth) props.push('fullWidth');
 
         return `import { ${type} } from '@elastic/eui-illustrations';
-        
+
         <EuiIllustration ${props.join(' ')} />`;
       },
     },
@@ -120,6 +124,52 @@ export const EmptyPrompt: Story = {
   ),
 };
 
+const ADAPTIVE_SNIPPET = `import { useEuiTheme } from '@elastic/eui';
+import { shoppingCart } from '@elastic/eui-illustrations';
+
+// One string. The ancestor \`color-scheme\` picks which \`light-dark()\` value
+// applies. Pin it (\`light\`/\`dark\`), follow the OS \`prefers-color-scheme\`
+// (\`light dark\`), or mirror the EUI theme (\`EuiProvider\`).
+const PROVIDER_SCHEME = 'EuiProvider';
+const SYSTEM_SCHEME = 'system';
+const schemes = ['light', 'dark', PROVIDER_SCHEME, SYSTEM_SCHEME] as const;
+
+const AdaptiveIllustrations = () => {
+  const { colorMode } = useEuiTheme();
+  const providerScheme = colorMode === 'DARK' ? 'dark' : 'light';
+
+  const resolveScheme = (scheme) => {
+    if (scheme === PROVIDER_SCHEME) return providerScheme;
+    if (scheme === SYSTEM_SCHEME) return 'light dark';
+    return scheme;
+  };
+
+  return schemes.map((scheme) => (
+    <div
+      key={scheme}
+      style={{ colorScheme: resolveScheme(scheme) }}
+      dangerouslySetInnerHTML={{ __html: shoppingCart.adaptive ?? shoppingCart.light }}
+    />
+  ));
+};`;
+
+/**
+ * Most assets ship a single \`adaptive\` SVG whose colors resolve via CSS
+ * \`light-dark()\`. \`EuiIllustration\` sets \`color-scheme\` from the EUI theme;
+ * this story sets it manually so the same string renders pinned \`light\`,
+ * pinned \`dark\`, following \`EuiProvider\`, and following the OS
+ * (\`light dark\`, via \`prefers-color-scheme\`) at once.
+ * \`aerospace\` has no \`adaptive\` variant and cannot adapt.
+ */
+export const Adaptive: Story = {
+  parameters: {
+    vrt: { skip: true },
+    codeSnippet: { snippet: ADAPTIVE_SNIPPET },
+    ...hideAllStorybookControls,
+  },
+  render: () => <AdaptiveExample />,
+};
+
 /**
  * VRT only
  */
@@ -145,6 +195,121 @@ export const SizingFullWidth: Story = {
 /**
  * Helpers
  */
+
+// Sentinels resolved to real CSS in `AdaptiveExample`: `EuiProvider` to the
+// live theme color mode (a module-level const can't read `useEuiTheme()`), and
+// `system` to `light dark` (the value that follows `prefers-color-scheme`).
+const PROVIDER_SCHEME = 'EuiProvider';
+const SYSTEM_SCHEME = 'system';
+
+const ADAPTIVE_COLOR_SCHEMES = [
+  { scheme: 'light', label: 'color-scheme: light' },
+  { scheme: 'dark', label: 'color-scheme: dark' },
+  { scheme: PROVIDER_SCHEME, label: 'color-scheme: EuiProvider' },
+  { scheme: SYSTEM_SCHEME, label: 'color-scheme: system' },
+] as const;
+
+const AdaptiveCard = ({
+  label,
+  illustration,
+  colorScheme,
+}: {
+  label: string;
+  illustration: EuiIllustrationSource;
+  colorScheme: string;
+}) => (
+  <EuiPanel
+    hasBorder
+    paddingSize="m"
+    css={css`
+      color-scheme: ${colorScheme};
+    `}
+  >
+    <EuiText size="xs" color="subdued">
+      <code>{label}</code>
+    </EuiText>
+    <EuiSpacer size="s" />
+    <div
+      css={css`
+        inline-size: 200px;
+        padding: 8px;
+        border-radius: 4px;
+        /* Hardcoded so the surface follows color-scheme, not the EUI theme. */
+        background: light-dark(#ffffff, #0b1628);
+      `}
+      dangerouslySetInnerHTML={{
+        __html: illustration.adaptive ?? illustration.light,
+      }}
+    />
+  </EuiPanel>
+);
+
+const AdaptiveExample = () => {
+  const { colorMode } = useEuiTheme();
+  const providerScheme = colorMode === 'DARK' ? 'dark' : 'light';
+
+  const resolveScheme = (scheme: string) => {
+    if (scheme === PROVIDER_SCHEME) return providerScheme;
+    if (scheme === SYSTEM_SCHEME) return 'light dark';
+    return scheme;
+  };
+  const resolveLabel = (scheme: string, label: string) => {
+    if (scheme === PROVIDER_SCHEME) return `${label} (${providerScheme})`;
+    if (scheme === SYSTEM_SCHEME) return `${label} (light dark)`;
+    return label;
+  };
+
+  return (
+    <EuiFlexGroup direction="column" gutterSize="l">
+      <EuiFlexItem grow={false}>
+        <EuiText size="s">
+          <p>
+            One <code>shopping-cart.adaptive</code> string, rendered under
+            several <code>color-scheme</code> values. No theme change or
+            re-render — CSS <code>light-dark()</code> does the work. The{' '}
+            <code>EuiProvider</code> card mirrors what{' '}
+            <strong>EuiIllustration</strong> does: it follows the EUI color mode
+            (toggle the theme in the Storybook toolbar). The <code>system</code>{' '}
+            card resolves to <code>color-scheme: light dark</code>, following
+            the OS/browser <code>prefers-color-scheme</code> instead, regardless
+            of the EUI theme.
+          </p>
+        </EuiText>
+        <EuiSpacer size="s" />
+        <EuiFlexGroup gutterSize="m">
+          {ADAPTIVE_COLOR_SCHEMES.map(({ scheme, label }) => (
+            <EuiFlexItem key={label} grow={false}>
+              <AdaptiveCard
+                label={resolveLabel(scheme, label)}
+                illustration={illustrations.shoppingCart}
+                colorScheme={resolveScheme(scheme)}
+              />
+            </EuiFlexItem>
+          ))}
+        </EuiFlexGroup>
+      </EuiFlexItem>
+
+      <EuiFlexItem grow={false}>
+        <EuiText size="s">
+          <p>
+            <code>aerospace</code> has no <code>adaptive</code> variant, so it
+            falls back to the discrete <code>light</code> markup and does not
+            respond to <code>color-scheme</code> (shown following{' '}
+            <code>EuiProvider</code>).
+          </p>
+        </EuiText>
+        <EuiSpacer size="s" />
+        <EuiFlexItem grow={false}>
+          <AdaptiveCard
+            label="aerospace.adaptive ?? light"
+            illustration={illustrations.aerospace}
+            colorScheme={providerScheme}
+          />
+        </EuiFlexItem>
+      </EuiFlexItem>
+    </EuiFlexGroup>
+  );
+};
 
 /**
  * Fixture SVG for VRT. Uses a fixed width smaller than the parent container

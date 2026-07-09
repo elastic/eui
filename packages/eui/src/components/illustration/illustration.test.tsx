@@ -65,6 +65,51 @@ describe('EuiIllustration', () => {
     });
   });
 
+  describe('adaptive', () => {
+    const adaptiveIllustration: EuiIllustrationSource = {
+      ...illustration,
+      adaptive: '<svg viewBox="0 0 10 10"><path data-mode="adaptive" /></svg>',
+    };
+
+    const originalCSS = global.CSS;
+    const stubCSS = (supported: boolean) => {
+      // jsdom's `CSS.supports` cannot evaluate `light-dark()`, so stub it.
+      global.CSS = { supports: () => supported } as unknown as typeof CSS;
+    };
+
+    beforeEach(() => stubCSS(true));
+    afterAll(() => {
+      global.CSS = originalCSS;
+    });
+
+    it('prefers the adaptive SVG when light-dark() is supported', () => {
+      const { container } = render(
+        <EuiIllustration type={adaptiveIllustration} />
+      );
+
+      expect(
+        container.querySelector('[data-mode="adaptive"]')
+      ).toBeInTheDocument();
+      expect(
+        container.querySelector('[data-mode="light"]')
+      ).not.toBeInTheDocument();
+    });
+
+    it('falls back to the discrete variant when light-dark() is unsupported', () => {
+      stubCSS(false);
+      const { container } = render(
+        <EuiIllustration type={adaptiveIllustration} />
+      );
+
+      expect(
+        container.querySelector('[data-mode="light"]')
+      ).toBeInTheDocument();
+      expect(
+        container.querySelector('[data-mode="adaptive"]')
+      ).not.toBeInTheDocument();
+    });
+  });
+
   describe('accessibility', () => {
     it('defaults the accessible label to the illustration title', () => {
       const { container } = render(<EuiIllustration type={illustration} />);

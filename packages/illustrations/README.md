@@ -2,8 +2,7 @@
 
 Theme-adaptable SVG illustrations for Elastic UI.
 
-This package is framework-agnostic and ships raw, designer-authored SVGs as typed modules. Assets are reusable by `@elastic/eui` (through `EuiIllustration`), Kibana, Cloud UI and any other consumer. Each illustration carries a `light` and a `dark` variant, and the consumer renders the one that matches the active
-color mode.
+This package is framework-agnostic and ships raw, designer-authored SVGs as typed modules. Assets are reusable by `@elastic/eui` (through `EuiIllustration`), Kibana, Cloud UI and any other consumer. Each illustration carries a `light` and a `dark` variant, plus a single `adaptive` variant whose colors resolve at runtime.
 
 ## How it works
 
@@ -17,10 +16,11 @@ Designers never touch TypeScript. They export an illustration from Figma for bot
 ```mermaid
 flowchart LR
   A["Designer exports from Figma<br/>(light + dark)"] --> B["src/svgs<br/>name.light.svg + name.dark.svg"]
-  B --> C["yarn generate<br/>(SVGO optimize + codegen)"]
-  C --> D["src/generated/*.ts<br/>{ id, title, light, dark }"]
-  D --> E["build → lib/(cjs|esm) + types"]
-  E --> F["EuiIllustration picks light/dark<br/>from useEuiTheme().colorMode"]
+  B --> C["yarn generate<br/>(SVGO optimize + merge)"]
+  C --> D["src/generated/*.ts<br/>{ id, title, light, dark, adaptive? }"]
+  C --> G["src/generated/svgs/name.adaptive.svg"]
+  D --> E["build → lib/(cjs|esm) + types + lib/svgs"]
+  E --> F["EuiIllustration inlines adaptive<br/>and sets color-scheme from colorMode"]
 ```
 
 Each generated module satisfies:
@@ -31,7 +31,22 @@ type EuiIllustrationSource = {
   title: string; // 'Dashboard'
   light: string; // optimized SVG markup
   dark: string; // optimized SVG markup
+  adaptive?: string; // single SVG, colors via CSS light-dark()
 };
+```
+
+### Adaptive variant
+
+`generate` merges each `light`/`dark` pair into one SVG: colors that differ between the two are rewritten to `light-dark(<light>, <dark>)` inline styles, shared colors are left as-is. The result adapts to the active [`color-scheme`](https://developer.mozilla.org/en-US/docs/Web/CSS/color-scheme) rather than requiring the consumer to swap files. `EuiIllustration` sets `color-scheme` from the EUI theme so the illustration follows the in-app toggle rather than the OS.
+
+Merging relies on the two files being structurally identical (same elements, only colors differ). When they diverge — different element counts or tag order — `adaptive` is skipped for that illustration (it keeps `light`/`dark` only) and `generate` logs which ones. Re-export both variants from the same artwork to enable adaptive output.
+
+The adaptive SVG is also written to `src/generated/svgs/<name>.adaptive.svg` (published to `lib/svgs`) for `<img src>` / CSS-background consumers; that file pins `color-scheme: light dark` on its root so it follows the OS preference across an `<img>` boundary:
+
+```tsx
+import dashboard from '@elastic/eui-illustrations/svgs/dashboard.adaptive.svg';
+
+<img src={dashboard} alt="Dashboards" />;
 ```
 
 ## Consuming
@@ -49,11 +64,18 @@ import { dashboard } from '@elastic/eui-illustrations';
 
 ### Without `@elastic/eui`
 
-The modules are plain data. Pick a mode and inline the markup yourself:
+The modules are plain data. Prefer `adaptive` (when present) and let CSS pick the color mode via `color-scheme`, or pick a discrete mode yourself:
 
 ```tsx
 import { dashboard } from '@elastic/eui-illustrations';
 
+// Adaptive: one inlined SVG, colors follow the ancestor `color-scheme`.
+<span
+  style={{ colorScheme: isDarkMode ? 'dark' : 'light' }}
+  dangerouslySetInnerHTML={{ __html: dashboard.adaptive ?? dashboard.light }}
+/>;
+
+// Or select a discrete variant.
 const svg = isDarkMode ? dashboard.dark : dashboard.light;
 <span dangerouslySetInnerHTML={{ __html: svg }} />;
 ```
