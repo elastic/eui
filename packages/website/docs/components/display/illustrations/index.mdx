@@ -16,9 +16,9 @@ can grow and change without an `@elastic/eui` release.
 Pass an illustration asset to the `type` prop. The component picks the correct color-mode variant automatically,
 so try toggling the theme in the top toolbar.
 
-import { dashboard } from '@elastic/eui-illustrations';
+import * as EuiIllustrations from '@elastic/eui-illustrations';
 
-<Demo scope={{ dashboard }}>
+<Demo scope={{ ...EuiIllustrations }}>
   ```tsx
   import React from 'react';
   import { EuiIllustration } from '@elastic/eui';
