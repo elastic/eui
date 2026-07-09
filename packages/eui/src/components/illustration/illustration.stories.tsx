@@ -299,13 +299,11 @@ const AdaptiveExample = () => {
           </p>
         </EuiText>
         <EuiSpacer size="s" />
-        <EuiFlexItem grow={false}>
-          <AdaptiveCard
-            label="aerospace.adaptive ?? light"
-            illustration={illustrations.aerospace}
-            colorScheme={providerScheme}
-          />
-        </EuiFlexItem>
+        <AdaptiveCard
+          label="aerospace.adaptive ?? light"
+          illustration={illustrations.aerospace}
+          colorScheme={providerScheme}
+        />
       </EuiFlexItem>
     </EuiFlexGroup>
   );

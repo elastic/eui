@@ -73,7 +73,7 @@ export type EuiIllustrationProps = Omit<
  */
 const supportsLightDark = () =>
   typeof CSS === 'undefined' ||
-  (CSS.supports?.('color', 'light-dark(#000, #fff)') ?? true);
+  CSS.supports?.('color', 'light-dark(#000, #fff)') === true;
 
 export const EuiIllustration: FunctionComponent<EuiIllustrationProps> = ({
   type,
