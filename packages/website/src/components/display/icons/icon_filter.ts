@@ -1,6 +1,14 @@
-import { IconType } from '@elastic/eui';
+/*
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
+ */
 
-export type IconSearchSynonyms = Partial<Record<IconType, string[]>>;
+export type IconSearchSynonyms<TIconType extends string = string> = Partial<
+  Record<TIconType, string[]>
+>;
 
 const levenshtein = (a: string, b: string): number => {
   if (a === b) return 0;
@@ -49,7 +57,7 @@ const splitCamelCase = (value: string) =>
   value.replace(/([a-z0-9])([A-Z])/g, '$1 $2').toLowerCase();
 
 const getSearchTerms = (
-  iconType: IconType,
+  iconType: string,
   synonyms?: IconSearchSynonyms
 ): string[] => {
   const iconName = String(iconType);
@@ -99,7 +107,7 @@ const scoreTerm = (query: string, term: string): number => {
 };
 
 const scoreIconType = (
-  iconType: IconType,
+  iconType: string,
   query: string,
   synonyms?: IconSearchSynonyms
 ): number =>
@@ -109,10 +117,10 @@ const scoreIconType = (
   );
 
 export const filterIconTypes = (
-  iconTypes: IconType[],
+  iconTypes: string[],
   query: string,
   synonyms?: IconSearchSynonyms
-): IconType[] => {
+): string[] => {
   const normalizedQuery = query.trim().toLowerCase();
 
   if (!normalizedQuery) {
@@ -125,6 +133,10 @@ export const filterIconTypes = (
       score: scoreIconType(iconType, normalizedQuery, synonyms),
     }))
     .filter(({ score }) => score > 0)
-    .sort((a, b) => b.score - a.score || String(a.iconType).localeCompare(String(b.iconType)))
+    .sort(
+      (a, b) =>
+        b.score - a.score ||
+        String(a.iconType).localeCompare(String(b.iconType))
+    )
     .map(({ iconType }) => iconType);
 };

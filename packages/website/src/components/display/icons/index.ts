@@ -6,4 +6,5 @@
  * Side Public License, v 1.
  */
 
-export { IconSearch, type IconSearchSynonyms } from './icon_search';
+export { filterIconTypes, type IconSearchSynonyms } from './icon_filter';
+export { IconSearch } from './icon_search';
