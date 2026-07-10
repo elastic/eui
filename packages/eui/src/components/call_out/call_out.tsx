@@ -304,11 +304,11 @@ export const EuiCallOut = forwardRef<HTMLDivElement, EuiCallOutProps>(
 
       return (
         <EuiLiveAnnouncer>
-          {title && title}
+          {title}
           {title && text && ',\u00A0'}
-          {text && text}
+          {text}
           {(title || text) && children && ',\u00A0'}
-          {children && children}
+          {children}
         </EuiLiveAnnouncer>
       );
     }, [announceOnMount, title, text, children]);

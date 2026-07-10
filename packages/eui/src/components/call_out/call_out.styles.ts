@@ -169,12 +169,10 @@ export const euiCallOutStyles = (euiThemeContext: UseEuiTheme) => {
       `,
     },
     icon: css`
-      grid-area: icon;
       position: relative;
       ${logicalCSS('margin-vertical', euiTheme.size.xxs)}
     `,
     actions: css`
-      grid-area: actions;
       display: flex;
       gap: ${euiTheme.size.s};
 

@@ -37,7 +37,7 @@ exports[`EuiForm renders with error callout when isInvalid is "true" 1`] = `
         class="css-wlziyu-body"
       >
         <span
-          class="css-19b7t2f-icon"
+          class="css-1qkppnb-icon"
           data-euiicon-type="errorFill"
         />
         <div
@@ -79,7 +79,7 @@ exports[`EuiForm renders with error callout when isInvalid is "true" and has mul
         class="css-wlziyu-body"
       >
         <span
-          class="css-19b7t2f-icon"
+          class="css-1qkppnb-icon"
           data-euiicon-type="errorFill"
         />
         <div
@@ -141,7 +141,7 @@ exports[`EuiForm renders with error callout when isInvalid is "true" and has one
         class="css-wlziyu-body"
       >
         <span
-          class="css-19b7t2f-icon"
+          class="css-1qkppnb-icon"
           data-euiicon-type="errorFill"
         />
         <div
