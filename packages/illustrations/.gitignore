@@ -1,0 +1,9 @@
+lib
+dist
+*.tsbuildinfo
+
+# npm pack / build-pack output (used for local Kibana testing)
+*.tgz
+
+# Auto-generated from src/svgs by scripts/generate.js
+src/generated

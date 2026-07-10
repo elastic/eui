@@ -54,7 +54,6 @@ export const euiToastStyles = (euiThemeContext: UseEuiTheme) => {
       container-type: inline-size;
       container-name: ${CONTAINER_NAME};
       position: relative;
-      overflow: hidden;
       border-radius: ${euiTheme.border.radius.medium};
       ${euiShadowLarge(euiThemeContext, { borderAllInHighContrastMode: true })}
 
@@ -69,9 +68,12 @@ export const euiToastStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     decor: css`
       position: absolute;
+      overflow: hidden;
       inset-block-start: 0;
       inset-inline: 0;
       ${logicalCSS('height', highlightSize)}
+      border-start-start-radius: ${euiTheme.border.radius.medium};
+      border-start-end-radius: ${euiTheme.border.radius.medium};
       background-color: var(--euiToastTypeBackgroundColor);
 
       ${preventForcedColors(euiThemeContext)}
@@ -84,6 +86,8 @@ export const euiToastStyles = (euiThemeContext: UseEuiTheme) => {
         inset-block-start: 0;
         inset-inline: 0;
         ${logicalCSS('height', '100%')}
+        border-radius: 1px;
+        border-end-start-radius: 0;
         background-color: var(--euiToastTypeColor);
         pointer-events: none;
         ${preventForcedColors(euiThemeContext)}
@@ -91,6 +95,8 @@ export const euiToastStyles = (euiThemeContext: UseEuiTheme) => {
 
         [dir='rtl'] & {
           transform-origin: right center;
+          border-end-start-radius: 1px;
+          border-end-end-radius: 0;
         }
       }
     `,

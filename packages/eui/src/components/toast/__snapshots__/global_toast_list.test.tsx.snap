@@ -26,7 +26,7 @@ exports[`EuiGlobalToastList props side can be changed to left 1`] = `
       style="--euiToastTypeColor: #008A5E; --euiToastTypeBackgroundColor: #C9F3E3; --euiToastAnimationMs: 5ms;"
     >
       <div
-        class="euiToastDecor css-1glsluj-decor-hasAnimation"
+        class="euiToastDecor css-lwo1mk-decor-hasAnimation"
         role="presentation"
       />
       <p
@@ -90,7 +90,7 @@ exports[`EuiGlobalToastList props side can be changed to left 1`] = `
       style="--euiToastTypeColor: #C61E25; --euiToastTypeBackgroundColor: #FDDDD8; --euiToastAnimationMs: 5ms;"
     >
       <div
-        class="euiToastDecor css-1glsluj-decor-hasAnimation"
+        class="euiToastDecor css-lwo1mk-decor-hasAnimation"
         role="presentation"
       />
       <p
@@ -167,7 +167,7 @@ exports[`EuiGlobalToastList props toasts is rendered 1`] = `
       style="--euiToastTypeColor: #008A5E; --euiToastTypeBackgroundColor: #C9F3E3; --euiToastAnimationMs: 5ms;"
     >
       <div
-        class="euiToastDecor css-1glsluj-decor-hasAnimation"
+        class="euiToastDecor css-lwo1mk-decor-hasAnimation"
         role="presentation"
       />
       <p
@@ -231,7 +231,7 @@ exports[`EuiGlobalToastList props toasts is rendered 1`] = `
       style="--euiToastTypeColor: #C61E25; --euiToastTypeBackgroundColor: #FDDDD8; --euiToastAnimationMs: 5ms;"
     >
       <div
-        class="euiToastDecor css-1glsluj-decor-hasAnimation"
+        class="euiToastDecor css-lwo1mk-decor-hasAnimation"
         role="presentation"
       />
       <p

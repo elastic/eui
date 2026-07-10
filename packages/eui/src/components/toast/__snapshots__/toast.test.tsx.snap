@@ -8,7 +8,7 @@ exports[`EuiToast is rendered 1`] = `
   style="--euiToastTypeColor: #0B64DD; --euiToastTypeBackgroundColor: #D9E8FF;"
 >
   <div
-    class="euiToastDecor css-1bqhuxw-decor"
+    class="euiToastDecor css-nr0ldu-decor"
     role="presentation"
   />
   <p

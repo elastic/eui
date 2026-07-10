@@ -16,37 +16,11 @@
 
 set -euo pipefail
 
-RED='\033[0;31m'
-GREEN='\033[0;32m'
-YELLOW='\033[0;33m'
-BOLD='\033[1m'
-RESET='\033[0m'
+source "$(dirname "${BASH_SOURCE[0]}")/release_lib.sh"
 
-step() {
-  echo ""
-  echo -e "${GREEN}${BOLD}[$1]${RESET} $2"
-}
-
-warn() {
-  echo -e "${YELLOW}Warning:${RESET} $1"
-}
-
-error() {
-  echo -e "${RED}Error:${RESET} $1" >&2
-  exit 1
-}
-
-REPO_ROOT=$(git rev-parse --show-toplevel 2>/dev/null) || error "Not inside a git repository"
-cd "$REPO_ROOT"
-
-PACKAGE_DIRS=(packages/eui packages/eui-theme-common packages/eui-theme-borealis packages/docusaurus-preset packages/docusaurus-theme packages/eslint-plugin)
-
-git remote get-url upstream &>/dev/null || error "'upstream' remote not found. Please add it: git remote add upstream git@github.com:elastic/eui.git"
-
-# Bail early if there are uncommitted changes
-if [[ -n "$(git status --porcelain)" ]]; then
-  error "Working tree is dirty. Please commit or stash your changes before running this script."
-fi
+load_package_dirs
+require_upstream
+require_clean_tree
 
 step "1/8" "Ensuring npm is not authenticated..."
 npm logout 2>/dev/null || true
@@ -68,7 +42,7 @@ yarn workspace @elastic/eui-release-cli run build
 
 step "6/8" "Starting release process (dry-run)..."
 echo ""
-yarn release run official --dry-run --allow-custom --skip-auth-check --use-auth-token
+yarn release run official --dry-run --allow-custom --skip-auth-check --use-auth-token "$@"
 
 # Check for uncommitted changes after the release CLI run
 if [[ -n "$(git status --porcelain)" ]]; then
