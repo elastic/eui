@@ -66,8 +66,7 @@ export const DemoPreview = ({
             )}
           >
             <div css={styles.previewWrapper} style={style}>
-              {/* Neutralize the docs-specific lineHeightMultiplier override (1.75)
-                  so component examples render with the theme's actual default (1.5) */}
+              {/* Use the theme's actual default instead of docs global `lineHeightMultiplier` override */}
               <EuiThemeProvider
                 modify={{ font: { lineHeightMultiplier: 1.5 } }}
               >
