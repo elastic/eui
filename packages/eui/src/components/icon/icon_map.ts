@@ -10,7 +10,13 @@ import type { ComponentType } from 'react';
 
 type IconImportLoader = () => Promise<{ icon: ComponentType }>;
 
-export type IconCategory = 'glyph' | 'app' | 'logo' | 'ml' | 'token';
+export type IconCategory =
+  | 'glyph'
+  | 'app'
+  | 'elasticLogo'
+  | 'thirdPartyLogo'
+  | 'ml'
+  | 'token';
 
 type IconMetadata = {
   category?: IconCategory;
@@ -1121,185 +1127,185 @@ export const typeToPathMap = {
   }),
   logRateAnalysis: () => import('./assets/log_rate_analysis'),
   logoAWS: withMetadata(() => import('./assets/logo_aws'), {
-    category: 'logo',
+    category: 'thirdPartyLogo',
   }),
   logoAWSMono: withMetadata(() => import('./assets/logo_aws_mono'), {
-    category: 'logo',
+    category: 'thirdPartyLogo',
   }),
   logoAerospike: withMetadata(() => import('./assets/logo_aerospike'), {
-    category: 'logo',
+    category: 'thirdPartyLogo',
   }),
   logoApache: withMetadata(() => import('./assets/logo_apache'), {
-    category: 'logo',
+    category: 'thirdPartyLogo',
   }),
   logoAppSearch: withMetadata(() => import('./assets/logo_app_search'), {
-    category: 'logo',
+    category: 'elasticLogo',
   }),
   logoAzure: withMetadata(() => import('./assets/logo_azure'), {
-    category: 'logo',
+    category: 'thirdPartyLogo',
   }),
   logoAzureMono: withMetadata(() => import('./assets/logo_azure_mono'), {
-    category: 'logo',
+    category: 'thirdPartyLogo',
   }),
   logoBeats: withMetadata(() => import('./assets/logo_beats'), {
-    category: 'logo',
+    category: 'elasticLogo',
   }),
   logoBusinessAnalytics: withMetadata(
     () => import('./assets/logo_business_analytics'),
-    { category: 'logo' }
+    { category: 'elasticLogo' }
   ),
   logoCeph: withMetadata(() => import('./assets/logo_ceph'), {
-    category: 'logo',
+    category: 'thirdPartyLogo',
   }),
   logoCloud: withMetadata(() => import('./assets/logo_cloud'), {
-    category: 'logo',
+    category: 'elasticLogo',
   }),
   logoCloudEnterprise: withMetadata(() => import('./assets/logo_cloud_ece'), {
-    category: 'logo',
+    category: 'elasticLogo',
   }),
   logoCode: withMetadata(() => import('./assets/logo_code'), {
-    category: 'logo',
+    category: 'thirdPartyLogo',
   }),
   logoCodesandbox: withMetadata(() => import('./assets/logo_codesandbox'), {
-    category: 'logo',
+    category: 'thirdPartyLogo',
   }),
   logoCouchbase: withMetadata(() => import('./assets/logo_couchbase'), {
-    category: 'logo',
+    category: 'thirdPartyLogo',
   }),
   logoDocker: withMetadata(() => import('./assets/logo_docker'), {
-    category: 'logo',
+    category: 'thirdPartyLogo',
   }),
   logoDropwizard: withMetadata(() => import('./assets/logo_dropwizard'), {
-    category: 'logo',
+    category: 'thirdPartyLogo',
   }),
   logoElastic: withMetadata(() => import('./assets/logo_elastic'), {
-    category: 'logo',
+    category: 'elasticLogo',
   }),
   logoElasticStack: withMetadata(() => import('./assets/logo_elastic_stack'), {
-    category: 'logo',
+    category: 'elasticLogo',
   }),
   logoElasticsearch: withMetadata(() => import('./assets/logo_elasticsearch'), {
-    category: 'logo',
+    category: 'elasticLogo',
   }),
   logoEnterpriseSearch: withMetadata(
     () => import('./assets/logo_enterprise_search'),
-    { category: 'logo' }
+    { category: 'elasticLogo' }
   ),
   logoEtcd: withMetadata(() => import('./assets/logo_etcd'), {
-    category: 'logo',
+    category: 'thirdPartyLogo',
   }),
   logoGCP: withMetadata(() => import('./assets/logo_gcp'), {
-    category: 'logo',
+    category: 'thirdPartyLogo',
   }),
   logoGCPMono: withMetadata(() => import('./assets/logo_gcp_mono'), {
-    category: 'logo',
+    category: 'thirdPartyLogo',
   }),
   logoGithub: withMetadata(() => import('./assets/logo_github'), {
-    category: 'logo',
+    category: 'thirdPartyLogo',
   }),
   logoGmail: withMetadata(() => import('./assets/logo_gmail'), {
-    category: 'logo',
+    category: 'thirdPartyLogo',
   }),
   logoGolang: withMetadata(() => import('./assets/logo_golang'), {
-    category: 'logo',
+    category: 'thirdPartyLogo',
   }),
   logoGoogleG: withMetadata(() => import('./assets/logo_google_g'), {
-    category: 'logo',
+    category: 'thirdPartyLogo',
   }),
   logoHAproxy: withMetadata(() => import('./assets/logo_haproxy'), {
-    category: 'logo',
+    category: 'thirdPartyLogo',
   }),
   logoIBM: withMetadata(() => import('./assets/logo_ibm'), {
-    category: 'logo',
+    category: 'thirdPartyLogo',
   }),
   logoIBMMono: withMetadata(() => import('./assets/logo_ibm_mono'), {
-    category: 'logo',
+    category: 'thirdPartyLogo',
   }),
   logoKafka: withMetadata(() => import('./assets/logo_kafka'), {
-    category: 'logo',
+    category: 'thirdPartyLogo',
   }),
   logoKibana: withMetadata(() => import('./assets/logo_kibana'), {
-    category: 'logo',
+    category: 'elasticLogo',
   }),
   logoKubernetes: withMetadata(() => import('./assets/logo_kubernetes'), {
-    category: 'logo',
+    category: 'thirdPartyLogo',
   }),
   logoLogging: withMetadata(() => import('./assets/logo_logging'), {
-    category: 'logo',
+    category: 'elasticLogo',
   }),
   logoLogstash: withMetadata(() => import('./assets/logo_logstash'), {
-    category: 'logo',
+    category: 'elasticLogo',
   }),
   logoMaps: withMetadata(() => import('./assets/logo_maps'), {
-    category: 'logo',
+    category: 'elasticLogo',
   }),
   logoMemcached: withMetadata(() => import('./assets/logo_memcached'), {
-    category: 'logo',
+    category: 'thirdPartyLogo',
   }),
   logoMetrics: withMetadata(() => import('./assets/logo_metrics'), {
-    category: 'logo',
+    category: 'elasticLogo',
   }),
   logoMongodb: withMetadata(() => import('./assets/logo_mongodb'), {
-    category: 'logo',
+    category: 'thirdPartyLogo',
   }),
   logoMySQL: withMetadata(() => import('./assets/logo_mysql'), {
-    category: 'logo',
+    category: 'thirdPartyLogo',
   }),
   logoNginx: withMetadata(() => import('./assets/logo_nginx'), {
-    category: 'logo',
+    category: 'thirdPartyLogo',
   }),
   logoObservability: withMetadata(() => import('./assets/logo_observability'), {
-    category: 'logo',
+    category: 'elasticLogo',
   }),
   logoOsquery: withMetadata(() => import('./assets/logo_osquery'), {
-    category: 'logo',
+    category: 'thirdPartyLogo',
   }),
   logoPhp: withMetadata(() => import('./assets/logo_php'), {
-    category: 'logo',
+    category: 'thirdPartyLogo',
   }),
   logoPostgres: withMetadata(() => import('./assets/logo_postgres'), {
-    category: 'logo',
+    category: 'thirdPartyLogo',
   }),
   logoPrometheus: withMetadata(() => import('./assets/logo_prometheus'), {
-    category: 'logo',
+    category: 'thirdPartyLogo',
   }),
   logoRabbitmq: withMetadata(() => import('./assets/logo_rabbitmq'), {
-    category: 'logo',
+    category: 'thirdPartyLogo',
   }),
   logoRedis: withMetadata(() => import('./assets/logo_redis'), {
-    category: 'logo',
+    category: 'thirdPartyLogo',
   }),
   logoSecurity: withMetadata(() => import('./assets/logo_security'), {
-    category: 'logo',
+    category: 'elasticLogo',
   }),
   logoSiteSearch: withMetadata(() => import('./assets/logo_site_search'), {
-    category: 'logo',
+    category: 'elasticLogo',
   }),
   logoSketch: withMetadata(() => import('./assets/logo_sketch'), {
-    category: 'logo',
+    category: 'thirdPartyLogo',
   }),
   logoSlack: withMetadata(() => import('./assets/logo_slack'), {
-    category: 'logo',
+    category: 'thirdPartyLogo',
   }),
   logoUptime: withMetadata(() => import('./assets/logo_uptime'), {
-    category: 'logo',
+    category: 'elasticLogo',
   }),
   logoVectorDB: withMetadata(() => import('./assets/logo_vector_db'), {
     category: 'logo',
   }),
   logoVulnerabilityManagement: withMetadata(
     () => import('./assets/logo_vulnerability_management'),
-    { category: 'logo' }
+    { category: 'elasticLogo' }
   ),
   logoWebhook: withMetadata(() => import('./assets/logo_webhook'), {
-    category: 'logo',
+    category: 'thirdPartyLogo',
   }),
   logoWindows: withMetadata(() => import('./assets/logo_windows'), {
-    category: 'logo',
+    category: 'thirdPartyLogo',
   }),
   logoWorkplaceSearch: withMetadata(
     () => import('./assets/logo_workplace_search'),
-    { category: 'logo' }
+    { category: 'elasticLogo' }
   ),
   logsApp: withMetadata(() => import('./assets/app_logs'), { category: 'app' }),
   logstashFilter: () => import('./assets/logstash_filter'),
@@ -2258,7 +2264,7 @@ export const typeToPathMapGlyphIconTypes =
   getTypeToPathMapCategoryIconTypes('glyph');
 
 export const typeToPathMapLogoIconTypes =
-  getTypeToPathMapCategoryIconTypes('logo');
+  getTypeToPathMapCategoryIconTypes('elasticLogo');
 
 export const typeToPathMapMlIconTypes = getTypeToPathMapCategoryIconTypes('ml');
 
