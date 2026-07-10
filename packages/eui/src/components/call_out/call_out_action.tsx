@@ -12,8 +12,8 @@ import classNames from 'classnames';
 import { DataAttributeProps, ExclusiveUnion } from '../common';
 import { EuiButton, EuiButtonEmpty, EuiButtonEmptyProps } from '../button';
 import { Props as EuiButtonProps } from '../button/button';
-import { withEuiPopover, WithEuiPopoverProps } from '../popover';
-import { withEuiToolTip, WithEuiToolTipProps } from '../tool_tip';
+import { withEuiPopover, WithEuiPopoverProps } from '../popover/with_popover';
+import { withEuiToolTip, WithEuiToolTipProps } from '../tool_tip/with_tooltip';
 import { EuiCallOutColor } from './types';
 
 type EuiCallOutActionCommonProps = DataAttributeProps & {
