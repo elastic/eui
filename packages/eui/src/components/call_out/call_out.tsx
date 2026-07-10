@@ -52,7 +52,8 @@ export const COLOR_TO_NOTIFICATION_ICON_MAP: Record<
 
 /** Get correct color with fallback */
 const getCallOutColor = (color: unknown): EuiCallOutColor => {
-  return typeof color === 'string' && color in COLOR_TO_NOTIFICATION_ICON_MAP
+  return typeof color === 'string' &&
+    COLOR_TO_NOTIFICATION_ICON_MAP.hasOwnProperty(color)
     ? (color as EuiCallOutColor)
     : 'primary';
 };
