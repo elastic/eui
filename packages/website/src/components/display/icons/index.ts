@@ -6,7 +6,5 @@
  * Side Public License, v 1.
  */
 
-export * from './example';
-export * from './display_toggles';
-export * from './display/icons';
-export * from './storybook_link';
+export { filterIconTypes, type IconSearchSynonyms } from './icon_filter';
+export { IconSearch } from './icon_search';

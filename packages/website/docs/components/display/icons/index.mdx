@@ -21,6 +21,174 @@ export default () => <EuiIcon type="grid" />;
 If possible, provide a descriptive title based on the icon use. If no title is provided, the icon is considered purely decorative, and it will default to `aria-hidden=true`.
 :::
 
+## All icons
+
+### Glyphs
+
+Glyphs are small, monochromatic icons that typically should always use the default size of `size="m"`. They are named according to their appearance or the action they represent. For example, `star`, `play`, etc.
+
+If you would like to contribute to our growing list of glyphs, you can follow [these guidelines](https://github.com/elastic/eui/blob/main/wiki/contributing-to-eui/developing/creating-icons.md).
+
+import { IconSearch } from '@site/src/components/display/icons';
+import {
+  typeToPathMapDocsGlyphIconTypes as iconTypes,
+  typeToPathMapSynonyms as iconSynonyms,
+} from '../../../../../eui/src/components/icon/icon_map';
+
+<Demo
+  scope={{
+    iconTypes,
+    iconSynonyms,
+    IconSearch,
+  }}
+>
+  ```tsx
+  import React from 'react';
+  import { css } from '@emotion/react';
+  import { EuiCodeBlock, EuiSpacer } from '@elastic/eui';
+  import { IconSearch } from '@site/src/components/display/icons';
+  import {
+    typeToPathMapDocsGlyphIconTypes as iconTypes,
+    typeToPathMapSynonyms as iconSynonyms,
+  } from '../../../../../eui/src/components/icon/icon_map';
+
+  export default () => (
+    <div css={css`height: fit-content;`}>
+      <EuiCodeBlock language="tsx" isCopyable paddingSize="m">
+        {'<EuiIcon type="warning" />'}
+      </EuiCodeBlock>
+      <EuiSpacer />
+      <IconSearch iconTypes={iconTypes} iconSynonyms={iconSynonyms} />
+    </div>
+  );
+  ```
+</Demo>
+
+### Elastic logos
+
+These logos are restricted in use to Elastic products or when referencing Elastic products. They are multi-color with some internal paths having a class of `.euiIcon__fillNegative` to handle flipping colors for dark mode. The only other colors most of them support are ghost and text which turn them into a solid shape.
+
+import { typeToPathMapDocsLogoIconTypes as iconTypesLogos } from '../../../../../eui/src/components/icon/icon_map';
+
+<Demo scope={{ iconTypes: iconTypesLogos, IconSearch }} previewPadding="none">
+  ```tsx
+  import React, { useState } from 'react';
+  import { css } from '@emotion/react';
+  import { EuiButtonGroup, EuiSplitPanel, EuiCodeBlock, EuiSpacer, EuiIcon } from '@elastic/eui';
+  import { IconSearch } from '@site/src/components/display/icons';
+  import { typeToPathMapDocsLogoIconTypes as iconTypes } from '../../../../../eui/src/components/icon/icon_map';
+
+  const allowedColors = ['multi', 'ghost', 'text'];
+
+  export default () => {
+    const [iconColor, setIconColor] = useState(allowedColors[0]);
+
+    return (
+      <EuiSplitPanel.Outer hasBorder={false} hasShadow={false}>
+        <EuiSplitPanel.Inner color="subdued">
+          <EuiButtonGroup
+            legend="Logo color"
+            name="logoColor"
+            idSelected={iconColor}
+            onChange={(optionId) => {
+              setIconColor(optionId);
+            }}
+            options={allowedColors.map((color) => {
+              return {
+                id: color,
+                label: color,
+              };
+            })}
+          />
+        </EuiSplitPanel.Inner>
+        <EuiSplitPanel.Inner color="transparent">
+          <EuiCodeBlock language="tsx" isCopyable paddingSize="m">
+            {iconColor === 'multi'
+              ? '<EuiIcon type="logoElasticsearch" size="xl" />'
+              : `<EuiIcon type="logoElasticsearch" size="xl" color="${iconColor}" />`
+            }
+          </EuiCodeBlock>
+          <EuiSpacer />
+          <IconSearch
+            iconTypes={iconTypes}
+            placeholder="Search Elastic logos"
+            iconSize="xl"
+            resultThemeMode={iconColor === 'ghost' ? 'DARK' : undefined}
+            renderIcon={(iconType) => (
+              <EuiIcon
+                className="eui-alignMiddle"
+                type={iconType}
+                size="xl"
+                color={iconColor === 'multi' ? undefined : iconColor}
+              />
+            )}
+          />
+        </EuiSplitPanel.Inner>
+      </EuiSplitPanel.Outer>
+    );
+  }
+  ```
+</Demo>
+
+### Apps
+
+App logos are logos for Elastic Apps, and can contain multiple colors. Normally the Elastic Design team creates those icons. They are not meant to be used outside of Elastic, because they represent our apps. App logos are usually displayed at `32x32` or above and can contain multiple colors.
+
+Our set of App Icons are a subset of what the [Elastic Design team provides](https://brand.elastic.co/302f66895/p/031452-icons). If you require an icon from that set which EUI does not currently provide, please open a [Feature Request](https://github.com/elastic/eui/issues) for the EUI team to add it.
+
+import { typeToPathMapDocsAppIconTypes as iconTypesApps } from '../../../../../eui/src/components/icon/icon_map';
+
+<Demo scope={{ iconTypes: iconTypesApps, IconSearch }}>
+  ```tsx
+  import React from 'react';
+  import { css } from '@emotion/react';
+  import { EuiCodeBlock, EuiSpacer } from '@elastic/eui';
+  import { IconSearch } from '@site/src/components/display/icons';
+  import { typeToPathMapDocsAppIconTypes as iconTypes } from '../../../../../eui/src/components/icon/icon_map';
+
+  export default () => (
+    <div css={css`height: fit-content;`}>
+      <EuiCodeBlock language="tsx" isCopyable paddingSize="m">
+        {'<EuiIcon type="addDataApp" size="xl" />'}
+      </EuiCodeBlock>
+      <EuiSpacer />
+      <IconSearch iconTypes={iconTypes} placeholder="Search app logos" iconSize="xl" />
+    </div>
+  );
+  ```
+</Demo>
+
+### Machine learning icons
+
+Machine learning has some specific icons for job creation. Again, these are made for `32x32`.
+
+import { typeToPathMapDocsMlIconTypes as iconTypesML } from '../../../../../eui/src/components/icon/icon_map';
+
+<Demo scope={{ iconTypes: iconTypesML, IconSearch }}>
+  ```tsx
+  import React from 'react';
+  import { css } from '@emotion/react';
+  import { EuiCodeBlock, EuiSpacer } from '@elastic/eui';
+  import { IconSearch } from '@site/src/components/display/icons';
+  import { typeToPathMapDocsMlIconTypes as iconTypes } from '../../../../../eui/src/components/icon/icon_map';
+
+  export default () => (
+    <div css={css`height: fit-content;`}>
+      <EuiCodeBlock language="tsx" isCopyable paddingSize="m">
+        {'<EuiIcon type="addDataApp" size="xl" />'}
+      </EuiCodeBlock>
+      <EuiSpacer />
+      <IconSearch
+        iconTypes={iconTypes}
+        placeholder="Search machine learning app logos"
+        iconSize="xl"
+      />
+    </div>
+  );
+  ```
+</Demo>
+
+
 ## Usage
 
 ### Sizes
@@ -108,305 +276,6 @@ import iconColorsSource from '!raw-loader!./icon_colors';
   ```
 </Demo>
 
-### Glyphs
-
-Glyphs are small, monochromatic icons that typically should always use the default size of `size="m"`. They are named according to their appearance or the action they represent. For example, `star`, `play`, etc.
-
-If you would like to contribute to our growing list of glyphs, you can follow [these guidelines](https://github.com/elastic/eui/blob/main/wiki/contributing-to-eui/developing/creating-icons.md).
-
-import { iconTypes } from './icon_types';
-import iconTypesSource from '!raw-loader!./icon_types';
-
-<Demo scope={{ iconTypes }} extraFiles={{ 'icon_types.ts': iconTypesSource }}>
-  ```tsx
-  import React from 'react';
-  import { css } from '@emotion/react';
-  import { EuiCodeBlock, EuiSpacer, EuiFlexGrid, EuiFlexItem, EuiCopy, EuiPanel, EuiIcon } from '@elastic/eui';
-  import { iconTypes } from './icon_types';
-
-  export default () => (
-    <div css={css`height: fit-content;`}>
-      <EuiCodeBlock language="tsx" isCopyable paddingSize="m">
-        {'<EuiIcon type="warning" />'}
-      </EuiCodeBlock>
-      <EuiSpacer />
-      <EuiFlexGrid direction="row" columns={3}>
-        {iconTypes.map((iconType) => (
-          <EuiFlexItem key={iconType}>
-            <EuiCopy textToCopy={iconType} afterMessage={`${iconType} copied`} tooltipProps={{ display: 'block' }}>
-              {(copy) => (
-                <EuiPanel hasShadow={false} hasBorder={false} onClick={copy} paddingSize="s">
-                  <EuiIcon className="eui-alignMiddle" type={iconType} /> &emsp;{' '}
-                  <small>{iconType}</small>
-                </EuiPanel>
-              )}
-            </EuiCopy>
-          </EuiFlexItem>
-        ))}
-      </EuiFlexGrid>
-    </div>
-  );
-  ```
-</Demo>
-
-### Elastic logos
-
-These logos are restricted in use to Elastic products or when referencing Elastic products. They are multi-color with some internal paths having a class of `.euiIcon__fillNegative` to handle flipping colors for dark mode. The only other colors most of them support are ghost and text which turn them into a solid shape.
-
-import { iconTypesLogos } from './icon_types_logos';
-import iconTypesLogosSource from '!raw-loader!./icon_types_logos';
-
-<Demo scope={{ iconTypes: iconTypesLogos }} previewPadding="none" extraFiles={{ 'icon_types_logos.ts': iconTypesLogosSource }}>
-  ```tsx
-  import React, { useState } from 'react';
-  import { css } from '@emotion/react';
-  import { EuiButtonGroup, EuiSplitPanel, EuiCodeBlock, EuiSpacer, EuiFlexGrid, EuiFlexItem, EuiCopy, EuiPanel, EuiIcon, UseEuiTheme, useEuiMemoizedStyles } from '@elastic/eui';
-  import { iconTypesLogos as iconTypes } from './icon_types_logos';
-
-  const allowedColors = ['multi', 'ghost', 'text'];
-  const getPanelGhostStyles = ({ euiTheme }: UseEuiTheme) => css`
-    color: ${euiTheme.colors.textGhost};
-    background: ${euiTheme.colors.darkestShade};
-  `;
-
-  export default () => {
-    const [iconColor, setIconColor] = useState(allowedColors[0]);
-    const panelGhostStyles = useEuiMemoizedStyles(getPanelGhostStyles);
-
-    return (
-      <EuiSplitPanel.Outer hasBorder={false} hasShadow={false}>
-        <EuiSplitPanel.Inner color="subdued">
-          <EuiButtonGroup
-            legend="Logo color"
-            name="logoColor"
-            idSelected={iconColor}
-            onChange={(optionId) => {
-              setIconColor(optionId);
-            }}
-            options={allowedColors.map((color) => {
-              return {
-                id: color,
-                label: color,
-              };
-            })}
-          />
-        </EuiSplitPanel.Inner>
-        <EuiSplitPanel.Inner css={iconColor === 'ghost' && panelGhostStyles} color="transparent">
-          <EuiCodeBlock language="tsx" isCopyable paddingSize="m">
-            {iconColor === 'multi'
-              ? '<EuiIcon type="logoElasticsearch" size="xl" />'
-              : `<EuiIcon type="logoElasticsearch" size="xl" color="${iconColor}" />`
-            }
-          </EuiCodeBlock>
-          <EuiSpacer />
-          <EuiFlexGrid direction="row" columns={3}>
-            {iconTypes.map((iconType) => (
-              <EuiFlexItem key={iconType}>
-                <EuiCopy textToCopy={iconType} afterMessage={`${iconType} copied`} tooltipProps={{ display: 'block' }}>
-                  {(copy) => (
-                    <EuiPanel hasShadow={false} hasBorder={false} onClick={copy} paddingSize="s" color="transparent">
-                      <EuiIcon
-                        className="eui-alignMiddle"
-                        type={iconType}
-                        size="xl"
-                        color={iconColor === 'multi' ? undefined : iconColor}
-                      /> &emsp;{' '}
-                      <small>{iconType}</small>
-                    </EuiPanel>
-                  )}
-                </EuiCopy>
-              </EuiFlexItem>
-            ))}
-          </EuiFlexGrid>
-        </EuiSplitPanel.Inner>
-      </EuiSplitPanel.Outer>
-    );
-  }
-  ```
-</Demo>
-
-### Apps
-
-App logos are logos for Elastic Apps, and can contain multiple colors. Normally the Elastic Design team creates those icons. They are not meant to be used outside of Elastic, because they represent our apps. App logos are usually displayed at `32x32` or above and can contain multiple colors.
-
-Our set of App Icons are a subset of what the [Elastic Design team provides](https://brand.elastic.co/302f66895/p/031452-icons). If you require an icon from that set which EUI does not currently provide, please open a [Feature Request](https://github.com/elastic/eui/issues) for the EUI team to add it.
-
-import { iconTypesApps } from './icon_types_apps';
-import iconTypesAppsSource from '!raw-loader!./icon_types_apps';
-
-<Demo scope={{ iconTypes: iconTypesApps }} extraFiles={{ 'icon_types_apps.ts': iconTypesAppsSource }}>
-  ```tsx
-  import React from 'react';
-  import { css } from '@emotion/react';
-  import { EuiCodeBlock, EuiSpacer, EuiFlexGrid, EuiFlexItem, EuiCopy, EuiPanel, EuiIcon } from '@elastic/eui';
-  import { iconTypesApps as iconTypes } from './icon_types_apps';
-
-  export default () => (
-    <div css={css`height: fit-content;`}>
-      <EuiCodeBlock language="tsx" isCopyable paddingSize="m">
-        {'<EuiIcon type="addDataApp" size="xl" />'}
-      </EuiCodeBlock>
-      <EuiSpacer />
-      <EuiFlexGrid direction="row" columns={3}>
-        {iconTypes.map((iconType) => (
-          <EuiFlexItem key={iconType}>
-            <EuiCopy textToCopy={iconType} afterMessage={`${iconType} copied`} tooltipProps={{ display: 'block' }}>
-              {(copy) => (
-                <EuiPanel hasShadow={false} hasBorder={false} onClick={copy} paddingSize="s">
-                  <EuiIcon className="eui-alignMiddle" type={iconType} size="xl" /> &emsp;{' '}
-                  <small>{iconType}</small>
-                </EuiPanel>
-              )}
-            </EuiCopy>
-          </EuiFlexItem>
-        ))}
-      </EuiFlexGrid>
-    </div>
-  );
-  ```
-</Demo>
-
-### Machine learning icons
-
-Machine learning has some specific icons for job creation. Again, these are made for `32x32`.
-
-import { iconTypesML } from './icon_types_ml';
-import iconTypesMLSource from '!raw-loader!./icon_types_ml';
-
-<Demo scope={{ iconTypes: iconTypesML }} extraFiles={{ 'icon_types_ml.ts': iconTypesMLSource }}>
-  ```tsx
-  import React from 'react';
-  import { css } from '@emotion/react';
-  import { EuiCodeBlock, EuiSpacer, EuiFlexGrid, EuiFlexItem, EuiCopy, EuiPanel, EuiIcon } from '@elastic/eui';
-  import { iconTypesML as iconTypes } from './icon_types_ml';
-
-  export default () => (
-    <div css={css`height: fit-content;`}>
-      <EuiCodeBlock language="tsx" isCopyable paddingSize="m">
-        {'<EuiIcon type="addDataApp" size="xl" />'}
-      </EuiCodeBlock>
-      <EuiSpacer />
-      <EuiFlexGrid direction="row" columns={3}>
-        {iconTypes.map((iconType) => (
-          <EuiFlexItem key={iconType}>
-            <EuiCopy textToCopy={iconType} afterMessage={`${iconType} copied`} tooltipProps={{ display: 'block' }}>
-              {(copy) => (
-                <EuiPanel hasShadow={false} hasBorder={false} onClick={copy} paddingSize="s">
-                  <EuiIcon className="eui-alignMiddle" type={iconType} size="xl" /> &emsp;{' '}
-                  <small>{iconType}</small>
-                </EuiPanel>
-              )}
-            </EuiCopy>
-          </EuiFlexItem>
-        ))}
-      </EuiFlexGrid>
-    </div>
-  );
-  ```
-</Demo>
-
-### Tokens
-
-Tokens are most commonly used to visually signify field or code types. An **EuiToken** accepts any valid **EuiIcon** as its `iconType` property. However, icons designed specifically for use in the **EuiToken** are prefixed with "token" in their name and have pre-defined styles.
-
-import { iconTypesTokens } from './icon_types_tokens';
-import iconTypesTokensSource from '!raw-loader!./icon_types_tokens';
-
-<Demo scope={{ iconTypes: iconTypesTokens }} extraFiles={{ 'icon_types_tokens.ts': iconTypesTokensSource }}>
-  ```tsx
-  import React from 'react';
-  import { css } from '@emotion/react';
-  import { EuiCodeBlock, EuiSpacer, EuiFlexGrid, EuiFlexItem, EuiCopy, EuiPanel, EuiToken } from '@elastic/eui';
-  import { iconTypesTokens as iconTypes } from './icon_types_tokens';
-
-  export default () => (
-    <div css={css`height: fit-content;`}>
-      <EuiCodeBlock language="tsx" isCopyable paddingSize="m">
-        {'<EuiToken iconType="tokenAlias" />'}
-      </EuiCodeBlock>
-      <EuiSpacer />
-      <EuiFlexGrid direction="row" columns={3}>
-        {iconTypes.map((iconType) => (
-          <EuiFlexItem key={iconType}>
-            <EuiCopy textToCopy={iconType} afterMessage={`${iconType} copied`} tooltipProps={{ display: 'block' }}>
-              {(copy) => (
-                <EuiPanel hasShadow={false} hasBorder={false} onClick={copy} paddingSize="s">
-                  <EuiToken className="eui-alignMiddle" iconType={iconType} /> &emsp;{' '}
-                  <small>{iconType}</small>
-                </EuiPanel>
-              )}
-            </EuiCopy>
-          </EuiFlexItem>
-        ))}
-      </EuiFlexGrid>
-    </div>
-  );
-  ```
-</Demo>
-
-
-### Custom tokens
-
-By default, an `iconType` with the token prefix (i.e. those listed above) will have predefined styles. However, any valid `iconType` can be passed and, in either case, the `shape`, `size`, `color`, and `fill` can be customized.
-
-<EuiSplitPanel.Outer hasShadow={false} hasBorder direction="row">
-  <EuiSplitPanel.Inner grow={false} style={{ minWidth: 96 }} className="eui-textCenter">
-    <EuiToken iconType="tokenStruct" size="xs" color="gray" />
-  </EuiSplitPanel.Inner>
-  <EuiSplitPanel.Inner paddingSize="none" color="subdued">
-    <EuiCodeBlock language="tsx" isCopyable transparentBackground paddingSize="m">
-      {'<EuiToken iconType="tokenStruct" size="xs" color="gray" />'}
-    </EuiCodeBlock>
-  </EuiSplitPanel.Inner>
-</EuiSplitPanel.Outer>
-
-<EuiSpacer />
-<EuiSplitPanel.Outer hasShadow={false} hasBorder direction="row">
-  <EuiSplitPanel.Inner grow={false} style={{ minWidth: 96 }} className="eui-textCenter">
-    <EuiToken iconType="tokenStruct" fill="none" />
-  </EuiSplitPanel.Inner>
-  <EuiSplitPanel.Inner paddingSize="none" color="subdued">
-    <EuiCodeBlock language="tsx" isCopyable transparentBackground paddingSize="m">
-      {'<EuiToken iconType="tokenStruct" fill="none" />'}
-    </EuiCodeBlock>
-  </EuiSplitPanel.Inner>
-</EuiSplitPanel.Outer>
-
-<EuiSpacer />
-<EuiSplitPanel.Outer hasShadow={false} hasBorder direction="row">
-  <EuiSplitPanel.Inner grow={false} style={{ minWidth: 96 }} className="eui-textCenter">
-    <EuiToken iconType="tokenStruct" size="m" shape="circle" color="#b9f6c8" />
-  </EuiSplitPanel.Inner>
-  <EuiSplitPanel.Inner paddingSize="none" color="subdued">
-    <EuiCodeBlock language="tsx" isCopyable transparentBackground paddingSize="m">
-      {'<EuiToken iconType="tokenStruct" size="m" shape="circle" color="#b9f6c8" />'}
-    </EuiCodeBlock>
-  </EuiSplitPanel.Inner>
-</EuiSplitPanel.Outer>
-
-<EuiSpacer />
-<EuiSplitPanel.Outer hasShadow={false} hasBorder direction="row">
-  <EuiSplitPanel.Inner grow={false} style={{ minWidth: 96 }} className="eui-textCenter">
-    <EuiToken iconType="faceHappy"  />
-  </EuiSplitPanel.Inner>
-  <EuiSplitPanel.Inner paddingSize="none" color="subdued">
-    <EuiCodeBlock language="tsx" isCopyable transparentBackground paddingSize="m">
-      {'<EuiToken iconType="faceHappy"  />'}
-    </EuiCodeBlock>
-  </EuiSplitPanel.Inner>
-</EuiSplitPanel.Outer>
-
-<EuiSpacer />
-<EuiSplitPanel.Outer hasShadow={false} hasBorder direction="row">
-  <EuiSplitPanel.Inner grow={false} style={{ minWidth: 96 }} className="eui-textCenter">
-    <EuiToken iconType="faceHappy" size="l" color="euiColorVis7" shape="rectangle" fill="dark" />
-  </EuiSplitPanel.Inner>
-  <EuiSplitPanel.Inner paddingSize="none" color="subdued">
-    <EuiCodeBlock language="tsx" isCopyable transparentBackground paddingSize="m">
-      {'<EuiToken iconType="faceHappy" size="l" color="euiColorVis7" shape="rectangle" fill="dark" />'}
-    </EuiCodeBlock>
-  </EuiSplitPanel.Inner>
-</EuiSplitPanel.Outer>
 
 ### Custom SVGs
 
@@ -554,6 +423,104 @@ import customSvgSource from '!raw-loader!./custom.svg';
 ### Using icons as background images
 
 EUI only lets you use icons by referring to their names in components (like `<EuiIcon type="grid" />`). The actual icon files aren’t exported, so you can’t use them directly in CSS as background images.
+
+
+## Tokens
+
+Tokens are most commonly used to visually signify field or code types. An **EuiToken** accepts any valid **EuiIcon** as its `iconType` property. However, icons designed specifically for use in the **EuiToken** are prefixed with "token" in their name and have pre-defined styles.
+
+import { typeToPathMapDocsTokenIconTypes as iconTypesTokens } from '../../../../../eui/src/components/icon/icon_map';
+
+<Demo scope={{ iconTypes: iconTypesTokens, IconSearch }}>
+  ```tsx
+  import React from 'react';
+  import { css } from '@emotion/react';
+  import { EuiCodeBlock, EuiSpacer, EuiToken } from '@elastic/eui';
+  import { IconSearch } from '@site/src/components/display/icons';
+  import { typeToPathMapDocsTokenIconTypes as iconTypes } from '../../../../../eui/src/components/icon/icon_map';
+
+  export default () => (
+    <div css={css`height: fit-content;`}>
+      <EuiCodeBlock language="tsx" isCopyable paddingSize="m">
+        {'<EuiToken iconType="tokenAlias" />'}
+      </EuiCodeBlock>
+      <EuiSpacer />
+      <IconSearch
+        iconTypes={iconTypes}
+        placeholder="Search token icons"
+        renderIcon={(iconType) => (
+          <EuiToken className="eui-alignMiddle" iconType={iconType} />
+        )}
+      />
+    </div>
+  );
+  ```
+</Demo>
+
+
+### Custom tokens
+
+By default, an `iconType` with the token prefix (i.e. those listed above) will have predefined styles. However, any valid `iconType` can be passed and, in either case, the `shape`, `size`, `color`, and `fill` can be customized.
+
+<EuiSplitPanel.Outer hasShadow={false} hasBorder direction="row">
+  <EuiSplitPanel.Inner grow={false} style={{ minWidth: 96 }} className="eui-textCenter">
+    <EuiToken iconType="tokenStruct" size="xs" color="gray" />
+  </EuiSplitPanel.Inner>
+  <EuiSplitPanel.Inner paddingSize="none" color="subdued">
+    <EuiCodeBlock language="tsx" isCopyable transparentBackground paddingSize="m">
+      {'<EuiToken iconType="tokenStruct" size="xs" color="gray" />'}
+    </EuiCodeBlock>
+  </EuiSplitPanel.Inner>
+</EuiSplitPanel.Outer>
+
+<EuiSpacer />
+<EuiSplitPanel.Outer hasShadow={false} hasBorder direction="row">
+  <EuiSplitPanel.Inner grow={false} style={{ minWidth: 96 }} className="eui-textCenter">
+    <EuiToken iconType="tokenStruct" fill="none" />
+  </EuiSplitPanel.Inner>
+  <EuiSplitPanel.Inner paddingSize="none" color="subdued">
+    <EuiCodeBlock language="tsx" isCopyable transparentBackground paddingSize="m">
+      {'<EuiToken iconType="tokenStruct" fill="none" />'}
+    </EuiCodeBlock>
+  </EuiSplitPanel.Inner>
+</EuiSplitPanel.Outer>
+
+<EuiSpacer />
+<EuiSplitPanel.Outer hasShadow={false} hasBorder direction="row">
+  <EuiSplitPanel.Inner grow={false} style={{ minWidth: 96 }} className="eui-textCenter">
+    <EuiToken iconType="tokenStruct" size="m" shape="circle" color="#b9f6c8" />
+  </EuiSplitPanel.Inner>
+  <EuiSplitPanel.Inner paddingSize="none" color="subdued">
+    <EuiCodeBlock language="tsx" isCopyable transparentBackground paddingSize="m">
+      {'<EuiToken iconType="tokenStruct" size="m" shape="circle" color="#b9f6c8" />'}
+    </EuiCodeBlock>
+  </EuiSplitPanel.Inner>
+</EuiSplitPanel.Outer>
+
+<EuiSpacer />
+<EuiSplitPanel.Outer hasShadow={false} hasBorder direction="row">
+  <EuiSplitPanel.Inner grow={false} style={{ minWidth: 96 }} className="eui-textCenter">
+    <EuiToken iconType="faceHappy"  />
+  </EuiSplitPanel.Inner>
+  <EuiSplitPanel.Inner paddingSize="none" color="subdued">
+    <EuiCodeBlock language="tsx" isCopyable transparentBackground paddingSize="m">
+      {'<EuiToken iconType="faceHappy"  />'}
+    </EuiCodeBlock>
+  </EuiSplitPanel.Inner>
+</EuiSplitPanel.Outer>
+
+<EuiSpacer />
+<EuiSplitPanel.Outer hasShadow={false} hasBorder direction="row">
+  <EuiSplitPanel.Inner grow={false} style={{ minWidth: 96 }} className="eui-textCenter">
+    <EuiToken iconType="faceHappy" size="l" color="euiColorVis7" shape="rectangle" fill="dark" />
+  </EuiSplitPanel.Inner>
+  <EuiSplitPanel.Inner paddingSize="none" color="subdued">
+    <EuiCodeBlock language="tsx" isCopyable transparentBackground paddingSize="m">
+      {'<EuiToken iconType="faceHappy" size="l" color="euiColorVis7" shape="rectangle" fill="dark" />'}
+    </EuiCodeBlock>
+  </EuiSplitPanel.Inner>
+</EuiSplitPanel.Outer>
+
 
 ## Props
 

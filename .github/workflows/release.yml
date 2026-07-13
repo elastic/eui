@@ -1,5 +1,5 @@
 name: Release packages
-run-name: "Create ${{ inputs.type }} release from ${{ github.ref_name }} (${{ inputs.release_ref }}) by ${{ github.actor }}"
+run-name: "Create ${{ inputs.type }} release from ${{ inputs.release_ref }} by ${{ github.actor }}"
 
 on:
   workflow_dispatch:
@@ -181,7 +181,7 @@ jobs:
           if [[ -n "${SOURCE_PR_NUMBER:-}" ]]; then
             args+=( -f "source_pr_number=$SOURCE_PR_NUMBER" )
           fi
-          gh workflow run update_kibana_dependencies__prepare_changes.yml "${args[@]}"
+          gh workflow run update_kibana_dependencies__prepare_changes.yml --repo "$GITHUB_REPOSITORY" "${args[@]}"
   release_official:
     name: Create an official release
     runs-on: ubuntu-latest
