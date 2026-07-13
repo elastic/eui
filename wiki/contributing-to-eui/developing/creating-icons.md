@@ -159,8 +159,6 @@ Once your PR is approved, you will be able to merge it and give yourself a well-
 
 ---
 
-_\* The Icons page actually contains several sections. In most cases, you will be adding your icon to the base set. However, if your icon should appear in a different set, then add it to the appropriate section file in `/packages/website/docs/components/display/icons`._
-
 _\** Run `yarn workspace @elastic/eui-website start` to view the EUI docs site locally._
 
 
