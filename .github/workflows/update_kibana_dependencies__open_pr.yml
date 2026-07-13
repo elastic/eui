@@ -87,8 +87,8 @@ jobs:
                 ] | @tsv'
           )
 
-          if [[ -n "$err_msg" ]]; then
-            echo "::error::$err_msg" >&2
+          if [[ -z "$pr_url" ]]; then
+            echo "::error::${err_msg:-Failed to create pull request}" >&2
             {
               echo "### Failed to create pull request"
               echo ""
