@@ -17,67 +17,51 @@ on:
         description: Kibana PR body
         default: This PR updates EUI dependencies in Kibana
         type: string
-  workflow_call:
-    inputs:
-      release_ref:
-        description: Git ref to release
-        type: string
-        required: true
-      pr_title:
-        description: Kibana PR title
-        default: Update EUI dependencies
-        type: string
-      pr_body:
-        description: Kibana PR body
-        default: This PR updates EUI dependencies in Kibana
-        type: string
-
 jobs:
-  release:
-    name: Create snapshot release
+  # Triggers the `release.yml` workflow to publish a snapshot.
+  # We dispatch (instead of `workflow_call`) so `release.yml` stays the top-level
+  # workflow of the publish run and the single npm trusted publishing entry point
+  # shared with official releases. `release.yml` kicks off the rest of the
+  # Kibana integration chain after publishing.
+  trigger_release:
+    name: Trigger snapshot release
+    runs-on: ubuntu-latest
     if: ${{ github.event_name != 'pull_request' || github.event.label.name == 'ci:regression-integration-test-kibana' }}
     permissions:
-      id-token: write
+      actions: write
       contents: read
-    uses: ./.github/workflows/release.yml
-    with:
-      release_ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || inputs.release_ref }}
-      type: snapshot
-      dry_run: false
-
-  trigger_kibana_update:
-    name: Trigger Kibana dependency update
-    runs-on: ubuntu-latest
-    needs: [release]
     steps:
-      - name: Dispatch prepare changes workflow
+      - name: Dispatch release workflow
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          DEPENDENCIES: ${{ needs.release.outputs.published_packages_json }}
           EVENT_NAME: ${{ github.event_name }}
+          RELEASE_REF: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || inputs.release_ref }}
           PR_NUMBER: ${{ github.event.pull_request.number }}
           PR_URL: ${{ github.event.pull_request.html_url }}
           INPUT_PR_TITLE: ${{ inputs.pr_title }}
           INPUT_PR_BODY: ${{ inputs.pr_body }}
         # language=bash
         run: |
+          set -euo pipefail
           workflow_args=(
-            "-f" "dependencies=$DEPENDENCIES"
+            "-f" "release_ref=$RELEASE_REF"
+            "-f" "type=snapshot"
+            "-f" "dry_run=false"
+            "-f" "kibana_integration=true"
           )
 
           if [[ "$EVENT_NAME" == "pull_request" ]]; then
             # Triggered by label - use PR context
             workflow_args+=(
-              "-f" "pr_title=[DO NOT MERGE] EUI Regression Integration Test - elastic/eui#$PR_NUMBER"
-              "-f" "pr_body=This PR was created programmatically to run regression integration tests of EUI changes from $PR_URL"
-              "-f" "source_pr_number=$PR_NUMBER"
+              "-f" "kibana_pr_title=[DO NOT MERGE] EUI Regression Integration Test - elastic/eui#$PR_NUMBER"
+              "-f" "kibana_pr_body=This PR was created programmatically to run regression integration tests of EUI changes from $PR_URL"
+              "-f" "kibana_source_pr_number=$PR_NUMBER"
             )
           else
-            # Manually dispatched - use provided inputs or defaults
             workflow_args+=(
-              "-f" "pr_title=$INPUT_PR_TITLE"
-              "-f" "pr_body=$INPUT_PR_BODY"
+              "-f" "kibana_pr_title=$INPUT_PR_TITLE"
+              "-f" "kibana_pr_body=$INPUT_PR_BODY"
             )
           fi
 
-          gh workflow run update_kibana_dependencies__prepare_changes.yml "${workflow_args[@]}"
+          gh workflow run release.yml "${workflow_args[@]}"

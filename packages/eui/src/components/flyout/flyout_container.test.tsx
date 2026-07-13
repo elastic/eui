@@ -80,4 +80,61 @@ describe('EuiFlyout container prop', () => {
     const lastCall = mockOverlayProps.mock.calls.at(-1)?.[0];
     expect(lastCall?.containerRect).toBeNull();
   });
+
+  describe('container min-inline-size', () => {
+    const getMinInlineSize = async (size: string, containerWidth: number) => {
+      const rect = {
+        ...MOCK_RECT,
+        width: containerWidth,
+        right: MOCK_RECT.left + containerWidth,
+      } as DOMRect;
+      (containerEl.getBoundingClientRect as jest.Mock).mockReturnValue(rect);
+      Object.defineProperty(containerEl, 'clientWidth', {
+        value: containerWidth,
+        configurable: true,
+      });
+
+      const { container } = render(
+        <EuiFlyout
+          onClose={() => {}}
+          container={containerEl}
+          size={size as any}
+        />
+      );
+
+      let flyout: HTMLElement | null = null;
+      await waitFor(() => {
+        flyout = container.querySelector('.euiFlyout');
+        expect(flyout).not.toBeNull();
+        expect(flyout!.style.minInlineSize).not.toBe('');
+      });
+      return flyout!.style.minInlineSize;
+    };
+
+    it('applies a min-inline-size for size s', async () => {
+      const minSize = await getMinInlineSize('s', 900);
+      const px = parseInt(minSize, 10);
+      expect(px).toBeGreaterThan(0);
+      expect(px).toBeLessThanOrEqual(900 * 0.9);
+    });
+
+    it('applies a min-inline-size for size m', async () => {
+      const minSize = await getMinInlineSize('m', 900);
+      const px = parseInt(minSize, 10);
+      expect(px).toBeGreaterThan(0);
+      expect(px).toBeLessThanOrEqual(900 * 0.9);
+    });
+
+    it('caps min-inline-size at containerMaxWidth for small containers', async () => {
+      const containerWidth = 300;
+      const minSize = await getMinInlineSize('s', containerWidth);
+      const px = parseInt(minSize, 10);
+      expect(px).toBe(Math.round(containerWidth * 0.9));
+    });
+
+    it('uses min-inline-size of 0 for fill size', async () => {
+      const minSize = await getMinInlineSize('fill', 900);
+      expect(parseInt(minSize, 10)).toBe(0);
+    });
+  });
 });

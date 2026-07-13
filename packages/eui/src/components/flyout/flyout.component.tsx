@@ -30,6 +30,7 @@ import {
   EuiWindowEvent,
   useCombinedRefs,
   EuiBreakpointSize,
+  useEuiTheme,
   useEuiMemoizedStyles,
   useGeneratedHtmlId,
   useEuiThemeCSSVariables,
@@ -757,6 +758,8 @@ export const EuiFlyoutComponent = forwardRef(
       isChildFlyout: isChildFlyout,
     });
 
+    const { euiTheme } = useEuiTheme();
+
     /**
      * Inline styles position the flyout inside the reference container's
      * bounding rect (document.body or a specific element) while remaining in
@@ -817,14 +820,22 @@ export const EuiFlyoutComponent = forwardRef(
           containerRelativeWidth = size;
         }
 
-        // All container-scoped flyouts get top/height from the container rect.
-        // Reset minInlineSize to 0 so that the CSS `min-inline-size` (which
-        // resolves against the viewport for `position: fixed`) does not
-        // prevent the container-relative width constraints from taking effect.
+        // Pixel-based min-widths for named sizes within containers
+        const containerMinWidthMap: Record<string, number> = {
+          s: Math.round(euiTheme.breakpoint.m * 0.42),
+          m: Math.round(euiTheme.breakpoint.m * 0.5),
+        };
+        const sizeMinWidth =
+          typeof size === 'string' ? containerMinWidthMap[size] : undefined;
+        const containerMinInlineSize =
+          sizeMinWidth !== undefined
+            ? Math.min(sizeMinWidth, containerMaxWidth)
+            : 0;
+
         containerPositionStyles = {
           top: containerRect.top,
           height: containerRect.height,
-          minInlineSize: 0,
+          minInlineSize: containerMinInlineSize,
         };
 
         if (isChildFlyout) {
@@ -901,6 +912,7 @@ export const EuiFlyoutComponent = forwardRef(
       containerRect,
       side,
       isChildFlyout,
+      euiTheme.breakpoint.m,
     ]);
 
     const styles = useEuiMemoizedStyles(euiFlyoutStyles);

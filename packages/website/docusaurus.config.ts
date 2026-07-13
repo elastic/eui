@@ -18,10 +18,11 @@ const SSPL_LICENSE_URL =
 
 const baseUrl = process.env.DOCS_BASE_URL || '/';
 const googleTagManagerId = process.env.DOCS_GOOGLE_TAG_MANAGER_ID || undefined;
+const isDevelopment = process.env.NODE_ENV === 'development';
 
 let storybookBaseUrl: string = 'https://eui.elastic.co/storybook';
 
-if (process.env.NODE_ENV === 'development') {
+if (isDevelopment) {
   storybookBaseUrl = 'http://localhost:6006';
 } else if (process.env.STORYBOOK_BASE_URL) {
   storybookBaseUrl = process.env.STORYBOOK_BASE_URL;
@@ -30,7 +31,7 @@ if (process.env.NODE_ENV === 'development') {
 const config: Config = {
   title: 'Elastic UI Framework',
   tagline: 'The framework powering the Elastic Stack',
-  favicon: 'favicon.ico',
+  favicon: isDevelopment ? 'favicon-dev.svg' : 'favicon.ico',
   trailingSlash: true,
 
   // Set the production url of your site here
