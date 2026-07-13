@@ -64,4 +64,4 @@ jobs:
             )
           fi
 
-          gh workflow run release.yml "${workflow_args[@]}"
+          gh workflow run release.yml --repo "$GITHUB_REPOSITORY" "${workflow_args[@]}"
