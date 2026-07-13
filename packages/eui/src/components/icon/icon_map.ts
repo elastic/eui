@@ -1292,7 +1292,7 @@ export const typeToPathMap = {
     category: 'elasticLogo',
   }),
   logoVectorDB: withMetadata(() => import('./assets/logo_vector_db'), {
-    category: 'logo',
+    category: 'elasticLogo',
   }),
   logoVulnerabilityManagement: withMetadata(
     () => import('./assets/logo_vulnerability_management'),
