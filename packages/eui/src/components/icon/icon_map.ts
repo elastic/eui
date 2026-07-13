@@ -154,6 +154,7 @@ export const typeToPathMap = {
     () => import('./assets/chevron_single_left'),
     { synonyms: ['chevron', 'left', 'back', 'previous', 'arrow', 'caret'] }
   ),
+  arrowRight: () => import('./assets/chevron_single_right'), // NOTE: To be deprecated in favor of chevronSingleRight
   chevronSingleRight: withMetadata(
     () => import('./assets/chevron_single_right'),
     { synonyms: ['chevron', 'right', 'next', 'forward', 'arrow', 'caret'] }
@@ -2090,6 +2091,7 @@ export const typeToPathMapDeprecatedIconTypes = [
   'apmTrace',
   'arrowDown',
   'arrowLeft',
+  'arrowRight',
   'arrowUp',
   'arrowStart',
   'arrowEnd',

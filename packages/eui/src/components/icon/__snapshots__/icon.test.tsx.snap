@@ -1219,6 +1219,25 @@ exports[`EuiIcon props type arrowLeft is rendered 1`] = `
 </svg>
 `;
 
+exports[`EuiIcon props type arrowRight is rendered 1`] = `
+<svg
+  class="euiIcon emotion-euiIcon-m-isLoaded"
+  data-icon-type="arrowRight"
+  data-is-loaded="true"
+  height="16"
+  role="presentation"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    clip-rule="evenodd"
+    d="M10.293 8 4.646 2.354l.708-.708L11.707 8l-6.353 6.354-.708-.707L10.293 8Z"
+    fill-rule="evenodd"
+  />
+</svg>
+`;
+
 exports[`EuiIcon props type arrowStart is rendered 1`] = `
 <svg
   class="euiIcon emotion-euiIcon-m-isLoaded"
