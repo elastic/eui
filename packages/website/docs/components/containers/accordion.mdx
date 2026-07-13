@@ -593,6 +593,7 @@ import {
   EuiFlexItem,
   EuiTitle,
   EuiButtonIcon,
+  EuiToolTip,
   useEuiTheme,
   useGeneratedHtmlId,
   euiCanAnimate,
@@ -661,25 +662,29 @@ const buttonCss = css`
 const extraAction = () => {
   const { euiTheme } = useEuiTheme();
 
+  const deleteLabel = 'Delete';
+
   return (
-    <EuiButtonIcon
-      aria-label="Delete"
-      iconType="cross"
-      color="danger"
-      css={css`
-        opacity: 0;
+    <EuiToolTip content={deleteLabel} disableScreenReaderOutput>
+      <EuiButtonIcon
+        aria-label={deleteLabel}
+        iconType="cross"
+        color="danger"
+        css={css`
+          opacity: 0;
 
-        &:focus,
-        .euiAccordion:hover & {
-          opacity: 1;
-        }
+          &:focus,
+          .euiAccordion:hover & {
+            opacity: 1;
+          }
 
-        ${euiCanAnimate} {
-          transition: opacity ${euiTheme.animation.normal}
-            ${euiTheme.animation.resistance};
-        }
-      `}
-    />
+          ${euiCanAnimate} {
+            transition: opacity ${euiTheme.animation.normal}
+              ${euiTheme.animation.resistance};
+          }
+        `}
+      />
+    </EuiToolTip>
   );
 };
 

@@ -21,6 +21,7 @@ import {
 import {
   EuiAccordion,
   EuiButtonIcon,
+  EuiToolTip,
   EuiContextMenu,
   EuiIcon,
   EuiPanel,
@@ -544,6 +545,8 @@ const DraggablePanel = memo(function DraggablePanel({
     width: ${euiTheme.size.l};
   `;
 
+  const moreActionsLabel = 'More actions';
+
   return (
     <li css={wrapperStyles}>
       {instruction?.operation === 'reorder-before' && (
@@ -577,11 +580,13 @@ const DraggablePanel = memo(function DraggablePanel({
               isOpen={isPopoverOpen}
               closePopover={() => setIsPopoverOpen(false)}
               button={
-                <EuiButtonIcon
-                  aria-label="More actions"
-                  iconType="boxesVertical"
-                  onClick={() => setIsPopoverOpen((isOpen) => !isOpen)}
-                />
+                <EuiToolTip content={moreActionsLabel} disableScreenReaderOutput>
+                  <EuiButtonIcon
+                    aria-label={moreActionsLabel}
+                    iconType="boxesVertical"
+                    onClick={() => setIsPopoverOpen((isOpen) => !isOpen)}
+                  />
+                </EuiToolTip>
               }
             >
               <EuiContextMenu

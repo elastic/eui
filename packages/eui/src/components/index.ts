@@ -90,6 +90,8 @@ export * from './icon';
 
 export * from './image';
 
+export * from './illustration';
+
 export * from './inner_text';
 
 export * from './inline_edit';

@@ -10,6 +10,7 @@ import path from 'node:path';
 import fs from 'node:fs/promises';
 import * as glob from 'glob';
 import { rimraf } from 'rimraf';
+import { getChangelogReleaseUrl } from './independent_packages';
 
 const CHANGELOGS_DIR_PATH = 'changelogs';
 
@@ -132,7 +133,8 @@ export const collateChangelogFiles = async (packageRootDir: string) => {
 export const updateChangelogContent = async (
   packageRootDir: string,
   upcomingChangelog: string,
-  version: string
+  version: string,
+  packageName: string
 ) => {
   if (!upcomingChangelog) {
     throw new Error('Cannot update changelog - no changes found');
@@ -150,7 +152,10 @@ export const updateChangelogContent = async (
     changelogArchive = await fs.readFile(pathToChangelog, 'utf8');
   } catch {}
 
-  let latestVersionHeading = `## [\`v${version}\`](https://github.com/elastic/eui/releases/v${version})`;
+  let latestVersionHeading = `## [\`v${version}\`](${getChangelogReleaseUrl(
+    packageName,
+    version
+  )})`;
   if (version.includes('-backport')) {
     latestVersionHeading +=
       '\n\n**This is a backport release only intended for use by Kibana.**';

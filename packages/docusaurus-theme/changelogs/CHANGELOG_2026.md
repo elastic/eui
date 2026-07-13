@@ -1,3 +1,20 @@
+## [`v2.5.0`](https://github.com/elastic/eui/releases/v2.5.0)
+
+- Wrapped the documentation heading anchor link `EuiButtonIcon` in an `EuiToolTip` instead of using the native `title` attribute ([#9771](https://github.com/elastic/eui/pull/9771))
+- Wrapped navbar icon links and toggles in `EuiToolTip` instead of using the native `title` attribute ([#9771](https://github.com/elastic/eui/pull/9771))
+- Added vertical spacing around MDX code blocks in the Docusaurus theme. ([#9762](https://github.com/elastic/eui/pull/9762))
+
+**Bug fixes**
+
+- Disabled the fullscreen button for one-liner code snippets on the docs site. ([#9792](https://github.com/elastic/eui/pull/9792))
+- Fixed the docs Demo source editor to match the selected color mode. ([#9769](https://github.com/elastic/eui/pull/9769))
+- Fixed the docs navbar to switch to mobile navigation at tablet widths. ([#9738](https://github.com/elastic/eui/pull/9738))
+- Added `EuiThemeProvider` on `DemoPreview` to reset doc level overrides. ([#9642](https://github.com/elastic/eui/pull/9642))
+
+**Dependency updates**
+
+- Replaced `codesandbox` with `lz-string@^1.5.0` for CodeSandbox demo parameter encoding, removing vulnerable transitive dependencies from `axios`. ([#9790](https://github.com/elastic/eui/pull/9790))
+
 ## [`v2.4.0`](https://github.com/elastic/eui/releases/v2.4.0)
 
 - Updated `VersionSwitcher` to align with the updated API for `EuiListGroupItem` ([#9579](https://github.com/elastic/eui/pull/9579))

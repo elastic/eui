@@ -6,12 +6,15 @@
  * Side Public License, v 1.
  */
 
+import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
+import { EuiFlexGroup } from '../flex';
 import {
   EuiNotificationIcon,
   EuiNotificationIconProps,
 } from './notification_icon';
+import { EuiSpacer } from '../spacer';
 
 const meta: Meta<EuiNotificationIconProps> = {
   title: 'Internal/EuiNotificationIcon',
@@ -28,5 +31,33 @@ export const Playground: Story = {
   tags: ['vrt-only'],
   args: {
     type: 'info',
+  },
+};
+
+export const KitchenSink: Story = {
+  tags: ['vrt-only'],
+  parameters: {
+    controls: {
+      disable: true,
+    },
+  },
+  render: function Render(_args) {
+    return (
+      <>
+        <EuiFlexGroup gutterSize="m" alignItems="center">
+          <EuiNotificationIcon type="info" size="m" />
+          <EuiNotificationIcon type="success" size="m" />
+          <EuiNotificationIcon type="warning" size="m" />
+          <EuiNotificationIcon type="error" size="m" />
+        </EuiFlexGroup>
+        <EuiSpacer size="m" />
+        <EuiFlexGroup gutterSize="m" alignItems="center">
+          <EuiNotificationIcon type="info" size="l" />
+          <EuiNotificationIcon type="success" size="l" />
+          <EuiNotificationIcon type="warning" size="l" />
+          <EuiNotificationIcon type="error" size="l" />
+        </EuiFlexGroup>
+      </>
+    );
   },
 };

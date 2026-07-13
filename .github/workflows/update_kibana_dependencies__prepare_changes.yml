@@ -2,8 +2,8 @@
 # This workflow file is part of the chain of workflows focused on testing
 # EUI changes in Kibana as part of our regression integration testing.
 #
-# This workflow is triggered from the `update_kibana_dependencies.yml`
-# workflow and should not be run manually.
+# This workflow is dispatched from `release.yml` after a snapshot is published
+# and should not be run manually.
 #
 # Due to technical limitations and security rules, steps had to be divided
 # into multiple subworkflows that must be triggered through
@@ -19,7 +19,6 @@ on:
         description: JSON-serialized map of dependencies to update
         type: string
         required: true
-      # Passed through to `update_kibana_dependencies__open_pr.yml` workflow
       pr_title:
         description: PR title
         required: true
@@ -31,28 +30,10 @@ on:
       source_pr_number:
         description: Source PR number that triggered this workflow
         type: number
-  workflow_call:
-    inputs:
-      dependencies:
-        description: JSON-serialized map of dependencies to update
-        type: string
-        required: true
-      # Passed through to `update_kibana_dependencies__open_pr.yml` workflow
-      pr_title:
-        description: PR title
-        required: true
-        type: string
-      pr_body:
-        description: PR body
-        required: true
-        type: string
-    outputs:
-      branch_name:
-        description: Name of the branch created in the elastic/eui-kibana repository
-        value: ${{ jobs.update.outputs.branch_name }}
-
 permissions:
-  id-token: write
+  id-token: write # Required for OIDC (Vault ephemeral token)
+  contents: read
+  actions: write # Required to dispatch the open-PR workflow
 
 jobs:
   update:
@@ -149,13 +130,20 @@ jobs:
           SOURCE_PR_NUMBER: ${{ inputs.source_pr_number }}
         # language=bash
         run: |
+          set -euo pipefail
           # --repo is required because we're in the context of elastic/kibana right now
-          workflow_url=$(gh workflow run update_kibana_dependencies__open_pr.yml \
-            --repo elastic/eui \
-            -f pr_title="$PR_TITLE" \
-            -f pr_body="$PR_BODY" \
-            -f pr_head="$BRANCH_NAME" \
-            -f source_pr_number="$SOURCE_PR_NUMBER")
+          args=(
+            --repo elastic/eui
+            -f "pr_title=$PR_TITLE"
+            -f "pr_body=$PR_BODY"
+            -f "pr_head=$BRANCH_NAME"
+          )
+          # Only pass source_pr_number when set - it's a number-typed input, so an
+          # empty value (nightly/manual runs) would fail validation.
+          if [[ -n "${SOURCE_PR_NUMBER:-}" ]]; then
+            args+=( -f "source_pr_number=$SOURCE_PR_NUMBER" )
+          fi
+          workflow_url=$(gh workflow run update_kibana_dependencies__open_pr.yml "${args[@]}")
 
           {
             echo "### Success :rocket:"
