@@ -1,3 +1,24 @@
+## [`v117.0.0`](https://github.com/elastic/eui/releases/v117.0.0)
+
+- Added `EuiIllustration` for rendering SVG illustrations (e.g. from `@elastic/eui-illustrations`) that respond to the active EUI color mode ([#9779](https://github.com/elastic/eui/pull/9779))
+- Added `compressed` prop to `EuiSearchBar` to enable compact display mode for the search box and filter buttons ([#9743](https://github.com/elastic/eui/pull/9743))
+- Added `addToChat` glyph to `EuiIcon` ([#9768](https://github.com/elastic/eui/pull/9768))
+- Updated `EuiCallOut`: ([#9642](https://github.com/elastic/eui/pull/9642))
+    - Updated component styles
+    - Added `text` prop on `EuiCallOut` which renders the main, inline callout description text - use this instead of `children` where possible
+    - Added `actionProps` prop on `EuiCallOut` which renders primary and secondary action buttons
+- Added `showErrorTooltip` (defaulting to `true`) to `EuiSearchBar` to allow consumers to opt-out of the built-in parse-error tooltip ([#9773](https://github.com/elastic/eui/pull/9773))
+
+**Bug fixes**
+
+- Fixed `EuiToast` cutting off absolute positioned content by removing `overflow: hidden`. ([#9791](https://github.com/elastic/eui/pull/9791))
+- Fixed `EuiFlyout` container-scoped flyouts shrinking below usable widths for named sizes `s` and `m` by applying minimum width floors derived from theme breakpoints ([#9787](https://github.com/elastic/eui/pull/9787))
+- Fixed `EuiSelectable` with group labels rendering options with stale heights ([#9770](https://github.com/elastic/eui/pull/9770))
+
+**Breaking changes**
+
+- Removed the `accent` variant for `color` on `EuiCallOut` ([#9642](https://github.com/elastic/eui/pull/9642))
+
 ## [`v116.5.0`](https://github.com/elastic/eui/releases/v116.5.0)
 
 - Added `logoVectorDB` icon glyph ([#9758](https://github.com/elastic/eui/pull/9758))
