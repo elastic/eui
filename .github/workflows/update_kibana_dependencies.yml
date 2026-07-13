@@ -1,7 +1,7 @@
 name: Update Kibana dependencies
 
 on:
-  pull_request:
+  pull_request_target:
     types: [labeled]
   workflow_dispatch:
     inputs:
@@ -26,7 +26,7 @@ jobs:
   trigger_release:
     name: Trigger snapshot release
     runs-on: ubuntu-latest
-    if: ${{ github.event_name != 'pull_request' || github.event.label.name == 'ci:regression-integration-test-kibana' }}
+    if: ${{ github.event_name != 'pull_request_target' || github.event.label.name == 'ci:regression-integration-test-kibana' }}
     permissions:
       actions: write
       contents: read
@@ -35,7 +35,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           EVENT_NAME: ${{ github.event_name }}
-          RELEASE_REF: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || inputs.release_ref }}
+          RELEASE_REF: ${{ github.event_name == 'pull_request_target' && github.event.pull_request.head.sha || inputs.release_ref }}
           PR_NUMBER: ${{ github.event.pull_request.number }}
           PR_URL: ${{ github.event.pull_request.html_url }}
           INPUT_PR_TITLE: ${{ inputs.pr_title }}
@@ -50,7 +50,7 @@ jobs:
             "-f" "kibana_integration=true"
           )
 
-          if [[ "$EVENT_NAME" == "pull_request" ]]; then
+          if [[ "$EVENT_NAME" == "pull_request_target" ]]; then
             # Triggered by label - use PR context
             workflow_args+=(
               "-f" "kibana_pr_title=[DO NOT MERGE] EUI Regression Integration Test - elastic/eui#$PR_NUMBER"
