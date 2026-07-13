@@ -20,10 +20,7 @@ import {
   EuiThemeProvider,
 } from '@elastic/eui';
 
-import {
-  filterIconTypes,
-  type IconSearchSynonyms,
-} from './icon_filter';
+import { filterIconTypes, type IconSearchSynonyms } from './icon_filter';
 
 type IconSearchProps = {
   iconTypes: string[];
@@ -79,6 +76,8 @@ export const IconSearch = ({
                     <EuiPanel
                       hasShadow={false}
                       hasBorder={false}
+                      element="button"
+                      type="button"
                       onClick={copy}
                       paddingSize="s"
                     >

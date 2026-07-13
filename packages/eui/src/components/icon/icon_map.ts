@@ -2058,7 +2058,7 @@ export const typeToPathMap = {
   }),
   tokenDenseVector: withMetadata(() => import('./assets/token_vector_dense'), {
     category: 'token',
-  }), // NOTE: This is an undocumented alias for `tokenVectorDense`, added for legacy compatability
+  }), // NOTE: This is an undocumented alias for `tokenVectorDense`, added for legacy compatibility
   tokenVectorSparse: withMetadata(
     () => import('./assets/token_vector_sparse'),
     { category: 'token' }
