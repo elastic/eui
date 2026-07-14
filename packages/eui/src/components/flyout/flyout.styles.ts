@@ -173,10 +173,10 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
         z-index: ${Number(euiTheme.levels.flyout) - 1};
       `,
       right: css`
-        ${logicalCSS('border-left', euiTheme.border.thick)}
+        ${logicalCSS('border-left', euiTheme.border.thin)}
       `,
       left: css`
-        ${logicalCSS('border-right', euiTheme.border.thick)}
+        ${logicalCSS('border-right', euiTheme.border.thin)}
       `,
     },
 
