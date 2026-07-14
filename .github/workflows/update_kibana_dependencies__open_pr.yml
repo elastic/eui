@@ -61,7 +61,7 @@ jobs:
           base_repo_id="$(gh api "repos/$base_repo" --jq .node_id)"
           head_repo_id="$(gh api "repos/$head_repo" --jq .node_id)"
 
-          IFS=$'\t' read -r err_msg pr_url pr_number < <(
+          response="$(
             gh api graphql \
               -f query='mutation ($input: CreatePullRequestInput!) {
                 createPullRequest(input: $input) {
@@ -79,13 +79,11 @@ jobs:
               -F "input[body]=${PR_BODY:-}" \
               -F "input[draft]=${PR_DRAFT:-true}" \
               -F "input[maintainerCanModify]=false" \
-              -q 'def pr: .data.createPullRequest.pullRequest;
-                [
-                  ((.errors // []) | .[0].message // ""),
-                  (pr | if . then .url else "" end),
-                  (pr | if . then (.number | tostring) else "" end)
-                ] | @tsv'
-          )
+              || true
+          )"
+
+          pr_url="$(jq -r '.data.createPullRequest.pullRequest.url // empty' <<< "${response:-}")"
+          err_msg="$(jq -r '(.errors // []) | .[0].message // empty' <<< "${response:-}")"
 
           if [[ -z "$pr_url" ]]; then
             echo "::error::${err_msg:-Failed to create pull request}" >&2
@@ -169,7 +167,7 @@ jobs:
       - name: Check status
         id: check_status
         env:
-          GH_TOKEN: ${{ github.token }}
+          GH_TOKEN: ${{ steps.ephemeral_token.outputs.token }}
           PR_URL: ${{ needs.open_pr.outputs.pr_url }}
         # language=bash
         run: |
@@ -211,7 +209,7 @@ jobs:
           vault-role: token-policy-6becee3e5a43
       - name: Check status
         env:
-          GH_TOKEN: ${{ github.token }}
+          GH_TOKEN: ${{ steps.ephemeral_token.outputs.token }}
           PR_URL: ${{ needs.open_pr.outputs.pr_url }}
         # language=bash
         run: |
