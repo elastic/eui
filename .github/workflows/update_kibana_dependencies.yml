@@ -17,6 +17,10 @@ on:
         description: Kibana PR body
         default: This PR updates EUI dependencies in Kibana
         type: string
+      comment_smoke_test:
+        description: Test PR comment creation and updating without releasing
+        default: false
+        type: boolean
 jobs:
   # Triggers the `release.yml` workflow to publish a snapshot.
   # We dispatch (instead of `workflow_call`) so `release.yml` stays the top-level
@@ -26,7 +30,7 @@ jobs:
   trigger_release:
     name: Trigger snapshot release
     runs-on: ubuntu-latest
-    if: ${{ github.event_name != 'pull_request_target' || github.event.label.name == 'ci:regression-integration-test-kibana' }}
+    if: ${{ !inputs.comment_smoke_test && (github.event_name != 'pull_request_target' || github.event.label.name == 'ci:regression-integration-test-kibana') }}
     permissions:
       actions: write
       contents: read
@@ -65,3 +69,35 @@ jobs:
           fi
 
           gh workflow run release.yml --repo "$GITHUB_REPOSITORY" "${workflow_args[@]}"
+  comment_smoke_test:
+    name: Test PR comment action
+    if: ${{ inputs.comment_smoke_test }}
+    runs-on: ubuntu-slim
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v6
+      - name: Create comment
+        id: create_comment
+        uses: ./.github/actions/pr_bot_comment
+        with:
+          gh_token: ${{ github.token }}
+          pr_number: 9808
+          marker: 'pr-bot-comment-smoke-test-${{ github.run_id }}'
+          comment_author: 'github-actions[bot]'
+          comment_body: Temporary PR comment smoke test
+      - name: Update comment
+        uses: ./.github/actions/pr_bot_comment
+        with:
+          gh_token: ${{ github.token }}
+          pr_number: 9808
+          marker: 'pr-bot-comment-smoke-test-${{ github.run_id }}'
+          comment_author: 'github-actions[bot]'
+          comment_body: Temporary PR comment smoke test updated successfully
+      - name: Delete comment
+        if: ${{ always() && steps.create_comment.outputs.comment_id != '' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          COMMENT_ID: ${{ steps.create_comment.outputs.comment_id }}
+        run: gh api "repos/$GITHUB_REPOSITORY/issues/comments/$COMMENT_ID" -X DELETE
