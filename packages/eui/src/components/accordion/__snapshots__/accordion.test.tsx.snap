@@ -796,7 +796,6 @@ exports[`EuiAccordion props forceState open is rendered 1`] = `
     class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper-isOpen"
     id="17"
     role="group"
-    style="block-size: 0;"
   >
     <div
       class="euiAccordion__children emotion-euiAccordion__children"
@@ -849,7 +848,6 @@ exports[`EuiAccordion props initialIsOpen is rendered 1`] = `
     class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper-isOpen-noTransition"
     id="12"
     role="group"
-    style="block-size: 0;"
   >
     <div
       class="euiAccordion__children emotion-euiAccordion__children"

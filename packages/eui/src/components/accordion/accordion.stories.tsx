@@ -9,6 +9,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { EuiAccordion, EuiAccordionProps } from './accordion';
+import React, { StrictMode } from 'react';
 
 const meta: Meta<EuiAccordionProps> = {
   title: 'Layout/EuiAccordion',
@@ -40,4 +41,24 @@ export const Playground: Story = {
     buttonContent: 'Accordion toggle content',
     children: 'Accordion content',
   },
+};
+
+export const StrictModeInitialOpen: Story = {
+  args: {
+    id: 'accordion-strict-mode',
+    initialIsOpen: true,
+    buttonContent: 'Open on load',
+    children: (
+      <div style={{ padding: 16, background: '#d3dae6' }}>
+        This content should be visible immediately.
+      </div>
+    ),
+  },
+  decorators: [
+    (Story) => (
+      <StrictMode>
+        <Story />
+      </StrictMode>
+    ),
+  ],
 };

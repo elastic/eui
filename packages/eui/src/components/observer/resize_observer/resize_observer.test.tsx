@@ -7,15 +7,92 @@
  */
 
 import React, { FunctionComponent, PropsWithChildren, useState } from 'react';
-import { EuiResizeObserver, useResizeObserver } from './resize_observer';
 import { sleep } from '../../../test';
 import { render } from '../../../test/rtl';
 import { act } from '@testing-library/react';
+import { createResizeObserverMock } from '../../../test/internal';
+import { EuiResizeObserver, useResizeObserver } from './resize_observer';
+
+const resizeObserverMockRef: {
+  current: ReturnType<typeof createResizeObserverMock> | null;
+} = { current: null };
+
+jest.mock('./resize_observer.tsx', () => {
+  const { createResizeObserverMock } = jest.requireActual<
+    typeof import('../../../test/internal')
+  >('../../../test/internal');
+  resizeObserverMockRef.current = createResizeObserverMock();
+  global.ResizeObserver = resizeObserverMockRef.current.ResizeObserver;
+
+  return jest.requireActual('./resize_observer.tsx');
+});
 
 export async function waitforResizeObserver(period = 30) {
   // `period` defaults to 30 because its the delay used by the ResizeObserver polyfill
   await sleep(period);
 }
+
+const createMockEntry = (
+  element: Element,
+  { width = 500, height = 100 } = {}
+): ResizeObserverEntry => ({
+  target: element,
+  contentRect: new DOMRect(),
+  borderBoxSize: [{ inlineSize: width, blockSize: height }],
+  contentBoxSize: [],
+  devicePixelContentBoxSize: [],
+});
+
+describe('EuiResizeObserver', () => {
+  beforeEach(() => {
+    resizeObserverMockRef.current?.ResizeObserver.mockClear();
+  });
+
+  it('calls onResize again after observer reconnects with the same dimensions', () => {
+    const resizeObserverMock = resizeObserverMockRef.current!;
+    const onResize = jest.fn();
+
+    const TestComponent = ({ attached }: { attached: boolean }) => (
+      <EuiResizeObserver onResize={onResize}>
+        {(resizeRef) =>
+          attached ? (
+            <div ref={resizeRef} data-testid="target">
+              content
+            </div>
+          ) : null
+        }
+      </EuiResizeObserver>
+    );
+
+    const { getByTestId, rerender } = render(<TestComponent attached />);
+
+    const element = getByTestId('target');
+    const firstObserver =
+      resizeObserverMock.ResizeObserver.mock.results[0]?.value;
+
+    resizeObserverMock.triggerCallback(
+      [createMockEntry(element)],
+      firstObserver
+    );
+    expect(onResize).toHaveBeenCalledTimes(1);
+    expect(onResize).toHaveBeenCalledWith({ height: 100, width: 500 });
+
+    rerender(<TestComponent attached={false} />);
+    rerender(<TestComponent attached />);
+
+    const secondObserver =
+      resizeObserverMock.ResizeObserver.mock.results[1]?.value;
+
+    expect(resizeObserverMock.ResizeObserver).toHaveBeenCalledTimes(2);
+
+    resizeObserverMock.triggerCallback(
+      [createMockEntry(getByTestId('target'))],
+      secondObserver
+    );
+    expect(onResize).toHaveBeenCalledTimes(2);
+    expect(onResize).toHaveBeenLastCalledWith({ height: 100, width: 500 });
+  });
+});
 
 // EuiResizeObserver and useResizeObserver do not have a fallback for
 // environments that do not implement the ResizeObserver API.
