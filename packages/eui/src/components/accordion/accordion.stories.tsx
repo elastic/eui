@@ -51,7 +51,12 @@ export const StrictModeInitialOpen: Story = {
     initialIsOpen: true,
     buttonContent: 'Open on load',
     children: (
-      <div style={{ padding: 16, background: '#d3dae6' }}>
+      <div
+        css={({ euiTheme }) => ({
+          padding: 16,
+          background: euiTheme.colors.backgroundBaseSubdued,
+        })}
+      >
         This content should be visible immediately.
       </div>
     ),
@@ -83,7 +88,12 @@ export const StrictModeInFlyout: Story = {
             initialIsOpen
             buttonContent="Accordion in flyout"
           >
-            <div style={{ padding: 16, background: '#d3dae6' }}>
+            <div
+              css={({ euiTheme }) => ({
+                padding: 16,
+                background: euiTheme.colors.backgroundBaseSubdued,
+              })}
+            >
               Accordion content inside flyout (issue #9029)
             </div>
           </EuiAccordion>
