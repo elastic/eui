@@ -9,6 +9,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { EuiAccordion, EuiAccordionProps } from './accordion';
+import { EuiFlyout, EuiFlyoutBody, EuiFlyoutHeader } from '../flyout';
+import { EuiTitle } from '../title';
 import React, { StrictMode } from 'react';
 
 const meta: Meta<EuiAccordionProps> = {
@@ -61,4 +63,32 @@ export const StrictModeInitialOpen: Story = {
       </StrictMode>
     ),
   ],
+};
+
+/**
+ * Reproduction for https://github.com/elastic/eui/issues/9029
+ */
+export const StrictModeInFlyout: Story = {
+  render: () => (
+    <StrictMode>
+      <EuiFlyout onClose={() => {}} aria-labelledby="flyout-9029-title">
+        <EuiFlyoutHeader hasBorder>
+          <EuiTitle size="m">
+            <h2 id="flyout-9029-title">Flyout with accordion</h2>
+          </EuiTitle>
+        </EuiFlyoutHeader>
+        <EuiFlyoutBody>
+          <EuiAccordion
+            id="accordion-in-flyout-9029"
+            initialIsOpen
+            buttonContent="Accordion in flyout"
+          >
+            <div style={{ padding: 16, background: '#d3dae6' }}>
+              Accordion content inside flyout (issue #9029)
+            </div>
+          </EuiAccordion>
+        </EuiFlyoutBody>
+      </EuiFlyout>
+    </StrictMode>
+  ),
 };
