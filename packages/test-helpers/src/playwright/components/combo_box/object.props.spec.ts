@@ -222,6 +222,12 @@ test.describe('EuiComboBoxObject — onCreateOption', () => {
     await comboBox.clear();
   });
 
+  test('setCustomSelectedOptions creates and selects free-text values', async () => {
+    await comboBox.setCustomSelectedOptions(['Brand new']);
+
+    expect(await comboBox.getSelectedOptions()).toContain('Brand new');
+  });
+
   test('getSelectedOptions returns the created option label', async ({
     page,
   }) => {

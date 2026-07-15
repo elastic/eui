@@ -84,6 +84,14 @@ test.describe('EuiComboBoxObject', () => {
       expect(await comboBox.getSelectedOptions()).toEqual([]);
     });
   });
+
+  test.describe('getAvailableOptions', () => {
+    test('returns the available option labels', async () => {
+      const options = await comboBox.getAvailableOptions();
+      expect(options).toContain('Item 1');
+      expect(options).toContain('Item 5');
+    });
+  });
 });
 
 test.describe('EuiComboBoxObject component-type guard', () => {

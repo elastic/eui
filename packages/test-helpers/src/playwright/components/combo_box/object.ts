@@ -70,6 +70,51 @@ export class EuiComboBoxObject extends BaseObject {
   }
 
   /**
+   * Set free-text values on an `onCreateOption` combo box (tags, custom field
+   * names, date formats) — values that don't pre-exist as selectable options.
+   * Each label is typed and committed via `onCreateOption` (Enter), then the
+   * selection is verified so a silently-rejected value fails loudly.
+   *
+   * Distinct from {@link setSelectedOptions}: this **creates a custom selection**,
+   * it does not pick an existing option — the value won't appear in the
+   * available-options list afterwards.
+   */
+  async setCustomSelectedOptions(
+    labels: string[],
+    { timeout = 10_000 }: { timeout?: number } = {}
+  ): Promise<void> {
+    await this.assertComponent();
+    for (const label of labels) {
+      await this.input.click();
+      await this.searchInput.fill(label);
+      await this.searchInput.press('Enter');
+      await this.searchInput.blur();
+    }
+    // The typed value equals the resulting pill/input label, so an exact
+    // membership check is safe (unlike a filter-and-pick selection).
+    for (const label of labels) {
+      await expect.poll(() => this.getSelectedOptions(), { timeout }).toContain(label);
+    }
+  }
+
+  /**
+   * Open the dropdown and return the labels of the currently-available options.
+   * For tests asserting on the option list itself (e.g. no duplicate names,
+   * options are populated) rather than on the current selection.
+   */
+  async getAvailableOptions(): Promise<string[]> {
+    await this.assertComponent();
+    await this.input.click();
+    const optionsList = this.root
+      .page()
+      .locator(EuiComboBoxSelectors.optionsListFor(this.testSubj));
+    // Wait for the dropdown container (not a specific option count) so this
+    // doesn't burn the timeout when a combo legitimately has no options.
+    await optionsList.waitFor({ state: 'visible' });
+    return optionsList.getByRole('option').allInnerTexts();
+  }
+
+  /**
    * Clear all selected options. No-op if nothing is selected.
    *
    * Auto-detects the combo box configuration and uses the appropriate strategy:
