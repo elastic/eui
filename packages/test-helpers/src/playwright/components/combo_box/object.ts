@@ -9,7 +9,7 @@
 import type { Locator } from '@playwright/test';
 import { expect } from '@playwright/test';
 
-import { BaseObject } from '../../base_object';
+import { BaseObject, type ObjectScope } from '../../base_object';
 import { EuiComboBoxSelectors } from '../../../components/combo_box/selectors';
 
 /**
@@ -21,6 +21,10 @@ import { EuiComboBoxSelectors } from '../../../components/combo_box/selectors';
  * `comboBoxInput`).
  */
 export class EuiComboBoxObject extends BaseObject {
+  constructor(scope: ObjectScope, testSubj: string) {
+    super(scope, testSubj, EuiComboBoxSelectors.ROOT_SELECTOR);
+  }
+
   /**
    * Replace the current selection with `labels`. Set-semantics: order-
    * independent — already-selected labels are kept, missing ones are added,
@@ -30,6 +34,7 @@ export class EuiComboBoxObject extends BaseObject {
    * dropdown (catches test/data drift early).
    */
   async setSelectedOptions(labels: string[]): Promise<void> {
+    await this.assertComponent();
     // Dedupe while preserving order.
     const targetLabels = [...new Set(labels)];
     // `[...arr].sort()` (not `arr.sort()`) — sort mutates in place; the copy
@@ -77,6 +82,7 @@ export class EuiComboBoxObject extends BaseObject {
    * options list).
    */
   async clear(): Promise<void> {
+    await this.assertComponent();
     if ((await this.getSelectedOptions()).length === 0) {
       return;
     }
@@ -105,6 +111,7 @@ export class EuiComboBoxObject extends BaseObject {
    * - Nothing selected → `[]`.
    */
   async getSelectedOptions(): Promise<string[]> {
+    await this.assertComponent();
     if (await this.hasPills()) {
       return this.pills.allInnerTexts();
     }

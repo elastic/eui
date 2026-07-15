@@ -12,6 +12,14 @@
  */
 export const EuiComboBoxSelectors = {
   /**
+   * CSS selector for the EuiComboBox root element (the outer `.euiComboBox`
+   * wrapper that also carries the consumer's `data-test-subj`). Used to verify
+   * the targeted element is actually an EuiComboBox, and not another component
+   * that happens to share the same `data-test-subj`.
+   */
+  ROOT_SELECTOR: '.euiComboBox',
+
+  /**
    * `data-test-subj` identifier of the inner input wrapper element
    */
   INPUT_WRAPPER_TEST_SUBJ: 'comboBoxInput',

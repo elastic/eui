@@ -85,3 +85,21 @@ test.describe('EuiComboBoxObject', () => {
     });
   });
 });
+
+test.describe('EuiComboBoxObject component-type guard', () => {
+  test('throws when the data-test-subj is not an EuiComboBox', async ({ page }) => {
+    await page.goto(PLAYGROUND_URL);
+    // `comboBoxSearchInput` exists on the page but is the inner input, not the
+    // outer `.euiComboBox` root — the wrong element for this Component Object.
+    // Stands in for pointing the helper at an entirely different component that
+    // happens to share a `data-test-subj`; without the guard it would silently
+    // operate on it.
+    await page.getByTestId('comboBoxSearchInput').waitFor({ state: 'visible' });
+
+    const wrongTarget = new EuiComboBoxObject(page, 'comboBoxSearchInput');
+
+    await expect(wrongTarget.getSelectedOptions()).rejects.toThrow(
+      /Are you using the right Component Object/i
+    );
+  });
+});
