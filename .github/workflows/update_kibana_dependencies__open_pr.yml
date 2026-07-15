@@ -25,7 +25,9 @@ on:
         description: Source PR number that triggered this workflow
         type: number
 permissions:
+  contents: read
   id-token: write
+  pull-requests: write
 
 jobs:
   open_pr:
@@ -140,7 +142,7 @@ jobs:
         if: ${{ inputs.source_pr_number }}
         uses: ./.github/actions/pr_bot_comment
         with:
-          gh_token: ${{ steps.ephemeral_token.outputs.token }}
+          gh_token: ${{ github.token }}
           pr_number: ${{ inputs.source_pr_number }}
           marker: 'kibana-regression-integration-test'
           comment_body: |
@@ -249,16 +251,9 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
-      - name: Fetch GitHub token
-        id: ephemeral_token
-        uses: elastic/ci-gh-actions/fetch-github-token@v1.5.3
-        with:
-          vault-instance: ci-prod
-          vault-role: token-policy-6becee3e5a43
       - name: Compose comment body
         id: compose_comment_body
         env:
-          GH_TOKEN: ${{ steps.ephemeral_token.outputs.token }}
           KIBANA_PR_URL: ${{ needs.open_pr.outputs.pr_url }}
           PR_HEAD: ${{ inputs.pr_head }}
           CHECK_1_RESULT: ${{ needs.check_ci_status_1.result }}
@@ -290,7 +285,7 @@ jobs:
       - name: Add a comment
         uses: ./.github/actions/pr_bot_comment
         with:
-          gh_token: ${{ steps.ephemeral_token.outputs.token }}
+          gh_token: ${{ github.token }}
           pr_number: ${{ inputs.source_pr_number }}
           marker: 'kibana-regression-integration-test'
           comment_body: ${{ steps.compose_comment_body.outputs.comment_body }}
