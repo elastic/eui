@@ -41,8 +41,7 @@ const createMockEntry = (
   devicePixelContentBoxSize: [],
 });
 
-const ISSUE_9029_CONTENT =
-  'Accordion content inside flyout (issue #9029)';
+const ISSUE_9029_CONTENT = 'Accordion content inside flyout (issue #9029)';
 
 const renderAccordionInFlyout = () =>
   render(
