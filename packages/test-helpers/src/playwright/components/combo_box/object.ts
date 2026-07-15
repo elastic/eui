@@ -213,22 +213,27 @@ export class EuiComboBoxObject extends BaseObject {
     // inner `comboBoxInput` element does.
     await this.input.click();
 
-    // Don't type to filter: EUI only sets an option's `title` while the input
-    // is empty, and the getByTitle match below relies on it. setSelectedOptions
-    // clears the selection first, so the list is unfiltered and every option
-    // renders its title.
-    //
-    // Options list is rendered in a portal outside `this.root`, so locate
-    // from page level. Use .and(getByTitle) rather than embedding the label
-    // in the CSS string — CSS attribute selectors break on labels containing
-    // quotes, brackets, or backslashes. getByTitle alone would search
-    // descendants; .and() intersects so it matches the option element itself.
+    // Type to filter so the option is present in the DOM even for filterable /
+    // virtualized / suggestion-backed combos — the list may not render the
+    // target until the search narrows to it. While filtering, EUI
+    // middle-truncates the visible option text and drops its `title`, but the
+    // accessible name keeps the full label, so match by role name (a poll waits
+    // out async/server-side filtering). The options list is a portal outside
+    // `this.root`, so locate it from page level.
+    await this.searchInput.fill(label);
     const option = this.root
       .page()
-      .locator(EuiComboBoxSelectors.optionFor(this.testSubj))
-      .and(this.root.page().getByTitle(label, { exact: true }));
-    await option.waitFor({ state: 'visible' });
-    await option.click();
+      .locator(EuiComboBoxSelectors.optionsListFor(this.testSubj))
+      .getByRole('option', { name: label });
+    await expect.poll(() => option.count()).toBeGreaterThan(0);
+    if ((await option.count()) === 1) {
+      await option.click();
+    } else {
+      // Duplicate label / multiple substring matches — keyboard-select the
+      // highlighted match.
+      await this.searchInput.press('ArrowDown');
+      await this.searchInput.press('Enter');
+    }
   }
 
   /**
