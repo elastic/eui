@@ -551,6 +551,203 @@ describe('EuiComboBox', () => {
         });
       });
 
+      describe('when `delimiter` is set and multiple values are created at once', () => {
+        describe('typing a delimited list then hitting "Enter"', () => {
+          it('calls onCreateOption once per value when onCreateDelimitedOptions is not provided', () => {
+            const onCreateOptionHandler = jest.fn();
+
+            const { getByTestSubject } = render(
+              <EuiComboBox
+                delimiter=","
+                options={options}
+                selectedOptions={[options[2]]}
+                onCreateOption={onCreateOptionHandler}
+              />
+            );
+            const input = getByTestSubject('comboBoxSearchInput');
+
+            fireEvent.change(input, { target: { value: 'a, b, c' } });
+            fireEvent.keyDown(input, { key: 'Enter' });
+
+            expect(onCreateOptionHandler).toHaveBeenCalledTimes(3);
+            expect(onCreateOptionHandler).toHaveBeenNthCalledWith(
+              1,
+              'a',
+              options
+            );
+            expect(onCreateOptionHandler).toHaveBeenNthCalledWith(
+              2,
+              'b',
+              options
+            );
+            expect(onCreateOptionHandler).toHaveBeenNthCalledWith(
+              3,
+              'c',
+              options
+            );
+          });
+
+          it('calls onCreateDelimitedOptions once with all values when provided', () => {
+            const onCreateOptionHandler = jest.fn();
+            const onCreateDelimitedOptionsHandler = jest.fn();
+
+            const { getByTestSubject } = render(
+              <EuiComboBox
+                delimiter=","
+                options={options}
+                selectedOptions={[options[2]]}
+                onCreateOption={onCreateOptionHandler}
+                onCreateDelimitedOptions={onCreateDelimitedOptionsHandler}
+              />
+            );
+            const input = getByTestSubject('comboBoxSearchInput');
+
+            fireEvent.change(input, { target: { value: 'a, b, c' } });
+            fireEvent.keyDown(input, { key: 'Enter' });
+
+            expect(onCreateOptionHandler).not.toHaveBeenCalled();
+            expect(onCreateDelimitedOptionsHandler).toHaveBeenCalledTimes(1);
+            expect(onCreateDelimitedOptionsHandler).toHaveBeenCalledWith(
+              ['a', 'b', 'c'],
+              options
+            );
+          });
+
+          it('excludes already-selected values before calling onCreateDelimitedOptions', () => {
+            const onCreateDelimitedOptionsHandler = jest.fn();
+
+            const { getByTestSubject } = render(
+              <EuiComboBox
+                delimiter=","
+                options={options}
+                selectedOptions={[options[2]]}
+                onCreateDelimitedOptions={onCreateDelimitedOptionsHandler}
+              />
+            );
+            const input = getByTestSubject('comboBoxSearchInput');
+
+            fireEvent.change(input, {
+              target: { value: `${options[2].label}, b, c` },
+            });
+            fireEvent.keyDown(input, { key: 'Enter' });
+
+            expect(onCreateDelimitedOptionsHandler).toHaveBeenCalledWith(
+              ['b', 'c'],
+              options
+            );
+          });
+        });
+
+        describe('pasting a delimited or newline-separated list', () => {
+          const paste = (input: HTMLElement, text: string) =>
+            fireEvent.paste(input, {
+              clipboardData: { getData: () => text },
+            });
+
+          it('calls onCreateDelimitedOptions once with all pasted values', () => {
+            const onCreateOptionHandler = jest.fn();
+            const onCreateDelimitedOptionsHandler = jest.fn();
+
+            const { getByTestSubject } = render(
+              <EuiComboBox
+                delimiter=","
+                options={options}
+                selectedOptions={[options[2]]}
+                onCreateOption={onCreateOptionHandler}
+                onCreateDelimitedOptions={onCreateDelimitedOptionsHandler}
+              />
+            );
+            const input = getByTestSubject('comboBoxSearchInput');
+
+            paste(input, 'a,b,c');
+
+            expect(onCreateOptionHandler).not.toHaveBeenCalled();
+            expect(onCreateDelimitedOptionsHandler).toHaveBeenCalledTimes(1);
+            expect(onCreateDelimitedOptionsHandler).toHaveBeenCalledWith(
+              ['a', 'b', 'c'],
+              options
+            );
+          });
+
+          it('splits on newlines alone, without the delimiter present', () => {
+            const onCreateDelimitedOptionsHandler = jest.fn();
+
+            const { getByTestSubject } = render(
+              <EuiComboBox
+                delimiter=","
+                options={options}
+                selectedOptions={[options[2]]}
+                onCreateDelimitedOptions={onCreateDelimitedOptionsHandler}
+              />
+            );
+            const input = getByTestSubject('comboBoxSearchInput');
+
+            paste(input, 'a\nb\nc');
+
+            expect(onCreateDelimitedOptionsHandler).toHaveBeenCalledWith(
+              ['a', 'b', 'c'],
+              options
+            );
+          });
+
+          it('falls back to calling onCreateOption per value when onCreateDelimitedOptions is not provided', () => {
+            const onCreateOptionHandler = jest.fn();
+
+            const { getByTestSubject } = render(
+              <EuiComboBox
+                delimiter=","
+                options={options}
+                selectedOptions={[options[2]]}
+                onCreateOption={onCreateOptionHandler}
+              />
+            );
+            const input = getByTestSubject('comboBoxSearchInput');
+
+            paste(input, 'a\nb\nc');
+
+            expect(onCreateOptionHandler).toHaveBeenCalledTimes(3);
+          });
+
+          it('does not intercept single-value pastes, leaving default paste behavior intact', () => {
+            const onCreateOptionHandler = jest.fn();
+            const onCreateDelimitedOptionsHandler = jest.fn();
+
+            const { getByTestSubject } = render(
+              <EuiComboBox
+                delimiter=","
+                options={options}
+                selectedOptions={[options[2]]}
+                onCreateOption={onCreateOptionHandler}
+                onCreateDelimitedOptions={onCreateDelimitedOptionsHandler}
+              />
+            );
+            const input = getByTestSubject('comboBoxSearchInput');
+
+            paste(input, 'foo');
+
+            expect(onCreateDelimitedOptionsHandler).not.toHaveBeenCalled();
+            expect(onCreateOptionHandler).not.toHaveBeenCalled();
+          });
+
+          it('does nothing when delimiter is not set', () => {
+            const onCreateDelimitedOptionsHandler = jest.fn();
+
+            const { getByTestSubject } = render(
+              <EuiComboBox
+                options={options}
+                selectedOptions={[options[2]]}
+                onCreateDelimitedOptions={onCreateDelimitedOptionsHandler}
+              />
+            );
+            const input = getByTestSubject('comboBoxSearchInput');
+
+            paste(input, 'a,b,c');
+
+            expect(onCreateDelimitedOptionsHandler).not.toHaveBeenCalled();
+          });
+        });
+      });
+
       describe('tabbing off the search input', () => {
         it("closes the options list if the user isn't navigating the options", async () => {
           const keyDownBubbled = jest.fn();

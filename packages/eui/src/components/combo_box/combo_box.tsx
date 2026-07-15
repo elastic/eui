@@ -35,6 +35,7 @@ import {
   transformForCaseSensitivity,
   SortMatchesBy,
   createPartialStringEqualityOptionMatcher,
+  splitByDelimiterAndNewlines,
 } from './matching_options';
 import {
   EuiComboBoxInputProps,
@@ -157,6 +158,21 @@ export interface _EuiComboBoxProps<T>
    * A special character to use as a value separator. Typically a comma `,`
    */
   delimiter?: string;
+  /**
+   * Called once with every new value when `delimiter` is set and multiple
+   * values are created at the same time (e.g. pasting a delimited or
+   * newline-separated list). Prefer this over `onCreateOption` when your
+   * consuming code derives its next state from a captured/controlled value
+   * (e.g. react-hook-form's `field.onChange`, `useReducer`, or a stale
+   * closure `setState`) - calling `onCreateOption` once per value in a
+   * synchronous loop would otherwise drop all but the last value.
+   *
+   * Falls back to calling `onCreateOption` once per value if not provided.
+   */
+  onCreateDelimitedOptions?: (
+    values: string[],
+    options: Array<EuiComboBoxOptionOption<T>>
+  ) => void;
   /**
    * Specifies that the input should have focus when the component loads
    */
@@ -486,15 +502,46 @@ export class EuiComboBox<T> extends Component<
     const { searchValue } = this.state;
     const { delimiter } = this.props;
     if (delimiter) {
-      const trimmed = searchValue.split(delimiter).map((value) => value.trim());
-      const values = [...new Set([...trimmed])];
-
-      values.forEach((option: string) => {
-        if (option.length > 0) this.addCustomOption(isContainerBlur, option);
-      });
+      const values = splitByDelimiterAndNewlines(searchValue, delimiter);
+      this.createOptionsFromValues(values, isContainerBlur);
     } else {
       this.addCustomOption(isContainerBlur, searchValue);
     }
+  };
+
+  // Shared by the delimiter/blur flow above and the raw-clipboard paste
+  // flow below - both end up with a `values` array that needs to become
+  // one or more created options.
+  createOptionsFromValues = (values: string[], isContainerBlur: boolean) => {
+    const { onCreateDelimitedOptions } = this.props;
+
+    if (values.length > 1 && onCreateDelimitedOptions) {
+      const { isCaseSensitive, selectedOptions, options } = this.props;
+      const newValues = values.filter(
+        (value) =>
+          !getSelectedOptionForSearchValue({
+            isCaseSensitive,
+            searchValue: value,
+            selectedOptions,
+          })
+      );
+
+      if (newValues.length > 0) {
+        onCreateDelimitedOptions(newValues, flattenOptionGroups(options));
+
+        if (Boolean(this.props.singleSelection)) {
+          this.closeList();
+        }
+      }
+
+      this.clearSearchValue();
+    } else {
+      values.forEach((value) => this.addCustomOption(isContainerBlur, value));
+    }
+  };
+
+  onDelimiterPaste = (values: string[]) => {
+    this.createOptionsFromValues(values, false);
   };
 
   onContainerBlur: FocusEventHandler<HTMLDivElement> = (event) => {
@@ -781,6 +828,7 @@ export class EuiComboBox<T> extends Component<
       onBlur,
       onChange,
       onCreateOption,
+      onCreateDelimitedOptions,
       onSearchChange,
       options,
       placeholder,
@@ -952,6 +1000,8 @@ export class EuiComboBox<T> extends Component<
                     onFocus={this.onComboBoxFocus}
                     onOpenListClick={this.onOpenListClick}
                     onRemoveOption={this.onRemoveOption}
+                    delimiter={delimiter}
+                    onDelimiterPaste={this.onDelimiterPaste}
                     placeholder={placeholder}
                     rootId={this.rootId}
                     searchValue={searchValue}

@@ -6,6 +6,8 @@
  * Side Public License, v 1.
  */
 
+import escapeRegExp from 'lodash/escapeRegExp';
+
 import { EuiComboBoxOptionOption, EuiComboBoxOptionMatcher } from './types';
 
 export type SortMatchesBy = 'none' | 'startsWith';
@@ -233,4 +235,27 @@ export const createPartialStringEqualityOptionMatcher = <
 
     return normalizedOption.includes(normalizedSearchValue);
   };
+};
+
+/**
+ * Splits a string into individual values on the configured `delimiter` as
+ * well as newlines. Newlines are always treated as a valid separator (in
+ * addition to `delimiter`) because copying rendered pills/badges elsewhere
+ * in the UI produces newline-separated clipboard text even when the
+ * delimiter character itself isn't present.
+ *
+ * Returns trimmed, deduplicated, non-empty values.
+ */
+export const splitByDelimiterAndNewlines = (
+  value: string,
+  delimiter: string
+): string[] => {
+  const pattern = new RegExp(`${escapeRegExp(delimiter)}|\\r\\n|\\n|\\r`);
+
+  const values = value
+    .split(pattern)
+    .map((option) => option.trim())
+    .filter((option) => option.length > 0);
+
+  return [...new Set(values)];
 };

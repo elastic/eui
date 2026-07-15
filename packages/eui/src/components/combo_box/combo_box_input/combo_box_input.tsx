@@ -8,6 +8,7 @@
 
 import React, {
   Component,
+  ClipboardEventHandler,
   FocusEventHandler,
   KeyboardEventHandler,
   RefCallback,
@@ -34,12 +35,14 @@ import {
   EuiComboBoxSingleSelectionShape,
   OptionHandler,
 } from '../types';
+import { splitByDelimiterAndNewlines } from '../matching_options';
 import { EuiComboBoxOptionAppendPrepend } from '../utils';
 import { EuiComboBoxPill } from './combo_box_pill';
 import { euiComboBoxInputStyles } from './combo_box_input.styles';
 
 export interface EuiComboBoxInputProps<T> extends CommonProps {
   compressed: boolean;
+  delimiter?: string;
   focusedOptionId?: string;
   fullWidth?: boolean;
   hasSelectedOptions: boolean;
@@ -53,6 +56,7 @@ export interface EuiComboBoxInputProps<T> extends CommonProps {
   onClear?: () => void;
   onClick: () => void;
   onCloseListClick: () => void;
+  onDelimiterPaste?: (values: string[]) => void;
   onFocus: FocusEventHandler<HTMLInputElement>;
   onOpenListClick: () => void;
   onRemoveOption: OptionHandler<T>;
@@ -160,6 +164,23 @@ export class EuiComboBoxInput<T> extends Component<
         }
       }
     }
+  };
+
+  // A single-line `<input>` sanitizes pasted text per the HTML value
+  // sanitization algorithm, stripping/collapsing newlines before `onChange`
+  // ever sees them. Reading `clipboardData` here gets us the raw text so a
+  // `delimiter`-configured combo box can still split newline-separated
+  // clipboard content (e.g. copied pill/badge text) into multiple values.
+  onPaste: ClipboardEventHandler<HTMLInputElement> = (event) => {
+    const { delimiter, onDelimiterPaste } = this.props;
+    if (!delimiter) return;
+
+    const pastedText = event.clipboardData.getData('text');
+    const values = splitByDelimiterAndNewlines(pastedText, delimiter);
+    if (values.length <= 1) return;
+
+    event.preventDefault();
+    onDelimiterPaste?.(values);
   };
 
   get asPlainText() {
@@ -393,6 +414,7 @@ export class EuiComboBoxInput<T> extends Component<
                     onChange={(event) => onChange(event.target.value)}
                     onFocus={this.onFocus}
                     onKeyDown={this.onKeyDown}
+                    onPaste={this.onPaste}
                     ref={this.inputRefCallback}
                     role="combobox"
                     style={{

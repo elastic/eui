@@ -13,6 +13,7 @@ import {
   getMatchingOptions,
   getSelectedOptionForSearchValue,
   createPartialStringEqualityOptionMatcher,
+  splitByDelimiterAndNewlines,
 } from './matching_options';
 
 const options = [
@@ -303,4 +304,50 @@ describe('getMatchingOptions', () => {
       expect(getMatchingOptions(rest)).toMatchObject(expected);
     }
   );
+});
+
+describe('splitByDelimiterAndNewlines', () => {
+  it('splits on the configured delimiter', () => {
+    expect(splitByDelimiterAndNewlines('a, b, c', ',')).toEqual([
+      'a',
+      'b',
+      'c',
+    ]);
+  });
+
+  it('splits on newlines even without the delimiter present', () => {
+    expect(splitByDelimiterAndNewlines('a\nb\r\nc', ',')).toEqual([
+      'a',
+      'b',
+      'c',
+    ]);
+  });
+
+  it('splits on a mix of the delimiter and newlines', () => {
+    expect(splitByDelimiterAndNewlines('a,\nb,\nc', ',')).toEqual([
+      'a',
+      'b',
+      'c',
+    ]);
+  });
+
+  it('trims whitespace and drops empty values', () => {
+    expect(splitByDelimiterAndNewlines(' a ,  , b ,,c  ', ',')).toEqual([
+      'a',
+      'b',
+      'c',
+    ]);
+  });
+
+  it('deduplicates repeated values', () => {
+    expect(splitByDelimiterAndNewlines('a, a, b, a', ',')).toEqual(['a', 'b']);
+  });
+
+  it('treats a single value with no separators as one value', () => {
+    expect(splitByDelimiterAndNewlines('a', ',')).toEqual(['a']);
+  });
+
+  it('escapes regex-special delimiter characters', () => {
+    expect(splitByDelimiterAndNewlines('a|b|c', '|')).toEqual(['a', 'b', 'c']);
+  });
 });
