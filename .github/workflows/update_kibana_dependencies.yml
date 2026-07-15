@@ -78,8 +78,22 @@ jobs:
       pull-requests: write
     steps:
       - uses: actions/checkout@v6
-      - name: Create comment
-        id: create_comment
+      - name: Baseline - create comment without author
+        id: baseline_comment
+        continue-on-error: true
+        uses: ./.github/actions/pr_bot_comment
+        with:
+          gh_token: ${{ github.token }}
+          pr_number: 9808
+          marker: 'pr-bot-comment-smoke-test-${{ github.run_id }}'
+          comment_body: Temporary PR comment smoke test
+      - name: Assert baseline failed
+        if: ${{ steps.baseline_comment.outcome != 'failure' }}
+        run: |
+          echo "::error::Baseline unexpectedly succeeded"
+          exit 1
+      - name: Fixed - create comment with author
+        id: fixed_comment
         uses: ./.github/actions/pr_bot_comment
         with:
           gh_token: ${{ github.token }}
@@ -96,8 +110,8 @@ jobs:
           comment_author: 'github-actions[bot]'
           comment_body: Temporary PR comment smoke test updated successfully
       - name: Delete comment
-        if: ${{ always() && steps.create_comment.outputs.comment_id != '' }}
+        if: ${{ always() && (steps.fixed_comment.outputs.comment_id != '' || steps.baseline_comment.outputs.comment_id != '') }}
         env:
           GH_TOKEN: ${{ github.token }}
-          COMMENT_ID: ${{ steps.create_comment.outputs.comment_id }}
+          COMMENT_ID: ${{ steps.fixed_comment.outputs.comment_id || steps.baseline_comment.outputs.comment_id }}
         run: gh api "repos/$GITHUB_REPOSITORY/issues/comments/$COMMENT_ID" -X DELETE
