@@ -145,6 +145,7 @@ jobs:
           gh_token: ${{ github.token }}
           pr_number: ${{ inputs.source_pr_number }}
           marker: 'kibana-regression-integration-test'
+          comment_author: 'github-actions[bot]'
           comment_body: |
             ## Kibana Regression Integration Test
 
@@ -288,4 +289,5 @@ jobs:
           gh_token: ${{ github.token }}
           pr_number: ${{ inputs.source_pr_number }}
           marker: 'kibana-regression-integration-test'
+          comment_author: 'github-actions[bot]'
           comment_body: ${{ steps.compose_comment_body.outputs.comment_body }}

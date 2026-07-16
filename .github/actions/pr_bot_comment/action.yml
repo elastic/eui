@@ -13,6 +13,9 @@ inputs:
   marker:
     description: Unique marker string to identify this comment and allow updating it programmatically
     required: true
+  comment_author:
+    description: Login of the comment author; inferred from the token when omitted
+    required: false
   comment_body:
     description: The comment body content (marker will be prepended automatically)
     required: true
@@ -31,11 +34,11 @@ runs:
         REPOSITORY: ${{ inputs.repository }}
         PR_NUMBER: ${{ inputs.pr_number }}
         MARKER: ${{ inputs.marker }}
+        COMMENT_AUTHOR: ${{ inputs.comment_author }}
         COMMENT_BODY: ${{ inputs.comment_body }}
       # language=bash
       run: |
-        # Get bot user name
-        user=$(gh api user --jq '.login')
+        user="${COMMENT_AUTHOR:-$(gh api user --jq '.login')}"
 
         # Prepend magic marker to comment body
         marker_str="<!-- comment-marker: $MARKER -->"
