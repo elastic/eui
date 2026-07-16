@@ -7003,6 +7003,13 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@elastic/esql-definitions@npm:^4.13.0":
+  version: 4.13.0
+  resolution: "@elastic/esql-definitions@npm:4.13.0"
+  checksum: 10c0/ba61d92d7915191d72a3d21742d8ab9652d61d0cb4dcf54d52d2e0b8f2873ec04b604dea460efcc9b680bfe61a5f69f8cc7e30e6ea3e76bb704622cb8a851113
+  languageName: node
+  linkType: hard
+
 "@elastic/eui-docgen@workspace:^, @elastic/eui-docgen@workspace:packages/eui-docgen":
   version: 0.0.0-use.local
   resolution: "@elastic/eui-docgen@workspace:packages/eui-docgen"
@@ -7294,7 +7301,7 @@ __metadata:
     "@elastic/eui-illustrations": "workspace:*"
     "@elastic/eui-theme-borealis": "workspace:*"
     "@elastic/eui-theme-common": "workspace:*"
-    "@elastic/prismjs-esql": "npm:^1.1.2"
+    "@elastic/prismjs-esql": "npm:^4.13.0"
     "@emotion/babel-preset-css-prop": "npm:^11.11.0"
     "@emotion/cache": "npm:^11.11.0"
     "@emotion/css": "npm:^11.11.0"
@@ -7461,10 +7468,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@elastic/prismjs-esql@npm:^1.1.2":
-  version: 1.1.2
-  resolution: "@elastic/prismjs-esql@npm:1.1.2"
-  checksum: 10c0/c6a7804f061a7e3df021e44ecf3f1fe2166d9e0016b16a4c9b0fd79e44cee00079583529a599842d823071c77765f057d6761963d414d6d82c0f0c22eececf35
+"@elastic/prismjs-esql@npm:^4.13.0":
+  version: 4.13.0
+  resolution: "@elastic/prismjs-esql@npm:4.13.0"
+  dependencies:
+    "@elastic/esql-definitions": "npm:^4.13.0"
+  checksum: 10c0/5242096a9d2391fe8334d915c0a458a3c97d17f03a97362e5a3ec9c9c1394210c4ec759df56313ae8f5615454b10de9e0a2fb7bdbe1f69f13ae1bb61c5cded6e
   languageName: node
   linkType: hard
 
