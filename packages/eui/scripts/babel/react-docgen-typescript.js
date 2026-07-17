@@ -190,7 +190,6 @@ function filterProp(
     if (prop.name.includes(whiteListedProps)) {
       return true;
     }
-    if (prop.parent.fileName.includes('@elastic/charts')) return true;
     return !prop.parent.fileName.includes('node_modules');
   }
   return true;

@@ -11,11 +11,9 @@ import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../services';
 import {
   logicalCSS,
-  logicalTextAlignCSS,
-  euiFontSize,
-  EXTENDED_BUTTON_COLORS,
   euiButtonEmptyColor,
-  type _EuiExtendedButtonColor,
+  _EuiExtendedButtonColor,
+  EXTENDED_BUTTON_COLORS,
 } from '../../global_styling';
 
 export const euiContextMenuItemStyles = (euiThemeContext: UseEuiTheme) => {
@@ -23,45 +21,26 @@ export const euiContextMenuItemStyles = (euiThemeContext: UseEuiTheme) => {
 
   return {
     euiContextMenuItem: css`
+      /* needed to ensure all items are navigable in NVDA browse mode ¯\_(ツ)_/¯ */
       display: flex;
-      gap: ${euiTheme.size.s};
-      ${logicalCSS('width', '100%')}
-      ${logicalTextAlignCSS('left')}
-      color: ${euiTheme.colors.textParagraph};
-      outline-offset: -${euiTheme.focus.width};
-
-      &:where(a, button):not(:disabled) {
-        &:hover,
-        &:focus {
-          text-decoration: underline;
-        }
-
-        &:focus {
-          background-color: ${euiTheme.focus.backgroundColor};
-        }
-      }
-    `,
-    disabled: css`
-      color: ${euiTheme.colors.textDisabled};
-      cursor: default;
     `,
     layoutAlign: {
       center: css`
-        align-items: center;
+        .euiListItemLayout__prepend {
+          align-self: center;
+        }
       `,
       top: css`
-        align-items: flex-start;
+        .euiListItemLayout__prepend {
+          align-self: flex-start;
+          ${logicalCSS('margin-top', euiTheme.size.s)}
+        }
       `,
       bottom: css`
-        align-items: flex-end;
-      `,
-    },
-    sizes: {
-      m: css`
-        padding: ${euiTheme.size.m};
-      `,
-      s: css`
-        padding: ${euiTheme.size.s};
+        .euiListItemLayout__prepend {
+          align-self: flex-end;
+          ${logicalCSS('margin-bottom', euiTheme.size.s)}
+        }
       `,
     },
     // Children
@@ -72,9 +51,6 @@ export const euiContextMenuItemStyles = (euiThemeContext: UseEuiTheme) => {
       euiContextMenuItem__text: css`
         flex-grow: 1;
         overflow: hidden; /* allows for text truncation */
-      `,
-      s: css`
-        ${euiFontSize(euiThemeContext, 's')}
       `,
     },
     euiContextMenuItem__arrow: css`

@@ -22,6 +22,7 @@ import { EuiLink } from '../link';
 import { EuiPopover } from '../popover';
 import { EuiIcon } from '../icon';
 import { useEuiI18n } from '../i18n';
+import { EuiToolTip } from '../tool_tip';
 
 import type { EuiBreadcrumbProps, _EuiBreadcrumbProps } from './types';
 import {
@@ -47,6 +48,7 @@ export const EuiBreadcrumbContent: FunctionComponent<
   isOnlyBreadcrumb,
   highlightLastBreadcrumb,
   truncateLastBreadcrumb,
+  title: propTitle,
   ...rest
 }) => {
   const isApplication = type === 'application';
@@ -84,10 +86,12 @@ export const EuiBreadcrumbContent: FunctionComponent<
     !isApplication &&
     styles.isInteractive;
 
+  const hasExplicitTitle = propTitle != null && propTitle !== '';
+
   return (
     <EuiInnerText>
       {(ref, innerText) => {
-        const title = innerText === '' ? undefined : innerText;
+        const title = propTitle || (innerText === '' ? undefined : innerText);
         const baseProps = {
           ref,
           title,
@@ -101,6 +105,8 @@ export const EuiBreadcrumbContent: FunctionComponent<
           return (
             <EuiBreadcrumbPopover
               {...popoverButtonProps}
+              title={title}
+              hasExplicitTitle={hasExplicitTitle}
               breadcrumbCss={[...cssStyles, interactionStyles]}
               truncationCss={truncationStyles}
               isLastBreadcrumb={isLastBreadcrumb}
@@ -143,6 +149,7 @@ type EuiBreadcrumbPopoverProps = HTMLAttributes<HTMLElement> &
   Pick<_EuiBreadcrumbProps, 'type' | 'isLastBreadcrumb'> & {
     breadcrumbCss: ArrayCSSInterpolation;
     truncationCss: ArrayCSSInterpolation;
+    hasExplicitTitle: boolean;
   };
 const EuiBreadcrumbPopover = forwardRef<
   HTMLButtonElement,
@@ -155,6 +162,7 @@ const EuiBreadcrumbPopover = forwardRef<
       color,
       type,
       title,
+      hasExplicitTitle,
       'aria-current': ariaCurrent,
       className,
       isLastBreadcrumb,
@@ -194,6 +202,25 @@ const EuiBreadcrumbPopover = forwardRef<
       ...truncationCss,
     ];
 
+    const linkButton = (
+      <EuiLink
+        ref={ref}
+        aria-current={ariaCurrent}
+        className={className}
+        css={buttonStyles}
+        color={color}
+        onClick={togglePopover}
+        {...rest}
+      >
+        <span css={truncationStyles}>{children}</span>
+        <EuiIcon
+          type="chevronSingleDown"
+          size="s"
+          aria-label={` - ${popoverAriaLabel}`}
+        />
+      </EuiLink>
+    );
+
     return (
       <EuiPopover
         {...popoverProps}
@@ -201,23 +228,16 @@ const EuiBreadcrumbPopover = forwardRef<
         closePopover={closePopover}
         css={wrapperStyles}
         button={
-          <EuiLink
-            ref={ref}
-            title={title}
-            aria-current={ariaCurrent}
-            className={className}
-            css={buttonStyles}
-            color={color}
-            onClick={togglePopover}
-            {...rest}
-          >
-            <span css={truncationStyles}>{children}</span>
-            <EuiIcon
-              type="chevronSingleDown"
-              size="s"
-              aria-label={` - ${popoverAriaLabel}`}
-            />
-          </EuiLink>
+          title ? (
+            <EuiToolTip
+              content={title}
+              disableScreenReaderOutput={!hasExplicitTitle}
+            >
+              {linkButton}
+            </EuiToolTip>
+          ) : (
+            linkButton
+          )
         }
       >
         {typeof popoverContent === 'function'

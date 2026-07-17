@@ -8,7 +8,7 @@
 
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { LOKI_SELECTORS } from '../../../.storybook/loki';
+import { VRT_SELECTORS } from '../../../.storybook/vrt';
 import { moveStorybookControlsToCategory } from '../../../.storybook/utils';
 
 import { EuiText } from '../text';
@@ -36,9 +36,9 @@ const meta: Meta<EuiFlyoutResizableProps> = {
     minWidth: 200,
   },
   parameters: {
-    loki: {
+    vrt: {
       // Flyout content is rendered in a portal
-      chromeSelector: LOKI_SELECTORS.portal,
+      selector: VRT_SELECTORS.portal,
     },
   },
 };

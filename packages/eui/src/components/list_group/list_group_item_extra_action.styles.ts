@@ -7,7 +7,7 @@
  */
 
 import { css } from '@emotion/react';
-import { euiCanAnimate, logicalCSS } from '../../global_styling';
+import { euiCanAnimate } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 
 export const euiListGroupItemExtraActionStyles = ({
@@ -17,21 +17,16 @@ export const euiListGroupItemExtraActionStyles = ({
     euiListGroupItemExtraAction: css`
       flex-shrink: 0;
       opacity: 0;
-      ${logicalCSS('margin-right', euiTheme.size.s)};
 
       ${euiCanAnimate} {
         transition: opacity ${euiTheme.animation.fast};
-
-        /* Unset default EuiButtonIcon animation - extra & used for specificy override */
-        &&:hover,
-        &&:focus {
-          transform: translateY(0);
-        }
       }
     `,
     hoverStyles: css`
       .euiListGroupItem:hover &,
+      .euiListGroupItem:hover + &,
       .euiListGroupItem__button:focus + &,
+      &:hover,
       &:focus {
         opacity: 1;
       }

@@ -19,7 +19,7 @@ import {
   EuiFlyoutHeader,
   EuiFlyoutFooter,
 } from './index';
-import { LOKI_SELECTORS } from '../../../.storybook/loki';
+import { VRT_SELECTORS } from '../../../.storybook/vrt';
 import { DEFAULT_MENU_DISPLAY_MODE, FLYOUT_MENU_DISPLAY_MODES } from './const';
 
 interface FlyoutStoryArgs extends EuiFlyoutProps {
@@ -56,9 +56,9 @@ const meta: Meta<FlyoutStoryArgs> = {
     showCustomActions: true,
   },
   parameters: {
-    loki: {
+    vrt: {
       // Flyout content is rendered in a portal
-      chromeSelector: LOKI_SELECTORS.portal,
+      selector: VRT_SELECTORS.portal,
     },
   },
 };
@@ -130,9 +130,6 @@ export const PushFlyouts: Story = {
   parameters: {
     controls: {
       include: ['hasAnimation', 'pushMinBreakpoint', 'side', 'size', 'type'],
-    },
-    loki: {
-      chromeSelector: LOKI_SELECTORS.default,
     },
   },
   args: {
@@ -234,7 +231,15 @@ export const HighContrast: Story = {
             <h2>Flyout header</h2>
           </EuiTitle>
         </EuiFlyoutHeader>
-        <EuiFlyoutBody banner={<EuiCallOut>Flyout banner</EuiCallOut>}>
+        <EuiFlyoutBody
+          banner={
+            <EuiCallOut
+              title="Flyout banner title."
+              size="s"
+              text="Flyout banner text"
+            />
+          }
+        >
           Flyout body
         </EuiFlyoutBody>
         <EuiFlyoutFooter>

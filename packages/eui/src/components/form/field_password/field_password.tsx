@@ -20,6 +20,7 @@ import { useCombinedRefs, useEuiMemoizedStyles } from '../../../services';
 import { CommonProps } from '../../common';
 import { useEuiI18n } from '../../i18n';
 import { EuiButtonIcon, EuiButtonIconPropsForButton } from '../../button';
+import { EuiToolTip } from '../../tool_tip';
 
 import {
   EuiFormControlLayout,
@@ -132,16 +133,20 @@ export const EuiFieldPassword: FunctionComponent<EuiFieldPasswordProps> = (
       const isVisible = inputType === 'text';
 
       return (
-        <EuiButtonIcon
-          iconType={isVisible ? 'eyeSlash' : 'eye'}
-          aria-label={isVisible ? maskPasswordLabel : showPasswordLabel}
-          title={isVisible ? maskPasswordLabel : showPasswordLabel}
-          disabled={disabled}
-          {...dualToggleProps}
-          onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) =>
-            handleToggle(e, isVisible)
-          }
-        />
+        <EuiToolTip
+          content={isVisible ? maskPasswordLabel : showPasswordLabel}
+          disableScreenReaderOutput
+        >
+          <EuiButtonIcon
+            iconType={isVisible ? 'eyeSlash' : 'eye'}
+            aria-label={isVisible ? maskPasswordLabel : showPasswordLabel}
+            disabled={disabled}
+            {...dualToggleProps}
+            onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) =>
+              handleToggle(e, isVisible)
+            }
+          />
+        </EuiToolTip>
       );
     }
   }, [

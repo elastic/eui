@@ -28,6 +28,7 @@
     "@elastic/eui-docgen": "workspace:^",
     "@elastic/eui-docusaurus-preset": "workspace:^",
     "@elastic/eui-docusaurus-theme": "workspace:^",
+    "@elastic/eui-illustrations": "workspace:^",
     "@elastic/eui-theme-common": "workspace:^",
     "@emotion/css": "^11.11.2",
     "@emotion/react": "^11.11.4",

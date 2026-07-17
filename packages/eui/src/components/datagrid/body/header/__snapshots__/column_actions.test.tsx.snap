@@ -38,7 +38,7 @@ exports[`ColumnActions renders 1`] = `
         aria-describedby="euiPopover_generated-id_descriptionId"
         aria-live="off"
         aria-modal="true"
-        class="euiPanel euiPanel--plain euiPopover__panel emotion-euiPanel-grow-m-plain-euiPopover__panel-light-isOpen-hasTransform-bottom"
+        class="euiPanel euiPanel--plain euiPanel--paddingSmall euiPopover__panel emotion-euiPanel-grow-m-s-plain-euiPopover__panel-light-isOpen-hasTransform-bottom"
         data-autofocus="true"
         data-popover-open="true"
         data-popover-panel="true"
@@ -56,109 +56,159 @@ exports[`ColumnActions renders 1`] = `
         </p>
         <div>
           <ul
-            class="euiListGroup emotion-euiListGroup-none-maxWidthDefault"
+            class="euiListGroup emotion-euiListGroup-maxWidthDefault"
             data-test-subj="dataGridHeaderCellActionGroup-someColumn"
           >
             <li
-              class="euiListGroupItem emotion-euiListGroupItem-text-xs"
+              class="euiListItemLayout__wrapper emotion-euiListItemLayout__wrapper-isInteractive"
+              data-test-subj="euiListItemLayout-wrapper"
             >
               <button
-                class="euiListGroupItem__button emotion-euiListGroupItem__inner-xs-text-isClickable"
+                class="euiListItemLayout euiListGroupItem euiListGroupItem__button emotion-euiListItemLayout-euiListItemLayout__action-euiListGroupItem-euiListGroupItem__inner-text"
+                data-test-subj="euiListItemLayout"
                 type="button"
               >
                 <span
-                  class="euiListGroupItem__icon emotion-euiListGroupItem__icon"
-                  color="inherit"
-                  data-euiicon-type="eyeSlash"
-                />
-                <span
-                  class="euiListGroupItem__label emotion-euiListGroupItem__label-truncate"
-                  title="Hide column"
+                  class="euiListItemLayout__content emotion-euiListItemLayout__content"
                 >
-                  Hide column
+                  <span
+                    class="euiListItemLayout__prepend emotion-euiListItemLayout__prepend"
+                  >
+                    <span
+                      class="euiListGroupItem__icon css-0"
+                      color="inherit"
+                      data-euiicon-type="eyeSlash"
+                    />
+                  </span>
+                  <span
+                    class="euiListItemLayout__text euiListGroupItem__label emotion-euiListItemLayout__text-truncate"
+                    title="Hide column"
+                  >
+                    Hide column
+                  </span>
                 </span>
               </button>
             </li>
             <li
-              class="euiListGroupItem emotion-euiListGroupItem-text-xs"
+              class="euiListItemLayout__wrapper emotion-euiListItemLayout__wrapper-isInteractive"
+              data-test-subj="euiListItemLayout-wrapper"
             >
               <button
-                class="euiListGroupItem__button emotion-euiListGroupItem__inner-xs-text-isClickable"
+                class="euiListItemLayout euiListGroupItem euiListGroupItem__button emotion-euiListItemLayout-euiListItemLayout__action-euiListGroupItem-euiListGroupItem__inner-text"
+                data-test-subj="euiListItemLayout"
                 type="button"
               >
                 <span
-                  class="euiListGroupItem__icon emotion-euiListGroupItem__icon"
-                  color="inherit"
-                  data-euiicon-type="sortUp"
-                />
-                <span
-                  class="euiListGroupItem__label emotion-euiListGroupItem__label-truncate"
-                  title="Sort A-Z"
+                  class="euiListItemLayout__content emotion-euiListItemLayout__content"
                 >
-                  Sort 
-                  A-Z
+                  <span
+                    class="euiListItemLayout__prepend emotion-euiListItemLayout__prepend"
+                  >
+                    <span
+                      class="euiListGroupItem__icon css-0"
+                      color="inherit"
+                      data-euiicon-type="sortUp"
+                    />
+                  </span>
+                  <span
+                    class="euiListItemLayout__text euiListGroupItem__label emotion-euiListItemLayout__text-truncate"
+                    title="Sort A-Z"
+                  >
+                    Sort 
+                    A-Z
+                  </span>
                 </span>
               </button>
             </li>
             <li
-              class="euiListGroupItem emotion-euiListGroupItem-text-xs"
+              class="euiListItemLayout__wrapper emotion-euiListItemLayout__wrapper-isInteractive"
+              data-test-subj="euiListItemLayout-wrapper"
             >
               <button
-                class="euiListGroupItem__button emotion-euiListGroupItem__inner-xs-text-isClickable"
+                class="euiListItemLayout euiListGroupItem euiListGroupItem__button emotion-euiListItemLayout-euiListItemLayout__action-euiListGroupItem-euiListGroupItem__inner-text"
+                data-test-subj="euiListItemLayout"
                 type="button"
               >
                 <span
-                  class="euiListGroupItem__icon emotion-euiListGroupItem__icon"
-                  color="inherit"
-                  data-euiicon-type="sortDown"
-                />
-                <span
-                  class="euiListGroupItem__label emotion-euiListGroupItem__label-truncate"
-                  title="Sort Z-A"
+                  class="euiListItemLayout__content emotion-euiListItemLayout__content"
                 >
-                  Sort 
-                  Z-A
+                  <span
+                    class="euiListItemLayout__prepend emotion-euiListItemLayout__prepend"
+                  >
+                    <span
+                      class="euiListGroupItem__icon css-0"
+                      color="inherit"
+                      data-euiicon-type="sortDown"
+                    />
+                  </span>
+                  <span
+                    class="euiListItemLayout__text euiListGroupItem__label emotion-euiListItemLayout__text-truncate"
+                    title="Sort Z-A"
+                  >
+                    Sort 
+                    Z-A
+                  </span>
                 </span>
               </button>
             </li>
             <li
-              class="euiListGroupItem emotion-euiListGroupItem-text-xs"
+              class="euiListItemLayout__wrapper emotion-euiListItemLayout__wrapper-isInteractive"
+              data-test-subj="euiListItemLayout-wrapper"
             >
               <button
-                class="euiListGroupItem__button emotion-euiListGroupItem__inner-xs-text-isClickable"
+                class="euiListItemLayout euiListGroupItem euiListGroupItem__button emotion-euiListItemLayout-euiListItemLayout__action-euiListGroupItem-euiListGroupItem__inner-text"
+                data-test-subj="euiListItemLayout"
                 type="button"
               >
                 <span
-                  class="euiListGroupItem__icon emotion-euiListGroupItem__icon"
-                  color="inherit"
-                  data-euiicon-type="sortLeft"
-                />
-                <span
-                  class="euiListGroupItem__label emotion-euiListGroupItem__label-truncate"
-                  title="Move left"
+                  class="euiListItemLayout__content emotion-euiListItemLayout__content"
                 >
-                  Move left
+                  <span
+                    class="euiListItemLayout__prepend emotion-euiListItemLayout__prepend"
+                  >
+                    <span
+                      class="euiListGroupItem__icon css-0"
+                      color="inherit"
+                      data-euiicon-type="sortLeft"
+                    />
+                  </span>
+                  <span
+                    class="euiListItemLayout__text euiListGroupItem__label emotion-euiListItemLayout__text-truncate"
+                    title="Move left"
+                  >
+                    Move left
+                  </span>
                 </span>
               </button>
             </li>
             <li
-              class="euiListGroupItem emotion-euiListGroupItem-xs"
+              class="euiListItemLayout__wrapper emotion-euiListItemLayout__wrapper-isDisabled"
+              data-test-subj="euiListItemLayout-wrapper"
             >
               <button
-                class="euiListGroupItem__button emotion-euiListGroupItem__inner-xs-isDisabled"
+                class="euiListItemLayout euiListGroupItem euiListGroupItem__button emotion-euiListItemLayout-euiListItemLayout__action-isDisabled-euiListGroupItem-euiListGroupItem__inner"
+                data-test-subj="euiListItemLayout"
                 disabled=""
                 type="button"
               >
                 <span
-                  class="euiListGroupItem__icon emotion-euiListGroupItem__icon"
-                  color="inherit"
-                  data-euiicon-type="sortRight"
-                />
-                <span
-                  class="euiListGroupItem__label emotion-euiListGroupItem__label-truncate"
-                  title="Move right"
+                  class="euiListItemLayout__content emotion-euiListItemLayout__content"
                 >
-                  Move right
+                  <span
+                    class="euiListItemLayout__prepend emotion-euiListItemLayout__prepend"
+                  >
+                    <span
+                      class="euiListGroupItem__icon css-0"
+                      color="inherit"
+                      data-euiicon-type="sortRight"
+                    />
+                  </span>
+                  <span
+                    class="euiListItemLayout__text euiListGroupItem__label emotion-euiListItemLayout__text-truncate"
+                    title="Move right"
+                  >
+                    Move right
+                  </span>
                 </span>
               </button>
             </li>

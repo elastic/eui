@@ -303,9 +303,7 @@ describe('draggable columns', () => {
       cy.get('[data-test-subj=dataGridHeaderCellActionButton-a]').realClick();
       cy.get('[data-popover-open]').should('have.focus');
 
-      cy.get(
-        '.euiListGroupItem:last-child .euiListGroupItem__button'
-      ).realClick();
+      cy.get('.euiListGroupItem__button').last().realClick();
 
       cy.get('[data-test-subj=dataGridHeaderCell-a]').should(
         'have.attr',

@@ -10,7 +10,7 @@ import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { fireEvent, waitFor } from '@storybook/test';
 import { within } from '../../../../.storybook/test';
-import { LOKI_SELECTORS } from '../../../../.storybook/loki';
+import { VRT_SELECTORS } from '../../../../.storybook/vrt';
 
 import { EuiHeader, EuiHeaderSection, EuiHeaderSectionItem } from '../';
 
@@ -26,7 +26,7 @@ const meta: Meta<EuiHeaderLinksProps> = {
     popoverBreakpoints: ['xs', 's'],
   },
   // Required to capture mobile popover
-  parameters: { loki: { chromeSelector: LOKI_SELECTORS.portal } },
+  parameters: { vrt: { selector: VRT_SELECTORS.portal } },
 };
 
 export default meta;

@@ -117,6 +117,55 @@ describe('EuiDatePicker', () => {
     expect(getPrepend()).not.toBeInTheDocument();
   });
 
+  describe('minDate/maxDate', () => {
+    beforeEach(() => {
+      // JSDOM does not implement scrollIntoView; the year dropdown options use it
+      window.HTMLElement.prototype.scrollIntoView = jest.fn();
+    });
+
+    it('does not fire onChange when month navigation via dropdown produces an out-of-bounds date', () => {
+      const onChange = jest.fn();
+      const selected = moment('2025-05-15');
+      const maxDate = moment('2025-05-31');
+
+      const { getByLabelText, getByText } = render(
+        <EuiDatePicker
+          inline
+          selected={selected}
+          maxDate={maxDate}
+          onChange={onChange}
+        />
+      );
+
+      fireEvent.click(getByLabelText(/Open the month selector/i));
+      // Selecting August gives 2025-08-15, which is beyond maxDate
+      fireEvent.click(getByText('August'));
+
+      expect(onChange).not.toHaveBeenCalled();
+    });
+
+    it('does not fire onChange when year navigation via dropdown produces an out-of-bounds date', () => {
+      const onChange = jest.fn();
+      // minDate is mid-2024; changing from 2025-02-15 to year 2024 gives 2024-02-15 < minDate
+      const selected = moment('2025-02-15');
+      const minDate = moment('2024-06-01');
+
+      const { getByLabelText, getByText } = render(
+        <EuiDatePicker
+          inline
+          selected={selected}
+          minDate={minDate}
+          onChange={onChange}
+        />
+      );
+
+      fireEvent.click(getByLabelText(/Open the year selector/i));
+      fireEvent.click(getByText('2024'));
+
+      expect(onChange).not.toHaveBeenCalled();
+    });
+  });
+
   // TODO: These tests/snapshots don't really do anything in Jest without
   // the corresponding popover opening. Should be switched to an E2E test instead
   describe.skip('popoverPlacement', () => {

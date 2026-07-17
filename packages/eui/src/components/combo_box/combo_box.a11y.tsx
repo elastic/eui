@@ -105,7 +105,7 @@ describe('EuiComboBox', () => {
       it('has zero violations when the combobox is expanded', () => {
         cy.realMount(<ComboBox rowHeight={rowHeight} />);
         cy.get('input[data-test-subj="comboBoxSearchInput"]').realClick();
-        cy.get('button[data-test-subj="titanOption"]').should('exist');
+        cy.get('[data-test-subj="titanOption"]').should('exist');
         cy.checkAxe();
       });
 
@@ -115,7 +115,7 @@ describe('EuiComboBox', () => {
         cy.get('input[data-test-subj="comboBoxSearchInput"]').should(
           'have.focus'
         );
-        cy.get('button[data-test-subj="titanOption"]').should('exist');
+        cy.get('[data-test-subj="titanOption"]').should('exist');
         cy.repeatRealPress('ArrowDown');
         cy.realPress('Enter');
         cy.repeatRealPress('ArrowDown');
@@ -150,7 +150,7 @@ describe('EuiComboBox', () => {
         cy.get('input[data-test-subj="comboBoxSearchInput"]').should(
           'have.focus'
         );
-        cy.get('button[data-test-subj="titanOption"]').should('exist');
+        cy.get('[data-test-subj="titanOption"]').should('exist');
         cy.realPress('ArrowDown');
         cy.realPress('ArrowDown');
         cy.realPress('ArrowDown');
@@ -164,7 +164,7 @@ describe('EuiComboBox', () => {
 
         cy.get('input[data-test-subj="comboBoxSearchInput"]')
           .invoke('attr', 'aria-activedescendant')
-          .should('include', 'option-3');
+          .should('include', 'option-4');
       });
 
       it('sets the correct aria-activedescendant id with custom option ids', () => {
@@ -206,7 +206,7 @@ describe('EuiComboBox', () => {
         cy.get('input[data-test-subj="comboBoxSearchInput"]').should(
           'have.focus'
         );
-        cy.get('button[data-test-subj="titanOption"]').should('exist');
+        cy.get('[data-test-subj="titanOption"]').should('exist');
         cy.realPress('ArrowDown');
         cy.realPress('ArrowDown');
         cy.realPress('ArrowDown');

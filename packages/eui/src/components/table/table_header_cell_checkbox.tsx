@@ -6,7 +6,13 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, ThHTMLAttributes, ReactNode } from 'react';
+import React, {
+  FunctionComponent,
+  ThHTMLAttributes,
+  ReactNode,
+  useEffect,
+  useRef,
+} from 'react';
 import classNames from 'classnames';
 
 import { useEuiMemoizedStyles } from '../../services';
@@ -16,6 +22,10 @@ import { resolveWidthPropsAsStyle } from './utils';
 import { euiTableCellCheckboxStyles } from './table_cells_shared.styles';
 import { HEADER_CELL_SCOPE } from './table_header_cell_shared';
 import type { EuiTableSharedWidthProps } from './types';
+import { useEuiTableColumnDataStore } from './store/provider';
+import { useEuiTableWithinStickyHeader } from './sticky_header';
+import { EuiTableStoreRenderHeaderCell } from './store/store';
+import { useEuiTableStoreUniqueColumnId } from './store/use_unique_column_id';
 
 export type EuiTableHeaderCellCheckboxScope =
   (typeof HEADER_CELL_SCOPE)[number];
@@ -30,35 +40,77 @@ export const EuiTableHeaderCellCheckbox: FunctionComponent<
   CommonProps &
     Omit<ThHTMLAttributes<HTMLTableCellElement>, 'width'> &
     EuiTableHeaderCellCheckboxProps
-> = ({
-  children,
-  className,
-  scope = 'col',
-  style: _style,
-  width,
-  minWidth,
-  maxWidth,
-  append,
-  ...rest
-}) => {
-  const classes = classNames('euiTableHeaderCellCheckbox', className);
-  const styles = useEuiMemoizedStyles(euiTableCellCheckboxStyles);
-  const style = resolveWidthPropsAsStyle(_style, {
+> = (props) => {
+  const {
+    children,
+    className,
+    scope = 'col',
+    style: _style,
     width,
     minWidth,
     maxWidth,
+    append,
+    ...rest
+  } = props;
+
+  const storeCellId = useEuiTableStoreUniqueColumnId();
+  const store = useEuiTableColumnDataStore();
+  const isWithinStickyHeader = useEuiTableWithinStickyHeader();
+
+  const styles = useEuiMemoizedStyles(euiTableCellCheckboxStyles);
+
+  const renderHeaderCellRef = useRef<EuiTableStoreRenderHeaderCell>();
+
+  renderHeaderCellRef.current = (extraProps) => {
+    const classes = classNames('euiTableHeaderCellCheckbox', className);
+    const style = resolveWidthPropsAsStyle(_style, {
+      width,
+      minWidth,
+      maxWidth,
+    });
+
+    return (
+      <th
+        css={styles.euiTableHeaderCellCheckbox}
+        className={classes}
+        scope={scope}
+        style={style}
+        {...rest}
+        {...extraProps}
+      >
+        <div className="euiTableCellContent">{children}</div>
+        {append}
+      </th>
+    );
+  };
+
+  useEffect(() => {
+    // Don't register the column inside the sticky header as the original
+    // column is already registered. This would cause an infinite loop.
+    if (isWithinStickyHeader) {
+      return;
+    }
+
+    const unregisterColumn = store.registerColumn(storeCellId, {
+      renderHeaderCellRef,
+    });
+
+    return () => {
+      unregisterColumn();
+    };
+  }, [store, isWithinStickyHeader, storeCellId]);
+
+  useEffect(() => {
+    // Notify the store on every render so the sticky header stays in sync.
+    // React's reconciliation will efficiently handle any duplicate renders.
+    if (isWithinStickyHeader) {
+      return;
+    }
+
+    store.updateColumn(storeCellId, {
+      renderHeaderCellRef,
+    });
   });
 
-  return (
-    <th
-      css={styles.euiTableHeaderCellCheckbox}
-      className={classes}
-      scope={scope}
-      style={style}
-      {...rest}
-    >
-      <div className="euiTableCellContent">{children}</div>
-      {append}
-    </th>
-  );
+  return renderHeaderCellRef.current({});
 };

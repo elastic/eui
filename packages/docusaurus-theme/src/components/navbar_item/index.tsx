@@ -12,9 +12,9 @@ import useIsBrowser from '@docusaurus/useIsBrowser';
 import {
   CommonProps,
   EuiIcon,
+  EuiToolTip,
   ExclusiveUnion,
   IconType,
-  mathWithUnits,
   PropsForAnchor,
   PropsForButton,
   useEuiMemoizedStyles,
@@ -22,6 +22,7 @@ import {
 } from '@elastic/eui';
 
 import { AppThemeContext } from '../theme_context';
+import { getNavbarBreakpoint } from '../../theme/Navbar/breakpoint';
 
 type SharedProps = {
   icon: IconType;
@@ -36,55 +37,63 @@ type Props = ExclusiveUnion<
 >;
 
 // converted from css modules to Emotion
-export const getStyles = ({ euiTheme }: UseEuiTheme) => ({
-  item: css`
-    display: flex;
-    align-items: center;
-    flex-shrink: 0;
+export const getStyles = (euiThemeContext: UseEuiTheme) => {
+  const { euiTheme } = euiThemeContext;
+  const { desktopMediaQuery } = getNavbarBreakpoint(euiThemeContext);
 
-    -webkit-tap-highlight-color: transparent;
-    transition: background var(--ifm-transition-fast);
+  return {
+    item: css`
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
 
-    &:hover {
-      background-color: ${euiTheme.components.buttons.backgroundTextHover};
-      color: currentColor;
-    }
-  `,
-  navItem: css`
-    justify-content: center;
-    width: ${euiTheme.size.xl};
-    height: ${euiTheme.size.xl};
-    border-radius: 50%;
-  `,
-  menuItem: css`
-    justify-content: flex-start;
-    gap: ${euiTheme.size.s};
+      -webkit-tap-highlight-color: transparent;
+      transition: background var(--ifm-transition-fast);
 
-    @media (min-width: 997px) {
+      &:hover {
+        background-color: ${euiTheme.components.buttons.backgroundTextHover};
+        color: currentColor;
+      }
+    `,
+    navItem: css`
       justify-content: center;
       width: ${euiTheme.size.xl};
       height: ${euiTheme.size.xl};
       border-radius: 50%;
-    }
-  `,
-  darkMode: css`
-    &:hover {
-      color: currentColor;
-    }
-  `,
-  disabled: css`
-    cursor: not-allowed;
-  `,
-  selected: css`
-    background-color: ${euiTheme.colors.backgroundFilledText};
-    color: ${euiTheme.colors.textInverse};
-  `,
-  title: css`
-    @media (min-width: 997px) {
-      display: none;
-    }
-  `,
-});
+    `,
+    menuItem: css`
+      justify-content: flex-start;
+      gap: ${euiTheme.size.s};
+
+      ${desktopMediaQuery} {
+        justify-content: center;
+        width: ${euiTheme.size.xl};
+        height: ${euiTheme.size.xl};
+        border-radius: 50%;
+      }
+    `,
+    darkMode: css`
+      &:hover {
+        color: currentColor;
+      }
+    `,
+    disabled: css`
+      cursor: not-allowed;
+    `,
+    selected: css`
+      background-color: ${euiTheme.colors.backgroundFilledText};
+      color: ${euiTheme.colors.textInverse};
+    `,
+    title: css`
+      ${desktopMediaQuery} {
+        display: none;
+      }
+    `,
+    tooltipAnchor: css`
+      display: inline-flex;
+    `,
+  };
+};
 
 // using a type guard to ensure proper typing from ExclusiveUnion
 const isAnchorClick = (
@@ -118,6 +127,7 @@ export const NavbarItem = (props: Props) => {
     !isBrowser && styles.disabled,
     isSelected && styles.selected,
     isDarkMode && styles.darkMode,
+    css,
   ];
 
   const content = showLabel ? (
@@ -129,36 +139,45 @@ export const NavbarItem = (props: Props) => {
     <EuiIcon type={icon} />
   );
 
-  if (isAnchorClick(onClick, href)) {
-    return (
-      <a
-        href={href}
-        target={target ?? '_blank'}
-        title={title}
-        className={className}
-        css={cssStyles}
-        onClick={onClick}
-        aria-label={title}
-        aria-live="polite"
-      >
-        {content}
-      </a>
-    );
-  }
-
-  return (
+  const control = isAnchorClick(onClick, href) ? (
+    <a
+      href={href}
+      target={target ?? '_blank'}
+      className={className}
+      css={cssStyles}
+      onClick={onClick}
+      aria-label={title}
+      aria-live="polite"
+    >
+      {content}
+    </a>
+  ) : (
     <button
       type="button"
       disabled={!isBrowser}
       className={className}
       css={cssStyles}
       onClick={onClick}
-      title={title}
       aria-label={title}
       aria-live="polite"
       aria-pressed={isSelected != null ? isSelected : undefined}
     >
       {content}
     </button>
+  );
+
+  if (!title) {
+    return control;
+  }
+
+  return (
+    <EuiToolTip
+      content={title}
+      disableScreenReaderOutput
+      repositionOnScroll
+      anchorProps={{ css: styles.tooltipAnchor }}
+    >
+      {control}
+    </EuiToolTip>
   );
 };

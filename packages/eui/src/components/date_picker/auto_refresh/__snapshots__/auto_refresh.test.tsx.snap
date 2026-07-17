@@ -140,28 +140,32 @@ exports[`EuiAutoRefreshButton is rendered 1`] = `
 <div
   class="euiPopover emotion-euiPopover-inline-block"
 >
-  <button
-    aria-expanded="false"
-    aria-label="aria-label"
-    class="euiButtonEmpty euiAutoRefreshButton testClass1 testClass2 emotion-euiButtonDisplay-euiButtonEmpty-s-empty-text-euiTestCss"
-    data-test-subj="test subject string"
-    title="Auto refresh is off"
-    type="button"
+  <span
+    class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+    id="generated-id-wrapper"
   >
-    <span
-      class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
+    <button
+      aria-expanded="false"
+      aria-label="aria-label"
+      class="euiButtonEmpty euiAutoRefreshButton testClass1 testClass2 emotion-euiButtonDisplay-euiButtonEmpty-s-empty-text-euiTestCss"
+      data-test-subj="test subject string"
+      type="button"
     >
       <span
-        color="inherit"
-        data-euiicon-type="refreshTime"
-      />
-      <span
-        class="eui-textTruncate euiButtonEmpty__text css-1ryezsz-s"
+        class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
       >
-        Off
+        <span
+          color="inherit"
+          data-euiicon-type="refreshTime"
+        />
+        <span
+          class="eui-textTruncate euiButtonEmpty__text css-1ryezsz-s"
+        >
+          Off
+        </span>
       </span>
-    </span>
-  </button>
+    </button>
+  </span>
 </div>
 `;
 
@@ -169,26 +173,30 @@ exports[`EuiAutoRefreshButton isPaused is false 1`] = `
 <div
   class="euiPopover emotion-euiPopover-inline-block"
 >
-  <button
-    aria-expanded="false"
-    class="euiButtonEmpty euiAutoRefreshButton emotion-euiButtonDisplay-euiButtonEmpty-s-empty-text"
-    title="Auto refresh is on and set to 1 second"
-    type="button"
+  <span
+    class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+    id="generated-id-wrapper"
   >
-    <span
-      class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
+    <button
+      aria-expanded="false"
+      class="euiButtonEmpty euiAutoRefreshButton emotion-euiButtonDisplay-euiButtonEmpty-s-empty-text"
+      type="button"
     >
       <span
-        color="inherit"
-        data-euiicon-type="refreshTime"
-      />
-      <span
-        class="eui-textTruncate euiButtonEmpty__text css-1ryezsz-s"
+        class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
       >
-        1 second
+        <span
+          color="inherit"
+          data-euiicon-type="refreshTime"
+        />
+        <span
+          class="eui-textTruncate euiButtonEmpty__text css-1ryezsz-s"
+        >
+          1 second
+        </span>
       </span>
-    </span>
-  </button>
+    </button>
+  </span>
 </div>
 `;
 
@@ -196,25 +204,29 @@ exports[`EuiAutoRefreshButton refreshInterval is rendered 1`] = `
 <div
   class="euiPopover emotion-euiPopover-inline-block"
 >
-  <button
-    aria-expanded="false"
-    class="euiButtonEmpty euiAutoRefreshButton emotion-euiButtonDisplay-euiButtonEmpty-s-empty-text"
-    title="Auto refresh is on and set to 2 seconds"
-    type="button"
+  <span
+    class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+    id="generated-id-wrapper"
   >
-    <span
-      class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
+    <button
+      aria-expanded="false"
+      class="euiButtonEmpty euiAutoRefreshButton emotion-euiButtonDisplay-euiButtonEmpty-s-empty-text"
+      type="button"
     >
       <span
-        color="inherit"
-        data-euiicon-type="refreshTime"
-      />
-      <span
-        class="eui-textTruncate euiButtonEmpty__text css-1ryezsz-s"
+        class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
       >
-        2 seconds
+        <span
+          color="inherit"
+          data-euiicon-type="refreshTime"
+        />
+        <span
+          class="eui-textTruncate euiButtonEmpty__text css-1ryezsz-s"
+        >
+          2 seconds
+        </span>
       </span>
-    </span>
-  </button>
+    </button>
+  </span>
 </div>
 `;

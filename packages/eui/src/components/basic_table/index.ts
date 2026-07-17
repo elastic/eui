@@ -26,3 +26,4 @@ export type {
 } from './table_types';
 export type { Pagination } from './pagination_bar';
 export type { DefaultItemAction, CustomItemAction } from './action_types';
+export { useEuiBasicTablePanelProps } from './use_panel_props';

@@ -20,6 +20,7 @@ import { useEuiMemoizedStyles } from '../../../../services';
 import { useEuiI18n } from '../../../i18n';
 import { EuiPopover } from '../../../popover';
 import { EuiFormAppendPrependButtonProps, EuiFormPrepend } from '../../../form';
+import { EuiToolTip } from '../../../tool_tip';
 import { euiQuickSelectPopoverStyles } from './quick_select_popover.styles';
 import { EuiQuickSelectPanel } from './quick_select_panel';
 import { EuiQuickSelect } from './quick_select';
@@ -93,7 +94,7 @@ export const EuiQuickSelectPopover: FunctionComponent<
     [_applyTime, closePopover]
   );
 
-  const buttonlabel = useEuiI18n(
+  const buttonLabel = useEuiI18n(
     'euiQuickSelectPopover.buttonLabel',
     'Date quick select'
   );
@@ -106,17 +107,18 @@ export const EuiQuickSelectPopover: FunctionComponent<
   };
 
   const quickSelectButton = (
-    <EuiFormPrepend
-      element="button"
-      iconLeft="calendar"
-      iconRight="chevronSingleDown"
-      isDisabled={props.isDisabled}
-      onClick={quickSelectButtonOnClick}
-      aria-label={buttonlabel}
-      title={buttonlabel}
-      data-test-subj="superDatePickerToggleQuickMenuButton"
-      {...quickSelectButtonProps}
-    />
+    <EuiToolTip content={buttonLabel} disableScreenReaderOutput>
+      <EuiFormPrepend
+        element="button"
+        iconLeft="calendar"
+        iconRight="chevronSingleDown"
+        isDisabled={props.isDisabled}
+        onClick={quickSelectButtonOnClick}
+        aria-label={buttonLabel}
+        data-test-subj="superDatePickerToggleQuickMenuButton"
+        {...quickSelectButtonProps}
+      />
+    </EuiToolTip>
   );
 
   return (

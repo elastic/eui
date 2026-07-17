@@ -33,6 +33,15 @@ describe('ToolTipManager', () => {
       expect(hide1).toHaveBeenCalledTimes(1);
       expect(hide2).not.toHaveBeenCalled();
     });
+
+    it('does not call the callback when re-registering the same tooltip', () => {
+      const hide = jest.fn();
+
+      toolTipManager.registerTooltip(hide);
+      toolTipManager.registerTooltip(hide);
+
+      expect(hide).not.toHaveBeenCalled();
+    });
   });
 
   describe('deregisterToolTip', () => {

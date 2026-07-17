@@ -32,6 +32,7 @@ import {
 } from '../list_group';
 import { EuiText } from '../text';
 import { disableStorybookControls } from '../../../.storybook/utils';
+import { VRT_SELECTORS } from '../../../.storybook/vrt';
 import { logicalCSSWithFallback } from '../../global_styling/functions';
 import { useGeneratedHtmlId } from '../../services';
 import { EuiCode } from '../code';
@@ -239,8 +240,6 @@ const FullHeaderPatternExample = () => {
         <EuiCollapsibleNavGroup isCollapsible={false} background="dark">
           <EuiListGroup
             maxWidth="none"
-            gutterSize="none"
-            size="s"
             listItems={[
               {
                 label: 'Manage deployment',
@@ -271,8 +270,6 @@ const FullHeaderPatternExample = () => {
             onPinClick={removePin}
             maxWidth="none"
             color="text"
-            gutterSize="none"
-            size="s"
           />
         </EuiCollapsibleNavGroup>
       </EuiFlexItem>
@@ -312,8 +309,6 @@ const FullHeaderPatternExample = () => {
             onPinClick={addPin}
             maxWidth="none"
             color="subdued"
-            gutterSize="none"
-            size="s"
           />
         </EuiCollapsibleNavGroup>
 
@@ -366,8 +361,6 @@ const FullHeaderPatternExample = () => {
             onPinClick={addPin}
             maxWidth="none"
             color="subdued"
-            gutterSize="none"
-            size="s"
           />
         </EuiCollapsibleNavGroup>
       </EuiFlexItem>
@@ -424,5 +417,9 @@ const FullHeaderPatternExample = () => {
 };
 
 export const FullHeaderPattern: Story = {
+  parameters: {
+    layout: 'fullscreen',
+    vrt: { selector: VRT_SELECTORS.portal },
+  },
   render: ({ ...args }) => <FullHeaderPatternExample {...args} />,
 };

@@ -8,14 +8,14 @@
 
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
+import { userEvent, waitFor, within, expect } from '@storybook/test';
 
 import {
   enableFunctionToggleControls,
   moveStorybookControlsToCategory,
 } from '../../../.storybook/utils';
-import { LOKI_SELECTORS } from '../../../.storybook/loki';
+import { VRT_SELECTORS, playDecorator } from '../../../.storybook/vrt';
 import { EuiFlexGroup } from '../flex';
-import { ToolTipDelay } from './tool_tip';
 import { EuiIconTip, EuiIconTipProps } from './icon_tip';
 
 const meta: Meta<EuiIconTipProps> = {
@@ -23,8 +23,8 @@ const meta: Meta<EuiIconTipProps> = {
   component: EuiIconTip,
   parameters: {
     layout: 'fullscreen',
-    loki: {
-      chromeSelector: LOKI_SELECTORS.portal,
+    vrt: {
+      selector: VRT_SELECTORS.portal,
     },
   },
   decorators: [
@@ -43,7 +43,6 @@ const meta: Meta<EuiIconTipProps> = {
   args: {
     type: 'question',
     position: 'top',
-    delay: 'regular',
     display: 'inlineBlock',
     // set up for easier testing/QA
     anchorClassName: '',
@@ -73,12 +72,14 @@ type Story = StoryObj<EuiIconTipProps>;
 export const Playground: Story = {
   args: {
     content: 'tooltip content',
-    iconProps: {
-      // using autoFocus here as small trick to ensure showing the tooltip on load (e.g. for VRT)
-      // TODO: exchange for loki play() interactions once #7735 is merged
-      // @ts-ignore - temp. solution for storybook VRT testing
-      autofocus: 'true',
-    },
-    delay: 'none' as ToolTipDelay, // passing a (not-yet) supported value to hackishly force a lower delay for VRT
   },
+  play: playDecorator(async ({ canvasElement, bodyElement }) => {
+    const icon = canvasElement.querySelector('svg');
+    if (icon) {
+      await userEvent.hover(icon);
+      await waitFor(() =>
+        expect(within(bodyElement).getByRole('tooltip')).toBeVisible()
+      );
+    }
+  }),
 };

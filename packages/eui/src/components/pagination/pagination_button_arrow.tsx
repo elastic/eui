@@ -16,6 +16,7 @@ import {
 import { keysOf } from '../common';
 import { useEuiI18n } from '../i18n';
 import { useEuiTheme } from '../../services';
+import { EuiToolTip } from '../tool_tip';
 import { euiPaginationButtonStyles } from './pagination_button.styles';
 
 const typeToIconTypeMap = {
@@ -61,18 +62,25 @@ export const EuiPaginationButtonArrow: FunctionComponent<Props> = ({
     buttonProps['aria-controls'] = ariaControls;
   }
 
-  return (
+  const button = (
     <EuiButtonIcon
       css={styles.euiPaginationButton}
       className={classNames('euiPaginationArrowButton', className)}
       color="text"
       aria-label={labels[type]}
-      title={disabled ? undefined : labels[type]}
       isDisabled={disabled}
       onClick={onClick}
       data-test-subj={`pagination-button-${type}`}
       iconType={typeToIconTypeMap[type]}
       {...buttonProps}
     />
+  );
+
+  return disabled ? (
+    button
+  ) : (
+    <EuiToolTip content={labels[type]} disableScreenReaderOutput>
+      {button}
+    </EuiToolTip>
   );
 };

@@ -14,7 +14,7 @@ import { expect, fireEvent, waitFor } from '@storybook/test';
 import { StoryContext } from '@storybook/csf';
 
 import { within } from '../../../../.storybook/test';
-import { LOKI_SELECTORS } from '../../../../.storybook/loki';
+import { VRT_SELECTORS } from '../../../../.storybook/vrt';
 import { enableFunctionToggleControls } from '../../../../.storybook/utils';
 
 import { EuiLink } from '../../link';
@@ -95,8 +95,8 @@ export const CustomQuickSelectPanel: Story = {
     controls: {
       include: ['customQuickSelectPanels', 'onTimeChange'],
     },
-    loki: {
-      chromeSelector: LOKI_SELECTORS.portal,
+    vrt: {
+      selector: VRT_SELECTORS.portal,
     },
   },
   args: {
@@ -130,8 +130,8 @@ export const RestrictedRange: Story = {
         'onTimeChange',
       ],
     },
-    loki: {
-      chromeSelector: LOKI_SELECTORS.portal,
+    vrt: {
+      selector: VRT_SELECTORS.portal,
     },
   },
   args: {
@@ -146,10 +146,12 @@ export const QuickSelectOnly: Story = {
     controls: {
       include: ['isQuickSelectOnly'],
     },
-    loki: { chromeSelector: LOKI_SELECTORS.portal },
+    vrt: { selector: VRT_SELECTORS.portal },
   },
   args: {
-    start: '2025-01-01T00:00:00',
+    // Use a fixed absolute (strict ISO) start so the button renders a stable
+    // formatted date instead of a drifting relative "~ N years ago" label
+    start: '2025-01-01T00:00:00.000Z',
     end: 'now',
     isQuickSelectOnly: false,
   },
@@ -222,12 +224,14 @@ export const CustomTimeZoneDisplay: Story = {
     controls: {
       include: ['timeZoneDisplayProps'],
     },
-    loki: {
-      chromeSelector: LOKI_SELECTORS.portal,
+    vrt: {
+      selector: VRT_SELECTORS.portal,
     },
   },
   args: {
-    start: 'Jan-01-2025',
+    // Use a strict ISO start so the button renders a stable formatted date
+    // instead of a drifting relative "~ N years ago" label
+    start: '2025-01-01T00:00:00.000Z',
     timeZoneDisplayProps: {
       timeZone: 'America/Los_Angeles',
       customRender: ({ nameDisplay }) => (
@@ -269,10 +273,12 @@ export const CollapsedQuickSelectOnly: Story = {
     controls: {
       include: ['isQuickSelectOnly'],
     },
-    loki: { chromeSelector: LOKI_SELECTORS.portal },
+    vrt: { selector: VRT_SELECTORS.portal },
   },
   args: {
-    start: '2025-01-01T00:00:00',
+    // Use a strict ISO start so the button renders a stable formatted date
+    // instead of a drifting relative "~ N years ago" label
+    start: '2025-01-01T00:00:00.000Z',
     end: 'now',
     isQuickSelectOnly: false,
   },
@@ -317,7 +323,9 @@ export const CollapsedQuickSelectOnly: Story = {
 
 export const OverflowingChildren: Story = {
   tags: ['vrt-only'],
-  args: { start: 'Dec 31, 1999' },
+  // Use a strict ISO start so the button renders a stable formatted date
+  // instead of a drifting relative "~ N years ago" label
+  args: { start: '1999-12-31T00:00:00.000Z' },
   decorators: [
     (Story) => (
       <div style={{ maxWidth: 400 }}>

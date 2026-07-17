@@ -8,18 +8,23 @@
 
 import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
+import { userEvent, waitFor, within, expect } from '@storybook/test';
 
 import {
   enableFunctionToggleControls,
   hideStorybookControls,
 } from '../../../.storybook/utils';
+import { VRT_SELECTORS, playDecorator } from '../../../.storybook/vrt';
 
+import { EuiFlexItem } from '../flex';
+import { EuiIcon } from '../icon';
 import { EuiSelectableOption } from './selectable_option';
 import {
   EuiSelectable,
   EuiSelectableOnChangeEvent,
   EuiSelectableProps,
 } from './selectable';
+import { EuiLink } from '../link';
 
 const toolTipProps = {
   toolTipContent: 'This is a tooltip!',
@@ -45,7 +50,6 @@ const options: EuiSelectableOption[] = [
   },
   {
     label: 'Iapetus',
-    checked: 'on',
   },
   {
     label: 'Phoebe',
@@ -85,12 +89,15 @@ const meta: Meta<EuiSelectableProps> = {
     searchable: false,
     singleSelection: false,
     isPreFiltered: false,
+    allowExclusions: false,
   },
 };
 hideStorybookControls(meta, ['aria-label']);
 
 export default meta;
 type Story = StoryObj<EuiSelectableProps>;
+
+enableFunctionToggleControls(meta, ['onChange', 'onActiveOptionChange']);
 
 export const Playground: Story = {
   args: {
@@ -102,14 +109,10 @@ export const Playground: Story = {
     loadingMessage: '',
     noMatchesMessage: '',
     selectableScreenReaderText: '',
-    listProps: {
-      bordered: true,
-    },
     searchable: false, // required for typing
   },
   render: ({ ...args }: EuiSelectableProps) => <StatefulSelectable {...args} />,
 };
-enableFunctionToggleControls(Playground, ['onChange', 'onActiveOptionChange']);
 
 export const WithSearch: Story = {
   args: {
@@ -129,6 +132,7 @@ export const WithTooltip: Story = {
     controls: {
       include: ['options', 'singleSelection', 'searchable'],
     },
+    vrt: { selector: VRT_SELECTORS.portal },
   },
   args: {
     options: options.map((option, idx) => ({
@@ -139,11 +143,94 @@ export const WithTooltip: Story = {
     searchable: false,
   },
   render: ({ ...args }: EuiSelectableProps) => <StatefulSelectable {...args} />,
+  play: playDecorator(async ({ bodyElement }) => {
+    const body = within(bodyElement);
+    const options = body.getAllByRole('option');
+    const tooltipTarget = (options[0].firstElementChild ??
+      options[0]) as HTMLElement;
+    await userEvent.hover(tooltipTarget);
+
+    await waitFor(() => expect(body.getByRole('tooltip')).toBeVisible());
+  }),
+};
+
+export const WithSearchAndGroups: Story = {
+  args: {
+    searchable: true,
+    // setting up for easier testing/QA
+    searchProps: {
+      'data-test-subj': 'selectableSearchHere',
+      'aria-label': 'Filter options',
+    },
+    options: [
+      { label: 'Group 1', isGroupLabel: true },
+      ...[...options].splice(0, 4),
+      {
+        label: 'Group 2',
+        isGroupLabel: true,
+        prepend: <EuiIcon type="warning" />,
+        append: (
+          <EuiFlexItem css={{ alignItems: 'flex-end' }}>
+            <EuiLink>append</EuiLink>
+          </EuiFlexItem>
+        ),
+      },
+      ...[...options].splice(4, options.length),
+    ],
+  },
+  render: ({ ...args }: EuiSelectableProps) => <StatefulSelectable {...args} />,
+};
+
+export const WithoutVirtualization: Story = {
+  args: {
+    ...Playground.args,
+    listProps: {
+      isVirtualized: false,
+    },
+    // same height as virtualized variant to support direct comparison
+    height: 208,
+  },
+  render: ({ ...args }: EuiSelectableProps) => <StatefulSelectable {...args} />,
+};
+
+export const WithTruncation: Story = {
+  tags: ['vrt-only'],
+  args: {
+    ...Playground.args,
+    options: [
+      {
+        label:
+          'Titan Titan Titan Titan Titan Titan Titan Titan Titan Titan Titan', // CSS truncation
+      },
+      {
+        label:
+          'Mimas Mimas Mimas Mimas Mimas Mimas Mimas Mimas Mimas Mimas Mimas',
+        truncationProps: { truncation: 'end' }, // EuiTextTruncate truncation
+      },
+      {
+        label:
+          'Dione Dione Dione Dione Dione Dione Dione Dione Dione Dione Dione',
+        truncationProps: { truncation: 'start' },
+      },
+      {
+        label:
+          'Iapetus Iapetus Iapetus Iapetus Iapetus Iapetus Iapetus Iapetus',
+        truncationProps: { truncation: 'startEnd' },
+      },
+      {
+        label: 'Phoebe Phoebe Phoebe Phoebe Phoebe Phoebe Phoebe Phoebe Phoebe',
+        truncationProps: { truncation: 'middle' },
+      },
+    ],
+    style: { width: 250 },
+  },
+  render: ({ ...args }: EuiSelectableProps) => <StatefulSelectable {...args} />,
 };
 
 const StatefulSelectable = ({
   options,
   onChange,
+  onActiveOptionChange,
   ...rest
 }: EuiSelectableProps) => {
   const [selectableOptions, setOptions] = useState(options);

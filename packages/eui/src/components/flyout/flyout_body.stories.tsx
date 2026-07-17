@@ -12,7 +12,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { EuiCallOut } from '../call_out';
 import { EuiFlyout } from './flyout';
 import { EuiFlyoutBody, EuiFlyoutBodyProps } from './flyout_body';
-import { LOKI_SELECTORS } from '../../../.storybook/loki';
+import { VRT_SELECTORS } from '../../../.storybook/vrt';
 import { disableStorybookControls } from '../../../.storybook/utils';
 
 const meta: Meta<EuiFlyoutBodyProps> = {
@@ -26,9 +26,9 @@ const meta: Meta<EuiFlyoutBodyProps> = {
     scrollableTabIndex: 0,
   },
   parameters: {
-    loki: {
+    vrt: {
       // Flyout content is rendered in a portal
-      chromeSelector: LOKI_SELECTORS.portal,
+      selector: VRT_SELECTORS.portal,
     },
   },
 };

@@ -56,7 +56,10 @@ If you're on an Apple arm64 machine and receive an error on `yarn` about Puppete
 
 ### Storybook
 
-This is the recommended way to work with components locally.
+This is the recommended way to work with components locally. Storybook runs at [http://localhost:6006/](http://localhost:6006/).
+
+> [!IMPORTANT]
+> The commands below must be run from the `packages/eui` directory. Running `yarn start` from the repo root will exit with an error message pointing you there.
 
 If running for the first time, build dependant workspaces:
 

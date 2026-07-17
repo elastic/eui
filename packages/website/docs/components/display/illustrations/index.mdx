@@ -1,0 +1,53 @@
+---
+keywords: [EuiIllustration, illustrations, svg]
+---
+
+# Illustrations
+
+**EuiIllustration** renders theme-adaptive SVGs. Each illustration ships a `light` and a `dark` variant
+and the component inlines the one that matches the current theme.
+
+SVGs are sourced from [`@elastic/eui-illustrations`](https://github.com/elastic/eui/tree/main/packages/illustrations),
+a standalone package that is **independently versioned and published** from `@elastic/eui`. This means the catalog
+can grow and change without an `@elastic/eui` release.
+
+## Component
+
+Pass an illustration asset to the `type` prop. The component picks the correct color-mode variant automatically,
+so try toggling the theme in the top toolbar.
+
+import { illustrations } from '@elastic/eui-illustrations';
+
+<Demo scope={illustrations}>
+  ```tsx
+  import React from 'react';
+  import { EuiIllustration } from '@elastic/eui';
+  import { dashboard } from '@elastic/eui-illustrations';
+  import { css } from '@emotion/react';
+
+  export default () => (
+    <div css={css({ maxWidth: 360 })}>
+      <EuiIllustration type={dashboard} />
+    </div>
+  );
+  ```
+</Demo>
+
+:::accessibility Accessibility recommendation
+The accessible label defaults to the illustration's `title`. Provide a more specific `alt` when the illustration conveys meaning
+or pass `alt=""` to mark it as purely decorative (it will be hidden from assistive technology).
+:::
+
+## All illustrations
+
+Search the full catalog exported from `@elastic/eui-illustrations`. Select an illustration to reveal the code.
+
+import { IllustrationGallery } from './illustration_gallery';
+
+<IllustrationGallery />
+
+## Props
+
+import docgen from '@elastic/eui-docgen/dist/components/illustration';
+
+<PropTable definition={docgen.EuiIllustration} />

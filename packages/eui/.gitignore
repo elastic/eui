@@ -8,6 +8,8 @@ node_modules
 /test/failure-snapshots/**/*.png
 /cypress/screenshots
 /cypress/videos
+/.vrt/current
+/.vrt/diff
 
 # Build-related files
 /storybook-static

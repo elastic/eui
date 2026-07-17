@@ -14,6 +14,7 @@ import { expect, fireEvent, waitFor } from '@storybook/test';
 import { action } from '@storybook/addon-actions';
 import { within } from '../../../.storybook/test';
 import { enableFunctionToggleControls } from '../../../.storybook/utils';
+import { VRT_SELECTORS } from '../../../.storybook/vrt';
 
 import { EuiButtonIcon } from '../button';
 import { EuiIconTip, EuiToolTip } from '../tool_tip';
@@ -38,6 +39,7 @@ const meta: Meta<EuiDataGridProps> = {
       // TODO: enable once render functions are supported
       skip: true,
     },
+    vrt: { selector: VRT_SELECTORS.portal },
   },
   argTypes: {
     width: { control: 'text' },

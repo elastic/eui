@@ -477,11 +477,6 @@ export default class DatePicker extends React.Component {
     let changedDate = date;
 
     if (changedDate !== null && isDayDisabled(changedDate, this.props)) {
-      if (isOutOfBounds(changedDate, this.props)) {
-        this.props.onChange(date, event);
-        this.props.onSelect(changedDate, event);
-      }
-
       return;
     }
 

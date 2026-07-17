@@ -9,22 +9,46 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
+import { enableFunctionToggleControls } from '../../../../.storybook/utils';
 import { EuiSplitPanel, _EuiSplitPanelOuterProps } from './split_panel';
 
 const meta: Meta<_EuiSplitPanelOuterProps> = {
   title: 'Layout/EuiSplitPanel',
   component: EuiSplitPanel.Outer,
+  argTypes: {
+    onClick: {
+      control: 'boolean', // for testing convenience
+    },
+  },
   args: {
     // Component defaults
     direction: 'column',
     responsive: ['xs', 's'],
   },
 };
+enableFunctionToggleControls(meta, ['onClick'], false);
 
 export default meta;
 type Story = StoryObj<_EuiSplitPanelOuterProps>;
 
 export const SplitPanelOuter: Story = {
+  render: ({ ...args }) => (
+    <EuiSplitPanel.Outer {...args}>
+      <EuiSplitPanel.Inner>Top or left panel</EuiSplitPanel.Inner>
+      <EuiSplitPanel.Inner color="subdued">
+        Bottom or right panel
+      </EuiSplitPanel.Inner>
+    </EuiSplitPanel.Outer>
+  ),
+};
+
+export const SplitPanelOuterClickable: Story = {
+  tags: ['vrt-only'],
+  args: {
+    // @ts-expect-error - using story specific types
+    onClick: true,
+    direction: 'row',
+  },
   render: ({ ...args }) => (
     <EuiSplitPanel.Outer {...args}>
       <EuiSplitPanel.Inner>Top or left panel</EuiSplitPanel.Inner>
@@ -51,7 +75,12 @@ export const SplitPanelOuterDark: Story = {
 export const HighContrast: Story = {
   tags: ['vrt-only'],
   globals: { highContrastMode: true },
-  render: () => (
+  parameters: {
+    controls: {
+      exclude: ['onClick'],
+    },
+  },
+  render: (_args) => (
     <>
       <EuiSplitPanel.Outer direction="row">
         <EuiSplitPanel.Inner>

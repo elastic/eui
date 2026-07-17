@@ -7,6 +7,7 @@
  */
 
 import React from 'react';
+import { fireEvent } from '@testing-library/react';
 import { shouldRenderCustomStyles } from '../../test/internal';
 import { requiredProps } from '../../test/required_props';
 import { render } from '../../test/rtl';
@@ -165,6 +166,17 @@ describe('EuiAvatar', () => {
 
         expect(container.firstChild).toMatchSnapshot();
       });
+    });
+  });
+
+  describe('tooltip', () => {
+    it('shows a tooltip with the avatar name on hover', () => {
+      const { getByRole, queryByRole } = render(<EuiAvatar name="Jane Doe" />);
+      expect(queryByRole('tooltip')).not.toBeInTheDocument();
+
+      fireEvent.mouseOver(getByRole('img'));
+
+      expect(getByRole('tooltip')).toHaveTextContent('Jane Doe');
     });
   });
 

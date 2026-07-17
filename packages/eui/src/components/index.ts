@@ -18,6 +18,8 @@ export * from './avatar';
 
 export * from './badge';
 
+export * from './banner';
+
 export * from './beacon';
 
 export * from './bottom_bar';
@@ -87,6 +89,8 @@ export * from './horizontal_rule';
 export * from './icon';
 
 export * from './image';
+
+export * from './illustration';
 
 export * from './inner_text';
 

@@ -614,6 +614,36 @@ exports[`EuiIcon props type addDataApp is rendered 1`] = `
 </svg>
 `;
 
+exports[`EuiIcon props type addToChat is rendered 1`] = `
+<svg
+  class="euiIcon emotion-euiIcon-m-isLoaded"
+  data-icon-type="addToChat"
+  data-is-loaded="true"
+  height="16"
+  role="presentation"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    clip-rule="evenodd"
+    d="M8 0a1.5 1.5 0 0 1 .5 2.912V4H11a3 3 0 0 1 3 3h1l.102.005A1 1 0 0 1 16 8v1h-1V8h-1v1h-1V7a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v7h6v1H3a1 1 0 0 1-1-1v-2H1a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h1a3 3 0 0 1 3-3h2.5V2.912A1.498 1.498 0 0 1 8 0ZM1 11h1V8H1v3ZM8 1a.5.5 0 1 0 0 1 .5.5 0 0 0 0-1Z"
+    fill-rule="evenodd"
+  />
+  <path
+    d="M10.447 11.523C9.826 12.767 8.59 13 8 13c-.59 0-1.826-.233-2.447-1.477l.894-.447C6.826 11.833 7.59 12 8 12c.41 0 1.174-.167 1.553-.924l.894.447Z"
+  />
+  <path
+    clip-rule="evenodd"
+    d="M5.5 7a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm0 1a.5.5 0 1 0 0 1 .5.5 0 0 0 0-1Zm5-1a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm0 1a.5.5 0 1 0 0 1 .5.5 0 0 0 0-1Z"
+    fill-rule="evenodd"
+  />
+  <path
+    d="M14 13h2v1h-2v2h-1v-2h-2v-1h2v-2h1v2Z"
+  />
+</svg>
+`;
+
 exports[`EuiIcon props type addToDashboard is rendered 1`] = `
 <svg
   class="euiIcon emotion-euiIcon-m-isLoaded"
@@ -9202,6 +9232,34 @@ exports[`EuiIcon props type logoUptime is rendered 1`] = `
 </svg>
 `;
 
+exports[`EuiIcon props type logoVectorDB is rendered 1`] = `
+<svg
+  class="euiIcon emotion-euiIcon-m-isLoaded"
+  data-icon-type="logoVectorDB"
+  data-is-loaded="true"
+  data-type="logoVectorDB"
+  fill="none"
+  height="32"
+  role="presentation"
+  viewBox="0 0 32 32"
+  width="32"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M16.875 9.96C19.48 5.09 25.54 3.252 30.41 5.857l-8.863 16.57a7.559 7.559 0 0 0-.478-1.051l-5.23-9.48 1.037-1.938Z"
+    fill="#02BCB7"
+  />
+  <path
+    d="M4.084 6.122a5 5 0 0 1 6.794 1.962l3.554 6.442-4.34 8.116a4.995 4.995 0 0 0 .047 4.803l-.017-.03-8-14.5a5 5 0 0 1 1.962-6.793Z"
+    fill="#FEC514"
+  />
+  <path
+    class="euiIcon__fillNegative"
+    d="M18.878 22.584a5 5 0 1 1-8.786.058l4.34-8.116 4.446 8.058Z"
+  />
+</svg>
+`;
+
 exports[`EuiIcon props type logoVulnerabilityManagement is rendered 1`] = `
 <svg
   class="euiIcon emotion-euiIcon-m-isLoaded"
@@ -12014,6 +12072,31 @@ exports[`EuiIcon props type share is rendered 1`] = `
     clip-rule="evenodd"
     d="M9.617 2.076a1 1 0 0 1 1.09.217l4 4a1 1 0 0 1 0 1.414l-4 4A1 1 0 0 1 9 11V9.013c-4.215.22-6.445 3.195-7.036 4.673A.5.5 0 0 1 1 13.5a8.5 8.5 0 0 1 8-8.486V3a1 1 0 0 1 .617-.924ZM10 6h-.5a7.503 7.503 0 0 0-7.148 5.221C3.66 9.698 5.838 8.16 9 8.011V8h1v3l4-4-4-4v3Z"
     fill-rule="evenodd"
+  />
+</svg>
+`;
+
+exports[`EuiIcon props type significantEvents is rendered 1`] = `
+<svg
+  class="euiIcon emotion-euiIcon-m-isLoaded"
+  data-icon-type="significantEvents"
+  data-is-loaded="true"
+  height="16"
+  role="presentation"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M8.5 15h-1v-3h1v3ZM4.354 12.354l-1.5 1.5-.708-.707 1.5-1.5.708.707ZM13.854 13.146l-.707.707-1.5-1.5.707-.707 1.5 1.5Z"
+  />
+  <path
+    clip-rule="evenodd"
+    d="M10 5a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h4Zm-4 5h4V6H6v4Z"
+    fill-rule="evenodd"
+  />
+  <path
+    d="M4.005 8.495h-3v-1h3v1ZM15.005 8.495h-3v-1h3v1ZM4.354 3.646l-.708.708-1.5-1.5.708-.708 1.5 1.5ZM13.854 2.854l-1.5 1.5-.707-.708 1.5-1.5.707.708ZM8.5 4h-1V1h1v3Z"
   />
 </svg>
 `;

@@ -100,7 +100,8 @@ export const moveStorybookControlsToCategory = <Props>(
  */
 export const enableFunctionToggleControls = <Props>(
   config: StorybookConfig<Props>,
-  propNames: Array<keyof Props>
+  propNames: Array<keyof Props>,
+  defaultValue = true
 ) => {
   const setAction = (propName: string | number) => ({
     true: action(propName.toString()),
@@ -108,13 +109,13 @@ export const enableFunctionToggleControls = <Props>(
   });
 
   /* Sets the default value for the passed function prop.
-  This is needed to ensure the coolean control is set and
+  This is needed to ensure the boolean control is set and
   to prevent additional clicks.
   NOTE: This has to happen before the argTypes are updated */
   config.args = propNames.reduce(
     (acc, propName) => ({
       ...acc,
-      [propName]: true,
+      [propName]: defaultValue,
     }),
     config.args
   );
@@ -149,7 +150,11 @@ export const enableFunctionToggleControls = <Props>(
  */
 
 /**
- * Will hide all props/controls. Pass to `parameters`
+ * Will hide all props/controls. Pass to `parameters`.
+ *
+ * NOTE: The story's `render` must declare an args param
+ * (`render: (args) => ...` or `render: (_args) => ...`).
+ * Otherwise, Storybook skips control filtering entirely.
  *
  * TODO: Figure out some way to not show Storybook's "setup" text?
  */

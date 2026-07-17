@@ -6,14 +6,15 @@
  * Side Public License, v 1.
  */
 
-import React, { Component, HTMLAttributes, ReactNode } from 'react';
+import React, {
+  FunctionComponent,
+  HTMLAttributes,
+  ReactNode,
+  useState,
+} from 'react';
 import classNames from 'classnames';
 
-import {
-  htmlIdGenerator,
-  withEuiTheme,
-  WithEuiThemeProps,
-} from '../../services';
+import { useEuiMemoizedStyles, useGeneratedHtmlId } from '../../services';
 import { CommonProps } from '../common';
 import { EuiLoadingSpinner } from '../loading';
 import type { EuiButtonIconProps } from '../button';
@@ -114,133 +115,93 @@ export type EuiAccordionProps = CommonProps &
     isDisabled?: boolean;
   };
 
-type EuiAccordionState = {
-  isOpen: boolean;
-};
+export const EuiAccordion: FunctionComponent<EuiAccordionProps> = ({
+  children,
+  className,
+  id,
+  role = 'group',
+  element: Element = 'div',
+  buttonElement = 'button',
+  buttonProps,
+  buttonClassName,
+  buttonContentClassName,
+  buttonContent,
+  arrowDisplay = 'left',
+  arrowProps,
+  extraAction,
+  paddingSize = 'none',
+  borders = 'none',
+  initialIsOpen = false,
+  forceState,
+  isLoading = false,
+  isLoadingMessage = false,
+  isDisabled = false,
+  onToggle,
+  ...rest
+}) => {
+  const [isOpenState, setIsOpenState] = useState(
+    forceState ? forceState === 'open' : initialIsOpen
+  );
 
-export class EuiAccordionClass extends Component<
-  WithEuiThemeProps & EuiAccordionProps,
-  EuiAccordionState
-> {
-  static defaultProps = {
-    initialIsOpen: false,
-    borders: 'none' as const,
-    paddingSize: 'none' as const,
-    arrowDisplay: 'left' as const,
-    isLoading: false,
-    isDisabled: false,
-    isLoadingMessage: false,
-    element: 'div' as const,
-    buttonElement: 'button' as const,
-    role: 'group' as const,
-  };
+  const isOpen = forceState ? forceState === 'open' : isOpenState;
 
-  state = {
-    isOpen: this.props.forceState
-      ? this.props.forceState === 'open'
-      : this.props.initialIsOpen!,
-  };
-
-  get isOpen() {
-    return this.props.forceState
-      ? this.props.forceState === 'open'
-      : this.state.isOpen;
-  }
-
-  onToggle = () => {
-    const { forceState } = this.props;
+  const onAccordionToggle = () => {
     if (forceState) {
-      const nextState = !this.isOpen;
-      this.props.onToggle?.(nextState);
+      onToggle?.(!isOpen);
     } else {
-      this.setState(
-        (prevState) => ({
-          isOpen: !prevState.isOpen,
-        }),
-        () => {
-          this.props.onToggle?.(this.state.isOpen);
-        }
-      );
+      const nextState = !isOpenState;
+      setIsOpenState(nextState);
+      onToggle?.(nextState);
     }
   };
 
-  generatedId = htmlIdGenerator()();
+  const generatedId = useGeneratedHtmlId();
+  const buttonId = buttonProps?.id ?? generatedId;
 
-  render() {
-    const {
-      children,
-      className,
-      id,
-      role,
-      element: Element = 'div',
-      buttonElement,
-      buttonProps,
-      buttonClassName,
-      buttonContentClassName,
-      buttonContent,
-      arrowDisplay,
-      arrowProps,
-      extraAction,
-      paddingSize,
-      borders,
-      initialIsOpen,
-      forceState,
-      isLoading,
-      isLoadingMessage,
-      isDisabled,
-      theme,
-      ...rest
-    } = this.props;
+  const classes = classNames(
+    'euiAccordion',
+    { 'euiAccordion-isOpen': isOpen },
+    className
+  );
 
-    const classes = classNames(
-      'euiAccordion',
-      { 'euiAccordion-isOpen': this.isOpen },
-      className
-    );
+  const styles = useEuiMemoizedStyles(euiAccordionStyles);
+  const cssStyles = [
+    styles.euiAccordion,
+    borders !== 'none' && styles.borders.borders,
+    borders !== 'none' && styles.borders[borders],
+  ];
 
-    const styles = euiAccordionStyles(theme);
-    const cssStyles = [
-      styles.euiAccordion,
-      borders !== 'none' && styles.borders.borders,
-      borders !== 'none' && styles.borders[borders!],
-    ];
+  return (
+    <Element className={classes} css={cssStyles} {...rest}>
+      <EuiAccordionTrigger
+        ariaControlsId={id}
+        buttonId={buttonId}
+        // Force button element to be a legend if the element is a fieldset
+        buttonElement={Element === 'fieldset' ? 'legend' : buttonElement}
+        buttonClassName={buttonClassName}
+        buttonContent={buttonContent}
+        buttonContentClassName={buttonContentClassName}
+        buttonProps={buttonProps}
+        arrowProps={arrowProps}
+        arrowDisplay={arrowDisplay}
+        isDisabled={isDisabled}
+        isOpen={isOpen}
+        onToggle={onAccordionToggle}
+        extraAction={isLoading ? <EuiLoadingSpinner /> : extraAction}
+      />
 
-    const buttonId = buttonProps?.id ?? this.generatedId;
-
-    return (
-      <Element className={classes} css={cssStyles} {...rest}>
-        <EuiAccordionTrigger
-          ariaControlsId={id}
-          buttonId={buttonId}
-          // Force button element to be a legend if the element is a fieldset
-          buttonElement={Element === 'fieldset' ? 'legend' : buttonElement}
-          buttonClassName={buttonClassName}
-          buttonContent={buttonContent}
-          buttonContentClassName={buttonContentClassName}
-          buttonProps={buttonProps}
-          arrowProps={arrowProps}
-          arrowDisplay={arrowDisplay}
-          isDisabled={isDisabled}
-          isOpen={this.isOpen}
-          onToggle={this.onToggle}
-          extraAction={isLoading ? <EuiLoadingSpinner /> : extraAction}
-        />
-
-        <EuiAccordionChildren
-          role={role}
-          id={id}
-          aria-labelledby={buttonId}
-          paddingSize={paddingSize}
-          isLoading={isLoading}
-          isLoadingMessage={isLoadingMessage}
-          isOpen={this.isOpen}
-          initialIsOpen={initialIsOpen}
-        >
-          {children}
-        </EuiAccordionChildren>
-      </Element>
-    );
-  }
-}
-
-export const EuiAccordion = withEuiTheme<EuiAccordionProps>(EuiAccordionClass);
+      <EuiAccordionChildren
+        role={role}
+        id={id}
+        aria-labelledby={buttonId}
+        paddingSize={paddingSize}
+        isLoading={isLoading}
+        isLoadingMessage={isLoadingMessage}
+        isOpen={isOpen}
+        initialIsOpen={initialIsOpen}
+      >
+        {children}
+      </EuiAccordionChildren>
+    </Element>
+  );
+};

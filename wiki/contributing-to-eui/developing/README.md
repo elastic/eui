@@ -1,8 +1,11 @@
 # Component development & architecture
 
-Before working with EUI components or creating new ones, you will want to [run a local development server](../running-eui-locally.md). This is where we demonstrate how the components in our design system work.
+Before working with EUI components or creating new ones, you will want to [run a local development server](../running-eui-locally.md). EUI has two complementary local servers:
 
-Once the server boots up, you can visit it on your browser at: [http://localhost:8030/](http://localhost:8030/). The development server watches for changes to the source code files and will automatically recompile the components for you when you make changes.
+- **Storybook** at [http://localhost:6006/](http://localhost:6006/) — the recommended environment for component development.
+- **Docusaurus website** at [http://localhost:3000/](http://localhost:3000/) — the consumer-facing documentation site.
+
+Both servers watch for source changes and recompile automatically.
 
 ## Component creation
 

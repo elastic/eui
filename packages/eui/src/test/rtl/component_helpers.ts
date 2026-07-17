@@ -28,22 +28,36 @@ export const waitForEuiPopoverClose = async () =>
   });
 
 /**
- * Ensure the EuiToolTip being tested is open and visible before continuing
+ * jsdom does not track keyboard vs. mouse input modality, so `:focus-visible`
+ * always returns false. Call this before `fireEvent.focus()` on an element that
+ * should be treated as keyboard-focused.
+ *
+ * Returns a cleanup function, call it after test assertions to restore the spy.
  */
-export const waitForEuiToolTipVisible = async () =>
-  await waitFor(
-    () => {
-      const tooltip = document.querySelector('.euiToolTipPopover');
-      expect(tooltip).toBeVisible();
-    },
-    { timeout: 3000 } // Account for long delay on tooltips
-  );
+export const simulateFocusVisible = (element: Element): (() => void) => {
+  const originalMatches = Element.prototype.matches.bind(element);
+  const spy = jest
+    .spyOn(element, 'matches')
+    .mockImplementation((selector: string) =>
+      selector === ':focus-visible' ? true : originalMatches(selector)
+    );
 
-export const waitForEuiToolTipHidden = async () =>
-  await waitFor(() => {
-    const tooltip = document.querySelector('.euiToolTipPopover');
-    expect(tooltip).toBeNull();
-  });
+  return () => spy.mockRestore();
+};
+
+/**
+ * Prefer this over `fireEvent.focus()` in tooltip tests. Plain `fireEvent.focus`
+ * does not set `:focus-visible` in jsdom and will not trigger the tooltip.
+ *
+ * Returns a cleanup function to restore the mock after assertions.
+ */
+export const focusEuiToolTipTrigger = (element: Element): (() => void) => {
+  const cleanup = simulateFocusVisible(element);
+
+  fireEvent.focus(element);
+
+  return cleanup;
+};
 
 /**
  * EuiComboBox

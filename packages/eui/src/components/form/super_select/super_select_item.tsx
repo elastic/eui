@@ -6,12 +6,13 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, ComponentProps, ReactNode } from 'react';
+import React, { forwardRef, ReactNode } from 'react';
 import classNames from 'classnames';
 
-import { useEuiMemoizedStyles } from '../../../services';
-import { EuiContextMenuItem } from '../../context_menu';
-import { euiSuperSelectItemStyles } from './super_select.styles';
+import {
+  EuiListItemLayout,
+  type EuiListItemLayoutProps,
+} from '../../list_item_layout';
 
 // Type exposed to consumers via API
 export interface EuiSuperSelectOption<T> {
@@ -24,32 +25,20 @@ export interface EuiSuperSelectOption<T> {
 
 // Actual props used by below component, transmogged by parent EuiSuperSelect
 // from consumer props to internal EUI props
-type EuiSuperSelectItemProps = ComponentProps<typeof EuiContextMenuItem> & {
-  hasDividers?: boolean;
-};
+type EuiSuperSelectItemProps = EuiListItemLayoutProps & {};
 
 // Internal subcomponent util, primarily for easier usage of hooks
-export const EuiSuperSelectItem: FunctionComponent<EuiSuperSelectItemProps> = ({
-  children,
-  className,
-  hasDividers,
-  ...rest
-}) => {
+export const EuiSuperSelectItem = forwardRef<
+  HTMLElement,
+  EuiSuperSelectItemProps
+>(({ children, className, ...rest }, ref) => {
   const classes = classNames('euiSuperSelect__item', className);
-  const styles = useEuiMemoizedStyles(euiSuperSelectItemStyles);
-  const cssStyles = [
-    styles.euiSuperSelect__item,
-    hasDividers && styles.hasDividers,
-  ];
 
   return (
-    <EuiContextMenuItem
-      css={cssStyles}
-      className={classes}
-      role="option"
-      {...rest}
-    >
+    <EuiListItemLayout ref={ref} role="option" className={classes} {...rest}>
       {children}
-    </EuiContextMenuItem>
+    </EuiListItemLayout>
   );
-};
+});
+
+EuiSuperSelectItem.displayName = 'EuiSuperSelectItem';

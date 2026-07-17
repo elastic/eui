@@ -6,7 +6,8 @@
  * Side Public License, v 1.
  */
 
-import { renderHook, act, waitFor } from '@testing-library/react';
+import { waitFor } from '@testing-library/react';
+import { renderHook, renderHookAct as act } from '../../test/rtl/render_hook';
 import { useEuiFlyoutResizable } from './use_flyout_resizable';
 
 describe('useEuiFlyoutResizable', () => {

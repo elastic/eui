@@ -9,6 +9,7 @@
 import React, {
   cloneElement,
   Component,
+  CSSProperties,
   HTMLAttributes,
   PropsWithChildren,
   ReactElement,
@@ -21,6 +22,7 @@ import {
   withEuiStylesMemoizer,
   WithEuiStylesMemoizerProps,
   keys,
+  htmlIdGenerator,
 } from '../../services';
 import { CommonProps, NoArgCallback } from '../common';
 import { EuiResizeObserver } from '../observer/resize_observer';
@@ -30,6 +32,7 @@ import {
   EuiContextMenuItemProps,
 } from './context_menu_item';
 import { euiContextMenuPanelStyles } from './context_menu_panel.styles';
+import { EuiContextMenuPanelTitle } from './context_menu_panel_title';
 
 export type EuiContextMenuPanelHeightChangeHandler = (height: number) => void;
 export type EuiContextMenuPanelTransitionType = 'in' | 'out';
@@ -37,8 +40,6 @@ export type EuiContextMenuPanelTransitionDirection = 'next' | 'previous';
 export type EuiContextMenuPanelShowPanelCallback = (
   currentPanelIndex?: number
 ) => void;
-
-export const SIZES = ['s', 'm'] as const;
 
 export type EuiContextMenuPanelProps = PropsWithChildren &
   CommonProps &
@@ -63,10 +64,7 @@ export type EuiContextMenuPanelProps = PropsWithChildren &
     title?: ReactNode;
     transitionDirection?: EuiContextMenuPanelTransitionDirection;
     transitionType?: EuiContextMenuPanelTransitionType;
-    /**
-     * Alters the size of the items and the title
-     */
-    size?: (typeof SIZES)[number];
+    height?: CSSProperties['height'];
   };
 
 type Props = EuiContextMenuPanelProps;
@@ -150,6 +148,24 @@ export class EuiContextMenuPanelClass extends Component<
 
     this.setState({ focusedItemIndex: nextFocusedItemIndex });
     this.state.menuItems[nextFocusedItemIndex]?.focus();
+  };
+
+  /* Ensures that on initial focus of a menuitem the index is updated.
+  Otherwise `focusMenuItem()`is not initialized when pressing a key as `onKeyDown`
+  only fires on key press after the focus moved into the component */
+  setInitialFocusedItemIndex = (event: React.FocusEvent<HTMLDivElement>) => {
+    if (
+      !this.props.items?.length ||
+      !this.state.menuItems.length ||
+      this.state.focusedItemIndex !== undefined
+    )
+      return;
+    const target = event.target as HTMLElement;
+    const currentIndex = this.state.menuItems.indexOf(target);
+
+    if (currentIndex >= 0) {
+      this.setState({ focusedItemIndex: currentIndex });
+    }
   };
 
   onKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
@@ -311,8 +327,8 @@ export class EuiContextMenuPanelClass extends Component<
     }
   };
 
-  componentDidUpdate(_: Props, prevState: State) {
-    if (prevState.menuItems !== this.state.menuItems) {
+  componentDidUpdate(prevProps: Props) {
+    if (prevProps.items !== this.props.items) {
       this.findMenuItems();
     }
     // Focus isn't always ready to be taken on mount, so we need to call it
@@ -411,6 +427,8 @@ export class EuiContextMenuPanelClass extends Component<
     this.findMenuItems();
   };
 
+  rootId = htmlIdGenerator();
+
   render() {
     const {
       stylesMemoizer,
@@ -427,10 +445,10 @@ export class EuiContextMenuPanelClass extends Component<
       initialFocusedItemIndex,
       showNextPanel,
       showPreviousPanel,
-      size,
       ...rest
     } = this.props;
 
+    const titleId = this.rootId('euiContextMenuPanelTitle');
     const classes = classNames('euiContextMenuPanel', className);
 
     const styles = stylesMemoizer(euiContextMenuPanelStyles);
@@ -442,29 +460,24 @@ export class EuiContextMenuPanelClass extends Component<
     ];
 
     const panelTitle = title && (
-      <EuiContextMenuItem
-        css={styles.euiContextMenuPanel__title}
+      <EuiContextMenuPanelTitle
+        title={title}
+        id={titleId}
         className="euiContextMenuPanel__title"
-        onClick={onClose}
+        onClose={onClose}
         buttonRef={(node: HTMLButtonElement) => {
-          if (onClose) this.backButton = node;
+          this.backButton = node;
         }}
-        data-test-subj={
-          onClose ? 'contextMenuPanelTitleButton' : 'contextMenuPanelTitle'
-        }
-        icon={onClose && 'chevronSingleLeft'}
-      >
-        {title}
-      </EuiContextMenuItem>
+      />
     );
 
+    const isMenu = !!(items && items.length);
     const content =
       items && items.length
         ? items.map((MenuItem) => {
-            const cloneProps: Partial<EuiContextMenuItemProps> = {};
-            if (size) {
-              cloneProps.size = size;
-            }
+            const cloneProps: Partial<EuiContextMenuItemProps> = {
+              role: MenuItem.props?.role ?? 'menuitem',
+            };
             return MenuItem.type === EuiContextMenuItem
               ? cloneElement(MenuItem, cloneProps)
               : MenuItem;
@@ -484,7 +497,17 @@ export class EuiContextMenuPanelClass extends Component<
         {panelTitle}
 
         <EuiResizeObserver onResize={() => this.updateHeight()}>
-          {(resizeRef) => <div ref={resizeRef}>{content}</div>}
+          {(resizeRef) => (
+            <div
+              ref={resizeRef}
+              role={isMenu ? 'menu' : undefined}
+              className="euiContextMenuPanel__list"
+              aria-labelledby={title ? titleId : undefined}
+              onFocus={this.setInitialFocusedItemIndex}
+            >
+              {content}
+            </div>
+          )}
         </EuiResizeObserver>
       </div>
     );

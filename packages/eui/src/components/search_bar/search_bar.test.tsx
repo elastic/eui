@@ -8,10 +8,12 @@
 
 import React, { useState } from 'react';
 import { fireEvent, act } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
-import { render } from '../../test/rtl';
+import { render, renderHook } from '../../test/rtl';
 import { requiredProps } from '../../test';
 import { keys } from '../../services';
+import { useEuiTheme } from '../../services/theme';
 
 import { EuiSearchBar } from './search_bar';
 import { Query } from './query';
@@ -57,6 +59,92 @@ describe('SearchBar', () => {
     expect(container.firstChild).toMatchSnapshot();
   });
 
+  describe('compressed', () => {
+    it('renders non compressed if compressed is not set', () => {
+      const { result } = renderHook(() => useEuiTheme());
+      const { getByRole } = render(
+        <EuiSearchBar {...requiredProps} onChange={() => {}} />
+      );
+      const searchbox = getByRole('searchbox');
+
+      expect(searchbox.className).not.toContain('euiFieldSearch-compressed');
+      expect(searchbox).toHaveStyleRule(
+        'block-size',
+        result.current.euiTheme.size.xxl
+      );
+    });
+
+    it('renders search as compressed', () => {
+      const { result } = renderHook(() => useEuiTheme());
+      const { getByRole } = render(
+        <EuiSearchBar
+          {...requiredProps}
+          compressed={true}
+          onChange={() => {}}
+        />
+      );
+      const searchbox = getByRole('searchbox');
+
+      expect(searchbox.className).toContain('euiFieldSearch-compressed');
+      expect(searchbox).toHaveStyleRule(
+        'block-size',
+        result.current.euiTheme.size.xl
+      );
+    });
+
+    it('renders search as compressed when box.compressed is set', () => {
+      const { result } = renderHook(() => useEuiTheme());
+      const { getByRole } = render(
+        <EuiSearchBar
+          {...requiredProps}
+          box={{ compressed: true }}
+          onChange={() => {}}
+        />
+      );
+      const searchbox = getByRole('searchbox');
+
+      expect(searchbox.className).toContain('euiFieldSearch-compressed');
+      expect(searchbox).toHaveStyleRule(
+        'block-size',
+        result.current.euiTheme.size.xl
+      );
+    });
+
+    it('can be overridden with box.compressed', () => {
+      const filters: SearchFilterConfig[] = [
+        {
+          type: 'is',
+          field: 'open',
+          name: 'Open',
+        },
+      ];
+
+      const { result } = renderHook(() => useEuiTheme());
+      const { getByRole, container } = render(
+        <EuiSearchBar
+          {...requiredProps}
+          compressed={true}
+          box={{ compressed: false }}
+          filters={filters}
+          onChange={() => {}}
+        />
+      );
+      const searchbox = getByRole('searchbox');
+
+      // Search box should NOT be compressed (overridden by box.compressed)
+      expect(searchbox.className).not.toContain('euiFieldSearch-compressed');
+      expect(searchbox).toHaveStyleRule(
+        'block-size',
+        result.current.euiTheme.size.xxl
+      );
+
+      // Filters SHOULD be compressed (uses top-level compressed)
+      expect(container.querySelector('.euiFilterGroup')!.className).toContain(
+        'euiFilterGroup-compressed'
+      );
+    });
+  });
+
   test('render - provided query, filters', async () => {
     const filters: SearchFilterConfig[] = [
       {
@@ -79,10 +167,10 @@ describe('SearchBar', () => {
       onChange: () => {},
     };
 
-    const { container, findByTitle } = render(<EuiSearchBar {...props} />);
+    const { container, findByText } = render(<EuiSearchBar {...props} />);
 
     // Wait for FieldValueSelectionFilter to finish updating its state on init
-    await findByTitle('Tag');
+    await findByText('Tag');
 
     expect(container.firstChild).toMatchSnapshot();
   });
@@ -174,6 +262,54 @@ describe('SearchBar', () => {
 
       expect(queryByTestSubject('myHint')).toBeInTheDocument();
       expect(queryByTestSubject('myHint')).toHaveTextContent('Hello from hint');
+    });
+  });
+  describe('error tooltip', () => {
+    test('renders an error tooltip by default on parse error', () => {
+      const { getByTestSubject, queryByRole } = render(
+        <EuiSearchBar box={{ 'data-test-subj': 'searchbar' }} />
+      );
+
+      act(() => {
+        userEvent.type(getByTestSubject('searchbar'), 'tag:value OR{enter}');
+      });
+
+      expect(getByTestSubject('searchbar')).toHaveAttribute(
+        'aria-invalid',
+        'true'
+      );
+
+      // The tooltip only renders its content on hover/focus-visible, so
+      // trigger a hover to confirm the error tooltip is present
+      act(() => {
+        userEvent.hover(getByTestSubject('searchbar'));
+      });
+
+      expect(queryByRole('tooltip')).toBeInTheDocument();
+    });
+
+    test('does not render an error tooltip when showErrorTooltip is false', () => {
+      const { getByTestSubject, queryByRole } = render(
+        <EuiSearchBar
+          box={{ 'data-test-subj': 'searchbar' }}
+          showErrorTooltip={false}
+        />
+      );
+
+      act(() => {
+        userEvent.type(getByTestSubject('searchbar'), 'tag:value OR{enter}');
+      });
+
+      expect(getByTestSubject('searchbar')).toHaveAttribute(
+        'aria-invalid',
+        'true'
+      );
+
+      act(() => {
+        userEvent.hover(getByTestSubject('searchbar'));
+      });
+
+      expect(queryByRole('tooltip')).toBeNull();
     });
   });
 });

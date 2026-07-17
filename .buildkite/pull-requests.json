@@ -4,25 +4,33 @@
       "enabled": true,
       "pipeline_slug": "eui-pull-request-test-and-deploy",
       "allow_org_users": true,
+      "allowed_list": ["elastic-vault-github-plugin-prod[bot]"],
       "allowed_repo_permissions": ["admin", "write"],
       "build_on_commit": true,
       "build_on_comment": true,
       "trigger_comment_regex": "^(?:(?:buildkite\\W+)?(?:build|test)\\W+(?:this|it))",
       "always_trigger_comment_regex": "^(?:(?:buildkite\\W+)?(?:build|test)\\W+(?:this|it))",
       "set_commit_status": true,
-      "skip_ci_on_only_changed": ["^.github/", "^wiki/"]
+      "skip_ci_on_only_changed": [
+        "^\\.github/",
+        "^wiki/",
+        "^packages/website/",
+        "^packages/docusaurus-"
+      ]
     },
     {
       "enabled": true,
       "pipeline_slug": "eui-deploy-docs",
       "allow_org_users": true,
+      "allowed_list": ["elastic-vault-github-plugin-prod[bot]"],
       "allowed_repo_permissions": ["admin", "write"],
       "build_on_commit": true,
       "build_on_comment": true,
       "trigger_comment_regex": "^(?:(?:buildkite\\W+)?(?:build|test)\\W+(?:this|it))",
       "always_trigger_comment_regex": "^(?:(?:buildkite\\W+)?(?:build|test)\\W+(?:this|it))",
       "set_commit_status": true,
-      "skip_ci_on_only_changed": ["^.github/", "^wiki/"]
+      "skip_ci_on_only_changed": ["^.github/", "^wiki/"],
+      "cancel_intermediate_builds": true
     }
   ]
 }

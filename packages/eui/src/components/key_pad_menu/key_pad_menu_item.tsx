@@ -83,9 +83,7 @@ type EuiKeyPadMenuItemPropsForUncheckable = {
   /**
    * Extends the wrapping EuiToolTip props when `betaBadgeLabel` is provided
    */
-  betaBadgeTooltipProps?: Partial<
-    Omit<EuiToolTipProps, 'title' | 'content' | 'delay'>
-  >;
+  betaBadgeTooltipProps?: Partial<Omit<EuiToolTipProps, 'title' | 'content'>>;
   /**
    * Use `onClick` instead when the item is not `checkable`
    */
@@ -321,7 +319,6 @@ export const EuiKeyPadMenuItem: FunctionComponent<EuiKeyPadMenuItemProps> = ({
       {...betaBadgeTooltipProps}
       title={betaBadgeLabel}
       content={betaBadgeTooltipContent}
-      delay="long"
     >
       {button}
     </EuiToolTip>

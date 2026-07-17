@@ -21,7 +21,7 @@ const meta: Meta<EuiValidatableControlProps> = {
   title: 'Forms/EuiValidatableControl',
   component: EuiValidatableControl,
   parameters: {
-    loki: {
+    vrt: {
       // there are no visual features for this component,
       // it only adds attributes in the DOM
       skip: true,

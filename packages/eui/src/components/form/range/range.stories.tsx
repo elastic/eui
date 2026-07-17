@@ -9,7 +9,7 @@
 import React, { useEffect, useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { LOKI_SELECTORS } from '../../../../.storybook/loki';
+import { VRT_SELECTORS } from '../../../../.storybook/vrt';
 import {
   enableFunctionToggleControls,
   moveStorybookControlsToCategory,
@@ -237,7 +237,7 @@ const StatefulPlayground = ({ value, onChange, ...rest }: EuiRangeProps) => {
 export const InputWithPopover: Story = {
   tags: ['vrt-only'],
   parameters: {
-    loki: { chromeSelector: LOKI_SELECTORS.portal },
+    vrt: { selector: VRT_SELECTORS.portal },
   },
   args: {
     showInput: 'inputWithPopover',
@@ -259,7 +259,7 @@ export const InputWithPopover: Story = {
   render: function Render(args) {
     const [ref, setRef] = useState<any>();
     useEffect(() => {
-      // For some reason Loki throws a width/render error if not wrapped in a timeout.
+      // Wrapping in a timeout avoids a width/render error during VRT.
       // This doesn't happen on production
       if (ref) setTimeout(() => ref.onInputFocus(), 1);
     }, [ref]);

@@ -53,6 +53,9 @@ export const euiPanelStyles = (euiThemeContext: UseEuiTheme) => {
     euiPanel: css`
       position: relative;
       flex-grow: 0;
+      /* Set a fixed base line-height to ensure consistency between interactive and non-interactive panels.
+      Otherwise the browser defaults between div and button might be different. */
+      line-height: inherit;
     `,
 
     grow: css`
@@ -80,8 +83,7 @@ export const euiPanelStyles = (euiThemeContext: UseEuiTheme) => {
     isClickable: css`
       ${euiCanAnimate} {
         transition: box-shadow ${euiTheme.animation.fast}
-            ${euiTheme.animation.resistance},
-          transform ${euiTheme.animation.fast} ${euiTheme.animation.resistance};
+          ${euiTheme.animation.resistance};
       }
 
       &:enabled {
@@ -95,7 +97,7 @@ export const euiPanelStyles = (euiThemeContext: UseEuiTheme) => {
       &:hover,
       &:focus {
         ${highContrastModeStyles(euiThemeContext, {
-          none: euiShadowHover(euiThemeContext, 'l'),
+          none: euiShadowHover(euiThemeContext, 'm'),
           // Windows high contrast themes ignore box-shadows - use a filter workaround instead
           preferred: `
             &:not(.euiPanel--transparent) {
@@ -103,7 +105,6 @@ export const euiPanelStyles = (euiThemeContext: UseEuiTheme) => {
             }
           `,
         })}
-        transform: translateY(-2px);
         cursor: pointer;
       }
     `,

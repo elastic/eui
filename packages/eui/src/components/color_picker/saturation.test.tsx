@@ -9,11 +9,7 @@
 import React from 'react';
 import { requiredProps } from '../../test/required_props';
 import { shouldRenderCustomStyles } from '../../test/internal';
-import {
-  render,
-  waitForEuiToolTipHidden,
-  waitForEuiToolTipVisible,
-} from '../../test/rtl';
+import { render, focusEuiToolTipTrigger } from '../../test/rtl';
 
 import { EuiSaturation } from './saturation';
 import { fireEvent } from '@testing-library/react';
@@ -45,7 +41,7 @@ describe('EuiSaturation', () => {
     expect(container.firstChild).toMatchSnapshot();
   });
 
-  test('it renders a color label tooltip on hover', async () => {
+  test('it renders a color label tooltip on hover', () => {
     const { getByText } = render(
       <EuiSaturation onChange={onChange} {...requiredProps} hex="#000000" />
     );
@@ -54,30 +50,24 @@ describe('EuiSaturation', () => {
 
     fireEvent.mouseOver(thumbElement);
 
-    await waitForEuiToolTipVisible();
-
     expect(getByText('#000000')).toBeInTheDocument();
 
     fireEvent.mouseLeave(thumbElement);
-
-    await waitForEuiToolTipHidden();
   });
 
-  test('it renders a color label tooltip on focus', async () => {
+  test('it renders a color label tooltip on focus', () => {
     const { getByText } = render(
       <EuiSaturation onChange={onChange} {...requiredProps} hex="#000000" />
     );
 
     const thumbElement = document.querySelector('.euiSaturation__indicator')!;
 
-    fireEvent.focus(thumbElement);
-
-    await waitForEuiToolTipVisible();
+    const cleanup = focusEuiToolTipTrigger(thumbElement);
 
     expect(getByText('#000000')).toBeInTheDocument();
 
     fireEvent.blur(thumbElement);
 
-    await waitForEuiToolTipHidden();
+    cleanup();
   });
 });

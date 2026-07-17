@@ -12,7 +12,7 @@ import { action } from '@storybook/addon-actions';
 
 import { EuiModal } from './modal';
 import { EuiModalHeader, EuiModalHeaderProps } from './modal_header';
-import { LOKI_SELECTORS } from '../../../.storybook/loki';
+import { VRT_SELECTORS } from '../../../.storybook/vrt';
 
 const meta: Meta<EuiModalHeaderProps> = {
   title: 'Layout/EuiModal/EuiModalHeader',
@@ -25,9 +25,9 @@ const meta: Meta<EuiModalHeaderProps> = {
     ),
   ],
   parameters: {
-    loki: {
+    vrt: {
       // Modal is rendered in a portal
-      chromeSelector: LOKI_SELECTORS.portal,
+      selector: VRT_SELECTORS.portal,
     },
   },
 };

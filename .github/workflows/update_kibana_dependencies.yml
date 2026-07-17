@@ -1,52 +1,82 @@
 name: Update Kibana dependencies
 
 on:
+  schedule:
+    # 03:05 UTC, Monday-Friday
+    # "High load times include the start of every hour. If the load is sufficiently high enough,
+    # some queued jobs may be dropped. To decrease the chance of delay, schedule your workflow
+    # to run at a different time of the hour."
+    # Source: https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows#schedule
+    - cron: '5 3 * * 1-5'
+  pull_request_target:
+    types: [labeled]
   workflow_dispatch:
     inputs:
-      dependencies:
-        description: JSON-serialized map of dependencies to update
+      release_ref:
+        description: Git ref to release
         type: string
         required: true
       pr_title:
-        description: PR title
+        description: Kibana PR title
         default: Update EUI dependencies
         type: string
       pr_body:
-        description: PR body
+        description: Kibana PR body
+        default: This PR updates EUI dependencies in Kibana
         type: string
-        default: ''
-  workflow_call:
-    inputs:
-      dependencies:
-        description: JSON-serialized map of dependencies to update
-        type: string
-        required: true
-      pr_title:
-        description: PR title
-        default: Update EUI dependencies
-        type: string
-      pr_body:
-        description: PR body
-        type: string
-        default: ''
-    outputs:
-      pr_url:
-        description: 'URL of the created pull request'
-        value: ${{ jobs.open_pr.outputs.pr_url }}
-
 jobs:
-  prepare_changes:
-    name: Prepare changes
-    uses: ./.github/workflows/update_kibana_dependencies__prepare_changes.yml
-    with:
-      dependencies: ${{ inputs.dependencies }}
-  open_pr:
-    name: Open PR
-    needs: [prepare_changes]
-    uses: ./.github/workflows/update_kibana_dependencies__open_pr.yml
-    with:
-      pr_head: eui-kibana:${{ needs.prepare_changes.outputs.branch_name }}
-      pr_title: ${{ inputs.pr_title }}
-      pr_body: ${{ inputs.pr_body }}
-      pr_draft: true
-      pr_labels: 'EUI,backport:skip,release_note:skip'
+  # Triggers the `release.yml` workflow to publish a snapshot.
+  # We dispatch (instead of `workflow_call`) so `release.yml` stays the top-level
+  # workflow of the publish run and the single npm trusted publishing entry point
+  # shared with official releases. `release.yml` kicks off the rest of the
+  # Kibana integration chain after publishing.
+  trigger_release:
+    name: Trigger snapshot release
+    runs-on: ubuntu-latest
+    if: >-
+      (github.event_name != 'pull_request_target' || github.event.label.name == 'ci:regression-integration-test-kibana') &&
+      (github.event_name != 'schedule' || github.repository == 'elastic/eui')
+    permissions:
+      actions: write
+      contents: read
+    steps:
+      - name: Dispatch release workflow
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          EVENT_NAME: ${{ github.event_name }}
+          RELEASE_REF: ${{ github.event_name == 'pull_request_target' && github.event.pull_request.head.sha || inputs.release_ref || github.sha }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          INPUT_PR_TITLE: ${{ inputs.pr_title }}
+          INPUT_PR_BODY: ${{ inputs.pr_body }}
+        # language=bash
+        run: |
+          set -euo pipefail
+          workflow_args=(
+            "-f" "release_ref=$RELEASE_REF"
+            "-f" "type=snapshot"
+            "-f" "dry_run=false"
+            "-f" "kibana_integration=true"
+          )
+
+          if [[ "$EVENT_NAME" == "pull_request_target" ]]; then
+            # Triggered by label - use PR context
+            workflow_args+=(
+              "-f" "kibana_pr_title=[DO NOT MERGE] EUI Regression Integration Test - elastic/eui#$PR_NUMBER"
+              "-f" "kibana_pr_body=This PR was created programmatically to run regression integration tests of EUI changes from $PR_URL"
+              "-f" "kibana_source_pr_number=$PR_NUMBER"
+            )
+          elif [[ "$EVENT_NAME" == "schedule" ]]; then
+            workflow_args+=(
+              "-f" "kibana_pr_title=[DO NOT MERGE][EUI] Nightly Build"
+              "-f" "kibana_nightly=true"
+            )
+          else
+            workflow_args+=(
+              "-f" "kibana_pr_title=$INPUT_PR_TITLE"
+              "-f" "kibana_pr_body=$INPUT_PR_BODY"
+            )
+          fi
+
+          # This job has no checkout, so gh cannot infer the repository.
+          gh workflow run release.yml --repo "$GITHUB_REPOSITORY" "${workflow_args[@]}"

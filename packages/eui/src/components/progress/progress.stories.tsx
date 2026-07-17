@@ -16,6 +16,14 @@ import { EuiFlexGroup, EuiFlexItem } from '../flex';
 const meta: Meta<typeof EuiProgress> = {
   title: 'Display/EuiProgress',
   component: EuiProgress,
+  decorators: [
+    (Story) => (
+      // Wrap in a fixed-width container to ensure a clear VRT snapshot
+      <div style={{ width: 400 }}>
+        <Story />
+      </div>
+    ),
+  ],
   argTypes: {
     color: { control: 'select', options: [...COLORS] },
     // for quicker/easier QA
@@ -75,7 +83,8 @@ export const DeterminateLoading: Story = {
     codeSnippet: {
       resolveStoryElementOnly: true,
     },
-    loki: {
+    vrt: {
+      // Stateful animated progress, value changes over time, non-deterministic
       skip: true,
     },
   },

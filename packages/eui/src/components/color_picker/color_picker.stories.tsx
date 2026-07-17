@@ -49,7 +49,7 @@ export const Playground: Story = {
 export const InFormRow: Story = {
   name: 'In FormRow',
   parameters: {
-    loki: {
+    vrt: {
       // The visual composition of label + select is tested by form controls separately
       skip: true,
     },

@@ -22,6 +22,8 @@ import {
 // Mock dependencies
 jest.mock('../../../services', () => ({
   useEuiTheme: jest.fn(),
+  withEuiStylesMemoizer: jest.fn(),
+  withEuiTheme: jest.fn(),
 }));
 
 jest.mock('./actions', () => ({

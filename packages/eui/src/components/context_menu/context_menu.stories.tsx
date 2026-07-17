@@ -10,22 +10,19 @@ import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { css } from '@emotion/react';
 
-import { LOKI_SELECTORS } from '../../../.storybook/loki';
+import { VRT_SELECTORS } from '../../../.storybook/vrt';
 import { logicalCSS, useEuiScrollBar } from '../../global_styling';
 import { EuiPopover } from '../popover';
 import { EuiButton } from '../button';
 import { EuiIcon } from '../icon';
-import { EuiTitle } from '../title';
+import { EuiSpacer } from '../spacer';
 
 import { EuiContextMenu, EuiContextMenuProps } from './context_menu';
+import { EuiContextMenuPanelTitle } from './context_menu_panel_title';
 
 const meta: Meta<EuiContextMenuProps> = {
   title: 'Navigation/EuiContextMenu/EuiContextMenu',
   component: EuiContextMenu,
-  args: {
-    // Component defaults
-    size: 'm',
-  },
 };
 
 export default meta;
@@ -104,16 +101,10 @@ const panels: EuiContextMenuProps['panels'] = [
       },
       {
         renderItem: () => (
-          <EuiTitle
-            size="xxs"
-            css={({ euiTheme }) => ({
-              marginInline: euiTheme.size.s,
-              marginBlockStart: euiTheme.size.m,
-              marginBlockEnd: euiTheme.size.xs,
-            })}
-          >
-            <h3>Custom rendered subtitle</h3>
-          </EuiTitle>
+          <EuiContextMenuPanelTitle
+            component="h3"
+            title="Custom rendered subtitle"
+          />
         ),
       },
       {
@@ -143,8 +134,8 @@ export const Playground: Story = {
 
 export const InPopover: Story = {
   parameters: {
-    loki: {
-      chromeSelector: LOKI_SELECTORS.portal,
+    vrt: {
+      selector: VRT_SELECTORS.portal,
     },
   },
   args: {
@@ -174,10 +165,48 @@ export const InPopover: Story = {
   },
 };
 
+export const ScrollableList: Story = {
+  parameters: {
+    vrt: {
+      selector: VRT_SELECTORS.portal,
+    },
+  },
+  args: {
+    initialPanelId: 0,
+    panels,
+    height: 200,
+  },
+  render: function Render(args) {
+    const [isPopoverOpen, setIsPopoverOpen] = useState(true);
+
+    return (
+      <>
+        <EuiContextMenu {...args} />
+        <EuiSpacer size="xl" />
+        <EuiPopover
+          button={
+            <EuiButton onClick={() => setIsPopoverOpen(!isPopoverOpen)}>
+              Toggle popover
+            </EuiButton>
+          }
+          isOpen={isPopoverOpen}
+          closePopover={() => {
+            setIsPopoverOpen(false);
+          }}
+          panelPaddingSize="none"
+          anchorPosition="downCenter"
+        >
+          <EuiContextMenu {...args} />
+        </EuiPopover>
+      </>
+    );
+  },
+};
+
 export const InScrollablePopover: Story = {
   parameters: {
-    loki: {
-      chromeSelector: LOKI_SELECTORS.portal,
+    vrt: {
+      selector: VRT_SELECTORS.portal,
     },
   },
   globals: {

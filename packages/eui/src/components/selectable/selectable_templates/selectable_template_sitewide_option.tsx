@@ -81,7 +81,7 @@ export const euiSelectableTemplateSitewideFormatOptions = (
       key: item.label,
       title,
       ...item,
-      css: [styles.euiSelectableTemplateSitewide__listItem, item.css],
+      css: item.css,
       className: classNames(
         'euiSelectableTemplateSitewide__listItem',
         item.className

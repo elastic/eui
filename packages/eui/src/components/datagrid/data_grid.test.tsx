@@ -1402,7 +1402,7 @@ describe('EuiDataGrid', () => {
     });
 
     test('column display, displayAsText, and displayHeaderCellProps', () => {
-      const { container, getByTitle, getByTestSubject } = render(
+      const { container, getByTestSubject } = render(
         <EuiDataGrid
           aria-labelledby="#test"
           columnVisibility={{
@@ -1426,7 +1426,9 @@ describe('EuiDataGrid', () => {
         container.querySelector('.euiDataGridHeaderCell.displayHeaderCellProps')
       ).toBeDefined();
       expect(getByTestSubject('display')).toBeInTheDocument();
-      expect(getByTitle('displayAsText')).toBeInTheDocument();
+      expect(
+        container.querySelector('[aria-label="displayAsText"]')
+      ).toBeInTheDocument();
     });
 
     describe('canDragAndDropColumns', () => {

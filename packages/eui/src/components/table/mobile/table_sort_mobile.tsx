@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { Component, ReactNode, Key } from 'react';
+import React, { Key, ReactNode, useState } from 'react';
 import classNames from 'classnames';
 
 import { CommonProps } from '../../common';
@@ -30,88 +30,76 @@ export interface EuiTableSortMobileProps extends CommonProps {
   items?: ItemProps[];
 }
 
-interface State {
-  isPopoverOpen: boolean;
-}
+// Aligns the button to the right even when it's the only element present
+const euiTableSortMobileStyles = {
+  marginInlineStart: 'auto',
+  label: 'euiTableSortMobile',
+};
 
-export class EuiTableSortMobile extends Component<
-  EuiTableSortMobileProps,
-  State
-> {
-  state = {
-    isPopoverOpen: false,
+export const EuiTableSortMobile = ({
+  className,
+  anchorPosition,
+  items,
+  ...rest
+}: EuiTableSortMobileProps) => {
+  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+
+  const classes = classNames('euiTableSortMobile', className);
+
+  const onButtonClick = () => {
+    setIsPopoverOpen((isOpen) => !isOpen);
   };
 
-  onButtonClick = () => {
-    this.setState({
-      isPopoverOpen: !this.state.isPopoverOpen,
-    });
+  const closePopover = () => {
+    setIsPopoverOpen(false);
   };
 
-  closePopover = () => {
-    this.setState({
-      isPopoverOpen: false,
-    });
-  };
+  const mobileSortButton = (
+    <EuiButtonEmpty
+      iconType="chevronSingleDown"
+      iconSide="right"
+      onClick={onButtonClick}
+      flush="right"
+      size="xs"
+    >
+      <EuiI18n token="euiTableSortMobile.sorting" default="Sorting" />
+    </EuiButtonEmpty>
+  );
 
-  // Aligns the button to the right even when it's the only element present
-  euiTableSortMobileStyles = {
-    marginInlineStart: 'auto',
-    label: 'euiTableSortMobile',
-  };
+  const mobileSortPopover = (
+    <EuiPopover
+      button={mobileSortButton}
+      isOpen={isPopoverOpen}
+      closePopover={closePopover}
+      anchorPosition={anchorPosition || 'downRight'}
+      panelPaddingSize="none"
+      {...rest}
+    >
+      <EuiContextMenuPanel
+        style={{ minWidth: 200 }}
+        items={
+          items?.length
+            ? items.map((item) => (
+                <EuiTableSortMobileItem
+                  key={item.key}
+                  onSort={item.onSort}
+                  isSorted={item.isSorted}
+                  isSortAscending={item.isSortAscending}
+                >
+                  {item.name}
+                </EuiTableSortMobileItem>
+              ))
+            : undefined
+        }
+      />
+    </EuiPopover>
+  );
 
-  render() {
-    const { className, anchorPosition, items, ...rest } = this.props;
+  return (
+    <div className={classes} css={euiTableSortMobileStyles}>
+      {mobileSortPopover}
+    </div>
+  );
+};
 
-    const classes = classNames('euiTableSortMobile', className);
-
-    const mobileSortButton = (
-      <EuiButtonEmpty
-        iconType="chevronSingleDown"
-        iconSide="right"
-        onClick={this.onButtonClick.bind(this)}
-        flush="right"
-        size="xs"
-      >
-        <EuiI18n token="euiTableSortMobile.sorting" default="Sorting" />
-      </EuiButtonEmpty>
-    );
-
-    const mobileSortPopover = (
-      <EuiPopover
-        button={mobileSortButton}
-        isOpen={this.state.isPopoverOpen}
-        closePopover={this.closePopover}
-        anchorPosition={anchorPosition || 'downRight'}
-        panelPaddingSize="none"
-        {...rest}
-      >
-        <EuiContextMenuPanel
-          style={{ minWidth: 200 }}
-          items={
-            items && items.length
-              ? items.map((item) => {
-                  return (
-                    <EuiTableSortMobileItem
-                      key={item.key}
-                      onSort={item.onSort}
-                      isSorted={item.isSorted}
-                      isSortAscending={item.isSortAscending}
-                    >
-                      {item.name}
-                    </EuiTableSortMobileItem>
-                  );
-                })
-              : undefined
-          }
-        />
-      </EuiPopover>
-    );
-
-    return (
-      <div className={classes} css={this.euiTableSortMobileStyles}>
-        {mobileSortPopover}
-      </div>
-    );
-  }
-}
+EuiTableSortMobile.displayName = 'EuiTableSortMobile';

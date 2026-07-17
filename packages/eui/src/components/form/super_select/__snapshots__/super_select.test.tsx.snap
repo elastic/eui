@@ -230,6 +230,7 @@ exports[`EuiSuperSelect renders 1`] = `
               You are in a form selector and must select a single option. Use the Up and Down arrow keys to navigate or Escape to close.
             </p>
             <div
+              aria-activedescendant="1"
               aria-describedby="euiSuperSelect__generated-id__screenreaderDescribeId"
               aria-label="Select listbox"
               class="euiSuperSelect__listbox eui-scrollBar emotion-euiSuperSelect__listbox"
@@ -238,38 +239,46 @@ exports[`EuiSuperSelect renders 1`] = `
             >
               <button
                 aria-selected="false"
-                class="euiContextMenuItem euiSuperSelect__item emotion-euiContextMenuItem-m-center-euiSuperSelect__item"
+                class="euiListItemLayout euiSuperSelect__item emotion-euiListItemLayout-isInteractive-isFocused"
+                data-test-subj="euiListItemLayout"
                 id="1"
                 role="option"
-                type="button"
               >
                 <span
-                  class="euiContextMenu__icon emotion-euiContextMenu__icon"
-                  color="inherit"
-                  data-euiicon-type="empty"
-                />
-                <span
-                  class="euiContextMenuItem__text emotion-euiContextMenuItem__text"
+                  class="euiListItemLayout__content emotion-euiListItemLayout__content"
                 >
-                  Option #1
+                  <span
+                    class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+                    color="text"
+                    data-euiicon-type="empty"
+                  />
+                  <span
+                    class="euiListItemLayout__text emotion-euiListItemLayout__text-wrap"
+                  >
+                    Option #1
+                  </span>
                 </span>
               </button>
               <button
                 aria-selected="false"
-                class="euiContextMenuItem euiSuperSelect__item emotion-euiContextMenuItem-m-center-euiSuperSelect__item"
+                class="euiListItemLayout euiSuperSelect__item emotion-euiListItemLayout-isInteractive"
+                data-test-subj="euiListItemLayout"
                 id="2"
                 role="option"
-                type="button"
               >
                 <span
-                  class="euiContextMenu__icon emotion-euiContextMenu__icon"
-                  color="inherit"
-                  data-euiicon-type="empty"
-                />
-                <span
-                  class="euiContextMenuItem__text emotion-euiContextMenuItem__text"
+                  class="euiListItemLayout__content emotion-euiListItemLayout__content"
                 >
-                  Option #2
+                  <span
+                    class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
+                    color="text"
+                    data-euiicon-type="empty"
+                  />
+                  <span
+                    class="euiListItemLayout__text emotion-euiListItemLayout__text-wrap"
+                  >
+                    Option #2
+                  </span>
                 </span>
               </button>
             </div>

@@ -69,4 +69,23 @@ Managing z-index levels of multiple portal-positioned components and their diffe
 
 import docgen from '@elastic/eui-docgen/dist/components/overlay_mask';
 
-<PropTable definition={docgen.EuiOverlayMask} />
+export const euiOverlayMaskOwnProps = [
+  'children',
+  'headerZindexLocation',
+  'maskRef',
+  'hasAnimation',
+].reduce(
+  (props, propName) => ({
+    ...props,
+    [propName]: docgen.EuiOverlayMask.props[propName],
+  }),
+  {}
+);
+
+<PropTable
+  definition={{
+    ...docgen.EuiOverlayMask,
+    extends: [],
+    props: euiOverlayMaskOwnProps,
+  }}
+/>

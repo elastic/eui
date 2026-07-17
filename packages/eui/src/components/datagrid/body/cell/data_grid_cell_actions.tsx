@@ -17,6 +17,7 @@ import {
 } from '../../../button/button_empty';
 import { EuiFlexGroup, EuiFlexItem } from '../../../flex';
 import { EuiPopoverFooter } from '../../../popover';
+import { EuiToolTip } from '../../../tool_tip';
 
 import {
   EuiDataGridColumn,
@@ -52,18 +53,23 @@ export const EuiDataGridCellActions = ({
         default="Click or hit enter to interact with cell content"
       >
         {(expandButtonTitle: string) => (
-          <EuiButtonIcon
-            css={styles.euiDataGridRowCell__actionButtonIcon}
-            className="euiDataGridRowCell__actionButtonIcon euiDataGridRowCell__expandCell"
-            data-test-subj="euiDataGridCellExpandButton"
-            display="fill"
-            color="primary"
-            iconSize="s"
-            iconType="maximize"
-            aria-hidden
-            onClick={onExpandClick}
-            title={expandButtonTitle}
-          />
+          <EuiToolTip
+            content={expandButtonTitle}
+            disableScreenReaderOutput
+            display="flex"
+          >
+            <EuiButtonIcon
+              aria-hidden
+              className="euiDataGridRowCell__actionButtonIcon euiDataGridRowCell__expandCell"
+              color="primary"
+              css={styles.euiDataGridRowCell__actionButtonIcon}
+              data-test-subj="euiDataGridCellExpandButton"
+              display="fill"
+              iconSize="s"
+              iconType="maximize"
+              onClick={onExpandClick}
+            />
+          </EuiToolTip>
         )}
       </EuiI18n>
     ),

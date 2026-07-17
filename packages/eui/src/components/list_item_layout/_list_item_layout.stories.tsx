@@ -1,0 +1,570 @@
+/*
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
+ */
+
+import React, { cloneElement, isValidElement } from 'react';
+import { css } from '@emotion/react';
+import type { Meta, StoryObj } from '@storybook/react';
+import { VRT_SELECTORS } from '../../../.storybook/vrt';
+
+import { EuiFlexGroup, EuiFlexItem } from '../flex';
+import { EuiIcon } from '../icon';
+import { EuiBadge } from '../badge';
+import { EuiButtonIcon } from '../button';
+import { EuiText } from '../text';
+import { EuiCode } from '../code';
+import { EuiSpacer } from '../spacer';
+import {
+  EuiListItemLayout,
+  type EuiListItemLayoutProps,
+  type EuiListItemLayoutAsLi,
+  type EuiListItemLayoutAsDiv,
+  type EuiListItemLayoutAsButton,
+  type EuiListItemLayoutAsAnchor,
+} from './_list_item_layout';
+import { EuiHealth } from '../health';
+
+type EuiListItemLayoutStoryProps = EuiListItemLayoutProps & {
+  checkedSingle: 'on' | undefined;
+};
+
+/* Story HOC to pass the correct `checked` control value to the component, since we're
+conditionally switching between `checked` and `checkedSingle` to advocate expected usage */
+const StoryRender = ({
+  checkedSingle,
+  checked,
+  isSingleSelection,
+  ...args
+}: EuiListItemLayoutStoryProps) => {
+  return (
+    <EuiListItemLayout
+      {...args}
+      isSingleSelection={isSingleSelection}
+      checked={isSingleSelection ? checkedSingle : checked}
+    />
+  );
+};
+
+const meta: Meta<EuiListItemLayoutProps> = {
+  title: 'Internal/EuiListItemLayout',
+  component: EuiListItemLayout,
+  argTypes: {
+    element: {
+      control: 'radio',
+      options: ['li', 'div', 'button', 'a'],
+    },
+    checked: {
+      control: 'radio',
+      options: ['on', 'off', 'mixed', undefined],
+      if: { arg: 'isSingleSelection', truthy: false }, // show for multi selection only
+    },
+    // @ts-expect-error - custom variant of `checked` control that isn't a standalone prop
+    checkedSingle: {
+      name: 'checked',
+      description: `Controls the item checked indicator and applies a semantic \`aria-checked\` attribute.
+        Ensure to pass an appropriate \`role\` for the item that supports semantic \`checked\` state.
+        For no/other role(s) \`checked\` only controls the visual checked indicator.<br/><br/>
+        Leave \`undefined\` to indicate not selected. Pass a string of "on" to indicate inclusion.`,
+      control: 'radio',
+      options: ['on', undefined],
+      if: { arg: 'isSingleSelection' }, // show for single selection only
+    },
+    prepend: {
+      control: 'radio',
+      options: ['icon', 'text', undefined],
+      mapping: {
+        icon: <EuiIcon type="info" />,
+        text: '(Prepend)',
+        undefined: undefined,
+      },
+    },
+    append: {
+      control: 'radio',
+      options: ['text', 'badge', undefined],
+      mapping: {
+        badge: <EuiBadge color="hollow">Badge</EuiBadge>,
+        text: '(Append)',
+        undefined: undefined,
+      },
+    },
+    extraAction: {
+      control: 'radio',
+      options: ['action', undefined],
+      mapping: {
+        action: (
+          <EuiButtonIcon
+            iconType="arrowRight"
+            color="text"
+            aria-label="Extra action"
+          />
+        ),
+        undefined: undefined,
+      },
+    },
+    selectionMode: {
+      control: 'radio',
+      options: ['checked', 'selected', undefined],
+    },
+    href: {
+      control: 'text',
+    },
+    target: {
+      control: 'text',
+    },
+    rel: {
+      control: 'text',
+    },
+    role: {
+      control: 'text',
+    },
+    hasAriaDisabled: {
+      description: `NOTE: Beta feature, may be changed or removed in the future.<br/>
+      Changes the native \`disabled\` attribute for \`element="button"\` usages to \`aria-disabled\` to preserve focusability.
+      This results in a semantically disabled button without the default browser handling of the disabled state.<br/>
+      Use e.g. when a disabled button element should have a tooltip.
+      `,
+    },
+  },
+  args: {
+    element: 'li',
+    checked: undefined,
+    prepend: undefined,
+    append: undefined,
+    isDisabled: false,
+    hasAriaDisabled: false,
+    isFocused: false,
+    isSelected: false,
+    isSingleSelection: false,
+    href: undefined,
+    target: undefined,
+    rel: undefined,
+    showIndicator: true,
+  },
+  render: (args) => <StoryRender {...(args as EuiListItemLayoutStoryProps)} />,
+};
+
+export default meta;
+type Story = StoryObj<EuiListItemLayoutProps>;
+
+export const Playground: Story = {
+  tags: ['vrt-only'],
+  args: {
+    children: 'List item',
+  },
+  render: function Render(args: EuiListItemLayoutProps) {
+    const { isDisabled, extraAction, ...rest } = args;
+
+    // mimic implementation handling of synchronized disabled state
+    const _extraAction =
+      extraAction != null && isValidElement(extraAction)
+        ? cloneElement(extraAction, {
+            ...extraAction.props,
+            disabled: isDisabled,
+          })
+        : extraAction;
+
+    return (
+      <StoryRender
+        {...(rest as EuiListItemLayoutStoryProps)}
+        isDisabled={isDisabled}
+        extraAction={_extraAction}
+      />
+    );
+  },
+};
+
+export const Interactive: Story = {
+  tags: ['vrt-only'], // remove story from sidebar in production
+  parameters: {
+    vrt: {
+      // VRT looks the same as the Playground story
+      skip: true,
+    },
+  },
+  ...Playground,
+  args: {
+    children: 'List item',
+    onClick: () => {},
+  },
+};
+
+export const Role: Story = {
+  tags: ['vrt-only'],
+  parameters: {
+    controls: {
+      include: ['element', 'role', 'checked', 'isSelected', 'children'],
+    },
+  },
+  args: {
+    children: 'List item',
+    role: 'menuitemcheckbox',
+  },
+};
+
+export const ExternalLink: Story = {
+  tags: ['vrt-only'],
+  parameters: {
+    controls: {
+      include: ['element', 'role', 'checked', 'isSelected', 'children'],
+    },
+  },
+  args: {
+    children: 'List item',
+    element: 'a',
+    href: '#',
+    target: '_blank',
+    external: true,
+  },
+};
+
+export const ExtraAction: Story = {
+  tags: ['vrt-only'],
+  name: 'extraAction (prop)',
+  parameters: {
+    controls: {
+      include: [
+        'element',
+        'extraAction',
+        'children',
+        'isFocused',
+        'isSelected',
+        'isSingleSelection',
+      ],
+    },
+  },
+  args: {
+    children: 'List item',
+    extraAction: 'action',
+  },
+};
+
+export const TooltipProps: Story = {
+  tags: ['vrt-only'],
+  name: 'tooltipProps (prop)',
+  parameters: {
+    controls: {
+      include: [
+        'element',
+        'tooltipProps',
+        'isFocused',
+        'children',
+        'isDisabled',
+        'hasAriaDisabled',
+      ],
+    },
+    vrt: { selector: VRT_SELECTORS.portal },
+  },
+  args: {
+    children: 'List item',
+    element: 'button',
+    isFocused: true,
+    tooltipProps: {
+      title: 'Tooltip',
+      content: 'Tooltip content',
+      position: 'bottom',
+    },
+  },
+};
+
+export const ExtraActionAndTooltipProps: Story = {
+  tags: ['vrt-only'],
+  name: 'extraAction (prop) & tooltipProps (prop)',
+  parameters: {
+    controls: {
+      include: [
+        'element',
+        'tooltipProps',
+        'extraAction',
+        'isFocused',
+        'children',
+      ],
+    },
+    vrt: { selector: VRT_SELECTORS.portal },
+  },
+  args: {
+    children: 'List item',
+    element: 'button',
+    isFocused: true,
+    extraAction: 'action',
+    tooltipProps: {
+      title: 'Tooltip',
+      content: 'Tooltip content',
+      position: 'bottom',
+    },
+  },
+};
+
+export const Truncation: Story = {
+  tags: ['vrt-only'],
+  name: 'textWrap (prop): truncate',
+  parameters: {
+    controls: {
+      include: ['element', 'textWrap', 'children'],
+    },
+  },
+  args: {
+    children: 'List item with long label that should be truncated',
+    textWrap: 'truncate',
+  },
+  render: (args: EuiListItemLayoutProps) => (
+    <div
+      css={css`
+        inline-size: 250px;
+      `}
+    >
+      <StoryRender {...(args as EuiListItemLayoutStoryProps)} />
+    </div>
+  ),
+};
+
+export const TextWrap: Story = {
+  tags: ['vrt-only'],
+  name: 'textWrap (prop): wrap',
+  parameters: {
+    controls: {
+      include: ['element', 'textWrap', 'children'],
+    },
+  },
+  args: {
+    children: 'List item with long label that should break into a new line',
+    textWrap: 'wrap',
+  },
+  render: (args: EuiListItemLayoutProps) => (
+    <div
+      css={css`
+        inline-size: 250px;
+      `}
+    >
+      <StoryRender {...(args as EuiListItemLayoutStoryProps)} />
+    </div>
+  ),
+};
+
+export const CustomContent: Story = {
+  tags: ['vrt-only'],
+  parameters: {
+    controls: {
+      include: [],
+    },
+  },
+  render: function Render(args: EuiListItemLayoutProps) {
+    return (
+      <ul>
+        <EuiListItemLayout {...args}>
+          <EuiFlexGroup alignItems="center" gutterSize="xs">
+            <EuiFlexItem grow={false}>
+              <EuiIcon type="alert" color="warning" />
+            </EuiFlexItem>
+            <EuiFlexItem>
+              Lorem ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing
+              elit.
+            </EuiFlexItem>
+          </EuiFlexGroup>
+        </EuiListItemLayout>
+
+        <EuiListItemLayout {...args}>
+          <EuiText>
+            <mark>Lorem ipsum.</mark> Lorem ipsum dolor sit amet, consectetur
+            adipiscing elit.
+          </EuiText>
+        </EuiListItemLayout>
+
+        <EuiListItemLayout {...args}>
+          <>
+            <mark>Lorem ipsum.</mark> Lorem ipsum dolor sit amet, consectetur
+            adipiscing elit.
+          </>
+        </EuiListItemLayout>
+
+        <EuiListItemLayout {...args}>
+          <>
+            <small>Lorem ipsum.</small> Lorem ipsum dolor sit amet, consectetur
+            adipiscing elit.
+          </>
+        </EuiListItemLayout>
+
+        <EuiListItemLayout {...args}>
+          <EuiHealth color="success">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          </EuiHealth>
+        </EuiListItemLayout>
+      </ul>
+    );
+  },
+};
+
+export const KitchenSink: Story = {
+  tags: ['vrt-only'],
+  parameters: {
+    controls: {
+      include: [
+        'isDisabled',
+        'hasAriaDisabled',
+        'isFocused',
+        'isSelected',
+        'children',
+      ],
+    },
+  },
+  args: {
+    element: 'li',
+    children: 'List item',
+  },
+  render: function Render(args: EuiListItemLayoutProps) {
+    return (
+      <>
+        <EuiFlexGroup direction="row" gutterSize="m">
+          <EuiFlexItem>
+            {renderKitchenSink({
+              ...args,
+              element: 'li',
+            } as EuiListItemLayoutAsLi)}
+          </EuiFlexItem>
+
+          <EuiFlexItem>
+            {renderKitchenSink({
+              ...args,
+              element: 'div',
+            } as EuiListItemLayoutAsDiv)}
+          </EuiFlexItem>
+        </EuiFlexGroup>
+
+        <EuiSpacer size="xl" />
+
+        <EuiFlexGroup direction="row" gutterSize="m">
+          <EuiFlexItem>
+            {renderKitchenSink({
+              ...args,
+              element: 'button',
+            } as EuiListItemLayoutAsButton)}
+          </EuiFlexItem>
+
+          <EuiFlexItem>
+            {renderKitchenSink({
+              ...args,
+              element: 'a',
+              href: '#',
+            } as EuiListItemLayoutAsAnchor)}
+          </EuiFlexItem>
+        </EuiFlexGroup>
+      </>
+    );
+  },
+};
+
+const renderKitchenSink = (args: EuiListItemLayoutProps) => {
+  const { children, element, isDisabled } = args;
+
+  const _prepend = <EuiIcon type="info" />;
+  const _append = <EuiBadge color="hollow">Badge</EuiBadge>;
+  const _extraAction = (
+    <EuiButtonIcon
+      iconType="arrowRight"
+      color="text"
+      isDisabled={isDisabled}
+      aria-label="Button icon label"
+    />
+  );
+
+  return (
+    <>
+      <EuiText size="s">
+        <EuiCode>element="{element}"</EuiCode>
+      </EuiText>
+      <EuiSpacer size="m" />
+
+      <EuiFlexGroup component="ul" direction="column" gutterSize="none">
+        <EuiListItemLayout {...args}>
+          {children} <span>(default)</span>
+        </EuiListItemLayout>
+        <EuiListItemLayout {...args} prepend={_prepend}>
+          {children} <span>(prepend)</span>
+        </EuiListItemLayout>
+
+        <EuiListItemLayout {...args} checked="on">
+          {children} <span>(checked=on)</span>
+        </EuiListItemLayout>
+        <EuiListItemLayout {...args}>
+          {children} <span>(checked=undefined)</span>
+        </EuiListItemLayout>
+        <EuiListItemLayout {...args} checked="mixed">
+          {children} <span>(checked=mixed)</span>
+        </EuiListItemLayout>
+        <EuiListItemLayout {...args} checked="off">
+          {children} <span>(checked=off)</span>
+        </EuiListItemLayout>
+
+        <EuiListItemLayout {...args} isSingleSelection checked="on">
+          {children} <span>(isSingleSelection & checked=on)</span>
+        </EuiListItemLayout>
+        <EuiListItemLayout {...args} isSingleSelection>
+          {children} <span>(isSingleSelection & checked=undefined)</span>
+        </EuiListItemLayout>
+
+        <EuiListItemLayout {...args} append={_append}>
+          {children} <span>(append)</span>
+        </EuiListItemLayout>
+        <EuiListItemLayout
+          {...args}
+          append={_append}
+          extraAction={_extraAction}
+        >
+          {children} <span>(append & extraAction)</span>
+        </EuiListItemLayout>
+        <EuiListItemLayout
+          {...args}
+          checked="on"
+          prepend={_prepend}
+          append={_append}
+          extraAction={_extraAction}
+        >
+          {children} <span>(checked=on & prepend & append & extraAction)</span>
+        </EuiListItemLayout>
+
+        <EuiListItemLayout
+          {...args}
+          tooltipProps={{
+            content: 'Tooltip content',
+            position: 'bottom',
+          }}
+        >
+          {children} <span>(tooltipProps)</span>
+        </EuiListItemLayout>
+        <EuiListItemLayout
+          {...args}
+          wrapperElement="li"
+          tooltipProps={{
+            content: 'Tooltip content',
+            position: 'bottom',
+          }}
+        >
+          {children} <span>(wrapperElement & tooltipProps)</span>
+        </EuiListItemLayout>
+
+        <EuiListItemLayout {...args} isFocused>
+          {children} <span>(isFocused=true)</span>
+        </EuiListItemLayout>
+
+        <EuiListItemLayout {...args} checked="on" isSelected>
+          {children}{' '}
+          <span>(checked=on & isSingleSelection=false & isSelected=true)</span>
+        </EuiListItemLayout>
+        <EuiListItemLayout {...args} checked="on" isSingleSelection isSelected>
+          {children}{' '}
+          <span>(checked=on & isSingleSelection & isSelected=true)</span>
+        </EuiListItemLayout>
+
+        <EuiListItemLayout {...args} showIndicator={false}>
+          {children} <span>(showIndicator=false)</span>
+        </EuiListItemLayout>
+        <EuiListItemLayout {...args} isSelected showIndicator={false}>
+          {children} <span>(showIndicator=false & isSelected=true)</span>
+        </EuiListItemLayout>
+      </EuiFlexGroup>
+    </>
+  );
+};

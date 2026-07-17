@@ -148,7 +148,7 @@ Here's some content
 :::
 ```
 
-There are 5 types of admonitions supported, with icon and color respectively.
+There are 6 types of admonitions supported, with icon and color respectively.
 
 - `note`
 - `tip`
@@ -391,7 +391,7 @@ Typically, just use markdown:
 
 If you need to add CSS to do something like constraining the width, use an `img` tag:
 ```mdx
-import error403 from './images/error-page-404.webp';
+import error404 from './images/error-page-404.webp';
 
 <img
   src={error404}

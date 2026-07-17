@@ -8,7 +8,7 @@
 
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { LOKI_SELECTORS, lokiPlayDecorator } from '../../../.storybook/loki';
+import { VRT_SELECTORS, playDecorator } from '../../../.storybook/vrt';
 import { sleep } from '../../test';
 import {
   EuiColorPickerSwatch,
@@ -35,8 +35,8 @@ export const ColorLabelTooltip: Story = {
     controls: {
       exclude: ['autoFocus'],
     },
-    loki: {
-      chromeSelector: LOKI_SELECTORS.portal,
+    vrt: {
+      selector: VRT_SELECTORS.portal,
     },
   },
   args: {
@@ -45,7 +45,7 @@ export const ColorLabelTooltip: Story = {
       position: 'right',
     },
   },
-  play: lokiPlayDecorator(async () => {
+  play: playDecorator(async () => {
     // Reduce VRT flakiness/screenshots before tooltip is fully visible
     await sleep(300);
   }),

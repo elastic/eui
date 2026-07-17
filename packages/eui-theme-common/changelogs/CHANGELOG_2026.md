@@ -1,3 +1,13 @@
+## [`v10.0.0`](https://github.com/elastic/eui/releases/v10.0.0)
+
+**Breaking changes**
+
+- Removed types for component tokens: ([#9579](https://github.com/elastic/eui/pull/9579))
+  - `components.listGroupItemBackgroundPrimaryActive`
+  - `components.listGroupItemBackgroundSubduedActive`
+  - `components.listGroupItemBackgroundHover`
+  - `components.listGroupItemBackgroundPrimaryHover`
+
 ## [`v9.0.0`](https://github.com/elastic/eui/releases/v9.0.0)
 
 **Breaking changes**

@@ -1,6 +1,6 @@
 # Unit testing
 
-EUI's unit tests currently run on Jest and Enzyme (with an in-progress migration to RTL, and a planned snapshot migration to Storybook).
+EUI unit tests run on Jest. New tests should be written with [React Testing Library (RTL)](https://testing-library.com/docs/react-testing-library/intro/). A subset of legacy tests still uses [Enzyme](https://enzymejs.github.io/enzyme/) and is being migrated — see [Legacy: Enzyme](#legacy-enzyme) below.
 
 ## Running tests
 
@@ -11,7 +11,7 @@ EUI's unit tests currently run on Jest and Enzyme (with an in-progress migration
 You can pass other [Jest CLI arguments](https://jestjs.io/docs/cli). For example:
 
 `yarn test-unit -u` will update your snapshots.
-Note: if you are experiencing failed builds in Jenkins related to snapshots, then try clearing the cache first `yarn test-unit --clearCache`.
+Note: if you are experiencing failed CI builds (Buildkite) related to snapshots, then try clearing the cache first `yarn test-unit --clearCache`.
 
 `yarn test-unit --watch` watches for changes and runs the tests as you code.
 
@@ -25,7 +25,7 @@ contains `{component name}.tsx`.
 
 ## Targeting files to test
 
-You can also add any string to the end of the command to run the tests only on files or directories that contain that string. For example, `yarn test-unit button` will test `accordion/button.test.tsx` and `button/icon.test.tsx`, but not `card.test.tsx`.
+You can also add any string to the end of the command to run the tests only on test files whose path contains that string. For example, `yarn test-unit button` will match both `accordion/button.test.tsx` (filename match) and `button/icon.test.tsx` (parent directory match), but not `card.test.tsx`.
 
 `yarn test-unit --testMatch=react / --testMatch=non-react` will test specifically only `.tsx` files vs. non-`.tsx` files. If not specified, both types of tests will run automatically.
 
@@ -33,20 +33,25 @@ You can also add any string to the end of the command to run the tests only on f
 
 ## Test helpers
 
-The [`src/test`](/packages/eui/src/test) module exports some functions and constants to help you write better tests:
+The [`packages/eui/src/test`](/packages/eui/src/test) module exports functions and constants to help you write better tests. **Use these for new tests:**
 
 * `requiredProps` is a list of all props almost all components should support.
 * `shouldRenderCustomStyles` automatically asserts that consumer classNames, Emotion CSS, and custom styles are merged correctly with EUI's styles.
-* RTL:
-  * The exports within `test/rtl` (`render`, `screen`, and `within`) provide out-of-the-box `data-test-subj` querying. `render` provides automatic `EuiProvider` wrapping.
+* The exports within `test/rtl` (`render`, `screen`, and `within`) provide out-of-the-box `data-test-subj` querying. `render` provides automatic `EuiProvider` wrapping.
   * _Note:_ Unlike RTL's recommendation to [use `screen` for queries](https://testing-library.com/docs/queries/about/#using-queries), EUI prefers, for consistency, to destructure test queries from the `render()` API.
-* Enzyme:
-  * `findTestSubject` helps you find DOM nodes in mounted components.
-  * `takeMountedSnapshot` generates a snapshot of a mounted component.
 
 ### Test helper naming pattern
 
 If the test helper includes `enzyme` or other libraries included only in `devDependencies`, use the `*.test_helper.[ts, tsx]` naming pattern to exclude the component from production builds, or place the helper in a namespaced folder.
+
+## Legacy: Enzyme
+
+EUI is migrating away from Enzyme. **Do not write new Enzyme tests** — use RTL (see [Test helpers](#test-helpers) above). The helpers below exist only to support existing Enzyme tests until the migration completes:
+
+* `findTestSubject` helps you find DOM nodes in mounted components.
+* `takeMountedSnapshot` generates a snapshot of a mounted component.
+
+When touching a legacy Enzyme test, prefer porting it to RTL if the change is non-trivial.
 
 ## Test design
 
@@ -82,7 +87,7 @@ describe('YourComponent', () => {
 
   describe('props', () => {
     test('color', () => {
-      const { getByTestSybject } = render(
+      const { getByTestSubject } = render(
         <YourComponent color="blue" />
       );
 

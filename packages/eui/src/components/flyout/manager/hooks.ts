@@ -23,6 +23,7 @@ export {
   useCurrentMainFlyout,
   useCurrentChildFlyout,
   useFlyoutWidth,
+  useFlyoutPagination,
   useParentFlyoutSize,
   useHasChildFlyout,
   usePushPaddingOffsets,

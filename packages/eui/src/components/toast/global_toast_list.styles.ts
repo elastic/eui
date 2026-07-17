@@ -8,6 +8,7 @@
 
 import { css, keyframes } from '@emotion/react';
 import {
+  euiCanAnimate,
   euiMaxBreakpoint,
   euiMinBreakpoint,
   euiScrollBarStyles,
@@ -19,7 +20,13 @@ import { UseEuiTheme } from '../../services';
 
 export const euiGlobalToastListStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
-  const euiToastWidth = euiTheme.base * 25;
+  const euiToastWidth = euiTheme.base * 27.5; // 440px -> results in 360px toast width
+
+  const showNotificationBadge = keyframes`
+    from { opacity: 0; }
+    to { opacity: 1; }
+  `;
+
   return {
     /**
      * 1. Allow list to expand as items are added, but cap it at the screen height.
@@ -45,6 +52,12 @@ export const euiGlobalToastListStyles = (euiThemeContext: UseEuiTheme) => {
         ${logicalSizeCSS(0, 0)}
       }
 
+      /* Pause the toast progress bar animation while the user hovers the list */
+      &:hover .euiToastDecor::before,
+      &:focus-within .euiToastDecor::before {
+        animation-play-state: paused;
+      }
+
       /* The top and bottom padding give height to the list creating a dead-zone effect
          when there's no toasts in the list, meaning you can't click anything beneath it.
          Only add the padding if there's content. */
@@ -61,6 +74,29 @@ export const euiGlobalToastListStyles = (euiThemeContext: UseEuiTheme) => {
         }
       }
     `,
+    content: css`
+      position: relative;
+    `,
+    notificationBadge: {
+      notificationBadge: css`
+        position: absolute;
+        inset-block-start: -${euiTheme.size.s};
+        inset-inline-start: -${euiTheme.size.s};
+        z-index: ${Number(euiTheme.levels.content) + 1};
+
+        ${euiCanAnimate} {
+          /* initial fade-in animation on mount; uses \`animation.normal\` to sync it with the toast animation */
+          animation: ${euiTheme.animation.normal} ${showNotificationBadge}
+            ${euiTheme.animation.resistance};
+
+          /* fade-out animation when a toast is dismissed. Uses \`animation.fast\` to be snappier */
+          transition: opacity ${euiTheme.animation.fast};
+        }
+      `,
+      hasFadeOut: css`
+        opacity: 0;
+      `,
+    },
     // Variants
     right: css`
       &:not(:empty) {

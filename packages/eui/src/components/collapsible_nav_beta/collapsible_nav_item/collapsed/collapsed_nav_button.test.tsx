@@ -8,7 +8,7 @@
 
 import React from 'react';
 import { fireEvent, waitFor } from '@testing-library/react';
-import { render, waitForEuiToolTipVisible } from '../../../../test/rtl';
+import { render } from '../../../../test/rtl';
 import { shouldRenderCustomStyles } from '../../../../test/internal';
 import { requiredProps } from '../../../../test';
 
@@ -19,17 +19,17 @@ describe('EuiCollapsedNavButton', () => {
     childProps: ['linkProps'],
   });
 
-  it('renders a tooltip around the icon button', async () => {
+  it('renders a tooltip around the icon button', () => {
     const { baseElement, getByTestSubject } = render(
       <EuiCollapsedNavButton {...requiredProps} title="Nav item" />
     );
+
     fireEvent.mouseOver(getByTestSubject('euiCollapsedNavButton'));
-    await waitForEuiToolTipVisible();
 
     expect(baseElement).toMatchSnapshot();
   });
 
-  it('renders isSelected', async () => {
+  it('renders isSelected', () => {
     const { container } = render(
       <EuiCollapsedNavButton title="Nav item" href="#" isSelected={true} />
     );

@@ -18,7 +18,7 @@ import { EuiModalHeaderTitle } from './modal_header_title';
 import { EuiModalBody } from './modal_body';
 import { EuiModalFooter } from './modal_footer';
 import { EuiModal, EuiModalProps } from './modal';
-import { LOKI_SELECTORS } from '../../../.storybook/loki';
+import { VRT_SELECTORS } from '../../../.storybook/vrt';
 import { EuiFlexGroup } from '../flex';
 
 const meta: Meta<EuiModalProps> = {
@@ -33,9 +33,9 @@ const meta: Meta<EuiModalProps> = {
     maxWidth: true,
   },
   parameters: {
-    loki: {
+    vrt: {
       // Modal is rendered in a portal
-      chromeSelector: LOKI_SELECTORS.portal,
+      selector: VRT_SELECTORS.portal,
     },
   },
 };
@@ -148,7 +148,7 @@ export const ManualReturnFocus: Story = {
         }} />
       `,
     },
-    loki: {
+    vrt: {
       skip: true, // used for functional testing only
     },
   },

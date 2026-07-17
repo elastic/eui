@@ -10,10 +10,9 @@ import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { enableFunctionToggleControls } from '../../../.storybook/utils';
-import { LOKI_SELECTORS, lokiPlayDecorator } from '../../../.storybook/loki';
-import { sleep } from '../../test';
-import { EuiFlexGroup } from '../flex';
+import { VRT_SELECTORS } from '../../../.storybook/vrt';
 import { EuiButton } from '../button';
+import { EuiFlexGroup } from '../flex';
 import {
   EuiToolTip,
   EuiToolTipProps,
@@ -25,8 +24,8 @@ const meta: Meta<EuiToolTipProps> = {
   component: EuiToolTip,
   parameters: {
     layout: 'fullscreen',
-    loki: {
-      chromeSelector: LOKI_SELECTORS.portal,
+    vrt: {
+      selector: VRT_SELECTORS.portal,
     },
   },
   decorators: [
@@ -44,7 +43,6 @@ const meta: Meta<EuiToolTipProps> = {
   ],
   args: {
     position: 'top',
-    delay: 'regular',
     display: 'inlineBlock',
     // set up for easier testing/QA
     anchorClassName: '',
@@ -61,15 +59,10 @@ type Story = StoryObj<EuiToolTipProps>;
 
 export const Playground: Story = {
   args: {
-    // using autoFocus here as small trick to ensure showing the tooltip on load (e.g. for VRT)
-    // TODO: uncomment loki play() interactions and remove autoFocus once #7747 is merged
+    // `autoFocus` opens the tooltip immediately on load without needing an interaction
     children: <EuiButton autoFocus>Tooltip trigger</EuiButton>,
     content: 'tooltip content',
   },
-  play: lokiPlayDecorator(async () => {
-    // Reduce VRT flakiness/screenshots before tooltip is fully visible
-    await sleep(300);
-  }),
 };
 
 /**

@@ -68,7 +68,7 @@ export interface PluginWithDelayedFormatting<NodeShape> {
 
 export type EuiMarkdownEditorUiPlugin<NodeShape = any> = {
   name: string;
-  button: {
+  button?: {
     label: string;
     iconType: IconType;
     isDisabled?: boolean;

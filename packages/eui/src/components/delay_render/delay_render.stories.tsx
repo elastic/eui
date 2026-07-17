@@ -16,7 +16,7 @@ const meta: Meta<EuiDelayRenderProps> = {
   title: 'Utilities/EuiDelayRender',
   component: EuiDelayRender,
   parameters: {
-    loki: {
+    vrt: {
       // VRT is not really useful here as the main functionality is the delay
       skip: true,
     },

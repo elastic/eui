@@ -638,6 +638,7 @@ import React, { useState } from 'react';
 import {
   EuiButtonEmpty,
   EuiButtonIcon,
+  EuiToolTip,
   EuiFlexGroup,
   EuiFlexItem,
   EuiSearchBar,
@@ -702,6 +703,8 @@ export default () => {
     setRefreshInterval(refreshInterval);
   };
 
+  const savedSearchesLabel = 'Saved searches';
+
   return (
     <>
       <EuiFlexGroup gutterSize="s">
@@ -716,7 +719,9 @@ export default () => {
                 onFocus: () => setShowQuickSelectOnly(true),
                 onBlur: () => setShowQuickSelectOnly(false),
                 prepend: (
-                  <EuiButtonIcon aria-label="Saved searches" iconType="save" />
+                  <EuiToolTip content={savedSearchesLabel} disableScreenReaderOutput>
+                    <EuiButtonIcon aria-label={savedSearchesLabel} iconType="save" />
+                  </EuiToolTip>
                 ),
                 append: <EuiButtonEmpty>KQL</EuiButtonEmpty>,
                 'aria-label': 'Filter using KQL',
@@ -873,6 +878,7 @@ import React, { useState } from "react";
 import {
   EuiSuperDatePicker,
   EuiButtonIcon,
+  EuiToolTip,
   OnTimeChangeProps,
 } from "@elastic/eui";
 
@@ -887,14 +893,18 @@ export default () => {
     setEnd(end);
   };
 
+  const timeZonesDatabaseLabel = 'Time zones database';
+
   const customButton = (
-    <EuiButtonIcon
-      aria-label="Time zones database"
-      href="https://en.wikipedia.org/wiki/List_of_tz_database_time_zones"
-      target="_blank"
-      rel="noopener noreferrer"
-      iconType="documentation"
-    />
+    <EuiToolTip content={timeZonesDatabaseLabel} disableScreenReaderOutput>
+      <EuiButtonIcon
+        aria-label={timeZonesDatabaseLabel}
+        href="https://en.wikipedia.org/wiki/List_of_tz_database_time_zones"
+        target="_blank"
+        rel="noopener noreferrer"
+        iconType="documentation"
+      />
+    </EuiToolTip>
   );
 
   return (

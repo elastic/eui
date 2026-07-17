@@ -6,7 +6,8 @@
  * Side Public License, v 1.
  */
 
-import { type ReactNode } from 'react';
+import { type ReactNode, useEffect } from 'react';
+import { useWindowSize } from '@docusaurus/theme-common';
 import {
   useLockBodyScroll,
   useNavbarMobileSidebar,
@@ -15,8 +16,10 @@ import NavbarMobileSidebarLayout from '@theme-original/Navbar/MobileSidebar/Layo
 import NavbarMobileSidebarHeader from './Header';
 import NavbarMobileSidebarPrimaryMenu from '@theme-original/Navbar/MobileSidebar/PrimaryMenu';
 import NavbarMobileSidebarSecondaryMenu from '@theme-original/Navbar/MobileSidebar/SecondaryMenu';
+import { useEuiTheme } from '@elastic/eui';
 
 import { VersionSwitcherProps } from '../../../components/version_switcher';
+import { getNavbarBreakpoint } from '../breakpoint';
 
 type Props = {
   versionSwitcherOptions?: VersionSwitcherProps;
@@ -26,9 +29,29 @@ export default function NavbarMobileSidebar({
   versionSwitcherOptions,
 }: Props): ReactNode {
   const mobileSidebar = useNavbarMobileSidebar();
-  useLockBodyScroll(mobileSidebar.shown);
+  const {
+    disabled,
+    shouldRender: shouldRenderDefault,
+    shown,
+    toggle,
+  } = mobileSidebar;
+  const euiThemeContext = useEuiTheme();
+  const { mobileBreakpoint } = getNavbarBreakpoint(euiThemeContext);
+  const windowSize = useWindowSize({
+    desktopBreakpoint: mobileBreakpoint,
+  });
+  const shouldRender =
+    shouldRenderDefault || (!disabled && windowSize === 'mobile');
 
-  if (!mobileSidebar.shouldRender) {
+  useLockBodyScroll(shouldRender && shown);
+
+  useEffect(() => {
+    if (windowSize === 'desktop' && shown) {
+      toggle();
+    }
+  }, [shown, toggle, windowSize]);
+
+  if (!shouldRender) {
     return null;
   }
 

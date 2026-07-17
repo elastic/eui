@@ -10,12 +10,7 @@ import React from 'react';
 import { fireEvent } from '@testing-library/react';
 import { requiredProps } from '../../test';
 import { shouldRenderCustomStyles } from '../../test/internal';
-import {
-  render,
-  waitForEuiToolTipHidden,
-  waitForEuiToolTipVisible,
-} from '../../test/rtl';
-
+import { render, focusEuiToolTipTrigger } from '../../test/rtl';
 import { EuiColorPickerSwatch } from './color_picker_swatch';
 
 describe('EuiColorPickerSwatch', () => {
@@ -28,7 +23,7 @@ describe('EuiColorPickerSwatch', () => {
   });
 
   describe('showToolTip', () => {
-    test('it renders a color label tooltip on hover', async () => {
+    test('it renders a color label tooltip on hover', () => {
       const { getByTestSubject, getByText } = render(
         <EuiColorPickerSwatch
           {...requiredProps}
@@ -41,16 +36,12 @@ describe('EuiColorPickerSwatch', () => {
 
       fireEvent.mouseOver(swatchElement);
 
-      await waitForEuiToolTipVisible();
-
       expect(getByText('#000000')).toBeInTheDocument();
 
       fireEvent.mouseLeave(swatchElement);
-
-      await waitForEuiToolTipHidden();
     });
 
-    test('it renders a color label tooltip on focus', async () => {
+    test('it renders a color label tooltip on focus', () => {
       const { getByTestSubject, getByText } = render(
         <EuiColorPickerSwatch
           {...requiredProps}
@@ -61,18 +52,16 @@ describe('EuiColorPickerSwatch', () => {
 
       const swatchElement = getByTestSubject('color-picker-swatch');
 
-      fireEvent.focus(swatchElement);
-
-      await waitForEuiToolTipVisible();
+      const cleanup = focusEuiToolTipTrigger(swatchElement);
 
       expect(getByText('#000000')).toBeInTheDocument();
 
       fireEvent.blur(swatchElement);
 
-      await waitForEuiToolTipHidden();
+      cleanup();
     });
 
-    test('it does not render a color label tooltip when `showToolTip` is `false`', async () => {
+    test('it does not render a color label tooltip when `showToolTip` is `false`', () => {
       const { getByTestSubject } = render(
         <EuiColorPickerSwatch
           {...requiredProps}
@@ -86,11 +75,7 @@ describe('EuiColorPickerSwatch', () => {
 
       fireEvent.mouseOver(swatchElement);
 
-      await waitForEuiToolTipHidden();
-
       fireEvent.focus(swatchElement);
-
-      await waitForEuiToolTipHidden();
     });
   });
 });

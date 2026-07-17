@@ -90,18 +90,18 @@ exports[`KibanaCollapsibleNavSolution renders docked icons: popover 1`] = `
     >
       <ul
         aria-label="Navigate to solution"
-        class="euiListGroup emotion-euiListGroup-s-bordered-maxWidthDefault"
+        class="euiListGroup emotion-euiListGroup-bordered-maxWidthDefault"
         data-test-subj="kibanaSolutionSwitcherList"
       >
         <li
-          class="euiListGroupItem emotion-euiListGroupItem-s"
+          class="euiListItemLayout euiListGroupItem euiListGroupItem__text emotion-euiListItemLayout-euiListGroupItem-euiListGroupItem__inner-text"
+          data-test-subj="test-solution"
         >
           <span
-            class="euiListGroupItem__text emotion-euiListGroupItem__inner-s-text"
-            data-test-subj="test-solution"
+            class="euiListItemLayout__content emotion-euiListItemLayout__content"
           >
             <span
-              class="euiListGroupItem__label emotion-euiListGroupItem__label-truncate"
+              class="euiListItemLayout__text euiListGroupItem__label emotion-euiListItemLayout__text-truncate"
               title="Some other solution"
             >
               Some other solution
@@ -110,16 +110,17 @@ exports[`KibanaCollapsibleNavSolution renders docked icons: popover 1`] = `
         </li>
       </ul>
       <ul
-        class="euiListGroup emotion-euiListGroup-s-maxWidthDefault-euiCollapsibleNavKibanaSolution__secondaryItems"
+        class="euiListGroup emotion-euiListGroup-maxWidthDefault-euiCollapsibleNavKibanaSolution__secondaryItems"
       >
         <li
-          class="euiListGroupItem emotion-euiListGroupItem-s"
+          class="euiListItemLayout euiListGroupItem euiListGroupItem__text emotion-euiListItemLayout-euiListGroupItem-euiListGroupItem__inner-text"
+          data-test-subj="euiListItemLayout"
         >
           <span
-            class="euiListGroupItem__text emotion-euiListGroupItem__inner-s-text"
+            class="euiListItemLayout__content emotion-euiListItemLayout__content"
           >
             <span
-              class="euiListGroupItem__label emotion-euiListGroupItem__label-truncate"
+              class="euiListItemLayout__text euiListGroupItem__label emotion-euiListItemLayout__text-truncate"
               title="Some other popover content"
             >
               Some other popover content
@@ -215,18 +216,18 @@ exports[`KibanaCollapsibleNavSolution renders with a solution switcher: popover 
       </div>
       <ul
         aria-label="Navigate to solution"
-        class="euiListGroup emotion-euiListGroup-s-bordered-maxWidthDefault"
+        class="euiListGroup emotion-euiListGroup-bordered-maxWidthDefault"
         data-test-subj="kibanaSolutionSwitcherList"
       >
         <li
-          class="euiListGroupItem emotion-euiListGroupItem-s"
+          class="euiListItemLayout euiListGroupItem euiListGroupItem__text emotion-euiListItemLayout-euiListGroupItem-euiListGroupItem__inner-text"
+          data-test-subj="test-solution"
         >
           <span
-            class="euiListGroupItem__text emotion-euiListGroupItem__inner-s-text"
-            data-test-subj="test-solution"
+            class="euiListItemLayout__content emotion-euiListItemLayout__content"
           >
             <span
-              class="euiListGroupItem__label emotion-euiListGroupItem__label-truncate"
+              class="euiListItemLayout__text euiListGroupItem__label emotion-euiListItemLayout__text-truncate"
               title="Some other solution"
             >
               Some other solution
@@ -235,16 +236,17 @@ exports[`KibanaCollapsibleNavSolution renders with a solution switcher: popover 
         </li>
       </ul>
       <ul
-        class="euiListGroup emotion-euiListGroup-s-maxWidthDefault-euiCollapsibleNavKibanaSolution__secondaryItems"
+        class="euiListGroup emotion-euiListGroup-maxWidthDefault-euiCollapsibleNavKibanaSolution__secondaryItems"
       >
         <li
-          class="euiListGroupItem emotion-euiListGroupItem-s"
+          class="euiListItemLayout euiListGroupItem euiListGroupItem__text emotion-euiListItemLayout-euiListGroupItem-euiListGroupItem__inner-text"
+          data-test-subj="euiListItemLayout"
         >
           <span
-            class="euiListGroupItem__text emotion-euiListGroupItem__inner-s-text"
+            class="euiListItemLayout__content emotion-euiListItemLayout__content"
           >
             <span
-              class="euiListGroupItem__label emotion-euiListGroupItem__label-truncate"
+              class="euiListItemLayout__text euiListGroupItem__label emotion-euiListItemLayout__text-truncate"
               title="Some other popover content"
             >
               Some other popover content

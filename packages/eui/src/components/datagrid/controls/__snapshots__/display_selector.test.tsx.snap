@@ -204,7 +204,7 @@ exports[`useDataGridDisplaySelector displaySelector renders a toolbar button/pop
     >
       <span
         class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
-        id="generated-id-wrapper"
+        id="generated-id_euiToolTipAnchor"
       >
         <button
           aria-controls="euiPopover_generated-id_panelId"

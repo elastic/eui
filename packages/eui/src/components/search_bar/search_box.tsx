@@ -34,6 +34,7 @@ export const EuiSearchBox: FunctionComponent<EuiSearchBoxProps> = ({
   placeholder,
   incremental,
   hint,
+  onFocus,
   ...rest
 }) => {
   const inputRef = useRef<HTMLInputElement | null>(null);
@@ -66,8 +67,9 @@ export const EuiSearchBox: FunctionComponent<EuiSearchBoxProps> = ({
       incremental={incremental}
       aria-label={incremental ? ariaLabelIncremental : ariaLabelEnter}
       placeholder={placeholder ?? defaultPlaceholder}
-      onFocus={() => {
+      onFocus={(e) => {
         hint?.setIsVisible(true);
+        onFocus?.(e);
       }}
       {...rest}
     />

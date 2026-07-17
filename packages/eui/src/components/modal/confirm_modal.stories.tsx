@@ -17,7 +17,7 @@ import {
   EuiConfirmModal,
   EuiConfirmModalProps,
 } from './confirm_modal';
-import { LOKI_SELECTORS } from '../../../.storybook/loki';
+import { VRT_SELECTORS } from '../../../.storybook/vrt';
 
 const meta: Meta<EuiConfirmModalProps> = {
   title: 'Layout/EuiConfirmModal',
@@ -39,9 +39,9 @@ const meta: Meta<EuiConfirmModalProps> = {
     maxWidth: true,
   },
   parameters: {
-    loki: {
+    vrt: {
       // Modal is rendered in a portal
-      chromeSelector: LOKI_SELECTORS.portal,
+      selector: VRT_SELECTORS.portal,
     },
   },
 };

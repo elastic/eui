@@ -12,7 +12,7 @@ import { render } from '../../test/rtl';
 import { shouldRenderCustomStyles } from '../../test/internal';
 import { requiredProps } from '../../test';
 
-import { EuiContextMenuPanel, SIZES } from './context_menu_panel';
+import { EuiContextMenuPanel } from './context_menu_panel';
 
 import { EuiContextMenuItem } from './context_menu_item';
 
@@ -46,18 +46,6 @@ describe('EuiContextMenuPanel', () => {
       const { container } = render(<EuiContextMenuPanel title="Title" />);
 
       expect(container.firstChild).toMatchSnapshot();
-    });
-
-    describe('size', () => {
-      SIZES.forEach((size) => {
-        test(size, () => {
-          const { container } = render(
-            <EuiContextMenuPanel title="Title" size={size} />
-          );
-
-          expect(container.firstChild).toMatchSnapshot();
-        });
-      });
     });
 
     describe('onClose', () => {

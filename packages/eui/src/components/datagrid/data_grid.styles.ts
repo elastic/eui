@@ -39,10 +39,12 @@ export const euiDataGridVariables = (euiThemeContext: UseEuiTheme) => {
       m: euiFontSize(euiThemeContext, 's').fontSize,
     },
     levels: {
-      cellPopover: Number(euiTheme.levels.header), // Same z-index as EuiFlyout mask overlays - cell popovers should be under both modal and flyout overlays
-      get stickyHeader() {
-        return this.cellPopover - 1; // Needs to sit above the content + cell focus outlines/actions, but below actual popovers
-      },
+      // Sits above content and cell focus outlines/actions, but below cell
+      // expansion popovers. Cell popovers no longer use a fixed z-index — they
+      // derive theirs from their anchor's stacking context (see
+      // data_grid_cell_popover.tsx) — so this only needs to clear the grid's
+      // own internal layers.
+      stickyHeader: Number(euiTheme.levels.header) - 1,
     },
   };
 };

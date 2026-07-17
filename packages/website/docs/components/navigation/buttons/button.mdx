@@ -7,7 +7,7 @@ keywords: [EuiButton]
 ---
 
 ```mdx-code-block
-import { EuiFlexGroup, EuiFlexItem, EuiButton, EuiButtonEmpty, EuiButtonIcon, EuiIcon, EuiTable, EuiTableBody, EuiTableHeader, EuiTableHeaderCell, EuiTableRow, EuiTableRowCell } from '@elastic/eui';
+import { EuiFlexGroup, EuiFlexItem, EuiButton, EuiButtonEmpty, EuiButtonIcon, EuiIcon, EuiTable, EuiTableBody, EuiTableHeader, EuiTableHeaderCell, EuiTableRow, EuiTableRowCell, EuiToolTip } from '@elastic/eui';
 ```
 
 # Button
@@ -184,6 +184,23 @@ export default () => (
 
 `EuiButtonIcon` is an **icon-only button**. Use `display` and `size` props to match standard buttons. The default appearance is `xs`, `empty`. Use only for common, intuitive actions with **immediately understood icons** (e.g., trash can for delete). `aria-label` is required for accessibility. Icon color inherits from the button's color property. Icon color is inherited from the button color property and, therefore, does not need to be set separately.
 
+Because the button has no visible text, **wrap every `EuiButtonIcon` in an [`EuiToolTip`](../../display/tooltip.mdx)** so sighted users who don't rely on a screen reader can understand its purpose. Don't use the native `title` prop for this - browser-native tooltips are unstyled, have no delay control and are not consistently announced across screen readers/browsers. The `@elastic/eui/tooltip-button-icon-wrap` ESLint rule warns when this is missing.
+
+When the tooltip `content` duplicates the button's accessible label (e.g. it's the same as the button's `aria-label`), set `disableScreenReaderOutput` on the `EuiToolTip` to avoid screen readers announcing the label twice (e.g. "Delete. Delete").
+
+```tsx
+// ✗ Bad - no tooltip for sighted users
+<EuiButtonIcon aria-label="Delete" iconType="trash" color="danger" />
+
+// ✗ Bad - browser-native tooltip
+<EuiButtonIcon title="Delete" aria-label="Delete" iconType="trash" color="danger" />
+
+// ✓ Good
+<EuiToolTip content="Delete" disableScreenReaderOutput>
+  <EuiButtonIcon aria-label="Delete" iconType="trash" color="danger" />
+</EuiToolTip>
+```
+
 ```tsx interactive
 import React, { useState } from 'react';
 
@@ -194,6 +211,7 @@ import {
   EuiSelect,
   EuiSpacer,
   EuiSwitch,
+  EuiToolTip,
 } from '@elastic/eui';
 import { COLORS } from '@elastic/eui/es/components/button/button';
 
@@ -249,6 +267,8 @@ export default () => {
   const onChangeButtonColor = (e) => {
     setButtonColor(e.target.value);
   };
+
+  const openDocumentationLabel = 'Open documentation';
 
   return(
     <>
@@ -307,16 +327,19 @@ export default () => {
         </EuiFlexItem>
       </EuiFlexGroup>
       <EuiSpacer size="xl" />
-      <EuiButtonIcon
-        color={buttonColor}
-        display={displayType}
-        size={displaySize}
-        iconSize={iconSize}
-        disabled={disableButton}
-        onClick={() => {}}
-        iconType="documentation"
-        aria-label="Open documentation"
-      />
+      <EuiToolTip content={openDocumentationLabel} disableScreenReaderOutput>
+        <EuiButtonIcon
+          color={buttonColor}
+          display={displayType}
+          size={displaySize}
+          iconSize={iconSize}
+          isDisabled={disableButton}
+          hasAriaDisabled
+          onClick={() => {}}
+          iconType="documentation"
+          aria-label={openDocumentationLabel}
+        />
+      </EuiToolTip>
     </>
   );
 };
@@ -329,29 +352,38 @@ import {
   EuiButtonIcon,
   EuiFlexGroup,
   EuiFlexItem,
+  EuiToolTip,
 } from '@elastic/eui';
 
 export default () => (
   <EuiFlexGroup responsive={false} gutterSize="s" alignItems="flexStart">
     <EuiFlexItem grow={false}>
-      <EuiButtonIcon display="base" iconType="lensApp" size="m" aria-label="Lens" />
+      <EuiToolTip content="Lens" disableScreenReaderOutput>
+        <EuiButtonIcon display="base" iconType="lensApp" size="m" aria-label="Lens" />
+      </EuiToolTip>
     </EuiFlexItem>
     <EuiFlexItem grow={false}>
-      <EuiButtonIcon display="base" iconType="warning" size="s" color="warning" aria-label="Warning" />
+      <EuiToolTip content="Warning" disableScreenReaderOutput>
+        <EuiButtonIcon display="base" iconType="warning" size="s" color="warning" aria-label="Warning" />
+      </EuiToolTip>
     </EuiFlexItem>
     <EuiFlexItem grow={false}>
-      <EuiButtonIcon
-        iconType="dashboardApp"
-        aria-label="Dashboard"
-        color="text"
-      />
+      <EuiToolTip content="Dashboard" disableScreenReaderOutput>
+        <EuiButtonIcon
+          iconType="dashboardApp"
+          aria-label="Dashboard"
+          color="text"
+        />
+      </EuiToolTip>
     </EuiFlexItem>
     <EuiFlexItem grow={false}>
-      <EuiButtonIcon
-        iconType="trash"
-        aria-label="Delete"
-        color="danger"
-      />
+      <EuiToolTip content="Delete" disableScreenReaderOutput>
+        <EuiButtonIcon
+          iconType="trash"
+          aria-label="Delete"
+          color="danger"
+        />
+      </EuiToolTip>
     </EuiFlexItem>
   </EuiFlexGroup>
 );
@@ -363,7 +395,12 @@ export default () => (
 
 <EuiFlexGroup gutterSize="m">
   <Guideline type="do" text="Use icon buttons for universal actions that are easy to understand.">
-    <EuiButtonIcon size="m" iconType="pencil" aria-label="Edit" />&nbsp;&nbsp;<EuiButtonIcon size="m" iconType="maximize" aria-label="Expand" />
+    <EuiToolTip content="Edit" disableScreenReaderOutput>
+      <EuiButtonIcon size="m" iconType="pencil" aria-label="Edit" />
+    </EuiToolTip>
+    <EuiToolTip content="Expand" disableScreenReaderOutput>
+      <EuiButtonIcon size="m" iconType="maximize" aria-label="Expand" />
+    </EuiToolTip>
   </Guideline>
   <Guideline type="dont" text="Icons alone in a standard button look awkward and take too much space.">
     <EuiButton><EuiIcon type="pencil" aria-label="Edit" /></EuiButton>&nbsp;&nbsp;<EuiButton><EuiIcon type="maximize" aria-label="Expand" /></EuiButton>
@@ -461,6 +498,7 @@ import {
   EuiButtonIcon,
   EuiFlexGroup,
   EuiFlexItem,
+  EuiToolTip,
 } from '@elastic/eui';
 
 export default () => (
@@ -469,7 +507,9 @@ export default () => (
       <EuiButton color="text">Text color button</EuiButton>
     </EuiFlexItem>
     <EuiFlexItem grow={false}>
-      <EuiButtonIcon color="text" display="base" iconType="pencil" size="m" aria-label="Edit" />
+      <EuiToolTip content="Edit" disableScreenReaderOutput>
+        <EuiButtonIcon color="text" display="base" iconType="pencil" size="m" aria-label="Edit" />
+      </EuiToolTip>
     </EuiFlexItem>
   </EuiFlexGroup>
 );
@@ -489,7 +529,9 @@ Extra small applies only to `EuiButtonEmpty` and `EuiButtonIcon`.
         <EuiButton size="m">Button</EuiButton>
       </EuiFlexItem>
       <EuiFlexItem grow={false}>
-        <EuiButtonIcon iconType="gear" color="primary" size="m" aria-label="Settings"/>
+        <EuiToolTip content="Settings" disableScreenReaderOutput>
+          <EuiButtonIcon iconType="gear" color="primary" size="m" aria-label="Settings" />
+        </EuiToolTip>
       </EuiFlexItem>
     </EuiFlexGroup>
   </Guideline>
@@ -499,7 +541,9 @@ Extra small applies only to `EuiButtonEmpty` and `EuiButtonIcon`.
         <EuiButton size="m">Button</EuiButton>
       </EuiFlexItem>
       <EuiFlexItem grow={false}>
-        <EuiButtonIcon iconType="trash" color="danger" size="xs" aria-label="Delete"/>
+        <EuiToolTip content="Delete" disableScreenReaderOutput>
+          <EuiButtonIcon iconType="trash" color="danger" size="xs" aria-label="Delete" />
+        </EuiToolTip>
       </EuiFlexItem>
     </EuiFlexGroup>
   </Guideline>
@@ -942,11 +986,13 @@ If the button's **readable text** (children or `aria-label`) changes when toggli
 ```tsx interactive
 import React, { useState } from 'react';
 
-import { EuiButton, EuiButtonIcon } from '@elastic/eui';
+import { EuiButton, EuiButtonIcon, EuiToolTip } from '@elastic/eui';
 
 export default () => {
   const [toggle0On, setToggle0On] = useState(false);
   const [toggle1On, setToggle1On] = useState(true);
+
+  const playPauseLabel = toggle1On ? 'Play' : 'Pause';
 
   return (
     <>
@@ -958,15 +1004,16 @@ export default () => {
         {toggle0On ? 'Toggled' : 'Toggle me'}
       </EuiButton>
       &emsp;
-      <EuiButtonIcon
-        size="s"
-        title={toggle1On ? 'Play' : 'Pause'}
-        aria-label={toggle1On ? 'Play' : 'Pause'}
-        iconType={toggle1On ? 'play' : 'pause'}
-        onClick={() => {
-          setToggle1On((isOn) => !isOn);
-        }}
-      />
+      <EuiToolTip content={playPauseLabel} disableScreenReaderOutput>
+        <EuiButtonIcon
+          size="s"
+          aria-label={playPauseLabel}
+          iconType={toggle1On ? 'play' : 'pause'}
+          onClick={() => {
+            setToggle1On((isOn) => !isOn);
+          }}
+        />
+      </EuiToolTip>
     </>
   );
 };
@@ -976,11 +1023,13 @@ If only the **visual appearance** changes, add `aria-pressed` with a boolean for
 
 ```tsx interactive
 import React, { useState } from 'react';
-import { EuiButton, EuiButtonIcon } from '@elastic/eui';
+import { EuiButton, EuiButtonIcon, EuiToolTip } from '@elastic/eui';
 
 export default () => {
   const [toggle2On, setToggle2On] = useState(true);
   const [toggle3On, setToggle3On] = useState(false);
+
+  const autosaveLabel = 'Autosave';
 
   return (
     <>
@@ -995,18 +1044,19 @@ export default () => {
         Toggle me
       </EuiButton>
       &emsp;
-      <EuiButtonIcon
-        display={toggle3On ? 'base' : 'empty'}
-        size="m"
-        aria-label="Autosave"
-        title="Autosave"
-        iconType="save"
-        aria-pressed={toggle3On}
-        color={toggle3On ? 'success' : 'text'}
-        onClick={() => {
-          setToggle3On((isOn) => !isOn);
-        }}
-      />
+      <EuiToolTip content={autosaveLabel} disableScreenReaderOutput>
+        <EuiButtonIcon
+          display={toggle3On ? 'base' : 'empty'}
+          size="m"
+          aria-label={autosaveLabel}
+          iconType="save"
+          aria-pressed={toggle3On}
+          color={toggle3On ? 'success' : 'text'}
+          onClick={() => {
+            setToggle3On((isOn) => !isOn);
+          }}
+        />
+      </EuiToolTip>
     </>
   );
 };

@@ -9,7 +9,7 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { LOKI_SELECTORS } from '../../../.storybook/loki';
+import { VRT_SELECTORS } from '../../../.storybook/vrt';
 import { PADDING_SIZES } from '../../global_styling';
 import { EuiButton } from '../button';
 import { EuiPopover } from './popover';
@@ -32,7 +32,7 @@ const meta: Meta<EuiPopoverTitleProps> = {
     },
   },
   parameters: {
-    loki: { chromeSelector: LOKI_SELECTORS.portal },
+    vrt: { selector: VRT_SELECTORS.portal },
   },
 };
 

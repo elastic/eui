@@ -61,7 +61,9 @@ export const customJsxDecorator = (
 ) => {
   const story = storyFn();
   const channel = addons.getChannel();
-  const codeSnippet: string = context?.parameters?.codeSnippet?.snippet;
+  const rawSnippet = context?.parameters?.codeSnippet?.snippet;
+  const codeSnippet: string =
+    typeof rawSnippet === 'function' ? rawSnippet(context) : rawSnippet;
   const skip = skipJsxRender(context) && !codeSnippet;
 
   let jsx = '';

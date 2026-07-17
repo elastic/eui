@@ -531,4 +531,75 @@ describe('Flyout Manager Store', () => {
       unsubscribe();
     });
   });
+
+  describe('setPagination', () => {
+    const pagination = {
+      currentIndex: 0,
+      total: 3,
+      onPrevious: () => {},
+      onNext: () => {},
+    };
+
+    it('updates the pagination on a registered flyout and notifies subscribers', () => {
+      const store = getFlyoutManagerStore();
+      const listener = jest.fn();
+
+      store.addFlyout('flyout-1', 'Flyout 1', LEVEL_MAIN);
+      const unsubscribe = store.subscribe(listener);
+
+      store.setPagination('flyout-1', pagination);
+
+      expect(listener).toHaveBeenCalledTimes(1);
+      const flyout = store
+        .getState()
+        .flyouts.find((f) => f.flyoutId === 'flyout-1');
+      expect(flyout?.pagination).toBe(pagination);
+
+      unsubscribe();
+    });
+
+    it('does not notify when the value is unchanged (referentially)', () => {
+      const store = getFlyoutManagerStore();
+
+      store.addFlyout('flyout-1', 'Flyout 1', LEVEL_MAIN);
+      store.setPagination('flyout-1', pagination);
+
+      const listener = jest.fn();
+      const unsubscribe = store.subscribe(listener);
+
+      store.setPagination('flyout-1', pagination);
+
+      expect(listener).not.toHaveBeenCalled();
+      unsubscribe();
+    });
+  });
+
+  describe('goBack close meta', () => {
+    it('stamps flyouts removed by goBack with navigation-back (consumed once)', () => {
+      const store = getFlyoutManagerStore();
+      const historyKey = Symbol();
+      store.addFlyout('main-1', 'First', LEVEL_MAIN, undefined, historyKey);
+      store.addFlyout('main-2', 'Second', LEVEL_MAIN, undefined, historyKey);
+
+      // main-2 is the current (top) session; goBack pops it.
+      store.goBack();
+
+      expect(store.consumeCloseMeta('main-2')).toEqual({
+        reason: 'navigation-back',
+      });
+      // One-shot: a second read returns undefined.
+      expect(store.consumeCloseMeta('main-2')).toBeUndefined();
+      // main-1 remained open, so it was never stamped.
+      expect(store.consumeCloseMeta('main-1')).toBeUndefined();
+    });
+
+    it('does not stamp flyouts removed by closeAllFlyouts (defaults to cascade)', () => {
+      const store = getFlyoutManagerStore();
+      store.addFlyout('main-1', 'First', LEVEL_MAIN);
+
+      store.closeAllFlyouts();
+
+      expect(store.consumeCloseMeta('main-1')).toBeUndefined();
+    });
+  });
 });

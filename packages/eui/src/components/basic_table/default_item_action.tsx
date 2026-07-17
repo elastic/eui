@@ -60,7 +60,6 @@ export const DefaultItemAction = <T extends object>({
   const tooltipContent = callWithItemIfFunction(item)(action.description);
   const tooltipProps: Omit<EuiToolTipProps, 'position' | 'children'> = {
     content: tooltipContent,
-    delay: 'long',
     // Avoid screen-readers announcing the same text twice
     disableScreenReaderOutput:
       typeof actionContent === 'string' && actionContent === tooltipContent,
@@ -82,15 +81,13 @@ export const DefaultItemAction = <T extends object>({
         className={className}
         aria-labelledby={ariaLabelId}
         isDisabled={!enabled}
+        hasAriaDisabled={!enabled}
         color={color}
         iconType={icon}
         onClick={onClick}
         href={href}
         target={action.target}
         data-test-subj={dataTestSubj}
-        // If action is disabled, the normal tooltip can't show - attempt to
-        // provide some amount of affordance with a browser title tooltip
-        title={!enabled ? tooltipContent : undefined}
       />
     );
     // actionContent (action.name) is a ReactNode and must be rendered
@@ -106,6 +103,7 @@ export const DefaultItemAction = <T extends object>({
         className={className}
         size="s"
         isDisabled={!enabled}
+        hasAriaDisabled={!enabled}
         color={color as EuiButtonEmptyProps['color']}
         iconType={icon}
         onClick={onClick}
@@ -119,16 +117,11 @@ export const DefaultItemAction = <T extends object>({
     );
   }
 
-  return enabled ? (
+  return (
     <>
       <EuiToolTip {...tooltipProps}>{button}</EuiToolTip>
       {/* SR text has to be rendered outside the tooltip,
       otherwise EuiToolTip's own aria-labelledby won't properly clone */}
-      {ariaLabelledBy}
-    </>
-  ) : (
-    <>
-      {button}
       {ariaLabelledBy}
     </>
   );

@@ -9,6 +9,7 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { enableFunctionToggleControls } from '../../../.storybook/utils';
+import { VRT_SELECTORS } from '../../../.storybook/vrt';
 
 import {
   StatefulDataGrid,
@@ -24,6 +25,7 @@ const meta: Meta<EuiDataGridRowHeightsOptions> = {
     codeSnippet: {
       snippet: `<EuiDataGrid rowHeightOptions={{{STORY_ARGS}}} />`,
     },
+    vrt: { selector: VRT_SELECTORS.portal },
   },
 };
 enableFunctionToggleControls(meta, ['onChange']);

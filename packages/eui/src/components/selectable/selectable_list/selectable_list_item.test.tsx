@@ -7,11 +7,11 @@
  */
 
 import React from 'react';
-import { render, waitForEuiToolTipVisible } from '../../../test/rtl';
+import { render } from '../../../test/rtl';
 import { shouldRenderCustomStyles } from '../../../test/internal';
 import { requiredProps } from '../../../test/required_props';
 
-import { EuiSelectableListItem, PADDING_SIZES } from './selectable_list_item';
+import { EuiSelectableListItem } from './selectable_list_item';
 import { fireEvent } from '@testing-library/react';
 
 describe('EuiSelectableListItem', () => {
@@ -60,6 +60,34 @@ describe('EuiSelectableListItem', () => {
             expect(container.firstChild).toMatchSnapshot();
           });
         });
+      });
+    });
+
+    describe('singleSelection', () => {
+      it('renders a checkbox control when singleSelection is false', () => {
+        const { container } = render(
+          <EuiSelectableListItem singleSelection={false} checked="on" />
+        );
+
+        expect(
+          container.querySelector('.euiListItemLayout__checkbox')
+        ).toBeInTheDocument();
+        expect(
+          container.querySelector('[data-euiicon-type="check"]')
+        ).toBeInTheDocument();
+      });
+
+      it('renders a check icon when singleSelection is true', () => {
+        const { container } = render(
+          <EuiSelectableListItem singleSelection={true} checked="on" />
+        );
+
+        expect(
+          container.querySelector('.euiListItemLayout__icon')
+        ).toBeInTheDocument();
+        expect(
+          container.querySelector('[data-euiicon-type="check"]')
+        ).toBeInTheDocument();
       });
     });
 
@@ -124,18 +152,6 @@ describe('EuiSelectableListItem', () => {
       expect(container.firstChild).toMatchSnapshot();
     });
 
-    describe('paddingSize', () => {
-      PADDING_SIZES.forEach((size) => {
-        test(`${size} is rendered`, () => {
-          const { container } = render(
-            <EuiSelectableListItem paddingSize={size} />
-          );
-
-          expect(container.firstChild).toMatchSnapshot();
-        });
-      });
-    });
-
     describe('textWrap', () => {
       test('can be "wrap"', () => {
         const { container } = render(<EuiSelectableListItem textWrap="wrap" />);
@@ -167,14 +183,14 @@ describe('EuiSelectableListItem', () => {
       });
     });
 
-    test('tooltip behavior on mouseover', async () => {
+    test('tooltip behavior on mouseover', () => {
       const { baseElement, getByTestSubject } = render(
         <EuiSelectableListItem
           toolTipContent="I am a tooltip!"
           toolTipProps={{
             title: 'Test',
             position: 'top',
-            delay: 'long',
+
             'data-test-subj': 'listItemToolTip',
           }}
         >
@@ -184,20 +200,19 @@ describe('EuiSelectableListItem', () => {
 
       const tooltipAnchor = baseElement.querySelector('.euiToolTipAnchor');
       fireEvent.mouseOver(tooltipAnchor!);
-      await waitForEuiToolTipVisible();
 
       expect(getByTestSubject('listItemToolTip')).toBeInTheDocument();
       expect(baseElement).toMatchSnapshot();
     });
 
-    test('tooltip behavior when isFocused', async () => {
+    test('tooltip behavior when isFocused', () => {
       const { baseElement, getByTestSubject } = render(
         <EuiSelectableListItem
           toolTipContent="I am a tooltip!"
           toolTipProps={{
             title: 'Test',
             position: 'top',
-            delay: 'long',
+
             'data-test-subj': 'listItemToolTip',
           }}
           isFocused
@@ -205,8 +220,6 @@ describe('EuiSelectableListItem', () => {
           Item content
         </EuiSelectableListItem>
       );
-
-      await waitForEuiToolTipVisible();
 
       expect(getByTestSubject('listItemToolTip')).toBeInTheDocument();
       expect(baseElement).toMatchSnapshot();

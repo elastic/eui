@@ -1,4 +1,4 @@
-import { EuiButton, EuiCallOut, EuiFlexGroup, EuiFlexItem, EuiSpacer, EuiToast } from '@elastic/eui';
+import { EuiCallOut, EuiFlexGroup, EuiFlexItem, EuiSpacer, EuiToast } from '@elastic/eui';
 
 This page documents patterns for using toasts, short messages that appears on the lower right corner and time out after a few seconds. They are a popular design choice because they don't need to fit in a layout and don't disrupt the user.
 
@@ -116,61 +116,52 @@ By default, a toast stays on the screen 10 seconds. Users should be able read th
   </Guideline>
 </EuiFlexGroup>
 
-### Toasts should only contain a single action
+### Toasts can have max. two actions
 
-A toast can have a single action, styled as a standard button. If more actions are needed, or if the action is important enough to interrupt the user, use a modal instead.
+A toast should have a single action most of the time. If you need a secondary one, you can include it.
+If even more actions are needed, or if the action is important enough to interrupt the user, use a modal instead.
 
 <EuiFlexGroup gutterSize="m">
-  <Guideline type="do" text="Use only one action per toast and favor a one-word label. Align actions to the right, which follows our button guidelines for usage within restricted width containers.">
+  <Guideline type="do" text="Use only one action per toast and favor a one-word label.">
     <EuiToast
       style={{ maxWidth: 300 }}
       color="success"
       title="Your report is complete"
-    >
-      <div style={{ textAlign: 'right' }}>
-        <EuiButton size="s">Download</EuiButton>
-      </div>
-    </EuiToast>
+      actionProps={{ primary: { children: 'Download' } }}
+    />
   </Guideline>
   <Guideline type="dont" text="Use multiple actions. Don't align buttons in toasts to the left. This message is better in a confirmation modal.">
     <EuiToast
       style={{ maxWidth: 300 }}
       title="All messages will be deleted"
       color="danger"
-    >
-      <EuiFlexGroup justifyContent="flexEnd" gutterSize="s">
-        <EuiFlexItem grow={false}>
-          <EuiButton size="s">Cancel</EuiButton>
-        </EuiFlexItem>
-        <EuiFlexItem grow={false}>
-          <EuiButton size="s" color="danger">Delete</EuiButton>
-        </EuiFlexItem>
-      </EuiFlexGroup>
-    </EuiToast>
+      actionProps={{
+        primary: { children: 'Cancel' },
+        secondary: { children: 'Delete' },
+      }}
+    />
   </Guideline>
 </EuiFlexGroup>
 
 ### Icons should emphasize actions
 
-An icon on the left of the message can help define the message type.
+Each color variant automatically displays a corresponding icon. Use `iconType` only when you need to override it with something more specific to the context.
 
 <EuiFlexGroup gutterSize="m">
-  <Guideline type="do" text="The check icon reinforces that the action succeeded. The error icon helps users understand the message is an error.">
+  <Guideline type="do" text="The default icons communicate message type at a glance. Override with iconType only when a more specific icon adds clear meaning.">
      <EuiToast
         style={{ maxWidth: 300 }}
         title="Your dashboard was updated"
-        iconType="check"
         color="success"
       />
       <EuiSpacer />
       <EuiToast
         style={{ maxWidth: 300 }}
         title="A dashboard named 'MyDashboard' already exists"
-        iconType="error"
         color="danger"
       />
   </Guideline>
-  <Guideline type="dont" text="Use icons that are hard to understand. They distract from the message.">
+  <Guideline type="dont" text="Override the icon with something unrelated or hard to understand. It distracts from the message.">
     <EuiToast
       color="primary"
       style={{ maxWidth: 300 }}
@@ -197,11 +188,10 @@ Users should be able to take in all the details from one toast before the next o
       style={{ maxWidth: 300 }}
       color="danger"
       title="There was a problem with your node"
-    >
-      <div style={{ textAlign: 'right' }}>
-        <EuiButton size="s">Learn more</EuiButton>
-      </div>
-    </EuiToast>
+      actionProps={{
+        primary: { children: 'Learn more' },
+      }}
+    />
     <EuiSpacer />
     <EuiToast
       color="primary"
@@ -280,12 +270,11 @@ Occasionally, the content of a toast is too involved to fit into the constrained
       style={{ maxWidth: 300 }}
       color="danger"
       title="Your visualization has an error"
-    >
-      <p>The maximum bucket size of 200 was exceeded.</p>
-      <div style={{ textAlign: 'right' }}>
-        <EuiButton size="s" color="danger" onClick={() => {}}>See the full error</EuiButton>
-      </div>
-    </EuiToast>
+      text="The maximum bucket size of 200 was exceeded."
+      actionProps={{
+        primary: { children: 'See the full error' },
+       }}
+    />
   </Guideline>
   <Guideline type="dont" text="Cram a lot of content into the small space of a toast.">
     <EuiToast
@@ -295,10 +284,9 @@ Occasionally, the content of a toast is too involved to fit into the constrained
     >
       <EuiCallOut
         title="The maximum bucket size of 200 was exceeded"
+        text="An extremely long error trace."
         color="danger"
-      >
-        <p>An extremely long error trace.</p>
-      </EuiCallOut>
+      />
     </EuiToast>
   </Guideline>
 </EuiFlexGroup>

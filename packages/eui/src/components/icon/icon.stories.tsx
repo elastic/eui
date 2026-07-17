@@ -6,9 +6,11 @@
  * Side Public License, v 1.
  */
 
+import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { EuiIcon, EuiIconProps } from './icon';
+import { EuiIcon, EuiIconProps, TYPES as ICON_TYPES } from './icon';
+import { EuiFlexGroup, EuiFlexItem } from '../flex';
 
 const meta: Meta<EuiIconProps> = {
   title: 'Display/EuiIcon',
@@ -27,3 +29,16 @@ export default meta;
 type Story = StoryObj<EuiIconProps>;
 
 export const Playground: Story = {};
+
+export const AllIcons: Story = {
+  tags: ['vrt-only'],
+  render: () => (
+    <EuiFlexGroup wrap gutterSize="s">
+      {ICON_TYPES.map((iconType) => (
+        <EuiFlexItem grow={false} key={iconType}>
+          <EuiIcon type={iconType} size="m" title={iconType} />
+        </EuiFlexItem>
+      ))}
+    </EuiFlexGroup>
+  ),
+};

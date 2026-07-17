@@ -8,8 +8,9 @@
 
 import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
+import { userEvent, waitFor, within, expect } from '@storybook/test';
 
-import { LOKI_SELECTORS } from '../../../.storybook/loki';
+import { VRT_SELECTORS, playDecorator } from '../../../.storybook/vrt';
 import { EuiButton } from '../button';
 import { EuiSpacer } from '../spacer';
 import { EuiPortal, EuiPortalProps } from './portal';
@@ -18,9 +19,9 @@ const meta: Meta<EuiPortalProps> = {
   title: 'Utilities/EuiPortal',
   component: EuiPortal,
   parameters: {
-    loki: {
+    vrt: {
       // content rendered in portal
-      chromeSelector: LOKI_SELECTORS.portal,
+      selector: VRT_SELECTORS.portal,
     },
   },
   argTypes: {
@@ -36,10 +37,23 @@ export const Playground: Story = {
     children: 'This element is appended to the body in the DOM if you inspect',
   },
   render: (args) => <StatefulPlayground {...args} />,
+  play: playDecorator(async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await userEvent.click(
+      canvas.getByRole('button', { name: 'Toggle portal' })
+    );
+    await waitFor(() =>
+      expect(
+        document.body.textContent?.includes(
+          'This element is appended to the body'
+        )
+      ).toBe(true)
+    );
+  }),
 };
 
 const StatefulPlayground = (args: EuiPortalProps) => {
-  const [isActive, setActive] = useState(true);
+  const [isActive, setActive] = useState(false);
 
   return (
     <>

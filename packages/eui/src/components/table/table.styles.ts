@@ -110,6 +110,7 @@ export const euiTableStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     scrollableWrapper: css`
       overflow-inline: auto;
+      overscroll-behavior-inline: none;
     `,
   };
 };

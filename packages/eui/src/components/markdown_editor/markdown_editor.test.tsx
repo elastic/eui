@@ -121,6 +121,34 @@ describe('EuiMarkdownEditor', () => {
         expect(container.firstChild).toMatchSnapshot();
       });
     });
+
+    describe('dropHandlers', () => {
+      // A11y: ensure interactive elements aren't nested
+      it('does not have role="button" when dropHandlers are provided', () => {
+        const { container } = render(
+          <EuiMarkdownEditor
+            editorId="editorId"
+            value=""
+            onChange={() => null}
+            dropHandlers={[
+              {
+                supportedFiles: ['image/png'],
+                accepts: (type: string) => type === 'image/png',
+                getFormattingForItem: (file: File) =>
+                  Promise.resolve({
+                    text: `![${file.name}]()`,
+                    config: { block: true },
+                  }),
+              },
+            ]}
+            {...requiredProps}
+          />
+        );
+
+        const dropZone = container.querySelector('.euiMarkdownEditorDropZone');
+        expect(dropZone).not.toHaveAttribute('role', 'button');
+      });
+    });
   });
 
   test('is preview rendered', () => {

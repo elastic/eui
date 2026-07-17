@@ -10,7 +10,7 @@ import React, { useState } from 'react';
 
 import { action } from '@storybook/addon-actions';
 import { Meta, StoryObj } from '@storybook/react';
-import { LOKI_SELECTORS } from '../../../.storybook/loki';
+import { VRT_SELECTORS } from '../../../.storybook/vrt';
 import { EuiButton } from '../button';
 import { EuiSpacer } from '../spacer';
 import { EuiText } from '../text';
@@ -135,9 +135,83 @@ const MenuBarFlyout = (args: Args) => {
 export const MenuBarExample: StoryObj<Args> = {
   name: 'Playground',
   parameters: {
-    loki: {
-      chromeSelector: LOKI_SELECTORS.portal,
+    vrt: {
+      selector: VRT_SELECTORS.portal,
     },
   },
   render: (args) => <MenuBarFlyout {...args} />,
+};
+
+const PAGINATION_ITEMS = [
+  {
+    title: 'CPU usage spike',
+    body: 'CPU usage exceeded 95% for 5 minutes on host prod-web-01.',
+  },
+  {
+    title: 'Disk space low',
+    body: 'Available disk space on /var/log dropped below 10% on host prod-db-02.',
+  },
+  {
+    title: 'Memory pressure',
+    body: 'JVM heap usage is at 92% on Elasticsearch node es-data-03.',
+  },
+  {
+    title: 'Network latency',
+    body: 'P99 latency exceeded 2s on the payments API for the last 10 minutes.',
+  },
+  {
+    title: 'Cluster yellow',
+    body: 'Elasticsearch cluster health is yellow — 3 unassigned replica shards.',
+  },
+];
+
+const PaginationFlyout = () => {
+  const [isFlyoutOpen, setIsFlyoutOpen] = useState(true);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const total = PAGINATION_ITEMS.length;
+  const item = PAGINATION_ITEMS[currentIndex];
+
+  return (
+    <>
+      <EuiButton onClick={() => setIsFlyoutOpen(true)} disabled={isFlyoutOpen}>
+        Open flyout
+      </EuiButton>
+
+      {isFlyoutOpen && (
+        <EuiFlyout
+          onClose={() => setIsFlyoutOpen(false)}
+          size="m"
+          type="overlay"
+          aria-label="Item details"
+          flyoutMenuProps={{
+            pagination: {
+              currentIndex,
+              total,
+              onPrevious: () => setCurrentIndex((i) => Math.max(0, i - 1)),
+              onNext: () => setCurrentIndex((i) => Math.min(total - 1, i + 1)),
+            },
+          }}
+        >
+          <EuiFlyoutHeader hasBorder>
+            <EuiText>
+              <h2>{item.title}</h2>
+            </EuiText>
+          </EuiFlyoutHeader>
+          <EuiFlyoutBody>
+            <EuiText>
+              <p>{item.body}</p>
+            </EuiText>
+          </EuiFlyoutBody>
+        </EuiFlyout>
+      )}
+    </>
+  );
+};
+
+export const PaginationExample: StoryObj = {
+  name: 'Pagination (prop-based)',
+  parameters: {
+    vrt: { selector: VRT_SELECTORS.portal },
+  },
+  render: () => <PaginationFlyout />,
 };

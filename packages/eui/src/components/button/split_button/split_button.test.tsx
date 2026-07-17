@@ -9,11 +9,7 @@
 import React from 'react';
 import { fireEvent } from '@testing-library/react';
 
-import {
-  render,
-  waitForEuiToolTipHidden,
-  waitForEuiToolTipVisible,
-} from '../../../test/rtl';
+import { render } from '../../../test/rtl';
 import { shouldRenderCustomStyles } from '../../../test/internal';
 import { EuiToolTip } from '../../tool_tip';
 import { EuiSplitButton, EuiSplitButtonProps } from './split_button';
@@ -294,7 +290,7 @@ describe('EuiSplitButton', () => {
         consoleErrorSpy.mockRestore();
       });
 
-      it('renders a tooltip', async () => {
+      it('renders a tooltip', () => {
         const { getByTestSubject } = render(
           <EuiSplitButton size="s">
             <EuiSplitButton.ActionPrimary
@@ -315,15 +311,12 @@ describe('EuiSplitButton', () => {
         );
 
         fireEvent.mouseOver(getByTestSubject('primary-action'));
-        await waitForEuiToolTipVisible();
 
         expect(getByTestSubject('primary-action-tooltip')).toBeInTheDocument();
 
         fireEvent.mouseLeave(getByTestSubject('primary-action'));
-        await waitForEuiToolTipHidden();
 
         fireEvent.mouseOver(getByTestSubject('secondary-action'));
-        await waitForEuiToolTipVisible();
 
         expect(
           getByTestSubject('secondary-action-tooltip')

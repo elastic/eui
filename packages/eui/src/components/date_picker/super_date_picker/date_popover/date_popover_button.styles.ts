@@ -20,6 +20,10 @@ export const euiDatePopoverButtonStyles = (euiThemeContext: UseEuiTheme) => {
       /* !important needed to override date range picker nested styles */
       flex-grow: 0.5 !important; /* stylelint-disable-line declaration-no-important */
     `,
+    tooltipAnchor: css`
+      ${logicalCSS('height', '100%')}
+      ${logicalCSS('width', '100%')}
+    `,
   };
 };
 

@@ -10,7 +10,6 @@ import { css } from '@emotion/react';
 
 import { UseEuiTheme } from '../../../services';
 import {
-  euiFontSize,
   euiTextTruncate,
   logicalCSS,
   logicalCSSWithFallback,
@@ -18,29 +17,19 @@ import {
 } from '../../../global_styling';
 import { euiFormControlStyles, euiFormVariables } from '../form.styles';
 
-export const euiSuperSelectStyles = {
+export const euiSuperSelectStyles = ({ euiTheme }: UseEuiTheme) => ({
   euiSuperSelect__listbox: css`
     ${logicalCSS('max-height', '300px')}
     ${logicalCSSWithFallback('overflow-y', 'auto')}
     ${logicalCSSWithFallback('overflow-x', 'hidden')}
+    padding: ${euiTheme.size.s};
+
+    .euiSuperSelect__item:focus {
+      /* Mimics selectable styles without full refactor */
+      outline: none;
+    }
   `,
-};
-
-export const euiSuperSelectItemStyles = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme } = euiThemeContext;
-
-  return {
-    euiSuperSelect__item: css`
-      padding: ${euiTheme.size.s};
-      ${euiFontSize(euiThemeContext, 's')}
-    `,
-    hasDividers: css`
-      &:not(:last-of-type) {
-        ${logicalCSS('border-bottom', euiTheme.border.thin)}
-      }
-    `,
-  };
-};
+});
 
 export const euiSuperSelectControlStyles = (euiThemeContext: UseEuiTheme) => {
   const formStyles = euiFormControlStyles(euiThemeContext);

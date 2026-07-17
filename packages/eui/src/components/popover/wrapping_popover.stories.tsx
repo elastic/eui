@@ -9,6 +9,7 @@
 import React, { useEffect, useState } from 'react';
 import { css } from '@emotion/react';
 import type { Meta, StoryObj } from '@storybook/react';
+import { waitFor, expect } from '@storybook/test';
 
 import {
   disableStorybookControls,
@@ -16,6 +17,7 @@ import {
   hideStorybookControls,
   moveStorybookControlsToCategory,
 } from '../../../.storybook/utils';
+import { VRT_SELECTORS, playDecorator } from '../../../.storybook/vrt';
 import { EuiButton } from '../button';
 import { EuiFlexGroup } from '../flex';
 import { EuiPopoverProps } from './popover';
@@ -41,6 +43,7 @@ const meta: Meta<EuiWrappingPopoverProps> = {
   component: EuiWrappingPopover,
   parameters: {
     layout: 'fullscreen',
+    vrt: { selector: VRT_SELECTORS.portal },
   },
   args: {
     ...(popoverArgs as Omit<EuiPopoverProps, 'button'>),
@@ -75,6 +78,11 @@ export const Playground: Story = {
     children: 'This is a popover',
   },
   render: (args) => <StatefulPopover {...args} />,
+  play: playDecorator(async ({ bodyElement }) => {
+    await waitFor(() =>
+      expect(bodyElement.querySelector('[data-popover-open]')).toBeVisible()
+    );
+  }),
 };
 // hiding isOpen as we need to rely on the connected state toggle
 // to ensure the anchor is available before the popover is opened

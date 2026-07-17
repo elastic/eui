@@ -9,7 +9,7 @@
 import React, { ReactNode } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { LOKI_SELECTORS } from '../../../.storybook/loki';
+import { VRT_SELECTORS } from '../../../.storybook/vrt';
 import { EuiI18nNumber, EuiI18nNumberProps } from './i18n_number';
 import { EuiText } from '../text';
 
@@ -17,8 +17,8 @@ const meta: Meta<EuiI18nNumberProps> = {
   title: 'Utilities/EuiI18nNumber',
   component: EuiI18nNumber,
   parameters: {
-    loki: {
-      chromeSelector: LOKI_SELECTORS.textOnly,
+    vrt: {
+      selector: VRT_SELECTORS.textOnly,
     },
   },
 };

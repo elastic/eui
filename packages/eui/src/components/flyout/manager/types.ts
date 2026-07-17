@@ -7,6 +7,7 @@
  */
 
 import type { IconType } from '../../icon';
+import type { EuiFlyoutMenuPagination } from '../flyout_menu';
 import type { Action } from './actions';
 
 import {
@@ -47,6 +48,7 @@ export interface EuiManagedFlyoutState {
   size?: string;
   minWidth?: number;
   activityStage?: EuiFlyoutActivityStage;
+  pagination?: EuiFlyoutMenuPagination;
 }
 
 /** Entry for a child flyout in session history. */
@@ -121,6 +123,10 @@ export interface FlyoutManagerApi {
   closeAllFlyouts: () => void;
   setActiveFlyout: (flyoutId: string | null) => void;
   setFlyoutWidth: (flyoutId: string, width: number) => void;
+  setPagination: (
+    flyoutId: string,
+    pagination: EuiFlyoutMenuPagination | undefined
+  ) => void;
   setPushPadding: (side: 'left' | 'right', width: number) => void;
   setContainerElement: (element: HTMLElement | null) => void;
   goBack: () => void;

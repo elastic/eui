@@ -91,7 +91,7 @@ export const KibanaCollapsibleNavSolution: FunctionComponent<
     // Only close the popover if the item is a clickable link or button
     const target = event.target as HTMLElement;
     const childItem = target.closest('.euiListGroupItem');
-    if (['A', 'BUTTON'].includes(childItem?.firstElementChild?.tagName || '')) {
+    if (['A', 'BUTTON'].includes(childItem?.tagName || '')) {
       setIsSolutionSwitcherOpen(false);
     }
   }, []);
@@ -103,7 +103,6 @@ export const KibanaCollapsibleNavSolution: FunctionComponent<
           data-test-subj="kibanaSolutionSwitcherList"
           aria-label={solutionSolutionGroupLabel}
           listItems={primaryItems}
-          size="s"
           bordered
           onClick={closeSolutionPopover}
         />
@@ -111,7 +110,6 @@ export const KibanaCollapsibleNavSolution: FunctionComponent<
           <>
             <EuiListGroup
               listItems={secondaryItems}
-              size="s"
               css={styles.euiCollapsibleNavKibanaSolution__secondaryItems}
               onClick={closeSolutionPopover}
             />

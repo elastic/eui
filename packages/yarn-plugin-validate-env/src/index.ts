@@ -21,6 +21,19 @@ import {
  */
 const validateProject: Hooks['validateProject'] = (project, report) => {
   const { cwd, configuration } = project;
+
+  // Surface the unsupported-OS message first, before any other checks.
+  // On Windows, path resolution against `cwd` can produce malformed paths
+  // which would otherwise cause misleading errors.
+  if (process.platform === 'win32') {
+    const message = formatUtils.pretty(
+      configuration,
+      `Development on Windows is not supported. We recommend using WSL with your preferred Linux distro - https://learn.microsoft.com/en-us/windows/wsl/install`,
+      formatUtils.Type.NO_HINT,
+    );
+    throw new ReportError(MessageName.UNNAMED, message);
+  }
+
   const nvmrcPath = path.resolve(cwd, '.nvmrc');
 
   let expectedNodeVersion;
@@ -47,15 +60,6 @@ const validateProject: Hooks['validateProject'] = (project, report) => {
     } else {
       throw new ReportError(MessageName.UNNAMED, message);
     }
-  }
-
-  if (process.platform === 'win32') {
-    const message = formatUtils.pretty(
-      configuration,
-      `Development on Windows is not supported. We recommend using WSL with your preferred Linux distro - https://learn.microsoft.com/en-us/windows/wsl/install`,
-      formatUtils.Type.NO_HINT,
-    );
-    throw new ReportError(MessageName.UNNAMED, message);
   }
 };
 

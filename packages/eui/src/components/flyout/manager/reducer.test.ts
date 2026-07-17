@@ -20,6 +20,7 @@ import {
   closeAllFlyouts,
   setActiveFlyout,
   setFlyoutWidth,
+  setPagination,
   setLayoutMode,
   setActivityStage,
   goBack,
@@ -573,6 +574,75 @@ describe('flyoutManagerReducer', () => {
       const newState = flyoutManagerReducer(initialState, action);
 
       expect(newState).toEqual(initialState);
+    });
+  });
+
+  describe('ACTION_SET_PAGINATION', () => {
+    const pagination = {
+      currentIndex: 1,
+      total: 5,
+      onPrevious: () => {},
+      onNext: () => {},
+    };
+
+    it('should set pagination on a registered flyout', () => {
+      let state = flyoutManagerReducer(
+        initialState,
+        addFlyout('main-1', 'main', LEVEL_MAIN)
+      );
+
+      state = flyoutManagerReducer(state, setPagination('main-1', pagination));
+
+      expect(state.flyouts[0].pagination).toBe(pagination);
+    });
+
+    it('should clear pagination when passed undefined', () => {
+      let state = flyoutManagerReducer(
+        initialState,
+        addFlyout('main-1', 'main', LEVEL_MAIN)
+      );
+      state = flyoutManagerReducer(state, setPagination('main-1', pagination));
+      state = flyoutManagerReducer(state, setPagination('main-1', undefined));
+
+      expect(state.flyouts[0].pagination).toBeUndefined();
+    });
+
+    it('should not affect other flyouts', () => {
+      let state = flyoutManagerReducer(
+        initialState,
+        addFlyout('main-1', 'main', LEVEL_MAIN)
+      );
+      state = flyoutManagerReducer(
+        state,
+        addFlyout('main-2', 'main', LEVEL_MAIN)
+      );
+
+      state = flyoutManagerReducer(state, setPagination('main-1', pagination));
+
+      expect(state.flyouts[0].pagination).toBe(pagination);
+      expect(state.flyouts[1].pagination).toBeUndefined();
+    });
+
+    it('should be a no-op for an unregistered flyout id', () => {
+      const newState = flyoutManagerReducer(
+        initialState,
+        setPagination('non-existent', pagination)
+      );
+
+      expect(newState).toBe(initialState);
+    });
+
+    it('should be a no-op when the value is unchanged', () => {
+      let state = flyoutManagerReducer(
+        initialState,
+        addFlyout('main-1', 'main', LEVEL_MAIN)
+      );
+      state = flyoutManagerReducer(state, setPagination('main-1', pagination));
+
+      const stateBefore = state;
+      state = flyoutManagerReducer(state, setPagination('main-1', pagination));
+
+      expect(state).toBe(stateBefore);
     });
   });
 

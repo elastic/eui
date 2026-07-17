@@ -76,7 +76,7 @@ describe('FieldValueSelectionFilter', () => {
     cy.get('button').click();
     cy.get('[data-test-subj="euiSelectableList"] li')
       .first()
-      .should('have.attr', 'title', 'feature');
+      .should('contain.text', 'feature');
   });
 
   it('allows options as an array', () => {
@@ -97,7 +97,7 @@ describe('FieldValueSelectionFilter', () => {
     cy.get('button').click();
     cy.get('[data-test-subj="euiSelectableList"] li')
       .eq(1)
-      .should('have.attr', 'title', 'Text');
+      .should('contain.text', 'Text');
   });
 
   it('allows fields in options', () => {
@@ -133,7 +133,7 @@ describe('FieldValueSelectionFilter', () => {
     cy.get('button').click();
     cy.get('[data-test-subj="euiSelectableList"] li')
       .eq(2)
-      .should('have.attr', 'title', 'Bug');
+      .should('contain.text', 'bug');
   });
 
   it('allows all configurations', () => {
@@ -168,21 +168,21 @@ describe('FieldValueSelectionFilter', () => {
       cy.mount(<FieldValueSelectionFilterWithState multiSelect="or" />);
       cy.get('button').click();
 
-      cy.get('li[role="option"][title="feature"]')
+      cy.contains('li[role="option"]', 'feature')
         .should('have.attr', 'aria-checked', 'false')
         .click();
       cy.get('.euiNotificationBadge').should('have.text', '1');
-      cy.get('li[role="option"][title="feature"]').should(
+      cy.contains('li[role="option"]', 'feature').should(
         'have.attr',
         'aria-checked',
         'true'
       );
       // Popover should still be open when multiselect is true/or
-      cy.get('li[role="option"][title="Bug"]')
+      cy.contains('li[role="option"]', 'bug')
         .should('have.attr', 'aria-checked', 'false')
         .click();
       cy.get('.euiNotificationBadge').should('have.text', '2');
-      cy.get('li[role="option"][title="Bug"]').should(
+      cy.contains('li[role="option"]', 'bug').should(
         'have.attr',
         'aria-checked',
         'true'
@@ -193,32 +193,32 @@ describe('FieldValueSelectionFilter', () => {
       cy.mount(<FieldValueSelectionFilterWithState multiSelect={false} />);
       cy.get('button').click();
 
-      cy.get('li[role="option"][title="feature"]')
-        .should('have.attr', 'aria-checked', 'false')
+      cy.contains('li[role="option"]', 'feature')
+        .should('have.attr', 'aria-selected', 'false')
         .click();
       cy.get('.euiNotificationBadge').should('have.text', '1');
-      cy.get('li[role="option"][title="feature"]').should(
+      cy.contains('li[role="option"]', 'feature').should(
         'have.attr',
-        'aria-checked',
+        'aria-selected',
         'true'
       );
 
       // Multiselect false should close the popover, so we need to re-open it
       cy.get('button').click();
-      cy.get('li[role="option"][title="Bug"]')
-        .should('have.attr', 'aria-checked', 'false')
+      cy.contains('li[role="option"]', 'bug')
+        .should('have.attr', 'aria-selected', 'false')
         .click();
       // Filter count should have remained at 1
       cy.get('.euiNotificationBadge').should('have.text', '1');
-      cy.get('li[role="option"][title="Bug"]').should(
+      cy.contains('li[role="option"]', 'bug').should(
         'have.attr',
-        'aria-checked',
+        'aria-selected',
         'true'
       );
       // 'featured' should now be unchecked
-      cy.get('li[role="option"][title="feature"]').should(
+      cy.contains('li[role="option"]', 'feature').should(
         'have.attr',
-        'aria-checked',
+        'aria-selected',
         'false'
       );
     });
@@ -231,9 +231,7 @@ describe('FieldValueSelectionFilter', () => {
       cy.get('.euiPopover__panel').should('exist');
 
       // Select filter option
-      cy.get('li[role="option"][title="feature"]')
-        .should('have.attr', 'aria-checked', 'false')
-        .click();
+      cy.contains('li[role="option"]', 'feature').click();
     };
 
     describe('undefined', () => {
@@ -318,13 +316,15 @@ describe('FieldValueSelectionFilter', () => {
       cy.get('button').click();
       getOptions().should('have.length', 3);
 
-      getOptions().last().should('have.attr', 'title', 'Bug').click();
+      getOptions().last().should('contain.text', 'bug').click();
       // Should have moved to the top of the list and retained active focus
       getOptions()
         .first()
-        .should('have.attr', 'title', 'Bug')
-        .should('have.attr', 'aria-checked', 'true')
-        .should('have.attr', 'aria-selected', 'true');
+        .should('contain.text', 'bug')
+        .should('have.attr', 'aria-checked', 'true');
+      cy.get('ul[role="listbox"]')
+        .should('have.attr', 'aria-activedescendant')
+        .should('include', 'option-0');
     });
 
     it('does not sort selected options to the top when set to false', () => {
@@ -332,12 +332,14 @@ describe('FieldValueSelectionFilter', () => {
       cy.get('button').click();
       getOptions().should('have.length', 3);
 
-      getOptions().last().should('have.attr', 'title', 'Bug').click();
+      getOptions().last().should('contain.text', 'bug').click();
       getOptions()
         .last()
-        .should('have.attr', 'title', 'Bug')
-        .should('have.attr', 'aria-checked', 'true')
-        .should('have.attr', 'aria-selected', 'true');
+        .should('contain.text', 'bug')
+        .should('have.attr', 'aria-checked', 'true');
+      cy.get('ul[role="listbox"]')
+        .should('have.attr', 'aria-activedescendant')
+        .should('include', 'option-2');
     });
   });
 
@@ -359,7 +361,7 @@ describe('FieldValueSelectionFilter', () => {
     cy.get('button').click();
     cy.get('[data-test-subj="euiSelectableList"] li')
       .first()
-      .should('have.attr', 'title', 'feature');
+      .should('contain.text', 'feature');
   });
 
   it('has active filters, field is global', () => {
@@ -381,7 +383,7 @@ describe('FieldValueSelectionFilter', () => {
     cy.get('.euiNotificationBadge').should('not.be.undefined');
     cy.get('[data-test-subj="euiSelectableList"] li')
       .first()
-      .should('have.attr', 'title', 'Bug');
+      .should('contain.text', 'bug');
   });
 
   it('has inactive filters, fields in options', () => {
@@ -417,7 +419,7 @@ describe('FieldValueSelectionFilter', () => {
     cy.get('button').click();
     cy.get('[data-test-subj="euiSelectableList"] li')
       .eq(2)
-      .should('have.attr', 'title', 'Bug');
+      .should('contain.text', 'bug');
   });
 
   it('has active filters, fields in options', () => {
@@ -454,7 +456,7 @@ describe('FieldValueSelectionFilter', () => {
     cy.get('.euiNotificationBadge').should('not.be.undefined');
     cy.get('[data-test-subj="euiSelectableList"] li')
       .eq(0)
-      .should('have.attr', 'title', 'Bug');
+      .should('contain.text', 'bug');
   });
 
   it('caches options if options is a function and config.cache is set', () => {

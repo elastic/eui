@@ -15,6 +15,12 @@ import { UseEuiTheme } from '../../../services';
 export const euiSplitPanelOuterStyles = {
   euiSplitPanelOuter: css`
     display: flex;
+
+    /* Enforce styles over EuiPanel base styles when the panel is a button */
+    &:enabled {
+      display: flex;
+    }
+
     ${logicalCSS('min-width', 0)}
     overflow: hidden;
   `,
@@ -34,9 +40,7 @@ export const euiSplitPanelInnerStyles = (euiThemeContext: UseEuiTheme) => {
       /* Make sure they're evenly split */
       flex-basis: 0%;
 
-      /* Ensure no movement if they have click handlers */
       /* stylelint-disable declaration-no-important */
-      transform: none !important;
       box-shadow: none !important;
     `,
 

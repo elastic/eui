@@ -30,6 +30,7 @@ import {
   EuiWindowEvent,
   useCombinedRefs,
   EuiBreakpointSize,
+  useEuiTheme,
   useEuiMemoizedStyles,
   useGeneratedHtmlId,
   useEuiThemeCSSVariables,
@@ -73,7 +74,11 @@ import { EuiFlyoutMenu, EuiFlyoutMenuProps } from './flyout_menu';
 import { EuiFlyoutOverlay } from './_flyout_overlay';
 import { EuiFlyoutResizeButton } from './_flyout_resize_button';
 import { useEuiFlyoutResizable } from './use_flyout_resizable';
-import type { EuiFlyoutCloseEvent } from './types';
+import type {
+  EuiFlyoutCloseEvent,
+  EuiFlyoutCloseMeta,
+  EuiFlyoutCloseReason,
+} from './types';
 import { useEuiFlyoutZIndex } from './use_flyout_z_index';
 import { EuiFlyoutParentProvider } from './flyout_parent_context';
 import { useEuiFlyoutMenu } from './use_flyout_menu';
@@ -81,8 +86,12 @@ import { useEuiFlyoutMenu } from './use_flyout_menu';
 interface _EuiFlyoutComponentProps {
   /**
    * A required callback function fired when the flyout is closed.
+   *
+   * The optional second `meta` argument describes why the flyout closed via
+   * `meta.reason` (e.g. `'close-button'`, `'escape'`, `'outside-click'`, and,
+   * for managed flyouts, `'navigation-back'` or `'navigation-cascade'`).
    */
-  onClose: (event: EuiFlyoutCloseEvent) => void;
+  onClose: (event: EuiFlyoutCloseEvent, meta?: EuiFlyoutCloseMeta) => void;
   /**
    * Defines the width of the panel.
    * Pass a predefined size of `s | m | l`, or pass any number/string compatible with the CSS `width` attribute
@@ -718,8 +727,8 @@ export const EuiFlyoutComponent = forwardRef(
     }, [isInManagedContext, hasChildFlyout, isChildFlyout]);
 
     const handleClose = useCallback(
-      (event: EuiFlyoutCloseEvent) => {
-        onClose(event);
+      (event: EuiFlyoutCloseEvent, reason?: EuiFlyoutCloseReason) => {
+        onClose(event, reason ? { reason } : undefined);
       },
       [onClose]
     );
@@ -731,7 +740,7 @@ export const EuiFlyoutComponent = forwardRef(
       (event: KeyboardEvent) => {
         if (!isPushed && event.key === keys.ESCAPE && shouldCloseOnEscape) {
           event.preventDefault();
-          handleClose(event);
+          handleClose(event, 'escape');
         }
       },
       [handleClose, isPushed, shouldCloseOnEscape]
@@ -748,6 +757,8 @@ export const EuiFlyoutComponent = forwardRef(
       managedFlyoutIndex,
       isChildFlyout: isChildFlyout,
     });
+
+    const { euiTheme } = useEuiTheme();
 
     /**
      * Inline styles position the flyout inside the reference container's
@@ -809,14 +820,22 @@ export const EuiFlyoutComponent = forwardRef(
           containerRelativeWidth = size;
         }
 
-        // All container-scoped flyouts get top/height from the container rect.
-        // Reset minInlineSize to 0 so that the CSS `min-inline-size` (which
-        // resolves against the viewport for `position: fixed`) does not
-        // prevent the container-relative width constraints from taking effect.
+        // Pixel-based min-widths for named sizes within containers
+        const containerMinWidthMap: Record<string, number> = {
+          s: Math.round(euiTheme.breakpoint.m * 0.42),
+          m: Math.round(euiTheme.breakpoint.m * 0.5),
+        };
+        const sizeMinWidth =
+          typeof size === 'string' ? containerMinWidthMap[size] : undefined;
+        const containerMinInlineSize =
+          sizeMinWidth !== undefined
+            ? Math.min(sizeMinWidth, containerMaxWidth)
+            : 0;
+
         containerPositionStyles = {
           top: containerRect.top,
           height: containerRect.height,
-          minInlineSize: 0,
+          minInlineSize: containerMinInlineSize,
         };
 
         if (isChildFlyout) {
@@ -893,6 +912,7 @@ export const EuiFlyoutComponent = forwardRef(
       containerRect,
       side,
       isChildFlyout,
+      euiTheme.breakpoint.m,
     ]);
 
     const styles = useEuiMemoizedStyles(euiFlyoutStyles);
@@ -1051,10 +1071,12 @@ export const EuiFlyoutComponent = forwardRef(
         if (outsideClickCloses === false) return undefined;
         if (hasOverlayMask) {
           // The overlay mask is present, so only clicks on the mask should close the flyout, regardless of outsideClickCloses
-          if (event.target === maskRef.current) return handleClose(event);
+          if (event.target === maskRef.current)
+            return handleClose(event, 'outside-click');
         } else {
           // No overlay mask is present, so any outside clicks should close the flyout
-          if (outsideClickCloses === true) return handleClose(event);
+          if (outsideClickCloses === true)
+            return handleClose(event, 'outside-click');
         }
         // Otherwise if ownFocus is false and outsideClickCloses is undefined, outside clicks should not close the flyout
         return undefined;
@@ -1117,7 +1139,7 @@ export const EuiFlyoutComponent = forwardRef(
               !hideCloseButton && (
                 <EuiFlyoutCloseButton
                   {...closeButtonProps}
-                  onClose={handleClose}
+                  onClose={(event) => handleClose(event, 'close-button')}
                   closeButtonPosition={closeButtonPosition}
                   side={side}
                 />

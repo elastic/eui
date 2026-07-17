@@ -18,7 +18,7 @@ jest.mock('./utils', () => ({
 }));
 
 import { EuiTextTruncate } from './text_truncate';
-import { act } from '@testing-library/react';
+import { act, fireEvent } from '@testing-library/react';
 
 describe('EuiTextTruncate', () => {
   beforeEach(() => jest.clearAllMocks());
@@ -101,10 +101,29 @@ describe('EuiTextTruncate', () => {
         <EuiTextTruncate {...props} width={undefined} onResize={onResize} />
       );
       expect(onResize).toHaveBeenCalledWith(0);
-      expect(container.firstChild).toHaveAttribute(
+      expect(container.querySelector('[data-resize-observer]')).toHaveAttribute(
         'data-resize-observer',
         'true'
       );
+    });
+  });
+
+  describe('tooltip', () => {
+    it('renders a tooltip with the full text when truncating (width=0)', () => {
+      const { container, queryByRole } = render(
+        <EuiTextTruncate text="Hello world" width={0} />
+      );
+      expect(queryByRole('tooltip')).not.toBeInTheDocument();
+      fireEvent.mouseOver(container.querySelector('.euiTextTruncate')!);
+      expect(queryByRole('tooltip')).toHaveTextContent('Hello world');
+    });
+
+    it('does not render a tooltip when not truncating', () => {
+      const { container, queryByRole } = render(
+        <EuiTextTruncate text="Hello world" width={50} />
+      );
+      fireEvent.mouseOver(container.querySelector('.euiTextTruncate')!);
+      expect(queryByRole('tooltip')).not.toBeInTheDocument();
     });
   });
 

@@ -9,10 +9,13 @@
 import React, { FunctionComponent, PropsWithChildren, useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
+import { userEvent, waitFor, within, expect } from '@storybook/test';
+
 import {
   disableStorybookControls,
   hideAllStorybookControls,
 } from '../../../.storybook/utils';
+import { VRT_SELECTORS, playDecorator } from '../../../.storybook/vrt';
 
 import { EuiHeader, EuiHeaderSection, EuiHeaderSectionItem } from '../header';
 import { EuiPageTemplate } from '../page_template';
@@ -324,7 +327,15 @@ export const FlyoutOverlay: Story = {
       </>
     );
   },
-  parameters: hideAllStorybookControls,
+  parameters: {
+    ...hideAllStorybookControls,
+    vrt: { selector: VRT_SELECTORS.portal },
+  },
+  play: playDecorator(async ({ bodyElement }) => {
+    const body = within(bodyElement);
+    await userEvent.click(body.getByRole('button', { name: 'Toggle flyout' }));
+    await waitFor(() => expect(body.getByRole('dialog')).toBeVisible());
+  }),
 };
 
 export const DarkMode: Story = {

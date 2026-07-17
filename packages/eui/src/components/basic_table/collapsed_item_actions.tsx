@@ -115,7 +115,6 @@ export const CollapsedItemActions = <T extends {}>({
             }}
             toolTipContent={toolTipContent}
             toolTipProps={{
-              delay: 'long',
               // Avoid screen-readers announcing the same text twice
               disableScreenReaderOutput:
                 typeof buttonContent === 'string' &&
@@ -138,17 +137,22 @@ export const CollapsedItemActions = <T extends {}>({
           ? allActionsButtonDisabledAriaLabel
           : allActionsButtonAriaLabel
       }
-      title={actionsDisabled ? allActionsButtonDisabledAriaLabel : undefined}
       iconType="boxesVertical"
       color="text"
       isDisabled={actionsDisabled}
+      hasAriaDisabled={actionsDisabled}
       onClick={() => setPopoverOpen((isOpen) => !isOpen)}
       data-test-subj="euiCollapsedItemActionsButton"
     />
   );
 
-  const withTooltip = !actionsDisabled && (
-    <EuiToolTip content={allActionsTooltip} delay="long">
+  const withTooltip = (
+    <EuiToolTip
+      content={
+        actionsDisabled ? allActionsButtonDisabledAriaLabel : allActionsTooltip
+      }
+      disableScreenReaderOutput
+    >
       {popoverButton}
     </EuiToolTip>
   );
@@ -158,7 +162,7 @@ export const CollapsedItemActions = <T extends {}>({
       className={className}
       id={`${itemId}-actions`}
       isOpen={popoverOpen}
-      button={withTooltip || popoverButton}
+      button={withTooltip}
       closePopover={closePopover}
       panelPaddingSize="none"
       anchorPosition="leftCenter"

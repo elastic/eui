@@ -6,11 +6,11 @@
  * Side Public License, v 1.
  */
 
-
 import { AccessibleInteractiveElements } from './rules/a11y/accessible_interactive_element';
 import { CallOutAnnounceOnMount } from './rules/a11y/callout_announce_on_mount';
 import { ConsistentIsInvalidProps } from './rules/a11y/consistent_is_invalid_props';
 import { HrefOnClick } from './rules/href_or_on_click';
+import { RequireHrefForLink } from './rules/require_href_for_link';
 import { NoCssColor } from './rules/no_css_color';
 import { NoRestrictedEuiImports } from './rules/no_restricted_eui_imports';
 import { NoStaticZIndex } from './rules/no_static_z_index';
@@ -21,8 +21,11 @@ import { RequireAriaLabelForModals } from './rules/a11y/require_aria_label_for_m
 import { RequireTableCaption } from './rules/a11y/require_table_caption';
 import { ScreenReaderOutputDisabledTooltip } from './rules/a11y/sr_output_disabled_tooltip';
 import { TooltipFocusableAnchor } from './rules/a11y/tooltip_focusable_anchor';
+import { PreferTooltipTriggerFocusTestUtility } from './rules/prefer_tooltip_trigger_focus_test_utility';
 import { EuiBadgeAccessibilityRules } from './rules/a11y/badge_accessibility_rules';
 import { EuiIconAccessibilityRules } from './rules/a11y/icon_accessibility_rules';
+import { TooltipNoInteractiveContent } from './rules/a11y/tooltip_no_interactive_content';
+import { TooltipButtonIconWrap } from './rules/a11y/tooltip_button_icon_wrap';
 
 const config = {
   rules: {
@@ -34,14 +37,19 @@ const config = {
     'no-restricted-eui-imports': NoRestrictedEuiImports,
     'no-static-z-index': NoStaticZIndex,
     'no-unnamed-interactive-element': NoUnnamedInteractiveElement,
-    'no-unnamed-radio-group' : NoUnnamedRadioGroup,
+    'no-unnamed-radio-group': NoUnnamedRadioGroup,
     'prefer-eui-icon-tip': PreferEuiIconTip,
     'require-aria-label-for-modals': RequireAriaLabelForModals,
     'require-table-caption': RequireTableCaption,
     'sr-output-disabled-tooltip': ScreenReaderOutputDisabledTooltip,
     'tooltip-focusable-anchor': TooltipFocusableAnchor,
+    'prefer-tooltip-trigger-focus-test-utility':
+      PreferTooltipTriggerFocusTestUtility,
     'badge-accessibility-rules': EuiBadgeAccessibilityRules,
-    'icon-accessibility-rules': EuiIconAccessibilityRules
+    'icon-accessibility-rules': EuiIconAccessibilityRules,
+    'require-href-for-link': RequireHrefForLink,
+    'tooltip-no-interactive-content': TooltipNoInteractiveContent,
+    'tooltip-button-icon-wrap': TooltipButtonIconWrap,
   },
   configs: {
     recommended: {
@@ -61,8 +69,12 @@ const config = {
         '@elastic/eui/require-table-caption': 'warn',
         '@elastic/eui/sr-output-disabled-tooltip': 'warn',
         '@elastic/eui/tooltip-focusable-anchor': 'warn',
+        '@elastic/eui/prefer-tooltip-trigger-focus-test-utility': 'warn',
         '@elastic/eui/badge-accessibility-rules': 'warn',
         '@elastic/eui/icon-accessibility-rules': 'warn',
+        '@elastic/eui/require-href-for-link': 'warn',
+        '@elastic/eui/tooltip-no-interactive-content': 'warn',
+        '@elastic/eui/tooltip-button-icon-wrap': 'warn',
       },
     },
   },

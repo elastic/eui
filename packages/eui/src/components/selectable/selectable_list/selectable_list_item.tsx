@@ -7,49 +7,21 @@
  */
 
 import classNames from 'classnames';
-import React, {
-  FunctionComponent,
-  LiHTMLAttributes,
-  ReactElement,
-  useState,
-  useEffect,
-  useMemo,
-} from 'react';
+import React, { FunctionComponent, LiHTMLAttributes, useMemo } from 'react';
 
-import { useEuiMemoizedStyles } from '../../../services';
 import { CommonProps } from '../../common';
 import { EuiI18n } from '../../i18n';
-import { EuiIcon, IconColor, IconType } from '../../icon';
 import { EuiScreenReaderOnly } from '../../accessibility';
 import { EuiBadge, EuiBadgeProps } from '../../badge';
-import { EuiToolTip } from '../../tool_tip';
-import type { EuiToolTipRef } from '../../tool_tip';
+import {
+  EuiListItemLayout,
+  EuiListItemLayoutAsLi,
+} from '../../list_item_layout/_list_item_layout';
 
 import type {
   EuiSelectableOption,
   EuiSelectableOptionCheckedType,
 } from '../selectable_option';
-import { euiSelectableListItemStyles } from './selectable_list_item.styles';
-
-function resolveIconAndColor(checked: EuiSelectableOptionCheckedType): {
-  icon: IconType;
-  color?: IconColor;
-} {
-  switch (checked) {
-    case 'on':
-      return { icon: 'check', color: 'text' };
-    case 'off':
-      return { icon: 'cross', color: 'text' };
-    case 'mixed':
-      return { icon: 'minus', color: 'text' };
-    case undefined:
-    default:
-      return { icon: 'empty' };
-  }
-}
-
-export const PADDING_SIZES = ['none', 's'] as const;
-export type EuiSelectablePaddingSize = (typeof PADDING_SIZES)[number];
 
 export type EuiSelectableListItemProps = LiHTMLAttributes<HTMLLIElement> &
   CommonProps & {
@@ -70,16 +42,13 @@ export type EuiSelectableListItemProps = LiHTMLAttributes<HTMLLIElement> &
     prepend?: React.ReactNode;
     append?: React.ReactNode;
     allowExclusions?: boolean;
+    singleSelection?: boolean;
     /**
      * When enabled by setting to either `true` or passing custom a custom badge,
      * shows a hollow badge as an append (far right) when the item is focused.
      * The default content when `true` is `↩ to select/deselect/include/exclude`
      */
     onFocusBadge?: boolean | EuiBadgeProps;
-    /**
-     * Padding for the list items.
-     */
-    paddingSize?: EuiSelectablePaddingSize;
     /**
      * Whether the `EuiSelectable` instance is searchable.
      * When true, the Space key will not toggle selection, as it will type into the search box instead. Screen reader instructions will be added instructing users to use the Enter key to select items.
@@ -119,14 +88,12 @@ export const EuiSelectableListItem: FunctionComponent<
   prepend,
   append,
   allowExclusions,
-  onFocusBadge = true,
-  paddingSize = 's',
+  singleSelection = true,
+  onFocusBadge = false,
   role = 'option',
   searchable,
-  textWrap = 'truncate',
   toolTipContent,
   toolTipProps,
-  'aria-describedby': _ariaDescribedBy,
   ...rest
 }) => {
   const classes = classNames(
@@ -134,40 +101,6 @@ export const EuiSelectableListItem: FunctionComponent<
     { 'euiSelectableListItem-isFocused': isFocused },
     className
   );
-
-  const styles = useEuiMemoizedStyles(euiSelectableListItemStyles);
-  const cssStyles = [styles.euiSelectableListItem, styles.padding[paddingSize]];
-  const textStyles = [
-    styles.euiSelectableListItem__text,
-    styles.textWrap[textWrap],
-  ];
-
-  const optionIcon = useMemo(() => {
-    if (showIcons) {
-      const { icon, color } = resolveIconAndColor(checked);
-      return (
-        <EuiIcon
-          css={styles.euiSelectableListItem__icon}
-          className="euiSelectableListItem__icon"
-          color={color}
-          type={icon}
-        />
-      );
-    }
-  }, [showIcons, checked, styles]);
-
-  const prependNode = useMemo(() => {
-    if (prepend) {
-      return (
-        <span
-          css={styles.euiSelectableListItem__prepend}
-          className="euiSelectableListItem__prepend"
-        >
-          {prepend}
-        </span>
-      );
-    }
-  }, [prepend, styles]);
 
   const onFocusBadgeNode = useMemo(() => {
     const defaultOnFocusBadgeProps: EuiBadgeProps = {
@@ -200,20 +133,6 @@ export const EuiSelectableListItem: FunctionComponent<
       );
     }
   }, [onFocusBadge]);
-  const showOnFocusBadge = !!(isFocused && !disabled && onFocusBadgeNode);
-
-  const appendNode = useMemo(() => {
-    if (append || showOnFocusBadge) {
-      return (
-        <span
-          css={styles.euiSelectableListItem__append}
-          className="euiSelectableListItem__append"
-        >
-          {append} {showOnFocusBadge ? onFocusBadgeNode : null}
-        </span>
-      );
-    }
-  }, [append, showOnFocusBadge, onFocusBadgeNode, styles]);
 
   const screenReaderText = useMemo(() => {
     let state: React.ReactNode;
@@ -329,97 +248,55 @@ export const EuiSelectableListItem: FunctionComponent<
     ) : null;
   }, [checked, searchable, allowExclusions]);
 
-  // aria-checked is intended to be used with role="checkbox" but
-  // the MDN documentation lists it as a possibility for role="option".
-  // See https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-checked
-  // and https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/option_role
-  const ariaChecked = useMemo(() => {
-    const rolesThatCanBeMixed = ['option', 'checkbox', 'menuitemcheckbox'];
-    const rolesThatCanBeChecked = [
-      ...rolesThatCanBeMixed,
-      'radio',
-      'menuitemradio',
-      'switch',
-    ];
-    if (!rolesThatCanBeChecked.includes(role)) return undefined;
-
-    switch (checked) {
-      case 'on':
-      case 'off':
-        return true;
-      case 'mixed':
-        if (rolesThatCanBeMixed.includes(role)) {
-          return 'mixed';
-        } else {
-          return false;
-        }
-      default:
-        return false;
-    }
-  }, [role, checked]);
-
   const hasToolTip = !!toolTipContent && !disabled;
-  const [tooltipRef, setTooltipRef] = useState<EuiToolTipRef | null>(null); // Needs to be state and not a ref to trigger useEffect
-  const [ariaDescribedBy, setAriaDescribedBy] = useState(_ariaDescribedBy);
+  const showOnFocusBadge = isFocused && !disabled && !!onFocusBadgeNode;
 
-  // Manually trigger the tooltip on keyboard focus
-  useEffect(() => {
-    if (!tooltipRef) return;
-
-    if (isFocused) {
-      tooltipRef.showToolTip();
-    } else {
-      tooltipRef.hideToolTip();
-    }
-  }, [isFocused, tooltipRef]);
-
-  // Manually set the `aria-describedby` id on the <li> wrapper
-  useEffect(() => {
-    if (tooltipRef) {
-      const tooltipId = tooltipRef.id;
-      setAriaDescribedBy(classNames(tooltipId, _ariaDescribedBy));
-    }
-  }, [tooltipRef, _ariaDescribedBy]);
-
-  const content: ReactElement = (
-    <span
-      css={styles.euiSelectableListItem__content}
-      className="euiSelectableListItem__content"
-    >
-      {optionIcon}
-      {prependNode}
-      <span css={textStyles} className="euiSelectableListItem__text">
-        {children}
-        {screenReaderText}
-      </span>
-      {appendNode}
-    </span>
-  );
+  const listItemLayoutProps: Omit<EuiListItemLayoutAsLi, 'children'> = {
+    element: 'li',
+    role,
+    className: classes,
+    checked: checked,
+    isDisabled: disabled,
+    isFocused: !disabled && isFocused,
+    isSelected: checked !== undefined,
+    isSingleSelection: singleSelection,
+    selectionMode:
+      allowExclusions || checked === 'mixed' ? 'checked' : undefined,
+    showIndicator: showIcons,
+    prepend: prepend,
+    prependProps: {
+      className: 'euiSelectableListItem__prepend',
+    },
+    append: (append || showOnFocusBadge) && (
+      <>
+        {append}
+        {showOnFocusBadge ? onFocusBadgeNode : null}
+      </>
+    ),
+    appendProps: {
+      className: 'euiSelectableListItem__append',
+    },
+    contentProps: {
+      className: 'euiSelectableListItem__content',
+    },
+    textProps: {
+      className: 'euiSelectableListItem__text',
+    },
+    tooltipProps: hasToolTip
+      ? {
+          content: toolTipContent,
+          anchorClassName: 'eui-fullWidth',
+          position: 'left',
+          ...toolTipProps,
+        }
+      : undefined,
+    ...rest,
+  };
 
   return (
-    <li
-      role={role}
-      aria-disabled={disabled}
-      aria-checked={ariaChecked} // Whether the item is "checked"
-      aria-selected={!disabled && isFocused} // Whether the item has keyboard focus per W3 spec
-      css={cssStyles}
-      className={classes}
-      {...rest}
-      aria-describedby={ariaDescribedBy}
-    >
-      {hasToolTip ? (
-        <EuiToolTip
-          ref={setTooltipRef}
-          content={toolTipContent}
-          anchorClassName="eui-fullWidth"
-          position="left"
-          {...toolTipProps}
-        >
-          {content}
-        </EuiToolTip>
-      ) : (
-        content
-      )}
-    </li>
+    <EuiListItemLayout {...listItemLayoutProps}>
+      {children}
+      {screenReaderText}
+    </EuiListItemLayout>
   );
 };

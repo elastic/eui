@@ -271,6 +271,115 @@ describe('EuiGlobalToastList', () => {
       });
     });
 
+    describe('showNotificationBadge', () => {
+      const badgeSelector = 'euiGlobalToastListNotificationBadge';
+
+      const toasts: Toast[] = [
+        { id: 'a', 'data-test-subj': 'toast-a' },
+        { id: 'b', 'data-test-subj': 'toast-b' },
+      ];
+
+      it('is not rendered by default', () => {
+        const { queryByTestSubject } = render(
+          <EuiGlobalToastList
+            toasts={toasts}
+            dismissToast={() => {}}
+            toastLifeTimeMs={5}
+          />
+        );
+
+        expect(queryByTestSubject(badgeSelector)).not.toBeInTheDocument();
+      });
+
+      it('renders when showNotificationBadge is true and toasts are present', () => {
+        const { queryByTestSubject } = render(
+          <EuiGlobalToastList
+            toasts={toasts}
+            dismissToast={() => {}}
+            toastLifeTimeMs={5}
+            showNotificationBadge
+          />
+        );
+
+        expect(queryByTestSubject(badgeSelector)).toBeInTheDocument();
+      });
+
+      it('displays the number of toasts', () => {
+        const { getByTestSubject } = render(
+          <EuiGlobalToastList
+            toasts={toasts}
+            dismissToast={() => {}}
+            toastLifeTimeMs={5}
+            showNotificationBadge
+          />
+        );
+
+        expect(getByTestSubject(badgeSelector)).toHaveTextContent(
+          String(toasts.length)
+        );
+      });
+
+      it('is not rendered when there are no toasts', () => {
+        const { queryByTestSubject } = render(
+          <EuiGlobalToastList
+            toasts={[]}
+            dismissToast={() => {}}
+            toastLifeTimeMs={5}
+          />
+        );
+
+        expect(queryByTestSubject(badgeSelector)).not.toBeInTheDocument();
+      });
+
+      it('is not rendered when showNotificationBadge is false', () => {
+        const { queryByTestSubject } = render(
+          <EuiGlobalToastList
+            toasts={toasts}
+            dismissToast={() => {}}
+            toastLifeTimeMs={5}
+            showNotificationBadge={false}
+          />
+        );
+
+        expect(queryByTestSubject(badgeSelector)).not.toBeInTheDocument();
+      });
+
+      it('is removed from the DOM once all toasts are dismissed', () => {
+        const dismissToast = jest.fn();
+        const { queryByTestSubject, getByTestSubject, rerender } = render(
+          <EuiGlobalToastList
+            toasts={[{ id: 'a', 'data-test-subj': 'toast-a' }]}
+            dismissToast={dismissToast}
+            toastLifeTimeMs={5}
+            showNotificationBadge
+          />
+        );
+
+        expect(queryByTestSubject(badgeSelector)).toBeInTheDocument();
+
+        fireEvent.click(
+          within(getByTestSubject('toast-a')).getByTestSubject(
+            'toastCloseButton'
+          )
+        );
+
+        act(() => {
+          jest.advanceTimersByTime(TOAST_FADE_OUT_MS);
+        });
+
+        rerender(
+          <EuiGlobalToastList
+            toasts={[]}
+            dismissToast={dismissToast}
+            toastLifeTimeMs={5}
+            showNotificationBadge
+          />
+        );
+
+        expect(queryByTestSubject(badgeSelector)).not.toBeInTheDocument();
+      });
+    });
+
     test('role', () => {
       const { queryByRole } = render(
         <EuiGlobalToastList

@@ -8,7 +8,7 @@
 
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { LOKI_SELECTORS } from '../../../../.storybook/loki';
+import { VRT_SELECTORS } from '../../../../.storybook/vrt';
 
 import { EuiButton } from '../../button';
 import {
@@ -21,7 +21,6 @@ const options: EuiSelectableTemplateSitewideOption[] = [
   {
     label: 'Welcome dashboards',
     icon: { type: 'logoKibana' },
-    avatar: { name: 'Default Space' },
     meta: [
       {
         text: 'Dashboard',
@@ -114,6 +113,23 @@ export const Playground: Story = {
   },
 };
 
+export const Scrollable: Story = {
+  parameters: {
+    // the options is rendered in an options portal
+    vrt: { selector: VRT_SELECTORS.portal },
+  },
+  args: {
+    options: [...options, ...options],
+    // set up for easier testing/QA
+    // @ts-ignore - using testing control types
+    popoverButton: false,
+    popoverTitle: false,
+    popoverFooter: false,
+    popoverButtonBreakpoints: ['xs', 's', 'm', 'l', 'xl'],
+    popoverProps: { isOpen: true },
+  },
+};
+
 export const VRT: Story = {
   tags: ['vrt-only'],
   args: {
@@ -122,6 +138,6 @@ export const VRT: Story = {
   },
   parameters: {
     // the options is rendered in an options portal
-    loki: { chromeSelector: LOKI_SELECTORS.portal },
+    vrt: { selector: VRT_SELECTORS.portal },
   },
 };

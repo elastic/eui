@@ -6,13 +6,24 @@
  * Side Public License, v 1.
  */
 
-import React, { Component, FunctionComponent, CSSProperties } from 'react';
+import React, {
+  FunctionComponent,
+  CSSProperties,
+  useState,
+  useEffect,
+  useCallback,
+  useRef,
+} from 'react';
 import { FocusOn } from 'react-focus-on';
 import { ReactFocusOnProps } from 'react-focus-on/dist/es5/types';
 import { RemoveScrollBar } from 'react-remove-scroll-bar';
 
+import {
+  findElementBySelectorOrRef,
+  ElementTarget,
+  useUpdateEffect,
+} from '../../services';
 import { CommonProps } from '../common';
-import { findElementBySelectorOrRef, ElementTarget } from '../../services';
 import { usePropsWithComponentDefaults } from '../provider/component_defaults';
 
 export type FocusTarget = ElementTarget;
@@ -82,117 +93,115 @@ export type EuiFocusTrapProps = Omit<
   returnFocus?: ReactFocusOnProps['returnFocus'];
 };
 
-export const EuiFocusTrap: FunctionComponent<EuiFocusTrapProps> = (props) => {
-  const propsWithDefaults = usePropsWithComponentDefaults(
-    'EuiFocusTrap',
-    props
-  );
-  return <EuiFocusTrapClass {...propsWithDefaults} />;
-};
+export const EuiFocusTrap: FunctionComponent<EuiFocusTrapProps> = (_props) => {
+  const props = usePropsWithComponentDefaults('EuiFocusTrap', _props);
+  const {
+    children,
+    disabled,
+    clickOutsideDisables = false,
+    returnFocus = true,
+    noIsolation = true,
+    crossFrame = false,
+    scrollLock = false,
+    initialFocus,
+    gapMode = 'padding',
+    closeOnMouseup,
+    onClickOutside,
+    ...rest
+  } = props;
+  const [hasBeenDisabledByClick, setHasBeenDisabledByClick] = useState(false);
 
-interface State {
-  hasBeenDisabledByClick: boolean;
-}
-
-class EuiFocusTrapClass extends Component<EuiFocusTrapProps, State> {
-  static defaultProps = {
-    clickOutsideDisables: false,
-    disabled: false,
-    returnFocus: true,
-    noIsolation: true,
-    scrollLock: false,
-    crossFrame: false,
-    gapMode: 'padding', // EUI defaults to padding because Kibana's body/layout CSS ignores `margin`
-  };
-
-  state: State = {
-    hasBeenDisabledByClick: false,
-  };
-
-  lastInterceptedEvent: Event | null = null;
-  preventFocusExit = false;
-
-  componentDidMount() {
-    this.setInitialFocus(this.props.initialFocus);
-  }
-
-  componentDidUpdate(prevProps: EuiFocusTrapProps) {
-    if (prevProps.disabled === true && this.props.disabled === false) {
-      this.setState({ hasBeenDisabledByClick: false });
-    }
-  }
-
-  componentWillUnmount() {
-    this.removeMouseupListener();
-  }
+  const isDisabled = disabled || hasBeenDisabledByClick;
 
   // Programmatically sets focus on a nested DOM node; optional
-  setInitialFocus = (initialFocus?: FocusTarget) => {
+  const setInitialFocus = (initialFocus?: FocusTarget) => {
     if (!initialFocus) return;
+
     const node = findElementBySelectorOrRef(initialFocus);
+
     if (!node) return;
     // `data-autofocus` is part of the 'react-focus-on' API
     node.setAttribute('data-autofocus', 'true');
   };
 
-  onMouseupOutside = (e: MouseEvent | TouchEvent) => {
-    this.removeMouseupListener();
-    // Timeout gives precedence to the consumer to initiate close if it has toggle behavior.
-    // Otherwise this event may occur first and the consumer toggle will reopen the flyout.
-    setTimeout(() => this.props.onClickOutside?.(e));
-  };
+  // Stabilize the onClickOutside callback
+  const onClickOutsideRef = useRef(onClickOutside);
+  onClickOutsideRef.current = onClickOutside;
 
-  addMouseupListener = () => {
-    document.addEventListener('mouseup', this.onMouseupOutside);
-    document.addEventListener('touchend', this.onMouseupOutside);
-  };
+  // We use a ref to store the listener to prevent circular dependencies
+  // while still ensuring the listeners can properly be cleaned up
+  const mouseupListenerRef = useRef<
+    ((e: MouseEvent | TouchEvent) => void) | null
+  >(null);
 
-  removeMouseupListener = () => {
-    document.removeEventListener('mouseup', this.onMouseupOutside);
-    document.removeEventListener('touchend', this.onMouseupOutside);
-  };
-
-  handleOutsideClick: ReactFocusOnProps['onClickOutside'] = (event) => {
-    const { onClickOutside, clickOutsideDisables, closeOnMouseup } = this.props;
-    if (clickOutsideDisables) {
-      this.setState({ hasBeenDisabledByClick: true });
+  const removeMouseupListener = useCallback(() => {
+    if (mouseupListenerRef.current) {
+      document.removeEventListener('mouseup', mouseupListenerRef.current);
+      document.removeEventListener('touchend', mouseupListenerRef.current);
+      mouseupListenerRef.current = null;
     }
+  }, []);
 
-    if (onClickOutside) {
-      closeOnMouseup ? this.addMouseupListener() : onClickOutside(event);
-    }
-  };
+  const addMouseupListener = useCallback(() => {
+    removeMouseupListener();
 
-  render() {
-    const {
-      children,
-      clickOutsideDisables,
-      disabled,
-      returnFocus,
-      noIsolation,
-      scrollLock,
-      gapMode,
-      ...rest
-    } = this.props;
-    const isDisabled = disabled || this.state.hasBeenDisabledByClick;
-    const focusOnProps = {
-      returnFocus,
-      noIsolation,
-      enabled: !isDisabled,
-      ...rest,
-      onClickOutside: this.handleOutsideClick,
-      /**
-       * `scrollLock` should always be unset on FocusOn, as it can prevent scrolling on
-       * portals (i.e. popovers, comboboxes, dropdown menus, etc.) within modals & flyouts
-       * @see https://github.com/theKashey/react-focus-on/issues/49
-       */
-      scrollLock: false,
+    mouseupListenerRef.current = (e: MouseEvent | TouchEvent) => {
+      removeMouseupListener();
+      // Timeout gives precedence to the consumer to initiate close if it has toggle behavior.
+      // Otherwise this event may occur first and the consumer toggle will reopen the flyout.
+      setTimeout(() => onClickOutsideRef.current?.(e));
     };
-    return (
-      <FocusOn {...focusOnProps}>
-        {children}
-        {!isDisabled && scrollLock && <RemoveScrollBar gapMode={gapMode} />}
-      </FocusOn>
-    );
-  }
-}
+    document.addEventListener('mouseup', mouseupListenerRef.current);
+    document.addEventListener('touchend', mouseupListenerRef.current);
+  }, [removeMouseupListener]);
+
+  const handleOutsideClick = useCallback(
+    (event: MouseEvent | TouchEvent) => {
+      if (clickOutsideDisables) {
+        setHasBeenDisabledByClick(true);
+      }
+
+      if (onClickOutside) {
+        closeOnMouseup ? addMouseupListener() : onClickOutside(event);
+      }
+    },
+    [clickOutsideDisables, closeOnMouseup, onClickOutside, addMouseupListener]
+  );
+
+  useEffect(() => {
+    setInitialFocus(initialFocus);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useUpdateEffect(() => {
+    if (!disabled) {
+      setHasBeenDisabledByClick(false);
+    }
+  }, [disabled]);
+
+  // listener cleanup on unmount
+  useEffect(() => () => removeMouseupListener(), [removeMouseupListener]);
+
+  const focusOnProps = {
+    returnFocus,
+    noIsolation,
+    initialFocus,
+    crossFrame,
+    enabled: !isDisabled,
+    ...rest,
+    onClickOutside: handleOutsideClick,
+    /**
+     * `scrollLock` should always be unset on FocusOn, as it can prevent scrolling on
+     * portals (i.e. popovers, comboboxes, dropdown menus, etc.) within modals & flyouts
+     * @see https://github.com/theKashey/react-focus-on/issues/49
+     */
+    scrollLock: false,
+  };
+
+  return (
+    <FocusOn {...focusOnProps}>
+      {children}
+      {!isDisabled && scrollLock && <RemoveScrollBar gapMode={gapMode} />}
+    </FocusOn>
+  );
+};

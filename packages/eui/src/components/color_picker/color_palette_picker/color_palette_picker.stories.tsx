@@ -12,7 +12,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { fireEvent, waitFor } from '@storybook/test';
 
 import { within } from '../../../../.storybook/test';
-import { LOKI_SELECTORS } from '../../../../.storybook/loki';
+import { VRT_SELECTORS } from '../../../../.storybook/vrt';
 import {
   EUI_VIS_COLOR_STORE,
   euiPaletteColorBlind,
@@ -103,8 +103,8 @@ export const Playground: Story = {
 export const AppendedTitles: Story = {
   parameters: {
     controls: { include: ['palettes', 'valueOfSelected'] },
-    loki: {
-      chromeSelector: LOKI_SELECTORS.portal,
+    vrt: {
+      selector: VRT_SELECTORS.portal,
     },
   },
   args: {

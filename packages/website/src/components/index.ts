@@ -8,4 +8,5 @@
 
 export * from './example';
 export * from './display_toggles';
+export * from './display/icons';
 export * from './storybook_link';

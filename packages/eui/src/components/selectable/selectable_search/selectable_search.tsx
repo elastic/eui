@@ -56,6 +56,7 @@ export const EuiSelectableSearch = <T,>({
   listId,
   className,
   optionMatcher,
+  compressed = true,
   ...rest
 }: _EuiSelectableSearchProps<T>) => {
   const onChange = useCallback(
@@ -94,6 +95,7 @@ export const EuiSelectableSearch = <T,>({
       incremental
       fullWidth
       autoComplete="off"
+      compressed={compressed}
       aria-haspopup="listbox"
       {...ariaPropsIfListIsPresent}
       {...rest}

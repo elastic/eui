@@ -8,7 +8,7 @@
 
 import { TSESTree, ESLintUtils } from '@typescript-eslint/utils';
 
-const componentNames = ['EuiButton', 'EuiButtonEmpty', 'EuiLink', 'EuiBadge'];
+const componentNames = ['EuiButton', 'EuiButtonEmpty', 'EuiBadge'];
 
 export const HrefOnClick = ESLintUtils.RuleCreator.withoutDocs({
   create(context) {

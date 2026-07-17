@@ -14,11 +14,42 @@ methods for testing simple, native-like components that are provided by your tes
 
 ## Installation
 
-This library's versioning is following `@elastic/eui` and must be kept in sync to ensure correct functionality.
+This library is versioned independently from `@elastic/eui`. Because the helpers target EUI's component DOM and `data-test-subj`s, pick a version compatible with the `@elastic/eui` version you're testing against.
 
 ```shell
 yarn add --dev @elastic/eui-test-helpers
 ```
+
+## Playwright Component Objects
+
+For Playwright/Scout consumers, this package ships **Component Objects** —
+semantic wrappers around a single Playwright `Locator` that encapsulate
+user-like interactions for a specific EUI component.
+
+```ts
+import { EuiComboBoxObject } from '@elastic/eui-test-helpers';
+
+const comboBox = new EuiComboBoxObject(page, 'dataViewSelector');
+await comboBox.setSelectedOptions(['logs-*']);
+expect(await comboBox.getSelectedOptions()).toEqual(['logs-*']);
+```
+
+Every Component Object constructor takes `(scope, testSubj)`:
+- `scope` — a Playwright `Page` or `Locator` to search within
+- `testSubj` — the `data-test-subj` value you set on the component's root element in your app
+
+`@playwright/test` is declared as a `peerDependency` — consumers provide
+their own version at runtime.
+
+### Available Component Objects
+
+| Component | Documentation |
+|---|---|
+| `EuiComboBoxObject` | [src/components/combo_box/README.md](src/components/combo_box/README.md) |
+
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for design principles, directory structure, and how to add new Component Objects.
 
 [Cypress]: https://github.com/cypress-io/cypress
 [React Testing Library]: https://github.com/testing-library/react-testing-library
