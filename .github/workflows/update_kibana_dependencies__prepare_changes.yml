@@ -25,11 +25,28 @@ on:
         type: string
       pr_body:
         description: PR body
-        required: true
         type: string
       source_pr_number:
         description: Source PR number that triggered this workflow
         type: number
+      nightly:
+        description: Whether this is the scheduled nightly run
+        type: boolean
+        default: false
+      eui_ref:
+        description: EUI ref used to publish the snapshot
+        type: string
+        required: true
+      eui_last_release:
+        description: Latest stable EUI release reachable from the snapshot
+        type: string
+      eui_version:
+        description: Published @elastic/eui snapshot version
+        type: string
+concurrency:
+  group: ${{ inputs.nightly && 'kibana-nightly' || format('prepare-kibana-{0}', github.run_id) }}
+  cancel-in-progress: false
+  queue: max
 permissions:
   id-token: write # Required for OIDC (Vault ephemeral token)
   contents: read
@@ -39,16 +56,13 @@ jobs:
   update:
     name: Prepare changes
     runs-on: ubuntu-latest
-    outputs:
-      branch_name: ${{ steps.git_branch.outputs.BRANCH_NAME }}
     steps:
       - name: Verify dependencies input
         env:
           DEPENDENCIES: ${{ inputs.dependencies }}
         # language=bash
         run: |
-          num_deps=$(jq 'map(select(has("name") and has("version"))) | length' <<< "$DEPENDENCIES") || exit_code=$?
-          if [[ "$exit_code" -ne 0 ]]; then
+          if ! num_deps="$(jq 'map(select(has("name") and has("version"))) | length' <<< "$DEPENDENCIES")"; then
             echo "::error::Invalid dependencies input"
             exit 2
           elif [[ "$num_deps" -eq 0 ]]; then
@@ -85,9 +99,16 @@ jobs:
           git remote add fork https://github.com/elastic/eui-kibana.git
       - name: Create new branch
         id: git_branch
+        env:
+          NIGHTLY: ${{ inputs.nightly }}
         # language=bash
         run: |
-          branch_name="update-dependencies/$(date +%s)"
+          # Nightly runs reuse a fixed branch; all other runs remain unique.
+          if [[ "$NIGHTLY" == "true" ]]; then
+            branch_name="nightly/update-dependencies"
+          else
+            branch_name="update-dependencies/$(date +%s)"
+          fi
           git checkout -b "$branch_name"
           echo "BRANCH_NAME=$branch_name" >> "$GITHUB_OUTPUT"
           echo "::debug::Created branch '$branch_name'"
@@ -119,8 +140,14 @@ jobs:
         env:
           GH_TOKEN: ${{ steps.fetch_ephemeral_token.outputs.token }}
           BRANCH_NAME: ${{ steps.git_branch.outputs.BRANCH_NAME }}
+          NIGHTLY: ${{ inputs.nightly }}
         # language=bash
-        run: git push -u fork "$BRANCH_NAME"
+        run: |
+          if [[ "$NIGHTLY" == "true" ]]; then
+            git push -u --force fork "$BRANCH_NAME"
+          else
+            git push -u fork "$BRANCH_NAME"
+          fi
       - name: Trigger workflow to open PR
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -128,6 +155,10 @@ jobs:
           PR_BODY: ${{ inputs.pr_body }}
           BRANCH_NAME: ${{ steps.git_branch.outputs.BRANCH_NAME }}
           SOURCE_PR_NUMBER: ${{ inputs.source_pr_number }}
+          NIGHTLY: ${{ inputs.nightly }}
+          EUI_REF: ${{ inputs.eui_ref }}
+          EUI_LAST_RELEASE: ${{ inputs.eui_last_release }}
+          EUI_VERSION: ${{ inputs.eui_version }}
         # language=bash
         run: |
           set -euo pipefail
@@ -137,9 +168,12 @@ jobs:
             -f "pr_title=$PR_TITLE"
             -f "pr_body=$PR_BODY"
             -f "pr_head=$BRANCH_NAME"
+            -f "nightly=$NIGHTLY"
+            -f "eui_ref=$EUI_REF"
+            -f "eui_last_release=$EUI_LAST_RELEASE"
+            -f "eui_version=$EUI_VERSION"
           )
-          # Only pass source_pr_number when set - it's a number-typed input, so an
-          # empty value (nightly/manual runs) would fail validation.
+          # An empty value is invalid for a number-typed workflow input.
           if [[ -n "${SOURCE_PR_NUMBER:-}" ]]; then
             args+=( -f "source_pr_number=$SOURCE_PR_NUMBER" )
           fi

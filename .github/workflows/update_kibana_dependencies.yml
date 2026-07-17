@@ -1,6 +1,13 @@
 name: Update Kibana dependencies
 
 on:
+  schedule:
+    # 03:05 UTC, Monday-Friday
+    # "High load times include the start of every hour. If the load is sufficiently high enough,
+    # some queued jobs may be dropped. To decrease the chance of delay, schedule your workflow
+    # to run at a different time of the hour."
+    # Source: https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows#schedule
+    - cron: '5 3 * * 1-5'
   pull_request_target:
     types: [labeled]
   workflow_dispatch:
@@ -26,7 +33,9 @@ jobs:
   trigger_release:
     name: Trigger snapshot release
     runs-on: ubuntu-latest
-    if: ${{ github.event_name != 'pull_request_target' || github.event.label.name == 'ci:regression-integration-test-kibana' }}
+    if: >-
+      (github.event_name != 'pull_request_target' || github.event.label.name == 'ci:regression-integration-test-kibana') &&
+      (github.event_name != 'schedule' || github.repository == 'elastic/eui')
     permissions:
       actions: write
       contents: read
@@ -35,7 +44,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           EVENT_NAME: ${{ github.event_name }}
-          RELEASE_REF: ${{ github.event_name == 'pull_request_target' && github.event.pull_request.head.sha || inputs.release_ref }}
+          RELEASE_REF: ${{ github.event_name == 'pull_request_target' && github.event.pull_request.head.sha || inputs.release_ref || github.sha }}
           PR_NUMBER: ${{ github.event.pull_request.number }}
           PR_URL: ${{ github.event.pull_request.html_url }}
           INPUT_PR_TITLE: ${{ inputs.pr_title }}
@@ -57,6 +66,11 @@ jobs:
               "-f" "kibana_pr_body=This PR was created programmatically to run regression integration tests of EUI changes from $PR_URL"
               "-f" "kibana_source_pr_number=$PR_NUMBER"
             )
+          elif [[ "$EVENT_NAME" == "schedule" ]]; then
+            workflow_args+=(
+              "-f" "kibana_pr_title=[DO NOT MERGE][EUI] Nightly Build"
+              "-f" "kibana_nightly=true"
+            )
           else
             workflow_args+=(
               "-f" "kibana_pr_title=$INPUT_PR_TITLE"
@@ -64,4 +78,5 @@ jobs:
             )
           fi
 
+          # This job has no checkout, so gh cannot infer the repository.
           gh workflow run release.yml --repo "$GITHUB_REPOSITORY" "${workflow_args[@]}"

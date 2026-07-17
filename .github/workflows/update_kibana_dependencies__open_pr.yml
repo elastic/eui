@@ -24,6 +24,24 @@ on:
       source_pr_number:
         description: Source PR number that triggered this workflow
         type: number
+      nightly:
+        description: Whether this is the scheduled nightly run
+        type: boolean
+        default: false
+      eui_ref:
+        description: EUI ref used to publish the snapshot
+        type: string
+        required: true
+      eui_last_release:
+        description: Latest stable EUI release reachable from the snapshot
+        type: string
+      eui_version:
+        description: Published @elastic/eui snapshot version
+        type: string
+concurrency:
+  group: ${{ inputs.nightly && 'kibana-nightly' || format('open-kibana-pr-{0}', github.run_id) }}
+  cancel-in-progress: false
+  queue: max
 permissions:
   contents: read
   id-token: write
@@ -36,6 +54,12 @@ jobs:
     outputs:
       pr_url: ${{ steps.open_pr.outputs.pr_url }}
     steps:
+      - name: Checkout EUI snapshot
+        if: ${{ inputs.nightly }}
+        uses: actions/checkout@v6
+        with:
+          ref: ${{ inputs.eui_ref }}
+          persist-credentials: false
       - name: Fetch GitHub token
         id: ephemeral_token
         uses: elastic/ci-gh-actions/fetch-github-token@v1.5.3
@@ -50,6 +74,10 @@ jobs:
           PR_TITLE: ${{ inputs.pr_title }}
           PR_BODY: ${{ inputs.pr_body }}
           PR_DRAFT: ${{ inputs.pr_draft }}
+          NIGHTLY: ${{ inputs.nightly }}
+          EUI_REF: ${{ inputs.eui_ref }}
+          EUI_LAST_RELEASE: ${{ inputs.eui_last_release }}
+          EUI_VERSION: ${{ inputs.eui_version }}
         # language=bash
         run: |
           set -euo pipefail
@@ -59,6 +87,49 @@ jobs:
           # GraphQL createPullRequest with `headRepositoryId` identifies the head fork explicitly.
           base_repo='elastic/kibana'
           head_repo='elastic/eui-kibana'
+
+          if [[ "$NIGHTLY" == "true" && ( -z "$EUI_REF" || -z "$EUI_LAST_RELEASE" || -z "$EUI_VERSION" ) ]]; then
+            echo "::error::Nightly runs require eui_ref, eui_last_release, and eui_version"
+            exit 1
+          fi
+
+          if [[ "$NIGHTLY" == "true" ]]; then
+            compare_url="https://github.com/elastic/eui/compare/$EUI_LAST_RELEASE...$EUI_REF"
+            changelog_entries="$(scripts/upcoming_changelogs.sh "$EUI_REF")"
+
+            PR_BODY="$(
+              printf '%s\n' \
+                'This draft PR validates the latest EUI snapshot from `main` in Kibana.' \
+                '' \
+                "- **npm snapshot:** [\`@elastic/eui@$EUI_VERSION\`](https://www.npmjs.com/package/@elastic/eui/v/$EUI_VERSION)" \
+                "- **Changes since $EUI_LAST_RELEASE:** [$EUI_LAST_RELEASE...${EUI_REF:0:12}]($compare_url)" \
+                "- **EUI commit:** [\`${EUI_REF:0:12}\`](https://github.com/elastic/eui/commit/$EUI_REF)" \
+                '' \
+                '<details>' \
+                '<summary>Upcoming changelog entries</summary>' \
+                '' \
+                "$changelog_entries" \
+                '' \
+                '</details>'
+            )"
+
+            # Reuse the open PR for the fixed nightly branch.
+            existing_pr_url="$(gh api "repos/$base_repo/pulls?state=open&head=elastic:$PR_HEAD" --jq '.[0].html_url // ""')"
+            if [[ -n "$existing_pr_url" ]]; then
+              gh pr edit "$existing_pr_url" --title "$PR_TITLE" --body "${PR_BODY:-}"
+              if [[ "$(gh pr view "$existing_pr_url" --json isDraft --jq .isDraft)" != "true" ]]; then
+                gh pr ready "$existing_pr_url" --undo
+              fi
+
+              echo "pr_url=$existing_pr_url" >> "$GITHUB_OUTPUT"
+              {
+                echo "### Pull request updated"
+                echo ""
+                echo "$existing_pr_url"
+              } >> "$GITHUB_STEP_SUMMARY"
+              exit 0
+            fi
+          fi
 
           base_repo_id="$(gh api "repos/$base_repo" --jq .node_id)"
           head_repo_id="$(gh api "repos/$head_repo" --jq .node_id)"
@@ -159,7 +230,10 @@ jobs:
     needs: [open_pr, post_open_pr]
     outputs:
       pending: ${{ steps.check_status.outputs.pending }}
+      buildkite_url: ${{ steps.check_status.outputs.buildkite_url }}
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
       # Token cannot be reused in this job because it's short-lived
       - name: Fetch GitHub token
         id: ephemeral_token
@@ -173,36 +247,18 @@ jobs:
           GH_TOKEN: ${{ steps.ephemeral_token.outputs.token }}
           PR_URL: ${{ needs.open_pr.outputs.pr_url }}
         # language=bash
-        run: |
-          status_json="$(gh pr checks "$PR_URL" --required --json name,link,bucket)"
-          all_num="$(echo $status_json | jq length)"
-          pending_json="$(echo $status_json | jq 'map(select(.bucket == "pending"))')"
-          pending_num="$(echo $pending_json | jq length)"
-          fail_json="$(echo $status_json | jq 'map(select(.bucket | test("fail|cancel")))')"
-          fail_num="$(echo $fail_json | jq length)"
-
-          if [[ "$fail_num" -gt 0 ]]; then
-            echo "Some CI checks failed. Please check the logs for details."
-            echo "Some CI checks failed. Please check the logs for details." >> $GITHUB_STEP_SUMMARY
-            exit 1
-          fi
-
-          if [[ "$pending_num" -gt 0 ]]; then
-            echo "pending=true" >> "$GITHUB_OUTPUT"
-            echo "$pending_num/$all_num CI checks are pending. Retrying later..."
-            echo "$pending_num/$all_num CI checks are pending. Retrying later..." >> $GITHUB_STEP_SUMMARY
-            exit 0
-          fi
-
-          echo "CI checks passed!"
-          echo "CI checks passed! :tada:" >> $GITHUB_STEP_SUMMARY
+        run: scripts/check_pr_status.sh "$PR_URL" retry
   check_ci_status_2:
     name: Check CI status - attempt 2/2
     runs-on: ubuntu-slim
     environment: delayed-2h
     needs: [open_pr, check_ci_status_1]
     if: ${{ needs.check_ci_status_1.outputs.pending == 'true' }}
+    outputs:
+      buildkite_url: ${{ steps.check_status.outputs.buildkite_url }}
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
       # Token cannot be reused in this job because it's short-lived
       - name: Fetch GitHub token
         id: ephemeral_token
@@ -211,39 +267,19 @@ jobs:
           vault-instance: ci-prod
           vault-role: token-policy-6becee3e5a43
       - name: Check status
+        id: check_status
         env:
           GH_TOKEN: ${{ steps.ephemeral_token.outputs.token }}
           PR_URL: ${{ needs.open_pr.outputs.pr_url }}
         # language=bash
-        run: |
-          status_json="$(gh pr checks "$PR_URL" --required --json name,link,bucket)"
-          all_num="$(echo $status_json | jq length)"
-          pending_json="$(echo $status_json | jq 'map(select(.bucket == "pending"))')"
-          pending_num="$(echo $pending_json | jq length)"
-          fail_json="$(echo $status_json | jq 'map(select(.bucket | test("fail|cancel")))')"
-          fail_num="$(echo $fail_json | jq length)"
-
-          if [[ "$fail_num" -gt 0 ]]; then
-            echo "Some CI checks failed. Please check the logs for details."
-            echo "Some CI checks failed. Please check the logs for details." >> $GITHUB_STEP_SUMMARY
-            exit 1
-          fi
-
-          if [[ "$pending_num" -gt 0 ]]; then
-            echo "$pending_num/$all_num CI checks are still pending. This is unexpected."
-            echo "$pending_num/$all_num CI checks are still pending. This is unexpected." >> $GITHUB_STEP_SUMMARY
-            exit 1
-          fi
-
-          echo "CI checks passed!"
-          echo "CI checks passed! :tada:" >> $GITHUB_STEP_SUMMARY
+        run: scripts/check_pr_status.sh "$PR_URL" fail
   report_status:
     name: Report CI status
     runs-on: ubuntu-slim
     needs: [open_pr, check_ci_status_1, check_ci_status_2]
     if: |
       always() &&
-      inputs.source_pr_number &&
+      (inputs.source_pr_number || inputs.nightly) &&
       (
         (needs.check_ci_status_1.result == 'success' && needs.check_ci_status_2.result == 'skipped') ||
         (needs.check_ci_status_1.result == 'failure' && needs.check_ci_status_2.result == 'skipped') ||
@@ -251,6 +287,7 @@ jobs:
       )
     steps:
       - name: Checkout repository
+        if: ${{ inputs.source_pr_number }}
         uses: actions/checkout@v6
       - name: Compose comment body
         id: compose_comment_body
@@ -259,6 +296,10 @@ jobs:
           PR_HEAD: ${{ inputs.pr_head }}
           CHECK_1_RESULT: ${{ needs.check_ci_status_1.result }}
           CHECK_2_RESULT: ${{ needs.check_ci_status_2.result }}
+          NIGHTLY: ${{ inputs.nightly }}
+          EUI_REF: ${{ inputs.eui_ref }}
+          EUI_LAST_RELEASE: ${{ inputs.eui_last_release }}
+          BUILDKITE_URL: ${{ needs.check_ci_status_2.result != 'skipped' && needs.check_ci_status_2.outputs.buildkite_url || needs.check_ci_status_1.outputs.buildkite_url }}
         # language=bash
         run: |
           if [[ "$CHECK_2_RESULT" == "skipped" && "$CHECK_1_RESULT" != "success" ]] || [[ "$CHECK_2_RESULT" != "success" && "$CHECK_2_RESULT" != "skipped" ]]; then
@@ -283,7 +324,31 @@ jobs:
             fi
             echo 'COMMENT_DELIMITER'
           } >> "$GITHUB_OUTPUT"
+
+          if [[ "$NIGHTLY" == "true" ]]; then
+            if [[ -n "$details" ]]; then
+              slack_status=':red_circle: EUI nightly did not pass Kibana CI'
+            else
+              slack_status=':large_green_circle: EUI nightly passed Kibana CI'
+            fi
+
+            compare_url="https://github.com/elastic/eui/compare/$EUI_LAST_RELEASE...$EUI_REF"
+            slack_text="$slack_status"$'\n'"<$KIBANA_PR_URL|Kibana PR>"
+            if [[ -n "$BUILDKITE_URL" ]]; then
+              slack_text+=" · <$BUILDKITE_URL|Buildkite>"
+            else
+              slack_text+=' · Buildkite link unavailable'
+            fi
+            slack_text+=" · <$compare_url|EUI main diff>"
+
+            {
+              echo 'slack_text<<SLACK_DELIMITER'
+              echo "$slack_text"
+              echo 'SLACK_DELIMITER'
+            } >> "$GITHUB_OUTPUT"
+          fi
       - name: Add a comment
+        if: ${{ inputs.source_pr_number }}
         uses: ./.github/actions/pr_bot_comment
         with:
           gh_token: ${{ github.token }}
@@ -291,3 +356,17 @@ jobs:
           marker: 'kibana-regression-integration-test'
           comment_author: 'github-actions[bot]'
           comment_body: ${{ steps.compose_comment_body.outputs.comment_body }}
+      - name: Notify Slack
+        if: ${{ inputs.nightly }}
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.KIBANA_NIGHTLY_SLACK_WEBHOOK }}
+          SLACK_TEXT: ${{ steps.compose_comment_body.outputs.slack_text }}
+        # language=bash
+        run: |
+          set -euo pipefail
+          if [[ -z "${SLACK_WEBHOOK_URL:-}" ]]; then
+            echo "::error::KIBANA_NIGHTLY_SLACK_WEBHOOK is not set"
+            exit 1
+          fi
+          payload="$(jq -n --arg text "$SLACK_TEXT" '{ text: $text }')"
+          curl -fsSL -X POST -H 'Content-type: application/json' --data "$payload" "$SLACK_WEBHOOK_URL"
