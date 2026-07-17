@@ -58,6 +58,17 @@ export const EuiComboBoxSelectors = {
   PILL_TEST_SUBJ: 'euiComboBoxPill',
 
   /**
+   * CSS selector for selected option pills.
+   *
+   * Prefer this over {@link PILL_TEST_SUBJ} for reads: EUI spreads an option's
+   * own `data-test-subj` onto its pill *after* the pill's default
+   * `data-test-subj="euiComboBoxPill"`, so a combo that stamps a per-option
+   * `data-test-subj` overrides it and a test-subj lookup finds nothing. The
+   * `euiComboBoxPill` class is always present, so a class read is robust.
+   */
+  PILL_SELECTOR: '.euiComboBoxPill',
+
+  /**
    * CSS selector for all options in a specific combo box's dropdown.
    *
    * `testSubj` is the consumer's `data-test-subj` on `<EuiComboBox>`. EUI

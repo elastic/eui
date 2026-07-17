@@ -32,8 +32,15 @@ export class EuiComboBoxObject extends BaseObject {
    *
    * Throws with a descriptive message if any label never appears in the
    * dropdown (catches test/data drift early).
+   *
+   * `timeout` bounds how long each option is awaited in the dropdown after
+   * typing — raise it for slow / server-backed combos whose options load
+   * asynchronously.
    */
-  async setSelectedOptions(labels: string[]): Promise<void> {
+  async setSelectedOptions(
+    labels: string[],
+    { timeout = 2_500 }: { timeout?: number } = {}
+  ): Promise<void> {
     await this.assertComponent();
     // Dedupe while preserving order.
     const targetLabels = [...new Set(labels)];
@@ -56,7 +63,7 @@ export class EuiComboBoxObject extends BaseObject {
     await this.clear();
 
     for (const label of targetLabels) {
-      await this.addOption(label);
+      await this.addOption(label, timeout);
     }
 
     if (targetLabels.length > 0) {
@@ -81,7 +88,7 @@ export class EuiComboBoxObject extends BaseObject {
    */
   async setCustomSelectedOptions(
     labels: string[],
-    { timeout = 10_000 }: { timeout?: number } = {}
+    { timeout = 2_500 }: { timeout?: number } = {}
   ): Promise<void> {
     await this.assertComponent();
     for (const label of labels) {
@@ -148,6 +155,9 @@ export class EuiComboBoxObject extends BaseObject {
   /**
    * Currently selected option labels.
    *
+   * Pills are read by the `.euiComboBoxPill` class (see {@link pills}) so combos
+   * that stamp a per-option `data-test-subj` are read correctly.
+   *
    * - Multi-select / `singleSelection=true` → pill texts.
    * - `singleSelection={{ asPlainText: true }}` → the input value. EUI
    *   renders no pills in this mode; the input IS the selection display.
@@ -208,7 +218,7 @@ export class EuiComboBoxObject extends BaseObject {
     await this.searchInput.blur();
   }
 
-  private async addOption(label: string): Promise<void> {
+  private async addOption(label: string, timeout = 2_500): Promise<void> {
     // Clicking the outer wrapper does not reliably open the dropdown; the
     // inner `comboBoxInput` element does.
     await this.input.click();
@@ -225,7 +235,7 @@ export class EuiComboBoxObject extends BaseObject {
       .page()
       .locator(EuiComboBoxSelectors.optionsListFor(this.testSubj))
       .getByRole('option', { name: label });
-    await expect.poll(() => option.count()).toBeGreaterThan(0);
+    await expect.poll(() => option.count(), { timeout }).toBeGreaterThan(0);
     if ((await option.count()) === 1) {
       await option.click();
     } else {
@@ -285,7 +295,11 @@ export class EuiComboBoxObject extends BaseObject {
   }
 
   private get pills(): Locator {
-    return this.root.getByTestId(EuiComboBoxSelectors.PILL_TEST_SUBJ);
+    // Read by class, not `data-test-subj`: EUI spreads an option's own
+    // `data-test-subj` onto its pill after the pill default, so a combo that
+    // stamps a per-option subj overrides `euiComboBoxPill` and a test-subj
+    // lookup returns nothing. The class is always present.
+    return this.root.locator(EuiComboBoxSelectors.PILL_SELECTOR);
   }
 
   private async isPlainText(): Promise<boolean> {

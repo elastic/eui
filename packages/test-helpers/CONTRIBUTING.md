@@ -41,6 +41,12 @@ Every `data-test-subj` value and CSS selector lives in `src/components/<name>/se
 ### Read synchronous DOM state — not async side-effects
 Prefer CSS classes set synchronously in EUI's render function over async icon loads (`data-icon-type`), deferred `aria-*` attributes, or animations. Use `expect.poll()` only when unavoidable — and always document why.
 
+### Read by a stable class, not an overridable `data-test-subj`
+Some components spread a consumer-supplied `data-test-subj` onto an inner element *after* their own default — e.g. an `EuiComboBox` option's `data-test-subj` lands on its rendered pill and overrides the pill's `euiComboBoxPill` subj. A read keyed on that default then silently returns nothing. When an element always carries a stable EUI class, read it by class (`.euiComboBoxPill`) rather than by a `data-test-subj` the consumer can clobber. Keep the `data-test-subj` constant for targeting-by-value, but don't rely on it for enumerating internal elements.
+
+### Account for virtualization in reads
+Collection components (combo box, data grid, selectable) virtualize their options — items mount and unmount as the list scrolls, so the full set is never guaranteed to be in the DOM. A method that reads, matches, or enumerates items must not assume it can see everything: require an explicit search term (or exact-text / accessible-name match) so the target is filtered into the DOM before asserting, rather than returning only the currently-rendered subset. See the `optionFor` note in `src/components/combo_box/selectors.ts`.
+
 ### Scoped locators for multi-instance safety
 Scope every locator to `this.root`, never to `page`. For portal elements, use the `${testSubj}-optionsList` pattern to prevent cross-instance bleed.
 

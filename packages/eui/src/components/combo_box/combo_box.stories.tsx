@@ -155,6 +155,32 @@ export const WithCustomOptionIds: Story = {
   render: (args) => <StatefulComboBox {...args} />,
 };
 
+/**
+ * Options that carry their own `data-test-subj`. EUI spreads an option's
+ * `data-test-subj` onto its rendered pill *after* the pill's default
+ * `data-test-subj="euiComboBoxPill"`, so the option value overrides it. Used by
+ * the test-helpers e2e suite to verify the Component Object reads selected pills
+ * by class rather than by the (overridable) pill `data-test-subj`.
+ */
+export const WithCustomOptionTestSubjects: Story = {
+  parameters: {
+    controls: {
+      include: ['options', 'selectedOptions', 'onChange'],
+    },
+    // Visually identical to Playground.
+    vrt: { skip: true },
+  },
+  args: {
+    'data-test-subj': 'testComboBox',
+    options: [
+      { label: 'Item 1', 'data-test-subj': 'custom-item-1' },
+      { label: 'Item 2', 'data-test-subj': 'custom-item-2' },
+      { label: 'Item 3', 'data-test-subj': 'custom-item-3' },
+    ],
+  },
+  render: (args) => <StatefulComboBox {...args} />,
+};
+
 export const RowHeightAuto: Story = {
   parameters: {
     controls: {
