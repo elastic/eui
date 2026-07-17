@@ -9,15 +9,24 @@
 import type {
   renderHook as renderHookType,
   act as actType,
-} from '@testing-library/react-hooks';
+} from '@testing-library/react';
 
 /* eslint-disable @typescript-eslint/no-var-requires */
 
+/**
+ * `@testing-library/react` ships `renderHook`/`act` from v13.1+ (React 18+),
+ * so consumers on React 18 never need `@testing-library/react-hooks`.
+ * React 17 setups resolve an older `@testing-library/react` without
+ * `renderHook` and fall back accordingly.
+ */
+const rtl = require('@testing-library/react');
+
 let renderHook: typeof renderHookType;
 let renderHookAct: typeof actType;
-if (process.env.REACT_VERSION === '18') {
-  renderHook = require('@testing-library/react').renderHook;
-  renderHookAct = require('@testing-library/react').act;
+
+if (typeof rtl.renderHook === 'function') {
+  renderHook = rtl.renderHook;
+  renderHookAct = rtl.act;
 } else {
   renderHook = require('@testing-library/react-hooks/dom').renderHook;
   renderHookAct = require('@testing-library/react-hooks/dom').act;

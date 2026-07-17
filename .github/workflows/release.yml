@@ -47,6 +47,14 @@ on:
         description: "[Kibana integration only] Source EUI PR number that triggered the run"
         required: false
         type: string
+      kibana_nightly:
+        description: "[Kibana integration only] Whether this is a scheduled nightly run"
+        default: false
+        type: boolean
+concurrency:
+  group: ${{ inputs.kibana_nightly && 'kibana-nightly' || format('release-{0}', github.run_id) }}
+  cancel-in-progress: false
+  queue: max
 permissions:
   id-token: write # Required for OIDC
   contents: read
@@ -169,14 +177,37 @@ jobs:
           PR_TITLE: ${{ inputs.kibana_pr_title }}
           PR_BODY: ${{ inputs.kibana_pr_body }}
           SOURCE_PR_NUMBER: ${{ inputs.kibana_source_pr_number }}
+          NIGHTLY: ${{ inputs.kibana_nightly }}
+          EUI_REF: ${{ inputs.release_ref }}
         # language=bash
         run: |
           set -euo pipefail
           dependencies="$(jq -c . .release/published_packages.json)"
+          eui_version=''
+          eui_last_release=''
+
+          if [[ "$NIGHTLY" == "true" ]]; then
+            eui_version="$(
+              jq -r '.[] | select(.name == "@elastic/eui") | .version' \
+                .release/published_packages.json
+            )"
+            if [[ -z "$eui_version" ]]; then
+              echo "::error::The snapshot did not publish @elastic/eui"
+              exit 1
+            fi
+
+            last_release="$(git describe --tags --abbrev=0 --match 'v[0-9]*' --exclude '*-*' "$EUI_REF")"
+            eui_last_release="$last_release"
+          fi
+
           args=(
             -f "dependencies=$dependencies"
             -f "pr_title=$PR_TITLE"
             -f "pr_body=$PR_BODY"
+            -f "nightly=$NIGHTLY"
+            -f "eui_ref=$EUI_REF"
+            -f "eui_last_release=$eui_last_release"
+            -f "eui_version=$eui_version"
           )
           if [[ -n "${SOURCE_PR_NUMBER:-}" ]]; then
             args+=( -f "source_pr_number=$SOURCE_PR_NUMBER" )
