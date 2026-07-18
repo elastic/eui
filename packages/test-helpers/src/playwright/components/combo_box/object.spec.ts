@@ -95,19 +95,34 @@ test.describe('EuiComboBoxObject', () => {
 });
 
 test.describe('EuiComboBoxObject component-type guard', () => {
-  test('throws when the data-test-subj is not an EuiComboBox', async ({ page }) => {
-    await page.goto(PLAYGROUND_URL);
-    // `comboBoxSearchInput` exists on the page but is the inner input, not the
-    // outer `.euiComboBox` root — the wrong element for this Component Object.
-    // Stands in for pointing the helper at an entirely different component that
-    // happens to share a `data-test-subj`; without the guard it would silently
-    // operate on it.
-    await page.getByTestId('comboBoxSearchInput').waitFor({ state: 'visible' });
+  // Every public method must reject when pointed at the wrong element. Add new
+  // public methods here so they're covered too.
+  const PUBLIC_METHODS = [
+    'setSelectedOptions',
+    'setCustomSelectedOptions',
+    'getSelectedOptions',
+    'getAvailableOptions',
+    'clear',
+  ] as const;
 
-    const wrongTarget = new EuiComboBoxObject(page, 'comboBoxSearchInput');
+  // The guard runs first in each method, so the call rejects before it reads its
+  // arguments — calling with none is fine. `comboBoxSearchInput` exists on the
+  // page but is the inner input, not the outer `.euiComboBox` root: it stands in
+  // for pointing the helper at a different component that shares a `data-test-subj`.
+  for (const method of PUBLIC_METHODS) {
+    test(`${method} throws when the data-test-subj is not an EuiComboBox`, async ({
+      page,
+    }) => {
+      await page.goto(PLAYGROUND_URL);
+      await page
+        .getByTestId('comboBoxSearchInput')
+        .waitFor({ state: 'visible' });
 
-    await expect(wrongTarget.getSelectedOptions()).rejects.toThrow(
-      /Are you using the right Component Object/i
-    );
-  });
+      const wrongTarget = new EuiComboBoxObject(page, 'comboBoxSearchInput');
+
+      await expect(
+        (wrongTarget[method] as () => Promise<unknown>)()
+      ).rejects.toThrow(/Are you using the right Component Object/i);
+    });
+  }
 });

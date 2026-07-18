@@ -51,16 +51,11 @@ export const EuiComboBoxSelectors = {
   PLAIN_TEXT_INPUT_WRAP_SELECTOR: '.euiComboBox__inputWrap--plainText',
 
   /**
-   * `data-test-subj` identifier of selected option pills.
-   * Only present in non-`asPlainText` mode — in `asPlainText` mode the
-   * selection is shown inside the input, not as pills.
-   */
-  PILL_TEST_SUBJ: 'euiComboBoxPill',
-
-  /**
-   * CSS selector for selected option pills.
+   * CSS selector for selected option pills. Only present in non-`asPlainText`
+   * mode — in `asPlainText` mode the selection is shown inside the input, not
+   * as pills.
    *
-   * Prefer this over {@link PILL_TEST_SUBJ} for reads: EUI spreads an option's
+   * Read pills by this class, not by `data-test-subj`: EUI spreads an option's
    * own `data-test-subj` onto its pill *after* the pill's default
    * `data-test-subj="euiComboBoxPill"`, so a combo that stamps a per-option
    * `data-test-subj` overrides it and a test-subj lookup finds nothing. The
