@@ -166,19 +166,6 @@ ruleTester.run(
         code: dedent`
         const MyComponent = () => (
           <EuiCallOut title="Callout title">
-            <>
-              <p>Fragment wrapped text.</p>
-            </>
-          </EuiCallOut>
-        )
-      `,
-        languageOptions,
-        errors: [{ messageId: 'childrenHaveText', data: { elementName: 'p' } }],
-      },
-      {
-        code: dedent`
-        const MyComponent = () => (
-          <EuiCallOut title="Callout title">
             Some plain text content.
           </EuiCallOut>
         )
@@ -401,7 +388,7 @@ ruleTester.run(
           },
         ],
       },
-      // EuiFlexGrid is a transparent layout wrapper, traverse its children
+      // Fragments
       {
         code: dedent`
         const MyComponent = () => (
@@ -426,7 +413,19 @@ ruleTester.run(
           },
         ],
       },
-      // React.Fragment (named form) — children must be traversed
+      {
+        code: dedent`
+        const MyComponent = () => (
+          <EuiCallOut title="Callout title">
+            <>
+              <p>Fragment wrapped text.</p>
+            </>
+          </EuiCallOut>
+        )
+      `,
+        languageOptions,
+        errors: [{ messageId: 'childrenHaveText', data: { elementName: 'p' } }],
+      },
       {
         code: dedent`
         const MyComponent = () => (
@@ -434,6 +433,19 @@ ruleTester.run(
             <React.Fragment>
               <p>Fragment wrapped text.</p>
             </React.Fragment>
+          </EuiCallOut>
+        )
+      `,
+        languageOptions,
+        errors: [{ messageId: 'childrenHaveText', data: { elementName: 'p' } }],
+      },
+      {
+        code: dedent`
+        const MyComponent = () => (
+          <EuiCallOut title="Callout title">
+            <Fragment>
+              <p>Fragment wrapped text.</p>
+            </Fragment>
           </EuiCallOut>
         )
       `,

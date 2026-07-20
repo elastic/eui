@@ -38,7 +38,7 @@ const EUI_ACTION_COMPONENTS = new Set(
 );
 
 // Layout container components that should be traversed for text/action elements.
-const LAYOUT_CONTAINERS = new Set(['EuiFlexGroup', 'EuiFlexGrid', 'EuiFlexItem', 'div']);
+const LAYOUT_CONTAINERS = new Set(['Fragment', 'EuiFlexGroup', 'EuiFlexGrid', 'EuiFlexItem', 'div']);
 
 type RuleContext = Parameters<
   Parameters<typeof ESLintUtils.RuleCreator.withoutDocs>[0]['create']
