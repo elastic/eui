@@ -1,3 +1,13 @@
+## [`v2.14.1`](https://github.com/elastic/eui/releases/tag/%40elastic%2Feslint-plugin-eui%402.14.1)
+
+**Bug fixes**
+
+- Fixed ESLint failing to load `@elastic/eslint-plugin-eui` by moving its runtime dependencies (`cssstyle`, `micromatch`, `@typescript-eslint/utils` and `@typescript-eslint/typescript-estree`) from `devDependencies` to `dependencies` ([#9804](https://github.com/elastic/eui/pull/9804))
+
+**Dependency updates**
+
+- Updated `@typescript-eslint/*` packages from `8.31.1` to `8.64.0` ([#9804](https://github.com/elastic/eui/pull/9804))
+
 ## [`v2.14.0`](https://github.com/elastic/eui/releases/v2.14.0)
 
 - Removed auto-fix from `tooltip-button-icon-wrap` rule ([#9695](https://github.com/elastic/eui/pull/9695))

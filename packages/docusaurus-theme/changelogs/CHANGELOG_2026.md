@@ -1,3 +1,12 @@
+## [`v2.6.0`](https://github.com/elastic/eui/releases/v2.6.0)
+
+- Updated `icon_map.ts` to centralise all available icons in a single file, with optional metadata like synonyms and categories alongside each icon reference. ([#9675](https://github.com/elastic/eui/pull/9675))
+- Removed redundant static icon type files: `icon_types.ts`, `icon_types_apps.ts`, `icon_types_logos.ts`, `icon_types_ml.ts`, `icon_types_tokens.ts`. ([#9675](https://github.com/elastic/eui/pull/9675))
+
+**Accessibility**
+
+- Adding synonyms to each icon improves discoverability and search experience when looking for specific icons. ([#9675](https://github.com/elastic/eui/pull/9675))
+
 ## [`v2.5.0`](https://github.com/elastic/eui/releases/v2.5.0)
 
 - Wrapped the documentation heading anchor link `EuiButtonIcon` in an `EuiToolTip` instead of using the native `title` attribute ([#9771](https://github.com/elastic/eui/pull/9771))
