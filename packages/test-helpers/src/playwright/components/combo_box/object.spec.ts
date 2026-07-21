@@ -95,34 +95,19 @@ test.describe('EuiComboBoxObject', () => {
 });
 
 test.describe('EuiComboBoxObject component-type guard', () => {
-  // Every public method must reject when pointed at the wrong element. Add new
-  // public methods here so they're covered too.
-  const PUBLIC_METHODS = [
-    'setSelectedOptions',
-    'setCustomSelectedOptions',
-    'getSelectedOptions',
-    'getAllVisibleOptions',
-    'clear',
-  ] as const;
+  // The guard runs before every public method (via BaseObject's Proxy), so any
+  // call on a wrong target rejects. `comboBoxSearchInput` exists on the page but
+  // is the inner input, not the outer `.euiComboBox` root — a different element
+  // sharing a `data-test-subj`. (The guard mechanism itself is covered in
+  // base_object.spec.ts.)
+  test('rejects a non-EuiComboBox target', async ({ page }) => {
+    await page.goto(PLAYGROUND_URL);
+    await page.getByTestId('comboBoxSearchInput').waitFor({ state: 'visible' });
 
-  // The guard runs first in each method, so the call rejects before it reads its
-  // arguments — calling with none is fine. `comboBoxSearchInput` exists on the
-  // page but is the inner input, not the outer `.euiComboBox` root: it stands in
-  // for pointing the helper at a different component that shares a `data-test-subj`.
-  for (const method of PUBLIC_METHODS) {
-    test(`${method} throws when the data-test-subj is not an EuiComboBox`, async ({
-      page,
-    }) => {
-      await page.goto(PLAYGROUND_URL);
-      await page
-        .getByTestId('comboBoxSearchInput')
-        .waitFor({ state: 'visible' });
+    const comboBox = new EuiComboBoxObject(page, 'comboBoxSearchInput');
 
-      const wrongTarget = new EuiComboBoxObject(page, 'comboBoxSearchInput');
-
-      await expect(
-        (wrongTarget[method] as () => Promise<unknown>)()
-      ).rejects.toThrow(/Are you using the right Component Object/i);
-    });
-  }
+    await expect(comboBox.getSelectedOptions()).rejects.toThrow(
+      /Are you using the right Component Object/i
+    );
+  });
 });

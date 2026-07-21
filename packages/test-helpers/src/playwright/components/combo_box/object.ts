@@ -41,7 +41,6 @@ export class EuiComboBoxObject extends BaseObject {
     labels: string[],
     { timeout = 2_500 }: { timeout?: number } = {}
   ): Promise<void> {
-    await this.assertComponent();
     // Dedupe while preserving order.
     const targetLabels = [...new Set(labels)];
     // `[...arr].sort()` (not `arr.sort()`) — sort mutates in place; the copy
@@ -86,7 +85,6 @@ export class EuiComboBoxObject extends BaseObject {
     labels: string[],
     { timeout = 2_500 }: { timeout?: number } = {}
   ): Promise<void> {
-    await this.assertComponent();
     for (const label of labels) {
       await this.input.click();
       await this.searchInput.fill(label);
@@ -106,7 +104,6 @@ export class EuiComboBoxObject extends BaseObject {
    * guaranteed to be every option.
    */
   async getAllVisibleOptions(): Promise<string[]> {
-    await this.assertComponent();
     await this.input.click();
     const optionsList = this.root
       .page()
@@ -128,7 +125,6 @@ export class EuiComboBoxObject extends BaseObject {
    * options list).
    */
   async clear(): Promise<void> {
-    await this.assertComponent();
     if ((await this.getSelectedOptions()).length === 0) {
       return;
     }
@@ -155,7 +151,6 @@ export class EuiComboBoxObject extends BaseObject {
    * - Nothing selected → `[]`.
    */
   async getSelectedOptions(): Promise<string[]> {
-    await this.assertComponent();
     if (await this.hasPills()) {
       return this.pills.allInnerTexts();
     }

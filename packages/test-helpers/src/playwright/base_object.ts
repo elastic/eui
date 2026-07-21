@@ -48,6 +48,31 @@ export abstract class BaseObject {
     this.root = this.scope.getByTestId(testSubj);
     this.testSubj = testSubj;
     this.componentSelector = componentSelector;
+
+    // Run assertComponent before every public method. This is the guard we'd
+    // want in the constructor, but it's async and constructors can't be, so a
+    // Proxy applies it lazily per call. Methods are invoked with `target` (not
+    // the proxy) as `this`, so internal/private calls don't re-enter the trap.
+    return new Proxy(this, {
+      get(target, prop) {
+        const value = Reflect.get(target, prop, target);
+        const isGuardable =
+          typeof value === 'function' &&
+          typeof prop === 'string' &&
+          prop !== 'constructor' &&
+          prop !== 'assertComponent' &&
+          !(prop in Object.prototype);
+
+        if (!isGuardable) {
+          return value;
+        }
+
+        return async (...args: unknown[]) => {
+          await target.assertComponent();
+          return (value as (...a: unknown[]) => unknown).apply(target, args);
+        };
+      },
+    });
   }
 
   /**
@@ -60,9 +85,10 @@ export abstract class BaseObject {
 
   /**
    * Throw if the element at `testSubj` isn't this component (a `data-test-subj`
-   * isn't unique to a component type). Call at the top of public methods.
-   * Memoized and lazy — runs once per instance, not in the constructor, so it
-   * doesn't race initial render. No-op without a `componentSelector`.
+   * isn't unique to a component type). Run automatically before every public
+   * method via the constructor's Proxy. Memoized and lazy — runs once per
+   * instance, not in the constructor, so it doesn't race initial render. No-op
+   * without a `componentSelector`.
    */
   protected async assertComponent(): Promise<void> {
     if (this.componentVerified || !this.componentSelector) {
