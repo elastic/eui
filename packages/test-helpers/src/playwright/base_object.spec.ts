@@ -10,40 +10,54 @@ import { test, expect } from '@playwright/test';
 
 import { BaseObject, type ObjectScope } from './base_object';
 
-// Concrete subclass that requires a component selector so the guard is active.
-// `assertComponent` is protected, so expose it for the test.
+// `asyncMethod` deliberately does NOT call the guard itself, so its behavior
+// proves the Proxy applies it. `syncMethod` proves sync methods pass through
+// unguarded (and keep their sync return type).
 class TestObject extends BaseObject {
   constructor(scope: ObjectScope, testSubj: string, componentSelector: string) {
     super(scope, testSubj, componentSelector);
   }
 
-  verifyComponent(): Promise<void> {
-    return this.assertComponent();
+  async asyncMethod(): Promise<string> {
+    return 'ran';
+  }
+
+  syncMethod(): string {
+    return 'sync';
   }
 }
 
 test.describe('BaseObject component-type guard', () => {
-  test('rejects an element that does not match the component selector', async ({
+  test('the Proxy guards async methods that do not call the guard themselves', async ({
     page,
   }) => {
     await page.setContent('<div data-test-subj="target"></div>');
 
     const object = new TestObject(page, 'target', '.euiComboBox');
 
-    await expect(object.verifyComponent()).rejects.toThrow(
+    await expect(object.asyncMethod()).rejects.toThrow(
       /Are you using the right Component Object/i
     );
   });
 
-  test('resolves when the element matches the component selector', async ({
-    page,
-  }) => {
+  test('async methods run once the element matches', async ({ page }) => {
     await page.setContent(
       '<div class="euiComboBox" data-test-subj="target"></div>'
     );
 
     const object = new TestObject(page, 'target', '.euiComboBox');
 
-    await expect(object.verifyComponent()).resolves.toBeUndefined();
+    await expect(object.asyncMethod()).resolves.toBe('ran');
+  });
+
+  test('sync methods pass through unguarded (keep their sync return)', async ({
+    page,
+  }) => {
+    await page.setContent('<div data-test-subj="target"></div>');
+
+    const object = new TestObject(page, 'target', '.euiComboBox');
+
+    // No await, no reject — returns synchronously despite the wrong element.
+    expect(object.syncMethod()).toBe('sync');
   });
 });
