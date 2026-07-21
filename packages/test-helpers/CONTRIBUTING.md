@@ -108,14 +108,3 @@ yarn workspace @elastic/eui-test-helpers show-report
 These tests run in EUI's Buildkite CI on every PR, with flake detection when a component changes. See [Testing → EUI test helpers](../../wiki/contributing-to-eui/testing/eui-test-helpers.md) in the wiki.
 
 Flake detection correlates a component to its helper **by directory name**: a change under `packages/eui/src/components/<name>` re-runs the specs in `src/playwright/components/<name>`. Keep that directory parity when adding a Component Object and no extra wiring is needed.
-
-## Rolling out a helper change to a consumer (e.g. Kibana)
-
-Adding or changing a helper method usually needs a matching change in a consumer repo that uses it. Because the consumer's CI can only install a **published** version, work the two PRs in parallel and validate locally before releasing — never release blind and fix the consumer afterwards.
-
-1. **Open both PRs together.** One here (the helper change), one in the consumer (adopting it).
-2. **Point the consumer at your local helper.** In the consumer's `package.json`, temporarily depend on this package via a local path (`link:` / `file:`) instead of the registry version. The consumer's CI **cannot** resolve that, so its CI won't validate the change — that's expected.
-   - Gotcha: a `link:` symlink makes the helper resolve its **own** copy of `@playwright/test`, and Playwright refuses to load twice (`Requiring @playwright/test second time`). For local runtime runs, install a packed tarball instead — `npm pack` this package and depend on the resulting `file:<tarball>`; it installs as a real package with no bundled playwright, so it resolves the consumer's single copy, exactly like a published install.
-3. **Run ALL affected consumer tests locally and confirm they pass.** This is the real gate — since CI can't run the local dependency, local runs are the only proof the helper behaves correctly end to end before it ships. Cover every method and mode the change touches.
-4. **Only then release the helper** (merge this PR, publish the new version).
-5. **Flip the consumer PR to the released version.** Swap the local path for the published version so the consumer's CI validates it for real, then merge.

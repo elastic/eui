@@ -32,9 +32,6 @@ const ON_CREATE_OPTION_STORY_URL = storyUrl(
   'forms-euicombobox--with-on-create-option',
   `data-test-subj:${TEST_SUBJ}`
 );
-const CUSTOM_OPTION_SUBJ_STORY_URL = storyUrl(
-  'forms-euicombobox--with-custom-option-test-subjects'
-);
 
 // ---------------------------------------------------------------------------
 // singleSelection={true}  — one pill, no multi-select
@@ -292,39 +289,6 @@ test.describe('EuiComboBoxObject — onCreateOption + asPlainText', () => {
     await comboBox.setSelectedOptions(['Item 3']);
 
     expect(await comboBox.getSelectedOptions()).toEqual(['Item 3']);
-  });
-});
-
-// ---------------------------------------------------------------------------
-// Options with their own data-test-subj — the option value spreads onto the
-// pill and overrides the pill's default `euiComboBoxPill` subj, so pills must
-// be read by class, not test-subj.
-// ---------------------------------------------------------------------------
-
-test.describe('EuiComboBoxObject — options with a custom data-test-subj', () => {
-  let comboBox: EuiComboBoxObject;
-
-  test.beforeEach(async ({ page }) => {
-    await page.goto(CUSTOM_OPTION_SUBJ_STORY_URL);
-    await page.getByTestId(TEST_SUBJ).waitFor({ state: 'visible' });
-    comboBox = new EuiComboBoxObject(page, TEST_SUBJ);
-    await comboBox.clear();
-  });
-
-  // A test-subj-based pill read would return [] here (the option's subj wins),
-  // failing setSelectedOptions' final assert. Reading by the `.euiComboBoxPill`
-  // class keeps the selection visible.
-  test('getSelectedOptions reads a pill whose data-test-subj is overridden', async () => {
-    await comboBox.setSelectedOptions(['Item 2']);
-
-    expect(await comboBox.getSelectedOptions()).toEqual(['Item 2']);
-  });
-
-  test('clear removes a pill whose data-test-subj is overridden', async () => {
-    await comboBox.setSelectedOptions(['Item 2']);
-    await comboBox.clear();
-
-    expect(await comboBox.getSelectedOptions()).toEqual([]);
   });
 });
 

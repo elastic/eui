@@ -77,14 +77,10 @@ export class EuiComboBoxObject extends BaseObject {
   }
 
   /**
-   * Set free-text values on an `onCreateOption` combo box (tags, custom field
-   * names, date formats) — values that don't pre-exist as selectable options.
-   * Each label is typed and committed via `onCreateOption` (Enter), then the
-   * selection is verified so a silently-rejected value fails loudly.
-   *
-   * Distinct from {@link setSelectedOptions}: this **creates a custom selection**,
-   * it does not pick an existing option — the value won't appear in the
-   * available-options list afterwards.
+   * Set free-text values on an `onCreateOption` combo box by typing and
+   * committing each with Enter, then verifying it was accepted. Unlike
+   * {@link setSelectedOptions}, this creates values rather than picking
+   * existing options.
    */
   async setCustomSelectedOptions(
     labels: string[],
@@ -97,26 +93,24 @@ export class EuiComboBoxObject extends BaseObject {
       await this.searchInput.press('Enter');
       await this.searchInput.blur();
     }
-    // The typed value equals the resulting pill/input label, so an exact
-    // membership check is safe (unlike a filter-and-pick selection).
+    // The typed value equals the resulting pill/input label, so membership is
+    // an exact check.
     for (const label of labels) {
       await expect.poll(() => this.getSelectedOptions(), { timeout }).toContain(label);
     }
   }
 
   /**
-   * Open the dropdown and return the labels of the currently-available options.
-   * For tests asserting on the option list itself (e.g. no duplicate names,
-   * options are populated) rather than on the current selection.
+   * Open the dropdown and return the labels of the currently visible options.
+   * Virtualized lists mount only a subset, so this is the visible slice — not
+   * guaranteed to be every option.
    */
-  async getAvailableOptions(): Promise<string[]> {
+  async getAllVisibleOptions(): Promise<string[]> {
     await this.assertComponent();
     await this.input.click();
     const optionsList = this.root
       .page()
       .locator(EuiComboBoxSelectors.optionsListFor(this.testSubj));
-    // Wait for the dropdown container (not a specific option count) so this
-    // doesn't burn the timeout when a combo legitimately has no options.
     await optionsList.waitFor({ state: 'visible' });
     return optionsList.getByRole('option').allInnerTexts();
   }
@@ -155,14 +149,9 @@ export class EuiComboBoxObject extends BaseObject {
   /**
    * Currently selected option labels.
    *
-   * Pills are read by the `.euiComboBoxPill` class (see {@link pills}) so combos
-   * that stamp a per-option `data-test-subj` are read correctly.
-   *
    * - Multi-select / `singleSelection=true` → pill texts.
-   * - `singleSelection={{ asPlainText: true }}` → the input value. EUI
-   *   renders no pills in this mode; the input IS the selection display.
-   *   Works correctly with both `isClearable=true` (default) and
-   *   `isClearable=false`.
+   * - `singleSelection={{ asPlainText: true }}` → the input value (EUI renders
+   *   no pills in this mode).
    * - Nothing selected → `[]`.
    */
   async getSelectedOptions(): Promise<string[]> {
@@ -223,13 +212,11 @@ export class EuiComboBoxObject extends BaseObject {
     // inner `comboBoxInput` element does.
     await this.input.click();
 
-    // Type to filter so the option is present in the DOM even for filterable /
-    // virtualized / suggestion-backed combos — the list may not render the
-    // target until the search narrows to it. While filtering, EUI
-    // middle-truncates the visible option text and drops its `title`, but the
-    // accessible name keeps the full label, so match by role name (a poll waits
-    // out async/server-side filtering). The options list is a portal outside
-    // `this.root`, so locate it from page level.
+    // Type to filter, then match the option by accessible name. Substring match
+    // (not exact): while filtering, EUI middle-truncates the option text, so the
+    // accessible name isn't the literal label. The list renders in a portal
+    // outside `this.root`, so locate it from page level; the poll waits out async
+    // filtering.
     await this.searchInput.fill(label);
     const option = this.root
       .page()
@@ -239,8 +226,8 @@ export class EuiComboBoxObject extends BaseObject {
     if ((await option.count()) === 1) {
       await option.click();
     } else {
-      // Duplicate label / multiple substring matches — keyboard-select the
-      // highlighted match.
+      // Substring can match several (e.g. "Item 1" also matches "Item 10") —
+      // keyboard-select the highlighted match.
       await this.searchInput.press('ArrowDown');
       await this.searchInput.press('Enter');
     }
@@ -295,10 +282,6 @@ export class EuiComboBoxObject extends BaseObject {
   }
 
   private get pills(): Locator {
-    // Read by class, not `data-test-subj`: EUI spreads an option's own
-    // `data-test-subj` onto its pill after the pill default, so a combo that
-    // stamps a per-option subj overrides `euiComboBoxPill` and a test-subj
-    // lookup returns nothing. The class is always present.
     return this.root.locator(EuiComboBoxSelectors.PILL_SELECTOR);
   }
 

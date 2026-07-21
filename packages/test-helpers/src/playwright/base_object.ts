@@ -36,10 +36,8 @@ export abstract class BaseObject {
   protected readonly testSubj: string;
 
   /**
-   * CSS selector the resolved root element must match to be this component
-   * (e.g. `.euiComboBox`). Optional — when a subclass sets it,
-   * {@link assertComponent} guards against pointing the wrong Component Object
-   * at an element that merely shares a `data-test-subj`.
+   * CSS selector the root must match to be this component (e.g. `.euiComboBox`).
+   * When set, {@link assertComponent} enforces it.
    */
   protected readonly componentSelector?: string;
 
@@ -61,22 +59,17 @@ export abstract class BaseObject {
   }
 
   /**
-   * Guard that the element at `testSubj` really is this component. A
-   * `data-test-subj` alone is not unique to a component type, so without this a
-   * Component Object would silently operate on the wrong element (e.g. an
-   * `EuiSelectable` that happens to share the subj). Subclasses that pass a
-   * `componentSelector` should call this at the top of their public methods.
-   *
-   * Runs at most once per instance, lazily (not in the constructor, so it
-   * doesn't race the component's initial render). No-op when no
-   * `componentSelector` was provided.
+   * Throw if the element at `testSubj` isn't this component (a `data-test-subj`
+   * isn't unique to a component type). Call at the top of public methods.
+   * Memoized and lazy — runs once per instance, not in the constructor, so it
+   * doesn't race initial render. No-op without a `componentSelector`.
    */
   protected async assertComponent(): Promise<void> {
     if (this.componentVerified || !this.componentSelector) {
       return;
     }
-    // Wait for the element to exist before checking its type, so the guard
-    // doesn't false-fail when a caller acts before the component has rendered.
+    // Wait for the element before checking its type, so the guard doesn't
+    // false-fail when a caller acts before render.
     await this.root.first().waitFor({ state: 'attached' });
     const matches = await this.root
       .and(this.scope.locator(this.componentSelector))

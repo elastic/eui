@@ -85,9 +85,9 @@ test.describe('EuiComboBoxObject', () => {
     });
   });
 
-  test.describe('getAvailableOptions', () => {
-    test('returns the available option labels', async () => {
-      const options = await comboBox.getAvailableOptions();
+  test.describe('getAllVisibleOptions', () => {
+    test('returns the visible option labels', async () => {
+      const options = await comboBox.getAllVisibleOptions();
       expect(options).toContain('Item 1');
       expect(options).toContain('Item 5');
     });
@@ -101,7 +101,7 @@ test.describe('EuiComboBoxObject component-type guard', () => {
     'setSelectedOptions',
     'setCustomSelectedOptions',
     'getSelectedOptions',
-    'getAvailableOptions',
+    'getAllVisibleOptions',
     'clear',
   ] as const;
 
