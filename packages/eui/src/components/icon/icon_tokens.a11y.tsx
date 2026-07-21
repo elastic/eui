@@ -68,6 +68,7 @@ describe('EuiIcons', () => {
       'tokenText',
       'tokenTokenCount',
       'tokenVariable',
+      'tokenVectorDense',
     ];
 
     const TokenGrid = () => (
@@ -82,7 +83,7 @@ describe('EuiIcons', () => {
       cy.mount(<TokenGrid />);
       cy.get('div[data-cy-root]')
         .find('svg', { timeout: 5000 })
-        .should('have.length', 52);
+        .should('have.length', 53);
       cy.checkAxe();
     });
   });
