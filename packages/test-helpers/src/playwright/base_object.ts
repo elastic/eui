@@ -49,10 +49,9 @@ export abstract class BaseObject {
     this.testSubj = testSubj;
     this.componentSelector = componentSelector;
 
-    // Run assertComponent before every public method. This is the guard we'd
-    // want in the constructor, but it's async and constructors can't be, so a
-    // Proxy applies it lazily per call. Methods are invoked with `target` (not
-    // the proxy) as `this`, so internal/private calls don't re-enter the trap.
+    // Guard every public method. A constructor can't be async, so instead of
+    // checking there, a Proxy awaits assertComponent() before each call.
+    // Methods run with `target` as `this`, so internal calls don't re-guard.
     return new Proxy(this, {
       get(target, prop) {
         const value = Reflect.get(target, prop, target);

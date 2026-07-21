@@ -95,11 +95,9 @@ test.describe('EuiComboBoxObject', () => {
 });
 
 test.describe('EuiComboBoxObject component-type guard', () => {
-  // The guard runs before every public method (via BaseObject's Proxy), so any
-  // call on a wrong target rejects. `comboBoxSearchInput` exists on the page but
-  // is the inner input, not the outer `.euiComboBox` root — a different element
-  // sharing a `data-test-subj`. (The guard mechanism itself is covered in
-  // base_object.spec.ts.)
+  // Wiring test: a real method on a wrong target rejects. `comboBoxSearchInput`
+  // is the inner input, not the `.euiComboBox` root. (Guard mechanism itself is
+  // unit-tested in base_object.spec.ts.)
   test('rejects a non-EuiComboBox target', async ({ page }) => {
     await page.goto(PLAYGROUND_URL);
     await page.getByTestId('comboBoxSearchInput').waitFor({ state: 'visible' });
