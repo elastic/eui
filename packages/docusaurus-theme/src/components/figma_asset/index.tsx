@@ -33,10 +33,11 @@ export type FigmaAssetProps = CommonProps &
 
 const getFigmaAssetStyles = (euiTheme: UseEuiTheme) => ({
   wrapper: css`
-    border: 1px solid ${euiTheme.euiTheme.colors.lightShade};
+    border: 1px solid ${euiTheme.euiTheme.colors.borderBasePlain};
     border-radius: ${euiTheme.euiTheme.size.s};
     margin: ${euiTheme.euiTheme.size.xl} 0;
     overflow: hidden;
+    background-color:${euiTheme.euiTheme.colors.backgroundLightText};
   `,
   iframe: css`
     border-radius: ${euiTheme.euiTheme.size.s};
