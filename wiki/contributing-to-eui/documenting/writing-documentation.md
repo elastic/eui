@@ -41,7 +41,7 @@ Files and folder names must use [kebab-case](https://developer.mozilla.org/en-US
 There are a few React components that can be used in `.mdx` files without being imported. They are part of the [MDX scope](https://docusaurus.io/docs/next/markdown-features/react/#mdx-component-scope). Some of them, documented below, are:
 
 - [`Demo`](#demo-props)
-- [`FigmaEmbed`](#figma-embed)
+- [`FigmaAsset`](#figma-asset)
 - [`Guideline`](#guideline-props)
 - [`PropTable`](#props-table)
 
@@ -354,13 +354,38 @@ For dos and don'ts sections there's a `Guideline` component with the appropriate
 - `panelPadding` (optional) - To adjust the padding of the panel
 - `panelStyle` (optional) - To further customize the panel styles
 
-### Figma embed
+### Figma asset
 
-It's possible to embed a Figma file right into a page. The `FigmaEmbed` component accepts a `url` from a Figma file and a `title`:
+Use `FigmaAsset` to show a Figma design in docs. By default it renders a static WebP image. Pass `type="embed"` to show an interactive Figma iframe instead.
+
+**Image (default)** — import a colocated WebP from an `assets/` folder next to the page:
 
 ```mdx
-<FigmaEmbed url="https://www.figma.com/file/Uo8i…DX-0" title="Title of the embed" />
+import confirmationModal from './assets/modal_confirming-an-action.webp';
+
+<FigmaAsset
+  url="https://www.figma.com/file/Uo8i…DX-0"
+  src={confirmationModal}
+  title="Title of the asset"
+/>
 ```
+
+**Embed** — interactive iframe from the Figma `url`:
+
+```mdx
+<FigmaAsset
+  type="embed"
+  url="https://www.figma.com/file/Uo8i…DX-0"
+  title="Title of the embed"
+/>
+```
+
+| Prop | Description |
+| ---- | ----------- |
+| `url` | Figma file/node URL (used for embed; kept as source reference for images) |
+| `src` | Imported WebP URL (required when `type` is `"image"`) |
+| `type` | `"image"` (default) or `"embed"` |
+| `title` | Accessible title / alt text |
 
 ### Props table
 
