@@ -15,22 +15,16 @@ export const EuiComboBoxSelectors = {
   /** Root element (outer `.euiComboBox` wrapper carrying the consumer's `data-test-subj`). */
   ROOT_SELECTOR: '.euiComboBox',
 
-  /** Inner input wrapper. */
   INPUT_WRAPPER_TEST_SUBJ: 'comboBoxInput',
 
-  /** Search input field. */
   SEARCH_INPUT_TEST_SUBJ: 'comboBoxSearchInput',
 
-  /** Options list. */
   OPTIONS_LIST_TEST_SUBJ: 'comboBoxOptionsList',
 
-  /** Options list toggle button. */
   OPTIONS_LIST_TOGGLE_BUTTON_TEST_SUBJ: 'comboBoxToggleListButton',
 
-  /** Clear button. */
   CLEAR_BUTTON_TEST_SUBJ: 'comboBoxClearButton',
 
-  /** Input wrapper in `singleSelection={{ asPlainText: true }}` mode (no pills). */
   PLAIN_TEXT_INPUT_WRAP_SELECTOR: '.euiComboBox__inputWrap--plainText',
 
   /**
