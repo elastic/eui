@@ -76,6 +76,18 @@ import { css } from '@emotion/react';
       </EuiTableRowCell>
     </EuiTableRow>
     <EuiTableRow>
+      <EuiTableRowCell>ES modules</EuiTableRowCell>
+      <EuiTableRowCell align="center">✅</EuiTableRowCell>
+      <EuiTableRowCell>Fully supported (required)</EuiTableRowCell>
+    </EuiTableRow>
+    <EuiTableRow>
+      <EuiTableRowCell>CommonJS</EuiTableRowCell>
+      <EuiTableRowCell align="center">❌</EuiTableRowCell>
+      <EuiTableRowCell>
+        Runtime support ended after EUI v117.x. The Jest-only <code>test-env</code> build remains CommonJS.
+      </EuiTableRowCell>
+    </EuiTableRow>
+    <EuiTableRow>
       <EuiTableRowCell>Strict Mode</EuiTableRowCell>
       <EuiTableRowCell align="center">❌</EuiTableRowCell>
       <EuiTableRowCell>
