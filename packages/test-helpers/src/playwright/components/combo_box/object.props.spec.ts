@@ -297,8 +297,8 @@ test.describe('EuiComboBoxObject — onCreateOption + asPlainText', () => {
 });
 
 // ---------------------------------------------------------------------------
-// Truncated options — EUI middle-truncates long option labels while filtering,
-// but keeps the full text in the DOM, so the anchored-text match still works.
+// Truncated options — EUI truncates long option labels while filtering, so there
+// is no exact text match; the matcher falls back to keyboard-selecting the option.
 // ---------------------------------------------------------------------------
 
 test.describe('EuiComboBoxObject — truncated options', () => {

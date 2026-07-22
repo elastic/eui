@@ -44,7 +44,7 @@ test.describe('EuiComboBoxObject', () => {
     });
 
     test('selects the exact label when it is a prefix of another option', async () => {
-      // "Item 1" is a prefix of "Item 10"; the anchored match must pick "Item 1".
+      // "Item 1" is a prefix of "Item 10"; must pick "Item 1", not "Item 10".
       await comboBox.setSelectedOptions(['Item 1']);
 
       expect(await comboBox.getSelectedOptions()).toEqual(['Item 1']);

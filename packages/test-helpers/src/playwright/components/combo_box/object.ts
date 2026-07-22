@@ -215,13 +215,10 @@ export class EuiComboBoxObject extends BaseObject {
       .getByRole('option');
     await expect.poll(() => options.count(), { timeout }).toBeGreaterThan(0);
 
-    // Match on each option's *full* text so "ip" doesn't select "clientip".
-    // Compare the whole option (not a sub-element): while filtering, EUI wraps the
-    // matched substring in `<mark>`, so a text-node lookup for the label would also
-    // match the highlighted part inside a longer option. When EUI has
-    // asynchronously truncated the option text, there's no exact match — fall back
-    // to keyboard-selecting the highlighted option, which is safe because typing
-    // the full label has already filtered the list to the intended option.
+    // Match on each option's full text so "ip" doesn't select "clientip" (EUI
+    // wraps the matched substring in `<mark>` while filtering, so a text-node
+    // lookup would match inside a longer option). If the text is truncated and
+    // has no exact match, fall back to keyboard-selecting the highlighted option.
     const trimmed = label.trim();
     const texts = await options.allInnerTexts();
     const exactIndex = texts.findIndex((text) => text.trim() === trimmed);
