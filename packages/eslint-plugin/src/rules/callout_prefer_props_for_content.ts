@@ -7,59 +7,33 @@
  */
 
 import { type TSESTree, ESLintUtils } from '@typescript-eslint/utils';
+import { type RuleContext } from '@typescript-eslint/utils/ts-eslint';
 
-import { INTERACTIVE_EUI_COMPONENTS } from '../utils/constants';
+import {
+  INTERACTIVE_EUI_COMPONENTS,
+  HTML_TEXT_ELEMENTS,
+  EUI_TEXT_COMPONENTS,
+  HTML_ACTION_ELEMENTS,
+  CALLOUT_LAYOUT_CONTAINERS,
+} from '../utils/constants';
+import { getElementName } from '../utils/get_element_name';
 
 const COMPONENT_NAME = 'EuiCallOut';
 
-const HTML_TEXT_ELEMENTS = new Set([
-  'p',
-  'span',
-  'strong',
-  'em',
-  'b',
-  'i',
-  'small',
-  'code',
-]);
-const EUI_TEXT_COMPONENTS = new Set([
-  'EuiText',
-  'EuiTextColor',
-  'EuiTextAlign',
-  'EuiCode',
-  'EuiMark',
-  'EuiHighlight',
-]);
-const HTML_ACTION_ELEMENTS = new Set(['button', 'a']);
 const EUI_ACTION_COMPONENTS = new Set(
   INTERACTIVE_EUI_COMPONENTS.filter(
     (c) => c.startsWith('EuiButton') || c === 'EuiLink'
   )
 );
 
-// Layout container components that should be traversed for text/action elements.
-const LAYOUT_CONTAINERS = new Set(['Fragment', 'EuiFlexGroup', 'EuiFlexGrid', 'EuiFlexItem', 'div']);
-
-type RuleContext = Parameters<
-  Parameters<typeof ESLintUtils.RuleCreator.withoutDocs>[0]['create']
->[0];
-
-function getElementName(
-  openingElement: TSESTree.JSXOpeningElement
-): string | null {
-  const { name } = openingElement;
-
-  if (name.type === 'JSXIdentifier') return name.name;
-
-  return null;
-}
+type MessageIds = 'childrenHavePlainText' | 'childrenHaveText' | 'childrenHaveActions';
 
 /**
  * Recursively checks a node for text or action elements that should not be in EuiCallOut children.
  * It unwraps fragments, layout containers, conditional expressions, and logical expressions.
  * It does NOT traverse into custom/complex component children.
  */
-function checkNode(node: TSESTree.Node, context: RuleContext): void {
+function checkNode(node: TSESTree.Node, context: RuleContext<MessageIds, []>): void {
   switch (node.type) {
     case 'JSXText': {
       // Plain string content
@@ -115,7 +89,7 @@ function checkNode(node: TSESTree.Node, context: RuleContext): void {
           messageId: 'childrenHaveActions',
           data: { elementName },
         });
-      } else if (LAYOUT_CONTAINERS.has(elementName)) {
+      } else if (CALLOUT_LAYOUT_CONTAINERS.has(elementName)) {
         // Transparent layout wrapper, traverse its children
         for (const child of el.children) {
           checkNode(child, context);
