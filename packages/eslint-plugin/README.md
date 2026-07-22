@@ -157,6 +157,44 @@ Ensure that all radio input components (`EuiRadio`, `EuiRadioGroup`) have a `nam
 
 Ensure that `EuiCallOut` components rendered conditionally have the `announceOnMount` prop for better accessibility. When callouts appear dynamically (e.g., after user interactions, form validation errors, or status changes), screen readers may not announce their content to users. The `announceOnMount` prop ensures these messages are properly announced to users with assistive technologies.
 
+### `@elastic/eui/callout-prefer-props-for-content`
+
+Enforce correct usage of `EuiCallOut` `text` and `actionProps` props and discourage using `children` for content.
+
+`EuiCallOut` accepts dedicated `text` and `actionProps` props introduced to standardize callout content:
+
+- **Text content** (plain text, `<p>`, `<span>`, `<strong>`, etc. or EUI text components like `EuiText`) should be passed via the `text` prop.
+- **Action elements** (buttons and non-inline links) should be passed via `actionProps`, which renders standardized primary and secondary action buttons.
+
+The rule warns (rather than errors) to allow incremental migration from the `children` pattern.
+
+#### Examples
+
+```tsx
+// ✗ Flagged — text content via children
+<EuiCallOut title="Title">
+  <p>Callout body text.</p>
+</EuiCallOut>
+
+// ✓ Good
+<EuiCallOut title="Title" text={<p>Callout body text.</p>} />
+```
+
+```tsx
+// ✗ Flagged — action button via children
+<EuiCallOut title="Title">
+  <EuiButton onClick={onClick}>Take action</EuiButton>
+</EuiCallOut>
+
+// ✓ Good
+<EuiCallOut
+  title="Title"
+  actionProps={{ primary: { children: 'Take action', onClick: onClick } }}
+/>
+```
+
+The rule traverses fragments (`<>`, `<React.Fragment>`, `<Fragment>`), layout containers (`EuiFlexGroup`, `EuiFlexGrid`, `EuiFlexItem`, `div`), and conditional/logical expressions. It does not traverse custom component children, since their content cannot be statically analyzed.
+
 ### `@elastic/eui/no-unnamed-interactive-element`
 
 Ensure that appropriate aria-attributes are set for `EuiBetaBadge`, `EuiButtonIcon`, `EuiComboBox`, `EuiSelect`, `EuiSelectWithWidth`,`EuiSuperSelect`,`EuiPagination`, `EuiTreeView`, `EuiBreadcrumbs`. Without this rule, screen reader users lose context, keyboard navigation can be confusing.
