@@ -65,14 +65,21 @@ export class EuiComboBoxObject extends BaseObject {
       await this.addOption(label, timeout);
     }
 
-    if (targetLabels.length > 0) {
+    if (targetLabels.length > 0 && !(await this.isPlainText())) {
       // Blur the input to close the dropdown. Using blur() rather than a
       // keyboard event avoids bubbling Escape to page-level handlers
-      // (modal/flyout close listeners) on the consumer page.
+      // (modal/flyout close listeners) on the consumer page. Skipped for
+      // asPlainText: picking an option there already commits and closes the
+      // dropdown, and an extra blur can race the (often parent-controlled)
+      // selectedOptions update and discard the just-picked value.
       await this.searchInput.blur();
     }
 
-    expect([...(await this.getSelectedOptions())].sort()).toEqual(sortedTarget);
+    // Poll rather than assert once: an asPlainText selection is committed via
+    // the consumer's onChange, which can land a tick after the click.
+    await expect
+      .poll(() => this.getSelectedOptions().then((options) => [...options].sort()), { timeout })
+      .toEqual(sortedTarget);
   }
 
   /**
