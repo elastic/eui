@@ -477,6 +477,7 @@ export const typeToPathMap = {
   comment: withMetadata(() => import('./assets/comment'), {
     synonyms: ['comment', 'chat', 'message', 'feedback', 'discussion'],
   }),
+  editorComment: () => import('./assets/comment'), // NOTE: To be deprecated in favor of `comment`
   compare: withMetadata(() => import('./assets/compare'), {
     synonyms: ['compare', 'diff', 'versus', 'side by side'],
   }),
@@ -1252,6 +1253,7 @@ export const typeToPathMap = {
   map: withMetadata(() => import('./assets/map'), {
     synonyms: ['map', 'location', 'geo', 'geography', 'region'],
   }),
+  mapMarker: () => import('./assets/waypoint'), // NOTE: To be deprecated in favor of waypoint
   waypoint: withMetadata(() => import('./assets/waypoint'), {
     synonyms: ['waypoint', 'marker', 'step', 'node', 'path'],
   }),
@@ -1389,6 +1391,7 @@ export const typeToPathMap = {
   pinFill: withMetadata(() => import('./assets/pin_fill'), {
     synonyms: ['pin', 'filled', 'stick', 'anchor', 'fixed', 'bookmark'],
   }),
+  pinFilled: () => import('./assets/pin_fill'), // NOTE: To be deprecated in favor of pinFill
   pipelineApp: withMetadata(() => import('./assets/app_pipeline'), {
     category: 'app',
   }),
@@ -1565,6 +1568,7 @@ export const typeToPathMap = {
   star: withMetadata(() => import('./assets/star'), {
     synonyms: ['star', 'favorite', 'rating', 'bookmark'],
   }),
+  starEmpty: () => import('./assets/star'), // NOTE: To be deprecated in favor of star
   starEmptySpace: () => import('./assets/star_empty_space'),
   starFill: withMetadata(() => import('./assets/star_fill'), {
     synonyms: [
@@ -1578,6 +1582,7 @@ export const typeToPathMap = {
       'solid',
     ],
   }),
+  starFilled: () => import('./assets/star_fill'), // NOTE: To be deprecated in favor of starFill,
   starFillSpace: () => import('./assets/star_fill_space'),
   starMinusEmpty: () => import('./assets/star_minus_empty'),
   starMinusFill: () => import('./assets/star_minus_fill'),
@@ -1702,6 +1707,7 @@ export const typeToPathMap = {
   warning: withMetadata(() => import('./assets/warning'), {
     synonyms: ['warning', 'alert', 'caution', 'danger', 'issue'],
   }),
+  alert: () => import('./assets/warning'), // NOTE: To be deprecated in favor of `warning`
   warningFill: withMetadata(() => import('./assets/warning_fill'), {
     synonyms: [
       'warning fill',
@@ -1949,7 +1955,20 @@ export const typeToPathMapTokenIconTypes =
 
 export const typeToPathMapDocsAppIconTypes = typeToPathMapAppIconTypes;
 
-export const typeToPathMapDocsGlyphIconTypes = typeToPathMapGlyphIconTypes;
+// TODO: Remove this compatibility filter with https://github.com/elastic/eui/issues/9832.
+const iconAliasesExcludedFromDocs = new Set([
+  'alert',
+  'editorComment',
+  'mapMarker',
+  'pinFilled',
+  'starEmpty',
+  'starFilled',
+]);
+
+export const typeToPathMapDocsGlyphIconTypes =
+  typeToPathMapGlyphIconTypes.filter(
+    (iconType) => !iconAliasesExcludedFromDocs.has(iconType)
+  );
 
 export const typeToPathMapDocsLogoIconTypes = typeToPathMapLogoIconTypes;
 
