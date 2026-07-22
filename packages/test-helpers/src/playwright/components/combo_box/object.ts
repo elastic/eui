@@ -57,9 +57,14 @@ export class EuiComboBoxObject extends BaseObject {
       return;
     }
 
-    // Naive replace — clear, then add each. A diff-based approach would do
-    // less DOM work but require a per-pill remove primitive we don't ship yet.
-    await this.clear();
+    // Naive replace — clear, then add each. Exception: asPlainText single-select
+    // replaces its selection when a new option is picked, so clearing first is
+    // unnecessary — and its input can hold a non-clearable default (a placeholder
+    // rendered as the value) that clear() can't empty. Still clear when the target
+    // is empty (nothing to select would leave the old selection in place).
+    if (targetLabels.length === 0 || !(await this.isPlainText())) {
+      await this.clear();
+    }
 
     for (const label of targetLabels) {
       await this.addOption(label, timeout);
