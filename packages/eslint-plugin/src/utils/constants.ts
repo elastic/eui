@@ -166,3 +166,10 @@ export const CALLOUT_LAYOUT_CONTAINERS = new Set([
   'EuiFlexItem',
   'div',
 ]);
+
+/**
+ * Third-party i18n components that render plain text and are common in EUI consumers
+ * (e.g. `FormattedMessage` from react-intl used extensively in Kibana).
+ * Rules treat these the same as `HTML_TEXT_ELEMENTS` / `EUI_TEXT_COMPONENTS`.
+ */
+export const I18N_TEXT_COMPONENTS = new Set(['FormattedMessage']);

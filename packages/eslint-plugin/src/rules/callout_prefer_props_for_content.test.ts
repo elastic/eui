@@ -464,6 +464,58 @@ ruleTester.run(
         languageOptions,
         errors: [{ messageId: 'childrenHavePlainText' }],
       },
+      // Template literals
+      {
+        code: dedent`
+        const MyComponent = () => (
+          <EuiCallOut title="Callout title">
+            {\`Plain text content.\`}
+          </EuiCallOut>
+        )
+      `,
+        languageOptions,
+        errors: [{ messageId: 'childrenHavePlainText' }],
+      },
+      {
+        code: dedent`
+        const MyComponent = ({ name }) => (
+          <EuiCallOut title="Callout title">
+            {\`Hello \${name}!\`}
+          </EuiCallOut>
+        )
+      `,
+        languageOptions,
+        errors: [{ messageId: 'childrenHavePlainText' }],
+      },
+      // Array expressions
+      {
+        code: dedent`
+        const MyComponent = () => (
+          <EuiCallOut title="Callout title">
+            {[<p key="1">Text</p>]}
+          </EuiCallOut>
+        )
+      `,
+        languageOptions,
+        errors: [{ messageId: 'childrenHaveText', data: { elementName: 'p' } }],
+      },
+      // i18n FormattedMessage
+      {
+        code: dedent`
+        const MyComponent = () => (
+          <EuiCallOut title="Callout title">
+            <FormattedMessage id="my.message" defaultMessage="Callout body text." />
+          </EuiCallOut>
+        )
+      `,
+        languageOptions,
+        errors: [
+          {
+            messageId: 'childrenHaveText',
+            data: { elementName: 'FormattedMessage' },
+          },
+        ],
+      },
     ],
   }
 );

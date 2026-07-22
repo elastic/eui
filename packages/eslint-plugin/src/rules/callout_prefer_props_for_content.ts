@@ -15,6 +15,7 @@ import {
   EUI_TEXT_COMPONENTS,
   HTML_ACTION_ELEMENTS,
   CALLOUT_LAYOUT_CONTAINERS,
+  I18N_TEXT_COMPONENTS,
 } from '../utils/constants';
 import { getElementName } from '../utils/get_element_name';
 
@@ -73,7 +74,8 @@ function checkNode(node: TSESTree.Node, context: RuleContext<MessageIds, []>): v
 
       if (
         HTML_TEXT_ELEMENTS.has(elementName) ||
-        EUI_TEXT_COMPONENTS.has(elementName)
+        EUI_TEXT_COMPONENTS.has(elementName) ||
+        I18N_TEXT_COMPONENTS.has(elementName)
       ) {
         context.report({
           node,
@@ -104,6 +106,16 @@ function checkNode(node: TSESTree.Node, context: RuleContext<MessageIds, []>): v
         checkNode(child, context);
       }
 
+      break;
+    }
+    case 'TemplateLiteral': {
+      context.report({ node, messageId: 'childrenHavePlainText' });
+      break;
+    }
+    case 'ArrayExpression': {
+      for (const element of (node as TSESTree.ArrayExpression).elements) {
+        if (element) checkNode(element, context);
+      }
       break;
     }
     case 'JSXExpressionContainer': {
