@@ -108,6 +108,10 @@ function checkNode(node: TSESTree.Node, context: RuleContext<MessageIds, []>): v
 
       break;
     }
+    case 'MemberExpression': {
+      context.report({ node, messageId: 'childrenHavePlainText' });
+      break;
+    }
     case 'TemplateLiteral': {
       context.report({ node, messageId: 'childrenHavePlainText' });
       break;

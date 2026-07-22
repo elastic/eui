@@ -499,6 +499,18 @@ ruleTester.run(
         languageOptions,
         errors: [{ messageId: 'childrenHaveText', data: { elementName: 'p' } }],
       },
+      // MemberExpression (e.g. i18n string references)
+      {
+        code: dedent`
+        const MyComponent = () => (
+          <EuiCallOut title="Callout title">
+            {i18n.NO_DIFF_AVAILABLE_CALLOUT}
+          </EuiCallOut>
+        )
+      `,
+        languageOptions,
+        errors: [{ messageId: 'childrenHavePlainText' }],
+      },
       // i18n FormattedMessage
       {
         code: dedent`
