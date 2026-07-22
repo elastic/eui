@@ -209,22 +209,24 @@ export class EuiComboBoxObject extends BaseObject {
 
     // Type to filter, then wait for the (now narrowed) options to render.
     await this.searchInput.fill(label);
-    const optionsList = this.root
+    const options = this.root
       .page()
-      .locator(EuiComboBoxSelectors.optionsListFor(this.testSubj));
-    await expect
-      .poll(() => optionsList.getByRole('option').count(), { timeout })
-      .toBeGreaterThan(0);
+      .locator(EuiComboBoxSelectors.optionsListFor(this.testSubj))
+      .getByRole('option');
+    await expect.poll(() => options.count(), { timeout }).toBeGreaterThan(0);
 
-    // Prefer an exact text match so "ip" doesn't select "clientip". When EUI has
-    // (asynchronously) truncated the option text, no exact match exists — fall
-    // back to keyboard-selecting the highlighted option, which is safe because
-    // typing the full label has already filtered the list to the intended option.
-    const exactOption = optionsList
-      .getByRole('option')
-      .filter({ has: this.root.page().getByText(label, { exact: true }) });
-    if ((await exactOption.count()) > 0) {
-      await exactOption.first().click();
+    // Match on each option's *full* text so "ip" doesn't select "clientip".
+    // Compare the whole option (not a sub-element): while filtering, EUI wraps the
+    // matched substring in `<mark>`, so a text-node lookup for the label would also
+    // match the highlighted part inside a longer option. When EUI has
+    // asynchronously truncated the option text, there's no exact match — fall back
+    // to keyboard-selecting the highlighted option, which is safe because typing
+    // the full label has already filtered the list to the intended option.
+    const trimmed = label.trim();
+    const texts = await options.allInnerTexts();
+    const exactIndex = texts.findIndex((text) => text.trim() === trimmed);
+    if (exactIndex >= 0) {
+      await options.nth(exactIndex).click();
     } else {
       await this.searchInput.press('ArrowDown');
       await this.searchInput.press('Enter');
