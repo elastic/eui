@@ -94,6 +94,29 @@ ruleTester.run(
       `,
         languageOptions,
       },
+      {
+        // Custom component is not flagged if not listed in the config
+        code: dedent`
+        const MyComponent = () => (
+          <KbnWarningCallout title="Callout title">
+            <p>Text content</p>
+          </KbnWarningCallout>
+        )
+      `,
+        languageOptions,
+      },
+      {
+        // EuiCallOut is not flagged when the components option replaces the default
+        code: dedent`
+        const MyComponent = () => (
+          <EuiCallOut title="Callout title">
+            <p>Text content</p>
+          </EuiCallOut>
+        )
+      `,
+        options: [{ components: ['KbnWarningCallout'] }],
+        languageOptions,
+      },
     ],
     invalid: [
       // `text` prop
@@ -106,7 +129,12 @@ ruleTester.run(
         )
       `,
         languageOptions,
-        errors: [{ messageId: 'childrenHaveText', data: { elementName: 'p' } }],
+        errors: [
+          {
+            messageId: 'childrenHaveText',
+            data: { elementName: 'p', componentName: 'EuiCallOut' },
+          },
+        ],
       },
       {
         code: dedent`
@@ -118,7 +146,10 @@ ruleTester.run(
       `,
         languageOptions,
         errors: [
-          { messageId: 'childrenHaveText', data: { elementName: 'span' } },
+          {
+            messageId: 'childrenHaveText',
+            data: { elementName: 'span', componentName: 'EuiCallOut' },
+          },
         ],
       },
       {
@@ -131,7 +162,10 @@ ruleTester.run(
       `,
         languageOptions,
         errors: [
-          { messageId: 'childrenHaveText', data: { elementName: 'strong' } },
+          {
+            messageId: 'childrenHaveText',
+            data: { elementName: 'strong', componentName: 'EuiCallOut' },
+          },
         ],
       },
       {
@@ -144,7 +178,10 @@ ruleTester.run(
       `,
         languageOptions,
         errors: [
-          { messageId: 'childrenHaveText', data: { elementName: 'EuiText' } },
+          {
+            messageId: 'childrenHaveText',
+            data: { elementName: 'EuiText', componentName: 'EuiCallOut' },
+          },
         ],
       },
       {
@@ -157,7 +194,10 @@ ruleTester.run(
       `,
         languageOptions,
         errors: [
-          { messageId: 'childrenHaveText', data: { elementName: 'EuiText' } },
+          {
+            messageId: 'childrenHaveText',
+            data: { elementName: 'EuiText', componentName: 'EuiCallOut' },
+          },
         ],
       },
       {
@@ -170,7 +210,10 @@ ruleTester.run(
       `,
         languageOptions,
         errors: [
-          { messageId: 'childrenHaveText', data: { elementName: 'EuiCode' } },
+          {
+            messageId: 'childrenHaveText',
+            data: { elementName: 'EuiCode', componentName: 'EuiCallOut' },
+          },
         ],
       },
       {
@@ -185,6 +228,7 @@ ruleTester.run(
         errors: [
           {
             messageId: 'childrenHavePlainText',
+            data: { componentName: 'EuiCallOut' },
           },
         ],
       },
@@ -200,10 +244,13 @@ ruleTester.run(
       `,
         languageOptions,
         errors: [
-          { messageId: 'childrenHaveText', data: { elementName: 'p' } },
+          {
+            messageId: 'childrenHaveText',
+            data: { elementName: 'p', componentName: 'EuiCallOut' },
+          },
           {
             messageId: 'childrenHaveActions',
-            data: { elementName: 'EuiButton' },
+            data: { elementName: 'EuiButton', componentName: 'EuiCallOut' },
           },
         ],
       },
@@ -219,7 +266,7 @@ ruleTester.run(
         errors: [
           {
             messageId: 'childrenHaveActions',
-            data: { elementName: 'EuiButton' },
+            data: { elementName: 'EuiButton', componentName: 'EuiCallOut' },
           },
         ],
       },
@@ -235,7 +282,10 @@ ruleTester.run(
         errors: [
           {
             messageId: 'childrenHaveActions',
-            data: { elementName: 'EuiButtonEmpty' },
+            data: {
+              elementName: 'EuiButtonEmpty',
+              componentName: 'EuiCallOut',
+            },
           },
         ],
       },
@@ -251,7 +301,7 @@ ruleTester.run(
         errors: [
           {
             messageId: 'childrenHaveActions',
-            data: { elementName: 'EuiButtonIcon' },
+            data: { elementName: 'EuiButtonIcon', componentName: 'EuiCallOut' },
           },
         ],
       },
@@ -268,7 +318,10 @@ ruleTester.run(
         errors: [
           {
             messageId: 'childrenHaveActions',
-            data: { elementName: 'EuiButtonGroup' },
+            data: {
+              elementName: 'EuiButtonGroup',
+              componentName: 'EuiCallOut',
+            },
           },
         ],
       },
@@ -282,7 +335,10 @@ ruleTester.run(
       `,
         languageOptions,
         errors: [
-          { messageId: 'childrenHaveActions', data: { elementName: 'button' } },
+          {
+            messageId: 'childrenHaveActions',
+            data: { elementName: 'button', componentName: 'EuiCallOut' },
+          },
         ],
       },
       {
@@ -297,7 +353,7 @@ ruleTester.run(
         errors: [
           {
             messageId: 'childrenHaveActions',
-            data: { elementName: 'EuiLink' },
+            data: { elementName: 'EuiLink', componentName: 'EuiCallOut' },
           },
         ],
       },
@@ -311,7 +367,10 @@ ruleTester.run(
       `,
         languageOptions,
         errors: [
-          { messageId: 'childrenHaveActions', data: { elementName: 'a' } },
+          {
+            messageId: 'childrenHaveActions',
+            data: { elementName: 'a', componentName: 'EuiCallOut' },
+          },
         ],
       },
       // Logical expressions
@@ -324,7 +383,12 @@ ruleTester.run(
         )
       `,
         languageOptions,
-        errors: [{ messageId: 'childrenHaveText', data: { elementName: 'p' } }],
+        errors: [
+          {
+            messageId: 'childrenHaveText',
+            data: { elementName: 'p', componentName: 'EuiCallOut' },
+          },
+        ],
       },
       // Conditional expressions
       {
@@ -336,7 +400,12 @@ ruleTester.run(
         )
       `,
         languageOptions,
-        errors: [{ messageId: 'childrenHaveText', data: { elementName: 'p' } }],
+        errors: [
+          {
+            messageId: 'childrenHaveText',
+            data: { elementName: 'p', componentName: 'EuiCallOut' },
+          },
+        ],
       },
       {
         code: dedent`
@@ -350,7 +419,7 @@ ruleTester.run(
         errors: [
           {
             messageId: 'childrenHaveActions',
-            data: { elementName: 'EuiButton' },
+            data: { elementName: 'EuiButton', componentName: 'EuiCallOut' },
           },
         ],
       },
@@ -372,10 +441,13 @@ ruleTester.run(
       `,
         languageOptions,
         errors: [
-          { messageId: 'childrenHaveText', data: { elementName: 'p' } },
+          {
+            messageId: 'childrenHaveText',
+            data: { elementName: 'p', componentName: 'EuiCallOut' },
+          },
           {
             messageId: 'childrenHaveActions',
-            data: { elementName: 'EuiButton' },
+            data: { elementName: 'EuiButton', componentName: 'EuiCallOut' },
           },
         ],
       },
@@ -392,10 +464,13 @@ ruleTester.run(
       `,
         languageOptions,
         errors: [
-          { messageId: 'childrenHaveText', data: { elementName: 'p' } },
+          {
+            messageId: 'childrenHaveText',
+            data: { elementName: 'p', componentName: 'EuiCallOut' },
+          },
           {
             messageId: 'childrenHaveActions',
-            data: { elementName: 'EuiButton' },
+            data: { elementName: 'EuiButton', componentName: 'EuiCallOut' },
           },
         ],
       },
@@ -417,10 +492,13 @@ ruleTester.run(
       `,
         languageOptions,
         errors: [
-          { messageId: 'childrenHaveText', data: { elementName: 'p' } },
+          {
+            messageId: 'childrenHaveText',
+            data: { elementName: 'p', componentName: 'EuiCallOut' },
+          },
           {
             messageId: 'childrenHaveActions',
-            data: { elementName: 'EuiButton' },
+            data: { elementName: 'EuiButton', componentName: 'EuiCallOut' },
           },
         ],
       },
@@ -435,7 +513,12 @@ ruleTester.run(
         )
       `,
         languageOptions,
-        errors: [{ messageId: 'childrenHaveText', data: { elementName: 'p' } }],
+        errors: [
+          {
+            messageId: 'childrenHaveText',
+            data: { elementName: 'p', componentName: 'EuiCallOut' },
+          },
+        ],
       },
       {
         code: dedent`
@@ -448,7 +531,12 @@ ruleTester.run(
         )
       `,
         languageOptions,
-        errors: [{ messageId: 'childrenHaveText', data: { elementName: 'p' } }],
+        errors: [
+          {
+            messageId: 'childrenHaveText',
+            data: { elementName: 'p', componentName: 'EuiCallOut' },
+          },
+        ],
       },
       {
         code: dedent`
@@ -461,7 +549,12 @@ ruleTester.run(
         )
       `,
         languageOptions,
-        errors: [{ messageId: 'childrenHaveText', data: { elementName: 'p' } }],
+        errors: [
+          {
+            messageId: 'childrenHaveText',
+            data: { elementName: 'p', componentName: 'EuiCallOut' },
+          },
+        ],
       },
       // String literal in JSX expression container
       {
@@ -473,7 +566,12 @@ ruleTester.run(
         )
       `,
         languageOptions,
-        errors: [{ messageId: 'childrenHavePlainText' }],
+        errors: [
+          {
+            messageId: 'childrenHavePlainText',
+            data: { componentName: 'EuiCallOut' },
+          },
+        ],
       },
       // Template literals
       {
@@ -485,7 +583,12 @@ ruleTester.run(
         )
       `,
         languageOptions,
-        errors: [{ messageId: 'childrenHavePlainText' }],
+        errors: [
+          {
+            messageId: 'childrenHavePlainText',
+            data: { componentName: 'EuiCallOut' },
+          },
+        ],
       },
       {
         code: dedent`
@@ -496,7 +599,12 @@ ruleTester.run(
         )
       `,
         languageOptions,
-        errors: [{ messageId: 'childrenHavePlainText' }],
+        errors: [
+          {
+            messageId: 'childrenHavePlainText',
+            data: { componentName: 'EuiCallOut' },
+          },
+        ],
       },
       // Array expressions
       {
@@ -508,7 +616,59 @@ ruleTester.run(
         )
       `,
         languageOptions,
-        errors: [{ messageId: 'childrenHaveText', data: { elementName: 'p' } }],
+        errors: [
+          {
+            messageId: 'childrenHaveText',
+            data: { elementName: 'p', componentName: 'EuiCallOut' },
+          },
+        ],
+      },
+      // `components` option
+      {
+        code: dedent`
+        const MyComponent = () => (
+          <KbnWarningCallout title="Callout title">
+            <p>Text content</p>
+          </KbnWarningCallout>
+        )
+      `,
+        options: [{ components: ['KbnWarningCallout'] }],
+        languageOptions,
+        errors: [
+          {
+            messageId: 'childrenHaveText',
+            data: { elementName: 'p', componentName: 'KbnWarningCallout' },
+          },
+        ],
+      },
+      {
+        code: dedent`
+        const MyComponent = () => (
+          <>
+            <EuiCallOut title="Callout title">
+              <p>Text content</p>
+            </EuiCallOut>
+            <KbnWarningCallout title="Callout title">
+              <EuiButton onClick={onClick}>Button</EuiButton>
+            </KbnWarningCallout>
+          </>
+        )
+      `,
+        options: [{ components: ['EuiCallOut', 'KbnWarningCallout'] }],
+        languageOptions,
+        errors: [
+          {
+            messageId: 'childrenHaveText',
+            data: { elementName: 'p', componentName: 'EuiCallOut' },
+          },
+          {
+            messageId: 'childrenHaveActions',
+            data: {
+              elementName: 'EuiButton',
+              componentName: 'KbnWarningCallout',
+            },
+          },
+        ],
       },
       // i18n MemberExpression
       {
@@ -520,7 +680,12 @@ ruleTester.run(
         )
       `,
         languageOptions,
-        errors: [{ messageId: 'childrenHavePlainText' }],
+        errors: [
+          {
+            messageId: 'childrenHavePlainText',
+            data: { componentName: 'EuiCallOut' },
+          },
+        ],
       },
       // i18n FormattedMessage
       {
@@ -535,7 +700,10 @@ ruleTester.run(
         errors: [
           {
             messageId: 'childrenHaveText',
-            data: { elementName: 'FormattedMessage' },
+            data: {
+              elementName: 'FormattedMessage',
+              componentName: 'EuiCallOut',
+            },
           },
         ],
       },

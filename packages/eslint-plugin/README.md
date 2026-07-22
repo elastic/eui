@@ -195,6 +195,19 @@ The rule warns (rather than errors) to allow incremental migration from the `chi
 
 The rule traverses fragments (`<>`, `<React.Fragment>`, `<Fragment>`), layout containers (`EuiFlexGroup`, `EuiFlexGrid`, `EuiFlexItem`, `div`), and conditional/logical expressions. It does not traverse custom component children, since their content cannot be statically analyzed.
 
+#### Options
+
+| Option | Type | Default | Description |
+|---|---|---|---|
+| `components` | `string[]` | `['EuiCallOut']` | Component names to check. Replaces the default — include `'EuiCallOut'` explicitly if you also want to keep checking it. |
+
+```js
+// .eslintrc.js
+'@elastic/eui/callout-prefer-props-for-content': ['warn', {
+  components: ['EuiCallOut', 'KbnWarningCallout'],
+}]
+```
+
 ### `@elastic/eui/no-unnamed-interactive-element`
 
 Ensure that appropriate aria-attributes are set for `EuiBetaBadge`, `EuiButtonIcon`, `EuiComboBox`, `EuiSelect`, `EuiSelectWithWidth`,`EuiSuperSelect`,`EuiPagination`, `EuiTreeView`, `EuiBreadcrumbs`. Without this rule, screen reader users lose context, keyboard navigation can be confusing.
