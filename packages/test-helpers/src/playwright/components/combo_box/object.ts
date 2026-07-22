@@ -57,22 +57,34 @@ export class EuiComboBoxObject extends BaseObject {
       return;
     }
 
-    // Naive replace — clear, then add each. A diff-based approach would do
-    // less DOM work but require a per-pill remove primitive we don't ship yet.
-    await this.clear();
+    // Naive replace — clear, then add each. Exception: asPlainText single-select
+    // replaces its selection when a new option is picked, so clearing first is
+    // unnecessary — and its input can hold a non-clearable default (a placeholder
+    // rendered as the value) that clear() can't empty. Still clear when the target
+    // is empty (nothing to select would leave the old selection in place).
+    if (targetLabels.length === 0 || !(await this.isPlainText())) {
+      await this.clear();
+    }
 
     for (const label of targetLabels) {
       await this.addOption(label, timeout);
     }
 
-    if (targetLabels.length > 0) {
+    if (targetLabels.length > 0 && !(await this.isPlainText())) {
       // Blur the input to close the dropdown. Using blur() rather than a
       // keyboard event avoids bubbling Escape to page-level handlers
-      // (modal/flyout close listeners) on the consumer page.
+      // (modal/flyout close listeners) on the consumer page. Skipped for
+      // asPlainText: picking an option there already commits and closes the
+      // dropdown, and an extra blur can race the (often parent-controlled)
+      // selectedOptions update and discard the just-picked value.
       await this.searchInput.blur();
     }
 
-    expect([...(await this.getSelectedOptions())].sort()).toEqual(sortedTarget);
+    // Poll rather than assert once: an asPlainText selection is committed via
+    // the consumer's onChange, which can land a tick after the click.
+    await expect
+      .poll(() => this.getSelectedOptions().then((options) => [...options].sort()), { timeout })
+      .toEqual(sortedTarget);
   }
 
   /**
@@ -207,22 +219,24 @@ export class EuiComboBoxObject extends BaseObject {
     // inner `comboBoxInput` element does.
     await this.input.click();
 
-    // Type to filter, then match the option by accessible name. Substring match
-    // (not exact): while filtering, EUI middle-truncates the option text, so the
-    // accessible name isn't the literal label. The list renders in a portal
-    // outside `this.root`, so locate it from page level; the poll waits out async
-    // filtering.
+    // Type to filter, then wait for the (now narrowed) options to render.
     await this.searchInput.fill(label);
-    const option = this.root
+    const options = this.root
       .page()
       .locator(EuiComboBoxSelectors.optionsListFor(this.testSubj))
-      .getByRole('option', { name: label });
-    await expect.poll(() => option.count(), { timeout }).toBeGreaterThan(0);
-    if ((await option.count()) === 1) {
-      await option.click();
+      .getByRole('option');
+    await expect.poll(() => options.count(), { timeout }).toBeGreaterThan(0);
+
+    // Match on each option's full text so "ip" doesn't select "clientip" (EUI
+    // wraps the matched substring in `<mark>` while filtering, so a text-node
+    // lookup would match inside a longer option). If the text is truncated and
+    // has no exact match, fall back to keyboard-selecting the highlighted option.
+    const trimmed = label.trim();
+    const texts = await options.allInnerTexts();
+    const exactIndex = texts.findIndex((text) => text.trim() === trimmed);
+    if (exactIndex >= 0) {
+      await options.nth(exactIndex).click();
     } else {
-      // Substring can match several (e.g. "Item 1" also matches "Item 10") —
-      // keyboard-select the highlighted match.
       await this.searchInput.press('ArrowDown');
       await this.searchInput.press('Enter');
     }

@@ -43,6 +43,13 @@ test.describe('EuiComboBoxObject', () => {
       expect(await comboBox.getSelectedOptions()).toEqual(['Item 2']);
     });
 
+    test('selects the exact label when it is a prefix of another option', async () => {
+      // "Item 1" is a prefix of "Item 10"; must pick "Item 1", not "Item 10".
+      await comboBox.setSelectedOptions(['Item 1']);
+
+      expect(await comboBox.getSelectedOptions()).toEqual(['Item 1']);
+    });
+
     test('replaces the existing selection', async () => {
       await comboBox.setSelectedOptions(['Item 1', 'Item 2']);
       expect(await comboBox.getSelectedOptions()).toEqual(['Item 1', 'Item 2']);

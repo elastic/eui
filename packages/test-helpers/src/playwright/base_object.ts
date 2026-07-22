@@ -86,17 +86,20 @@ export abstract class BaseObject {
   /**
    * Throw if the element at `testSubj` isn't this component (a `data-test-subj`
    * isn't unique to a component type). Run automatically before every public
-   * method via the constructor's Proxy. Memoized and lazy — runs once per
-   * instance, not in the constructor, so it doesn't race initial render. No-op
-   * without a `componentSelector`.
+   * method via the constructor's Proxy. Memoized. Skips when the element is
+   * absent (that's the calling method's concern, not a misuse) and no-op without
+   * a `componentSelector`.
    */
   protected async assertComponent(): Promise<void> {
     if (this.componentVerified || !this.componentSelector) {
       return;
     }
-    // Wait for the element before checking its type, so the guard doesn't
-    // false-fail when a caller acts before render.
-    await this.root.first().waitFor({ state: 'attached' });
+    // Only verify when the element is present. An absent element isn't a misuse
+    // to flag — the calling method handles absence itself (e.g. clear() no-ops) —
+    // so skip rather than block waiting for something that may never appear.
+    if ((await this.root.count()) === 0) {
+      return;
+    }
     const matches = await this.root
       .and(this.scope.locator(this.componentSelector))
       .count();
