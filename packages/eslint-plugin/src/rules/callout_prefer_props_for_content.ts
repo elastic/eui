@@ -109,7 +109,11 @@ function checkNode(node: TSESTree.Node, context: RuleContext<MessageIds, []>): v
       break;
     }
     case 'MemberExpression': {
-      context.report({ node, messageId: 'childrenHavePlainText' });
+      const { object } = node as TSESTree.MemberExpression;
+
+      if (object.type === 'Identifier' && object.name === 'i18n') {
+        context.report({ node, messageId: 'childrenHavePlainText' });
+      }
       break;
     }
     case 'TemplateLiteral': {

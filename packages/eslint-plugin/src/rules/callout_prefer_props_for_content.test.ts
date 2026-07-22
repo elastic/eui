@@ -59,6 +59,17 @@ ruleTester.run(
         languageOptions,
       },
       {
+        // Non-i18n MemberExpression: ambiguous (simple text or complex content)
+        code: dedent`
+        const MyComponent = () => (
+          <EuiCallOut title="Callout title">
+            {config.description}
+          </EuiCallOut>
+        )
+      `,
+        languageOptions,
+      },
+      {
         // Nested text inside a custom component: It's acceptable as we don't know what's inside the custom component
         code: dedent`
         const MyComponent = () => (
@@ -499,7 +510,7 @@ ruleTester.run(
         languageOptions,
         errors: [{ messageId: 'childrenHaveText', data: { elementName: 'p' } }],
       },
-      // MemberExpression (e.g. i18n string references)
+      // i18n MemberExpression
       {
         code: dedent`
         const MyComponent = () => (
