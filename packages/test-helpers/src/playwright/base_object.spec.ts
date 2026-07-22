@@ -50,6 +50,17 @@ test.describe('BaseObject component-type guard', () => {
     await expect(object.asyncMethod()).resolves.toBe('ran');
   });
 
+  test('skips the guard when the element is absent (does not block)', async ({
+    page,
+  }) => {
+    await page.setContent('<div></div>'); // no matching data-test-subj
+
+    const object = new TestObject(page, 'target', '.euiComboBox');
+
+    // Absent element is the method's concern; the guard must not throw or hang.
+    await expect(object.asyncMethod()).resolves.toBe('ran');
+  });
+
   test('sync methods pass through unguarded (keep their sync return)', async ({
     page,
   }) => {
