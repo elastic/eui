@@ -207,22 +207,25 @@ export class EuiComboBoxObject extends BaseObject {
     // inner `comboBoxInput` element does.
     await this.input.click();
 
-    // Type to filter, then match the option by accessible name. Substring match
-    // (not exact): while filtering, EUI middle-truncates the option text, so the
-    // accessible name isn't the literal label. The list renders in a portal
-    // outside `this.root`, so locate it from page level; the poll waits out async
-    // filtering.
+    // Type to filter, then wait for the (now narrowed) options to render.
     await this.searchInput.fill(label);
-    const option = this.root
+    const optionsList = this.root
       .page()
-      .locator(EuiComboBoxSelectors.optionsListFor(this.testSubj))
-      .getByRole('option', { name: label });
-    await expect.poll(() => option.count(), { timeout }).toBeGreaterThan(0);
-    if ((await option.count()) === 1) {
-      await option.click();
+      .locator(EuiComboBoxSelectors.optionsListFor(this.testSubj));
+    await expect
+      .poll(() => optionsList.getByRole('option').count(), { timeout })
+      .toBeGreaterThan(0);
+
+    // Prefer an exact text match so "ip" doesn't select "clientip". When EUI has
+    // (asynchronously) truncated the option text, no exact match exists — fall
+    // back to keyboard-selecting the highlighted option, which is safe because
+    // typing the full label has already filtered the list to the intended option.
+    const exactOption = optionsList
+      .getByRole('option')
+      .filter({ has: this.root.page().getByText(label, { exact: true }) });
+    if ((await exactOption.count()) > 0) {
+      await exactOption.first().click();
     } else {
-      // Substring can match several (e.g. "Item 1" also matches "Item 10") —
-      // keyboard-select the highlighted match.
       await this.searchInput.press('ArrowDown');
       await this.searchInput.press('Enter');
     }
