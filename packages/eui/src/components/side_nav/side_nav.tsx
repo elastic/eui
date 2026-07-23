@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { ReactNode, MouseEventHandler, useMemo } from 'react';
+import React, { ReactNode, MouseEventHandler } from 'react';
 import classNames from 'classnames';
 
 import { CommonProps, PropsOf } from '../common';
@@ -14,8 +14,8 @@ import { EuiButtonEmpty } from '../button';
 import { EuiI18n } from '../i18n';
 import {
   EuiBreakpointSize,
-  htmlIdGenerator,
   useEuiTheme,
+  useGeneratedHtmlId,
 } from '../../services';
 import { EuiHideFor, EuiShowFor } from '../responsive';
 
@@ -88,7 +88,6 @@ export const EuiSideNav = <T = {},>({
   ...rest
 }: EuiSideNavProps<T>) => {
   const theme = useEuiTheme();
-  const generateId = useMemo(() => htmlIdGenerator('euiSideNav'), []);
 
   const isItemOpen = (item: EuiSideNavItemType<T>): boolean => {
     // The developer can force the item to be open.
@@ -165,7 +164,10 @@ export const EuiSideNav = <T = {},>({
   const styles = euiSideNavMobileStyles(theme);
 
   const contentClasses = classNames('euiSideNav__content');
-  const sideNavContentId = generateId('content');
+  const sideNavContentId = useGeneratedHtmlId({
+    prefix: 'euiSideNav',
+    suffix: 'content',
+  });
   const mobileContentStyles = [
     styles.content.euiSideNav__mobileContent,
     isOpenOnMobile ? styles.content.open : styles.content.hidden,
@@ -178,7 +180,11 @@ export const EuiSideNav = <T = {},>({
     label: 'mobile',
   };
 
-  const headingId = headingProps?.id || generateId('heading');
+  const headingId = useGeneratedHtmlId({
+    prefix: 'euiSideNav',
+    suffix: 'heading',
+    conditionalId: headingProps?.id,
+  });
   const headingScreenReaderOnly = !!headingProps?.screenReaderOnly;
 
   return (
