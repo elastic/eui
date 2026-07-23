@@ -114,7 +114,29 @@ jobs:
             )"
 
             # Reuse the open PR for the fixed nightly branch.
-            existing_pr_url="$(gh api "repos/$base_repo/pulls?state=open&head=elastic:$PR_HEAD" --jq '.[0].html_url // ""')"
+            # The REST `head=owner:branch` filter cannot distinguish the base
+            # repository from a fork when both belong to the same organization.
+            existing_pr_url="$(
+              gh api graphql \
+                -f query='
+                  query ($owner: String!, $name: String!, $headRefName: String!) {
+                    repository(owner: $owner, name: $name) {
+                      pullRequests(first: 100, states: OPEN, headRefName: $headRefName) {
+                        nodes {
+                          url
+                          headRepository {
+                            nameWithOwner
+                          }
+                        }
+                      }
+                    }
+                  }' \
+                -f "owner=${base_repo%/*}" \
+                -f "name=${base_repo#*/}" \
+                -f "headRefName=$PR_HEAD" |
+                jq -r --arg head_repo "$head_repo" \
+                  '[.data.repository.pullRequests.nodes[] | select(.headRepository.nameWithOwner == $head_repo)] | first | .url // ""'
+            )"
             if [[ -n "$existing_pr_url" ]]; then
               gh pr edit "$existing_pr_url" --title "$PR_TITLE" --body "${PR_BODY:-}"
               if [[ "$(gh pr view "$existing_pr_url" --json isDraft --jq .isDraft)" != "true" ]]; then

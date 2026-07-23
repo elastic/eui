@@ -28,6 +28,8 @@ import {
   useEuiTheme,
 } from '../../../index';
 
+import { within } from '../../../../.storybook/test';
+import { VRT_SELECTORS, playDecorator } from '../../../../.storybook/vrt';
 import { EuiHeader } from '../header';
 import {
   EuiHeaderSection,
@@ -131,7 +133,7 @@ export const FlyoutExample: Story = {
 
 const Popover = (props: any) => {
   const { euiTheme } = useEuiTheme();
-  const [isPopoverVisible, setIsPopoverVisible] = useState(false);
+  const [isPopoverVisible, setIsPopoverVisible] = useState(true);
 
   return (
     <EuiHeader position="fixed">
@@ -186,6 +188,11 @@ export const PopoverExample: Story = {
     codeSnippet: {
       resolveChildren: true,
     },
+    vrt: { selector: VRT_SELECTORS.portal },
   },
   render: (args) => <Popover {...args} />,
+  play: playDecorator(async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await canvas.waitForEuiPopoverVisible();
+  }),
 };

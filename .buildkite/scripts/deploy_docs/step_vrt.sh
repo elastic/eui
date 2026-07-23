@@ -37,12 +37,21 @@ export GH_TOKEN="${VAULT_GITHUB_TOKEN}"
 # VRT is skipped (allowing Storybook and the website to build & deploy) when any of
 # the following apply:
 # - The PR has the `skip-vrt` label.
-# - The PR's diff is contained entirely within `VRT_SKIP_PATHS` - paths that can't affect EUI's visual output.
+# - The PR's diff doesn't contain a path in `VRT_RELEVANT_PATHS`.
 #
-# To extend the path-based skip, add anchored regexps to `VRT_SKIP_PATHS`.
-VRT_SKIP_PATHS=(
-  '^packages/illustrations/'
-  '^packages/test-helpers/'
+# Keep this list limited to EUI's visual dependencies and the infrastructure
+# that builds or tests Storybook.
+VRT_RELEVANT_PATHS=(
+  '^packages/eui/'
+  '^packages/eui-theme-common/'
+  '^packages/eui-theme-borealis/'
+  '^package\.json$'
+  '^yarn\.lock$'
+  '^\.yarnrc\.yml$'
+  '^\.yarn/'
+  '^\.buildkite/pipelines/deploy_docs\.yml$'
+  '^\.buildkite/scripts/deploy_docs/'
+  '^\.buildkite/scripts/common/'
 )
 
 # Sets the meta-data the downstream update-baselines step reads, then exits.
@@ -63,16 +72,16 @@ if [[ "${pr_labels}" == *",skip-vrt,"* ]]; then
   skip_vrt "PR #${BUILDKITE_PULL_REQUEST} has 'skip-vrt' label"
 fi
 
-# Skip: diff contained entirely within `VRT_SKIP_PATHS`.
-skip_paths_regexp="$(IFS='|'; echo "${VRT_SKIP_PATHS[*]}")"
+# Skip: diff doesn't contain a path that can affect EUI's visual output.
+relevant_paths_regexp="$(IFS='|'; echo "${VRT_RELEVANT_PATHS[*]}")"
 base_branch="${BUILDKITE_PULL_REQUEST_BASE_BRANCH:-main}"
 
 if git fetch --no-tags --quiet origin "${base_branch}" 2>/dev/null \
   && merge_base="$(git merge-base "origin/${base_branch}" HEAD 2>/dev/null)" \
   && changed="$(git diff --name-only "${merge_base}" HEAD 2>/dev/null)" \
   && [[ -n "${changed}" ]] \
-  && ! echo "${changed}" | grep -qvE "${skip_paths_regexp}"; then
-  skip_vrt "Only VRT-skippable paths changed"
+  && ! echo "${changed}" | grep -qE "${relevant_paths_regexp}"; then
+  skip_vrt "No VRT-relevant paths changed"
 fi
 
 ############################################################
@@ -80,7 +89,7 @@ fi
 ############################################################
 
 echo "+++ Installing dependencies"
-sudo apt-get install -y fonts-noto-color-emoji 2>/dev/null || true
+sudo apt-get install -y fonts-noto-color-emoji fonts-ipafont-gothic 2>/dev/null || true
 fc-cache -fv 2>/dev/null || true
 yarn
 

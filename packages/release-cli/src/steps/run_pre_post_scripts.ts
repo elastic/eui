@@ -7,28 +7,34 @@
  */
 
 import { type ReleaseOptions } from '../release';
-import { runScriptOnAllWorkspaces } from '../yarn_utils';
+import { runScriptOnWorkspaces, type YarnWorkspace } from '../yarn_utils';
 
 /**
- * Runs the `prerelease` script in all workspaces that define it in their
+ * Runs the `prerelease` script in released workspaces that define it in their
  * package.json `scripts` section.
  */
-export const stepRunPreScripts = async (options: ReleaseOptions) => {
+export const stepRunPreScripts = async (
+  options: ReleaseOptions,
+  workspaces: YarnWorkspace[]
+) => {
   const { logger } = options;
 
   logger.info('Running pre release scripts');
 
-  await runScriptOnAllWorkspaces('prerelease');
-}
+  await runScriptOnWorkspaces('prerelease', workspaces);
+};
 
 /**
- * Runs the `postrelease` script in all workspaces that define it in their
+ * Runs the `postrelease` script in released workspaces that define it in their
  * package.json `scripts` section.
  */
-export const stepRunPostScripts = async (options: ReleaseOptions) => {
+export const stepRunPostScripts = async (
+  options: ReleaseOptions,
+  workspaces: YarnWorkspace[]
+) => {
   const { logger } = options;
 
   logger.info('Running post release scripts');
 
-  await runScriptOnAllWorkspaces('postrelease');
-}
+  await runScriptOnWorkspaces('postrelease', workspaces);
+};

@@ -43,6 +43,13 @@ test.describe('EuiComboBoxObject', () => {
       expect(await comboBox.getSelectedOptions()).toEqual(['Item 2']);
     });
 
+    test('selects the exact label when it is a prefix of another option', async () => {
+      // "Item 1" is a prefix of "Item 10"; must pick "Item 1", not "Item 10".
+      await comboBox.setSelectedOptions(['Item 1']);
+
+      expect(await comboBox.getSelectedOptions()).toEqual(['Item 1']);
+    });
+
     test('replaces the existing selection', async () => {
       await comboBox.setSelectedOptions(['Item 1', 'Item 2']);
       expect(await comboBox.getSelectedOptions()).toEqual(['Item 1', 'Item 2']);
@@ -83,5 +90,29 @@ test.describe('EuiComboBoxObject', () => {
       await expect(comboBox.clear()).resolves.not.toThrow();
       expect(await comboBox.getSelectedOptions()).toEqual([]);
     });
+  });
+
+  test.describe('getAllVisibleOptions', () => {
+    test('returns the visible option labels', async () => {
+      const options = await comboBox.getAllVisibleOptions();
+      expect(options).toContain('Item 1');
+      expect(options).toContain('Item 5');
+    });
+  });
+});
+
+test.describe('EuiComboBoxObject component-type guard', () => {
+  // Wiring test: a real method on a wrong target rejects. `comboBoxSearchInput`
+  // is the inner input, not the `.euiComboBox` root. (Guard mechanism itself is
+  // unit-tested in base_object.spec.ts.)
+  test('rejects a non-EuiComboBox target', async ({ page }) => {
+    await page.goto(PLAYGROUND_URL);
+    await page.getByTestId('comboBoxSearchInput').waitFor({ state: 'visible' });
+
+    const comboBox = new EuiComboBoxObject(page, 'comboBoxSearchInput');
+
+    await expect(comboBox.getSelectedOptions()).rejects.toThrow(
+      /Are you using the right Component Object/i
+    );
   });
 });

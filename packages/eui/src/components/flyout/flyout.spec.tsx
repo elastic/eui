@@ -15,7 +15,6 @@ import { css } from '@emotion/react';
 
 import { EuiButton } from '../button';
 import { EuiCollapsibleNav, EuiCollapsibleNavGroup } from '../collapsible_nav';
-import { EuiCollapsibleNavBeta } from '../collapsible_nav_beta';
 import { EuiFlexGroup } from '../flex';
 import { EuiFlyout } from './flyout';
 import { EuiFlyoutBody } from './flyout_body';
@@ -311,11 +310,11 @@ describe('EuiFlyout', () => {
   describe('EuiHeader shards', () => {
     const FlyoutWithHeader = ({
       children = childrenDefault,
-      collapsibleNavVariant = undefined,
+      includeCollapsibleNav = false,
       ...rest
     }: {
       children?: React.ReactNode;
-      collapsibleNavVariant?: 'beta' | 'default';
+      includeCollapsibleNav?: boolean;
       includeFixedHeadersInFocusTrap?: boolean;
     }) => {
       const [isOpen, setIsOpen] = useState(false);
@@ -341,32 +340,12 @@ describe('EuiFlyout', () => {
           </EuiCollapsibleNavGroup>
         </EuiCollapsibleNav>
       );
-      // No need to toggle…
-      const collapsibleNavBeta = (
-        <EuiCollapsibleNavBeta>
-          <EuiCollapsibleNavBeta.Body>
-            <EuiCollapsibleNavBeta.Item
-              title="Items"
-              isCollapsible={false}
-              items={[
-                { title: 'Item A', href: '#' },
-                { title: 'Item B', href: '#' },
-                { title: 'Item C', href: '#' },
-              ]}
-            />
-          </EuiCollapsibleNavBeta.Body>
-        </EuiCollapsibleNavBeta>
-      );
 
       return (
         <>
           <EuiHeader position="fixed">
-            {collapsibleNavVariant && (
-              <EuiHeaderSection>
-                {collapsibleNavVariant === 'beta'
-                  ? collapsibleNavBeta
-                  : collapsibleNav}
-              </EuiHeaderSection>
+            {includeCollapsibleNav && (
+              <EuiHeaderSection>{collapsibleNav}</EuiHeaderSection>
             )}
             <EuiHeaderSection>
               <button
@@ -407,22 +386,6 @@ describe('EuiFlyout', () => {
       );
     });
 
-    it('includes EuiCollapsibleNavBeta items in tab rotation, inside EuiHeaders shards', () => {
-      cy.viewport(800, 600);
-      cy.mount(
-        <FlyoutWithHeader collapsibleNavVariant="beta"> </FlyoutWithHeader>
-      );
-      cy.get('[data-test-subj="toggleFlyoutFromHeader"]').click();
-      cy.repeatRealPress('Tab', 4);
-      cy.focused().should('have.text', 'Item B');
-      cy.repeatRealPress('Tab', 2);
-      cy.focused().should(
-        'have.attr',
-        'data-test-subj',
-        'toggleFlyoutFromHeader'
-      );
-    });
-
     /**
      * @todo this fails with React 18, but passes with previous versions
      * Focus behaviour is different in React 18, depending on whether 1 or more flyouts are open
@@ -432,9 +395,7 @@ describe('EuiFlyout', () => {
      */
     it.skip('includes EuiCollapsibleNav items in tab rotation, inside EuiHeaders shards', () => {
       cy.viewport(800, 600);
-      cy.mount(
-        <FlyoutWithHeader collapsibleNavVariant="default"> </FlyoutWithHeader>
-      );
+      cy.mount(<FlyoutWithHeader includeCollapsibleNav> </FlyoutWithHeader>);
       // Open the collapsible nav
       // should be accessible by tabbing
       cy.get('[data-test-subj="toggleNavButton"]').click();

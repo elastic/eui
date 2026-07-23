@@ -89,6 +89,9 @@ const StatefulCollapsibleNav = (props: Partial<EuiCollapsibleNavProps>) => {
 };
 
 export const Playground: Story = {
+  parameters: {
+    vrt: { selector: VRT_SELECTORS.portal },
+  },
   render: ({ ...args }) => <StatefulCollapsibleNav {...args} />,
   args: {
     children: 'Collapsible nav content',

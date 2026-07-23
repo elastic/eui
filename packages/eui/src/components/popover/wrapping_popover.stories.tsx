@@ -9,7 +9,6 @@
 import React, { useEffect, useState } from 'react';
 import { css } from '@emotion/react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { waitFor, expect } from '@storybook/test';
 
 import {
   disableStorybookControls,
@@ -18,6 +17,7 @@ import {
   moveStorybookControlsToCategory,
 } from '../../../.storybook/utils';
 import { VRT_SELECTORS, playDecorator } from '../../../.storybook/vrt';
+import { within } from '../../../.storybook/test';
 import { EuiButton } from '../button';
 import { EuiFlexGroup } from '../flex';
 import { EuiPopoverProps } from './popover';
@@ -79,9 +79,8 @@ export const Playground: Story = {
   },
   render: (args) => <StatefulPopover {...args} />,
   play: playDecorator(async ({ bodyElement }) => {
-    await waitFor(() =>
-      expect(bodyElement.querySelector('[data-popover-open]')).toBeVisible()
-    );
+    const body = within(bodyElement);
+    await body.waitForEuiPopoverVisible('#popover-anchor');
   }),
 };
 // hiding isOpen as we need to rely on the connected state toggle

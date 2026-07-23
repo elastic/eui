@@ -39,7 +39,7 @@ export const Playground: Story = {
 export const KitchenSink: Story = {
   tags: ['vrt-only'],
   render: () => (
-    <>
+    <div>
       {/* Inline */}
       <EuiExpression description="Select" value="count(*)" onClick={() => {}} />
       <EuiExpression
@@ -97,7 +97,7 @@ export const KitchenSink: Story = {
         descriptionWidth={50}
         value="with custom description width"
       />
-    </>
+    </div>
   ),
 };
 

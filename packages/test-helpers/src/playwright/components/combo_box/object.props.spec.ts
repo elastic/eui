@@ -32,6 +32,10 @@ const ON_CREATE_OPTION_STORY_URL = storyUrl(
   'forms-euicombobox--with-on-create-option',
   `data-test-subj:${TEST_SUBJ}`
 );
+const DEFAULT_TRUNCATION_STORY_URL = storyUrl(
+  'forms-euicombobox--default-truncation',
+  `data-test-subj:${TEST_SUBJ}`
+);
 
 // ---------------------------------------------------------------------------
 // singleSelection={true}  — one pill, no multi-select
@@ -222,6 +226,12 @@ test.describe('EuiComboBoxObject — onCreateOption', () => {
     await comboBox.clear();
   });
 
+  test('setCustomSelectedOptions creates and selects free-text values', async () => {
+    await comboBox.setCustomSelectedOptions(['Brand new']);
+
+    expect(await comboBox.getSelectedOptions()).toContain('Brand new');
+  });
+
   test('getSelectedOptions returns the created option label', async ({
     page,
   }) => {
@@ -283,6 +293,27 @@ test.describe('EuiComboBoxObject — onCreateOption + asPlainText', () => {
     await comboBox.setSelectedOptions(['Item 3']);
 
     expect(await comboBox.getSelectedOptions()).toEqual(['Item 3']);
+  });
+});
+
+// ---------------------------------------------------------------------------
+// Truncated options — EUI truncates long option labels while filtering, so there
+// is no exact text match; the matcher falls back to keyboard-selecting the option.
+// ---------------------------------------------------------------------------
+
+test.describe('EuiComboBoxObject — truncated options', () => {
+  const LONG_LABEL =
+    'Item 2 with a long label that should truncation by default';
+
+  test('selects a long label that truncates by default', async ({ page }) => {
+    await page.goto(DEFAULT_TRUNCATION_STORY_URL);
+    await page.getByTestId(TEST_SUBJ).waitFor({ state: 'visible' });
+    const comboBox = new EuiComboBoxObject(page, TEST_SUBJ);
+    await comboBox.clear();
+
+    await comboBox.setSelectedOptions([LONG_LABEL]);
+
+    expect(await comboBox.getSelectedOptions()).toContain(LONG_LABEL);
   });
 });
 

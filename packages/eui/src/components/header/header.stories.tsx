@@ -106,8 +106,13 @@ export const DarkThemeWithSitewideSearch: Story = {
   parameters: {
     layout: 'fullscreen',
     controls: { include: ['theme'] },
-    vrt: { selector: VRT_SELECTORS.portal }, // Required to capture the open popover
+    vrt: { selector: VRT_SELECTORS.portal },
   },
+  play: playDecorator(async ({ bodyElement }) => {
+    await waitFor(() =>
+      expect(bodyElement.querySelector('[data-popover-open]')).toBeVisible()
+    );
+  }),
   args: {
     theme: 'dark',
     position: 'fixed',

@@ -9,6 +9,7 @@
 import { execSync } from 'node:child_process';
 
 import { type ReleaseOptions } from '../release';
+import { getWorkspacePattern, type YarnWorkspace } from '../yarn_utils';
 
 // A list of very specific packages to exclude when building
 // Should probably become a configuration option at some point
@@ -24,10 +25,14 @@ const workspacesToExclude = [
 ];
 
 /**
- * Install dependencies and run the `build` script in all workspaces
+ * Install dependencies and build released workspaces with their dependencies
  */
-export const stepBuildPackages = async (options: ReleaseOptions) => {
+export const stepBuildPackages = async (
+  options: ReleaseOptions,
+  workspaces: YarnWorkspace[]
+) => {
   const { logger } = options;
+  const workspacePattern = getWorkspacePattern(workspaces);
 
   logger.info('Installing dependencies and building packages');
 
@@ -41,8 +46,9 @@ export const stepBuildPackages = async (options: ReleaseOptions) => {
     // in topological order
     '--topological-dev',
 
-    // include all local workspaces
-    '--all',
+    // include released workspaces and their local dependencies
+    '--recursive',
+    `--from "${workspacePattern}"`,
 
     // exclude selected independent and fully private workspaces
     workspacesToExclude.map((name) => `--exclude ${name}`).join(' '),

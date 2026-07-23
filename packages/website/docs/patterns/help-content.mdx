@@ -2,6 +2,14 @@
 sidebar_position: 4
 ---
 
+import figmaHelpContentShortDefinitions from '!url-loader!./assets/help-content_short-definitions.svg';
+import figmaHelpContentForASpecificSettingOrGroup from '!url-loader!./assets/help-content_for-a-specific-setting-or-group.svg';
+import figmaHelpContentForAnEntirePageOrApp from '!url-loader!./assets/help-content_for-an-entire-page-or-app.svg';
+import figmaHelpContentFieldsAndSettings from '!url-loader!./assets/help-content_fields-and-settings.svg';
+import figmaHelpContentAdditionalInformation from '!url-loader!./assets/help-content_additional-information.svg';
+import figmaHelpContentSyntaxReferences from '!url-loader!./assets/help-content_syntax-references.svg';
+import figmaHelpContentLegendsForGraphsAndTables from '!url-loader!./assets/help-content_legends-for-graphs-and-tables.svg';
+
 # Help content
 
 Help content includes any copy added to the product experience to help users understand a concept or complete a task. It can be definitions, context, explanations, hints, references, and more.
@@ -18,7 +26,11 @@ Before thinking about how to display and write help content, it's important to c
 ## Short definitions
 Defining terms is particularly useful in onboarding experiences or in the first few steps that users go through when using a feature.
 
-<FigmaEmbed url="https://www.figma.com/file/1ryJM0lhbUopALKHwPUhFC/Help-content?type=design&node-id=6-343&mode=design&t=vZqFprizypJOJryZ-0" />
+<FigmaAsset
+  url="https://www.figma.com/file/1ryJM0lhbUopALKHwPUhFC/Help-content?type=design&node-id=6-343&mode=design&t=vZqFprizypJOJryZ-0"
+  src={figmaHelpContentShortDefinitions}
+  title="Short definitions"
+/>
 
 **Interaction**
 - Question mark icon <Icon type="question" title="question mark in a circle" /> with the `primary` color directly following the term to explain.
@@ -42,7 +54,11 @@ Concepts are more than quick definitions. They help users understand how somethi
 
 ### For a specific setting or group
 
-<FigmaEmbed url="https://www.figma.com/file/1ryJM0lhbUopALKHwPUhFC/Help-content?type=design&node-id=1-192&mode=design&t=vZqFprizypJOJryZ-0" title="Help popover with additional context" />
+<FigmaAsset
+  url="https://www.figma.com/file/1ryJM0lhbUopALKHwPUhFC/Help-content?type=design&node-id=1-192&mode=design&t=vZqFprizypJOJryZ-0"
+  src={figmaHelpContentForASpecificSettingOrGroup}
+  title="Help popover with additional context"
+/>
 
 
 **Interaction**
@@ -66,7 +82,11 @@ Concepts are more than quick definitions. They help users understand how somethi
 
 ### For an entire page or app
 
-<FigmaEmbed url="https://www.figma.com/file/1ryJM0lhbUopALKHwPUhFC/Help-content?type=design&node-id=6-278&mode=design&t=vZqFprizypJOJryZ-0" title="Help flyout with additional information" />
+<FigmaAsset
+  url="https://www.figma.com/file/1ryJM0lhbUopALKHwPUhFC/Help-content?type=design&node-id=6-278&mode=design&t=vZqFprizypJOJryZ-0"
+  src={figmaHelpContentForAnEntirePageOrApp}
+  title="Help flyout with additional information"
+/>
 
 _Note: the formatting of the flyout here is just an example._
 
@@ -98,7 +118,11 @@ _Note: the formatting of the flyout here is just an example._
 ## Fields and settings
 Several mechanisms exist to provide additional help around a specific field. All of these mechanisms are **optional**.
 
-<FigmaEmbed url="https://www.figma.com/file/1ryJM0lhbUopALKHwPUhFC/Help-content?type=design&node-id=60-6885&mode=design&t=vZqFprizypJOJryZ-0" title="Different types of help for form controls and fields" />
+<FigmaAsset
+  url="https://www.figma.com/file/1ryJM0lhbUopALKHwPUhFC/Help-content?type=design&node-id=60-6885&mode=design&t=vZqFprizypJOJryZ-0"
+  src={figmaHelpContentFieldsAndSettings}
+  title="Different types of help for form controls and fields"
+/>
 
 
 **Hint text (shows below a field)**
@@ -117,13 +141,21 @@ Several mechanisms exist to provide additional help around a specific field. All
 
 Add a tooltip or popover next to the label of a field to provide additional context on the concept or to provide usage guidance. For example, "When should I use this?".
 
-<FigmaEmbed url="https://www.figma.com/file/1ryJM0lhbUopALKHwPUhFC/Help-content?type=design&node-id=617-386&mode=design&t=gMQHqaXMvQB3A4BX-0" title="Additional information" />
+<FigmaAsset
+  url="https://www.figma.com/file/1ryJM0lhbUopALKHwPUhFC/Help-content?type=design&node-id=617-386&mode=design&t=gMQHqaXMvQB3A4BX-0"
+  src={figmaHelpContentAdditionalInformation}
+  title="Additional information"
+/>
 
 
 ## Syntax references
 Providing reference docs directly in the product can help users stay focused on filling any field requiring functions or advanced syntax.
 
-<FigmaEmbed url="https://www.figma.com/file/1ryJM0lhbUopALKHwPUhFC/Help-content?type=design&node-id=65-56594&mode=design&t=o9mXncfMtIGAHvEG-0" title="Syntax reference best practices" />
+<FigmaAsset
+  url="https://www.figma.com/file/1ryJM0lhbUopALKHwPUhFC/Help-content?type=design&node-id=65-56594&mode=design&t=o9mXncfMtIGAHvEG-0"
+  src={figmaHelpContentSyntaxReferences}
+  title="Syntax reference best practices"
+/>
 
 **Interaction**
 - Use the <Icon type="documentation" title="book icon" /> icon with the `primary` color to indicate a reference. When possible, add an explicit link text.
@@ -148,7 +180,11 @@ Providing reference docs directly in the product can help users stay focused on 
 ## Legends for graphs and tables
 Elastic visualizations often show acronyms or depths of details that require legends.
 
-<FigmaEmbed url="https://www.figma.com/file/1ryJM0lhbUopALKHwPUhFC/Help-content?type=design&node-id=121-56743&mode=design&t=o9mXncfMtIGAHvEG-0" title="Legend and definitions for visualizations" />
+<FigmaAsset
+  url="https://www.figma.com/file/1ryJM0lhbUopALKHwPUhFC/Help-content?type=design&node-id=121-56743&mode=design&t=o9mXncfMtIGAHvEG-0"
+  src={figmaHelpContentLegendsForGraphsAndTables}
+  title="Legend and definitions for visualizations"
+/>
 
 **Interaction**
 - Use an explicit text link with the <Icon type="listBullet" title="list icon" /> icon with the `primary` color to indicate a list of definitions.

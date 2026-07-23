@@ -34,3 +34,13 @@ export const Playground: Story = {
     href: 'http://www.elastic.co/',
   },
 };
+
+export const External: Story = {
+  tags: ['vrt-only'],
+  args: {
+    children: 'Elastic website',
+    href: 'http://www.elastic.co/',
+    external: true,
+    target: '_blank',
+  },
+};

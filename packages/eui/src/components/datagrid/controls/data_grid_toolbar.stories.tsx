@@ -108,6 +108,12 @@ export const ToolbarVisibilityOptions: StoryObj<EuiDataGridToolBarVisibilityOpti
         toolbarVisibility={toolbarVisibility}
       />
     ),
+    play: playDecorator(async ({ canvasElement }) => {
+      const canvas = within(canvasElement);
+      await waitFor(() =>
+        expect(canvas.getAllByRole('gridcell').length).toBeGreaterThan(0)
+      );
+    }),
   };
 
 export const AdditionalControlsOptions: StoryObj<EuiDataGridToolBarAdditionalControlsOptions> =
@@ -266,7 +272,7 @@ const vrtProps = {
 export const ColumnSelector: Story = {
   tags: ['vrt-only'],
   parameters: {
-    vrt: { skip: true },
+    vrt: { selector: VRT_SELECTORS.portal },
   },
   render: () => <StatefulDataGrid {...vrtProps} minSizeForControls={1} />, // Column sorting is hidden on mobile otherwise
   play: async ({ canvasElement, step }: PlayFunctionContext<ReactRenderer>) => {

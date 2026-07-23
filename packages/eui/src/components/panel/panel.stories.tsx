@@ -65,21 +65,23 @@ export const OverlappingPanels: Story = {
   },
   render: function Render(args: EuiPanelProps) {
     return (
-      <>
+      <div css={{ position: 'relative' }}>
         <EuiPanel {...args} />
         <EuiPanel
           {...args}
           css={({ euiTheme }) => ({
+            position: 'relative',
             top: `-${euiTheme.size.m}`,
           })}
         />
         <EuiPanel
           {...args}
           css={({ euiTheme }) => ({
+            position: 'relative',
             top: `-${euiTheme.size.l}`,
           })}
         />
-      </>
+      </div>
     );
   },
 };

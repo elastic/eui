@@ -128,9 +128,12 @@ jobs:
             else
               echo "::warning::Skipping $pkg: Not found in either dependencies or devDependencies";
             fi'
-      - name: Run Kibana bootstrap scripts
+      - name: Run Kibana bootstrap script and normalize dependencies
         # language=bash
-        run: yarn kbn bootstrap
+        run: |
+          yarn kbn bootstrap
+          node scripts/yarn_deduplicate
+          yarn kbn bootstrap --force-install
       - name: Commit changed files
         # language=bash
         run: |

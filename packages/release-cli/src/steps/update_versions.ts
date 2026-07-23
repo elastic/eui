@@ -25,7 +25,12 @@ import {
   getUpcomingVersion,
   getVersionTypeFromChangelog,
 } from '../version';
-import { commitFiles, isFileAddedToGit, stageFiles } from '../git_utils';
+import {
+  commitFiles,
+  getModifiedFiles,
+  isFileAddedToGit,
+  stageFiles,
+} from '../git_utils';
 
 /**
  * Update version numbers and yearly changelogs based on workspace
@@ -110,16 +115,24 @@ export const stepUpdateVersions = async (
   }
 
   if (options.type !== 'snapshot') {
+    // Yarn also updates dependency ranges in `package.json` files for workspaces
+    // that are not being released.
+    const modifiedPackageJsonFiles = (await getModifiedFiles())
+      .filter((file) => path.basename(file) === 'package.json')
+      .map((file) => path.resolve(rootWorkspaceDir, file));
+    filesToCommit.push(...modifiedPackageJsonFiles);
+
     // Stage yarn.lock changes
     const yarnLockPath = path.join(rootWorkspaceDir, 'yarn.lock');
     filesToCommit.push(yarnLockPath);
     await stageFiles([yarnLockPath]);
 
     // Stage updated package.json files
-    await stageFiles(filesToCommit);
+    const uniqueFilesToCommit = [...new Set(filesToCommit)];
+    await stageFiles(uniqueFilesToCommit);
 
     // Commit all package.json files and yarn.lock
-    await commitFiles('chore: update package versions [skip ci]', filesToCommit);
+    await commitFiles('chore: update package versions', uniqueFilesToCommit);
   }
 
   return changedWorkspaces;

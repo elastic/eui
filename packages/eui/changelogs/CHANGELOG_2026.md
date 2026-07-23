@@ -1,3 +1,18 @@
+## [`v117.1.0`](https://github.com/elastic/eui/releases/v117.1.0)
+
+- Updated the outer border width on `EuiFlyout` to `1px` ([#9803](https://github.com/elastic/eui/pull/9803))
+- Removed the `translateY` transform on clickable `EuiPanel`s ([#9702](https://github.com/elastic/eui/pull/9702))
+- Updated the hover shadow size on clickable `EuiPanel`s from `l` to `m` to align with the shadow guidelines ([#9702](https://github.com/elastic/eui/pull/9702))
+
+**Bug fixes**
+
+- Fixed `renderHook` test utility requiring `@testing-library/react-hooks` in consumer environments running React 18+ ([#9805](https://github.com/elastic/eui/pull/9805))
+- Fixed `EuiSearchBar` in-memory filtering keeping items that a negated multi-value clause such as `-field:(a or b)` should exclude ([#9783](https://github.com/elastic/eui/pull/9783))
+
+**Dependency updates**
+
+- Updated `@elastic/prismjs-esql` to v4.13.0 ([#9814](https://github.com/elastic/eui/pull/9814))
+
 ## [`v117.0.0`](https://github.com/elastic/eui/releases/v117.0.0)
 
 - Added `EuiIllustration` for rendering SVG illustrations (e.g. from `@elastic/eui-illustrations`) that respond to the active EUI color mode ([#9779](https://github.com/elastic/eui/pull/9779))

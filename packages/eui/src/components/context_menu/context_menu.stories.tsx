@@ -10,7 +10,8 @@ import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { css } from '@emotion/react';
 
-import { VRT_SELECTORS } from '../../../.storybook/vrt';
+import { VRT_SELECTORS, playDecorator } from '../../../.storybook/vrt';
+import { within } from '../../../.storybook/test';
 import { logicalCSS, useEuiScrollBar } from '../../global_styling';
 import { EuiPopover } from '../popover';
 import { EuiButton } from '../button';
@@ -133,6 +134,9 @@ export const Playground: Story = {
 };
 
 export const InPopover: Story = {
+  play: playDecorator(async ({ canvasElement }) => {
+    await within(canvasElement).waitForEuiPopoverVisible();
+  }),
   parameters: {
     vrt: {
       selector: VRT_SELECTORS.portal,
@@ -166,6 +170,9 @@ export const InPopover: Story = {
 };
 
 export const ScrollableList: Story = {
+  play: playDecorator(async ({ canvasElement }) => {
+    await within(canvasElement).waitForEuiPopoverVisible();
+  }),
   parameters: {
     vrt: {
       selector: VRT_SELECTORS.portal,
@@ -204,6 +211,9 @@ export const ScrollableList: Story = {
 };
 
 export const InScrollablePopover: Story = {
+  play: playDecorator(async ({ canvasElement }) => {
+    await within(canvasElement).waitForEuiPopoverVisible();
+  }),
   parameters: {
     vrt: {
       selector: VRT_SELECTORS.portal,

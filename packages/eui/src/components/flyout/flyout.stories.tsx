@@ -172,6 +172,8 @@ export const ManualReturnFocus: Story = {
     controls: {
       include: ['focusTrapProps'],
     },
+    // This story is visually identical to the default; it's purely behavioral.
+    vrt: { skip: true },
   },
   args: {
     children: (

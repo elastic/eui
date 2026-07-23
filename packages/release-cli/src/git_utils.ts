@@ -54,6 +54,11 @@ export const stageFiles = async (files: string[]) => {
   return execPromise(`git add ${files.join(' ')}`);
 };
 
+export const getModifiedFiles = async () => {
+  const result = await execPromise('git diff HEAD --name-only');
+  return result.stdout.split(/\r?\n/).filter(Boolean);
+};
+
 export const commitFiles = async (message: string, files: string[]) => {
   // This isn't the best at handling unusual formatting like messages with quotes
   return execPromise(`git commit ${files.join(' ')} -m "${message}"`);

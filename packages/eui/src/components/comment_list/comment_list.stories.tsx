@@ -180,7 +180,10 @@ export const HighContrast: Story = {
       {
         username: 'you',
         timelineAvatar: (
-          <EuiAvatar name="Cat" imageUrl="https://picsum.photos/id/40/64" />
+          <EuiAvatar
+            name="Cat"
+            imageUrl="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64'%3E%3Crect width='64' height='64' fill='%23FEC514'/%3E%3Ccircle cx='32' cy='36' r='16' fill='%230B64DD'/%3E%3Cpath d='M16 20 L24 32 L8 32 Z M48 20 L56 32 L40 32 Z' fill='%230B64DD'/%3E%3C/svg%3E"
+          />
         ),
         children: (
           <EuiTextArea

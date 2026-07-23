@@ -2,6 +2,11 @@
 sidebar_position: 1
 ---
 
+import figmaTablePaginationSetAReasonableDefault from '!url-loader!./assets/table-pagination_set-a-reasonable-default.svg';
+import figmaTablePaginationProvideOptionsOf102550100 from '!url-loader!./assets/table-pagination_provide-options-of-10-25-50-100.svg';
+import figmaTablePaginationPersistChoiceAcrossPages from '!url-loader!./assets/table-pagination_persist-choice-across-pages.svg';
+import figmaTablePaginationAllowCustomization from '!url-loader!./assets/table-pagination_allow-customization.svg';
+
 # Table Pagination for basic tables
 
 Patterns and recommendations for handling table pagination on basic tables
@@ -14,7 +19,11 @@ Pagination is important for providing better page load times by only loading a s
 
 We should default to showing 25 as this provides a balance between a long enough usable list and any performance concerns.
 
-<FigmaEmbed url="https://www.figma.com/file/nemD75hQd2KHEddjVcVbrB/Table-Pagination-%5B184%5D?type=design&node-id=413%3A91091&t=ehLjtX0PIei6US7B-1" />
+<FigmaAsset
+  url="https://www.figma.com/file/nemD75hQd2KHEddjVcVbrB/Table-Pagination-%5B184%5D?type=design&node-id=413%3A91091&t=ehLjtX0PIei6US7B-1"
+  src={figmaTablePaginationSetAReasonableDefault}
+  title="Set a reasonable default"
+/>
 
 
 - - -
@@ -26,7 +35,11 @@ This set of options provides a balance between load performance and ease-of-use.
 
 Optionally, you can include ‘Show all rows’ as the last option if it makes sense with the amount of content.
 
-<FigmaEmbed url="https://www.figma.com/file/nemD75hQd2KHEddjVcVbrB/Table-Pagination-%5B184%5D?type=design&node-id=429%3A91091&t=ehLjtX0PIei6US7B-1" />
+<FigmaAsset
+  url="https://www.figma.com/file/nemD75hQd2KHEddjVcVbrB/Table-Pagination-%5B184%5D?type=design&node-id=429%3A91091&t=ehLjtX0PIei6US7B-1"
+  src={figmaTablePaginationProvideOptionsOf102550100}
+  title="Provide options of 10, 25, 50, 100"
+/>
 
 
 - - -
@@ -36,7 +49,11 @@ Optionally, you can include ‘Show all rows’ as the last option if it makes s
 
 If a user decides to choose a different row count, we should save this so it is persisted on subsequent page loads.
 
-<FigmaEmbed url="https://www.figma.com/file/nemD75hQd2KHEddjVcVbrB/Table-Pagination-%5B184%5D?type=design&node-id=429%3A91092&t=ehLjtX0PIei6US7B-1" />
+<FigmaAsset
+  url="https://www.figma.com/file/nemD75hQd2KHEddjVcVbrB/Table-Pagination-%5B184%5D?type=design&node-id=429%3A91092&t=ehLjtX0PIei6US7B-1"
+  src={figmaTablePaginationPersistChoiceAcrossPages}
+  title="Persist choice across pages"
+/>
 
 
 - - -
@@ -45,7 +62,11 @@ If a user decides to choose a different row count, we should save this so it is 
 
 This list of options should be customizable to allow for user preferences.  For Kibana, this should be shown within Advanced settings.
 
-<FigmaEmbed url="https://www.figma.com/file/nemD75hQd2KHEddjVcVbrB/Table-Pagination-%5B184%5D?type=design&node-id=429%3A91093&t=ehLjtX0PIei6US7B-1" />
+<FigmaAsset
+  url="https://www.figma.com/file/nemD75hQd2KHEddjVcVbrB/Table-Pagination-%5B184%5D?type=design&node-id=429%3A91093&t=ehLjtX0PIei6US7B-1"
+  src={figmaTablePaginationAllowCustomization}
+  title="Allow customization"
+/>
 
 
 - - -

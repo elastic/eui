@@ -81,7 +81,7 @@ export const HighContrast: Story = {
     },
   },
   render: (_args) => (
-    <>
+    <div>
       <EuiSplitPanel.Outer direction="row">
         <EuiSplitPanel.Inner>
           <EuiSplitPanel.Outer direction="column">
@@ -124,6 +124,6 @@ export const HighContrast: Story = {
           </EuiSplitPanel.Outer>
         </EuiSplitPanel.Inner>
       </EuiSplitPanel.Outer>
-    </>
+    </div>
   ),
 };

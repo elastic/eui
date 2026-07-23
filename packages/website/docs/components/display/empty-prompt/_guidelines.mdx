@@ -1,3 +1,6 @@
+import figmaEmptyPromptAnatomy from '!url-loader!./assets/empty-prompt_anatomy.svg';
+
+
 import { EuiFlexGroup } from '@elastic/eui';
 
 ### Anatomy
@@ -6,7 +9,11 @@ A useful empty state will let the user know what's happening, why it's happening
 
 To make the empty state clear, follow this pattern:
 
-<FigmaEmbed url="https://www.figma.com/file/FHys7gLzyvD1gc9DrJM6D8/Elastic-UI--Borealis-?node-id=17578-2472" title="Anatomy of an empty state" />
+<FigmaAsset
+  url="https://www.figma.com/file/FHys7gLzyvD1gc9DrJM6D8/Elastic-UI--Borealis-?node-id=17578-2472"
+  src={figmaEmptyPromptAnatomy}
+  title="Anatomy of an empty state"
+/>
 
 1. **Icon or illustration (optional):** A meaningful representation of the the solution or context.
 2. **Title:** Answers the question "What's happening?". Is it an error? Is it loading?

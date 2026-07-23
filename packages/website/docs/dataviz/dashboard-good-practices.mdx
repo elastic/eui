@@ -2,6 +2,15 @@
 sidebar_position: 2
 ---
 
+import figmaDashboardGoodPracticesStructure from '!url-loader!./assets/dashboard-good-practices_structure.svg';
+import figmaDashboardGoodPracticesClosure from '!url-loader!./assets/dashboard-good-practices_closure.svg';
+import figmaDashboardGoodPracticesHierarchy from '!url-loader!./assets/dashboard-good-practices_hierarchy.svg';
+import figmaDashboardGoodPracticesAspectRatio from '!url-loader!./assets/dashboard-good-practices_aspect-ratio.svg';
+import figmaDashboardGoodPracticesPickTheRightChartModel from '!url-loader!./assets/dashboard-good-practices_pick-the-right-chart-model.svg';
+import figmaDashboardGoodPracticesRelevance from '!url-loader!./assets/dashboard-good-practices_relevance.svg';
+import figmaDashboardGoodPracticesTitles from '!url-loader!./assets/dashboard-good-practices_titles.svg';
+import figmaDashboardGoodPracticesMargins from '!url-loader!./assets/dashboard-good-practices_margins.svg';
+
 # Dashboard good practices
 
 import VersionBadge from './version_badge';
@@ -26,8 +35,10 @@ NOTE: if you are looking for a practical guide of the functionalities of dashboa
 
 A preliminary research conducted on dashboards made by Elastic customers showed a tendency to relate on one of the following templates when building a monitoring application. Unfortunately, we don't offer (yet) a simplified way to re-created on of these templates but we suggest to take inspiration from one of these four major categories when building your own dashboard, according to your needs and to the goal of your product.
 
-<FigmaEmbed url="https://www.figma.com/file/ljx7zNE8mIzGtXA39k4dMU/Dashboard-Good-Practices-%5B220%5D?type=design&node-id=1713-24059&mode=design&t=NfN1OtaqWM9sHBJN-4"
-    title="Most common dashboard templates"
+<FigmaAsset
+  url="https://www.figma.com/file/ljx7zNE8mIzGtXA39k4dMU/Dashboard-Good-Practices-%5B220%5D?type=design&node-id=1713-24059&mode=design&t=NfN1OtaqWM9sHBJN-4"
+  src={figmaDashboardGoodPracticesStructure}
+  title="Most common dashboard templates"
 />
 
 ---
@@ -68,8 +79,10 @@ Charts that are related to the same typology of data or that are somehow connect
 Sometimes they can also work together. In the following example we show how two Metric Charts could live next to a Line Chart that share a more detailed version of the same data.
 As you can see the charts colors match, this way we can safely remove the legend from the line chart which is no longer necessary and we can have a wider understanding of the data.
 
-<FigmaEmbed url="https://www.figma.com/file/ljx7zNE8mIzGtXA39k4dMU/Dashboard-Good-Practices-%5B220%5D?type=design&node-id=1713-24245&mode=design&t=NfN1OtaqWM9sHBJN-4"
-    title="Concept of closure for dashboard panels."
+<FigmaAsset
+  url="https://www.figma.com/file/ljx7zNE8mIzGtXA39k4dMU/Dashboard-Good-Practices-%5B220%5D?type=design&node-id=1713-24245&mode=design&t=NfN1OtaqWM9sHBJN-4"
+  src={figmaDashboardGoodPracticesClosure}
+  title="Concept of closure for dashboard panels."
 />
 
 ### Hierarchy
@@ -86,8 +99,10 @@ Placing a big chart, especially with big visual shapes such as rectangles, at th
 
 Keep in mind these two concepts and use them according to your needs.
 
-<FigmaEmbed url="https://www.figma.com/file/ljx7zNE8mIzGtXA39k4dMU/Dashboard-Good-Practices-%5B220%5D?type=design&node-id=1732-43337&mode=design&t=NfN1OtaqWM9sHBJN-4"
-    title="Concept of hierarchy for dashboard panels."
+<FigmaAsset
+  url="https://www.figma.com/file/ljx7zNE8mIzGtXA39k4dMU/Dashboard-Good-Practices-%5B220%5D?type=design&node-id=1732-43337&mode=design&t=NfN1OtaqWM9sHBJN-4"
+  src={figmaDashboardGoodPracticesHierarchy}
+  title="Concept of hierarchy for dashboard panels."
 />
 
 ### Rows
@@ -105,8 +120,10 @@ We suggest avoiding charts that are too narrow or too short, since we mainly dea
 
 There are as usual exceptions, some charts (e.g. scatterplot) might benefit from squared proportions, look for specific instructions on each chart's page.
 
-<FigmaEmbed url="https://www.figma.com/file/ljx7zNE8mIzGtXA39k4dMU/Dashboard-Good-Practices-%5B220%5D?type=design&node-id=1732-45544&mode=design&t=NfN1OtaqWM9sHBJN-4"
-    title="Different chart proportions."
+<FigmaAsset
+  url="https://www.figma.com/file/ljx7zNE8mIzGtXA39k4dMU/Dashboard-Good-Practices-%5B220%5D?type=design&node-id=1732-45544&mode=design&t=NfN1OtaqWM9sHBJN-4"
+  src={figmaDashboardGoodPracticesAspectRatio}
+  title="Different chart proportions."
 />
 
 ---
@@ -117,8 +134,10 @@ When creating a new chart please consider its implied features. In the following
 
 This is just an example useful to explain the concept and can be applied to several typologies of visualization, if you are stuck and don't know which chart to pick please feel free to reach out to the datavis team.
 
-<FigmaEmbed url="https://www.figma.com/file/ljx7zNE8mIzGtXA39k4dMU/Dashboard-Good-Practices-%5B220%5D?type=design&node-id=1701-19998&mode=design&t=NfN1OtaqWM9sHBJN-4"
-    title="Good and bad example of correct chart according to context."
+<FigmaAsset
+  url="https://www.figma.com/file/ljx7zNE8mIzGtXA39k4dMU/Dashboard-Good-Practices-%5B220%5D?type=design&node-id=1701-19998&mode=design&t=NfN1OtaqWM9sHBJN-4"
+  src={figmaDashboardGoodPracticesPickTheRightChartModel}
+  title="Good and bad example of correct chart according to context."
 />
 
 ---
@@ -135,8 +154,10 @@ In addition to that, following these guidelines you'll be sure to get a consiste
 
 If your dashboard is made to identify specific behaviors it might be interesting to consider a color setting that could help pointing it out. Use a neutral color for generic elements and an accent one for the things that you are looking for.
 
-<FigmaEmbed url="https://www.figma.com/file/ljx7zNE8mIzGtXA39k4dMU/Dashboard-Good-Practices-%5B220%5D?type=design&node-id=1732-43797&mode=design&t=NfN1OtaqWM9sHBJN-4"
-    title="Use of color to highlight specific element."
+<FigmaAsset
+  url="https://www.figma.com/file/ljx7zNE8mIzGtXA39k4dMU/Dashboard-Good-Practices-%5B220%5D?type=design&node-id=1732-43797&mode=design&t=NfN1OtaqWM9sHBJN-4"
+  src={figmaDashboardGoodPracticesRelevance}
+  title="Use of color to highlight specific element."
 />
 
 #### Custom brands
@@ -165,8 +186,10 @@ Titles can have a strong visual impact on dashboards, especially when there are 
     </li>
 </ol>
 
-<FigmaEmbed url="https://www.figma.com/file/ljx7zNE8mIzGtXA39k4dMU/Dashboard-Good-Practices-%5B220%5D?type=design&node-id=1732-45159&mode=design&t=NfN1OtaqWM9sHBJN-4"
-    title="Good and bad use of titles in panels."
+<FigmaAsset
+  url="https://www.figma.com/file/ljx7zNE8mIzGtXA39k4dMU/Dashboard-Good-Practices-%5B220%5D?type=design&node-id=1732-45159&mode=design&t=NfN1OtaqWM9sHBJN-4"
+  src={figmaDashboardGoodPracticesTitles}
+  title="Good and bad use of titles in panels."
 />
 
 ### Margins
@@ -176,8 +199,10 @@ Margins create separation between charts which is an important visual feature, i
 
 Using margins will also automatically apply little shadows to panels, this will make them stand out from the background.
 
-<FigmaEmbed url="https://www.figma.com/file/ljx7zNE8mIzGtXA39k4dMU/Dashboard-Good-Practices-%5B220%5D?type=design&node-id=1732-45435&mode=design&t=NfN1OtaqWM9sHBJN-4"
-    title="Example of panels with and without margins"
+<FigmaAsset
+  url="https://www.figma.com/file/ljx7zNE8mIzGtXA39k4dMU/Dashboard-Good-Practices-%5B220%5D?type=design&node-id=1732-45435&mode=design&t=NfN1OtaqWM9sHBJN-4"
+  src={figmaDashboardGoodPracticesMargins}
+  title="Example of panels with and without margins"
 />
 
 ### Labels, numbers and formatting

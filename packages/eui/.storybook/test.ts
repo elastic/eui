@@ -37,10 +37,32 @@ const customWithin = (canvasElement: HTMLElement) => {
       await fireEvent.click(canvas.getByTestSubject(testSubject));
     },
 
-    waitForEuiPopoverVisible: async () =>
+    waitForEuiPopoverVisible: async (anchorSelector?: string) => {
       await waitFor(() =>
         expect(canvasElement.querySelector('[data-popover-open]')).toBeVisible()
-      ),
+      );
+
+      const { defaultView, fonts } = canvasElement.ownerDocument;
+      await fonts.ready;
+      defaultView?.dispatchEvent(new defaultView.Event('resize'));
+
+      if (!anchorSelector) return;
+
+      await waitFor(() => {
+        const panel = canvasElement.ownerDocument.querySelector(
+          '[data-popover-panel]'
+        );
+        const anchor = canvasElement.querySelector(anchorSelector);
+
+        if (!panel || !anchor) {
+          throw new Error('Popover did not render');
+        }
+
+        expect(panel.getBoundingClientRect().left).toBe(
+          anchor.getBoundingClientRect().left
+        );
+      });
+    },
     waitForEuiPopoverHidden: async () =>
       await waitFor(() =>
         expect(

@@ -45,7 +45,7 @@ export GH_TOKEN="${VAULT_GITHUB_TOKEN}"
 ############################################################
 
 echo "+++ Installing dependencies"
-sudo apt-get install -y fonts-noto-color-emoji 2>/dev/null || true
+sudo apt-get install -y fonts-noto-color-emoji fonts-ipafont-gothic 2>/dev/null || true
 fc-cache -fv 2>/dev/null || true
 yarn
 

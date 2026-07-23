@@ -4,15 +4,12 @@ EUI uses [Playwright Test Runner](https://playwright.dev/) with [`jest-image-sna
 
 Visual regression tests run automatically on every pull request against the deployed Storybook preview. When differences are found, a diff table is posted as a PR comment and a Buildkite block step appears for human approval before baselines are updated.
 
+> [!IMPORTANT]
+> VRT runs in **CI** which owns the baselines and auto-commits them to your PR. Run it locally only when you really need to verify that many stories render as expected.
+
 ## Running VRT locally
 
 Make sure you have [Docker](https://docs.docker.com/get-docker/) installed and running. It's used to take screenshots in a Linux environment matching CI.
-
-Start a local Storybook server:
-
-```shell
-yarn storybook --no-open
-```
 
 Run the visual regression tests:
 
@@ -20,11 +17,25 @@ Run the visual regression tests:
 yarn workspace @elastic/eui test-visual-regression
 ```
 
-To test against a specific URL (e.g. a deployed PR preview):
+Locally this builds and serves a static Storybook (like CI) and rebuilds it each run, so no dev server is needed and every run reflects your current stories. To test against a specific URL instead (e.g. a deployed PR preview):
 
 ```shell
 yarn workspace @elastic/eui test-visual-regression -- --url https://eui.elastic.co/pr_1234/storybook
 ```
+
+### Static build vs. dev server
+
+The static build is served from flat files (no HMR) which keeps `networkidle` settling instantly. The dev server's HMR can otherwise stall it under emulation and make stories time out (see [Troubleshooting](#every-story-fails-with-pagewaitforloadstate-timeout-30000ms-exceeded)). The build happens inside the container (Linux, matching CI) and is reused across variants.
+
+```shell
+# Reuse the existing build for fast iteration (skip the rebuild)
+yarn workspace @elastic/eui test-visual-regression -- --no-build
+
+# Use the dev server instead (requires `yarn storybook --no-open` running)
+yarn workspace @elastic/eui test-visual-regression -- --no-static
+```
+
+`--static`/`--build` default locally and are ignored when `--url` is set.
 
 ## Updating baseline screenshots
 
@@ -170,6 +181,127 @@ By default the play function is skipped when not running under Playwright (i.e. 
 ```tsx
 play: playDecorator(async (context) => { ... }, false)
 ```
+
+## Authoring stable stories
+
+VRT compares screenshots pixel-for-pixel, so anything non-deterministic (network requests, animations, randomness, timing or capturing the wrong element) produces false diffs or flaky failures. The test-runner already neutralizes several sources globally:
+
+- CSS animations are paused before the screenshot (`animations: 'disabled'`) and `prefers-reduced-motion: reduce` is emulated.
+- The runner waits for the page to be ready and for all `<img>` elements to finish loading before capturing.
+- Failed screenshots are retried automatically.
+
+Some common failures and how to fix them:
+
+### Only the first element is captured (fragment roots)
+
+The default selector `#story-wrapper > *` screenshots the **first child element** of the wrapper. A `render` function or decorator that returns a fragment with multiple siblings therefore captures only the first one and clips the rest:
+
+```tsx
+// ❌ Only the first <EuiBanner> is captured
+render: () => (
+  <>
+    <EuiBanner />
+    <EuiBanner />
+  </>
+),
+
+// ✅ Wrap in a single element so the whole set is captured
+render: () => (
+  <div>
+    <EuiBanner />
+    <EuiBanner />
+  </div>
+),
+```
+
+This also applies to decorators that add sibling content (e.g. wrapping the story in explanatory text) - wrap them in an element, not a fragment.
+
+### Portalled content isn't captured
+
+Popovers, tooltips, modals, flyouts and dropdowns render outside the story wrapper, so the default selector misses them. Use the portal selector to take a full-page screenshot (see [Using non-default selectors](#using-non-default-selectors)):
+
+```tsx
+parameters: { vrt: { selector: VRT_SELECTORS.portal } },
+```
+
+### Overlays captured before they finish opening
+
+An overlay opened on mount (through `isOpen` or initial state) may not be rendered/positioned when the screenshot fires, producing a blank or half-positioned capture that flakes. Add a `play` that waits for it to be visible:
+
+```tsx
+import { within } from '../../../.storybook/test';
+import { playDecorator } from '../../../.storybook/vrt';
+
+export const Open: Story = {
+  parameters: { vrt: { selector: VRT_SELECTORS.portal } },
+  play: playDecorator(async ({ canvasElement }) => {
+    await within(canvasElement).waitForEuiPopoverVisible();
+  }),
+};
+```
+
+For portalled panels you can also assert against `bodyElement`:
+
+```tsx
+play: playDecorator(async ({ bodyElement }) => {
+  await waitFor(() =>
+    expect(bodyElement.querySelector('[data-popover-open]')).toBeVisible()
+  );
+}),
+```
+
+### Remote assets (images, avatars, fonts)
+
+Never reference remote URLs (`placehold.co`, `images.unsplash.com`, `picsum.photos`, `gravatar` etc.). Network fetches are slow and unreliable in CI, causing instability. Inline the asset as a `data:` URI instead:
+
+```tsx
+const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64"><rect width="100%" height="100%" fill="#0B64DD"/></svg>`;
+
+<EuiAvatar imageUrl={`data:image/svg+xml,${encodeURIComponent(svg)}`} />
+```
+
+If a story genuinely needs a real raster image (e.g. the `EuiImage` showcase), either bundle a committed local asset or `vrt.skip` the story.
+
+### Randomized or time-based data
+
+`faker` without a seed, `Math.random()`, `Date.now()` and `new Date()` render different output on every run. Pin them:
+
+```tsx
+import { faker } from '@faker-js/faker';
+
+faker.seed(123); // consistent data across runs
+```
+
+Use fixed dates/values for anything rendered (e.g. `date="January 1st 1970"`).
+
+### Oversized stories
+
+Stories that render hundreds of rows/items produce very tall screenshots that are slow to capture and can time out (especially under the `mobile` variant where responsive layouts stack every cell vertically). Keep datasets small. Note that `EuiBasicTable`/`EuiInMemoryTable` don't paginate `items` themselves, so passing a large array renders every row.
+
+### Interaction- or behavior-only stories
+
+If a story exists to demonstrate behavior (focus return, callbacks, keyboard handling) and is visually identical to another captured story, it adds no VRT value and only risks flake - [skip it](#skipping-stories) with `vrt.skip` and a comment.
+
+### Text-only components
+
+A bare text node can have zero height under `#story-wrapper > *`. Use `VRT_SELECTORS.textOnly` so the wrapper itself is captured (see [Using non-default selectors](#using-non-default-selectors)).
+
+## Troubleshooting
+
+### Every story fails with `page.waitForLoadState: Timeout 30000ms exceeded`
+
+`waitForPageReady` waits for `networkidle` on Playwright's own 30s timeout (separate from Jest's `--testTimeout`). The **dev server's** HMR keep the network busy. Under emulation it never goes idle in time, so *every* story times out and suites take 10-20 minutes.
+
+**Fix:** don't pass `--no-static` locally. The default [static build](#static-build-vs-dev-server) has no HMR, so `networkidle` settles instantly.
+
+### VRT is slow or times out locally on Apple Silicon
+
+Local runs use a `linux/amd64` container to match CI. On Apple Silicon (arm64) that image is **emulated** and much slower than native, making large stories hang or time out:
+
+- **Enable Rosetta (recommended).** In Docker Desktop, turn on _Settings → General → "Use Rosetta for x86_64/amd64 emulation on Apple Silicon"_, and raise CPU/memory under _Settings → Resources_. Far faster than the default QEMU emulation while still `linux/amd64`, so screenshots stay byte-identical to CI.
+- **Run natively for quick checks only.** Dropping `--platform linux/amd64` runs the native arm64 image (no emulation, much faster). Renders are usually identical but architecture can introduce 1-2px anti-aliasing differences, so **don't commit baselines this way** - use it only to check stories run and let CI produce baselines.
+
+The Docker path in [`scripts/test-visual-regression.js`](https://github.com/elastic/eui/tree/main/packages/eui/scripts/test-visual-regression.js) also caps `--maxWorkers` and raises `--testTimeout` for headroom.
 
 ## CI pipeline architecture
 

@@ -35,10 +35,44 @@ export abstract class BaseObject {
    */
   protected readonly testSubj: string;
 
-  constructor(scope: ObjectScope, testSubj: string) {
+  /**
+   * CSS selector the root must match to be this component (e.g. `.euiComboBox`).
+   * When set, {@link assertComponent} enforces it.
+   */
+  protected readonly componentSelector?: string;
+
+  private componentVerified = false;
+
+  constructor(scope: ObjectScope, testSubj: string, componentSelector?: string) {
     this.scope = scope instanceof BaseObject ? scope.locator : scope;
     this.root = this.scope.getByTestId(testSubj);
     this.testSubj = testSubj;
+    this.componentSelector = componentSelector;
+
+    // Guard every async public method. A constructor can't be async, so instead
+    // of checking there, a Proxy awaits assertComponent() before each call. Only
+    // async methods are wrapped — the guard is async, so sync methods can't be
+    // guarded and pass through untouched (keeping their sync return type).
+    // Methods run with `target` as `this`, so internal calls don't re-guard.
+    return new Proxy(this, {
+      get(target, prop) {
+        const value = Reflect.get(target, prop, target);
+        const isGuardable =
+          typeof value === 'function' &&
+          value.constructor.name === 'AsyncFunction' &&
+          prop !== 'assertComponent' &&
+          !(prop in Object.prototype);
+
+        if (!isGuardable) {
+          return value;
+        }
+
+        return async (...args: unknown[]) => {
+          await target.assertComponent();
+          return Reflect.apply(value, target, args);
+        };
+      },
+    });
   }
 
   /**
@@ -47,5 +81,34 @@ export abstract class BaseObject {
    */
   get locator(): Locator {
     return this.root;
+  }
+
+  /**
+   * Throw if the element at `testSubj` isn't this component (a `data-test-subj`
+   * isn't unique to a component type). Run automatically before every public
+   * method via the constructor's Proxy. Memoized. Skips when the element is
+   * absent (that's the calling method's concern, not a misuse) and no-op without
+   * a `componentSelector`.
+   */
+  protected async assertComponent(): Promise<void> {
+    if (this.componentVerified || !this.componentSelector) {
+      return;
+    }
+    // Only verify when the element is present. An absent element isn't a misuse
+    // to flag — the calling method handles absence itself (e.g. clear() no-ops) —
+    // so skip rather than block waiting for something that may never appear.
+    if ((await this.root.count()) === 0) {
+      return;
+    }
+    const matches = await this.root
+      .and(this.scope.locator(this.componentSelector))
+      .count();
+    if (matches === 0) {
+      throw new Error(
+        `Expected the element with data-test-subj "${this.testSubj}" to match "${this.componentSelector}", ` +
+          `but it does not. Are you using the right Component Object for this element?`
+      );
+    }
+    this.componentVerified = true;
   }
 }

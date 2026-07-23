@@ -9,10 +9,11 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { css } from '@emotion/css';
+import { expect, waitFor } from '@storybook/test';
+
 import { enableFunctionToggleControls } from '../../../.storybook/utils';
-import { VRT_SELECTORS, playDecorator } from '../../../.storybook/vrt';
-import { waitFor, expect } from '@storybook/test';
 import { within } from '../../../.storybook/test';
+import { VRT_SELECTORS, playDecorator } from '../../../.storybook/vrt';
 
 import {
   StatefulDataGrid,
@@ -128,15 +129,12 @@ export const Minimal: Story = {
 
 export const Compact: Story = {
   tags: ['vrt-only'],
-  parameters: {
-    vrt: { skip: true },
-  },
   args: {
     fontSize: 's',
     cellPadding: 's',
   },
   render: (gridStyle) => (
-    <StatefulDataGrid {...storyArgs} gridStyle={gridStyle} />
+    <StatefulDataGrid {...storyArgs} gridStyle={gridStyle} height="auto" />
   ),
   play: playDecorator(async ({ canvasElement }) => {
     const canvas = within(canvasElement);

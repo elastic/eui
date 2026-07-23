@@ -8,7 +8,6 @@
     "lib": ["ESNext", "DOM"],
     "moduleResolution": "Node",
     "declaration": true,
-    "sourceMap": true,
     "incremental": true,
     "esModuleInterop": true,
     "strict": true,

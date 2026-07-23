@@ -22,7 +22,7 @@ const meta: Meta<EuiSpacerProps> = {
   },
   decorators: [
     (Story, { args }) => (
-      <>
+      <div>
         <EuiText>
           <p>Observe the space created between this and the next text block.</p>
         </EuiText>
@@ -32,7 +32,7 @@ const meta: Meta<EuiSpacerProps> = {
             Observe the space created between this and the previous text block.
           </p>
         </EuiText>
-      </>
+      </div>
     ),
   ],
   args: {

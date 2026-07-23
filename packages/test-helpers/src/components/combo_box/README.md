@@ -23,7 +23,11 @@ EuiComboBox has two selection modes that affect how the methods behave:
 
 | Method | Description |
 |---|---|
-| `getSelectedOptions()` | Returns selected options as `string[]` of labels. |
-| `setSelectedOptions(labels)` | Accepts an array of label strings. Replaces any existing selection. No-op if already matching. |
+| `getSelectedOptions()` | Returns the selected option labels as `string[]`. |
+| `setSelectedOptions(labels, { timeout? })` | Selects existing options (replaces the current selection; no-op if already matching). `timeout` (default `2500`ms) bounds how long each option is awaited after typing — raise it for async / fetch-as-you-type combos. |
+| `setCustomSelectedOptions(labels, { timeout? })` | Creates free-text values via `onCreateOption`. Use instead of `setSelectedOptions` when the values don't pre-exist as options. `timeout` defaults to `2500`ms. |
+| `getAllVisibleOptions()` | Opens the dropdown and returns the labels of the currently visible options as `string[]` (virtualized lists mount only a subset). |
 | `clear()` | Clears all selected options. No-op if nothing is selected. |
+
+The Component Object verifies the `data-test-subj` element is actually an `EuiComboBox` (via the `.euiComboBox` class) and throws a clear error otherwise — so pointing it at a different component that happens to share a `data-test-subj` fails loudly instead of silently misbehaving.
 

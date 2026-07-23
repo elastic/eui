@@ -158,9 +158,6 @@ rendered correctly and not cut-off after scrolling */
 export const VirtualizedCodeBlockScrolling: Story = {
   tags: ['vrt-only'],
   parameters: {
-    vrt: {
-      skip: true,
-    },
     codeSnippet: {
       skip: true,
     },
@@ -168,10 +165,14 @@ export const VirtualizedCodeBlockScrolling: Story = {
   play: playDecorator(async ({ canvasElement }) => {
     // Wait for the virtualized code block to render the content.
     await waitFor(
-      () =>
+      () => {
         expect(
           canvasElement.querySelector('.euiCodeBlock__pre')?.textContent
-        ).toContain('Post title'),
+        ).toContain('Post title');
+        expect(
+          canvasElement.querySelector('[data-complete="true"]')
+        ).not.toBeNull();
+      },
       { timeout: 5000 }
     );
   }),
@@ -180,8 +181,9 @@ export const VirtualizedCodeBlockScrolling: Story = {
   render: function Render() {
     const [response, setResponse] = useState('{}');
     const [isLoading, setIsLoading] = useState(false);
+    const [hasSecondLoadCompleted, setHasSecondLoadCompleted] = useState(false);
 
-    const handleSubmit = async () => {
+    const handleSubmit = (onComplete?: () => void) => {
       setIsLoading(true);
       const data = Array.from({ length: 100 }, (_, i) => ({
         userId: Math.floor(i / 10) + 1,
@@ -196,6 +198,7 @@ export const VirtualizedCodeBlockScrolling: Story = {
       setTimeout(() => {
         setResponse(JSON.stringify(data, null, 2));
         setIsLoading(false);
+        onComplete?.();
       }, 75);
     };
 
@@ -204,6 +207,8 @@ export const VirtualizedCodeBlockScrolling: Story = {
     }, []);
 
     useEffect(() => {
+      if (response === '{}') return;
+
       // Scroll the code block after response updates to test if virtualization
       // Calculates the scroll height and position correctly
       const pre = document.querySelector('.euiCodeBlock__pre');
@@ -214,7 +219,7 @@ export const VirtualizedCodeBlockScrolling: Story = {
 
         // Trigger a second load after scroll to simulate potential issues
         setTimeout(() => {
-          handleSubmit();
+          handleSubmit(() => setHasSecondLoadCompleted(true));
         }, 10);
       }
     }, [response]);
@@ -223,6 +228,7 @@ export const VirtualizedCodeBlockScrolling: Story = {
       <EuiFlexGroup
         direction="row"
         gutterSize="m"
+        data-complete={hasSecondLoadCompleted}
         css={({ euiTheme }) => css`
           block-size: calc(
             100vh - ${mathWithUnits(euiTheme.size.base, (x) => x * 2)}
@@ -234,7 +240,7 @@ export const VirtualizedCodeBlockScrolling: Story = {
             type="submit"
             iconType="sortRight"
             isLoading={isLoading}
-            onClick={handleSubmit}
+            onClick={() => handleSubmit()}
           >
             Submit
           </EuiButton>

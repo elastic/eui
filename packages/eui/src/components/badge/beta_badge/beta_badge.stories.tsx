@@ -35,9 +35,13 @@ type Story = StoryObj<EuiBetaBadgeProps>;
 export const Playground: Story = {
   args: {
     label: 'Beta',
-    // 'middle' avoids the badge being cropped in VRT when there is no surrounding text to anchor baseline alignment
-    alignment: 'middle',
   },
+  render: (args: EuiBetaBadgeProps) => (
+    // Prevent the inline badge from being cropped in VRT screenshots.
+    <div css={{ display: 'inline-block' }}>
+      <EuiBetaBadge {...args} />
+    </div>
+  ),
 };
 
 export const TitleAlignment: Story = {

@@ -9,7 +9,8 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { VRT_SELECTORS } from '../../../.storybook/vrt';
+import { VRT_SELECTORS, playDecorator } from '../../../.storybook/vrt';
+import { within } from '../../../.storybook/test';
 import { PADDING_SIZES } from '../../global_styling';
 import { EuiButton } from '../button';
 import { EuiPopover } from './popover';
@@ -43,4 +44,7 @@ export const Playground: Story = {
   args: {
     children: 'Popover title',
   },
+  play: playDecorator(async ({ canvasElement }) => {
+    await within(canvasElement).waitForEuiPopoverVisible();
+  }),
 };

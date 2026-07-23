@@ -2,6 +2,13 @@
 sidebar_position: 5
 ---
 
+import figmaSaveButtonsWhenShouldIUseASaveButton from '!url-loader!./assets/save-buttons_when-should-i-use-a-save-button.svg';
+import figmaSaveButtonsHowDoIStyleIt from '!url-loader!./assets/save-buttons_how-do-i-style-it.svg';
+import figmaSaveButtonsAvoidUsingTheDefaultFillForTheButton from '!url-loader!./assets/save-buttons_avoid-using-the-default-fill-for-the-button.svg';
+import figmaSaveButtonsAvoidUsingTheSuccessColorVariant from '!url-loader!./assets/save-buttons_avoid-using-the-success-color-variant.svg';
+import figmaSaveButtonsAvoidSizingTheButtonDifferentlyThanSurroundingButtonsOrFormFields from '!url-loader!./assets/save-buttons_avoid-sizing-the-button-differently-than-surrounding-buttons-or-form-fields.svg';
+import figmaSaveButtonsConsiderIfAnIconIsNecessary from '!url-loader!./assets/save-buttons_consider-if-an-icon-is-necessary.svg';
+
 # Save buttons
 
 Guidance for how to select button type, what props to use (color and size), whether to include an icon or not, what labels to use (e.g. Create vs Save), and when
@@ -15,7 +22,11 @@ Save buttons are specific to CRUD operations.  As there are obviously many place
 
 Consider using **"Save"** rather than **"Update"**, **"Create"** or **"Apply"**. Try to reserve the use of “Apply" for actions that do not permanently save data but rather temporarily apply changes.
 
-<FigmaEmbed url="https://www.figma.com/file/rTQpimg0zLB8RP1TWngNTk/Save-Create-Buttons-%5B179%5D?type=design&node-id=738%3A183&mode=design&t=mG6gI94ediVlaPgh-1" />
+<FigmaAsset
+  url="https://www.figma.com/file/rTQpimg0zLB8RP1TWngNTk/Save-Create-Buttons-%5B179%5D?type=design&node-id=738%3A183&mode=design&t=mG6gI94ediVlaPgh-1"
+  src={figmaSaveButtonsWhenShouldIUseASaveButton}
+  title="When should I use a 'Save button'?"
+/>
 
 ## How do I style it?
 
@@ -28,27 +39,43 @@ The save button should be the most dominant action and should be consistent in a
 * Include the noun in the label.
 * Avoid using icons where possible
 
-<FigmaEmbed url="https://www.figma.com/file/rTQpimg0zLB8RP1TWngNTk/Save-Create-Buttons-%5B179%5D?type=design&node-id=562%3A3874&mode=design&t=CLKS3D49G3Au83kb-1" />
+<FigmaAsset
+  url="https://www.figma.com/file/rTQpimg0zLB8RP1TWngNTk/Save-Create-Buttons-%5B179%5D?type=design&node-id=562%3A3874&mode=design&t=CLKS3D49G3Au83kb-1"
+  src={figmaSaveButtonsHowDoIStyleIt}
+  title="How do I style it?"
+/>
 
 
 ### Avoid using the default fill for the button
 Saving should be the primary action in the user's context, so this button should be the most dominant. If multiple buttons or options, make sure the 'Save' button uses the `fill` prop.
 
-<FigmaEmbed url="https://www.figma.com/file/rTQpimg0zLB8RP1TWngNTk/Save-Create-Buttons-%5B179%5D?type=design&node-id=562%3A3964&mode=design&t=CLKS3D49G3Au83kb-1" />
+<FigmaAsset
+  url="https://www.figma.com/file/rTQpimg0zLB8RP1TWngNTk/Save-Create-Buttons-%5B179%5D?type=design&node-id=562%3A3964&mode=design&t=CLKS3D49G3Au83kb-1"
+  src={figmaSaveButtonsAvoidUsingTheDefaultFillForTheButton}
+  title="Avoid using the default fill for the button"
+/>
 
 
 ### Avoid using the `success` color variant
 
 The save button should be the most dominant action in the view. By using our primary color and `fill` prop, it insures we keep these consistent wherever it is placed.
 
-<FigmaEmbed url="https://www.figma.com/file/rTQpimg0zLB8RP1TWngNTk/Save-Create-Buttons-%5B179%5D?type=design&node-id=562%3A3994&mode=design&t=CLKS3D49G3Au83kb-1" />
+<FigmaAsset
+  url="https://www.figma.com/file/rTQpimg0zLB8RP1TWngNTk/Save-Create-Buttons-%5B179%5D?type=design&node-id=562%3A3994&mode=design&t=CLKS3D49G3Au83kb-1"
+  src={figmaSaveButtonsAvoidUsingTheSuccessColorVariant}
+  title="Avoid using the success color variant"
+/>
 
 
 ### Avoid sizing the button differently than surrounding buttons or form fields
 
 We should use the `medium` size button by default. However, use the same size button as other buttons in the group and the associated form inputs (`m` for default size form inputs, `s` for compressed forms).
 
-<FigmaEmbed url="https://www.figma.com/file/rTQpimg0zLB8RP1TWngNTk/Save-Create-Buttons-%5B179%5D?type=design&node-id=562%3A3892&mode=design&t=CLKS3D49G3Au83kb-1" />
+<FigmaAsset
+  url="https://www.figma.com/file/rTQpimg0zLB8RP1TWngNTk/Save-Create-Buttons-%5B179%5D?type=design&node-id=562%3A3892&mode=design&t=CLKS3D49G3Au83kb-1"
+  src={figmaSaveButtonsAvoidSizingTheButtonDifferentlyThanSurroundingButtonsOrFormFields}
+  title="Avoid sizing the button differently than surrounding buttons or form fields"
+/>
 
 
 ### Consider if an icon is necessary
@@ -60,4 +87,8 @@ The choice of the icon can also be difficult here.  We have used a `disk` icon a
 **Exceptions to the rule:**
 As with anything, there will be exceptions to these recommendations.  One example is the `EuiInlineEdit` component which provides a save action without a label.
 
-<FigmaEmbed url="https://www.figma.com/file/rTQpimg0zLB8RP1TWngNTk/Save-Create-Buttons-%5B179%5D?type=design&node-id=562%3A4023&mode=design&t=CLKS3D49G3Au83kb-1" />
+<FigmaAsset
+  url="https://www.figma.com/file/rTQpimg0zLB8RP1TWngNTk/Save-Create-Buttons-%5B179%5D?type=design&node-id=562%3A4023&mode=design&t=CLKS3D49G3Au83kb-1"
+  src={figmaSaveButtonsConsiderIfAnIconIsNecessary}
+  title="Consider if an icon is necessary"
+/>

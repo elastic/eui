@@ -49,7 +49,7 @@ export const ResizeObserver: Story = {
     controls: { include: ['onResize'] },
   },
   render: (props) => (
-    <>
+    <div>
       <i>
         Drag the corner of the text to resize, and look in the console log to
         see the reported width
@@ -66,7 +66,7 @@ export const ResizeObserver: Story = {
       >
         <EuiTextTruncate {...props} />
       </div>
-    </>
+    </div>
   ),
 };
 enableFunctionToggleControls(ResizeObserver, ['onResize']);
@@ -87,7 +87,7 @@ export const StartEndAnchorForSearch: Story = {
       highlightStartPosition + Math.floor(highlight.length / 2);
 
     return (
-      <>
+      <div>
         <i>Type into the below textarea to highlight, e.g. "consec"</i>
         <br />
         <input
@@ -114,7 +114,7 @@ export const StartEndAnchorForSearch: Story = {
             )}
           </EuiTextTruncate>
         </div>
-      </>
+      </div>
     );
   },
   args: {
