@@ -358,6 +358,8 @@ For dos and don'ts sections there's a `Guideline` component with the appropriate
 
 Use `FigmaAsset` to show a Figma design in docs. By default it renders a static WebP image. Pass `type="embed"` to show an interactive Figma iframe instead.
 
+Props are a discriminated union on `type`: image mode requires `src` (and forbids embedding-only combinations); embed mode forbids `src`. `title` is always required for accessibility.
+
 **Image (default)** — import a colocated WebP from an `assets/` folder next to the page:
 
 ```mdx
@@ -383,9 +385,9 @@ import confirmationModal from './assets/modal_confirming-an-action.webp';
 | Prop | Description |
 | ---- | ----------- |
 | `url` | Figma file/node URL (used for embed; kept as source reference for images) |
-| `src` | Imported WebP URL (required when `type` is `"image"`) |
+| `src` | Imported WebP URL (**required** for `type="image"`; not allowed for `type="embed"`) |
 | `type` | `"image"` (default) or `"embed"` |
-| `title` | Accessible title / alt text |
+| `title` | **Required** accessible text (image `alt` / iframe `title`) |
 
 ### Props table
 

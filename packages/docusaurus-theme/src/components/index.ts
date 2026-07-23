@@ -9,6 +9,11 @@
 export { AppThemeContext, useAppTheme } from './theme_context';
 export { Badge } from './badge';
 export { FigmaAsset } from './figma_asset';
+export type {
+  FigmaAssetProps,
+  FigmaAssetImageProps,
+  FigmaAssetEmbedProps,
+} from './figma_asset';
 export { Guideline, GuidelineText } from './guideline';
 export { Icon } from './icon';
 export { PropTable } from './prop_table';

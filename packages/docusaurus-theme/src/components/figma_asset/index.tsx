@@ -6,30 +6,40 @@
  * Side Public License, v 1.
  */
 
-import { IframeHTMLAttributes, ImgHTMLAttributes, useMemo } from 'react';
+import {
+  IframeHTMLAttributes,
+  ImgHTMLAttributes,
+  useMemo,
+} from 'react';
 import { useEuiMemoizedStyles, UseEuiTheme } from '@elastic/eui';
 import { css } from '@emotion/react';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-export type FigmaAssetType = 'image' | 'embed';
-
-type CommonProps = {
+type FigmaAssetBase = {
   /** Figma file/node URL (used for embed mode; kept as source reference for images). */
   url: string;
-  /**
-   * Image URL for `type="image"`. Prefer a colocated import, e.g.
-   * `import asset from './assets/413-91091.webp'` then `src={asset}`.
-   */
-  src?: string;
-  /** @default 'image' */
-  type?: FigmaAssetType;
-  /** iframe `title` / img `alt` */
-  title?: string;
+  /** Required accessible text: iframe `title` / image `alt`. */
+  title: string;
 };
 
-export type FigmaAssetProps = CommonProps &
-  Omit<IframeHTMLAttributes<HTMLIFrameElement>, 'src' | 'title'> &
-  Omit<ImgHTMLAttributes<HTMLImageElement>, 'src' | 'title' | 'alt'>;
+export type FigmaAssetImageProps = FigmaAssetBase &
+  Omit<ImgHTMLAttributes<HTMLImageElement>, 'src' | 'title' | 'alt'> & {
+    /**
+     * Renders a static image (default).
+     * Prefer a colocated import, e.g. `import asset from './assets/….webp'` then `src={asset}`.
+     */
+    type?: 'image';
+    src: string;
+  };
+
+export type FigmaAssetEmbedProps = FigmaAssetBase &
+  Omit<IframeHTMLAttributes<HTMLIFrameElement>, 'src' | 'title'> & {
+    /** Renders an interactive Figma iframe from `url`. */
+    type: 'embed';
+    src?: never;
+  };
+
+export type FigmaAssetProps = FigmaAssetImageProps | FigmaAssetEmbedProps;
 
 const getFigmaAssetStyles = (euiTheme: UseEuiTheme) => ({
   wrapper: css`
@@ -37,7 +47,7 @@ const getFigmaAssetStyles = (euiTheme: UseEuiTheme) => ({
     border-radius: ${euiTheme.euiTheme.size.s};
     margin: ${euiTheme.euiTheme.size.xl} 0;
     overflow: hidden;
-    background-color:${euiTheme.euiTheme.colors.backgroundLightText};
+    background-color: ${euiTheme.euiTheme.colors.backgroundLightText};
   `,
   iframe: css`
     border-radius: ${euiTheme.euiTheme.size.s};
@@ -50,17 +60,17 @@ const getFigmaAssetStyles = (euiTheme: UseEuiTheme) => ({
   `,
 });
 
-export const FigmaAsset = ({
-  url,
-  src,
-  type = 'image',
-  title,
-  ...rest
-}: FigmaAssetProps) => {
+export const FigmaAsset = (props: FigmaAssetProps) => {
+  const { url, title } = props;
   const baseUrl = useBaseUrl('/', { absolute: true });
-  const baseImageSrc = useBaseUrl(src?.startsWith('/') ? src : '/');
+  const imageSrcProp = props.type === 'embed' ? undefined : props.src;
+  const baseImageSrc = useBaseUrl(
+    imageSrcProp?.startsWith('/') ? imageSrcProp : '/'
+  );
   // Imported assets are already resolved URLs; only site-root paths need useBaseUrl.
-  const imageSrc = src?.startsWith('/') ? baseImageSrc : (src ?? '');
+  const imageSrc = imageSrcProp?.startsWith('/')
+    ? baseImageSrc
+    : (imageSrcProp ?? '');
   const styles = useEuiMemoizedStyles(getFigmaAssetStyles);
 
   const embedSrc = useMemo(() => {
@@ -73,36 +83,30 @@ export const FigmaAsset = ({
     return `https://www.figma.com/embed?${params.toString()}`;
   }, [url, baseUrl]);
 
-  if (type === 'image') {
-    if (!src) {
-      throw new Error(
-        'FigmaAsset: `src` is required when `type` is "image" (default). Import a colocated WebP, e.g. `import asset from \'./assets/table-selection_no-items-are-selected.webp\'` then `src={asset}`.'
-      );
-    }
+  if (props.type === 'embed') {
+    const { url: _url, title: _title, type: _type, ...iframeRest } = props;
 
     return (
       <div css={styles.wrapper}>
-        <img
-          {...(rest as ImgHTMLAttributes<HTMLImageElement>)}
-          css={styles.image}
-          src={imageSrc}
-          alt={title ?? ''}
+        <iframe
+          {...iframeRest}
+          css={styles.iframe}
+          title={title}
+          height="450"
+          width="100%"
+          src={embedSrc}
+          allowFullScreen
         />
       </div>
     );
   }
 
+  const { url: _url, title: _title, type: _type, src: _src, ...imgRest } =
+    props;
+
   return (
     <div css={styles.wrapper}>
-      <iframe
-        {...(rest as IframeHTMLAttributes<HTMLIFrameElement>)}
-        css={styles.iframe}
-        title={title}
-        height="450"
-        width="100%"
-        src={embedSrc}
-        allowFullScreen
-      />
+      <img {...imgRest} css={styles.image} src={imageSrc} alt={title} />
     </div>
   );
 };
