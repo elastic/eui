@@ -29,6 +29,16 @@ We don't use `no-restricted-imports` because ESLint doesn't allow multiple error
 
 All deprecations still must follow our [deprecation process](../../wiki/eui-team-processes/deprecations.md).
 
+### `@elastic/eui/no-deprecated-icon-aliases`
+
+Disallows deprecated EUI icon aliases in static JSX props on components imported
+from `@elastic/eui`. The rule checks props ending in `IconType`, the `type` prop
+on `EuiIcon` and `EuiIconTip`, and component-specific icon props such as
+`timelineAvatar`, `icon`, `logo`, `iconLeft`, and `iconRight`. It automatically
+replaces deprecated aliases with their supported icon handles.
+
+See the full table of icon replacements here: https://github.com/elastic/eui/issues/9561
+
 ### `@elastic/eui/no-css-color`
 
 This rule warns engineers to not use literal css color in the codebase, particularly for CSS properties that apply color to either the html element or text nodes, but rather urge users to defer to using the color tokens provided by EUI.
