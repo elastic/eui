@@ -356,14 +356,14 @@ For dos and don'ts sections there's a `Guideline` component with the appropriate
 
 ### Figma asset
 
-Use `FigmaAsset` to show a Figma design in docs. By default it renders a static WebP image. Pass `type="embed"` to show an interactive Figma iframe instead.
+Use `FigmaAsset` to show a Figma design in docs. By default it renders a static image (SVG preferred). Pass `type="embed"` to show an interactive Figma iframe instead.
 
 Props are a discriminated union on `type`: image mode requires `src` (and forbids embedding-only combinations); embed mode forbids `src`. `title` is always required for accessibility.
 
-**Image (default)** — import a colocated WebP from an `assets/` folder next to the page:
+**Image (default)** — import a colocated asset as a URL (use `!url-loader!` for SVGs; bare `.svg` imports become React components via SVGR). WebP/PNG imports work the same way if you need them later:
 
 ```mdx
-import confirmationModal from './assets/modal_confirming-an-action.webp';
+import confirmationModal from '!url-loader!./assets/modal_confirming-an-action.svg';
 
 <FigmaAsset
   url="https://www.figma.com/file/Uo8i…DX-0"
@@ -386,7 +386,7 @@ import confirmationModal from './assets/modal_confirming-an-action.webp';
 | Prop | Description |
 | ---- | ----------- |
 | `url` | Figma file/node URL (used for embed; kept as source reference for images) |
-| `src` | Imported WebP URL (**required** for `type="image"`; not allowed for `type="embed"`) |
+| `src` | Image URL string — SVG preferred; WebP/PNG supported (**required** for `type="image"`; not allowed for `type="embed"`) |
 | `type` | `"image"` (default) or `"embed"` |
 | `title` | **Required** accessible text (image `alt` / iframe `title`) |
 
