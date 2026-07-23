@@ -114,7 +114,7 @@ describe('EuiFilterSelectItem', () => {
 
   describe('content behavior', () => {
     it.each([
-      ['element content is absent', <span>Item</span>, undefined],
+      ['tooltip content is absent', <span>Item</span>, undefined],
       ['content cannot anchor the tooltip', 'Item', 'Filter item tooltip'],
     ])(
       'does not offer a tooltip when %s',
