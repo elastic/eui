@@ -15,7 +15,7 @@
   - [Full-screen example](#full-screen-example)
   - [Tables](#tables)
   - [Dos and Don'ts](#dos-and-donts)
-  - [Figma embed](#figma-embed)
+  - [Figma asset](#figma-asset)
   - [Props table](#props-table)
   - [Images](#images)
 
