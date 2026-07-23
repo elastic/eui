@@ -373,6 +373,7 @@ import confirmationModal from './assets/modal_confirming-an-action.webp';
 ```
 
 **Embed** — interactive iframe from the Figma `url`:
+> **Important note:** Use it only when necessary — only when users need to zoom into UI details. It impacts rendering performance and stability in the sections where applied.
 
 ```mdx
 <FigmaAsset
