@@ -5,7 +5,7 @@ on:
   workflow_dispatch:
     inputs:
       release_ref:
-        description: Upstream git ref to create the release from
+        description: Git ref or commit SHA to create the release from
         required: true
         type: string
       type:
@@ -99,15 +99,67 @@ jobs:
         run: yarn workspaces foreach --all --parallel --topological-dev --exclude @elastic/eui-website --exclude @elastic/eui-monorepo --exclude @elastic/eui-docgen run build
       - name: Cypress tests
         run: yarn workspaces foreach --all --parallel --topological-dev --exclude @elastic/eui-website --exclude @elastic/eui-monorepo --exclude @elastic/eui-docgen run test-cypress
+  verify_release_source:
+    name: Verify release source
+    runs-on: ubuntu-slim
+    permissions:
+      contents: read
+      pull-requests: read
+    outputs:
+      requires_approval: ${{ steps.verify.outputs.requires_approval }}
+      review_url: ${{ steps.verify.outputs.review_url }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Verify release source
+        id: verify
+        env:
+          DRY_RUN: ${{ inputs.dry_run }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          KIBANA_INTEGRATION: ${{ inputs.kibana_integration }}
+          NIGHTLY: ${{ inputs.kibana_nightly }}
+          NPM_TAG: ${{ inputs.npm_tag }}
+          RELEASE_REF: ${{ inputs.release_ref }}
+          RELEASE_TYPE: ${{ inputs.type }}
+          SKIP_TESTS: ${{ inputs.skip_tests }}
+          SOURCE_PR_NUMBER: ${{ inputs.kibana_source_pr_number }}
+          WORKSPACES: ${{ inputs.workspaces }}
+        run: bash scripts/verify_release_source.sh
+  approve_snapshot:
+    name: Approve snapshot release
+    runs-on: ubuntu-slim
+    environment:
+      name: npm-snapshot
+      url: ${{ needs.verify_release_source.outputs.review_url }}
+    if: |
+      always() &&
+      inputs.type == 'snapshot' &&
+      needs.verify_release_source.result == 'success' &&
+      needs.verify_release_source.outputs.requires_approval == 'true' &&
+      (needs.lint_and_unit_tests.result == 'success' || needs.lint_and_unit_tests.result == 'skipped') &&
+      (needs.cypress_tests.result == 'success' || needs.cypress_tests.result == 'skipped')
+    needs: [ lint_and_unit_tests, cypress_tests, verify_release_source ]
+    steps:
+      - run: echo "Snapshot release approved"
   release_snapshot:
     name: Create a snapshot release
     runs-on: ubuntu-latest
     if: |
       always() &&
       inputs.type == 'snapshot' &&
+      needs.verify_release_source.result == 'success' &&
+      (
+        (needs.verify_release_source.outputs.requires_approval == 'true' &&
+          needs.approve_snapshot.result == 'success') ||
+        (needs.verify_release_source.outputs.requires_approval == 'false' &&
+          needs.approve_snapshot.result == 'skipped')
+      ) &&
       (needs.lint_and_unit_tests.result == 'success' || needs.lint_and_unit_tests.result == 'skipped') &&
       (needs.cypress_tests.result == 'success' || needs.cypress_tests.result == 'skipped')
-    needs: [ lint_and_unit_tests, cypress_tests ]
+    needs: [ lint_and_unit_tests, cypress_tests, verify_release_source, approve_snapshot ]
     permissions:
       id-token: write # Required for OIDC (npm trusted publishing)
       contents: read
@@ -220,9 +272,11 @@ jobs:
       contents: read
     if: |
       inputs.type == 'official' &&
+      needs.verify_release_source.result == 'success' &&
+      needs.verify_release_source.outputs.requires_approval == 'false' &&
       needs.lint_and_unit_tests.result == 'success' &&
       needs.cypress_tests.result == 'success'
-    needs: [ lint_and_unit_tests, cypress_tests ]
+    needs: [ lint_and_unit_tests, cypress_tests, verify_release_source ]
     steps:
       - uses: actions/checkout@v4
         with:
