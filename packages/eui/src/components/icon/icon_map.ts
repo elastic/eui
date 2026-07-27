@@ -1790,6 +1790,9 @@ export const typeToPathMap = {
   transitionTopOut: withMetadata(() => import('./assets/transition_top_out'), {
     synonyms: ['transition', 'top', 'out', 'animate', 'exit', 'motion'],
   }),
+  translate: withMetadata(() => import('./assets/translate'), {
+    synonyms: ['language', 'localization'],
+  }),
   trash: withMetadata(() => import('./assets/trash'), {
     synonyms: ['trash', 'delete', 'remove', 'bin', 'garbage', 'discard'],
   }),
