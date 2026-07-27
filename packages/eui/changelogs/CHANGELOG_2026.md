@@ -1,3 +1,17 @@
+## [`v118.0.0`](https://github.com/elastic/eui/releases/v118.0.0)
+
+- Added new `translate` icon. ([#9842](https://github.com/elastic/eui/pull/9842))
+- Updated `EuiToolTip` to skip the entry animation when hovering between adjacent triggers in quick succession, so a group of tooltips behaves like a single continuous tooltip following the cursor ([#9749](https://github.com/elastic/eui/pull/9749))
+
+**Bug fixes**
+
+- Fixed `EuiToolTip` rare flicker when the cursor moved between inner children of the trigger ([#9749](https://github.com/elastic/eui/pull/9749))
+
+**Breaking changes**
+
+- Removed `EuiCollapsibleNavBeta` and all related beta navigation components (`EuiCollapsibleNavItem`, `EuiCollapsibleNavButton`, `KibanaCollapsibleNavSolution`, etc.). ([#9813](https://github.com/elastic/eui/pull/9813))
+- Hover behavior for nested `EuiToolTip` triggers has changed - parent tooltips will not open when the pointer is over a child tooltip trigger (only the innermost tooltip is shown) ([#9749](https://github.com/elastic/eui/pull/9749))
+
 ## [`v117.1.0`](https://github.com/elastic/eui/releases/v117.1.0)
 
 - Updated the outer border width on `EuiFlyout` to `1px` ([#9803](https://github.com/elastic/eui/pull/9803))

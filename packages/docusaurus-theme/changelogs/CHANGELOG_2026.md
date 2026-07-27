@@ -1,3 +1,7 @@
+## [`v2.7.0`](https://github.com/elastic/eui/releases/v2.7.0)
+
+- Refactored the FigmaEmbed component to become a more generic FigmaAsset so that can output either an SVG (Now as a default) raster image asset or a Figma embed iframe. ([#9830](https://github.com/elastic/eui/pull/9830))
+
 ## [`v2.6.0`](https://github.com/elastic/eui/releases/v2.6.0)
 
 - Updated `icon_map.ts` to centralise all available icons in a single file, with optional metadata like synonyms and categories alongside each icon reference. ([#9675](https://github.com/elastic/eui/pull/9675))

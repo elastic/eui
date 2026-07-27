@@ -1,3 +1,7 @@
+## [`v2.15.0`](https://github.com/elastic/eui/releases/tag/%40elastic%2Feslint-plugin-eui%402.15.0)
+
+- Added `callout-prefer-props-for-content` rule ([#9821](https://github.com/elastic/eui/pull/9821))
+
 ## [`v2.14.1`](https://github.com/elastic/eui/releases/tag/%40elastic%2Feslint-plugin-eui%402.14.1)
 
 **Bug fixes**
