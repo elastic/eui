@@ -56,7 +56,6 @@ concurrency:
   cancel-in-progress: false
   queue: max
 permissions:
-  id-token: write # Required for OIDC
   contents: read
 
 jobs:
@@ -216,6 +215,9 @@ jobs:
   release_official:
     name: Create an official release
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write # Required for OIDC (npm trusted publishing)
+      contents: read
     if: |
       inputs.type == 'official' &&
       needs.lint_and_unit_tests.result == 'success' &&
