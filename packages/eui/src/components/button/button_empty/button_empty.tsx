@@ -6,7 +6,12 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, Ref, ButtonHTMLAttributes } from 'react';
+import React, {
+  FunctionComponent,
+  Ref,
+  ButtonHTMLAttributes,
+  useContext,
+} from 'react';
 import classNames from 'classnames';
 
 import {
@@ -35,6 +40,7 @@ import {
   EuiButtonDisplayContentType,
 } from '../button_display/_button_display_content';
 import { isButtonDisabled } from '../button_display/_button_display';
+import { EuiButtonGroupContext } from '../button_group/button_group_context';
 import { euiButtonEmptyStyles } from './button_empty.styles';
 
 export const SIZES = ['xs', 's', 'm'] as const;
@@ -104,12 +110,12 @@ export const EuiButtonEmpty: FunctionComponent<EuiButtonEmptyProps> = ({
   iconType,
   iconSide = 'left',
   iconSize = 'm',
-  color = 'primary',
-  size = 'm',
+  color: _color,
+  size: _size,
   flush,
   isDisabled: _isDisabled,
   disabled,
-  hasAriaDisabled = false,
+  hasAriaDisabled: _hasAriaDisabled,
   isLoading,
   href,
   target,
@@ -121,14 +127,23 @@ export const EuiButtonEmpty: FunctionComponent<EuiButtonEmptyProps> = ({
   isSelected,
   ...rest
 }) => {
+  // Shared button group props
+  const buttonGroupContext = useContext(EuiButtonGroupContext);
+
   const isDisabled = isButtonDisabled({
-    isDisabled: _isDisabled || disabled,
+    isDisabled: (buttonGroupContext.isDisabled ?? _isDisabled) || disabled,
     href,
     isLoading,
   });
+
+  const size = buttonGroupContext.size ?? _size ?? 'm';
+  const color = buttonGroupContext.color ?? _color ?? 'primary';
+  const hasAriaDisabled =
+    buttonGroupContext.hasAriaDisabled ?? _hasAriaDisabled;
+
   const { ref: disabledRef, ...disabledButtonProps } =
     useEuiDisabledElement<HTMLButtonElement>({
-      isDisabled: isDisabled,
+      isDisabled,
       hasAriaDisabled,
       onKeyDown: rest.onKeyDown,
     });
