@@ -20,6 +20,27 @@ verify_main_commit() {
     error "Release ref $RELEASE_REF is not contained in $GITHUB_REPOSITORY:main"
 }
 
+validate_release_arguments() {
+  local workspace
+  local -a workspaces
+
+  if [[ -n "$NPM_TAG" && ! "$NPM_TAG" =~ ^[a-zA-Z0-9][a-zA-Z0-9._-]*$ ]]; then
+    error "Invalid npm tag: $NPM_TAG"
+  fi
+
+  if [[ -n "$WORKSPACES" ]]; then
+    IFS=',' read -r -a workspaces <<< "$WORKSPACES"
+    for workspace in "${workspaces[@]}"; do
+      [[ "$workspace" != -* && "$workspace" =~ ^[a-zA-Z0-9@._/-]+$ ]] ||
+        error "Invalid workspace: $workspace"
+    done
+  fi
+}
+
+RELEASE_REF="$(tr '[:upper:]' '[:lower:]' <<< "$RELEASE_REF")"
+[[ "$RELEASE_REF" =~ ^[0-9a-f]{40}$ ]] ||
+  error 'release_ref must be a full 40-character commit SHA'
+
 if [[ "$NIGHTLY" == 'true' ]]; then
   [[ "$RELEASE_TYPE" == 'snapshot' && "$GITHUB_ACTOR" == 'github-actions[bot]' ]] ||
     error 'Nightly releases must be automated snapshots'
@@ -37,6 +58,8 @@ if [[ "$NIGHTLY" == 'true' ]]; then
   echo 'requires_approval=false' >> "$GITHUB_OUTPUT"
   exit 0
 fi
+
+validate_release_arguments
 
 if [[ "$RELEASE_TYPE" == 'official' ]]; then
   verify_commit_exists
@@ -69,6 +92,8 @@ if [[ -n "$SOURCE_PR_NUMBER" ]]; then
     error 'Source PR head repository is unavailable'
 
   review_url="https://github.com/$head_repository/compare/$base_sha...$head_sha"
+else
+  verify_commit_exists
 fi
 
 {

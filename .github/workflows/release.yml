@@ -5,7 +5,7 @@ on:
   workflow_dispatch:
     inputs:
       release_ref:
-        description: Git ref or commit SHA to create the release from
+        description: Full commit SHA to create the release from
         required: true
         type: string
       type:
@@ -131,6 +131,7 @@ jobs:
   approve_snapshot:
     name: Approve snapshot release
     runs-on: ubuntu-slim
+    permissions: {}
     environment:
       name: npm-snapshot
       url: ${{ needs.verify_release_source.outputs.review_url }}
@@ -168,6 +169,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: ${{ inputs.release_ref }}
+          persist-credentials: false
           # This is needed for yarn version to work properly, but it increases fetch time.
           # We can change this back to "1" if we replace yarn version with something else
           fetch-depth: 0
@@ -281,13 +283,16 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: ${{ inputs.release_ref }}
+          persist-credentials: false
           # This is needed for yarn version to work properly, but it increases fetch time.
           # We can change this back to "1" if we replace yarn version with something else
           fetch-depth: 0
       - name: Verify release commit is tagged
+        env:
+          RELEASE_REF: ${{ inputs.release_ref }}
         run: |
-          tag=$(git tag --points-at ${{ inputs.release_ref }})
-          if [[ "$?" -ne 0 ]] || [[ -z "$tag" ]]; then
+          tag="$(git tag --points-at "$RELEASE_REF")"
+          if [[ -z "$tag" ]]; then
             echo "::error:: Release ref does not point to any tag. Please tag the merge commit of the release PR and try again"
             exit 1
           else
