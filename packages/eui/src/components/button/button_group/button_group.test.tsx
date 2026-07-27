@@ -7,17 +7,24 @@
  */
 
 import React from 'react';
+import { _EuiThemeSizes } from '@elastic/eui-theme-common';
 import { css } from '@emotion/react';
 import { fireEvent } from '@testing-library/react';
-import { render, focusEuiToolTipTrigger } from '../../../test/rtl';
+import { render, focusEuiToolTipTrigger, renderHook } from '../../../test/rtl';
 import { requiredProps as commonProps } from '../../../test';
 import { shouldRenderCustomStyles } from '../../../test/internal';
 
+import { useEuiTheme } from '../../../services';
 import { BUTTON_COLORS } from '../../../global_styling/mixins';
+import { EuiToolTip } from '../../tool_tip';
+import { EuiButton } from '../button';
+import { EuiButtonEmpty } from '../button_empty/button_empty';
+import { EuiButtonIcon } from '../button_icon/button_icon';
 import {
   EuiButtonGroup,
   EuiButtonGroupOptionProps,
   EuiButtonGroupProps,
+  EuiButtonGroupGutterSize,
 } from './button_group';
 
 const SIZES: Array<EuiButtonGroupProps['buttonSize']> = [
@@ -356,6 +363,340 @@ describe('EuiButtonGroup', () => {
         'title',
         'Option two'
       );
+    });
+  });
+
+  describe('children API', () => {
+    shouldRenderCustomStyles(
+      <EuiButtonGroup legend="test">
+        <EuiButton>Save</EuiButton>
+      </EuiButtonGroup>
+    );
+
+    it('renders a `role="group"` with an `aria-label` from `legend`', () => {
+      const { getByRole, container } = render(
+        <EuiButtonGroup legend="Actions">
+          <EuiButton>Save</EuiButton>
+        </EuiButtonGroup>
+      );
+
+      const group = getByRole('group', { name: 'Actions' });
+      expect(group.tagName).toBe('DIV');
+      expect(container.querySelector('fieldset')).toBeNull();
+      expect(container.querySelector('legend')).toBeNull();
+    });
+
+    it('sets `aria-disabled="true"` on the group when `isDisabled=true`', () => {
+      const { getByRole } = render(
+        <EuiButtonGroup legend="Actions" isDisabled>
+          <EuiButton>Save</EuiButton>
+        </EuiButtonGroup>
+      );
+
+      expect(getByRole('group', { name: 'Actions' })).toHaveAttribute(
+        'aria-disabled',
+        'true'
+      );
+    });
+
+    describe('variant', () => {
+      it('defaults to "default"', () => {
+        const { getByRole } = render(
+          <EuiButtonGroup legend="test">
+            <EuiButton>Save</EuiButton>
+          </EuiButtonGroup>
+        );
+        expect(getByRole('group')).toHaveAttribute('data-variant', 'default');
+      });
+
+      describe('default', () => {
+        describe('gutterSize', () => {
+          test.each<{
+            gutterSize: EuiButtonGroupGutterSize;
+            expected: string | undefined;
+          }>([
+            { gutterSize: 'none', expected: undefined },
+            { gutterSize: 'xs', expected: 'xs' },
+            { gutterSize: 's', expected: 's' },
+            { gutterSize: 'm', expected: 'base' },
+            { gutterSize: 'l', expected: 'l' },
+            { gutterSize: 'xl', expected: 'xxl' },
+          ])(
+            'renders a gap of $expected when `gutterSize` is `$gutterSize`',
+            ({ gutterSize, expected }) => {
+              const { result } = renderHook(() => useEuiTheme());
+              const { container } = render(
+                <EuiButtonGroup legend="test" gutterSize={gutterSize}>
+                  <EuiButton>Save</EuiButton>
+                </EuiButtonGroup>
+              );
+
+              if (expected === undefined) {
+                expect(
+                  container.querySelector('.euiButtonGroup__buttons')
+                ).not.toHaveStyleRule('gap');
+                return;
+              } else {
+                const expectedGutterSize =
+                  result.current.euiTheme.size[
+                    expected as keyof _EuiThemeSizes
+                  ];
+
+                expect(
+                  container.querySelector('.euiButtonGroup__buttons')
+                ).toHaveStyleRule('gap', expectedGutterSize);
+              }
+            }
+          );
+        });
+      });
+    });
+
+    describe('buttonSize', () => {
+      it('overrides children buttons own `size` when set to "m"', () => {
+        const { result } = renderHook(() => useEuiTheme());
+        const { getByTestSubject } = render(
+          <EuiButtonGroup legend="test" buttonSize="m">
+            <EuiButton size="s" data-test-subj="child-1">
+              Child
+            </EuiButton>
+            <EuiButtonEmpty size="s" data-test-subj="child-2">
+              Child
+            </EuiButtonEmpty>
+            <EuiToolTip content="Child" disableScreenReaderOutput>
+              <EuiButtonIcon
+                size="xs"
+                color="primary"
+                iconType="bolt"
+                aria-label="child"
+                data-test-subj="child-3"
+              />
+            </EuiToolTip>
+          </EuiButtonGroup>
+        );
+
+        expect(getByTestSubject('child-1')).toHaveStyleRule(
+          'block-size',
+          result.current.euiTheme.size.xxl
+        );
+
+        expect(getByTestSubject('child-2')).toHaveStyleRule(
+          'block-size',
+          result.current.euiTheme.size.xxl
+        );
+
+        expect(getByTestSubject('child-3')).toHaveStyleRule(
+          'block-size',
+          result.current.euiTheme.size.xxl
+        );
+      });
+
+      it('overrides children buttons own `size` when set to "s"', () => {
+        const { result } = renderHook(() => useEuiTheme());
+        const { getByTestSubject } = render(
+          <EuiButtonGroup legend="test" buttonSize="s">
+            <EuiButton size="m" data-test-subj="child-1">
+              Child
+            </EuiButton>
+            <EuiButtonEmpty size="xs" data-test-subj="child-2">
+              Child
+            </EuiButtonEmpty>
+            <EuiToolTip content="Child" disableScreenReaderOutput>
+              <EuiButtonIcon
+                size="xs"
+                color="primary"
+                iconType="bolt"
+                aria-label="child"
+                data-test-subj="child-3"
+              />
+            </EuiToolTip>
+          </EuiButtonGroup>
+        );
+
+        expect(getByTestSubject('child-1')).toHaveStyleRule(
+          'block-size',
+          result.current.euiTheme.size.xl
+        );
+
+        expect(getByTestSubject('child-2')).toHaveStyleRule(
+          'block-size',
+          result.current.euiTheme.size.xl
+        );
+
+        expect(getByTestSubject('child-3')).toHaveStyleRule(
+          'block-size',
+          result.current.euiTheme.size.xl
+        );
+      });
+    });
+
+    describe('isFullWidth', () => {
+      it('applies fullWidth to the group', () => {
+        const { getByTestSubject } = render(
+          <EuiButtonGroup legend="test" isFullWidth data-test-subj="group">
+            <EuiButton data-test-subj="child">Child</EuiButton>
+          </EuiButtonGroup>
+        );
+
+        expect(getByTestSubject('group').className).toContain('fullWidth');
+        expect(getByTestSubject('child')).toHaveStyleRule(
+          'inline-size',
+          '100%'
+        );
+      });
+
+      it('applies fullWidth to EuiButton children', () => {
+        const { getByTestSubject } = render(
+          <EuiButtonGroup legend="test" isFullWidth>
+            <EuiButton data-test-subj="child">Child</EuiButton>
+          </EuiButtonGroup>
+        );
+
+        expect(getByTestSubject('child').className).toContain('fullWidth');
+        expect(getByTestSubject('child')).toHaveStyleRule(
+          'inline-size',
+          '100%'
+        );
+      });
+
+      it('does not apply fullWidth to EuiButtonEmpty children', () => {
+        const { getByTestSubject } = render(
+          <EuiButtonGroup legend="test" isFullWidth>
+            <EuiButtonEmpty data-test-subj="child">Child</EuiButtonEmpty>
+          </EuiButtonGroup>
+        );
+
+        expect(getByTestSubject('child').className).not.toContain('fullWidth');
+        expect(getByTestSubject('child')).not.toHaveStyleRule(
+          'inline-size',
+          '100%'
+        );
+      });
+
+      it('does not apply fullWidth to EuiButtonIcon children', () => {
+        const { getByTestSubject } = render(
+          <EuiButtonGroup legend="test" isFullWidth>
+            <EuiToolTip content="Child" disableScreenReaderOutput>
+              <EuiButtonIcon
+                size="xs"
+                color="primary"
+                iconType="bolt"
+                aria-label="child"
+                data-test-subj="child"
+              />
+            </EuiToolTip>
+          </EuiButtonGroup>
+        );
+
+        expect(getByTestSubject('child').className).not.toContain('fullWidth');
+        expect(getByTestSubject('child')).not.toHaveStyleRule(
+          'inline-size',
+          '100%'
+        );
+      });
+    });
+
+    describe('isDisabled', () => {
+      it('disables children buttons', () => {
+        const { getByTestSubject } = render(
+          <EuiButtonGroup legend="Actions" isDisabled>
+            <EuiButton size="s" data-test-subj="child-1">
+              Child
+            </EuiButton>
+            <EuiButtonEmpty size="s" data-test-subj="child-2">
+              Child
+            </EuiButtonEmpty>
+            <EuiToolTip content="Child" disableScreenReaderOutput>
+              <EuiButtonIcon
+                size="xs"
+                color="primary"
+                iconType="bolt"
+                aria-label="child"
+                data-test-subj="child-3"
+              />
+            </EuiToolTip>
+          </EuiButtonGroup>
+        );
+
+        expect(getByTestSubject('child-1').closest('button')).toBeDisabled();
+        expect(getByTestSubject('child-2').closest('button')).toBeDisabled();
+        expect(getByTestSubject('child-3').closest('button')).toBeDisabled();
+      });
+
+      it('does not enable manually disabled children buttons', () => {
+        const { getByTestSubject } = render(
+          <EuiButtonGroup legend="Actions" isDisabled={false}>
+            <EuiButton size="s" isDisabled data-test-subj="child-1">
+              Child
+            </EuiButton>
+            <EuiButtonEmpty size="s" isDisabled data-test-subj="child-2">
+              Child
+            </EuiButtonEmpty>
+            <EuiToolTip content="Child" disableScreenReaderOutput>
+              <EuiButtonIcon
+                size="xs"
+                isDisabled
+                color="primary"
+                iconType="bolt"
+                aria-label="child"
+                data-test-subj="child-3"
+              />
+            </EuiToolTip>
+          </EuiButtonGroup>
+        );
+
+        expect(getByTestSubject('child-1').closest('button')).toBeDisabled();
+        expect(getByTestSubject('child-2').closest('button')).toBeDisabled();
+        expect(getByTestSubject('child-3').closest('button')).toBeDisabled();
+      });
+    });
+
+    describe('hasAriaDisabled', () => {
+      it('applies `aria-disabled` instead of `disabled` to children buttons', () => {
+        const { getByTestSubject } = render(
+          <EuiButtonGroup legend="Actions" isDisabled hasAriaDisabled>
+            <EuiButton size="s" data-test-subj="child-1">
+              Child
+            </EuiButton>
+            <EuiButtonEmpty size="s" data-test-subj="child-2">
+              Child
+            </EuiButtonEmpty>
+            <EuiToolTip content="Child" disableScreenReaderOutput>
+              <EuiButtonIcon
+                size="xs"
+                color="primary"
+                iconType="bolt"
+                aria-label="child"
+                data-test-subj="child-3"
+              />
+            </EuiToolTip>
+          </EuiButtonGroup>
+        );
+
+        expect(getByTestSubject('child-1').closest('button')).toHaveAttribute(
+          'aria-disabled',
+          'true'
+        );
+        expect(
+          getByTestSubject('child-1').closest('button')
+        ).not.toHaveAttribute('disabled');
+
+        expect(getByTestSubject('child-2').closest('button')).toHaveAttribute(
+          'aria-disabled',
+          'true'
+        );
+        expect(
+          getByTestSubject('child-2').closest('button')
+        ).not.toHaveAttribute('disabled');
+
+        expect(getByTestSubject('child-3').closest('button')).toHaveAttribute(
+          'aria-disabled',
+          'true'
+        );
+        expect(
+          getByTestSubject('child-3').closest('button')
+        ).not.toHaveAttribute('disabled');
+      });
     });
   });
 });
