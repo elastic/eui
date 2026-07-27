@@ -29,6 +29,17 @@ export const euiButtonGroupStyles = {
 export const euiButtonGroupButtonsStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
 
+  const buttonSizes = {
+    s: `
+      border-radius: ${euiTheme.border.radius.small};
+      ${_highContrastStyles(euiThemeContext)}
+    `,
+    m: `
+      border-radius: ${euiTheme.border.radius.medium};
+      ${_highContrastStyles(euiThemeContext)}
+    `,
+  };
+
   const {
     controlCompressedHeight,
     controlCompressedBorderRadius,
@@ -42,6 +53,18 @@ export const euiButtonGroupButtonsStyles = (euiThemeContext: UseEuiTheme) => {
       ${logicalCSS('max-width', '100%')}
       display: flex;
       align-items: center;
+
+      &:where([data-variant='default'] &) {
+        flex-wrap: wrap;
+      }
+
+      &:where([data-size='s'] &) {
+        ${buttonSizes.s}
+      }
+
+      &:where([data-size='m'] &) {
+        ${buttonSizes.m}
+      }
     `,
     fullWidth: css`
       ${logicalCSS('width', '100%')}
@@ -51,23 +74,45 @@ export const euiButtonGroupButtonsStyles = (euiThemeContext: UseEuiTheme) => {
         flex: 1;
         ${logicalCSS('width', '100%')}
       }
+
+      .euiButtonEmpty {
+        /* prevent EuiButtonEmpty from shrinking when EuiButton siblings grow */
+        flex-shrink: 0;
+      }
     `,
     // Sizes
-    m: css`
-      border-radius: ${euiTheme.border.radius.medium};
-      ${_highContrastStyles(euiThemeContext)}
-    `,
-    s: css`
-      border-radius: ${euiTheme.border.radius.small};
-      ${_highContrastStyles(euiThemeContext)}
-    `,
-    compressed: css`
-      ${logicalCSS('height', controlCompressedHeight)}
-      background-color: ${backgroundColor};
-      border: ${euiTheme.border.width.thin} solid ${borderColor};
-      border-radius: ${controlCompressedBorderRadius};
-      ${_highContrastStyles(euiThemeContext, true)}
-    `,
+    size: {
+      m: css`
+        ${buttonSizes.m}
+      `,
+      s: css`
+        ${buttonSizes.s}
+      `,
+      compressed: css`
+        ${logicalCSS('height', controlCompressedHeight)}
+        background-color: ${backgroundColor};
+        border: ${euiTheme.border.width.thin} solid ${borderColor};
+        border-radius: ${controlCompressedBorderRadius};
+        ${_highContrastStyles(euiThemeContext, true)}
+      `,
+    },
+    gutterSize: {
+      xs: css`
+        gap: ${euiTheme.size.xs};
+      `,
+      s: css`
+        gap: ${euiTheme.size.s};
+      `,
+      m: css`
+        gap: ${euiTheme.size.base};
+      `,
+      l: css`
+        gap: ${euiTheme.size.l};
+      `,
+      xl: css`
+        gap: ${euiTheme.size.xxl};
+      `,
+    },
   };
 };
 
