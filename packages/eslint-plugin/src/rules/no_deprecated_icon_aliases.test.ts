@@ -9,6 +9,7 @@
 import { RuleTester } from '@typescript-eslint/rule-tester';
 import {
   DEPRECATED_ICON_ALIASES,
+  DEPRECATED_ICONS_WITHOUT_REPLACEMENT,
   NoDeprecatedIconAliases,
 } from './no_deprecated_icon_aliases';
 
@@ -63,6 +64,16 @@ ruleTester.run('no-deprecated-icon-aliases', NoDeprecatedIconAliases, {
         {
           messageId: 'deprecatedIconAlias' as const,
           data: { alias, replacement },
+        },
+      ],
+    })),
+    ...Array.from(DEPRECATED_ICONS_WITHOUT_REPLACEMENT).map((iconType) => ({
+      code: `import { EuiIcon } from "@elastic/eui";\n<EuiIcon type="${iconType}" />`,
+      languageOptions,
+      errors: [
+        {
+          messageId: 'deprecatedIcon' as const,
+          data: { iconType },
         },
       ],
     })),

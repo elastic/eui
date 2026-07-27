@@ -19,7 +19,8 @@ export const DEPRECATED_ICON_ALIASES = {
   arrowStart: 'chevronLimitLeft',
   arrowUp: 'chevronSingleUp',
   beaker: 'flask',
-  boxesHorizontal: 'boxesVertical',
+  boxesHorizontal: 'ellipsis',
+  boxesVertical: 'ellipsis',
   changePointDetection: 'chartChangePoint',
   checkInCircleFilled: 'checkCircleFill',
   cheer: 'popper',
@@ -38,6 +39,7 @@ export const DEPRECATED_ICON_ALIASES = {
   diff: 'compare',
   discuss: 'comment',
   documentEdit: 'pencil',
+  documents: 'document',
   doubleArrowLeft: 'chevronDoubleLeft',
   doubleArrowRight: 'chevronDoubleRight',
   editorAlignCenter: 'textAlignCenter',
@@ -75,24 +77,33 @@ export const DEPRECATED_ICON_ALIASES = {
   exit: 'logOut',
   expand: 'maximize',
   expandMini: 'maximize',
+  export: 'upload',
   exportAction: 'upload',
   eyeClosed: 'eyeSlash',
   fieldStatistics: 'tableInfo',
   filterInCircle: 'filter',
+  folderCheck: 'check',
+  folderOpened: 'folderOpen',
   glasses: 'readOnly',
   grab: 'dragVertical',
   grabHorizontal: 'dragHorizontal',
   grabOmnidirectional: 'drag',
   heatmap: 'chartHeatmap',
   importAction: 'download',
+  indexClose: 'tableCross',
+  indexEdit: 'tablePencil',
   indexFlush: 'chartThreshold',
   indexMapping: 'mapping',
+  indexOpen: 'tablePlus',
+  indexRuntime: 'tablePlay',
+  indexSettings: 'tableGear',
   indexTemporary: 'tableTime',
   invert: 'contrast',
   kqlField: 'queryField',
   kqlOperand: 'queryOperand',
   kqlSelector: 'querySelector',
   kqlValue: 'queryValue',
+  kubernetesPod: 'cube',
   launch: 'rocket',
   lettering: 'text',
   lineDashed: 'lineDash',
@@ -100,6 +111,7 @@ export const DEPRECATED_ICON_ALIASES = {
   list: 'listBullet',
   listAdd: 'plusCircle',
   logPatternAnalysis: 'pattern',
+  logRateAnalysis: 'chartBarVertical',
   logstashIf: 'if',
   logstashQueue: 'queue',
   magnifyWithExclamation: 'magnifyExclamation',
@@ -113,6 +125,7 @@ export const DEPRECATED_ICON_ALIASES = {
   node: 'vectorTriangle',
   offline: 'wifiSlash',
   online: 'wifi',
+  pagesSelect: 'documentsCheck',
   pinFilled: 'pinFill',
   pipeBreaks: 'lineBreak',
   pipeNoBreaks: 'lineBreakSlash',
@@ -140,6 +153,7 @@ export const DEPRECATED_ICON_ALIASES = {
   tableDensityNormal: 'table',
   temperature: 'thermometer',
   timeRefresh: 'refreshTime',
+  timelineWithArrow: 'timelinePointer',
   timeslider: 'clockControl',
   tokenDenseVector: 'tokenVectorDense',
   training: 'presentation',
@@ -164,6 +178,9 @@ export const DEPRECATED_ICON_ALIASES = {
   visVega: 'code',
   warningFilled: 'warningFill',
 } as const;
+
+export const DEPRECATED_ICONS_WITHOUT_REPLACEMENT: ReadonlySet<string> =
+  new Set(['mobile']);
 
 type DeprecatedIconAlias = keyof typeof DEPRECATED_ICON_ALIASES;
 type StaticStringNode = TSESTree.Literal | TSESTree.TemplateLiteral;
@@ -290,17 +307,28 @@ export const NoDeprecatedIconAliases = ESLintUtils.RuleCreator.withoutDocs({
           return;
         }
 
-        const alias = getStaticStringValue(staticStringNode);
-        if (!alias || !isDeprecatedIconAlias(alias)) {
+        const iconType = getStaticStringValue(staticStringNode);
+        if (!iconType) {
           return;
         }
 
-        const replacement = DEPRECATED_ICON_ALIASES[alias];
+        if (!isDeprecatedIconAlias(iconType)) {
+          if (DEPRECATED_ICONS_WITHOUT_REPLACEMENT.has(iconType)) {
+            context.report({
+              node: staticStringNode,
+              messageId: 'deprecatedIcon',
+              data: { iconType },
+            });
+          }
+          return;
+        }
+
+        const replacement = DEPRECATED_ICON_ALIASES[iconType];
 
         context.report({
           node: staticStringNode,
           messageId: 'deprecatedIconAlias',
-          data: { alias, replacement },
+          data: { alias: iconType, replacement },
           fix(fixer) {
             const sourceText = context.sourceCode.getText(staticStringNode);
             const quote = sourceText[0];
@@ -317,11 +345,13 @@ export const NoDeprecatedIconAliases = ESLintUtils.RuleCreator.withoutDocs({
   meta: {
     type: 'suggestion',
     docs: {
-      description: 'Disallow deprecated EUI icon aliases in JSX icon props.',
+      description: 'Disallow deprecated EUI icons in JSX icon props.',
     },
     fixable: 'code',
     schema: [],
     messages: {
+      deprecatedIcon:
+        'Icon `{{iconType}}` is deprecated and has no direct replacement.',
       deprecatedIconAlias:
         'Icon alias `{{alias}}` is deprecated. Use `{{replacement}}` instead.',
     },
