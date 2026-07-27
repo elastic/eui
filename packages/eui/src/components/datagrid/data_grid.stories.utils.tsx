@@ -238,7 +238,7 @@ export const defaultStorybookArgs = {
         <>
           <EuiButtonIcon iconType="indexEdit" aria-label="Edit row" />
           <EuiButtonIcon
-            iconType="boxesVertical"
+            iconType="ellipsis"
             aria-label="Open actions popover"
           />
         </>
