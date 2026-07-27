@@ -139,7 +139,7 @@ export const KitchenSink: Story = {
     const [isPopoverOpen, setIsPopoverOpen] = useState(false);
 
     const buttonSizeChildren =
-      // @ts-expect-error - Children API doesn't support 'compressed', but its added for demostration with the Options API
+      // @ts-expect-error - Children API doesn't support 'compressed', but it's added for demonstration with the Options API
       (buttonSize === 'compressed' ? 's' : buttonSize) as 's' | 'm';
     const commonProps = {
       ...rest,
