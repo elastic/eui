@@ -140,12 +140,6 @@ export const EuiSelectableListItem: FunctionComponent<
 
     const screenReaderStrings = {
       checked: {
-        state: (
-          <EuiI18n
-            token="euiSelectableListItem.checkedOption"
-            default="Checked option."
-          />
-        ),
         instructions: (
           <EuiI18n
             token="euiSelectableListItem.checkOptionInstructions"
@@ -205,7 +199,8 @@ export const EuiSelectableListItem: FunctionComponent<
 
     switch (checked) {
       case 'on':
-        state = screenReaderStrings.checked.state;
+        // the checked state is already announced natively via `aria-checked`/
+        // `aria-selected`; additional state text would duplicate the announcement
         instructions = allowExclusions
           ? screenReaderStrings.excluded.instructions
           : searchable
