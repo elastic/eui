@@ -102,7 +102,7 @@ export function resolveLocalComponent(
 
 /**
  * Recursively collects concrete JSXElement nodes to validate, expanding:
- *  - `<></>`, `<Fragment>`, `<React.Fragment>` (transparent grouping)
+ *  - `<>...</>`, `<Fragment>`, `<React.Fragment>` (transparent grouping)
  *  - `{expr}`                                  (JSXExpressionContainer)
  *  - `{a && <El />}`                           (LogicalExpression `&&` → right side only)
  *  - `{a || <El />}`, `{a ?? <El />}`          (LogicalExpression `||`/`??` → both sides)

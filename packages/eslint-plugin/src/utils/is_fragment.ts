@@ -9,8 +9,9 @@
 import { type TSESTree } from '@typescript-eslint/utils';
 
 /**
- * Returns true if the opening element is a React fragment: bare `<Fragment>`,
- * `<React.Fragment>`, or the `<>` shorthand.
+ * Returns true if the opening element is a React fragment: `<Fragment>` or
+ * `<React.Fragment>`. The `<>` shorthand is represented as a `JSXFragment`
+ * node (not a `JSXOpeningElement`) and is handled separately by callers.
  */
 export function isFragment(opening: TSESTree.JSXOpeningElement): boolean {
   const { name } = opening;
