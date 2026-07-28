@@ -255,7 +255,6 @@ export class EuiComboBoxOptionsList<T> extends Component<
         // uses the original `options` array for the index to ensure a stable `id`, otherwise `aria-activedescendant`
         // loses focus on selecting an option (due to actively removing it from the list)
         id={rootId(`_option-${options.indexOf(option)}`)}
-        title={hasNativeTruncation && !toolTipContent ? label : undefined}
         key={option.key ?? option.label}
         prepend={option.prepend}
         append={
@@ -288,6 +287,12 @@ export class EuiComboBoxOptionsList<T> extends Component<
         aria-posinset={optionIndex + 1}
         contentProps={{
           className: 'euiComboBoxOption__content',
+        }}
+        textProps={{
+          // `title` must not be set on the option element itself - it would
+          // become the option's accessible description, causing screen readers
+          // to announce the option name twice
+          title: hasNativeTruncation && !toolTipContent ? label : undefined,
         }}
         onClick={() => {
           if (onOptionClick) {
