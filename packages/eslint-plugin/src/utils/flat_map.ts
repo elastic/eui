@@ -9,5 +9,10 @@
 // `Array.prototype.flatMap` requires ES2019 lib; this shim keeps rules that
 // need it within the package's es5 lib setting without widening it for others.
 export function flatMap<T, U>(arr: readonly T[], fn: (item: T) => U[]): U[] {
-  return arr.reduce<U[]>((acc, item) => acc.concat(fn(item)), []);
+  const out: U[] = [];
+  for (const item of arr) {
+    const items = fn(item);
+    for (const i of items) out.push(i);
+  }
+  return out;
 }
