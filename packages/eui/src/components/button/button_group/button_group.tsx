@@ -353,7 +353,7 @@ type, without adding another union layer. */
 interface EuiButtonGroupComponent {
   (props: OptionsModeProps): ReactElement | null;
   (props: ChildrenModeProps): ReactElement | null;
-  // A trailing catch-all signature to ensure that `ComponentProps<typeofEuiButtonGroup>`
+  // A trailing catch-all signature to ensure that `ComponentProps<typeof EuiButtonGroup>`
   // resolves to the full union
   (props: OptionsModeProps | ChildrenModeProps): ReactElement | null;
 }
