@@ -256,7 +256,7 @@ The rule reports two situations:
 
 Buttons with spread props (`{...props}`) are intentionally skipped when no `title` prop is explicitly present because their final prop set cannot be statically determined.
 
-**Exception**: an `EuiButtonIcon` rendered as the render-prop child of an `EuiCopy` is not flagged for a missing wrapper. `EuiCopy` already wraps its child in an `EuiToolTip` (configured via `beforeMessage`), so adding another `EuiToolTip` would create nested, conflicting tooltips — see `@elastic/eui/copy-component-rules`. A `title` prop is still reported in this case, since browser-native tooltips remain discouraged.
+**Exception**: an `EuiButtonIcon` rendered inside an `EuiCopy` that sets `beforeMessage` is not flagged for a missing wrapper. `EuiCopy` wraps its child in an `EuiToolTip` using `beforeMessage` as the content, so adding another `EuiToolTip` would create nested, conflicting tooltips — see `@elastic/eui/copy-component-rules`. This exception is conditional on `beforeMessage`: because `EuiToolTip` suppresses itself when its content is empty, an `EuiButtonIcon` inside an `EuiCopy` **without** `beforeMessage` has no visible tooltip and is still reported. A `title` prop is always reported in this case, since browser-native tooltips remain discouraged.
 
 #### Examples
 

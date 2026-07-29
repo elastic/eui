@@ -212,5 +212,31 @@ ruleTester.run('tooltip-button-icon-wrap', TooltipButtonIconWrap, {
       languageOptions,
       errors: [{ messageId: 'useEuiToolTipInsteadOfTitle' }],
     },
+    {
+      name: 'inside EuiCopy without beforeMessage — no tooltip, still reported',
+      code: dedent`
+        <EuiCopy textToCopy="some text">
+          {(copy) => (
+            <EuiButtonIcon onClick={copy} aria-label="Copy" iconType="copy" />
+          )}
+        </EuiCopy>
+      `,
+      languageOptions,
+      errors: [{ messageId: 'wrapWithEuiToolTip' }],
+    },
+    {
+      name: 'nested inside intermediate element within EuiCopy without beforeMessage — still reported',
+      code: dedent`
+        <EuiCopy textToCopy="some text">
+          {(copy) => (
+            <EuiFlexItem>
+              <EuiButtonIcon onClick={copy} aria-label="Copy" iconType="copy" />
+            </EuiFlexItem>
+          )}
+        </EuiCopy>
+      `,
+      languageOptions,
+      errors: [{ messageId: 'wrapWithEuiToolTip' }],
+    },
   ],
 });
