@@ -13,6 +13,7 @@ import React, {
   ButtonHTMLAttributes,
   ReactElement,
   ReactNode,
+  useMemo,
 } from 'react';
 
 import { useEuiMemoizedStyles } from '../../../services';
@@ -320,6 +321,15 @@ const EuiButtonGroupChildren: FunctionComponent<ChildrenModeProps> = ({
     className
   );
 
+  const contextValue = useMemo(() => {
+    return {
+      size: buttonSize,
+      isDisabled: isDisabled || undefined,
+      hasAriaDisabled: hasAriaDisabled || undefined,
+      fullWidth: isFullWidth,
+    };
+  }, [buttonSize, isDisabled, hasAriaDisabled, isFullWidth]);
+
   return (
     <div
       css={wrapperCssStyles}
@@ -332,14 +342,7 @@ const EuiButtonGroupChildren: FunctionComponent<ChildrenModeProps> = ({
       {...rest}
     >
       <div css={cssStyles} className="euiButtonGroup__buttons">
-        <EuiButtonGroupContext.Provider
-          value={{
-            size: buttonSize,
-            isDisabled: isDisabled || undefined,
-            hasAriaDisabled: hasAriaDisabled || undefined,
-            fullWidth: isFullWidth,
-          }}
-        >
+        <EuiButtonGroupContext.Provider value={contextValue}>
           {children}
         </EuiButtonGroupContext.Provider>
       </div>
