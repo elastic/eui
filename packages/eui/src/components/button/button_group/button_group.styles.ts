@@ -110,7 +110,7 @@ export const euiButtonGroupButtonsStyles = (euiThemeContext: UseEuiTheme) => {
         gap: ${euiTheme.size.l};
       `,
       xl: css`
-        gap: ${euiTheme.size.xxl};
+        gap: ${euiTheme.size.xl};
       `,
     },
   };

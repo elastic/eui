@@ -420,7 +420,7 @@ describe('EuiButtonGroup', () => {
             { gutterSize: 's', expected: 's' },
             { gutterSize: 'm', expected: 'base' },
             { gutterSize: 'l', expected: 'l' },
-            { gutterSize: 'xl', expected: 'xxl' },
+            { gutterSize: 'xl', expected: 'xl' },
           ])(
             'renders a gap of $expected when `gutterSize` is `$gutterSize`',
             ({ gutterSize, expected }) => {
