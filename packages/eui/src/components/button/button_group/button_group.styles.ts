@@ -75,6 +75,12 @@ export const euiButtonGroupButtonsStyles = (euiThemeContext: UseEuiTheme) => {
         ${logicalCSS('width', '100%')}
       }
 
+      .euiButton {
+        flex-grow: 1;
+        /* ensure buttons grow within the group but not each to full width */
+        inline-size: auto;
+      }
+
       .euiButtonEmpty {
         /* prevent EuiButtonEmpty from shrinking when EuiButton siblings grow */
         flex-shrink: 0;
