@@ -11,6 +11,7 @@ import { hasSpread } from '../../utils/has_spread';
 
 const BUTTON_ICON = 'EuiButtonIcon';
 const TOOLTIP = 'EuiToolTip';
+const COPY = 'EuiCopy';
 
 function isWrappedByTooltip(node: TSESTree.JSXElement): boolean {
   let current: TSESTree.Node | undefined | null = node.parent;
@@ -32,6 +33,48 @@ function isWrappedByTooltip(node: TSESTree.JSXElement): boolean {
       case 'JSXExpressionContainer':
       case 'LogicalExpression':
       case 'ConditionalExpression':
+        current = current.parent;
+        break;
+      default:
+        return false;
+    }
+  }
+
+  return false;
+}
+
+/**
+ * `EuiCopy` renders its render-prop child inside its own `EuiToolTip`
+ * (configured via `beforeMessage`), so an `EuiButtonIcon` rendered within an
+ * `EuiCopy` already has a tooltip for sighted users. Wrapping it in another
+ * `EuiToolTip` would create nested, conflicting tooltips — see the
+ * `copy-component-rules` rule. The render prop is a function, so the traversal
+ * walks through function bodies and statements in addition to JSX containers.
+ */
+function isInsideEuiCopy(node: TSESTree.JSXElement): boolean {
+  let current: TSESTree.Node | undefined | null = node.parent;
+
+  while (current) {
+    switch (current.type) {
+      case 'JSXElement': {
+        const el = current as TSESTree.JSXElement;
+        if (
+          el.openingElement.name.type === 'JSXIdentifier' &&
+          el.openingElement.name.name === COPY
+        ) {
+          return true;
+        }
+        current = current.parent;
+        break;
+      }
+      case 'JSXFragment':
+      case 'JSXExpressionContainer':
+      case 'LogicalExpression':
+      case 'ConditionalExpression':
+      case 'ArrowFunctionExpression':
+      case 'FunctionExpression':
+      case 'ReturnStatement':
+      case 'BlockStatement':
         current = current.parent;
         break;
       default:
@@ -76,6 +119,7 @@ export const TooltipButtonIconWrap = ESLintUtils.RuleCreator.withoutDocs({
 
         if (
           !isWrappedByTooltip(node) &&
+          !isInsideEuiCopy(node) &&
           !hasSpread(openingElement.attributes)
         ) {
           context.report({

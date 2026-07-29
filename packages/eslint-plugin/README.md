@@ -256,6 +256,8 @@ The rule reports two situations:
 
 Buttons with spread props (`{...props}`) are intentionally skipped when no `title` prop is explicitly present because their final prop set cannot be statically determined.
 
+**Exception**: an `EuiButtonIcon` rendered as the render-prop child of an `EuiCopy` is not flagged for a missing wrapper. `EuiCopy` already wraps its child in an `EuiToolTip` (configured via `beforeMessage`), so adding another `EuiToolTip` would create nested, conflicting tooltips — see `@elastic/eui/copy-component-rules`. A `title` prop is still reported in this case, since browser-native tooltips remain discouraged.
+
 #### Examples
 
 ```tsx
@@ -266,6 +268,11 @@ Buttons with spread props (`{...props}`) are intentionally skipped when no `titl
 <EuiToolTip content="Edit item">
   <EuiButtonIcon aria-label="Edit item" iconType="pencil" />
 </EuiToolTip>
+
+// ✓ Good - EuiCopy provides the tooltip via `beforeMessage`, no wrapper needed
+<EuiCopy textToCopy="some text" beforeMessage="Copy me">
+  {(copy) => <EuiButtonIcon onClick={copy} aria-label="Copy" iconType="copy" />}
+</EuiCopy>
 ```
 
 ```tsx
@@ -327,6 +334,41 @@ it('shows tooltip on focus', async () => {
 });
 ```
 
+
+### `@elastic/eui/copy-component-rules`
+
+Disallow wrapping the `EuiCopy` render-prop child in an `EuiToolTip` when the `beforeMessage` prop is set.
+
+`EuiCopy` already wraps its child in an `EuiToolTip` internally and uses `beforeMessage` as that tooltip's content. If the render-prop returns its own `EuiToolTip` as the first child, the result is a nested, conflicting tooltip. Remove the `EuiToolTip` wrapper and move its message into the `beforeMessage` prop so `EuiCopy`'s built-in tooltip is the single source of truth.
+
+This rule reports the pattern but does not autofix it, because the tooltip's `content` and the existing `beforeMessage` value cannot always be merged safely (e.g. when either is a variable or JSX). Apply the fix manually.
+
+#### Examples
+
+```tsx
+// ✗ Bad - nested tooltips, the child EuiToolTip conflicts with `beforeMessage`
+<EuiCopy textToCopy="some text" beforeMessage="Click to copy">
+  {(copy) => (
+    <EuiToolTip content="Copy me">
+      <EuiButton onClick={copy}>Copy</EuiButton>
+    </EuiToolTip>
+  )}
+</EuiCopy>
+
+// ✓ Good - drop the EuiToolTip wrapper and let `beforeMessage` drive the tooltip
+<EuiCopy textToCopy="some text" beforeMessage="Copy me">
+  {(copy) => <EuiButton onClick={copy}>Copy</EuiButton>}
+</EuiCopy>
+```
+
+If the render-prop child is not an `EuiToolTip`, `beforeMessage` is used to configure `EuiCopy`'s own tooltip and the pattern is left untouched:
+
+```tsx
+// ✓ Good - no child EuiToolTip, `beforeMessage` drives the built-in tooltip
+<EuiCopy textToCopy="some text" beforeMessage="Click to copy">
+  {(copy) => <EuiButton onClick={copy}>Copy</EuiButton>}
+</EuiCopy>
+```
 
 ## Testing
 
