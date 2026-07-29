@@ -235,7 +235,8 @@ export const KitchenSink: Story = {
                   </EuiToolTip>
                 }
               >
-                Popover content
+                <p>Popover content</p>
+                <EuiButton>Popover action</EuiButton>
               </EuiPopover>
               <EuiButton color="text" iconType="undo" iconSide="left">
                 Undo

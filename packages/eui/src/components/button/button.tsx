@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, Ref, ReactNode, useContext } from 'react';
+import React, { FunctionComponent, Ref, ReactNode } from 'react';
 import classNames from 'classnames';
 
 import {
@@ -26,9 +26,8 @@ import {
 import {
   EuiButtonDisplay,
   EuiButtonDisplayCommonProps,
-  isButtonDisabled,
 } from './button_display/_button_display';
-import { EuiButtonContext } from './button_context';
+import { useEuiButtonCommonProps } from './use_button_common_props';
 
 export const COLORS = BUTTON_COLORS;
 export type EuiButtonColor = _EuiExtendedButtonColor;
@@ -92,27 +91,25 @@ export type Props = ExclusiveUnion<
 export const EuiButton: FunctionComponent<Props> = ({
   className,
   buttonRef,
-  size: _size,
-  color: _color,
+  size: _size = 'm',
+  color: _color = 'primary',
   fill,
   isDisabled: _isDisabled,
   hasAriaDisabled: _hasAriaDisabled,
   fullWidth: _fullWidth,
   ...rest
 }) => {
-  // Shared button group props
-  const buttonContext = useContext(EuiButtonContext);
-
-  const isDisabled = isButtonDisabled({
-    href: rest.href,
-    isDisabled: (buttonContext.isDisabled ?? _isDisabled) || rest.disabled,
-    isLoading: rest.isLoading,
-  });
-
-  const size = buttonContext.size ?? _size ?? 'm';
-  const color = buttonContext.color ?? _color ?? 'primary';
-  const hasAriaDisabled = buttonContext.hasAriaDisabled ?? _hasAriaDisabled;
-  const fullWidth = buttonContext.fullWidth ?? _fullWidth;
+  const { size, color, isDisabled, hasAriaDisabled, fullWidth } =
+    useEuiButtonCommonProps<EuiButtonSize, EuiButtonColor>({
+      size: _size,
+      color: _color,
+      isDisabled: _isDisabled,
+      hasAriaDisabled: _hasAriaDisabled,
+      fullWidth: _fullWidth,
+      href: rest.href,
+      disabled: rest.disabled,
+      isLoading: rest.isLoading,
+    });
 
   const buttonColorStyles = useEuiButtonColorCSS({
     display: fill ? 'fill' : 'base',

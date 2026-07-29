@@ -11,7 +11,6 @@ import React, {
   ButtonHTMLAttributes,
   FunctionComponent,
   Ref,
-  useContext,
 } from 'react';
 import classNames from 'classnames';
 
@@ -25,6 +24,11 @@ import {
   useEuiDisabledElement,
 } from '../../../services/hooks/useEuiDisabledElement';
 import {
+  useEuiButtonColorCSS,
+  useEuiButtonFocusCSS,
+  _EuiExtendedButtonColor,
+} from '../../../global_styling/mixins/_button';
+import {
   CommonProps,
   ExclusiveUnion,
   PropsForAnchor,
@@ -32,13 +36,7 @@ import {
 } from '../../common';
 import { IconType, IconSize, EuiIcon } from '../../icon';
 import { EuiLoadingSpinner } from '../../loading';
-import {
-  useEuiButtonColorCSS,
-  useEuiButtonFocusCSS,
-  _EuiExtendedButtonColor,
-} from '../../../global_styling/mixins/_button';
-import { isButtonDisabled } from '../button_display/_button_display';
-import { EuiButtonContext } from '../button_context';
+import { useEuiButtonCommonProps } from '../use_button_common_props';
 import { euiButtonIconStyles } from './button_icon.styles';
 
 export const SIZES = ['xs', 's', 'm'] as const;
@@ -117,7 +115,7 @@ export const EuiButtonIcon: FunctionComponent<Props> = ({
   className,
   iconType,
   iconSize = 'm',
-  color: _color,
+  color: _color = 'primary',
   isDisabled: _isDisabled,
   disabled,
   hasAriaDisabled: _hasAriaDisabled,
@@ -126,23 +124,24 @@ export const EuiButtonIcon: FunctionComponent<Props> = ({
   display = 'empty',
   target,
   rel,
-  size: _size,
+  size: _size = 'xs',
   buttonRef,
   isSelected,
   isLoading,
   ...rest
 }) => {
-  // Shared button group props
-  const buttonContext = useContext(EuiButtonContext);
-
-  const size = buttonContext.size ?? _size ?? 'xs';
-  const color = buttonContext.color ?? _color ?? 'primary';
-  const hasAriaDisabled =
-    buttonContext.hasAriaDisabled ?? _hasAriaDisabled ?? false;
-
-  const isDisabled = isButtonDisabled({
-    isDisabled: (buttonContext.isDisabled ?? _isDisabled) || disabled,
+  const {
+    size,
+    color,
+    isDisabled,
+    hasAriaDisabled = false,
+  } = useEuiButtonCommonProps<EuiButtonIconSizes, _EuiExtendedButtonColor>({
+    size: _size,
+    color: _color,
+    isDisabled: _isDisabled,
+    hasAriaDisabled: _hasAriaDisabled,
     href,
+    disabled,
     isLoading,
   });
   const { ref: disabledRef, ...disabledButtonProps } =

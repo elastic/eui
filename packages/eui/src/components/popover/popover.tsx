@@ -55,6 +55,7 @@ import { EuiPopoverArrow, EuiPopoverArrowPositions } from './popover_arrow';
 import { euiPopoverStyles } from './popover.styles';
 import { EuiPopoverPanel } from './popover_panel';
 import { EuiPopoverPanelProps } from './popover_panel/_popover_panel';
+import { EuiPopoverBoundaryProvider } from './popover_boundary_context';
 import { EuiPaddingSize } from '../../global_styling';
 import { EuiComponentDefaultsContext } from '../provider/component_defaults';
 
@@ -785,52 +786,54 @@ export class EuiPopover extends Component<Props, State> {
             }
             {...focusTrapProps}
           >
-            <EuiPopoverPanel
-              id={this.panelId}
-              {...(panelProps as EuiPopoverPanelProps)}
-              panelRef={this.panelRef}
-              isOpen={this.state.isOpening}
-              position={this.state.arrowPosition}
-              isAttached={attachToAnchor}
-              className={classNames(panelClassName, panelProps?.className)}
-              hasShadow={false}
-              paddingSize={panelPaddingSize}
-              tabIndex={tabIndex}
-              aria-live={ariaLive}
-              role={panelRole}
-              aria-label={ariaLabel}
-              aria-labelledby={ariaLabelledBy}
-              aria-modal={panelAriaModal}
-              aria-describedby={ariaDescribedby}
-              style={{
-                ...this.state.popoverStyles,
-                // Adding `will-change` to reduce risk of a blurry animation in Chrome 86+
-                willChange: !this.state.isOpenStable
-                  ? 'transform, opacity'
-                  : undefined,
-              }}
-            >
-              {showArrow && this.state.arrowPosition && (
-                <EuiPopoverArrow
-                  position={this.state.arrowPosition}
-                  style={this.state.arrowStyles}
-                >
-                  {arrowChildren}
-                </EuiPopoverArrow>
-              )}
-              {focusTrapScreenReaderText}
-              <EuiMutationObserver
-                observerOptions={{
-                  attributes: true, // element attribute changes
-                  childList: true, // added/removed elements
-                  characterData: true, // text changes
-                  subtree: true, // watch all child elements
+            <EuiPopoverBoundaryProvider>
+              <EuiPopoverPanel
+                id={this.panelId}
+                {...(panelProps as EuiPopoverPanelProps)}
+                panelRef={this.panelRef}
+                isOpen={this.state.isOpening}
+                position={this.state.arrowPosition}
+                isAttached={attachToAnchor}
+                className={classNames(panelClassName, panelProps?.className)}
+                hasShadow={false}
+                paddingSize={panelPaddingSize}
+                tabIndex={tabIndex}
+                aria-live={ariaLive}
+                role={panelRole}
+                aria-label={ariaLabel}
+                aria-labelledby={ariaLabelledBy}
+                aria-modal={panelAriaModal}
+                aria-describedby={ariaDescribedby}
+                style={{
+                  ...this.state.popoverStyles,
+                  // Adding `will-change` to reduce risk of a blurry animation in Chrome 86+
+                  willChange: !this.state.isOpenStable
+                    ? 'transform, opacity'
+                    : undefined,
                 }}
-                onMutation={this.onMutation}
               >
-                {(mutationRef) => <div ref={mutationRef}>{children}</div>}
-              </EuiMutationObserver>
-            </EuiPopoverPanel>
+                {showArrow && this.state.arrowPosition && (
+                  <EuiPopoverArrow
+                    position={this.state.arrowPosition}
+                    style={this.state.arrowStyles}
+                  >
+                    {arrowChildren}
+                  </EuiPopoverArrow>
+                )}
+                {focusTrapScreenReaderText}
+                <EuiMutationObserver
+                  observerOptions={{
+                    attributes: true, // element attribute changes
+                    childList: true, // added/removed elements
+                    characterData: true, // text changes
+                    subtree: true, // watch all child elements
+                  }}
+                  onMutation={this.onMutation}
+                >
+                  {(mutationRef) => <div ref={mutationRef}>{children}</div>}
+                </EuiMutationObserver>
+              </EuiPopoverPanel>
+            </EuiPopoverBoundaryProvider>
           </EuiFocusTrap>
         </EuiPortal>
       );
