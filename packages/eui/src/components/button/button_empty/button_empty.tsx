@@ -40,7 +40,7 @@ import {
   EuiButtonDisplayContentType,
 } from '../button_display/_button_display_content';
 import { isButtonDisabled } from '../button_display/_button_display';
-import { EuiButtonGroupContext } from '../button_group/button_group_context';
+import { EuiButtonContext } from '../button_context';
 import { euiButtonEmptyStyles } from './button_empty.styles';
 
 export const SIZES = ['xs', 's', 'm'] as const;
@@ -128,18 +128,17 @@ export const EuiButtonEmpty: FunctionComponent<EuiButtonEmptyProps> = ({
   ...rest
 }) => {
   // Shared button group props
-  const buttonGroupContext = useContext(EuiButtonGroupContext);
+  const buttonContext = useContext(EuiButtonContext);
 
   const isDisabled = isButtonDisabled({
-    isDisabled: (buttonGroupContext.isDisabled ?? _isDisabled) || disabled,
+    isDisabled: (buttonContext.isDisabled ?? _isDisabled) || disabled,
     href,
     isLoading,
   });
 
-  const size = buttonGroupContext.size ?? _size ?? 'm';
-  const color = buttonGroupContext.color ?? _color ?? 'primary';
-  const hasAriaDisabled =
-    buttonGroupContext.hasAriaDisabled ?? _hasAriaDisabled;
+  const size = buttonContext.size ?? _size ?? 'm';
+  const color = buttonContext.color ?? _color ?? 'primary';
+  const hasAriaDisabled = buttonContext.hasAriaDisabled ?? _hasAriaDisabled;
 
   const { ref: disabledRef, ...disabledButtonProps } =
     useEuiDisabledElement<HTMLButtonElement>({

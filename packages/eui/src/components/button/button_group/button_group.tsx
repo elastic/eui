@@ -25,7 +25,7 @@ import { _EuiButtonColor } from '../../../global_styling/mixins';
 import { EuiToolTipProps } from '../../../components/tool_tip';
 import { EuiButtonDisplayContentProps } from '../button_display/_button_display_content';
 import { EuiButtonGroupButton } from './button_group_button';
-import { EuiButtonGroupContext } from './button_group_context';
+import { EuiButtonContext } from '../button_context';
 import {
   euiButtonGroupStyles,
   euiButtonGroupButtonsStyles,
@@ -342,9 +342,9 @@ const EuiButtonGroupChildren: FunctionComponent<ChildrenModeProps> = ({
       {...rest}
     >
       <div css={cssStyles} className="euiButtonGroup__buttons">
-        <EuiButtonGroupContext.Provider value={contextValue}>
+        <EuiButtonContext.Provider value={contextValue}>
           {children}
-        </EuiButtonGroupContext.Provider>
+        </EuiButtonContext.Provider>
       </div>
     </div>
   );

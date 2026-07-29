@@ -28,7 +28,7 @@ import {
   EuiButtonDisplayCommonProps,
   isButtonDisabled,
 } from './button_display/_button_display';
-import { EuiButtonGroupContext } from './button_group/button_group_context';
+import { EuiButtonContext } from './button_context';
 
 export const COLORS = BUTTON_COLORS;
 export type EuiButtonColor = _EuiExtendedButtonColor;
@@ -101,19 +101,18 @@ export const EuiButton: FunctionComponent<Props> = ({
   ...rest
 }) => {
   // Shared button group props
-  const buttonGroupContext = useContext(EuiButtonGroupContext);
+  const buttonContext = useContext(EuiButtonContext);
 
   const isDisabled = isButtonDisabled({
     href: rest.href,
-    isDisabled: (buttonGroupContext.isDisabled ?? _isDisabled) || rest.disabled,
+    isDisabled: (buttonContext.isDisabled ?? _isDisabled) || rest.disabled,
     isLoading: rest.isLoading,
   });
 
-  const size = buttonGroupContext.size ?? _size ?? 'm';
-  const color = buttonGroupContext.color ?? _color ?? 'primary';
-  const hasAriaDisabled =
-    buttonGroupContext.hasAriaDisabled ?? _hasAriaDisabled;
-  const fullWidth = buttonGroupContext.fullWidth ?? _fullWidth;
+  const size = buttonContext.size ?? _size ?? 'm';
+  const color = buttonContext.color ?? _color ?? 'primary';
+  const hasAriaDisabled = buttonContext.hasAriaDisabled ?? _hasAriaDisabled;
+  const fullWidth = buttonContext.fullWidth ?? _fullWidth;
 
   const buttonColorStyles = useEuiButtonColorCSS({
     display: fill ? 'fill' : 'base',

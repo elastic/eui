@@ -38,7 +38,7 @@ import {
   _EuiExtendedButtonColor,
 } from '../../../global_styling/mixins/_button';
 import { isButtonDisabled } from '../button_display/_button_display';
-import { EuiButtonGroupContext } from '../button_group/button_group_context';
+import { EuiButtonContext } from '../button_context';
 import { euiButtonIconStyles } from './button_icon.styles';
 
 export const SIZES = ['xs', 's', 'm'] as const;
@@ -133,15 +133,15 @@ export const EuiButtonIcon: FunctionComponent<Props> = ({
   ...rest
 }) => {
   // Shared button group props
-  const buttonGroupContext = useContext(EuiButtonGroupContext);
+  const buttonContext = useContext(EuiButtonContext);
 
-  const size = buttonGroupContext.size ?? _size ?? 'xs';
-  const color = buttonGroupContext.color ?? _color ?? 'primary';
+  const size = buttonContext.size ?? _size ?? 'xs';
+  const color = buttonContext.color ?? _color ?? 'primary';
   const hasAriaDisabled =
-    buttonGroupContext.hasAriaDisabled ?? _hasAriaDisabled ?? false;
+    buttonContext.hasAriaDisabled ?? _hasAriaDisabled ?? false;
 
   const isDisabled = isButtonDisabled({
-    isDisabled: (buttonGroupContext.isDisabled ?? _isDisabled) || disabled,
+    isDisabled: (buttonContext.isDisabled ?? _isDisabled) || disabled,
     href,
     isLoading,
   });
