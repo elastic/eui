@@ -9,11 +9,11 @@
 import { AccessibleInteractiveElements } from './rules/a11y/accessible_interactive_element';
 import { CallOutAnnounceOnMount } from './rules/a11y/callout_announce_on_mount';
 import { CallOutPreferPropsForContent } from './rules/callout_prefer_props_for_content';
-import { EuiCopyComponentRules } from './rules/a11y/copy_component_rules';
 import { ConsistentIsInvalidProps } from './rules/a11y/consistent_is_invalid_props';
 import { HrefOnClick } from './rules/href_or_on_click';
 import { RequireHrefForLink } from './rules/require_href_for_link';
 import { NoCssColor } from './rules/no_css_color';
+import { NoNestedCopyTooltip } from './rules/a11y/no_nested_copy_tooltip';
 import { NoRestrictedEuiImports } from './rules/no_restricted_eui_imports';
 import { NoStaticZIndex } from './rules/no_static_z_index';
 import { NoUnnamedInteractiveElement } from './rules/a11y/no_unnamed_interactive_element';
@@ -34,10 +34,10 @@ const config = {
     'accessible-interactive-element': AccessibleInteractiveElements,
     'callout-announce-on-mount': CallOutAnnounceOnMount,
     'callout-prefer-props-for-content': CallOutPreferPropsForContent,
-    'copy-component-rules': EuiCopyComponentRules,
     'consistent-is-invalid-props': ConsistentIsInvalidProps,
     'href-or-on-click': HrefOnClick,
     'no-css-color': NoCssColor,
+    'no-nested-copy-tooltip': NoNestedCopyTooltip,
     'no-restricted-eui-imports': NoRestrictedEuiImports,
     'no-static-z-index': NoStaticZIndex,
     'no-unnamed-interactive-element': NoUnnamedInteractiveElement,
@@ -62,10 +62,10 @@ const config = {
         '@elastic/eui/accessible-interactive-element': 'warn',
         '@elastic/eui/callout-announce-on-mount': 'warn',
         '@elastic/eui/callout-prefer-props-for-content': 'warn',
-        '@elastic/eui/copy-component-rules': 'warn',
         '@elastic/eui/consistent-is-invalid-props': 'warn',
         '@elastic/eui/href-or-on-click': 'warn',
         '@elastic/eui/no-css-color': 'warn',
+        '@elastic/eui/no-nested-copy-tooltip': 'warn',
         '@elastic/eui/no-restricted-eui-imports': 'warn',
         '@elastic/eui/no-static-z-index': 'warn',
         '@elastic/eui/no-unnamed-interactive-element': 'warn',

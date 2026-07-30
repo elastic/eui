@@ -8,7 +8,7 @@
 
 import dedent from 'dedent';
 import { RuleTester } from '@typescript-eslint/rule-tester';
-import { EuiCopyComponentRules } from './copy_component_rules';
+import { NoNestedCopyTooltip } from './no_nested_copy_tooltip';
 
 const languageOptions = {
   parserOptions: {
@@ -21,8 +21,8 @@ const languageOptions = {
 const ruleTester = new RuleTester();
 
 ruleTester.run(
-  'copy-component-rules',
-  EuiCopyComponentRules,
+  'no-nested-copy-tooltip',
+  NoNestedCopyTooltip,
   {
     valid: [
       // No `beforeMessage`, child is a tooltip
@@ -117,6 +117,43 @@ ruleTester.run(
         const MyComponent = () => (
           <EuiCopy beforeMessage="Click to copy" textToCopy="some text">
             {(copy) => {
+              return (
+                <EuiToolTip content="Copy me">
+                  <EuiButton onClick={copy}>Copy</EuiButton>
+                </EuiToolTip>
+              );
+            }}
+          </EuiCopy>
+        )
+      `,
+        languageOptions,
+        errors: [{ messageId: 'redundantTooltipWrapper' }],
+      },
+      // Function expression (not an arrow) returning a tooltip
+      {
+        code: dedent`
+        const MyComponent = () => (
+          <EuiCopy beforeMessage="Click to copy" textToCopy="some text">
+            {function (copy) {
+              return (
+                <EuiToolTip content="Copy me">
+                  <EuiButton onClick={copy}>Copy</EuiButton>
+                </EuiToolTip>
+              );
+            }}
+          </EuiCopy>
+        )
+      `,
+        languageOptions,
+        errors: [{ messageId: 'redundantTooltipWrapper' }],
+      },
+      // Block body with an early return before the tooltip return
+      {
+        code: dedent`
+        const MyComponent = () => (
+          <EuiCopy beforeMessage="Click to copy" textToCopy="some text">
+            {(copy) => {
+              if (!condition) return null;
               return (
                 <EuiToolTip content="Copy me">
                   <EuiButton onClick={copy}>Copy</EuiButton>

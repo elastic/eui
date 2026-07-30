@@ -61,7 +61,7 @@ function isToolTipElement(element: TSESTree.JSXElement): boolean {
   return name.type === 'JSXIdentifier' && name.name === TOOLTIP;
 }
 
-export const EuiCopyComponentRules = ESLintUtils.RuleCreator.withoutDocs(
+export const NoNestedCopyTooltip = ESLintUtils.RuleCreator.withoutDocs(
   {
     create(context) {
       return {

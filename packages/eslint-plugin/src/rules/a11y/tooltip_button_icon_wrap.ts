@@ -59,7 +59,7 @@ function hasBeforeMessage(openingElement: TSESTree.JSXOpeningElement): boolean {
  * `EuiToolTip` suppresses itself when the content is empty. So an
  * `EuiButtonIcon` rendered within an `<EuiCopy beforeMessage="…">` already has a
  * tooltip for sighted users and wrapping it in another `EuiToolTip` would create
- * nested, conflicting tooltips — see the `copy-component-rules` rule. Without
+ * nested, conflicting tooltips — see the `no-nested-copy-tooltip` rule. Without
  * `beforeMessage` there is no such tooltip, so the button must still be wrapped.
  */
 function isInsideEuiCopyWithBeforeMessage(node: TSESTree.JSXElement): boolean {

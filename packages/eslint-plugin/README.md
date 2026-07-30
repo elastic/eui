@@ -256,7 +256,7 @@ The rule reports two situations:
 
 Buttons with spread props (`{...props}`) are intentionally skipped when no `title` prop is explicitly present because their final prop set cannot be statically determined.
 
-**Exception**: an `EuiButtonIcon` rendered inside an `EuiCopy` that sets `beforeMessage` is not flagged for a missing wrapper. `EuiCopy` wraps its child in an `EuiToolTip` using `beforeMessage` as the content, so adding another `EuiToolTip` would create nested, conflicting tooltips — see `@elastic/eui/copy-component-rules`. This exception is conditional on `beforeMessage`: because `EuiToolTip` suppresses itself when its content is empty, an `EuiButtonIcon` inside an `EuiCopy` **without** `beforeMessage` has no visible tooltip and is still reported. A `title` prop is always reported in this case, since browser-native tooltips remain discouraged.
+**Exception**: an `EuiButtonIcon` rendered inside an `EuiCopy` that sets `beforeMessage` is not flagged for a missing wrapper. `EuiCopy` wraps its child in an `EuiToolTip` using `beforeMessage` as the content, so adding another `EuiToolTip` would create nested, conflicting tooltips — see `@elastic/eui/no-nested-copy-tooltip`. This exception is conditional on `beforeMessage`: because `EuiToolTip` suppresses itself when its content is empty, an `EuiButtonIcon` inside an `EuiCopy` **without** `beforeMessage` has no visible tooltip and is still reported. A `title` prop is always reported in this case, since browser-native tooltips remain discouraged.
 
 #### Examples
 
@@ -335,7 +335,7 @@ it('shows tooltip on focus', async () => {
 ```
 
 
-### `@elastic/eui/copy-component-rules`
+### `@elastic/eui/no-nested-copy-tooltip`
 
 Disallow wrapping the `EuiCopy` render-prop child in an `EuiToolTip` when the `beforeMessage` prop is set.
 
@@ -361,14 +361,7 @@ This rule reports the pattern but does not autofix it, because the tooltip's `co
 </EuiCopy>
 ```
 
-If the render-prop child is not an `EuiToolTip`, `beforeMessage` is used to configure `EuiCopy`'s own tooltip and the pattern is left untouched:
-
-```tsx
-// ✓ Good - no child EuiToolTip, `beforeMessage` drives the built-in tooltip
-<EuiCopy textToCopy="some text" beforeMessage="Click to copy">
-  {(copy) => <EuiButton onClick={copy}>Copy</EuiButton>}
-</EuiCopy>
-```
+When the render-prop child is not an `EuiToolTip`, `beforeMessage` simply configures `EuiCopy`'s own tooltip and the pattern is left untouched.
 
 ## Testing
 
