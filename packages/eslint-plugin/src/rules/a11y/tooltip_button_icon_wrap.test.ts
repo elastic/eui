@@ -238,5 +238,30 @@ ruleTester.run('tooltip-button-icon-wrap', TooltipButtonIconWrap, {
       languageOptions,
       errors: [{ messageId: 'wrapWithEuiToolTip' }],
     },
+    {
+      name: 'inside EuiCopy with statically empty beforeMessage — no tooltip, still reported',
+      code: dedent`
+        <EuiCopy textToCopy="some text" beforeMessage="">
+          {(copy) => (
+            <EuiButtonIcon onClick={copy} aria-label="Copy" iconType="copy" />
+          )}
+        </EuiCopy>
+      `,
+      languageOptions,
+      errors: [{ messageId: 'wrapWithEuiToolTip' }],
+    },
+    {
+      name: 'button passed through the beforeMessage prop — not the copy trigger, still reported',
+      code: dedent`
+        <EuiCopy
+          textToCopy="some text"
+          beforeMessage={<EuiButtonIcon aria-label="Copy" iconType="copy" />}
+        >
+          {(copy) => <EuiButton onClick={copy}>Copy</EuiButton>}
+        </EuiCopy>
+      `,
+      languageOptions,
+      errors: [{ messageId: 'wrapWithEuiToolTip' }],
+    },
   ],
 });

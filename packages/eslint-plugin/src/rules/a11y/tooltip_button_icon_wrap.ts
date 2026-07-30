@@ -8,6 +8,7 @@
 
 import { type TSESTree, ESLintUtils } from '@typescript-eslint/utils';
 import { hasSpread } from '../../utils/has_spread';
+import { hasMeaningfulAttr } from '../../utils/has_meaningful_attr';
 
 const BUTTON_ICON = 'EuiButtonIcon';
 const TOOLTIP = 'EuiToolTip';
@@ -44,15 +45,6 @@ function isWrappedByTooltip(node: TSESTree.JSXElement): boolean {
   return false;
 }
 
-function hasBeforeMessage(openingElement: TSESTree.JSXOpeningElement): boolean {
-  return openingElement.attributes.some(
-    (attr) =>
-      attr.type === 'JSXAttribute' &&
-      attr.name.type === 'JSXIdentifier' &&
-      attr.name.name === BEFORE_MESSAGE
-  );
-}
-
 /**
  * `EuiCopy` renders its render-prop child inside its own `EuiToolTip`, but only
  * when `beforeMessage` is set — that prop is the tooltip's `content`, and
@@ -60,7 +52,13 @@ function hasBeforeMessage(openingElement: TSESTree.JSXOpeningElement): boolean {
  * `EuiButtonIcon` rendered within an `<EuiCopy beforeMessage="…">` already has a
  * tooltip for sighted users and wrapping it in another `EuiToolTip` would create
  * nested, conflicting tooltips — see the `no-nested-copy-tooltip` rule. Without
- * `beforeMessage` there is no such tooltip, so the button must still be wrapped.
+ * a meaningful `beforeMessage` there is no such tooltip, so the button must
+ * still be wrapped.
+ *
+ * The exemption only applies to buttons in the render-prop output. If the walk
+ * crosses a `JSXAttribute` before reaching the `EuiCopy`, the button lives in a
+ * prop value (e.g. `beforeMessage={<EuiButtonIcon />}`) rather than the child
+ * `EuiCopy` renders, so it is not covered by the built-in tooltip.
  */
 function isInsideEuiCopyWithBeforeMessage(node: TSESTree.JSXElement): boolean {
   for (
@@ -68,12 +66,14 @@ function isInsideEuiCopyWithBeforeMessage(node: TSESTree.JSXElement): boolean {
     current;
     current = current.parent
   ) {
+    if (current.type === 'JSXAttribute') return false;
+
     if (
       current.type === 'JSXElement' &&
       current.openingElement.name.type === 'JSXIdentifier' &&
       current.openingElement.name.name === COPY
     ) {
-      return hasBeforeMessage(current.openingElement);
+      return hasMeaningfulAttr(current.openingElement, BEFORE_MESSAGE);
     }
   }
 

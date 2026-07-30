@@ -77,6 +77,36 @@ ruleTester.run(
       `,
         languageOptions,
       },
+      // Statically empty `beforeMessage` — no EuiCopy tooltip, child is not redundant
+      {
+        code: dedent`
+        const MyComponent = () => (
+          <EuiCopy textToCopy="some text" beforeMessage="">
+            {(copy) => (
+              <EuiToolTip content="Copy me">
+                <EuiButton onClick={copy}>Copy</EuiButton>
+              </EuiToolTip>
+            )}
+          </EuiCopy>
+        )
+      `,
+        languageOptions,
+      },
+      // Statically falsy `beforeMessage` expression — no EuiCopy tooltip
+      {
+        code: dedent`
+        const MyComponent = () => (
+          <EuiCopy textToCopy="some text" beforeMessage={null}>
+            {(copy) => (
+              <EuiToolTip content="Copy me">
+                <EuiButton onClick={copy}>Copy</EuiButton>
+              </EuiToolTip>
+            )}
+          </EuiCopy>
+        )
+      `,
+        languageOptions,
+      },
     ],
     invalid: [
       // Implicit arrow return of a tooltip
@@ -160,6 +190,23 @@ ruleTester.run(
                 </EuiToolTip>
               );
             }}
+          </EuiCopy>
+        )
+      `,
+        languageOptions,
+        errors: [{ messageId: 'redundantTooltipWrapper' }],
+      },
+      // Leading JSX comment before the render prop is skipped
+      {
+        code: dedent`
+        const MyComponent = () => (
+          <EuiCopy beforeMessage="Click to copy" textToCopy="some text">
+            {/* copy action */}
+            {(copy) => (
+              <EuiToolTip content="Copy me">
+                <EuiButton onClick={copy}>Copy</EuiButton>
+              </EuiToolTip>
+            )}
           </EuiCopy>
         )
       `,

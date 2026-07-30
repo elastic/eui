@@ -7,6 +7,7 @@
  */
 
 import { type TSESTree, ESLintUtils } from '@typescript-eslint/utils';
+import { hasMeaningfulAttr } from '../../utils/has_meaningful_attr';
 
 const COPY = 'EuiCopy';
 const TOOLTIP = 'EuiToolTip';
@@ -18,26 +19,24 @@ const BEFORE_MESSAGE = 'beforeMessage';
  * `EuiCopy` renders its children through a function (`children(copy)`), so the
  * "first child" is the root JSX element that function returns. This handles
  * both implicit arrow returns (`(copy) => <El />`) and block bodies with an
- * explicit `return` statement.
+ * explicit `return` statement. Non-render-prop children (e.g. a leading JSX
+ * comment) are skipped so the render-prop function is still found.
  */
 function getRenderPropRootElement(
   node: TSESTree.JSXElement
 ): TSESTree.JSXElement | null {
-  const expressionChild = node.children.find(
+  const renderProp = node.children.find(
     (child): child is TSESTree.JSXExpressionContainer =>
-      child.type === 'JSXExpressionContainer'
+      child.type === 'JSXExpressionContainer' &&
+      (child.expression.type === 'ArrowFunctionExpression' ||
+        child.expression.type === 'FunctionExpression')
   );
 
-  if (!expressionChild) return null;
+  if (!renderProp) return null;
 
-  const { expression } = expressionChild;
-
-  if (
-    expression.type !== 'ArrowFunctionExpression' &&
-    expression.type !== 'FunctionExpression'
-  ) {
-    return null;
-  }
+  const expression = renderProp.expression as
+    | TSESTree.ArrowFunctionExpression
+    | TSESTree.FunctionExpression;
 
   let { body } = expression;
 
@@ -75,14 +74,9 @@ export const NoNestedCopyTooltip = ESLintUtils.RuleCreator.withoutDocs(
             return;
           }
 
-          const beforeMessageAttr = openingElement.attributes.find(
-            (attr): attr is TSESTree.JSXAttribute =>
-              attr.type === 'JSXAttribute' &&
-              attr.name.type === 'JSXIdentifier' &&
-              attr.name.name === BEFORE_MESSAGE
-          );
-
-          if (!beforeMessageAttr) return;
+          // A statically empty/falsy `beforeMessage` renders no `EuiCopy`
+          // tooltip, so a child `EuiToolTip` is not redundant — skip those.
+          if (!hasMeaningfulAttr(openingElement, BEFORE_MESSAGE)) return;
 
           const rootElement = getRenderPropRootElement(node);
 
