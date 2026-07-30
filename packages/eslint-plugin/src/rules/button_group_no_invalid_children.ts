@@ -40,16 +40,16 @@ function reportInvalidWrapperChildren<
   const children = flatMap(wrapper.children, (c) =>
     collectJsxChildren(c, context.sourceCode)
   );
-  for (const wc of children) {
-    if (hasSpread(wc.openingElement.attributes)) continue;
-    const wcName = getElementName(wc.openingElement);
-    if (wcName === null || VALID_BUTTONS.has(wcName)) continue;
+  for (const wrapperChild of children) {
+    if (hasSpread(wrapperChild.openingElement.attributes)) continue;
+    const wrapperChildName = getElementName(wrapperChild.openingElement);
+    if (wrapperChildName === null || VALID_BUTTONS.has(wrapperChildName)) continue;
     context.report({
-      node: wc.openingElement,
-      messageId: isCustomComponent(wcName)
+      node: wrapperChild.openingElement,
+      messageId: isCustomComponent(wrapperChildName)
         ? 'invalidUnresolvableWrapperChild'
         : 'invalidWrapperChild',
-      data: { name: wcName, wrapper: wrapperName },
+      data: { name: wrapperChildName, wrapper: wrapperName },
     });
   }
 }
@@ -113,39 +113,39 @@ export const ButtonGroupNoInvalidChildren = ESLintUtils.RuleCreator.withoutDocs(
                     context.sourceCode
                   );
 
-                  for (const te of triggerElements) {
-                    if (hasSpread(te.openingElement.attributes)) continue;
+                  for (const triggerElement of triggerElements) {
+                    if (hasSpread(triggerElement.openingElement.attributes)) continue;
 
-                    const teName = getElementName(te.openingElement);
+                    const triggerElementName = getElementName(triggerElement.openingElement);
 
-                    if (teName === null || VALID_BUTTONS.has(teName)) continue;
+                    if (triggerElementName === null || VALID_BUTTONS.has(triggerElementName)) continue;
 
-                    if (teName === 'EuiToolTip') {
+                    if (triggerElementName === 'EuiToolTip') {
                       // EuiToolTip wrapping the trigger — validate its children.
-                      const tooltipChildren = flatMap(te.children, (c) =>
+                      const tooltipChildren = flatMap(triggerElement.children, (c) =>
                         collectJsxChildren(c, context.sourceCode)
                       );
 
-                      for (const ttc of tooltipChildren) {
-                        if (hasSpread(ttc.openingElement.attributes)) continue;
+                      for (const tooltipChild of tooltipChildren) {
+                        if (hasSpread(tooltipChild.openingElement.attributes)) continue;
 
-                        const ttcName = getElementName(ttc.openingElement);
+                        const tooltipChildName = getElementName(tooltipChild.openingElement);
 
-                        if (ttcName === null || VALID_BUTTONS.has(ttcName))
+                        if (tooltipChildName === null || VALID_BUTTONS.has(tooltipChildName))
                           continue;
 
                         context.report({
-                          node: ttc.openingElement,
+                          node: tooltipChild.openingElement,
                           messageId: 'invalidPopoverButton',
-                          data: { name: ttcName },
+                          data: { name: tooltipChildName },
                         });
                       }
                       continue;
                     }
                     context.report({
-                      node: te.openingElement,
+                      node: triggerElement.openingElement,
                       messageId: 'invalidPopoverButton',
-                      data: { name: teName },
+                      data: { name: triggerElementName },
                     });
                   }
                 }
