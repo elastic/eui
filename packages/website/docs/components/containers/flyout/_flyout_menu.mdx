@@ -54,7 +54,7 @@ Actions rendered via `trailingActions` show a tooltip when `toolTipContent` is p
 The `customActions` prop is deprecated in favor of `trailingActions`. It is still supported as a compatibility alias, but if both `trailingActions` and `customActions` are supplied, `trailingActions` takes precedence.
 :::
 
-In [managed session flyouts](#flyout-session-management), the Flyout Manager automatically adds a back button and a history popover control to the flyout menu for navigating to different flyout sessions within the managed context.
+In [managed session flyouts](#flyout-session-management), the Flyout Manager automatically adds a back button and a history popover control to the flyout menu for navigating to different flyout sessions within the managed context. The history popover is only added once there is more than one session to navigate back to; with a single previous session the back button alone is shown, since the popover would duplicate it.
 
 import FlyoutMenuPagination from './_flyout_menu_pagination.mdx';
 

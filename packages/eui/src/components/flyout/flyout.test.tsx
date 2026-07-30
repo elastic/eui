@@ -941,6 +941,45 @@ describe('EuiFlyout', () => {
       expect(dialog).toHaveAttribute('aria-label', 'Test flyout');
       expect(dialog).toHaveAttribute('data-managed-flyout-level', 'main');
     });
+
+    it('only renders the history popover once more than two sessions are in history', () => {
+      const sharedKey = Symbol();
+      const Sessions = ({ count }: { count: number }) => (
+        <EuiFlyoutManager>
+          {Array.from({ length: count }, (_, index) => (
+            <EuiFlyout
+              key={index}
+              session="start"
+              historyKey={sharedKey}
+              onClose={() => {}}
+              flyoutMenuProps={{ title: `Session ${index + 1}` }}
+              aria-label={`Session ${index + 1}`}
+            >
+              Content
+            </EuiFlyout>
+          ))}
+        </EuiFlyoutManager>
+      );
+
+      const { queryAllByTestSubject, rerender } = render(
+        <Sessions count={2} />
+      );
+
+      // Two sessions leaves a single history entry, which the back button
+      // already navigates to
+      expect(
+        queryAllByTestSubject('euiFlyoutMenuBackButton').length
+      ).toBeGreaterThan(0);
+      expect(queryAllByTestSubject('euiFlyoutMenuHistoryButton')).toHaveLength(
+        0
+      );
+
+      rerender(<Sessions count={3} />);
+
+      expect(
+        queryAllByTestSubject('euiFlyoutMenuHistoryButton').length
+      ).toBeGreaterThan(0);
+    });
   });
 
   describe('ref forwarding', () => {

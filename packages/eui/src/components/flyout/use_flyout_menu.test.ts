@@ -60,14 +60,27 @@ describe('useEuiFlyoutMenu', () => {
         expect(result.current.shouldRenderMenu).toBe(true);
       });
 
-      it('returns true when menu has history items', () => {
+      it('returns true when menu has enough history items to render the popover', () => {
+        const { result } = render({
+          flyoutMenuDisplayMode: MENU_DISPLAY_AUTO,
+          flyoutMenuProps: {
+            historyItems: [
+              { title: 'Previous', onClick: () => {} },
+              { title: 'Older', onClick: () => {} },
+            ],
+          },
+        });
+        expect(result.current.shouldRenderMenu).toBe(true);
+      });
+
+      it('returns false when a single history item would not render the popover', () => {
         const { result } = render({
           flyoutMenuDisplayMode: MENU_DISPLAY_AUTO,
           flyoutMenuProps: {
             historyItems: [{ title: 'Previous', onClick: () => {} }],
           },
         });
-        expect(result.current.shouldRenderMenu).toBe(true);
+        expect(result.current.shouldRenderMenu).toBe(false);
       });
 
       it('returns true when menu has custom actions', () => {

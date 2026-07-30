@@ -11,6 +11,7 @@ import {
   EuiFlyoutMenuDisplayMode,
   MENU_DISPLAY_ALWAYS,
   MENU_DISPLAY_AUTO,
+  MIN_HISTORY_ITEMS,
 } from './const';
 import { EuiFlyoutMenuProps } from './flyout_menu';
 import { useMemo } from 'react';
@@ -52,7 +53,7 @@ export const useEuiFlyoutMenu = ({
   const menuHasContent =
     hasMenu &&
     (!!flyoutMenuProps.showBackButton ||
-      (flyoutMenuProps.historyItems?.length ?? 0) > 0 ||
+      (flyoutMenuProps.historyItems?.length ?? 0) >= MIN_HISTORY_ITEMS ||
       (flyoutMenuProps.leadingActions?.length ?? 0) > 0 ||
       (flyoutMenuProps.trailingActions?.length ?? 0) > 0 ||
       (flyoutMenuProps.customActions?.length ?? 0) > 0 ||

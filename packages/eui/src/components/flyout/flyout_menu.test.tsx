@@ -189,7 +189,7 @@ describe('EuiFlyoutMenu', () => {
       ).not.toBeInTheDocument();
     });
 
-    it('renders history popover when historyItems are provided', () => {
+    it('renders history popover when at least two historyItems are provided', () => {
       const { container } = renderWithContext(
         <EuiFlyoutMenu title="Test Title" historyItems={historyItems} />
       );
@@ -197,6 +197,22 @@ describe('EuiFlyoutMenu', () => {
       expect(
         container.querySelector('[aria-label="History"]')
       ).toBeInTheDocument();
+    });
+
+    it('does not render history popover for a single historyItem', () => {
+      const { container, getByTestSubject } = renderWithContext(
+        <EuiFlyoutMenu
+          title="Test Title"
+          historyItems={[historyItems[0]]}
+          showBackButton
+        />
+      );
+
+      expect(
+        container.querySelector('[aria-label="History"]')
+      ).not.toBeInTheDocument();
+      // the back button already navigates to that single item
+      expect(getByTestSubject('euiFlyoutMenuBackButton')).toBeInTheDocument();
     });
 
     it('renders history items with iconType as list group item icons', async () => {
@@ -235,10 +251,7 @@ describe('EuiFlyoutMenu', () => {
 
     it('uses the clockCounter icon for the history trigger', async () => {
       const { container } = renderWithContext(
-        <EuiFlyoutMenu
-          title="Test Title"
-          historyItems={[{ title: 'History 1', onClick: jest.fn() }]}
-        />
+        <EuiFlyoutMenu title="Test Title" historyItems={historyItems} />
       );
 
       const historyButton = container.querySelector('[aria-label="History"]');
@@ -251,10 +264,7 @@ describe('EuiFlyoutMenu', () => {
 
     it('shows a "Recently visited" tooltip on hover of the history trigger', () => {
       const { getByTestSubject, getByRole } = renderWithContext(
-        <EuiFlyoutMenu
-          title="Test Title"
-          historyItems={[{ title: 'History 1', onClick: jest.fn() }]}
-        />
+        <EuiFlyoutMenu title="Test Title" historyItems={historyItems} />
       );
 
       fireEvent.mouseOver(getByTestSubject('euiFlyoutMenuHistoryButton'));
@@ -462,7 +472,10 @@ describe('EuiFlyoutMenu', () => {
     const trailingActions = [
       { iconType: 'minimize', onClick: jest.fn(), 'aria-label': 'Minimize' },
     ];
-    const historyItems = [{ title: 'History 1', onClick: jest.fn() }];
+    const historyItems = [
+      { title: 'History 1', onClick: jest.fn() },
+      { title: 'History 2', onClick: jest.fn() },
+    ];
 
     it('renders a divider between the back button and history when both are present', () => {
       const { container } = renderWithContext(
@@ -481,6 +494,20 @@ describe('EuiFlyoutMenu', () => {
     it('does not render a divider when only the back button is present', () => {
       const { container } = renderWithContext(
         <EuiFlyoutMenu title="Test Title" showBackButton />
+      );
+
+      expect(
+        container.querySelectorAll('.euiFlyoutMenu__divider')
+      ).toHaveLength(0);
+    });
+
+    it('does not render a divider when a single history item suppresses the popover', () => {
+      const { container } = renderWithContext(
+        <EuiFlyoutMenu
+          title="Test Title"
+          showBackButton
+          historyItems={[historyItems[0]]}
+        />
       );
 
       expect(

@@ -25,6 +25,7 @@ import { EuiText } from '../text';
 import { EuiTitle } from '../title';
 import { EuiToolTip, EuiToolTipProps } from '../tool_tip';
 import { EuiFlyoutCloseButton } from './_flyout_close_button';
+import { MIN_HISTORY_ITEMS } from './const';
 import { euiFlyoutMenuStyles } from './flyout_menu.styles';
 import { EuiFlyoutMenuContext } from './flyout_menu_context';
 import type { EuiFlyoutCloseEvent } from './types';
@@ -170,7 +171,9 @@ export type EuiFlyoutMenuProps = CommonProps &
      */
     backButtonProps?: EuiFlyoutMenuBackButtonProps;
     /**
-     * List of history items for the history popover
+     * List of history items for the history popover. The popover is only
+     * rendered when there are at least two items, since a single item is
+     * redundant with the back button.
      */
     historyItems?: EuiFlyoutHistoryItem[];
     /**
@@ -420,7 +423,8 @@ export const EuiFlyoutMenu: FunctionComponent<EuiFlyoutMenuProps> = ({
   const classes = classNames('euiFlyoutMenu', className);
   const showPaginationControls = pagination != null && pagination.total > 1;
   const hasBackButton = !showPaginationControls && !!showBackButton;
-  const hasHistory = !showPaginationControls && historyItems.length > 0;
+  const hasHistory =
+    !showPaginationControls && historyItems.length >= MIN_HISTORY_ITEMS;
 
   // `trailingActions` takes precedence over the deprecated `customActions` alias
   const effectiveTrailingActions = trailingActions?.length

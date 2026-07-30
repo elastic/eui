@@ -36,6 +36,14 @@ export const FLYOUT_MENU_DISPLAY_MODES = [
 export type EuiFlyoutMenuDisplayMode =
   (typeof FLYOUT_MENU_DISPLAY_MODES)[number];
 
+/**
+ * Minimum number of history items required to render the flyout menu's history
+ * popover. A single item is redundant with the back button, which already
+ * navigates to that same session, so the popover only appears once it offers
+ * more than one destination.
+ */
+export const MIN_HISTORY_ITEMS = 2;
+
 /** Allowed padding sizes for flyout content. */
 export const FLYOUT_PADDING_SIZES = ['none', 's', 'm', 'l'] as const;
 /** Type representing a supported flyout padding size. */

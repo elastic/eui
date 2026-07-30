@@ -22,10 +22,10 @@ import { EuiFlyoutHeader } from './flyout_header';
 interface Args extends EuiFlyoutMenuProps {
   leadingActionCount: number;
   trailingActionCount: number;
-  showHistoryItems: boolean;
+  historyItemCount: number;
 }
 
-const ACTION_COUNT_CONTROL = {
+const COUNT_CONTROL = {
   control: { type: 'range' as const, min: 0, max: 4, step: 1 },
 };
 
@@ -34,18 +34,23 @@ const meta: Meta<Args> = {
   component: EuiFlyoutMenu,
   argTypes: {
     hideTitle: { control: 'boolean' },
-    showBackButton: { control: 'boolean' },
     leadingActionCount: {
-      ...ACTION_COUNT_CONTROL,
+      ...COUNT_CONTROL,
       description:
         'Story-only control for the number of `leadingActions` to render.',
     },
     trailingActionCount: {
-      ...ACTION_COUNT_CONTROL,
+      ...COUNT_CONTROL,
       description:
         'Story-only control for the number of `trailingActions` to render.',
     },
+    historyItemCount: {
+      ...COUNT_CONTROL,
+      description:
+        'Story-only control for the number of `historyItems` to pass. Mirroring managed session flyouts, `showBackButton` is derived from this: the back button appears from one item, while the history popover only appears from two, since a single item would duplicate the back button.',
+    },
     'aria-label': { table: { disable: true } },
+    showBackButton: { table: { disable: true } },
     backButtonProps: { table: { disable: true } },
     trailingActions: { table: { disable: true } },
     customActions: { table: { disable: true } },
@@ -54,10 +59,9 @@ const meta: Meta<Args> = {
   },
   args: {
     hideCloseButton: false,
-    showBackButton: true,
     leadingActionCount: 1,
     trailingActionCount: 2,
-    showHistoryItems: true,
+    historyItemCount: 3,
     hideTitle: true,
   },
 };
@@ -78,6 +82,21 @@ const TRAILING_ACTION_POOL = [
   { iconType: 'share', label: 'Share' },
 ];
 
+const HISTORY_ITEM_POOL = [
+  'First item',
+  'Second item',
+  'Third item',
+  'Fourth item',
+];
+
+const buildHistoryItems = (count: number) =>
+  HISTORY_ITEM_POOL.slice(0, count).map((title) => ({
+    title,
+    onClick: () => {
+      action('history item')(`${title} clicked`);
+    },
+  }));
+
 const buildActions = (
   pool: typeof LEADING_ACTION_POOL,
   count: number,
@@ -96,10 +115,9 @@ const MenuBarFlyout = (args: Args) => {
   const {
     hideTitle,
     hideCloseButton,
-    showBackButton,
     leadingActionCount,
     trailingActionCount,
-    showHistoryItems,
+    historyItemCount,
   } = args;
 
   const [isFlyoutOpen, setIsFlyoutOpen] = useState(true);
@@ -114,14 +132,11 @@ const MenuBarFlyout = (args: Args) => {
     },
   };
 
-  const historyItems = showHistoryItems
-    ? ['First item', 'Second item', 'Third item'].map((title) => ({
-        title,
-        onClick: () => {
-          action('history item')(`${title} clicked`);
-        },
-      }))
-    : undefined;
+  const historyItems = buildHistoryItems(historyItemCount);
+
+  // Managed session flyouts derive this from history depth rather than
+  // accepting it from the consumer; mirror that here.
+  const showBackButton = historyItems.length > 0;
 
   const leadingActions = buildActions(
     LEADING_ACTION_POOL,
