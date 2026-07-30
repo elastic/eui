@@ -263,6 +263,36 @@ describe('EuiManagedFlyout', () => {
       const el = getByTestSubject('managed-flyout');
       expect(el).toHaveAttribute('data-test-subj', 'managed-flyout');
     });
+
+    it('accepts leadingActions alongside manager-controlled pagination', () => {
+      const flyoutMenuProps = {
+        pagination: {
+          currentIndex: 0,
+          total: 5,
+          onPrevious: jest.fn(),
+          onNext: jest.fn(),
+        },
+        leadingActions: [
+          {
+            iconType: 'documents',
+            onClick: jest.fn(),
+            'aria-label': 'View surrounding documents',
+          },
+        ],
+      };
+
+      const { getByTestSubject } = renderInProvider(
+        <EuiManagedFlyout
+          id="test-flyout"
+          level={LEVEL_MAIN}
+          onClose={() => {}}
+          flyoutMenuProps={flyoutMenuProps}
+        />
+      );
+
+      const el = getByTestSubject('managed-flyout');
+      expect(el).toHaveAttribute('data-test-subj', 'managed-flyout');
+    });
   });
 
   describe('title handling', () => {

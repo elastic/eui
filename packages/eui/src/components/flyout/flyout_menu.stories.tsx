@@ -20,9 +20,14 @@ import { EuiFlyoutMenu, EuiFlyoutMenuProps } from './flyout_menu';
 import { EuiFlyoutHeader } from './flyout_header';
 
 interface Args extends EuiFlyoutMenuProps {
-  showCustomActions: boolean;
+  leadingActionCount: number;
+  trailingActionCount: number;
   showHistoryItems: boolean;
 }
+
+const ACTION_COUNT_CONTROL = {
+  control: { type: 'range' as const, min: 0, max: 4, step: 1 },
+};
 
 const meta: Meta<Args> = {
   title: 'Layout/EuiFlyout/EuiFlyoutMenu',
@@ -30,16 +35,28 @@ const meta: Meta<Args> = {
   argTypes: {
     hideTitle: { control: 'boolean' },
     showBackButton: { control: 'boolean' },
-    showCustomActions: { control: 'boolean' },
+    leadingActionCount: {
+      ...ACTION_COUNT_CONTROL,
+      description:
+        'Story-only control for the number of `leadingActions` to render.',
+    },
+    trailingActionCount: {
+      ...ACTION_COUNT_CONTROL,
+      description:
+        'Story-only control for the number of `trailingActions` to render.',
+    },
     'aria-label': { table: { disable: true } },
     backButtonProps: { table: { disable: true } },
+    trailingActions: { table: { disable: true } },
     customActions: { table: { disable: true } },
+    leadingActions: { table: { disable: true } },
     historyItems: { table: { disable: true } },
   },
   args: {
     hideCloseButton: false,
     showBackButton: true,
-    showCustomActions: true,
+    leadingActionCount: 1,
+    trailingActionCount: 2,
     showHistoryItems: true,
     hideTitle: true,
   },
@@ -47,12 +64,41 @@ const meta: Meta<Args> = {
 
 export default meta;
 
+const LEADING_ACTION_POOL = [
+  { iconType: 'documents', label: 'View surrounding documents' },
+  { iconType: 'pin', label: 'Pin' },
+  { iconType: 'tag', label: 'Tag' },
+  { iconType: 'download', label: 'Download' },
+];
+
+const TRAILING_ACTION_POOL = [
+  { iconType: 'minimize', label: 'Minimize' },
+  { iconType: 'gear', label: 'Settings' },
+  { iconType: 'broom', label: 'Clear' },
+  { iconType: 'share', label: 'Share' },
+];
+
+const buildActions = (
+  pool: typeof LEADING_ACTION_POOL,
+  count: number,
+  actionName: string
+) =>
+  pool.slice(0, count).map(({ iconType, label }) => ({
+    iconType,
+    onClick: () => {
+      action(actionName)(`${label} clicked`);
+    },
+    'aria-label': label,
+    toolTipContent: label,
+  }));
+
 const MenuBarFlyout = (args: Args) => {
   const {
     hideTitle,
     hideCloseButton,
     showBackButton,
-    showCustomActions,
+    leadingActionCount,
+    trailingActionCount,
     showHistoryItems,
   } = args;
 
@@ -77,13 +123,16 @@ const MenuBarFlyout = (args: Args) => {
       }))
     : undefined;
 
-  const customActions = ['gear', 'broom'].map((iconType) => ({
-    iconType,
-    onClick: () => {
-      action('custom action')(`${iconType} action clicked`);
-    },
-    'aria-label': `${iconType} action`,
-  }));
+  const leadingActions = buildActions(
+    LEADING_ACTION_POOL,
+    leadingActionCount,
+    'leading action'
+  );
+  const trailingActions = buildActions(
+    TRAILING_ACTION_POOL,
+    trailingActionCount,
+    'trailing action'
+  );
 
   const titleId = 'menu-bar-example-main-title';
 
@@ -110,7 +159,8 @@ const MenuBarFlyout = (args: Args) => {
             showBackButton,
             backButtonProps,
             historyItems,
-            customActions: showCustomActions ? customActions : undefined,
+            leadingActions,
+            trailingActions,
           }}
         >
           {hideTitle && (
@@ -165,11 +215,25 @@ const PAGINATION_ITEMS = [
   },
 ];
 
-const PaginationFlyout = () => {
+const PaginationFlyout = ({
+  leadingActionCount,
+  trailingActionCount,
+}: Pick<Args, 'leadingActionCount' | 'trailingActionCount'>) => {
   const [isFlyoutOpen, setIsFlyoutOpen] = useState(true);
   const [currentIndex, setCurrentIndex] = useState(0);
   const total = PAGINATION_ITEMS.length;
   const item = PAGINATION_ITEMS[currentIndex];
+
+  const leadingActions = buildActions(
+    LEADING_ACTION_POOL,
+    leadingActionCount,
+    'leading action'
+  );
+  const trailingActions = buildActions(
+    TRAILING_ACTION_POOL,
+    trailingActionCount,
+    'trailing action'
+  );
 
   return (
     <>
@@ -190,6 +254,8 @@ const PaginationFlyout = () => {
               onPrevious: () => setCurrentIndex((i) => Math.max(0, i - 1)),
               onNext: () => setCurrentIndex((i) => Math.min(total - 1, i + 1)),
             },
+            leadingActions,
+            trailingActions,
           }}
         >
           <EuiFlyoutHeader hasBorder>
@@ -208,10 +274,19 @@ const PaginationFlyout = () => {
   );
 };
 
-export const PaginationExample: StoryObj = {
+export const PaginationExample: StoryObj<Args> = {
   name: 'Pagination (prop-based)',
   parameters: {
     vrt: { selector: VRT_SELECTORS.portal },
   },
-  render: () => <PaginationFlyout />,
+  args: {
+    leadingActionCount: 1,
+    trailingActionCount: 0,
+  },
+  render: ({ leadingActionCount, trailingActionCount }) => (
+    <PaginationFlyout
+      leadingActionCount={leadingActionCount}
+      trailingActionCount={trailingActionCount}
+    />
+  ),
 };

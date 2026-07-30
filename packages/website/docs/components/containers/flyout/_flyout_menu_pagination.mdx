@@ -2,6 +2,8 @@
 
 Pass a `pagination` object to `flyoutMenuProps` to render Prev/Next navigation controls and a position counter in the flyout menu bar. This is useful when the flyout displays one item from an ordered list (e.g. a data table or search results) and the user should be able to step through items without closing the flyout.
 
+Use `leadingActions` to render actions grouped alongside the pagination controls. A divider is automatically shown between the pagination controls and `leadingActions`.
+
 ```tsx interactive
 import React, { useState } from 'react';
 import {
@@ -45,6 +47,16 @@ export default () => {
               onNext: () =>
                 setCurrentIndex((i) => Math.min(ITEMS.length - 1, i + 1)),
             },
+            leadingActions: [
+              {
+                iconType: 'documents',
+                'aria-label': 'View surrounding documents',
+                toolTipContent: 'View surrounding documents',
+                onClick: () => {
+                  window.alert('View surrounding documents clicked');
+                },
+              },
+            ],
           }}
         >
           <EuiFlyoutHeader hasBorder>

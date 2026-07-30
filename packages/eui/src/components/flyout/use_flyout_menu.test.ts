@@ -82,6 +82,34 @@ describe('useEuiFlyoutMenu', () => {
         expect(result.current.shouldRenderMenu).toBe(true);
       });
 
+      it('returns true when menu has leadingActions', () => {
+        const { result } = render({
+          flyoutMenuDisplayMode: MENU_DISPLAY_AUTO,
+          flyoutMenuProps: {
+            leadingActions: [
+              {
+                iconType: 'documents',
+                onClick: () => {},
+                'aria-label': 'View surrounding documents',
+              },
+            ],
+          },
+        });
+        expect(result.current.shouldRenderMenu).toBe(true);
+      });
+
+      it('returns true when menu has trailingActions', () => {
+        const { result } = render({
+          flyoutMenuDisplayMode: MENU_DISPLAY_AUTO,
+          flyoutMenuProps: {
+            trailingActions: [
+              { iconType: 'gear', onClick: () => {}, 'aria-label': 'Settings' },
+            ],
+          },
+        });
+        expect(result.current.shouldRenderMenu).toBe(true);
+      });
+
       it('returns true when menu has visible title', () => {
         const { result } = render({
           flyoutMenuDisplayMode: MENU_DISPLAY_AUTO,

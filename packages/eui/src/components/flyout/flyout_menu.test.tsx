@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import { fireEvent } from '@testing-library/react';
+import { fireEvent, waitFor } from '@testing-library/react';
 import { render, screen, waitForEuiPopoverOpen } from '../../test/rtl';
 import { requiredProps } from '../../test';
 
@@ -232,6 +232,35 @@ describe('EuiFlyoutMenu', () => {
         secondItem.querySelector('.euiListGroupItem__icon')
       ).not.toBeInTheDocument();
     });
+
+    it('uses the clockCounter icon for the history trigger', async () => {
+      const { container } = renderWithContext(
+        <EuiFlyoutMenu
+          title="Test Title"
+          historyItems={[{ title: 'History 1', onClick: jest.fn() }]}
+        />
+      );
+
+      const historyButton = container.querySelector('[aria-label="History"]');
+      await waitFor(() => {
+        expect(
+          historyButton?.querySelector('[data-euiicon-type="clockCounter"]')
+        ).toBeInTheDocument();
+      });
+    });
+
+    it('shows a "Recently visited" tooltip on hover of the history trigger', () => {
+      const { getByTestSubject, getByRole } = renderWithContext(
+        <EuiFlyoutMenu
+          title="Test Title"
+          historyItems={[{ title: 'History 1', onClick: jest.fn() }]}
+        />
+      );
+
+      fireEvent.mouseOver(getByTestSubject('euiFlyoutMenuHistoryButton'));
+
+      expect(getByRole('tooltip')).toHaveTextContent('Recently visited');
+    });
   });
 
   describe('custom actions', () => {
@@ -275,6 +304,286 @@ describe('EuiFlyoutMenu', () => {
       settingsButton?.dispatchEvent(new MouseEvent('click', { bubbles: true }));
 
       expect(customActions[0].onClick).toHaveBeenCalledTimes(1);
+    });
+  });
+
+  describe('leadingActions and trailingActions', () => {
+    const leadingActions = [
+      {
+        iconType: 'documents',
+        onClick: jest.fn(),
+        'aria-label': 'View surrounding documents',
+      },
+    ];
+    const trailingActions = [
+      {
+        iconType: 'minimize',
+        onClick: jest.fn(),
+        'aria-label': 'Minimize',
+        toolTipContent: 'Minimize',
+      },
+    ];
+
+    it('renders leadingActions and calls their onClick handlers', () => {
+      const { container } = renderWithContext(
+        <EuiFlyoutMenu title="Test Title" leadingActions={leadingActions} />
+      );
+
+      const button = container.querySelector(
+        '[aria-label="View surrounding documents"]'
+      );
+      expect(button).toBeInTheDocument();
+
+      button?.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+      expect(leadingActions[0].onClick).toHaveBeenCalledTimes(1);
+    });
+
+    it('renders trailingActions and calls their onClick handlers', () => {
+      const { container } = renderWithContext(
+        <EuiFlyoutMenu title="Test Title" trailingActions={trailingActions} />
+      );
+
+      const button = container.querySelector('[aria-label="Minimize"]');
+      expect(button).toBeInTheDocument();
+
+      button?.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+      expect(trailingActions[0].onClick).toHaveBeenCalledTimes(1);
+    });
+
+    it('renders both leadingActions and trailingActions together', () => {
+      const { container } = renderWithContext(
+        <EuiFlyoutMenu
+          title="Test Title"
+          leadingActions={leadingActions}
+          trailingActions={trailingActions}
+        />
+      );
+
+      expect(
+        container.querySelector('[aria-label="View surrounding documents"]')
+      ).toBeInTheDocument();
+      expect(
+        container.querySelector('[aria-label="Minimize"]')
+      ).toBeInTheDocument();
+    });
+
+    it('shows a tooltip when toolTipContent is provided', () => {
+      const { getByRole } = renderWithContext(
+        <EuiFlyoutMenu title="Test Title" trailingActions={trailingActions} />
+      );
+
+      const button = screen.getByLabelText('Minimize');
+      fireEvent.mouseOver(button);
+
+      expect(getByRole('tooltip')).toHaveTextContent('Minimize');
+    });
+
+    it('does not render a tooltip when toolTipContent is not provided', () => {
+      const { queryByRole } = renderWithContext(
+        <EuiFlyoutMenu title="Test Title" leadingActions={leadingActions} />
+      );
+
+      const button = screen.getByLabelText('View surrounding documents');
+      fireEvent.mouseOver(button);
+
+      expect(queryByRole('tooltip')).not.toBeInTheDocument();
+    });
+
+    it('forwards toolTipProps to the underlying EuiToolTip', () => {
+      const actionsWithToolTipProps = [
+        {
+          iconType: 'minimize',
+          onClick: jest.fn(),
+          'aria-label': 'Minimize',
+          toolTipContent: 'Minimize',
+          toolTipProps: { position: 'left' as const },
+        },
+      ];
+
+      const { getByRole } = renderWithContext(
+        <EuiFlyoutMenu
+          title="Test Title"
+          trailingActions={actionsWithToolTipProps}
+        />
+      );
+
+      fireEvent.mouseOver(screen.getByLabelText('Minimize'));
+
+      expect(getByRole('tooltip').className).toContain('euiToolTip-left');
+    });
+
+    it('prefers trailingActions over the deprecated customActions alias when both are supplied', () => {
+      const deprecatedCustomActions = [
+        { iconType: 'gear', onClick: jest.fn(), 'aria-label': 'Settings' },
+      ];
+
+      const { container } = renderWithContext(
+        <EuiFlyoutMenu
+          title="Test Title"
+          customActions={deprecatedCustomActions}
+          trailingActions={trailingActions}
+        />
+      );
+
+      expect(
+        container.querySelector('[aria-label="Minimize"]')
+      ).toBeInTheDocument();
+      expect(
+        container.querySelector('[aria-label="Settings"]')
+      ).not.toBeInTheDocument();
+    });
+
+    it('falls back to the deprecated customActions alias when trailingActions is not supplied', () => {
+      const deprecatedCustomActions = [
+        { iconType: 'gear', onClick: jest.fn(), 'aria-label': 'Settings' },
+      ];
+
+      const { container } = renderWithContext(
+        <EuiFlyoutMenu
+          title="Test Title"
+          customActions={deprecatedCustomActions}
+        />
+      );
+
+      expect(
+        container.querySelector('[aria-label="Settings"]')
+      ).toBeInTheDocument();
+    });
+  });
+
+  describe('control-group dividers', () => {
+    const leadingActions = [
+      {
+        iconType: 'documents',
+        onClick: jest.fn(),
+        'aria-label': 'View surrounding documents',
+      },
+    ];
+    const trailingActions = [
+      { iconType: 'minimize', onClick: jest.fn(), 'aria-label': 'Minimize' },
+    ];
+    const historyItems = [{ title: 'History 1', onClick: jest.fn() }];
+
+    it('renders a divider between the back button and history when both are present', () => {
+      const { container } = renderWithContext(
+        <EuiFlyoutMenu
+          title="Test Title"
+          showBackButton
+          historyItems={historyItems}
+        />
+      );
+
+      expect(
+        container.querySelectorAll('.euiFlyoutMenu__divider')
+      ).toHaveLength(1);
+    });
+
+    it('does not render a divider when only the back button is present', () => {
+      const { container } = renderWithContext(
+        <EuiFlyoutMenu title="Test Title" showBackButton />
+      );
+
+      expect(
+        container.querySelectorAll('.euiFlyoutMenu__divider')
+      ).toHaveLength(0);
+    });
+
+    it('does not render a divider when only history is present', () => {
+      const { container } = renderWithContext(
+        <EuiFlyoutMenu title="Test Title" historyItems={historyItems} />
+      );
+
+      expect(
+        container.querySelectorAll('.euiFlyoutMenu__divider')
+      ).toHaveLength(0);
+    });
+
+    it('renders a divider between built-in leading controls and leadingActions', () => {
+      const { container } = renderWithContext(
+        <EuiFlyoutMenu
+          title="Test Title"
+          showBackButton
+          leadingActions={leadingActions}
+        />
+      );
+
+      expect(
+        container.querySelectorAll('.euiFlyoutMenu__divider')
+      ).toHaveLength(1);
+    });
+
+    it('does not render a divider when leadingActions is present without built-in leading controls', () => {
+      const { container } = renderWithContext(
+        <EuiFlyoutMenu title="Test Title" leadingActions={leadingActions} />
+      );
+
+      expect(
+        container.querySelectorAll('.euiFlyoutMenu__divider')
+      ).toHaveLength(0);
+    });
+
+    it('renders a divider between trailingActions and the close button', () => {
+      const { container } = renderWithContext(
+        <EuiFlyoutMenu title="Test Title" trailingActions={trailingActions} />
+      );
+
+      expect(
+        container.querySelectorAll('.euiFlyoutMenu__divider')
+      ).toHaveLength(1);
+    });
+
+    it('does not render a trailing divider when the close button is hidden', () => {
+      const { container } = renderWithContext(
+        <EuiFlyoutMenu
+          title="Test Title"
+          trailingActions={trailingActions}
+          hideCloseButton
+        />
+      );
+
+      expect(
+        container.querySelectorAll('.euiFlyoutMenu__divider')
+      ).toHaveLength(0);
+    });
+
+    it('does not render a trailing divider when trailingActions is empty', () => {
+      const { container } = renderWithContext(<EuiFlyoutMenu title="Test" />);
+
+      expect(
+        container.querySelectorAll('.euiFlyoutMenu__divider')
+      ).toHaveLength(0);
+    });
+
+    it('renders both leading and trailing dividers independently when leadingActions is absent but trailing content exists', () => {
+      const { container } = renderWithContext(
+        <EuiFlyoutMenu
+          title="Test Title"
+          showBackButton
+          trailingActions={trailingActions}
+        />
+      );
+
+      // Only the trailing/close divider should render since leadingActions is absent
+      expect(
+        container.querySelectorAll('.euiFlyoutMenu__divider')
+      ).toHaveLength(1);
+    });
+
+    it('renders both boundary dividers when all groups are present', () => {
+      const { container } = renderWithContext(
+        <EuiFlyoutMenu
+          title="Test Title"
+          showBackButton
+          historyItems={historyItems}
+          leadingActions={leadingActions}
+          trailingActions={trailingActions}
+        />
+      );
+
+      // back|history + built-in|leading + trailing|close
+      expect(
+        container.querySelectorAll('.euiFlyoutMenu__divider')
+      ).toHaveLength(3);
     });
   });
 
@@ -351,6 +660,18 @@ describe('EuiFlyoutMenu', () => {
       fireEvent.click(nextButton);
 
       expect(pagination.onNext).toHaveBeenCalledTimes(1);
+    });
+
+    it('disables screen reader output for the Prev/Next tooltips', () => {
+      const { getByTestSubject } = renderWithContext(
+        <EuiFlyoutMenu pagination={pagination} />
+      );
+
+      fireEvent.mouseOver(getByTestSubject('euiFlyoutMenuPaginationNext'));
+
+      expect(
+        getByTestSubject('euiFlyoutMenuPaginationNext')
+      ).not.toHaveAttribute('aria-describedby');
     });
 
     it('hides the back button when pagination is provided (pagination replaces navigation per design spec)', () => {

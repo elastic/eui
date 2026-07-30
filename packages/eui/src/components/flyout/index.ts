@@ -32,6 +32,7 @@ export { EuiFlyoutResizable } from './flyout_resizable';
 export type {
   EuiFlyoutMenuProps,
   EuiFlyoutHistoryItem,
+  EuiFlyoutMenuAction,
   EuiFlyoutMenuCustomAction,
   EuiFlyoutMenuPagination,
 } from './flyout_menu';

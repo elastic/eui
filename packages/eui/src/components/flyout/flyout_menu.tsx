@@ -23,7 +23,7 @@ import { EuiPopover } from '../popover';
 import { EuiScreenReaderLive } from '../accessibility';
 import { EuiText } from '../text';
 import { EuiTitle } from '../title';
-import { EuiToolTip } from '../tool_tip';
+import { EuiToolTip, EuiToolTipProps } from '../tool_tip';
 import { EuiFlyoutCloseButton } from './_flyout_close_button';
 import { euiFlyoutMenuStyles } from './flyout_menu.styles';
 import { EuiFlyoutMenuContext } from './flyout_menu_context';
@@ -78,6 +78,7 @@ export interface EuiFlyoutMenuPagination {
 
 /**
  * Custom action item for the flyout menu component
+ * @deprecated Use `EuiFlyoutMenuAction` with the `trailingActions` prop instead.
  */
 export interface EuiFlyoutMenuCustomAction {
   /**
@@ -92,6 +93,33 @@ export interface EuiFlyoutMenuCustomAction {
    * Aria label for the action button
    */
   'aria-label': string;
+}
+
+/**
+ * An action item for the `leadingActions` or `trailingActions` slots of the flyout menu.
+ */
+export interface EuiFlyoutMenuAction {
+  /**
+   * Icon type for the action button
+   */
+  iconType: IconType;
+  /**
+   * onClick handler for the action button
+   */
+  onClick: () => void;
+  /**
+   * Aria label for the action button
+   */
+  'aria-label': string;
+  /**
+   * Optional tooltip content shown on hover/focus of the action button
+   */
+  toolTipContent?: EuiToolTipProps['content'];
+  /**
+   * Optional props to pass to the underlying **[EuiToolTip](/#/display/tooltip)**.
+   * Only used when `toolTipContent` is also provided.
+   */
+  toolTipProps?: Partial<Omit<EuiToolTipProps, 'content' | 'children'>>;
 }
 
 /**
@@ -146,7 +174,18 @@ export type EuiFlyoutMenuProps = CommonProps &
      */
     historyItems?: EuiFlyoutHistoryItem[];
     /**
+     * List of action items rendered at the start (inline-start) of the menu bar,
+     * after any built-in leading controls (pagination, or back/history).
+     */
+    leadingActions?: EuiFlyoutMenuAction[];
+    /**
+     * List of action items rendered at the end (inline-end) of the menu bar,
+     * before the close button.
+     */
+    trailingActions?: EuiFlyoutMenuAction[];
+    /**
      * List of custom action items for the menu component
+     * @deprecated Use `trailingActions` instead. If both are supplied, `trailingActions` takes precedence.
      */
     customActions?: EuiFlyoutMenuCustomAction[];
     /**
@@ -178,15 +217,23 @@ const HistoryPopover: React.FC<{
     setIsPopoverOpen(!isPopoverOpen);
   };
 
+  const historyLabel = useEuiI18n('euiFlyoutMenu.history', 'History');
+  const recentlyVisitedLabel = useEuiI18n(
+    'euiFlyoutMenu.history.tooltip',
+    'Recently visited'
+  );
+
   return (
     <EuiPopover
       button={
-        <EuiButtonIcon
-          iconType="chevronSingleDown"
-          color="text"
-          aria-label={useEuiI18n('euiFlyoutMenu.history', 'History')}
-          data-test-subj="euiFlyoutMenuHistoryButton"
-        />
+        <EuiToolTip content={recentlyVisitedLabel} disableScreenReaderOutput>
+          <EuiButtonIcon
+            iconType="clockCounter"
+            color="text"
+            aria-label={historyLabel}
+            data-test-subj="euiFlyoutMenuHistoryButton"
+          />
+        </EuiToolTip>
       }
       isOpen={isPopoverOpen}
       onClick={handlePopoverButtonClick}
@@ -216,8 +263,8 @@ const HistoryPopover: React.FC<{
 
 const PaginationControls: React.FC<{
   pagination: EuiFlyoutMenuPagination;
-  styles: ReturnType<typeof euiFlyoutMenuStyles>;
-}> = ({ pagination, styles }) => {
+}> = ({ pagination }) => {
+  const styles = useEuiMemoizedStyles(euiFlyoutMenuStyles);
   const { currentIndex, total, onPrevious, onNext } = pagination;
   const prevLabel = useEuiI18n('euiFlyoutMenu.pagination.previous', 'Previous');
   const nextLabel = useEuiI18n('euiFlyoutMenu.pagination.next', 'Next');
@@ -290,6 +337,58 @@ const PaginationControls: React.FC<{
   );
 };
 
+const MenuDivider: React.FC = () => {
+  const styles = useEuiMemoizedStyles(euiFlyoutMenuStyles);
+
+  return (
+    <EuiFlexItem
+      grow={false}
+      css={styles.euiFlyoutMenu__divider}
+      aria-hidden="true"
+      className="euiFlyoutMenu__divider"
+    />
+  );
+};
+
+const MenuActionButton: React.FC<{
+  action: EuiFlyoutMenuAction;
+}> = ({ action }) => {
+  const styles = useEuiMemoizedStyles(euiFlyoutMenuStyles);
+  const {
+    iconType,
+    onClick,
+    'aria-label': ariaLabel,
+    toolTipContent,
+    toolTipProps,
+  } = action;
+
+  const button = (
+    <EuiButtonIcon
+      aria-label={ariaLabel}
+      iconType={iconType}
+      onClick={onClick}
+      color="text"
+      size="s"
+    />
+  );
+
+  return (
+    <EuiFlexItem grow={false} css={styles.euiFlyoutMenu__actions}>
+      {toolTipContent ? (
+        <EuiToolTip
+          content={toolTipContent}
+          disableScreenReaderOutput
+          {...toolTipProps}
+        >
+          {button}
+        </EuiToolTip>
+      ) : (
+        button
+      )}
+    </EuiFlexItem>
+  );
+};
+
 /**
  * The component for the top menu bar inside a flyout. Since this is a private
  * component, rendering is controlled using the `flyoutMenuProps` prop on
@@ -308,6 +407,8 @@ export const EuiFlyoutMenu: FunctionComponent<EuiFlyoutMenuProps> = ({
   historyItems = [],
   showBackButton,
   backButtonProps,
+  leadingActions = [],
+  trailingActions,
   customActions,
   iconType: _iconType,
   pagination,
@@ -318,6 +419,21 @@ export const EuiFlyoutMenu: FunctionComponent<EuiFlyoutMenuProps> = ({
   const styles = useEuiMemoizedStyles(euiFlyoutMenuStyles);
   const classes = classNames('euiFlyoutMenu', className);
   const showPaginationControls = pagination != null && pagination.total > 1;
+  const hasBackButton = !showPaginationControls && !!showBackButton;
+  const hasHistory = !showPaginationControls && historyItems.length > 0;
+
+  // `trailingActions` takes precedence over the deprecated `customActions` alias
+  const effectiveTrailingActions = trailingActions?.length
+    ? trailingActions
+    : customActions ?? [];
+
+  const hasBuiltInLeadingContent =
+    showPaginationControls || hasBackButton || hasHistory;
+  const showBackHistoryDivider = hasBackButton && hasHistory;
+  const showLeadingBoundaryDivider =
+    hasBuiltInLeadingContent && leadingActions.length > 0;
+  const showTrailingCloseDivider =
+    effectiveTrailingActions.length > 0 && !hideCloseButton;
 
   let titleNode;
   if (title) {
@@ -354,15 +470,16 @@ export const EuiFlyoutMenu: FunctionComponent<EuiFlyoutMenuProps> = ({
         responsive={false}
       >
         {showPaginationControls ? (
-          <PaginationControls pagination={pagination} styles={styles} />
+          <PaginationControls pagination={pagination} />
         ) : (
           <>
-            {showBackButton && (
+            {hasBackButton && (
               <EuiFlexItem grow={false}>
                 <BackButton {...backButtonProps} />
               </EuiFlexItem>
             )}
-            {historyItems.length > 0 && (
+            {showBackHistoryDivider && <MenuDivider />}
+            {hasHistory && (
               <EuiFlexItem grow={false}>
                 <HistoryPopover items={historyItems} />
               </EuiFlexItem>
@@ -370,31 +487,39 @@ export const EuiFlyoutMenu: FunctionComponent<EuiFlyoutMenuProps> = ({
           </>
         )}
 
+        {showLeadingBoundaryDivider && <MenuDivider />}
+
+        {leadingActions.map((action, actionIndex) => (
+          <MenuActionButton
+            key={`leading-action-${actionIndex}`}
+            action={action}
+          />
+        ))}
+
         {titleNode && <EuiFlexItem grow={false}>{titleNode}</EuiFlexItem>}
 
         <EuiFlexItem grow={true}></EuiFlexItem>
 
-        {customActions &&
-          customActions.map((action, actionIndex) => (
-            <EuiFlexItem
-              grow={false}
-              key={`action-index-flex-item-${actionIndex}`}
-              css={styles.euiFlyoutMenu__actions}
-            >
-              <EuiButtonIcon
-                key={`action-index-icon-${actionIndex}`}
-                aria-label={action['aria-label']}
-                iconType={action.iconType}
-                onClick={action.onClick}
-                color="text"
-                size="s"
-              />
-            </EuiFlexItem>
-          ))}
+        {effectiveTrailingActions.map((action, actionIndex) => (
+          <MenuActionButton
+            key={`trailing-action-${actionIndex}`}
+            action={action}
+          />
+        ))}
 
-        {/* spacer to give custom actions room around the close button */}
+        {/* spacer to give trailing actions room around the close button */}
         {!hideCloseButton && (
-          <EuiFlexItem grow={false} css={styles.euiFlyoutMenu__spacer} />
+          <EuiFlexItem
+            grow={false}
+            css={[
+              styles.euiFlyoutMenu__spacer,
+              showTrailingCloseDivider && styles.euiFlyoutMenu__divider,
+            ]}
+            className={
+              showTrailingCloseDivider ? 'euiFlyoutMenu__divider' : undefined
+            }
+            aria-hidden={showTrailingCloseDivider ? 'true' : undefined}
+          />
         )}
       </EuiFlexGroup>
       {!hideCloseButton && closeButton}
