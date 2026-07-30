@@ -60,6 +60,7 @@ const config = {
       plugins: ['@elastic/eslint-plugin-eui'],
       rules: {
         '@elastic/eui/accessible-interactive-element': 'warn',
+        '@elastic/eui/button-group-no-invalid-children': 'error',
         '@elastic/eui/callout-announce-on-mount': 'warn',
         '@elastic/eui/callout-prefer-props-for-content': 'warn',
         '@elastic/eui/consistent-is-invalid-props': 'warn',
@@ -80,7 +81,6 @@ const config = {
         '@elastic/eui/require-href-for-link': 'warn',
         '@elastic/eui/tooltip-no-interactive-content': 'warn',
         '@elastic/eui/tooltip-button-icon-wrap': 'warn',
-        '@elastic/eui/button-group-no-invalid-children': 'warn',
       },
     },
   },
