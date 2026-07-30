@@ -149,7 +149,7 @@ export const EuiTimeWindowButtons: React.FC<EuiTimeWindowButtonsProps> = ({
   return (
     <div
       className="euiSuperDatePicker__timeWindowButtons"
-      css={[styles.euiButtonGroup__buttons, styles[buttonSize]]}
+      css={[styles.euiButtonGroup__buttons, styles.size[buttonSize]]}
       data-test-subj="timeWindowButtons"
     >
       {showShiftArrows && (
