@@ -55,7 +55,7 @@ import { EuiPopoverArrow, EuiPopoverArrowPositions } from './popover_arrow';
 import { euiPopoverStyles } from './popover.styles';
 import { EuiPopoverPanel } from './popover_panel';
 import { EuiPopoverPanelProps } from './popover_panel/_popover_panel';
-import { EuiPopoverBoundaryProvider } from './popover_boundary_context';
+import { EuiButtonResetProvider } from '../button/button_context';
 import { EuiPaddingSize } from '../../global_styling';
 import { EuiComponentDefaultsContext } from '../provider/component_defaults';
 
@@ -786,7 +786,7 @@ export class EuiPopover extends Component<Props, State> {
             }
             {...focusTrapProps}
           >
-            <EuiPopoverBoundaryProvider>
+            <EuiButtonResetProvider>
               <EuiPopoverPanel
                 id={this.panelId}
                 {...(panelProps as EuiPopoverPanelProps)}
@@ -833,7 +833,7 @@ export class EuiPopover extends Component<Props, State> {
                   {(mutationRef) => <div ref={mutationRef}>{children}</div>}
                 </EuiMutationObserver>
               </EuiPopoverPanel>
-            </EuiPopoverBoundaryProvider>
+            </EuiButtonResetProvider>
           </EuiFocusTrap>
         </EuiPortal>
       );

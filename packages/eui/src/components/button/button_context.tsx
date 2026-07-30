@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import { createContext } from 'react';
+import React, { createContext } from 'react';
 
 import { _EuiButtonColor } from '../../global_styling/mixins';
 
@@ -25,4 +25,19 @@ export const EuiButtonContext = createContext<{
   isDisabled?: true;
   hasAriaDisabled?: true;
   fullWidth?: boolean;
+  display?: 'base' | 'fill' | 'empty';
+  fill?: boolean;
 }>({});
+
+/**
+ * Resets inherited EuiButtonContext values for descendant buttons.
+ * Used by components like EuiPopover that render buttons in a separate
+ * visual context where group cascading should not apply.
+ */
+export const EuiButtonResetProvider = ({
+  children,
+}: {
+  children: React.ReactNode;
+}) => (
+  <EuiButtonContext.Provider value={{}}>{children}</EuiButtonContext.Provider>
+);

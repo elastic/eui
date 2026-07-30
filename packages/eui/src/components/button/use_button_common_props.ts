@@ -8,9 +8,8 @@
 
 import { useContext } from 'react';
 
-import { useIsInsideEuiPopover } from '../popover/popover_boundary_context';
-import { isButtonDisabled } from './button_display/_button_display';
 import { EuiButtonContext } from './button_context';
+import { isButtonDisabled } from './button_display/_button_display';
 
 export interface EuiButtonCommonPropsInput<
   TSize extends string,
@@ -58,8 +57,7 @@ export function useEuiButtonCommonProps<
   TColor
 > {
   const buttonContext = useContext(EuiButtonContext);
-  const isInsidePopover = useIsInsideEuiPopover();
-  const groupContext = isInsidePopover ? {} : buttonContext;
+  const groupContext = buttonContext;
 
   const isDisabled = isButtonDisabled({
     href,
