@@ -76,17 +76,37 @@ export interface EuiFlyoutMenuPagination {
    */
   onNext: () => void;
   /**
+   * Called when the user clicks the First button, which jumps to the beginning
+   * of the list. Passing this renders the button; omit it to leave the button out.
+   */
+  onFirst?: () => void;
+  /**
+   * Called when the user clicks the Last button, which jumps to the end of the
+   * list. Passing this renders the button; omit it to leave the button out.
+   */
+  onLast?: () => void;
+  /**
    * Icon type for the Previous button. Override to match the paging direction
    * of the underlying content, e.g. `chevronLeft` for a horizontal list.
-   * @default chevronSingleUp
+   * @default chevronSingleUp, or chevronSingleLeft when `onFirst`/`onLast` are provided
    */
   previousIconType?: IconType;
   /**
    * Icon type for the Next button. Override to match the paging direction
    * of the underlying content, e.g. `chevronRight` for a horizontal list.
-   * @default chevronSingleDown
+   * @default chevronSingleDown, or chevronSingleRight when `onFirst`/`onLast` are provided
    */
   nextIconType?: IconType;
+  /**
+   * Icon type for the First button. Only used when `onFirst` is provided.
+   * @default chevronLimitLeft
+   */
+  firstIconType?: IconType;
+  /**
+   * Icon type for the Last button. Only used when `onLast` is provided.
+   * @default chevronLimitRight
+   */
+  lastIconType?: IconType;
 }
 
 /**
@@ -276,6 +296,38 @@ const HistoryPopover: React.FC<{
   );
 };
 
+const PaginationButton: React.FC<{
+  iconType: IconType;
+  label: string;
+  onClick: () => void;
+  isDisabled: boolean;
+  dataTestSubj: string;
+}> = ({ iconType, label, onClick, isDisabled, dataTestSubj }) => {
+  const button = (
+    <EuiButtonIcon
+      iconType={iconType}
+      color="text"
+      size="xs"
+      aria-label={label}
+      onClick={onClick}
+      isDisabled={isDisabled}
+      data-test-subj={dataTestSubj}
+    />
+  );
+
+  return (
+    <EuiFlexItem grow={false}>
+      {isDisabled ? (
+        button
+      ) : (
+        <EuiToolTip content={label} disableScreenReaderOutput>
+          {button}
+        </EuiToolTip>
+      )}
+    </EuiFlexItem>
+  );
+};
+
 const PaginationControls: React.FC<{
   pagination: EuiFlyoutMenuPagination;
 }> = ({ pagination }) => {
@@ -285,56 +337,54 @@ const PaginationControls: React.FC<{
     total,
     onPrevious,
     onNext,
-    previousIconType = 'chevronSingleUp',
-    nextIconType = 'chevronSingleDown',
+    onFirst,
+    onLast,
+    firstIconType = 'chevronLimitLeft',
+    lastIconType = 'chevronLimitRight',
   } = pagination;
+
+  // Jump-to-first/last controls read as a horizontal track, so the Prev/Next
+  // chevrons follow that axis unless the consumer overrides them.
+  const hasJumpControls = onFirst != null || onLast != null;
+  const previousIconType =
+    pagination.previousIconType ??
+    (hasJumpControls ? 'chevronSingleLeft' : 'chevronSingleUp');
+  const nextIconType =
+    pagination.nextIconType ??
+    (hasJumpControls ? 'chevronSingleRight' : 'chevronSingleDown');
+
+  const firstLabel = useEuiI18n('euiFlyoutMenu.pagination.first', 'First');
   const prevLabel = useEuiI18n('euiFlyoutMenu.pagination.previous', 'Previous');
   const nextLabel = useEuiI18n('euiFlyoutMenu.pagination.next', 'Next');
+  const lastLabel = useEuiI18n('euiFlyoutMenu.pagination.last', 'Last');
   const counterLabel = useEuiI18n(
     'euiFlyoutMenu.pagination.counter',
     '{position} of {total}',
     { position: currentIndex + 1, total }
   );
 
-  const isPrevDisabled = currentIndex === 0;
-  const isNextDisabled = currentIndex === total - 1;
-
-  const prevButton = (
-    <EuiButtonIcon
-      iconType={previousIconType}
-      color="text"
-      size="xs"
-      aria-label={prevLabel}
-      onClick={onPrevious}
-      isDisabled={isPrevDisabled}
-      data-test-subj="euiFlyoutMenuPaginationPrev"
-    />
-  );
-
-  const nextButton = (
-    <EuiButtonIcon
-      iconType={nextIconType}
-      color="text"
-      size="xs"
-      aria-label={nextLabel}
-      onClick={onNext}
-      isDisabled={isNextDisabled}
-      data-test-subj="euiFlyoutMenuPaginationNext"
-    />
-  );
+  const isAtStart = currentIndex === 0;
+  const isAtEnd = currentIndex === total - 1;
 
   return (
     <EuiFlexItem grow={false}>
       <EuiFlexGroup gutterSize="xs" alignItems="center" responsive={false}>
-        <EuiFlexItem grow={false}>
-          {isPrevDisabled ? (
-            prevButton
-          ) : (
-            <EuiToolTip content={prevLabel} disableScreenReaderOutput>
-              {prevButton}
-            </EuiToolTip>
-          )}
-        </EuiFlexItem>
+        {onFirst && (
+          <PaginationButton
+            iconType={firstIconType}
+            label={firstLabel}
+            onClick={onFirst}
+            isDisabled={isAtStart}
+            dataTestSubj="euiFlyoutMenuPaginationFirst"
+          />
+        )}
+        <PaginationButton
+          iconType={previousIconType}
+          label={prevLabel}
+          onClick={onPrevious}
+          isDisabled={isAtStart}
+          dataTestSubj="euiFlyoutMenuPaginationPrev"
+        />
         <EuiFlexItem grow={false}>
           <EuiText
             size="s"
@@ -345,15 +395,22 @@ const PaginationControls: React.FC<{
           </EuiText>
           <EuiScreenReaderLive>{counterLabel}</EuiScreenReaderLive>
         </EuiFlexItem>
-        <EuiFlexItem grow={false}>
-          {isNextDisabled ? (
-            nextButton
-          ) : (
-            <EuiToolTip content={nextLabel} disableScreenReaderOutput>
-              {nextButton}
-            </EuiToolTip>
-          )}
-        </EuiFlexItem>
+        <PaginationButton
+          iconType={nextIconType}
+          label={nextLabel}
+          onClick={onNext}
+          isDisabled={isAtEnd}
+          dataTestSubj="euiFlyoutMenuPaginationNext"
+        />
+        {onLast && (
+          <PaginationButton
+            iconType={lastIconType}
+            label={lastLabel}
+            onClick={onLast}
+            isDisabled={isAtEnd}
+            dataTestSubj="euiFlyoutMenuPaginationLast"
+          />
+        )}
       </EuiFlexGroup>
     </EuiFlexItem>
   );

@@ -58,12 +58,14 @@ export const euiFlyoutMenuStyles = (euiThemeContext: UseEuiTheme) => {
     // built-in controls from leading/trailing actions. Uses a border rather
     // than a background so the line stays visible in Windows high contrast
     // themes. `align-self` keeps the shortened line centered regardless of the
-    // containing flex group's alignment.
+    // containing flex group's alignment. The inline margin matches the
+    // container's inline padding so the space a group has against a divider
+    // reads the same as the space it has against the menu bar's outer edge.
     euiFlyoutMenu__divider: css`
       align-self: center;
       inline-size: 0;
       block-size: ${euiTheme.size.l};
-      margin-inline: ${euiTheme.size.xs};
+      margin-inline: ${euiTheme.size.s};
       border-inline-start: ${euiTheme.border.thin};
       pointer-events: none;
 

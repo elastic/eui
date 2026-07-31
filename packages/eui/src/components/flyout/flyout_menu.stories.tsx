@@ -19,12 +19,14 @@ import { EuiFlyoutBody } from './flyout_body';
 import { EuiFlyoutMenu, EuiFlyoutMenuProps } from './flyout_menu';
 import { EuiFlyoutHeader } from './flyout_header';
 
+type PaginationVariant = 'default' | 'horizontal' | 'jump';
+
 interface Args extends EuiFlyoutMenuProps {
   leadingActionCount: number;
   trailingActionCount: number;
   historyItemCount: number;
   paginationTotal: number;
-  useAltPagination: boolean;
+  paginationVariant: PaginationVariant;
 }
 
 const COUNT_CONTROL = {
@@ -60,17 +62,11 @@ const meta: Meta<Args> = {
       description:
         'Story-only control for the number of pages passed to `pagination.total`. Only used by the "Pagination (prop-based)" story.',
     },
-    useAltPagination: {
-      control: {
-        type: 'radio' as const,
-        labels: {
-          false: 'default',
-          true: 'alternative',
-        },
-      },
-      options: [false, true],
+    paginationVariant: {
+      control: { type: 'radio' as const },
+      options: ['default', 'horizontal', 'jump'] as PaginationVariant[],
       description:
-        'Story-only control for `pagination.previousIconType`/`nextIconType`. The "alternative" option mimics apps like Discover that page through horizontally-oriented content.',
+        'Story-only control for the shape of the pagination controls. "horizontal" sets `pagination.previousIconType`/`nextIconType` to left/right chevrons, mimicking apps like Discover that page through horizontally-oriented content. "jump" adds `pagination.onFirst`/`onLast` for jumping to the beginning and end of the list, which switches the Prev/Next chevrons to left/right on its own.',
     },
     'aria-label': { table: { disable: true } },
     showBackButton: { table: { disable: true } },
@@ -230,7 +226,7 @@ export const Playground: StoryObj<Args> = {
   argTypes: {
     // Not applicable outside the "Pagination (prop-based)" story
     paginationTotal: { table: { disable: true } },
-    useAltPagination: { table: { disable: true } },
+    paginationVariant: { table: { disable: true } },
   },
   render: (args) => <MenuBarFlyout {...args} />,
 };
@@ -271,13 +267,13 @@ const PaginationFlyout = ({
   leadingActionCount,
   trailingActionCount,
   paginationTotal,
-  useAltPagination,
+  paginationVariant,
 }: Pick<
   Args,
   | 'leadingActionCount'
   | 'trailingActionCount'
   | 'paginationTotal'
-  | 'useAltPagination'
+  | 'paginationVariant'
 >) => {
   const [isFlyoutOpen, setIsFlyoutOpen] = useState(true);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -315,9 +311,13 @@ const PaginationFlyout = ({
               total,
               onPrevious: () => setCurrentIndex(Math.max(0, safeIndex - 1)),
               onNext: () => setCurrentIndex(Math.min(total - 1, safeIndex + 1)),
-              ...(useAltPagination && {
+              ...(paginationVariant === 'horizontal' && {
                 previousIconType: 'chevronSingleLeft',
                 nextIconType: 'chevronSingleRight',
+              }),
+              ...(paginationVariant === 'jump' && {
+                onFirst: () => setCurrentIndex(0),
+                onLast: () => setCurrentIndex(total - 1),
               }),
             },
             leadingActions,
@@ -353,19 +353,19 @@ export const PaginationExample: StoryObj<Args> = {
     leadingActionCount: 1,
     trailingActionCount: 0,
     paginationTotal: 5,
-    useAltPagination: false,
+    paginationVariant: 'jump',
   },
   render: ({
     leadingActionCount,
     trailingActionCount,
     paginationTotal,
-    useAltPagination,
+    paginationVariant,
   }) => (
     <PaginationFlyout
       leadingActionCount={leadingActionCount}
       trailingActionCount={trailingActionCount}
       paginationTotal={paginationTotal}
-      useAltPagination={useAltPagination}
+      paginationVariant={paginationVariant}
     />
   ),
 };

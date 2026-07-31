@@ -748,6 +748,148 @@ describe('EuiFlyoutMenu', () => {
       ).toBeInTheDocument();
     });
 
+    it('omits the First/Last buttons unless onFirst/onLast are provided', () => {
+      const { queryByTestSubject } = renderWithContext(
+        <EuiFlyoutMenu pagination={pagination} />
+      );
+
+      expect(
+        queryByTestSubject('euiFlyoutMenuPaginationFirst')
+      ).not.toBeInTheDocument();
+      expect(
+        queryByTestSubject('euiFlyoutMenuPaginationLast')
+      ).not.toBeInTheDocument();
+    });
+
+    describe('jump to first/last', () => {
+      const onFirst = jest.fn();
+      const onLast = jest.fn();
+      const jumpPagination = { ...pagination, onFirst, onLast };
+
+      beforeEach(() => {
+        onFirst.mockClear();
+        onLast.mockClear();
+      });
+
+      it('calls onFirst and onLast when the jump buttons are clicked', () => {
+        const { getByTestSubject } = renderWithContext(
+          <EuiFlyoutMenu pagination={jumpPagination} />
+        );
+
+        fireEvent.click(getByTestSubject('euiFlyoutMenuPaginationFirst'));
+        fireEvent.click(getByTestSubject('euiFlyoutMenuPaginationLast'));
+
+        expect(onFirst).toHaveBeenCalledTimes(1);
+        expect(onLast).toHaveBeenCalledTimes(1);
+      });
+
+      it('defaults to limit icons for the jump buttons', () => {
+        const { container } = renderWithContext(
+          <EuiFlyoutMenu pagination={jumpPagination} />
+        );
+
+        expect(
+          container.querySelector(
+            '[data-test-subj="euiFlyoutMenuPaginationFirst"] [data-euiicon-type="chevronLimitLeft"]'
+          )
+        ).toBeInTheDocument();
+        expect(
+          container.querySelector(
+            '[data-test-subj="euiFlyoutMenuPaginationLast"] [data-euiicon-type="chevronLimitRight"]'
+          )
+        ).toBeInTheDocument();
+      });
+
+      it('allows overriding the First/Last icon types', () => {
+        const { container } = renderWithContext(
+          <EuiFlyoutMenu
+            pagination={{
+              ...jumpPagination,
+              firstIconType: 'sortLeft',
+              lastIconType: 'sortRight',
+            }}
+          />
+        );
+
+        expect(
+          container.querySelector(
+            '[data-test-subj="euiFlyoutMenuPaginationFirst"] [data-euiicon-type="sortLeft"]'
+          )
+        ).toBeInTheDocument();
+        expect(
+          container.querySelector(
+            '[data-test-subj="euiFlyoutMenuPaginationLast"] [data-euiicon-type="sortRight"]'
+          )
+        ).toBeInTheDocument();
+      });
+
+      it('switches the Prev/Next defaults to left/right chevrons', () => {
+        const { container } = renderWithContext(
+          <EuiFlyoutMenu pagination={jumpPagination} />
+        );
+
+        expect(
+          container.querySelector(
+            '[data-test-subj="euiFlyoutMenuPaginationPrev"] [data-euiicon-type="chevronSingleLeft"]'
+          )
+        ).toBeInTheDocument();
+        expect(
+          container.querySelector(
+            '[data-test-subj="euiFlyoutMenuPaginationNext"] [data-euiicon-type="chevronSingleRight"]'
+          )
+        ).toBeInTheDocument();
+      });
+
+      it('still honors explicit Prev/Next icon types', () => {
+        const { container } = renderWithContext(
+          <EuiFlyoutMenu
+            pagination={{
+              ...jumpPagination,
+              previousIconType: 'chevronSingleUp',
+              nextIconType: 'chevronSingleDown',
+            }}
+          />
+        );
+
+        expect(
+          container.querySelector(
+            '[data-test-subj="euiFlyoutMenuPaginationPrev"] [data-euiicon-type="chevronSingleUp"]'
+          )
+        ).toBeInTheDocument();
+        expect(
+          container.querySelector(
+            '[data-test-subj="euiFlyoutMenuPaginationNext"] [data-euiicon-type="chevronSingleDown"]'
+          )
+        ).toBeInTheDocument();
+      });
+
+      it('disables the First button at the beginning of the list', () => {
+        const { getByTestSubject } = renderWithContext(
+          <EuiFlyoutMenu
+            pagination={{ ...jumpPagination, currentIndex: 0, total: 5 }}
+          />
+        );
+
+        expect(getByTestSubject('euiFlyoutMenuPaginationFirst')).toBeDisabled();
+        expect(
+          getByTestSubject('euiFlyoutMenuPaginationLast')
+        ).not.toBeDisabled();
+      });
+
+      it('disables the Last button at the end of the list', () => {
+        const { getByTestSubject } = renderWithContext(
+          <EuiFlyoutMenu
+            pagination={{ ...jumpPagination, currentIndex: 4, total: 5 }}
+          />
+        );
+
+        expect(
+          getByTestSubject('euiFlyoutMenuPaginationFirst')
+        ).not.toBeDisabled();
+        expect(getByTestSubject('euiFlyoutMenuPaginationLast')).toBeDisabled();
+      });
+    });
+
     it('still renders the pagination controls when there is only one item', () => {
       const { getAllByText, container } = renderWithContext(
         <EuiFlyoutMenu
