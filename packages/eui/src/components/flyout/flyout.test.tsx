@@ -247,7 +247,7 @@ describe('EuiFlyout', () => {
           <EuiFlyout
             onClose={() => {}}
             flyoutMenuProps={{
-              customActions: [
+              trailingActions: [
                 {
                   iconType: 'gear',
                   onClick: () => {},

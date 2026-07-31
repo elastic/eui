@@ -273,50 +273,6 @@ describe('EuiFlyoutMenu', () => {
     });
   });
 
-  describe('custom actions', () => {
-    const customActions = [
-      {
-        iconType: 'gear',
-        onClick: jest.fn(),
-        'aria-label': 'Settings',
-      },
-      {
-        iconType: 'share',
-        onClick: jest.fn(),
-        'aria-label': 'Share',
-      },
-    ];
-
-    it('does not render custom actions when not provided', () => {
-      const { container } = renderWithContext(
-        <EuiFlyoutMenu title="Test Title" />
-      );
-
-      expect(container.querySelectorAll('.euiButtonIcon').length).toBe(1); // Only close button
-    });
-
-    it('renders custom action buttons', () => {
-      const { container } = renderWithContext(
-        <EuiFlyoutMenu title="Test Title" customActions={customActions} />
-      );
-
-      const buttons = container.querySelectorAll('.euiButtonIcon');
-      // Should have 2 custom actions + 1 close button = 3 total
-      expect(buttons.length).toBeGreaterThanOrEqual(2);
-    });
-
-    it('calls onClick when custom action is clicked', () => {
-      const { container } = renderWithContext(
-        <EuiFlyoutMenu title="Test Title" customActions={customActions} />
-      );
-
-      const settingsButton = container.querySelector('[aria-label="Settings"]');
-      settingsButton?.dispatchEvent(new MouseEvent('click', { bubbles: true }));
-
-      expect(customActions[0].onClick).toHaveBeenCalledTimes(1);
-    });
-  });
-
   describe('leadingActions and trailingActions', () => {
     const leadingActions = [
       {
@@ -422,6 +378,23 @@ describe('EuiFlyoutMenu', () => {
       expect(getByRole('tooltip').className).toContain('euiToolTip-left');
     });
 
+    it('falls back to the deprecated customActions alias when trailingActions is not supplied', () => {
+      const deprecatedCustomActions = [
+        { iconType: 'gear', onClick: jest.fn(), 'aria-label': 'Settings' },
+      ];
+
+      const { container } = renderWithContext(
+        <EuiFlyoutMenu
+          title="Test Title"
+          customActions={deprecatedCustomActions}
+        />
+      );
+
+      expect(
+        container.querySelector('[aria-label="Settings"]')
+      ).toBeInTheDocument();
+    });
+
     it('prefers trailingActions over the deprecated customActions alias when both are supplied', () => {
       const deprecatedCustomActions = [
         { iconType: 'gear', onClick: jest.fn(), 'aria-label': 'Settings' },
@@ -441,23 +414,6 @@ describe('EuiFlyoutMenu', () => {
       expect(
         container.querySelector('[aria-label="Settings"]')
       ).not.toBeInTheDocument();
-    });
-
-    it('falls back to the deprecated customActions alias when trailingActions is not supplied', () => {
-      const deprecatedCustomActions = [
-        { iconType: 'gear', onClick: jest.fn(), 'aria-label': 'Settings' },
-      ];
-
-      const { container } = renderWithContext(
-        <EuiFlyoutMenu
-          title="Test Title"
-          customActions={deprecatedCustomActions}
-        />
-      );
-
-      expect(
-        container.querySelector('[aria-label="Settings"]')
-      ).toBeInTheDocument();
     });
   });
 
@@ -945,13 +901,13 @@ describe('EuiFlyoutMenu', () => {
       expect(backButton).toBeInTheDocument();
     });
 
-    it('provides aria-labels for custom actions', () => {
-      const customActions = [
+    it('provides aria-labels for trailing actions', () => {
+      const trailingActions = [
         { iconType: 'gear', onClick: jest.fn(), 'aria-label': 'Settings' },
       ];
 
       const { container } = renderWithContext(
-        <EuiFlyoutMenu title="Test" customActions={customActions} />
+        <EuiFlyoutMenu title="Test" trailingActions={trailingActions} />
       );
 
       const settingsButton = container.querySelector('[aria-label="Settings"]');

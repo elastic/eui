@@ -222,7 +222,7 @@ describe('EuiManagedFlyout', () => {
       const flyoutMenuProps = {
         title: 'Test Menu',
         hideCloseButton: true,
-        customActions: [
+        trailingActions: [
           { iconType: 'gear', onClick, 'aria-label': 'Settings' },
         ],
       };
@@ -239,7 +239,7 @@ describe('EuiManagedFlyout', () => {
       expect(lastMenuProps.current).toMatchObject({
         title: 'Test Menu',
         hideCloseButton: true,
-        customActions: [
+        trailingActions: [
           { iconType: 'gear', onClick, 'aria-label': 'Settings' },
         ],
       });
@@ -266,7 +266,7 @@ describe('EuiManagedFlyout', () => {
           level={LEVEL_MAIN}
           onClose={() => {}}
           aria-label="Aria Label Title"
-          flyoutMenuProps={{ hideCloseButton: true, customActions: [] }}
+          flyoutMenuProps={{ hideCloseButton: true, trailingActions: [] }}
         />
       );
 

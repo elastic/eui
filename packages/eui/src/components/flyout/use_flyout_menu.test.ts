@@ -83,18 +83,6 @@ describe('useEuiFlyoutMenu', () => {
         expect(result.current.shouldRenderMenu).toBe(false);
       });
 
-      it('returns true when menu has custom actions', () => {
-        const { result } = render({
-          flyoutMenuDisplayMode: MENU_DISPLAY_AUTO,
-          flyoutMenuProps: {
-            customActions: [
-              { iconType: 'gear', onClick: () => {}, 'aria-label': 'Settings' },
-            ],
-          },
-        });
-        expect(result.current.shouldRenderMenu).toBe(true);
-      });
-
       it('returns true when menu has leadingActions', () => {
         const { result } = render({
           flyoutMenuDisplayMode: MENU_DISPLAY_AUTO,
@@ -116,6 +104,18 @@ describe('useEuiFlyoutMenu', () => {
           flyoutMenuDisplayMode: MENU_DISPLAY_AUTO,
           flyoutMenuProps: {
             trailingActions: [
+              { iconType: 'gear', onClick: () => {}, 'aria-label': 'Settings' },
+            ],
+          },
+        });
+        expect(result.current.shouldRenderMenu).toBe(true);
+      });
+
+      it('returns true when menu has the deprecated customActions alias', () => {
+        const { result } = render({
+          flyoutMenuDisplayMode: MENU_DISPLAY_AUTO,
+          flyoutMenuProps: {
+            customActions: [
               { iconType: 'gear', onClick: () => {}, 'aria-label': 'Settings' },
             ],
           },

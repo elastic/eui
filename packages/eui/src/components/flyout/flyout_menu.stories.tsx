@@ -353,7 +353,7 @@ export const PaginationExample: StoryObj<Args> = {
     leadingActionCount: 1,
     trailingActionCount: 0,
     paginationTotal: 5,
-    paginationVariant: 'jump',
+    paginationVariant: 'default',
   },
   render: ({
     leadingActionCount,

@@ -76,34 +76,30 @@ export interface EuiFlyoutMenuPagination {
    */
   onNext: () => void;
   /**
-   * Called when the user clicks the First button, which jumps to the beginning
-   * of the list. Passing this renders the button; omit it to leave the button out.
+   * Called when the user clicks the First button, to jump to the beginning.
    */
   onFirst?: () => void;
   /**
-   * Called when the user clicks the Last button, which jumps to the end of the
-   * list. Passing this renders the button; omit it to leave the button out.
+   * Called when the user clicks the Last button, which jumps to the end.
    */
   onLast?: () => void;
   /**
-   * Icon type for the Previous button. Override to match the paging direction
-   * of the underlying content, e.g. `chevronLeft` for a horizontal list.
-   * @default chevronSingleUp, or chevronSingleLeft when `onFirst`/`onLast` are provided
+   * Icon type for the Previous button.
+   * @default chevronSingleUp
    */
   previousIconType?: IconType;
   /**
-   * Icon type for the Next button. Override to match the paging direction
-   * of the underlying content, e.g. `chevronRight` for a horizontal list.
-   * @default chevronSingleDown, or chevronSingleRight when `onFirst`/`onLast` are provided
+   * Icon type for the Next button.
+   * @default chevronSingleDown
    */
   nextIconType?: IconType;
   /**
-   * Icon type for the First button. Only used when `onFirst` is provided.
+   * Icon type for the First button
    * @default chevronLimitLeft
    */
   firstIconType?: IconType;
   /**
-   * Icon type for the Last button. Only used when `onLast` is provided.
+   * Icon type for the Last button
    * @default chevronLimitRight
    */
   lastIconType?: IconType;
@@ -114,17 +110,8 @@ export interface EuiFlyoutMenuPagination {
  * @deprecated Use `EuiFlyoutMenuAction` with the `trailingActions` prop instead.
  */
 export interface EuiFlyoutMenuCustomAction {
-  /**
-   * Icon type for the action button
-   */
   iconType: string;
-  /**
-   * onClick handler for the action button
-   */
   onClick: () => void;
-  /**
-   * Aria label for the action button
-   */
   'aria-label': string;
 }
 
@@ -203,19 +190,15 @@ export type EuiFlyoutMenuProps = CommonProps &
      */
     backButtonProps?: EuiFlyoutMenuBackButtonProps;
     /**
-     * List of history items for the history popover. The popover is only
-     * rendered when there are at least two items, since a single item is
-     * redundant with the back button.
+     * List of history items for the history popover. Not shown if there is just a single item.
      */
     historyItems?: EuiFlyoutHistoryItem[];
     /**
-     * List of action items rendered at the start (inline-start) of the menu bar,
-     * after any built-in leading controls (pagination, or back/history).
+     * List of action items rendered at the start (inline-start) of the menu bar.
      */
     leadingActions?: EuiFlyoutMenuAction[];
     /**
-     * List of action items rendered at the end (inline-end) of the menu bar,
-     * before the close button.
+     * List of action items rendered at the end (inline-end) of the menu bar.
      */
     trailingActions?: EuiFlyoutMenuAction[];
     /**
@@ -260,6 +243,7 @@ const HistoryPopover: React.FC<{
 
   return (
     <EuiPopover
+      aria-label={historyLabel}
       button={
         <EuiToolTip content={recentlyVisitedLabel} disableScreenReaderOutput>
           <EuiButtonIcon
@@ -303,28 +287,21 @@ const PaginationButton: React.FC<{
   isDisabled: boolean;
   dataTestSubj: string;
 }> = ({ iconType, label, onClick, isDisabled, dataTestSubj }) => {
-  const button = (
-    <EuiButtonIcon
-      iconType={iconType}
-      color="text"
-      size="xs"
-      aria-label={label}
-      onClick={onClick}
-      isDisabled={isDisabled}
-      data-test-subj={dataTestSubj}
-    />
-  );
+  const sharedProps = {
+    iconType,
+    color: 'text' as const,
+    size: 'xs' as const,
+    'aria-label': label,
+    onClick,
+    'data-test-subj': dataTestSubj,
+  };
 
-  return (
-    <EuiFlexItem grow={false}>
-      {isDisabled ? (
-        button
-      ) : (
-        <EuiToolTip content={label} disableScreenReaderOutput>
-          {button}
-        </EuiToolTip>
-      )}
-    </EuiFlexItem>
+  return isDisabled ? (
+    <EuiButtonIcon {...sharedProps} isDisabled />
+  ) : (
+    <EuiToolTip content={label} disableScreenReaderOutput>
+      <EuiButtonIcon {...sharedProps} />
+    </EuiToolTip>
   );
 };
 
@@ -370,21 +347,25 @@ const PaginationControls: React.FC<{
     <EuiFlexItem grow={false}>
       <EuiFlexGroup gutterSize="xs" alignItems="center" responsive={false}>
         {onFirst && (
-          <PaginationButton
-            iconType={firstIconType}
-            label={firstLabel}
-            onClick={onFirst}
-            isDisabled={isAtStart}
-            dataTestSubj="euiFlyoutMenuPaginationFirst"
-          />
+          <EuiFlexItem grow={false}>
+            <PaginationButton
+              iconType={firstIconType}
+              label={firstLabel}
+              onClick={onFirst}
+              isDisabled={isAtStart}
+              dataTestSubj="euiFlyoutMenuPaginationFirst"
+            />
+          </EuiFlexItem>
         )}
-        <PaginationButton
-          iconType={previousIconType}
-          label={prevLabel}
-          onClick={onPrevious}
-          isDisabled={isAtStart}
-          dataTestSubj="euiFlyoutMenuPaginationPrev"
-        />
+        <EuiFlexItem grow={false}>
+          <PaginationButton
+            iconType={previousIconType}
+            label={prevLabel}
+            onClick={onPrevious}
+            isDisabled={isAtStart}
+            dataTestSubj="euiFlyoutMenuPaginationPrev"
+          />
+        </EuiFlexItem>
         <EuiFlexItem grow={false}>
           <EuiText
             size="s"
@@ -395,21 +376,25 @@ const PaginationControls: React.FC<{
           </EuiText>
           <EuiScreenReaderLive>{counterLabel}</EuiScreenReaderLive>
         </EuiFlexItem>
-        <PaginationButton
-          iconType={nextIconType}
-          label={nextLabel}
-          onClick={onNext}
-          isDisabled={isAtEnd}
-          dataTestSubj="euiFlyoutMenuPaginationNext"
-        />
-        {onLast && (
+        <EuiFlexItem grow={false}>
           <PaginationButton
-            iconType={lastIconType}
-            label={lastLabel}
-            onClick={onLast}
+            iconType={nextIconType}
+            label={nextLabel}
+            onClick={onNext}
             isDisabled={isAtEnd}
-            dataTestSubj="euiFlyoutMenuPaginationLast"
+            dataTestSubj="euiFlyoutMenuPaginationNext"
           />
+        </EuiFlexItem>
+        {onLast && (
+          <EuiFlexItem grow={false}>
+            <PaginationButton
+              iconType={lastIconType}
+              label={lastLabel}
+              onClick={onLast}
+              isDisabled={isAtEnd}
+              dataTestSubj="euiFlyoutMenuPaginationLast"
+            />
+          </EuiFlexItem>
         )}
       </EuiFlexGroup>
     </EuiFlexItem>
@@ -432,7 +417,6 @@ const MenuDivider: React.FC = () => {
 const MenuActionButton: React.FC<{
   action: EuiFlyoutMenuAction;
 }> = ({ action }) => {
-  const styles = useEuiMemoizedStyles(euiFlyoutMenuStyles);
   const {
     iconType,
     onClick,
@@ -441,30 +425,24 @@ const MenuActionButton: React.FC<{
     toolTipProps,
   } = action;
 
-  const button = (
-    <EuiButtonIcon
-      aria-label={ariaLabel}
-      iconType={iconType}
-      onClick={onClick}
-      color="text"
-      size="xs"
-    />
-  );
+  const sharedProps = {
+    'aria-label': ariaLabel,
+    iconType,
+    onClick,
+    color: 'text' as const,
+    size: 'xs' as const,
+  };
 
-  return (
-    <EuiFlexItem grow={false} css={styles.euiFlyoutMenu__actions}>
-      {toolTipContent ? (
-        <EuiToolTip
-          content={toolTipContent}
-          disableScreenReaderOutput
-          {...toolTipProps}
-        >
-          {button}
-        </EuiToolTip>
-      ) : (
-        button
-      )}
-    </EuiFlexItem>
+  return toolTipContent ? (
+    <EuiToolTip
+      content={toolTipContent}
+      disableScreenReaderOutput
+      {...toolTipProps}
+    >
+      <EuiButtonIcon {...sharedProps} />
+    </EuiToolTip>
+  ) : (
+    <EuiButtonIcon {...sharedProps} />
   );
 };
 
@@ -571,10 +549,13 @@ export const EuiFlyoutMenu: FunctionComponent<EuiFlyoutMenuProps> = ({
         {showLeadingBoundaryDivider && <MenuDivider />}
 
         {leadingActions.map((action, actionIndex) => (
-          <MenuActionButton
+          <EuiFlexItem
             key={`leading-action-${actionIndex}`}
-            action={action}
-          />
+            grow={false}
+            css={styles.euiFlyoutMenu__actions}
+          >
+            <MenuActionButton action={action} />
+          </EuiFlexItem>
         ))}
 
         {titleNode && <EuiFlexItem grow={false}>{titleNode}</EuiFlexItem>}
@@ -582,10 +563,13 @@ export const EuiFlyoutMenu: FunctionComponent<EuiFlyoutMenuProps> = ({
         <EuiFlexItem grow={true}></EuiFlexItem>
 
         {effectiveTrailingActions.map((action, actionIndex) => (
-          <MenuActionButton
+          <EuiFlexItem
             key={`trailing-action-${actionIndex}`}
-            action={action}
-          />
+            grow={false}
+            css={styles.euiFlyoutMenu__actions}
+          >
+            <MenuActionButton action={action} />
+          </EuiFlexItem>
         ))}
 
         {/* spacer to give trailing actions room around the close button */}
