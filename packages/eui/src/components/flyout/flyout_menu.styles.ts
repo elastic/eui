@@ -8,6 +8,7 @@
 
 import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../services';
+import { highContrastModeStyles } from '../../global_styling';
 import { euiScreenReaderOnly } from '../accessibility';
 
 export const euiFlyoutMenuStyles = (euiThemeContext: UseEuiTheme) => {
@@ -27,6 +28,15 @@ export const euiFlyoutMenuStyles = (euiThemeContext: UseEuiTheme) => {
       .euiTitle {
         padding-inline: ${euiTheme.size.s};
       }
+    `,
+    // The control row is only as tall as its tallest control by default, which
+    // is all the centered layout needs. High contrast mode additionally relies
+    // on it filling the container so the full-height dividers below can bleed
+    // out to the container's edges.
+    euiFlyoutMenu__controls: css`
+      ${highContrastModeStyles(euiThemeContext, {
+        preferred: 'block-size: 100%;',
+      })}
     `,
     euiFlyoutMenu__spacer: css`
       padding-inline: ${euiTheme.size.m};
@@ -56,6 +66,18 @@ export const euiFlyoutMenuStyles = (euiThemeContext: UseEuiTheme) => {
       margin-inline: ${euiTheme.size.xs};
       border-inline-start: ${euiTheme.border.thin};
       pointer-events: none;
+
+      ${highContrastModeStyles(euiThemeContext, {
+        // High contrast themes lean on stronger group boundaries, so the line
+        // runs the full height of the menu bar instead of being shortened.
+        // Stretching to the control row and bleeding back over the container's
+        // block padding takes it from the top edge to the bottom border.
+        preferred: `
+          align-self: stretch;
+          block-size: auto;
+          margin-block: -${euiTheme.size.s};
+        `,
+      })}
     `,
   };
 };
