@@ -22,7 +22,7 @@ function isReassigned(variable: TSESLint.Scope.Variable): boolean {
  * Returns null for anything that can't be resolved safely: imports, function
  * parameters, reassigned variables, or missing initializers.
  */
-export function resolveIdentifierValue(
+function resolveIdentifierValue(
   sourceCode: TSESLint.SourceCode,
   node: TSESTree.Identifier
 ): TSESTree.Node | null {
@@ -44,12 +44,10 @@ export function resolveIdentifierValue(
 /**
  * Collects all return-statement arguments within a block body, recursing into
  * `if`/`else` branches and `switch` cases. Does not recurse into nested
- * functions — those have their own return scope. Used to validate block-body
+ * functions - those have their own return scope. Used to validate block-body
  * arrow functions.
  */
-export function collectReturnValues(
-  node: TSESTree.Node
-): TSESTree.Expression[] {
+function collectReturnValues(node: TSESTree.Node): TSESTree.Expression[] {
   switch (node.type) {
     case 'BlockStatement':
       return flatMap(node.body, collectReturnValues);
@@ -77,7 +75,7 @@ export function collectReturnValues(
  * (`() => { return <expr>; }`) arrow functions. Imports, class components,
  * and reassigned variables return null — those stay opaque.
  */
-export function resolveLocalComponent(
+function resolveLocalComponent(
   sourceCode: TSESLint.SourceCode,
   name: string,
   refNode: TSESTree.Node
@@ -100,83 +98,80 @@ export function resolveLocalComponent(
   return null;
 }
 
-/**
- * Recursively collects concrete JSXElement nodes to validate, expanding:
- *  - `<>...</>`, `<Fragment>`, `<React.Fragment>` (transparent grouping)
- *  - `{expr}`                                  (JSXExpressionContainer)
- *  - `{a && <El />}`                           (LogicalExpression `&&` → right side only)
- *  - `{a || <El />}`, `{a ?? <El />}`          (LogicalExpression `||`/`??` → both sides)
- *  - `{c ? <A /> : <B />}`                     (ConditionalExpression → both branches)
- *  - `{[<A />, <B />]}`                        (ArrayExpression → each element)
- *  - `{variable}`                              (Identifier → resolved via scope)
- *  - `<LocalComponent />`                      (local arrow-fn component, expression or block body)
- *  - `{(arg) => <El />}`                       (ArrowFunctionExpression, expression or block body)
- *  - `{arr.map(fn)}`                           (CallExpression `.map()` with arrow-fn callback)
- *
- * Patterns that can't be resolved statically (arbitrary function calls, imported
- * variables, non-arrow `.map()` callbacks) produce an empty list and are silently
- * skipped.
- */
-export function collectJsxChildren(
+function walkJsxChild(
   node: TSESTree.Node,
-  sourceCode: TSESLint.SourceCode
-): TSESTree.JSXElement[] {
-  return collectChildren(node, sourceCode, new Set<string>());
-}
-
-function collectChildren(
-  node: TSESTree.Node,
-  sourceCode: TSESLint.SourceCode,
-  visited: Set<string>
-): TSESTree.JSXElement[] {
-  const collect = (n: TSESTree.Node) => collectChildren(n, sourceCode, visited);
+  visit: (node: TSESTree.Node) => void,
+  sourceCode: TSESLint.SourceCode | undefined,
+  visited: Set<string>,
+  shouldSkip: ((el: TSESTree.JSXElement) => boolean) | undefined
+): void {
+  const walk = (n: TSESTree.Node) =>
+    walkJsxChild(n, visit, sourceCode, visited, shouldSkip);
 
   switch (node.type) {
     case 'JSXElement': {
       if (isFragment(node.openingElement)) {
-        return flatMap(node.children, collect);
+        node.children.forEach(walk);
+        return;
       }
-      const { name } = node.openingElement;
-      if (name.type === 'JSXIdentifier') {
-        if (visited.has(name.name)) return [];
-
-        const resolved = resolveLocalComponent(
-          sourceCode,
-          name.name,
-          node.openingElement
-        );
-        if (resolved !== null) {
-          visited.add(name.name);
-
-          const result = flatMap(resolved, collect);
-
-          visited.delete(name.name);
-          return result;
+      if (sourceCode) {
+        const { name } = node.openingElement;
+        if (name.type === 'JSXIdentifier' && !visited.has(name.name)) {
+          const resolved = resolveLocalComponent(
+            sourceCode,
+            name.name,
+            node.openingElement
+          );
+          if (resolved !== null) {
+            visited.add(name.name);
+            resolved.forEach(walk);
+            visited.delete(name.name);
+            return;
+          }
         }
       }
-      return [node];
+      if (shouldSkip?.(node)) {
+        node.children.forEach(walk);
+        return;
+      }
+      visit(node);
+      return;
     }
     case 'JSXFragment':
-      return flatMap(node.children, collect);
+      node.children.forEach(walk);
+      return;
     case 'JSXExpressionContainer':
-      if (node.expression.type === 'JSXEmptyExpression') return [];
-      return collect(node.expression);
+      if (node.expression.type !== 'JSXEmptyExpression') walk(node.expression);
+      return;
     case 'LogicalExpression':
-      if (node.operator === '&&') return collect(node.right);
-      return [...collect(node.left), ...collect(node.right)];
+      walk(node.left);
+      walk(node.right);
+      return;
     case 'ConditionalExpression':
-      return [...collect(node.consequent), ...collect(node.alternate)];
+      walk(node.consequent);
+      walk(node.alternate);
+      return;
     case 'ArrayExpression':
-      return flatMap(node.elements, (el) =>
-        el && el.type !== 'SpreadElement' ? collect(el) : []
-      );
-    case 'Identifier': {
-      const resolved = resolveIdentifierValue(sourceCode, node);
-      return resolved ? collect(resolved) : [];
-    }
+      node.elements.forEach((el) => {
+        if (el && el.type !== 'SpreadElement') walk(el);
+      });
+      return;
+    case 'Identifier':
+      if (sourceCode) {
+        const resolved = resolveIdentifierValue(sourceCode, node);
+        if (resolved) {
+          walk(resolved);
+          return;
+        }
+      }
+      return;
     case 'ArrowFunctionExpression':
-      if (node.body.type !== 'BlockStatement') return collect(node.body);
-      return flatMap(collectReturnValues(node.body), collect);
+      if (node.body.type !== 'BlockStatement') {
+        walk(node.body);
+      } else {
+        collectReturnValues(node.body).forEach(walk);
+      }
+      return;
     case 'CallExpression': {
       const { callee, arguments: args } = node;
       if (
@@ -187,12 +182,62 @@ function collectChildren(
         args[0].type === 'ArrowFunctionExpression'
       ) {
         const fn = args[0];
-        if (fn.body.type !== 'BlockStatement') return collect(fn.body);
-        return flatMap(collectReturnValues(fn.body), collect);
+        if (fn.body.type !== 'BlockStatement') {
+          walk(fn.body);
+        } else {
+          collectReturnValues(fn.body).forEach(walk);
+        }
       }
-      return [];
+      return;
     }
+    case 'JSXText':
+    case 'Literal':
+    case 'TemplateLiteral':
+    case 'MemberExpression':
+      visit(node);
+      return;
     default:
-      return [];
+      return;
   }
+}
+
+/**
+ * Recursively walks JSX children, expanding structural nodes transparently
+ * and calling `visit` for each content node.
+ *
+ * Always expanded (structural nodes):
+ *  - `<>...</>`, `<Fragment>`, `<React.Fragment>` (transparent grouping)
+ *  - `{expr}`                              (JSXExpressionContainer)
+ *  - `{a && b}`, `{a || b}`, `{a ?? b}`   (LogicalExpression → both sides)
+ *  - `{c ? a : b}`                         (ConditionalExpression → both branches)
+ *  - `{[a, b]}`                            (ArrayExpression → each element)
+ *  - `{(arg) => <El />}`                   (ArrowFunctionExpression)
+ *  - `{arr.map(fn)}`                       (CallExpression `.map()` with arrow-fn callback)
+ *
+ * With `options.sourceCode`: Identifiers and local arrow-fn components are
+ * also expanded via scope lookup when resolvable.
+ *
+ * `options.shouldSkip` - when provided, called for each JSXElement reached
+ * (after fragment and local-component checks). Returning true skips the
+ * element itself and recurses into its children instead. Use this to make
+ * layout wrappers or non-interactive shells transparent to the visitor.
+ *
+ * `visit` is called for leaf nodes: JSXElement, JSXText, Literal,
+ * TemplateLiteral, MemberExpression.
+ */
+export function walkJsxChildren(
+  node: TSESTree.Node,
+  visit: (node: TSESTree.Node) => void,
+  options: {
+    sourceCode?: TSESLint.SourceCode;
+    shouldSkip?: (el: TSESTree.JSXElement) => boolean;
+  } = {}
+): void {
+  walkJsxChild(
+    node,
+    visit,
+    options.sourceCode,
+    new Set<string>(),
+    options.shouldSkip
+  );
 }

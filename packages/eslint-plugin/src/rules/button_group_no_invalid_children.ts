@@ -14,7 +14,7 @@ import {
 import { hasSpread } from '../utils/has_spread';
 import { flatMap } from '../utils/flat_map';
 import { getElementName } from '../utils/get_element_name';
-import { collectJsxChildren } from '../utils/collect_jsx_children';
+import { walkJsxChildren } from '../utils/walk_jsx_children';
 import { findAttrValue } from '../utils/get_attr_value';
 
 const BUTTON_GROUP = 'EuiButtonGroup';
@@ -26,6 +26,23 @@ const VALID_WRAPPERS_LIST = Array.from(VALID_WRAPPERS).join(', ');
 
 function isCustomComponent(name: string): boolean {
   return name[0] === name[0].toUpperCase();
+}
+
+function collectJsxChildren(
+  node: TSESTree.Node,
+  sourceCode: TSESLint.SourceCode
+): TSESTree.JSXElement[] {
+  const results: TSESTree.JSXElement[] = [];
+  walkJsxChildren(
+    node,
+    (leaf) => {
+      if (leaf.type === 'JSXElement') {
+        results.push(leaf as TSESTree.JSXElement);
+      }
+    },
+    { sourceCode }
+  );
+  return results;
 }
 
 function reportInvalidWrapperChildren<
