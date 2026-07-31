@@ -89,6 +89,41 @@ ruleTester.run('tooltip-button-icon-wrap', TooltipButtonIconWrap, {
       languageOptions,
     },
     {
+      name: 'render-prop child of EuiCopy — tooltip provided by EuiCopy beforeMessage',
+      code: dedent`
+        <EuiCopy textToCopy="some text" beforeMessage="Copy me">
+          {(copy) => (
+            <EuiButtonIcon onClick={copy} aria-label="Copy" iconType="copy" />
+          )}
+        </EuiCopy>
+      `,
+      languageOptions,
+    },
+    {
+      name: 'render-prop child of EuiCopy with block body and explicit return',
+      code: dedent`
+        <EuiCopy textToCopy="some text" beforeMessage="Copy me">
+          {(copy) => {
+            return <EuiButtonIcon onClick={copy} aria-label="Copy" iconType="copy" />;
+          }}
+        </EuiCopy>
+      `,
+      languageOptions,
+    },
+    {
+      name: 'nested inside intermediate element within EuiCopy',
+      code: dedent`
+        <EuiCopy textToCopy="some text" beforeMessage="Copy me">
+          {(copy) => (
+            <EuiFlexItem>
+              <EuiButtonIcon onClick={copy} aria-label="Copy" iconType="copy" />
+            </EuiFlexItem>
+          )}
+        </EuiCopy>
+      `,
+      languageOptions,
+    },
+    {
       name: 'non-EuiButtonIcon is ignored',
       code: dedent`
         <EuiButton aria-label="Edit" iconType="pencil" />
@@ -164,6 +199,69 @@ ruleTester.run('tooltip-button-icon-wrap', TooltipButtonIconWrap, {
       `,
       languageOptions,
       errors: [{ messageId: 'useEuiToolTipInsteadOfTitle' }],
+    },
+    {
+      name: 'title prop still reported inside EuiCopy',
+      code: dedent`
+        <EuiCopy textToCopy="some text" beforeMessage="Copy me">
+          {(copy) => (
+            <EuiButtonIcon onClick={copy} title="Copy" aria-label="Copy" iconType="copy" />
+          )}
+        </EuiCopy>
+      `,
+      languageOptions,
+      errors: [{ messageId: 'useEuiToolTipInsteadOfTitle' }],
+    },
+    {
+      name: 'inside EuiCopy without beforeMessage — no tooltip, still reported',
+      code: dedent`
+        <EuiCopy textToCopy="some text">
+          {(copy) => (
+            <EuiButtonIcon onClick={copy} aria-label="Copy" iconType="copy" />
+          )}
+        </EuiCopy>
+      `,
+      languageOptions,
+      errors: [{ messageId: 'wrapWithEuiToolTip' }],
+    },
+    {
+      name: 'nested inside intermediate element within EuiCopy without beforeMessage — still reported',
+      code: dedent`
+        <EuiCopy textToCopy="some text">
+          {(copy) => (
+            <EuiFlexItem>
+              <EuiButtonIcon onClick={copy} aria-label="Copy" iconType="copy" />
+            </EuiFlexItem>
+          )}
+        </EuiCopy>
+      `,
+      languageOptions,
+      errors: [{ messageId: 'wrapWithEuiToolTip' }],
+    },
+    {
+      name: 'inside EuiCopy with statically empty beforeMessage — no tooltip, still reported',
+      code: dedent`
+        <EuiCopy textToCopy="some text" beforeMessage="">
+          {(copy) => (
+            <EuiButtonIcon onClick={copy} aria-label="Copy" iconType="copy" />
+          )}
+        </EuiCopy>
+      `,
+      languageOptions,
+      errors: [{ messageId: 'wrapWithEuiToolTip' }],
+    },
+    {
+      name: 'button passed through the beforeMessage prop — not the copy trigger, still reported',
+      code: dedent`
+        <EuiCopy
+          textToCopy="some text"
+          beforeMessage={<EuiButtonIcon aria-label="Copy" iconType="copy" />}
+        >
+          {(copy) => <EuiButton onClick={copy}>Copy</EuiButton>}
+        </EuiCopy>
+      `,
+      languageOptions,
+      errors: [{ messageId: 'wrapWithEuiToolTip' }],
     },
   ],
 });
