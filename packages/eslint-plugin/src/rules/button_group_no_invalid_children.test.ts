@@ -635,7 +635,7 @@ ruleTester.run(
           </EuiButtonGroup>
         `,
         languageOptions,
-        errors: [{ messageId: 'invalidChild', data: { name: 'EuiFlexGroup' } }],
+        errors: [{ messageId: 'invalidUnresolvableChild', data: { name: 'EuiFlexGroup' } }],
       },
       {
         name: 'multiple invalid children reported individually',
@@ -649,7 +649,7 @@ ruleTester.run(
         languageOptions,
         errors: [
           { messageId: 'invalidChild', data: { name: 'span' } },
-          { messageId: 'invalidChild', data: { name: 'EuiText' } },
+          { messageId: 'invalidUnresolvableChild', data: { name: 'EuiText' } },
         ],
       },
 
@@ -666,7 +666,7 @@ ruleTester.run(
         languageOptions,
         errors: [
           {
-            messageId: 'invalidWrapperChild',
+            messageId: 'invalidUnresolvableWrapperChild',
             data: { name: 'EuiText', wrapper: 'EuiCopy' },
           },
         ],
@@ -683,7 +683,7 @@ ruleTester.run(
         languageOptions,
         errors: [
           {
-            messageId: 'invalidWrapperChild',
+            messageId: 'invalidUnresolvableWrapperChild',
             data: { name: 'EuiText', wrapper: 'EuiCopy' },
           },
         ],
@@ -703,7 +703,7 @@ ruleTester.run(
         languageOptions,
         errors: [
           {
-            messageId: 'invalidWrapperChild',
+            messageId: 'invalidUnresolvableWrapperChild',
             data: { name: 'EuiText', wrapper: 'EuiCopy' },
           },
         ],
@@ -721,7 +721,7 @@ ruleTester.run(
         `,
         languageOptions,
         errors: [
-          { messageId: 'invalidPopoverButton', data: { name: 'EuiText' } },
+          { messageId: 'invalidUnresolvablePopoverButton', data: { name: 'EuiText' } },
         ],
       },
       {
@@ -751,7 +751,7 @@ ruleTester.run(
         `,
         languageOptions,
         errors: [
-          { messageId: 'invalidPopoverButton', data: { name: 'EuiText' } },
+          { messageId: 'invalidUnresolvablePopoverButton', data: { name: 'EuiText' } },
         ],
       },
       {
@@ -766,7 +766,7 @@ ruleTester.run(
         `,
         languageOptions,
         errors: [
-          { messageId: 'invalidPopoverButton', data: { name: 'EuiText' } },
+          { messageId: 'invalidUnresolvablePopoverButton', data: { name: 'EuiText' } },
         ],
       },
       {
@@ -784,7 +784,7 @@ ruleTester.run(
         `,
         languageOptions,
         errors: [
-          { messageId: 'invalidPopoverButton', data: { name: 'EuiText' } },
+          { messageId: 'invalidUnresolvablePopoverButton', data: { name: 'EuiText' } },
         ],
       },
 
@@ -803,7 +803,7 @@ ruleTester.run(
         languageOptions,
         errors: [
           {
-            messageId: 'invalidWrapperChild',
+            messageId: 'invalidUnresolvableWrapperChild',
             data: { name: 'EuiFlexGroup', wrapper: 'EuiToolTip' },
           },
         ],
@@ -824,7 +824,7 @@ ruleTester.run(
         languageOptions,
         errors: [
           {
-            messageId: 'invalidWrapperChild',
+            messageId: 'invalidUnresolvableWrapperChild',
             data: { name: 'EuiText', wrapper: 'EuiToolTip' },
           },
         ],
@@ -842,7 +842,7 @@ ruleTester.run(
         languageOptions,
         errors: [
           {
-            messageId: 'invalidWrapperChild',
+            messageId: 'invalidUnresolvableWrapperChild',
             data: { name: 'EuiText', wrapper: 'EuiToolTip' },
           },
         ],
@@ -860,7 +860,7 @@ ruleTester.run(
           </EuiButtonGroup>
         `,
         languageOptions,
-        errors: [{ messageId: 'invalidChild', data: { name: 'EuiText' } }],
+        errors: [{ messageId: 'invalidUnresolvableChild', data: { name: 'EuiText' } }],
       },
       {
         name: '<Fragment> wrapping invalid element',
@@ -884,7 +884,7 @@ ruleTester.run(
           </EuiButtonGroup>
         `,
         languageOptions,
-        errors: [{ messageId: 'invalidChild', data: { name: 'EuiText' } }],
+        errors: [{ messageId: 'invalidUnresolvableChild', data: { name: 'EuiText' } }],
       },
       {
         name: 'fragment inside EuiToolTip wrapping invalid element',
@@ -900,7 +900,7 @@ ruleTester.run(
         languageOptions,
         errors: [
           {
-            messageId: 'invalidWrapperChild',
+            messageId: 'invalidUnresolvableWrapperChild',
             data: { name: 'EuiText', wrapper: 'EuiToolTip' },
           },
         ],
@@ -916,7 +916,7 @@ ruleTester.run(
           </EuiButtonGroup>
         `,
         languageOptions,
-        errors: [{ messageId: 'invalidChild', data: { name: 'EuiText' } }],
+        errors: [{ messageId: 'invalidUnresolvableChild', data: { name: 'EuiText' } }],
       },
       {
         name: 'ternary with one invalid branch',
@@ -926,7 +926,7 @@ ruleTester.run(
           </EuiButtonGroup>
         `,
         languageOptions,
-        errors: [{ messageId: 'invalidChild', data: { name: 'EuiText' } }],
+        errors: [{ messageId: 'invalidUnresolvableChild', data: { name: 'EuiText' } }],
       },
       {
         name: 'ternary with both invalid branches reported separately',
@@ -937,8 +937,8 @@ ruleTester.run(
         `,
         languageOptions,
         errors: [
-          { messageId: 'invalidChild', data: { name: 'EuiText' } },
-          { messageId: 'invalidChild', data: { name: 'EuiBadge' } },
+          { messageId: 'invalidUnresolvableChild', data: { name: 'EuiText' } },
+          { messageId: 'invalidUnresolvableChild', data: { name: 'EuiBadge' } },
         ],
       },
 
@@ -950,7 +950,7 @@ ruleTester.run(
           </EuiButtonGroup>
         `,
         languageOptions,
-        errors: [{ messageId: 'invalidChild', data: { name: 'EuiText' } }],
+        errors: [{ messageId: 'invalidUnresolvableChild', data: { name: 'EuiText' } }],
       },
       {
         name: '{unresolvable ?? <EuiText />} invalid right side is flagged',
@@ -960,7 +960,7 @@ ruleTester.run(
           </EuiButtonGroup>
         `,
         languageOptions,
-        errors: [{ messageId: 'invalidChild', data: { name: 'EuiText' } }],
+        errors: [{ messageId: 'invalidUnresolvableChild', data: { name: 'EuiText' } }],
       },
       {
         name: '{resolvedInvalidButton || <EuiButton />} resolved invalid left side is flagged',
@@ -971,7 +971,7 @@ ruleTester.run(
           </EuiButtonGroup>
         `,
         languageOptions,
-        errors: [{ messageId: 'invalidChild', data: { name: 'EuiText' } }],
+        errors: [{ messageId: 'invalidUnresolvableChild', data: { name: 'EuiText' } }],
       },
 
       // Unresolvable custom component
@@ -1020,7 +1020,7 @@ ruleTester.run(
           </EuiButtonGroup>
         `,
         languageOptions,
-        errors: [{ messageId: 'invalidChild', data: { name: 'EuiText' } }],
+        errors: [{ messageId: 'invalidUnresolvableChild', data: { name: 'EuiText' } }],
       },
       {
         name: 'const variable holding an array with an invalid element is resolved and reported',
@@ -1034,7 +1034,7 @@ ruleTester.run(
           </EuiButtonGroup>
         `,
         languageOptions,
-        errors: [{ messageId: 'invalidChild', data: { name: 'EuiText' } }],
+        errors: [{ messageId: 'invalidUnresolvableChild', data: { name: 'EuiText' } }],
       },
 
       // Local arrow-function
@@ -1047,7 +1047,7 @@ ruleTester.run(
           </EuiButtonGroup>
         `,
         languageOptions,
-        errors: [{ messageId: 'invalidChild', data: { name: 'EuiText' } }],
+        errors: [{ messageId: 'invalidUnresolvableChild', data: { name: 'EuiText' } }],
       },
       {
         name: 'local block-body arrow-fn component with invalid return is resolved and reported at the invalid element',
@@ -1058,7 +1058,7 @@ ruleTester.run(
           </EuiButtonGroup>
         `,
         languageOptions,
-        errors: [{ messageId: 'invalidChild', data: { name: 'EuiText' } }],
+        errors: [{ messageId: 'invalidUnresolvableChild', data: { name: 'EuiText' } }],
       },
       {
         name: 'local block-body arrow-fn component with invalid branch is resolved and reported',
@@ -1072,7 +1072,7 @@ ruleTester.run(
           </EuiButtonGroup>
         `,
         languageOptions,
-        errors: [{ messageId: 'invalidChild', data: { name: 'EuiText' } }],
+        errors: [{ messageId: 'invalidUnresolvableChild', data: { name: 'EuiText' } }],
       },
       {
         name: 'imported custom component cannot be resolved — uses invalidUnresolvableChild message',
@@ -1102,7 +1102,7 @@ ruleTester.run(
           </EuiButtonGroup>
         `,
         languageOptions,
-        errors: [{ messageId: 'invalidChild', data: { name: 'EuiText' } }],
+        errors: [{ messageId: 'invalidUnresolvableChild', data: { name: 'EuiText' } }],
       },
       {
         name: 'array containing a wrapper (EuiToolTip) with an invalid inner element',
@@ -1118,7 +1118,7 @@ ruleTester.run(
         languageOptions,
         errors: [
           {
-            messageId: 'invalidWrapperChild',
+            messageId: 'invalidUnresolvableWrapperChild',
             data: { name: 'EuiText', wrapper: 'EuiToolTip' },
           },
         ],
@@ -1158,7 +1158,7 @@ ruleTester.run(
           </EuiButtonGroup>
         `,
         languageOptions,
-        errors: [{ messageId: 'invalidChild', data: { name: 'EuiText' } }],
+        errors: [{ messageId: 'invalidUnresolvableChild', data: { name: 'EuiText' } }],
       },
       {
         name: 'variable holding map() result with invalid element is reported',
@@ -1185,7 +1185,7 @@ ruleTester.run(
         languageOptions,
         errors: [
           {
-            messageId: 'invalidWrapperChild',
+            messageId: 'invalidUnresolvableWrapperChild',
             data: { name: 'EuiText', wrapper: 'EuiToolTip' },
           },
         ],
@@ -1202,7 +1202,7 @@ ruleTester.run(
         languageOptions,
         errors: [
           {
-            messageId: 'invalidWrapperChild',
+            messageId: 'invalidUnresolvableWrapperChild',
             data: { name: 'EuiText', wrapper: 'EuiCopy' },
           },
         ],
@@ -1223,7 +1223,7 @@ ruleTester.run(
           </EuiButtonGroup>
         `,
         languageOptions,
-        errors: [{ messageId: 'invalidChild', data: { name: 'EuiText' } }],
+        errors: [{ messageId: 'invalidUnresolvableChild', data: { name: 'EuiText' } }],
       },
     ],
   }

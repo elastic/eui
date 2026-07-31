@@ -25,7 +25,7 @@ const VALID_BUTTONS_LIST = Array.from(VALID_BUTTONS).join(', ');
 const VALID_WRAPPERS_LIST = Array.from(VALID_WRAPPERS).join(', ');
 
 function isCustomComponent(name: string): boolean {
-  return name[0] === name[0].toUpperCase() && !name.startsWith('Eui');
+  return name[0] === name[0].toUpperCase();
 }
 
 function reportInvalidWrapperChildren<
@@ -143,7 +143,9 @@ export const ButtonGroupNoInvalidChildren = ESLintUtils.RuleCreator.withoutDocs(
 
                         context.report({
                           node: tooltipChild.openingElement,
-                          messageId: 'invalidPopoverButton',
+                          messageId: isCustomComponent(tooltipChildName)
+                            ? 'invalidUnresolvablePopoverButton'
+                            : 'invalidPopoverButton',
                           data: { name: tooltipChildName },
                         });
                       }
@@ -151,7 +153,9 @@ export const ButtonGroupNoInvalidChildren = ESLintUtils.RuleCreator.withoutDocs(
                     }
                     context.report({
                       node: triggerElement.openingElement,
-                      messageId: 'invalidPopoverButton',
+                      messageId: isCustomComponent(triggerElementName)
+                        ? 'invalidUnresolvablePopoverButton'
+                        : 'invalidPopoverButton',
                       data: { name: triggerElementName },
                     });
                   }
@@ -204,6 +208,14 @@ export const ButtonGroupNoInvalidChildren = ESLintUtils.RuleCreator.withoutDocs(
         invalidPopoverButton: [
           `{{ name }} is not a valid trigger button for EuiPopover in EuiButtonGroup.`,
           `The \`button\` prop must be ${VALID_BUTTONS_LIST}.`,
+        ].join(' '),
+        invalidUnresolvablePopoverButton: [
+          `{{ name }} cannot be verified as a valid trigger button for EuiPopover in EuiButtonGroup.`,
+          `The \`button\` prop must be ${VALID_BUTTONS_LIST}.`,
+          `If {{ name }} is a shared button wrapper component only containing`,
+          `valid button children, suppress this rule inline with a comment`,
+          `explaining why it's valid.`,
+          `// eslint-disable-next-line @elastic/eui/button-group-no-invalid-children -- SaveButton only wraps EuiButton`,
         ].join(' '),
         invalidWrapperChild: [
           `{{ name }} inside {{ wrapper }} is not a valid button for EuiButtonGroup.`,
