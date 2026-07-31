@@ -29,8 +29,11 @@ export const euiFlyoutMenuStyles = (euiThemeContext: UseEuiTheme) => {
     euiFlyoutMenu__spacer: css`
       padding-inline: ${euiTheme.size.m};
     `,
+    // Let the wrapper hug its button so the row's `align-items: center` lines
+    // actions up with the other menu bar controls. A fixed block-size here
+    // would center the wrapper instead of the button it contains.
     euiFlyoutMenu__actions: css`
-      block-size: calc(${euiTheme.size.m} * 1.8);
+      align-self: center;
     `,
     euiFlyoutMenu__hiddenTitle: css`
       ${euiScreenReaderOnly()}

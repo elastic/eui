@@ -371,7 +371,7 @@ const MenuActionButton: React.FC<{
       iconType={iconType}
       onClick={onClick}
       color="text"
-      size="s"
+      size="xs"
     />
   );
 
