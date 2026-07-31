@@ -683,13 +683,7 @@ describe('EuiFlyoutMenu', () => {
 
     it('allows overriding the Prev/Next icon types, e.g. for horizontally-paged content', () => {
       const { container } = renderWithContext(
-        <EuiFlyoutMenu
-          pagination={{
-            ...pagination,
-            previousIconType: 'chevronLeft',
-            nextIconType: 'chevronRight',
-          }}
-        />
+        <EuiFlyoutMenu pagination={{ ...pagination }} />
       );
 
       expect(
@@ -758,13 +752,7 @@ describe('EuiFlyoutMenu', () => {
 
       it('allows overriding the First/Last icon types', () => {
         const { container } = renderWithContext(
-          <EuiFlyoutMenu
-            pagination={{
-              ...jumpPagination,
-              firstIconType: 'sortLeft',
-              lastIconType: 'sortRight',
-            }}
-          />
+          <EuiFlyoutMenu pagination={{ ...jumpPagination }} />
         );
 
         expect(
@@ -798,13 +786,7 @@ describe('EuiFlyoutMenu', () => {
 
       it('still honors explicit Prev/Next icon types', () => {
         const { container } = renderWithContext(
-          <EuiFlyoutMenu
-            pagination={{
-              ...jumpPagination,
-              previousIconType: 'chevronSingleUp',
-              nextIconType: 'chevronSingleDown',
-            }}
-          />
+          <EuiFlyoutMenu pagination={{ ...jumpPagination }} />
         );
 
         expect(

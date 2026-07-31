@@ -83,26 +83,6 @@ export interface EuiFlyoutMenuPagination {
    * Called when the user clicks the Last button, which jumps to the end.
    */
   onLast?: () => void;
-  /**
-   * Icon type for the Previous button.
-   * @default chevronSingleUp
-   */
-  previousIconType?: IconType;
-  /**
-   * Icon type for the Next button.
-   * @default chevronSingleDown
-   */
-  nextIconType?: IconType;
-  /**
-   * Icon type for the First button
-   * @default chevronLimitLeft
-   */
-  firstIconType?: IconType;
-  /**
-   * Icon type for the Last button
-   * @default chevronLimitRight
-   */
-  lastIconType?: IconType;
 }
 
 /**
@@ -309,26 +289,20 @@ const PaginationControls: React.FC<{
   pagination: EuiFlyoutMenuPagination;
 }> = ({ pagination }) => {
   const styles = useEuiMemoizedStyles(euiFlyoutMenuStyles);
-  const {
-    currentIndex,
-    total,
-    onPrevious,
-    onNext,
-    onFirst,
-    onLast,
-    firstIconType = 'chevronLimitLeft',
-    lastIconType = 'chevronLimitRight',
-  } = pagination;
+  const { currentIndex, total, onPrevious, onNext, onFirst, onLast } =
+    pagination;
 
   // Jump-to-first/last controls read as a horizontal track, so the Prev/Next
   // chevrons follow that axis unless the consumer overrides them.
   const hasJumpControls = onFirst != null || onLast != null;
-  const previousIconType =
-    pagination.previousIconType ??
-    (hasJumpControls ? 'chevronSingleLeft' : 'chevronSingleUp');
-  const nextIconType =
-    pagination.nextIconType ??
-    (hasJumpControls ? 'chevronSingleRight' : 'chevronSingleDown');
+  const previousIconType = hasJumpControls
+    ? 'chevronSingleLeft'
+    : 'chevronSingleUp';
+  const nextIconType = hasJumpControls
+    ? 'chevronSingleRight'
+    : 'chevronSingleDown';
+  const firstIconType = 'chevronLimitLeft';
+  const lastIconType = 'chevronLimitRight';
 
   const firstLabel = useEuiI18n('euiFlyoutMenu.pagination.first', 'First');
   const prevLabel = useEuiI18n('euiFlyoutMenu.pagination.previous', 'Previous');

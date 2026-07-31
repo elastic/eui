@@ -19,7 +19,7 @@ import { EuiFlyoutBody } from './flyout_body';
 import { EuiFlyoutMenu, EuiFlyoutMenuProps } from './flyout_menu';
 import { EuiFlyoutHeader } from './flyout_header';
 
-type PaginationVariant = 'default' | 'horizontal' | 'jump';
+type PaginationVariant = 'default' | 'jump';
 
 interface Args extends EuiFlyoutMenuProps {
   leadingActionCount: number;
@@ -64,9 +64,9 @@ const meta: Meta<Args> = {
     },
     paginationVariant: {
       control: { type: 'radio' as const },
-      options: ['default', 'horizontal', 'jump'] as PaginationVariant[],
+      options: ['default', 'jump'] as PaginationVariant[],
       description:
-        'Story-only control for the shape of the pagination controls. "horizontal" sets `pagination.previousIconType`/`nextIconType` to left/right chevrons, mimicking apps like Discover that page through horizontally-oriented content. "jump" adds `pagination.onFirst`/`onLast` for jumping to the beginning and end of the list, which switches the Prev/Next chevrons to left/right on its own.',
+        'Story-only control for the shape of the pagination controls. "jump" adds `pagination.onFirst`/`onLast` for jumping to the beginning and end of the list.',
     },
     'aria-label': { table: { disable: true } },
     showBackButton: { table: { disable: true } },
@@ -311,10 +311,6 @@ const PaginationFlyout = ({
               total,
               onPrevious: () => setCurrentIndex(Math.max(0, safeIndex - 1)),
               onNext: () => setCurrentIndex(Math.min(total - 1, safeIndex + 1)),
-              ...(paginationVariant === 'horizontal' && {
-                previousIconType: 'chevronSingleLeft',
-                nextIconType: 'chevronSingleRight',
-              }),
               ...(paginationVariant === 'jump' && {
                 onFirst: () => setCurrentIndex(0),
                 onLast: () => setCurrentIndex(total - 1),
