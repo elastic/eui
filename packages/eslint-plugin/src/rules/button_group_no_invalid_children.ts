@@ -6,7 +6,11 @@
  * Side Public License, v 1.
  */
 
-import { type TSESTree, type TSESLint, ESLintUtils } from '@typescript-eslint/utils';
+import {
+  type TSESTree,
+  type TSESLint,
+  ESLintUtils,
+} from '@typescript-eslint/utils';
 import { hasSpread } from '../utils/has_spread';
 import { flatMap } from '../utils/flat_map';
 import { getElementName } from '../utils/get_element_name';
@@ -31,19 +35,16 @@ function isCustomComponent(name: string): boolean {
 }
 
 function reportInvalidWrapperChildren<
-  TContext extends TSESLint.RuleContext<string, unknown[]>
->(
-  wrapper: TSESTree.JSXElement,
-  wrapperName: string,
-  context: TContext
-): void {
+  TContext extends TSESLint.RuleContext<string, unknown[]>,
+>(wrapper: TSESTree.JSXElement, wrapperName: string, context: TContext): void {
   const children = flatMap(wrapper.children, (c) =>
     collectJsxChildren(c, context.sourceCode)
   );
   for (const wrapperChild of children) {
     if (hasSpread(wrapperChild.openingElement.attributes)) continue;
     const wrapperChildName = getElementName(wrapperChild.openingElement);
-    if (wrapperChildName === null || VALID_BUTTONS.has(wrapperChildName)) continue;
+    if (wrapperChildName === null || VALID_BUTTONS.has(wrapperChildName))
+      continue;
     context.report({
       node: wrapperChild.openingElement,
       messageId: isCustomComponent(wrapperChildName)
@@ -53,8 +54,6 @@ function reportInvalidWrapperChildren<
     });
   }
 }
-
-/* Rule */
 
 export const ButtonGroupNoInvalidChildren = ESLintUtils.RuleCreator.withoutDocs(
   {
@@ -114,24 +113,38 @@ export const ButtonGroupNoInvalidChildren = ESLintUtils.RuleCreator.withoutDocs(
                   );
 
                   for (const triggerElement of triggerElements) {
-                    if (hasSpread(triggerElement.openingElement.attributes)) continue;
+                    if (hasSpread(triggerElement.openingElement.attributes))
+                      continue;
 
-                    const triggerElementName = getElementName(triggerElement.openingElement);
+                    const triggerElementName = getElementName(
+                      triggerElement.openingElement
+                    );
 
-                    if (triggerElementName === null || VALID_BUTTONS.has(triggerElementName)) continue;
+                    if (
+                      triggerElementName === null ||
+                      VALID_BUTTONS.has(triggerElementName)
+                    )
+                      continue;
 
                     if (triggerElementName === 'EuiToolTip') {
                       // EuiToolTip wrapping the trigger — validate its children.
-                      const tooltipChildren = flatMap(triggerElement.children, (c) =>
-                        collectJsxChildren(c, context.sourceCode)
+                      const tooltipChildren = flatMap(
+                        triggerElement.children,
+                        (c) => collectJsxChildren(c, context.sourceCode)
                       );
 
                       for (const tooltipChild of tooltipChildren) {
-                        if (hasSpread(tooltipChild.openingElement.attributes)) continue;
+                        if (hasSpread(tooltipChild.openingElement.attributes))
+                          continue;
 
-                        const tooltipChildName = getElementName(tooltipChild.openingElement);
+                        const tooltipChildName = getElementName(
+                          tooltipChild.openingElement
+                        );
 
-                        if (tooltipChildName === null || VALID_BUTTONS.has(tooltipChildName))
+                        if (
+                          tooltipChildName === null ||
+                          VALID_BUTTONS.has(tooltipChildName)
+                        )
                           continue;
 
                         context.report({
