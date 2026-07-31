@@ -16,11 +16,13 @@ export const euiFlyoutMenuStyles = (euiThemeContext: UseEuiTheme) => {
     euiFlyoutMenu__container: css`
       block-size: calc(${euiTheme.size.m} * 3.5);
       flex-shrink: 0;
+      /* Keep block padding symmetric so the control row shares a center line
+         with the close button, which is absolutely positioned against the
+         flyout at this same offset rather than flowing in the row. */
       padding-block: ${euiTheme.size.s};
       padding-inline: ${euiTheme.size.s};
       border-block-end: ${euiTheme.border.width.thin} solid
         ${euiTheme.border.color};
-      padding-block-start: calc(${euiTheme.size.m} * 0.8);
 
       .euiTitle {
         padding-inline: ${euiTheme.size.s};
