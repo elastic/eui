@@ -21,14 +21,8 @@ const BUTTON_GROUP = 'EuiButtonGroup';
 const VALID_BUTTONS = new Set(['EuiButton', 'EuiButtonEmpty', 'EuiButtonIcon']);
 const VALID_WRAPPERS = new Set(['EuiToolTip', 'EuiPopover', 'EuiCopy']);
 
-function joinSet(set: Set<string>): string {
-  const items: string[] = [];
-  set.forEach((v) => items.push(v));
-  return items.join(', ');
-}
-
-const VALID_BUTTONS_LIST = joinSet(VALID_BUTTONS);
-const VALID_WRAPPERS_LIST = joinSet(VALID_WRAPPERS);
+const VALID_BUTTONS_LIST = Array.from(VALID_BUTTONS).join(', ');
+const VALID_WRAPPERS_LIST = Array.from(VALID_WRAPPERS).join(', ');
 
 function isCustomComponent(name: string): boolean {
   return name[0] === name[0].toUpperCase() && !name.startsWith('Eui');
