@@ -123,6 +123,36 @@ describe('useEuiFlyoutMenu', () => {
         expect(result.current.shouldRenderMenu).toBe(true);
       });
 
+      it('returns true when menu has pagination with a single item', () => {
+        const { result } = render({
+          flyoutMenuDisplayMode: MENU_DISPLAY_AUTO,
+          flyoutMenuProps: {
+            pagination: {
+              currentIndex: 0,
+              total: 1,
+              onPrevious: () => {},
+              onNext: () => {},
+            },
+          },
+        });
+        expect(result.current.shouldRenderMenu).toBe(true);
+      });
+
+      it('returns false when pagination has zero items', () => {
+        const { result } = render({
+          flyoutMenuDisplayMode: MENU_DISPLAY_AUTO,
+          flyoutMenuProps: {
+            pagination: {
+              currentIndex: 0,
+              total: 0,
+              onPrevious: () => {},
+              onNext: () => {},
+            },
+          },
+        });
+        expect(result.current.shouldRenderMenu).toBe(false);
+      });
+
       it('returns true when menu has visible title', () => {
         const { result } = render({
           flyoutMenuDisplayMode: MENU_DISPLAY_AUTO,

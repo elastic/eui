@@ -361,6 +361,32 @@ describe('EuiManagedFlyout', () => {
       expect(lastMenuProps.current?.historyItems).toEqual([]);
     });
 
+    it('suppresses back button and history when pagination has a single item', () => {
+      mockFlyoutManager.historyItems = [
+        { title: 'Previous', onClick: jest.fn() },
+        { title: 'Older', onClick: jest.fn() },
+      ];
+
+      renderInProvider(
+        <EuiManagedFlyout
+          id="test-flyout"
+          level={LEVEL_MAIN}
+          onClose={() => {}}
+          flyoutMenuProps={{
+            pagination: {
+              currentIndex: 0,
+              total: 1,
+              onPrevious: jest.fn(),
+              onNext: jest.fn(),
+            },
+          }}
+        />
+      );
+
+      expect(lastMenuProps.current?.showBackButton).toBe(false);
+      expect(lastMenuProps.current?.historyItems).toEqual([]);
+    });
+
     it('omits history controls for child flyouts', () => {
       mockFlyoutManager.historyItems = [
         { title: 'Previous', onClick: jest.fn() },

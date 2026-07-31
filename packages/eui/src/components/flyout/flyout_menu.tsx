@@ -75,6 +75,18 @@ export interface EuiFlyoutMenuPagination {
    * Called when the user clicks the Next button
    */
   onNext: () => void;
+  /**
+   * Icon type for the Previous button. Override to match the paging direction
+   * of the underlying content, e.g. `chevronLeft` for a horizontal list.
+   * @default chevronSingleUp
+   */
+  previousIconType?: IconType;
+  /**
+   * Icon type for the Next button. Override to match the paging direction
+   * of the underlying content, e.g. `chevronRight` for a horizontal list.
+   * @default chevronSingleDown
+   */
+  nextIconType?: IconType;
 }
 
 /**
@@ -268,7 +280,14 @@ const PaginationControls: React.FC<{
   pagination: EuiFlyoutMenuPagination;
 }> = ({ pagination }) => {
   const styles = useEuiMemoizedStyles(euiFlyoutMenuStyles);
-  const { currentIndex, total, onPrevious, onNext } = pagination;
+  const {
+    currentIndex,
+    total,
+    onPrevious,
+    onNext,
+    previousIconType = 'chevronSingleUp',
+    nextIconType = 'chevronSingleDown',
+  } = pagination;
   const prevLabel = useEuiI18n('euiFlyoutMenu.pagination.previous', 'Previous');
   const nextLabel = useEuiI18n('euiFlyoutMenu.pagination.next', 'Next');
   const counterLabel = useEuiI18n(
@@ -282,7 +301,7 @@ const PaginationControls: React.FC<{
 
   const prevButton = (
     <EuiButtonIcon
-      iconType="chevronSingleUp"
+      iconType={previousIconType}
       color="text"
       size="xs"
       aria-label={prevLabel}
@@ -294,7 +313,7 @@ const PaginationControls: React.FC<{
 
   const nextButton = (
     <EuiButtonIcon
-      iconType="chevronSingleDown"
+      iconType={nextIconType}
       color="text"
       size="xs"
       aria-label={nextLabel}
@@ -421,7 +440,7 @@ export const EuiFlyoutMenu: FunctionComponent<EuiFlyoutMenuProps> = ({
 
   const styles = useEuiMemoizedStyles(euiFlyoutMenuStyles);
   const classes = classNames('euiFlyoutMenu', className);
-  const showPaginationControls = pagination != null && pagination.total > 1;
+  const showPaginationControls = pagination != null && pagination.total >= 1;
   const hasBackButton = !showPaginationControls && !!showBackButton;
   const hasHistory =
     !showPaginationControls && historyItems.length >= MIN_HISTORY_ITEMS;
@@ -472,6 +491,7 @@ export const EuiFlyoutMenu: FunctionComponent<EuiFlyoutMenuProps> = ({
         justifyContent="spaceBetween"
         gutterSize="none"
         responsive={false}
+        css={styles.euiFlyoutMenu__controls}
       >
         {showPaginationControls ? (
           <PaginationControls pagination={pagination} />

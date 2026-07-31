@@ -4,6 +4,8 @@ Pass a `pagination` object to `flyoutMenuProps` to render Prev/Next navigation c
 
 Use `leadingActions` to render actions grouped alongside the pagination controls. A divider is automatically shown between the pagination controls and `leadingActions`.
 
+The Prev/Next buttons default to up/down chevrons. Pass `pagination.previousIconType` and `pagination.nextIconType` to override them, e.g. with left/right chevrons when paging through horizontally-oriented content.
+
 ```tsx interactive
 import React, { useState } from 'react';
 import {

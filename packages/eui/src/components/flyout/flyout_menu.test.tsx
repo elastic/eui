@@ -707,6 +707,66 @@ describe('EuiFlyoutMenu', () => {
       );
       expect(queryByText('Back')).not.toBeInTheDocument();
     });
+
+    it('defaults to chevron up/down icons', () => {
+      const { container } = renderWithContext(
+        <EuiFlyoutMenu pagination={pagination} />
+      );
+
+      expect(
+        container.querySelector(
+          '[data-test-subj="euiFlyoutMenuPaginationPrev"] [data-euiicon-type="chevronSingleUp"]'
+        )
+      ).toBeInTheDocument();
+      expect(
+        container.querySelector(
+          '[data-test-subj="euiFlyoutMenuPaginationNext"] [data-euiicon-type="chevronSingleDown"]'
+        )
+      ).toBeInTheDocument();
+    });
+
+    it('allows overriding the Prev/Next icon types, e.g. for horizontally-paged content', () => {
+      const { container } = renderWithContext(
+        <EuiFlyoutMenu
+          pagination={{
+            ...pagination,
+            previousIconType: 'chevronLeft',
+            nextIconType: 'chevronRight',
+          }}
+        />
+      );
+
+      expect(
+        container.querySelector(
+          '[data-test-subj="euiFlyoutMenuPaginationPrev"] [data-euiicon-type="chevronLeft"]'
+        )
+      ).toBeInTheDocument();
+      expect(
+        container.querySelector(
+          '[data-test-subj="euiFlyoutMenuPaginationNext"] [data-euiicon-type="chevronRight"]'
+        )
+      ).toBeInTheDocument();
+    });
+
+    it('still renders the pagination controls when there is only one item', () => {
+      const { getAllByText, container } = renderWithContext(
+        <EuiFlyoutMenu
+          pagination={{ ...pagination, currentIndex: 0, total: 1 }}
+        />
+      );
+
+      expect(getAllByText('1 of 1').length).toBeGreaterThanOrEqual(1);
+      expect(
+        container.querySelector(
+          '[data-test-subj="euiFlyoutMenuPaginationPrev"]'
+        )
+      ).toBeDisabled();
+      expect(
+        container.querySelector(
+          '[data-test-subj="euiFlyoutMenuPaginationNext"]'
+        )
+      ).toBeDisabled();
+    });
   });
 
   describe('accessibility', () => {

@@ -23,10 +23,16 @@ interface Args extends EuiFlyoutMenuProps {
   leadingActionCount: number;
   trailingActionCount: number;
   historyItemCount: number;
+  paginationTotal: number;
+  useAltPagination: boolean;
 }
 
 const COUNT_CONTROL = {
   control: { type: 'range' as const, min: 0, max: 4, step: 1 },
+};
+
+const PAGINATION_TOTAL_CONTROL = {
+  control: { type: 'range' as const, min: 1, max: 42, step: 1 },
 };
 
 const meta: Meta<Args> = {
@@ -49,6 +55,23 @@ const meta: Meta<Args> = {
       description:
         'Story-only control for the number of `historyItems` to pass. Mirroring managed session flyouts, `showBackButton` is derived from this: the back button appears from one item, while the history popover only appears from two, since a single item would duplicate the back button.',
     },
+    paginationTotal: {
+      ...PAGINATION_TOTAL_CONTROL,
+      description:
+        'Story-only control for the number of pages passed to `pagination.total`. Only used by the "Pagination (prop-based)" story.',
+    },
+    useAltPagination: {
+      control: {
+        type: 'radio' as const,
+        labels: {
+          false: 'default',
+          true: 'alternative',
+        },
+      },
+      options: [false, true],
+      description:
+        'Story-only control for `pagination.previousIconType`/`nextIconType`. The "alternative" option mimics apps like Discover that page through horizontally-oriented content.',
+    },
     'aria-label': { table: { disable: true } },
     showBackButton: { table: { disable: true } },
     backButtonProps: { table: { disable: true } },
@@ -56,6 +79,7 @@ const meta: Meta<Args> = {
     customActions: { table: { disable: true } },
     leadingActions: { table: { disable: true } },
     historyItems: { table: { disable: true } },
+    pagination: { table: { disable: true } },
   },
   args: {
     hideCloseButton: false,
@@ -197,12 +221,16 @@ const MenuBarFlyout = (args: Args) => {
   );
 };
 
-export const MenuBarExample: StoryObj<Args> = {
-  name: 'Playground',
+export const Playground: StoryObj<Args> = {
   parameters: {
     vrt: {
       selector: VRT_SELECTORS.portal,
     },
+  },
+  argTypes: {
+    // Not applicable outside the "Pagination (prop-based)" story
+    paginationTotal: { table: { disable: true } },
+    useAltPagination: { table: { disable: true } },
   },
   render: (args) => <MenuBarFlyout {...args} />,
 };
@@ -230,14 +258,33 @@ const PAGINATION_ITEMS = [
   },
 ];
 
+// Beyond the pool, cycle through it again but keep each page's title unique
+// so it's obvious the control is actually changing pages.
+const getPaginationItem = (index: number) => {
+  const item = PAGINATION_ITEMS[index % PAGINATION_ITEMS.length];
+  return index < PAGINATION_ITEMS.length
+    ? item
+    : { ...item, title: `${item.title} #${index + 1}` };
+};
+
 const PaginationFlyout = ({
   leadingActionCount,
   trailingActionCount,
-}: Pick<Args, 'leadingActionCount' | 'trailingActionCount'>) => {
+  paginationTotal,
+  useAltPagination,
+}: Pick<
+  Args,
+  | 'leadingActionCount'
+  | 'trailingActionCount'
+  | 'paginationTotal'
+  | 'useAltPagination'
+>) => {
   const [isFlyoutOpen, setIsFlyoutOpen] = useState(true);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const total = PAGINATION_ITEMS.length;
-  const item = PAGINATION_ITEMS[currentIndex];
+  const total = paginationTotal;
+  // Clamp in case the total shrinks below the page the user was viewing.
+  const safeIndex = Math.min(currentIndex, total - 1);
+  const item = getPaginationItem(safeIndex);
 
   const leadingActions = buildActions(
     LEADING_ACTION_POOL,
@@ -264,10 +311,14 @@ const PaginationFlyout = ({
           aria-label="Item details"
           flyoutMenuProps={{
             pagination: {
-              currentIndex,
+              currentIndex: safeIndex,
               total,
-              onPrevious: () => setCurrentIndex((i) => Math.max(0, i - 1)),
-              onNext: () => setCurrentIndex((i) => Math.min(total - 1, i + 1)),
+              onPrevious: () => setCurrentIndex(Math.max(0, safeIndex - 1)),
+              onNext: () => setCurrentIndex(Math.min(total - 1, safeIndex + 1)),
+              ...(useAltPagination && {
+                previousIconType: 'chevronSingleLeft',
+                nextIconType: 'chevronSingleRight',
+              }),
             },
             leadingActions,
             trailingActions,
@@ -294,14 +345,27 @@ export const PaginationExample: StoryObj<Args> = {
   parameters: {
     vrt: { selector: VRT_SELECTORS.portal },
   },
+  argTypes: {
+    // Not applicable outside the "Playground" story
+    historyItemCount: { table: { disable: true } },
+  },
   args: {
     leadingActionCount: 1,
     trailingActionCount: 0,
+    paginationTotal: 5,
+    useAltPagination: false,
   },
-  render: ({ leadingActionCount, trailingActionCount }) => (
+  render: ({
+    leadingActionCount,
+    trailingActionCount,
+    paginationTotal,
+    useAltPagination,
+  }) => (
     <PaginationFlyout
       leadingActionCount={leadingActionCount}
       trailingActionCount={trailingActionCount}
+      paginationTotal={paginationTotal}
+      useAltPagination={useAltPagination}
     />
   ),
 };
