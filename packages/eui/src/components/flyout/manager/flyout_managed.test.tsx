@@ -24,7 +24,6 @@ import * as ReactDOM from 'react-dom';
 
 import { render } from '../../../test/rtl';
 import { requiredProps } from '../../../test/required_props';
-import * as flyoutComponentModule from '../flyout.component';
 import type { EuiFlyoutMenuProps } from '../flyout_menu';
 import { EuiManagedFlyout } from './flyout_managed';
 import { EuiFlyoutManager } from './provider';
@@ -43,28 +42,26 @@ import { getFlyoutManagerStore, _resetFlyoutManagerStore } from './store';
 
 const mockFlushSync: jest.Mock = jest.mocked(ReactDOM.flushSync);
 
-/** The `flyoutMenuProps` most recently forwarded to the underlying flyout. */
-const lastMenuProps = (
-  flyoutComponentModule as unknown as {
-    __lastMenuProps: { current: EuiFlyoutMenuProps | undefined };
-  }
-).__lastMenuProps;
+// Spied on by the mocked flyout below, so tests can assert what `flyoutMenuProps`
+// the manager derives and forwards to the menu. Must be prefixed with `mock` so
+// Jest allows referencing it from inside the `jest.mock` factory.
+const mockFlyoutRender = jest.fn();
 
-// Mock base flyout to a simple div to avoid complex internals. The mock also
-// records the `flyoutMenuProps` it receives, so tests can assert what the
-// manager derives and forwards to the menu.
+/** The `flyoutMenuProps` most recently forwarded to the underlying flyout. */
+const getLastMenuProps = (): EuiFlyoutMenuProps | undefined =>
+  mockFlyoutRender.mock.calls.at(-1)?.[0];
+
+// Mock base flyout to a simple div to avoid complex internals.
 jest.mock('../flyout.component', () => {
   const React = require('react');
-  const lastMenuProps: { current: any } = { current: undefined };
   return {
-    __lastMenuProps: lastMenuProps,
     EuiFlyoutComponent: React.forwardRef(function MockFlyout(
       { isOpen, ...props }: any,
       ref: any
     ) {
       // Extract non-DOM props to prevent them from being passed to DOM
       const { flyoutMenuProps, minWidth, container, ...domProps } = props;
-      lastMenuProps.current = flyoutMenuProps;
+      mockFlyoutRender(flyoutMenuProps);
       return React.createElement('div', {
         ref,
         ...domProps,
@@ -236,7 +233,7 @@ describe('EuiManagedFlyout', () => {
         />
       );
 
-      expect(lastMenuProps.current).toMatchObject({
+      expect(getLastMenuProps()).toMatchObject({
         title: 'Test Menu',
         hideCloseButton: true,
         trailingActions: [
@@ -256,7 +253,7 @@ describe('EuiManagedFlyout', () => {
         />
       );
 
-      expect(lastMenuProps.current?.title).toBe('Original Title');
+      expect(getLastMenuProps()?.title).toBe('Original Title');
     });
 
     it('falls back to aria-label for the menu title', () => {
@@ -270,7 +267,7 @@ describe('EuiManagedFlyout', () => {
         />
       );
 
-      expect(lastMenuProps.current?.title).toBe('Aria Label Title');
+      expect(getLastMenuProps()?.title).toBe('Aria Label Title');
     });
 
     it('forwards leadingActions alongside manager-controlled pagination', () => {
@@ -297,8 +294,8 @@ describe('EuiManagedFlyout', () => {
         />
       );
 
-      expect(lastMenuProps.current?.pagination).toEqual(pagination);
-      expect(lastMenuProps.current?.leadingActions).toEqual(leadingActions);
+      expect(getLastMenuProps()?.pagination).toEqual(pagination);
+      expect(getLastMenuProps()?.leadingActions).toEqual(leadingActions);
     });
 
     it('derives showBackButton from history depth for main flyouts', () => {
@@ -317,8 +314,8 @@ describe('EuiManagedFlyout', () => {
 
       // A single entry still gets a back button; the menu is what withholds the
       // history popover, since the popover would duplicate the back button
-      expect(lastMenuProps.current?.showBackButton).toBe(true);
-      expect(lastMenuProps.current?.historyItems).toHaveLength(1);
+      expect(getLastMenuProps()?.showBackButton).toBe(true);
+      expect(getLastMenuProps()?.historyItems).toHaveLength(1);
     });
 
     it('does not show a back button when there is no history', () => {
@@ -331,8 +328,8 @@ describe('EuiManagedFlyout', () => {
         />
       );
 
-      expect(lastMenuProps.current?.showBackButton).toBe(false);
-      expect(lastMenuProps.current?.historyItems).toEqual([]);
+      expect(getLastMenuProps()?.showBackButton).toBe(false);
+      expect(getLastMenuProps()?.historyItems).toEqual([]);
     });
 
     it('suppresses back button and history when pagination controls are shown', () => {
@@ -357,8 +354,8 @@ describe('EuiManagedFlyout', () => {
         />
       );
 
-      expect(lastMenuProps.current?.showBackButton).toBe(false);
-      expect(lastMenuProps.current?.historyItems).toEqual([]);
+      expect(getLastMenuProps()?.showBackButton).toBe(false);
+      expect(getLastMenuProps()?.historyItems).toEqual([]);
     });
 
     it('suppresses back button and history when pagination has a single item', () => {
@@ -383,8 +380,8 @@ describe('EuiManagedFlyout', () => {
         />
       );
 
-      expect(lastMenuProps.current?.showBackButton).toBe(false);
-      expect(lastMenuProps.current?.historyItems).toEqual([]);
+      expect(getLastMenuProps()?.showBackButton).toBe(false);
+      expect(getLastMenuProps()?.historyItems).toEqual([]);
     });
 
     it('omits history controls for child flyouts', () => {
@@ -402,8 +399,8 @@ describe('EuiManagedFlyout', () => {
         />
       );
 
-      expect(lastMenuProps.current?.showBackButton).toBe(false);
-      expect(lastMenuProps.current?.historyItems).toBeUndefined();
+      expect(getLastMenuProps()?.showBackButton).toBe(false);
+      expect(getLastMenuProps()?.historyItems).toBeUndefined();
     });
   });
 
