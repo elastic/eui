@@ -10,6 +10,7 @@ import React from 'react';
 import { fireEvent } from '@testing-library/react';
 import { render } from '../../test/rtl';
 import { requiredProps } from '../../test';
+import { EuiToolTip } from '../tool_tip';
 
 import { EuiCopy } from './copy';
 
@@ -112,6 +113,82 @@ describe('EuiCopy', () => {
       expect(hasAnnouncement).toBe(true);
     });
 
+    it('reverts from `afterMessage` back to `beforeMessage` on mouse out', () => {
+      const beforeMessage = 'copy this';
+      const afterMessage = 'successfully copied';
+      const { getByRole, queryByRole } = render(
+        <EuiCopy
+          textToCopy="some text"
+          beforeMessage={beforeMessage}
+          afterMessage={afterMessage}
+        >
+          {(copy) => (
+            <button onClick={copy} onMouseOver={() => {}} onFocus={() => {}}>
+              Click to copy input text
+            </button>
+          )}
+        </EuiCopy>
+      );
+
+      fireEvent.mouseOver(getByRole('button'));
+      expect(getByRole('tooltip')).toHaveTextContent(beforeMessage);
+
+      fireEvent.click(getByRole('button'));
+      expect(getByRole('tooltip')).toHaveTextContent(afterMessage);
+
+      // Moving the pointer away resets back to the `beforeMessage`
+      fireEvent.mouseOut(getByRole('button'));
+      expect(queryByRole('tooltip')).not.toBeInTheDocument();
+
+      fireEvent.mouseOver(getByRole('button'));
+      expect(getByRole('tooltip')).toHaveTextContent(beforeMessage);
+    });
+
+    it('shows the `afterMessage` tooltip again on a repeat copy', () => {
+      const afterMessage = 'successfully copied';
+      const { getAllByRole, getByRole, queryByRole, getByTestSubject } = render(
+        <>
+          <EuiCopy textToCopy="some text" afterMessage={afterMessage}>
+            {(copy) => (
+              <button
+                data-test-subj="copyButton"
+                onClick={copy}
+                onMouseOver={() => {}}
+                onFocus={() => {}}
+              >
+                Click to copy input text
+              </button>
+            )}
+          </EuiCopy>
+          <EuiToolTip content="other tooltip">
+            <button
+              data-test-subj="otherButton"
+              onMouseOver={() => {}}
+              onFocus={() => {}}
+            >
+              Other anchor
+            </button>
+          </EuiToolTip>
+        </>
+      );
+
+      fireEvent.click(getByTestSubject('copyButton'));
+      expect(getByRole('tooltip')).toHaveTextContent(afterMessage);
+
+      // Only one tooltip may be visible at a time, so showing an unrelated
+      // tooltip hides the copy tooltip without `EuiCopy` being told about it.
+      fireEvent.mouseOver(getByTestSubject('otherButton'));
+      expect(getAllByRole('tooltip')).toHaveLength(1);
+      expect(getByRole('tooltip')).toHaveTextContent('other tooltip');
+
+      fireEvent.mouseOut(getByTestSubject('otherButton'));
+      expect(queryByRole('tooltip')).not.toBeInTheDocument();
+
+      // Copying again must show the tooltip again, even though the copied
+      // state itself has not changed since the previous copy.
+      fireEvent.click(getByTestSubject('copyButton'));
+      expect(getByRole('tooltip')).toHaveTextContent(afterMessage);
+    });
     it('tooltipProps', () => {
       const tooltipProps = {
         'data-test-subj': 'customTooltip',
@@ -139,6 +216,55 @@ describe('EuiCopy', () => {
       expect(tooltip).toBeInTheDocument();
       expect(tooltip?.className).toContain('myTooltipClass');
       fireEvent.mouseOut(getByRole('button'));
+    });
+  });
+
+  describe('unmounting', () => {
+    it('does not update state or warn if `copy` is called after unmount', () => {
+      const consoleErrorSpy = jest
+        .spyOn(console, 'error')
+        .mockImplementation(() => {});
+      const consoleWarnSpy = jest
+        .spyOn(console, 'warn')
+        .mockImplementation(() => {});
+
+      let copyFn: (() => void) | undefined;
+      const { unmount } = render(
+        <EuiCopy textToCopy="some text">
+          {(copy) => {
+            copyFn = copy;
+            return <button onClick={copy}>Click to copy input text</button>;
+          }}
+        </EuiCopy>
+      );
+
+      unmount();
+
+      // Consumers may hold onto the render prop `copy` callback (e.g. in a
+      // debounced handler). Calling it post-unmount must be a no-op.
+      expect(() => copyFn?.()).not.toThrow();
+
+      expect(consoleErrorSpy).not.toHaveBeenCalled();
+      expect(consoleWarnSpy).not.toHaveBeenCalled();
+
+      consoleErrorSpy.mockRestore();
+      consoleWarnSpy.mockRestore();
+    });
+
+    it('does not leave a visible tooltip behind after unmount', () => {
+      const afterMessage = 'successfully copied';
+      const { getByRole, unmount } = render(
+        <EuiCopy textToCopy="some text" afterMessage={afterMessage}>
+          {(copy) => <button onClick={copy}>Click to copy input text</button>}
+        </EuiCopy>
+      );
+
+      fireEvent.click(getByRole('button'));
+      expect(getByRole('tooltip')).toHaveTextContent(afterMessage);
+
+      unmount();
+
+      expect(document.querySelector('[role="tooltip"]')).toBeNull();
     });
   });
 });
