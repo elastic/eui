@@ -37,14 +37,14 @@ exports[`EuiCodeBlockAnnotation renders 1`] = `
         aria-label="aria-label"
         aria-live="off"
         aria-modal="true"
-        class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel emotion-euiPanel-grow-m-m-plain-euiPopover__panel-light-isOpen-hasTransform-bottom"
+        class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel emotion-euiPanel-grow-m-m-plain-euiPopover__panel-light-isOpen-hasTransform-left"
         data-autofocus="true"
         data-popover-open="true"
         data-popover-panel="true"
         data-test-subj="euiCodeBlockAnnotationPopover"
         id="euiPopover_generated-id_panelId"
         role="dialog"
-        style="top: 12px; left: 0px; z-index: 6001;"
+        style="top: 0px; left: -12px; z-index: 6001;"
         tabindex="0"
       >
         <p

@@ -68,7 +68,10 @@ export const EuiCodeBlockAnnotation: FunctionComponent<
         </button>
       }
       zIndex={Number(euiTheme.levels.mask) + 1} // Ensure fullscreen annotation popovers sit above the mask
-      anchorPosition="downLeft"
+      // Prefer rendering the annotation beside the code (instead of on top of
+      // it) when there is horizontal room. `EuiPopover` automatically falls
+      // back to the cross axis (i.e. below the icon) when space is too tight.
+      anchorPosition="leftCenter"
       panelProps={{ 'data-test-subj': 'euiCodeBlockAnnotationPopover' }}
     >
       {children}
