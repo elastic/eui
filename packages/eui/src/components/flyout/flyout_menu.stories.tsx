@@ -66,7 +66,7 @@ const meta: Meta<Args> = {
       control: { type: 'radio' as const },
       options: ['default', 'horizontal', 'jump'] as PaginationVariant[],
       description:
-        'Story-only control for the shape of the pagination controls. "horizontal" sets `pagination.previousIconType`/`nextIconType` to left/right chevrons, mimicking apps like Discover that page through horizontally-oriented content. "jump" adds `pagination.onFirst`/`onLast` for jumping to the beginning and end of the list, which switches the Prev/Next chevrons to left/right on its own.',
+        'Story-only control for the shape of the pagination controls. "horizontal" sets `pagination.previousIconType`/`nextIconType` to left/right chevrons. "jump" adds `pagination.onFirst`/`onLast` for jumping to the beginning and end of the list, which switches the Prev/Next chevrons to left/right on its own.',
     },
     'aria-label': { table: { disable: true } },
     showBackButton: { table: { disable: true } },
