@@ -56,6 +56,16 @@ export const EuiCopy: FunctionComponent<EuiCopyProps> = ({
 }) => {
   const tooltipRef = useRef<EuiToolTipRef>(null);
 
+  // Consumers can hold onto the render prop `copy` callback and invoke it after
+  // this component has unmounted (e.g. from a debounced handler). Setting state
+  // then is a no-op that React 17 additionally warns about, so skip it.
+  const isMountedRef = useRef(true);
+  useEffect(() => {
+    return () => {
+      isMountedRef.current = false;
+    };
+  }, []);
+
   // Counts successful copies instead of storing a boolean, so that every copy
   // re-runs the effect below - the tooltip may have been hidden in between
   // copies (e.g. by another tooltip being shown) and needs showing again.
@@ -64,13 +74,16 @@ export const EuiCopy: FunctionComponent<EuiCopyProps> = ({
   const tooltipText = isCopied ? afterMessage : beforeMessage;
 
   const copy = useCallback(() => {
-    if (copyToClipboard(textToCopy)) {
+    const copied = copyToClipboard(textToCopy);
+    if (copied && isMountedRef.current) {
       setCopyCount((count) => count + 1);
     }
   }, [textToCopy]);
 
   const resetTooltipText = useCallback(() => {
-    setCopyCount(0);
+    if (isMountedRef.current) {
+      setCopyCount(0);
+    }
   }, []);
 
   // `EuiToolTip` suppresses showing when content is empty, so `EuiCopy`

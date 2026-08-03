@@ -189,6 +189,7 @@ describe('EuiCopy', () => {
       fireEvent.click(getByTestSubject('copyButton'));
       expect(getByRole('tooltip')).toHaveTextContent(afterMessage);
     });
+
     it('tooltipProps', () => {
       const tooltipProps = {
         'data-test-subj': 'customTooltip',
@@ -241,7 +242,9 @@ describe('EuiCopy', () => {
       unmount();
 
       // Consumers may hold onto the render prop `copy` callback (e.g. in a
-      // debounced handler). Calling it post-unmount must be a no-op.
+      // debounced handler). Calling it post-unmount still writes to the
+      // clipboard; what must not happen is a state update on the unmounted
+      // component, which React 17 surfaces as a warning and React 18 ignores.
       expect(() => copyFn?.()).not.toThrow();
 
       expect(consoleErrorSpy).not.toHaveBeenCalled();
