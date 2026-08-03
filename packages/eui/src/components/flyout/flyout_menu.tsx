@@ -136,7 +136,7 @@ export interface EuiFlyoutMenuAction {
    */
   toolTipContent?: EuiToolTipProps['content'];
   /**
-   * Optional props to pass to the underlying **[EuiToolTip](/#/display/tooltip)**.
+   * Optional props to pass to the underlying {@link EuiToolTip}.
    * Only used when `toolTipContent` is also provided.
    */
   toolTipProps?: Partial<Omit<EuiToolTipProps, 'content' | 'children'>>;
