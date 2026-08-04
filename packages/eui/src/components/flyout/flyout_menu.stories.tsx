@@ -41,7 +41,6 @@ const meta: Meta<Args> = {
   title: 'Layout/EuiFlyout/EuiFlyoutMenu',
   component: EuiFlyoutMenu,
   argTypes: {
-    hideTitle: { control: 'boolean' },
     leadingActionCount: {
       ...COUNT_CONTROL,
       description:
@@ -76,13 +75,13 @@ const meta: Meta<Args> = {
     leadingActions: { table: { disable: true } },
     historyItems: { table: { disable: true } },
     pagination: { table: { disable: true } },
+    hideCloseButton: { table: { disable: true } },
+    hideTitle: { table: { disable: true } },
   },
   args: {
-    hideCloseButton: false,
     leadingActionCount: 1,
     trailingActionCount: 2,
     historyItemCount: 3,
-    hideTitle: true,
   },
 };
 
@@ -132,13 +131,7 @@ const buildActions = (
   }));
 
 const MenuBarFlyout = (args: Args) => {
-  const {
-    hideTitle,
-    hideCloseButton,
-    leadingActionCount,
-    trailingActionCount,
-    historyItemCount,
-  } = args;
+  const { leadingActionCount, trailingActionCount, historyItemCount } = args;
 
   const [isFlyoutOpen, setIsFlyoutOpen] = useState(true);
   const openFlyout = () => setIsFlyoutOpen(true);
@@ -189,8 +182,6 @@ const MenuBarFlyout = (args: Args) => {
           flyoutMenuProps={{
             title: 'Flyout title',
             titleId,
-            hideTitle,
-            hideCloseButton,
             showBackButton,
             backButtonProps,
             historyItems,
@@ -198,13 +189,11 @@ const MenuBarFlyout = (args: Args) => {
             trailingActions,
           }}
         >
-          {hideTitle && (
-            <EuiFlyoutHeader hasBorder>
-              <EuiText>
-                <h2 id={titleId}>Simple flyout header</h2>
-              </EuiText>
-            </EuiFlyoutHeader>
-          )}
+          <EuiFlyoutHeader hasBorder>
+            <EuiText>
+              <h2 id={titleId}>Simple flyout header</h2>
+            </EuiText>
+          </EuiFlyoutHeader>
           <EuiFlyoutBody>
             <EuiText>
               <p>Simple flyout content.</p>
@@ -344,8 +333,6 @@ export const PaginationExample: StoryObj<Args> = {
   argTypes: {
     // Not applicable outside the "Playground" story
     historyItemCount: { table: { disable: true } },
-    hideTitle: { table: { disable: true } },
-    hideCloseButton: { table: { disable: true } },
   },
   args: {
     leadingActionCount: 1,
