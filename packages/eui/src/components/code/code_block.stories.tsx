@@ -7,7 +7,7 @@
  */
 
 import React, { useEffect, useState } from 'react';
-import type { Meta, StoryObj, ReactRenderer } from '@storybook/react-webpack5';
+import type { Meta, StoryObj, ReactRenderer } from '@storybook/react-vite';
 import type { PlayFunctionContext } from 'storybook/internal/csf';
 import { css } from '@emotion/react';
 

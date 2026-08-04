@@ -6,63 +6,40 @@
  * Side Public License, v 1.
  */
 
-import { createRequire } from 'node:module';
-import path from 'path';
-import type { StorybookConfig } from '@storybook/react-webpack5';
-
-const require = createRequire(import.meta.url);
-
-/**
- * Get an absolute path to package's `node_modules` directory. It's compatible
- * with yarn hoisting logic.
- *
- * It works by resolving a path to its `package.json` file since it's the only
- * file that must exist in the package's root directory. Resolving the package
- * itself would return a path to the entry point that could be anywhere within
- * that package's directory.
- *
- * @see https://github.com/storybookjs/storybook/issues/21710#issuecomment-1604260157
- */
-const getAbsoluteDependencyPath = (packageName: string) =>
-  path.dirname(require.resolve(path.join(packageName, 'package.json')));
+import type { StorybookConfig } from '@storybook/react-vite';
 
 const config: StorybookConfig = {
   stories: ['../src/**/*.stories.@(js|jsx|ts|tsx)'],
-  addons: ['@storybook/addon-webpack5-compiler-babel'],
   framework: {
-    name: '@storybook/react-webpack5',
+    name: '@storybook/react-vite',
     options: {},
   },
-  webpackFinal: async (config) => {
-    // Fix for `css` prop - Emotion doesn't work otherwise
-    config.module!.rules!.push({
-      test: /\.tsx?$/,
-      use: [
-        {
-          loader: require.resolve('babel-loader'),
-        },
-      ],
-    });
+  async viteFinal(config) {
+    const { mergeConfig } = await import('vite');
+    const { default: react } = await import('@vitejs/plugin-react');
 
-    return {
-      ...config,
-      resolve: {
-        ...config.resolve,
-        alias: {
-          ...config.resolve?.alias,
-          // we need to resolve to the modules file as otherwise
-          // 'tty' and 'os' dependencies are not resolved correctly
-          // https://github.com/storybookjs/storybook/issues/26997#issuecomment-2088494093
-          'storybook/test': path.join(
-            getAbsoluteDependencyPath('storybook'),
-            'dist/test/index.js'
-          ),
-        },
+    return mergeConfig(config, {
+      plugins: [
+        react({
+          jsxImportSource: '@emotion/react',
+          // `pegjs-inline-precompile` is used by `EuiSearchBar`
+          // TODO: simplify with peggy CLI and drop Babel plugin
+          babel: (id: string) =>
+            /query[\\/]default_syntax\.ts$/.test(id)
+              ? { plugins: ['pegjs-inline-precompile'] }
+              : {},
+        }),
+      ],
+      optimizeDeps: {
+        exclude: ['pegjs-inline-precompile'],
       },
-    };
+    });
   },
   typescript: {
     reactDocgen: 'react-docgen-typescript',
+    reactDocgenTypescriptOptions: {
+      include: ['src/**/*.{ts,tsx}'],
+    },
   },
 };
 

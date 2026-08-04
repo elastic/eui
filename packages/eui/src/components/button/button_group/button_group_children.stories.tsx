@@ -8,7 +8,8 @@
 
 import React, { ReactNode, useState } from 'react';
 import { css } from '@emotion/react';
-import type { Meta, StoryObj } from '@storybook/react-webpack5';
+import type { Meta, StoryObj } from '@storybook/react-vite';
+
 import { EuiToolTip } from '../../tool_tip';
 import { EuiPopover } from '../../popover';
 import { EuiFlexGroup, EuiFlexItem } from '../../flex';
