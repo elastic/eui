@@ -1,0 +1,159 @@
+/*
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
+ */
+
+import classNames from 'classnames';
+import React, { FunctionComponent, useContext } from 'react';
+
+import { useEuiMemoizedStyles } from '../../../services';
+import { EuiFlexGroup, EuiFlexItem } from '../../flex';
+import { EuiTitle } from '../../title';
+import { EuiFlyoutCloseButton } from '../_flyout_close_button';
+import { MIN_HISTORY_ITEMS } from '../const';
+import { EuiFlyoutMenuContext } from '../flyout_menu_context';
+import type { EuiFlyoutCloseEvent } from '../types';
+import { euiFlyoutMenuStyles } from './flyout_menu.styles';
+import { BackButton } from './back_button';
+import { CloseButtonSpacer } from './close_spacer';
+import { HistoryPopover } from './history_popover';
+import { MenuActionButton } from './action_button';
+import { MenuDivider } from './divider';
+import { PaginationControls } from './pagination';
+import type { EuiFlyoutMenuProps } from './types';
+
+/**
+ * The component for the top menu bar inside a flyout. Since this is a private
+ * component, rendering is controlled using the `flyoutMenuProps` prop on
+ * `EuiFlyout`. In managed session flyouts, the Flyout Manager controls a back
+ * button and history popover for navigating to different flyout sessions
+ * within the managed context.
+ *
+ * @private
+ */
+export const EuiFlyoutMenu: FunctionComponent<EuiFlyoutMenuProps> = ({
+  className,
+  title,
+  titleId,
+  hideTitle = true,
+  hideCloseButton,
+  historyItems = [],
+  showBackButton,
+  backButtonProps,
+  leadingActions = [],
+  trailingActions,
+  customActions,
+  iconType: _iconType,
+  pagination,
+  ...rest
+}) => {
+  const { onClose } = useContext(EuiFlyoutMenuContext);
+
+  const styles = useEuiMemoizedStyles(euiFlyoutMenuStyles);
+  const classes = classNames('euiFlyoutMenu', className);
+  const showPaginationControls = pagination != null && pagination.total >= 1;
+  const hasBackButton = !showPaginationControls && !!showBackButton;
+  const hasHistory =
+    !showPaginationControls && historyItems.length >= MIN_HISTORY_ITEMS;
+
+  // `trailingActions` takes precedence over the deprecated `customActions` alias
+  const effectiveTrailingActions =
+    trailingActions !== undefined ? trailingActions : customActions ?? [];
+
+  const hasBuiltInLeadingContent =
+    showPaginationControls || hasBackButton || hasHistory;
+  const showBackHistoryDivider = hasBackButton && hasHistory;
+  const showLeadingBoundaryDivider =
+    hasBuiltInLeadingContent && leadingActions.length > 0;
+  const showTrailingCloseDivider =
+    effectiveTrailingActions.length > 0 && !hideCloseButton;
+
+  let titleNode;
+  if (title) {
+    titleNode = (
+      <EuiTitle size="xxs" id={titleId}>
+        <h3 css={hideTitle && styles.euiFlyoutMenu__hiddenTitle}>{title}</h3>
+      </EuiTitle>
+    );
+  }
+
+  const handleClose = (event: EuiFlyoutCloseEvent) => {
+    onClose?.(event, { reason: 'close-button' });
+  };
+
+  return (
+    <div
+      className={classes}
+      css={styles.euiFlyoutMenu__container}
+      data-test-subj="euiFlyoutMenu"
+      {...rest}
+    >
+      <EuiFlexGroup
+        alignItems="center"
+        justifyContent="spaceBetween"
+        gutterSize="none"
+        responsive={false}
+        css={styles.euiFlyoutMenu__controls}
+      >
+        {showPaginationControls ? (
+          <PaginationControls pagination={pagination} />
+        ) : (
+          <>
+            {hasBackButton && (
+              <EuiFlexItem grow={false}>
+                <BackButton {...backButtonProps} />
+              </EuiFlexItem>
+            )}
+            {showBackHistoryDivider && <MenuDivider />}
+            {hasHistory && (
+              <EuiFlexItem grow={false}>
+                <HistoryPopover items={historyItems} />
+              </EuiFlexItem>
+            )}
+          </>
+        )}
+
+        {showLeadingBoundaryDivider && <MenuDivider />}
+
+        {leadingActions.map((action, actionIndex) => (
+          <EuiFlexItem
+            key={`leading-action-${actionIndex}`}
+            grow={false}
+            css={styles.euiFlyoutMenu__actions}
+          >
+            <MenuActionButton action={action} />
+          </EuiFlexItem>
+        ))}
+
+        {titleNode && <EuiFlexItem grow={false}>{titleNode}</EuiFlexItem>}
+
+        <EuiFlexItem grow={true}></EuiFlexItem>
+
+        {effectiveTrailingActions.map((action, actionIndex) => (
+          <EuiFlexItem
+            key={`trailing-action-${actionIndex}`}
+            grow={false}
+            css={styles.euiFlyoutMenu__actions}
+          >
+            <MenuActionButton action={action} />
+          </EuiFlexItem>
+        ))}
+
+        {!hideCloseButton && (
+          <CloseButtonSpacer showDivider={showTrailingCloseDivider} />
+        )}
+      </EuiFlexGroup>
+
+      {!hideCloseButton && (
+        <EuiFlyoutCloseButton
+          onClose={handleClose}
+          side="right"
+          closeButtonPosition="inside"
+        />
+      )}
+    </div>
+  );
+};

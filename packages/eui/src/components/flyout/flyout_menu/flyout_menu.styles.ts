@@ -7,9 +7,9 @@
  */
 
 import { css } from '@emotion/react';
-import { UseEuiTheme } from '../../services';
-import { highContrastModeStyles } from '../../global_styling';
-import { euiScreenReaderOnly } from '../accessibility';
+import { UseEuiTheme } from '../../../services';
+import { highContrastModeStyles } from '../../../global_styling';
+import { euiScreenReaderOnly } from '../../accessibility';
 
 export const euiFlyoutMenuStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
