@@ -1,8 +1,8 @@
 # Derived from the zenato/puppeteer Docker image
 # https://github.com/zenato/docker-puppeteer/blob/master/Dockerfile
 
-# >=12.0 required (for cypress). v18 is LTS.
-FROM --platform=linux/amd64 node:20.15.1-slim
+# >=20.19 or >=22.12 required (for Storybook 10). Matches .nvmrc.
+FROM --platform=linux/amd64 node:22.22.0-slim
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
