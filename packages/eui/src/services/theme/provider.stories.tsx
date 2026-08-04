@@ -7,7 +7,7 @@
  */
 
 import React, { FunctionComponent, useEffect } from 'react';
-import type { Meta, StoryObj } from '@storybook/react-webpack5';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { EuiPanel } from '../../components/panel';
 

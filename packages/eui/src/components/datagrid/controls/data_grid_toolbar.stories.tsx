@@ -8,7 +8,7 @@
 
 import React from 'react';
 import { fireEvent, waitFor, expect } from 'storybook/test';
-import type { Meta, StoryObj, ReactRenderer } from '@storybook/react-webpack5';
+import type { Meta, StoryObj, ReactRenderer } from '@storybook/react-vite';
 import type { PlayFunctionContext } from 'storybook/internal/csf';
 import { within } from '../../../../.storybook/test';
 import { VRT_SELECTORS, playDecorator } from '../../../../.storybook/vrt';

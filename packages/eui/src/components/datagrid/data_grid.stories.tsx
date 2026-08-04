@@ -8,7 +8,7 @@
 
 import React, { useRef, useEffect } from 'react';
 import { css } from '@emotion/react';
-import type { Meta, StoryObj, ReactRenderer } from '@storybook/react-webpack5';
+import type { Meta, StoryObj, ReactRenderer } from '@storybook/react-vite';
 import type { StoryContext } from 'storybook/internal/csf';
 import { expect, fireEvent, waitFor } from 'storybook/test';
 import { action } from 'storybook/actions';

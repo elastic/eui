@@ -7,7 +7,7 @@
  */
 
 import React, { FunctionComponent, ReactNode, useState } from 'react';
-import type { Meta, StoryObj } from '@storybook/react-webpack5';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { EuiToolTip } from '../../tool_tip';
 import { EuiPopover } from '../../popover';
