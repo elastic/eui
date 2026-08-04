@@ -455,9 +455,8 @@ export const EuiFlyoutMenu: FunctionComponent<EuiFlyoutMenuProps> = ({
     !showPaginationControls && historyItems.length >= MIN_HISTORY_ITEMS;
 
   // `trailingActions` takes precedence over the deprecated `customActions` alias
-  const effectiveTrailingActions = trailingActions?.length
-    ? trailingActions
-    : customActions ?? [];
+  const effectiveTrailingActions =
+    trailingActions !== undefined ? trailingActions : customActions ?? [];
 
   const hasBuiltInLeadingContent =
     showPaginationControls || hasBackButton || hasHistory;
