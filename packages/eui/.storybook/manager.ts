@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import { addons, API, types } from '@storybook/manager-api';
+import { addons, API, types } from 'storybook/manager-api';
 
 import { ADDON_ID, PANEL_ID } from './addons/code-snippet/constants';
 import { Panel } from './addons/code-snippet/components/panel';

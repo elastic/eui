@@ -14,12 +14,9 @@ import type {
   StoryContext,
   ArgsStoryFn,
   PartialStoryFn,
-} from '@storybook/types';
-import {
-  addons,
-  useEffect as useStorybookEffect,
-} from '@storybook/preview-api';
-import { logger } from '@storybook/client-logger';
+} from 'storybook/internal/csf';
+import { addons, useEffect as useStorybookEffect } from 'storybook/preview-api';
+import { logger } from 'storybook/internal/client-logger';
 
 import { useEuiTheme } from '../../../../src/services';
 import {
@@ -99,6 +96,11 @@ export const customJsxDecorator = (
       });
     }
   };
+
+  // NOTE: euiTheme is defined on global level to prevent errors on conditionally rendered hooks
+  // when stories have conditionally rendered components (via mapping) that rely on euiTheme
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const euiTheme = useEuiTheme();
 
   // disabling this rule as this is how Storybook handles it
   // they export their own hook wrappers and have the eslint rule disabled completely
@@ -190,17 +192,10 @@ export const customJsxDecorator = (
   } as Required<JSXOptions>;
 
   // Exclude decorators from source code snippet by default
-  const storyJsx = context?.parameters.docs?.source?.excludeDecorators
-    ? (context.originalStoryFn as ArgsStoryFn<ReactRenderer>)(
-        context.args,
-        context
-      )
-    : story;
-
-  // NOTE: euiTheme is defined on global level to prevent errors on conditionally rendered hooks
-  // when stories have conditionally rendered components (via mapping) that rely on euiTheme
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const euiTheme = useEuiTheme();
+  const storyJsx = (context.originalStoryFn as ArgsStoryFn<ReactRenderer>)(
+    context.args,
+    context
+  );
 
   try {
     // generate JSX from the story

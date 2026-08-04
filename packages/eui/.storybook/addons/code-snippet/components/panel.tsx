@@ -12,10 +12,10 @@ import {
   useAddonState,
   useChannel,
   useStorybookApi,
-} from '@storybook/manager-api';
-import { AddonPanel, SyntaxHighlighter } from '@storybook/components';
-import { styled } from '@storybook/theming';
-import { STORY_RENDERED } from '@storybook/core-events';
+} from 'storybook/manager-api';
+import { AddonPanel, SyntaxHighlighter } from 'storybook/internal/components';
+import { styled } from 'storybook/theming';
+import { STORY_RENDERED } from 'storybook/internal/core-events';
 
 import type { AddonError } from '../types';
 import { ADDON_ID, ADDON_PARAMETER_KEY, EVENTS } from '../constants';
@@ -109,20 +109,17 @@ export const Panel: FunctionComponent<PanelProps> = ({ active, ...rest }) => {
 
   const emptyState = <span>No code snippet available</span>;
   const loadingState = <span>Loading...</span>;
-  const errorState = error && (
-    <Container>
-      <p>{error.reason}</p>
-      <code>
-        {error.body.name}: {error.body.message}
-      </code>
-      <p>See the browser console for more information.</p>
-    </Container>
-  );
 
   return (
     <AddonPanel active={active ?? false} {...rest}>
       {error ? (
-        errorState
+        <Container>
+          <p>{error.reason}</p>
+          <code>
+            {error.body.name}: {error.body.message}
+          </code>
+          <p>See the browser console for more information.</p>
+        </Container>
       ) : code ? (
         <SyntaxHighlighter
           language="tsx"

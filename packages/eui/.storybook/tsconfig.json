@@ -1,8 +1,9 @@
 {
   "extends": "../tsconfig.json",
-  "include": ["./**/*"],
+  "include": ["./**/*", "../src/**/*.stories.*", "../src/**/*.d.ts"],
   "compilerOptions": {
     "noEmit": true,
+    "moduleResolution": "bundler"
   },
-  "exclude": ["node_modules"],
+  "exclude": ["node_modules", "../src/custom_typings/emotion-css-prop.d.ts"],
 }
