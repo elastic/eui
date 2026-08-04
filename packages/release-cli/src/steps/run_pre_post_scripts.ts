@@ -38,3 +38,21 @@ export const stepRunPostScripts = async (
 
   await runScriptOnWorkspaces('postrelease', workspaces);
 };
+
+/**
+ * Runs the `postrelease-global` script in the provided workspaces that define it in their
+ * package.json `scripts` section.
+ * Use this script for side effects that must run on every release (e.g. updating
+ * a version manifest), even when a workspace wasn't part of the release set,
+ * as opposed to `postrelease` which is scoped to changed/released workspaces.
+ */
+export const stepRunGlobalPostScripts = async (
+  options: ReleaseOptions,
+  workspaces: YarnWorkspace[]
+) => {
+  const { logger } = options;
+
+  logger.info('Running global post release scripts');
+
+  await runScriptOnWorkspaces('postrelease-global', workspaces);
+};
