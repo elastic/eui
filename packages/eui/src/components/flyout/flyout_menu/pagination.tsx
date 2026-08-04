@@ -11,7 +11,6 @@ import React from 'react';
 import { useEuiMemoizedStyles } from '../../../services';
 import { EuiButtonIcon } from '../../button';
 import { EuiFlexGroup, EuiFlexItem } from '../../flex';
-import { useEuiI18n } from '../../i18n';
 import type { IconType } from '../../icon';
 import { EuiScreenReaderLive } from '../../accessibility';
 import { EuiText } from '../../text';
@@ -44,9 +43,22 @@ const PaginationButton: React.FC<{
   );
 };
 
+export interface EuiFlyoutMenuPaginationLabels {
+  first: string;
+  previous: string;
+  next: string;
+  last: string;
+  counter: React.ReactNode;
+}
+
+/**
+ * `labels` are resolved by `EuiFlyoutMenu`, which owns the `euiFlyoutMenu.*`
+ * i18n token namespace.
+ */
 export const PaginationControls: React.FC<{
   pagination: EuiFlyoutMenuPagination;
-}> = ({ pagination }) => {
+  labels: EuiFlyoutMenuPaginationLabels;
+}> = ({ pagination, labels }) => {
   const styles = useEuiMemoizedStyles(euiFlyoutMenuStyles);
   const { currentIndex, total, onPrevious, onNext, onFirst, onLast } =
     pagination;
@@ -61,15 +73,13 @@ export const PaginationControls: React.FC<{
     ? 'chevronSingleRight'
     : 'chevronSingleDown';
 
-  const firstLabel = useEuiI18n('euiFlyoutMenu.pagination.first', 'First');
-  const prevLabel = useEuiI18n('euiFlyoutMenu.pagination.previous', 'Previous');
-  const nextLabel = useEuiI18n('euiFlyoutMenu.pagination.next', 'Next');
-  const lastLabel = useEuiI18n('euiFlyoutMenu.pagination.last', 'Last');
-  const counterLabel = useEuiI18n(
-    'euiFlyoutMenu.pagination.counter',
-    '{position} of {total}',
-    { position: currentIndex + 1, total }
-  );
+  const {
+    first: firstLabel,
+    previous: prevLabel,
+    next: nextLabel,
+    last: lastLabel,
+    counter: counterLabel,
+  } = labels;
 
   const isAtStart = currentIndex === 0;
   const isAtEnd = currentIndex === total - 1;

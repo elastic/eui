@@ -9,22 +9,21 @@
 import React, { useState } from 'react';
 
 import { EuiButtonIcon } from '../../button';
-import { useEuiI18n } from '../../i18n';
 import { EuiListGroup, EuiListGroupItem } from '../../list_group';
 import { EuiPopover } from '../../popover';
 import { EuiToolTip } from '../../tool_tip';
 import type { EuiFlyoutHistoryItem } from './types';
 
+/**
+ * Labels are resolved by `EuiFlyoutMenu`, which owns the `euiFlyoutMenu.*`
+ * i18n token namespace.
+ */
 export const HistoryPopover: React.FC<{
   items: EuiFlyoutHistoryItem[];
-}> = ({ items }) => {
+  historyLabel: string;
+  recentlyVisitedLabel: string;
+}> = ({ items, historyLabel, recentlyVisitedLabel }) => {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
-
-  const historyLabel = useEuiI18n('euiFlyoutMenu.history', 'History');
-  const recentlyVisitedLabel = useEuiI18n(
-    'euiFlyoutMenu.history.tooltip',
-    'Recently visited'
-  );
 
   return (
     <EuiPopover

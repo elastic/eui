@@ -11,6 +11,7 @@ import React, { FunctionComponent, useContext } from 'react';
 
 import { useEuiMemoizedStyles } from '../../../services';
 import { EuiFlexGroup, EuiFlexItem } from '../../flex';
+import { useEuiI18n } from '../../i18n';
 import { EuiTitle } from '../../title';
 import { EuiFlyoutCloseButton } from '../_flyout_close_button';
 import { MIN_HISTORY_ITEMS } from '../const';
@@ -71,6 +72,29 @@ export const EuiFlyoutMenu: FunctionComponent<EuiFlyoutMenuProps> = ({
   const showTrailingCloseDivider =
     effectiveTrailingActions.length > 0 && !hideCloseButton;
 
+  // Sub-components are presentational, so all `euiFlyoutMenu.*` tokens are
+  // resolved here, in the file that owns the namespace
+  const backButtonLabel = useEuiI18n('euiFlyoutMenu.back', 'Back');
+  const historyLabel = useEuiI18n('euiFlyoutMenu.history', 'History');
+  const recentlyVisitedLabel = useEuiI18n(
+    'euiFlyoutMenu.history.tooltip',
+    'Recently visited'
+  );
+  const paginationLabels = {
+    first: useEuiI18n('euiFlyoutMenu.pagination.first', 'First'),
+    previous: useEuiI18n('euiFlyoutMenu.pagination.previous', 'Previous'),
+    next: useEuiI18n('euiFlyoutMenu.pagination.next', 'Next'),
+    last: useEuiI18n('euiFlyoutMenu.pagination.last', 'Last'),
+    counter: useEuiI18n(
+      'euiFlyoutMenu.pagination.counter',
+      '{position} of {total}',
+      {
+        position: (pagination?.currentIndex ?? 0) + 1,
+        total: pagination?.total ?? 0,
+      }
+    ),
+  };
+
   let titleNode;
   if (title) {
     titleNode = (
@@ -99,18 +123,25 @@ export const EuiFlyoutMenu: FunctionComponent<EuiFlyoutMenuProps> = ({
         css={styles.euiFlyoutMenu__controls}
       >
         {showPaginationControls ? (
-          <PaginationControls pagination={pagination} />
+          <PaginationControls
+            pagination={pagination}
+            labels={paginationLabels}
+          />
         ) : (
           <>
             {hasBackButton && (
               <EuiFlexItem grow={false}>
-                <BackButton {...backButtonProps} />
+                <BackButton label={backButtonLabel} {...backButtonProps} />
               </EuiFlexItem>
             )}
             {showBackHistoryDivider && <MenuDivider />}
             {hasHistory && (
               <EuiFlexItem grow={false}>
-                <HistoryPopover items={historyItems} />
+                <HistoryPopover
+                  items={historyItems}
+                  historyLabel={historyLabel}
+                  recentlyVisitedLabel={recentlyVisitedLabel}
+                />
               </EuiFlexItem>
             )}
           </>

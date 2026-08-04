@@ -9,17 +9,22 @@
 import React from 'react';
 
 import { EuiButtonEmpty } from '../../button';
-import { EuiI18n } from '../../i18n';
 import type { EuiFlyoutMenuBackButtonProps } from './types';
 
-export const BackButton: React.FC<EuiFlyoutMenuBackButtonProps> = (props) => (
+/**
+ * `label` is resolved by `EuiFlyoutMenu`, which owns the `euiFlyoutMenu.*`
+ * i18n token namespace.
+ */
+export const BackButton: React.FC<
+  EuiFlyoutMenuBackButtonProps & { label: React.ReactNode }
+> = ({ label, ...rest }) => (
   <EuiButtonEmpty
     size="xs"
     color="text"
     iconType="undo"
     data-test-subj="euiFlyoutMenuBackButton"
-    {...props}
+    {...rest}
   >
-    <EuiI18n token="euiFlyoutMenu.back" default="Back" />
+    {label}
   </EuiButtonEmpty>
 );
