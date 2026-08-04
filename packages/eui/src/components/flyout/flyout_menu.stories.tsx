@@ -344,6 +344,8 @@ export const PaginationExample: StoryObj<Args> = {
   argTypes: {
     // Not applicable outside the "Playground" story
     historyItemCount: { table: { disable: true } },
+    hideTitle: { table: { disable: true } },
+    hideCloseButton: { table: { disable: true } },
   },
   args: {
     leadingActionCount: 1,
