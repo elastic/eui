@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-webpack5';
 
 import { enableFunctionToggleControls } from '../../../.storybook/utils';
 import { EuiTab, Props as EuiTabProps } from './tab';

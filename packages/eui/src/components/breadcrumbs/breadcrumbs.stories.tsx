@@ -6,8 +6,8 @@
  * Side Public License, v 1.
  */
 
-import type { Meta, StoryObj } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
+import type { Meta, StoryObj } from '@storybook/react-webpack5';
+import { action } from 'storybook/actions';
 
 import type { EuiBreadcrumbsProps } from './types';
 import { EuiBreadcrumbs } from './breadcrumbs';

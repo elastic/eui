@@ -7,8 +7,8 @@
  */
 
 import React, { useState } from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
+import type { Meta, StoryObj } from '@storybook/react-webpack5';
+import { action } from 'storybook/actions';
 
 import { EuiKeyPadMenu, EuiKeyPadMenuProps } from './key_pad_menu';
 import { EuiKeyPadMenuItem, EuiKeyPadMenuItemProps } from './key_pad_menu_item';

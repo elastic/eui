@@ -7,9 +7,9 @@
  */
 
 import React, { useState } from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-webpack5';
 import moment from 'moment';
-import { fireEvent, waitFor } from '@storybook/test';
+import { fireEvent, waitFor } from 'storybook/test';
 import { within } from '../../../.storybook/test';
 import { VRT_SELECTORS } from '../../../.storybook/vrt';
 import {

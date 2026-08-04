@@ -6,9 +6,9 @@
  * Side Public License, v 1.
  */
 
-import { action } from '@storybook/addon-actions';
+import { action } from 'storybook/actions';
 import type { EuiFlyoutCloseMeta } from '../types';
-import { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-webpack5';
 import React, {
   useCallback,
   useEffect,
