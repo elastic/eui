@@ -27,7 +27,7 @@ module.exports = {
   stats: 'minimal',
 
   resolve: {
-    extensions: ['.ts', '.tsx', '.js', '.json'],
+    extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
     fallback: {
       fs: false,
       os: false,
@@ -39,7 +39,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(js|tsx?)$/,
+        test: /\.(jsx?|tsx?)$/,
         loader: 'babel-loader',
         exclude: /node_modules/,
         sideEffects: true, // tells webpack not to tree shake `import './'` lines
