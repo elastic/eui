@@ -17,9 +17,7 @@ export const euiFlyoutMenuStyles = (euiThemeContext: UseEuiTheme) => {
     euiFlyoutMenu__container: css`
       block-size: calc(${euiTheme.size.m} * 3.5);
       flex-shrink: 0;
-      /* Keep block padding symmetric so the control row shares a center line
-         with the close button, which is absolutely positioned against the
-         flyout at this same offset rather than flowing in the row. */
+      /* Symmetric padding aligns the control row with the absolutely-positioned close button. */
       padding-block: ${euiTheme.size.s};
       padding-inline: ${euiTheme.size.s};
       border-block-end: ${euiTheme.border.width.thin} solid
@@ -29,10 +27,7 @@ export const euiFlyoutMenuStyles = (euiThemeContext: UseEuiTheme) => {
         padding-inline: ${euiTheme.size.s};
       }
     `,
-    // The control row is only as tall as its tallest control by default, which
-    // is all the centered layout needs. High contrast mode additionally relies
-    // on it filling the container so the full-height dividers below can bleed
-    // out to the container's edges.
+    // Full height in high contrast mode so dividers can bleed to the container edges.
     euiFlyoutMenu__controls: css`
       ${highContrastModeStyles(euiThemeContext, {
         preferred: 'block-size: 100%;',
@@ -41,9 +36,6 @@ export const euiFlyoutMenuStyles = (euiThemeContext: UseEuiTheme) => {
     euiFlyoutMenu__spacer: css`
       padding-inline: ${euiTheme.size.m};
     `,
-    // Let the wrapper hug its button so the row's `align-items: center` lines
-    // actions up with the other menu bar controls. A fixed block-size here
-    // would center the wrapper instead of the button it contains.
     euiFlyoutMenu__actions: css`
       align-self: center;
     `,
@@ -54,13 +46,7 @@ export const euiFlyoutMenuStyles = (euiThemeContext: UseEuiTheme) => {
       color: ${euiTheme.colors.textSubdued};
       white-space: nowrap;
     `,
-    // Compact vertical line separating control groups in the menu bar, e.g.
-    // built-in controls from leading/trailing actions. Uses a border rather
-    // than a background so the line stays visible in Windows high contrast
-    // themes. `align-self` keeps the shortened line centered regardless of the
-    // containing flex group's alignment. The inline margin matches the
-    // container's inline padding so the space a group has against a divider
-    // reads the same as the space it has against the menu bar's outer edge.
+    // Border (not background) keeps the line visible in Windows high contrast themes.
     euiFlyoutMenu__divider: css`
       align-self: center;
       inline-size: 0;
@@ -70,10 +56,6 @@ export const euiFlyoutMenuStyles = (euiThemeContext: UseEuiTheme) => {
       pointer-events: none;
 
       ${highContrastModeStyles(euiThemeContext, {
-        // High contrast themes lean on stronger group boundaries, so the line
-        // runs the full height of the menu bar instead of being shortened.
-        // Stretching to the control row and bleeding back over the container's
-        // block padding takes it from the top edge to the bottom border.
         preferred: `
           align-self: stretch;
           block-size: auto;
