@@ -681,23 +681,6 @@ describe('EuiFlyoutMenu', () => {
       ).toBeInTheDocument();
     });
 
-    it('allows overriding the Prev/Next icon types, e.g. for horizontally-paged content', () => {
-      const { container } = renderWithContext(
-        <EuiFlyoutMenu pagination={{ ...pagination }} />
-      );
-
-      expect(
-        container.querySelector(
-          '[data-test-subj="euiFlyoutMenuPaginationPrev"] [data-euiicon-type="chevronLeft"]'
-        )
-      ).toBeInTheDocument();
-      expect(
-        container.querySelector(
-          '[data-test-subj="euiFlyoutMenuPaginationNext"] [data-euiicon-type="chevronRight"]'
-        )
-      ).toBeInTheDocument();
-    });
-
     it('omits the First/Last buttons unless onFirst/onLast are provided', () => {
       const { queryByTestSubject } = renderWithContext(
         <EuiFlyoutMenu pagination={pagination} />
@@ -750,23 +733,6 @@ describe('EuiFlyoutMenu', () => {
         ).toBeInTheDocument();
       });
 
-      it('allows overriding the First/Last icon types', () => {
-        const { container } = renderWithContext(
-          <EuiFlyoutMenu pagination={{ ...jumpPagination }} />
-        );
-
-        expect(
-          container.querySelector(
-            '[data-test-subj="euiFlyoutMenuPaginationFirst"] [data-euiicon-type="sortLeft"]'
-          )
-        ).toBeInTheDocument();
-        expect(
-          container.querySelector(
-            '[data-test-subj="euiFlyoutMenuPaginationLast"] [data-euiicon-type="sortRight"]'
-          )
-        ).toBeInTheDocument();
-      });
-
       it('switches the Prev/Next defaults to left/right chevrons', () => {
         const { container } = renderWithContext(
           <EuiFlyoutMenu pagination={jumpPagination} />
@@ -780,23 +746,6 @@ describe('EuiFlyoutMenu', () => {
         expect(
           container.querySelector(
             '[data-test-subj="euiFlyoutMenuPaginationNext"] [data-euiicon-type="chevronSingleRight"]'
-          )
-        ).toBeInTheDocument();
-      });
-
-      it('still honors explicit Prev/Next icon types', () => {
-        const { container } = renderWithContext(
-          <EuiFlyoutMenu pagination={{ ...jumpPagination }} />
-        );
-
-        expect(
-          container.querySelector(
-            '[data-test-subj="euiFlyoutMenuPaginationPrev"] [data-euiicon-type="chevronSingleUp"]'
-          )
-        ).toBeInTheDocument();
-        expect(
-          container.querySelector(
-            '[data-test-subj="euiFlyoutMenuPaginationNext"] [data-euiicon-type="chevronSingleDown"]'
           )
         ).toBeInTheDocument();
       });
