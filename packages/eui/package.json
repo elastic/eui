@@ -131,7 +131,7 @@
     "@testing-library/react": "^14.0.0",
     "@testing-library/react-17": "npm:@testing-library/react@^12.1.5",
     "@testing-library/react-hooks": "^7.0.2",
-    "@testing-library/user-event": "^13.5.0",
+    "@testing-library/user-event": "^14.6.1",
     "@types/chroma-js": "^2.4.0",
     "@types/classnames": "^2.3.1",
     "@types/enzyme": "^3.10.5",
