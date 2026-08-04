@@ -40,10 +40,11 @@ export const stepRunPostScripts = async (
 };
 
 /**
- * Runs the `postrelease-global` script in released workspaces that define it in their
+ * Runs the `postrelease-global` script in the provided workspaces that define it in their
  * package.json `scripts` section.
  * Use this script for side effects that must run on every release (e.g. updating
- * a version manifest), as opposed to `postrelease` which is scoped to released packages.
+ * a version manifest), even when a workspace wasn't part of the release set,
+ * as opposed to `postrelease` which is scoped to changed/released workspaces.
  */
 export const stepRunGlobalPostScripts = async (
   options: ReleaseOptions,
