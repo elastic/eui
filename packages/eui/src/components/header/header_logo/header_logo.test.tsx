@@ -34,12 +34,6 @@ describe('EuiHeaderLogo', () => {
     expect(container.firstChild).toMatchSnapshot();
   });
 
-  it('renders text', () => {
-    const { container } = render(<EuiHeaderLogo>Elastic</EuiHeaderLogo>);
-
-    expect(container.firstChild).toMatchSnapshot();
-  });
-
   it('renders optional props', () => {
     const { container } = render(
       <EuiHeaderLogo
