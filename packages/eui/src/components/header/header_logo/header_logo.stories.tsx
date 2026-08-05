@@ -18,7 +18,6 @@ const meta: Meta<EuiHeaderLogoProps> = {
   args: {
     // Not default props, set for demo purposes
     iconType: 'logoElastic',
-    children: 'Elastic',
   },
 };
 

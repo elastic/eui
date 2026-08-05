@@ -6,11 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, {
-  FunctionComponent,
-  AnchorHTMLAttributes,
-  ReactNode,
-} from 'react';
+import React, { FunctionComponent, AnchorHTMLAttributes } from 'react';
 import classNames from 'classnames';
 
 import { useEuiMemoizedStyles, getSecureRelForTarget } from '../../../services';
@@ -28,10 +24,6 @@ export type EuiHeaderLogoProps = CommonProps &
     target?: string;
     iconType?: IconType;
     iconTitle?: string;
-    /**
-     * ReactNode to render as this component's content
-     */
-    children?: ReactNode;
   };
 
 export const EuiHeaderLogo: FunctionComponent<EuiHeaderLogoProps> = ({
@@ -40,7 +32,6 @@ export const EuiHeaderLogo: FunctionComponent<EuiHeaderLogoProps> = ({
   href,
   rel,
   target,
-  children,
   className,
   ...rest
 }) => {
@@ -67,12 +58,6 @@ export const EuiHeaderLogo: FunctionComponent<EuiHeaderLogoProps> = ({
         size="l"
         type={iconType}
       />
-
-      {children && (
-        <span css={styles.euiHeaderLogo__text} className="euiHeaderLogo__text">
-          {children}
-        </span>
-      )}
     </a>
   );
 };
