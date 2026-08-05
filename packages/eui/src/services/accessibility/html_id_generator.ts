@@ -10,6 +10,25 @@ import React, { useMemo } from 'react';
 import { v1 as uuidv1 } from 'uuid';
 
 /**
+ * IDs containing whitespace are invalid HTML, and silently break attributes
+ * that take a space-separated list of ID references (`aria-controls`,
+ * `aria-labelledby`, `aria-describedby`, `for`), as each "word" is then parsed
+ * as a separate reference to a non-existent element.
+ *
+ * This most commonly happens when a human-readable or localized string is
+ * passed as a prefix/suffix, so warn consumers as early as possible.
+ */
+const warnOnWhitespace = (value?: string) => {
+  if (value && /\s/.test(value)) {
+    console.warn(
+      `[EUI] Generated HTML ID: "${value}" contains whitespace, which generates an invalid HTML id ` +
+        'and breaks attributes referencing it, such as `aria-controls` or `for`. ' +
+        'Pass a static identifier instead of a human-readable or localized string.'
+    );
+  }
+};
+
+/**
  * This function returns a function to generate ids.
  * This can be used to generate unique, but predictable ids to pair labels
  * with their inputs. It takes an optional prefix as a parameter. If you don't
@@ -18,7 +37,9 @@ import { v1 as uuidv1 } from 'uuid';
  */
 export function htmlIdGenerator(idPrefix: string = '') {
   const staticUuid = uuidv1();
+  warnOnWhitespace(idPrefix);
   return (idSuffix: string = '') => {
+    warnOnWhitespace(idSuffix);
     const prefix = `${idPrefix}${idPrefix !== '' ? '_' : 'i'}`;
     const suffix = idSuffix ? `_${idSuffix}` : '';
     return `${prefix}${suffix ? staticUuid : uuidv1()}${suffix}`;
@@ -66,7 +87,14 @@ const useNewGeneratedHtmlId = ({
   const id = React.useId();
 
   return useMemo<string>(() => {
-    return conditionalId || `${prefix}${id}${suffix}`;
+    if (conditionalId) return conditionalId;
+
+    // Memoized so that the check only runs when the prefix/suffix change,
+    // as this hook is called on virtually every EUI render
+    warnOnWhitespace(prefix);
+    warnOnWhitespace(suffix);
+
+    return `${prefix}${id}${suffix}`;
   }, [id, conditionalId, prefix, suffix]);
 };
 

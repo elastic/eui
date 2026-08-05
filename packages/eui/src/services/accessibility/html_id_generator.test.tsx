@@ -60,6 +60,39 @@ describe('htmlIdGenerator', () => {
     const generator = htmlIdGenerator();
     expect(generator()).not.toBe(generator());
   });
+
+  describe('whitespace warnings', () => {
+    beforeEach(() => {
+      jest.spyOn(console, 'warn').mockImplementation(() => {});
+    });
+    afterEach(() => {
+      (console.warn as jest.Mock).mockRestore();
+    });
+
+    it('warns when the prefix contains whitespace', () => {
+      htmlIdGenerator('Increase field mapping limit');
+
+      expect(console.warn).toHaveBeenCalledWith(
+        expect.stringContaining(
+          '"Increase field mapping limit" contains whitespace'
+        )
+      );
+    });
+
+    it('warns when the suffix contains whitespace', () => {
+      htmlIdGenerator('prefix')('some suffix');
+
+      expect(console.warn).toHaveBeenCalledWith(
+        expect.stringContaining('"some suffix" contains whitespace')
+      );
+    });
+
+    it('does not warn for valid prefixes and suffixes', () => {
+      htmlIdGenerator('validPrefix')('valid-suffix_1');
+
+      expect(console.warn).not.toHaveBeenCalled();
+    });
+  });
 });
 
 describe('useGeneratedHtmlId', () => {
@@ -99,6 +132,44 @@ describe('useGeneratedHtmlId', () => {
     expect(result.current).toBeTruthy(); // Should fall back to a generated ID
   });
 
+  describe('whitespace warnings', () => {
+    beforeEach(() => {
+      jest.spyOn(console, 'warn').mockImplementation(() => {});
+    });
+    afterEach(() => {
+      (console.warn as jest.Mock).mockRestore();
+    });
+
+    it('warns when the prefix or suffix contains whitespace', () => {
+      renderHook(() =>
+        useGeneratedHtmlId({ prefix: 'my prefix', suffix: 'my suffix' })
+      );
+
+      expect(console.warn).toHaveBeenCalledWith(
+        expect.stringContaining('"my prefix" contains whitespace')
+      );
+      expect(console.warn).toHaveBeenCalledWith(
+        expect.stringContaining('"my suffix" contains whitespace')
+      );
+    });
+
+    it('does not warn for valid prefixes and suffixes', () => {
+      renderHook(() =>
+        useGeneratedHtmlId({ prefix: 'myPrefix', suffix: 'my-suffix' })
+      );
+
+      expect(console.warn).not.toHaveBeenCalled();
+    });
+
+    it('does not warn when a conditionalId takes precedence', () => {
+      renderHook(() =>
+        useGeneratedHtmlId({ prefix: 'my prefix', conditionalId: 'customId' })
+      );
+
+      expect(console.warn).not.toHaveBeenCalled();
+    });
+  });
+
   describe('version-specific tests', () => {
     let MockComponent: FunctionComponent;
 
@@ -116,7 +187,9 @@ describe('useGeneratedHtmlId', () => {
 
     testOnReactVersion('18')('[React 18] generates correct IDs', () => {
       const { getByTestSubject } = render(<MockComponent />);
-      expect(getByTestSubject('el')).toHaveAttribute('id', 'prefix:r3:suffix');
+      // NOTE: the `useId` counter is shared across the whole test file, so this
+      // asserts the ID shape rather than an exact (order-dependent) counter
+      expect(getByTestSubject('el').id).toMatch(/^prefix:r[0-9a-z]+:suffix$/);
     });
 
     testOnReactVersion('17')('[React 17] generates correct IDs', () => {

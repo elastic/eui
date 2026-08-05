@@ -8,9 +8,23 @@
 
 import { UseGeneratedHtmlIdOptions } from './html_id_generator';
 
+// Duplicated from `html_id_generator.ts` - this file replaces that module in
+// test environments, so it cannot import from it
+const warnOnWhitespace = (value?: string) => {
+  if (value && /\s/.test(value)) {
+    console.warn(
+      `[EUI] Generated HTML ID: "${value}" contains whitespace, which generates an invalid HTML id ` +
+        'and breaks attributes referencing it, such as `aria-controls` or `for`. ' +
+        'Pass a static identifier instead of a human-readable or localized string.'
+    );
+  }
+};
+
 export function htmlIdGenerator(idPrefix: string = '') {
   const staticUuid = 'generated-id';
+  warnOnWhitespace(idPrefix);
   return (idSuffix: string = '') => {
+    warnOnWhitespace(idSuffix);
     const prefix = `${idPrefix}${idPrefix !== '' ? '_' : ''}`;
     const suffix = idSuffix ? `_${idSuffix}` : '';
     return `${prefix}${staticUuid}${suffix}`;
