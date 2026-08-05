@@ -12,7 +12,7 @@ import classNames from 'classnames';
 import { useEuiMemoizedStyles, getSecureRelForTarget } from '../../../services';
 import { validateHref } from '../../../services/security/href_validator';
 import { useEuiButtonColorCSS } from '../../../global_styling';
-import { EuiIcon, IconType } from '../../icon';
+import { EuiIcon } from '../../icon';
 import { CommonProps } from '../../common';
 
 import { euiHeaderLogoStyles } from './header_logo.styles';
@@ -22,12 +22,12 @@ export type EuiHeaderLogoProps = CommonProps &
     href?: string;
     rel?: string;
     target?: string;
-    iconType?: IconType;
     iconTitle?: string;
+    logoType?: 'full' | 'icon';
   };
 
 export const EuiHeaderLogo: FunctionComponent<EuiHeaderLogoProps> = ({
-  iconType = 'logoElastic',
+  logoType = 'icon',
   iconTitle = 'Elastic',
   href,
   rel,
@@ -56,7 +56,7 @@ export const EuiHeaderLogo: FunctionComponent<EuiHeaderLogoProps> = ({
         aria-label={iconTitle}
         className="euiHeaderLogo__icon"
         size="l"
-        type={iconType}
+        type={logoType === 'full' ? 'logoElasticFull' : 'logoElastic'}
       />
     </a>
   );

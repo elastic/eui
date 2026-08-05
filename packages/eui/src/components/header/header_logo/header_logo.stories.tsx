@@ -15,10 +15,7 @@ import { EuiHeaderLogo, EuiHeaderLogoProps } from './header_logo';
 const meta: Meta<EuiHeaderLogoProps> = {
   title: 'Layout/EuiHeader/EuiHeaderLogo',
   component: EuiHeaderLogo,
-  args: {
-    // Not default props, set for demo purposes
-    iconType: 'logoElastic',
-  },
+  args: {},
 };
 
 export default meta;
