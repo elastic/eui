@@ -11,6 +11,7 @@ import {
   EuiFlyoutMenuDisplayMode,
   MENU_DISPLAY_ALWAYS,
   MENU_DISPLAY_AUTO,
+  MIN_HISTORY_ITEMS,
 } from './const';
 import { EuiFlyoutMenuProps } from './flyout_menu';
 import { useMemo } from 'react';
@@ -47,15 +48,21 @@ export const useEuiFlyoutMenu = ({
   }, [hasMenu, _titleId, generatedMenuId]);
 
   // Determine if the menu has any content
-  // hasBackButton or hasHistory or hasCustomActions or hasVisibleTitle or hasPagination
+  // hasBackButton or hasHistory or hasLeadingActions or hasTrailingActions
+  // or hasCustomActions (deprecated alias) or hasVisibleTitle or hasPagination
+  const effectiveTrailingActions =
+    flyoutMenuProps.trailingActions !== undefined
+      ? flyoutMenuProps.trailingActions
+      : flyoutMenuProps.customActions;
   const menuHasContent =
     hasMenu &&
     (!!flyoutMenuProps.showBackButton ||
-      (flyoutMenuProps.historyItems?.length ?? 0) > 0 ||
-      (flyoutMenuProps.customActions?.length ?? 0) > 0 ||
+      (flyoutMenuProps.historyItems?.length ?? 0) >= MIN_HISTORY_ITEMS ||
+      (flyoutMenuProps.leadingActions?.length ?? 0) > 0 ||
+      (effectiveTrailingActions?.length ?? 0) > 0 ||
       // Component defaults to hiding the title, so only explicit false means the title will be visible
       !!(flyoutMenuProps.title && flyoutMenuProps.hideTitle === false) ||
-      !!(flyoutMenuProps.pagination && flyoutMenuProps.pagination.total > 1));
+      !!(flyoutMenuProps.pagination && flyoutMenuProps.pagination.total >= 1));
 
   // Determine if the menu should be rendered based on the display mode and menu content
   const shouldRenderMenu = useMemo(() => {
