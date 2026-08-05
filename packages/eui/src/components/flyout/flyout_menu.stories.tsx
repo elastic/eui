@@ -19,42 +19,119 @@ import { EuiFlyoutBody } from './flyout_body';
 import { EuiFlyoutMenu, EuiFlyoutMenuProps } from './flyout_menu';
 import { EuiFlyoutHeader } from './flyout_header';
 
+type PaginationVariant = 'default' | 'jump';
+
 interface Args extends EuiFlyoutMenuProps {
-  showCustomActions: boolean;
-  showHistoryItems: boolean;
+  leadingActionCount: number;
+  trailingActionCount: number;
+  historyItemCount: number;
+  paginationTotal: number;
+  paginationVariant: PaginationVariant;
 }
+
+const COUNT_CONTROL = {
+  control: { type: 'range' as const, min: 0, max: 4, step: 1 },
+};
+
+const PAGINATION_TOTAL_CONTROL = {
+  control: { type: 'range' as const, min: 1, max: 42, step: 1 },
+};
 
 const meta: Meta<Args> = {
   title: 'Layout/EuiFlyout/EuiFlyoutMenu',
   component: EuiFlyoutMenu,
   argTypes: {
-    hideTitle: { control: 'boolean' },
-    showBackButton: { control: 'boolean' },
-    showCustomActions: { control: 'boolean' },
+    leadingActionCount: {
+      ...COUNT_CONTROL,
+      description:
+        'Story-only control for the number of `leadingActions` to render.',
+    },
+    trailingActionCount: {
+      ...COUNT_CONTROL,
+      description:
+        'Story-only control for the number of `trailingActions` to render.',
+    },
+    historyItemCount: {
+      ...COUNT_CONTROL,
+      description:
+        'Story-only control for the number of `historyItems` to pass. Mirroring managed session flyouts, `showBackButton` is derived from this: the back button appears from one item, while the history popover only appears from two, since a single item would duplicate the back button.',
+    },
+    paginationTotal: {
+      ...PAGINATION_TOTAL_CONTROL,
+      description:
+        'Story-only control for the number of pages passed to `pagination.total`. Only used by the "Pagination (prop-based)" story.',
+    },
+    paginationVariant: {
+      control: { type: 'radio' as const },
+      options: ['default', 'jump'] as PaginationVariant[],
+      description:
+        'Story-only control for the shape of the pagination controls. "jump" adds `pagination.onFirst`/`onLast` for jumping to the beginning and end of the list.',
+    },
     'aria-label': { table: { disable: true } },
+    showBackButton: { table: { disable: true } },
     backButtonProps: { table: { disable: true } },
+    trailingActions: { table: { disable: true } },
     customActions: { table: { disable: true } },
+    leadingActions: { table: { disable: true } },
     historyItems: { table: { disable: true } },
+    pagination: { table: { disable: true } },
+    hideCloseButton: { table: { disable: true } },
+    hideTitle: { table: { disable: true } },
   },
   args: {
-    hideCloseButton: false,
-    showBackButton: true,
-    showCustomActions: true,
-    showHistoryItems: true,
-    hideTitle: true,
+    leadingActionCount: 1,
+    trailingActionCount: 2,
+    historyItemCount: 3,
   },
 };
 
 export default meta;
 
+const LEADING_ACTION_POOL = [
+  { iconType: 'documents', label: 'View surrounding documents' },
+  { iconType: 'pin', label: 'Pin' },
+  { iconType: 'tag', label: 'Tag' },
+  { iconType: 'download', label: 'Download' },
+];
+
+const TRAILING_ACTION_POOL = [
+  { iconType: 'minimize', label: 'Minimize' },
+  { iconType: 'gear', label: 'Settings' },
+  { iconType: 'broom', label: 'Clear' },
+  { iconType: 'share', label: 'Share' },
+];
+
+const HISTORY_ITEM_POOL = [
+  'First item',
+  'Second item',
+  'Third item',
+  'Fourth item',
+];
+
+const buildHistoryItems = (count: number) =>
+  HISTORY_ITEM_POOL.slice(0, count).map((title) => ({
+    title,
+    onClick: () => {
+      action('history item')(`${title} clicked`);
+    },
+  }));
+
+const buildActions = (
+  pool: typeof LEADING_ACTION_POOL,
+  count: number,
+  actionName: string
+) =>
+  pool.slice(0, count).map(({ iconType, label }) => ({
+    iconType,
+    onClick: () => {
+      action(actionName)(`${label} clicked`);
+    },
+    'aria-label': label,
+    toolTipContent: label,
+  }));
+
 const MenuBarFlyout = (args: Args) => {
-  const {
-    hideTitle,
-    hideCloseButton,
-    showBackButton,
-    showCustomActions,
-    showHistoryItems,
-  } = args;
+  const { leadingActionCount, trailingActionCount, historyItemCount } = args;
 
   const [isFlyoutOpen, setIsFlyoutOpen] = useState(true);
   const openFlyout = () => setIsFlyoutOpen(true);
@@ -68,22 +145,22 @@ const MenuBarFlyout = (args: Args) => {
     },
   };
 
-  const historyItems = showHistoryItems
-    ? ['First item', 'Second item', 'Third item'].map((title) => ({
-        title,
-        onClick: () => {
-          action('history item')(`${title} clicked`);
-        },
-      }))
-    : undefined;
+  const historyItems = buildHistoryItems(historyItemCount);
 
-  const customActions = ['gear', 'broom'].map((iconType) => ({
-    iconType,
-    onClick: () => {
-      action('custom action')(`${iconType} action clicked`);
-    },
-    'aria-label': `${iconType} action`,
-  }));
+  // Managed session flyouts derive this from history depth rather than
+  // accepting it from the consumer; mirror that here.
+  const showBackButton = historyItems.length > 0;
+
+  const leadingActions = buildActions(
+    LEADING_ACTION_POOL,
+    leadingActionCount,
+    'leading action'
+  );
+  const trailingActions = buildActions(
+    TRAILING_ACTION_POOL,
+    trailingActionCount,
+    'trailing action'
+  );
 
   const titleId = 'menu-bar-example-main-title';
 
@@ -105,21 +182,18 @@ const MenuBarFlyout = (args: Args) => {
           flyoutMenuProps={{
             title: 'Flyout title',
             titleId,
-            hideTitle,
-            hideCloseButton,
             showBackButton,
             backButtonProps,
             historyItems,
-            customActions: showCustomActions ? customActions : undefined,
+            leadingActions,
+            trailingActions,
           }}
         >
-          {hideTitle && (
-            <EuiFlyoutHeader hasBorder>
-              <EuiText>
-                <h2 id={titleId}>Simple flyout header</h2>
-              </EuiText>
-            </EuiFlyoutHeader>
-          )}
+          <EuiFlyoutHeader hasBorder>
+            <EuiText>
+              <h2 id={titleId}>Simple flyout header</h2>
+            </EuiText>
+          </EuiFlyoutHeader>
           <EuiFlyoutBody>
             <EuiText>
               <p>Simple flyout content.</p>
@@ -132,12 +206,16 @@ const MenuBarFlyout = (args: Args) => {
   );
 };
 
-export const MenuBarExample: StoryObj<Args> = {
-  name: 'Playground',
+export const Playground: StoryObj<Args> = {
   parameters: {
     vrt: {
       selector: VRT_SELECTORS.portal,
     },
+  },
+  argTypes: {
+    // Not applicable outside the "Pagination (prop-based)" story
+    paginationTotal: { table: { disable: true } },
+    paginationVariant: { table: { disable: true } },
   },
   render: (args) => <MenuBarFlyout {...args} />,
 };
@@ -165,11 +243,44 @@ const PAGINATION_ITEMS = [
   },
 ];
 
-const PaginationFlyout = () => {
+// Beyond the pool, cycle through it again but keep each page's title unique
+// so it's obvious the control is actually changing pages.
+const getPaginationItem = (index: number) => {
+  const item = PAGINATION_ITEMS[index % PAGINATION_ITEMS.length];
+  return index < PAGINATION_ITEMS.length
+    ? item
+    : { ...item, title: `${item.title} #${index + 1}` };
+};
+
+const PaginationFlyout = ({
+  leadingActionCount,
+  trailingActionCount,
+  paginationTotal,
+  paginationVariant,
+}: Pick<
+  Args,
+  | 'leadingActionCount'
+  | 'trailingActionCount'
+  | 'paginationTotal'
+  | 'paginationVariant'
+>) => {
   const [isFlyoutOpen, setIsFlyoutOpen] = useState(true);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const total = PAGINATION_ITEMS.length;
-  const item = PAGINATION_ITEMS[currentIndex];
+  const total = paginationTotal;
+  // Clamp in case the total shrinks below the page the user was viewing.
+  const safeIndex = Math.min(currentIndex, total - 1);
+  const item = getPaginationItem(safeIndex);
+
+  const leadingActions = buildActions(
+    LEADING_ACTION_POOL,
+    leadingActionCount,
+    'leading action'
+  );
+  const trailingActions = buildActions(
+    TRAILING_ACTION_POOL,
+    trailingActionCount,
+    'trailing action'
+  );
 
   return (
     <>
@@ -185,11 +296,17 @@ const PaginationFlyout = () => {
           aria-label="Item details"
           flyoutMenuProps={{
             pagination: {
-              currentIndex,
+              currentIndex: safeIndex,
               total,
-              onPrevious: () => setCurrentIndex((i) => Math.max(0, i - 1)),
-              onNext: () => setCurrentIndex((i) => Math.min(total - 1, i + 1)),
+              onPrevious: () => setCurrentIndex(Math.max(0, safeIndex - 1)),
+              onNext: () => setCurrentIndex(Math.min(total - 1, safeIndex + 1)),
+              ...(paginationVariant === 'jump' && {
+                onFirst: () => setCurrentIndex(0),
+                onLast: () => setCurrentIndex(total - 1),
+              }),
             },
+            leadingActions,
+            trailingActions,
           }}
         >
           <EuiFlyoutHeader hasBorder>
@@ -208,10 +325,32 @@ const PaginationFlyout = () => {
   );
 };
 
-export const PaginationExample: StoryObj = {
+export const PaginationExample: StoryObj<Args> = {
   name: 'Pagination (prop-based)',
   parameters: {
     vrt: { selector: VRT_SELECTORS.portal },
   },
-  render: () => <PaginationFlyout />,
+  argTypes: {
+    // Not applicable outside the "Playground" story
+    historyItemCount: { table: { disable: true } },
+  },
+  args: {
+    leadingActionCount: 1,
+    trailingActionCount: 0,
+    paginationTotal: 5,
+    paginationVariant: 'default',
+  },
+  render: ({
+    leadingActionCount,
+    trailingActionCount,
+    paginationTotal,
+    paginationVariant,
+  }) => (
+    <PaginationFlyout
+      leadingActionCount={leadingActionCount}
+      trailingActionCount={trailingActionCount}
+      paginationTotal={paginationTotal}
+      paginationVariant={paginationVariant}
+    />
+  ),
 };
