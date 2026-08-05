@@ -18,14 +18,16 @@
       "import": "./lib/esm/index.js",
       "require": "./lib/cjs/index.js",
       "default": "./lib/cjs/index.js"
-    }
+    },
+    "./svgs/*": "./lib/svgs/*"
   },
   "scripts": {
-    "build": "yarn build:clean && yarn generate && yarn build:compile && yarn build:compile:esm && yarn build:types",
+    "build": "yarn build:clean && yarn generate && yarn build:compile && yarn build:compile:esm && yarn build:types && yarn build:svgs",
     "build-pack": "yarn build && npm pack",
     "build:clean": "rimraf dist/ lib/",
     "build:compile": "NODE_ENV=production babel src --out-dir=lib/cjs --extensions .ts --ignore \"**/*.test.ts\"",
     "build:compile:esm": "tsc --project ./tsconfig.esm.json",
+    "build:svgs": "node -e \"require('fs').cpSync('src/generated/svgs','lib/svgs',{recursive:true,force:true})\"",
     "build:types": "NODE_ENV=production tsc --project tsconfig.types.json",
     "generate": "node scripts/generate.js",
     "lint": "yarn generate && tsc --noEmit",

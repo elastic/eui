@@ -4,8 +4,10 @@ keywords: [EuiIllustration, illustrations, svg]
 
 # Illustrations
 
-**EuiIllustration** renders theme-adaptive SVGs. Each illustration ships a `light` and a `dark` variant
-and the component inlines the one that matches the current theme.
+**EuiIllustration** renders theme-adaptive SVGs. Most illustrations ship a single `adaptive` variant whose colors
+resolve via CSS [`light-dark()`](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/light-dark); the component
+inlines it and sets `color-scheme` from the active theme so a single asset recolors in place on toggle. Assets also carry
+discrete `light`/`dark` variants, used as a fallback.
 
 SVGs are sourced from [`@elastic/eui-illustrations`](https://github.com/elastic/eui/tree/main/packages/illustrations),
 a standalone package that is **independently versioned and published** from `@elastic/eui`. This means the catalog
@@ -13,7 +15,7 @@ can grow and change without an `@elastic/eui` release.
 
 ## Component
 
-Pass an illustration asset to the `type` prop. The component picks the correct color-mode variant automatically,
+Pass an illustration asset to the `type` prop. The component adapts to the current color mode automatically,
 so try toggling the theme in the top toolbar.
 
 import { illustrations } from '@elastic/eui-illustrations';
@@ -37,6 +39,40 @@ import { illustrations } from '@elastic/eui-illustrations';
 The accessible label defaults to the illustration's `title`. Provide a more specific `alt` when the illustration conveys meaning
 or pass `alt=""` to mark it as purely decorative (it will be hidden from assistive technology).
 :::
+
+## Adaptive color modes
+
+Most illustrations expose a single `adaptive` SVG whose colors resolve with CSS [`light-dark()`](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/light-dark). The **same markup** renders every color mode depending on the ancestor `color-scheme` — no theme switch or re-render required. **EuiIllustration** sets `color-scheme` from the EUI theme for you; below it is set manually. `light` and `dark` pin the mode, while `light dark` follows the OS/browser preference (try toggling your system dark mode):
+
+<Demo scope={{ dashboard }}>
+  ```tsx
+  import React from 'react';
+  import { dashboard } from '@elastic/eui-illustrations';
+  import { EuiFlexGroup, EuiFlexItem, EuiText } from '@elastic/eui';
+  import { css } from '@emotion/react';
+
+  export default () => (
+    <EuiFlexGroup gutterSize="m">
+      {(['light', 'dark', 'light dark'] as const).map((scheme) => (
+        <EuiFlexItem key={scheme} grow={false}>
+          <EuiText size="xs" color="subdued">
+            <code>color-scheme: {scheme}</code>
+          </EuiText>
+          <div
+            css={css({
+              inlineSize: 200,
+              padding: 8,
+              colorScheme: scheme,
+              background: 'light-dark(#ffffff, #16171c)',
+            })}
+            dangerouslySetInnerHTML={{ __html: dashboard.adaptive ?? dashboard.light }}
+          />
+        </EuiFlexItem>
+      ))}
+    </EuiFlexGroup>
+  );
+  ```
+</Demo>
 
 ## All illustrations
 

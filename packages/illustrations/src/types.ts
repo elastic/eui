@@ -25,4 +25,11 @@ export type EuiIllustrationSource = Readonly<{
   light: string;
   /** Optimized SVG markup for the dark color mode. */
   dark: string;
+  /**
+   * A single optimized SVG whose colors resolve at runtime via CSS
+   * `light-dark()`, driven by the active `color-scheme`. Absent when the
+   * `light`/`dark` files are not structurally identical and cannot be safely
+   * auto-merged; consumers must fall back to {@link light}/{@link dark}.
+   */
+  adaptive?: string;
 }>;

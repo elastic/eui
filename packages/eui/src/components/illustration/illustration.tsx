@@ -33,6 +33,14 @@ export interface EuiIllustrationSource {
   readonly light: string;
   /** Trusted SVG markup for the dark color mode. Inlined verbatim — see the interface's security note. */
   readonly dark: string;
+  /**
+   * Trusted single-SVG markup whose colors resolve via CSS `light-dark()`,
+   * driven by the `color-scheme` this component sets from the active
+   * `colorMode`. Preferred when present and supported; otherwise the component
+   * falls back to {@link light}/{@link dark}. Inlined verbatim — see the
+   * interface's security note.
+   */
+  readonly adaptive?: string;
 }
 
 export type EuiIllustrationProps = Omit<
@@ -58,11 +66,21 @@ export type EuiIllustrationProps = Omit<
     fullWidth?: boolean;
   };
 
+/**
+ * Whether the runtime can resolve CSS `light-dark()`. Defaults to `true` when
+ * `CSS` is unavailable (SSR) so the adaptive markup is chosen consistently on
+ * the server and on modern clients, avoiding a hydration mismatch.
+ */
+const supportsLightDark = () =>
+  typeof CSS === 'undefined' ||
+  CSS.supports?.('color', 'light-dark(#000, #fff)') === true;
+
 export const EuiIllustration: FunctionComponent<EuiIllustrationProps> = ({
   type,
   alt,
   className,
   fullWidth = true,
+  style,
   ...rest
 }) => {
   const { colorMode } = useEuiTheme();
@@ -70,7 +88,15 @@ export const EuiIllustration: FunctionComponent<EuiIllustrationProps> = ({
   const classes = classNames('euiIllustration', className);
   const cssStyles = [styles.euiIllustration, fullWidth && styles.fullWidth];
 
-  const svg = colorMode === 'DARK' ? type.dark : type.light;
+  const isDark = colorMode === 'DARK';
+  const useAdaptive = type.adaptive != null && supportsLightDark();
+  const svg = useAdaptive ? type.adaptive! : isDark ? type.dark : type.light;
+
+  // Pins `color-scheme` so the adaptive SVG's `light-dark()` colors follow the
+  // EUI color mode rather than the OS preference.
+  const inlineStyle = useAdaptive
+    ? { colorScheme: isDark ? 'dark' : 'light', ...style }
+    : style;
 
   const isDecorative = alt === '';
   const a11yProps = isDecorative
@@ -81,6 +107,7 @@ export const EuiIllustration: FunctionComponent<EuiIllustrationProps> = ({
     <span
       className={classes}
       css={cssStyles}
+      style={inlineStyle}
       {...a11yProps}
       {...rest}
       dangerouslySetInnerHTML={{ __html: svg }}
