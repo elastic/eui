@@ -107,6 +107,8 @@ export const euiSplitButtonActionStyles = (
   const commonStyles = `
     block-size: ${buttonSize};
     border-radius: ${buttonRadius};
+    /* prevent issues in jsdom where pointer-events: none is inherited from the pseudo element */
+    pointer-events: auto;
 
      /* zero-specificity ancestor :has() check */
     &:where(:not(:has(${primaryDisabledSelector}, ${secondaryDisabledSelector})) &) {
