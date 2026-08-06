@@ -113,7 +113,6 @@ jobs:
           echo "BRANCH_NAME=$branch_name" >> "$GITHUB_OUTPUT"
           echo "::debug::Created branch '$branch_name'"
       - name: Cherry-pick Kibana prep commits
-        if: ${{ inputs.nightly }}
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         # language=bash
