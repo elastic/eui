@@ -87,14 +87,49 @@ async function copySvgFiles() {
     realpath: true,
   });
 
-  const destinationDirs = ['optimize/lib', 'lib'].map((dir) =>
-    path.join(packageRootDir, dir)
+  const destinationDirs = ['optimize/lib', 'optimize/es', 'lib', 'es'].map(
+    (dir) => path.join(packageRootDir, dir)
   );
 
   const count = await copyFilesToDestinationDirs(files, destinationDirs);
 
   console.log(
-    `Successfully copied ${count} SVG files from src/ to lib/ and optimize/lib/`
+    `Successfully copied ${count} SVG files from src/ to lib/, es/, optimize/lib/, and optimize/es/`
+  );
+}
+
+async function buildSvgBundle() {
+  const svgGlob = 'components/icon/svgs/**/*.svg';
+  const distSvgsDir = path.join(packageRootDir, 'dist', 'svgs');
+  const manifest = {};
+
+  const files = glob.globIterate(svgGlob, {
+    cwd: srcDir,
+    realpath: true,
+  });
+
+  for await (const filePath of files) {
+    const fullSrcPath = path.join(srcDir, filePath);
+    // filePath is relative to srcDir, e.g. "components/icon/svgs/accessibility.svg"
+    // Strip the "components/icon/svgs/" prefix for the dist layout
+    const svgRelPath = filePath.replace(/^components\/icon\/svgs\//, '');
+    const destPath = path.join(distSvgsDir, svgRelPath);
+
+    await fs.mkdir(path.dirname(destPath), { recursive: true });
+    await fs.copyFile(fullSrcPath, destPath);
+
+    const svgContent = await fs.readFile(fullSrcPath, 'utf8');
+    // Use the file stem (without extension) as the key, preserving tokens/ prefix
+    const key = svgRelPath.replace(/\.svg$/, '');
+    manifest[key] = svgContent.trim();
+  }
+
+  const manifestPath = path.join(packageRootDir, 'dist', 'eui-icons.json');
+  await fs.writeFile(manifestPath, JSON.stringify(manifest, null, 2) + '\n');
+
+  const count = Object.keys(manifest).length;
+  console.log(
+    `Successfully built SVG bundle: ${count} icons copied to dist/svgs/ and manifest written to dist/eui-icons.json`
   );
 }
 
@@ -295,6 +330,8 @@ async function compileBundle() {
 
     console.log(chalk.green('✔ Finished test utils files'));
   }
+
+  await buildSvgBundle();
 }
 
 async function cleanup() {
