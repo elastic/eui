@@ -46,6 +46,9 @@ export type EuiTabsProps = HTMLAttributes<HTMLDivElement> &
 
 export type EuiTabRef = HTMLDivElement;
 
+/**
+ * @see {@link https://eui.elastic.co/docs/components/containers/tabs/|EuiTabs documentation}
+ */
 export const EuiTabs = forwardRef<EuiTabRef, EuiTabsProps>(
   (
     {

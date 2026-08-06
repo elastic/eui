@@ -83,6 +83,9 @@ export type EuiFieldNumberProps = Omit<
     compressed?: boolean;
   };
 
+/**
+ * @see {@link https://eui.elastic.co/docs/components/forms/numeric/basic/|EuiFieldNumber documentation}
+ */
 export const EuiFieldNumber: FunctionComponent<EuiFieldNumberProps> = (
   props
 ) => {

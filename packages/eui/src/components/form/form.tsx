@@ -49,6 +49,9 @@ export type EuiFormProps = CommonProps &
     fullWidth?: boolean;
   };
 
+/**
+ * @see {@link https://eui.elastic.co/docs/components/forms/layouts/|EuiForm documentation}
+ */
 export const EuiForm = forwardRef<HTMLElement, EuiFormProps>(
   (
     {

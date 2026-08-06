@@ -84,6 +84,9 @@ export interface EuiGlobalToastListProps extends CommonProps {
   showNotificationBadge?: boolean;
 }
 
+/**
+ * @see {@link https://eui.elastic.co/docs/components/display/toast/|EuiGlobalToastList documentation}
+ */
 export const EuiGlobalToastList: FunctionComponent<EuiGlobalToastListProps> = ({
   className,
   toasts = [],

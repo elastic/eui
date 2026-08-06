@@ -27,6 +27,9 @@ export type EuiFilterGroupProps = HTMLAttributes<HTMLDivElement> &
     compressed?: boolean;
   };
 
+/**
+ * @see {@link https://eui.elastic.co/docs/components/navigation/buttons/filter-group/|EuiFilterGroup documentation}
+ */
 export const EuiFilterGroup: FunctionComponent<EuiFilterGroupProps> = ({
   children,
   className,
