@@ -81,6 +81,9 @@ export const euiSplitButtonStyles = (
             ${borderStyles(euiTheme.colors.borderBaseDisabled)}
           }
         `,
+        forced: `
+          ${borderStyles(`var(--euiSplitButtonBorderColor)`)}
+        `,
       })}
     `,
   };
