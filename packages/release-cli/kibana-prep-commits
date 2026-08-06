@@ -1,6 +1,6 @@
 # List Kibana prep commits to cherry-pick during the nightly Kibana integration run.
 # Add one URL per line in the format:
-# https://github.com/elastic/kibana/pull/NNNN/changes/COMMIT_SHA
+# https://github.com/elastic/kibana/pull/NNNN/commits/COMMIT_SHA
 #
 # Entries are cleared as part of the EUI release process.
 https://github.com/elastic/kibana/pull/235177/commits/bd0c5acbf5768534786919271150e2a2ea92d5b7
