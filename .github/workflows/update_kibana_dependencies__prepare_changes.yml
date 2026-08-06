@@ -112,6 +112,35 @@ jobs:
           git checkout -b "$branch_name"
           echo "BRANCH_NAME=$branch_name" >> "$GITHUB_OUTPUT"
           echo "::debug::Created branch '$branch_name'"
+      - name: Cherry-pick Kibana prep commits
+        if: ${{ inputs.nightly }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        # language=bash
+        run: |
+          set -euo pipefail
+
+          prep_commits=$(gh api repos/elastic/eui/contents/packages/release-cli/kibana-prep-commits \
+            --jq '.content' | base64 -d | grep -v '^\s*#' | grep -v '^\s*$' || true)
+
+          if [[ -z "$prep_commits" ]]; then
+            echo "No Kibana prep commits to cherry-pick"
+            exit 0
+          fi
+
+          while IFS= read -r url; do
+            pr_number=$(grep -oP '(?<=/pull/)\d+' <<< "$url")
+            sha=$(grep -oP '[0-9a-f]{40}$' <<< "$url")
+
+            if [[ -z "$pr_number" || -z "$sha" ]]; then
+              echo "::warning::Could not parse URL: $url"
+              continue
+            fi
+
+            echo "Cherry-picking $sha from PR #$pr_number"
+            git fetch origin "pull/$pr_number/head"
+            git cherry-pick "$sha"
+          done <<< "$prep_commits"
       - name: Update dependency versions
         env:
           DEPENDENCIES: ${{ inputs.dependencies }}
