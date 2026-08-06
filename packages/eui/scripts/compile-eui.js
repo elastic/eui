@@ -99,29 +99,29 @@ async function copySvgFiles() {
 }
 
 async function buildSvgBundle() {
-  const svgGlob = 'components/icon/svgs/**/*.svg';
+  const svgsRootDir = path.join(srcDir, 'components', 'icon', 'svgs');
   const distSvgsDir = path.join(packageRootDir, 'dist', 'svgs');
   const manifest = {};
 
-  const files = glob.globIterate(svgGlob, {
+  const files = glob.globIterate('components/icon/svgs/**/*.svg', {
     cwd: srcDir,
     realpath: true,
   });
 
   for await (const filePath of files) {
     const fullSrcPath = path.join(srcDir, filePath);
-    // filePath is relative to srcDir, e.g. "components/icon/svgs/accessibility.svg"
-    // Strip the "components/icon/svgs/" prefix for the dist layout
-    const svgRelPath = filePath.replace(/^components\/icon\/svgs\//, '');
+    // Use path.relative() to derive the path from the svgs root — handles both
+    // absolute paths and OS-specific separators correctly
+    const svgRelPath = path.relative(svgsRootDir, fullSrcPath);
     const destPath = path.join(distSvgsDir, svgRelPath);
 
     await fs.mkdir(path.dirname(destPath), { recursive: true });
     await fs.copyFile(fullSrcPath, destPath);
 
     const svgContent = await fs.readFile(fullSrcPath, 'utf8');
-    // Use the file stem (without extension) as the key, preserving tokens/ prefix
-    const key = svgRelPath.replace(/\.svg$/, '');
-    manifest[key] = svgContent.trim();
+    // Normalize to POSIX separators for cross-platform manifest keys
+    const key = svgRelPath.replace(/\\/g, '/').replace(/\.svg$/, '');
+    manifest[key] = svgContent;
   }
 
   const manifestPath = path.join(packageRootDir, 'dist', 'eui-icons.json');
