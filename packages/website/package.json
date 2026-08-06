@@ -15,7 +15,7 @@
     "write-heading-ids": "docusaurus write-heading-ids",
     "typecheck": "tsc",
     "spellcheck": "cspell ./docs",
-    "postrelease": "node ./scripts/update-versions.js"
+    "postrelease-global": "node ./scripts/update-versions.js"
   },
   "dependencies": {
     "@atlaskit/pragmatic-drag-and-drop": "^1.7.7",

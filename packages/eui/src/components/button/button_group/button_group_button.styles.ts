@@ -177,6 +177,7 @@ export const euiButtonGroupButtonStyles = (euiThemeContext: UseEuiTheme) => {
             &::before {
               content: '';
               border-color: ${unselectedColor};
+              inset-inline-start: -${borderWidth};
             }
           }
 
@@ -184,6 +185,7 @@ export const euiButtonGroupButtonStyles = (euiThemeContext: UseEuiTheme) => {
             &::before {
               content: '';
               border-color: ${selectedColor};
+              inset-inline-start: -${borderWidth};
             }
           }
         `;

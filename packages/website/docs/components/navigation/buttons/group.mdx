@@ -5,7 +5,132 @@ keywords: [EuiButtonGroup]
 
 # Button group
 
-An **EuiButtonGroup** is for indicating _selection only_. They utilize the `type="single"` or `"multi"` prop to determine whether multiple or only single selections are allowed per group.
+**EuiButtonGroup** groups related buttons together. There are two APIs available:
+
+- **Children API** — pass **EuiButton**, **EuiButtonEmpty**, or **EuiButtonIcon** directly as `children` for an arrangement of mixed button types in a row.
+- **Options API** — pass an `options` array when buttons need radio or checkbox semantics (`type="single"` or `"multi"`).
+
+:::accessibility Accessibility recommendation
+The `legend` prop is required on both APIs. In the children API it is rendered as an `aria-label` on the group wrapper (`role="group"`). In the options API it is visibly hidden inside a `<fieldset>`.
+:::
+
+## Children API
+
+This usage arranges buttons in a row and passes certain props (`buttonSize`, `isDisabled`, and `hasAriaDisabled`) to all children to ensure a cohesive output.
+
+Pass any combination of **EuiButton**, **EuiButtonEmpty**, and **EuiButtonIcon** directly as `children`. This also supports a selection of composable wrappers around those button components: **EuiToolTip**, **EuiPopover** and **EuiCopy**.
+
+```tsx interactive
+import React, { useState } from 'react';
+
+import {
+  EuiButtonGroup,
+  EuiButton,
+  EuiButtonEmpty,
+  EuiButtonIcon,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiSpacer,
+  EuiSwitch,
+  EuiToolTip,
+} from '@elastic/eui';
+
+export default () => {
+  const [isDisabled, setIsDisabled] = useState(false);
+  const [isFullWidth, setIsFullWidth] = useState(false);
+
+  return (
+    <>
+      <EuiFlexGroup gutterSize="m" alignItems="center">
+        <EuiFlexItem grow={false}>
+          <EuiSwitch
+            compressed
+            label="Disabled"
+            checked={isDisabled}
+            onChange={() => setIsDisabled(!isDisabled)}
+          />
+        </EuiFlexItem>
+        <EuiFlexItem grow={false}>
+          <EuiSwitch
+            compressed
+            label="Full width"
+            checked={isFullWidth}
+            onChange={() => setIsFullWidth(!isFullWidth)}
+          />
+        </EuiFlexItem>
+      </EuiFlexGroup>
+      <EuiSpacer />
+      <EuiButtonGroup
+        legend="Document actions"
+        isDisabled={isDisabled}
+        isFullWidth={isFullWidth}
+      >
+        <EuiButton fill>Save</EuiButton>
+        <EuiButton color="text" iconType="undo" iconSide="left">
+          Undo
+        </EuiButton>
+        <EuiButtonEmpty color="text">Cancel</EuiButtonEmpty>
+        <EuiToolTip content="Delete" disableScreenReaderOutput>
+          <EuiButtonIcon iconType="trash" aria-label="Delete" color="danger" />
+        </EuiToolTip>
+      </EuiButtonGroup>
+    </>
+  );
+};
+```
+
+### Gutter size
+
+:::info
+The `gutterSize` prop is only available for the children API when used with `variant="default"`.
+:::
+
+Control the gap between children with the `gutterSize` prop. The default is `"s"`. Use `"none"` to remove the gap entirely.
+
+```tsx interactive
+import React, { useState } from 'react';
+
+import {
+  EuiButtonGroup,
+  EuiButton,
+  EuiButtonEmpty,
+  EuiButtonIcon,
+  EuiToolTip,
+  EuiSpacer,
+  EuiSelect,
+} from '@elastic/eui';
+
+const gutterSizes = ['none', 'xs', 's', 'm', 'l', 'xl'];
+
+export default () => {
+  const [gutterSize, setGutterSize] = useState('s');
+
+  return (
+    <>
+      <EuiSelect
+        compressed
+        prepend="gutterSize"
+        options={gutterSizes.map((s) => ({ value: s, text: s }))}
+        value={gutterSize}
+        onChange={(e) => setGutterSize(e.target.value)}
+        aria-label="Select gutterSize"
+      />
+      <EuiSpacer size="m" />
+      <EuiButtonGroup legend="Actions" gutterSize={gutterSize}>
+        <EuiButton>Save</EuiButton>
+        <EuiButtonEmpty color="text">Cancel</EuiButtonEmpty>
+        <EuiToolTip content="Delete" disableScreenReaderOutput>
+          <EuiButtonIcon iconType="trash" aria-label="Delete" color="danger" />
+        </EuiToolTip>
+      </EuiButtonGroup>
+    </>
+  );
+};
+```
+
+## Options API
+
+Use the `options` array when buttons need radio or checkbox semantics. Set `type="single"` (default) for a radio-like single selection, or `type="multi"` for multi-selection.
 
 :::accessibility Accessibility recommendation
 In order for groups to be properly read as groups with a title, the `legend` prop is **required**. This is only for accessibility, however, so it will be visibly hidden.
@@ -54,21 +179,6 @@ export default () => {
     },
   ];
 
-  const toggleButtonsDisabled = [
-    {
-      id: `${disabledButtonGroupPrefix}__0`,
-      label: 'Option one',
-    },
-    {
-      id: `${disabledButtonGroupPrefix}__1`,
-      label: 'Option two is selected by default',
-    },
-    {
-      id: `${disabledButtonGroupPrefix}__2`,
-      label: 'Option three',
-    },
-  ];
-
   const toggleButtonsMulti = [
     {
       id: `${multiSelectButtonGroupPrefix}__0`,
@@ -87,19 +197,12 @@ export default () => {
   const [toggleIdSelected, setToggleIdSelected] = useState(
     `${basicButtonGroupPrefix}__1`
   );
-  const [toggleIdDisabled, setToggleIdDisabled] = useState(
-    `${disabledButtonGroupPrefix}__1`
-  );
   const [toggleIdToSelectedMap, setToggleIdToSelectedMap] = useState({
     [`${multiSelectButtonGroupPrefix}__1`]: true,
   });
 
   const onChange = (optionId) => {
     setToggleIdSelected(optionId);
-  };
-
-  const onChangeDisabled = (optionId) => {
-    setToggleIdDisabled(optionId);
   };
 
   const onChangeMulti = (optionId) => {
@@ -472,6 +575,7 @@ export default () => {
 
 ## Props
 
-import docgen from '@elastic/eui-docgen/dist/components/button';
+import docgen from '@elastic/eui-docgen/dist/components/button/button_group/button_group.docgen.json';
 
-<PropTable definition={docgen.EuiButtonGroup} />
+<PropTable definition={docgen.EuiButtonGroupChildrenProps} />
+<PropTable definition={docgen.EuiButtonGroupOptionsProps} />

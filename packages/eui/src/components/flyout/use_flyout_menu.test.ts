@@ -60,17 +60,58 @@ describe('useEuiFlyoutMenu', () => {
         expect(result.current.shouldRenderMenu).toBe(true);
       });
 
-      it('returns true when menu has history items', () => {
+      it('returns true when menu has enough history items to render the popover', () => {
+        const { result } = render({
+          flyoutMenuDisplayMode: MENU_DISPLAY_AUTO,
+          flyoutMenuProps: {
+            historyItems: [
+              { title: 'Previous', onClick: () => {} },
+              { title: 'Older', onClick: () => {} },
+            ],
+          },
+        });
+        expect(result.current.shouldRenderMenu).toBe(true);
+      });
+
+      it('returns false when a single history item would not render the popover', () => {
         const { result } = render({
           flyoutMenuDisplayMode: MENU_DISPLAY_AUTO,
           flyoutMenuProps: {
             historyItems: [{ title: 'Previous', onClick: () => {} }],
           },
         });
+        expect(result.current.shouldRenderMenu).toBe(false);
+      });
+
+      it('returns true when menu has leadingActions', () => {
+        const { result } = render({
+          flyoutMenuDisplayMode: MENU_DISPLAY_AUTO,
+          flyoutMenuProps: {
+            leadingActions: [
+              {
+                iconType: 'documents',
+                onClick: () => {},
+                'aria-label': 'View surrounding documents',
+              },
+            ],
+          },
+        });
         expect(result.current.shouldRenderMenu).toBe(true);
       });
 
-      it('returns true when menu has custom actions', () => {
+      it('returns true when menu has trailingActions', () => {
+        const { result } = render({
+          flyoutMenuDisplayMode: MENU_DISPLAY_AUTO,
+          flyoutMenuProps: {
+            trailingActions: [
+              { iconType: 'gear', onClick: () => {}, 'aria-label': 'Settings' },
+            ],
+          },
+        });
+        expect(result.current.shouldRenderMenu).toBe(true);
+      });
+
+      it('returns true when menu has the deprecated customActions alias', () => {
         const { result } = render({
           flyoutMenuDisplayMode: MENU_DISPLAY_AUTO,
           flyoutMenuProps: {
@@ -80,6 +121,36 @@ describe('useEuiFlyoutMenu', () => {
           },
         });
         expect(result.current.shouldRenderMenu).toBe(true);
+      });
+
+      it('returns true when menu has pagination with a single item', () => {
+        const { result } = render({
+          flyoutMenuDisplayMode: MENU_DISPLAY_AUTO,
+          flyoutMenuProps: {
+            pagination: {
+              currentIndex: 0,
+              total: 1,
+              onPrevious: () => {},
+              onNext: () => {},
+            },
+          },
+        });
+        expect(result.current.shouldRenderMenu).toBe(true);
+      });
+
+      it('returns false when pagination has zero items', () => {
+        const { result } = render({
+          flyoutMenuDisplayMode: MENU_DISPLAY_AUTO,
+          flyoutMenuProps: {
+            pagination: {
+              currentIndex: 0,
+              total: 0,
+              onPrevious: () => {},
+              onNext: () => {},
+            },
+          },
+        });
+        expect(result.current.shouldRenderMenu).toBe(false);
       });
 
       it('returns true when menu has visible title', () => {
