@@ -113,6 +113,7 @@ jobs:
           echo "BRANCH_NAME=$branch_name" >> "$GITHUB_OUTPUT"
           echo "::debug::Created branch '$branch_name'"
       - name: Cherry-pick Kibana prep commits
+        id: cherry_pick
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         # language=bash
@@ -127,6 +128,8 @@ jobs:
             exit 0
           fi
 
+          notes=""
+
           while IFS= read -r url; do
             pr_number=$(grep -oP '(?<=/pull/)\d+' <<< "$url")
             sha=$(grep -oP '[0-9a-f]{40}$' <<< "$url")
@@ -139,7 +142,18 @@ jobs:
             echo "Cherry-picking $sha from PR #$pr_number"
             git fetch origin "pull/$pr_number/head"
             git cherry-pick "$sha"
+
+            short_sha="${sha:0:8}"
+            notes+="- [\`$short_sha\`](https://github.com/elastic/kibana/pull/$pr_number/commits/$sha) from elastic/kibana#$pr_number"$'\n'
           done <<< "$prep_commits"
+
+          if [[ -n "$notes" ]]; then
+            {
+              echo 'cherry_pick_notes<<CHERRY_PICK_DELIMITER'
+              printf '%s' "$notes"
+              echo 'CHERRY_PICK_DELIMITER'
+            } >> "$GITHUB_OUTPUT"
+          fi
       - name: Update dependency versions
         env:
           DEPENDENCIES: ${{ inputs.dependencies }}
@@ -184,6 +198,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PR_TITLE: ${{ inputs.pr_title }}
           PR_BODY: ${{ inputs.pr_body }}
+          CHERRY_PICK_NOTES: ${{ steps.cherry_pick.outputs.cherry_pick_notes }}
           BRANCH_NAME: ${{ steps.git_branch.outputs.BRANCH_NAME }}
           SOURCE_PR_NUMBER: ${{ inputs.source_pr_number }}
           NIGHTLY: ${{ inputs.nightly }}
@@ -193,6 +208,11 @@ jobs:
         # language=bash
         run: |
           set -euo pipefail
+
+          if [[ -n "${CHERRY_PICK_NOTES:-}" ]]; then
+            PR_BODY="${PR_BODY}"$'\n\n'"### Cherry-picked commits"$'\n\n'"${CHERRY_PICK_NOTES}"
+          fi
+
           # --repo is required because we're in the context of elastic/kibana right now
           args=(
             --repo elastic/eui
