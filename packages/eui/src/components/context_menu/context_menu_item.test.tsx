@@ -8,7 +8,7 @@
 
 import React from 'react';
 import { fireEvent } from '@testing-library/react';
-import { render } from '../../test/rtl';
+import { render, focusEuiToolTipTrigger } from '../../test/rtl';
 import { shouldRenderCustomStyles } from '../../test/internal';
 import { requiredProps } from '../../test/required_props';
 
@@ -201,6 +201,63 @@ describe('EuiContextMenuItem', () => {
       const { getByRole } = renderWithToolTip();
 
       expect(getByRole('button')).toHaveAttribute('type', 'button');
+    });
+  });
+
+  describe('hasAriaDisabled', () => {
+    it('renders `aria-disabled` when `disabled=true`', () => {
+      const { getByTestSubject } = render(
+        <EuiContextMenuItem
+          hasAriaDisabled
+          disabled
+          onClick={() => {}}
+          data-test-subj="item"
+        />
+      );
+
+      const item = getByTestSubject('item');
+
+      expect(item).toBeEuiDisabled();
+      expect(item).toHaveAttribute('aria-disabled', 'true');
+      expect(item).not.toHaveAttribute('disabled');
+    });
+
+    it('keeps the `toolTipContent` reachable on focus', () => {
+      const { getByRole } = render(
+        <EuiContextMenuItem hasAriaDisabled disabled toolTipContent="Nope">
+          Hello
+        </EuiContextMenuItem>
+      );
+
+      const item = getByRole('button');
+      item.focus();
+
+      // a natively disabled button is not focusable, which is the whole point
+      // of swapping `disabled` for `aria-disabled`
+      expect(item).toHaveFocus();
+
+      const cleanup = focusEuiToolTipTrigger(item);
+
+      expect(getByRole('tooltip')).toHaveTextContent('Nope');
+
+      cleanup();
+    });
+
+    it('does not call `onClick` while aria-disabled', () => {
+      const onClickHandler = jest.fn();
+
+      const { getByTestSubject } = render(
+        <EuiContextMenuItem
+          hasAriaDisabled
+          disabled
+          onClick={onClickHandler}
+          data-test-subj="item"
+        />
+      );
+
+      fireEvent.click(getByTestSubject('item'));
+
+      expect(onClickHandler).not.toHaveBeenCalled();
     });
   });
 });
