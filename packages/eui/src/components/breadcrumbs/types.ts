@@ -108,7 +108,7 @@ export type EuiBreadcrumbProps = Omit<
     popoverContent?: ReactNode | ((closePopover: () => void) => ReactNode);
     /**
      * Allows customizing the popover if necessary. Accepts any props that
-     * [EuiPopover](/#/layout/popover) accepts, except for props that control state.
+     * [EuiPopover](https://eui.elastic.co/docs/components/containers/popover/) accepts, except for props that control state.
      */
     popoverProps?: Omit<EuiPopoverProps, 'button' | 'closePopover' | 'isOpen'>;
   };

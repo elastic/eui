@@ -50,7 +50,7 @@ export interface EuiContextMenuItemProps
    */
   toolTipContent?: ReactNode;
   /**
-   * Optional configuration to pass to the underlying [EuiToolTip](/#/display/tooltip).
+   * Optional configuration to pass to the underlying [EuiToolTip](https://eui.elastic.co/docs/components/display/tooltip/).
    * Accepts any prop that EuiToolTip does, except for `content` and `children`.
    */
   toolTipProps?: Partial<Omit<EuiToolTipProps, 'content' | 'children'>>;

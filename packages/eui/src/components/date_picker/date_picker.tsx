@@ -138,7 +138,7 @@ interface EuiExtendedDatePickerProps
   /**
    * Sets the placement of the popover.
    *
-   * **Use [EuiPopover](/#/layout/popover) values**: 'upCenter', 'upLeft', 'upRight', downCenter', 'downLeft', 'downRight', 'leftCenter', 'leftUp', 'leftDown', 'rightCenter', 'rightUp', 'rightDown'.
+   * **Use [EuiPopover](https://eui.elastic.co/docs/components/containers/popover/) values**: 'upCenter', 'upLeft', 'upRight', downCenter', 'downLeft', 'downRight', 'leftCenter', 'leftUp', 'leftDown', 'rightCenter', 'rightUp', 'rightDown'.
    */
   popoverPlacement?: PopoverAnchorPosition;
 
