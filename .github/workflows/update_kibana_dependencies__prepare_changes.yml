@@ -121,7 +121,7 @@ jobs:
           set -euo pipefail
 
           prep_commits=$(gh api repos/elastic/eui/contents/packages/release-cli/kibana-prep-commits \
-            --jq '.content' | base64 -d | grep -v '^\s*#' | grep -v '^\s*$' || true)
+            --jq '.content' | base64 -d | grep -v '^\s*#' | grep -v '^\s*$' | sort -u || true)
 
           if [[ -z "$prep_commits" ]]; then
             echo "No Kibana prep commits to cherry-pick"
