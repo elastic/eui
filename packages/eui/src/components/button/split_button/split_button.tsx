@@ -16,10 +16,10 @@ import React, {
   ReactElement,
   useMemo,
 } from 'react';
+import { _EuiThemeBorderColors, getTokenName } from '@elastic/eui-theme-common';
 
 import {
   EuiDisabledProps,
-  useEuiMemoizedStyles,
   useEuiTheme,
   useGeneratedHtmlId,
 } from '../../../services';
@@ -78,19 +78,27 @@ export const _EuiSplitButton: FunctionComponent<EuiSplitButtonProps> = ({
   ...rest
 }) => {
   const euiThemeContext = useEuiTheme();
-  const { highContrastMode } = euiThemeContext;
+  const { euiTheme, highContrastMode } = euiThemeContext;
 
   const [primaryAction, secondaryAction] = children;
   const key = useGeneratedHtmlId({ suffix: 'EuiSplitButton' });
 
-  const commonProps = {
-    size,
-    color,
-    fill,
-    isDisabled,
-    hasAriaDisabled,
-    isLoading,
+  // manual cast as defensive behavior, because style is not an official prop
+  const { style: _style, ...cleanedRest } = rest as typeof rest & {
+    style?: React.CSSProperties;
   };
+
+  const commonProps = useMemo(
+    () => ({
+      size,
+      color,
+      fill,
+      isDisabled,
+      hasAriaDisabled,
+      isLoading,
+    }),
+    [size, color, fill, isDisabled, hasAriaDisabled, isLoading]
+  );
 
   const buttonFilledColors = getEuiFilledButtonColorValues(
     euiThemeContext,
@@ -100,28 +108,57 @@ export const _EuiSplitButton: FunctionComponent<EuiSplitButtonProps> = ({
     euiThemeContext,
     isDisabled ? 'disabled' : color
   );
+  const borderToken =
+    color === 'text'
+      ? 'borderBasePlain'
+      : (getTokenName('borderBase', color) as keyof _EuiThemeBorderColors);
 
   const classes = classNames('euiSplitButton', className);
-  const styles = useEuiMemoizedStyles(euiSplitButtonStyles);
-  const cssStyles = [styles.euiSplitButton, fill && styles.fill];
+  const styles = useMemo(
+    () =>
+      euiSplitButtonStyles(
+        euiThemeContext,
+        fill ? buttonFilledColors.backgroundColor : buttonColors.backgroundColor
+      ),
+    [
+      euiThemeContext,
+      fill,
+      buttonFilledColors.backgroundColor,
+      buttonColors.backgroundColor,
+    ]
+  );
+  const cssStyles = [
+    styles.euiSplitButton,
+    (color === 'text' || highContrastMode) && styles.hasBorder,
+  ];
+
+  const dividerColor =
+    color === 'warning' && fill
+      ? buttonFilledColors.color
+      : euiTheme.colors[borderToken];
+
   const dividerStyles = useMemo(
     () =>
       euiSplitButtonDividerStyles(
         euiThemeContext,
-        !fill
-          ? buttonColors.borderColor
-          : highContrastMode && fill
-          ? buttonFilledColors.backgroundColor
-          : 'transparent'
+        highContrastMode && fill ? buttonFilledColors.color : dividerColor
       ),
     [
       euiThemeContext,
       highContrastMode,
       fill,
-      buttonFilledColors.backgroundColor,
-      buttonColors.borderColor,
+      buttonFilledColors.color,
+      dividerColor,
     ]
   );
+
+  const inlineStyles = useMemo(
+    () => ({
+      '--euiSplitButtonBorderColor': dividerColor,
+      ..._style,
+    }),
+    [dividerColor, _style]
+  ) as React.CSSProperties;
 
   // NOTE: dev-mode-only runtime check to evaluate if correct child components are passed
   if (process.env.NODE_ENV !== 'production') {
@@ -149,7 +186,15 @@ export const _EuiSplitButton: FunctionComponent<EuiSplitButtonProps> = ({
   }
 
   return (
-    <div role="group" className={classes} css={cssStyles} {...rest}>
+    <div
+      role="group"
+      className={classes}
+      css={cssStyles}
+      data-size={size}
+      data-fill={fill || undefined}
+      style={inlineStyles}
+      {...cleanedRest}
+    >
       <EuiSplitButtonContext.Provider value={commonProps}>
         <Fragment key={`${key}-primaryAction`}>{primaryAction}</Fragment>
         <div
