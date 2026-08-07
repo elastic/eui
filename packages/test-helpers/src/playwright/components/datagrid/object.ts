@@ -76,7 +76,11 @@ export class EuiDataGridObject extends BaseObject {
       .page()
       .locator(EuiDataGridSelectors.headerActionsMenuFor(columnId));
     await actionsMenu.waitFor({ state: 'visible' });
-    await actionsMenu.getByTitle(actionLabel, { exact: true }).click();
+    // Role+name query auto-escapes the label and matches the accessible name
+    // (Kibana's lint also forbids getByTitle in favor of role queries).
+    await actionsMenu
+      .getByRole('button', { name: actionLabel, exact: true })
+      .click();
     await actionsMenu.waitFor({ state: 'hidden' });
   }
 
