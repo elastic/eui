@@ -151,7 +151,7 @@ export const euiSplitButtonDividerStyles = (
 
   return {
     divider: css`
-      block-size: calc(100% - ${euiTheme.size.xs});
+      block-size: calc(100% - ${euiTheme.size.s});
       /* uses a border to ensure proper rendering in Windows high contrast themes */
       border-inline-start: ${euiTheme.border.width.thin} solid ${color};
       ${logicalCSS('margin-horizontal', euiTheme.size.xs)};
