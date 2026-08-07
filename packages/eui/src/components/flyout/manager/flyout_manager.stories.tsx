@@ -67,8 +67,8 @@ interface FlyoutChildStoryArgs extends EuiFlyoutChildActualProps {
   childFlyoutMenuDisplayMode?: EuiFlyoutMenuDisplayMode;
   mainFlyoutMenuProps?: EuiFlyoutMenuProps;
   childFlyoutMenuProps?: EuiFlyoutMenuProps;
-  showMainCustomActions?: boolean;
-  showChildCustomActions?: boolean;
+  showMainTrailingActions?: boolean;
+  showChildTrailingActions?: boolean;
 }
 
 const breakpointSizes: EuiBreakpointSize[] = ['xs', 's', 'm', 'l', 'xl'];
@@ -133,18 +133,18 @@ const meta: Meta<FlyoutChildStoryArgs> = {
       control: { type: 'radio' },
       description: 'The display mode of the main flyout menu.',
     },
-    showMainCustomActions: {
+    showMainTrailingActions: {
       control: { type: 'boolean' },
-      description: 'Whether to show custom actions in the main flyout menu.',
+      description: 'Whether to show trailing actions in the main flyout menu.',
     },
     childFlyoutMenuDisplayMode: {
       options: FLYOUT_MENU_DISPLAY_MODES,
       control: { type: 'radio' },
       description: 'The display mode of the child flyout menu.',
     },
-    showChildCustomActions: {
+    showChildTrailingActions: {
       control: { type: 'boolean' },
-      description: 'Whether to show custom actions in the child flyout menu.',
+      description: 'Whether to show trailing actions in the child flyout menu.',
     },
     // use "mainSize" and "childSize" instead
     size: { table: { disable: true } },
@@ -176,9 +176,9 @@ const meta: Meta<FlyoutChildStoryArgs> = {
     mainFlyoutResizable: false,
     childFlyoutResizable: false,
     mainFlyoutMenuDisplayMode: DEFAULT_MENU_DISPLAY_MODE,
-    showMainCustomActions: true,
+    showMainTrailingActions: true,
     childFlyoutMenuDisplayMode: DEFAULT_MENU_DISPLAY_MODE,
-    showChildCustomActions: true,
+    showChildTrailingActions: true,
   },
   parameters: {
     // Skipping visual regression testing
@@ -206,9 +206,9 @@ const StatefulFlyout: React.FC<FlyoutChildStoryArgs> = ({
   mainFlyoutResizable,
   childFlyoutResizable,
   mainFlyoutMenuDisplayMode,
-  showMainCustomActions,
+  showMainTrailingActions,
   childFlyoutMenuDisplayMode,
-  showChildCustomActions,
+  showChildTrailingActions,
   ...args
 }) => {
   const [isMainOpen, setIsMainOpen] = useState(true);
@@ -238,10 +238,10 @@ const StatefulFlyout: React.FC<FlyoutChildStoryArgs> = ({
 
   const layoutMode = useFlyoutLayoutMode();
 
-  const customActions = ['gear', 'broom'].map((iconType) => ({
+  const trailingActions = ['gear', 'broom'].map((iconType) => ({
     iconType,
     onClick: () => {
-      action('custom action')(`${iconType} action clicked`);
+      action('trailing action')(`${iconType} action clicked`);
     },
     'aria-label': `${iconType} action`,
   }));
@@ -277,7 +277,9 @@ const StatefulFlyout: React.FC<FlyoutChildStoryArgs> = ({
           aria-label={`Main Flyout Menu (${mainSize})`}
           flyoutMenuDisplayMode={mainFlyoutMenuDisplayMode}
           flyoutMenuProps={{
-            customActions: showMainCustomActions ? customActions : undefined,
+            trailingActions: showMainTrailingActions
+              ? trailingActions
+              : undefined,
           }}
           {...args}
           onClose={closeMain}
@@ -316,8 +318,8 @@ const StatefulFlyout: React.FC<FlyoutChildStoryArgs> = ({
                 resizable={childFlyoutResizable}
                 flyoutMenuDisplayMode={childFlyoutMenuDisplayMode}
                 flyoutMenuProps={{
-                  customActions: showChildCustomActions
-                    ? customActions
+                  trailingActions: showChildTrailingActions
+                    ? trailingActions
                     : undefined,
                 }}
                 {...args}

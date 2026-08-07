@@ -28,6 +28,7 @@ import { EuiBadgeAccessibilityRules } from './rules/a11y/badge_accessibility_rul
 import { EuiIconAccessibilityRules } from './rules/a11y/icon_accessibility_rules';
 import { TooltipNoInteractiveContent } from './rules/a11y/tooltip_no_interactive_content';
 import { TooltipButtonIconWrap } from './rules/a11y/tooltip_button_icon_wrap';
+import { ButtonGroupNoInvalidChildren } from './rules/button_group_no_invalid_children';
 
 const config = {
   rules: {
@@ -54,12 +55,14 @@ const config = {
     'require-href-for-link': RequireHrefForLink,
     'tooltip-no-interactive-content': TooltipNoInteractiveContent,
     'tooltip-button-icon-wrap': TooltipButtonIconWrap,
+    'button-group-no-invalid-children': ButtonGroupNoInvalidChildren,
   },
   configs: {
     recommended: {
       plugins: ['@elastic/eslint-plugin-eui'],
       rules: {
         '@elastic/eui/accessible-interactive-element': 'warn',
+        '@elastic/eui/button-group-no-invalid-children': 'error',
         '@elastic/eui/callout-announce-on-mount': 'warn',
         '@elastic/eui/callout-prefer-props-for-content': 'warn',
         '@elastic/eui/consistent-is-invalid-props': 'warn',
